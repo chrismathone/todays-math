@@ -1,0 +1,1139 @@
+{
+  "input": "C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3/evidence/resume-editorial-ctx_9cb9b54195a9/input-negative-new-1121.json",
+  "changes": [
+    {
+      "id": "m1-08-02-c3",
+      "cAfter": "자료 $12$, $15$, $12$, $21$을 줄기와 잎 그림으로 나타낸다. 잎을 일의 자리 숫자로 나타낼 때, 줄기 $1$의 잎을 작은 것부터 차례로 쓰면 {$2,2,5$}이다.",
+      "cAcceptedAnswers": [
+        [
+          "$2,2,5$",
+          "$2,\\ 2,\\ 5$"
+        ]
+      ],
+      "cReason": "모두/반복해서 등 여러 표현이 들어가는 방법 부사를 실제 중복 잎 목록으로 바꾼다."
+    },
+    {
+      "id": "m1-01-01-xc3",
+      "bPrompt": "$1$, $7$, $9$의 약수를 각각 모두 쓰시오. 약수의 개수를 이용해 세 수를 소수, 합성수, 어느 쪽도 아닌 수로 분류하시오.",
+      "bAnswer": "$1$의 약수는 $1$ 하나이므로 소수도 합성수도 아니다. $7$의 약수는 $1,7$ 두 개이므로 소수이다. $9$의 약수는 $1,3,9$ 세 개이므로 합성수이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1$은 약수가 $1$ 하나이고 소수도 합성수도 아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7$은 약수가 $1,7$ 두 개이고 소수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$9$는 약수가 $1,3,9$ 세 개이고 합성수이다"
+          ]
+        }
+      ],
+      "bReason": "1만 속하는 갈래에 없는 이름을 붙이라고 하지 않고 약수 개수에 따른 분류를 묻는다."
+    },
+    {
+      "id": "m3-04-02-xc23",
+      "cAfter": "이차함수의 꼭짓점과 $x$축 위의 서로 다른 두 교점을 이은 삼각형에서 두 교점 사이를 {밑변}으로 삼으면, 이 삼각형의 {높이}는 꼭짓점의 $y$좌표의 절댓값이다.",
+      "coreAfter": "이차함수의 꼭짓점과 $x$축 위의 서로 다른 두 교점을 이은 삼각형에서 두 교점 사이를 {밑변}으로 삼으면, 이 삼각형의 {높이}는 꼭짓점의 $y$좌표의 절댓값이다.",
+      "cReason": "그가 밑변만 다시 가리키는 것으로 읽힐 여지를 없애고 삼각형의 높이임을 밝힌다.",
+      "coreReason": "일반 설명에도 같은 불명확한 지시어가 있어 삼각형이라는 대상을 밝힌다."
+    },
+    {
+      "id": "m3-05-02-xc6",
+      "cAfter": "$\\sin45^\\circ=\\frac{\\sqrt2}{2}$는 {무리수}이므로 소수로 끝까지 적을 수 없다. 표에 적은 $0.7071$처럼 정확한 값에 가까운 수를 {어림값}이라고 한다.",
+      "cAcceptedAnswers": [
+        [
+          "무리수"
+        ],
+        [
+          "어림값",
+          "근삿값"
+        ]
+      ],
+      "cReason": "반올림한 수의 이름을 묻는데 수치 계산으로 읽힐 수 있어 실제 표의 수를 주고 이름을 묻는 문장으로 바꾼다."
+    },
+    {
+      "id": "m2-09-01-xc3",
+      "cAfter": "보통 주사위 한 개를 한 번 던질 때 나올 수 있는 눈을 작은 수부터 모두 쓰면 {$1,2,3,4,5,6$}이다.",
+      "cAcceptedAnswers": [
+        [
+          "$1,2,3,4,5,6$",
+          "$1$부터 $6$까지",
+          "$1\\sim6$"
+        ]
+      ],
+      "cReason": "빠짐없이 앞의 빈칸에 부사가 들어갈 수 있으므로 가능한 눈 자체를 모두 쓰라고 한다."
+    },
+    {
+      "id": "m3-01-02-xc19",
+      "cAfter": "$2.23<\\sqrt5<2.24$임을 알 때, $\\sqrt5$는 $2.3$보다 {작다}.",
+      "cAcceptedAnswers": [
+        [
+          "작다"
+        ]
+      ],
+      "cReason": "범위가 겹치고 겹치지 않는다는 대비 연결 대신 알려진 범위로 실제 두 수의 크기를 비교한다."
+    },
+    {
+      "id": "m3-05-01-xc11",
+      "cAfter": "같은 직각삼각형의 변의 길이를 $\\mathrm{cm}$로 재어 구한 $\\sin A$와 $\\mathrm{mm}$로 재어 구한 $\\sin A$의 값은 {같다}.",
+      "cAcceptedAnswers": [
+        [
+          "같다",
+          "동일하다"
+        ]
+      ],
+      "cReason": "단위라는 이름을 옮기는 칸을 없애고 같은 삼각형을 다른 길이 단위로 잰 비의 비교를 묻는다."
+    },
+    {
+      "id": "m3-06-04-xc2",
+      "cAfter": "한 내각이 $60^\\circ$인 평행사변형은 원에 내접할 {수 없다}.",
+      "cAcceptedAnswers": [
+        [
+          "수 없다",
+          "수없다"
+        ]
+      ],
+      "cReason": "반복된 내접이라는 단어와 일반 부정문 대신 실제 평행사변형에 내접 조건을 적용한다.",
+      "coreAfter": "네 꼭짓점을 모두 지나는 원이 있을 때 사각형이 원에 {내접}한다고 한다. 모든 사각형이 원에 내접하는 것은 {아니다}. 원에 내접하려면 마주 보는 두 각의 크기의 합이 $180^\\circ$이어야 한다.",
+      "coreReason": "정의만으로 반례의 존재가 따라오는 잘못된 인과 연결을 없애고 내접을 판단할 조건을 함께 설명한다."
+    },
+    {
+      "id": "m2-09-02-xc9",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "다른 경우로 센다"
+          ]
+        },
+        {
+          "anyOf": [
+            "십의 자리와 일의 자리의 숫자가 바뀌면 다른 수가 된다"
+          ]
+        }
+      ],
+      "bReason": "다른 수라는 결론만 반복해 이유 기준을 통과하지 않도록 자리 구별을 필수 의미로 둔다."
+    },
+    {
+      "id": "m2-09-03-xc13",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "반드시 $5$번이라고 할 수 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "아주 많이 던질 때 앞면의 상대도수는 $\\frac12$에 가까워진다",
+            "확률 $\\frac12$은 적은 시행에서 앞면의 횟수를 정하는 값이 아니라 반복할 때 상대도수가 가까워지는 값이다"
+          ]
+        }
+      ],
+      "bReason": "반드시5번이 아니라는 결론의 반복을 이유 기준에서 빼고 확률의 뜻을 설명하게 한다."
+    },
+    {
+      "id": "m2-09-04-xc1",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$6$의 눈이 두 사건에 모두 속하여 더하면 두 번 센다",
+            "겹친 결과를 두 번 세기 때문이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac23$",
+            "$\\frac46$"
+          ]
+        }
+      ],
+      "bReason": "겹친 결과와 이중 계산은 같은 오류 이유를 이루므로 하나의 필수 의미로 묶는다."
+    },
+    {
+      "id": "m2-09-04-xc2",
+      "cAfter": "두 사건이 모두 일어날 확률을 각각의 확률을 곱해 구하려면, 한 사건이 일어나도 다른 사건의 확률이 {변하지 않아야} 한다.",
+      "cAcceptedAnswers": [
+        [
+          "변하지 않아야",
+          "달라지지 않아야",
+          "그대로여야"
+        ]
+      ],
+      "cReason": "가능성이라는 이름 대신 서로 영향을 주지 않는다는 실제 조건을 빈칸으로 둔다."
+    }
+  ],
+  "rows": [
+    {
+      "id": "m1-08-02-c3",
+      "bDecision": "rewrite",
+      "bPrompt": "자료 $12$, $15$, $12$, $21$을 줄기와 잎 그림으로 그리려고 한다(잎은 일의 자리 숫자). 줄기 $1$의 잎을 작은 것부터 차례로 쓰고, $12$가 두 번 나온 것을 어떻게 나타내는지 쓰시오.",
+      "bAnswer": "줄기 $1$의 잎은 $2$, $2$, $5$이다. 같은 값이 여러 번 나오면 잎도 나온 횟수만큼 모두 쓴다.",
+      "bGoal": "줄기와 잎 그림에서 잎 쓰는 규칙 알기",
+      "bReason": "자료 제시 순서와 그림의 잎 정렬 순서가 혼동되지 않도록 작은 것부터라는 조건을 명시한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "줄기 $1$의 잎은 $2$, $2$, $5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은 잎도 나온 횟수만큼 모두 쓴다",
+            "$2$를 두 번 쓴다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "모두/반복해서 등 여러 표현이 들어가는 방법 부사를 실제 중복 잎 목록으로 바꾼다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "줄기와 잎을 써 넣는 규칙",
+      "authorBatch": 23,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 334,
+      "part": "m1",
+      "sourceFingerprint": "0b1d9debb752b3f091aceb03a3d765576e3a758e5a751de6fa76b2b883ad5221",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 334
+      },
+      "directReview": null,
+      "cMarkedSentence": "자료 $12$, $15$, $12$, $21$을 줄기와 잎 그림으로 나타낸다. 잎을 일의 자리 숫자로 나타낼 때, 줄기 $1$의 잎을 작은 것부터 차례로 쓰면 {$2,2,5$}이다.",
+      "cSlotAnswers": [
+        "$2,2,5$"
+      ],
+      "cStudentSentence": "자료 $12$, $15$, $12$, $21$을 줄기와 잎 그림으로 나타낸다. 잎을 일의 자리 숫자로 나타낼 때, 줄기 $1$의 잎을 작은 것부터 차례로 쓰면 □이다.",
+      "cAnswers": [
+        "$2,2,5$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$2,2,5$",
+          "equivalentAnswers": [
+            "$2,2,5$",
+            "$2,\\ 2,\\ 5$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$2,2,5$",
+          "$2,\\ 2,\\ 5$"
+        ]
+      ],
+      "proposalFingerprint": "77f4d9ef68f01dec0254cc7816a69dbe6889c3251ed554c249e9b8b369252a89",
+      "cAfter": "자료 $12$, $15$, $12$, $21$을 줄기와 잎 그림으로 나타낸다. 잎을 일의 자리 숫자로 나타낼 때, 줄기 $1$의 잎을 작은 것부터 차례로 쓰면 {$2,2,5$}이다."
+    },
+    {
+      "id": "m1-01-01-xc3",
+      "bDecision": "rewrite",
+      "bPrompt": "$1$, $7$, $9$의 약수를 각각 모두 쓰시오. 약수의 개수를 이용해 세 수를 소수, 합성수, 어느 쪽도 아닌 수로 분류하시오.",
+      "bAnswer": "$1$의 약수는 $1$ 하나이므로 소수도 합성수도 아니다. $7$의 약수는 $1,7$ 두 개이므로 소수이다. $9$의 약수는 $1,3,9$ 세 개이므로 합성수이다.",
+      "bGoal": "자연수가 $1$, 소수, 합성수로 빠짐없이 나뉨을 알고 수를 분류한다.",
+      "bReason": "1만 속하는 갈래에 없는 이름을 붙이라고 하지 않고 약수 개수에 따른 분류를 묻는다.",
+      "cDecision": "exclude",
+      "cAfter": "자연수는 {$1$}, 소수, {합성수}의 세 갈래로 빠짐없이 나뉜다.",
+      "cAnswers": [
+        "$1$",
+        "합성수"
+      ],
+      "cReason": "갈래 세 이름은 순서가 임의라 1·합성수를 바꾸어도 참이고, 같은 세 범주를 약수 수별로 확인하는 m1-01-01-xc12 C가 있다. 구체 수의 분류는 이 문항 B에서 유지한다.",
+      "studentLabel": "자연수를 나누는 세 갈래",
+      "exampleNeeded": true,
+      "authorBatch": 0,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1$은 약수가 $1$ 하나이고 소수도 합성수도 아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7$은 약수가 $1,7$ 두 개이고 소수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$9$는 약수가 $1,3,9$ 세 개이고 합성수이다"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-000",
+      "learningRole": "definition",
+      "roleReason": "1·소수·합성수로 분류",
+      "enrichmentEvidence": "enrichment/enrich-002",
+      "sourceIndex": 927,
+      "part": "m1plus",
+      "sourceFingerprint": "155c6f944873b544c7b807023f5941f0865c2378205b29ba6faf7b7414ab2ac4",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 927
+      },
+      "directReview": null,
+      "cMarkedSentence": "자연수는 {$1$}, 소수, {합성수}의 세 갈래로 빠짐없이 나뉜다.",
+      "cSlotAnswers": [
+        "$1$",
+        "합성수"
+      ],
+      "cStudentSentence": "자연수는 □, 소수, □의 세 갈래로 빠짐없이 나뉜다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$1$",
+          "equivalentAnswers": [
+            "$1$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "합성수",
+          "equivalentAnswers": [
+            "합성수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$1$"
+        ],
+        [
+          "합성수"
+        ]
+      ],
+      "proposalFingerprint": "c7290a40a5528598546345bc81856ddda02105d1ff400ebe205ffb4b0a7d6ee2",
+      "exclusionReason": "C 제외: 순서 없는 자연수 세 갈래 이름 나열은 m1-01-01-xc12 C의 약수 수별 분류와 같은 목표이며 슬롯 순서도 유일하지 않다. B의1·7·9 분류와 일반 설명은 유지한다."
+    },
+    {
+      "id": "m3-04-02-xc23",
+      "learningRole": "application",
+      "roleReason": "$x$절편 거리와 $|y|$로 삼각형 넓이",
+      "bDecision": "rewrite",
+      "bPrompt": "이차함수 $y=x^2-4x+3$의 그래프의 꼭짓점을 $\\mathrm{P}$, $x$축과 만나는 두 점을 $\\mathrm{A}$, $\\mathrm{B}$라 할 때, 삼각형 $\\mathrm{PAB}$의 밑변 $\\overline{\\mathrm{AB}}$의 길이, 높이, 넓이를 구하시오. 또 높이로 꼭짓점의 $y$좌표를 그대로 쓰지 않는 까닭을 쓰시오.",
+      "bAnswer": "$x^2-4x+3=0$에서 $x=1$ 또는 $x=3$이므로 $\\overline{\\mathrm{AB}}=2$이다. $y=(x-2)^2-1$에서 $\\mathrm{P}(2,\\ -1)$이고 높이는 $1$이다. 넓이는 $\\frac{1}{2}\\times 2\\times 1=1$이다. 높이는 길이이므로 $y$좌표 $-1$의 절댓값을 쓴다.",
+      "bGoal": "꼭짓점과 $x$절편으로 삼각형 넓이 구하기",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\overline{\\mathrm{AB}}=2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "높이 $1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "넓이 $1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "높이는 길이라 절댓값을 쓴다",
+            "$x$축까지의 거리가 $1$"
+          ]
+        }
+      ],
+      "bReason": "그림 없이 점의 이름과 식을 밝혀 밑변·높이·넓이를 차례로 묻게 했다.",
+      "cDecision": "rewrite",
+      "cReason": "그가 밑변만 다시 가리키는 것으로 읽힐 여지를 없애고 삼각형의 높이임을 밝힌다.",
+      "exampleNeeded": true,
+      "authorBatch": 57,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3497,
+      "part": "m3plus",
+      "sourceFingerprint": "c403e59eb1659233ff95a9869aede2f3652d1a517696b940c92044d03fde1267",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3497
+      },
+      "directReview": null,
+      "cMarkedSentence": "이차함수의 꼭짓점과 $x$축 위의 서로 다른 두 교점을 이은 삼각형에서 두 교점 사이를 {밑변}으로 삼으면, 이 삼각형의 {높이}는 꼭짓점의 $y$좌표의 절댓값이다.",
+      "cSlotAnswers": [
+        "밑변",
+        "높이"
+      ],
+      "cStudentSentence": "이차함수의 꼭짓점과 $x$축 위의 서로 다른 두 교점을 이은 삼각형에서 두 교점 사이를 □으로 삼으면, 이 삼각형의 □는 꼭짓점의 $y$좌표의 절댓값이다.",
+      "cAnswers": [
+        "밑변",
+        "높이"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "밑변",
+          "equivalentAnswers": [
+            "밑변"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "높이",
+          "equivalentAnswers": [
+            "높이"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "밑변"
+        ],
+        [
+          "높이"
+        ]
+      ],
+      "proposalFingerprint": "cbc4f9734c88be389b858762d3a93c00f81453b6fa9fe13a15065ff6bc20189e",
+      "cAfter": "이차함수의 꼭짓점과 $x$축 위의 서로 다른 두 교점을 이은 삼각형에서 두 교점 사이를 {밑변}으로 삼으면, 이 삼각형의 {높이}는 꼭짓점의 $y$좌표의 절댓값이다.",
+      "coreAfter": "이차함수의 꼭짓점과 $x$축 위의 서로 다른 두 교점을 이은 삼각형에서 두 교점 사이를 {밑변}으로 삼으면, 이 삼각형의 {높이}는 꼭짓점의 $y$좌표의 절댓값이다.",
+      "coreReason": "일반 설명에도 같은 불명확한 지시어가 있어 삼각형이라는 대상을 밝힌다."
+    },
+    {
+      "id": "m3-05-02-xc6",
+      "bDecision": "rewrite",
+      "bPrompt": "$\\sin45^\\circ=\\frac{\\sqrt2}{2}$인데 어떤 삼각비 표에는 이 값을 $0.7071$로 적었다. 표의 수가 정확한 값인지 어림값인지 판단하고, 무리수의 소수 표현을 이용해 까닭을 설명하시오.",
+      "bAnswer": "어림값이다. $\\frac{\\sqrt2}{2}$는 무리수이므로 소수점 아래가 끝없이 이어지고 순환하지 않는다. $0.7071$은 이를 소수점 아래 넷째 자리까지 반올림한 값이다.",
+      "bGoal": "삼각비의 표의 값이 어림값인 까닭 알기",
+      "bReason": "실제 표시값과 정밀도를 문제에 주고 정확한 값과 어림값의 차이를 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$0.7071$은 어림값이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\sqrt2/2$는 무리수여서 소수점 아래가 끝없이 이어져 유한한 네 자리만으로 정확히 적을 수 없다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$\\sin45^\\circ=\\frac{\\sqrt2}{2}$는 {무리수}이므로 소수로 끝까지 적을 수 없다. 표에 적은 $0.7071$처럼 정확한 값에 가까운 수를 {어림값}이라고 한다.",
+      "cAnswers": [
+        "무리수",
+        "어림값"
+      ],
+      "cReason": "반올림한 수의 이름을 묻는데 수치 계산으로 읽힐 수 있어 실제 표의 수를 주고 이름을 묻는 문장으로 바꾼다.",
+      "authorBatch": 59,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "reason",
+      "roleReason": "대부분 무리수라 반올림",
+      "enrichmentEvidence": "enrichment/enrich-009",
+      "sourceIndex": 3544,
+      "part": "m3plus",
+      "sourceFingerprint": "381ded48cc80b40225d01b446b578e9ee35e55c7b32cec8a94910eb306c02929",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3544
+      },
+      "directReview": null,
+      "cMarkedSentence": "$\\sin45^\\circ=\\frac{\\sqrt2}{2}$는 {무리수}이므로 소수로 끝까지 적을 수 없다. 표에 적은 $0.7071$처럼 정확한 값에 가까운 수를 {어림값}이라고 한다.",
+      "cSlotAnswers": [
+        "무리수",
+        "어림값"
+      ],
+      "cStudentSentence": "$\\sin45^\\circ=\\frac{\\sqrt2}{2}$는 □이므로 소수로 끝까지 적을 수 없다. 표에 적은 $0.7071$처럼 정확한 값에 가까운 수를 □이라고 한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "무리수",
+          "equivalentAnswers": [
+            "무리수"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "어림값",
+          "equivalentAnswers": [
+            "어림값",
+            "근삿값"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "어림값",
+          "accept": [
+            "근삿값"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "무리수"
+        ],
+        [
+          "어림값",
+          "근삿값"
+        ]
+      ],
+      "proposalFingerprint": "93c008188c063fac26837952ce65b24abc38ad1c8a82d43cabd90fa9038a2de6",
+      "coreAfter": "삼각비의 값이 {무리수}이면 소수점 아래가 끝없이 이어지고 순환하지 않아 소수로 끝까지 적을 수 없다. 표에 싣기 위해 정한 자리까지 반올림한 값은 {어림값}이다.",
+      "coreReason": "값이 무리수인 경우의 성질과 표가 정한 정밀도를 구별한다."
+    },
+    {
+      "id": "m2-09-01-xc3",
+      "bDecision": "rewrite",
+      "bPrompt": "보통 주사위 한 개를 한 번 던진다. 나올 수 있는 눈을 모두 쓰고 전체 경우의 수를 구하시오. 그중 짝수의 눈에 해당하는 결과와 경우의 수도 쓰시오.",
+      "bAnswer": "전체 눈은 $1,2,3,4,5,6$으로 $6$가지이다. 짝수의 눈은 $2,4,6$으로 $3$가지이다.",
+      "bGoal": "주사위의 전체 결과와 짝수인 결과를 구별하여 각각 경우의 수를 구한다.",
+      "bReason": "여섯 전체 결과와 세 짝수 결과를 각각 구별한다.",
+      "cDecision": "rewrite",
+      "cReason": "빠짐없이 앞의 빈칸에 부사가 들어갈 수 있으므로 가능한 눈 자체를 모두 쓰라고 한다.",
+      "exclusionReason": null,
+      "learningRole": "application",
+      "roleReason": "주사위 한 개의 가능한 눈 나열",
+      "authorBatch": 50,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3175,
+      "part": "m2plus",
+      "sourceFingerprint": "098227422e07ab253942a7c9ac612eab62635d64f2e110d6d5b46e218f22e043",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3175
+      },
+      "directReview": null,
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "전체 눈 $1,2,3,4,5,6$과 경우의 수 $6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "짝수 눈 $2,4,6$과 경우의 수 $3$"
+          ]
+        }
+      ],
+      "cMarkedSentence": "보통 주사위 한 개를 한 번 던질 때 나올 수 있는 눈을 작은 수부터 모두 쓰면 {$1,2,3,4,5,6$}이다.",
+      "cSlotAnswers": [
+        "$1,2,3,4,5,6$"
+      ],
+      "cStudentSentence": "보통 주사위 한 개를 한 번 던질 때 나올 수 있는 눈을 작은 수부터 모두 쓰면 □이다.",
+      "cAnswers": [
+        "$1,2,3,4,5,6$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$1,2,3,4,5,6$",
+          "equivalentAnswers": [
+            "$1,2,3,4,5,6$",
+            "$1$부터 $6$까지",
+            "$1\\sim6$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$1,2,3,4,5,6$",
+          "$1$부터 $6$까지",
+          "$1\\sim6$"
+        ]
+      ],
+      "proposalFingerprint": "66fe10f46e4afe9ebbad3c43a39521c62f442f18eaab13c3a884848b528a44df",
+      "coreAfter": null,
+      "coreReason": null,
+      "cAfter": "보통 주사위 한 개를 한 번 던질 때 나올 수 있는 눈을 작은 수부터 모두 쓰면 {$1,2,3,4,5,6$}이다."
+    },
+    {
+      "id": "m3-01-02-xc19",
+      "bDecision": "rewrite",
+      "bPrompt": "$2.23<\\sqrt{5}<2.24$임을 알고 있다. 이 범위만으로 $\\sqrt{5}$와 $2.3$의 크기를 비교할 수 있는지, $\\sqrt{5}$와 $2.235$의 크기를 비교할 수 있는지 각각 판단하고, 판단 기준을 쓰시오.",
+      "bAnswer": "$\\sqrt{5}<2.24<2.3$이므로 $\\sqrt{5}<2.3$으로 비교할 수 있다. $2.235$는 $2.23$과 $2.24$ 사이에 있어 범위가 겹치므로 비교할 수 없고 더 정확한 어림값이 필요하다. 범위가 겹치지 않을 때만 크기를 정할 수 있다.",
+      "bGoal": "어림 범위로 비교 가능 여부 판단하기",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\sqrt{5}<2.3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2.235$와는 이 범위로 비교할 수 없다",
+            "더 정확한 값이 필요하다"
+          ]
+        },
+        {
+          "anyOf": [
+            "범위가 겹치지 않으면 비교할 수 있다",
+            "범위가 겹치면 정할 수 없다"
+          ]
+        }
+      ],
+      "bReason": "비교 가능한 경우와 불가능한 경우를 대비하도록 $\\sqrt{5}$의 범위와 두 수를 넣었다.",
+      "cDecision": "rewrite",
+      "cReason": "범위가 겹치고 겹치지 않는다는 대비 연결 대신 알려진 범위로 실제 두 수의 크기를 비교한다.",
+      "learningRole": "procedure",
+      "roleReason": "어림 범위의 겹침으로 대소 판정 가능성 확인",
+      "exampleNeeded": true,
+      "authorBatch": 53,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3307,
+      "part": "m3plus",
+      "sourceFingerprint": "f77806cc427cc3c96c2d1439c394e9d6a5ecc5035e0e3f4d556e693108418116",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3307
+      },
+      "directReview": null,
+      "cMarkedSentence": "$2.23<\\sqrt5<2.24$임을 알 때, $\\sqrt5$는 $2.3$보다 {작다}.",
+      "cSlotAnswers": [
+        "작다"
+      ],
+      "cStudentSentence": "$2.23<\\sqrt5<2.24$임을 알 때, $\\sqrt5$는 $2.3$보다 □.",
+      "cAnswers": [
+        "작다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "작다",
+          "equivalentAnswers": [
+            "작다"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "작다"
+        ]
+      ],
+      "proposalFingerprint": "d8e1da853afc682b1b659203075d0046b14530bd6cc0654cb746b52af1bff260",
+      "cAfter": "$2.23<\\sqrt5<2.24$임을 알 때, $\\sqrt5$는 $2.3$보다 {작다}."
+    },
+    {
+      "id": "m3-05-01-xc11",
+      "bDecision": "rewrite",
+      "bPrompt": "같은 직각삼각형의 변의 길이를 $\\mathrm{cm}$로 재어 구한 $\\sin A$와 $\\mathrm{mm}$로 재어 구한 $\\sin A$는 어떤 관계인지 쓰고, 그 까닭을 쓰시오.",
+      "bAnswer": "같다. 삼각비는 두 길이의 비라서 단위를 바꾸면 분자와 분모가 똑같이 $10$배가 되어 값이 변하지 않는다. 그래서 삼각비는 단위가 없는 수이다.",
+      "bGoal": "삼각비가 단위와 무관한 까닭",
+      "bReason": "두 길이의 비라는 말만으로는 부족하며 두 측정값의 같은 배 변화를 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 사인값이 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\mathrm{cm}$를 $\\mathrm{mm}$로 바꾸면 분자와 분모의 길이 수치가 모두 $10$배라 비는 그대로이다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "단위라는 이름을 옮기는 칸을 없애고 같은 삼각형을 다른 길이 단위로 잰 비의 비교를 묻는다.",
+      "exampleNeeded": true,
+      "learningRole": "reason",
+      "roleReason": "비이므로 단위가 없음",
+      "authorBatch": 58,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3529,
+      "part": "m3plus",
+      "sourceFingerprint": "3e7ec0eed36649c8e37fedac28f8d180ee3209ae6249207b92cb145e7286b008",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3529
+      },
+      "directReview": null,
+      "cMarkedSentence": "같은 직각삼각형의 변의 길이를 $\\mathrm{cm}$로 재어 구한 $\\sin A$와 $\\mathrm{mm}$로 재어 구한 $\\sin A$의 값은 {같다}.",
+      "cSlotAnswers": [
+        "같다"
+      ],
+      "cStudentSentence": "같은 직각삼각형의 변의 길이를 $\\mathrm{cm}$로 재어 구한 $\\sin A$와 $\\mathrm{mm}$로 재어 구한 $\\sin A$의 값은 □.",
+      "cAnswers": [
+        "같다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "같다",
+          "equivalentAnswers": [
+            "같다",
+            "동일하다"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "같다",
+          "동일하다"
+        ]
+      ],
+      "proposalFingerprint": "fc0c63d55637d0f80bad5232d97d4fc64dac65ce0a71dd92e03815dbc46cf224",
+      "cAfter": "같은 직각삼각형의 변의 길이를 $\\mathrm{cm}$로 재어 구한 $\\sin A$와 $\\mathrm{mm}$로 재어 구한 $\\sin A$의 값은 {같다}."
+    },
+    {
+      "id": "m3-06-04-xc2",
+      "learningRole": "reason",
+      "roleReason": "원에 내접하지 않는 사각형의 반례",
+      "bDecision": "rewrite",
+      "bPrompt": "모든 사각형이 원에 내접하는가? 판단하고, 원에 내접하지 않는 사각형의 예를 하나 들어 까닭을 쓰시오.",
+      "bAnswer": "아니다. 예를 들어 한 내각이 $60^\\circ$인 평행사변형(직사각형이 아닌 것)은 대각의 크기가 $60^\\circ$, $60^\\circ$로 그 합이 $180^\\circ$가 아니다. 따라서 원에 내접하지 않는다.",
+      "bGoal": "내접 여부 판단과 반례",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "모든사각형이원에내접하는것은아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 내각이 $60^\\circ$인 평행사변형처럼 실제로 내접하지 않는 사각형의 예를 정한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "그 예에서 마주 보는 두 각의 합이 $180^\\circ$가 아님을 확인한다",
+            "그예의네꼭짓점을모두지나는원이없음을다른올바른기하근거로설명한다"
+          ]
+        }
+      ],
+      "bReason": "반례 이름만 받지 않고 그 예에서 내접 조건이 성립하지 않는 까닭도 따로 확인한다.",
+      "cDecision": "rewrite",
+      "cReason": "반복된 내접이라는 단어와 일반 부정문 대신 실제 평행사변형에 내접 조건을 적용한다.",
+      "authorBatch": 61,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3644,
+      "part": "m3plus",
+      "sourceFingerprint": "7e02c38f04dcccc294c693ac303cc341d4fbdf2c4edb0e2ab48a7f23a88c6ddd",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3644
+      },
+      "directReview": null,
+      "cMarkedSentence": "한 내각이 $60^\\circ$인 평행사변형은 원에 내접할 {수 없다}.",
+      "cSlotAnswers": [
+        "수 없다"
+      ],
+      "cStudentSentence": "한 내각이 $60^\\circ$인 평행사변형은 원에 내접할 □.",
+      "cAnswers": [
+        "수 없다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "수 없다",
+          "equivalentAnswers": [
+            "수 없다",
+            "수없다"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "수 없다",
+          "수없다"
+        ]
+      ],
+      "proposalFingerprint": "21b02acb5ff0118470c37510fa68eb67551b7fe6a904ba20b265ed401b2638da",
+      "cAfter": "한 내각이 $60^\\circ$인 평행사변형은 원에 내접할 {수 없다}.",
+      "coreAfter": "네 꼭짓점을 모두 지나는 원이 있을 때 사각형이 원에 {내접}한다고 한다. 모든 사각형이 원에 내접하는 것은 {아니다}. 원에 내접하려면 마주 보는 두 각의 크기의 합이 $180^\\circ$이어야 한다.",
+      "coreReason": "정의만으로 반례의 존재가 따라오는 잘못된 인과 연결을 없애고 내접을 판단할 조건을 함께 설명한다."
+    },
+    {
+      "id": "m2-09-02-xc9",
+      "learningRole": "reason",
+      "roleReason": "두 자리 수에서 자리를 바꾸면 다른 수가 되는 이유",
+      "bDecision": "rewrite",
+      "bPrompt": "숫자 $3$과 $5$가 하나씩 적힌 카드 두 장으로 두 자리 수를 만든다. $35$와 $53$을 같은 경우로 세는지, 다른 경우로 세는지 쓰고 그 이유를 쓰시오.",
+      "bAnswer": "다른 경우로 센다. 두 숫자가 십의 자리와 일의 자리를 서로 바꾸면 다른 수가 되기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "다른 경우로 센다"
+          ]
+        },
+        {
+          "anyOf": [
+            "십의 자리와 일의 자리의 숫자가 바뀌면 다른 수가 된다"
+          ]
+        }
+      ],
+      "bGoal": "카드로 만든 두 자리 수에서 자리 구별하기",
+      "bReason": "다른 수라는 결론만 반복해 이유 기준을 통과하지 않도록 자리 구별을 필수 의미로 둔다.",
+      "exampleNeeded": true,
+      "cDecision": "rewrite",
+      "cReason": "각 숫자를 지정해 십의 자리와 일의 자리 순서를 정한다.",
+      "authorBatch": 51,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3204,
+      "part": "m2plus",
+      "sourceFingerprint": "d645ac37e4eacf9e38478fd780052fdff071814cfc885f412f068ef65ffc8b45",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3204
+      },
+      "directReview": null,
+      "cMarkedSentence": "두 자리 수 $35$에서 숫자 $3$은 {십의 자리}, 숫자 $5$는 {일의 자리}에 있다. 두 숫자의 자리를 바꾸면 다른 수 $53$이 된다.",
+      "cSlotAnswers": [
+        "십의 자리",
+        "일의 자리"
+      ],
+      "cStudentSentence": "두 자리 수 $35$에서 숫자 $3$은 □, 숫자 $5$는 □에 있다. 두 숫자의 자리를 바꾸면 다른 수 $53$이 된다.",
+      "cAnswers": [
+        "십의 자리",
+        "일의 자리"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "십의 자리",
+          "equivalentAnswers": [
+            "십의 자리"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "일의 자리",
+          "equivalentAnswers": [
+            "일의 자리"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "십의 자리"
+        ],
+        [
+          "일의 자리"
+        ]
+      ],
+      "proposalFingerprint": "a37076592c5ab77ff18407ed0e099e597d6af22e0d02615d632642ddb853579b",
+      "coreAfter": null,
+      "coreReason": null,
+      "cAfter": "두 자리 수 $35$에서 숫자 $3$은 {십의 자리}, 숫자 $5$는 {일의 자리}에 있다. 두 숫자의 자리를 바꾸면 다른 수 $53$이 된다."
+    },
+    {
+      "id": "m2-09-03-xc13",
+      "learningRole": "reason",
+      "roleReason": "적은 횟수의 실험이 확률과 다를 수 있는 이유",
+      "bDecision": "rewrite",
+      "bPrompt": "공정한 동전을 $10$번 던질 때 앞면이 반드시 $5$번 나온다고 할 수 있는지 쓰시오. 또 앞면이 나올 확률 $\\frac{1}{2}$의 뜻을 이용해 그 이유를 쓰시오.",
+      "bAnswer": "반드시 $5$번 나온다고 할 수 없다. 확률 $\\frac{1}{2}$은 아주 많이 되풀이할 때 상대도수가 가까워지는 값일 뿐이다. 따라서 $10$번처럼 적은 횟수에서는 다르게 나올 수 있다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "반드시 $5$번이라고 할 수 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "아주 많이 던질 때 앞면의 상대도수는 $\\frac12$에 가까워진다",
+            "확률 $\\frac12$은 적은 시행에서 앞면의 횟수를 정하는 값이 아니라 반복할 때 상대도수가 가까워지는 값이다"
+          ]
+        }
+      ],
+      "bGoal": "확률과 적은 횟수의 실험 결과 구별하기",
+      "bReason": "반드시5번이 아니라는 결론의 반복을 이유 기준에서 빼고 확률의 뜻을 설명하게 한다.",
+      "exampleNeeded": true,
+      "cDecision": "rewrite",
+      "cReason": "확률 곱의 값5와 실제 횟수의 비보장을 나누어 묻는다.",
+      "authorBatch": 51,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3235,
+      "part": "m2plus",
+      "sourceFingerprint": "c395cd0559140786a6df71a67a1a8ec6dc0070f3e6dfeb3dfd7fb57a198cb0bd",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3235
+      },
+      "directReview": null,
+      "cMarkedSentence": "공정한 동전을 $10$번 던질 때 앞면의 확률 $\\frac{1}{2}$에 시행 횟수를 곱한 값은 {$5$}번이다. 이 값이 실제 앞면 횟수를 반드시 보장하는 것은 {아니다}.",
+      "cSlotAnswers": [
+        "$5$",
+        "아니다"
+      ],
+      "cStudentSentence": "공정한 동전을 $10$번 던질 때 앞면의 확률 $\\frac{1}{2}$에 시행 횟수를 곱한 값은 □번이다. 이 값이 실제 앞면 횟수를 반드시 보장하는 것은 □.",
+      "cAnswers": [
+        "$5$",
+        "아니다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$5$",
+          "equivalentAnswers": [
+            "$5$",
+            "다섯"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "아니다",
+          "equivalentAnswers": [
+            "아니다"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$5$",
+          "다섯"
+        ],
+        [
+          "아니다"
+        ]
+      ],
+      "proposalFingerprint": "91eae378be66524122aa3f87e421524036a32c4686c1e90d163be214d225afb0",
+      "coreAfter": null,
+      "coreReason": null,
+      "cAfter": "공정한 동전을 $10$번 던질 때 앞면의 확률 $\\frac{1}{2}$에 시행 횟수를 곱한 값은 {$5$}번이다. 이 값이 실제 앞면 횟수를 반드시 보장하는 것은 {아니다}."
+    },
+    {
+      "id": "m2-09-04-xc1",
+      "bDecision": "rewrite",
+      "bPrompt": "공정한 주사위 한 개를 던질 때 짝수의 눈이 나올 확률은 $\\frac{1}{2}$, $3$의 배수는 $\\frac{1}{3}$이다. 짝수 또는 $3$의 배수일 확률을 $\\frac{1}{2}+\\frac{1}{3}=\\frac{5}{6}$로 구하면 틀리는 이유와 바른 확률을 쓰시오.",
+      "bAnswer": "$6$의 눈이 두 사건에 모두 속해 두 번 세어진다. 해당 눈은 $2$, $3$, $4$, $6$이므로 확률은 $\\frac{4}{6}=\\frac{2}{3}$이다.",
+      "bGoal": "겹치는 사건을 그대로 더하면 안 되는 이유",
+      "bReason": "겹친 결과와 이중 계산은 같은 오류 이유를 이루므로 하나의 필수 의미로 묶는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$6$의 눈이 두 사건에 모두 속하여 더하면 두 번 센다",
+            "겹친 결과를 두 번 세기 때문이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac23$",
+            "$\\frac46$"
+          ]
+        }
+      ],
+      "cDecision": "exclude",
+      "cReason": "같은 배타 사건 조건의 C 중복 제외를 유지한다.",
+      "exclusionReason": "배타 사건 합 조건의 C 중복 제외다.",
+      "exampleNeeded": true,
+      "authorBatch": 52,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "procedure",
+      "roleReason": "겹치는 경우 먼저 확인",
+      "enrichmentEvidence": "enrichment/enrich-008",
+      "sourceIndex": 3246,
+      "part": "m2plus",
+      "sourceFingerprint": "eeede5a987f3d08a87a635d2b692d7efe1d0c858d9826817b944e27922db3982",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3246
+      },
+      "directReview": null,
+      "proposalFingerprint": "8ef7ac568318454f75c3dec34f687310ed0f047ff21066140575ed994fd1544a",
+      "coreAfter": null,
+      "coreReason": null,
+      "cAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cAnswers": null,
+      "cSlotAnswers": null,
+      "cAcceptedAnswers": null,
+      "cSlots": null
+    },
+    {
+      "id": "m2-09-04-xc2",
+      "bDecision": "rewrite",
+      "bPrompt": "(가) 공정한 동전과 주사위를 서로 영향 없이 던져 앞면과 $6$의 눈이 나올 확률. (나) 흰 공 $3$개, 검은 공 $2$개에서 매번 남은 각 공을 같은 가능성으로, 다시 넣지 않고 두 번 뽑아 모두 흰 공일 확률. 각 처음 확률끼리 그대로 곱할 수 있는 쪽과 다른 쪽에서 안 되는 이유를 쓰시오.",
+      "bAnswer": "(가)이다. (나)는 첫 흰 공을 빼면 흰 공 $2$개, 전체 $4$개가 남아 다음 흰 공 확률이 $\\frac{3}{5}$에서 $\\frac{2}{4}$로 바뀐다.",
+      "bGoal": "그대로 곱해도 되는 상황 가려내기",
+      "bReason": "영향 없는 시행과 비복원 추출을 비교해 처음 확률의 곱을 판단한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "(가)"
+          ]
+        },
+        {
+          "anyOf": [
+            "(나)는 첫 결과에 따라 다음 확률이 바뀐다",
+            "첫 흰 공 뒤 둘째 흰 공 확률이 $\\frac{2}{4}$이다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "두 사건이 모두 일어날 확률을 각각의 확률을 곱해 구하려면, 한 사건이 일어나도 다른 사건의 확률이 {변하지 않아야} 한다.",
+      "cAnswers": [
+        "변하지 않아야"
+      ],
+      "cReason": "가능성이라는 이름 대신 서로 영향을 주지 않는다는 실제 조건을 빈칸으로 둔다.",
+      "exampleNeeded": true,
+      "authorBatch": 52,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "procedure",
+      "roleReason": "앞 결과의 영향 확인",
+      "enrichmentEvidence": "enrichment/enrich-008",
+      "notationReason": "삼분의오가 아닌 오분의삼 곱 뒤 로/으로는 곱을 쓴다는 문장으로 정리하고 남은 공·조건부 확률은 보존한다.",
+      "sourceIndex": 3247,
+      "part": "m2plus",
+      "sourceFingerprint": "c46acf6ddcfec834a6f9a224d59048e717195cfaf081cd3983d89d4010218d05",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3247
+      },
+      "directReview": {
+        "path": "amendments.json",
+        "id": "m2-09-04-xc2"
+      },
+      "cMarkedSentence": "두 사건이 모두 일어날 확률을 각각의 확률을 곱해 구하려면, 한 사건이 일어나도 다른 사건의 확률이 {변하지 않아야} 한다.",
+      "cSlotAnswers": [
+        "변하지 않아야"
+      ],
+      "cStudentSentence": "두 사건이 모두 일어날 확률을 각각의 확률을 곱해 구하려면, 한 사건이 일어나도 다른 사건의 확률이 □ 한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "변하지 않아야",
+          "equivalentAnswers": [
+            "변하지 않아야",
+            "달라지지 않아야",
+            "그대로여야"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "가능성",
+          "accept": [
+            "확률"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "변하지 않아야",
+          "달라지지 않아야",
+          "그대로여야"
+        ]
+      ],
+      "proposalFingerprint": "aa6d7bf90b90a11bb53a86fdad73e29345ccd3fbed6097c6f5e195269c5215c1",
+      "coreAfter": null,
+      "coreReason": null
+    },
+    {
+      "id": "m2-09-04-xc22",
+      "bDecision": "rewrite",
+      "bPrompt": "빨강 $3$개, 파랑 $2$개에서 매번 남은 각 공을 같은 가능성으로 두 번 뽑되 다시 넣지 않는다. 두 공의 색이 같을 두 경우를 쓰고, 각 경우의 확률과 전체 답을 구하시오.",
+      "bAnswer": "모두 빨강은 $\\frac{3}{5}\\times\\frac{2}{4}=\\frac{3}{10}$, 모두 파랑은 $\\frac{2}{5}\\times\\frac{1}{4}=\\frac{1}{10}$이다. 합은 $\\frac{2}{5}$이다.",
+      "bGoal": "색이 같은 경우를 색별로 나누어 더하기",
+      "bReason": "모두 빨강3/10과 모두 파랑1/10의 합2/5를 구한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "모두 빨강과 모두 파랑"
+          ]
+        },
+        {
+          "anyOf": [
+            "모두 빨강 $\\frac{3}{10}$, 모두 파랑 $\\frac{1}{10}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "전체 확률 $\\frac{2}{5}$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "빨간 공과 파란 공만 든 주머니에서 두 공의 색이 같은 사건은, 모두 빨강인 경우와 {모두 파랑}인 경우로 나뉜다.",
+      "cAnswers": [
+        "모두 파랑"
+      ],
+      "cReason": "한 색을 고정하여 모두 파랑이라는 다른 경우만 묻는다.",
+      "exampleNeeded": true,
+      "studentLabel": "두 공의 색이 같은 경우 나누기",
+      "authorBatch": 52,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "procedure",
+      "roleReason": "모두 빨강·모두 파랑 분할",
+      "enrichmentEvidence": "enrichment/enrich-009",
+      "sourceIndex": 3267,
+      "part": "m2plus",
+      "sourceFingerprint": "bb5aeab25aa4fbcbc29dd804bc0a81707c16b49ca5dab26df134431686ecda14",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3267
+      },
+      "directReview": null,
+      "cMarkedSentence": "빨간 공과 파란 공만 든 주머니에서 두 공의 색이 같은 사건은, 모두 빨강인 경우와 {모두 파랑}인 경우로 나뉜다.",
+      "cSlotAnswers": [
+        "모두 파랑"
+      ],
+      "cStudentSentence": "빨간 공과 파란 공만 든 주머니에서 두 공의 색이 같은 사건은, 모두 빨강인 경우와 □인 경우로 나뉜다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "모두 파랑",
+          "equivalentAnswers": [
+            "모두 파랑",
+            "둘 다 파랑"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "모두 빨강",
+          "accept": [
+            "둘 다 빨강"
+          ]
+        },
+        {
+          "answer": "모두 파랑",
+          "accept": [
+            "둘 다 파랑"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "모두 파랑",
+          "둘 다 파랑"
+        ]
+      ],
+      "proposalFingerprint": "5c4fed23ba61a2570b1aa00f2888fda38a4076cfed2e12bbd278cb711deeda79",
+      "coreAfter": null,
+      "coreReason": null
+    }
+  ]
+}

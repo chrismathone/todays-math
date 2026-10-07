@@ -1,0 +1,45 @@
+{
+  "status": "OFFLINE TEST DATA — one source entry, synthetic approvals; no activation",
+  "productionBankWritten": false,
+  "studentRecordsWritten": false,
+  "baselineUnchanged": true,
+  "proposalHashUnchanged": true,
+  "entryCount": 1,
+  "id": "m2-01-01-xc20",
+  "before": {
+    "prompt": "$\\frac{3}{2\\times a}$가 유한소수인 한 자리 자연수 $a$",
+    "answer": "$1$, $2$, $3$, $4$, $5$, $6$, $8$"
+  },
+  "after": {
+    "prompt": "$\\frac{3}{2\\times a}$이 유한소수인 한 자리 자연수 $a$",
+    "answer": "$1$, $2$, $3$, $4$, $5$, $6$, $8$"
+  },
+  "beforeJosaFaults": [
+    "$\\frac{3}{2\\times a}$가"
+  ],
+  "afterJosaFaults": [],
+  "baselineHash": "6bfdba783aa462998942be22126cc3ddd590293e17eb585641fe6a62f20be1c5",
+  "proposalHashBefore": "ac3208bfc0e0c017e9e350b2c9c8e6a043f7e98405315774beea61c5a166297f",
+  "proposalHashAfter": "ac3208bfc0e0c017e9e350b2c9c8e6a043f7e98405315774beea61c5a166297f",
+  "compileCandidateBankHash": "f0fbfe76e5dbc9b83e7f7ecd4c92cba757211ae967c3dbcdee128ab6e01de479",
+  "sourcePlanCandidateBankHash": "f0fbfe76e5dbc9b83e7f7ecd4c92cba757211ae967c3dbcdee128ab6e01de479",
+  "realSource": {
+    "file": "C:\\Users\\user\\orca\\workspaces\\todays-math\\student-clear-integration-20261006\\src\\lib\\concept-blank\\bank\\m2-plus.ts",
+    "sha256": "0abbd3e639fc23110da5e3f9a9064689e831eaa86ddcbc30c212a5d1e8e92811",
+    "exampleLiteralStart": 4715,
+    "exampleLiteralEnd": 4759,
+    "allOtherSourceBytesPreserved": true
+  },
+  "plannedFiles": [
+    {
+      "file": "src/lib/concept-blank/bank/m2-plus.ts",
+      "beforeIsNull": false,
+      "afterSha256": "5ccae18ebbe499fc4b89e95a6c262d592e0aa89c95cdd99b6f4f3631a14625a5"
+    },
+    {
+      "file": "src/lib/concept-blank/bank/assessments/m2-plus.json",
+      "beforeIsNull": true,
+      "afterSha256": "a1f25e0ff990e01225a34f8f36403342d93dea96725fe61708c69eec278992a5"
+    }
+  ]
+}

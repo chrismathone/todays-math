@@ -1,0 +1,2966 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "capturedAt": "2026-10-07T07:07:04.165253+00:00",
+  "rows": [
+    {
+      "id": "e5-1-6-3-xc22",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "한 변이 $1\\,\\mathrm{m}$인 정사각형을 한 변이 $10\\,\\mathrm{cm}$인 정사각형 종이로 겹치지 않게 빈틈없이 덮으려고 한다. 종이가 모두 몇 장 필요한지 구하고, 한 줄에 놓이는 장수와 줄 수를 이용해 설명하시오.",
+      "bAnswer": "$1\\,\\mathrm{m}=100\\,\\mathrm{cm}$이므로 한 줄에 $10$장씩 $10$줄이 놓여 $10\\times10=100$장이 필요하다.",
+      "bGoal": "정사각형을 작은 정사각형으로 덮을 때 장수가 줄당 장수 곱하기 줄 수임을 적용한다.",
+      "bReason": "원문 예는 '10장이 아닌 까닭'으로 답을 유도해 장수와 까닭을 함께 묻도록 바꿨다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$100$장",
+            "$100$"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 줄에 $10$장씩 $10$줄",
+            "$10 \\times 10$"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "한 변이 $1\\,\\mathrm{m}$인 정사각형을 한 변이 $10\\,\\mathrm{cm}$인 정사각형으로 빈틈없이 덮으면 한 줄에 {$10$}장씩 {$10$}줄이므로 모두 {$100$}장이 필요하다.",
+      "cReason": "긴 일반 문장과 '자기 자신과 곱한 수' 대신 실제 장수를 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1000,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-3-xc22",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-3 1cm²보다 더 큰 넓이의 단위",
+        "term": "작은 정사각형으로 덮기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "큰 정사각형을 크기가 같은 작은 정사각형으로 빈틈없이 덮으면 한 줄의 장수와 줄 수가 같아, 전체 장수는 한 줄의 장수를 {자기 자신과 곱한 수}이다.",
+        "example": {
+          "prompt": "한 변이 $1\\,\\mathrm{m}$인 정사각형을 한 변이 $10\\,\\mathrm{cm}$인 정사각형으로 빈틈없이 덮을 때 $10$장이 아닌 까닭은?",
+          "answer": "$10$장씩 $10$줄이라서"
+        },
+        "studentC": "큰 정사각형을 크기가 같은 작은 정사각형으로 빈틈없이 덮으면 한 줄의 장수와 줄 수가 같아, 전체 장수는 한 줄의 장수를 □이다.",
+        "answers": [
+          "자기 자신과 곱한 수"
+        ]
+      },
+      "sourceFingerprint": "68f2a52cfad6c11d050ea6bbe44a4e92513d7237fbeb45358a2006048d21ff69",
+      "draftEvidence": "evidence/section-023-draft.json",
+      "cProposedAnswers": [
+        "$10$",
+        "$10$",
+        "$100$"
+      ],
+      "cStudentAfter": "한 변이 $1\\,\\mathrm{m}$인 정사각형을 한 변이 $10\\,\\mathrm{cm}$인 정사각형으로 빈틈없이 덮으면 한 줄에 □장씩 □줄이므로 모두 □장이 필요하다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$10$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$100$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "한 변이 $1\\,\\mathrm{m}$인 정사각형을 한 변이 $10\\,\\mathrm{cm}$인 정사각형으로 빈틈없이 덮으면 한 줄에 {$10$}장씩 {$10$}줄이므로 모두 {$100$}장이 필요하다.",
+      "cStudentSentence": "한 변이 $1\\,\\mathrm{m}$인 정사각형을 한 변이 $10\\,\\mathrm{cm}$인 정사각형으로 빈틈없이 덮으면 한 줄에 □장씩 □줄이므로 모두 □장이 필요하다.",
+      "cSlotAnswers": [
+        {
+          "key": "$10$",
+          "equivalents": []
+        },
+        {
+          "key": "$10$",
+          "equivalents": []
+        },
+        {
+          "key": "$100$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "한 변이 $1\\,\\mathrm{m}$인 정사각형을 한 변이 $10\\,\\mathrm{cm}$인 정사각형 종이로 겹치지 않게 빈틈없이 덮으려고 한다. 종이가 모두 몇 장 필요한지 구하고, 한 줄에 놓이는 장수와 줄 수를 이용해 설명하시오.",
+        "answer": "$1\\,\\mathrm{m}=100\\,\\mathrm{cm}$이므로 한 줄에 $10$장씩 $10$줄이 놓여 $10\\times10=100$장이 필요하다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$100$장",
+              "$100$"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 줄에 $10$장씩 $10$줄",
+              "$10 \\times 10$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "한 변이 $1\\,\\mathrm{m}$인 정사각형을 한 변이 $10\\,\\mathrm{cm}$인 정사각형으로 빈틈없이 덮으면 한 줄에 {$10$}장씩 {$10$}줄이므로 모두 {$100$}장이 필요하다.",
+        "acceptedAnswers": [
+          [
+            "$10$"
+          ],
+          [
+            "$10$"
+          ],
+          [
+            "$100$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "1e74ee7e2247d8a1ab99d895f34c53c503ceee766a4da867a7860b797772a668",
+      "questionRevision": "planning-e5e6-20261006-1e74ee7e2247",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-3-xc23",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "가로 $8\\,\\mathrm{m}$, 세로 $5\\,\\mathrm{m}$인 직사각형 모양 땅의 넓이와 둘레를 각각 단위와 함께 구하고, 두 단위가 서로 다른 까닭을 설명하시오.",
+      "bAnswer": "넓이는 $8\\times5=40\\,(\\mathrm{m}^2)$, 둘레는 $(8+5)\\times2=26\\,(\\mathrm{m})$이다. 둘레는 길이라서 $\\mathrm{m}$, 넓이는 면의 크기라서 $\\mathrm{m}^2$를 쓴다.",
+      "bGoal": "넓이와 둘레를 구하고 단위가 다른 까닭을 설명한다.",
+      "bReason": "원문 예에 단위가 다른 까닭을 더해 계산만 하는 문항이 되지 않게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "넓이 $40\\,\\mathrm{m} ^2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "둘레 $26\\,\\mathrm{m}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "둘레는 길이이고 넓이는 면의 크기이다",
+            "둘레는 길이의 단위, 넓이는 넓이의 단위를 쓴다"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "가로 $8\\,\\mathrm{m}$, 세로 $5\\,\\mathrm{m}$인 직사각형 모양 땅의 넓이는 $40$ {$\\mathrm{m}^2$}이고, 둘레는 $26$ {$\\mathrm{m}$}이다.",
+      "cReason": "땅의 크기가 없던 문장에 실제 값을 넣고 두 단위를 모두 고르게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1001,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-3-xc23",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-3 1cm²보다 더 큰 넓이의 단위",
+        "term": "넓이와 둘레의 단위 구별",
+        "kind": "방법",
+        "level": "상",
+        "definition": "땅의 넓이는 {$\\mathrm{m}^2$}, 둘레는 $\\mathrm{m}$로 답해 단위를 구별한다.",
+        "example": {
+          "prompt": "가로 $8\\,\\mathrm{m}$, 세로 $5\\,\\mathrm{m}$인 땅의 넓이와 둘레는?",
+          "answer": "$40\\,\\mathrm{m}^2$, $26\\,\\mathrm{m}$"
+        },
+        "studentC": "땅의 넓이는 □, 둘레는 $\\mathrm{m}$로 답해 단위를 구별한다.",
+        "answers": [
+          "$\\mathrm{m}^2$"
+        ]
+      },
+      "sourceFingerprint": "84037c2a828db243934f61763e3f1abc9b32f52f206ff19d3a0aeb427aaf211b",
+      "draftEvidence": "evidence/section-023-draft.json",
+      "cProposedAnswers": [
+        "$\\mathrm{m}^2$",
+        "$\\mathrm{m}$"
+      ],
+      "cStudentAfter": "가로 $8\\,\\mathrm{m}$, 세로 $5\\,\\mathrm{m}$인 직사각형 모양 땅의 넓이는 $40$ □이고, 둘레는 $26$ □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\mathrm{m}^2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\mathrm{m}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "가로 $8\\,\\mathrm{m}$, 세로 $5\\,\\mathrm{m}$인 직사각형 모양 땅의 넓이는 $40$ {$\\mathrm{m}^2$}이고, 둘레는 $26$ {$\\mathrm{m}$}이다.",
+      "cStudentSentence": "가로 $8\\,\\mathrm{m}$, 세로 $5\\,\\mathrm{m}$인 직사각형 모양 땅의 넓이는 $40$ □이고, 둘레는 $26$ □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\mathrm{m}^2$",
+          "equivalents": []
+        },
+        {
+          "key": "$\\mathrm{m}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "가로 $8\\,\\mathrm{m}$, 세로 $5\\,\\mathrm{m}$인 직사각형 모양 땅의 넓이와 둘레를 각각 단위와 함께 구하고, 두 단위가 서로 다른 까닭을 설명하시오.",
+        "answer": "넓이는 $8\\times5=40\\,(\\mathrm{m}^2)$, 둘레는 $(8+5)\\times2=26\\,(\\mathrm{m})$이다. 둘레는 길이라서 $\\mathrm{m}$, 넓이는 면의 크기라서 $\\mathrm{m}^2$를 쓴다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "넓이 $40\\,\\mathrm{m} ^2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "둘레 $26\\,\\mathrm{m}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "둘레는 길이이고 넓이는 면의 크기이다",
+              "둘레는 길이의 단위, 넓이는 넓이의 단위를 쓴다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "가로 $8\\,\\mathrm{m}$, 세로 $5\\,\\mathrm{m}$인 직사각형 모양 땅의 넓이는 $40$ {$\\mathrm{m}^2$}이고, 둘레는 $26$ {$\\mathrm{m}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\mathrm{m}^2$"
+          ],
+          [
+            "$\\mathrm{m}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "0515f0378f39227c473dea531296ad42d38c99028f76125f062d471848b940ba",
+      "questionRevision": "planning-e5e6-20261006-0515f0378f39",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-3-xc24",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$5000\\,\\mathrm{cm}^2$를 $\\mathrm{m}^2$로 나타내면 얼마인지 구하고, $1\\,\\mathrm{m}^2$가 몇 $\\mathrm{cm}^2$인지를 이용해 그렇게 되는 까닭을 설명하시오.",
+      "bAnswer": "$1\\,\\mathrm{m}^2=10000\\,\\mathrm{cm}^2$이고 $5000\\,\\mathrm{cm}^2$는 그 절반이므로 $0.5\\,\\mathrm{m}^2$이다.",
+      "bGoal": "$1\\,\\mathrm{m}^2$보다 좁은 넓이가 $1$보다 작은 수로 나타남을 설명한다.",
+      "bReason": "원문 예는 답 $0.5$를 미리 알려 주므로 값도 구하게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$0.5\\,\\mathrm{m} ^2$",
+            "$\\frac{1}{2}\\,\\mathrm{m} ^2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1\\,\\mathrm{m} ^2$는 $10000\\,\\mathrm{cm} ^2$이고 $5000\\,\\mathrm{cm} ^2$는 그 절반이다",
+            "$5000$은 $10000$의 절반이다"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "$5000\\,\\mathrm{cm}^2$는 $1\\,\\mathrm{m}^2$의 절반이므로 {$0.5$}$\\,\\mathrm{m}^2$이다. 이처럼 $1\\,\\mathrm{m}^2$보다 좁은 넓이를 $\\mathrm{m}^2$로 나타내면 $1$보다 {작은} 수가 된다.",
+      "cReason": "일반 문장만으로는 막연해 실제 값으로 확인한 뒤 낱말을 답하게 했다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0.5$",
+            "$\\frac{1}{2}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "작은"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 1002,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-3-xc24",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-3 1cm²보다 더 큰 넓이의 단위",
+        "term": "$1\\,\\mathrm{m}^2$보다 좁은 넓이",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$1\\,\\mathrm{m}^2$보다 좁은 넓이를 $\\mathrm{m}^2$로 나타내면 {$1$보다 작은 수}가 된다.",
+        "example": {
+          "prompt": "$5000\\,\\mathrm{cm}^2$를 $0.5\\,\\mathrm{m}^2$라고 하는 까닭은?",
+          "answer": "$1\\,\\mathrm{m}^2$의 절반이라서"
+        },
+        "studentC": "$1\\,\\mathrm{m}^2$보다 좁은 넓이를 $\\mathrm{m}^2$로 나타내면 □가 된다.",
+        "answers": [
+          "$1$보다 작은 수"
+        ]
+      },
+      "sourceFingerprint": "6763c90504de95856b6c80dc200b5671cfd7fb55b0f85c94d8c14bbb09bc080e",
+      "draftEvidence": "evidence/section-023-draft.json",
+      "cProposedAnswers": [
+        "$0.5$",
+        "작은"
+      ],
+      "cStudentAfter": "$5000\\,\\mathrm{cm}^2$는 $1\\,\\mathrm{m}^2$의 절반이므로 □$\\,\\mathrm{m}^2$이다. 이처럼 $1\\,\\mathrm{m}^2$보다 좁은 넓이를 $\\mathrm{m}^2$로 나타내면 $1$보다 □ 수가 된다.",
+      "cMarkedSentence": "$5000\\,\\mathrm{cm}^2$는 $1\\,\\mathrm{m}^2$의 절반이므로 {$0.5$}$\\,\\mathrm{m}^2$이다. 이처럼 $1\\,\\mathrm{m}^2$보다 좁은 넓이를 $\\mathrm{m}^2$로 나타내면 $1$보다 {작은} 수가 된다.",
+      "cStudentSentence": "$5000\\,\\mathrm{cm}^2$는 $1\\,\\mathrm{m}^2$의 절반이므로 □$\\,\\mathrm{m}^2$이다. 이처럼 $1\\,\\mathrm{m}^2$보다 좁은 넓이를 $\\mathrm{m}^2$로 나타내면 $1$보다 □ 수가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0.5$",
+          "equivalents": [
+            "$\\frac{1}{2}$"
+          ]
+        },
+        {
+          "key": "작은",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$5000\\,\\mathrm{cm}^2$를 $\\mathrm{m}^2$로 나타내면 얼마인지 구하고, $1\\,\\mathrm{m}^2$가 몇 $\\mathrm{cm}^2$인지를 이용해 그렇게 되는 까닭을 설명하시오.",
+        "answer": "$1\\,\\mathrm{m}^2=10000\\,\\mathrm{cm}^2$이고 $5000\\,\\mathrm{cm}^2$는 그 절반이므로 $0.5\\,\\mathrm{m}^2$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$0.5\\,\\mathrm{m} ^2$",
+              "$\\frac{1}{2}\\,\\mathrm{m} ^2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1\\,\\mathrm{m} ^2$는 $10000\\,\\mathrm{cm} ^2$이고 $5000\\,\\mathrm{cm} ^2$는 그 절반이다",
+              "$5000$은 $10000$의 절반이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$5000\\,\\mathrm{cm}^2$는 $1\\,\\mathrm{m}^2$의 절반이므로 {$0.5$}$\\,\\mathrm{m}^2$이다. 이처럼 $1\\,\\mathrm{m}^2$보다 좁은 넓이를 $\\mathrm{m}^2$로 나타내면 $1$보다 {작은} 수가 된다.",
+        "acceptedAnswers": [
+          [
+            "$0.5$",
+            "$\\frac{1}{2}$"
+          ],
+          [
+            "작은"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "08821601b225b3a9e1f45f3256a3b0439c491ba8e480886d8dfc80a3284fdfde",
+      "questionRevision": "planning-e5e6-20261006-08821601b225",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-3-xc25",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$3\\,\\mathrm{m}^2$를 $\\mathrm{cm}^2$로 바꾸어 나타내면 수가 훨씬 커진다. 이때 실제 넓이는 어떻게 되는지 쓰고, 수가 커지는 까닭을 설명하시오.",
+      "bAnswer": "실제 넓이는 변하지 않는다. 같은 넓이를 더 작은 단위로 세기 때문에 수만 커진다.",
+      "bGoal": "단위를 바꾸어도 넓이 자체는 같음을 설명한다.",
+      "bReason": "'크기는 그대로'라는 문장만 외우지 않도록 수가 커지는 까닭을 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "실제 넓이는 그대로이다",
+            "넓이는 변하지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "더 작은 단위로 세기 때문이다",
+            "$\\mathrm{cm} ^2$가 $\\mathrm{m} ^2$보다 작은 단위라서 더 많이 들어간다"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "$2\\,\\mathrm{m}^2$를 $20000\\,\\mathrm{cm}^2$로 바꾸어 나타내면 수는 달라지지만 실제 넓이는 {같다}.",
+      "cReason": "'크기는 그대로'라는 구절 대신 실제 값으로 넓이가 같음을 답하게 했다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다",
+            "그대로이다",
+            "변하지 않는다"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 1003,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-3-xc25",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-3 1cm²보다 더 큰 넓이의 단위",
+        "term": "단위를 바꾸어도 같은 크기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "넓이를 다른 단위로 바꾸어도 땅이 차지하는 {크기는 그대로}이다.",
+        "studentC": "넓이를 다른 단위로 바꾸어도 땅이 차지하는 □이다.",
+        "answers": [
+          "크기는 그대로"
+        ]
+      },
+      "sourceFingerprint": "27f22e5574b0ac339c005db208445c8bd5f41974ff8b7dfcfaeab506fe720e03",
+      "draftEvidence": "evidence/section-023-draft.json",
+      "cProposedAnswers": [
+        "같다"
+      ],
+      "cStudentAfter": "$2\\,\\mathrm{m}^2$를 $20000\\,\\mathrm{cm}^2$로 바꾸어 나타내면 수는 달라지지만 실제 넓이는 □.",
+      "cMarkedSentence": "$2\\,\\mathrm{m}^2$를 $20000\\,\\mathrm{cm}^2$로 바꾸어 나타내면 수는 달라지지만 실제 넓이는 {같다}.",
+      "cStudentSentence": "$2\\,\\mathrm{m}^2$를 $20000\\,\\mathrm{cm}^2$로 바꾸어 나타내면 수는 달라지지만 실제 넓이는 □.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": [
+            "그대로이다",
+            "변하지 않는다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$3\\,\\mathrm{m}^2$를 $\\mathrm{cm}^2$로 바꾸어 나타내면 수가 훨씬 커진다. 이때 실제 넓이는 어떻게 되는지 쓰고, 수가 커지는 까닭을 설명하시오.",
+        "answer": "실제 넓이는 변하지 않는다. 같은 넓이를 더 작은 단위로 세기 때문에 수만 커진다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "실제 넓이는 그대로이다",
+              "넓이는 변하지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "더 작은 단위로 세기 때문이다",
+              "$\\mathrm{cm} ^2$가 $\\mathrm{m} ^2$보다 작은 단위라서 더 많이 들어간다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$2\\,\\mathrm{m}^2$를 $20000\\,\\mathrm{cm}^2$로 바꾸어 나타내면 수는 달라지지만 실제 넓이는 {같다}.",
+        "acceptedAnswers": [
+          [
+            "같다",
+            "그대로이다",
+            "변하지 않는다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "73f8087f9364ba554ef872d147970fc4ac447fd96cfce47465df356f625f566e",
+      "questionRevision": "planning-e5e6-20261006-73f8087f9364",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-4-xc3",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "높이를 밑변이나 그 늘인 선까지 수직으로 잰다는 점을 확인한다.",
+      "bReason": "평행사변형은 c2, 삼각형은 xc4의 B가 같은 내용을 묻고 있어 중복이다.",
+      "exclusionReason": "B 중복: e5-1-6-4-c2, e5-1-6-4-xc4로 대체.",
+      "cDecision": "revise",
+      "cAfter": "높이는 밑변과 마주 보는 꼭짓점이나 변 위의 점에서 밑변이나 밑변을 늘인 선까지 {수직}으로 잰 길이이다.",
+      "cReason": "원문 빈칸은 긴 구절 암기이고 '연장선'도 낯설어, 핵심 낱말 하나만 묻고 말을 풀었다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "수직",
+            "직각"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 1004,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-4-xc3",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-4 평행사변형과 삼각형의 넓이",
+        "term": "밑변과 높이의 관계",
+        "kind": "성질",
+        "level": "하",
+        "definition": "높이는 밑변과 마주 보는 꼭짓점이나 변 위의 점에서 {밑변이나 그 연장선까지 수직으로} 잰 거리이다.",
+        "studentC": "높이는 밑변과 마주 보는 꼭짓점이나 변 위의 점에서 □ 잰 거리이다.",
+        "answers": [
+          "밑변이나 그 연장선까지 수직으로"
+        ]
+      },
+      "sourceFingerprint": "18b5da2fe79728533671a6abb5e2f89efcee5089940b2d4d19f199435ae15f68",
+      "draftEvidence": "evidence/section-024-draft.json",
+      "cProposedAnswers": [
+        "수직"
+      ],
+      "cStudentAfter": "높이는 밑변과 마주 보는 꼭짓점이나 변 위의 점에서 밑변이나 밑변을 늘인 선까지 □으로 잰 길이이다.",
+      "cMarkedSentence": "높이는 밑변과 마주 보는 꼭짓점이나 변 위의 점에서 밑변이나 밑변을 늘인 선까지 {수직}으로 잰 길이이다.",
+      "cStudentSentence": "높이는 밑변과 마주 보는 꼭짓점이나 변 위의 점에서 밑변이나 밑변을 늘인 선까지 □으로 잰 길이이다.",
+      "cSlotAnswers": [
+        {
+          "key": "수직",
+          "equivalents": [
+            "직각"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "높이는 밑변과 마주 보는 꼭짓점이나 변 위의 점에서 밑변이나 밑변을 늘인 선까지 {수직}으로 잰 길이이다.",
+        "acceptedAnswers": [
+          [
+            "수직",
+            "직각"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 중복: e5-1-6-4-c2, e5-1-6-4-xc4로 대체."
+      },
+      "proposalFingerprint": "be6099b6082f7bb45b38eb79ea9b82b76eb3a7986fa136b896f85ff37afa1267",
+      "questionRevision": "planning-e5e6-20261006-be6099b6082f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-4-xc4",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "삼각형에서 한 변을 밑변으로 정했을 때, 높이는 어느 점에서 어디까지 어떻게 그은 선분의 길이인가요?",
+      "bAnswer": "밑변과 마주 보는 꼭짓점에서 밑변(또는 밑변을 늘인 선)에 수직으로 그은 선분의 길이이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "밑변과 마주 보는 꼭짓점에서 긋는다",
+            "밑변 위에 있지 않은 꼭짓점에서 긋는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "밑변에 수직으로 긋는다",
+            "밑변과 직각으로 만나게 긋는다",
+            "밑변을 늘인 선에 수직으로 긋는다"
+          ]
+        }
+      ],
+      "bGoal": "삼각형의 높이를 긋는 시작점과 방향을 말한다.",
+      "bReason": "원문의 꼭짓점과 수직 두 요소를 질문의 '어느 점에서, 어떻게'로 나누어 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "삼각형의 높이는 밑변 맞은편 {꼭짓점}에서 밑변이나 그 연장선까지 수직으로 내린 선분의 길이이다.",
+      "cReason": "높이를 긋기 시작하는 곳인 '꼭짓점' 한 낱말을 묻는 빈칸으로 답이 분명하다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1005,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-4-xc4",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-4 평행사변형과 삼각형의 넓이",
+        "term": "삼각형의 높이 찾기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "삼각형의 높이는 밑변 맞은편 {꼭짓점}에서 밑변이나 그 연장선까지 수직으로 내린 선분의 길이이다.",
+        "studentC": "삼각형의 높이는 밑변 맞은편 □에서 밑변이나 그 연장선까지 수직으로 내린 선분의 길이이다.",
+        "answers": [
+          "꼭짓점"
+        ]
+      },
+      "sourceFingerprint": "608c115dbe399ff624a9a2b6e66c5e482001fce0ce1085eae836ea85b5b4bf1b",
+      "draftEvidence": "evidence/section-024-draft.json",
+      "cFrozenDefinition": "삼각형의 높이는 밑변 맞은편 {꼭짓점}에서 밑변이나 그 연장선까지 수직으로 내린 선분의 길이이다.",
+      "cFrozenStudentSentence": "삼각형의 높이는 밑변 맞은편 □에서 밑변이나 그 연장선까지 수직으로 내린 선분의 길이이다.",
+      "cProposedAnswers": [
+        "꼭짓점"
+      ],
+      "cStudentAfter": "삼각형의 높이는 밑변 맞은편 □에서 밑변이나 그 연장선까지 수직으로 내린 선분의 길이이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "꼭짓점"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "삼각형의 높이는 밑변 맞은편 {꼭짓점}에서 밑변이나 그 연장선까지 수직으로 내린 선분의 길이이다.",
+      "cStudentSentence": "삼각형의 높이는 밑변 맞은편 □에서 밑변이나 그 연장선까지 수직으로 내린 선분의 길이이다.",
+      "cSlotAnswers": [
+        {
+          "key": "꼭짓점",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "삼각형에서 한 변을 밑변으로 정했을 때, 높이는 어느 점에서 어디까지 어떻게 그은 선분의 길이인가요?",
+        "answer": "밑변과 마주 보는 꼭짓점에서 밑변(또는 밑변을 늘인 선)에 수직으로 그은 선분의 길이이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "밑변과 마주 보는 꼭짓점에서 긋는다",
+              "밑변 위에 있지 않은 꼭짓점에서 긋는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "밑변에 수직으로 긋는다",
+              "밑변과 직각으로 만나게 긋는다",
+              "밑변을 늘인 선에 수직으로 긋는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "삼각형의 높이는 밑변 맞은편 {꼭짓점}에서 밑변이나 그 연장선까지 수직으로 내린 선분의 길이이다.",
+        "acceptedAnswers": [
+          [
+            "꼭짓점"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5a72c1d82edd49883d61c554eadf0b27c5049d0b90fe5ee3f1ebbbb0b087738f",
+      "questionRevision": "planning-e5e6-20261006-5a72c1d82edd",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-4-xc5",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "어느 변이든 밑변이 될 수 있음을 확인한다.",
+      "bReason": "c1의 B가 아래쪽 변만 밑변인지 이미 묻고 있어 따로 물으면 같은 답이 된다.",
+      "exclusionReason": "B 중복: e5-1-6-4-c1로 대체.",
+      "cDecision": "revise",
+      "cAfter": "삼각형에서 밑변으로 정할 수 있는 변은 모두 {$3$}개이고, 평행사변형에서는 모두 {$4$}개이다.",
+      "cReason": "원문 답 '어느 변이든'은 말투를 맞혀야 하는 구절이라 변의 개수로 같은 뜻을 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1006,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-4-xc5",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-4 평행사변형과 삼각형의 넓이",
+        "term": "밑변으로 정할 수 있는 변",
+        "kind": "성질",
+        "level": "하",
+        "definition": "삼각형이나 평행사변형은 {어느 변이든} 밑변으로 정할 수 있다.",
+        "studentC": "삼각형이나 평행사변형은 □ 밑변으로 정할 수 있다.",
+        "answers": [
+          "어느 변이든"
+        ]
+      },
+      "sourceFingerprint": "9f530e27399a02cd678fdc83893c0b0e04182b4e2621134e38991e074f40dc1d",
+      "draftEvidence": "evidence/section-024-draft.json",
+      "cProposedAnswers": [
+        "$3$",
+        "$4$"
+      ],
+      "cStudentAfter": "삼각형에서 밑변으로 정할 수 있는 변은 모두 □개이고, 평행사변형에서는 모두 □개이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "삼각형에서 밑변으로 정할 수 있는 변은 모두 {$3$}개이고, 평행사변형에서는 모두 {$4$}개이다.",
+      "cStudentSentence": "삼각형에서 밑변으로 정할 수 있는 변은 모두 □개이고, 평행사변형에서는 모두 □개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$4$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "삼각형에서 밑변으로 정할 수 있는 변은 모두 {$3$}개이고, 평행사변형에서는 모두 {$4$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "$4$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 중복: e5-1-6-4-c1로 대체."
+      },
+      "proposalFingerprint": "10120fca750f631c5ae1dd241f94c9414f9c3898cc918cbed76860e49b75f0c2",
+      "questionRevision": "planning-e5e6-20261006-10120fca750f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-4-xc6",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "평행사변형에서 두 밑변 사이의 높이를 여러 곳에서 재면 길이가 어떻게 되나요? 두 밑변이 서로 어떤 위치 관계인지를 이용해 설명하세요.",
+      "bAnswer": "어디에서 재어도 길이가 같다. 두 밑변이 서로 평행하고, 평행선 사이의 거리는 어디에서나 같기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "어디에서 재어도 같다",
+            "높이는 모두 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 밑변이 평행하기 때문이다",
+            "평행선 사이의 거리는 어디서나 같다"
+          ]
+        }
+      ],
+      "bGoal": "높이가 일정한 까닭을 두 밑변의 평행으로 설명한다.",
+      "bReason": "원문은 결과만 말하므로 4학년의 평행선 사이의 거리와 잇는 이유를 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "평행사변형의 두 밑변은 서로 {평행}하므로 두 밑변 사이의 높이는 어디에서 재어도 길이가 {같다}.",
+      "cReason": "원문 빈칸 '어디에서 재어도'는 구절 맞히기라 이유와 결론 낱말로 바꿨다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "평행"
+          ]
+        },
+        {
+          "anyOf": [
+            "같다",
+            "일정하다"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 1007,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-4-xc6",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-4 평행사변형과 삼각형의 넓이",
+        "term": "어디서나 같은 평행사변형의 높이",
+        "kind": "성질",
+        "level": "하",
+        "definition": "평행사변형에서 두 밑변 사이의 높이는 {어디에서 재어도} 같다.",
+        "studentC": "평행사변형에서 두 밑변 사이의 높이는 □ 같다.",
+        "answers": [
+          "어디에서 재어도"
+        ]
+      },
+      "sourceFingerprint": "0e1a96879ae14fb779b094495d5a783352589a2d881aaf432f868dcc40f858c4",
+      "draftEvidence": "evidence/section-024-draft.json",
+      "cProposedAnswers": [
+        "평행",
+        "같다"
+      ],
+      "cStudentAfter": "평행사변형의 두 밑변은 서로 □하므로 두 밑변 사이의 높이는 어디에서 재어도 길이가 □.",
+      "cMarkedSentence": "평행사변형의 두 밑변은 서로 {평행}하므로 두 밑변 사이의 높이는 어디에서 재어도 길이가 {같다}.",
+      "cStudentSentence": "평행사변형의 두 밑변은 서로 □하므로 두 밑변 사이의 높이는 어디에서 재어도 길이가 □.",
+      "cSlotAnswers": [
+        {
+          "key": "평행",
+          "equivalents": []
+        },
+        {
+          "key": "같다",
+          "equivalents": [
+            "일정하다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "평행사변형에서 두 밑변 사이의 높이를 여러 곳에서 재면 길이가 어떻게 되나요? 두 밑변이 서로 어떤 위치 관계인지를 이용해 설명하세요.",
+        "answer": "어디에서 재어도 길이가 같다. 두 밑변이 서로 평행하고, 평행선 사이의 거리는 어디에서나 같기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "어디에서 재어도 같다",
+              "높이는 모두 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 밑변이 평행하기 때문이다",
+              "평행선 사이의 거리는 어디서나 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "평행사변형의 두 밑변은 서로 {평행}하므로 두 밑변 사이의 높이는 어디에서 재어도 길이가 {같다}.",
+        "acceptedAnswers": [
+          [
+            "평행"
+          ],
+          [
+            "같다",
+            "일정하다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "981d8bb1057bc08faef5ed721eccc83948b7a8ce750259332e1abc2be2723717",
+      "questionRevision": "planning-e5e6-20261006-981d8bb1057b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-4-xc7",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "모눈 칸 수로 밑변과 높이를 읽어 넓이를 구한다.",
+      "bReason": "칸을 세는 행동일 뿐 새 개념이 없고, 넓이 계산은 c3의 B가 다룬다.",
+      "exclusionReason": "B는 사소한 행동이라 제외: e5-1-6-4-c3으로 대체.",
+      "cDecision": "revise",
+      "cAfter": "한 칸의 가로와 세로가 각각 $1\\,\\mathrm{cm}$인 모눈종이에 그린 평행사변형의 밑변이 $5$칸, 높이가 $3$칸이면 넓이는 {$15$}$\\mathrm{cm} ^2$이다.",
+      "cReason": "'칸 수'를 맞히는 빈칸은 가치가 낮아 원문 예시 수치로 실제 넓이를 구하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1008,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-4-xc7",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-4 평행사변형과 삼각형의 넓이",
+        "term": "모눈종이로 넓이 구하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "모눈종이에서 밑변과 높이의 {칸 수}를 세어 넓이를 구할 수 있다.",
+        "example": {
+          "prompt": "한 칸이 $1\\,\\mathrm{cm}$인 모눈에서 밑변 $5$칸, 높이 $3$칸인 평행사변형의 넓이는?",
+          "answer": "$15\\,\\mathrm{cm}^2$"
+        },
+        "studentC": "모눈종이에서 밑변과 높이의 □를 세어 넓이를 구할 수 있다.",
+        "answers": [
+          "칸 수"
+        ]
+      },
+      "sourceFingerprint": "d09de98db933fa10e7b2b04871eb1141d114844c65d22c048a863a8fd6b0afac",
+      "draftEvidence": "evidence/section-024-draft.json",
+      "cProposedAnswers": [
+        "$15$"
+      ],
+      "cStudentAfter": "한 칸의 가로와 세로가 각각 $1\\,\\mathrm{cm}$인 모눈종이에 그린 평행사변형의 밑변이 $5$칸, 높이가 $3$칸이면 넓이는 □$\\mathrm{cm} ^2$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$15$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "한 칸의 가로와 세로가 각각 $1\\,\\mathrm{cm}$인 모눈종이에 그린 평행사변형의 밑변이 $5$칸, 높이가 $3$칸이면 넓이는 {$15$}$\\mathrm{cm} ^2$이다.",
+      "cStudentSentence": "한 칸의 가로와 세로가 각각 $1\\,\\mathrm{cm}$인 모눈종이에 그린 평행사변형의 밑변이 $5$칸, 높이가 $3$칸이면 넓이는 □$\\mathrm{cm} ^2$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$15$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "한 칸의 가로와 세로가 각각 $1\\,\\mathrm{cm}$인 모눈종이에 그린 평행사변형의 밑변이 $5$칸, 높이가 $3$칸이면 넓이는 {$15$}$\\mathrm{cm} ^2$이다.",
+        "acceptedAnswers": [
+          [
+            "$15$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 사소한 행동이라 제외: e5-1-6-4-c3으로 대체."
+      },
+      "proposalFingerprint": "dfd0bdf828e5cfea2b66ede25a599b0f19c1b019e9f8023e9844a85956437342",
+      "questionRevision": "planning-e5e6-20261006-dfd0bdf828e5",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-4-xc8",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "직각삼각형의 넓이를 구할 때 높이를 따로 그리지 않아도 되는 까닭을 설명하세요. 직각을 이루는 두 변이 $6\\,\\mathrm{cm}$, $8\\,\\mathrm{cm}$인 직각삼각형의 넓이도 구하세요.",
+      "bAnswer": "직각을 이루는 두 변은 서로 수직이어서 한 변을 밑변으로 하면 다른 변이 높이가 된다. $6 \\times 8 \\div 2 = 24$이므로 $24\\,\\mathrm{cm} ^2$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "직각을 이루는 두 변이 서로 수직이라 한 변이 밑변이면 다른 변이 높이다",
+            "직각을 낀 두 변이 밑변과 높이가 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$24\\,\\mathrm{cm} ^2$",
+            "$24$제곱센티미터"
+          ]
+        }
+      ],
+      "bGoal": "직각을 낀 두 변이 밑변과 높이가 되는 까닭을 알고 넓이를 구한다.",
+      "bReason": "원문은 '삼는다'는 방법만 말하므로 두 변이 수직이라는 이유를 묻고 예시 수치를 붙였다.",
+      "cDecision": "revise",
+      "cAfter": "직각삼각형에서 직각을 이루는 두 변 중 한 변을 밑변으로 하면 다른 한 변이 {높이}가 된다.",
+      "cReason": "원문 답 '두 변'은 문맥만으로 채워져, 밑변과 높이의 관계를 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1009,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-4-xc8",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-4 평행사변형과 삼각형의 넓이",
+        "term": "직각삼각형의 넓이",
+        "kind": "방법",
+        "level": "하",
+        "definition": "직각삼각형은 직각을 낀 {두 변}을 밑변과 높이로 삼는다.",
+        "example": {
+          "prompt": "직각을 낀 두 변이 $6\\,\\mathrm{cm}$, $8\\,\\mathrm{cm}$인 직각삼각형의 넓이는?",
+          "answer": "$24\\,\\mathrm{cm}^2$"
+        },
+        "studentC": "직각삼각형은 직각을 낀 □을 밑변과 높이로 삼는다.",
+        "answers": [
+          "두 변"
+        ]
+      },
+      "sourceFingerprint": "87f37ce8d10cd9adf12b646e6c9e2cdb2940fd260c306e84a0cdd33cb4bee2ee",
+      "draftEvidence": "evidence/section-024-draft.json",
+      "cProposedAnswers": [
+        "높이"
+      ],
+      "cStudentAfter": "직각삼각형에서 직각을 이루는 두 변 중 한 변을 밑변으로 하면 다른 한 변이 □가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "높이"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "직각삼각형에서 직각을 이루는 두 변 중 한 변을 밑변으로 하면 다른 한 변이 {높이}가 된다.",
+      "cStudentSentence": "직각삼각형에서 직각을 이루는 두 변 중 한 변을 밑변으로 하면 다른 한 변이 □가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "높이",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직각삼각형의 넓이를 구할 때 높이를 따로 그리지 않아도 되는 까닭을 설명하세요. 직각을 이루는 두 변이 $6\\,\\mathrm{cm}$, $8\\,\\mathrm{cm}$인 직각삼각형의 넓이도 구하세요.",
+        "answer": "직각을 이루는 두 변은 서로 수직이어서 한 변을 밑변으로 하면 다른 변이 높이가 된다. $6 \\times 8 \\div 2 = 24$이므로 $24\\,\\mathrm{cm} ^2$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "직각을 이루는 두 변이 서로 수직이라 한 변이 밑변이면 다른 변이 높이다",
+              "직각을 낀 두 변이 밑변과 높이가 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$24\\,\\mathrm{cm} ^2$",
+              "$24$제곱센티미터"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직각삼각형에서 직각을 이루는 두 변 중 한 변을 밑변으로 하면 다른 한 변이 {높이}가 된다.",
+        "acceptedAnswers": [
+          [
+            "높이"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "1dfda12250847bfcfb753e64b966b184ade38e713577ae43643aac40154f611d",
+      "questionRevision": "planning-e5e6-20261006-1dfda1225084",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-4-xc9",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "평행사변형의 넓이와 밑변의 길이를 알 때 높이를 구하는 방법을 넓이 구하는 식과 관련지어 설명하세요. 넓이가 $35\\,\\mathrm{cm} ^2$, 밑변이 $7\\,\\mathrm{cm}$인 평행사변형의 높이도 구하세요.",
+      "bAnswer": "(밑변)$\\times$(높이)$=$(넓이)이므로 넓이를 밑변으로 나누면 높이가 된다. $35 \\div 7 = 5$이므로 $5\\,\\mathrm{cm}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "넓이를 밑변으로 나눈다",
+            "밑변$\\times \\square =$넓이가 되는 $\\square$를 찾는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5\\,\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "bGoal": "넓이 식을 거꾸로 써서 높이를 구한다.",
+      "bReason": "원문 방법을 곱셈과 나눗셈의 관계로 설명하게 하고 원문 예시를 붙였다.",
+      "cDecision": "revise",
+      "cAfter": "넓이가 $35\\,\\mathrm{cm} ^2$이고 밑변이 $7\\,\\mathrm{cm}$인 평행사변형의 높이는 $35${$\\div$}$7 =${$5$}($\\mathrm{cm}$)이다.",
+      "cReason": "'밑변으로 나누면'이라는 구절 빈칸 대신 실제 식에서 연산과 값을 답하게 했다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\div$",
+            "나누기"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 1010,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-4-xc9",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-4 평행사변형과 삼각형의 넓이",
+        "term": "평행사변형의 넓이로 높이 구하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "평행사변형의 넓이를 {밑변으로 나누면} 높이가 된다.",
+        "example": {
+          "prompt": "넓이 $35\\,\\mathrm{cm}^2$, 밑변 $7\\,\\mathrm{cm}$인 평행사변형의 높이는?",
+          "answer": "$5\\,\\mathrm{cm}$"
+        },
+        "studentC": "평행사변형의 넓이를 □ 높이가 된다.",
+        "answers": [
+          "밑변으로 나누면"
+        ]
+      },
+      "sourceFingerprint": "7b954845039575fdad9bfaf7a93046d6b48e90dc01bd2af2c74defe2cb2c7f98",
+      "draftEvidence": "evidence/section-024-draft.json",
+      "cProposedAnswers": [
+        "$\\div$",
+        "$5$"
+      ],
+      "cStudentAfter": "넓이가 $35\\,\\mathrm{cm} ^2$이고 밑변이 $7\\,\\mathrm{cm}$인 평행사변형의 높이는 $35$□$7 =$□($\\mathrm{cm}$)이다.",
+      "cMarkedSentence": "넓이가 $35\\,\\mathrm{cm} ^2$이고 밑변이 $7\\,\\mathrm{cm}$인 평행사변형의 높이는 $35${$\\div$}$7 =${$5$}($\\mathrm{cm}$)이다.",
+      "cStudentSentence": "넓이가 $35\\,\\mathrm{cm} ^2$이고 밑변이 $7\\,\\mathrm{cm}$인 평행사변형의 높이는 $35$□$7 =$□($\\mathrm{cm}$)이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\div$",
+          "equivalents": [
+            "나누기"
+          ]
+        },
+        {
+          "key": "$5$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "평행사변형의 넓이와 밑변의 길이를 알 때 높이를 구하는 방법을 넓이 구하는 식과 관련지어 설명하세요. 넓이가 $35\\,\\mathrm{cm} ^2$, 밑변이 $7\\,\\mathrm{cm}$인 평행사변형의 높이도 구하세요.",
+        "answer": "(밑변)$\\times$(높이)$=$(넓이)이므로 넓이를 밑변으로 나누면 높이가 된다. $35 \\div 7 = 5$이므로 $5\\,\\mathrm{cm}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "넓이를 밑변으로 나눈다",
+              "밑변$\\times \\square =$넓이가 되는 $\\square$를 찾는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5\\,\\mathrm{cm}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "넓이가 $35\\,\\mathrm{cm} ^2$이고 밑변이 $7\\,\\mathrm{cm}$인 평행사변형의 높이는 $35${$\\div$}$7 =${$5$}($\\mathrm{cm}$)이다.",
+        "acceptedAnswers": [
+          [
+            "$\\div$",
+            "나누기"
+          ],
+          [
+            "$5$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "bcc078c318bf7d7a0a19050f5ebcdea191db7978d78836c4ab10b47176370bda",
+      "questionRevision": "planning-e5e6-20261006-bcc078c318bf",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-4-xc10",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "삼각형의 넓이와 밑변의 길이를 알 때 높이를 구하는 순서를 설명하세요. 넓이가 $20\\,\\mathrm{cm} ^2$, 밑변이 $8\\,\\mathrm{cm}$인 삼각형의 높이도 구하세요.",
+      "bAnswer": "넓이의 $2$배가 (밑변)$\\times$(높이)이므로 넓이에 $2$를 곱한 뒤 밑변으로 나눈다. $20 \\times 2 \\div 8 = 5$이므로 $5\\,\\mathrm{cm}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "넓이에 $2$를 곱한 뒤 밑변으로 나눈다",
+            "밑변$\\times$높이가 넓이의 $2$배임을 이용해 밑변으로 나눈다",
+            "밑변$\\times \\square \\div 2 =$넓이가 되는 $\\square$를 찾는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5\\,\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "bGoal": "삼각형 넓이 식을 거꾸로 써서 높이를 구한다.",
+      "bReason": "2를 곱하는 단계를 빠뜨리기 쉬워 순서를 설명하게 하고 원문 예시로 확인한다.",
+      "cDecision": "revise",
+      "cAfter": "넓이가 $20\\,\\mathrm{cm} ^2$이고 밑변이 $8\\,\\mathrm{cm}$인 삼각형의 높이는 $20 \\times${$2$}$\\div 8 =${$5$}($\\mathrm{cm}$)이다.",
+      "cReason": "원문은 xc9와 답 구절이 같아 구별이 안 되므로 2를 곱하는 단계가 드러나는 식으로 바꿨다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1011,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-4-xc10",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-4 평행사변형과 삼각형의 넓이",
+        "term": "삼각형의 넓이로 높이 구하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "삼각형의 넓이에 $2$를 곱한 뒤 {밑변으로 나누면} 높이가 된다.",
+        "example": {
+          "prompt": "넓이 $20\\,\\mathrm{cm}^2$, 밑변 $8\\,\\mathrm{cm}$인 삼각형의 높이는?",
+          "answer": "$5\\,\\mathrm{cm}$"
+        },
+        "studentC": "삼각형의 넓이에 $2$를 곱한 뒤 □ 높이가 된다.",
+        "answers": [
+          "밑변으로 나누면"
+        ]
+      },
+      "sourceFingerprint": "870278d1979685e9f3bca6c3c095acbe8f07cbc1560a56271a663114de897a5e",
+      "draftEvidence": "evidence/section-024-draft.json",
+      "cProposedAnswers": [
+        "$2$",
+        "$5$"
+      ],
+      "cStudentAfter": "넓이가 $20\\,\\mathrm{cm} ^2$이고 밑변이 $8\\,\\mathrm{cm}$인 삼각형의 높이는 $20 \\times$□$\\div 8 =$□($\\mathrm{cm}$)이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "넓이가 $20\\,\\mathrm{cm} ^2$이고 밑변이 $8\\,\\mathrm{cm}$인 삼각형의 높이는 $20 \\times${$2$}$\\div 8 =${$5$}($\\mathrm{cm}$)이다.",
+      "cStudentSentence": "넓이가 $20\\,\\mathrm{cm} ^2$이고 밑변이 $8\\,\\mathrm{cm}$인 삼각형의 높이는 $20 \\times$□$\\div 8 =$□($\\mathrm{cm}$)이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "$5$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "삼각형의 넓이와 밑변의 길이를 알 때 높이를 구하는 순서를 설명하세요. 넓이가 $20\\,\\mathrm{cm} ^2$, 밑변이 $8\\,\\mathrm{cm}$인 삼각형의 높이도 구하세요.",
+        "answer": "넓이의 $2$배가 (밑변)$\\times$(높이)이므로 넓이에 $2$를 곱한 뒤 밑변으로 나눈다. $20 \\times 2 \\div 8 = 5$이므로 $5\\,\\mathrm{cm}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "넓이에 $2$를 곱한 뒤 밑변으로 나눈다",
+              "밑변$\\times$높이가 넓이의 $2$배임을 이용해 밑변으로 나눈다",
+              "밑변$\\times \\square \\div 2 =$넓이가 되는 $\\square$를 찾는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5\\,\\mathrm{cm}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "넓이가 $20\\,\\mathrm{cm} ^2$이고 밑변이 $8\\,\\mathrm{cm}$인 삼각형의 높이는 $20 \\times${$2$}$\\div 8 =${$5$}($\\mathrm{cm}$)이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "$5$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "0e47196740cdf3978fe5a6b7ae66d319217abcec62327b285cbce4c52bdfe2b8",
+      "questionRevision": "planning-e5e6-20261006-0e47196740cd",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-4-xc11",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "밑변의 길이와 높이가 각각 같지만 기울어진 정도가 다른 두 평행사변형의 넓이를 비교하고, 그렇게 되는 까닭을 넓이 구하는 방법으로 설명하세요.",
+      "bAnswer": "두 넓이는 같다. 평행사변형의 넓이는 (밑변)$\\times$(높이)인데 밑변과 높이가 각각 같기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "넓이가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "넓이는 밑변과 높이의 곱으로 정해진다",
+            "밑변$\\times$높이가 서로 같다"
+          ]
+        }
+      ],
+      "bGoal": "모양이 달라도 밑변과 높이가 같으면 넓이가 같음을 설명한다.",
+      "bReason": "원문 결론을 질문에서 말하지 않고 비교와 근거를 함께 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "밑변과 높이가 같은 평행사변형은 모양이 달라도 {넓이가 같다}.",
+      "cReason": "밑변과 높이가 같다는 조건에서 넓이의 관계를 스스로 써야 하는 짧은 비교 문장이다.",
+      "synonymNotes": "'넓이는 같다', '넓이가 서로 같다'도 정답이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1012,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-4-xc11",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-4 평행사변형과 삼각형의 넓이",
+        "term": "밑변과 높이가 같은 평행사변형들",
+        "kind": "성질",
+        "level": "중",
+        "definition": "밑변과 높이가 같은 평행사변형은 모양이 달라도 {넓이가 같다}.",
+        "studentC": "밑변과 높이가 같은 평행사변형은 모양이 달라도 □.",
+        "answers": [
+          "넓이가 같다"
+        ]
+      },
+      "sourceFingerprint": "d0639244d63c5a08daa2d8ca97e6b9a9d67f0d75f5fe1cfd0b37c40454433322",
+      "draftEvidence": "evidence/section-024-draft.json",
+      "cFrozenDefinition": "밑변과 높이가 같은 평행사변형은 모양이 달라도 {넓이가 같다}.",
+      "cFrozenStudentSentence": "밑변과 높이가 같은 평행사변형은 모양이 달라도 □.",
+      "cProposedAnswers": [
+        "넓이가 같다"
+      ],
+      "cStudentAfter": "밑변과 높이가 같은 평행사변형은 모양이 달라도 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "넓이가 같다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "밑변과 높이가 같은 평행사변형은 모양이 달라도 {넓이가 같다}.",
+      "cStudentSentence": "밑변과 높이가 같은 평행사변형은 모양이 달라도 □.",
+      "cSlotAnswers": [
+        {
+          "key": "넓이가 같다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "밑변의 길이와 높이가 각각 같지만 기울어진 정도가 다른 두 평행사변형의 넓이를 비교하고, 그렇게 되는 까닭을 넓이 구하는 방법으로 설명하세요.",
+        "answer": "두 넓이는 같다. 평행사변형의 넓이는 (밑변)$\\times$(높이)인데 밑변과 높이가 각각 같기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "넓이가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "넓이는 밑변과 높이의 곱으로 정해진다",
+              "밑변$\\times$높이가 서로 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "밑변과 높이가 같은 평행사변형은 모양이 달라도 {넓이가 같다}.",
+        "acceptedAnswers": [
+          [
+            "넓이가 같다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "eba2e7c11657df3fe9424e993e53eff7b9f0ee0795504c48f5ae589537d7b4a5",
+      "questionRevision": "planning-e5e6-20261006-eba2e7c11657",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-4-xc12",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "밑변과 높이가 같은 삼각형은 모양이 달라도 넓이가 같음을 확인한다.",
+      "bReason": "xc11과 논리가 같고, 삼각형의 경우는 xc21의 B가 높이와 관련지어 묻는다.",
+      "exclusionReason": "B 중복: e5-1-6-4-xc11, e5-1-6-4-xc21로 대체.",
+      "cDecision": "keep",
+      "cAfter": "밑변과 높이가 같은 삼각형은 기울어진 정도가 달라도 {넓이가 같다}.",
+      "cReason": "삼각형에서 밑변과 높이가 같다는 조건으로 넓이 관계를 쓰는 문장이라 C로는 쓸모가 있다.",
+      "synonymNotes": "'넓이는 같다'도 정답이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1013,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-4-xc12",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-4 평행사변형과 삼각형의 넓이",
+        "term": "밑변과 높이가 같은 삼각형들",
+        "kind": "성질",
+        "level": "중",
+        "definition": "밑변과 높이가 같은 삼각형은 기울어진 정도가 달라도 {넓이가 같다}.",
+        "studentC": "밑변과 높이가 같은 삼각형은 기울어진 정도가 달라도 □.",
+        "answers": [
+          "넓이가 같다"
+        ]
+      },
+      "sourceFingerprint": "2ac4b35937f6b275be8eb3177b369799a24eaa1ac83fddff4a34c4c7216b1c2c",
+      "draftEvidence": "evidence/section-024-draft.json",
+      "cFrozenDefinition": "밑변과 높이가 같은 삼각형은 기울어진 정도가 달라도 {넓이가 같다}.",
+      "cFrozenStudentSentence": "밑변과 높이가 같은 삼각형은 기울어진 정도가 달라도 □.",
+      "cProposedAnswers": [
+        "넓이가 같다"
+      ],
+      "cStudentAfter": "밑변과 높이가 같은 삼각형은 기울어진 정도가 달라도 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "넓이가 같다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "밑변과 높이가 같은 삼각형은 기울어진 정도가 달라도 {넓이가 같다}.",
+      "cStudentSentence": "밑변과 높이가 같은 삼각형은 기울어진 정도가 달라도 □.",
+      "cSlotAnswers": [
+        {
+          "key": "넓이가 같다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "밑변과 높이가 같은 삼각형은 기울어진 정도가 달라도 {넓이가 같다}.",
+        "acceptedAnswers": [
+          [
+            "넓이가 같다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 중복: e5-1-6-4-xc11, e5-1-6-4-xc21로 대체."
+      },
+      "proposalFingerprint": "73eb0dfc53e5334a8876573d837060c19b103014d5e707d540082ae62d783cbd",
+      "questionRevision": "planning-e5e6-20261006-73eb0dfc53e5",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-4-xc13",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "둔각삼각형에서 둔각을 이루는 두 변 중 한 변을 밑변으로 정하면 높이는 삼각형의 안과 밖 중 어디에 그려지나요? 그 높이를 어떻게 긋는지도 설명하세요.",
+      "bAnswer": "삼각형 밖에 그려진다. 밑변을 길게 늘인 선을 긋고, 마주 보는 꼭짓점에서 그 선에 수직으로 선분을 긋는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "삼각형 밖에 그려진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "밑변을 늘인 선에 꼭짓점에서 수직으로 긋는다",
+            "밑변의 연장선에 수선을 긋는다"
+          ]
+        }
+      ],
+      "bGoal": "둔각삼각형의 높이가 밖에 생기는 경우와 긋는 방법을 안다.",
+      "bReason": "원문은 '밖에 그려질 수 있다'만 말해 어느 변이 밑변일 때인지와 긋는 방법을 보탰다.",
+      "cDecision": "keep",
+      "cAfter": "둔각삼각형은 높이가 삼각형 {밖에} 그려질 수 있다.",
+      "cReason": "높이가 그려지는 위치를 한 낱말로 답하는 짧고 분명한 문장이다.",
+      "synonymNotes": "바깥에, 바깥쪽에도 정답이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1014,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-4-xc13",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-4 평행사변형과 삼각형의 넓이",
+        "term": "둔각삼각형의 높이",
+        "kind": "방법",
+        "level": "중",
+        "definition": "둔각삼각형은 높이가 삼각형 {밖에} 그려질 수 있다.",
+        "studentC": "둔각삼각형은 높이가 삼각형 □ 그려질 수 있다.",
+        "answers": [
+          "밖에"
+        ]
+      },
+      "sourceFingerprint": "48d8a46f446e1678434a3c7f9754e8186bea9f3867c38ed92af8c4e586146e61",
+      "draftEvidence": "evidence/section-024-draft.json",
+      "cFrozenDefinition": "둔각삼각형은 높이가 삼각형 {밖에} 그려질 수 있다.",
+      "cFrozenStudentSentence": "둔각삼각형은 높이가 삼각형 □ 그려질 수 있다.",
+      "cProposedAnswers": [
+        "밖에"
+      ],
+      "cStudentAfter": "둔각삼각형은 높이가 삼각형 □ 그려질 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "밖에"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "둔각삼각형은 높이가 삼각형 {밖에} 그려질 수 있다.",
+      "cStudentSentence": "둔각삼각형은 높이가 삼각형 □ 그려질 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "밖에",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "둔각삼각형에서 둔각을 이루는 두 변 중 한 변을 밑변으로 정하면 높이는 삼각형의 안과 밖 중 어디에 그려지나요? 그 높이를 어떻게 긋는지도 설명하세요.",
+        "answer": "삼각형 밖에 그려진다. 밑변을 길게 늘인 선을 긋고, 마주 보는 꼭짓점에서 그 선에 수직으로 선분을 긋는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "삼각형 밖에 그려진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "밑변을 늘인 선에 꼭짓점에서 수직으로 긋는다",
+              "밑변의 연장선에 수선을 긋는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "둔각삼각형은 높이가 삼각형 {밖에} 그려질 수 있다.",
+        "acceptedAnswers": [
+          [
+            "밖에"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "d74df04cf026fe37f0f4a085b697fef0d31a45d6c8cdc7d14a037deb04089f43",
+      "questionRevision": "planning-e5e6-20261006-d74df04cf026",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-4-xc14",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "직사각형이 아닌 평행사변형의 넓이를 이웃한 두 변의 길이를 곱해서 구하면 안 되는 까닭을, 높이가 무엇인지와 관련지어 설명하세요.",
+      "bAnswer": "높이는 밑변에 수직으로 잰 길이인데 비스듬한 이웃 변은 밑변에 수직이 아니어서 높이가 아니다. 그 변은 높이보다 길어 곱하면 실제 넓이보다 크게 나온다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "비스듬한 이웃 변은 높이가 아니다",
+            "높이는 밑변에 수직으로 잰 길이여야 한다",
+            "이웃 변은 높이보다 길어 넓이가 실제보다 크게 나온다"
+          ]
+        }
+      ],
+      "bGoal": "이웃 변과 높이를 구별해 흔한 오류의 까닭을 설명한다.",
+      "bReason": "원문의 '틀리다'는 판정에 이유가 빠져 있어 높이의 뜻과 연결해 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "직사각형이 아닌 평행사변형의 넓이를 이웃한 두 변의 곱으로 구하면 틀리고, {밑변과 높이}를 곱해야 한다.",
+      "cReason": "잘못된 방법과 맞대어 곱해야 할 두 길이를 쓰게 하는 빈칸이라 목표가 분명하다.",
+      "synonymNotes": "'높이와 밑변'도 정답이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1015,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-4-xc14",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-4 평행사변형과 삼각형의 넓이",
+        "term": "이웃한 두 변을 곱하는 잘못",
+        "kind": "성질",
+        "level": "중",
+        "definition": "직사각형이 아닌 평행사변형의 넓이를 이웃한 두 변의 곱으로 구하면 틀리고, {밑변과 높이}를 곱해야 한다.",
+        "studentC": "직사각형이 아닌 평행사변형의 넓이를 이웃한 두 변의 곱으로 구하면 틀리고, □를 곱해야 한다.",
+        "answers": [
+          "밑변과 높이"
+        ]
+      },
+      "sourceFingerprint": "e29e27957e8159d7ff55341fb54d0d3413ab1e9d887821a323b8aa7b5f11f919",
+      "draftEvidence": "evidence/section-024-draft.json",
+      "cFrozenDefinition": "직사각형이 아닌 평행사변형의 넓이를 이웃한 두 변의 곱으로 구하면 틀리고, {밑변과 높이}를 곱해야 한다.",
+      "cFrozenStudentSentence": "직사각형이 아닌 평행사변형의 넓이를 이웃한 두 변의 곱으로 구하면 틀리고, □를 곱해야 한다.",
+      "cProposedAnswers": [
+        "밑변과 높이"
+      ],
+      "cStudentAfter": "직사각형이 아닌 평행사변형의 넓이를 이웃한 두 변의 곱으로 구하면 틀리고, □를 곱해야 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "밑변과 높이"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "직사각형이 아닌 평행사변형의 넓이를 이웃한 두 변의 곱으로 구하면 틀리고, {밑변과 높이}를 곱해야 한다.",
+      "cStudentSentence": "직사각형이 아닌 평행사변형의 넓이를 이웃한 두 변의 곱으로 구하면 틀리고, □를 곱해야 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "밑변과 높이",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직사각형이 아닌 평행사변형의 넓이를 이웃한 두 변의 길이를 곱해서 구하면 안 되는 까닭을, 높이가 무엇인지와 관련지어 설명하세요.",
+        "answer": "높이는 밑변에 수직으로 잰 길이인데 비스듬한 이웃 변은 밑변에 수직이 아니어서 높이가 아니다. 그 변은 높이보다 길어 곱하면 실제 넓이보다 크게 나온다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "비스듬한 이웃 변은 높이가 아니다",
+              "높이는 밑변에 수직으로 잰 길이여야 한다",
+              "이웃 변은 높이보다 길어 넓이가 실제보다 크게 나온다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직사각형이 아닌 평행사변형의 넓이를 이웃한 두 변의 곱으로 구하면 틀리고, {밑변과 높이}를 곱해야 한다.",
+        "acceptedAnswers": [
+          [
+            "밑변과 높이"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "57b3578f4c359729aee18f464d2352c946ff6bf58d672f38a309da3fcec35987",
+      "questionRevision": "planning-e5e6-20261006-57b3578f4c35",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-4-xc15",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "평행사변형을 대각선 하나를 따라 자르면 어떤 도형이 몇 개 생기나요? 그 도형들의 넓이는 서로 어떤 관계인지도 쓰세요.",
+      "bAnswer": "삼각형이 $2$개 생기고, 두 삼각형의 넓이는 서로 같다(각각 평행사변형 넓이의 절반이다).",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "삼각형 $2$개가 생긴다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 넓이가 같다",
+            "각각 평행사변형 넓이의 절반이다"
+          ]
+        }
+      ],
+      "bGoal": "대각선이 평행사변형을 넓이가 같은 두 삼각형으로 나눔을 안다.",
+      "bReason": "c5와 반대 방향(평행사변형→삼각형)의 관계라 따로 묻되 결과를 질문에 넣지 않았다.",
+      "cDecision": "keep",
+      "cAfter": "평행사변형을 대각선 하나로 자르면 넓이가 같은 {삼각형 두 개}가 된다.",
+      "cReason": "자른 결과로 생기는 도형과 개수를 쓰는 빈칸으로 답 범위가 좁다.",
+      "synonymNotes": "'삼각형 2개', '두 삼각형'도 정답이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1016,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-4-xc15",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-4 평행사변형과 삼각형의 넓이",
+        "term": "대각선으로 나눈 평행사변형",
+        "kind": "성질",
+        "level": "중",
+        "definition": "평행사변형을 대각선 하나로 자르면 넓이가 같은 {삼각형 두 개}가 된다.",
+        "studentC": "평행사변형을 대각선 하나로 자르면 넓이가 같은 □가 된다.",
+        "answers": [
+          "삼각형 두 개"
+        ]
+      },
+      "sourceFingerprint": "90183925bd397c059c2fb5c3282e511778b9b4371d1e2a2920b947e7815f9c47",
+      "draftEvidence": "evidence/section-024-draft.json",
+      "cFrozenDefinition": "평행사변형을 대각선 하나로 자르면 넓이가 같은 {삼각형 두 개}가 된다.",
+      "cFrozenStudentSentence": "평행사변형을 대각선 하나로 자르면 넓이가 같은 □가 된다.",
+      "cProposedAnswers": [
+        "삼각형 두 개"
+      ],
+      "cStudentAfter": "평행사변형을 대각선 하나로 자르면 넓이가 같은 □가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "삼각형 두 개"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "평행사변형을 대각선 하나로 자르면 넓이가 같은 {삼각형 두 개}가 된다.",
+      "cStudentSentence": "평행사변형을 대각선 하나로 자르면 넓이가 같은 □가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "삼각형 두 개",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "평행사변형을 대각선 하나를 따라 자르면 어떤 도형이 몇 개 생기나요? 그 도형들의 넓이는 서로 어떤 관계인지도 쓰세요.",
+        "answer": "삼각형이 $2$개 생기고, 두 삼각형의 넓이는 서로 같다(각각 평행사변형 넓이의 절반이다).",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "삼각형 $2$개가 생긴다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 넓이가 같다",
+              "각각 평행사변형 넓이의 절반이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "평행사변형을 대각선 하나로 자르면 넓이가 같은 {삼각형 두 개}가 된다.",
+        "acceptedAnswers": [
+          [
+            "삼각형 두 개"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b070c4197f7bff9f4f253ae1c745ae91b48583b427967a090d1cd7d77b92fc60",
+      "questionRevision": "planning-e5e6-20261006-b070c4197f7b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-4-xc16",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "넓이가 같은 두 평행사변형 중 밑변이 더 긴 쪽의 높이는 다른 쪽과 비교해 어떠한지, 넓이 구하는 식으로 설명하세요. 넓이가 모두 $24\\,\\mathrm{cm} ^2$이고 밑변이 각각 $8\\,\\mathrm{cm}$, $6\\,\\mathrm{cm}$일 때 두 높이도 구하세요.",
+      "bAnswer": "(밑변)$\\times$(높이)가 같아야 하므로 밑변이 긴 쪽의 높이가 더 짧다. 높이는 $24 \\div 8 = 3$($\\mathrm{cm}$), $24 \\div 6 = 4$($\\mathrm{cm}$)이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "밑변이 긴 쪽의 높이가 더 짧다",
+            "밑변이 길수록 높이는 낮다"
+          ]
+        },
+        {
+          "anyOf": [
+            "밑변과 높이의 곱이 같아야 한다",
+            "넓이를 밑변으로 나눈 값이 높이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3\\,\\mathrm{cm}$와 $4\\,\\mathrm{cm}$",
+            "밑변 $8\\,\\mathrm{cm}$일 때 $3\\,\\mathrm{cm}$, $6\\,\\mathrm{cm}$일 때 $4\\,\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "bGoal": "넓이가 같을 때 밑변과 높이가 반대로 변함을 식으로 설명한다.",
+      "bReason": "원문 결론을 숨기고 곱이 일정하다는 근거와 원문 예시의 두 높이를 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "넓이가 같은 두 평행사변형에서는 밑변이 더 긴 쪽의 높이가 더 {짧다}.",
+      "cReason": "원문 빈칸 '높이가 낮다'는 구절 전체라 비교 낱말 하나로 줄이고 여러 표현을 인정한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "짧다",
+            "낮다",
+            "작다"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 1017,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-4-xc16",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-4 평행사변형과 삼각형의 넓이",
+        "term": "넓이가 같을 때 밑변과 높이",
+        "kind": "성질",
+        "level": "중",
+        "definition": "넓이가 같은 평행사변형은 밑변이 길수록 {높이가 낮다}.",
+        "example": {
+          "prompt": "넓이가 $24\\,\\mathrm{cm}^2$이고 밑변이 $8\\,\\mathrm{cm}$, $6\\,\\mathrm{cm}$인 두 평행사변형의 높이는?",
+          "answer": "$3\\,\\mathrm{cm},\\ 4\\,\\mathrm{cm}$"
+        },
+        "studentC": "넓이가 같은 평행사변형은 밑변이 길수록 □.",
+        "answers": [
+          "높이가 낮다"
+        ]
+      },
+      "sourceFingerprint": "cedbe9cdca853488d9fd20cffc243f2c5aaf6689a534bea7873054c93005a274",
+      "draftEvidence": "evidence/section-024-draft.json",
+      "cProposedAnswers": [
+        "짧다"
+      ],
+      "cStudentAfter": "넓이가 같은 두 평행사변형에서는 밑변이 더 긴 쪽의 높이가 더 □.",
+      "cMarkedSentence": "넓이가 같은 두 평행사변형에서는 밑변이 더 긴 쪽의 높이가 더 {짧다}.",
+      "cStudentSentence": "넓이가 같은 두 평행사변형에서는 밑변이 더 긴 쪽의 높이가 더 □.",
+      "cSlotAnswers": [
+        {
+          "key": "짧다",
+          "equivalents": [
+            "낮다",
+            "작다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "넓이가 같은 두 평행사변형 중 밑변이 더 긴 쪽의 높이는 다른 쪽과 비교해 어떠한지, 넓이 구하는 식으로 설명하세요. 넓이가 모두 $24\\,\\mathrm{cm} ^2$이고 밑변이 각각 $8\\,\\mathrm{cm}$, $6\\,\\mathrm{cm}$일 때 두 높이도 구하세요.",
+        "answer": "(밑변)$\\times$(높이)가 같아야 하므로 밑변이 긴 쪽의 높이가 더 짧다. 높이는 $24 \\div 8 = 3$($\\mathrm{cm}$), $24 \\div 6 = 4$($\\mathrm{cm}$)이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "밑변이 긴 쪽의 높이가 더 짧다",
+              "밑변이 길수록 높이는 낮다"
+            ]
+          },
+          {
+            "anyOf": [
+              "밑변과 높이의 곱이 같아야 한다",
+              "넓이를 밑변으로 나눈 값이 높이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3\\,\\mathrm{cm}$와 $4\\,\\mathrm{cm}$",
+              "밑변 $8\\,\\mathrm{cm}$일 때 $3\\,\\mathrm{cm}$, $6\\,\\mathrm{cm}$일 때 $4\\,\\mathrm{cm}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "넓이가 같은 두 평행사변형에서는 밑변이 더 긴 쪽의 높이가 더 {짧다}.",
+        "acceptedAnswers": [
+          [
+            "짧다",
+            "낮다",
+            "작다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "0e23b6687a438dae6782acf53bf87389e63bf9f8c91b381f0f2a4386c0e1196d",
+      "questionRevision": "planning-e5e6-20261006-0e23b6687a43",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-4-xc17",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": "그림과 같이 평행사변형을 잘라 옮겨 직사각형으로 만들었습니다. 새 직사각형의 가로와 세로가 처음 평행사변형의 어떤 길이와 각각 같은지 쓰고, 이렇게 옮겨도 넓이가 같은 까닭을 설명하시오.",
+      "bAnswer": "직사각형의 가로는 처음 평행사변형의 밑변과 같고, 세로는 높이와 같다. 조각을 없애거나 보태지 않고, 겹치거나 빈틈이 생기지 않게 옮겼으므로 넓이는 그대로이다.",
+      "bRequiredIdeas": [],
+      "bGoal": "잘라 옮긴 직사각형과 원래 평행사변형의 길이 관계 및 넓이 보존을 설명한다.",
+      "bReason": "이 문항의 길이·넓이 관계를 판단하려면 실제 도형이 필요하지만 확정된 B/C 계약은 글·수식만 제공한다. 보이지 않는 그림을 학생이 복원하게 하지 않도록 이 형식에서 제외한다. SVG 연구 제안과 일반 학습 설명은 보존하며 ID·이력은 삭제하지 않는다.",
+      "cDecision": "exclude",
+      "cAfter": "그림에서 잘라 옮겨 만든 직사각형의 세로 길이는 처음 평행사변형의 {높이}와 같다.",
+      "cReason": "이 문항의 길이·넓이 관계를 판단하려면 실제 도형이 필요하지만 확정된 B/C 계약은 글·수식만 제공한다. 보이지 않는 그림을 학생이 복원하게 하지 않도록 이 형식에서 제외한다. SVG 연구 제안과 일반 학습 설명은 보존하며 ID·이력은 삭제하지 않는다.",
+      "exampleNeeded": true,
+      "cAcceptedAnswers": [],
+      "exampleReason": "diagrams/e5-1-6-4-xc17-proposal.svg를 B와 C에 반드시 함께 보여야 한다. 밑변 8 cm, 높이 5 cm, 옆으로 어긋난 길이 3 cm인 평행사변형에서 왼쪽 삼각형을 높이를 따라 잘라 오른쪽으로 옮긴 그림이며, 밑변보다 덜 어긋난 경우만 보여 한 번 자르기가 성립한다. 일반 설명의 '많이 기울었으면 여러 번' 조건은 삭제하지 않는다. 현재 글·수식 전용 B/C에는 적용하지 않는다. 코디네이터의 2026-10-06 계약 결정에 따라 두 형식 제외이며, 이 그림 연구는 별도 지원 검토용이다.",
+      "requiredDiagramPaths": [
+        "diagrams/e5-1-6-4-xc17-proposal.svg"
+      ],
+      "diagramRequiredFor": [
+        "B",
+        "C"
+      ],
+      "editorialOwner": "Codex",
+      "codexRubricReview": "Direct deletion and copying review: only requested mathematical meanings are required; alternatives are separate strings.",
+      "diagramResearchProposal": {
+        "bPrompt": "그림과 같이 평행사변형을 잘라 옮겨 직사각형으로 만들었습니다. 새 직사각형의 가로와 세로가 처음 평행사변형의 어떤 길이와 각각 같은지 쓰고, 이렇게 옮겨도 넓이가 같은 까닭을 설명하시오.",
+        "bAnswer": "직사각형의 가로는 처음 평행사변형의 밑변과 같고, 세로는 높이와 같다. 조각을 없애거나 보태지 않고, 겹치거나 빈틈이 생기지 않게 옮겼으므로 넓이는 그대로이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직사각형의 가로는 평행사변형의 밑변과 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "직사각형의 세로는 평행사변형의 높이와 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "조각을 그대로 옮겨 빈틈과 겹침 없이 붙여서 넓이가 변하지 않는다"
+            ]
+          }
+        ],
+        "cAfter": "그림에서 잘라 옮겨 만든 직사각형의 세로 길이는 처음 평행사변형의 {높이}와 같다.",
+        "cAcceptedAnswers": [
+          {
+            "anyOf": [
+              "높이",
+              "밑변에 수직으로 잰 높이"
+            ]
+          }
+        ]
+      },
+      "exclusionReason": "이 문항의 길이·넓이 관계를 판단하려면 실제 도형이 필요하지만 확정된 B/C 계약은 글·수식만 제공한다. 보이지 않는 그림을 학생이 복원하게 하지 않도록 이 형식에서 제외한다. SVG 연구 제안과 일반 학습 설명은 보존하며 ID·이력은 삭제하지 않는다.",
+      "sourceIndex": 1018,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-4-xc17",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-4 평행사변형과 삼각형의 넓이",
+        "term": "잘라 붙여 직사각형 만들기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "평행사변형을 높이를 따라 잘라 반대쪽에 옮겨 붙이면 {밑변과 높이가 같은 직사각형}이 된다 — 많이 기울었으면 여러 번 잘라 옮긴다.",
+        "studentC": "평행사변형을 높이를 따라 잘라 반대쪽에 옮겨 붙이면 □이 된다 — 많이 기울었으면 여러 번 잘라 옮긴다.",
+        "answers": [
+          "밑변과 높이가 같은 직사각형"
+        ]
+      },
+      "sourceFingerprint": "c5ff8d719cfb46e4aad90545ccfd37e4f73ee7c8c11638a0fb6e805b4fc38f74",
+      "draftEvidence": "evidence/section-024-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "이 문항의 길이·넓이 관계를 판단하려면 실제 도형이 필요하지만 확정된 B/C 계약은 글·수식만 제공한다. 보이지 않는 그림을 학생이 복원하게 하지 않도록 이 형식에서 제외한다. SVG 연구 제안과 일반 학습 설명은 보존하며 ID·이력은 삭제하지 않는다.",
+        "cloze": "이 문항의 길이·넓이 관계를 판단하려면 실제 도형이 필요하지만 확정된 B/C 계약은 글·수식만 제공한다. 보이지 않는 그림을 학생이 복원하게 하지 않도록 이 형식에서 제외한다. SVG 연구 제안과 일반 학습 설명은 보존하며 ID·이력은 삭제하지 않는다."
+      },
+      "proposalFingerprint": "fc0786ba2ca4391bb1dbe8808cbed0d65fb05478229e9035e6248abe471ade6c",
+      "questionRevision": "planning-e5e6-20261006-fc0786ba2ca4",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-4-xc18",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "같은 삼각형에서 밑변을 길이가 다른 변으로 바꾸어도 변하지 않는 것은 무엇인가요? 이를 이용해 밑변이 $10\\,\\mathrm{cm}$일 때 높이가 $6\\,\\mathrm{cm}$인 삼각형에서 길이가 $12\\,\\mathrm{cm}$인 변을 밑변으로 할 때의 높이를 구하세요.",
+      "bAnswer": "삼각형의 넓이는 변하지 않는다. 넓이가 $10 \\times 6 \\div 2 = 30$($\\mathrm{cm} ^2$)이므로 $12 \\times$(높이)$\\div 2 = 30$에서 높이는 $5\\,\\mathrm{cm}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "넓이는 변하지 않는다",
+            "넓이는 $30\\,\\mathrm{cm} ^2$로 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5\\,\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "bGoal": "넓이가 일정함을 이용해 다른 밑변에 맞는 높이를 구한다.",
+      "bReason": "'높이도 바뀐다'만으로는 쓸 데가 없어 변하지 않는 넓이를 근거로 원문 예시를 풀게 했다.",
+      "cDecision": "revise",
+      "cAfter": "밑변이 $10\\,\\mathrm{cm}$일 때 높이가 $6\\,\\mathrm{cm}$인 삼각형에서 길이가 $12\\,\\mathrm{cm}$인 변을 밑변으로 하면, 넓이는 그대로 {$30$}$\\mathrm{cm} ^2$이므로 높이는 {$5$}$\\mathrm{cm}$이다.",
+      "cReason": "원문 답 '높이도 바뀐다'는 구절 맞히기라 실제 수로 바뀐 높이를 구하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1019,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-4-xc18",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-4 평행사변형과 삼각형의 넓이",
+        "term": "밑변을 바꿀 때의 높이",
+        "kind": "성질",
+        "level": "상",
+        "definition": "같은 삼각형에서 밑변을 길이가 다른 변으로 바꾸면 그 밑변에 맞는 {높이도 바뀐다}.",
+        "example": {
+          "prompt": "밑변 $10\\,\\mathrm{cm}$, 높이 $6\\,\\mathrm{cm}$인 삼각형에서 길이 $12\\,\\mathrm{cm}$인 변을 밑변으로 하면 높이는?",
+          "answer": "$5\\,\\mathrm{cm}$"
+        },
+        "studentC": "같은 삼각형에서 밑변을 길이가 다른 변으로 바꾸면 그 밑변에 맞는 □.",
+        "answers": [
+          "높이도 바뀐다"
+        ]
+      },
+      "sourceFingerprint": "6b3b62eb424e3d604db7e6396a0fe5e2638df5fb47aa3be08a1435b63fcb20ae",
+      "draftEvidence": "evidence/section-024-draft.json",
+      "cProposedAnswers": [
+        "$30$",
+        "$5$"
+      ],
+      "cStudentAfter": "밑변이 $10\\,\\mathrm{cm}$일 때 높이가 $6\\,\\mathrm{cm}$인 삼각형에서 길이가 $12\\,\\mathrm{cm}$인 변을 밑변으로 하면, 넓이는 그대로 □$\\mathrm{cm} ^2$이므로 높이는 □$\\mathrm{cm}$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$30$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "밑변이 $10\\,\\mathrm{cm}$일 때 높이가 $6\\,\\mathrm{cm}$인 삼각형에서 길이가 $12\\,\\mathrm{cm}$인 변을 밑변으로 하면, 넓이는 그대로 {$30$}$\\mathrm{cm} ^2$이므로 높이는 {$5$}$\\mathrm{cm}$이다.",
+      "cStudentSentence": "밑변이 $10\\,\\mathrm{cm}$일 때 높이가 $6\\,\\mathrm{cm}$인 삼각형에서 길이가 $12\\,\\mathrm{cm}$인 변을 밑변으로 하면, 넓이는 그대로 □$\\mathrm{cm} ^2$이므로 높이는 □$\\mathrm{cm}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$30$",
+          "equivalents": []
+        },
+        {
+          "key": "$5$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "같은 삼각형에서 밑변을 길이가 다른 변으로 바꾸어도 변하지 않는 것은 무엇인가요? 이를 이용해 밑변이 $10\\,\\mathrm{cm}$일 때 높이가 $6\\,\\mathrm{cm}$인 삼각형에서 길이가 $12\\,\\mathrm{cm}$인 변을 밑변으로 할 때의 높이를 구하세요.",
+        "answer": "삼각형의 넓이는 변하지 않는다. 넓이가 $10 \\times 6 \\div 2 = 30$($\\mathrm{cm} ^2$)이므로 $12 \\times$(높이)$\\div 2 = 30$에서 높이는 $5\\,\\mathrm{cm}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "넓이는 변하지 않는다",
+              "넓이는 $30\\,\\mathrm{cm} ^2$로 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5\\,\\mathrm{cm}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "밑변이 $10\\,\\mathrm{cm}$일 때 높이가 $6\\,\\mathrm{cm}$인 삼각형에서 길이가 $12\\,\\mathrm{cm}$인 변을 밑변으로 하면, 넓이는 그대로 {$30$}$\\mathrm{cm} ^2$이므로 높이는 {$5$}$\\mathrm{cm}$이다.",
+        "acceptedAnswers": [
+          [
+            "$30$"
+          ],
+          [
+            "$5$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b9d94d55eefd22d5b723091355be450f73f81a7bb1796fdb5da05af4e15ab194",
+      "questionRevision": "planning-e5e6-20261006-b9d94d55eefd",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-4-xc19",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "삼각형의 한 꼭짓점에서 마주 보는 변의 한가운데 점까지 선분을 그으면 삼각형이 두 개로 나뉩니다. 두 삼각형의 넓이는 어떤 관계인지, 두 삼각형의 밑변과 높이를 비교해 설명하세요.",
+      "bAnswer": "두 넓이는 같다. 마주 보는 변을 반으로 나누었으니 밑변의 길이가 같고, 같은 꼭짓점에서 같은 직선까지 잰 높이도 같기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 넓이가 같다",
+            "처음 삼각형 넓이의 절반씩이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "밑변의 길이가 같고 높이도 같다",
+            "밑변이 반씩이고 높이를 함께 쓴다"
+          ]
+        }
+      ],
+      "bGoal": "밑변과 높이가 같다는 근거로 넓이가 반으로 나뉨을 설명한다.",
+      "bReason": "편집용 제목 대신 선을 긋는 조건을 주고 넓이 관계와 근거를 답하게 했다.",
+      "cDecision": "keep",
+      "cAfter": "삼각형의 꼭짓점에서 마주 보는 변의 {한가운데}로 선을 그으면 넓이가 같은 두 삼각형이 된다.",
+      "cReason": "넓이가 같은 두 삼각형이 되려면 변의 어디로 그어야 하는지 묻는 한 낱말 빈칸이다.",
+      "synonymNotes": "가운데, 한가운데 점, 중점도 정답이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1020,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-4-xc19",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-4 평행사변형과 삼각형의 넓이",
+        "term": "넓이를 반으로 나누는 선",
+        "kind": "방법",
+        "level": "상",
+        "definition": "삼각형의 꼭짓점에서 마주 보는 변의 {한가운데}로 선을 그으면 넓이가 같은 두 삼각형이 된다.",
+        "studentC": "삼각형의 꼭짓점에서 마주 보는 변의 □로 선을 그으면 넓이가 같은 두 삼각형이 된다.",
+        "answers": [
+          "한가운데"
+        ]
+      },
+      "sourceFingerprint": "5ba1acd69243b026fe781dffa91e241e90c5533a6d95ed2c34636a67553e96f7",
+      "draftEvidence": "evidence/section-024-draft.json",
+      "cFrozenDefinition": "삼각형의 꼭짓점에서 마주 보는 변의 {한가운데}로 선을 그으면 넓이가 같은 두 삼각형이 된다.",
+      "cFrozenStudentSentence": "삼각형의 꼭짓점에서 마주 보는 변의 □로 선을 그으면 넓이가 같은 두 삼각형이 된다.",
+      "cProposedAnswers": [
+        "한가운데"
+      ],
+      "cStudentAfter": "삼각형의 꼭짓점에서 마주 보는 변의 □로 선을 그으면 넓이가 같은 두 삼각형이 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "한가운데"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "삼각형의 꼭짓점에서 마주 보는 변의 {한가운데}로 선을 그으면 넓이가 같은 두 삼각형이 된다.",
+      "cStudentSentence": "삼각형의 꼭짓점에서 마주 보는 변의 □로 선을 그으면 넓이가 같은 두 삼각형이 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "한가운데",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "삼각형의 한 꼭짓점에서 마주 보는 변의 한가운데 점까지 선분을 그으면 삼각형이 두 개로 나뉩니다. 두 삼각형의 넓이는 어떤 관계인지, 두 삼각형의 밑변과 높이를 비교해 설명하세요.",
+        "answer": "두 넓이는 같다. 마주 보는 변을 반으로 나누었으니 밑변의 길이가 같고, 같은 꼭짓점에서 같은 직선까지 잰 높이도 같기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 넓이가 같다",
+              "처음 삼각형 넓이의 절반씩이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "밑변의 길이가 같고 높이도 같다",
+              "밑변이 반씩이고 높이를 함께 쓴다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "삼각형의 꼭짓점에서 마주 보는 변의 {한가운데}로 선을 그으면 넓이가 같은 두 삼각형이 된다.",
+        "acceptedAnswers": [
+          [
+            "한가운데"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "1c2df0ef8b5af2df565cb49c41357cde5eb03a2ade9032991b48cf15c03b574d",
+      "questionRevision": "planning-e5e6-20261006-1c2df0ef8b5a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-4-xc20",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "높이가 같은 두 삼각형의 넓이는 밑변의 길이에 따라 어떻게 달라지나요? 높이가 같고 밑변이 $4\\,\\mathrm{cm}$, $8\\,\\mathrm{cm}$인 두 삼각형에서 큰 삼각형의 넓이는 작은 삼각형의 넓이의 몇 배인지도 구하세요.",
+      "bAnswer": "높이가 같으면 밑변이 긴 쪽의 넓이가 더 크고, 밑변이 몇 배이면 넓이도 그만큼 배가 된다. 밑변이 $2$배이므로 넓이도 $2$배이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "밑변이 긴 쪽의 넓이가 더 크다",
+            "밑변이 몇 배가 되면 넓이도 같은 배가 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$배"
+          ]
+        }
+      ],
+      "bGoal": "높이가 같을 때 넓이를 밑변으로 비교한다.",
+      "bReason": "원문 예시가 배 관계까지 물으므로 일반 관계와 배 계산을 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "높이가 같은 두 삼각형은 밑변이 더 {긴} 쪽의 넓이가 더 크다.",
+      "cReason": "원문 빈칸 '밑변이 긴 쪽'은 구절 전체라 비교 낱말 하나만 묻는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "긴",
+            "큰"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 1021,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-4-xc20",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-4 평행사변형과 삼각형의 넓이",
+        "term": "높이가 같은 두 삼각형 견주기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "높이가 같은 두 삼각형은 {밑변이 긴 쪽}의 넓이가 크다.",
+        "example": {
+          "prompt": "높이가 같고 밑변이 $4\\,\\mathrm{cm}$, $8\\,\\mathrm{cm}$인 두 삼각형에서 큰 넓이는 작은 넓이의 몇 배인가?",
+          "answer": "$2$배"
+        },
+        "studentC": "높이가 같은 두 삼각형은 □의 넓이가 크다.",
+        "answers": [
+          "밑변이 긴 쪽"
+        ]
+      },
+      "sourceFingerprint": "9ae7cef5a52b79b01b6b83b055b532bf8e355d61fc9179e43541a6ca4b7e0fac",
+      "draftEvidence": "evidence/section-024-draft.json",
+      "cProposedAnswers": [
+        "긴"
+      ],
+      "cStudentAfter": "높이가 같은 두 삼각형은 밑변이 더 □ 쪽의 넓이가 더 크다.",
+      "cMarkedSentence": "높이가 같은 두 삼각형은 밑변이 더 {긴} 쪽의 넓이가 더 크다.",
+      "cStudentSentence": "높이가 같은 두 삼각형은 밑변이 더 □ 쪽의 넓이가 더 크다.",
+      "cSlotAnswers": [
+        {
+          "key": "긴",
+          "equivalents": [
+            "큰"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "높이가 같은 두 삼각형의 넓이는 밑변의 길이에 따라 어떻게 달라지나요? 높이가 같고 밑변이 $4\\,\\mathrm{cm}$, $8\\,\\mathrm{cm}$인 두 삼각형에서 큰 삼각형의 넓이는 작은 삼각형의 넓이의 몇 배인지도 구하세요.",
+        "answer": "높이가 같으면 밑변이 긴 쪽의 넓이가 더 크고, 밑변이 몇 배이면 넓이도 그만큼 배가 된다. 밑변이 $2$배이므로 넓이도 $2$배이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "밑변이 긴 쪽의 넓이가 더 크다",
+              "밑변이 몇 배가 되면 넓이도 같은 배가 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$배"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "높이가 같은 두 삼각형은 밑변이 더 {긴} 쪽의 넓이가 더 크다.",
+        "acceptedAnswers": [
+          [
+            "긴",
+            "큰"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "bb031d3306bfc9f6bf0adaf0030d6dffbefb764f0b953753eef6e5152bbec206",
+      "questionRevision": "planning-e5e6-20261006-bb031d3306bf",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-4-xc21",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "평행한 두 직선 중 한 직선 위에 길이가 같은 밑변을 두고, 다른 직선 위에 꼭짓점을 둔 삼각형을 여러 개 그렸습니다. 꼭짓점의 위치가 서로 달라도 이 삼각형들의 넓이는 어떠한지, 높이와 관련지어 설명하세요.",
+      "bAnswer": "넓이가 모두 같다. 평행한 두 직선 사이의 거리는 어디서나 같아 높이가 모두 같고, 밑변의 길이도 같기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "넓이가 모두 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "평행선 사이의 거리가 같아 높이가 모두 같다",
+            "높이가 모두 같다"
+          ]
+        }
+      ],
+      "bGoal": "평행선 사이의 삼각형은 높이가 같아 넓이가 같음을 설명한다.",
+      "bReason": "원문 문장이 길어 상황을 두 문장으로 풀고, 근거인 높이를 말하게 했다.",
+      "cDecision": "keep",
+      "cAfter": "한 직선 위에 길이가 같은 밑변을 두고 그 직선과 평행한 다른 직선 위에 꼭짓점을 둔 삼각형들은 넓이가 서로 {같다}.",
+      "cReason": "밑변 길이와 평행선 조건이 모두 문장에 있어 넓이 관계를 한 낱말로 판단하게 한다.",
+      "exampleNeeded": false,
+      "exampleReason": "글만으로도 풀 수 있으나, 평행한 두 직선과 꼭짓점 위치가 다른 삼각형 2~3개를 그린 그림이 있으면 이해가 쉽다.",
+      "sourceIndex": 1022,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-4-xc21",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-4 평행사변형과 삼각형의 넓이",
+        "term": "평행선 사이의 삼각형",
+        "kind": "성질",
+        "level": "상",
+        "definition": "한 직선 위에 길이가 같은 밑변을 두고 그 직선과 평행한 다른 직선 위에 꼭짓점을 둔 삼각형들은 넓이가 서로 {같다}.",
+        "studentC": "한 직선 위에 길이가 같은 밑변을 두고 그 직선과 평행한 다른 직선 위에 꼭짓점을 둔 삼각형들은 넓이가 서로 □.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "sourceFingerprint": "b1117d789df106a53f91d6f8c7c36df58cd6678aa5fd1d10577e31a267a7f48d",
+      "draftEvidence": "evidence/section-024-draft.json",
+      "cFrozenDefinition": "한 직선 위에 길이가 같은 밑변을 두고 그 직선과 평행한 다른 직선 위에 꼭짓점을 둔 삼각형들은 넓이가 서로 {같다}.",
+      "cFrozenStudentSentence": "한 직선 위에 길이가 같은 밑변을 두고 그 직선과 평행한 다른 직선 위에 꼭짓점을 둔 삼각형들은 넓이가 서로 □.",
+      "cProposedAnswers": [
+        "같다"
+      ],
+      "cStudentAfter": "한 직선 위에 길이가 같은 밑변을 두고 그 직선과 평행한 다른 직선 위에 꼭짓점을 둔 삼각형들은 넓이가 서로 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "한 직선 위에 길이가 같은 밑변을 두고 그 직선과 평행한 다른 직선 위에 꼭짓점을 둔 삼각형들은 넓이가 서로 {같다}.",
+      "cStudentSentence": "한 직선 위에 길이가 같은 밑변을 두고 그 직선과 평행한 다른 직선 위에 꼭짓점을 둔 삼각형들은 넓이가 서로 □.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "평행한 두 직선 중 한 직선 위에 길이가 같은 밑변을 두고, 다른 직선 위에 꼭짓점을 둔 삼각형을 여러 개 그렸습니다. 꼭짓점의 위치가 서로 달라도 이 삼각형들의 넓이는 어떠한지, 높이와 관련지어 설명하세요.",
+        "answer": "넓이가 모두 같다. 평행한 두 직선 사이의 거리는 어디서나 같아 높이가 모두 같고, 밑변의 길이도 같기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "넓이가 모두 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "평행선 사이의 거리가 같아 높이가 모두 같다",
+              "높이가 모두 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "한 직선 위에 길이가 같은 밑변을 두고 그 직선과 평행한 다른 직선 위에 꼭짓점을 둔 삼각형들은 넓이가 서로 {같다}.",
+        "acceptedAnswers": [
+          [
+            "같다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "dc35bcb4084ff03988b0ab1435fa492aefe52a44014ac241579247a680eb6495",
+      "questionRevision": "planning-e5e6-20261006-dc35bcb4084f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-4-xc22",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "넓이 구하는 식을 배우지 않은 사각형의 넓이를, 대각선 하나를 그어 구하는 방법을 설명하세요.",
+      "bAnswer": "대각선으로 사각형을 삼각형 $2$개로 나누고, 두 삼각형의 넓이를 각각 구해 더한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "대각선으로 삼각형 $2$개로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 삼각형의 넓이를 더한다",
+            "두 넓이의 합을 구한다"
+          ]
+        }
+      ],
+      "bGoal": "사각형을 두 삼각형으로 나누어 넓이를 구하는 방법을 말한다.",
+      "bReason": "편집용 제목 대신 어떤 상황에서 쓰는 방법인지 조건을 밝혀 물었다.",
+      "cDecision": "revise",
+      "cAfter": "사각형을 대각선 하나로 나누면 {삼각형} $2$개가 되므로, 두 도형의 넓이를 {더하면} 사각형의 넓이가 된다.",
+      "cReason": "원문 빈칸은 긴 구절이라 나뉘는 도형과 연산 두 낱말로 쪼갰다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "삼각형"
+          ]
+        },
+        {
+          "anyOf": [
+            "더하면",
+            "합하면"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 1023,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-4-xc22",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-4 평행사변형과 삼각형의 넓이",
+        "term": "대각선으로 나누어 넓이 구하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "사각형을 대각선으로 나누어 {두 삼각형의 넓이를 더하면} 전체 넓이를 구할 수 있다.",
+        "studentC": "사각형을 대각선으로 나누어 □ 전체 넓이를 구할 수 있다.",
+        "answers": [
+          "두 삼각형의 넓이를 더하면"
+        ]
+      },
+      "sourceFingerprint": "59dd4dcabbcb90b468d75f3fada7f84aa2d71b717810d489f2974bb8623faf8d",
+      "draftEvidence": "evidence/section-024-draft.json",
+      "cProposedAnswers": [
+        "삼각형",
+        "더하면"
+      ],
+      "cStudentAfter": "사각형을 대각선 하나로 나누면 □ $2$개가 되므로, 두 도형의 넓이를 □ 사각형의 넓이가 된다.",
+      "cMarkedSentence": "사각형을 대각선 하나로 나누면 {삼각형} $2$개가 되므로, 두 도형의 넓이를 {더하면} 사각형의 넓이가 된다.",
+      "cStudentSentence": "사각형을 대각선 하나로 나누면 □ $2$개가 되므로, 두 도형의 넓이를 □ 사각형의 넓이가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "삼각형",
+          "equivalents": []
+        },
+        {
+          "key": "더하면",
+          "equivalents": [
+            "합하면"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "넓이 구하는 식을 배우지 않은 사각형의 넓이를, 대각선 하나를 그어 구하는 방법을 설명하세요.",
+        "answer": "대각선으로 사각형을 삼각형 $2$개로 나누고, 두 삼각형의 넓이를 각각 구해 더한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "대각선으로 삼각형 $2$개로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 삼각형의 넓이를 더한다",
+              "두 넓이의 합을 구한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "사각형을 대각선 하나로 나누면 {삼각형} $2$개가 되므로, 두 도형의 넓이를 {더하면} 사각형의 넓이가 된다.",
+        "acceptedAnswers": [
+          [
+            "삼각형"
+          ],
+          [
+            "더하면",
+            "합하면"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "cac313823364bf33b53b4895a89bc8c9caa50e7a51800d0ae1368e42d8ca33e0",
+      "questionRevision": "planning-e5e6-20261006-cac313823364",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-4-xc23",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "직사각형의 한 변을 밑변으로 하고, 마주 보는 변 위의 한 점을 꼭짓점으로 하는 삼각형의 넓이는 직사각형의 넓이와 어떤 관계인가요? 삼각형의 밑변과 높이를 직사각형의 가로, 세로와 비교해 설명하고, 가로 $10\\,\\mathrm{cm}$, 세로 $6\\,\\mathrm{cm}$인 직사각형에서 가로를 밑변으로 하는 이런 삼각형의 넓이를 구하세요.",
+      "bAnswer": "삼각형의 넓이는 직사각형 넓이의 절반이다. 밑변은 가로, 높이는 세로와 같아 넓이가 (가로)$\\times$(세로)$\\div 2$이기 때문이다. $10 \\times 6 \\div 2 = 30$이므로 $30\\,\\mathrm{cm} ^2$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "직사각형 넓이의 절반이다",
+            "직사각형 넓이를 $2$로 나눈 것이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "밑변은 가로, 높이는 세로와 같다",
+            "밑변과 높이가 직사각형의 두 변의 길이와 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$30\\,\\mathrm{cm} ^2$",
+            "$30$제곱센티미터"
+          ]
+        }
+      ],
+      "bGoal": "직사각형 안 삼각형의 넓이가 절반임을 밑변과 높이로 설명한다.",
+      "bReason": "원문의 '절반'을 질문에서 말하지 않고 근거와 원문 예시 계산을 함께 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "직사각형의 한 변을 밑변으로 하고 마주 보는 변 위에 꼭짓점이 있는 삼각형의 넓이는 직사각형의 {절반}이다.",
+      "cReason": "밑변과 꼭짓점의 위치 조건이 문장에 다 있어 넓이 관계를 한 낱말로 답하게 한다.",
+      "synonymNotes": "반, 1/2도 정답이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1024,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-4-xc23",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-4 평행사변형과 삼각형의 넓이",
+        "term": "직사각형 안의 삼각형",
+        "kind": "방법",
+        "level": "상",
+        "definition": "직사각형의 한 변을 밑변으로 하고 마주 보는 변 위에 꼭짓점이 있는 삼각형의 넓이는 직사각형의 {절반}이다.",
+        "example": {
+          "prompt": "가로 $10\\,\\mathrm{cm}$, 세로 $6\\,\\mathrm{cm}$인 직사각형의 가로를 밑변, 맞은편 변 위의 점을 꼭짓점으로 하는 삼각형의 넓이는?",
+          "answer": "$30\\,\\mathrm{cm}^2$"
+        },
+        "studentC": "직사각형의 한 변을 밑변으로 하고 마주 보는 변 위에 꼭짓점이 있는 삼각형의 넓이는 직사각형의 □이다.",
+        "answers": [
+          "절반"
+        ]
+      },
+      "sourceFingerprint": "31e82cba094f69f58c06119e53ec2244f618efded999e8029a13401e092a3bd3",
+      "draftEvidence": "evidence/section-024-draft.json",
+      "cFrozenDefinition": "직사각형의 한 변을 밑변으로 하고 마주 보는 변 위에 꼭짓점이 있는 삼각형의 넓이는 직사각형의 {절반}이다.",
+      "cFrozenStudentSentence": "직사각형의 한 변을 밑변으로 하고 마주 보는 변 위에 꼭짓점이 있는 삼각형의 넓이는 직사각형의 □이다.",
+      "cProposedAnswers": [
+        "절반"
+      ],
+      "cStudentAfter": "직사각형의 한 변을 밑변으로 하고 마주 보는 변 위에 꼭짓점이 있는 삼각형의 넓이는 직사각형의 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "절반"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "직사각형의 한 변을 밑변으로 하고 마주 보는 변 위에 꼭짓점이 있는 삼각형의 넓이는 직사각형의 {절반}이다.",
+      "cStudentSentence": "직사각형의 한 변을 밑변으로 하고 마주 보는 변 위에 꼭짓점이 있는 삼각형의 넓이는 직사각형의 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "절반",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직사각형의 한 변을 밑변으로 하고, 마주 보는 변 위의 한 점을 꼭짓점으로 하는 삼각형의 넓이는 직사각형의 넓이와 어떤 관계인가요? 삼각형의 밑변과 높이를 직사각형의 가로, 세로와 비교해 설명하고, 가로 $10\\,\\mathrm{cm}$, 세로 $6\\,\\mathrm{cm}$인 직사각형에서 가로를 밑변으로 하는 이런 삼각형의 넓이를 구하세요.",
+        "answer": "삼각형의 넓이는 직사각형 넓이의 절반이다. 밑변은 가로, 높이는 세로와 같아 넓이가 (가로)$\\times$(세로)$\\div 2$이기 때문이다. $10 \\times 6 \\div 2 = 30$이므로 $30\\,\\mathrm{cm} ^2$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "직사각형 넓이의 절반이다",
+              "직사각형 넓이를 $2$로 나눈 것이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "밑변은 가로, 높이는 세로와 같다",
+              "밑변과 높이가 직사각형의 두 변의 길이와 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$30\\,\\mathrm{cm} ^2$",
+              "$30$제곱센티미터"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직사각형의 한 변을 밑변으로 하고 마주 보는 변 위에 꼭짓점이 있는 삼각형의 넓이는 직사각형의 {절반}이다.",
+        "acceptedAnswers": [
+          [
+            "절반"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "bfd8458374bf481756d61fa69d5701d353ff3b06be60982a8734782948c6e684",
+      "questionRevision": "planning-e5e6-20261006-bfd8458374bf",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-4-xc24",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "둔각삼각형에도 같은 넓이 식을 쓴다.",
+      "bReason": "공식은 c4, 밖에 그려지는 높이는 xc13의 B가 이미 묻고 있어 새로 물을 것이 없다.",
+      "exclusionReason": "B 중복: e5-1-6-4-c4, e5-1-6-4-xc13으로 대체.",
+      "cDecision": "revise",
+      "cAfter": "밑변이 $6\\,\\mathrm{cm}$이고, 밑변을 늘인 선에 수직으로 그은 높이가 $4\\,\\mathrm{cm}$인 둔각삼각형의 넓이는 $6 \\times 4 \\div${$2$}$=${$12$}($\\mathrm{cm} ^2$)이다.",
+      "cReason": "원문 빈칸은 c4와 같은 공식 되쓰기라, 밖에 있는 높이로도 같은 식을 쓰는 계산으로 바꿨다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1025,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-4-xc24",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-4 평행사변형과 삼각형의 넓이",
+        "term": "둔각삼각형에도 같은 공식",
+        "kind": "성질",
+        "level": "상",
+        "definition": "둔각삼각형도 밑변이나 그 연장선에 수직인 높이를 써서 {(밑변)$\\times$(높이)$\\div2$}로 넓이를 구한다.",
+        "studentC": "둔각삼각형도 밑변이나 그 연장선에 수직인 높이를 써서 □로 넓이를 구한다.",
+        "answers": [
+          "(밑변)$\\times$(높이)$\\div2$"
+        ]
+      },
+      "sourceFingerprint": "c25c2d2a2e0d5808b06e91d7f712c1c54ba9630583e1a01557367ae0bf312989",
+      "draftEvidence": "evidence/section-024-draft.json",
+      "cProposedAnswers": [
+        "$2$",
+        "$12$"
+      ],
+      "cStudentAfter": "밑변이 $6\\,\\mathrm{cm}$이고, 밑변을 늘인 선에 수직으로 그은 높이가 $4\\,\\mathrm{cm}$인 둔각삼각형의 넓이는 $6 \\times 4 \\div$□$=$□($\\mathrm{cm} ^2$)이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "밑변이 $6\\,\\mathrm{cm}$이고, 밑변을 늘인 선에 수직으로 그은 높이가 $4\\,\\mathrm{cm}$인 둔각삼각형의 넓이는 $6 \\times 4 \\div${$2$}$=${$12$}($\\mathrm{cm} ^2$)이다.",
+      "cStudentSentence": "밑변이 $6\\,\\mathrm{cm}$이고, 밑변을 늘인 선에 수직으로 그은 높이가 $4\\,\\mathrm{cm}$인 둔각삼각형의 넓이는 $6 \\times 4 \\div$□$=$□($\\mathrm{cm} ^2$)이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "$12$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "밑변이 $6\\,\\mathrm{cm}$이고, 밑변을 늘인 선에 수직으로 그은 높이가 $4\\,\\mathrm{cm}$인 둔각삼각형의 넓이는 $6 \\times 4 \\div${$2$}$=${$12$}($\\mathrm{cm} ^2$)이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "$12$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 중복: e5-1-6-4-c4, e5-1-6-4-xc13으로 대체."
+      },
+      "proposalFingerprint": "18f4c994edd4ee97da96382d0e4bd4ac5f03ce4c3774d02cb9df90e4b75a9c33",
+      "questionRevision": "planning-e5e6-20261006-18f4c994edd4",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-4-xc25",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "밑변은 $\\mathrm{m}$, 높이는 $\\mathrm{cm}$처럼 두 길이의 단위가 다를 때 넓이를 구하려면 먼저 무엇을 해야 하나요? 밑변이 $2\\,\\mathrm{m}$, 높이가 $50\\,\\mathrm{cm}$인 평행사변형의 넓이를 $\\mathrm{cm} ^2$로 구하세요.",
+      "bAnswer": "두 길이를 같은 단위로 맞춘다. $2\\,\\mathrm{m} = 200\\,\\mathrm{cm}$이므로 $200 \\times 50 = 10000$, 넓이는 $10000\\,\\mathrm{cm} ^2$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 길이를 같은 단위로 맞춘다",
+            "$\\mathrm{m}$를 $\\mathrm{cm}$로 바꾼다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10000\\,\\mathrm{cm} ^2$"
+          ]
+        }
+      ],
+      "bGoal": "단위를 맞춘 뒤 넓이를 구한다.",
+      "bReason": "원문은 일반 방법만 말해, 단위를 맞추지 않으면 틀리는 실제 수치 예를 붙였다.",
+      "cDecision": "revise",
+      "cAfter": "밑변이 $2\\,\\mathrm{m}$, 높이가 $50\\,\\mathrm{cm}$인 평행사변형의 넓이를 $\\mathrm{cm} ^2$로 구하려면 $2\\,\\mathrm{m}$를 {$200$}$\\mathrm{cm}$로 바꾸어 $200 \\times 50 =${$10000$}($\\mathrm{cm} ^2$)으로 계산한다.",
+      "cReason": "원문 빈칸 '같은 길이 단위로 맞춘'은 구절 암기라 실제로 단위를 바꾸어 계산하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1026,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-4-xc25",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-4 평행사변형과 삼각형의 넓이",
+        "term": "단위를 바꾸어 넓이 구하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "밑변과 높이의 단위가 다르면 {같은 길이 단위로 맞춘} 뒤 넓이를 구한다.",
+        "studentC": "밑변과 높이의 단위가 다르면 □ 뒤 넓이를 구한다.",
+        "answers": [
+          "같은 길이 단위로 맞춘"
+        ]
+      },
+      "sourceFingerprint": "700760417512ba65cc31e4ac6e108ab1f652111acc68ca99663d0540621f8497",
+      "draftEvidence": "evidence/section-024-draft.json",
+      "cProposedAnswers": [
+        "$200$",
+        "$10000$"
+      ],
+      "cStudentAfter": "밑변이 $2\\,\\mathrm{m}$, 높이가 $50\\,\\mathrm{cm}$인 평행사변형의 넓이를 $\\mathrm{cm} ^2$로 구하려면 $2\\,\\mathrm{m}$를 □$\\mathrm{cm}$로 바꾸어 $200 \\times 50 =$□($\\mathrm{cm} ^2$)으로 계산한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$200$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10000$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "밑변이 $2\\,\\mathrm{m}$, 높이가 $50\\,\\mathrm{cm}$인 평행사변형의 넓이를 $\\mathrm{cm} ^2$로 구하려면 $2\\,\\mathrm{m}$를 {$200$}$\\mathrm{cm}$로 바꾸어 $200 \\times 50 =${$10000$}($\\mathrm{cm} ^2$)으로 계산한다.",
+      "cStudentSentence": "밑변이 $2\\,\\mathrm{m}$, 높이가 $50\\,\\mathrm{cm}$인 평행사변형의 넓이를 $\\mathrm{cm} ^2$로 구하려면 $2\\,\\mathrm{m}$를 □$\\mathrm{cm}$로 바꾸어 $200 \\times 50 =$□($\\mathrm{cm} ^2$)으로 계산한다.",
+      "cSlotAnswers": [
+        {
+          "key": "$200$",
+          "equivalents": []
+        },
+        {
+          "key": "$10000$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "밑변은 $\\mathrm{m}$, 높이는 $\\mathrm{cm}$처럼 두 길이의 단위가 다를 때 넓이를 구하려면 먼저 무엇을 해야 하나요? 밑변이 $2\\,\\mathrm{m}$, 높이가 $50\\,\\mathrm{cm}$인 평행사변형의 넓이를 $\\mathrm{cm} ^2$로 구하세요.",
+        "answer": "두 길이를 같은 단위로 맞춘다. $2\\,\\mathrm{m} = 200\\,\\mathrm{cm}$이므로 $200 \\times 50 = 10000$, 넓이는 $10000\\,\\mathrm{cm} ^2$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 길이를 같은 단위로 맞춘다",
+              "$\\mathrm{m}$를 $\\mathrm{cm}$로 바꾼다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$10000\\,\\mathrm{cm} ^2$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "밑변이 $2\\,\\mathrm{m}$, 높이가 $50\\,\\mathrm{cm}$인 평행사변형의 넓이를 $\\mathrm{cm} ^2$로 구하려면 $2\\,\\mathrm{m}$를 {$200$}$\\mathrm{cm}$로 바꾸어 $200 \\times 50 =${$10000$}($\\mathrm{cm} ^2$)으로 계산한다.",
+        "acceptedAnswers": [
+          [
+            "$200$"
+          ],
+          [
+            "$10000$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "c423f47e4e89ed91d31314d200b6b72e17a20a79c8a6be503537333dc38e9268",
+      "questionRevision": "planning-e5e6-20261006-c423f47e4e89",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-5-xc3",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "대각선의 뜻은 4학년 내용이고, 마름모 대각선의 성질은 c2에서 확인한다.",
+      "bReason": "이전 학년의 대각선 정의를 되묻는 것이라 이 소단원의 서술형으로는 가치가 낮다.",
+      "cDecision": "revise",
+      "cAfter": "마름모에서 서로 이웃하지 않는 두 꼭짓점을 이은 선분을 {대각선}이라고 한다.",
+      "cReason": "'맞은편 꼭짓점'은 '마주 보는' 등으로 표현이 갈려 용어 이름을 답하게 바꾸었다.",
+      "exclusionReason": "B만 제외. 4학년 대각선 정의의 반복이며, 이 소단원에서 필요한 내용은 e5-1-6-5-c2가 다룬다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1027,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-5-xc3",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-5 마름모와 사다리꼴의 넓이",
+        "term": "마름모의 대각선",
+        "kind": "정의",
+        "level": "하",
+        "definition": "마름모의 한 꼭짓점에서 {맞은편 꼭짓점}까지 곧게 그은 것이 대각선이다.",
+        "studentC": "마름모의 한 꼭짓점에서 □까지 곧게 그은 것이 대각선이다.",
+        "answers": [
+          "맞은편 꼭짓점"
+        ]
+      },
+      "sourceFingerprint": "bac67faa255219380347ef81f1f0ac4e80318f6bc9d69f4430a617061fe30002",
+      "draftEvidence": "evidence/section-025-draft.json",
+      "cProposedAnswers": [
+        "대각선"
+      ],
+      "cStudentAfter": "마름모에서 서로 이웃하지 않는 두 꼭짓점을 이은 선분을 □이라고 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "대각선"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "마름모에서 서로 이웃하지 않는 두 꼭짓점을 이은 선분을 {대각선}이라고 한다.",
+      "cStudentSentence": "마름모에서 서로 이웃하지 않는 두 꼭짓점을 이은 선분을 □이라고 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "대각선",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "마름모에서 서로 이웃하지 않는 두 꼭짓점을 이은 선분을 {대각선}이라고 한다.",
+        "acceptedAnswers": [
+          [
+            "대각선"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B만 제외. 4학년 대각선 정의의 반복이며, 이 소단원에서 필요한 내용은 e5-1-6-5-c2가 다룬다."
+      },
+      "proposalFingerprint": "018526c42117e0e628e18712afa0e0d382a24517bd7c44ef44777455ba43b536",
+      "questionRevision": "planning-e5e6-20261006-018526c42117",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-5-xc4",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "어떤 사각형을 사다리꼴이라고 하는가? 또 평행사변형도 사다리꼴이라고 할 수 있는지 까닭과 함께 답하시오.",
+      "bAnswer": "평행한 변이 한 쌍이라도 있는 사각형이 사다리꼴이다. 평행사변형은 평행한 변이 두 쌍 있으므로 사다리꼴이라고 할 수 있다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "평행한 변이 한 쌍이라도 있는 사각형",
+            "마주 보는 변 가운데 적어도 한 쌍이 평행한 사각형"
+          ]
+        },
+        {
+          "anyOf": [
+            "평행사변형도 사다리꼴이다",
+            "사다리꼴이라고 할 수 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "평행사변형에는 평행한 변이 있기 때문",
+            "평행한 변이 두 쌍이므로 한 쌍이라도 있다는 조건에 맞는다"
+          ]
+        }
+      ],
+      "bGoal": "사다리꼴의 뜻을 말하고 '한 쌍이라도'의 의미를 평행사변형으로 확인한다.",
+      "bReason": "'적어도 한 쌍'의 뜻이 드러나도록 평행사변형이 포함되는지를 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "평행한 변이 {한} 쌍이라도 있는 사각형을 {사다리꼴}이라고 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "한",
+            "$1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "사다리꼴"
+          ]
+        }
+      ],
+      "cReason": "'적어도 한 쌍'보다 4학년 교과서 표현인 '한 쌍이라도'로 짧게 답하게 했다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'적어도 한 쌍'='한 쌍이라도'. '한 쌍만'은 다른 뜻이므로 오답이다.",
+      "sourceIndex": 1028,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-5-xc4",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-5 마름모와 사다리꼴의 넓이",
+        "term": "사다리꼴",
+        "kind": "정의",
+        "level": "하",
+        "definition": "마주 보는 두 변 가운데 {적어도 한 쌍}이 평행한 사각형이 사다리꼴이다.",
+        "studentC": "마주 보는 두 변 가운데 □이 평행한 사각형이 사다리꼴이다.",
+        "answers": [
+          "적어도 한 쌍"
+        ]
+      },
+      "sourceFingerprint": "ac860b967a45b0ff8a6d162667234809b8d92a35e71e84eedc853939b183d09c",
+      "draftEvidence": "evidence/section-025-draft.json",
+      "cProposedAnswers": [
+        "한",
+        "사다리꼴"
+      ],
+      "cStudentAfter": "평행한 변이 □ 쌍이라도 있는 사각형을 □이라고 한다.",
+      "cMarkedSentence": "평행한 변이 {한} 쌍이라도 있는 사각형을 {사다리꼴}이라고 한다.",
+      "cStudentSentence": "평행한 변이 □ 쌍이라도 있는 사각형을 □이라고 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "한",
+          "equivalents": [
+            "$1$"
+          ]
+        },
+        {
+          "key": "사다리꼴",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 사각형을 사다리꼴이라고 하는가? 또 평행사변형도 사다리꼴이라고 할 수 있는지 까닭과 함께 답하시오.",
+        "answer": "평행한 변이 한 쌍이라도 있는 사각형이 사다리꼴이다. 평행사변형은 평행한 변이 두 쌍 있으므로 사다리꼴이라고 할 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "평행한 변이 한 쌍이라도 있는 사각형",
+              "마주 보는 변 가운데 적어도 한 쌍이 평행한 사각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "평행사변형도 사다리꼴이다",
+              "사다리꼴이라고 할 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "평행사변형에는 평행한 변이 있기 때문",
+              "평행한 변이 두 쌍이므로 한 쌍이라도 있다는 조건에 맞는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "평행한 변이 {한} 쌍이라도 있는 사각형을 {사다리꼴}이라고 한다.",
+        "acceptedAnswers": [
+          [
+            "한",
+            "$1$"
+          ],
+          [
+            "사다리꼴"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "07236c90427c11170909f8bbbcb5df801f5197c27b6037879061d39b348d9bb9",
+      "questionRevision": "planning-e5e6-20261006-07236c90427c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-6-5-xc5",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "둘러싼 직사각형의 가로·세로와 대각선의 관계는 xc14의 설명에 들어 있다.",
+      "bReason": "xc14 질문의 첫 부분이 같은 내용을 물어 따로 두면 중복된다.",
+      "cDecision": "revise",
+      "cAfter": "두 대각선이 가로로 $8\\,\\mathrm{cm}$, 세로로 $6\\,\\mathrm{cm}$ 놓인 마름모를 네 꼭짓점에 꼭 맞게 둘러싼 직사각형은 가로가 {$8$} $\\mathrm{cm}$, 세로가 {$6$} $\\mathrm{cm}$이다.",
+      "cReason": "조건이 길어 읽기 어려운 문장을 실제 길이가 있는 예로 바꾸었다.",
+      "exclusionReason": "B만 제외. 대체: e5-1-6-5-xc14.",
+      "exampleNeeded": false,
+      "sourceIndex": 1029,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-6-5-xc5",
+        "section": "초5::1-6 다각형의 둘레와 넓이::1-6-5 마름모와 사다리꼴의 넓이",
+        "term": "마름모를 둘러싼 직사각형",
+        "kind": "방법",
+        "level": "하",
+        "definition": "마름모의 네 꼭짓점을 지나고 변이 두 대각선과 평행한 직사각형의 가로와 세로는 마름모의 {두 대각선}과 길이가 같다.",
+        "studentC": "마름모의 네 꼭짓점을 지나고 변이 두 대각선과 평행한 직사각형의 가로와 세로는 마름모의 □과 길이가 같다.",
+        "answers": [
+          "두 대각선"
+        ]
+      },
+      "sourceFingerprint": "d626f7e75193c4716140b15ee22fb59b02c9fae98dba7fa372b41074ffd0dcf5",
+      "draftEvidence": "evidence/section-025-draft.json",
+      "cProposedAnswers": [
+        "$8$",
+        "$6$"
+      ],
+      "cStudentAfter": "두 대각선이 가로로 $8\\,\\mathrm{cm}$, 세로로 $6\\,\\mathrm{cm}$ 놓인 마름모를 네 꼭짓점에 꼭 맞게 둘러싼 직사각형은 가로가 □ $\\mathrm{cm}$, 세로가 □ $\\mathrm{cm}$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$8$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "두 대각선이 가로로 $8\\,\\mathrm{cm}$, 세로로 $6\\,\\mathrm{cm}$ 놓인 마름모를 네 꼭짓점에 꼭 맞게 둘러싼 직사각형은 가로가 {$8$} $\\mathrm{cm}$, 세로가 {$6$} $\\mathrm{cm}$이다.",
+      "cStudentSentence": "두 대각선이 가로로 $8\\,\\mathrm{cm}$, 세로로 $6\\,\\mathrm{cm}$ 놓인 마름모를 네 꼭짓점에 꼭 맞게 둘러싼 직사각형은 가로가 □ $\\mathrm{cm}$, 세로가 □ $\\mathrm{cm}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$8$",
+          "equivalents": []
+        },
+        {
+          "key": "$6$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "두 대각선이 가로로 $8\\,\\mathrm{cm}$, 세로로 $6\\,\\mathrm{cm}$ 놓인 마름모를 네 꼭짓점에 꼭 맞게 둘러싼 직사각형은 가로가 {$8$} $\\mathrm{cm}$, 세로가 {$6$} $\\mathrm{cm}$이다.",
+        "acceptedAnswers": [
+          [
+            "$8$"
+          ],
+          [
+            "$6$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B만 제외. 대체: e5-1-6-5-xc14."
+      },
+      "proposalFingerprint": "9ab523cd5243684ecc97c5624d0bd7ad9edd39dac4852cf9e647ab2579c81ceb",
+      "questionRevision": "planning-e5e6-20261006-9ab523cd5243",
+      "requiresIndependentReview": true
+    }
+  ]
+}

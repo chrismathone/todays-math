@@ -1,0 +1,837 @@
+{
+  "rows": [
+    {
+      "id": "e5-1-5-4-c1",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "분모가 다른 두 대분수를 뺄 때, 분수 부분끼리 뺄 수 있는 경우에는 어떤 순서로 계산하는지 설명하고, 그 방법으로 $3\\frac{3}{4}-1\\frac{1}{6}$을 계산하시오.",
+      "bAnswer": "분수 부분을 통분한 뒤 자연수는 자연수끼리, 분수는 분수끼리 뺀다. $3\\frac{9}{12}-1\\frac{2}{12}=2\\frac{7}{12}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분수 부분을 통분한다",
+            "분수 부분의 분모를 같게 만든다"
+          ]
+        },
+        {
+          "anyOf": [
+            "자연수끼리, 분수끼리 따로 뺀다",
+            "자연수 부분과 분수 부분을 각각 뺀다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\frac{7}{12}$"
+          ]
+        }
+      ],
+      "bGoal": "통분한 뒤 자연수 부분과 분수 부분을 따로 빼는 절차를 말하고 적용한다.",
+      "bReason": "원문은 받아내림 없는 기본 절차이므로 조건을 질문에 넣고 예로 확인하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$3\\frac{3}{4}-1\\frac{1}{6}$에서 분수 부분을 통분하면 $3\\frac{9}{12}-1\\frac{2}{12}$이다. 자연수끼리 빼면 {$2$}, 분수끼리 빼면 {$\\frac{7}{12}$}이므로 차는 {$2\\frac{7}{12}$}이다.",
+      "cReason": "두 빈칸 '자연수끼리, 분수끼리'는 순서만 외우는 낱말이라 실제 계산값을 쓰게 바꿨다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-5-4-c2",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "대분수의 뺄셈에서 분수 부분끼리 뺄 수 없을 때에는 빼지는 수를 어떻게 바꾸어 계산하는지 설명하고, $4\\frac{1}{5}-1\\frac{3}{5}$을 계산하시오.",
+      "bAnswer": "빼지는 수의 자연수 부분에서 $1$을 떼어 분모와 분자가 같은 분수로 바꾸어 분수 부분에 합친다. $4\\frac{1}{5}=3\\frac{6}{5}$이므로 $3\\frac{6}{5}-1\\frac{3}{5}=2\\frac{3}{5}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "자연수 부분에서 1을 떼어 분수로 바꾸어 분수 부분에 합친다",
+            "자연수 1을 받아내려 분수 부분을 크게 만든다",
+            "$4\\frac{1}{5}$을 $3\\frac{6}{5}$으로 바꾼다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\frac{3}{5}$"
+          ]
+        }
+      ],
+      "bGoal": "받아내림에서 자연수 1을 분수로 바꾸는 방법을 설명하고 계산한다.",
+      "bReason": "'뺄 양이 더 크면'이라는 조건과 바꾸는 방법을 실제 식으로 확인하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$4\\frac{1}{5}-1\\frac{3}{5}$에서 $\\frac{1}{5}$에서 $\\frac{3}{5}$을 뺄 수 없으므로, $4$에서 $1$을 떼어 {$\\frac{5}{5}$}로 바꾸면 $4\\frac{1}{5}$은 {$3\\frac{6}{5}$}이 된다.",
+      "cReason": "'분모와 분자가 같은 분수'라는 긴 구절 대신 실제 분수와 바꾼 꼴을 쓰게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-5-4-xc1",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$3\\frac{4}{5}-1\\frac{1}{5}$의 분수 부분을 뺄 때 분자끼리만 빼고 분모 $5$는 그대로 두는 까닭을 $\\frac{1}{5}$이 몇 개인지로 설명하고, 차를 구하시오.",
+      "bAnswer": "$\\frac{4}{5}$는 $\\frac{1}{5}$이 4개, $\\frac{1}{5}$은 1개이므로 빼면 $\\frac{1}{5}$이 3개 남아 $\\frac{3}{5}$이다. 조각의 크기($\\frac{1}{5}$)는 변하지 않으므로 분모는 그대로이다. 차는 $2\\frac{3}{5}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{1}{5}$이 4개에서 1개를 빼면 3개가 남는다",
+            "같은 크기의 조각의 개수만 줄어든다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\frac{3}{5}$"
+          ]
+        }
+      ],
+      "bGoal": "분모가 같을 때 분자끼리만 빼는 까닭을 같은 크기 조각의 개수로 설명한다.",
+      "bReason": "절차 자체는 이전 학년 내용이라 분모가 그대로인 까닭을 묻는 쪽이 가치가 있다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "분모가 같고 분수 부분끼리 뺄 수 있다는 조건이 문장에 있고 '빼고' 한 낱말로 분자 처리 방법을 확인한다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-5-4-xc2",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "분모가 다르면 통분부터 한다는 점을 확인한다.",
+      "bReason": "통분 후 빼는 절차는 c1과 xc10의 B가 이미 묻는다.",
+      "exclusionReason": "B 중복: e5-1-5-4-c1, e5-1-5-4-xc10이 대체",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "분모가 다를 때 먼저 할 일을 '통분' 한 낱말로 확인하는 짧고 분명한 문장이다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-5-4-xc3",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "자연수 부분과 분수 부분을 따로 빼지 않고 대분수를 가분수로 고쳐서 빼는 방법의 순서를 설명하고, 그 방법으로 $2\\frac{1}{4}-1\\frac{1}{2}$을 계산하시오.",
+      "bAnswer": "두 대분수를 가분수로 고치고 통분한 뒤 분자끼리 뺀다. $\\frac{9}{4}-\\frac{3}{2}=\\frac{9}{4}-\\frac{6}{4}=\\frac{3}{4}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가분수로 고친 뒤 통분하여 뺀다",
+            "가분수로 바꾸고 분모를 같게 하여 분자끼리 뺀다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{4}$"
+          ]
+        }
+      ],
+      "bGoal": "가분수로 고쳐 통분해 빼는 절차를 설명하고 적용한다.",
+      "bReason": "원문 예가 받아내림이 필요한 식이라 이 방법의 쓸모를 그대로 보여 준다.",
+      "cDecision": "revise",
+      "cAfter": "$2\\frac{1}{4}-1\\frac{1}{2}$을 가분수로 고치면 {$\\frac{9}{4}$}$-\\frac{3}{2}$이고, 분모를 $4$로 통분하여 빼면 차는 {$\\frac{3}{4}$}이다.",
+      "cReason": "'통분한 뒤'는 어절 암기라 가분수로 고친 값과 차를 쓰게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-5-4-xc4",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "자연수에는 분수 부분이 없는데, 자연수에서 대분수를 빼려면 자연수를 어떻게 바꾸어 계산하는지 설명하고 $3-1\\frac{2}{5}$를 계산하시오.",
+      "bAnswer": "자연수에서 $1$을 떼어 빼는 수와 분모가 같은 분수로 바꾼다. $3=2\\frac{5}{5}$이므로 $2\\frac{5}{5}-1\\frac{2}{5}=1\\frac{3}{5}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "자연수에서 1을 떼어 분수로 바꾼다",
+            "$3$을 $2\\frac{5}{5}$로 바꾼다",
+            "자연수를 분모가 같은 가분수로 바꾼다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1\\frac{3}{5}$"
+          ]
+        }
+      ],
+      "bGoal": "자연수를 대분수 꼴로 바꾸어 대분수를 빼는 방법을 설명한다.",
+      "bReason": "분수 부분이 없는 자연수를 어떻게 다루는지가 이 행의 핵심이다.",
+      "cDecision": "revise",
+      "cAfter": "$3-1\\frac{2}{5}$를 계산할 때 $3$을 {$2\\frac{5}{5}$}로 바꾸어 빼면 차는 {$1\\frac{3}{5}$}이다.",
+      "cReason": "'$1$을 떼어'는 표현 암기라 바꾼 꼴과 결과를 쓰게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-5-4-xc5",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "대분수에서 자연수를 빼면 자연수 부분만 줄어듦을 확인한다.",
+      "bReason": "서술로 물을 만큼의 내용이 없어 C 한 칸으로 충분하다.",
+      "exclusionReason": "B로는 자명한 한 줄 사실",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "빼는 수가 자연수일 때 달라지는 부분을 짧은 낱말로 확인한다.",
+      "synonymNotes": "'자연수', '자연수 쪽'도 같은 답으로 인정",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-5-4-xc6",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "자연수 부분은 그대로 두고 분수 부분만 빼는 경우를 안다.",
+      "bReason": "c1 절차에서 빼는 수의 자연수 부분이 없는 특수한 경우일 뿐이다.",
+      "exclusionReason": "B 중복: e5-1-5-4-c1이 대체",
+      "cDecision": "revise",
+      "cAfter": "$2\\frac{5}{6}-\\frac{1}{3}$에서 $\\frac{1}{3}$을 분모가 $6$인 분수로 고치면 {$\\frac{2}{6}$}이다. 자연수 부분 $2$는 그대로 두고 분수 부분끼리 빼면 차는 {$2\\frac{1}{2}$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{2}{6}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\frac{1}{2}$",
+            "$2\\frac{3}{6}$"
+          ]
+        }
+      ],
+      "cReason": "'넉넉하면'이 모호하고 빈칸이 구절 암기라 실제 식으로 바꿨다.",
+      "coreAfter": "대분수에서 진분수를 뺄 때, 통분한 뒤 대분수의 분수 부분이 빼는 진분수보다 크거나 같으면 자연수 부분은 그대로 두고 분수 부분끼리만 뺀다.",
+      "coreReason": "'분수 부분이 넉넉하면'은 조건이 불분명한 표현이다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-5-4-xc7",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "차의 분수 부분을 약분해 간단히 쓴다.",
+      "bReason": "답을 약분하는 습관은 서술형으로 물을 독립 개념이 아니다.",
+      "exclusionReason": "B로는 사소한 마무리 행동",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "차를 간단히 쓸 때 하는 일을 '약분' 한 낱말로 확인한다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-5-4-xc8",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "분수 부분이 서로 같은 두 대분수에서 큰 수에서 작은 수를 빼면 차는 어떤 수가 되는지 분수 부분끼리의 차를 이용해 설명하고, $5\\frac{2}{7}-3\\frac{2}{7}$을 계산하시오.",
+      "bAnswer": "분수 부분끼리 빼면 $0$이 되어 자연수 부분의 차만 남으므로 차는 자연수이다. $5\\frac{2}{7}-3\\frac{2}{7}=2$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분수 부분끼리 빼면 0이다",
+            "분수 부분이 없어지고 자연수 부분의 차만 남는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        }
+      ],
+      "bGoal": "분수 부분이 같으면 차가 자연수가 되는 까닭을 설명한다.",
+      "bReason": "성질만 외우지 않고 분수 부분의 차가 0이라는 근거를 말하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$5\\frac{2}{7}-3\\frac{2}{7}$처럼 분수 부분이 같은 두 대분수를 빼면 분수 부분의 차가 {$0$}이므로 차는 {자연수}이다.",
+      "cReason": "문장 맨 앞 조건 구절을 빈칸으로 두면 답을 떠올리기 어려워 결과 쪽을 묻게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-5-4-xc9",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "남은 길이를 뺄셈으로 구한다.",
+      "bReason": "쓴 만큼 빼면 남는다는 것은 저학년부터 아는 자명한 상황 해석이다.",
+      "exclusionReason": "B로는 자명한 내용, 계산은 C로 확인",
+      "cDecision": "revise",
+      "cAfter": "길이가 $3\\frac{1}{2}\\,\\mathrm{m}$인 끈에서 $1\\frac{1}{4}\\,\\mathrm{m}$를 잘라 썼다. 남은 길이를 구하는 식은 $3\\frac{1}{2}$ {$-$} $1\\frac{1}{4}$이고, 남은 길이는 {$2\\frac{1}{4}$}$\\,\\mathrm{m}$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$-$",
+            "빼기"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\frac{1}{4}$"
+          ]
+        }
+      ],
+      "cReason": "'잘라 쓴 길이를 빼면'은 긴 구절 암기라 식의 연산과 값을 쓰게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-5-4-xc10",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "분모가 다른 두 대분수를 뺄 때, 통분해 보니 분수 부분끼리 뺄 수 없었다. 처음부터 끝까지 어떤 차례로 계산하는지 설명하고 $5\\frac{1}{4}-2\\frac{2}{3}$를 계산하시오.",
+      "bAnswer": "먼저 통분하고, 자연수 부분에서 $1$을 받아내린 뒤, 자연수끼리·분수끼리 뺀다. $5\\frac{3}{12}-2\\frac{8}{12}=4\\frac{15}{12}-2\\frac{8}{12}=2\\frac{7}{12}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "통분을 먼저 한다",
+            "분모를 먼저 같게 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "자연수 부분에서 1을 받아내린다",
+            "빼지는 수를 $4\\frac{15}{12}$로 바꾼다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\frac{7}{12}$"
+          ]
+        }
+      ],
+      "bGoal": "통분, 받아내림, 부분끼리 빼기의 전체 차례를 설명하고 적용한다.",
+      "bReason": "받아내림까지 포함한 전체 순서를 묻는 행은 이 행뿐이다.",
+      "cDecision": "revise",
+      "cAfter": "분모가 다른 대분수를 뺄 때는 먼저 분수 부분의 분모를 같게 하는 {통분}을 하고, 분수 부분끼리 뺄 수 없으면 자연수 부분에서 $1$을 {받아내린} 뒤 자연수 부분과 분수 부분을 각각 뺀다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "통분"
+          ]
+        },
+        {
+          "anyOf": [
+            "받아내린",
+            "받아내림한",
+            "빌려 온"
+          ]
+        }
+      ],
+      "cReason": "'통분' 한 칸만으로는 xc2와 겹치므로 차례의 두 단계를 모두 확인하게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-5-4-xc11",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "분모가 다른 두 대분수를 뺄 때 받아내림이 필요한지 아닌지를 어떻게 알 수 있는지 설명하고, $3\\frac{1}{3}-1\\frac{1}{2}$은 받아내림이 필요한지 판단하시오.",
+      "bAnswer": "분수 부분을 통분하여 비교했을 때 빼지는 수의 분수 부분이 더 작으면 받아내림이 필요하다. $\\frac{2}{6}<\\frac{3}{6}$이므로 필요하다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "통분한 분수 부분의 크기를 비교한다",
+            "분수 부분끼리 뺄 수 있는지 본다"
+          ]
+        },
+        {
+          "anyOf": [
+            "빼지는 수의 분수 부분이 더 작으면 받아내림이 필요하다",
+            "빼는 수의 분수 부분이 더 크면 받아내림이 필요하다"
+          ]
+        },
+        {
+          "anyOf": [
+            "받아내림이 필요하다",
+            "$\\frac{2}{6}$이 $\\frac{3}{6}$보다 작아서 필요하다"
+          ]
+        }
+      ],
+      "bGoal": "통분한 분수 부분을 비교해 받아내림이 필요한지 판단한다.",
+      "bReason": "원문 예가 '그렇다'만 답하게 되어 있어 판단 기준을 말하게 했다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "통분한 분수 부분의 크기 비교라는 조건이 분명하고 답이 짧은 비교 말이다.",
+      "synonymNotes": "'작으면'도 인정",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-5-4-xc12",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "대분수에서 자연수 부분의 $1$을 받아내려 분수 부분에 합치면 자연수 부분과 분자는 각각 어떻게 달라지는지 설명하고, $4\\frac{2}{5}$를 그렇게 바꾸어 쓰시오.",
+      "bAnswer": "자연수 부분은 $1$ 작아지고 분자는 분모만큼 커진다. $4\\frac{2}{5}=3\\frac{7}{5}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "자연수 부분은 1 작아진다",
+            "자연수 부분이 4에서 3이 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "분자는 분모만큼 커진다",
+            "분자가 5 커진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3\\frac{7}{5}$"
+          ]
+        }
+      ],
+      "bGoal": "받아내린 뒤 대분수의 꼴이 어떻게 바뀌는지 말하고 써 본다.",
+      "bReason": "까닭은 xc20에서 묻기로 하고 여기서는 달라지는 꼴에 집중했다.",
+      "cDecision": "revise",
+      "cAfter": "$4\\frac{2}{5}$에서 $1$을 받아내리면 자연수 부분은 {$3$}이 되고, $1=\\frac{5}{5}$이므로 분자는 $2+5=${$7$}이 된다.",
+      "cReason": "'분모만큼 커진다'는 구절 대신 실제 수의 변화를 쓰게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-5-4-xc13",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "어떤 학생이 $5\\frac{1}{6}-2\\frac{5}{6}$를 $3\\frac{4}{6}$라고 계산했다. 분수 부분을 어떻게 잘못 뺐는지 설명하고 바르게 계산하시오.",
+      "bAnswer": "$\\frac{1}{6}-\\frac{5}{6}$를 해야 하는데 $\\frac{5}{6}-\\frac{1}{6}$로 거꾸로 뺐다. 받아내려 $4\\frac{7}{6}-2\\frac{5}{6}=2\\frac{2}{6}=2\\frac{1}{3}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분수 부분을 거꾸로 뺐다",
+            "$\\frac{5}{6}-\\frac{1}{6}$로 계산했다",
+            "빼는 수의 분수 부분에서 빼지는 수의 분수 부분을 뺐다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\frac{1}{3}$",
+            "$2\\frac{2}{6}$"
+          ]
+        }
+      ],
+      "bGoal": "분수 부분을 거꾸로 뺀 오류를 찾아 받아내림으로 고친다.",
+      "bReason": "원문 예의 오답 상황을 그대로 쓰고 바른 답까지 구하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$5\\frac{1}{6}-2\\frac{5}{6}$에서 $\\frac{1}{6}$에서 $\\frac{5}{6}$를 뺄 수 없으므로 $5\\frac{1}{6}$을 {$4\\frac{7}{6}$}으로 바꾸어 빼면 차는 {$2\\frac{1}{3}$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4\\frac{7}{6}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\frac{1}{3}$",
+            "$2\\frac{2}{6}$"
+          ]
+        }
+      ],
+      "cReason": "'큰 쪽에서 작은 쪽을 거꾸로 빼면'은 임의의 긴 구절이라 바른 계산 과정으로 바꿨다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-5-4-xc14",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "받아내리면 자연수 부분이 1 작아짐을 안다.",
+      "bReason": "xc12 내용의 절반을 되풀이하는 행이다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "xc12의 C가 자연수 부분의 변화를 이미 확인한다.",
+      "exclusionReason": "B·C 모두 중복: e5-1-5-4-xc12가 대체",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-5-4-xc15",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$3\\frac{1}{3}-1\\frac{1}{2}$을 가분수로 고쳐서 계산하시오. 그리고 자연수 부분과 분수 부분을 따로 빼는 방법과 견주어 어떤 과정을 하지 않아도 되는지 쓰시오.",
+      "bAnswer": "$\\frac{10}{3}-\\frac{3}{2}=\\frac{20}{6}-\\frac{9}{6}=\\frac{11}{6}=1\\frac{5}{6}$. 받아내림을 하지 않아도 된다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1\\frac{5}{6}$",
+            "$\\frac{11}{6}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "받아내림을 하지 않아도 된다",
+            "자연수에서 1을 빌려 올 필요가 없다"
+          ]
+        }
+      ],
+      "bGoal": "가분수로 빼면 받아내림 과정이 필요 없음을 계산으로 확인한다.",
+      "bReason": "절차는 xc3이 맡고 이 행은 두 방법의 차이를 묻게 했다.",
+      "cDecision": "revise",
+      "cAfter": "대분수를 가분수로 고쳐 빼면 분수 부분끼리 뺄 수 없는 경우에도 {받아내림}을 따로 하지 않아도 된다.",
+      "cReason": "빈칸을 긴 구절에서 핵심 낱말 하나로 줄이고 어떤 경우인지 밝혔다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-5-4-xc16",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "뺄셈의 답이 맞는지 덧셈으로 확인하려면 어떤 두 수를 더해 무엇이 나오는지 보아야 하는지 설명하고, $3\\frac{1}{2}-1\\frac{1}{4}=2\\frac{1}{4}$을 확인하는 덧셈식을 쓰시오.",
+      "bAnswer": "차에 빼는 수를 더해 빼지는 수(처음 수)가 나오는지 본다. $2\\frac{1}{4}+1\\frac{1}{4}=3\\frac{1}{2}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "차와 빼는 수를 더한다",
+            "답에 뺀 수를 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "빼지는 수가 나오는지 본다",
+            "처음 수가 나오는지 본다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\frac{1}{4}+1\\frac{1}{4}=3\\frac{1}{2}$",
+            "$1\\frac{1}{4}+2\\frac{1}{4}=3\\frac{1}{2}$"
+          ]
+        }
+      ],
+      "bGoal": "뺄셈을 덧셈으로 검산하는 관계를 설명하고 식으로 쓴다.",
+      "bReason": "원문 예의 '되돌리는 셈'은 답 범위가 모호해 더하는 수와 결과를 지정했다.",
+      "cDecision": "revise",
+      "cAfter": "$3\\frac{1}{2}-1\\frac{1}{4}=2\\frac{1}{4}$이 맞는지 확인하려면 $2\\frac{1}{4}+${$1\\frac{1}{4}$}$=${$3\\frac{1}{2}$}인지 계산한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1\\frac{1}{4}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3\\frac{1}{2}$",
+            "$3\\frac{2}{4}$"
+          ]
+        }
+      ],
+      "cReason": "'처음 수'는 '빼지는 수'와 섞여 쓰이는 말이라 실제 검산식의 값을 쓰게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-5-4-xc17",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "계산 방법이 달라도 차가 같음을 안다.",
+      "bReason": "같은 뺄셈의 답이 같다는 자명한 사실이고 두 방법 비교는 xc15가 맡는다.",
+      "exclusionReason": "B 자명·중복: e5-1-5-4-xc3, e5-1-5-4-xc15가 대체",
+      "cDecision": "revise",
+      "cAfter": "같은 대분수의 뺄셈은 자연수 부분과 분수 부분을 따로 빼도, 가분수로 바꾸어 빼도 차가 서로 {같다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다",
+            "똑같다"
+          ]
+        }
+      ],
+      "cReason": "'부분끼리'가 무엇인지 풀어 쓰고 빈칸을 한 낱말로 줄였다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-5-4-xc18",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "어떤 학생이 $5-2\\frac{1}{3}$을 $3\\frac{1}{3}$이라고 답했다. 이 답이 틀렸음을 $5-2=3$과 견주어 설명하고 바르게 계산하시오.",
+      "bAnswer": "$2$보다 큰 수를 뺐으므로 차는 $3$보다 작아야 하는데 $3\\frac{1}{3}$은 $3$보다 크다. $4\\frac{3}{3}-2\\frac{1}{3}=2\\frac{2}{3}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "2보다 큰 수를 빼므로 차는 3보다 작아야 한다",
+            "$\\frac{1}{3}$을 더 빼야 하는데 오히려 더했다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\frac{2}{3}$"
+          ]
+        }
+      ],
+      "bGoal": "자연수에서 대분수를 뺀 차의 크기를 어림해 오답을 가려내고 고친다.",
+      "bReason": "원문 예의 '3보다 작아야 하는 까닭'을 실제 오답 판단으로 이었다.",
+      "cDecision": "revise",
+      "cAfter": "$5-2\\frac{1}{3}$은 $5$에서 $2$보다 큰 수를 빼는 것이므로 차는 $3$보다 {작다}. 바르게 계산하면 차는 {$2\\frac{2}{3}$}이다.",
+      "cReason": "'분수 부분을 빼지 않고 더한 것'은 긴 구절이라 크기 비교와 바른 값으로 바꿨다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-5-4-xc19",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "두 대분수의 뺄셈에서 계산하기 전에 분수 부분만 비교하여 차가 자연수 부분끼리의 차보다 큰지 작은지 아는 방법을 설명하고, $6\\frac{1}{4}-2\\frac{3}{4}$은 $4$보다 큰지 작은지 판단하시오.",
+      "bAnswer": "빼지는 수의 분수 부분이 빼는 수의 분수 부분보다 작으면 차는 자연수 부분의 차보다 작고, 크면 더 크다. $\\frac{1}{4}<\\frac{3}{4}$이므로 $4$보다 작다(차는 $3\\frac{1}{2}$).",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "빼지는 수의 분수 부분이 더 작으면 차는 자연수 부분의 차보다 작다",
+            "분수 부분에서 더 많이 빼면 받아내림이 생겨 차가 줄어든다"
+          ]
+        },
+        {
+          "anyOf": [
+            "4보다 작다",
+            "$3\\frac{1}{2}$이라서 4보다 작다"
+          ]
+        }
+      ],
+      "bGoal": "분수 부분의 크기 비교로 차의 크기를 어림한다.",
+      "bReason": "원문에 예가 없어 판단 기준과 구체적 식을 함께 넣었다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "비교 조건이 문장에 다 있고 '작다' 한 낱말로 답하는 분명한 비교 문장이다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-5-4-xc20",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$2\\frac{1}{4}$을 $1\\frac{5}{4}$로 바꾸어 써도 수의 크기가 달라지지 않는 까닭을 $1$을 분수로 나타내어 설명하시오.",
+      "bAnswer": "$1=\\frac{4}{4}$이므로 $2\\frac{1}{4}=1+\\frac{4}{4}+\\frac{1}{4}=1\\frac{5}{4}$로 같은 수이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1=\\frac{4}{4}$이다",
+            "자연수 1은 $\\frac{1}{4}$이 4개이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1+\\frac{4}{4}+\\frac{1}{4}$로 나타낼 수 있어 같은 수이다",
+            "$\\frac{4}{4}$와 $\\frac{1}{4}$을 합하면 $\\frac{5}{4}$이다"
+          ]
+        }
+      ],
+      "bGoal": "받아내려도 수의 크기가 그대로인 까닭을 설명한다.",
+      "bReason": "원문에 예가 없어 구체적인 대분수로 근거를 말하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$1=\\frac{4}{4}$이므로 $2\\frac{1}{4}$과 $1\\frac{5}{4}$는 크기가 {같다}. 그래서 받아내림을 해도 뺄셈의 차는 달라지지 않는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다",
+            "똑같다"
+          ]
+        }
+      ],
+      "cReason": "'크기는 그대로' 구절 대신 구체적인 두 수의 크기 관계를 답하게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-5-4-xc23",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "여러 수 가운데 두 수를 골라 뺄 때 차가 가장 크게 되려면 어떤 두 수를 골라야 하는지 설명하고, $2\\frac{1}{3}$, $4\\frac{1}{2}$, $1\\frac{5}{6}$ 중 두 수로 만들 수 있는 가장 큰 차를 구하시오.",
+      "bAnswer": "가장 큰 수에서 가장 작은 수를 뺀다. $4\\frac{1}{2}-1\\frac{5}{6}=3\\frac{9}{6}-1\\frac{5}{6}=2\\frac{4}{6}=2\\frac{2}{3}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가장 큰 수에서 가장 작은 수를 뺀다",
+            "$4\\frac{1}{2}$에서 $1\\frac{5}{6}$를 뺀다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\frac{2}{3}$",
+            "$2\\frac{4}{6}$"
+          ]
+        }
+      ],
+      "bGoal": "차를 가장 크게 하는 두 수를 고르고 받아내림 있는 뺄셈으로 구한다.",
+      "bReason": "원문 예는 값만 물어 고르는 기준도 함께 말하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "여러 수 중에서 두 수를 골라 차를 가장 크게 하려면 {가장 큰} 수에서 {가장 작은} 수를 뺀다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "가장 큰",
+            "제일 큰"
+          ]
+        },
+        {
+          "anyOf": [
+            "가장 작은",
+            "제일 작은"
+          ]
+        }
+      ],
+      "cReason": "원문에는 '여러 수 중 두 수를 고른다'는 상황이 빠져 있어 보충했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-5-4-xc24",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "물 $5\\,\\mathrm{L}$에서 $1\\frac{1}{2}\\,\\mathrm{L}$를 쓰고 또 $2\\frac{1}{4}\\,\\mathrm{L}$를 썼다. 남은 양을 구하는 방법을 두 가지로 설명하고 남은 양을 구하시오.",
+      "bAnswer": "쓴 양을 차례로 두 번 빼거나, 쓴 양을 먼저 더한 뒤 한 번에 뺀다. $1\\frac{1}{2}+2\\frac{1}{4}=3\\frac{3}{4}$, $5-3\\frac{3}{4}=1\\frac{1}{4}\\,\\mathrm{L}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "쓴 양을 차례로 하나씩 뺀다",
+            "$5-1\\frac{1}{2}-2\\frac{1}{4}$로 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "쓴 양을 먼저 더한 뒤 한 번에 뺀다",
+            "$5-3\\frac{3}{4}$로 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1\\frac{1}{4}$"
+          ]
+        }
+      ],
+      "bGoal": "두 번 뺄 양을 먼저 더해 한 번에 빼도 됨을 상황에서 설명한다.",
+      "bReason": "원문 예는 값만 물어 두 방법의 관계를 드러내게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$5\\,\\mathrm{L}$에서 $1\\frac{1}{2}\\,\\mathrm{L}$와 $2\\frac{1}{4}\\,\\mathrm{L}$를 썼을 때, 쓴 양을 먼저 더하면 {$3\\frac{3}{4}$}$\\,\\mathrm{L}$이고 남은 양은 {$1\\frac{1}{4}$}$\\,\\mathrm{L}$이다.",
+      "cReason": "'먼저 더한 뒤' 구절 대신 실제 합과 남은 양을 쓰게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-5-4-xc25",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "두 길이의 차를 뺄셈으로 구한다.",
+      "bReason": "'얼마나 더'가 뺄셈이라는 것은 이미 아는 내용이고 받아내림 절차는 xc10이 묻는다.",
+      "exclusionReason": "B 자명·중복: 계산 절차는 e5-1-5-4-xc10이 대체",
+      "cDecision": "revise",
+      "cAfter": "$3\\frac{2}{5}\\,\\mathrm{m}$가 $1\\frac{3}{4}\\,\\mathrm{m}$보다 얼마나 더 긴지 구하려면 $3\\frac{2}{5}-1\\frac{3}{4}$을 계산한다. 통분하면 $3\\frac{8}{20}-1\\frac{15}{20}$이므로 {$1\\frac{13}{20}$}$\\,\\mathrm{m}$ 더 길다.",
+      "cReason": "'긴 쪽에서 짧은 쪽을 빼어'는 긴 구절이라 실제 차를 구하게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-5-4-xc26",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "빼지는 수와 빼는 수에 같은 수를 더하면 차는 어떻게 되는지 쓰고, 이를 이용하여 $3\\frac{1}{4}-1\\frac{3}{4}$을 받아내림 없이 계산하는 방법을 설명하시오.",
+      "bAnswer": "차는 변하지 않는다. 두 수에 $\\frac{1}{4}$씩 더하면 $3\\frac{2}{4}-2$가 되어 차는 $1\\frac{2}{4}=1\\frac{1}{2}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "차는 변하지 않는다",
+            "차는 그대로이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 수에 $\\frac{1}{4}$씩 더해 빼는 수를 2로 만든다",
+            "$3\\frac{2}{4}-2$로 바꾸어 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1\\frac{1}{2}$",
+            "$1\\frac{2}{4}$"
+          ]
+        }
+      ],
+      "bGoal": "두 수에 같은 수를 더해도 차가 같음을 이용해 빼는 수를 자연수로 만든다.",
+      "bReason": "더할 수를 질문에서 알려 주지 않고 학생이 찾게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$3\\frac{1}{4}-1\\frac{3}{4}$에서 두 수에 $\\frac{1}{4}$씩 더하면 {$3\\frac{1}{2}$}$-${$2$}가 되어 받아내림 없이 차 {$1\\frac{1}{2}$}을 구할 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3\\frac{1}{2}$",
+            "$3\\frac{2}{4}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1\\frac{1}{2}$",
+            "$1\\frac{2}{4}$"
+          ]
+        }
+      ],
+      "cReason": "'빼는 수를 자연수로' 구절 대신 바뀐 식과 차를 쓰게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-5-4-xc27",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "어떤 수에 $1\\frac{1}{2}$을 더해야 하는데 잘못하여 뺐더니 $2\\frac{1}{3}$이 되었다. 어떤 수를 구하는 방법을 설명하고, 바르게 계산한 값을 구하시오.",
+      "bAnswer": "잘못 나온 결과에 뺀 수를 다시 더하면 어떤 수가 된다. $2\\frac{1}{3}+1\\frac{1}{2}=3\\frac{5}{6}$, 바른 계산은 $3\\frac{5}{6}+1\\frac{1}{2}=5\\frac{1}{3}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "잘못 나온 결과에 뺀 수를 더해 어떤 수를 구한다",
+            "$2\\frac{1}{3}+1\\frac{1}{2}$로 어떤 수를 구한다",
+            "어떤 수는 $3\\frac{5}{6}$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5\\frac{1}{3}$",
+            "$5\\frac{2}{6}$"
+          ]
+        }
+      ],
+      "bGoal": "잘못한 뺄셈을 덧셈으로 되돌려 어떤 수를 찾고 바르게 계산한다.",
+      "bReason": "원문 예는 어떤 수까지만 구해 '더해야 할 것을 뺐다'는 정의 상황에 맞게 넓혔다.",
+      "cDecision": "revise",
+      "cAfter": "어떤 수에서 $1\\frac{1}{2}$을 뺐더니 $2\\frac{1}{3}$이 되었다. 어떤 수는 $2\\frac{1}{3}$ {$+$} $1\\frac{1}{2}$로 구하고, 그 값은 {$3\\frac{5}{6}$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$+$",
+            "더하기"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3\\frac{5}{6}$"
+          ]
+        }
+      ],
+      "cReason": "'그 수를 더해'는 가리키는 대상이 불분명해 실제 식으로 바꿨다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-1-5-4-xc28",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "대분수의 뺄셈을 정확히 계산하기 전에 차가 얼마쯤인지 어림하는 방법을 설명하고, $4\\frac{7}{8}-1\\frac{1}{9}$의 차를 어림하시오.",
+      "bAnswer": "두 수를 각각 가까운 자연수로 바꾸어 뺀다. $4\\frac{7}{8}$은 $5$에, $1\\frac{1}{9}$은 $1$에 가까우므로 약 $5-1=4$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 수를 가까운 자연수로 바꾸어 뺀다",
+            "$5-1$로 어림한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "약 4",
+            "4쯤"
+          ]
+        }
+      ],
+      "bGoal": "가까운 자연수로 바꾸어 대분수의 차를 어림한다.",
+      "bReason": "원문 예는 까닭만 물어 어림 방법과 결과를 함께 답하게 했다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "어림할 때 대분수를 무엇으로 바꾸는지 짧은 말로 확인하는 문장이다.",
+      "synonymNotes": "'가장 가까운 자연수'도 인정",
+      "exampleNeeded": false
+    }
+  ],
+  "sectionNotes": [
+    "받아내림 관련 행이 많이 겹쳐 c2(방법)·xc12(꼴)·xc20(까닭)·xc11(판단)·xc10(전체 차례)로 역할을 나누고 xc14는 B·C 모두 제외했다.",
+    "구절형 빈칸은 대부분 실제 식의 값이나 한 낱말로 바꿨고, 일반 설명은 '넉넉하면'이 모호한 xc6에만 coreAfter를 제안했다."
+  ]
+}

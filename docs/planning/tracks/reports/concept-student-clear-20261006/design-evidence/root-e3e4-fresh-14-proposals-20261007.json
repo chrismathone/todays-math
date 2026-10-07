@@ -1,0 +1,3235 @@
+{
+  "status": "Explicit proposals awaiting Root actual normalized after-reading; no source activation or independent approval",
+  "inputSha256": "120cbab1260e01533934a9b4729a9fe34e7e86441146db6f81a93df4cb3662a2",
+  "rows": [
+    {
+      "id": "e4-2-2-1-xc4",
+      "sourceIndex": 2167,
+      "beforeRaw": {
+        "sourceIndex": 2167,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "sourceFingerprint": "516b8e18e58f3c6cc0e6cb916b23e0114d0f9d5fbb5a1281a7d607579fe76fd0",
+        "proposalFingerprint": "dfc592007cf87481b9292eebb1b2f713b72993787e9802bd778ccbb4e75addd0",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-1-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "이등변삼각형에서 길이가 같은 두 변 말고 나머지 한 변은 그 두 변과 길이가 같아야만 하는지 쓰고 까닭을 설명하시오.",
+        "bAnswer": "같아야만 하는 것은 아닙니다. 두 변의 길이가 같으면 이등변삼각형의 조건을 만족하므로 나머지 한 변의 길이는 달라도 됩니다. 세 변이 모두 같아도 이등변삼각형입니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "같지 않아도 된다",
+              "나머지 변은 달라도 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 변의 길이가 같으면 이등변삼각형의 조건을 만족한다"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "이등변삼각형의 나머지 한 변",
+        "bReason": "'까닭' 요구와 결론만 있는 필수 기준이 어긋난다. 결론을 유지하고 두 변의 길이가 같으면 정의를 만족한다는 이유를 별도 필수 의미로 추가한다.",
+        "cDecision": "rewrite",
+        "cAfter": "이등변삼각형에서 같은 두 변 말고 나머지 한 변은 길이가 같아도 되고 {달라도} 된다.",
+        "cReason": "정삼각형도 이등변이라 '다를 수도'만 정답이 아님을 반영",
+        "cSlotEquivalents": [
+          [
+            "다르더라도"
+          ]
+        ],
+        "answerNotes": "정삼각형이 이등변삼각형에 들므로 '같아도 되고'는 문장에서 주어지며 빈칸은 '달라도'이다.",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "이등변삼각형의 나머지 한 변",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "이등변삼각형에서 같은 두 변 말고 나머지 한 변은 길이가 같아도 되고 {달라도} 된다.",
+        "cStudentSentence": "이등변삼각형에서 같은 두 변 말고 나머지 한 변은 길이가 같아도 되고 □ 된다.",
+        "cSlotAnswers": [
+          {
+            "expected": "달라도",
+            "equivalents": [
+              "다르더라도"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "이등변삼각형에서 길이가 같은 두 변 말고 나머지 한 변은 그 두 변과 길이가 같아야만 하는지 쓰고 까닭을 설명하시오.",
+          "answer": "같아야만 하는 것은 아닙니다. 두 변의 길이가 같으면 이등변삼각형의 조건을 만족하므로 나머지 한 변의 길이는 달라도 됩니다. 세 변이 모두 같아도 이등변삼각형입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "같지 않아도 된다",
+                "나머지 변은 달라도 된다"
+              ]
+            },
+            {
+              "anyOf": [
+                "두 변의 길이가 같으면 이등변삼각형의 조건을 만족한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "이등변삼각형에서 같은 두 변 말고 나머지 한 변은 길이가 같아도 되고 {달라도} 된다.",
+          "acceptedAnswers": [
+            [
+              "달라도",
+              "다르더라도"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-1-xc4",
+          "sourceIndex": 2167,
+          "proposalFingerprint": "dfc592007cf87481b9292eebb1b2f713b72993787e9802bd778ccbb4e75addd0",
+          "reader": "Codex direct e3e4 current-disputes assist; candidate reread",
+          "readAt": "2026-10-07T11:05:58.939Z",
+          "learningRole": "definition",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "'까닭' 요구와 결론만 있는 필수 기준이 어긋난다. 결론을 유지하고 두 변의 길이가 같으면 정의를 만족한다는 이유를 별도 필수 의미로 추가한다.",
+          "cReason": "나머지 한 변의 길이는 달라도 됨을 관계로 답하는 명확한 문항이다. 같은 경우와 다른 경우를 모두 허용하는 포함 정의에도 맞는다.",
+          "issues": [],
+          "isReleaseApproval": false,
+          "inputEvidence": "../e3e4-current-disputes-assist/reviews.json",
+          "candidateRereadEvidence": "../e3e4-current-disputes-assist/inputs/candidate-reread-records.json"
+        }
+      },
+      "beforeNormalizedHash": "3d8f74a915bf274285b0ec59ee1a5e04cfac730c8f81e03b4863ae38ad98f0a9",
+      "proposedRawRow": {
+        "sourceIndex": 2167,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "sourceFingerprint": "516b8e18e58f3c6cc0e6cb916b23e0114d0f9d5fbb5a1281a7d607579fe76fd0",
+        "proposalFingerprint": "dfc592007cf87481b9292eebb1b2f713b72993787e9802bd778ccbb4e75addd0",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-1-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "이등변삼각형에서 길이가 같은 두 변 말고 나머지 한 변은 그 두 변과 길이가 같아야만 하는지 쓰고 까닭을 설명하시오.",
+        "bAnswer": "같아야만 하는 것은 아닙니다. 두 변의 길이가 같으면 이등변삼각형의 조건을 만족하므로 나머지 한 변의 길이는 달라도 됩니다. 세 변이 모두 같아도 이등변삼각형입니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "같지 않아도 된다",
+              "나머지 변은 달라도 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 변의 길이가 같으면 이등변삼각형의 조건을 만족한다"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "이등변삼각형의 나머지 한 변",
+        "bReason": "'까닭' 요구와 결론만 있는 필수 기준이 어긋난다. 결론을 유지하고 두 변의 길이가 같으면 정의를 만족한다는 이유를 별도 필수 의미로 추가한다.",
+        "cDecision": "rewrite",
+        "cAfter": "이등변삼각형에서 같은 두 변 말고 나머지 한 변은 길이가 같아도 되고 {달라도} 된다.",
+        "cReason": "정삼각형도 이등변이라 '다를 수도'만 정답이 아님을 반영",
+        "cSlotEquivalents": [
+          [
+            "다르더라도"
+          ]
+        ],
+        "answerNotes": "정삼각형이 이등변삼각형에 들므로 '같아도 되고'는 문장에서 주어지며 빈칸은 '달라도'이다.",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "이등변삼각형의 나머지 한 변",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "이등변삼각형에서 같은 두 변 말고 나머지 한 변은 길이가 같아도 되고 {달라도} 된다.",
+        "cStudentSentence": "이등변삼각형에서 같은 두 변 말고 나머지 한 변은 길이가 같아도 되고 □ 된다.",
+        "cSlotAnswers": [
+          {
+            "expected": "달라도",
+            "equivalents": [
+              "다르더라도"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "이등변삼각형에서 길이가 같은 두 변 말고 나머지 한 변은 그 두 변과 길이가 같아야만 하는지 쓰고 까닭을 설명하시오.",
+          "answer": "같아야만 하는 것은 아닙니다. 두 변의 길이가 같으면 이등변삼각형의 조건을 만족하므로 나머지 한 변의 길이는 달라도 됩니다. 세 변이 모두 같아도 이등변삼각형입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "같지 않아도 된다",
+                "나머지 변은 달라도 된다"
+              ]
+            },
+            {
+              "anyOf": [
+                "두 변의 길이가 같으면 이등변삼각형의 조건을 만족한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "이등변삼각형에서 같은 두 변 말고 나머지 한 변은 길이가 같아도 되고 {달라도} 된다.",
+          "acceptedAnswers": [
+            [
+              "달라도",
+              "다르더라도"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-1-xc4",
+          "sourceIndex": 2167,
+          "proposalFingerprint": "dfc592007cf87481b9292eebb1b2f713b72993787e9802bd778ccbb4e75addd0",
+          "reader": "Codex direct e3e4 current-disputes assist; candidate reread",
+          "readAt": "2026-10-07T11:05:58.939Z",
+          "learningRole": "definition",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "'까닭' 요구와 결론만 있는 필수 기준이 어긋난다. 결론을 유지하고 두 변의 길이가 같으면 정의를 만족한다는 이유를 별도 필수 의미로 추가한다.",
+          "cReason": "나머지 한 변의 길이는 달라도 됨을 관계로 답하는 명확한 문항이다. 같은 경우와 다른 경우를 모두 허용하는 포함 정의에도 맞는다.",
+          "issues": [],
+          "isReleaseApproval": false,
+          "inputEvidence": "../e3e4-current-disputes-assist/reviews.json",
+          "candidateRereadEvidence": "../e3e4-current-disputes-assist/inputs/candidate-reread-records.json"
+        }
+      },
+      "after": {
+        "id": "e4-2-2-1-xc4",
+        "grade": "초4",
+        "source": {
+          "id": "e4-2-2-1-xc4",
+          "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+          "term": "이등변삼각형의 나머지 한 변",
+          "kind": "성질",
+          "level": "하",
+          "definition": "이등변삼각형에서 같은 두 변 말고 나머지 한 변은 길이가 {다를 수도} 있다."
+        },
+        "B": {
+          "prompt": "이등변삼각형에서 길이가 같은 두 변 말고 나머지 한 변은 그 두 변과 길이가 같아야만 하는지 쓰고 까닭을 설명하시오.",
+          "answer": "같아야만 하는 것은 아닙니다. 두 변의 길이가 같으면 이등변삼각형의 조건을 만족하므로 나머지 한 변의 길이는 달라도 됩니다. 세 변이 모두 같아도 이등변삼각형입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "같지 않아도 된다",
+                "나머지 변은 달라도 된다"
+              ]
+            },
+            {
+              "anyOf": [
+                "두 변의 길이가 같으면 이등변삼각형의 조건을 만족한다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "이등변삼각형에서 같은 두 변 말고 나머지 한 변은 길이가 같아도 되고 {달라도} 된다.",
+          "acceptedAnswers": [
+            [
+              "달라도",
+              "다르더라도"
+            ]
+          ]
+        },
+        "goal": "이등변삼각형의 나머지 한 변",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "3d8f74a915bf274285b0ec59ee1a5e04cfac730c8f81e03b4863ae38ad98f0a9"
+      },
+      "reason": "물음은까닭을명시적으로요청한다. 두변길이의같음만으로정의를만족하므로셋째변같음은필수가아니라는이유가해당요청에대한독립내용이다. 구체5,5,3을주지않아도정의적이유를설명할수있으므로유지한다.",
+      "changed": false
+    },
+    {
+      "id": "e4-2-2-4-xc12",
+      "sourceIndex": 2248,
+      "beforeRaw": {
+        "sourceIndex": 2248,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-4 삼각형을 각의 크기에 따라 분류하기",
+        "sourceFingerprint": "8a12ef4a2083625ebbbdbfe494e9a8b36c2aa54fa9fa438da12a9ab4615aca8d",
+        "proposalFingerprint": "4a625bc73e6b0cd63830f46021ed9b8ab5712cd72344b6dea5fca891534e33cb",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-4-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각형에서 두 예각의 합이 $90^\\circ$보다 클 때 나머지 한 각은 $90^\\circ$와 비교해 어떤지 쓰고, 그 까닭을 쓰시오.",
+        "bAnswer": "$90^\\circ$보다 작은 예각이다. 세 각의 합 $180^\\circ$에서 $90^\\circ$보다 큰 수를 빼기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$90^\\circ$보다 작다",
+              "예각"
+            ]
+          },
+          {
+            "anyOf": [
+              "$180^\\circ$에서 $90^\\circ$보다 큰 두 각의 합을 빼므로 나머지는 $90^\\circ$보다 작다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "두 예각 합이 클 때 나머지",
+        "bReason": "까닭 기준의 '세 각의 합이180도'만으로 뺄셈 관계를 생략할 수 있다. 참고 답과 물음은 유지하고 180도에서 90도보다 큰 합을 빼므로 90도보다 작다는 이유를 필수로 한다.",
+        "cDecision": "rewrite",
+        "cAfter": "삼각형의 두 예각의 합이 $90^\\circ$보다 크면 나머지 각은 직각이나 둔각이 아니라 {예각}이다.",
+        "cReason": "'□이다' 답이 길고 범위가 흐려 각 이름 답으로 좁힘",
+        "cSlotEquivalents": [
+          [
+            "$90^\\circ$보다 작은 각",
+            "$90^\\circ$보다 작은 예각"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "두 예각의 합이 $90^\\circ$보다 클 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "삼각형의 두 예각의 합이 $90^\\circ$보다 크면 나머지 각은 직각이나 둔각이 아니라 {예각}이다.",
+        "cStudentSentence": "삼각형의 두 예각의 합이 $90^\\circ$보다 크면 나머지 각은 직각이나 둔각이 아니라 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "예각",
+            "equivalents": [
+              "$90^\\circ$보다 작은 각",
+              "$90^\\circ$보다 작은 예각"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "삼각형에서 두 예각의 합이 $90^\\circ$보다 클 때 나머지 한 각은 $90^\\circ$와 비교해 어떤지 쓰고, 그 까닭을 쓰시오.",
+          "answer": "$90^\\circ$보다 작은 예각이다. 세 각의 합 $180^\\circ$에서 $90^\\circ$보다 큰 수를 빼기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$90^\\circ$보다 작다",
+                "예각"
+              ]
+            },
+            {
+              "anyOf": [
+                "$180^\\circ$에서 $90^\\circ$보다 큰 두 각의 합을 빼므로 나머지는 $90^\\circ$보다 작다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "삼각형의 두 예각의 합이 $90^\\circ$보다 크면 나머지 각은 직각이나 둔각이 아니라 {예각}이다.",
+          "acceptedAnswers": [
+            [
+              "예각",
+              "$90^\\circ$보다 작은 각",
+              "$90^\\circ$보다 작은 예각"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-4-xc12",
+          "sourceIndex": 2248,
+          "proposalFingerprint": "4a625bc73e6b0cd63830f46021ed9b8ab5712cd72344b6dea5fca891534e33cb",
+          "reader": "Codex direct e3e4 current-disputes assist; candidate reread",
+          "readAt": "2026-10-07T11:05:58.939Z",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "까닭 기준의 '세 각의 합이180도'만으로 뺄셈 관계를 생략할 수 있다. 참고 답과 물음은 유지하고 180도에서 90도보다 큰 합을 빼므로 90도보다 작다는 이유를 필수로 한다.",
+          "cReason": "직각·둔각이 아닌 나머지 종류를 예각으로 답하는 소거도 유효한 분류 판단이다. 예각이 인쇄되어 복원되는 것이 아니므로 C는 유지한다.",
+          "issues": [],
+          "isReleaseApproval": false,
+          "inputEvidence": "../e3e4-current-disputes-assist/reviews.json",
+          "candidateRereadEvidence": "../e3e4-current-disputes-assist/inputs/candidate-reread-records.json"
+        }
+      },
+      "beforeNormalizedHash": "a2695ce93acdb3a6702aaa671ea08d77cf90d3a4edde7ba99596f4dfb73e0f1e",
+      "proposedRawRow": {
+        "sourceIndex": 2248,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-4 삼각형을 각의 크기에 따라 분류하기",
+        "sourceFingerprint": "8a12ef4a2083625ebbbdbfe494e9a8b36c2aa54fa9fa438da12a9ab4615aca8d",
+        "proposalFingerprint": "592398b43ba6cc298481a130db6970a967b41927363a561274d967fd17f2e18b",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-4-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각형에서 두 예각의 합이 $90^\\circ$보다 클 때 나머지 한 각은 $90^\\circ$와 비교해 어떤지 쓰고, 그 까닭을 쓰시오.",
+        "bAnswer": "$90^\\circ$보다 작은 예각이다. 세 각의 합 $180^\\circ$에서 $90^\\circ$보다 큰 수를 빼기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$90^\\circ$보다 작다",
+              "예각"
+            ]
+          },
+          {
+            "anyOf": [
+              "$180^\\circ$에서 $90^\\circ$보다 큰 두 각의 합을 빼므로 나머지는 $90^\\circ$보다 작다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "두 예각 합이 클 때 나머지",
+        "bReason": "까닭 기준의 '세 각의 합이180도'만으로 뺄셈 관계를 생략할 수 있다. 참고 답과 물음은 유지하고 180도에서 90도보다 큰 합을 빼므로 90도보다 작다는 이유를 필수로 한다.",
+        "cDecision": "rewrite",
+        "cAfter": "삼각형의 두 예각의 합이 $90^\\circ$보다 크면 나머지 한 각은 {예각}이다.",
+        "cReason": "직각둔각소거문구는빼고세각합180도에서두각합90도초과를해석해나머지각을판정하게한다. 앞의두예각이라는말과남은각종류가자동으로같은것은아니다.",
+        "cSlotEquivalents": [
+          [
+            "$90^\\circ$보다 작은 각",
+            "$90^\\circ$보다 작은 예각"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "두 예각의 합이 $90^\\circ$보다 클 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "삼각형의 두 예각의 합이 $90^\\circ$보다 크면 나머지 한 각은 {예각}이다.",
+        "cStudentSentence": "삼각형의 두 예각의 합이 $90^\\circ$보다 크면 나머지 한 각은 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "예각",
+            "equivalents": [
+              "$90^\\circ$보다 작은 각",
+              "$90^\\circ$보다 작은 예각"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "삼각형에서 두 예각의 합이 $90^\\circ$보다 클 때 나머지 한 각은 $90^\\circ$와 비교해 어떤지 쓰고, 그 까닭을 쓰시오.",
+          "answer": "$90^\\circ$보다 작은 예각이다. 세 각의 합 $180^\\circ$에서 $90^\\circ$보다 큰 수를 빼기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$90^\\circ$보다 작다",
+                "예각"
+              ]
+            },
+            {
+              "anyOf": [
+                "$180^\\circ$에서 $90^\\circ$보다 큰 두 각의 합을 빼므로 나머지는 $90^\\circ$보다 작다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "삼각형의 두 예각의 합이 $90^\\circ$보다 크면 나머지 한 각은 {예각}이다.",
+          "acceptedAnswers": [
+            [
+              "예각",
+              "$90^\\circ$보다 작은 각",
+              "$90^\\circ$보다 작은 예각"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-4-xc12",
+          "sourceIndex": 2248,
+          "proposalFingerprint": "4a625bc73e6b0cd63830f46021ed9b8ab5712cd72344b6dea5fca891534e33cb",
+          "reader": "Codex direct e3e4 current-disputes assist; candidate reread",
+          "readAt": "2026-10-07T11:05:58.939Z",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "까닭 기준의 '세 각의 합이180도'만으로 뺄셈 관계를 생략할 수 있다. 참고 답과 물음은 유지하고 180도에서 90도보다 큰 합을 빼므로 90도보다 작다는 이유를 필수로 한다.",
+          "cReason": "직각·둔각이 아닌 나머지 종류를 예각으로 답하는 소거도 유효한 분류 판단이다. 예각이 인쇄되어 복원되는 것이 아니므로 C는 유지한다.",
+          "issues": [],
+          "isReleaseApproval": false,
+          "inputEvidence": "../e3e4-current-disputes-assist/reviews.json",
+          "candidateRereadEvidence": "../e3e4-current-disputes-assist/inputs/candidate-reread-records.json"
+        },
+        "cAcceptedAnswers": [
+          [
+            "예각",
+            "$90^\\circ$보다 작은 각",
+            "$90^\\circ$보다 작은 예각"
+          ]
+        ]
+      },
+      "after": {
+        "id": "e4-2-2-4-xc12",
+        "grade": "초4",
+        "source": {
+          "id": "e4-2-2-4-xc12",
+          "section": "초4::2-2 삼각형::2-2-4 삼각형을 각의 크기에 따라 분류하기",
+          "term": "두 예각의 합이 $90^\\circ$보다 클 때",
+          "kind": "성질",
+          "level": "중",
+          "definition": "삼각형의 두 예각의 합이 $90^\\circ$보다 크면 나머지 각은 {$90^\\circ$보다 작은 예각}이다."
+        },
+        "B": {
+          "prompt": "삼각형에서 두 예각의 합이 $90^\\circ$보다 클 때 나머지 한 각은 $90^\\circ$와 비교해 어떤지 쓰고, 그 까닭을 쓰시오.",
+          "answer": "$90^\\circ$보다 작은 예각이다. 세 각의 합 $180^\\circ$에서 $90^\\circ$보다 큰 수를 빼기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$90^\\circ$보다 작다",
+                "예각"
+              ]
+            },
+            {
+              "anyOf": [
+                "$180^\\circ$에서 $90^\\circ$보다 큰 두 각의 합을 빼므로 나머지는 $90^\\circ$보다 작다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "삼각형의 두 예각의 합이 $90^\\circ$보다 크면 나머지 한 각은 {예각}이다.",
+          "acceptedAnswers": [
+            [
+              "예각",
+              "$90^\\circ$보다 작은 각",
+              "$90^\\circ$보다 작은 예각"
+            ]
+          ]
+        },
+        "goal": "두 예각 합이 클 때 나머지",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "74e61b8b3c8985a7664f58214317a2cde4d095fc353698ec3706ea5b1adf347c"
+      },
+      "reason": "직각둔각소거문구는빼고세각합180도에서두각합90도초과를해석해나머지각을판정하게한다. 앞의두예각이라는말과남은각종류가자동으로같은것은아니다.",
+      "changed": true
+    },
+    {
+      "id": "e4-2-2-4-xc15",
+      "sourceIndex": 2251,
+      "beforeRaw": {
+        "sourceIndex": 2251,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-4 삼각형을 각의 크기에 따라 분류하기",
+        "sourceFingerprint": "c02ab580a4106883ccdbc8630467682f2226f47a023ce339505e5b425288bef8",
+        "proposalFingerprint": "509e5761751145ae9144c47a81ffafa45a406deb44a01b77ef0245d42bd2a736",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-4-xc15",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "reason",
+        "bGoal": "직각이 하나뿐인 삼각형",
+        "bReason": "직각삼각형의 직각 수는 C의 개수 단답으로 확인한다. 이 항목에는 직각이 둘일 수 없는 까닭을 설명하는 별도 B 문항을 두지 않는다.",
+        "exclusionReason": "xc14의 '큰 각은 하나뿐인 까닭' 질문과 같은 목표",
+        "cDecision": "keep",
+        "cReason": "하나/한 개 같은 친숙한 낱말 빈칸",
+        "cSlotEquivalents": [
+          [
+            "한 개",
+            "$1$개",
+            "$1$"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "직각삼각형 속 직각의 수",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직각삼각형에는 직각이 {하나}만 있다.",
+        "cStudentSentence": "직각삼각형에는 직각이 □만 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "하나",
+            "equivalents": [
+              "한 개",
+              "$1$개",
+              "$1$"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "직각삼각형에는 직각이 □만 있다.",
+          "answers": [
+            "하나"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "직각삼각형에는 직각이 {하나}만 있다.",
+          "acceptedAnswers": [
+            [
+              "하나",
+              "한 개",
+              "$1$개",
+              "$1$"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "직각삼각형의 직각 수는 C의 개수 단답으로 확인한다. 이 항목에는 직각이 둘일 수 없는 까닭을 설명하는 별도 B 문항을 두지 않는다."
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-4-xc15",
+          "sourceIndex": 2251,
+          "proposalFingerprint": "509e5761751145ae9144c47a81ffafa45a406deb44a01b77ef0245d42bd2a736",
+          "reader": "Codex direct e3e4 current-disputes assist; candidate reread",
+          "readAt": "2026-10-07T11:05:58.939Z",
+          "learningRole": "reason",
+          "bDecision": "exclude",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "직각이 둘일 수 없다는 내용만 있는 제외 이유를, 직각 수를 C에서 확인하고 별도 설명형을 생략하는 형식 선택으로 보완한다. 검토자의 제안 ID를 읽지 않고 중복 근거로 인용하지 않는다.",
+          "cReason": "직각삼각형의 직각 개수 하나는 명확하고 수학적으로 정확하다.",
+          "issues": [],
+          "isReleaseApproval": false,
+          "inputEvidence": "../e3e4-current-disputes-assist/reviews.json",
+          "candidateRereadEvidence": "../e3e4-current-disputes-assist/inputs/candidate-reread-records.json"
+        }
+      },
+      "beforeNormalizedHash": "ef8ce75d00b9291e878e45b38ed441f54115781ab1542db0f7200debfce5574a",
+      "proposedRawRow": {
+        "sourceIndex": 2251,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-4 삼각형을 각의 크기에 따라 분류하기",
+        "sourceFingerprint": "c02ab580a4106883ccdbc8630467682f2226f47a023ce339505e5b425288bef8",
+        "proposalFingerprint": "5c0514a2a44fa4e309e198ea8a71868bee3f1dc2cff30c668e53ce34f31dde22",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-4-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "직각삼각형에 직각이 두 개 있을 수 있나요? 삼각형의 세 각의 크기의 합을 이용하여 까닭을 설명하세요.",
+        "bAnswer": "있을 수 없습니다. 두 직각의 합이 $90^\\circ+90^\\circ=180^\\circ$이면 나머지 각이 $0^\\circ$가 되어 삼각형을 만들 수 없기 때문입니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직각이 두 개 있을 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 직각의 합이 $180^\\circ$이면 나머지 각이 $0^\\circ$여서 삼각형이 되지 않는다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "직각이 하나뿐인 삼각형",
+        "bReason": "직각두개라면남는각이0도여서삼각형이안된다는분명한설명문항을B로복구한다.",
+        "exclusionReason": "xc14의 '큰 각은 하나뿐인 까닭' 질문과 같은 목표",
+        "cDecision": "keep",
+        "cReason": "하나/한 개 같은 친숙한 낱말 빈칸",
+        "cSlotEquivalents": [
+          [
+            "한 개",
+            "$1$개",
+            "$1$"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "직각삼각형 속 직각의 수",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직각삼각형에는 직각이 {하나}만 있다.",
+        "cStudentSentence": "직각삼각형에는 직각이 □만 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "하나",
+            "equivalents": [
+              "한 개",
+              "$1$개",
+              "$1$"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "직각삼각형에는 직각이 □만 있다.",
+          "answers": [
+            "하나"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "직각삼각형에 직각이 두 개 있을 수 있나요? 삼각형의 세 각의 크기의 합을 이용하여 까닭을 설명하세요.",
+          "answer": "있을 수 없습니다. 두 직각의 합이 $90^\\circ+90^\\circ=180^\\circ$이면 나머지 각이 $0^\\circ$가 되어 삼각형을 만들 수 없기 때문입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "직각이 두 개 있을 수 없다"
+              ]
+            },
+            {
+              "anyOf": [
+                "두 직각의 합이 $180^\\circ$이면 나머지 각이 $0^\\circ$여서 삼각형이 되지 않는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "직각삼각형에는 직각이 {하나}만 있다.",
+          "acceptedAnswers": [
+            [
+              "하나",
+              "한 개",
+              "$1$개",
+              "$1$"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "직각삼각형의 직각 수는 C의 개수 단답으로 확인한다. 이 항목에는 직각이 둘일 수 없는 까닭을 설명하는 별도 B 문항을 두지 않는다."
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-4-xc15",
+          "sourceIndex": 2251,
+          "proposalFingerprint": "509e5761751145ae9144c47a81ffafa45a406deb44a01b77ef0245d42bd2a736",
+          "reader": "Codex direct e3e4 current-disputes assist; candidate reread",
+          "readAt": "2026-10-07T11:05:58.939Z",
+          "learningRole": "reason",
+          "bDecision": "exclude",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "직각이 둘일 수 없다는 내용만 있는 제외 이유를, 직각 수를 C에서 확인하고 별도 설명형을 생략하는 형식 선택으로 보완한다. 검토자의 제안 ID를 읽지 않고 중복 근거로 인용하지 않는다.",
+          "cReason": "직각삼각형의 직각 개수 하나는 명확하고 수학적으로 정확하다.",
+          "issues": [],
+          "isReleaseApproval": false,
+          "inputEvidence": "../e3e4-current-disputes-assist/reviews.json",
+          "candidateRereadEvidence": "../e3e4-current-disputes-assist/inputs/candidate-reread-records.json"
+        }
+      },
+      "after": {
+        "id": "e4-2-2-4-xc15",
+        "grade": "초4",
+        "source": {
+          "id": "e4-2-2-4-xc15",
+          "section": "초4::2-2 삼각형::2-2-4 삼각형을 각의 크기에 따라 분류하기",
+          "term": "직각삼각형 속 직각의 수",
+          "kind": "성질",
+          "level": "중",
+          "definition": "직각삼각형에는 직각이 {하나}만 있다."
+        },
+        "B": {
+          "prompt": "직각삼각형에 직각이 두 개 있을 수 있나요? 삼각형의 세 각의 크기의 합을 이용하여 까닭을 설명하세요.",
+          "answer": "있을 수 없습니다. 두 직각의 합이 $90^\\circ+90^\\circ=180^\\circ$이면 나머지 각이 $0^\\circ$가 되어 삼각형을 만들 수 없기 때문입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "직각이 두 개 있을 수 없다"
+              ]
+            },
+            {
+              "anyOf": [
+                "두 직각의 합이 $180^\\circ$이면 나머지 각이 $0^\\circ$여서 삼각형이 되지 않는다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "직각삼각형에는 직각이 {하나}만 있다.",
+          "acceptedAnswers": [
+            [
+              "하나",
+              "한 개",
+              "$1$개",
+              "$1$"
+            ]
+          ]
+        },
+        "goal": "직각이 하나뿐인 삼각형",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "eee9e37c9b6e77a6d72e8e20279bdee5f3c97210f6412d6d8712ef8fbbe6c052"
+      },
+      "reason": "직각두개라면남는각이0도여서삼각형이안된다는분명한설명문항을B로복구한다.",
+      "changed": true
+    },
+    {
+      "id": "e4-2-2-5-xc13",
+      "sourceIndex": 2274,
+      "beforeRaw": {
+        "sourceIndex": 2274,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-5 삼각형을 두 가지 기준으로 분류하기",
+        "sourceFingerprint": "bd89bb0f72a25795e05724c96d64ff9ad46b61e683a91e66c9f8fc6b398e7013",
+        "proposalFingerprint": "ab6172f71d7125f9c994213eafbb41ce4384aeda3f712c4ecbc8c720371c1e3c",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-5-xc13",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "정삼각형이면서 둔각삼각형인 칸",
+        "bReason": "정삼각형과 둔각삼각형 조건을 동시에 만족하는 삼각형의 존재 여부는 C에서 확인한다. 이 항목에는 정삼각형의 각을 다시 설명하는 별도 B 문항을 두지 않는다.",
+        "exclusionReason": "xc11 B가 정삼각형은 둔각삼각형이 될 수 없는 까닭을 이미 묻는다",
+        "cDecision": "keep",
+        "cReason": "있다/없다 짧은 판단 빈칸",
+        "cSlotEquivalents": [
+          [
+            "하나도 없다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "정삼각형이면서 둔각삼각형인 칸의 삼각형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정삼각형이면서 둔각삼각형인 칸에 들어갈 삼각형은 {없다}.",
+        "cStudentSentence": "정삼각형이면서 둔각삼각형인 칸에 들어갈 삼각형은 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "없다",
+            "equivalents": [
+              "하나도 없다"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "정삼각형이면서 둔각삼각형인 칸에 들어갈 삼각형은 □.",
+          "answers": [
+            "없다"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "정삼각형이면서 둔각삼각형인 칸에 들어갈 삼각형은 {없다}.",
+          "acceptedAnswers": [
+            [
+              "없다",
+              "하나도 없다"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "정삼각형과 둔각삼각형 조건을 동시에 만족하는 삼각형의 존재 여부는 C에서 확인한다. 이 항목에는 정삼각형의 각을 다시 설명하는 별도 B 문항을 두지 않는다."
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-5-xc13",
+          "sourceIndex": 2274,
+          "proposalFingerprint": "ab6172f71d7125f9c994213eafbb41ce4384aeda3f712c4ecbc8c720371c1e3c",
+          "reader": "Codex direct e3e4 current-disputes assist; candidate reread",
+          "readAt": "2026-10-07T11:05:58.939Z",
+          "learningRole": "application",
+          "bDecision": "exclude",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "없는 칸이라는 요약만 있던 이유를 두 분류 조건의 양립 가능성을 C에서 확인하고 별도B는 생략하는 선택으로 보완한다.",
+          "cReason": "정삼각형의 각은 모두60도라 둔각삼각형일 수 없다는 조건의 양립 불가를 없다로 답한다. 특정 표 그림을 보지 않아도 칸의 두 조건이 글에 명시되어 있다.",
+          "issues": [],
+          "isReleaseApproval": false,
+          "inputEvidence": "../e3e4-current-disputes-assist/reviews.json",
+          "candidateRereadEvidence": "../e3e4-current-disputes-assist/inputs/candidate-reread-records.json"
+        }
+      },
+      "beforeNormalizedHash": "bf0722bfeede024ccc94e0cd901b1e54b221f5b458c83acf4fa7ecc607eebaa2",
+      "proposedRawRow": {
+        "sourceIndex": 2274,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-5 삼각형을 두 가지 기준으로 분류하기",
+        "sourceFingerprint": "bd89bb0f72a25795e05724c96d64ff9ad46b61e683a91e66c9f8fc6b398e7013",
+        "proposalFingerprint": "8a2d829a1a3c9366ecbc00b705f208d0a7f7147442c0412959dabc9f128225bc",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-5-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "정삼각형이면서 둔각삼각형인 삼각형이 있을 수 있나요? 정삼각형의 각의 크기를 이용하여 까닭을 설명하세요.",
+        "bAnswer": "없습니다. 정삼각형의 세 각은 모두 $60^\\circ$이므로 $90^\\circ$보다 큰 둔각이 없기 때문입니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "정삼각형이면서 둔각삼각형인 삼각형은 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "세 각이 모두 $60^\\circ$여서 둔각이 없다",
+              "정삼각형의 각은 모두 예각이다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "정삼각형이면서 둔각삼각형인 칸",
+        "bReason": "두분류조건을동시에만족할수없는이유를각60도로설명하는명확한B를복구한다.",
+        "exclusionReason": "xc11 B가 정삼각형은 둔각삼각형이 될 수 없는 까닭을 이미 묻는다",
+        "cDecision": "keep",
+        "cReason": "있다/없다 짧은 판단 빈칸",
+        "cSlotEquivalents": [
+          [
+            "하나도 없다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "정삼각형이면서 둔각삼각형인 칸의 삼각형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정삼각형이면서 둔각삼각형인 칸에 들어갈 삼각형은 {없다}.",
+        "cStudentSentence": "정삼각형이면서 둔각삼각형인 칸에 들어갈 삼각형은 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "없다",
+            "equivalents": [
+              "하나도 없다"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "정삼각형이면서 둔각삼각형인 칸에 들어갈 삼각형은 □.",
+          "answers": [
+            "없다"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "정삼각형이면서 둔각삼각형인 삼각형이 있을 수 있나요? 정삼각형의 각의 크기를 이용하여 까닭을 설명하세요.",
+          "answer": "없습니다. 정삼각형의 세 각은 모두 $60^\\circ$이므로 $90^\\circ$보다 큰 둔각이 없기 때문입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "정삼각형이면서 둔각삼각형인 삼각형은 없다"
+              ]
+            },
+            {
+              "anyOf": [
+                "세 각이 모두 $60^\\circ$여서 둔각이 없다",
+                "정삼각형의 각은 모두 예각이다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "정삼각형이면서 둔각삼각형인 칸에 들어갈 삼각형은 {없다}.",
+          "acceptedAnswers": [
+            [
+              "없다",
+              "하나도 없다"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "정삼각형과 둔각삼각형 조건을 동시에 만족하는 삼각형의 존재 여부는 C에서 확인한다. 이 항목에는 정삼각형의 각을 다시 설명하는 별도 B 문항을 두지 않는다."
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-5-xc13",
+          "sourceIndex": 2274,
+          "proposalFingerprint": "ab6172f71d7125f9c994213eafbb41ce4384aeda3f712c4ecbc8c720371c1e3c",
+          "reader": "Codex direct e3e4 current-disputes assist; candidate reread",
+          "readAt": "2026-10-07T11:05:58.939Z",
+          "learningRole": "application",
+          "bDecision": "exclude",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "없는 칸이라는 요약만 있던 이유를 두 분류 조건의 양립 가능성을 C에서 확인하고 별도B는 생략하는 선택으로 보완한다.",
+          "cReason": "정삼각형의 각은 모두60도라 둔각삼각형일 수 없다는 조건의 양립 불가를 없다로 답한다. 특정 표 그림을 보지 않아도 칸의 두 조건이 글에 명시되어 있다.",
+          "issues": [],
+          "isReleaseApproval": false,
+          "inputEvidence": "../e3e4-current-disputes-assist/reviews.json",
+          "candidateRereadEvidence": "../e3e4-current-disputes-assist/inputs/candidate-reread-records.json"
+        }
+      },
+      "after": {
+        "id": "e4-2-2-5-xc13",
+        "grade": "초4",
+        "source": {
+          "id": "e4-2-2-5-xc13",
+          "section": "초4::2-2 삼각형::2-2-5 삼각형을 두 가지 기준으로 분류하기",
+          "term": "정삼각형이면서 둔각삼각형인 칸의 삼각형",
+          "kind": "성질",
+          "level": "중",
+          "definition": "정삼각형이면서 둔각삼각형인 칸에 들어갈 삼각형은 {없다}."
+        },
+        "B": {
+          "prompt": "정삼각형이면서 둔각삼각형인 삼각형이 있을 수 있나요? 정삼각형의 각의 크기를 이용하여 까닭을 설명하세요.",
+          "answer": "없습니다. 정삼각형의 세 각은 모두 $60^\\circ$이므로 $90^\\circ$보다 큰 둔각이 없기 때문입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "정삼각형이면서 둔각삼각형인 삼각형은 없다"
+              ]
+            },
+            {
+              "anyOf": [
+                "세 각이 모두 $60^\\circ$여서 둔각이 없다",
+                "정삼각형의 각은 모두 예각이다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "정삼각형이면서 둔각삼각형인 칸에 들어갈 삼각형은 {없다}.",
+          "acceptedAnswers": [
+            [
+              "없다",
+              "하나도 없다"
+            ]
+          ]
+        },
+        "goal": "정삼각형이면서 둔각삼각형인 칸",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "9af793ea6027645931029dd6e3bfcb8ba9573f4c7c3b609a61cac855fb4babfd"
+      },
+      "reason": "두분류조건을동시에만족할수없는이유를각60도로설명하는명확한B를복구한다.",
+      "changed": true
+    },
+    {
+      "id": "e4-2-2-5-xc24",
+      "sourceIndex": 2284,
+      "beforeRaw": {
+        "sourceIndex": 2284,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-5 삼각형을 두 가지 기준으로 분류하기",
+        "sourceFingerprint": "e8b2e297cf12b0527c3df06efc1a92e369c8c107d652e34825a9af40a38a20fc",
+        "proposalFingerprint": "8c5ca84d761e4c80dcafe87203a5c4aff7a069d7f18b7d02a782b95c36f4c3ad",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-5-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각형을 변의 길이와 각의 크기로 분류한 표가 있다. 이등변삼각형이면서 예각삼각형인 칸에 크기가 다른 두 삼각형을 함께 넣을 수 있는지 쓰고, 그 까닭을 설명하시오.",
+        "bAnswer": "두 삼각형이 모두 이등변삼각형이면서 예각삼각형이면 넣을 수 있다. 도형 전체의 크기는 이 칸의 분류 기준이 아니기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "둘 다 이등변삼각형이면서 예각삼각형이면 넣을 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "도형 전체의 크기는 기준이 아니고 두 분류 조건을 만족하면 된다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "한 칸에 여러 삼각형 들기",
+        "bReason": "분류 기준에 크기가 없다는 이유를 확인",
+        "cDecision": "rewrite",
+        "cAfter": "크기는 다르지만 둘 다 이등변삼각형이며 예각삼각형인 두 도형은, 변과 각의 두 기준으로 분류한 표에서 서로 {같은} 칸에 들어간다.",
+        "cReason": "모두라는 부사 대신 같은 칸/다른 칸 관계를 묻도록 후보를 작성했다. 두 도형이 같은 두 분류 조건을 만족한다는 글 조건으로 같은/동일한을 답할 수 있다.",
+        "cSlotEquivalents": [
+          [
+            "동일한"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "한 칸에 드는 여러 삼각형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "크기는 다르지만 둘 다 이등변삼각형이며 예각삼각형인 두 도형은, 변과 각의 두 기준으로 분류한 표에서 서로 {같은} 칸에 들어간다.",
+        "cStudentSentence": "크기는 다르지만 둘 다 이등변삼각형이며 예각삼각형인 두 도형은, 변과 각의 두 기준으로 분류한 표에서 서로 □ 칸에 들어간다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같은",
+            "equivalents": [
+              "동일한"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "삼각형을 변의 길이와 각의 크기로 분류한 표가 있다. 이등변삼각형이면서 예각삼각형인 칸에 크기가 다른 두 삼각형을 함께 넣을 수 있는지 쓰고, 그 까닭을 설명하시오.",
+          "answer": "두 삼각형이 모두 이등변삼각형이면서 예각삼각형이면 넣을 수 있다. 도형 전체의 크기는 이 칸의 분류 기준이 아니기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "둘 다 이등변삼각형이면서 예각삼각형이면 넣을 수 있다"
+              ]
+            },
+            {
+              "anyOf": [
+                "도형 전체의 크기는 기준이 아니고 두 분류 조건을 만족하면 된다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "크기는 다르지만 둘 다 이등변삼각형이며 예각삼각형인 두 도형은, 변과 각의 두 기준으로 분류한 표에서 서로 {같은} 칸에 들어간다.",
+          "acceptedAnswers": [
+            [
+              "같은",
+              "동일한"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-5-xc24",
+          "sourceIndex": 2284,
+          "proposalFingerprint": "8c5ca84d761e4c80dcafe87203a5c4aff7a069d7f18b7d02a782b95c36f4c3ad",
+          "reader": "Codex direct e3e4 current-disputes assist; candidate reread",
+          "readAt": "2026-10-07T11:05:58.939Z",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "도형 크기가 아니라 이등변과 예각의 두 조건으로 분류한다는 이유를 필수로 확인한다.",
+          "cReason": "모두라는 부사 대신 같은 칸/다른 칸 관계를 묻도록 후보를 작성했다. 두 도형이 같은 두 분류 조건을 만족한다는 글 조건으로 같은/동일한을 답할 수 있다.",
+          "issues": [],
+          "isReleaseApproval": false,
+          "inputEvidence": "../e3e4-current-disputes-assist/reviews.json",
+          "candidateRereadEvidence": "../e3e4-current-disputes-assist/inputs/candidate-reread-records.json"
+        }
+      },
+      "beforeNormalizedHash": "6ec8a58d86586ccdafa68a16e0d4953efee3f9769e1c14fd1309a0ba0f20c9b6",
+      "proposedRawRow": {
+        "sourceIndex": 2284,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-5 삼각형을 두 가지 기준으로 분류하기",
+        "sourceFingerprint": "e8b2e297cf12b0527c3df06efc1a92e369c8c107d652e34825a9af40a38a20fc",
+        "proposalFingerprint": "e91a105d683b356f410300e1eee34c6dcf27e843a81b1d9821657810c595e4e7",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-5-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각형을 변의 길이와 각의 크기로 분류한 표가 있습니다. 두 삼각형은 크기가 다르지만 둘 다 이등변삼각형이며 예각삼각형입니다. 이 두 삼각형을 표의 같은 칸에 함께 넣을 수 있는지 쓰고 까닭을 설명하세요.",
+        "bAnswer": "두 삼각형이 모두 이등변삼각형이면서 예각삼각형이면 넣을 수 있다. 도형 전체의 크기는 이 칸의 분류 기준이 아니기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "둘 다 이등변삼각형이면서 예각삼각형이면 넣을 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "도형 전체의 크기는 기준이 아니고 두 분류 조건을 만족하면 된다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "한 칸에 여러 삼각형 들기",
+        "bReason": "두삼각형모두이등변이며예각이라는전제를B에서밝혀크기가다른임의의삼각형도가능하다는혼동을막는다.",
+        "cDecision": "rewrite",
+        "cAfter": "크기는 다르지만 둘 다 이등변삼각형이며 예각삼각형인 두 도형은, 변과 각의 두 기준으로 분류한 표에서 서로 {같은} 칸에 들어간다.",
+        "cReason": "모두라는 부사 대신 같은 칸/다른 칸 관계를 묻도록 후보를 작성했다. 두 도형이 같은 두 분류 조건을 만족한다는 글 조건으로 같은/동일한을 답할 수 있다.",
+        "cSlotEquivalents": [
+          [
+            "동일한"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "한 칸에 드는 여러 삼각형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "크기는 다르지만 둘 다 이등변삼각형이며 예각삼각형인 두 도형은, 변과 각의 두 기준으로 분류한 표에서 서로 {같은} 칸에 들어간다.",
+        "cStudentSentence": "크기는 다르지만 둘 다 이등변삼각형이며 예각삼각형인 두 도형은, 변과 각의 두 기준으로 분류한 표에서 서로 □ 칸에 들어간다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같은",
+            "equivalents": [
+              "동일한"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "삼각형을 변의 길이와 각의 크기로 분류한 표가 있습니다. 두 삼각형은 크기가 다르지만 둘 다 이등변삼각형이며 예각삼각형입니다. 이 두 삼각형을 표의 같은 칸에 함께 넣을 수 있는지 쓰고 까닭을 설명하세요.",
+          "answer": "두 삼각형이 모두 이등변삼각형이면서 예각삼각형이면 넣을 수 있다. 도형 전체의 크기는 이 칸의 분류 기준이 아니기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "둘 다 이등변삼각형이면서 예각삼각형이면 넣을 수 있다"
+              ]
+            },
+            {
+              "anyOf": [
+                "도형 전체의 크기는 기준이 아니고 두 분류 조건을 만족하면 된다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "크기는 다르지만 둘 다 이등변삼각형이며 예각삼각형인 두 도형은, 변과 각의 두 기준으로 분류한 표에서 서로 {같은} 칸에 들어간다.",
+          "acceptedAnswers": [
+            [
+              "같은",
+              "동일한"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-5-xc24",
+          "sourceIndex": 2284,
+          "proposalFingerprint": "8c5ca84d761e4c80dcafe87203a5c4aff7a069d7f18b7d02a782b95c36f4c3ad",
+          "reader": "Codex direct e3e4 current-disputes assist; candidate reread",
+          "readAt": "2026-10-07T11:05:58.939Z",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "도형 크기가 아니라 이등변과 예각의 두 조건으로 분류한다는 이유를 필수로 확인한다.",
+          "cReason": "모두라는 부사 대신 같은 칸/다른 칸 관계를 묻도록 후보를 작성했다. 두 도형이 같은 두 분류 조건을 만족한다는 글 조건으로 같은/동일한을 답할 수 있다.",
+          "issues": [],
+          "isReleaseApproval": false,
+          "inputEvidence": "../e3e4-current-disputes-assist/reviews.json",
+          "candidateRereadEvidence": "../e3e4-current-disputes-assist/inputs/candidate-reread-records.json"
+        }
+      },
+      "after": {
+        "id": "e4-2-2-5-xc24",
+        "grade": "초4",
+        "source": {
+          "id": "e4-2-2-5-xc24",
+          "section": "초4::2-2 삼각형::2-2-5 삼각형을 두 가지 기준으로 분류하기",
+          "term": "한 칸에 드는 여러 삼각형",
+          "kind": "성질",
+          "level": "상",
+          "definition": "분류 표의 한 칸에는 그 칸의 두 조건을 만족하면 {크기가 다른 삼각형도 함께} 들어갈 수 있다."
+        },
+        "B": {
+          "prompt": "삼각형을 변의 길이와 각의 크기로 분류한 표가 있습니다. 두 삼각형은 크기가 다르지만 둘 다 이등변삼각형이며 예각삼각형입니다. 이 두 삼각형을 표의 같은 칸에 함께 넣을 수 있는지 쓰고 까닭을 설명하세요.",
+          "answer": "두 삼각형이 모두 이등변삼각형이면서 예각삼각형이면 넣을 수 있다. 도형 전체의 크기는 이 칸의 분류 기준이 아니기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "둘 다 이등변삼각형이면서 예각삼각형이면 넣을 수 있다"
+              ]
+            },
+            {
+              "anyOf": [
+                "도형 전체의 크기는 기준이 아니고 두 분류 조건을 만족하면 된다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "크기는 다르지만 둘 다 이등변삼각형이며 예각삼각형인 두 도형은, 변과 각의 두 기준으로 분류한 표에서 서로 {같은} 칸에 들어간다.",
+          "acceptedAnswers": [
+            [
+              "같은",
+              "동일한"
+            ]
+          ]
+        },
+        "goal": "한 칸에 여러 삼각형 들기",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "d882016fbc40d0381a490105baf01493140ef312efe1ee0f20e9cb0ec81d0fb6"
+      },
+      "reason": "두삼각형모두이등변이며예각이라는전제를B에서밝혀크기가다른임의의삼각형도가능하다는혼동을막는다.",
+      "changed": true
+    },
+    {
+      "id": "e4-2-3-6-xc15",
+      "sourceIndex": 2395,
+      "beforeRaw": {
+        "sourceIndex": 2395,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+        "sourceFingerprint": "5fdb0fd9ef717561f320c16d9e396818de8d62f606631e0669fc389ece735a43",
+        "proposalFingerprint": "36af801c9f33c0660b4ab54b68c7abb7d055cb7e28ff7a0d6f6eb32861331cfc",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-6-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "$1.2\\,\\mathrm{m}$와 $35\\,\\mathrm{cm}$를 $\\mathrm{m}$ 단위로 더하고, $35$를 $0.35$로 바꾸는 까닭을 쓰시오.",
+        "bAnswer": "$1.55\\,\\mathrm{m}$. $35\\,\\mathrm{cm}=0.35\\,\\mathrm{m}$로 단위를 맞추어 더하기 위해서이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$1.55\\,\\mathrm{m}$",
+              "$1.55$"
+            ]
+          },
+          {
+            "anyOf": [
+              "단위를 맞추려고",
+              "두 양의 단위를 $\\mathrm{m}$로 같게 해야 더할 수 있기 때문이다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "단위를 맞춘 덧셈",
+        "bReason": "까닭 기준의 두 번째 대안은 변환 결과를 반복할 뿐이다. 단위를 맞춰야 더할 수 있다는 이유만 인정하고 기존 합의 기준은 보존한다.",
+        "cDecision": "rewrite",
+        "cAfter": "단위가 다른 두 양을 더하려면 {같은} 단위로 바꾼 뒤 더한다.",
+        "cReason": "긴 구절 정답을 '같은' 한 낱말로",
+        "cSlotEquivalents": [
+          [
+            "똑같은"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "단위를 맞추어 더하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "단위가 다른 두 양을 더하려면 {같은} 단위로 바꾼 뒤 더한다.",
+        "cStudentSentence": "단위가 다른 두 양을 더하려면 □ 단위로 바꾼 뒤 더한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같은",
+            "equivalents": [
+              "똑같은"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$1.2\\,\\mathrm{m}$와 $35\\,\\mathrm{cm}$를 $\\mathrm{m}$ 단위로 더하고, $35$를 $0.35$로 바꾸는 까닭을 쓰시오.",
+          "answer": "$1.55\\,\\mathrm{m}$. $35\\,\\mathrm{cm}=0.35\\,\\mathrm{m}$로 단위를 맞추어 더하기 위해서이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$1.55\\,\\mathrm{m}$",
+                "$1.55$"
+              ]
+            },
+            {
+              "anyOf": [
+                "단위를 맞추려고",
+                "두 양의 단위를 $\\mathrm{m}$로 같게 해야 더할 수 있기 때문이다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "단위가 다른 두 양을 더하려면 {같은} 단위로 바꾼 뒤 더한다.",
+          "acceptedAnswers": [
+            [
+              "같은",
+              "똑같은"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-6-xc15",
+          "sourceIndex": 2395,
+          "proposalFingerprint": "36af801c9f33c0660b4ab54b68c7abb7d055cb7e28ff7a0d6f6eb32861331cfc",
+          "reader": "Codex direct e3e4 current-disputes assist; candidate reread",
+          "readAt": "2026-10-07T11:05:58.939Z",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "까닭 기준의 두 번째 대안은 변환 결과를 반복할 뿐이다. 단위를 맞춰야 더할 수 있다는 이유만 인정하고 기존 합의 기준은 보존한다.",
+          "cReason": "다른 단위는 같은 단위로 맞춰야 더한다는 단답 비교로 명확하다.",
+          "issues": [],
+          "isReleaseApproval": false,
+          "inputEvidence": "../e3e4-current-disputes-assist/reviews.json",
+          "candidateRereadEvidence": "../e3e4-current-disputes-assist/inputs/candidate-reread-records.json"
+        }
+      },
+      "beforeNormalizedHash": "383127077bbc61b9509b9a0be925651647f0220627344061c7db4d74d2a5f4cf",
+      "proposedRawRow": {
+        "sourceIndex": 2395,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+        "sourceFingerprint": "5fdb0fd9ef717561f320c16d9e396818de8d62f606631e0669fc389ece735a43",
+        "proposalFingerprint": "697f02a3e90933b78abb193a3dcfa5b4ef074ca8fbc8b7ebaaaefc33ad06f0de",
+        "reviewStatus": "draft",
+        "id": "e4-2-3-6-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "$1.2\\,\\mathrm{m}$와 $35\\,\\mathrm{cm}$를 $\\mathrm{m}$ 단위로 더하세요. 또 $35\\,\\mathrm{cm}$를 $0.35\\,\\mathrm{m}$로 바꾸는 까닭을 $\\mathrm{m}$와 $\\mathrm{cm}$의 관계를 이용해 설명하세요.",
+        "bAnswer": "$1\\,\\mathrm{m}=100\\,\\mathrm{cm}$이므로 $35\\,\\mathrm{cm}$는 $\\frac{35}{100}\\,\\mathrm{m}=0.35\\,\\mathrm{m}$입니다. 따라서 합은 $1.2+0.35=1.55\\,(\\mathrm{m})$입니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$1.55\\,\\mathrm{m}$",
+              "$1.55$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1\\,\\mathrm{m}=100\\,\\mathrm{cm}$이므로 $35\\,\\mathrm{cm}=0.35\\,\\mathrm{m}$이다",
+              "$35$를 $100$으로 나누어 $0.35\\,\\mathrm{m}$로 바꾼다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "단위를 맞춘 덧셈",
+        "bReason": "단위맞추라는구문만되풀이하지않게cm→m변환의기준관계1m100cm를물음과필수기준에명시한다.",
+        "cDecision": "rewrite",
+        "cAfter": "단위가 다른 두 양을 더하려면 {같은} 단위로 바꾼 뒤 더한다.",
+        "cReason": "긴 구절 정답을 '같은' 한 낱말로",
+        "cSlotEquivalents": [
+          [
+            "똑같은"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "단위를 맞추어 더하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "단위가 다른 두 양을 더하려면 {같은} 단위로 바꾼 뒤 더한다.",
+        "cStudentSentence": "단위가 다른 두 양을 더하려면 □ 단위로 바꾼 뒤 더한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같은",
+            "equivalents": [
+              "똑같은"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$1.2\\,\\mathrm{m}$와 $35\\,\\mathrm{cm}$를 $\\mathrm{m}$ 단위로 더하세요. 또 $35\\,\\mathrm{cm}$를 $0.35\\,\\mathrm{m}$로 바꾸는 까닭을 $\\mathrm{m}$와 $\\mathrm{cm}$의 관계를 이용해 설명하세요.",
+          "answer": "$1\\,\\mathrm{m}=100\\,\\mathrm{cm}$이므로 $35\\,\\mathrm{cm}$는 $\\frac{35}{100}\\,\\mathrm{m}=0.35\\,\\mathrm{m}$입니다. 따라서 합은 $1.2+0.35=1.55\\,(\\mathrm{m})$입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$1.55\\,\\mathrm{m}$",
+                "$1.55$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$1\\,\\mathrm{m}=100\\,\\mathrm{cm}$이므로 $35\\,\\mathrm{cm}=0.35\\,\\mathrm{m}$이다",
+                "$35$를 $100$으로 나누어 $0.35\\,\\mathrm{m}$로 바꾼다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "단위가 다른 두 양을 더하려면 {같은} 단위로 바꾼 뒤 더한다.",
+          "acceptedAnswers": [
+            [
+              "같은",
+              "똑같은"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-3-6-xc15",
+          "sourceIndex": 2395,
+          "proposalFingerprint": "36af801c9f33c0660b4ab54b68c7abb7d055cb7e28ff7a0d6f6eb32861331cfc",
+          "reader": "Codex direct e3e4 current-disputes assist; candidate reread",
+          "readAt": "2026-10-07T11:05:58.939Z",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "까닭 기준의 두 번째 대안은 변환 결과를 반복할 뿐이다. 단위를 맞춰야 더할 수 있다는 이유만 인정하고 기존 합의 기준은 보존한다.",
+          "cReason": "다른 단위는 같은 단위로 맞춰야 더한다는 단답 비교로 명확하다.",
+          "issues": [],
+          "isReleaseApproval": false,
+          "inputEvidence": "../e3e4-current-disputes-assist/reviews.json",
+          "candidateRereadEvidence": "../e3e4-current-disputes-assist/inputs/candidate-reread-records.json"
+        }
+      },
+      "after": {
+        "id": "e4-2-3-6-xc15",
+        "grade": "초4",
+        "source": {
+          "id": "e4-2-3-6-xc15",
+          "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+          "term": "단위를 맞추어 더하기",
+          "kind": "방법",
+          "level": "중",
+          "definition": "단위가 다른 두 양을 더하려면 {같은 단위로 바꾼} 뒤 더한다.",
+          "example": {
+            "prompt": "$1.2\\,\\mathrm{m}$와 $35\\,\\mathrm{cm}$를 더할 때 $35$를 $0.35$로 바꾸는 까닭은?",
+            "answer": "단위를 맞추려고"
+          }
+        },
+        "B": {
+          "prompt": "$1.2\\,\\mathrm{m}$와 $35\\,\\mathrm{cm}$를 $\\mathrm{m}$ 단위로 더하세요. 또 $35\\,\\mathrm{cm}$를 $0.35\\,\\mathrm{m}$로 바꾸는 까닭을 $\\mathrm{m}$와 $\\mathrm{cm}$의 관계를 이용해 설명하세요.",
+          "answer": "$1\\,\\mathrm{m}=100\\,\\mathrm{cm}$이므로 $35\\,\\mathrm{cm}$는 $\\frac{35}{100}\\,\\mathrm{m}=0.35\\,\\mathrm{m}$입니다. 따라서 합은 $1.2+0.35=1.55\\,(\\mathrm{m})$입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$1.55\\,\\mathrm{m}$",
+                "$1.55$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$1\\,\\mathrm{m}=100\\,\\mathrm{cm}$이므로 $35\\,\\mathrm{cm}=0.35\\,\\mathrm{m}$이다",
+                "$35$를 $100$으로 나누어 $0.35\\,\\mathrm{m}$로 바꾼다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "단위가 다른 두 양을 더하려면 {같은} 단위로 바꾼 뒤 더한다.",
+          "acceptedAnswers": [
+            [
+              "같은",
+              "똑같은"
+            ]
+          ]
+        },
+        "goal": "단위를 맞춘 덧셈",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "6c6fed47ed0b590a7ad64c59e1934e1b9497da8ce022068fd2f2ffe6e7aa8f3c"
+      },
+      "reason": "단위맞추라는구문만되풀이하지않게cm→m변환의기준관계1m100cm를물음과필수기준에명시한다.",
+      "changed": true
+    },
+    {
+      "id": "e4-2-4-2-xc24",
+      "sourceIndex": 2468,
+      "beforeRaw": {
+        "sourceIndex": 2468,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "sourceFingerprint": "56f643ec27f25f473e34f4ee4ba034e9572ad14453c8ba3cb2202a1550f69736",
+        "proposalFingerprint": "6eb7bff6c61035f6e95854d9988a688a3e0d725a7937ace29c8482547912fcd6",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-2-xc24",
+        "bDecision": "exclude",
+        "bPrompt": "",
+        "bAnswer": "",
+        "bRequiredIdeas": [],
+        "learningRole": "definition",
+        "bGoal": "평행한 변이 없는 사각형",
+        "bReason": "평행한 변이 없는 사각형의 구체적인 반례 그림이 없으면 같은 주장을 반복하는 답이 된다. 현재 글만 있는 B에서는 제외한다.",
+        "cDecision": "rewrite",
+        "cReason": "한쌍도□는없는이라는부정호응을이미정한다. 후보는사각형의평행한변쌍의최소개수를묻고0을답하게하여수학적가능성을판단한다.",
+        "exclusionReason": "B: 평행한 변이 없는 사각형 그림이나 직접 그리기 응답을 지원한 뒤 반례를 확인하는 문제로 다시 검토한다. C와 원래 일반 설명은 유지한다.",
+        "exampleNeeded": "평행한 변이 한 쌍도 없는 사각형을 그리고 마주 보는 두 쌍의 변을 각각 늘인 보조선을 보여 줄 것. 예시는 두 쌍 모두 만나도록 검증해야 한다.",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "평행한 변이 없는 사각형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "사각형에서 평행한 변의 쌍을 세면 가장 적을 때 {$0$}쌍이다.",
+        "cStudentSentence": "사각형에서 평행한 변의 쌍을 세면 가장 적을 때 □쌍이다.",
+        "cSlotEquivalents": [
+          [
+            "영"
+          ]
+        ],
+        "cSlotAnswers": [
+          {
+            "expected": "$0$",
+            "equivalents": [
+              "영"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "사각형 가운데에는 평행한 변이 한 쌍도 □ 것도 있다.",
+          "answers": [
+            "없는"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "사각형에서 평행한 변의 쌍을 세면 가장 적을 때 {$0$}쌍이다.",
+          "acceptedAnswers": [
+            [
+              "$0$",
+              "영"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "평행한 변이 없는 사각형의 구체적인 반례 그림이 없으면 같은 주장을 반복하는 답이 된다. 현재 글만 있는 B에서는 제외한다."
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-4-2-xc24",
+          "sourceIndex": 2468,
+          "proposalFingerprint": "6eb7bff6c61035f6e95854d9988a688a3e0d725a7937ace29c8482547912fcd6",
+          "reader": "Codex direct e3e4 current-disputes assist; candidate reread",
+          "readAt": "2026-10-07T11:05:58.939Z",
+          "learningRole": "definition",
+          "bDecision": "exclude",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "구체적반례그림없이동일주장을반복하는B는현재제외사유를보존한다.",
+          "cReason": "한쌍도□는없는이라는부정호응을이미정한다. 후보는사각형의평행한변쌍의최소개수를묻고0을답하게하여수학적가능성을판단한다.",
+          "issues": [],
+          "isReleaseApproval": false,
+          "inputEvidence": "../e3e4-current-disputes-assist/reviews.json",
+          "candidateRereadEvidence": "../e3e4-current-disputes-assist/inputs/candidate-reread-records.json"
+        },
+        "cAfter": "사각형에서 평행한 변의 쌍을 세면 가장 적을 때 {$0$}쌍이다."
+      },
+      "beforeNormalizedHash": "ef528b33b7cb5cad7e6e5067fc3d81febe409a50cbcb26e41cfa338c8672b102",
+      "proposedRawRow": {
+        "sourceIndex": 2468,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "sourceFingerprint": "56f643ec27f25f473e34f4ee4ba034e9572ad14453c8ba3cb2202a1550f69736",
+        "proposalFingerprint": "6eb7bff6c61035f6e95854d9988a688a3e0d725a7937ace29c8482547912fcd6",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-2-xc24",
+        "bDecision": "exclude",
+        "bPrompt": "",
+        "bAnswer": "",
+        "bRequiredIdeas": [],
+        "learningRole": "definition",
+        "bGoal": "평행한 변이 없는 사각형",
+        "bReason": "평행한 변이 없는 사각형의 구체적인 반례 그림이 없으면 같은 주장을 반복하는 답이 된다. 현재 글만 있는 B에서는 제외한다.",
+        "cDecision": "rewrite",
+        "cReason": "한쌍도□는없는이라는부정호응을이미정한다. 후보는사각형의평행한변쌍의최소개수를묻고0을답하게하여수학적가능성을판단한다.",
+        "exclusionReason": "B: 평행한 변이 없는 사각형 그림이나 직접 그리기 응답을 지원한 뒤 반례를 확인하는 문제로 다시 검토한다. C와 원래 일반 설명은 유지한다.",
+        "exampleNeeded": "평행한 변이 한 쌍도 없는 사각형을 그리고 마주 보는 두 쌍의 변을 각각 늘인 보조선을 보여 줄 것. 예시는 두 쌍 모두 만나도록 검증해야 한다.",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "평행한 변이 없는 사각형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "사각형에서 평행한 변의 쌍을 세면 가장 적을 때 {$0$}쌍이다.",
+        "cStudentSentence": "사각형에서 평행한 변의 쌍을 세면 가장 적을 때 □쌍이다.",
+        "cSlotEquivalents": [
+          [
+            "영"
+          ]
+        ],
+        "cSlotAnswers": [
+          {
+            "expected": "$0$",
+            "equivalents": [
+              "영"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "사각형 가운데에는 평행한 변이 한 쌍도 □ 것도 있다.",
+          "answers": [
+            "없는"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "사각형에서 평행한 변의 쌍을 세면 가장 적을 때 {$0$}쌍이다.",
+          "acceptedAnswers": [
+            [
+              "$0$",
+              "영"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "평행한 변이 없는 사각형의 구체적인 반례 그림이 없으면 같은 주장을 반복하는 답이 된다. 현재 글만 있는 B에서는 제외한다."
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-4-2-xc24",
+          "sourceIndex": 2468,
+          "proposalFingerprint": "6eb7bff6c61035f6e95854d9988a688a3e0d725a7937ace29c8482547912fcd6",
+          "reader": "Codex direct e3e4 current-disputes assist; candidate reread",
+          "readAt": "2026-10-07T11:05:58.939Z",
+          "learningRole": "definition",
+          "bDecision": "exclude",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "구체적반례그림없이동일주장을반복하는B는현재제외사유를보존한다.",
+          "cReason": "한쌍도□는없는이라는부정호응을이미정한다. 후보는사각형의평행한변쌍의최소개수를묻고0을답하게하여수학적가능성을판단한다.",
+          "issues": [],
+          "isReleaseApproval": false,
+          "inputEvidence": "../e3e4-current-disputes-assist/reviews.json",
+          "candidateRereadEvidence": "../e3e4-current-disputes-assist/inputs/candidate-reread-records.json"
+        },
+        "cAfter": "사각형에서 평행한 변의 쌍을 세면 가장 적을 때 {$0$}쌍이다."
+      },
+      "after": {
+        "id": "e4-2-4-2-xc24",
+        "grade": "초4",
+        "source": {
+          "id": "e4-2-4-2-xc24",
+          "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+          "term": "평행한 변이 없는 사각형",
+          "kind": "성질",
+          "level": "상",
+          "definition": "사각형 가운데에는 평행한 변이 한 쌍도 {없는} 것도 있다."
+        },
+        "B": {
+          "excluded": "평행한 변이 없는 사각형의 구체적인 반례 그림이 없으면 같은 주장을 반복하는 답이 된다. 현재 글만 있는 B에서는 제외한다."
+        },
+        "C": {
+          "sentence": "사각형에서 평행한 변의 쌍을 세면 가장 적을 때 {$0$}쌍이다.",
+          "acceptedAnswers": [
+            [
+              "$0$",
+              "영"
+            ]
+          ]
+        },
+        "goal": "평행한 변이 없는 사각형",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "ef528b33b7cb5cad7e6e5067fc3d81febe409a50cbcb26e41cfa338c8672b102"
+      },
+      "reason": "개수가음수일수없다는사실만으로최솟값이0이라고결론낼수없다. 예를들어삼각형의변수최솟값은0이아니다. 평행변이없는사각형의존재를배운학생에게가능한평행쌍최소개수를묻는타당한개념확인이라유지한다.",
+      "changed": false
+    },
+    {
+      "id": "e4-2-4-2-xc25",
+      "sourceIndex": 2469,
+      "beforeRaw": {
+        "sourceIndex": 2469,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "sourceFingerprint": "823705269062a08756a84f390fd94041503b6dfc188ca46d7c26427b9a2f307b",
+        "proposalFingerprint": "03afa3dca2f0054fe8832ef4d5b77bbd4cc9530a7d0076f936188704e616c959",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-2-xc25",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "밖의 점 지나는 평행선 긋기",
+        "bReason": "xc4와 같은 목표",
+        "exclusionReason": "삼각자 두 개를 밀어 평행선을 긋는 방법이 xc4 B와 같다",
+        "cDecision": "rewrite",
+        "cAfter": "직선 밖의 한 점을 지나는 평행선을 그을 때에는 한 삼각자를 직선에 맞추고 다른 삼각자로 받친 뒤, 처음 삼각자의 {방향}을 유지하며 점까지 밀어 옮겨 긋는다.",
+        "cReason": "점이라는목적어복원대신삼각자를밀때유지할방향을묻는다. 두번째삼각자로받친채옮기는절차와평행을유지하는방향관계를명시한다.",
+        "cSlotEquivalents": [
+          [
+            "기울기",
+            "각도",
+            "직선과 이루는 각"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "직선 밖의 점을 지나는 평행선 긋기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직선 밖의 한 점을 지나는 평행선을 그을 때에는 한 삼각자를 직선에 맞추고 다른 삼각자로 받친 뒤, 처음 삼각자의 {방향}을 유지하며 점까지 밀어 옮겨 긋는다.",
+        "cStudentSentence": "직선 밖의 한 점을 지나는 평행선을 그을 때에는 한 삼각자를 직선에 맞추고 다른 삼각자로 받친 뒤, 처음 삼각자의 □을 유지하며 점까지 밀어 옮겨 긋는다.",
+        "cSlotAnswers": [
+          {
+            "expected": "방향",
+            "equivalents": [
+              "기울기",
+              "각도",
+              "직선과 이루는 각"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "직선 밖의 한 점을 지나는 평행선을 그을 때에는 한 삼각자를 직선에 맞추고 다른 삼각자로 받친 뒤, 처음 삼각자의 {방향}을 유지하며 점까지 밀어 옮겨 긋는다.",
+          "acceptedAnswers": [
+            [
+              "방향",
+              "기울기",
+              "각도",
+              "직선과 이루는 각"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc4와 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-4-2-xc25",
+          "sourceIndex": 2469,
+          "proposalFingerprint": "03afa3dca2f0054fe8832ef4d5b77bbd4cc9530a7d0076f936188704e616c959",
+          "reader": "Codex direct e3e4 current-disputes assist; candidate reread",
+          "readAt": "2026-10-07T11:05:58.939Z",
+          "learningRole": "procedure",
+          "bDecision": "exclude",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "현재 다른항목과같은목표라는B제외를유지한다.",
+          "cReason": "점이라는목적어복원대신삼각자를밀때유지할방향을묻는다. 두번째삼각자로받친채옮기는절차와평행을유지하는방향관계를명시한다.",
+          "issues": [],
+          "isReleaseApproval": false,
+          "inputEvidence": "../e3e4-current-disputes-assist/reviews.json",
+          "candidateRereadEvidence": "../e3e4-current-disputes-assist/inputs/candidate-reread-records.json"
+        }
+      },
+      "beforeNormalizedHash": "0a59d272ec1a04a2b96a50ef6336fc740cd1c0e99b03c6458fe7231ccbf1496d",
+      "proposedRawRow": {
+        "sourceIndex": 2469,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "sourceFingerprint": "823705269062a08756a84f390fd94041503b6dfc188ca46d7c26427b9a2f307b",
+        "proposalFingerprint": "52d576095c1ac0203c1265d163d6836b39688fc8b13cae298844c14f92f643fe",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-2-xc25",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "밖의 점 지나는 평행선 긋기",
+        "bReason": "xc4와 같은 목표",
+        "exclusionReason": "삼각자 두 개를 밀어 평행선을 긋는 방법이 xc4 B와 같다",
+        "cDecision": "rewrite",
+        "cAfter": "한 삼각자를 직선에 맞추고 다른 삼각자로 받칩니다. 처음 삼각자의 방향을 바꾸지 않고 밀어 옮겨 그은 직선과 기준 직선은 {평행하다}.",
+        "cReason": "삼각자에서유지되는모양크기방향중어느것인지맞히게하지않고방향을바꾸지않은이동뒤두직선의관계를판정하게한다.",
+        "cSlotEquivalents": [
+          [
+            "서로 평행하다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "직선 밖의 점을 지나는 평행선 긋기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "한 삼각자를 직선에 맞추고 다른 삼각자로 받칩니다. 처음 삼각자의 방향을 바꾸지 않고 밀어 옮겨 그은 직선과 기준 직선은 {평행하다}.",
+        "cStudentSentence": "한 삼각자를 직선에 맞추고 다른 삼각자로 받칩니다. 처음 삼각자의 방향을 바꾸지 않고 밀어 옮겨 그은 직선과 기준 직선은 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "평행하다",
+            "equivalents": [
+              "서로 평행하다"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "한 삼각자를 직선에 맞추고 다른 삼각자로 받칩니다. 처음 삼각자의 방향을 바꾸지 않고 밀어 옮겨 그은 직선과 기준 직선은 {평행하다}.",
+          "acceptedAnswers": [
+            [
+              "평행하다",
+              "서로 평행하다"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc4와 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-4-2-xc25",
+          "sourceIndex": 2469,
+          "proposalFingerprint": "03afa3dca2f0054fe8832ef4d5b77bbd4cc9530a7d0076f936188704e616c959",
+          "reader": "Codex direct e3e4 current-disputes assist; candidate reread",
+          "readAt": "2026-10-07T11:05:58.939Z",
+          "learningRole": "procedure",
+          "bDecision": "exclude",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "현재 다른항목과같은목표라는B제외를유지한다.",
+          "cReason": "점이라는목적어복원대신삼각자를밀때유지할방향을묻는다. 두번째삼각자로받친채옮기는절차와평행을유지하는방향관계를명시한다.",
+          "issues": [],
+          "isReleaseApproval": false,
+          "inputEvidence": "../e3e4-current-disputes-assist/reviews.json",
+          "candidateRereadEvidence": "../e3e4-current-disputes-assist/inputs/candidate-reread-records.json"
+        },
+        "cAcceptedAnswers": [
+          [
+            "평행하다",
+            "서로 평행하다"
+          ]
+        ]
+      },
+      "after": {
+        "id": "e4-2-4-2-xc25",
+        "grade": "초4",
+        "source": {
+          "id": "e4-2-4-2-xc25",
+          "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+          "term": "직선 밖의 점을 지나는 평행선 긋기",
+          "kind": "방법",
+          "level": "상",
+          "definition": "직선 밖의 한 점을 지나는 평행선은 한 삼각자를 직선에 맞추고 다른 삼각자를 대어 {그 점까지} 밀어 옮긴 뒤 긋는다."
+        },
+        "B": {
+          "excluded": "xc4와 같은 목표"
+        },
+        "C": {
+          "sentence": "한 삼각자를 직선에 맞추고 다른 삼각자로 받칩니다. 처음 삼각자의 방향을 바꾸지 않고 밀어 옮겨 그은 직선과 기준 직선은 {평행하다}.",
+          "acceptedAnswers": [
+            [
+              "평행하다",
+              "서로 평행하다"
+            ]
+          ]
+        },
+        "goal": "밖의 점 지나는 평행선 긋기",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "95eeefa4e0da371430a22b7b255eec7a390be994c19f2bd32c047b82d27989f8"
+      },
+      "reason": "삼각자에서유지되는모양크기방향중어느것인지맞히게하지않고방향을바꾸지않은이동뒤두직선의관계를판정하게한다.",
+      "changed": true
+    },
+    {
+      "id": "e4-2-4-3-xc7",
+      "sourceIndex": 2478,
+      "beforeRaw": {
+        "sourceIndex": 2478,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "sourceFingerprint": "d01a0aaeb4a5cb9ed3e0f60e629dad18708679a4c7b4ad467198a78fc4adb541",
+        "proposalFingerprint": "2bd440bfd0c905951f58c4843dcfaffc2e669e203a3bd29ed3e32ac2f325d4ce",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-3-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "평행한 두 직선 사이의 거리는 어떤 선분의 길이입니까? 어떤 선분인지 쓰시오.",
+        "bAnswer": "두 직선에 수직인 선분이 두 직선과 만나는 두 점 사이의 길이이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 직선에 수직인 선분",
+              "수선"
+            ]
+          },
+          {
+            "anyOf": [
+              "수선이 두 직선과 만나는 두 점 사이 선분의 길이"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "평행선 사이 거리의 뜻",
+        "bReason": "수직조건은유효하나수선의길이라는대안에는끝점범위가흐릿하다. 두직선과만나는두점사이선분길이라는범위를필수의미에명시한다.",
+        "cDecision": "rewrite",
+        "cAfter": "평행선 사이의 거리는 두 직선에 수직으로 그은 선분의 {길이}이다.",
+        "cReason": "긴 구절 빈칸을 길이 한 낱말로 줄임",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "거리를 재는 두 점",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행선 사이의 거리는 두 직선에 수직으로 그은 선분의 {길이}이다.",
+        "cStudentSentence": "평행선 사이의 거리는 두 직선에 수직으로 그은 선분의 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "길이",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "평행한 두 직선 사이의 거리는 어떤 선분의 길이입니까? 어떤 선분인지 쓰시오.",
+          "answer": "두 직선에 수직인 선분이 두 직선과 만나는 두 점 사이의 길이이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "두 직선에 수직인 선분",
+                "수선"
+              ]
+            },
+            {
+              "anyOf": [
+                "수선이 두 직선과 만나는 두 점 사이 선분의 길이"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "평행선 사이의 거리는 두 직선에 수직으로 그은 선분의 {길이}이다.",
+          "acceptedAnswers": [
+            [
+              "길이"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-4-3-xc7",
+          "sourceIndex": 2478,
+          "proposalFingerprint": "2bd440bfd0c905951f58c4843dcfaffc2e669e203a3bd29ed3e32ac2f325d4ce",
+          "reader": "Codex direct e3e4 current-disputes assist; candidate reread",
+          "readAt": "2026-10-07T11:05:58.939Z",
+          "learningRole": "definition",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "수직조건은유효하나수선의길이라는대안에는끝점범위가흐릿하다. 두직선과만나는두점사이선분길이라는범위를필수의미에명시한다.",
+          "cReason": "두직선에수직으로그은선분의측정량을길이로명명하는명확한정의이다. 새현재pass와실제뜻을확인하여C는유지한다. 다만 B의수선길이대안에두직선사이끝점범위를명시하는개별보완은후보로남긴다.",
+          "issues": [],
+          "isReleaseApproval": false,
+          "inputEvidence": "../e3e4-current-disputes-assist/reviews.json",
+          "candidateRereadEvidence": "../e3e4-current-disputes-assist/inputs/candidate-reread-records.json"
+        }
+      },
+      "beforeNormalizedHash": "bb011531d855f6a9be517cc27171bd0d2f51ef2f9ce573f81f368439c98d8577",
+      "proposedRawRow": {
+        "sourceIndex": 2478,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "sourceFingerprint": "d01a0aaeb4a5cb9ed3e0f60e629dad18708679a4c7b4ad467198a78fc4adb541",
+        "proposalFingerprint": "fdde78912c34aa9f8cd716e2a97eb9507b62cec3f534520aa7ce4d7fd97cef1d",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-3-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "평행한 두 직선 사이의 거리는 어떤 선분의 길이인지 쓰세요. 선분이 두 직선과 이루는 각과 양 끝점의 위치를 모두 설명하세요.",
+        "bAnswer": "두 직선에 수직이고 양 끝점이 각각 두 직선 위에 있는 선분의 길이입니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 직선에 수직이고 양 끝점이 각각 두 직선 위에 있는 선분의 길이",
+              "두 직선과 직각을 이루는 수선이 두 직선과 만나는 두 점 사이의 길이"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "평행선 사이 거리의 뜻",
+        "bReason": "수직인선분이라는조건만으로양끝이두직선위에있다고보장되지않는다. 두조건을하나의완전한정의기준으로묶고C는수직관계를확인한다.",
+        "cDecision": "rewrite",
+        "cAfter": "평행한 두 직선 사이의 거리를 나타내는 선분은 양 끝점이 각각 두 직선 위에 있고, 두 직선에 {수직}이다.",
+        "cReason": "수직인선분이라는조건만으로양끝이두직선위에있다고보장되지않는다. 두조건을하나의완전한정의기준으로묶고C는수직관계를확인한다.",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "거리를 재는 두 점",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행한 두 직선 사이의 거리를 나타내는 선분은 양 끝점이 각각 두 직선 위에 있고, 두 직선에 {수직}이다.",
+        "cStudentSentence": "평행한 두 직선 사이의 거리를 나타내는 선분은 양 끝점이 각각 두 직선 위에 있고, 두 직선에 □이다.",
+        "cSlotEquivalents": [
+          []
+        ],
+        "cSlotAnswers": [
+          {
+            "expected": "수직",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "평행한 두 직선 사이의 거리는 어떤 선분의 길이인지 쓰세요. 선분이 두 직선과 이루는 각과 양 끝점의 위치를 모두 설명하세요.",
+          "answer": "두 직선에 수직이고 양 끝점이 각각 두 직선 위에 있는 선분의 길이입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "두 직선에 수직이고 양 끝점이 각각 두 직선 위에 있는 선분의 길이",
+                "두 직선과 직각을 이루는 수선이 두 직선과 만나는 두 점 사이의 길이"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "평행한 두 직선 사이의 거리를 나타내는 선분은 양 끝점이 각각 두 직선 위에 있고, 두 직선에 {수직}이다.",
+          "acceptedAnswers": [
+            [
+              "수직"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-4-3-xc7",
+          "sourceIndex": 2478,
+          "proposalFingerprint": "2bd440bfd0c905951f58c4843dcfaffc2e669e203a3bd29ed3e32ac2f325d4ce",
+          "reader": "Codex direct e3e4 current-disputes assist; candidate reread",
+          "readAt": "2026-10-07T11:05:58.939Z",
+          "learningRole": "definition",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "수직조건은유효하나수선의길이라는대안에는끝점범위가흐릿하다. 두직선과만나는두점사이선분길이라는범위를필수의미에명시한다.",
+          "cReason": "두직선에수직으로그은선분의측정량을길이로명명하는명확한정의이다. 새현재pass와실제뜻을확인하여C는유지한다. 다만 B의수선길이대안에두직선사이끝점범위를명시하는개별보완은후보로남긴다.",
+          "issues": [],
+          "isReleaseApproval": false,
+          "inputEvidence": "../e3e4-current-disputes-assist/reviews.json",
+          "candidateRereadEvidence": "../e3e4-current-disputes-assist/inputs/candidate-reread-records.json"
+        },
+        "cAcceptedAnswers": [
+          [
+            "수직"
+          ]
+        ]
+      },
+      "after": {
+        "id": "e4-2-4-3-xc7",
+        "grade": "초4",
+        "source": {
+          "id": "e4-2-4-3-xc7",
+          "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+          "term": "거리를 재는 두 점",
+          "kind": "방법",
+          "level": "하",
+          "definition": "평행선 사이의 거리는 수선이 두 직선과 {만나는 두 점} 사이를 잰 것이다."
+        },
+        "B": {
+          "prompt": "평행한 두 직선 사이의 거리는 어떤 선분의 길이인지 쓰세요. 선분이 두 직선과 이루는 각과 양 끝점의 위치를 모두 설명하세요.",
+          "answer": "두 직선에 수직이고 양 끝점이 각각 두 직선 위에 있는 선분의 길이입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "두 직선에 수직이고 양 끝점이 각각 두 직선 위에 있는 선분의 길이",
+                "두 직선과 직각을 이루는 수선이 두 직선과 만나는 두 점 사이의 길이"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "평행한 두 직선 사이의 거리를 나타내는 선분은 양 끝점이 각각 두 직선 위에 있고, 두 직선에 {수직}이다.",
+          "acceptedAnswers": [
+            [
+              "수직"
+            ]
+          ]
+        },
+        "goal": "평행선 사이 거리의 뜻",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "f6ee4acd8e7609c25fd741a62b8ef4b03ea091527c0d0ae619a53d24c9303547"
+      },
+      "reason": "수직인선분이라는조건만으로양끝이두직선위에있다고보장되지않는다. 두조건을하나의완전한정의기준으로묶고C는수직관계를확인한다.",
+      "changed": true
+    },
+    {
+      "id": "e4-2-5-1-xc27",
+      "sourceIndex": 2614,
+      "beforeRaw": {
+        "sourceIndex": 2614,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-1 꺾은선그래프 알아보기",
+        "sourceFingerprint": "3f82c4b0c906de638aec60be84a377ef21e006d3f7794df9ee0734773d3cd917",
+        "proposalFingerprint": "96934d1c78a8b10d647463d92f1966e26416307b9d6d5789057fb1d8e8cf40be",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-1-xc27",
+        "bDecision": "rewrite",
+        "bPrompt": "한 그래프에 두 자료의 꺾은선이 함께 그려져 있다. 값을 읽기 전에 선들에 대해 가장 먼저 확인해야 할 것은 무엇인지 쓰시오.",
+        "bAnswer": "색이나 선 모양이 각각 어떤 자료를 나타내는지 설명을 확인한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "각 선이 어떤 자료인지",
+              "색과 선 모양의 설명",
+              "선이 나타내는 자료"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "두 자료 그래프의 선 구별",
+        "bReason": "선마다 자료가 다름을 먼저 확인하게 함",
+        "cDecision": "rewrite",
+        "cAfter": "두 자료의 꺾은선이 함께 있는 그래프에서는 색이나 선 모양과 자료 이름을 짝지어 설명한 {범례}를 먼저 확인한다.",
+        "cReason": "자료/것이라는일반목적어복원대신색·선모양과자료이름의연결을설명하는범례를확인하게한다. 범례·설명표를인정하여정식이름과기능을연결한다.",
+        "cSlotEquivalents": [
+          [
+            "설명표",
+            "선의 설명"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "선이 서로 다른 두 자료",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "두 자료의 꺾은선이 함께 있는 그래프에서는 색이나 선 모양과 자료 이름을 짝지어 설명한 {범례}를 먼저 확인한다.",
+        "cStudentSentence": "두 자료의 꺾은선이 함께 있는 그래프에서는 색이나 선 모양과 자료 이름을 짝지어 설명한 □를 먼저 확인한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "범례",
+            "equivalents": [
+              "설명표",
+              "선의 설명"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "한 그래프에 두 자료의 꺾은선이 함께 그려져 있다. 값을 읽기 전에 선들에 대해 가장 먼저 확인해야 할 것은 무엇인지 쓰시오.",
+          "answer": "색이나 선 모양이 각각 어떤 자료를 나타내는지 설명을 확인한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "각 선이 어떤 자료인지",
+                "색과 선 모양의 설명",
+                "선이 나타내는 자료"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "두 자료의 꺾은선이 함께 있는 그래프에서는 색이나 선 모양과 자료 이름을 짝지어 설명한 {범례}를 먼저 확인한다.",
+          "acceptedAnswers": [
+            [
+              "범례",
+              "설명표",
+              "선의 설명"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-5-1-xc27",
+          "sourceIndex": 2614,
+          "proposalFingerprint": "96934d1c78a8b10d647463d92f1966e26416307b9d6d5789057fb1d8e8cf40be",
+          "reader": "Codex direct e3e4 current-disputes assist; candidate reread",
+          "readAt": "2026-10-07T11:05:58.939Z",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "두선이각각어떤자료를나타내는지범례설명을확인하는절차가명확하다.",
+          "cReason": "자료/것이라는일반목적어복원대신색·선모양과자료이름의연결을설명하는범례를확인하게한다. 범례·설명표를인정하여정식이름과기능을연결한다.",
+          "issues": [],
+          "isReleaseApproval": false,
+          "inputEvidence": "../e3e4-current-disputes-assist/reviews.json",
+          "candidateRereadEvidence": "../e3e4-current-disputes-assist/inputs/candidate-reread-records.json"
+        }
+      },
+      "beforeNormalizedHash": "affbc46ac830ee7b11aeb08c45b4cf0cd5ce2e413b3d391d9e679e825f7d561f",
+      "proposedRawRow": {
+        "sourceIndex": 2614,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-1 꺾은선그래프 알아보기",
+        "sourceFingerprint": "3f82c4b0c906de638aec60be84a377ef21e006d3f7794df9ee0734773d3cd917",
+        "proposalFingerprint": "22045425dda102448657bd83b2b98a2c1c10e82a522d178bedfbc05d63fbfc0c",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-1-xc27",
+        "bDecision": "rewrite",
+        "bPrompt": "한 그래프에 두 자료의 꺾은선이 함께 그려져 있다. 값을 읽기 전에 선들에 대해 가장 먼저 확인해야 할 것은 무엇인지 쓰시오.",
+        "bAnswer": "색이나 선 모양이 각각 어떤 자료를 나타내는지 설명을 확인한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "각 선이 어떤 자료인지",
+              "색과 선 모양의 설명",
+              "선이 나타내는 자료"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "두 자료 그래프의 선 구별",
+        "bReason": "선마다 자료가 다름을 먼저 확인하게 함",
+        "cDecision": "rewrite",
+        "cAfter": "두 반의 자료를 그린 꺾은선그래프에 파란 선은 $3$반, 빨간 선은 $4$반을 나타낸다고 설명되어 있습니다. 파란 선의 값을 읽으면 {$3$}반의 자료를 알 수 있습니다.",
+        "cReason": "아직배우지않았을수있는범례라는용어를쓰기보다선색설명과자료이름의대응을실제로읽는다.",
+        "cSlotEquivalents": [
+          [
+            "삼"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "선이 서로 다른 두 자료",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "두 반의 자료를 그린 꺾은선그래프에 파란 선은 $3$반, 빨간 선은 $4$반을 나타낸다고 설명되어 있습니다. 파란 선의 값을 읽으면 {$3$}반의 자료를 알 수 있습니다.",
+        "cStudentSentence": "두 반의 자료를 그린 꺾은선그래프에 파란 선은 $3$반, 빨간 선은 $4$반을 나타낸다고 설명되어 있습니다. 파란 선의 값을 읽으면 □반의 자료를 알 수 있습니다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$3$",
+            "equivalents": [
+              "삼"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "한 그래프에 두 자료의 꺾은선이 함께 그려져 있다. 값을 읽기 전에 선들에 대해 가장 먼저 확인해야 할 것은 무엇인지 쓰시오.",
+          "answer": "색이나 선 모양이 각각 어떤 자료를 나타내는지 설명을 확인한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "각 선이 어떤 자료인지",
+                "색과 선 모양의 설명",
+                "선이 나타내는 자료"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "두 반의 자료를 그린 꺾은선그래프에 파란 선은 $3$반, 빨간 선은 $4$반을 나타낸다고 설명되어 있습니다. 파란 선의 값을 읽으면 {$3$}반의 자료를 알 수 있습니다.",
+          "acceptedAnswers": [
+            [
+              "$3$",
+              "삼"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-5-1-xc27",
+          "sourceIndex": 2614,
+          "proposalFingerprint": "96934d1c78a8b10d647463d92f1966e26416307b9d6d5789057fb1d8e8cf40be",
+          "reader": "Codex direct e3e4 current-disputes assist; candidate reread",
+          "readAt": "2026-10-07T11:05:58.939Z",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "두선이각각어떤자료를나타내는지범례설명을확인하는절차가명확하다.",
+          "cReason": "자료/것이라는일반목적어복원대신색·선모양과자료이름의연결을설명하는범례를확인하게한다. 범례·설명표를인정하여정식이름과기능을연결한다.",
+          "issues": [],
+          "isReleaseApproval": false,
+          "inputEvidence": "../e3e4-current-disputes-assist/reviews.json",
+          "candidateRereadEvidence": "../e3e4-current-disputes-assist/inputs/candidate-reread-records.json"
+        },
+        "cAcceptedAnswers": [
+          [
+            "$3$",
+            "삼"
+          ]
+        ]
+      },
+      "after": {
+        "id": "e4-2-5-1-xc27",
+        "grade": "초4",
+        "source": {
+          "id": "e4-2-5-1-xc27",
+          "section": "초4::2-5 꺾은선그래프::2-5-1 꺾은선그래프 알아보기",
+          "term": "선이 서로 다른 두 자료",
+          "kind": "방법",
+          "level": "상",
+          "definition": "두 자료의 꺾은선이 함께 있으면 색이나 선 모양의 {설명}부터 확인한다."
+        },
+        "B": {
+          "prompt": "한 그래프에 두 자료의 꺾은선이 함께 그려져 있다. 값을 읽기 전에 선들에 대해 가장 먼저 확인해야 할 것은 무엇인지 쓰시오.",
+          "answer": "색이나 선 모양이 각각 어떤 자료를 나타내는지 설명을 확인한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "각 선이 어떤 자료인지",
+                "색과 선 모양의 설명",
+                "선이 나타내는 자료"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "두 반의 자료를 그린 꺾은선그래프에 파란 선은 $3$반, 빨간 선은 $4$반을 나타낸다고 설명되어 있습니다. 파란 선의 값을 읽으면 {$3$}반의 자료를 알 수 있습니다.",
+          "acceptedAnswers": [
+            [
+              "$3$",
+              "삼"
+            ]
+          ]
+        },
+        "goal": "두 자료 그래프의 선 구별",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "f75174e1fb8e3080e6106bae9bcfc3f55529f75070850ce04a27a3e7e1812043"
+      },
+      "reason": "아직배우지않았을수있는범례라는용어를쓰기보다선색설명과자료이름의대응을실제로읽는다.",
+      "changed": true
+    },
+    {
+      "id": "e4-2-5-3-xc1",
+      "sourceIndex": 2644,
+      "beforeRaw": {
+        "sourceIndex": 2644,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "2359ed4581129252f15262d689de6ddaaad630fd8fff7da9f7adc2fb4758b3dc",
+        "proposalFingerprint": "b436a32323cd7392eab910175e626c8a83017dadefd4e1e73c9058db49821fe4",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "꺾은선그래프를 그리기 전에 조사한 때와 값을 표로 정리하면, 빠뜨린 자료가 있는지 확인하기 쉬운 까닭을 쓰시오.",
+        "bAnswer": "때와 값을 나란히 정리하여 각 때의 기록이 있는지 비교할 수 있으므로 빠뜨린 때나 값을 찾기 쉽습니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "때별 기록을 나란히 비교하여 빠뜨린 때나 값을 찾기 쉽다",
+              "각 때의 값이 기록되어 있는지 확인할 수 있어 빠진 자료를 찾기 쉽다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "표로 정리하는 좋은 점",
+        "bReason": "어떤점이좋은지에대한서로다른장점을한anyOf에묶은기준은동치가아니다. 후보는자료누락확인이쉬운까닭을묻고때별기록여부를확인할수있다는한내용만인정한다.",
+        "cDecision": "keep",
+        "cReason": "익숙한 낱말 빈칸이며 답이 표로 분명함",
+        "cSlotEquivalents": [
+          [
+            "표로"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "그래프를 그리기 전 자료 정리",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "조사한 때와 값을 {표}에 정리하면 빠뜨린 자료를 확인하기 쉽다.",
+        "cStudentSentence": "조사한 때와 값을 □에 정리하면 빠뜨린 자료를 확인하기 쉽다.",
+        "cSlotAnswers": [
+          {
+            "expected": "표",
+            "equivalents": [
+              "표로"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "조사한 때와 값을 □에 정리하면 빠뜨린 자료를 확인하기 쉽다.",
+          "answers": [
+            "표"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "꺾은선그래프를 그리기 전에 조사한 때와 값을 표로 정리하면, 빠뜨린 자료가 있는지 확인하기 쉬운 까닭을 쓰시오.",
+          "answer": "때와 값을 나란히 정리하여 각 때의 기록이 있는지 비교할 수 있으므로 빠뜨린 때나 값을 찾기 쉽습니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "때별 기록을 나란히 비교하여 빠뜨린 때나 값을 찾기 쉽다",
+                "각 때의 값이 기록되어 있는지 확인할 수 있어 빠진 자료를 찾기 쉽다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "조사한 때와 값을 {표}에 정리하면 빠뜨린 자료를 확인하기 쉽다.",
+          "acceptedAnswers": [
+            [
+              "표",
+              "표로"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-5-3-xc1",
+          "sourceIndex": 2644,
+          "proposalFingerprint": "b436a32323cd7392eab910175e626c8a83017dadefd4e1e73c9058db49821fe4",
+          "reader": "Codex direct e3e4 current-disputes assist; candidate reread",
+          "readAt": "2026-10-07T11:05:58.939Z",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "어떤점이좋은지에대한서로다른장점을한anyOf에묶은기준은동치가아니다. 후보는자료누락확인이쉬운까닭을묻고때별기록여부를확인할수있다는한내용만인정한다.",
+          "cReason": "자료의때와값을정리하는표의정식이름을묻는명확한단답으로유지한다.",
+          "issues": [],
+          "isReleaseApproval": false,
+          "inputEvidence": "../e3e4-current-disputes-assist/reviews.json",
+          "candidateRereadEvidence": "../e3e4-current-disputes-assist/inputs/candidate-reread-records.json"
+        }
+      },
+      "beforeNormalizedHash": "897ffa06bd16081a044ead8b9d719cdad8e01a38e8b12d987135a3abbb2c623e",
+      "proposedRawRow": {
+        "sourceIndex": 2644,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "2359ed4581129252f15262d689de6ddaaad630fd8fff7da9f7adc2fb4758b3dc",
+        "proposalFingerprint": "d10d5b493cc0af1ed608343e9b9448134f29b7d8d5b164542db0066752706c70",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "꺾은선그래프를 그리기 전에 조사한 때와 값을 표로 정리하면, 빠뜨린 자료가 있는지 확인하기 쉬운 까닭을 쓰시오.",
+        "bAnswer": "때와 값을 나란히 정리하여 각 때의 기록이 있는지 비교할 수 있으므로 빠뜨린 때나 값을 찾기 쉽습니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "때별 기록을 나란히 비교하여 빠뜨린 때나 값을 찾기 쉽다",
+              "각 때와 값을 짝지어 나란히 정리하면 기록이 없는 때나 값을 찾아낼 수 있다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "표로 정리하는 좋은 점",
+        "bReason": "각때와값을짝지어나란히정리하기때문이라는내용을모든허용대안이포함하도록단순반복대안을뺀다.",
+        "cDecision": "keep",
+        "cReason": "익숙한 낱말 빈칸이며 답이 표로 분명함",
+        "cSlotEquivalents": [
+          [
+            "표로"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "그래프를 그리기 전 자료 정리",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "조사한 때와 값을 {표}에 정리하면 빠뜨린 자료를 확인하기 쉽다.",
+        "cStudentSentence": "조사한 때와 값을 □에 정리하면 빠뜨린 자료를 확인하기 쉽다.",
+        "cSlotAnswers": [
+          {
+            "expected": "표",
+            "equivalents": [
+              "표로"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "조사한 때와 값을 □에 정리하면 빠뜨린 자료를 확인하기 쉽다.",
+          "answers": [
+            "표"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "꺾은선그래프를 그리기 전에 조사한 때와 값을 표로 정리하면, 빠뜨린 자료가 있는지 확인하기 쉬운 까닭을 쓰시오.",
+          "answer": "때와 값을 나란히 정리하여 각 때의 기록이 있는지 비교할 수 있으므로 빠뜨린 때나 값을 찾기 쉽습니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "때별 기록을 나란히 비교하여 빠뜨린 때나 값을 찾기 쉽다",
+                "각 때와 값을 짝지어 나란히 정리하면 기록이 없는 때나 값을 찾아낼 수 있다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "조사한 때와 값을 {표}에 정리하면 빠뜨린 자료를 확인하기 쉽다.",
+          "acceptedAnswers": [
+            [
+              "표",
+              "표로"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-5-3-xc1",
+          "sourceIndex": 2644,
+          "proposalFingerprint": "b436a32323cd7392eab910175e626c8a83017dadefd4e1e73c9058db49821fe4",
+          "reader": "Codex direct e3e4 current-disputes assist; candidate reread",
+          "readAt": "2026-10-07T11:05:58.939Z",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "어떤점이좋은지에대한서로다른장점을한anyOf에묶은기준은동치가아니다. 후보는자료누락확인이쉬운까닭을묻고때별기록여부를확인할수있다는한내용만인정한다.",
+          "cReason": "자료의때와값을정리하는표의정식이름을묻는명확한단답으로유지한다.",
+          "issues": [],
+          "isReleaseApproval": false,
+          "inputEvidence": "../e3e4-current-disputes-assist/reviews.json",
+          "candidateRereadEvidence": "../e3e4-current-disputes-assist/inputs/candidate-reread-records.json"
+        }
+      },
+      "after": {
+        "id": "e4-2-5-3-xc1",
+        "grade": "초4",
+        "source": {
+          "id": "e4-2-5-3-xc1",
+          "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+          "term": "그래프를 그리기 전 자료 정리",
+          "kind": "방법",
+          "level": "하",
+          "definition": "조사한 때와 값을 {표}에 정리하면 빠뜨린 자료를 확인하기 쉽다."
+        },
+        "B": {
+          "prompt": "꺾은선그래프를 그리기 전에 조사한 때와 값을 표로 정리하면, 빠뜨린 자료가 있는지 확인하기 쉬운 까닭을 쓰시오.",
+          "answer": "때와 값을 나란히 정리하여 각 때의 기록이 있는지 비교할 수 있으므로 빠뜨린 때나 값을 찾기 쉽습니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "때별 기록을 나란히 비교하여 빠뜨린 때나 값을 찾기 쉽다",
+                "각 때와 값을 짝지어 나란히 정리하면 기록이 없는 때나 값을 찾아낼 수 있다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "조사한 때와 값을 {표}에 정리하면 빠뜨린 자료를 확인하기 쉽다.",
+          "acceptedAnswers": [
+            [
+              "표",
+              "표로"
+            ]
+          ]
+        },
+        "goal": "표로 정리하는 좋은 점",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "245aeb0006bcb038866f09e7bdfcf453d69dec2b5d57edba70ce26fafb8a2419"
+      },
+      "reason": "각때와값을짝지어나란히정리하기때문이라는내용을모든허용대안이포함하도록단순반복대안을뺀다.",
+      "changed": true
+    },
+    {
+      "id": "e4-2-5-3-xc12",
+      "sourceIndex": 2655,
+      "beforeRaw": {
+        "sourceIndex": 2655,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "bbc5d1567c57f5d2f230c18ef1aa51e52e74459cb6cebacc27bbba3c6f06e146",
+        "proposalFingerprint": "8df01d7b9b8157e80b590b0c60630a314fed36b74c360597bee3aade1d922a0f",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "물결선으로 아래쪽 눈금을 생략해도 조사한 값들을 빠뜨리지 않으려면, 세로축의 눈금 범위를 가장 작은 값과 가장 큰 값을 기준으로 어떻게 정해야 하는지 쓰시오.",
+        "bAnswer": "가장 작은 값부터 가장 큰 값까지 모든 조사한 값이 들어가도록 눈금 범위를 정해야 합니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "가장 작은 값과 가장 큰 값 사이의 모든 조사한 값이 들어가도록 한다",
+              "최솟값부터 최댓값까지 모두 표시할 수 있는 범위로 정한다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "생략해도 모든 자료 표시",
+        "bReason": "반드시나타낼것은눈금단위/물결선등으로범위가열려있다. 후보는조사한값을빠뜨리지않기위한세로축범위를최소·최대값으로어떻게정할지묻는다.",
+        "cDecision": "keep",
+        "cReason": "모든 자료 빈칸이 앞 범위와 잘 연결됨",
+        "cSlotEquivalents": [
+          [
+            "모든 값",
+            "모든 점",
+            "자료 모두",
+            "자료 전부"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "세로축 범위 정하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "눈금을 일부 줄여도 가장 작은 값부터 가장 큰 값까지 {모든 자료}를 표시해야 한다.",
+        "cStudentSentence": "눈금을 일부 줄여도 가장 작은 값부터 가장 큰 값까지 □를 표시해야 한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "모든 자료",
+            "equivalents": [
+              "모든 값",
+              "모든 점",
+              "자료 모두",
+              "자료 전부"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "눈금을 일부 줄여도 가장 작은 값부터 가장 큰 값까지 □를 표시해야 한다.",
+          "answers": [
+            "모든 자료"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "물결선으로 아래쪽 눈금을 생략해도 조사한 값들을 빠뜨리지 않으려면, 세로축의 눈금 범위를 가장 작은 값과 가장 큰 값을 기준으로 어떻게 정해야 하는지 쓰시오.",
+          "answer": "가장 작은 값부터 가장 큰 값까지 모든 조사한 값이 들어가도록 눈금 범위를 정해야 합니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "가장 작은 값과 가장 큰 값 사이의 모든 조사한 값이 들어가도록 한다",
+                "최솟값부터 최댓값까지 모두 표시할 수 있는 범위로 정한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "눈금을 일부 줄여도 가장 작은 값부터 가장 큰 값까지 {모든 자료}를 표시해야 한다.",
+          "acceptedAnswers": [
+            [
+              "모든 자료",
+              "모든 값",
+              "모든 점",
+              "자료 모두",
+              "자료 전부"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-5-3-xc12",
+          "sourceIndex": 2655,
+          "proposalFingerprint": "8df01d7b9b8157e80b590b0c60630a314fed36b74c360597bee3aade1d922a0f",
+          "reader": "Codex direct e3e4 current-disputes assist; candidate reread",
+          "readAt": "2026-10-07T11:05:58.939Z",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "반드시나타낼것은눈금단위/물결선등으로범위가열려있다. 후보는조사한값을빠뜨리지않기위한세로축범위를최소·최대값으로어떻게정할지묻는다.",
+          "cReason": "모든자료를표시해야한다는일반범위조건은명확하며현재유지한다.",
+          "issues": [],
+          "isReleaseApproval": false,
+          "inputEvidence": "../e3e4-current-disputes-assist/reviews.json",
+          "candidateRereadEvidence": "../e3e4-current-disputes-assist/inputs/candidate-reread-records.json"
+        }
+      },
+      "beforeNormalizedHash": "b498d7607ec069404aa7310af5583db67a5606ea49d88d023c5576c0a8232698",
+      "proposedRawRow": {
+        "sourceIndex": 2655,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "bbc5d1567c57f5d2f230c18ef1aa51e52e74459cb6cebacc27bbba3c6f06e146",
+        "proposalFingerprint": "d81f38335110f1325a97d869dcabb5a6c4607ec2ca1fdae22844ec7e3bfb613e",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "조사한 값 중 가장 작은 값은 $12$, 가장 큰 값은 $28$입니다. 세로 눈금 범위를 $10$부터 $30$까지로 정한 그래프와 $15$부터 $25$까지로 정한 그래프 중, 모든 값을 표시할 수 있는 것은 어느 쪽인가요? 가장 작은 값과 가장 큰 값을 이용하여 까닭도 설명하세요.",
+        "bAnswer": "$10$부터 $30$까지인 그래프입니다. 시작 눈금 $10$은 가장 작은 값 $12$보다 작고, 끝 눈금 $30$은 가장 큰 값 $28$보다 커서 모든 값이 들어갑니다. $15$부터 $25$까지이면 $12$와 $28$을 표시할 수 없습니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$10$부터 $30$까지인 그래프"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12$와 $28$이 모두 눈금 범위에 들어간다",
+              "$15$부터 $25$까지이면 $12$와 $28$을 표시할 수 없다",
+              "시작 눈금은 $12$ 이하이고 끝 눈금은 $28$ 이상이어야 한다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "생략해도 모든 자료 표시",
+        "bReason": "값범위를포함하라는물음복원대신두눈금범위중모든조사값을표시할수있는것을구체적으로고르게한다.",
+        "cDecision": "rewrite",
+        "cReason": "값범위를포함하라는물음복원대신두눈금범위중모든조사값을표시할수있는것을구체적으로고르게한다.",
+        "cSlotEquivalents": [
+          []
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "세로축 범위 정하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "가장 작은 조사값이 $12$, 가장 큰 조사값이 $28$입니다. 가 그래프의 눈금은 $10$부터 $30$까지, 나 그래프의 눈금은 $15$부터 $25$까지입니다. 모든 조사값을 표시할 수 있는 것은 {가} 그래프입니다.",
+        "cStudentSentence": "가장 작은 조사값이 $12$, 가장 큰 조사값이 $28$입니다. 가 그래프의 눈금은 $10$부터 $30$까지, 나 그래프의 눈금은 $15$부터 $25$까지입니다. 모든 조사값을 표시할 수 있는 것은 □ 그래프입니다.",
+        "cSlotAnswers": [
+          {
+            "expected": "가",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "눈금을 일부 줄여도 가장 작은 값부터 가장 큰 값까지 □를 표시해야 한다.",
+          "answers": [
+            "모든 자료"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "조사한 값 중 가장 작은 값은 $12$, 가장 큰 값은 $28$입니다. 세로 눈금 범위를 $10$부터 $30$까지로 정한 그래프와 $15$부터 $25$까지로 정한 그래프 중, 모든 값을 표시할 수 있는 것은 어느 쪽인가요? 가장 작은 값과 가장 큰 값을 이용하여 까닭도 설명하세요.",
+          "answer": "$10$부터 $30$까지인 그래프입니다. 시작 눈금 $10$은 가장 작은 값 $12$보다 작고, 끝 눈금 $30$은 가장 큰 값 $28$보다 커서 모든 값이 들어갑니다. $15$부터 $25$까지이면 $12$와 $28$을 표시할 수 없습니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$10$부터 $30$까지인 그래프"
+              ]
+            },
+            {
+              "anyOf": [
+                "$12$와 $28$이 모두 눈금 범위에 들어간다",
+                "$15$부터 $25$까지이면 $12$와 $28$을 표시할 수 없다",
+                "시작 눈금은 $12$ 이하이고 끝 눈금은 $28$ 이상이어야 한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "가장 작은 조사값이 $12$, 가장 큰 조사값이 $28$입니다. 가 그래프의 눈금은 $10$부터 $30$까지, 나 그래프의 눈금은 $15$부터 $25$까지입니다. 모든 조사값을 표시할 수 있는 것은 {가} 그래프입니다.",
+          "acceptedAnswers": [
+            [
+              "가"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-5-3-xc12",
+          "sourceIndex": 2655,
+          "proposalFingerprint": "8df01d7b9b8157e80b590b0c60630a314fed36b74c360597bee3aade1d922a0f",
+          "reader": "Codex direct e3e4 current-disputes assist; candidate reread",
+          "readAt": "2026-10-07T11:05:58.939Z",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "반드시나타낼것은눈금단위/물결선등으로범위가열려있다. 후보는조사한값을빠뜨리지않기위한세로축범위를최소·최대값으로어떻게정할지묻는다.",
+          "cReason": "모든자료를표시해야한다는일반범위조건은명확하며현재유지한다.",
+          "issues": [],
+          "isReleaseApproval": false,
+          "inputEvidence": "../e3e4-current-disputes-assist/reviews.json",
+          "candidateRereadEvidence": "../e3e4-current-disputes-assist/inputs/candidate-reread-records.json"
+        },
+        "cAfter": "가장 작은 조사값이 $12$, 가장 큰 조사값이 $28$입니다. 가 그래프의 눈금은 $10$부터 $30$까지, 나 그래프의 눈금은 $15$부터 $25$까지입니다. 모든 조사값을 표시할 수 있는 것은 {가} 그래프입니다.",
+        "cAcceptedAnswers": [
+          [
+            "가"
+          ]
+        ]
+      },
+      "after": {
+        "id": "e4-2-5-3-xc12",
+        "grade": "초4",
+        "source": {
+          "id": "e4-2-5-3-xc12",
+          "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+          "term": "세로축 범위 정하기",
+          "kind": "방법",
+          "level": "중",
+          "definition": "눈금을 일부 줄여도 가장 작은 값부터 가장 큰 값까지 {모든 자료}를 표시해야 한다."
+        },
+        "B": {
+          "prompt": "조사한 값 중 가장 작은 값은 $12$, 가장 큰 값은 $28$입니다. 세로 눈금 범위를 $10$부터 $30$까지로 정한 그래프와 $15$부터 $25$까지로 정한 그래프 중, 모든 값을 표시할 수 있는 것은 어느 쪽인가요? 가장 작은 값과 가장 큰 값을 이용하여 까닭도 설명하세요.",
+          "answer": "$10$부터 $30$까지인 그래프입니다. 시작 눈금 $10$은 가장 작은 값 $12$보다 작고, 끝 눈금 $30$은 가장 큰 값 $28$보다 커서 모든 값이 들어갑니다. $15$부터 $25$까지이면 $12$와 $28$을 표시할 수 없습니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$10$부터 $30$까지인 그래프"
+              ]
+            },
+            {
+              "anyOf": [
+                "$12$와 $28$이 모두 눈금 범위에 들어간다",
+                "$15$부터 $25$까지이면 $12$와 $28$을 표시할 수 없다",
+                "시작 눈금은 $12$ 이하이고 끝 눈금은 $28$ 이상이어야 한다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "가장 작은 조사값이 $12$, 가장 큰 조사값이 $28$입니다. 가 그래프의 눈금은 $10$부터 $30$까지, 나 그래프의 눈금은 $15$부터 $25$까지입니다. 모든 조사값을 표시할 수 있는 것은 {가} 그래프입니다.",
+          "acceptedAnswers": [
+            [
+              "가"
+            ]
+          ]
+        },
+        "goal": "생략해도 모든 자료 표시",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "3a30a4d6cad2170094a7af25f1403c16e5d0bce7c37bcc50356185e13bc9ecd5"
+      },
+      "reason": "값범위를포함하라는물음복원대신두눈금범위중모든조사값을표시할수있는것을구체적으로고르게한다.",
+      "changed": true
+    },
+    {
+      "id": "e4-2-5-3-xc20",
+      "sourceIndex": 2663,
+      "beforeRaw": {
+        "sourceIndex": 2663,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "e7cabfce7f2cca21de91017ab99f5e956756942ec1c85d361d2e214086f9272a",
+        "proposalFingerprint": "2cb03ca0686b6e2a07e3c315049d39a2bd15bb356346f35850568e186b8ce167",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "아직 조사하지 않은 다음 값을 예상하여 꺾은선그래프에 나타낼 때 조사한 값과 어떻게 다르게 해야 하는지 쓰시오.",
+        "bAnswer": "예상한 값임을 알 수 있게 구별해서 표시한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "예상한 값임을 알 수 있게 조사한 값과 구별해 표시한다",
+              "예상값이라고 설명하고 조사한 값과 다른 선이나 색으로 표시한다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "예상값과 관측값 구별",
+        "bReason": "현재조사한값과다르게표시한다는대안은예상값이라는의미를생략한다. 예상한값임을알수있게표시한다는내용을모든대안에포함시켜까닭없는차별표시만으로통과하지않게한다.",
+        "cDecision": "keep",
+        "cReason": "예상한 값 빈칸이 앞 조건과 잘 맞음",
+        "cSlotEquivalents": [
+          [
+            "예상값",
+            "짐작한 값",
+            "예측한 값"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "예상값과 관측값 구별",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "아직 조사하지 않은 다음 값은 그래프에 쓰더라도 {예상한 값}임을 구별해 표시한다.",
+        "cStudentSentence": "아직 조사하지 않은 다음 값은 그래프에 쓰더라도 □임을 구별해 표시한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "예상한 값",
+            "equivalents": [
+              "예상값",
+              "짐작한 값",
+              "예측한 값"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "아직 조사하지 않은 다음 값은 그래프에 쓰더라도 □임을 구별해 표시한다.",
+          "answers": [
+            "예상한 값"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "아직 조사하지 않은 다음 값을 예상하여 꺾은선그래프에 나타낼 때 조사한 값과 어떻게 다르게 해야 하는지 쓰시오.",
+          "answer": "예상한 값임을 알 수 있게 구별해서 표시한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "예상한 값임을 알 수 있게 조사한 값과 구별해 표시한다",
+                "예상값이라고 설명하고 조사한 값과 다른 선이나 색으로 표시한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "아직 조사하지 않은 다음 값은 그래프에 쓰더라도 {예상한 값}임을 구별해 표시한다.",
+          "acceptedAnswers": [
+            [
+              "예상한 값",
+              "예상값",
+              "짐작한 값",
+              "예측한 값"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-5-3-xc20",
+          "sourceIndex": 2663,
+          "proposalFingerprint": "2cb03ca0686b6e2a07e3c315049d39a2bd15bb356346f35850568e186b8ce167",
+          "reader": "Codex direct e3e4 current-disputes assist; candidate reread",
+          "readAt": "2026-10-07T11:05:58.939Z",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "현재조사한값과다르게표시한다는대안은예상값이라는의미를생략한다. 예상한값임을알수있게표시한다는내용을모든대안에포함시켜까닭없는차별표시만으로통과하지않게한다.",
+          "cReason": "아직조사하지않은값의성격을예상한값으로명명하는타당한개념확인이다.",
+          "issues": [],
+          "isReleaseApproval": false,
+          "inputEvidence": "../e3e4-current-disputes-assist/reviews.json",
+          "candidateRereadEvidence": "../e3e4-current-disputes-assist/inputs/candidate-reread-records.json"
+        }
+      },
+      "beforeNormalizedHash": "394ee1e00eadcdcae2d981db28a58367e2f55b94518a4c7ce7f7625a4e9ab8e9",
+      "proposedRawRow": {
+        "sourceIndex": 2663,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "e7cabfce7f2cca21de91017ab99f5e956756942ec1c85d361d2e214086f9272a",
+        "proposalFingerprint": "1c27351c60fa13de34b7bd14ff7af06517eb81a6324420d08e7a90a893d4d4bd",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "아직 조사하지 않은 다음 값을 예상하여 꺾은선그래프에 나타낼 때 조사한 값과 어떻게 다르게 해야 하는지 쓰시오.",
+        "bAnswer": "예상한 값임을 알 수 있게 구별해서 표시한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "예상한 점에 예상값이라고 써서 조사한 값과 구별한다",
+              "예상값은 다른 색이나 점선으로 나타내고 그 색이나 점선이 예상값임을 설명한다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "예상값과 관측값 구별",
+        "bReason": "다르게구별한다는말만반복하지않고예상값이라고명시하거나다른색과선을써서뜻을설명하는방법을모든대안에서요구한다.",
+        "cDecision": "keep",
+        "cReason": "예상한 값 빈칸이 앞 조건과 잘 맞음",
+        "cSlotEquivalents": [
+          [
+            "예상값",
+            "짐작한 값",
+            "예측한 값"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "예상값과 관측값 구별",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "아직 조사하지 않은 다음 값은 그래프에 쓰더라도 {예상한 값}임을 구별해 표시한다.",
+        "cStudentSentence": "아직 조사하지 않은 다음 값은 그래프에 쓰더라도 □임을 구별해 표시한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "예상한 값",
+            "equivalents": [
+              "예상값",
+              "짐작한 값",
+              "예측한 값"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "아직 조사하지 않은 다음 값은 그래프에 쓰더라도 □임을 구별해 표시한다.",
+          "answers": [
+            "예상한 값"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "아직 조사하지 않은 다음 값을 예상하여 꺾은선그래프에 나타낼 때 조사한 값과 어떻게 다르게 해야 하는지 쓰시오.",
+          "answer": "예상한 값임을 알 수 있게 구별해서 표시한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "예상한 점에 예상값이라고 써서 조사한 값과 구별한다",
+                "예상값은 다른 색이나 점선으로 나타내고 그 색이나 점선이 예상값임을 설명한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "아직 조사하지 않은 다음 값은 그래프에 쓰더라도 {예상한 값}임을 구별해 표시한다.",
+          "acceptedAnswers": [
+            [
+              "예상한 값",
+              "예상값",
+              "짐작한 값",
+              "예측한 값"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-5-3-xc20",
+          "sourceIndex": 2663,
+          "proposalFingerprint": "2cb03ca0686b6e2a07e3c315049d39a2bd15bb356346f35850568e186b8ce167",
+          "reader": "Codex direct e3e4 current-disputes assist; candidate reread",
+          "readAt": "2026-10-07T11:05:58.939Z",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "현재조사한값과다르게표시한다는대안은예상값이라는의미를생략한다. 예상한값임을알수있게표시한다는내용을모든대안에포함시켜까닭없는차별표시만으로통과하지않게한다.",
+          "cReason": "아직조사하지않은값의성격을예상한값으로명명하는타당한개념확인이다.",
+          "issues": [],
+          "isReleaseApproval": false,
+          "inputEvidence": "../e3e4-current-disputes-assist/reviews.json",
+          "candidateRereadEvidence": "../e3e4-current-disputes-assist/inputs/candidate-reread-records.json"
+        }
+      },
+      "after": {
+        "id": "e4-2-5-3-xc20",
+        "grade": "초4",
+        "source": {
+          "id": "e4-2-5-3-xc20",
+          "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+          "term": "예상값과 관측값 구별",
+          "kind": "방법",
+          "level": "상",
+          "definition": "아직 조사하지 않은 다음 값은 그래프에 쓰더라도 {예상한 값}임을 구별해 표시한다."
+        },
+        "B": {
+          "prompt": "아직 조사하지 않은 다음 값을 예상하여 꺾은선그래프에 나타낼 때 조사한 값과 어떻게 다르게 해야 하는지 쓰시오.",
+          "answer": "예상한 값임을 알 수 있게 구별해서 표시한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "예상한 점에 예상값이라고 써서 조사한 값과 구별한다",
+                "예상값은 다른 색이나 점선으로 나타내고 그 색이나 점선이 예상값임을 설명한다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "아직 조사하지 않은 다음 값은 그래프에 쓰더라도 {예상한 값}임을 구별해 표시한다.",
+          "acceptedAnswers": [
+            [
+              "예상한 값",
+              "예상값",
+              "짐작한 값",
+              "예측한 값"
+            ]
+          ]
+        },
+        "goal": "예상값과 관측값 구별",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "7e09bb921d820c214f49c553e2446529da0c939213104c8c2020606b8c323393"
+      },
+      "reason": "다르게구별한다는말만반복하지않고예상값이라고명시하거나다른색과선을써서뜻을설명하는방법을모든대안에서요구한다.",
+      "changed": true
+    },
+    {
+      "id": "e4-2-5-3-xc28",
+      "sourceIndex": 2671,
+      "beforeRaw": {
+        "sourceIndex": 2671,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "c90e8f30c62572269958ad3a30cd1423217454eab408a8b542497373a92b009e",
+        "proposalFingerprint": "1aeb8dc4f991ded4bf74183fa34b4d040aa1905c2031d84026f4cc33b4396edc",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc28",
+        "bDecision": "rewrite",
+        "bPrompt": "꺾은선그래프의 세로 눈금을 정할 때, 자료가 들어가는 범위와 값의 변화를 읽기 좋은 정도라는 두 관점에서 지켜야 할 기준을 하나씩 쓰시오.",
+        "bAnswer": "모든 자료가 들어가는 범위로 정하고, 값의 차이와 변화를 읽기 쉽게 정합니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "전체 자료가 들어간다",
+              "모든 자료가 들어간다"
+            ]
+          },
+          {
+            "anyOf": [
+              "값의 차를 읽기 쉽다",
+              "변화를 알아보기 쉽다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "적당한 눈금의 기준",
+        "bReason": "기준두가지만은단위·간격·전체범위등여러정답쌍이가능하다. 후보는자료가들어가는범위와값변화의읽기편의라는두관점을지정해현재필수의미와요구를일치시킨다.",
+        "cDecision": "exclude",
+        "cReason": "쉽게라는 일반 권고를 채우는 빈칸은 수학적 판단을 확인하지 못한다. 전체 자료 포함과 변화 읽기의 두 기준을 설명하는 B를 사용한다.",
+        "exclusionReason": "C: 수학적 판단 없이 권고 표현을 복원하는 빈칸이므로 제외한다. B와 일반 설명은 유지한다.",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "적당한 눈금인지 설명하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "bQuestion": {
+          "prompt": "꺾은선그래프의 세로 눈금을 정할 때, 자료가 들어가는 범위와 값의 변화를 읽기 좋은 정도라는 두 관점에서 지켜야 할 기준을 하나씩 쓰시오.",
+          "answer": "모든 자료가 들어가는 범위로 정하고, 값의 차이와 변화를 읽기 쉽게 정합니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "전체 자료가 들어간다",
+                "모든 자료가 들어간다"
+              ]
+            },
+            {
+              "anyOf": [
+                "값의 차를 읽기 쉽다",
+                "변화를 알아보기 쉽다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": null,
+        "questionExclusions": {
+          "cloze": "쉽게라는 일반 권고를 채우는 빈칸은 수학적 판단을 확인하지 못한다. 전체 자료 포함과 변화 읽기의 두 기준을 설명하는 B를 사용한다."
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-5-3-xc28",
+          "sourceIndex": 2671,
+          "proposalFingerprint": "1aeb8dc4f991ded4bf74183fa34b4d040aa1905c2031d84026f4cc33b4396edc",
+          "reader": "Codex direct e3e4 current-disputes assist; candidate reread",
+          "readAt": "2026-10-07T11:05:58.939Z",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "exclude",
+          "verdict": "retain-planning-proposal",
+          "bReason": "기준두가지만은단위·간격·전체범위등여러정답쌍이가능하다. 후보는자료가들어가는범위와값변화의읽기편의라는두관점을지정해현재필수의미와요구를일치시킨다.",
+          "cReason": "쉽게만채우는C제외는현재이유와B의두관점에대응하여그대로유지한다.",
+          "issues": [],
+          "isReleaseApproval": false,
+          "inputEvidence": "../e3e4-current-disputes-assist/reviews.json",
+          "candidateRereadEvidence": "../e3e4-current-disputes-assist/inputs/candidate-reread-records.json"
+        }
+      },
+      "beforeNormalizedHash": "9453c8c333424df5fa148f1465ae8e60f010b376c48fb40a75f745e999bf157f",
+      "proposedRawRow": {
+        "sourceIndex": 2671,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "c90e8f30c62572269958ad3a30cd1423217454eab408a8b542497373a92b009e",
+        "proposalFingerprint": "9faa66a098c9f2fbca556e0a968ff24a093e662a47ac3bf435d330cbeef8dfa1",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc28",
+        "bDecision": "rewrite",
+        "bPrompt": "조사값은 $24,28,30,35,36$입니다. 가 그래프의 세로 눈금은 $0$부터 $100$까지 $10$씩, 나 그래프는 $20$부터 $40$까지 $1$씩입니다. 두 그래프 모두 조사값을 빠짐없이 표시할 수 있는지 쓰세요. 또 작은 값의 차이를 더 읽기 쉽게 하는 것은 어느 쪽인지 까닭과 함께 쓰세요.",
+        "bAnswer": "두 그래프 모두 조사값을 표시할 수 있습니다. 가장 작은 값 $24$부터 가장 큰 값 $36$까지 두 범위에 모두 들어갑니다. 나 그래프는 눈금이 $1$씩이라 가 그래프의 $10$씩인 눈금보다 작은 차이를 읽기 쉽습니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 그래프 모두 모든 조사값을 표시할 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나 그래프는 눈금이 $1$씩이라 작은 차이를 읽기 쉽다",
+              "가의 $10$ 간격보다 나의 $1$ 간격이 작은 차이를 읽기 쉽다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "적당한 눈금의 기준",
+        "bReason": "눈금선정기준을물음에서그대로주는대신같은자료에대한두범위와간격을비교하여포함여부와세밀한차이읽기를판단하게한다.",
+        "cDecision": "exclude",
+        "cReason": "쉽게라는 일반 권고를 채우는 빈칸은 수학적 판단을 확인하지 못한다. 전체 자료 포함과 변화 읽기의 두 기준을 설명하는 B를 사용한다.",
+        "exclusionReason": "C: 수학적 판단 없이 권고 표현을 복원하는 빈칸이므로 제외한다. B와 일반 설명은 유지한다.",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "적당한 눈금인지 설명하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "bQuestion": {
+          "prompt": "조사값은 $24,28,30,35,36$입니다. 가 그래프의 세로 눈금은 $0$부터 $100$까지 $10$씩, 나 그래프는 $20$부터 $40$까지 $1$씩입니다. 두 그래프 모두 조사값을 빠짐없이 표시할 수 있는지 쓰세요. 또 작은 값의 차이를 더 읽기 쉽게 하는 것은 어느 쪽인지 까닭과 함께 쓰세요.",
+          "answer": "두 그래프 모두 조사값을 표시할 수 있습니다. 가장 작은 값 $24$부터 가장 큰 값 $36$까지 두 범위에 모두 들어갑니다. 나 그래프는 눈금이 $1$씩이라 가 그래프의 $10$씩인 눈금보다 작은 차이를 읽기 쉽습니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "두 그래프 모두 모든 조사값을 표시할 수 있다"
+              ]
+            },
+            {
+              "anyOf": [
+                "나 그래프는 눈금이 $1$씩이라 작은 차이를 읽기 쉽다",
+                "가의 $10$ 간격보다 나의 $1$ 간격이 작은 차이를 읽기 쉽다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": null,
+        "questionExclusions": {
+          "cloze": "쉽게라는 일반 권고를 채우는 빈칸은 수학적 판단을 확인하지 못한다. 전체 자료 포함과 변화 읽기의 두 기준을 설명하는 B를 사용한다."
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-5-3-xc28",
+          "sourceIndex": 2671,
+          "proposalFingerprint": "1aeb8dc4f991ded4bf74183fa34b4d040aa1905c2031d84026f4cc33b4396edc",
+          "reader": "Codex direct e3e4 current-disputes assist; candidate reread",
+          "readAt": "2026-10-07T11:05:58.939Z",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "exclude",
+          "verdict": "retain-planning-proposal",
+          "bReason": "기준두가지만은단위·간격·전체범위등여러정답쌍이가능하다. 후보는자료가들어가는범위와값변화의읽기편의라는두관점을지정해현재필수의미와요구를일치시킨다.",
+          "cReason": "쉽게만채우는C제외는현재이유와B의두관점에대응하여그대로유지한다.",
+          "issues": [],
+          "isReleaseApproval": false,
+          "inputEvidence": "../e3e4-current-disputes-assist/reviews.json",
+          "candidateRereadEvidence": "../e3e4-current-disputes-assist/inputs/candidate-reread-records.json"
+        }
+      },
+      "after": {
+        "id": "e4-2-5-3-xc28",
+        "grade": "초4",
+        "source": {
+          "id": "e4-2-5-3-xc28",
+          "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+          "term": "적당한 눈금인지 설명하기",
+          "kind": "방법",
+          "level": "상",
+          "definition": "꺾은선그래프의 눈금은 전체 자료가 들어가고 값의 차를 읽기 {쉽게} 정한다. 그래야 다른 사람도 변화를 알아볼 수 있다."
+        },
+        "B": {
+          "prompt": "조사값은 $24,28,30,35,36$입니다. 가 그래프의 세로 눈금은 $0$부터 $100$까지 $10$씩, 나 그래프는 $20$부터 $40$까지 $1$씩입니다. 두 그래프 모두 조사값을 빠짐없이 표시할 수 있는지 쓰세요. 또 작은 값의 차이를 더 읽기 쉽게 하는 것은 어느 쪽인지 까닭과 함께 쓰세요.",
+          "answer": "두 그래프 모두 조사값을 표시할 수 있습니다. 가장 작은 값 $24$부터 가장 큰 값 $36$까지 두 범위에 모두 들어갑니다. 나 그래프는 눈금이 $1$씩이라 가 그래프의 $10$씩인 눈금보다 작은 차이를 읽기 쉽습니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "두 그래프 모두 모든 조사값을 표시할 수 있다"
+              ]
+            },
+            {
+              "anyOf": [
+                "나 그래프는 눈금이 $1$씩이라 작은 차이를 읽기 쉽다",
+                "가의 $10$ 간격보다 나의 $1$ 간격이 작은 차이를 읽기 쉽다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "excluded": "쉽게라는 일반 권고를 채우는 빈칸은 수학적 판단을 확인하지 못한다. 전체 자료 포함과 변화 읽기의 두 기준을 설명하는 B를 사용한다."
+        },
+        "goal": "적당한 눈금의 기준",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "db1aa5a2488150f8fe9870b1a649930559f9d995defa410b6c4fee47dc6527dc"
+      },
+      "reason": "눈금선정기준을물음에서그대로주는대신같은자료에대한두범위와간격을비교하여포함여부와세밀한차이읽기를판단하게한다.",
+      "changed": true
+    }
+  ]
+}

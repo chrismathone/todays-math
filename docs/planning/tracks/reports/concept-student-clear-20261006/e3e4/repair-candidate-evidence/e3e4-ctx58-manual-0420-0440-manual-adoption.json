@@ -1,0 +1,2129 @@
+{
+  "sourceCommit": "13bf05dce",
+  "directAuthor": "Codex after actual current-hash feedback and full current field reading",
+  "notFinalReread": true,
+  "entries": [
+    {
+      "id": "e4-2-2-1-xc23",
+      "sourceIndex": 2183,
+      "beforeProposal": {
+        "sourceIndex": 2183,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "sourceFingerprint": "0119c7cd4a0aedefa3d708cba5b81b07b81c9862bbb244437a4e7222852fddb9",
+        "proposalFingerprint": "89ff6a4ad7962f0d8b3df0eac0bbab4cb4734b9d1aa61364d03b4a328bd03d4b",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-1-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "정삼각형은 이등변삼각형이라고 할 수 있지만, 이등변삼각형이 모두 정삼각형은 아닌 까닭을 설명하시오.",
+        "bAnswer": "정삼각형은 세 변이 같아 두 변이 같다는 조건을 만족하지만, 이등변삼각형은 나머지 한 변이 달라도 되기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "이등변삼각형은 나머지 변이 달라도 된다",
+              "정삼각형은 두 변이 같은 조건도 만족한다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "정삼각형과 이등변삼각형의 관계",
+        "bReason": "포함 관계의 방향을 이유로 설명",
+        "cDecision": "rewrite",
+        "cAfter": "정삼각형은 언제나 이등변삼각형이지만, 이등변삼각형이 언제나 정삼각형인 것은 {아니다}.",
+        "cReason": "긴 구절 빈칸을 '아니다' 한 낱말로 줄임",
+        "cSlotEquivalents": [
+          [
+            "아니"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "포함 관계의 반대",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정삼각형은 언제나 이등변삼각형이지만, 이등변삼각형이 언제나 정삼각형인 것은 {아니다}.",
+        "cStudentSentence": "정삼각형은 언제나 이등변삼각형이지만, 이등변삼각형이 언제나 정삼각형인 것은 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "아니다",
+            "equivalents": [
+              "아니"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "정삼각형은 이등변삼각형이라고 할 수 있지만, 이등변삼각형이 모두 정삼각형은 아닌 까닭을 설명하시오.",
+          "answer": "정삼각형은 세 변이 같아 두 변이 같다는 조건을 만족하지만, 이등변삼각형은 나머지 한 변이 달라도 되기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "이등변삼각형은 나머지 변이 달라도 된다",
+                "정삼각형은 두 변이 같은 조건도 만족한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "정삼각형은 언제나 이등변삼각형이지만, 이등변삼각형이 언제나 정삼각형인 것은 {아니다}.",
+          "acceptedAnswers": [
+            [
+              "아니다",
+              "아니"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-1-xc23",
+          "sourceIndex": 2183,
+          "proposalFingerprint": "89ff6a4ad7962f0d8b3df0eac0bbab4cb4734b9d1aa61364d03b4a328bd03d4b",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "정삼각형이이등변조건을만족한다는앞방향만으로반대가성립하지않는이유를답한것은아니므로나머지변이다를수있음을필수로둔다.",
+          "cReason": "포함관계의반대가언제나성립하지않음을확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "정삼각형은 세 변이 같아 두 변이 같다는 조건도 만족한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "이등변삼각형은 나머지 한 변의 길이가 달라도 된다"
+            ]
+          }
+        ],
+        "cSlotEquivalents": [
+          []
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-1-xc24",
+      "sourceIndex": 2184,
+      "beforeProposal": {
+        "sourceIndex": 2184,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "sourceFingerprint": "660b41a72719eef64f6b8aea0ba045b215f973a67e1ba44620f7b8a5255ce133",
+        "proposalFingerprint": "c521b1c30600177db7f3003ee430fab33c04cbd6a18c258b547b050be644cfc3",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-1-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "반지름이 같은 두 원이 서로의 중심을 지나도록 겹쳐 그렸다. 두 중심과 두 원이 만나는 한 점을 이으면 정삼각형이 되는 까닭을 설명하시오.",
+        "bAnswer": "세 변이 모두 원의 반지름이라 길이가 같기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "세 변이 모두 반지름이다",
+              "세 변의 길이가 같다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "두 원으로 정삼각형 만들기",
+        "bReason": "세 변이 모두 반지름이라는 근거",
+        "cDecision": "rewrite",
+        "cAfter": "반지름이 같은 두 원이 서로의 중심을 지날 때 두 중심과 두 원이 만나는 한 점을 이은 삼각형은 세 변이 모두 {반지름}과 같아 정삼각형이다.",
+        "cReason": "긴 구절을 '반지름' 낱말 빈칸으로 바꿈",
+        "cSlotEquivalents": [
+          []
+        ],
+        "exampleNeeded": "서로의 중심을 지나는 반지름이 같은 두 원과 두 중심, 한 교점을 이은 삼각형 그림",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "두 원으로 정삼각형 만들기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "반지름이 같은 두 원이 서로의 중심을 지날 때 두 중심과 두 원이 만나는 한 점을 이은 삼각형은 세 변이 모두 {반지름}과 같아 정삼각형이다.",
+        "cStudentSentence": "반지름이 같은 두 원이 서로의 중심을 지날 때 두 중심과 두 원이 만나는 한 점을 이은 삼각형은 세 변이 모두 □과 같아 정삼각형이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "반지름",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "반지름이 같은 두 원이 서로의 중심을 지나도록 겹쳐 그렸다. 두 중심과 두 원이 만나는 한 점을 이으면 정삼각형이 되는 까닭을 설명하시오.",
+          "answer": "세 변이 모두 원의 반지름이라 길이가 같기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "세 변이 모두 반지름이다",
+                "세 변의 길이가 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "반지름이 같은 두 원이 서로의 중심을 지날 때 두 중심과 두 원이 만나는 한 점을 이은 삼각형은 세 변이 모두 {반지름}과 같아 정삼각형이다.",
+          "acceptedAnswers": [
+            [
+              "반지름"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-1-xc24",
+          "sourceIndex": 2184,
+          "proposalFingerprint": "c521b1c30600177db7f3003ee430fab33c04cbd6a18c258b547b050be644cfc3",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "세변같음은결론반복이므로세변이같은반지름이라는구성이유를기준으로받는다.",
+          "cReason": "두중심과교점의세변이반지름이라는성질이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "세 변이 모두 길이가 같은 두 원의 반지름이라 길이가 같다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-1-xc26",
+      "sourceIndex": 2186,
+      "beforeProposal": {
+        "sourceIndex": 2186,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "sourceFingerprint": "840234575c40a878f701afb7ee20aa1566c0a977533b7f98d086440dc2eb17cb",
+        "proposalFingerprint": "9064b745c07321781ea641b5e95155d99d2b42ef054828475b1cd5e3add90ab5",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-1-xc26",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "reason",
+        "bGoal": "정삼각형의 합과 나눗셈",
+        "bReason": "xc10·xc12와 같은 목표",
+        "exclusionReason": "세 변의 합이 한 변의 $3$배라는 xc10·xc12와 같은 목표라 B 중복",
+        "cDecision": "keep",
+        "cReason": "'나누어떨어진다' 한 낱말만 묻는 짧은 빈칸",
+        "cSlotEquivalents": [
+          [
+            "나누어진다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "정삼각형의 세 변의 합과 나눗셈",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "변의 길이가 자연수 $\\mathrm{cm}$인 정삼각형의 세 변의 합은 언제나 $3$으로 {나누어떨어진다}.",
+        "cStudentSentence": "변의 길이가 자연수 $\\mathrm{cm}$인 정삼각형의 세 변의 합은 언제나 $3$으로 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "나누어떨어진다",
+            "equivalents": [
+              "나누어진다"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "변의 길이가 자연수 $\\mathrm{cm}$인 정삼각형의 세 변의 합은 언제나 $3$으로 □.",
+          "answers": [
+            "나누어떨어진다"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "변의 길이가 자연수 $\\mathrm{cm}$인 정삼각형의 세 변의 합은 언제나 $3$으로 {나누어떨어진다}.",
+          "acceptedAnswers": [
+            [
+              "나누어떨어진다",
+              "나누어진다"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc10·xc12와 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-1-xc26",
+          "sourceIndex": 2186,
+          "proposalFingerprint": "9064b745c07321781ea641b5e95155d99d2b42ef054828475b1cd5e3add90ab5",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "exclude",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "세변합3배의기존B와중복이다.",
+          "cReason": "나누어진다는말은나누어떨어진다와같은뜻이아니므로별칭을제거한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cSlotEquivalents": [
+          []
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-2-xc1",
+      "sourceIndex": 2187,
+      "beforeProposal": {
+        "sourceIndex": 2187,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-2 이등변삼각형의 성질",
+        "sourceFingerprint": "8948ccd85bdf923a8922176c6e24f5f3b97ff80dbea3b929f8693846e3462ee8",
+        "proposalFingerprint": "f95a7027aad816c2e0d9514d29e04e3b15afa87afb538ce35e04509026f47fbd",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-2-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "이등변삼각형을 반으로 접어 같은 두 변이 겹치게 하면 두 각의 크기는 어떻게 되는지 쓰고 까닭을 설명하시오.",
+        "bAnswer": "크기가 같다. 접었을 때 두 각이 꼭 포개지기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 각의 크기가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 각이 꼭 포개진다",
+              "접으면 겹친다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "접어서 같은 두 각 확인",
+        "bReason": "접어 포개지는 모습으로 두 각이 같음을 확인",
+        "cDecision": "keep",
+        "cReason": "'포개진다' 친숙한 낱말 빈칸",
+        "cSlotEquivalents": [
+          [
+            "겹쳐진다",
+            "겹친다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "접어서 두 각 확인하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "이등변삼각형을 반으로 접어 같은 두 변이 겹치게 하면 두 각이 꼭 {포개진다}.",
+        "cStudentSentence": "이등변삼각형을 반으로 접어 같은 두 변이 겹치게 하면 두 각이 꼭 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "포개진다",
+            "equivalents": [
+              "겹쳐진다",
+              "겹친다"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "이등변삼각형을 반으로 접어 같은 두 변이 겹치게 하면 두 각이 꼭 □.",
+          "answers": [
+            "포개진다"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "이등변삼각형을 반으로 접어 같은 두 변이 겹치게 하면 두 각의 크기는 어떻게 되는지 쓰고 까닭을 설명하시오.",
+          "answer": "크기가 같다. 접었을 때 두 각이 꼭 포개지기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "두 각의 크기가 같다"
+              ]
+            },
+            {
+              "anyOf": [
+                "두 각이 꼭 포개진다",
+                "접으면 겹친다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "이등변삼각형을 반으로 접어 같은 두 변이 겹치게 하면 두 각이 꼭 {포개진다}.",
+          "acceptedAnswers": [
+            [
+              "포개진다",
+              "겹쳐진다",
+              "겹친다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-2-xc1",
+          "sourceIndex": 2187,
+          "proposalFingerprint": "f95a7027aad816c2e0d9514d29e04e3b15afa87afb538ce35e04509026f47fbd",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "두각이어느각인지같은두변의공통꼭짓점말고나머지두꼭짓점각으로명시한다.",
+          "cReason": "같은두각의위치를C에서도명시해포개짐을확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bPrompt": "이등변삼각형을 접어 길이가 같은 두 변이 서로 겹치게 했다. 그 두 변이 만나는 꼭짓점 말고 나머지 두 꼭짓점의 각은 크기가 어떠한지 쓰고, 접었을 때의 모습을 이용해 까닭을 설명하시오.",
+        "cDecision": "rewrite",
+        "cAfter": "이등변삼각형을 접어 길이가 같은 두 변을 겹치게 하면, 그 두 변이 만나는 꼭짓점 말고 나머지 두 꼭짓점의 각이 꼭 {포개진다}.",
+        "cSlotEquivalents": [
+          [
+            "겹쳐진다",
+            "겹친다"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-2-xc3",
+      "sourceIndex": 2189,
+      "beforeProposal": {
+        "sourceIndex": 2189,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-2 이등변삼각형의 성질",
+        "sourceFingerprint": "4b5973ea9d774f255193f58ad77b95c0a2c47f48b3e9c8fcf45e7abc5891db71",
+        "proposalFingerprint": "bff59e6a8b55f0740cd6a3fc81b7a2b01a926061389d3ce5f823cdbad5c0b708",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-2-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "이등변삼각형에서 크기가 같은 두 각 중 하나가 $50^\\circ$이다. 다른 하나의 크기와 까닭을 쓰시오.",
+        "bAnswer": "$50^\\circ$이다. 이등변삼각형에서 크기가 같은 두 각은 크기가 같기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$50^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 두 각은 크기가 같다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "같은 두 각 중 하나로 다른 각",
+        "bReason": "같은 두 각의 크기를 이용해 판단",
+        "cDecision": "keep",
+        "cReason": "'$50^\\circ$' 같은 값을 묻는 선명한 빈칸",
+        "cSlotEquivalents": [
+          [
+            "$50$도"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "같은 두 각 가운데 하나를 알 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "이등변삼각형에서 크기가 같은 두 각 중 하나가 $50^\\circ$이면 다른 하나의 크기도 {$50^\\circ$}이다.",
+        "cStudentSentence": "이등변삼각형에서 크기가 같은 두 각 중 하나가 $50^\\circ$이면 다른 하나의 크기도 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$50^\\circ$",
+            "equivalents": [
+              "$50$도"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "이등변삼각형에서 크기가 같은 두 각 중 하나가 $50^\\circ$이면 다른 하나의 크기도 □이다.",
+          "answers": [
+            "$50^\\circ$"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "이등변삼각형에서 크기가 같은 두 각 중 하나가 $50^\\circ$이다. 다른 하나의 크기와 까닭을 쓰시오.",
+          "answer": "$50^\\circ$이다. 이등변삼각형에서 크기가 같은 두 각은 크기가 같기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$50^\\circ$"
+              ]
+            },
+            {
+              "anyOf": [
+                "같은 두 각은 크기가 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "이등변삼각형에서 크기가 같은 두 각 중 하나가 $50^\\circ$이면 다른 하나의 크기도 {$50^\\circ$}이다.",
+          "acceptedAnswers": [
+            [
+              "$50^\\circ$",
+              "$50$도"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-2-xc3",
+          "sourceIndex": 2189,
+          "proposalFingerprint": "bff59e6a8b55f0740cd6a3fc81b7a2b01a926061389d3ce5f823cdbad5c0b708",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "이미같은두각이라고조건을줬으므로같다는말만반복하는B는제외하고C확인만남긴다.",
+          "cReason": "주어진같은두각의실제크기50도를확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bDecision": "exclude",
+        "bPrompt": "",
+        "bAnswer": "",
+        "bRequiredIdeas": [],
+        "bReason": "이미 크기가 같은 두 각이라는 조건에서 같은 값을 되풀이하는 설명형은 별도의 이유를 확인하지 못한다.",
+        "exclusionReason": "B만 제외: 주어진 같음 조건을 반복하는 문항이다. 같은 두 각의 크기를 적용하는 짧은 C는 유지한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-2-xc15",
+      "sourceIndex": 2200,
+      "beforeProposal": {
+        "sourceIndex": 2200,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-2 이등변삼각형의 성질",
+        "sourceFingerprint": "0e53dda207ca7565db94f2b0795abe72844db32a0fe050f365084b5d2703f744",
+        "proposalFingerprint": "2585387a064a546e809d498e4efecdcf280e424a55e5bdafa6a80b7c3c88b035",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-2-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "이등변삼각형에서 길이가 같은 두 변 사이의 각이 $60^\\circ$이다. 나머지 두 각은 각각 몇 도인지 구하는 방법을 쓰고, 이 삼각형이 무슨 삼각형인지 쓰시오.",
+        "bAnswer": "나머지 두 각의 합은 $180^\\circ-60^\\circ=120^\\circ$이고 두 각이 같으므로 각각 $60^\\circ$이다. 세 각이 모두 $60^\\circ$이므로 정삼각형이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "나머지 두 각이 각각 $60^\\circ$",
+              "$120^\\circ$를 똑같이 나누어 $60^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "정삼각형",
+              "세 변의 길이가 모두 같은 삼각형"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "사이각 60도인 이등변 각 구하기",
+        "bReason": "세 각의 합으로 나머지 각을 구하고 이름까지 잇는 적용 문항",
+        "cDecision": "keep",
+        "cReason": "익숙한 낱말 정삼각형 빈칸이고 앞에 60도 근거가 있어 명확",
+        "cSlotEquivalents": [
+          [
+            "세 변이 같은 삼각형"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "두 변 사이의 각이 $60^\\circ$일 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "같은 두 변 사이의 각이 $60^\\circ$인 이등변삼각형은 나머지 두 각도 $60^\\circ$라 {정삼각형}이다.",
+        "cStudentSentence": "같은 두 변 사이의 각이 $60^\\circ$인 이등변삼각형은 나머지 두 각도 $60^\\circ$라 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "정삼각형",
+            "equivalents": [
+              "세 변이 같은 삼각형"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "같은 두 변 사이의 각이 $60^\\circ$인 이등변삼각형은 나머지 두 각도 $60^\\circ$라 □이다.",
+          "answers": [
+            "정삼각형"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "이등변삼각형에서 길이가 같은 두 변 사이의 각이 $60^\\circ$이다. 나머지 두 각은 각각 몇 도인지 구하는 방법을 쓰고, 이 삼각형이 무슨 삼각형인지 쓰시오.",
+          "answer": "나머지 두 각의 합은 $180^\\circ-60^\\circ=120^\\circ$이고 두 각이 같으므로 각각 $60^\\circ$이다. 세 각이 모두 $60^\\circ$이므로 정삼각형이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "나머지 두 각이 각각 $60^\\circ$",
+                "$120^\\circ$를 똑같이 나누어 $60^\\circ$"
+              ]
+            },
+            {
+              "anyOf": [
+                "정삼각형",
+                "세 변의 길이가 모두 같은 삼각형"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "같은 두 변 사이의 각이 $60^\\circ$인 이등변삼각형은 나머지 두 각도 $60^\\circ$라 {정삼각형}이다.",
+          "acceptedAnswers": [
+            [
+              "정삼각형",
+              "세 변이 같은 삼각형"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-2-xc15",
+          "sourceIndex": 2200,
+          "proposalFingerprint": "2585387a064a546e809d498e4efecdcf280e424a55e5bdafa6a80b7c3c88b035",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "각각60이라는결과뿐아니라180에서60을빼둘로나누는요청한방법도기준에포함한다.",
+          "cReason": "세각60이되는이등변삼각형의종류이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$180^\\circ$에서 $60^\\circ$를 빼고 $2$로 나누어 각각 $60^\\circ$이다",
+              "$(180-60)\\div2=60$이므로 각각 $60^\\circ$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "정삼각형",
+              "세 변의 길이가 모두 같은 삼각형"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-2-xc16",
+      "sourceIndex": 2201,
+      "beforeProposal": {
+        "sourceIndex": 2201,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-2 이등변삼각형의 성질",
+        "sourceFingerprint": "51e55d70d8ba3c3f1792868429986513340503a653137992a6adc5b7f4819cea",
+        "proposalFingerprint": "8762944051742dd29c5477411594561eecfb81382a85fc2deea548a36f74ca74",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-2-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "이등변삼각형에서 같은 두 각이 각각 $45^\\circ$이다. 나머지 한 각의 크기를 구하는 방법과 그 각의 이름을 쓰시오.",
+        "bAnswer": "$180^\\circ-45^\\circ-45^\\circ=90^\\circ$이므로 나머지 각은 직각이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$90^\\circ$",
+              "직각"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "두 각 45도일 때 나머지 각",
+        "bReason": "세 각의 합을 이용한 계산과 각 이름을 확인",
+        "cDecision": "keep",
+        "cReason": "직각이라는 짧은 낱말 빈칸이고 앞 문장이 근거를 줌",
+        "cSlotEquivalents": [
+          [
+            "$90^\\circ$",
+            "$90$도"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "같은 두 각이 $45^\\circ$일 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "같은 두 각이 각각 $45^\\circ$인 이등변삼각형은 두 각의 합이 직각이므로 나머지 각이 {직각}이다.",
+        "cStudentSentence": "같은 두 각이 각각 $45^\\circ$인 이등변삼각형은 두 각의 합이 직각이므로 나머지 각이 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "직각",
+            "equivalents": [
+              "$90^\\circ$",
+              "$90$도"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "같은 두 각이 각각 $45^\\circ$인 이등변삼각형은 두 각의 합이 직각이므로 나머지 각이 □이다.",
+          "answers": [
+            "직각"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "이등변삼각형에서 같은 두 각이 각각 $45^\\circ$이다. 나머지 한 각의 크기를 구하는 방법과 그 각의 이름을 쓰시오.",
+          "answer": "$180^\\circ-45^\\circ-45^\\circ=90^\\circ$이므로 나머지 각은 직각이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$90^\\circ$",
+                "직각"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "같은 두 각이 각각 $45^\\circ$인 이등변삼각형은 두 각의 합이 직각이므로 나머지 각이 {직각}이다.",
+          "acceptedAnswers": [
+            [
+              "직각",
+              "$90^\\circ$",
+              "$90$도"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-2-xc16",
+          "sourceIndex": 2201,
+          "proposalFingerprint": "8762944051742dd29c5477411594561eecfb81382a85fc2deea548a36f74ca74",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "구하는방법과각이름을각각요청하므로90또는직각한가지만으로채점하지않는다.",
+          "cReason": "같은두45도각에서남은직각을확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$180^\\circ-45^\\circ-45^\\circ=90^\\circ$",
+              "두 각의 합 $90^\\circ$를 $180^\\circ$에서 빼면 $90^\\circ$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "직각"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-3-xc6",
+      "sourceIndex": 2215,
+      "beforeProposal": {
+        "sourceIndex": 2215,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-3 정삼각형의 성질",
+        "sourceFingerprint": "a8d1f82643f644984a669a16096084bfd80f6d8683f7b04fcaa5c0182f1889e0",
+        "proposalFingerprint": "117d981f5d00ae6576f5b147447f38b353c741cade142eb9d484ed016317c3a9",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-3-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "정삼각형을 한 꼭짓점에서 마주 보는 변의 가운데로 반으로 접으면 접은 선의 양쪽 모양은 어떻게 되는지 쓰시오.",
+        "bAnswer": "양쪽이 꼭 맞게 겹친다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "꼭 맞게 겹친다",
+              "완전히 겹친다",
+              "똑같은 모양이다"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "정삼각형 접기 성질",
+        "bReason": "접었을 때 겹친다는 정삼각형의 성질을 확인",
+        "cDecision": "rewrite",
+        "cAfter": "정삼각형은 어느 꼭짓점에서 반으로 접어도 양쪽이 꼭 {맞게} 겹친다.",
+        "cReason": "긴 구절 빈칸을 한 낱말로 줄여 답 범위를 좁힘",
+        "cSlotEquivalents": [
+          [
+            "맞춰",
+            "딱 맞게"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "정삼각형 접기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정삼각형은 어느 꼭짓점에서 반으로 접어도 양쪽이 꼭 {맞게} 겹친다.",
+        "cStudentSentence": "정삼각형은 어느 꼭짓점에서 반으로 접어도 양쪽이 꼭 □ 겹친다.",
+        "cSlotAnswers": [
+          {
+            "expected": "맞게",
+            "equivalents": [
+              "맞춰",
+              "딱 맞게"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "정삼각형을 한 꼭짓점에서 마주 보는 변의 가운데로 반으로 접으면 접은 선의 양쪽 모양은 어떻게 되는지 쓰시오.",
+          "answer": "양쪽이 꼭 맞게 겹친다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "꼭 맞게 겹친다",
+                "완전히 겹친다",
+                "똑같은 모양이다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "정삼각형은 어느 꼭짓점에서 반으로 접어도 양쪽이 꼭 {맞게} 겹친다.",
+          "acceptedAnswers": [
+            [
+              "맞게",
+              "맞춰",
+              "딱 맞게"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-3-xc6",
+          "sourceIndex": 2215,
+          "proposalFingerprint": "117d981f5d00ae6576f5b147447f38b353c741cade142eb9d484ed016317c3a9",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "definition",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "꼭짓점에서마주보는변가운데라는접기선이B에는명확하다.",
+          "cReason": "C에도접는선의끝을마주보는변의가운데로명시한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "정삼각형을 한 꼭짓점과 마주 보는 변의 가운데를 잇는 선을 따라 반으로 접으면 양쪽이 꼭 {맞게} 겹친다.",
+        "cSlotEquivalents": [
+          [
+            "딱 맞게"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-3-xc7",
+      "sourceIndex": 2216,
+      "beforeProposal": {
+        "sourceIndex": 2216,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-3 정삼각형의 성질",
+        "sourceFingerprint": "737dcdaa07b95c7a6b9e75494866436c5b19878368cee782706bc13fc7b51ae6",
+        "proposalFingerprint": "e22a3ee2c99f4758d733a9362936c2cdc5a05e84fe5eac19315d6874a2eecd88",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-3-xc7",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "definition",
+        "bGoal": "세 각 60도이면 정삼각형",
+        "bReason": "세 각이 같으면 정삼각형이라는 사실",
+        "exclusionReason": "xc25와 xc10이 변과 각 관계를 설명하게 해 같은 목표다",
+        "cDecision": "keep",
+        "cReason": "정삼각형이라는 친숙한 이름 빈칸이라 유지",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "세 각이 $60^\\circ$인 삼각형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "세 각이 모두 $60^\\circ$이면 {정삼각형}이다.",
+        "cStudentSentence": "세 각이 모두 $60^\\circ$이면 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "정삼각형",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "세 각이 모두 $60^\\circ$이면 □이다.",
+          "answers": [
+            "정삼각형"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "세 각이 모두 $60^\\circ$이면 {정삼각형}이다.",
+          "acceptedAnswers": [
+            [
+              "정삼각형"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "세 각이 같으면 정삼각형이라는 사실"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-3-xc7",
+          "sourceIndex": 2216,
+          "proposalFingerprint": "e22a3ee2c99f4758d733a9362936c2cdc5a05e84fe5eac19315d6874a2eecd88",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "definition",
+          "bDecision": "exclude",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "세각과변관계의기존B와중복이다.",
+          "cReason": "제목없이도대상을알도록삼각형이라는조건을C에추가한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "삼각형의 세 각이 모두 $60^\\circ$이면 {정삼각형}이다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-3-xc8",
+      "sourceIndex": 2217,
+      "beforeProposal": {
+        "sourceIndex": 2217,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-3 정삼각형의 성질",
+        "sourceFingerprint": "a9e4deb519bda620c9dac4e1b75bf89187be0354980f9215eab12990d178a6b9",
+        "proposalFingerprint": "dde420cc8bbbf3a1b08ca2a8b6918aa16d845bf863ea7d416b4d01dcbe039f80",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-3-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "작은 정삼각형과 큰 정삼각형이 있다. 두 정삼각형의 한 각의 크기를 비교하면 어떤지 까닭과 함께 쓰시오.",
+        "bAnswer": "같다. 정삼각형은 크기와 상관없이 세 각이 모두 $60^\\circ$이기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "크기가 같다",
+              "둘 다 $60^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "정삼각형의 한 각은 늘 $60^\\circ$",
+              "변의 길이와 상관없이 각은 같다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "크기 달라도 각은 같다",
+        "bReason": "변의 길이가 달라도 각은 변하지 않는 까닭을 묻는 문항",
+        "cDecision": "keep",
+        "cReason": "같다/다르다 비교 빈칸으로 짧고 명확",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "크기가 다른 정삼각형의 각",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "작은 정삼각형과 큰 정삼각형의 한 각은 크기가 {같다}.",
+        "cStudentSentence": "작은 정삼각형과 큰 정삼각형의 한 각은 크기가 □.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "같다",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "작은 정삼각형과 큰 정삼각형의 한 각은 크기가 □.",
+          "answers": [
+            "같다"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "작은 정삼각형과 큰 정삼각형이 있다. 두 정삼각형의 한 각의 크기를 비교하면 어떤지 까닭과 함께 쓰시오.",
+          "answer": "같다. 정삼각형은 크기와 상관없이 세 각이 모두 $60^\\circ$이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "크기가 같다",
+                "둘 다 $60^\\circ$"
+              ]
+            },
+            {
+              "anyOf": [
+                "정삼각형의 한 각은 늘 $60^\\circ$",
+                "변의 길이와 상관없이 각은 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "작은 정삼각형과 큰 정삼각형의 한 각은 크기가 {같다}.",
+          "acceptedAnswers": [
+            [
+              "같다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-3-xc8",
+          "sourceIndex": 2217,
+          "proposalFingerprint": "dde420cc8bbbf3a1b08ca2a8b6918aa16d845bf863ea7d416b4d01dcbe039f80",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "각은변길이와무관하다는결론반복대신정삼각형한각60의성질을이유로받는다.",
+          "cReason": "작은정삼각형과큰정삼각형의각같음을확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 각의 크기가 같다",
+              "둘 다 $60^\\circ$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "정삼각형의 한 각은 언제나 $60^\\circ$이다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-3-xc10",
+      "sourceIndex": 2219,
+      "beforeProposal": {
+        "sourceIndex": 2219,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-3 정삼각형의 성질",
+        "sourceFingerprint": "6bfcd9b9b47e36d23abe40354c1728c31def45950e06385efa6e53d3e93803cf",
+        "proposalFingerprint": "a9394e6802dcc1ce8e811439b9124023cad95e4f2b22243be7331535cbd5ff61",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-3-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각형의 두 각이 각각 $60^\\circ$이다. 나머지 한 각의 크기를 구하고, 이 삼각형이 무슨 삼각형인지 쓰시오.",
+        "bAnswer": "나머지 각은 $180^\\circ-60^\\circ-60^\\circ=60^\\circ$이다. 세 각이 모두 $60^\\circ$이므로 정삼각형이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "나머지 각이 $60^\\circ$",
+              "$180^\\circ-60^\\circ-60^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "정삼각형"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "두 각 60도일 때 나머지",
+        "bReason": "세 각의 합으로 나머지 각을 구해 이름까지 잇는 문항",
+        "cDecision": "keep",
+        "cReason": "정삼각형 이름 빈칸이고 앞에 근거가 있어 명확",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "두 각이 $60^\\circ$인 삼각형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "두 각이 $60^\\circ$이면 나머지 각도 $60^\\circ$라 {정삼각형}이다.",
+        "cStudentSentence": "두 각이 $60^\\circ$이면 나머지 각도 $60^\\circ$라 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "정삼각형",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "두 각이 $60^\\circ$이면 나머지 각도 $60^\\circ$라 □이다.",
+          "answers": [
+            "정삼각형"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "삼각형의 두 각이 각각 $60^\\circ$이다. 나머지 한 각의 크기를 구하고, 이 삼각형이 무슨 삼각형인지 쓰시오.",
+          "answer": "나머지 각은 $180^\\circ-60^\\circ-60^\\circ=60^\\circ$이다. 세 각이 모두 $60^\\circ$이므로 정삼각형이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "나머지 각이 $60^\\circ$",
+                "$180^\\circ-60^\\circ-60^\\circ$"
+              ]
+            },
+            {
+              "anyOf": [
+                "정삼각형"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "두 각이 $60^\\circ$이면 나머지 각도 $60^\\circ$라 {정삼각형}이다.",
+          "acceptedAnswers": [
+            [
+              "정삼각형"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-3-xc10",
+          "sourceIndex": 2219,
+          "proposalFingerprint": "a9394e6802dcc1ce8e811439b9124023cad95e4f2b22243be7331535cbd5ff61",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "남은60도와정삼각형종류를함께요청한다.",
+          "cReason": "제목없이도대상을알도록삼각형이라는조건을C에추가한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "삼각형의 두 각이 각각 $60^\\circ$이면 나머지 각도 $60^\\circ$이므로 {정삼각형}이다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-3-xc11",
+      "sourceIndex": 2220,
+      "beforeProposal": {
+        "sourceIndex": 2220,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-3 정삼각형의 성질",
+        "sourceFingerprint": "894eca648a08d24d0bfeec175cddc5e8f6150283e2dc7bcb0a789761f14f3935",
+        "proposalFingerprint": "d949ba2348c6570e8fd2bc4c11aabb7a0d670843a49eeda3dabc092f4c3d28b4",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-3-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "정삼각형에서 길이가 같은 두 변을 하나 골랐다. 그 두 변과 마주 보는 두 각의 크기는 어떠한지 쓰고, 정삼각형이 그 성질을 가지는 까닭을 쓰시오.",
+        "bAnswer": "두 각의 크기가 같다. 정삼각형도 두 변의 길이가 같은 삼각형(이등변삼각형)이기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 각의 크기가 같다",
+              "두 각이 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "정삼각형도 두 변의 길이가 같은 삼각형",
+              "정삼각형도 이등변삼각형"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "정삼각형이 가진 이등변 성질",
+        "bReason": "정삼각형도 이등변삼각형이라는 연결 이유를 확인",
+        "cDecision": "keep",
+        "cReason": "마주 보는 두 □가 각이라는 익숙한 낱말로 복원 가능",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "정삼각형이 가진 이등변삼각형의 성질",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정삼각형도 두 변의 길이가 같은 삼각형이므로, 그 두 변과 마주 보는 두 {각}의 크기가 같다는 성질을 가진다.",
+        "cStudentSentence": "정삼각형도 두 변의 길이가 같은 삼각형이므로, 그 두 변과 마주 보는 두 □의 크기가 같다는 성질을 가진다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "각",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "정삼각형도 두 변의 길이가 같은 삼각형이므로, 그 두 변과 마주 보는 두 □의 크기가 같다는 성질을 가진다.",
+          "answers": [
+            "각"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "정삼각형에서 길이가 같은 두 변을 하나 골랐다. 그 두 변과 마주 보는 두 각의 크기는 어떠한지 쓰고, 정삼각형이 그 성질을 가지는 까닭을 쓰시오.",
+          "answer": "두 각의 크기가 같다. 정삼각형도 두 변의 길이가 같은 삼각형(이등변삼각형)이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "두 각의 크기가 같다",
+                "두 각이 같다"
+              ]
+            },
+            {
+              "anyOf": [
+                "정삼각형도 두 변의 길이가 같은 삼각형",
+                "정삼각형도 이등변삼각형"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "정삼각형도 두 변의 길이가 같은 삼각형이므로, 그 두 변과 마주 보는 두 {각}의 크기가 같다는 성질을 가진다.",
+          "acceptedAnswers": [
+            [
+              "각"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-3-xc11",
+          "sourceIndex": 2220,
+          "proposalFingerprint": "d949ba2348c6570e8fd2bc4c11aabb7a0d670843a49eeda3dabc092f4c3d28b4",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "두변을하나고른다는표현을같은두변을골랐다고바꾸어관계대상을분명히한다.",
+          "cReason": "선택한같은두변과마주보는두각의성질이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bPrompt": "정삼각형에서 길이가 같은 두 변을 골랐다. 그 두 변과 마주 보는 두 각의 크기는 어떠한지 쓰고, 정삼각형이 그 성질을 가지는 까닭을 쓰시오."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-3-xc12",
+      "sourceIndex": 2221,
+      "beforeProposal": {
+        "sourceIndex": 2221,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-3 정삼각형의 성질",
+        "sourceFingerprint": "80b5f78300e7743ac9f3856ebca925615ef758df7b98bc4c361d4d9066dc60e7",
+        "proposalFingerprint": "eb0020a499b696e5639650781630aed7cfd89e9f7fff90d76ca03d7096f0418d",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-3-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "한 변의 길이가 같은 정삼각형 두 개를 한 변끼리 붙였다. 붙인 변의 한 끝점에서 두 삼각형의 각이 이어져 생기는 각의 크기를 식으로 구하시오.",
+        "bAnswer": "$60^\\circ+60^\\circ=120^\\circ$",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$120^\\circ$",
+              "$60^\\circ+60^\\circ$"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "정삼각형 두 개 붙인 각",
+        "bReason": "정삼각형 한 각 $60^\\circ$를 두 번 더하는 적용 문항",
+        "cDecision": "keep",
+        "cReason": "각도 숫자 빈칸으로 계산이 선명",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "정삼각형 두 개를 붙인 각",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정삼각형 두 개를 한 변끼리 붙이면 붙인 꼭짓점에서 {$120^\\circ$}인 각이 생긴다.",
+        "cStudentSentence": "정삼각형 두 개를 한 변끼리 붙이면 붙인 꼭짓점에서 □인 각이 생긴다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$120^\\circ$",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "정삼각형 두 개를 한 변끼리 붙이면 붙인 꼭짓점에서 □인 각이 생긴다.",
+          "answers": [
+            "$120^\\circ$"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "한 변의 길이가 같은 정삼각형 두 개를 한 변끼리 붙였다. 붙인 변의 한 끝점에서 두 삼각형의 각이 이어져 생기는 각의 크기를 식으로 구하시오.",
+          "answer": "$60^\\circ+60^\\circ=120^\\circ$",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$120^\\circ$",
+                "$60^\\circ+60^\\circ$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "정삼각형 두 개를 한 변끼리 붙이면 붙인 꼭짓점에서 {$120^\\circ$}인 각이 생긴다.",
+          "acceptedAnswers": [
+            [
+              "$120^\\circ$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-3-xc12",
+          "sourceIndex": 2221,
+          "proposalFingerprint": "eb0020a499b696e5639650781630aed7cfd89e9f7fff90d76ca03d7096f0418d",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "겹치지않게붙이는조건을추가하고요청한60+60의식을기준에반영한다.",
+          "cReason": "겹치지않게붙인두각의합이라는대상을명시한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bPrompt": "한 변의 길이가 같은 정삼각형 두 개를 겹치지 않게 한 변끼리 붙였다. 붙인 변의 한 끝점에서 두 삼각형의 각이 이어져 생기는 각의 크기를 식으로 구하시오.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$60^\\circ+60^\\circ=120^\\circ$",
+              "$60^\\circ\\times2=120^\\circ$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "한 변의 길이가 같은 정삼각형 두 개를 겹치지 않게 한 변끼리 붙였다. 붙인 변의 한 끝점에서 두 삼각형의 각을 합하면 {$120^\\circ$}이다.",
+        "cSlotEquivalents": [
+          [
+            "$120$도"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-3-xc13",
+      "sourceIndex": 2222,
+      "beforeProposal": {
+        "sourceIndex": 2222,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-3 정삼각형의 성질",
+        "sourceFingerprint": "2b271a10451dca7ee7f928bdfc7337bcdf0bff8fe5f27b1f787528a7bb2d555a",
+        "proposalFingerprint": "cd3dc8ad9f3e78516f07a9d36931c4b47587ddba4b94ca7b47627370b92df1c5",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-3-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "정삼각형 여섯 개의 한 각을 한 점에 겹치지 않게 모아 놓았다. 모인 각의 크기의 합을 식으로 구하시오.",
+        "bAnswer": "$60^\\circ\\times6=360^\\circ$",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$360^\\circ$",
+              "$60^\\circ\\times6$"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "정삼각형 여섯 개의 각의 합",
+        "bReason": "한 점 둘레 $360^\\circ$를 정삼각형 각으로 확인",
+        "cDecision": "keep",
+        "cReason": "각도 숫자 빈칸으로 한 바퀴 개념과 연결",
+        "cSlotEquivalents": [
+          [
+            "$360$도"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "정삼각형 여섯 개를 한 점에",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정삼각형 여섯 개의 꼭짓점을 한 점에 겹치지 않게 이어 모으면 {$360^\\circ$}로 빈틈이 없다.",
+        "cStudentSentence": "정삼각형 여섯 개의 꼭짓점을 한 점에 겹치지 않게 이어 모으면 □로 빈틈이 없다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$360^\\circ$",
+            "equivalents": [
+              "$360$도"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "정삼각형 여섯 개의 꼭짓점을 한 점에 겹치지 않게 이어 모으면 □로 빈틈이 없다.",
+          "answers": [
+            "$360^\\circ$"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "정삼각형 여섯 개의 한 각을 한 점에 겹치지 않게 모아 놓았다. 모인 각의 크기의 합을 식으로 구하시오.",
+          "answer": "$60^\\circ\\times6=360^\\circ$",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$360^\\circ$",
+                "$60^\\circ\\times6$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "정삼각형 여섯 개의 꼭짓점을 한 점에 겹치지 않게 이어 모으면 {$360^\\circ$}로 빈틈이 없다.",
+          "acceptedAnswers": [
+            [
+              "$360^\\circ$",
+              "$360$도"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-3-xc13",
+          "sourceIndex": 2222,
+          "proposalFingerprint": "cd3dc8ad9f3e78516f07a9d36931c4b47587ddba4b94ca7b47627370b92df1c5",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "360결과만으로는식요청을충족하지않으므로60×6또는동치덧셈식을받는다.",
+          "cReason": "모인각의합이360이라는대상을명시한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$60^\\circ\\times6=360^\\circ$",
+              "$60^\\circ+60^\\circ+60^\\circ+60^\\circ+60^\\circ+60^\\circ=360^\\circ$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "정삼각형 여섯 개의 각을 한 점에 겹치지 않게 차례로 모으면, 모인 각의 크기의 합이 {$360^\\circ$}라 빈틈이 없다.",
+        "cSlotEquivalents": [
+          [
+            "$360$도"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-3-xc15",
+      "sourceIndex": 2224,
+      "beforeProposal": {
+        "sourceIndex": 2224,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-3 정삼각형의 성질",
+        "sourceFingerprint": "812e10b10e150087ebdc7acd994000f65c110e1e9ec475b814d9bf01e8f3176e",
+        "proposalFingerprint": "eb83ca3e37e5480ac72ffcdcd7f9d8f695164a30be8e33df3429e944c681d106",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-3-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "정삼각형의 한 각과 직각을 겹치지 않게 이어 붙이면 몇 도인 각이 되는지 식과 함께 쓰시오.",
+        "bAnswer": "$60^\\circ+90^\\circ=150^\\circ$",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$150^\\circ$",
+              "$60^\\circ+90^\\circ$"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "정삼각형 각과 직각 붙이기",
+        "bReason": "각 두 개를 이어 붙이면 합이 된다는 계산 적용",
+        "cDecision": "keep",
+        "cReason": "각도 숫자 빈칸으로 계산이 선명",
+        "cSlotEquivalents": [
+          [
+            "$150$도"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "정삼각형의 각과 직각 붙이기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정삼각형의 한 각과 직각을 겹치지 않게 붙이면 {$150^\\circ$}인 각이 된다.",
+        "cStudentSentence": "정삼각형의 한 각과 직각을 겹치지 않게 붙이면 □인 각이 된다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$150^\\circ$",
+            "equivalents": [
+              "$150$도"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "정삼각형의 한 각과 직각을 겹치지 않게 붙이면 □인 각이 된다.",
+          "answers": [
+            "$150^\\circ$"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "정삼각형의 한 각과 직각을 겹치지 않게 이어 붙이면 몇 도인 각이 되는지 식과 함께 쓰시오.",
+          "answer": "$60^\\circ+90^\\circ=150^\\circ$",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$150^\\circ$",
+                "$60^\\circ+90^\\circ$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "정삼각형의 한 각과 직각을 겹치지 않게 붙이면 {$150^\\circ$}인 각이 된다.",
+          "acceptedAnswers": [
+            [
+              "$150^\\circ$",
+              "$150$도"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-3-xc15",
+          "sourceIndex": 2224,
+          "proposalFingerprint": "eb83ca3e37e5480ac72ffcdcd7f9d8f695164a30be8e33df3429e944c681d106",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "식과답을요청하므로60+90=150의계산식까지기준에포함한다.",
+          "cReason": "정삼각형한각과직각을겹치지않게모은150도이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$60^\\circ+90^\\circ=150^\\circ$",
+              "$90^\\circ+60^\\circ=150^\\circ$"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-3-xc19",
+      "sourceIndex": 2228,
+      "beforeProposal": {
+        "sourceIndex": 2228,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-3 정삼각형의 성질",
+        "sourceFingerprint": "a2862a597d995679bf3a70483f06f816f910a6d2fe94bea26502e86cb6830a02",
+        "proposalFingerprint": "ef02a174ca551bf4e8d10199f81d9303f296ba7a3b717966b5d4f9da4e6cd304",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-3-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "정삼각형을 한 꼭짓점에서 마주 보는 변의 가운데로 접은 선을 따라 잘랐다. 만들어진 삼각형 하나의 세 각의 크기를 쓰고, 가장 큰 각을 구한 방법을 설명하시오.",
+        "bAnswer": "세 각은 $30^\\circ$, $60^\\circ$, $90^\\circ$이다. 위쪽 각 $60^\\circ$를 반으로 나눈 $30^\\circ$와 밑각 $60^\\circ$를 합친 뒤 $180^\\circ-30^\\circ-60^\\circ=90^\\circ$로 구한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "세 각이 $30^\\circ$, $60^\\circ$, $90^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$180^\\circ-30^\\circ-60^\\circ=90^\\circ$",
+              "세 각의 합에서 두 각을 뺀다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "반으로 자른 삼각형의 세 각",
+        "bReason": "한 각을 나누고 세 각의 합으로 $90^\\circ$를 구하는 문항",
+        "cDecision": "keep",
+        "cReason": "앞의 두 각이 있어 마지막 각만 묻는 선명한 빈칸",
+        "cSlotEquivalents": [
+          [
+            "$90$도",
+            "직각"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "반으로 접어 자른 정삼각형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정삼각형을 한 꼭짓점에서 반으로 접어 자르면 각이 $30^\\circ$, $60^\\circ$, {$90^\\circ$}인 삼각형 두 개가 된다.",
+        "cStudentSentence": "정삼각형을 한 꼭짓점에서 반으로 접어 자르면 각이 $30^\\circ$, $60^\\circ$, □인 삼각형 두 개가 된다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$90^\\circ$",
+            "equivalents": [
+              "$90$도",
+              "직각"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "정삼각형을 한 꼭짓점에서 반으로 접어 자르면 각이 $30^\\circ$, $60^\\circ$, □인 삼각형 두 개가 된다.",
+          "answers": [
+            "$90^\\circ$"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "정삼각형을 한 꼭짓점에서 마주 보는 변의 가운데로 접은 선을 따라 잘랐다. 만들어진 삼각형 하나의 세 각의 크기를 쓰고, 가장 큰 각을 구한 방법을 설명하시오.",
+          "answer": "세 각은 $30^\\circ$, $60^\\circ$, $90^\\circ$이다. 위쪽 각 $60^\\circ$를 반으로 나눈 $30^\\circ$와 밑각 $60^\\circ$를 합친 뒤 $180^\\circ-30^\\circ-60^\\circ=90^\\circ$로 구한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "세 각이 $30^\\circ$, $60^\\circ$, $90^\\circ$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$180^\\circ-30^\\circ-60^\\circ=90^\\circ$",
+                "세 각의 합에서 두 각을 뺀다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "정삼각형을 한 꼭짓점에서 반으로 접어 자르면 각이 $30^\\circ$, $60^\\circ$, {$90^\\circ$}인 삼각형 두 개가 된다.",
+          "acceptedAnswers": [
+            [
+              "$90^\\circ$",
+              "$90$도",
+              "직각"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-3-xc19",
+          "sourceIndex": 2228,
+          "proposalFingerprint": "ef02a174ca551bf4e8d10199f81d9303f296ba7a3b717966b5d4f9da4e6cd304",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "그림없는위쪽각표현을잘린꼭짓점의각으로바꾸어30·60·90과각합방법을명시한다.",
+          "cReason": "마주보는변가운데까지의접기선을C에도명시한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bAnswer": "세 각은 $30^\\circ$, $60^\\circ$, $90^\\circ$이다. 잘린 꼭짓점의 $60^\\circ$를 반으로 나누면 $30^\\circ$이고, 그대로 남은 각은 $60^\\circ$이다. $180^\\circ-30^\\circ-60^\\circ=90^\\circ$로 가장 큰 각을 구한다.",
+        "cDecision": "rewrite",
+        "cAfter": "정삼각형의 한 꼭짓점과 마주 보는 변의 가운데를 잇는 선을 따라 자르면, 각이 $30^\\circ$, $60^\\circ$, {$90^\\circ$}인 삼각형 두 개가 된다.",
+        "cSlotEquivalents": [
+          [
+            "$90$도",
+            "직각"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-3-xc20",
+      "sourceIndex": 2229,
+      "beforeProposal": {
+        "sourceIndex": 2229,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-3 정삼각형의 성질",
+        "sourceFingerprint": "34cb8dc21ed6f52ed4235a4fc7f0678dd85e767f02645f3d0dc81a4032eb3585",
+        "proposalFingerprint": "68338f7a642f52355eeb700a0d043e4b01d376229778304ca8f17d10d4d75ea9",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-3-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "한 변이 $2\\,\\mathrm{cm}$인 정삼각형 $4$개로 큰 정삼각형을 만들었다. 큰 정삼각형의 한 변의 길이를 구하고, 그 까닭을 쓰시오.",
+        "bAnswer": "$4\\,\\mathrm{cm}$이다. 큰 정삼각형의 한 변에 작은 정삼각형의 변이 $2$개씩 놓이기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$4\\,\\mathrm{cm}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 변에 작은 변이 $2$개씩 놓인다",
+              "작은 정삼각형 한 변의 $2$배"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "큰 정삼각형 한 변의 길이",
+        "bReason": "원문 예제를 자립시켜 $4\\,\\mathrm{cm}$ 결과와 까닭을 확인",
+        "cDecision": "rewrite",
+        "cAfter": "한 변이 같은 정삼각형 $4$개로 큰 정삼각형을 만들면 큰 정삼각형의 한 변은 작은 정삼각형 한 변의 {$2$}배이다.",
+        "cReason": "긴 구절 빈칸이라 답 범위가 흐려 숫자 하나로 좁힘",
+        "cSlotEquivalents": [
+          [
+            "두"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "정삼각형 넷으로 큰 정삼각형 만들기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "한 변이 같은 정삼각형 $4$개로 큰 정삼각형을 만들면 큰 정삼각형의 한 변은 작은 정삼각형 한 변의 {$2$}배이다.",
+        "cStudentSentence": "한 변이 같은 정삼각형 $4$개로 큰 정삼각형을 만들면 큰 정삼각형의 한 변은 작은 정삼각형 한 변의 □배이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$2$",
+            "equivalents": [
+              "두"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "한 변이 $2\\,\\mathrm{cm}$인 정삼각형 $4$개로 큰 정삼각형을 만들었다. 큰 정삼각형의 한 변의 길이를 구하고, 그 까닭을 쓰시오.",
+          "answer": "$4\\,\\mathrm{cm}$이다. 큰 정삼각형의 한 변에 작은 정삼각형의 변이 $2$개씩 놓이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$4\\,\\mathrm{cm}$"
+              ]
+            },
+            {
+              "anyOf": [
+                "한 변에 작은 변이 $2$개씩 놓인다",
+                "작은 정삼각형 한 변의 $2$배"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "한 변이 같은 정삼각형 $4$개로 큰 정삼각형을 만들면 큰 정삼각형의 한 변은 작은 정삼각형 한 변의 {$2$}배이다.",
+          "acceptedAnswers": [
+            [
+              "$2$",
+              "두"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-3-xc20",
+          "sourceIndex": 2229,
+          "proposalFingerprint": "68338f7a642f52355eeb700a0d043e4b01d376229778304ca8f17d10d4d75ea9",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "네작은정삼각형을겹침과빈틈없이큰정삼각형으로붙이는조건을명시한다.",
+          "cReason": "큰정삼각형을만드는동일한배치조건을명시한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bPrompt": "한 변이 $2\\,\\mathrm{cm}$인 정삼각형 $4$개를 겹침도 빈틈도 없이 붙여 큰 정삼각형을 만들었다. 큰 정삼각형의 한 변의 길이를 구하고, 그 까닭을 쓰시오.",
+        "cDecision": "rewrite",
+        "cAfter": "한 변의 길이가 같은 정삼각형 $4$개를 겹침도 빈틈도 없이 붙여 큰 정삼각형을 만들면, 큰 정삼각형의 한 변은 작은 정삼각형 한 변의 {$2$}배이다.",
+        "cSlotEquivalents": [
+          [
+            "두"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-3-xc21",
+      "sourceIndex": 2230,
+      "beforeProposal": {
+        "sourceIndex": 2230,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-3 정삼각형의 성질",
+        "sourceFingerprint": "4a1a8ed9422a920d64a9214f9e480e09958a0b6548aa0e87fda4bcddca9d9548",
+        "proposalFingerprint": "ceeeb2df0457eaaa0220fd1a626e9da2a6888ab378a08683799bf596e6a72649",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-3-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "정삼각형의 한 각을 똑같이 둘로 나누면 나누어진 각 하나는 몇 도인지 식과 함께 쓰시오.",
+        "bAnswer": "$60^\\circ\\div2=30^\\circ$",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$30^\\circ$",
+              "$60^\\circ\\div2$"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "한 각을 둘로 나누기",
+        "bReason": "$60^\\circ$를 똑같이 나누는 선명한 계산 적용",
+        "cDecision": "keep",
+        "cReason": "각도 숫자 빈칸으로 계산이 선명",
+        "cSlotEquivalents": [
+          [
+            "$30$도"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "정삼각형의 한 각을 둘로 나누기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정삼각형의 한 각을 똑같이 둘로 나누면 각은 {$30^\\circ$}이다.",
+        "cStudentSentence": "정삼각형의 한 각을 똑같이 둘로 나누면 각은 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$30^\\circ$",
+            "equivalents": [
+              "$30$도"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "정삼각형의 한 각을 똑같이 둘로 나누면 각은 □이다.",
+          "answers": [
+            "$30^\\circ$"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "정삼각형의 한 각을 똑같이 둘로 나누면 나누어진 각 하나는 몇 도인지 식과 함께 쓰시오.",
+          "answer": "$60^\\circ\\div2=30^\\circ$",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$30^\\circ$",
+                "$60^\\circ\\div2$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "정삼각형의 한 각을 똑같이 둘로 나누면 각은 {$30^\\circ$}이다.",
+          "acceptedAnswers": [
+            [
+              "$30^\\circ$",
+              "$30$도"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-3-xc21",
+          "sourceIndex": 2230,
+          "proposalFingerprint": "ceeeb2df0457eaaa0220fd1a626e9da2a6888ab378a08683799bf596e6a72649",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "방법의식도요청하므로60÷2=30까지기준으로받는다.",
+          "cReason": "정삼각형한각을둘로나눈30도를확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$60^\\circ\\div2=30^\\circ$",
+              "정삼각형의 한 각 $60^\\circ$를 반으로 나누어 $30^\\circ$이다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-3-xc23",
+      "sourceIndex": 2232,
+      "beforeProposal": {
+        "sourceIndex": 2232,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-3 정삼각형의 성질",
+        "sourceFingerprint": "d777b189c47f31d9ca1cc17f8132bd4c511004f5b3e642755c3ad2e100a5a906",
+        "proposalFingerprint": "2103496f521ad45091ca4b7bce7d8ded20f4b0afa0a9952d5be77ea2cbce8ee9",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-3-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "한 각이 $60^\\circ$인 이등변삼각형이 있다. $60^\\circ$가 같은 두 각 중 하나인 경우와 아닌 경우로 나누어 나머지 각을 구하고, 이 삼각형이 무슨 삼각형인지 쓰시오.",
+        "bAnswer": "같은 두 각 중 하나이면 같은 각도 $60^\\circ$이고 나머지는 $180^\\circ-60^\\circ-60^\\circ=60^\\circ$이다. 아니면 나머지 두 각의 합 $120^\\circ$를 같게 나누어 각각 $60^\\circ$이다. 두 경우 모두 정삼각형이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 경우 모두 세 각이 $60^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "정삼각형"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "한 각 60도 이등변삼각형",
+        "bReason": "두 경우를 나누어 따져 모두 정삼각형임을 확인",
+        "cDecision": "keep",
+        "cReason": "정삼각형 이름 빈칸이고 조건이 문장에 모두 보임",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "한 각이 $60^\\circ$인 이등변삼각형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "이등변삼각형 가운데 한 각이 $60^\\circ$인 것은 모두 {정삼각형}이다.",
+        "cStudentSentence": "이등변삼각형 가운데 한 각이 $60^\\circ$인 것은 모두 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "정삼각형",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "이등변삼각형 가운데 한 각이 $60^\\circ$인 것은 모두 □이다.",
+          "answers": [
+            "정삼각형"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "한 각이 $60^\\circ$인 이등변삼각형이 있다. $60^\\circ$가 같은 두 각 중 하나인 경우와 아닌 경우로 나누어 나머지 각을 구하고, 이 삼각형이 무슨 삼각형인지 쓰시오.",
+          "answer": "같은 두 각 중 하나이면 같은 각도 $60^\\circ$이고 나머지는 $180^\\circ-60^\\circ-60^\\circ=60^\\circ$이다. 아니면 나머지 두 각의 합 $120^\\circ$를 같게 나누어 각각 $60^\\circ$이다. 두 경우 모두 정삼각형이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "두 경우 모두 세 각이 $60^\\circ$"
+              ]
+            },
+            {
+              "anyOf": [
+                "정삼각형"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "이등변삼각형 가운데 한 각이 $60^\\circ$인 것은 모두 {정삼각형}이다.",
+          "acceptedAnswers": [
+            [
+              "정삼각형"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-3-xc23",
+          "sourceIndex": 2232,
+          "proposalFingerprint": "2103496f521ad45091ca4b7bce7d8ded20f4b0afa0a9952d5be77ea2cbce8ee9",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "두경우의실제구하는과정도질문에서요청하므로같은결과60만으로채점하지않는다.",
+          "cReason": "60도인한각을가진이등변이정삼각형인성질이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "같은 두 각 중 하나가 $60^\\circ$이면 다른 하나도 $60^\\circ$이고 남은 각은 $180^\\circ-60^\\circ-60^\\circ=60^\\circ$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 두 각이 아닌 각이 $60^\\circ$이면 남은 $120^\\circ$를 둘로 나누어 각각 $60^\\circ$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "정삼각형"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-3-xc24",
+      "sourceIndex": 2233,
+      "beforeProposal": {
+        "sourceIndex": 2233,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-3 정삼각형의 성질",
+        "sourceFingerprint": "19f898cf4b47fd3ee062d3a5c1e54f21b6540ed65e1852b916346594bbac0053",
+        "proposalFingerprint": "b84ab7736808d31b5d707df5500605a92b5209a2aa3a9edb2966158e5e5f24d9",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-3-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "정삼각형의 세 꼭짓점에서 한 변씩 늘여 바깥쪽 각을 세 개 만들었다. 세 바깥쪽 각의 크기의 합을 구하는 식과 답을 쓰시오.",
+        "bAnswer": "바깥쪽 각은 각각 $180^\\circ-60^\\circ=120^\\circ$이므로 $120^\\circ\\times3=360^\\circ$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$120^\\circ\\times3$",
+              "한 바깥쪽 각이 $120^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$360^\\circ$"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "바깥쪽 각 세 개의 합",
+        "bReason": "바깥쪽 각 하나를 구해 세 번 더하는 계산 확인",
+        "cDecision": "keep",
+        "cReason": "각도 숫자 빈칸으로 계산이 선명",
+        "cSlotEquivalents": [
+          [
+            "$360$도"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "바깥쪽 각 세 개의 합",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정삼각형의 세 꼭짓점에서 한 변씩 늘여 생긴 바깥쪽 각 세 개의 합은 {$360^\\circ$}이다.",
+        "cStudentSentence": "정삼각형의 세 꼭짓점에서 한 변씩 늘여 생긴 바깥쪽 각 세 개의 합은 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$360^\\circ$",
+            "equivalents": [
+              "$360$도"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "정삼각형의 세 꼭짓점에서 한 변씩 늘여 생긴 바깥쪽 각 세 개의 합은 □이다.",
+          "answers": [
+            "$360^\\circ$"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "정삼각형의 세 꼭짓점에서 한 변씩 늘여 바깥쪽 각을 세 개 만들었다. 세 바깥쪽 각의 크기의 합을 구하는 식과 답을 쓰시오.",
+          "answer": "바깥쪽 각은 각각 $180^\\circ-60^\\circ=120^\\circ$이므로 $120^\\circ\\times3=360^\\circ$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$120^\\circ\\times3$",
+                "한 바깥쪽 각이 $120^\\circ$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$360^\\circ$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "정삼각형의 세 꼭짓점에서 한 변씩 늘여 생긴 바깥쪽 각 세 개의 합은 {$360^\\circ$}이다.",
+          "acceptedAnswers": [
+            [
+              "$360^\\circ$",
+              "$360$도"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-3-xc24",
+          "sourceIndex": 2233,
+          "proposalFingerprint": "b84ab7736808d31b5d707df5500605a92b5209a2aa3a9edb2966158e5e5f24d9",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "한외각120만으로세외각합의식을답한것은아니므로120×3=360을기준으로받는다.",
+          "cReason": "정삼각형세외각합360을확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$120^\\circ\\times3=360^\\circ$",
+              "$(180^\\circ-60^\\circ)\\times3=360^\\circ$",
+              "$120^\\circ+120^\\circ+120^\\circ=360^\\circ$"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    }
+  ]
+}

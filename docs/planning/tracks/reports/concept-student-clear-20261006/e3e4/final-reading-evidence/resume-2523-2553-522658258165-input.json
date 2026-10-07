@@ -1,0 +1,2710 @@
+{
+  "sourceCommit": "13bf05dce",
+  "purpose": "Actual fields captured before direct Codex reading; capture is not a verdict",
+  "start": 2523,
+  "end": 2553,
+  "rows": [
+    {
+      "source": {
+        "sourceIndex": 2523,
+        "sourceFingerprint": "7c11c2f2fef6f9ae56c61840bb77583ccb0f672e29b1372e7f962b76b2f8faa6",
+        "part": "e4plus",
+        "id": "e4-2-4-5-xc5",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "term": "모눈종이에 평행사변형 그리기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "모눈종이에서 한 변을 긋고, 그 변과 평행하고 {길이가 같은} 변을 그은 뒤 끝을 이어 평행사변형을 그린다.",
+        "studentC": "모눈종이에서 한 변을 긋고, 그 변과 평행하고 □ 변을 그은 뒤 끝을 이어 평행사변형을 그린다.",
+        "answers": [
+          "길이가 같은"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2523,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "sourceFingerprint": "7c11c2f2fef6f9ae56c61840bb77583ccb0f672e29b1372e7f962b76b2f8faa6",
+        "proposalFingerprint": "a434f534cd480199694b3238bc546baf1cc6606ec5cc8f1ce855b3380743b600",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-5-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "모눈종이에 평행사변형을 그리려고 한 변을 먼저 그었다. 그다음에 어떤 변을 그어야 하는지 쓰시오.",
+        "bAnswer": "처음 변과 평행하고 길이가 같은 변을 그은 뒤 양 끝을 이어 준다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "평행한 변을 긋는다",
+              "나란한 변을 긋는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "길이가 같다",
+              "같은 길이로 긋는다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "모눈종이에 평행사변형 그리기",
+        "bReason": "그리는 순서와 조건을 직접 쓰게 함",
+        "cDecision": "keep",
+        "cReason": "'길이가 같은'은 짧고 답 범위가 분명함",
+        "cSlotEquivalents": [
+          [
+            "같은 길이의",
+            "길이가 똑같은"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "모눈종이에 평행사변형 그리기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "모눈종이에서 한 변을 긋고, 그 변과 평행하고 {길이가 같은} 변을 그은 뒤 끝을 이어 평행사변형을 그린다.",
+        "cStudentSentence": "모눈종이에서 한 변을 긋고, 그 변과 평행하고 □ 변을 그은 뒤 끝을 이어 평행사변형을 그린다.",
+        "cSlotAnswers": [
+          {
+            "expected": "길이가 같은",
+            "equivalents": [
+              "같은 길이의",
+              "길이가 똑같은"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "모눈종이에서 한 변을 긋고, 그 변과 평행하고 □ 변을 그은 뒤 끝을 이어 평행사변형을 그린다.",
+          "answers": [
+            "길이가 같은"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "모눈종이에 평행사변형을 그리려고 한 변을 먼저 그었다. 그다음에 어떤 변을 그어야 하는지 쓰시오.",
+          "answer": "처음 변과 평행하고 길이가 같은 변을 그은 뒤 양 끝을 이어 준다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "평행한 변을 긋는다",
+                "나란한 변을 긋는다"
+              ]
+            },
+            {
+              "anyOf": [
+                "길이가 같다",
+                "같은 길이로 긋는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "모눈종이에서 한 변을 긋고, 그 변과 평행하고 {길이가 같은} 변을 그은 뒤 끝을 이어 평행사변형을 그린다.",
+          "acceptedAnswers": [
+            [
+              "길이가 같은",
+              "같은 길이의",
+              "길이가 똑같은"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2524,
+        "sourceFingerprint": "20f1da98ee31cd50c5244ee5ff07f77e40b3a842d90379981ffb982c49086035",
+        "part": "e4plus",
+        "id": "e4-2-4-5-xc6",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "term": "맞은편 변의 길이",
+        "kind": "성질",
+        "level": "하",
+        "definition": "평행사변형은 {마주 보는 변의 길이가 같으므로} 한 변이 $5\\,\\mathrm{cm}$이면 그 맞은편 변도 $5\\,\\mathrm{cm}$이다.",
+        "studentC": "평행사변형은 □ 한 변이 $5\\,\\mathrm{cm}$이면 그 맞은편 변도 $5\\,\\mathrm{cm}$이다.",
+        "answers": [
+          "마주 보는 변의 길이가 같으므로"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2524,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "sourceFingerprint": "20f1da98ee31cd50c5244ee5ff07f77e40b3a842d90379981ffb982c49086035",
+        "proposalFingerprint": "029d5632c67fb398168a1d6bd2585468924d789ab56091de2fb4e0714e984bc0",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-5-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "평행사변형의 한 변이 $5\\,\\mathrm{cm}$일 때 그 맞은편 변의 길이는 몇 cm이며 그 까닭은 무엇인지 쓰시오.",
+        "bAnswer": "$5\\,\\mathrm{cm}$이다. 마주 보는 변의 길이가 같기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$5\\,\\mathrm{cm}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "마주 보는 변의 길이가 같다",
+              "맞은편 변의 길이가 같다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "맞은편 변의 길이와 까닭",
+        "bReason": "성질을 구체 길이에 적용하게 함",
+        "cDecision": "rewrite",
+        "cAfter": "평행사변형은 마주 보는 변의 길이가 {같으므로} 한 변이 $5\\,\\mathrm{cm}$이면 그 맞은편 변도 $5\\,\\mathrm{cm}$이다.",
+        "cReason": "긴 이유 구절 빈칸을 낱말 하나로 좁힘",
+        "cSlotEquivalents": [
+          [
+            "똑같으므로"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "맞은편 변의 길이",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행사변형은 마주 보는 변의 길이가 {같으므로} 한 변이 $5\\,\\mathrm{cm}$이면 그 맞은편 변도 $5\\,\\mathrm{cm}$이다.",
+        "cStudentSentence": "평행사변형은 마주 보는 변의 길이가 □ 한 변이 $5\\,\\mathrm{cm}$이면 그 맞은편 변도 $5\\,\\mathrm{cm}$이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같으므로",
+            "equivalents": [
+              "똑같으므로"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "평행사변형의 한 변이 $5\\,\\mathrm{cm}$일 때 그 맞은편 변의 길이는 몇 cm이며 그 까닭은 무엇인지 쓰시오.",
+          "answer": "$5\\,\\mathrm{cm}$이다. 마주 보는 변의 길이가 같기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$5\\,\\mathrm{cm}$"
+              ]
+            },
+            {
+              "anyOf": [
+                "마주 보는 변의 길이가 같다",
+                "맞은편 변의 길이가 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "평행사변형은 마주 보는 변의 길이가 {같으므로} 한 변이 $5\\,\\mathrm{cm}$이면 그 맞은편 변도 $5\\,\\mathrm{cm}$이다.",
+          "acceptedAnswers": [
+            [
+              "같으므로",
+              "똑같으므로"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2525,
+        "sourceFingerprint": "bdbd7999005c11d00261d0dd3dee8c57811f6a38a8213ff5d387ce472e1db3bf",
+        "part": "e4plus",
+        "id": "e4-2-4-5-xc7",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "term": "맞은편 각의 크기",
+        "kind": "성질",
+        "level": "하",
+        "definition": "평행사변형은 {마주 보는 각의 크기가 같으므로} 한 각이 $70^\\circ$이면 그 맞은편 각도 $70^\\circ$이다.",
+        "studentC": "평행사변형은 □ 한 각이 $70^\\circ$이면 그 맞은편 각도 $70^\\circ$이다.",
+        "answers": [
+          "마주 보는 각의 크기가 같으므로"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2525,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "sourceFingerprint": "bdbd7999005c11d00261d0dd3dee8c57811f6a38a8213ff5d387ce472e1db3bf",
+        "proposalFingerprint": "b9ccddbc39d7ccca7f57acb8af4de7dd5f67de516042d28dd477d7512b8bf22b",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-5-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "평행사변형의 한 각이 $70^\\circ$일 때 그 맞은편 각의 크기는 몇 도이며 그 까닭은 무엇인지 쓰시오.",
+        "bAnswer": "$70^\\circ$이다. 마주 보는 각의 크기가 같기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$70^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "마주 보는 각의 크기가 같다",
+              "맞은편 각의 크기가 같다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "맞은편 각의 크기와 까닭",
+        "bReason": "성질을 구체 각도에 적용하게 함",
+        "cDecision": "rewrite",
+        "cAfter": "평행사변형은 마주 보는 각의 크기가 {같으므로} 한 각이 $70^\\circ$이면 그 맞은편 각도 $70^\\circ$이다.",
+        "cReason": "긴 이유 구절 빈칸을 낱말 하나로 좁힘",
+        "cSlotEquivalents": [
+          [
+            "똑같으므로"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "맞은편 각의 크기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행사변형은 마주 보는 각의 크기가 {같으므로} 한 각이 $70^\\circ$이면 그 맞은편 각도 $70^\\circ$이다.",
+        "cStudentSentence": "평행사변형은 마주 보는 각의 크기가 □ 한 각이 $70^\\circ$이면 그 맞은편 각도 $70^\\circ$이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같으므로",
+            "equivalents": [
+              "똑같으므로"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "평행사변형의 한 각이 $70^\\circ$일 때 그 맞은편 각의 크기는 몇 도이며 그 까닭은 무엇인지 쓰시오.",
+          "answer": "$70^\\circ$이다. 마주 보는 각의 크기가 같기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$70^\\circ$"
+              ]
+            },
+            {
+              "anyOf": [
+                "마주 보는 각의 크기가 같다",
+                "맞은편 각의 크기가 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "평행사변형은 마주 보는 각의 크기가 {같으므로} 한 각이 $70^\\circ$이면 그 맞은편 각도 $70^\\circ$이다.",
+          "acceptedAnswers": [
+            [
+              "같으므로",
+              "똑같으므로"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2526,
+        "sourceFingerprint": "4b2ab1285b4a2a6d1fe2ad27c234c8dc79eed2e818b3ec763dca195188841c95",
+        "part": "e4plus",
+        "id": "e4-2-4-5-xc8",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "term": "평행사변형의 네 각",
+        "kind": "성질",
+        "level": "하",
+        "definition": "평행사변형의 네 각을 모두 더하면 {$360^\\circ$}이다.",
+        "studentC": "평행사변형의 네 각을 모두 더하면 □이다.",
+        "answers": [
+          "$360^\\circ$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2526,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "sourceFingerprint": "4b2ab1285b4a2a6d1fe2ad27c234c8dc79eed2e818b3ec763dca195188841c95",
+        "proposalFingerprint": "82ee3f7d5bcce1a7e05125ef00c763570e58e8aa5b90fa3708f9c0e9bd3233ad",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-5-xc8",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "definition",
+        "bGoal": "평행사변형 네 각의 합",
+        "bReason": "사다리꼴 네 각 합과 같은 목표",
+        "exclusionReason": "사다리꼴 xc6의 '사각형 네 각의 합 $360^\\circ$'과 같은 목표라 B는 한 번만 묻는다",
+        "cDecision": "keep",
+        "cReason": "짧은 수치 빈칸이라 정답이 분명함",
+        "cSlotEquivalents": [
+          [
+            "$360$도"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "평행사변형의 네 각",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행사변형의 네 각을 모두 더하면 {$360^\\circ$}이다.",
+        "cStudentSentence": "평행사변형의 네 각을 모두 더하면 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$360^\\circ$",
+            "equivalents": [
+              "$360$도"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "평행사변형의 네 각을 모두 더하면 □이다.",
+          "answers": [
+            "$360^\\circ$"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "평행사변형의 네 각을 모두 더하면 {$360^\\circ$}이다.",
+          "acceptedAnswers": [
+            [
+              "$360^\\circ$",
+              "$360$도"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "사다리꼴 네 각 합과 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2527,
+        "sourceFingerprint": "144425c9972d9c4858f5a8740f166f224d911ee5a5a1d9e154ef0f7e49957278",
+        "part": "e4plus",
+        "id": "e4-2-4-5-xc9",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "term": "돌리거나 뒤집은 평행사변형",
+        "kind": "성질",
+        "level": "하",
+        "definition": "평행사변형을 돌리거나 뒤집어 놓아도 {마주 보는 두 쌍의 변이 평행}하므로 평행사변형이다.",
+        "studentC": "평행사변형을 돌리거나 뒤집어 놓아도 □하므로 평행사변형이다.",
+        "answers": [
+          "마주 보는 두 쌍의 변이 평행"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2527,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "sourceFingerprint": "144425c9972d9c4858f5a8740f166f224d911ee5a5a1d9e154ef0f7e49957278",
+        "proposalFingerprint": "5f442700d573014a1be64412682ea20f56469afee2b0e5ed08701a308b90fc3a",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-5-xc9",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "reason",
+        "bGoal": "돌려도 평행사변형인 까닭",
+        "bReason": "돌려 놓은 사다리꼴과 같은 목표",
+        "exclusionReason": "사다리꼴을 돌려 놓아도 이름이 같은 까닭을 묻는 xc15와 같은 목표",
+        "cDecision": "rewrite",
+        "cAfter": "평행사변형을 돌리거나 뒤집어 놓아도 마주 보는 두 쌍의 변이 모두 {평행}하므로 평행사변형이다.",
+        "cReason": "긴 구절 빈칸을 낱말 '평행'으로 좁힘",
+        "cSlotEquivalents": [
+          [
+            "나란"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "돌리거나 뒤집은 평행사변형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행사변형을 돌리거나 뒤집어 놓아도 마주 보는 두 쌍의 변이 모두 {평행}하므로 평행사변형이다.",
+        "cStudentSentence": "평행사변형을 돌리거나 뒤집어 놓아도 마주 보는 두 쌍의 변이 모두 □하므로 평행사변형이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "평행",
+            "equivalents": [
+              "나란"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "평행사변형을 돌리거나 뒤집어 놓아도 마주 보는 두 쌍의 변이 모두 {평행}하므로 평행사변형이다.",
+          "acceptedAnswers": [
+            [
+              "평행",
+              "나란"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "돌려 놓은 사다리꼴과 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2528,
+        "sourceFingerprint": "a5938301c52e296a670c73deda6d775b93d5f2fe8a4ece47dd76cfea2b0dbfac",
+        "part": "e4plus",
+        "id": "e4-2-4-5-xc10",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "term": "평행사변형의 이웃한 각 구하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "평행사변형의 한 각을 알면 이웃한 각은 {$180^\\circ$에서 그 각을 빼서} 구한다.",
+        "example": {
+          "prompt": "평행사변형의 한 각이 $75^\\circ$이면 이웃한 각이 $105^\\circ$인 까닭은?",
+          "answer": "이웃한 두 각의 합이 $180^\\circ$라서"
+        },
+        "studentC": "평행사변형의 한 각을 알면 이웃한 각은 □ 구한다.",
+        "answers": [
+          "$180^\\circ$에서 그 각을 빼서"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2528,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "sourceFingerprint": "a5938301c52e296a670c73deda6d775b93d5f2fe8a4ece47dd76cfea2b0dbfac",
+        "proposalFingerprint": "1a44d24441fa2ba7272ac967a535977afda6861694d143452adc3339ce0d77eb",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-5-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "평행사변형의 한 각이 $75^\\circ$일 때 이웃한 각의 크기를 구하는 식과 답을 쓰시오.",
+        "bAnswer": "$180^\\circ-75^\\circ=105^\\circ$",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$180^\\circ-75^\\circ$",
+              "$180^\\circ$에서 $75^\\circ$를 뺀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$105^\\circ$"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "이웃한 각 구하기",
+        "bReason": "이웃한 각의 합 180도를 계산에 쓰게 함",
+        "cDecision": "rewrite",
+        "cAfter": "평행사변형의 한 각이 $75^\\circ$이면 이웃한 각은 $180^\\circ-75^\\circ=$ {$105^\\circ$}이다.",
+        "cReason": "긴 방법 구절 대신 실제 계산 빈칸으로",
+        "cSlotEquivalents": [
+          [
+            "$105$도",
+            "$105$"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "평행사변형의 이웃한 각 구하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행사변형의 한 각이 $75^\\circ$이면 이웃한 각은 $180^\\circ-75^\\circ=$ {$105^\\circ$}이다.",
+        "cStudentSentence": "평행사변형의 한 각이 $75^\\circ$이면 이웃한 각은 $180^\\circ-75^\\circ=$ □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$105^\\circ$",
+            "equivalents": [
+              "$105$도",
+              "$105$"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "평행사변형의 한 각이 $75^\\circ$일 때 이웃한 각의 크기를 구하는 식과 답을 쓰시오.",
+          "answer": "$180^\\circ-75^\\circ=105^\\circ$",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$180^\\circ-75^\\circ$",
+                "$180^\\circ$에서 $75^\\circ$를 뺀다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$105^\\circ$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "평행사변형의 한 각이 $75^\\circ$이면 이웃한 각은 $180^\\circ-75^\\circ=$ {$105^\\circ$}이다.",
+          "acceptedAnswers": [
+            [
+              "$105^\\circ$",
+              "$105$도",
+              "$105$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2529,
+        "sourceFingerprint": "f3d400d55564cbbb0be7f0c95248f449f0eb45693cfe497070dcb309449f2d68",
+        "part": "e4plus",
+        "id": "e4-2-4-5-xc11",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "term": "평행사변형의 이웃한 두 변의 합",
+        "kind": "방법",
+        "level": "중",
+        "definition": "평행사변형은 마주 보는 변의 길이가 같으므로, 네 변의 길이의 합을 알면 이웃한 두 변의 길이의 합은 {그 합의 반}이다.",
+        "example": {
+          "prompt": "평행사변형에서 네 변의 길이의 합이 이웃한 두 변의 길이의 합의 두 배인 까닭은?",
+          "answer": "맞은편 변의 길이가 같아서"
+        },
+        "studentC": "평행사변형은 마주 보는 변의 길이가 같으므로, 네 변의 길이의 합을 알면 이웃한 두 변의 길이의 합은 □이다.",
+        "answers": [
+          "그 합의 반"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2529,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "sourceFingerprint": "f3d400d55564cbbb0be7f0c95248f449f0eb45693cfe497070dcb309449f2d68",
+        "proposalFingerprint": "260f35cbb3d83d3fecddf6c7d20f83cdcb8ef753773fb0f9203e97fdfe24067a",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-5-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "평행사변형의 네 변의 길이의 합이 $24\\,\\mathrm{cm}$일 때 이웃한 두 변의 길이의 합은 몇 cm인지 구하고 방법을 쓰시오.",
+        "bAnswer": "마주 보는 변의 길이가 같으므로 합의 반이다. $24\\div2=12\\,\\mathrm{cm}$",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "합을 $2$로 나눈다",
+              "합의 반"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12\\,\\mathrm{cm}$"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "둘레에서 이웃한 두 변의 합",
+        "bReason": "반으로 나누는 방법을 수치로 확인함",
+        "cDecision": "rewrite",
+        "cAfter": "평행사변형은 마주 보는 변의 길이가 같으므로, 네 변의 길이의 합이 $24\\,\\mathrm{cm}$이면 이웃한 두 변의 길이의 합은 $24\\div2=$ {$12$}$\\,\\mathrm{cm}$이다.",
+        "cReason": "'그 합의 반' 구절 대신 실제 계산 빈칸",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "평행사변형의 이웃한 두 변의 합",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행사변형은 마주 보는 변의 길이가 같으므로, 네 변의 길이의 합이 $24\\,\\mathrm{cm}$이면 이웃한 두 변의 길이의 합은 $24\\div2=$ {$12$}$\\,\\mathrm{cm}$이다.",
+        "cStudentSentence": "평행사변형은 마주 보는 변의 길이가 같으므로, 네 변의 길이의 합이 $24\\,\\mathrm{cm}$이면 이웃한 두 변의 길이의 합은 $24\\div2=$ □$\\,\\mathrm{cm}$이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$12$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "평행사변형의 네 변의 길이의 합이 $24\\,\\mathrm{cm}$일 때 이웃한 두 변의 길이의 합은 몇 cm인지 구하고 방법을 쓰시오.",
+          "answer": "마주 보는 변의 길이가 같으므로 합의 반이다. $24\\div2=12\\,\\mathrm{cm}$",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "합을 $2$로 나눈다",
+                "합의 반"
+              ]
+            },
+            {
+              "anyOf": [
+                "$12\\,\\mathrm{cm}$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "평행사변형은 마주 보는 변의 길이가 같으므로, 네 변의 길이의 합이 $24\\,\\mathrm{cm}$이면 이웃한 두 변의 길이의 합은 $24\\div2=$ {$12$}$\\,\\mathrm{cm}$이다.",
+          "acceptedAnswers": [
+            [
+              "$12$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2530,
+        "sourceFingerprint": "5a739628de816be7ff5e6953867bdb957230466ffddc7b12ea47109ff9eb0dd7",
+        "part": "e4plus",
+        "id": "e4-2-4-5-xc12",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "term": "직사각형을 밀어 만든 평행사변형",
+        "kind": "방법",
+        "level": "중",
+        "definition": "직사각형의 위 변을 길이와 방향을 그대로 유지한 채 옆으로 옮기고 아래 변의 양 끝과 각각 이으면, 마주 보는 변이 두 쌍 모두 {평행}한 평행사변형이 된다.",
+        "studentC": "직사각형의 위 변을 길이와 방향을 그대로 유지한 채 옆으로 옮기고 아래 변의 양 끝과 각각 이으면, 마주 보는 변이 두 쌍 모두 □한 평행사변형이 된다.",
+        "answers": [
+          "평행"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2530,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "sourceFingerprint": "5a739628de816be7ff5e6953867bdb957230466ffddc7b12ea47109ff9eb0dd7",
+        "proposalFingerprint": "6b73f9b3327b6f2987f174ec016af189b5b9473f4e46228e00de62fa85654281",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-5-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "직사각형의 위 변을 길이와 방향을 그대로 유지한 채 옆으로 옮기고 아래 변의 양 끝과 각각 이었다. 어떤 사각형이 되며 마주 보는 변은 어떤 관계인지 쓰시오.",
+        "bAnswer": "평행사변형이 되고 마주 보는 변이 두 쌍 모두 평행하다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "평행사변형"
+            ]
+          },
+          {
+            "anyOf": [
+              "마주 보는 두 쌍의 변이 평행하다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "밀어 만든 사각형의 이름과 성질",
+        "bReason": "만드는 과정과 결과 성질을 연결함",
+        "cDecision": "keep",
+        "cReason": "단서가 충분하고 빈칸은 익숙한 '평행'",
+        "exampleNeeded": "직사각형의 위 변을 옆으로 옮겨 평행사변형이 되는 그림",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "직사각형을 밀어 만든 평행사변형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직사각형의 위 변을 길이와 방향을 그대로 유지한 채 옆으로 옮기고 아래 변의 양 끝과 각각 이으면, 마주 보는 변이 두 쌍 모두 {평행}한 평행사변형이 된다.",
+        "cStudentSentence": "직사각형의 위 변을 길이와 방향을 그대로 유지한 채 옆으로 옮기고 아래 변의 양 끝과 각각 이으면, 마주 보는 변이 두 쌍 모두 □한 평행사변형이 된다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "평행",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "직사각형의 위 변을 길이와 방향을 그대로 유지한 채 옆으로 옮기고 아래 변의 양 끝과 각각 이으면, 마주 보는 변이 두 쌍 모두 □한 평행사변형이 된다.",
+          "answers": [
+            "평행"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "직사각형의 위 변을 길이와 방향을 그대로 유지한 채 옆으로 옮기고 아래 변의 양 끝과 각각 이었다. 어떤 사각형이 되며 마주 보는 변은 어떤 관계인지 쓰시오.",
+          "answer": "평행사변형이 되고 마주 보는 변이 두 쌍 모두 평행하다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "평행사변형"
+              ]
+            },
+            {
+              "anyOf": [
+                "마주 보는 두 쌍의 변이 평행하다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "직사각형의 위 변을 길이와 방향을 그대로 유지한 채 옆으로 옮기고 아래 변의 양 끝과 각각 이으면, 마주 보는 변이 두 쌍 모두 {평행}한 평행사변형이 된다.",
+          "acceptedAnswers": [
+            [
+              "평행"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2531,
+        "sourceFingerprint": "49e6a343286c60e105f6ed838825c3d03f15810e0afaf242b198de8210a16c53",
+        "part": "e4plus",
+        "id": "e4-2-4-5-xc13",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "term": "사다리꼴과 평행사변형의 차이",
+        "kind": "성질",
+        "level": "중",
+        "definition": "사다리꼴은 평행한 변이 한 쌍만 있어도 되지만 평행사변형은 {두 쌍}이 있어야 한다.",
+        "studentC": "사다리꼴은 평행한 변이 한 쌍만 있어도 되지만 평행사변형은 □이 있어야 한다.",
+        "answers": [
+          "두 쌍"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2531,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "sourceFingerprint": "49e6a343286c60e105f6ed838825c3d03f15810e0afaf242b198de8210a16c53",
+        "proposalFingerprint": "8a0d56ddceec7a395a02c149002271a3fcf27069bbdab96830e8a559f1b85e2f",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-5-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "사다리꼴과 평행사변형은 평행한 변이 각각 몇 쌍 있어야 하는지 쓰시오.",
+        "bAnswer": "사다리꼴은 한 쌍 이상, 평행사변형은 두 쌍이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "사다리꼴은 한 쌍 이상",
+              "사다리꼴은 한 쌍만 있어도 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "평행사변형은 두 쌍",
+              "평행사변형은 $2$쌍"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "두 도형의 평행한 변 비교",
+        "bReason": "두 정의의 차이를 쌍의 수로 비교함",
+        "cDecision": "keep",
+        "cReason": "쌍의 수를 묻는 짧은 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "$2$쌍",
+            "두쌍"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "사다리꼴과 평행사변형의 차이",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "사다리꼴은 평행한 변이 한 쌍만 있어도 되지만 평행사변형은 {두 쌍}이 있어야 한다.",
+        "cStudentSentence": "사다리꼴은 평행한 변이 한 쌍만 있어도 되지만 평행사변형은 □이 있어야 한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "두 쌍",
+            "equivalents": [
+              "$2$쌍",
+              "두쌍"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "사다리꼴은 평행한 변이 한 쌍만 있어도 되지만 평행사변형은 □이 있어야 한다.",
+          "answers": [
+            "두 쌍"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "사다리꼴과 평행사변형은 평행한 변이 각각 몇 쌍 있어야 하는지 쓰시오.",
+          "answer": "사다리꼴은 한 쌍 이상, 평행사변형은 두 쌍이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "사다리꼴은 한 쌍 이상",
+                "사다리꼴은 한 쌍만 있어도 된다"
+              ]
+            },
+            {
+              "anyOf": [
+                "평행사변형은 두 쌍",
+                "평행사변형은 $2$쌍"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "사다리꼴은 평행한 변이 한 쌍만 있어도 되지만 평행사변형은 {두 쌍}이 있어야 한다.",
+          "acceptedAnswers": [
+            [
+              "두 쌍",
+              "$2$쌍",
+              "두쌍"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2532,
+        "sourceFingerprint": "fa65ad02c6828e95a4c090dc83561637206147af0f1bbb1c70af76854e5d806a",
+        "part": "e4plus",
+        "id": "e4-2-4-5-xc14",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "term": "예각과 둔각의 개수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "직사각형이 아닌 평행사변형에는 예각 두 개와 {둔각 두 개}가 있다.",
+        "studentC": "직사각형이 아닌 평행사변형에는 예각 두 개와 □가 있다.",
+        "answers": [
+          "둔각 두 개"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2532,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "sourceFingerprint": "fa65ad02c6828e95a4c090dc83561637206147af0f1bbb1c70af76854e5d806a",
+        "proposalFingerprint": "edaf9081d2a45831e2561129c20395028823582b25e9a4f3cd319280da888d2c",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-5-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "직사각형이 아닌 평행사변형에는 예각과 둔각이 각각 몇 개씩 있는지 쓰시오.",
+        "bAnswer": "예각 두 개, 둔각 두 개이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "예각 두 개",
+              "예각 $2$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "둔각 두 개",
+              "둔각 $2$개"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "예각과 둔각의 개수 알기",
+        "bReason": "예각과 둔각의 개수를 각각 확인함",
+        "cDecision": "keep",
+        "cReason": "익숙한 낱말과 개수 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "둔각 $2$개"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "예각과 둔각의 개수",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직사각형이 아닌 평행사변형에는 예각 두 개와 {둔각 두 개}가 있다.",
+        "cStudentSentence": "직사각형이 아닌 평행사변형에는 예각 두 개와 □가 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "둔각 두 개",
+            "equivalents": [
+              "둔각 $2$개"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "직사각형이 아닌 평행사변형에는 예각 두 개와 □가 있다.",
+          "answers": [
+            "둔각 두 개"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "직사각형이 아닌 평행사변형에는 예각과 둔각이 각각 몇 개씩 있는지 쓰시오.",
+          "answer": "예각 두 개, 둔각 두 개이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "예각 두 개",
+                "예각 $2$개"
+              ]
+            },
+            {
+              "anyOf": [
+                "둔각 두 개",
+                "둔각 $2$개"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "직사각형이 아닌 평행사변형에는 예각 두 개와 {둔각 두 개}가 있다.",
+          "acceptedAnswers": [
+            [
+              "둔각 두 개",
+              "둔각 $2$개"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2533,
+        "sourceFingerprint": "849d30b97244d941b55495ed313133af677a82aef25b2168a3cdbb704025b80d",
+        "part": "e4plus",
+        "id": "e4-2-4-5-xc15",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "term": "사다리꼴 두 개로 평행사변형",
+        "kind": "방법",
+        "level": "중",
+        "definition": "평행한 변이 한 쌍뿐이고 모양과 크기가 같은 사다리꼴 두 개에서 하나만 {반 바퀴 돌려} 같은 자리에 있던 {평행하지 않은 변끼리} 붙이면 평행사변형이 된다.",
+        "studentC": "평행한 변이 한 쌍뿐이고 모양과 크기가 같은 사다리꼴 두 개에서 하나만 □ 같은 자리에 있던 □ 붙이면 평행사변형이 된다.",
+        "answers": [
+          "반 바퀴 돌려",
+          "평행하지 않은 변끼리"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2533,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "sourceFingerprint": "849d30b97244d941b55495ed313133af677a82aef25b2168a3cdbb704025b80d",
+        "proposalFingerprint": "3ffa8f59c9a337c85013e342e31851a58326308746b8ae905e4e563c17a3b641",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-5-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "평행한 변이 한 쌍뿐이고 모양과 크기가 같은 사다리꼴 두 개로 평행사변형을 만들려면 어떻게 붙여야 하는지 쓰시오.",
+        "bAnswer": "하나를 반 바퀴 돌려 평행하지 않은 변끼리 붙인다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "반 바퀴 돌린다"
+            ]
+          },
+          {
+            "anyOf": [
+              "평행하지 않은 변끼리 붙인다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "사다리꼴 두 개로 평행사변형 만들기",
+        "bReason": "돌리기와 붙이는 변을 모두 쓰게 함",
+        "cDecision": "rewrite",
+        "cAfter": "평행한 변이 한 쌍뿐이고 모양과 크기가 같은 사다리꼴 두 개에서 하나만 반 바퀴 돌려 같은 자리에 있던 평행하지 않은 변끼리 붙이면 {평행사변형}이 된다.",
+        "cReason": "그림 없이 알기 어려운 두 구절 빈칸을 도형 이름으로",
+        "exampleNeeded": "사다리꼴 두 개 중 하나를 반 바퀴 돌려 평행하지 않은 변끼리 붙인 평행사변형 그림",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "사다리꼴 두 개로 평행사변형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행한 변이 한 쌍뿐이고 모양과 크기가 같은 사다리꼴 두 개에서 하나만 반 바퀴 돌려 같은 자리에 있던 평행하지 않은 변끼리 붙이면 {평행사변형}이 된다.",
+        "cStudentSentence": "평행한 변이 한 쌍뿐이고 모양과 크기가 같은 사다리꼴 두 개에서 하나만 반 바퀴 돌려 같은 자리에 있던 평행하지 않은 변끼리 붙이면 □이 된다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "평행사변형",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "평행한 변이 한 쌍뿐이고 모양과 크기가 같은 사다리꼴 두 개로 평행사변형을 만들려면 어떻게 붙여야 하는지 쓰시오.",
+          "answer": "하나를 반 바퀴 돌려 평행하지 않은 변끼리 붙인다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "반 바퀴 돌린다"
+              ]
+            },
+            {
+              "anyOf": [
+                "평행하지 않은 변끼리 붙인다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "평행한 변이 한 쌍뿐이고 모양과 크기가 같은 사다리꼴 두 개에서 하나만 반 바퀴 돌려 같은 자리에 있던 평행하지 않은 변끼리 붙이면 {평행사변형}이 된다.",
+          "acceptedAnswers": [
+            [
+              "평행사변형"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2534,
+        "sourceFingerprint": "b403b0752923e25081aa21f6cf9e4b925c02496389687b4e37994803f500a256",
+        "part": "e4plus",
+        "id": "e4-2-4-5-xc16",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "term": "직각이 하나 있는 평행사변형",
+        "kind": "성질",
+        "level": "중",
+        "definition": "평행사변형의 한 각이 직각이면 {네 각이 모두} 직각이다.",
+        "studentC": "평행사변형의 한 각이 직각이면 □ 직각이다.",
+        "answers": [
+          "네 각이 모두"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2534,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "sourceFingerprint": "b403b0752923e25081aa21f6cf9e4b925c02496389687b4e37994803f500a256",
+        "proposalFingerprint": "b779305fd18e903739040b0f299b9c49160700a7f2c68f90538b17035cf04926",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-5-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "평행사변형의 한 각이 직각일 때 네 각은 각각 어떻게 되는지 쓰시오.",
+        "bAnswer": "네 각이 모두 직각이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "네 각이 모두 직각",
+              "모든 각이 직각"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "한 각이 직각일 때 네 각",
+        "bReason": "한 각으로 나머지 각을 알아내는지 확인",
+        "cDecision": "rewrite",
+        "cAfter": "평행사변형의 한 각이 직각이면 네 각이 {모두} 직각이다.",
+        "cReason": "'네 각이 모두' 구절 빈칸을 한 낱말로 좁힘",
+        "cSlotEquivalents": [
+          [
+            "다",
+            "전부"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "직각이 하나 있는 평행사변형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행사변형의 한 각이 직각이면 네 각이 {모두} 직각이다.",
+        "cStudentSentence": "평행사변형의 한 각이 직각이면 네 각이 □ 직각이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "모두",
+            "equivalents": [
+              "다",
+              "전부"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "평행사변형의 한 각이 직각일 때 네 각은 각각 어떻게 되는지 쓰시오.",
+          "answer": "네 각이 모두 직각이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "네 각이 모두 직각",
+                "모든 각이 직각"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "평행사변형의 한 각이 직각이면 네 각이 {모두} 직각이다.",
+          "acceptedAnswers": [
+            [
+              "모두",
+              "다",
+              "전부"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2535,
+        "sourceFingerprint": "3d1eaf7f3d43ff5a2cb63480596ebd77479a2a7b4bc75d1c8abd88fd2e34c6fa",
+        "part": "e4plus",
+        "id": "e4-2-4-5-xc17",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "term": "이웃한 두 변의 길이",
+        "kind": "성질",
+        "level": "중",
+        "definition": "평행사변형의 이웃한 두 변은 길이가 같을 수도 {다를 수도} 있다.",
+        "studentC": "평행사변형의 이웃한 두 변은 길이가 같을 수도 □ 있다.",
+        "answers": [
+          "다를 수도"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2535,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "sourceFingerprint": "3d1eaf7f3d43ff5a2cb63480596ebd77479a2a7b4bc75d1c8abd88fd2e34c6fa",
+        "proposalFingerprint": "29ca6d2891cd0569144d68fe554b02d2c043910a864cec48bc27d01549a52ac3",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-5-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "평행사변형의 이웃한 두 변의 길이는 반드시 같은지, 달라질 수도 있는지 쓰시오.",
+        "bAnswer": "반드시 같지는 않다. 같을 수도 있고 다를 수도 있다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "같을 수도 다를 수도 있다",
+              "반드시 같지는 않다"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "이웃한 두 변 길이의 관계",
+        "bReason": "항상 같다는 오개념을 점검함",
+        "cDecision": "keep",
+        "cReason": "같다/다르다 짧은 비교 빈칸이라 유지",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "이웃한 두 변의 길이",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행사변형의 이웃한 두 변은 길이가 같을 수도 {다를 수도} 있다.",
+        "cStudentSentence": "평행사변형의 이웃한 두 변은 길이가 같을 수도 □ 있다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "다를 수도",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "평행사변형의 이웃한 두 변은 길이가 같을 수도 □ 있다.",
+          "answers": [
+            "다를 수도"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "평행사변형의 이웃한 두 변의 길이는 반드시 같은지, 달라질 수도 있는지 쓰시오.",
+          "answer": "반드시 같지는 않다. 같을 수도 있고 다를 수도 있다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "같을 수도 다를 수도 있다",
+                "반드시 같지는 않다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "평행사변형의 이웃한 두 변은 길이가 같을 수도 {다를 수도} 있다.",
+          "acceptedAnswers": [
+            [
+              "다를 수도"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2536,
+        "sourceFingerprint": "284cfcc08954e4214c54b117186907980a35e8c9bb847e4df2d61d0dd8d13976",
+        "part": "e4plus",
+        "id": "e4-2-4-5-xc22",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "term": "평행사변형을 둘로 자른 조각",
+        "kind": "성질",
+        "level": "상",
+        "definition": "평행사변형의 마주 보는 두 변을 잇는 선분으로 꼭짓점을 지나지 않게 자르면 두 조각은 {사다리꼴}이다.",
+        "studentC": "평행사변형의 마주 보는 두 변을 잇는 선분으로 꼭짓점을 지나지 않게 자르면 두 조각은 □이다.",
+        "answers": [
+          "사다리꼴"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2536,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "sourceFingerprint": "284cfcc08954e4214c54b117186907980a35e8c9bb847e4df2d61d0dd8d13976",
+        "proposalFingerprint": "cb6cc60e70615f55c77d70e3974a9974eced40e019bf1d745e11a8bc5240843d",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-5-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "평행사변형의 마주 보는 두 변을 꼭짓점이 아닌 곳에서 선분으로 이어 자른다. 두 조각은 각각 어떤 사각형이며 그 까닭은 무엇인지 쓰시오.",
+        "bAnswer": "사다리꼴이다. 자른 두 변의 일부가 평행하게 남기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "사다리꼴"
+            ]
+          },
+          {
+            "anyOf": [
+              "평행한 변이 남는다",
+              "평행한 변이 있다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "자른 조각이 사다리꼴인 까닭",
+        "bReason": "남은 평행한 변이라는 근거를 설명하게 함",
+        "cDecision": "rewrite",
+        "cAfter": "평행사변형의 마주 보는 두 변을 잇는 선분으로 꼭짓점을 지나지 않게 자르면 평행한 변이 남는 두 조각은 모두 {사다리꼴}이다.",
+        "cReason": "'사각형'도 답이 될 수 있어 평행 단서를 넣음",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "평행사변형을 둘로 자른 조각",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행사변형의 마주 보는 두 변을 잇는 선분으로 꼭짓점을 지나지 않게 자르면 평행한 변이 남는 두 조각은 모두 {사다리꼴}이다.",
+        "cStudentSentence": "평행사변형의 마주 보는 두 변을 잇는 선분으로 꼭짓점을 지나지 않게 자르면 평행한 변이 남는 두 조각은 모두 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "사다리꼴",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "평행사변형의 마주 보는 두 변을 꼭짓점이 아닌 곳에서 선분으로 이어 자른다. 두 조각은 각각 어떤 사각형이며 그 까닭은 무엇인지 쓰시오.",
+          "answer": "사다리꼴이다. 자른 두 변의 일부가 평행하게 남기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "사다리꼴"
+              ]
+            },
+            {
+              "anyOf": [
+                "평행한 변이 남는다",
+                "평행한 변이 있다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "평행사변형의 마주 보는 두 변을 잇는 선분으로 꼭짓점을 지나지 않게 자르면 평행한 변이 남는 두 조각은 모두 {사다리꼴}이다.",
+          "acceptedAnswers": [
+            [
+              "사다리꼴"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2537,
+        "sourceFingerprint": "00dc207bb45af4b5cbaf59cdc30e9b7db536524dd571db87e8d29ac3c63d0fe8",
+        "part": "e4plus",
+        "id": "e4-2-4-5-xc23",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "term": "정삼각형 네 개로 평행사변형",
+        "kind": "방법",
+        "level": "상",
+        "definition": "모양과 크기가 같은 정삼각형 네 개를 한 줄로 번갈아 뒤집어 이웃한 변 전체끼리 붙이면, 바깥의 마주 보는 변이 두 쌍 모두 {평행}하여 평행사변형을 만들 수 있다.",
+        "studentC": "모양과 크기가 같은 정삼각형 네 개를 한 줄로 번갈아 뒤집어 이웃한 변 전체끼리 붙이면, 바깥의 마주 보는 변이 두 쌍 모두 □하여 평행사변형을 만들 수 있다.",
+        "answers": [
+          "평행"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2537,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "sourceFingerprint": "00dc207bb45af4b5cbaf59cdc30e9b7db536524dd571db87e8d29ac3c63d0fe8",
+        "proposalFingerprint": "950e5f8b2d6f3677b9c46772ec8c2c14fda4e656e3300c0d155156a959a1c791",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-5-xc23",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "정삼각형 네 개로 평행사변형",
+        "bReason": "정삼각형 세 개 사다리꼴과 같은 목표",
+        "exclusionReason": "정삼각형을 번갈아 붙여 사각형을 만드는 4-4 xc23과 같은 목표이고 개수만 다름",
+        "cDecision": "keep",
+        "cReason": "긴 문장이나 빈칸은 익숙한 '평행'이라 유지",
+        "exampleNeeded": "정삼각형 네 개를 번갈아 뒤집어 한 줄로 붙여 만든 평행사변형 그림",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "정삼각형 네 개로 평행사변형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "모양과 크기가 같은 정삼각형 네 개를 한 줄로 번갈아 뒤집어 이웃한 변 전체끼리 붙이면, 바깥의 마주 보는 변이 두 쌍 모두 {평행}하여 평행사변형을 만들 수 있다.",
+        "cStudentSentence": "모양과 크기가 같은 정삼각형 네 개를 한 줄로 번갈아 뒤집어 이웃한 변 전체끼리 붙이면, 바깥의 마주 보는 변이 두 쌍 모두 □하여 평행사변형을 만들 수 있다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "평행",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "모양과 크기가 같은 정삼각형 네 개를 한 줄로 번갈아 뒤집어 이웃한 변 전체끼리 붙이면, 바깥의 마주 보는 변이 두 쌍 모두 □하여 평행사변형을 만들 수 있다.",
+          "answers": [
+            "평행"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "모양과 크기가 같은 정삼각형 네 개를 한 줄로 번갈아 뒤집어 이웃한 변 전체끼리 붙이면, 바깥의 마주 보는 변이 두 쌍 모두 {평행}하여 평행사변형을 만들 수 있다.",
+          "acceptedAnswers": [
+            [
+              "평행"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "정삼각형 세 개 사다리꼴과 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2538,
+        "sourceFingerprint": "e3655d6ec20f0db43e7a592456c81dbb96f60ab9b2f22a48c20cbd0cf4629567",
+        "part": "e4plus",
+        "id": "e4-2-4-5-xc26",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "term": "직사각형과 평행사변형의 관계",
+        "kind": "성질",
+        "level": "상",
+        "definition": "모든 직사각형은 평행사변형이지만 모든 평행사변형이 직사각형인 것은 {아니다}.",
+        "studentC": "모든 직사각형은 평행사변형이지만 모든 평행사변형이 직사각형인 것은 □.",
+        "answers": [
+          "아니다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2538,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "sourceFingerprint": "e3655d6ec20f0db43e7a592456c81dbb96f60ab9b2f22a48c20cbd0cf4629567",
+        "proposalFingerprint": "9256c1e07924ef8e9e265ff20d890355413848e846bf08accca28151439f9f54",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-5-xc26",
+        "bDecision": "rewrite",
+        "bPrompt": "모든 직사각형은 평행사변형이다. 반대로 모든 평행사변형이 직사각형인지 쓰고 그 까닭을 쓰시오.",
+        "bAnswer": "아니다. 직각이 없는 평행사변형도 있기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "아니다",
+              "직사각형이 아닌 것도 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "직각이 아닌 평행사변형이 있다",
+              "각이 직각이 아닌 경우가 있다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "포함 관계가 거꾸로는 아님",
+        "bReason": "반례로 방향이 한쪽뿐임을 설명하게 함",
+        "cDecision": "keep",
+        "cReason": "참/아니다 짧은 빈칸이라 유지",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "직사각형과 평행사변형의 관계",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "모든 직사각형은 평행사변형이지만 모든 평행사변형이 직사각형인 것은 {아니다}.",
+        "cStudentSentence": "모든 직사각형은 평행사변형이지만 모든 평행사변형이 직사각형인 것은 □.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "아니다",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "모든 직사각형은 평행사변형이지만 모든 평행사변형이 직사각형인 것은 □.",
+          "answers": [
+            "아니다"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "모든 직사각형은 평행사변형이다. 반대로 모든 평행사변형이 직사각형인지 쓰고 그 까닭을 쓰시오.",
+          "answer": "아니다. 직각이 없는 평행사변형도 있기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "아니다",
+                "직사각형이 아닌 것도 있다"
+              ]
+            },
+            {
+              "anyOf": [
+                "직각이 아닌 평행사변형이 있다",
+                "각이 직각이 아닌 경우가 있다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "모든 직사각형은 평행사변형이지만 모든 평행사변형이 직사각형인 것은 {아니다}.",
+          "acceptedAnswers": [
+            [
+              "아니다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2539,
+        "sourceFingerprint": "4086477c2c6e8a58277a5c7da69995f6a1a52dc3ff4a743dd15e63a2e73a07e0",
+        "part": "e4plus",
+        "id": "e4-2-4-5-xc27",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "term": "이웃한 두 변이 수직인 평행사변형",
+        "kind": "성질",
+        "level": "상",
+        "definition": "평행사변형의 이웃한 두 변이 수직이면 그 평행사변형은 {직사각형}이다.",
+        "studentC": "평행사변형의 이웃한 두 변이 수직이면 그 평행사변형은 □이다.",
+        "answers": [
+          "직사각형"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2539,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "sourceFingerprint": "4086477c2c6e8a58277a5c7da69995f6a1a52dc3ff4a743dd15e63a2e73a07e0",
+        "proposalFingerprint": "e563555b77a4f73f4802a57923ad69b55ba2a0c00e1951bcf8fa4da152b8a1a7",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-5-xc27",
+        "bDecision": "rewrite",
+        "bPrompt": "평행사변형의 이웃한 두 변이 서로 수직이면 어떤 사각형이 되는지 쓰시오.",
+        "bAnswer": "직사각형이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직사각형"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "수직 이웃 변의 사각형 이름",
+        "bReason": "직각 조건에서 이름을 연결함",
+        "cDecision": "keep",
+        "cReason": "익숙한 도형 이름 빈칸이라 유지",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "이웃한 두 변이 수직인 평행사변형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행사변형의 이웃한 두 변이 수직이면 그 평행사변형은 {직사각형}이다.",
+        "cStudentSentence": "평행사변형의 이웃한 두 변이 수직이면 그 평행사변형은 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "직사각형",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "평행사변형의 이웃한 두 변이 수직이면 그 평행사변형은 □이다.",
+          "answers": [
+            "직사각형"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "평행사변형의 이웃한 두 변이 서로 수직이면 어떤 사각형이 되는지 쓰시오.",
+          "answer": "직사각형이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "직사각형"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "평행사변형의 이웃한 두 변이 수직이면 그 평행사변형은 {직사각형}이다.",
+          "acceptedAnswers": [
+            [
+              "직사각형"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2540,
+        "sourceFingerprint": "e3ce4b75a852c0287090fabd96509ff353e589003b8b81ea39d78959f892267a",
+        "part": "e4plus",
+        "id": "e4-2-4-5-xc28",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "term": "평행사변형의 세 각의 합",
+        "kind": "성질",
+        "level": "상",
+        "definition": "평행사변형은 네 각의 합이 $360^\\circ$이고 맞은편 각의 크기가 같으므로 세 각의 합만 알아도 {네 각의 크기를 모두} 알 수 있다.",
+        "example": {
+          "prompt": "평행사변형에서 세 각의 합으로 남은 한 각을 알아냈다. 그 맞은편 각도 알 수 있는 까닭은?",
+          "answer": "맞은편 각끼리 크기가 같아서"
+        },
+        "studentC": "평행사변형은 네 각의 합이 $360^\\circ$이고 맞은편 각의 크기가 같으므로 세 각의 합만 알아도 □ 알 수 있다.",
+        "answers": [
+          "네 각의 크기를 모두"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2540,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "sourceFingerprint": "e3ce4b75a852c0287090fabd96509ff353e589003b8b81ea39d78959f892267a",
+        "proposalFingerprint": "7ddaca7d99dd320f97ddbdcc339e2ff1f1f484b438b123a3490aa38ba20df6bf",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-5-xc28",
+        "bDecision": "rewrite",
+        "bPrompt": "평행사변형에서 세 각의 합이 $300^\\circ$이다. 나머지 한 각과 그 맞은편 각의 크기를 각각 구하시오.",
+        "bAnswer": "나머지 한 각은 $360^\\circ-300^\\circ=60^\\circ$이고 맞은편 각도 $60^\\circ$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$360^\\circ-300^\\circ=60^\\circ$",
+              "$60^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "맞은편 각의 크기가 같아 $60^\\circ$"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "세 각의 합으로 남은 각 구하기",
+        "bReason": "각 합과 맞은편 각 성질을 함께 씀",
+        "cDecision": "rewrite",
+        "cAfter": "평행사변형의 세 각의 합이 $300^\\circ$이면 네 각의 합이 $360^\\circ$이므로 나머지 한 각은 {$60^\\circ$}이다.",
+        "cReason": "'네 각의 크기를 모두' 구절을 계산 빈칸으로",
+        "coreAfter": "평행사변형의 세 각의 합을 알면 $360^\\circ$에서 빼서 남은 각을 구한다. 맞은편 각은 같고 이웃한 각은 그 각과 더해 $180^\\circ$이므로 {네 각의 크기를 모두} 구할 수 있다.",
+        "coreReason": "원래모든네각을구하는표적과옳은사실을보존한다.초안은두각만알수있다로약화했으므로남은각·맞은편·이웃각의방법을명시한다.",
+        "cSlotEquivalents": [
+          [
+            "$60$도",
+            "$60$"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "평행사변형의 세 각의 합",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행사변형의 세 각의 합이 $300^\\circ$이면 네 각의 합이 $360^\\circ$이므로 나머지 한 각은 {$60^\\circ$}이다.",
+        "cStudentSentence": "평행사변형의 세 각의 합이 $300^\\circ$이면 네 각의 합이 $360^\\circ$이므로 나머지 한 각은 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$60^\\circ$",
+            "equivalents": [
+              "$60$도",
+              "$60$"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "평행사변형에서 세 각의 합이 $300^\\circ$이다. 나머지 한 각과 그 맞은편 각의 크기를 각각 구하시오.",
+          "answer": "나머지 한 각은 $360^\\circ-300^\\circ=60^\\circ$이고 맞은편 각도 $60^\\circ$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$360^\\circ-300^\\circ=60^\\circ$",
+                "$60^\\circ$"
+              ]
+            },
+            {
+              "anyOf": [
+                "맞은편 각의 크기가 같아 $60^\\circ$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "평행사변형의 세 각의 합이 $300^\\circ$이면 네 각의 합이 $360^\\circ$이므로 나머지 한 각은 {$60^\\circ$}이다.",
+          "acceptedAnswers": [
+            [
+              "$60^\\circ$",
+              "$60$도",
+              "$60$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2541,
+        "sourceFingerprint": "14b47bf0ebd0a9849175df9c106b51df7f7e04e22028ea0e62e45211ab03e3b4",
+        "part": "e4plus",
+        "id": "e4-2-4-6-xc1",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "term": "마름모의 둘레",
+        "kind": "방법",
+        "level": "하",
+        "definition": "마름모의 둘레는 한 변의 길이를 {$4$배} 하여 구한다.",
+        "example": {
+          "prompt": "한 변이 $9\\,\\mathrm{cm}$이면 둘레는?",
+          "answer": "$36\\,\\mathrm{cm}$"
+        },
+        "studentC": "마름모의 둘레는 한 변의 길이를 □ 하여 구한다.",
+        "answers": [
+          "$4$배"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2541,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "sourceFingerprint": "14b47bf0ebd0a9849175df9c106b51df7f7e04e22028ea0e62e45211ab03e3b4",
+        "proposalFingerprint": "d703a42adc6fa88cc53f246d472567a81cd460e8be29760b728721dccb0ea73f",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-6-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "마름모의 한 변이 $9\\,\\mathrm{cm}$일 때 둘레를 구하는 식과 답을 쓰시오.",
+        "bAnswer": "$9\\times4=36\\,\\mathrm{cm}$",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$9\\times4$",
+              "$9+9+9+9$",
+              "한 변의 길이의 $4$배"
+            ]
+          },
+          {
+            "anyOf": [
+              "$36\\,\\mathrm{cm}$"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "마름모 둘레 구하기",
+        "bReason": "네 변이 같음을 이용한 식을 확인함",
+        "cDecision": "keep",
+        "cReason": "짧은 배수 빈칸이라 정답이 분명함",
+        "cSlotEquivalents": [
+          [
+            "네 배"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "마름모의 둘레",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "마름모의 둘레는 한 변의 길이를 {$4$배} 하여 구한다.",
+        "cStudentSentence": "마름모의 둘레는 한 변의 길이를 □ 하여 구한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$4$배",
+            "equivalents": [
+              "네 배"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "마름모의 둘레는 한 변의 길이를 □ 하여 구한다.",
+          "answers": [
+            "$4$배"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "마름모의 한 변이 $9\\,\\mathrm{cm}$일 때 둘레를 구하는 식과 답을 쓰시오.",
+          "answer": "$9\\times4=36\\,\\mathrm{cm}$",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$9\\times4$",
+                "$9+9+9+9$",
+                "한 변의 길이의 $4$배"
+              ]
+            },
+            {
+              "anyOf": [
+                "$36\\,\\mathrm{cm}$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "마름모의 둘레는 한 변의 길이를 {$4$배} 하여 구한다.",
+          "acceptedAnswers": [
+            [
+              "$4$배",
+              "네 배"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2542,
+        "sourceFingerprint": "e543e354736982330b731e6bbd0fb21151efbb5d474c53c66fe1b66a8ed4dde6",
+        "part": "e4plus",
+        "id": "e4-2-4-6-xc2",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "term": "마름모의 마주 보는 각",
+        "kind": "성질",
+        "level": "하",
+        "definition": "마름모는 {마주 보는 각의 크기가 같으므로} 한 각이 $50^\\circ$이면 마주 보는 각도 $50^\\circ$이다.",
+        "studentC": "마름모는 □ 한 각이 $50^\\circ$이면 마주 보는 각도 $50^\\circ$이다.",
+        "answers": [
+          "마주 보는 각의 크기가 같으므로"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2542,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "sourceFingerprint": "e543e354736982330b731e6bbd0fb21151efbb5d474c53c66fe1b66a8ed4dde6",
+        "proposalFingerprint": "beb833d639e9d4dabf7c4b1f2983504b5f503fb9991a34328e901457a40362cd",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-6-xc2",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "reason",
+        "bGoal": "마름모의 마주 보는 각",
+        "bReason": "평행사변형 맞은편 각과 같은 목표",
+        "exclusionReason": "평행사변형 xc7의 '마주 보는 각의 크기가 같다'와 같은 목표",
+        "cDecision": "rewrite",
+        "cAfter": "마름모는 마주 보는 각의 크기가 {같으므로} 한 각이 $50^\\circ$이면 마주 보는 각도 $50^\\circ$이다.",
+        "cReason": "긴 이유 구절 빈칸을 낱말 하나로 좁힘",
+        "cSlotEquivalents": [
+          [
+            "똑같으므로"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "마름모의 마주 보는 각",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "마름모는 마주 보는 각의 크기가 {같으므로} 한 각이 $50^\\circ$이면 마주 보는 각도 $50^\\circ$이다.",
+        "cStudentSentence": "마름모는 마주 보는 각의 크기가 □ 한 각이 $50^\\circ$이면 마주 보는 각도 $50^\\circ$이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같으므로",
+            "equivalents": [
+              "똑같으므로"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "마름모는 마주 보는 각의 크기가 {같으므로} 한 각이 $50^\\circ$이면 마주 보는 각도 $50^\\circ$이다.",
+          "acceptedAnswers": [
+            [
+              "같으므로",
+              "똑같으므로"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "평행사변형 맞은편 각과 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2543,
+        "sourceFingerprint": "2a4857706851f77873d90f9f965e373eacd630a5f7aff96702e055057c6e7fff",
+        "part": "e4plus",
+        "id": "e4-2-4-6-xc3",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "term": "마름모의 이웃한 두 각",
+        "kind": "성질",
+        "level": "하",
+        "definition": "마름모에서 한 변의 양 끝에 있는 두 각을 더하면 {$180^\\circ$}이다.",
+        "studentC": "마름모에서 한 변의 양 끝에 있는 두 각을 더하면 □이다.",
+        "answers": [
+          "$180^\\circ$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2543,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "sourceFingerprint": "2a4857706851f77873d90f9f965e373eacd630a5f7aff96702e055057c6e7fff",
+        "proposalFingerprint": "235041e97b689d1ae2a3a4e26b8c0093789b3ec10d2d384993c2288f4e3bd6a6",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-6-xc3",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "definition",
+        "bGoal": "마름모 이웃한 두 각의 합",
+        "bReason": "평행사변형 이웃한 각과 같은 목표",
+        "exclusionReason": "평행사변형 xc2의 '한 변의 양 끝 두 각의 합 $180^\\circ$'과 같은 목표",
+        "cDecision": "keep",
+        "cReason": "짧은 수치 빈칸이라 정답이 분명함",
+        "cSlotEquivalents": [
+          [
+            "$180$도"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "마름모의 이웃한 두 각",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "마름모에서 한 변의 양 끝에 있는 두 각을 더하면 {$180^\\circ$}이다.",
+        "cStudentSentence": "마름모에서 한 변의 양 끝에 있는 두 각을 더하면 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$180^\\circ$",
+            "equivalents": [
+              "$180$도"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "마름모에서 한 변의 양 끝에 있는 두 각을 더하면 □이다.",
+          "answers": [
+            "$180^\\circ$"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "마름모에서 한 변의 양 끝에 있는 두 각을 더하면 {$180^\\circ$}이다.",
+          "acceptedAnswers": [
+            [
+              "$180^\\circ$",
+              "$180$도"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "평행사변형 이웃한 각과 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2544,
+        "sourceFingerprint": "913227a734fb915bd4c4f4131fca028c1ff4d27b2dfcd724d5389ffaac025a43",
+        "part": "e4plus",
+        "id": "e4-2-4-6-xc4",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "term": "정사각형과 마름모",
+        "kind": "성질",
+        "level": "하",
+        "definition": "정사각형은 {변 네 개의 길이가 같으므로} 마름모이다.",
+        "studentC": "정사각형은 □ 마름모이다.",
+        "answers": [
+          "변 네 개의 길이가 같으므로"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2544,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "sourceFingerprint": "913227a734fb915bd4c4f4131fca028c1ff4d27b2dfcd724d5389ffaac025a43",
+        "proposalFingerprint": "a12bc0db74cee7aac07d414a51100f2f5971e8abb6a23b1e9088f4ad143ca13a",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-6-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "정사각형을 마름모라고도 부를 수 있는 까닭을 쓰시오.",
+        "bAnswer": "네 변의 길이가 모두 같기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "네 변의 길이가 같다",
+              "변 네 개의 길이가 같다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "정사각형이 마름모인 까닭",
+        "bReason": "마름모의 조건을 정사각형에 적용함",
+        "cDecision": "rewrite",
+        "cAfter": "정사각형은 네 변의 길이가 {같으므로} 마름모이다.",
+        "cReason": "긴 이유 구절 빈칸을 낱말 하나로 좁힘",
+        "cSlotEquivalents": [
+          [
+            "똑같으므로"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "정사각형과 마름모",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정사각형은 네 변의 길이가 {같으므로} 마름모이다.",
+        "cStudentSentence": "정사각형은 네 변의 길이가 □ 마름모이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같으므로",
+            "equivalents": [
+              "똑같으므로"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "정사각형을 마름모라고도 부를 수 있는 까닭을 쓰시오.",
+          "answer": "네 변의 길이가 모두 같기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "네 변의 길이가 같다",
+                "변 네 개의 길이가 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "정사각형은 네 변의 길이가 {같으므로} 마름모이다.",
+          "acceptedAnswers": [
+            [
+              "같으므로",
+              "똑같으므로"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2545,
+        "sourceFingerprint": "e0f8f7679a97492f2af222d4e0378b0d91f3299bff1a8c3b2037931601bc1c98",
+        "part": "e4plus",
+        "id": "e4-2-4-6-xc5",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "term": "마름모와 평행사변형",
+        "kind": "성질",
+        "level": "하",
+        "definition": "마름모는 {마주 보는 변이 두 쌍 모두 평행}하므로 평행사변형이다.",
+        "studentC": "마름모는 □하므로 평행사변형이다.",
+        "answers": [
+          "마주 보는 변이 두 쌍 모두 평행"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2545,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "sourceFingerprint": "e0f8f7679a97492f2af222d4e0378b0d91f3299bff1a8c3b2037931601bc1c98",
+        "proposalFingerprint": "c0ab7821dbbef3c378f4af73c350eaca8e5644aa3d523a947b9b27184311680b",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-6-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "마름모를 평행사변형이라고도 부를 수 있는 까닭을 쓰시오.",
+        "bAnswer": "마주 보는 두 쌍의 변이 모두 평행하기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "마주 보는 두 쌍의 변이 모두 평행하다",
+              "두 쌍이 모두 평행하다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "마름모가 평행사변형인 까닭",
+        "bReason": "평행사변형 조건을 마름모에 적용함",
+        "cDecision": "rewrite",
+        "cAfter": "마름모는 마주 보는 변이 두 쌍 모두 {평행}하므로 평행사변형이다.",
+        "cReason": "긴 구절 빈칸을 낱말 '평행'으로 좁힘",
+        "cSlotEquivalents": [
+          [
+            "나란"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "마름모와 평행사변형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "마름모는 마주 보는 변이 두 쌍 모두 {평행}하므로 평행사변형이다.",
+        "cStudentSentence": "마름모는 마주 보는 변이 두 쌍 모두 □하므로 평행사변형이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "평행",
+            "equivalents": [
+              "나란"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "마름모를 평행사변형이라고도 부를 수 있는 까닭을 쓰시오.",
+          "answer": "마주 보는 두 쌍의 변이 모두 평행하기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "마주 보는 두 쌍의 변이 모두 평행하다",
+                "두 쌍이 모두 평행하다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "마름모는 마주 보는 변이 두 쌍 모두 {평행}하므로 평행사변형이다.",
+          "acceptedAnswers": [
+            [
+              "평행",
+              "나란"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2546,
+        "sourceFingerprint": "087ee5dd0913b56ff8f3235ce9a188969f2f094f681013637526e37e66b17889",
+        "part": "e4plus",
+        "id": "e4-2-4-6-xc6",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "term": "마름모와 사다리꼴",
+        "kind": "성질",
+        "level": "하",
+        "definition": "마름모는 {평행한 변이 있으므로} 사다리꼴이기도 하다.",
+        "studentC": "마름모는 □ 사다리꼴이기도 하다.",
+        "answers": [
+          "평행한 변이 있으므로"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2546,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "sourceFingerprint": "087ee5dd0913b56ff8f3235ce9a188969f2f094f681013637526e37e66b17889",
+        "proposalFingerprint": "b0e54881dbb42451820d828a6aeeadcceded319b29991b8423adead2458b007d",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-6-xc6",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "reason",
+        "bGoal": "마름모도 사다리꼴인 까닭",
+        "bReason": "평행사변형 사다리꼴과 같은 목표",
+        "exclusionReason": "평행사변형 4-5 xc1의 '평행한 변이 있어 사다리꼴'과 같은 목표",
+        "cDecision": "rewrite",
+        "cAfter": "마름모는 {평행}한 변이 있으므로 사다리꼴이기도 하다.",
+        "cReason": "긴 이유 구절 빈칸을 낱말 하나로 좁힘",
+        "cSlotEquivalents": [
+          [
+            "나란"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "마름모와 사다리꼴",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "마름모는 {평행}한 변이 있으므로 사다리꼴이기도 하다.",
+        "cStudentSentence": "마름모는 □한 변이 있으므로 사다리꼴이기도 하다.",
+        "cSlotAnswers": [
+          {
+            "expected": "평행",
+            "equivalents": [
+              "나란"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "마름모는 {평행}한 변이 있으므로 사다리꼴이기도 하다.",
+          "acceptedAnswers": [
+            [
+              "평행",
+              "나란"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "평행사변형 사다리꼴과 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2547,
+        "sourceFingerprint": "f47082ce5c389811e0fb8824c09c12e9188228c1263bbf55af5dbdd32c2caf7f",
+        "part": "e4plus",
+        "id": "e4-2-4-6-xc7",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "term": "컴퍼스로 마름모 그리기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "컴퍼스로 {같은 길이를 옮겨} 네 변을 그리면 마름모를 그릴 수 있다.",
+        "studentC": "컴퍼스로 □ 네 변을 그리면 마름모를 그릴 수 있다.",
+        "answers": [
+          "같은 길이를 옮겨"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2547,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "sourceFingerprint": "f47082ce5c389811e0fb8824c09c12e9188228c1263bbf55af5dbdd32c2caf7f",
+        "proposalFingerprint": "fa143dd262bfca10a4766ce9fd83e8f2a09456ca0973f2b7de8cf95d589971ff",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-6-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "컴퍼스로 마름모를 그리려면 네 변의 길이를 어떻게 정해야 하는지 쓰시오.",
+        "bAnswer": "컴퍼스로 같은 길이를 옮겨 네 변을 그린다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "네 변의 길이를 같게 한다",
+              "같은 길이를 옮겨 그린다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "컴퍼스로 마름모 그리기",
+        "bReason": "네 변이 같다는 조건을 그리기에 연결",
+        "cDecision": "rewrite",
+        "cAfter": "컴퍼스로 {같은} 길이를 옮겨 네 변을 그리면 마름모를 그릴 수 있다.",
+        "cReason": "긴 구절 빈칸을 낱말 '같은'으로 좁힘",
+        "cSlotEquivalents": [
+          [
+            "똑같은"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "컴퍼스로 마름모 그리기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "컴퍼스로 {같은} 길이를 옮겨 네 변을 그리면 마름모를 그릴 수 있다.",
+        "cStudentSentence": "컴퍼스로 □ 길이를 옮겨 네 변을 그리면 마름모를 그릴 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같은",
+            "equivalents": [
+              "똑같은"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "컴퍼스로 마름모를 그리려면 네 변의 길이를 어떻게 정해야 하는지 쓰시오.",
+          "answer": "컴퍼스로 같은 길이를 옮겨 네 변을 그린다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "네 변의 길이를 같게 한다",
+                "같은 길이를 옮겨 그린다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "컴퍼스로 {같은} 길이를 옮겨 네 변을 그리면 마름모를 그릴 수 있다.",
+          "acceptedAnswers": [
+            [
+              "같은",
+              "똑같은"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2548,
+        "sourceFingerprint": "1fb3916dce3b8246373686f71ff01a3a6e44d9da53c55a297b5fa061d7638ccb",
+        "part": "e4plus",
+        "id": "e4-2-4-6-xc8",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "term": "마름모의 네 각",
+        "kind": "성질",
+        "level": "하",
+        "definition": "마름모의 네 각을 모두 더하면 {$360^\\circ$}이다.",
+        "studentC": "마름모의 네 각을 모두 더하면 □이다.",
+        "answers": [
+          "$360^\\circ$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2548,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "sourceFingerprint": "1fb3916dce3b8246373686f71ff01a3a6e44d9da53c55a297b5fa061d7638ccb",
+        "proposalFingerprint": "2a9a454935d617f0291a99616ff6e7e2015b7fe5635097acf45a5eec40bb7938",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-6-xc8",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "definition",
+        "bGoal": "마름모 네 각의 합",
+        "bReason": "사각형 네 각 합과 같은 목표",
+        "exclusionReason": "사다리꼴 xc6의 '네 각의 합 $360^\\circ$'과 같은 목표",
+        "cDecision": "keep",
+        "cReason": "짧은 수치 빈칸이라 정답이 분명함",
+        "cSlotEquivalents": [
+          [
+            "$360$도"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "마름모의 네 각",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "마름모의 네 각을 모두 더하면 {$360^\\circ$}이다.",
+        "cStudentSentence": "마름모의 네 각을 모두 더하면 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$360^\\circ$",
+            "equivalents": [
+              "$360$도"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "마름모의 네 각을 모두 더하면 □이다.",
+          "answers": [
+            "$360^\\circ$"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "마름모의 네 각을 모두 더하면 {$360^\\circ$}이다.",
+          "acceptedAnswers": [
+            [
+              "$360^\\circ$",
+              "$360$도"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "사각형 네 각 합과 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2549,
+        "sourceFingerprint": "13e52125f82e451c1c50bd8a48f05fef5dfe00228e7f2d0991c9a391224beb94",
+        "part": "e4plus",
+        "id": "e4-2-4-6-xc9",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "term": "종이를 접어 자른 마름모",
+        "kind": "방법",
+        "level": "하",
+        "definition": "종이를 서로 {수직}인 선을 따라 두 번 접는다. 두 접힌 변 위의 점을 하나씩 곧게 이어 잘라 생긴 모서리 쪽 삼각형을 펼치면 마름모가 된다.",
+        "studentC": "종이를 서로 □인 선을 따라 두 번 접는다. 두 접힌 변 위의 점을 하나씩 곧게 이어 잘라 생긴 모서리 쪽 삼각형을 펼치면 마름모가 된다.",
+        "answers": [
+          "수직"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2549,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "sourceFingerprint": "13e52125f82e451c1c50bd8a48f05fef5dfe00228e7f2d0991c9a391224beb94",
+        "proposalFingerprint": "3f33e58abeff4b0fc366050adbbf599d05aa54810a09f08281a02bac24dfa159",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-6-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "종이를 두 번 접은 뒤 접힌 두 변 위의 점을 하나씩 곧게 이어 잘라 모서리 쪽 삼각형을 펼치면 마름모가 된다. 이때 종이를 어떤 선을 따라 두 번 접어야 하는지 쓰시오.",
+        "bAnswer": "서로 수직인 선을 따라 접는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "서로 수직인 선",
+              "서로 직각으로 만나는 선"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "마름모 만들기 접는 방법",
+        "bReason": "접는 선의 조건을 직접 쓰게 함",
+        "cDecision": "keep",
+        "cReason": "익숙한 낱말 '수직'이라 유지",
+        "cSlotEquivalents": [
+          [
+            "직각"
+          ]
+        ],
+        "exampleNeeded": "종이를 수직인 선으로 두 번 접어 모서리 삼각형을 자르는 과정 그림",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "종이를 접어 자른 마름모",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "종이를 서로 {수직}인 선을 따라 두 번 접는다. 두 접힌 변 위의 점을 하나씩 곧게 이어 잘라 생긴 모서리 쪽 삼각형을 펼치면 마름모가 된다.",
+        "cStudentSentence": "종이를 서로 □인 선을 따라 두 번 접는다. 두 접힌 변 위의 점을 하나씩 곧게 이어 잘라 생긴 모서리 쪽 삼각형을 펼치면 마름모가 된다.",
+        "cSlotAnswers": [
+          {
+            "expected": "수직",
+            "equivalents": [
+              "직각"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "종이를 서로 □인 선을 따라 두 번 접는다. 두 접힌 변 위의 점을 하나씩 곧게 이어 잘라 생긴 모서리 쪽 삼각형을 펼치면 마름모가 된다.",
+          "answers": [
+            "수직"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "종이를 두 번 접은 뒤 접힌 두 변 위의 점을 하나씩 곧게 이어 잘라 모서리 쪽 삼각형을 펼치면 마름모가 된다. 이때 종이를 어떤 선을 따라 두 번 접어야 하는지 쓰시오.",
+          "answer": "서로 수직인 선을 따라 접는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "서로 수직인 선",
+                "서로 직각으로 만나는 선"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "종이를 서로 {수직}인 선을 따라 두 번 접는다. 두 접힌 변 위의 점을 하나씩 곧게 이어 잘라 생긴 모서리 쪽 삼각형을 펼치면 마름모가 된다.",
+          "acceptedAnswers": [
+            [
+              "수직",
+              "직각"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2550,
+        "sourceFingerprint": "4ccfb293e3a92f63898a434a9eaea40b152446cc0f7cb9388e7aea51d09d33b8",
+        "part": "e4plus",
+        "id": "e4-2-4-6-xc11",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "term": "평행사변형과 마름모의 차이",
+        "kind": "성질",
+        "level": "중",
+        "definition": "평행사변형은 이웃한 두 변의 길이가 다를 수도 있지만, 마름모는 {이웃한 두 변의 길이도 같다}.",
+        "studentC": "평행사변형은 이웃한 두 변의 길이가 다를 수도 있지만, 마름모는 □.",
+        "answers": [
+          "이웃한 두 변의 길이도 같다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2550,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "sourceFingerprint": "4ccfb293e3a92f63898a434a9eaea40b152446cc0f7cb9388e7aea51d09d33b8",
+        "proposalFingerprint": "56dcad465e6e73764c56c95bcd6330bef17b2cf9d416d16c5858394d512528d8",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-6-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "평행사변형과 달리 마름모는 이웃한 두 변의 길이가 어떻다고 말할 수 있는지 쓰시오.",
+        "bAnswer": "항상 같다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "이웃한 두 변의 길이가 같다",
+              "항상 같다"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "마름모 이웃한 변의 특징",
+        "bReason": "평행사변형과 비교하여 정의를 확인",
+        "cDecision": "rewrite",
+        "cAfter": "평행사변형은 이웃한 두 변의 길이가 다를 수도 있지만, 마름모는 이웃한 두 변의 길이가 항상 {같다}.",
+        "cReason": "긴 구절 빈칸을 낱말 '같다'로 좁힘",
+        "cSlotEquivalents": [
+          [
+            "똑같다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "평행사변형과 마름모의 차이",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행사변형은 이웃한 두 변의 길이가 다를 수도 있지만, 마름모는 이웃한 두 변의 길이가 항상 {같다}.",
+        "cStudentSentence": "평행사변형은 이웃한 두 변의 길이가 다를 수도 있지만, 마름모는 이웃한 두 변의 길이가 항상 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "같다",
+            "equivalents": [
+              "똑같다"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "평행사변형과 달리 마름모는 이웃한 두 변의 길이가 어떻다고 말할 수 있는지 쓰시오.",
+          "answer": "항상 같다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "이웃한 두 변의 길이가 같다",
+                "항상 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "평행사변형은 이웃한 두 변의 길이가 다를 수도 있지만, 마름모는 이웃한 두 변의 길이가 항상 {같다}.",
+          "acceptedAnswers": [
+            [
+              "같다",
+              "똑같다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2551,
+        "sourceFingerprint": "44a3ed8251fdd35119a7ce14135875b371452b374547779943c07b430427dbe8",
+        "part": "e4plus",
+        "id": "e4-2-4-6-xc12",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "term": "마주 보는 꼭짓점을 이은 두 선분의 만남",
+        "kind": "성질",
+        "level": "중",
+        "definition": "마름모에서 마주 보는 꼭짓점을 둘씩 이은 두 선분은 서로 {수직}으로 만난다.",
+        "studentC": "마름모에서 마주 보는 꼭짓점을 둘씩 이은 두 선분은 서로 □으로 만난다.",
+        "answers": [
+          "수직"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2551,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "sourceFingerprint": "44a3ed8251fdd35119a7ce14135875b371452b374547779943c07b430427dbe8",
+        "proposalFingerprint": "bbcf72ebda3f97dd75fc7ef0abd3c9cfc958924713e2dfbfa86e4cdfabccc108",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-6-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "마름모에서 마주 보는 꼭짓점을 둘씩 이은 두 선분은 서로 어떤 각으로 만나는지 쓰시오.",
+        "bAnswer": "수직(직각)으로 만난다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "수직",
+              "직각"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "두 선분이 만나는 각",
+        "bReason": "마름모의 선분 성질을 하나씩 확인함",
+        "cDecision": "keep",
+        "cReason": "익숙한 낱말 '수직' 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "직각"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "마주 보는 꼭짓점을 이은 두 선분의 만남",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "마름모에서 마주 보는 꼭짓점을 둘씩 이은 두 선분은 서로 {수직}으로 만난다.",
+        "cStudentSentence": "마름모에서 마주 보는 꼭짓점을 둘씩 이은 두 선분은 서로 □으로 만난다.",
+        "cSlotAnswers": [
+          {
+            "expected": "수직",
+            "equivalents": [
+              "직각"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "마름모에서 마주 보는 꼭짓점을 둘씩 이은 두 선분은 서로 □으로 만난다.",
+          "answers": [
+            "수직"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "마름모에서 마주 보는 꼭짓점을 둘씩 이은 두 선분은 서로 어떤 각으로 만나는지 쓰시오.",
+          "answer": "수직(직각)으로 만난다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "수직",
+                "직각"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "마름모에서 마주 보는 꼭짓점을 둘씩 이은 두 선분은 서로 {수직}으로 만난다.",
+          "acceptedAnswers": [
+            [
+              "수직",
+              "직각"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2552,
+        "sourceFingerprint": "58d1412e75212f40e86564268049ec8b71190afb7273f334781c6a1dd29a2f62",
+        "part": "e4plus",
+        "id": "e4-2-4-6-xc13",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "term": "마주 보는 꼭짓점을 이은 두 선분이 만나는 자리",
+        "kind": "성질",
+        "level": "중",
+        "definition": "마름모에서 마주 보는 꼭짓점을 둘씩 이은 두 선분은 서로의 {한가운데}에서 만난다.",
+        "studentC": "마름모에서 마주 보는 꼭짓점을 둘씩 이은 두 선분은 서로의 □에서 만난다.",
+        "answers": [
+          "한가운데"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2552,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "sourceFingerprint": "58d1412e75212f40e86564268049ec8b71190afb7273f334781c6a1dd29a2f62",
+        "proposalFingerprint": "ca8d99de367e26033eaa02911eb9eb20f031e7afe47d9a10303b1efab0829520",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-6-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "마름모에서 마주 보는 꼭짓점을 둘씩 이은 두 선분은 서로의 어느 지점에서 만나는지 쓰시오.",
+        "bAnswer": "서로의 한가운데에서 만난다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한가운데",
+              "가운데",
+              "정확히 반으로 나누는 곳"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "두 선분이 만나는 지점",
+        "bReason": "마름모의 선분 성질을 하나씩 확인함",
+        "cDecision": "keep",
+        "cReason": "익숙한 낱말 '한가운데' 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "가운데",
+            "중간"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "마주 보는 꼭짓점을 이은 두 선분이 만나는 자리",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "마름모에서 마주 보는 꼭짓점을 둘씩 이은 두 선분은 서로의 {한가운데}에서 만난다.",
+        "cStudentSentence": "마름모에서 마주 보는 꼭짓점을 둘씩 이은 두 선분은 서로의 □에서 만난다.",
+        "cSlotAnswers": [
+          {
+            "expected": "한가운데",
+            "equivalents": [
+              "가운데",
+              "중간"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "마름모에서 마주 보는 꼭짓점을 둘씩 이은 두 선분은 서로의 □에서 만난다.",
+          "answers": [
+            "한가운데"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "마름모에서 마주 보는 꼭짓점을 둘씩 이은 두 선분은 서로의 어느 지점에서 만나는지 쓰시오.",
+          "answer": "서로의 한가운데에서 만난다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "한가운데",
+                "가운데",
+                "정확히 반으로 나누는 곳"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "마름모에서 마주 보는 꼭짓점을 둘씩 이은 두 선분은 서로의 {한가운데}에서 만난다.",
+          "acceptedAnswers": [
+            [
+              "한가운데",
+              "가운데",
+              "중간"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    }
+  ]
+}

@@ -1,0 +1,2527 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T08:09:51.861Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-03-xc10",
+        "section": "중1::7. 입체도형::회전체",
+        "term": "축 단면의 넓이",
+        "kind": "방법",
+        "level": "중",
+        "definition": "회전축을 포함하는 단면은 축의 한쪽에 놓인 평면도형을 회전축에 대해 {대칭}으로 옮겨 붙인 모양이라 넓이가 처음 도형의 {$2$배}이다.",
+        "example": {
+          "prompt": "넓이가 $6$인 직각삼각형을 직각을 낀 한 변을 축으로 돌린 원뿔을 회전축을 포함하게 자른 단면의 넓이는?",
+          "answer": "$12$"
+        },
+        "studentC": "회전축을 포함하는 단면은 축의 한쪽에 놓인 평면도형을 회전축에 대해 □으로 옮겨 붙인 모양이라 넓이가 처음 도형의 □이다.",
+        "answers": [
+          "대칭",
+          "$2$배"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-03-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "넓이가 $6$인 직각삼각형을 직각을 낀 한 변을 축으로 한 바퀴 돌려 원뿔을 만들었다. 이 원뿔을 회전축을 포함하는 평면으로 자른 단면의 넓이를 구하고, 그렇게 되는 까닭을 단면과 처음 직각삼각형의 관계로 설명하시오.",
+        "bAnswer": "$12$이다. 단면은 회전축을 대칭축으로 하는 선대칭도형이고 그 한쪽 절반이 처음 직각삼각형이므로, 단면의 넓이는 처음 넓이의 $2$배이다.",
+        "bGoal": "축 단면의 넓이가 처음 도형의 $2$배인 까닭 설명하기",
+        "bReason": "추상적인 '옮겨 붙인 모양'을 원뿔의 구체 예로 확인하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$12$"
+            ]
+          },
+          {
+            "anyOf": [
+              "단면의 절반이 처음 직각삼각형이다",
+              "단면은 처음 삼각형과 합동인 삼각형 두 개를 붙인 모양이다",
+              "단면이 회전축에 대하여 선대칭이라 넓이가 $2$배이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "회전축의 한쪽에 놓인 평면도형을 돌려 만든 회전체에서, 회전축을 포함하는 단면은 처음 도형과 그것을 회전축에 대하여 {대칭}인 위치에 옮긴 도형을 합친 모양이므로, 단면의 넓이는 처음 도형의 넓이의 {$2$배}이다.",
+        "cAnswers": [
+          "대칭",
+          "$2$배"
+        ],
+        "cReason": "무엇의 단면인지 빠져 있고 '옮겨 붙인 모양'이라는 표현이 모호했다.",
+        "studentLabel": "회전축을 포함하는 단면의 넓이",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "축 단면 넓이가 $2$배인 까닭",
+        "authorBatch": 21,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1897,
+        "part": "m1plus",
+        "sourceFingerprint": "e0cda97dbbd7cb27766b7bdfa404e4f936cf56b8c5d5c9426efcec42b9eb5deb",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1897
+        },
+        "directReview": null,
+        "cMarkedSentence": "회전축의 한쪽에 놓인 평면도형을 돌려 만든 회전체에서, 회전축을 포함하는 단면은 처음 도형과 그것을 회전축에 대하여 {대칭}인 위치에 옮긴 도형을 합친 모양이므로, 단면의 넓이는 처음 도형의 넓이의 {$2$배}이다.",
+        "cSlotAnswers": [
+          "대칭",
+          "$2$배"
+        ],
+        "cStudentSentence": "회전축의 한쪽에 놓인 평면도형을 돌려 만든 회전체에서, 회전축을 포함하는 단면은 처음 도형과 그것을 회전축에 대하여 □인 위치에 옮긴 도형을 합친 모양이므로, 단면의 넓이는 처음 도형의 넓이의 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "대칭",
+            "equivalentAnswers": [
+              "대칭",
+              "선대칭"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$2$배",
+            "equivalentAnswers": [
+              "$2$배",
+              "두 배"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "대칭",
+            "accept": [
+              "선대칭"
+            ]
+          }
+        ],
+        "equivalentExpressions": [
+          {
+            "answer": "$2$배",
+            "accept": [
+              "두 배"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "대칭",
+            "선대칭"
+          ],
+          [
+            "$2$배",
+            "두 배"
+          ]
+        ],
+        "proposalFingerprint": "a76c5fcf166fb78062add24bfcad5f828c23a6f39c15c11ec3f47caf9d9bcdb6"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-03-xc11",
+        "section": "중1::7. 입체도형::회전체",
+        "term": "모선과 높이",
+        "kind": "성질",
+        "level": "중",
+        "definition": "원뿔에서 모선의 길이는 높이보다 {길다}. 모선, 높이, 밑면의 반지름이 직각삼각형을 이루고 모선이 직각의 맞은편 변이기 때문이다.",
+        "example": {
+          "prompt": "원뿔의 모선과 높이 가운데 긴 것은?",
+          "answer": "모선"
+        },
+        "studentC": "원뿔에서 모선의 길이는 높이보다 □. 모선, 높이, 밑면의 반지름이 직각삼각형을 이루고 모선이 직각의 맞은편 변이기 때문이다.",
+        "answers": [
+          "길다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-03-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "원뿔에서 모선의 길이와 높이 가운데 어느 것이 더 긴가? 모선, 높이, 밑면의 반지름이 이루는 삼각형을 이용하여 까닭을 쓰시오.",
+        "bAnswer": "모선이 더 길다. 세 선분은 높이와 밑면의 반지름이 직각을 이루는 직각삼각형을 만들고, 모선은 그 직각의 맞은편에 있는 가장 긴 변이기 때문이다.",
+        "bGoal": "원뿔의 모선이 높이보다 긴 까닭 설명하기",
+        "bReason": "두 길이의 크기 비교와 그 근거가 되는 삼각형을 묻도록 특정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "모선이 높이보다 길다"
+            ]
+          },
+          {
+            "anyOf": [
+              "모선은 높이와 반지름이 이루는 직각의 맞은편 변이다",
+              "모선이 직각삼각형의 빗변이다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "빈칸이 하나이고 뒤 문장이 까닭을 설명해 주는 구조라 분명하다.",
+        "studentLabel": "원뿔의 모선과 높이",
+        "learningRole": "reason",
+        "roleReason": "모선이 높이보다 긴 까닭",
+        "authorBatch": 21,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1898,
+        "part": "m1plus",
+        "sourceFingerprint": "fb55d31fe98a4ca60db5c0b7b4ca01a7b6a8d8ad98c278c668a91cc9a94ea027",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1898
+        },
+        "directReview": null,
+        "cFrozenSentence": "원뿔에서 모선의 길이는 높이보다 □. 모선, 높이, 밑면의 반지름이 직각삼각형을 이루고 모선이 직각의 맞은편 변이기 때문이다.",
+        "cFrozenDefinition": "원뿔에서 모선의 길이는 높이보다 {길다}. 모선, 높이, 밑면의 반지름이 직각삼각형을 이루고 모선이 직각의 맞은편 변이기 때문이다.",
+        "cFrozenAnswers": [
+          "길다"
+        ],
+        "cMarkedSentence": "원뿔에서 모선의 길이는 높이보다 {길다}. 모선, 높이, 밑면의 반지름이 직각삼각형을 이루고 모선이 직각의 맞은편 변이기 때문이다.",
+        "cSlotAnswers": [
+          "길다"
+        ],
+        "cStudentSentence": "원뿔에서 모선의 길이는 높이보다 □. 모선, 높이, 밑면의 반지름이 직각삼각형을 이루고 모선이 직각의 맞은편 변이기 때문이다.",
+        "cAnswers": [
+          "길다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "길다",
+            "equivalentAnswers": [
+              "길다",
+              "크다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "길다",
+            "accept": [
+              "크다"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "길다",
+            "크다"
+          ]
+        ],
+        "proposalFingerprint": "f90f1de1d4203f2c077ee4a5fe99c8fee101eeb5bf84c7f31b4e191efedc2af5"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-03-xc12",
+        "section": "중1::7. 입체도형::회전체",
+        "term": "수직 단면의 크기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "회전축에 수직인 단면은 원기둥에서는 크기가 모두 {같고}, 원뿔에서는 꼭짓점에 가까울수록 {작아진다}.",
+        "example": {
+          "prompt": "원뿔대를 회전축에 수직으로 자른 단면 가운데 가장 큰 것은?",
+          "answer": "큰 밑면과 같은 원"
+        },
+        "studentC": "회전축에 수직인 단면은 원기둥에서는 크기가 모두 □, 원뿔에서는 꼭짓점에 가까울수록 □.",
+        "answers": [
+          "같고",
+          "작아진다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-03-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "원기둥과 원뿔을 각각 회전축에 수직인 평면으로 위치를 바꾸어 가며 잘랐다. 단면인 원의 크기는 각 입체에서 자르는 위치에 따라 어떻게 되는가?",
+        "bAnswer": "원기둥에서는 어디를 잘라도 단면의 크기가 모두 같고, 원뿔에서는 꼭짓점에 가까울수록 단면이 작아진다.",
+        "bGoal": "수직 단면의 크기 변화를 두 입체에서 비교하기",
+        "bReason": "어느 입체의 어떤 단면인지 제목에 없어 두 입체와 자르는 방법을 밝혔다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "원기둥은 단면의 크기가 모두 같다",
+              "원기둥의 단면은 밑면과 합동이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "원뿔은 꼭짓점에 가까울수록 작아진다",
+              "원뿔은 밑면에 가까울수록 커진다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "두 입체를 나란히 비교하는 짧은 빈칸이라 유용하다.",
+        "studentLabel": "회전축에 수직인 단면의 크기",
+        "learningRole": "definition",
+        "roleReason": "수직 단면 크기의 변화",
+        "authorBatch": 21,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1899,
+        "part": "m1plus",
+        "sourceFingerprint": "83b504c5cd93787b5a68801e1c6c5f23dfaf4ff6c709f7e9aa3bafdc60516153",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1899
+        },
+        "directReview": null,
+        "cFrozenSentence": "회전축에 수직인 단면은 원기둥에서는 크기가 모두 □, 원뿔에서는 꼭짓점에 가까울수록 □.",
+        "cFrozenDefinition": "회전축에 수직인 단면은 원기둥에서는 크기가 모두 {같고}, 원뿔에서는 꼭짓점에 가까울수록 {작아진다}.",
+        "cFrozenAnswers": [
+          "같고",
+          "작아진다"
+        ],
+        "cMarkedSentence": "회전축에 수직인 단면은 원기둥에서는 크기가 모두 {같고}, 원뿔에서는 꼭짓점에 가까울수록 {작아진다}.",
+        "cSlotAnswers": [
+          "같고",
+          "작아진다"
+        ],
+        "cStudentSentence": "회전축에 수직인 단면은 원기둥에서는 크기가 모두 □, 원뿔에서는 꼭짓점에 가까울수록 □.",
+        "cAnswers": [
+          "같고",
+          "작아진다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "같고",
+            "equivalentAnswers": [
+              "같고",
+              "같으며",
+              "일정하고"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "작아진다",
+            "equivalentAnswers": [
+              "작아진다",
+              "줄어든다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "같고",
+            "accept": [
+              "같으며",
+              "일정하고"
+            ]
+          },
+          {
+            "answer": "작아진다",
+            "accept": [
+              "줄어든다"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "같고",
+            "같으며",
+            "일정하고"
+          ],
+          [
+            "작아진다",
+            "줄어든다"
+          ]
+        ],
+        "proposalFingerprint": "30c398f3e87b0ee2715600224bcb3593f1ecd10c069b1cea995db9562285bc78"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-03-xc13",
+        "section": "중1::7. 입체도형::회전체",
+        "term": "밑면의 반지름 $r$, 모선 $l$인 원뿔 전개도의 중심각",
+        "kind": "방법",
+        "level": "상",
+        "definition": "밑면의 반지름이 $r$, 모선이 $l$인 원뿔의 전개도에서 부채꼴의 중심각은 {$360^\\circ\\times\\frac{r}{l}$}이다. 부채꼴의 호가 밑면의 {둘레}와 같기 때문이다.",
+        "example": {
+          "prompt": "밑면의 반지름 $2$, 모선 $6$인 원뿔의 전개도에서 부채꼴의 중심각은?",
+          "answer": "$120^\\circ$"
+        },
+        "studentC": "밑면의 반지름이 $r$, 모선이 $l$인 원뿔의 전개도에서 부채꼴의 중심각은 □이다. 부채꼴의 호가 밑면의 □와 같기 때문이다.",
+        "answers": [
+          "$360^\\circ\\times\\frac{r}{l}$",
+          "둘레"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-03-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "밑면의 반지름이 $r$, 모선의 길이가 $l$인 원뿔의 전개도에서 옆면인 부채꼴의 중심각의 크기를 $r$, $l$로 나타내시오. 그 식이 나오는 까닭을 부채꼴의 호의 길이를 이용하여 설명하시오.",
+        "bAnswer": "$360^\\circ\\times\\frac{r}{l}$이다. 부채꼴의 반지름은 $l$이고 호의 길이는 밑면의 둘레 $2\\pi r$와 같으므로, 중심각을 $x^\\circ$라 하면 $2\\pi l\\times\\frac{x}{360}=2\\pi r$에서 $x=360\\times\\frac{r}{l}$이다.",
+        "bGoal": "원뿔 전개도의 중심각 식 유도하기",
+        "bReason": "식만 외우지 않도록 호의 길이와 밑면 둘레의 관계로 유도하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$360^\\circ\\times\\frac{r}{l}$",
+              "$\\frac{360^\\circ r}{l}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "부채꼴의 호의 길이가 밑면의 둘레 $2\\pi r$와 같다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "기호의 뜻이 문장에 있고 식과 그 근거를 하나씩 묻는다.",
+        "studentLabel": "원뿔 전개도에서 부채꼴의 중심각",
+        "learningRole": "procedure",
+        "roleReason": "중심각 식의 유도",
+        "authorBatch": 21,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1900,
+        "part": "m1plus",
+        "sourceFingerprint": "d5435fe96f7178d9e4c56956e0cdbebf0230d787af198db4e7bb7c0ba13e5f9a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1900
+        },
+        "directReview": null,
+        "cFrozenSentence": "밑면의 반지름이 $r$, 모선이 $l$인 원뿔의 전개도에서 부채꼴의 중심각은 □이다. 부채꼴의 호가 밑면의 □와 같기 때문이다.",
+        "cFrozenDefinition": "밑면의 반지름이 $r$, 모선이 $l$인 원뿔의 전개도에서 부채꼴의 중심각은 {$360^\\circ\\times\\frac{r}{l}$}이다. 부채꼴의 호가 밑면의 {둘레}와 같기 때문이다.",
+        "cFrozenAnswers": [
+          "$360^\\circ\\times\\frac{r}{l}$",
+          "둘레"
+        ],
+        "cMarkedSentence": "밑면의 반지름이 $r$, 모선이 $l$인 원뿔의 전개도에서 부채꼴의 중심각은 {$360^\\circ\\times\\frac{r}{l}$}이다. 부채꼴의 호가 밑면의 {둘레}와 같기 때문이다.",
+        "cSlotAnswers": [
+          "$360^\\circ\\times\\frac{r}{l}$",
+          "둘레"
+        ],
+        "cStudentSentence": "밑면의 반지름이 $r$, 모선이 $l$인 원뿔의 전개도에서 부채꼴의 중심각은 □이다. 부채꼴의 호가 밑면의 □와 같기 때문이다.",
+        "cAnswers": [
+          "$360^\\circ\\times\\frac{r}{l}$",
+          "둘레"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$360^\\circ\\times\\frac{r}{l}$",
+            "equivalentAnswers": [
+              "$360^\\circ\\times\\frac{r}{l}$",
+              "$\\frac{360^\\circ r}{l}$",
+              "$\\frac{r}{l}\\times360^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "둘레",
+            "equivalentAnswers": [
+              "둘레",
+              "원주"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "둘레",
+            "accept": [
+              "원주"
+            ]
+          }
+        ],
+        "equivalentExpressions": [
+          {
+            "answer": "$360^\\circ\\times\\frac{r}{l}$",
+            "accept": [
+              "$\\frac{360^\\circ r}{l}$",
+              "$\\frac{r}{l}\\times360^\\circ$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$360^\\circ\\times\\frac{r}{l}$",
+            "$\\frac{360^\\circ r}{l}$",
+            "$\\frac{r}{l}\\times360^\\circ$"
+          ],
+          [
+            "둘레",
+            "원주"
+          ]
+        ],
+        "proposalFingerprint": "d9bfb825ac19f1f9190a0defcc537001a857f89e46ded882ece05b640cdbaf2c"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-03-xc14",
+        "section": "중1::7. 입체도형::회전체",
+        "term": "빗변을 축으로 돌리기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "직각삼각형을 {빗변}을 축으로 돌리면 밑면을 맞붙인 {원뿔} 두 개 모양이 된다.",
+        "example": {
+          "prompt": "직각삼각형을 빗변을 축으로 돌린 회전체에서 두 원뿔이 맞붙은 면의 모양은?",
+          "answer": "원"
+        },
+        "studentC": "직각삼각형을 □을 축으로 돌리면 밑면을 맞붙인 □ 두 개 모양이 된다.",
+        "answers": [
+          "빗변",
+          "원뿔"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-03-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "직각삼각형을 빗변을 축으로 한 바퀴 돌리면 어떤 모양의 입체가 되는가? 직각의 꼭짓점에서 빗변에 수선을 그어 삼각형을 둘로 나누어 생각하여 까닭을 쓰시오.",
+        "bAnswer": "밑면이 서로 맞붙은 원뿔 두 개 모양이 된다. 수선으로 나뉜 두 직각삼각형이 각각 빗변 위에 놓인 변을 축으로 돌아 원뿔이 되고, 수선이 두 원뿔이 함께 쓰는 밑면의 반지름이 되기 때문이다.",
+        "bGoal": "빗변을 축으로 돌린 입체의 모양과 까닭 설명하기",
+        "bReason": "모양만 묻지 않고 삼각형을 둘로 나누어 보는 근거까지 답하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "밑면을 맞붙인 원뿔 두 개 모양"
+            ]
+          },
+          {
+            "anyOf": [
+              "나뉜 두 직각삼각형이 각각 원뿔을 만든다",
+              "수선이 두 원뿔이 함께 쓰는 밑면의 반지름이 된다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "축과 결과 입체를 하나씩 묻고 '밑면을 맞붙인'이 단서가 된다.",
+        "studentLabel": "직각삼각형을 빗변을 축으로 돌리기",
+        "learningRole": "reason",
+        "roleReason": "두 원뿔 모양이 되는 까닭",
+        "authorBatch": 21,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1901,
+        "part": "m1plus",
+        "sourceFingerprint": "6d0e852d50a35d4259226b3594b68a095e2c4f0ce12a6c4ada61df6901784fca",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1901
+        },
+        "directReview": null,
+        "cFrozenSentence": "직각삼각형을 □을 축으로 돌리면 밑면을 맞붙인 □ 두 개 모양이 된다.",
+        "cFrozenDefinition": "직각삼각형을 {빗변}을 축으로 돌리면 밑면을 맞붙인 {원뿔} 두 개 모양이 된다.",
+        "cFrozenAnswers": [
+          "빗변",
+          "원뿔"
+        ],
+        "cMarkedSentence": "직각삼각형을 {빗변}을 축으로 돌리면 밑면을 맞붙인 {원뿔} 두 개 모양이 된다.",
+        "cSlotAnswers": [
+          "빗변",
+          "원뿔"
+        ],
+        "cStudentSentence": "직각삼각형을 □을 축으로 돌리면 밑면을 맞붙인 □ 두 개 모양이 된다.",
+        "cAnswers": [
+          "빗변",
+          "원뿔"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "빗변",
+            "equivalentAnswers": [
+              "빗변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "원뿔",
+            "equivalentAnswers": [
+              "원뿔"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "빗변"
+          ],
+          [
+            "원뿔"
+          ]
+        ],
+        "proposalFingerprint": "b20edbadbd8c541004171fcf85bfc940f3c9a21a6a9d1bd313ba953c14d19baa"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-03-xc15",
+        "section": "중1::7. 입체도형::회전체",
+        "term": "가운데가 빈 원기둥의 단면",
+        "kind": "성질",
+        "level": "상",
+        "definition": "직사각형 밖에서 한 변과 {평행}한 직선을 축으로 돌린 입체를 축에 수직으로 자르면 단면은 두 원 사이의 {고리} 모양이고, 넓이는 큰 원의 넓이에서 작은 원의 넓이를 {뺀다}.",
+        "example": {
+          "prompt": "가운데가 빈 원기둥을 회전축에 수직으로 자른 단면은?",
+          "answer": "두 원 사이의 고리 모양"
+        },
+        "studentC": "직사각형 밖에서 한 변과 □한 직선을 축으로 돌린 입체를 축에 수직으로 자르면 단면은 두 원 사이의 □ 모양이고, 넓이는 큰 원의 넓이에서 작은 원의 넓이를 □.",
+        "answers": [
+          "평행",
+          "고리",
+          "뺀다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-03-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "직사각형을, 그 바깥에 있고 직사각형의 한 변과 평행한 직선을 축으로 한 바퀴 돌렸다. 이 입체를 축에 수직인 평면으로 자른 단면은 어떤 모양이며, 그 넓이는 어떻게 구하는가?",
+        "bAnswer": "단면은 중심이 같은 큰 원과 작은 원 사이의 고리 모양이고, 넓이는 큰 원의 넓이에서 작은 원의 넓이를 빼서 구한다.",
+        "bGoal": "속이 빈 원기둥의 수직 단면 모양과 넓이 구하는 법 말하기",
+        "bReason": "입체를 만드는 방법을 질문에 밝히고 모양과 넓이 구하는 법을 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 원 사이의 고리 모양",
+              "큰 원에서 가운데 작은 원이 빠진 모양"
+            ]
+          },
+          {
+            "anyOf": [
+              "큰 원의 넓이에서 작은 원의 넓이를 뺀다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "직사각형을, 그 바깥에 있고 한 변과 평행한 직선을 축으로 한 바퀴 돌린 입체를 축에 수직인 평면으로 자르면 단면은 중심이 같은 두 원 사이의 {고리} 모양이고, 그 넓이는 큰 원의 넓이에서 작은 원의 넓이를 {뺀} 값이다.",
+        "cAnswers": [
+          "고리",
+          "뺀"
+        ],
+        "cReason": "무엇을 돌리는지 빠져 있고, 빈칸 '평행'은 '수직'도 같은 입체가 되어 답이 하나가 아니다.",
+        "learningRole": "procedure",
+        "roleReason": "고리 모양 단면과 넓이 구하는 법",
+        "authorBatch": 21,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1902,
+        "part": "m1plus",
+        "sourceFingerprint": "733f71c61b30563152e7372de22603d9ae270f78ff77c4a4c5e172e8c05ae8df",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1902
+        },
+        "directReview": null,
+        "cMarkedSentence": "직사각형을, 그 바깥에 있고 한 변과 평행한 직선을 축으로 한 바퀴 돌린 입체를 축에 수직인 평면으로 자르면 단면은 중심이 같은 두 원 사이의 {고리} 모양이고, 그 넓이는 큰 원의 넓이에서 작은 원의 넓이를 {뺀} 값이다.",
+        "cSlotAnswers": [
+          "고리",
+          "뺀"
+        ],
+        "cStudentSentence": "직사각형을, 그 바깥에 있고 한 변과 평행한 직선을 축으로 한 바퀴 돌린 입체를 축에 수직인 평면으로 자르면 단면은 중심이 같은 두 원 사이의 □ 모양이고, 그 넓이는 큰 원의 넓이에서 작은 원의 넓이를 □ 값이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "고리",
+            "equivalentAnswers": [
+              "고리",
+              "도넛",
+              "반지"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "뺀",
+            "equivalentAnswers": [
+              "뺀"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "고리",
+            "accept": [
+              "도넛",
+              "반지"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "고리",
+            "도넛",
+            "반지"
+          ],
+          [
+            "뺀"
+          ]
+        ],
+        "proposalFingerprint": "d0a5026c377957518d8be42015da67d6c3a6c6b269a16709026b58123d847026"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-03-xc16",
+        "section": "중1::7. 입체도형::회전체",
+        "term": "원기둥의 축 단면으로 높이 구하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "원기둥의 회전축을 포함하는 단면은 밑면의 {지름}과 {높이}를 두 변으로 하는 직사각형이어서, 단면의 넓이를 지름으로 나누면 높이가 된다.",
+        "example": {
+          "prompt": "밑면의 반지름이 $3$인 원기둥을 회전축을 포함하게 자른 단면의 넓이가 $42$이면 높이는?",
+          "answer": "$7$"
+        },
+        "studentC": "원기둥의 회전축을 포함하는 단면은 밑면의 □과 □를 두 변으로 하는 직사각형이어서, 단면의 넓이를 지름으로 나누면 높이가 된다.",
+        "answers": [
+          "지름",
+          "높이"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-03-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "밑면의 반지름이 $3$인 원기둥을 회전축을 포함하는 평면으로 자른 단면의 넓이가 $42$이다. 단면의 모양을 이용하여 이 원기둥의 높이를 구하는 방법을 설명하고 높이를 구하시오.",
+        "bAnswer": "단면은 한 변이 밑면의 지름 $6$, 다른 한 변이 원기둥의 높이인 직사각형이다. 따라서 높이는 $42\\div6=7$이다.",
+        "bGoal": "축 단면의 넓이로 원기둥의 높이 구하기",
+        "bReason": "방법만 적힌 제목이라 수치를 주고 단면 모양에서 출발해 풀게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "단면은 한 변이 지름 $6$인 직사각형이다",
+              "단면의 넓이는 (지름)$\\times$(높이)이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이는 $7$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "원기둥을 회전축을 포함하는 평면으로 자른 단면은 직사각형이므로, 단면의 넓이를 밑면의 {지름}으로 나누면 원기둥의 {높이}가 된다.",
+        "cAnswers": [
+          "지름",
+          "높이"
+        ],
+        "cReason": "원래 문장 뒷부분이 두 빈칸의 답 '지름', '높이'를 그대로 보여 준다.",
+        "studentLabel": "회전축을 포함하는 단면으로 원기둥의 높이 구하기",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "단면 넓이에서 높이 구하기",
+        "authorBatch": 21,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1903,
+        "part": "m1plus",
+        "sourceFingerprint": "ee417e0cf72c7abc701f629862d04e383654232188229dd3af28aa2165a2ed0b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1903
+        },
+        "directReview": null,
+        "cMarkedSentence": "원기둥을 회전축을 포함하는 평면으로 자른 단면은 직사각형이므로, 단면의 넓이를 밑면의 {지름}으로 나누면 원기둥의 {높이}가 된다.",
+        "cSlotAnswers": [
+          "지름",
+          "높이"
+        ],
+        "cStudentSentence": "원기둥을 회전축을 포함하는 평면으로 자른 단면은 직사각형이므로, 단면의 넓이를 밑면의 □으로 나누면 원기둥의 □가 된다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "지름",
+            "equivalentAnswers": [
+              "지름",
+              "지름의 길이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "높이",
+            "equivalentAnswers": [
+              "높이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "지름",
+            "accept": [
+              "지름의 길이"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "지름",
+            "지름의 길이"
+          ],
+          [
+            "높이"
+          ]
+        ],
+        "proposalFingerprint": "8ce1374299e37eefab21268f33f50a1ce6bc8ef93655eef2a98d3dc08355bb7a"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-03-xc17",
+        "section": "중1::7. 입체도형::회전체",
+        "term": "단면의 절반",
+        "kind": "성질",
+        "level": "상",
+        "definition": "축의 한쪽에 놓인 도형을 돌린 회전체에서 회전축을 포함하는 단면은 회전축을 {대칭축}으로 하는 선대칭도형이고, 그 한쪽 절반이 돌리기 전의 {평면도형}이다.",
+        "example": {
+          "prompt": "원뿔을 회전축을 포함하게 자른 단면의 절반은 어떤 도형인가?",
+          "answer": "직각삼각형"
+        },
+        "studentC": "축의 한쪽에 놓인 도형을 돌린 회전체에서 회전축을 포함하는 단면은 회전축을 □으로 하는 선대칭도형이고, 그 한쪽 절반이 돌리기 전의 □이다.",
+        "answers": [
+          "대칭축",
+          "평면도형"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-03-xc17",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "단면의 절반이 처음 도형이라는 내용이 다른 문항의 까닭 서술과 겹친다.",
+        "cDecision": "keep",
+        "cReason": "회전체와 단면 조건이 문장에 있고 대칭축과 처음 도형을 하나씩 묻는다.",
+        "exclusionReason": "B 제외: m1-07-03-xc10의 B가 '단면의 절반이 처음 도형'을 까닭으로 이미 요구하고 m1-07-03-c8이 선대칭을 묻고 있어 목표가 중복된다.",
+        "studentLabel": "회전축을 포함하는 단면의 절반",
+        "learningRole": "definition",
+        "roleReason": "축 단면과 처음 도형의 관계",
+        "authorBatch": 21,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1904,
+        "part": "m1plus",
+        "sourceFingerprint": "71d24b51ed8efccebd70f6f5e271bcfd774245896327d281037696172c057b5a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1904
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "축의 한쪽에 놓인 도형을 돌린 회전체에서 회전축을 포함하는 단면은 회전축을 □으로 하는 선대칭도형이고, 그 한쪽 절반이 돌리기 전의 □이다.",
+        "cFrozenDefinition": "축의 한쪽에 놓인 도형을 돌린 회전체에서 회전축을 포함하는 단면은 회전축을 {대칭축}으로 하는 선대칭도형이고, 그 한쪽 절반이 돌리기 전의 {평면도형}이다.",
+        "cFrozenAnswers": [
+          "대칭축",
+          "평면도형"
+        ],
+        "cMarkedSentence": "축의 한쪽에 놓인 도형을 돌린 회전체에서 회전축을 포함하는 단면은 회전축을 {대칭축}으로 하는 선대칭도형이고, 그 한쪽 절반이 돌리기 전의 {평면도형}이다.",
+        "cSlotAnswers": [
+          "대칭축",
+          "평면도형"
+        ],
+        "cStudentSentence": "축의 한쪽에 놓인 도형을 돌린 회전체에서 회전축을 포함하는 단면은 회전축을 □으로 하는 선대칭도형이고, 그 한쪽 절반이 돌리기 전의 □이다.",
+        "cAnswers": [
+          "대칭축",
+          "평면도형"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "대칭축",
+            "equivalentAnswers": [
+              "대칭축"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "평면도형",
+            "equivalentAnswers": [
+              "평면도형",
+              "도형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "평면도형",
+            "accept": [
+              "도형"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "대칭축"
+          ],
+          [
+            "평면도형",
+            "도형"
+          ]
+        ],
+        "proposalFingerprint": "06ab7ced134b58d83ab2ae650e3403087871e834876309bf386eea4cf807aa96"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-03-xc18",
+        "section": "중1::7. 입체도형::회전체",
+        "term": "가로를 축으로, 세로를 축으로",
+        "kind": "방법",
+        "level": "상",
+        "definition": "같은 직사각형이라도 가로를 축으로 돌릴 때와 {세로}를 축으로 돌릴 때 생기는 원기둥은 반지름과 {높이}가 서로 바뀐다.",
+        "example": {
+          "prompt": "가로 $2$, 세로 $5$인 직사각형을 가로를 축으로 돌리면 밑면의 반지름은?",
+          "answer": "$5$"
+        },
+        "studentC": "같은 직사각형이라도 가로를 축으로 돌릴 때와 □를 축으로 돌릴 때 생기는 원기둥은 반지름과 □가 서로 바뀐다.",
+        "answers": [
+          "세로",
+          "높이"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-03-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "가로가 $2$, 세로가 $5$인 직사각형을 가로인 변을 축으로 한 바퀴 돌릴 때와 세로인 변을 축으로 돌릴 때 생기는 원기둥의 밑면의 반지름과 높이를 각각 구하고, 두 원기둥을 비교하시오.",
+        "bAnswer": "가로를 축으로 하면 밑면의 반지름 $5$, 높이 $2$이고, 세로를 축으로 하면 밑면의 반지름 $2$, 높이 $5$이다. 두 원기둥은 반지름과 높이가 서로 바뀐다.",
+        "bGoal": "축이 되는 변에 따라 원기둥의 반지름과 높이 정하기",
+        "bReason": "제목이 구절뿐이라 직사각형의 치수를 주고 두 경우를 비교하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "가로를 축으로 하면 반지름 $5$, 높이 $2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "세로를 축으로 하면 반지름 $2$, 높이 $5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "반지름과 높이가 서로 바뀐다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "가로가 $a$, 세로가 $b$인 직사각형을 가로인 변을 축으로 돌리면 밑면의 반지름이 {$b$}, 높이가 {$a$}인 원기둥이 되고, 세로인 변을 축으로 돌리면 반지름과 높이가 서로 {바뀐다}.",
+        "cAnswers": [
+          "$b$",
+          "$a$",
+          "바뀐다"
+        ],
+        "cReason": "빈칸 '세로'는 '가로'의 짝으로 바로 채워져 확인하는 내용이 없었다.",
+        "studentLabel": "축으로 삼는 변에 따라 달라지는 원기둥",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "축 선택에 따른 원기둥의 반지름·높이",
+        "authorBatch": 21,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1905,
+        "part": "m1plus",
+        "sourceFingerprint": "3ad32137b05fa6c4c3514bd129fc75f3f868a687c796cac5f84c8a4c1ca059fe",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1905
+        },
+        "directReview": null,
+        "cMarkedSentence": "가로가 $a$, 세로가 $b$인 직사각형을 가로인 변을 축으로 돌리면 밑면의 반지름이 {$b$}, 높이가 {$a$}인 원기둥이 되고, 세로인 변을 축으로 돌리면 반지름과 높이가 서로 {바뀐다}.",
+        "cSlotAnswers": [
+          "$b$",
+          "$a$",
+          "바뀐다"
+        ],
+        "cStudentSentence": "가로가 $a$, 세로가 $b$인 직사각형을 가로인 변을 축으로 돌리면 밑면의 반지름이 □, 높이가 □인 원기둥이 되고, 세로인 변을 축으로 돌리면 반지름과 높이가 서로 □.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$b$",
+            "equivalentAnswers": [
+              "$b$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$a$",
+            "equivalentAnswers": [
+              "$a$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "바뀐다",
+            "equivalentAnswers": [
+              "바뀐다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$b$"
+          ],
+          [
+            "$a$"
+          ],
+          [
+            "바뀐다"
+          ]
+        ],
+        "proposalFingerprint": "3c6ee1288de4298e790c0d6b66b3a02a27467fc4124bc7592e2b26eebad3fcc0"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-03-xc19",
+        "section": "중1::7. 입체도형::회전체",
+        "term": "원뿔대의 축 단면",
+        "kind": "방법",
+        "level": "상",
+        "definition": "원뿔대를 회전축을 포함하게 자른 단면은 윗변과 아랫변이 두 밑면의 {지름}인 {사다리꼴}이다.",
+        "example": {
+          "prompt": "두 밑면의 반지름이 $2$, $5$이고 높이가 $4$인 원뿔대를 회전축을 포함하게 자른 단면의 넓이는?",
+          "answer": "$28$"
+        },
+        "studentC": "원뿔대를 회전축을 포함하게 자른 단면은 윗변과 아랫변이 두 밑면의 □인 □이다.",
+        "answers": [
+          "지름",
+          "사다리꼴"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-03-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "두 밑면의 반지름이 $2$, $5$이고 높이가 $4$인 원뿔대를 회전축을 포함하는 평면으로 잘랐다. 단면은 어떤 도형인지, 그 윗변과 아랫변의 길이는 각각 얼마인지 밝히고 단면의 넓이를 구하시오.",
+        "bAnswer": "단면은 윗변이 $4$, 아랫변이 $10$, 높이가 $4$인 사다리꼴이다. 넓이는 $(4+10)\\times4\\div2=28$이다.",
+        "bGoal": "원뿔대의 축 단면을 사다리꼴로 보고 넓이 구하기",
+        "bReason": "모양만 물으면 다른 문항과 겹쳐 지름을 변으로 쓰는 계산까지 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "사다리꼴",
+              "등변사다리꼴"
+            ]
+          },
+          {
+            "anyOf": [
+              "윗변 $4$, 아랫변 $10$",
+              "두 변이 두 밑면의 지름인 $4$와 $10$"
+            ]
+          },
+          {
+            "anyOf": [
+              "넓이 $28$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "자르는 방법이 문장에 있고 변의 정체와 도형 이름을 하나씩 묻는다.",
+        "studentLabel": "원뿔대를 회전축을 포함하게 자른 단면",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "원뿔대 축 단면의 넓이 계산",
+        "authorBatch": 21,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1906,
+        "part": "m1plus",
+        "sourceFingerprint": "d54f76265630ff4ccc226cca521dc53d0b85c768816262e5bbc1bdf879a78f2f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1906
+        },
+        "directReview": null,
+        "cFrozenSentence": "원뿔대를 회전축을 포함하게 자른 단면은 윗변과 아랫변이 두 밑면의 □인 □이다.",
+        "cFrozenDefinition": "원뿔대를 회전축을 포함하게 자른 단면은 윗변과 아랫변이 두 밑면의 {지름}인 {사다리꼴}이다.",
+        "cFrozenAnswers": [
+          "지름",
+          "사다리꼴"
+        ],
+        "cMarkedSentence": "원뿔대를 회전축을 포함하게 자른 단면은 윗변과 아랫변이 두 밑면의 {지름}인 {사다리꼴}이다.",
+        "cSlotAnswers": [
+          "지름",
+          "사다리꼴"
+        ],
+        "cStudentSentence": "원뿔대를 회전축을 포함하게 자른 단면은 윗변과 아랫변이 두 밑면의 □인 □이다.",
+        "cAnswers": [
+          "지름",
+          "사다리꼴"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "지름",
+            "equivalentAnswers": [
+              "지름"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "사다리꼴",
+            "equivalentAnswers": [
+              "사다리꼴"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "지름"
+          ],
+          [
+            "사다리꼴"
+          ]
+        ],
+        "proposalFingerprint": "a8d9c2d8f392b020163685618a001d0995b6121e1c673a6d741295ebc8b4f45a"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-04-xc1",
+        "section": "중1::7. 입체도형::기둥의 겉넓이와 부피",
+        "term": "직육면체의 부피",
+        "kind": "공식",
+        "level": "하",
+        "definition": "직육면체의 부피는 {가로}, 세로, {높이}를 모두 곱한 값이다.",
+        "example": {
+          "prompt": "가로 $2$, 세로 $3$, 높이 $4$인 직육면체의 부피는?",
+          "answer": "$24$"
+        },
+        "studentC": "직육면체의 부피는 □, 세로, □를 모두 곱한 값이다.",
+        "answers": [
+          "가로",
+          "높이"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-04-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "직육면체의 부피를 가로, 세로, 높이로 나타내는 식을 쓰고, 이 식이 기둥의 부피 공식 (밑넓이)$\\times$(높이)와 같은 까닭을 쓰시오.",
+        "bAnswer": "(부피)$=$(가로)$\\times$(세로)$\\times$(높이)이다. (가로)$\\times$(세로)가 밑면인 직사각형의 넓이, 곧 밑넓이이므로 (밑넓이)$\\times$(높이)와 같다.",
+        "bGoal": "직육면체 부피 식을 기둥의 부피 공식과 잇기",
+        "bReason": "초등 공식 되풀이에 그치지 않게 기둥 공식과의 연결을 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "(가로)$\\times$(세로)$\\times$(높이)"
+            ]
+          },
+          {
+            "anyOf": [
+              "(가로)$\\times$(세로)가 밑넓이이다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "세 요소 가운데 두 개를 묻는 짧은 공식 빈칸이다.",
+        "learningRole": "reason",
+        "roleReason": "직육면체 부피와 기둥 공식의 연결",
+        "authorBatch": 21,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1907,
+        "part": "m1plus",
+        "sourceFingerprint": "21fa186b778353c945eaf40dbe4817b1672f92dd1a1d3f3887cffd3bc4892da1",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1907
+        },
+        "directReview": null,
+        "cFrozenSentence": "직육면체의 부피는 □, 세로, □를 모두 곱한 값이다.",
+        "cFrozenDefinition": "직육면체의 부피는 {가로}, 세로, {높이}를 모두 곱한 값이다.",
+        "cFrozenAnswers": [
+          "가로",
+          "높이"
+        ],
+        "cMarkedSentence": "직육면체의 부피는 {가로}, 세로, {높이}를 모두 곱한 값이다.",
+        "cSlotAnswers": [
+          "가로",
+          "높이"
+        ],
+        "cStudentSentence": "직육면체의 부피는 □, 세로, □를 모두 곱한 값이다.",
+        "cAnswers": [
+          "가로",
+          "높이"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "가로",
+            "equivalentAnswers": [
+              "가로"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "높이",
+            "equivalentAnswers": [
+              "높이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "가로"
+          ],
+          [
+            "높이"
+          ]
+        ],
+        "proposalFingerprint": "2ea51bac68548792b0ddfa25708cd92ea3e430b0b4b8dce5d076d67da36c17ac"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-04-xc2",
+        "section": "중1::7. 입체도형::기둥의 겉넓이와 부피",
+        "term": "정육면체의 부피",
+        "kind": "공식",
+        "level": "하",
+        "definition": "한 모서리가 $a$인 정육면체의 부피는 {$a^3$}이다.",
+        "example": {
+          "prompt": "한 모서리가 $3$인 정육면체의 부피는?",
+          "answer": "$27$"
+        },
+        "studentC": "한 모서리가 $a$인 정육면체의 부피는 □이다.",
+        "answers": [
+          "$a^3$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-04-xc2",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "식 하나를 그대로 떠올리는 것 외에 서술할 내용이 없다.",
+        "cDecision": "keep",
+        "cReason": "기호 $a$의 뜻이 문장에 있고 식 하나를 묻는 분명한 빈칸이다.",
+        "exclusionReason": "B 제외: 직육면체 부피(m1-07-04-xc1)의 특수한 경우로 목표가 겹치는 단순 공식 암기이다.",
+        "learningRole": "procedure",
+        "roleReason": "정육면체의 부피 식",
+        "authorBatch": 21,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1908,
+        "part": "m1plus",
+        "sourceFingerprint": "4e495b042493183e2cc8d618a795647e61b352e4e1529636303d50de1d239611",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1908
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "한 모서리가 $a$인 정육면체의 부피는 □이다.",
+        "cFrozenDefinition": "한 모서리가 $a$인 정육면체의 부피는 {$a^3$}이다.",
+        "cFrozenAnswers": [
+          "$a^3$"
+        ],
+        "cMarkedSentence": "한 모서리가 $a$인 정육면체의 부피는 {$a^3$}이다.",
+        "cSlotAnswers": [
+          "$a^3$"
+        ],
+        "cStudentSentence": "한 모서리가 $a$인 정육면체의 부피는 □이다.",
+        "cAnswers": [
+          "$a^3$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$a^3$",
+            "equivalentAnswers": [
+              "$a^3$",
+              "$a\\times a\\times a$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$a^3$",
+            "accept": [
+              "$a\\times a\\times a$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$a^3$",
+            "$a\\times a\\times a$"
+          ]
+        ],
+        "proposalFingerprint": "24496b1f4f40a3f6bd250902756a745a26478533e58509cd1b955751a24f6900"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-04-xc3",
+        "section": "중1::7. 입체도형::기둥의 겉넓이와 부피",
+        "term": "정육면체의 겉넓이",
+        "kind": "공식",
+        "level": "하",
+        "definition": "한 모서리가 $a$인 정육면체의 겉넓이는 한 면의 넓이 $a^2$의 {$6$배}이다.",
+        "example": {
+          "prompt": "한 모서리가 $2$인 정육면체의 겉넓이는?",
+          "answer": "$24$"
+        },
+        "studentC": "한 모서리가 $a$인 정육면체의 겉넓이는 한 면의 넓이 $a^2$의 □이다.",
+        "answers": [
+          "$6$배"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-04-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "한 모서리의 길이가 $a$인 정육면체의 겉넓이를 $a$의 식으로 나타내고, 그 식이 나오는 까닭을 면의 모양과 개수로 설명하시오.",
+        "bAnswer": "$6a^2$이다. 정육면체는 넓이가 $a^2$인 합동인 정사각형 $6$개로 둘러싸여 있기 때문이다.",
+        "bGoal": "정육면체의 겉넓이 식과 근거 말하기",
+        "bReason": "식만 묻지 않고 면의 넓이와 개수에서 나오는 근거를 요구했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$6a^2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "넓이가 $a^2$인 정사각형 면이 $6$개이다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "한 면의 넓이가 주어져 있고 배수만 묻는 짧은 빈칸이다.",
+        "learningRole": "reason",
+        "roleReason": "정육면체 겉넓이 식의 근거",
+        "authorBatch": 21,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1909,
+        "part": "m1plus",
+        "sourceFingerprint": "07b7d5bcd4be6fa16e90f669304a2ce1c9b5539af729c09690c7dc63c374a7d7",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1909
+        },
+        "directReview": null,
+        "cFrozenSentence": "한 모서리가 $a$인 정육면체의 겉넓이는 한 면의 넓이 $a^2$의 □이다.",
+        "cFrozenDefinition": "한 모서리가 $a$인 정육면체의 겉넓이는 한 면의 넓이 $a^2$의 {$6$배}이다.",
+        "cFrozenAnswers": [
+          "$6$배"
+        ],
+        "cMarkedSentence": "한 모서리가 $a$인 정육면체의 겉넓이는 한 면의 넓이 $a^2$의 {$6$배}이다.",
+        "cSlotAnswers": [
+          "$6$배"
+        ],
+        "cStudentSentence": "한 모서리가 $a$인 정육면체의 겉넓이는 한 면의 넓이 $a^2$의 □이다.",
+        "cAnswers": [
+          "$6$배"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$6$배",
+            "equivalentAnswers": [
+              "$6$배",
+              "여섯 배"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$6$배",
+            "accept": [
+              "여섯 배"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$6$배",
+            "여섯 배"
+          ]
+        ],
+        "proposalFingerprint": "bd3c6c5ebd599df296f4cbb733345bad8662cab48db14494748f38e395f7c73b"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-04-xc4",
+        "section": "중1::7. 입체도형::기둥의 겉넓이와 부피",
+        "term": "원기둥의 밑넓이",
+        "kind": "방법",
+        "level": "하",
+        "definition": "원기둥의 밑넓이는 밑면인 원의 넓이로, 반지름이 $r$이면 {$\\pi r^2$}이다.",
+        "example": {
+          "prompt": "반지름이 $4$인 원기둥의 밑넓이는?",
+          "answer": "$16\\pi$"
+        },
+        "studentC": "원기둥의 밑넓이는 밑면인 원의 넓이로, 반지름이 $r$이면 □이다.",
+        "answers": [
+          "$\\pi r^2$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-04-xc4",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "원의 넓이 식 하나만 남아 서술형으로 물을 내용이 없다.",
+        "cDecision": "keep",
+        "cReason": "밑면이 원임을 밝히고 식 하나를 묻는 분명한 빈칸이다.",
+        "exclusionReason": "B 제외: 원기둥의 부피(m1-07-04-c5)와 겉넓이(m1-07-04-xc9)의 B가 밑넓이 $\\pi r^2$을 이미 포함하는 단순 식 암기이다.",
+        "learningRole": "procedure",
+        "roleReason": "원기둥의 밑넓이 식",
+        "authorBatch": 21,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1910,
+        "part": "m1plus",
+        "sourceFingerprint": "1a4738f273433ebd1d9c1cbbe83f4f2c827cb5a94981065075ad5aa835881ff5",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1910
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "원기둥의 밑넓이는 밑면인 원의 넓이로, 반지름이 $r$이면 □이다.",
+        "cFrozenDefinition": "원기둥의 밑넓이는 밑면인 원의 넓이로, 반지름이 $r$이면 {$\\pi r^2$}이다.",
+        "cFrozenAnswers": [
+          "$\\pi r^2$"
+        ],
+        "cMarkedSentence": "원기둥의 밑넓이는 밑면인 원의 넓이로, 반지름이 $r$이면 {$\\pi r^2$}이다.",
+        "cSlotAnswers": [
+          "$\\pi r^2$"
+        ],
+        "cStudentSentence": "원기둥의 밑넓이는 밑면인 원의 넓이로, 반지름이 $r$이면 □이다.",
+        "cAnswers": [
+          "$\\pi r^2$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\pi r^2$",
+            "equivalentAnswers": [
+              "$\\pi r^2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\pi r^2$"
+          ]
+        ],
+        "proposalFingerprint": "1f33280d864600c5e4e60de1a2d12041bdcb7be5eb57ea9ba169b51b2d3c6df1"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-04-xc5",
+        "section": "중1::7. 입체도형::기둥의 겉넓이와 부피",
+        "term": "삼각기둥의 밑넓이",
+        "kind": "방법",
+        "level": "하",
+        "definition": "삼각기둥의 밑넓이는 밑면인 {삼각형}의 넓이로, 밑변과 높이의 곱의 {절반}이다.",
+        "example": {
+          "prompt": "밑면이 밑변 $4$, 높이 $3$인 삼각형이면 밑넓이는?",
+          "answer": "$6$"
+        },
+        "studentC": "삼각기둥의 밑넓이는 밑면인 □의 넓이로, 밑변과 높이의 곱의 □이다.",
+        "answers": [
+          "삼각형",
+          "절반"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-04-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "밑면이 밑변의 길이 $4$, 높이 $3$인 삼각형이고 기둥의 높이가 $10$인 삼각기둥이 있다. 이 삼각기둥의 밑넓이를 구하고, 이때 기둥의 높이 $10$을 쓰지 않는 까닭을 쓰시오.",
+        "bAnswer": "밑넓이는 $4\\times3\\div2=6$이다. 밑넓이는 밑면인 삼각형 하나의 넓이이므로 삼각형의 밑변과 높이만 쓰고 기둥의 높이는 쓰지 않는다.",
+        "bGoal": "삼각형의 높이와 기둥의 높이를 구별해 밑넓이 구하기",
+        "bReason": "두 가지 '높이'가 섞이는 지점을 구체 수치로 드러내게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "밑넓이는 $6$"
+            ]
+          },
+          {
+            "anyOf": [
+              "밑넓이는 밑면인 삼각형의 넓이이다",
+              "기둥의 높이는 밑면의 넓이와 관계없다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "삼각기둥의 밑넓이는 밑면인 {삼각형}의 넓이이므로, 그 삼각형의 밑변의 길이와 높이를 곱한 값의 {절반}이다.",
+        "cAnswers": [
+          "삼각형",
+          "절반"
+        ],
+        "cReason": "'높이'가 삼각형의 높이인지 기둥의 높이인지 원래 문장에서 구별되지 않는다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "삼각기둥의 밑넓이 계산과 높이 구별",
+        "authorBatch": 21,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1911,
+        "part": "m1plus",
+        "sourceFingerprint": "03ea94622d20583367419860553a76da14c09ea85e9b562d08bb402dd4c1a72a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1911
+        },
+        "directReview": null,
+        "cMarkedSentence": "삼각기둥의 밑넓이는 밑면인 {삼각형}의 넓이이므로, 그 삼각형의 밑변의 길이와 높이를 곱한 값의 {절반}이다.",
+        "cSlotAnswers": [
+          "삼각형",
+          "절반"
+        ],
+        "cStudentSentence": "삼각기둥의 밑넓이는 밑면인 □의 넓이이므로, 그 삼각형의 밑변의 길이와 높이를 곱한 값의 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "삼각형",
+            "equivalentAnswers": [
+              "삼각형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "절반",
+            "equivalentAnswers": [
+              "절반",
+              "반",
+              "$\\frac{1}{2}$",
+              "$\\frac{1}{2}$배"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "절반",
+            "accept": [
+              "반",
+              "$\\frac{1}{2}$",
+              "$\\frac{1}{2}$배"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "삼각형"
+          ],
+          [
+            "절반",
+            "반",
+            "$\\frac{1}{2}$",
+            "$\\frac{1}{2}$배"
+          ]
+        ],
+        "proposalFingerprint": "64a4a850b8401f55abcf7731925cfa88433c870974429585faa064f89523f0de"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-04-xc6",
+        "section": "중1::7. 입체도형::기둥의 겉넓이와 부피",
+        "term": "부피와 겉넓이의 단위",
+        "kind": "단위",
+        "level": "하",
+        "definition": "부피의 단위로는 한 모서리가 $1\\,\\mathrm{cm}$인 정육면체의 부피 {$1\\,\\mathrm{cm}^3$}를 쓰고, 겉넓이에는 넓이의 단위 {$\\mathrm{cm}^2$}를 쓴다.",
+        "example": {
+          "prompt": "부피가 $8\\,\\mathrm{cm}^3$인 정육면체의 한 모서리는?",
+          "answer": "$2\\,\\mathrm{cm}$"
+        },
+        "studentC": "부피의 단위로는 한 모서리가 $1\\,\\mathrm{cm}$인 정육면체의 부피 □를 쓰고, 겉넓이에는 넓이의 단위 □를 쓴다.",
+        "answers": [
+          "$1\\,\\mathrm{cm}^3$",
+          "$\\mathrm{cm}^2$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-04-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "길이를 $\\mathrm{cm}$로 잴 때 기둥의 부피와 겉넓이에는 각각 어떤 단위를 쓰는가? 겉넓이에 부피의 단위를 쓰지 않는 까닭도 쓰시오.",
+        "bAnswer": "부피에는 $\\mathrm{cm}^3$, 겉넓이에는 $\\mathrm{cm}^2$를 쓴다. 겉넓이는 입체를 둘러싼 면들의 넓이의 합, 곧 넓이이기 때문이다.",
+        "bGoal": "부피와 겉넓이의 단위 구별하기",
+        "bReason": "길이 단위를 밝히고 두 단위가 다른 까닭까지 답하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "부피의 단위는 $\\mathrm{cm}^3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "겉넓이의 단위는 $\\mathrm{cm}^2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "겉넓이는 면의 넓이의 합이므로 넓이의 단위를 쓴다",
+              "겉넓이는 넓이이기 때문이다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "기준이 되는 정육면체가 문장에 있고 두 단위를 대비해 묻는다.",
+        "learningRole": "definition",
+        "roleReason": "부피·겉넓이의 단위",
+        "authorBatch": 21,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1912,
+        "part": "m1plus",
+        "sourceFingerprint": "15096ac698c607bb9285027ff1869fe228bb0b898b0aa2ab683d61ce64eaed82",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1912
+        },
+        "directReview": null,
+        "cFrozenSentence": "부피의 단위로는 한 모서리가 $1\\,\\mathrm{cm}$인 정육면체의 부피 □를 쓰고, 겉넓이에는 넓이의 단위 □를 쓴다.",
+        "cFrozenDefinition": "부피의 단위로는 한 모서리가 $1\\,\\mathrm{cm}$인 정육면체의 부피 {$1\\,\\mathrm{cm}^3$}를 쓰고, 겉넓이에는 넓이의 단위 {$\\mathrm{cm}^2$}를 쓴다.",
+        "cFrozenAnswers": [
+          "$1\\,\\mathrm{cm}^3$",
+          "$\\mathrm{cm}^2$"
+        ],
+        "cMarkedSentence": "부피의 단위로는 한 모서리가 $1\\,\\mathrm{cm}$인 정육면체의 부피 {$1\\,\\mathrm{cm}^3$}를 쓰고, 겉넓이에는 넓이의 단위 {$\\mathrm{cm}^2$}를 쓴다.",
+        "cSlotAnswers": [
+          "$1\\,\\mathrm{cm}^3$",
+          "$\\mathrm{cm}^2$"
+        ],
+        "cStudentSentence": "부피의 단위로는 한 모서리가 $1\\,\\mathrm{cm}$인 정육면체의 부피 □를 쓰고, 겉넓이에는 넓이의 단위 □를 쓴다.",
+        "cAnswers": [
+          "$1\\,\\mathrm{cm}^3$",
+          "$\\mathrm{cm}^2$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$1\\,\\mathrm{cm}^3$",
+            "equivalentAnswers": [
+              "$1\\,\\mathrm{cm}^3$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\mathrm{cm}^2$",
+            "equivalentAnswers": [
+              "$\\mathrm{cm}^2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$1\\,\\mathrm{cm}^3$"
+          ],
+          [
+            "$\\mathrm{cm}^2$"
+          ]
+        ],
+        "proposalFingerprint": "719faf42187c8b62fe445e4f9882b68e8020e74c2d8365b7c99cf5a660501146"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-04-xc7",
+        "section": "중1::7. 입체도형::기둥의 겉넓이와 부피",
+        "term": "사각기둥의 옆넓이",
+        "kind": "방법",
+        "level": "하",
+        "definition": "사각기둥의 옆넓이는 옆면인 직사각형 {$4$}개의 넓이를 모두 {더한다}.",
+        "example": {
+          "prompt": "밑면이 한 변 $3$인 정사각형이고 높이가 $5$인 사각기둥의 옆넓이는?",
+          "answer": "$60$"
+        },
+        "studentC": "사각기둥의 옆넓이는 옆면인 직사각형 □개의 넓이를 모두 □.",
+        "answers": [
+          "$4$",
+          "더한다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-04-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "밑면이 한 변의 길이가 $3$인 정사각형이고 높이가 $5$인 사각기둥의 옆넓이를 구하시오. 옆면이 어떤 도형 몇 개로 이루어지는지 밝혀 쓰시오.",
+        "bAnswer": "옆면은 가로 $3$, 세로 $5$인 직사각형 $4$개이므로 옆넓이는 $3\\times5\\times4=60$이다.",
+        "bGoal": "사각기둥의 옆면 구성을 밝혀 옆넓이 구하기",
+        "bReason": "옆면의 개수를 질문에서 알려 주지 않고 수치 예로 구하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "옆면은 직사각형 $4$개이다",
+              "밑면의 둘레 $12$에 높이 $5$를 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$60$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "옆면의 개수와 계산 방법을 짧게 묻는 분명한 빈칸이다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "사각기둥의 옆넓이 계산",
+        "authorBatch": 21,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1913,
+        "part": "m1plus",
+        "sourceFingerprint": "efaca515c0e8cb124588fdaa54949d3e9cec0f192eaa729f55ded76d03b672cd",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1913
+        },
+        "directReview": null,
+        "cFrozenSentence": "사각기둥의 옆넓이는 옆면인 직사각형 □개의 넓이를 모두 □.",
+        "cFrozenDefinition": "사각기둥의 옆넓이는 옆면인 직사각형 {$4$}개의 넓이를 모두 {더한다}.",
+        "cFrozenAnswers": [
+          "$4$",
+          "더한다"
+        ],
+        "cMarkedSentence": "사각기둥의 옆넓이는 옆면인 직사각형 {$4$}개의 넓이를 모두 {더한다}.",
+        "cSlotAnswers": [
+          "$4$",
+          "더한다"
+        ],
+        "cStudentSentence": "사각기둥의 옆넓이는 옆면인 직사각형 □개의 넓이를 모두 □.",
+        "cAnswers": [
+          "$4$",
+          "더한다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$4$",
+            "equivalentAnswers": [
+              "$4$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "더한다",
+            "equivalentAnswers": [
+              "더한다",
+              "합한다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "더한다",
+            "accept": [
+              "합한다"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$4$"
+          ],
+          [
+            "더한다",
+            "합한다"
+          ]
+        ],
+        "proposalFingerprint": "3b7aec3c489aa0d984c4199202154f50da87666592cfd98c2ed0eb3396ad5db4"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-04-xc8",
+        "section": "중1::7. 입체도형::기둥의 겉넓이와 부피",
+        "term": "밑넓이와 높이가 같은 기둥",
+        "kind": "성질",
+        "level": "하",
+        "definition": "밑넓이와 높이가 각각 같은 두 기둥은 밑면의 모양이 달라도 부피가 {같다}.",
+        "example": {
+          "prompt": "밑넓이 $10$, 높이 $3$인 삼각기둥과 사각기둥의 부피는?",
+          "answer": "둘 다 $30$"
+        },
+        "studentC": "밑넓이와 높이가 각각 같은 두 기둥은 밑면의 모양이 달라도 부피가 □.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-04-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "밑넓이가 $10$, 높이가 $3$인 삼각기둥과 사각기둥의 부피를 비교하고, 밑면의 모양이 달라도 그런 결과가 나오는 까닭을 쓰시오.",
+        "bAnswer": "두 기둥의 부피는 모두 $10\\times3=30$으로 같다. 기둥의 부피는 밑면의 모양과 관계없이 밑넓이와 높이의 곱으로 정해지기 때문이다.",
+        "bGoal": "밑넓이와 높이가 같으면 부피가 같은 까닭 설명하기",
+        "bReason": "조건만 적힌 제목이라 두 기둥의 수치 예로 비교와 까닭을 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 부피가 모두 $30$으로 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "기둥의 부피는 밑넓이와 높이의 곱으로 정해진다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "조건이 문장에 다 있고 결론 한 낱말만 묻는다.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "부피가 밑넓이와 높이로만 정해지는 까닭",
+        "authorBatch": 21,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1914,
+        "part": "m1plus",
+        "sourceFingerprint": "d29dfd8d9de50964d03e937d3991119bf0a4023ca31258d21b2847a93ae46df7",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1914
+        },
+        "directReview": null,
+        "cFrozenSentence": "밑넓이와 높이가 각각 같은 두 기둥은 밑면의 모양이 달라도 부피가 □.",
+        "cFrozenDefinition": "밑넓이와 높이가 각각 같은 두 기둥은 밑면의 모양이 달라도 부피가 {같다}.",
+        "cFrozenAnswers": [
+          "같다"
+        ],
+        "cMarkedSentence": "밑넓이와 높이가 각각 같은 두 기둥은 밑면의 모양이 달라도 부피가 {같다}.",
+        "cSlotAnswers": [
+          "같다"
+        ],
+        "cStudentSentence": "밑넓이와 높이가 각각 같은 두 기둥은 밑면의 모양이 달라도 부피가 □.",
+        "cAnswers": [
+          "같다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "같다",
+            "equivalentAnswers": [
+              "같다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "같다"
+          ]
+        ],
+        "proposalFingerprint": "01234cf360599a27ca7d8f060f7fb368c4eed51df76837b07c8cabd18af0d38c"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-04-xc9",
+        "section": "중1::7. 입체도형::기둥의 겉넓이와 부피",
+        "term": "원기둥의 겉넓이",
+        "kind": "공식",
+        "level": "중",
+        "definition": "밑면의 반지름이 $r$, 높이가 $h$인 원기둥의 겉넓이는 {$2\\pi r^2+2\\pi rh$}이다.",
+        "example": {
+          "prompt": "반지름 $1$, 높이 $2$인 원기둥의 겉넓이는?",
+          "answer": "$6\\pi$"
+        },
+        "studentC": "밑면의 반지름이 $r$, 높이가 $h$인 원기둥의 겉넓이는 □이다.",
+        "answers": [
+          "$2\\pi r^2+2\\pi rh$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-04-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "밑면의 반지름이 $r$, 높이가 $h$인 원기둥의 겉넓이를 $r$, $h$의 식으로 나타내고, 식의 각 항이 전개도의 어느 부분의 넓이인지 쓰시오.",
+        "bAnswer": "$2\\pi r^2+2\\pi rh$이다. $2\\pi r^2$은 원인 밑면 $2$개의 넓이이고, $2\\pi rh$는 직사각형인 옆면의 넓이이다.",
+        "bGoal": "원기둥의 겉넓이 식과 각 항의 뜻 말하기",
+        "bReason": "식을 외우는 데 그치지 않게 각 항과 전개도의 대응을 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2\\pi r^2+2\\pi rh$",
+              "$2\\pi r(r+h)$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2\\pi r^2$은 두 밑면의 넓이이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2\\pi rh$는 옆면의 넓이이다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "기호의 뜻이 문장에 있고 공식 하나를 묻는 분명한 빈칸이다.",
+        "learningRole": "procedure",
+        "roleReason": "원기둥의 겉넓이 식",
+        "authorBatch": 21,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1915,
+        "part": "m1plus",
+        "sourceFingerprint": "f25222118a0e76a3f54e657c537c0f05697e0aa3f1452bbf6190ad23b428e074",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1915
+        },
+        "directReview": null,
+        "cFrozenSentence": "밑면의 반지름이 $r$, 높이가 $h$인 원기둥의 겉넓이는 □이다.",
+        "cFrozenDefinition": "밑면의 반지름이 $r$, 높이가 $h$인 원기둥의 겉넓이는 {$2\\pi r^2+2\\pi rh$}이다.",
+        "cFrozenAnswers": [
+          "$2\\pi r^2+2\\pi rh$"
+        ],
+        "cMarkedSentence": "밑면의 반지름이 $r$, 높이가 $h$인 원기둥의 겉넓이는 {$2\\pi r^2+2\\pi rh$}이다.",
+        "cSlotAnswers": [
+          "$2\\pi r^2+2\\pi rh$"
+        ],
+        "cStudentSentence": "밑면의 반지름이 $r$, 높이가 $h$인 원기둥의 겉넓이는 □이다.",
+        "cAnswers": [
+          "$2\\pi r^2+2\\pi rh$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$2\\pi r^2+2\\pi rh$",
+            "equivalentAnswers": [
+              "$2\\pi r^2+2\\pi rh$",
+              "$2\\pi rh+2\\pi r^2$",
+              "$2\\pi r(r+h)$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$2\\pi r^2+2\\pi rh$",
+            "accept": [
+              "$2\\pi rh+2\\pi r^2$",
+              "$2\\pi r(r+h)$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$2\\pi r^2+2\\pi rh$",
+            "$2\\pi rh+2\\pi r^2$",
+            "$2\\pi r(r+h)$"
+          ]
+        ],
+        "proposalFingerprint": "79e2b620966500017a87f9978af528c6e3f13cc3709813b8bc6a84bb01df6976"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-04-xc10",
+        "section": "중1::7. 입체도형::기둥의 겉넓이와 부피",
+        "term": "원기둥 전개도의 옆면",
+        "kind": "성질",
+        "level": "중",
+        "definition": "원기둥의 전개도에서 옆면은 이웃한 두 변의 길이가 밑면의 둘레 {$2\\pi r$}와 {높이}인 직사각형이다.",
+        "example": {
+          "prompt": "반지름 $3$인 원기둥의 전개도에서 옆면의 변 가운데 밑면의 둘레와 맞닿는 변의 길이는?",
+          "answer": "$6\\pi$"
+        },
+        "studentC": "원기둥의 전개도에서 옆면은 이웃한 두 변의 길이가 밑면의 둘레 □와 □인 직사각형이다.",
+        "answers": [
+          "$2\\pi r$",
+          "높이"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-04-xc10",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "옆면이 밑면의 둘레와 높이를 변으로 하는 직사각형이라는 내용이 이미 두 번 나온다.",
+        "cDecision": "rewrite",
+        "cAfter": "밑면의 반지름이 $r$인 원기둥의 전개도에서 옆면은 이웃한 두 변의 길이가 밑면의 둘레 {$2\\pi r$}와 원기둥의 {높이}인 직사각형이다.",
+        "cAnswers": [
+          "$2\\pi r$",
+          "높이"
+        ],
+        "cReason": "문장에 $r$가 무엇인지 없어 첫 빈칸의 식을 정할 수 없었다.",
+        "exclusionReason": "B 제외: m1-07-03-c11(전개도에서 옆면과 밑면 둘레)과 m1-07-04-c4(옆면을 펼친 직사각형)의 B와 목표가 중복된다.",
+        "learningRole": "definition",
+        "roleReason": "원기둥 전개도에서 옆면의 두 변",
+        "authorBatch": 21,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1916,
+        "part": "m1plus",
+        "sourceFingerprint": "82efd939a896942f653e7d0bd7694fe3d68b8c84f43bb5f7cfdcc4c740984156",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1916
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "밑면의 반지름이 $r$인 원기둥의 전개도에서 옆면은 이웃한 두 변의 길이가 밑면의 둘레 {$2\\pi r$}와 원기둥의 {높이}인 직사각형이다.",
+        "cSlotAnswers": [
+          "$2\\pi r$",
+          "높이"
+        ],
+        "cStudentSentence": "밑면의 반지름이 $r$인 원기둥의 전개도에서 옆면은 이웃한 두 변의 길이가 밑면의 둘레 □와 원기둥의 □인 직사각형이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$2\\pi r$",
+            "equivalentAnswers": [
+              "$2\\pi r$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "높이",
+            "equivalentAnswers": [
+              "높이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$2\\pi r$"
+          ],
+          [
+            "높이"
+          ]
+        ],
+        "proposalFingerprint": "4843bc0122b31da21f1edd9ef4de3d4c8e2f10f9539df80bc103715485b364fa"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-04-xc11",
+        "section": "중1::7. 입체도형::기둥의 겉넓이와 부피",
+        "term": "부피로 높이 구하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "기둥의 높이는 부피를 {밑넓이}로 나누어 구한다. 기둥의 부피가 밑면의 넓이와 높이의 곱이기 때문이다.",
+        "example": {
+          "prompt": "부피 $84$, 밑넓이 $12$인 기둥의 높이는?",
+          "answer": "$7$"
+        },
+        "studentC": "기둥의 높이는 부피를 □로 나누어 구한다. 기둥의 부피가 밑면의 넓이와 높이의 곱이기 때문이다.",
+        "answers": [
+          "밑넓이"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-04-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "부피가 $84$, 밑넓이가 $12$인 기둥의 높이를 구하고, 그렇게 계산하는 까닭을 기둥의 부피 공식으로 설명하시오.",
+        "bAnswer": "높이는 $84\\div12=7$이다. (부피)$=$(밑넓이)$\\times$(높이)이므로 높이는 부피를 밑넓이로 나눈 값이다.",
+        "bGoal": "부피 공식을 거꾸로 써서 높이 구하기",
+        "bReason": "방법 이름뿐이라 수치를 주고 나누는 까닭을 공식으로 답하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "높이는 $7$"
+            ]
+          },
+          {
+            "anyOf": [
+              "(부피)$=$(밑넓이)$\\times$(높이)이므로 부피를 밑넓이로 나눈다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "빈칸이 하나이고 뒤 문장이 까닭을 설명해 주는 구조이다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "부피에서 높이 구하기",
+        "authorBatch": 21,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1917,
+        "part": "m1plus",
+        "sourceFingerprint": "983df898051ba26db82f1d071920c4f2c961c09554512a4ee20f5af5ac6a9e2e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1917
+        },
+        "directReview": null,
+        "cFrozenSentence": "기둥의 높이는 부피를 □로 나누어 구한다. 기둥의 부피가 밑면의 넓이와 높이의 곱이기 때문이다.",
+        "cFrozenDefinition": "기둥의 높이는 부피를 {밑넓이}로 나누어 구한다. 기둥의 부피가 밑면의 넓이와 높이의 곱이기 때문이다.",
+        "cFrozenAnswers": [
+          "밑넓이"
+        ],
+        "cMarkedSentence": "기둥의 높이는 부피를 {밑넓이}로 나누어 구한다. 기둥의 부피가 밑면의 넓이와 높이의 곱이기 때문이다.",
+        "cSlotAnswers": [
+          "밑넓이"
+        ],
+        "cStudentSentence": "기둥의 높이는 부피를 □로 나누어 구한다. 기둥의 부피가 밑면의 넓이와 높이의 곱이기 때문이다.",
+        "cAnswers": [
+          "밑넓이"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "밑넓이",
+            "equivalentAnswers": [
+              "밑넓이",
+              "밑면의 넓이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "밑넓이",
+            "accept": [
+              "밑면의 넓이"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "밑넓이",
+            "밑면의 넓이"
+          ]
+        ],
+        "proposalFingerprint": "6dd6ccf80b6b4bde2fa3d96090f2947ccf28e55c0953a0961b14be1ba5b90e97"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-04-xc12",
+        "section": "중1::7. 입체도형::기둥의 겉넓이와 부피",
+        "term": "겉넓이로 높이 구하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "겉넓이에서 두 밑넓이를 뺀 {옆넓이}를 밑면의 {둘레}로 나누면 높이가 나온다.",
+        "example": {
+          "prompt": "밑면의 둘레 $10$, 밑넓이 $6$, 겉넓이 $62$인 기둥의 높이는?",
+          "answer": "$5$"
+        },
+        "studentC": "겉넓이에서 두 밑넓이를 뺀 □를 밑면의 □로 나누면 높이가 나온다.",
+        "answers": [
+          "옆넓이",
+          "둘레"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-04-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "밑면의 둘레가 $10$, 밑넓이가 $6$, 겉넓이가 $62$인 기둥의 높이를 구하는 과정을 순서대로 쓰시오.",
+        "bAnswer": "옆넓이는 겉넓이에서 밑넓이의 $2$배를 뺀 $62-6\\times2=50$이다. 옆넓이는 (밑면의 둘레)$\\times$(높이)이므로 높이는 $50\\div10=5$이다.",
+        "bGoal": "겉넓이에서 옆넓이를 거쳐 높이 구하기",
+        "bReason": "두 단계의 순서가 드러나도록 수치를 주고 과정을 쓰게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "옆넓이가 $62-6\\times2=50$임을 구한다",
+              "$6\\times2+10\\times($높이$)=62$로 식을 세운다"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이는 $5$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "기둥의 겉넓이에서 밑넓이의 $2$배를 빼면 {옆넓이}가 되고, 이것을 밑면의 {둘레}로 나누면 기둥의 {높이}가 된다.",
+        "cAnswers": [
+          "옆넓이",
+          "둘레",
+          "높이"
+        ],
+        "cReason": "어떤 입체의 겉넓이인지 빠져 있어 제목 없이는 상황을 알 수 없었다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "겉넓이에서 높이를 구하는 순서",
+        "authorBatch": 21,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1918,
+        "part": "m1plus",
+        "sourceFingerprint": "3b7145b3a034cd4f77e4bbeab6d19a20b722f95f13afd948249cc99e4d6d6368",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1918
+        },
+        "directReview": null,
+        "cMarkedSentence": "기둥의 겉넓이에서 밑넓이의 $2$배를 빼면 {옆넓이}가 되고, 이것을 밑면의 {둘레}로 나누면 기둥의 {높이}가 된다.",
+        "cSlotAnswers": [
+          "옆넓이",
+          "둘레",
+          "높이"
+        ],
+        "cStudentSentence": "기둥의 겉넓이에서 밑넓이의 $2$배를 빼면 □가 되고, 이것을 밑면의 □로 나누면 기둥의 □가 된다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "옆넓이",
+            "equivalentAnswers": [
+              "옆넓이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "둘레",
+            "equivalentAnswers": [
+              "둘레"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "높이",
+            "equivalentAnswers": [
+              "높이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "옆넓이"
+          ],
+          [
+            "둘레"
+          ],
+          [
+            "높이"
+          ]
+        ],
+        "proposalFingerprint": "1df1766c8cca8eff4c5972ce0e3a9fe3a184c5710fb361a25a5ceea739a2d378"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-04-xc13",
+        "section": "중1::7. 입체도형::기둥의 겉넓이와 부피",
+        "term": "반지름이 $k$배가 된 원기둥의 부피",
+        "kind": "성질",
+        "level": "중",
+        "definition": "높이가 같을 때 원기둥의 밑면의 반지름이 $k$배가 되면 부피는 {$k^2$배}가 된다.",
+        "example": {
+          "prompt": "높이가 같고 밑면의 반지름이 $3$배가 된 원기둥의 부피는 몇 배?",
+          "answer": "$9$배"
+        },
+        "studentC": "높이가 같을 때 원기둥의 밑면의 반지름이 $k$배가 되면 부피는 □가 된다.",
+        "answers": [
+          "$k^2$배"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-04-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "원기둥의 높이는 그대로 두고 밑면의 반지름만 $3$배로 늘이면 부피는 몇 배가 되는가? 까닭을 쓰고, 반지름을 $k$배로 할 때는 부피가 몇 배가 되는지도 쓰시오.",
+        "bAnswer": "$9$배가 된다. 밑넓이 $\\pi r^2$이 $\\pi(3r)^2=9\\pi r^2$으로 $9$배가 되고 높이는 같기 때문이다. 반지름이 $k$배이면 부피는 $k^2$배가 된다.",
+        "bGoal": "반지름의 배율과 부피의 배율 관계 설명하기",
+        "bReason": "높이가 같다는 조건을 밝히고 구체 배율에서 일반 배율로 잇게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$9$배"
+            ]
+          },
+          {
+            "anyOf": [
+              "밑넓이가 $9$배가 되고 높이는 같다",
+              "$\\pi(3r)^2h=9\\pi r^2h$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$k^2$배"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "높이가 같다는 조건이 문장에 있고 배율 하나만 묻는다.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "반지름 배율과 부피 배율의 관계",
+        "authorBatch": 21,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1919,
+        "part": "m1plus",
+        "sourceFingerprint": "74ac452fff60688f8931983180f4efe0418a1ebd0f0ee9e34dd230f319bde9f8",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1919
+        },
+        "directReview": null,
+        "cFrozenSentence": "높이가 같을 때 원기둥의 밑면의 반지름이 $k$배가 되면 부피는 □가 된다.",
+        "cFrozenDefinition": "높이가 같을 때 원기둥의 밑면의 반지름이 $k$배가 되면 부피는 {$k^2$배}가 된다.",
+        "cFrozenAnswers": [
+          "$k^2$배"
+        ],
+        "cMarkedSentence": "높이가 같을 때 원기둥의 밑면의 반지름이 $k$배가 되면 부피는 {$k^2$배}가 된다.",
+        "cSlotAnswers": [
+          "$k^2$배"
+        ],
+        "cStudentSentence": "높이가 같을 때 원기둥의 밑면의 반지름이 $k$배가 되면 부피는 □가 된다.",
+        "cAnswers": [
+          "$k^2$배"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$k^2$배",
+            "equivalentAnswers": [
+              "$k^2$배"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$k^2$배"
+          ]
+        ],
+        "proposalFingerprint": "68589dd92dd8a82e4a57c9c25381c9a9e6bed513388295cd102b9af8a3c81aa3"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-04-xc14",
+        "section": "중1::7. 입체도형::기둥의 겉넓이와 부피",
+        "term": "밑면이 사다리꼴인 기둥",
+        "kind": "방법",
+        "level": "중",
+        "definition": "밑면이 사다리꼴인 기둥은 사다리꼴의 넓이를 먼저 구한 뒤 기둥의 {높이}를 곱해 {부피}를 얻는다.",
+        "example": {
+          "prompt": "윗변 $2$, 아랫변 $4$, 높이 $3$인 사다리꼴이 밑면이고 기둥의 높이가 $5$이면 부피는?",
+          "answer": "$45$"
+        },
+        "studentC": "밑면이 사다리꼴인 기둥은 사다리꼴의 넓이를 먼저 구한 뒤 기둥의 □를 곱해 □를 얻는다.",
+        "answers": [
+          "높이",
+          "부피"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-04-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "윗변 $2$, 아랫변 $4$, 높이 $3$인 사다리꼴을 밑면으로 하고 기둥의 높이가 $5$인 사각기둥의 부피를 구하는 과정을 쓰시오.",
+        "bAnswer": "밑넓이는 사다리꼴의 넓이 $(2+4)\\times3\\div2=9$이고, 부피는 밑넓이에 기둥의 높이를 곱한 $9\\times5=45$이다.",
+        "bGoal": "사다리꼴 밑면의 넓이를 구해 기둥의 부피 구하기",
+        "bReason": "사다리꼴의 높이와 기둥의 높이를 구별하도록 두 값을 모두 주었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "밑넓이 $(2+4)\\times3\\div2=9$",
+              "사다리꼴의 넓이는 $9$"
+            ]
+          },
+          {
+            "anyOf": [
+              "부피는 $45$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "계산 순서가 문장에 드러나 있고 곱하는 양과 결과를 묻는다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "사다리꼴 밑면 기둥의 부피 계산",
+        "authorBatch": 21,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1920,
+        "part": "m1plus",
+        "sourceFingerprint": "fcf0304e56969dad02998266fa47c62b54d7e2ba5661c3f6b546dc4308c9888d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1920
+        },
+        "directReview": null,
+        "cFrozenSentence": "밑면이 사다리꼴인 기둥은 사다리꼴의 넓이를 먼저 구한 뒤 기둥의 □를 곱해 □를 얻는다.",
+        "cFrozenDefinition": "밑면이 사다리꼴인 기둥은 사다리꼴의 넓이를 먼저 구한 뒤 기둥의 {높이}를 곱해 {부피}를 얻는다.",
+        "cFrozenAnswers": [
+          "높이",
+          "부피"
+        ],
+        "cMarkedSentence": "밑면이 사다리꼴인 기둥은 사다리꼴의 넓이를 먼저 구한 뒤 기둥의 {높이}를 곱해 {부피}를 얻는다.",
+        "cSlotAnswers": [
+          "높이",
+          "부피"
+        ],
+        "cStudentSentence": "밑면이 사다리꼴인 기둥은 사다리꼴의 넓이를 먼저 구한 뒤 기둥의 □를 곱해 □를 얻는다.",
+        "cAnswers": [
+          "높이",
+          "부피"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "높이",
+            "equivalentAnswers": [
+              "높이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "부피",
+            "equivalentAnswers": [
+              "부피"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "높이"
+          ],
+          [
+            "부피"
+          ]
+        ],
+        "proposalFingerprint": "e81c5182f186168a699684804c9844b7e8e79dc0ea3cf6d30cd8a2107588d6f1"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-04-xc15",
+        "section": "중1::7. 입체도형::기둥의 겉넓이와 부피",
+        "term": "들이와 부피",
+        "kind": "단위",
+        "level": "중",
+        "definition": "들이 $1\\,\\mathrm{L}$는 {$1000\\,\\mathrm{cm}^3$}이고, $1\\,\\mathrm{mL}$는 {$1\\,\\mathrm{cm}^3$}이다.",
+        "example": {
+          "prompt": "부피가 $2000\\,\\mathrm{cm}^3$인 물은 몇 $\\mathrm{L}$인가?",
+          "answer": "$2\\,\\mathrm{L}$"
+        },
+        "studentC": "들이 $1\\,\\mathrm{L}$는 □이고, $1\\,\\mathrm{mL}$는 □이다.",
+        "answers": [
+          "$1000\\,\\mathrm{cm}^3$",
+          "$1\\,\\mathrm{cm}^3$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-04-xc15",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "두 단위의 환산 값을 떠올리는 것 외에 설명할 관계나 까닭이 없다.",
+        "cDecision": "keep",
+        "cReason": "두 단위의 환산을 나란히 묻는 짧고 분명한 빈칸이다.",
+        "exclusionReason": "B 제외: $1\\,\\mathrm{L}$와 $1\\,\\mathrm{mL}$의 환산 값만 묻는 단순 수치 암기라 서술형에 맞지 않고 C 빈칸으로 충분하다.",
+        "learningRole": "definition",
+        "roleReason": "들이와 부피 단위의 환산",
+        "authorBatch": 21,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1921,
+        "part": "m1plus",
+        "sourceFingerprint": "77bb71af792fd92f28fd74498f04d62846c4b44ef5f7407369c1a336dcc34d80",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1921
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "들이 $1\\,\\mathrm{L}$는 □이고, $1\\,\\mathrm{mL}$는 □이다.",
+        "cFrozenDefinition": "들이 $1\\,\\mathrm{L}$는 {$1000\\,\\mathrm{cm}^3$}이고, $1\\,\\mathrm{mL}$는 {$1\\,\\mathrm{cm}^3$}이다.",
+        "cFrozenAnswers": [
+          "$1000\\,\\mathrm{cm}^3$",
+          "$1\\,\\mathrm{cm}^3$"
+        ],
+        "cMarkedSentence": "들이 $1\\,\\mathrm{L}$는 {$1000\\,\\mathrm{cm}^3$}이고, $1\\,\\mathrm{mL}$는 {$1\\,\\mathrm{cm}^3$}이다.",
+        "cSlotAnswers": [
+          "$1000\\,\\mathrm{cm}^3$",
+          "$1\\,\\mathrm{cm}^3$"
+        ],
+        "cStudentSentence": "들이 $1\\,\\mathrm{L}$는 □이고, $1\\,\\mathrm{mL}$는 □이다.",
+        "cAnswers": [
+          "$1000\\,\\mathrm{cm}^3$",
+          "$1\\,\\mathrm{cm}^3$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$1000\\,\\mathrm{cm}^3$",
+            "equivalentAnswers": [
+              "$1000\\,\\mathrm{cm}^3$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$1\\,\\mathrm{cm}^3$",
+            "equivalentAnswers": [
+              "$1\\,\\mathrm{cm}^3$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$1000\\,\\mathrm{cm}^3$"
+          ],
+          [
+            "$1\\,\\mathrm{cm}^3$"
+          ]
+        ],
+        "proposalFingerprint": "94614786de289d181e30d1e5c5f779844c80726ea18be21eba8558f988c045c2"
+      }
+    }
+  ]
+}

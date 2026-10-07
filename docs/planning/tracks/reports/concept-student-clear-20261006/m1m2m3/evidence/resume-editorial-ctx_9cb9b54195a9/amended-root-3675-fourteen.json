@@ -1,0 +1,1176 @@
+{
+  "input": "C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3/evidence/resume-editorial-ctx_9cb9b54195a9/input-root-3675-fourteen.json",
+  "changes": [
+    {
+      "id": "m3-07-01-xc20",
+      "cAfter": "자료 $1,\\ 2,\\ 3$과 $11,\\ 12,\\ 13$은 분산이 같지만 평균은 각각 {$2$}, {$12$}이다. 분산은 자료가 흩어진 정도를 나타내므로 분산만으로 평균을 알 수는 없다.",
+      "cReason": "정도라는 문법 복원칸을 빼고 같은분산·다른평균을 보여주는 실제계산칸을 유지한다."
+    },
+    {
+      "id": "m3-07-01-xc21",
+      "cAfter": "세 변량 $m-d$, $m$, $m+d$의 평균은 $m$이고 편차는 $-d$, {$0$}, $d$이므로 분산은 {$\\frac{2d^2}{3}$}이다. 따라서 이 분산은 $m$의 값과 관계없이 $d$의 값으로 정해진다.",
+      "cAcceptedAnswers": [
+        [
+          "$0$"
+        ],
+        [
+          "$\\frac{2d^2}{3}$",
+          "$\\frac23d^2$"
+        ]
+      ],
+      "coreAfter": "세 변량 $m-d$, $m$, $m+d$의 편차는 $-d$, $0$, $d$이므로 분산은 {$\\frac{2d^2}{3}$}이다. 이 분산은 가운데 값 {$m$}과 관계없이 $d$의 값으로 정해진다.",
+      "cReason": "d의 부호를 한정하지 않았으므로 간격d라고 하지 않고 값d로 표현한다.",
+      "coreReason": "음수d에도 성립하는 제곱식을 유지하고 간격이라는 잘못된 길이 해석을 없앤다."
+    },
+    {
+      "id": "m3-07-02-xc3",
+      "bPrompt": "어느 반의 학생들을 조사했더니 키가 큰 학생일수록 신발 크기도 대체로 컸다. 이 자료에서 키와 신발 크기 사이의 상관관계 종류를 쓰고, 관찰한 두 변량의 변화 방향을 이용해 까닭을 쓰시오.",
+      "bReason": "변량 이름만으로 결론을 추측하지 않게 이 자료에서 관찰한 증가 경향을 준다."
+    },
+    {
+      "id": "m3-07-02-xc4",
+      "bPrompt": "겨울철 어느 집을 조사했더니 하루 평균 기온이 높은 날일수록 그날의 난방비가 대체로 적었다. 이 자료에서 기온과 난방비 사이의 상관관계 종류를 쓰고, 두 변량의 변화 방향을 이용해 까닭을 쓰시오.",
+      "bReason": "일상 상식 대신 조사에서 관찰한 증가·감소 경향을 주어 분류하게 한다."
+    },
+    {
+      "id": "m3-07-02-xc5",
+      "bPrompt": "어느 반의 출석 번호와 키를 조사한 산점도에서, 번호가 커질 때 키가 커지거나 작아지는 일정한 경향이 보이지 않았다. 이 자료의 상관관계를 어떻게 판단하는지 까닭과 함께 쓰시오.",
+      "bReason": "키순 출석번호 등의 반례가 있으므로 실제로 관찰한 경향 없음 조건을 준다."
+    },
+    {
+      "id": "m3-07-02-xc7",
+      "bReason": "m3-07-02-c6에서 같은 방향의 두 산점도를 직선 둘레에 모인 정도로 비교하여 상관관계의 강약을 판단한다. 좁은 띠라는 하위 특징만 반복하므로 이 B는 제외한다."
+    },
+    {
+      "id": "m3-07-02-xc8",
+      "cAfter": "산점도의 점들이 전체적으로 오른쪽 아래로 향하지만 한 직선 둘레에 모이지 않고 넓게 퍼져 있으면, {약한} 음의 상관관계가 있다고 본다.",
+      "cReason": "퍼져라는 문법 복원칸을 빼고 실제 강약 판단을 묻는다."
+    },
+    {
+      "id": "m3-07-02-xc10",
+      "bAnswer": "$x=70$, $y=70$을 그었을 때 $x\\ge70$과 $y\\ge70$을 동시에 만족하는 오른쪽 위 영역의 자료를 센다. $x=70$인 선에서는 $y\\ge70$인 부분만, $y=70$인 선에서는 $x\\ge70$인 부분만 포함한다. 같은 자리에 겹친 자료도 각각 센다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x\\ge70$이고 $y\\ge70$인 오른쪽 위 영역"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x=70$에서는 $y\\ge70$, $y=70$에서는 $x\\ge70$인 경계 부분을 포함한다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "오른쪽 위"
+        ],
+        [
+          "경계선"
+        ]
+      ],
+      "bReason": "경계 직선 전체가 아니라 두 조건을 동시에 만족하는 경계 부분만 포함한다.",
+      "cReason": "두직선전체를뜻할수있는대안을빼고그영역의경계선으로한정한다."
+    },
+    {
+      "id": "m3-07-02-xc12",
+      "cAfter": "키와 몸무게 사이에 양의 상관관계가 있다는 사실만으로 키가 더 큰 학생은 언제나 몸무게도 더 많이 나간다고 단정할 수는 {없다}. 전체 경향과 반대인 학생이 있을 수도 있기 때문이다.",
+      "cAcceptedAnswers": [
+        [
+          "없다"
+        ]
+      ],
+      "coreAfter": "양의 상관관계는 전체의 대체적인 {경향}을 나타낸다. 모든 자료가 반드시 그 경향을 따른다고 {단정할 수는 없다}. 경향과 반대인 자료가 있을 수도 있다.",
+      "cReason": "반드시 예외가 있다는 단정 대신 모든자료가따른다고 단정할 수 없음을 묻는다.",
+      "coreReason": "예외의 존재 가능성과 예외가 반드시 있다는 주장을 구별한다."
+    },
+    {
+      "id": "m3-07-02-xc14",
+      "bReason": "m3-07-02-xc12에서 양의 상관관계만으로 모든 학생의 키와 몸무게 순서가 같다고 단정할 수 없는 이유를 묻는다. 상관관계가 전체의 대체적인 경향이라는 목표를 그 항목에서 확인하므로 B를 제외한다.",
+      "exclusionReason": "B 제외: 상관관계가 전체의 대체적인 경향이며 예외가 있을 수 있다는 목표가 m3-07-02-xc12와 중복됨."
+    },
+    {
+      "id": "m3-07-02-xc17",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "기울기가더가파르다는사실만으로상관관계가더강하다고할수없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "각자료의전체퍼짐에비해점들이한직선주위에얼마나모였는지로비교한다"
+          ]
+        }
+      ],
+      "bAnswer": "기울기만으로 더 강하다고 할 수 없다. 강약은 각 자료가 전체적으로 퍼진 범위에 비해 점들이 한 직선 주위에 얼마나 모여 있는지로 비교한다.",
+      "bReason": "다른 눈금이나 범위에서 띠의 절대 폭만 비교하는 답을 제외하고 상대적인 모임을 확인한다."
+    },
+    {
+      "id": "m3-07-02-xc18",
+      "cAfter": "산점도에 경향에서 벗어난 점 하나가 더해졌다는 사실만으로 상관관계가 항상 약해졌다고 단정할 수는 {없다}. 점을 더한 뒤 전체 분포를 다시 살펴야 한다.",
+      "cReason": "약해질수있다와강해질수있다가모두참인가능성칸대신항상이라는단정을판단하게한다."
+    },
+    {
+      "id": "m3-07-02-xc20",
+      "cAfter": "한 산점도가 강한 양의 상관관계를 보인다. 가로축과 세로축의 변량을 서로 바꾸어 그려도 상관관계의 강약은 {강한} 상태이고, 방향은 {양의} 상관관계이다.",
+      "cAcceptedAnswers": [
+        [
+          "강한"
+        ],
+        [
+          "양의"
+        ]
+      ],
+      "cReason": "종류·강약을뒤집어써도맞던칸을실제강약과방향의값으로구별한다."
+    },
+    {
+      "id": "m3-07-02-xc21",
+      "bPrompt": "걸은 거리와 소모한 열량 사이에 강한 양의 상관관계가 있다는 사실만 주어졌다. 이것만으로 걸은 거리를 알면 소모한 열량을 정확히 알 수 있다고 단정할 수 있는가? 판단하고, 이 관계를 이용해 어떤 정도의 예측을 할 수 있는지 쓰시오.",
+      "bAnswer": "정확히 알 수 있다고 단정할 수는 없다. 강한 양의 상관관계는 전체적인 경향을 보여 주므로 한 변량으로 다른 변량을 대략 짐작하는 데 이용할 수 있다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "강한상관관계라는사실만으로정확히알수있다고단정할수없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "전체경향으로다른변량을대략짐작하는데이용할수있다"
+          ]
+        }
+      ],
+      "bReason": "정확한 관계가 따로 주어진 예외도 있으므로 강한상관이라는사실만으로는단정못한다는범위로묻는다."
+    }
+  ],
+  "rows": [
+    {
+      "id": "m3-07-01-xc20",
+      "bDecision": "rewrite",
+      "bPrompt": "자료 $2,\\ 4,\\ 6$과 $102,\\ 104,\\ 106$의 분산이 같은 이유와 두 평균을 비교하여, 분산이 같은 두 자료는 평균도 같아야 하는지 쓰시오.",
+      "bAnswer": "두 자료의 편차는 모두 $-2,\\ 0,\\ 2$로 같아 분산이 같다. 그러나 평균은 $4$와 $104$로 다르다. 분산은 흩어진 정도만 나타내므로 평균은 달라도 된다.",
+      "bGoal": "분산이 같아도 평균은 다를 수 있음",
+      "bReason": "분산이 같고 평균이 다른 구체 자료가 있어야 판단할 수 있음",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "편차가 $-2,\\ 0,\\ 2$로 같다",
+            "흩어진 정도가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "평균은 $4$와 $104$로 다르다"
+          ]
+        },
+        {
+          "anyOf": [
+            "평균은 같지 않아도 된다",
+            "평균은 다를 수 있다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "자료 $1,\\ 2,\\ 3$과 $11,\\ 12,\\ 13$은 분산이 같지만 평균은 각각 {$2$}, {$12$}이다. 분산은 자료가 흩어진 정도를 나타내므로 분산만으로 평균을 알 수는 없다.",
+      "cAnswers": [
+        "$2$",
+        "$12$"
+      ],
+      "cReason": "정도라는 문법 복원칸을 빼고 같은분산·다른평균을 보여주는 실제계산칸을 유지한다.",
+      "exampleNeeded": true,
+      "learningRole": "reason",
+      "roleReason": "분산은 흩어짐만 나타냄",
+      "authorBatch": 62,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3675,
+      "part": "m3plus",
+      "sourceFingerprint": "6abeb8fa1628ac2da4013b003b9b7663e4c4e61747fa79392a189b32400a804b",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3675
+      },
+      "directReview": null,
+      "cMarkedSentence": "자료 $1,\\ 2,\\ 3$과 $11,\\ 12,\\ 13$은 분산이 같지만 평균은 각각 {$2$}, {$12$}이다. 분산은 자료가 흩어진 정도를 나타내므로 분산만으로 평균을 알 수는 없다.",
+      "cSlotAnswers": [
+        "$2$",
+        "$12$"
+      ],
+      "cStudentSentence": "자료 $1,\\ 2,\\ 3$과 $11,\\ 12,\\ 13$은 분산이 같지만 평균은 각각 □, □이다. 분산은 자료가 흩어진 정도를 나타내므로 분산만으로 평균을 알 수는 없다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$2$",
+          "equivalentAnswers": [
+            "$2$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$12$",
+          "equivalentAnswers": [
+            "$12$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$2$"
+        ],
+        [
+          "$12$"
+        ]
+      ],
+      "proposalFingerprint": "cfc37868641cf707e2ca9c9bceeb3a0ace5b3e794a819c1be0ca24e68c3b3ac5"
+    },
+    {
+      "id": "m3-07-01-xc21",
+      "bDecision": "rewrite",
+      "bPrompt": "세 변량 $m-d$, $m$, $m+d$의 분산을 $d$를 써서 나타내고, 이 분산이 $m$의 값과 관계없는 이유를 쓰시오.",
+      "bAnswer": "평균은 $m$이고 편차는 $-d$, $0$, $d$이므로 분산은 $\\frac{d^2+0+d^2}{3}=\\frac{2d^2}{3}$이다. 편차에 $m$이 남지 않으므로 분산은 $m$과 관계없다.",
+      "bGoal": "같은 간격 세 변량의 분산 구하기",
+      "bReason": "공식 암기가 아니라 편차에서 $m$이 사라지는 과정을 이유로 묻게 함",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{2d^2}{3}$",
+            "$\\frac{2}{3}d^2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "편차가 $-d$, $0$, $d$",
+            "편차에 $m$이 없다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "세 변량 $m-d$, $m$, $m+d$의 평균은 $m$이고 편차는 $-d$, {$0$}, $d$이므로 분산은 {$\\frac{2d^2}{3}$}이다. 따라서 이 분산은 $m$의 값과 관계없이 $d$의 값으로 정해진다.",
+      "cAnswers": [
+        "$0$",
+        "$\\frac{2d^2}{3}$"
+      ],
+      "cReason": "d의 부호를 한정하지 않았으므로 간격d라고 하지 않고 값d로 표현한다.",
+      "learningRole": "procedure",
+      "roleReason": "편차로 문자 분산 계산",
+      "authorBatch": 62,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3676,
+      "part": "m3plus",
+      "sourceFingerprint": "827955461933e90812ac2184d971a882dd566ebeab33f158e80eb5ea9905dbe9",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3676
+      },
+      "directReview": null,
+      "cMarkedSentence": "세 변량 $m-d$, $m$, $m+d$의 평균은 $m$이고 편차는 $-d$, {$0$}, $d$이므로 분산은 {$\\frac{2d^2}{3}$}이다. 따라서 이 분산은 $m$의 값과 관계없이 $d$의 값으로 정해진다.",
+      "cSlotAnswers": [
+        "$0$",
+        "$\\frac{2d^2}{3}$"
+      ],
+      "cStudentSentence": "세 변량 $m-d$, $m$, $m+d$의 평균은 $m$이고 편차는 $-d$, □, $d$이므로 분산은 □이다. 따라서 이 분산은 $m$의 값과 관계없이 $d$의 값으로 정해진다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$0$",
+          "equivalentAnswers": [
+            "$0$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$\\frac{2d^2}{3}$",
+          "equivalentAnswers": [
+            "$\\frac{2d^2}{3}$",
+            "$\\frac23d^2$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$\\frac{2d^2}{3}$",
+          "accept": [
+            "$\\frac{2}{3}d^2$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$0$"
+        ],
+        [
+          "$\\frac{2d^2}{3}$",
+          "$\\frac23d^2$"
+        ]
+      ],
+      "proposalFingerprint": "1d26f0e67bcc05ee5e68b32ddb5faa51f158108ca3894113422cf21c802680df",
+      "coreAfter": "세 변량 $m-d$, $m$, $m+d$의 편차는 $-d$, $0$, $d$이므로 분산은 {$\\frac{2d^2}{3}$}이다. 이 분산은 가운데 값 {$m$}과 관계없이 $d$의 값으로 정해진다.",
+      "coreReason": "음수d에도 성립하는 제곱식을 유지하고 간격이라는 잘못된 길이 해석을 없앤다."
+    },
+    {
+      "id": "m3-07-02-xc3",
+      "bDecision": "rewrite",
+      "bPrompt": "어느 반의 학생들을 조사했더니 키가 큰 학생일수록 신발 크기도 대체로 컸다. 이 자료에서 키와 신발 크기 사이의 상관관계 종류를 쓰고, 관찰한 두 변량의 변화 방향을 이용해 까닭을 쓰시오.",
+      "bAnswer": "양의 상관관계이다. 키가 클수록 신발 크기도 대체로 크기 때문이다.",
+      "bGoal": "실생활 예에서 양의 상관관계 판단",
+      "bReason": "변량 이름만으로 결론을 추측하지 않게 이 자료에서 관찰한 증가 경향을 준다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "양의 상관관계"
+          ]
+        },
+        {
+          "anyOf": [
+            "키가 클수록 신발 크기도 대체로 크다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "구체 예에서 관계 이름을 고르는 짧은 빈칸으로 분명함",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "예를 양의 상관관계로 분류",
+      "authorBatch": 62,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3681,
+      "part": "m3plus",
+      "sourceFingerprint": "4bf9f5063dcb2bc211124b2ca415e5322ce1645c7827c0f81c5b865e3b30f23c",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3681
+      },
+      "directReview": null,
+      "cFrozenSentence": "공부한 시간이 길수록 점수가 대체로 높은 것처럼 함께 커지는 관계는 □이다.",
+      "cFrozenDefinition": "공부한 시간이 길수록 점수가 대체로 높은 것처럼 함께 커지는 관계는 {양의 상관관계}이다.",
+      "cFrozenAnswers": [
+        "양의 상관관계"
+      ],
+      "cMarkedSentence": "공부한 시간이 길수록 점수가 대체로 높은 것처럼 함께 커지는 관계는 {양의 상관관계}이다.",
+      "cSlotAnswers": [
+        "양의 상관관계"
+      ],
+      "cStudentSentence": "공부한 시간이 길수록 점수가 대체로 높은 것처럼 함께 커지는 관계는 □이다.",
+      "cAnswers": [
+        "양의 상관관계"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "양의 상관관계",
+          "equivalentAnswers": [
+            "양의 상관관계"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "양의 상관관계"
+        ]
+      ],
+      "proposalFingerprint": "8ecf933bc4689af2fda407c180eda479ad4f7be71e24c76ce486eb24d694bec4"
+    },
+    {
+      "id": "m3-07-02-xc4",
+      "bDecision": "rewrite",
+      "bPrompt": "겨울철 어느 집을 조사했더니 하루 평균 기온이 높은 날일수록 그날의 난방비가 대체로 적었다. 이 자료에서 기온과 난방비 사이의 상관관계 종류를 쓰고, 두 변량의 변화 방향을 이용해 까닭을 쓰시오.",
+      "bAnswer": "음의 상관관계이다. 기온이 높을수록 난방비는 대체로 적게 들기 때문이다.",
+      "bGoal": "실생활 예에서 음의 상관관계 판단",
+      "bReason": "일상 상식 대신 조사에서 관찰한 증가·감소 경향을 주어 분류하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "음의 상관관계"
+          ]
+        },
+        {
+          "anyOf": [
+            "기온이 높을수록 난방비는 대체로 적다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "구체 예에서 관계 이름을 고르는 짧은 빈칸으로 분명함",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "예를 음의 상관관계로 분류",
+      "authorBatch": 62,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3682,
+      "part": "m3plus",
+      "sourceFingerprint": "3cfa441ca5901b8459332fe74776cf645292527e8b54fa9f089a71df5ae62156",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3682
+      },
+      "directReview": null,
+      "cFrozenSentence": "산의 높이가 높을수록 기온이 대체로 낮아지는 것처럼 한쪽이 커질 때 다른 쪽이 작아지면 □ 상관관계이다.",
+      "cFrozenDefinition": "산의 높이가 높을수록 기온이 대체로 낮아지는 것처럼 한쪽이 커질 때 다른 쪽이 작아지면 {음의} 상관관계이다.",
+      "cFrozenAnswers": [
+        "음의"
+      ],
+      "cMarkedSentence": "산의 높이가 높을수록 기온이 대체로 낮아지는 것처럼 한쪽이 커질 때 다른 쪽이 작아지면 {음의} 상관관계이다.",
+      "cSlotAnswers": [
+        "음의"
+      ],
+      "cStudentSentence": "산의 높이가 높을수록 기온이 대체로 낮아지는 것처럼 한쪽이 커질 때 다른 쪽이 작아지면 □ 상관관계이다.",
+      "cAnswers": [
+        "음의"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "음의",
+          "equivalentAnswers": [
+            "음의"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "음의"
+        ]
+      ],
+      "proposalFingerprint": "52098d7bd21bcef363a12497080498a65e0a1aecb61feaabf2b9dea61949a255"
+    },
+    {
+      "id": "m3-07-02-xc5",
+      "bDecision": "rewrite",
+      "bPrompt": "어느 반의 출석 번호와 키를 조사한 산점도에서, 번호가 커질 때 키가 커지거나 작아지는 일정한 경향이 보이지 않았다. 이 자료의 상관관계를 어떻게 판단하는지 까닭과 함께 쓰시오.",
+      "bAnswer": "상관관계가 없다. 출석 번호가 커져도 키가 커지거나 작아지는 경향이 없기 때문이다.",
+      "bGoal": "실생활 예에서 상관관계 없음 판단",
+      "bReason": "키순 출석번호 등의 반례가 있으므로 실제로 관찰한 경향 없음 조건을 준다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "상관관계가 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "커지거나 작아지는 경향이 없다",
+            "일정한 경향이 없다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "경향과 '없는'을 묻는 짧은 빈칸으로 분명함",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "예를 상관관계 없음으로 분류",
+      "authorBatch": 62,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3683,
+      "part": "m3plus",
+      "sourceFingerprint": "8a1789a4c539bef08aff4bcb39033431bbcfa02d425f4d3c6d1e1a0753e68eb6",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3683
+      },
+      "directReview": null,
+      "cFrozenSentence": "발 크기와 수학 점수처럼 한쪽이 변해도 다른 쪽이 들쭉날쭉하면 함께 움직이는 □이 보이지 않으므로 상관관계가 □ 경우이다.",
+      "cFrozenDefinition": "발 크기와 수학 점수처럼 한쪽이 변해도 다른 쪽이 들쭉날쭉하면 함께 움직이는 {경향}이 보이지 않으므로 상관관계가 {없는} 경우이다.",
+      "cFrozenAnswers": [
+        "경향",
+        "없는"
+      ],
+      "cMarkedSentence": "발 크기와 수학 점수처럼 한쪽이 변해도 다른 쪽이 들쭉날쭉하면 함께 움직이는 {경향}이 보이지 않으므로 상관관계가 {없는} 경우이다.",
+      "cSlotAnswers": [
+        "경향",
+        "없는"
+      ],
+      "cStudentSentence": "발 크기와 수학 점수처럼 한쪽이 변해도 다른 쪽이 들쭉날쭉하면 함께 움직이는 □이 보이지 않으므로 상관관계가 □ 경우이다.",
+      "cAnswers": [
+        "경향",
+        "없는"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "경향",
+          "equivalentAnswers": [
+            "경향"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "없는",
+          "equivalentAnswers": [
+            "없는"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "경향"
+        ],
+        [
+          "없는"
+        ]
+      ],
+      "proposalFingerprint": "1602e79714d7fbe7a73cdd5d9d8c3048dab3010c44bf8b71a05a5a4eb305f094"
+    },
+    {
+      "id": "m3-07-02-xc7",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "m3-07-02-c6에서 같은 방향의 두 산점도를 직선 둘레에 모인 정도로 비교하여 상관관계의 강약을 판단한다. 좁은 띠라는 하위 특징만 반복하므로 이 B는 제외한다.",
+      "cDecision": "keep",
+      "cReason": "강한 상관의 모양을 한 낱말로 확인하는 짧은 빈칸이라 유지함",
+      "exclusionReason": "B 제외: 강한 양의 상관관계의 모양은 직선 둘레에 모인 정도로 강약을 판단하는 m3-07-02-c6 질문과 목표가 중복됨",
+      "learningRole": "definition",
+      "roleReason": "강한 양의 상관은 좁은 띠",
+      "authorBatch": 62,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3685,
+      "part": "m3plus",
+      "sourceFingerprint": "d988e491f18e2ea828facf0a7aa9f4513b7b96a743006ed6f38f625bdf71f37b",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3685
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cFrozenSentence": "양의 상관관계가 강하면 산점도의 점들이 오른쪽 위로 향하는 □ 띠 모양을 이룬다.",
+      "cFrozenDefinition": "양의 상관관계가 강하면 산점도의 점들이 오른쪽 위로 향하는 {좁은} 띠 모양을 이룬다.",
+      "cFrozenAnswers": [
+        "좁은"
+      ],
+      "cMarkedSentence": "양의 상관관계가 강하면 산점도의 점들이 오른쪽 위로 향하는 {좁은} 띠 모양을 이룬다.",
+      "cSlotAnswers": [
+        "좁은"
+      ],
+      "cStudentSentence": "양의 상관관계가 강하면 산점도의 점들이 오른쪽 위로 향하는 □ 띠 모양을 이룬다.",
+      "cAnswers": [
+        "좁은"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "좁은",
+          "equivalentAnswers": [
+            "좁은",
+            "가는"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "좁은",
+          "accept": [
+            "가는"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "좁은",
+          "가는"
+        ]
+      ],
+      "proposalFingerprint": "a2f8cfa2c51f2e3ed2e27cf1085c574ffd0387225484bd6d7dc958f084a27ea0"
+    },
+    {
+      "id": "m3-07-02-xc8",
+      "bDecision": "rewrite",
+      "bPrompt": "어떤 산점도의 점들이 전체적으로 오른쪽 아래로 향하지만 한 직선 둘레에 모이지 않고 넓게 퍼져 있다. 두 변량 사이의 상관관계를 종류와 강약을 모두 넣어 쓰시오.",
+      "bAnswer": "약한 음의 상관관계이다.",
+      "bGoal": "산점도 모양으로 종류와 강약 함께 판단",
+      "bReason": "방향과 퍼짐을 모두 설명해 종류와 강약을 함께 판단하게 함",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "음의 상관관계"
+          ]
+        },
+        {
+          "anyOf": [
+            "약한"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "퍼져라는 문법 복원칸을 빼고 실제 강약 판단을 묻는다.",
+      "learningRole": "application",
+      "roleReason": "모양으로 약한 음의 상관 판단",
+      "authorBatch": 62,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3686,
+      "part": "m3plus",
+      "sourceFingerprint": "5f77826a964451368f2f66529398556d634824dce94ae689a0185526100b20eb",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3686
+      },
+      "directReview": null,
+      "cMarkedSentence": "산점도의 점들이 전체적으로 오른쪽 아래로 향하지만 한 직선 둘레에 모이지 않고 넓게 퍼져 있으면, {약한} 음의 상관관계가 있다고 본다.",
+      "cSlotAnswers": [
+        "약한"
+      ],
+      "cStudentSentence": "산점도의 점들이 전체적으로 오른쪽 아래로 향하지만 한 직선 둘레에 모이지 않고 넓게 퍼져 있으면, □ 음의 상관관계가 있다고 본다.",
+      "cAnswers": [
+        "약한"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "약한",
+          "equivalentAnswers": [
+            "약한"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "약한"
+        ]
+      ],
+      "proposalFingerprint": "0ea387eb6da7267543d815514175214713d738cd8081515fed95ae275d7e6e77",
+      "cAfter": "산점도의 점들이 전체적으로 오른쪽 아래로 향하지만 한 직선 둘레에 모이지 않고 넓게 퍼져 있으면, {약한} 음의 상관관계가 있다고 본다."
+    },
+    {
+      "id": "m3-07-02-xc10",
+      "bDecision": "rewrite",
+      "bPrompt": "가로축에 수학 점수 $x$, 세로축에 영어 점수 $y$를 놓은 산점도에서 두 점수가 모두 $70$점 이상인 학생 수를 세려고 한다. 어느 부분의 점을 세어야 하는지 직선을 이용하여 설명하시오.",
+      "bAnswer": "$x=70$, $y=70$을 그었을 때 $x\\ge70$과 $y\\ge70$을 동시에 만족하는 오른쪽 위 영역의 자료를 센다. $x=70$인 선에서는 $y\\ge70$인 부분만, $y=70$인 선에서는 $x\\ge70$인 부분만 포함한다. 같은 자리에 겹친 자료도 각각 센다.",
+      "bGoal": "조건을 만족하는 점의 영역 찾기",
+      "bReason": "경계 직선 전체가 아니라 두 조건을 동시에 만족하는 경계 부분만 포함한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x\\ge70$이고 $y\\ge70$인 오른쪽 위 영역"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x=70$에서는 $y\\ge70$, $y=70$에서는 $x\\ge70$인 경계 부분을 포함한다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "두직선전체를뜻할수있는대안을빼고그영역의경계선으로한정한다.",
+      "learningRole": "procedure",
+      "roleReason": "두 직선으로 영역을 나눠 셈",
+      "authorBatch": 62,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3688,
+      "part": "m3plus",
+      "sourceFingerprint": "f4f4901495ffd3753acf0a23651059c3fd3d75275f25e484c6b615bf107ae1bd",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3688
+      },
+      "directReview": null,
+      "cFrozenSentence": "'$x$와 $y$가 모두 $70$ 이상'인 자료는 두 직선 $x=70$, $y=70$으로 나뉜 □ 칸과 그 □ 위의 점이다 — 같은 자리에 겹친 자료는 따로 센다.",
+      "cFrozenDefinition": "'$x$와 $y$가 모두 $70$ 이상'인 자료는 두 직선 $x=70$, $y=70$으로 나뉜 {오른쪽 위} 칸과 그 {경계선} 위의 점이다 — 같은 자리에 겹친 자료는 따로 센다.",
+      "cFrozenAnswers": [
+        "오른쪽 위",
+        "경계선"
+      ],
+      "cMarkedSentence": "'$x$와 $y$가 모두 $70$ 이상'인 자료는 두 직선 $x=70$, $y=70$으로 나뉜 {오른쪽 위} 칸과 그 {경계선} 위의 점이다 — 같은 자리에 겹친 자료는 따로 센다.",
+      "cSlotAnswers": [
+        "오른쪽 위",
+        "경계선"
+      ],
+      "cStudentSentence": "'$x$와 $y$가 모두 $70$ 이상'인 자료는 두 직선 $x=70$, $y=70$으로 나뉜 □ 칸과 그 □ 위의 점이다 — 같은 자리에 겹친 자료는 따로 센다.",
+      "cAnswers": [
+        "오른쪽 위",
+        "경계선"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "오른쪽 위",
+          "equivalentAnswers": [
+            "오른쪽 위"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "경계선",
+          "equivalentAnswers": [
+            "경계선"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "경계선",
+          "accept": [
+            "두 직선"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "오른쪽 위"
+        ],
+        [
+          "경계선"
+        ]
+      ],
+      "proposalFingerprint": "ca686c6ec61d1ebb07586bd14fbd1c3f76aedef5391f55d3293209346ea1fd2e"
+    },
+    {
+      "id": "m3-07-02-xc12",
+      "bDecision": "rewrite",
+      "bPrompt": "키와 몸무게 사이에 양의 상관관계가 있는 반에서, 키가 더 큰 학생은 언제나 몸무게도 더 많이 나간다고 말할 수 있는지 쓰고 이유를 쓰시오.",
+      "bAnswer": "말할 수 없다. 상관관계는 전체의 대체적인 경향이므로 키가 더 크지만 몸무게는 더 적은 학생도 있을 수 있다.",
+      "bGoal": "상관관계는 전체 경향임을 이해",
+      "bReason": "'언제나'라는 잘못된 일반화를 판단하게 하는 상황을 제시함",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "말할 수 없다",
+            "언제나 그렇지는 않다"
+          ]
+        },
+        {
+          "anyOf": [
+            "전체의 대체적인 경향",
+            "경향과 반대인 학생이 있을 수 있다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "반드시 예외가 있다는 단정 대신 모든자료가따른다고 단정할 수 없음을 묻는다.",
+      "learningRole": "reason",
+      "roleReason": "경향과 반대인 자료가 있을 수 있음",
+      "authorBatch": 62,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3690,
+      "part": "m3plus",
+      "sourceFingerprint": "5f92b487d3f3e1cfaadd9d937c72e7e57e99e6992d4d7e960e700bfd558fc8e2",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3690
+      },
+      "directReview": null,
+      "cMarkedSentence": "키와 몸무게 사이에 양의 상관관계가 있다는 사실만으로 키가 더 큰 학생은 언제나 몸무게도 더 많이 나간다고 단정할 수는 {없다}. 전체 경향과 반대인 학생이 있을 수도 있기 때문이다.",
+      "cSlotAnswers": [
+        "없다"
+      ],
+      "cStudentSentence": "키와 몸무게 사이에 양의 상관관계가 있다는 사실만으로 키가 더 큰 학생은 언제나 몸무게도 더 많이 나간다고 단정할 수는 □. 전체 경향과 반대인 학생이 있을 수도 있기 때문이다.",
+      "cAnswers": [
+        "없다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "없다",
+          "equivalentAnswers": [
+            "없다"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "없다"
+        ]
+      ],
+      "proposalFingerprint": "3f73e60e5816721f25b756bcabf15d3fe25d842380c5886d0a9755c56dfb16e4",
+      "cAfter": "키와 몸무게 사이에 양의 상관관계가 있다는 사실만으로 키가 더 큰 학생은 언제나 몸무게도 더 많이 나간다고 단정할 수는 {없다}. 전체 경향과 반대인 학생이 있을 수도 있기 때문이다.",
+      "coreAfter": "양의 상관관계는 전체의 대체적인 {경향}을 나타낸다. 모든 자료가 반드시 그 경향을 따른다고 {단정할 수는 없다}. 경향과 반대인 자료가 있을 수도 있다.",
+      "coreReason": "예외의 존재 가능성과 예외가 반드시 있다는 주장을 구별한다."
+    },
+    {
+      "id": "m3-07-02-xc14",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "m3-07-02-xc12에서 양의 상관관계만으로 모든 학생의 키와 몸무게 순서가 같다고 단정할 수 없는 이유를 묻는다. 상관관계가 전체의 대체적인 경향이라는 목표를 그 항목에서 확인하므로 B를 제외한다.",
+      "cDecision": "keep",
+      "cReason": "말의 사용과 그 이유를 짧게 묻는 빈칸으로 학생이 읽기 쉬움",
+      "exclusionReason": "B 제외: 상관관계가 전체의 대체적인 경향이며 예외가 있을 수 있다는 목표가 m3-07-02-xc12와 중복됨.",
+      "learningRole": "reason",
+      "roleReason": "전체 경향이라 '대체로'를 붙임",
+      "authorBatch": 62,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3692,
+      "part": "m3plus",
+      "sourceFingerprint": "1e12ba641ebe889934ae611aa730e86748310758df74ce9eae6666361fda5c6d",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3692
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cFrozenSentence": "상관관계를 말할 때는 '□'라는 말을 붙인다 — 하나하나의 자료가 아니라 전체의 □이기 때문이다.",
+      "cFrozenDefinition": "상관관계를 말할 때는 '{대체로}'라는 말을 붙인다 — 하나하나의 자료가 아니라 전체의 {경향}이기 때문이다.",
+      "cFrozenAnswers": [
+        "대체로",
+        "경향"
+      ],
+      "cMarkedSentence": "상관관계를 말할 때는 '{대체로}'라는 말을 붙인다 — 하나하나의 자료가 아니라 전체의 {경향}이기 때문이다.",
+      "cSlotAnswers": [
+        "대체로",
+        "경향"
+      ],
+      "cStudentSentence": "상관관계를 말할 때는 '□'라는 말을 붙인다 — 하나하나의 자료가 아니라 전체의 □이기 때문이다.",
+      "cAnswers": [
+        "대체로",
+        "경향"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "대체로",
+          "equivalentAnswers": [
+            "대체로",
+            "대개"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "경향",
+          "equivalentAnswers": [
+            "경향"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "대체로",
+          "accept": [
+            "대개"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "대체로",
+          "대개"
+        ],
+        [
+          "경향"
+        ]
+      ],
+      "proposalFingerprint": "875cb2389a80d263bef5792bce5c8dc07ac17c891cfdfa63d149ee6f18cf069c"
+    },
+    {
+      "id": "m3-07-02-xc17",
+      "bDecision": "rewrite",
+      "bPrompt": "양의 상관관계를 나타내는 두 산점도에서 점들이 이루는 띠가 더 가파른 쪽이 상관관계가 더 강하다고 할 수 있는지 쓰고, 강약은 무엇으로 비교하는지 쓰시오.",
+      "bAnswer": "기울기만으로 더 강하다고 할 수 없다. 강약은 각 자료가 전체적으로 퍼진 범위에 비해 점들이 한 직선 주위에 얼마나 모여 있는지로 비교한다.",
+      "bGoal": "기울기와 강약의 구분",
+      "bReason": "다른 눈금이나 범위에서 띠의 절대 폭만 비교하는 답을 제외하고 상대적인 모임을 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "기울기가더가파르다는사실만으로상관관계가더강하다고할수없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "각자료의전체퍼짐에비해점들이한직선주위에얼마나모였는지로비교한다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "기울기와 모인 정도를 대비시키는 짧은 빈칸으로 분명함",
+      "learningRole": "reason",
+      "roleReason": "강약은 기울기 아닌 모인 정도",
+      "authorBatch": 62,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3695,
+      "part": "m3plus",
+      "sourceFingerprint": "2a27a8d47c5d009624d02ed19ed444e9089117efab13b4d08818bc3f06e076a6",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3695
+      },
+      "directReview": null,
+      "cFrozenSentence": "상관관계의 강약은 띠의 □와 상관없다 — 가파른 띠든 완만한 띠든 점들이 한 직선 둘레에 □로 견준다.",
+      "cFrozenDefinition": "상관관계의 강약은 띠의 {기울기}와 상관없다 — 가파른 띠든 완만한 띠든 점들이 한 직선 둘레에 {모인 정도}로 견준다.",
+      "cFrozenAnswers": [
+        "기울기",
+        "모인 정도"
+      ],
+      "cMarkedSentence": "상관관계의 강약은 띠의 {기울기}와 상관없다 — 가파른 띠든 완만한 띠든 점들이 한 직선 둘레에 {모인 정도}로 견준다.",
+      "cSlotAnswers": [
+        "기울기",
+        "모인 정도"
+      ],
+      "cStudentSentence": "상관관계의 강약은 띠의 □와 상관없다 — 가파른 띠든 완만한 띠든 점들이 한 직선 둘레에 □로 견준다.",
+      "cAnswers": [
+        "기울기",
+        "모인 정도"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "기울기",
+          "equivalentAnswers": [
+            "기울기"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "모인 정도",
+          "equivalentAnswers": [
+            "모인 정도"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "기울기"
+        ],
+        [
+          "모인 정도"
+        ]
+      ],
+      "proposalFingerprint": "2c2666019a3e92e807803a3348f1fe1dca995507d378123d40fc05987e7fb907"
+    },
+    {
+      "id": "m3-07-02-xc18",
+      "bDecision": "rewrite",
+      "bPrompt": "강한 양의 상관관계를 보이는 산점도에 경향에서 크게 벗어난 점 하나가 더해졌다. 상관관계가 항상 약해진다고 할 수 있는지 쓰고, 어떻게 판단해야 하는지 쓰시오.",
+      "bAnswer": "항상 약해진다고 할 수는 없다. 약해 보일 수 있지만 점을 더한 뒤의 전체 분포를 다시 살펴 판단해야 한다.",
+      "bGoal": "벗어난 점이 더해질 때의 판단",
+      "bReason": "'항상'을 판단하게 하여 전체 분포를 다시 보는 절차를 묻게 함",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "항상 그렇지는 않다",
+            "항상 약해진다고 할 수 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "전체 분포를 다시 살핀다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "약해질수있다와강해질수있다가모두참인가능성칸대신항상이라는단정을판단하게한다.",
+      "learningRole": "reason",
+      "roleReason": "전체 분포를 다시 보고 판단",
+      "authorBatch": 62,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3696,
+      "part": "m3plus",
+      "sourceFingerprint": "41719db974e06fccbcd6df502b6fd4e23fc35b1b93caa81cbbf0681d177431b5",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3696
+      },
+      "directReview": null,
+      "cMarkedSentence": "산점도에 경향에서 벗어난 점 하나가 더해졌다는 사실만으로 상관관계가 항상 약해졌다고 단정할 수는 {없다}. 점을 더한 뒤 전체 분포를 다시 살펴야 한다.",
+      "cSlotAnswers": [
+        "없다"
+      ],
+      "cStudentSentence": "산점도에 경향에서 벗어난 점 하나가 더해졌다는 사실만으로 상관관계가 항상 약해졌다고 단정할 수는 □. 점을 더한 뒤 전체 분포를 다시 살펴야 한다.",
+      "cAnswers": [
+        "없다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "없다",
+          "equivalentAnswers": [
+            "없다"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "없다"
+        ]
+      ],
+      "proposalFingerprint": "b253a463819707cf03bb3e0f84211d3744d531fcf7b5a943f53d4aadcb14f001",
+      "cAfter": "산점도에 경향에서 벗어난 점 하나가 더해졌다는 사실만으로 상관관계가 항상 약해졌다고 단정할 수는 {없다}. 점을 더한 뒤 전체 분포를 다시 살펴야 한다."
+    },
+    {
+      "id": "m3-07-02-xc20",
+      "bDecision": "rewrite",
+      "bPrompt": "키를 가로축, 몸무게를 세로축에 놓은 산점도가 강한 양의 상관관계를 보인다. 몸무게를 가로축, 키를 세로축으로 바꾸어 다시 그리면 상관관계의 종류와 강약은 어떻게 되는지 쓰시오.",
+      "bAnswer": "축을 바꾸어도 상관관계의 종류와 강약은 변하지 않으므로 여전히 강한 양의 상관관계이다.",
+      "bGoal": "축 교환과 상관관계 보존",
+      "bReason": "축을 바꾸는 구체 상황을 주어 종류와 강약의 변화 여부를 묻게 함",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "종류와 강약이 그대로",
+            "여전히 강한 양의 상관관계",
+            "변하지 않는다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "종류·강약을뒤집어써도맞던칸을실제강약과방향의값으로구별한다.",
+      "learningRole": "application",
+      "roleReason": "축 교환 뒤 상관관계 판단",
+      "authorBatch": 62,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3698,
+      "part": "m3plus",
+      "sourceFingerprint": "74b44e8ebe881a6b5032ef73c12a99851843642ae8f6bb7e84f49eebeef45875",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3698
+      },
+      "directReview": null,
+      "cMarkedSentence": "한 산점도가 강한 양의 상관관계를 보인다. 가로축과 세로축의 변량을 서로 바꾸어 그려도 상관관계의 강약은 {강한} 상태이고, 방향은 {양의} 상관관계이다.",
+      "cSlotAnswers": [
+        "강한",
+        "양의"
+      ],
+      "cStudentSentence": "한 산점도가 강한 양의 상관관계를 보인다. 가로축과 세로축의 변량을 서로 바꾸어 그려도 상관관계의 강약은 □ 상태이고, 방향은 □ 상관관계이다.",
+      "cAnswers": [
+        "강한",
+        "양의"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "강한",
+          "equivalentAnswers": [
+            "강한"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "양의",
+          "equivalentAnswers": [
+            "양의"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "강한"
+        ],
+        [
+          "양의"
+        ]
+      ],
+      "proposalFingerprint": "38e647aa3e4e07e6389a77d0ade746daf287a284ff846f6afaeeda9c4c94f279",
+      "cAfter": "한 산점도가 강한 양의 상관관계를 보인다. 가로축과 세로축의 변량을 서로 바꾸어 그려도 상관관계의 강약은 {강한} 상태이고, 방향은 {양의} 상관관계이다."
+    },
+    {
+      "id": "m3-07-02-xc21",
+      "bDecision": "rewrite",
+      "bPrompt": "걸은 거리와 소모한 열량 사이에 강한 양의 상관관계가 있다는 사실만 주어졌다. 이것만으로 걸은 거리를 알면 소모한 열량을 정확히 알 수 있다고 단정할 수 있는가? 판단하고, 이 관계를 이용해 어떤 정도의 예측을 할 수 있는지 쓰시오.",
+      "bAnswer": "정확히 알 수 있다고 단정할 수는 없다. 강한 양의 상관관계는 전체적인 경향을 보여 주므로 한 변량으로 다른 변량을 대략 짐작하는 데 이용할 수 있다.",
+      "bGoal": "상관관계를 이용한 짐작의 한계",
+      "bReason": "정확한 관계가 따로 주어진 예외도 있으므로 강한상관이라는사실만으로는단정못한다는범위로묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "강한상관관계라는사실만으로정확히알수있다고단정할수없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "전체경향으로다른변량을대략짐작하는데이용할수있다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "대략과 정확하다를 대비시키는 짧은 빈칸으로 분명함",
+      "exampleNeeded": true,
+      "learningRole": "reason",
+      "roleReason": "강한 상관도 대략적 짐작만 가능",
+      "authorBatch": 62,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3699,
+      "part": "m3plus",
+      "sourceFingerprint": "9c15bd1071a557f53d56457787b99dde6f57be7527929755857f3de01df0ff85",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3699
+      },
+      "directReview": null,
+      "cFrozenSentence": "강한 양의 상관관계가 있으면 한 변량의 값으로 다른 변량의 값을 □ 짐작할 수 있다 — 다만 상관관계가 강하다는 것만으로 그 짐작이 □고 할 수는 없다.",
+      "cFrozenDefinition": "강한 양의 상관관계가 있으면 한 변량의 값으로 다른 변량의 값을 {대략} 짐작할 수 있다 — 다만 상관관계가 강하다는 것만으로 그 짐작이 {정확하다}고 할 수는 없다.",
+      "cFrozenAnswers": [
+        "대략",
+        "정확하다"
+      ],
+      "cMarkedSentence": "강한 양의 상관관계가 있으면 한 변량의 값으로 다른 변량의 값을 {대략} 짐작할 수 있다 — 다만 상관관계가 강하다는 것만으로 그 짐작이 {정확하다}고 할 수는 없다.",
+      "cSlotAnswers": [
+        "대략",
+        "정확하다"
+      ],
+      "cStudentSentence": "강한 양의 상관관계가 있으면 한 변량의 값으로 다른 변량의 값을 □ 짐작할 수 있다 — 다만 상관관계가 강하다는 것만으로 그 짐작이 □고 할 수는 없다.",
+      "cAnswers": [
+        "대략",
+        "정확하다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "대략",
+          "equivalentAnswers": [
+            "대략"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "정확하다",
+          "equivalentAnswers": [
+            "정확하다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "대략"
+        ],
+        [
+          "정확하다"
+        ]
+      ],
+      "proposalFingerprint": "b282a298c20a8edbc8307ea570c66a0ad6f6b99f4d494ddd75bd03640fa11720"
+    }
+  ]
+}

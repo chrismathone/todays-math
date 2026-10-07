@@ -1,0 +1,76 @@
+{
+  "importedAt": "2026-10-07T08:59:27.864Z",
+  "dispatchId": "ctx_9cb9b54195a9",
+  "notIndependentClaudeApproval": true,
+  "importedIds": [
+    "m3-06-04-xc10",
+    "m3-06-04-xc12",
+    "m3-06-04-xc14",
+    "m3-06-04-xc15",
+    "m3-06-04-xc16",
+    "m3-06-04-xc17",
+    "m3-06-04-xc18",
+    "m3-06-04-xc19",
+    "m3-06-04-xc20",
+    "m3-07-01-xc1",
+    "m3-07-01-xc2",
+    "m3-07-01-xc3",
+    "m3-07-01-xc4",
+    "m3-07-01-xc7",
+    "m3-07-01-xc10",
+    "m3-07-01-xc11",
+    "m3-07-01-xc12",
+    "m3-07-01-xc13",
+    "m3-07-01-xc16",
+    "m3-07-01-xc19"
+  ],
+  "pending": [
+    {
+      "id": "m3-06-04-xc11",
+      "sourceIndex": 3651,
+      "proposalFingerprint": "ecec0567341f15a486e4938f49c9be0341adb08d3fba20c7556e886722c74058",
+      "bVerdict": "revise",
+      "cVerdict": "adopt",
+      "reason": "B는 BAC와같은 각을 꼭짓점세개로 쓰라고만 해BAC자체도 문자그대로 정답이다. BAC이외의 각 또는 다른꼭짓점D에서의 각을 찾는다고 명시해 의도를 분명히 한다. C의 같은호BC에 대한원주각 관계는 맞다.",
+      "rootVerdictEvidence": "evidence/root-assisted-extra-3650-3675-20261007/root-middle-final-3650-3675-verdicts.json"
+    },
+    {
+      "id": "m3-06-04-xc22",
+      "sourceIndex": 3660,
+      "proposalFingerprint": "c36c9868b52163ad1780f88e3a093d5299cb4c8dffb12a3d9721ce89d2fed2d0",
+      "bVerdict": "revise",
+      "cVerdict": "revise",
+      "reason": "B와D가 대각선AC 같은쪽인 오목사각형에는 결론이 성립하지 않는다. A(-1,0),B(0,0.1),C(1,0),D(0,1)에서는 B+D합이180도보다크지만D는ABC원의밖이다. B와D가 직선AC의반대쪽이라는 위치조건을 B/C에 명시하거나 볼록사각형 조건을 학생이 이해할 말로 제시한다.",
+      "rootVerdictEvidence": "evidence/root-assisted-extra-3650-3675-20261007/root-middle-final-3650-3675-verdicts.json"
+    },
+    {
+      "id": "m3-07-01-xc5",
+      "sourceIndex": 3665,
+      "proposalFingerprint": "2706981896a93ce3a96d028b8f4210e69292aaaae720a3d41ebe595631a3f3f2",
+      "bVerdict": "adopt",
+      "cVerdict": "revise",
+      "reason": "B는 일반규칙과몸무게kg라는구체단위를 함께 물어 답범위가 분명하다. C의 표준편차는빈칸과같은단위에는 평균·중앙값·범위도 참이라 변량만 추측할수없다. 구체자료의표준편차단위를 묻거나 같은단위라는 관계를 묻도록 바꾼다.",
+      "rootVerdictEvidence": "evidence/root-assisted-extra-3650-3675-20261007/root-middle-final-3650-3675-verdicts.json"
+    },
+    {
+      "id": "m3-07-01-xc6",
+      "sourceIndex": 3666,
+      "proposalFingerprint": "3ff339f6cb93cf3ed3031d079af507d950789bf5c4ad1b64f637d53a8fb4f0ba",
+      "bVerdict": "revise",
+      "cVerdict": "adopt",
+      "reason": "B제외사유가 다른항목과겹침이라고만 되어 어떤항목이 목표를 보존하는지 확인되지 않는다. 실제겹치는항목ID를 특정한다. C는 편차합0이라 흩어짐을 비교하지못한다는 관계를 묻는다.",
+      "rootVerdictEvidence": "evidence/root-assisted-extra-3650-3675-20261007/root-middle-final-3650-3675-verdicts.json"
+    },
+    {
+      "id": "m3-07-01-xc15",
+      "sourceIndex": 3672,
+      "proposalFingerprint": "4987f5573b54d03cd84cb6cb063d9669f80c279214621ca92e3ed8ed643579a9",
+      "bVerdict": "adopt",
+      "cVerdict": "revise",
+      "reason": "B는 편차1과-3을 제곱1·9로 비교하게 하여 큰영향을 판단한다. C의 둘째빈칭제곱은 뒷구절편차의제곱의합에서 그대로 보인다. 그단어는 보여주고 절댓값이라는 핵심을 묻거나 다른실제비교로 바꾸어 단순복사슬롯을 제거한다.",
+      "rootVerdictEvidence": "evidence/root-assisted-extra-3650-3675-20261007/root-middle-final-3650-3675-verdicts.json"
+    }
+  ],
+  "inputSha256": "30c3c6a9d3c674da85c486a5dd826abc2ebace9c29ff64154a133ae57efe5a57",
+  "verdictSha256": "f3746f7bb5d97347fc3d0ef1f93b6e22959f0b7d2f357fbbb5b2a0f704713956"
+}

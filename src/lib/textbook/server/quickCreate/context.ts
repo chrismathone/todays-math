@@ -15,6 +15,7 @@ import type {
   QuickCreateScope,
 } from "@/contracts/textbookQuickCreate.contract";
 import { TEXTBOOK_CORE_BANK } from "../../coreConceptBank";
+import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
 import { sectionKeyOf } from "@/lib/concept-blank/sections";
 import type { TextbookActor } from "../../access";
 import type {
@@ -85,7 +86,15 @@ export const gradeLabel = (scope: QuickCreateScope) =>
 export const keyOf = (unit: Pick<UnitRow, "grade" | "chapter" | "section">) =>
   sectionKeyOf(unit.grade, unit.chapter, unit.section);
 export const conceptIndex = new Map<string, ConceptEntry[]>();
-for (const entry of TEXTBOOK_CORE_BANK.concepts) {
+const currentConceptById = new Map(
+  CONCEPT_BLANK_BANK.concepts.map((entry) => [entry.id, entry]),
+);
+// Core IDs and their order define the lesson. Question-bearing snapshots must use
+// the same current payload as freezeTextbookConcept, rather than the raw source shard.
+for (const source of TEXTBOOK_CORE_BANK.concepts) {
+  const entry = currentConceptById.get(source.id);
+  if (!entry || entry.section !== source.section)
+    throw new Error(`교재의 핵심 개념을 찾을 수 없습니다: ${source.id}`);
   const entries = conceptIndex.get(entry.section) ?? [];
   entries.push(entry);
   conceptIndex.set(entry.section, entries);

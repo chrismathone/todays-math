@@ -1,0 +1,1492 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T10:47:54.452Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-01-02-xc7",
+        "section": "중3::1. 실수와 그 계산::무리수와 실수",
+        "term": "정수 부분과 소수 부분",
+        "kind": "정의",
+        "level": "중",
+        "definition": "양수인 무리수에서 그 수를 넘지 않는 가장 큰 정수가 {정수 부분}이고, 그 수에서 정수 부분을 뺀 나머지가 {소수 부분}이다.",
+        "example": {
+          "prompt": "$\\sqrt{5}$의 소수 부분을 $0.236\\cdots$ 대신 $\\sqrt{5}-2$로 쓰는 까닭은?",
+          "answer": "소수로는 끝까지 못 써서"
+        },
+        "studentC": "양수인 무리수에서 그 수를 넘지 않는 가장 큰 정수가 □이고, 그 수에서 정수 부분을 뺀 나머지가 □이다.",
+        "answers": [
+          "정수 부분",
+          "소수 부분"
+        ]
+      },
+      "proposal": {
+        "id": "m3-01-02-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "양수인 무리수 $x$의 정수 부분과 소수 부분의 뜻을 각각 쓰고, $\\sqrt{5}$의 정수 부분과 소수 부분을 구하시오.",
+        "bAnswer": "정수 부분은 $x$를 넘지 않는 가장 큰 정수이고, 소수 부분은 $x$에서 정수 부분을 뺀 값이다. $4<5<9$에서 $2<\\sqrt{5}<3$이므로 $\\sqrt{5}$의 정수 부분은 $2$, 소수 부분은 $\\sqrt{5}-2$이다.",
+        "bGoal": "무리수의 정수 부분과 소수 부분 구하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x$를 넘지 않는 가장 큰 정수",
+              "$x$보다 크지 않은 가장 큰 정수"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x$에서 정수 부분을 뺀 값"
+            ]
+          },
+          {
+            "anyOf": [
+              "정수 부분은 $2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "소수 부분은 $\\sqrt{5}-2$"
+            ]
+          }
+        ],
+        "bReason": "소수 부분을 식으로 쓰는 점이 드러나도록 $\\sqrt{5}$ 예를 넣었다.",
+        "cDecision": "keep",
+        "cReason": "두 용어의 뜻을 각각 한 칸으로 묻는 분명한 정의 빈칸이다.",
+        "learningRole": "definition",
+        "roleReason": "정수 부분·소수 부분의 뜻과 무리수에의 적용",
+        "exampleNeeded": true,
+        "authorBatch": 53,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3295,
+        "part": "m3plus",
+        "sourceFingerprint": "6a23c5b643c91c06c4b96201dd0e9808d242db3f145673ab7909a8e97a1e79ac",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3295
+        },
+        "directReview": null,
+        "cFrozenSentence": "양수인 무리수에서 그 수를 넘지 않는 가장 큰 정수가 □이고, 그 수에서 정수 부분을 뺀 나머지가 □이다.",
+        "cFrozenDefinition": "양수인 무리수에서 그 수를 넘지 않는 가장 큰 정수가 {정수 부분}이고, 그 수에서 정수 부분을 뺀 나머지가 {소수 부분}이다.",
+        "cFrozenAnswers": [
+          "정수 부분",
+          "소수 부분"
+        ],
+        "cMarkedSentence": "양수인 무리수에서 그 수를 넘지 않는 가장 큰 정수가 {정수 부분}이고, 그 수에서 정수 부분을 뺀 나머지가 {소수 부분}이다.",
+        "cSlotAnswers": [
+          "정수 부분",
+          "소수 부분"
+        ],
+        "cStudentSentence": "양수인 무리수에서 그 수를 넘지 않는 가장 큰 정수가 □이고, 그 수에서 정수 부분을 뺀 나머지가 □이다.",
+        "cAnswers": [
+          "정수 부분",
+          "소수 부분"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "정수 부분",
+            "equivalentAnswers": [
+              "정수 부분"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "소수 부분",
+            "equivalentAnswers": [
+              "소수 부분"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "정수 부분"
+          ],
+          [
+            "소수 부분"
+          ]
+        ],
+        "proposalFingerprint": "30f9f9d2a068af8ff131dc3a767d90010869df2eef7f4916ca1cc6030542889a"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-01-02-xc13",
+        "section": "중3::1. 실수와 그 계산::무리수와 실수",
+        "term": "무리수끼리의 합",
+        "kind": "성질",
+        "level": "상",
+        "definition": "두 무리수의 합은 무리수일 수도 {유리수}일 수도 있다 — 무리수인 부분이 서로 {지워지면} 유리수가 된다.",
+        "example": {
+          "prompt": "두 무리수 $1+\\sqrt{2}$와 $1-\\sqrt{2}$의 합이 유리수인 까닭은?",
+          "answer": "$\\sqrt{2}$끼리 지워져서"
+        },
+        "studentC": "두 무리수의 합은 무리수일 수도 □일 수도 있다 — 무리수인 부분이 서로 □ 유리수가 된다.",
+        "answers": [
+          "유리수",
+          "지워지면"
+        ]
+      },
+      "proposal": {
+        "id": "m3-01-02-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "두 무리수의 합은 언제나 무리수인지 판단하고, 두 무리수 $1+\\sqrt{2}$와 $1-\\sqrt{2}$의 합을 이용하여 까닭을 쓰시오.",
+        "bAnswer": "언제나 무리수인 것은 아니다. $(1+\\sqrt{2})+(1-\\sqrt{2})=2$처럼 $\\sqrt{2}$ 부분이 서로 지워지면 합이 유리수가 될 수 있다.",
+        "bGoal": "무리수끼리의 합이 유리수일 수 있음 알기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "언제나 무리수는 아니다",
+              "유리수일 수도 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$(1+\\sqrt{2})+(1-\\sqrt{2})=2$",
+              "합이 $2$",
+              "$\\sqrt{2}$끼리 지워진다"
+            ]
+          }
+        ],
+        "bReason": "판단과 반례를 함께 묻도록 두 무리수를 구체적으로 제시했다.",
+        "cDecision": "keep",
+        "cReason": "결과 '유리수'와 조건 '지워지면' 두 칸이 분명하다.",
+        "learningRole": "reason",
+        "roleReason": "무리수 부분이 지워져 합이 유리수가 되는 경우",
+        "exampleNeeded": true,
+        "authorBatch": 53,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3301,
+        "part": "m3plus",
+        "sourceFingerprint": "4833d94a269b1317704b17fc21af3aae158f44d3e54aa73578da2c91982bdd69",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3301
+        },
+        "directReview": null,
+        "cFrozenSentence": "두 무리수의 합은 무리수일 수도 □일 수도 있다 — 무리수인 부분이 서로 □ 유리수가 된다.",
+        "cFrozenDefinition": "두 무리수의 합은 무리수일 수도 {유리수}일 수도 있다 — 무리수인 부분이 서로 {지워지면} 유리수가 된다.",
+        "cFrozenAnswers": [
+          "유리수",
+          "지워지면"
+        ],
+        "cMarkedSentence": "두 무리수의 합은 무리수일 수도 {유리수}일 수도 있다 — 무리수인 부분이 서로 {지워지면} 유리수가 된다.",
+        "cSlotAnswers": [
+          "유리수",
+          "지워지면"
+        ],
+        "cStudentSentence": "두 무리수의 합은 무리수일 수도 □일 수도 있다 — 무리수인 부분이 서로 □ 유리수가 된다.",
+        "cAnswers": [
+          "유리수",
+          "지워지면"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "유리수",
+            "equivalentAnswers": [
+              "유리수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "지워지면",
+            "equivalentAnswers": [
+              "지워지면",
+              "없어지면",
+              "사라지면"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "지워지면",
+            "accept": [
+              "없어지면",
+              "사라지면"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "유리수"
+          ],
+          [
+            "지워지면",
+            "없어지면",
+            "사라지면"
+          ]
+        ],
+        "proposalFingerprint": "4b5f77cc1b631d2331c2b0dd57380273f428eaaf7514b6903b03a7b934fee56d"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-01-02-xc18",
+        "section": "중3::1. 실수와 그 계산::무리수와 실수",
+        "term": "세 실수의 대소를 잇기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "두 실수의 차의 부호로 대소를 비교할 수 있다. 세 실수 $a$, $b$, $c$에 대해 $a<b$, $b<c$이면 $a$와 $c$의 대소 관계는 {$a<c$}이다.",
+        "studentC": "두 실수의 차의 부호로 대소를 비교할 수 있다. 세 실수 $a$, $b$, $c$에 대해 $a<b$, $b<c$이면 $a$와 $c$의 대소 관계는 □이다.",
+        "answers": [
+          "$a<c$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-01-02-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "세 실수 $a$, $b$, $c$에서 $a<b$이고 $b<c$일 때 $a$와 $c$의 대소 관계를 쓰고, 두 수의 차를 이용해 그 까닭을 쓰시오.",
+        "bAnswer": "$a<c$이다. $b-a>0$, $c-b>0$이고 $c-a=(c-b)+(b-a)$는 양수끼리의 합이므로 $c-a>0$이다.",
+        "bGoal": "차의 부호로 대소 관계를 이어 판단하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$a<c$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$c-a=(c-b)+(b-a)$",
+              "$a-c=(a-b)+(b-c)$"
+            ]
+          },
+          {
+            "anyOf": [
+              "양수끼리의 합은 양수",
+              "음수끼리의 합은 음수"
+            ]
+          }
+        ],
+        "bReason": "결론만이 아니라 차를 쪼개 부호를 판단하는 근거를 요구했다.",
+        "cDecision": "rewrite",
+        "cAfter": "$a<b$, $b<c$이면 $b-a$와 $c-b$가 모두 {양수}이고, $c-a=(b-a)+(c-b)$도 양수이므로 $a$와 $c$의 대소 관계는 {$a<c$}이다.",
+        "cAnswers": [
+          "양수",
+          "$a<c$"
+        ],
+        "cReason": "결론만 비우면 앞 문장의 차의 부호와 이어지지 않아 근거 칸을 두었다.",
+        "learningRole": "reason",
+        "roleReason": "차의 합으로 대소 관계가 이어지는 까닭",
+        "authorBatch": 53,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3306,
+        "part": "m3plus",
+        "sourceFingerprint": "4854e5086a8059241837b76abfdd9a3d221d38e4a0a900fdfab1ae964524a5a2",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3306
+        },
+        "directReview": null,
+        "cMarkedSentence": "$a<b$, $b<c$이면 $b-a$와 $c-b$가 모두 {양수}이고, $c-a=(b-a)+(c-b)$도 양수이므로 $a$와 $c$의 대소 관계는 {$a<c$}이다.",
+        "cSlotAnswers": [
+          "양수",
+          "$a<c$"
+        ],
+        "cStudentSentence": "$a<b$, $b<c$이면 $b-a$와 $c-b$가 모두 □이고, $c-a=(b-a)+(c-b)$도 양수이므로 $a$와 $c$의 대소 관계는 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "양수",
+            "equivalentAnswers": [
+              "양수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$a<c$",
+            "equivalentAnswers": [
+              "$a<c$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "양수"
+          ],
+          [
+            "$a<c$"
+          ]
+        ],
+        "proposalFingerprint": "8cdf6a68d5c39e379d1d43fd49973634a660d8862b21c3cd63ddf257277852df"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-01-02-xc19",
+        "section": "중3::1. 실수와 그 계산::무리수와 실수",
+        "term": "어림값으로 대소 가리기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "어림값으로 대소를 판단할 때는 각 수가 들어 있는 {범위}를 확인한다 — 두 범위가 {겹치지 않으면} 크기를 정할 수 있고, 겹치면 더 정확한 값이 필요하다.",
+        "studentC": "어림값으로 대소를 판단할 때는 각 수가 들어 있는 □를 확인한다 — 두 범위가 □ 크기를 정할 수 있고, 겹치면 더 정확한 값이 필요하다.",
+        "answers": [
+          "범위",
+          "겹치지 않으면"
+        ]
+      },
+      "proposal": {
+        "id": "m3-01-02-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "$2.23<\\sqrt{5}<2.24$임을 알고 있다. 이 범위만으로 $\\sqrt{5}$와 $2.3$의 크기를 비교할 수 있는지, $\\sqrt{5}$와 $2.235$의 크기를 비교할 수 있는지 각각 판단하고, 판단 기준을 쓰시오.",
+        "bAnswer": "$\\sqrt{5}<2.24<2.3$이므로 $\\sqrt{5}<2.3$으로 비교할 수 있다. $2.235$는 $2.23$과 $2.24$ 사이에 있어 범위가 겹치므로 비교할 수 없고 더 정확한 어림값이 필요하다. 범위가 겹치지 않을 때만 크기를 정할 수 있다.",
+        "bGoal": "어림 범위로 비교 가능 여부 판단하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\sqrt{5}<2.3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2.235$와는 이 범위로 비교할 수 없다",
+              "더 정확한 값이 필요하다"
+            ]
+          },
+          {
+            "anyOf": [
+              "범위가 겹치지 않으면 비교할 수 있다",
+              "범위가 겹치면 정할 수 없다"
+            ]
+          }
+        ],
+        "bReason": "비교 가능한 경우와 불가능한 경우를 대비하도록 $\\sqrt{5}$의 범위와 두 수를 넣었다.",
+        "cDecision": "keep",
+        "cReason": "'범위'와 '겹치지 않으면' 두 칸이 방법의 핵심이다.",
+        "learningRole": "procedure",
+        "roleReason": "어림 범위의 겹침으로 대소 판정 가능성 확인",
+        "exampleNeeded": true,
+        "authorBatch": 53,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3307,
+        "part": "m3plus",
+        "sourceFingerprint": "f77806cc427cc3c96c2d1439c394e9d6a5ecc5035e0e3f4d556e693108418116",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3307
+        },
+        "directReview": null,
+        "cFrozenSentence": "어림값으로 대소를 판단할 때는 각 수가 들어 있는 □를 확인한다 — 두 범위가 □ 크기를 정할 수 있고, 겹치면 더 정확한 값이 필요하다.",
+        "cFrozenDefinition": "어림값으로 대소를 판단할 때는 각 수가 들어 있는 {범위}를 확인한다 — 두 범위가 {겹치지 않으면} 크기를 정할 수 있고, 겹치면 더 정확한 값이 필요하다.",
+        "cFrozenAnswers": [
+          "범위",
+          "겹치지 않으면"
+        ],
+        "cMarkedSentence": "어림값으로 대소를 판단할 때는 각 수가 들어 있는 {범위}를 확인한다 — 두 범위가 {겹치지 않으면} 크기를 정할 수 있고, 겹치면 더 정확한 값이 필요하다.",
+        "cSlotAnswers": [
+          "범위",
+          "겹치지 않으면"
+        ],
+        "cStudentSentence": "어림값으로 대소를 판단할 때는 각 수가 들어 있는 □를 확인한다 — 두 범위가 □ 크기를 정할 수 있고, 겹치면 더 정확한 값이 필요하다.",
+        "cAnswers": [
+          "범위",
+          "겹치지 않으면"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "범위",
+            "equivalentAnswers": [
+              "범위"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "겹치지 않으면",
+            "equivalentAnswers": [
+              "겹치지 않으면"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "범위"
+          ],
+          [
+            "겹치지 않으면"
+          ]
+        ],
+        "proposalFingerprint": "688690a44ba0a53268f33b020675c420f954a3376129e3e32c1debcb551f8b27"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-06-01-c10",
+        "section": "중2::6. 도형의 닮음::닮은 도형",
+        "term": "합동과 닮음",
+        "kind": "성질",
+        "level": "상",
+        "definition": "합동은 닮음비가 {$1:1$}인 닮음이다. 곧 합동인 두 도형은 {닮은 도형}이기도 하다.",
+        "studentC": "합동은 닮음비가 □인 닮음이다. 곧 합동인 두 도형은 □이기도 하다.",
+        "answers": [
+          "$1:1$",
+          "닮은 도형"
+        ]
+      },
+      "proposal": {
+        "id": "m2-06-01-c10",
+        "learningRole": "reason",
+        "roleReason": "합동은 닮음비 $1:1$인 닮음",
+        "bDecision": "rewrite",
+        "bPrompt": "합동인 두 도형은 서로 닮은 도형이라고 할 수 있는지 쓰고, 닮음비를 이용하여 그 이유를 설명하시오.",
+        "bAnswer": "할 수 있다. 합동인 두 도형은 대응변의 길이가 모두 같아 닮음비가 $1:1$인 닮음이기 때문이다.",
+        "bGoal": "합동과 닮음의 관계",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "할 수 있다",
+              "닮은 도형이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "닮음비가 $1:1$"
+            ]
+          }
+        ],
+        "bReason": "두 개념의 포함 관계를 닮음비로 설명하도록 특정했다.",
+        "cDecision": "keep",
+        "cReason": "$1:1$과 닮은 도형을 채우는 짧은 관계 빈칸이다.",
+        "authorBatch": 45,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 660,
+        "part": "m2",
+        "sourceFingerprint": "b35bcfb48dd8dded6a4093997f438ea509e9ef8e2635c7b42f56d6a8b5fc05c3",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 660
+        },
+        "directReview": null,
+        "cFrozenSentence": "합동은 닮음비가 □인 닮음이다. 곧 합동인 두 도형은 □이기도 하다.",
+        "cFrozenDefinition": "합동은 닮음비가 {$1:1$}인 닮음이다. 곧 합동인 두 도형은 {닮은 도형}이기도 하다.",
+        "cFrozenAnswers": [
+          "$1:1$",
+          "닮은 도형"
+        ],
+        "cMarkedSentence": "합동은 닮음비가 {$1:1$}인 닮음이다. 곧 합동인 두 도형은 {닮은 도형}이기도 하다.",
+        "cSlotAnswers": [
+          "$1:1$",
+          "닮은 도형"
+        ],
+        "cStudentSentence": "합동은 닮음비가 □인 닮음이다. 곧 합동인 두 도형은 □이기도 하다.",
+        "cAnswers": [
+          "$1:1$",
+          "닮은 도형"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$1:1$",
+            "equivalentAnswers": [
+              "$1:1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "닮은 도형",
+            "equivalentAnswers": [
+              "닮은 도형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$1:1$"
+          ],
+          [
+            "닮은 도형"
+          ]
+        ],
+        "proposalFingerprint": "28cc58485645a95462e269967e667dc4e8c887cab5bd9fa059ad7b5e807bb8cf"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-02-xc15",
+        "section": "중1::1. 소인수분해::소인수분해",
+        "term": "소수의 거듭제곱의 약수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "소수 $p$에 대하여 $p^n$의 약수는 $1$, $p$, $p^2$, …, $p^n$으로 {$n+1$개}이다.",
+        "example": {
+          "prompt": "$3^4$의 약수의 개수는?",
+          "answer": "$5$개"
+        },
+        "studentC": "소수 $p$에 대하여 $p^n$의 약수는 $1$, $p$, $p^2$, …, $p^n$으로 □이다.",
+        "answers": [
+          "$n+1$개"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-02-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "$p$가 소수이고 $n$이 자연수일 때 $p^n$의 약수를 모두 쓰고 그 개수를 구하세요. $3^4$으로 확인해 보세요.",
+        "bAnswer": "약수는 $1$, $p$, $p^2$, …, $p^n$으로 $n+1$개이다. $3^4$의 약수는 $1$, $3$, $9$, $27$, $81$로 $5$개이다.",
+        "bGoal": "소수의 거듭제곱 $p^n$의 약수와 그 개수 $n+1$을 안다.",
+        "bReason": "제목 '소수의 거듭제곱의 약수'에는 식과 기호가 없다. $p^n$과 $p$, $n$의 조건을 주고 약수와 개수를 묻게 했다.",
+        "cDecision": "keep",
+        "cReason": "약수의 목록이 문장에 나와 있어 개수를 세어 답하는 빈칸임이 분명하다.",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "약수: $1$, $p$, $p^2$, …, $p^n$"
+            ]
+          },
+          {
+            "anyOf": [
+              "개수: $n+1$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3^4$의 약수는 $1$, $3$, $9$, $27$, $81$로 $5$개"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "definition",
+        "roleReason": "p^n의 약수는 n+1개",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 961,
+        "part": "m1plus",
+        "sourceFingerprint": "8e4d00380497735e390e30036674d5deda41fcba240aa45df2ee94b0bad80ec5",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 961
+        },
+        "directReview": null,
+        "cFrozenSentence": "소수 $p$에 대하여 $p^n$의 약수는 $1$, $p$, $p^2$, …, $p^n$으로 □이다.",
+        "cFrozenDefinition": "소수 $p$에 대하여 $p^n$의 약수는 $1$, $p$, $p^2$, …, $p^n$으로 {$n+1$개}이다.",
+        "cFrozenAnswers": [
+          "$n+1$개"
+        ],
+        "cMarkedSentence": "소수 $p$에 대하여 $p^n$의 약수는 $1$, $p$, $p^2$, …, $p^n$으로 {$n+1$개}이다.",
+        "cSlotAnswers": [
+          "$n+1$개"
+        ],
+        "cStudentSentence": "소수 $p$에 대하여 $p^n$의 약수는 $1$, $p$, $p^2$, …, $p^n$으로 □이다.",
+        "cAnswers": [
+          "$n+1$개"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$n+1$개",
+            "equivalentAnswers": [
+              "$n+1$개"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$n+1$개"
+          ]
+        ],
+        "proposalFingerprint": "98cce3a3442275944a20ca8874bdc5b8e1c1f302e59501a15aca58b8c9872444"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-07-02-c3",
+        "section": "중2::7. 닮음의 활용::삼각형의 각의 이등분선",
+        "term": "내각의 이등분선과 넓이의 비",
+        "kind": "성질",
+        "level": "중",
+        "definition": "내각의 이등분선으로 나뉜 두 삼각형은 높이가 같으므로 넓이의 비가 {밑변}의 길이의 비, 곧 각을 낀 {두 변의 길이의 비}가 된다.",
+        "studentC": "내각의 이등분선으로 나뉜 두 삼각형은 높이가 같으므로 넓이의 비가 □의 길이의 비, 곧 각을 낀 □가 된다.",
+        "answers": [
+          "밑변",
+          "두 변의 길이의 비"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-02-c3",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\triangle ABC$에서 $\\angle A$의 이등분선이 변 $BC$와 점 $D$에서 만난다. 꼭짓점 $A$에서 변 $BC$까지의 높이를 이용하여 $\\triangle ABD$와 $\\triangle ADC$의 넓이의 비를 $\\overline{AB}$, $\\overline{AC}$로 나타내고 그 까닭을 쓰시오.",
+        "bAnswer": "두 삼각형은 꼭짓점 $A$에서 $\\overline{BC}$까지의 높이가 같으므로 넓이의 비는 밑변의 비 $\\overline{BD}:\\overline{DC}$이다. 이등분선의 성질로 $\\overline{BD}:\\overline{DC}=\\overline{AB}:\\overline{AC}$이므로 넓이의 비는 $\\overline{AB}:\\overline{AC}$이다.",
+        "bGoal": "높이가 같음을 이용해 넓이의 비를 두 변의 비로 잇기",
+        "bReason": "넓이와 비 두 개념이 섞여 있어, 기준이 되는 높이와 나타낼 변을 지정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "넓이의 비는 $\\overline{AB}:\\overline{AC}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이가 같아 넓이의 비가 $\\overline{BD}:\\overline{DC}$",
+              "넓이의 비가 밑변 $\\overline{BD}$, $\\overline{DC}$의 비와 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{BD}:\\overline{DC}=\\overline{AB}:\\overline{AC}$",
+              "이등분선이 대변을 두 변의 비로 나눈다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "밑변과 두 변의 비를 잇는 두 빈칸이 이유의 흐름을 그대로 평가한다.",
+        "learningRole": "reason",
+        "roleReason": "높이가 같아 넓이의 비가 밑변의 비가 되는 까닭",
+        "authorBatch": 47,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 678,
+        "part": "m2",
+        "sourceFingerprint": "ace86cfee6ee1c588a2953140abf2b69d93b46c21ae9550d6db56cb9572babfe",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 678
+        },
+        "directReview": null,
+        "cFrozenSentence": "내각의 이등분선으로 나뉜 두 삼각형은 높이가 같으므로 넓이의 비가 □의 길이의 비, 곧 각을 낀 □가 된다.",
+        "cFrozenDefinition": "내각의 이등분선으로 나뉜 두 삼각형은 높이가 같으므로 넓이의 비가 {밑변}의 길이의 비, 곧 각을 낀 {두 변의 길이의 비}가 된다.",
+        "cFrozenAnswers": [
+          "밑변",
+          "두 변의 길이의 비"
+        ],
+        "cMarkedSentence": "내각의 이등분선으로 나뉜 두 삼각형은 높이가 같으므로 넓이의 비가 {밑변}의 길이의 비, 곧 각을 낀 {두 변의 길이의 비}가 된다.",
+        "cSlotAnswers": [
+          "밑변",
+          "두 변의 길이의 비"
+        ],
+        "cStudentSentence": "내각의 이등분선으로 나뉜 두 삼각형은 높이가 같으므로 넓이의 비가 □의 길이의 비, 곧 각을 낀 □가 된다.",
+        "cAnswers": [
+          "밑변",
+          "두 변의 길이의 비"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "밑변",
+            "equivalentAnswers": [
+              "밑변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "두 변의 길이의 비",
+            "equivalentAnswers": [
+              "두 변의 길이의 비"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "밑변"
+          ],
+          [
+            "두 변의 길이의 비"
+          ]
+        ],
+        "proposalFingerprint": "36bafd184fdd910bef7784a5b51832017f77c312324d8c9d9149c2b4407f7000"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-07-03-c1",
+        "section": "중2::7. 닮음의 활용::평행선 사이의 선분의 길이의 비",
+        "term": "간격이 같은 평행선",
+        "kind": "성질",
+        "level": "하",
+        "definition": "평행선 사이의 간격이 같으면 가로지르는 직선도 {같은 길이}로 {나뉜다}.",
+        "studentC": "평행선 사이의 간격이 같으면 가로지르는 직선도 □로 □.",
+        "answers": [
+          "같은 길이",
+          "나뉜다"
+        ]
+      },
+      "proposal": {
+        "id": "m2-07-03-c1",
+        "bDecision": "rewrite",
+        "bPrompt": "서로 평행한 세 직선 $l$, $m$, $n$이 이 차례로 있고, $l$과 $m$ 사이의 간격과 $m$과 $n$ 사이의 간격이 같다. 한 직선이 $l$, $m$, $n$과 각각 점 $A$, $B$, $C$에서 만날 때 $\\overline{AB}$와 $\\overline{BC}$의 길이 관계를 쓰고, 세 직선에 수직인 직선과 비교하여 까닭을 쓰시오.",
+        "bAnswer": "$\\overline{AB}=\\overline{BC}$이다. 수직인 직선에서는 두 조각이 각각 간격과 같아 비가 $1:1$이다. 평행선 사이 조각의 비는 어느 직선에서나 같으므로 $\\overline{AB}:\\overline{BC}=1:1$이다.",
+        "bGoal": "간격이 같으면 조각의 길이가 같아지는 까닭",
+        "bReason": "간격과 나뉘는 대상을 점 $A$, $B$, $C$로 정하고, 수직인 직선과 비교하는 근거를 지정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{AB}=\\overline{BC}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "수직인 직선에서 두 조각의 비가 $1:1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "평행선 사이 조각의 비는 두 직선에서 같다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "평행한 세 직선의 이웃한 간격이 같으면, 이 세 직선과 만나는 직선은 세 직선에 의해 {같은 길이}의 두 조각으로 나뉜다.",
+        "cAnswers": [
+          "같은 길이"
+        ],
+        "cReason": "'나뉜다' 동사 빈칸과 '직선도'의 '도'가 가리키는 대상이 모호해, 조각의 길이 관계 하나만 묻게 했다.",
+        "learningRole": "reason",
+        "roleReason": "간격이 같으면 조각의 비가 $1:1$",
+        "authorBatch": 47,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 681,
+        "part": "m2",
+        "sourceFingerprint": "fef4e0ee74387cd09358fb048da152849df8340f6a7c58c0472e5eff17fe23db",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 681
+        },
+        "directReview": null,
+        "cMarkedSentence": "평행한 세 직선의 이웃한 간격이 같으면, 이 세 직선과 만나는 직선은 세 직선에 의해 {같은 길이}의 두 조각으로 나뉜다.",
+        "cSlotAnswers": [
+          "같은 길이"
+        ],
+        "cStudentSentence": "평행한 세 직선의 이웃한 간격이 같으면, 이 세 직선과 만나는 직선은 세 직선에 의해 □의 두 조각으로 나뉜다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "같은 길이",
+            "equivalentAnswers": [
+              "같은 길이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "같은 길이"
+          ]
+        ],
+        "proposalFingerprint": "883eac489145dddbdb54dea7cf8eee6122edfd6c69336bab905e880704b4d39a"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-01-03-xc16",
+        "section": "중3::1. 실수와 그 계산::근호를 포함한 식의 계산",
+        "term": "분자가 두 항일 때의 유리화",
+        "kind": "방법",
+        "level": "상",
+        "definition": "분자가 두 항인 분수의 분모를 유리화할 때는 곱하는 수를 분자의 {모든 항}에 곱한다 — 분자에 {분배법칙}을 쓴다.",
+        "example": {
+          "prompt": "$\\frac{\\sqrt{2}+1}{\\sqrt{2}}$에 $\\sqrt{2}$를 곱하면 분자가 $2+1$이 아니라 $2+\\sqrt{2}$인 까닭은?",
+          "answer": "$1$에도 곱해야 해서"
+        },
+        "studentC": "분자가 두 항인 분수의 분모를 유리화할 때는 곱하는 수를 분자의 □에 곱한다 — 분자에 □을 쓴다.",
+        "answers": [
+          "모든 항",
+          "분배법칙"
+        ]
+      },
+      "proposal": {
+        "id": "m3-01-03-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{\\sqrt{2}+1}{\\sqrt{2}}$의 분모를 유리화하시오. 분자에 $\\sqrt{2}$를 곱할 때 주의할 점도 쓰시오.",
+        "bAnswer": "분자의 두 항 $\\sqrt{2}$와 $1$에 모두 $\\sqrt{2}$를 곱해야 한다(분배법칙). $\\frac{(\\sqrt{2}+1)\\sqrt{2}}{2}=\\frac{2+\\sqrt{2}}{2}$",
+        "bGoal": "분자가 두 항일 때 유리화하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "분자의 모든 항에 곱한다",
+              "$1$에도 $\\sqrt{2}$를 곱한다",
+              "분배법칙"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{2+\\sqrt{2}}{2}$"
+            ]
+          }
+        ],
+        "bReason": "한 항에만 곱하는 실수가 드러나는 분수를 골라 주의점을 묻게 했다.",
+        "cDecision": "keep",
+        "cReason": "'모든 항'과 '분배법칙' 두 칸이 분명하다.",
+        "learningRole": "procedure",
+        "roleReason": "분자 전체에 곱하는 유리화 절차",
+        "authorBatch": 53,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3324,
+        "part": "m3plus",
+        "sourceFingerprint": "ab91bc6689734c2a2941d8c91069c76fed1d11c84cf23f9facb9f811c0d48158",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3324
+        },
+        "directReview": null,
+        "cFrozenSentence": "분자가 두 항인 분수의 분모를 유리화할 때는 곱하는 수를 분자의 □에 곱한다 — 분자에 □을 쓴다.",
+        "cFrozenDefinition": "분자가 두 항인 분수의 분모를 유리화할 때는 곱하는 수를 분자의 {모든 항}에 곱한다 — 분자에 {분배법칙}을 쓴다.",
+        "cFrozenAnswers": [
+          "모든 항",
+          "분배법칙"
+        ],
+        "cMarkedSentence": "분자가 두 항인 분수의 분모를 유리화할 때는 곱하는 수를 분자의 {모든 항}에 곱한다 — 분자에 {분배법칙}을 쓴다.",
+        "cSlotAnswers": [
+          "모든 항",
+          "분배법칙"
+        ],
+        "cStudentSentence": "분자가 두 항인 분수의 분모를 유리화할 때는 곱하는 수를 분자의 □에 곱한다 — 분자에 □을 쓴다.",
+        "cAnswers": [
+          "모든 항",
+          "분배법칙"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "모든 항",
+            "equivalentAnswers": [
+              "모든 항"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "분배법칙",
+            "equivalentAnswers": [
+              "분배법칙"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "모든 항"
+          ],
+          [
+            "분배법칙"
+          ]
+        ],
+        "proposalFingerprint": "9fd72c98a83d44b25dd1da8f0335ef9ef2e50ae4f38757a58db8f5858a9e63bc"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-03-xc20",
+        "section": "중1::1. 소인수분해::공약수와 최대공약수",
+        "term": "공약수와 두 수의 차",
+        "kind": "성질",
+        "level": "상",
+        "definition": "두 자연수의 공약수는 큰 수에서 작은 수를 뺀 {차}도 나누어떨어지게 한다. 두 수가 같아 뺄셈 결과가 $0$인 경우도 마찬가지이다.",
+        "example": {
+          "prompt": "$91$과 $98$의 최대공약수는?",
+          "answer": "$7$"
+        },
+        "studentC": "두 자연수의 공약수는 큰 수에서 작은 수를 뺀 □도 나누어떨어지게 한다. 두 수가 같아 뺄셈 결과가 $0$인 경우도 마찬가지이다.",
+        "answers": [
+          "차"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-03-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "두 자연수의 공약수는 두 수의 차(큰 수에서 작은 수를 뺀 수)와 어떤 관계가 있는지 쓰고, 이를 이용해 $91$과 $98$의 최대공약수를 구하시오.",
+        "bAnswer": "두 수의 공약수는 두 수의 차도 나누어떨어지게 한다. 곧 차의 약수이다. $98-91=7$이므로 공약수는 $7$의 약수인 $1$ 또는 $7$이다. $91=7\\times13$, $98=7\\times14$로 둘 다 $7$로 나누어떨어지므로 최대공약수는 $7$이다.",
+        "bGoal": "공약수가 두 수의 차의 약수임을 이용해 최대공약수 후보를 좁힐 수 있다.",
+        "bReason": "제목만으로는 공약수와 차 사이의 무슨 관계를 묻는지 알 수 없다. '차'의 뜻을 괄호로 밝히고, 차가 작아 이 성질이 쓸모 있는 예를 넣었다.",
+        "cDecision": "rewrite",
+        "cAfter": "두 자연수의 공약수는 두 수의 {차}도 나누어떨어지게 한다. 예를 들어 $91$과 $98$의 공약수는 $98-91=7$도 나누어떨어지게 한다. 두 수가 같아 뺄셈 결과가 $0$일 때도 마찬가지이다.",
+        "cAnswers": [
+          "차"
+        ],
+        "cReason": "원문 '큰 수에서 작은 수를 뺀 □'에는 '값', '수'도 들어가 답이 흔들린다. 빈칸 앞 설명을 줄이고 예를 붙여 '차'로 정해지게 했다. 두 수가 같은 경우도 그대로 두었다.",
+        "exampleNeeded": true,
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 수의 공약수는 두 수의 차도 나누어떨어지게 한다(차의 약수이다)"
+            ]
+          },
+          {
+            "anyOf": [
+              "$98-91=7$이므로 공약수는 $1$ 또는 $7$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 수 모두 $7$로 나누어떨어지므로 최대공약수는 $7$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "application",
+        "roleReason": "차의 약수로 공약수 후보 좁히기",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 989,
+        "part": "m1plus",
+        "sourceFingerprint": "baa7cf27a73749ac8822a8f119e4ee60c67b12baa47c3646dcf92eeb2441005a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 989
+        },
+        "directReview": null,
+        "cMarkedSentence": "두 자연수의 공약수는 두 수의 {차}도 나누어떨어지게 한다. 예를 들어 $91$과 $98$의 공약수는 $98-91=7$도 나누어떨어지게 한다. 두 수가 같아 뺄셈 결과가 $0$일 때도 마찬가지이다.",
+        "cSlotAnswers": [
+          "차"
+        ],
+        "cStudentSentence": "두 자연수의 공약수는 두 수의 □도 나누어떨어지게 한다. 예를 들어 $91$과 $98$의 공약수는 $98-91=7$도 나누어떨어지게 한다. 두 수가 같아 뺄셈 결과가 $0$일 때도 마찬가지이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "차",
+            "equivalentAnswers": [
+              "차",
+              "차이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "차",
+            "accept": [
+              "차이"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "차",
+            "차이"
+          ]
+        ],
+        "proposalFingerprint": "6543fe8f4462d2d885c0bb052645beb77aca4fecb3fcc22616e0afbb3d49d1dc"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-08-01-c2",
+        "section": "중2::8. 피타고라스 정리::피타고라스 정리",
+        "term": "직각을 낀 두 변",
+        "kind": "정의",
+        "level": "하",
+        "definition": "직각삼각형의 세 변 가운데 직각을 이루는 둘을 {직각을 낀 두 변}이라 하고, 나머지 가장 긴 변이 {빗변}이다.",
+        "studentC": "직각삼각형의 세 변 가운데 직각을 이루는 둘을 □이라 하고, 나머지 가장 긴 변이 □이다.",
+        "answers": [
+          "직각을 낀 두 변",
+          "빗변"
+        ]
+      },
+      "proposal": {
+        "id": "m2-08-01-c2",
+        "learningRole": "naming",
+        "roleReason": "직각을 이루는 두 변과 빗변의 이름",
+        "bDecision": "rewrite",
+        "bPrompt": "직각삼각형에서 직각을 이루는 두 변과 나머지 한 변을 각각 무엇이라고 부르는가?",
+        "bAnswer": "직각을 이루는 두 변은 직각을 낀 두 변이고, 나머지 한 변은 빗변이다.",
+        "bGoal": "직각삼각형의 변 이름 구별",
+        "bReason": "두 종류의 변 이름을 각각 답하도록 대상 변을 나누어 물었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직각을 낀 두 변"
+            ]
+          },
+          {
+            "anyOf": [
+              "빗변"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "두 이름을 위치 설명과 함께 묻는 짧은 정의 빈칸이다.",
+        "authorBatch": 49,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 707,
+        "part": "m2",
+        "sourceFingerprint": "c21bbf26cc0d4b422c17d35d2ce499220d52039887e62ff2db867bd3b64e5632",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 707
+        },
+        "directReview": null,
+        "cFrozenSentence": "직각삼각형의 세 변 가운데 직각을 이루는 둘을 □이라 하고, 나머지 가장 긴 변이 □이다.",
+        "cFrozenDefinition": "직각삼각형의 세 변 가운데 직각을 이루는 둘을 {직각을 낀 두 변}이라 하고, 나머지 가장 긴 변이 {빗변}이다.",
+        "cFrozenAnswers": [
+          "직각을 낀 두 변",
+          "빗변"
+        ],
+        "cMarkedSentence": "직각삼각형의 세 변 가운데 직각을 이루는 둘을 {직각을 낀 두 변}이라 하고, 나머지 가장 긴 변이 {빗변}이다.",
+        "cSlotAnswers": [
+          "직각을 낀 두 변",
+          "빗변"
+        ],
+        "cStudentSentence": "직각삼각형의 세 변 가운데 직각을 이루는 둘을 □이라 하고, 나머지 가장 긴 변이 □이다.",
+        "cAnswers": [
+          "직각을 낀 두 변",
+          "빗변"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "직각을 낀 두 변",
+            "equivalentAnswers": [
+              "직각을 낀 두 변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "빗변",
+            "equivalentAnswers": [
+              "빗변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "직각을 낀 두 변"
+          ],
+          [
+            "빗변"
+          ]
+        ],
+        "proposalFingerprint": "5645264ebe7f8dfef01d7f6a24a9ea436de84489a57c2de944f286123b732bb1"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-02-01-xc17",
+        "section": "중3::2. 다항식의 곱셈과 인수분해::다항식의 곱셈",
+        "term": "부호를 바꾼 식을 곱해 유리화하는 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "서로 다른 양의 유리수 $a$, $b$에 대해 분모가 $\\sqrt{a}+\\sqrt{b}$인 분수를 유리화할 때 분자와 분모에 $\\sqrt{a}-\\sqrt{b}$를 곱한다. 가운데 두 항이 지워져 분모가 $0$이 아닌 {유리수} $a-b$가 된다. 같은 부호의 식을 곱하면 $2\\sqrt{ab}$ 항이 남는다.",
+        "studentC": "서로 다른 양의 유리수 $a$, $b$에 대해 분모가 $\\sqrt{a}+\\sqrt{b}$인 분수를 유리화할 때 분자와 분모에 $\\sqrt{a}-\\sqrt{b}$를 곱한다. 가운데 두 항이 지워져 분모가 $0$이 아닌 □ $a-b$가 된다. 같은 부호의 식을 곱하면 $2\\sqrt{ab}$ 항이 남는다.",
+        "answers": [
+          "유리수"
+        ]
+      },
+      "proposal": {
+        "id": "m3-02-01-xc17",
+        "learningRole": "reason",
+        "roleReason": "같은 부호를 곱하면 $2\\sqrt{ab}$가 남음",
+        "bDecision": "rewrite",
+        "bPrompt": "서로 다른 양의 유리수 $a$, $b$에 대하여 분모가 $\\sqrt{a}+\\sqrt{b}$인 분수를 유리화할 때, 분모와 분자에 $\\sqrt{a}+\\sqrt{b}$가 아니라 $\\sqrt{a}-\\sqrt{b}$를 곱하는 까닭을 두 곱의 결과를 비교하여 설명하시오.",
+        "bAnswer": "$(\\sqrt{a}+\\sqrt{b})(\\sqrt{a}-\\sqrt{b})=a-b$는 가운데 두 항이 지워져 $0$이 아닌 유리수가 되지만, $(\\sqrt{a}+\\sqrt{b})^2=a+b+2\\sqrt{ab}$는 $2\\sqrt{ab}$ 항이 남아 분모가 유리수가 된다고 할 수 없기 때문이다.",
+        "bGoal": "부호를 바꾼 식을 곱하는 까닭",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\sqrt{a}-\\sqrt{b}$를 곱하면 분모가 $a-b$가 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\sqrt{a}+\\sqrt{b}$를 곱하면 $2\\sqrt{ab}$ 항이 남는다"
+            ]
+          }
+        ],
+        "bReason": "c8과 달리 두 선택의 결과 비교를 묻도록 까닭에 초점을 두었다.",
+        "cDecision": "rewrite",
+        "cAfter": "서로 다른 양의 유리수 $a$, $b$에 대하여 분모 $\\sqrt{a}+\\sqrt{b}$에 $\\sqrt{a}-\\sqrt{b}$를 곱하면 분모가 {$a-b$}가 되지만, $\\sqrt{a}+\\sqrt{b}$를 곱하면 분모에 {$2\\sqrt{ab}$} 항이 남는다.",
+        "cAnswers": [
+          "$a-b$",
+          "$2\\sqrt{ab}$"
+        ],
+        "cReason": "'유리수' 빈칸은 유리화라는 말로 짐작되어 두 곱의 결과 비교로 바꾸었다.",
+        "authorBatch": 54,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3348,
+        "part": "m3plus",
+        "sourceFingerprint": "abafea186d1fbd7219bfbdc27dd76260fd7ee55636d063673f48825222fbcd84",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3348
+        },
+        "directReview": null,
+        "cMarkedSentence": "서로 다른 양의 유리수 $a$, $b$에 대하여 분모 $\\sqrt{a}+\\sqrt{b}$에 $\\sqrt{a}-\\sqrt{b}$를 곱하면 분모가 {$a-b$}가 되지만, $\\sqrt{a}+\\sqrt{b}$를 곱하면 분모에 {$2\\sqrt{ab}$} 항이 남는다.",
+        "cSlotAnswers": [
+          "$a-b$",
+          "$2\\sqrt{ab}$"
+        ],
+        "cStudentSentence": "서로 다른 양의 유리수 $a$, $b$에 대하여 분모 $\\sqrt{a}+\\sqrt{b}$에 $\\sqrt{a}-\\sqrt{b}$를 곱하면 분모가 □가 되지만, $\\sqrt{a}+\\sqrt{b}$를 곱하면 분모에 □ 항이 남는다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$a-b$",
+            "equivalentAnswers": [
+              "$a-b$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$2\\sqrt{ab}$",
+            "equivalentAnswers": [
+              "$2\\sqrt{ab}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$a-b$"
+          ],
+          [
+            "$2\\sqrt{ab}$"
+          ]
+        ],
+        "proposalFingerprint": "460998d8f8822ee1e413ecf41f9782a2cf6e5de5c69af109aa972c4fd5a2e445"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-02-02-xc5",
+        "section": "중3::2. 다항식의 곱셈과 인수분해::인수분해",
+        "term": "곱의 꼴로 끝내기",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$x^2+3x+2=x(x+3)+2$처럼 끝이 {덧셈}이면 인수분해가 아니다 — 식 전체가 {곱}의 꼴이어야 한다.",
+        "studentC": "$x^2+3x+2=x(x+3)+2$처럼 끝이 □이면 인수분해가 아니다 — 식 전체가 □의 꼴이어야 한다.",
+        "answers": [
+          "덧셈",
+          "곱"
+        ]
+      },
+      "proposal": {
+        "id": "m3-02-02-xc5",
+        "learningRole": "definition",
+        "roleReason": "식 전체가 곱의 꼴이어야 인수분해",
+        "bDecision": "rewrite",
+        "bPrompt": "$x^2+3x+2=x(x+3)+2$로 고친 것이 인수분해가 아닌 까닭을 설명하고, $x^2+3x+2$를 바르게 인수분해하시오.",
+        "bAnswer": "마지막이 $+2$인 덧셈이라 식 전체가 곱의 꼴이 아니기 때문이다. $x^2+3x+2=(x+1)(x+2)$",
+        "bGoal": "인수분해 결과의 꼴 판단",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "식 전체가 곱의 꼴이 아니다",
+              "마지막이 덧셈이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$(x+1)(x+2)$"
+            ]
+          }
+        ],
+        "bReason": "잘못된 예를 주어 곱의 꼴 조건을 판단하게 했다.",
+        "cDecision": "keep",
+        "cReason": "예가 있고 덧셈과 곱을 대비하는 짧은 빈칸이다.",
+        "authorBatch": 54,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3357,
+        "part": "m3plus",
+        "sourceFingerprint": "dd076ca9c308f08e2f76f5e5b5b51d70048720522f0ff8b3b8bfd137d6fe0d97",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3357
+        },
+        "directReview": null,
+        "cFrozenSentence": "$x^2+3x+2=x(x+3)+2$처럼 끝이 □이면 인수분해가 아니다 — 식 전체가 □의 꼴이어야 한다.",
+        "cFrozenDefinition": "$x^2+3x+2=x(x+3)+2$처럼 끝이 {덧셈}이면 인수분해가 아니다 — 식 전체가 {곱}의 꼴이어야 한다.",
+        "cFrozenAnswers": [
+          "덧셈",
+          "곱"
+        ],
+        "cMarkedSentence": "$x^2+3x+2=x(x+3)+2$처럼 끝이 {덧셈}이면 인수분해가 아니다 — 식 전체가 {곱}의 꼴이어야 한다.",
+        "cSlotAnswers": [
+          "덧셈",
+          "곱"
+        ],
+        "cStudentSentence": "$x^2+3x+2=x(x+3)+2$처럼 끝이 □이면 인수분해가 아니다 — 식 전체가 □의 꼴이어야 한다.",
+        "cAnswers": [
+          "덧셈",
+          "곱"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "덧셈",
+            "equivalentAnswers": [
+              "덧셈"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "곱",
+            "equivalentAnswers": [
+              "곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "덧셈"
+          ],
+          [
+            "곱"
+          ]
+        ],
+        "proposalFingerprint": "abd89d4b77f45a2fbca45df2c5db3f97ed4d8cbe95b1aeb2294c71c133fe7b4c"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-08-02-c7",
+        "section": "중2::8. 피타고라스 정리::피타고라스 정리의 활용",
+        "term": "피타고라스 정리를 이용한 직사각형의 성질",
+        "kind": "성질",
+        "level": "상",
+        "definition": "직사각형 안의 한 점에서 네 꼭짓점까지 선분을 그으면, {마주 보는} 두 꼭짓점까지의 길이의 {제곱의 합}이 서로 같다.",
+        "example": {
+          "prompt": "직사각형 $ABCD$ 안의 점 $P$에 대해 $\\overline{AP}=3,\\ \\overline{CP}=4,\\ \\overline{BP}=2$일 때 $\\overline{DP}^2$",
+          "answer": "$21$"
+        },
+        "studentC": "직사각형 안의 한 점에서 네 꼭짓점까지 선분을 그으면, □ 두 꼭짓점까지의 길이의 □이 서로 같다.",
+        "answers": [
+          "마주 보는",
+          "제곱의 합"
+        ]
+      },
+      "proposal": {
+        "id": "m2-08-02-c7",
+        "bDecision": "rewrite",
+        "bPrompt": "직사각형 $ABCD$의 꼭짓점은 $A$, $B$, $C$, $D$ 순서로 둘레를 따라 놓여 있다. 직사각형 내부의 한 점 $P$에 대해 $\\overline{PA}^2+\\overline{PC}^2$과 항상 같은 값을 갖는 식을 쓰고, 그 이유를 쓰시오.",
+        "bAnswer": "$\\overline{PB}^2+\\overline{PD}^2$이다. $P$에서 변 $AB$, $BC$, $CD$, $DA$에 내린 수선의 길이를 $p$, $q$, $r$, $s$라 하면 $\\overline{PA}^2=p^2+s^2$, $\\overline{PC}^2=q^2+r^2$, $\\overline{PB}^2=p^2+q^2$, $\\overline{PD}^2=r^2+s^2$이므로 양쪽 모두 $p^2+q^2+r^2+s^2$이다.",
+        "bGoal": "직사각형 안의 점에서 마주 보는 꼭짓점 짝의 제곱의 합이 같음",
+        "bReason": "꼭짓점 순서와 점 $P$의 위치를 밝혀 짝지을 식을 학생이 찾게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{PB}^2+\\overline{PD}^2$",
+              "$\\overline{PD}^2+\\overline{PB}^2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$P$에서 네 변에 수선을 내리면 양쪽 모두 네 수선 길이의 제곱의 합이 된다",
+              "각 꼭짓점까지의 거리의 제곱을 $P$에서 두 변까지의 거리의 제곱의 합으로 나타내면 양쪽이 같다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "'마주 보는'과 '제곱의 합' 두 핵심이 짧은 문장에 드러나 유지",
+        "studentLabel": "직사각형 안의 점과 네 꼭짓점",
+        "learningRole": "reason",
+        "roleReason": "수선으로 나눈 직각삼각형으로 두 합이 같음을 설명",
+        "authorBatch": 50,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 721,
+        "part": "m2",
+        "sourceFingerprint": "404d8d5dfa60931ebf6e0e23cc2a86605fe33008e266e5142e5102def14908ac",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 721
+        },
+        "directReview": null,
+        "cFrozenSentence": "직사각형 안의 한 점에서 네 꼭짓점까지 선분을 그으면, □ 두 꼭짓점까지의 길이의 □이 서로 같다.",
+        "cFrozenDefinition": "직사각형 안의 한 점에서 네 꼭짓점까지 선분을 그으면, {마주 보는} 두 꼭짓점까지의 길이의 {제곱의 합}이 서로 같다.",
+        "cFrozenAnswers": [
+          "마주 보는",
+          "제곱의 합"
+        ],
+        "cMarkedSentence": "직사각형 안의 한 점에서 네 꼭짓점까지 선분을 그으면, {마주 보는} 두 꼭짓점까지의 길이의 {제곱의 합}이 서로 같다.",
+        "cSlotAnswers": [
+          "마주 보는",
+          "제곱의 합"
+        ],
+        "cStudentSentence": "직사각형 안의 한 점에서 네 꼭짓점까지 선분을 그으면, □ 두 꼭짓점까지의 길이의 □이 서로 같다.",
+        "cAnswers": [
+          "마주 보는",
+          "제곱의 합"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "마주 보는",
+            "equivalentAnswers": [
+              "마주 보는"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "제곱의 합",
+            "equivalentAnswers": [
+              "제곱의 합"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "마주 보는"
+          ],
+          [
+            "제곱의 합"
+          ]
+        ],
+        "proposalFingerprint": "9d08a296fb8293f963196920890b785eaa83be91b66edb935b422f75fa820f6c"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-02-02-xc14",
+        "section": "중3::2. 다항식의 곱셈과 인수분해::인수분해",
+        "term": "가운데 항의 계수가 두 값인 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$m\\ne 0$일 때 첫 항이 $x^2$, 끝 항이 $m^2$인 완전제곱식의 가운데 항의 계수는 {$2m$과 $-2m$} 두 값이다 — $(x+m)^2$과 $(x-m)^2$의 {끝 항}이 같기 때문이다.",
+        "studentC": "$m\\ne 0$일 때 첫 항이 $x^2$, 끝 항이 $m^2$인 완전제곱식의 가운데 항의 계수는 □ 두 값이다 — $(x+m)^2$과 $(x-m)^2$의 □이 같기 때문이다.",
+        "answers": [
+          "$2m$과 $-2m$",
+          "끝 항"
+        ]
+      },
+      "proposal": {
+        "id": "m3-02-02-xc14",
+        "learningRole": "reason",
+        "roleReason": "$(x\\pm m)^2$의 끝 항이 같아 $\\pm 2m$",
+        "bDecision": "rewrite",
+        "bPrompt": "$m\\ne 0$일 때 $x^2+kx+m^2$이 완전제곱식이 되는 $k$의 값을 모두 구하고, 그 까닭을 설명하시오.",
+        "bAnswer": "$k=2m$ 또는 $k=-2m$이다. $(x+m)^2$과 $(x-m)^2$의 끝 항이 모두 $m^2$이기 때문이다.",
+        "bGoal": "가운데 항 계수가 두 값인 까닭",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2m$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$-2m$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$(x+m)^2$과 $(x-m)^2$의 끝 항이 같다"
+            ]
+          }
+        ],
+        "bReason": "값이 몇 개인지 말하지 않고 모두 구하게 하여 답 누출을 막았다.",
+        "cDecision": "keep",
+        "cReason": "두 값과 근거를 묻는 빈칸으로 조건이 분명하다.",
+        "authorBatch": 54,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3366,
+        "part": "m3plus",
+        "sourceFingerprint": "f3840f9a0c87b11f703a1cc2c4954c1152ae89d68f8e16b9e829aa679b1be552",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3366
+        },
+        "directReview": null,
+        "cFrozenSentence": "$m\\ne 0$일 때 첫 항이 $x^2$, 끝 항이 $m^2$인 완전제곱식의 가운데 항의 계수는 □ 두 값이다 — $(x+m)^2$과 $(x-m)^2$의 □이 같기 때문이다.",
+        "cFrozenDefinition": "$m\\ne 0$일 때 첫 항이 $x^2$, 끝 항이 $m^2$인 완전제곱식의 가운데 항의 계수는 {$2m$과 $-2m$} 두 값이다 — $(x+m)^2$과 $(x-m)^2$의 {끝 항}이 같기 때문이다.",
+        "cFrozenAnswers": [
+          "$2m$과 $-2m$",
+          "끝 항"
+        ],
+        "cMarkedSentence": "$m\\ne 0$일 때 첫 항이 $x^2$, 끝 항이 $m^2$인 완전제곱식의 가운데 항의 계수는 {$2m$과 $-2m$} 두 값이다 — $(x+m)^2$과 $(x-m)^2$의 {끝 항}이 같기 때문이다.",
+        "cSlotAnswers": [
+          "$2m$과 $-2m$",
+          "끝 항"
+        ],
+        "cStudentSentence": "$m\\ne 0$일 때 첫 항이 $x^2$, 끝 항이 $m^2$인 완전제곱식의 가운데 항의 계수는 □ 두 값이다 — $(x+m)^2$과 $(x-m)^2$의 □이 같기 때문이다.",
+        "cAnswers": [
+          "$2m$과 $-2m$",
+          "끝 항"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$2m$과 $-2m$",
+            "equivalentAnswers": [
+              "$2m$과 $-2m$",
+              "$\\pm 2m$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "끝 항",
+            "equivalentAnswers": [
+              "끝 항"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$2m$과 $-2m$",
+            "accept": [
+              "$\\pm 2m$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$2m$과 $-2m$",
+            "$\\pm 2m$"
+          ],
+          [
+            "끝 항"
+          ]
+        ],
+        "proposalFingerprint": "4c7aa363b964fc68b48338943aca7506d02bbc98ca19c05fa0bd80fa884656dc"
+      }
+    }
+  ]
+}

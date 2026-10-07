@@ -1,0 +1,2106 @@
+{
+  "sourceCommit": "13bf05dce",
+  "directAuthor": "Codex after actual current-hash feedback and full current field reading",
+  "notFinalReread": true,
+  "entries": [
+    {
+      "id": "e4-2-4-3-xc13",
+      "sourceIndex": 2484,
+      "beforeProposal": {
+        "sourceIndex": 2484,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "sourceFingerprint": "2660294d94fa1f60d416414babd153096564aa66d663ef610ab37c8fbb381545",
+        "proposalFingerprint": "8e28d1001c05f748f1b87ed78a7b7a76887c3018e8ef27e4c650f62bd4350261",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-3-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "직선 가와 거리가 $2\\,\\mathrm{cm}$인 평행선을 그리는 방법을 쓰시오.",
+        "bAnswer": "가 위의 두 점에서 수선을 긋고 같은 쪽으로 $2\\,\\mathrm{cm}$씩 잰 두 점을 찍어 두 점을 잇는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 점에서 수선을 긋는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 쪽으로 $2\\,\\mathrm{cm}$씩 잰다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 점을 잇는다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "거리를 정해 평행선 긋기",
+        "bReason": "작도 순서를 묻는다",
+        "cDecision": "rewrite",
+        "cAfter": "직선 가와 거리가 $2\\,\\mathrm{cm}$인 평행선은 직선 가 위의 두 점에서 수선을 긋고 두 수선 위에 직선 가에서 {같은} 쪽으로 $2\\,\\mathrm{cm}$씩 잰 두 점을 이어 긋는다.",
+        "cReason": "빈칸 위치를 분명히 해 답 범위를 좁힘",
+        "cSlotEquivalents": [
+          [
+            "한"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "거리를 정해 평행선 긋기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직선 가와 거리가 $2\\,\\mathrm{cm}$인 평행선은 직선 가 위의 두 점에서 수선을 긋고 두 수선 위에 직선 가에서 {같은} 쪽으로 $2\\,\\mathrm{cm}$씩 잰 두 점을 이어 긋는다.",
+        "cStudentSentence": "직선 가와 거리가 $2\\,\\mathrm{cm}$인 평행선은 직선 가 위의 두 점에서 수선을 긋고 두 수선 위에 직선 가에서 □ 쪽으로 $2\\,\\mathrm{cm}$씩 잰 두 점을 이어 긋는다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같은",
+            "equivalents": [
+              "한"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "직선 가와 거리가 $2\\,\\mathrm{cm}$인 평행선을 그리는 방법을 쓰시오.",
+          "answer": "가 위의 두 점에서 수선을 긋고 같은 쪽으로 $2\\,\\mathrm{cm}$씩 잰 두 점을 찍어 두 점을 잇는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "두 점에서 수선을 긋는다"
+              ]
+            },
+            {
+              "anyOf": [
+                "같은 쪽으로 $2\\,\\mathrm{cm}$씩 잰다"
+              ]
+            },
+            {
+              "anyOf": [
+                "두 점을 잇는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "직선 가와 거리가 $2\\,\\mathrm{cm}$인 평행선은 직선 가 위의 두 점에서 수선을 긋고 두 수선 위에 직선 가에서 {같은} 쪽으로 $2\\,\\mathrm{cm}$씩 잰 두 점을 이어 긋는다.",
+          "acceptedAnswers": [
+            [
+              "같은",
+              "한"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-4-3-xc13",
+          "sourceIndex": 2484,
+          "proposalFingerprint": "8e28d1001c05f748f1b87ed78a7b7a76887c3018e8ef27e4c650f62bd4350261",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "방법을자유롭게묻는데두수선만강제하므로한수선에서2cm표시후평행작도하는다른바른방법도허용한다.",
+          "cReason": "같은쪽의동일2cm두점이라는작도조건이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직선 가 위의 두 점에서 수선을 긋고 같은 쪽으로 각각 $2\\,\\mathrm{cm}$ 떨어진 두 점을 찍어 잇는다",
+              "직선 가에 수선을 긋고 가에서 $2\\,\\mathrm{cm}$ 떨어진 점을 찍은 뒤 그 점을 지나는 가의 평행선을 긋는다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-4-3-xc15",
+      "sourceIndex": 2486,
+      "beforeProposal": {
+        "sourceIndex": 2486,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "sourceFingerprint": "c2c67ec7e6703a007032ac0b64287106b5468f0d6ecf0d4211be6815b7949ccf",
+        "proposalFingerprint": "2d187f658d13c72d1a6f6d63f575530ee0606042ed8c1c06b869fd23ab45fbd5",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-3-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "평행한 두 직선 사이의 거리가 $0$이 될 수 있습니까? 그 까닭을 쓰시오.",
+        "bAnswer": "없다. 거리가 $0$이면 두 직선이 만나는데 평행선은 만나지 않기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0$이 될 수 없다",
+              "없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "평행선은 만나지 않는다",
+              "거리가 $0$이면 만난다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "평행선 거리는 $0$보다 큼",
+        "bReason": "만나지 않음과 거리의 관계를 묻는다",
+        "cDecision": "rewrite",
+        "cAfter": "평행선은 만나지 않으므로 두 직선 사이의 거리는 $0$보다 {크다}.",
+        "cReason": "끝 구절 대신 크다/작다 비교 빈칸",
+        "cSlotEquivalents": [
+          [
+            "커진다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "거리가 없어지지 않는 까닭",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행선은 만나지 않으므로 두 직선 사이의 거리는 $0$보다 {크다}.",
+        "cStudentSentence": "평행선은 만나지 않으므로 두 직선 사이의 거리는 $0$보다 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "크다",
+            "equivalents": [
+              "커진다"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "평행한 두 직선 사이의 거리가 $0$이 될 수 있습니까? 그 까닭을 쓰시오.",
+          "answer": "없다. 거리가 $0$이면 두 직선이 만나는데 평행선은 만나지 않기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$0$이 될 수 없다",
+                "없다"
+              ]
+            },
+            {
+              "anyOf": [
+                "평행선은 만나지 않는다",
+                "거리가 $0$이면 만난다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "평행선은 만나지 않으므로 두 직선 사이의 거리는 $0$보다 {크다}.",
+          "acceptedAnswers": [
+            [
+              "크다",
+              "커진다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-4-3-xc15",
+          "sourceIndex": 2486,
+          "proposalFingerprint": "2d187f658d13c72d1a6f6d63f575530ee0606042ed8c1c06b869fd23ab45fbd5",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "평행선안만남으로0거리불가와양의거리의이유이다.",
+          "cReason": "크다와커진다는상태와변화가다른답이므로커진다를제거한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cSlotEquivalents": [
+          []
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-4-3-xc19",
+      "sourceIndex": 2490,
+      "beforeProposal": {
+        "sourceIndex": 2490,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "sourceFingerprint": "90aa79c4b4ed96b41304cc476b7f349092694fb61c53b334746760bbd25ad6cc",
+        "proposalFingerprint": "855839c742cbc27d054c4385d49e8e371cd35a5073ea65bcbc8e784b52326f36",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-3-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "한 직선과 거리가 $3\\,\\mathrm{cm}$인 평행선은 모두 몇 개 그을 수 있습니까? 어느 위치에 그을 수 있는지 설명하시오.",
+        "bAnswer": "$2$개이다. 직선의 한쪽과 반대쪽에 $3\\,\\mathrm{cm}$ 떨어진 평행선을 하나씩 그을 수 있다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2$개",
+              "두 개"
+            ]
+          },
+          {
+            "anyOf": [
+              "직선의 양쪽에 하나씩"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "같은 거리 평행선의 개수",
+        "bReason": "개수와 위치를 함께 묻는다",
+        "cDecision": "rewrite",
+        "cAfter": "한 직선과 거리가 $3\\,\\mathrm{cm}$인 평행선은 그 직선의 위쪽과 아래쪽에 하나씩, 모두 {$2$}개 그을 수 있다.",
+        "cReason": "정답이 보이는 구절을 숫자 빈칸으로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "두"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "거리가 같은 평행선의 개수",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "한 직선과 거리가 $3\\,\\mathrm{cm}$인 평행선은 그 직선의 위쪽과 아래쪽에 하나씩, 모두 {$2$}개 그을 수 있다.",
+        "cStudentSentence": "한 직선과 거리가 $3\\,\\mathrm{cm}$인 평행선은 그 직선의 위쪽과 아래쪽에 하나씩, 모두 □개 그을 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$2$",
+            "equivalents": [
+              "두"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "한 직선과 거리가 $3\\,\\mathrm{cm}$인 평행선은 모두 몇 개 그을 수 있습니까? 어느 위치에 그을 수 있는지 설명하시오.",
+          "answer": "$2$개이다. 직선의 한쪽과 반대쪽에 $3\\,\\mathrm{cm}$ 떨어진 평행선을 하나씩 그을 수 있다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$2$개",
+                "두 개"
+              ]
+            },
+            {
+              "anyOf": [
+                "직선의 양쪽에 하나씩"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "한 직선과 거리가 $3\\,\\mathrm{cm}$인 평행선은 그 직선의 위쪽과 아래쪽에 하나씩, 모두 {$2$}개 그을 수 있다.",
+          "acceptedAnswers": [
+            [
+              "$2$",
+              "두"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-4-3-xc19",
+          "sourceIndex": 2490,
+          "proposalFingerprint": "855839c742cbc27d054c4385d49e8e371cd35a5073ea65bcbc8e784b52326f36",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "직선양쪽의3cm평행선두개와위치를설명한다.",
+          "cReason": "임의직선의위아래대신양쪽으로표현하고하나씩이라는정답힌트를뺀다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "한 직선과 거리가 $3\\,\\mathrm{cm}$인 평행선을 그 직선의 양쪽에 그릴 수 있다. 그릴 수 있는 평행선은 모두 {$2$}개이다.",
+        "cReason": "직선의 방향을 가정한 위아래를 양쪽으로 바꾸고 하나씩이라는 답 힌트를 제거한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-4-3-xc20",
+      "sourceIndex": 2491,
+      "beforeProposal": {
+        "sourceIndex": 2491,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "sourceFingerprint": "011bc3723441ae645d5abb54c44502130a47873b84f6f5eb9133595ed418c1f4",
+        "proposalFingerprint": "025b3e2be8ea55d07e6e12c5a1ea0aedc4859c9a185705e7a1051796c243f3d5",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-3-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "평행선 나와 다 사이의 거리가 $7\\,\\mathrm{cm}$이고, 평행선 가가 나와 다 사이에 있으며 가와 나 사이의 거리가 $4\\,\\mathrm{cm}$입니다. 가와 다 사이의 거리를 구하는 방법과 답을 쓰시오.",
+        "bAnswer": "큰 거리에서 한쪽 거리를 뺀다. $7-4=3$이므로 $3\\,\\mathrm{cm}$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$7-4$",
+              "두 거리의 차를 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3\\,\\mathrm{cm}$"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "사이에 있는 직선과의 거리",
+        "bReason": "위치 관계를 글로 자립시켜 차를 묻는다",
+        "cDecision": "rewrite",
+        "cAfter": "가와 나 사이가 $4\\,\\mathrm{cm}$, 나와 다 사이가 $7\\,\\mathrm{cm}$이고 가가 나와 다 사이에 있으면 가와 다 사이의 거리는 $7\\,\\mathrm{cm}$와 $4\\,\\mathrm{cm}$의 {차}인 $3\\,\\mathrm{cm}$이다.",
+        "cReason": "숨은 구절 대신 합/차 선택 빈칸",
+        "cSlotEquivalents": [
+          [
+            "뺀 값"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "두 평행선 사이에 놓인 직선과의 거리",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "가와 나 사이가 $4\\,\\mathrm{cm}$, 나와 다 사이가 $7\\,\\mathrm{cm}$이고 가가 나와 다 사이에 있으면 가와 다 사이의 거리는 $7\\,\\mathrm{cm}$와 $4\\,\\mathrm{cm}$의 {차}인 $3\\,\\mathrm{cm}$이다.",
+        "cStudentSentence": "가와 나 사이가 $4\\,\\mathrm{cm}$, 나와 다 사이가 $7\\,\\mathrm{cm}$이고 가가 나와 다 사이에 있으면 가와 다 사이의 거리는 $7\\,\\mathrm{cm}$와 $4\\,\\mathrm{cm}$의 □인 $3\\,\\mathrm{cm}$이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "차",
+            "equivalents": [
+              "뺀 값"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "평행선 나와 다 사이의 거리가 $7\\,\\mathrm{cm}$이고, 평행선 가가 나와 다 사이에 있으며 가와 나 사이의 거리가 $4\\,\\mathrm{cm}$입니다. 가와 다 사이의 거리를 구하는 방법과 답을 쓰시오.",
+          "answer": "큰 거리에서 한쪽 거리를 뺀다. $7-4=3$이므로 $3\\,\\mathrm{cm}$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$7-4$",
+                "두 거리의 차를 구한다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$3\\,\\mathrm{cm}$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "가와 나 사이가 $4\\,\\mathrm{cm}$, 나와 다 사이가 $7\\,\\mathrm{cm}$이고 가가 나와 다 사이에 있으면 가와 다 사이의 거리는 $7\\,\\mathrm{cm}$와 $4\\,\\mathrm{cm}$의 {차}인 $3\\,\\mathrm{cm}$이다.",
+          "acceptedAnswers": [
+            [
+              "차",
+              "뺀 값"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-4-3-xc20",
+          "sourceIndex": 2491,
+          "proposalFingerprint": "025b3e2be8ea55d07e6e12c5a1ea0aedc4859c9a185705e7a1051796c243f3d5",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "가가나와다사이에있다는조건으로거리7-4=3cm를구한다.",
+          "cReason": "가·나·다를서로평행한직선으로C에명시한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "서로 평행한 직선 가, 나, 다가 있다. 가와 나 사이의 거리는 $4\\,\\mathrm{cm}$, 나와 다 사이의 거리는 $7\\,\\mathrm{cm}$이고 가가 나와 다 사이에 있다. 가와 다 사이의 거리는 $7\\,\\mathrm{cm}$와 $4\\,\\mathrm{cm}$의 {차}인 $3\\,\\mathrm{cm}$이다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-4-3-xc21",
+      "sourceIndex": 2492,
+      "beforeProposal": {
+        "sourceIndex": 2492,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "sourceFingerprint": "b9ff13a6ae23e65d5647ad1a57de5cb9bb7df38bab0cf51ede54104f248c6433",
+        "proposalFingerprint": "cb25956bf3ccd460e5ff16a472161a8e581e021f77dc868a0ebeb9007752caae",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-3-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "$2\\,\\mathrm{cm}$ 간격으로 평행선 $5$개를 그었습니다. 맨 바깥 두 직선 사이의 거리는 얼마이며 어떻게 구합니까?",
+        "bAnswer": "간격이 $5-1=4$개이므로 $2\\times4=8$, $8\\,\\mathrm{cm}$이다. $10\\,\\mathrm{cm}$가 아니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "간격이 $4$개",
+              "직선 수보다 하나 적다",
+              "$5-1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8\\,\\mathrm{cm}$"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "맨 바깥 두 직선의 거리",
+        "bReason": "원문 예제를 값과 방법으로 묻는다",
+        "cDecision": "rewrite",
+        "cAfter": "$2\\,\\mathrm{cm}$ 간격으로 평행선 $5$개를 그으면 맨 바깥 두 직선 사이의 거리는 $2\\,\\mathrm{cm}$ 간격이 {$4$}개이므로 $8\\,\\mathrm{cm}$이다.",
+        "cReason": "숨은 규칙 구절 대신 구체 개수 빈칸",
+        "cSlotEquivalents": [
+          [
+            "넷"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "같은 간격으로 그은 평행선의 바깥 거리",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$2\\,\\mathrm{cm}$ 간격으로 평행선 $5$개를 그으면 맨 바깥 두 직선 사이의 거리는 $2\\,\\mathrm{cm}$ 간격이 {$4$}개이므로 $8\\,\\mathrm{cm}$이다.",
+        "cStudentSentence": "$2\\,\\mathrm{cm}$ 간격으로 평행선 $5$개를 그으면 맨 바깥 두 직선 사이의 거리는 $2\\,\\mathrm{cm}$ 간격이 □개이므로 $8\\,\\mathrm{cm}$이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$4$",
+            "equivalents": [
+              "넷"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$2\\,\\mathrm{cm}$ 간격으로 평행선 $5$개를 그었습니다. 맨 바깥 두 직선 사이의 거리는 얼마이며 어떻게 구합니까?",
+          "answer": "간격이 $5-1=4$개이므로 $2\\times4=8$, $8\\,\\mathrm{cm}$이다. $10\\,\\mathrm{cm}$가 아니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "간격이 $4$개",
+                "직선 수보다 하나 적다",
+                "$5-1$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$8\\,\\mathrm{cm}$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$2\\,\\mathrm{cm}$ 간격으로 평행선 $5$개를 그으면 맨 바깥 두 직선 사이의 거리는 $2\\,\\mathrm{cm}$ 간격이 {$4$}개이므로 $8\\,\\mathrm{cm}$이다.",
+          "acceptedAnswers": [
+            [
+              "$4$",
+              "넷"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-4-3-xc21",
+          "sourceIndex": 2492,
+          "proposalFingerprint": "cb25956bf3ccd460e5ff16a472161a8e581e021f77dc868a0ebeb9007752caae",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "다섯선사이네간격으로전체8cm를구하는방법이다.",
+          "cReason": "결과8cm로빈칸4를역복사하지않도록결과제공을뺀다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "$2\\,\\mathrm{cm}$ 간격으로 평행선 $5$개를 그으면 맨 바깥 두 직선 사이에는 $2\\,\\mathrm{cm}$ 간격이 {$4$}개 있다.",
+        "cReason": "전체 거리 8cm를 먼저 주지 않고 다섯 직선 사이의 간격 수를 직접 생각하게 한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-4-3-xc27",
+      "sourceIndex": 2494,
+      "beforeProposal": {
+        "sourceIndex": 2494,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "sourceFingerprint": "dcd94f13afa8bead9166a4091aae9941118ceac018260df5eb260c6d7fd20017",
+        "proposalFingerprint": "8a0e3ebd187d110228337658693efe7bcae775ec48718fe3ec71bddebbe7163b",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-3-xc27",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "definition",
+        "bGoal": "거리와 같은 선분은 수선",
+        "bReason": "xc2와 같은 목표",
+        "exclusionReason": "거리와 길이가 같은 선분이 수선이라는 목표가 xc2 B와 같다",
+        "cDecision": "keep",
+        "cReason": "수선 빈칸이 짧아 유지",
+        "cSlotEquivalents": [
+          [
+            "수직인 선분",
+            "수직선"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "거리와 길이가 같은 선분",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행선 사이를 잇는 선분 가운데 길이가 두 직선 사이의 거리와 같은 것은 {수선}뿐이다.",
+        "cStudentSentence": "평행선 사이를 잇는 선분 가운데 길이가 두 직선 사이의 거리와 같은 것은 □뿐이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "수선",
+            "equivalents": [
+              "수직인 선분",
+              "수직선"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "평행선 사이를 잇는 선분 가운데 길이가 두 직선 사이의 거리와 같은 것은 □뿐이다.",
+          "answers": [
+            "수선"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "평행선 사이를 잇는 선분 가운데 길이가 두 직선 사이의 거리와 같은 것은 {수선}뿐이다.",
+          "acceptedAnswers": [
+            [
+              "수선",
+              "수직인 선분",
+              "수직선"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc2와 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-4-3-xc27",
+          "sourceIndex": 2494,
+          "proposalFingerprint": "8a0e3ebd187d110228337658693efe7bcae775ec48718fe3ec71bddebbe7163b",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "definition",
+          "bDecision": "exclude",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "거리와같은선분의성질B는중복이다.",
+          "cReason": "수직선은수선·수직인선분과구별하여별칭에서제거한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cSlotEquivalents": [
+          [
+            "수직인 선분"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-4-3-xc28",
+      "sourceIndex": 2495,
+      "beforeProposal": {
+        "sourceIndex": 2495,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "sourceFingerprint": "1d903c8aa5314e02dd6923df1ca801c176d078ea417e6cd7726f449900122ae8",
+        "proposalFingerprint": "0df93a4f71fb6ca5b0841d4d19d907da876aceb10767969e61d21e1b9471546c",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-3-xc28",
+        "bDecision": "rewrite",
+        "bPrompt": "세로 $3\\,\\mathrm{cm}$인 직사각형과 세로 $4\\,\\mathrm{cm}$인 직사각형을 가로 한 변을 맞대어 위아래로 붙였습니다. 맨 위 변과 맨 아래 변 사이의 거리를 구하고 그 까닭을 쓰시오.",
+        "bAnswer": "$7\\,\\mathrm{cm}$이다. 각 직사각형의 세로가 위아래 변 사이의 거리이므로 $3+4=7$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$7\\,\\mathrm{cm}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 세로를 더한다",
+              "$3+4$"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "붙인 직사각형의 위아래 거리",
+        "bReason": "원문 상황을 완성 질문으로 만든다",
+        "cDecision": "rewrite",
+        "cAfter": "세로 $3\\,\\mathrm{cm}$인 직사각형과 세로 $4\\,\\mathrm{cm}$인 직사각형을 위아래로 붙이면 맨 위 변과 맨 아래 변 사이의 거리는 두 세로의 {합}인 $7\\,\\mathrm{cm}$이다.",
+        "cReason": "긴 구절 빈칸을 합 한 낱말로 줄임",
+        "cSlotEquivalents": [
+          [
+            "더한 값"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "붙인 직사각형의 위아래 거리",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "세로 $3\\,\\mathrm{cm}$인 직사각형과 세로 $4\\,\\mathrm{cm}$인 직사각형을 위아래로 붙이면 맨 위 변과 맨 아래 변 사이의 거리는 두 세로의 {합}인 $7\\,\\mathrm{cm}$이다.",
+        "cStudentSentence": "세로 $3\\,\\mathrm{cm}$인 직사각형과 세로 $4\\,\\mathrm{cm}$인 직사각형을 위아래로 붙이면 맨 위 변과 맨 아래 변 사이의 거리는 두 세로의 □인 $7\\,\\mathrm{cm}$이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "합",
+            "equivalents": [
+              "더한 값"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "세로 $3\\,\\mathrm{cm}$인 직사각형과 세로 $4\\,\\mathrm{cm}$인 직사각형을 가로 한 변을 맞대어 위아래로 붙였습니다. 맨 위 변과 맨 아래 변 사이의 거리를 구하고 그 까닭을 쓰시오.",
+          "answer": "$7\\,\\mathrm{cm}$이다. 각 직사각형의 세로가 위아래 변 사이의 거리이므로 $3+4=7$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$7\\,\\mathrm{cm}$"
+              ]
+            },
+            {
+              "anyOf": [
+                "두 세로를 더한다",
+                "$3+4$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "세로 $3\\,\\mathrm{cm}$인 직사각형과 세로 $4\\,\\mathrm{cm}$인 직사각형을 위아래로 붙이면 맨 위 변과 맨 아래 변 사이의 거리는 두 세로의 {합}인 $7\\,\\mathrm{cm}$이다.",
+          "acceptedAnswers": [
+            [
+              "합",
+              "더한 값"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-4-3-xc28",
+          "sourceIndex": 2495,
+          "proposalFingerprint": "0df93a4f71fb6ca5b0841d4d19d907da876aceb10767969e61d21e1b9471546c",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "두가로변맞댐을B에서명시하여세로3+4의거리7을구한다.",
+          "cReason": "C에도맞붙인변이가로변이라는조건을명시한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "세로 $3\\,\\mathrm{cm}$인 직사각형과 세로 $4\\,\\mathrm{cm}$인 직사각형을 가로 한 변을 맞대어 위아래로 붙였다. 맨 위 변과 맨 아래 변 사이의 거리는 두 세로의 {합}인 $7\\,\\mathrm{cm}$이다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-4-4-xc1",
+      "sourceIndex": 2496,
+      "beforeProposal": {
+        "sourceIndex": 2496,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "sourceFingerprint": "505e6b70b3fb1f77fe92b3c5c5794a281bbd9313a5a5fc7ef434729fda732fa9",
+        "proposalFingerprint": "d9052c6e5e38941abd0b700b8fa99db33a619486f2cabd70822d4f5b8a7db378",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-4-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "사다리꼴은 어떤 사각형입니까? 평행한 변이 어디에 있는지 함께 쓰시오.",
+        "bAnswer": "마주 보는 한 쌍의 변이 서로 평행한 사각형이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "마주 보는 변이 평행하다",
+              "평행한 변이 한 쌍 이상 있다"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "사다리꼴의 뜻",
+        "bReason": "정의와 평행한 변의 자리를 묻는다",
+        "cDecision": "keep",
+        "cReason": "마주 보는 낱말 빈칸이라 유지",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "사다리꼴의 평행한 변의 자리",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "사다리꼴에서 서로 평행한 두 변은 {마주 보는} 변이다.",
+        "cStudentSentence": "사다리꼴에서 서로 평행한 두 변은 □ 변이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "마주 보는",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "사다리꼴에서 서로 평행한 두 변은 □ 변이다.",
+          "answers": [
+            "마주 보는"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "사다리꼴은 어떤 사각형입니까? 평행한 변이 어디에 있는지 함께 쓰시오.",
+          "answer": "마주 보는 한 쌍의 변이 서로 평행한 사각형이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "마주 보는 변이 평행하다",
+                "평행한 변이 한 쌍 이상 있다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "사다리꼴에서 서로 평행한 두 변은 {마주 보는} 변이다.",
+          "acceptedAnswers": [
+            [
+              "마주 보는"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-4-4-xc1",
+          "sourceIndex": 2496,
+          "proposalFingerprint": "d9052c6e5e38941abd0b700b8fa99db33a619486f2cabd70822d4f5b8a7db378",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "definition",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "포함정의를분명히하기위해한쌍이라고만하지말고한쌍이라도평행한사각형으로모범답을쓴다.",
+          "cReason": "사다리꼴의평행변은마주보는위치이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bAnswer": "마주 보는 변 중 한 쌍이라도 서로 평행한 사각형이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "마주 보는 변 중 한 쌍 이상이 평행한 사각형"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-4-4-xc7",
+      "sourceIndex": 2502,
+      "beforeProposal": {
+        "sourceIndex": 2502,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "sourceFingerprint": "797cdfb3f85d1d5e4f0782ab7ffcfadfd807f40900f6a406eb5a70599045ec9f",
+        "proposalFingerprint": "7b4f2a3411e323813dd43f6d1f51bd2fc504d790f899890b55549e2341dfd5df",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-4-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각형 한 귀퉁이를 잘라 내어 남은 사각형이 사다리꼴이 되게 하려면 어떤 선분을 그어야 하는지 쓰시오.",
+        "bAnswer": "삼각형의 한 변과 평행한 선분을 긋는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한 변과 평행한 선분",
+              "한 변과 나란한 선분",
+              "한 변과 평행하게 긋는다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "사다리꼴을 만드는 선분 고르기",
+        "bReason": "답을 본문에 두지 않고 긋는 방법을 쓰게 함",
+        "cDecision": "rewrite",
+        "cAfter": "삼각형에서 한 변과 {평행}한 선분을 그어 잘라 내면 남은 사각형은 사다리꼴이다.",
+        "cReason": "'한 변과 평행한 선분' 구절을 낱말 하나로 좁힘",
+        "cSlotEquivalents": [
+          [
+            "나란"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "삼각형을 잘라 사다리꼴 만들기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "삼각형에서 한 변과 {평행}한 선분을 그어 잘라 내면 남은 사각형은 사다리꼴이다.",
+        "cStudentSentence": "삼각형에서 한 변과 □한 선분을 그어 잘라 내면 남은 사각형은 사다리꼴이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "평행",
+            "equivalents": [
+              "나란"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "삼각형 한 귀퉁이를 잘라 내어 남은 사각형이 사다리꼴이 되게 하려면 어떤 선분을 그어야 하는지 쓰시오.",
+          "answer": "삼각형의 한 변과 평행한 선분을 긋는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "한 변과 평행한 선분",
+                "한 변과 나란한 선분",
+                "한 변과 평행하게 긋는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "삼각형에서 한 변과 {평행}한 선분을 그어 잘라 내면 남은 사각형은 사다리꼴이다.",
+          "acceptedAnswers": [
+            [
+              "평행",
+              "나란"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-4-4-xc7",
+          "sourceIndex": 2502,
+          "proposalFingerprint": "7b4f2a3411e323813dd43f6d1f51bd2fc504d790f899890b55549e2341dfd5df",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "남은사각형조건을이루는다른두변의내부점을잇는절단을모범답에명시한다.",
+          "cReason": "평행선분이어느두변을가르고어느조각을남기는지C에명시한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bAnswer": "한 변과 평행하게, 나머지 두 변의 꼭짓점이 아닌 점을 잇는 선분을 긋는다. 그 선분을 따라 꼭짓점 쪽의 삼각형을 잘라 내면 사다리꼴이 남는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한 변과 평행하며 나머지 두 변의 꼭짓점이 아닌 점을 잇는 선분을 긋는다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "삼각형에서 한 변과 {평행}하고 나머지 두 변의 꼭짓점이 아닌 점을 잇는 선분을 긋는다. 그 선분을 따라 꼭짓점 쪽 삼각형을 잘라 내면 사다리꼴이 남는다.",
+        "cSlotEquivalents": [
+          [
+            "나란"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-4-4-xc18",
+      "sourceIndex": 2511,
+      "beforeProposal": {
+        "sourceIndex": 2511,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "sourceFingerprint": "778f1255e1b164d0a8ff1353dddd8b50c0647917b7dc263ef5f2b6b1ee3f7670",
+        "proposalFingerprint": "966f7901249054c637b3fb7e136195479d884910340dda801cb351fbcc35ba3f",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-4-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "사다리꼴에서 평행한 두 변의 길이는 반드시 같은지 쓰고, 어떤 경우가 가능한지 쓰시오.",
+        "bAnswer": "반드시 같지는 않다. 같을 수도 있고 다를 수도 있다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "같을 수도 다를 수도 있다",
+              "반드시 같지는 않다"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "평행한 두 변 길이의 관계",
+        "bReason": "항상 같다는 오개념을 점검함",
+        "cDecision": "keep",
+        "cReason": "같다/다르다 짧은 비교 빈칸이라 유지",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "평행한 두 변의 길이",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "사다리꼴의 평행한 두 변은 길이가 같을 수도 {다를 수도} 있다.",
+        "cStudentSentence": "사다리꼴의 평행한 두 변은 길이가 같을 수도 □ 있다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "다를 수도",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "사다리꼴의 평행한 두 변은 길이가 같을 수도 □ 있다.",
+          "answers": [
+            "다를 수도"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "사다리꼴에서 평행한 두 변의 길이는 반드시 같은지 쓰고, 어떤 경우가 가능한지 쓰시오.",
+          "answer": "반드시 같지는 않다. 같을 수도 있고 다를 수도 있다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "같을 수도 다를 수도 있다",
+                "반드시 같지는 않다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "사다리꼴의 평행한 두 변은 길이가 같을 수도 {다를 수도} 있다.",
+          "acceptedAnswers": [
+            [
+              "다를 수도"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-4-4-xc18",
+          "sourceIndex": 2511,
+          "proposalFingerprint": "966f7901249054c637b3fb7e136195479d884910340dda801cb351fbcc35ba3f",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "definition",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "모든가능한경우를요청했으므로반드시같지않다는말만받지말고같음과다름두가능성을기준에포함한다.",
+          "cReason": "사다리꼴평행변의길이가다를수있는성질이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "같을 수도 있고 다를 수도 있다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-4-4-xc23",
+      "sourceIndex": 2514,
+      "beforeProposal": {
+        "sourceIndex": 2514,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "sourceFingerprint": "5e49bc4cdc58583b6964d0358a610f3687132b807c0080b3d391c4bfd02d48bd",
+        "proposalFingerprint": "4f7bf11ba893a18a6f7ed40baae3aaf7d9a25bbc3fc4269c7fbe578ff6316c3a",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-4-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "모양과 크기가 같은 정삼각형 세 개로 사다리꼴을 만들려면 어떻게 붙여야 하는지 쓰시오.",
+        "bAnswer": "한 변씩 맞대어 한 줄로 이어 붙인다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한 변씩 맞대어 붙인다",
+              "변끼리 맞붙인다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 줄로",
+              "일렬로"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "정삼각형으로 사다리꼴 만들기",
+        "bReason": "붙이는 방법을 직접 쓰게 함",
+        "cDecision": "rewrite",
+        "cAfter": "모양과 크기가 같은 정삼각형 세 개를 한 변씩 맞대어 한 줄로 이어 붙이면 평행한 변이 한 쌍뿐인 {사다리꼴}이 된다.",
+        "cReason": "긴 방법 구절 대신 익숙한 도형 이름 빈칸으로",
+        "exampleNeeded": "정삼각형 세 개를 번갈아 뒤집어 한 줄로 이어 붙여 사다리꼴이 된 그림",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "정삼각형 세 개로 사다리꼴",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "모양과 크기가 같은 정삼각형 세 개를 한 변씩 맞대어 한 줄로 이어 붙이면 평행한 변이 한 쌍뿐인 {사다리꼴}이 된다.",
+        "cStudentSentence": "모양과 크기가 같은 정삼각형 세 개를 한 변씩 맞대어 한 줄로 이어 붙이면 평행한 변이 한 쌍뿐인 □이 된다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "사다리꼴",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "모양과 크기가 같은 정삼각형 세 개로 사다리꼴을 만들려면 어떻게 붙여야 하는지 쓰시오.",
+          "answer": "한 변씩 맞대어 한 줄로 이어 붙인다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "한 변씩 맞대어 붙인다",
+                "변끼리 맞붙인다"
+              ]
+            },
+            {
+              "anyOf": [
+                "한 줄로",
+                "일렬로"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "모양과 크기가 같은 정삼각형 세 개를 한 변씩 맞대어 한 줄로 이어 붙이면 평행한 변이 한 쌍뿐인 {사다리꼴}이 된다.",
+          "acceptedAnswers": [
+            [
+              "사다리꼴"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-4-4-xc23",
+          "sourceIndex": 2514,
+          "proposalFingerprint": "4f7bf11ba893a18a6f7ed40baae3aaf7d9a25bbc3fc4269c7fbe578ff6316c3a",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "한줄이라는배치만으로모양을상상하게하지말고위·아래·위방향과완전히맞댄변을명시하며예시그림필요를기록한다.",
+          "cReason": "같은구체배치조건으로사다리꼴조각을분류한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bAnswer": "가운데 정삼각형의 꼭짓점이 아래로 향하게 놓고, 왼쪽과 오른쪽 빗변에 나머지 정삼각형을 한 변 전체가 맞닿도록 겹치지 않게 붙인다. 가운데를 위로 향하게 놓고 거꾸로 붙여도 된다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "가운데 정삼각형의 왼쪽과 오른쪽 빗변에 나머지 둘을 한 변 전체가 맞닿도록 겹치지 않게 붙인다",
+              "정삼각형을 위 아래 위 또는 아래 위 아래 방향으로 놓고 한 변 전체를 맞대어 겹치지 않게 잇는다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "모양과 크기가 같은 정삼각형 세 개가 있다. 가운데 정삼각형의 꼭짓점을 아래로 향하게 놓고, 왼쪽과 오른쪽 빗변에 나머지 둘을 한 변 전체가 맞닿도록 겹치지 않게 붙이면 {사다리꼴}이 된다.",
+        "exampleNeeded": "위 아래 위 방향의 같은 정삼각형 세 개가 변 전체로 맞닿아 평행한 변이 한 쌍뿐인 사다리꼴을 만드는 그림을 함께 제시하면 좋다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-4-4-xc24",
+      "sourceIndex": 2515,
+      "beforeProposal": {
+        "sourceIndex": 2515,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "sourceFingerprint": "b79cd32e46acd90a82791ebcd128236e0c34bf9aaff2e49d78e8bebcf2420239",
+        "proposalFingerprint": "14f75bcbe78948170065cc72f02c2032225a691a6d7151e232ec81428c92e541",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-4-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "직각이 두 개인 사다리꼴에서 나머지 두 각의 합을 구하는 식과 답을 쓰시오.",
+        "bAnswer": "$360^\\circ-90^\\circ-90^\\circ=180^\\circ$",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$360^\\circ-90^\\circ-90^\\circ$",
+              "네 각의 합에서 두 직각을 뺀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$180^\\circ$"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "나머지 두 각의 합 구하기",
+        "bReason": "계산식과 결과를 함께 확인함",
+        "cDecision": "rewrite",
+        "cAfter": "직각이 두 개인 사다리꼴에서 나머지 두 각의 합은 네 각의 합 $360^\\circ$에서 두 직각을 뺀 $360^\\circ-90^\\circ-90^\\circ=$ {$180^\\circ$}이다.",
+        "cReason": "'두 직각을 뺀' 구절 빈칸을 실제 계산 결과로",
+        "cSlotEquivalents": [
+          [
+            "$180$도",
+            "$180$"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "직각이 두 개인 사다리꼴의 나머지 두 각",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직각이 두 개인 사다리꼴에서 나머지 두 각의 합은 네 각의 합 $360^\\circ$에서 두 직각을 뺀 $360^\\circ-90^\\circ-90^\\circ=$ {$180^\\circ$}이다.",
+        "cStudentSentence": "직각이 두 개인 사다리꼴에서 나머지 두 각의 합은 네 각의 합 $360^\\circ$에서 두 직각을 뺀 $360^\\circ-90^\\circ-90^\\circ=$ □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$180^\\circ$",
+            "equivalents": [
+              "$180$도",
+              "$180$"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "직각이 두 개인 사다리꼴에서 나머지 두 각의 합을 구하는 식과 답을 쓰시오.",
+          "answer": "$360^\\circ-90^\\circ-90^\\circ=180^\\circ$",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$360^\\circ-90^\\circ-90^\\circ$",
+                "네 각의 합에서 두 직각을 뺀다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$180^\\circ$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "직각이 두 개인 사다리꼴에서 나머지 두 각의 합은 네 각의 합 $360^\\circ$에서 두 직각을 뺀 $360^\\circ-90^\\circ-90^\\circ=$ {$180^\\circ$}이다.",
+          "acceptedAnswers": [
+            [
+              "$180^\\circ$",
+              "$180$도",
+              "$180$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-4-4-xc24",
+          "sourceIndex": 2515,
+          "proposalFingerprint": "14f75bcbe78948170065cc72f02c2032225a691a6d7151e232ec81428c92e541",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "식과답요청에맞게360-90-90또는360-180의실제식을기준에넣는다.",
+          "cReason": "각합360에서두직각을뺀180을계산한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$360^\\circ-90^\\circ-90^\\circ=180^\\circ$",
+              "$360^\\circ-180^\\circ=180^\\circ$"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-4-5-xc5",
+      "sourceIndex": 2523,
+      "beforeProposal": {
+        "sourceIndex": 2523,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "sourceFingerprint": "7c11c2f2fef6f9ae56c61840bb77583ccb0f672e29b1372e7f962b76b2f8faa6",
+        "proposalFingerprint": "a434f534cd480199694b3238bc546baf1cc6606ec5cc8f1ce855b3380743b600",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-5-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "모눈종이에 평행사변형을 그리려고 한 변을 먼저 그었다. 그다음에 어떤 변을 그어야 하는지 쓰시오.",
+        "bAnswer": "처음 변과 평행하고 길이가 같은 변을 그은 뒤 양 끝을 이어 준다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "평행한 변을 긋는다",
+              "나란한 변을 긋는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "길이가 같다",
+              "같은 길이로 긋는다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "모눈종이에 평행사변형 그리기",
+        "bReason": "그리는 순서와 조건을 직접 쓰게 함",
+        "cDecision": "keep",
+        "cReason": "'길이가 같은'은 짧고 답 범위가 분명함",
+        "cSlotEquivalents": [
+          [
+            "같은 길이의",
+            "길이가 똑같은"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "모눈종이에 평행사변형 그리기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "모눈종이에서 한 변을 긋고, 그 변과 평행하고 {길이가 같은} 변을 그은 뒤 끝을 이어 평행사변형을 그린다.",
+        "cStudentSentence": "모눈종이에서 한 변을 긋고, 그 변과 평행하고 □ 변을 그은 뒤 끝을 이어 평행사변형을 그린다.",
+        "cSlotAnswers": [
+          {
+            "expected": "길이가 같은",
+            "equivalents": [
+              "같은 길이의",
+              "길이가 똑같은"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "모눈종이에서 한 변을 긋고, 그 변과 평행하고 □ 변을 그은 뒤 끝을 이어 평행사변형을 그린다.",
+          "answers": [
+            "길이가 같은"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "모눈종이에 평행사변형을 그리려고 한 변을 먼저 그었다. 그다음에 어떤 변을 그어야 하는지 쓰시오.",
+          "answer": "처음 변과 평행하고 길이가 같은 변을 그은 뒤 양 끝을 이어 준다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "평행한 변을 긋는다",
+                "나란한 변을 긋는다"
+              ]
+            },
+            {
+              "anyOf": [
+                "길이가 같다",
+                "같은 길이로 긋는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "모눈종이에서 한 변을 긋고, 그 변과 평행하고 {길이가 같은} 변을 그은 뒤 끝을 이어 평행사변형을 그린다.",
+          "acceptedAnswers": [
+            [
+              "길이가 같은",
+              "같은 길이의",
+              "길이가 똑같은"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-4-5-xc5",
+          "sourceIndex": 2523,
+          "proposalFingerprint": "a434f534cd480199694b3238bc546baf1cc6606ec5cc8f1ce855b3380743b600",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "평행·동일길이두선분이겹치지않고같은쪽끝점을이어야하는조건을명시한다.",
+          "cReason": "처음변직선밖과교차하지않는끝연결조건을C에명시한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bPrompt": "모눈종이에 평행사변형을 그리려고 한 변을 먼저 그었다. 나머지 세 변을 어떻게 그을지 쓰시오.",
+        "bAnswer": "처음 변을 늘인 직선 밖에 그 변과 평행하고 길이가 같은 선분을 긋는다. 두 선분의 같은 쪽 끝점끼리 선분이 서로 엇갈리지 않게 이어 준다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "처음 변을 늘인 직선 밖에 처음 변과 평행하고 길이가 같은 선분을 긋는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 쪽 끝점끼리 엇갈리지 않게 잇는다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "한 선분을 늘인 직선 밖에 그 선분과 평행하고 {길이가 같은} 선분을 긋는다. 두 선분의 같은 쪽 끝점끼리 엇갈리지 않게 이으면 평행사변형이 된다.",
+        "cSlotEquivalents": [
+          [
+            "같은 길이의",
+            "길이가 똑같은"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-4-5-xc15",
+      "sourceIndex": 2533,
+      "beforeProposal": {
+        "sourceIndex": 2533,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "sourceFingerprint": "849d30b97244d941b55495ed313133af677a82aef25b2168a3cdbb704025b80d",
+        "proposalFingerprint": "3ffa8f59c9a337c85013e342e31851a58326308746b8ae905e4e563c17a3b641",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-5-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "평행한 변이 한 쌍뿐이고 모양과 크기가 같은 사다리꼴 두 개로 평행사변형을 만들려면 어떻게 붙여야 하는지 쓰시오.",
+        "bAnswer": "하나를 반 바퀴 돌려 평행하지 않은 변끼리 붙인다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "반 바퀴 돌린다"
+            ]
+          },
+          {
+            "anyOf": [
+              "평행하지 않은 변끼리 붙인다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "사다리꼴 두 개로 평행사변형 만들기",
+        "bReason": "돌리기와 붙이는 변을 모두 쓰게 함",
+        "cDecision": "rewrite",
+        "cAfter": "평행한 변이 한 쌍뿐이고 모양과 크기가 같은 사다리꼴 두 개에서 하나만 반 바퀴 돌려 같은 자리에 있던 평행하지 않은 변끼리 붙이면 {평행사변형}이 된다.",
+        "cReason": "그림 없이 알기 어려운 두 구절 빈칸을 도형 이름으로",
+        "exampleNeeded": "사다리꼴 두 개 중 하나를 반 바퀴 돌려 평행하지 않은 변끼리 붙인 평행사변형 그림",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "사다리꼴 두 개로 평행사변형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행한 변이 한 쌍뿐이고 모양과 크기가 같은 사다리꼴 두 개에서 하나만 반 바퀴 돌려 같은 자리에 있던 평행하지 않은 변끼리 붙이면 {평행사변형}이 된다.",
+        "cStudentSentence": "평행한 변이 한 쌍뿐이고 모양과 크기가 같은 사다리꼴 두 개에서 하나만 반 바퀴 돌려 같은 자리에 있던 평행하지 않은 변끼리 붙이면 □이 된다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "평행사변형",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "평행한 변이 한 쌍뿐이고 모양과 크기가 같은 사다리꼴 두 개로 평행사변형을 만들려면 어떻게 붙여야 하는지 쓰시오.",
+          "answer": "하나를 반 바퀴 돌려 평행하지 않은 변끼리 붙인다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "반 바퀴 돌린다"
+              ]
+            },
+            {
+              "anyOf": [
+                "평행하지 않은 변끼리 붙인다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "평행한 변이 한 쌍뿐이고 모양과 크기가 같은 사다리꼴 두 개에서 하나만 반 바퀴 돌려 같은 자리에 있던 평행하지 않은 변끼리 붙이면 {평행사변형}이 된다.",
+          "acceptedAnswers": [
+            [
+              "평행사변형"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-4-5-xc15",
+          "sourceIndex": 2533,
+          "proposalFingerprint": "3ffa8f59c9a337c85013e342e31851a58326308746b8ae905e4e563c17a3b641",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "원래같은위치의변전체를맞댄다는C조건을B모범답과기준에도넣는다.",
+          "cReason": "서로대응하는비평행변을반바퀴돌려붙이는구성이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bAnswer": "하나를 반 바퀴 돌려 두 사다리꼴에서 원래 같은 자리에 있던 평행하지 않은 변끼리, 한 변 전체가 맞닿도록 겹치지 않게 붙인다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "하나를 반 바퀴 돌린다"
+            ]
+          },
+          {
+            "anyOf": [
+              "원래 같은 자리에 있던 평행하지 않은 변의 전체를 맞대어 겹치지 않게 붙인다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-4-6-xc9",
+      "sourceIndex": 2549,
+      "beforeProposal": {
+        "sourceIndex": 2549,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "sourceFingerprint": "13e52125f82e451c1c50bd8a48f05fef5dfe00228e7f2d0991c9a391224beb94",
+        "proposalFingerprint": "3f33e58abeff4b0fc366050adbbf599d05aa54810a09f08281a02bac24dfa159",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-6-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "종이를 두 번 접은 뒤 접힌 두 변 위의 점을 하나씩 곧게 이어 잘라 모서리 쪽 삼각형을 펼치면 마름모가 된다. 이때 종이를 어떤 선을 따라 두 번 접어야 하는지 쓰시오.",
+        "bAnswer": "서로 수직인 선을 따라 접는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "서로 수직인 선",
+              "서로 직각으로 만나는 선"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "마름모 만들기 접는 방법",
+        "bReason": "접는 선의 조건을 직접 쓰게 함",
+        "cDecision": "keep",
+        "cReason": "익숙한 낱말 '수직'이라 유지",
+        "cSlotEquivalents": [
+          [
+            "직각"
+          ]
+        ],
+        "exampleNeeded": "종이를 수직인 선으로 두 번 접어 모서리 삼각형을 자르는 과정 그림",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "종이를 접어 자른 마름모",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "종이를 서로 {수직}인 선을 따라 두 번 접는다. 두 접힌 변 위의 점을 하나씩 곧게 이어 잘라 생긴 모서리 쪽 삼각형을 펼치면 마름모가 된다.",
+        "cStudentSentence": "종이를 서로 □인 선을 따라 두 번 접는다. 두 접힌 변 위의 점을 하나씩 곧게 이어 잘라 생긴 모서리 쪽 삼각형을 펼치면 마름모가 된다.",
+        "cSlotAnswers": [
+          {
+            "expected": "수직",
+            "equivalents": [
+              "직각"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "종이를 서로 □인 선을 따라 두 번 접는다. 두 접힌 변 위의 점을 하나씩 곧게 이어 잘라 생긴 모서리 쪽 삼각형을 펼치면 마름모가 된다.",
+          "answers": [
+            "수직"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "종이를 두 번 접은 뒤 접힌 두 변 위의 점을 하나씩 곧게 이어 잘라 모서리 쪽 삼각형을 펼치면 마름모가 된다. 이때 종이를 어떤 선을 따라 두 번 접어야 하는지 쓰시오.",
+          "answer": "서로 수직인 선을 따라 접는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "서로 수직인 선",
+                "서로 직각으로 만나는 선"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "종이를 서로 {수직}인 선을 따라 두 번 접는다. 두 접힌 변 위의 점을 하나씩 곧게 이어 잘라 생긴 모서리 쪽 삼각형을 펼치면 마름모가 된다.",
+          "acceptedAnswers": [
+            [
+              "수직",
+              "직각"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-4-6-xc9",
+          "sourceIndex": 2549,
+          "proposalFingerprint": "3f33e58abeff4b0fc366050adbbf599d05aa54810a09f08281a02bac24dfa159",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "두접힌선의교점꼭짓점쪽삼각형을펼치는조각대상을명시한다.",
+          "cReason": "선끼리의수직과각의직각을문장역할에맞게구별한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bPrompt": "종이를 두 번 접어 생긴 두 접힌 변 위에 점을 하나씩 찍고, 두 점을 곧게 이어 자르려고 한다. 두 접힌 변이 만나는 꼭짓점 쪽의 삼각형을 펼치면 마름모가 되게 하려면, 두 번 접는 선은 서로 어떤 관계여야 하는지 쓰시오.",
+        "cDecision": "rewrite",
+        "cAfter": "종이를 서로 {수직}인 선을 따라 두 번 접는다. 두 접힌 변 위의 점을 하나씩 곧게 이어 자른 뒤, 두 접힌 변이 만나는 꼭짓점 쪽의 삼각형을 펼치면 마름모가 된다.",
+        "cSlotEquivalents": [
+          [
+            "직각으로 만나는 관계"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-4-6-xc12",
+      "sourceIndex": 2551,
+      "beforeProposal": {
+        "sourceIndex": 2551,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "sourceFingerprint": "44a3ed8251fdd35119a7ce14135875b371452b374547779943c07b430427dbe8",
+        "proposalFingerprint": "bbcf72ebda3f97dd75fc7ef0abd3c9cfc958924713e2dfbfa86e4cdfabccc108",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-6-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "마름모에서 마주 보는 꼭짓점을 둘씩 이은 두 선분은 서로 어떤 각으로 만나는지 쓰시오.",
+        "bAnswer": "수직(직각)으로 만난다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "수직",
+              "직각"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "두 선분이 만나는 각",
+        "bReason": "마름모의 선분 성질을 하나씩 확인함",
+        "cDecision": "keep",
+        "cReason": "익숙한 낱말 '수직' 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "직각"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "마주 보는 꼭짓점을 이은 두 선분의 만남",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "마름모에서 마주 보는 꼭짓점을 둘씩 이은 두 선분은 서로 {수직}으로 만난다.",
+        "cStudentSentence": "마름모에서 마주 보는 꼭짓점을 둘씩 이은 두 선분은 서로 □으로 만난다.",
+        "cSlotAnswers": [
+          {
+            "expected": "수직",
+            "equivalents": [
+              "직각"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "마름모에서 마주 보는 꼭짓점을 둘씩 이은 두 선분은 서로 □으로 만난다.",
+          "answers": [
+            "수직"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "마름모에서 마주 보는 꼭짓점을 둘씩 이은 두 선분은 서로 어떤 각으로 만나는지 쓰시오.",
+          "answer": "수직(직각)으로 만난다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "수직",
+                "직각"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "마름모에서 마주 보는 꼭짓점을 둘씩 이은 두 선분은 서로 {수직}으로 만난다.",
+          "acceptedAnswers": [
+            [
+              "수직",
+              "직각"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-4-6-xc12",
+          "sourceIndex": 2551,
+          "proposalFingerprint": "bbcf72ebda3f97dd75fc7ef0abd3c9cfc958924713e2dfbfa86e4cdfabccc108",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "definition",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "어떤각인지물으면직각을답하고선관계는수직이라고구분하여질문·모범답·C를맞춘다.",
+          "cReason": "수직인선관계와직각인각종류를같은낱말별칭으로취급하지않도록문장에맞춘다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bAnswer": "직각으로 만난다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직각",
+              "$90^\\circ$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "마름모에서 마주 보는 꼭짓점을 둘씩 이은 두 선분이 이루는 각은 {직각}이다.",
+        "cSlotEquivalents": [
+          [
+            "$90^\\circ$",
+            "$90$도"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-4-6-xc14",
+      "sourceIndex": 2553,
+      "beforeProposal": {
+        "sourceIndex": 2553,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "sourceFingerprint": "909481d7f8ad7e9e3dfdf7c6ac66f7b85644a5f79b1fa0b52e7da9178ccc91e5",
+        "proposalFingerprint": "4931ac2ab9a925bf9543e1c6d18742b7e0db2b8a4543b9bff4e6ba7100505cdb",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-6-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "모양과 크기가 같은 정삼각형 두 개로 마름모를 만들려면 어떻게 붙여야 하는지 쓰시오.",
+        "bAnswer": "한 변끼리 맞대어 붙인다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한 변끼리 맞대어 붙인다",
+              "변끼리 붙인다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "정삼각형 두 개로 마름모",
+        "bReason": "붙이는 방법을 직접 쓰게 함",
+        "cDecision": "rewrite",
+        "cAfter": "모양과 크기가 같은 정삼각형 두 개를 한 변끼리 붙이면 네 변의 길이가 같은 {마름모}가 된다.",
+        "cReason": "긴 방법 구절 대신 익숙한 도형 이름 빈칸으로",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "정삼각형 두 개로 마름모",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "모양과 크기가 같은 정삼각형 두 개를 한 변끼리 붙이면 네 변의 길이가 같은 {마름모}가 된다.",
+        "cStudentSentence": "모양과 크기가 같은 정삼각형 두 개를 한 변끼리 붙이면 네 변의 길이가 같은 □가 된다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "마름모",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "모양과 크기가 같은 정삼각형 두 개로 마름모를 만들려면 어떻게 붙여야 하는지 쓰시오.",
+          "answer": "한 변끼리 맞대어 붙인다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "한 변끼리 맞대어 붙인다",
+                "변끼리 붙인다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "모양과 크기가 같은 정삼각형 두 개를 한 변끼리 붙이면 네 변의 길이가 같은 {마름모}가 된다.",
+          "acceptedAnswers": [
+            [
+              "마름모"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-4-6-xc14",
+          "sourceIndex": 2553,
+          "proposalFingerprint": "4931ac2ab9a925bf9543e1c6d18742b7e0db2b8a4543b9bff4e6ba7100505cdb",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "한변전체를맞대고겹침없이붙이는조건을B와C에명시한다.",
+          "cReason": "같은정삼각형두개를정확히붙인네변같은마름모이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bAnswer": "한 변 전체를 맞대어 두 정삼각형이 겹치지 않게 붙인다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한 변 전체를 맞대어 겹치지 않게 붙인다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "모양과 크기가 같은 정삼각형 두 개를 한 변 전체가 맞닿도록 겹치지 않게 붙이면 네 변의 길이가 같은 {마름모}가 된다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-4-6-xc16",
+      "sourceIndex": 2555,
+      "beforeProposal": {
+        "sourceIndex": 2555,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "sourceFingerprint": "524634f7ca5d7d6294a6f964fd642fe981a68b959f22532eb8ff3904129c5825",
+        "proposalFingerprint": "0811a32478ca08683f7cfad304c1a2fa6ecc35e088e401b4a47e76458897e910",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-6-xc16",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "네 각이 직각인 마름모",
+        "bReason": "4-7 xc10과 같은 목표",
+        "exclusionReason": "직사각형과 마름모 조건을 함께 만족하면 정사각형이라는 4-7 xc10과 같은 목표",
+        "cDecision": "keep",
+        "cReason": "익숙한 도형 이름 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "직사각형"
+          ]
+        ],
+        "answerNotes": "네 각이 직각인 마름모는 직사각형이기도 하므로 직사각형도 맞음",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "직각이 있는 마름모",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "마름모의 네 각이 모두 직각이면 그 마름모는 {정사각형}이다.",
+        "cStudentSentence": "마름모의 네 각이 모두 직각이면 그 마름모는 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "정사각형",
+            "equivalents": [
+              "직사각형"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "마름모의 네 각이 모두 직각이면 그 마름모는 □이다.",
+          "answers": [
+            "정사각형"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "마름모의 네 각이 모두 직각이면 그 마름모는 {정사각형}이다.",
+          "acceptedAnswers": [
+            [
+              "정사각형",
+              "직사각형"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "4-7 xc10과 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-4-6-xc16",
+          "sourceIndex": 2555,
+          "proposalFingerprint": "0811a32478ca08683f7cfad304c1a2fa6ecc35e088e401b4a47e76458897e910",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "exclude",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "직각마름모의정사각형조건B는기존문항과중복이다.",
+          "cReason": "정사각형과직사각형은동의어가아니므로C를정사각형이되기위한각조건직각으로좁힌다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "마름모가 정사각형이 되려면 네 각이 모두 {직각}이어야 한다.",
+        "cSlotEquivalents": [
+          [
+            "$90^\\circ$",
+            "$90$도"
+          ]
+        ],
+        "cReason": "정사각형과 직사각형은 동의어가 아니므로 이름의 다중 답 대신 각의 조건을 묻는다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-4-7-xc5",
+      "sourceIndex": 2566,
+      "beforeProposal": {
+        "sourceIndex": 2566,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "sourceFingerprint": "921b81d424f3ed1a31bb2ab33b38f8b4f99db6b924865e7b5d2d8645a7d3f136",
+        "proposalFingerprint": "2d5c970dafa451ceb270c0a9738bfabdc210bbed53b9e60ce73422d420d1d402",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-7-xc5",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "definition",
+        "bGoal": "평행사변형 판별 기준",
+        "bReason": "4-5 xc13과 같은 목표",
+        "exclusionReason": "평행사변형은 평행한 변이 두 쌍 있어야 한다는 4-5 xc13과 같은 목표",
+        "cDecision": "rewrite",
+        "cAfter": "맞은편 변끼리 짝지은 두 쌍이 모두 {평행}하면 평행사변형이다.",
+        "cReason": "긴 구절 빈칸을 낱말 '평행'으로 좁힘",
+        "cSlotEquivalents": [
+          [
+            "나란"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "정의",
+          "sourceTerm": "평행사변형에서 확인할 두 쌍",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "맞은편 변끼리 짝지은 두 쌍이 모두 {평행}하면 평행사변형이다.",
+        "cStudentSentence": "맞은편 변끼리 짝지은 두 쌍이 모두 □하면 평행사변형이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "평행",
+            "equivalents": [
+              "나란"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "맞은편 변끼리 짝지은 두 쌍이 모두 {평행}하면 평행사변형이다.",
+          "acceptedAnswers": [
+            [
+              "평행",
+              "나란"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "4-5 xc13과 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-4-7-xc5",
+          "sourceIndex": 2566,
+          "proposalFingerprint": "2d5c970dafa451ceb270c0a9738bfabdc210bbed53b9e60ce73422d420d1d402",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "definition",
+          "bDecision": "exclude",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "두쌍평행기준B는기존문항과중복이다.",
+          "cReason": "제목없이도도형을알도록사각형이라는대상을명시한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "사각형에서 마주 보는 변끼리 짝지은 두 쌍이 모두 {평행}하면 평행사변형이다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-4-7-xc8",
+      "sourceIndex": 2569,
+      "beforeProposal": {
+        "sourceIndex": 2569,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "sourceFingerprint": "372e84135df25bf933abea01b6f6d6540980cc7178eb4edbe4445f69ac221934",
+        "proposalFingerprint": "8f2725434e32d74122c38b6cdbf38a5eff7b931a4d3c6798446337d785a938d4",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-7-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "사각형을 이름에 따라 나눌 때 색깔 말고 무엇을 살펴야 하는지 두 가지를 쓰시오.",
+        "bAnswer": "변(의 길이)과 각(의 크기)을 살핀다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "변",
+              "변의 길이"
+            ]
+          },
+          {
+            "anyOf": [
+              "각",
+              "각의 크기"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "사각형 분류 기준 알기",
+        "bReason": "색이 아닌 변과 각을 기준으로 삼게 함",
+        "cDecision": "keep",
+        "cReason": "익숙한 낱말 '변'과 '각' 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "각"
+          ],
+          [
+            "변"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "사각형의 분류와 색깔",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "사각형을 수학적 성질로 나눌 때 색깔보다 {변}과 {각}을 살핀다.",
+        "cStudentSentence": "사각형을 수학적 성질로 나눌 때 색깔보다 □과 □을 살핀다.",
+        "cSlotAnswers": [
+          {
+            "expected": "변",
+            "equivalents": [
+              "각"
+            ]
+          },
+          {
+            "expected": "각",
+            "equivalents": [
+              "변"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "사각형을 수학적 성질로 나눌 때 색깔보다 □과 □을 살핀다.",
+          "answers": [
+            "변",
+            "각"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "사각형을 이름에 따라 나눌 때 색깔 말고 무엇을 살펴야 하는지 두 가지를 쓰시오.",
+          "answer": "변(의 길이)과 각(의 크기)을 살핀다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "변",
+                "변의 길이"
+              ]
+            },
+            {
+              "anyOf": [
+                "각",
+                "각의 크기"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "사각형을 수학적 성질로 나눌 때 색깔보다 {변}과 {각}을 살핀다.",
+          "acceptedAnswers": [
+            [
+              "변",
+              "각"
+            ],
+            [
+              "각",
+              "변"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-4-7-xc8",
+          "sourceIndex": 2569,
+          "proposalFingerprint": "8f2725434e32d74122c38b6cdbf38a5eff7b931a4d3c6798446337d785a938d4",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "definition",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "분류를위한변과각의두성질을묻는다.",
+          "cReason": "변·각을각빈칸에모두허용하면변·변도통과하므로길이와크기로자리를지정해각답을고정한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "사각형을 색깔이 아니라 도형의 성질에 따라 나눌 때는 {변}의 길이나 서로 평행한지, {각}의 크기 등을 살핀다.",
+        "cSlotEquivalents": [
+          [],
+          []
+        ],
+        "cReason": "변과 각을 모두 허용하던 빈칸을 길이와 크기로 구분해 중복 답을 막는다."
+      },
+      "isReleaseApproval": false
+    }
+  ]
+}

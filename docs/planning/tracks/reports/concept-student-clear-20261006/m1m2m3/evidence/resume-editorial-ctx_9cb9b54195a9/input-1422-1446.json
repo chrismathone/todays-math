@@ -1,0 +1,2583 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T07:02:18.544Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-12-xc4",
+        "section": "중1::3. 방정식::일차방정식의 활용(도형, 농도, 일)",
+        "term": "농도의 뜻",
+        "kind": "정의",
+        "level": "하",
+        "definition": "농도는 소금물 전체에 대한 {소금의 양}의 비율을 {백분율}로 나타낸 것이다.",
+        "example": {
+          "prompt": "소금 $15\\,\\mathrm{g}$이 든 소금물 $300\\,\\mathrm{g}$의 농도는?",
+          "answer": "$5\\%$"
+        },
+        "studentC": "농도는 소금물 전체에 대한 □의 비율을 □로 나타낸 것이다.",
+        "answers": [
+          "소금의 양",
+          "백분율"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-12-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "소금물의 농도란 무엇에 대한 무엇의 비율을 어떻게 나타낸 것인지 쓰고, 소금 $15\\,\\mathrm{g}$이 녹아 있는 소금물 $300\\,\\mathrm{g}$의 농도를 구하시오.",
+        "bAnswer": "소금물 전체의 양에 대한 소금의 양의 비율을 백분율($\\%$)로 나타낸 것이다. $\\frac{15}{300}\\times 100=5$이므로 $5\\%$이다.",
+        "bGoal": "농도를 소금물 전체에 대한 소금의 비율이라는 뜻으로 설명한다.",
+        "bReason": "m1-03-12-c2가 식을 묻는 것과 겹치지 않게 여기서는 '무엇에 대한 무엇의 비율인가'라는 뜻을 묻도록 범위를 정하고 원문 예시로 확인하게 했다.",
+        "cDecision": "keep",
+        "cReason": "정의 문장이 짧고 빈칸이 비교하는 양(소금의 양)과 나타내는 방법(백분율)을 정확히 묻는다. 기준인 '소금물 전체'는 문장에 보인다.",
+        "authorBatch": 10,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "소금물 전체의 양에 대한 소금의 양의 비율을 백분율($\\%$)로 나타낸 것 (같은 뜻의 표현 인정)"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{15}{300}\\times100=5$이므로 $5\\%$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-006",
+        "learningRole": "definition",
+        "roleReason": "소금물에 대한 소금의 백분율",
+        "enrichmentEvidence": "enrichment/enrich-007",
+        "sourceIndex": 1422,
+        "part": "m1plus",
+        "sourceFingerprint": "933354720bd4a9d37d70d0bcd8b768d6651c95f1d74a6e95e6928dc143ef7ba6",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1422
+        },
+        "directReview": null,
+        "cFrozenSentence": "농도는 소금물 전체에 대한 □의 비율을 □로 나타낸 것이다.",
+        "cFrozenDefinition": "농도는 소금물 전체에 대한 {소금의 양}의 비율을 {백분율}로 나타낸 것이다.",
+        "cFrozenAnswers": [
+          "소금의 양",
+          "백분율"
+        ],
+        "cMarkedSentence": "농도는 소금물 전체에 대한 {소금의 양}의 비율을 {백분율}로 나타낸 것이다.",
+        "cSlotAnswers": [
+          "소금의 양",
+          "백분율"
+        ],
+        "cStudentSentence": "농도는 소금물 전체에 대한 □의 비율을 □로 나타낸 것이다.",
+        "cAnswers": [
+          "소금의 양",
+          "백분율"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "소금의 양",
+            "equivalentAnswers": [
+              "소금의 양",
+              "소금의 무게",
+              "녹아 있는 소금의 양"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "백분율",
+            "equivalentAnswers": [
+              "백분율",
+              "퍼센트",
+              "$\\%$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "소금의 양",
+            "accept": [
+              "소금의 무게",
+              "녹아 있는 소금의 양"
+            ]
+          }
+        ],
+        "equivalentExpressions": [
+          {
+            "answer": "백분율",
+            "accept": [
+              "퍼센트",
+              "$\\%$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "소금의 양",
+            "소금의 무게",
+            "녹아 있는 소금의 양"
+          ],
+          [
+            "백분율",
+            "퍼센트",
+            "$\\%$"
+          ]
+        ],
+        "proposalFingerprint": "0819ee8d9b1f2c7acb4711431fad5d7828bb895370948eed77720b6825a65726"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-12-xc5",
+        "section": "중1::3. 방정식::일차방정식의 활용(도형, 농도, 일)",
+        "term": "소금물의 양",
+        "kind": "성질",
+        "level": "하",
+        "definition": "소금물의 양은 {물의 양}과 {소금의 양}을 더한 것이다.",
+        "example": {
+          "prompt": "물 $180\\,\\mathrm{g}$에 소금 $20\\,\\mathrm{g}$을 녹이면 소금물은?",
+          "answer": "$200\\,\\mathrm{g}$"
+        },
+        "studentC": "소금물의 양은 □과 □을 더한 것이다.",
+        "answers": [
+          "물의 양",
+          "소금의 양"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-12-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "물에 소금을 녹여 소금물을 만들 때 소금물의 양은 무엇과 무엇을 더한 것인지 쓰고, 물 $180\\,\\mathrm{g}$에 소금 $20\\,\\mathrm{g}$을 녹인 소금물의 양과 농도를 구하시오. 또 농도를 구할 때 $180$으로 나누면 안 되는 까닭을 쓰시오.",
+        "bAnswer": "소금물의 양은 물의 양과 소금의 양을 더한 것이므로 $180+20=200\\,(\\mathrm{g})$이다. 농도는 $\\frac{20}{200}\\times 100=10\\,(\\%)$이다. 농도는 물이 아니라 소금물 전체의 양에 대한 소금의 양의 비율이므로 $200$으로 나누어야 한다.",
+        "bGoal": "소금물의 양이 물과 소금의 합임을 알고 농도 계산의 분모로 바르게 쓴다.",
+        "bReason": "제목 '소금물의 양'만으로는 무엇을 답할지 없다. 구성(물과 소금)을 묻고, 이 성질이 필요한 이유인 분모를 물의 양으로 잘못 쓰는 오류까지 다루도록 원문 예시를 넓혔다.",
+        "cDecision": "keep",
+        "cReason": "한 줄짜리 관계이고 두 빈칸이 더하는 두 양을 묻는다. 두 빈칸은 순서를 바꿔 써도 정답으로 처리한다.",
+        "exampleNeeded": true,
+        "authorBatch": 10,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "소금물의 양은 물의 양과 소금의 양을 더한 것: $180+20=200\\,(\\mathrm{g})$"
+            ]
+          },
+          {
+            "anyOf": [
+              "농도: $\\frac{20}{200}\\times100=10\\,(\\%)$"
+            ]
+          },
+          {
+            "anyOf": [
+              "까닭: 농도는 물이 아니라 소금물 전체의 양에 대한 소금의 양의 비율이므로 $200$으로 나누어야 함"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-006",
+        "learningRole": "definition",
+        "roleReason": "소금물=물+소금의 양",
+        "enrichmentEvidence": "enrichment/enrich-007",
+        "sourceIndex": 1423,
+        "part": "m1plus",
+        "sourceFingerprint": "541e1749dbca0c97c5816aad0a658cb47e23d7fcc21c7835bd2f3dbcb59c647d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1423
+        },
+        "directReview": null,
+        "cFrozenSentence": "소금물의 양은 □과 □을 더한 것이다.",
+        "cFrozenDefinition": "소금물의 양은 {물의 양}과 {소금의 양}을 더한 것이다.",
+        "cFrozenAnswers": [
+          "물의 양",
+          "소금의 양"
+        ],
+        "cMarkedSentence": "소금물의 양은 {물의 양}과 {소금의 양}을 더한 것이다.",
+        "cSlotAnswers": [
+          "물의 양",
+          "소금의 양"
+        ],
+        "cStudentSentence": "소금물의 양은 □과 □을 더한 것이다.",
+        "cAnswers": [
+          "물의 양",
+          "소금의 양"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "물의 양",
+            "equivalentAnswers": [
+              "물의 양"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "소금의 양",
+            "equivalentAnswers": [
+              "소금의 양"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "물의 양"
+          ],
+          [
+            "소금의 양"
+          ]
+        ],
+        "proposalFingerprint": "b2bee01ae85b00f106a7cd2774eda763d77c834d1d28697f44945a98e9ff3cbf"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-12-xc6",
+        "section": "중1::3. 방정식::일차방정식의 활용(도형, 농도, 일)",
+        "term": "며칠 동안 한 일의 양",
+        "kind": "방법",
+        "level": "하",
+        "definition": "혼자 $a$일 걸리는 일을 하루에 하는 양은 $\\frac{1}{a}$이고, $x$일 동안 하는 양은 {$\\frac{x}{a}$}이다.",
+        "example": {
+          "prompt": "혼자 $8$일 걸리는 일을 $3$일 동안 하면 전체의 얼마인가?",
+          "answer": "$\\frac{3}{8}$"
+        },
+        "studentC": "혼자 $a$일 걸리는 일을 하루에 하는 양은 $\\frac{1}{a}$이고, $x$일 동안 하는 양은 □이다.",
+        "answers": [
+          "$\\frac{x}{a}$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-12-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "전체 일의 양을 $1$로 놓는다. 혼자 하면 $a$일이 걸리는 일을 매일 같은 양씩 할 때, $x$일 동안 한 일의 양을 $a$, $x$로 나타내고 그 까닭을 쓰시오. 또 혼자 하면 $8$일이 걸리는 일을 $3$일 동안 하면 전체의 얼마를 한 것인지 구하시오.",
+        "bAnswer": "하루에 $\\frac{1}{a}$씩 하므로 $x$일 동안 한 일의 양은 $\\frac{1}{a}\\times x=\\frac{x}{a}$이다. $8$일 걸리는 일을 $3$일 하면 전체의 $\\frac{3}{8}$을 한 것이다.",
+        "bGoal": "하루에 하는 일의 양에서 며칠 동안 한 일의 양을 식으로 나타낸다.",
+        "bReason": "제목에는 전체를 $1$로 놓는다는 전제와 $a$, $x$의 뜻이 없다. 전제와 기호를 질문 안에서 정하고 식과 까닭, 원문 예시를 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "전체 일의 양을 $1$로 놓을 때, 혼자 하면 $a$일이 걸리는 일을 하루에 하는 양은 $\\frac{1}{a}$이고 $x$일 동안 하는 양은 {$\\frac{x}{a}$}이다.",
+        "cAnswers": [
+          "$\\frac{x}{a}$"
+        ],
+        "cReason": "원문에는 '전체 일의 양을 $1$로 놓는다'는 전제가 없어 $\\frac{1}{a}$이 무엇의 $\\frac{1}{a}$인지 문장만으로 알 수 없다. 전제만 앞에 넣고 빈칸은 그대로 두었다.",
+        "authorBatch": 10,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x$일 동안 한 일의 양: $\\frac{x}{a}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "까닭: 하루에 $\\frac{1}{a}$씩 $x$일 동안 하므로 $\\frac{1}{a}\\times x$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8$일 걸리는 일을 $3$일 하면 전체의 $\\frac{3}{8}$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-006",
+        "learningRole": "procedure",
+        "roleReason": "하루 1/a씩 x일이면 x/a",
+        "enrichmentEvidence": "enrichment/enrich-007",
+        "sourceIndex": 1424,
+        "part": "m1plus",
+        "sourceFingerprint": "4eba623c832592d97fbb8553fbd2151cd0d59cc27be5c0244adb02d3f213486e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1424
+        },
+        "directReview": null,
+        "cMarkedSentence": "전체 일의 양을 $1$로 놓을 때, 혼자 하면 $a$일이 걸리는 일을 하루에 하는 양은 $\\frac{1}{a}$이고 $x$일 동안 하는 양은 {$\\frac{x}{a}$}이다.",
+        "cSlotAnswers": [
+          "$\\frac{x}{a}$"
+        ],
+        "cStudentSentence": "전체 일의 양을 $1$로 놓을 때, 혼자 하면 $a$일이 걸리는 일을 하루에 하는 양은 $\\frac{1}{a}$이고 $x$일 동안 하는 양은 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{x}{a}$",
+            "equivalentAnswers": [
+              "$\\frac{x}{a}$",
+              "$\\frac{1}{a}\\times x$",
+              "$x\\times\\frac{1}{a}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$\\frac{x}{a}$",
+            "accept": [
+              "$\\frac{1}{a}\\times x$",
+              "$x\\times\\frac{1}{a}$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{x}{a}$",
+            "$\\frac{1}{a}\\times x$",
+            "$x\\times\\frac{1}{a}$"
+          ]
+        ],
+        "proposalFingerprint": "c65af7f69dd1288d6617d4f6318338d289754ab41ab7a273f8dbae99bd6b16b7"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-12-xc7",
+        "section": "중1::3. 방정식::일차방정식의 활용(도형, 농도, 일)",
+        "term": "함께 하는 일의 양",
+        "kind": "방법",
+        "level": "하",
+        "definition": "두 사람이 함께 일하면 하루에 하는 일의 양은 두 사람이 하루에 하는 양의 {합}이다.",
+        "example": {
+          "prompt": "하루에 $\\frac{1}{6}$, $\\frac{1}{3}$씩 하는 두 사람이 함께 하면 하루에 하는 양은?",
+          "answer": "$\\frac{1}{2}$"
+        },
+        "studentC": "두 사람이 함께 일하면 하루에 하는 일의 양은 두 사람이 하루에 하는 양의 □이다.",
+        "answers": [
+          "합"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-12-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "전체 일의 양을 $1$로 놓을 때, 하루에 $\\frac{1}{6}$만큼 일하는 사람과 하루에 $\\frac{1}{3}$만큼 일하는 사람이 함께 일한다. 두 사람이 함께 하루에 하는 일의 양은 각자의 양으로 어떻게 구하는지 쓰고 그 값을 구하시오. 또 함께 하면 며칠 만에 일을 끝내는지 구하시오.",
+        "bAnswer": "함께 하루에 하는 일의 양은 두 사람이 하루에 하는 양의 합이므로 $\\frac{1}{6}+\\frac{1}{3}=\\frac{1}{2}$이다. 하루에 전체의 $\\frac{1}{2}$을 하므로 $2$일 만에 끝낸다.",
+        "bGoal": "함께 일할 때 하루의 일의 양을 각자의 양의 합으로 구한다.",
+        "bReason": "제목은 상황 이름뿐이고 하루의 양이 얼마인지 없다. 원문 예시의 분수를 주어 구하는 방법과 값을 묻고 끝내는 날수까지 이어 쓸모를 드러냈다.",
+        "cDecision": "keep",
+        "cReason": "빈칸 하나가 '합'을 묻는 짧은 문장이고 상황(두 사람이 함께 일함)이 문장에 다 들어 있다.",
+        "exampleNeeded": true,
+        "authorBatch": 10,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "함께 하루에 하는 일의 양은 두 사람이 하루에 하는 양의 합: $\\frac{1}{6}+\\frac{1}{3}=\\frac{1}{2}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$일 만에 끝냄"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-006",
+        "learningRole": "procedure",
+        "roleReason": "하루 일의 양을 서로 더함",
+        "enrichmentEvidence": "enrichment/enrich-007",
+        "sourceIndex": 1425,
+        "part": "m1plus",
+        "sourceFingerprint": "65bc85d47478b4626c6918e8ebb5918acc0b6a2524750b7e15ebaf2f9d332e93",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1425
+        },
+        "directReview": null,
+        "cFrozenSentence": "두 사람이 함께 일하면 하루에 하는 일의 양은 두 사람이 하루에 하는 양의 □이다.",
+        "cFrozenDefinition": "두 사람이 함께 일하면 하루에 하는 일의 양은 두 사람이 하루에 하는 양의 {합}이다.",
+        "cFrozenAnswers": [
+          "합"
+        ],
+        "cMarkedSentence": "두 사람이 함께 일하면 하루에 하는 일의 양은 두 사람이 하루에 하는 양의 {합}이다.",
+        "cSlotAnswers": [
+          "합"
+        ],
+        "cStudentSentence": "두 사람이 함께 일하면 하루에 하는 일의 양은 두 사람이 하루에 하는 양의 □이다.",
+        "cAnswers": [
+          "합"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "합",
+            "equivalentAnswers": [
+              "합"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "합"
+          ]
+        ],
+        "proposalFingerprint": "c3077cad77a9fe77c8106a8114ee0147ed070ebd04dc5a1ab7d94c50558a69d8"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-12-xc8",
+        "section": "중1::3. 방정식::일차방정식의 활용(도형, 농도, 일)",
+        "term": "변의 길이를 늘인 뒤",
+        "kind": "방법",
+        "level": "하",
+        "definition": "가로를 $a$만큼 늘이면 새 가로는 {(처음 가로)$+a$}이므로 넓이나 둘레를 {다시} 식으로 쓴다.",
+        "example": {
+          "prompt": "가로 $x\\,\\mathrm{cm}$를 $3\\,\\mathrm{cm}$ 늘인 새 가로는?",
+          "answer": "$(x+3)\\,\\mathrm{cm}$"
+        },
+        "studentC": "가로를 $a$만큼 늘이면 새 가로는 □이므로 넓이나 둘레를 □ 식으로 쓴다.",
+        "answers": [
+          "(처음 가로)$+a$",
+          "다시"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-12-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "가로의 길이가 $x\\,\\mathrm{cm}$, 세로의 길이가 $4\\,\\mathrm{cm}$인 직사각형의 가로를 $3\\,\\mathrm{cm}$만큼 늘였다. 새 직사각형의 가로의 길이를 $x$로 나타내고, 새 직사각형의 넓이와 둘레를 각각 $x$에 대한 식으로 나타내시오.",
+        "bAnswer": "새 가로의 길이는 $(x+3)\\,\\mathrm{cm}$이다. 넓이는 $4(x+3)=4x+12\\,(\\mathrm{cm}^2)$, 둘레는 $2(x+3+4)=2x+14\\,(\\mathrm{cm})$이다.",
+        "bGoal": "변의 길이를 늘인 뒤의 길이를 식으로 나타내고 그 식으로 넓이와 둘레를 다시 쓴다.",
+        "bReason": "제목은 어떤 도형의 어느 변을 얼마나 늘였는지 없다. 직사각형의 가로, 세로와 늘인 길이를 정해 주고 새 가로, 넓이, 둘레로 답의 범위를 밝혔다.",
+        "cDecision": "rewrite",
+        "cAfter": "가로의 길이가 $x$인 직사각형의 가로를 $a$만큼 늘이면 새 가로의 길이는 {$x+a$}이다. 넓이나 둘레는 이 새 길이를 써서 식으로 나타낸다.",
+        "cAnswers": [
+          "$x+a$"
+        ],
+        "cReason": "원문 둘째 빈칸 '다시'는 수학 내용이 없는 임의의 부사이고, 첫 빈칸의 답 '(처음 가로)$+a$'는 말과 문자가 섞여 쓰기 어렵다. 처음 가로를 $x$로 정해 식으로 답하게 하고 뒤 문장은 빈칸 없이 두었다.",
+        "exampleNeeded": true,
+        "authorBatch": 10,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "새 가로의 길이: $(x+3)\\,\\mathrm{cm}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "넓이: $4(x+3)=4x+12\\,(\\mathrm{cm}^2)$ (동치인 식 인정)"
+            ]
+          },
+          {
+            "anyOf": [
+              "둘레: $2(x+3+4)=2x+14\\,(\\mathrm{cm})$ (동치인 식 인정)"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-006",
+        "learningRole": "procedure",
+        "roleReason": "늘인 가로 x+a로 다시 식",
+        "enrichmentEvidence": "enrichment/enrich-007",
+        "sourceIndex": 1426,
+        "part": "m1plus",
+        "sourceFingerprint": "c096fc03ae763342c76940a735f136870dace64bff8700c0866746cb4fdcb498",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1426
+        },
+        "directReview": null,
+        "cMarkedSentence": "가로의 길이가 $x$인 직사각형의 가로를 $a$만큼 늘이면 새 가로의 길이는 {$x+a$}이다. 넓이나 둘레는 이 새 길이를 써서 식으로 나타낸다.",
+        "cSlotAnswers": [
+          "$x+a$"
+        ],
+        "cStudentSentence": "가로의 길이가 $x$인 직사각형의 가로를 $a$만큼 늘이면 새 가로의 길이는 □이다. 넓이나 둘레는 이 새 길이를 써서 식으로 나타낸다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$x+a$",
+            "equivalentAnswers": [
+              "$x+a$",
+              "$a+x$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$x+a$",
+            "accept": [
+              "$a+x$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$x+a$",
+            "$a+x$"
+          ]
+        ],
+        "proposalFingerprint": "0d23b7c493efca32f18bab51460c2e71b0cea6bff3fa0cc34b494a502aa229b1"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-12-xc9",
+        "section": "중1::3. 방정식::일차방정식의 활용(도형, 농도, 일)",
+        "term": "둘레가 $L$인 직사각형에서 가로가 $x$일 때 세로",
+        "kind": "방법",
+        "level": "중",
+        "definition": "직사각형의 둘레가 $L$이면 가로와 세로의 합은 {$\\frac{L}{2}$}이므로, 가로를 $x$로 놓으면 세로는 {$\\frac{L}{2}-x$}이다.",
+        "example": {
+          "prompt": "둘레가 $26\\,\\mathrm{cm}$이고 가로가 $x\\,\\mathrm{cm}$이면 세로는?",
+          "answer": "$(13-x)\\,\\mathrm{cm}$"
+        },
+        "studentC": "직사각형의 둘레가 $L$이면 가로와 세로의 합은 □이므로, 가로를 $x$로 놓으면 세로는 □이다.",
+        "answers": [
+          "$\\frac{L}{2}$",
+          "$\\frac{L}{2}-x$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-12-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "둘레의 길이가 $L$인 직사각형에서 가로와 세로의 길이의 합을 $L$로 나타내고, 가로의 길이를 $x$라 할 때 세로의 길이를 $L$, $x$로 나타내시오. 또 둘레가 $26\\,\\mathrm{cm}$이고 가로가 $x\\,\\mathrm{cm}$인 직사각형의 세로의 길이를 쓰시오.",
+        "bAnswer": "둘레는 (가로$+$세로)의 $2$배이므로 가로와 세로의 합은 $\\frac{L}{2}$이고, 세로는 $\\frac{L}{2}-x$이다. 둘레가 $26\\,\\mathrm{cm}$이면 세로는 $(13-x)\\,\\mathrm{cm}$이다.",
+        "bGoal": "둘레가 주어진 직사각형에서 가로를 미지수로 놓고 세로를 식으로 나타낸다.",
+        "bReason": "제목이 조건을 담고 있지만 질문 꼴이 아니고 중간 단계(가로와 세로의 합)가 빠져 있다. 합을 먼저 구하게 하고 세로의 식과 원문 예시를 차례로 묻게 했다.",
+        "cDecision": "keep",
+        "cReason": "기호 $L$, $x$의 뜻이 문장에 있고 두 빈칸이 '합은 $\\frac{L}{2}$'에서 '세로는 $\\frac{L}{2}-x$'로 이어지는 추론 단계를 그대로 묻는다.",
+        "authorBatch": 10,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "가로와 세로의 길이의 합: $\\frac{L}{2}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "세로의 길이: $\\frac{L}{2}-x$ (동치인 식 인정)"
+            ]
+          },
+          {
+            "anyOf": [
+              "둘레가 $26\\,\\mathrm{cm}$일 때 세로: $(13-x)\\,\\mathrm{cm}$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-006",
+        "learningRole": "procedure",
+        "roleReason": "가로+세로=L/2, 세로 L/2-x",
+        "enrichmentEvidence": "enrichment/enrich-007",
+        "sourceIndex": 1427,
+        "part": "m1plus",
+        "sourceFingerprint": "cfc3bed12b28522decf59daf5d943f7cb3251c5727c2a799928077566f96eaf4",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1427
+        },
+        "directReview": null,
+        "cFrozenSentence": "직사각형의 둘레가 $L$이면 가로와 세로의 합은 □이므로, 가로를 $x$로 놓으면 세로는 □이다.",
+        "cFrozenDefinition": "직사각형의 둘레가 $L$이면 가로와 세로의 합은 {$\\frac{L}{2}$}이므로, 가로를 $x$로 놓으면 세로는 {$\\frac{L}{2}-x$}이다.",
+        "cFrozenAnswers": [
+          "$\\frac{L}{2}$",
+          "$\\frac{L}{2}-x$"
+        ],
+        "cMarkedSentence": "직사각형의 둘레가 $L$이면 가로와 세로의 합은 {$\\frac{L}{2}$}이므로, 가로를 $x$로 놓으면 세로는 {$\\frac{L}{2}-x$}이다.",
+        "cSlotAnswers": [
+          "$\\frac{L}{2}$",
+          "$\\frac{L}{2}-x$"
+        ],
+        "cStudentSentence": "직사각형의 둘레가 $L$이면 가로와 세로의 합은 □이므로, 가로를 $x$로 놓으면 세로는 □이다.",
+        "cAnswers": [
+          "$\\frac{L}{2}$",
+          "$\\frac{L}{2}-x$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{L}{2}$",
+            "equivalentAnswers": [
+              "$\\frac{L}{2}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\frac{L}{2}-x$",
+            "equivalentAnswers": [
+              "$\\frac{L}{2}-x$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{L}{2}$"
+          ],
+          [
+            "$\\frac{L}{2}-x$"
+          ]
+        ],
+        "proposalFingerprint": "131e27f764aba7be1dfc4ca0c94b40772f8ea09a5846ebbd50bd6d189e095296"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-12-xc10",
+        "section": "중1::3. 방정식::일차방정식의 활용(도형, 농도, 일)",
+        "term": "길을 낸 땅의 넓이",
+        "kind": "방법",
+        "level": "중",
+        "definition": "직사각형 땅에 폭이 일정한 길을 내면 길을 {한쪽으로 모아} 생각해 남은 땅의 {가로와 세로}를 구한다.",
+        "example": {
+          "prompt": "가로 $20\\,\\mathrm{m}$, 세로 $15\\,\\mathrm{m}$ 땅에 폭 $2\\,\\mathrm{m}$인 길을 가로와 세로로 하나씩 냈다. 남은 넓이는?",
+          "answer": "$234\\,\\mathrm{m}^2$"
+        },
+        "studentC": "직사각형 땅에 폭이 일정한 길을 내면 길을 □ 생각해 남은 땅의 □를 구한다.",
+        "answers": [
+          "한쪽으로 모아",
+          "가로와 세로"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-12-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "가로 $20\\,\\mathrm{m}$, 세로 $15\\,\\mathrm{m}$인 직사각형 모양의 땅에, 가로 변에 평행한 길 하나와 세로 변에 평행한 길 하나를 각각 폭 $2\\,\\mathrm{m}$로 땅의 끝에서 끝까지 냈다. 길을 뺀 나머지 땅의 넓이를 쉽게 구하려면 길을 어떻게 옮겨 생각하면 되는지 설명하고, 그때 남은 땅의 가로와 세로의 길이를 구해 넓이를 구하시오.",
+        "bAnswer": "두 길을 땅의 가장자리로 옮겨 붙여 생각하면 남은 땅이 하나의 직사각형이 된다. 이 직사각형의 가로는 $20-2=18\\,(\\mathrm{m})$, 세로는 $15-2=13\\,(\\mathrm{m})$이므로 남은 넓이는 $18\\times 13=234\\,(\\mathrm{m}^2)$이다.",
+        "bGoal": "폭이 일정한 길을 가장자리로 옮겨 남은 땅을 하나의 직사각형으로 보고 넓이를 구한다.",
+        "bReason": "그림이 없으므로 길의 방향, 개수, 폭, 땅의 크기를 글로 다 밝혀야 한다. 제목에는 이것이 전혀 없어 원문 예시를 자세히 풀어 쓰고 옮겨 생각하는 방법과 계산을 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "가로 $20\\,\\mathrm{m}$, 세로 $15\\,\\mathrm{m}$인 직사각형 땅에 폭이 $2\\,\\mathrm{m}$인 길을 가로 변에 평행하게 하나, 세로 변에 평행하게 하나 내면, 길을 가장자리로 옮겨 생각할 때 남은 땅은 가로 {$18$}$\\,\\mathrm{m}$, 세로 {$13$}$\\,\\mathrm{m}$인 직사각형과 넓이가 같다.",
+        "cAnswers": [
+          "$18$",
+          "$13$"
+        ],
+        "cReason": "원문 빈칸 '한쪽으로 모아'는 길고 표현이 정해져 있지 않은 구절이며, 길이 몇 개이고 어느 방향인지도 없어 그림 없이는 상황을 알 수 없다. 원문 예시의 수와 길의 방향을 문장에 넣고, 옮겨 생각한 결과인 남은 땅의 가로와 세로를 구하게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 10,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 길을 땅의 가장자리(한쪽)로 옮겨 붙여 남은 땅을 하나의 직사각형으로 봄 (같은 취지의 설명 인정)"
+            ]
+          },
+          {
+            "anyOf": [
+              "남은 땅의 가로 $20-2=18\\,(\\mathrm{m})$, 세로 $15-2=13\\,(\\mathrm{m})$"
+            ]
+          },
+          {
+            "anyOf": [
+              "남은 넓이 $18\\times13=234\\,(\\mathrm{m}^2)$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-006",
+        "learningRole": "procedure",
+        "roleReason": "길을 가장자리로 모아 남은 변",
+        "enrichmentEvidence": "enrichment/enrich-007",
+        "sourceIndex": 1428,
+        "part": "m1plus",
+        "sourceFingerprint": "543c0e38d231f01f9832a9b97c044bcfa6f389aa5a314957f3485e9164455839",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1428
+        },
+        "directReview": null,
+        "cMarkedSentence": "가로 $20\\,\\mathrm{m}$, 세로 $15\\,\\mathrm{m}$인 직사각형 땅에 폭이 $2\\,\\mathrm{m}$인 길을 가로 변에 평행하게 하나, 세로 변에 평행하게 하나 내면, 길을 가장자리로 옮겨 생각할 때 남은 땅은 가로 {$18$}$\\,\\mathrm{m}$, 세로 {$13$}$\\,\\mathrm{m}$인 직사각형과 넓이가 같다.",
+        "cSlotAnswers": [
+          "$18$",
+          "$13$"
+        ],
+        "cStudentSentence": "가로 $20\\,\\mathrm{m}$, 세로 $15\\,\\mathrm{m}$인 직사각형 땅에 폭이 $2\\,\\mathrm{m}$인 길을 가로 변에 평행하게 하나, 세로 변에 평행하게 하나 내면, 길을 가장자리로 옮겨 생각할 때 남은 땅은 가로 □$\\,\\mathrm{m}$, 세로 □$\\,\\mathrm{m}$인 직사각형과 넓이가 같다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$18$",
+            "equivalentAnswers": [
+              "$18$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$13$",
+            "equivalentAnswers": [
+              "$13$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$18$"
+          ],
+          [
+            "$13$"
+          ]
+        ],
+        "proposalFingerprint": "83a9a5c2a5be21917cc350aaa46bc4408f61de3eb313d694960d26f81603c3b3"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-12-xc11",
+        "section": "중1::3. 방정식::일차방정식의 활용(도형, 농도, 일)",
+        "term": "소금을 더 넣을 때",
+        "kind": "성질",
+        "level": "중",
+        "definition": "소금을 더 넣으면 {소금의 양}과 {소금물의 양}이 모두 그만큼 늘어난다.",
+        "example": {
+          "prompt": "$10\\%$ 소금물 $90\\,\\mathrm{g}$에 소금 $10\\,\\mathrm{g}$을 넣으면 농도는?",
+          "answer": "$19\\%$"
+        },
+        "studentC": "소금을 더 넣으면 □과 □이 모두 그만큼 늘어난다.",
+        "answers": [
+          "소금의 양",
+          "소금물의 양"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-12-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "$10\\%$의 소금물 $90\\,\\mathrm{g}$에 소금 $10\\,\\mathrm{g}$을 더 넣어 모두 녹였다. 소금을 넣기 전과 비교하여 소금의 양과 소금물의 양이 각각 어떻게 달라지는지 쓰고, 새 소금물의 농도를 구하시오.",
+        "bAnswer": "소금의 양과 소금물의 양이 모두 $10\\,\\mathrm{g}$씩 늘어난다. 소금은 $9\\,\\mathrm{g}$에서 $19\\,\\mathrm{g}$으로, 소금물은 $90\\,\\mathrm{g}$에서 $100\\,\\mathrm{g}$으로 바뀌므로 농도는 $\\frac{19}{100}\\times 100=19\\,(\\%)$이다.",
+        "bGoal": "소금을 더 넣으면 소금과 소금물의 양이 함께 늘어남을 알고 새 농도를 구한다.",
+        "bReason": "제목은 조작의 이름만 있다. 소금물의 양도 함께 늘어난다는 점이 핵심이므로 원문 예시의 수를 넣어 두 양의 변화를 각각 쓰게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "$10\\%$의 소금물 $90\\,\\mathrm{g}$에 소금 $10\\,\\mathrm{g}$을 더 넣어 녹이면 소금의 양은 $9\\,\\mathrm{g}$에서 {$19$}$\\,\\mathrm{g}$으로, 소금물의 양은 $90\\,\\mathrm{g}$에서 {$100$}$\\,\\mathrm{g}$으로 둘 다 $10\\,\\mathrm{g}$씩 늘어난다.",
+        "cAnswers": [
+          "$19$",
+          "$100$"
+        ],
+        "cReason": "원문은 어디에 소금을 넣는지(소금물)가 없고, 늘어나는 두 대상을 모두 가려 '□과 □이 늘어난다'만 남는다. 원문 예시의 수를 넣어 소금과 소금물이 각각 얼마가 되는지를 묻게 해, 소금물도 늘어난다는 점을 스스로 확인하게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 10,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "소금의 양과 소금물의 양이 모두 $10\\,\\mathrm{g}$씩 늘어남 (소금 $9\\,\\mathrm{g}\\to19\\,\\mathrm{g}$, 소금물 $90\\,\\mathrm{g}\\to100\\,\\mathrm{g}$)"
+            ]
+          },
+          {
+            "anyOf": [
+              "새 농도: $\\frac{19}{100}\\times100=19\\,(\\%)$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-006",
+        "learningRole": "application",
+        "roleReason": "소금·소금물 양이 함께 늘어남",
+        "enrichmentEvidence": "enrichment/enrich-007",
+        "sourceIndex": 1429,
+        "part": "m1plus",
+        "sourceFingerprint": "4346ae02e5635a2c27d2f76c14ccb3527a73a0db86ca70110ae41e4af7399e48",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1429
+        },
+        "directReview": null,
+        "cMarkedSentence": "$10\\%$의 소금물 $90\\,\\mathrm{g}$에 소금 $10\\,\\mathrm{g}$을 더 넣어 녹이면 소금의 양은 $9\\,\\mathrm{g}$에서 {$19$}$\\,\\mathrm{g}$으로, 소금물의 양은 $90\\,\\mathrm{g}$에서 {$100$}$\\,\\mathrm{g}$으로 둘 다 $10\\,\\mathrm{g}$씩 늘어난다.",
+        "cSlotAnswers": [
+          "$19$",
+          "$100$"
+        ],
+        "cStudentSentence": "$10\\%$의 소금물 $90\\,\\mathrm{g}$에 소금 $10\\,\\mathrm{g}$을 더 넣어 녹이면 소금의 양은 $9\\,\\mathrm{g}$에서 □$\\,\\mathrm{g}$으로, 소금물의 양은 $90\\,\\mathrm{g}$에서 □$\\,\\mathrm{g}$으로 둘 다 $10\\,\\mathrm{g}$씩 늘어난다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$19$",
+            "equivalentAnswers": [
+              "$19$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$100$",
+            "equivalentAnswers": [
+              "$100$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$19$"
+          ],
+          [
+            "$100$"
+          ]
+        ],
+        "proposalFingerprint": "65c377600b967dca9a472c205f61fc5a75d405d668e3463bdb8a62652f4f84b2"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-12-xc12",
+        "section": "중1::3. 방정식::일차방정식의 활용(도형, 농도, 일)",
+        "term": "증발 뒤의 농도",
+        "kind": "성질",
+        "level": "중",
+        "definition": "물을 증발시키면 소금물의 양만 {줄어} 같은 소금이 더 적은 소금물에 들어 있으므로 농도가 {높아진다}.",
+        "example": {
+          "prompt": "$6\\%$ 소금물 $200\\,\\mathrm{g}$에서 물 $50\\,\\mathrm{g}$을 증발시키면 농도는?",
+          "answer": "$8\\%$"
+        },
+        "studentC": "물을 증발시키면 소금물의 양만 □ 같은 소금이 더 적은 소금물에 들어 있으므로 농도가 □.",
+        "answers": [
+          "줄어",
+          "높아진다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-12-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "$6\\%$의 소금물 $200\\,\\mathrm{g}$에서 물 $50\\,\\mathrm{g}$을 증발시켰다. 증발 뒤의 농도가 처음보다 높아지는지 낮아지는지를 소금의 양과 소금물의 양의 변화를 들어 설명하고, 증발 뒤의 농도를 구하시오.",
+        "bAnswer": "소금의 양은 $12\\,\\mathrm{g}$으로 그대로인데 소금물의 양은 $200\\,\\mathrm{g}$에서 $150\\,\\mathrm{g}$으로 줄어들므로 농도는 높아진다. 증발 뒤의 농도는 $\\frac{12}{150}\\times 100=8\\,(\\%)$이다.",
+        "bGoal": "물을 증발시키면 농도가 높아지는 까닭을 두 양의 변화로 설명하고 계산한다.",
+        "bReason": "제목은 결과를 묻는지 이유를 묻는지 알 수 없다. 원문 예시의 수를 넣어 방향(높아짐), 이유(소금은 그대로이고 소금물은 줄어듦), 값을 모두 답하게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "소금물에서 물을 증발시키면 소금의 양은 변하지 않지만 소금물의 양은 {줄어든다}. 그래서 농도는 처음보다 {높아진다}.",
+        "cAnswers": [
+          "줄어든다",
+          "높아진다"
+        ],
+        "cReason": "원문 첫 빈칸의 답 '줄어'는 말이 중간에 끊긴 꼴이라 쓰기 어색하고, 바로 뒤의 '더 적은 소금물'이 답을 알려 준다. 문장을 둘로 나누어 변화의 방향 두 가지를 온전한 낱말로 답하게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 10,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "농도는 높아짐"
+            ]
+          },
+          {
+            "anyOf": [
+              "까닭: 소금의 양은 $12\\,\\mathrm{g}$으로 그대로인데 소금물의 양은 $200\\,\\mathrm{g}$에서 $150\\,\\mathrm{g}$으로 줄어듦"
+            ]
+          },
+          {
+            "anyOf": [
+              "증발 뒤의 농도: $\\frac{12}{150}\\times100=8\\,(\\%)$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-006",
+        "learningRole": "reason",
+        "roleReason": "소금은 그대로, 소금물만 줄어듦",
+        "enrichmentEvidence": "enrichment/enrich-007",
+        "sourceIndex": 1430,
+        "part": "m1plus",
+        "sourceFingerprint": "c0b426f9f81cb8a682f268f025170c11ac6fb504a1ce889e4bb87d5df3705069",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1430
+        },
+        "directReview": null,
+        "cMarkedSentence": "소금물에서 물을 증발시키면 소금의 양은 변하지 않지만 소금물의 양은 {줄어든다}. 그래서 농도는 처음보다 {높아진다}.",
+        "cSlotAnswers": [
+          "줄어든다",
+          "높아진다"
+        ],
+        "cStudentSentence": "소금물에서 물을 증발시키면 소금의 양은 변하지 않지만 소금물의 양은 □. 그래서 농도는 처음보다 □.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "줄어든다",
+            "equivalentAnswers": [
+              "줄어든다",
+              "감소한다",
+              "적어진다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "높아진다",
+            "equivalentAnswers": [
+              "높아진다",
+              "커진다",
+              "증가한다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "줄어든다",
+            "accept": [
+              "감소한다",
+              "적어진다"
+            ]
+          },
+          {
+            "answer": "높아진다",
+            "accept": [
+              "커진다",
+              "증가한다"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "줄어든다",
+            "감소한다",
+            "적어진다"
+          ],
+          [
+            "높아진다",
+            "커진다",
+            "증가한다"
+          ]
+        ],
+        "proposalFingerprint": "07b583071cc0fb3edf9d065f97b6bb4f5d7f4dd64f54d1ffa07f79f5e7965639"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-12-xc13",
+        "section": "중1::3. 방정식::일차방정식의 활용(도형, 농도, 일)",
+        "term": "나누어 한 일",
+        "kind": "방법",
+        "level": "중",
+        "definition": "전체 일을 $1$로 놓았을 때, 한 사람이 며칠 하고 나머지를 다른 사람이 했다면 두 사람이 한 일의 양의 {합}이 {$1$}이다.",
+        "example": {
+          "prompt": "혼자 $12$일 걸리는 일을 $4$일 한 뒤, 혼자 $6$일 걸리는 사람이 끝내려면 며칠 더?",
+          "answer": "$4$일"
+        },
+        "studentC": "전체 일을 $1$로 놓았을 때, 한 사람이 며칠 하고 나머지를 다른 사람이 했다면 두 사람이 한 일의 양의 □이 □이다.",
+        "answers": [
+          "합",
+          "$1$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-12-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "혼자 하면 $12$일이 걸리는 사람이 어떤 일을 $4$일 동안 한 뒤, 혼자 하면 $6$일이 걸리는 다른 사람이 나머지를 맡아 끝냈다. 전체 일의 양을 $1$로 놓고 나중 사람이 일한 날수를 $x$일이라 할 때, 두 사람이 한 일의 양으로 등식을 세워 $x$를 구하시오. 등식을 그렇게 세우는 까닭도 쓰시오.",
+        "bAnswer": "두 사람이 한 일의 양을 합하면 전체 일의 양 $1$이 되므로 $\\frac{4}{12}+\\frac{x}{6}=1$이다. $\\frac{x}{6}=\\frac{2}{3}$에서 $x=4$이므로 $4$일 동안 더 일했다.",
+        "bGoal": "두 사람이 차례로 나누어 한 일의 양의 합이 전체 $1$임을 이용해 방정식을 세운다.",
+        "bReason": "'나누어 한 일'은 누가 얼마나 했는지 없는 제목이다. 원문 예시의 수와 미지수를 정해 주고 등식과 그 근거를 함께 쓰게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "전체 일의 양을 $1$로 놓았을 때, 한 사람이 며칠 일하고 나머지를 다른 사람이 일하여 일을 모두 끝냈다면 두 사람이 한 일의 양의 {합}은 전체 일의 양과 같다.",
+        "cAnswers": [
+          "합"
+        ],
+        "cReason": "원문 둘째 빈칸의 답 '$1$'은 문장 첫머리 '전체 일을 $1$로 놓았을 때'에 그대로 있어 베껴 쓰면 된다. 그 빈칸을 없애고 '모두 끝냈다'는 조건을 넣어 관계의 낱말(합)만 묻게 했다.",
+        "studentLabel": "두 사람이 차례로 나누어 한 일",
+        "exampleNeeded": true,
+        "authorBatch": 10,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "등식: $\\frac{4}{12}+\\frac{x}{6}=1$ (동치인 식 인정)"
+            ]
+          },
+          {
+            "anyOf": [
+              "까닭: 두 사람이 한 일의 양을 합하면 전체 일의 양 $1$이 됨"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=4$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-006",
+        "learningRole": "procedure",
+        "roleReason": "나눠 한 일의 양의 합이 1",
+        "enrichmentEvidence": "enrichment/enrich-007",
+        "sourceIndex": 1431,
+        "part": "m1plus",
+        "sourceFingerprint": "765e7e0d0256b7d05588469c8964c62ed274226aa97c4c026e4502bbba0a9bae",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1431
+        },
+        "directReview": null,
+        "cMarkedSentence": "전체 일의 양을 $1$로 놓았을 때, 한 사람이 며칠 일하고 나머지를 다른 사람이 일하여 일을 모두 끝냈다면 두 사람이 한 일의 양의 {합}은 전체 일의 양과 같다.",
+        "cSlotAnswers": [
+          "합"
+        ],
+        "cStudentSentence": "전체 일의 양을 $1$로 놓았을 때, 한 사람이 며칠 일하고 나머지를 다른 사람이 일하여 일을 모두 끝냈다면 두 사람이 한 일의 양의 □은 전체 일의 양과 같다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "합",
+            "equivalentAnswers": [
+              "합"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "합"
+          ]
+        ],
+        "proposalFingerprint": "9541caca5f154b050fc8b17dfd1b89f649c1dc873c0fedbd66b7b64ac4da0342"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-12-xc14",
+        "section": "중1::3. 방정식::일차방정식의 활용(도형, 농도, 일)",
+        "term": "물탱크 채우기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "물탱크를 채우는 문제도 전체 양을 $1$로 놓고 한 시간에 채우는 양을 {분수}로 나타내 {일의 양}처럼 푼다.",
+        "example": {
+          "prompt": "$A$관으로 $3$시간, $B$관으로 $6$시간 걸리면 두 관을 함께 열 때는 몇 시간?",
+          "answer": "$2$시간"
+        },
+        "studentC": "물탱크를 채우는 문제도 전체 양을 $1$로 놓고 한 시간에 채우는 양을 □로 나타내 □처럼 푼다.",
+        "answers": [
+          "분수",
+          "일의 양"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-12-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "빈 물탱크를 가득 채우는 데 $A$관만 열면 $3$시간, $B$관만 열면 $6$시간이 걸린다. 물탱크에 가득 찬 물의 양을 $1$로 놓을 때 각 관이 $1$시간 동안 채우는 양을 쓰고, 두 관을 함께 열면 가득 채우는 데 몇 시간이 걸리는지 방정식을 세워 구하시오.",
+        "bAnswer": "$1$시간 동안 $A$관은 $\\frac{1}{3}$, $B$관은 $\\frac{1}{6}$을 채운다. 함께 열어 $x$시간이 걸린다고 하면 $\\left(\\frac{1}{3}+\\frac{1}{6}\\right)x=1$, $\\frac{1}{2}x=1$, $x=2$이므로 $2$시간이 걸린다.",
+        "bGoal": "물탱크 채우기를 전체를 $1$로 놓는 일의 양 문제와 같은 방법으로 식을 세워 푼다.",
+        "bReason": "제목은 소재만 알려 준다. 원문 예시를 넣어 전체를 $1$로 놓기, $1$시간에 채우는 양, 함께 열 때의 방정식을 차례로 요구했다.",
+        "cDecision": "rewrite",
+        "cAfter": "물탱크를 가득 채운 물의 양을 $1$로 놓으면, 혼자서 가득 채우는 데 $a$시간이 걸리는 관이 $1$시간 동안 채우는 양은 {$\\frac{1}{a}$}이다. 이렇게 하면 일의 양에 대한 문제와 같은 방법으로 풀 수 있다.",
+        "cAnswers": [
+          "$\\frac{1}{a}$"
+        ],
+        "cReason": "원문 빈칸 '분수', '일의 양'은 풀이 방법을 설명하는 낱말이어서 문장만으로는 답이 정해지지 않고 채우는 양이 얼마인지도 드러나지 않는다. $a$시간이 걸리는 관이라는 조건을 넣어 $1$시간에 채우는 양을 식으로 묻게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 10,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$1$시간 동안 채우는 양: $A$관 $\\frac{1}{3}$, $B$관 $\\frac{1}{6}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "방정식: $\\left(\\frac{1}{3}+\\frac{1}{6}\\right)x=1$ (동치인 식 인정)"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$시간"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-006",
+        "learningRole": "application",
+        "roleReason": "채우는 양을 일의 양처럼 분수로",
+        "enrichmentEvidence": "enrichment/enrich-007",
+        "sourceIndex": 1432,
+        "part": "m1plus",
+        "sourceFingerprint": "f3628e46a783a0933b88c1b79b4ba05ac9ec2a37be69df060e214bc7da3372b9",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1432
+        },
+        "directReview": null,
+        "cMarkedSentence": "물탱크를 가득 채운 물의 양을 $1$로 놓으면, 혼자서 가득 채우는 데 $a$시간이 걸리는 관이 $1$시간 동안 채우는 양은 {$\\frac{1}{a}$}이다. 이렇게 하면 일의 양에 대한 문제와 같은 방법으로 풀 수 있다.",
+        "cSlotAnswers": [
+          "$\\frac{1}{a}$"
+        ],
+        "cStudentSentence": "물탱크를 가득 채운 물의 양을 $1$로 놓으면, 혼자서 가득 채우는 데 $a$시간이 걸리는 관이 $1$시간 동안 채우는 양은 □이다. 이렇게 하면 일의 양에 대한 문제와 같은 방법으로 풀 수 있다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{1}{a}$",
+            "equivalentAnswers": [
+              "$\\frac{1}{a}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{1}{a}$"
+          ]
+        ],
+        "proposalFingerprint": "bf40e6077544e12552cfeb9795cbcf41bd2ebeefea7f2e370bdbc1a5c7a28ba1"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-12-xc15",
+        "section": "중1::3. 방정식::일차방정식의 활용(도형, 농도, 일)",
+        "term": "넓이가 같아지는 조건",
+        "kind": "방법",
+        "level": "중",
+        "definition": "두 도형의 넓이가 같다는 조건이 있으면 각 넓이를 $x$에 대한 식으로 쓰고 {등호}로 {잇는다}.",
+        "example": {
+          "prompt": "가로 $x\\,\\mathrm{cm}$, 세로 $4\\,\\mathrm{cm}$인 직사각형과 한 변 $6\\,\\mathrm{cm}$인 정사각형의 넓이가 같을 때 $x$는?",
+          "answer": "$9$"
+        },
+        "studentC": "두 도형의 넓이가 같다는 조건이 있으면 각 넓이를 $x$에 대한 식으로 쓰고 □로 □.",
+        "answers": [
+          "등호",
+          "잇는다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-12-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "가로의 길이가 $x\\,\\mathrm{cm}$, 세로의 길이가 $4\\,\\mathrm{cm}$인 직사각형과 한 변의 길이가 $6\\,\\mathrm{cm}$인 정사각형의 넓이가 서로 같다. 이 조건을 방정식으로 나타내는 방법을 설명하고, 방정식을 세워 $x$의 값을 구하시오.",
+        "bAnswer": "두 도형의 넓이를 각각 식으로 나타낸 뒤 등호로 연결한다. 직사각형의 넓이는 $4x$, 정사각형의 넓이는 $6\\times 6=36$이므로 $4x=36$, $x=9$이다.",
+        "bGoal": "두 넓이가 같다는 조건을 각 넓이의 식을 등호로 연결한 방정식으로 나타낸다.",
+        "bReason": "제목에는 어떤 두 도형인지가 없어 식을 쓸 수 없다. 원문 예시의 두 도형과 길이를 주고 방법을 설명하게 한 뒤 방정식과 해를 구하게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "가로 $x\\,\\mathrm{cm}$, 세로 $4\\,\\mathrm{cm}$인 직사각형과 한 변의 길이가 $6\\,\\mathrm{cm}$인 정사각형의 넓이가 같다는 조건은, 직사각형의 넓이 {$4x$}와 정사각형의 넓이 {$36$}을 등호로 이어 방정식으로 나타낸다.",
+        "cAnswers": [
+          "$4x$",
+          "$36$"
+        ],
+        "cReason": "원문 빈칸 '등호', '잇는다'는 방법을 말하는 낱말이고, '잇는다'는 '연결한다', '놓는다' 등 다른 표현도 가능해 답이 하나로 정해지지 않는다. 원문 예시의 도형을 넣어 등호 양쪽에 놓일 두 넓이의 식을 직접 쓰게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 10,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "방법: 두 도형의 넓이를 각각 식으로 나타낸 뒤 등호로 연결함"
+            ]
+          },
+          {
+            "anyOf": [
+              "방정식: $4x=36$ ($4x=6\\times6$ 인정)"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=9$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-006",
+        "learningRole": "procedure",
+        "roleReason": "두 넓이 식을 등호로 연결",
+        "enrichmentEvidence": "enrichment/enrich-007",
+        "sourceIndex": 1433,
+        "part": "m1plus",
+        "sourceFingerprint": "1adca5ceebc37d8a7b6044a9ed85bb06055667c02f555a8f7829a46f8c1ab665",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1433
+        },
+        "directReview": null,
+        "cMarkedSentence": "가로 $x\\,\\mathrm{cm}$, 세로 $4\\,\\mathrm{cm}$인 직사각형과 한 변의 길이가 $6\\,\\mathrm{cm}$인 정사각형의 넓이가 같다는 조건은, 직사각형의 넓이 {$4x$}와 정사각형의 넓이 {$36$}을 등호로 이어 방정식으로 나타낸다.",
+        "cSlotAnswers": [
+          "$4x$",
+          "$36$"
+        ],
+        "cStudentSentence": "가로 $x\\,\\mathrm{cm}$, 세로 $4\\,\\mathrm{cm}$인 직사각형과 한 변의 길이가 $6\\,\\mathrm{cm}$인 정사각형의 넓이가 같다는 조건은, 직사각형의 넓이 □와 정사각형의 넓이 □을 등호로 이어 방정식으로 나타낸다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$4x$",
+            "equivalentAnswers": [
+              "$4x$",
+              "$4\\times x$",
+              "$x\\times 4$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$36$",
+            "equivalentAnswers": [
+              "$36$",
+              "$6\\times 6$",
+              "$6^2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$4x$",
+            "accept": [
+              "$4\\times x$",
+              "$x\\times 4$"
+            ]
+          },
+          {
+            "answer": "$36$",
+            "accept": [
+              "$6\\times 6$",
+              "$6^2$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$4x$",
+            "$4\\times x$",
+            "$x\\times 4$"
+          ],
+          [
+            "$36$",
+            "$6\\times 6$",
+            "$6^2$"
+          ]
+        ],
+        "proposalFingerprint": "fcd4e64e47f4ede329c3757091a3f669d3c0e42fab3e0bbef9197440c650e4ca"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-12-xc16",
+        "section": "중1::3. 방정식::일차방정식의 활용(도형, 농도, 일)",
+        "term": "섞은 소금물의 농도",
+        "kind": "방법",
+        "level": "중",
+        "definition": "섞은 소금물의 농도는 소금의 양의 {합}을 소금물의 양의 {합}으로 나눈 뒤 $100$을 곱한다.",
+        "example": {
+          "prompt": "$5\\%$ 소금물 $100\\,\\mathrm{g}$과 $10\\%$ 소금물 $100\\,\\mathrm{g}$을 섞으면 농도는?",
+          "answer": "$7.5\\%$"
+        },
+        "studentC": "섞은 소금물의 농도는 소금의 양의 □을 소금물의 양의 □으로 나눈 뒤 $100$을 곱한다.",
+        "answers": [
+          "합",
+          "합"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-12-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "$5\\%$의 소금물 $100\\,\\mathrm{g}$과 $10\\%$의 소금물 $100\\,\\mathrm{g}$을 섞었다. 섞은 소금물의 농도를 구하려면 무엇을 무엇으로 나누어야 하는지 쓰고 농도를 구하시오. 또 $5\\%$의 소금물 $100\\,\\mathrm{g}$과 $10\\%$의 소금물 $300\\,\\mathrm{g}$을 섞으면 농도가 두 농도의 평균인 $7.5\\%$가 되는지 계산하여 답하시오.",
+        "bAnswer": "두 소금물에 든 소금의 양의 합을 두 소금물의 양의 합으로 나눈 뒤 $100$을 곱한다. 처음 경우는 $\\frac{5+10}{200}\\times 100=7.5\\,(\\%)$이다. 둘째 경우는 $\\frac{5+30}{400}\\times 100=8.75\\,(\\%)$이므로 $7.5\\%$가 되지 않는다.",
+        "bGoal": "섞은 소금물의 농도를 소금의 합과 소금물의 합으로 구하고, 두 농도의 평균과 같지 않을 수 있음을 확인한다.",
+        "bReason": "제목만으로는 무엇을 섞는지 없다. 원문 예시는 양이 같아 답이 두 농도의 평균과 우연히 같으므로, 양이 다른 경우를 하나 더 넣어 농도끼리 평균 내는 오류를 막게 했다.",
+        "cDecision": "keep",
+        "cReason": "문장이 짧고 분명하다. 두 빈칸의 답이 모두 '합'이지만 소금과 소금물을 각각 더한 뒤 나눈다는 순서를 확인하는 데 쓸모가 있어 유지한다.",
+        "exampleNeeded": true,
+        "authorBatch": 10,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 소금물에 든 소금의 양의 합을 두 소금물의 양의 합으로 나눔 (그 뒤 $100$을 곱함)"
+            ]
+          },
+          {
+            "anyOf": [
+              "첫째 경우: $\\frac{5+10}{200}\\times100=7.5\\,(\\%)$"
+            ]
+          },
+          {
+            "anyOf": [
+              "둘째 경우: $\\frac{5+30}{400}\\times100=8.75\\,(\\%)$이므로 $7.5\\%$가 되지 않음"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-006",
+        "learningRole": "procedure",
+        "roleReason": "소금 합÷소금물 합×100",
+        "enrichmentEvidence": "enrichment/enrich-007",
+        "sourceIndex": 1434,
+        "part": "m1plus",
+        "sourceFingerprint": "ea98148202124c8669b576f8e7e3e492b133e6cfaabadc3056ec983e3db19af1",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1434
+        },
+        "directReview": null,
+        "cFrozenSentence": "섞은 소금물의 농도는 소금의 양의 □을 소금물의 양의 □으로 나눈 뒤 $100$을 곱한다.",
+        "cFrozenDefinition": "섞은 소금물의 농도는 소금의 양의 {합}을 소금물의 양의 {합}으로 나눈 뒤 $100$을 곱한다.",
+        "cFrozenAnswers": [
+          "합",
+          "합"
+        ],
+        "cMarkedSentence": "섞은 소금물의 농도는 소금의 양의 {합}을 소금물의 양의 {합}으로 나눈 뒤 $100$을 곱한다.",
+        "cSlotAnswers": [
+          "합",
+          "합"
+        ],
+        "cStudentSentence": "섞은 소금물의 농도는 소금의 양의 □을 소금물의 양의 □으로 나눈 뒤 $100$을 곱한다.",
+        "cAnswers": [
+          "합",
+          "합"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "합",
+            "equivalentAnswers": [
+              "합"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "합",
+            "equivalentAnswers": [
+              "합"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "합"
+          ],
+          [
+            "합"
+          ]
+        ],
+        "proposalFingerprint": "8e5ad35479bcb828cbab706915ca3bd89c1bb7712510e61c5f2c9731253eb382"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-12-xc17",
+        "section": "중1::3. 방정식::일차방정식의 활용(도형, 농도, 일)",
+        "term": "섞어서 원하는 농도 만들기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "농도가 다른 두 소금물을 섞어 원하는 농도를 만들 때는 섞기 전 소금의 양의 {합}이 섞은 뒤 {소금의 양}과 같다고 놓는다.",
+        "example": {
+          "prompt": "$4\\%$ 소금물 $200\\,\\mathrm{g}$에 $10\\%$ 소금물을 몇 $\\mathrm{g}$ 섞어야 $6\\%$가 되는가?",
+          "answer": "$100\\,\\mathrm{g}$"
+        },
+        "studentC": "농도가 다른 두 소금물을 섞어 원하는 농도를 만들 때는 섞기 전 소금의 양의 □이 섞은 뒤 □과 같다고 놓는다.",
+        "answers": [
+          "합",
+          "소금의 양"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-12-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "$4\\%$의 소금물 $200\\,\\mathrm{g}$에 $10\\%$의 소금물을 섞어 $6\\%$의 소금물을 만들려고 한다. 섞는 $10\\%$ 소금물의 양을 $x\\,\\mathrm{g}$이라 할 때, 섞기 전 두 소금물에 든 소금의 양과 섞은 뒤 소금물에 든 소금의 양을 각각 식으로 나타내고, 방정식을 세워 $x$를 구하시오.",
+        "bAnswer": "섞기 전 소금의 양은 $\\frac{4}{100}\\times 200=8\\,(\\mathrm{g})$과 $\\frac{10}{100}x\\,(\\mathrm{g})$이고, 섞은 뒤 소금의 양은 $\\frac{6}{100}(200+x)\\,(\\mathrm{g})$이다. $8+\\frac{10}{100}x=\\frac{6}{100}(200+x)$에서 양변에 $100$을 곱하면 $800+10x=1200+6x$, $x=100$이므로 $100\\,\\mathrm{g}$을 섞는다.",
+        "bGoal": "원하는 농도를 만드는 혼합 문제에서 소금의 양으로 방정식을 세워 섞는 양을 구한다.",
+        "bReason": "제목은 목표만 말한다. 말로 된 원리는 m1-03-12-c4의 B가 다루므로, 여기서는 원문 예시의 수로 세 가지 소금의 양을 식으로 쓰고 방정식을 푸는 적용 문제로 구별했다.",
+        "cDecision": "exclude",
+        "cReason": "학생 문장이 m1-03-12-c4의 문장과 사실상 같고 빈칸의 답(합, 소금의 양)도 같아 같은 내용을 두 번 채우게 된다. 둘째 빈칸의 답이 문장 앞에 그대로 나오는 문제도 같다. 나중에 쓴다면 '$4\\%$의 소금물 $200\\,\\mathrm{g}$에 든 소금의 양은 {$8$}$\\,\\mathrm{g}$이다'처럼 수치로 확인하는 꼴이 알맞다.",
+        "exclusionReason": "C 제외: m1-03-12-c4의 C와 문장 구조와 빈칸 답(합, 소금의 양)이 같은 빈칸 문항 중복이다. B는 수치 적용 문제로 고쳐 유지한다.",
+        "exampleNeeded": true,
+        "authorBatch": 10,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "섞기 전 소금의 양: $\\frac{4}{100}\\times200=8\\,(\\mathrm{g})$과 $\\frac{10}{100}x\\,(\\mathrm{g})$"
+            ]
+          },
+          {
+            "anyOf": [
+              "섞은 뒤 소금의 양: $\\frac{6}{100}(200+x)\\,(\\mathrm{g})$"
+            ]
+          },
+          {
+            "anyOf": [
+              "방정식: $8+\\frac{10}{100}x=\\frac{6}{100}(200+x)$ (동치인 식 인정)"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=100$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-006",
+        "learningRole": "procedure",
+        "roleReason": "섞기 전후 소금의 양이 같음",
+        "enrichmentEvidence": "enrichment/enrich-007",
+        "sourceIndex": 1435,
+        "part": "m1plus",
+        "sourceFingerprint": "84c33fff6e93641b518d5e9506fab24edf65eaa86f94596d1c22ca688516650c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1435
+        },
+        "directReview": null,
+        "proposalFingerprint": "68cefc0fee65f17eb61a73566f3c46c1f23e34ea8d1b776a39d20ea432b84522"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-12-xc18",
+        "section": "중1::3. 방정식::일차방정식의 활용(도형, 농도, 일)",
+        "term": "$a\\%$ 소금물 $m\\,\\mathrm{g}$에 물 $x\\,\\mathrm{g}$을 넣어 $b\\%$로 만드는 식",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$a\\%$ 소금물 $m\\,\\mathrm{g}$에 물 $x\\,\\mathrm{g}$을 넣어 $b\\%$로 만들려면 {$\\frac{a}{100}m=\\frac{b}{100}(m+x)$}로 놓는다.",
+        "example": {
+          "prompt": "$15\\%$ 소금물 $200\\,\\mathrm{g}$에 물을 몇 $\\mathrm{g}$ 넣어야 $10\\%$가 되는가?",
+          "answer": "$100\\,\\mathrm{g}$"
+        },
+        "studentC": "$a\\%$ 소금물 $m\\,\\mathrm{g}$에 물 $x\\,\\mathrm{g}$을 넣어 $b\\%$로 만들려면 □로 놓는다.",
+        "answers": [
+          "$\\frac{a}{100}m=\\frac{b}{100}(m+x)$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-12-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "$a\\%$의 소금물 $m\\,\\mathrm{g}$에 물 $x\\,\\mathrm{g}$을 넣어 $b\\%$의 소금물을 만들었다. 물을 넣기 전과 넣은 뒤에 변하지 않는 양이 무엇인지 쓰고, 그 양을 이용해 $a$, $b$, $m$, $x$ 사이의 등식을 세우시오. 또 이 등식으로 $15\\%$의 소금물 $200\\,\\mathrm{g}$을 $10\\%$로 만들려면 물을 몇 $\\mathrm{g}$ 넣어야 하는지 구하시오.",
+        "bAnswer": "소금의 양이 변하지 않는다. 물을 넣기 전 소금의 양은 $\\frac{a}{100}m$, 넣은 뒤 소금의 양은 $\\frac{b}{100}(m+x)$이므로 $\\frac{a}{100}m=\\frac{b}{100}(m+x)$이다. $\\frac{15}{100}\\times 200=\\frac{10}{100}(200+x)$에서 $30=\\frac{200+x}{10}$, $x=100$이므로 물 $100\\,\\mathrm{g}$을 넣는다.",
+        "bGoal": "물을 넣어 농도를 낮추는 문제에서 소금의 양이 같다는 등식을 문자로 세우고 적용한다.",
+        "bReason": "제목에 조건은 있으나 질문 꼴이 아니고 식의 근거가 빠져 있다. 변하지 않는 양을 먼저 찾게 해 등식의 이유를 드러내고 원문 예시로 풀이까지 하게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "$a\\%$의 소금물 $m\\,\\mathrm{g}$에 물 $x\\,\\mathrm{g}$을 넣어 $b\\%$의 소금물을 만들 때, 물을 넣기 전 소금의 양은 $\\frac{a}{100}\\times m\\,(\\mathrm{g})$이고 물을 넣은 뒤 소금물의 양은 {$m+x$}$\\,\\mathrm{g}$이므로 그 안의 소금의 양은 {$\\frac{b}{100}(m+x)$}$\\,\\mathrm{g}$이다. 물만 넣었으므로 이 두 소금의 양이 같다고 식을 세운다.",
+        "cAnswers": [
+          "$m+x$",
+          "$\\frac{b}{100}(m+x)$"
+        ],
+        "cReason": "원문은 등식 전체가 빈칸 하나의 답이라 너무 길고, 같은 뜻의 다른 꼴이 많아 답을 맞추기 어렵다. 등식을 넣기 전 소금의 양, 넣은 뒤 소금물의 양, 넣은 뒤 소금의 양으로 나누고 바뀌는 부분 둘만 묻게 했다. 원래 등식의 내용은 그대로 남아 있다.",
+        "authorBatch": 10,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "변하지 않는 양: 소금의 양"
+            ]
+          },
+          {
+            "anyOf": [
+              "등식: $\\frac{a}{100}m=\\frac{b}{100}(m+x)$ ($am=b(m+x)$ 등 동치인 식 인정)"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{15}{100}\\times200=\\frac{10}{100}(200+x)$에서 물 $100\\,\\mathrm{g}$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-006",
+        "learningRole": "procedure",
+        "roleReason": "물 넣어도 소금 양 같다는 등식",
+        "enrichmentEvidence": "enrichment/enrich-007",
+        "sourceIndex": 1436,
+        "part": "m1plus",
+        "sourceFingerprint": "6c544beb6a5bb0a0fc82f1fc3e295f6c52ec7b16377bb55dd97a650b36ddbbb4",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1436
+        },
+        "directReview": null,
+        "cMarkedSentence": "$a\\%$의 소금물 $m\\,\\mathrm{g}$에 물 $x\\,\\mathrm{g}$을 넣어 $b\\%$의 소금물을 만들 때, 물을 넣기 전 소금의 양은 $\\frac{a}{100}\\times m\\,(\\mathrm{g})$이고 물을 넣은 뒤 소금물의 양은 {$m+x$}$\\,\\mathrm{g}$이므로 그 안의 소금의 양은 {$\\frac{b}{100}(m+x)$}$\\,\\mathrm{g}$이다. 물만 넣었으므로 이 두 소금의 양이 같다고 식을 세운다.",
+        "cSlotAnswers": [
+          "$m+x$",
+          "$\\frac{b}{100}(m+x)$"
+        ],
+        "cStudentSentence": "$a\\%$의 소금물 $m\\,\\mathrm{g}$에 물 $x\\,\\mathrm{g}$을 넣어 $b\\%$의 소금물을 만들 때, 물을 넣기 전 소금의 양은 $\\frac{a}{100}\\times m\\,(\\mathrm{g})$이고 물을 넣은 뒤 소금물의 양은 □$\\,\\mathrm{g}$이므로 그 안의 소금의 양은 □$\\,\\mathrm{g}$이다. 물만 넣었으므로 이 두 소금의 양이 같다고 식을 세운다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$m+x$",
+            "equivalentAnswers": [
+              "$m+x$",
+              "$x+m$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\frac{b}{100}(m+x)$",
+            "equivalentAnswers": [
+              "$\\frac{b}{100}(m+x)$",
+              "$\\frac{b(m+x)}{100}$",
+              "$\\frac{b}{100}\\times(m+x)$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$m+x$",
+            "accept": [
+              "$x+m$"
+            ]
+          },
+          {
+            "answer": "$\\frac{b}{100}(m+x)$",
+            "accept": [
+              "$\\frac{b(m+x)}{100}$",
+              "$\\frac{b}{100}\\times(m+x)$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$m+x$",
+            "$x+m$"
+          ],
+          [
+            "$\\frac{b}{100}(m+x)$",
+            "$\\frac{b(m+x)}{100}$",
+            "$\\frac{b}{100}\\times(m+x)$"
+          ]
+        ],
+        "proposalFingerprint": "23fd7256d934f58a076ff1eb22128398f43971b64a5439cbbb928feceafc6541"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-12-xc19",
+        "section": "중1::3. 방정식::일차방정식의 활용(도형, 농도, 일)",
+        "term": "함께 하다가 혼자 끝내기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "처음 며칠은 함께, 나머지는 한 사람이 했다면 (함께 한 양)$+$({혼자 한 양})$=1$로 놓는다.",
+        "example": {
+          "prompt": "혼자 $6$일, $12$일 걸리는 두 사람이 $2$일 함께 한 뒤 나머지를 첫째 사람이 하면 며칠 더?",
+          "answer": "$3$일"
+        },
+        "studentC": "처음 며칠은 함께, 나머지는 한 사람이 했다면 (함께 한 양)$+$(□)$=1$로 놓는다.",
+        "answers": [
+          "혼자 한 양"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-12-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "혼자 하면 각각 $6$일, $12$일이 걸리는 두 사람이 어떤 일을 $2$일 동안 함께 한 뒤, 나머지는 혼자 하면 $6$일이 걸리는 사람이 혼자서 끝냈다. 전체 일의 양을 $1$로 놓고 혼자 일한 날수를 $x$일이라 할 때, 함께 한 일의 양과 혼자 한 일의 양을 각각 식으로 나타내어 방정식을 세우고 $x$를 구하시오.",
+        "bAnswer": "함께 한 일의 양은 $\\left(\\frac{1}{6}+\\frac{1}{12}\\right)\\times 2=\\frac{1}{2}$이고 혼자 한 일의 양은 $\\frac{x}{6}$이다. $\\frac{1}{2}+\\frac{x}{6}=1$에서 $x=3$이므로 $3$일 동안 더 일했다.",
+        "bGoal": "함께 한 일과 혼자 한 일의 양의 합이 전체 $1$이 되도록 방정식을 세운다.",
+        "bReason": "제목은 일의 순서만 알려 준다. 원문 예시의 수와 미지수를 정해 주고 두 부분의 양을 따로 식으로 쓴 뒤 방정식으로 잇게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "전체 일의 양을 $1$로 놓을 때, 처음 며칠은 두 사람이 함께 일하고 나머지는 한 사람이 혼자 일하여 끝냈다면 (함께 한 일의 양)$+$({혼자 한 일의 양})$=1$로 식을 세운다.",
+        "cAnswers": [
+          "혼자 한 일의 양"
+        ],
+        "cReason": "원문에는 등식의 '$1$'이 무엇인지(전체 일의 양)가 없고 주어 없이 '함께', '한 사람이'만 있어 누가 무엇을 했는지 읽기 어렵다. 전제와 주어를 넣고 빈칸은 등식의 한 항 그대로 두었다.",
+        "exampleNeeded": true,
+        "authorBatch": 10,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "함께 한 일의 양: $\\left(\\frac{1}{6}+\\frac{1}{12}\\right)\\times2=\\frac{1}{2}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "혼자 한 일의 양: $\\frac{x}{6}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "방정식: $\\frac{1}{2}+\\frac{x}{6}=1$ (동치인 식 인정)"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=3$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-006",
+        "learningRole": "procedure",
+        "roleReason": "함께 한 양+혼자 한 양=1",
+        "enrichmentEvidence": "enrichment/enrich-007",
+        "sourceIndex": 1437,
+        "part": "m1plus",
+        "sourceFingerprint": "428d00d89bbab356e445d986c1f0892c6337da2fa75ef78f1f9f634b1952c0dc",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1437
+        },
+        "directReview": null,
+        "cMarkedSentence": "전체 일의 양을 $1$로 놓을 때, 처음 며칠은 두 사람이 함께 일하고 나머지는 한 사람이 혼자 일하여 끝냈다면 (함께 한 일의 양)$+$({혼자 한 일의 양})$=1$로 식을 세운다.",
+        "cSlotAnswers": [
+          "혼자 한 일의 양"
+        ],
+        "cStudentSentence": "전체 일의 양을 $1$로 놓을 때, 처음 며칠은 두 사람이 함께 일하고 나머지는 한 사람이 혼자 일하여 끝냈다면 (함께 한 일의 양)$+$(□)$=1$로 식을 세운다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "혼자 한 일의 양",
+            "equivalentAnswers": [
+              "혼자 한 일의 양",
+              "혼자 한 양",
+              "나머지를 혼자 한 일의 양"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "혼자 한 일의 양",
+            "accept": [
+              "혼자 한 양",
+              "나머지를 혼자 한 일의 양"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "혼자 한 일의 양",
+            "혼자 한 양",
+            "나머지를 혼자 한 일의 양"
+          ]
+        ],
+        "proposalFingerprint": "45890c92a79f854d0319c6f7ec182d0ac87a1924ad7ec973b2670c23edef2596"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-12-xc20",
+        "section": "중1::3. 방정식::일차방정식의 활용(도형, 농도, 일)",
+        "term": "변을 바꾸어도 넓이가 같을 때",
+        "kind": "방법",
+        "level": "상",
+        "definition": "가로를 늘이고 세로를 줄인 뒤 넓이가 처음과 같다면 {바꾼 뒤 넓이}를 식으로 써서 처음 넓이와 {같다}고 놓는다.",
+        "example": {
+          "prompt": "가로 $8\\,\\mathrm{cm}$, 세로 $6\\,\\mathrm{cm}$인 직사각형의 가로를 $4\\,\\mathrm{cm}$ 늘이고 세로를 $x\\,\\mathrm{cm}$ 줄였더니 넓이가 같았다. $x$는?",
+          "answer": "$2$"
+        },
+        "studentC": "가로를 늘이고 세로를 줄인 뒤 넓이가 처음과 같다면 □를 식으로 써서 처음 넓이와 □고 놓는다.",
+        "answers": [
+          "바꾼 뒤 넓이",
+          "같다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-12-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "가로 $8\\,\\mathrm{cm}$, 세로 $6\\,\\mathrm{cm}$인 직사각형의 가로를 $4\\,\\mathrm{cm}$ 늘이고 세로를 $x\\,\\mathrm{cm}$ 줄였더니 넓이가 처음과 같았다. 바꾼 뒤 직사각형의 가로와 세로의 길이를 쓰고, 어떤 두 넓이가 같다고 놓는지 밝혀 방정식을 세워 $x$의 값을 구하시오.",
+        "bAnswer": "바꾼 뒤의 가로는 $12\\,\\mathrm{cm}$, 세로는 $(6-x)\\,\\mathrm{cm}$이다. 바꾼 뒤의 넓이가 처음 넓이 $48\\,\\mathrm{cm}^2$와 같으므로 $12(6-x)=48$, $6-x=4$, $x=2$이다.",
+        "bGoal": "변의 길이를 바꾼 뒤의 넓이를 식으로 나타내 처음 넓이와 같다는 방정식을 세운다.",
+        "bReason": "제목만으로는 어떤 도형의 변을 어떻게 바꾸는지 없다. 원문 예시를 넣어 바뀐 변의 길이, 같다고 놓는 두 넓이, 해를 차례로 답하게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "가로 $8\\,\\mathrm{cm}$, 세로 $6\\,\\mathrm{cm}$인 직사각형의 가로를 $4\\,\\mathrm{cm}$ 늘이고 세로를 $x\\,\\mathrm{cm}$ 줄여도 넓이가 처음과 같다면, 바꾼 뒤의 넓이 {$12(6-x)$}가 처음 넓이 {$48$}과 같다고 방정식을 세운다.",
+        "cAnswers": [
+          "$12(6-x)$",
+          "$48$"
+        ],
+        "cReason": "원문 빈칸 '바꾼 뒤 넓이'는 표현이 정해져 있지 않은 구절이고, '같다'는 바로 앞 '넓이가 처음과 같다면'에 그대로 있어 베껴 쓰면 된다. 원문 예시의 수를 넣어 등식 양쪽에 놓일 두 넓이를 식과 값으로 쓰게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 10,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "바꾼 뒤의 가로 $12\\,\\mathrm{cm}$, 세로 $(6-x)\\,\\mathrm{cm}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "바꾼 뒤의 넓이가 처음 넓이 $48\\,\\mathrm{cm}^2$와 같다고 놓음: $12(6-x)=48$ (동치인 식 인정)"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=2$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-006",
+        "learningRole": "procedure",
+        "roleReason": "바꾼 뒤 넓이=처음 넓이",
+        "enrichmentEvidence": "enrichment/enrich-007",
+        "sourceIndex": 1438,
+        "part": "m1plus",
+        "sourceFingerprint": "6f4ec0e1eaa2e2adc08d18cd8691163be96994d4aeeef111a2e939aba84c4489",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1438
+        },
+        "directReview": null,
+        "cMarkedSentence": "가로 $8\\,\\mathrm{cm}$, 세로 $6\\,\\mathrm{cm}$인 직사각형의 가로를 $4\\,\\mathrm{cm}$ 늘이고 세로를 $x\\,\\mathrm{cm}$ 줄여도 넓이가 처음과 같다면, 바꾼 뒤의 넓이 {$12(6-x)$}가 처음 넓이 {$48$}과 같다고 방정식을 세운다.",
+        "cSlotAnswers": [
+          "$12(6-x)$",
+          "$48$"
+        ],
+        "cStudentSentence": "가로 $8\\,\\mathrm{cm}$, 세로 $6\\,\\mathrm{cm}$인 직사각형의 가로를 $4\\,\\mathrm{cm}$ 늘이고 세로를 $x\\,\\mathrm{cm}$ 줄여도 넓이가 처음과 같다면, 바꾼 뒤의 넓이 □가 처음 넓이 □과 같다고 방정식을 세운다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$12(6-x)$",
+            "equivalentAnswers": [
+              "$12(6-x)$",
+              "$(8+4)(6-x)$",
+              "$72-12x$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$48$",
+            "equivalentAnswers": [
+              "$48$",
+              "$8\\times 6$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$12(6-x)$",
+            "accept": [
+              "$(8+4)(6-x)$",
+              "$72-12x$"
+            ]
+          },
+          {
+            "answer": "$48$",
+            "accept": [
+              "$8\\times 6$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$12(6-x)$",
+            "$(8+4)(6-x)$",
+            "$72-12x$"
+          ],
+          [
+            "$48$",
+            "$8\\times 6$"
+          ]
+        ],
+        "proposalFingerprint": "469d78ec23330245387376489ed7046113834c8fee14c8d0f6be6b7306154323"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-12-xc21",
+        "section": "중1::3. 방정식::일차방정식의 활용(도형, 농도, 일)",
+        "term": "사다리꼴의 넓이로 식 세우기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "사다리꼴의 넓이는 $\\frac{1}{2}\\times$(윗변$+$아랫변)$\\times$(높이)이므로 모르는 {변의 길이}를 $x$로 넣어 {방정식}을 세운다.",
+        "example": {
+          "prompt": "윗변 $x\\,\\mathrm{cm}$, 아랫변 $10\\,\\mathrm{cm}$, 높이 $6\\,\\mathrm{cm}$, 넓이 $48\\,\\mathrm{cm}^2$인 사다리꼴의 $x$는?",
+          "answer": "$6$"
+        },
+        "studentC": "사다리꼴의 넓이는 $\\frac{1}{2}\\times$(윗변$+$아랫변)$\\times$(높이)이므로 모르는 □를 $x$로 넣어 □을 세운다.",
+        "answers": [
+          "변의 길이",
+          "방정식"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-12-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "윗변의 길이가 $x\\,\\mathrm{cm}$, 아랫변의 길이가 $10\\,\\mathrm{cm}$, 높이가 $6\\,\\mathrm{cm}$인 사다리꼴의 넓이가 $48\\,\\mathrm{cm}^2$이다. 사다리꼴의 넓이를 구하는 식을 쓰고, 방정식을 세워 $x$의 값을 구하시오.",
+        "bAnswer": "(사다리꼴의 넓이)$=\\frac{1}{2}\\times\\{$(윗변)$+$(아랫변)$\\}\\times$(높이)이다. $\\frac{1}{2}\\times(x+10)\\times 6=48$에서 $3(x+10)=48$, $x+10=16$, $x=6$이다.",
+        "bGoal": "사다리꼴의 넓이 공식에 미지수를 넣어 방정식을 세우고 푼다.",
+        "bReason": "제목은 방법의 이름뿐이고 그림도 없다. 윗변, 아랫변, 높이, 넓이를 글로 모두 주고 공식과 방정식을 차례로 쓰게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "사다리꼴의 넓이는 {$\\frac{1}{2}$}$\\times$(윗변의 길이$+$아랫변의 길이)$\\times$({높이})이므로, 넓이가 주어지면 모르는 길이를 $x$로 놓고 방정식을 세운다.",
+        "cAnswers": [
+          "$\\frac{1}{2}$",
+          "높이"
+        ],
+        "cReason": "원문은 정작 외워야 할 공식을 다 보여 주고 '변의 길이', '방정식'이라는 설명 낱말만 가렸다. 공식에서 빠뜨리기 쉬운 $\\frac{1}{2}$과 곱하는 길이(높이)를 묻도록 빈칸 위치를 옮겼다.",
+        "exampleNeeded": true,
+        "authorBatch": 10,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "(사다리꼴의 넓이)$=\\frac{1}{2}\\times\\{$(윗변)$+$(아랫변)$\\}\\times$(높이)"
+            ]
+          },
+          {
+            "anyOf": [
+              "방정식: $\\frac{1}{2}\\times(x+10)\\times6=48$ ($3(x+10)=48$ 등 동치인 식 인정)"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=6$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-006",
+        "learningRole": "procedure",
+        "roleReason": "사다리꼴 넓이 공식으로 방정식",
+        "enrichmentEvidence": "enrichment/enrich-007",
+        "sourceIndex": 1439,
+        "part": "m1plus",
+        "sourceFingerprint": "85c0dc8bf9a5f03bea1e240537eca48f408e176f21efced28c8f6984f72c394d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1439
+        },
+        "directReview": null,
+        "cMarkedSentence": "사다리꼴의 넓이는 {$\\frac{1}{2}$}$\\times$(윗변의 길이$+$아랫변의 길이)$\\times$({높이})이므로, 넓이가 주어지면 모르는 길이를 $x$로 놓고 방정식을 세운다.",
+        "cSlotAnswers": [
+          "$\\frac{1}{2}$",
+          "높이"
+        ],
+        "cStudentSentence": "사다리꼴의 넓이는 □$\\times$(윗변의 길이$+$아랫변의 길이)$\\times$(□)이므로, 넓이가 주어지면 모르는 길이를 $x$로 놓고 방정식을 세운다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{1}{2}$",
+            "equivalentAnswers": [
+              "$\\frac{1}{2}$",
+              "$0.5$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "높이",
+            "equivalentAnswers": [
+              "높이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$\\frac{1}{2}$",
+            "accept": [
+              "$0.5$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{1}{2}$",
+            "$0.5$"
+          ],
+          [
+            "높이"
+          ]
+        ],
+        "proposalFingerprint": "95546f337dce7064a601b2dea461dd6ad42f7192b1741f0f24b286abf276d139"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-12-xc22",
+        "section": "중1::3. 방정식::일차방정식의 활용(도형, 농도, 일)",
+        "term": "덜어 내고 물을 부을 때",
+        "kind": "방법",
+        "level": "상",
+        "definition": "소금물을 $x\\,\\mathrm{g}$ 덜어 내고 같은 양의 물을 부으면 소금물의 양은 {그대로}이고 소금은 덜어 낸 소금물에 든 만큼 {줄어든다}.",
+        "example": {
+          "prompt": "$10\\%$ 소금물 $200\\,\\mathrm{g}$에서 $x\\,\\mathrm{g}$을 덜고 물 $x\\,\\mathrm{g}$을 넣었더니 $8\\%$가 되었다. $x$는?",
+          "answer": "$40$"
+        },
+        "studentC": "소금물을 $x\\,\\mathrm{g}$ 덜어 내고 같은 양의 물을 부으면 소금물의 양은 □이고 소금은 덜어 낸 소금물에 든 만큼 □.",
+        "answers": [
+          "그대로",
+          "줄어든다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-12-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "$10\\%$의 소금물 $200\\,\\mathrm{g}$에서 $x\\,\\mathrm{g}$을 덜어 낸 뒤, 덜어 낸 양과 같은 $x\\,\\mathrm{g}$의 물을 부었더니 $8\\%$의 소금물이 되었다. 이 과정에서 소금물의 양과 소금의 양이 각각 어떻게 되는지 쓰고, 남은 소금의 양으로 방정식을 세워 $x$의 값을 구하시오.",
+        "bAnswer": "소금물의 양은 $200\\,\\mathrm{g}$으로 그대로이다. 소금은 덜어 낸 소금물 $x\\,\\mathrm{g}$에 든 $\\frac{10}{100}x\\,(\\mathrm{g})$만큼 줄어 $\\left(20-\\frac{x}{10}\\right)\\mathrm{g}$이 된다. $20-\\frac{x}{10}=\\frac{8}{100}\\times 200=16$에서 $x=40$이다.",
+        "bGoal": "덜어 내고 같은 양의 물을 부을 때 소금물의 양은 그대로이고 소금만 줄어듦을 이용해 방정식을 세운다.",
+        "bReason": "제목은 조작의 순서만 말한다. 원문 예시의 수를 넣어 두 양의 변화를 먼저 말하게 하고 그것을 근거로 방정식을 세우게 했다.",
+        "cDecision": "keep",
+        "cReason": "덜어 낸 양과 넣은 물의 양이 같다는 조건이 문장에 있고, 두 빈칸이 '그대로'와 '줄어든다'의 대비를 짧게 묻는다. 중1 학생이 읽고 답할 수 있다.",
+        "exampleNeeded": true,
+        "authorBatch": 10,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "소금물의 양은 $200\\,\\mathrm{g}$으로 그대로임"
+            ]
+          },
+          {
+            "anyOf": [
+              "소금의 양은 덜어 낸 소금물에 든 $\\frac{10}{100}x\\,\\mathrm{g}$만큼 줄어 $\\left(20-\\frac{x}{10}\\right)\\mathrm{g}$이 됨 (동치인 식 인정)"
+            ]
+          },
+          {
+            "anyOf": [
+              "방정식: $20-\\frac{x}{10}=\\frac{8}{100}\\times200$ (동치인 식 인정)"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=40$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-006",
+        "learningRole": "procedure",
+        "roleReason": "소금물 양 그대로, 소금만 줄어듦",
+        "enrichmentEvidence": "enrichment/enrich-007",
+        "sourceIndex": 1440,
+        "part": "m1plus",
+        "sourceFingerprint": "6dd60cc323ebfed5b048830a936522f8768e44764017125ffdffdd886a924fb5",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1440
+        },
+        "directReview": null,
+        "cFrozenSentence": "소금물을 $x\\,\\mathrm{g}$ 덜어 내고 같은 양의 물을 부으면 소금물의 양은 □이고 소금은 덜어 낸 소금물에 든 만큼 □.",
+        "cFrozenDefinition": "소금물을 $x\\,\\mathrm{g}$ 덜어 내고 같은 양의 물을 부으면 소금물의 양은 {그대로}이고 소금은 덜어 낸 소금물에 든 만큼 {줄어든다}.",
+        "cFrozenAnswers": [
+          "그대로",
+          "줄어든다"
+        ],
+        "cMarkedSentence": "소금물을 $x\\,\\mathrm{g}$ 덜어 내고 같은 양의 물을 부으면 소금물의 양은 {그대로}이고 소금은 덜어 낸 소금물에 든 만큼 {줄어든다}.",
+        "cSlotAnswers": [
+          "그대로",
+          "줄어든다"
+        ],
+        "cStudentSentence": "소금물을 $x\\,\\mathrm{g}$ 덜어 내고 같은 양의 물을 부으면 소금물의 양은 □이고 소금은 덜어 낸 소금물에 든 만큼 □.",
+        "cAnswers": [
+          "그대로",
+          "줄어든다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "그대로",
+            "equivalentAnswers": [
+              "그대로"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "줄어든다",
+            "equivalentAnswers": [
+              "줄어든다",
+              "감소한다",
+              "적어진다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "줄어든다",
+            "accept": [
+              "감소한다",
+              "적어진다"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "그대로"
+          ],
+          [
+            "줄어든다",
+            "감소한다",
+            "적어진다"
+          ]
+        ],
+        "proposalFingerprint": "482c5100756a8ee9f980c6ce8008862dc86d55fedb8fb49ea19b3c4e4a9ba6fb"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-12-xc23",
+        "section": "중1::3. 방정식::일차방정식의 활용(도형, 농도, 일)",
+        "term": "시간 단위가 다른 일",
+        "kind": "방법",
+        "level": "상",
+        "definition": "일을 끝내는 데 걸리는 시간의 단위가 다르면 {같은 단위}로 바꾼 뒤 한 단위 시간에 하는 {양}을 구한다.",
+        "example": {
+          "prompt": "$A$는 $1$시간, $B$는 $30$분에 끝내는 일을 함께 하면 몇 분 걸리는가?",
+          "answer": "$20$분"
+        },
+        "studentC": "일을 끝내는 데 걸리는 시간의 단위가 다르면 □로 바꾼 뒤 한 단위 시간에 하는 □을 구한다.",
+        "answers": [
+          "같은 단위",
+          "양"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-12-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "어떤 일을 끝내는 데 $A$는 혼자서 $1$시간, $B$는 혼자서 $30$분이 걸린다. 두 사람이 함께 하면 몇 분이 걸리는지 구하려고 한다. 식을 세우기 전에 먼저 고쳐야 할 것을 쓰고, 전체 일의 양을 $1$로 놓아 두 사람이 $1$분 동안 하는 일의 양을 각각 구한 뒤 방정식을 세워 답을 구하시오.",
+        "bAnswer": "걸리는 시간의 단위가 시간과 분으로 다르므로 $1$시간을 $60$분으로 고친다. $1$분 동안 $A$는 $\\frac{1}{60}$, $B$는 $\\frac{1}{30}$을 한다. 함께 $x$분이 걸린다고 하면 $\\left(\\frac{1}{60}+\\frac{1}{30}\\right)x=1$, $\\frac{1}{20}x=1$, $x=20$이므로 $20$분이 걸린다.",
+        "bGoal": "시간 단위가 다른 일 문제에서 단위를 통일한 뒤 단위 시간당 일의 양으로 방정식을 세운다.",
+        "bReason": "제목은 조건의 이름뿐이라 예시 없이는 무엇을 맞추는지 알 수 없다. 원문 예시를 넣어 단위 통일, $1$분당 일의 양, 방정식을 차례로 요구했다.",
+        "cDecision": "rewrite",
+        "cAfter": "$A$는 $1$시간, $B$는 $30$분 만에 끝내는 일처럼 걸리는 시간의 단위가 다르면 먼저 단위를 같게 고친다. $1$시간을 {$60$}분으로 고치고 전체 일의 양을 $1$로 놓으면 $A$가 $1$분 동안 하는 일의 양은 {$\\frac{1}{60}$}이다.",
+        "cAnswers": [
+          "$60$",
+          "$\\frac{1}{60}$"
+        ],
+        "cReason": "원문의 '한 단위 시간에 하는 □'는 중1 학생에게 어려운 말이고, 답 '같은 단위'와 '양'은 표현이 정해져 있지 않은 낱말이다. 원문 예시의 수를 넣어 단위를 고친 값과 $1$분당 일의 양을 구하게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 10,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "먼저 걸리는 시간의 단위를 같게 고침 ($1$시간$=60$분)"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1$분 동안 하는 일의 양: $A$는 $\\frac{1}{60}$, $B$는 $\\frac{1}{30}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "방정식: $\\left(\\frac{1}{60}+\\frac{1}{30}\\right)x=1$ (동치인 식 인정)"
+            ]
+          },
+          {
+            "anyOf": [
+              "$20$분"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-006",
+        "learningRole": "procedure",
+        "roleReason": "시간 단위 통일 후 단위당 일의 양",
+        "enrichmentEvidence": "enrichment/enrich-007",
+        "sourceIndex": 1441,
+        "part": "m1plus",
+        "sourceFingerprint": "8450d96d106d49e2b2606869efa152ebde9534d261075bb044cc886d0b363ca9",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1441
+        },
+        "directReview": null,
+        "cMarkedSentence": "$A$는 $1$시간, $B$는 $30$분 만에 끝내는 일처럼 걸리는 시간의 단위가 다르면 먼저 단위를 같게 고친다. $1$시간을 {$60$}분으로 고치고 전체 일의 양을 $1$로 놓으면 $A$가 $1$분 동안 하는 일의 양은 {$\\frac{1}{60}$}이다.",
+        "cSlotAnswers": [
+          "$60$",
+          "$\\frac{1}{60}$"
+        ],
+        "cStudentSentence": "$A$는 $1$시간, $B$는 $30$분 만에 끝내는 일처럼 걸리는 시간의 단위가 다르면 먼저 단위를 같게 고친다. $1$시간을 □분으로 고치고 전체 일의 양을 $1$로 놓으면 $A$가 $1$분 동안 하는 일의 양은 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$60$",
+            "equivalentAnswers": [
+              "$60$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\frac{1}{60}$",
+            "equivalentAnswers": [
+              "$\\frac{1}{60}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$60$"
+          ],
+          [
+            "$\\frac{1}{60}$"
+          ]
+        ],
+        "proposalFingerprint": "927c6e62c9eecbcb43467f1cee942f25ad08e36b4d19a0053c019bb9a1264753"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-12-xc24",
+        "section": "중1::3. 방정식::일차방정식의 활용(도형, 농도, 일)",
+        "term": "남은 넓이로 길의 폭 구하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "길을 낸 뒤 남은 땅의 넓이가 주어지면 길의 폭을 $x$로 놓고 남은 땅의 {가로}나 {세로}를 $x$로 나타내 식을 세운다.",
+        "example": {
+          "prompt": "가로 $20\\,\\mathrm{m}$, 세로 $10\\,\\mathrm{m}$ 땅에 가로 방향으로 폭 $x\\,\\mathrm{m}$인 길을 냈더니 남은 넓이가 $160\\,\\mathrm{m}^2$였다. $x$는?",
+          "answer": "$2$"
+        },
+        "studentC": "길을 낸 뒤 남은 땅의 넓이가 주어지면 길의 폭을 $x$로 놓고 남은 땅의 □나 □를 $x$로 나타내 식을 세운다.",
+        "answers": [
+          "가로",
+          "세로"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-12-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "가로 $20\\,\\mathrm{m}$, 세로 $10\\,\\mathrm{m}$인 직사각형 모양의 땅에 가로 변에 평행하게 폭이 $x\\,\\mathrm{m}$인 길을 땅의 끝에서 끝까지 하나 냈더니, 길을 뺀 나머지 땅의 넓이가 $160\\,\\mathrm{m}^2$였다. 남은 땅을 하나의 직사각형으로 볼 때 그 가로와 세로의 길이를 $x$로 나타내고, 방정식을 세워 길의 폭을 구하시오.",
+        "bAnswer": "남은 땅의 가로는 $20\\,\\mathrm{m}$, 세로는 $(10-x)\\,\\mathrm{m}$이다. $20(10-x)=160$에서 $10-x=8$, $x=2$이므로 길의 폭은 $2\\,\\mathrm{m}$이다.",
+        "bGoal": "길의 폭을 미지수로 놓고 남은 땅의 변의 길이를 식으로 나타내 넓이 방정식을 세운다.",
+        "bReason": "그림이 없으므로 길의 방향과 개수, 땅의 크기를 글로 밝혀야 한다. 제목에는 이것이 없어 원문 예시를 풀어 쓰고 남은 땅의 변의 길이와 방정식을 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "가로 $20\\,\\mathrm{m}$, 세로 $10\\,\\mathrm{m}$인 직사각형 땅에 가로 변에 평행하게 폭이 $x\\,\\mathrm{m}$인 길을 끝에서 끝까지 하나 내면, 남은 땅은 가로가 $20\\,\\mathrm{m}$이고 세로가 {$10-x$}$\\,\\mathrm{m}$인 직사각형과 넓이가 같다. 남은 넓이가 $160\\,\\mathrm{m}^2$이면 $20(10-x)=160$에서 $x=${$2$}이다.",
+        "cAnswers": [
+          "$10-x$",
+          "$2$"
+        ],
+        "cReason": "원문은 길의 방향과 개수가 없어 '가로나 세로를 $x$로 나타낸다'가 가리키는 상황이 없고, 답 '가로', '세로'는 식을 세우는 힘을 확인하지 못한다. 원문 예시의 조건을 넣어 줄어든 변의 식과 폭의 값을 구하게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 10,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "남은 땅의 가로 $20\\,\\mathrm{m}$, 세로 $(10-x)\\,\\mathrm{m}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "방정식: $20(10-x)=160$ (동치인 식 인정)"
+            ]
+          },
+          {
+            "anyOf": [
+              "길의 폭 $2\\,\\mathrm{m}$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-006",
+        "learningRole": "procedure",
+        "roleReason": "폭 x로 남은 변 나타내 넓이 식",
+        "enrichmentEvidence": "enrichment/enrich-007",
+        "sourceIndex": 1442,
+        "part": "m1plus",
+        "sourceFingerprint": "4c343460f9f18fe28616d759b282aab76c506ad1a114e576d1045a2f29739bd2",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1442
+        },
+        "directReview": null,
+        "cMarkedSentence": "가로 $20\\,\\mathrm{m}$, 세로 $10\\,\\mathrm{m}$인 직사각형 땅에 가로 변에 평행하게 폭이 $x\\,\\mathrm{m}$인 길을 끝에서 끝까지 하나 내면, 남은 땅은 가로가 $20\\,\\mathrm{m}$이고 세로가 {$10-x$}$\\,\\mathrm{m}$인 직사각형과 넓이가 같다. 남은 넓이가 $160\\,\\mathrm{m}^2$이면 $20(10-x)=160$에서 $x=${$2$}이다.",
+        "cSlotAnswers": [
+          "$10-x$",
+          "$2$"
+        ],
+        "cStudentSentence": "가로 $20\\,\\mathrm{m}$, 세로 $10\\,\\mathrm{m}$인 직사각형 땅에 가로 변에 평행하게 폭이 $x\\,\\mathrm{m}$인 길을 끝에서 끝까지 하나 내면, 남은 땅은 가로가 $20\\,\\mathrm{m}$이고 세로가 □$\\,\\mathrm{m}$인 직사각형과 넓이가 같다. 남은 넓이가 $160\\,\\mathrm{m}^2$이면 $20(10-x)=160$에서 $x=$□이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$10-x$",
+            "equivalentAnswers": [
+              "$10-x$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$2$",
+            "equivalentAnswers": [
+              "$2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$10-x$"
+          ],
+          [
+            "$2$"
+          ]
+        ],
+        "proposalFingerprint": "677dc487bed556948b5c3c451c832841f315441443dcdcac02ffc780a3067bad"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-13-xc1",
+        "section": "중1::3. 방정식::일차방정식의 활용(비율, 시계, 규칙)",
+        "term": "시침이 한 시간에 도는 각",
+        "kind": "성질",
+        "level": "하",
+        "definition": "시계는 $12$칸으로 나뉘므로 시침은 $1$시간에 {$30^\\circ$}씩 돈다.",
+        "example": {
+          "prompt": "$4$시 정각에 시침이 $12$시 방향에서 돈 각은?",
+          "answer": "$120^\\circ$"
+        },
+        "studentC": "시계는 $12$칸으로 나뉘므로 시침은 $1$시간에 □씩 돈다.",
+        "answers": [
+          "$30^\\circ$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-13-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "시계 문자판은 한 바퀴를 숫자 $1$부터 $12$까지 똑같은 $12$칸으로 나눈다. 시침이 $1$시간 동안 도는 각을 구하고 그 까닭을 쓰시오.",
+        "bAnswer": "시침은 $1$시간에 한 칸을 가므로 $360^\\circ\\div12=30^\\circ$를 돈다.",
+        "bGoal": "시침의 $1$시간당 회전각 유도",
+        "bReason": "문자판이 $12$칸이라는 조건을 주고 $30^\\circ$의 근거를 묻도록 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$30^\\circ$",
+              "$30$도"
+            ]
+          },
+          {
+            "anyOf": [
+              "$360\\div12$",
+              "한 바퀴 $360^\\circ$를 $12$칸으로 나눈다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "$12$칸 조건에서 한 칸의 각을 계산하는 짧은 빈칸이라 유지.",
+        "learningRole": "reason",
+        "roleReason": "$360^\\circ\\div12$로 $30^\\circ$가 나오는 근거",
+        "authorBatch": 11,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1443,
+        "part": "m1plus",
+        "sourceFingerprint": "d87485ae568e84b7c0739782a00d2ad4c7612bf3ac99bbca9e78690438f1651d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1443
+        },
+        "directReview": null,
+        "cFrozenSentence": "시계는 $12$칸으로 나뉘므로 시침은 $1$시간에 □씩 돈다.",
+        "cFrozenDefinition": "시계는 $12$칸으로 나뉘므로 시침은 $1$시간에 {$30^\\circ$}씩 돈다.",
+        "cFrozenAnswers": [
+          "$30^\\circ$"
+        ],
+        "cMarkedSentence": "시계는 $12$칸으로 나뉘므로 시침은 $1$시간에 {$30^\\circ$}씩 돈다.",
+        "cSlotAnswers": [
+          "$30^\\circ$"
+        ],
+        "cStudentSentence": "시계는 $12$칸으로 나뉘므로 시침은 $1$시간에 □씩 돈다.",
+        "cAnswers": [
+          "$30^\\circ$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$30^\\circ$",
+            "equivalentAnswers": [
+              "$30^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$30^\\circ$"
+          ]
+        ],
+        "proposalFingerprint": "1ff0634b2da95d1543886ada21a9a9c8f49d998fbf67124aa2e63d86a4497b91"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-13-xc2",
+        "section": "중1::3. 방정식::일차방정식의 활용(비율, 시계, 규칙)",
+        "term": "$a$시 정각에 두 바늘이 이루는 각",
+        "kind": "방법",
+        "level": "하",
+        "definition": "$a$시 정각에는 분침이 $12$를 가리키므로 두 바늘이 이루는 각은 {$30^\\circ\\times a$}이고, $180^\\circ$보다 크면 {$360^\\circ$}에서 뺀다.",
+        "example": {
+          "prompt": "$8$시 정각에 두 바늘이 이루는 작은 쪽 각은?",
+          "answer": "$120^\\circ$"
+        },
+        "studentC": "$a$시 정각에는 분침이 $12$를 가리키므로 두 바늘이 이루는 각은 □이고, $180^\\circ$보다 크면 □에서 뺀다.",
+        "answers": [
+          "$30^\\circ\\times a$",
+          "$360^\\circ$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-13-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "$a$시 정각($a$는 $1$부터 $12$까지의 자연수)에 시침과 분침이 이루는 각 중 $180^\\circ$ 이하인 쪽을 구하는 방법을 쓰고, $a=8$일 때의 각을 구하시오.",
+        "bAnswer": "분침은 $12$를 가리키고 시침은 $12$시 방향에서 $30^\\circ\\times a$만큼 돌아가 있다. 이 값이 $180^\\circ$ 이하이면 그대로, $180^\\circ$보다 크면 $360^\\circ$에서 뺀다. $8$시는 $240^\\circ$이므로 $360^\\circ-240^\\circ=120^\\circ$이다.",
+        "bGoal": "정각의 두 바늘 사잇각 구하기",
+        "bReason": "어느 쪽 각을 구하는지 밝히고 $180^\\circ$를 넘는 예를 넣어 방법을 확인함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$30^\\circ\\times a$",
+              "$30a^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$180^\\circ$보다 크면 $360^\\circ$에서 뺀다",
+              "$360^\\circ-30^\\circ\\times a$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$120^\\circ$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "정각 조건이 문장에 있고 식과 $360^\\circ$를 묻는 빈칸이 분명해 유지.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "$30^\\circ\\times a$를 구하고 $180^\\circ$ 초과 시 $360^\\circ$에서 빼기",
+        "authorBatch": 11,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1444,
+        "part": "m1plus",
+        "sourceFingerprint": "99b69dd3ab7b346e474a942350b4882893f52814c4a19ff7549068e3964b44b5",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1444
+        },
+        "directReview": null,
+        "cFrozenSentence": "$a$시 정각에는 분침이 $12$를 가리키므로 두 바늘이 이루는 각은 □이고, $180^\\circ$보다 크면 □에서 뺀다.",
+        "cFrozenDefinition": "$a$시 정각에는 분침이 $12$를 가리키므로 두 바늘이 이루는 각은 {$30^\\circ\\times a$}이고, $180^\\circ$보다 크면 {$360^\\circ$}에서 뺀다.",
+        "cFrozenAnswers": [
+          "$30^\\circ\\times a$",
+          "$360^\\circ$"
+        ],
+        "cMarkedSentence": "$a$시 정각에는 분침이 $12$를 가리키므로 두 바늘이 이루는 각은 {$30^\\circ\\times a$}이고, $180^\\circ$보다 크면 {$360^\\circ$}에서 뺀다.",
+        "cSlotAnswers": [
+          "$30^\\circ\\times a$",
+          "$360^\\circ$"
+        ],
+        "cStudentSentence": "$a$시 정각에는 분침이 $12$를 가리키므로 두 바늘이 이루는 각은 □이고, $180^\\circ$보다 크면 □에서 뺀다.",
+        "cAnswers": [
+          "$30^\\circ\\times a$",
+          "$360^\\circ$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$30^\\circ\\times a$",
+            "equivalentAnswers": [
+              "$30^\\circ\\times a$",
+              "$30a^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$360^\\circ$",
+            "equivalentAnswers": [
+              "$360^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$30^\\circ\\times a$",
+            "accept": [
+              "$30a^\\circ$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$30^\\circ\\times a$",
+            "$30a^\\circ$"
+          ],
+          [
+            "$360^\\circ$"
+          ]
+        ],
+        "proposalFingerprint": "01e882c22b194ea7fa0be882995ccdc36d810de133a46215279a15083d38fc40"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-13-xc3",
+        "section": "중1::3. 방정식::일차방정식의 활용(비율, 시계, 규칙)",
+        "term": "분침이 $x$분 동안 도는 각",
+        "kind": "방법",
+        "level": "하",
+        "definition": "분침은 $x$분 동안 {$6x^\\circ$}만큼 돈다.",
+        "example": {
+          "prompt": "분침이 $25$분 동안 도는 각은?",
+          "answer": "$150^\\circ$"
+        },
+        "studentC": "분침은 $x$분 동안 □만큼 돈다.",
+        "answers": [
+          "$6x^\\circ$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-13-xc3",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "$1$분 $6^\\circ$에 $x$만 곱하는 식이라 독립된 서술 질문이 되지 않음.",
+        "cDecision": "keep",
+        "cReason": "$x$분 동안의 각을 식으로 쓰는 분명한 한 빈칸이라 유지.",
+        "exclusionReason": "B 제외: c1의 $1$분 $6^\\circ$ 유도와 c6의 분침 식 $6x$ 쓰기에 이미 들어 있는 목표 중복.",
+        "learningRole": "procedure",
+        "roleReason": "분침이 $x$분에 도는 각을 $6x^\\circ$로 나타내기",
+        "authorBatch": 11,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1445,
+        "part": "m1plus",
+        "sourceFingerprint": "dc2f7e45ba739ad7c5208d69238b104123ce23cfa62aef0133c15ec82dbd6311",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1445
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "분침은 $x$분 동안 □만큼 돈다.",
+        "cFrozenDefinition": "분침은 $x$분 동안 {$6x^\\circ$}만큼 돈다.",
+        "cFrozenAnswers": [
+          "$6x^\\circ$"
+        ],
+        "cMarkedSentence": "분침은 $x$분 동안 {$6x^\\circ$}만큼 돈다.",
+        "cSlotAnswers": [
+          "$6x^\\circ$"
+        ],
+        "cStudentSentence": "분침은 $x$분 동안 □만큼 돈다.",
+        "cAnswers": [
+          "$6x^\\circ$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$6x^\\circ$",
+            "equivalentAnswers": [
+              "$6x^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$6x^\\circ$"
+          ]
+        ],
+        "proposalFingerprint": "81a7b666a95df0a712c855958cde0db90b7e08adc771cacc3f2e7ab462773b5e"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-13-xc4",
+        "section": "중1::3. 방정식::일차방정식의 활용(비율, 시계, 규칙)",
+        "term": "달력에서 바로 위 칸",
+        "kind": "성질",
+        "level": "하",
+        "definition": "달력의 같은 달 안에서 어떤 날의 바로 위 칸은 {$7$}만큼 작고, 바로 아래 칸은 $7$만큼 {크다}.",
+        "example": {
+          "prompt": "어떤 날이 $x$일이면 바로 위 칸의 날짜는?",
+          "answer": "$(x-7)$일"
+        },
+        "studentC": "달력의 같은 달 안에서 어떤 날의 바로 위 칸은 □만큼 작고, 바로 아래 칸은 $7$만큼 □.",
+        "answers": [
+          "$7$",
+          "크다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-13-xc4",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "위 칸이 $7$ 작다는 사실은 아래 칸 규칙을 뒤집은 것뿐임.",
+        "cDecision": "rewrite",
+        "cAfter": "같은 달의 달력에서 어떤 날의 바로 위 칸의 날짜는 그 날보다 {$7$}만큼 {작다}.",
+        "cAnswers": [
+          "$7$",
+          "작다"
+        ],
+        "cReason": "첫 빈칸의 답 $7$이 같은 문장 뒤쪽에 그대로 보여 위 칸만 묻도록 줄임.",
+        "exclusionReason": "B 제외: c2(아래 칸이 $7$ 큰 까닭)와 xc18(세로 세 날짜의 식)의 서술 질문과 목표 중복.",
+        "learningRole": "definition",
+        "roleReason": "바로 위 칸은 $7$일 전 날짜라는 사실",
+        "authorBatch": 11,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1446,
+        "part": "m1plus",
+        "sourceFingerprint": "0b9dcc4cffaba283bf76395fe3c10a2db7fb9f3edd26c0f4fef49eca384799b7",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1446
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "같은 달의 달력에서 어떤 날의 바로 위 칸의 날짜는 그 날보다 {$7$}만큼 {작다}.",
+        "cSlotAnswers": [
+          "$7$",
+          "작다"
+        ],
+        "cStudentSentence": "같은 달의 달력에서 어떤 날의 바로 위 칸의 날짜는 그 날보다 □만큼 □.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$7$",
+            "equivalentAnswers": [
+              "$7$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "작다",
+            "equivalentAnswers": [
+              "작다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$7$"
+          ],
+          [
+            "작다"
+          ]
+        ],
+        "proposalFingerprint": "5b3f64381f910a3f7d119ad61f587c6c39ac46e765d63d4fd334ec841176be99"
+      }
+    }
+  ]
+}

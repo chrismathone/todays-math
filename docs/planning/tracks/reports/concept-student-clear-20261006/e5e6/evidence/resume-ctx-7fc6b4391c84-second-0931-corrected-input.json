@@ -1,0 +1,122 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e5-1-5-4-xc28",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "$4\\frac{7}{8}-1\\frac{1}{9}$의 두 대분수를 각각 가장 가까운 자연수로 바꾸어 차를 어림하려 합니다. 각각 어떤 자연수로 바꾸는지와 그 까닭을 설명하고 어림한 차를 쓰세요.",
+      "bAnswer": "$\\frac{7}{8}$은 $1$에 가깝고 $\\frac{1}{9}$은 $0$에 가깝다. 그래서 $4\\frac{7}{8}$은 $5$로, $1\\frac{1}{9}$은 $1$로 바꾸어 빼면 약 $5-1=4$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$4\\frac{7}{8}$은 $5$에 가깝고 $1\\frac{1}{9}$은 $1$에 가깝다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{7}{8}$은$1$에가깝고$\\frac{1}{9}$은$0$에가깝기때문이다",
+            "각대분수와고른자연수의거리가이웃한다른자연수까지의거리보다작다"
+          ]
+        },
+        {
+          "anyOf": [
+            "약 $4$",
+            "$4$쯤"
+          ]
+        }
+      ],
+      "bGoal": "가까운 자연수로 바꾸어 대분수의 차를 어림한다.",
+      "bReason": "원문 예는 까닭만 물어 어림 방법과 결과를 함께 답하게 했다.",
+      "cDecision": "keep",
+      "cAfter": "대분수의 차는 두 수를 각각 {가까운 자연수}로 바꾸어 빼면 어림할 수 있다.",
+      "cReason": "어림할 때 대분수를 무엇으로 바꾸는지 짧은 말로 확인하는 문장이다.",
+      "synonymNotes": "'가장 가까운 자연수'도 인정",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-second-0931.json",
+      "codexFinalAmendedFromFingerprint": "37f50b2f49cbfcb683a79183a48c58ab4765f20e6047dff207a9f2d6820a06e1",
+      "sourceIndex": 931,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-4-xc28",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-4 대분수의 뺄셈",
+        "term": "자연수로 차 어림하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "대분수의 차는 두 수를 각각 {가까운 자연수}로 바꾸어 빼면 어림할 수 있다.",
+        "example": {
+          "prompt": "$4\\frac{7}{8}-1\\frac{1}{9}$을 $5-1$로 어림하는 까닭은?",
+          "answer": "$5$와 $1$에 가까운 두 수라서"
+        },
+        "studentC": "대분수의 차는 두 수를 각각 □로 바꾸어 빼면 어림할 수 있다.",
+        "answers": [
+          "가까운 자연수"
+        ]
+      },
+      "sourceFingerprint": "84d7ba6205e2f1dcec93c6ddc7494bf6d897547ba7dec3610b4db9389721b3bc",
+      "draftEvidence": "evidence/section-020-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "대분수의 차는 두 수를 각각 {가까운 자연수}로 바꾸어 빼면 어림할 수 있다.",
+      "cFrozenStudentSentence": "대분수의 차는 두 수를 각각 □로 바꾸어 빼면 어림할 수 있다.",
+      "cProposedAnswers": [
+        "가까운 자연수"
+      ],
+      "cStudentAfter": "대분수의 차는 두 수를 각각 □로 바꾸어 빼면 어림할 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "가까운 자연수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "대분수의 차는 두 수를 각각 {가까운 자연수}로 바꾸어 빼면 어림할 수 있다.",
+      "cStudentSentence": "대분수의 차는 두 수를 각각 □로 바꾸어 빼면 어림할 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "가까운 자연수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$4\\frac{7}{8}-1\\frac{1}{9}$의 두 대분수를 각각 가장 가까운 자연수로 바꾸어 차를 어림하려 합니다. 각각 어떤 자연수로 바꾸는지와 그 까닭을 설명하고 어림한 차를 쓰세요.",
+        "answer": "$\\frac{7}{8}$은 $1$에 가깝고 $\\frac{1}{9}$은 $0$에 가깝다. 그래서 $4\\frac{7}{8}$은 $5$로, $1\\frac{1}{9}$은 $1$로 바꾸어 빼면 약 $5-1=4$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$4\\frac{7}{8}$은 $5$에 가깝고 $1\\frac{1}{9}$은 $1$에 가깝다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{7}{8}$은$1$에가깝고$\\frac{1}{9}$은$0$에가깝기때문이다",
+              "각대분수와고른자연수의거리가이웃한다른자연수까지의거리보다작다"
+            ]
+          },
+          {
+            "anyOf": [
+              "약 $4$",
+              "$4$쯤"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "대분수의 차는 두 수를 각각 {가까운 자연수}로 바꾸어 빼면 어림할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "가까운 자연수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6e800c7f1dca8bacac4edcffddd41605b61099eddea9a7cba07492ce37150125",
+      "questionRevision": "planning-e5e6-20261006-6e800c7f1dca",
+      "requiresIndependentReview": true
+    }
+  ]
+}

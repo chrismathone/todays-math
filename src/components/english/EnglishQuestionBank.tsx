@@ -206,13 +206,6 @@ export default function EnglishQuestionBank({
           </button>
         )}
       </WorkspacePageHeader>
-      <div className={s.workbar}>
-        <div>
-          <span className={s.eyebrow}>QUESTION LIBRARY</span>
-          <h2>문제은행</h2>
-        </div>
-        <p>원문을 읽고 · 문항을 고르고 · 시험지로</p>
-      </div>
       <div className={s.filters}>
         <label className={s.search}>
           <Icon name="search" size={18} />
@@ -410,7 +403,7 @@ export default function EnglishQuestionBank({
             <>
               <div className={s.detailHead}>
                 <div>
-                  <span className={s.eyebrow}>QUESTION PREVIEW</span>
+                  <span className={s.eyebrow}>문항 미리보기</span>
                   <h3>
                     {active.question.type} <span>· {active.grade}</span>
                   </h3>
@@ -460,64 +453,73 @@ export default function EnglishQuestionBank({
           )}
         </section>
         <aside className={s.tray} aria-label="담은 문제">
-          <div className={s.trayTitle}>
-            <span className={s.eyebrow}>YOUR PAPER</span>
-            <h3>
-              담은 문제 <b>{tray.length}</b>
-            </h3>
-            <p>수업에 맞게 순서를 정하세요.</p>
-          </div>
-          {tray.length ? (
-            <ol className={s.trayList}>
-              {tray.map((item, index) => (
-                <li key={item.key}>
-                  <div>
-                    <b>{String(index + 1).padStart(2, "0")}</b>
-                    <span>
-                      <strong>{item.question.type}</strong>
-                      <small>{item.title}</small>
-                    </span>
-                  </div>
-                  <div className={s.trayActions}>
-                    <button
-                      aria-label={`${index + 1}번 위로`}
-                      disabled={busy || index === 0}
-                      onClick={() => move(index, -1)}
-                    >
-                      ↑
-                    </button>
-                    <button
-                      aria-label={`${index + 1}번 아래로`}
-                      disabled={busy || index === tray.length - 1}
-                      onClick={() => move(index, 1)}
-                    >
-                      ↓
-                    </button>
-                    <button
-                      disabled={busy}
-                      onClick={() =>
-                        setTray((old) => old.filter((x) => x.key !== item.key))
-                      }
-                    >
-                      빼기
-                    </button>
-                  </div>
-                </li>
-              ))}
-            </ol>
-          ) : (
-            <div className={s.empty}>
-              <p>
-                선택한 문항을 담으면
-                <br />
-                시험지 구성이 시작됩니다.
-              </p>
-            </div>
-          )}
+          <details className={s.trayDisclosure}>
+            <summary className={s.trayTitle}>
+              <strong>
+                담은 문제{" "}
+                <b>
+                  {tray.length} / {ENGLISH_SELECTION_MAX}문항
+                </b>
+              </strong>
+              <span>
+                목록·순서 확인 <Icon name="chevron" size={14} />
+              </span>
+            </summary>
+            {tray.length ? (
+              <ol className={s.trayList}>
+                {tray.map((item, index) => (
+                  <li key={item.key}>
+                    <div>
+                      <b>{String(index + 1).padStart(2, "0")}</b>
+                      <span>
+                        <strong>{item.question.type}</strong>
+                        <small>{item.title}</small>
+                      </span>
+                    </div>
+                    <div className={s.trayActions}>
+                      <button
+                        aria-label={`${index + 1}번 위로`}
+                        disabled={busy || index === 0}
+                        onClick={() => move(index, -1)}
+                      >
+                        ↑
+                      </button>
+                      <button
+                        aria-label={`${index + 1}번 아래로`}
+                        disabled={busy || index === tray.length - 1}
+                        onClick={() => move(index, 1)}
+                      >
+                        ↓
+                      </button>
+                      <button
+                        disabled={busy}
+                        onClick={() =>
+                          setTray((old) =>
+                            old.filter((x) => x.key !== item.key),
+                          )
+                        }
+                      >
+                        빼기
+                      </button>
+                    </div>
+                  </li>
+                ))}
+              </ol>
+            ) : (
+              <div className={s.empty}>
+                <p>
+                  선택한 문항을 담으면
+                  <br />
+                  시험지 구성이 시작됩니다.
+                </p>
+              </div>
+            )}
+            <p className={s.trayHint}>
+              담은 목록은 현재 작업 중에 유지됩니다. 인쇄 전 원본의 최신 버전을
+              확인합니다.
+            </p>
+          </details>
           <div className={s.trayFooter}>
-            <span>
-              {tray.length} / {ENGLISH_SELECTION_MAX}문항
-            </span>
             <button
               className={s.primary}
               disabled={!tray.length || busy}
@@ -526,11 +528,6 @@ export default function EnglishQuestionBank({
               {busy ? "원본 확인 중…" : "시험지 미리보기"}
               <Icon name="arrow" size={16} />
             </button>
-            <small>
-              담은 목록은 현재 작업 중에 유지됩니다.
-              <br />
-              인쇄 전 원본의 최신 버전을 확인합니다.
-            </small>
           </div>
         </aside>
       </div>

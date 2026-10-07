@@ -1,0 +1,735 @@
+{
+  "input": "C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3/evidence/resume-editorial-ctx_9cb9b54195a9/input-fraction-josa-final.json",
+  "changes": [
+    {
+      "id": "m2-01-06-c5",
+      "cAfter": "$a\\ne0$일 때 $(2a)^2=$ {$4a^2$}이다. 또 $6a^2$로 나눌 때에는 {$\\frac{1}{6a^2}$}을 곱하는 계산으로 바꾼다.",
+      "cAcceptedAnswers": [
+        [
+          "$4a^2$"
+        ],
+        [
+          "$\\frac{1}{6a^2}$"
+        ]
+      ]
+    },
+    {
+      "id": "m2-02-01-c10",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "각 변에 $2$를 곱해 $2<2x<6$을 얻고 $1$을 더한다",
+            "각 변에 $\\frac12$을 더해 $\\frac32<x+\\frac12<\\frac72$을 얻고 $2$를 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3<2x+1<7$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m2-04-06-c6",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$y=\\frac15x+12$",
+            "$y=0.2x+12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "추가 $1\\,\\mathrm{g}$ 늘 때 길이는 $\\frac15\\,\\mathrm{cm}$ 늘어난다",
+            "기울기 $\\frac15$은 추의 무게 $1\\,\\mathrm{g}$당 길이의 증가량이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "추를 달지 않을 때의 길이는 $12\\,\\mathrm{cm}$이다",
+            "$x=0$일 때의 길이가 $12\\,\\mathrm{cm}$이다"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m1-01-01-xc10",
+      "bPrompt": "$\\frac23\\times\\frac23\\times\\frac23$를 같은 분수가 밑인 하나의 거듭제곱으로 나타내시오. 분수 전체가 밑임을 알아볼 수 있게 쓰는 방법도 설명하시오."
+    },
+    {
+      "id": "m1-03-06-xc16",
+      "bAnswer": "$0.5$를 분수 $\\frac12$로 바꾸어 식 $\\frac12x+\\frac13=\\frac56$를 얻는다. 분모 $2$, $3$, $6$의 최소공배수 $6$을 양변에 곱하면 $3x+2=5$이므로 $x=1$이다."
+    },
+    {
+      "id": "m2-01-01-xc20",
+      "bPrompt": "$\\frac{3}{2\\times a}$이 유한소수가 되게 하는 한 자리 자연수 $a$를 찾으려고 한다. $a=6$은 되고 $a=9$는 안 되는 까닭을 각각 설명하시오."
+    },
+    {
+      "id": "m2-01-01-xc24",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "유한소수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac56\\times\\frac9{10}=\\frac34$으로 약분되며 분모의 소인수는$2$뿐이다",
+            "$\\frac56\\times\\frac9{10}=\\frac34=0.75$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "m2-01-02-xc25",
+      "cAfter": "$\\frac7{99}$을 순환소수로 고치면 소수 첫째 자리부터 {$07$}이라는 두 숫자 묶음이 되풀이된다.",
+      "cAcceptedAnswers": [
+        [
+          "$07$"
+        ]
+      ]
+    }
+  ],
+  "rows": [
+    {
+      "id": "m2-01-06-c5",
+      "bDecision": "rewrite",
+      "bPrompt": "$a\\ne0$일 때 $(2a)^2\\times3a\\div6a^2$을 계산하시오. 거듭제곱을 풀어 쓴 식과 나눗셈을 곱셈으로 바꾸어 쓴 식을 각각 보이시오.",
+      "bAnswer": "거듭제곱을 먼저 풀어 $(2a)^2=4a^2$, 나눗셈을 역수의 곱셈으로 바꾸어 $4a^2\\times3a\\times\\frac{1}{6a^2}$, 계수끼리 문자끼리 계산하면 $2a$이다.",
+      "bGoal": "거듭제곱이 든 곱셈·나눗셈 혼합식 계산하기",
+      "bReason": "여러 옳은 계산 방법 중 거듭제곱부터라는 차례만 강요하지 않고 실제 거듭제곱 전개와 역수 곱셈 식의 범위를 요구한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$(2a)^2=4a^2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$(2a)^2\\times3a\\times\\frac{1}{6a^2}$",
+            "$4a^2\\times3a\\times\\frac{1}{6a^2}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2a$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "괄호·거듭제곱·왼쪽부터가 모두 답이 될 수 있는 말 칸 대신 실제 단항식의 거듭제곱과 나누는 식의 역수를 묻는다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "혼합 계산의 차례",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "cAfter": "$a\\ne0$일 때 $(2a)^2=$ {$4a^2$}이다. 또 $6a^2$로 나눌 때에는 {$\\frac{1}{6a^2}$}을 곱하는 계산으로 바꾼다.",
+      "cAnswers": [
+        "$4a^2$",
+        "$\\frac{1}{6a^2}$"
+      ],
+      "coreAfter": "거듭제곱이 있는 단항식의 곱셈과 나눗셈에서는 {거듭제곱}을 풀어 계산할 수 있다. 나누는 단항식이 $0$이 아니면 그 {역수}를 곱하는 식으로 바꾸어 계수끼리, 문자끼리 계산한다.",
+      "coreReason": "곱셈·나눗셈이 있다는 말만으로 거듭제곱부터라는 조건을 적용하지 않고 실제 거듭제곱과 0 아닌 나눗셈의 일반 의미를 명시한다.",
+      "coreRepairDecision": "reject",
+      "sourceIndex": 393,
+      "part": "m2",
+      "sourceFingerprint": "54697117aead7d10a2ef931d636bc221669185663671e5ed4210de9ed2b4f47e",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 393
+      },
+      "directReview": {
+        "path": "amendments.json",
+        "id": "m2-01-06-c5"
+      },
+      "cMarkedSentence": "$a\\ne0$일 때 $(2a)^2=$ {$4a^2$}이다. 또 $6a^2$로 나눌 때에는 {$\\frac{1}{6a^2}$}을 곱하는 계산으로 바꾼다.",
+      "cSlotAnswers": [
+        "$4a^2$",
+        "$\\frac{1}{6a^2}$"
+      ],
+      "cStudentSentence": "$a\\ne0$일 때 $(2a)^2=$ □이다. 또 $6a^2$로 나눌 때에는 □을 곱하는 계산으로 바꾼다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$4a^2$",
+          "equivalentAnswers": [
+            "$4a^2$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$\\frac{1}{6a^2}$",
+          "equivalentAnswers": [
+            "$\\frac{1}{6a^2}$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$4a^2$"
+        ],
+        [
+          "$\\frac{1}{6a^2}$"
+        ]
+      ],
+      "proposalFingerprint": "34f26eda88d69daf90b885cd20a6ddeafc6cb78b5dff398ccdadef362daccd3b"
+    },
+    {
+      "id": "m2-02-01-c10",
+      "bDecision": "rewrite",
+      "bPrompt": "$1<x<3$일 때 $2x+1$의 값의 범위를 구하는 과정을 부등식의 성질을 써서 순서대로 쓰세요.",
+      "bAnswer": "각 변에 양수 $2$를 곱하면 부등호의 방향이 그대로여서 $2<2x<6$이고, 각 변에 $1$을 더하면 $3<2x+1<7$이다.",
+      "bGoal": "$x$의 범위에서 $ax+b$의 범위를 곱하고 더하는 순서로 구하기",
+      "bReason": "반쪽 단계 하나만 쓰는 답을 전체 순서 설명으로 인정하지 않고 두 성질 적용을 확인한다. 다른 올바른 계산 순서도 허용한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "각 변에 $2$를 곱해 $2<2x<6$을 얻고 $1$을 더한다",
+            "각 변에 $\\frac12$을 더해 $\\frac32<x+\\frac12<\\frac72$을 얻고 $2$를 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3<2x+1<7$"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "$a>0$ 조건이 문장에 있고 곱한, 더한다 두 단계가 순서대로 드러난다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "식의 값의 범위를 구하는 순서",
+      "authorBatch": 30,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 417,
+      "part": "m2",
+      "sourceFingerprint": "14eab1ff702e0d278540beeada892db0c538467c0615f9ee349ee3568cea18ec",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 417
+      },
+      "directReview": {
+        "path": "amendments.json",
+        "id": "m2-02-01-c10"
+      },
+      "cFrozenSentence": "$a>0$일 때 $x$의 범위에서 $ax+b$의 범위를 구하려면 각 변에 $a$를 □ 다음 $b$를 □.",
+      "cFrozenDefinition": "$a>0$일 때 $x$의 범위에서 $ax+b$의 범위를 구하려면 각 변에 $a$를 {곱한} 다음 $b$를 {더한다}.",
+      "cFrozenAnswers": [
+        "곱한",
+        "더한다"
+      ],
+      "cMarkedSentence": "$a>0$일 때 $x$의 범위에서 $ax+b$의 범위를 구하려면 각 변에 $a$를 {곱한} 다음 $b$를 {더한다}.",
+      "cSlotAnswers": [
+        "곱한",
+        "더한다"
+      ],
+      "cStudentSentence": "$a>0$일 때 $x$의 범위에서 $ax+b$의 범위를 구하려면 각 변에 $a$를 □ 다음 $b$를 □.",
+      "cAnswers": [
+        "곱한",
+        "더한다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "곱한",
+          "equivalentAnswers": [
+            "곱한"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "더한다",
+          "equivalentAnswers": [
+            "더한다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "곱한"
+        ],
+        [
+          "더한다"
+        ]
+      ],
+      "proposalFingerprint": "72cb8d9d5512e425ec25406b753224e74240edc64181cebe33c801bb87cc590f"
+    },
+    {
+      "id": "m2-04-06-c6",
+      "bDecision": "rewrite",
+      "bPrompt": "용수철에 추 $x\\,\\mathrm{g}$을 달면 길이가 $y\\,\\mathrm{cm}$가 된다. 추의 무게가 같은 양 늘 때마다 길이도 같은 양 늘어나며, $x=10$일 때 $y=14$, $x=30$일 때 $y=18$이다. 기울기와 $y$절편을 구해 일차함수의 식을 쓰고, 이 상황에서 그 두 값의 뜻을 설명하시오.",
+      "bAnswer": "기울기는 $\\frac{18-14}{30-10}=\\frac15$로 추가 $1\\,\\mathrm{g}$ 늘 때 길이가 $\\frac15\\,\\mathrm{cm}$ 늘어난다는 뜻이다. $14=\\frac15\\times10+b$에서 $b=12$이므로 추를 달지 않을 때 길이는 $12\\,\\mathrm{cm}$이다. 식은 $y=\\frac15x+12$이다.",
+      "bGoal": "일정한 변화 관계에서 두 값을 이용해 기울기와 y절편을 구하고 실제 무게당 변화량과 처음 길이로 설명한다.",
+      "bReason": "기울기 일정함이라는 문제 문장을 그대로 베끼는 이유 기준을 없애 실제 기울기와 절편의 상황 의미를 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$y=\\frac15x+12$",
+            "$y=0.2x+12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "추가 $1\\,\\mathrm{g}$ 늘 때 길이는 $\\frac15\\,\\mathrm{cm}$ 늘어난다",
+            "기울기 $\\frac15$은 추의 무게 $1\\,\\mathrm{g}$당 길이의 증가량이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "추를 달지 않을 때의 길이는 $12\\,\\mathrm{cm}$이다",
+            "$x=0$일 때의 길이가 $12\\,\\mathrm{cm}$이다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "일정하게라는 말을 베끼는 대신 실제 두 무게·길이와 일정한 변화 조건을 보여 기울기와 처음 길이를 계산한다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "두 쌍→기울기→식",
+      "authorBatch": 39,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "cAfter": "추의 무게가 같은 양 늘 때 용수철 길이도 같은 양 늘어난다. 추 $10\\,\\mathrm{g}$일 때 길이 $14\\,\\mathrm{cm}$, $30\\,\\mathrm{g}$일 때 $18\\,\\mathrm{cm}$이면 그래프의 기울기는 {$\\frac15$}, $y$절편은 {$12$}이다.",
+      "cAnswers": [
+        "$\\frac15$",
+        "$12$"
+      ],
+      "sourceIndex": 541,
+      "part": "m2",
+      "sourceFingerprint": "3eaa9f898601db7dc0598ee7c203ce0d36ef3e515ea64700c43ff1496f0e15f2",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 541
+      },
+      "directReview": {
+        "path": "amendments.json",
+        "id": "m2-04-06-c6"
+      },
+      "cMarkedSentence": "추의 무게가 같은 양 늘 때 용수철 길이도 같은 양 늘어난다. 추 $10\\,\\mathrm{g}$일 때 길이 $14\\,\\mathrm{cm}$, $30\\,\\mathrm{g}$일 때 $18\\,\\mathrm{cm}$이면 그래프의 기울기는 {$\\frac15$}, $y$절편은 {$12$}이다.",
+      "cSlotAnswers": [
+        "$\\frac15$",
+        "$12$"
+      ],
+      "cStudentSentence": "추의 무게가 같은 양 늘 때 용수철 길이도 같은 양 늘어난다. 추 $10\\,\\mathrm{g}$일 때 길이 $14\\,\\mathrm{cm}$, $30\\,\\mathrm{g}$일 때 $18\\,\\mathrm{cm}$이면 그래프의 기울기는 □, $y$절편은 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\frac15$",
+          "equivalentAnswers": [
+            "$\\frac15$",
+            "$0.2$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$12$",
+          "equivalentAnswers": [
+            "$12$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$\\frac15$",
+          "accept": [
+            "$0.2$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$\\frac15$",
+          "$0.2$"
+        ],
+        [
+          "$12$"
+        ]
+      ],
+      "proposalFingerprint": "0087e033a5b98fdc22058f72e1cb676f44bcb4aa009a60257c1ce0027be9ccd5"
+    },
+    {
+      "id": "m1-01-01-xc10",
+      "bDecision": "rewrite",
+      "bPrompt": "$\\frac23\\times\\frac23\\times\\frac23$를 같은 분수가 밑인 하나의 거듭제곱으로 나타내시오. 분수 전체가 밑임을 알아볼 수 있게 쓰는 방법도 설명하시오.",
+      "bAnswer": "$\\left(\\frac{2}{3}\\right)^3$이다. 분수 전체를 괄호로 묶어 밑으로 쓰고, 지수는 괄호 밖 오른쪽 위에 쓴다.",
+      "bGoal": "같은 분수를 거듭 곱한 식을 괄호를 써서 거듭제곱으로 나타낸다.",
+      "bReason": "분자·분모 각각의 거듭제곱도 같은 값이지만, 이 문항은 분수 전체를 밑으로 쓰는 표기 목표임을 실제 질문에 밝힌다.",
+      "cDecision": "keep",
+      "cReason": "상황(같은 분수를 거듭 곱함)과 빈칸의 역할(무엇으로 묶는지)이 분명하고 답이 한 단어이다.",
+      "exampleNeeded": true,
+      "authorBatch": 0,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\left(\\frac{2}{3}\\right)^3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "분수 전체를 괄호로 묶어 밑으로 쓴다"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-000",
+      "learningRole": "naming",
+      "roleReason": "분수 전체를 괄호로 밑 표기",
+      "enrichmentEvidence": "enrichment/enrich-002",
+      "sourceIndex": 934,
+      "part": "m1plus",
+      "sourceFingerprint": "9444e5697a2e46743f0f76d77ed3776897eb0c7fa8ff5c7c8fe57c43e1ce8f95",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 934
+      },
+      "directReview": null,
+      "cFrozenSentence": "같은 분수를 거듭 곱하면 분수 전체를 □로 묶어 밑으로 쓴다.",
+      "cFrozenDefinition": "같은 분수를 거듭 곱하면 분수 전체를 {괄호}로 묶어 밑으로 쓴다.",
+      "cFrozenAnswers": [
+        "괄호"
+      ],
+      "cMarkedSentence": "같은 분수를 거듭 곱하면 분수 전체를 {괄호}로 묶어 밑으로 쓴다.",
+      "cSlotAnswers": [
+        "괄호"
+      ],
+      "cStudentSentence": "같은 분수를 거듭 곱하면 분수 전체를 □로 묶어 밑으로 쓴다.",
+      "cAnswers": [
+        "괄호"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "괄호",
+          "equivalentAnswers": [
+            "괄호"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "괄호"
+        ]
+      ],
+      "proposalFingerprint": "eb78821893a5263734fd83be2b579be4ae235fddd9d30b1ff590579031ca2ffb"
+    },
+    {
+      "id": "m1-03-06-xc16",
+      "bDecision": "rewrite",
+      "bPrompt": "$0.5x+\\frac13=\\frac56$처럼 소수와 분수가 섞인 일차방정식을 풉니다. 먼저 소수를 분수로 바꾼 식을 쓰세요. 그 식의 계수와 상수항을 모두 정수로 만들기 위해 양변에 곱할 가장 작은 자연수와 곱한 뒤의 식, 해를 차례로 쓰세요.",
+      "bAnswer": "$0.5$를 분수 $\\frac12$로 바꾸어 식 $\\frac12x+\\frac13=\\frac56$를 얻는다. 분모 $2$, $3$, $6$의 최소공배수 $6$을 양변에 곱하면 $3x+2=5$이므로 $x=1$이다.",
+      "bGoal": "소수와 분수가 섞인 방정식은 소수를 분수로 고친 뒤 분모의 최소공배수를 곱해 푼다.",
+      "bReason": "단순히 곱할 가장 작은 자연수면1이므로 계수와상수항을 모두 정수로 만드는 목적을 명시한다.",
+      "cDecision": "rewrite",
+      "cAfter": "$0.5x+\\frac13=\\frac56$에서 계수와 상수항을 모두 정수로 만들려면 양변에 곱할 가장 작은 자연수는 {$6$}이다.",
+      "cAnswers": [
+        "$6$"
+      ],
+      "cReason": "분모라는말을보고분수를복원하는대신소수와분수가섞인식을정수계수로바꾸는최소배수를구하게한다.",
+      "exampleNeeded": true,
+      "authorBatch": 7,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$0.5$를 분수 $\\frac{1}{2}$로 바꾼다"
+          ]
+        },
+        {
+          "anyOf": [
+            "양변에 $6$을 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "곱한 뒤의 식 $3x+2=5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "해 $x=1$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-004",
+      "learningRole": "procedure",
+      "roleReason": "소수를 분수로 고친 뒤 곱함",
+      "enrichmentEvidence": "enrichment/enrich-006",
+      "notationReason": "분수로 끝나는 식 뒤의 조사 논란은 식을 얻는다는 문장으로 피하고 방정식·해는 그대로이다.",
+      "sourceIndex": 1288,
+      "part": "m1plus",
+      "sourceFingerprint": "0f499ab0ec4b91b86bfa60cd48e251b83d56539a3a44ebe5542cb5f412f55bb7",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1288
+      },
+      "directReview": {
+        "path": "amendments.json",
+        "id": "m1-03-06-xc16"
+      },
+      "cMarkedSentence": "$0.5x+\\frac13=\\frac56$에서 계수와 상수항을 모두 정수로 만들려면 양변에 곱할 가장 작은 자연수는 {$6$}이다.",
+      "cSlotAnswers": [
+        "$6$"
+      ],
+      "cStudentSentence": "$0.5x+\\frac13=\\frac56$에서 계수와 상수항을 모두 정수로 만들려면 양변에 곱할 가장 작은 자연수는 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$6$",
+          "equivalentAnswers": [
+            "$6$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$6$"
+        ]
+      ],
+      "proposalFingerprint": "e95ccaa641b1b14d047d718f7ef58f1d3b91cd4f463660cf42bfb8fcd98ff945"
+    },
+    {
+      "id": "m2-01-01-xc20",
+      "bDecision": "rewrite",
+      "bPrompt": "$\\frac{3}{2\\times a}$이 유한소수가 되게 하는 한 자리 자연수 $a$를 찾으려고 한다. $a=6$은 되고 $a=9$는 안 되는 까닭을 각각 설명하시오.",
+      "bAnswer": "$a=6$이면 $\\frac{3}{12}=\\frac{1}{4}$로 약분되어 분모의 소인수가 $2$뿐이므로 유한소수이다. $a=9$이면 $\\frac{3}{18}=\\frac{1}{6}$이고 약분해도 분모에 소인수 $3$이 남으므로 유한소수가 아니다.",
+      "bGoal": "분모에 미지수가 있을 때 약분 뒤의 분모로 판정하기",
+      "bReason": "미지수가 놓인 식과 비교할 두 값을 제시해 약분 뒤 판정을 묻게 함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$a=6$이면 $\\frac{1}{4}$이 된다",
+            "$a=6$이면 약분 뒤 분모의 소인수가 $2$뿐이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$a=9$이면 $\\frac{1}{6}$이 된다",
+            "$a=9$이면 약분해도 분모에 $3$이 남는다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "분모에 자연수 $a$가 있는 분수를 기약분수로 고쳤다. 그 분모가 $1$이거나 소인수가 {$2$}, {$5$}뿐이면 유한소수로 나타낼 수 있다. 두 소인수는 작은 수부터 차례로 쓴다.",
+      "cAnswers": [
+        "$2$",
+        "$5$"
+      ],
+      "cReason": "정수로 약분되어 분모1이 되는 경우도 포함하고 두 소인수의 답 순서를 명시한다.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "미지수 값 판정",
+      "authorBatch": 26,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2140,
+      "part": "m2plus",
+      "sourceFingerprint": "84e7464bbc8ce55912c95c5e24a85de2fad2e145bd09e3ee910d22fdb711a89a",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2140
+      },
+      "directReview": null,
+      "cMarkedSentence": "분모에 자연수 $a$가 있는 분수를 기약분수로 고쳤다. 그 분모가 $1$이거나 소인수가 {$2$}, {$5$}뿐이면 유한소수로 나타낼 수 있다. 두 소인수는 작은 수부터 차례로 쓴다.",
+      "cSlotAnswers": [
+        "$2$",
+        "$5$"
+      ],
+      "cStudentSentence": "분모에 자연수 $a$가 있는 분수를 기약분수로 고쳤다. 그 분모가 $1$이거나 소인수가 □, □뿐이면 유한소수로 나타낼 수 있다. 두 소인수는 작은 수부터 차례로 쓴다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$2$",
+          "equivalentAnswers": [
+            "$2$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$5$",
+          "equivalentAnswers": [
+            "$5$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$2$"
+        ],
+        [
+          "$5$"
+        ]
+      ],
+      "proposalFingerprint": "826efccf0b5537f8335885d41efeffc66fec4714daca6bf29c4539bc5e578a3e",
+      "coreAfter": "분모의 자연수 값에 따라 유한소수가 되는지 판단하려면 먼저 {약분}한다. 기약분수의 분모가 {$1$}이거나 소인수가 $2$ 또는 $5$뿐인지 확인한다.",
+      "coreReason": "미지수는 자연수이며 약분 뒤 분모1인 정수도 유한소수로 나타낼 수 있다."
+    },
+    {
+      "id": "m2-01-01-xc24",
+      "bDecision": "rewrite",
+      "bPrompt": "$\\frac{5}{6}$는 유한소수가 아니다. 그런데 $\\frac{5}{6}\\times\\frac{9}{10}$는 유한소수인지 판정하고, 그렇게 되는 까닭이 드러나게 과정을 쓰시오.",
+      "bAnswer": "$\\frac{5}{6}\\times\\frac{9}{10}=\\frac{45}{60}=\\frac{3}{4}$이다. 곱한 뒤 약분하면 분모의 $3$이 사라지고 $4=2^2$의 소인수가 $2$뿐이므로 유한소수이다.",
+      "bGoal": "두 분수의 곱을 약분한 뒤 판정하기",
+      "bReason": "과정을 요구했으므로0.75라는 답만으로 이유 기준을 통과하지 않도록 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "유한소수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac56\\times\\frac9{10}=\\frac34$으로 약분되며 분모의 소인수는$2$뿐이다",
+            "$\\frac56\\times\\frac9{10}=\\frac34=0.75$"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "판정 대상이 문장에 있고 절차의 핵심 낱말 두 개를 물음.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "곱을 약분해 판정하기",
+      "authorBatch": 26,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2144,
+      "part": "m2plus",
+      "sourceFingerprint": "2038aaa8400b3e2f45a36796f31507a39b854267833c2e7d381e3a25f4348a32",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2144
+      },
+      "directReview": null,
+      "cFrozenSentence": "두 분수의 곱이 유한소수인지는 곱한 뒤 □하여 얻은 □의 분모로 판정한다.",
+      "cFrozenDefinition": "두 분수의 곱이 유한소수인지는 곱한 뒤 {약분}하여 얻은 {기약분수}의 분모로 판정한다.",
+      "cFrozenAnswers": [
+        "약분",
+        "기약분수"
+      ],
+      "cMarkedSentence": "두 분수의 곱이 유한소수인지는 곱한 뒤 {약분}하여 얻은 {기약분수}의 분모로 판정한다.",
+      "cSlotAnswers": [
+        "약분",
+        "기약분수"
+      ],
+      "cStudentSentence": "두 분수의 곱이 유한소수인지는 곱한 뒤 □하여 얻은 □의 분모로 판정한다.",
+      "cAnswers": [
+        "약분",
+        "기약분수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "약분",
+          "equivalentAnswers": [
+            "약분"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        },
+        {
+          "index": 1,
+          "answer": "기약분수",
+          "equivalentAnswers": [
+            "기약분수"
+          ],
+          "equivalenceReview": "Direct reread after notation repair"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "약분"
+        ],
+        [
+          "기약분수"
+        ]
+      ],
+      "proposalFingerprint": "54fed90ac47e0bf72f80fcdb7fad27f6438b2b4f65d14b5057b06a816f7b1d2d"
+    },
+    {
+      "id": "m2-01-02-xc25",
+      "bDecision": "rewrite",
+      "bPrompt": "$\\frac{1}{99}=0.\\dot{0}\\dot{1}$이다. $\\frac{23}{99}$과 $\\frac{7}{99}$을 각각 점을 찍어 순환소수로 나타내고, 분자가 한 자리 수일 때 주의할 점을 쓰시오.",
+      "bAnswer": "$\\frac{23}{99}=0.\\dot{2}\\dot{3}$, $\\frac{7}{99}=0.\\dot{0}\\dot{7}$이다. 분자를 두 자리로 쓴 숫자가 되풀이되므로, 한 자리 수는 앞에 $0$을 붙여 $07$로 생각한다.",
+      "bGoal": "분모가 $99$인 분수의 순환소수 꼴 알기",
+      "bReason": "두 자리·한 자리 분자를 대비시켜 주의점까지 답하도록 범위를 정함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$0.\\dot{2}\\dot{3}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.\\dot{0}\\dot{7}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "분자를 두 자리로 맞추어 앞에 $0$을 붙인다",
+            "$7$은 $07$로 생각한다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "반복묶음07이나 완성된소수를 미리 보여 주지 않고 분모99의 두 자리 규칙을 적용하게 한다.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "분모 $99$인 분수의 표기",
+      "authorBatch": 26,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2169,
+      "part": "m2plus",
+      "sourceFingerprint": "7286d7f3d2669734c9934ae720ab1f8c7450a1959dc451f147bd46e2b9cd8ef0",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2169
+      },
+      "directReview": null,
+      "cMarkedSentence": "$\\frac7{99}$을 순환소수로 고치면 소수 첫째 자리부터 {$07$}이라는 두 숫자 묶음이 되풀이된다.",
+      "cSlotAnswers": [
+        "$07$"
+      ],
+      "cStudentSentence": "$\\frac7{99}$을 순환소수로 고치면 소수 첫째 자리부터 □이라는 두 숫자 묶음이 되풀이된다.",
+      "cAnswers": [
+        "$07$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$07$",
+          "equivalentAnswers": [
+            "$07$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$07$"
+        ]
+      ],
+      "proposalFingerprint": "983b4af19a3c8e58e00aee55fa5a07bf3cadfac4e2e6cc779ac83fc5efd767f0",
+      "cAfter": "$\\frac7{99}$을 순환소수로 고치면 소수 첫째 자리부터 {$07$}이라는 두 숫자 묶음이 되풀이된다."
+    }
+  ]
+}

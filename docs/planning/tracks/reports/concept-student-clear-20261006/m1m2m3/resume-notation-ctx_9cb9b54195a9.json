@@ -1,0 +1,21 @@
+{
+  "checkedAt": "2026-10-07T12:09:55.319Z",
+  "issues": [],
+  "faultCount": 1,
+  "groups": [
+    {
+      "id": "m2-01-01-xc20",
+      "sourceIndex": 2140,
+      "field": "example.prompt",
+      "value": "$\\frac{3}{2\\times a}$가 유한소수인 한 자리 자연수 $a$",
+      "faults": [
+        {
+          "id": "m2-01-01-xc20",
+          "field": "example.prompt",
+          "rule": "수식 뒤 조사",
+          "what": "$\\frac{3}{2\\times a}$가"
+        }
+      ]
+    }
+  ]
+}

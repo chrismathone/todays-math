@@ -1,0 +1,261 @@
+{
+  "sourceCommit": "13bf05dce",
+  "directAuthor": "Codex after actual current-hash feedback and full current field reading",
+  "notFinalReread": true,
+  "entries": [
+    {
+      "id": "e4-2-4-4-xc23",
+      "sourceIndex": 2514,
+      "beforeProposal": {
+        "sourceIndex": 2514,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-4 사다리꼴",
+        "sourceFingerprint": "5e49bc4cdc58583b6964d0358a610f3687132b807c0080b3d391c4bfd02d48bd",
+        "proposalFingerprint": "44666c5f04ebd286b4766aea1a95a8114641fe4e15b9d72fc346f1a51cfcdba1",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-4-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "모양과 크기가 같은 정삼각형 세 개로 사다리꼴을 만들려면 어떻게 붙여야 하는지 쓰시오.",
+        "bAnswer": "가운데 정삼각형의 꼭짓점이 아래로 향하게 놓고, 왼쪽과 오른쪽 빗변에 나머지 정삼각형을 한 변 전체가 맞닿도록 겹치지 않게 붙인다. 가운데를 위로 향하게 놓고 거꾸로 붙여도 된다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "가운데 정삼각형의 왼쪽과 오른쪽 빗변에 나머지 둘을 한 변 전체가 맞닿도록 겹치지 않게 붙인다",
+              "정삼각형을 위 아래 위 또는 아래 위 아래 방향으로 놓고 한 변 전체를 맞대어 겹치지 않게 잇는다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "정삼각형으로 사다리꼴 만들기",
+        "bReason": "붙이는 방법을 직접 쓰게 함",
+        "cDecision": "rewrite",
+        "cAfter": "모양과 크기가 같은 정삼각형 세 개가 있다. 가운데 정삼각형의 꼭짓점을 아래로 향하게 놓고, 왼쪽과 오른쪽 빗변에 나머지 둘을 한 변 전체가 맞닿도록 겹치지 않게 붙이면 {사다리꼴}이 된다.",
+        "cReason": "긴 방법 구절 대신 익숙한 도형 이름 빈칸으로",
+        "exampleNeeded": "위 아래 위 방향의 같은 정삼각형 세 개가 변 전체로 맞닿아 평행한 변이 한 쌍뿐인 사다리꼴을 만드는 그림을 함께 제시하면 좋다.",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "정삼각형 세 개로 사다리꼴",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "모양과 크기가 같은 정삼각형 세 개가 있다. 가운데 정삼각형의 꼭짓점을 아래로 향하게 놓고, 왼쪽과 오른쪽 빗변에 나머지 둘을 한 변 전체가 맞닿도록 겹치지 않게 붙이면 {사다리꼴}이 된다.",
+        "cStudentSentence": "모양과 크기가 같은 정삼각형 세 개가 있다. 가운데 정삼각형의 꼭짓점을 아래로 향하게 놓고, 왼쪽과 오른쪽 빗변에 나머지 둘을 한 변 전체가 맞닿도록 겹치지 않게 붙이면 □이 된다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "사다리꼴",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "모양과 크기가 같은 정삼각형 세 개로 사다리꼴을 만들려면 어떻게 붙여야 하는지 쓰시오.",
+          "answer": "가운데 정삼각형의 꼭짓점이 아래로 향하게 놓고, 왼쪽과 오른쪽 빗변에 나머지 정삼각형을 한 변 전체가 맞닿도록 겹치지 않게 붙인다. 가운데를 위로 향하게 놓고 거꾸로 붙여도 된다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "가운데 정삼각형의 왼쪽과 오른쪽 빗변에 나머지 둘을 한 변 전체가 맞닿도록 겹치지 않게 붙인다",
+                "정삼각형을 위 아래 위 또는 아래 위 아래 방향으로 놓고 한 변 전체를 맞대어 겹치지 않게 잇는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "모양과 크기가 같은 정삼각형 세 개가 있다. 가운데 정삼각형의 꼭짓점을 아래로 향하게 놓고, 왼쪽과 오른쪽 빗변에 나머지 둘을 한 변 전체가 맞닿도록 겹치지 않게 붙이면 {사다리꼴}이 된다.",
+          "acceptedAnswers": [
+            [
+              "사다리꼴"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "manualPatch": {
+        "bAnswer": "가운데 정삼각형의 꼭짓점이 아래로 향하게 놓고, 왼쪽과 오른쪽의 비스듬한 변에 나머지 정삼각형을 한 변 전체가 맞닿도록 겹치지 않게 붙인다. 가운데를 위로 향하게 놓고 거꾸로 붙여도 된다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "가운데 정삼각형의 왼쪽과 오른쪽 비스듬한 변에 나머지 둘을 한 변 전체가 맞닿도록 겹치지 않게 붙인다",
+              "정삼각형을 위 아래 위 또는 아래 위 아래 방향으로 놓고 한 변 전체를 맞대어 겹치지 않게 잇는다"
+            ]
+          }
+        ],
+        "cAfter": "모양과 크기가 같은 정삼각형 세 개가 있다. 가운데 정삼각형의 꼭짓점을 아래로 향하게 놓고, 왼쪽과 오른쪽의 비스듬한 변에 나머지 둘을 한 변 전체가 맞닿도록 겹치지 않게 붙이면 {사다리꼴}이 된다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-4-5-xc5",
+      "sourceIndex": 2523,
+      "beforeProposal": {
+        "sourceIndex": 2523,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-5 평행사변형",
+        "sourceFingerprint": "7c11c2f2fef6f9ae56c61840bb77583ccb0f672e29b1372e7f962b76b2f8faa6",
+        "proposalFingerprint": "485f2b4bf3354ff33ac8e9851fe3ec9d4496d6abf79738208697072eb9ed23c9",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-5-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "모눈종이에 평행사변형을 그리려고 한 변을 먼저 그었다. 나머지 세 변을 어떻게 그을지 쓰시오.",
+        "bAnswer": "처음 변을 늘인 직선 밖에 그 변과 평행하고 길이가 같은 선분을 긋는다. 두 선분의 같은 쪽 끝점끼리 선분이 서로 엇갈리지 않게 이어 준다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "처음 변을 늘인 직선 밖에 처음 변과 평행하고 길이가 같은 선분을 긋는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 쪽 끝점끼리 엇갈리지 않게 잇는다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "모눈종이에 평행사변형 그리기",
+        "bReason": "그리는 순서와 조건을 직접 쓰게 함",
+        "cDecision": "rewrite",
+        "cReason": "'길이가 같은'은 짧고 답 범위가 분명함",
+        "cSlotEquivalents": [
+          [
+            "같은 길이의",
+            "길이가 똑같은"
+          ]
+        ],
+        "cAfter": "한 선분을 늘인 직선 밖에 그 선분과 평행하고 {길이가 같은} 선분을 긋는다. 두 선분의 같은 쪽 끝점끼리 엇갈리지 않게 이으면 평행사변형이 된다.",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "모눈종이에 평행사변형 그리기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "한 선분을 늘인 직선 밖에 그 선분과 평행하고 {길이가 같은} 선분을 긋는다. 두 선분의 같은 쪽 끝점끼리 엇갈리지 않게 이으면 평행사변형이 된다.",
+        "cStudentSentence": "한 선분을 늘인 직선 밖에 그 선분과 평행하고 □ 선분을 긋는다. 두 선분의 같은 쪽 끝점끼리 엇갈리지 않게 이으면 평행사변형이 된다.",
+        "cSlotAnswers": [
+          {
+            "expected": "길이가 같은",
+            "equivalents": [
+              "같은 길이의",
+              "길이가 똑같은"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "모눈종이에 평행사변형을 그리려고 한 변을 먼저 그었다. 나머지 세 변을 어떻게 그을지 쓰시오.",
+          "answer": "처음 변을 늘인 직선 밖에 그 변과 평행하고 길이가 같은 선분을 긋는다. 두 선분의 같은 쪽 끝점끼리 선분이 서로 엇갈리지 않게 이어 준다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "처음 변을 늘인 직선 밖에 처음 변과 평행하고 길이가 같은 선분을 긋는다"
+              ]
+            },
+            {
+              "anyOf": [
+                "같은 쪽 끝점끼리 엇갈리지 않게 잇는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "한 선분을 늘인 직선 밖에 그 선분과 평행하고 {길이가 같은} 선분을 긋는다. 두 선분의 같은 쪽 끝점끼리 엇갈리지 않게 이으면 평행사변형이 된다.",
+          "acceptedAnswers": [
+            [
+              "길이가 같은",
+              "같은 길이의",
+              "길이가 똑같은"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "manualPatch": {
+        "bPrompt": "모눈종이에 평행사변형을 그리려고 한 변을 먼저 그었다. 그 변과 마주 보는 변을 먼저 그리고 나머지 두 변을 이어 그으려고 한다. 마주 보는 변과 나머지 두 변을 어떻게 그을지 쓰시오."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-4-6-xc9",
+      "sourceIndex": 2549,
+      "beforeProposal": {
+        "sourceIndex": 2549,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-6 마름모",
+        "sourceFingerprint": "13e52125f82e451c1c50bd8a48f05fef5dfe00228e7f2d0991c9a391224beb94",
+        "proposalFingerprint": "6530d846be86058db26b62014a115f293509e41395402a9fc6242fb2397a3fe9",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-6-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "종이를 두 번 접어 생긴 두 접힌 변 위에 점을 하나씩 찍고, 두 점을 곧게 이어 자르려고 한다. 두 접힌 변이 만나는 꼭짓점 쪽의 삼각형을 펼치면 마름모가 되게 하려면, 두 번 접는 선은 서로 어떤 관계여야 하는지 쓰시오.",
+        "bAnswer": "서로 수직인 선을 따라 접는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "서로 수직인 선",
+              "서로 직각으로 만나는 선"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "마름모 만들기 접는 방법",
+        "bReason": "접는 선의 조건을 직접 쓰게 함",
+        "cDecision": "rewrite",
+        "cReason": "익숙한 낱말 '수직'이라 유지",
+        "cSlotEquivalents": [
+          [
+            "직각으로 만나는 관계"
+          ]
+        ],
+        "exampleNeeded": "종이를 수직인 선으로 두 번 접어 모서리 삼각형을 자르는 과정 그림",
+        "cAfter": "종이를 서로 {수직}인 선을 따라 두 번 접는다. 두 접힌 변 위의 점을 하나씩 곧게 이어 자른 뒤, 두 접힌 변이 만나는 꼭짓점 쪽의 삼각형을 펼치면 마름모가 된다.",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "종이를 접어 자른 마름모",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "종이를 서로 {수직}인 선을 따라 두 번 접는다. 두 접힌 변 위의 점을 하나씩 곧게 이어 자른 뒤, 두 접힌 변이 만나는 꼭짓점 쪽의 삼각형을 펼치면 마름모가 된다.",
+        "cStudentSentence": "종이를 서로 □인 선을 따라 두 번 접는다. 두 접힌 변 위의 점을 하나씩 곧게 이어 자른 뒤, 두 접힌 변이 만나는 꼭짓점 쪽의 삼각형을 펼치면 마름모가 된다.",
+        "cSlotAnswers": [
+          {
+            "expected": "수직",
+            "equivalents": [
+              "직각으로 만나는 관계"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "종이를 두 번 접어 생긴 두 접힌 변 위에 점을 하나씩 찍고, 두 점을 곧게 이어 자르려고 한다. 두 접힌 변이 만나는 꼭짓점 쪽의 삼각형을 펼치면 마름모가 되게 하려면, 두 번 접는 선은 서로 어떤 관계여야 하는지 쓰시오.",
+          "answer": "서로 수직인 선을 따라 접는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "서로 수직인 선",
+                "서로 직각으로 만나는 선"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "종이를 서로 {수직}인 선을 따라 두 번 접는다. 두 접힌 변 위의 점을 하나씩 곧게 이어 자른 뒤, 두 접힌 변이 만나는 꼭짓점 쪽의 삼각형을 펼치면 마름모가 된다.",
+          "acceptedAnswers": [
+            [
+              "수직",
+              "직각으로 만나는 관계"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "manualPatch": {
+        "cSlotEquivalents": [
+          []
+        ]
+      },
+      "isReleaseApproval": false
+    }
+  ]
+}

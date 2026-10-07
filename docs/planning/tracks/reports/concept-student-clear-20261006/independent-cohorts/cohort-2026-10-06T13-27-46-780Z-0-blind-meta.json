@@ -1,0 +1,20 @@
+{
+  "ms": 202304,
+  "usage": {
+    "input": 2,
+    "output": 34870,
+    "reasoning": 25371
+  },
+  "provider": "claude",
+  "model": "sonnet",
+  "effort": "high",
+  "inputHash": "fdc84d1ecf9c30461cd04d496f18a06c130f0e50afc67a50087cf1dda4e9eb47",
+  "recovery": {
+    "originalRawPreserved": true,
+    "supplementaryRequests": [
+      "missing-blind",
+      "duplicate-blind"
+    ],
+    "reason": "Two omitted questions and duplicated IDs; all ambiguous duplicates freshly reviewed without hidden answers."
+  }
+}

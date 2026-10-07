@@ -1,0 +1,525 @@
+{
+  "rows": [
+    {
+      "id": "e5-2-2-2-c1",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "자연수에 진분수를 곱한 값을 구하는 방법을, 분모와 분자를 각각 어떻게 쓰는지 넣어 설명하시오. 그 방법으로 $12\\times\\frac{3}{4}$을 구하시오.",
+      "bAnswer": "자연수를 분모로 나눈 다음 분자를 곱한다(자연수와 분자를 곱한 뒤 분모로 나누어도 된다). $12\\div4=3$, $3\\times3=9$이므로 $9$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "자연수를 분모로 나누고 분자를 곱한다",
+            "자연수와 분자를 곱한 것을 분모로 나눈다",
+            "자연수를 분자에 곱하고 분모는 그대로 둔다"
+          ]
+        },
+        {
+          "anyOf": [
+            "9"
+          ]
+        }
+      ],
+      "bGoal": "분모로 나누고 분자를 곱하는 계산 절차를 스스로 말하고 적용한다.",
+      "bReason": "제목만으로는 무엇을 설명할지 알 수 없어 분모·분자의 쓰임을 묻고 예를 붙였다.",
+      "cDecision": "revise",
+      "cAfter": "$20\\times\\frac{3}{5}$은 $20$을 {5}로 나눈 값에 {3}을 곱하여 구하므로 {12}이다.",
+      "cReason": "원문 빈칸은 '분모로 나눈 값', '분자를 곱해' 같은 긴 구절을 외워야 해서 실제 식의 수로 답하게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-2-2-c2",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "자연수에 대분수를 곱할 때 대분수를 먼저 어떤 분수로 고쳐서 계산할 수 있는지 쓰고, 그 방법으로 $3\\times1\\frac{1}{2}$을 구하시오.",
+      "bAnswer": "대분수를 가분수로 고쳐서 곱한다. $1\\frac{1}{2}=\\frac{3}{2}$이므로 $3\\times\\frac{3}{2}=\\frac{9}{2}=4\\frac{1}{2}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가분수로 고친다",
+            "$\\frac{3}{2}$으로 고친다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4\\frac{1}{2}$",
+            "$\\frac{9}{2}$"
+          ]
+        }
+      ],
+      "bGoal": "대분수를 가분수로 고쳐 자연수와 곱하는 절차를 안다.",
+      "bReason": "나누어 곱하는 방법은 xc15에서 따로 묻기 때문에 여기서는 가분수로 고치는 절차로 좁혔다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "고칠 분수의 이름 하나만 묻는 짧은 문장이고, 뒤의 '분자 쪽에 곱해'가 답을 알려 주지 않는다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'가분수'도 정답으로 인정한다."
+    },
+    {
+      "id": "e5-2-2-2-c3",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "자연수에 진분수를 곱하면 곱은 처음 자연수보다 큰지 작은지 쓰고, 진분수의 크기와 관련지어 그 까닭을 설명하시오.",
+      "bAnswer": "처음 자연수보다 작다. 진분수는 $1$보다 작아서 자연수 전체가 아니라 그 일부만 나타내기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "처음 자연수보다 작다",
+            "곱이 작아진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "진분수는 1보다 작다",
+            "전체 중 일부만 나타낸다"
+          ]
+        }
+      ],
+      "bGoal": "진분수를 곱하면 곱이 작아지는 까닭을 1보다 작다는 점과 연결한다.",
+      "bReason": "결론을 말해 주지 않고 큰지 작은지와 까닭을 함께 묻게 했다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "'전체 중 일부만 남아'라는 근거가 있고 비교 낱말 하나만 묻는 분명한 문장이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'작다'도 정답으로 인정한다."
+    },
+    {
+      "id": "e5-2-2-2-xc2",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "단위분수를 곱하면 분모로 나눈 값과 같음을 안다.",
+      "bReason": "분자가 1인 경우일 뿐이어서 c1의 질문에 포함된다.",
+      "cDecision": "revise",
+      "cAfter": "$15\\times\\frac{1}{5}$은 $15$를 {5}로 나눈 값과 같으므로 {3}이다.",
+      "cReason": "'분모로 나눈'이라는 구절 대신 실제 식에서 나누는 수와 값을 답하게 했다.",
+      "exclusionReason": "B는 c1과 중복이다(대체: e5-2-2-2-c1).",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-2-2-xc4",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "곱을 약분하거나 대분수로 정리해 나타낸다.",
+      "bReason": "결과를 정리하는 단순 계산이라 설명할 개념 관계가 없다.",
+      "cDecision": "revise",
+      "cAfter": "$4\\times\\frac{5}{6}=\\frac{20}{6}$은 약분하면 {$\\frac{10}{3}$}이고, 대분수로 나타내면 {$3\\frac{1}{3}$}이다.",
+      "cReason": "'대분수' 낱말만 채우는 것보다 약분과 대분수로 바꾸는 과정을 실제 값으로 확인하는 편이 유용하다.",
+      "exclusionReason": "B는 단순 계산 정리 행동이라 형식에서 제외한다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-2-2-xc5",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "자연수가 분모의 배수이면 곱이 자연수가 됨을 안다.",
+      "bReason": "xc23이 같은 관계를 기약분수 조건까지 넣어 묻는다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "자연수와 분모 사이의 관계를 '배수' 한 낱말로 묻는 짧고 정확한 문장이다.",
+      "exclusionReason": "B는 xc23과 중복이다(대체: e5-2-2-2-xc23).",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-2-2-xc6",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "자연수와 분수는 곱하는 순서를 바꾸어도 곱이 같음을 확인한다.",
+      "bReason": "자연수 곱셈에서 이미 아는 성질을 한 예로 확인하는 것이어서 서술할 내용이 거의 없다.",
+      "cDecision": "revise",
+      "cAfter": "$5\\times\\frac{2}{3}$와 $\\frac{2}{3}\\times5$의 곱은 모두 {$\\frac{10}{3}$}으로 서로 {같다}.",
+      "cReason": "원문 답 '곱이 같다'는 표현이 여러 가지로 나올 수 있어 곱의 값과 비교 낱말로 나누었다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{10}{3}$",
+            "$3\\frac{1}{3}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "같다"
+          ]
+        }
+      ],
+      "exclusionReason": "B는 자명한 확인이라 제외한다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-2-2-xc7",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "자연수와 진분수의 곱을 똑같이 나눈 묶음 가운데 몇 묶음으로 이해한다.",
+      "bReason": "분모로 나누고 분자만큼 모은다는 내용이 c1의 질문과 겹친다.",
+      "cDecision": "revise",
+      "cAfter": "$12\\times\\frac{2}{3}$는 $12$를 똑같이 {3}묶음으로 나눈 것 가운데 {2}묶음을 모은 양이므로 {8}이다.",
+      "cReason": "'분모의 수만큼', '분자의 수만큼' 구절을 외우는 대신 실제 묶음 수로 뜻을 확인하게 했다.",
+      "exclusionReason": "B는 c1과 중복이다(대체: e5-2-2-2-c1).",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-2-2-xc8",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "‘어떤 수의 몇 분의 몇’을 구할 때 어떤 계산을 하는지 쓰고, ‘$20$의 $\\frac{3}{4}$’을 식으로 나타내어 값을 구하시오.",
+      "bAnswer": "그 수에 분수를 곱한다. $20\\times\\frac{3}{4}=15$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱셈을 한다",
+            "그 수에 분수를 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$20\\times\\frac{3}{4}$",
+            "$\\frac{3}{4}\\times20$"
+          ]
+        },
+        {
+          "anyOf": [
+            "15"
+          ]
+        }
+      ],
+      "bGoal": "'~의 몇 분의 몇'이라는 말을 곱셈식으로 옮긴다.",
+      "bReason": "원문 예는 덧셈으로 쓴 잘못만 다루어서, 말을 식으로 바꾸고 값을 구하는 질문으로 바꿨다.",
+      "cDecision": "revise",
+      "cAfter": "‘$20$의 $\\frac{3}{4}$’을 식으로 나타내면 $20$ {×} $\\frac{3}{4}$이고, 그 값은 {15}이다.",
+      "cReason": "원문 답 '그 수에 분수를 곱하여'는 긴 구절이라 연산 기호와 값으로 답하게 했다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "×",
+            "곱하기"
+          ]
+        },
+        {
+          "anyOf": [
+            "15"
+          ]
+        }
+      ],
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-2-2-xc12",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "대분수를 곱하면 곱이 처음 자연수보다 커짐을 안다.",
+      "bReason": "대분수는 1보다 큰 분수이므로 xc19의 질문에 포함된다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "대분수를 곱했을 때 곱이 어떻게 되는지를 한 낱말로 묻는 분명한 문장이다.",
+      "exclusionReason": "B는 xc19와 중복이다(대체: e5-2-2-2-xc19).",
+      "exampleNeeded": false,
+      "synonymNotes": "'크다'도 정답으로 인정한다."
+    },
+    {
+      "id": "e5-2-2-2-xc13",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "자연수에 $\\frac{4}{4}$처럼 분모와 분자가 같은 분수를 곱하면 곱은 처음 자연수와 비교해 어떻게 되는지 쓰고, 그 분수의 크기를 이용해 까닭을 설명하시오.",
+      "bAnswer": "곱은 처음 자연수와 같다. 분모와 분자가 같은 분수는 $1$과 같기 때문이다. 예: $5\\times\\frac{4}{4}=5$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "처음 자연수와 같다",
+            "곱이 변하지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "분모와 분자가 같은 분수는 1과 같다",
+            "$\\frac{4}{4}=1$"
+          ]
+        }
+      ],
+      "bGoal": "1과 크기가 같은 분수를 곱하면 곱이 변하지 않는 까닭을 안다.",
+      "bReason": "xc20과 같은 내용이어서 이 행 하나에서 결과와 까닭을 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$5\\times\\frac{4}{4}$에서 $\\frac{4}{4}$는 {1}과 같으므로 곱은 {5}이다.",
+      "cReason": "원문 답 '처음 수와 같다'는 구절이라 분수의 크기와 곱의 값으로 답하게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-2-2-xc15",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "대분수를 가분수로 고치지 않고 자연수에 곱하는 방법을 설명하고, 그 방법으로 $4\\times2\\frac{1}{3}$을 구하시오.",
+      "bAnswer": "대분수를 자연수 부분과 분수 부분으로 나누어 자연수를 각각 곱한 뒤 더한다. $4\\times2=8$, $4\\times\\frac{1}{3}=\\frac{4}{3}=1\\frac{1}{3}$이므로 $8+1\\frac{1}{3}=9\\frac{1}{3}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "자연수 부분과 분수 부분에 각각 곱한다",
+            "$4\\times2$와 $4\\times\\frac{1}{3}$을 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 곱을 더한다",
+            "$8+\\frac{4}{3}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$9\\frac{1}{3}$",
+            "$\\frac{28}{3}$"
+          ]
+        }
+      ],
+      "bGoal": "대분수를 두 부분의 합으로 보고 각각 곱해 더하는 방법을 안다.",
+      "bReason": "c2의 가분수 방법과 구분되도록 조건을 넣고, 방법 자체는 말해 주지 않았다.",
+      "cDecision": "revise",
+      "cAfter": "$4\\times2\\frac{1}{3}$은 $4\\times2$와 $4\\times\\frac{1}{3}$을 {더한} 값과 같고, 그 값은 {$9\\frac{1}{3}$}이다.",
+      "cReason": "원문은 '더한 수' 낱말만 묻고 뒤 문장에 '더한 값'이 나와 답을 베낄 수 있어 실제 식으로 바꿨다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "더한",
+            "합한"
+          ]
+        },
+        {
+          "anyOf": [
+            "$9\\frac{1}{3}$",
+            "$\\frac{28}{3}$"
+          ]
+        }
+      ],
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-2-2-xc16",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "같은 자연수에 서로 다른 두 분수를 곱할 때, 계산하지 않고 어느 곱이 더 큰지 알아내는 방법을 설명하시오. 그 방법으로 $12\\times\\frac{1}{2}$과 $12\\times\\frac{3}{4}$ 중 더 큰 것을 고르시오.",
+      "bAnswer": "곱하는 분수의 크기를 비교하면 된다. 분수가 클수록 곱도 크다. $\\frac{3}{4}$이 $\\frac{1}{2}$보다 크므로 $12\\times\\frac{3}{4}$이 더 크다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱하는 분수가 큰 쪽의 곱이 크다",
+            "두 분수의 크기를 비교한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12\\times\\frac{3}{4}$이 더 크다"
+          ]
+        }
+      ],
+      "bGoal": "같은 수에 곱하는 분수의 크기로 곱의 크기를 비교한다.",
+      "bReason": "원문 예는 큰 것만 고르게 해서 비교하는 방법의 설명을 함께 묻게 했다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "'같은 자연수'라는 조건이 분명하고 비교 낱말 하나만 묻는다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'커진다'도 정답으로 인정한다."
+    },
+    {
+      "id": "e5-2-2-2-xc17",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$10\\times\\frac{2}{5}$를 $\\frac{20}{50}$이라고 계산했다. $\\frac{20}{50}$과 $\\frac{2}{5}$의 크기를 비교하여 이 계산이 틀린 까닭을 설명하고, 바른 값을 구하시오.",
+      "bAnswer": "$\\frac{20}{50}$은 약분하면 $\\frac{2}{5}$와 크기가 같다. $10$을 곱했는데 처음 분수와 같으므로 틀렸다. 자연수는 분자에만 곱해야 하며, 바른 값은 $\\frac{20}{5}=4$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{20}{50}$은 $\\frac{2}{5}$와 크기가 같다",
+            "곱했는데도 크기가 변하지 않았다"
+          ]
+        },
+        {
+          "anyOf": [
+            "4",
+            "$\\frac{20}{5}$"
+          ]
+        }
+      ],
+      "bGoal": "분모에도 자연수를 곱하면 크기가 같은 분수가 될 뿐임을 알고 오류를 고친다.",
+      "bReason": "실제 틀린 계산을 보여 주고 무엇을 비교해 설명할지 정해 주었다.",
+      "cDecision": "revise",
+      "cAfter": "$10\\times\\frac{2}{5}$를 계산할 때 $10$은 {분자}에만 곱한다. 분모에도 곱한 $\\frac{20}{50}$은 약분하면 {$\\frac{2}{5}$}와 같아서 틀린다.",
+      "cReason": "원문 빈칸은 긴 구절이고 '크기가 같은 꼴'이라는 말이 어려워 실제 분수로 풀어 썼다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-2-2-xc18",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "$1\\,\\mathrm{m}$의 $\\frac{3}{5}$은 몇 $\\mathrm{cm}$인지 구하려고 한다. 분수를 곱하기 전에 $1\\,\\mathrm{m}$를 어떻게 바꾸어야 하는지 쓰고, 식을 세워 답을 구하시오.",
+      "bAnswer": "$1\\,\\mathrm{m}$를 $100\\,\\mathrm{cm}$로 바꾼다. $100\\times\\frac{3}{5}=60$이므로 $60\\,\\mathrm{cm}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1\\,\\mathrm{m}$를 $100\\,\\mathrm{cm}$로 바꾼다",
+            "작은 단위인 cm로 먼저 바꾼다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$60\\,\\mathrm{cm}$",
+            "60"
+          ]
+        }
+      ],
+      "bGoal": "큰 단위를 작은 단위로 바꾼 뒤 분수를 곱해 양을 구한다.",
+      "bReason": "'큰 단위·작은 단위'라는 일반적인 말 대신 m와 cm의 실제 상황으로 물었다.",
+      "cDecision": "revise",
+      "cAfter": "$1\\,\\mathrm{m}$는 {100}$\\,\\mathrm{cm}$이므로 $1\\,\\mathrm{m}$의 $\\frac{3}{5}$은 {60}$\\,\\mathrm{cm}$이다.",
+      "cReason": "원문 답 '작은 단위로 바꾼 수'는 맥락 없이 떠올리기 어려운 구절이라 실제 단위 바꾸기로 바꿨다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-2-2-xc19",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "자연수에 분수를 곱할 때 곱이 처음 자연수보다 커지는 것은 곱하는 분수가 어떤 수일 때인지 쓰시오. 그리고 $6\\times\\frac{5}{4}$와 $6\\times\\frac{3}{4}$ 중 곱이 $6$보다 큰 것을 계산하지 않고 고르시오.",
+      "bAnswer": "곱하는 분수가 $1$보다 클 때이다. $\\frac{5}{4}$가 $1$보다 크므로 $6\\times\\frac{5}{4}$가 $6$보다 크다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱하는 분수가 1보다 클 때",
+            "가분수 중 1보다 큰 분수나 대분수를 곱할 때"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6\\times\\frac{5}{4}$"
+          ]
+        }
+      ],
+      "bGoal": "곱하는 분수를 1과 비교해 곱이 처음 수보다 커지는지 판단한다.",
+      "bReason": "c3, xc12, xc20에 흩어진 크기 판단을 1과 비교하는 기준으로 묶어 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "자연수에 곱하는 분수가 $1$보다 {크면} 곱은 처음 수보다 커지고, $1$보다 {작으면} 곱은 처음 수보다 작아진다.",
+      "cReason": "'$1$보다 크면' 구절 전체 대신 크면/작으면 두 경우를 짝지어 비교하게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-2-2-xc20",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "1과 같은 분수를 곱하면 곱이 처음 수와 같음을 안다.",
+      "bReason": "xc13의 질문이 같은 결과와 까닭을 이미 묻는다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "고쳐 써도 xc13의 수정 C와 같은 빈칸이 된다.",
+      "exclusionReason": "B와 C 모두 xc13과 중복이다(대체: e5-2-2-2-xc13).",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-2-2-xc21",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "전체의 몇 분의 몇을 쓰고 남은 양을 구하는 방법을 한 가지 설명하고, 물 $20\\,\\mathrm{L}$의 $\\frac{2}{5}$를 썼을 때 남은 물의 양을 구하시오.",
+      "bAnswer": "남은 부분은 전체의 $1-\\frac{2}{5}=\\frac{3}{5}$이므로 $20\\times\\frac{3}{5}=12$, 즉 $12\\,\\mathrm{L}$이다. (쓴 양 $20\\times\\frac{2}{5}=8$을 전체에서 빼도 $12\\,\\mathrm{L}$이다.)",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "전체에 1에서 쓴 분수를 뺀 분수를 곱한다",
+            "쓴 양을 구해 전체에서 뺀다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12\\,\\mathrm{L}$",
+            "12"
+          ]
+        }
+      ],
+      "bGoal": "남은 부분이 전체의 얼마인지 생각해 남은 양을 구한다.",
+      "bReason": "두 가지 풀이가 모두 옳으므로 한 방법만 강요하지 않고 구체적 상황을 붙였다.",
+      "cDecision": "revise",
+      "cAfter": "$20$의 $\\frac{2}{5}$를 쓰면 남은 양은 전체의 {$\\frac{3}{5}$}이고, 그 양은 {12}이다.",
+      "cReason": "원문 답 '$1$에서 쓴 분수를 뺀 분수'는 외우기 어려운 긴 구절이라 실제 분수와 값으로 바꿨다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-2-2-xc22",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "$24$의 $\\frac{1}{2}$을 구한 다음, 그 구한 양의 $\\frac{2}{3}$를 구하려고 한다. 두 번째 계산에서 $\\frac{2}{3}$를 어떤 수에 곱해야 하는지 까닭과 함께 쓰고, 답을 구하시오.",
+      "bAnswer": "$24$가 아니라 먼저 구한 $12$에 곱한다. '그 구한 양'의 $\\frac{2}{3}$이므로 $12$가 전체가 되기 때문이다. $12\\times\\frac{2}{3}=8$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "먼저 구한 12에 곱한다",
+            "24가 아니라 구한 양에 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "구한 양이 새로운 전체가 된다",
+            "구한 양의 몇 분의 몇이기 때문이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "8"
+          ]
+        }
+      ],
+      "bGoal": "두 단계 문제에서 두 번째 분수는 먼저 구한 양에 곱해야 함을 안다.",
+      "bReason": "'앞에서 구한 양'은 화면에 맥락이 없으면 뜻을 알 수 없어 두 단계 상황을 직접 제시했다.",
+      "cDecision": "revise",
+      "cAfter": "$24$의 $\\frac{1}{2}$은 {12}이다. 그 양의 $\\frac{2}{3}$는 $24$가 아니라 {12}에 $\\frac{2}{3}$를 곱해 구하므로 {8}이다.",
+      "cReason": "원문 답 '앞에서 구한 양을 새 전체로 보고'는 맥락 없는 긴 구절이라 실제 수로 답하게 했다.",
+      "coreAfter": "어떤 양의 몇 분의 몇을 구한 다음 그 구한 양의 몇 분의 몇을 다시 구할 때에는, 처음 전체가 아니라 먼저 구한 양에 분수를 곱한다.",
+      "coreReason": "원문의 '앞에서 구한 양', '새 전체'는 앞 문제를 전제로 한 말이라 혼자 읽으면 뜻이 분명하지 않다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-2-2-xc23",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "자연수에 기약분수를 곱한 값이 자연수가 되려면 그 자연수와 분수의 분모 사이에 어떤 관계가 있어야 하는지 쓰시오. 그리고 $6\\times\\frac{3}{4}$과 $8\\times\\frac{3}{4}$ 중 곱이 자연수인 것을 고르시오.",
+      "bAnswer": "자연수가 분모의 배수여야 한다(분모가 자연수의 약수여야 한다). $8$은 $4$의 배수이므로 $8\\times\\frac{3}{4}=6$이 자연수이다. $6\\times\\frac{3}{4}=4\\frac{1}{2}$은 자연수가 아니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "자연수가 분모의 배수이다",
+            "분모가 자연수의 약수이다",
+            "자연수가 분모로 나누어떨어진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8\\times\\frac{3}{4}$"
+          ]
+        }
+      ],
+      "bGoal": "곱이 자연수가 되는 조건을 자연수와 분모의 배수 관계로 설명한다.",
+      "bReason": "xc5와 묶어 이 행에서 조건을 묻고, 되는 예와 안 되는 예를 가려내게 했다.",
+      "cDecision": "revise",
+      "cAfter": "어떤 자연수에 $\\frac{3}{4}$을 곱한 값이 자연수가 되려면 그 자연수는 {4}의 {배수}여야 한다.",
+      "cReason": "원문은 xc5의 C와 거의 같은 빈칸이어서 실제 분수에서 분모를 찾아 답하게 해 구분했다.",
+      "exampleNeeded": false,
+      "synonymNotes": "B에서는 '분모가 자연수의 약수'도 같은 뜻으로 인정한다."
+    }
+  ],
+  "sectionNotes": [
+    "곱의 크기 판단(c3, xc12, xc13, xc19, xc20)과 곱이 자연수가 되는 조건(xc5, xc23)은 내용이 겹쳐 B를 대표 행에만 두었고, xc20은 B와 C 모두 제외했다.",
+    "긴 구절을 답으로 요구하던 C는 실제 식의 수나 짧은 낱말을 답하는 문장으로 바꿨고, 일반 설명을 고친 것은 xc22뿐이다."
+  ]
+}

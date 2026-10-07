@@ -1,0 +1,2344 @@
+{
+  "dispatchId": "ctx_ba984d44fab9",
+  "capturedAt": "2026-10-07T05:50:53.762Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-03-xc23",
+        "section": "중1::1. 소인수분해::공약수와 최대공약수",
+        "term": "소수와 서로소인 수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "소수 $p$와 자연수 $a$는 $a$가 $p$의 {배수}가 아니면 언제나 {서로소}이다.",
+        "example": {
+          "prompt": "$50$ 이하의 자연수 가운데 $13$과 서로소가 아닌 것은 몇 개?",
+          "answer": "$3$개"
+        },
+        "studentC": "소수 $p$와 자연수 $a$는 $a$가 $p$의 □가 아니면 언제나 □이다.",
+        "answers": [
+          "배수",
+          "서로소"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-03-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "소수 $p$와 자연수 $a$가 서로소가 아닌 경우는 $a$가 어떤 수일 때뿐인지 쓰고, 그 까닭을 $p$의 약수를 이용해 설명하시오. 또 $50$ 이하의 자연수 가운데 $13$과 서로소가 아닌 수를 모두 구하시오.",
+        "bAnswer": "$a$가 $p$의 배수일 때뿐이다. 소수 $p$의 약수는 $1$과 $p$뿐이라 $p$와 $a$의 공약수는 $1$ 또는 $p$이고, $p$가 공약수가 되려면 $a$가 $p$의 배수여야 한다. $50$ 이하에서 $13$의 배수는 $13, 26, 39$이므로 이 세 수가 답이다.",
+        "bGoal": "소수와 서로소가 아닌 수는 그 소수의 배수뿐임을 설명하고 활용할 수 있다.",
+        "bReason": "제목만으로는 $p$, $a$가 주어지지 않아 무엇을 답할지 알 수 없다. 기호의 뜻을 밝히고 '서로소가 아닌 경우'를 묻는 방향으로 정했다.",
+        "cDecision": "rewrite",
+        "cAfter": "소수 $p$와 자연수 $a$는 $a$가 $p$의 {배수}가 아니면 언제나 서로소이다.",
+        "cAnswers": [
+          "배수"
+        ],
+        "cReason": "원문은 조건('배수')과 결론('서로소')을 한 문장에서 모두 숨겼다. 결론은 보이게 두고 조건의 핵심 낱말만 묻게 했다. '약수'를 넣으면 틀린 문장이 되어 답이 정해진다.",
+        "exampleNeeded": true,
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$a$가 $p$의 배수일 때뿐이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$p$의 약수는 $1$과 $p$뿐이라 공약수는 $1$ 또는 $p$이고, $p$가 공약수이려면 $a$가 $p$의 배수여야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$13$, $26$, $39$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "reason",
+        "roleReason": "소수의 약수는 1과 자신뿐",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 992,
+        "part": "m1plus",
+        "sourceFingerprint": "7784ac664887cfe5a51b1bb6d93f7b6ed5ca5f114b124558c7add5aa58dafc62",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 992
+        },
+        "directReview": null,
+        "cMarkedSentence": "소수 $p$와 자연수 $a$는 $a$가 $p$의 {배수}가 아니면 언제나 서로소이다.",
+        "cSlotAnswers": [
+          "배수"
+        ],
+        "cStudentSentence": "소수 $p$와 자연수 $a$는 $a$가 $p$의 □가 아니면 언제나 서로소이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "배수",
+            "equivalentAnswers": [
+              "배수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "배수"
+          ]
+        ],
+        "proposalFingerprint": "a246fcd1a0769e3f308da31439862843c6708e41b16b0ceec6cbcc39b3580c22"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-03-xc24",
+        "section": "중1::1. 소인수분해::공약수와 최대공약수",
+        "term": "최대공약수로 약분하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "분모와 분자를 {최대공약수}로 나누면 한 번에 {기약분수}가 된다.",
+        "example": {
+          "prompt": "$\\frac{24}{36}$를 기약분수로 나타내면?",
+          "answer": "$\\frac{2}{3}$"
+        },
+        "studentC": "분모와 분자를 □로 나누면 한 번에 □가 된다.",
+        "answers": [
+          "최대공약수",
+          "기약분수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-03-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "분수를 한 번에 기약분수로 만들려면 분모와 분자를 어떤 수로 나누어야 하는지 쓰고, 그 수로 나누면 더 약분되지 않는 까닭을 설명하시오. 그 방법으로 $\\frac{24}{36}$를 기약분수로 나타내시오.",
+        "bAnswer": "분모와 분자의 최대공약수로 나눈다. 두 수를 최대공약수로 나눈 몫은 서로소여서 $1$ 말고는 공약수가 없으므로 더 약분되지 않는다. $24$와 $36$의 최대공약수는 $12$이므로 $\\frac{24}{36}=\\frac{2}{3}$이다.",
+        "bGoal": "최대공약수로 나누면 한 번에 기약분수가 됨을 까닭과 함께 설명할 수 있다.",
+        "bReason": "제목은 방법 이름뿐이다. 나누는 수와, 그렇게 하면 한 번에 끝나는 까닭을 답하도록 범위를 정하고 약분할 분수를 주었다.",
+        "cDecision": "rewrite",
+        "cAfter": "분수의 분모와 분자를 두 수의 {최대공약수}로 나누면 한 번에 기약분수가 된다.",
+        "cAnswers": [
+          "최대공약수"
+        ],
+        "cReason": "원문은 나누는 수와 결과를 둘 다 숨겨 문장에 남는 정보가 거의 없다. 결과(기약분수)는 보이게 두고 이 단원의 핵심 용어만 묻게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "분모와 분자의 최대공약수로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "최대공약수로 나눈 두 몫은 서로소($1$ 말고 공약수가 없음)라 더 약분되지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{24}{36}=\\frac{2}{3}$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "procedure",
+        "roleReason": "최대공약수로 한 번에 약분",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 993,
+        "part": "m1plus",
+        "sourceFingerprint": "84f1359b8158df664a2cb0a041ea0c42839cfea9d25c063024f41a334efb4697",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 993
+        },
+        "directReview": null,
+        "cMarkedSentence": "분수의 분모와 분자를 두 수의 {최대공약수}로 나누면 한 번에 기약분수가 된다.",
+        "cSlotAnswers": [
+          "최대공약수"
+        ],
+        "cStudentSentence": "분수의 분모와 분자를 두 수의 □로 나누면 한 번에 기약분수가 된다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "최대공약수",
+            "equivalentAnswers": [
+              "최대공약수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "최대공약수"
+          ]
+        ],
+        "proposalFingerprint": "b24cfcc06d80a533e7df69ff6c57e208e94c799d89fe7508c9ddccac3f24f0ff"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-03-xc25",
+        "section": "중1::1. 소인수분해::공약수와 최대공약수",
+        "term": "최대공약수를 차례로 구하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "세 수의 최대공약수는 두 수의 최대공약수를 먼저 구한 뒤, 그 수와 {나머지 수}의 최대공약수를 구해도 된다.",
+        "example": {
+          "prompt": "$24$, $60$, $84$의 최대공약수는?",
+          "answer": "$12$"
+        },
+        "studentC": "세 수의 최대공약수는 두 수의 최대공약수를 먼저 구한 뒤, 그 수와 □의 최대공약수를 구해도 된다.",
+        "answers": [
+          "나머지 수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-03-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "세 자연수의 최대공약수를 한꺼번에 구하지 않고 두 수씩 차례로 구하는 방법을 설명하고, 그 방법으로 $24$, $60$, $84$의 최대공약수를 구하시오.",
+        "bAnswer": "먼저 두 수의 최대공약수를 구하고, 그 수와 나머지 한 수의 최대공약수를 구한다. $24$와 $60$의 최대공약수는 $12$이고, $12$와 $84$의 최대공약수는 $12$이므로 세 수의 최대공약수는 $12$이다.",
+        "bGoal": "세 수의 최대공약수를 두 단계로 나누어 구할 수 있다.",
+        "bReason": "제목 '차례로 구하기'는 무엇을 어떤 차례로 하는지 알려 주지 않는다. 세 수의 경우임과 두 수씩 구한다는 틀을 질문에 밝혔다.",
+        "cDecision": "keep",
+        "cReason": "절차의 앞 단계가 문장에 있고 다음 단계의 대상만 비어 있다. 같은 뜻의 표현만 인정한다.",
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 수의 최대공약수를 먼저 구하고, 그 수와 나머지 한 수의 최대공약수를 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$24$, $60$, $84$의 최대공약수는 $12$(예: $24$와 $60$에서 $12$, $12$와 $84$에서 $12$; 묶는 순서가 달라도 허용)"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "procedure",
+        "roleReason": "두 수씩 차례로 최대공약수",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 994,
+        "part": "m1plus",
+        "sourceFingerprint": "b0045009a973e5f13026bf3a99ab236ed32c937290ac8055df2443598e0aef23",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 994
+        },
+        "directReview": null,
+        "cFrozenSentence": "세 수의 최대공약수는 두 수의 최대공약수를 먼저 구한 뒤, 그 수와 □의 최대공약수를 구해도 된다.",
+        "cFrozenDefinition": "세 수의 최대공약수는 두 수의 최대공약수를 먼저 구한 뒤, 그 수와 {나머지 수}의 최대공약수를 구해도 된다.",
+        "cFrozenAnswers": [
+          "나머지 수"
+        ],
+        "cMarkedSentence": "세 수의 최대공약수는 두 수의 최대공약수를 먼저 구한 뒤, 그 수와 {나머지 수}의 최대공약수를 구해도 된다.",
+        "cSlotAnswers": [
+          "나머지 수"
+        ],
+        "cStudentSentence": "세 수의 최대공약수는 두 수의 최대공약수를 먼저 구한 뒤, 그 수와 □의 최대공약수를 구해도 된다.",
+        "cAnswers": [
+          "나머지 수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "나머지 수",
+            "equivalentAnswers": [
+              "나머지 수",
+              "나머지 한 수",
+              "남은 수",
+              "남은 한 수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "나머지 수",
+            "accept": [
+              "나머지 한 수",
+              "남은 수",
+              "남은 한 수"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "나머지 수",
+            "나머지 한 수",
+            "남은 수",
+            "남은 한 수"
+          ]
+        ],
+        "proposalFingerprint": "7b21c1e2853988deeb1368a1862f25d100cb3cebb8dbc47de6ae53a63afb5ae9"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-04-xc1",
+        "section": "중1::1. 소인수분해::공배수와 최소공배수",
+        "term": "공배수 찾기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "큰 수의 배수를 차례로 쓰면서 작은 수로도 {나누어떨어지는} 것을 고르면 {공배수}를 찾을 수 있다.",
+        "example": {
+          "prompt": "$4$와 $6$의 공배수를 작은 것부터 $3$개 쓰면?",
+          "answer": "$12$, $24$, $36$"
+        },
+        "studentC": "큰 수의 배수를 차례로 쓰면서 작은 수로도 □ 것을 고르면 □를 찾을 수 있다.",
+        "answers": [
+          "나누어떨어지는",
+          "공배수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-04-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "두 자연수의 공배수를 배수를 나열해서 찾으려고 한다. 큰 수의 배수를 차례로 쓰면서 그 가운데 어떤 수를 고르면 되는지 설명하고, 그 방법으로 $4$와 $6$의 공배수를 작은 것부터 $3$개 구하시오.",
+        "bAnswer": "큰 수의 배수 가운데 작은 수로도 나누어떨어지는 수를 고른다. $6$의 배수 $6, 12, 18, 24, 30, 36, \\cdots$ 가운데 $4$로 나누어떨어지는 수는 $12, 24, 36$이다.",
+        "bGoal": "큰 수의 배수에서 작은 수의 배수를 골라 공배수를 찾을 수 있다.",
+        "bReason": "제목 '공배수 찾기'는 어떤 방법인지 밝히지 않는다. 큰 수의 배수를 나열하는 방법임을 적고 고르는 기준을 답하게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "두 자연수 가운데 큰 수의 배수를 차례로 쓰면서 작은 수로도 나누어떨어지는 수를 고르면 두 수의 {공배수}를 찾을 수 있다.",
+        "cAnswers": [
+          "공배수"
+        ],
+        "cReason": "원문은 '큰 수', '작은 수'가 무엇의 큰 수인지 말하지 않고 시작한다. 빈칸 '나누어떨어지는'은 구를 통째로 써야 한다. 두 자연수 이야기임을 밝히고 결과 용어 하나만 묻게 했다.",
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "큰 수의 배수 가운데 작은 수로도 나누어떨어지는 수(작은 수의 배수이기도 한 수)를 고른다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$와 $6$의 공배수 $12$, $24$, $36$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "procedure",
+        "roleReason": "큰 수 배수에서 공배수 고르기",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 995,
+        "part": "m1plus",
+        "sourceFingerprint": "a841b24dd7160c23dff077bd831678f7ed65ab005dd5ab3d724f562c0c6ffb80",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 995
+        },
+        "directReview": null,
+        "cMarkedSentence": "두 자연수 가운데 큰 수의 배수를 차례로 쓰면서 작은 수로도 나누어떨어지는 수를 고르면 두 수의 {공배수}를 찾을 수 있다.",
+        "cSlotAnswers": [
+          "공배수"
+        ],
+        "cStudentSentence": "두 자연수 가운데 큰 수의 배수를 차례로 쓰면서 작은 수로도 나누어떨어지는 수를 고르면 두 수의 □를 찾을 수 있다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "공배수",
+            "equivalentAnswers": [
+              "공배수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "공배수"
+          ]
+        ],
+        "proposalFingerprint": "7a146fcdfd0c7eea3d5b6ff61f88fc4f31f395ff7dca85d2424f1a1ac1ae1e6c"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-04-xc2",
+        "section": "중1::1. 소인수분해::공배수와 최소공배수",
+        "term": "공배수는 끝이 없다",
+        "kind": "성질",
+        "level": "하",
+        "definition": "두 수의 공배수는 {끝없이} 많아서 가장 큰 공배수는 없다.",
+        "example": {
+          "prompt": "$3$과 $5$의 공배수 가운데 가장 작은 것은?",
+          "answer": "$15$"
+        },
+        "studentC": "두 수의 공배수는 □ 많아서 가장 큰 공배수는 없다.",
+        "answers": [
+          "끝없이"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-04-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "두 자연수의 공배수 가운데 가장 큰 수가 있는지 없는지 답하고 그 까닭을 설명하시오. 또 $3$과 $5$의 공배수 가운데 가장 작은 수를 구하시오.",
+        "bAnswer": "가장 큰 공배수는 없다. 어떤 공배수에 $2$, $3$, $4$, $\\cdots$를 곱한 수도 모두 공배수여서 공배수가 끝없이 많고, 어떤 공배수보다 더 큰 공배수가 늘 있기 때문이다. $3$과 $5$의 공배수는 $15, 30, 45, \\cdots$이고 가장 작은 수는 $15$이다.",
+        "bGoal": "공배수는 끝없이 많아 가장 큰 것은 없고 가장 작은 것만 있음을 설명할 수 있다.",
+        "bReason": "원제목이 결론을 그대로 말하고 있어 이름을 바꾸었다. 있는지 없는지를 스스로 판단하고 까닭을 쓰게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "두 자연수의 공배수는 끝없이 많다. 그래서 가장 작은 공배수는 있지만 가장 {큰} 공배수는 없다.",
+        "cAnswers": [
+          "큰"
+        ],
+        "cReason": "원문 빈칸 '끝없이'는 '무수히', '한없이'도 맞는 임의 낱말이다. 그 내용은 문장에 두고 결론의 핵심 낱말을 묻게 했다.",
+        "studentLabel": "가장 큰 공배수가 있을까",
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "가장 큰 공배수는 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "공배수는 끝없이 많다(어떤 공배수보다 더 큰 공배수를 늘 만들 수 있다)는 까닭 — 표현은 달라도 됨"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$과 $5$의 가장 작은 공배수는 $15$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "reason",
+        "roleReason": "더 큰 공배수가 늘 있음",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 996,
+        "part": "m1plus",
+        "sourceFingerprint": "86c2e700a3223d4e205d01192c9b2c8f1314de732ef978713f3709928c98f8c2",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 996
+        },
+        "directReview": null,
+        "cMarkedSentence": "두 자연수의 공배수는 끝없이 많다. 그래서 가장 작은 공배수는 있지만 가장 {큰} 공배수는 없다.",
+        "cSlotAnswers": [
+          "큰"
+        ],
+        "cStudentSentence": "두 자연수의 공배수는 끝없이 많다. 그래서 가장 작은 공배수는 있지만 가장 □ 공배수는 없다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "큰",
+            "equivalentAnswers": [
+              "큰"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "큰"
+          ]
+        ],
+        "proposalFingerprint": "091bffaca357b589163bfe8faf9a81a79e7cd397af8394cb285325672d1c12d0"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-04-xc3",
+        "section": "중1::1. 소인수분해::공배수와 최소공배수",
+        "term": "나눗셈으로 최소공배수 구하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "두 수를 공약수로 더 나눌 수 없을 때까지 나눈 뒤, 나눈 수와 마지막 {몫}을 모두 {곱한다}.",
+        "example": {
+          "prompt": "$8$과 $12$의 최소공배수는?",
+          "answer": "$24$"
+        },
+        "studentC": "두 수를 공약수로 더 나눌 수 없을 때까지 나눈 뒤, 나눈 수와 마지막 □을 모두 □.",
+        "answers": [
+          "몫",
+          "곱한다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-04-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "두 자연수를 나란히 쓰고 공약수로 계속 나누어 최소공배수를 구하는 방법이 있다. 언제까지 나누는지와 마지막에 무엇을 모두 곱하는지 설명하시오. 그 방법으로 $8$과 $12$의 최소공배수를 구하시오.",
+        "bAnswer": "두 수를 $1$보다 큰 공약수로 나누는 일을 두 몫이 서로소가 될 때까지 되풀이하고, 나누는 데 쓴 수들과 마지막 두 몫을 모두 곱한다. $8$, $12$를 $2$로 나누면 $4$, $6$이고, 다시 $2$로 나누면 $2$, $3$으로 서로소이다. 따라서 최소공배수는 $2\\times2\\times2\\times3=24$이다.",
+        "bGoal": "공약수로 나누는 방법에서 나눈 수와 마지막 몫을 모두 곱해 최소공배수를 구할 수 있다.",
+        "bReason": "제목만으로는 절차를 알 수 없다. 최대공약수 때와 달리 마지막 몫까지 곱한다는 점이 드러나도록 멈추는 때와 곱하는 대상을 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "두 자연수를 $1$보다 큰 공약수로 더 나눌 수 없을 때까지 나눈 뒤, 나누는 데 쓴 수들과 마지막에 남은 두 {몫}을 모두 곱하면 두 수의 {최소공배수}가 된다.",
+        "cAnswers": [
+          "몫",
+          "최소공배수"
+        ],
+        "cReason": "원문에는 이 절차의 결과가 무엇인지 없어 제목 없이는 최대공약수 구하기와 구별되지 않는다. '곱한다'는 서술어 빈칸일 뿐이다. 결과 용어를 빈칸으로 넣고 '$1$보다 큰'을 보충했다.",
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$1$ 말고는 공약수가 없을 때까지(두 몫이 서로소가 될 때까지) 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나눈 수들과 마지막 두 몫을 모두 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8$과 $12$의 최소공배수 $24$ (처음에 $4$로 나누는 등 나누는 순서는 달라도 됨)"
+            ]
+          }
+        ],
+        "coreAfter": "두 수를 $1$이 아닌 공약수로 더 나눌 수 없을 때까지 나눈 뒤, 나눈 수와 마지막 {몫}을 모두 {곱한다}. 이 곱이 두 수의 최소공배수이다.",
+        "coreReason": "$1$은 언제나 공약수이므로 '공약수로 더 나눌 수 없을 때'가 모호했다. 또 곱한 결과가 최소공배수라는 말이 빠져 있었다.",
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "procedure",
+        "roleReason": "공약수로 나눈 수와 몫을 곱함",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 997,
+        "part": "m1plus",
+        "sourceFingerprint": "b591a8092536744192cd18871f64669c9cab165cc32948f8fee3c9e25bdc7004",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 997
+        },
+        "directReview": null,
+        "coreBeforeRepair": "두 수를 $1$이 아닌 공약수로 더 나눌 수 없을 때까지 나눈 뒤, 나눈 수와 마지막 {몫}을 모두 {곱한다}. 이 곱이 두 수의 최소공배수이다.",
+        "coreRepairReason": "원본 핵심어 {몫}, {곱한다}를 유지했다. 이미 좋은 교정이라 보존했다.",
+        "coreRepairEvidence": "core-repair/core-000",
+        "cMarkedSentence": "두 자연수를 $1$보다 큰 공약수로 더 나눌 수 없을 때까지 나눈 뒤, 나누는 데 쓴 수들과 마지막에 남은 두 {몫}을 모두 곱하면 두 수의 {최소공배수}가 된다.",
+        "cSlotAnswers": [
+          "몫",
+          "최소공배수"
+        ],
+        "cStudentSentence": "두 자연수를 $1$보다 큰 공약수로 더 나눌 수 없을 때까지 나눈 뒤, 나누는 데 쓴 수들과 마지막에 남은 두 □을 모두 곱하면 두 수의 □가 된다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "몫",
+            "equivalentAnswers": [
+              "몫"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "최소공배수",
+            "equivalentAnswers": [
+              "최소공배수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "몫"
+          ],
+          [
+            "최소공배수"
+          ]
+        ],
+        "proposalFingerprint": "f22573994a5033ea9694784fa3f3989a3bb0ec08593f5dc11bc5fc8feb67233b"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-04-xc4",
+        "section": "중1::1. 소인수분해::공배수와 최소공배수",
+        "term": "세 수의 공배수",
+        "kind": "정의",
+        "level": "하",
+        "definition": "세 수의 배수 가운데 {세 수 모두}에 공통인 것을 세 수의 공배수라 한다.",
+        "example": {
+          "prompt": "$2$, $3$, $4$의 공배수 가운데 가장 작은 것은?",
+          "answer": "$12$"
+        },
+        "studentC": "세 수의 배수 가운데 □에 공통인 것을 세 수의 공배수라 한다.",
+        "answers": [
+          "세 수 모두"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-04-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "세 자연수의 '공배수'란 어떤 수를 말하는지 쓰고, $2$, $3$, $4$의 공배수 가운데 가장 작은 수를 구하시오. 또 $6$이 이 세 수의 공배수가 아닌 까닭을 쓰시오.",
+        "bAnswer": "세 수 모두의 배수인 수, 곧 세 수 모두에 공통인 배수를 세 수의 공배수라 한다. $4$의 배수 $4, 8, 12, \\cdots$ 가운데 $2$와 $3$으로도 나누어떨어지는 가장 작은 수는 $12$이다. $6$은 $2$와 $3$의 배수이지만 $4$의 배수가 아니어서 세 수의 공배수가 아니다.",
+        "bGoal": "세 수의 공배수는 세 수 모두의 배수여야 함을 알고 구할 수 있다.",
+        "bReason": "제목만으로는 두 수의 경우와 무엇이 다른지 묻는지 알 수 없다. 두 수에만 공통인 배수 $6$을 따로 물어 '세 수 모두'라는 조건을 답하게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "세 자연수 가운데 두 수에만 공통인 배수는 세 수의 공배수가 아니다. 세 수 {모두}의 배수인 수만 세 수의 공배수이다.",
+        "cAnswers": [
+          "모두"
+        ],
+        "cReason": "원문 빈칸 '세 수 모두'는 구 전체를 그대로 써야 해 채점이 흔들린다. 대비 상황을 앞 문장에 주고 핵심 낱말 하나만 묻게 했다.",
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "세 수의 공배수는 세 수 모두의 배수(세 수에 공통인 배수)"
+            ]
+          },
+          {
+            "anyOf": [
+              "가장 작은 공배수 $12$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$은 $4$의 배수가 아니다($4$로 나누어떨어지지 않는다)"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "definition",
+        "roleReason": "세 수 모두의 배수",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 998,
+        "part": "m1plus",
+        "sourceFingerprint": "1a74e3c8eba046d4cbc7b664702ec58b92d9608a1204875092b74d0f5cf8f35b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 998
+        },
+        "directReview": null,
+        "cMarkedSentence": "세 자연수 가운데 두 수에만 공통인 배수는 세 수의 공배수가 아니다. 세 수 {모두}의 배수인 수만 세 수의 공배수이다.",
+        "cSlotAnswers": [
+          "모두"
+        ],
+        "cStudentSentence": "세 자연수 가운데 두 수에만 공통인 배수는 세 수의 공배수가 아니다. 세 수 □의 배수인 수만 세 수의 공배수이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "모두",
+            "equivalentAnswers": [
+              "모두",
+              "전부"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "모두",
+            "accept": [
+              "전부"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "모두",
+            "전부"
+          ]
+        ],
+        "proposalFingerprint": "2d46fecf964a19228169653a6455b30b71ffa148a1c4f852ea55fc71103e2a03"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-04-xc5",
+        "section": "중1::1. 소인수분해::공배수와 최소공배수",
+        "term": "공배수와 최소공배수의 차이",
+        "kind": "성질",
+        "level": "하",
+        "definition": "공배수는 공통인 배수 {모두}이고, 최소공배수는 그 가운데 {가장 작은} 하나이다.",
+        "example": {
+          "prompt": "$6$과 $9$의 최소공배수는?",
+          "answer": "$18$"
+        },
+        "studentC": "공배수는 공통인 배수 □이고, 최소공배수는 그 가운데 □ 하나이다.",
+        "answers": [
+          "모두",
+          "가장 작은"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-04-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "두 자연수의 '공배수'와 '최소공배수'는 어떻게 다른지 설명하고, $6$과 $9$의 공배수를 작은 것부터 $3$개와 최소공배수를 각각 쓰시오.",
+        "bAnswer": "공배수는 두 수에 공통인 배수 전부를 말하며 끝없이 많다. 최소공배수는 그 가운데 가장 작은 수 하나를 말한다. $6$과 $9$의 공배수는 작은 것부터 $18, 36, 54$이고 최소공배수는 $18$이다.",
+        "bGoal": "공배수(끝없이 많음)와 최소공배수(하나)를 구별할 수 있다.",
+        "bReason": "제목 '차이'만으로는 무엇을 견주는지 없다. 두 용어의 뜻을 견주어 쓰고 같은 두 수에서 각각 구하게 했다.",
+        "cDecision": "exclude",
+        "cReason": "'공통'은 c1에서, '가장 작은'은 c2에서 이미 같은 빈칸으로 묻는다. '모두'는 '전부'도 되는 임의 낱말이다.",
+        "exclusionReason": "C 제외: m1-01-04-c1과 m1-01-04-c2의 정의 빈칸을 한 문장에 합친 중복이다. 차이 비교는 B 서술형으로만 다룬다.",
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "공배수는 두 수에 공통인 배수 모두(여러 개)"
+            ]
+          },
+          {
+            "anyOf": [
+              "최소공배수는 공배수 가운데 가장 작은 수 하나"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$과 $9$의 공배수 $18$, $36$, $54$"
+            ]
+          },
+          {
+            "anyOf": [
+              "최소공배수 $18$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "definition",
+        "roleReason": "공통 배수 전부와 가장 작은 하나",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 999,
+        "part": "m1plus",
+        "sourceFingerprint": "aa52c016e4e9fc7c0123b416434ab443772b7c3c544821720df27baa11bddaa2",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 999
+        },
+        "directReview": null,
+        "proposalFingerprint": "94f43ed775fc1833c9e778b316eae48b7d9a3ef6029835d701cf8d833ea6aed4"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-04-xc6",
+        "section": "중1::1. 소인수분해::공배수와 최소공배수",
+        "term": "큰 수가 작은 수의 배수일 때",
+        "kind": "성질",
+        "level": "하",
+        "definition": "큰 수가 작은 수의 배수이면 두 수의 {최소공배수}는 큰 수 자신이다.",
+        "example": {
+          "prompt": "$5$와 $20$의 최소공배수는?",
+          "answer": "$20$"
+        },
+        "studentC": "큰 수가 작은 수의 배수이면 두 수의 □는 큰 수 자신이다.",
+        "answers": [
+          "최소공배수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-04-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "두 자연수 가운데 큰 수가 작은 수의 배수일 때, 두 수의 최소공배수는 어떤 수가 되는지 쓰고 그 까닭을 설명하시오. $5$와 $20$으로 확인하시오.",
+        "bAnswer": "최소공배수는 큰 수 자신이다. 큰 수는 자기 자신의 배수이면서 작은 수의 배수이므로 공배수이고, 큰 수의 배수 가운데 가장 작은 수가 큰 수 자신이라 더 작은 공배수는 없다. $20$은 $5$의 배수이므로 $5$와 $20$의 최소공배수는 $20$이다.",
+        "bGoal": "한 수가 다른 수의 배수일 때 최소공배수를 바로 말하고 까닭을 설명할 수 있다.",
+        "bReason": "제목은 조건만 있고 물음이 없다. 그 조건에서 최소공배수가 무엇인지와 까닭을 묻는 질문으로 완성했다.",
+        "cDecision": "keep",
+        "cReason": "조건과 '두 수의'라는 지칭이 문장에 있고 용어 하나만 묻는다. '공배수'를 넣으면 틀린 문장이 되어 답이 정해진다.",
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "최소공배수는 큰 수 자신"
+            ]
+          },
+          {
+            "anyOf": [
+              "큰 수는 두 수 모두의 배수이고, 큰 수의 배수 가운데 그보다 작은 수는 없다는 까닭(같은 뜻의 설명 허용)"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5$와 $20$의 최소공배수 $20$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "reason",
+        "roleReason": "배수 관계면 큰 수가 최소공배수",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1000,
+        "part": "m1plus",
+        "sourceFingerprint": "fd9d52fb25dcab618be6ae9050c60a2836eff897fbecf230004cc53f1854318a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1000
+        },
+        "directReview": null,
+        "cFrozenSentence": "큰 수가 작은 수의 배수이면 두 수의 □는 큰 수 자신이다.",
+        "cFrozenDefinition": "큰 수가 작은 수의 배수이면 두 수의 {최소공배수}는 큰 수 자신이다.",
+        "cFrozenAnswers": [
+          "최소공배수"
+        ],
+        "cMarkedSentence": "큰 수가 작은 수의 배수이면 두 수의 {최소공배수}는 큰 수 자신이다.",
+        "cSlotAnswers": [
+          "최소공배수"
+        ],
+        "cStudentSentence": "큰 수가 작은 수의 배수이면 두 수의 □는 큰 수 자신이다.",
+        "cAnswers": [
+          "최소공배수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "최소공배수",
+            "equivalentAnswers": [
+              "최소공배수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "최소공배수"
+          ]
+        ],
+        "proposalFingerprint": "3d94a18e17c5082cdab8cf7aef9e5e17f241e504414ac5f6277908015b0bf238"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-04-xc7",
+        "section": "중1::1. 소인수분해::공배수와 최소공배수",
+        "term": "최소공배수의 크기",
+        "kind": "성질",
+        "level": "하",
+        "definition": "두 수의 최소공배수는 두 수 가운데 {큰 수}보다 작을 수 없다.",
+        "example": {
+          "prompt": "$9$와 $12$의 최소공배수는?",
+          "answer": "$36$"
+        },
+        "studentC": "두 수의 최소공배수는 두 수 가운데 □보다 작을 수 없다.",
+        "answers": [
+          "큰 수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-04-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "두 자연수의 최소공배수는 두 수 가운데 어느 수보다 작을 수 없는지 쓰고, 그 까닭을 배수의 크기와 관련지어 설명하시오. $9$와 $12$의 최소공배수를 구해 확인하시오.",
+        "bAnswer": "두 수 가운데 큰 수보다 작을 수 없다. 최소공배수는 큰 수의 배수이기도 한데, 자연수의 배수는 그 수보다 작을 수 없기 때문이다. $9$와 $12$의 최소공배수는 $36$으로 $12$보다 작지 않다.",
+        "bGoal": "최소공배수가 큰 수보다 작지 않음을 까닭과 함께 설명할 수 있다.",
+        "bReason": "제목 '최소공배수의 크기'는 무엇과 견주는지 밝히지 않는다. 견주는 대상과 까닭을 묻는 질문으로 바꾸었다.",
+        "cDecision": "keep",
+        "cReason": "'두 수 가운데 □보다 작을 수 없다'는 한 문장 비교이고 답이 '큰 수'로 정해진다.",
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "큰 수보다 작을 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "최소공배수는 큰 수의 배수이고, 자연수의 배수는 그 수보다 작을 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$9$와 $12$의 최소공배수 $36$ ($12$보다 작지 않음)"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "reason",
+        "roleReason": "배수는 그 수보다 작을 수 없음",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1001,
+        "part": "m1plus",
+        "sourceFingerprint": "9d1f2216ea4b5c4166893efd7a7f228c69ec8e292ad21f127b732a9bca259bd3",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1001
+        },
+        "directReview": null,
+        "cFrozenSentence": "두 수의 최소공배수는 두 수 가운데 □보다 작을 수 없다.",
+        "cFrozenDefinition": "두 수의 최소공배수는 두 수 가운데 {큰 수}보다 작을 수 없다.",
+        "cFrozenAnswers": [
+          "큰 수"
+        ],
+        "cMarkedSentence": "두 수의 최소공배수는 두 수 가운데 {큰 수}보다 작을 수 없다.",
+        "cSlotAnswers": [
+          "큰 수"
+        ],
+        "cStudentSentence": "두 수의 최소공배수는 두 수 가운데 □보다 작을 수 없다.",
+        "cAnswers": [
+          "큰 수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "큰 수",
+            "equivalentAnswers": [
+              "큰 수",
+              "더 큰 수",
+              "큰 쪽"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "큰 수",
+            "accept": [
+              "더 큰 수",
+              "큰 쪽"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "큰 수",
+            "더 큰 수",
+            "큰 쪽"
+          ]
+        ],
+        "proposalFingerprint": "f68eca49bbf546febfb744c312a98a2f4fa751136207ae7c0a8f9a8e5a4ec8ab"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-04-xc8",
+        "section": "중1::1. 소인수분해::공배수와 최소공배수",
+        "term": "공배수에 든 소인수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "두 수의 공배수에는 두 수의 소인수가 {모두} 들어 있다.",
+        "example": {
+          "prompt": "$2\\times3$과 $3\\times5$의 최소공배수는?",
+          "answer": "$2\\times3\\times5$"
+        },
+        "studentC": "두 수의 공배수에는 두 수의 소인수가 □ 들어 있다.",
+        "answers": [
+          "모두"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-04-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "두 자연수의 공배수를 소인수분해하면 두 수의 소인수 가운데 어떤 것들이 들어 있는지 쓰고 그 까닭을 설명하시오. 또 $2\\times3$과 $3\\times5$의 최소공배수를 소인수의 곱으로 나타내시오.",
+        "bAnswer": "두 수의 소인수가 하나도 빠짐없이 모두 들어 있다. 공배수는 두 수 각각의 배수이므로 각 수의 소인수를 다 가져야 하기 때문이다. $2\\times3$과 $3\\times5$의 최소공배수는 소인수 $2, 3, 5$를 모두 가진 가장 작은 수인 $2\\times3\\times5$이다.",
+        "bGoal": "공배수에는 두 수의 소인수가 모두 들어 있음을 설명할 수 있다.",
+        "bReason": "제목 '공배수에 든 소인수'는 흐릿해 무엇을 답할지 알 수 없다. '공배수를 소인수분해하면'이라는 상황을 밝히고 까닭까지 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "두 자연수의 공배수는 두 수 각각의 배수이므로, 공배수를 소인수분해하면 두 수의 {소인수}가 모두 들어 있다.",
+        "cAnswers": [
+          "소인수"
+        ],
+        "cReason": "원문 '공배수에는 … 들어 있다'는 무엇이 어디에 들어 있다는 것인지 흐리고, 빈칸 '모두'는 임의 낱말이다. 소인수분해 상황과 까닭을 밝히고 용어를 묻게 했다.",
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 수의 소인수가 모두 들어 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "공배수는 두 수 각각의 배수이므로 각 수의 소인수를 다 가져야 한다는 까닭"
+            ]
+          },
+          {
+            "anyOf": [
+              "최소공배수 $2\\times3\\times5$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "reason",
+        "roleReason": "각 수의 배수라 소인수를 다 가짐",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1002,
+        "part": "m1plus",
+        "sourceFingerprint": "1955a984b7bf73417c3b5d21f7540eaa284b327a7e46e74ec6d4cd518a938708",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1002
+        },
+        "directReview": null,
+        "cMarkedSentence": "두 자연수의 공배수는 두 수 각각의 배수이므로, 공배수를 소인수분해하면 두 수의 {소인수}가 모두 들어 있다.",
+        "cSlotAnswers": [
+          "소인수"
+        ],
+        "cStudentSentence": "두 자연수의 공배수는 두 수 각각의 배수이므로, 공배수를 소인수분해하면 두 수의 □가 모두 들어 있다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "소인수",
+            "equivalentAnswers": [
+              "소인수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "소인수"
+          ]
+        ],
+        "proposalFingerprint": "1ec4443c397cb724a59316bead48beefcd707f28d77d18ed8ea7efbce1bd099a"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-04-xc9",
+        "section": "중1::1. 소인수분해::공배수와 최소공배수",
+        "term": "지수가 다를 때 큰 쪽",
+        "kind": "방법",
+        "level": "중",
+        "definition": "공통인 소인수의 지수가 다르면 최소공배수에는 {큰} 지수를 택한다. 두 수 모두의 {배수}가 되어야 하기 때문이다.",
+        "example": {
+          "prompt": "$2^3\\times3$과 $2\\times3^2$의 최소공배수는?",
+          "answer": "$2^3\\times3^2$"
+        },
+        "studentC": "공통인 소인수의 지수가 다르면 최소공배수에는 □ 지수를 택한다. 두 수 모두의 □가 되어야 하기 때문이다.",
+        "answers": [
+          "큰",
+          "배수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-04-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "두 수를 소인수분해했더니 공통인 소인수의 지수가 서로 달랐다. 최소공배수를 구할 때 큰 지수와 작은 지수 가운데 어느 쪽을 택하는지 쓰시오. 그 까닭을 $2^3\\times3$과 $2\\times3^2$의 소인수 $2$를 예로 들어 설명하고 두 수의 최소공배수를 구하시오.",
+        "bAnswer": "큰 지수를 택한다. 최소공배수는 두 수 모두의 배수여야 하는데, $2$의 지수가 $1$이면 $2^3\\times3$의 배수가 될 수 없으므로 $3$이어야 한다. 같은 이유로 $3$의 지수는 $2$를 택하므로 최소공배수는 $2^3\\times3^2$이다.",
+        "bGoal": "최소공배수에서 큰 지수를 택하는 까닭을 배수의 뜻으로 설명할 수 있다.",
+        "bReason": "원제목 '큰 쪽'은 무엇을 구할 때인지도 빠져 있고 답도 미리 말한다. 이름을 다듬고 어느 쪽인지와 까닭을 스스로 쓰게 했다.",
+        "cDecision": "keep",
+        "cReason": "선택(큰)과 까닭(배수)을 한 낱말씩 묻고, 문장만으로 최소공배수 이야기임이 드러나 분명하다.",
+        "studentLabel": "최소공배수에서 지수 고르기",
+        "exampleNeeded": true,
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "큰 지수를 택한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "최소공배수는 두 수 모두의 배수여야 하므로 $2$의 지수가 $3$보다 작으면 $2^3\\times3$의 배수가 될 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "최소공배수 $2^3\\times3^2$ ($72$도 허용)"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "reason",
+        "roleReason": "두 수의 배수이려면 큰 지수",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1003,
+        "part": "m1plus",
+        "sourceFingerprint": "8f43560e6c6bd0f2ad4ec19a4bf821352239440054bd4907fc6a3c1c9b107134",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1003
+        },
+        "directReview": null,
+        "cFrozenSentence": "공통인 소인수의 지수가 다르면 최소공배수에는 □ 지수를 택한다. 두 수 모두의 □가 되어야 하기 때문이다.",
+        "cFrozenDefinition": "공통인 소인수의 지수가 다르면 최소공배수에는 {큰} 지수를 택한다. 두 수 모두의 {배수}가 되어야 하기 때문이다.",
+        "cFrozenAnswers": [
+          "큰",
+          "배수"
+        ],
+        "cMarkedSentence": "공통인 소인수의 지수가 다르면 최소공배수에는 {큰} 지수를 택한다. 두 수 모두의 {배수}가 되어야 하기 때문이다.",
+        "cSlotAnswers": [
+          "큰",
+          "배수"
+        ],
+        "cStudentSentence": "공통인 소인수의 지수가 다르면 최소공배수에는 □ 지수를 택한다. 두 수 모두의 □가 되어야 하기 때문이다.",
+        "cAnswers": [
+          "큰",
+          "배수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "큰",
+            "equivalentAnswers": [
+              "큰"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "배수",
+            "equivalentAnswers": [
+              "배수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "큰"
+          ],
+          [
+            "배수"
+          ]
+        ],
+        "proposalFingerprint": "68a0a22ba886ca90a3bf90959b95ccd54fec5c97f8a33fecf0d2dcf65c452abf"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-04-xc10",
+        "section": "중1::1. 소인수분해::공배수와 최소공배수",
+        "term": "세 수의 최소공배수",
+        "kind": "방법",
+        "level": "중",
+        "definition": "세 수의 최소공배수는 세 수에 나오는 소인수를 {모두} 골라 지수가 가장 {큰} 것끼리 곱한다.",
+        "example": {
+          "prompt": "$4$, $6$, $10$의 최소공배수는?",
+          "answer": "$60$"
+        },
+        "studentC": "세 수의 최소공배수는 세 수에 나오는 소인수를 □ 골라 지수가 가장 □ 것끼리 곱한다.",
+        "answers": [
+          "모두",
+          "큰"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-04-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "세 자연수를 소인수분해한 결과로 최소공배수를 구할 때, 어떤 소인수를 고르고 지수는 어떻게 정하는지 설명하시오. 그 방법으로 $4$, $6$, $10$의 최소공배수를 구하시오.",
+        "bAnswer": "세 수에 나오는 소인수를 하나도 빠짐없이 모두 고르고, 소인수마다 가장 큰 지수를 택해 곱한다. $4=2^2$, $6=2\\times3$, $10=2\\times5$에서 소인수는 $2, 3, 5$이고 가장 큰 지수는 차례로 $2, 1, 1$이므로 최소공배수는 $2^2\\times3\\times5=60$이다.",
+        "bGoal": "세 수의 최소공배수를 소인수분해로 구할 수 있다.",
+        "bReason": "제목만으로는 뜻을 묻는지 방법을 묻는지 알 수 없다. 소인수 고르기와 지수 정하기를 답하게 하고 한 수에만 있는 소인수가 든 예를 주었다.",
+        "cDecision": "keep",
+        "cReason": "고르는 범위와 지수의 크기라는 두 핵심이 한 낱말씩 비어 있고 최대공약수 문장과 대비된다. '모두'와 뜻이 같은 표현만 인정한다.",
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "세 수에 나오는 소인수를 모두 고른다"
+            ]
+          },
+          {
+            "anyOf": [
+              "소인수마다 가장 큰 지수를 택해 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2^2\\times3\\times5=60$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "procedure",
+        "roleReason": "모든 소인수의 최대 지수 곱",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1004,
+        "part": "m1plus",
+        "sourceFingerprint": "8e744959266d53ec4ac5e6b08a0603075d268a27ce6e1c95ddcdc65b46509892",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1004
+        },
+        "directReview": null,
+        "cFrozenSentence": "세 수의 최소공배수는 세 수에 나오는 소인수를 □ 골라 지수가 가장 □ 것끼리 곱한다.",
+        "cFrozenDefinition": "세 수의 최소공배수는 세 수에 나오는 소인수를 {모두} 골라 지수가 가장 {큰} 것끼리 곱한다.",
+        "cFrozenAnswers": [
+          "모두",
+          "큰"
+        ],
+        "cMarkedSentence": "세 수의 최소공배수는 세 수에 나오는 소인수를 {모두} 골라 지수가 가장 {큰} 것끼리 곱한다.",
+        "cSlotAnswers": [
+          "모두",
+          "큰"
+        ],
+        "cStudentSentence": "세 수의 최소공배수는 세 수에 나오는 소인수를 □ 골라 지수가 가장 □ 것끼리 곱한다.",
+        "cAnswers": [
+          "모두",
+          "큰"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "모두",
+            "equivalentAnswers": [
+              "모두",
+              "전부",
+              "빠짐없이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "큰",
+            "equivalentAnswers": [
+              "큰"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "모두",
+            "accept": [
+              "전부",
+              "빠짐없이"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "모두",
+            "전부",
+            "빠짐없이"
+          ],
+          [
+            "큰"
+          ]
+        ],
+        "proposalFingerprint": "fac7bddb3208dea5d3e4f6439520e954593e1b8c65c7dd597419a2c36cddc673"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-04-xc11",
+        "section": "중1::1. 소인수분해::공배수와 최소공배수",
+        "term": "두 가지 지수 고르기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "소인수분해 꼴에서 최대공약수는 지수가 {작은} 쪽, 최소공배수는 지수가 {큰} 쪽을 택한다.",
+        "example": {
+          "prompt": "$2^2\\times3^3$과 $2^4\\times3$의 최대공약수와 최소공배수는?",
+          "answer": "$2^2\\times3$, $2^4\\times3^3$"
+        },
+        "studentC": "소인수분해 꼴에서 최대공약수는 지수가 □ 쪽, 최소공배수는 지수가 □ 쪽을 택한다.",
+        "answers": [
+          "작은",
+          "큰"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-04-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "두 수를 소인수분해한 꼴에서 최대공약수를 구할 때와 최소공배수를 구할 때, 공통인 소인수의 지수를 각각 어느 쪽으로 택하는지 견주어 쓰시오. 이를 이용해 $2^2\\times3^3$과 $2^4\\times3$의 최대공약수와 최소공배수를 구하시오.",
+        "bAnswer": "최대공약수는 지수가 작은 쪽, 최소공배수는 지수가 큰 쪽을 택한다. 따라서 최대공약수는 $2^2\\times3$, 최소공배수는 $2^4\\times3^3$이다.",
+        "bGoal": "최대공약수와 최소공배수에서 지수를 고르는 기준을 견주어 말할 수 있다.",
+        "bReason": "원제목 '두 가지 지수 고르기'는 두 가지가 무엇인지 알려 주지 않는다. 최대공약수와 최소공배수의 비교임을 이름과 질문에 밝혔다.",
+        "cDecision": "keep",
+        "cReason": "최대공약수와 최소공배수를 나란히 놓고 '작은'과 '큰'을 견주는 짧은 문장이라 그대로 쓸모가 있다.",
+        "studentLabel": "최대공약수와 최소공배수의 지수 비교",
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "최대공약수는 지수가 작은 쪽"
+            ]
+          },
+          {
+            "anyOf": [
+              "최소공배수는 지수가 큰 쪽"
+            ]
+          },
+          {
+            "anyOf": [
+              "최대공약수 $2^2\\times3$ ($12$도 허용)"
+            ]
+          },
+          {
+            "anyOf": [
+              "최소공배수 $2^4\\times3^3$ ($432$도 허용)"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "procedure",
+        "roleReason": "최대공약수는 작은, 최소공배수는 큰 지수",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1005,
+        "part": "m1plus",
+        "sourceFingerprint": "4f10083da9b7d0910aced399eecadf1fe97d9f312de19586e62f0f94ce1cc6b4",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1005
+        },
+        "directReview": null,
+        "cFrozenSentence": "소인수분해 꼴에서 최대공약수는 지수가 □ 쪽, 최소공배수는 지수가 □ 쪽을 택한다.",
+        "cFrozenDefinition": "소인수분해 꼴에서 최대공약수는 지수가 {작은} 쪽, 최소공배수는 지수가 {큰} 쪽을 택한다.",
+        "cFrozenAnswers": [
+          "작은",
+          "큰"
+        ],
+        "cMarkedSentence": "소인수분해 꼴에서 최대공약수는 지수가 {작은} 쪽, 최소공배수는 지수가 {큰} 쪽을 택한다.",
+        "cSlotAnswers": [
+          "작은",
+          "큰"
+        ],
+        "cStudentSentence": "소인수분해 꼴에서 최대공약수는 지수가 □ 쪽, 최소공배수는 지수가 □ 쪽을 택한다.",
+        "cAnswers": [
+          "작은",
+          "큰"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "작은",
+            "equivalentAnswers": [
+              "작은"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "큰",
+            "equivalentAnswers": [
+              "큰"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "작은"
+          ],
+          [
+            "큰"
+          ]
+        ],
+        "proposalFingerprint": "e6cb4f0972ed4f2a1b1e1b88881d97c48ad289ac496ed0e53b9b0b92fae2fb88"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-04-xc12",
+        "section": "중1::1. 소인수분해::공배수와 최소공배수",
+        "term": "범위 안의 공배수 세기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "어떤 범위에 있는 두 수의 공배수의 개수는 그 범위에 있는 {최소공배수의 배수}의 개수와 같다.",
+        "example": {
+          "prompt": "$200$ 이하에서 $6$과 $8$의 공배수는 몇 개?",
+          "answer": "$8$개"
+        },
+        "studentC": "어떤 범위에 있는 두 수의 공배수의 개수는 그 범위에 있는 □의 개수와 같다.",
+        "answers": [
+          "최소공배수의 배수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-04-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "$200$ 이하의 자연수 가운데 $6$과 $8$의 공배수가 몇 개인지 구하려고 한다. 공배수를 하나씩 찾지 않고 최소공배수를 이용해 세는 방법을 설명하고 그 개수를 구하시오.",
+        "bAnswer": "두 수의 공배수는 최소공배수의 배수이므로, 범위 안에 있는 최소공배수의 배수의 개수를 세면 된다. $6$과 $8$의 최소공배수는 $24$이고 $200\\div24$의 몫이 $8$이므로 $24, 48, \\cdots, 192$의 $8$개이다.",
+        "bGoal": "범위 안의 공배수의 개수를 최소공배수의 배수의 개수로 구할 수 있다.",
+        "bReason": "24의 배수를 나열해 세어도 맞는 답이라 나눗셈 몫 계산을 강요하지 않음",
+        "cDecision": "rewrite",
+        "cAfter": "어떤 범위에 있는 두 자연수의 공배수의 개수는 그 범위에 있는 두 수의 {최소공배수}의 배수의 개수와 같다.",
+        "cAnswers": [
+          "최소공배수"
+        ],
+        "cReason": "원문 빈칸 '최소공배수의 배수'는 두 낱말을 이어 써야 하는 긴 답이다. '배수의 개수'는 문장에 두고 핵심 용어 하나만 묻게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "공배수는 최소공배수의 배수이므로 $200$ 이하의 최소공배수의 배수를 센다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$과 $8$의 최소공배수는 $24$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$200\\div24$의 몫이 $8$이므로 $8$개",
+              "$24, 48, \\cdots, 192$를 세어 $8$개"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "procedure",
+        "roleReason": "최소공배수의 배수 개수 세기",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1006,
+        "part": "m1plus",
+        "sourceFingerprint": "78117bfe48afb44f8c94dbc515146cf098b25409b8a8e5e4998c8a62abdb0286",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1006
+        },
+        "directReview": null,
+        "cMarkedSentence": "어떤 범위에 있는 두 자연수의 공배수의 개수는 그 범위에 있는 두 수의 {최소공배수}의 배수의 개수와 같다.",
+        "cSlotAnswers": [
+          "최소공배수"
+        ],
+        "cStudentSentence": "어떤 범위에 있는 두 자연수의 공배수의 개수는 그 범위에 있는 두 수의 □의 배수의 개수와 같다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "최소공배수",
+            "equivalentAnswers": [
+              "최소공배수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "최소공배수"
+          ]
+        ],
+        "proposalFingerprint": "95ded7a58a6d9e22d456f1f90741c8bc1e86bb13a170ee2401d275b267bbac8c"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-04-xc13",
+        "section": "중1::1. 소인수분해::공배수와 최소공배수",
+        "term": "연속한 두 자연수의 최소공배수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "연속한 두 자연수는 서로소이므로 최소공배수는 두 수의 {곱}이다.",
+        "example": {
+          "prompt": "$7$과 $8$의 최소공배수는?",
+          "answer": "$56$"
+        },
+        "studentC": "연속한 두 자연수는 서로소이므로 최소공배수는 두 수의 □이다.",
+        "answers": [
+          "곱"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-04-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "$7$과 $8$처럼 연속한 두 자연수의 최소공배수는 두 수로 어떻게 계산할 수 있는지 쓰고, 그렇게 되는 까닭을 두 수의 최대공약수와 관련지어 설명하시오.",
+        "bAnswer": "두 수의 곱과 같다. 연속한 두 자연수는 최대공약수가 $1$인 서로소이고, 서로소인 두 수의 최소공배수는 두 수의 곱이기 때문이다. $7$과 $8$의 최소공배수는 $7\\times8=56$이다.",
+        "bGoal": "연속한 두 자연수가 서로소임을 이용해 최소공배수를 곱으로 구할 수 있다.",
+        "bReason": "제목은 대상만 있다. 계산 방법과 까닭(서로소)을 잇도록 물어 두 성질을 연결하는 문항으로 만들었다.",
+        "cDecision": "keep",
+        "cReason": "까닭(서로소)이 문장에 보이고 결론의 낱말 '곱'만 묻는다. c4와 빈칸은 같지만 조건이 '연속한 두 자연수'로 달라 적용 문장으로 유지한다.",
+        "exampleNeeded": true,
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "최소공배수는 두 수의 곱과 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "연속한 두 자연수는 최대공약수가 $1$(서로소)이기 때문"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "reason",
+        "roleReason": "서로소라 최소공배수가 곱",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1007,
+        "part": "m1plus",
+        "sourceFingerprint": "673053d7ea1a03abb9dfb76c43ee78496611880bf1f24539cc9cad91c25de412",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1007
+        },
+        "directReview": null,
+        "cFrozenSentence": "연속한 두 자연수는 서로소이므로 최소공배수는 두 수의 □이다.",
+        "cFrozenDefinition": "연속한 두 자연수는 서로소이므로 최소공배수는 두 수의 {곱}이다.",
+        "cFrozenAnswers": [
+          "곱"
+        ],
+        "cMarkedSentence": "연속한 두 자연수는 서로소이므로 최소공배수는 두 수의 {곱}이다.",
+        "cSlotAnswers": [
+          "곱"
+        ],
+        "cStudentSentence": "연속한 두 자연수는 서로소이므로 최소공배수는 두 수의 □이다.",
+        "cAnswers": [
+          "곱"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "곱",
+            "equivalentAnswers": [
+              "곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "곱"
+          ]
+        ],
+        "proposalFingerprint": "2a8ae08f54700563cf314a6a347fbfe9feb03e946ad6bb4fb3ce9afd9b42be4d"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-04-xc14",
+        "section": "중1::1. 소인수분해::공배수와 최소공배수",
+        "term": "최소공배수와 최대공약수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "두 수의 최소공배수는 언제나 두 수의 최대공약수의 {배수}이다.",
+        "example": {
+          "prompt": "$12$와 $18$의 최소공배수는 최대공약수의 몇 배인가?",
+          "answer": "$6$배"
+        },
+        "studentC": "두 수의 최소공배수는 언제나 두 수의 최대공약수의 □이다.",
+        "answers": [
+          "배수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-04-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "두 자연수의 최소공배수와 최대공약수 가운데 어느 쪽이 다른 쪽의 배수인지 쓰고 그 까닭을 설명하시오. 또 $12$와 $18$의 최소공배수는 최대공약수의 몇 배인지 구하시오.",
+        "bAnswer": "최소공배수가 최대공약수의 배수이다. 최소공배수는 두 수 각각의 배수이고, 각 수는 최대공약수의 배수이기 때문이다. $12$와 $18$의 최대공약수는 $6$, 최소공배수는 $36$이므로 $6$배이다.",
+        "bGoal": "최소공배수가 최대공약수의 배수임을 설명할 수 있다.",
+        "bReason": "제목은 두 용어를 나란히 적었을 뿐 어떤 관계를 묻는지 없다. 약수와 배수 관계를 묻는다고 특정하고 이름을 다듬었다.",
+        "cDecision": "keep",
+        "cReason": "한 문장에 낱말 하나를 묻고, '약수'와 헷갈리는지를 가려내는 빈칸이라 그대로 둔다.",
+        "studentLabel": "최소공배수와 최대공약수의 관계",
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "최소공배수가 최대공약수의 배수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "최소공배수는 두 수의 배수이고 두 수는 각각 최대공약수의 배수라는 까닭(같은 뜻의 설명 허용)"
+            ]
+          },
+          {
+            "anyOf": [
+              "최대공약수 $6$, 최소공배수 $36$이므로 $6$배"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "reason",
+        "roleReason": "두 수가 최대공약수의 배수라서",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1008,
+        "part": "m1plus",
+        "sourceFingerprint": "7c6ddc8aad3130c3c9d85f55abf5749fc9566814c5f9b41acef7d23d6d5b61ba",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1008
+        },
+        "directReview": null,
+        "cFrozenSentence": "두 수의 최소공배수는 언제나 두 수의 최대공약수의 □이다.",
+        "cFrozenDefinition": "두 수의 최소공배수는 언제나 두 수의 최대공약수의 {배수}이다.",
+        "cFrozenAnswers": [
+          "배수"
+        ],
+        "cMarkedSentence": "두 수의 최소공배수는 언제나 두 수의 최대공약수의 {배수}이다.",
+        "cSlotAnswers": [
+          "배수"
+        ],
+        "cStudentSentence": "두 수의 최소공배수는 언제나 두 수의 최대공약수의 □이다.",
+        "cAnswers": [
+          "배수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "배수",
+            "equivalentAnswers": [
+              "배수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "배수"
+          ]
+        ],
+        "proposalFingerprint": "9d06d75baaf55e9ee3a60da96b4b72ee2df82a09ceda6f7c93b7aa9e4238e920"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-04-xc15",
+        "section": "중1::1. 소인수분해::공배수와 최소공배수",
+        "term": "최소공배수로 지수 찾기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "최소공배수의 각 소인수의 지수는 두 수의 지수 가운데 {큰} 것이다. 이것으로 모르는 지수가 될 수 있는 값을 찾으며, 값이 {하나로 정해지지 않을} 수도 있다.",
+        "example": {
+          "prompt": "$2^a\\times3$과 $2^2\\times3^2$의 최소공배수가 $2^4\\times3^2$일 때 $a$의 값은?",
+          "answer": "$4$"
+        },
+        "studentC": "최소공배수의 각 소인수의 지수는 두 수의 지수 가운데 □ 것이다. 이것으로 모르는 지수가 될 수 있는 값을 찾으며, 값이 □ 수도 있다.",
+        "answers": [
+          "큰",
+          "하나로 정해지지 않을"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-04-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "$2^a\\times3$과 $2^2\\times3^2$의 최소공배수가 $2^4\\times3^2$일 때 자연수 $a$의 값을 구하고 까닭을 설명하시오. 또 최소공배수가 $2^2\\times3^2$이라면 $a$가 될 수 있는 자연수를 모두 구하시오.",
+        "bAnswer": "최소공배수에서 $2$의 지수는 $a$와 $2$ 가운데 큰 것이다. 그 값이 $4$이려면 $a=4$이다. 최소공배수가 $2^2\\times3^2$이면 $a$와 $2$ 가운데 큰 것이 $2$이므로 $a$는 $1$ 또는 $2$이고, 값이 하나로 정해지지 않는다.",
+        "bGoal": "최소공배수의 지수가 큰 쪽임을 이용해 모르는 지수의 값 또는 범위를 찾을 수 있다.",
+        "bReason": "제목만으로는 어떤 수의 어떤 지수인지 알 수 없어 구체적인 식이 필요하다. 값이 하나로 정해지는 경우와 여러 개인 경우를 모두 넣었다.",
+        "cDecision": "rewrite",
+        "cAfter": "두 자연수의 최소공배수에서 각 소인수의 지수는 두 수의 지수 가운데 {큰} 것이다. 그래서 $2^a\\times3$과 $2^2\\times3^2$의 최소공배수가 $2^2\\times3^2$이면 자연수 $a$는 $1$ 또는 {$2$}로, 값이 하나로 정해지지 않는다.",
+        "cAnswers": [
+          "큰",
+          "$2$"
+        ],
+        "cReason": "원문 둘째 빈칸 '하나로 정해지지 않을'은 긴 임의 구절이고 '모르는 지수'가 무엇을 가리키는지 없다. 구체적인 식을 넣고, 규칙의 낱말과 그 규칙으로 따져야 나오는 값을 묻게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "최소공배수에서 $2$의 지수는 $a$와 $2$ 가운데 큰 것이라는 까닭"
+            ]
+          },
+          {
+            "anyOf": [
+              "$a=4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "최소공배수가 $2^2\\times3^2$이면 $a=1$ 또는 $a=2$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "application",
+        "roleReason": "큰 쪽 지수로 모르는 지수 범위",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1009,
+        "part": "m1plus",
+        "sourceFingerprint": "e12d283427d93cfab9710be4899beacc98888e0586c6d40f609a823bc8fdc09a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1009
+        },
+        "directReview": null,
+        "cMarkedSentence": "두 자연수의 최소공배수에서 각 소인수의 지수는 두 수의 지수 가운데 {큰} 것이다. 그래서 $2^a\\times3$과 $2^2\\times3^2$의 최소공배수가 $2^2\\times3^2$이면 자연수 $a$는 $1$ 또는 {$2$}로, 값이 하나로 정해지지 않는다.",
+        "cSlotAnswers": [
+          "큰",
+          "$2$"
+        ],
+        "cStudentSentence": "두 자연수의 최소공배수에서 각 소인수의 지수는 두 수의 지수 가운데 □ 것이다. 그래서 $2^a\\times3$과 $2^2\\times3^2$의 최소공배수가 $2^2\\times3^2$이면 자연수 $a$는 $1$ 또는 □로, 값이 하나로 정해지지 않는다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "큰",
+            "equivalentAnswers": [
+              "큰"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$2$",
+            "equivalentAnswers": [
+              "$2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "큰"
+          ],
+          [
+            "$2$"
+          ]
+        ],
+        "proposalFingerprint": "7bdfe85019fcdae4074e7db07c4ebef4b6e6dc9e1314f365976f281dd5fd93e6"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-04-xc16",
+        "section": "중1::1. 소인수분해::공배수와 최소공배수",
+        "term": "공배수인지 알아보기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "어떤 수가 두 수의 공배수인지 보려면 그 수가 두 수의 {최소공배수}로 나누어떨어지는지 본다.",
+        "example": {
+          "prompt": "$90$은 $6$과 $15$의 공배수인가?",
+          "answer": "공배수이다"
+        },
+        "studentC": "어떤 수가 두 수의 공배수인지 보려면 그 수가 두 수의 □로 나누어떨어지는지 본다.",
+        "answers": [
+          "최소공배수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-04-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "어떤 자연수가 두 자연수의 공배수인지 한 번의 나눗셈으로 확인하려면 그 수를 무엇으로 나누어 보면 되는지 쓰시오. 그 방법으로 $90$이 $6$과 $15$의 공배수인지 판단하시오.",
+        "bAnswer": "두 수의 최소공배수로 나누어떨어지는지 보면 된다. 공배수는 최소공배수의 배수이기 때문이다. $6$과 $15$의 최소공배수는 $30$이고 $90\\div30=3$으로 나누어떨어지므로 $90$은 $6$과 $15$의 공배수이다.",
+        "bGoal": "최소공배수로 나누어 공배수인지 판별할 수 있다.",
+        "bReason": "제목만으로는 어떤 방법을 쓰라는지 없다. '한 번의 나눗셈'이라는 조건으로 최소공배수를 쓰는 방법임을 특정했다.",
+        "cDecision": "keep",
+        "cReason": "판별 상황이 문장에 다 있고 '두 수의 □로 나누어떨어지는지'의 답이 '최소공배수'로 정해진다.",
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 수의 최소공배수로 나누어 본다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$과 $15$의 최소공배수는 $30$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$90\\div30=3$으로 나누어떨어지므로 공배수이다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "procedure",
+        "roleReason": "최소공배수로 나누어 판별",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1010,
+        "part": "m1plus",
+        "sourceFingerprint": "7192e5283e3ffa91f2860739db71d293bfe639b178dc06ed605bd40e78fbff34",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1010
+        },
+        "directReview": null,
+        "cFrozenSentence": "어떤 수가 두 수의 공배수인지 보려면 그 수가 두 수의 □로 나누어떨어지는지 본다.",
+        "cFrozenDefinition": "어떤 수가 두 수의 공배수인지 보려면 그 수가 두 수의 {최소공배수}로 나누어떨어지는지 본다.",
+        "cFrozenAnswers": [
+          "최소공배수"
+        ],
+        "cMarkedSentence": "어떤 수가 두 수의 공배수인지 보려면 그 수가 두 수의 {최소공배수}로 나누어떨어지는지 본다.",
+        "cSlotAnswers": [
+          "최소공배수"
+        ],
+        "cStudentSentence": "어떤 수가 두 수의 공배수인지 보려면 그 수가 두 수의 □로 나누어떨어지는지 본다.",
+        "cAnswers": [
+          "최소공배수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "최소공배수",
+            "equivalentAnswers": [
+              "최소공배수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "최소공배수"
+          ]
+        ],
+        "proposalFingerprint": "9ec952d6b262f29984cb0a7ab1b47c3bf6bfc0ac2075ac8d8ceadb7290fafb30"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-04-xc17",
+        "section": "중1::1. 소인수분해::공배수와 최소공배수",
+        "term": "곱을 최소공배수로 나누면",
+        "kind": "성질",
+        "level": "상",
+        "definition": "두 자연수의 곱을 두 수의 최소공배수로 나누면 두 수의 {최대공약수}가 된다.",
+        "example": {
+          "prompt": "곱이 $180$, 최소공배수가 $30$인 두 수의 최대공약수는?",
+          "answer": "$6$"
+        },
+        "studentC": "두 자연수의 곱을 두 수의 최소공배수로 나누면 두 수의 □가 된다.",
+        "answers": [
+          "최대공약수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-04-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "두 자연수의 곱, 최대공약수, 최소공배수 사이에는 어떤 관계가 있는지 식으로 쓰고, 곱이 $180$이고 최소공배수가 $30$인 두 자연수의 최대공약수를 구하시오.",
+        "bAnswer": "(두 수의 곱)$=$(최대공약수)$\\times$(최소공배수)이다. 따라서 두 수의 곱을 최소공배수로 나누면 최대공약수가 되고, $180\\div30=6$이므로 최대공약수는 $6$이다.",
+        "bGoal": "두 수의 곱이 최대공약수와 최소공배수의 곱과 같음을 알고 활용할 수 있다.",
+        "bReason": "원제목은 '나누면'에서 문장이 끊겨 무엇을 답할지 알 수 없다. 세 값의 관계를 식으로 쓰라고 범위를 정하고 이름을 다듬었다.",
+        "cDecision": "keep",
+        "cReason": "연산과 대상이 문장에 다 보이고 결과 용어 하나만 묻는 분명한 문장이다.",
+        "studentLabel": "두 수의 곱과 최대공약수·최소공배수",
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "(두 수의 곱)$=$(최대공약수)$\\times$(최소공배수) — 같은 뜻의 식이면 허용"
+            ]
+          },
+          {
+            "anyOf": [
+              "$180\\div30=6$, 최대공약수 $6$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "application",
+        "roleReason": "곱은 최대공약수×최소공배수",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1011,
+        "part": "m1plus",
+        "sourceFingerprint": "0c89803adf66545f602521593d1c347524e2b96412de53a1f163fcbb4eca63c6",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1011
+        },
+        "directReview": null,
+        "cFrozenSentence": "두 자연수의 곱을 두 수의 최소공배수로 나누면 두 수의 □가 된다.",
+        "cFrozenDefinition": "두 자연수의 곱을 두 수의 최소공배수로 나누면 두 수의 {최대공약수}가 된다.",
+        "cFrozenAnswers": [
+          "최대공약수"
+        ],
+        "cMarkedSentence": "두 자연수의 곱을 두 수의 최소공배수로 나누면 두 수의 {최대공약수}가 된다.",
+        "cSlotAnswers": [
+          "최대공약수"
+        ],
+        "cStudentSentence": "두 자연수의 곱을 두 수의 최소공배수로 나누면 두 수의 □가 된다.",
+        "cAnswers": [
+          "최대공약수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "최대공약수",
+            "equivalentAnswers": [
+              "최대공약수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "최대공약수"
+          ]
+        ],
+        "proposalFingerprint": "f359ca75ecf5cffc09175af08f3aebacf54bc3a6eda0e5cb30c3b24b2113ba66"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-04-xc18",
+        "section": "중1::1. 소인수분해::공배수와 최소공배수",
+        "term": "조건에 맞는 공배수 찾기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "조건에 맞는 공배수를 찾을 때는 최소공배수를 $1$배, $2$배, $3$배, …로 {차례로} 늘려 가며 {견준다}.",
+        "example": {
+          "prompt": "$4$와 $6$의 공배수 가운데 $100$에 가장 가까운 수는?",
+          "answer": "$96$"
+        },
+        "studentC": "조건에 맞는 공배수를 찾을 때는 최소공배수를 $1$배, $2$배, $3$배, …로 □ 늘려 가며 □.",
+        "answers": [
+          "차례로",
+          "견준다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-04-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "$4$와 $6$의 공배수 가운데 $100$에 가장 가까운 수를 찾으려고 한다. 최소공배수를 이용해 공배수를 차례로 살펴보는 방법을 설명하고 답을 구하시오.",
+        "bAnswer": "공배수는 최소공배수의 배수이므로 최소공배수의 $1$배, $2$배, $3$배, $\\cdots$를 차례로 구해 조건과 견준다. $4$와 $6$의 최소공배수는 $12$이고 $12\\times8=96$, $12\\times9=108$이다. $100$과의 차가 각각 $4$, $8$이므로 가장 가까운 수는 $96$이다.",
+        "bGoal": "최소공배수의 배수를 차례로 살펴 조건에 맞는 공배수를 찾을 수 있다.",
+        "bReason": "제목의 '조건'이 무엇인지 주어지지 않아 그대로는 답할 수 없다. 구체적인 조건($100$에 가장 가까운 수)을 넣고 찾는 과정을 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "$4$와 $6$의 공배수 가운데 $100$에 가장 가까운 수를 찾으려면, 두 수의 {최소공배수}인 $12$의 배수 $12$, $24$, $36$, …을 차례로 구해 $100$과 견주면 된다.",
+        "cAnswers": [
+          "최소공배수"
+        ],
+        "cReason": "원문은 '조건'이 가리키는 것이 없고, 빈칸 '차례로', '견준다'는 다른 말로도 채울 수 있는 임의 낱말과 서술어이다. 구체 상황을 넣고 방법의 핵심 용어를 묻게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "공배수는 최소공배수 $12$의 배수이므로 $12$의 배수를 차례로 살핀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$100$ 앞뒤의 $96$과 $108$을 견준다($100$과의 차 $4$, $8$)"
+            ]
+          },
+          {
+            "anyOf": [
+              "답 $96$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "procedure",
+        "roleReason": "최소공배수의 배수를 차례로 견줌",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1012,
+        "part": "m1plus",
+        "sourceFingerprint": "5860ea855b4495a55852814a586fb665258587be097bf7feeb32eefcf56de20d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1012
+        },
+        "directReview": null,
+        "cMarkedSentence": "$4$와 $6$의 공배수 가운데 $100$에 가장 가까운 수를 찾으려면, 두 수의 {최소공배수}인 $12$의 배수 $12$, $24$, $36$, …을 차례로 구해 $100$과 견주면 된다.",
+        "cSlotAnswers": [
+          "최소공배수"
+        ],
+        "cStudentSentence": "$4$와 $6$의 공배수 가운데 $100$에 가장 가까운 수를 찾으려면, 두 수의 □인 $12$의 배수 $12$, $24$, $36$, …을 차례로 구해 $100$과 견주면 된다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "최소공배수",
+            "equivalentAnswers": [
+              "최소공배수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "최소공배수"
+          ]
+        ],
+        "proposalFingerprint": "c726448bde46c23ddb8459f2cba4b49d78a499c741da3495490f990e5dfe27df"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-04-xc19",
+        "section": "중1::1. 소인수분해::공배수와 최소공배수",
+        "term": "나머지가 같은 수",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$r$이 $a$, $b$보다 작을 때, $a$로 나누어도 $b$로 나누어도 $r$이 남는 수는 $r$ 자신이거나 $a$와 $b$의 {공배수}에 {$r$}을 더한 수이다.",
+        "example": {
+          "prompt": "$4$로도 $6$으로도 나누면 $1$이 남는 가장 작은 두 자리 수는?",
+          "answer": "$13$"
+        },
+        "studentC": "$r$이 $a$, $b$보다 작을 때, $a$로 나누어도 $b$로 나누어도 $r$이 남는 수는 $r$ 자신이거나 $a$와 $b$의 □에 □을 더한 수이다.",
+        "answers": [
+          "공배수",
+          "$r$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-04-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "$4$로 나누어도 $6$으로 나누어도 나머지가 $1$인 자연수는 $4$와 $6$의 공배수와 어떤 관계가 있는지 설명하고, 그런 수 가운데 가장 작은 두 자리 수를 구하시오.",
+        "bAnswer": "그런 수에서 $1$을 빼면 $4$로도 $6$으로도 나누어떨어진다. 그래서 그런 수는 $1$ 자신이거나 $4$와 $6$의 공배수에 $1$을 더한 수이다. 공배수는 $12, 24, \\cdots$이므로 그런 수는 $1, 13, 25, \\cdots$이고 가장 작은 두 자리 수는 $13$이다.",
+        "bGoal": "나머지가 같은 수를 (공배수)+(나머지)로 나타내어 구할 수 있다.",
+        "bReason": "제목 '나머지가 같은 수'는 무엇으로 나눈 나머지인지 없다. 구체적인 두 나누는 수와 나머지를 주고 공배수와의 관계를 묻는다고 특정했다.",
+        "cDecision": "rewrite",
+        "cAfter": "자연수 $a$, $b$와 두 수보다 작은 나머지 $r$에 대하여, $a$로 나누어도 $b$로 나누어도 $r$이 남는 자연수는 $r$ 자신이거나 $a$와 $b$의 {공배수}에 $r$을 더한 수이다.",
+        "cAnswers": [
+          "공배수"
+        ],
+        "cReason": "원문 둘째 빈칸 $r$은 같은 문장에 세 번 나와 그대로 베끼는 답이다. 기호의 뜻(자연수, 나머지)을 밝히고 핵심 용어 하나만 남겼다.",
+        "exampleNeeded": true,
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "그 수에서 $1$을 빼면 $4$와 $6$의 공배수가 된다(공배수에 $1$을 더한 수)"
+            ]
+          },
+          {
+            "anyOf": [
+              "가장 작은 두 자리 수 $13$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "procedure",
+        "roleReason": "공배수에 나머지 r 더하기",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1013,
+        "part": "m1plus",
+        "sourceFingerprint": "821424451cfa4c2d336fb4497d332bdd0fe32806283908f8a9f2e6be7b389adf",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1013
+        },
+        "directReview": null,
+        "cMarkedSentence": "자연수 $a$, $b$와 두 수보다 작은 나머지 $r$에 대하여, $a$로 나누어도 $b$로 나누어도 $r$이 남는 자연수는 $r$ 자신이거나 $a$와 $b$의 {공배수}에 $r$을 더한 수이다.",
+        "cSlotAnswers": [
+          "공배수"
+        ],
+        "cStudentSentence": "자연수 $a$, $b$와 두 수보다 작은 나머지 $r$에 대하여, $a$로 나누어도 $b$로 나누어도 $r$이 남는 자연수는 $r$ 자신이거나 $a$와 $b$의 □에 $r$을 더한 수이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "공배수",
+            "equivalentAnswers": [
+              "공배수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "공배수"
+          ]
+        ],
+        "proposalFingerprint": "10c8d560bc5a016b084dbcc82c23e4de65e0c215032148cee8e28c716601a9a2"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-04-xc20",
+        "section": "중1::1. 소인수분해::공배수와 최소공배수",
+        "term": "모자라는 수가 같은 수",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$a$로도 $b$로도 나누면 $k$가 모자라는 수는 두 수의 {공배수}에서 {$k$를 뺀} 수이다.",
+        "example": {
+          "prompt": "$5$로도 $7$로도 나누면 $2$가 모자라는 가장 작은 자연수는?",
+          "answer": "$33$"
+        },
+        "studentC": "$a$로도 $b$로도 나누면 $k$가 모자라는 수는 두 수의 □에서 □ 수이다.",
+        "answers": [
+          "공배수",
+          "$k$를 뺀"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-04-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "어떤 자연수에 $2$를 더하면 $5$로도 $7$로도 나누어떨어진다. 이것을 '$5$로도 $7$로도 나누면 $2$가 모자란다'고 말하기도 한다. 이런 수는 $5$와 $7$의 공배수와 어떤 관계가 있는지 설명하고, 이런 수 가운데 가장 작은 자연수를 구하시오.",
+        "bAnswer": "그 수에 $2$를 더한 수가 $5$와 $7$의 공배수이므로, 그 수는 $5$와 $7$의 공배수에서 $2$를 뺀 수이다. 가장 작은 공배수는 최소공배수 $35$이므로 가장 작은 수는 $35-2=33$이다.",
+        "bGoal": "일정한 수가 모자라는 수를 (공배수)-(모자라는 수)로 나타내어 구할 수 있다.",
+        "bReason": "제목의 '모자라는'은 설명 없이는 중1이 뜻을 알기 어렵다. '더하면 나누어떨어진다'는 뜻을 질문에 풀어 쓰고 구체적인 수를 주었다.",
+        "cDecision": "rewrite",
+        "cAfter": "어떤 자연수에 $k$를 더하면 자연수 $a$로도 $b$로도 나누어떨어질 때, 그 수는 $a$와 $b$의 {공배수}에서 $k$를 뺀 수이다.",
+        "cAnswers": [
+          "공배수"
+        ],
+        "cReason": "원문은 '$k$가 모자라는'의 뜻이 풀이되지 않았고, 빈칸 '$k$를 뺀'은 식과 말이 섞인 긴 답이다. 상황을 풀어 쓰고 용어 하나만 묻게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "그 수에 $2$를 더하면 $5$와 $7$의 공배수이다(공배수에서 $2$를 뺀 수)"
+            ]
+          },
+          {
+            "anyOf": [
+              "가장 작은 공배수(최소공배수) $35$를 써서 $35-2=33$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "procedure",
+        "roleReason": "공배수에서 모자란 k 빼기",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1014,
+        "part": "m1plus",
+        "sourceFingerprint": "51b62a3024c7961f3fbf49e336e94bca95fde510919a09831060561d909ffd2e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1014
+        },
+        "directReview": null,
+        "cMarkedSentence": "어떤 자연수에 $k$를 더하면 자연수 $a$로도 $b$로도 나누어떨어질 때, 그 수는 $a$와 $b$의 {공배수}에서 $k$를 뺀 수이다.",
+        "cSlotAnswers": [
+          "공배수"
+        ],
+        "cStudentSentence": "어떤 자연수에 $k$를 더하면 자연수 $a$로도 $b$로도 나누어떨어질 때, 그 수는 $a$와 $b$의 □에서 $k$를 뺀 수이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "공배수",
+            "equivalentAnswers": [
+              "공배수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "공배수"
+          ]
+        ],
+        "proposalFingerprint": "ec478a171211c0993a79c1d1aacf869be85d9600f8fa7d14ac5a87ae4ebaf030"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-04-xc21",
+        "section": "중1::1. 소인수분해::공배수와 최소공배수",
+        "term": "분수를 자연수로 만드는 분자",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$\\frac{n}{a}$과 $\\frac{n}{b}$이 모두 자연수가 되는 가장 작은 $n$은 $a$와 $b$의 {최소공배수}이다.",
+        "example": {
+          "prompt": "$\\frac{n}{6}$, $\\frac{n}{8}$이 모두 자연수가 되는 가장 작은 $n$은?",
+          "answer": "$24$"
+        },
+        "studentC": "$\\frac{n}{a}$과 $\\frac{n}{b}$이 모두 자연수가 되는 가장 작은 $n$은 $a$와 $b$의 □이다.",
+        "answers": [
+          "최소공배수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-04-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{n}{6}$과 $\\frac{n}{8}$이 모두 자연수가 되게 하는 자연수 $n$은 $6$과 $8$에 대하여 어떤 수여야 하는지 쓰고, 그런 $n$ 가운데 가장 작은 수를 구하시오.",
+        "bAnswer": "$n$은 $6$으로도 $8$로도 나누어떨어져야 하므로 $6$과 $8$의 공배수여야 한다. 그 가운데 가장 작은 수는 최소공배수인 $24$이다.",
+        "bGoal": "두 분수를 모두 자연수로 만드는 분자가 분모들의 공배수임을 알고 가장 작은 값을 구할 수 있다.",
+        "bReason": "제목은 어떤 분수인지 밝히지 않아 식이 꼭 있어야 한다. 구체적인 두 분수를 주고 $n$의 조건과 가장 작은 값을 차례로 묻게 했다.",
+        "cDecision": "keep",
+        "cReason": "두 분수와 '가장 작은 $n$'이 문장에 있어 상황이 분명하고 용어 하나만 묻는다. 이 단원에서는 수가 자연수뿐이라 그대로 읽힌다.",
+        "exampleNeeded": true,
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$n$은 $6$과 $8$의 공배수($6$으로도 $8$로도 나누어떨어지는 수)"
+            ]
+          },
+          {
+            "anyOf": [
+              "가장 작은 $n$은 최소공배수 $24$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "application",
+        "roleReason": "분모들의 최소공배수가 분자",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1015,
+        "part": "m1plus",
+        "sourceFingerprint": "10e171944ea4c8ef511d3e31262201fdb7c3f09fbc355784c2fb7c7a3997a766",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1015
+        },
+        "directReview": null,
+        "cFrozenSentence": "$\\frac{n}{a}$과 $\\frac{n}{b}$이 모두 자연수가 되는 가장 작은 $n$은 $a$와 $b$의 □이다.",
+        "cFrozenDefinition": "$\\frac{n}{a}$과 $\\frac{n}{b}$이 모두 자연수가 되는 가장 작은 $n$은 $a$와 $b$의 {최소공배수}이다.",
+        "cFrozenAnswers": [
+          "최소공배수"
+        ],
+        "cMarkedSentence": "$\\frac{n}{a}$과 $\\frac{n}{b}$이 모두 자연수가 되는 가장 작은 $n$은 $a$와 $b$의 {최소공배수}이다.",
+        "cSlotAnswers": [
+          "최소공배수"
+        ],
+        "cStudentSentence": "$\\frac{n}{a}$과 $\\frac{n}{b}$이 모두 자연수가 되는 가장 작은 $n$은 $a$와 $b$의 □이다.",
+        "cAnswers": [
+          "최소공배수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "최소공배수",
+            "equivalentAnswers": [
+              "최소공배수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "최소공배수"
+          ]
+        ],
+        "proposalFingerprint": "c7838fed0b2c2dcca8b6bc10aed26ee43fedefc72f17f9244176fe400674c76a"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-01-04-xc22",
+        "section": "중1::1. 소인수분해::공배수와 최소공배수",
+        "term": "곱해서 자연수가 되는 가장 작은 분수",
+        "kind": "방법",
+        "level": "상",
+        "definition": "두 기약분수에 곱해 모두 자연수가 되는 가장 작은 분수는 분모들의 {최소공배수}를 분자로, 분자들의 {최대공약수}를 분모로 한다.",
+        "example": {
+          "prompt": "$\\frac{5}{6}$, $\\frac{10}{9}$에 곱해 모두 자연수가 되는 가장 작은 분수는?",
+          "answer": "$\\frac{18}{5}$"
+        },
+        "studentC": "두 기약분수에 곱해 모두 자연수가 되는 가장 작은 분수는 분모들의 □를 분자로, 분자들의 □를 분모로 한다.",
+        "answers": [
+          "최소공배수",
+          "최대공약수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-04-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{5}{6}$와 $\\frac{10}{9}$ 어느 쪽에 곱해도 결과가 자연수가 되는 분수 가운데 가장 작은 것을 구하려고 한다. 곱할 분수의 분자와 분모를 각각 어떤 수로 정해야 하는지 까닭과 함께 설명하고, 그 분수를 구하시오.",
+        "bAnswer": "분자는 두 분모 $6$, $9$를 모두 약분해 없앨 수 있어야 하므로 $6$과 $9$의 공배수이고, 분수를 작게 하려면 최소공배수 $18$로 한다. 분모는 두 분자 $5$, $10$과 모두 약분되어야 하므로 공약수이고, 분수를 작게 하려면 최대공약수 $5$로 한다. 따라서 $\\frac{18}{5}$이다.",
+        "bGoal": "두 분수에 곱해 자연수가 되는 가장 작은 분수를 최소공배수와 최대공약수로 구할 수 있다.",
+        "bReason": "제목만으로는 무엇에 곱하는지 없다. 구체적인 두 기약분수를 주고 분자와 분모를 나누어 까닭까지 답하게 했다.",
+        "cDecision": "keep",
+        "cReason": "분모들과 분자들 가운데 어디에 최소공배수와 최대공약수가 쓰이는지를 맞바꾸지 않고 쓰는지 확인하는 문장이다. 상 수준 학생이 읽을 수 있고 두 답이 각각 정해진다.",
+        "exampleNeeded": true,
+        "authorBatch": 1,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "분자는 두 분모 $6$, $9$의 공배수여야 하고 분수를 가장 작게 하려면 최소공배수 $18$"
+            ]
+          },
+          {
+            "anyOf": [
+              "분모는 두 분자 $5$, $10$의 공약수여야 하고 분수를 가장 작게 하려면 최대공약수 $5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{18}{5}$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-001",
+        "learningRole": "procedure",
+        "roleReason": "분모의 최소공배수, 분자의 최대공약수",
+        "enrichmentEvidence": "enrichment/enrich-003",
+        "sourceIndex": 1016,
+        "part": "m1plus",
+        "sourceFingerprint": "5f7b0d7880ae694526efbca04735c4cfffc559764f2d4ec31f85d918c4eecbd2",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1016
+        },
+        "directReview": null,
+        "cFrozenSentence": "두 기약분수에 곱해 모두 자연수가 되는 가장 작은 분수는 분모들의 □를 분자로, 분자들의 □를 분모로 한다.",
+        "cFrozenDefinition": "두 기약분수에 곱해 모두 자연수가 되는 가장 작은 분수는 분모들의 {최소공배수}를 분자로, 분자들의 {최대공약수}를 분모로 한다.",
+        "cFrozenAnswers": [
+          "최소공배수",
+          "최대공약수"
+        ],
+        "cMarkedSentence": "두 기약분수에 곱해 모두 자연수가 되는 가장 작은 분수는 분모들의 {최소공배수}를 분자로, 분자들의 {최대공약수}를 분모로 한다.",
+        "cSlotAnswers": [
+          "최소공배수",
+          "최대공약수"
+        ],
+        "cStudentSentence": "두 기약분수에 곱해 모두 자연수가 되는 가장 작은 분수는 분모들의 □를 분자로, 분자들의 □를 분모로 한다.",
+        "cAnswers": [
+          "최소공배수",
+          "최대공약수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "최소공배수",
+            "equivalentAnswers": [
+              "최소공배수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "최대공약수",
+            "equivalentAnswers": [
+              "최대공약수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "최소공배수"
+          ],
+          [
+            "최대공약수"
+          ]
+        ],
+        "proposalFingerprint": "1b79a96354f6fb1cc64ffe0e429dce955821edb543ee12b2ae50cfeaa6a2fb25"
+      }
+    }
+  ]
+}

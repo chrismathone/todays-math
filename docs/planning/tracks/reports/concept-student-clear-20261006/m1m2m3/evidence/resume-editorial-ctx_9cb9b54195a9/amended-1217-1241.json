@@ -1,0 +1,1996 @@
+{
+  "input": "C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3/evidence/resume-editorial-ctx_9cb9b54195a9/input-1217-1241.json",
+  "changes": [
+    {
+      "id": "m1-03-03-xc23",
+      "cAfter": "문자가 둘인 일차식에서도, 곱해진 문자와 각 문자의 차수가 같은 항인 {동류항}끼리 모아 계산한다.",
+      "cReason": "같은 문자만 있으면 동류항이라는 잘못된 일반화를 없애고 알파벳 표기 순서 암기 대신 실제 계산의 기준을 확인한다.",
+      "coreAfter": "문자가 둘인 식도 곱해진 문자와 각 문자의 차수가 같은 {동류항}끼리 모아 계산한다. 일차식에서는 각 문자가 있는 항끼리, {상수항}은 상수항끼리 모아 계산한다.",
+      "coreReason": "문자가 둘이라는 조건만으로 같은 문자항을 모두 합치면 제곱항 등을 잘못 합칠 수 있으므로 문자별 차수 조건을 밝힌다."
+    },
+    {
+      "id": "m1-03-04-xc10",
+      "cAfter": "등식의 양변을 각각 $x$에 대한 일차식으로 정리했을 때 $x$의 계수와 {상수항}이 모두 같으면 그 등식은 항등식이다.",
+      "cReason": "일차식 조건 없이 계수와 상수항 두 개만 비교하면 이차 이상 항이 달라도 항등식으로 오판하므로 원문의 조건을 복원한다."
+    }
+  ],
+  "rows": [
+    {
+      "id": "m1-03-03-xc16",
+      "bDecision": "rewrite",
+      "bPrompt": "$7-2x+x$를 정리하시오. 정리한 결과를 쓸 때 보통 어떤 항을 앞에, 어떤 항을 뒤에 쓰는지도 쓰시오.",
+      "bAnswer": "$-2x+x=-x$이므로 $-x+7$이다. 보통 문자가 있는 항을 앞에, 상수항을 뒤에 쓴다.",
+      "bGoal": "정리한 일차식을 문자가 있는 항, 상수항의 순서로 쓴다.",
+      "bReason": "중간식 $-2x+x=-x$ 강요를 빼고 동치인 $7-x$도 계산 결과로 인정함",
+      "cDecision": "rewrite",
+      "cAfter": "일차식을 정리한 결과는 보통 문자가 있는 항을 앞에, {상수항}을 뒤에 쓴다.",
+      "cAnswers": [
+        "상수항"
+      ],
+      "cReason": "원문 첫 답 '문자가 있는 항'은 '일차항', '문자 항' 등 여러 표현이 가능한 긴 구라 채점이 흔들린다. 용어가 하나로 정해지는 상수항만 빈칸으로 남겼다.",
+      "studentLabel": "정리한 식을 쓰는 순서",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "정리한 결과 $-x+7$",
+            "정리한 결과 $7-x$"
+          ]
+        },
+        {
+          "anyOf": [
+            "문자가 있는 항을 앞에, 상수항을 뒤에 씀",
+            "$x$의 항을 먼저, 수만 있는 항을 나중에 씀"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-004",
+      "learningRole": "procedure",
+      "roleReason": "문자 항 앞, 상수항 뒤 표기",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1217,
+      "part": "m1plus",
+      "sourceFingerprint": "ea2d9e0253be2ea614a96aae54e68a13816d0267a24da7c372d44b47942da40c",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1217
+      },
+      "directReview": null,
+      "cMarkedSentence": "일차식을 정리한 결과는 보통 문자가 있는 항을 앞에, {상수항}을 뒤에 쓴다.",
+      "cSlotAnswers": [
+        "상수항"
+      ],
+      "cStudentSentence": "일차식을 정리한 결과는 보통 문자가 있는 항을 앞에, □을 뒤에 쓴다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "상수항",
+          "equivalentAnswers": [
+            "상수항"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "상수항"
+        ]
+      ],
+      "proposalFingerprint": "50cd5e18c0e9b2a47e0abd1cb32938471320db76ea6b79d42d399a8475c2e538"
+    },
+    {
+      "id": "m1-03-03-xc17",
+      "bDecision": "rewrite",
+      "bPrompt": "$\\frac{x+1}{2}-\\frac{x-1}{4}$을 간단히 하시오. 통분한 뒤 빼는 쪽 분자 $x-1$을 어떻게 다루어야 부호 실수를 막을 수 있는지도 쓰시오.",
+      "bAnswer": "$\\frac{2(x+1)-(x-1)}{4}=\\frac{2x+2-x+1}{4}=\\frac{x+3}{4}$이다. 빼는 쪽 분자 전체를 괄호로 묶고, 괄호를 풀 때 그 분자의 모든 항의 부호를 바꾼다.",
+      "bGoal": "분수 꼴 일차식의 뺄셈에서 빼는 분자를 괄호로 묶어 부호를 바르게 처리한다.",
+      "bReason": "괄호로 묶기와 모든 항의 부호 바꾸기는 같은 처리의 두 표현이라 하나만 써도 맞음",
+      "cDecision": "rewrite",
+      "cAfter": "분모가 다른 분수 꼴 일차식의 뺄셈에서는 통분한 뒤 빼는 쪽 분자를 {괄호}로 묶어 계산한다. 괄호를 풀 때 빼는 쪽 분자의 모든 항의 {부호}가 바뀐다.",
+      "cAnswers": [
+        "괄호",
+        "부호"
+      ],
+      "cReason": "원문 '분자의 □를 지키며'는 식에 보이지 않는 괄호를 '지킨다'고 하여 중1이 뜻을 짐작하기 어렵다. '괄호로 묶어'라는 실제 행동으로 바꾸고 뺄셈임을 밝혔다.",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{x+3}{4}$",
+            "$\\frac{1}{4}x+\\frac{3}{4}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "빼는 쪽 분자 $x-1$ 전체를 괄호로 묶어 뺌",
+            "빼는 쪽 분자의 모든 항의 부호를 바꿈($-x+1$)"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-004",
+      "learningRole": "procedure",
+      "roleReason": "통분 후 빼는 분자에 괄호",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1218,
+      "part": "m1plus",
+      "sourceFingerprint": "6c863a63df288e63e592c3335fbde019022b617e8fc54d2477260be8cf66fe13",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1218
+      },
+      "directReview": null,
+      "cMarkedSentence": "분모가 다른 분수 꼴 일차식의 뺄셈에서는 통분한 뒤 빼는 쪽 분자를 {괄호}로 묶어 계산한다. 괄호를 풀 때 빼는 쪽 분자의 모든 항의 {부호}가 바뀐다.",
+      "cSlotAnswers": [
+        "괄호",
+        "부호"
+      ],
+      "cStudentSentence": "분모가 다른 분수 꼴 일차식의 뺄셈에서는 통분한 뒤 빼는 쪽 분자를 □로 묶어 계산한다. 괄호를 풀 때 빼는 쪽 분자의 모든 항의 □가 바뀐다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "괄호",
+          "equivalentAnswers": [
+            "괄호"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "부호",
+          "equivalentAnswers": [
+            "부호"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "괄호"
+        ],
+        [
+          "부호"
+        ]
+      ],
+      "proposalFingerprint": "63fc4497f608f0af0fffbaa2b178bb0b9bb76ad4e6b571518b1a9c35e3735158"
+    },
+    {
+      "id": "m1-03-03-xc18",
+      "bDecision": "rewrite",
+      "bPrompt": "$3x-\\{2x-(x+4)\\}$처럼 괄호 안에 또 괄호가 있는 식은 어느 괄호부터 푸는지 쓰고, 이 식을 간단히 하시오.",
+      "bAnswer": "안쪽 괄호부터 차례로 푼다. $3x-\\{2x-x-4\\}=3x-\\{x-4\\}=3x-x+4=2x+4$",
+      "bGoal": "괄호가 겹친 식을 안쪽 괄호부터 풀어 정리한다.",
+      "bReason": "제목 '괄호가 겹친 식'이 어떤 모양인지 예 없이는 알 수 없다. 소괄호와 중괄호가 겹친 원문 예시를 넣고 순서와 계산을 함께 묻게 했다.",
+      "cDecision": "keep",
+      "cReason": "푸는 순서(안쪽)와 뒤에 정리하는 대상(동류항)이 분명한 짧은 문장이다.",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "안쪽 괄호 $(x+4)$부터 푼다"
+          ]
+        },
+        {
+          "anyOf": [
+            "간단히 한 결과 $2x+4$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-004",
+      "learningRole": "procedure",
+      "roleReason": "안쪽 괄호부터 풀기",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1219,
+      "part": "m1plus",
+      "sourceFingerprint": "cd78570356e8892975a4c3d77e675f43eb284a5222f8111ddd8e8a0c711322b4",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1219
+      },
+      "directReview": null,
+      "cFrozenSentence": "괄호가 겹쳐 있으면 □의 괄호부터 차례로 풀고 □을 정리한다.",
+      "cFrozenDefinition": "괄호가 겹쳐 있으면 {안쪽}의 괄호부터 차례로 풀고 {동류항}을 정리한다.",
+      "cFrozenAnswers": [
+        "안쪽",
+        "동류항"
+      ],
+      "cMarkedSentence": "괄호가 겹쳐 있으면 {안쪽}의 괄호부터 차례로 풀고 {동류항}을 정리한다.",
+      "cSlotAnswers": [
+        "안쪽",
+        "동류항"
+      ],
+      "cStudentSentence": "괄호가 겹쳐 있으면 □의 괄호부터 차례로 풀고 □을 정리한다.",
+      "cAnswers": [
+        "안쪽",
+        "동류항"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "안쪽",
+          "equivalentAnswers": [
+            "안쪽",
+            "안"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "동류항",
+          "equivalentAnswers": [
+            "동류항"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "안쪽",
+          "accept": [
+            "안"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "안쪽",
+          "안"
+        ],
+        [
+          "동류항"
+        ]
+      ],
+      "proposalFingerprint": "b6836e58ae3274be538beec4ca403f8fcc4354d093b3a7f1432ba6d7ea2a1092"
+    },
+    {
+      "id": "m1-03-03-xc19",
+      "bDecision": "rewrite",
+      "bPrompt": "어떤 식에 $2x-3$을 더하면 $5x+1$이 된다. 어떤 식을 구하는 식을 세워 계산하고, 식을 세울 때 빼는 식을 어떻게 써야 하는지도 쓰시오.",
+      "bAnswer": "어떤 식은 $(5x+1)-(2x-3)=5x+1-2x+3=3x+4$이다. 빼는 식 $2x-3$은 괄호로 묶어 써야 한다.",
+      "bGoal": "더해서 된 결과에서 더한 식을 빼어 어떤 식을 구한다.",
+      "bReason": "제목 '어떤 식 구하기'는 조건이 없으면 답할 수 없다. 조건 문장을 질문에 넣고, 괄호 없이 빼서 부호를 틀리는 실수를 짚도록 했다.",
+      "cDecision": "keep",
+      "cReason": "$A$, $B$의 뜻이 문장 안에서 정해지고 답 $B-A$와 괄호가 분명하다.",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "어떤 식을 $(5x+1)-(2x-3)$으로 세운다"
+          ]
+        },
+        {
+          "anyOf": [
+            "계산 결과 $3x+4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "빼는 식 $2x-3$을 괄호로 묶어 쓴다"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-004",
+      "learningRole": "procedure",
+      "roleReason": "B-A로 어떤 식 구하기",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1220,
+      "part": "m1plus",
+      "sourceFingerprint": "1805c42bc82b7b60cfeb018acf69352821fb824048e302895b94b9bd04e1608e",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1220
+      },
+      "directReview": null,
+      "cFrozenSentence": "어떤 식에 $A$를 더해 $B$가 되면 어떤 식은 □이다. 빼는 식은 □로 묶어 계산한다.",
+      "cFrozenDefinition": "어떤 식에 $A$를 더해 $B$가 되면 어떤 식은 {$B-A$}이다. 빼는 식은 {괄호}로 묶어 계산한다.",
+      "cFrozenAnswers": [
+        "$B-A$",
+        "괄호"
+      ],
+      "cMarkedSentence": "어떤 식에 $A$를 더해 $B$가 되면 어떤 식은 {$B-A$}이다. 빼는 식은 {괄호}로 묶어 계산한다.",
+      "cSlotAnswers": [
+        "$B-A$",
+        "괄호"
+      ],
+      "cStudentSentence": "어떤 식에 $A$를 더해 $B$가 되면 어떤 식은 □이다. 빼는 식은 □로 묶어 계산한다.",
+      "cAnswers": [
+        "$B-A$",
+        "괄호"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$B-A$",
+          "equivalentAnswers": [
+            "$B-A$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "괄호",
+          "equivalentAnswers": [
+            "괄호"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$B-A$"
+        ],
+        [
+          "괄호"
+        ]
+      ],
+      "proposalFingerprint": "055c15b0d30360fa1df1ed8c49e6619eef03b17799f35e61a539463f07dca976"
+    },
+    {
+      "id": "m1-03-03-xc20",
+      "bDecision": "rewrite",
+      "bPrompt": "어떤 식에서 $x+2$를 빼야 할 것을 잘못하여 더했더니 $4x-1$이 되었다. ($1$) 처음의 어떤 식을 구하고, ($2$) 바르게 계산한 식을 구하시오. 각 단계에서 어떤 계산을 했는지 식으로 쓰시오.",
+      "bAnswer": "($1$) 잘못 더한 식을 다시 뺀다. $(4x-1)-(x+2)=3x-3$ ($2$) 처음 식에서 $x+2$를 뺀다. $(3x-3)-(x+2)=2x-5$",
+      "bGoal": "잘못 계산한 결과에서 처음 식을 구한 뒤 바른 계산을 한다.",
+      "bReason": "제목 '잘못 계산한 식 바로잡기'는 상황이 주어지지 않으면 뜻이 없다. 구체적인 상황을 주고 두 단계를 나누어 풀게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "어떤 식에서 $x+2$를 빼야 할 것을 잘못 더하여 $4x-1$이 되었다. 이때 어떤 식은 잘못 계산한 결과 $4x-1$에서 더한 식 $x+2$를 {빼면} 구할 수 있고, 그 어떤 식으로 원래 하려던 계산을 하면 바른 결과가 나온다.",
+      "cAnswers": [
+        "빼면"
+      ],
+      "cReason": "원문은 '한 식', '처음 식', '더한 식'처럼 가리키는 식이 없는 말만 이어져 중1이 상황을 그리기 어렵다. 구체적인 식을 넣어 각 말이 무엇인지 보이게 했다. 답은 그대로다.",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "($1$) 잘못 계산한 결과에서 더한 식을 뺀다: $(4x-1)-(x+2)=3x-3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "($2$) 처음 식에서 $x+2$를 뺀다: $(3x-3)-(x+2)=2x-5$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-004",
+      "learningRole": "procedure",
+      "roleReason": "잘못 더한 식을 되빼기",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1221,
+      "part": "m1plus",
+      "sourceFingerprint": "a02fce949c261391725c0d74517d06858a8fe6a28bbdeadd447a82c9404a259e",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1221
+      },
+      "directReview": null,
+      "cMarkedSentence": "어떤 식에서 $x+2$를 빼야 할 것을 잘못 더하여 $4x-1$이 되었다. 이때 어떤 식은 잘못 계산한 결과 $4x-1$에서 더한 식 $x+2$를 {빼면} 구할 수 있고, 그 어떤 식으로 원래 하려던 계산을 하면 바른 결과가 나온다.",
+      "cSlotAnswers": [
+        "빼면"
+      ],
+      "cStudentSentence": "어떤 식에서 $x+2$를 빼야 할 것을 잘못 더하여 $4x-1$이 되었다. 이때 어떤 식은 잘못 계산한 결과 $4x-1$에서 더한 식 $x+2$를 □ 구할 수 있고, 그 어떤 식으로 원래 하려던 계산을 하면 바른 결과가 나온다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "빼면",
+          "equivalentAnswers": [
+            "빼면",
+            "빼서"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "빼면",
+          "accept": [
+            "빼서"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "빼면",
+          "빼서"
+        ]
+      ],
+      "proposalFingerprint": "1c5dbf8d5b1ad8c60d2fbe50482386cc1ddf0ac65dc9f1c3a6fa0fb7fe7d2d89"
+    },
+    {
+      "id": "m1-03-03-xc21",
+      "bDecision": "rewrite",
+      "bPrompt": "$x=-2$일 때 $3(x+1)-2(x-4)$의 값을 구하려고 한다. 수를 바로 넣는 것보다 계산을 줄이려면 무엇을 먼저 해야 하는지 쓰고, 그 방법으로 값을 구하시오.",
+      "bAnswer": "먼저 식을 간단히 한다. $3x+3-2x+8=x+11$이고, 여기에 $x=-2$를 대입하면 $-2+11=9$이다.",
+      "bGoal": "식을 먼저 간단히 한 뒤 대입하여 식의 값을 구한다.",
+      "bReason": "제목 '정리한 뒤 대입하기'에는 식도 $x$의 값도 없다. 식과 값을 질문에 주고 먼저 할 일을 스스로 말하게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "식의 값을 구할 때는 먼저 식을 {간단히} 정리한 뒤 문자에 수를 {대입}하면 계산이 쉬워진다.",
+      "cAnswers": [
+        "간단히",
+        "대입"
+      ],
+      "cReason": "원문 둘째 답 '줄일 수 있다'는 '쉬워진다', '편하다' 등으로도 쓸 수 있는 임의의 서술어다. 용어가 하나로 정해지는 '대입'을 빈칸으로 바꾸었다.",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "먼저 식을 간단히 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "간단히 한 식 $x+11$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x=-2$를 대입한 값 $9$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-004",
+      "learningRole": "procedure",
+      "roleReason": "먼저 정리하고 대입",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1222,
+      "part": "m1plus",
+      "sourceFingerprint": "7a0b6f04653611cb76e2eabc55d9060596502ebc6267f44967da28bf0a4dccdd",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1222
+      },
+      "directReview": null,
+      "cMarkedSentence": "식의 값을 구할 때는 먼저 식을 {간단히} 정리한 뒤 문자에 수를 {대입}하면 계산이 쉬워진다.",
+      "cSlotAnswers": [
+        "간단히",
+        "대입"
+      ],
+      "cStudentSentence": "식의 값을 구할 때는 먼저 식을 □ 정리한 뒤 문자에 수를 □하면 계산이 쉬워진다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "간단히",
+          "equivalentAnswers": [
+            "간단히"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "대입",
+          "equivalentAnswers": [
+            "대입"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "간단히"
+        ],
+        [
+          "대입"
+        ]
+      ],
+      "proposalFingerprint": "f2ab8e731cd8eb2528b7892c879ad10206878c8cab3b73835834b535e9e5a0b3"
+    },
+    {
+      "id": "m1-03-03-xc22",
+      "bDecision": "rewrite",
+      "bPrompt": "$\\frac{1}{2}x-\\frac{2}{3}x$를 간단히 하시오. 분모가 다른 두 계수를 어떻게 처리해 계산했는지 과정을 쓰시오.",
+      "bAnswer": "계수를 통분하여 계산한다. $\\frac{3}{6}x-\\frac{4}{6}x=-\\frac{1}{6}x$",
+      "bGoal": "계수가 분수인 동류항을 계수를 통분하여 계산한다.",
+      "bReason": "제목 '계수가 분수인 동류항'은 대상만 말하고 할 일을 말하지 않는다. 분모가 다른 예를 주고 처리 방법을 과정으로 쓰게 했다.",
+      "cDecision": "keep",
+      "cReason": "빈칸 하나로 방법의 핵심어(통분)를 확인하는 짧고 분명한 문장이다.",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "계수를 통분한다: $\\frac{3}{6}x-\\frac{4}{6}x$"
+          ]
+        },
+        {
+          "anyOf": [
+            "결과 $-\\frac{1}{6}x$($-\\frac{x}{6}$도 인정)"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-004",
+      "learningRole": "procedure",
+      "roleReason": "분수 계수 통분해 계산",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1223,
+      "part": "m1plus",
+      "sourceFingerprint": "c7f911cfaa5384edd9bffe68d46de07044fa1e581e3253e881424c5a0490eaf4",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1223
+      },
+      "directReview": null,
+      "cFrozenSentence": "계수가 분수인 동류항은 계수를 □하여 더하거나 뺀다.",
+      "cFrozenDefinition": "계수가 분수인 동류항은 계수를 {통분}하여 더하거나 뺀다.",
+      "cFrozenAnswers": [
+        "통분"
+      ],
+      "cMarkedSentence": "계수가 분수인 동류항은 계수를 {통분}하여 더하거나 뺀다.",
+      "cSlotAnswers": [
+        "통분"
+      ],
+      "cStudentSentence": "계수가 분수인 동류항은 계수를 □하여 더하거나 뺀다.",
+      "cAnswers": [
+        "통분"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "통분",
+          "equivalentAnswers": [
+            "통분"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "통분"
+        ]
+      ],
+      "proposalFingerprint": "b8cc9ef05a1b68887cf998791d90ebf9c676ea49c41fcc5d9dc4bdd8b067b574"
+    },
+    {
+      "id": "m1-03-03-xc23",
+      "bDecision": "rewrite",
+      "bPrompt": "$2(a-b)-(3a+b)$를 간단히 하시오. 괄호를 푼 뒤 어떤 항끼리 모아 계산했는지와 결과를 어떤 순서로 썼는지 쓰시오.",
+      "bAnswer": "괄호를 풀면 $2a-2b-3a-b$이다. $a$가 있는 항끼리 $2a-3a=-a$, $b$가 있는 항끼리 $-2b-b=-3b$이고, 알파벳 순서로 $-a-3b$라 쓴다.",
+      "bGoal": "문자가 둘인 식에서 문자별로 동류항을 모아 정리한다.",
+      "bReason": "질문이 요구하지 않은 전개식 $2a-2b-3a-b$ 표기 강요를 삭제함",
+      "cDecision": "rewrite",
+      "cAfter": "문자가 둘인 일차식에서도, 곱해진 문자와 각 문자의 차수가 같은 항인 {동류항}끼리 모아 계산한다.",
+      "cAnswers": [
+        "동류항"
+      ],
+      "cReason": "같은 문자만 있으면 동류항이라는 잘못된 일반화를 없애고 알파벳 표기 순서 암기 대신 실제 계산의 기준을 확인한다.",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$a$의 항끼리, $b$의 항끼리 모아 계산함",
+            "같은 문자의 항(동류항)끼리 모아 계산함"
+          ]
+        },
+        {
+          "anyOf": [
+            "$-a-3b$"
+          ]
+        },
+        {
+          "anyOf": [
+            "알파벳 순서로 씀",
+            "$a$의 항을 먼저, $b$의 항을 나중에 씀"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-004",
+      "learningRole": "procedure",
+      "roleReason": "문자별로 동류항 모으기",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1224,
+      "part": "m1plus",
+      "sourceFingerprint": "f3e39f1de40df6c35c903efada154a5b82000c1a2fce962f06eaf9d828428d0c",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1224
+      },
+      "directReview": null,
+      "cMarkedSentence": "문자가 둘인 일차식에서도, 곱해진 문자와 각 문자의 차수가 같은 항인 {동류항}끼리 모아 계산한다.",
+      "cSlotAnswers": [
+        "동류항"
+      ],
+      "cStudentSentence": "문자가 둘인 일차식에서도, 곱해진 문자와 각 문자의 차수가 같은 항인 □끼리 모아 계산한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "동류항",
+          "equivalentAnswers": [
+            "동류항"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "동류항"
+        ]
+      ],
+      "proposalFingerprint": "19539fe8e76a2394bb1f620b9e553eb7546a549f0a35abd58ed99511553e35dd",
+      "coreAfter": "문자가 둘인 식도 곱해진 문자와 각 문자의 차수가 같은 {동류항}끼리 모아 계산한다. 일차식에서는 각 문자가 있는 항끼리, {상수항}은 상수항끼리 모아 계산한다.",
+      "coreReason": "문자가 둘이라는 조건만으로 같은 문자항을 모두 합치면 제곱항 등을 잘못 합칠 수 있으므로 문자별 차수 조건을 밝힌다."
+    },
+    {
+      "id": "m1-03-04-xc1",
+      "bDecision": "rewrite",
+      "bPrompt": "$3x+1$, $5-2=3$, $x+2=7$ 가운데 등식인 것을 모두 고르고, 등식인지 아닌지를 무엇으로 판단했는지 쓰시오.",
+      "bAnswer": "$5-2=3$과 $x+2=7$이 등식이다. 등호가 있는지로 판단한다. $3x+1$은 등호가 없으므로 등식이 아니다.",
+      "bGoal": "등호가 있는지로 등식과 등식이 아닌 식을 구별한다.",
+      "bReason": "m1-03-04-c1의 B가 정의를 묻는다. 이 문항은 수만 있는 등식과 문자가 있는 등식을 섞어 분류하게 해 판단 기준을 쓰도록 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "식에 {등호}가 있으면 등식이고, $3x+1$처럼 그 기호가 없으면 등식이 아니다.",
+      "cAnswers": [
+        "등호"
+      ],
+      "cReason": "원문은 첫 빈칸의 답 '등호'가 뒤의 '등호가 없으면'에 그대로 나와 베끼면 된다. 둘째 답 '등식이 아니다'도 긴 구다. 뒤의 등호를 '그 기호'로 바꾸고 빈칸을 하나로 줄였다.",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "등식은 $5-2=3$과 $x+2=7$($3x+1$은 등식이 아님)"
+          ]
+        },
+        {
+          "anyOf": [
+            "등호가 있는지로 판단한다"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-004",
+      "learningRole": "definition",
+      "roleReason": "등호 있으면 등식",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1225,
+      "part": "m1plus",
+      "sourceFingerprint": "9baacf4ea287acd9dd44098e2f8c92a534dff64bc2510419491b78cd81daf570",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1225
+      },
+      "directReview": null,
+      "cMarkedSentence": "식에 {등호}가 있으면 등식이고, $3x+1$처럼 그 기호가 없으면 등식이 아니다.",
+      "cSlotAnswers": [
+        "등호"
+      ],
+      "cStudentSentence": "식에 □가 있으면 등식이고, $3x+1$처럼 그 기호가 없으면 등식이 아니다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "등호",
+          "equivalentAnswers": [
+            "등호",
+            "$=$",
+            "="
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "등호",
+          "accept": [
+            "$=$",
+            "="
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "등호",
+          "$=$",
+          "="
+        ]
+      ],
+      "proposalFingerprint": "32826076caa273c034f19d66f87aa1ba15cdec14a98029c84d8eeb79ff58dc72"
+    },
+    {
+      "id": "m1-03-04-xc2",
+      "bDecision": "rewrite",
+      "bPrompt": "$1+1=3$은 계산이 맞지 않는 식이다. 이 식은 등식인가, 아닌가? 그렇게 판단한 이유를 쓰시오.",
+      "bAnswer": "등식이다. 참인지 거짓인지와 관계없이 등호를 써서 나타낸 식이면 등식이기 때문이다. $1+1=3$은 거짓인 등식이다.",
+      "bGoal": "거짓인 식도 등호가 있으면 등식임을 판단한다.",
+      "bReason": "제목 '거짓인 등식'이 이미 답을 말하고 있다. 답을 말하지 않고 '틀린 식은 등식이 아니다'라는 오해를 스스로 점검하게 했다.",
+      "cDecision": "keep",
+      "cReason": "예가 문장 안에 있고 빈칸 하나가 판단 기준(등호)이라 분명하다.",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "등식이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "참인지 거짓인지와 관계없이 등호를 써서 나타낸 식이면 등식이기 때문이다"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-004",
+      "learningRole": "reason",
+      "roleReason": "거짓이어도 등호면 등식",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1226,
+      "part": "m1plus",
+      "sourceFingerprint": "1fa1544792b83b60363d66fcffdd4bc0ad7e11f3c55414fff39d69f80b01c816",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1226
+      },
+      "directReview": null,
+      "cFrozenSentence": "$2+3=6$처럼 거짓인 식도 □로 이어져 있으면 등식이다.",
+      "cFrozenDefinition": "$2+3=6$처럼 거짓인 식도 {등호}로 이어져 있으면 등식이다.",
+      "cFrozenAnswers": [
+        "등호"
+      ],
+      "cMarkedSentence": "$2+3=6$처럼 거짓인 식도 {등호}로 이어져 있으면 등식이다.",
+      "cSlotAnswers": [
+        "등호"
+      ],
+      "cStudentSentence": "$2+3=6$처럼 거짓인 식도 □로 이어져 있으면 등식이다.",
+      "cAnswers": [
+        "등호"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "등호",
+          "equivalentAnswers": [
+            "등호",
+            "$=$",
+            "="
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "등호",
+          "accept": [
+            "$=$",
+            "="
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "등호",
+          "$=$",
+          "="
+        ]
+      ],
+      "proposalFingerprint": "05e490edc0291479ea23ad791d864dacf48ac93ca3215bb2b9dfef489f4b0990"
+    },
+    {
+      "id": "m1-03-04-xc3",
+      "bDecision": "rewrite",
+      "bPrompt": "'$x$의 $2$배는 $10$이다'를 등식으로 나타내시오. 문장에서 서로 같은 두 양이 무엇인지도 쓰시오.",
+      "bAnswer": "$2x=10$이다. 서로 같은 두 양은 '$x$의 $2$배'인 $2x$와 $10$이고, 이 둘을 등호의 양쪽에 쓴다.",
+      "bGoal": "같다는 뜻의 문장을 등호를 써서 등식으로 나타낸다.",
+      "bReason": "문장의 '$x$의 $2$배', '$10$'을 베끼기만 해도 통과하던 요소를 $2x$로 나타낸 관계로 바꿈",
+      "cDecision": "keep",
+      "cReason": "두 양을 어디에 쓰는지(등호)와 그 결과물(등식)을 짧게 확인하며, 중1이 읽을 수 있는 문장이다.",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2x=10$",
+            "$x\\times2=10$",
+            "$10=2x$"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은 두 양은 $2x$와 $10$임",
+            "$x$의 $2$배를 $2x$로 나타내어 $10$과 같다고 놓음"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-004",
+      "learningRole": "application",
+      "roleReason": "같은 두 양을 등호로 잇기",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1227,
+      "part": "m1plus",
+      "sourceFingerprint": "e38a4bc97f294cdaa54228007cee1c70eba83b9f11a5e9f446f6fc7de2d3b5c2",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1227
+      },
+      "directReview": null,
+      "cFrozenSentence": "'~은 ~와 같다'는 문장은 같은 두 양을 □의 양쪽에 써서 □으로 나타낸다.",
+      "cFrozenDefinition": "'~은 ~와 같다'는 문장은 같은 두 양을 {등호}의 양쪽에 써서 {등식}으로 나타낸다.",
+      "cFrozenAnswers": [
+        "등호",
+        "등식"
+      ],
+      "cMarkedSentence": "'~은 ~와 같다'는 문장은 같은 두 양을 {등호}의 양쪽에 써서 {등식}으로 나타낸다.",
+      "cSlotAnswers": [
+        "등호",
+        "등식"
+      ],
+      "cStudentSentence": "'~은 ~와 같다'는 문장은 같은 두 양을 □의 양쪽에 써서 □으로 나타낸다.",
+      "cAnswers": [
+        "등호",
+        "등식"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "등호",
+          "equivalentAnswers": [
+            "등호"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "등식",
+          "equivalentAnswers": [
+            "등식"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "등호"
+        ],
+        [
+          "등식"
+        ]
+      ],
+      "proposalFingerprint": "016afa2b6bafc65b595e4bf8236abcd0f71f3644eb77946a01f1bd1cc7485b26"
+    },
+    {
+      "id": "m1-03-04-xc4",
+      "bDecision": "rewrite",
+      "bPrompt": "$x=-1$이 방정식 $4x+3=-1$의 해인지 확인하는 과정을 쓰시오.",
+      "bAnswer": "$x=-1$을 대입하면 좌변은 $4\\times(-1)+3=-1$이고 우변은 $-1$이다. 좌변과 우변이 같아 등식이 참이므로 $x=-1$은 해이다.",
+      "bGoal": "값을 대입하여 좌변과 우변이 같은지 보고 해인지 판단한다.",
+      "bReason": "m1-03-04-c4의 B가 해의 뜻을 묻는다. 이 문항은 음수를 대입해 좌변과 우변을 각각 계산하는 확인 절차를 쓰게 했다.",
+      "cDecision": "keep",
+      "cReason": "방법의 두 단계(대입, 같은지 확인)가 빈칸으로 분명히 드러나는 짧은 문장이다.",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x=-1$을 대입한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "좌변 $4\\times(-1)+3=-1$이 우변 $-1$과 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "따라서 해이다"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-004",
+      "learningRole": "procedure",
+      "roleReason": "대입해 양변 같은지 확인",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1228,
+      "part": "m1plus",
+      "sourceFingerprint": "02c8d34acb7b8e7b21c1921945a4485315d94d1a0fb1c376d86dc1a640bb3c48",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1228
+      },
+      "directReview": null,
+      "cFrozenSentence": "어떤 값이 방정식의 해인지는 그 값을 □해 좌변과 우변이 □ 본다.",
+      "cFrozenDefinition": "어떤 값이 방정식의 해인지는 그 값을 {대입}해 좌변과 우변이 {같은지} 본다.",
+      "cFrozenAnswers": [
+        "대입",
+        "같은지"
+      ],
+      "cMarkedSentence": "어떤 값이 방정식의 해인지는 그 값을 {대입}해 좌변과 우변이 {같은지} 본다.",
+      "cSlotAnswers": [
+        "대입",
+        "같은지"
+      ],
+      "cStudentSentence": "어떤 값이 방정식의 해인지는 그 값을 □해 좌변과 우변이 □ 본다.",
+      "cAnswers": [
+        "대입",
+        "같은지"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "대입",
+          "equivalentAnswers": [
+            "대입"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "같은지",
+          "equivalentAnswers": [
+            "같은지"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "대입"
+        ],
+        [
+          "같은지"
+        ]
+      ],
+      "proposalFingerprint": "c4b5a7a2effc17ab991a3138acee1179c7014c359c65572a96d33b6f0b00d3df"
+    },
+    {
+      "id": "m1-03-04-xc5",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "모르는 수를 문자로 놓은 것이 미지수임을 말한다.",
+      "bReason": "m1-03-04-c3의 B가 미지수의 뜻을 묻고, m1-03-04-xc3과 m1-03-04-xc9의 B가 문장을 식으로 옮기는 일을 묻는다. 이 문항의 B는 그 둘을 합친 것이 되어 B에서는 뺀다.",
+      "cDecision": "rewrite",
+      "cAfter": "방정식에서 아직 모르는 수를 나타내는 문자를 {미지수}라 하고, 흔히 문자 $x$를 쓴다.",
+      "cAnswers": [
+        "미지수"
+      ],
+      "cReason": "원문 둘째 빈칸 '흔히 □를 쓴다'는 '문자', '알파벳' 등으로도 답할 수 있어 묻는 범위가 모호하다. $x$는 보이게 두고 용어만 빈칸으로 했다.",
+      "exclusionReason": "B 제외: 미지수의 뜻은 m1-03-04-c3의 B와, 문장을 식으로 옮기기는 m1-03-04-xc3·m1-03-04-xc9의 B와 겹치는 중복 질문이다. C는 고쳐서 유지한다.",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": null,
+      "scopeEvidence": "scope/scope-004",
+      "learningRole": "naming",
+      "roleReason": "모르는 수의 문자는 미지수",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1229,
+      "part": "m1plus",
+      "sourceFingerprint": "99b358823fe7a0f31dce1d973136d63cba63e8b0820e0ffcb7d5c24007fcd965",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1229
+      },
+      "directReview": null,
+      "cMarkedSentence": "방정식에서 아직 모르는 수를 나타내는 문자를 {미지수}라 하고, 흔히 문자 $x$를 쓴다.",
+      "cSlotAnswers": [
+        "미지수"
+      ],
+      "cStudentSentence": "방정식에서 아직 모르는 수를 나타내는 문자를 □라 하고, 흔히 문자 $x$를 쓴다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "미지수",
+          "equivalentAnswers": [
+            "미지수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "미지수"
+        ]
+      ],
+      "proposalFingerprint": "fde028558efe51202bfcaa2812a61101b8f53f40bf1db1befd725be9f16964ab"
+    },
+    {
+      "id": "m1-03-04-xc6",
+      "bDecision": "rewrite",
+      "bPrompt": "등식 $7=x-2$에서 좌변과 우변을 각각 쓰고, 그렇게 정한 기준을 쓰시오.",
+      "bAnswer": "좌변은 $7$, 우변은 $x-2$이다. 등호를 기준으로 왼쪽이 좌변, 오른쪽이 우변이다. 문자가 있는지와는 관계가 없다.",
+      "bGoal": "문자가 어느 쪽에 있든 등호를 기준으로 좌변과 우변을 정한다.",
+      "bReason": "m1-03-04-c2의 B는 문자가 왼쪽에 있는 보통의 꼴이다. 이 문항은 수만 왼쪽에 있는 등식으로 '문자가 있는 쪽이 좌변'이라는 오해를 점검한다.",
+      "cDecision": "rewrite",
+      "cAfter": "$7=x-2$에서 양쪽의 식은 {등호}를 기준으로 나눈다. 수만 있어도 왼쪽에 있는 $7$이 {좌변}이다.",
+      "cAnswers": [
+        "등호",
+        "좌변"
+      ],
+      "cReason": "문장 앞의 '좌변과 우변'에 둘째 빈칸의 답 '좌변'이 그대로 보임",
+      "studentLabel": "등호를 기준으로 좌변과 우변 나누기",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "좌변은 $7$, 우변은 $x-2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "기준: 등호의 왼쪽이 좌변, 오른쪽이 우변"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-004",
+      "learningRole": "definition",
+      "roleReason": "등호 기준으로 좌변·우변",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1230,
+      "part": "m1plus",
+      "sourceFingerprint": "aaf4c7e52c0941c4a43c23a60a0e3593a2f9f18c31b8ef812914eaafc1f2c3ce",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1230
+      },
+      "directReview": null,
+      "cMarkedSentence": "$7=x-2$에서 양쪽의 식은 {등호}를 기준으로 나눈다. 수만 있어도 왼쪽에 있는 $7$이 {좌변}이다.",
+      "cSlotAnswers": [
+        "등호",
+        "좌변"
+      ],
+      "cStudentSentence": "$7=x-2$에서 양쪽의 식은 □를 기준으로 나눈다. 수만 있어도 왼쪽에 있는 $7$이 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "등호",
+          "equivalentAnswers": [
+            "등호"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "좌변",
+          "equivalentAnswers": [
+            "좌변"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "등호"
+        ],
+        [
+          "좌변"
+        ]
+      ],
+      "proposalFingerprint": "9ca8c955592652df4528ff6f9c0cc26463dd4f92a0772fd872a3e293f499b517"
+    },
+    {
+      "id": "m1-03-04-xc7",
+      "bDecision": "rewrite",
+      "bPrompt": "두 등식 ㉠ $3(x+1)=3x+3$, ㉡ $3x+1=7$이 각각 방정식인지 항등식인지 구별하고 이유를 쓰시오.",
+      "bAnswer": "㉠은 좌변을 정리하면 $3x+3$으로 우변과 같은 식이 되어 $x$에 어떤 값을 넣어도 참이므로 항등식이다. ㉡은 $x=2$이면 참이고 $x=1$이면 $4=7$로 거짓이어서 $x$의 값에 따라 참도 되고 거짓도 되므로 방정식이다.",
+      "bGoal": "양변을 정리하거나 값을 넣어 보아 방정식과 항등식을 구별한다.",
+      "bReason": "제목 '방정식과 항등식 가르기'는 가를 대상이 없다. 원문 예시(항등식)에 방정식 하나를 더해 두 경우의 판단 근거를 나란히 쓰게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "등식의 양변을 정리했을 때 좌변과 우변이 같은 식이 되면 {항등식}이고, $x$의 값에 따라 참도 되고 거짓도 되면 {방정식}이다.",
+      "cAnswers": [
+        "항등식",
+        "방정식"
+      ],
+      "cReason": "원문 첫 답 '같은 식'은 학생이 떠올리기 어려운 임의의 구이고, 한쪽은 조건을, 다른 쪽은 결론을 가려 묻는 것이 엇갈린다. 두 조건을 모두 보이고 두 용어를 고르게 했다.",
+      "studentLabel": "방정식과 항등식 구별하기",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "㉠은 항등식: 좌변을 정리하면 $3x+3$으로 우변과 같아 어떤 값을 넣어도 참"
+          ]
+        },
+        {
+          "anyOf": [
+            "㉡은 방정식: $x$의 값에 따라 참($x=2$)도 되고 거짓(예: $x=1$)도 된다(거짓이 되는 다른 값을 들어도 인정)"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-004",
+      "learningRole": "procedure",
+      "roleReason": "정리해 같은 식이면 항등식",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1231,
+      "part": "m1plus",
+      "sourceFingerprint": "71f38c0ace0248007e001285e1e3c95f7a259bb3eaefdd5f352da2a50f829be5",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1231
+      },
+      "directReview": null,
+      "cMarkedSentence": "등식의 양변을 정리했을 때 좌변과 우변이 같은 식이 되면 {항등식}이고, $x$의 값에 따라 참도 되고 거짓도 되면 {방정식}이다.",
+      "cSlotAnswers": [
+        "항등식",
+        "방정식"
+      ],
+      "cStudentSentence": "등식의 양변을 정리했을 때 좌변과 우변이 같은 식이 되면 □이고, $x$의 값에 따라 참도 되고 거짓도 되면 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "항등식",
+          "equivalentAnswers": [
+            "항등식"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "방정식",
+          "equivalentAnswers": [
+            "방정식"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "항등식"
+        ],
+        [
+          "방정식"
+        ]
+      ],
+      "proposalFingerprint": "deb5b078737a1b2ca373d2ebf6e4b269aaca0add25219defb82de61e408873f1"
+    },
+    {
+      "id": "m1-03-04-xc8",
+      "bDecision": "rewrite",
+      "bPrompt": "$x$가 $0$, $1$, $2$ 중 하나일 때 방정식 $3x-2=x+2$의 해를 구하시오. 세 수를 각각 어떻게 확인했는지 과정을 쓰시오.",
+      "bAnswer": "$x=0$이면 좌변 $-2$, 우변 $2$로 거짓이다. $x=1$이면 좌변 $1$, 우변 $3$으로 거짓이다. $x=2$이면 좌변 $4$, 우변 $4$로 참이다. 따라서 해는 $x=2$이다.",
+      "bGoal": "주어진 수를 하나씩 대입해 참이 되는 값을 해로 찾는다.",
+      "bReason": "제목 '범위 안에서 해 찾기'의 '범위'가 무엇인지 알 수 없다. $x$가 될 수 있는 수와 방정식을 모두 주고 확인 과정을 쓰게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "$x$가 될 수 있는 수가 $0$, $1$, $2$처럼 몇 개로 정해져 있으면, 그 수를 하나씩 방정식에 {대입}하여 등식이 {참}이 되는 것을 찾는다.",
+      "cAnswers": [
+        "대입",
+        "참"
+      ],
+      "cReason": "원문의 '정해진 범위'는 중1에게 뜻이 흐리고, 첫 답 '하나씩'은 '차례로', '모두' 등으로도 쓸 수 있는 임의의 부사다. 범위를 예로 보이고 용어 '대입'을 빈칸으로 했다.",
+      "studentLabel": "주어진 수 중에서 해 찾기",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x=0$: 좌변 $-2$, 우변 $2$로 거짓"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x=1$: 좌변 $1$, 우변 $3$으로 거짓"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x=2$: 좌변 $4$, 우변 $4$로 참"
+          ]
+        },
+        {
+          "anyOf": [
+            "해는 $x=2$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-004",
+      "learningRole": "procedure",
+      "roleReason": "후보 수를 하나씩 대입",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1232,
+      "part": "m1plus",
+      "sourceFingerprint": "333c61f7b73396131667c43bd249273ed8d28f99c063a0facc461a5c12d4eda2",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1232
+      },
+      "directReview": null,
+      "cMarkedSentence": "$x$가 될 수 있는 수가 $0$, $1$, $2$처럼 몇 개로 정해져 있으면, 그 수를 하나씩 방정식에 {대입}하여 등식이 {참}이 되는 것을 찾는다.",
+      "cSlotAnswers": [
+        "대입",
+        "참"
+      ],
+      "cStudentSentence": "$x$가 될 수 있는 수가 $0$, $1$, $2$처럼 몇 개로 정해져 있으면, 그 수를 하나씩 방정식에 □하여 등식이 □이 되는 것을 찾는다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "대입",
+          "equivalentAnswers": [
+            "대입"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "참",
+          "equivalentAnswers": [
+            "참"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "대입"
+        ],
+        [
+          "참"
+        ]
+      ],
+      "proposalFingerprint": "36e6c42adc98075a825a22bde7cb150a19572ffa577d9c4154b2dde5d4806424"
+    },
+    {
+      "id": "m1-03-04-xc9",
+      "bDecision": "rewrite",
+      "bPrompt": "'한 개에 $x$원인 사탕 $4$개의 값이 $2000$원이다'를 방정식으로 나타내시오. 문장에서 서로 같다고 한 두 양이 무엇인지도 쓰시오.",
+      "bAnswer": "사탕 $4$개의 값 $4x$원과 $2000$원이 서로 같으므로 $4x=2000$이다. 모르는 양인 사탕 한 개의 값 $x$원이 미지수이다.",
+      "bGoal": "모르는 양을 미지수로 두고 같은 두 양을 등호로 이어 방정식을 세운다.",
+      "bReason": "m1-03-04-xc3의 B는 수에 대한 문장이다. 이 문항은 값과 개수가 있는 생활 문장에서 같은 두 양을 스스로 찾게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "문장을 방정식으로 나타낼 때에는 모르는 양을 {미지수}로 놓고, 문장에서 서로 같다고 한 두 양을 찾아 {등호}로 잇는다.",
+      "cAnswers": [
+        "미지수",
+        "등호"
+      ],
+      "cReason": "원문은 무엇을 하는 방법인지가 가려진 제목에만 있어 첫머리부터 상황을 알 수 없다. '문장을 방정식으로 나타낼 때에는'을 넣었다. 답은 그대로다.",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "방정식 $4x=2000$(같은 뜻의 식 인정)"
+          ]
+        },
+        {
+          "anyOf": [
+            "서로 같은 두 양: 사탕 $4$개의 값 $4x$원과 $2000$원"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-004",
+      "learningRole": "application",
+      "roleReason": "미지수 놓고 등호로 잇기",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1233,
+      "part": "m1plus",
+      "sourceFingerprint": "2d1d2a5bf5985987cbaa24f7f777e0272410fb1f63c84be31c5f0ee4d1c59593",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1233
+      },
+      "directReview": null,
+      "cMarkedSentence": "문장을 방정식으로 나타낼 때에는 모르는 양을 {미지수}로 놓고, 문장에서 서로 같다고 한 두 양을 찾아 {등호}로 잇는다.",
+      "cSlotAnswers": [
+        "미지수",
+        "등호"
+      ],
+      "cStudentSentence": "문장을 방정식으로 나타낼 때에는 모르는 양을 □로 놓고, 문장에서 서로 같다고 한 두 양을 찾아 □로 잇는다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "미지수",
+          "equivalentAnswers": [
+            "미지수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "등호",
+          "equivalentAnswers": [
+            "등호"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "미지수"
+        ],
+        [
+          "등호"
+        ]
+      ],
+      "proposalFingerprint": "0a136f32cda152c0e25cfa9bfe951c62ccbc9c9b4c46500882283f4ed3aee59e"
+    },
+    {
+      "id": "m1-03-04-xc10",
+      "bDecision": "rewrite",
+      "bPrompt": "$2x-(x-1)=x+1$이 항등식인지 알아보시오. 좌변을 정리한 뒤 양변의 무엇과 무엇을 비교했는지 쓰시오.",
+      "bAnswer": "좌변을 정리하면 $2x-x+1=x+1$이다. 양변의 $x$의 계수가 $1$로 같고 상수항도 $1$로 같으므로 항등식이다.",
+      "bGoal": "양변을 정리해 $x$의 계수와 상수항을 비교하여 항등식인지 판단한다.",
+      "bReason": "m1-03-04-xc7의 B가 방정식과의 구별을 묻는다. 이 문항은 괄호를 풀어 정리한 뒤 계수와 상수항을 비교하는 절차에 초점을 두었다.",
+      "cDecision": "rewrite",
+      "cAfter": "등식의 양변을 각각 $x$에 대한 일차식으로 정리했을 때 $x$의 계수와 {상수항}이 모두 같으면 그 등식은 항등식이다.",
+      "cAnswers": [
+        "상수항"
+      ],
+      "cReason": "일차식 조건 없이 계수와 상수항 두 개만 비교하면 이차 이상 항이 달라도 항등식으로 오판하므로 원문의 조건을 복원한다.",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "좌변을 정리하면 $x+1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "양변의 $x$의 계수끼리, 상수항끼리 비교하면 각각 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "항등식이다"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-004",
+      "learningRole": "procedure",
+      "roleReason": "계수와 상수항 각각 비교",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1234,
+      "part": "m1plus",
+      "sourceFingerprint": "94b073ea336fc06252ebc15acd70addf351cd384599eab454337f7622c882f8c",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1234
+      },
+      "directReview": null,
+      "cMarkedSentence": "등식의 양변을 각각 $x$에 대한 일차식으로 정리했을 때 $x$의 계수와 {상수항}이 모두 같으면 그 등식은 항등식이다.",
+      "cSlotAnswers": [
+        "상수항"
+      ],
+      "cStudentSentence": "등식의 양변을 각각 $x$에 대한 일차식으로 정리했을 때 $x$의 계수와 □이 모두 같으면 그 등식은 항등식이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "상수항",
+          "equivalentAnswers": [
+            "상수항"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "상수항"
+        ]
+      ],
+      "proposalFingerprint": "ef9b24a42d655be21e9670348ac01a087cc9293b037cf47c9be5c1cf80f4adb8"
+    },
+    {
+      "id": "m1-03-04-xc11",
+      "bDecision": "rewrite",
+      "bPrompt": "등식 $2x=2x+5$의 $x$에 $0$, $1$, $-1$을 넣어 참인지 거짓인지 확인하시오. 이 등식의 해가 어떻게 되는지 이유와 함께 쓰시오.",
+      "bAnswer": "$x=0$이면 $0=5$, $x=1$이면 $2=7$, $x=-1$이면 $-2=3$으로 모두 거짓이다. 우변이 좌변보다 항상 $5$만큼 커서 어떤 값을 넣어도 거짓이므로 해가 없다.",
+      "bGoal": "어떤 값을 넣어도 거짓인 등식은 해가 없음을 확인한다.",
+      "bReason": "제목 '해가 없는 등식'이 답을 미리 말한다. 답을 말하지 않고 몇 개의 값을 직접 넣어 본 뒤 결론과 이유를 쓰게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "$x+1=x+2$처럼 $x$에 어떤 값을 넣어도 {거짓}인 등식은 해가 없다.",
+      "cAnswers": [
+        "거짓"
+      ],
+      "cReason": "원문은 조건(거짓)과 결론(없다)을 한 문장에서 모두 가렸다. 결론은 보이게 두고 조건만 빈칸으로 했으며, 무엇에 값을 넣는지 '$x$에'를 밝혔다.",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x=0$이면 $0=5$, $x=1$이면 $2=7$, $x=-1$이면 $-2=3$으로 모두 거짓"
+          ]
+        },
+        {
+          "anyOf": [
+            "해가 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "이유: 어떤 값을 넣어도 우변이 좌변보다 $5$만큼 커서 항상 거짓(같은 뜻의 설명 인정)"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-004",
+      "learningRole": "reason",
+      "roleReason": "항상 거짓이면 해 없음",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1235,
+      "part": "m1plus",
+      "sourceFingerprint": "ca98a8fe9bbb91c4bb3bbdea28f390e34d38bd879832c8f1a1f76964f9fcdd86",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1235
+      },
+      "directReview": null,
+      "cMarkedSentence": "$x+1=x+2$처럼 $x$에 어떤 값을 넣어도 {거짓}인 등식은 해가 없다.",
+      "cSlotAnswers": [
+        "거짓"
+      ],
+      "cStudentSentence": "$x+1=x+2$처럼 $x$에 어떤 값을 넣어도 □인 등식은 해가 없다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "거짓",
+          "equivalentAnswers": [
+            "거짓"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "거짓"
+        ]
+      ],
+      "proposalFingerprint": "4d16df2b082b966ce660dc9293dc8ced895d1ff7ab644a90815844d132a78bc9"
+    },
+    {
+      "id": "m1-03-04-xc12",
+      "bDecision": "rewrite",
+      "bPrompt": "등식 $10=x+4$에서 우변을 쓰시오. 또 등호 $=$가 '왼쪽을 계산한 답을 오른쪽에 쓴다'는 뜻이 아니라면 어떤 뜻인지 쓰시오.",
+      "bAnswer": "우변은 $x+4$이다. 등호는 양쪽이 서로 같다는 뜻이므로 우변에 식이 와도 된다.",
+      "bGoal": "등호가 양쪽이 같음을 뜻하는 기호임을 말한다.",
+      "bReason": "제목 '등호의 뜻'만으로는 초등 때의 '답을 쓰는 기호'라는 생각을 건드리지 못한다. 식이 오른쪽에 있는 등식을 주고 그 생각과 대비해 뜻을 쓰게 했다.",
+      "cDecision": "keep",
+      "cReason": "오개념과 바른 뜻을 대비한 문장이 쉬운 말로 되어 있고, 예 $5=2+3$이 둘째 빈칸을 뒷받침한다.",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "우변은 $x+4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "등호는 양쪽(좌변과 우변)이 서로 같다는 뜻이다"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-004",
+      "learningRole": "definition",
+      "roleReason": "등호는 양쪽이 같다는 뜻",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1236,
+      "part": "m1plus",
+      "sourceFingerprint": "9be8f728cbcc37c99ef7114eb241e2cd986d9b5e47b39cafc152338ecb53ff0f",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1236
+      },
+      "directReview": null,
+      "cFrozenSentence": "등호는 '계산하면 이렇게 된다'가 아니라 양쪽이 □는 뜻이다. 그래서 $5=2+3$처럼 □에 식이 와도 된다.",
+      "cFrozenDefinition": "등호는 '계산하면 이렇게 된다'가 아니라 양쪽이 {같다}는 뜻이다. 그래서 $5=2+3$처럼 {우변}에 식이 와도 된다.",
+      "cFrozenAnswers": [
+        "같다",
+        "우변"
+      ],
+      "cMarkedSentence": "등호는 '계산하면 이렇게 된다'가 아니라 양쪽이 {같다}는 뜻이다. 그래서 $5=2+3$처럼 {우변}에 식이 와도 된다.",
+      "cSlotAnswers": [
+        "같다",
+        "우변"
+      ],
+      "cStudentSentence": "등호는 '계산하면 이렇게 된다'가 아니라 양쪽이 □는 뜻이다. 그래서 $5=2+3$처럼 □에 식이 와도 된다.",
+      "cAnswers": [
+        "같다",
+        "우변"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "같다",
+          "equivalentAnswers": [
+            "같다",
+            "서로 같다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "우변",
+          "equivalentAnswers": [
+            "우변"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "같다",
+          "accept": [
+            "서로 같다"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "같다",
+          "서로 같다"
+        ],
+        [
+          "우변"
+        ]
+      ],
+      "proposalFingerprint": "63a2dd06de9a62f012edef763ab5e400e2b36654fd610703e8488a3bbe2dbe37"
+    },
+    {
+      "id": "m1-03-04-xc13",
+      "bDecision": "rewrite",
+      "bPrompt": "$x=2$일 때 식 $3x+1$의 값을 구하고, 방정식 $3x+1=7$의 해를 쓰시오. '식의 값'과 '방정식의 해'가 각각 무엇을 가리키는 말인지 차이를 쓰시오.",
+      "bAnswer": "$x=2$일 때 식의 값은 $3\\times2+1=7$이고, 방정식 $3x+1=7$의 해는 $x=2$이다. 식의 값은 문자에 수를 넣어 계산한 결과이고, 방정식의 해는 등식을 참이 되게 하는 문자의 값이다.",
+      "bGoal": "식의 값과 방정식의 해를 구별한다.",
+      "bReason": "두 개념의 관계를 묻는 제목인데 원문 예시는 식의 값 계산뿐이다. 같은 식으로 만든 방정식을 더해 $7$과 $x=2$가 서로 다른 것임을 대비하게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "{식의 값}은 문자에 수를 대입하여 계산한 결과이고, 방정식의 {해}는 등식을 참이 되게 하는 문자의 값이다.",
+      "cAnswers": [
+        "식의 값",
+        "해"
+      ],
+      "cReason": "원문 첫 답 '계산 결과'는 '값', '결과' 등 여러 말이 가능한 임의의 구다. 두 설명은 보이게 두고 구별해야 할 두 용어를 빈칸으로 바꾸었다.",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x=2$일 때 식의 값은 $7$"
+          ]
+        },
+        {
+          "anyOf": [
+            "방정식의 해는 $x=2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "식의 값: 문자에 수를 넣어 계산한 결과"
+          ]
+        },
+        {
+          "anyOf": [
+            "방정식의 해: 등식을 참이 되게 하는 문자의 값"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-004",
+      "learningRole": "definition",
+      "roleReason": "식의 값과 해의 구별",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1237,
+      "part": "m1plus",
+      "sourceFingerprint": "8e7560839d5a1aceac88799741ce7c6805886a70376a9445a1ae705afcc285b7",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1237
+      },
+      "directReview": null,
+      "cMarkedSentence": "{식의 값}은 문자에 수를 대입하여 계산한 결과이고, 방정식의 {해}는 등식을 참이 되게 하는 문자의 값이다.",
+      "cSlotAnswers": [
+        "식의 값",
+        "해"
+      ],
+      "cStudentSentence": "□은 문자에 수를 대입하여 계산한 결과이고, 방정식의 □는 등식을 참이 되게 하는 문자의 값이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "식의 값",
+          "equivalentAnswers": [
+            "식의 값"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "해",
+          "equivalentAnswers": [
+            "해",
+            "근"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "해",
+          "accept": [
+            "근"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "식의 값"
+        ],
+        [
+          "해",
+          "근"
+        ]
+      ],
+      "proposalFingerprint": "9780dbd8f0c560edfd047a9b54ada46ec9e1fcfd6ed78a49918a19e99eb660f2"
+    },
+    {
+      "id": "m1-03-04-xc14",
+      "bDecision": "rewrite",
+      "bPrompt": "등식 $0\\times x=0$의 $x$에 $1$, $-2$, $5$를 넣어 보시오. 이 등식의 해가 몇 개인지와 이런 등식을 무엇이라 하는지 쓰시오.",
+      "bAnswer": "어느 수를 넣어도 $0=0$으로 참이다. 모든 수가 해이므로 해가 무수히 많고, 이런 등식은 항등식이다.",
+      "bGoal": "어떤 수를 넣어도 참인 등식은 해가 무수히 많은 항등식임을 말한다.",
+      "bReason": "제목 '해가 무수히 많은 등식'이 답을 미리 말한다. 답을 말하지 않고 값을 넣어 본 뒤 해의 개수와 이름을 쓰게 했다.",
+      "cDecision": "keep",
+      "cReason": "예가 문장 안에 있고 '무수히 많다'는 교과서에서 쓰는 정해진 표현이다. 둘째 빈칸은 용어 하나로 정해진다.",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "세 수 모두 넣으면 $0=0$으로 참"
+          ]
+        },
+        {
+          "anyOf": [
+            "해가 무수히 많다(모든 수가 해)"
+          ]
+        },
+        {
+          "anyOf": [
+            "이런 등식은 항등식이다"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-004",
+      "learningRole": "reason",
+      "roleReason": "항상 참이면 해 무수히 많음",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1238,
+      "part": "m1plus",
+      "sourceFingerprint": "35c53953abfc5898fc0540a124b7b53d1d440b351cc409866c247378ec44dac3",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1238
+      },
+      "directReview": null,
+      "cFrozenSentence": "$0\\times x=0$처럼 어떤 수를 넣어도 참인 등식은 해가 □고 하며, 이런 등식은 □이다.",
+      "cFrozenDefinition": "$0\\times x=0$처럼 어떤 수를 넣어도 참인 등식은 해가 {무수히 많다}고 하며, 이런 등식은 {항등식}이다.",
+      "cFrozenAnswers": [
+        "무수히 많다",
+        "항등식"
+      ],
+      "cMarkedSentence": "$0\\times x=0$처럼 어떤 수를 넣어도 참인 등식은 해가 {무수히 많다}고 하며, 이런 등식은 {항등식}이다.",
+      "cSlotAnswers": [
+        "무수히 많다",
+        "항등식"
+      ],
+      "cStudentSentence": "$0\\times x=0$처럼 어떤 수를 넣어도 참인 등식은 해가 □고 하며, 이런 등식은 □이다.",
+      "cAnswers": [
+        "무수히 많다",
+        "항등식"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "무수히 많다",
+          "equivalentAnswers": [
+            "무수히 많다",
+            "셀 수 없이 많다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "항등식",
+          "equivalentAnswers": [
+            "항등식"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "무수히 많다",
+          "accept": [
+            "셀 수 없이 많다"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "무수히 많다",
+          "셀 수 없이 많다"
+        ],
+        [
+          "항등식"
+        ]
+      ],
+      "proposalFingerprint": "cfc11de7710a12c909ee65389fe3efdf1b2052a32a62d1d75cc94d9cf009a558"
+    },
+    {
+      "id": "m1-03-04-xc15",
+      "bDecision": "rewrite",
+      "bPrompt": "$a(x-1)+b=2x+1$이 $x$에 대한 항등식일 때 상수 $a$, $b$의 값을 구하시오. 좌변을 어떻게 정리했고 양변의 무엇끼리 비교했는지 과정을 쓰시오.",
+      "bAnswer": "좌변의 괄호를 풀면 $ax-a+b$이다. $x$의 계수끼리 비교하면 $a=2$이고, 상수항끼리 비교하면 $-a+b=1$이므로 $b=3$이다.",
+      "bGoal": "괄호가 있는 항등식을 정리한 뒤 계수와 상수항을 비교해 상수를 구한다.",
+      "bReason": "m1-03-04-c7의 B는 이미 정리된 꼴이다. 이 문항은 괄호를 먼저 풀어야 하고 상수항이 $-a+b$가 되는 점에 초점을 두었다.",
+      "cDecision": "rewrite",
+      "cAfter": "$a(x-1)+b=2x+1$이 $x$에 대한 항등식이면 좌변의 {괄호}를 풀어 정리한 뒤 양변의 $x$의 계수와 {상수항}을 각각 비교한다.",
+      "cAnswers": [
+        "괄호",
+        "상수항"
+      ],
+      "cReason": "원문 첫 답 '괄호를 풀어'는 서술어까지 포함한 구라 채점이 흔들린다. 낱말 '괄호'만 빈칸으로 하고, '견준다'는 '비교한다'로, '항등식'은 '$x$에 대한 항등식'으로 밝혔다.",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "좌변의 괄호를 풀어 $ax-a+b$로 정리"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x$의 계수끼리 비교해 $a=2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "상수항끼리 비교해 $-a+b=1$, $b=3$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-004",
+      "learningRole": "procedure",
+      "roleReason": "괄호 풀고 계수·상수항 비교",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1239,
+      "part": "m1plus",
+      "sourceFingerprint": "f3d9bdcc0b811bdf6e6afee503fd9c1ac24e19b1042ff7f321ef34a3822c2e81",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1239
+      },
+      "directReview": null,
+      "cMarkedSentence": "$a(x-1)+b=2x+1$이 $x$에 대한 항등식이면 좌변의 {괄호}를 풀어 정리한 뒤 양변의 $x$의 계수와 {상수항}을 각각 비교한다.",
+      "cSlotAnswers": [
+        "괄호",
+        "상수항"
+      ],
+      "cStudentSentence": "$a(x-1)+b=2x+1$이 $x$에 대한 항등식이면 좌변의 □를 풀어 정리한 뒤 양변의 $x$의 계수와 □을 각각 비교한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "괄호",
+          "equivalentAnswers": [
+            "괄호"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "상수항",
+          "equivalentAnswers": [
+            "상수항"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "괄호"
+        ],
+        [
+          "상수항"
+        ]
+      ],
+      "proposalFingerprint": "d5bc12b457d3feb3857385e4a48a6299251acbb6eeff1e56a56fa31a4be9a361"
+    },
+    {
+      "id": "m1-03-04-xc16",
+      "bDecision": "rewrite",
+      "bPrompt": "등식 $ax-6=4x+b$가 $x$의 값에 관계없이 항상 성립한다. 이 말은 이 등식이 어떤 등식이라는 뜻인지 쓰고, 상수 $a$, $b$의 값과 $a+b$의 값을 구하시오.",
+      "bAnswer": "$x$에 대한 항등식이라는 뜻이다. $x$의 계수끼리 같으므로 $a=4$, 상수항끼리 같으므로 $b=-6$이고, $a+b=-2$이다.",
+      "bGoal": "'$x$의 값에 관계없이 성립'을 항등식으로 바꾸어 읽고 상수를 구한다.",
+      "bReason": "제목은 문제에 나오는 표현일 뿐 질문이 아니다. 그 표현이 든 문제 상황을 주고, 표현의 뜻을 먼저 쓴 뒤 계산하게 했다.",
+      "cDecision": "keep",
+      "cReason": "표현과 용어를 일대일로 잇는 짧은 문장이고 답이 하나로 정해진다.",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x$에 대한 항등식이라는 뜻"
+          ]
+        },
+        {
+          "anyOf": [
+            "$a=4$, $b=-6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$a+b=-2$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-004",
+      "learningRole": "definition",
+      "roleReason": "값에 관계없이 성립은 항등식",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1240,
+      "part": "m1plus",
+      "sourceFingerprint": "127b9a9ee7d1de3e9092628bb71bca26539129f54daee46b7458b1590a450949",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1240
+      },
+      "directReview": null,
+      "cFrozenSentence": "'$x$의 값에 관계없이 등식이 성립한다'는 말은 그 등식이 □이라는 뜻이다.",
+      "cFrozenDefinition": "'$x$의 값에 관계없이 등식이 성립한다'는 말은 그 등식이 {항등식}이라는 뜻이다.",
+      "cFrozenAnswers": [
+        "항등식"
+      ],
+      "cMarkedSentence": "'$x$의 값에 관계없이 등식이 성립한다'는 말은 그 등식이 {항등식}이라는 뜻이다.",
+      "cSlotAnswers": [
+        "항등식"
+      ],
+      "cStudentSentence": "'$x$의 값에 관계없이 등식이 성립한다'는 말은 그 등식이 □이라는 뜻이다.",
+      "cAnswers": [
+        "항등식"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "항등식",
+          "equivalentAnswers": [
+            "항등식"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "항등식"
+        ]
+      ],
+      "proposalFingerprint": "1fd31ebb20e3600a7d8491c23c30170e9d36236eea8ca02136802846bdb62de4"
+    },
+    {
+      "id": "m1-03-04-xc17",
+      "bDecision": "rewrite",
+      "bPrompt": "$x$에 대한 등식 $ax=b$에서 $a=0$인 두 경우를 생각한다. ($1$) $a=0$, $b=0$인 $0\\times x=0$과 ($2$) $a=0$, $b=3$인 $0\\times x=3$은 각각 해가 어떻게 되는지 이유와 함께 쓰시오.",
+      "bAnswer": "($1$) $x$에 어떤 수를 넣어도 $0=0$으로 참이므로 해가 무수히 많고 항등식이다. ($2$) $x$에 어떤 수를 넣어도 좌변이 $0$이라 $0=3$으로 거짓이므로 해가 없다.",
+      "bGoal": "$ax=b$에서 $a=0$일 때 $b$의 값에 따라 항등식이 되거나 해가 없음을 구별한다.",
+      "bReason": "제목 '방정식과 항등식의 경계'는 중1에게 뜻이 잡히지 않는 말이다. $a$, $b$에 구체적인 값을 넣은 두 등식으로 바꾸어 각 경우의 해를 이유와 함께 쓰게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "$x$에 대한 등식 $ax=b$에서 $a=0$, $b=0$이면 {항등식}이 되고, $a=0$, $b\\neq0$이면 해가 {없는} 등식이 된다.",
+      "cAnswers": [
+        "항등식",
+        "없는"
+      ],
+      "cReason": "원문 둘째 빈칸 '□ 등식이 된다'는 '거짓인', '성립하지 않는' 등으로도 채울 수 있어 범위가 모호하다. '해가'를 보이게 하여 답을 한 낱말로 좁히고, $x$에 대한 등식임을 밝혔다.",
+      "studentLabel": "$ax=b$에서 $a=0$일 때",
+      "exampleNeeded": true,
+      "authorBatch": 6,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "($1$) 어떤 수를 넣어도 $0=0$으로 참이므로 해가 무수히 많다(모든 수가 해)"
+          ]
+        },
+        {
+          "anyOf": [
+            "($2$) 어떤 수를 넣어도 좌변이 $0$이라 $0=3$으로 거짓이므로 해가 없다"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-004",
+      "learningRole": "reason",
+      "roleReason": "a=0일 때 b로 갈리는 해",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1241,
+      "part": "m1plus",
+      "sourceFingerprint": "121c3fff1ea9deeb02642501496522197a3c89fb0f464dc1a941379a189c0195",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1241
+      },
+      "directReview": null,
+      "cMarkedSentence": "$x$에 대한 등식 $ax=b$에서 $a=0$, $b=0$이면 {항등식}이 되고, $a=0$, $b\\neq0$이면 해가 {없는} 등식이 된다.",
+      "cSlotAnswers": [
+        "항등식",
+        "없는"
+      ],
+      "cStudentSentence": "$x$에 대한 등식 $ax=b$에서 $a=0$, $b=0$이면 □이 되고, $a=0$, $b\\neq0$이면 해가 □ 등식이 된다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "항등식",
+          "equivalentAnswers": [
+            "항등식"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "없는",
+          "equivalentAnswers": [
+            "없는"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "항등식"
+        ],
+        [
+          "없는"
+        ]
+      ],
+      "proposalFingerprint": "6310beeba9cf6d422cea2a49ccee2ee71ae4a0017c25adab7ff60df5db02b758"
+    }
+  ]
+}

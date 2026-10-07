@@ -1,0 +1,84 @@
+{
+  "importedAt": "2026-10-07T08:54:40.925Z",
+  "dispatchId": "ctx_9cb9b54195a9",
+  "notIndependentClaudeApproval": true,
+  "importedIds": [
+    "m3-05-03-xc18",
+    "m3-05-03-xc19",
+    "m3-05-03-xc22",
+    "m3-06-01-xc1",
+    "m3-06-01-xc3",
+    "m3-06-01-xc4",
+    "m3-06-01-xc5",
+    "m3-06-01-xc6",
+    "m3-06-01-xc8",
+    "m3-06-01-xc9",
+    "m3-06-01-xc10",
+    "m3-06-01-xc11",
+    "m3-06-01-xc12",
+    "m3-06-01-xc13",
+    "m3-06-01-xc14",
+    "m3-06-01-xc16",
+    "m3-06-01-xc19",
+    "m3-06-01-xc20",
+    "m3-06-01-xc21"
+  ],
+  "pending": [
+    {
+      "id": "m3-05-03-xc20",
+      "sourceIndex": 3577,
+      "proposalFingerprint": "06bd332762443de2401b89d209a732f9d02e8e98f419f37116d190d72c76c350",
+      "bVerdict": "revise",
+      "cVerdict": "adopt",
+      "reason": "B의 참조 답은 사인값이1보다 작다고 단정한 뒤90도일 때1이라고 해 모순된다.1이하이고90도일 때만1이라고 쓰거나 예각·둔각일 때만1보다 작다고 제한한다. C는 이미 예각·둔각일 때 작다고 제한해 최대90도를 올바르게 설명한다.",
+      "rootVerdictEvidence": "evidence/root-assisted-extra-3575-3600-20261007/root-middle-final-3575-3600-verdicts.json"
+    },
+    {
+      "id": "m3-05-03-xc21",
+      "sourceIndex": 3578,
+      "proposalFingerprint": "5dcca04f74d75bfe884befebf3f49811134aab29be9209cd98f18de68b7063f0",
+      "bVerdict": "adopt",
+      "cVerdict": "revise",
+      "reason": "수선의 발이 변BC 내부라는 조건을 주어 BH=c cosB,HC=a-c cosB가 결정된다. C의 두 조각이라는 말은 불필요하므로 이미 지정된 두 선분BH와HC의 합이라고 분명히 표현한다.",
+      "rootVerdictEvidence": "evidence/root-assisted-extra-3575-3600-20261007/root-middle-final-3575-3600-verdicts.json"
+    },
+    {
+      "id": "m3-06-01-xc2",
+      "sourceIndex": 3581,
+      "proposalFingerprint": "96163aab43c34e35be36d72db72376dc267b4444d6fea56fe10dc0694e597490",
+      "bVerdict": "revise",
+      "cVerdict": "adopt",
+      "reason": "지름과2r 및 삼각형 부등식에 따른 참조 답은 옳다. B의 이유 기준 중 중심까지 거리가0일 때 가장 길다만 쓰는 대안은 결론을 반복할 뿐이다. 중심거리 증가에 따른 현 길이 감소나 제시된 식·삼각형 부등식을 근거로 확인한다. C는 지름과2배 관계가 명확하다.",
+      "rootVerdictEvidence": "evidence/root-assisted-extra-3575-3600-20261007/root-middle-final-3575-3600-verdicts.json"
+    },
+    {
+      "id": "m3-06-01-xc7",
+      "sourceIndex": 3586,
+      "proposalFingerprint": "392d01d5f73651661c21a2103b20c877cb0e422ea5aee05e66dc735585aba8dc",
+      "bVerdict": "revise",
+      "cVerdict": "adopt",
+      "reason": "B는 수직인 까닭을 묻고 증명 방법을 제한하지 않았는데 SSS합동만 필수로 받는다. 반지름 두 변이 같은 이등변삼각형에서 꼭짓점과 밑변 중점을 이은 선이 수직이라는 이미 배운 성질을 올바르게 적용한 설명도 받도록 기준을 맞춘다. C의 중점과 수직 관계는 명확하다.",
+      "rootVerdictEvidence": "evidence/root-assisted-extra-3575-3600-20261007/root-middle-final-3575-3600-verdicts.json"
+    },
+    {
+      "id": "m3-06-01-xc17",
+      "sourceIndex": 3595,
+      "proposalFingerprint": "7085fe08020a02950444fffefa89cc869d9c8c1b259b78133feda3633f8c8367",
+      "bVerdict": "revise",
+      "cVerdict": "adopt",
+      "reason": "활꼴은 큰 호를 경계로 한 경우도 있어 높이h가 반지름r보다 클 수 있다. B의 중심거리r-h 및 두 직각변r-h라는 설명은 음수 길이가 된다. 작은 활꼴이라는 조건을 분명히 하거나 중심거리절댓값r-h로 수정한다. C의 제곱식 자체는 큰 활꼴에도 성립하므로 유지할 수 있다.",
+      "rootVerdictEvidence": "evidence/root-assisted-extra-3575-3600-20261007/root-middle-final-3575-3600-verdicts.json"
+    },
+    {
+      "id": "m3-06-01-xc22",
+      "sourceIndex": 3599,
+      "proposalFingerprint": "68be4fffcf875d9f4273f4bf6a0a68e952f76633a48b7a8f60029bac62c22f81",
+      "bVerdict": "revise",
+      "cVerdict": "adopt",
+      "reason": "B는 d1,d2로 나타내라고 하지만 기준은 거리의 차·합이라는 말만 써도 받는다. 절댓값d1-d2와d1+d2를 실제 식으로 확인하거나 말과 식 모두 가능하도록 질문을 맞춘다. C는 같은 쪽 차와 반대쪽 합의 대비가 명확하다.",
+      "rootVerdictEvidence": "evidence/root-assisted-extra-3575-3600-20261007/root-middle-final-3575-3600-verdicts.json"
+    }
+  ],
+  "inputSha256": "57158ceb90aac986a75b2f2a566ec5560d4adcfc87053617c94e47a7f100013c",
+  "verdictSha256": "1d1e63eea76af4df538737e6ca587027884df4a65b233cad5f462fa573f892e9"
+}

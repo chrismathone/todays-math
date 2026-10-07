@@ -1,0 +1,1887 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T09:56:47.968Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-07-02-xc22",
+        "section": "중3::7. 통계::산점도와 상관관계",
+        "term": "곡선을 따라 놓인 점들",
+        "kind": "성질",
+        "level": "상",
+        "definition": "점들이 곡선을 따라 놓여 $y$가 커지다가 작아지더라도 그것만으로 상관관계를 {단정}할 수 없다 — 점 전체가 대체로 오른쪽 위나 아래로 향하는지 {전체}의 경향을 살핀다.",
+        "studentC": "점들이 곡선을 따라 놓여 $y$가 커지다가 작아지더라도 그것만으로 상관관계를 □할 수 없다 — 점 전체가 대체로 오른쪽 위나 아래로 향하는지 □의 경향을 살핀다.",
+        "answers": [
+          "단정",
+          "전체"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-02-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "산점도의 점들이 $x$가 커질 때 $y$가 처음에는 커지다가 나중에는 작아지는 곡선 모양으로 놓여 있다. 이 모양의 앞부분만 보고 양의 상관관계라고 단정할 수 있는지 쓰고, 무엇을 살펴야 하는지 쓰시오.",
+        "bAnswer": "단정할 수 없다. 점 전체가 대체로 오른쪽 위나 오른쪽 아래로 향하는지 전체의 경향을 살펴야 한다.",
+        "bGoal": "곡선 모양 산점도의 상관 판단",
+        "bReason": "점의 배치를 문장으로 밝혀 부분이 아닌 전체 경향을 보게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "단정할 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "전체의 경향을 살핀다",
+              "점 전체가 오른쪽 위나 아래로 향하는지 본다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "단정과 전체를 묻는 짧은 빈칸으로 판단 기준이 분명함",
+        "learningRole": "reason",
+        "roleReason": "부분이 아닌 전체 경향으로 판단",
+        "authorBatch": 62,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3700,
+        "part": "m3plus",
+        "sourceFingerprint": "433d950dcda5c276f06e6e2d8d59a00436c748b4ae48efa61ec353c5fbd07c94",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3700
+        },
+        "directReview": null,
+        "cFrozenSentence": "점들이 곡선을 따라 놓여 $y$가 커지다가 작아지더라도 그것만으로 상관관계를 □할 수 없다 — 점 전체가 대체로 오른쪽 위나 아래로 향하는지 □의 경향을 살핀다.",
+        "cFrozenDefinition": "점들이 곡선을 따라 놓여 $y$가 커지다가 작아지더라도 그것만으로 상관관계를 {단정}할 수 없다 — 점 전체가 대체로 오른쪽 위나 아래로 향하는지 {전체}의 경향을 살핀다.",
+        "cFrozenAnswers": [
+          "단정",
+          "전체"
+        ],
+        "cMarkedSentence": "점들이 곡선을 따라 놓여 $y$가 커지다가 작아지더라도 그것만으로 상관관계를 {단정}할 수 없다 — 점 전체가 대체로 오른쪽 위나 아래로 향하는지 {전체}의 경향을 살핀다.",
+        "cSlotAnswers": [
+          "단정",
+          "전체"
+        ],
+        "cStudentSentence": "점들이 곡선을 따라 놓여 $y$가 커지다가 작아지더라도 그것만으로 상관관계를 □할 수 없다 — 점 전체가 대체로 오른쪽 위나 아래로 향하는지 □의 경향을 살핀다.",
+        "cAnswers": [
+          "단정",
+          "전체"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "단정",
+            "equivalentAnswers": [
+              "단정"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "전체",
+            "equivalentAnswers": [
+              "전체"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "단정"
+          ],
+          [
+            "전체"
+          ]
+        ],
+        "proposalFingerprint": "cc0611f095a060bc0583772a7ee5d096adad6e565db4aa5af7f9d46d65d0caaa"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-07-03-xc1",
+        "section": "중3::7. 통계::상자그림",
+        "term": "크기순으로 늘어놓는 까닭",
+        "kind": "성질",
+        "level": "하",
+        "definition": "사분위수는 자료의 {크기에 따른 자리}로 정하므로, 처음 적힌 차례가 아니라 {작은 값부터} 차례로 늘어놓고 구한다.",
+        "studentC": "사분위수는 자료의 □로 정하므로, 처음 적힌 차례가 아니라 □ 차례로 늘어놓고 구한다.",
+        "answers": [
+          "크기에 따른 자리",
+          "작은 값부터"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-03-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "사분위수를 구할 때 자료를 적힌 차례 그대로 쓰지 않고 작은 값부터 크기순으로 늘어놓는 까닭을 설명하시오.",
+        "bAnswer": "사분위수는 자료를 크기순으로 늘어놓았을 때 $4$등분하는 자리에 놓인 값, 곧 크기에 따른 자리로 정하는 값이기 때문이다.",
+        "bGoal": "크기순 정렬이 필요한 까닭 설명",
+        "bReason": "질문에서 이미 말한 적힌 차례 아님을 별도 필수로 반복하지 않고 실제 위치에 따른 정의만 이유로 요구한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "사분위수는 자료를 크기순으로 늘어놓았을 때의 자리로 정하는 값이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "사분위수는 자료를 {크기순}으로 늘어놓았을 때의 자리로 정하는 값이므로, 처음 적힌 차례가 아니라 {작은} 값부터 차례로 늘어놓고 구한다.",
+        "cAnswers": [
+          "크기순",
+          "작은"
+        ],
+        "cReason": "'크기에 따른 자리', '작은 값부터'는 학생이 떠올리기 어려운 긴 임의 구절임.",
+        "authorBatch": 63,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "크기순 자리로 정하는 값",
+        "enrichmentEvidence": "enrichment/enrich-010",
+        "sourceIndex": 3701,
+        "part": "m3plus",
+        "sourceFingerprint": "e41eb0a3c21c3a33ff28593ee63457996af730df77fd42300d9304493a44928c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3701
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m3-07-03-xc1"
+        },
+        "cMarkedSentence": "사분위수는 자료를 {크기순}으로 늘어놓았을 때의 자리로 정하는 값이므로, 처음 적힌 차례가 아니라 {작은} 값부터 차례로 늘어놓고 구한다.",
+        "cSlotAnswers": [
+          "크기순",
+          "작은"
+        ],
+        "cStudentSentence": "사분위수는 자료를 □으로 늘어놓았을 때의 자리로 정하는 값이므로, 처음 적힌 차례가 아니라 □ 값부터 차례로 늘어놓고 구한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "크기순",
+            "equivalentAnswers": [
+              "크기순",
+              "크기 순서",
+              "크기 차례"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "작은",
+            "equivalentAnswers": [
+              "작은"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "크기순",
+            "accept": [
+              "크기 순서",
+              "크기 차례"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "크기순",
+            "크기 순서",
+            "크기 차례"
+          ],
+          [
+            "작은"
+          ]
+        ],
+        "proposalFingerprint": "6ad8aff0c77fb651ef436ef89ed6f588a85bb263779c80c25bf370fc22602bf2"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-07-03-xc2",
+        "section": "중3::7. 통계::상자그림",
+        "term": "상자그림의 수염",
+        "kind": "정의",
+        "level": "하",
+        "definition": "상자그림에서 상자 양쪽 끝에서 최솟값과 최댓값까지 그은 선을 {수염}이라 부른다 — 상자 {바깥}의 두 구간이다.",
+        "studentC": "상자그림에서 상자 양쪽 끝에서 최솟값과 최댓값까지 그은 선을 □이라 부른다 — 상자 □의 두 구간이다.",
+        "answers": [
+          "수염",
+          "바깥"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-03-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "상자그림에서 '수염'은 어느 부분을 가리키는지, 어디에서 어디까지 그은 선인지 설명하시오.",
+        "bAnswer": "상자의 양쪽 끝에서 각각 최솟값과 최댓값까지 그은 두 선이다. 곧 제$1$사분위수에서 최솟값까지, 제$3$사분위수에서 최댓값까지의 선으로 상자 바깥의 두 구간이다.",
+        "bGoal": "수염이 가리키는 부분 설명",
+        "bReason": "양쪽 끝과 같은 뜻인 두 개를 독립 기준에서 빼고 시작과 끝을 포함한 한 정의로 묶는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "상자의 양쪽 끝에서 시작하여 각각 최솟값과 최댓값까지 그은 선이다",
+              "제$1$사분위수에서 최솟값까지, 제$3$사분위수에서 최댓값까지 그은 선이다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "선의 위치가 문장에 설명되어 있고 이름과 위치를 묻는 짧은 빈칸임.",
+        "authorBatch": 63,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "definition",
+        "roleReason": "상자 끝~최솟값·최댓값 선",
+        "enrichmentEvidence": "enrichment/enrich-010",
+        "sourceIndex": 3702,
+        "part": "m3plus",
+        "sourceFingerprint": "227033ba8de79891c38a333379f3280f0e16ed803fe97c93d3a9b447acc2949e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3702
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m3-07-03-xc2"
+        },
+        "cFrozenSentence": "상자그림에서 상자 양쪽 끝에서 최솟값과 최댓값까지 그은 선을 □이라 부른다 — 상자 □의 두 구간이다.",
+        "cFrozenDefinition": "상자그림에서 상자 양쪽 끝에서 최솟값과 최댓값까지 그은 선을 {수염}이라 부른다 — 상자 {바깥}의 두 구간이다.",
+        "cFrozenAnswers": [
+          "수염",
+          "바깥"
+        ],
+        "cMarkedSentence": "상자그림에서 상자 양쪽 끝에서 최솟값과 최댓값까지 그은 선을 {수염}이라 부른다 — 상자 {바깥}의 두 구간이다.",
+        "cSlotAnswers": [
+          "수염",
+          "바깥"
+        ],
+        "cStudentSentence": "상자그림에서 상자 양쪽 끝에서 최솟값과 최댓값까지 그은 선을 □이라 부른다 — 상자 □의 두 구간이다.",
+        "cAnswers": [
+          "수염",
+          "바깥"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "수염",
+            "equivalentAnswers": [
+              "수염"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "바깥",
+            "equivalentAnswers": [
+              "바깥",
+              "밖",
+              "바깥쪽"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "바깥",
+            "accept": [
+              "밖",
+              "바깥쪽"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "수염"
+          ],
+          [
+            "바깥",
+            "밖",
+            "바깥쪽"
+          ]
+        ],
+        "proposalFingerprint": "848602cd0f71533ffccf4e5b34610f7ed3e46fa544d42c5d7375e2a7d141074d"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-07-03-xc3",
+        "section": "중3::7. 통계::상자그림",
+        "term": "상자 안의 세로선",
+        "kind": "정의",
+        "level": "하",
+        "definition": "상자그림의 상자 안 세로선은 {중앙값}의 자리, 곧 {제$2$사분위수}를 나타낸다.",
+        "studentC": "상자그림의 상자 안 세로선은 □의 자리, 곧 □를 나타낸다.",
+        "answers": [
+          "중앙값",
+          "제$2$사분위수"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-03-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "상자그림의 상자 안에 그은 세로선은 자료의 어떤 값을 나타내는지 쓰고, 그 값은 몇 번째 사분위수인지 쓰시오.",
+        "bAnswer": "중앙값을 나타내며, 이는 제$2$사분위수이다.",
+        "bGoal": "상자 안 세로선이 나타내는 값 읽기",
+        "bReason": "선의 위치만 적힌 제목이라 나타내는 값과 사분위수 이름을 묻도록 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "중앙값"
+            ]
+          },
+          {
+            "anyOf": [
+              "제$2$사분위수"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "지칭 대상(상자 안 세로선)이 분명하고 두 이름을 잇는 짧은 빈칸임.",
+        "authorBatch": 63,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "naming",
+        "roleReason": "상자 안 선=중앙값",
+        "enrichmentEvidence": "enrichment/enrich-010",
+        "sourceIndex": 3703,
+        "part": "m3plus",
+        "sourceFingerprint": "5350a7911c1269186774db2461e668ddd6f0ce327ce5acee46487124b843b3ff",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3703
+        },
+        "directReview": null,
+        "cFrozenSentence": "상자그림의 상자 안 세로선은 □의 자리, 곧 □를 나타낸다.",
+        "cFrozenDefinition": "상자그림의 상자 안 세로선은 {중앙값}의 자리, 곧 {제$2$사분위수}를 나타낸다.",
+        "cFrozenAnswers": [
+          "중앙값",
+          "제$2$사분위수"
+        ],
+        "cMarkedSentence": "상자그림의 상자 안 세로선은 {중앙값}의 자리, 곧 {제$2$사분위수}를 나타낸다.",
+        "cSlotAnswers": [
+          "중앙값",
+          "제$2$사분위수"
+        ],
+        "cStudentSentence": "상자그림의 상자 안 세로선은 □의 자리, 곧 □를 나타낸다.",
+        "cAnswers": [
+          "중앙값",
+          "제$2$사분위수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "중앙값",
+            "equivalentAnswers": [
+              "중앙값"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "제$2$사분위수",
+            "equivalentAnswers": [
+              "제$2$사분위수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "중앙값"
+          ],
+          [
+            "제$2$사분위수"
+          ]
+        ],
+        "proposalFingerprint": "ea39bc9cd2f1ce8abfb0bb108a5f7df5b87a1bfa3b1fd49c2fd4c3eb2c945e13"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-07-03-xc4",
+        "section": "중3::7. 통계::상자그림",
+        "term": "제$1$사분위수의 자리",
+        "kind": "정의",
+        "level": "하",
+        "definition": "제$1$사분위수는 자료를 크기순으로 늘어놓았을 때 아래에서 약 {$25$}$\\%$ 자리에 있는 값이고, 제$3$사분위수보다 {크지 않다}.",
+        "studentC": "제$1$사분위수는 자료를 크기순으로 늘어놓았을 때 아래에서 약 □$\\%$ 자리에 있는 값이고, 제$3$사분위수보다 □.",
+        "answers": [
+          "$25$",
+          "크지 않다"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-03-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "제$1$사분위수는 제$3$사분위수보다 클 수 있는지 쓰고, 자료를 크기순으로 늘어놓았을 때 두 값의 위치를 이용해 이유를 설명하시오.",
+        "bAnswer": "클 수 없다. 제$1$사분위수는 작은 쪽 절반의 중앙값이고 제$3$사분위수는 큰 쪽 절반의 중앙값이므로, 크기순에서 앞쪽 값이 뒤쪽 값보다 클 수 없다. 두 값은 같을 수 있다.",
+        "bGoal": "제1사분위수와 제3사분위수의 순서 관계를 설명한다.",
+        "bReason": "절반의 중앙값뿐 아니라 아래25%·75% 자리의 순서라는 유효한 위치 설명도 허용한다.",
+        "cDecision": "rewrite",
+        "cAfter": "제$1$사분위수는 자료를 크기순으로 늘어놓았을 때 아래에서 약 {$25$}$\\%$ 자리에 있는 값이다. 같은 값이 반복된 자료도 포함하여, 제$1$사분위수는 제$3$사분위수보다 항상 {작거나 같다}.",
+        "cAnswers": [
+          "$25$",
+          "작거나 같다"
+        ],
+        "cReason": "항상 성립하는 비교이며 같은 값이 반복된 경우도 포함한다고 밝혀 엄밀한 작다와 작거나 같다를 구별한다.",
+        "exclusionReason": "25% 자리와 제3사분위수 이하라는 단순 사실 회상이라 별도 설명 목표가 약함",
+        "authorBatch": 63,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "definition",
+        "roleReason": "아래에서 25% 자리 값",
+        "enrichmentEvidence": "enrichment/enrich-010",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "제$1$사분위수는 제$3$사분위수보다 크지 않다",
+              "작거나 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "크기순에서 작은 쪽 절반의 중앙값이 큰 쪽 절반의 중앙값보다 클 수 없기 때문이다",
+              "크기순에서 제$1$사분위수는 아래 약 $25$%, 제$3$사분위수는 아래 약 $75$%의 자리라 앞쪽 값이 뒤쪽 값보다 클 수 없기 때문이다"
+            ]
+          }
+        ],
+        "sourceIndex": 3704,
+        "part": "m3plus",
+        "sourceFingerprint": "bc4900995dba7cb90f0ebce5f7ad5b4d00a65bcc32a3d11619d9f31068562140",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3704
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m3-07-03-xc4"
+        },
+        "cMarkedSentence": "제$1$사분위수는 자료를 크기순으로 늘어놓았을 때 아래에서 약 {$25$}$\\%$ 자리에 있는 값이다. 같은 값이 반복된 자료도 포함하여, 제$1$사분위수는 제$3$사분위수보다 항상 {작거나 같다}.",
+        "cSlotAnswers": [
+          "$25$",
+          "작거나 같다"
+        ],
+        "cStudentSentence": "제$1$사분위수는 자료를 크기순으로 늘어놓았을 때 아래에서 약 □$\\%$ 자리에 있는 값이다. 같은 값이 반복된 자료도 포함하여, 제$1$사분위수는 제$3$사분위수보다 항상 □.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$25$",
+            "equivalentAnswers": [
+              "$25$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "작거나 같다",
+            "equivalentAnswers": [
+              "작거나 같다",
+              "크지 않다",
+              "같거나 작다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "작거나 같다",
+            "accept": [
+              "크지 않다",
+              "같거나 작다"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$25$"
+          ],
+          [
+            "작거나 같다",
+            "크지 않다",
+            "같거나 작다"
+          ]
+        ],
+        "proposalFingerprint": "7a977f583192cf3dac948dfe28144fb39bb8d414b2c18ca02a37a15da7973e4d"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-07-03-xc5",
+        "section": "중3::7. 통계::상자그림",
+        "term": "수염의 두 끝 사이의 길이",
+        "kind": "성질",
+        "level": "하",
+        "definition": "상자그림의 양 끝, 곧 수염의 두 끝 사이의 길이는 {최댓값}에서 {최솟값}을 뺀 값이다.",
+        "studentC": "상자그림의 양 끝, 곧 수염의 두 끝 사이의 길이는 □에서 □을 뺀 값이다.",
+        "answers": [
+          "최댓값",
+          "최솟값"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-03-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "상자그림에서 왼쪽 수염의 끝에서 오른쪽 수염의 끝까지의 길이는 자료의 어떤 두 값의 차와 같은지 쓰시오.",
+        "bAnswer": "최댓값에서 최솟값을 뺀 값과 같다.",
+        "bGoal": "상자그림 전체 길이의 뜻 알기",
+        "bReason": "두 끝이 어디인지 밝히고 어떤 두 값의 차인지 답하도록 특정함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "최댓값에서 최솟값을 뺌"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "두 끝의 뜻이 문장에 있고 빼는 순서를 묻는 분명한 빈칸임.",
+        "authorBatch": 63,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "definition",
+        "roleReason": "양 끝 길이=최댓값−최솟값",
+        "enrichmentEvidence": "enrichment/enrich-010",
+        "sourceIndex": 3705,
+        "part": "m3plus",
+        "sourceFingerprint": "890026ddac5aeb2a1a99117f86117e0f975fb0f70f183cf13b2c1db558fe1c5f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3705
+        },
+        "directReview": null,
+        "cFrozenSentence": "상자그림의 양 끝, 곧 수염의 두 끝 사이의 길이는 □에서 □을 뺀 값이다.",
+        "cFrozenDefinition": "상자그림의 양 끝, 곧 수염의 두 끝 사이의 길이는 {최댓값}에서 {최솟값}을 뺀 값이다.",
+        "cFrozenAnswers": [
+          "최댓값",
+          "최솟값"
+        ],
+        "cMarkedSentence": "상자그림의 양 끝, 곧 수염의 두 끝 사이의 길이는 {최댓값}에서 {최솟값}을 뺀 값이다.",
+        "cSlotAnswers": [
+          "최댓값",
+          "최솟값"
+        ],
+        "cStudentSentence": "상자그림의 양 끝, 곧 수염의 두 끝 사이의 길이는 □에서 □을 뺀 값이다.",
+        "cAnswers": [
+          "최댓값",
+          "최솟값"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "최댓값",
+            "equivalentAnswers": [
+              "최댓값"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "최솟값",
+            "equivalentAnswers": [
+              "최솟값"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "최댓값"
+          ],
+          [
+            "최솟값"
+          ]
+        ],
+        "proposalFingerprint": "a12336c0edc612c1adf696145f83fe6df448de6cbd7e53994f236698f6b4cc70"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-07-03-xc6",
+        "section": "중3::7. 통계::상자그림",
+        "term": "나란히 그린 두 상자그림",
+        "kind": "방법",
+        "level": "하",
+        "definition": "두 자료의 상자그림을 같은 {수직선} 위에 나란히 그리면 중앙값과 퍼진 정도를 한눈에 {견줄} 수 있다.",
+        "studentC": "두 자료의 상자그림을 같은 □ 위에 나란히 그리면 중앙값과 퍼진 정도를 한눈에 □ 수 있다.",
+        "answers": [
+          "수직선",
+          "견줄"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-03-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "두 자료의 상자그림을 같은 수직선 위에 나란히 그렸다. 중앙값의 크기를 어느 표시로 비교하는지 쓰고, 가운데 절반 자료가 퍼진 정도를 어느 부분의 길이로 비교하는지 쓰시오.",
+        "bAnswer": "상자 안의 중앙값 표시의 위치로 중앙값을 비교한다. 제$1$사분위수에서 제$3$사분위수까지인 상자의 길이로 가운데 절반 자료가 퍼진 정도를 비교한다.",
+        "bGoal": "나란히 그린 상자그림의 쓰임 알기",
+        "bReason": "최솟값·범위 등도 맞는 무엇 두 가지라는 열린 질문을 중앙값과 가운데 절반의 퍼짐으로 한정한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "상자 안의 중앙값 표시 위치로 중앙값의 크기를 비교한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "상자의 길이로 가운데 절반 자료가 퍼진 정도를 비교한다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "두 자료의 상자그림을 같은 수직선 위에 나란히 그렸다. 가운데 절반 자료가 퍼진 정도는 {상자}의 길이로, 중앙값의 크기는 상자 안 중앙값 표시의 위치로 비교한다.",
+        "cAnswers": [
+          "상자"
+        ],
+        "cReason": "중앙값·최솟값·사분위수 등도 답이 되는 낱말 칸을 없애고 가운데 절반의 폭을 나타내는 부분만 묻는다.",
+        "authorBatch": 63,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "application",
+        "roleReason": "같은 수직선에서 비교",
+        "enrichmentEvidence": "enrichment/enrich-010",
+        "sourceIndex": 3706,
+        "part": "m3plus",
+        "sourceFingerprint": "70e6438851aa2ca180ced74d863aed904b4748c1599fbab5820269ec91c29be8",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3706
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m3-07-03-xc6"
+        },
+        "cMarkedSentence": "두 자료의 상자그림을 같은 수직선 위에 나란히 그렸다. 가운데 절반 자료가 퍼진 정도는 {상자}의 길이로, 중앙값의 크기는 상자 안 중앙값 표시의 위치로 비교한다.",
+        "cSlotAnswers": [
+          "상자"
+        ],
+        "cStudentSentence": "두 자료의 상자그림을 같은 수직선 위에 나란히 그렸다. 가운데 절반 자료가 퍼진 정도는 □의 길이로, 중앙값의 크기는 상자 안 중앙값 표시의 위치로 비교한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "상자",
+            "equivalentAnswers": [
+              "상자"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "상자"
+          ]
+        ],
+        "proposalFingerprint": "151b4642e8f51d28bfa9116bd98726d4a921999037057b4443ed69746800f278"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-07-03-xc7",
+        "section": "중3::7. 통계::상자그림",
+        "term": "변량이 홀수 개일 때의 사분위수",
+        "kind": "방법",
+        "level": "중",
+        "definition": "변량이 홀수 개인 자료를 {크기순}으로 늘어놓으면 한가운데 값이 {중앙값}이다 — 그 값을 {빼고} 남은 작은 쪽 절반과 큰 쪽 절반의 중앙값이 각각 제$1$사분위수, 제$3$사분위수이다.",
+        "studentC": "변량이 홀수 개인 자료를 □으로 늘어놓으면 한가운데 값이 □이다 — 그 값을 □ 남은 작은 쪽 절반과 큰 쪽 절반의 중앙값이 각각 제$1$사분위수, 제$3$사분위수이다.",
+        "answers": [
+          "크기순",
+          "중앙값",
+          "빼고"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-03-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "변량이 홀수 개인 자료에서 중앙값, 제$1$사분위수, 제$3$사분위수를 구하는 방법을 차례로 설명하고, 자료 $7, 1, 13, 5, 9, 3, 11$에서 세 값을 구하시오.",
+        "bAnswer": "크기순으로 늘어놓으면 한가운데 값이 중앙값이다. 그 값을 빼고 남은 작은 쪽 절반의 중앙값이 제$1$사분위수, 큰 쪽 절반의 중앙값이 제$3$사분위수이다. $1, 3, 5, 7, 9, 11, 13$에서 중앙값은 $7$이고, $1, 3, 5$의 중앙값 $3$이 제$1$사분위수, $9, 11, 13$의 중앙값 $11$이 제$3$사분위수이다.",
+        "bGoal": "홀수 개 자료의 사분위수 구하는 절차 설명",
+        "bReason": "중앙값을 빼고 절반을 나누는 절차가 예 없이는 드러나지 않아 7개짜리 자료를 넣음.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "크기순으로 늘어놓기"
+            ]
+          },
+          {
+            "anyOf": [
+              "한가운데 값이 중앙값"
+            ]
+          },
+          {
+            "anyOf": [
+              "중앙값을 빼고 두 절반으로 나눔"
+            ]
+          },
+          {
+            "anyOf": [
+              "각 절반의 중앙값이 제$1$·제$3$사분위수"
+            ]
+          },
+          {
+            "anyOf": [
+              "예에서 $7$, $3$, $11$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "변량이 홀수 개인 자료를 크기순으로 늘어놓으면 {한가운데} 값이 중앙값이다 — 그 값을 {빼고} 남은 작은 쪽 절반과 큰 쪽 절반의 중앙값이 각각 제$1$사분위수, 제$3$사분위수이다.",
+        "cAnswers": [
+          "한가운데",
+          "빼고"
+        ],
+        "cReason": "빈칸 답 '중앙값'이 뒤 구절에 그대로 나와 베낄 수 있으므로 빈칸 위치를 옮김.",
+        "exampleNeeded": true,
+        "authorBatch": 63,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "가운데 값 빼고 절반씩",
+        "enrichmentEvidence": "enrichment/enrich-010",
+        "sourceIndex": 3707,
+        "part": "m3plus",
+        "sourceFingerprint": "387eacc58cc959ec1ecdce6f13b9954043cc52f2fc627e11a37856ad25b2fe09",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3707
+        },
+        "directReview": null,
+        "cMarkedSentence": "변량이 홀수 개인 자료를 크기순으로 늘어놓으면 {한가운데} 값이 중앙값이다 — 그 값을 {빼고} 남은 작은 쪽 절반과 큰 쪽 절반의 중앙값이 각각 제$1$사분위수, 제$3$사분위수이다.",
+        "cSlotAnswers": [
+          "한가운데",
+          "빼고"
+        ],
+        "cStudentSentence": "변량이 홀수 개인 자료를 크기순으로 늘어놓으면 □ 값이 중앙값이다 — 그 값을 □ 남은 작은 쪽 절반과 큰 쪽 절반의 중앙값이 각각 제$1$사분위수, 제$3$사분위수이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "한가운데",
+            "equivalentAnswers": [
+              "한가운데",
+              "가운데",
+              "정가운데"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "빼고",
+            "equivalentAnswers": [
+              "빼고",
+              "제외하고"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "한가운데",
+            "accept": [
+              "가운데",
+              "정가운데"
+            ]
+          },
+          {
+            "answer": "빼고",
+            "accept": [
+              "제외하고"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "한가운데",
+            "가운데",
+            "정가운데"
+          ],
+          [
+            "빼고",
+            "제외하고"
+          ]
+        ],
+        "proposalFingerprint": "edc5ea549842610d14f246c1ee7e820e878ed1b8e381d851ea90186c38084e50"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-07-03-xc8",
+        "section": "중3::7. 통계::상자그림",
+        "term": "변량이 짝수 개일 때의 사분위수",
+        "kind": "방법",
+        "level": "중",
+        "definition": "변량이 짝수 개인 자료를 {크기순}으로 늘어놓으면 가운데 두 값의 {평균}이 중앙값이다 — 자료를 절반으로 나눈 작은 쪽과 큰 쪽의 {중앙값}이 각각 제$1$사분위수, 제$3$사분위수이다.",
+        "studentC": "변량이 짝수 개인 자료를 □으로 늘어놓으면 가운데 두 값의 □이 중앙값이다 — 자료를 절반으로 나눈 작은 쪽과 큰 쪽의 □이 각각 제$1$사분위수, 제$3$사분위수이다.",
+        "answers": [
+          "크기순",
+          "평균",
+          "중앙값"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-03-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "변량이 짝수 개인 자료에서 중앙값, 제$1$사분위수, 제$3$사분위수를 구하는 방법을 차례로 설명하고, 자료 $8, 2, 16, 6, 12, 4, 10, 14$에서 세 값을 구하시오.",
+        "bAnswer": "크기순으로 늘어놓으면 가운데 두 값의 평균이 중앙값이다. 자료를 절반으로 나눈 작은 쪽의 중앙값이 제$1$사분위수, 큰 쪽의 중앙값이 제$3$사분위수이다. $2, 4, 6, 8, 10, 12, 14, 16$에서 중앙값은 $\\dfrac{8+10}{2}=9$이고, $2, 4, 6, 8$의 중앙값 $5$가 제$1$사분위수, $10, 12, 14, 16$의 중앙값 $13$이 제$3$사분위수이다.",
+        "bGoal": "짝수 개 자료의 사분위수 구하는 절차 설명",
+        "bReason": "절반으로 나누는 절차를 확인하도록 8개짜리 자료를 넣어 묻는 질문으로 만듦.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "크기순으로 늘어놓기"
+            ]
+          },
+          {
+            "anyOf": [
+              "가운데 두 값의 평균이 중앙값"
+            ]
+          },
+          {
+            "anyOf": [
+              "자료를 절반으로 나눔"
+            ]
+          },
+          {
+            "anyOf": [
+              "각 절반의 중앙값이 제$1$·제$3$사분위수"
+            ]
+          },
+          {
+            "anyOf": [
+              "예에서 $9$, $5$, $13$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "변량이 짝수 개인 자료를 크기순으로 늘어놓으면 가운데 두 값의 {평균}이 중앙값이다 — 자료를 {절반}으로 나눈 작은 쪽과 큰 쪽의 중앙값이 각각 제$1$사분위수, 제$3$사분위수이다.",
+        "cAnswers": [
+          "평균",
+          "절반"
+        ],
+        "cReason": "셋째 빈칸의 답 '중앙값'이 바로 앞 구절에 나와 있어 빈칸을 나누는 방법으로 옮김.",
+        "exampleNeeded": true,
+        "authorBatch": 63,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "두 값 평균, 절반씩 중앙값",
+        "enrichmentEvidence": "enrichment/enrich-010",
+        "sourceIndex": 3708,
+        "part": "m3plus",
+        "sourceFingerprint": "42e02db5e207835cdb158fedde4a0b1b29f4bc0481561083642b4adac1e85961",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3708
+        },
+        "directReview": null,
+        "cMarkedSentence": "변량이 짝수 개인 자료를 크기순으로 늘어놓으면 가운데 두 값의 {평균}이 중앙값이다 — 자료를 {절반}으로 나눈 작은 쪽과 큰 쪽의 중앙값이 각각 제$1$사분위수, 제$3$사분위수이다.",
+        "cSlotAnswers": [
+          "평균",
+          "절반"
+        ],
+        "cStudentSentence": "변량이 짝수 개인 자료를 크기순으로 늘어놓으면 가운데 두 값의 □이 중앙값이다 — 자료를 □으로 나눈 작은 쪽과 큰 쪽의 중앙값이 각각 제$1$사분위수, 제$3$사분위수이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "평균",
+            "equivalentAnswers": [
+              "평균"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "절반",
+            "equivalentAnswers": [
+              "절반",
+              "반"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "절반",
+            "accept": [
+              "반"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "평균"
+          ],
+          [
+            "절반",
+            "반"
+          ]
+        ],
+        "proposalFingerprint": "07def2b1821f862468a25d491faf2fb4f93d5919b81314beffeecfe714424ec7"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-07-03-xc9",
+        "section": "중3::7. 통계::상자그림",
+        "term": "짧은 상자의 뜻",
+        "kind": "성질",
+        "level": "중",
+        "definition": "상자의 길이가 짧을수록 가운데 {$50$}$\\%$ 자료가 중앙값 가까이 {모여} 있다.",
+        "studentC": "상자의 길이가 짧을수록 가운데 □$\\%$ 자료가 중앙값 가까이 □ 있다.",
+        "answers": [
+          "$50$",
+          "모여"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-03-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "상자그림에서 상자의 길이가 짧을수록 자료의 분포에 대해 무엇을 알 수 있는지, 상자에 들어 있는 자료의 비율을 넣어 설명하시오.",
+        "bAnswer": "상자에는 크기순으로 가운데 약 $50\\%$의 자료가 들어 있으므로, 상자가 짧을수록 가운데 $50\\%$ 자료가 좁은 범위에, 곧 중앙값 가까이 모여 있다.",
+        "bGoal": "상자의 길이로 가운데 자료의 흩어짐 해석",
+        "bReason": "상자가 담는 자료의 비율을 근거로 해석을 쓰도록 답할 범위를 밝힘.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "상자에 가운데 약 $50$% 자료가 있음"
+            ]
+          },
+          {
+            "anyOf": [
+              "짧을수록 중앙값 가까이 모여 있음"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "상자그림에서 상자의 길이가 짧을수록 크기순으로 가운데 {$50$}$\\%$ 자료가 중앙값 가까이 {모여} 있다.",
+        "cAnswers": [
+          "$50$",
+          "모여"
+        ],
+        "cReason": "상자그림이라는 말이 없어 '상자'가 무엇인지 알 수 없으므로 맥락만 덧붙임.",
+        "authorBatch": 63,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "상자에 가운데 50% 담김",
+        "enrichmentEvidence": "enrichment/enrich-010",
+        "sourceIndex": 3709,
+        "part": "m3plus",
+        "sourceFingerprint": "0bd2f064acd01057620358a1fdedfb1010ceff4ffd63134e56059f66b1709861",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3709
+        },
+        "directReview": null,
+        "cMarkedSentence": "상자그림에서 상자의 길이가 짧을수록 크기순으로 가운데 {$50$}$\\%$ 자료가 중앙값 가까이 {모여} 있다.",
+        "cSlotAnswers": [
+          "$50$",
+          "모여"
+        ],
+        "cStudentSentence": "상자그림에서 상자의 길이가 짧을수록 크기순으로 가운데 □$\\%$ 자료가 중앙값 가까이 □ 있다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$50$",
+            "equivalentAnswers": [
+              "$50$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "모여",
+            "equivalentAnswers": [
+              "모여",
+              "몰려"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "모여",
+            "accept": [
+              "몰려"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$50$"
+          ],
+          [
+            "모여",
+            "몰려"
+          ]
+        ],
+        "proposalFingerprint": "022c70c9a538149771c55db81fda1d22fab73af8a5c00dc529edb87ff2663a24"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-07-03-xc10",
+        "section": "중3::7. 통계::상자그림",
+        "term": "중앙값 선의 위치로 보는 치우침",
+        "kind": "성질",
+        "level": "중",
+        "definition": "값이 모두 다른 자료에서 상자 안의 중앙값 선이 상자의 왼쪽 끝에 가까우면 왼쪽 칸 자료가 {촘촘하고}, 오른쪽 칸 자료가 더 {넓게} 퍼져 있다.",
+        "studentC": "값이 모두 다른 자료에서 상자 안의 중앙값 선이 상자의 왼쪽 끝에 가까우면 왼쪽 칸 자료가 □, 오른쪽 칸 자료가 더 □ 퍼져 있다.",
+        "answers": [
+          "촘촘하고",
+          "넓게"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-03-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "값이 모두 다른 자료를 가로로 그린 상자그림(오른쪽으로 갈수록 값이 큼)에서 상자 안의 중앙값 선이 상자의 왼쪽 끝에 가깝다. 중앙값 선으로 나뉜 상자의 왼쪽 칸과 오른쪽 칸에 들어 있는 자료의 비율과 퍼진 정도를 비교하여 설명하시오.",
+        "bAnswer": "두 칸에는 자료가 약 $25\\%$씩 들어 있다. 왼쪽 칸이 더 짧으므로 왼쪽 칸의 자료는 촘촘하게 모여 있고, 더 긴 오른쪽 칸의 자료는 더 넓게 퍼져 있다.",
+        "bGoal": "중앙값 선의 위치로 상자 두 칸의 분포 비교",
+        "bReason": "'치우침'이 무엇을 뜻하는지 몰라 두 칸의 비율과 퍼진 정도 비교로 특정함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 칸에 자료가 약 $25$%씩"
+            ]
+          },
+          {
+            "anyOf": [
+              "왼쪽 칸은 짧아 촘촘함"
+            ]
+          },
+          {
+            "anyOf": [
+              "오른쪽 칸은 길어 넓게 퍼짐"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "값이 모두 다른 자료의 상자그림에서 중앙값 선이 상자의 왼쪽 끝에 가까우면, 상자의 두 칸에 자료가 약 {$25$}$\\%$씩 있으므로 더 긴 {오른쪽} 칸의 자료가 더 넓게 퍼져 있다.",
+        "cAnswers": [
+          "$25$",
+          "오른쪽"
+        ],
+        "cReason": "'촘촘하고'는 활용형까지 맞혀야 하는 임의 표현이라 근거인 비율과 방향을 묻도록 함.",
+        "authorBatch": 63,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "25%씩, 짧은 칸 촘촘",
+        "enrichmentEvidence": "enrichment/enrich-010",
+        "sourceIndex": 3710,
+        "part": "m3plus",
+        "sourceFingerprint": "035b11fd70fee3dacc4216f23756ee809352b75e0880beb99b92c62594e200b8",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3710
+        },
+        "directReview": null,
+        "cMarkedSentence": "값이 모두 다른 자료의 상자그림에서 중앙값 선이 상자의 왼쪽 끝에 가까우면, 상자의 두 칸에 자료가 약 {$25$}$\\%$씩 있으므로 더 긴 {오른쪽} 칸의 자료가 더 넓게 퍼져 있다.",
+        "cSlotAnswers": [
+          "$25$",
+          "오른쪽"
+        ],
+        "cStudentSentence": "값이 모두 다른 자료의 상자그림에서 중앙값 선이 상자의 왼쪽 끝에 가까우면, 상자의 두 칸에 자료가 약 □$\\%$씩 있으므로 더 긴 □ 칸의 자료가 더 넓게 퍼져 있다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$25$",
+            "equivalentAnswers": [
+              "$25$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "오른쪽",
+            "equivalentAnswers": [
+              "오른쪽"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$25$"
+          ],
+          [
+            "오른쪽"
+          ]
+        ],
+        "proposalFingerprint": "e65a23703d6ab965ebe56fd7a3b5160a7a9d258830e897191d1ce73be6d1752c"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-07-03-xc11",
+        "section": "중3::7. 통계::상자그림",
+        "term": "사분위수로 비율 읽기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "값이 모두 다른 자료에서는 제$3$사분위수 이상인 자료가 전체의 약 {$25$}$\\%$, 제$1$사분위수 이상인 자료가 약 {$75$}$\\%$이다 — 같은 값이 여러 번 나오면 이보다 클 수 있다.",
+        "studentC": "값이 모두 다른 자료에서는 제$3$사분위수 이상인 자료가 전체의 약 □$\\%$, 제$1$사분위수 이상인 자료가 약 □$\\%$이다 — 같은 값이 여러 번 나오면 이보다 클 수 있다.",
+        "answers": [
+          "$25$",
+          "$75$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-03-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "값이 모두 다른 자료에서 제$3$사분위수 이상인 자료와 제$1$사분위수 이상인 자료는 각각 전체의 약 몇 $\\%$인지 쓰고, 같은 값이 여러 번 나오는 자료에서는 이 비율이 어떻게 달라질 수 있는지 쓰시오.",
+        "bAnswer": "제$3$사분위수 이상인 자료는 약 $25\\%$, 제$1$사분위수 이상인 자료는 약 $75\\%$이다. 같은 값이 여러 번 나오면 이 비율은 이보다 클 수 있다.",
+        "bGoal": "사분위수로 자료의 비율 읽기",
+        "bReason": "어떤 사분위수의 어느 쪽 비율인지와 값이 겹칠 때의 변화까지 질문에 밝힘.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "제$3$사분위수 이상은 약 $25$%"
+            ]
+          },
+          {
+            "anyOf": [
+              "제$1$사분위수 이상은 약 $75$%"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 값이 겹치면 더 클 수 있음"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "조건과 단서가 문장에 있고 두 비율을 대비해 묻는 짧은 수치 빈칸임.",
+        "authorBatch": 63,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "definition",
+        "roleReason": "Q3 이상 25%, Q1 이상 75%",
+        "enrichmentEvidence": "enrichment/enrich-010",
+        "sourceIndex": 3711,
+        "part": "m3plus",
+        "sourceFingerprint": "1a5bdda0eb5a7628e41528e33c04a0f601484a07ed17df309da7326b2d021661",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3711
+        },
+        "directReview": null,
+        "cFrozenSentence": "값이 모두 다른 자료에서는 제$3$사분위수 이상인 자료가 전체의 약 □$\\%$, 제$1$사분위수 이상인 자료가 약 □$\\%$이다 — 같은 값이 여러 번 나오면 이보다 클 수 있다.",
+        "cFrozenDefinition": "값이 모두 다른 자료에서는 제$3$사분위수 이상인 자료가 전체의 약 {$25$}$\\%$, 제$1$사분위수 이상인 자료가 약 {$75$}$\\%$이다 — 같은 값이 여러 번 나오면 이보다 클 수 있다.",
+        "cFrozenAnswers": [
+          "$25$",
+          "$75$"
+        ],
+        "cMarkedSentence": "값이 모두 다른 자료에서는 제$3$사분위수 이상인 자료가 전체의 약 {$25$}$\\%$, 제$1$사분위수 이상인 자료가 약 {$75$}$\\%$이다 — 같은 값이 여러 번 나오면 이보다 클 수 있다.",
+        "cSlotAnswers": [
+          "$25$",
+          "$75$"
+        ],
+        "cStudentSentence": "값이 모두 다른 자료에서는 제$3$사분위수 이상인 자료가 전체의 약 □$\\%$, 제$1$사분위수 이상인 자료가 약 □$\\%$이다 — 같은 값이 여러 번 나오면 이보다 클 수 있다.",
+        "cAnswers": [
+          "$25$",
+          "$75$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$25$",
+            "equivalentAnswers": [
+              "$25$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$75$",
+            "equivalentAnswers": [
+              "$75$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$25$"
+          ],
+          [
+            "$75$"
+          ]
+        ],
+        "proposalFingerprint": "251bf53912b22379bbb9f6d204aa863fb250de10de337e2cc710e8048eca5f05"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-07-03-xc12",
+        "section": "중3::7. 통계::상자그림",
+        "term": "두 상자그림의 중앙값 견주기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "{같은 수직선} 위에 나란히 그린 두 상자그림에서는 중앙값 선이 더 {오른쪽}에 있는 자료의 중앙값이 더 크다.",
+        "studentC": "□ 위에 나란히 그린 두 상자그림에서는 중앙값 선이 더 □에 있는 자료의 중앙값이 더 크다.",
+        "answers": [
+          "같은 수직선",
+          "오른쪽"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-03-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "오른쪽으로 갈수록 값이 커지는 같은 수직선 위에 두 자료 $A$, $B$의 상자그림을 나란히 그렸다. 어느 자료의 중앙값이 더 큰지는 그림의 무엇을 보고 어떻게 판단하는지 설명하시오.",
+        "bAnswer": "각 상자 안의 중앙값 선(세로선)의 위치를 비교한다. 중앙값 선이 더 오른쪽에 있는 자료의 중앙값이 더 크다.",
+        "bGoal": "두 상자그림에서 중앙값 비교하기",
+        "bReason": "수직선의 방향과 볼 부분을 밝혀 판단 방법을 묻는 질문으로 특정함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "상자 안 중앙값 선의 위치를 봄"
+            ]
+          },
+          {
+            "anyOf": [
+              "더 오른쪽에 있으면 중앙값이 더 큼"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "오른쪽으로 갈수록 값이 커지는 같은 수직선 위에 나란히 그린 두 상자그림에서는 상자 안의 세로선이 더 {오른쪽}에 있는 자료의 {중앙값}이 더 크다.",
+        "cAnswers": [
+          "오른쪽",
+          "중앙값"
+        ],
+        "cReason": "문장이 단서 없는 긴 빈칸 '같은 수직선'으로 시작해 조건은 드러내고 방향과 값을 묻게 함.",
+        "authorBatch": 63,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "application",
+        "roleReason": "중앙값 선 위치 비교",
+        "enrichmentEvidence": "enrichment/enrich-010",
+        "sourceIndex": 3712,
+        "part": "m3plus",
+        "sourceFingerprint": "617f1d72d9eb205dc1d9983142ea14d90c134c7657b0ec87e23ab88b3e93f79f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3712
+        },
+        "directReview": null,
+        "cMarkedSentence": "오른쪽으로 갈수록 값이 커지는 같은 수직선 위에 나란히 그린 두 상자그림에서는 상자 안의 세로선이 더 {오른쪽}에 있는 자료의 {중앙값}이 더 크다.",
+        "cSlotAnswers": [
+          "오른쪽",
+          "중앙값"
+        ],
+        "cStudentSentence": "오른쪽으로 갈수록 값이 커지는 같은 수직선 위에 나란히 그린 두 상자그림에서는 상자 안의 세로선이 더 □에 있는 자료의 □이 더 크다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "오른쪽",
+            "equivalentAnswers": [
+              "오른쪽"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "중앙값",
+            "equivalentAnswers": [
+              "중앙값",
+              "제$2$사분위수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "중앙값",
+            "accept": [
+              "제$2$사분위수"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "오른쪽"
+          ],
+          [
+            "중앙값",
+            "제$2$사분위수"
+          ]
+        ],
+        "proposalFingerprint": "e58ca9ba41aa741814393f3254693adf3df7ecb57d3b1ed421d7764cdbe50f30"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-07-03-xc13",
+        "section": "중3::7. 통계::상자그림",
+        "term": "상자그림으로 알 수 없는 것",
+        "kind": "성질",
+        "level": "상",
+        "definition": "상자그림에서는 최솟값, 제$1$사분위수, 중앙값, 제$3$사분위수, 최댓값을 읽을 수 있다. 이 다섯 값이 같은 자료라도 개별 변량이 다를 수 있으므로, 변량의 총합을 개수로 나눈 {평균}을 언제나 알아낼 수 있는 것은 아니다.",
+        "studentC": "상자그림에서는 최솟값, 제$1$사분위수, 중앙값, 제$3$사분위수, 최댓값을 읽을 수 있다. 이 다섯 값이 같은 자료라도 개별 변량이 다를 수 있으므로, 변량의 총합을 개수로 나눈 □을 언제나 알아낼 수 있는 것은 아니다.",
+        "answers": [
+          "평균"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-03-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "상자그림에서 읽을 수 있는 다섯 값을 쓰고, 상자그림만으로는 자료의 평균을 언제나 구할 수는 없는 까닭을 설명하시오.",
+        "bAnswer": "최솟값, 제$1$사분위수, 중앙값, 제$3$사분위수, 최댓값을 읽을 수 있다. 이 다섯 값이 같아도 개별 변량은 다를 수 있어 변량의 총합이 정해지지 않으므로 평균을 언제나 알 수는 없다.",
+        "bGoal": "상자그림으로 평균을 알 수 없는 까닭 설명",
+        "bReason": "알 수 없는 것이 평균임을 밝히고 그 까닭을 답하도록 범위를 정함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "최솟값, 제$1$사분위수, 중앙값, 제$3$사분위수, 최댓값"
+            ]
+          },
+          {
+            "anyOf": [
+              "다섯 값이 같아도 개별 변량이 다를 수 있음",
+              "다섯 값 외의 변량은 알 수 없음"
+            ]
+          },
+          {
+            "anyOf": [
+              "변량의 총합이 정해지지 않음",
+              "평균이 달라질 수 있음"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "문장은 길지만 '총합을 개수로 나눈'이라는 단서로 빈칸이 하나로 정해짐.",
+        "authorBatch": 63,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "다섯 값만으론 총합 불명",
+        "enrichmentEvidence": "enrichment/enrich-010",
+        "sourceIndex": 3713,
+        "part": "m3plus",
+        "sourceFingerprint": "7df640639fa4d1e1deff5e158ab0155d23968438bdef7fdc34d4168e1dea3caf",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3713
+        },
+        "directReview": null,
+        "cFrozenSentence": "상자그림에서는 최솟값, 제$1$사분위수, 중앙값, 제$3$사분위수, 최댓값을 읽을 수 있다. 이 다섯 값이 같은 자료라도 개별 변량이 다를 수 있으므로, 변량의 총합을 개수로 나눈 □을 언제나 알아낼 수 있는 것은 아니다.",
+        "cFrozenDefinition": "상자그림에서는 최솟값, 제$1$사분위수, 중앙값, 제$3$사분위수, 최댓값을 읽을 수 있다. 이 다섯 값이 같은 자료라도 개별 변량이 다를 수 있으므로, 변량의 총합을 개수로 나눈 {평균}을 언제나 알아낼 수 있는 것은 아니다.",
+        "cFrozenAnswers": [
+          "평균"
+        ],
+        "cMarkedSentence": "상자그림에서는 최솟값, 제$1$사분위수, 중앙값, 제$3$사분위수, 최댓값을 읽을 수 있다. 이 다섯 값이 같은 자료라도 개별 변량이 다를 수 있으므로, 변량의 총합을 개수로 나눈 {평균}을 언제나 알아낼 수 있는 것은 아니다.",
+        "cSlotAnswers": [
+          "평균"
+        ],
+        "cStudentSentence": "상자그림에서는 최솟값, 제$1$사분위수, 중앙값, 제$3$사분위수, 최댓값을 읽을 수 있다. 이 다섯 값이 같은 자료라도 개별 변량이 다를 수 있으므로, 변량의 총합을 개수로 나눈 □을 언제나 알아낼 수 있는 것은 아니다.",
+        "cAnswers": [
+          "평균"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "평균",
+            "equivalentAnswers": [
+              "평균"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "평균"
+          ]
+        ],
+        "proposalFingerprint": "bdb2244511b651e869e40d68c1b7d08158ddc8d552a16195e8de972f31478bf6"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-07-03-xc14",
+        "section": "중3::7. 통계::상자그림",
+        "term": "좌우가 대칭인 상자그림",
+        "kind": "성질",
+        "level": "상",
+        "definition": "중앙값 선이 상자 한가운데에 있고 두 수염의 길이가 같으면 {다섯 값의 자리}가 중앙값을 중심으로 대칭이다 — 그렇다고 {자료 전체}가 대칭으로 분포한다고는 할 수 없다.",
+        "studentC": "중앙값 선이 상자 한가운데에 있고 두 수염의 길이가 같으면 □가 중앙값을 중심으로 대칭이다 — 그렇다고 □가 대칭으로 분포한다고는 할 수 없다.",
+        "answers": [
+          "다섯 값의 자리",
+          "자료 전체"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-03-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "가로로 그린 상자그림에서 중앙값을 나타내는 선이 상자의 한가운데에 있고, 상자 밖 양쪽 선분의 길이가 같다. 최솟값, 제$1$사분위수, 중앙값, 제$3$사분위수, 최댓값의 위치에 대해 무엇을 알 수 있는가? 자료 전체가 중앙값을 중심으로 대칭이라고 결론 내릴 수 있는지도 이유와 함께 쓰시오.",
+        "bAnswer": "최솟값·제$1$사분위수·중앙값·제$3$사분위수·최댓값의 위치는 중앙값을 중심으로 대칭이다. 그러나 상자그림에는 각 자료값이 모두 나타나지 않으므로 자료 전체의 분포가 대칭이라고 결론 내릴 수 없다.",
+        "bGoal": "상자그림의 다섯 요약값과 전체 자료 분포의 정보 차이",
+        "bReason": "대칭이라는 제목 대신 주어진 대칭의 조건과 결론을 나누어 묻는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "다섯 요약값의 위치는 중앙값을 중심으로 대칭"
+            ]
+          },
+          {
+            "anyOf": [
+              "개별 자료값이 모두 보이지 않아 전체 자료 분포의 대칭을 단정할 수 없음"
+            ]
+          }
+        ],
+        "cDecision": "exclude",
+        "cAfter": "상자그림에서 중앙값 선이 상자 한가운데에 있고 두 수염의 길이가 같으면, 다섯 값(최솟값, 세 사분위수, 최댓값)의 자리가 중앙값을 중심으로 {대칭}이다 — 그렇다고 나머지 변량까지 포함한 자료 전체가 그렇게 분포한다고는 할 수 {없다}.",
+        "cAnswers": [
+          "대칭",
+          "없다"
+        ],
+        "cReason": "다섯 값의 자리/자료 전체라는 임의 긴 구절을 맞추는 것보다 자료 분포를 단정하지 못하는 이유를 B에서 설명해야 한다.",
+        "authorBatch": 63,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "요약값 대칭≠전체 대칭",
+        "enrichmentEvidence": "enrichment/enrich-010",
+        "exclusionReason": "C: 관계의 이유나 자료 정보의 한계를 단답 낱말 암기로 확인하기 어려워 C에서는 제외하고 일반 학습 설명과 B 설명 질문은 유지한다.",
+        "sourceIndex": 3714,
+        "part": "m3plus",
+        "sourceFingerprint": "df18c82ddf0e0d12e79b2834291fce00c50c91b2e00fed5ae515d506a0d73102",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3714
+        },
+        "directReview": {
+          "path": "direct-review.json",
+          "id": "m3-07-03-xc14",
+          "note": "정보의 한계를 설명하는 일반 개념을 수치 계산으로 바꾸지 않는다. 다섯 요약값과 수염이라는 표현 대신 실제 값의 이름과 상자 밖 선분으로 풀었다."
+        },
+        "proposalFingerprint": "0237121e59623fbfc3f1b80db0db381d5818a3116a5ced956a34bda401bfde53"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-07-03-xc16",
+        "section": "중3::7. 통계::상자그림",
+        "term": "최댓값만 커질 때의 상자그림",
+        "kind": "성질",
+        "level": "상",
+        "definition": "변량이 $6$개 이상일 때 최댓값 하나만 더 커지면 상자는 그대로이고 오른쪽 {수염}만 길어진다 — 사분위수는 {변하지 않는다}.",
+        "studentC": "변량이 $6$개 이상일 때 최댓값 하나만 더 커지면 상자는 그대로이고 오른쪽 □만 길어진다 — 사분위수는 □.",
+        "answers": [
+          "수염",
+          "변하지 않는다"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-03-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "변량이 $6$개 이상인 자료에서 가장 큰 변량 하나만 더 큰 값으로 바뀌었다. 가로로 그린 상자그림(오른쪽으로 갈수록 값이 큼)에서 상자와 오른쪽 수염은 각각 어떻게 되는지 쓰고, 그 까닭을 설명하시오.",
+        "bAnswer": "상자는 그대로이고 오른쪽 수염만 길어진다. 최댓값만 커지면 나머지 변량과 크기순 자리가 그대로여서 세 사분위수는 변하지 않고, 수염의 오른쪽 끝인 최댓값만 커지기 때문이다.",
+        "bGoal": "최댓값의 변화가 상자그림에 주는 영향 설명",
+        "bReason": "변량의 개수 조건과 바뀌는 값을 밝히고 상자·수염의 변화와 까닭을 묻도록 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "상자는 그대로"
+            ]
+          },
+          {
+            "anyOf": [
+              "오른쪽 수염만 길어짐"
+            ]
+          },
+          {
+            "anyOf": [
+              "사분위수는 변하지 않음"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "변량이 $6$개 이상인 자료에서 최댓값 하나만 더 커지면, 상자그림에서 세 {사분위수}는 변하지 않으므로 상자는 그대로이고 오른쪽 {수염}만 길어진다.",
+        "cAnswers": [
+          "사분위수",
+          "수염"
+        ],
+        "cReason": "상자그림 맥락이 없고 '변하지 않는다'는 서술형 빈칸이라 용어를 묻는 빈칸으로 바꿈.",
+        "authorBatch": 63,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "사분위수 불변, 수염만 길어짐",
+        "enrichmentEvidence": "enrichment/enrich-010",
+        "sourceIndex": 3715,
+        "part": "m3plus",
+        "sourceFingerprint": "1f9333f31c58e03ee488fee1aca52503d86c05c16dcd6c0f381122881b3f5454",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3715
+        },
+        "directReview": null,
+        "cMarkedSentence": "변량이 $6$개 이상인 자료에서 최댓값 하나만 더 커지면, 상자그림에서 세 {사분위수}는 변하지 않으므로 상자는 그대로이고 오른쪽 {수염}만 길어진다.",
+        "cSlotAnswers": [
+          "사분위수",
+          "수염"
+        ],
+        "cStudentSentence": "변량이 $6$개 이상인 자료에서 최댓값 하나만 더 커지면, 상자그림에서 세 □는 변하지 않으므로 상자는 그대로이고 오른쪽 □만 길어진다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "사분위수",
+            "equivalentAnswers": [
+              "사분위수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "수염",
+            "equivalentAnswers": [
+              "수염"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "사분위수"
+          ],
+          [
+            "수염"
+          ]
+        ],
+        "proposalFingerprint": "5f36b07dff214355526116e1c3c48cddc54a6183fe0f34cf445e44eec567c9ff"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-07-03-xc17",
+        "section": "중3::7. 통계::상자그림",
+        "term": "중앙값이 같은 두 반의 상자",
+        "kind": "성질",
+        "level": "상",
+        "definition": "두 반의 상자그림에서 중앙값이 같아도 상자의 길이가 긴 반은 가운데 $50\\%$ 학생의 점수가 더 {넓게} 퍼져 있다.",
+        "studentC": "두 반의 상자그림에서 중앙값이 같아도 상자의 길이가 긴 반은 가운데 $50\\%$ 학생의 점수가 더 □ 퍼져 있다.",
+        "answers": [
+          "넓게"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-03-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "$A$반과 $B$반의 수학 점수를 나타낸 상자그림에서 두 반의 중앙값은 모두 $70$점이다. 상자는 $A$반이 $60$점부터 $80$점까지, $B$반이 $65$점부터 $75$점까지이다. 크기순으로 가운데 $50\\%$ 학생의 점수가 더 넓게 퍼져 있는 반은 어느 반인지 쓰고, 그 까닭을 설명하시오.",
+        "bAnswer": "$A$반이다. 상자의 길이는 가운데 $50\\%$ 자료가 퍼진 폭인데, $A$반은 $80-60=20$(점), $B$반은 $75-65=10$(점)으로 $A$반의 상자가 더 길기 때문이다.",
+        "bGoal": "중앙값이 같은 두 자료를 상자의 길이로 비교",
+        "bReason": "두 반이 어떤 상황인지 제목만으로 알 수 없어 중앙값과 상자의 양 끝을 수치로 제시함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$A$반"
+            ]
+          },
+          {
+            "anyOf": [
+              "$A$반 상자 길이 $20$점, $B$반 $10$점",
+              "$A$반의 상자가 $B$반보다 더 김"
+            ]
+          },
+          {
+            "anyOf": [
+              "상자가 길수록 가운데 $50$% 점수가 넓게 퍼짐",
+              "상자의 길이가 가운데 $50$% 자료가 퍼진 폭"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "비교 상황과 가운데 50%라는 대상이 문장에 있고 결론 한 낱말만 묻는 빈칸임.",
+        "exampleNeeded": true,
+        "authorBatch": 63,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "application",
+        "roleReason": "상자 길이로 퍼짐 비교",
+        "enrichmentEvidence": "enrichment/enrich-010",
+        "sourceIndex": 3716,
+        "part": "m3plus",
+        "sourceFingerprint": "14f7c19cf960f0ff5a38546300acb571fcbee0ac817c4ff62eeb92484f7637ca",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3716
+        },
+        "directReview": null,
+        "cFrozenSentence": "두 반의 상자그림에서 중앙값이 같아도 상자의 길이가 긴 반은 가운데 $50\\%$ 학생의 점수가 더 □ 퍼져 있다.",
+        "cFrozenDefinition": "두 반의 상자그림에서 중앙값이 같아도 상자의 길이가 긴 반은 가운데 $50\\%$ 학생의 점수가 더 {넓게} 퍼져 있다.",
+        "cFrozenAnswers": [
+          "넓게"
+        ],
+        "cMarkedSentence": "두 반의 상자그림에서 중앙값이 같아도 상자의 길이가 긴 반은 가운데 $50\\%$ 학생의 점수가 더 {넓게} 퍼져 있다.",
+        "cSlotAnswers": [
+          "넓게"
+        ],
+        "cStudentSentence": "두 반의 상자그림에서 중앙값이 같아도 상자의 길이가 긴 반은 가운데 $50\\%$ 학생의 점수가 더 □ 퍼져 있다.",
+        "cAnswers": [
+          "넓게"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "넓게",
+            "equivalentAnswers": [
+              "넓게",
+              "널리"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "넓게",
+            "accept": [
+              "널리"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "넓게",
+            "널리"
+          ]
+        ],
+        "proposalFingerprint": "85e22f31cc61cc07e5598649f561a60fcde53c38e3af36c710386f7451817142"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-07-03-xc19",
+        "section": "중3::7. 통계::상자그림",
+        "term": "제$1$사분위수와 다른 자료의 최댓값",
+        "kind": "성질",
+        "level": "상",
+        "definition": "한 자료의 제$1$사분위수가 다른 자료의 최댓값보다 크면, 앞 자료의 적어도 {$75$}$\\%$가 뒤 자료의 {모든} 값보다 크다.",
+        "studentC": "한 자료의 제$1$사분위수가 다른 자료의 최댓값보다 크면, 앞 자료의 적어도 □$\\%$가 뒤 자료의 □ 값보다 크다.",
+        "answers": [
+          "$75$",
+          "모든"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-03-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "자료 $A$의 제$1$사분위수가 자료 $B$의 최댓값보다 크다. 이때 $A$의 자료 중 적어도 몇 $\\%$가 $B$의 모든 값보다 크다고 할 수 있는지 쓰고, 그 까닭을 설명하시오.",
+        "bAnswer": "적어도 $75\\%$이다. $A$에서 제$1$사분위수 이상인 자료는 전체의 적어도 약 $75\\%$이고, 이 값들은 모두 $B$의 최댓값보다 크므로 $B$의 모든 값보다 크다.",
+        "bGoal": "사분위수와 최댓값으로 두 자료 비교",
+        "bReason": "두 자료에 A, B 이름을 붙여 어느 자료의 몇 %를 묻는지 분명히 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "적어도 $75$%"
+            ]
+          },
+          {
+            "anyOf": [
+              "제$1$사분위수 이상인 자료가 약 $75$% 이상"
+            ]
+          },
+          {
+            "anyOf": [
+              "$B$의 최댓값보다 크면 $B$의 모든 값보다 큼"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "자료 A의 제$1$사분위수가 자료 B의 최댓값보다 크면, A의 자료 중 적어도 {$75$}$\\%$가 B의 {모든} 값보다 크다.",
+        "cAnswers": [
+          "$75$",
+          "모든"
+        ],
+        "cReason": "'앞 자료', '뒤 자료'라는 지칭이 헷갈려 A, B로 이름만 붙이고 빈칸은 그대로 둠.",
+        "studentLabel": "제$1$사분위수가 다른 자료의 최댓값보다 클 때",
+        "authorBatch": 63,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "Q1 이상 75%가 B 최대 초과",
+        "enrichmentEvidence": "enrichment/enrich-010",
+        "sourceIndex": 3717,
+        "part": "m3plus",
+        "sourceFingerprint": "b2f6556f20a017963edd563436a0766ea6870dede275f0e07756511d2ed52ca7",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3717
+        },
+        "directReview": null,
+        "cMarkedSentence": "자료 A의 제$1$사분위수가 자료 B의 최댓값보다 크면, A의 자료 중 적어도 {$75$}$\\%$가 B의 {모든} 값보다 크다.",
+        "cSlotAnswers": [
+          "$75$",
+          "모든"
+        ],
+        "cStudentSentence": "자료 A의 제$1$사분위수가 자료 B의 최댓값보다 크면, A의 자료 중 적어도 □$\\%$가 B의 □ 값보다 크다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$75$",
+            "equivalentAnswers": [
+              "$75$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "모든",
+            "equivalentAnswers": [
+              "모든",
+              "어떤",
+              "어느"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "모든",
+            "accept": [
+              "어떤",
+              "어느"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$75$"
+          ],
+          [
+            "모든",
+            "어떤",
+            "어느"
+          ]
+        ],
+        "proposalFingerprint": "a3570f74ac2a5fa9f7fd0f64e673d94f75a92852ea5ac37dfb8f1a55923d039b"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-07-03-xc20",
+        "section": "중3::7. 통계::상자그림",
+        "term": "길이가 다른 두 수염",
+        "kind": "성질",
+        "level": "상",
+        "definition": "값이 모두 다른 자료에서는 두 수염 구간에 자료가 약 {$25$}$\\%$씩 있으므로, 왼쪽 수염이 더 길면 작은 쪽 자료가 더 {넓게} 퍼져 있다.",
+        "studentC": "값이 모두 다른 자료에서는 두 수염 구간에 자료가 약 □$\\%$씩 있으므로, 왼쪽 수염이 더 길면 작은 쪽 자료가 더 □ 퍼져 있다.",
+        "answers": [
+          "$25$",
+          "넓게"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-03-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "값이 모두 다른 자료를 가로로 그린 상자그림(오른쪽으로 갈수록 값이 큼)에서 왼쪽 수염이 오른쪽 수염보다 길다. 두 수염 구간에 들어 있는 자료의 비율을 쓰고, 작은 쪽 자료와 큰 쪽 자료 중 어느 쪽이 더 넓게 퍼져 있는지 설명하시오.",
+        "bAnswer": "두 수염 구간에는 자료가 약 $25\\%$씩 들어 있다. 같은 비율의 자료가 더 긴 구간에 놓여 있으므로 왼쪽 수염 구간, 곧 작은 쪽 자료가 더 넓게 퍼져 있다.",
+        "bGoal": "수염의 길이로 양 끝 자료의 퍼짐 비교",
+        "bReason": "어느 수염이 긴지와 방향을 밝혀 비율과 퍼진 쪽을 답하도록 특정함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 수염 구간에 약 $25$%씩"
+            ]
+          },
+          {
+            "anyOf": [
+              "긴 수염 쪽 자료가 더 넓게 퍼짐"
+            ]
+          },
+          {
+            "anyOf": [
+              "작은 쪽 자료"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "값이 모두 다른 자료의 상자그림에서는 두 수염 구간에 자료가 약 {$25$}$\\%$씩 있으므로, 왼쪽 수염이 더 길면 작은 쪽 자료가 더 {넓게} 퍼져 있다.",
+        "cAnswers": [
+          "$25$",
+          "넓게"
+        ],
+        "cReason": "상자그림이라는 말이 없어 '수염'이 무엇인지 알 수 없으므로 맥락만 덧붙임.",
+        "authorBatch": 63,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "같은 25%가 긴 구간에 퍼짐",
+        "enrichmentEvidence": "enrichment/enrich-010",
+        "sourceIndex": 3718,
+        "part": "m3plus",
+        "sourceFingerprint": "8f054ed29d32cdfdeecfba8e3f33ac73d31b892e1c2b8b979f7ebc6d3c539fea",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3718
+        },
+        "directReview": null,
+        "cMarkedSentence": "값이 모두 다른 자료의 상자그림에서는 두 수염 구간에 자료가 약 {$25$}$\\%$씩 있으므로, 왼쪽 수염이 더 길면 작은 쪽 자료가 더 {넓게} 퍼져 있다.",
+        "cSlotAnswers": [
+          "$25$",
+          "넓게"
+        ],
+        "cStudentSentence": "값이 모두 다른 자료의 상자그림에서는 두 수염 구간에 자료가 약 □$\\%$씩 있으므로, 왼쪽 수염이 더 길면 작은 쪽 자료가 더 □ 퍼져 있다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$25$",
+            "equivalentAnswers": [
+              "$25$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "넓게",
+            "equivalentAnswers": [
+              "넓게",
+              "널리"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "넓게",
+            "accept": [
+              "널리"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$25$"
+          ],
+          [
+            "넓게",
+            "널리"
+          ]
+        ],
+        "proposalFingerprint": "be573216ee629b97661d22577a1aa6a839e8c070ecba5803e93aaf488e5b0329"
+      }
+    }
+  ]
+}

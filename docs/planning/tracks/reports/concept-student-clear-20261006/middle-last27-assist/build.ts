@@ -1,0 +1,86 @@
+import {readFileSync,writeFileSync} from 'node:fs';
+import {resolve} from 'node:path';
+import {createHash} from 'node:crypto';
+import assert from 'node:assert/strict';
+import {normalizeProposal,proposalRows,contentHash,proposedEntry} from 'C:/Users/user/orca/workspaces/todays-math/student-clear-integration-20261006/scripts/qa/concept-blank/student-clear/proposals';
+import {workerFingerprint,verifyEditorialRow} from 'C:/Users/user/orca/workspaces/todays-math/student-clear-integration-20261006/scripts/qa/concept-blank/student-clear/editorial';
+import {bankNotationFaults} from 'C:/Users/user/orca/workspaces/todays-math/student-clear-integration-20261006/src/lib/concept-blank/notation';
+import {blankClashes} from 'C:/Users/user/orca/workspaces/todays-math/student-clear-integration-20261006/src/lib/concept-blank/audit';
+import {splitBlankSentence,blankKeywords} from 'C:/Users/user/orca/workspaces/todays-math/student-clear-integration-20261006/src/contracts/conceptBlank.contract';
+const dir=resolve(process.argv[2]);
+const read=(n:string)=>JSON.parse(readFileSync(resolve(dir,n),'utf8'));
+const write=(n:string,v:any)=>writeFileSync(resolve(dir,n),JSON.stringify(v,null,2)+'\n');
+const sha=(v:Buffer)=>createHash('sha256').update(v).digest('hex');
+const packet=read('evidence/input.json');
+const capture=read('evidence/inputs.json');
+const before=proposalRows(read('evidence/current-raw.json'));
+const candidates=proposalRows(read('candidate-raw.json'));
+const originals=new Map(read('evidence/source-entries.json').entries.map((r:any)=>[r.id,r]));
+const scope=JSON.parse(readFileSync(capture.paths.scope.path,'utf8'));
+const sourcePositions=new Map(scope.entries.map((r:any,i:number)=>[r.id,i]));
+const ids=new Set(candidates.map(r=>r.id));
+const normalized:any[]=[];const beforeNormalized:any[]=[];const sourceChecks:any[]=[];
+for(const raw of candidates){
+ const original:any=originals.get(raw.id);const old=before.find(r=>r.id===raw.id)!;
+ assert.equal(raw.sourceIndex,old.sourceIndex);assert.equal(sourcePositions.get(raw.id),raw.sourceIndex);
+ assert.equal(raw.sourceFingerprint,old.sourceFingerprint);assert.equal(contentHash(scope.entries[raw.sourceIndex as number]),raw.sourceFingerprint);
+ const input=packet.rows.find((r:any)=>r.id===raw.id);assert.deepEqual(input.source,original);
+ const prior=normalizeProposal(old,original)!;assert.ok(prior);assert.equal(prior.hash,input.hash);
+ for(const k of ['B','C','goal','coreAfter','coreReason'])assert.deepEqual((prior as any)[k],input[k]);
+ beforeNormalized.push(prior);
+ if(raw.cDecision!=='exclude'){
+  const sentence=raw.cMarkedSentence as string;const pieces=splitBlankSentence(sentence);const keys=blankKeywords(sentence);
+  raw.cAfter=sentence;raw.cSlotAnswers=keys;raw.cAnswers=keys;
+  raw.cStudentSentence=pieces.map(p=>p.kind==='key'?'□':p.text).join('');
+  raw.cSlots=keys.map((answer,index)=>({index,answer,equivalentAnswers:(raw.cAcceptedAnswers as any[])[index],equivalenceReview:'Codex direct semantic review; Root independent verification required'}));
+ }
+ raw.proposalFingerprint=workerFingerprint('middle',raw);
+ const p=normalizeProposal(raw,original);assert.ok(p);normalized.push(p);
+ sourceChecks.push({id:raw.id,sourceIndex:raw.sourceIndex,sourceFingerprint:raw.sourceFingerprint,beforeNormalizedHash:prior.hash,afterNormalizedHash:p.hash,workerFingerprint:raw.proposalFingerprint,fullRawFingerprint:contentHash(raw),currentLearningRole:raw.learningRole});
+}
+write('candidate-raw.json',{status:'Concrete correction handoff only; Root independently verifies and adopts',taskId:capture.taskId,dispatchId:capture.dispatchId,rows:candidates});
+write('candidate-normalized.json',{status:'Complete actual normalized after values, not independent approval',rows:normalized});
+write('evidence/before-normalized.json',{rows:beforeNormalized});
+write('fingerprints.json',{algorithm:'Root contentHash JSON.stringify SHA-256 and workerFingerprint middle; fullRawFingerprint includes the recorded worker fingerprint',rows:sourceChecks});
+const readingText=(list:any[])=>list.map((p:any)=>`${p.id}\nGENERAL: ${p.coreAfter??p.source.definition}\nCORE REASON: ${p.coreReason??'(none)'}\nGOAL: ${p.goal}\nB: ${JSON.stringify(p.B)}\nC: ${JSON.stringify(p.C)}\nNORMALIZED HASH: ${p.hash}\n`).join('\n');
+writeFileSync(resolve(dir,'evidence/before-reading.txt'),readingText(beforeNormalized));
+writeFileSync(resolve(dir,'evidence/after-reading.txt'),readingText(normalized));
+const asBank=(concepts:any[])=>({concepts,ox:[],apply:[],figures:[]}) as any;
+const targetFaults=bankNotationFaults(asBank(normalized.map(proposedEntry)));
+const targetClashes=blankClashes(asBank(normalized.map(proposedEntry))).map(g=>g.map(c=>c.id));
+const rootAuditBytes=readFileSync(capture.paths.rootAudit.path);
+const rootAudit=proposalRows(JSON.parse(rootAuditBytes.toString('utf8')));
+const fullBaseline=JSON.parse(readFileSync(capture.paths.baseline.path,'utf8'));
+const allSource:any[]=Object.values(fullBaseline.parts).flatMap((b:any)=>b.concepts);
+const allOriginals=new Map(allSource.map(r=>[r.id,r]));
+const candidateMap=new Map(normalized.map(p=>[p.id,p]));
+const currentMap=new Map(rootAudit.map(r=>[r.id,normalizeProposal(r,allOriginals.get(r.id))]));
+for(const old of before)assert.equal(contentHash(rootAudit.find(r=>r.id===old.id)),contentHash(old),`${old.id}: Root current row changed`);
+const currentEntries=scope.entries.map((s:any)=>proposedEntry(currentMap.get(s.id)!));
+const candidateEntries=scope.entries.map((s:any)=>proposedEntry(candidateMap.get(s.id)??currentMap.get(s.id)!));
+const currentClashes=blankClashes(asBank(currentEntries)).map(g=>g.map(c=>c.id));
+const fullClashes=blankClashes(asBank(candidateEntries)).map(g=>g.map(c=>c.id));
+const fullFaults=bankNotationFaults(asBank(candidateEntries));
+const baselineFaults=bankNotationFaults(asBank(currentEntries));
+const introducedFaults=fullFaults.filter(f=>!baselineFaults.some(b=>contentHash(b)===contentHash(f)));
+const introducedClashes=fullClashes.filter(g=>!currentClashes.some(b=>contentHash(b)===contentHash(g)));
+const snapshotChecks=['input','baseline','scope'].map(k=>({name:k,expected:capture.paths[k].sha256,actual:sha(readFileSync(capture.paths[k].path))}));
+for(const item of snapshotChecks)assert.equal(item.expected,item.actual);
+const ledgerFile=resolve(dir,'final-reading-ledger.json');
+let editorial:any=null;
+if(process.argv.includes('--verify-ledger')){
+ const ledger=read('final-reading-ledger.json').rows;
+ editorial=candidates.map((raw,i)=>{
+  const record=ledger.find((r:any)=>r.id===raw.id);
+  const issues=verifyEditorialRow('middle',raw,normalized[i],record);
+  if(record?.fullRawFingerprint!==contentHash(raw))issues.push('Full raw fingerprint mismatch');
+  if(record?.normalizedHash!==normalized[i].hash)issues.push('Full normalized fingerprint mismatch');
+  if(record?.afterReadingCaptureSha256!==sha(readFileSync(resolve(dir,'evidence/after-reading.txt'))))issues.push('Reading capture changed');
+  if(record?.issues?.length)issues.push('Unresolved issues recorded');
+  return {id:raw.id,issues};
+ });
+}
+const result={status:'Structural, notation and editorial evidence verification; not independent approval or activation',taskId:capture.taskId,dispatchId:capture.dispatchId,checkedAt:new Date().toISOString(),count:candidates.length,sourceChecks,snapshotChecks,rootBankCaptureSha256:sha(rootAuditBytes),targetFaults,targetClashes,fullBankFaults:fullFaults,preexistingFullBankFaults:baselineFaults,introducedFaults,fullBankClashes:fullClashes,introducedClashes,editorial};
+write('validation.json',result);
+console.log(JSON.stringify({count:candidates.length,targetFaults,targetClashes,introducedFaults,introducedClashes,fullBankFaultCount:fullFaults.length,editorialIssues:editorial?.filter((r:any)=>r.issues.length)??'Reread pending'}));
+if(targetFaults.length||targetClashes.length||introducedFaults.length||introducedClashes.length||editorial?.some((r:any)=>r.issues.length))process.exitCode=1;

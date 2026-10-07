@@ -1,0 +1,387 @@
+{
+  "importedAt": "2026-10-07T07:48:25.601Z",
+  "dispatchId": "ctx_9cb9b54195a9",
+  "notIndependentClaudeApproval": true,
+  "importedIds": [
+    "m2-07-01-xc7",
+    "m2-07-01-xc8",
+    "m2-07-01-xc9",
+    "m2-07-01-xc10",
+    "m2-07-01-xc12",
+    "m2-07-01-xc13",
+    "m2-07-01-xc14",
+    "m2-07-01-xc16",
+    "m2-07-01-xc17",
+    "m2-07-01-xc18",
+    "m2-07-01-xc20",
+    "m2-07-01-xc21",
+    "m2-07-01-xc24",
+    "m2-07-02-xc2",
+    "m2-07-02-xc4",
+    "m2-07-02-xc6",
+    "m2-07-02-xc7",
+    "m2-07-02-xc8",
+    "m2-07-02-xc11",
+    "m2-07-02-xc12",
+    "m2-07-02-xc14",
+    "m2-07-02-xc16",
+    "m2-07-02-xc17",
+    "m2-07-02-xc18",
+    "m2-07-02-xc19",
+    "m2-07-02-xc21",
+    "m2-07-02-xc22",
+    "m2-07-02-xc23",
+    "m2-07-02-xc24",
+    "m2-07-02-xc25",
+    "m2-07-03-xc1",
+    "m2-07-03-xc2",
+    "m2-07-03-xc3",
+    "m2-07-03-xc4",
+    "m2-07-03-xc5",
+    "m2-07-03-xc6",
+    "m2-07-03-xc7",
+    "m2-07-03-xc8",
+    "m2-07-03-xc11",
+    "m2-07-03-xc12",
+    "m2-07-03-xc13",
+    "m2-07-03-xc14",
+    "m2-07-03-xc16",
+    "m2-07-03-xc17",
+    "m2-07-03-xc19",
+    "m2-07-03-xc21",
+    "m2-07-03-xc22",
+    "m2-07-03-xc25",
+    "m2-07-04-xc1",
+    "m2-07-04-xc2",
+    "m2-07-04-xc3",
+    "m2-07-04-xc4",
+    "m2-07-04-xc5",
+    "m2-07-04-xc6",
+    "m2-07-04-xc7",
+    "m2-07-04-xc8",
+    "m2-07-04-xc9",
+    "m2-07-04-xc10",
+    "m2-07-04-xc12",
+    "m2-07-04-xc13",
+    "m2-07-04-xc14",
+    "m2-07-04-xc15",
+    "m2-07-04-xc16",
+    "m2-07-04-xc17",
+    "m2-07-04-xc18",
+    "m2-07-04-xc19",
+    "m2-07-04-xc20",
+    "m2-07-04-xc24",
+    "m2-07-04-xc25",
+    "m2-07-05-xc1",
+    "m2-07-05-xc2",
+    "m2-07-05-xc4",
+    "m2-07-05-xc7",
+    "m2-07-05-xc8",
+    "m2-07-05-xc9",
+    "m2-07-05-xc10",
+    "m2-07-05-xc11",
+    "m2-07-05-xc12",
+    "m2-07-05-xc13",
+    "m2-07-05-xc15",
+    "m2-07-05-xc16",
+    "m2-07-05-xc17",
+    "m2-07-05-xc21",
+    "m2-07-06-xc1",
+    "m2-07-06-xc2",
+    "m2-07-06-xc3",
+    "m2-07-06-xc4",
+    "m2-07-06-xc5",
+    "m2-07-06-xc6",
+    "m2-07-06-xc7",
+    "m2-07-06-xc10",
+    "m2-07-06-xc11"
+  ],
+  "pending": [
+    {
+      "id": "m2-07-01-xc11",
+      "sourceIndex": 3004,
+      "proposalFingerprint": "43ced0528ccc7c8dbd0191d147f4cde97a63a90b74cb7cb464fb345cc06bd003",
+      "bVerdict": "adopt",
+      "cVerdict": "revise",
+      "reason": "B의 6:4=9:x, 내외항 곱 및 x6은 타당하다. C는 내항·외항을 어느 순서로 써도 참인데 두 칸의 인정 답이 한 순서만 받는다. 실제 비례식의 두 위치를 지정해서 각각 이름을 묻도록 다시 쓴다.",
+      "rootVerdictEvidence": "evidence/root-assisted-3000-3119-20261007/root-middle-final-3000-3030-verdicts.json"
+    },
+    {
+      "id": "m2-07-01-xc19",
+      "sourceIndex": 3011,
+      "proposalFingerprint": "e0bb68e4ed51e9003c6240de90e7000e8bf6a22fab60ba65bfe3c484327fee90",
+      "bVerdict": "adopt",
+      "cVerdict": "revise",
+      "reason": "B는 마름모의 네 꼭짓점 위치와 AB6·BC9를 주어 (6-x):6=x:9 및 x18/5를 세울 수 있다. C는 삼각형 안의 마름모라고만 해 닮은 삼각형과 대응변을 특정할 수 없고 미지수·비례식 외의 여러 절차 표현도 가능하다. 실제 꼭짓점 구성과 식 빈칸으로 바꾼다.",
+      "rootVerdictEvidence": "evidence/root-assisted-3000-3119-20261007/root-middle-final-3000-3030-verdicts.json"
+    },
+    {
+      "id": "m2-07-01-xc22",
+      "sourceIndex": 3014,
+      "proposalFingerprint": "c9244e3c73062553403d138bd7d5bc2aaaf93b3af8ffcae378dbe139f8a21e21",
+      "bVerdict": "adopt",
+      "cVerdict": "revise",
+      "reason": "B의 4등분에서 평행선 길이3·6·9와 증가 규칙은 타당하다. C는 n 범위 없이 내부 등분점에서 3/n 길이까지 있다고 하여 n2·n3에 맞지 않는다. 적어도 n4 이상을 명시하거나 실제 4등분 예로 묻는다.",
+      "rootVerdictEvidence": "evidence/root-assisted-3000-3119-20261007/root-middle-final-3000-3030-verdicts.json"
+    },
+    {
+      "id": "m2-07-02-xc3",
+      "sourceIndex": 3017,
+      "proposalFingerprint": "fa3f287bab96d8cdb4d37fbe4aa946c53244d124298eaa01b965926c60134481",
+      "bVerdict": "revise",
+      "cVerdict": "adopt",
+      "reason": "B는 BD와 DC의 길이 관계와 D의 점 이름을 모두 요구하지만 두 번째 기준은 등식 또는 중점 중 하나만 받는다. 요청한 두 답을 각각 확인하도록 나눈다. C의 이등변 조건에서 대변 이등분은 타당하다.",
+      "rootVerdictEvidence": "evidence/root-assisted-3000-3119-20261007/root-middle-final-3000-3030-verdicts.json"
+    },
+    {
+      "id": "m2-07-02-xc9",
+      "sourceIndex": 3022,
+      "proposalFingerprint": "aade010856ce8ef91f07a14e893d7010d343e16200ec28a9aa3682bc849072a3",
+      "bVerdict": "revise",
+      "cVerdict": "adopt",
+      "reason": "B는 내심 이름과 세 변까지의 거리 관계를 요구한다. 그런데 거리 기준이 내접원의 중심이다라는 이름 정의도 받아 실제 거리 관계 없이 통과할 수 있다. 세 수선 거리 모두 같음을 확인한다. C의 세 내각 이등분선 교점 이름은 분명하다.",
+      "rootVerdictEvidence": "evidence/root-assisted-3000-3119-20261007/root-middle-final-3000-3030-verdicts.json"
+    },
+    {
+      "id": "m2-07-02-xc10",
+      "sourceIndex": 3023,
+      "proposalFingerprint": "a5aabc21cb2dee09b8c7ebb43120c82e77e0b6e86941081e9748a4a2f61ac2de",
+      "bVerdict": "revise",
+      "cVerdict": "adopt",
+      "reason": "B의 AB4·AC3·BC7은 삼각형 부등식의 등호 경우로 삼각형을 만들 수 없다. BC를 유효한 길이로 바꾸고 비례식·답·기준을 함께 다시 계산한다. C의 부분을 전체에서 빼는 방법은 별도 일반 설명으로 유지 가능하다.",
+      "rootVerdictEvidence": "evidence/root-assisted-3000-3119-20261007/root-middle-final-3000-3030-verdicts.json"
+    },
+    {
+      "id": "m2-07-02-xc13",
+      "sourceIndex": 3026,
+      "proposalFingerprint": "8fb7de5803d5ffd4a9df11414b31bdea58778ed3e2a1c81a2fd4119f061cffdd",
+      "bVerdict": "adopt",
+      "cVerdict": "revise",
+      "reason": "B는 AD가 이등분선이 아니어도 공통 높이에 따라 BD:DC 넓이비가 됨을 설명한다. C는 구체 선분 없이 두 조각이라는 명사와 비라는 말을 추측하게 한다. A·B·C·D와 실제 넓이비를 제시해 대응 선분을 채우게 고친다.",
+      "rootVerdictEvidence": "evidence/root-assisted-3000-3119-20261007/root-middle-final-3000-3030-verdicts.json"
+    },
+    {
+      "id": "m2-07-02-xc15",
+      "sourceIndex": 3028,
+      "proposalFingerprint": "c7fbe9afece1e5ae15168470cc77cdef1befe3556292c7798f09a2aef94c09cc",
+      "bVerdict": "revise",
+      "cVerdict": "adopt",
+      "reason": "직각삼각형6·8·10과 이등분선의 AD30/7은 타당하다. 다만 B는 길이만 요구하는데 기준에 분할비를 별도로 필수로 둔다. 비와 구한 방법도 질문에서 요구하거나 길이만 확인하는 기준으로 맞춘다. 중복 C 제외는 타당하다.",
+      "rootVerdictEvidence": "evidence/root-assisted-3000-3119-20261007/root-middle-final-3000-3030-verdicts.json"
+    },
+    {
+      "id": "m2-07-02-xc20",
+      "sourceIndex": 3033,
+      "proposalFingerprint": "0647a948897960f97ec4cb6be34ee94dff75d5733c8246c2a53bfdc258e09f5f",
+      "bVerdict": "revise",
+      "cVerdict": "adopt",
+      "reason": "B는 BD:CD를 이용한 이유를 요구하지만 기준은 BD>CD 또는 C에 더 가깝다는 결론만 확인한다. 외각 이등분선의 비가 AB:AC라는 성질과 주어진 대소를 연결해 확인한다. C는 그 비의 조건과 끝점 방향을 실제로 밝힌다.",
+      "rootVerdictEvidence": "evidence/root-assisted-3000-3119-20261007/root-middle-final-3030-3060-verdicts.json"
+    },
+    {
+      "id": "m2-07-03-xc9",
+      "sourceIndex": 3047,
+      "proposalFingerprint": "d055b8d9fe6cb102b44ccdd5ec08a3f9ba4ce485ddf30070ef659aa70bd6e7ec",
+      "bVerdict": "adopt",
+      "cVerdict": "revise",
+      "reason": "B의 대응 오류 문항으로 통합은 타당하다. C는 뒤부터 쓴 비와 결과3:2를 모두 주고 순서라는 설명어만 복원한다. 결과 비를 주지 않고 실제 뒤집힌 비를 계산해 채우도록 바꾼다.",
+      "rootVerdictEvidence": "evidence/root-assisted-3000-3119-20261007/root-middle-final-3030-3060-verdicts.json"
+    },
+    {
+      "id": "m2-07-03-xc15",
+      "sourceIndex": 3052,
+      "proposalFingerprint": "e765f03c2b911813a23f5d6c853c054239b3089d7e1ac427bfcd194642a49743",
+      "bVerdict": "revise",
+      "cVerdict": "revise",
+      "reason": "B는 구한 길이의 적합성을 실제 확인하라고 하지만 길이가 양수인지 확인한다는 일반 지시만으로 세 번째 기준을 통과한다. 구한 AB1>0을 확인한다. C도 조각과 대응 길이의 실제 구성이 없어 비례식 대신 일반 방정식 등 여러 절차 말이 가능하므로 세 평행선의 실제 식과 길이를 짧은 빈칸으로 지정한다.",
+      "rootVerdictEvidence": "evidence/root-assisted-3000-3119-20261007/root-middle-final-3030-3060-verdicts.json"
+    },
+    {
+      "id": "m2-07-03-xc18",
+      "sourceIndex": 3055,
+      "proposalFingerprint": "2b7ae865b97ba66c25a57b115d8663773d3ae9df2861c6810782ca70caf21045",
+      "bVerdict": "revise",
+      "cVerdict": "adopt",
+      "reason": "B는 EF의 식만 구하라고 하지만 기준은 EG·GF 두 중간 식을 강제하여 다른 타당한 방법을 배제한다. 대각선을 이용한 두 부분의 길이도 질문에서 요구하거나 최종 식 기준만 남긴다. C의 윗변a·아랫변b와 위부터m:n의 가중 식은 맞다.",
+      "rootVerdictEvidence": "evidence/root-assisted-3000-3119-20261007/root-middle-final-3030-3060-verdicts.json"
+    },
+    {
+      "id": "m2-07-03-xc20",
+      "sourceIndex": 3057,
+      "proposalFingerprint": "541920c916e2571e85f6b9bcf2a3c52683769763107bd8ae998d6d2e5c50fb30",
+      "bVerdict": "adopt",
+      "cVerdict": "revise",
+      "reason": "B는 실제 평행선 EF6과 밑변4·10으로 부분대전체1:3 및 AE:EB1:2를 구한다. C의 중간 폭은 어떤 선분인지와 밑변에 평행한지 명시하지 않아 길이 관계를 유추해야 한다. 밑변과 평행한 선분의 길이라고 대상을 밝혀 고친다.",
+      "rootVerdictEvidence": "evidence/root-assisted-3000-3119-20261007/root-middle-final-3030-3060-verdicts.json"
+    },
+    {
+      "id": "m2-07-03-xc23",
+      "sourceIndex": 3060,
+      "proposalFingerprint": "ee1a963ac8572165452cd3c09e33fbf890e22ae897dc111803de93ed76e13b54",
+      "bVerdict": "adopt",
+      "cVerdict": "revise",
+      "reason": "B는 세 평행선의 실제 교점과 4:6=9:x 오류를 주어 대응 순서와 바른 식, x6을 확인한다. C는 평행선이라는 조건도 없이 두 직선의 앞뒤 부분을 같은 차례로 놓기만 하면 비례식이 맞는다고 한다. 세 평행선 및 실제 대응 부분의 조건을 넣는다.",
+      "rootVerdictEvidence": "evidence/root-assisted-3000-3119-20261007/root-middle-final-3060-3090-verdicts.json"
+    },
+    {
+      "id": "m2-07-03-xc24",
+      "sourceIndex": 3061,
+      "proposalFingerprint": "d685371ba64e6ab4038f1e622663552bfcf439b6c948ab245c6f82b2f875d7fd",
+      "bVerdict": "revise",
+      "cVerdict": "revise",
+      "reason": "B의 반례 자체는 가능하나 기준은 반례를 들 수 있다는 일반 주장만 확인해 실제 까닭 없이 통과한다. 구체 반례를 요청·확인한다. C는 임의의 세 직선에 내릴 수 없는 결론을 열린 빈칸으로 두어 평행 외의 다른 틀린 결론도 참 문장을 만든다. 평행을 단정할 수 있는지 판단하도록 묻는 대상을 고정한다.",
+      "rootVerdictEvidence": "evidence/root-assisted-3000-3119-20261007/root-middle-final-3060-3090-verdicts.json"
+    },
+    {
+      "id": "m2-07-04-xc11",
+      "sourceIndex": 3073,
+      "proposalFingerprint": "bea620cc711cbf3a4c8a9f3e4981374b72bf47e438b3906cbe118fa71ffc9d80",
+      "bVerdict": "revise",
+      "cVerdict": "adopt",
+      "reason": "B는 어떤 닮음 조건인지 자유롭게 묻지만 SAS만 받는다. 이미 배운 중점 연결 평행·길이 성질로 AA나 SSS를 타당하게 설명할 수도 있다. 두 중점에서 얻는 두 변의 비와 공통 끼인각을 이용한다는 범위를 지정하거나 다른 타당한 증명도 받는다. C는 그 두 변과 끼인각을 명시해 SAS 기준을 정확히 묻는다.",
+      "rootVerdictEvidence": "evidence/root-assisted-3000-3119-20261007/root-middle-final-3060-3090-verdicts.json"
+    },
+    {
+      "id": "m2-07-04-xc21",
+      "sourceIndex": 3083,
+      "proposalFingerprint": "50fe58a1a056875b5b85d2587d074c414156125c998a34614260ef14575a8450",
+      "bVerdict": "adopt",
+      "cVerdict": "revise",
+      "reason": "B는 네 변의 중점을 차례로 잇는 구성과 대각선 합인 둘레를 명확히 묻는다. C는 네 중점이 어느 선분의 중점인지 밝히지 않는다. 원래 사각형의 네 변의 중점을 차례로 잇는다는 구성을 넣는다.",
+      "rootVerdictEvidence": "evidence/root-assisted-3000-3119-20261007/root-middle-final-3060-3090-verdicts.json"
+    },
+    {
+      "id": "m2-07-04-xc22",
+      "sourceIndex": 3084,
+      "proposalFingerprint": "e48a5b450daa7b144df93ddf45971c9314003062d421cc56d5299c68c3306187",
+      "bVerdict": "adopt",
+      "cVerdict": "revise",
+      "reason": "B는 네 변의 중점과 같은 대각선 길이로 마름모가 됨을 확인한다. C는 네 중점의 소속과 연결 순서가 없으므로 네 변의 중점을 차례로 잇는다고 명시한다.",
+      "rootVerdictEvidence": "evidence/root-assisted-3000-3119-20261007/root-middle-final-3060-3090-verdicts.json"
+    },
+    {
+      "id": "m2-07-04-xc23",
+      "sourceIndex": 3085,
+      "proposalFingerprint": "5045dd3bc345a9ce7b5c5f264a93bfd07ecdaaf8a3099b1e408e00213401551f",
+      "bVerdict": "adopt",
+      "cVerdict": "revise",
+      "reason": "B는 네 변의 중점을 차례로 잇는 구성과 수직 대각선으로 직사각형을 증명한다. C도 네 중점이 원래 마름모의 각 변의 중점이고 차례로 잇는다는 조건을 밝힌다.",
+      "rootVerdictEvidence": "evidence/root-assisted-3000-3119-20261007/root-middle-final-3060-3090-verdicts.json"
+    },
+    {
+      "id": "m2-07-05-xc3",
+      "sourceIndex": 3090,
+      "proposalFingerprint": "469d6854c38f0dfd79b1d85cff64a4ed8428182388ceb9ce47dc6480cdccc141",
+      "bVerdict": "revise",
+      "cVerdict": "adopt",
+      "reason": "B는 두 조건을 기호로 쓰라고 명시하지만 첫 기준은 D가 중점이라는 말만 써도 받는다. 기호 표현을 실제 확인하거나 말로 답해도 된다고 질문을 바꾼다. C는 중선이 변을 나누는 점을 지나고 각 이등분선은 내각을 나눈다는 대상 구분이 명확하다.",
+      "rootVerdictEvidence": "evidence/root-assisted-3000-3119-20261007/root-middle-final-3090-3120-verdicts.json"
+    },
+    {
+      "id": "m2-07-05-xc5",
+      "sourceIndex": 3092,
+      "proposalFingerprint": "b5cd5a01926fe79685ea5ca2604f0e21f2e367757ab3c4dfa06e94d51497d58a",
+      "bVerdict": "adopt",
+      "cVerdict": "revise",
+      "reason": "B는 세 중선의 공점성으로 두 중선이면 충분한 이유를 확인한다. C는 몇 개만 그어도 찾을 수 있다는 말만으로는 세 개도 작도 가능하다. 최소 몇 개라는 범위를 명시한다.",
+      "rootVerdictEvidence": "evidence/root-assisted-3000-3119-20261007/root-middle-final-3090-3120-verdicts.json"
+    },
+    {
+      "id": "m2-07-05-xc6",
+      "sourceIndex": 3093,
+      "proposalFingerprint": "97f6ac9bb0f1160ec5e4c6cfa45433319c131396e35e05e3da9209dd1d284dc1",
+      "bVerdict": "revise",
+      "cVerdict": "adopt",
+      "reason": "B의 무게중심 내부라는 결론은 맞지만 중선이 삼각형 안을 지난다는 일반 사실만으로 기준을 통과하면 G가 두 끝점 사이의 내부에 있다는 이유가 빠진다. 중선2:1 분할 또는 끝점 사이의 위치를 함께 확인한다. C의 안쪽 위치 판단은 명확하다.",
+      "rootVerdictEvidence": "evidence/root-assisted-3000-3119-20261007/root-middle-final-3090-3120-verdicts.json"
+    },
+    {
+      "id": "m2-07-05-xc14",
+      "sourceIndex": 3101,
+      "proposalFingerprint": "5e78a4e3795ff6d6347ab900f6a2edd7816cd2eef2fb2b316c64616d8f148100",
+      "bVerdict": "adopt",
+      "cVerdict": "revise",
+      "reason": "B는 서로 다른 중선의 AG·GE에 무게중심 성질만 적용할 수 없는 이유와 바른 같은 중선 비를 묻는다. C의 서로 다른 중선 부분에 이 비를 쓰면 안 된다는 말은 우연히2:1인 경우까지 금지하는 것으로 읽힐 수 있다. 그 성질만으로 항상2:1이라고 단정할 수 없다고 범위를 명시한다.",
+      "rootVerdictEvidence": "evidence/root-assisted-3000-3119-20261007/root-middle-final-3090-3120-verdicts.json"
+    },
+    {
+      "id": "m2-07-05-xc18",
+      "sourceIndex": 3105,
+      "proposalFingerprint": "2de3ac3e42d27854ea418ae382e2a46616411ccdfd679e8722639e809513b952",
+      "bVerdict": "revise",
+      "cVerdict": "adopt",
+      "reason": "B의 거리1/3배와 넓이·공통 밑변 이유는 타당하다. 그러나 다른 인정 기준은 정의되지 않은 D의 GD=AD/3만으로 거리 결론을 잇는다. D가 BC 중점이며 같은 직선 BC로 내린 높이가 그 비율로 변한다는 근거를 명시한다. C의 수선 거리와 해당 밑변 높이 비교는 명확하다.",
+      "rootVerdictEvidence": "evidence/root-assisted-3000-3119-20261007/root-middle-final-3090-3120-verdicts.json"
+    },
+    {
+      "id": "m2-07-05-xc19",
+      "sourceIndex": 3106,
+      "proposalFingerprint": "9bb795720dbb4d21ea5aa83a61d06ce76f2aaa8dddf9b2ee6498dd4f7a949821",
+      "bVerdict": "revise",
+      "cVerdict": "adopt",
+      "reason": "B의 넓이2:1은 맞지만 이유 기준에 AG:GD=2:1을 이용한다는 말만 있어 선분비가 넓이비가 되는 공통 높이 근거 없이 통과할 수 있다. 이 대안에도 높이 관계를 연결한다. 전체의1/3·1/6 넓이를 쓰는 다른 타당한 이유는 유지한다. C는 두 삼각형이 기호로 특정된다.",
+      "rootVerdictEvidence": "evidence/root-assisted-3000-3119-20261007/root-middle-final-3090-3120-verdicts.json"
+    },
+    {
+      "id": "m2-07-05-xc20",
+      "sourceIndex": 3107,
+      "proposalFingerprint": "310e956a7491437a66db8625e4ed6367829473fc880d73a1fd611e6e9f6e2c0b",
+      "bVerdict": "adopt",
+      "cVerdict": "revise",
+      "reason": "B는 실제 PAB·PBC·PCA 세 넓이의 같음에서 무게중심을 판단한다. C의 내부점과 세 점을 이어 생긴 세 삼각형만으로는 원래 삼각형을 나누는 대상인지 불명확하다. 원래 삼각형 전체를 세 삼각형으로 나눈다는 구성을 넣어 꼭짓점이라는 답의 대상을 고정한다.",
+      "rootVerdictEvidence": "evidence/root-assisted-3000-3119-20261007/root-middle-final-3090-3120-verdicts.json"
+    },
+    {
+      "id": "m2-07-05-xc22",
+      "sourceIndex": 3109,
+      "proposalFingerprint": "f3b87b92dcdec994c17d433cece7e020b3758f0fb1e6c8deff65eae54e33f44b",
+      "bVerdict": "adopt",
+      "cVerdict": "revise",
+      "reason": "B는 D·E와 교점 G, DE 평행 및 절반 길이, GAB와 GDE 닮음을 정확히 밝힌2:1 증명이다. C는 두 삼각형이 무엇인지 없이 닮음과2:1을 쓰게 한다. 점 이름과 실제 두 삼각형을 넣어 학생이 숨은 그림을 추정하지 않도록 한다.",
+      "rootVerdictEvidence": "evidence/root-assisted-3000-3119-20261007/root-middle-final-3090-3120-verdicts.json"
+    },
+    {
+      "id": "m2-07-05-xc23",
+      "sourceIndex": 3110,
+      "proposalFingerprint": "4eb184dc5950fd5254a4fe6988fdd4114c658c17e1633b712ad5d95748103207",
+      "bVerdict": "adopt",
+      "cVerdict": "revise",
+      "reason": "B는 넓이가 같아도 항상 합동인지 판단해 크기·모양과 넓이를 구별한다. C의 합동이라고는 할 수 없다는 표현은 항상 합동이 아니라는 범위를 명시해야 한다. 정삼각형이면 여섯 작은 삼각형이 실제 합동이므로 무조건 합동이 아니라는 문장으로 읽히면 안 된다.",
+      "rootVerdictEvidence": "evidence/root-assisted-3000-3119-20261007/root-middle-final-3090-3120-verdicts.json"
+    }
+  ],
+  "files": [
+    {
+      "file": "root-middle-final-3000-3030-input.json",
+      "sha256": "56eca613b5dee7637a0deb737a12ed293dac741d38a3946aad3e1e5ae7461885"
+    },
+    {
+      "file": "root-middle-final-3000-3030-verdicts.json",
+      "sha256": "e00af21482ded630919200113514839d1ccdc0d79a497d4f3233f5fcf2957c96"
+    },
+    {
+      "file": "root-middle-final-3030-3060-input.json",
+      "sha256": "7680b86060a41177cdf77478bb2a9b0fe784f0b49a52494ebefb639a416b874a"
+    },
+    {
+      "file": "root-middle-final-3030-3060-verdicts.json",
+      "sha256": "75075b1c522bad0ca8db60091d7cfdc100b223705f04dd8dc4968cbf667dfde9"
+    },
+    {
+      "file": "root-middle-final-3060-3090-input.json",
+      "sha256": "492ba32795665d9303ab12de2b6f46d2fa6cfa0c302090cfda153b23d2c9ac18"
+    },
+    {
+      "file": "root-middle-final-3060-3090-verdicts.json",
+      "sha256": "a10a83e70782e804b68d9012219e2c04a2dbf54645d4f98e73671c79d7e4555d"
+    },
+    {
+      "file": "root-middle-final-3090-3120-input.json",
+      "sha256": "a55e815484aec22f83ac3cc1cb91a0c65eeae770329e786061d096671ccf22e6"
+    },
+    {
+      "file": "root-middle-final-3090-3120-verdicts.json",
+      "sha256": "ce46046ee54c01011e5039431ba0458756a093ab2c45fca45ceb057f2952fdbd"
+    }
+  ]
+}

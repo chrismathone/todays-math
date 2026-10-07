@@ -1,0 +1,1130 @@
+{
+  "inputFile": "root-middle-final-3090-3120-input.json",
+  "inputSha256": "a55e815484aec22f83ac3cc1cb91a0c65eeae770329e786061d096671ccf22e6",
+  "reader": "Root Codex direct final question/answer/criteria reading",
+  "notIndependentClaudeApproval": true,
+  "rows": [
+    {
+      "id": "m2-07-05-xc3",
+      "sourceIndex": 3090,
+      "proposalFingerprint": "469d6854c38f0dfd79b1d85cff64a4ed8428182388ceb9ce47dc6480cdccc141",
+      "normalizedHash": "18ff2488ce7d4ece8e9b5f5ffcd8b734eac4c7db965ebd2004b32eb8848b5fdd",
+      "learningRole": "definition",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "$\\triangle ABC$에서 꼭짓점 $A$에서 그은 중선이 $\\overline{BC}$와 만나는 점을 $D$, $\\angle A$의 이등분선이 $\\overline{BC}$와 만나는 점을 $E$라 할 때, 점 $D$와 점 $E$가 각각 만족하는 조건을 기호로 쓰시오.",
+        "answer": "$\\overline{BD}=\\overline{DC}$, $\\angle BAE=\\angle EAC$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{BD}=\\overline{DC}$",
+              "$D$는 $\\overline{BC}$의 중점"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle BAE=\\angle EAC$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "삼각형에서 한 꼭짓점에서 그은 중선은 맞은편 {변}을 이등분하는 점을 지나고, 그 꼭짓점에서 그은 각의 이등분선은 그 꼭짓점의 내각을 이등분한다.",
+        "acceptedAnswers": [
+          [
+            "변"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "질문의 '이등분'을 베껴 쓰는 것을 막으려고 기호 조건으로 묻는다.",
+      "cReason": "둘째 답 '각'이 '각의 이등분선'에서 그대로 보여 그 빈칸을 없앴다.",
+      "bVerdict": "revise",
+      "cVerdict": "adopt",
+      "reason": "B는 두 조건을 기호로 쓰라고 명시하지만 첫 기준은 D가 중점이라는 말만 써도 받는다. 기호 표현을 실제 확인하거나 말로 답해도 된다고 질문을 바꾼다. C는 중선이 변을 나누는 점을 지나고 각 이등분선은 내각을 나눈다는 대상 구분이 명확하다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-05-xc4",
+      "sourceIndex": 3091,
+      "proposalFingerprint": "977bf146f51d1a98ec1fab2ef7f841ffc0eda74de1192661436204f60490bcfc",
+      "normalizedHash": "9f66ab919ee874af38033bf7b043de08fe07f14d268629dec0a28b691637385c",
+      "learningRole": "definition",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "$\\triangle ABC$의 꼭짓점 $A$에서 그은 중선을 $\\overline{AD}$, 높이를 나타내는 선분을 $\\overline{AH}$라 하자($D$, $H$는 직선 $BC$ 위의 점). 점 $D$와 점 $H$가 각각 만족하는 조건을 쓰시오.",
+        "answer": "$D$는 $\\overline{BC}$의 중점이다($\\overline{BD}=\\overline{DC}$). $\\overline{AH}$는 직선 $BC$에 수직이다($\\overline{AH}\\perp BC$).",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{BD}=\\overline{DC}$",
+              "$D$는 $\\overline{BC}$의 중점"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{AH}\\perp BC$",
+              "$\\overline{AH}$는 직선 $BC$에 수직"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "삼각형의 한 꼭짓점에서 그은 중선은 맞은편 변의 {중점}을 지나고, 높이는 그 꼭짓점에서 맞은편 변 또는 그 연장선에 {수직}으로 내린 선분의 길이이다.",
+        "acceptedAnswers": [
+          [
+            "중점"
+          ],
+          [
+            "수직"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "같은 꼭짓점에서 그은 두 선을 기호로 정해 결정 조건을 비교하게 했다.",
+      "cReason": "어느 꼭짓점에서 어느 변으로 긋는지 빠져 있어 보완했다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "중선 AD의 중점 조건과 높이 AH의 직선 BC에 수직인 조건을 각각 확인한다. C도 높이는 수선의 길이라는 뜻과 맞은편 변 연장선을 포함한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-05-xc5",
+      "sourceIndex": 3092,
+      "proposalFingerprint": "b5cd5a01926fe79685ea5ca2604f0e21f2e367757ab3c4dfa06e94d51497d58a",
+      "normalizedHash": "0386f8167566e57dd74d66d36c259f273c070d7617c3bb12b3249f00a27e928d",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "삼각형의 무게중심을 찾을 때 세 중선을 모두 긋지 않아도 되는 이유를 쓰시오.",
+        "answer": "세 중선은 항상 한 점에서 만나므로, 서로 다른 두 중선의 교점이 곧 무게중심이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "세 중선은 한 점에서 만난다",
+              "세 번째 중선도 같은 점을 지난다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "삼각형에서 서로 다른 중선 {두 개}만 그어도 그 교점으로 무게중심을 찾을 수 있다.",
+        "acceptedAnswers": [
+          [
+            "두 개",
+            "$2$개"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "개수를 묻지 않고 두 중선으로 충분한 이유를 묻게 했다.",
+      "cReason": "짧고 분명한 절차 빈칸이라 유지한다.",
+      "bVerdict": "adopt",
+      "cVerdict": "revise",
+      "reason": "B는 세 중선의 공점성으로 두 중선이면 충분한 이유를 확인한다. C는 몇 개만 그어도 찾을 수 있다는 말만으로는 세 개도 작도 가능하다. 최소 몇 개라는 범위를 명시한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-05-xc6",
+      "sourceIndex": 3093,
+      "proposalFingerprint": "97f6ac9bb0f1160ec5e4c6cfa45433319c131396e35e05e3da9209dd1d284dc1",
+      "normalizedHash": "e983aa98096d1c9f6541f21fcad423db1a799b01e9d40c4830e1d0b7e10db39c",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "둔각삼각형을 포함한 모든 삼각형에서 무게중심은 삼각형의 안쪽, 변 위, 바깥쪽 중 어디에 있는지 쓰고 그 이유를 쓰시오.",
+        "answer": "항상 안쪽에 있다. 무게중심은 꼭짓점과 맞은편 변의 중점을 이은 중선 위에서 두 끝점 사이에 있고, 이 중선은 삼각형 안을 지나기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "안쪽",
+              "내부"
+            ]
+          },
+          {
+            "anyOf": [
+              "중선 위 두 끝점 사이에 있다",
+              "중선이 삼각형 안을 지난다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "삼각형의 모양이 달라져도 무게중심은 삼각형의 {안쪽}에 놓인다.",
+        "acceptedAnswers": [
+          [
+            "안쪽",
+            "내부",
+            "안"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "외심과 달리 둔각삼각형에서도 내부에 있음을 이유와 함께 묻게 했다.",
+      "cReason": "모양이 달라져도 위치가 같다는 비교가 분명한 짧은 빈칸이다.",
+      "bVerdict": "revise",
+      "cVerdict": "adopt",
+      "reason": "B의 무게중심 내부라는 결론은 맞지만 중선이 삼각형 안을 지난다는 일반 사실만으로 기준을 통과하면 G가 두 끝점 사이의 내부에 있다는 이유가 빠진다. 중선2:1 분할 또는 끝점 사이의 위치를 함께 확인한다. C의 안쪽 위치 판단은 명확하다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-05-xc7",
+      "sourceIndex": 3094,
+      "proposalFingerprint": "65da429bee13dcc1b380f4a63e831307ca6639021a0b35f172a5e8ae587c1e94",
+      "normalizedHash": "35fa1dd376978518b2a4a38dcdd4ae005444823e70eedb2e8940c170aacecb46",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": {
+        "excluded": "c5 $2:1$ 성질에서 바로 나오는 비교이다."
+      },
+      "C": {
+        "sentence": "중선 위의 무게중심에서 {꼭짓점}까지가 맞은편 변의 중점까지보다 길다.",
+        "acceptedAnswers": [
+          [
+            "꼭짓점"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "c5 $2:1$ 성질에서 바로 나오는 비교이다.",
+      "cReason": "꼭짓점 쪽과 중점 쪽을 비교하는 좋은 짧은 빈칸이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "무게중심의2:1 분할에서 꼭짓점 쪽이 중점 쪽보다 길다는 비교를 묻는다. 대상인 해당 중선 두 부분이 분명하다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-05-xc8",
+      "sourceIndex": 3095,
+      "proposalFingerprint": "df5390cdf24a33ede141a8693c171e5ef9013b4296a5709cf4a748240a3921f0",
+      "normalizedHash": "7e33d0a0fcfc6fe0ddf174472ec37ad835c97ee2462a9105e00971f0c4ea26a5",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "cDecision": "exclude",
+      "B": {
+        "excluded": "c1 중선 정의와 같은 내용이다."
+      },
+      "C": {
+        "excluded": "c1 C와 같은 '꼭짓점·중점' 정의를 되묻는다."
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "c1 중선 정의와 같은 내용이다.",
+      "cReason": "c1 C와 같은 '꼭짓점·중점' 정의를 되묻는다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "중선의 꼭짓점·중점 정의를 반복하는 B/C를 핵심 c1로 모았다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-05-xc9",
+      "sourceIndex": 3096,
+      "proposalFingerprint": "8ce6cc61d0967357eb7cfbe509e3afef322c8504ffabada1d734ef945f475535",
+      "normalizedHash": "45600e65abcc68ae17a8f79f3d986fc9552ff3a4efe5e29d9411c9abcd589ba9",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "$\\triangle ABC$의 무게중심을 $G$, $\\overline{BC}$의 중점을 $D$라 하고 중선 $\\overline{AD}$의 길이를 $m$이라 할 때, $\\overline{AG}$와 $\\overline{GD}$의 길이를 각각 $m$으로 나타내시오.",
+        "answer": "$\\overline{AG}=\\frac{2}{3}m$, $\\overline{GD}=\\frac{1}{3}m$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{AG}=\\frac{2}{3}m$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{GD}=\\frac{1}{3}m$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "무게중심에서 꼭짓점까지의 길이는 해당 중선 전체의 {$\\frac{2}{3}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{2}{3}$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "문자로 중선 길이를 주어 일반적인 분수 관계를 묻게 했다.",
+      "cReason": "비교 대상이 분명한 짧은 계산 빈칸이라 유지한다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "AD의 전체 길이m을 주어 AG2m/3과 GDm/3를 각각 표현한다. C도 해당 중선에서 꼭짓점 쪽 비율2/3을 묻는다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-05-xc10",
+      "sourceIndex": 3097,
+      "proposalFingerprint": "e5c591b62c1fc537fe570b358e633e250d93933adc87ce8a398378d3187a8885",
+      "normalizedHash": "bced4bab24a79775badb48e1ba925875183163942ce28839212491703ce3ec5c",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": {
+        "excluded": "xc9 B에서 $\\overline{GD}=\\frac{1}{3}m$까지 함께 묻는다."
+      },
+      "C": {
+        "sentence": "무게중심에서 변의 중점까지의 길이는 해당 중선 전체의 {$\\frac{1}{3}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{1}{3}$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "xc9 B에서 $\\overline{GD}=\\frac{1}{3}m$까지 함께 묻는다.",
+      "cReason": "xc9와 다른 조각을 묻는 짧은 계산 빈칸이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "짧은 GD의 길이1/3을 별도 C로 확인하고 B는 같은 요구를 함께 가진 xc9로 통합했다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-05-xc11",
+      "sourceIndex": 3098,
+      "proposalFingerprint": "63694b545f698fe3db71ecadeb97448ec1f456074570866c9a8a121b0044407e",
+      "normalizedHash": "770170448ac71fc4f1fbe65fead17883e681a290b3c26762542dcf4947e8485b",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "$\\triangle ABC$의 무게중심을 $G$, 중선을 $\\overline{AD}$라 할 때, ($1$) $\\overline{AG}=a$이면 $\\overline{AD}$의 길이, ($2$) $\\overline{GD}=b$이면 $\\overline{AD}$의 길이를 각각 식으로 나타내시오.",
+        "answer": "($1$) $\\overline{AD}=\\frac{3}{2}a$ ($2$) $\\overline{AD}=3b$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{AD}=\\frac{3}{2}a$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{AD}=3b$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "꼭짓점에서 무게중심까지의 길이를 {$\\frac{3}{2}$}배 하면 그 중선의 전체 길이가 나온다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{3}{2}$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "긴 조각과 짧은 조각 두 경우를 문자로 구분해 묻게 했다.",
+      "cReason": "어느 조각에서 시작하는지 분명한 짧은 계산 빈칸이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "긴 AG=a와 짧은 GD=b 두 경우를 구별해 전체3a/2·3b를 구한다. C도 긴 부분에서 시작하는 전체 길이의 배수가 특정된다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-05-xc12",
+      "sourceIndex": 3099,
+      "proposalFingerprint": "9e49e3c4acce94906240bcdff076f0a58ef648e86d12c0e42627ac54d8e47a35",
+      "normalizedHash": "7ce7ce08b1b5814e63d2ba95309989ea07e74f15d22c7556c93db4a95b758cbe",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": {
+        "excluded": "xc11 B의 (2)에서 같은 내용을 묻는다."
+      },
+      "C": {
+        "sentence": "무게중심에서 변의 중점까지의 길이를 {$3$배} 하면 중선의 길이가 된다.",
+        "acceptedAnswers": [
+          [
+            "$3$배"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "xc11 B의 (2)에서 같은 내용을 묻는다.",
+      "cReason": "짧은 조각 기준의 계산을 묻는, xc11과 구별되는 짧은 빈칸이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "짧은 부분에서 전체 중선으로의 세 배 역산을 짧은 C로 확인한다. B는 xc11의 둘째 요구로 통합했다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-05-xc13",
+      "sourceIndex": 3100,
+      "proposalFingerprint": "7dc5f5711b5174abf2154d11d148561cf822b2225728abac469148d71c23e1d7",
+      "normalizedHash": "92ab3364bb287088652313914912abd711b9321beaed942152393aebc65a4b03",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": {
+        "excluded": "$2:1$에서 바로 나오는 단순 관계라 B로 따로 둘 목표가 없다."
+      },
+      "C": {
+        "sentence": "무게중심이 나눈 중선의 긴 조각과 짧은 조각의 차는 {짧은 조각}의 길이와 같다.",
+        "acceptedAnswers": [
+          [
+            "짧은 조각"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "$2:1$에서 바로 나오는 단순 관계라 B로 따로 둘 목표가 없다.",
+      "cReason": "긴 조각과 짧은 조각의 관계를 묻는 짧은 비교 빈칸이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "2:1 분할의 긴 부분에서 짧은 부분을 빼면 짧은 부분만큼이라는 길이 비교가 타당하고 두 부분의 대상이 분명하다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-05-xc14",
+      "sourceIndex": 3101,
+      "proposalFingerprint": "5e78a4e3795ff6d6347ab900f6a2edd7816cd2eef2fb2b316c64616d8f148100",
+      "normalizedHash": "c7953f58045ea2a664b6010bb6f79efbabc7a06d7835e372f8a42357c8303ac1",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "$\\triangle ABC$의 무게중심을 $G$, $\\overline{BC}$와 $\\overline{CA}$의 중점을 각각 $D$, $E$라 하자. 어떤 학생이 $\\overline{AG}:\\overline{GE}=2:1$이라고 썼다. 이 식을 무게중심의 성질로 쓸 수 없는 이유를 쓰고, 성질로 바르게 쓸 수 있는 비 하나를 쓰시오.",
+        "answer": "$\\overline{AG}$는 중선 $\\overline{AD}$의 조각이고 $\\overline{GE}$는 중선 $\\overline{BE}$의 조각이므로, 서로 다른 중선의 조각이다. 바른 예는 $\\overline{AG}:\\overline{GD}=2:1$ 또는 $\\overline{BG}:\\overline{GE}=2:1$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "서로 다른 중선의 조각이다",
+              "같은 중선 위가 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{AG}:\\overline{GD}=2:1$",
+              "$\\overline{BG}:\\overline{GE}=2:1$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "무게중심이 중선을 $2:1$로 나눈다는 것은 {같은 중선} 위의 꼭짓점 쪽 조각과 변의 중점 쪽 조각을 비교한 것이므로, 두 중선에서 한 조각씩 골라 이 비를 쓰면 안 된다.",
+        "acceptedAnswers": [
+          [
+            "같은 중선"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "섞어 쓰는 오류를 구체적인 식으로 보여 줘야 판단할 수 있다.",
+      "cReason": "'서로 다른 중선'이 첫 답을 암시하고 '섞어' 빈칸이 약해 하나로 줄였다.",
+      "bVerdict": "adopt",
+      "cVerdict": "revise",
+      "reason": "B는 서로 다른 중선의 AG·GE에 무게중심 성질만 적용할 수 없는 이유와 바른 같은 중선 비를 묻는다. C의 서로 다른 중선 부분에 이 비를 쓰면 안 된다는 말은 우연히2:1인 경우까지 금지하는 것으로 읽힐 수 있다. 그 성질만으로 항상2:1이라고 단정할 수 없다고 범위를 명시한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-05-xc15",
+      "sourceIndex": 3102,
+      "proposalFingerprint": "157186588f988ec329659666d158a4afcad5e91defa9cc4ada466a627837ec4b",
+      "normalizedHash": "92930e4538665ff86c017058cab432951e87cc0cb7ab74095b793570eab4d876",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": {
+        "excluded": "c4 B가 같은 '밑변·높이' 이유를 묻는다."
+      },
+      "C": {
+        "sentence": "중선으로 나뉜 두 삼각형은 밑변이 반으로 나뉘고 {높이}가 같아 넓이도 같아진다.",
+        "acceptedAnswers": [
+          [
+            "높이"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "c4 B가 같은 '밑변·높이' 이유를 묻는다.",
+      "cReason": "이유 중 높이만 묻는 짧은 빈칸으로, c4 C(넓이)와 역할이 다르다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "중선으로 나뉜 두 삼각형은 밑변 절반과 공통 높이로 넓이가 같다는 실제 이유의 높이를 짧게 확인한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-05-xc16",
+      "sourceIndex": 3103,
+      "proposalFingerprint": "df5390cdf24a33ede141a8693c171e5ef9013b4296a5709cf4a748240a3921f0",
+      "normalizedHash": "f174f0093de49f7517f84a7253232f1f16f60c46a7d1ed78e9bc582f1b0c9d3d",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "cDecision": "exclude",
+      "B": {
+        "excluded": "c6 B에서 같은 넓이 관계를 묻는다."
+      },
+      "C": {
+        "excluded": "고친 c6 C의 둘째 빈칸 $\\frac{1}{3}$과 같은 내용이다."
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "c6 B에서 같은 넓이 관계를 묻는다.",
+      "cReason": "고친 c6 C의 둘째 빈칸 $\\frac{1}{3}$과 같은 내용이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "무게중심과 세 꼭짓점이 만든 넓이1/3 관계를 핵심 c6에 통합해 중복을 제외했다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-05-xc17",
+      "sourceIndex": 3104,
+      "proposalFingerprint": "df5390cdf24a33ede141a8693c171e5ef9013b4296a5709cf4a748240a3921f0",
+      "normalizedHash": "53ff2b60bd00c16452cd95a59bebac55596e50bd871ffe1f009c56b00bf33329",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "cDecision": "exclude",
+      "B": {
+        "excluded": "c6의 여섯 등분을 거꾸로 쓴 같은 사실이다."
+      },
+      "C": {
+        "excluded": "c6 C의 '$6$개'와 같은 사실을 역산으로 묻는다."
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "c6의 여섯 등분을 거꾸로 쓴 같은 사실이다.",
+      "cReason": "c6 C의 '$6$개'와 같은 사실을 역산으로 묻는다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "세 중선의 넓이 여섯 등분을 역산으로만 반복하는 형식을 제외했다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-05-xc18",
+      "sourceIndex": 3105,
+      "proposalFingerprint": "2de3ac3e42d27854ea418ae382e2a46616411ccdfd679e8722639e809513b952",
+      "normalizedHash": "e87500c45ad8b642c695181423b0a4f2a7fe8ade02814902973b98a68cceb04e",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "$\\triangle ABC$의 무게중심 $G$에서 직선 $BC$까지의 거리는, 꼭짓점 $A$에서 직선 $BC$까지의 거리(높이)의 몇 배인지 쓰고 이유를 쓰시오.",
+        "answer": "$\\frac{1}{3}$배이다. $\\triangle GBC$의 넓이는 $\\triangle ABC$의 넓이의 $\\frac{1}{3}$이고 두 삼각형의 밑변 $\\overline{BC}$가 같으므로, 높이도 $\\frac{1}{3}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{1}{3}$배"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\triangle GBC$의 넓이가 $\\frac{1}{3}$이고 밑변이 같다",
+              "$\\overline{GD}=\\frac{1}{3}\\overline{AD}$이므로 거리도 $\\frac{1}{3}$이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "무게중심에서 한 변까지의 거리는 그 변을 밑변으로 삼은 원래 삼각형 높이의 {삼분의 일}이다.",
+        "acceptedAnswers": [
+          [
+            "삼분의 일",
+            "$\\frac{1}{3}$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "어느 두 거리를 비교하는지 꼭짓점과 변을 지정했다.",
+      "cReason": "어느 변의 높이와 비교하는지 문장에 분명히 드러난다.",
+      "bVerdict": "revise",
+      "cVerdict": "adopt",
+      "reason": "B의 거리1/3배와 넓이·공통 밑변 이유는 타당하다. 그러나 다른 인정 기준은 정의되지 않은 D의 GD=AD/3만으로 거리 결론을 잇는다. D가 BC 중점이며 같은 직선 BC로 내린 높이가 그 비율로 변한다는 근거를 명시한다. C의 수선 거리와 해당 밑변 높이 비교는 명확하다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-05-xc19",
+      "sourceIndex": 3106,
+      "proposalFingerprint": "9bb795720dbb4d21ea5aa83a61d06ce76f2aaa8dddf9b2ee6498dd4f7a949821",
+      "normalizedHash": "cd4b4cdb2abd4952280aa5776e11862440c7d673e3b5b78afa32c0354e8b0dd4",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "$\\triangle ABC$의 무게중심을 $G$, $\\overline{BC}$의 중점을 $D$라 할 때, $\\triangle ABG$와 $\\triangle GBD$의 넓이의 비를 쓰고 이유를 쓰시오.",
+        "answer": "$2:1$이다. 두 삼각형은 밑변 $\\overline{AG}$, $\\overline{GD}$가 같은 직선 위에 있고, 꼭짓점 $B$에서 그 직선까지의 높이가 같으므로 넓이의 비는 $\\overline{AG}:\\overline{GD}=2:1$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$2:1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이가 같아 넓이의 비는 밑변의 비이다",
+              "$\\overline{AG}:\\overline{GD}=2:1$을 이용한다",
+              "각각 전체의 $\\frac{1}{3}$, $\\frac{1}{6}$이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$\\triangle ABC$의 중선 $\\overline{AD}$ 위에 무게중심 $G$가 있으면 $\\triangle ABG$와 $\\triangle GBD$의 넓이 비는 {$2:1$}이다.",
+        "acceptedAnswers": [
+          [
+            "$2:1$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "두 삼각형을 기호로 지정하고 비의 근거까지 묻게 했다.",
+      "cReason": "기호로 대상이 분명한 짧은 비 빈칸이라 유지한다.",
+      "bVerdict": "revise",
+      "cVerdict": "adopt",
+      "reason": "B의 넓이2:1은 맞지만 이유 기준에 AG:GD=2:1을 이용한다는 말만 있어 선분비가 넓이비가 되는 공통 높이 근거 없이 통과할 수 있다. 이 대안에도 높이 관계를 연결한다. 전체의1/3·1/6 넓이를 쓰는 다른 타당한 이유는 유지한다. C는 두 삼각형이 기호로 특정된다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-05-xc20",
+      "sourceIndex": 3107,
+      "proposalFingerprint": "310e956a7491437a66db8625e4ed6367829473fc880d73a1fd611e6e9f6e2c0b",
+      "normalizedHash": "925f35171fdb1f1fbca6a2f31b283153778c7efc69984bf84781504ae1c0be74",
+      "learningRole": "naming",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "$\\triangle ABC$의 내부의 점 $P$에 대하여 $\\triangle PAB$, $\\triangle PBC$, $\\triangle PCA$의 넓이가 모두 같을 때, 점 $P$는 $\\triangle ABC$의 무엇인지 쓰시오.",
+        "answer": "무게중심",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "무게중심"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "삼각형 내부의 점과 {세 꼭짓점}을 이어 생긴 세 삼각형의 넓이가 모두 같으면 그 점은 무게중심이다.",
+        "acceptedAnswers": [
+          [
+            "세 꼭짓점"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "c6의 역 방향으로, 넓이 조건에서 점의 이름을 판단하게 했다.",
+      "cReason": "결론은 보이고 조건 대상만 묻는 짧은 빈칸이라 유지한다.",
+      "bVerdict": "adopt",
+      "cVerdict": "revise",
+      "reason": "B는 실제 PAB·PBC·PCA 세 넓이의 같음에서 무게중심을 판단한다. C의 내부점과 세 점을 이어 생긴 세 삼각형만으로는 원래 삼각형을 나누는 대상인지 불명확하다. 원래 삼각형 전체를 세 삼각형으로 나눈다는 구성을 넣어 꼭짓점이라는 답의 대상을 고정한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-05-xc21",
+      "sourceIndex": 3108,
+      "proposalFingerprint": "2e020ef71766472e5023e826263f69445799fe7bcbaf01af9efed505dc31fda3",
+      "normalizedHash": "b2a4383a922742545843cdb9769bbe31b34ad00796601ce1b104be20e5c4aad5",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": {
+        "excluded": "c5의 $2:1$과 xc7의 긴 쪽 비교로 판단되는 중복 목표이다."
+      },
+      "C": {
+        "sentence": "중선을 삼등분하는 두 점 중 꼭짓점에서 {더 먼} 점을 골라야 무게중심의 위치가 된다.",
+        "acceptedAnswers": [
+          [
+            "더 먼",
+            "먼"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "c5의 $2:1$과 xc7의 긴 쪽 비교로 판단되는 중복 목표이다.",
+      "cReason": "두 삼등분점 중 어느 쪽인지 고르는 좋은 짧은 비교 빈칸이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "중선의 두 삼등분점 중 꼭짓점에서 더 먼 쪽이라는 위치 비교가 분명하며2:1 성질의 직접 적용이다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-05-xc22",
+      "sourceIndex": 3109,
+      "proposalFingerprint": "f3b87b92dcdec994c17d433cece7e020b3758f0fb1e6c8deff65eae54e33f44b",
+      "normalizedHash": "f485b614271d4e2823468d92e12f6163ee8c75ad4a173f253bbfc33b4510d2b5",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "$\\triangle ABC$에서 $\\overline{BC}$, $\\overline{CA}$의 중점을 각각 $D$, $E$라 하고 중선 $\\overline{AD}$, $\\overline{BE}$의 교점을 $G$라 하자. 선분 $DE$를 그어 $\\overline{AG}:\\overline{GD}=2:1$임을 보이는 방법을 쓰시오.",
+        "answer": "$\\triangle CAB$에서 $D$, $E$는 두 변의 중점이므로 $\\overline{DE}\\parallel\\overline{AB}$, $\\overline{DE}=\\frac{1}{2}\\overline{AB}$이다. 평행선의 엇각과 맞꼭지각으로 $\\triangle GAB\\sim\\triangle GDE$($\\mathrm{AA}$ 닮음)이고 닮음비가 $\\overline{AB}:\\overline{DE}=2:1$이므로 $\\overline{AG}:\\overline{GD}=2:1$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{DE}\\parallel\\overline{AB}$이고 $\\overline{DE}=\\frac{1}{2}\\overline{AB}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\triangle GAB\\sim\\triangle GDE$"
+            ]
+          },
+          {
+            "anyOf": [
+              "닮음비 $2:1$이므로 $\\overline{AG}:\\overline{GD}=2:1$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "삼각형에서 두 중선이 맞은편 변과 만나는 두 중점을 이으면 남은 한 변과 평행하고 길이가 그 변의 절반인 선분이 생기므로, 두 삼각형의 {닮음}을 이용해 무게중심이 중선을 {$2:1$}로 나눔을 보일 수 있다.",
+        "acceptedAnswers": [
+          [
+            "닮음"
+          ],
+          [
+            "$2:1$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "'보조선'이 어느 선분인지 점의 이름으로 특정해 증명 흐름을 묻게 했다.",
+      "cReason": "'밑변'이 어느 변인지 모호해 남은 한 변으로 밝혔다.",
+      "bVerdict": "adopt",
+      "cVerdict": "revise",
+      "reason": "B는 D·E와 교점 G, DE 평행 및 절반 길이, GAB와 GDE 닮음을 정확히 밝힌2:1 증명이다. C는 두 삼각형이 무엇인지 없이 닮음과2:1을 쓰게 한다. 점 이름과 실제 두 삼각형을 넣어 학생이 숨은 그림을 추정하지 않도록 한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-05-xc23",
+      "sourceIndex": 3110,
+      "proposalFingerprint": "4eb184dc5950fd5254a4fe6988fdd4114c658c17e1633b712ad5d95748103207",
+      "normalizedHash": "4fcf7558dcf379bc1f878cb5c2bd9561977235b6ae7c30f33819ec8756934292",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "$\\triangle ABC$에 세 중선을 그어 생긴 여섯 개의 작은 삼각형은 넓이가 모두 같다. 이 여섯 삼각형이 항상 서로 합동이라고 할 수 있는지 쓰고 이유를 쓰시오.",
+        "answer": "항상 합동이라고 할 수는 없다. 합동은 대응하는 변의 길이와 각의 크기가 모두 같아야 하는데, 작은 삼각형들은 원래 삼각형의 서로 다른 변의 절반을 한 변으로 가지므로 세 변의 길이가 다르면 변의 길이가 달라질 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "항상 합동은 아니다",
+              "합동이라고 할 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "넓이가 같아도 변의 길이나 각의 크기가 다를 수 있다",
+              "합동은 변과 각이 같아야 한다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "삼각형의 세 중선이 나눈 여섯 삼각형은 {넓이}가 모두 같지만, 대응하는 변의 길이와 각의 크기가 모두 같아야 하는 {합동}이라고는 할 수 없다.",
+        "acceptedAnswers": [
+          [
+            "넓이"
+          ],
+          [
+            "합동"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "넓이가 같다는 사실을 주고 합동 여부를 판단하게 하여 개념을 구별시킨다.",
+      "cReason": "답 '변과 각'이 어색한 단어 빈칸이라 넓이와 합동을 대비하게 고쳤다.",
+      "bVerdict": "adopt",
+      "cVerdict": "revise",
+      "reason": "B는 넓이가 같아도 항상 합동인지 판단해 크기·모양과 넓이를 구별한다. C의 합동이라고는 할 수 없다는 표현은 항상 합동이 아니라는 범위를 명시해야 한다. 정삼각형이면 여섯 작은 삼각형이 실제 합동이므로 무조건 합동이 아니라는 문장으로 읽히면 안 된다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-06-xc1",
+      "sourceIndex": 3111,
+      "proposalFingerprint": "e8e6ef712c1bb1690e91cf80587c86b1989286c47e78eb2b8521d9774c356034",
+      "normalizedHash": "86229d1b144d0be9a693cbadb907738d280d39e7ce9080c114b64c24cb6b5bb7",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": {
+        "excluded": "닮음의 기본 성질 한 줄로 c1·c8 B에서 이미 전제로 쓰인다."
+      },
+      "C": {
+        "sentence": "도형을 같은 비율로 확대하면 어느 대응 길이든 같은 {배수}로 늘어난다.",
+        "acceptedAnswers": [
+          [
+            "배수",
+            "배율"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "닮음의 기본 성질 한 줄로 c1·c8 B에서 이미 전제로 쓰인다.",
+      "cReason": "'같은 배수'를 묻는 짧은 빈칸으로 닮음 기본 성질을 확인한다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "같은 비율 확대에서 모든 대응 길이가 같은 배수로 변한다는 기본 닮음 성질을 짧게 확인한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-06-xc2",
+      "sourceIndex": 3112,
+      "proposalFingerprint": "5089933bddcd091cd73c38a11c528c61dd2a4deff8269c89a5dd9c9030e686ff",
+      "normalizedHash": "15f28c01fd5d9827786cc8a65a4e925473b6ef348d0b6a7222dc2b25f4432e9e",
+      "learningRole": "definition",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "어떤 도형을 일정한 비율로 줄여서 새 도형을 그렸다. 대응하는 변의 길이와 대응하는 각의 크기는 각각 어떻게 되는가?",
+        "answer": "대응하는 변의 길이는 모두 같은 비율로 줄어들고, 대응하는 각의 크기는 변하지 않는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "길이는 같은 비율로 줄어든다",
+              "길이는 일정한 비율로 변한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "각의 크기는 그대로이다",
+              "각의 크기는 같다",
+              "각은 변하지 않는다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "도형을 일정한 비율로 줄일 때 길이는 변하지만 대응하는 {각의 크기}는 그대로이다.",
+        "acceptedAnswers": [
+          [
+            "각의 크기"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "길이와 각을 대비해 무엇이 그대로인지 답하도록 범위를 정했다.",
+      "cReason": "길이는 변한다는 대비 속에서 '각의 크기'를 묻는 분명한 빈칸이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "일정한 비율로 축소할 때 대응 길이는 같은 비율로 줄고 각의 크기는 유지된다는 두 성질을 비교한다. C의 변화하지 않는 각 크기도 분명하다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-06-xc3",
+      "sourceIndex": 3113,
+      "proposalFingerprint": "8e82c9a5c98303020f1f2b62cf629bcc4e664486ea970f8e29e9db19d5bfb3e9",
+      "normalizedHash": "694f986632724844599631bbb6768e30ec8ce135e83a324a3abc9a5f3543e970",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": {
+        "excluded": "단위 맞추기는 c3·c7 B 계산 안에서 이미 요구된다."
+      },
+      "C": {
+        "sentence": "축도와 실제 길이를 비교하기 전에 두 길이의 단위부터 {같게} 맞춘다.",
+        "acceptedAnswers": [
+          [
+            "같게",
+            "똑같이"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "단위 맞추기는 c3·c7 B 계산 안에서 이미 요구된다.",
+      "cReason": "비교 전 단위를 '같게' 한다는 짧은 절차 빈칸이라 유지한다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "축도와 실제 길이를 비로 비교하기 전 단위를 같게 맞추는 절차가 타당하다. B는 실제 계산 문항에 포함했다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-06-xc4",
+      "sourceIndex": 3114,
+      "proposalFingerprint": "f904d4560c975491820cc7edf63c19ba29c43bd15a768594f4a727c1a3e6372d",
+      "normalizedHash": "160f2a837c0eb436e7e79b7e8ad1a075d0dcf6db2238fe060aee42b738107fb1",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": {
+        "excluded": "비를 쓰는 순서는 독립 개념이 아닌 c1의 표기 주의 사항이다."
+      },
+      "C": {
+        "sentence": "닮음비를 작은 도형부터 적었다면 둘레의 비도 {작은 도형}부터 적어야 한다.",
+        "acceptedAnswers": [
+          [
+            "작은 도형"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "비를 쓰는 순서는 독립 개념이 아닌 c1의 표기 주의 사항이다.",
+      "cReason": "닮음비와 같은 순서로 쓴다는 대응 빈칸이 짧고 분명하다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "닮음비와 둘레비를 같은 도형 순서로 적는 대응 규칙을 짧게 확인한다. 작은 도형부터라는 기준이 학생 지문 안에 있다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-06-xc5",
+      "sourceIndex": 3115,
+      "proposalFingerprint": "abdf3a06d9679f4ec2359f3140402a2c638010201b87efd206e4f7d99d5f351f",
+      "normalizedHash": "4926acc60fe4975ede414397f8ec87383f7afb0c6604b2de58d2f6e3c0efc87c",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": {
+        "excluded": "중1 용어 구분이라 이 단원 B 목표가 아니다."
+      },
+      "C": {
+        "sentence": "입체의 표면을 모두 합친 크기는 {겉넓이}이고 입체가 차지한 공간의 크기는 {부피}이다.",
+        "acceptedAnswers": [
+          [
+            "겉넓이"
+          ],
+          [
+            "부피"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "중1 용어 구분이라 이 단원 B 목표가 아니다.",
+      "cReason": "겉넓이와 부피를 대비해 고르는 짧은 빈칸으로 c5·c6 앞 점검에 유용하다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "겉넓이는 표면 크기, 부피는 공간 크기라는 서로 다른 측정 대상을 명확히 대비한다. B는 선행 용어 질문 중복으로 제외했다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-06-xc6",
+      "sourceIndex": 3116,
+      "proposalFingerprint": "8eb9092230f64e518e47a7a66b917b98c244fb1728022abfce2892b875639750",
+      "normalizedHash": "3213ec6d70ce38719b17d6b836a64d586f1a7f53f958070fedfce28c4af57cde",
+      "learningRole": "definition",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "축척이 $\\frac{1}{n}$인 지도에서 두 길이를 같은 단위로 잴 때, 실제 길이는 지도 위의 길이의 몇 배인가?",
+        "answer": "$n$배이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$n$배"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "축척이 $\\frac{1}{n}$이면 같은 단위로 잴 때 실제 길이는 축도에서의 길이의 {$n$배}이다.",
+        "acceptedAnswers": [
+          [
+            "$n$배"
+          ]
+        ]
+      },
+      "coreBefore": "축척 $\\frac{1}{n}$에서 축도의 길이 하나에 대응하는 실제 길이는 같은 단위로 {$n$배}이다.",
+      "coreAfter": "축척이 $\\frac{1}{n}$이면 같은 단위로 잴 때 실제 길이는 축도에서의 길이의 {$n$배}이다.",
+      "coreReason": "'길이 하나에 대응하는 실제 길이'가 무엇의 $n$배인지 학생에게 불분명하다.",
+      "bReason": "분모 $n$이 무엇의 몇 배인지 묻도록 비교 대상과 단위 조건을 밝혔다.",
+      "cReason": "'축도의 길이 하나에 대응' 표현이 모호해 비교 대상을 축도 길이로 밝혔다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "축척1/n에서 같은 단위의 실제 길이가 축도 길이의n배라는 비교를 분명히 한다. 교정 일반 설명도 비교 기준을 보완하고 원래 표적을 유지했다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-06-xc7",
+      "sourceIndex": 3117,
+      "proposalFingerprint": "2443c8c62a97220080cf2f3c6a90adb274e5eb2a921a80624db24b678fb740df",
+      "normalizedHash": "6d7d00ea43bd9be9f7a2387c2dd9c2b1500274c49b212c49824c9edbf8eab44a",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": {
+        "excluded": "$1:1$이라는 단순 사실이라 별도 B 질문 가치가 낮다."
+      },
+      "C": {
+        "sentence": "닮은 두 도형의 대응 길이가 같으면 닮음비는 {$1:1$}이다.",
+        "acceptedAnswers": [
+          [
+            "$1:1$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "$1:1$이라는 단순 사실이라 별도 B 질문 가치가 낮다.",
+      "cReason": "대응 길이가 같을 때의 닮음비를 묻는 짧은 비 빈칸으로 충분하다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "닮은 두 도형의 대응 길이가 같으면 닮음비1:1이라는 구체 성질을 확인한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-06-xc10",
+      "sourceIndex": 3118,
+      "proposalFingerprint": "b22aae0872cec712fb048e4c6a6f3e97e14ac1def9b22f27dfcc8a957b449177",
+      "normalizedHash": "df2a8014d95d03a618d575257f864b499f41141f332a59d27e39d0bb39ac1b0d",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "닮은 두 입체도형의 겉넓이의 비가 $9:16$이다. 두 입체도형의 닮음비를 구하고, 어떻게 구했는지 쓰시오.",
+        "answer": "$9=3^2$, $16=4^2$이므로 제곱하기 전의 양수끼리 비교하여 닮음비는 $3:4$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$3:4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$9=3^2$, $16=4^2$",
+              "제곱하여 $9$, $16$이 되는 양수를 찾는다",
+              "겉넓이 비는 닮음비의 제곱이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "닮은 입체의 겉넓이 비가 두 수의 제곱 꼴이면 제곱하기 전의 {양수}끼리 비교하여 길이 비를 찾는다.",
+        "acceptedAnswers": [
+          [
+            "양수"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "제곱을 거꾸로 되돌리는 절차가 드러나게 제곱수 비 예를 넣었다.",
+      "cReason": "'제곱하기 전의 양수'를 묻는 핵심 빈칸이 짧고 분명하다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "겉넓이비9:16에서 양수 제곱 이전 길이비3:4를 찾는 실제 계산과 제곱 관계를 확인한다. C의 양수는 길이의 조건을 묻는다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m2-07-06-xc11",
+      "sourceIndex": 3119,
+      "proposalFingerprint": "24fe4804f79d4933361c78f289600cb4714d2513bfdf8f55ed27fc7ae3ea0544",
+      "normalizedHash": "f8c3ccbb37fc12abc392739ccd262b673dda6e63a0a0878ca58609d4f0b70164",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "닮은 두 입체도형의 부피의 비가 $8:27$이다. 두 입체도형의 닮음비를 구하고, 어떻게 구했는지 쓰시오.",
+        "answer": "$8=2^3$, $27=3^3$이므로 세제곱하기 전의 양수끼리 비교하여 닮음비는 $2:3$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$2:3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8=2^3$, $27=3^3$",
+              "세제곱하여 $8$, $27$이 되는 양수를 찾는다",
+              "부피 비는 닮음비의 세제곱이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "닮은 입체의 부피의 비를 세제곱 꼴로 나타낸 뒤, 세제곱하기 전의 {양수}끼리 비교하여 길이의 비를 구한다.",
+        "acceptedAnswers": [
+          [
+            "양수"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "세제곱을 되돌리는 절차를 보이도록 세제곱수 비 예를 넣었다.",
+      "cReason": "'세 번 곱한 □'가 곱하기 전인지 후인지 모호해 세제곱 전으로 밝혔다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "부피비8:27에서 양수 세제곱 이전 길이비2:3을 찾는다. C도 곱하기 전인지 후인지 구별해 세제곱 전의 양수라는 범위가 분명하다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+import { readFileSync, writeFileSync, existsSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+const directory = 'C:/Users/user/orca/workspaces/todays-math/student-clear-e5e6-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/middle-negative-tail-116';
+const name = process.argv[2]; if (!/^candidates-\d+-\d+(?:-v\d+)?\.json$/.test(name) || process.argv[3] !== 'actual-output-read') throw Error('Requires direct reader confirmation after displaying full batch');
+const sha = (bytes: Buffer) => createHash('sha256').update(bytes).digest('hex');
+const bytes = readFileSync(`${directory}/${name}`), candidates = JSON.parse(bytes.toString('utf8'));
+const afterName = name.replace('candidates-', 'after-').replace('.json', '.txt'), afterBytes = readFileSync(`${directory}/${afterName}`);
+const target = name.replace('candidates-', 'reread-'); if (existsSync(`${directory}/${target}`)) throw Error('Reread evidence already fixed');
+writeFileSync(`${directory}/${target}`, JSON.stringify({ reader: 'Codex direct actual normalized B/C/all answers/all criteria/generalDefinition rereading in tool output, no independent approval', readAt: new Date().toISOString(), candidateArtifact: { path: name, byteSha256: sha(bytes) }, actualOutput: { path: afterName, byteSha256: sha(afterBytes), truncated: false }, rows: candidates.reviews.map((row: any) => ({ originalDisputeIndex: row.originalDisputeIndex, id: row.id, candidateFingerprint: row.candidateFingerprint, candidateNormalizedHash: row.candidateNormalizedHash, verdict: 'candidate-text-reread', reason: row.reason })) }, null, 2) + '\n');
+console.log(JSON.stringify({ reread: target, byteSha256: sha(readFileSync(`${directory}/${target}`)), rows: candidates.reviews.length }));

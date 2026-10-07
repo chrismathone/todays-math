@@ -1,0 +1,45 @@
+{
+  "checkedAt": "2026-10-07T17:13:31.378Z",
+  "buildExitCode": 0,
+  "recordsWritten": false,
+  "files": [
+    {
+      "file": "final-integrated-tests-20261008.txt",
+      "sha256": "0f9cbdd63eae813f49e8720bd610d7e7c823236550dbc15fd3349993641082d0",
+      "lines": [
+        "Test Files  52 passed (52)",
+        "Tests  777 passed (777)"
+      ]
+    },
+    {
+      "file": "final-typed-loader-tests-20261008.txt",
+      "sha256": "491b0a0471776a7096f4f68cf82776904e39780d12d72a64fec0cc35d47d45db",
+      "lines": [
+        "Test Files  5 passed (5)",
+        "Tests  105 passed (105)"
+      ]
+    },
+    {
+      "file": "final-print-typed-loader-20261008.txt",
+      "sha256": "42659c4a3f316485b870072bd3c5cf3efe210c17ed914a337cf3138afea5e874",
+      "lines": [
+        "2 passed (1.1m)"
+      ]
+    },
+    {
+      "file": "final-next-build-worker-budget-20261008.txt",
+      "sha256": "4c2d7e6d41dc1823e0689b965ecd7588abb39d3affb5527086b7ac19120dc0c6",
+      "lines": [
+        "✓ Compiled successfully in 32.4s",
+        "Finished TypeScript in 3.6min ...",
+        "Collecting page data using 15 workers ...",
+        "Generating static pages using 15 workers (0/188) ...",
+        "Generating static pages using 15 workers (47/188)",
+        "Generating static pages using 15 workers (94/188)",
+        "Generating static pages using 15 workers (141/188)",
+        "✓ Generating static pages using 15 workers (188/188) in 4.3s",
+        "Finalizing page optimization ..."
+      ]
+    }
+  ]
+}

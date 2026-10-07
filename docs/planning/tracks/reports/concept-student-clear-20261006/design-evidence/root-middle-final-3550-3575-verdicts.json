@@ -1,0 +1,1193 @@
+{
+  "inputFile": "root-middle-final-3550-3575-input.json",
+  "inputSha256": "8c47f168aab5905d90001c05f70d2da19c33a0e9e2a45b2f1ba0c3e70c6bc9bf",
+  "reader": "Root Codex direct final question/answer/criteria reading",
+  "notIndependentClaudeApproval": true,
+  "rows": [
+    {
+      "id": "m3-05-02-xc13",
+      "sourceIndex": 3550,
+      "proposalFingerprint": "c29802905d9b4fd4fe6597c4e687bf29271e6f1b142ccbfb0fdbf6ebd8a70f01",
+      "normalizedHash": "71c14c6349cd78c50514d35cb341c7757397b70e57d05defe4dce38425338656",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "삼각비의 표에서 $\\sin x=0.4226$인 예각 $x$의 어림값을 찾으려면 표의 어디에서 무엇을 찾고 어느 줄의 각을 읽어야 하는지 순서대로 설명해 보세요.",
+        "answer": "$\\sin$의 세로줄에서 $0.4226$이 적힌 칸을 찾고, 그 칸이 놓인 가로줄의 각을 읽는다. 그 각이 $x$의 어림값이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\sin$의 세로줄에서 값을 찾음"
+            ]
+          },
+          {
+            "anyOf": [
+              "그 칸이 놓인 가로줄의 각을 읽음"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "삼각비의 표에서 $\\sin$의 세로줄에 $0.4226$이 적힌 칸을 찾으면 그 칸이 놓인 {가로줄}의 각이 $\\sin x=0.4226$인 $x$의 {어림값}이다 — 값에서 각으로 표를 거꾸로 읽는다.",
+        "acceptedAnswers": [
+          [
+            "가로줄"
+          ],
+          [
+            "어림값",
+            "근삿값"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "'거꾸로 읽기'가 뜻하는 절차를 $\\sin x=0.4226$의 경우로 묻게 했다.",
+      "cReason": "빈칸 '거꾸로'는 수학 내용이 아닌 임의의 꾸밈말이라 뺐다.",
+      "bVerdict": "revise",
+      "cVerdict": "revise",
+      "reason": "표의 행이 각이고 열이 사인값이라는 배열을 제시하지 않은 채 가로줄과 세로줄을 정답으로 요구한다. 표의 배열을 명시하거나 실제 표를 제공한다. 반올림된0.4226으로 각을 찾는 경우 정확한 등식과 정확한25도를 단정하지 않고 어림값임을 나타낸다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-05-02-xc15",
+      "sourceIndex": 3551,
+      "proposalFingerprint": "11cb2ee8b8e8f5059834e5598321ac6ad6e6d980c3791c49aadfa737fd6525e0",
+      "normalizedHash": "9819f13746eba709ed10d66ecd68eab91235147fb62383bc653406301f3cf27f",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "정삼각형의 한 꼭짓점에서 맞은편 변에 수선을 그으면 맞은편 변과 그 꼭짓점의 각이 각각 어떻게 나뉘는지 말하고, 이때 생기는 직각삼각형에서 가장 짧은 변과 빗변의 길이의 관계를 설명해 보세요.",
+        "answer": "맞은편 변은 이등분되고 꼭짓점의 각 $60^\\circ$는 $30^\\circ$씩 나뉜다. 직각삼각형의 빗변은 정삼각형의 한 변이고 가장 짧은 변은 한 변의 절반이므로, 가장 짧은 변은 빗변의 절반이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "맞은편 변이 이등분됨"
+            ]
+          },
+          {
+            "anyOf": [
+              "각이 $30^\\circ$씩 나뉨"
+            ]
+          },
+          {
+            "anyOf": [
+              "가장 짧은 변은 빗변의 절반"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "정삼각형의 한 꼭짓점에서 맞은편 변에 높이를 그으면 밑변이 {이등분}되고 꼭지각이 $30^\\circ$씩 나뉜다 — 생긴 직각삼각형에서 가장 짧은 변은 빗변의 {절반}이다.",
+        "acceptedAnswers": [
+          [
+            "이등분"
+          ],
+          [
+            "절반",
+            "반",
+            "$\\frac{1}{2}$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "조각 제목이라 수선이 변과 각을 어떻게 나누는지, 어느 두 변을 비교할지 정했다.",
+      "cReason": "수선이 변을 나누는 방식과 변의 관계를 묻는 짧은 빈칸이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "정삼각형의 같은 두 변이 만나는 꼭짓점에서 내린 수선으로 밑변과60도 각을 각각 이등분하여30도와 빗변 절반의 관계를 설명한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-05-02-xc16",
+      "sourceIndex": 3552,
+      "proposalFingerprint": "68bef9c81eb55befb6f83ddc6b95624169321f1e1f1e0aaef02cf60fb755bb83",
+      "normalizedHash": "863460ee3f2fb4f0264c6a5931b6159cd1a93b8e2f6e83bd99982fb35a28f057",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "cDecision": "rewrite",
+      "B": {
+        "excluded": "두 비를 그대로 적는 암기 확인이라 설명할 관계나 이유가 없고 C 빈칸과 내용이 겹침"
+      },
+      "C": {
+        "sentence": "직각이등변삼각형에서 직각을 낀 두 변과 빗변의 길이의 비는 {$1:1:\\sqrt{2}$}이고, 두 예각이 $30^\\circ$, $60^\\circ$인 직각삼각형에서 $30^\\circ$, $60^\\circ$, $90^\\circ$와 마주 보는 변의 길이의 비는 차례로 {$1:\\sqrt{3}:2$}이다.",
+        "acceptedAnswers": [
+          [
+            "$1:1:\\sqrt{2}$"
+          ],
+          [
+            "$1:\\sqrt{3}:2$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "두 비를 그대로 적는 암기 확인이라 설명할 관계나 이유가 없고 C 빈칸과 내용이 겹침",
+      "cReason": "변을 설명하는 긴 구가 빈칸이라 쓰기 어려워 비의 값을 빈칸으로 바꿨다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "45도 직각삼각형과30·60·90도 삼각형의 각과 맞은편 변의 순서를 명시하여1:1:루트2 및1:루트3:2를 확인한다. B 중복 제외 이유도 C의 실제 학습과 일치한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-05-02-xc17",
+      "sourceIndex": 3553,
+      "proposalFingerprint": "a24c029a0fcaa5f48e393a9ff63370b0420bb9fa32bebbfec2318a2570704e0c",
+      "normalizedHash": "3eba2c426326d763e5a6609f9b9fc6d3720350fd6369a63fef10f06a0ebdd50e",
+      "learningRole": "definition",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "좌표평면에서 원점 $O$가 중심이고 반지름이 $1$인 원 가운데 제$1$사분면에 있는 사분원 위에 점 $P$가 있다. $\\overline{OP}$가 $x$축의 양의 방향과 이루는 각을 $a$라 할 때 $\\sin a$와 $\\cos a$는 각각 점 $P$의 어느 좌표와 같은지 말하고 까닭을 설명해 보세요.",
+        "answer": "$\\sin a$는 $y$좌표, $\\cos a$는 $x$좌표와 같다. $P$에서 $x$축에 수선을 내리면 빗변 $\\overline{OP}=1$인 직각삼각형이 생기고, 높이가 $y$좌표, 밑변이 $x$좌표이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\sin a$는 $P$의 $y$좌표"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\cos a$는 $P$의 $x$좌표"
+            ]
+          },
+          {
+            "anyOf": [
+              "빗변 $\\overline{OP}=1$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "원점 $O$가 중심이고 반지름이 $1$인 제$1$사분면의 사분원 위의 점 $P$에서, $\\overline{OP}$가 $x$축의 양의 방향과 이루는 각 $a$의 사인은 점 $P$의 {$y$좌표}, 코사인은 {$x$좌표}로 읽을 수 있다.",
+        "acceptedAnswers": [
+          [
+            "$y$좌표"
+          ],
+          [
+            "$x$좌표"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "원의 위치, 점 $P$, 각 $a$의 뜻을 질문 안에 모두 밝혔다.",
+      "cReason": "상황이 문장에 다 있고 좌표 이름 두 개만 묻는다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "제1사분면의 반지름1인 원 위 점과 원점의 각을 지정한다. 수선으로 생기는 직각삼각형에서 사인의 분자는 y좌표, 코사인의 분자는 x좌표이고 빗변은1이라는 관계를 확인한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-05-02-xc18",
+      "sourceIndex": 3554,
+      "proposalFingerprint": "1cb44614a90f4114d05853120c822a8d4237ca1121effbfbb1d8a571367e483c",
+      "normalizedHash": "7801f4b56443db0495229e8402b74c814a0ba2f9d486d70a8ede3479d8258cb9",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "예각 $x$ 가운데 $\\sin x=\\cos x$가 되는 각의 크기를 말하고, 직각삼각형의 변의 길이로 그 까닭을 설명해 보세요.",
+        "answer": "$x=45^\\circ$ 하나뿐이다. 사인은 높이를, 코사인은 밑변을 빗변으로 나눈 값이므로 둘이 같으려면 높이와 밑변의 길이가 같아야 하고, 그런 직각삼각형은 직각이등변삼각형이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$x=45^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이와 밑변의 길이가 같을 때"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "예각에서 $\\sin x=\\cos x$가 되는 각은 {$45^\\circ$} 하나뿐이다 — 높이와 밑변이 {같을} 때이다.",
+        "acceptedAnswers": [
+          [
+            "$45^\\circ$"
+          ],
+          [
+            "같을"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "답할 것이 각의 크기와 변의 길이로 댄 까닭임을 분명히 했다.",
+      "cReason": "각의 크기와 두 변의 비교 결과를 묻는 짧은 빈칸이다.",
+      "bVerdict": "revise",
+      "cVerdict": "revise",
+      "reason": "사인과 코사인이 같은 예각45도라는 결과는 맞지만 높이·밑변이 어느 직각변인지 정의되지 않았다. 기준각의 맞은편 직각변과 빗변 아닌 붙은 변의 길이가 같다고 명시한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-05-02-xc19",
+      "sourceIndex": 3555,
+      "proposalFingerprint": "2308c9f6941c472d994724c9cb1617d6331e3716dd9d7d90df73d63ebd7684da",
+      "normalizedHash": "fb6e23b8b6d85439ccf350d6d1370182fa5dd8cd70fb857e577d22498ca73531",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "예각 $x$에 대하여 $x<45^\\circ$일 때와 $x>45^\\circ$일 때 $\\sin x$와 $\\cos x$의 대소를 각각 말하고, 직각삼각형에서 $x$와 마주 보는 변(높이)과 밑변의 길이를 비교해 까닭을 설명해 보세요.",
+        "answer": "$x<45^\\circ$이면 $\\sin x<\\cos x$, $x>45^\\circ$이면 $\\sin x>\\cos x$이다. $45^\\circ$보다 작으면 높이가 밑변보다 짧고 $45^\\circ$보다 크면 높이가 밑변보다 길며, 사인과 코사인은 이 둘을 같은 빗변으로 나눈 값이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$x<45^\\circ$이면 $\\sin x<\\cos x$",
+              "$x<45^\\circ$이면 $\\cos x>\\sin x$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x>45^\\circ$이면 $\\sin x>\\cos x$",
+              "$x>45^\\circ$이면 $\\cos x<\\sin x$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x>45^\\circ$이면 높이가 밑변보다 길다",
+              "$x<45^\\circ$이면 높이가 밑변보다 짧다",
+              "높이와 밑변을 같은 빗변으로 나누므로 더 긴 변의 삼각비가 더 크다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "예각 $x$에서 $x>45^\\circ$이면 {$\\sin x>\\cos x$}이고 $x<45^\\circ$이면 $\\sin x<\\cos x$이다 — $45^\\circ$를 넘으면 높이가 {밑변}보다 길어진다.",
+        "acceptedAnswers": [
+          [
+            "$\\sin x>\\cos x$"
+          ],
+          [
+            "밑변"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "두 경우를 나누어 대소와 변의 길이 비교를 함께 답하도록 했다.",
+      "cReason": "반대 경우의 부등식이 단서로 있어 대소 비교 빈칸으로 분명하다.",
+      "bVerdict": "revise",
+      "cVerdict": "revise",
+      "reason": "45도 전후의 사인·코사인 비교는 맞다. 높이와 밑변이라는 이름만으로 기준각 상대의 어느 두 변인지 가정하지 않도록 맞은편 직각변과 붙은 직각변을 명시하고 공통 빗변으로 나누는 이유를 연결한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-05-02-xc20",
+      "sourceIndex": 3556,
+      "proposalFingerprint": "3d8df9d61206066dac8e1cb0b963826928b7940c771aefb3ac58e1eb8eb47376",
+      "normalizedHash": "c02a82eabca1041adbc428db0bbde306db133b31c9b74139278d2d834a0e74c8",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "직선 $y=\\frac{\\sqrt{3}}{3}x$가 $x$축의 양의 방향과 이루는 예각의 크기를 구하고, 직선의 기울기가 그 각의 어떤 삼각비와 같은지 밝혀 까닭을 설명해 보세요.",
+        "answer": "$30^\\circ$이다. 기울기는 $x$의 값의 증가량에 대한 $y$의 값의 증가량의 비이므로 그 각의 탄젠트와 같고, $\\tan 30^\\circ=\\frac{\\sqrt{3}}{3}$이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "기울기는 그 각의 탄젠트와 같음"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\tan 30^\\circ=\\frac{\\sqrt{3}}{3}$이므로 $30^\\circ$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "기울기가 양수인 직선이 $x$축의 양의 방향과 이루는 예각의 크기가 $a$이면 직선의 기울기는 {$\\tan a$}이다 — 기울기가 $\\frac{\\sqrt{3}}{3}$이면 $a=$ {$30^\\circ$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\tan a$"
+          ],
+          [
+            "$30^\\circ$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "관계만 묻기에는 추상적이라 직선의 식을 주고 각과 까닭을 묻게 했다.",
+      "cReason": "'특수한 각의 □의 값'은 지칭이 흐리고 둘째 빈칸은 각·각도·각의 크기로 갈렸다.",
+      "bVerdict": "revise",
+      "cVerdict": "adopt",
+      "reason": "B는 기울기가 탄젠트인 이유까지 요구하지만 기준은 관계의 이름과 tan30도 값만 확인한다. 가로 증가량에 대한 세로 증가량의 비가 두 직각변의 비라는 이유를 확인한다. C의 양수 기울기와 x축 양의 방향의 예각30도 관계는 타당하다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-05-02-xc21",
+      "sourceIndex": 3557,
+      "proposalFingerprint": "bd77d77275cc7690406b7439d3a1ea218736b38ee206cd19757dd0d81f90b6ae",
+      "normalizedHash": "1f513f8b62149d367300ea8e3f39b1293ae86f874566b7e54f0d0c14614845a7",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "$0^\\circ\\le x\\le 90^\\circ$일 때 $\\sin x$와 $\\cos x$의 값의 범위를 말해 보세요. 또 같은 범위에서 $\\tan x$의 값은 $1$보다 커질 수 있는지, $x$가 $90^\\circ$에 가까워지면 어떻게 되는지 설명해 보세요.",
+        "answer": "$\\sin x$와 $\\cos x$의 값은 늘 $0$ 이상 $1$ 이하이다. $\\tan x$는 $\\tan 60^\\circ=\\sqrt{3}$처럼 $1$보다 커질 수 있고, $x$가 $90^\\circ$에 가까워질수록 끝없이 커진다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "사인과 코사인은 $0$ 이상 $1$ 이하"
+            ]
+          },
+          {
+            "anyOf": [
+              "탄젠트는 $1$보다 커질 수 있고 끝없이 커짐"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$0^\\circ\\le x\\le90^\\circ$에서 $\\sin x$와 $\\cos x$의 값은 늘 {$0$} 이상 {$1$} 이하이다 — 탄젠트의 값은 $x$가 $90^\\circ$에 가까울수록 끝없이 {커진다}.",
+        "acceptedAnswers": [
+          [
+            "$0$"
+          ],
+          [
+            "$1$"
+          ],
+          [
+            "커진다"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "c9의 변화와 구별되게 값의 범위와 탄젠트와의 차이를 묻도록 정했다.",
+      "cReason": "빈칸 '끝없이'는 임의의 부사라 맞히기 어렵고 범위 빈칸은 구 전체였다.",
+      "bVerdict": "revise",
+      "cVerdict": "revise",
+      "reason": "사인·코사인의0도부터90도까지 범위와 탄젠트의 범위를 구별한다. 탄젠트90도는 정의되지 않으므로0도 이상90도 미만에서 증가하고 왼쪽에서90도에 가까워질 때 커진다는 조건을 명시한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-05-03-xc1",
+      "sourceIndex": 3558,
+      "proposalFingerprint": "62ba3c587dd6c7d6cfc51d5a35ae5fc940104ca85807270be4977902b7fd71f4",
+      "normalizedHash": "01dc99e7f873459ad0749f43d3028ccddd8eeae1a1b91639a845ab5d0a295475",
+      "learningRole": "definition",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "올려본각이란 무엇인지, 어떤 두 선이 이루는 각인지 밝혀 설명해 보세요.",
+        "answer": "눈높이보다 위쪽에 있는 물체를 올려다볼 때, 눈을 지나는 수평선과 시선이 이루는 각이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "위쪽 물체를 올려다볼 때의 각"
+            ]
+          },
+          {
+            "anyOf": [
+              "수평선과 시선이 이루는 각"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "눈높이에서 위쪽에 있는 물체를 올려다볼 때 {수평선}과 시선이 이루는 각을 {올려본각}이라 한다.",
+        "acceptedAnswers": [
+          [
+            "수평선"
+          ],
+          [
+            "올려본각"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "용어 정의를 묻되 각을 이루는 두 선을 답하도록 범위를 정했다.",
+      "cReason": "각을 이루는 선과 용어 이름을 묻는 낱말 빈칸이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "관찰자의 눈높이 수평선과 위쪽 시선이 이루는 각을 설명해 올려본각이라는 표준 용어를 묻는다. 방향과 기준선이 제시되어 의미를 유추할 수 있다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-05-03-xc2",
+      "sourceIndex": 3559,
+      "proposalFingerprint": "3f4506e75da2177f21fbccf50e023219c4813a32b4745c957b6daa767cba4597",
+      "normalizedHash": "cba5aa6ee524b4ec88d6c2f288352d594f002cb94294c22ac4bc185738d6a5ba",
+      "learningRole": "definition",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "내려본각이 무엇인지 설명하고, 올려본각과 같은 점과 다른 점을 하나씩 말해 보세요.",
+        "answer": "높은 곳에서 아래쪽 물체를 내려다볼 때 수평선과 시선이 이루는 각이다. 올려본각과 마찬가지로 수평선과 시선이 이루는 각이지만, 시선이 수평선의 아래쪽을 향한다는 점이 다르다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "아래쪽 물체를 내려다볼 때 수평선과 시선이 이루는 각"
+            ]
+          },
+          {
+            "anyOf": [
+              "올려본각과 달리 시선이 수평선 아래쪽을 향함"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "높은 곳에서 아래쪽 물체를 내려다볼 때 {수평선}과 시선이 이루는 각을 {내려본각}이라 한다.",
+        "acceptedAnswers": [
+          [
+            "수평선"
+          ],
+          [
+            "내려본각"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "xc1과 같은 정의 질문이 되지 않게 올려본각과의 비교를 요구했다.",
+      "cReason": "각을 이루는 선과 용어 이름을 묻는 낱말 빈칸이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "내려본각과 올려본각의 공통 기준인 눈높이 수평선과 위·아래 시선의 차이를 확인한다. C도 아래쪽 시선이라는 조건으로 용어가 결정된다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-05-03-xc3",
+      "sourceIndex": 3560,
+      "proposalFingerprint": "e434226ce559ef69d9ed5716212f4cd1099f176c13f54c33854d679037343cc2",
+      "normalizedHash": "4fd08aa47d03d36c16e6bc99cb8ae86f7d87a7961aae48abadbe61c0f3293c1e",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "수평인 땅에 수직으로 선 나무에서 수평 거리로 $a$만큼 떨어진 곳에 선 사람이 나무 꼭대기를 올려본각이 $x$이다. 나무의 높이를 구하는 방법을 식과 함께 설명하고, 눈높이를 어떻게 처리하는지도 밝히세요.",
+        "answer": "눈높이의 수평선에서 나무 꼭대기까지의 높이는 $a\\tan x$이다. 여기에 눈높이를 더한 $a\\tan x+(\\text{눈높이})$가 나무의 높이이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "눈높이 위쪽 부분은 $a\\tan x$"
+            ]
+          },
+          {
+            "anyOf": [
+              "눈높이를 더함"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "수평인 땅에 수직으로 선 나무에서 수평 거리 $a$만큼 떨어져 꼭대기를 올려본각이 $x$이면, 나무의 높이는 {$a\\tan x$}에 {눈높이}를 더한 값이다.",
+        "acceptedAnswers": [
+          [
+            "$a\\tan x$"
+          ],
+          [
+            "눈높이"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "땅·나무의 조건과 거리 $a$, 각 $x$의 뜻을 질문에 모두 넣었다.",
+      "cReason": "조건이 문장에 있고 식과 더할 양을 묻는 빈칸이 분명하다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "수평 지면·수직 나무·수평거리·올려본각과 눈높이를 모두 제시하여 눈높이 위 높이가 거리 곱하기 탄젠트이고 전체 높이에 눈높이를 더함을 묻는다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-05-03-xc4",
+      "sourceIndex": 3561,
+      "proposalFingerprint": "96f54393589c8ee15a167469997ab69b24d6264698ee588052414ef0bdee2840",
+      "normalizedHash": "dd760f97fd9822bc936acab119487216abe31b39a7736670f32e23b9af18fbf5",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "$\\angle C=90^\\circ$인 직각삼각형 $ABC$에서 예각 $A$의 크기와 $\\overline{AC}=b$를 알 때, 빗변 $\\overline{AB}$의 길이를 $b$와 $A$의 삼각비로 나타내고 그 식이 나오는 과정을 설명해 보세요.",
+        "answer": "$\\cos A=\\frac{\\overline{AC}}{\\overline{AB}}=\\frac{b}{\\overline{AB}}$이므로 $\\overline{AB}=\\frac{b}{\\cos A}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\cos A=\\frac{b}{\\overline{AB}}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{AB}=\\frac{b}{\\cos A}$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "직각삼각형에서 예각 $A$에 붙은 직각을 낀 변(밑변)의 길이가 $b$이면 빗변은 {$\\frac{b}{\\cos A}$}이다 — 밑변을 {코사인}으로 나눈다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{b}{\\cos A}$"
+          ],
+          [
+            "코사인",
+            "$\\cos A$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "밑변이 어느 변인지 꼭짓점 이름으로 정하고 식의 유도까지 묻게 했다.",
+      "cReason": "밑변의 뜻이 문장에 있고 식과 쓰는 삼각비를 묻는 짧은 빈칸이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "직각C와 AC의 길이 및 각A를 특정하여 cosA=AC/AB에서 빗변 길이를 구한다. 필요한 변과 나눗셈 방향이 명확하다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-05-03-xc5",
+      "sourceIndex": 3562,
+      "proposalFingerprint": "e9ec04ec6483487e8205a5cb263c6fbd1bad648662afc95e9d2c5a45d41b51c5",
+      "normalizedHash": "490238a177c72572bfda733a16f4123683a8fb07d55d97bf5dfeebadf533c20a",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "두 변의 길이가 $a$, $c$이고 끼인각이 $B$인 삼각형의 넓이 공식 $\\frac{1}{2}ac\\sin B$에 $B=90^\\circ$를 넣으면 어떤 식이 되는지 쓰고, 그 식이 직각삼각형의 넓이를 구하는 방법과 맞는지 설명해 보세요.",
+        "answer": "$\\sin 90^\\circ=1$이므로 $\\frac{1}{2}ac$가 된다. 직각을 낀 두 변 $a$, $c$를 밑변과 높이로 하여 구한 직각삼각형의 넓이와 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\sin 90^\\circ=1$이라 $\\frac{1}{2}ac$"
+            ]
+          },
+          {
+            "anyOf": [
+              "밑변과 높이로 구한 직각삼각형의 넓이와 같음"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "끼인각 $B$가 $90^\\circ$이면 $\\sin 90^\\circ=$ {$1$}이므로 넓이 공식 $\\frac{1}{2}ac\\sin B$는 {$\\frac{1}{2}ac$}가 된다 — 직각을 낀 두 변을 밑변과 {높이}로 하는 직각삼각형의 넓이와 같다.",
+        "acceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "$\\frac{1}{2}ac$"
+          ],
+          [
+            "높이"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "어느 넓이 공식인지 식을 직접 제시해 지칭을 분명히 했다.",
+      "cReason": "마지막 빈칸 '같다'는 내용 없는 서술어라 까닭이 드러나는 낱말로 바꿨다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "삼각형의 끼인각 넓이 공식에서90도의 사인값1을 대입하여 두 직각변 곱의 절반으로 연결한다. 밑변과 높이가 실제 수직인 조건이 있다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-05-03-xc6",
+      "sourceIndex": 3563,
+      "proposalFingerprint": "8f2aca35ec9d689a780cb8f7c147c6e67fa44e0859e7eb8b5dafb368fae752ee",
+      "normalizedHash": "d2318c086b1f4b097011b26a04194c2ce985e70e1aa984af2266eb41c2f1b1d6",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "길이가 $l$인 곧은 비탈이 수평면과 예각 $x$를 이룬다. 비탈을 끝까지 올라갔을 때의 높이와 나아간 수평 거리를 각각 $l$과 $x$의 삼각비로 나타내고, 높이에 그 삼각비를 쓰는 까닭을 설명해 보세요.",
+        "answer": "높이는 $l\\sin x$, 수평 거리는 $l\\cos x$이다. 비탈이 직각삼각형의 빗변이고 높이는 각 $x$와 마주 보는 변이므로 사인을 쓴다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "높이 $l\\sin x$"
+            ]
+          },
+          {
+            "anyOf": [
+              "수평 거리 $l\\cos x$"
+            ]
+          },
+          {
+            "anyOf": [
+              "비탈이 빗변이고 높이는 $x$와 마주 보는 변"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "길이가 $l$인 비탈이 수평면과 각 $x$를 이루면 올라간 높이는 {$l\\sin x$}, 나아간 수평 거리는 {$l\\cos x$}이다 — 비탈이 빗변이다.",
+        "acceptedAnswers": [
+          [
+            "$l\\sin x$"
+          ],
+          [
+            "$l\\cos x$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "비탈과 수평면의 관계를 밝히고 사인을 고르는 까닭까지 묻게 했다.",
+      "cReason": "비탈이 빗변이라는 단서가 있고 식 두 개를 묻는 빈칸이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "곧은 비탈길의 길이와 수평선에 대한 경사각을 주어 수직 높이와 수평거리를 각각 사인과 코사인으로 구한다. 문항의 두 거리 방향이 구별된다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-05-03-xc7",
+      "sourceIndex": 3564,
+      "proposalFingerprint": "1b72a5dbc99fb5aeaf48a768f367e7b1c3fe879b8bd179ffc2ab03e11e1b1310",
+      "normalizedHash": "2e2ca575a6dbd67d685926f6acfb92c25464099cd769043d1f1d6b3cbed05314",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "cDecision": "rewrite",
+      "B": {
+        "excluded": "빗변과 각으로 높이를 $l\\sin x$로 구하는 내용이 xc6 비탈과 같다."
+      },
+      "C": {
+        "sentence": "수평인 땅에 수직으로 선 벽에 길이가 $l$인 사다리를 기대어 놓았다. 사다리가 땅과 이루는 각이 $x$이면 사다리 끝이 벽에 닿는 높이는 {$l\\sin x$}이다.",
+        "acceptedAnswers": [
+          [
+            "$l\\sin x$"
+          ]
+        ]
+      },
+      "coreBefore": "벽에 기댄 사다리의 길이가 $l$이고 땅과 이루는 각이 $x$이면 사다리 끝이 닿는 높이는 {$l\\sin x$}이다.",
+      "coreAfter": "수평인 땅에 수직으로 선 벽에 기댄 사다리의 길이가 $l$이고 땅과 이루는 각이 $x$이면 사다리 끝이 닿는 높이는 {$l\\sin x$}이다.",
+      "coreReason": "땅이 수평이고 벽이 땅에 수직이라는 조건이 빠져 있다.",
+      "bReason": "빗변과 각으로 높이를 $l\\sin x$로 구하는 내용이 xc6 비탈과 같다.",
+      "cReason": "땅이 수평이고 벽이 수직이라는 조건이 없어 직각삼각형임이 보장되지 않았다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "수직 벽과 수평 지면에 기대어 놓은 사다리의 길이와 지면 사이 각을 지정한다. 사다리가 빗변이고 벽 높이가 맞은편 변이라는 관계로 사인을 선택한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-05-03-xc8",
+      "sourceIndex": 3565,
+      "proposalFingerprint": "db46e02c2943e3200d28a74e33c44480fff805dd34b8fab3ce9eedab892b0e2b",
+      "normalizedHash": "93175e66420c8b84d0cf63bb9d2f4d472cc4f00f73c0183e82056b3ed63df8a6",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "삼각비의 표에서 $\\sin 35^\\circ=0.5736$을 찾아 $10\\sin 35^\\circ=5.736$으로 어떤 길이를 구했다. 이 길이는 참값인지 어림값인지 말하고 까닭을 설명해 보세요.",
+        "answer": "어림값이다. 표의 $0.5736$이 반올림한 어림값이므로 그것으로 계산한 길이도 어림값이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "구한 길이는 어림값"
+            ]
+          },
+          {
+            "anyOf": [
+              "표의 값이 어림값이기 때문"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "삼각비의 표에 실린 값은 반올림한 {어림값}이므로, 그 값으로 구한 길이도 {참값}이 아니다.",
+        "acceptedAnswers": [
+          [
+            "어림값",
+            "근삿값"
+          ],
+          [
+            "참값"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "제목만으로는 무엇을 묻는지 알 수 없어 표의 값으로 계산한 예를 넣었다.",
+      "cReason": "두 빈칸의 답이 같은 문장의 '표의 값이 어림값이므로'에 그대로 나와 있었다.",
+      "bVerdict": "revise",
+      "cVerdict": "revise",
+      "reason": "B의 반올림된sin35도0.5736은 근삿값 표시로 바꾼다. C의 표에서 구한 길이는 언제나 정확할 수 없다는 단정은 sin30도1/2 같은 정확한 표 값의 반례가 있다. 무리수 값을 유한 소수로 반올림한 해당 경우의 계산 결과가 어림값이라는 개념으로 제한한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-05-03-xc9",
+      "sourceIndex": 3566,
+      "proposalFingerprint": "9ef2df8efa89d8bfcc3c62f1f523661a0e55a0e97b332eda0622cbc9c6165387",
+      "normalizedHash": "4fc57676cf892a95dedfb91aecd5af98c45b6ff7d6c0f18f4c722f833cd96579",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "수평인 땅에 수직으로 세운 높이 $h$인 막대에 햇빛이 땅과 예각 $x$를 이루며 비친다. 그림자의 길이를 $h$와 $x$의 삼각비로 나타내고, $x$가 커지면 그림자의 길이가 어떻게 변하는지 까닭과 함께 설명해 보세요.",
+        "answer": "$\\tan x=\\frac{h}{(\\text{그림자의 길이})}$이므로 그림자의 길이는 $\\frac{h}{\\tan x}$이다. $x$가 커지면 $\\tan x$가 커지므로 그림자는 짧아진다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "그림자의 길이 $\\frac{h}{\\tan x}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x$가 커지면 그림자가 짧아짐"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "수평인 땅에 수직으로 세운 높이 $h$인 막대의 그림자 길이는 햇빛이 땅과 이루는 각이 $x$일 때 {$\\frac{h}{\\tan x}$}이다 — 각 $x$가 클수록 그림자가 {짧다}.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{h}{\\tan x}$"
+          ],
+          [
+            "짧다",
+            "짧아진다"
+          ]
+        ]
+      },
+      "coreBefore": "높이 $h$인 막대의 그림자 길이는 햇빛이 땅과 이루는 각이 $x$일 때 {$\\frac{h}{\\tan x}$}이다 — 각이 클수록 그림자가 {짧다}.",
+      "coreAfter": "수평인 땅에 수직으로 세운 높이 $h$인 막대의 그림자 길이는 햇빛이 땅과 이루는 각이 $x$일 때 {$\\frac{h}{\\tan x}$}이다 — 각이 클수록 그림자가 {짧다}.",
+      "coreReason": "막대가 땅에 수직이고 땅이 수평이라는 조건이 빠져 있다.",
+      "bReason": "땅과 막대의 조건, 각 $x$의 뜻을 밝히고 각에 따른 변화까지 묻게 했다.",
+      "cReason": "막대가 수평인 땅에 수직으로 서 있다는 조건이 빠져 있었다.",
+      "bVerdict": "revise",
+      "cVerdict": "revise",
+      "reason": "B는 그림자가 짧아지는 이유를 요구하므로 높이를 고정한 상태에서 예각이 커질수록 탄젠트가 커져 h/tanx가 작아짐을 기준으로 확인한다. C와 일반 설명에도0도보다 크고90도보다 작은 각 조건을 넣어 tan0도 나눗셈 및 정의되지 않는 tan90도를 배제한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-05-03-xc10",
+      "sourceIndex": 3567,
+      "proposalFingerprint": "e40d63b8a9cac2440be322923d48b89d747cbaa785f84d769d3270b732fcf26b",
+      "normalizedHash": "601676362628001f62d0b0777265a51ee8ea75224349dec93cb921172eae9057",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "삼각형 $ABC$에서 $\\overline{AB}=c$이고 $\\angle B$가 예각일 때, 꼭짓점 $A$에서 직선 $BC$에 내린 수선의 길이를 $c$와 $\\angle B$의 삼각비로 나타내고 어느 직각삼각형에서 그 식을 얻는지 설명해 보세요.",
+        "answer": "수선의 발을 $H$라 하면 직각삼각형 $ABH$에서 빗변이 $\\overline{AB}=c$이고 $\\overline{AH}$는 $\\angle B$와 마주 보는 변이다. 따라서 $\\overline{AH}=c\\sin B$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "수선의 길이 $c\\sin B$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{AB}$가 빗변인 직각삼각형에서 $\\angle B$와 마주 보는 변"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "삼각형 $ABC$에서 $\\overline{AB}=c$이고 $\\angle B$가 예각이면, $A$에서 직선 $BC$에 내린 수선의 길이는 {$c\\sin B$}이다 — 수선은 $\\angle B$와 {마주 보는} 변이고 $\\overline{AB}$가 {빗변}이기 때문이다.",
+        "acceptedAnswers": [
+          [
+            "$c\\sin B$"
+          ],
+          [
+            "마주 보는"
+          ],
+          [
+            "빗변"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "수선을 어디에 내리는지와 식이 나오는 직각삼각형을 답하도록 정했다.",
+      "cReason": "첫 빈칸은 변 $BC$와 직선 $BC$가 갈려 채점이 흔들리므로 드러냈다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "AB와 각B, A에서 직선BC에 내린 수선의 발H를 특정한다. 직각삼각형ABH에서 AH가 각B의 맞은편 변임을 이용해 c sinB를 구한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-05-03-xc11",
+      "sourceIndex": 3568,
+      "proposalFingerprint": "2bc49330b563bac279330a5b18fb35dd737375a9c9470789c062e9b2136aea6d",
+      "normalizedHash": "4d56054fbb3d1f105e64cf8264d85cdfce025c8e9212440dab27743a7c26b534",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "두 변의 길이가 $6$, $8$이고 넓이가 $12$인 삼각형에서 이 두 변의 끼인각의 크기를 모두 구하고, 답이 하나가 아닌 까닭을 높이를 이용해 설명해 보세요.",
+        "answer": "길이 $8$인 변을 밑변으로 하면 높이는 $3$이다. 높이 $3$이 다른 변 $6$의 절반이므로 끼인각이 예각이면 $30^\\circ$이고, 둔각이면 이웃각이 $30^\\circ$인 $150^\\circ$이다. 높이가 다른 변보다 짧으면 예각과 둔각이 하나씩 생긴다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "길이 $8$인 변을 밑변으로 하면 높이는 $3$",
+              "길이 $6$인 변을 밑변으로 하면 높이는 $4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "끼인각은 $30^\\circ$ 또는 $150^\\circ$",
+              "끼인각은 $30^\\circ$와 $150^\\circ$ 두 가지"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이가 다른 변보다 짧아 예각과 둔각인 경우가 하나씩 생김",
+              "같은 높이를 만드는 끼인각이 $30^\\circ$와 그 이웃각 $150^\\circ$ 두 개"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "삼각형의 두 변의 길이와 넓이를 알면 한 변을 밑변으로 하여 {높이}를 구할 수 있다. 이 높이가 나머지 한 변보다 짧으면 끼인각은 예각인 경우와 {둔각}인 경우가 하나씩 있고, 나머지 한 변과 같으면 끼인각은 {$90^\\circ$}이다.",
+        "acceptedAnswers": [
+          [
+            "높이"
+          ],
+          [
+            "둔각"
+          ],
+          [
+            "$90^\\circ$",
+            "직각"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "일반 진술이 어려워 두 변 $6$, $8$과 넓이 $12$인 경우로 구체화했다.",
+      "cReason": "'그 높이를 만드는 끼인각', '다른 변'의 지칭이 흐리고 문장이 끊겨 읽기 어려웠다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "두 변6·8과 넓이12에서 가능한 끼인각30도와150도를 묻고 높이를 이용한 이유를 요구한다. 같은 높이가 생기는 예각과 둔각을 구별하며 직각일 때는 하나라는 C도 타당하다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-05-03-xc12",
+      "sourceIndex": 3569,
+      "proposalFingerprint": "2ecdf00be3bbc78d4bd041fa951d469993e87ec276951936cefd82edbd454a60",
+      "normalizedHash": "1a67f7561885575990c94c699ba194025da5e5b9c23365081474be4dd8fba681",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "한 변의 길이가 $a$이고 한 내각 $x$가 예각인 마름모의 넓이를 $a$와 $x$의 삼각비로 나타내고, 마름모가 어떤 사각형의 특별한 경우인지를 이용해 까닭을 설명해 보세요.",
+        "answer": "넓이는 $a^2\\sin x$이다. 마름모는 이웃한 두 변의 길이가 모두 $a$인 평행사변형이므로, 평행사변형의 넓이 $ab\\sin x$에서 $b=a$인 경우이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "넓이 $a^2\\sin x$"
+            ]
+          },
+          {
+            "anyOf": [
+              "이웃한 두 변이 모두 $a$인 평행사변형"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "한 변이 $a$이고 한 예각이 $x$인 마름모의 넓이는 {$a^2\\sin x$}이다 — 이웃한 두 변이 모두 $a$인 {평행사변형}이기 때문이다.",
+        "acceptedAnswers": [
+          [
+            "$a^2\\sin x$"
+          ],
+          [
+            "평행사변형"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "변과 각의 조건을 밝히고 평행사변형과의 관계를 까닭으로 묻게 했다.",
+      "cReason": "공식과 근거가 되는 도형 이름을 묻는 짧은 빈칸이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "한 변 길이a와 예각인 내각x를 주어 마름모의 밑변과 높이 관계에서 a제곱sinx를 구한다. 변의 길이와 각의 조건이 충분하다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-05-03-xc13",
+      "sourceIndex": 3570,
+      "proposalFingerprint": "2abe870e583a2f3a95213d95424045aafb6b2d74afb25f3bd4b96adac5e97756",
+      "normalizedHash": "3a56543a0827fdd9189751272625b593056444fb203ade74678b75c6a38da95d",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "$\\overline{AB}=6$, $\\angle B=60^\\circ$, $\\overline{BC}=8$인 삼각형 $ABC$가 있다. $A$에서 직선 $BC$에 수선을 내리는 방법과 $B$에서 직선 $AC$에 수선을 내리는 방법 중, 주어진 각으로 삼각비를 계산하기 좋은 방법을 고르고 이유를 비교하여 설명하시오.",
+        "answer": "$A$에서 수선을 내리면 $60^\\circ$가 나뉘지 않고 직각삼각형의 한 예각으로 남아 $6\\sin 60^\\circ$, $6\\cos 60^\\circ$를 바로 쓸 수 있다. $B$에서 내리면 $60^\\circ$가 크기를 모르는 두 각으로 나뉜다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$A$에서 $BC$에 수선을 내리는 방법이 좋다"
+            ]
+          },
+          {
+            "anyOf": [
+              "주어진 $60$도가 나뉘지 않고 새 직각삼각형의 한 예각으로 남는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$B$에서 $AC$에 수선을 내리면 주어진 $60$도가 크기를 모르는 두 각으로 나뉜다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "삼각형 $ABC$에서 $\\overline{AB}$, $\\overline{BC}$의 길이와 그 끼인각인 예각 $B$의 크기를 알 때, 꼭짓점 {$A$}에서 직선 $BC$에 수선을 내리면 $\\angle B$가 나뉘지 않고 직각삼각형의 한 {예각}으로 남는다.",
+        "acceptedAnswers": [
+          [
+            "$A$"
+          ],
+          [
+            "예각"
+          ]
+        ]
+      },
+      "coreBefore": "두 변과 그 사이의 {예각}을 알 때, 한 변의 다른 끝점에서 다른 변을 포함하는 직선에 수선을 내리면 주어진 각이 직각삼각형의 {한 예각}으로 남는다.",
+      "coreAfter": "삼각형에서 두 변의 길이와 그 끼인각인 {예각}의 크기를 알 때, 끼인각의 꼭짓점이 아닌 꼭짓점에서 맞은편 변을 포함하는 직선에 수선을 내리면 주어진 각이 나뉘지 않고 직각삼각형의 {한 예각}으로 남는다.",
+      "coreReason": "'한 변의 다른 끝점에서 다른 변'이라는 표현은 중3 학생이 어느 점인지 알기 어렵다.",
+      "bReason": "첫 방법이 좋다고 미리 알려 주지 않고 어느 수선이 유리한지 학생이 고른 뒤 각이 나뉘는 차이를 설명하게 한다.",
+      "cReason": "'한 변의 다른 끝점', '다른 변' 같은 말이 추상적이고 두 빈칸의 답이 거의 같았다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "주어진 삼각형에서 어느 꼭짓점의 수선을 그어야 알려진 끼인각을 그대로 쓰는지 묻는다. 실제 길이6·8과60도에서는 다른 꼭짓점의 수선이 알려진 각을 나누므로 제시 이유가 맞고 C는 직선에 내린 수선으로 외부 수선의 발도 허용한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-05-03-xc14",
+      "sourceIndex": 3571,
+      "proposalFingerprint": "134ed9c86af39c8816ec4f66e35b41086bdaaba1fd463004bd6c541538587863",
+      "normalizedHash": "736c038681452ff827e1249f16bb219e5ad06cd289cd53cc624719913548ea21",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "곧은 강가의 점 $A$에서 강 건너편 점 $P$로 이은 선분 $AP$가 강가와 수직이다. 같은 강가의 점 $B$에서 $\\overline{AB}=d$, $\\angle ABP=x$를 재었을 때 강폭 $\\overline{AP}$를 $d$와 $x$의 삼각비로 나타내고, 그 삼각비를 고른 까닭을 설명해 보세요.",
+        "answer": "$\\angle A=90^\\circ$인 직각삼각형 $ABP$에서 $\\tan x=\\frac{\\overline{AP}}{\\overline{AB}}$이므로 $\\overline{AP}=d\\tan x$이다. 아는 변 $\\overline{AB}$가 $x$에 붙은 변이고 구하는 $\\overline{AP}$가 $x$와 마주 보는 변이라 탄젠트를 쓴다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "강폭 $d\\tan x$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{AB}$가 붙은 변, $\\overline{AP}$가 마주 보는 변"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "곧은 강가의 점 $A$에서 강 건너 점 $P$로 이은 선분이 강가와 수직이라 하자. 강가의 점 $B$에서 $\\overline{AB}=d$, $\\angle ABP=x$이면 강폭 $\\overline{AP}$는 {$d\\tan x$}이다.",
+        "acceptedAnswers": [
+          [
+            "$d\\tan x$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "그림이 없어 점 $A$, $B$, $P$의 위치와 잰 길이·각을 질문에 넣었다.",
+      "cReason": "조건인 '수직'과 결론인 식을 한 문항에서 함께 숨기고 있었다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "직선 강둑과 수직인 건너편 점, 강둑 위 관찰점·거리·각을 이름으로 지정하여 강폭을 거리 곱하기 탄젠트로 구한다. 그림이 없어도 점의 배치를 복원할 수 있다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-05-03-xc15",
+      "sourceIndex": 3572,
+      "proposalFingerprint": "d31a50147aaef6b0011cd2b8102324b219d54b3cdae8d8e12cf036ecfd6f93d1",
+      "normalizedHash": "2ca52abb007965a30e383b9b0cb267c09b22d192d4180c4f45829cc42ae2dbd8",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "수평면과 이루는 각(경사각)이 $x$인 곧은 경사로의 기울기는 어떤 두 길이의 비인지 말하고, 그 기울기를 $x$의 삼각비로 나타내 보세요.",
+        "answer": "기울기는 수평 거리에 대한 높이의 비, 곧 높이를 수평 거리로 나눈 값이다. 따라서 기울기는 $\\tan x$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "기울기는 높이를 수평 거리로 나눈 값"
+            ]
+          },
+          {
+            "anyOf": [
+              "기울기는 $\\tan x$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "경사로의 기울기는 {수평 거리}에 대한 높이의 비이므로, 경사각이 $x$이면 기울기는 {$\\tan x$}이다.",
+        "acceptedAnswers": [
+          [
+            "수평 거리"
+          ],
+          [
+            "$\\tan x$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "기울기가 어느 두 길이의 비인지와 삼각비 표현을 함께 답하게 했다.",
+      "cReason": "첫 빈칸 '기울기'가 뒤의 '기울기는'에 그대로 나와 있었다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "경사면의 수직 높이와 수평거리를 구별해 그 비가 수평선에 대한 경사각의 탄젠트임을 묻는다. 실제로 어느 길이를 나누는지 명확하다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-05-03-xc16",
+      "sourceIndex": 3573,
+      "proposalFingerprint": "2bb804f5e760aff55db0e0301cc432a4db7dc63384c84d62242bb5863c4cd8b5",
+      "normalizedHash": "db1bfd44daa0720801a7543fea3a34b2dda7cd5707b0042a6db1a17da856cc0c",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "수평인 땅에 수직으로 선 탑이 있다. 탑의 밑 $H$와 한 직선 위에 있고 탑의 같은 쪽에 있는 두 지점 $A$, $B$에서 탑 꼭대기를 올려본각이 각각 $30^\\circ$, $45^\\circ$이고 $\\overline{AB}=10$이다. 눈높이는 생각하지 않을 때 탑의 높이 $h$를 구하는 식을 세우는 방법을 설명하고 $h$를 구해 보세요.",
+        "answer": "$\\overline{AH}=\\frac{h}{\\tan 30^\\circ}=\\sqrt{3}h$, $\\overline{BH}=\\frac{h}{\\tan 45^\\circ}=h$이다. 두 거리의 차가 $\\overline{AB}$이므로 $\\sqrt{3}h-h=10$이고, $h=\\frac{10}{\\sqrt{3}-1}=5(\\sqrt{3}+1)$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{AH}=\\sqrt{3}h$, $\\overline{BH}=h$",
+              "각 지점에서 탑 밑까지의 거리를 $\\frac{h}{\\tan 30^\\circ}$, $\\frac{h}{\\tan 45^\\circ}$로 나타냄"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\sqrt{3}h-h=10$",
+              "두 거리의 차가 $\\overline{AB}=10$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$h=5(\\sqrt{3}+1)$",
+              "$h=5\\sqrt{3}+5$",
+              "$h=\\frac{10}{\\sqrt{3}-1}$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "수평인 땅에 수직으로 선 탑을 볼 때, 눈높이를 생각하지 않으면 올려본각의 {탄젠트}는 탑의 높이를 그 지점부터 탑 밑까지의 거리로 나눈 값이다. 탑 밑과 한 직선 위의 같은 쪽 두 지점에서는, 탑 밑까지 두 거리의 {차}가 두 지점 사이의 거리이다.",
+        "acceptedAnswers": [
+          [
+            "탄젠트"
+          ],
+          [
+            "차"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "일반 설명이 길고 추상적이라 두 올려본각과 거리가 주어진 상황으로 바꿨다.",
+      "cReason": "그가 첫 삼각비를 가리키는 듯한 지칭을 없애고 탄젠트의 실제 비와 두 거리의 차를 명시한다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "탑과 같은 쪽의 두 관찰점,30도·45도, 점 사이 거리10과 눈높이 생략을 명시한다. 두 수평거리의 차를 이용해 탑 높이5(루트3+1)를 구하는 기준이 문제 조건과 일치한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-05-03-xc17",
+      "sourceIndex": 3574,
+      "proposalFingerprint": "5927feb6c799c84fb89a465077985bb80fa3d11d166cd8b0293c445fbc70e723",
+      "normalizedHash": "167237a37fd950c800a9e45019ad7348d5b4670450bfeb2cc0b70725937cdaf9",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "이웃한 두 변의 길이가 $a$, $b$이고 그 끼인각 $x$가 둔각인 평행사변형의 넓이를 구하는 식을 쓰고, $x$ 대신 어느 각의 사인을 쓰는지와 그 까닭을 설명해 보세요.",
+        "answer": "넓이는 $ab\\sin(180^\\circ-x)$이다. 평행사변형에서 이웃한 두 내각의 합은 $180^\\circ$이므로 이웃한 각은 예각 $180^\\circ-x$이고, 그 각을 끼인각으로 보아 사인을 쓴다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$ab\\sin(180^\\circ-x)$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x$와 이웃한 내각은 예각 $180^\\circ-x$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "평행사변형에서 이웃한 두 내각의 합이 $180^\\circ$이기 때문이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "이웃한 두 변의 길이가 $a$, $b$이고 끼인각 $x$가 둔각인 평행사변형의 넓이는 {$ab\\sin(180^\\circ-x)$}이다.",
+        "acceptedAnswers": [
+          [
+            "$ab\\sin(180^\\circ-x)$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "넓이식과 쓸 예각만으로 까닭을 충족하지 못하므로 이웃한 내각의 합이라는 이유를 따로 요구한다.",
+      "cReason": "뒤에서 같은 사인 식을 거의 알려 주던 설명은 빼고 조건에 맞는 넓이 식만 묻는다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "둔각 내각x의 평행사변형에서 이웃 예각180도-x로 높이를 구해 넓이를 표현한다. 두 변과 보각 관계가 제시되어 있다. 추가로 배운 학생의 동치식ab sinx도 수학적으로 맞는 답임을 보존한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    }
+  ]
+}

@@ -1,0 +1,988 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T10:36:12.144Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-04-01-xc16",
+        "section": "중2::4. 함수::함수와 함숫값",
+        "term": "함숫값 두 개로 식 정하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$f(x)=ax+b$에서 서로 다른 두 $x$의 값에 대한 함숫값을 알면 $a$, $b$에 대한 등식 {두 개}를 얻어 $a$, $b$를 {정할} 수 있다.",
+        "example": {
+          "prompt": "$f(x)=ax+b$에서 $f(0)=3$, $f(1)=5$일 때 $f(2)$",
+          "answer": "$7$"
+        },
+        "studentC": "$f(x)=ax+b$에서 서로 다른 두 $x$의 값에 대한 함숫값을 알면 $a$, $b$에 대한 등식 □를 얻어 $a$, $b$를 □ 수 있다.",
+        "answers": [
+          "두 개",
+          "정할"
+        ]
+      },
+      "proposal": {
+        "id": "m2-04-01-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "$f(x)=ax+b$에서 $f(0)=3$, $f(1)=5$이다. $a$, $b$의 값을 구하는 방법을 쓰고 $f(2)$의 값을 구하시오.",
+        "bAnswer": "두 함숫값을 대입하면 $b=3$, $a+b=5$의 두 등식을 얻는다. 이를 풀면 $a=2$, $b=3$이므로 $f(x)=2x+3$이고 $f(2)=7$이다.",
+        "bGoal": "두 함숫값으로 일차함수의 식 정하기",
+        "bReason": "증가량으로 $a$를 구한 맞는 방법도 인정",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$b=3$, $a+b=5$의 두 등식을 세운다",
+              "$x$가 $1$ 늘 때 함숫값이 $2$ 늘어 $a=2$이고 $f(0)=b=3$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$a=2$, $b=3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$f(2)=7$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$f(x)=ax+b$에서 서로 다른 두 $x$의 값에 대한 함숫값을 알면 $a$, $b$에 대한 등식 {두 개}를 얻어 {연립방정식}으로 $a$, $b$의 값을 구할 수 있다.",
+        "cAnswers": [
+          "두 개",
+          "연립방정식"
+        ],
+        "cReason": "'정할'은 임의 낱말이라 이미 배운 풀이 도구인 연립방정식을 묻게 함.",
+        "exampleNeeded": true,
+        "authorBatch": 38,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "등식 두 개로 a, b 결정",
+        "enrichmentEvidence": "enrichment/enrich-008",
+        "sourceIndex": 2655,
+        "part": "m2plus",
+        "sourceFingerprint": "270e7b0d1155ba210251ca3feb22fb57fec79ffb41b2efb3e15fcf7ab27f42a3",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2655
+        },
+        "directReview": null,
+        "cMarkedSentence": "$f(x)=ax+b$에서 서로 다른 두 $x$의 값에 대한 함숫값을 알면 $a$, $b$에 대한 등식 {두 개}를 얻어 {연립방정식}으로 $a$, $b$의 값을 구할 수 있다.",
+        "cSlotAnswers": [
+          "두 개",
+          "연립방정식"
+        ],
+        "cStudentSentence": "$f(x)=ax+b$에서 서로 다른 두 $x$의 값에 대한 함숫값을 알면 $a$, $b$에 대한 등식 □를 얻어 □으로 $a$, $b$의 값을 구할 수 있다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "두 개",
+            "equivalentAnswers": [
+              "두 개",
+              "$2$개",
+              "둘"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "연립방정식",
+            "equivalentAnswers": [
+              "연립방정식"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "두 개",
+            "accept": [
+              "2개",
+              "둘"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "두 개",
+            "$2$개",
+            "둘"
+          ],
+          [
+            "연립방정식"
+          ]
+        ],
+        "proposalFingerprint": "07ebdddc405d7e2ce91a145817f9a5b26facda348a2890a0b6fcd4db26dc3b8d"
+      }
+    },
+    {
+      "source": {
+        "part": "m1",
+        "id": "m1-01-02-c5",
+        "section": "중1::1. 소인수분해::소인수분해",
+        "term": "소인수분해로 약수 구하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "$a^m\\times b^n$의 약수는 $a^m$의 약수와 $b^n$의 약수를 하나씩 골라 {곱해서} 빠짐없이 만든다.",
+        "studentC": "$a^m\\times b^n$의 약수는 $a^m$의 약수와 $b^n$의 약수를 하나씩 골라 □ 빠짐없이 만든다.",
+        "answers": [
+          "곱해서"
+        ]
+      },
+      "proposal": {
+        "id": "m1-01-02-c5",
+        "bDecision": "rewrite",
+        "bPrompt": "$18=2\\times3^2$의 약수를 모두 구하려고 합니다. $2$의 약수와 $3^2$의 약수를 이용해 빠짐없이 구하는 방법을 설명하고, 약수를 모두 쓰세요.",
+        "bAnswer": "$2$의 약수 $1$, $2$와 $3^2$의 약수 $1$, $3$, $9$에서 하나씩 골라 곱한다. $1\\times1$, $1\\times3$, $1\\times9$, $2\\times1$, $2\\times3$, $2\\times9$이므로 약수는 $1$, $2$, $3$, $6$, $9$, $18$이다.",
+        "bGoal": "소인수분해한 식에서 각 거듭제곱의 약수를 하나씩 골라 곱해 약수를 모두 구한다.",
+        "bReason": "제목 '소인수분해로 약수 구하기'에는 대상 수가 없어 방법을 쓰기 어렵다. 소인수분해된 구체적인 수를 주고 방법과 결과를 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "서로 다른 소수 $a$, $b$와 자연수 $m$, $n$에 대하여 $a^m\\times b^n$의 약수는 $a^m$의 약수와 $b^n$의 약수를 하나씩 골라 {곱해서} 빠짐없이 만든다.",
+        "cAnswers": [
+          "곱해서"
+        ],
+        "cReason": "원문에는 $a$, $b$가 서로 다른 소수라는 조건이 없어 이 방법이 성립하는 범위가 빠져 있다. 기호 조건만 채우고 빈칸은 그대로 두었다.",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2$의 약수 $1$, $2$와 $3^2$의 약수 $1$, $3$, $9$에서 하나씩 골라 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "약수: $1$, $2$, $3$, $6$, $9$, $18$"
+            ]
+          }
+        ],
+        "coreAfter": "서로 다른 소수 $a$, $b$에 대하여 $a^m\\times b^n$의 약수는 $a^m$의 약수와 $b^n$의 약수를 하나씩 골라 {곱해서} 빠짐없이 만든다.",
+        "coreReason": "$a$, $b$가 서로 다른 소수라는 조건이 빠져 있었다. 그래서 소인수분해한 식에 대한 설명임을 밝혔다.",
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "procedure",
+        "roleReason": "약수를 하나씩 골라 곱함",
+        "enrichmentEvidence": "enrichment/enrich-000",
+        "sourceIndex": 12,
+        "part": "m1",
+        "sourceFingerprint": "a4bd70e82c74bf2511eb2cc539d403e20c00148253e0aa4e0887a5fbacf6586e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 12
+        },
+        "directReview": null,
+        "coreBeforeRepair": "서로 다른 소수 $a$, $b$에 대하여 $a^m\\times b^n$의 약수는 $a^m$의 약수와 $b^n$의 약수를 하나씩 골라 {곱해서} 빠짐없이 만든다.",
+        "coreRepairReason": "원본 핵심어 {곱해서}와 '하나씩 골라 빠짐없이 만든다'는 일반 방법을 그대로 두었다. 필요한 조건만 더한 이미 좋은 교정이라 보존했다.",
+        "coreRepairEvidence": "core-repair/core-000",
+        "cMarkedSentence": "서로 다른 소수 $a$, $b$와 자연수 $m$, $n$에 대하여 $a^m\\times b^n$의 약수는 $a^m$의 약수와 $b^n$의 약수를 하나씩 골라 {곱해서} 빠짐없이 만든다.",
+        "cSlotAnswers": [
+          "곱해서"
+        ],
+        "cStudentSentence": "서로 다른 소수 $a$, $b$와 자연수 $m$, $n$에 대하여 $a^m\\times b^n$의 약수는 $a^m$의 약수와 $b^n$의 약수를 하나씩 골라 □ 빠짐없이 만든다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "곱해서",
+            "equivalentAnswers": [
+              "곱해서",
+              "곱하여"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "곱해서",
+            "accept": [
+              "곱하여"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "곱해서",
+            "곱하여"
+          ]
+        ],
+        "proposalFingerprint": "a1f15d78d1b69135173ae0cb92ddbaa08305814e0a708e5b25f212ce57c9e7f4"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-01-08-c8",
+        "section": "중2::1. 수와 식::다항식의 곱셈과 나눗셈",
+        "term": "사칙이 섞인 식의 계산 순서",
+        "kind": "방법",
+        "level": "상",
+        "definition": "사칙이 섞인 식은 {괄호} 안을 먼저 계산하고, {거듭제곱}, 곱셈과 나눗셈, 덧셈과 뺄셈의 순서로 계산한다.",
+        "studentC": "사칙이 섞인 식은 □ 안을 먼저 계산하고, □, 곱셈과 나눗셈, 덧셈과 뺄셈의 순서로 계산한다.",
+        "answers": [
+          "괄호",
+          "거듭제곱"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-08-c8",
+        "bDecision": "rewrite",
+        "bPrompt": "$x\\ne0$일 때 $3x+\\{(-2x)^2-x^2\\}\\div x$에는 괄호, 거듭제곱, 나눗셈, 덧셈과 뺄셈이 섞여 있다. 어떤 계산부터 차례로 하는지 쓰고 결과를 구하시오.",
+        "bAnswer": "중괄호 안을 먼저 계산하되 거듭제곱부터 하여 $(-2x)^2-x^2=4x^2-x^2=3x^2$, 다음에 나눗셈 $3x^2\\div x=3x$, 마지막에 덧셈 $3x+3x=6x$이다.",
+        "bGoal": "사칙과 괄호가 섞인 식의 계산 순서 지키기",
+        "bReason": "계산 순서를 말로만 외우지 않게 네 종류가 모두 든 식을 제시함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "괄호 안을 먼저 계산한다",
+              "$(-2x)^2-x^2=3x^2$을 먼저 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나눗셈을 덧셈보다 먼저 한다",
+              "$3x^2\\div x=3x$를 구한 뒤 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6x$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "나머지 차례가 보이는 상태에서 앞의 두 단계만 묻는 분명한 빈칸이다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "혼합 계산의 순서",
+        "authorBatch": 29,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 407,
+        "part": "m2",
+        "sourceFingerprint": "96957d7a3c27855da988a37d6152315ea2890db0d4aa8a6ec5baeb5771545a7a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 407
+        },
+        "directReview": null,
+        "cFrozenSentence": "사칙이 섞인 식은 □ 안을 먼저 계산하고, □, 곱셈과 나눗셈, 덧셈과 뺄셈의 순서로 계산한다.",
+        "cFrozenDefinition": "사칙이 섞인 식은 {괄호} 안을 먼저 계산하고, {거듭제곱}, 곱셈과 나눗셈, 덧셈과 뺄셈의 순서로 계산한다.",
+        "cFrozenAnswers": [
+          "괄호",
+          "거듭제곱"
+        ],
+        "cMarkedSentence": "사칙이 섞인 식은 {괄호} 안을 먼저 계산하고, {거듭제곱}, 곱셈과 나눗셈, 덧셈과 뺄셈의 순서로 계산한다.",
+        "cSlotAnswers": [
+          "괄호",
+          "거듭제곱"
+        ],
+        "cStudentSentence": "사칙이 섞인 식은 □ 안을 먼저 계산하고, □, 곱셈과 나눗셈, 덧셈과 뺄셈의 순서로 계산한다.",
+        "cAnswers": [
+          "괄호",
+          "거듭제곱"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "괄호",
+            "equivalentAnswers": [
+              "괄호"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "거듭제곱",
+            "equivalentAnswers": [
+              "거듭제곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "괄호"
+          ],
+          [
+            "거듭제곱"
+          ]
+        ],
+        "proposalFingerprint": "f183b6c5dd159604fc9d59f23696dcd8e14deec7d7c45bdccc6b0834fd6a7f3a"
+      }
+    },
+    {
+      "source": {
+        "part": "m1",
+        "id": "m1-03-06-c6",
+        "section": "중1::3. 방정식::일차방정식의 풀이",
+        "term": "계수가 소수인 일차방정식",
+        "kind": "방법",
+        "level": "상",
+        "definition": "계수가 소수이면 양변에 {$10$의 거듭제곱}을 곱해 계수를 {정수}로 바꾼 뒤 푼다.",
+        "studentC": "계수가 소수이면 양변에 □을 곱해 계수를 □로 바꾼 뒤 푼다.",
+        "answers": [
+          "$10$의 거듭제곱",
+          "정수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-06-c6",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.2x+0.5=1.3$처럼 계수가 소수인 일차방정식을 풀 때 먼저 양변에 어떤 수를 곱하는지와 그렇게 하는 까닭을 쓰고, 이 방정식의 해를 구하세요.",
+        "bAnswer": "양변에 $10$을 곱한다. 계수를 모두 정수로 바꾸어 계산하기 쉽게 하기 위해서이다. $2x+5=13$이 되어 $2x=8$, $x=4$이다.",
+        "bGoal": "계수가 소수인 일차방정식은 양변에 $10$의 거듭제곱을 곱해 계수를 정수로 바꾸어 푼다.",
+        "bReason": "제목 '계수가 소수인 일차방정식'은 방정식의 종류일 뿐이고 원문에 예시도 없다. 소수 계수 방정식 하나를 넣어 곱할 수, 까닭, 해를 묻도록 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "계수가 소수점 아래 숫자를 가진 방정식 $0.2x+0.05=0.65$에서 모든 항의 수를 정수로 바꾸려고 한다. 양변에 곱할 $10$의 거듭제곱 가운데 가장 작은 수는 {$100$}이다.",
+        "cAnswers": [
+          "$100$"
+        ],
+        "cReason": "소수는 prime과 decimal 두 뜻이 있어 실제 소수 계수를 제시한다. 목표인 정수는 보여 주고 곱할 수만 구하게 한다.",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "양변에 $10$을 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "까닭: 계수를 정수로 바꾸기 위해서"
+            ]
+          },
+          {
+            "anyOf": [
+              "해 $x=4$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "procedure",
+        "roleReason": "10의 거듭제곱 곱해 정수화",
+        "enrichmentEvidence": "enrichment/enrich-001",
+        "coreAfter": "계수나 상수항이 $0.2$, $0.05$처럼 소수점이 있는 수인 일차방정식은 양변에 알맞은 {$10$의 거듭제곱}을 곱해 계수와 상수항을 모두 {정수}로 바꾼 뒤 풀 수 있다.",
+        "coreReason": "'소수'라는 말만으로는 소수(素數)와 소수(小數)를 구별하기 어렵다. 그래서 소수점이 있는 수임을 밝혔다. 계수뿐 아니라 상수항도 함께 정수로 바꾼다는 점도 밝혔다.",
+        "directReviewNote": "100을 곱하면 20x+5=65이고 10만 곱하면 2x+0.5=6.5이므로 가장 작은 10의 거듭제곱은 100이다.",
+        "sourceIndex": 105,
+        "part": "m1",
+        "sourceFingerprint": "e15383ebccc306c01c933742cec9944e4ff4875ed9da348101464db93f0ffa7a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 105
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m1-03-06-c6"
+        },
+        "coreBeforeRepair": "계수가 $0.2$, $0.05$처럼 소수점 아래 숫자를 가진 일차방정식은 양변에 {$10$의 거듭제곱}을 곱해 모든 항의 수를 {정수}로 바꾼 뒤 풀 수 있다.",
+        "coreRepairReason": "원본 핵심어 {$10$의 거듭제곱}, {정수}를 유지했다. 예시는 뜻을 가리키는 보조로만 두었고 일반 방법을 대신하지 않게 했다. 현재안의 모호한 말 '모든 항의 수'는 '계수와 상수항'으로 바꿨다.",
+        "coreRepairEvidence": "core-repair/core-000",
+        "cMarkedSentence": "계수가 소수점 아래 숫자를 가진 방정식 $0.2x+0.05=0.65$에서 모든 항의 수를 정수로 바꾸려고 한다. 양변에 곱할 $10$의 거듭제곱 가운데 가장 작은 수는 {$100$}이다.",
+        "cSlotAnswers": [
+          "$100$"
+        ],
+        "cStudentSentence": "계수가 소수점 아래 숫자를 가진 방정식 $0.2x+0.05=0.65$에서 모든 항의 수를 정수로 바꾸려고 한다. 양변에 곱할 $10$의 거듭제곱 가운데 가장 작은 수는 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$100$",
+            "equivalentAnswers": [
+              "$100$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$100$"
+          ]
+        ],
+        "proposalFingerprint": "1dc3cac4da955003b9dc7bbb78fb7fdfb9129ee09391b40e944ded6e47a6859f"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-03-01-c9",
+        "section": "중2::3. 방정식::미지수가 2개인 연립일차방정식",
+        "term": "해의 개수와 수의 범위",
+        "kind": "성질",
+        "level": "상",
+        "definition": "미지수가 $2$개인 일차방정식의 해는 수 전체에서는 {무수히 많지만}, 자연수로 한정하면 {유한} 개일 수 있다.",
+        "example": {
+          "prompt": "$x+2y=7$의 자연수 해의 개수",
+          "answer": "$3$"
+        },
+        "studentC": "미지수가 $2$개인 일차방정식의 해는 수 전체에서는 □, 자연수로 한정하면 □ 개일 수 있다.",
+        "answers": [
+          "무수히 많지만",
+          "유한"
+        ]
+      },
+      "proposal": {
+        "id": "m2-03-01-c9",
+        "learningRole": "application",
+        "roleReason": "수의 범위에 따른 해의 개수 비교",
+        "bDecision": "rewrite",
+        "bPrompt": "일차방정식 $x+2y=7$의 해가 $x$, $y$가 수 전체일 때와 자연수일 때 각각 몇 개인지 말하고, 자연수일 때의 해를 모두 쓰시오.",
+        "bAnswer": "수 전체에서는 무수히 많다. 자연수일 때는 $(1,\\ 3)$, $(3,\\ 2)$, $(5,\\ 1)$의 $3$개이다.",
+        "bGoal": "범위에 따른 해의 개수 이해",
+        "bReason": "구체 식으로 두 범위의 해 개수를 대비하게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "수 전체에서는 무수히 많다"
+            ]
+          },
+          {
+            "anyOf": [
+              "자연수 해는 $(1,\\ 3)$, $(3,\\ 2)$, $(5,\\ 1)$의 $3$개"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "'무수히 많다'와 '유한'을 대비하는 짧은 빈칸이다.",
+        "exampleNeeded": true,
+        "authorBatch": 33,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 458,
+        "part": "m2",
+        "sourceFingerprint": "7f648214f250dbd71530fefd7bc9234d8473fd5e31f073ac1c6df28ea6f4be6c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 458
+        },
+        "directReview": null,
+        "cFrozenSentence": "미지수가 $2$개인 일차방정식의 해는 수 전체에서는 □, 자연수로 한정하면 □ 개일 수 있다.",
+        "cFrozenDefinition": "미지수가 $2$개인 일차방정식의 해는 수 전체에서는 {무수히 많지만}, 자연수로 한정하면 {유한} 개일 수 있다.",
+        "cFrozenAnswers": [
+          "무수히 많지만",
+          "유한"
+        ],
+        "cMarkedSentence": "미지수가 $2$개인 일차방정식의 해는 수 전체에서는 {무수히 많지만}, 자연수로 한정하면 {유한} 개일 수 있다.",
+        "cSlotAnswers": [
+          "무수히 많지만",
+          "유한"
+        ],
+        "cStudentSentence": "미지수가 $2$개인 일차방정식의 해는 수 전체에서는 □, 자연수로 한정하면 □ 개일 수 있다.",
+        "cAnswers": [
+          "무수히 많지만",
+          "유한"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "무수히 많지만",
+            "equivalentAnswers": [
+              "무수히 많지만"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "유한",
+            "equivalentAnswers": [
+              "유한"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "무수히 많지만"
+          ],
+          [
+            "유한"
+          ]
+        ],
+        "proposalFingerprint": "ba6c1da89de3ca38f75c9a515692146c19ad99a88b7a0dcddc2900888e0d52b2"
+      }
+    },
+    {
+      "source": {
+        "part": "m1",
+        "id": "m1-05-06-c9",
+        "section": "중1::5. 기본 도형::작도",
+        "term": "삼각형이 하나로 정해지지 않는 경우",
+        "kind": "성질",
+        "level": "상",
+        "definition": "{세 각}의 크기만 알거나, 두 변과 끼인각이 {아닌} 각을 알 때에는 삼각형이 하나로 정해진다고 할 수 없다.",
+        "studentC": "□의 크기만 알거나, 두 변과 끼인각이 □ 각을 알 때에는 삼각형이 하나로 정해진다고 할 수 없다.",
+        "answers": [
+          "세 각",
+          "아닌"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-06-c9",
+        "bDecision": "rewrite",
+        "bPrompt": "세 각의 크기가 $50^\\circ$, $60^\\circ$, $70^\\circ$로만 주어졌을 때 삼각형이 하나로 정해지는지 쓰고 이유를 설명하시오.",
+        "bAnswer": "하나로 정해지지 않는다. 세 각의 크기가 같아도 변의 길이가 다른, 즉 모양은 같고 크기가 다른 삼각형을 얼마든지 그릴 수 있기 때문이다.",
+        "bGoal": "세 각만으로는 삼각형이 정해지지 않는 이유 설명하기",
+        "bReason": "두 경우 중 세 각의 경우만 골라 이유를 묻고 나머지는 xc14에 맡김",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "하나로 정해지지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "세 각이 같아도 변의 길이가 다른 삼각형을 그릴 수 있다",
+              "모양은 같고 크기가 다른 삼각형이 여러 개 있다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cReason": "몇 각의 크기라도 답이 될 수 있는 범용 칸을 없애고 세 각만 주어진 경우의 유일성을 묻는다.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "세 각만으로 크기가 정해지지 않는 까닭",
+        "authorBatch": 16,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "cAfter": "세 각의 크기만 알고 변의 길이는 모르면, 삼각형을 하나로 정할 수 {없다}.",
+        "cAnswers": [
+          "없다"
+        ],
+        "sourceIndex": 234,
+        "part": "m1",
+        "sourceFingerprint": "98fe077e769d31e9fa45f99586bf8ee8db0ff053587edbee2480d9a2d0f407a3",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 234
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m1-05-06-c9"
+        },
+        "cMarkedSentence": "세 각의 크기만 알고 변의 길이는 모르면, 삼각형을 하나로 정할 수 {없다}.",
+        "cSlotAnswers": [
+          "없다"
+        ],
+        "cStudentSentence": "세 각의 크기만 알고 변의 길이는 모르면, 삼각형을 하나로 정할 수 □.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "없다",
+            "equivalentAnswers": [
+              "없다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "없다"
+          ]
+        ],
+        "proposalFingerprint": "b08f638194b6fb73c32ab3bb2ea6fbbe7ab5e24f1ff5210c27e9cdd7557f0104"
+      }
+    },
+    {
+      "source": {
+        "part": "m1",
+        "id": "m1-05-07-c9",
+        "section": "중1::5. 기본 도형::합동",
+        "term": "합동이라고 할 수 없는 경우",
+        "kind": "성질",
+        "level": "상",
+        "definition": "두 변과 끼인각이 {아닌} 각이 같거나, {세 각}만 같은 두 삼각형은 합동이라고 할 수 없다.",
+        "studentC": "두 변과 끼인각이 □ 각이 같거나, □만 같은 두 삼각형은 합동이라고 할 수 없다.",
+        "answers": [
+          "아닌",
+          "세 각"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-07-c9",
+        "bDecision": "rewrite",
+        "bPrompt": "두 삼각형에서 대응하는 변의 길이나 각의 크기가 세 쌍 같다는 정보만으로 합동인지 알 수 없는 경우를 두 가지 쓰시오.",
+        "bAnswer": "두 쌍의 대응변의 길이가 같고 끼인각이 아닌 한 각의 크기가 같은 경우와, 세 쌍의 각의 크기만 같은 경우이다.",
+        "bGoal": "합동 조건이 되지 못하는 경우 구별",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 변과 끼인각이 아닌 각이 같은 경우"
+            ]
+          },
+          {
+            "anyOf": [
+              "세 각의 크기만 같은 경우"
+            ]
+          }
+        ],
+        "bReason": "서로 합동인 경우도 가능하므로 합동이 될 수 없다는 뜻으로 읽히지 않게 정보만으로 알 수 없는 경우를 묻는다.",
+        "cDecision": "rewrite",
+        "cAfter": "두 삼각형의 두 변의 길이와 끼인각이 아닌 한 각의 크기가 각각 같거나, 세 각의 크기만 같다는 조건만으로는 합동이라고 단정할 수 {없다}.",
+        "cAnswers": [
+          "없다"
+        ],
+        "cReason": "실제로 합동인 경우도 가능하므로 합동이 아니라고 단정하던 문장을 합동을 보장할 수 없다는 올바른 의미로 고친다.",
+        "coreAfter": "두 쌍의 대응변의 길이와 {끼인각이 아닌} 한 각의 크기가 같은 경우나, {세 각}의 크기만 같은 경우에는 두 삼각형이 합동이라고 단정할 수 없다.",
+        "coreReason": "'두 변과 끼인각이 아닌 각이 같거나'는 무엇이 같은지 읽기 어렵다. 그래서 두 쌍의 대응변과 끼인각이 아닌 한 각이 같은 경우로 풀어 썼다. 또 이런 경우에도 합동일 수는 있으므로 '단정할 수 없다'로 고쳤다.",
+        "learningRole": "definition",
+        "roleReason": "합동 조건이 아닌 두 경우",
+        "authorBatch": 17,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 243,
+        "part": "m1",
+        "sourceFingerprint": "f2a3ed782a3a251f4154a3929b12ffabe1e874a79006b7e7da7677adba57ab5c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 243
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m1-05-07-c9"
+        },
+        "coreBeforeRepair": "두 쌍의 대응변의 길이가 같고 끼인각이 아닌 한 각의 크기가 같은 경우나, 세 각의 크기만 같은 경우에는 두 삼각형이 합동이라고 할 수 없다.",
+        "coreRepairReason": "현재안에는 핵심어 표지가 없었다. 원본 {아닌}은 '끼인각이 아닌'이라는 조건 전체가 핵심이므로 {끼인각이 아닌}으로 묶어 표시했다. 원본 {세 각}은 그대로 되살렸다.",
+        "coreRepairEvidence": "core-repair/core-000",
+        "cMarkedSentence": "두 삼각형의 두 변의 길이와 끼인각이 아닌 한 각의 크기가 각각 같거나, 세 각의 크기만 같다는 조건만으로는 합동이라고 단정할 수 {없다}.",
+        "cSlotAnswers": [
+          "없다"
+        ],
+        "cStudentSentence": "두 삼각형의 두 변의 길이와 끼인각이 아닌 한 각의 크기가 각각 같거나, 세 각의 크기만 같다는 조건만으로는 합동이라고 단정할 수 □.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "없다",
+            "equivalentAnswers": [
+              "없다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "없다"
+          ]
+        ],
+        "proposalFingerprint": "361bcc816ce404828caa38610666f4a5847ebfd5ef2b12f5b56301f4b563b9ed"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-03-07-c1",
+        "section": "중2::3. 방정식::연립방정식의 활용(가격, 개수, 증감, 도형)",
+        "term": "가격과 개수에 관한 문제",
+        "kind": "방법",
+        "level": "하",
+        "definition": "개수의 {합}에 대한 식과 금액의 {합}에 대한 식, 이렇게 두 개를 세워 연립한다.",
+        "studentC": "개수의 □에 대한 식과 금액의 □에 대한 식, 이렇게 두 개를 세워 연립한다.",
+        "answers": [
+          "합",
+          "합"
+        ]
+      },
+      "proposal": {
+        "id": "m2-03-07-c1",
+        "bDecision": "rewrite",
+        "bPrompt": "두 종류의 물건을 사서 전체 개수와 전체 금액이 주어진 문제에서 두 물건의 개수를 $x$, $y$로 놓을 때, 어떤 두 양에 대한 식을 세우는지 쓰시오.",
+        "bAnswer": "개수의 합에 대한 식($x+y=$전체 개수)과 금액의 합에 대한 식((한 개의 값)$\\times$(개수)를 더한 것$=$전체 금액)을 세워 연립한다.",
+        "bGoal": "가격·개수 문제의 두 식 찾기",
+        "bReason": "주어진 정보를 밝혀 두 식이 무엇에 대한 것인지 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "개수의 합에 대한 식",
+              "$x+y$가 전체 개수"
+            ]
+          },
+          {
+            "anyOf": [
+              "금액의 합에 대한 식",
+              "값의 합에 대한 식"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "두 종류의 물건을 사는 문제에서는 물건 {개수}의 합에 대한 식과 {금액}의 합에 대한 식, 이렇게 두 개를 세워 연립한다.",
+        "cAnswers": [
+          "개수",
+          "금액"
+        ],
+        "cReason": "원문은 두 빈칸이 모두 '합'이라 둘째를 첫째에서 베낀다.",
+        "learningRole": "procedure",
+        "roleReason": "개수 합과 금액 합으로 연립",
+        "authorBatch": 36,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 486,
+        "part": "m2",
+        "sourceFingerprint": "74ebfe8a541964a7047b2bd904241952ba7b0b553de2a5b50b133e6f1ddf0b8d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 486
+        },
+        "directReview": null,
+        "cMarkedSentence": "두 종류의 물건을 사는 문제에서는 물건 {개수}의 합에 대한 식과 {금액}의 합에 대한 식, 이렇게 두 개를 세워 연립한다.",
+        "cSlotAnswers": [
+          "개수",
+          "금액"
+        ],
+        "cStudentSentence": "두 종류의 물건을 사는 문제에서는 물건 □의 합에 대한 식과 □의 합에 대한 식, 이렇게 두 개를 세워 연립한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "개수",
+            "equivalentAnswers": [
+              "개수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "금액",
+            "equivalentAnswers": [
+              "금액",
+              "값",
+              "가격"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "금액",
+            "accept": [
+              "값",
+              "가격"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "개수"
+          ],
+          [
+            "금액",
+            "값",
+            "가격"
+          ]
+        ],
+        "proposalFingerprint": "68bc2f5169e5d87f8d7d9c4ded4b05c0464d0c798ac6045e07905b40019d173c"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-04-05-c2",
+        "section": "중2::4. 함수::일차함수의 식 구하기",
+        "term": "기울기와 한 점이 주어질 때",
+        "kind": "방법",
+        "level": "중",
+        "definition": "기울기 $a$를 넣어 $y=ax+b$로 놓고, 지나는 점의 좌표를 {대입}하여 {$y$절편} $b$를 구한다.",
+        "example": {
+          "prompt": "기울기 $2$, 점 $(1,\\ 5)$를 지나는 직선",
+          "answer": "$y=2x+3$"
+        },
+        "studentC": "기울기 $a$를 넣어 $y=ax+b$로 놓고, 지나는 점의 좌표를 □하여 □ $b$를 구한다.",
+        "answers": [
+          "대입",
+          "$y$절편"
+        ]
+      },
+      "proposal": {
+        "id": "m2-04-05-c2",
+        "bDecision": "rewrite",
+        "bPrompt": "기울기가 $2$이고 점 $(1,\\ 5)$를 지나는 직선을 그래프로 하는 일차함수의 식을 구하는 과정을 쓰시오.",
+        "bAnswer": "$y=2x+b$로 놓고 $x=1$, $y=5$를 대입하면 $5=2+b$, $b=3$이므로 $y=2x+3$이다.",
+        "bGoal": "기울기와 한 점으로 식 구하기",
+        "bReason": "방법 제목이라 구체적인 기울기와 점을 주고 대입 과정을 쓰게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$y=2x+b$에 $(1,\\ 5)$를 대입",
+              "$5=2\\times1+b$",
+              "$y$절편은 $5-2\\times1=3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$y=2x+3$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "대입과 $y$절편이라는 절차의 핵심어를 채우는 분명한 문장이다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "점을 대입해 $b$ 구하기",
+        "authorBatch": 39,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 532,
+        "part": "m2",
+        "sourceFingerprint": "67d4ef126722212017c700c40d95729e5b0089da948f552b28eaa0cdb3a3903e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 532
+        },
+        "directReview": null,
+        "cFrozenSentence": "기울기 $a$를 넣어 $y=ax+b$로 놓고, 지나는 점의 좌표를 □하여 □ $b$를 구한다.",
+        "cFrozenDefinition": "기울기 $a$를 넣어 $y=ax+b$로 놓고, 지나는 점의 좌표를 {대입}하여 {$y$절편} $b$를 구한다.",
+        "cFrozenAnswers": [
+          "대입",
+          "$y$절편"
+        ],
+        "cMarkedSentence": "기울기 $a$를 넣어 $y=ax+b$로 놓고, 지나는 점의 좌표를 {대입}하여 {$y$절편} $b$를 구한다.",
+        "cSlotAnswers": [
+          "대입",
+          "$y$절편"
+        ],
+        "cStudentSentence": "기울기 $a$를 넣어 $y=ax+b$로 놓고, 지나는 점의 좌표를 □하여 □ $b$를 구한다.",
+        "cAnswers": [
+          "대입",
+          "$y$절편"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "대입",
+            "equivalentAnswers": [
+              "대입"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$y$절편",
+            "equivalentAnswers": [
+              "$y$절편"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "대입"
+          ],
+          [
+            "$y$절편"
+          ]
+        ],
+        "proposalFingerprint": "09267db80ad61f020f9812cd2476b5c338e94d88d00838940afee05c13304d39"
+      }
+    },
+    {
+      "source": {
+        "part": "m1",
+        "id": "m1-06-05-c1",
+        "section": "중1::6. 평면도형::부채꼴의 호의 길이와 넓이",
+        "term": "원주율",
+        "kind": "정의",
+        "level": "하",
+        "definition": "원의 둘레가 {지름}의 몇 배인지를 나타내는 일정한 수가 원주율이며, 기호 {$\\pi$}(파이)로 쓴다.",
+        "studentC": "원의 둘레가 □의 몇 배인지를 나타내는 일정한 수가 원주율이며, 기호 □(파이)로 쓴다.",
+        "answers": [
+          "지름",
+          "$\\pi$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-06-05-c1",
+        "bDecision": "rewrite",
+        "bPrompt": "원주율은 원의 무엇이 무엇의 몇 배인지를 나타내는 수인지 쓰고, 원주율을 나타내는 기호를 쓰시오.",
+        "bAnswer": "원의 둘레의 길이가 지름의 길이의 몇 배인지를 나타내는 일정한 수이고, 기호 $\\pi$로 나타낸다.",
+        "bGoal": "원주율의 뜻과 기호 말하기",
+        "bReason": "표준 용어이므로 비교하는 두 길이와 기호를 묻는 정의 질문으로 만듦.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "원의 둘레의 길이가 지름의 길이의 몇 배인지 나타내는 수",
+              "원의 둘레의 길이를 지름의 길이로 나눈 값"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\pi$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "기준이 되는 길이와 기호를 묻는 두 빈칸이 정의의 핵심임.",
+        "learningRole": "definition",
+        "roleReason": "원주율의 뜻과 기호 $\\pi$",
+        "authorBatch": 19,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 274,
+        "part": "m1",
+        "sourceFingerprint": "9be3994e96ee0de699e4a1185606f893410d9dd04ee7492c78918d88b2dd7144",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 274
+        },
+        "directReview": null,
+        "cFrozenSentence": "원의 둘레가 □의 몇 배인지를 나타내는 일정한 수가 원주율이며, 기호 □(파이)로 쓴다.",
+        "cFrozenDefinition": "원의 둘레가 {지름}의 몇 배인지를 나타내는 일정한 수가 원주율이며, 기호 {$\\pi$}(파이)로 쓴다.",
+        "cFrozenAnswers": [
+          "지름",
+          "$\\pi$"
+        ],
+        "cMarkedSentence": "원의 둘레가 {지름}의 몇 배인지를 나타내는 일정한 수가 원주율이며, 기호 {$\\pi$}(파이)로 쓴다.",
+        "cSlotAnswers": [
+          "지름",
+          "$\\pi$"
+        ],
+        "cStudentSentence": "원의 둘레가 □의 몇 배인지를 나타내는 일정한 수가 원주율이며, 기호 □(파이)로 쓴다.",
+        "cAnswers": [
+          "지름",
+          "$\\pi$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "지름",
+            "equivalentAnswers": [
+              "지름",
+              "지름의 길이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\pi$",
+            "equivalentAnswers": [
+              "$\\pi$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "지름",
+            "accept": [
+              "지름의 길이"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "지름",
+            "지름의 길이"
+          ],
+          [
+            "$\\pi$"
+          ]
+        ],
+        "proposalFingerprint": "2669d26844ffc177cedbd62fa564af359ab9b0f402205a2b7c0966773637b1e3"
+      }
+    }
+  ]
+}

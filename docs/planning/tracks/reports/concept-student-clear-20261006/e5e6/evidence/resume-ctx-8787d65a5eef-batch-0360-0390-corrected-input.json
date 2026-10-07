@@ -1,0 +1,741 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e6-2-5-1-c6",
+      "bDecision": "revise",
+      "bPrompt": "원주와 지름의 길이를 알 때 원주율을 구하는 방법을 설명하시오.",
+      "bAnswer": "원주를 지름으로 나눈다.",
+      "bGoal": "원주율을 구하는 식을 나눗셈으로 설명한다.",
+      "bReason": "원주율 계산 절차이며 나누는 수와 나누어지는 수의 순서를 구별해야 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "원주를 지름으로 나눈다",
+            "원주$\\div$지름",
+            "원주를 지름으로 나눈 값"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "원주를 약 $6.28\\,\\mathrm{cm}$, 지름을 $2\\,\\mathrm{cm}$로 잰 원에서 원주율의 어림값은 $6.28\\div$ {$2$} $=$ {$3.14$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3.14$"
+          ]
+        }
+      ],
+      "cReason": "정확한원주와지름의몫이3.14인원은없다. 잰원주와계산해얻은원주율이각각어림값임을명시하여원주÷지름방법은보존한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0360-0390.json",
+      "codexFinalAmendedFromFingerprint": "8eaea392945e35e048704aaf3adc266916cecbfd3960e9c04fb4e70e8733a92a",
+      "sourceIndex": 362,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-5-1-c6",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-1 원주와 원주율 알아보기",
+        "level": "중",
+        "kind": "공식",
+        "term": "원주율을 구하는 식",
+        "definition": "원주의 길이를 {지름의 길이로 나눈 값}이 원주율이다.",
+        "studentC": "원주의 길이를 □이 원주율이다.",
+        "answers": [
+          "지름의 길이로 나눈 값"
+        ]
+      },
+      "sourceFingerprint": "16a27852a82823348dc88a9b1cc8230e80d614734d3274de56ad876360b8437f",
+      "draftEvidence": "evidence/section-104-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$2$",
+        "$3.14$"
+      ],
+      "cStudentAfter": "원주를 약 $6.28\\,\\mathrm{cm}$, 지름을 $2\\,\\mathrm{cm}$로 잰 원에서 원주율의 어림값은 $6.28\\div$ □ $=$ □이다.",
+      "cMarkedSentence": "원주를 약 $6.28\\,\\mathrm{cm}$, 지름을 $2\\,\\mathrm{cm}$로 잰 원에서 원주율의 어림값은 $6.28\\div$ {$2$} $=$ {$3.14$}이다.",
+      "cStudentSentence": "원주를 약 $6.28\\,\\mathrm{cm}$, 지름을 $2\\,\\mathrm{cm}$로 잰 원에서 원주율의 어림값은 $6.28\\div$ □ $=$ □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "$3.14$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원주와 지름의 길이를 알 때 원주율을 구하는 방법을 설명하시오.",
+        "answer": "원주를 지름으로 나눈다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "원주를 지름으로 나눈다",
+              "원주$\\div$지름",
+              "원주를 지름으로 나눈 값"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원주를 약 $6.28\\,\\mathrm{cm}$, 지름을 $2\\,\\mathrm{cm}$로 잰 원에서 원주율의 어림값은 $6.28\\div$ {$2$} $=$ {$3.14$}이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "$3.14$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e01c242278e3ad87481817b0f1bdc55f0fb41af9992ef284e98cf948fa3f0eb5",
+      "questionRevision": "planning-e5e6-20261006-e01c242278e3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-3-c2",
+      "bDecision": "revise",
+      "bPrompt": "원 안에 완전히 들어가는 도형과 원을 완전히 감싸는 도형이 있다. 각 도형의 넓이를 원의 넓이와 비교하면 어떻게 되는지 쓰시오.",
+      "bAnswer": "원 안에 들어가는 도형의 넓이는 원의 넓이보다 작거나 같고, 원을 감싸는 도형의 넓이는 원의 넓이보다 크거나 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "안쪽 도형의 넓이는 원의 넓이보다 작거나 같다",
+            "안쪽 도형의 넓이는 원의 넓이를 넘지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "바깥 도형의 넓이는 원의 넓이보다 크거나 같다",
+            "바깥 도형의 넓이는 원의 넓이보다 작지 않다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "안팎 도형과 원의 넓이 크기 관계를 말한다.",
+      "bReason": "도형의종류를제한하지않아원자체와같은넓이인경우도가능하다. 작다와작거나같다·크다와크거나같다는다른범위이므로엄격부등식대안을같은답으로묶지않는다.",
+      "cDecision": "revise",
+      "cAfter": "원 안에 들어가는 도형의 넓이는 원의 넓이보다 {작거나 같고}, 원을 완전히 감싸는 도형의 넓이는 원의 넓이보다 {크거나 같다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작거나 같고",
+            "같거나 작고"
+          ]
+        },
+        {
+          "anyOf": [
+            "크거나 같다",
+            "같거나 크다"
+          ]
+        }
+      ],
+      "cReason": "같은넓이경우를포함하는작거나같고·크거나같다만이현재조건의정확한범위다. strict비교를동의어로인정하지않는다.",
+      "synonymNotes": "안쪽은 작다·작거나 같다, 바깥은 크다·크거나 같다를 모두 인정한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0360-0390.json",
+      "codexFinalAmendedFromFingerprint": "01d1ac87e54590cbc0df83738c9132212c166694cf4f7d1af9c11ea0d23e3334",
+      "sourceIndex": 369,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-5-3-c2",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-3 원의 넓이 어림하기",
+        "level": "중",
+        "kind": "성질",
+        "term": "안쪽과 바깥쪽 넓이",
+        "definition": "원 안에 들어가는 도형의 넓이는 원의 넓이보다 {작거나 같고}, 원을 완전히 감싸는 도형의 넓이는 원의 넓이보다 {크거나 같다}.",
+        "studentC": "원 안에 들어가는 도형의 넓이는 원의 넓이보다 □, 원을 완전히 감싸는 도형의 넓이는 원의 넓이보다 □.",
+        "answers": [
+          "작거나 같고",
+          "크거나 같다"
+        ]
+      },
+      "sourceFingerprint": "8162a1bcc7ef11e0f2bae88228ccea14a69be91bd9630b4baf2cb7fee1bef0e2",
+      "draftEvidence": "evidence/section-106-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "작거나 같고",
+        "크거나 같다"
+      ],
+      "cStudentAfter": "원 안에 들어가는 도형의 넓이는 원의 넓이보다 □, 원을 완전히 감싸는 도형의 넓이는 원의 넓이보다 □.",
+      "cMarkedSentence": "원 안에 들어가는 도형의 넓이는 원의 넓이보다 {작거나 같고}, 원을 완전히 감싸는 도형의 넓이는 원의 넓이보다 {크거나 같다}.",
+      "cStudentSentence": "원 안에 들어가는 도형의 넓이는 원의 넓이보다 □, 원을 완전히 감싸는 도형의 넓이는 원의 넓이보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "작거나 같고",
+          "equivalents": [
+            "같거나 작고"
+          ]
+        },
+        {
+          "key": "크거나 같다",
+          "equivalents": [
+            "같거나 크다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원 안에 완전히 들어가는 도형과 원을 완전히 감싸는 도형이 있다. 각 도형의 넓이를 원의 넓이와 비교하면 어떻게 되는지 쓰시오.",
+        "answer": "원 안에 들어가는 도형의 넓이는 원의 넓이보다 작거나 같고, 원을 감싸는 도형의 넓이는 원의 넓이보다 크거나 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "안쪽 도형의 넓이는 원의 넓이보다 작거나 같다",
+              "안쪽 도형의 넓이는 원의 넓이를 넘지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "바깥 도형의 넓이는 원의 넓이보다 크거나 같다",
+              "바깥 도형의 넓이는 원의 넓이보다 작지 않다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원 안에 들어가는 도형의 넓이는 원의 넓이보다 {작거나 같고}, 원을 완전히 감싸는 도형의 넓이는 원의 넓이보다 {크거나 같다}.",
+        "acceptedAnswers": [
+          [
+            "작거나 같고",
+            "같거나 작고"
+          ],
+          [
+            "크거나 같다",
+            "같거나 크다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e1f745a0018ae05ba7e2c934a3264dab598a38297bd91006d89458b2c7fae705",
+      "questionRevision": "planning-e5e6-20261006-e1f745a0018a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-4-c1",
+      "bDecision": "revise",
+      "bPrompt": "원을 잘게 나눈 조각을 겹치지 않고 빈틈없이 다시 붙여 다른 모양을 만들면 전체 넓이는 어떻게 되나요? 이 사실이 원의 넓이를 구할 때 왜 도움이 되는지도 말해 보세요.",
+      "bAnswer": "전체 넓이는 변하지 않고 그대로입니다. 원 조각을 직사각형에 가까운 모양으로 바꾸면, 직사각형의 넓이를 구하는 방법을 이용해 원의 넓이를 알아볼 수 있습니다.",
+      "bGoal": "조각을 옮겨 붙여도 넓이가 같다는 사실이 넓이 구하기의 바탕임을 안다.",
+      "bReason": "유한한원조각이정확한직사각형이된다고단정하지않고직사각형에가까운모양을이용한다고설명한다. 조각이동의넓이보존이라는일반목표는그대로남긴다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "넓이가 변하지 않는다",
+            "넓이가 같다",
+            "넓이가 그대로이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "넓이를 구하기 쉬운 모양과 비교해 원의 넓이를 알아볼 수 있다",
+            "직사각형에 가까운 모양으로 바꾸어 직사각형 넓이 방법을 이용할 수 있다"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "원을 잘게 나눈 조각을 겹치지 않고 빈틈없이 옮겨 붙여 모양을 바꾸어도, 전체 넓이는 {변하지 않는다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "변하지 않는다",
+            "달라지지 않는다",
+            "그대로이다",
+            "같다"
+          ]
+        }
+      ],
+      "cReason": "'보존'이라는 낱말을 풀어 쓰고 겹침·빈틈 없는 조건을 유지했다.",
+      "exampleNeeded": false,
+      "coreAfter": "원을 잘게 나눈 조각을 겹치지 않고 빈틈없이 옮겨 붙여도 {넓이는 변하지 않는다}.",
+      "coreReason": "'보존'은 초6 학생에게 낯선 말이라 쉬운 말로 바꾼다.",
+      "editorialOwner": "Codex",
+      "coreTargetReason": "넓이 보존이라는 같은 일반 성질을 쉬운 말로 표지한다. 겹침이나 틈이 없다는 조건을 유지하며 한 계산 예로 바꾸지 않는다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0360-0390.json",
+      "codexFinalAmendedFromFingerprint": "e1631c3de9f34b57fd899057b23188ae54063a0475b97b1d1759f9708e8ab1c1",
+      "sourceIndex": 371,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-5-4-c1",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-4 원의 넓이 구하는 방법 알아보기",
+        "level": "하",
+        "kind": "방법",
+        "term": "원 조각 옮기기",
+        "definition": "원을 잘게 나눈 조각을 빈틈없이 옮겨 붙여도 {넓이는 보존}된다.",
+        "studentC": "원을 잘게 나눈 조각을 빈틈없이 옮겨 붙여도 □된다.",
+        "answers": [
+          "넓이는 보존"
+        ]
+      },
+      "sourceFingerprint": "d1eb95f007b08f525fd8c424c904ef9145825541ce721239b0eaa7d383f0331d",
+      "draftEvidence": "evidence/section-107-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "변하지 않는다"
+      ],
+      "cStudentAfter": "원을 잘게 나눈 조각을 겹치지 않고 빈틈없이 옮겨 붙여 모양을 바꾸어도, 전체 넓이는 □.",
+      "cMarkedSentence": "원을 잘게 나눈 조각을 겹치지 않고 빈틈없이 옮겨 붙여 모양을 바꾸어도, 전체 넓이는 {변하지 않는다}.",
+      "cStudentSentence": "원을 잘게 나눈 조각을 겹치지 않고 빈틈없이 옮겨 붙여 모양을 바꾸어도, 전체 넓이는 □.",
+      "cSlotAnswers": [
+        {
+          "key": "변하지 않는다",
+          "equivalents": [
+            "달라지지 않는다",
+            "그대로이다",
+            "같다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원을 잘게 나눈 조각을 겹치지 않고 빈틈없이 다시 붙여 다른 모양을 만들면 전체 넓이는 어떻게 되나요? 이 사실이 원의 넓이를 구할 때 왜 도움이 되는지도 말해 보세요.",
+        "answer": "전체 넓이는 변하지 않고 그대로입니다. 원 조각을 직사각형에 가까운 모양으로 바꾸면, 직사각형의 넓이를 구하는 방법을 이용해 원의 넓이를 알아볼 수 있습니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "넓이가 변하지 않는다",
+              "넓이가 같다",
+              "넓이가 그대로이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "넓이를 구하기 쉬운 모양과 비교해 원의 넓이를 알아볼 수 있다",
+              "직사각형에 가까운 모양으로 바꾸어 직사각형 넓이 방법을 이용할 수 있다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원을 잘게 나눈 조각을 겹치지 않고 빈틈없이 옮겨 붙여 모양을 바꾸어도, 전체 넓이는 {변하지 않는다}.",
+        "acceptedAnswers": [
+          [
+            "변하지 않는다",
+            "달라지지 않는다",
+            "그대로이다",
+            "같다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "0483b5855d23384e8c80ebfbf2a6817eab4dc8a94fddeae7ee063460276f8c71",
+      "questionRevision": "planning-e5e6-20261006-0483b5855d23",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-5-4-c3",
+      "bDecision": "exclude",
+      "bPrompt": "원을 잘게 나누어 위아래로 번갈아 붙이면 직사각형에 가까워집니다. 이 직사각형의 가로와 세로는 각각 원의 어떤 길이와 같은가요? 그리고 이로부터 원의 넓이를 구하는 식이 어떻게 나오는지 설명하세요.",
+      "bAnswer": "가로는 원주의 절반, 세로는 반지름입니다. 넓이는 (원주의 절반)$\\times$(반지름)이고, 원주의 절반은 (반지름)$\\times$(원주율)이므로 (반지름)$\\times$(반지름)$\\times$(원주율)이 됩니다.",
+      "bGoal": "직사각형의 가로·세로와 원의 길이의 관계로 넓이 공식이 나옴을 설명한다.",
+      "bReason": "원조각을번갈아붙였다는말만으로어느변이원주의절반과반지름에해당하는지그림없이정하기어렵다. 원조각의실제배치그림을보여야공식유도이유를설명할수있다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가로는 원주의 절반이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "세로는 반지름이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "(반지름)$\\times$(반지름)$\\times$(원주율)이 된다",
+            "원주의 절반이 (반지름)$\\times$(원주율)이라 같은 식이 된다"
+          ]
+        }
+      ],
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "잘게나눈조각의곡선부분과뾰족한끝을어떻게붙였는지보여주는그림이필요하다. 그림없는C에서가로·세로답을암기시키지않는다.",
+      "exampleNeeded": true,
+      "editorialOwner": "Codex",
+      "exclusionReason": "B·C: 원조각을 번갈아 늘어놓은 배치 그림이 없어서 가로·세로의 대상을 학생이 복원해야 한다. 일반 원넓이 설명과 ID는 보존하며 배치 그림을 마련한 뒤 이 형식을 다시 검토한다.",
+      "exampleSpec": "잘게 나눈 원 조각의 뾰족한 끝을 위아래로 번갈아 놓고, 위아래 곡선 부분 및 한쪽 끝의 반지름을 표시한 그림. 더 잘게 나눌수록 직사각형에 가까워지는 모습도 함께 보인다.",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0360-0390.json",
+      "codexFinalAmendedFromFingerprint": "89b9720b4d0041b16d4c73e3afdb0bb204f1c4d745e6afa49378e6b0ecd909e4",
+      "sourceIndex": 373,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-5-4-c3",
+        "section": "초6::2-5 원의 둘레와 넓이::2-5-4 원의 넓이 구하는 방법 알아보기",
+        "level": "상",
+        "kind": "성질",
+        "term": "원의 넓이 공식의 까닭",
+        "definition": "잘게 나눈 원 조각을 번갈아 놓으면, 가로는 {원주의 절반}, 세로는 {반지름}인 직사각형에 가까워진다.",
+        "studentC": "잘게 나눈 원 조각을 번갈아 놓으면, 가로는 □, 세로는 □인 직사각형에 가까워진다.",
+        "answers": [
+          "원주의 절반",
+          "반지름"
+        ]
+      },
+      "sourceFingerprint": "540fd0e4da508b1b5e5e275b60e5ee2ba3d5c7194265157b5506d940d2190cbe",
+      "draftEvidence": "evidence/section-107-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "B·C: 원조각을 번갈아 늘어놓은 배치 그림이 없어서 가로·세로의 대상을 학생이 복원해야 한다. 일반 원넓이 설명과 ID는 보존하며 배치 그림을 마련한 뒤 이 형식을 다시 검토한다.",
+        "cloze": "B·C: 원조각을 번갈아 늘어놓은 배치 그림이 없어서 가로·세로의 대상을 학생이 복원해야 한다. 일반 원넓이 설명과 ID는 보존하며 배치 그림을 마련한 뒤 이 형식을 다시 검토한다."
+      },
+      "proposalFingerprint": "5129680a514b7eee5896ee18c2111cfb4be3cf674533db25b7387eebf9869637",
+      "questionRevision": "planning-e5e6-20261006-5129680a514b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-1-c5",
+      "bDecision": "revise",
+      "bPrompt": "원기둥과 각기둥은 밑면의 모양과 옆면의 모양에서 각각 어떻게 다른가요?",
+      "bAnswer": "원기둥의 밑면은 원이고 옆면은 굽은 면이다. 각기둥의 밑면은 다각형이고 옆면은 평평한 직사각형이다.",
+      "bGoal": "밑면과 옆면의 모양으로 원기둥과 각기둥을 구별한다.",
+      "bReason": "비교질문은두도형의밑면과옆면을각각묻는다. 한도형만설명해도anyOf로통과하던대안을각비교의두대상관계로바꾼다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "원기둥의 밑면은 원이고 각기둥의 밑면은 다각형이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "원기둥의 옆면은 굽은 면이고 각기둥의 옆면은 평평한 직사각형이다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "revise",
+      "cAfter": "원기둥의 밑면은 원이지만 각기둥의 밑면은 {다각형}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "다각형"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 '원'은 xc2와 겹치고 자명하므로, 각기둥 밑면의 종류를 묻도록 바꾼다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0360-0390.json",
+      "codexFinalAmendedFromFingerprint": "a7ef645a8d65a12830cd080f975218a457cfd611e0f7770a42258b8a8026bb2d",
+      "sourceIndex": 378,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-6-1-c5",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-1 원기둥 알아보기",
+        "level": "상",
+        "kind": "성질",
+        "term": "원기둥과 각기둥",
+        "definition": "원기둥의 밑면은 {원}이고 옆면은 굽어 있으므로, 다각형 면으로 된 각기둥과 구별한다.",
+        "studentC": "원기둥의 밑면은 □이고 옆면은 굽어 있으므로, 다각형 면으로 된 각기둥과 구별한다.",
+        "answers": [
+          "원"
+        ]
+      },
+      "sourceFingerprint": "4244d016c2987c33caa8d893baad315f9774d11f27250411bed0b6896883452e",
+      "draftEvidence": "evidence/section-108-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "다각형"
+      ],
+      "cStudentAfter": "원기둥의 밑면은 원이지만 각기둥의 밑면은 □이다.",
+      "cMarkedSentence": "원기둥의 밑면은 원이지만 각기둥의 밑면은 {다각형}이다.",
+      "cStudentSentence": "원기둥의 밑면은 원이지만 각기둥의 밑면은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "다각형",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원기둥과 각기둥은 밑면의 모양과 옆면의 모양에서 각각 어떻게 다른가요?",
+        "answer": "원기둥의 밑면은 원이고 옆면은 굽은 면이다. 각기둥의 밑면은 다각형이고 옆면은 평평한 직사각형이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "원기둥의 밑면은 원이고 각기둥의 밑면은 다각형이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "원기둥의 옆면은 굽은 면이고 각기둥의 옆면은 평평한 직사각형이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원기둥의 밑면은 원이지만 각기둥의 밑면은 {다각형}이다.",
+        "acceptedAnswers": [
+          [
+            "다각형"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "cd394b8fbd8ff33de2e8530d9bfab68057dc52ae67f50e854104b0fac362725e",
+      "questionRevision": "planning-e5e6-20261006-cd394b8fbd8f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-2-c1",
+      "bDecision": "revise",
+      "bPrompt": "원기둥의 두 밑면을 떼어 내고 옆면을 높이 방향으로 잘라 펼친 전개도는 어떤 도형 몇 개로 이루어져 있나요?",
+      "bAnswer": "직사각형 $1$개와 원 $2$개로 이루어져 있다.",
+      "bGoal": "전개도가 직사각형 옆면과 두 밑면(원)으로 이루어짐을 안다.",
+      "bReason": "옆면모양뿐아니라도형개수도요청하므로직사각형하나라는뜻을확인한다. 두밑면은원2개로구분한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "직사각형 $1$개",
+            "직사각형 하나",
+            "옆면은 직사각형 한 개"
+          ]
+        },
+        {
+          "anyOf": [
+            "원 $2$개",
+            "원 두 개",
+            "밑면 두 개는 원"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "keep",
+      "cAfter": "원기둥의 두 밑면 둘레를 조금만 남기고 자른 뒤 옆면을 높이 방향으로 잘라 펴면 {직사각형} 하나와 {원 두 개}가 이어진 모양이 된다.",
+      "cReason": "원두개와원2개는같은두밑면의입력표현이므로함께인정한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "직사각형"
+          ]
+        },
+        {
+          "anyOf": [
+            "원 두 개",
+            "원 $2$개"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0360-0390.json",
+      "codexFinalAmendedFromFingerprint": "1e8cfbefc98a3d3b0a453b81840100e5ba34006da81a4ca5f70c3e2731a69ecd",
+      "sourceIndex": 379,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-6-2-c1",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-2 원기둥의 전개도 알아보기",
+        "level": "하",
+        "kind": "정의",
+        "term": "전개도",
+        "definition": "원기둥의 두 밑면 둘레를 조금만 남기고 자른 뒤 옆면을 높이 방향으로 잘라 펴면 {직사각형} 하나와 {원 두 개}가 이어진 모양이 된다.",
+        "studentC": "원기둥의 두 밑면 둘레를 조금만 남기고 자른 뒤 옆면을 높이 방향으로 잘라 펴면 □ 하나와 □가 이어진 모양이 된다.",
+        "answers": [
+          "직사각형",
+          "원 두 개"
+        ]
+      },
+      "sourceFingerprint": "accfbab0ed905d62931ffe2d0637e77e117efda581b469ea22cf2ccde2203772",
+      "draftEvidence": "evidence/section-109-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "원기둥의 두 밑면 둘레를 조금만 남기고 자른 뒤 옆면을 높이 방향으로 잘라 펴면 {직사각형} 하나와 {원 두 개}가 이어진 모양이 된다.",
+      "cFrozenStudentSentence": "원기둥의 두 밑면 둘레를 조금만 남기고 자른 뒤 옆면을 높이 방향으로 잘라 펴면 □ 하나와 □가 이어진 모양이 된다.",
+      "cProposedAnswers": [
+        "직사각형",
+        "원 두 개"
+      ],
+      "cStudentAfter": "원기둥의 두 밑면 둘레를 조금만 남기고 자른 뒤 옆면을 높이 방향으로 잘라 펴면 □ 하나와 □가 이어진 모양이 된다.",
+      "cMarkedSentence": "원기둥의 두 밑면 둘레를 조금만 남기고 자른 뒤 옆면을 높이 방향으로 잘라 펴면 {직사각형} 하나와 {원 두 개}가 이어진 모양이 된다.",
+      "cStudentSentence": "원기둥의 두 밑면 둘레를 조금만 남기고 자른 뒤 옆면을 높이 방향으로 잘라 펴면 □ 하나와 □가 이어진 모양이 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "직사각형",
+          "equivalents": []
+        },
+        {
+          "key": "원 두 개",
+          "equivalents": [
+            "원 $2$개"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원기둥의 두 밑면을 떼어 내고 옆면을 높이 방향으로 잘라 펼친 전개도는 어떤 도형 몇 개로 이루어져 있나요?",
+        "answer": "직사각형 $1$개와 원 $2$개로 이루어져 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "직사각형 $1$개",
+              "직사각형 하나",
+              "옆면은 직사각형 한 개"
+            ]
+          },
+          {
+            "anyOf": [
+              "원 $2$개",
+              "원 두 개",
+              "밑면 두 개는 원"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원기둥의 두 밑면 둘레를 조금만 남기고 자른 뒤 옆면을 높이 방향으로 잘라 펴면 {직사각형} 하나와 {원 두 개}가 이어진 모양이 된다.",
+        "acceptedAnswers": [
+          [
+            "직사각형"
+          ],
+          [
+            "원 두 개",
+            "원 $2$개"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "f7503e15da687ee7b421430c8c151d177c66e0c7ecdd7dff6c495932dcb759c5",
+      "questionRevision": "planning-e5e6-20261006-f7503e15da68",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-2-c3",
+      "bDecision": "revise",
+      "bPrompt": "원기둥의 전개도에서 두 밑면을 원래 위치에 놓고 옆면을 접으려고 한다. 옆면을 펼친 직사각형에서 밑면과 맞닿지 않는 변의 길이는 원기둥의 무엇과 같아야 하나요? 그 길이가 원래보다 짧을 때와 길 때 어떤 문제가 생기는지 각각 쓰시오.",
+      "bAnswer": "원기둥의 높이와 같아야 한다. 짧으면 두 밑면 사이를 다 잇지 못해 틈이 생기고, 길면 원래 높이보다 옆면이 남는다.",
+      "bGoal": "옆면의 다른 변이 높이와 같아야 하는 까닭을 이해한다.",
+      "bReason": "원래두밑면의위치를정하지않으면다른높이원기둥도만들수있다. 원래위치로접는조건을주고짧을때·길때두요청을각각기준으로확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "높이",
+            "원기둥의 높이"
+          ]
+        },
+        {
+          "anyOf": [
+            "짧으면 두 밑면 사이를 다 잇지 못해 틈이 생긴다",
+            "짧으면 틈이 생긴다"
+          ]
+        },
+        {
+          "anyOf": [
+            "길면 원래 높이보다 옆면이 남는다",
+            "길면 옆면이 남는다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "keep",
+      "cAfter": "옆면을 펼친 직사각형의 높이 방향 변은 원기둥의 {높이}만큼이어야 틈없이 다시 접힌다.",
+      "cReason": "높이 방향 변이 높이와 같아야 한다는 한 가지 조건을 묻는 짧은 문장이다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0360-0390.json",
+      "codexFinalAmendedFromFingerprint": "89b366cd2ba4dda94f7601760c0a9cff7b489b805f277674b5e8b3ce337b09b0",
+      "sourceIndex": 381,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-6-2-c3",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-2 원기둥의 전개도 알아보기",
+        "level": "상",
+        "kind": "성질",
+        "term": "펼친 옆면의 세로",
+        "definition": "옆면을 펼친 직사각형의 높이 방향 변은 원기둥의 {높이}만큼이어야 틈없이 다시 접힌다.",
+        "studentC": "옆면을 펼친 직사각형의 높이 방향 변은 원기둥의 □만큼이어야 틈없이 다시 접힌다.",
+        "answers": [
+          "높이"
+        ]
+      },
+      "sourceFingerprint": "ba55f0e8f624e5718a84a313601b3c736e4baf922c236726b750025f577c9087",
+      "draftEvidence": "evidence/section-109-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "옆면을 펼친 직사각형의 높이 방향 변은 원기둥의 {높이}만큼이어야 틈없이 다시 접힌다.",
+      "cFrozenStudentSentence": "옆면을 펼친 직사각형의 높이 방향 변은 원기둥의 □만큼이어야 틈없이 다시 접힌다.",
+      "cProposedAnswers": [
+        "높이"
+      ],
+      "cStudentAfter": "옆면을 펼친 직사각형의 높이 방향 변은 원기둥의 □만큼이어야 틈없이 다시 접힌다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "높이"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "옆면을 펼친 직사각형의 높이 방향 변은 원기둥의 {높이}만큼이어야 틈없이 다시 접힌다.",
+      "cStudentSentence": "옆면을 펼친 직사각형의 높이 방향 변은 원기둥의 □만큼이어야 틈없이 다시 접힌다.",
+      "cSlotAnswers": [
+        {
+          "key": "높이",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원기둥의 전개도에서 두 밑면을 원래 위치에 놓고 옆면을 접으려고 한다. 옆면을 펼친 직사각형에서 밑면과 맞닿지 않는 변의 길이는 원기둥의 무엇과 같아야 하나요? 그 길이가 원래보다 짧을 때와 길 때 어떤 문제가 생기는지 각각 쓰시오.",
+        "answer": "원기둥의 높이와 같아야 한다. 짧으면 두 밑면 사이를 다 잇지 못해 틈이 생기고, 길면 원래 높이보다 옆면이 남는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "높이",
+              "원기둥의 높이"
+            ]
+          },
+          {
+            "anyOf": [
+              "짧으면 두 밑면 사이를 다 잇지 못해 틈이 생긴다",
+              "짧으면 틈이 생긴다"
+            ]
+          },
+          {
+            "anyOf": [
+              "길면 원래 높이보다 옆면이 남는다",
+              "길면 옆면이 남는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "옆면을 펼친 직사각형의 높이 방향 변은 원기둥의 {높이}만큼이어야 틈없이 다시 접힌다.",
+        "acceptedAnswers": [
+          [
+            "높이"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9f9e6cf5074acd0c32b848f3bfcbdc589a5e0d6b76c3a1fc678a9344dab35b79",
+      "questionRevision": "planning-e5e6-20261006-9f9e6cf5074a",
+      "requiresIndependentReview": true
+    }
+  ]
+}

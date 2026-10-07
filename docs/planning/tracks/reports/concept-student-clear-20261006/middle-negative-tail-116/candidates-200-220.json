@@ -1,0 +1,3242 @@
+{
+  "generatedAt": "2026-10-07T11:40:59.809Z",
+  "reader": "Codex direct tail-116 report worker",
+  "scope": {
+    "begin": 200,
+    "endExclusive": 220
+  },
+  "inputSha256": "2910b0acc769b9c0d774dedce427859a1e96c141a10eaa01a3b08357326e6ad9",
+  "reviews": [
+    {
+      "originalDisputeIndex": 200,
+      "id": "m2-05-07-xc2",
+      "sourceIndex": 2897,
+      "currentFingerprint": "b0a5f30f77804835af86bcaf80b621dadafb2e9dcb8b7937e1df28f67a1da800",
+      "currentNormalizedHash": "86528fc8d4190475ddeba55a638f4cdebea032cb3b1d9caf80c9b2508853f5aa",
+      "snapshotNormalizedHash": "86528fc8d4190475ddeba55a638f4cdebea032cb3b1d9caf80c9b2508853f5aa",
+      "snapshotMatches": true,
+      "verdict": "revise",
+      "reason": "평행사변형의 정의인 대변 평행만 선언하는 답은 주어진 네 변 길이로부터의 근거가 생략된다. 네 변 길이가 같아 두 쌍 대변 길이가 각각 같다는 충분조건을 기준으로 명시한다. C와 일반 설명은 유지한다.",
+      "originalBlind": [],
+      "originalKey": [
+        [
+          "m2-05-07-xc2",
+          "revise",
+          "pass",
+          "none",
+          "B: 물음이 마름모를 '네 변이 같은 사각형'으로 정의했는데, requiredIdeas anyOf에 '마주 보는 두 쌍의 변이 각각 평행하다'가 들어 있다. 이는 증명할 결론이라 순환 답이 통과한다. 또 길이 같음과 평행은 같은 내용의 대안이 아니다. '네 변이 같으므로 두 쌍의 대변의 길이가 각각 같다'만 필수로 해야 한다."
+        ]
+      ],
+      "reader": "Codex direct actual source/B/C/answer/criterion/generalDefinition reading; no independent approval",
+      "readAt": "2026-10-07T11:28:05.415Z",
+      "inputSha256": "2910b0acc769b9c0d774dedce427859a1e96c141a10eaa01a3b08357326e6ad9",
+      "beforeReadingEvidence": {
+        "path": "before-196-208.txt",
+        "byteSha256": "f43c935acbccf5a4b8d3a857a01c50d4bda6cb2f3055dcf00092278dc1664fef"
+      },
+      "manualEvidence": {
+        "path": "manual-196-208.json",
+        "byteSha256": "401cc3cab3f23b6d6fdaf123931eb7a3a241a1addce0cdf8ee6cc8f6053df619"
+      },
+      "proposedRawRow": {
+        "id": "m2-05-07-xc2",
+        "learningRole": "reason",
+        "roleReason": "마름모가 평행사변형인 까닭",
+        "bDecision": "rewrite",
+        "bPrompt": "마름모는 네 변의 길이가 모두 같은 사각형이다. 마름모가 평행사변형의 한 종류인 까닭을 마주 보는 변을 이용하여 쓰시오.",
+        "bAnswer": "네 변의 길이가 모두 같으므로 마주 보는 두 쌍의 변의 길이가 각각 같다. 두 쌍의 대변의 길이가 각각 같은 사각형은 평행사변형이므로 마름모는 평행사변형이다.",
+        "bGoal": "마름모와 평행사변형의 포함 관계 설명하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "네 변의 길이가 같으므로 두 쌍의 대변의 길이가 각각 같아 평행사변형이다",
+              "두 쌍의 대변의 길이가 각각 같은 사각형은 평행사변형이다"
+            ]
+          }
+        ],
+        "bReason": "정의가 변 길이뿐이라 평행사변형 조건과 잇도록 물었다.",
+        "cDecision": "rewrite",
+        "cAfter": "마름모는 마주 보는 두 쌍의 변이 각각 평행하므로 {평행사변형}의 한 종류이다.",
+        "cAnswers": [
+          "평행사변형"
+        ],
+        "cReason": "서술어 '든다'를 맞히는 빈칸을 없애고 포함 관계만 묻는다.",
+        "authorBatch": 44,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2897,
+        "part": "m2plus",
+        "sourceFingerprint": "633653f937752d831ab3ca38ad97544793e0eafe988fa92a73b01d5c89218df9",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2897
+        },
+        "directReview": null,
+        "cMarkedSentence": "마름모는 마주 보는 두 쌍의 변이 각각 평행하므로 {평행사변형}의 한 종류이다.",
+        "cSlotAnswers": [
+          "평행사변형"
+        ],
+        "cStudentSentence": "마름모는 마주 보는 두 쌍의 변이 각각 평행하므로 □의 한 종류이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "평행사변형",
+            "equivalentAnswers": [
+              "평행사변형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "평행사변형"
+          ]
+        ],
+        "proposalFingerprint": "e329e5a2538b8c1dad084663b3c76c86a37a91df330dc272bace554c4dd35983",
+        "bQuestion": {
+          "prompt": "마름모는 네 변의 길이가 모두 같은 사각형이다. 마름모가 평행사변형의 한 종류인 까닭을 마주 보는 변을 이용하여 쓰시오.",
+          "answer": "네 변의 길이가 모두 같으므로 마주 보는 두 쌍의 변의 길이가 각각 같다. 두 쌍의 대변의 길이가 각각 같은 사각형은 평행사변형이므로 마름모는 평행사변형이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "네 변의 길이가 같으므로 두 쌍의 대변의 길이가 각각 같아 평행사변형이다",
+                "두 쌍의 대변의 길이가 각각 같은 사각형은 평행사변형이다"
+              ]
+            }
+          ]
+        }
+      },
+      "candidateNormalized": {
+        "id": "m2-05-07-xc2",
+        "grade": "중2",
+        "source": {
+          "id": "m2-05-07-xc2",
+          "section": "중2::5. 도형의 성질::직사각형, 마름모, 정사각형",
+          "term": "마름모도 평행사변형",
+          "kind": "성질",
+          "level": "하",
+          "definition": "마름모도 마주 보는 변이 나란하므로 {평행사변형}에 {든다}."
+        },
+        "B": {
+          "prompt": "마름모는 네 변의 길이가 모두 같은 사각형이다. 마름모가 평행사변형의 한 종류인 까닭을 마주 보는 변을 이용하여 쓰시오.",
+          "answer": "네 변의 길이가 모두 같으므로 마주 보는 두 쌍의 변의 길이가 각각 같다. 두 쌍의 대변의 길이가 각각 같은 사각형은 평행사변형이므로 마름모는 평행사변형이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "네 변의 길이가 같으므로 두 쌍의 대변의 길이가 각각 같아 평행사변형이다",
+                "두 쌍의 대변의 길이가 각각 같은 사각형은 평행사변형이다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "마름모는 마주 보는 두 쌍의 변이 각각 평행하므로 {평행사변형}의 한 종류이다.",
+          "acceptedAnswers": [
+            [
+              "평행사변형"
+            ]
+          ]
+        },
+        "goal": "마름모와 평행사변형의 포함 관계 설명하기",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "b264f564c7ee216239809afedeb8f88e77578257a2c58ff41fedb29e9533f6a1"
+      },
+      "candidateNormalizedHash": "b264f564c7ee216239809afedeb8f88e77578257a2c58ff41fedb29e9533f6a1",
+      "candidateFingerprint": "e329e5a2538b8c1dad084663b3c76c86a37a91df330dc272bace554c4dd35983",
+      "candidateGeneralDefinition": "마름모도 마주 보는 변이 나란하므로 {평행사변형}에 {든다}.",
+      "preservationErrors": [],
+      "visibleLengths": {
+        "generalDefinition": 30,
+        "B": 67,
+        "C": 42
+      }
+    },
+    {
+      "originalDisputeIndex": 201,
+      "id": "m1-06-01-xc20",
+      "sourceIndex": 1747,
+      "currentFingerprint": "c261c7457c439a28a14d8ebdf3486936aa51c53ba525bdbebd03cd34f4cdefab",
+      "currentNormalizedHash": "5bd00c4a29d6a9c5f6cf930b660a4fdcb1d4e47548156fc8f5fa804e7db52890",
+      "snapshotNormalizedHash": "5bd00c4a29d6a9c5f6cf930b660a4fdcb1d4e47548156fc8f5fa804e7db52890",
+      "snapshotMatches": true,
+      "verdict": "revise",
+      "reason": "C의 n 칸은 앞에 준 변 개수를 그대로 복원한다. 대각선 수에서 변 수를 빼는 차 전체를 하나의 식으로 묻는다. B와 일반 설명은 보존한다.",
+      "originalBlind": [],
+      "originalKey": [
+        [
+          "m1-06-01-xc20",
+          "pass",
+          "revise",
+          "none",
+          "C의 둘째 빈칸 n은 문장 앞의 '변이 n개인'을 그대로 베끼면 되어 아무것도 묻지 못한다. 대각선의 수를 쓰는 첫 칸만 실질이므로 빈칸을 정리하거나 합쳐야 한다."
+        ]
+      ],
+      "reader": "Codex direct actual source/B/C/answer/criterion/generalDefinition reading; no independent approval",
+      "readAt": "2026-10-07T11:28:05.415Z",
+      "inputSha256": "2910b0acc769b9c0d774dedce427859a1e96c141a10eaa01a3b08357326e6ad9",
+      "beforeReadingEvidence": {
+        "path": "before-196-208.txt",
+        "byteSha256": "f43c935acbccf5a4b8d3a857a01c50d4bda6cb2f3055dcf00092278dc1664fef"
+      },
+      "manualEvidence": {
+        "path": "manual-196-208.json",
+        "byteSha256": "401cc3cab3f23b6d6fdaf123931eb7a3a241a1addce0cdf8ee6cc8f6053df619"
+      },
+      "proposedRawRow": {
+        "id": "m1-06-01-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "대각선의 개수가 변의 개수보다 $18$개 많은 다각형은 몇 각형인지 구하고, 구하는 과정을 쓰시오.",
+        "bAnswer": "$n$각형이라 하면 $\\frac{n(n-3)}{2}-n=18$이다. $n=9$이면 대각선이 $27$개, 변이 $9$개로 차가 $18$이므로 구각형이다.",
+        "bGoal": "대각선과 변의 개수의 차로 다각형 찾기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "구각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{n(n-3)}2-n=18$",
+              "$n(n-5)=36$",
+              "대각선 $27$개, 변 $9$개여서 차가 $18$개이다"
+            ]
+          }
+        ],
+        "bReason": "$k$만 있는 방법 설명이라 실제 차가 주어진 예로 바꿨다.",
+        "cDecision": "rewrite",
+        "cAfter": "변이 $n$개인 다각형에서 대각선이 변보다 $k$개 많으면, 대각선 수에서 변 수를 뺀 식은 {$\\frac{n(n-3)}{2}-n$}$=k$가 된다.",
+        "cAnswers": [
+          "$\\frac{n(n-3)}{2}-n$"
+        ],
+        "cReason": "C의 n 칸은 앞에 준 변 개수를 그대로 복원한다. 대각선 수에서 변 수를 빼는 차 전체를 하나의 식으로 묻는다. B와 일반 설명은 보존한다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "대각선 수에서 변의 수를 뺀 식 세우기",
+        "authorBatch": 17,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "notationReason": "표시용 기준은 정식 이름 구각형으로 정리하며 같은 의미의 숫자 이름은 인정한다.",
+        "sourceIndex": 1747,
+        "part": "m1plus",
+        "sourceFingerprint": "c88ba563e0f31be48446c2e4d8b0857351e54ac8a6e3e96ab3f8ceb12d50aa2f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1747
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m1-06-01-xc20"
+        },
+        "cMarkedSentence": "변이 $n$개인 다각형에서 대각선이 변보다 $k$개 많으면, 대각선 수에서 변 수를 뺀 식은 {$\\frac{n(n-3)}{2}-n$}$=k$가 된다.",
+        "cSlotAnswers": [
+          "$\\frac{n(n-3)}{2}-n$"
+        ],
+        "cStudentSentence": "변이 $n$개인 다각형에서 대각선이 변보다 $k$개 많으면, 대각선 수에서 변 수를 뺀 식은 □$=k$가 된다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{n(n-3)}{2}-n$",
+            "equivalentAnswers": [
+              "$\\frac{n(n-3)}{2}-n$",
+              "$\\frac{n(n-5)}{2}$",
+              "$n(n-3)\\div2-n$"
+            ],
+            "equivalenceReview": "Codex tail-116 report proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{n(n-3)}{2}-n$",
+            "$\\frac{n(n-5)}{2}$",
+            "$n(n-3)\\div2-n$"
+          ]
+        ],
+        "proposalFingerprint": "eb1b0d854a4dd87d202f78c972859c891903451e18ecb9136ffad626d205bf9a",
+        "clozeQuestion": {
+          "sentence": "변이 $n$개인 다각형에서 대각선이 변보다 $k$개 많으면, 대각선 수에서 변 수를 뺀 식은 {$\\frac{n(n-3)}{2}-n$}$=k$가 된다.",
+          "acceptedAnswers": [
+            [
+              "$\\frac{n(n-3)}{2}-n$",
+              "$\\frac{n(n-5)}{2}$",
+              "$n(n-3)\\div2-n$"
+            ]
+          ]
+        }
+      },
+      "candidateNormalized": {
+        "id": "m1-06-01-xc20",
+        "grade": "중1",
+        "source": {
+          "id": "m1-06-01-xc20",
+          "section": "중1::6. 평면도형::다각형",
+          "term": "대각선이 변보다 많은 개수",
+          "kind": "방법",
+          "level": "상",
+          "definition": "대각선이 변보다 $k$개 많으면 $\\frac{n(n-3)}{2}-n=k$에서 {$n$}을 찾는다.",
+          "example": {
+            "prompt": "대각선이 변보다 $18$개 많은 다각형은?",
+            "answer": "구각형"
+          }
+        },
+        "B": {
+          "prompt": "대각선의 개수가 변의 개수보다 $18$개 많은 다각형은 몇 각형인지 구하고, 구하는 과정을 쓰시오.",
+          "answer": "$n$각형이라 하면 $\\frac{n(n-3)}{2}-n=18$이다. $n=9$이면 대각선이 $27$개, 변이 $9$개로 차가 $18$이므로 구각형이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "구각형"
+              ]
+            },
+            {
+              "anyOf": [
+                "$\\frac{n(n-3)}2-n=18$",
+                "$n(n-5)=36$",
+                "대각선 $27$개, 변 $9$개여서 차가 $18$개이다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "변이 $n$개인 다각형에서 대각선이 변보다 $k$개 많으면, 대각선 수에서 변 수를 뺀 식은 {$\\frac{n(n-3)}{2}-n$}$=k$가 된다.",
+          "acceptedAnswers": [
+            [
+              "$\\frac{n(n-3)}{2}-n$",
+              "$\\frac{n(n-5)}{2}$",
+              "$n(n-3)\\div2-n$"
+            ]
+          ]
+        },
+        "goal": "대각선과 변의 개수의 차로 다각형 찾기",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "95fb08aed3a6409cd39abcd587ce8d135f541bffc68b0e358bd8a1f830d0389a"
+      },
+      "candidateNormalizedHash": "95fb08aed3a6409cd39abcd587ce8d135f541bffc68b0e358bd8a1f830d0389a",
+      "candidateFingerprint": "eb1b0d854a4dd87d202f78c972859c891903451e18ecb9136ffad626d205bf9a",
+      "candidateGeneralDefinition": "대각선이 변보다 $k$개 많으면 $\\frac{n(n-3)}{2}-n=k$에서 {$n$}을 찾는다.",
+      "preservationErrors": [],
+      "visibleLengths": {
+        "generalDefinition": 37,
+        "B": 53,
+        "C": 64
+      }
+    },
+    {
+      "originalDisputeIndex": 202,
+      "id": "m2-05-07-xc13",
+      "sourceIndex": 2907,
+      "currentFingerprint": "3ce5a87e6cb26b9e73f96afe9bdf9540353c8ef7ffa1c0ea0fe875cc8d4bade1",
+      "currentNormalizedHash": "10f887b678f11270416452716171ca903ed2a7e61a7604977d0402d9f69daa00",
+      "snapshotNormalizedHash": "10f887b678f11270416452716171ca903ed2a7e61a7604977d0402d9f69daa00",
+      "snapshotMatches": true,
+      "verdict": "retain",
+      "reason": "snapshot에 보존된 현재 key는 B·C pass이며 blind 지적도 없다. 실제 B는 대각선의 상호 이등분으로 평행사변형, 같은 대각선 길이로 직사각형이라는 두 단계를 각각 필수로 하여 타당하다. C는 동일 문항 중복으로 제외되어 있고 일반 설명도 정확해 추가 수정할 이유가 없다.",
+      "originalBlind": [],
+      "originalKey": [
+        [
+          "m2-05-07-xc13",
+          "pass",
+          "pass",
+          "none",
+          ""
+        ]
+      ],
+      "reader": "Codex direct actual source/B/C/answer/criterion/generalDefinition reading; no independent approval",
+      "readAt": "2026-10-07T11:28:05.415Z",
+      "inputSha256": "2910b0acc769b9c0d774dedce427859a1e96c141a10eaa01a3b08357326e6ad9",
+      "beforeReadingEvidence": {
+        "path": "before-196-208.txt",
+        "byteSha256": "f43c935acbccf5a4b8d3a857a01c50d4bda6cb2f3055dcf00092278dc1664fef"
+      },
+      "manualEvidence": {
+        "path": "manual-196-208.json",
+        "byteSha256": "401cc3cab3f23b6d6fdaf123931eb7a3a241a1addce0cdf8ee6cc8f6053df619"
+      },
+      "candidateNormalized": {
+        "id": "m2-05-07-xc13",
+        "grade": "중2",
+        "source": {
+          "id": "m2-05-07-xc13",
+          "section": "중2::5. 도형의 성질::직사각형, 마름모, 정사각형",
+          "term": "대각선으로 직사각형 알아보기",
+          "kind": "성질",
+          "level": "상",
+          "definition": "$\\square ABCD$의 두 대각선이 서로 반씩 나누고 길이도 같으면 {직사각형}이다."
+        },
+        "B": {
+          "prompt": "사각형 $ABCD$의 두 대각선이 서로를 이등분하고 길이도 같을 때, 이 사각형은 어떤 사각형인지 쓰고 그 까닭을 쓰시오.",
+          "answer": "직사각형. 두 대각선이 서로를 이등분하므로 평행사변형이고, 두 대각선의 길이가 같은 평행사변형은 직사각형이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "직사각형"
+              ]
+            },
+            {
+              "anyOf": [
+                "두 대각선이 서로를 이등분하므로 평행사변형이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "두 대각선의 길이가 같은 평행사변형은 직사각형이다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "excluded": "08-xc18 C의 '길이까지 같으면 □'과 같은 빈칸이다."
+        },
+        "goal": "대각선으로 직사각형 판별하기",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "10f887b678f11270416452716171ca903ed2a7e61a7604977d0402d9f69daa00"
+      },
+      "candidateNormalizedHash": "10f887b678f11270416452716171ca903ed2a7e61a7604977d0402d9f69daa00",
+      "candidateFingerprint": "3ce5a87e6cb26b9e73f96afe9bdf9540353c8ef7ffa1c0ea0fe875cc8d4bade1",
+      "candidateGeneralDefinition": "$\\square ABCD$의 두 대각선이 서로 반씩 나누고 길이도 같으면 {직사각형}이다.",
+      "preservationErrors": [],
+      "visibleLengths": {
+        "generalDefinition": 39,
+        "B": 66,
+        "C": null
+      }
+    },
+    {
+      "originalDisputeIndex": 203,
+      "id": "m2-05-08-xc16",
+      "sourceIndex": 2926,
+      "currentFingerprint": "662baea2340de10e2759330502050873998717273620f84466712440b0ebcce5",
+      "currentNormalizedHash": "b81e76447a70d5ab67a3610d0db6088b296f7807e8f442210e7ce5392f780b4e",
+      "snapshotNormalizedHash": "b81e76447a70d5ab67a3610d0db6088b296f7807e8f442210e7ce5392f780b4e",
+      "snapshotMatches": true,
+      "verdict": "revise",
+      "reason": "현재 C는 출력할 이름이 시작 문장에 그대로 인쇄되어 있다. 출발 도형을 네 변·네 각의 성질로 지정하여 결과 이름의 직접 노출만 제거한다. 정사각형 중점 사각형의 naming 역할과 B 제외·일반 설명은 유지한다.",
+      "originalBlind": [],
+      "originalKey": [
+        [
+          "m2-05-08-xc16",
+          "excluded",
+          "revise",
+          "none",
+          "C 빈칸 '정사각형'은 문장 첫머리 '정사각형의 변마다'를 그대로 베끼면 정답이 된다."
+        ]
+      ],
+      "reader": "Codex direct actual source/B/C/answer/criterion/generalDefinition reading; no independent approval",
+      "readAt": "2026-10-07T11:28:05.415Z",
+      "inputSha256": "2910b0acc769b9c0d774dedce427859a1e96c141a10eaa01a3b08357326e6ad9",
+      "beforeReadingEvidence": {
+        "path": "before-196-208.txt",
+        "byteSha256": "f43c935acbccf5a4b8d3a857a01c50d4bda6cb2f3055dcf00092278dc1664fef"
+      },
+      "manualEvidence": {
+        "path": "manual-196-208.json",
+        "byteSha256": "401cc3cab3f23b6d6fdaf123931eb7a3a241a1addce0cdf8ee6cc8f6053df619"
+      },
+      "proposedRawRow": {
+        "id": "m2-05-08-xc16",
+        "learningRole": "naming",
+        "roleReason": "정사각형의 중점을 이은 사각형",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "중점 사각형 이름 묻기가 c9·xc15와 같은 형식이다.",
+        "cDecision": "rewrite",
+        "cReason": "현재 C는 출력할 이름이 시작 문장에 그대로 인쇄되어 있다. 출발 도형을 네 변·네 각의 성질로 지정하여 결과 이름의 직접 노출만 제거한다. 정사각형 중점 사각형의 naming 역할과 B 제외·일반 설명은 유지한다.",
+        "exclusionReason": "B 제외: 중점을 이은 사각형의 이름만 묻는 형식이 08-c9·xc15와 반복된다.",
+        "authorBatch": 44,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2926,
+        "part": "m2plus",
+        "sourceFingerprint": "903ed5c61f1ec8a482a7e4ceb780bb59ff4dce63c5fd93ffc9cb542d434a5099",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2926
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "정사각형의 변마다 중점을 잡아 차례로 이으면 □이 생긴다.",
+        "cFrozenDefinition": "정사각형의 변마다 중점을 잡아 차례로 이으면 {정사각형}이 생긴다.",
+        "cFrozenAnswers": [
+          "정사각형"
+        ],
+        "cMarkedSentence": "네 변의 길이가 모두 같고 네 각이 모두 직각인 사각형의 각 변에서 중점을 잡아 차례로 이으면, 새로 생기는 사각형도 {정사각형}이다.",
+        "cSlotAnswers": [
+          "정사각형"
+        ],
+        "cStudentSentence": "네 변의 길이가 모두 같고 네 각이 모두 직각인 사각형의 각 변에서 중점을 잡아 차례로 이으면, 새로 생기는 사각형도 □이다.",
+        "cAnswers": [
+          "정사각형"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "정사각형",
+            "equivalentAnswers": [
+              "정사각형"
+            ],
+            "equivalenceReview": "Codex tail-116 report proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "정사각형"
+          ]
+        ],
+        "proposalFingerprint": "a4279bb988b83b8c0cd9bec1baabf94bbef00037392b30476902b74eef8dc525",
+        "cAfter": "네 변의 길이가 모두 같고 네 각이 모두 직각인 사각형의 각 변에서 중점을 잡아 차례로 이으면, 새로 생기는 사각형도 {정사각형}이다.",
+        "clozeQuestion": {
+          "sentence": "네 변의 길이가 모두 같고 네 각이 모두 직각인 사각형의 각 변에서 중점을 잡아 차례로 이으면, 새로 생기는 사각형도 {정사각형}이다.",
+          "acceptedAnswers": [
+            [
+              "정사각형"
+            ]
+          ]
+        }
+      },
+      "candidateNormalized": {
+        "id": "m2-05-08-xc16",
+        "grade": "중2",
+        "source": {
+          "id": "m2-05-08-xc16",
+          "section": "중2::5. 도형의 성질::등변사다리꼴, 여러 가지 사각형",
+          "term": "정사각형의 중점을 이은 사각형",
+          "kind": "성질",
+          "level": "상",
+          "definition": "정사각형의 변마다 중점을 잡아 차례로 이으면 {정사각형}이 생긴다."
+        },
+        "B": {
+          "excluded": "중점 사각형 이름 묻기가 c9·xc15와 같은 형식이다."
+        },
+        "C": {
+          "sentence": "네 변의 길이가 모두 같고 네 각이 모두 직각인 사각형의 각 변에서 중점을 잡아 차례로 이으면, 새로 생기는 사각형도 {정사각형}이다.",
+          "acceptedAnswers": [
+            [
+              "정사각형"
+            ]
+          ]
+        },
+        "goal": "naming",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "b22c7542ef1ea7a0dcf17684561940e781055e0276353e195007886da0429559"
+      },
+      "candidateNormalizedHash": "b22c7542ef1ea7a0dcf17684561940e781055e0276353e195007886da0429559",
+      "candidateFingerprint": "a4279bb988b83b8c0cd9bec1baabf94bbef00037392b30476902b74eef8dc525",
+      "candidateGeneralDefinition": "정사각형의 변마다 중점을 잡아 차례로 이으면 {정사각형}이 생긴다.",
+      "preservationErrors": [],
+      "visibleLengths": {
+        "generalDefinition": 35,
+        "B": null,
+        "C": 73
+      }
+    },
+    {
+      "originalDisputeIndex": 204,
+      "id": "m2-06-01-xc6",
+      "sourceIndex": 2959,
+      "currentFingerprint": "c6129d5344bc15c510502ec3d58c8a3815825ffbdf084c82cdc66c1dedb44cbc",
+      "currentNormalizedHash": "d8da88e6fa2d1df8f89038769e92a339e60f15fd5f5d1936f7e97f4d2d550a7c",
+      "snapshotNormalizedHash": "d8da88e6fa2d1df8f89038769e92a339e60f15fd5f5d1936f7e97f4d2d550a7c",
+      "snapshotMatches": true,
+      "verdict": "revise",
+      "reason": "'그대로 유지된다'의 부사 복원을 없애고 이동·회전·뒤집은 도형과 원래 도형의 관계를 묻는다. 합동이므로 닮음이라는 실질 이유를 C에도 담는다. B와 일반 설명은 유지한다.",
+      "originalBlind": [],
+      "originalKey": [
+        [
+          "m2-06-01-xc6",
+          "pass",
+          "revise",
+          "none",
+          "C: 문장에 이미 '유지된다'가 있어 빈칸 '그대로'는 부사 문법 복원일 뿐이다. 뒤집거나 돌려도 닮음이 유지된다는 수학 판단을 묻지 않는다."
+        ]
+      ],
+      "reader": "Codex direct actual source/B/C/answer/criterion/generalDefinition reading; no independent approval",
+      "readAt": "2026-10-07T11:28:05.415Z",
+      "inputSha256": "2910b0acc769b9c0d774dedce427859a1e96c141a10eaa01a3b08357326e6ad9",
+      "beforeReadingEvidence": {
+        "path": "before-196-208.txt",
+        "byteSha256": "f43c935acbccf5a4b8d3a857a01c50d4bda6cb2f3055dcf00092278dc1664fef"
+      },
+      "manualEvidence": {
+        "path": "manual-196-208.json",
+        "byteSha256": "401cc3cab3f23b6d6fdaf123931eb7a3a241a1addce0cdf8ee6cc8f6053df619"
+      },
+      "proposedRawRow": {
+        "id": "m2-06-01-xc6",
+        "learningRole": "reason",
+        "roleReason": "옮기거나 뒤집어도 닮음이 유지되는 까닭",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\triangle ABC\\backsim\\triangle DEF$일 때, $\\triangle DEF$를 뒤집어 놓은 삼각형도 $\\triangle ABC$와 닮음인지 쓰고, 그 이유를 설명하시오.",
+        "bAnswer": "닮음이다. 뒤집어도 변의 길이와 각의 크기가 변하지 않으므로 대응변의 길이의 비와 대응각의 크기가 그대로이기 때문이다.",
+        "bGoal": "놓인 방향과 닮음의 무관함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "닮음이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "뒤집어도 변의 길이와 각의 크기가 변하지 않는다",
+              "뒤집은 도형은 처음 도형과 합동이다"
+            ]
+          }
+        ],
+        "bReason": "방향이 달라 보이면 닮음이 아니라는 오해를 구체 상황으로 점검하게 했다.",
+        "cDecision": "rewrite",
+        "cReason": "'그대로 유지된다'의 부사 복원을 없애고 이동·회전·뒤집은 도형과 원래 도형의 관계를 묻는다. 합동이므로 닮음이라는 실질 이유를 C에도 담는다. B와 일반 설명은 유지한다.",
+        "authorBatch": 45,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2959,
+        "part": "m2plus",
+        "sourceFingerprint": "9d96ab1d11b37ecf5d6f6237b4add4772e35f1613c7d71f3a14b19154513a225",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2959
+        },
+        "directReview": null,
+        "cFrozenSentence": "도형을 옮기거나 돌리거나 뒤집어도 닮음은 □ 유지된다.",
+        "cFrozenDefinition": "도형을 옮기거나 돌리거나 뒤집어도 닮음은 {그대로} 유지된다.",
+        "cFrozenAnswers": [
+          "그대로"
+        ],
+        "cMarkedSentence": "도형을 옮기거나 돌리거나 뒤집어 만든 도형은 변의 길이와 각의 크기가 변하지 않으므로 원래 도형과 {합동}이다. 따라서 원래 도형과 닮음이기도 하다.",
+        "cSlotAnswers": [
+          "합동"
+        ],
+        "cStudentSentence": "도형을 옮기거나 돌리거나 뒤집어 만든 도형은 변의 길이와 각의 크기가 변하지 않으므로 원래 도형과 □이다. 따라서 원래 도형과 닮음이기도 하다.",
+        "cAnswers": [
+          "합동"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "합동",
+            "equivalentAnswers": [
+              "합동"
+            ],
+            "equivalenceReview": "Codex tail-116 report proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "합동"
+          ]
+        ],
+        "proposalFingerprint": "89de1a058738d3f9b44e50f4867f4f3f5ec952ffcb4690e643da9cf289b9a575",
+        "cAfter": "도형을 옮기거나 돌리거나 뒤집어 만든 도형은 변의 길이와 각의 크기가 변하지 않으므로 원래 도형과 {합동}이다. 따라서 원래 도형과 닮음이기도 하다.",
+        "clozeQuestion": {
+          "sentence": "도형을 옮기거나 돌리거나 뒤집어 만든 도형은 변의 길이와 각의 크기가 변하지 않으므로 원래 도형과 {합동}이다. 따라서 원래 도형과 닮음이기도 하다.",
+          "acceptedAnswers": [
+            [
+              "합동"
+            ]
+          ]
+        }
+      },
+      "candidateNormalized": {
+        "id": "m2-06-01-xc6",
+        "grade": "중2",
+        "source": {
+          "id": "m2-06-01-xc6",
+          "section": "중2::6. 도형의 닮음::닮은 도형",
+          "term": "옮기거나 뒤집어도 닮음",
+          "kind": "성질",
+          "level": "하",
+          "definition": "도형을 옮기거나 돌리거나 뒤집어도 닮음은 {그대로} 유지된다."
+        },
+        "B": {
+          "prompt": "$\\triangle ABC\\backsim\\triangle DEF$일 때, $\\triangle DEF$를 뒤집어 놓은 삼각형도 $\\triangle ABC$와 닮음인지 쓰고, 그 이유를 설명하시오.",
+          "answer": "닮음이다. 뒤집어도 변의 길이와 각의 크기가 변하지 않으므로 대응변의 길이의 비와 대응각의 크기가 그대로이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "닮음이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "뒤집어도 변의 길이와 각의 크기가 변하지 않는다",
+                "뒤집은 도형은 처음 도형과 합동이다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "도형을 옮기거나 돌리거나 뒤집어 만든 도형은 변의 길이와 각의 크기가 변하지 않으므로 원래 도형과 {합동}이다. 따라서 원래 도형과 닮음이기도 하다.",
+          "acceptedAnswers": [
+            [
+              "합동"
+            ]
+          ]
+        },
+        "goal": "놓인 방향과 닮음의 무관함",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "38bc93b0d815a8e11eec9461c2bc394bf6d884ba738517586629d5b57d4252b0"
+      },
+      "candidateNormalizedHash": "38bc93b0d815a8e11eec9461c2bc394bf6d884ba738517586629d5b57d4252b0",
+      "candidateFingerprint": "89de1a058738d3f9b44e50f4867f4f3f5ec952ffcb4690e643da9cf289b9a575",
+      "candidateGeneralDefinition": "도형을 옮기거나 돌리거나 뒤집어도 닮음은 {그대로} 유지된다.",
+      "preservationErrors": [],
+      "visibleLengths": {
+        "generalDefinition": 32,
+        "B": 59,
+        "C": 81
+      }
+    },
+    {
+      "originalDisputeIndex": 205,
+      "id": "m2-06-01-xc10",
+      "sourceIndex": 2963,
+      "currentFingerprint": "724408db64144a3b59e2ebb950d9efa5062747f600ba9f161475dfcb9648e9c2",
+      "currentNormalizedHash": "cb4893f9fc565c8d569fe2536c1377ba7765dc6e7db6d28582a1763c85275501",
+      "snapshotNormalizedHash": "cb4893f9fc565c8d569fe2536c1377ba7765dc6e7db6d28582a1763c85275501",
+      "snapshotMatches": true,
+      "verdict": "revise",
+      "reason": "C의 닮음비가 앞 문장에 반복되어 있고 모서리 길이의 비도 들어갈 수 있다. 입체의 닮음비를 수치로 주어 대응면의 닮음비를 구체적으로 묻는다. B 제외와 일반 설명은 유지한다.",
+      "originalBlind": [
+        [
+          "m2-06-01-xc10",
+          "C",
+          "면, 닮음비",
+          "revise",
+          "둘째 빈칸의 정답이 앞 구절의 '닮음비'와 같은 낱말이 되어 문장이 순환적이다. 빈칸에 '대응하는 모서리의 길이의 비'도 참이라 답 범위가 정해지지 않는다. 무엇의 비인지 구체적으로 묻도록 고쳐야 한다."
+        ]
+      ],
+      "originalKey": [
+        [
+          "m2-06-01-xc10",
+          "excluded",
+          "revise",
+          "none",
+          "C: 둘째 빈칸 '닮음비'가 앞 구절의 '닮음비'를 되풀이해 순환적이다. '대응하는 모서리 길이의 비'도 참이라 답 범위가 불명확하다. 무엇의 비인지 구체적으로 물어야 한다."
+        ]
+      ],
+      "reader": "Codex direct actual source/B/C/answer/criterion/generalDefinition reading; no independent approval",
+      "readAt": "2026-10-07T11:28:05.415Z",
+      "inputSha256": "2910b0acc769b9c0d774dedce427859a1e96c141a10eaa01a3b08357326e6ad9",
+      "beforeReadingEvidence": {
+        "path": "before-196-208.txt",
+        "byteSha256": "f43c935acbccf5a4b8d3a857a01c50d4bda6cb2f3055dcf00092278dc1664fef"
+      },
+      "manualEvidence": {
+        "path": "manual-196-208.json",
+        "byteSha256": "401cc3cab3f23b6d6fdaf123931eb7a3a241a1addce0cdf8ee6cc8f6053df619"
+      },
+      "proposedRawRow": {
+        "id": "m2-06-01-xc10",
+        "learningRole": "definition",
+        "roleReason": "대응면도 같은 닮음비로 닮음",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "대응면이 닮은 도형이라는 내용은 c7 질문에 포함된다.",
+        "cDecision": "rewrite",
+        "cReason": "C의 닮음비가 앞 문장에 반복되어 있고 모서리 길이의 비도 들어갈 수 있다. 입체의 닮음비를 수치로 주어 대응면의 닮음비를 구체적으로 묻는다. B 제외와 일반 설명은 유지한다.",
+        "exclusionReason": "B 제외: 대응면의 닮음은 c7 입체도형 닮음 성질 질문과 목표가 중복된다.",
+        "authorBatch": 45,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2963,
+        "part": "m2plus",
+        "sourceFingerprint": "92933bdd0cf144fa08c2211c241ed765f6e3d4bb7a3517dd495fa867f748f158",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2963
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "입체도형 둘이 닮았으면 서로 짝이 되는 □끼리도 닮은 도형이고, 그 닮음비는 입체도형의 □와 같다.",
+        "cFrozenDefinition": "입체도형 둘이 닮았으면 서로 짝이 되는 {면}끼리도 닮은 도형이고, 그 닮음비는 입체도형의 {닮음비}와 같다.",
+        "cFrozenAnswers": [
+          "면",
+          "닮음비"
+        ],
+        "cMarkedSentence": "서로 닮은 두 입체도형의 닮음비가 $2:3$이면, 첫째 입체의 한 면과 둘째 입체의 대응하는 면도 닮고 그 순서의 닮음비는 {$2:3$}이다.",
+        "cSlotAnswers": [
+          "$2:3$"
+        ],
+        "cStudentSentence": "서로 닮은 두 입체도형의 닮음비가 $2:3$이면, 첫째 입체의 한 면과 둘째 입체의 대응하는 면도 닮고 그 순서의 닮음비는 □이다.",
+        "cAnswers": [
+          "$2:3$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$2:3$",
+            "equivalentAnswers": [
+              "$2:3$",
+              "$\\frac{2}{3}$"
+            ],
+            "equivalenceReview": "Codex tail-116 report proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$2:3$",
+            "$\\frac{2}{3}$"
+          ]
+        ],
+        "proposalFingerprint": "bc5d35709344a84ebd13398788aa7a53764dcfd58618b0349a748d5823b8c0a0",
+        "cAfter": "서로 닮은 두 입체도형의 닮음비가 $2:3$이면, 첫째 입체의 한 면과 둘째 입체의 대응하는 면도 닮고 그 순서의 닮음비는 {$2:3$}이다.",
+        "clozeQuestion": {
+          "sentence": "서로 닮은 두 입체도형의 닮음비가 $2:3$이면, 첫째 입체의 한 면과 둘째 입체의 대응하는 면도 닮고 그 순서의 닮음비는 {$2:3$}이다.",
+          "acceptedAnswers": [
+            [
+              "$2:3$",
+              "$\\frac{2}{3}$"
+            ]
+          ]
+        }
+      },
+      "candidateNormalized": {
+        "id": "m2-06-01-xc10",
+        "grade": "중2",
+        "source": {
+          "id": "m2-06-01-xc10",
+          "section": "중2::6. 도형의 닮음::닮은 도형",
+          "term": "입체도형의 대응면",
+          "kind": "성질",
+          "level": "중",
+          "definition": "입체도형 둘이 닮았으면 서로 짝이 되는 {면}끼리도 닮은 도형이고, 그 닮음비는 입체도형의 {닮음비}와 같다."
+        },
+        "B": {
+          "excluded": "대응면이 닮은 도형이라는 내용은 c7 질문에 포함된다."
+        },
+        "C": {
+          "sentence": "서로 닮은 두 입체도형의 닮음비가 $2:3$이면, 첫째 입체의 한 면과 둘째 입체의 대응하는 면도 닮고 그 순서의 닮음비는 {$2:3$}이다.",
+          "acceptedAnswers": [
+            [
+              "$2:3$",
+              "$\\frac{2}{3}$"
+            ]
+          ]
+        },
+        "goal": "definition",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "aa0251790a53956763a6a14a82abba9452226bb4182bb31eae22be506fb4f41d"
+      },
+      "candidateNormalizedHash": "aa0251790a53956763a6a14a82abba9452226bb4182bb31eae22be506fb4f41d",
+      "candidateFingerprint": "bc5d35709344a84ebd13398788aa7a53764dcfd58618b0349a748d5823b8c0a0",
+      "candidateGeneralDefinition": "입체도형 둘이 닮았으면 서로 짝이 되는 {면}끼리도 닮은 도형이고, 그 닮음비는 입체도형의 {닮음비}와 같다.",
+      "preservationErrors": [],
+      "visibleLengths": {
+        "generalDefinition": 57,
+        "B": null,
+        "C": 73
+      }
+    },
+    {
+      "originalDisputeIndex": 206,
+      "id": "m2-06-02-xc16",
+      "sourceIndex": 2989,
+      "currentFingerprint": "a85a55cfc9fd32bd64bd64578eb3206edcbcb760075d0bcc9c37622a8549a76c",
+      "currentNormalizedHash": "b1e491a3479a8ee7d7ca9f2ed31a34cdb9bb7a5dea1b36df5c4009f41e9a7b78",
+      "snapshotNormalizedHash": "b1e491a3479a8ee7d7ca9f2ed31a34cdb9bb7a5dea1b36df5c4009f41e9a7b78",
+      "snapshotMatches": true,
+      "verdict": "revise",
+      "reason": "C의 앞 문장에 빗변이라는 키가 반복된다. 구체 직각삼각형에서 넓이의 두 식으로 수선 길이를 구하도록 바꾼다. B와 일반 공식은 유지한다.",
+      "originalBlind": [],
+      "originalKey": [
+        [
+          "m2-06-02-xc16",
+          "pass",
+          "revise",
+          "none",
+          "C 빈칸 답 '빗변'이 같은 문장 앞의 '빗변에 그은 수선'에 이미 있어 베끼면 된다. 예: '(직각을 낀 두 변의 곱)÷□'에서 □가 무엇의 길이인지 묻거나 수치 문항으로 바꾼다."
+        ]
+      ],
+      "reader": "Codex direct actual source/B/C/answer/criterion/generalDefinition reading; no independent approval",
+      "readAt": "2026-10-07T11:28:05.415Z",
+      "inputSha256": "2910b0acc769b9c0d774dedce427859a1e96c141a10eaa01a3b08357326e6ad9",
+      "beforeReadingEvidence": {
+        "path": "before-196-208.txt",
+        "byteSha256": "f43c935acbccf5a4b8d3a857a01c50d4bda6cb2f3055dcf00092278dc1664fef"
+      },
+      "manualEvidence": {
+        "path": "manual-196-208.json",
+        "byteSha256": "401cc3cab3f23b6d6fdaf123931eb7a3a241a1addce0cdf8ee6cc8f6053df619"
+      },
+      "proposedRawRow": {
+        "id": "m2-06-02-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "직각을 낀 두 변의 길이가 $6$, $8$이고 빗변의 길이가 $10$인 직각삼각형에서 직각인 꼭짓점에서 빗변에 그은 수선의 길이를 $h$라 하자. 삼각형의 넓이를 두 가지 방법으로 나타낸 식을 세워 $h$의 값을 구하시오.",
+        "bAnswer": "넓이는 $\\dfrac{1}{2}\\times6\\times8$이면서 $\\dfrac{1}{2}\\times10\\times h$이다. $6\\times8=10\\times h$에서 $h=\\dfrac{24}{5}$이다.",
+        "bGoal": "넓이를 두 가지로 나타내어 수선의 길이 구하기",
+        "bReason": "넓이를 두 가지로 나타낸다는 방법은 실제 길이가 있어야 식으로 쓸 수 있어 예를 넣었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\dfrac{1}{2}\\times6\\times8=\\dfrac{1}{2}\\times10\\times h$",
+              "$6\\times8=10\\times h$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$h=\\dfrac{24}{5}$",
+              "$h=4.8$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cReason": "C의 앞 문장에 빗변이라는 키가 반복된다. 구체 직각삼각형에서 넓이의 두 식으로 수선 길이를 구하도록 바꾼다. B와 일반 공식은 유지한다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "넓이의 두 식을 같게 놓아 수선을 구하는 과정",
+        "authorBatch": 46,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2989,
+        "part": "m2plus",
+        "sourceFingerprint": "c6f34de7c1dc6c6c3b4fd4007d423ef66808bf9e5a34261b5faf39f7f1cd4b0b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2989
+        },
+        "directReview": null,
+        "cFrozenSentence": "직각삼각형의 넓이를 두 가지로 나타내면 빗변에 그은 수선의 길이는 (직각을 낀 두 변의 곱)$\\div$(□)이다.",
+        "cFrozenDefinition": "직각삼각형의 넓이를 두 가지로 나타내면 빗변에 그은 수선의 길이는 (직각을 낀 두 변의 곱)$\\div$({빗변})이다.",
+        "cFrozenAnswers": [
+          "빗변"
+        ],
+        "cMarkedSentence": "직각을 낀 두 변의 길이가 $6$, $8$, 빗변이 $10$인 직각삼각형에서 직각 꼭짓점에서 빗변에 그은 수선의 길이는 {$\\frac{24}{5}$}이다.",
+        "cSlotAnswers": [
+          "$\\frac{24}{5}$"
+        ],
+        "cStudentSentence": "직각을 낀 두 변의 길이가 $6$, $8$, 빗변이 $10$인 직각삼각형에서 직각 꼭짓점에서 빗변에 그은 수선의 길이는 □이다.",
+        "cAnswers": [
+          "$\\frac{24}{5}$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{24}{5}$",
+            "equivalentAnswers": [
+              "$\\frac{24}{5}$",
+              "$4.8$"
+            ],
+            "equivalenceReview": "Codex tail-116 report proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{24}{5}$",
+            "$4.8$"
+          ]
+        ],
+        "proposalFingerprint": "dfdab2e2f3355c07d4e0d894676acec0972823479ec3261a0396ccfce0b2f2de",
+        "cAfter": "직각을 낀 두 변의 길이가 $6$, $8$, 빗변이 $10$인 직각삼각형에서 직각 꼭짓점에서 빗변에 그은 수선의 길이는 {$\\frac{24}{5}$}이다.",
+        "clozeQuestion": {
+          "sentence": "직각을 낀 두 변의 길이가 $6$, $8$, 빗변이 $10$인 직각삼각형에서 직각 꼭짓점에서 빗변에 그은 수선의 길이는 {$\\frac{24}{5}$}이다.",
+          "acceptedAnswers": [
+            [
+              "$\\frac{24}{5}$",
+              "$4.8$"
+            ]
+          ]
+        }
+      },
+      "candidateNormalized": {
+        "id": "m2-06-02-xc16",
+        "grade": "중2",
+        "source": {
+          "id": "m2-06-02-xc16",
+          "section": "중2::6. 도형의 닮음::삼각형의 닮음 조건",
+          "term": "넓이로 빗변 위의 수선 구하기",
+          "kind": "방법",
+          "level": "상",
+          "definition": "직각삼각형의 넓이를 두 가지로 나타내면 빗변에 그은 수선의 길이는 (직각을 낀 두 변의 곱)$\\div$({빗변})이다.",
+          "example": {
+            "prompt": "직각을 낀 두 변이 $6$, $8$이고 빗변이 $10$인 직각삼각형에서 빗변에 그은 수선의 길이",
+            "answer": "$\\frac{24}{5}$"
+          }
+        },
+        "B": {
+          "prompt": "직각을 낀 두 변의 길이가 $6$, $8$이고 빗변의 길이가 $10$인 직각삼각형에서 직각인 꼭짓점에서 빗변에 그은 수선의 길이를 $h$라 하자. 삼각형의 넓이를 두 가지 방법으로 나타낸 식을 세워 $h$의 값을 구하시오.",
+          "answer": "넓이는 $\\dfrac{1}{2}\\times6\\times8$이면서 $\\dfrac{1}{2}\\times10\\times h$이다. $6\\times8=10\\times h$에서 $h=\\dfrac{24}{5}$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$\\dfrac{1}{2}\\times6\\times8=\\dfrac{1}{2}\\times10\\times h$",
+                "$6\\times8=10\\times h$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$h=\\dfrac{24}{5}$",
+                "$h=4.8$"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "직각을 낀 두 변의 길이가 $6$, $8$, 빗변이 $10$인 직각삼각형에서 직각 꼭짓점에서 빗변에 그은 수선의 길이는 {$\\frac{24}{5}$}이다.",
+          "acceptedAnswers": [
+            [
+              "$\\frac{24}{5}$",
+              "$4.8$"
+            ]
+          ]
+        },
+        "goal": "넓이를 두 가지로 나타내어 수선의 길이 구하기",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "2b6bf0134277003ed4b03512cadab6ef15c5fab1559e5a51142bf9e7e4547346"
+      },
+      "candidateNormalizedHash": "2b6bf0134277003ed4b03512cadab6ef15c5fab1559e5a51142bf9e7e4547346",
+      "candidateFingerprint": "dfdab2e2f3355c07d4e0d894676acec0972823479ec3261a0396ccfce0b2f2de",
+      "candidateGeneralDefinition": "직각삼각형의 넓이를 두 가지로 나타내면 빗변에 그은 수선의 길이는 (직각을 낀 두 변의 곱)$\\div$({빗변})이다.",
+      "preservationErrors": [],
+      "visibleLengths": {
+        "generalDefinition": 59,
+        "B": 114,
+        "C": 67
+      }
+    },
+    {
+      "originalDisputeIndex": 207,
+      "id": "m2-07-01-xc2",
+      "sourceIndex": 2996,
+      "currentFingerprint": "77989d4cc895c4fe5c9c85ac54bbf25f4ec72324b5fa4b3d36046d25ce8bde6a",
+      "currentNormalizedHash": "0aac99a5124af99b8f085764daf2ba5d8b2d0f0c4903c9e88572e390381a852d",
+      "snapshotNormalizedHash": "0aac99a5124af99b8f085764daf2ba5d8b2d0f0c4903c9e88572e390381a852d",
+      "snapshotMatches": true,
+      "verdict": "revise",
+      "reason": "C의 일반 '어떤 길이의 비' 틀에서는 전체·나머지 모두 참일 수 있다. D,E의 위치와 DE∥BC를 제시하고 AD:AB의 대응비를 완성하게 하여 AC로 고정한다. B 제외와 일반 설명은 유지한다.",
+      "originalBlind": [],
+      "originalKey": [
+        [
+          "m2-07-01-xc2",
+          "excluded",
+          "revise",
+          "none",
+          "C '꼭짓점에서 자른 점까지의 길이와 □의 길이의 비는 두 변에서 같다'의 □에는 변 전체(AD:AB)뿐 아니라 나머지 조각(AD:DB)도 참이라 답이 하나로 정해지지 않는다. 예: 'AD:AB=AE:□'처럼 비교 대상을 구체화한다."
+        ]
+      ],
+      "reader": "Codex direct actual source/B/C/answer/criterion/generalDefinition reading; no independent approval",
+      "readAt": "2026-10-07T11:28:05.415Z",
+      "inputSha256": "2910b0acc769b9c0d774dedce427859a1e96c141a10eaa01a3b08357326e6ad9",
+      "beforeReadingEvidence": {
+        "path": "before-196-208.txt",
+        "byteSha256": "f43c935acbccf5a4b8d3a857a01c50d4bda6cb2f3055dcf00092278dc1664fef"
+      },
+      "manualEvidence": {
+        "path": "manual-196-208.json",
+        "byteSha256": "401cc3cab3f23b6d6fdaf123931eb7a3a241a1addce0cdf8ee6cc8f6053df619"
+      },
+      "proposedRawRow": {
+        "id": "m2-07-01-xc2",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "$\\overline{AD}:\\overline{AB}=\\overline{AE}:\\overline{AC}$는 c2의 B가 묻는 세 비 가운데 하나다.",
+        "cDecision": "rewrite",
+        "cAfter": "삼각형 $ABC$의 변 $AB$, $AC$ 위에 각각 점 $D$, $E$가 있고 $DE\\parallel BC$이다. 꼭짓점부터 잰 길이를 변 전체와 비교하면 $AD:AB=AE:$ {$AC$}이다.",
+        "cAnswers": [
+          "$AC$"
+        ],
+        "cReason": "C의 일반 '어떤 길이의 비' 틀에서는 전체·나머지 모두 참일 수 있다. D,E의 위치와 DE∥BC를 제시하고 AD:AB의 대응비를 완성하게 하여 AC로 고정한다. B 제외와 일반 설명은 유지한다.",
+        "exclusionReason": "B 제외: m2-07-01-c2의 B와 목표 중복(같은 비례식의 앞부분만 다시 묻는 조각 문항).",
+        "learningRole": "definition",
+        "roleReason": "꼭짓점에서 잰 길이와 변 전체의 비가 같다는 성질",
+        "authorBatch": 46,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2996,
+        "part": "m2plus",
+        "sourceFingerprint": "9c35b9d14a938d007726d0bfb39fb604b9ad36fd02a19c9b629d285ecd7ede1c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2996
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "삼각형 $ABC$의 변 $AB$, $AC$ 위에 각각 점 $D$, $E$가 있고 $DE\\parallel BC$이다. 꼭짓점부터 잰 길이를 변 전체와 비교하면 $AD:AB=AE:$ {$AC$}이다.",
+        "cSlotAnswers": [
+          "$AC$"
+        ],
+        "cStudentSentence": "삼각형 $ABC$의 변 $AB$, $AC$ 위에 각각 점 $D$, $E$가 있고 $DE\\parallel BC$이다. 꼭짓점부터 잰 길이를 변 전체와 비교하면 $AD:AB=AE:$ □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$AC$",
+            "equivalentAnswers": [
+              "$AC$",
+              "$\\overline{AC}$",
+              "$CA$",
+              "$\\overline{CA}$"
+            ],
+            "equivalenceReview": "Codex tail-116 report proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$AC$",
+            "$\\overline{AC}$",
+            "$CA$",
+            "$\\overline{CA}$"
+          ]
+        ],
+        "proposalFingerprint": "5be44a7130dffc84b17860478ccab38ad5e358874e96bc04824b0c39fe26e3eb",
+        "clozeQuestion": {
+          "sentence": "삼각형 $ABC$의 변 $AB$, $AC$ 위에 각각 점 $D$, $E$가 있고 $DE\\parallel BC$이다. 꼭짓점부터 잰 길이를 변 전체와 비교하면 $AD:AB=AE:$ {$AC$}이다.",
+          "acceptedAnswers": [
+            [
+              "$AC$",
+              "$\\overline{AC}$",
+              "$CA$",
+              "$\\overline{CA}$"
+            ]
+          ]
+        }
+      },
+      "candidateNormalized": {
+        "id": "m2-07-01-xc2",
+        "grade": "중2",
+        "source": {
+          "id": "m2-07-01-xc2",
+          "section": "중2::7. 닮음의 활용::삼각형에서 평행선 사이의 선분의 길이의 비",
+          "term": "꼭짓점에서 잰 두 변의 비",
+          "kind": "성질",
+          "level": "하",
+          "definition": "삼각형의 한 변에 평행한 선분이 다른 두 변을 자를 때, 한 변에서 꼭짓점부터 평행선까지의 길이와 {변 전체}의 길이의 비는 다른 변에서도 {같다}.",
+          "example": {
+            "prompt": "$\\triangle ABC$의 변 $AB$, $AC$ 위에 점 $D$, $E$가 있고 $\\overline{DE}\\parallel\\overline{BC}$일 때 $\\overline{AD}:\\overline{AB}=\\overline{AE}:\\square$의 $\\square$는?",
+            "answer": "$\\overline{AC}$"
+          }
+        },
+        "B": {
+          "excluded": "$\\overline{AD}:\\overline{AB}=\\overline{AE}:\\overline{AC}$는 c2의 B가 묻는 세 비 가운데 하나다."
+        },
+        "C": {
+          "sentence": "삼각형 $ABC$의 변 $AB$, $AC$ 위에 각각 점 $D$, $E$가 있고 $DE\\parallel BC$이다. 꼭짓점부터 잰 길이를 변 전체와 비교하면 $AD:AB=AE:$ {$AC$}이다.",
+          "acceptedAnswers": [
+            [
+              "$AC$",
+              "$\\overline{AC}$",
+              "$CA$",
+              "$\\overline{CA}$"
+            ]
+          ]
+        },
+        "goal": "definition",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "f25d700b0c7cf2d44ca01797aa0a8e6be883229e36ee974803243b2ef542aa55"
+      },
+      "candidateNormalizedHash": "f25d700b0c7cf2d44ca01797aa0a8e6be883229e36ee974803243b2ef542aa55",
+      "candidateFingerprint": "5be44a7130dffc84b17860478ccab38ad5e358874e96bc04824b0c39fe26e3eb",
+      "candidateGeneralDefinition": "삼각형의 한 변에 평행한 선분이 다른 두 변을 자를 때, 한 변에서 꼭짓점부터 평행선까지의 길이와 {변 전체}의 길이의 비는 다른 변에서도 {같다}.",
+      "preservationErrors": [],
+      "visibleLengths": {
+        "generalDefinition": 79,
+        "B": null,
+        "C": 82
+      }
+    },
+    {
+      "originalDisputeIndex": 208,
+      "id": "m2-07-01-xc6",
+      "sourceIndex": 2999,
+      "currentFingerprint": "53012d522cb5159e51addf8eee98456102ceca9e784c42813933db0f8c829160",
+      "currentNormalizedHash": "d1c367d9376929a859082dde40bf38d22201c3ac5246155ea83a3dc376872799",
+      "snapshotNormalizedHash": "d1c367d9376929a859082dde40bf38d22201c3ac5246155ea83a3dc376872799",
+      "snapshotMatches": true,
+      "verdict": "revise",
+      "reason": "C의 동격 자리 '닮음비'를 제거하고 대응변의 길이 배율만 묻는다. B의 닮음 근거와 곱할 비율을 분명히 한 일반 설명은 유지한다.",
+      "originalBlind": [
+        [
+          "m2-07-01-xc6",
+          "C",
+          "닮음비인(?); 1/3",
+          "revise",
+          "첫 빈칸 'DE:BC가 □ AD:AB와 같으므로'에서 들어갈 말이 정해지지 않음('닮음비인', '역시', '또한' 등). 예: 'DE:BC는 △ADE와 △ABC의 □비와 같다'처럼 개념어를 묻도록 수정."
+        ]
+      ],
+      "originalKey": [
+        [
+          "m2-07-01-xc6",
+          "pass",
+          "revise",
+          "pass",
+          "C 첫 빈칸 'DE:BC가 □ AD:AB와 같으므로'는 동격 구조라 들어갈 말이 정해지지 않는다('닮음비인', '역시', '또한' 등). 첫 빈칸을 없애고 1/3만 묻거나, 'DE:BC는 △ADE와 △ABC의 □비와 같다'처럼 개념어를 묻도록 고친다."
+        ]
+      ],
+      "reader": "Codex direct actual source/B/C/answer/criterion/generalDefinition reading; no independent approval",
+      "readAt": "2026-10-07T11:29:28.483Z",
+      "inputSha256": "2910b0acc769b9c0d774dedce427859a1e96c141a10eaa01a3b08357326e6ad9",
+      "beforeReadingEvidence": {
+        "path": "before-208-220.txt",
+        "byteSha256": "9a92fcfe1cd418a8d78f63f704cbe06cab9903d45da5a10f141baa8f20b9dff3"
+      },
+      "manualEvidence": {
+        "path": "manual-208-220.json",
+        "byteSha256": "b200c78a0cdcd34d89e82f1588876105b752839f0406f5173dfaed5223c301d3"
+      },
+      "proposedRawRow": {
+        "id": "m2-07-01-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\triangle ABC$의 변 $AB$, $AC$ 위에 각각 점 $D$, $E$가 있고 $\\overline{DE}\\parallel\\overline{BC}$이다. $\\overline{AD}:\\overline{AB}=1:3$, $\\overline{BC}=12$일 때 $\\overline{DE}$의 길이를 구하고, $\\overline{AD}:\\overline{AB}$를 쓸 수 있는 까닭을 쓰시오.",
+        "bAnswer": "$\\overline{DE}:\\overline{BC}=\\overline{AD}:\\overline{AB}=1:3$이므로 $\\overline{DE}=12\\times\\dfrac{1}{3}=4$이다. $\\triangle ADE\\backsim\\triangle ABC$에서 $\\overline{DE}$와 $\\overline{BC}$, $\\overline{AD}$와 $\\overline{AB}$가 각각 대응변이기 때문이다.",
+        "bGoal": "닮음비로 평행한 선분의 길이 구하기",
+        "bReason": "닮음비를 곱한다는 방법은 실제 비와 밑변의 길이가 있어야 해 볼 수 있어 예를 넣었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{DE}=4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{DE}:\\overline{BC}$가 닮음비 $\\overline{AD}:\\overline{AB}$와 같다",
+              "$\\triangle ADE$와 $\\triangle ABC$의 대응변의 비이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "삼각형 $ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $DE\\parallel BC$이고 $AD:AB=1:3$이다. 대응변의 비가 같으므로 $DE$의 길이는 $BC$의 길이의 {$\\frac{1}{3}$}배이다.",
+        "cAnswers": [
+          "$\\frac{1}{3}$"
+        ],
+        "cReason": "C의 동격 자리 '닮음비'를 제거하고 대응변의 길이 배율만 묻는다. B의 닮음 근거와 곱할 비율을 분명히 한 일반 설명은 유지한다.",
+        "coreAfter": "삼각형에서 밑변에 평행한 선분의 길이는, {꼭짓점}에서 그 선분까지 잰 변의 길이가 변 전체의 몇 배인지 구한 뒤, 그 값을 밑변의 길이에 곱해 구한다.",
+        "coreReason": "닮음비는 비인데 그대로 곱한다고 하여 무엇을 곱하는지 불분명하다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "닮음비를 써서 평행한 선분의 길이 계산",
+        "authorBatch": 46,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2999,
+        "part": "m2plus",
+        "sourceFingerprint": "3514f860fff80b14068c4e73e24606bb2dce72c58329592d97eaab22a4d1df24",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2999
+        },
+        "directReview": null,
+        "coreBeforeRepair": "밑변에 평행한 선분의 길이는, 꼭짓점에서 그 선분까지의 길이가 변 전체의 몇 배인지 구한 다음 밑변의 길이에 그 값을 곱해 구한다.",
+        "coreRepairReason": "'몇 배인지 구해 곱한다'는 교정 내용은 유지했다. 대상이 삼각형임을 밝히고, 빠졌던 원본 핵심어 {꼭짓점}을 다시 표시했다.",
+        "coreRepairEvidence": "core-repair/core-003",
+        "cMarkedSentence": "삼각형 $ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $DE\\parallel BC$이고 $AD:AB=1:3$이다. 대응변의 비가 같으므로 $DE$의 길이는 $BC$의 길이의 {$\\frac{1}{3}$}배이다.",
+        "cSlotAnswers": [
+          "$\\frac{1}{3}$"
+        ],
+        "cStudentSentence": "삼각형 $ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $DE\\parallel BC$이고 $AD:AB=1:3$이다. 대응변의 비가 같으므로 $DE$의 길이는 $BC$의 길이의 □배이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{1}{3}$",
+            "equivalentAnswers": [
+              "$\\frac{1}{3}$",
+              "$1\\div3$"
+            ],
+            "equivalenceReview": "Codex tail-116 report proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{1}{3}$",
+            "$1\\div3$"
+          ]
+        ],
+        "proposalFingerprint": "b762dfbbc4a76c7122f5a7744647ccf2c53772aa640b55ce54679c27ea177118",
+        "clozeQuestion": {
+          "sentence": "삼각형 $ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $DE\\parallel BC$이고 $AD:AB=1:3$이다. 대응변의 비가 같으므로 $DE$의 길이는 $BC$의 길이의 {$\\frac{1}{3}$}배이다.",
+          "acceptedAnswers": [
+            [
+              "$\\frac{1}{3}$",
+              "$1\\div3$"
+            ]
+          ]
+        }
+      },
+      "candidateNormalized": {
+        "id": "m2-07-01-xc6",
+        "grade": "중2",
+        "source": {
+          "id": "m2-07-01-xc6",
+          "section": "중2::7. 닮음의 활용::삼각형에서 평행선 사이의 선분의 길이의 비",
+          "term": "닮음비로 평행한 선분 구하기",
+          "kind": "방법",
+          "level": "하",
+          "definition": "밑변에 평행한 선분의 길이는 밑변의 길이에 {꼭짓점}에서 잰 닮음비를 곱해 구한다.",
+          "example": {
+            "prompt": "$\\triangle ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $\\overline{DE}\\parallel\\overline{BC}$, $\\overline{AD}:\\overline{AB}=1:3$, $\\overline{BC}=12$일 때 $\\overline{DE}$",
+            "answer": "$4$"
+          }
+        },
+        "B": {
+          "prompt": "$\\triangle ABC$의 변 $AB$, $AC$ 위에 각각 점 $D$, $E$가 있고 $\\overline{DE}\\parallel\\overline{BC}$이다. $\\overline{AD}:\\overline{AB}=1:3$, $\\overline{BC}=12$일 때 $\\overline{DE}$의 길이를 구하고, $\\overline{AD}:\\overline{AB}$를 쓸 수 있는 까닭을 쓰시오.",
+          "answer": "$\\overline{DE}:\\overline{BC}=\\overline{AD}:\\overline{AB}=1:3$이므로 $\\overline{DE}=12\\times\\dfrac{1}{3}=4$이다. $\\triangle ADE\\backsim\\triangle ABC$에서 $\\overline{DE}$와 $\\overline{BC}$, $\\overline{AD}$와 $\\overline{AB}$가 각각 대응변이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$\\overline{DE}=4$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$\\overline{DE}:\\overline{BC}$가 닮음비 $\\overline{AD}:\\overline{AB}$와 같다",
+                "$\\triangle ADE$와 $\\triangle ABC$의 대응변의 비이다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "삼각형 $ABC$의 변 $AB$, $AC$ 위의 점 $D$, $E$에 대해 $DE\\parallel BC$이고 $AD:AB=1:3$이다. 대응변의 비가 같으므로 $DE$의 길이는 $BC$의 길이의 {$\\frac{1}{3}$}배이다.",
+          "acceptedAnswers": [
+            [
+              "$\\frac{1}{3}$",
+              "$1\\div3$"
+            ]
+          ]
+        },
+        "goal": "닮음비로 평행한 선분의 길이 구하기",
+        "coreAfter": "삼각형에서 밑변에 평행한 선분의 길이는, {꼭짓점}에서 그 선분까지 잰 변의 길이가 변 전체의 몇 배인지 구한 뒤, 그 값을 밑변의 길이에 곱해 구한다.",
+        "coreReason": "닮음비는 비인데 그대로 곱한다고 하여 무엇을 곱하는지 불분명하다.",
+        "hash": "b146cfe7a49234ea4722a0f5a8f3e952541ee8d4216e27188c0a562fa5a70a2c"
+      },
+      "candidateNormalizedHash": "b146cfe7a49234ea4722a0f5a8f3e952541ee8d4216e27188c0a562fa5a70a2c",
+      "candidateFingerprint": "b762dfbbc4a76c7122f5a7744647ccf2c53772aa640b55ce54679c27ea177118",
+      "candidateGeneralDefinition": "삼각형에서 밑변에 평행한 선분의 길이는, {꼭짓점}에서 그 선분까지 잰 변의 길이가 변 전체의 몇 배인지 구한 뒤, 그 값을 밑변의 길이에 곱해 구한다.",
+      "preservationErrors": [],
+      "visibleLengths": {
+        "generalDefinition": 83,
+        "B": 96,
+        "C": 88
+      }
+    },
+    {
+      "originalDisputeIndex": 209,
+      "id": "m2-07-01-xc10",
+      "sourceIndex": 3003,
+      "currentFingerprint": "dc9a98da529ad99fc495385e541c96d47e44fa2be6f5feb765efa190eca0aeda",
+      "currentNormalizedHash": "fc3f541c79426b04d59076fc9034bd9e152a6f3a0b83baef3739687e143876c0",
+      "snapshotNormalizedHash": "fc3f541c79426b04d59076fc9034bd9e152a6f3a0b83baef3739687e143876c0",
+      "snapshotMatches": true,
+      "verdict": "revise",
+      "reason": "B의 대응변 이름만 반복하는 대안을 실제 같은 직선 위 대응 관계로 명시한다. C는 분모가 꼭짓점 A에서 원래 밑변의 끝점까지 잰 길이임을 지정해 DB·EC 대안이 들어갈 여지를 없앤다. 일반 설명은 유지한다.",
+      "originalBlind": [],
+      "originalKey": [
+        [
+          "m2-07-01-xc10",
+          "revise",
+          "revise",
+          "none",
+          "B: 필수 기준 'AD의 대응변이 AB이다'는 물음에 이미 적힌 'AD와 짝지은 선분이 AB'를 되풀이하면 만족되므로 독립 필수가 아니다. 같은 직선 위 선분끼리 짝짓는다, 또는 D와 B가 대응한다는 실질 근거만 남겨야 한다. C: AD:AB=AE:AC 말고 AD:DB=AE:EC도 성립한다. AD:AB=AE:AC=k이면 두 비 모두 k/(1+k)이다. 문장에 '꼭짓점에서 밑변까지' 조건이 없어 (DB, EC)도 정답인데 인정 답 목록에는 없으므로 답이 하나로 정해지지 않는다."
+        ]
+      ],
+      "reader": "Codex direct actual source/B/C/answer/criterion/generalDefinition reading; no independent approval",
+      "readAt": "2026-10-07T11:29:28.483Z",
+      "inputSha256": "2910b0acc769b9c0d774dedce427859a1e96c141a10eaa01a3b08357326e6ad9",
+      "beforeReadingEvidence": {
+        "path": "before-208-220.txt",
+        "byteSha256": "9a92fcfe1cd418a8d78f63f704cbe06cab9903d45da5a10f141baa8f20b9dff3"
+      },
+      "manualEvidence": {
+        "path": "manual-208-220.json",
+        "byteSha256": "b200c78a0cdcd34d89e82f1588876105b752839f0406f5173dfaed5223c301d3"
+      },
+      "proposedRawRow": {
+        "id": "m2-07-01-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\triangle ABC$에서 변 $BA$와 변 $CA$를 점 $A$를 지나도록 늘인 연장선 위에 각각 점 $D$, $E$가 있고 $\\overline{DE}\\parallel\\overline{BC}$이다. $\\overline{AD}:\\overline{AB}$와 같은 비를 모두 쓰고, $\\overline{AD}$와 짝지은 선분이 $\\overline{AC}$가 아니라 $\\overline{AB}$인 까닭을 쓰시오.",
+        "bAnswer": "$\\overline{AD}:\\overline{AB}=\\overline{AE}:\\overline{AC}=\\overline{DE}:\\overline{BC}$이다. $\\triangle ADE\\backsim\\triangle ABC$에서 $D$와 $B$가 대응하여 $\\overline{AD}$의 대응변이 한 직선 위에 있는 $\\overline{AB}$이기 때문이다.",
+        "bGoal": "연장선 쪽 평행선에서 비례식 짝짓기",
+        "bReason": "c4가 닮음의 까닭을 묻는 것과 구별되게 비례식의 짝을 정하는 방법을 묻도록 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{AE}:\\overline{AC}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{DE}:\\overline{BC}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$AD$와 $AB$는 같은 직선 위의 대응변이다",
+              "닮은 두 삼각형에서 $D$와 $B$가 대응한다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "삼각형 $ABC$의 $BA$, $CA$를 $A$ 너머로 늘인 곳에 각각 $D$, $E$가 있고 $DE\\parallel BC$이다. $A$에서 평행선까지 잰 길이를 $A$에서 원래 밑변의 끝점까지 잰 길이와 비교하면 $AD:$ {$AB$} $=AE:$ {$AC$}이다.",
+        "cAnswers": [
+          "$AB$",
+          "$AC$"
+        ],
+        "cReason": "B의 대응변 이름만 반복하는 대안을 실제 같은 직선 위 대응 관계로 명시한다. C는 분모가 꼭짓점 A에서 원래 밑변의 끝점까지 잰 길이임을 지정해 DB·EC 대안이 들어갈 여지를 없앤다. 일반 설명은 유지한다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "한 직선 위의 선분끼리 짝짓는 방법",
+        "authorBatch": 46,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3003,
+        "part": "m2plus",
+        "sourceFingerprint": "45c850b28258da913f33ecbb19d13d8b808efece3683949f3f3b56920660feba",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3003
+        },
+        "directReview": null,
+        "cMarkedSentence": "삼각형 $ABC$의 $BA$, $CA$를 $A$ 너머로 늘인 곳에 각각 $D$, $E$가 있고 $DE\\parallel BC$이다. $A$에서 평행선까지 잰 길이를 $A$에서 원래 밑변의 끝점까지 잰 길이와 비교하면 $AD:$ {$AB$} $=AE:$ {$AC$}이다.",
+        "cSlotAnswers": [
+          "$AB$",
+          "$AC$"
+        ],
+        "cStudentSentence": "삼각형 $ABC$의 $BA$, $CA$를 $A$ 너머로 늘인 곳에 각각 $D$, $E$가 있고 $DE\\parallel BC$이다. $A$에서 평행선까지 잰 길이를 $A$에서 원래 밑변의 끝점까지 잰 길이와 비교하면 $AD:$ □ $=AE:$ □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$AB$",
+            "equivalentAnswers": [
+              "$AB$",
+              "$BA$",
+              "$\\overline{AB}$",
+              "$\\overline{BA}$"
+            ],
+            "equivalenceReview": "Codex tail-116 report proposal; independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$AC$",
+            "equivalentAnswers": [
+              "$AC$",
+              "$CA$",
+              "$\\overline{AC}$",
+              "$\\overline{CA}$"
+            ],
+            "equivalenceReview": "Codex tail-116 report proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$AB$",
+            "$BA$",
+            "$\\overline{AB}$",
+            "$\\overline{BA}$"
+          ],
+          [
+            "$AC$",
+            "$CA$",
+            "$\\overline{AC}$",
+            "$\\overline{CA}$"
+          ]
+        ],
+        "proposalFingerprint": "d15efead8709ae00ce6b4fdd91d8b7f64d29790caa0d29a1a69b2421a1355c23",
+        "bQuestion": {
+          "prompt": "$\\triangle ABC$에서 변 $BA$와 변 $CA$를 점 $A$를 지나도록 늘인 연장선 위에 각각 점 $D$, $E$가 있고 $\\overline{DE}\\parallel\\overline{BC}$이다. $\\overline{AD}:\\overline{AB}$와 같은 비를 모두 쓰고, $\\overline{AD}$와 짝지은 선분이 $\\overline{AC}$가 아니라 $\\overline{AB}$인 까닭을 쓰시오.",
+          "answer": "$\\overline{AD}:\\overline{AB}=\\overline{AE}:\\overline{AC}=\\overline{DE}:\\overline{BC}$이다. $\\triangle ADE\\backsim\\triangle ABC$에서 $D$와 $B$가 대응하여 $\\overline{AD}$의 대응변이 한 직선 위에 있는 $\\overline{AB}$이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$\\overline{AE}:\\overline{AC}$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$\\overline{DE}:\\overline{BC}$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$AD$와 $AB$는 같은 직선 위의 대응변이다",
+                "닮은 두 삼각형에서 $D$와 $B$가 대응한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "삼각형 $ABC$의 $BA$, $CA$를 $A$ 너머로 늘인 곳에 각각 $D$, $E$가 있고 $DE\\parallel BC$이다. $A$에서 평행선까지 잰 길이를 $A$에서 원래 밑변의 끝점까지 잰 길이와 비교하면 $AD:$ {$AB$} $=AE:$ {$AC$}이다.",
+          "acceptedAnswers": [
+            [
+              "$AB$",
+              "$BA$",
+              "$\\overline{AB}$",
+              "$\\overline{BA}$"
+            ],
+            [
+              "$AC$",
+              "$CA$",
+              "$\\overline{AC}$",
+              "$\\overline{CA}$"
+            ]
+          ]
+        }
+      },
+      "candidateNormalized": {
+        "id": "m2-07-01-xc10",
+        "grade": "중2",
+        "source": {
+          "id": "m2-07-01-xc10",
+          "section": "중2::7. 닮음의 활용::삼각형에서 평행선 사이의 선분의 길이의 비",
+          "term": "연장선 쪽의 평행선",
+          "kind": "방법",
+          "level": "중",
+          "definition": "평행선이 꼭짓점 너머 연장선과 만날 때도 비례식은 {한 직선 위}에 있는 선분끼리 짝지어 세운다. 꼭짓점에서 평행선까지의 길이와 꼭짓점에서 {밑변}까지의 길이를 견준다.",
+          "example": {
+            "prompt": "$\\triangle ABC$에서 $\\overline{BA}$, $\\overline{CA}$의 연장선 위에 점 $D$, $E$가 있고 $\\overline{DE}\\parallel\\overline{BC}$일 때 $\\overline{AD}:\\overline{AB}=\\overline{AE}:\\square$의 $\\square$는?",
+            "answer": "$\\overline{AC}$"
+          }
+        },
+        "B": {
+          "prompt": "$\\triangle ABC$에서 변 $BA$와 변 $CA$를 점 $A$를 지나도록 늘인 연장선 위에 각각 점 $D$, $E$가 있고 $\\overline{DE}\\parallel\\overline{BC}$이다. $\\overline{AD}:\\overline{AB}$와 같은 비를 모두 쓰고, $\\overline{AD}$와 짝지은 선분이 $\\overline{AC}$가 아니라 $\\overline{AB}$인 까닭을 쓰시오.",
+          "answer": "$\\overline{AD}:\\overline{AB}=\\overline{AE}:\\overline{AC}=\\overline{DE}:\\overline{BC}$이다. $\\triangle ADE\\backsim\\triangle ABC$에서 $D$와 $B$가 대응하여 $\\overline{AD}$의 대응변이 한 직선 위에 있는 $\\overline{AB}$이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$\\overline{AE}:\\overline{AC}$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$\\overline{DE}:\\overline{BC}$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$AD$와 $AB$는 같은 직선 위의 대응변이다",
+                "닮은 두 삼각형에서 $D$와 $B$가 대응한다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "삼각형 $ABC$의 $BA$, $CA$를 $A$ 너머로 늘인 곳에 각각 $D$, $E$가 있고 $DE\\parallel BC$이다. $A$에서 평행선까지 잰 길이를 $A$에서 원래 밑변의 끝점까지 잰 길이와 비교하면 $AD:$ {$AB$} $=AE:$ {$AC$}이다.",
+          "acceptedAnswers": [
+            [
+              "$AB$",
+              "$BA$",
+              "$\\overline{AB}$",
+              "$\\overline{BA}$"
+            ],
+            [
+              "$AC$",
+              "$CA$",
+              "$\\overline{AC}$",
+              "$\\overline{CA}$"
+            ]
+          ]
+        },
+        "goal": "연장선 쪽 평행선에서 비례식 짝짓기",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "0919d0a1df2ec56a3fc68d578c3bddf7aec95cf8485fd764b68532b15ccee8d2"
+      },
+      "candidateNormalizedHash": "0919d0a1df2ec56a3fc68d578c3bddf7aec95cf8485fd764b68532b15ccee8d2",
+      "candidateFingerprint": "d15efead8709ae00ce6b4fdd91d8b7f64d29790caa0d29a1a69b2421a1355c23",
+      "candidateGeneralDefinition": "평행선이 꼭짓점 너머 연장선과 만날 때도 비례식은 {한 직선 위}에 있는 선분끼리 짝지어 세운다. 꼭짓점에서 평행선까지의 길이와 꼭짓점에서 {밑변}까지의 길이를 견준다.",
+      "preservationErrors": [],
+      "visibleLengths": {
+        "generalDefinition": 90,
+        "B": 114,
+        "C": 110
+      }
+    },
+    {
+      "originalDisputeIndex": 210,
+      "id": "m2-07-02-xc2",
+      "sourceIndex": 3016,
+      "currentFingerprint": "6323379ee1a081ae726baa5d4aa05c0d70c95842b341bf55e80c577c873c7814",
+      "currentNormalizedHash": "aabef455804b97153f703bc9d8a27431fc6eb67a8e5e20feeaca2ce86d9075e0",
+      "snapshotNormalizedHash": "aabef455804b97153f703bc9d8a27431fc6eb67a8e5e20feeaca2ce86d9075e0",
+      "snapshotMatches": true,
+      "verdict": "revise",
+      "reason": "C에서 대응할 변을 ∠A를 낀 두 변으로 제한하여 BC를 같은 끝점을 가진 변으로 읽을 수 없게 한다. B와 일반 설명은 유지한다.",
+      "originalBlind": [],
+      "originalKey": [
+        [
+          "m2-07-02-xc2",
+          "pass",
+          "revise",
+          "none",
+          "C: '점 B를 함께 가진 변'은 AB뿐 아니라 BC도 해당하고, '점 C를 함께 가진 변'은 BC도 해당한다. '∠A를 낀 두 변'이라는 조건이 문장에 없어 답이 유일하지 않다."
+        ]
+      ],
+      "reader": "Codex direct actual source/B/C/answer/criterion/generalDefinition reading; no independent approval",
+      "readAt": "2026-10-07T11:29:28.483Z",
+      "inputSha256": "2910b0acc769b9c0d774dedce427859a1e96c141a10eaa01a3b08357326e6ad9",
+      "beforeReadingEvidence": {
+        "path": "before-208-220.txt",
+        "byteSha256": "9a92fcfe1cd418a8d78f63f704cbe06cab9903d45da5a10f141baa8f20b9dff3"
+      },
+      "manualEvidence": {
+        "path": "manual-208-220.json",
+        "byteSha256": "b200c78a0cdcd34d89e82f1588876105b752839f0406f5173dfaed5223c301d3"
+      },
+      "proposedRawRow": {
+        "id": "m2-07-02-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\triangle PQR$에서 $\\angle P$의 이등분선이 변 $QR$와 점 $S$에서 만난다. $\\overline{QS}:\\overline{SR}$를 두 변의 길이의 비로 나타내고, 각 조각을 어느 변과 짝지었는지 그 기준을 쓰시오.",
+        "bAnswer": "$\\overline{QS}:\\overline{SR}=\\overline{PQ}:\\overline{PR}$이다. $\\overline{QS}$는 점 $Q$를 함께 가진 $\\overline{PQ}$와, $\\overline{SR}$는 점 $R$를 함께 가진 $\\overline{PR}$와 짝짓는다.",
+        "bGoal": "조각과 변을 짝짓는 기준",
+        "bReason": "$ABC$ 예시는 c2와 같아서, 다른 문자로 바꿔 짝짓는 기준 자체를 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{PQ}:\\overline{PR}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "조각과 같은 끝 점을 가진 변끼리 짝짓는다",
+              "$\\overline{QS}$는 점 $Q$에서 만나는 $\\overline{PQ}$와 짝짓는다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "삼각형 $ABC$에서 $\\angle A$의 이등분선이 $BC$와 $D$에서 만난다. $\\angle A$를 낀 두 변 중에서 $BD$는 끝점 $B$를 가진 {$AB$}와, $DC$는 끝점 $C$를 가진 {$AC$}와 짝지어 비례식을 세운다.",
+        "cAnswers": [
+          "$AB$",
+          "$AC$"
+        ],
+        "cReason": "C에서 대응할 변을 ∠A를 낀 두 변으로 제한하여 BC를 같은 끝점을 가진 변으로 읽을 수 없게 한다. B와 일반 설명은 유지한다.",
+        "learningRole": "procedure",
+        "roleReason": "같은 끝 점을 가진 조각과 변끼리 짝짓기",
+        "authorBatch": 47,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3016,
+        "part": "m2plus",
+        "sourceFingerprint": "86b6065f458975f26b51b28b3942e8d1fc8a88f300afa4c8f5bcefbc6e122d06",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3016
+        },
+        "directReview": null,
+        "cMarkedSentence": "삼각형 $ABC$에서 $\\angle A$의 이등분선이 $BC$와 $D$에서 만난다. $\\angle A$를 낀 두 변 중에서 $BD$는 끝점 $B$를 가진 {$AB$}와, $DC$는 끝점 $C$를 가진 {$AC$}와 짝지어 비례식을 세운다.",
+        "cSlotAnswers": [
+          "$AB$",
+          "$AC$"
+        ],
+        "cStudentSentence": "삼각형 $ABC$에서 $\\angle A$의 이등분선이 $BC$와 $D$에서 만난다. $\\angle A$를 낀 두 변 중에서 $BD$는 끝점 $B$를 가진 □와, $DC$는 끝점 $C$를 가진 □와 짝지어 비례식을 세운다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$AB$",
+            "equivalentAnswers": [
+              "$AB$",
+              "$BA$",
+              "$\\overline{AB}$",
+              "$\\overline{BA}$"
+            ],
+            "equivalenceReview": "Codex tail-116 report proposal; independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$AC$",
+            "equivalentAnswers": [
+              "$AC$",
+              "$CA$",
+              "$\\overline{AC}$",
+              "$\\overline{CA}$"
+            ],
+            "equivalenceReview": "Codex tail-116 report proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$AB$",
+            "$BA$",
+            "$\\overline{AB}$",
+            "$\\overline{BA}$"
+          ],
+          [
+            "$AC$",
+            "$CA$",
+            "$\\overline{AC}$",
+            "$\\overline{CA}$"
+          ]
+        ],
+        "proposalFingerprint": "efbc1124ca839504c1c8d1e89297599a28cf3200185ab534afe26b54237e37d0",
+        "clozeQuestion": {
+          "sentence": "삼각형 $ABC$에서 $\\angle A$의 이등분선이 $BC$와 $D$에서 만난다. $\\angle A$를 낀 두 변 중에서 $BD$는 끝점 $B$를 가진 {$AB$}와, $DC$는 끝점 $C$를 가진 {$AC$}와 짝지어 비례식을 세운다.",
+          "acceptedAnswers": [
+            [
+              "$AB$",
+              "$BA$",
+              "$\\overline{AB}$",
+              "$\\overline{BA}$"
+            ],
+            [
+              "$AC$",
+              "$CA$",
+              "$\\overline{AC}$",
+              "$\\overline{CA}$"
+            ]
+          ]
+        }
+      },
+      "candidateNormalized": {
+        "id": "m2-07-02-xc2",
+        "grade": "중2",
+        "source": {
+          "id": "m2-07-02-xc2",
+          "section": "중2::7. 닮음의 활용::삼각형의 각의 이등분선",
+          "term": "이등분선의 비례식에서 짝짓기",
+          "kind": "방법",
+          "level": "하",
+          "definition": "내각의 이등분선이 나눈 대변의 두 조각은 각각 {맞닿은 변}과 짝을 짓는다. 조각과 그 조각에 맞닿은 변을 같은 {차례}로 써서 비례식을 세운다.",
+          "example": {
+            "prompt": "$\\triangle ABC$에서 $\\angle A$의 이등분선이 $\\overline{BC}$와 $D$에서 만날 때 $\\overline{BD}:\\overline{DC}=\\overline{AB}:\\square$의 $\\square$는?",
+            "answer": "$\\overline{AC}$"
+          }
+        },
+        "B": {
+          "prompt": "$\\triangle PQR$에서 $\\angle P$의 이등분선이 변 $QR$와 점 $S$에서 만난다. $\\overline{QS}:\\overline{SR}$를 두 변의 길이의 비로 나타내고, 각 조각을 어느 변과 짝지었는지 그 기준을 쓰시오.",
+          "answer": "$\\overline{QS}:\\overline{SR}=\\overline{PQ}:\\overline{PR}$이다. $\\overline{QS}$는 점 $Q$를 함께 가진 $\\overline{PQ}$와, $\\overline{SR}$는 점 $R$를 함께 가진 $\\overline{PR}$와 짝짓는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$\\overline{PQ}:\\overline{PR}$"
+              ]
+            },
+            {
+              "anyOf": [
+                "조각과 같은 끝 점을 가진 변끼리 짝짓는다",
+                "$\\overline{QS}$는 점 $Q$에서 만나는 $\\overline{PQ}$와 짝짓는다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "삼각형 $ABC$에서 $\\angle A$의 이등분선이 $BC$와 $D$에서 만난다. $\\angle A$를 낀 두 변 중에서 $BD$는 끝점 $B$를 가진 {$AB$}와, $DC$는 끝점 $C$를 가진 {$AC$}와 짝지어 비례식을 세운다.",
+          "acceptedAnswers": [
+            [
+              "$AB$",
+              "$BA$",
+              "$\\overline{AB}$",
+              "$\\overline{BA}$"
+            ],
+            [
+              "$AC$",
+              "$CA$",
+              "$\\overline{AC}$",
+              "$\\overline{CA}$"
+            ]
+          ]
+        },
+        "goal": "조각과 변을 짝짓는 기준",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "587aca65ad90d135cbe85b1145a69fe8c8d68e1817c50ec3c3731f35f40cb048"
+      },
+      "candidateNormalizedHash": "587aca65ad90d135cbe85b1145a69fe8c8d68e1817c50ec3c3731f35f40cb048",
+      "candidateFingerprint": "efbc1124ca839504c1c8d1e89297599a28cf3200185ab534afe26b54237e37d0",
+      "candidateGeneralDefinition": "내각의 이등분선이 나눈 대변의 두 조각은 각각 {맞닿은 변}과 짝을 짓는다. 조각과 그 조각에 맞닿은 변을 같은 {차례}로 써서 비례식을 세운다.",
+      "preservationErrors": [],
+      "visibleLengths": {
+        "generalDefinition": 77,
+        "B": 87,
+        "C": 95
+      }
+    },
+    {
+      "originalDisputeIndex": 211,
+      "id": "m1-07-01-xc21",
+      "sourceIndex": 1863,
+      "currentFingerprint": "ee3ed4dd0cb4293efdf8f54edab7f2411a368cf95ed39e72b0a1f85b1e702da7",
+      "currentNormalizedHash": "4e1076f92436a667ec21bcb6a93a2466a6dc14851809d493d62197e69dec07e6",
+      "snapshotNormalizedHash": "4e1076f92436a667ec21bcb6a93a2466a6dc14851809d493d62197e69dec07e6",
+      "snapshotMatches": true,
+      "verdict": "revise",
+      "reason": "C의 '곧 □와 □'라는 열린 서술 틀을 오각기둥의 면을 실제로 세는 문항으로 바꾼다. 전개도에서 각 면이 한 번씩 나옴은 조건으로 주고 그 수의 해석을 요구한다. B와 일반 설명은 유지한다.",
+      "originalBlind": [
+        [
+          "m1-07-01-xc21",
+          "C",
+          "면의 개수; 같다",
+          "revise",
+          "'곧 □와 □'가 문장 구조상 모호해 두 빈칸에 무엇을 넣을지 정해지지 않는다"
+        ]
+      ],
+      "originalKey": [
+        [
+          "m1-07-01-xc21",
+          "pass",
+          "revise",
+          "none",
+          "C: '곧 □와 □'가 문장 구조상 모호해 두 빈칸에 들어갈 말이 정해지지 않는다. 다각형 수, 면의 개수, 같다 등으로 갈린다."
+        ]
+      ],
+      "reader": "Codex direct actual source/B/C/answer/criterion/generalDefinition reading; no independent approval",
+      "readAt": "2026-10-07T11:29:28.483Z",
+      "inputSha256": "2910b0acc769b9c0d774dedce427859a1e96c141a10eaa01a3b08357326e6ad9",
+      "beforeReadingEvidence": {
+        "path": "before-208-220.txt",
+        "byteSha256": "9a92fcfe1cd418a8d78f63f704cbe06cab9903d45da5a10f141baa8f20b9dff3"
+      },
+      "manualEvidence": {
+        "path": "manual-208-220.json",
+        "byteSha256": "b200c78a0cdcd34d89e82f1588876105b752839f0406f5173dfaed5223c301d3"
+      },
+      "proposedRawRow": {
+        "id": "m1-07-01-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "오각기둥의 전개도에는 다각형이 모두 몇 개 있는지 구하고, 전개도의 다각형의 개수를 입체도형의 무엇으로 알 수 있는지 설명하시오.",
+        "bAnswer": "전개도에는 다면체의 모든 면이 한 번씩 나타나므로 다각형의 개수는 면의 개수와 같다. 오각기둥은 면이 $5+2=7$개이므로 $7$개이다.",
+        "bGoal": "전개도의 다각형 수와 면의 개수 연결",
+        "bReason": "어떤 다면체의 전개도인지 없어 오각기둥을 예로 넣고 근거를 묻게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$7$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "면의 개수와 같다",
+              "모든 면이 한 번씩 나타난다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cReason": "C의 '곧 □와 □'라는 열린 서술 틀을 오각기둥의 면을 실제로 세는 문항으로 바꾼다. 전개도에서 각 면이 한 번씩 나옴은 조건으로 주고 그 수의 해석을 요구한다. B와 일반 설명은 유지한다.",
+        "exampleNeeded": true,
+        "studentLabel": "다면체의 전개도에 있는 다각형의 개수",
+        "learningRole": "procedure",
+        "roleReason": "전개도의 다각형을 면의 개수로 세기",
+        "authorBatch": 20,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1863,
+        "part": "m1plus",
+        "sourceFingerprint": "a3c3e9878c579ecf54300282317b932a1bd90955153df7eba43997cdebd9ef23",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1863
+        },
+        "directReview": null,
+        "cFrozenSentence": "다면체의 전개도에는 면이 빠짐없이 한 번씩 나오므로 전개도의 다각형 수가 곧 □와 □.",
+        "cFrozenDefinition": "다면체의 전개도에는 면이 빠짐없이 한 번씩 나오므로 전개도의 다각형 수가 곧 {면의 개수}와 {같다}.",
+        "cFrozenAnswers": [
+          "면의 개수",
+          "같다"
+        ],
+        "cMarkedSentence": "오각기둥의 전개도에는 모든 면이 빠짐없이 한 번씩 나온다. 두 밑면과 다섯 옆면을 세면, 전개도에 있는 다각형은 모두 {$7$}개이다.",
+        "cSlotAnswers": [
+          "$7$"
+        ],
+        "cStudentSentence": "오각기둥의 전개도에는 모든 면이 빠짐없이 한 번씩 나온다. 두 밑면과 다섯 옆면을 세면, 전개도에 있는 다각형은 모두 □개이다.",
+        "cAnswers": [
+          "$7$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$7$",
+            "equivalentAnswers": [
+              "$7$"
+            ],
+            "equivalenceReview": "Codex tail-116 report proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$7$"
+          ]
+        ],
+        "proposalFingerprint": "ecb60e0a174a2e06df66211de42346eb98f084937341752388ab5b8c586a8033",
+        "cAfter": "오각기둥의 전개도에는 모든 면이 빠짐없이 한 번씩 나온다. 두 밑면과 다섯 옆면을 세면, 전개도에 있는 다각형은 모두 {$7$}개이다.",
+        "clozeQuestion": {
+          "sentence": "오각기둥의 전개도에는 모든 면이 빠짐없이 한 번씩 나온다. 두 밑면과 다섯 옆면을 세면, 전개도에 있는 다각형은 모두 {$7$}개이다.",
+          "acceptedAnswers": [
+            [
+              "$7$"
+            ]
+          ]
+        }
+      },
+      "candidateNormalized": {
+        "id": "m1-07-01-xc21",
+        "grade": "중1",
+        "source": {
+          "id": "m1-07-01-xc21",
+          "section": "중1::7. 입체도형::다면체",
+          "term": "전개도의 다각형 수",
+          "kind": "방법",
+          "level": "상",
+          "definition": "다면체의 전개도에는 면이 빠짐없이 한 번씩 나오므로 전개도의 다각형 수가 곧 {면의 개수}와 {같다}.",
+          "example": {
+            "prompt": "오각기둥의 전개도에 있는 다각형은 몇 개?",
+            "answer": "$7$개"
+          }
+        },
+        "B": {
+          "prompt": "오각기둥의 전개도에는 다각형이 모두 몇 개 있는지 구하고, 전개도의 다각형의 개수를 입체도형의 무엇으로 알 수 있는지 설명하시오.",
+          "answer": "전개도에는 다면체의 모든 면이 한 번씩 나타나므로 다각형의 개수는 면의 개수와 같다. 오각기둥은 면이 $5+2=7$개이므로 $7$개이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$7$개"
+              ]
+            },
+            {
+              "anyOf": [
+                "면의 개수와 같다",
+                "모든 면이 한 번씩 나타난다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "오각기둥의 전개도에는 모든 면이 빠짐없이 한 번씩 나온다. 두 밑면과 다섯 옆면을 세면, 전개도에 있는 다각형은 모두 {$7$}개이다.",
+          "acceptedAnswers": [
+            [
+              "$7$"
+            ]
+          ]
+        },
+        "goal": "전개도의 다각형 수와 면의 개수 연결",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "4f9479ce732c60314d2f646e80ed5101bc83b6780315ab77b886b3a99b75be81"
+      },
+      "candidateNormalizedHash": "4f9479ce732c60314d2f646e80ed5101bc83b6780315ab77b886b3a99b75be81",
+      "candidateFingerprint": "ecb60e0a174a2e06df66211de42346eb98f084937341752388ab5b8c586a8033",
+      "candidateGeneralDefinition": "다면체의 전개도에는 면이 빠짐없이 한 번씩 나오므로 전개도의 다각형 수가 곧 {면의 개수}와 {같다}.",
+      "preservationErrors": [],
+      "visibleLengths": {
+        "generalDefinition": 53,
+        "B": 72,
+        "C": 71
+      }
+    },
+    {
+      "originalDisputeIndex": 212,
+      "id": "m2-07-03-xc3",
+      "sourceIndex": 3041,
+      "currentFingerprint": "3a58945f3c2f7ae70c81987abde4370dc79e4c4f9e87551f162ba2c075364bc8",
+      "currentNormalizedHash": "a6d80cb68609cfb6c01f2883ddc3507f5f84349a5e62f154fb20bce7b6a17979",
+      "snapshotNormalizedHash": "a6d80cb68609cfb6c01f2883ddc3507f5f84349a5e62f154fb20bce7b6a17979",
+      "snapshotMatches": true,
+      "verdict": "revise",
+      "reason": "시작 위치를 가리키는 표현이 열려 있으므로 세 평행선에 대응하는 교점 순서를 명시하고 비례식의 실제 대응 선분을 묻는다. B 제외와 일반 설명은 유지한다.",
+      "originalBlind": [
+        [
+          "m2-07-03-xc3",
+          "C",
+          "같은 쪽(같은 방향)의 점",
+          "revise",
+          "같은 쪽, 같은 평행선, 위쪽 등 여러 표현이 가능해 빈칸 답이 정해지지 않음. 시작 위치의 기준을 구체화해야 함."
+        ]
+      ],
+      "originalKey": [
+        [
+          "m2-07-03-xc3",
+          "excluded",
+          "revise",
+          "none",
+          "C의 '두 직선 모두 ___에서 시작해'는 같은 쪽 평행선, 같은 평행선, 위쪽 평행선, 같은 방향의 점 등 여러 말로 채워진다. 답이 하나로 정해지지 않는다. 시작하는 위치의 기준을 구체적으로 밝혀야 한다."
+        ]
+      ],
+      "reader": "Codex direct actual source/B/C/answer/criterion/generalDefinition reading; no independent approval",
+      "readAt": "2026-10-07T11:29:28.483Z",
+      "inputSha256": "2910b0acc769b9c0d774dedce427859a1e96c141a10eaa01a3b08357326e6ad9",
+      "beforeReadingEvidence": {
+        "path": "before-208-220.txt",
+        "byteSha256": "9a92fcfe1cd418a8d78f63f704cbe06cab9903d45da5a10f141baa8f20b9dff3"
+      },
+      "manualEvidence": {
+        "path": "manual-208-220.json",
+        "byteSha256": "b200c78a0cdcd34d89e82f1588876105b752839f0406f5173dfaed5223c301d3"
+      },
+      "proposedRawRow": {
+        "id": "m2-07-03-xc3",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "비를 적는 차례는 xc23의 비례식 대응 오류를 찾는 질문에서 함께 평가된다.",
+        "cDecision": "rewrite",
+        "cReason": "시작 위치를 가리키는 표현이 열려 있으므로 세 평행선에 대응하는 교점 순서를 명시하고 비례식의 실제 대응 선분을 묻는다. B 제외와 일반 설명은 유지한다.",
+        "exclusionReason": "B 제외: xc23의 비례식 오류 진단 질문과 목표가 같다.",
+        "learningRole": "procedure",
+        "roleReason": "두 직선 모두 같은 평행선에서 시작해 적기",
+        "authorBatch": 47,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3041,
+        "part": "m2plus",
+        "sourceFingerprint": "2501fab552a88f189dbcdc6c348e6f62ba95c6f05a962d23199f38f4a6684193",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3041
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "평행선 사이의 조각을 비로 쓸 때는 두 직선 모두 □에서 시작해 만나는 차례대로 적는다.",
+        "cFrozenDefinition": "평행선 사이의 조각을 비로 쓸 때는 두 직선 모두 {같은 평행선}에서 시작해 만나는 차례대로 적는다.",
+        "cFrozenAnswers": [
+          "같은 평행선"
+        ],
+        "cMarkedSentence": "세 평행선이 두 직선과 만나며 같은 평행선 위의 교점이 각각 $(A,D)$, $(B,E)$, $(C,F)$이다. 두 직선에서 같은 순서로 조각을 짝지으면 $AB:BC=DE:$ {$EF$}이다.",
+        "cSlotAnswers": [
+          "$EF$"
+        ],
+        "cStudentSentence": "세 평행선이 두 직선과 만나며 같은 평행선 위의 교점이 각각 $(A,D)$, $(B,E)$, $(C,F)$이다. 두 직선에서 같은 순서로 조각을 짝지으면 $AB:BC=DE:$ □이다.",
+        "cAnswers": [
+          "$EF$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$EF$",
+            "equivalentAnswers": [
+              "$EF$",
+              "$FE$",
+              "$\\overline{EF}$",
+              "$\\overline{FE}$"
+            ],
+            "equivalenceReview": "Codex tail-116 report proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$EF$",
+            "$FE$",
+            "$\\overline{EF}$",
+            "$\\overline{FE}$"
+          ]
+        ],
+        "proposalFingerprint": "182c05c6517472d00f25accc68798dc7b32632f9180d3475780005ed66864bf7",
+        "cAfter": "세 평행선이 두 직선과 만나며 같은 평행선 위의 교점이 각각 $(A,D)$, $(B,E)$, $(C,F)$이다. 두 직선에서 같은 순서로 조각을 짝지으면 $AB:BC=DE:$ {$EF$}이다.",
+        "clozeQuestion": {
+          "sentence": "세 평행선이 두 직선과 만나며 같은 평행선 위의 교점이 각각 $(A,D)$, $(B,E)$, $(C,F)$이다. 두 직선에서 같은 순서로 조각을 짝지으면 $AB:BC=DE:$ {$EF$}이다.",
+          "acceptedAnswers": [
+            [
+              "$EF$",
+              "$FE$",
+              "$\\overline{EF}$",
+              "$\\overline{FE}$"
+            ]
+          ]
+        }
+      },
+      "candidateNormalized": {
+        "id": "m2-07-03-xc3",
+        "grade": "중2",
+        "source": {
+          "id": "m2-07-03-xc3",
+          "section": "중2::7. 닮음의 활용::평행선 사이의 선분의 길이의 비",
+          "term": "조각을 적는 차례",
+          "kind": "방법",
+          "level": "하",
+          "definition": "평행선 사이의 조각을 비로 쓸 때는 두 직선 모두 {같은 평행선}에서 시작해 만나는 차례대로 적는다."
+        },
+        "B": {
+          "excluded": "비를 적는 차례는 xc23의 비례식 대응 오류를 찾는 질문에서 함께 평가된다."
+        },
+        "C": {
+          "sentence": "세 평행선이 두 직선과 만나며 같은 평행선 위의 교점이 각각 $(A,D)$, $(B,E)$, $(C,F)$이다. 두 직선에서 같은 순서로 조각을 짝지으면 $AB:BC=DE:$ {$EF$}이다.",
+          "acceptedAnswers": [
+            [
+              "$EF$",
+              "$FE$",
+              "$\\overline{EF}$",
+              "$\\overline{FE}$"
+            ]
+          ]
+        },
+        "goal": "procedure",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "9d3a9942b74642e02e87c61e0ef2e9fb25812e2a04acbaf9ea8b1c2c0f835a7e"
+      },
+      "candidateNormalizedHash": "9d3a9942b74642e02e87c61e0ef2e9fb25812e2a04acbaf9ea8b1c2c0f835a7e",
+      "candidateFingerprint": "182c05c6517472d00f25accc68798dc7b32632f9180d3475780005ed66864bf7",
+      "candidateGeneralDefinition": "평행선 사이의 조각을 비로 쓸 때는 두 직선 모두 {같은 평행선}에서 시작해 만나는 차례대로 적는다.",
+      "preservationErrors": [],
+      "visibleLengths": {
+        "generalDefinition": 54,
+        "B": null,
+        "C": 95
+      }
+    },
+    {
+      "originalDisputeIndex": 213,
+      "id": "m2-07-03-xc16",
+      "sourceIndex": 3053,
+      "currentFingerprint": "ec83080f047bb3849736510705b319a29df8e86d6dde106e48ecfc5da8ce3ec5",
+      "currentNormalizedHash": "9fad1810cc88a786dc005ba0644aa58f0f24876e308efd78178f9474bc20ee44",
+      "snapshotNormalizedHash": "9fad1810cc88a786dc005ba0644aa58f0f24876e308efd78178f9474bc20ee44",
+      "snapshotMatches": true,
+      "verdict": "revise",
+      "reason": "'함께'라는 부사를 비례식 순서 뒤집기의 실제 결과로 바꾼다. 변별력이 낮다는 이유로 제외하지 않고 대응 관계를 명확히 한다. B 제외와 일반 설명은 유지한다.",
+      "originalBlind": [
+        [
+          "m2-07-03-xc16",
+          "C",
+          "같은(대응하는)",
+          "revise",
+          "'두 직선에서 □ 순서를 뒤집으면'의 문장 구조가 불분명해 빈칸의 뜻이 정해지지 않는다. 같은/대응하는/반대 등 여러 말이 가능하고 단순 문장 복원에 가깝다. 무엇을 어떻게 뒤집는지 비례식으로 구체화해야 한다."
+        ]
+      ],
+      "originalKey": [
+        [
+          "m2-07-03-xc16",
+          "excluded",
+          "revise",
+          "none",
+          "C의 빈칸 '함께'는 부사 하나를 복원하는 문제에 가깝다. 두 직선의 순서를 같이 뒤집는다는 수학 개념(예: AB:BC=DE:EF이면 CB:BA=FE:ED)을 확인하지 못한다. 함께/모두/같이/둘 다 등 표현이 여럿이라 채점 기준도 불안정하다. 비례식을 주고 뒤집은 뒤의 식을 쓰게 하는 식으로 고쳐야 한다."
+        ]
+      ],
+      "reader": "Codex direct actual source/B/C/answer/criterion/generalDefinition reading; no independent approval",
+      "readAt": "2026-10-07T11:29:28.483Z",
+      "inputSha256": "2910b0acc769b9c0d774dedce427859a1e96c141a10eaa01a3b08357326e6ad9",
+      "beforeReadingEvidence": {
+        "path": "before-208-220.txt",
+        "byteSha256": "9a92fcfe1cd418a8d78f63f704cbe06cab9903d45da5a10f141baa8f20b9dff3"
+      },
+      "manualEvidence": {
+        "path": "manual-208-220.json",
+        "byteSha256": "b200c78a0cdcd34d89e82f1588876105b752839f0406f5173dfaed5223c301d3"
+      },
+      "proposedRawRow": {
+        "id": "m2-07-03-xc16",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "두 직선에서 순서를 함께 뒤집는 내용은 c2의 대응 질문과 xc23의 오류 진단에 포함된다.",
+        "cDecision": "rewrite",
+        "cReason": "'함께'라는 부사를 비례식 순서 뒤집기의 실제 결과로 바꾼다. 변별력이 낮다는 이유로 제외하지 않고 대응 관계를 명확히 한다. B 제외와 일반 설명은 유지한다.",
+        "exclusionReason": "B 제외: c2, xc23과 목표가 겹친다.",
+        "learningRole": "definition",
+        "roleReason": "두 직선에서 함께 순서를 뒤집어야 비례 관계 유지",
+        "authorBatch": 47,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3053,
+        "part": "m2plus",
+        "sourceFingerprint": "c5d7b725d52ce17296e6eac24132bf1e62a9cb051959189182bbdab9ceda43cf",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3053
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "평행선들을 반대쪽부터 읽어도 두 직선에서 □ 순서를 뒤집으면 비례 관계가 유지된다.",
+        "cFrozenDefinition": "평행선들을 반대쪽부터 읽어도 두 직선에서 {함께} 순서를 뒤집으면 비례 관계가 유지된다.",
+        "cFrozenAnswers": [
+          "함께"
+        ],
+        "cMarkedSentence": "평행선 사이의 대응 조각에 대해 $AB:BC=DE:EF$이다. 두 직선에서 조각의 순서를 모두 뒤집으면 $CB:BA=$ {$FE:ED$}이다.",
+        "cSlotAnswers": [
+          "$FE:ED$"
+        ],
+        "cStudentSentence": "평행선 사이의 대응 조각에 대해 $AB:BC=DE:EF$이다. 두 직선에서 조각의 순서를 모두 뒤집으면 $CB:BA=$ □이다.",
+        "cAnswers": [
+          "$FE:ED$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$FE:ED$",
+            "equivalentAnswers": [
+              "$FE:ED$",
+              "$EF:DE$",
+              "$\\overline{FE}:\\overline{ED}$",
+              "$\\overline{EF}:\\overline{DE}$"
+            ],
+            "equivalenceReview": "Codex tail-116 report proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$FE:ED$",
+            "$EF:DE$",
+            "$\\overline{FE}:\\overline{ED}$",
+            "$\\overline{EF}:\\overline{DE}$"
+          ]
+        ],
+        "proposalFingerprint": "8c290b4738d656e338534400097aacfff5bbc10cca9fec97237e0ed573cfdee1",
+        "cAfter": "평행선 사이의 대응 조각에 대해 $AB:BC=DE:EF$이다. 두 직선에서 조각의 순서를 모두 뒤집으면 $CB:BA=$ {$FE:ED$}이다.",
+        "clozeQuestion": {
+          "sentence": "평행선 사이의 대응 조각에 대해 $AB:BC=DE:EF$이다. 두 직선에서 조각의 순서를 모두 뒤집으면 $CB:BA=$ {$FE:ED$}이다.",
+          "acceptedAnswers": [
+            [
+              "$FE:ED$",
+              "$EF:DE$",
+              "$\\overline{FE}:\\overline{ED}$",
+              "$\\overline{EF}:\\overline{DE}$"
+            ]
+          ]
+        }
+      },
+      "candidateNormalized": {
+        "id": "m2-07-03-xc16",
+        "grade": "중2",
+        "source": {
+          "id": "m2-07-03-xc16",
+          "section": "중2::7. 닮음의 활용::평행선 사이의 선분의 길이의 비",
+          "term": "평행선의 순서를 바꿔 보기",
+          "kind": "성질",
+          "level": "중",
+          "definition": "평행선들을 반대쪽부터 읽어도 두 직선에서 {함께} 순서를 뒤집으면 비례 관계가 유지된다."
+        },
+        "B": {
+          "excluded": "두 직선에서 순서를 함께 뒤집는 내용은 c2의 대응 질문과 xc23의 오류 진단에 포함된다."
+        },
+        "C": {
+          "sentence": "평행선 사이의 대응 조각에 대해 $AB:BC=DE:EF$이다. 두 직선에서 조각의 순서를 모두 뒤집으면 $CB:BA=$ {$FE:ED$}이다.",
+          "acceptedAnswers": [
+            [
+              "$FE:ED$",
+              "$EF:DE$",
+              "$\\overline{FE}:\\overline{ED}$",
+              "$\\overline{EF}:\\overline{DE}$"
+            ]
+          ]
+        },
+        "goal": "definition",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "434e13f38fff4d3689e69bd8fa73041b5bcf213e527ceef47a3163e6389ca738"
+      },
+      "candidateNormalizedHash": "434e13f38fff4d3689e69bd8fa73041b5bcf213e527ceef47a3163e6389ca738",
+      "candidateFingerprint": "8c290b4738d656e338534400097aacfff5bbc10cca9fec97237e0ed573cfdee1",
+      "candidateGeneralDefinition": "평행선들을 반대쪽부터 읽어도 두 직선에서 {함께} 순서를 뒤집으면 비례 관계가 유지된다.",
+      "preservationErrors": [],
+      "visibleLengths": {
+        "generalDefinition": 47,
+        "B": null,
+        "C": 71
+      }
+    },
+    {
+      "originalDisputeIndex": 214,
+      "id": "m2-07-04-xc8",
+      "sourceIndex": 3070,
+      "currentFingerprint": "df5390cdf24a33ede141a8693c171e5ef9013b4296a5709cf4a748240a3921f0",
+      "currentNormalizedHash": "47c89fff34420be1ace5ce13b69c6548844d8be4907483a10b73530f12aa50be",
+      "snapshotNormalizedHash": "47c89fff34420be1ace5ce13b69c6548844d8be4907483a10b73530f12aa50be",
+      "snapshotMatches": true,
+      "verdict": "revise",
+      "reason": "세 점이라는 조건과 답 세 선분은 서로 다른 대상이므로 단순 답 노출이라는 기존 C 제외는 부당하다. 중점 L,M,N을 두 개씩 골라 연결한 서로 다른 선분의 개수를 C로 복구한다. B 제외와 일반 설명은 유지한다.",
+      "originalBlind": [],
+      "originalKey": [
+        [
+          "m2-07-04-xc8",
+          "excluded",
+          "revise",
+          "none",
+          "B 제외는 수긍할 수 있다. 질문이 요구하는 내용이 '3개'라는 개수 하나뿐이고, 그것도 지문에서 바로 읽히기 때문이다. B를 빼고 C로만 확인하는 구성은 허용된다. 그러나 C 제외 이유는 부실하다. '세 중점', '삼각형'이라는 낱말이 지문에 있고 답 '세 개'가 지문과 같은 수라는 사실만으로는 복사라고 할 수 없다. 이 항목은 삼각형 세 변의 중점 L, M, N 중 두 점씩 골라 이은 선분의 개수를 묻는 C로 만들 수 있다. 이때 학생은 3개의 점에서 2개를 고르는 조합을 3C2=3으로 계산해 3개를 얻고, 그 세 선분이 작은 삼각형을 이룬다는 점까지 해석해야 한다. 이는 조건을 수학적으로 해석해 수 관계를 고르는 정상 문항이다. 그러므로 C는 제외하지 말고 위와 같은 해석형 문항으로 작성해야 한다. 수학 교정은 없고(coreAfter가 null) 원문 정의도 틀리지 않으므로 core는 none이다."
+        ]
+      ],
+      "reader": "Codex direct actual source/B/C/answer/criterion/generalDefinition reading; no independent approval",
+      "readAt": "2026-10-07T11:29:28.483Z",
+      "inputSha256": "2910b0acc769b9c0d774dedce427859a1e96c141a10eaa01a3b08357326e6ad9",
+      "beforeReadingEvidence": {
+        "path": "before-208-220.txt",
+        "byteSha256": "9a92fcfe1cd418a8d78f63f704cbe06cab9903d45da5a10f141baa8f20b9dff3"
+      },
+      "manualEvidence": {
+        "path": "manual-208-220.json",
+        "byteSha256": "b200c78a0cdcd34d89e82f1588876105b752839f0406f5173dfaed5223c301d3"
+      },
+      "proposedRawRow": {
+        "id": "m2-07-04-xc8",
+        "learningRole": "definition",
+        "roleReason": "세 중점을 이은 선분의 개수이다.",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "작은 삼각형이 생긴다는 말에서 바로 나오는 단순 개수이다.",
+        "cDecision": "rewrite",
+        "cReason": "세 점이라는 조건과 답 세 선분은 서로 다른 대상이므로 단순 답 노출이라는 기존 C 제외는 부당하다. 중점 L,M,N을 두 개씩 골라 연결한 서로 다른 선분의 개수를 C로 복구한다. B 제외와 일반 설명은 유지한다.",
+        "exclusionReason": "B 제외: 단순 개수 형식이다. C 제외: 답이 문장의 '세 중점'과 '삼각형'에서 노출된다.",
+        "authorBatch": 48,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3070,
+        "part": "m2plus",
+        "sourceFingerprint": "8dd7cf0ca09a716579151e65fe70f3c52eb1f3d48f7c5ffed3822b477b5b6360",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3070
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "proposalFingerprint": "e60f082212e3e29fdc680059c029d71cd878d2783e510b9bdac083ca98c09058",
+        "cAfter": "삼각형의 세 변의 중점을 각각 $L$, $M$, $N$이라 한다. 이 점들을 두 개씩 골라 연결할 때, 서로 다른 선분은 모두 {$3$}개이며 작은 삼각형을 이룬다.",
+        "cMarkedSentence": "삼각형의 세 변의 중점을 각각 $L$, $M$, $N$이라 한다. 이 점들을 두 개씩 골라 연결할 때, 서로 다른 선분은 모두 {$3$}개이며 작은 삼각형을 이룬다.",
+        "cStudentSentence": "삼각형의 세 변의 중점을 각각 $L$, $M$, $N$이라 한다. 이 점들을 두 개씩 골라 연결할 때, 서로 다른 선분은 모두 □개이며 작은 삼각형을 이룬다.",
+        "cSlotAnswers": [
+          "$3$"
+        ],
+        "cAnswers": [
+          "$3$"
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$3$"
+          ]
+        ],
+        "clozeQuestion": {
+          "sentence": "삼각형의 세 변의 중점을 각각 $L$, $M$, $N$이라 한다. 이 점들을 두 개씩 골라 연결할 때, 서로 다른 선분은 모두 {$3$}개이며 작은 삼각형을 이룬다.",
+          "acceptedAnswers": [
+            [
+              "$3$"
+            ]
+          ]
+        },
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$3$",
+            "equivalentAnswers": [
+              "$3$"
+            ],
+            "equivalenceReview": "Codex tail-116 report proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": []
+      },
+      "candidateNormalized": {
+        "id": "m2-07-04-xc8",
+        "grade": "중2",
+        "source": {
+          "id": "m2-07-04-xc8",
+          "section": "중2::7. 닮음의 활용::삼각형의 두 변의 중점을 연결한 선분",
+          "term": "중점끼리 이은 선분의 수",
+          "kind": "성질",
+          "level": "하",
+          "definition": "삼각형의 세 중점을 두 개씩 골라 연결하면 선분 {세 개}로 작은 삼각형이 생긴다."
+        },
+        "B": {
+          "excluded": "작은 삼각형이 생긴다는 말에서 바로 나오는 단순 개수이다."
+        },
+        "C": {
+          "sentence": "삼각형의 세 변의 중점을 각각 $L$, $M$, $N$이라 한다. 이 점들을 두 개씩 골라 연결할 때, 서로 다른 선분은 모두 {$3$}개이며 작은 삼각형을 이룬다.",
+          "acceptedAnswers": [
+            [
+              "$3$"
+            ]
+          ]
+        },
+        "goal": "definition",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "21eb854d48b199013ed13d11867d35583751b995da2be4c4f8e3868bec4b4311"
+      },
+      "candidateNormalizedHash": "21eb854d48b199013ed13d11867d35583751b995da2be4c4f8e3868bec4b4311",
+      "candidateFingerprint": "e60f082212e3e29fdc680059c029d71cd878d2783e510b9bdac083ca98c09058",
+      "candidateGeneralDefinition": "삼각형의 세 중점을 두 개씩 골라 연결하면 선분 {세 개}로 작은 삼각형이 생긴다.",
+      "preservationErrors": [],
+      "visibleLengths": {
+        "generalDefinition": 44,
+        "B": null,
+        "C": 82
+      }
+    },
+    {
+      "originalDisputeIndex": 215,
+      "id": "m2-07-04-xc9",
+      "sourceIndex": 3071,
+      "currentFingerprint": "a1b729a2b000caf4d8753e706ccbcd743205ca871f6771302f7f0b13dca5f221",
+      "currentNormalizedHash": "516beb7f923e711208f17f1c98f3cdb7c689ab719a08426b29f7ab2e9dda520b",
+      "snapshotNormalizedHash": "516beb7f923e711208f17f1c98f3cdb7c689ab719a08426b29f7ab2e9dda520b",
+      "snapshotMatches": true,
+      "verdict": "revise",
+      "reason": "현재 key는 C pass지만 blind의 두 변이 한 끝점에 모이는 듯한 오독을 '각각'으로 해소한다. 첫 칸은 평행한이라는 동치 표현도 명시한다. C의 의미는 유지하며 B와 일반 설명은 그대로 둔다.",
+      "originalBlind": [
+        [
+          "m2-07-04-xc9",
+          "C",
+          "평행한, 양 끝",
+          "revise",
+          "첫 빈칸은 평행한/마주 보는/만나지 않는 등 동치 표현이 여럿이라 핵심 개념이 평행인지 구별하기 어렵다. 둘째 문장 '중점이 놓인 두 변은 그 선분의 □에서 만난다'는 수학적으로 부정확해서(각 변이 선분의 한 끝에서 만난다) 빈칸 답이 정해지지 않는다."
+        ]
+      ],
+      "originalKey": [
+        [
+          "m2-07-04-xc9",
+          "pass",
+          "pass",
+          "none",
+          ""
+        ]
+      ],
+      "reader": "Codex direct actual source/B/C/answer/criterion/generalDefinition reading; no independent approval",
+      "readAt": "2026-10-07T11:29:28.483Z",
+      "inputSha256": "2910b0acc769b9c0d774dedce427859a1e96c141a10eaa01a3b08357326e6ad9",
+      "beforeReadingEvidence": {
+        "path": "before-208-220.txt",
+        "byteSha256": "9a92fcfe1cd418a8d78f63f704cbe06cab9903d45da5a10f141baa8f20b9dff3"
+      },
+      "manualEvidence": {
+        "path": "manual-208-220.json",
+        "byteSha256": "b200c78a0cdcd34d89e82f1588876105b752839f0406f5173dfaed5223c301d3"
+      },
+      "proposedRawRow": {
+        "id": "m2-07-04-xc9",
+        "learningRole": "application",
+        "roleReason": "중점 연결 선분과 짝지어 비교하는 변은 그 선분과 만나지 않는 변이다.",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\triangle ABC$에서 $\\overline{AB}$, $\\overline{AC}$의 중점을 각각 $M$, $N$이라 하자. 중점 연결 성질에서 $\\overline{MN}$과 길이를 비교하는 변은 어느 변인지 쓰고, 그 변이 $\\overline{MN}$과 만나는지 쓰시오.",
+        "bAnswer": "$\\overline{BC}$이다. $\\overline{BC}$는 $\\overline{MN}$과 만나지 않는다(평행하다). $\\overline{AB}$, $\\overline{AC}$는 $\\overline{MN}$의 끝점에서 만난다.",
+        "bGoal": "중점 선분에 대응하는 변 고르기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{BC}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "만나지 않는다",
+              "평행하다"
+            ]
+          }
+        ],
+        "bReason": "대응변을 고르는 기준을 구체적인 삼각형으로 확인하게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "삼각형의 두 변의 중점을 이은 선분과 길이를 비교하는 나머지 변은 그 선분과 {만나지 않는} 변이다. 중점이 놓인 두 변은 각각 그 선분의 {한 끝점}에서 만난다.",
+        "cAnswers": [
+          "만나지 않는",
+          "한 끝점"
+        ],
+        "cReason": "현재 key는 C pass지만 blind의 두 변이 한 끝점에 모이는 듯한 오독을 '각각'으로 해소한다. 첫 칸은 평행한이라는 동치 표현도 명시한다. C의 의미는 유지하며 B와 일반 설명은 그대로 둔다.",
+        "exampleNeeded": true,
+        "authorBatch": 48,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3071,
+        "part": "m2plus",
+        "sourceFingerprint": "65c42d2fcb306f352da7ae4ad39e73a10a2d6fde44d2f96635690523113fae70",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3071
+        },
+        "directReview": null,
+        "cMarkedSentence": "삼각형의 두 변의 중점을 이은 선분과 길이를 비교하는 나머지 변은 그 선분과 {만나지 않는} 변이다. 중점이 놓인 두 변은 각각 그 선분의 {한 끝점}에서 만난다.",
+        "cSlotAnswers": [
+          "만나지 않는",
+          "한 끝점"
+        ],
+        "cStudentSentence": "삼각형의 두 변의 중점을 이은 선분과 길이를 비교하는 나머지 변은 그 선분과 □ 변이다. 중점이 놓인 두 변은 각각 그 선분의 □에서 만난다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "만나지 않는",
+            "equivalentAnswers": [
+              "만나지 않는",
+              "평행한"
+            ],
+            "equivalenceReview": "Codex tail-116 report proposal; independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "한 끝점",
+            "equivalentAnswers": [
+              "한 끝점",
+              "끝점",
+              "한 끝"
+            ],
+            "equivalenceReview": "Codex tail-116 report proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "만나지 않는",
+            "평행한"
+          ],
+          [
+            "한 끝점",
+            "끝점",
+            "한 끝"
+          ]
+        ],
+        "proposalFingerprint": "c816106b8d377f98533ea29a2de602799e67e8f33996e008db1552c8fbf3336b",
+        "clozeQuestion": {
+          "sentence": "삼각형의 두 변의 중점을 이은 선분과 길이를 비교하는 나머지 변은 그 선분과 {만나지 않는} 변이다. 중점이 놓인 두 변은 각각 그 선분의 {한 끝점}에서 만난다.",
+          "acceptedAnswers": [
+            [
+              "만나지 않는",
+              "평행한"
+            ],
+            [
+              "한 끝점",
+              "끝점",
+              "한 끝"
+            ]
+          ]
+        }
+      },
+      "candidateNormalized": {
+        "id": "m2-07-04-xc9",
+        "grade": "중2",
+        "source": {
+          "id": "m2-07-04-xc9",
+          "section": "중2::7. 닮음의 활용::삼각형의 두 변의 중점을 연결한 선분",
+          "term": "연결 선분에 대응하는 변",
+          "kind": "방법",
+          "level": "하",
+          "definition": "두 변의 중점을 이은 선분과 길이를 견주는 원래 변은 그 선분과 {만나지 않는} 변이다. 중점이 놓인 두 변은 그 선분과 {한 끝}에서 만난다.",
+          "example": {
+            "prompt": "$\\triangle ABC$에서 $\\overline{AB}$와 $\\overline{AC}$의 중점을 이은 선분과 길이를 견주는 원래 변은?",
+            "answer": "$\\overline{BC}$"
+          }
+        },
+        "B": {
+          "prompt": "$\\triangle ABC$에서 $\\overline{AB}$, $\\overline{AC}$의 중점을 각각 $M$, $N$이라 하자. 중점 연결 성질에서 $\\overline{MN}$과 길이를 비교하는 변은 어느 변인지 쓰고, 그 변이 $\\overline{MN}$과 만나는지 쓰시오.",
+          "answer": "$\\overline{BC}$이다. $\\overline{BC}$는 $\\overline{MN}$과 만나지 않는다(평행하다). $\\overline{AB}$, $\\overline{AC}$는 $\\overline{MN}$의 끝점에서 만난다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$\\overline{BC}$"
+              ]
+            },
+            {
+              "anyOf": [
+                "만나지 않는다",
+                "평행하다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "삼각형의 두 변의 중점을 이은 선분과 길이를 비교하는 나머지 변은 그 선분과 {만나지 않는} 변이다. 중점이 놓인 두 변은 각각 그 선분의 {한 끝점}에서 만난다.",
+          "acceptedAnswers": [
+            [
+              "만나지 않는",
+              "평행한"
+            ],
+            [
+              "한 끝점",
+              "끝점",
+              "한 끝"
+            ]
+          ]
+        },
+        "goal": "중점 선분에 대응하는 변 고르기",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "a7c5fdeacb631bb629f6832946c072b6eda26ef9725fb82760e3adea3f0ef050"
+      },
+      "candidateNormalizedHash": "a7c5fdeacb631bb629f6832946c072b6eda26ef9725fb82760e3adea3f0ef050",
+      "candidateFingerprint": "c816106b8d377f98533ea29a2de602799e67e8f33996e008db1552c8fbf3336b",
+      "candidateGeneralDefinition": "두 변의 중점을 이은 선분과 길이를 견주는 원래 변은 그 선분과 {만나지 않는} 변이다. 중점이 놓인 두 변은 그 선분과 {한 끝}에서 만난다.",
+      "preservationErrors": [],
+      "visibleLengths": {
+        "generalDefinition": 76,
+        "B": 89,
+        "C": 87
+      }
+    },
+    {
+      "originalDisputeIndex": 216,
+      "id": "m2-07-04-xc11",
+      "sourceIndex": 3073,
+      "currentFingerprint": "dfdebcc36a1b91db3dc23cb970fdaf230afba2db978cb32060431bf041e6d46c",
+      "currentNormalizedHash": "2edfa66f3b507643ec388226b695443696a2972db9916b4f2653c0f4c1ceab80",
+      "snapshotNormalizedHash": "2edfa66f3b507643ec388226b695443696a2972db9916b4f2653c0f4c1ceab80",
+      "snapshotMatches": true,
+      "verdict": "revise",
+      "reason": "B 물음은 실제 두 비와 각을 쓰라고 이미 요구한다. 기준의 추상 '두 변의 비', '끼인각'만 반복하는 대안을 실제 1:2 비와 ∠A로 고정하여 물음 복사가 답이 되지 않게 한다. C와 일반 설명은 유지한다.",
+      "originalBlind": [],
+      "originalKey": [
+        [
+          "m2-07-04-xc11",
+          "revise",
+          "pass",
+          "none",
+          "B의 prompt가 '두 쌍의 변의 길이의 비와 공통인 끼인각을 이용'하라고 핵심 아이디어를 미리 제시한다. 그래서 requiredIdeas의 '두 변의 비가 같다'와 '끼인각이 같다'가 물음 문구를 복사만 해도 충족된다. 실제로 새로 요구되는 내용은 SAS라는 이름뿐이다. 두 비와 각을 직접 쓰게 하거나, 닮음 조건을 스스로 고르게 하도록 prompt에서 해당 힌트를 빼야 한다."
+        ]
+      ],
+      "reader": "Codex direct actual source/B/C/answer/criterion/generalDefinition reading; no independent approval",
+      "readAt": "2026-10-07T11:29:28.483Z",
+      "inputSha256": "2910b0acc769b9c0d774dedce427859a1e96c141a10eaa01a3b08357326e6ad9",
+      "beforeReadingEvidence": {
+        "path": "before-208-220.txt",
+        "byteSha256": "9a92fcfe1cd418a8d78f63f704cbe06cab9903d45da5a10f141baa8f20b9dff3"
+      },
+      "manualEvidence": {
+        "path": "manual-208-220.json",
+        "byteSha256": "b200c78a0cdcd34d89e82f1588876105b752839f0406f5173dfaed5223c301d3"
+      },
+      "proposedRawRow": {
+        "id": "m2-07-04-xc11",
+        "learningRole": "reason",
+        "roleReason": "두 변의 비가 같고 끼인각이 공통이라 SAS 닮음이다.",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\triangle ABC$에서 $\\overline{AB}$, $\\overline{AC}$의 중점을 각각 $M$, $N$이라 한다. 두 중점에서 얻는 두 쌍의 변의 길이의 비와 공통인 끼인각을 이용하여 $\\triangle AMN$과 $\\triangle ABC$가 닮음임을 설명하시오. 이용한 두 비와 각, 닮음 조건의 이름을 쓰시오.",
+        "bAnswer": "$\\mathrm{SAS}$ 닮음이다. $\\overline{AM}:\\overline{AB}=\\overline{AN}:\\overline{AC}=1:2$이고, 끼인각 $\\angle A$가 공통이다.",
+        "bGoal": "중점 삼각형의 닮음 근거",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\mathrm{SAS}$ 닮음",
+              "두 쌍의 변의 길이의 비와 그 끼인각으로 닮음"
+            ]
+          },
+          {
+            "anyOf": [
+              "$AM:AB=AN:AC=1:2$",
+              "$AM/AB=AN/AC=\\frac{1}{2}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle A$가 공통이다",
+              "$\\angle MAN=\\angle BAC$"
+            ]
+          }
+        ],
+        "bReason": "SAS를사용하도록요구하는두변비와끼인각이라는풀이범위를명시하여질문과기준을맞춘다.",
+        "cDecision": "rewrite",
+        "cAfter": "$\\triangle ABC$에서 $\\overline{AB}$, $\\overline{AC}$의 중점을 $M$, $N$이라 하면 $\\triangle AMN$과 $\\triangle ABC$는 두 변의 길이의 비가 같고 그 {끼인각}인 $\\angle A$가 공통이므로 {$\\mathrm{SAS}$} 닮음이다.",
+        "cAnswers": [
+          "끼인각",
+          "$\\mathrm{SAS}$"
+        ],
+        "cReason": "'두 중점과 공통 꼭짓점'이 지칭이 모호하고 메타적이라 기호로 바꿨다.",
+        "studentLabel": "중점으로 만든 작은 삼각형의 닮음 조건",
+        "authorBatch": 48,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3073,
+        "part": "m2plus",
+        "sourceFingerprint": "02b485d8c55ed16f5e2c110c9fb1fe40b093def6f92798fe84d654c14d9754a8",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3073
+        },
+        "directReview": null,
+        "cMarkedSentence": "$\\triangle ABC$에서 $\\overline{AB}$, $\\overline{AC}$의 중점을 $M$, $N$이라 하면 $\\triangle AMN$과 $\\triangle ABC$는 두 변의 길이의 비가 같고 그 {끼인각}인 $\\angle A$가 공통이므로 {$\\mathrm{SAS}$} 닮음이다.",
+        "cSlotAnswers": [
+          "끼인각",
+          "$\\mathrm{SAS}$"
+        ],
+        "cStudentSentence": "$\\triangle ABC$에서 $\\overline{AB}$, $\\overline{AC}$의 중점을 $M$, $N$이라 하면 $\\triangle AMN$과 $\\triangle ABC$는 두 변의 길이의 비가 같고 그 □인 $\\angle A$가 공통이므로 □ 닮음이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "끼인각",
+            "equivalentAnswers": [
+              "끼인각"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\mathrm{SAS}$",
+            "equivalentAnswers": [
+              "$\\mathrm{SAS}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "끼인각"
+          ],
+          [
+            "$\\mathrm{SAS}$"
+          ]
+        ],
+        "proposalFingerprint": "5a44feb0d246dfefc960bd55cf1cb701fa0fcda4439ac1c6143c3a55cebd747b",
+        "bQuestion": {
+          "prompt": "$\\triangle ABC$에서 $\\overline{AB}$, $\\overline{AC}$의 중점을 각각 $M$, $N$이라 한다. 두 중점에서 얻는 두 쌍의 변의 길이의 비와 공통인 끼인각을 이용하여 $\\triangle AMN$과 $\\triangle ABC$가 닮음임을 설명하시오. 이용한 두 비와 각, 닮음 조건의 이름을 쓰시오.",
+          "answer": "$\\mathrm{SAS}$ 닮음이다. $\\overline{AM}:\\overline{AB}=\\overline{AN}:\\overline{AC}=1:2$이고, 끼인각 $\\angle A$가 공통이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$\\mathrm{SAS}$ 닮음",
+                "두 쌍의 변의 길이의 비와 그 끼인각으로 닮음"
+              ]
+            },
+            {
+              "anyOf": [
+                "$AM:AB=AN:AC=1:2$",
+                "$AM/AB=AN/AC=\\frac{1}{2}$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$\\angle A$가 공통이다",
+                "$\\angle MAN=\\angle BAC$"
+              ]
+            }
+          ]
+        }
+      },
+      "candidateNormalized": {
+        "id": "m2-07-04-xc11",
+        "grade": "중2",
+        "source": {
+          "id": "m2-07-04-xc11",
+          "section": "중2::7. 닮음의 활용::삼각형의 두 변의 중점을 연결한 선분",
+          "term": "같은 꼭짓점의 각",
+          "kind": "방법",
+          "level": "중",
+          "definition": "두 중점과 공통 꼭짓점으로 만든 작은 삼각형은 원래 삼각형과 두 변의 비가 같고 그 {끼인각}을 공유한다."
+        },
+        "B": {
+          "prompt": "$\\triangle ABC$에서 $\\overline{AB}$, $\\overline{AC}$의 중점을 각각 $M$, $N$이라 한다. 두 중점에서 얻는 두 쌍의 변의 길이의 비와 공통인 끼인각을 이용하여 $\\triangle AMN$과 $\\triangle ABC$가 닮음임을 설명하시오. 이용한 두 비와 각, 닮음 조건의 이름을 쓰시오.",
+          "answer": "$\\mathrm{SAS}$ 닮음이다. $\\overline{AM}:\\overline{AB}=\\overline{AN}:\\overline{AC}=1:2$이고, 끼인각 $\\angle A$가 공통이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$\\mathrm{SAS}$ 닮음",
+                "두 쌍의 변의 길이의 비와 그 끼인각으로 닮음"
+              ]
+            },
+            {
+              "anyOf": [
+                "$AM:AB=AN:AC=1:2$",
+                "$AM/AB=AN/AC=\\frac{1}{2}$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$\\angle A$가 공통이다",
+                "$\\angle MAN=\\angle BAC$"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "$\\triangle ABC$에서 $\\overline{AB}$, $\\overline{AC}$의 중점을 $M$, $N$이라 하면 $\\triangle AMN$과 $\\triangle ABC$는 두 변의 길이의 비가 같고 그 {끼인각}인 $\\angle A$가 공통이므로 {$\\mathrm{SAS}$} 닮음이다.",
+          "acceptedAnswers": [
+            [
+              "끼인각"
+            ],
+            [
+              "$\\mathrm{SAS}$"
+            ]
+          ]
+        },
+        "goal": "중점 삼각형의 닮음 근거",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "d3c8e92828a1a28fcfc0b3745d3d7b320af07e9a5681cc5eadbd22b67cdeee8b"
+      },
+      "candidateNormalizedHash": "d3c8e92828a1a28fcfc0b3745d3d7b320af07e9a5681cc5eadbd22b67cdeee8b",
+      "candidateFingerprint": "5a44feb0d246dfefc960bd55cf1cb701fa0fcda4439ac1c6143c3a55cebd747b",
+      "candidateGeneralDefinition": "두 중점과 공통 꼭짓점으로 만든 작은 삼각형은 원래 삼각형과 두 변의 비가 같고 그 {끼인각}을 공유한다.",
+      "preservationErrors": [],
+      "visibleLengths": {
+        "generalDefinition": 57,
+        "B": 123,
+        "C": 82
+      }
+    },
+    {
+      "originalDisputeIndex": 217,
+      "id": "m3-04-03-xc19",
+      "sourceIndex": 3514,
+      "currentFingerprint": "a7d00b2f873f474ab609dd87428cebfcb9f2daefebe2ba2d9183fade49c174d0",
+      "currentNormalizedHash": "9edac6dae7dee82f521dc7699a5581c1ab751b22ab20900318234ac6847c7402",
+      "snapshotNormalizedHash": "9edac6dae7dee82f521dc7699a5581c1ab751b22ab20900318234ac6847c7402",
+      "snapshotMatches": true,
+      "verdict": "revise",
+      "reason": "제한된 정의역에서는 꼭짓점의 y좌표가 최솟값이 아닐 수 있다. B에 이미 있는 x가 모든 실수라는 조건을 일반 설명과 C에도 추가한다. 계수 양수와 고정된 꼭짓점 높이에 대한 기존 일반 성질을 보존한다.",
+      "originalBlind": [],
+      "originalKey": [
+        [
+          "m3-04-03-xc19",
+          "pass",
+          "pass",
+          "revise",
+          "source와 C에 'x가 모든 실수일 때'라는 범위가 없다. 정의역이 제한되면 최솟값이 꼭짓점의 y좌표가 아니므로 일반 명제가 불완전하다. 같은 단원의 xc7, xc13, xc23은 이 범위를 coreAfter에 넣었는데 이 ID만 coreAfter가 null이다. 교정 후에는 C 문장에도 같은 범위를 넣어야 한다."
+        ]
+      ],
+      "reader": "Codex direct actual source/B/C/answer/criterion/generalDefinition reading; no independent approval",
+      "readAt": "2026-10-07T11:29:28.483Z",
+      "inputSha256": "2910b0acc769b9c0d774dedce427859a1e96c141a10eaa01a3b08357326e6ad9",
+      "beforeReadingEvidence": {
+        "path": "before-208-220.txt",
+        "byteSha256": "9a92fcfe1cd418a8d78f63f704cbe06cab9903d45da5a10f141baa8f20b9dff3"
+      },
+      "manualEvidence": {
+        "path": "manual-208-220.json",
+        "byteSha256": "b200c78a0cdcd34d89e82f1588876105b752839f0406f5173dfaed5223c301d3"
+      },
+      "proposedRawRow": {
+        "id": "m3-04-03-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "$x$가 모든 실수일 때, $y=x^2-2ax+a^2+3$을 완전제곱식과 상수의 합으로 고치고 이 함수의 최솟값이 상수 $a$의 값과 상관없이 일정한 까닭을 쓰시오.",
+        "bAnswer": "$y=(x-a)^2+3$이다. 꼭짓점이 $(a,\\ 3)$이고 그 $y$좌표가 $a$와 상관없이 늘 $3$이므로 최솟값은 항상 $3$이다.",
+        "bGoal": "문자가 있어도 최솟값이 일정한 까닭",
+        "bReason": "원래식의상수a와표준형의이차항계수a를같은문자로지정하던충돌을없앤다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$y=(x-a)^2+3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "꼭짓점의 $y$좌표가 늘 $3$",
+              "꼭짓점의 $y$좌표에 $a$가 없다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$x$가 모든 실수인 이차함수의 식에 문자 $a$가 있을 때, $a$가 어떤 값이어도 이차항의 계수가 {양수}이고 표준형의 {꼭짓점}의 $y$좌표가 $a$를 포함하지 않는 상수이면 최솟값은 일정하다.",
+        "cAnswers": [
+          "양수",
+          "꼭짓점"
+        ],
+        "cReason": "제한된 정의역에서는 꼭짓점의 y좌표가 최솟값이 아닐 수 있다. B에 이미 있는 x가 모든 실수라는 조건을 일반 설명과 C에도 추가한다. 계수 양수와 고정된 꼭짓점 높이에 대한 기존 일반 성질을 보존한다.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "꼭짓점의 $y$좌표에 문자가 없음",
+        "authorBatch": 58,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3514,
+        "part": "m3plus",
+        "sourceFingerprint": "b3a87b012dd7dc7b0b5cfad0bed3a7ab0b44811751a2e139d8c131ecfe622fe8",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3514
+        },
+        "directReview": null,
+        "cMarkedSentence": "$x$가 모든 실수인 이차함수의 식에 문자 $a$가 있을 때, $a$가 어떤 값이어도 이차항의 계수가 {양수}이고 표준형의 {꼭짓점}의 $y$좌표가 $a$를 포함하지 않는 상수이면 최솟값은 일정하다.",
+        "cSlotAnswers": [
+          "양수",
+          "꼭짓점"
+        ],
+        "cStudentSentence": "$x$가 모든 실수인 이차함수의 식에 문자 $a$가 있을 때, $a$가 어떤 값이어도 이차항의 계수가 □이고 표준형의 □의 $y$좌표가 $a$를 포함하지 않는 상수이면 최솟값은 일정하다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "양수",
+            "equivalentAnswers": [
+              "양수"
+            ],
+            "equivalenceReview": "Codex tail-116 report proposal; independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "꼭짓점",
+            "equivalentAnswers": [
+              "꼭짓점"
+            ],
+            "equivalenceReview": "Codex tail-116 report proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "양수"
+          ],
+          [
+            "꼭짓점"
+          ]
+        ],
+        "proposalFingerprint": "57a839b984743b1684acba757c5b26ef2cbe6041155a7acf0d519ef4538e530c",
+        "coreAfter": "$x$가 모든 실수일 때, 문자가 어떤 값이어도 {이차항의 계수가 양수}이고 표준형의 꼭짓점의 $y$좌표가 {같은 상수}이면 최솟값은 문자의 값과 상관없이 일정하다.",
+        "coreReason": "정의역이 제한되면 꼭짓점에서 최솟값을 갖지 않을 수 있으므로 x가 모든 실수라는 조건을 일반 설명에도 명시한다.",
+        "clozeQuestion": {
+          "sentence": "$x$가 모든 실수인 이차함수의 식에 문자 $a$가 있을 때, $a$가 어떤 값이어도 이차항의 계수가 {양수}이고 표준형의 {꼭짓점}의 $y$좌표가 $a$를 포함하지 않는 상수이면 최솟값은 일정하다.",
+          "acceptedAnswers": [
+            [
+              "양수"
+            ],
+            [
+              "꼭짓점"
+            ]
+          ]
+        }
+      },
+      "candidateNormalized": {
+        "id": "m3-04-03-xc19",
+        "grade": "중3",
+        "source": {
+          "id": "m3-04-03-xc19",
+          "section": "중3::4. 이차함수::이차함수의 최댓값과 최솟값",
+          "term": "문자가 있어도 변하지 않는 최솟값",
+          "kind": "성질",
+          "level": "상",
+          "definition": "문자가 어떤 값이어도 {이차항의 계수가 양수}이고 표준형의 꼭짓점의 $y$좌표가 {같은 상수}이면, 최솟값은 문자의 값과 상관없이 일정하다.",
+          "example": {
+            "prompt": "$y=x^2-2ax+a^2+3$의 최솟값이 $a$와 상관없이 $3$인 까닭은?",
+            "answer": "꼭짓점의 $y$좌표가 늘 $3$이라서"
+          }
+        },
+        "B": {
+          "prompt": "$x$가 모든 실수일 때, $y=x^2-2ax+a^2+3$을 완전제곱식과 상수의 합으로 고치고 이 함수의 최솟값이 상수 $a$의 값과 상관없이 일정한 까닭을 쓰시오.",
+          "answer": "$y=(x-a)^2+3$이다. 꼭짓점이 $(a,\\ 3)$이고 그 $y$좌표가 $a$와 상관없이 늘 $3$이므로 최솟값은 항상 $3$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$y=(x-a)^2+3$"
+              ]
+            },
+            {
+              "anyOf": [
+                "꼭짓점의 $y$좌표가 늘 $3$",
+                "꼭짓점의 $y$좌표에 $a$가 없다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "$x$가 모든 실수인 이차함수의 식에 문자 $a$가 있을 때, $a$가 어떤 값이어도 이차항의 계수가 {양수}이고 표준형의 {꼭짓점}의 $y$좌표가 $a$를 포함하지 않는 상수이면 최솟값은 일정하다.",
+          "acceptedAnswers": [
+            [
+              "양수"
+            ],
+            [
+              "꼭짓점"
+            ]
+          ]
+        },
+        "goal": "문자가 있어도 최솟값이 일정한 까닭",
+        "coreAfter": "$x$가 모든 실수일 때, 문자가 어떤 값이어도 {이차항의 계수가 양수}이고 표준형의 꼭짓점의 $y$좌표가 {같은 상수}이면 최솟값은 문자의 값과 상관없이 일정하다.",
+        "coreReason": "정의역이 제한되면 꼭짓점에서 최솟값을 갖지 않을 수 있으므로 x가 모든 실수라는 조건을 일반 설명에도 명시한다.",
+        "hash": "6ee12ed025f24c8af5c1f3c08ddc557a9e7325301344de8c6ad0f48e85eed707"
+      },
+      "candidateNormalizedHash": "6ee12ed025f24c8af5c1f3c08ddc557a9e7325301344de8c6ad0f48e85eed707",
+      "candidateFingerprint": "57a839b984743b1684acba757c5b26ef2cbe6041155a7acf0d519ef4538e530c",
+      "candidateGeneralDefinition": "$x$가 모든 실수일 때, 문자가 어떤 값이어도 {이차항의 계수가 양수}이고 표준형의 꼭짓점의 $y$좌표가 {같은 상수}이면 최솟값은 문자의 값과 상관없이 일정하다.",
+      "preservationErrors": [],
+      "visibleLengths": {
+        "generalDefinition": 84,
+        "B": 84,
+        "C": 97
+      }
+    },
+    {
+      "originalDisputeIndex": 218,
+      "id": "m1-07-04-xc15",
+      "sourceIndex": 1921,
+      "currentFingerprint": "94614786de289d181e30d1e5c5f779844c80726ea18be21eba8558f988c045c2",
+      "currentNormalizedHash": "5ea60f083553009286632150f3cb08653a8e29f7f39821f4a99f4323e70342f4",
+      "snapshotNormalizedHash": "5ea60f083553009286632150f3cb08653a8e29f7f39821f4a99f4323e70342f4",
+      "snapshotMatches": true,
+      "verdict": "revise",
+      "reason": "바꿀 단위를 세제곱센티미터로 지정하여 다른 참인 단위 표현이 칸에 들어오는 문제를 해소한다. B 제외와 단위 환산 일반 설명은 유지한다.",
+      "originalBlind": [
+        [
+          "m1-07-04-xc15",
+          "C",
+          "1 L=1000 mL, 1 mL=1 cm³ 또는 1/1000 L",
+          "revise",
+          "단위 관계가 정해지지 않아 1000 mL, 1000 cm³, 1 mL=1 cm³ 등 여러 참이 가능하다. 어느 단위로 바꾸는지 지정해야 한다."
+        ]
+      ],
+      "originalKey": [
+        [
+          "m1-07-04-xc15",
+          "excluded",
+          "revise",
+          "none",
+          "C 빈칸이 '1 L는 □이고 1 mL는 □이다'뿐이어서 정답이 하나로 정해지지 않는다. 1 L=1000 mL=1 dm³=1000 cm³이고 1 mL=1 cm³=1/1000 L이므로 모두 참이다. '세제곱센티미터로 나타내면'처럼 바꿀 단위를 지정해야 한다."
+        ]
+      ],
+      "reader": "Codex direct actual source/B/C/answer/criterion/generalDefinition reading; no independent approval",
+      "readAt": "2026-10-07T11:29:28.483Z",
+      "inputSha256": "2910b0acc769b9c0d774dedce427859a1e96c141a10eaa01a3b08357326e6ad9",
+      "beforeReadingEvidence": {
+        "path": "before-208-220.txt",
+        "byteSha256": "9a92fcfe1cd418a8d78f63f704cbe06cab9903d45da5a10f141baa8f20b9dff3"
+      },
+      "manualEvidence": {
+        "path": "manual-208-220.json",
+        "byteSha256": "b200c78a0cdcd34d89e82f1588876105b752839f0406f5173dfaed5223c301d3"
+      },
+      "proposedRawRow": {
+        "id": "m1-07-04-xc15",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "두 단위의 환산 값을 떠올리는 것 외에 설명할 관계나 까닭이 없다.",
+        "cDecision": "rewrite",
+        "cReason": "바꿀 단위를 세제곱센티미터로 지정하여 다른 참인 단위 표현이 칸에 들어오는 문제를 해소한다. B 제외와 단위 환산 일반 설명은 유지한다.",
+        "exclusionReason": "B 제외: $1\\,\\mathrm{L}$와 $1\\,\\mathrm{mL}$의 환산 값만 묻는 단순 수치 암기라 서술형에 맞지 않고 C 빈칸으로 충분하다.",
+        "learningRole": "definition",
+        "roleReason": "들이와 부피 단위의 환산",
+        "authorBatch": 21,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1921,
+        "part": "m1plus",
+        "sourceFingerprint": "77bb71af792fd92f28fd74498f04d62846c4b44ef5f7407369c1a336dcc34d80",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1921
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "들이 $1\\,\\mathrm{L}$는 □이고, $1\\,\\mathrm{mL}$는 □이다.",
+        "cFrozenDefinition": "들이 $1\\,\\mathrm{L}$는 {$1000\\,\\mathrm{cm}^3$}이고, $1\\,\\mathrm{mL}$는 {$1\\,\\mathrm{cm}^3$}이다.",
+        "cFrozenAnswers": [
+          "$1000\\,\\mathrm{cm}^3$",
+          "$1\\,\\mathrm{cm}^3$"
+        ],
+        "cMarkedSentence": "들이를 세제곱센티미터 단위의 부피로 나타내면, $1\\,\\mathrm{L}$는 {$1000$}$\\,\\mathrm{cm}^3$이고 $1\\,\\mathrm{mL}$는 {$1$}$\\,\\mathrm{cm}^3$이다.",
+        "cSlotAnswers": [
+          "$1000$",
+          "$1$"
+        ],
+        "cStudentSentence": "들이를 세제곱센티미터 단위의 부피로 나타내면, $1\\,\\mathrm{L}$는 □$\\,\\mathrm{cm}^3$이고 $1\\,\\mathrm{mL}$는 □$\\,\\mathrm{cm}^3$이다.",
+        "cAnswers": [
+          "$1000$",
+          "$1$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$1000$",
+            "equivalentAnswers": [
+              "$1000$"
+            ],
+            "equivalenceReview": "Codex tail-116 report proposal; independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$1$",
+            "equivalentAnswers": [
+              "$1$"
+            ],
+            "equivalenceReview": "Codex tail-116 report proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$1000$"
+          ],
+          [
+            "$1$"
+          ]
+        ],
+        "proposalFingerprint": "f77d44912b325347bc096cd6551380408a922792aca76993aafeed2c4a3b918f",
+        "cAfter": "들이를 세제곱센티미터 단위의 부피로 나타내면, $1\\,\\mathrm{L}$는 {$1000$}$\\,\\mathrm{cm}^3$이고 $1\\,\\mathrm{mL}$는 {$1$}$\\,\\mathrm{cm}^3$이다.",
+        "clozeQuestion": {
+          "sentence": "들이를 세제곱센티미터 단위의 부피로 나타내면, $1\\,\\mathrm{L}$는 {$1000$}$\\,\\mathrm{cm}^3$이고 $1\\,\\mathrm{mL}$는 {$1$}$\\,\\mathrm{cm}^3$이다.",
+          "acceptedAnswers": [
+            [
+              "$1000$"
+            ],
+            [
+              "$1$"
+            ]
+          ]
+        }
+      },
+      "candidateNormalized": {
+        "id": "m1-07-04-xc15",
+        "grade": "중1",
+        "source": {
+          "id": "m1-07-04-xc15",
+          "section": "중1::7. 입체도형::기둥의 겉넓이와 부피",
+          "term": "들이와 부피",
+          "kind": "단위",
+          "level": "중",
+          "definition": "들이 $1\\,\\mathrm{L}$는 {$1000\\,\\mathrm{cm}^3$}이고, $1\\,\\mathrm{mL}$는 {$1\\,\\mathrm{cm}^3$}이다.",
+          "example": {
+            "prompt": "부피가 $2000\\,\\mathrm{cm}^3$인 물은 몇 $\\mathrm{L}$인가?",
+            "answer": "$2\\,\\mathrm{L}$"
+          }
+        },
+        "B": {
+          "excluded": "두 단위의 환산 값을 떠올리는 것 외에 설명할 관계나 까닭이 없다."
+        },
+        "C": {
+          "sentence": "들이를 세제곱센티미터 단위의 부피로 나타내면, $1\\,\\mathrm{L}$는 {$1000$}$\\,\\mathrm{cm}^3$이고 $1\\,\\mathrm{mL}$는 {$1$}$\\,\\mathrm{cm}^3$이다.",
+          "acceptedAnswers": [
+            [
+              "$1000$"
+            ],
+            [
+              "$1$"
+            ]
+          ]
+        },
+        "goal": "definition",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "10d053343f3e149de0e3e6110671496a5a58eb4057d69523ccc83d8a0a0f660d"
+      },
+      "candidateNormalizedHash": "10d053343f3e149de0e3e6110671496a5a58eb4057d69523ccc83d8a0a0f660d",
+      "candidateFingerprint": "f77d44912b325347bc096cd6551380408a922792aca76993aafeed2c4a3b918f",
+      "candidateGeneralDefinition": "들이 $1\\,\\mathrm{L}$는 {$1000\\,\\mathrm{cm}^3$}이고, $1\\,\\mathrm{mL}$는 {$1\\,\\mathrm{cm}^3$}이다.",
+      "preservationErrors": [],
+      "visibleLengths": {
+        "generalDefinition": 30,
+        "B": null,
+        "C": 52
+      }
+    },
+    {
+      "originalDisputeIndex": 219,
+      "id": "m2-01-02-xc2",
+      "sourceIndex": 2146,
+      "currentFingerprint": "8606b63e23ac3c3eff54ac37133734fb771b5475cd8ed74d0a1f89c1d07689c7",
+      "currentNormalizedHash": "e3c820d8811a5e10215f4eec8be8c9dd34f3857bf6c1779150bc81e590596fb7",
+      "snapshotNormalizedHash": "e3c820d8811a5e10215f4eec8be8c9dd34f3857bf6c1779150bc81e590596fb7",
+      "snapshotMatches": true,
+      "verdict": "revise",
+      "reason": "C에서 첫 숫자·끝 숫자라는 규칙을 미리 제시하지 않고 순환소수 자체로 필요한 점 개수를 묻는다. 측정·개수 해석은 쉬워도 정상 평가이므로 유지한다. B 제외와 일반 설명은 보존한다.",
+      "originalBlind": [],
+      "originalKey": [
+        [
+          "m2-01-02-xc2",
+          "excluded",
+          "revise",
+          "none",
+          "C 문장이 이미 '첫 숫자와 끝 숫자 위에 점을 찍으므로'라는 규칙을 제시해서, 빈칸 2는 그 두 숫자를 세기만 하면 된다. 마디 길이에 따른 점 규칙을 학생이 떠올릴 필요가 없어 답이 노출된다. 규칙 문장을 빼고 점이 찍히는 숫자나 개수를 묻도록 고쳐야 한다."
+        ]
+      ],
+      "reader": "Codex direct actual source/B/C/answer/criterion/generalDefinition reading; no independent approval",
+      "readAt": "2026-10-07T11:29:28.483Z",
+      "inputSha256": "2910b0acc769b9c0d774dedce427859a1e96c141a10eaa01a3b08357326e6ad9",
+      "beforeReadingEvidence": {
+        "path": "before-208-220.txt",
+        "byteSha256": "9a92fcfe1cd418a8d78f63f704cbe06cab9903d45da5a10f141baa8f20b9dff3"
+      },
+      "manualEvidence": {
+        "path": "manual-208-220.json",
+        "byteSha256": "b200c78a0cdcd34d89e82f1588876105b752839f0406f5173dfaed5223c301d3"
+      },
+      "proposedRawRow": {
+        "id": "m2-01-02-xc2",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "점 표기 규칙 중 두 자리 경우만 떼어 낸 조각임.",
+        "exclusionReason": "B 제외: 설명형에서 m2-01-02-c3(순환소수의 표현)의 점 찍는 규칙 질문과 중복되는 하위 경우임.",
+        "cDecision": "rewrite",
+        "cAfter": "순환소수 $0.4545\\cdots$를 순환마디 위에 점을 찍는 표준 표기법으로 나타낼 때, 찍는 점은 모두 {$2$}개이다.",
+        "cAnswers": [
+          "$2$"
+        ],
+        "cReason": "C에서 첫 숫자·끝 숫자라는 규칙을 미리 제시하지 않고 순환소수 자체로 필요한 점 개수를 묻는다. 측정·개수 해석은 쉬워도 정상 평가이므로 유지한다. B 제외와 일반 설명은 보존한다.",
+        "learningRole": "procedure",
+        "roleReason": "두 자리 마디의 점 표기",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2146,
+        "part": "m2plus",
+        "sourceFingerprint": "7f08ee5f462e4d7cfbd7430d1db1d3f3436e0f28e622780ec93dd54d5a1f6abc",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2146
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "순환소수 $0.4545\\cdots$를 순환마디 위에 점을 찍는 표준 표기법으로 나타낼 때, 찍는 점은 모두 {$2$}개이다.",
+        "cSlotAnswers": [
+          "$2$"
+        ],
+        "cStudentSentence": "순환소수 $0.4545\\cdots$를 순환마디 위에 점을 찍는 표준 표기법으로 나타낼 때, 찍는 점은 모두 □개이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$2$",
+            "equivalentAnswers": [
+              "$2$"
+            ],
+            "equivalenceReview": "Codex tail-116 report proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$2$"
+          ]
+        ],
+        "proposalFingerprint": "c907f5af35e2588e72d5d3f9c68c109a148065098408f0148cbbeadd99c60be3",
+        "clozeQuestion": {
+          "sentence": "순환소수 $0.4545\\cdots$를 순환마디 위에 점을 찍는 표준 표기법으로 나타낼 때, 찍는 점은 모두 {$2$}개이다.",
+          "acceptedAnswers": [
+            [
+              "$2$"
+            ]
+          ]
+        }
+      },
+      "candidateNormalized": {
+        "id": "m2-01-02-xc2",
+        "grade": "중2",
+        "source": {
+          "id": "m2-01-02-xc2",
+          "section": "중2::1. 수와 식::순환소수",
+          "term": "순환마디가 두 자리일 때의 점",
+          "kind": "방법",
+          "level": "하",
+          "definition": "순환마디가 두 자리이면 두 숫자 {모두} 위에 점을 찍는다.",
+          "example": {
+            "prompt": "$0.4545\\cdots$를 점을 찍어 쓰면?",
+            "answer": "$0.\\dot{4}\\dot{5}$"
+          }
+        },
+        "B": {
+          "excluded": "점 표기 규칙 중 두 자리 경우만 떼어 낸 조각임."
+        },
+        "C": {
+          "sentence": "순환소수 $0.4545\\cdots$를 순환마디 위에 점을 찍는 표준 표기법으로 나타낼 때, 찍는 점은 모두 {$2$}개이다.",
+          "acceptedAnswers": [
+            [
+              "$2$"
+            ]
+          ]
+        },
+        "goal": "procedure",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "3f6ef6528d80d590ff638fe06448c41bed3219a2be76c21f95a57f36d930563a"
+      },
+      "candidateNormalizedHash": "3f6ef6528d80d590ff638fe06448c41bed3219a2be76c21f95a57f36d930563a",
+      "candidateFingerprint": "c907f5af35e2588e72d5d3f9c68c109a148065098408f0148cbbeadd99c60be3",
+      "candidateGeneralDefinition": "순환마디가 두 자리이면 두 숫자 {모두} 위에 점을 찍는다.",
+      "preservationErrors": [],
+      "visibleLengths": {
+        "generalDefinition": 31,
+        "B": null,
+        "C": 58
+      }
+    }
+  ],
+  "validation": {
+    "count": 20,
+    "uniqueIds": 20,
+    "revise": 19,
+    "retain": 1,
+    "stale": 0,
+    "unprocessed": 0,
+    "contractErrors": [],
+    "notationErrors": [],
+    "preservationErrors": [],
+    "blankClashes": []
+  }
+}

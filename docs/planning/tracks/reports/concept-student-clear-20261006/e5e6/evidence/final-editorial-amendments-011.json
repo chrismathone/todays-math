@@ -1,0 +1,1280 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "capturedAt": "2026-10-06T15:31:25.125751+00:00",
+  "scope": "Current amended questions captured for direct reading; not an editorial verdict.",
+  "rows": [
+    {
+      "id": "e5-1-3-2-c2",
+      "sourceIndex": 33,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "의자 한 개에는 다리가 $4$개 있다. $\\square$는 의자 수, $\\triangle$는 다리 수를 나타내며 $\\square\\times4=\\triangle$이다. $\\square$가 한 가지 수만 나타내는지 여러 수를 나타낼 수 있는지 쓰고, $\\square$가 $2$일 때와 $5$일 때 $\\triangle$의 값을 각각 구하시오.",
+        "answer": "$\\square$는 의자 수가 될 수 있는 여러 수($1$, $2$, $3$, …)를 나타낼 수 있다. $\\square$가 $2$이면 $\\triangle$는 $8$, $\\square$가 $5$이면 $\\triangle$는 $20$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "기호는 한 수로 정해져 있지 않고 그 양이 될 수 있는 여러 수를 나타낸다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\triangle=8$",
+              "$\\triangle$는 $8$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\triangle=20$",
+              "$\\triangle$는 $20$이다"
+            ]
+          }
+        ]
+      },
+      "bGoal": "기호가 정해진 한 수가 아니라 그 양이 될 수 있는 여러 수를 나타냄을 안다.",
+      "bReason": "기호가 정해진 한 수만 나타내는지와 실제 두 값을 묻는다. 최종 읽기에서 삼각형이 나타내는 양도 질문에 명시하여 기호의 뜻을 추측하지 않게 했다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "의자 한 개에는 다리가 $4$개 있다. 의자 수를 $\\bigcirc$, 다리 수를 $\\triangle$라 하면 $\\bigcirc\\times4=\\triangle$이다. $\\bigcirc$가 $5$일 때 $\\triangle$는 {$20$}이다.",
+        "acceptedAnswers": [
+          [
+            "$20$"
+          ]
+        ]
+      },
+      "cStudentSentence": "의자 한 개에는 다리가 $4$개 있다. 의자 수를 $\\bigcirc$, 다리 수를 $\\triangle$라 하면 $\\bigcirc\\times4=\\triangle$이다. $\\bigcirc$가 $5$일 때 $\\triangle$는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$20$",
+          "equivalents": []
+        }
+      ],
+      "cReason": "여러 수 자리에는 자연수 등 다른 사실도 들어갈 수 있어 답 범위가 불명확했다. 기호 두 개가 나타내는 양을 모두 밝히고 구체적인 값 $20$만 구하게 했다. 기호가 여러 값을 나타낸다는 일반 의미는 B와 학습 설명에 남는다.",
+      "coreAfter": "대응 관계를 나타낸 식에서 기호는 정해진 한 수만을 뜻하지 않고, 그 기호가 나타내는 양이 될 수 있는 {여러 수}를 나타낸다.",
+      "coreReason": "'맡은 양의 값'은 '양수'로 잘못 읽힐 수 있고 초5에게 뜻이 불분명하다.",
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "660955080b1b3487c30355006dc7bfa52f4dc3f3621117a8d6b5e819ff5919af",
+      "proposalFingerprint": "91e7b1795e594d7179bce04eaef5ea4bac17889c74e72fbe924214bf34932d1c",
+      "questionRevision": "planning-e5e6-20261006-91e7b1795e59",
+      "draftEvidence": "evidence/section-010-draft.json",
+      "rubricEvidence": "evidence/section-010-rubric.json",
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-1-4-5-c3",
+      "sourceIndex": 51,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "$\\frac{9}{25}$를 분모와 분자에 같은 자연수를 곱하는 방법으로 소수로 나타내려고 한다. 분모를 얼마로 바꾸면 되는지와 그렇게 바꾼 분수가 소수로 나타내기 쉬운 까닭을 쓰고, 소수로 나타내시오.",
+        "answer": "분모를 $100$으로 만들면 된다. $\\frac{1}{100}$은 $0.01$이므로 분자가 그 개수를 나타낸다. $\\frac{9}{25}=\\frac{36}{100}=0.36$이다. 분모를 $1000$ 같은 수로 만들어도 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분모를 $100$으로 만든다",
+              "분모를 $1000$ 등 $25$의 배수인 소수 자리값의 분모로 만든다"
+            ]
+          },
+          {
+            "anyOf": [
+              "선택한 분모의 단위분수가 소수 자리의 단위이며 분자가 그 개수를 나타낸다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.36$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "분모를 소수 자리값에 맞게 바꾸는 방법과 까닭을 $9/25$에 적용하여 설명한다.",
+      "bReason": "모든 분수가 같은 자연수를 곱해 분모 $10$, $100$ 등으로 바뀌는 것은 아니다. 해당 방법이 가능한 $9/25$에 범위를 정하고, 분모 선택과 소수 자리값의 관계를 설명하게 했다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "$\\frac{1}{4}$을 분모가 $100$인 분수로 쓰면 {$\\frac{25}{100}$}이고, 소수로 쓰면 {$0.25$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{25}{100}$"
+          ],
+          [
+            "$0.25$"
+          ]
+        ]
+      },
+      "cStudentSentence": "$\\frac{1}{4}$을 분모가 $100$인 분수로 쓰면 □이고, 소수로 쓰면 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{25}{100}$",
+          "equivalents": []
+        },
+        {
+          "key": "$0.25$",
+          "equivalents": []
+        }
+      ],
+      "cReason": "분모를 얼마로 만들 수 있느냐는 질문에는 $100$, $1000$ 등 여러 서로 다른 답이 가능하다. 분모 $100$을 조건으로 주고 실제 분수와 소수를 각각 쓰게 해 답의 범위를 정했다.",
+      "coreAfter": "분모와 분자에 같은 자연수를 곱해 분모를 {$10,\\ 100,\\ 1000$} 같은 수로 만들 수 있으면, 소수 자리값을 이용해 그 분수를 소수로 나타낼 수 있다.",
+      "coreReason": "'끝나는 소수'는 초5 학생이 배우지 않은 표현이라 뜻을 풀어 썼다.",
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "3e8b9917f8edd1b748d47fb589dd471026621e2a6d79d4228e6d984fa3ec3a6a",
+      "proposalFingerprint": "0bc4b7ac7df071e348f23fecc235563c3fe9899eb0f6fe5dbb0e503a2b2000f2",
+      "questionRevision": "planning-e5e6-20261006-0bc4b7ac7df0",
+      "draftEvidence": "evidence/section-016-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-1-6-2-c4",
+      "sourceIndex": 69,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "가로 $4\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$인 직사각형을 한 변이 $1\\,\\mathrm{cm}$인 정사각형으로 빈틈없이 채웠습니다. 정사각형의 개수를 하나씩 세지 않고 곱셈으로 구하는 방법을 설명하고, 이 직사각형의 넓이를 쓰세요.",
+        "answer": "한 줄에 $4$개씩 $3$줄이므로 $4\\times3=12$(개)이다. $1\\,\\mathrm{cm}^2$가 $12$개이므로 넓이는 $12\\,\\mathrm{cm}^2$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "한 줄의 개수에 줄 수를 곱한다",
+              "$4$개씩 $3$줄이라 $4 \\times 3$",
+              "$3$개씩 $4$줄이라 $3 \\times 4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12\\,\\mathrm{cm} ^2$",
+              "$12$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "한 줄의 개수와 줄 수의 곱이 넓이 공식의 바탕임을 설명한다.",
+      "bReason": "'넓이 공식의 까닭'은 편집용 제목이라 실제 직사각형을 채우는 상황으로 물었다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "가로 $5\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$인 직사각형을 한 변이 $1\\,\\mathrm{cm}$인 정사각형으로 빈틈없이 채우면, 가로로 한 줄에 $5$개씩 $3$줄이므로 모두 {$15$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$15$"
+          ]
+        ]
+      },
+      "cStudentSentence": "가로 $5\\,\\mathrm{cm}$, 세로 $3\\,\\mathrm{cm}$인 직사각형을 한 변이 $1\\,\\mathrm{cm}$인 정사각형으로 빈틈없이 채우면, 가로로 한 줄에 $5$개씩 $3$줄이므로 모두 □개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$15$",
+          "equivalents": []
+        }
+      ],
+      "cReason": "길이 수 $5$, $3$을 옮기는 두 슬롯을 제거하고, 주어진 줄 배치에서 전체 단위 정사각형 개수를 구하게 한다. 줄 수와 한 줄 개수의 곱이라는 일반 설명은 B에 남긴다.",
+      "coreAfter": "직사각형을 한 변이 $1\\,\\mathrm{cm}$인 정사각형으로 빈틈없이 채우면, {한 줄에 놓인 개수}에 {줄 수}를 곱한 값이 전체 정사각형의 개수이다.",
+      "coreReason": "'단위 정사각형'은 초5 교과서에 없는 말이고 무엇을 채우는지도 드러나지 않는다.",
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "fc651dee1e4f14cb5573a12d3032afa9916c5d9157f086f94e918ef1f5a0c150",
+      "proposalFingerprint": "7fd9fbc21209e3e71df6fed564ed6b8eeb5bb5f8c80d3390397719c9e662124a",
+      "questionRevision": "planning-e5e6-20261006-7fd9fbc21209",
+      "draftEvidence": "evidence/section-022-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-1-6-3-c5",
+      "sourceIndex": 74,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "정사각형의 한 변의 길이를 $10$배로 늘이면 넓이는 몇 배가 되는지 쓰고, 가로와 세로가 각각 어떻게 변하는지를 이용하여 그 까닭을 설명하시오.",
+        "answer": "가로도 $10$배, 세로도 $10$배가 되므로 넓이는 $10\\times10=100$배가 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$100$배"
+            ]
+          },
+          {
+            "anyOf": [
+              "가로와 세로가 모두 $10$배가 된다",
+              "$10$배의 $10$배이다",
+              "$10 \\times 10$이다"
+            ]
+          }
+        ]
+      },
+      "bGoal": "길이가 $10$배일 때 넓이가 $100$배인 까닭을 가로와 세로의 변화로 설명한다.",
+      "bReason": "원문의 '길이 단위를 키운다'는 말이 어려워 정사각형의 변의 길이로 바꾸어 물었다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "정사각형의 한 변의 길이를 $10$배로 늘이면 넓이는 {$100$}배가 된다.",
+        "acceptedAnswers": [
+          [
+            "$100$"
+          ]
+        ]
+      },
+      "cStudentSentence": "정사각형의 한 변의 길이를 $10$배로 늘이면 넓이는 □배가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$100$",
+          "equivalents": []
+        }
+      ],
+      "cReason": "길이의 $10$배를 두 번 다시 쓰는 슬롯을 줄이고 넓이의 배수 $100$을 묻는 짧은 계산으로 유지한다. 가로·세로 모두 늘어난다는 까닭은 B와 학습 설명에 남긴다.",
+      "coreAfter": "정사각형의 한 변의 길이를 $10$배로 하면 {가로와 세로가 함께} $10$배가 되어, 넓이는 $10$배의 $10$배인 $100$배가 된다.",
+      "coreReason": "'길이 단위를 키운다', '넓이 단위가 100배'라는 말은 초5 학생에게 뜻이 불분명하다.",
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "a3c0c467ee58b237b0d9f8d7d31e80c3099f423e51e85eb642ca7b48608958e7",
+      "proposalFingerprint": "39e9579e2d0b0ca052555f349f284ba874b7c5fd96a1cf817933fd1d4d7f3f3c",
+      "questionRevision": "planning-e5e6-20261006-39e9579e2d0b",
+      "draftEvidence": "evidence/section-023-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-1-6-4-c2",
+      "sourceIndex": 76,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "평행사변형에서 한 변을 밑변으로 정했을 때, 높이는 어디와 어디 사이를 어떻게 잰 길이인가요?",
+        "answer": "밑변과 그 변에 마주 보는(평행한) 변 사이를 밑변에 수직으로 잰 길이, 곧 두 밑변 사이의 거리이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "밑변과 마주 보는 변 사이",
+              "평행한 두 밑변 사이"
+            ]
+          },
+          {
+            "anyOf": [
+              "밑변에 수직으로 잰다",
+              "직각이 되게 잰다",
+              "평행선 사이의 거리이다"
+            ]
+          }
+        ]
+      },
+      "bGoal": "평행사변형의 높이가 두 밑변 사이를 수직으로 잰 길이임을 말한다.",
+      "bReason": "원문은 삼각형과 평행사변형을 한 문장에 섞어 모호하므로 평행사변형으로 좁히고 삼각형은 xc4에서 묻는다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "평행사변형의 한 변을 밑변으로 정했을 때, 그 변과 마주 보는 변 사이를 {수직}으로 잰 길이를 높이라고 한다.",
+        "acceptedAnswers": [
+          [
+            "수직",
+            "직각 방향"
+          ]
+        ]
+      },
+      "cStudentSentence": "평행사변형의 한 변을 밑변으로 정했을 때, 그 변과 마주 보는 변 사이를 □으로 잰 길이를 높이라고 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "수직",
+          "equivalents": [
+            "직각 방향"
+          ]
+        }
+      ],
+      "cReason": "첫 초안은 평행한 두 변을 모두 밑변이라 부르고 거리만 답하게 하여 선택한 밑변과 수직으로 잰 높이의 관계가 흐려졌다. 한 밑변을 정한 조건과 수직 측정을 분명히 한다.",
+      "coreAfter": "높이는 밑변의 맞은편 변이나 꼭짓점에서 밑변에 {수직}으로 그은 선분의 길이이다. 필요한 경우 밑변을 늘인 선까지 잰다.",
+      "coreReason": "'밑변에 대해 ~ 잰 수직 거리'는 초5 용어가 아니고 어디까지 재는지 드러나지 않는다.",
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "bbc7308a24402c83131167933c1d97bba0f94c95c0d2806be18c52cee826f8db",
+      "proposalFingerprint": "f9b026754fc854298d14a35e108b7f81d8c191d3bc3a920ced810b52b2839bc0",
+      "questionRevision": "planning-e5e6-20261006-f9b026754fc8",
+      "draftEvidence": "evidence/section-024-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-1-6-5-c6",
+      "sourceIndex": 85,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "사다리꼴의 높이는 어느 변과 어느 변 사이를 어떻게 잰 길이인가?",
+        "answer": "두 밑변(평행한 두 변) 사이를 밑변에 수직으로 잰 길이이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 밑변 사이",
+              "평행한 두 변 사이",
+              "윗변과 아랫변 사이"
+            ]
+          },
+          {
+            "anyOf": [
+              "밑변에 수직으로 잰다",
+              "직각으로 잰다",
+              "두 밑변 사이의 거리",
+              "가장 짧은 길이"
+            ]
+          }
+        ]
+      },
+      "bGoal": "사다리꼴의 높이가 두 밑변 사이의 수직 거리임을 말한다.",
+      "bReason": "비스듬한 변의 길이를 높이로 착각하기 쉬워 어디를 어떻게 재는지 묻는다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "사다리꼴의 높이는 두 밑변 사이에 밑변과 {수직}으로 그은 선분의 길이이다.",
+        "acceptedAnswers": [
+          [
+            "수직",
+            "직각"
+          ]
+        ]
+      },
+      "cStudentSentence": "사다리꼴의 높이는 두 밑변 사이에 밑변과 □으로 그은 선분의 길이이다.",
+      "cSlotAnswers": [
+        {
+          "key": "수직",
+          "equivalents": [
+            "직각"
+          ]
+        }
+      ],
+      "cReason": "'직각 방향'은 교과서에 없는 말이라 '수직'으로 답하게 했다.",
+      "coreAfter": "사다리꼴에서 평행한 두 밑변 사이에 밑변과 {수직}인 선분을 그으면, 그 선분의 길이가 높이이다.",
+      "coreReason": "'직각 방향으로 잰 거리'는 초5 교과서 표현이 아니어서 '수직인 선분의 길이'로 바꾸었다.",
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "35d6ad118620e152edff4acd6476b1d615146fcf44467d899a87d73080691aad",
+      "proposalFingerprint": "aac7a357ce5a1bced986308121a551b6cb3225adec9d1d03683e69650036b798",
+      "questionRevision": "planning-e5e6-20261006-aac7a357ce5a",
+      "draftEvidence": "evidence/section-025-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-1-6-5-c8",
+      "sourceIndex": 87,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "모양과 크기가 같은 사다리꼴 $2$개가 있다. 하나를 반 바퀴 돌린 뒤 평행하지 않은 한 변끼리 맞대어 붙여 평행사변형을 만들었다. 밑변은 원래 사다리꼴의 두 밑변과 평행한 쪽으로 정했다. 이 평행사변형의 밑변과 높이는 원래 사다리꼴의 어떤 길이와 같은지 쓰고, 이를 이용해 사다리꼴 $1$개의 넓이를 구하는 방법을 설명하시오.",
+        "answer": "평행사변형의 밑변은 사다리꼴의 윗변과 아랫변의 합이고, 높이는 사다리꼴의 높이와 같다. 평행사변형의 넓이 (윗변$+$아랫변)$\\times$(높이)는 사다리꼴 $2$개의 넓이이므로 $2$로 나누면 사다리꼴 $1$개의 넓이이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "평행사변형의 밑변은 윗변과 아랫변의 합",
+              "밑변$=$윗변$+$아랫변"
+            ]
+          },
+          {
+            "anyOf": [
+              "평행사변형의 높이는 사다리꼴의 높이와 같다",
+              "높이는 그대로이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "사다리꼴의 넓이는 평행사변형 넓이의 절반",
+              "평행사변형의 넓이를 $2$로 나눈다",
+              "평행사변형은 사다리꼴 $2$개의 넓이이다"
+            ]
+          }
+        ]
+      },
+      "bGoal": "사다리꼴 2개로 만든 평행사변형으로 넓이 구하는 방법의 까닭을 설명한다.",
+      "bReason": "어느 변을 맞대는지 없이 붙였다고만 하면 변환을 판단할 조건이 부족하다. 반 바퀴 회전과 평행하지 않은 한 변 맞대기 방법을 밝힌다. 실제 조작 그림을 일반 학습 예로 함께 보여 주면 이해에 도움이 되는 신규 사례로 기록한다. 어느 변이든 밑변이 될 수 있으므로 새 밑변은 원래 두 밑변과 평행한 쪽이라고 명시한다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "모양과 크기가 같은 사다리꼴 $2$개의 평행하지 않은 변끼리 맞대어 평행사변형을 만들었다. 사다리꼴의 두 밑변과 평행한 쪽을 새 밑변으로 정하면 그 길이는 두 밑변의 {합}이고, 사다리꼴 하나의 넓이는 만든 평행사변형 넓이의 {절반}이다.",
+        "acceptedAnswers": [
+          [
+            "합",
+            "더한 값"
+          ],
+          [
+            "절반",
+            "반",
+            "$\\frac{1}{2}$"
+          ]
+        ]
+      },
+      "cStudentSentence": "모양과 크기가 같은 사다리꼴 $2$개의 평행하지 않은 변끼리 맞대어 평행사변형을 만들었다. 사다리꼴의 두 밑변과 평행한 쪽을 새 밑변으로 정하면 그 길이는 두 밑변의 □이고, 사다리꼴 하나의 넓이는 만든 평행사변형 넓이의 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "합",
+          "equivalents": [
+            "더한 값"
+          ]
+        },
+        {
+          "key": "절반",
+          "equivalents": [
+            "반",
+            "$\\frac{1}{2}$"
+          ]
+        }
+      ],
+      "cReason": "같은 사다리꼴 두 개의 변환 조건을 명시하고 밑변의 합과 한 도형의 절반 관계를 짧게 확인한다. 학습 설명에는 조작 그림 보강을 권고한다. 새 밑변의 방향도 명시하여 다른 변을 기준으로 잡는 경우와 구별한다.",
+      "coreAfter": "모양과 크기가 같은 사다리꼴 $2$개 중 하나를 반 바퀴 돌려 평행하지 않은 한 변끼리 맞대면 평행사변형이 된다. 원래 두 밑변과 평행한 쪽을 새 밑변으로 정하면 그 길이는 사다리꼴의 {윗변과 아랫변의 합}이다.",
+      "coreReason": "원문은 사다리꼴 1개만 돌려 붙이는 것처럼 읽히고 '옆변'이 교과서 용어가 아니다.",
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "ed1536bff49857070615ac58e9aec6d21ef8751a2446bd5f2b0147084d0870c6",
+      "proposalFingerprint": "eaae7c95bc9077c67e791c546845a47b1b4289771dc5bdfa68e31134bed624e4",
+      "questionRevision": "planning-e5e6-20261006-eaae7c95bc90",
+      "draftEvidence": "evidence/section-025-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-2-1-1-c3",
+      "sourceIndex": 90,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "‘$4$ 이상 $9$ 이하인 수’처럼 이상과 이하를 함께 써서 범위를 정하면 어떤 수들이 그 범위에 들어가는지 설명하시오. 그리고 $3$, $4$, $9$, $10$ 중에서 이 범위에 들어가는 수를 모두 고르시오.",
+        "answer": "$4$ 이상이면서 동시에 $9$ 이하인 수, 곧 두 조건에 모두 맞는 수만 들어간다. $4$와 $9$가 들어간다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 조건에 모두 맞는 수만 들어간다",
+              "$4$와 같거나 크면서 $9$와 같거나 작은 수",
+              "$4$부터 $9$까지의 수($4$와 $9$ 포함)"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$와 $9$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "두 조건을 함께 쓰면 둘 다 만족하는 수만 남는다는 것을 설명한다.",
+      "bReason": "‘겹친 범위’는 편집용 제목이라 실제 범위와 경계 안팎의 수를 넣어 물었다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "‘$4$ 이상 $9$ 이하인 수’는 $4$ 이상이면서 $9$ 이하인 수이다. $3$, $4$, $9$, $10$ 중 이 범위에 들어가는 수를 작은 것부터 쓰면 {$4$}와 {$9$}이다.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ],
+          [
+            "$9$"
+          ]
+        ]
+      },
+      "cStudentSentence": "‘$4$ 이상 $9$ 이하인 수’는 $4$ 이상이면서 $9$ 이하인 수이다. $3$, $4$, $9$, $10$ 중 이 범위에 들어가는 수를 작은 것부터 쓰면 □와 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": []
+        },
+        {
+          "key": "$9$",
+          "equivalents": []
+        }
+      ],
+      "cReason": "두 수를 바꾸어 넣어도 참인 순서 없는 목록이었다. 작은 것부터라는 응답 조건으로 두 답 위치를 정하고 서로 다른 값의 슬롯을 동의어로 묶지 않는다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "5a9d3e980ebe3e08555de6d342712ed208706a680977817d31ce7dd4b56e341f",
+      "proposalFingerprint": "54824c062069b9e6e024ee449bde59b2d1cc6e096464fcb0b69c4109ea862ebc",
+      "questionRevision": "planning-e5e6-20261006-54824c062069",
+      "draftEvidence": "evidence/section-026-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-2-1-3-c3",
+      "sourceIndex": 96,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "$2$ 초과 $5$ 이하인 수 가운데 자연수를 모두 쓰시오. $2.5$는 이 범위에 드는데도 고르지 않는 까닭을 설명하시오.",
+        "answer": "자연수는 $3$, $4$, $5$이다. $2.5$는 자연수가 아니므로 고르지 않는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$3$, $4$, $5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2.5$는 자연수가 아니므로 고르지 않는다"
+            ]
+          }
+        ]
+      },
+      "bGoal": "경계 포함 여부와 자연수 조건을 함께 적용하여 실제 수를 고르고 제외 이유를 설명한다.",
+      "bReason": "소수나 분수 표기라고 모두 제외하면 $5.0$이나 $10\\div2$처럼 자연수인 값도 잘못 뺄 수 있다. 실제 범위와 자연수가 아닌 $2.5$를 지목해 값의 종류와 경계 조건을 판단하게 한다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "$2$ 이상 $5$ 미만인 수 가운데 자연수만 고르면 $2$, $3$, {$4$}이다. $2.5$는 이 범위에 들지만 {자연수}가 아니므로 고르지 않는다.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ],
+          [
+            "자연수"
+          ]
+        ]
+      },
+      "cStudentSentence": "$2$ 이상 $5$ 미만인 수 가운데 자연수만 고르면 $2$, $3$, □이다. $2.5$는 이 범위에 들지만 □가 아니므로 고르지 않는다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": []
+        },
+        {
+          "key": "자연수",
+          "equivalents": []
+        }
+      ],
+      "cReason": "'자연수가 아닌 수'라는 긴 구절을 바로 앞 낱말에서 베끼게 되어 실제 범위에서 고르는 문장으로 바꿨다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "0b64fa27d11dabae3a7207c880f62989b64b8b252527ed6d1dfde3361350291e",
+      "proposalFingerprint": "aa6fb85bb120b3e6f12f68dd71ce33ee853bb3265d1a414f7bd467678d630708",
+      "questionRevision": "planning-e5e6-20261006-aa6fb85bb120",
+      "draftEvidence": "evidence/section-028-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-2-1-4-c1",
+      "sourceIndex": 97,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "어떤 자연수를 올림하여 백의 자리까지 나타내려고 한다. 백의 자리 아래에 $0$이 아닌 숫자가 있으면, 아래 부분을 얼마로 보고 끝의 두 자리 숫자는 어떻게 쓰는지 설명하시오. 그리고 $5230$을 올림하여 백의 자리까지 나타내시오.",
+        "answer": "백의 자리 아래 부분을 $100$으로 보고 더하며, 끝의 두 자리는 $0$으로 쓴다. $5230$의 아래 부분 $30$을 $100$으로 보면 $5200+100=5300$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "백의 자리 아래의 $0$이 아닌 부분을 $100$으로 본다",
+              "아래 부분을 버린 값에 $100$을 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "끝의 두 자리 숫자를 $0$으로 쓴다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5300$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "백의 자리 올림에서 아래 부분을100으로 보는 일반 방법과 끝 두 자리 처리 방법을 설명한다.",
+      "bReason": "자리 숫자를 무조건1 크게 한다는 말은9에서 자리 넘김이 생길 때 불명확하다. 아래 부분을100으로 보고 처리하는 자리값 방법으로 쓰고 실제 결과도 묻는다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "$5990$을 올림하여 백의 자리까지 나타내면 {$6000$}이다.",
+        "acceptedAnswers": [
+          [
+            "$6000$"
+          ]
+        ]
+      },
+      "cStudentSentence": "$5990$을 올림하여 백의 자리까지 나타내면 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$6000$",
+          "equivalents": []
+        }
+      ],
+      "cReason": "정한 자리의 수에1을 더한다는 말은 숫자와 자리값을 혼동하게 한다. 백의 자리에서 자리 넘김이 있는 실제 수5990의 올림값을 묻는다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "8fc5b0d5487e383429c8de7cf330a425b4c9eeaa4798fd623338173d3f0e9fb1",
+      "proposalFingerprint": "919a240b0b22bc1e4860fd78c7231574dec138d355c73ebedd9f34896ff8a6be",
+      "questionRevision": "planning-e5e6-20261006-919a240b0b22",
+      "draftEvidence": "evidence/section-029-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-2-1-4-c3",
+      "sourceIndex": 99,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "물건을 한 상자에 같은 개수씩 나누어 담는데, 가득 채우고 남은 물건까지 모두 담아야 합니다. 필요한 상자 수를 정할 때 올림과 버림 중 어느 것을 써야 하는지 쓰고, 그 까닭을 설명하시오.",
+        "answer": "올림을 쓴다. 남은 물건을 담을 상자가 하나 더 있어야 모두 담을 수 있기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "올림을 쓴다",
+              "올려서 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "남은 물건을 담을 상자가 하나 더 필요하다",
+              "버리면 남은 물건을 담지 못한다"
+            ]
+          }
+        ]
+      },
+      "bGoal": "남는 것까지 담아야 하는 상황에서 올림을 쓰는 까닭을 설명한다.",
+      "bReason": "상황 조건을 질문에 모두 넣고 방법 선택과 까닭을 함께 물었다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "달걀 $32$개를 한 판에 $10$개씩 모두 담으려면 판은 {$4$}개 필요하다. 이처럼 남은 것까지 모두 담아야 할 때는 {올림}을 쓴다.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ],
+          [
+            "올림"
+          ]
+        ]
+      },
+      "cStudentSentence": "달걀 $32$개를 한 판에 $10$개씩 모두 담으려면 판은 □개 필요하다. 이처럼 남은 것까지 모두 담아야 할 때는 □을 쓴다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": []
+        },
+        {
+          "key": "올림",
+          "equivalents": []
+        }
+      ],
+      "cReason": "32개를10개씩 모두 담으면4판이라는 유용한 상황과 올림 이름을 유지한다. 표기 정규화 후 완전히 같은4 대안이 중복되어 하나로 정리한다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "aa9e8db208790edf7e64f5f23799ed05a434dc41c50824e871319707c2558838",
+      "proposalFingerprint": "0fc50e943e5ff831098523764baab7bfd9f6884a20c5f5a815c893cbf9ad2bce",
+      "questionRevision": "planning-e5e6-20261006-0fc50e943e5f",
+      "draftEvidence": "evidence/section-029-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-2-1-5-c3",
+      "sourceIndex": 102,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "물건을 정해진 개수씩 묶어 꽉 찬 묶음만 셀 때, 묶음 수는 올림과 버림 중 어느 방법으로 정하는지 쓰시오. 남는 낱개와 관련지어 까닭을 설명하고, 구슬 $47$개를 $10$개씩 묶을 때 꽉 찬 묶음 수도 쓰시오.",
+        "answer": "버림으로 구한다. 남는 낱개는 한 묶음이 되지 못해 세지 않기 때문이다. 구슬 $47$개는 $40$개만 묶음에 들어가므로 꽉 찬 묶음은 $4$묶음이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "버림"
+            ]
+          },
+          {
+            "anyOf": [
+              "남는 낱개는 한 묶음이 되지 못해 세지 않는다",
+              "남는 것은 묶음을 채우지 못하므로 뺀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$묶음",
+              "$4$개"
+            ]
+          }
+        ]
+      },
+      "bGoal": "꽉 찬 묶음만 세는 상황에서 버림을 고르는 까닭을 설명한다.",
+      "bReason": "묶음에 든 물건 수와 묶음 수를 섞어 묻던 문장을 실제 목표인 꽉 찬 묶음 수로 일치시킨다. 남는 낱개를 세지 않는 이유와4묶음은 유지한다.",
+      "cDecision": "exclude",
+      "clozeQuestion": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "cReason": "원문의 빼고는 버리고·세지 않고 등으로도 쓸 수 있는 임의 연결 낱말이다. e5-2-1-5-xc7 C가 같은47개·10개 묶음 상황의 버림과 묶인40개를 확인한다. 실제 원문과 제안은 evidence/duplicate-batch004-peers.json에 보존한다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": "C: 임의 연결 낱말만 채우는 목표가 약하고 e5-2-1-5-xc7 C와 같은 꽉 찬 묶음 절차를 되풀이한다. 본 행 B의 묶음수4·설명과 일반 정의는 유지한다.",
+      "questionExclusions": {
+        "cloze": "C: 임의 연결 낱말만 채우는 목표가 약하고 e5-2-1-5-xc7 C와 같은 꽉 찬 묶음 절차를 되풀이한다. 본 행 B의 묶음수4·설명과 일반 정의는 유지한다."
+      },
+      "sourceFingerprint": "97f5b53ca55ef9749b755304b54627d7f320879ae5478dda80b6c7f8b624f41e",
+      "proposalFingerprint": "2dc9db0d41188ace476978700132b9edd3ffe65dea72af8ad2f9a30eb987bec0",
+      "questionRevision": "planning-e5e6-20261006-2dc9db0d4118",
+      "draftEvidence": "evidence/section-030-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-2-1-6-c3",
+      "sourceIndex": 105,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "자연수를 반올림하여 십의 자리까지 나타냈더니 $50$이 되었다. 가능한 자연수의 범위를 쓰시오. 그 범위의 가장 작은 수보다 $1$ 작은 수와 가장 큰 수보다 $1$ 큰 수는 각각 무엇으로 반올림되는지도 설명하시오.",
+        "answer": "$45$부터 $54$까지, 곧 $45$ 이상 $55$ 미만이다. 바로 밖의 $44$는 $40$으로, $55$는 $60$으로 반올림되므로 $50$이 되는 범위에 들어가지 않는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$45$ 이상 $55$ 미만",
+              "$45$부터 $54$까지의 자연수"
+            ]
+          },
+          {
+            "anyOf": [
+              "$44$는 $40$으로 반올림된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$55$는 $60$으로 반올림된다"
+            ]
+          }
+        ]
+      },
+      "bGoal": "반올림 결과가 같은 자연수 범위를 구하고 그 범위 바로 밖 두 수가 제외되는 이유를 설명한다.",
+      "bReason": "동치인45부터54까지도 인정하므로 이상·미만 표현만 강제하지 않는다. 경계라는 말이 학생의 닫힌 자연수 범위45부터54와 맞지 않던 문제를 바로 밖 이웃 수의 반올림으로 명확히 했다. 기대 범위의 숫자는 질문에 주지 않는다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "반올림하여 십의 자리까지 나타내면 $50$이 되는 자연수의 범위는 {$45$} 이상 {$55$} 미만이다.",
+        "acceptedAnswers": [
+          [
+            "$45$"
+          ],
+          [
+            "$55$"
+          ]
+        ]
+      },
+      "cStudentSentence": "반올림하여 십의 자리까지 나타내면 $50$이 되는 자연수의 범위는 □ 이상 □ 미만이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$45$",
+          "equivalents": []
+        },
+        {
+          "key": "$55$",
+          "equivalents": []
+        }
+      ],
+      "cReason": "정한 자리와 결과를 보여 주고 범위의 두 경계를 수로 답하게 한다. 임의의 긴 구절을 암기하는 빈칸을 없앤다.",
+      "coreAfter": "같은 자리까지 반올림해 같은 값이 되는 수는, 그 값에서 나타낸 자리 단위의 {절반을 뺀 수} 이상이고 절반을 더한 수 미만이다. 십의 자리면 $5$, 백의 자리면 $50$을 빼고 더한다.",
+      "coreReason": "'반 단위'는 초5 교과 용어가 아니어서 '자리 단위의 절반'으로 풀고 자리별 값을 덧붙였다.",
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "953f5d189c15d1939d4357b5c9ea9260414b30837d989258e2f3a6fa19cd7735",
+      "proposalFingerprint": "02db55f5e0d5ca5889bcb8c8faf15e32ed13e5c8efabe78f9b61d9572ae5f0d6",
+      "questionRevision": "planning-e5e6-20261006-02db55f5e0d5",
+      "draftEvidence": "evidence/section-031-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-2-2-1-c1",
+      "sourceIndex": 106,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "진분수에 자연수를 곱할 때 분모와 분자는 각각 어떻게 하나요? 그 방법으로 $\\frac{2}{9}\\times4$를 계산하세요.",
+        "answer": "분모는 그대로 두고 분자에 자연수를 곱한다. $\\frac{2}{9}\\times4=\\frac{2\\times4}{9}=\\frac{8}{9}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분모는 그대로 둔다",
+              "분모는 바뀌지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분자에 자연수를 곱한다",
+              "분자는 $2 \\times 4$로 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{8}{9}$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "진분수와 자연수의 곱에서 분모와 분자를 다루는 방법을 말하고 적용한다.",
+      "bReason": "제목만으로는 물음이 되지 않아 분모·분자 처리와 예 계산을 묻도록 했다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "$\\frac{2}{9}\\times4$를 계산하면 {$\\frac{8}{9}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{8}{9}$"
+          ]
+        ]
+      },
+      "cStudentSentence": "$\\frac{2}{9}\\times4$를 계산하면 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{8}{9}$",
+          "equivalents": []
+        }
+      ],
+      "cReason": "주어진 분수에서 분모9를 옮겨 적는 슬롯을 제거하고 진분수×자연수의 실제 곱을 쓰게 한다. 일반 분모·분자 방법은 B가 묻는다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "dde057ddada2eeff814a8ee2060e8a1eeaa2a5908ef55325995975c1dae9b233",
+      "proposalFingerprint": "2d4d9ee528684338b5a2f4491008034dc9f9c3960eaf85287b143f7885278731",
+      "questionRevision": "planning-e5e6-20261006-2d4d9ee52868",
+      "draftEvidence": "evidence/section-032-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-2-2-2-c1",
+      "sourceIndex": 109,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "자연수에 진분수를 곱한 값을 구하는 방법을, 분모와 분자를 각각 어떻게 쓰는지 넣어 설명하시오. 그 방법으로 $12\\times\\frac{3}{4}$을 구하시오.",
+        "answer": "자연수를 분모로 나눈 다음 분자를 곱한다(자연수와 분자를 곱한 뒤 분모로 나누어도 된다). $12\\div4=3$, $3\\times3=9$이므로 $9$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "자연수를 분모로 나누고 분자를 곱한다",
+              "자연수와 분자를 곱한 것을 분모로 나눈다",
+              "자연수를 분자에 곱하고 분모는 그대로 둔다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$9$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "분모로 나누고 분자를 곱하는 계산 절차를 스스로 말하고 적용한다.",
+      "bReason": "제목만으로는 무엇을 설명할지 알 수 없어 분모·분자의 쓰임을 묻고 예를 붙였다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "$20\\times\\frac{3}{5}$을 계산하면 {$12$}이다.",
+        "acceptedAnswers": [
+          [
+            "$12$"
+          ]
+        ]
+      },
+      "cStudentSentence": "$20\\times\\frac{3}{5}$을 계산하면 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$12$",
+          "equivalents": []
+        }
+      ],
+      "cReason": "5와3을 주어진 분수에서 옮기는 슬롯을 줄이고 자연수×진분수의 실제 결과12만 묻는다. B의 여러 같은 계산 방법은 그대로 인정한다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "e9f78b693e332662a632e43c1b90bd4a847b05421060621e80b8f9ad825b440f",
+      "proposalFingerprint": "d478762fd74fae0f5d6ccd677a9a30a4270debe8797e0c36e5fc3154bdff87b2",
+      "questionRevision": "planning-e5e6-20261006-d478762fd74f",
+      "draftEvidence": "evidence/section-033-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-2-2-2-c2",
+      "sourceIndex": 110,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "자연수에 대분수를 곱할 때 대분수를 먼저 어떤 분수로 고쳐서 계산할 수 있는지 쓰고, 그 방법으로 $3\\times1\\frac{1}{2}$을 구하시오.",
+        "answer": "대분수를 가분수로 고쳐서 곱한다. $1\\frac{1}{2}=\\frac{3}{2}$이므로 $3\\times\\frac{3}{2}=\\frac{9}{2}=4\\frac{1}{2}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "가분수로 고친다",
+              "$\\frac{3}{2}$으로 고친다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4\\frac{1}{2}$",
+              "$\\frac{9}{2}$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "대분수를 가분수로 고쳐 자연수와 곱하는 절차를 안다.",
+      "bReason": "나누어 곱하는 방법은 xc15에서 따로 묻기 때문에 여기서는 가분수로 고치는 절차로 좁혔다.",
+      "cDecision": "keep",
+      "clozeQuestion": {
+        "sentence": "대분수부터 {가분수 꼴}로 고친 다음, 자연수를 분자 쪽에 곱해 계산한다.",
+        "acceptedAnswers": [
+          [
+            "가분수 꼴",
+            "가분수"
+          ]
+        ]
+      },
+      "cStudentSentence": "대분수부터 □로 고친 다음, 자연수를 분자 쪽에 곱해 계산한다.",
+      "cSlotAnswers": [
+        {
+          "key": "가분수 꼴",
+          "equivalents": [
+            "가분수"
+          ]
+        }
+      ],
+      "cReason": "원문의 짧은 방법 문장을 유지한다. 가분수 꼴과 가분수는 모두 로 고친다에 문법상 맞고 같은 변환을 뜻하므로 함께 인정한다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "541152bdfdddbd723da273199f170b29b5401b560c60a0ecee4b1d566f59d467",
+      "proposalFingerprint": "a4c4e608ca8258e63172e65f4fe5fcf0a9c1fb5af0f381260d293fec0c19fd78",
+      "questionRevision": "planning-e5e6-20261006-a4c4e608ca82",
+      "draftEvidence": "evidence/section-033-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-2-2-3-c1",
+      "sourceIndex": 112,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "단위분수끼리 곱할 때 곱의 분자와 분모는 각각 어떻게 정해지는지 쓰고, $\\frac{1}{3}\\times\\frac{1}{5}$을 계산하시오.",
+        "answer": "곱의 분자는 $1$이고, 분모는 두 분모를 곱한 수이다. $\\frac{1}{3}\\times\\frac{1}{5}=\\frac{1}{15}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "곱의 분자는 $1$이다",
+              "분자는 $1 \\times 1 = 1$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분모는 두 분모를 곱한 수이다",
+              "분모끼리 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{15}$",
+              "$15$분의 $1$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "단위분수끼리의 곱에서 분자와 분모가 정해지는 방법을 말하고 계산한다.",
+      "bReason": "제목만으로는 물음이 되지 않아 분자·분모를 각각 묻고 예를 붙였다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "단위분수 $2$개를 곱하면 분자는 {$1$}이고, 분모는 {두 분모의 곱}이다.",
+        "acceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "두 분모의 곱",
+            "분모의 곱",
+            "분모끼리 곱한 값",
+            "분모끼리 곱한 수"
+          ]
+        ]
+      },
+      "cStudentSentence": "단위분수 $2$개를 곱하면 분자는 □이고, 분모는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": []
+        },
+        {
+          "key": "두 분모의 곱",
+          "equivalents": [
+            "분모의 곱",
+            "분모끼리 곱한 값",
+            "분모끼리 곱한 수"
+          ]
+        }
+      ],
+      "cReason": "두 분모라는 답에 맞게 단위분수2개라는 범위를 명시한다. 분모의 곱과 분모끼리 곱한 값은 같은 곱을 뜻하는 유효한 대안이다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "d1565452bfbe64b78ae7b0e33b5e5450f575dbb614b87ae8386c93abd52c29d1",
+      "proposalFingerprint": "29f62ec54157f4cd10078cd00a5d8c9aa0e64894da7d30ee9be0aebc0b069444",
+      "questionRevision": "planning-e5e6-20261006-29f62ec54157",
+      "draftEvidence": "evidence/section-034-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-2-2-3-c2",
+      "sourceIndex": 113,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "진분수끼리 곱할 때 곱의 분자와 분모를 각각 어떻게 구하는지 쓰고, $\\frac{3}{5}\\times\\frac{2}{7}$를 계산하시오.",
+        "answer": "분자는 분자끼리 곱하고, 분모는 분모끼리 곱한다. $\\frac{3}{5}\\times\\frac{2}{7}=\\frac{6}{35}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분자는 분자끼리 곱한다",
+              "두 분자의 곱이 분자이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분모는 분모끼리 곱한다",
+              "두 분모의 곱이 분모이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{6}{35}$",
+              "$35$분의 $6$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "진분수끼리 곱하는 계산 방법을 말하고 적용한다.",
+      "bReason": "분자와 분모를 구하는 방법을 범위를 정해 묻고 계산 예로 확인하게 했다.",
+      "cDecision": "keep",
+      "clozeQuestion": {
+        "sentence": "진분수끼리 곱한 값은 {분자의 곱}을 분자로, {분모의 곱}을 분모로 적는다.",
+        "acceptedAnswers": [
+          [
+            "분자의 곱",
+            "두 분자의 곱",
+            "분자끼리 곱한 값"
+          ],
+          [
+            "분모의 곱",
+            "두 분모의 곱",
+            "분모끼리 곱한 값"
+          ]
+        ]
+      },
+      "cStudentSentence": "진분수끼리 곱한 값은 □을 분자로, □을 분모로 적는다.",
+      "cSlotAnswers": [
+        {
+          "key": "분자의 곱",
+          "equivalents": [
+            "두 분자의 곱",
+            "분자끼리 곱한 값"
+          ]
+        },
+        {
+          "key": "분모의 곱",
+          "equivalents": [
+            "두 분모의 곱",
+            "분모끼리 곱한 값"
+          ]
+        }
+      ],
+      "cReason": "유용한 짧은 곱셈 방법 문장을 보존한다. 각 분자 또는 분모를 곱한 값이라는 같은 의미의 표현도 뒤의 을에 맞으므로 인정한다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "ac7f1ac6c7b8456fd10b8c1905bb91eafd7fb308df2cc2ab23a098d2f0dbf592",
+      "proposalFingerprint": "0a6440b469a85bbc3162d4213334a1c1a3be825cb1af4a6fd0c1dcbc366094e5",
+      "questionRevision": "planning-e5e6-20261006-0a6440b469a8",
+      "draftEvidence": "evidence/section-034-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-2-2-4-c2",
+      "sourceIndex": 116,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "세 분수를 한꺼번에 곱할 때 분자와 분모를 각각 어떻게 계산하는지 설명하고, $\\frac{1}{2}\\times\\frac{2}{3}\\times\\frac{3}{4}$을 계산하시오.",
+        "answer": "분자 셋을 곱한 값을 분자로, 분모 셋을 곱한 값을 분모로 하고 약분한다. $\\frac{6}{24}=\\frac{1}{4}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분자끼리 모두 곱하고 분모끼리 모두 곱한다",
+              "분자 셋의 곱을 분자로, 분모 셋의 곱을 분모로 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{4}$",
+              "$\\frac{6}{24}$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "세 분수의 곱에서 분자와 분모를 각각 구하는 방법을 안다.",
+      "bReason": "분자 셋·분모 셋의 곱과 실제 결과를 묻는 B를 유지한다. 기약분수로 쓰라는 조건이 없어 같은 값6/24도 유효한 실제 결과로 인정한다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "$\\frac{1}{2}\\times\\frac{2}{3}\\times\\frac{3}{4}$의 곱을 기약분수로 쓰면 {$\\frac{1}{4}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{1}{4}$"
+          ]
+        ]
+      },
+      "cStudentSentence": "$\\frac{1}{2}\\times\\frac{2}{3}\\times\\frac{3}{4}$의 곱을 기약분수로 쓰면 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{1}{4}$",
+          "equivalents": []
+        }
+      ],
+      "cReason": "나타내고약분한다라는 문장에는 계산·정리 같은 다른 말도 들어갈 수 있다. 구체적인 세 분수의 곱을 기약분수로 쓰라는 답 형태로 범위를 정했다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "783e065f6bbfb2f14ffe37df6b4dcf99b8bffeca6cebb6b4ec3f54ddb74cb95b",
+      "proposalFingerprint": "110b462f1ea7f4a88ec7af8f58c41969a33c43f1946de97ef9c5d1bd2bb26f0f",
+      "questionRevision": "planning-e5e6-20261006-110b462f1ea7",
+      "draftEvidence": "evidence/section-035-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-2-2-4-c3",
+      "sourceIndex": 117,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bQuestion": {
+        "prompt": "분수 여러 개를 곱하는 식에서 서로 다른 분수의 분자와 분모도 미리 약분할 수 있는지 쓰시오. 나눌 수 있는 수의 조건을 설명하고, $\\frac{2}{3}\\times\\frac{3}{5}\\times\\frac{5}{8}$를 약분하여 계산하시오.",
+        "answer": "서로 다른 분수의 분자와 분모도 약분할 수 있다. 두 수의$1$보다 큰 공약수로 함께 나눈다.$3$끼리,$5$끼리 약분하고$2$와$8$을$2$로 나누면 곱은 $\\frac{1}{4}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "서로 다른 분수의 분자와 분모도 미리 약분할 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 수의 $1$보다 큰 공약수로 함께 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{4}$"
+            ]
+          }
+        ]
+      },
+      "bGoal": "곱으로 이어진 분수에서 약분할 수 있는 수의 짝과 나누는 수를 안다.",
+      "bReason": "어느 분자·분모든 무조건 약분된다는 말 대신 서로 다른 분수의 두 수도1보다 큰 공약수가 있으면 함께 나눌 수 있다는 조건을 묻는다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "분수의 곱에서는 서로 다른 분수의 분자와 분모도 $1$보다 큰 {공약수}가 있으면 그 수로 나누어 약분할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "공약수"
+          ]
+        ]
+      },
+      "cStudentSentence": "분수의 곱에서는 서로 다른 분수의 분자와 분모도 $1$보다 큰 □가 있으면 그 수로 나누어 약분할 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "공약수",
+          "equivalents": []
+        }
+      ],
+      "cReason": "공약수1로 나눠도 약분된다는 오독을 피하고1보다 큰 공약수라는 조건을 명시한다. 분자와 분모의 짝이라는 일반 절차와 짧은 이름은 유지한다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": null,
+      "questionExclusions": {},
+      "sourceFingerprint": "9a6e49d7f98b4d88d28a664e88b44466ce68db1b6d79633216210252c25ecabe",
+      "proposalFingerprint": "aa764cc23dd4b8ea7591261e4c072a760ef484008bab33c45b6a6334f48b09ac",
+      "questionRevision": "planning-e5e6-20261006-aa764cc23dd4",
+      "draftEvidence": "evidence/section-035-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    },
+    {
+      "id": "e5-2-3-1-c2",
+      "sourceIndex": 119,
+      "grade": "e5",
+      "part": "e5",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bQuestion": null,
+      "bGoal": "합동은 모양과 크기가 모두 같아야 함을 안다.",
+      "bReason": "e5-2-3-1-c1 B는 합동의 뜻을 묻고 e5-2-3-1-xc8 B는2cm·3cm 정사각형으로 같은 모양만으로 부족한 이유를 묻는다. 실제 두 제안과 원문을 확인한 중복 증거는 evidence/duplicate-batch004-peers.json에 남긴다.",
+      "cDecision": "revise",
+      "clozeQuestion": {
+        "sentence": "합동인 두 도형은 모양뿐 아니라 {크기}도 같아야 한다.",
+        "acceptedAnswers": [
+          [
+            "크기"
+          ]
+        ]
+      },
+      "cStudentSentence": "합동인 두 도형은 모양뿐 아니라 □도 같아야 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "크기",
+          "equivalents": []
+        }
+      ],
+      "cReason": "조사까지 붙은 '크기까지'를 강요하지 않도록 낱말 하나로 줄였다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "exclusionReason": "B: e5-2-3-1-c1의 합동 정의와 e5-2-3-1-xc8의 크기 반례가 같은 조건을 이미 확인한다. 본 행 C의크기·원문 설명·ID는 보존한다.",
+      "questionExclusions": {
+        "term": "B: e5-2-3-1-c1의 합동 정의와 e5-2-3-1-xc8의 크기 반례가 같은 조건을 이미 확인한다. 본 행 C의크기·원문 설명·ID는 보존한다."
+      },
+      "sourceFingerprint": "6c498b792b5b513d75872c325c8315a6934bf4b33d451c7ee336c73a9ca9c665",
+      "proposalFingerprint": "32593509db1fd975e5f4149d0f0f1686c6f730bfdc5a9a9d2499c6010c8781f8",
+      "questionRevision": "planning-e5e6-20261006-32593509db1f",
+      "draftEvidence": "evidence/section-036-draft.json",
+      "rubricEvidence": null,
+      "codexOverrideEvidence": "codex-overrides.json"
+    }
+  ]
+}

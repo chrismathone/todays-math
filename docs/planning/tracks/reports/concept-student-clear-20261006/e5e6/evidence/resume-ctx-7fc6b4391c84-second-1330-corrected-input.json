@@ -1,0 +1,177 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e5-2-4-1-xc1",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$0$보다 큰 소수 하나를 정했습니다. 이 소수에 곱하는 자연수가 $1$ 커지면 곱은 얼마만큼 커지는지 쓰고, $0.7\\times5$와 $0.7\\times6$의 값을 구해 확인하시오.",
+      "bAnswer": "곱은 그 소수만큼 커진다. $0.7\\times5=3.5$, $0.7\\times6=4.2$이고 차는 $0.7$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱해지는 소수만큼 커진다",
+            "그 소수를 한 번 더 더한 만큼 커진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3.5$와 $4.2$",
+            "$4.2-3.5=0.7$"
+          ]
+        }
+      ],
+      "bGoal": "곱하는 수가 $1$ 늘면 소수를 한 번 더 더한 것임을 안다.",
+      "bReason": "늘어나는 양을 답으로 남겨 두고 두 곱의 차로 확인하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$0.7\\times6$은 $0.7\\times5$보다 {$0.7$}만큼 크다.",
+      "cReason": "'그 소수만큼'은 가리키는 대상이 모호해 실제 두 식의 차를 답하게 했다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0.7$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-second-1330.json",
+      "codexFinalAmendedFromFingerprint": "aa5ee584d2241f54ea61e30609b57682942b6fa1204c28cbcf5a4e213852c4c6",
+      "sourceIndex": 1335,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-1-xc1",
+        "section": "초5::2-4 소수의 곱셈::2-4-1 (1보다 작은 소수)×(자연수)의 계산",
+        "term": "곱하는 수가 하나 늘 때",
+        "kind": "정의",
+        "level": "하",
+        "definition": "같은 소수에 곱하는 자연수가 $1$ 커지면 곱은 {그 소수만큼} 커진다.",
+        "studentC": "같은 소수에 곱하는 자연수가 $1$ 커지면 곱은 □ 커진다.",
+        "answers": [
+          "그 소수만큼"
+        ]
+      },
+      "sourceFingerprint": "ed89a8dd214432c65740bf97285c13328f82bec9cd6e2619988a6c6a0796428c",
+      "draftEvidence": "evidence/section-040-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$0.7$"
+      ],
+      "cStudentAfter": "$0.7\\times6$은 $0.7\\times5$보다 □만큼 크다.",
+      "cMarkedSentence": "$0.7\\times6$은 $0.7\\times5$보다 {$0.7$}만큼 크다.",
+      "cStudentSentence": "$0.7\\times6$은 $0.7\\times5$보다 □만큼 크다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0.7$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$0$보다 큰 소수 하나를 정했습니다. 이 소수에 곱하는 자연수가 $1$ 커지면 곱은 얼마만큼 커지는지 쓰고, $0.7\\times5$와 $0.7\\times6$의 값을 구해 확인하시오.",
+        "answer": "곱은 그 소수만큼 커진다. $0.7\\times5=3.5$, $0.7\\times6=4.2$이고 차는 $0.7$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "곱해지는 소수만큼 커진다",
+              "그 소수를 한 번 더 더한 만큼 커진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3.5$와 $4.2$",
+              "$4.2-3.5=0.7$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0.7\\times6$은 $0.7\\times5$보다 {$0.7$}만큼 크다.",
+        "acceptedAnswers": [
+          [
+            "$0.7$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "8c749efecb2ddc2d66eb5e315bdfa5561e2a0cb9361949d61aa0ee600ade37de",
+      "questionRevision": "planning-e5e6-20261006-8c749efecb2d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-4-1-xc16",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "곱하는 자연수가 커지면 곱도 커짐을 안다.",
+      "bReason": "xc1이 '얼마만큼 커지는지'까지 물어 이 성질을 포함하므로 따로 서술할 내용이 없다.",
+      "cDecision": "revise",
+      "cAfter": "$0$보다 큰 소수는 그대로 두고 곱하는 자연수가 커지면 곱도 {커진다}.",
+      "cReason": "'같은 소수'라는 조건이 있는 짧은 크기 비교 문장이고 답 '커진다'가 분명하다.",
+      "exclusionReason": "B만 제외: e5-2-4-1-xc1의 B와 중복.",
+      "exampleNeeded": false,
+      "synonymNotes": "'커집니다', '늘어난다' 인정.",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-second-1330.json",
+      "codexFinalAmendedFromFingerprint": "c9764e9344e86c3e36e749b8f371491d13067c8f72d30aaf85de8d60e9c9aaca",
+      "sourceIndex": 1341,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-4-1-xc16",
+        "section": "초5::2-4 소수의 곱셈::2-4-1 (1보다 작은 소수)×(자연수)의 계산",
+        "term": "곱하는 자연수가 커질 때",
+        "kind": "성질",
+        "level": "중",
+        "definition": "같은 소수에 곱하는 자연수가 커지면 곱도 {커진다}.",
+        "studentC": "같은 소수에 곱하는 자연수가 커지면 곱도 □.",
+        "answers": [
+          "커진다"
+        ]
+      },
+      "sourceFingerprint": "41b2173c5743709b1c7bb099f6ea8e24f9ffc664c34d98d2459f146ebf92c88b",
+      "draftEvidence": "evidence/section-040-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "커진다"
+      ],
+      "cStudentAfter": "$0$보다 큰 소수는 그대로 두고 곱하는 자연수가 커지면 곱도 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "커진다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$0$보다 큰 소수는 그대로 두고 곱하는 자연수가 커지면 곱도 {커진다}.",
+      "cStudentSentence": "$0$보다 큰 소수는 그대로 두고 곱하는 자연수가 커지면 곱도 □.",
+      "cSlotAnswers": [
+        {
+          "key": "커진다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$0$보다 큰 소수는 그대로 두고 곱하는 자연수가 커지면 곱도 {커진다}.",
+        "acceptedAnswers": [
+          [
+            "커진다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B만 제외: e5-2-4-1-xc1의 B와 중복."
+      },
+      "proposalFingerprint": "17f0294cb5118fd9246867e565657ba172580e9a1bf04ddb871012a4b8dfe439",
+      "questionRevision": "planning-e5e6-20261006-17f0294cb511",
+      "requiresIndependentReview": true
+    }
+  ]
+}

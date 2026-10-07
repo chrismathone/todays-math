@@ -1,0 +1,3552 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "capturedAt": "2026-10-07T09:14:50.227748+00:00",
+  "rows": [
+    {
+      "id": "e6-2-6-2-xc26",
+      "bDecision": "revise",
+      "bPrompt": "높이가 같고 밑면의 지름이 $2$배인 원기둥은 전개도의 옆면에서 밑면과 맞닿는 변과 높이 방향 변이 각각 어떻게 달라지나요?",
+      "bAnswer": "밑면과 맞닿는 변은 $2$배가 되고 높이 방향 변은 그대로이다.",
+      "bGoal": "밑면 크기와 높이 변화가 옆면의 두 변에 미치는 영향을 구별한다.",
+      "bReason": "두 변이 각각 무엇에 의존하는지 구별하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "밑면과 맞닿는 변이 $2$배",
+            "둘레 쪽 변이 $2$배"
+          ]
+        },
+        {
+          "anyOf": [
+            "높이 방향 변은 그대로",
+            "높이 변은 변하지 않는다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "keep",
+      "cAfter": "높이가 같을 때 밑면 지름이 $2$배인 원기둥은 옆면에서 {밑면과 맞닿는 변}만 $2$배가 된다.",
+      "cReason": "지름이 $2$배일 때 변하는 변을 고르는 명확한 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2580,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-2-xc26",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-2 원기둥의 전개도 알아보기",
+        "term": "지름이 $2$배인 원기둥의 옆면",
+        "kind": "방법",
+        "level": "상",
+        "definition": "높이가 같을 때 밑면 지름이 $2$배인 원기둥은 옆면에서 {밑면과 맞닿는 변}만 $2$배가 된다.",
+        "studentC": "높이가 같을 때 밑면 지름이 $2$배인 원기둥은 옆면에서 □만 $2$배가 된다.",
+        "answers": [
+          "밑면과 맞닿는 변"
+        ]
+      },
+      "sourceFingerprint": "bbfd97728670ce55a2228438ac6cdaab67be61d49e9bd4c8bc5e76522f625b35",
+      "draftEvidence": "evidence/section-109-draft.json",
+      "cFrozenDefinition": "높이가 같을 때 밑면 지름이 $2$배인 원기둥은 옆면에서 {밑면과 맞닿는 변}만 $2$배가 된다.",
+      "cFrozenStudentSentence": "높이가 같을 때 밑면 지름이 $2$배인 원기둥은 옆면에서 □만 $2$배가 된다.",
+      "cProposedAnswers": [
+        "밑면과 맞닿는 변"
+      ],
+      "cStudentAfter": "높이가 같을 때 밑면 지름이 $2$배인 원기둥은 옆면에서 □만 $2$배가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "밑면과 맞닿는 변"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "높이가 같을 때 밑면 지름이 $2$배인 원기둥은 옆면에서 {밑면과 맞닿는 변}만 $2$배가 된다.",
+      "cStudentSentence": "높이가 같을 때 밑면 지름이 $2$배인 원기둥은 옆면에서 □만 $2$배가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "밑면과 맞닿는 변",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "높이가 같고 밑면의 지름이 $2$배인 원기둥은 전개도의 옆면에서 밑면과 맞닿는 변과 높이 방향 변이 각각 어떻게 달라지나요?",
+        "answer": "밑면과 맞닿는 변은 $2$배가 되고 높이 방향 변은 그대로이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "밑면과 맞닿는 변이 $2$배",
+              "둘레 쪽 변이 $2$배"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이 방향 변은 그대로",
+              "높이 변은 변하지 않는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "높이가 같을 때 밑면 지름이 $2$배인 원기둥은 옆면에서 {밑면과 맞닿는 변}만 $2$배가 된다.",
+        "acceptedAnswers": [
+          [
+            "밑면과 맞닿는 변"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "21fad4e752b5f810ad1d67ae2888e77a39b69aeb9f7747f62d043f6be77206ed",
+      "questionRevision": "planning-e5e6-20261006-21fad4e752b5",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-3-xc1",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "원뿔의 밑면 개수를 안다.",
+      "bReason": "단순한 개수 사실이라 xc13의 원기둥과의 비교가 더 낫다.",
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "원기둥과 비교하는 xc13이 같은 사실을 더 의미 있게 묻는다.",
+      "exclusionReason": "단순 개수 사실, e6-2-6-3-xc13과 중복.",
+      "exampleNeeded": false,
+      "sourceIndex": 2581,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-3-xc1",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-3 원뿔 알아보기",
+        "term": "원뿔의 밑면 수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "원뿔에는 밑면이 {$1$개} 있다.",
+        "studentC": "원뿔에는 밑면이 □ 있다.",
+        "answers": [
+          "$1$개"
+        ]
+      },
+      "sourceFingerprint": "81ceae7da3e342ddba387d5db65e71220033d1feddb27de9db00cfb4a1b32c2e",
+      "draftEvidence": "evidence/section-110-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "단순 개수 사실, e6-2-6-3-xc13과 중복.",
+        "cloze": "단순 개수 사실, e6-2-6-3-xc13과 중복."
+      },
+      "proposalFingerprint": "0f134ff555b348c720a1003ec4aba01da65cee206fa56e22b79305b8e0631d7d",
+      "questionRevision": "planning-e5e6-20261006-0f134ff555b3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-3-xc2",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "밑면의 모양이 원임을 안다.",
+      "bReason": "c2에서 이미 원 모양의 밑면을 묻는다.",
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "c2의 수정 C와 거의 같은 내용이다.",
+      "exclusionReason": "e6-2-6-3-c2와 중복.",
+      "exampleNeeded": false,
+      "sourceIndex": 2582,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-3-xc2",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-3 원뿔 알아보기",
+        "term": "원뿔의 밑면 모양",
+        "kind": "성질",
+        "level": "하",
+        "definition": "원뿔의 밑면은 {원} 모양이다.",
+        "studentC": "원뿔의 밑면은 □ 모양이다.",
+        "answers": [
+          "원"
+        ]
+      },
+      "sourceFingerprint": "b1e9f985f3416526c5098d148095129ccb915e768a3bf54f67c45e6b219e4867",
+      "draftEvidence": "evidence/section-110-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "e6-2-6-3-c2와 중복.",
+        "cloze": "e6-2-6-3-c2와 중복."
+      },
+      "proposalFingerprint": "6507d27c7255701f1e72490e87c3e4bc9b8f7550ac339e1007c40bd10ba41729",
+      "questionRevision": "planning-e5e6-20261006-6507d27c7255",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-3-xc3",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "고깔모자 모양을 원뿔로 연결한다.",
+      "bReason": "c1의 원뿔 설명과 겹치고 이름만 대는 문항이 된다.",
+      "bRequiredIdeas": [],
+      "learningRole": "naming",
+      "cDecision": "keep",
+      "cAfter": "생일 고깔모자처럼 밑이 원이고 위가 뾰족한 모양은 {원뿔} 모양이다.",
+      "cReason": "고깔모자라는 생활 속 모양과 밑이 원, 위가 뾰족하다는 조건을 연결하는 짧은 낱말 문장이다.",
+      "exclusionReason": "B만 e6-2-6-3-c1과 중복.",
+      "exampleNeeded": false,
+      "sourceIndex": 2583,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-3-xc3",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-3 원뿔 알아보기",
+        "term": "고깔 모양",
+        "kind": "방법",
+        "level": "하",
+        "definition": "생일 고깔모자처럼 밑이 원이고 위가 뾰족한 모양은 {원뿔} 모양이다.",
+        "studentC": "생일 고깔모자처럼 밑이 원이고 위가 뾰족한 모양은 □ 모양이다.",
+        "answers": [
+          "원뿔"
+        ]
+      },
+      "sourceFingerprint": "4f3d86c100adfd204f059bb57c3209dd08dda155fa1cec2a50607bf3665d1429",
+      "draftEvidence": "evidence/section-110-draft.json",
+      "cFrozenDefinition": "생일 고깔모자처럼 밑이 원이고 위가 뾰족한 모양은 {원뿔} 모양이다.",
+      "cFrozenStudentSentence": "생일 고깔모자처럼 밑이 원이고 위가 뾰족한 모양은 □ 모양이다.",
+      "cProposedAnswers": [
+        "원뿔"
+      ],
+      "cStudentAfter": "생일 고깔모자처럼 밑이 원이고 위가 뾰족한 모양은 □ 모양이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "원뿔"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "생일 고깔모자처럼 밑이 원이고 위가 뾰족한 모양은 {원뿔} 모양이다.",
+      "cStudentSentence": "생일 고깔모자처럼 밑이 원이고 위가 뾰족한 모양은 □ 모양이다.",
+      "cSlotAnswers": [
+        {
+          "key": "원뿔",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "생일 고깔모자처럼 밑이 원이고 위가 뾰족한 모양은 {원뿔} 모양이다.",
+        "acceptedAnswers": [
+          [
+            "원뿔"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B만 e6-2-6-3-c1과 중복."
+      },
+      "proposalFingerprint": "13d4b0d3019255845b279c4b6354ee786fd7ee2159841a0413b23fb0d489a153",
+      "questionRevision": "planning-e5e6-20261006-13d4b0d30192",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-3-xc4",
+      "bDecision": "revise",
+      "bPrompt": "원뿔의 모선은 모두 몇 개쯤 그을 수 있는지, 밑면 둘레의 점과 관련하여 설명하시오.",
+      "bAnswer": "밑면 둘레의 점마다 모선을 하나씩 그을 수 있어서 셀 수 없이 많다.",
+      "bGoal": "밑면 둘레의 점마다 모선이 있어 수가 셀 수 없이 많음을 이해한다.",
+      "bReason": "숫자를 외우지 않고 이유를 점과 선분의 관계로 설명하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "밑면 둘레의 점마다 모선을 그을 수 있다",
+            "점마다 하나씩 그을 수 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "셀 수 없이 많다",
+            "무수히 많다",
+            "끝없이 많다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "원뿔의 모선은 밑면 둘레의 점마다 하나씩 그을 수 있으므로 개수가 {셀 수 없이 많다}.",
+      "cReason": "같은 뜻의 표현이 여럿이라 인정 표현을 함께 둔다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "셀 수 없이 많다",
+            "무수히 많다",
+            "끝없이 많다"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 2584,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-3-xc4",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-3 원뿔 알아보기",
+        "term": "모선의 수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "원뿔의 모선은 밑면 둘레의 점마다 그을 수 있어 {셀 수 없이 많다}.",
+        "studentC": "원뿔의 모선은 밑면 둘레의 점마다 그을 수 있어 □.",
+        "answers": [
+          "셀 수 없이 많다"
+        ]
+      },
+      "sourceFingerprint": "0a8dd832fae7de627cfca03027b7ffcc89de95eac09539629cb314f1906ce19c",
+      "draftEvidence": "evidence/section-110-draft.json",
+      "cProposedAnswers": [
+        "셀 수 없이 많다"
+      ],
+      "cStudentAfter": "원뿔의 모선은 밑면 둘레의 점마다 하나씩 그을 수 있으므로 개수가 □.",
+      "cMarkedSentence": "원뿔의 모선은 밑면 둘레의 점마다 하나씩 그을 수 있으므로 개수가 {셀 수 없이 많다}.",
+      "cStudentSentence": "원뿔의 모선은 밑면 둘레의 점마다 하나씩 그을 수 있으므로 개수가 □.",
+      "cSlotAnswers": [
+        {
+          "key": "셀 수 없이 많다",
+          "equivalents": [
+            "무수히 많다",
+            "끝없이 많다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원뿔의 모선은 모두 몇 개쯤 그을 수 있는지, 밑면 둘레의 점과 관련하여 설명하시오.",
+        "answer": "밑면 둘레의 점마다 모선을 하나씩 그을 수 있어서 셀 수 없이 많다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "밑면 둘레의 점마다 모선을 그을 수 있다",
+              "점마다 하나씩 그을 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "셀 수 없이 많다",
+              "무수히 많다",
+              "끝없이 많다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원뿔의 모선은 밑면 둘레의 점마다 하나씩 그을 수 있으므로 개수가 {셀 수 없이 많다}.",
+        "acceptedAnswers": [
+          [
+            "셀 수 없이 많다",
+            "무수히 많다",
+            "끝없이 많다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "bff1356629a2486bf708b0428aec10c85882737cad94cdb2c942ca759a9d43ac",
+      "questionRevision": "planning-e5e6-20261006-bff1356629a2",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-3-xc5",
+      "bDecision": "revise",
+      "bPrompt": "한 원뿔에 그은 여러 모선의 길이는 서로 어떤 관계인지 쓰시오.",
+      "bAnswer": "모두 길이가 같다.",
+      "bGoal": "한 원뿔의 모선 길이가 모두 같음을 안다.",
+      "bReason": "모선 사이의 길이 관계를 직접 묻는 유용한 성질이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "길이가 모두 같다",
+            "모두 같다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "keep",
+      "cAfter": "한 원뿔의 모선은 길이가 모두 {같다}.",
+      "cReason": "'모두 같다'를 답하는 짧은 성질 문장으로 조건이 한 원뿔로 분명하다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2585,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-3-xc5",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-3 원뿔 알아보기",
+        "term": "모선의 길이",
+        "kind": "성질",
+        "level": "하",
+        "definition": "한 원뿔의 모선은 길이가 모두 {같다}.",
+        "studentC": "한 원뿔의 모선은 길이가 모두 □.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "sourceFingerprint": "ce676a71807cc3e7ee552cbb291ce0a73740a9571e5ca68185f2c5d5592d7d8a",
+      "draftEvidence": "evidence/section-110-draft.json",
+      "cFrozenDefinition": "한 원뿔의 모선은 길이가 모두 {같다}.",
+      "cFrozenStudentSentence": "한 원뿔의 모선은 길이가 모두 □.",
+      "cProposedAnswers": [
+        "같다"
+      ],
+      "cStudentAfter": "한 원뿔의 모선은 길이가 모두 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "한 원뿔의 모선은 길이가 모두 {같다}.",
+      "cStudentSentence": "한 원뿔의 모선은 길이가 모두 □.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "한 원뿔에 그은 여러 모선의 길이는 서로 어떤 관계인지 쓰시오.",
+        "answer": "모두 길이가 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "길이가 모두 같다",
+              "모두 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "한 원뿔의 모선은 길이가 모두 {같다}.",
+        "acceptedAnswers": [
+          [
+            "같다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "769024a0556af17c231ba3b8c9ff03506352bacf6e551410a31103750c05656a",
+      "questionRevision": "planning-e5e6-20261006-769024a0556a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-3-xc6",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "꼭짓점이 1개임을 안다.",
+      "bReason": "c4에서 꼭짓점의 뜻을 묻고 이 문항은 단순 개수만 묻는다.",
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "cDecision": "keep",
+      "cAfter": "원뿔에는 꼭짓점이 {$1$개} 있다.",
+      "cReason": "원뿔의 꼭짓점이 1개라는 짧은 사실을 묻는 간단한 문장이다.",
+      "exclusionReason": "B만 단순 개수로 e6-2-6-3-c4와 중복.",
+      "exampleNeeded": false,
+      "sourceIndex": 2586,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-3-xc6",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-3 원뿔 알아보기",
+        "term": "원뿔의 꼭짓점의 수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "원뿔에는 꼭짓점이 {$1$개} 있다.",
+        "studentC": "원뿔에는 꼭짓점이 □ 있다.",
+        "answers": [
+          "$1$개"
+        ]
+      },
+      "sourceFingerprint": "2d4ed8441beb197f32379eeafba04500601067bd0c0d10fa7bf4d6fef8d9778b",
+      "draftEvidence": "evidence/section-110-draft.json",
+      "cFrozenDefinition": "원뿔에는 꼭짓점이 {$1$개} 있다.",
+      "cFrozenStudentSentence": "원뿔에는 꼭짓점이 □ 있다.",
+      "cProposedAnswers": [
+        "$1$개"
+      ],
+      "cStudentAfter": "원뿔에는 꼭짓점이 □ 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$개"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "원뿔에는 꼭짓점이 {$1$개} 있다.",
+      "cStudentSentence": "원뿔에는 꼭짓점이 □ 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$개",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "원뿔에는 꼭짓점이 {$1$개} 있다.",
+        "acceptedAnswers": [
+          [
+            "$1$개"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B만 단순 개수로 e6-2-6-3-c4와 중복."
+      },
+      "proposalFingerprint": "ea0d2c90b8f53fc02de5b32019f77ba8bc4a3a4497d161b9259dd1e781625127",
+      "questionRevision": "planning-e5e6-20261006-ea0d2c90b8f5",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-3-xc7",
+      "bDecision": "revise",
+      "bPrompt": "밑면이 바닥에 닿게 세운 원뿔을 바로 앞에서 보면 어떤 도형 모양으로 보이는지 쓰고, 그렇게 보이는 까닭을 밑면과 꼭짓점으로 설명하시오.",
+      "bAnswer": "삼각형 모양이다. 아래의 밑면은 넓고 위의 꼭짓점은 한 점이라 위로 갈수록 좁아지기 때문이다.",
+      "bGoal": "세운 원뿔을 앞에서 본 모양이 삼각형임을 이해한다.",
+      "bReason": "모양 이름만이 아니라 밑면과 꼭짓점으로 까닭을 말하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "삼각형"
+          ]
+        },
+        {
+          "anyOf": [
+            "밑은 넓고 위는 한 점이다",
+            "위로 갈수록 좁아져 꼭짓점에서 모인다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "keep",
+      "cAfter": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 보면 {삼각형} 모양이다.",
+      "cReason": "밑면이 바닥에 닿게 세운다는 조건이 있어 '삼각형'만 답하면 되는 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2587,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-3-xc7",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-3 원뿔 알아보기",
+        "term": "원뿔을 앞에서 본 모양",
+        "kind": "성질",
+        "level": "하",
+        "definition": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 보면 {삼각형} 모양이다.",
+        "studentC": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 보면 □ 모양이다.",
+        "answers": [
+          "삼각형"
+        ]
+      },
+      "sourceFingerprint": "88b143c1f330844857295ec3601da85293102636b543bfcbf120f95660d61011",
+      "draftEvidence": "evidence/section-110-draft.json",
+      "cFrozenDefinition": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 보면 {삼각형} 모양이다.",
+      "cFrozenStudentSentence": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 보면 □ 모양이다.",
+      "cProposedAnswers": [
+        "삼각형"
+      ],
+      "cStudentAfter": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 보면 □ 모양이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "삼각형"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 보면 {삼각형} 모양이다.",
+      "cStudentSentence": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 보면 □ 모양이다.",
+      "cSlotAnswers": [
+        {
+          "key": "삼각형",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "밑면이 바닥에 닿게 세운 원뿔을 바로 앞에서 보면 어떤 도형 모양으로 보이는지 쓰고, 그렇게 보이는 까닭을 밑면과 꼭짓점으로 설명하시오.",
+        "answer": "삼각형 모양이다. 아래의 밑면은 넓고 위의 꼭짓점은 한 점이라 위로 갈수록 좁아지기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "삼각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "밑은 넓고 위는 한 점이다",
+              "위로 갈수록 좁아져 꼭짓점에서 모인다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 보면 {삼각형} 모양이다.",
+        "acceptedAnswers": [
+          [
+            "삼각형"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "4003b79c466edb0457736353f69c8ae9ed5800beeeb73db3e8370c9e948f0ef4",
+      "questionRevision": "planning-e5e6-20261006-4003b79c466e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-3-xc8",
+      "bDecision": "revise",
+      "bPrompt": "삼각자 두 개로 원뿔의 높이를 잴 때, 꼭짓점에서 어떻게 거리를 재야 하는지 설명하시오.",
+      "bAnswer": "꼭짓점에서 밑면에 수직으로 내린 거리를 잰다.",
+      "bGoal": "높이를 꼭짓점에서 밑면에 수직으로 잰다는 방법을 안다.",
+      "bReason": "삼각자를 쓰는 이유가 수직 때문임을 연결한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "꼭짓점에서 밑면까지 잰다",
+            "꼭대기에서 밑면까지 잰다"
+          ]
+        },
+        {
+          "anyOf": [
+            "수직으로 잰다",
+            "직각이 되게 잰다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "원뿔의 높이를 잴 때는 꼭짓점에서 밑면에 {수직}으로 내린 거리를 잰다.",
+      "cReason": "긴 구절을 외우게 하는 대신 '수직'만 빈칸으로 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "수직",
+            "직각",
+            "$90$도"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 2588,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-3-xc8",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-3 원뿔 알아보기",
+        "term": "높이를 재는 방법",
+        "kind": "방법",
+        "level": "중",
+        "definition": "원뿔의 높이는 삼각자 두 개로 꼭짓점에서 {밑면에 수직으로 내린 거리}를 재어 구한다.",
+        "studentC": "원뿔의 높이는 삼각자 두 개로 꼭짓점에서 □를 재어 구한다.",
+        "answers": [
+          "밑면에 수직으로 내린 거리"
+        ]
+      },
+      "sourceFingerprint": "acc798511b35e01106d09a97dfbdf13a0699c231e6df61c6f4d0f93308c03471",
+      "draftEvidence": "evidence/section-110-draft.json",
+      "cProposedAnswers": [
+        "수직"
+      ],
+      "cStudentAfter": "원뿔의 높이를 잴 때는 꼭짓점에서 밑면에 □으로 내린 거리를 잰다.",
+      "cMarkedSentence": "원뿔의 높이를 잴 때는 꼭짓점에서 밑면에 {수직}으로 내린 거리를 잰다.",
+      "cStudentSentence": "원뿔의 높이를 잴 때는 꼭짓점에서 밑면에 □으로 내린 거리를 잰다.",
+      "cSlotAnswers": [
+        {
+          "key": "수직",
+          "equivalents": [
+            "직각",
+            "$90$도"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "삼각자 두 개로 원뿔의 높이를 잴 때, 꼭짓점에서 어떻게 거리를 재야 하는지 설명하시오.",
+        "answer": "꼭짓점에서 밑면에 수직으로 내린 거리를 잰다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "꼭짓점에서 밑면까지 잰다",
+              "꼭대기에서 밑면까지 잰다"
+            ]
+          },
+          {
+            "anyOf": [
+              "수직으로 잰다",
+              "직각이 되게 잰다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원뿔의 높이를 잴 때는 꼭짓점에서 밑면에 {수직}으로 내린 거리를 잰다.",
+        "acceptedAnswers": [
+          [
+            "수직",
+            "직각",
+            "$90$도"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6382bb184347664580575f867fadc97f555f098befac44f73d1d05dccfe2f00d",
+      "questionRevision": "planning-e5e6-20261006-6382bb184347",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-3-xc9",
+      "bDecision": "revise",
+      "bPrompt": "한 원뿔에서 모선과 높이 중 어느 것이 더 긴지 쓰고, 둘이 밑면과 이루는 모양을 비교해 까닭을 설명하시오.",
+      "bAnswer": "모선이 더 길다. 높이는 꼭짓점에서 밑면에 수직으로 곧게 내려가고, 모선은 비스듬히 내려가므로 더 멀리 간다.",
+      "bGoal": "높이는 수직, 모선은 비스듬해 모선이 더 길다는 것을 안다.",
+      "bReason": "길이 비교의 결론에 수직과 비스듬함으로 까닭을 붙인다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "모선이 더 길다",
+            "높이가 더 짧다"
+          ]
+        },
+        {
+          "anyOf": [
+            "높이는 수직으로, 모선은 비스듬히 내려간다",
+            "모선은 비스듬해서 더 멀리 간다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "keep",
+      "cAfter": "원뿔의 모선은 높이보다 {길다}.",
+      "cReason": "모선과 높이를 비교해 '길다'를 답하는 명확한 비교 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2589,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-3-xc9",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-3 원뿔 알아보기",
+        "term": "모선과 높이의 길이 비교",
+        "kind": "성질",
+        "level": "중",
+        "definition": "원뿔의 모선은 높이보다 {길다}.",
+        "studentC": "원뿔의 모선은 높이보다 □.",
+        "answers": [
+          "길다"
+        ]
+      },
+      "sourceFingerprint": "a6fda4367eca3f88f718a1dca88416489e9cdf22cda6d58ad01724cf236852fd",
+      "draftEvidence": "evidence/section-110-draft.json",
+      "cFrozenDefinition": "원뿔의 모선은 높이보다 {길다}.",
+      "cFrozenStudentSentence": "원뿔의 모선은 높이보다 □.",
+      "cProposedAnswers": [
+        "길다"
+      ],
+      "cStudentAfter": "원뿔의 모선은 높이보다 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "길다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "원뿔의 모선은 높이보다 {길다}.",
+      "cStudentSentence": "원뿔의 모선은 높이보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "길다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "한 원뿔에서 모선과 높이 중 어느 것이 더 긴지 쓰고, 둘이 밑면과 이루는 모양을 비교해 까닭을 설명하시오.",
+        "answer": "모선이 더 길다. 높이는 꼭짓점에서 밑면에 수직으로 곧게 내려가고, 모선은 비스듬히 내려가므로 더 멀리 간다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "모선이 더 길다",
+              "높이가 더 짧다"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이는 수직으로, 모선은 비스듬히 내려간다",
+              "모선은 비스듬해서 더 멀리 간다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원뿔의 모선은 높이보다 {길다}.",
+        "acceptedAnswers": [
+          [
+            "길다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b3e3924214bb829a6869e49bbf030288208811ea2bda1122ba89bbbc4cb59c05",
+      "questionRevision": "planning-e5e6-20261006-b3e3924214bb",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-3-xc10",
+      "bDecision": "revise",
+      "bPrompt": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 본 삼각형의 밑변은 원뿔 밑면의 어느 부분과 같은지 쓰시오.",
+      "bAnswer": "밑면의 지름과 같다.",
+      "bGoal": "앞에서 본 삼각형의 밑변이 밑면의 지름임을 연결한다.",
+      "bReason": "원의 지름이 밑변이 되는 관계를 직접 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "밑면의 지름",
+            "밑면인 원의 지름"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "keep",
+      "cAfter": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 본 삼각형의 밑변은 밑면의 {지름}과 같다.",
+      "cReason": "세운 원뿔을 앞에서 본다는 조건이 있고 '지름'을 답하는 짧은 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2590,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-3-xc10",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-3 원뿔 알아보기",
+        "term": "앞에서 본 삼각형의 밑변",
+        "kind": "성질",
+        "level": "중",
+        "definition": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 본 삼각형의 밑변은 밑면의 {지름}과 같다.",
+        "studentC": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 본 삼각형의 밑변은 밑면의 □과 같다.",
+        "answers": [
+          "지름"
+        ]
+      },
+      "sourceFingerprint": "20f33a6415ea6a17b5c81b40fd54e1386353e80af1413ef9345d2a8c9ce9470c",
+      "draftEvidence": "evidence/section-110-draft.json",
+      "cFrozenDefinition": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 본 삼각형의 밑변은 밑면의 {지름}과 같다.",
+      "cFrozenStudentSentence": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 본 삼각형의 밑변은 밑면의 □과 같다.",
+      "cProposedAnswers": [
+        "지름"
+      ],
+      "cStudentAfter": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 본 삼각형의 밑변은 밑면의 □과 같다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "지름"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 본 삼각형의 밑변은 밑면의 {지름}과 같다.",
+      "cStudentSentence": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 본 삼각형의 밑변은 밑면의 □과 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "지름",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 본 삼각형의 밑변은 원뿔 밑면의 어느 부분과 같은지 쓰시오.",
+        "answer": "밑면의 지름과 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "밑면의 지름",
+              "밑면인 원의 지름"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 본 삼각형의 밑변은 밑면의 {지름}과 같다.",
+        "acceptedAnswers": [
+          [
+            "지름"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "1030375debe8e7039fa7292a33f6c4ba628a5c6ee3287faf5f2fea4e969df31f",
+      "questionRevision": "planning-e5e6-20261006-1030375debe8",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-3-xc11",
+      "bDecision": "revise",
+      "bPrompt": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 본 삼각형에서 밑변이 아닌 두 변은 원뿔의 어떤 선분과 같은지 쓰시오.",
+      "bAnswer": "모선과 같다. 꼭짓점에서 밑면 둘레의 점까지 옆면 위에 이은 선분이다.",
+      "bGoal": "삼각형의 두 변을 모선으로 연결한다.",
+      "bReason": "삼각형의 변과 원뿔의 선분을 연결해 모선의 뜻을 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "모선",
+            "꼭짓점에서 밑면 둘레의 점까지 옆면 위에 이은 선분"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "keep",
+      "cAfter": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 본 삼각형에서 밑변이 아닌 두 변은 {모선}이다.",
+      "cReason": "앞에서 본 삼각형의 두 변이 모선이라는 연결을 묻는 짧은 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2591,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-3-xc11",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-3 원뿔 알아보기",
+        "term": "앞에서 본 삼각형의 두 변",
+        "kind": "성질",
+        "level": "중",
+        "definition": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 본 삼각형에서 밑변이 아닌 두 변은 {모선}이다.",
+        "studentC": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 본 삼각형에서 밑변이 아닌 두 변은 □이다.",
+        "answers": [
+          "모선"
+        ]
+      },
+      "sourceFingerprint": "98660bf4d12c48e86c618356b1ee036bc0941d3eeae31514ff0bc16fa6579662",
+      "draftEvidence": "evidence/section-110-draft.json",
+      "cFrozenDefinition": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 본 삼각형에서 밑변이 아닌 두 변은 {모선}이다.",
+      "cFrozenStudentSentence": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 본 삼각형에서 밑변이 아닌 두 변은 □이다.",
+      "cProposedAnswers": [
+        "모선"
+      ],
+      "cStudentAfter": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 본 삼각형에서 밑변이 아닌 두 변은 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "모선"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 본 삼각형에서 밑변이 아닌 두 변은 {모선}이다.",
+      "cStudentSentence": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 본 삼각형에서 밑변이 아닌 두 변은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "모선",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 본 삼각형에서 밑변이 아닌 두 변은 원뿔의 어떤 선분과 같은지 쓰시오.",
+        "answer": "모선과 같다. 꼭짓점에서 밑면 둘레의 점까지 옆면 위에 이은 선분이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "모선",
+              "꼭짓점에서 밑면 둘레의 점까지 옆면 위에 이은 선분"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 본 삼각형에서 밑변이 아닌 두 변은 {모선}이다.",
+        "acceptedAnswers": [
+          [
+            "모선"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "bf828d89a968ad581c6f912a857de906f2539d1d105b38491393267aa7ff0747",
+      "questionRevision": "planning-e5e6-20261006-bf828d89a968",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-3-xc12",
+      "bDecision": "revise",
+      "bPrompt": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 본 삼각형은 어떤 삼각형인지 쓰고, 그 까닭을 모선의 길이로 설명하시오.",
+      "bAnswer": "이등변삼각형이다. 두 모선의 길이가 같아 삼각형의 두 변의 길이가 같기 때문이다.",
+      "bGoal": "모선 길이가 같아 두 변이 같은 삼각형이 됨을 이해한다.",
+      "bReason": "삼각형 종류와 모선 길이를 연결하는 이유 문항이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "이등변삼각형"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 모선의 길이가 같다",
+            "두 변의 길이가 같다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "keep",
+      "cAfter": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 본 삼각형은 모선 두 개가 같은 길이여서 {이등변삼각형}이다.",
+      "cReason": "모선 두 개가 같은 길이라는 조건이 문장에 있어 삼각형 이름을 연결하는 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2592,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-3-xc12",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-3 원뿔 알아보기",
+        "term": "앞에서 본 삼각형의 종류",
+        "kind": "성질",
+        "level": "중",
+        "definition": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 본 삼각형은 모선 두 개가 같은 길이여서 {이등변삼각형}이다.",
+        "studentC": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 본 삼각형은 모선 두 개가 같은 길이여서 □이다.",
+        "answers": [
+          "이등변삼각형"
+        ]
+      },
+      "sourceFingerprint": "91464c71c33a7b804c795a60ffcabd21972d6e7d398ba4ec58fe8e7799a692a8",
+      "draftEvidence": "evidence/section-110-draft.json",
+      "cFrozenDefinition": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 본 삼각형은 모선 두 개가 같은 길이여서 {이등변삼각형}이다.",
+      "cFrozenStudentSentence": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 본 삼각형은 모선 두 개가 같은 길이여서 □이다.",
+      "cProposedAnswers": [
+        "이등변삼각형"
+      ],
+      "cStudentAfter": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 본 삼각형은 모선 두 개가 같은 길이여서 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "이등변삼각형"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 본 삼각형은 모선 두 개가 같은 길이여서 {이등변삼각형}이다.",
+      "cStudentSentence": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 본 삼각형은 모선 두 개가 같은 길이여서 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "이등변삼각형",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 본 삼각형은 어떤 삼각형인지 쓰고, 그 까닭을 모선의 길이로 설명하시오.",
+        "answer": "이등변삼각형이다. 두 모선의 길이가 같아 삼각형의 두 변의 길이가 같기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "이등변삼각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 모선의 길이가 같다",
+              "두 변의 길이가 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "밑면이 바닥에 닿게 세운 원뿔을 앞에서 본 삼각형은 모선 두 개가 같은 길이여서 {이등변삼각형}이다.",
+        "acceptedAnswers": [
+          [
+            "이등변삼각형"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "cbea9bef35be43b9506a08b0081e716daf736983d96a0b511b57b4ad00c6eecd",
+      "questionRevision": "planning-e5e6-20261006-cbea9bef35be",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-3-xc13",
+      "bDecision": "revise",
+      "bPrompt": "원기둥과 원뿔의 밑면은 각각 몇 개인지 비교하여 말하시오.",
+      "bAnswer": "원기둥은 $2$개이고 원뿔은 $1$개이다.",
+      "bGoal": "원기둥과 원뿔의 밑면 수를 구별한다.",
+      "bReason": "두 도형을 비교하게 해 단순 개수 암기를 피한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "원기둥은 $2$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "원뿔은 $1$개"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "keep",
+      "cAfter": "원기둥은 밑면이 $2$개이고 원뿔은 밑면이 {$1$개}이다.",
+      "cReason": "원기둥이 $2$개라는 단서와 비교해 원뿔의 밑면 수를 답하는 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2593,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-3-xc13",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-3 원뿔 알아보기",
+        "term": "원뿔과 원기둥의 밑면 수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "원기둥은 밑면이 $2$개이고 원뿔은 밑면이 {$1$개}이다.",
+        "studentC": "원기둥은 밑면이 $2$개이고 원뿔은 밑면이 □이다.",
+        "answers": [
+          "$1$개"
+        ]
+      },
+      "sourceFingerprint": "be545b479ef24884e12cb20d4dbec3c9f1ecb9c99ce70e08484b85866be400da",
+      "draftEvidence": "evidence/section-110-draft.json",
+      "cFrozenDefinition": "원기둥은 밑면이 $2$개이고 원뿔은 밑면이 {$1$개}이다.",
+      "cFrozenStudentSentence": "원기둥은 밑면이 $2$개이고 원뿔은 밑면이 □이다.",
+      "cProposedAnswers": [
+        "$1$개"
+      ],
+      "cStudentAfter": "원기둥은 밑면이 $2$개이고 원뿔은 밑면이 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$개"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "원기둥은 밑면이 $2$개이고 원뿔은 밑면이 {$1$개}이다.",
+      "cStudentSentence": "원기둥은 밑면이 $2$개이고 원뿔은 밑면이 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$개",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원기둥과 원뿔의 밑면은 각각 몇 개인지 비교하여 말하시오.",
+        "answer": "원기둥은 $2$개이고 원뿔은 $1$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "원기둥은 $2$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "원뿔은 $1$개"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원기둥은 밑면이 $2$개이고 원뿔은 밑면이 {$1$개}이다.",
+        "acceptedAnswers": [
+          [
+            "$1$개"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "1da2d1ee476086245133fde5c44bba737a1d2e63b345f46b2b453050a1deeac1",
+      "questionRevision": "planning-e5e6-20261006-1da2d1ee4760",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-3-xc14",
+      "bDecision": "revise",
+      "bPrompt": "각뿔과 원뿔은 밑면의 모양이 어떻게 다른지 쓰시오.",
+      "bAnswer": "각뿔의 밑면은 다각형이고 원뿔의 밑면은 원이다.",
+      "bGoal": "각뿔과 원뿔을 밑면 모양으로 구별한다.",
+      "bReason": "두 뿔을 가르는 가장 분명한 기준을 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "각뿔의 밑면은 다각형이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "원뿔의 밑면은 원이다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "keep",
+      "cAfter": "각뿔의 밑면은 다각형이고 원뿔의 밑면은 {원}이다.",
+      "cReason": "각뿔의 밑면과 대비해 원뿔의 밑면을 '원'으로 답하는 명확한 비교 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2594,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-3-xc14",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-3 원뿔 알아보기",
+        "term": "원뿔과 각뿔의 다른 점",
+        "kind": "성질",
+        "level": "중",
+        "definition": "각뿔의 밑면은 다각형이고 원뿔의 밑면은 {원}이다.",
+        "studentC": "각뿔의 밑면은 다각형이고 원뿔의 밑면은 □이다.",
+        "answers": [
+          "원"
+        ]
+      },
+      "sourceFingerprint": "f20e2a1eabb66f76d2ce1cd422875efa05b56145b6b93b3d7604e7074ec448cc",
+      "draftEvidence": "evidence/section-110-draft.json",
+      "cFrozenDefinition": "각뿔의 밑면은 다각형이고 원뿔의 밑면은 {원}이다.",
+      "cFrozenStudentSentence": "각뿔의 밑면은 다각형이고 원뿔의 밑면은 □이다.",
+      "cProposedAnswers": [
+        "원"
+      ],
+      "cStudentAfter": "각뿔의 밑면은 다각형이고 원뿔의 밑면은 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "원"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "각뿔의 밑면은 다각형이고 원뿔의 밑면은 {원}이다.",
+      "cStudentSentence": "각뿔의 밑면은 다각형이고 원뿔의 밑면은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "원",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각뿔과 원뿔은 밑면의 모양이 어떻게 다른지 쓰시오.",
+        "answer": "각뿔의 밑면은 다각형이고 원뿔의 밑면은 원이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "각뿔의 밑면은 다각형이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "원뿔의 밑면은 원이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각뿔의 밑면은 다각형이고 원뿔의 밑면은 {원}이다.",
+        "acceptedAnswers": [
+          [
+            "원"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "04ed406496a6e7c400aac745694a7f18b9c43a111e45e0971fd3d337aee4706b",
+      "questionRevision": "planning-e5e6-20261006-04ed406496a6",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-3-xc18",
+      "bDecision": "revise",
+      "bPrompt": "밑면이 바닥에 닿게 세운 원뿔에서 모선의 길이와 밑면의 지름이 같을 때, 앞에서 보면 어떤 삼각형인지 쓰고 까닭을 설명하시오.",
+      "bAnswer": "정삼각형이다. 두 모선과 밑변인 지름의 길이가 모두 같아 세 변의 길이가 같기 때문이다.",
+      "bGoal": "세 변의 길이가 같아 정삼각형이 됨을 이해한다.",
+      "bReason": "모선과 지름의 길이 조건을 삼각형의 세 변에 연결한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "정삼각형"
+          ]
+        },
+        {
+          "anyOf": [
+            "세 변의 길이가 같다",
+            "두 모선과 지름의 길이가 같다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "keep",
+      "cAfter": "밑면이 바닥에 닿게 세운, 모선의 길이와 밑면의 지름이 같은 원뿔을 앞에서 보면 {정삼각형}이다.",
+      "cReason": "모선과 지름이 같다는 조건이 문장에 있어 '정삼각형'을 판단하는 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2595,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-3-xc18",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-3 원뿔 알아보기",
+        "term": "모선과 밑면의 지름이 같은 원뿔을 앞에서 본 모양",
+        "kind": "성질",
+        "level": "상",
+        "definition": "밑면이 바닥에 닿게 세운, 모선의 길이와 밑면의 지름이 같은 원뿔을 앞에서 보면 {정삼각형}이다.",
+        "studentC": "밑면이 바닥에 닿게 세운, 모선의 길이와 밑면의 지름이 같은 원뿔을 앞에서 보면 □이다.",
+        "answers": [
+          "정삼각형"
+        ]
+      },
+      "sourceFingerprint": "63bd0d52be68e8fa27e6ff0f3c44823772dc291e40a288f7d467a5453dfbf599",
+      "draftEvidence": "evidence/section-110-draft.json",
+      "cFrozenDefinition": "밑면이 바닥에 닿게 세운, 모선의 길이와 밑면의 지름이 같은 원뿔을 앞에서 보면 {정삼각형}이다.",
+      "cFrozenStudentSentence": "밑면이 바닥에 닿게 세운, 모선의 길이와 밑면의 지름이 같은 원뿔을 앞에서 보면 □이다.",
+      "cProposedAnswers": [
+        "정삼각형"
+      ],
+      "cStudentAfter": "밑면이 바닥에 닿게 세운, 모선의 길이와 밑면의 지름이 같은 원뿔을 앞에서 보면 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "정삼각형"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "밑면이 바닥에 닿게 세운, 모선의 길이와 밑면의 지름이 같은 원뿔을 앞에서 보면 {정삼각형}이다.",
+      "cStudentSentence": "밑면이 바닥에 닿게 세운, 모선의 길이와 밑면의 지름이 같은 원뿔을 앞에서 보면 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "정삼각형",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "밑면이 바닥에 닿게 세운 원뿔에서 모선의 길이와 밑면의 지름이 같을 때, 앞에서 보면 어떤 삼각형인지 쓰고 까닭을 설명하시오.",
+        "answer": "정삼각형이다. 두 모선과 밑변인 지름의 길이가 모두 같아 세 변의 길이가 같기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "정삼각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "세 변의 길이가 같다",
+              "두 모선과 지름의 길이가 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "밑면이 바닥에 닿게 세운, 모선의 길이와 밑면의 지름이 같은 원뿔을 앞에서 보면 {정삼각형}이다.",
+        "acceptedAnswers": [
+          [
+            "정삼각형"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5b9fe4d64f2a301d8161827e767c19faca509c98f2bcf693d03df165902aec62",
+      "questionRevision": "planning-e5e6-20261006-5b9fe4d64f2a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-3-xc20",
+      "bDecision": "revise",
+      "bPrompt": "원뿔의 꼭짓점, 밑면의 중심, 밑면 둘레의 한 점을 서로 이으면 어떤 삼각형이 되는지, 어느 점에서 직각인지 쓰시오.",
+      "bAnswer": "직각삼각형이 되고, 밑면의 중심에서 직각이다.",
+      "bGoal": "높이와 반지름이 직각을 이루는 삼각형을 찾는다.",
+      "bReason": "세 점으로 만든 삼각형의 종류와 직각의 위치를 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "직각삼각형"
+          ]
+        },
+        {
+          "anyOf": [
+            "밑면의 중심에서 직각이다",
+            "밑면 중심의 각이 직각이다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "keep",
+      "cAfter": "꼭짓점, 밑면 중심, 밑면 둘레의 한 점을 서로 이으면 밑면 중심에서 직각인 {직각삼각형}이 된다.",
+      "cReason": "밑면 중심에서 직각이라는 조건이 있어 '직각삼각형'을 답하는 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2596,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-3-xc20",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-3 원뿔 알아보기",
+        "term": "높이와 모선이 이루는 모양",
+        "kind": "성질",
+        "level": "상",
+        "definition": "꼭짓점, 밑면 중심, 밑면 둘레의 한 점을 서로 이으면 밑면 중심에서 직각인 {직각삼각형}이 된다.",
+        "studentC": "꼭짓점, 밑면 중심, 밑면 둘레의 한 점을 서로 이으면 밑면 중심에서 직각인 □이 된다.",
+        "answers": [
+          "직각삼각형"
+        ]
+      },
+      "sourceFingerprint": "632620017b171b05c969e8dfcd0b1fa8a5edb5cff193b95454f1a2001f94e5e9",
+      "draftEvidence": "evidence/section-110-draft.json",
+      "cFrozenDefinition": "꼭짓점, 밑면 중심, 밑면 둘레의 한 점을 서로 이으면 밑면 중심에서 직각인 {직각삼각형}이 된다.",
+      "cFrozenStudentSentence": "꼭짓점, 밑면 중심, 밑면 둘레의 한 점을 서로 이으면 밑면 중심에서 직각인 □이 된다.",
+      "cProposedAnswers": [
+        "직각삼각형"
+      ],
+      "cStudentAfter": "꼭짓점, 밑면 중심, 밑면 둘레의 한 점을 서로 이으면 밑면 중심에서 직각인 □이 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "직각삼각형"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "꼭짓점, 밑면 중심, 밑면 둘레의 한 점을 서로 이으면 밑면 중심에서 직각인 {직각삼각형}이 된다.",
+      "cStudentSentence": "꼭짓점, 밑면 중심, 밑면 둘레의 한 점을 서로 이으면 밑면 중심에서 직각인 □이 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "직각삼각형",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원뿔의 꼭짓점, 밑면의 중심, 밑면 둘레의 한 점을 서로 이으면 어떤 삼각형이 되는지, 어느 점에서 직각인지 쓰시오.",
+        "answer": "직각삼각형이 되고, 밑면의 중심에서 직각이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "직각삼각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "밑면의 중심에서 직각이다",
+              "밑면 중심의 각이 직각이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "꼭짓점, 밑면 중심, 밑면 둘레의 한 점을 서로 이으면 밑면 중심에서 직각인 {직각삼각형}이 된다.",
+        "acceptedAnswers": [
+          [
+            "직각삼각형"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "f3c40c4f676561249408a4d31fb5ab0abfd592152a81afa420b57733df3d817e",
+      "questionRevision": "planning-e5e6-20261006-f3c40c4f6765",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-3-xc21",
+      "bDecision": "revise",
+      "bPrompt": "밑면이 바닥에 닿게 세운, 밑면과 높이가 같은 원뿔과 원기둥을 앞에서 보면 각각 어떤 도형으로 보이는지 쓰시오.",
+      "bAnswer": "원뿔은 삼각형, 원기둥은 직사각형이다.",
+      "bGoal": "원뿔과 원기둥을 앞에서 본 모양을 구별한다.",
+      "bReason": "두 입체를 같은 방향에서 비교하는 활용 문항이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "원뿔은 삼각형"
+          ]
+        },
+        {
+          "anyOf": [
+            "원기둥은 직사각형",
+            "원기둥은 사각형"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "keep",
+      "cAfter": "밑면이 바닥에 닿게 세운, 밑면과 높이가 같은 원뿔과 원기둥을 앞에서 보면 원뿔은 삼각형, 원기둥은 {직사각형}이다.",
+      "cReason": "원뿔은 삼각형이라는 단서와 비교해 원기둥의 모양을 답하는 문장이다.",
+      "synonymNotes": "사각형으로만 답해도 큰 뜻은 같지만 직사각형이 더 정확하다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2597,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-3-xc21",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-3 원뿔 알아보기",
+        "term": "앞에서 본 원뿔과 원기둥",
+        "kind": "성질",
+        "level": "상",
+        "definition": "밑면이 바닥에 닿게 세운, 밑면과 높이가 같은 원뿔과 원기둥을 앞에서 보면 원뿔은 삼각형, 원기둥은 {직사각형}이다.",
+        "studentC": "밑면이 바닥에 닿게 세운, 밑면과 높이가 같은 원뿔과 원기둥을 앞에서 보면 원뿔은 삼각형, 원기둥은 □이다.",
+        "answers": [
+          "직사각형"
+        ]
+      },
+      "sourceFingerprint": "8ff667860682262e0ef82c97de2abb779d70bbdb592089c0f45441eca5e8f656",
+      "draftEvidence": "evidence/section-110-draft.json",
+      "cFrozenDefinition": "밑면이 바닥에 닿게 세운, 밑면과 높이가 같은 원뿔과 원기둥을 앞에서 보면 원뿔은 삼각형, 원기둥은 {직사각형}이다.",
+      "cFrozenStudentSentence": "밑면이 바닥에 닿게 세운, 밑면과 높이가 같은 원뿔과 원기둥을 앞에서 보면 원뿔은 삼각형, 원기둥은 □이다.",
+      "cProposedAnswers": [
+        "직사각형"
+      ],
+      "cStudentAfter": "밑면이 바닥에 닿게 세운, 밑면과 높이가 같은 원뿔과 원기둥을 앞에서 보면 원뿔은 삼각형, 원기둥은 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "직사각형"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "밑면이 바닥에 닿게 세운, 밑면과 높이가 같은 원뿔과 원기둥을 앞에서 보면 원뿔은 삼각형, 원기둥은 {직사각형}이다.",
+      "cStudentSentence": "밑면이 바닥에 닿게 세운, 밑면과 높이가 같은 원뿔과 원기둥을 앞에서 보면 원뿔은 삼각형, 원기둥은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "직사각형",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "밑면이 바닥에 닿게 세운, 밑면과 높이가 같은 원뿔과 원기둥을 앞에서 보면 각각 어떤 도형으로 보이는지 쓰시오.",
+        "answer": "원뿔은 삼각형, 원기둥은 직사각형이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "원뿔은 삼각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "원기둥은 직사각형",
+              "원기둥은 사각형"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "밑면이 바닥에 닿게 세운, 밑면과 높이가 같은 원뿔과 원기둥을 앞에서 보면 원뿔은 삼각형, 원기둥은 {직사각형}이다.",
+        "acceptedAnswers": [
+          [
+            "직사각형"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "16c0b4d161a857b7cd4d07d735e7d724c853fd9724a8bb10fc6a5685066024c9",
+      "questionRevision": "planning-e5e6-20261006-16c0b4d161a8",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-3-xc22",
+      "bDecision": "revise",
+      "bPrompt": "밑면이 바닥에 닿게 세운 원뿔을 위에서 내려다보면 어떤 모양이 보이고, 꼭짓점은 그 모양의 어디에 보이는지 쓰시오.",
+      "bAnswer": "원 모양이 보이고, 꼭짓점은 그 원의 중심에 보인다.",
+      "bGoal": "위에서 본 원뿔의 모양과 꼭짓점의 위치를 안다.",
+      "bReason": "꼭짓점이 밑면 중심 바로 위에 있다는 위치를 연결한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "원 모양",
+            "원"
+          ]
+        },
+        {
+          "anyOf": [
+            "꼭짓점은 원의 중심에 보인다",
+            "중심에 꼭짓점이 보인다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "keep",
+      "cAfter": "밑면이 바닥에 닿게 세운 원뿔을 위에서 보면 원 모양과 그 {중심}에 꼭짓점이 보인다.",
+      "cReason": "위에서 본 원과 꼭짓점의 위치를 '중심'으로 답하는 짧은 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2598,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-3-xc22",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-3 원뿔 알아보기",
+        "term": "위에서 본 원뿔",
+        "kind": "성질",
+        "level": "상",
+        "definition": "밑면이 바닥에 닿게 세운 원뿔을 위에서 보면 원 모양과 그 {중심}에 꼭짓점이 보인다.",
+        "studentC": "밑면이 바닥에 닿게 세운 원뿔을 위에서 보면 원 모양과 그 □에 꼭짓점이 보인다.",
+        "answers": [
+          "중심"
+        ]
+      },
+      "sourceFingerprint": "042f5c7bd529d58bfb4c917cce7dfa2ecab61cceb694d90b6b629c6cf114b986",
+      "draftEvidence": "evidence/section-110-draft.json",
+      "cFrozenDefinition": "밑면이 바닥에 닿게 세운 원뿔을 위에서 보면 원 모양과 그 {중심}에 꼭짓점이 보인다.",
+      "cFrozenStudentSentence": "밑면이 바닥에 닿게 세운 원뿔을 위에서 보면 원 모양과 그 □에 꼭짓점이 보인다.",
+      "cProposedAnswers": [
+        "중심"
+      ],
+      "cStudentAfter": "밑면이 바닥에 닿게 세운 원뿔을 위에서 보면 원 모양과 그 □에 꼭짓점이 보인다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "중심"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "밑면이 바닥에 닿게 세운 원뿔을 위에서 보면 원 모양과 그 {중심}에 꼭짓점이 보인다.",
+      "cStudentSentence": "밑면이 바닥에 닿게 세운 원뿔을 위에서 보면 원 모양과 그 □에 꼭짓점이 보인다.",
+      "cSlotAnswers": [
+        {
+          "key": "중심",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "밑면이 바닥에 닿게 세운 원뿔을 위에서 내려다보면 어떤 모양이 보이고, 꼭짓점은 그 모양의 어디에 보이는지 쓰시오.",
+        "answer": "원 모양이 보이고, 꼭짓점은 그 원의 중심에 보인다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "원 모양",
+              "원"
+            ]
+          },
+          {
+            "anyOf": [
+              "꼭짓점은 원의 중심에 보인다",
+              "중심에 꼭짓점이 보인다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "밑면이 바닥에 닿게 세운 원뿔을 위에서 보면 원 모양과 그 {중심}에 꼭짓점이 보인다.",
+        "acceptedAnswers": [
+          [
+            "중심"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "1a912ac8aef53033ed6aae5f00ef59dbeb20a900ea967828ed00bca9448fa119",
+      "questionRevision": "planning-e5e6-20261006-1a912ac8aef5",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-3-xc23",
+      "bDecision": "revise",
+      "bPrompt": "원뿔과 각뿔이 서로 같은 점을 밑면의 수와 위쪽의 모양으로 설명하시오.",
+      "bAnswer": "둘 다 밑면이 $1$개이고, 위쪽에 뾰족한 꼭짓점이 있다.",
+      "bGoal": "원뿔과 각뿔의 공통점을 밑면 수와 꼭짓점으로 안다.",
+      "bReason": "c4, xc14와 함께 두 뿔의 같은 점과 다른 점을 구별하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "밑면이 $1$개이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "위쪽에 뾰족한 꼭짓점이 있다",
+            "꼭대기에 뾰족한 점이 있다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "keep",
+      "cAfter": "원뿔과 각뿔은 모두 밑면이 $1$개이고 위쪽에 {뾰족한 꼭짓점}이 있다.",
+      "cReason": "밑면이 $1$개라는 조건과 위쪽의 '뾰족한 꼭짓점'을 답하는 공통점 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2599,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-3-xc23",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-3 원뿔 알아보기",
+        "term": "원뿔과 각뿔의 같은 점",
+        "kind": "성질",
+        "level": "상",
+        "definition": "원뿔과 각뿔은 모두 밑면이 $1$개이고 위쪽에 {뾰족한 꼭짓점}이 있다.",
+        "studentC": "원뿔과 각뿔은 모두 밑면이 $1$개이고 위쪽에 □이 있다.",
+        "answers": [
+          "뾰족한 꼭짓점"
+        ]
+      },
+      "sourceFingerprint": "61210280596bfe9f2677bc46c0f5410dd34aaa775a7855702324111445c656ba",
+      "draftEvidence": "evidence/section-110-draft.json",
+      "cFrozenDefinition": "원뿔과 각뿔은 모두 밑면이 $1$개이고 위쪽에 {뾰족한 꼭짓점}이 있다.",
+      "cFrozenStudentSentence": "원뿔과 각뿔은 모두 밑면이 $1$개이고 위쪽에 □이 있다.",
+      "cProposedAnswers": [
+        "뾰족한 꼭짓점"
+      ],
+      "cStudentAfter": "원뿔과 각뿔은 모두 밑면이 $1$개이고 위쪽에 □이 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "뾰족한 꼭짓점"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "원뿔과 각뿔은 모두 밑면이 $1$개이고 위쪽에 {뾰족한 꼭짓점}이 있다.",
+      "cStudentSentence": "원뿔과 각뿔은 모두 밑면이 $1$개이고 위쪽에 □이 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "뾰족한 꼭짓점",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원뿔과 각뿔이 서로 같은 점을 밑면의 수와 위쪽의 모양으로 설명하시오.",
+        "answer": "둘 다 밑면이 $1$개이고, 위쪽에 뾰족한 꼭짓점이 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "밑면이 $1$개이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "위쪽에 뾰족한 꼭짓점이 있다",
+              "꼭대기에 뾰족한 점이 있다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원뿔과 각뿔은 모두 밑면이 $1$개이고 위쪽에 {뾰족한 꼭짓점}이 있다.",
+        "acceptedAnswers": [
+          [
+            "뾰족한 꼭짓점"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "2c4ee5fe977b1ee3719636f959dde0f35578fd847c50be1dde9754c3fe07fa80",
+      "questionRevision": "planning-e5e6-20261006-2c4ee5fe977b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-4-xc1",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "축구공 같은 물건을 구라 부르는 이름을 안다.",
+      "bReason": "이름만 대는 쉬운 문항이라 정의 문항과 겹친다.",
+      "bRequiredIdeas": [],
+      "learningRole": "naming",
+      "exclusionReason": "구의 정의(e6-2-6-4-c1)와 겹치고 이름만 묻는 문항이라 대체 ID는 e6-2-6-4-c1이다.",
+      "cDecision": "keep",
+      "cAfter": "축구공, 구슬처럼 어느 쪽으로든 둥근 모양은 {구} 모양이다.",
+      "cReason": "축구공, 구슬 예시에서 구라는 이름을 고르는 짧은 낱말 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2600,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-4-xc1",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-4 구 알아보기와 여러 가지 모양 만들기",
+        "term": "구 모양 물건",
+        "kind": "방법",
+        "level": "하",
+        "definition": "축구공, 구슬처럼 어느 쪽으로든 둥근 모양은 {구} 모양이다.",
+        "studentC": "축구공, 구슬처럼 어느 쪽으로든 둥근 모양은 □ 모양이다.",
+        "answers": [
+          "구"
+        ]
+      },
+      "sourceFingerprint": "5d12c167e3f5aa3721fd875f61407b4aa837ee46d530baed7e4c75632bbda1cb",
+      "draftEvidence": "evidence/section-111-draft.json",
+      "cFrozenDefinition": "축구공, 구슬처럼 어느 쪽으로든 둥근 모양은 {구} 모양이다.",
+      "cFrozenStudentSentence": "축구공, 구슬처럼 어느 쪽으로든 둥근 모양은 □ 모양이다.",
+      "cProposedAnswers": [
+        "구"
+      ],
+      "cStudentAfter": "축구공, 구슬처럼 어느 쪽으로든 둥근 모양은 □ 모양이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "구"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "축구공, 구슬처럼 어느 쪽으로든 둥근 모양은 {구} 모양이다.",
+      "cStudentSentence": "축구공, 구슬처럼 어느 쪽으로든 둥근 모양은 □ 모양이다.",
+      "cSlotAnswers": [
+        {
+          "key": "구",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "축구공, 구슬처럼 어느 쪽으로든 둥근 모양은 {구} 모양이다.",
+        "acceptedAnswers": [
+          [
+            "구"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "구의 정의(e6-2-6-4-c1)와 겹치고 이름만 묻는 문항이라 대체 ID는 e6-2-6-4-c1이다."
+      },
+      "proposalFingerprint": "675f0e24d1e065a927a62a3b670bc0dfbb6c81b1a8adb37207afef2aaf7667ac",
+      "questionRevision": "planning-e5e6-20261006-675f0e24d1e0",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-4-xc2",
+      "bDecision": "revise",
+      "bPrompt": "구를 위, 앞, 옆 어느 방향에서 보아도 어떤 모양으로 보이나요? 구의 특징으로 그 까닭도 설명하시오.",
+      "bAnswer": "원 모양이다. 구는 중심에서 표면까지 거리가 모두 같아 어느 쪽에서 보아도 둥근 윤곽이 같기 때문이다.",
+      "bGoal": "구가 어느 방향에서든 원으로 보이는 까닭을 안다.",
+      "bReason": "모양 이름만 묻지 않고 거리가 같다는 구의 성질과 연결한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "원"
+          ]
+        },
+        {
+          "anyOf": [
+            "중심에서 표면까지 거리가 모두 같다",
+            "어느 쪽으로든 똑같이 둥글다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "keep",
+      "cAfter": "구는 위, 앞, 옆 어느 방향에서 보아도 {원} 모양이다.",
+      "cReason": "어느 방향에서 보든 같은 모양이라는 성질을 묻는 짧은 낱말 빈칸이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2601,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-4-xc2",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-4 구 알아보기와 여러 가지 모양 만들기",
+        "term": "어느 방향에서 본 구",
+        "kind": "성질",
+        "level": "하",
+        "definition": "구는 위, 앞, 옆 어느 방향에서 보아도 {원} 모양이다.",
+        "studentC": "구는 위, 앞, 옆 어느 방향에서 보아도 □ 모양이다.",
+        "answers": [
+          "원"
+        ]
+      },
+      "sourceFingerprint": "8f234e386dd78e0be6852a0fe50c1232cfd190e325054c31cfc8bb742f9035bd",
+      "draftEvidence": "evidence/section-111-draft.json",
+      "cFrozenDefinition": "구는 위, 앞, 옆 어느 방향에서 보아도 {원} 모양이다.",
+      "cFrozenStudentSentence": "구는 위, 앞, 옆 어느 방향에서 보아도 □ 모양이다.",
+      "cProposedAnswers": [
+        "원"
+      ],
+      "cStudentAfter": "구는 위, 앞, 옆 어느 방향에서 보아도 □ 모양이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "원"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "구는 위, 앞, 옆 어느 방향에서 보아도 {원} 모양이다.",
+      "cStudentSentence": "구는 위, 앞, 옆 어느 방향에서 보아도 □ 모양이다.",
+      "cSlotAnswers": [
+        {
+          "key": "원",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "구를 위, 앞, 옆 어느 방향에서 보아도 어떤 모양으로 보이나요? 구의 특징으로 그 까닭도 설명하시오.",
+        "answer": "원 모양이다. 구는 중심에서 표면까지 거리가 모두 같아 어느 쪽에서 보아도 둥근 윤곽이 같기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "원"
+            ]
+          },
+          {
+            "anyOf": [
+              "중심에서 표면까지 거리가 모두 같다",
+              "어느 쪽으로든 똑같이 둥글다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "구는 위, 앞, 옆 어느 방향에서 보아도 {원} 모양이다.",
+        "acceptedAnswers": [
+          [
+            "원"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "67b0cf51806c17fad4a62bf3e1b3e033d456520d55f93c43cddb9085d6e65b0c",
+      "questionRevision": "planning-e5e6-20261006-67b0cf51806c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-4-xc3",
+      "bDecision": "revise",
+      "bPrompt": "구의 반지름은 몇 개 그을 수 있나요? 그 까닭을 표면의 점과 연결해 설명하시오.",
+      "bAnswer": "끝없이 많다. 표면의 점마다 중심과 이은 반지름을 하나씩 그을 수 있기 때문이다.",
+      "bGoal": "표면의 점마다 반지름이 있어 반지름이 무수히 많음을 이해한다.",
+      "bReason": "하나라고 오해하기 쉬워 개수와 까닭을 함께 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "끝없이 많다",
+            "셀 수 없이 많다",
+            "무수히 많다"
+          ]
+        },
+        {
+          "anyOf": [
+            "표면의 점마다 반지름이 있다",
+            "표면의 점이 끝없이 많다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "keep",
+      "cAfter": "구의 반지름은 하나가 아니라 {끝없이 많다}.",
+      "cReason": "하나가 아니라는 대비가 있고 끝없이 많다는 뜻은 여러 표현이 가능하다.",
+      "exampleNeeded": false,
+      "synonymNotes": "무수히 많다, 셀 수 없이 많다도 정답이다.",
+      "sourceIndex": 2602,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-4-xc3",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-4 구 알아보기와 여러 가지 모양 만들기",
+        "term": "구의 반지름의 수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "구의 반지름은 하나가 아니라 {끝없이 많다}.",
+        "studentC": "구의 반지름은 하나가 아니라 □.",
+        "answers": [
+          "끝없이 많다"
+        ]
+      },
+      "sourceFingerprint": "9b516c8e1485b8f478e68f02e145abd4e33d4316880aba9ee3b2e59ac1fcce7c",
+      "draftEvidence": "evidence/section-111-draft.json",
+      "cFrozenDefinition": "구의 반지름은 하나가 아니라 {끝없이 많다}.",
+      "cFrozenStudentSentence": "구의 반지름은 하나가 아니라 □.",
+      "cProposedAnswers": [
+        "끝없이 많다"
+      ],
+      "cStudentAfter": "구의 반지름은 하나가 아니라 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "끝없이 많다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "구의 반지름은 하나가 아니라 {끝없이 많다}.",
+      "cStudentSentence": "구의 반지름은 하나가 아니라 □.",
+      "cSlotAnswers": [
+        {
+          "key": "끝없이 많다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "구의 반지름은 몇 개 그을 수 있나요? 그 까닭을 표면의 점과 연결해 설명하시오.",
+        "answer": "끝없이 많다. 표면의 점마다 중심과 이은 반지름을 하나씩 그을 수 있기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "끝없이 많다",
+              "셀 수 없이 많다",
+              "무수히 많다"
+            ]
+          },
+          {
+            "anyOf": [
+              "표면의 점마다 반지름이 있다",
+              "표면의 점이 끝없이 많다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "구의 반지름은 하나가 아니라 {끝없이 많다}.",
+        "acceptedAnswers": [
+          [
+            "끝없이 많다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "2f71c13b592dcea7a7af46a54a12002b79e4401be1e97a0dc98cdc13c0ccf2f6",
+      "questionRevision": "planning-e5e6-20261006-2f71c13b592d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-4-xc4",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "한 구의 반지름 길이가 모두 같음을 안다.",
+      "bReason": "구의 정의에서 바로 나오는 내용이라 따로 묻는 가치가 낮다.",
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "exclusionReason": "구의 정의(e6-2-6-4-c1)와 같은 내용의 중복이며 대체 ID는 e6-2-6-4-c1이다.",
+      "cDecision": "keep",
+      "cAfter": "한 구의 반지름은 길이가 모두 {같다}.",
+      "cReason": "한 구의 반지름 길이가 같다는 핵심 성질을 같다 한 낱말로 확인한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2603,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-4-xc4",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-4 구 알아보기와 여러 가지 모양 만들기",
+        "term": "구의 반지름의 길이",
+        "kind": "성질",
+        "level": "하",
+        "definition": "한 구의 반지름은 길이가 모두 {같다}.",
+        "studentC": "한 구의 반지름은 길이가 모두 □.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "sourceFingerprint": "7ebe2f5c3c733340af8fd8e1e85364396a0906eb6a736392f3b0e98eba5a8298",
+      "draftEvidence": "evidence/section-111-draft.json",
+      "cFrozenDefinition": "한 구의 반지름은 길이가 모두 {같다}.",
+      "cFrozenStudentSentence": "한 구의 반지름은 길이가 모두 □.",
+      "cProposedAnswers": [
+        "같다"
+      ],
+      "cStudentAfter": "한 구의 반지름은 길이가 모두 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "한 구의 반지름은 길이가 모두 {같다}.",
+      "cStudentSentence": "한 구의 반지름은 길이가 모두 □.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "한 구의 반지름은 길이가 모두 {같다}.",
+        "acceptedAnswers": [
+          [
+            "같다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "구의 정의(e6-2-6-4-c1)와 같은 내용의 중복이며 대체 ID는 e6-2-6-4-c1이다."
+      },
+      "proposalFingerprint": "214d2edc2ff5fb0014da1a34238b237164a03228e3a4291f134e01e466a1a6a1",
+      "questionRevision": "planning-e5e6-20261006-214d2edc2ff5",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-4-xc5",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "구에 꼭짓점이 없음을 안다.",
+      "bReason": "둥근 구에 꼭짓점이 없다는 자명한 문장이다.",
+      "bRequiredIdeas": [],
+      "learningRole": "naming",
+      "exclusionReason": "자명하며 입체 비교(e6-2-6-4-xc11)에서 다룬다. 대체 ID는 e6-2-6-4-xc11이다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "꼭짓점이라는 낱말만 채우는 자명한 문장이라 제외하고 비교 문항으로 대체한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2604,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-4-xc5",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-4 구 알아보기와 여러 가지 모양 만들기",
+        "term": "구에 없는 점",
+        "kind": "성질",
+        "level": "하",
+        "definition": "구에는 뾰족한 {꼭짓점}이 없다.",
+        "studentC": "구에는 뾰족한 □이 없다.",
+        "answers": [
+          "꼭짓점"
+        ]
+      },
+      "sourceFingerprint": "456b7251a998751b349eb8542a28c2e1dfb1476c8ad28db8768004a2b7bb0858",
+      "draftEvidence": "evidence/section-111-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "자명하며 입체 비교(e6-2-6-4-xc11)에서 다룬다. 대체 ID는 e6-2-6-4-xc11이다.",
+        "cloze": "자명하며 입체 비교(e6-2-6-4-xc11)에서 다룬다. 대체 ID는 e6-2-6-4-xc11이다."
+      },
+      "proposalFingerprint": "a13afc4bc8c9be54597122e86dccc027b7ec794eb6a63ee28d58fad9b411af09",
+      "questionRevision": "planning-e5e6-20261006-a13afc4bc8c9",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-4-xc6",
+      "bDecision": "revise",
+      "bPrompt": "구의 중심을 지나 표면의 두 점을 이은 선분의 길이는 반지름의 몇 배인가요? 그 까닭을 쓰고, 반지름이 $5$ $\\mathrm{cm}$이면 이 선분의 길이도 구하시오.",
+      "bAnswer": "$2$배이다. 중심을 사이에 두고 반지름 $2$개가 이어진 것이기 때문이며, 반지름이 $5$ $\\mathrm{cm}$이면 $10$ $\\mathrm{cm}$이다.",
+      "bGoal": "중심을 지나는 선분이 반지름 두 개의 길이임을 이해한다.",
+      "bReason": "배수와 까닭을 묻고 예의 값까지 확인해 개념 이해를 점검한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2$배",
+            "두 배"
+          ]
+        },
+        {
+          "anyOf": [
+            "반지름 $2$개를 이은 것이다",
+            "중심에서 양쪽 표면까지 반지름이 하나씩 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10$ $\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "keep",
+      "cAfter": "구의 중심을 지나 표면의 두 점을 이은 선분의 길이는 반지름의 {$2$배}이다.",
+      "cReason": "중심을 지난다는 조건이 문장에 있고 몇 배인지 묻는 좋은 확인이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2605,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-4-xc6",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-4 구 알아보기와 여러 가지 모양 만들기",
+        "term": "구의 중심을 지나 표면의 두 점을 이은 선분",
+        "kind": "성질",
+        "level": "하",
+        "definition": "구의 중심을 지나 표면의 두 점을 이은 선분의 길이는 반지름의 {$2$배}이다.",
+        "studentC": "구의 중심을 지나 표면의 두 점을 이은 선분의 길이는 반지름의 □이다.",
+        "answers": [
+          "$2$배"
+        ]
+      },
+      "sourceFingerprint": "7e1391c169b938f093c9b2b7201d643d368098df8a8881c279739f59eefa0458",
+      "draftEvidence": "evidence/section-111-draft.json",
+      "cFrozenDefinition": "구의 중심을 지나 표면의 두 점을 이은 선분의 길이는 반지름의 {$2$배}이다.",
+      "cFrozenStudentSentence": "구의 중심을 지나 표면의 두 점을 이은 선분의 길이는 반지름의 □이다.",
+      "cProposedAnswers": [
+        "$2$배"
+      ],
+      "cStudentAfter": "구의 중심을 지나 표면의 두 점을 이은 선분의 길이는 반지름의 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$배"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "구의 중심을 지나 표면의 두 점을 이은 선분의 길이는 반지름의 {$2$배}이다.",
+      "cStudentSentence": "구의 중심을 지나 표면의 두 점을 이은 선분의 길이는 반지름의 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$배",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "구의 중심을 지나 표면의 두 점을 이은 선분의 길이는 반지름의 몇 배인가요? 그 까닭을 쓰고, 반지름이 $5$ $\\mathrm{cm}$이면 이 선분의 길이도 구하시오.",
+        "answer": "$2$배이다. 중심을 사이에 두고 반지름 $2$개가 이어진 것이기 때문이며, 반지름이 $5$ $\\mathrm{cm}$이면 $10$ $\\mathrm{cm}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$2$배",
+              "두 배"
+            ]
+          },
+          {
+            "anyOf": [
+              "반지름 $2$개를 이은 것이다",
+              "중심에서 양쪽 표면까지 반지름이 하나씩 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$10$ $\\mathrm{cm}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "구의 중심을 지나 표면의 두 점을 이은 선분의 길이는 반지름의 {$2$배}이다.",
+        "acceptedAnswers": [
+          [
+            "$2$배"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "50435adf8aa330f2bdc9f408d30c2b3751ce39d0547d55de5f61262d75b10115",
+      "questionRevision": "planning-e5e6-20261006-50435adf8aa3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-4-xc7",
+      "bDecision": "revise",
+      "bPrompt": "구는 평평한 바닥에서 어느 방향으로 밀어도 잘 굴러갑니다. 그 까닭을 구의 중심과 바닥에 닿는 점 사이의 거리로 설명하시오.",
+      "bAnswer": "구가 구르는 동안 바닥에 닿는 점은 계속 바뀌지만 중심에서 그 점까지의 거리가 늘 같아 중심의 높이가 변하지 않기 때문이다.",
+      "bGoal": "구가 잘 구르는 까닭을 중심에서 표면까지 거리가 같다는 성질로 연결한다.",
+      "bReason": "굴러감이라는 일상 현상을 구의 정의와 이어 생각하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "바닥에 닿는 점이 바뀌어도 중심에서 그 점까지 거리가 같다",
+            "중심의 높이가 변하지 않는다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "keep",
+      "cAfter": "구는 평평한 바닥에서 어느 방향으로 밀어도 잘 {굴러간다}.",
+      "cReason": "어느 방향으로 밀어도라는 조건이 있어 굴러간다 낱말을 쉽게 확인한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2606,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-4-xc7",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-4 구 알아보기와 여러 가지 모양 만들기",
+        "term": "잘 굴러가는 구",
+        "kind": "성질",
+        "level": "하",
+        "definition": "구는 평평한 바닥에서 어느 방향으로 밀어도 잘 {굴러간다}.",
+        "studentC": "구는 평평한 바닥에서 어느 방향으로 밀어도 잘 □.",
+        "answers": [
+          "굴러간다"
+        ]
+      },
+      "sourceFingerprint": "2fc68c12e3c532fd0f0d2875fb88872e817662ca29708f52e462ffd6e85b8023",
+      "draftEvidence": "evidence/section-111-draft.json",
+      "cFrozenDefinition": "구는 평평한 바닥에서 어느 방향으로 밀어도 잘 {굴러간다}.",
+      "cFrozenStudentSentence": "구는 평평한 바닥에서 어느 방향으로 밀어도 잘 □.",
+      "cProposedAnswers": [
+        "굴러간다"
+      ],
+      "cStudentAfter": "구는 평평한 바닥에서 어느 방향으로 밀어도 잘 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "굴러간다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "구는 평평한 바닥에서 어느 방향으로 밀어도 잘 {굴러간다}.",
+      "cStudentSentence": "구는 평평한 바닥에서 어느 방향으로 밀어도 잘 □.",
+      "cSlotAnswers": [
+        {
+          "key": "굴러간다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "구는 평평한 바닥에서 어느 방향으로 밀어도 잘 굴러갑니다. 그 까닭을 구의 중심과 바닥에 닿는 점 사이의 거리로 설명하시오.",
+        "answer": "구가 구르는 동안 바닥에 닿는 점은 계속 바뀌지만 중심에서 그 점까지의 거리가 늘 같아 중심의 높이가 변하지 않기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "바닥에 닿는 점이 바뀌어도 중심에서 그 점까지 거리가 같다",
+              "중심의 높이가 변하지 않는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "구는 평평한 바닥에서 어느 방향으로 밀어도 잘 {굴러간다}.",
+        "acceptedAnswers": [
+          [
+            "굴러간다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "d8ac72cc264e8578c8af02dc76bbf35540e1e2c351d95c882818de68478ecbcc",
+      "questionRevision": "planning-e5e6-20261006-d8ac72cc264e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-4-xc9",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "세 입체에 모두 굽은 면이 있음을 안다.",
+      "bReason": "세 입체를 따로 비교하는 문항(평평한 면, 꼭짓점)과 겹친다.",
+      "bRequiredIdeas": [],
+      "learningRole": "naming",
+      "exclusionReason": "평평한 면 비교 문항에서 굽은 면 개념도 함께 확인할 수 있다. 대체 ID는 e6-2-6-4-xc10이다.",
+      "cDecision": "keep",
+      "cAfter": "원기둥, 원뿔, 구는 모두 {굽은 면}이 있다.",
+      "cReason": "세 입체의 공통 성질을 굽은 면이라는 낱말로 묻는 짧은 문장이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "곡면도 정답으로 인정할 수 있다.",
+      "sourceIndex": 2607,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-4-xc9",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-4 구 알아보기와 여러 가지 모양 만들기",
+        "term": "원기둥, 원뿔, 구에 모두 있는 면",
+        "kind": "성질",
+        "level": "중",
+        "definition": "원기둥, 원뿔, 구는 모두 {굽은 면}이 있다.",
+        "studentC": "원기둥, 원뿔, 구는 모두 □이 있다.",
+        "answers": [
+          "굽은 면"
+        ]
+      },
+      "sourceFingerprint": "2b35d87125d81b90f51126ca7a193688fabb5c4058192aff00433a9ec978ef16",
+      "draftEvidence": "evidence/section-111-draft.json",
+      "cFrozenDefinition": "원기둥, 원뿔, 구는 모두 {굽은 면}이 있다.",
+      "cFrozenStudentSentence": "원기둥, 원뿔, 구는 모두 □이 있다.",
+      "cProposedAnswers": [
+        "굽은 면"
+      ],
+      "cStudentAfter": "원기둥, 원뿔, 구는 모두 □이 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "굽은 면"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "원기둥, 원뿔, 구는 모두 {굽은 면}이 있다.",
+      "cStudentSentence": "원기둥, 원뿔, 구는 모두 □이 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "굽은 면",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "원기둥, 원뿔, 구는 모두 {굽은 면}이 있다.",
+        "acceptedAnswers": [
+          [
+            "굽은 면"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "평평한 면 비교 문항에서 굽은 면 개념도 함께 확인할 수 있다. 대체 ID는 e6-2-6-4-xc10이다."
+      },
+      "proposalFingerprint": "772dab218834ed17496c254d16414051db1ad56e1c283bb97dfde0d378f65b00",
+      "questionRevision": "planning-e5e6-20261006-772dab218834",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-4-xc10",
+      "bDecision": "revise",
+      "bPrompt": "원기둥, 원뿔, 구 가운데 평평한 면이 없는 것은 무엇인가요? 나머지 두 입체에는 평평한 면이 어디에 있는지도 쓰시오.",
+      "bAnswer": "구이다. 원기둥과 원뿔에는 밑면이 평평한 면이다.",
+      "bGoal": "세 입체의 면을 비교해 구만 평평한 면이 없음을 안다.",
+      "bReason": "고르기만 하지 않고 나머지의 평평한 면 위치를 말하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "구"
+          ]
+        },
+        {
+          "anyOf": [
+            "원기둥과 원뿔은 밑면이 평평하다",
+            "밑면"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "keep",
+      "cAfter": "원기둥, 원뿔, 구 가운데 평평한 면이 없는 것은 {구}이다.",
+      "cReason": "세 입체 중 하나를 고르는 짧은 비교 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2608,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-4-xc10",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-4 구 알아보기와 여러 가지 모양 만들기",
+        "term": "평평한 면이 없는 입체",
+        "kind": "성질",
+        "level": "중",
+        "definition": "원기둥, 원뿔, 구 가운데 평평한 면이 없는 것은 {구}이다.",
+        "studentC": "원기둥, 원뿔, 구 가운데 평평한 면이 없는 것은 □이다.",
+        "answers": [
+          "구"
+        ]
+      },
+      "sourceFingerprint": "befa3e38776d69b8153d45e8562e36c7918638bcd3c226711a9222cdb0d6c321",
+      "draftEvidence": "evidence/section-111-draft.json",
+      "cFrozenDefinition": "원기둥, 원뿔, 구 가운데 평평한 면이 없는 것은 {구}이다.",
+      "cFrozenStudentSentence": "원기둥, 원뿔, 구 가운데 평평한 면이 없는 것은 □이다.",
+      "cProposedAnswers": [
+        "구"
+      ],
+      "cStudentAfter": "원기둥, 원뿔, 구 가운데 평평한 면이 없는 것은 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "구"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "원기둥, 원뿔, 구 가운데 평평한 면이 없는 것은 {구}이다.",
+      "cStudentSentence": "원기둥, 원뿔, 구 가운데 평평한 면이 없는 것은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "구",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원기둥, 원뿔, 구 가운데 평평한 면이 없는 것은 무엇인가요? 나머지 두 입체에는 평평한 면이 어디에 있는지도 쓰시오.",
+        "answer": "구이다. 원기둥과 원뿔에는 밑면이 평평한 면이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "구"
+            ]
+          },
+          {
+            "anyOf": [
+              "원기둥과 원뿔은 밑면이 평평하다",
+              "밑면"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원기둥, 원뿔, 구 가운데 평평한 면이 없는 것은 {구}이다.",
+        "acceptedAnswers": [
+          [
+            "구"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "66e0663cf5166a7435cc8c8077ef739d0a6e4c753a9af9a0c0a52e65d6c3d719",
+      "questionRevision": "planning-e5e6-20261006-66e0663cf516",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-4-xc11",
+      "bDecision": "revise",
+      "bPrompt": "원기둥, 원뿔, 구 가운데 꼭짓점이 있는 것은 무엇인가요? 그 꼭짓점이 어떤 모양의 점인지도 쓰시오.",
+      "bAnswer": "원뿔이다. 뾰족하게 모인 점이 꼭짓점이다.",
+      "bGoal": "세 입체 중 뾰족한 꼭짓점이 원뿔에만 있음을 구별한다.",
+      "bReason": "입체 이름과 꼭짓점의 모양을 함께 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "원뿔"
+          ]
+        },
+        {
+          "anyOf": [
+            "뾰족한 점",
+            "뾰족하게 모인 점"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "keep",
+      "cAfter": "원기둥, 원뿔, 구 가운데 꼭짓점이 있는 것은 {원뿔}이다.",
+      "cReason": "세 입체를 비교해 원뿔을 고르는 명확한 짧은 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2609,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-4-xc11",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-4 구 알아보기와 여러 가지 모양 만들기",
+        "term": "꼭짓점이 있는 입체",
+        "kind": "성질",
+        "level": "중",
+        "definition": "원기둥, 원뿔, 구 가운데 꼭짓점이 있는 것은 {원뿔}이다.",
+        "studentC": "원기둥, 원뿔, 구 가운데 꼭짓점이 있는 것은 □이다.",
+        "answers": [
+          "원뿔"
+        ]
+      },
+      "sourceFingerprint": "88f4573e46220925b01e85b86dcfd3837e89cb00a3413d213fcd8f1355201ee5",
+      "draftEvidence": "evidence/section-111-draft.json",
+      "cFrozenDefinition": "원기둥, 원뿔, 구 가운데 꼭짓점이 있는 것은 {원뿔}이다.",
+      "cFrozenStudentSentence": "원기둥, 원뿔, 구 가운데 꼭짓점이 있는 것은 □이다.",
+      "cProposedAnswers": [
+        "원뿔"
+      ],
+      "cStudentAfter": "원기둥, 원뿔, 구 가운데 꼭짓점이 있는 것은 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "원뿔"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "원기둥, 원뿔, 구 가운데 꼭짓점이 있는 것은 {원뿔}이다.",
+      "cStudentSentence": "원기둥, 원뿔, 구 가운데 꼭짓점이 있는 것은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "원뿔",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원기둥, 원뿔, 구 가운데 꼭짓점이 있는 것은 무엇인가요? 그 꼭짓점이 어떤 모양의 점인지도 쓰시오.",
+        "answer": "원뿔이다. 뾰족하게 모인 점이 꼭짓점이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "원뿔"
+            ]
+          },
+          {
+            "anyOf": [
+              "뾰족한 점",
+              "뾰족하게 모인 점"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원기둥, 원뿔, 구 가운데 꼭짓점이 있는 것은 {원뿔}이다.",
+        "acceptedAnswers": [
+          [
+            "원뿔"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "08ce4d82205988d489e1620e1315fb77c19dde83591dfb01ca9f0404e771da96",
+      "questionRevision": "planning-e5e6-20261006-08ce4d822059",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-4-xc12",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "세 입체를 위에서 보면 모두 원임을 안다.",
+      "bReason": "위에서 본 모양 하나만 묻는 낱말 문항이다.",
+      "bRequiredIdeas": [],
+      "learningRole": "application",
+      "exclusionReason": "앞에서 본 모양 비교(e6-2-6-4-xc13)와 같은 유형이라 B는 한 문항만 쓴다. 대체 ID는 e6-2-6-4-xc13이다.",
+      "cDecision": "keep",
+      "cAfter": "밑면이 바닥에 닿게 세운 원기둥과 원뿔, 그리고 구를 위에서 보면 모두 {원}으로 보인다.",
+      "cReason": "밑면을 바닥에 세운다는 조건이 있어 위에서 본 모양 원을 쉽게 확인한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2610,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-4-xc12",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-4 구 알아보기와 여러 가지 모양 만들기",
+        "term": "위에서 본 모양 비교",
+        "kind": "성질",
+        "level": "중",
+        "definition": "밑면이 바닥에 닿게 세운 원기둥과 원뿔, 그리고 구를 위에서 보면 모두 {원}으로 보인다.",
+        "studentC": "밑면이 바닥에 닿게 세운 원기둥과 원뿔, 그리고 구를 위에서 보면 모두 □으로 보인다.",
+        "answers": [
+          "원"
+        ]
+      },
+      "sourceFingerprint": "d23ae6050fda6e011c5f6246f603bd9f486ebb2e54097d73d9f73e56c6f416f7",
+      "draftEvidence": "evidence/section-111-draft.json",
+      "cFrozenDefinition": "밑면이 바닥에 닿게 세운 원기둥과 원뿔, 그리고 구를 위에서 보면 모두 {원}으로 보인다.",
+      "cFrozenStudentSentence": "밑면이 바닥에 닿게 세운 원기둥과 원뿔, 그리고 구를 위에서 보면 모두 □으로 보인다.",
+      "cProposedAnswers": [
+        "원"
+      ],
+      "cStudentAfter": "밑면이 바닥에 닿게 세운 원기둥과 원뿔, 그리고 구를 위에서 보면 모두 □으로 보인다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "원"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "밑면이 바닥에 닿게 세운 원기둥과 원뿔, 그리고 구를 위에서 보면 모두 {원}으로 보인다.",
+      "cStudentSentence": "밑면이 바닥에 닿게 세운 원기둥과 원뿔, 그리고 구를 위에서 보면 모두 □으로 보인다.",
+      "cSlotAnswers": [
+        {
+          "key": "원",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "밑면이 바닥에 닿게 세운 원기둥과 원뿔, 그리고 구를 위에서 보면 모두 {원}으로 보인다.",
+        "acceptedAnswers": [
+          [
+            "원"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "앞에서 본 모양 비교(e6-2-6-4-xc13)와 같은 유형이라 B는 한 문항만 쓴다. 대체 ID는 e6-2-6-4-xc13이다."
+      },
+      "proposalFingerprint": "1dcc167814445542150446b5f4664ad27a178fd79d0b69c3c542ead6620f93d4",
+      "questionRevision": "planning-e5e6-20261006-1dcc16781444",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-4-xc13",
+      "bDecision": "revise",
+      "bPrompt": "밑면이 바닥에 닿게 세운 원기둥, 원뿔, 구를 앞에서 보면 각각 어떤 모양으로 보이나요?",
+      "bAnswer": "원기둥은 직사각형, 원뿔은 삼각형, 구는 원이다.",
+      "bGoal": "세 입체를 앞에서 본 모양을 구별한다.",
+      "bReason": "세 가지를 한 번에 비교하게 해 입체의 특징을 구별한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "원기둥은 직사각형"
+          ]
+        },
+        {
+          "anyOf": [
+            "원뿔은 삼각형"
+          ]
+        },
+        {
+          "anyOf": [
+            "구는 원"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "keep",
+      "cAfter": "밑면이 바닥에 닿게 세운 원기둥과 원뿔, 그리고 구를 앞에서 보면 차례로 직사각형, 삼각형, {원}이다.",
+      "cReason": "앞의 직사각형, 삼각형 순서를 보고 구가 원임을 고르는 짧은 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2611,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-4-xc13",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-4 구 알아보기와 여러 가지 모양 만들기",
+        "term": "앞에서 본 모양 비교",
+        "kind": "성질",
+        "level": "중",
+        "definition": "밑면이 바닥에 닿게 세운 원기둥과 원뿔, 그리고 구를 앞에서 보면 차례로 직사각형, 삼각형, {원}이다.",
+        "studentC": "밑면이 바닥에 닿게 세운 원기둥과 원뿔, 그리고 구를 앞에서 보면 차례로 직사각형, 삼각형, □이다.",
+        "answers": [
+          "원"
+        ]
+      },
+      "sourceFingerprint": "54353fa3dd9ed726c101db607b21ac554cf3c07bc0e25681749a63f0d8d236c2",
+      "draftEvidence": "evidence/section-111-draft.json",
+      "cFrozenDefinition": "밑면이 바닥에 닿게 세운 원기둥과 원뿔, 그리고 구를 앞에서 보면 차례로 직사각형, 삼각형, {원}이다.",
+      "cFrozenStudentSentence": "밑면이 바닥에 닿게 세운 원기둥과 원뿔, 그리고 구를 앞에서 보면 차례로 직사각형, 삼각형, □이다.",
+      "cProposedAnswers": [
+        "원"
+      ],
+      "cStudentAfter": "밑면이 바닥에 닿게 세운 원기둥과 원뿔, 그리고 구를 앞에서 보면 차례로 직사각형, 삼각형, □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "원"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "밑면이 바닥에 닿게 세운 원기둥과 원뿔, 그리고 구를 앞에서 보면 차례로 직사각형, 삼각형, {원}이다.",
+      "cStudentSentence": "밑면이 바닥에 닿게 세운 원기둥과 원뿔, 그리고 구를 앞에서 보면 차례로 직사각형, 삼각형, □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "원",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "밑면이 바닥에 닿게 세운 원기둥, 원뿔, 구를 앞에서 보면 각각 어떤 모양으로 보이나요?",
+        "answer": "원기둥은 직사각형, 원뿔은 삼각형, 구는 원이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "원기둥은 직사각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "원뿔은 삼각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "구는 원"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "밑면이 바닥에 닿게 세운 원기둥과 원뿔, 그리고 구를 앞에서 보면 차례로 직사각형, 삼각형, {원}이다.",
+        "acceptedAnswers": [
+          [
+            "원"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "3ec350564d004c1e7684b6626391ea288fc5bfa1a8e392d65b3480198a50d202",
+      "questionRevision": "planning-e5e6-20261006-3ec350564d00",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-4-xc14",
+      "bDecision": "revise",
+      "bPrompt": "원뿔, 원기둥, 구 중 두 가지를 쌓아 아이스크림 콘 모양을 만들려고 합니다. 어떤 입체 위에 어떤 입체를 올려야 하나요?",
+      "bAnswer": "원뿔 위에 구를 올린다.",
+      "bGoal": "원뿔과 구를 쌓아 아이스크림 콘 모양을 만든다.",
+      "bReason": "쌓는 순서까지 포함해 입체의 모양을 생각하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "원뿔 위에 구"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "revise",
+      "cAfter": "원뿔과 구로 아이스크림 콘 모양을 만들 때, 콘 부분은 {원뿔}이고 그 위에 올리는 아이스크림 부분은 {구}이다.",
+      "cReason": "원문은 빈칸 순서가 바뀔 수 있어 각 입체의 역할을 따로 묻는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "원뿔"
+          ]
+        },
+        {
+          "anyOf": [
+            "구"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 2612,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-4-xc14",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-4 구 알아보기와 여러 가지 모양 만들기",
+        "term": "아이스크림 모양 만들기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "{원뿔} 위에 {구}를 올리면 아이스크림 콘 모양을 만들 수 있다.",
+        "studentC": "□ 위에 □를 올리면 아이스크림 콘 모양을 만들 수 있다.",
+        "answers": [
+          "원뿔",
+          "구"
+        ]
+      },
+      "sourceFingerprint": "ec7043bf47c264c3a60104bc8d53b83fff082147383d7add3bc689b7e16fdfe1",
+      "draftEvidence": "evidence/section-111-draft.json",
+      "cProposedAnswers": [
+        "원뿔",
+        "구"
+      ],
+      "cStudentAfter": "원뿔과 구로 아이스크림 콘 모양을 만들 때, 콘 부분은 □이고 그 위에 올리는 아이스크림 부분은 □이다.",
+      "cMarkedSentence": "원뿔과 구로 아이스크림 콘 모양을 만들 때, 콘 부분은 {원뿔}이고 그 위에 올리는 아이스크림 부분은 {구}이다.",
+      "cStudentSentence": "원뿔과 구로 아이스크림 콘 모양을 만들 때, 콘 부분은 □이고 그 위에 올리는 아이스크림 부분은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "원뿔",
+          "equivalents": []
+        },
+        {
+          "key": "구",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원뿔, 원기둥, 구 중 두 가지를 쌓아 아이스크림 콘 모양을 만들려고 합니다. 어떤 입체 위에 어떤 입체를 올려야 하나요?",
+        "answer": "원뿔 위에 구를 올린다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "원뿔 위에 구"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원뿔과 구로 아이스크림 콘 모양을 만들 때, 콘 부분은 {원뿔}이고 그 위에 올리는 아이스크림 부분은 {구}이다.",
+        "acceptedAnswers": [
+          [
+            "원뿔"
+          ],
+          [
+            "구"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "25fd7c392483a3dfbe54d61b1c496b266eef1ffe5f4e0cc9cffbbbb0aa97a2bb",
+      "questionRevision": "planning-e5e6-20261006-25fd7c392483",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-4-xc15",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "구를 쌓아 눈사람 모양을 만든다.",
+      "bReason": "눈사람이라는 일상 연상을 외우는 사소한 문항이다.",
+      "bRequiredIdeas": [],
+      "learningRole": "application",
+      "exclusionReason": "쌓아서 모양을 만드는 B는 e6-2-6-4-xc14로 충분하다. 대체 ID는 e6-2-6-4-xc14이다.",
+      "cDecision": "keep",
+      "cAfter": "크기가 다른 {구} 두 개를 위아래로 쌓으면 눈사람 모양을 만들 수 있다.",
+      "cReason": "크기가 다른 두 개라는 조건이 있고 구를 고르는 짧은 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2613,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-4-xc15",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-4 구 알아보기와 여러 가지 모양 만들기",
+        "term": "눈사람 모양 만들기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "크기가 다른 {구} 두 개를 위아래로 쌓으면 눈사람 모양을 만들 수 있다.",
+        "studentC": "크기가 다른 □ 두 개를 위아래로 쌓으면 눈사람 모양을 만들 수 있다.",
+        "answers": [
+          "구"
+        ]
+      },
+      "sourceFingerprint": "cd8e2ec19b7f8df38ce30cb12df8b2f4ca6aac032cbda050fd68f447d27be5e9",
+      "draftEvidence": "evidence/section-111-draft.json",
+      "cFrozenDefinition": "크기가 다른 {구} 두 개를 위아래로 쌓으면 눈사람 모양을 만들 수 있다.",
+      "cFrozenStudentSentence": "크기가 다른 □ 두 개를 위아래로 쌓으면 눈사람 모양을 만들 수 있다.",
+      "cProposedAnswers": [
+        "구"
+      ],
+      "cStudentAfter": "크기가 다른 □ 두 개를 위아래로 쌓으면 눈사람 모양을 만들 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "구"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "크기가 다른 {구} 두 개를 위아래로 쌓으면 눈사람 모양을 만들 수 있다.",
+      "cStudentSentence": "크기가 다른 □ 두 개를 위아래로 쌓으면 눈사람 모양을 만들 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "구",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "크기가 다른 {구} 두 개를 위아래로 쌓으면 눈사람 모양을 만들 수 있다.",
+        "acceptedAnswers": [
+          [
+            "구"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "쌓아서 모양을 만드는 B는 e6-2-6-4-xc14로 충분하다. 대체 ID는 e6-2-6-4-xc14이다."
+      },
+      "proposalFingerprint": "e41dbf425b03c41c8b6e032bbed8b1b9d4dac3d3f7e91184ab32a45e087423ee",
+      "questionRevision": "planning-e5e6-20261006-e41dbf425b03",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-4-xc16",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "원기둥 위에 원뿔을 올려 로켓 모양을 만든다.",
+      "bReason": "쌓기 모양 연상 문항이 중복이다.",
+      "bRequiredIdeas": [],
+      "learningRole": "application",
+      "exclusionReason": "아이스크림 모양 문항과 같은 유형이다. 대체 ID는 e6-2-6-4-xc14이다.",
+      "cDecision": "keep",
+      "cAfter": "원기둥 위에 {원뿔}을 올리면 로켓 모양을 만들 수 있다.",
+      "cReason": "원기둥 위에 올리는 뾰족한 입체로 원뿔을 고르는 짧은 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2614,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-4-xc16",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-4 구 알아보기와 여러 가지 모양 만들기",
+        "term": "로켓 모양 만들기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "원기둥 위에 {원뿔}을 올리면 로켓 모양을 만들 수 있다.",
+        "studentC": "원기둥 위에 □을 올리면 로켓 모양을 만들 수 있다.",
+        "answers": [
+          "원뿔"
+        ]
+      },
+      "sourceFingerprint": "48a00e7dd05597d75d857aee04648e2058476e2e0a715976d02e8aa7a6d5b8d7",
+      "draftEvidence": "evidence/section-111-draft.json",
+      "cFrozenDefinition": "원기둥 위에 {원뿔}을 올리면 로켓 모양을 만들 수 있다.",
+      "cFrozenStudentSentence": "원기둥 위에 □을 올리면 로켓 모양을 만들 수 있다.",
+      "cProposedAnswers": [
+        "원뿔"
+      ],
+      "cStudentAfter": "원기둥 위에 □을 올리면 로켓 모양을 만들 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "원뿔"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "원기둥 위에 {원뿔}을 올리면 로켓 모양을 만들 수 있다.",
+      "cStudentSentence": "원기둥 위에 □을 올리면 로켓 모양을 만들 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "원뿔",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "원기둥 위에 {원뿔}을 올리면 로켓 모양을 만들 수 있다.",
+        "acceptedAnswers": [
+          [
+            "원뿔"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "아이스크림 모양 문항과 같은 유형이다. 대체 ID는 e6-2-6-4-xc14이다."
+      },
+      "proposalFingerprint": "a882532327a135c2f1d8d97d8625bc805d025e78f5904b2155fa65cbbdc0a62b",
+      "questionRevision": "planning-e5e6-20261006-a882532327a1",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-4-xc17",
+      "bDecision": "revise",
+      "bPrompt": "정육면체 상자 안에 구가 안쪽 여섯 면에 모두 닿게 꼭 맞게 들어 있습니다. 구의 지름과 상자의 안쪽 한 모서리의 길이는 어떤 관계인가요? 그 까닭을 쓰고, 한 모서리가 $10$ $\\mathrm{cm}$이면 구의 반지름도 구하시오.",
+      "bAnswer": "서로 같다. 마주 보는 두 면에 구가 닿아 두 면 사이의 거리가 지름과 같기 때문이다. 한 모서리가 $10$ $\\mathrm{cm}$이면 지름이 $10$ $\\mathrm{cm}$이고 반지름은 $5$ $\\mathrm{cm}$이다.",
+      "bGoal": "꼭 맞는 구의 지름이 정육면체 한 모서리와 같음을 이해한다.",
+      "bReason": "관계, 까닭, 반지름 계산을 연결해 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "지름과 한 모서리의 길이가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "마주 보는 면에 닿아 두 면 사이의 거리가 지름이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$ $\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "정육면체 상자 안쪽 한 모서리가 $12$ $\\mathrm{cm}$이고 구가 안쪽 여섯 면에 모두 닿을 때, 구의 지름은 {$12$} $\\mathrm{cm}$, 반지름은 {$6$} $\\mathrm{cm}$이다.",
+      "cReason": "안쪽 한 모서리와 같다는 긴 빈칸 대신 구체적인 수치로 확인한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 2615,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-4-xc17",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-4 구 알아보기와 여러 가지 모양 만들기",
+        "term": "정육면체 상자에 꼭 맞는 구",
+        "kind": "성질",
+        "level": "중",
+        "definition": "정육면체 상자의 안쪽 여섯 면에 모두 닿는 구의 지름은 상자의 안쪽 {한 모서리의 길이}와 같다.",
+        "studentC": "정육면체 상자의 안쪽 여섯 면에 모두 닿는 구의 지름은 상자의 안쪽 □와 같다.",
+        "answers": [
+          "한 모서리의 길이"
+        ]
+      },
+      "sourceFingerprint": "5bb7e7e1c6b1282942ef73b6142238cb4ea372522ea767b94abd4ea6ab485a3f",
+      "draftEvidence": "evidence/section-111-draft.json",
+      "cProposedAnswers": [
+        "$12$",
+        "$6$"
+      ],
+      "cStudentAfter": "정육면체 상자 안쪽 한 모서리가 $12$ $\\mathrm{cm}$이고 구가 안쪽 여섯 면에 모두 닿을 때, 구의 지름은 □ $\\mathrm{cm}$, 반지름은 □ $\\mathrm{cm}$이다.",
+      "cMarkedSentence": "정육면체 상자 안쪽 한 모서리가 $12$ $\\mathrm{cm}$이고 구가 안쪽 여섯 면에 모두 닿을 때, 구의 지름은 {$12$} $\\mathrm{cm}$, 반지름은 {$6$} $\\mathrm{cm}$이다.",
+      "cStudentSentence": "정육면체 상자 안쪽 한 모서리가 $12$ $\\mathrm{cm}$이고 구가 안쪽 여섯 면에 모두 닿을 때, 구의 지름은 □ $\\mathrm{cm}$, 반지름은 □ $\\mathrm{cm}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$12$",
+          "equivalents": []
+        },
+        {
+          "key": "$6$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "정육면체 상자 안에 구가 안쪽 여섯 면에 모두 닿게 꼭 맞게 들어 있습니다. 구의 지름과 상자의 안쪽 한 모서리의 길이는 어떤 관계인가요? 그 까닭을 쓰고, 한 모서리가 $10$ $\\mathrm{cm}$이면 구의 반지름도 구하시오.",
+        "answer": "서로 같다. 마주 보는 두 면에 구가 닿아 두 면 사이의 거리가 지름과 같기 때문이다. 한 모서리가 $10$ $\\mathrm{cm}$이면 지름이 $10$ $\\mathrm{cm}$이고 반지름은 $5$ $\\mathrm{cm}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "지름과 한 모서리의 길이가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "마주 보는 면에 닿아 두 면 사이의 거리가 지름이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5$ $\\mathrm{cm}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "정육면체 상자 안쪽 한 모서리가 $12$ $\\mathrm{cm}$이고 구가 안쪽 여섯 면에 모두 닿을 때, 구의 지름은 {$12$} $\\mathrm{cm}$, 반지름은 {$6$} $\\mathrm{cm}$이다.",
+        "acceptedAnswers": [
+          [
+            "$12$"
+          ],
+          [
+            "$6$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "c529f728ca67a9c5f2e6f29b348299866681495b0a0c3a0f061fc9f963bfeb4d",
+      "questionRevision": "planning-e5e6-20261006-c529f728ca67",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-4-xc18",
+      "bDecision": "revise",
+      "bPrompt": "구를 앞에서 보면 원으로 보입니다. 이 원의 반지름은 구의 반지름과 어떤 관계인가요? 그 까닭도 설명하시오.",
+      "bAnswer": "서로 같다. 앞에서 본 가장 넓은 둥근 윤곽이 구의 중심을 지나는 원과 같은 크기이기 때문이다.",
+      "bGoal": "앞에서 본 원의 반지름이 구의 반지름과 같음을 안다.",
+      "bReason": "구의 중심을 지나는 단면과 연결해 이해하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "구의 반지름과 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "중심을 지나는 가장 큰 원과 같다",
+            "구의 중심을 지나는 원이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "keep",
+      "cAfter": "구를 앞에서 보았을 때 나타나는 원의 반지름은 {구의 반지름}과 같다.",
+      "cReason": "앞에서 본 원의 반지름이 구와 같다는 관계를 한 낱말로 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 2616,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-4-xc18",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-4 구 알아보기와 여러 가지 모양 만들기",
+        "term": "구를 앞에서 본 원의 반지름",
+        "kind": "성질",
+        "level": "상",
+        "definition": "구를 앞에서 보았을 때 나타나는 원의 반지름은 {구의 반지름}과 같다.",
+        "studentC": "구를 앞에서 보았을 때 나타나는 원의 반지름은 □과 같다.",
+        "answers": [
+          "구의 반지름"
+        ]
+      },
+      "sourceFingerprint": "0d19b7566bd67313a58bb0643f5196aab7fb1483dfa4c45acebc91e35e974291",
+      "draftEvidence": "evidence/section-111-draft.json",
+      "cFrozenDefinition": "구를 앞에서 보았을 때 나타나는 원의 반지름은 {구의 반지름}과 같다.",
+      "cFrozenStudentSentence": "구를 앞에서 보았을 때 나타나는 원의 반지름은 □과 같다.",
+      "cProposedAnswers": [
+        "구의 반지름"
+      ],
+      "cStudentAfter": "구를 앞에서 보았을 때 나타나는 원의 반지름은 □과 같다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "구의 반지름"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "구를 앞에서 보았을 때 나타나는 원의 반지름은 {구의 반지름}과 같다.",
+      "cStudentSentence": "구를 앞에서 보았을 때 나타나는 원의 반지름은 □과 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "구의 반지름",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "구를 앞에서 보면 원으로 보입니다. 이 원의 반지름은 구의 반지름과 어떤 관계인가요? 그 까닭도 설명하시오.",
+        "answer": "서로 같다. 앞에서 본 가장 넓은 둥근 윤곽이 구의 중심을 지나는 원과 같은 크기이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "구의 반지름과 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "중심을 지나는 가장 큰 원과 같다",
+              "구의 중심을 지나는 원이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "구를 앞에서 보았을 때 나타나는 원의 반지름은 {구의 반지름}과 같다.",
+        "acceptedAnswers": [
+          [
+            "구의 반지름"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7f79baa17e8d2a35c1674a4480ee14bcb2d29cd9ce035c1a621db51639e6305f",
+      "questionRevision": "planning-e5e6-20261006-7f79baa17e8d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-4-xc21",
+      "bDecision": "revise",
+      "bPrompt": "밑면의 지름과 높이가 같은 원기둥에 구가 위, 아래, 옆에 모두 닿게 꼭 맞게 들어 있습니다. 구의 지름은 원기둥의 높이와 어떤 관계인가요? 그 까닭도 쓰고, 높이가 $10$ $\\mathrm{cm}$이면 구의 반지름을 구하시오.",
+      "bAnswer": "서로 같다. 구가 위아래 밑면에 모두 닿아 두 밑면 사이의 거리가 지름이기 때문이다. 높이가 $10$ $\\mathrm{cm}$이면 반지름은 $5$ $\\mathrm{cm}$이다.",
+      "bGoal": "꼭 맞게 들어간 구의 지름이 원기둥의 높이와 같음을 이해한다.",
+      "bReason": "관계와 까닭, 반지름까지 연결해 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "구의 지름과 원기둥의 높이가 같다",
+            "구의 지름과 밑면의 지름이 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "위아래 밑면에 닿는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$ $\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "밑면의 지름과 높이가 모두 $10$ $\\mathrm{cm}$인 원기둥에 꼭 맞게 들어가는 구의 지름은 {$10$} $\\mathrm{cm}$이다.",
+      "cReason": "원기둥의 높이라는 낱말 대신 수치로 확인한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$10$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "synonymNotes": "높이와 밑면 지름은 같은 값이다.",
+      "sourceIndex": 2617,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-4-xc21",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-4 구 알아보기와 여러 가지 모양 만들기",
+        "term": "원기둥에 꼭 맞는 구",
+        "kind": "성질",
+        "level": "상",
+        "definition": "밑면 지름과 높이가 같은 원기둥에 꼭 맞게 들어가는 구의 지름은 {원기둥의 높이}와 같다.",
+        "studentC": "밑면 지름과 높이가 같은 원기둥에 꼭 맞게 들어가는 구의 지름은 □와 같다.",
+        "answers": [
+          "원기둥의 높이"
+        ]
+      },
+      "sourceFingerprint": "50cbf4cc7aba9785228678b308a6ded06aa31a043d18ad79608d60c2011291a9",
+      "draftEvidence": "evidence/section-111-draft.json",
+      "cProposedAnswers": [
+        "$10$"
+      ],
+      "cStudentAfter": "밑면의 지름과 높이가 모두 $10$ $\\mathrm{cm}$인 원기둥에 꼭 맞게 들어가는 구의 지름은 □ $\\mathrm{cm}$이다.",
+      "cMarkedSentence": "밑면의 지름과 높이가 모두 $10$ $\\mathrm{cm}$인 원기둥에 꼭 맞게 들어가는 구의 지름은 {$10$} $\\mathrm{cm}$이다.",
+      "cStudentSentence": "밑면의 지름과 높이가 모두 $10$ $\\mathrm{cm}$인 원기둥에 꼭 맞게 들어가는 구의 지름은 □ $\\mathrm{cm}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$10$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "밑면의 지름과 높이가 같은 원기둥에 구가 위, 아래, 옆에 모두 닿게 꼭 맞게 들어 있습니다. 구의 지름은 원기둥의 높이와 어떤 관계인가요? 그 까닭도 쓰고, 높이가 $10$ $\\mathrm{cm}$이면 구의 반지름을 구하시오.",
+        "answer": "서로 같다. 구가 위아래 밑면에 모두 닿아 두 밑면 사이의 거리가 지름이기 때문이다. 높이가 $10$ $\\mathrm{cm}$이면 반지름은 $5$ $\\mathrm{cm}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "구의 지름과 원기둥의 높이가 같다",
+              "구의 지름과 밑면의 지름이 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "위아래 밑면에 닿는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5$ $\\mathrm{cm}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "밑면의 지름과 높이가 모두 $10$ $\\mathrm{cm}$인 원기둥에 꼭 맞게 들어가는 구의 지름은 {$10$} $\\mathrm{cm}$이다.",
+        "acceptedAnswers": [
+          [
+            "$10$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7cfcc203d878082a3ecb56e9a9c1af9d098b46fc162015fcdac8be81c8c19172",
+      "questionRevision": "planning-e5e6-20261006-7cfcc203d878",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-4-xc22",
+      "bDecision": "revise",
+      "bPrompt": "같은 구 여러 개를 상자에 한 줄로 꼭 맞게 담았습니다. 상자 안쪽 길이는 어떻게 구하나요? 구의 지름이 $6$ $\\mathrm{cm}$이고 $4$개이면 얼마인가요?",
+      "bAnswer": "구의 지름에 구의 개수를 곱한다. $6\\times4=24$이므로 $24$ $\\mathrm{cm}$이다.",
+      "bGoal": "한 줄로 담은 구의 길이를 지름과 개수로 구한다.",
+      "bReason": "구하는 방법과 수치를 함께 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "지름에 개수를 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$24$ $\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "지름이 $5$ $\\mathrm{cm}$인 구 $3$개를 한 줄로 꼭 맞게 담은 상자의 안쪽 길이는 {$15$} $\\mathrm{cm}$이다.",
+      "cReason": "긴 문장 빈칸 대신 값을 구하게 하여 방법을 확인한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$15$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 2618,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-4-xc22",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-4 구 알아보기와 여러 가지 모양 만들기",
+        "term": "한 줄로 담은 구",
+        "kind": "방법",
+        "level": "상",
+        "definition": "같은 구 여러 개를 한 줄로 꼭 맞게 담은 상자의 안쪽 길이는 {구의 지름에 개수를 곱한} 길이이다.",
+        "studentC": "같은 구 여러 개를 한 줄로 꼭 맞게 담은 상자의 안쪽 길이는 □ 길이이다.",
+        "answers": [
+          "구의 지름에 개수를 곱한"
+        ]
+      },
+      "sourceFingerprint": "5ac077f4031930df177450d9740e9af8d9f76d319d106c1d0454490955a14cb4",
+      "draftEvidence": "evidence/section-111-draft.json",
+      "cProposedAnswers": [
+        "$15$"
+      ],
+      "cStudentAfter": "지름이 $5$ $\\mathrm{cm}$인 구 $3$개를 한 줄로 꼭 맞게 담은 상자의 안쪽 길이는 □ $\\mathrm{cm}$이다.",
+      "cMarkedSentence": "지름이 $5$ $\\mathrm{cm}$인 구 $3$개를 한 줄로 꼭 맞게 담은 상자의 안쪽 길이는 {$15$} $\\mathrm{cm}$이다.",
+      "cStudentSentence": "지름이 $5$ $\\mathrm{cm}$인 구 $3$개를 한 줄로 꼭 맞게 담은 상자의 안쪽 길이는 □ $\\mathrm{cm}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$15$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "같은 구 여러 개를 상자에 한 줄로 꼭 맞게 담았습니다. 상자 안쪽 길이는 어떻게 구하나요? 구의 지름이 $6$ $\\mathrm{cm}$이고 $4$개이면 얼마인가요?",
+        "answer": "구의 지름에 구의 개수를 곱한다. $6\\times4=24$이므로 $24$ $\\mathrm{cm}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "지름에 개수를 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$24$ $\\mathrm{cm}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "지름이 $5$ $\\mathrm{cm}$인 구 $3$개를 한 줄로 꼭 맞게 담은 상자의 안쪽 길이는 {$15$} $\\mathrm{cm}$이다.",
+        "acceptedAnswers": [
+          [
+            "$15$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "101e8bf60c0c422728a267cb27918201a74cda854a2714fbca72c161945a85aa",
+      "questionRevision": "planning-e5e6-20261006-101e8bf60c0c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-4-xc23",
+      "bDecision": "revise",
+      "bPrompt": "높이가 $8$ $\\mathrm{cm}$인 원기둥을 밑면이 바닥에 닿게 세우고 윗면에 반지름이 $3$ $\\mathrm{cm}$인 구를 올렸습니다. 전체 높이를 구하는 방법을 설명하고 값을 구하시오.",
+      "bAnswer": "원기둥의 높이에 구의 지름을 더한다. 구의 지름은 $6$ $\\mathrm{cm}$이므로 $8+6=14$, 전체 높이는 $14$ $\\mathrm{cm}$이다.",
+      "bGoal": "쌓은 모양의 전체 높이에 구의 지름이 쓰임을 안다.",
+      "bReason": "반지름을 그대로 더하는 실수를 막기 위해 지름을 쓰게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "구의 지름을 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$14$ $\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "높이가 $8$ $\\mathrm{cm}$인 원기둥 위에 반지름이 $3$ $\\mathrm{cm}$인 구를 올린 모양의 전체 높이는 {$14$} $\\mathrm{cm}$이다.",
+      "cReason": "구의 지름을 더하는 방법을 수치로 확인한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$14$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 2619,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-4-xc23",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-4 구 알아보기와 여러 가지 모양 만들기",
+        "term": "원기둥 위에 올린 구의 높이",
+        "kind": "방법",
+        "level": "상",
+        "definition": "밑면을 바닥에 대고 세운 원기둥의 윗면에 구를 올린 모양의 높이는 원기둥의 높이에 {구의 지름}을 더한 값이다.",
+        "studentC": "밑면을 바닥에 대고 세운 원기둥의 윗면에 구를 올린 모양의 높이는 원기둥의 높이에 □을 더한 값이다.",
+        "answers": [
+          "구의 지름"
+        ]
+      },
+      "sourceFingerprint": "f170fb6b1376cb82cb271498385ca7846f146f5ed8f993fd1df5e86e85693eb9",
+      "draftEvidence": "evidence/section-111-draft.json",
+      "cProposedAnswers": [
+        "$14$"
+      ],
+      "cStudentAfter": "높이가 $8$ $\\mathrm{cm}$인 원기둥 위에 반지름이 $3$ $\\mathrm{cm}$인 구를 올린 모양의 전체 높이는 □ $\\mathrm{cm}$이다.",
+      "cMarkedSentence": "높이가 $8$ $\\mathrm{cm}$인 원기둥 위에 반지름이 $3$ $\\mathrm{cm}$인 구를 올린 모양의 전체 높이는 {$14$} $\\mathrm{cm}$이다.",
+      "cStudentSentence": "높이가 $8$ $\\mathrm{cm}$인 원기둥 위에 반지름이 $3$ $\\mathrm{cm}$인 구를 올린 모양의 전체 높이는 □ $\\mathrm{cm}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$14$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "높이가 $8$ $\\mathrm{cm}$인 원기둥을 밑면이 바닥에 닿게 세우고 윗면에 반지름이 $3$ $\\mathrm{cm}$인 구를 올렸습니다. 전체 높이를 구하는 방법을 설명하고 값을 구하시오.",
+        "answer": "원기둥의 높이에 구의 지름을 더한다. 구의 지름은 $6$ $\\mathrm{cm}$이므로 $8+6=14$, 전체 높이는 $14$ $\\mathrm{cm}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "구의 지름을 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$14$ $\\mathrm{cm}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "높이가 $8$ $\\mathrm{cm}$인 원기둥 위에 반지름이 $3$ $\\mathrm{cm}$인 구를 올린 모양의 전체 높이는 {$14$} $\\mathrm{cm}$이다.",
+        "acceptedAnswers": [
+          [
+            "$14$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "dcb21e030e439019984e2f22888fa83c54806d331935c97f04be3d71bd01cdc1",
+      "questionRevision": "planning-e5e6-20261006-dcb21e030e43",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-6-4-xc25",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "구에 밑면이 없음을 안다.",
+      "bReason": "평평한 면 비교 문항과 중복된다.",
+      "bRequiredIdeas": [],
+      "learningRole": "naming",
+      "exclusionReason": "구에 평평한 면이 없다는 내용(e6-2-6-4-xc10)과 중복되어 대체 ID는 e6-2-6-4-xc10이다.",
+      "cDecision": "keep",
+      "cAfter": "원기둥과 원뿔은 밑면이 있지만 구는 {밑면이 없다}.",
+      "cReason": "원기둥, 원뿔과 대비해 구에 밑면이 없음을 묻는 짧은 문장이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "없다, 밑면이 없다 모두 정답이다.",
+      "sourceIndex": 2620,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-6-4-xc25",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-4 구 알아보기와 여러 가지 모양 만들기",
+        "term": "밑면이 없는 구",
+        "kind": "성질",
+        "level": "상",
+        "definition": "원기둥과 원뿔은 밑면이 있지만 구는 {밑면이 없다}.",
+        "studentC": "원기둥과 원뿔은 밑면이 있지만 구는 □.",
+        "answers": [
+          "밑면이 없다"
+        ]
+      },
+      "sourceFingerprint": "bed44212214c1d4c362ff8ac71e14f8d225a9d3f72829c87a4e58fff6b78157d",
+      "draftEvidence": "evidence/section-111-draft.json",
+      "cFrozenDefinition": "원기둥과 원뿔은 밑면이 있지만 구는 {밑면이 없다}.",
+      "cFrozenStudentSentence": "원기둥과 원뿔은 밑면이 있지만 구는 □.",
+      "cProposedAnswers": [
+        "밑면이 없다"
+      ],
+      "cStudentAfter": "원기둥과 원뿔은 밑면이 있지만 구는 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "밑면이 없다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "원기둥과 원뿔은 밑면이 있지만 구는 {밑면이 없다}.",
+      "cStudentSentence": "원기둥과 원뿔은 밑면이 있지만 구는 □.",
+      "cSlotAnswers": [
+        {
+          "key": "밑면이 없다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "원기둥과 원뿔은 밑면이 있지만 구는 {밑면이 없다}.",
+        "acceptedAnswers": [
+          [
+            "밑면이 없다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "구에 평평한 면이 없다는 내용(e6-2-6-4-xc10)과 중복되어 대체 ID는 e6-2-6-4-xc10이다."
+      },
+      "proposalFingerprint": "b167573646495127eecf57613d09e61a078bed96da099bc69f85b924e3437f9a",
+      "questionRevision": "planning-e5e6-20261006-b16757364649",
+      "requiresIndependentReview": true
+    }
+  ]
+}

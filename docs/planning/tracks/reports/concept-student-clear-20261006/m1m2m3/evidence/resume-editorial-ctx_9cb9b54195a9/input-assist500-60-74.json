@@ -1,0 +1,1485 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T09:43:52.235Z",
+  "supplementalVerdicts": "evidence/assist-2400-2899-20261007/reviews.json",
+  "rows": [
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-04-07-xc11",
+        "section": "중2::4. 함수::일차함수의 활용(속력, 도형, 기타)",
+        "term": "도착하는 시간",
+        "kind": "방법",
+        "level": "중",
+        "definition": "남은 거리 식에서 {$y=0$}이 되는 $x$가 {도착}하는 시간이다.",
+        "example": {
+          "prompt": "$x$분 뒤 남은 거리 $y\\,\\mathrm{m}$가 $y=2000-50x$일 때 도착하는 시간",
+          "answer": "$40$분"
+        },
+        "studentC": "남은 거리 식에서 □이 되는 $x$가 □하는 시간이다.",
+        "answers": [
+          "$y=0$",
+          "도착"
+        ]
+      },
+      "proposal": {
+        "id": "m2-04-07-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "학교까지 $2000\\,\\mathrm{m}$인 길을 분속 $50\\,\\mathrm{m}$로 걸으면 $x$분 뒤 남은 거리 $y\\,\\mathrm{m}$는 $y=2000-50x$이다. 학교에 도착하는 시간을 이 식으로 어떻게 구하는지 쓰고, 그 시간을 구하시오.",
+        "bAnswer": "도착하면 남은 거리가 $0$이므로 $y=0$을 넣는다. $0=2000-50x$에서 $x=40$이므로 $40$분 뒤에 도착한다.",
+        "bGoal": "남은 거리가 $0$인 때로 도착 시간 구하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$y=0$을 넣는다",
+              "남은 거리가 $0$인 때"
+            ]
+          },
+          {
+            "anyOf": [
+              "$40$분",
+              "$x=40$"
+            ]
+          }
+        ],
+        "bReason": "남은 거리 식을 주고 도착 조건을 식으로 바꾸는 방법과 값을 함께 묻는다.",
+        "cDecision": "keep",
+        "cReason": "도착 조건 $y=0$과 의미를 짝지은 짧은 빈칸이다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "$y=0$을 대입해 도착 시간 구하기",
+        "authorBatch": 40,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2740,
+        "part": "m2plus",
+        "sourceFingerprint": "75be8b8f372fbbf7cc141ab04219b9beee070f7c4b05d53174beea70b1058d7e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2740
+        },
+        "directReview": null,
+        "cFrozenSentence": "남은 거리 식에서 □이 되는 $x$가 □하는 시간이다.",
+        "cFrozenDefinition": "남은 거리 식에서 {$y=0$}이 되는 $x$가 {도착}하는 시간이다.",
+        "cFrozenAnswers": [
+          "$y=0$",
+          "도착"
+        ],
+        "cMarkedSentence": "남은 거리 식에서 {$y=0$}이 되는 $x$가 {도착}하는 시간이다.",
+        "cSlotAnswers": [
+          "$y=0$",
+          "도착"
+        ],
+        "cStudentSentence": "남은 거리 식에서 □이 되는 $x$가 □하는 시간이다.",
+        "cAnswers": [
+          "$y=0$",
+          "도착"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$y=0$",
+            "equivalentAnswers": [
+              "$y=0$",
+              "$y$가 $0$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "도착",
+            "equivalentAnswers": [
+              "도착"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$y=0$",
+            "accept": [
+              "$y$가 $0$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$y=0$",
+            "$y$가 $0$"
+          ],
+          [
+            "도착"
+          ]
+        ],
+        "proposalFingerprint": "812b98c714d179c302a0665b9130283c25c7406a8fd2169a2e9fd1cf83963bee"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-04-07-xc19",
+        "section": "중2::4. 함수::일차함수의 활용(속력, 도형, 기타)",
+        "term": "움직이는 점의 시간 범위",
+        "kind": "성질",
+        "level": "상",
+        "definition": "길이 $l$인 변을 한 끝에서 매초 $v$씩 움직이면 끝에 닿을 때까지의 시간 $x$의 범위는 {$0\\le x\\le\\frac{l}{v}$}이다.",
+        "example": {
+          "prompt": "길이가 $15$인 변 위를 한 끝에서 다른 끝까지 매초 $3$씩 움직이는 점의 시간 $x$초의 범위가 $x\\le5$에서 끝나는 까닭은?",
+          "answer": "$5$초에 다른 끝에 닿아서"
+        },
+        "studentC": "길이 $l$인 변을 한 끝에서 매초 $v$씩 움직이면 끝에 닿을 때까지의 시간 $x$의 범위는 □이다.",
+        "answers": [
+          "$0\\le x\\le\\frac{l}{v}$"
+        ]
+      },
+      "proposal": {
+        "id": "m2-04-07-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "길이가 $l$인 변 위를 한 끝에서 출발하여 다른 끝까지 매초 $v$($v>0$)씩 움직이는 점이 있다. 출발한 지 $x$초라 할 때 점이 변 위에 있는 $x$의 범위를 쓰고, 범위가 그 값에서 끝나는 까닭을 쓰시오.",
+        "bAnswer": "$0\\le x\\le\\frac{l}{v}$이다. $x$초 동안 간 거리 $vx$가 $l$이 될 때, 곧 $x=\\frac{l}{v}$일 때 다른 끝에 닿기 때문이다.",
+        "bGoal": "움직이는 점의 시간 범위와 끝값의 근거",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0\\le x\\le\\frac{l}{v}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$vx=l$일 때 끝에 닿는다",
+              "간 거리가 변의 길이와 같아질 때 끝에 닿는다"
+            ]
+          }
+        ],
+        "bReason": "범위만 외우지 않도록 끝값이 생기는 이유를 함께 묻는다.",
+        "cDecision": "keep",
+        "cReason": "범위 전체를 쓰는 한 빈칸으로 시작과 끝을 함께 확인한다.",
+        "learningRole": "reason",
+        "roleReason": "간 거리 $vx=l$에서 끝값 결정",
+        "authorBatch": 40,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2745,
+        "part": "m2plus",
+        "sourceFingerprint": "4f06ec11c982c07b193a58b3c7b125a481bb4664949d7511fcc0db35981abae4",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2745
+        },
+        "directReview": null,
+        "cFrozenSentence": "길이 $l$인 변을 한 끝에서 매초 $v$씩 움직이면 끝에 닿을 때까지의 시간 $x$의 범위는 □이다.",
+        "cFrozenDefinition": "길이 $l$인 변을 한 끝에서 매초 $v$씩 움직이면 끝에 닿을 때까지의 시간 $x$의 범위는 {$0\\le x\\le\\frac{l}{v}$}이다.",
+        "cFrozenAnswers": [
+          "$0\\le x\\le\\frac{l}{v}$"
+        ],
+        "cMarkedSentence": "길이 $l$인 변을 한 끝에서 매초 $v$씩 움직이면 끝에 닿을 때까지의 시간 $x$의 범위는 {$0\\le x\\le\\frac{l}{v}$}이다.",
+        "cSlotAnswers": [
+          "$0\\le x\\le\\frac{l}{v}$"
+        ],
+        "cStudentSentence": "길이 $l$인 변을 한 끝에서 매초 $v$씩 움직이면 끝에 닿을 때까지의 시간 $x$의 범위는 □이다.",
+        "cAnswers": [
+          "$0\\le x\\le\\frac{l}{v}$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$0\\le x\\le\\frac{l}{v}$",
+            "equivalentAnswers": [
+              "$0\\le x\\le\\frac{l}{v}$",
+              "$0\\le x\\le l\\div v$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$0\\le x\\le\\frac{l}{v}$",
+            "accept": [
+              "$0\\le x\\le l\\div v$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$0\\le x\\le\\frac{l}{v}$",
+            "$0\\le x\\le l\\div v$"
+          ]
+        ],
+        "proposalFingerprint": "a9a65b84b89f53322a7d93e19b158cc68f6f39ec47e85f3dea083fc04ae4575b"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-04-07-xc24",
+        "section": "중2::4. 함수::일차함수의 활용(속력, 도형, 기타)",
+        "term": "$x$절편을 잘못 읽는 경우",
+        "kind": "성질",
+        "level": "상",
+        "definition": "남은 거리 그래프의 $x$절편을 출발 시각으로 읽는 것은 잘못이다. $x$절편은 {도착}하는 데 걸린 {시간}이다.",
+        "studentC": "남은 거리 그래프의 $x$절편을 출발 시각으로 읽는 것은 잘못이다. $x$절편은 □하는 데 걸린 □이다.",
+        "answers": [
+          "도착",
+          "시간"
+        ]
+      },
+      "proposal": {
+        "id": "m2-04-07-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "$x$분 뒤 남은 거리 $y\\,\\mathrm{m}$가 $y=1200-60x$일 때, 이 그래프의 $x$절편을 출발 시각으로 읽으면 왜 틀리는지 쓰고, $x$절편이 실제로 뜻하는 것을 쓰시오.",
+        "bAnswer": "$x$절편 $20$은 남은 거리 $y$가 $0$이 되는 때이므로 도착하는 데 걸린 시간 $20$분이다. 출발할 때는 $x=0$이고 그때의 남은 거리 $1200\\,\\mathrm{m}$가 $y$절편이다.",
+        "bGoal": "남은 거리 그래프의 $x$절편 해석 오류 바로잡기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x$절편은 남은 거리가 $0$인 때",
+              "$y=0$일 때의 $x$"
+            ]
+          },
+          {
+            "anyOf": [
+              "도착하는 데 걸린 시간 $20$분",
+              "$20$분 뒤 도착"
+            ]
+          }
+        ],
+        "bReason": "xc11과 달리 $x$절편을 출발로 읽는 오개념을 이유와 함께 바로잡게 했다.",
+        "cDecision": "keep",
+        "cReason": "잘못된 해석을 보여 주고 바른 뜻을 채우게 하는 분명한 문장이다.",
+        "studentLabel": "$x$절편을 출발 시각으로 읽는 실수",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "$x$절편 = 남은 거리 $0$ = 도착",
+        "authorBatch": 40,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2748,
+        "part": "m2plus",
+        "sourceFingerprint": "3fe0731564011eec1a327f178052a9339818b57ef4acb6520cafde1edf3343a5",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2748
+        },
+        "directReview": null,
+        "cFrozenSentence": "남은 거리 그래프의 $x$절편을 출발 시각으로 읽는 것은 잘못이다. $x$절편은 □하는 데 걸린 □이다.",
+        "cFrozenDefinition": "남은 거리 그래프의 $x$절편을 출발 시각으로 읽는 것은 잘못이다. $x$절편은 {도착}하는 데 걸린 {시간}이다.",
+        "cFrozenAnswers": [
+          "도착",
+          "시간"
+        ],
+        "cMarkedSentence": "남은 거리 그래프의 $x$절편을 출발 시각으로 읽는 것은 잘못이다. $x$절편은 {도착}하는 데 걸린 {시간}이다.",
+        "cSlotAnswers": [
+          "도착",
+          "시간"
+        ],
+        "cStudentSentence": "남은 거리 그래프의 $x$절편을 출발 시각으로 읽는 것은 잘못이다. $x$절편은 □하는 데 걸린 □이다.",
+        "cAnswers": [
+          "도착",
+          "시간"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "도착",
+            "equivalentAnswers": [
+              "도착"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "시간",
+            "equivalentAnswers": [
+              "시간"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "도착"
+          ],
+          [
+            "시간"
+          ]
+        ],
+        "proposalFingerprint": "23cb84f3652d4adb0e715a92491368aceee62be35c09d4a5876fcbf29e18bc22"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-04-07-xc25",
+        "section": "중2::4. 함수::일차함수의 활용(속력, 도형, 기타)",
+        "term": "물의 양 식의 기울기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "일정하게 물을 넣거나 뺄 때 물의 양 식의 기울기는 $1$분 동안의 {변화량}으로 넣으면 양수, 빼면 음수이고, $y$절편은 {처음} 물의 양이다.",
+        "studentC": "일정하게 물을 넣거나 뺄 때 물의 양 식의 기울기는 $1$분 동안의 □으로 넣으면 양수, 빼면 음수이고, $y$절편은 □ 물의 양이다.",
+        "answers": [
+          "변화량",
+          "처음"
+        ]
+      },
+      "proposal": {
+        "id": "m2-04-07-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "$x$분 뒤 물통의 물의 양 $y\\,\\mathrm{L}$가 $y=50-4x$이다. 기울기 $-4$와 $y$절편 $50$이 각각 무엇을 뜻하는지 쓰고, 물을 넣는 중인지 빼는 중인지 까닭과 함께 쓰시오.",
+        "bAnswer": "기울기 $-4$는 $1$분 동안 물이 $4\\,\\mathrm{L}$씩 줄어든다는 뜻이고, $y$절편 $50$은 처음 물의 양 $50\\,\\mathrm{L}$이다. 기울기가 음수이므로 물을 빼는 중이다.",
+        "bGoal": "물의 양 식의 기울기·절편을 상황으로 해석",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$-4$는 $1$분 동안의 변화량",
+              "$1$분마다 $4\\,\\mathrm{L}$씩 줄어든다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$50$은 처음 물의 양"
+            ]
+          },
+          {
+            "anyOf": [
+              "기울기가 음수라서 빼는 중"
+            ]
+          }
+        ],
+        "bReason": "c2의 식 세우기와 달리 주어진 식의 기울기·절편을 상황으로 해석하게 했다.",
+        "cDecision": "keep",
+        "cReason": "변화량과 처음 양을 기울기·절편에 대응시키는 짧은 빈칸이다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "기울기 부호로 넣기·빼기 판단",
+        "authorBatch": 40,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2749,
+        "part": "m2plus",
+        "sourceFingerprint": "d6a8489ea25529a4cff329794abdb1fe99f962ccf452f0dd9f95724345a7828c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2749
+        },
+        "directReview": null,
+        "cFrozenSentence": "일정하게 물을 넣거나 뺄 때 물의 양 식의 기울기는 $1$분 동안의 □으로 넣으면 양수, 빼면 음수이고, $y$절편은 □ 물의 양이다.",
+        "cFrozenDefinition": "일정하게 물을 넣거나 뺄 때 물의 양 식의 기울기는 $1$분 동안의 {변화량}으로 넣으면 양수, 빼면 음수이고, $y$절편은 {처음} 물의 양이다.",
+        "cFrozenAnswers": [
+          "변화량",
+          "처음"
+        ],
+        "cMarkedSentence": "일정하게 물을 넣거나 뺄 때 물의 양 식의 기울기는 $1$분 동안의 {변화량}으로 넣으면 양수, 빼면 음수이고, $y$절편은 {처음} 물의 양이다.",
+        "cSlotAnswers": [
+          "변화량",
+          "처음"
+        ],
+        "cStudentSentence": "일정하게 물을 넣거나 뺄 때 물의 양 식의 기울기는 $1$분 동안의 □으로 넣으면 양수, 빼면 음수이고, $y$절편은 □ 물의 양이다.",
+        "cAnswers": [
+          "변화량",
+          "처음"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "변화량",
+            "equivalentAnswers": [
+              "변화량"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "처음",
+            "equivalentAnswers": [
+              "처음"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "변화량"
+          ],
+          [
+            "처음"
+          ]
+        ],
+        "proposalFingerprint": "5818c32564e43d2da1eb350239850fde2f2d4dac5bfbed5755aeb84afecafbc8"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-04-08-xc9",
+        "section": "중2::4. 함수::일차함수와 일차방정식",
+        "term": "방정식에서 기울기와 절편 읽기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "$ax+by+c=0$($b\\ne0$)을 $y$에 대해 풀어 {기울기}와 {$y$절편}을 읽는다.",
+        "example": {
+          "prompt": "$4x+2y-6=0$의 기울기",
+          "answer": "$-2$"
+        },
+        "studentC": "$ax+by+c=0$($b\\ne0$)을 $y$에 대해 풀어 □와 □을 읽는다.",
+        "answers": [
+          "기울기",
+          "$y$절편"
+        ]
+      },
+      "proposal": {
+        "id": "m2-04-08-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "$4x+2y-6=0$의 그래프의 기울기와 $y$절편을 구하고, 어떻게 구했는지 쓰시오.",
+        "bAnswer": "$y$에 대해 풀면 $2y=-4x+6$, $y=-2x+3$이므로 기울기는 $-2$, $y$절편은 $3$이다.",
+        "bGoal": "$y$에 대해 풀어 기울기와 절편 읽기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$y=-2x+3$",
+              "$y$에 대해 푼다"
+            ]
+          },
+          {
+            "anyOf": [
+              "기울기 $-2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$y$절편 $3$"
+            ]
+          }
+        ],
+        "bReason": "c8의 일반식과 겹치지 않게 구체 방정식에서 푸는 절차를 확인한다.",
+        "cDecision": "keep",
+        "cReason": "풀어서 읽을 두 대상을 채우는 짧은 절차 빈칸이다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "$y=\\cdots$ 꼴로 바꿔 읽기",
+        "authorBatch": 40,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2755,
+        "part": "m2plus",
+        "sourceFingerprint": "c09338355705156258932d212294677810fa038cca94fcb5e02ddd86b155b0a2",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2755
+        },
+        "directReview": null,
+        "cFrozenSentence": "$ax+by+c=0$($b\\ne0$)을 $y$에 대해 풀어 □와 □을 읽는다.",
+        "cFrozenDefinition": "$ax+by+c=0$($b\\ne0$)을 $y$에 대해 풀어 {기울기}와 {$y$절편}을 읽는다.",
+        "cFrozenAnswers": [
+          "기울기",
+          "$y$절편"
+        ],
+        "cMarkedSentence": "$ax+by+c=0$($b\\ne0$)을 $y$에 대해 풀어 {기울기}와 {$y$절편}을 읽는다.",
+        "cSlotAnswers": [
+          "기울기",
+          "$y$절편"
+        ],
+        "cStudentSentence": "$ax+by+c=0$($b\\ne0$)을 $y$에 대해 풀어 □와 □을 읽는다.",
+        "cAnswers": [
+          "기울기",
+          "$y$절편"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "기울기",
+            "equivalentAnswers": [
+              "기울기"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$y$절편",
+            "equivalentAnswers": [
+              "$y$절편"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "기울기"
+          ],
+          [
+            "$y$절편"
+          ]
+        ],
+        "proposalFingerprint": "ddd04a5c0b0edd5b958a453e29e7a44e4e07020fc56e27d190a9b109dd44a166"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-04-09-xc4",
+        "section": "중2::4. 함수::일차함수의 그래프와 연립방정식의 해",
+        "term": "가로 · 세로 직선과의 교점",
+        "kind": "방법",
+        "level": "하",
+        "definition": "$x=p$와 $y=ax+b$의 교점은 $x$좌표가 {$p$}이고, $y=q$와의 교점은 $y$좌표가 {$q$}이다. 나머지 좌표는 식에 넣어 구한다.",
+        "example": {
+          "prompt": "$x=-1$과 $y=3x+5$의 교점의 $x$좌표가 $-1$인 까닭은?",
+          "answer": "$x=-1$ 위의 점이라서"
+        },
+        "studentC": "$x=p$와 $y=ax+b$의 교점은 $x$좌표가 □이고, $y=q$와의 교점은 $y$좌표가 □이다. 나머지 좌표는 식에 넣어 구한다.",
+        "answers": [
+          "$p$",
+          "$q$"
+        ]
+      },
+      "proposal": {
+        "id": "m2-04-09-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "직선 $y=3x+5$와 직선 $x=-1$의 교점, 직선 $y=3x+5$와 직선 $y=-1$의 교점의 좌표를 각각 구하시오. 또 첫 번째 교점의 $x$좌표를 계산 없이 알 수 있는 까닭을 쓰시오.",
+        "bAnswer": "$x=-1$ 위의 점은 $x$좌표가 $-1$이므로 $y=3\\times(-1)+5=2$, 교점은 $(-1,\\ 2)$이다. $y=-1$일 때 $-1=3x+5$에서 $x=-2$이므로 교점은 $(-2,\\ -1)$이다.",
+        "bGoal": "가로·세로 직선과의 교점 구하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$(-1,\\ 2)$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$(-2,\\ -1)$"
+            ]
+          },
+          {
+            "anyOf": [
+              "교점이 $x=-1$ 위에 있어 $x$좌표가 $-1$"
+            ]
+          }
+        ],
+        "bReason": "세로·가로 직선 두 경우를 모두 주어 정해진 좌표와 구할 좌표를 구분하게 했다.",
+        "cDecision": "keep",
+        "cReason": "정해지는 좌표 $p$, $q$를 채우는 짧은 빈칸이다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "한 좌표는 고정, 나머지는 대입",
+        "authorBatch": 40,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2770,
+        "part": "m2plus",
+        "sourceFingerprint": "3774e6ace1452ae67ea6c45a48e828e32bce2e08f39bc8f0a170adb14424de7d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2770
+        },
+        "directReview": null,
+        "cFrozenSentence": "$x=p$와 $y=ax+b$의 교점은 $x$좌표가 □이고, $y=q$와의 교점은 $y$좌표가 □이다. 나머지 좌표는 식에 넣어 구한다.",
+        "cFrozenDefinition": "$x=p$와 $y=ax+b$의 교점은 $x$좌표가 {$p$}이고, $y=q$와의 교점은 $y$좌표가 {$q$}이다. 나머지 좌표는 식에 넣어 구한다.",
+        "cFrozenAnswers": [
+          "$p$",
+          "$q$"
+        ],
+        "cMarkedSentence": "$x=p$와 $y=ax+b$의 교점은 $x$좌표가 {$p$}이고, $y=q$와의 교점은 $y$좌표가 {$q$}이다. 나머지 좌표는 식에 넣어 구한다.",
+        "cSlotAnswers": [
+          "$p$",
+          "$q$"
+        ],
+        "cStudentSentence": "$x=p$와 $y=ax+b$의 교점은 $x$좌표가 □이고, $y=q$와의 교점은 $y$좌표가 □이다. 나머지 좌표는 식에 넣어 구한다.",
+        "cAnswers": [
+          "$p$",
+          "$q$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$p$",
+            "equivalentAnswers": [
+              "$p$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$q$",
+            "equivalentAnswers": [
+              "$q$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$p$"
+          ],
+          [
+            "$q$"
+          ]
+        ],
+        "proposalFingerprint": "8db53f44ac44f17bf0cf9097738f9ccd47bfa69a64685d2bcf64c76b1e51645f"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-04-09-xc10",
+        "section": "중2::4. 함수::일차함수의 그래프와 연립방정식의 해",
+        "term": "일차함수 꼴로 고쳐 견주기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "두 일차방정식의 $y$의 계수가 모두 $0$이 아니면 각각 $y=ax+b$ 꼴로 고쳐 {기울기}와 {$y$절편}을 견주어 해의 개수를 안다.",
+        "studentC": "두 일차방정식의 $y$의 계수가 모두 $0$이 아니면 각각 $y=ax+b$ 꼴로 고쳐 □와 □을 견주어 해의 개수를 안다.",
+        "answers": [
+          "기울기",
+          "$y$절편"
+        ]
+      },
+      "proposal": {
+        "id": "m2-04-09-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "연립방정식을 이루는 두 일차방정식 $2x-y=1$과 $4x-2y=3$을 각각 $y=ax+b$ 꼴로 고쳐 기울기와 $y$절편을 비교하고, 해의 개수를 쓰시오.",
+        "bAnswer": "$y=2x-1$, $y=2x-\\frac{3}{2}$이다. 기울기는 같고 $y$절편이 달라 두 직선이 평행하므로 해가 없다.",
+        "bGoal": "일차함수 꼴로 고쳐 해의 개수 판별",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$y=2x-1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$y=2x-\\frac{3}{2}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "기울기는 같고 $y$절편은 다르다"
+            ]
+          },
+          {
+            "anyOf": [
+              "해가 없다"
+            ]
+          }
+        ],
+        "bReason": "계수 배수 관계가 헷갈리는 식을 주어 고쳐 비교하는 절차를 확인한다.",
+        "cDecision": "keep",
+        "cReason": "견줄 두 대상을 채우는 짧은 절차 빈칸이다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "$y=ax+b$ 꼴로 바꿔 비교",
+        "authorBatch": 40,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2775,
+        "part": "m2plus",
+        "sourceFingerprint": "ecbe4d524b644f2d4b8eebc48e9b57745a54cd581c4101afaa2a43b7b0471285",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2775
+        },
+        "directReview": null,
+        "cFrozenSentence": "두 일차방정식의 $y$의 계수가 모두 $0$이 아니면 각각 $y=ax+b$ 꼴로 고쳐 □와 □을 견주어 해의 개수를 안다.",
+        "cFrozenDefinition": "두 일차방정식의 $y$의 계수가 모두 $0$이 아니면 각각 $y=ax+b$ 꼴로 고쳐 {기울기}와 {$y$절편}을 견주어 해의 개수를 안다.",
+        "cFrozenAnswers": [
+          "기울기",
+          "$y$절편"
+        ],
+        "cMarkedSentence": "두 일차방정식의 $y$의 계수가 모두 $0$이 아니면 각각 $y=ax+b$ 꼴로 고쳐 {기울기}와 {$y$절편}을 견주어 해의 개수를 안다.",
+        "cSlotAnswers": [
+          "기울기",
+          "$y$절편"
+        ],
+        "cStudentSentence": "두 일차방정식의 $y$의 계수가 모두 $0$이 아니면 각각 $y=ax+b$ 꼴로 고쳐 □와 □을 견주어 해의 개수를 안다.",
+        "cAnswers": [
+          "기울기",
+          "$y$절편"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "기울기",
+            "equivalentAnswers": [
+              "기울기"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$y$절편",
+            "equivalentAnswers": [
+              "$y$절편"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "기울기"
+          ],
+          [
+            "$y$절편"
+          ]
+        ],
+        "proposalFingerprint": "b9b8bbf54f4fcb957cd01407d794872fe7a46d1daed15180c30788b1bddda363"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-04-09-xc15",
+        "section": "중2::4. 함수::일차함수의 그래프와 연립방정식의 해",
+        "term": "한 점을 지나는 세 직선",
+        "kind": "방법",
+        "level": "상",
+        "definition": "세 직선이 한 점에서 만나면 두 직선의 {교점}이 나머지 직선 {위에} 있다.",
+        "example": {
+          "prompt": "$y=x+1$, $y=-x+3$, $y=ax+4$가 한 점에서 만날 때 $a$",
+          "answer": "$-2$"
+        },
+        "studentC": "세 직선이 한 점에서 만나면 두 직선의 □이 나머지 직선 □ 있다.",
+        "answers": [
+          "교점",
+          "위에"
+        ]
+      },
+      "proposal": {
+        "id": "m2-04-09-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "세 직선 $y=x+1$, $y=-x+3$, $y=ax+4$가 한 점에서 만날 때 상수 $a$의 값을 구하고, 어떤 방법으로 구했는지 쓰시오.",
+        "bAnswer": "상수가 없는 두 직선 $y=x+1$, $y=-x+3$의 교점 $(1,\\ 2)$를 구하고, 이 점이 나머지 직선 위에 있으므로 $2=a+4$에 대입하여 $a=-2$이다.",
+        "bGoal": "세 직선이 한 점에서 만날 조건으로 상수 구하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 직선의 교점 $(1,\\ 2)$를 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "그 교점을 나머지 직선에 대입한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$a=-2$"
+            ]
+          }
+        ],
+        "bReason": "교점을 먼저 구하고 나머지 직선에 넣는 두 단계를 모두 드러내게 했다.",
+        "cDecision": "keep",
+        "cReason": "교점이 나머지 직선 위에 있다는 조건을 짧게 확인한다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "두 직선의 교점을 셋째 직선에 대입",
+        "authorBatch": 40,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2778,
+        "part": "m2plus",
+        "sourceFingerprint": "5f5ff7eba6b37e7d983e40106bd28a8f5ec75ca11b7a2176a7b3aa2c219af260",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2778
+        },
+        "directReview": null,
+        "cFrozenSentence": "세 직선이 한 점에서 만나면 두 직선의 □이 나머지 직선 □ 있다.",
+        "cFrozenDefinition": "세 직선이 한 점에서 만나면 두 직선의 {교점}이 나머지 직선 {위에} 있다.",
+        "cFrozenAnswers": [
+          "교점",
+          "위에"
+        ],
+        "cMarkedSentence": "세 직선이 한 점에서 만나면 두 직선의 {교점}이 나머지 직선 {위에} 있다.",
+        "cSlotAnswers": [
+          "교점",
+          "위에"
+        ],
+        "cStudentSentence": "세 직선이 한 점에서 만나면 두 직선의 □이 나머지 직선 □ 있다.",
+        "cAnswers": [
+          "교점",
+          "위에"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "교점",
+            "equivalentAnswers": [
+              "교점"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "위에",
+            "equivalentAnswers": [
+              "위에"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "교점"
+          ],
+          [
+            "위에"
+          ]
+        ],
+        "proposalFingerprint": "d259a0535afcd4336b5cca8aacffd7b48ebfa9b42c9af87bbfaa5fd9e59c254b"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-04-09-xc16",
+        "section": "중2::4. 함수::일차함수의 그래프와 연립방정식의 해",
+        "term": "두 직선과 $x$축이 만드는 삼각형",
+        "kind": "방법",
+        "level": "상",
+        "definition": "두 직선과 $x$축으로 둘러싸인 삼각형은 두 {$x$절편} 사이를 밑변으로, 교점의 {$y$좌표}의 절댓값을 높이로 삼는다.",
+        "studentC": "두 직선과 $x$축으로 둘러싸인 삼각형은 두 □ 사이를 밑변으로, 교점의 □의 절댓값을 높이로 삼는다.",
+        "answers": [
+          "$x$절편",
+          "$y$좌표"
+        ]
+      },
+      "proposal": {
+        "id": "m2-04-09-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "두 직선 $y=x+2$와 $y=-x+4$, 그리고 $x$축으로 둘러싸인 삼각형에서 밑변과 높이를 각각 무엇으로 정하는지 쓰고, 넓이를 구하시오.",
+        "bAnswer": "밑변은 두 $x$절편 $-2$와 $4$ 사이의 거리 $6$이고, 높이는 두 직선의 교점 $(1,\\ 3)$의 $y$좌표 $3$이다. 넓이는 $\\frac{1}{2}\\times6\\times3=9$이다.",
+        "bGoal": "$x$축과 두 직선이 만드는 삼각형의 넓이",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "밑변은 두 $x$절편 사이의 거리 $6$"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이는 교점의 $y$좌표 $3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "넓이 $9$"
+            ]
+          }
+        ],
+        "bReason": "밑변과 높이를 무엇으로 정하는지 구체 직선에서 확인하게 했다.",
+        "cDecision": "keep",
+        "cReason": "$x$절편과 교점의 $y$좌표를 고르는 짧은 빈칸이다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "$x$절편 사이 = 밑변, 교점 $y$좌표 = 높이",
+        "authorBatch": 40,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2779,
+        "part": "m2plus",
+        "sourceFingerprint": "2fbaaeedee9727ab6ab47b479cb8f30a89dd36d3b0f45fdeac1d07d984c77ca7",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2779
+        },
+        "directReview": null,
+        "cFrozenSentence": "두 직선과 $x$축으로 둘러싸인 삼각형은 두 □ 사이를 밑변으로, 교점의 □의 절댓값을 높이로 삼는다.",
+        "cFrozenDefinition": "두 직선과 $x$축으로 둘러싸인 삼각형은 두 {$x$절편} 사이를 밑변으로, 교점의 {$y$좌표}의 절댓값을 높이로 삼는다.",
+        "cFrozenAnswers": [
+          "$x$절편",
+          "$y$좌표"
+        ],
+        "cMarkedSentence": "두 직선과 $x$축으로 둘러싸인 삼각형은 두 {$x$절편} 사이를 밑변으로, 교점의 {$y$좌표}의 절댓값을 높이로 삼는다.",
+        "cSlotAnswers": [
+          "$x$절편",
+          "$y$좌표"
+        ],
+        "cStudentSentence": "두 직선과 $x$축으로 둘러싸인 삼각형은 두 □ 사이를 밑변으로, 교점의 □의 절댓값을 높이로 삼는다.",
+        "cAnswers": [
+          "$x$절편",
+          "$y$좌표"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$x$절편",
+            "equivalentAnswers": [
+              "$x$절편"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$y$좌표",
+            "equivalentAnswers": [
+              "$y$좌표"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$x$절편"
+          ],
+          [
+            "$y$좌표"
+          ]
+        ],
+        "proposalFingerprint": "26fe4ae753b6c1050b4d5af87676fa6a6a69efe7867e1c75da6e4d0027ed0e04"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-04-09-xc17",
+        "section": "중2::4. 함수::일차함수의 그래프와 연립방정식의 해",
+        "term": "두 직선과 $y$축이 만드는 삼각형",
+        "kind": "방법",
+        "level": "상",
+        "definition": "두 직선과 $y$축으로 둘러싸인 삼각형은 두 $y$절편의 차의 {절댓값}을 밑변으로, 교점의 {$x$좌표}의 절댓값을 높이로 삼는다.",
+        "example": {
+          "prompt": "$y=x+1$, $y=-x+5$와 $y$축으로 둘러싸인 넓이",
+          "answer": "$4$"
+        },
+        "studentC": "두 직선과 $y$축으로 둘러싸인 삼각형은 두 $y$절편의 차의 □을 밑변으로, 교점의 □의 절댓값을 높이로 삼는다.",
+        "answers": [
+          "절댓값",
+          "$x$좌표"
+        ]
+      },
+      "proposal": {
+        "id": "m2-04-09-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "두 직선 $y=x+1$과 $y=-x+5$, 그리고 $y$축으로 둘러싸인 삼각형에서 밑변과 높이를 각각 무엇으로 정하는지 쓰고, 넓이를 구하시오.",
+        "bAnswer": "밑변은 두 $y$절편 $1$과 $5$ 사이의 거리 $4$이고, 높이는 두 직선의 교점 $(2,\\ 3)$의 $x$좌표 $2$이다. 넓이는 $\\frac{1}{2}\\times4\\times2=4$이다.",
+        "bGoal": "$y$축과 두 직선이 만드는 삼각형의 넓이",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "밑변은 두 $y$절편 사이의 거리 $4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이는 교점의 $x$좌표 $2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "넓이 $4$"
+            ]
+          }
+        ],
+        "bReason": "xc16과 축이 바뀌면 높이가 교점의 $x$좌표가 됨을 구체 예로 대비시켰다.",
+        "cDecision": "rewrite",
+        "cAfter": "두 직선과 $y$축으로 둘러싸인 삼각형은 두 {$y$절편} 사이의 거리를 밑변으로, 교점의 {$x$좌표}의 절댓값을 높이로 삼는다.",
+        "cAnswers": [
+          "$y$절편",
+          "$x$좌표"
+        ],
+        "cReason": "'절댓값' 답이 같은 문장 뒤에 그대로 보여 밑변이 되는 대상을 묻게 바꿨다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "$y$절편 사이 = 밑변, 교점 $x$좌표 = 높이",
+        "authorBatch": 40,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2780,
+        "part": "m2plus",
+        "sourceFingerprint": "f711cc2c0908dd4e9f2f38efcfcd8409eaa79411706c6c913018b14b72e8cbf6",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2780
+        },
+        "directReview": null,
+        "cMarkedSentence": "두 직선과 $y$축으로 둘러싸인 삼각형은 두 {$y$절편} 사이의 거리를 밑변으로, 교점의 {$x$좌표}의 절댓값을 높이로 삼는다.",
+        "cSlotAnswers": [
+          "$y$절편",
+          "$x$좌표"
+        ],
+        "cStudentSentence": "두 직선과 $y$축으로 둘러싸인 삼각형은 두 □ 사이의 거리를 밑변으로, 교점의 □의 절댓값을 높이로 삼는다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$y$절편",
+            "equivalentAnswers": [
+              "$y$절편"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$x$좌표",
+            "equivalentAnswers": [
+              "$x$좌표"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$y$절편"
+          ],
+          [
+            "$x$좌표"
+          ]
+        ],
+        "proposalFingerprint": "fcaa239f82dcb86f53760201e07713805cf832b2c357dfc0dcef52b599be46c1"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-04-09-xc21",
+        "section": "중2::4. 함수::일차함수의 그래프와 연립방정식의 해",
+        "term": "그림만 보고 판단하는 잘못",
+        "kind": "성질",
+        "level": "상",
+        "definition": "두 그래프가 그림에서 만나지 않는 것처럼 보여도 기울기가 다르면 그림 {밖}에서 {만난다}.",
+        "studentC": "두 그래프가 그림에서 만나지 않는 것처럼 보여도 기울기가 다르면 그림 □에서 □.",
+        "answers": [
+          "밖",
+          "만난다"
+        ]
+      },
+      "proposal": {
+        "id": "m2-04-09-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "$0\\le x\\le3$인 부분만 그린 그림에서 두 직선 $y=2x+1$, $y=3x-4$가 만나지 않는 것처럼 보인다. 이 두 방정식으로 이루어진 연립방정식의 해가 없다고 할 수 있는지 판단하고, 교점의 좌표를 구하여 까닭을 쓰시오.",
+        "bAnswer": "해가 없다고 할 수 없다. 두 직선은 기울기가 달라 반드시 한 점에서 만나며, $2x+1=3x-4$에서 교점은 그림 밖의 $(5,\\ 11)$이다.",
+        "bGoal": "그림 범위 밖의 교점을 판단",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "해가 없다고 할 수 없다",
+              "해가 한 쌍 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "기울기가 다르다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$(5,\\ 11)$"
+            ]
+          }
+        ],
+        "bReason": "그림 범위를 밝혀 보이지 않는 교점이 실제로 있음을 계산으로 확인하게 했다.",
+        "cDecision": "keep",
+        "cReason": "그림 밖과 만남을 채우는 짧은 오개념 교정 문장이다.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "기울기가 다르면 그림 밖에서라도 만남",
+        "authorBatch": 40,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2783,
+        "part": "m2plus",
+        "sourceFingerprint": "7aab109ec13cd47dd4fbc6b0a2f69bd6af52fbd1e0d5f6b4a333390158d0b54a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2783
+        },
+        "directReview": null,
+        "cFrozenSentence": "두 그래프가 그림에서 만나지 않는 것처럼 보여도 기울기가 다르면 그림 □에서 □.",
+        "cFrozenDefinition": "두 그래프가 그림에서 만나지 않는 것처럼 보여도 기울기가 다르면 그림 {밖}에서 {만난다}.",
+        "cFrozenAnswers": [
+          "밖",
+          "만난다"
+        ],
+        "cMarkedSentence": "두 그래프가 그림에서 만나지 않는 것처럼 보여도 기울기가 다르면 그림 {밖}에서 {만난다}.",
+        "cSlotAnswers": [
+          "밖",
+          "만난다"
+        ],
+        "cStudentSentence": "두 그래프가 그림에서 만나지 않는 것처럼 보여도 기울기가 다르면 그림 □에서 □.",
+        "cAnswers": [
+          "밖",
+          "만난다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "밖",
+            "equivalentAnswers": [
+              "밖"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "만난다",
+            "equivalentAnswers": [
+              "만난다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "밖"
+          ],
+          [
+            "만난다"
+          ]
+        ],
+        "proposalFingerprint": "9084acac17683a05a7a655e76f592038c6cbc52b71f9b5668009f8641209a697"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-05-01-xc10",
+        "section": "중2::5. 도형의 성질::이등변삼각형의 성질",
+        "term": "같은 두 각에서 같은 두 변 이끌기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$\\angle B=\\angle C$일 때 $\\angle A$의 이등분선을 그으면 두 삼각형이 {$\\mathrm{ASA}$} 합동이 되어 $\\overline{AB}=\\overline{AC}$임이 {증명}된다.",
+        "studentC": "$\\angle B=\\angle C$일 때 $\\angle A$의 이등분선을 그으면 두 삼각형이 □ 합동이 되어 $\\overline{AB}=\\overline{AC}$임이 □된다.",
+        "answers": [
+          "$\\mathrm{ASA}$",
+          "증명"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-01-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\triangle ABC$에서 $\\angle B=\\angle C$이고, $\\angle A$의 이등분선이 $\\overline{BC}$와 만나는 점을 $D$라 하자. $\\overline{AB}=\\overline{AC}$임을 삼각형의 합동을 이용하여 설명하시오.",
+        "bAnswer": "$\\triangle ABD$와 $\\triangle ACD$에서 $\\angle BAD=\\angle CAD$이고 $\\angle B=\\angle C$이므로 나머지 각 $\\angle ADB=\\angle ADC$이다. $\\overline{AD}$는 공통이므로 두 삼각형은 $\\mathrm{ASA}$ 합동이고, 대응변인 $\\overline{AB}$와 $\\overline{AC}$의 길이가 같다.",
+        "bGoal": "두 각이 같으면 두 변이 같음을 ASA 합동으로 설명하기",
+        "bReason": "보조선과 교점 $D$를 주어 어느 두 삼각형의 합동인지 특정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "나머지 각 $ADB$와 $ADC$가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 변이 공통이고 그 양 끝 각이 각각 같아 $\\mathrm{ASA}$ 합동"
+            ]
+          },
+          {
+            "anyOf": [
+              "대응변이므로 두 변의 길이가 같다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$\\triangle ABC$에서 $\\angle B=\\angle C$일 때 $\\angle A$의 이등분선과 $\\overline{BC}$가 만나는 점을 $D$라 하면 $\\triangle ABD$와 $\\triangle ACD$는 {$\\mathrm{ASA}$} 합동이므로 $\\overline{AB}=${$\\overline{AC}$}이다.",
+        "cAnswers": [
+          "$\\mathrm{ASA}$",
+          "$\\overline{AC}$"
+        ],
+        "cReason": "'두 삼각형'이 무엇인지 없고 '증명' 빈칸은 내용을 묻지 않았다.",
+        "studentLabel": "두 각이 같은 삼각형이 이등변삼각형인 이유",
+        "authorBatch": 41,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "이등분선 그어 ASA 합동",
+        "enrichmentEvidence": "enrichment/enrich-008",
+        "sourceIndex": 2793,
+        "part": "m2plus",
+        "sourceFingerprint": "2fd82a9d876a2c38cdf9034d4670862ad3747603a815e2e668425e0117748150",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2793
+        },
+        "directReview": null,
+        "cMarkedSentence": "$\\triangle ABC$에서 $\\angle B=\\angle C$일 때 $\\angle A$의 이등분선과 $\\overline{BC}$가 만나는 점을 $D$라 하면 $\\triangle ABD$와 $\\triangle ACD$는 {$\\mathrm{ASA}$} 합동이므로 $\\overline{AB}=${$\\overline{AC}$}이다.",
+        "cSlotAnswers": [
+          "$\\mathrm{ASA}$",
+          "$\\overline{AC}$"
+        ],
+        "cStudentSentence": "$\\triangle ABC$에서 $\\angle B=\\angle C$일 때 $\\angle A$의 이등분선과 $\\overline{BC}$가 만나는 점을 $D$라 하면 $\\triangle ABD$와 $\\triangle ACD$는 □ 합동이므로 $\\overline{AB}=$□이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\mathrm{ASA}$",
+            "equivalentAnswers": [
+              "$\\mathrm{ASA}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\overline{AC}$",
+            "equivalentAnswers": [
+              "$\\overline{AC}$",
+              "$\\overline{CA}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$\\overline{AC}$",
+            "accept": [
+              "$\\overline{CA}$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$\\mathrm{ASA}$"
+          ],
+          [
+            "$\\overline{AC}$",
+            "$\\overline{CA}$"
+          ]
+        ],
+        "proposalFingerprint": "2305b8691b1255f695d73285823b86341d40d197d2b5c2304ca8b48394a4ac4a"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-05-02-xc7",
+        "section": "중2::5. 도형의 성질::직각삼각형의 합동",
+        "term": "합동을 기호로 쓰기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "합동인 두 삼각형은 대응점을 {같은 차례}로 써서 {$\\triangle ABC\\equiv\\triangle DEF$}처럼 나타낸다.",
+        "studentC": "합동인 두 삼각형은 대응점을 □로 써서 □처럼 나타낸다.",
+        "answers": [
+          "같은 차례",
+          "$\\triangle ABC\\equiv\\triangle DEF$"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-02-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\triangle ABC$와 $\\triangle DEF$가 합동이고 꼭짓점 $A$와 $E$, $B$와 $F$, $C$와 $D$가 각각 대응한다. 이 합동을 기호 $\\equiv$를 써서 나타내고, 꼭짓점을 쓰는 순서의 규칙을 쓰시오.",
+        "bAnswer": "$\\triangle ABC\\equiv\\triangle EFD$로 나타낸다. 대응하는 꼭짓점을 같은 순서로 쓴다.",
+        "bGoal": "대응하는 순서에 맞게 합동을 기호로 쓰기",
+        "bReason": "알파벳 순서로만 쓰면 틀리는 대응을 주어 순서 규칙이 드러나게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "삼각형 $ABC$와 삼각형 $EFD$가 합동이라고 쓴다"
+            ]
+          },
+          {
+            "anyOf": [
+              "대응하는 꼭짓점을 같은 순서로 쓴다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$\\triangle ABC$와 $\\triangle DEF$가 합동이고 꼭짓점 $A$와 $D$, $B$와 $E$, $C$와 $F$가 각각 대응할 때, 대응하는 꼭짓점을 같은 {순서}로 써서 $\\triangle ABC\\equiv${$\\triangle DEF$}와 같이 나타낸다.",
+        "cAnswers": [
+          "순서",
+          "$\\triangle DEF$"
+        ],
+        "cReason": "두 번째 빈칸은 아무 글자로나 쓸 수 있는 식이어서 대응을 주고 답이 정해지게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 41,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "대응 꼭짓점 같은 순서로",
+        "enrichmentEvidence": "enrichment/enrich-008",
+        "sourceIndex": 2807,
+        "part": "m2plus",
+        "sourceFingerprint": "e3774b950d2213a78c8ed7484d2e3e897ed34396ff46f0c0b497013c16797216",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2807
+        },
+        "directReview": null,
+        "cMarkedSentence": "$\\triangle ABC$와 $\\triangle DEF$가 합동이고 꼭짓점 $A$와 $D$, $B$와 $E$, $C$와 $F$가 각각 대응할 때, 대응하는 꼭짓점을 같은 {순서}로 써서 $\\triangle ABC\\equiv${$\\triangle DEF$}와 같이 나타낸다.",
+        "cSlotAnswers": [
+          "순서",
+          "$\\triangle DEF$"
+        ],
+        "cStudentSentence": "$\\triangle ABC$와 $\\triangle DEF$가 합동이고 꼭짓점 $A$와 $D$, $B$와 $E$, $C$와 $F$가 각각 대응할 때, 대응하는 꼭짓점을 같은 □로 써서 $\\triangle ABC\\equiv$□와 같이 나타낸다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "순서",
+            "equivalentAnswers": [
+              "순서",
+              "차례"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\triangle DEF$",
+            "equivalentAnswers": [
+              "$\\triangle DEF$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "순서",
+            "accept": [
+              "차례"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "순서",
+            "차례"
+          ],
+          [
+            "$\\triangle DEF$"
+          ]
+        ],
+        "proposalFingerprint": "cf300c3132c89993fc0e0fceb4cae6e765b41362a582fc5d47e3962dc34d05d4"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-05-02-xc8",
+        "section": "중2::5. 도형의 성질::직각삼각형의 합동",
+        "term": "$\\mathrm{RHA}$ 합동 확인하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "두 직각삼각형을 견줄 때 먼저 {빗변}이 같은지 보고, 이어서 {예각} 하나가 같은지 보면 $\\mathrm{RHA}$ 합동을 가린다.",
+        "studentC": "두 직각삼각형을 견줄 때 먼저 □이 같은지 보고, 이어서 □ 하나가 같은지 보면 $\\mathrm{RHA}$ 합동을 가린다.",
+        "answers": [
+          "빗변",
+          "예각"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-02-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\angle C=\\angle F=90^\\circ$인 $\\triangle ABC$와 $\\triangle DEF$에서 $\\overline{AB}=\\overline{DE}$, $\\angle A=\\angle D$이다. 두 삼각형이 합동인지 판단하고, 어떤 합동 조건인지 확인한 순서와 함께 쓰시오.",
+        "bAnswer": "합동이다. 직각과 마주 보는 빗변 $\\overline{AB}$와 $\\overline{DE}$의 길이가 같은지 먼저 확인하고, 이어서 한 예각 $\\angle A$와 $\\angle D$의 크기가 같은지 확인하면 $\\mathrm{RHA}$ 합동이다.",
+        "bGoal": "주어진 조건에서 RHA 합동 확인하기",
+        "bReason": "c4의 조건 진술과 겹치지 않게 구체적인 두 삼각형에서 확인하는 질문으로 바꿨다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "빗변의 길이가 같음을 확인한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 예각의 크기가 같음을 확인한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\mathrm{RHA}$ 합동"
+            ]
+          }
+        ],
+        "cDecision": "exclude",
+        "cReason": "빈칸 답(빗변, 예각)과 문장 뜻이 c4와 같아 새로 확인하는 내용이 없다.",
+        "exclusionReason": "C 제외: m2-05-02-c4의 빈칸 문장과 답이 같은 중복이다. B는 적용 질문으로 유지한다.",
+        "exampleNeeded": true,
+        "authorBatch": 41,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "빗변 다음 예각 확인",
+        "enrichmentEvidence": "enrichment/enrich-008",
+        "sourceIndex": 2808,
+        "part": "m2plus",
+        "sourceFingerprint": "5538316331ac3c374ad414ba68edfb453d2a1629d31923d23a942e12a809196a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2808
+        },
+        "directReview": null,
+        "proposalFingerprint": "9e1d787b9f403b8d4d92d299d714e8e948c495086f0ebf4e56aed58d1b993e44"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-05-02-xc10",
+        "section": "중2::5. 도형의 성질::직각삼각형의 합동",
+        "term": "직각을 낀 두 변이 같을 때",
+        "kind": "성질",
+        "level": "중",
+        "definition": "직각을 낀 두 변의 길이가 각각 같은 두 직각삼각형은 {$\\mathrm{SAS}$} 합동이다.",
+        "studentC": "직각을 낀 두 변의 길이가 각각 같은 두 직각삼각형은 □ 합동이다.",
+        "answers": [
+          "$\\mathrm{SAS}$"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-02-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "두 직각삼각형에서 직각을 낀 두 변의 길이가 각각 같으면 어떤 합동 조건으로 합동인지 쓰고, 그 이유를 설명하시오.",
+        "bAnswer": "$\\mathrm{SAS}$ 합동이다. 두 변의 길이가 각각 같고 그 끼인각이 모두 직각이어서 크기가 같기 때문이다.",
+        "bGoal": "직각을 낀 두 변이 같을 때의 합동 조건 설명하기",
+        "bReason": "RHA·RHS가 아닌 경우임이 드러나도록 조건을 문장으로 주고 이유를 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\mathrm{SAS}$ 합동"
+            ]
+          },
+          {
+            "anyOf": [
+              "끼인각이 둘 다 직각으로 같다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "조건이 분명하고 합동 조건 이름 하나를 묻는다.",
+        "authorBatch": 41,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "끼인각이 모두 직각",
+        "enrichmentEvidence": "enrichment/enrich-008",
+        "sourceIndex": 2810,
+        "part": "m2plus",
+        "sourceFingerprint": "6b9d3738114cb786b8d573ef90fa9da193c0f683c8dd17f9af09d3acd5fafcaf",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2810
+        },
+        "directReview": null,
+        "cFrozenSentence": "직각을 낀 두 변의 길이가 각각 같은 두 직각삼각형은 □ 합동이다.",
+        "cFrozenDefinition": "직각을 낀 두 변의 길이가 각각 같은 두 직각삼각형은 {$\\mathrm{SAS}$} 합동이다.",
+        "cFrozenAnswers": [
+          "$\\mathrm{SAS}$"
+        ],
+        "cMarkedSentence": "직각을 낀 두 변의 길이가 각각 같은 두 직각삼각형은 {$\\mathrm{SAS}$} 합동이다.",
+        "cSlotAnswers": [
+          "$\\mathrm{SAS}$"
+        ],
+        "cStudentSentence": "직각을 낀 두 변의 길이가 각각 같은 두 직각삼각형은 □ 합동이다.",
+        "cAnswers": [
+          "$\\mathrm{SAS}$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\mathrm{SAS}$",
+            "equivalentAnswers": [
+              "$\\mathrm{SAS}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\mathrm{SAS}$"
+          ]
+        ],
+        "proposalFingerprint": "a10230a364657546a216effd9ea37cf2c186fd75669fab0c9aa6d0ccbfc7de80"
+      }
+    }
+  ]
+}

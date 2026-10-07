@@ -1,0 +1,1018 @@
+{
+  "reader": "Root Codex direct final question reading",
+  "file": "root-middle-final-3675-3700-input.json",
+  "rows": [
+    {
+      "id": "m3-07-01-xc20",
+      "sourceIndex": 3675,
+      "proposalFingerprint": "399943cd36415e650a4692d5b2acec9d9d6590bb5b5f88c8125ae7f018b8bc4f",
+      "normalizedHash": "22a4e144a69faae7726580e20e7a3492075ec0dd85e20e3c529d18e41dddaf68",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "자료 $2,\\ 4,\\ 6$과 $102,\\ 104,\\ 106$의 분산이 같은 이유와 두 평균을 비교하여, 분산이 같은 두 자료는 평균도 같아야 하는지 쓰시오.",
+        "answer": "두 자료의 편차는 모두 $-2,\\ 0,\\ 2$로 같아 분산이 같다. 그러나 평균은 $4$와 $104$로 다르다. 분산은 흩어진 정도만 나타내므로 평균은 달라도 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "편차가 $-2,\\ 0,\\ 2$로 같다",
+              "흩어진 정도가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "평균은 $4$와 $104$로 다르다"
+            ]
+          },
+          {
+            "anyOf": [
+              "평균은 같지 않아도 된다",
+              "평균은 다를 수 있다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "자료 $1,\\ 2,\\ 3$과 $11,\\ 12,\\ 13$은 분산이 같지만 평균은 각각 {$2$}, {$12$}이다. 분산은 흩어진 {정도}만 나타내기 때문이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "$12$"
+          ],
+          [
+            "정도"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "분산이 같고 평균이 다른 구체 자료가 있어야 판단할 수 있음",
+      "cReason": "원문 둘째 빈칸은 중앙값 등 다른 대푯값으로도 채워져 답 범위가 모호함"
+    },
+    {
+      "id": "m3-07-01-xc21",
+      "sourceIndex": 3676,
+      "proposalFingerprint": "98cc47df4aaf0172a0c5bfd5a35fd47dd7db6668d4ecc2b7b86013361c660e12",
+      "normalizedHash": "06a3718e56d3cbb0ef435a8589b53bd145a65bf3080872cbf363138a8cdeddf4",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "세 변량 $m-d$, $m$, $m+d$의 분산을 $d$를 써서 나타내고, 이 분산이 $m$의 값과 관계없는 이유를 쓰시오.",
+        "answer": "평균은 $m$이고 편차는 $-d$, $0$, $d$이므로 분산은 $\\frac{d^2+0+d^2}{3}=\\frac{2d^2}{3}$이다. 편차에 $m$이 남지 않으므로 분산은 $m$과 관계없다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{2d^2}{3}$",
+              "$\\frac{2}{3}d^2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "편차가 $-d$, $0$, $d$",
+              "편차에 $m$이 없다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "세 변량 $m-d$, $m$, $m+d$의 평균은 $m$이고 편차는 $-d$, {$0$}, $d$이므로 분산은 {$\\frac{2d^2}{3}$}이다. 따라서 이 분산은 $m$과 상관없이 간격 $d$만으로 정해진다.",
+        "acceptedAnswers": [
+          [
+            "$0$"
+          ],
+          [
+            "$\\frac{2d^2}{3}$",
+            "$\\frac{2}{3}d^2$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "공식 암기가 아니라 편차에서 $m$이 사라지는 과정을 이유로 묻게 함",
+      "cReason": "원문 둘째 답 '간격 $d$'는 '같은 간격'과 $d$에서 그대로 베낄 수 있음"
+    },
+    {
+      "id": "m3-07-01-xc22",
+      "sourceIndex": 3677,
+      "proposalFingerprint": "cc8863e41a5dcacd6e3754d185c339188c9752a3089d207595000e331033e14c",
+      "normalizedHash": "691906cabaa9459b7fa98cc58d2ef0582b5d9e77c6eb9740f7b9cdd74fc49f9f",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "평균이 모두 $10$인 두 자료 $A$: $8,\\ 9,\\ 11,\\ 12$와 $B$: $5,\\ 6,\\ 14,\\ 15$ 중 표준편차가 더 큰 자료를 계산하지 않고 고르고, 그 이유를 쓰시오.",
+        "answer": "$B$이다. 평균에서 떨어진 거리가 $A$는 $2,\\ 1,\\ 1,\\ 2$, $B$는 $5,\\ 4,\\ 4,\\ 5$로 변량의 개수가 같고 $B$의 거리가 모두 더 크므로 표준편차도 $B$가 더 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$B$"
+            ]
+          },
+          {
+            "anyOf": [
+              "평균에서 떨어진 거리가 $B$가 모두 더 크다",
+              "$B$가 평균에서 더 멀리 흩어져 있다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "평균이 $5$로 같은 두 자료 A: $3,\\ 4,\\ 6,\\ 7$과 B: $1,\\ 2,\\ 8,\\ 9$에서 평균에서 떨어진 거리는 A가 $2,\\ 1,\\ 1,\\ 2$, B가 $4,\\ 3,\\ 3,\\ 4$로 B가 모두 더 크므로, 계산하지 않아도 A의 표준편차는 B의 표준편차보다 {작다}.",
+        "acceptedAnswers": [
+          [
+            "작다"
+          ]
+        ]
+      },
+      "coreBefore": "변량의 개수가 같을 때 평균에서 떨어진 거리가 모두 더 {큰} 자료는 표준편차도 더 크다 — 계산 없이도 견줄 수 있다.",
+      "coreAfter": "변량의 개수가 같은 두 자료에서 평균에서 떨어진 거리를 하나씩 짝지었을 때 한 자료의 거리가 모두 더 {크면} 그 자료의 표준편차가 더 크다 — 계산 없이도 견줄 수 있다.",
+      "coreReason": "'거리가 모두 더 큰'이 무엇과 비교하는지 모호해 짝지어 견준다는 조건을 밝힘",
+      "bReason": "개수와 평균이 같은 두 자료를 주어 거리 비교만으로 판단하게 함",
+      "cReason": "원문 빈칸 '큰'은 뒤의 '더 크다'로 바로 짐작되어 판단을 요구하지 않음"
+    },
+    {
+      "id": "m3-07-01-xc23",
+      "sourceIndex": 3678,
+      "proposalFingerprint": "9040606015daf1050ca81b00fc78855fcd3e54d0581eccb698addaa9280e7359",
+      "normalizedHash": "3e3e6d6a73ac89871696e800d7b071dcfa03dc6e28bd4bdcca5941f69e01d417",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "자료 $2,\\ 4,\\ 6$에 평균과 같은 변량 하나를 더 넣었다. 평균과 분산이 각각 어떻게 변하는지 쓰고, 그 이유를 쓰시오.",
+        "answer": "평균은 $4$ 그대로이다. 새 변량의 편차가 $0$이라 편차의 제곱의 합은 $8$로 같지만 개수가 $3$에서 $4$로 늘어 분산은 $\\frac{8}{3}$에서 $2$로 작아진다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "평균은 그대로",
+              "평균 $4$ 그대로"
+            ]
+          },
+          {
+            "anyOf": [
+              "분산은 작아진다",
+              "분산이 $\\frac{8}{3}$에서 $2$로 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "편차의 제곱의 합은 그대로이고 개수가 늘어난다",
+              "새 변량의 편차가 $0$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "변량이 모두 같지는 않은 자료에 평균과 같은 변량을 하나 더 넣으면 평균은 그대로이지만 편차의 제곱의 합은 같고 개수가 늘어 분산은 {작아진다}.",
+        "acceptedAnswers": [
+          [
+            "작아진다",
+            "줄어든다"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "구체 자료를 주어 제곱합 유지와 개수 증가를 이유로 연결하게 함",
+      "cReason": "이유는 보여 주고 결론만 묻는 한 칸이라 분명함"
+    },
+    {
+      "id": "m3-07-02-xc1",
+      "sourceIndex": 3679,
+      "proposalFingerprint": "8f0b3fbd2f997ce3e7dbd086cde6bbb9bf1c1bd18dee9a635d5755c111b297b5",
+      "normalizedHash": "2ef26b80733ea2723b2adb20f6cdce1b59524a3f5edc5680fa999915412750a9",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "학생들의 키($\\mathrm{cm}$)를 가로축, 몸무게($\\mathrm{kg}$)를 세로축에 놓아 산점도를 그린다. 키가 $160\\,\\mathrm{cm}$, 몸무게가 $50\\,\\mathrm{kg}$인 학생 한 명을 산점도에 어떻게 나타내는지 쓰시오.",
+        "answer": "좌표가 $(160,\\ 50)$인 점 하나를 찍는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$(160,\\ 50)$"
+            ]
+          },
+          {
+            "anyOf": [
+              "점 하나",
+              "한 점"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "(수학 점수, 영어 점수)의 순서쌍 $(80,\\ 90)$으로 점을 찍었다면 수학 점수는 {가로축}에, 영어 점수는 {세로축}에 놓은 것이다.",
+        "acceptedAnswers": [
+          [
+            "가로축"
+          ],
+          [
+            "세로축"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "축에 놓인 변량을 밝혀 자료 하나를 점으로 옮기는 절차를 묻게 함",
+      "cReason": "원문은 두 변량이 대칭이라 축 답을 정할 수 없고 '점 하나'는 앞말로 짐작됨"
+    },
+    {
+      "id": "m3-07-02-xc2",
+      "sourceIndex": 3680,
+      "proposalFingerprint": "81d5d1fb3315f59d12a47926649897ad1934a4cd2777e93fca94b8715947caac",
+      "normalizedHash": "6a5cf357361d453e93f2500b06e16961d240681c4562431860a812639c21ae41",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "학생 $12$명의 (수학 점수, 과학 점수)로 산점도를 그렸는데 점이 $10$개만 보였다. 그 까닭으로 가능한 것을 쓰시오.",
+        "answer": "두 점수가 모두 같은 학생들의 자료는 같은 자리에 겹쳐 찍히기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 점수가 모두 같은 학생들이 같은 자리에 찍힌다",
+              "같은 자리에 겹쳐 찍힌다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "자료 하나의 두 값이 {한 점}이 되므로 산점도의 점의 수는 자료의 수를 넘지 않는다 — 두 값이 모두 같은 자료는 {같은 자리}에 찍힌다.",
+        "acceptedAnswers": [
+          [
+            "한 점"
+          ],
+          [
+            "같은 자리"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "점이 자료보다 적게 보이는 구체 상황을 주어 겹침을 설명하게 함",
+      "cReason": "한 점과 같은 자리를 묻는 짧은 빈칸으로 상황이 분명함"
+    },
+    {
+      "id": "m3-07-02-xc3",
+      "sourceIndex": 3681,
+      "proposalFingerprint": "10c146ed9eeae199c7bb0644864be8f555e873c158b86b3be503c70583a095ba",
+      "normalizedHash": "de7241782864561ec0ce702a0c85d6985fedf75c0dd2311d85b798c5279e3933",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "학생들의 키와 신발 크기 사이에는 어떤 상관관계가 있다고 볼 수 있는지 쓰고, 그 까닭을 쓰시오.",
+        "answer": "양의 상관관계이다. 키가 클수록 신발 크기도 대체로 크기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "양의 상관관계"
+            ]
+          },
+          {
+            "anyOf": [
+              "키가 클수록 신발 크기도 대체로 크다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "공부한 시간이 길수록 점수가 대체로 높은 것처럼 함께 커지는 관계는 {양의 상관관계}이다.",
+        "acceptedAnswers": [
+          [
+            "양의 상관관계"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "C와 다른 실생활 예를 주어 상관관계 종류를 판단하게 함",
+      "cReason": "구체 예에서 관계 이름을 고르는 짧은 빈칸으로 분명함"
+    },
+    {
+      "id": "m3-07-02-xc4",
+      "sourceIndex": 3682,
+      "proposalFingerprint": "dc2294c840f8f7c0b3107a8d85f5cb657b80b7ac3a3567f91dbef06b29570190",
+      "normalizedHash": "5c7e5bceca5c60fe7b778e2bbc43c238905d5bcc0c62e878bd6cd2e250c6100e",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "겨울철 하루 평균 기온과 그날의 난방비 사이에는 어떤 상관관계가 있다고 볼 수 있는지 쓰고, 그 까닭을 쓰시오.",
+        "answer": "음의 상관관계이다. 기온이 높을수록 난방비는 대체로 적게 들기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "음의 상관관계"
+            ]
+          },
+          {
+            "anyOf": [
+              "기온이 높을수록 난방비는 대체로 적다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "산의 높이가 높을수록 기온이 대체로 낮아지는 것처럼 한쪽이 커질 때 다른 쪽이 작아지면 {음의} 상관관계이다.",
+        "acceptedAnswers": [
+          [
+            "음의"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "C와 다른 실생활 예를 주어 상관관계 종류를 판단하게 함",
+      "cReason": "구체 예에서 관계 이름을 고르는 짧은 빈칸으로 분명함"
+    },
+    {
+      "id": "m3-07-02-xc5",
+      "sourceIndex": 3683,
+      "proposalFingerprint": "86fe5f5c6a9fb0290009f734fac717b1d81469661e1e8f809256b03127102313",
+      "normalizedHash": "6f142abf809a99cc04d592447c171a9e50be5808934dd863a1268ae3b40a71c4",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "학생들의 출석 번호와 키 사이에는 어떤 상관관계가 있다고 볼 수 있는지 쓰고, 그 까닭을 쓰시오.",
+        "answer": "상관관계가 없다. 출석 번호가 커져도 키가 커지거나 작아지는 경향이 없기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "상관관계가 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "커지거나 작아지는 경향이 없다",
+              "일정한 경향이 없다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "발 크기와 수학 점수처럼 한쪽이 변해도 다른 쪽이 들쭉날쭉하면 함께 움직이는 {경향}이 보이지 않으므로 상관관계가 {없는} 경우이다.",
+        "acceptedAnswers": [
+          [
+            "경향"
+          ],
+          [
+            "없는"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "C와 다른 실생활 예를 주어 경향 유무를 판단하게 함",
+      "cReason": "경향과 '없는'을 묻는 짧은 빈칸으로 분명함"
+    },
+    {
+      "id": "m3-07-02-xc6",
+      "sourceIndex": 3684,
+      "proposalFingerprint": "c74c04a721ebaad9902ef9ea553fd4fac872c98bcd863c5e40b033196e746b12",
+      "normalizedHash": "ef9502e8ac12b6eafc7bf1ba5d0c70318f51a33d625b2845b13132fbcc107c09",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "가로축에 국어 점수, 세로축에 영어 점수를 놓은 산점도에 점 $(65,\\ 90)$이 있다. 이 점이 나타내는 내용을 쓰시오.",
+        "answer": "국어 점수가 $65$점이고 영어 점수가 $90$점인 학생 한 명의 자료이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "국어 점수 $65$점"
+            ]
+          },
+          {
+            "anyOf": [
+              "영어 점수 $90$점"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "가로축에 수학 점수, 세로축에 과학 점수를 놓은 산점도의 점 $(70,\\ 85)$는 수학 점수가 {$70$}점, 과학 점수가 {$85$}점인 학생 한 명을 나타낸다.",
+        "acceptedAnswers": [
+          [
+            "$70$"
+          ],
+          [
+            "$85$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "축의 변량을 밝혀 순서쌍을 자료 내용으로 읽게 함",
+      "cReason": "원문 답 $a$, $b$는 점 $(a,\\ b)$에서 그대로 베껴지므로 변량 이름을 붙인 예로 바꿈"
+    },
+    {
+      "id": "m3-07-02-xc7",
+      "sourceIndex": 3685,
+      "proposalFingerprint": "a2f8cfa2c51f2e3ed2e27cf1085c574ffd0387225484bd6d7dc958f084a27ea0",
+      "normalizedHash": "a24045aac579caea9b99e0f7ddf336f6acd0d0269c3e0d50cb12c4b33ec4f791",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": {
+        "excluded": "'좁은 띠' 한 낱말 확인이라 강약 기준 질문과 겹침"
+      },
+      "C": {
+        "sentence": "양의 상관관계가 강하면 산점도의 점들이 오른쪽 위로 향하는 {좁은} 띠 모양을 이룬다.",
+        "acceptedAnswers": [
+          [
+            "좁은",
+            "가는"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "'좁은 띠' 한 낱말 확인이라 강약 기준 질문과 겹침",
+      "cReason": "강한 상관의 모양을 한 낱말로 확인하는 짧은 빈칸이라 유지함"
+    },
+    {
+      "id": "m3-07-02-xc8",
+      "sourceIndex": 3686,
+      "proposalFingerprint": "ae7b49b71c183b7043ef9a745f7bd8afc08f7e81f2746fb185a602e77fddc5e4",
+      "normalizedHash": "48f76d82074e291211522174e7429c062f84d72dd3172a2b44df6a7479c8d590",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "어떤 산점도의 점들이 전체적으로 오른쪽 아래로 향하지만 한 직선 둘레에 모이지 않고 넓게 퍼져 있다. 두 변량 사이의 상관관계를 종류와 강약을 모두 넣어 쓰시오.",
+        "answer": "약한 음의 상관관계이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "음의 상관관계"
+            ]
+          },
+          {
+            "anyOf": [
+              "약한"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "점들이 오른쪽 아래로 향하지만 넓게 {퍼져} 있으면 {약한} 음의 상관관계이다.",
+        "acceptedAnswers": [
+          [
+            "퍼져"
+          ],
+          [
+            "약한"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "방향과 퍼짐을 모두 설명해 종류와 강약을 함께 판단하게 함",
+      "cReason": "퍼짐과 약함을 연결하는 짧은 빈칸으로 분명함"
+    },
+    {
+      "id": "m3-07-02-xc9",
+      "sourceIndex": 3687,
+      "proposalFingerprint": "ac45587c78158a33247f682dc13f5c0baffcde4e2adaf8ff5ca3c5410f340071",
+      "normalizedHash": "fc06bec770628056c203a132e737cb45d7de44a6aa70ff4506cf1b8b1b7e8643",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "산점도의 모든 점이 $y$축에 평행한 한 직선 위에 있다. 이때 $x$의 값은 어떠한지 쓰고, 두 변량 사이에 상관관계가 있다고 할 수 있는지 이유와 함께 쓰시오.",
+        "answer": "모든 자료의 $x$의 값이 같다. $x$가 커질 때 $y$가 어떻게 변하는지 경향을 볼 수 없으므로 상관관계가 없다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$x$의 값이 일정하다",
+              "$x$의 값이 모두 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "상관관계가 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x$가 변하지 않아 경향을 볼 수 없다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "모든 점이 $y$축에 평행한 한 직선 위에 있으면 $x$의 값이 {일정}하므로, $x$가 커질 때 $y$가 커지거나 작아지는 {경향}을 볼 수 없다.",
+        "acceptedAnswers": [
+          [
+            "일정"
+          ],
+          [
+            "경향"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "점의 배치를 문장으로 밝혀 $x$가 일정함과 상관 판단을 묻게 함",
+      "cReason": "일정과 경향 두 낱말로 판단 근거를 짧게 묻는 빈칸임"
+    },
+    {
+      "id": "m3-07-02-xc10",
+      "sourceIndex": 3688,
+      "proposalFingerprint": "39c6d0cb849d4b0356a26127907a8df2e13b97794eec1aefdfa152f218728f72",
+      "normalizedHash": "658de18f211e07c2555e09aa546c05fd9c93209191469602ec9a02717d7165ed",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "가로축에 수학 점수 $x$, 세로축에 영어 점수 $y$를 놓은 산점도에서 두 점수가 모두 $70$점 이상인 학생 수를 세려고 한다. 어느 부분의 점을 세어야 하는지 직선을 이용하여 설명하시오.",
+        "answer": "두 직선 $x=70$, $y=70$을 그어 나뉜 부분 중 오른쪽 위 칸의 점과 그 경계선 위의 점을 센다. 같은 자리에 겹친 자료는 따로 센다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$x=70$과 $y=70$의 오른쪽 위",
+              "$x\\ge70$이고 $y\\ge70$인 부분"
+            ]
+          },
+          {
+            "anyOf": [
+              "경계선 위의 점도 센다",
+              "직선 위의 점 포함"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "'$x$와 $y$가 모두 $70$ 이상'인 자료는 두 직선 $x=70$, $y=70$으로 나뉜 {오른쪽 위} 칸과 그 {경계선} 위의 점이다 — 같은 자리에 겹친 자료는 따로 센다.",
+        "acceptedAnswers": [
+          [
+            "오른쪽 위"
+          ],
+          [
+            "경계선",
+            "두 직선"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "'이상' 조건에서 경계 포함 여부를 학생이 스스로 판단하게 함",
+      "cReason": "오른쪽 위 칸과 경계선 포함을 묻는 분명한 빈칸임"
+    },
+    {
+      "id": "m3-07-02-xc11",
+      "sourceIndex": 3689,
+      "proposalFingerprint": "f63e99a695f3732f98c88fbf0338451b3bb1251d4bb8b81fb8f02b8c8971f629",
+      "normalizedHash": "4415be6f27029ff1c3594f4062fcb0a3cc081c2ef68f60cad971cc4543254a3c",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "가로축에 $1$학기 독서량 $x$권, 세로축에 $2$학기 독서량 $y$권을 놓은 산점도에서 직선 $y=x$ 위에 있는 점은 어떤 학생을 나타내는지 쓰시오.",
+        "answer": "$1$학기와 $2$학기의 독서량이 같은 학생이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 학기 독서량이 같다",
+              "$x=y$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "두 변량의 단위가 같을 때 직선 $y=x$ 위에 놓인 점은 두 값이 {같은} 자료이다.",
+        "acceptedAnswers": [
+          [
+            "같은"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "단위가 같은 두 변량과 축을 밝혀 직선 위의 점의 뜻을 읽게 함",
+      "cReason": "원문 첫 빈칸 '위'는 '위쪽'과 혼동되어 뜻이 모호하므로 고정함"
+    },
+    {
+      "id": "m3-07-02-xc12",
+      "sourceIndex": 3690,
+      "proposalFingerprint": "bcdb4eb37630fb56f1aca2c9114938c2f58d1702aad16c08cb765df449541da9",
+      "normalizedHash": "69cae603210a6a72786860acd1b0af12fb443726381d6bce24db93e2425f5d7a",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "키와 몸무게 사이에 양의 상관관계가 있는 반에서, 키가 더 큰 학생은 언제나 몸무게도 더 많이 나간다고 말할 수 있는지 쓰고 이유를 쓰시오.",
+        "answer": "말할 수 없다. 상관관계는 전체의 대체적인 경향이므로 키가 더 크지만 몸무게는 더 적은 학생도 있을 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "말할 수 없다",
+              "언제나 그렇지는 않다"
+            ]
+          },
+          {
+            "anyOf": [
+              "전체의 대체적인 경향",
+              "경향과 반대인 학생이 있을 수 있다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "양의 상관관계가 있어도 모든 자료가 그 경향을 따르는 것은 {아니다} — 경향과 반대인 점이 {있을} 수 있다.",
+        "acceptedAnswers": [
+          [
+            "아니다"
+          ],
+          [
+            "있을"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "'언제나'라는 잘못된 일반화를 판단하게 하는 상황을 제시함",
+      "cReason": "모든 자료가 따르지 않음과 예외 존재를 짧게 묻는 빈칸임"
+    },
+    {
+      "id": "m3-07-02-xc13",
+      "sourceIndex": 3691,
+      "proposalFingerprint": "e52a26eddc87b811ad154ccd0e8e259602bc17edea28f856ea625c7d9eedad6b",
+      "normalizedHash": "11066c5f58345d22bf87110bc9face73680041133852dec3645d65467f0303f0",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "가로축에 $1$차 점수, 세로축에 $2$차 점수를 놓은 산점도에서 직선 $y=x$로부터 멀리 떨어진 점일수록 그 학생의 두 점수는 어떤 특징이 있는지 쓰시오.",
+        "answer": "두 점수의 차가 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 점수의 차가 크다",
+              "점수 차이가 크다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "직선 $y=x$에서 멀리 떨어진 점일수록 두 변량의 값의 {차}가 {크다}.",
+        "acceptedAnswers": [
+          [
+            "차"
+          ],
+          [
+            "크다",
+            "커진다"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "단위가 같은 두 변량을 밝혀 거리와 두 값의 차를 연결하게 함",
+      "cReason": "차와 크다를 묻는 짧은 관계 빈칸으로 분명함"
+    },
+    {
+      "id": "m3-07-02-xc14",
+      "sourceIndex": 3692,
+      "proposalFingerprint": "875cb2389a80d263bef5792bce5c8dc07ac17c891cfdfa63d149ee6f18cf069c",
+      "normalizedHash": "d6cde561027906b29e9b135f88d8a5c8ed30186177c56bfb5c0e8e36546e8a07",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": {
+        "excluded": "'대체로'를 붙이는 까닭은 전체 경향이라는 점으로 다른 B와 겹침"
+      },
+      "C": {
+        "sentence": "상관관계를 말할 때는 '{대체로}'라는 말을 붙인다 — 하나하나의 자료가 아니라 전체의 {경향}이기 때문이다.",
+        "acceptedAnswers": [
+          [
+            "대체로",
+            "대개"
+          ],
+          [
+            "경향"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "'대체로'를 붙이는 까닭은 전체 경향이라는 점으로 다른 B와 겹침",
+      "cReason": "말의 사용과 그 이유를 짧게 묻는 빈칸으로 학생이 읽기 쉬움"
+    },
+    {
+      "id": "m3-07-02-xc15",
+      "sourceIndex": 3693,
+      "proposalFingerprint": "a43eef0ce50c39a40a1e2ea8b82f3e118ef1112d2d3f158c47841bb261aca4fd",
+      "normalizedHash": "17ac8912e11e52fea83105fa26615d6a06fca4e8f36e4bb209a80033584dd6d0",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "어느 동네에서 날마다 기록한 선풍기 판매량과 아이스크림 판매량 사이에 양의 상관관계가 나타났다. 선풍기가 많이 팔려서 아이스크림이 많이 팔렸다고 결론 내릴 수 있는지 쓰고, 두 판매량이 함께 늘어난 다른 까닭을 하나 들어 설명하시오.",
+        "answer": "결론 내릴 수 없다. 기온이 높은 날에는 둘 다 많이 팔릴 수 있으므로 상관관계만으로 한쪽이 다른 쪽의 원인이라고 단정할 수 없다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "결론 내릴 수 없다",
+              "단정할 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "기온이 높다",
+              "날씨가 덥다",
+              "둘에 함께 영향을 주는 다른 요인"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "아이스크림 판매량과 물놀이 사고가 함께 늘어도 둘 다 기온의 영향을 받았을 수 있으므로, 상관관계만으로 한쪽이 다른 쪽의 {원인}이라고 단정할 수 없다.",
+        "acceptedAnswers": [
+          [
+            "원인"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "두 변량에 함께 영향을 주는 요인을 학생이 직접 찾도록 새 예를 제시함",
+      "cReason": "구체 예와 기온 요인이 제시되어 '원인' 한 칸이 분명함"
+    },
+    {
+      "id": "m3-07-02-xc16",
+      "sourceIndex": 3694,
+      "proposalFingerprint": "da0bdb4158fe2b7daa688aec43f91545bbb88cd25f42a05f2eb539aad695fb92",
+      "normalizedHash": "cd42a0f2f26c70adcc39e02ef108fae80c446dac8db5a56fff631e7591d1b159",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "가로축에 수학 점수 $x$, 세로축에 과학 점수 $y$를 놓은 산점도에서 두 점수의 합이 $150$점 이상인 학생을 찾으려고 한다. 어떤 직선을 긋고 어느 부분의 점을 찾아야 하는지 쓰시오.",
+        "answer": "직선 $x+y=150$을 긋고, 그 직선 위의 점과 직선의 위쪽(오른쪽 위)에 있는 점을 찾는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$x+y=150$"
+            ]
+          },
+          {
+            "anyOf": [
+              "직선 위와 그 위쪽",
+              "직선 위의 점을 포함한 오른쪽 위"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "두 변량의 합이 $k$ 이상인 자료는 직선 {$x+y=k$} 위나 그 {위쪽}에 있는 점으로 나타난다 — 직선 위의 점은 합이 꼭 $k$인 자료이다.",
+        "acceptedAnswers": [
+          [
+            "$x+y=k$"
+          ],
+          [
+            "위쪽",
+            "오른쪽 위"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "축과 합의 기준값을 밝혀 직선과 영역을 모두 답하게 함",
+      "cReason": "직선의 식과 영역을 묻는 짧은 빈칸으로 조건이 분명함"
+    },
+    {
+      "id": "m3-07-02-xc17",
+      "sourceIndex": 3695,
+      "proposalFingerprint": "8df9f078f25c2fca3422e16d78578889d671cd9b80e04ea97d7e0f34ddc92231",
+      "normalizedHash": "921ccff6c52b14ccfee0ed50308a5e9305277d4dfd18ffbabc701a42f6cc0dcb",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "양의 상관관계를 나타내는 두 산점도에서 점들이 이루는 띠가 더 가파른 쪽이 상관관계가 더 강하다고 할 수 있는지 쓰고, 강약은 무엇으로 비교하는지 쓰시오.",
+        "answer": "할 수 없다. 강약은 띠의 기울기와 상관없이 점들이 한 직선 둘레에 얼마나 촘촘히 모여 있는지로 비교한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "할 수 없다",
+              "기울기와 상관없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 직선 둘레에 모인 정도",
+              "띠의 폭"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "상관관계의 강약은 띠의 {기울기}와 상관없다 — 가파른 띠든 완만한 띠든 점들이 한 직선 둘레에 {모인 정도}로 견준다.",
+        "acceptedAnswers": [
+          [
+            "기울기"
+          ],
+          [
+            "모인 정도"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "기울기로 강약을 판단하는 오개념을 직접 판단하게 함",
+      "cReason": "기울기와 모인 정도를 대비시키는 짧은 빈칸으로 분명함"
+    },
+    {
+      "id": "m3-07-02-xc18",
+      "sourceIndex": 3696,
+      "proposalFingerprint": "0d9f2b619187385c07e9f6276ae4398cd484a7277e2aa74ce83dd2c7d32f07be",
+      "normalizedHash": "59542849585de04a6e8299a5d8b3e0e1143afd2aa9e346159bd547b80578774b",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "강한 양의 상관관계를 보이는 산점도에 경향에서 크게 벗어난 점 하나가 더해졌다. 상관관계가 항상 약해진다고 할 수 있는지 쓰고, 어떻게 판단해야 하는지 쓰시오.",
+        "answer": "항상 약해진다고 할 수는 없다. 약해 보일 수 있지만 점을 더한 뒤의 전체 분포를 다시 살펴 판단해야 한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "항상 그렇지는 않다",
+              "항상 약해진다고 할 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "전체 분포를 다시 살핀다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "경향에서 크게 벗어난 점이 더해지면 상관관계가 {약해} 보일 수 있지만 언제나 그런 것은 아니다 — 점을 더한 뒤의 {전체} 분포를 다시 살핀다.",
+        "acceptedAnswers": [
+          [
+            "약해"
+          ],
+          [
+            "전체"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "'항상'을 판단하게 하여 전체 분포를 다시 보는 절차를 묻게 함",
+      "cReason": "약해 보일 가능성과 전체 분포를 묻는 짧은 빈칸임"
+    },
+    {
+      "id": "m3-07-02-xc19",
+      "sourceIndex": 3697,
+      "proposalFingerprint": "8e18c1062967d841c0eb729586e646a07900e2c195123170dad6cc6fc3435bff",
+      "normalizedHash": "93971453275f21d5b9ed9702d00f7b350933be2f31fb82ffcc62eef34cd7360b",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "학생 $25$명의 (수학 점수, 과학 점수) 산점도에서 두 점수가 모두 $80$점 이상인 자료가 같은 자리에 겹친 것까지 따로 세어 $5$개이다. 이 학생들은 전체의 몇 $\\%$인지 구하는 방법과 답을 쓰시오.",
+        "answer": "$\\frac{5}{25}\\times100=20$이므로 $20\\%$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{5}{25}\\times100$",
+              "조건에 맞는 자료의 수를 전체 자료의 수로 나누고 $100$을 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$20\\%$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "조건을 만족하는 자료의 비율은 (조건에 맞는 자료의 수) $\\div$ ({전체 자료의 수})이다. 자료 $20$개 중 조건에 맞는 자료가 $5$개이면 백분율로 {$25$}$\\%$이다.",
+        "acceptedAnswers": [
+          [
+            "전체 자료의 수",
+            "전체 자료의 개수"
+          ],
+          [
+            "$25$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "전체 수와 조건 자료 수를 주어 비율과 백분율 절차를 묻게 함",
+      "cReason": "긴 구절 빈칸 두 개를 하나로 줄이고 백분율 계산을 확인하게 함"
+    },
+    {
+      "id": "m3-07-02-xc20",
+      "sourceIndex": 3698,
+      "proposalFingerprint": "ce8263cbbd6fe26f711a91c4caf20274443e59d58d25248115a83dd7cfbe483c",
+      "normalizedHash": "5a66a46bedd9993a7ca94fbbb34dccf04e70f946468efef33c83105d48013c9c",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "키를 가로축, 몸무게를 세로축에 놓은 산점도가 강한 양의 상관관계를 보인다. 몸무게를 가로축, 키를 세로축으로 바꾸어 다시 그리면 상관관계의 종류와 강약은 어떻게 되는지 쓰시오.",
+        "answer": "축을 바꾸어도 상관관계의 종류와 강약은 변하지 않으므로 여전히 강한 양의 상관관계이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "종류와 강약이 그대로",
+              "여전히 강한 양의 상관관계",
+              "변하지 않는다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$x$와 $y$의 자리를 바꾸어 산점도를 다시 그려도 상관관계의 {종류}와 {강약}은 그대로이다.",
+        "acceptedAnswers": [
+          [
+            "종류"
+          ],
+          [
+            "강약"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "축을 바꾸는 구체 상황을 주어 종류와 강약의 변화 여부를 묻게 함",
+      "cReason": "종류와 강약 두 낱말로 보존되는 것을 짧게 묻는 빈칸임"
+    },
+    {
+      "id": "m3-07-02-xc21",
+      "sourceIndex": 3699,
+      "proposalFingerprint": "289abb0609bedd69da7fb3a4492526387eddefb601c5958c888270e25e8a5a87",
+      "normalizedHash": "1fb329b0ebf7bac5c9cff0831ef2ade24c97d9d7b791ec33809bab8e251c656f",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "한 달 동안 걸은 거리와 소모한 열량 사이에 강한 양의 상관관계가 있다. 한 사람의 걸은 거리를 알면 소모한 열량을 정확히 알 수 있는지 쓰고, 어느 정도까지 알 수 있는지 쓰시오.",
+        "answer": "정확히는 알 수 없고 대략 짐작할 수 있다. 상관관계는 대체적인 경향이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "정확히 알 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "대략 짐작할 수 있다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "강한 양의 상관관계가 있으면 한 변량의 값으로 다른 변량의 값을 {대략} 짐작할 수 있다 — 다만 상관관계가 강하다는 것만으로 그 짐작이 {정확하다}고 할 수는 없다.",
+        "acceptedAnswers": [
+          [
+            "대략"
+          ],
+          [
+            "정확하다"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "구체 상황에서 짐작 가능 정도와 정확성의 한계를 구분하게 함",
+      "cReason": "대략과 정확하다를 대비시키는 짧은 빈칸으로 분명함"
+    }
+  ]
+}

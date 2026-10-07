@@ -1,0 +1,795 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e5-1-5-3-xc4",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "분모가 다른 두 분수를 뺄 때, 두 분모의 곱 대신 두 분모의 최소공배수를 공통분모로 쓰면 계산에서 무엇이 편해지는지 설명하고, $\\frac{5}{6}-\\frac{3}{8}$을 최소공배수로 통분하여 계산하시오.",
+      "bAnswer": "최소공배수를 쓰면 가능한 공통분모 중 가장 작은 수로 계산할 수 있다. 두 분모의 곱보다 작은 경우에는 분모와 분자가 더 작아 계산하기 편리하다. $6$과 $8$의 최소공배수는 $24$이므로 $\\frac{20}{24}-\\frac{9}{24}=\\frac{11}{24}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "최소공배수는가장작은공통분모라분모분자가곱으로통분할때보다작거나같다",
+            "곱보다작은최소공배수를쓰면더작은수로계산할수있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{11}{24}$"
+          ]
+        }
+      ],
+      "bGoal": "최소공배수로 통분하면 수가 작아 계산이 간단해지는 까닭을 말한다.",
+      "bReason": "'수가 작아 간단하다'는 결론을 질문에 넣지 않고 편리한 점을 스스로 말하게 함.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{5}{6}-\\frac{3}{8}$을 두 분모의 최소공배수 {$24$}로 통분하여 빼면 차는 {$\\frac{11}{24}$}이다.",
+      "cReason": "최소공배수의 답을 뒤 식에서 복사하는 단서와 모호한 작아라는 빈칸을 없애고 구체적인 공통분모와 차를 계산하게 한다. 방법의 편리함은 B에서 설명한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$24$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{11}{24}$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexReview": "미리 읽은 실제 제안 지면에서 발견한 답 복사·서로 다른 유효 답·중복을 개별 수정했다. 전체 최종 질문/답/기준 판정은 별도 진행한다.",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-0880-0910.json",
+      "codexFinalAmendedFromFingerprint": "30272d4f52e462106ad4a9095b038e51626ad957a94ea2316cd7337b614d14b9",
+      "sourceIndex": 882,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-3-xc4",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-3 진분수의 뺄셈",
+        "term": "최소공배수로 통분해 빼기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "두 분모의 최소공배수로 통분하면 {수가 작아} 빼기가 간단하다.",
+        "example": {
+          "prompt": "$\\frac{5}{6}-\\frac{3}{8}$을 계산하시오.",
+          "answer": "$\\frac{11}{24}$"
+        },
+        "studentC": "두 분모의 최소공배수로 통분하면 □ 빼기가 간단하다.",
+        "answers": [
+          "수가 작아"
+        ]
+      },
+      "sourceFingerprint": "1f846979107891e3520a873cca7883b72e2c427b4323e27203f9e04ad1e31e0a",
+      "draftEvidence": "evidence/section-019-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$24$",
+        "$\\frac{11}{24}$"
+      ],
+      "cStudentAfter": "$\\frac{5}{6}-\\frac{3}{8}$을 두 분모의 최소공배수 □로 통분하여 빼면 차는 □이다.",
+      "cMarkedSentence": "$\\frac{5}{6}-\\frac{3}{8}$을 두 분모의 최소공배수 {$24$}로 통분하여 빼면 차는 {$\\frac{11}{24}$}이다.",
+      "cStudentSentence": "$\\frac{5}{6}-\\frac{3}{8}$을 두 분모의 최소공배수 □로 통분하여 빼면 차는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$24$",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{11}{24}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "분모가 다른 두 분수를 뺄 때, 두 분모의 곱 대신 두 분모의 최소공배수를 공통분모로 쓰면 계산에서 무엇이 편해지는지 설명하고, $\\frac{5}{6}-\\frac{3}{8}$을 최소공배수로 통분하여 계산하시오.",
+        "answer": "최소공배수를 쓰면 가능한 공통분모 중 가장 작은 수로 계산할 수 있다. 두 분모의 곱보다 작은 경우에는 분모와 분자가 더 작아 계산하기 편리하다. $6$과 $8$의 최소공배수는 $24$이므로 $\\frac{20}{24}-\\frac{9}{24}=\\frac{11}{24}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "최소공배수는가장작은공통분모라분모분자가곱으로통분할때보다작거나같다",
+              "곱보다작은최소공배수를쓰면더작은수로계산할수있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{11}{24}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{5}{6}-\\frac{3}{8}$을 두 분모의 최소공배수 {$24$}로 통분하여 빼면 차는 {$\\frac{11}{24}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$24$"
+          ],
+          [
+            "$\\frac{11}{24}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "4c62cdc38e7cd2e94cce4132f577e399d5c77d96e7ef93925a98b3bf7d4ff70d",
+      "questionRevision": "planning-e5e6-20261006-4c62cdc38e7c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-3-xc5",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "뺀 결과를 약분해 기약분수로 나타낸다.",
+      "bReason": "공약수로 약분하여 기약분수를 얻는 원리는 약분 단원과 덧셈의 기약분수 확인에서 설명한다. 이 항목은 뺄셈 결과5/10을1/2로 바꾸는 C 적용을 남긴다.",
+      "exclusionReason": "B는 단순 계산 마무리 단계라 가치가 낮음(절차는 e5-1-5-3-xc10의 C에서 확인).",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{7}{10}-\\frac{1}{5}=\\frac{7}{10}-\\frac{2}{10}=\\frac{5}{10}$이고, 약분하여 기약분수로 나타내면 {$\\frac{1}{2}$}이다.",
+      "cReason": "조건절 '약분할 수 있으면'을 외우게 하는 대신 실제 차를 기약분수로 고치게 함.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-0880-0910.json",
+      "codexFinalAmendedFromFingerprint": "f320ac4d35af208e5a3a09e0f2883b83b10766be599abb8c75f7c51ef380153a",
+      "sourceIndex": 883,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-3-xc5",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-3 진분수의 뺄셈",
+        "term": "차를 기약분수로",
+        "kind": "방법",
+        "level": "하",
+        "definition": "뺀 결과는 {약분할 수 있으면} 기약분수로 나타낸다.",
+        "example": {
+          "prompt": "$\\frac{7}{10}-\\frac{1}{5}$을 계산하시오.",
+          "answer": "$\\frac{1}{2}$"
+        },
+        "studentC": "뺀 결과는 □ 기약분수로 나타낸다.",
+        "answers": [
+          "약분할 수 있으면"
+        ]
+      },
+      "sourceFingerprint": "90cc10312524f68ff7fb8739138833caf01eea0cda2fa24384c80cda9135e729",
+      "draftEvidence": "evidence/section-019-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$\\frac{1}{2}$"
+      ],
+      "cStudentAfter": "$\\frac{7}{10}-\\frac{1}{5}=\\frac{7}{10}-\\frac{2}{10}=\\frac{5}{10}$이고, 약분하여 기약분수로 나타내면 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{1}{2}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$\\frac{7}{10}-\\frac{1}{5}=\\frac{7}{10}-\\frac{2}{10}=\\frac{5}{10}$이고, 약분하여 기약분수로 나타내면 {$\\frac{1}{2}$}이다.",
+      "cStudentSentence": "$\\frac{7}{10}-\\frac{1}{5}=\\frac{7}{10}-\\frac{2}{10}=\\frac{5}{10}$이고, 약분하여 기약분수로 나타내면 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{1}{2}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$\\frac{7}{10}-\\frac{1}{5}=\\frac{7}{10}-\\frac{2}{10}=\\frac{5}{10}$이고, 약분하여 기약분수로 나타내면 {$\\frac{1}{2}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{1}{2}$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 단순 계산 마무리 단계라 가치가 낮음(절차는 e5-1-5-3-xc10의 C에서 확인)."
+      },
+      "proposalFingerprint": "f320ac4d35af208e5a3a09e0f2883b83b10766be599abb8c75f7c51ef380153a",
+      "questionRevision": "planning-e5e6-20261006-f320ac4d35af",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-3-xc8",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "모양이 달라도 크기가 같은 분수의 차는 0임을 안다.",
+      "bReason": "같은 크기의 분수를 통분하여 빼는 설명은 뺄셈 절차 문항에서 다룬다. 이 항목의 C는2/3과4/6이같고차가0임을연결하여확인한다.",
+      "exclusionReason": "B는 자명한 문장이라 제외하고 C의 구체적 식으로만 확인.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{2}{3}$와 $\\frac{4}{6}$는 크기가 {같은} 분수이므로 $\\frac{2}{3}-\\frac{4}{6}=${$0$}이다.",
+      "cReason": "원문은 주어 구절 전체가 빈칸이라 분모가 다른 실제 두 분수로 크기 관계와 차를 답하게 함.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같은",
+            "똑같은"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-0880-0910.json",
+      "codexFinalAmendedFromFingerprint": "219939452e1072896ba7dec9c8ba431521e2617039f176a075ccd43ef9493359",
+      "sourceIndex": 886,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-3-xc8",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-3 진분수의 뺄셈",
+        "term": "차가 $0$일 때",
+        "kind": "성질",
+        "level": "하",
+        "definition": "{크기가 같은 분수끼리} 빼면 차는 $0$이다.",
+        "example": {
+          "prompt": "$\\frac{2}{3}-\\frac{4}{6}$의 값은?",
+          "answer": "$0$"
+        },
+        "studentC": "□ 빼면 차는 $0$이다.",
+        "answers": [
+          "크기가 같은 분수끼리"
+        ]
+      },
+      "sourceFingerprint": "32cfa1f9fee6e29327e9903f92c99d9b8fe2dd31c47b779e684477cf1d66fa28",
+      "draftEvidence": "evidence/section-019-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "cAfter",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cProposedAnswers": [
+        "같은",
+        "$0$"
+      ],
+      "cStudentAfter": "$\\frac{2}{3}$와 $\\frac{4}{6}$는 크기가 □ 분수이므로 $\\frac{2}{3}-\\frac{4}{6}=$□이다.",
+      "cMarkedSentence": "$\\frac{2}{3}$와 $\\frac{4}{6}$는 크기가 {같은} 분수이므로 $\\frac{2}{3}-\\frac{4}{6}=${$0$}이다.",
+      "cStudentSentence": "$\\frac{2}{3}$와 $\\frac{4}{6}$는 크기가 □ 분수이므로 $\\frac{2}{3}-\\frac{4}{6}=$□이다.",
+      "cSlotAnswers": [
+        {
+          "key": "같은",
+          "equivalents": [
+            "똑같은"
+          ]
+        },
+        {
+          "key": "$0$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$\\frac{2}{3}$와 $\\frac{4}{6}$는 크기가 {같은} 분수이므로 $\\frac{2}{3}-\\frac{4}{6}=${$0$}이다.",
+        "acceptedAnswers": [
+          [
+            "같은",
+            "똑같은"
+          ],
+          [
+            "$0$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 자명한 문장이라 제외하고 C의 구체적 식으로만 확인."
+      },
+      "proposalFingerprint": "219939452e1072896ba7dec9c8ba431521e2617039f176a075ccd43ef9493359",
+      "questionRevision": "planning-e5e6-20261006-219939452e10",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-3-xc19",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{5}{6}-\\frac{1}{4}$을 두 분모의 곱으로 통분하여 계산하고, 두 분모의 최소공배수로 통분하여서도 계산하시오. 약분한 두 결과를 비교하고, 그렇게 되는 까닭을 통분과 분수의 크기의 관계로 설명하시오.",
+      "bAnswer": "곱 $24$로 통분: $\\frac{20}{24}-\\frac{6}{24}=\\frac{14}{24}=\\frac{7}{12}$. 최소공배수 $12$로 통분: $\\frac{10}{12}-\\frac{3}{12}=\\frac{7}{12}$. 두 결과는 같다. 통분은 분수의 크기를 바꾸지 않기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱 $24$로 통분하면 $\\frac{20}{24}-\\frac{6}{24}=\\frac{14}{24}=\\frac{7}{12}$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "최소공배수 $12$로 통분하면 $\\frac{10}{12}-\\frac{3}{12}=\\frac{7}{12}$로 두 결과가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "통분해도 분수의 크기는 변하지 않는다",
+            "어느 공통분모로 바꾸어도 크기가 같은 분수이다"
+          ]
+        }
+      ],
+      "bGoal": "공통분모를 달리해도 차가 같은 까닭을 통분의 뜻으로 설명한다.",
+      "bReason": "원문 예는 한 방법만 계산시키므로 두 방법을 비교하고 까닭까지 묻게 넓힘.",
+      "cDecision": "keep",
+      "cAfter": "분모의 곱으로 통분해도 최소공배수로 통분해도 약분한 차는 {같다}.",
+      "cReason": "두 통분 방법으로 구해 약분한 차의 관계를 한 낱말로 답하는 분명한 문장이라 유지.",
+      "exampleNeeded": false,
+      "synonymNotes": "'같다', '똑같다' 인정.",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-0880-0910.json",
+      "codexFinalAmendedFromFingerprint": "dd5675ab49c5cd658cbcd79f1232fb9d729bccd1be78a6384f3e0ac65bfce39b",
+      "sourceIndex": 897,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-3-xc19",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-3 진분수의 뺄셈",
+        "term": "두 통분 방법으로 구한 차",
+        "kind": "성질",
+        "level": "중",
+        "definition": "분모의 곱으로 통분해도 최소공배수로 통분해도 약분한 차는 {같다}.",
+        "example": {
+          "prompt": "$\\frac{5}{6}-\\frac{1}{4}$을 분모의 곱으로 통분해 계산한 뒤 약분하면?",
+          "answer": "$\\frac{7}{12}$"
+        },
+        "studentC": "분모의 곱으로 통분해도 최소공배수로 통분해도 약분한 차는 □.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "sourceFingerprint": "a2296ec9e1fedf60709eb8d0a77c1016b4fee38d76cf05b1d607ee81d4e6b526",
+      "draftEvidence": "evidence/section-019-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "분모의 곱으로 통분해도 최소공배수로 통분해도 약분한 차는 {같다}.",
+      "cFrozenStudentSentence": "분모의 곱으로 통분해도 최소공배수로 통분해도 약분한 차는 □.",
+      "cProposedAnswers": [
+        "같다"
+      ],
+      "cStudentAfter": "분모의 곱으로 통분해도 최소공배수로 통분해도 약분한 차는 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "분모의 곱으로 통분해도 최소공배수로 통분해도 약분한 차는 {같다}.",
+      "cStudentSentence": "분모의 곱으로 통분해도 최소공배수로 통분해도 약분한 차는 □.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{5}{6}-\\frac{1}{4}$을 두 분모의 곱으로 통분하여 계산하고, 두 분모의 최소공배수로 통분하여서도 계산하시오. 약분한 두 결과를 비교하고, 그렇게 되는 까닭을 통분과 분수의 크기의 관계로 설명하시오.",
+        "answer": "곱 $24$로 통분: $\\frac{20}{24}-\\frac{6}{24}=\\frac{14}{24}=\\frac{7}{12}$. 최소공배수 $12$로 통분: $\\frac{10}{12}-\\frac{3}{12}=\\frac{7}{12}$. 두 결과는 같다. 통분은 분수의 크기를 바꾸지 않기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "곱 $24$로 통분하면 $\\frac{20}{24}-\\frac{6}{24}=\\frac{14}{24}=\\frac{7}{12}$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "최소공배수 $12$로 통분하면 $\\frac{10}{12}-\\frac{3}{12}=\\frac{7}{12}$로 두 결과가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "통분해도 분수의 크기는 변하지 않는다",
+              "어느 공통분모로 바꾸어도 크기가 같은 분수이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "분모의 곱으로 통분해도 최소공배수로 통분해도 약분한 차는 {같다}.",
+        "acceptedAnswers": [
+          [
+            "같다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9c34f079422aa90706180d491475c675fbd02ac766e58d5b7e17c4437274ac62",
+      "questionRevision": "planning-e5e6-20261006-9c34f079422a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-3-xc24",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{7}{8}$과 $\\frac{1}{9}$을 각각 $0$, $\\frac{1}{2}$, $1$ 중 가장 가까운 수로 바꾸어 $\\frac{7}{8}-\\frac{1}{9}$의 크기를 어림하려고 한다. 두 분수를 각각 어떤 수로 바꾸는지와 어림한 차를 쓰시오.",
+      "bAnswer": "$\\frac{7}{8}$은 $1$에, $\\frac{1}{9}$은 $0$에 가까우므로 차는 약 $1-0=1$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{7}{8}$을 $1$로 바꾼다",
+            "$\\frac{7}{8}$은 $1$에 가깝다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{9}$을 $0$으로 바꾼다",
+            "$\\frac{1}{9}$은 $0$에 가깝다"
+          ]
+        },
+        {
+          "anyOf": [
+            "차는 약 $1$이다",
+            "$1$에 가깝다"
+          ]
+        }
+      ],
+      "bGoal": "분수를 0, 1/2, 1 중 가까운 수로 바꾸어 차를 어림한다.",
+      "bReason": "원문 예는 '1에 가깝다'는 결론을 미리 주므로 기준 수만 주고 어림 과정을 답하게 함.",
+      "cDecision": "revise",
+      "cAfter": "$0$, $\\frac{1}{2}$, $1$ 중 가장 가까운 수를 고르면 $\\frac{7}{8}$은 {$1$}에 가깝고 $\\frac{1}{9}$은 {$0$}에 가깝다. 두 분수를 고른 수로 바꾸어 빼면 $\\frac{7}{8}-\\frac{1}{9}$은 약 {$1$}이라고 어림할 수 있다.",
+      "cReason": "세 기준 수를 나열해 외우게 하는 빈칸 대신 실제 분수에 가까운 수와 어림값을 답하게 함.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-0880-0910.json",
+      "codexFinalAmendedFromFingerprint": "01f34572fa5504f0b58c6844dc124e242420c721af892f7d7c5d76ea65296215",
+      "sourceIndex": 901,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-3-xc24",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-3 진분수의 뺄셈",
+        "term": "가까운 수로 차 어림하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "두 분수를 각각 {$0$, $\\frac{1}{2}$, $1$} 가운데 가까운 수로 바꾸어 빼면 차의 크기를 짐작할 수 있다.",
+        "example": {
+          "prompt": "$\\frac{7}{8}-\\frac{1}{9}$의 차가 $1$에 가깝다고 어림하는 까닭은?",
+          "answer": "$1$과 $0$에 가까운 두 수라서"
+        },
+        "studentC": "두 분수를 각각 □ 가운데 가까운 수로 바꾸어 빼면 차의 크기를 짐작할 수 있다.",
+        "answers": [
+          "$0$, $\\frac{1}{2}$, $1$"
+        ]
+      },
+      "sourceFingerprint": "2c646abe077d67215f5a53e09fdb745fc1b11cbfbf0f32a5fbca5473364e23ae",
+      "draftEvidence": "evidence/section-019-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$1$",
+        "$0$",
+        "$1$"
+      ],
+      "cStudentAfter": "$0$, $\\frac{1}{2}$, $1$ 중 가장 가까운 수를 고르면 $\\frac{7}{8}$은 □에 가깝고 $\\frac{1}{9}$은 □에 가깝다. 두 분수를 고른 수로 바꾸어 빼면 $\\frac{7}{8}-\\frac{1}{9}$은 약 □이라고 어림할 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$0$, $\\frac{1}{2}$, $1$ 중 가장 가까운 수를 고르면 $\\frac{7}{8}$은 {$1$}에 가깝고 $\\frac{1}{9}$은 {$0$}에 가깝다. 두 분수를 고른 수로 바꾸어 빼면 $\\frac{7}{8}-\\frac{1}{9}$은 약 {$1$}이라고 어림할 수 있다.",
+      "cStudentSentence": "$0$, $\\frac{1}{2}$, $1$ 중 가장 가까운 수를 고르면 $\\frac{7}{8}$은 □에 가깝고 $\\frac{1}{9}$은 □에 가깝다. 두 분수를 고른 수로 바꾸어 빼면 $\\frac{7}{8}-\\frac{1}{9}$은 약 □이라고 어림할 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": []
+        },
+        {
+          "key": "$0$",
+          "equivalents": []
+        },
+        {
+          "key": "$1$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{7}{8}$과 $\\frac{1}{9}$을 각각 $0$, $\\frac{1}{2}$, $1$ 중 가장 가까운 수로 바꾸어 $\\frac{7}{8}-\\frac{1}{9}$의 크기를 어림하려고 한다. 두 분수를 각각 어떤 수로 바꾸는지와 어림한 차를 쓰시오.",
+        "answer": "$\\frac{7}{8}$은 $1$에, $\\frac{1}{9}$은 $0$에 가까우므로 차는 약 $1-0=1$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{7}{8}$을 $1$로 바꾼다",
+              "$\\frac{7}{8}$은 $1$에 가깝다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{9}$을 $0$으로 바꾼다",
+              "$\\frac{1}{9}$은 $0$에 가깝다"
+            ]
+          },
+          {
+            "anyOf": [
+              "차는 약 $1$이다",
+              "$1$에 가깝다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0$, $\\frac{1}{2}$, $1$ 중 가장 가까운 수를 고르면 $\\frac{7}{8}$은 {$1$}에 가깝고 $\\frac{1}{9}$은 {$0$}에 가깝다. 두 분수를 고른 수로 바꾸어 빼면 $\\frac{7}{8}-\\frac{1}{9}$은 약 {$1$}이라고 어림할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "$0$"
+          ],
+          [
+            "$1$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "803546d7ea8f914e69e4d74e8a47ec55265ce9d958fc050a81775fc5fa089bd5",
+      "questionRevision": "planning-e5e6-20261006-803546d7ea8f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-3-xc26",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "뺄셈식에서 처음 수와 빼는 수에 똑같은 수를 각각 더하면 차는 어떻게 되는지 설명하고, 이를 이용해 $\\frac{5}{6}-\\frac{1}{2}$과 $1-\\frac{2}{3}$의 차가 같은지 판단하시오.",
+      "bAnswer": "두 수에 같은 수를 더해도 차는 변하지 않는다. $\\frac{5}{6}+\\frac{1}{6}=1$, $\\frac{1}{2}+\\frac{1}{6}=\\frac{2}{3}$이므로 두 식의 차는 같다(둘 다 $\\frac{1}{3}$).",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "차는 변하지 않는다",
+            "차는 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{5}{6}$과 $\\frac{1}{2}$에 각각 $\\frac{1}{6}$을 더하면 $1$과 $\\frac{2}{3}$이 되므로 두 식의 차는 같다"
+          ]
+        }
+      ],
+      "bGoal": "빼어지는 수와 빼는 수에 같은 수를 더해도 차가 같음을 설명하고 적용한다.",
+      "bReason": "'빼지는 수'라는 낯선 말을 '처음 수'로 풀고 결론을 드러내지 않게 물음.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{5}{6}-\\frac{1}{2}$의 두 수에 각각 $\\frac{1}{6}$을 더하면 $1-${$\\frac{2}{3}$}가 되고, 두 뺄셈식의 차는 서로 {같다}.",
+      "cReason": "빈칸 '같은 수를 더해도'는 구절 암기라 실제 식에서 바뀐 수와 차의 관계를 답하게 함.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{2}{3}$",
+            "$\\frac{4}{6}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "같다",
+            "똑같다"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-0880-0910.json",
+      "codexFinalAmendedFromFingerprint": "59696fb9a2c877eeb93090be81d8b1303dac2642af6ca1affaa2d9e866c5ba1a",
+      "sourceIndex": 903,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-3-xc26",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-3 진분수의 뺄셈",
+        "term": "차가 같은 두 뺄셈식",
+        "kind": "성질",
+        "level": "상",
+        "definition": "빼지는 수와 빼는 수에 {같은 수를 더해도} 차는 같다.",
+        "example": {
+          "prompt": "$\\frac{5}{6}-\\frac{1}{2}$과 $1-\\frac{2}{3}$의 차는 같은가?",
+          "answer": "같다"
+        },
+        "studentC": "빼지는 수와 빼는 수에 □ 차는 같다.",
+        "answers": [
+          "같은 수를 더해도"
+        ]
+      },
+      "sourceFingerprint": "a1c9e9a7524981277d589149ebfa883c3c90e2aa97264d2a04142f1995e753ad",
+      "draftEvidence": "evidence/section-019-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "cAfter",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cProposedAnswers": [
+        "$\\frac{2}{3}$",
+        "같다"
+      ],
+      "cStudentAfter": "$\\frac{5}{6}-\\frac{1}{2}$의 두 수에 각각 $\\frac{1}{6}$을 더하면 $1-$□가 되고, 두 뺄셈식의 차는 서로 □.",
+      "cMarkedSentence": "$\\frac{5}{6}-\\frac{1}{2}$의 두 수에 각각 $\\frac{1}{6}$을 더하면 $1-${$\\frac{2}{3}$}가 되고, 두 뺄셈식의 차는 서로 {같다}.",
+      "cStudentSentence": "$\\frac{5}{6}-\\frac{1}{2}$의 두 수에 각각 $\\frac{1}{6}$을 더하면 $1-$□가 되고, 두 뺄셈식의 차는 서로 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{2}{3}$",
+          "equivalents": [
+            "$\\frac{4}{6}$"
+          ]
+        },
+        {
+          "key": "같다",
+          "equivalents": [
+            "똑같다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "뺄셈식에서 처음 수와 빼는 수에 똑같은 수를 각각 더하면 차는 어떻게 되는지 설명하고, 이를 이용해 $\\frac{5}{6}-\\frac{1}{2}$과 $1-\\frac{2}{3}$의 차가 같은지 판단하시오.",
+        "answer": "두 수에 같은 수를 더해도 차는 변하지 않는다. $\\frac{5}{6}+\\frac{1}{6}=1$, $\\frac{1}{2}+\\frac{1}{6}=\\frac{2}{3}$이므로 두 식의 차는 같다(둘 다 $\\frac{1}{3}$).",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "차는 변하지 않는다",
+              "차는 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{5}{6}$과 $\\frac{1}{2}$에 각각 $\\frac{1}{6}$을 더하면 $1$과 $\\frac{2}{3}$이 되므로 두 식의 차는 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{5}{6}-\\frac{1}{2}$의 두 수에 각각 $\\frac{1}{6}$을 더하면 $1-${$\\frac{2}{3}$}가 되고, 두 뺄셈식의 차는 서로 {같다}.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{2}{3}$",
+            "$\\frac{4}{6}$"
+          ],
+          [
+            "같다",
+            "똑같다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "bde801f8691664ac817ce180be59ff3a59ce872419cbf379fe8c127b0c6a4467",
+      "questionRevision": "planning-e5e6-20261006-bde801f86916",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-4-xc4",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "자연수에는 분수 부분이 없는데, 자연수에서 대분수를 빼려면 자연수를 어떻게 바꾸어 계산하는지 설명하고 $3-1\\frac{2}{5}$를 계산하시오.",
+      "bAnswer": "자연수에서 $1$을 떼어 빼는 수와 분모가 같은 분수로 바꾼다. $3=2+\\frac{5}{5}$로 생각하면 자연수 부분의 차는 $2-1=1$, 분수 부분의 차는 $\\frac{5}{5}-\\frac{2}{5}=\\frac{3}{5}$이므로 $1\\frac{3}{5}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "자연수에서$1$을떼어빼는분수와같은분모의분수로바꾼다",
+            "$3=2+\\frac{5}{5}$로 바꾼다",
+            "자연수를분모가같은가분수로바꾼다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1\\frac{3}{5}$"
+          ]
+        }
+      ],
+      "bGoal": "자연수를 대분수 꼴로 바꾸어 대분수를 빼는 방법을 설명한다.",
+      "bReason": "분수 부분이 없는 자연수를 어떻게 다루는지가 이 행의 핵심이다.",
+      "cDecision": "revise",
+      "cAfter": "$3-1\\frac{2}{5}$를 계산할 때 $3$에서 $1$을 떼어 분모가 $5$인 분수로 바꾸면 $3=2+${$\\frac{5}{5}$}이다. 이를 이용해 빼면 차는 {$1\\frac{3}{5}$}이다.",
+      "cReason": "자연수와가분수를붙여대분수처럼쓰는중간표기대신덧셈식으로1을떼어표시하고분모5조건을명시한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{5}{5}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1\\frac{3}{5}$",
+            "$\\frac{8}{5}$"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-0880-0910.json",
+      "codexFinalAmendedFromFingerprint": "3b127e7f94a96f4b3408f385ef2c8ce035409ac9f6ce55ee65215606b138115e",
+      "sourceIndex": 909,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-4-xc4",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-4 대분수의 뺄셈",
+        "term": "자연수에서 대분수 빼기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "자연수에서 대분수를 뺄 때는 자연수에서 {$1$을 떼어} 분수로 바꾼 뒤 뺀다.",
+        "example": {
+          "prompt": "$3-1\\frac{2}{5}$를 계산하시오.",
+          "answer": "$1\\frac{3}{5}$"
+        },
+        "studentC": "자연수에서 대분수를 뺄 때는 자연수에서 □ 분수로 바꾼 뒤 뺀다.",
+        "answers": [
+          "$1$을 떼어"
+        ]
+      },
+      "sourceFingerprint": "4cf3f1335d36ae63f79596adc978461e99f4c2145e3d4d18c1988ae974c446fb",
+      "draftEvidence": "evidence/section-020-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$\\frac{5}{5}$",
+        "$1\\frac{3}{5}$"
+      ],
+      "cStudentAfter": "$3-1\\frac{2}{5}$를 계산할 때 $3$에서 $1$을 떼어 분모가 $5$인 분수로 바꾸면 $3=2+$□이다. 이를 이용해 빼면 차는 □이다.",
+      "cMarkedSentence": "$3-1\\frac{2}{5}$를 계산할 때 $3$에서 $1$을 떼어 분모가 $5$인 분수로 바꾸면 $3=2+${$\\frac{5}{5}$}이다. 이를 이용해 빼면 차는 {$1\\frac{3}{5}$}이다.",
+      "cStudentSentence": "$3-1\\frac{2}{5}$를 계산할 때 $3$에서 $1$을 떼어 분모가 $5$인 분수로 바꾸면 $3=2+$□이다. 이를 이용해 빼면 차는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{5}{5}$",
+          "equivalents": []
+        },
+        {
+          "key": "$1\\frac{3}{5}$",
+          "equivalents": [
+            "$\\frac{8}{5}$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "자연수에는 분수 부분이 없는데, 자연수에서 대분수를 빼려면 자연수를 어떻게 바꾸어 계산하는지 설명하고 $3-1\\frac{2}{5}$를 계산하시오.",
+        "answer": "자연수에서 $1$을 떼어 빼는 수와 분모가 같은 분수로 바꾼다. $3=2+\\frac{5}{5}$로 생각하면 자연수 부분의 차는 $2-1=1$, 분수 부분의 차는 $\\frac{5}{5}-\\frac{2}{5}=\\frac{3}{5}$이므로 $1\\frac{3}{5}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "자연수에서$1$을떼어빼는분수와같은분모의분수로바꾼다",
+              "$3=2+\\frac{5}{5}$로 바꾼다",
+              "자연수를분모가같은가분수로바꾼다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1\\frac{3}{5}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$3-1\\frac{2}{5}$를 계산할 때 $3$에서 $1$을 떼어 분모가 $5$인 분수로 바꾸면 $3=2+${$\\frac{5}{5}$}이다. 이를 이용해 빼면 차는 {$1\\frac{3}{5}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{5}{5}$"
+          ],
+          [
+            "$1\\frac{3}{5}$",
+            "$\\frac{8}{5}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "02efefc24e473bb06c5a3ff0b2fdb89d9e75a78901e63cc2013f3e57b479609a",
+      "questionRevision": "planning-e5e6-20261006-02efefc24e47",
+      "requiresIndependentReview": true
+    }
+  ]
+}

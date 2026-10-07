@@ -1,0 +1,1085 @@
+{
+  "reader": "Root Codex direct final question reading",
+  "file": "root-middle-final-3650-3675-input.json",
+  "rows": [
+    {
+      "id": "m3-06-04-xc10",
+      "sourceIndex": 3650,
+      "proposalFingerprint": "b4df3466aa7973053538f5a9d1308d9dafefddf10669568084a44d22df2332bc",
+      "normalizedHash": "aaae544e5af3acd52430bf75699907c4de01d7d0078fc6c22d3f4b57ff5e4a66",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": {
+        "excluded": "c5 B가 이미 같은 $\\angle ACB$ 찾기를 묻는다."
+      },
+      "C": {
+        "sentence": "$\\triangle ABC$의 외접원에서 점 $A$의 접선과 현 $AB$가 이루는 두 각 가운데, $C$를 포함하지 않는 {호} 쪽의 각은 {$\\angle ACB$}와 크기가 같다.",
+        "acceptedAnswers": [
+          [
+            "호"
+          ],
+          [
+            "$\\angle ACB$",
+            "$\\angle BCA$",
+            "$\\angle C$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "c5 B가 이미 같은 $\\angle ACB$ 찾기를 묻는다.",
+      "cReason": "두 각 가운데 어느 쪽인지 호로 가리키고 $\\angle ACB$를 찾게 해 분명하다."
+    },
+    {
+      "id": "m3-06-04-xc11",
+      "sourceIndex": 3651,
+      "proposalFingerprint": "ecec0567341f15a486e4938f49c9be0341adb08d3fba20c7556e886722c74058",
+      "normalizedHash": "cd5b54dbea2269f172f577c8fb8ee9bb90a02585458565126f2c3c9ff65a4cf5",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "원에 내접하는 사각형 $ABCD$에 대각선 $AC$, $BD$를 그었다. $\\angle BAC$와 크기가 같은 각을 사각형의 꼭짓점 세 개로 쓰고 까닭을 쓰시오.",
+        "answer": "$\\angle BDC$이다. 두 각은 같은 호 $BC$에 대한 원주각이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\angle BDC$",
+              "$\\angle CDB$"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 호 $BC$에 대한 원주각이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "원에 내접한 사각형 $ABCD$에서 $\\angle BAC$와 $\\angle BDC$는 같은 호 $BC$에 대한 {원주각}이라 크기가 {같다}.",
+        "acceptedAnswers": [
+          [
+            "원주각"
+          ],
+          [
+            "같다"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "대각선이 만드는 같은 호의 원주각을 학생이 스스로 찾도록 짝이 되는 각을 숨겼다.",
+      "cReason": "원주각과 같다라는 두 빈칸이 근거와 결론을 묻는다."
+    },
+    {
+      "id": "m3-06-04-xc12",
+      "sourceIndex": 3652,
+      "proposalFingerprint": "24580fa0d9132ae43fd12399995e3332e51d96e444859f631a5cc379f3c7db0b",
+      "normalizedHash": "4203df08bb715f3fd505cb5a78d06f2a54301f3bd95e952034172307283aa958",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "네 점 $A$, $B$, $C$, $D$에서 $\\angle ACB=\\angle ADB=90^\\circ$이다. 네 점이 한 원 위에 있는 까닭을 쓰고, 그 원의 중심을 말하시오.",
+        "answer": "$\\angle ACB=90^\\circ$이므로 $C$는 $\\overline{AB}$를 지름으로 하는 원 위에 있다. $D$도 같은 까닭으로 그 원 위에 있다. 원의 중심은 $\\overline{AB}$의 중점이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$C$, $D$가 모두 $\\overline{AB}$를 지름으로 하는 원 위에 있다",
+              "$90^\\circ$인 원주각이 바라보는 현은 지름이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "중심은 $\\overline{AB}$의 중점이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$\\angle ACB=\\angle ADB=90^\\circ$이면 $C$, $D$는 모두 $\\overline{AB}$를 {지름}으로 하는 원 위에 있다.",
+        "acceptedAnswers": [
+          [
+            "지름"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "xc23을 두 직각에 적용하는 상황이므로 원의 중심까지 답하게 했다.",
+      "cReason": "지름 빈칸 하나로 원이 정해지는 근거를 짧게 묻는다."
+    },
+    {
+      "id": "m3-06-04-xc14",
+      "sourceIndex": 3653,
+      "proposalFingerprint": "56021825ec3a33c29c913b162c45f08e983f34fbe6615fbe1fa31cab68069757",
+      "normalizedHash": "3452f38ab8889a08dda102706c777fb485b2e5c2bde0198f5b5b0125bddc7aa0",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "원 위의 점 $A$에서의 접선과 지름이 아닌 현 $AB$가 이루는 두 각이 있다. 이 가운데 큰 쪽 각은 어느 호에 대한 원주각과 크기가 같은가? 두 각의 합을 이용해 까닭을 쓰시오.",
+        "answer": "큰 각의 안쪽에 놓인 큰 호 $AB$에 대한 원주각과 같다. 두 각의 합은 $180^\\circ$이다. 작은 각은 작은 호에 대한 원주각과 같고, 작은 호와 큰 호에 대한 원주각의 합도 $180^\\circ$이다. 따라서 큰 각은 큰 호에 대한 원주각과 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "큰 호 $AB$에 대한 원주각"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 각의 합이 $180^\\circ$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "작은 호와 큰 호에 대한 원주각의 합이 $180^\\circ$이다",
+              "두 호의 중심각의 합이 $360^\\circ$이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "접선과 지름이 아닌 현이 이루는 두 각의 합은 {$180^\\circ$}이고, 큰 쪽 각은 그 안쪽의 {큰} 호에 대한 원주각과 크기가 같다.",
+        "acceptedAnswers": [
+          [
+            "$180^\\circ$"
+          ],
+          [
+            "큰"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "두 각 가운데 큰 쪽이 어느 호에 대응하는지와 $180^\\circ$ 근거를 묻게 했다.",
+      "cReason": "$180^\\circ$와 큰이라는 두 빈칸이 두 각의 관계를 짧게 묻는다."
+    },
+    {
+      "id": "m3-06-04-xc15",
+      "sourceIndex": 3654,
+      "proposalFingerprint": "a735a6858ceeec41172a543e40ecf6b0fbcc04b182ae533a66cfbe5fb07af0ed",
+      "normalizedHash": "0c6d5890b9695620144a85a91006a7a560ed71751741dda52a454a329d90edac",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "원 위의 점 $A$, $B$, $C$로 원주각 $\\angle ACB$를 만들었다. 직선 $AB$에 대하여 $C$와 같은 쪽에 있는 점 $Q$를 잡는다. $Q$가 원 안에 있을 때와 원 밖에 있을 때 각각 $\\angle AQB$와 $\\angle ACB$ 중 어느 쪽이 큰지 쓰시오. 또 $Q$가 원 안에 있을 때의 까닭을 쓰시오.",
+        "answer": "$Q$가 원 안이면 $\\angle AQB>\\angle ACB$이고, 원 밖이면 $\\angle AQB<\\angle ACB$이다. $Q$가 원 안일 때 $AQ$를 늘여 원과 만나는 점을 $R$이라 하면 $\\angle ARB=\\angle ACB$이다. $\\angle AQB$는 $\\triangle QRB$의 외각이라 $\\angle QRB+\\angle QBR$과 같으므로 $\\angle ARB$보다 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "원 안이면 $\\angle AQB$가 더 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "원 밖이면 $\\angle AQB$가 더 작다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$AQ$의 연장선이 원과 만나는 점에서의 원주각과 외각 성질로 비교한다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "직선 $AB$에 대하여 호 $AB$에 대한 원주각의 꼭짓점과 같은 쪽에 있는 점에서 선분 $AB$를 본 각은, 그 점이 원 안에 있으면 원주각보다 {크고} 원 밖에 있으면 원주각보다 {작다}.",
+        "acceptedAnswers": [
+          [
+            "크고"
+          ],
+          [
+            "작다"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "그림 없이 같은 쪽이라는 조건과 비교 대상을 정하고, 원 안인 경우의 근거만 요구했다.",
+      "cReason": "크고와 작다라는 두 빈칸이 위치에 따른 대소를 짧게 비교한다."
+    },
+    {
+      "id": "m3-06-04-xc16",
+      "sourceIndex": 3655,
+      "proposalFingerprint": "18c1be7aad904dfca15c8bd9e10dbde6e746194afc66b33e83b6fa6e87e50850",
+      "normalizedHash": "5b23218c6e87583192fb13763f801319429ba6488771c03dce42e3234fb963b7",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "원에 내접하는 사다리꼴 $ABCD$($\\overline{AD}\\parallel\\overline{BC}$)는 어떤 사다리꼴인가? 각의 크기를 이용해 까닭을 쓰시오.",
+        "answer": "등변사다리꼴이다. $\\overline{AD}\\parallel\\overline{BC}$이므로 $\\angle A+\\angle B=180^\\circ$이고, 원에 내접하므로 $\\angle A+\\angle C=180^\\circ$이다. 따라서 $\\angle B=\\angle C$, 즉 밑변 $BC$의 양 끝 각이 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "등변사다리꼴"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle A+\\angle B=180^\\circ$와 $\\angle A+\\angle C=180^\\circ$에서 $\\angle B=\\angle C$이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "원에 내접하는 사다리꼴은 {등변}사다리꼴이다 — 마주 보는 각의 합이 $180^\\circ$라 한 밑변의 양 끝 각이 {같아진다}.",
+        "acceptedAnswers": [
+          [
+            "등변"
+          ],
+          [
+            "같아진다"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "평행선의 각과 내접 조건을 함께 써서 밑각이 같아지는 까닭을 묻게 했다.",
+      "cReason": "등변과 같아진다라는 두 빈칸이 결론과 근거를 짧게 묻는다."
+    },
+    {
+      "id": "m3-06-04-xc17",
+      "sourceIndex": 3656,
+      "proposalFingerprint": "ec5baf8384adbf21053d32e843b87971aedd23068ce235989a354e7aec6666c5",
+      "normalizedHash": "a2b40530583be54f6c2efd2f7cee4cf922d2fc04797872c3c3272b14daa88c97",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "원 $O$ 위의 점 $A$에서의 접선 위에 점 $T$가 있고, 현 $AB$에 대하여 $\\angle TAB$는 예각이다. 지름 $AD$를 그을 때, $\\angle TAB=\\angle ADB$임을 직각 두 개를 이용해 보이시오.",
+        "answer": "접선은 반지름에 수직이라 $\\angle DAT=90^\\circ$이므로 $\\angle TAB=90^\\circ-\\angle DAB$이다. 또 $\\angle ABD$는 반원에 대한 원주각이라 $90^\\circ$이므로, $\\triangle ABD$에서 $\\angle ADB=90^\\circ-\\angle DAB$이다. 따라서 $\\angle TAB=\\angle ADB$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\angle DAT=90^\\circ$(접선은 지름에 수직)"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle ABD=90^\\circ$(반원에 대한 원주각)"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 각이 모두 $90^\\circ-\\angle DAB$이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "접점을 지나는 지름을 그으면 접선과 지름이 {$90^\\circ$}를 이룬다. 이를 이용해 접선과 현이 이루는 각은 그 각의 안쪽 호에 대한 {원주각}과 같음을 보일 수 있다.",
+        "acceptedAnswers": [
+          [
+            "$90^\\circ$"
+          ],
+          [
+            "원주각"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "증명 방향을 정하려고 예각 $\\angle TAB$와 지름 $AD$를 지정했다.",
+      "cReason": "$90^\\circ$와 원주각이라는 두 빈칸이 증명의 출발점과 결론을 묻는다."
+    },
+    {
+      "id": "m3-06-04-xc18",
+      "sourceIndex": 3657,
+      "proposalFingerprint": "31cb399cfa87aded552e33a3c993f9306a8b14e62f771084a9795fba5e87e1a2",
+      "normalizedHash": "fa2c55725638523fe9fa1da5ff6b4cacac1af87e4655cba503b47e41179b287a",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "원 밖의 점 $P$에서 그은 두 접선의 접점을 $A$, $B$라 하고, 두 호 $AB$ 가운데 큰 호 위에 점 $C$를 잡는다. $\\angle PAB$, $\\angle PBA$와 크기가 같은 원주각을 쓰고 까닭을 쓰시오.",
+        "answer": "둘 다 $\\angle ACB$와 같다. $\\angle PAB$는 접선 $PA$와 현 $AB$가 이루는 각이므로 그 안쪽의 작은 호 $AB$에 대한 원주각 $\\angle ACB$와 같다. $\\angle PBA$도 같은 까닭으로 $\\angle ACB$와 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\angle ACB$"
+            ]
+          },
+          {
+            "anyOf": [
+              "접선과 현이 이루는 각은 그 안쪽의 작은 호에 대한 원주각과 같다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "원 밖의 한 점과 두 접점을 이은 삼각형의 두 {밑각}은, 두 접점 사이의 {큰 호} 위의 점에서 두 접점을 바라보는 원주각과 크기가 같다.",
+        "acceptedAnswers": [
+          [
+            "밑각"
+          ],
+          [
+            "큰 호"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "예시처럼 접점과 큰 호 위의 점 $C$를 정해 두 밑각과 같은 원주각을 찾게 했다.",
+      "cReason": "밑각과 큰 호라는 두 빈칸이 대응 관계를 짧게 묻는다."
+    },
+    {
+      "id": "m3-06-04-xc19",
+      "sourceIndex": 3658,
+      "proposalFingerprint": "58b0f3ad33837f8be7f17616444a447fe2952d576991ebc60fbd7581e7e46135",
+      "normalizedHash": "c53bf1840309b23c158004aba2dccd9af6e1939b84283fd57ef736842bb0ca00",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "원 $O$ 위의 점 $A$에서 그은 접선과 현 $AB$가 이루는 예각의 크기가 $x$이다. $\\angle OAB$를 $x$로 나타내고 까닭을 쓰시오.",
+        "answer": "$\\angle OAB=90^\\circ-x$이다. 반지름 $OA$는 접선에 수직이므로, $OA$와 접선이 이루는 $90^\\circ$에서 $x$를 빼면 되기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$90^\\circ-x$"
+            ]
+          },
+          {
+            "anyOf": [
+              "반지름 $OA$가 접선에 수직이다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "접점 $A$에서의 접선과 현 $AB$가 이루는 예각이 $x$이면 중심 $O$에 대하여 $\\angle OAB=$ {$90^\\circ-x$}이다 — 반지름이 접선에 {수직}이다.",
+        "acceptedAnswers": [
+          [
+            "$90^\\circ-x$"
+          ],
+          [
+            "수직"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "반지름과 접선이 수직이라는 점이 핵심이므로 예각 $x$를 주고 $\\angle OAB$를 식으로 묻게 했다.",
+      "cReason": "$90^\\circ-x$와 수직이라는 두 빈칸이 결과와 근거를 짧게 묻는다."
+    },
+    {
+      "id": "m3-06-04-xc20",
+      "sourceIndex": 3659,
+      "proposalFingerprint": "883b025c3ce6d8f92eb4b3ec6306b5633649175053b1805e628c200c34ba4668",
+      "normalizedHash": "93cb1dbeebdfc0097787341f8ee62a1ae01d067dad5752a0db832e69d9b81309",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "등변사다리꼴 $ABCD$($\\overline{AD}\\parallel\\overline{BC}$, $\\angle B=\\angle C$)는 항상 원에 내접하는가? 판단하고, 대각의 합을 구해 까닭을 쓰시오.",
+        "answer": "항상 내접한다. $\\overline{AD}\\parallel\\overline{BC}$이므로 $\\angle A+\\angle B=180^\\circ$이고, $\\angle B=\\angle C$이므로 $\\angle A+\\angle C=180^\\circ$이다. 즉 대각의 합이 $180^\\circ$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "항상 내접한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle A+\\angle C=180^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "평행선에서 $\\angle A+\\angle B=180^\\circ$와 $\\angle B=\\angle C$를 쓴다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "등변사다리꼴은 한 밑변의 양 끝 각이 같아 마주 보는 두 각의 합이 {$180^\\circ$}가 되므로 언제나 원에 {내접}한다.",
+        "acceptedAnswers": [
+          [
+            "$180^\\circ$"
+          ],
+          [
+            "내접"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "xc16과 반대 방향이므로 평행선과 밑각 조건으로 대각의 합을 보이게 했다.",
+      "cReason": "$180^\\circ$와 내접이라는 두 빈칸이 판정 과정을 짧게 묻는다."
+    },
+    {
+      "id": "m3-06-04-xc22",
+      "sourceIndex": 3660,
+      "proposalFingerprint": "c36c9868b52163ad1780f88e3a093d5299cb4c8dffb12a3d9721ce89d2fed2d0",
+      "normalizedHash": "452752f3794b5d651de5104befe607ce9493cc4e4a4fb5c086e35b8eec533048",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "사각형 $ABCD$에서 세 점 $A$, $B$, $C$를 지나는 원을 그렸다. $\\angle B+\\angle D$가 $180^\\circ$보다 클 때와 작을 때, 꼭짓점 $D$는 각각 이 원의 안쪽과 바깥쪽 중 어디에 있는가? 까닭도 쓰시오.",
+        "answer": "$180^\\circ$보다 크면 안쪽, 작으면 바깥쪽에 있다. $D$와 같은 쪽 호 위의 점 $E$에서의 원주각 $\\angle AEC$는 $180^\\circ-\\angle B$이다. 그런데 직선 $AC$에 대하여 같은 쪽에 있는 점에서 본 각은 그 점이 원 안이면 원주각보다 크고, 원 밖이면 원주각보다 작기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "크면 안쪽에 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "작으면 바깥쪽에 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$D$ 쪽 호 위의 원주각이 $180^\\circ-\\angle B$이고, $\\angle D$를 그것과 비교한다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "사각형 $ABCD$에서 $\\angle B+\\angle D$가 $180^\\circ$보다 크면 꼭짓점 $D$는 세 점 $A$, $B$, $C$를 지나는 원의 {안쪽}에, $180^\\circ$보다 작으면 {바깥쪽}에 있다.",
+        "acceptedAnswers": [
+          [
+            "안쪽",
+            "안",
+            "내부"
+          ],
+          [
+            "바깥쪽",
+            "밖",
+            "외부"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "xc15를 내접 판정에 쓰는 응용이므로 위치의 두 경우와 비교 근거를 묻게 했다.",
+      "cReason": "안쪽과 바깥쪽이라는 짧은 비교 빈칸이 분명하다."
+    },
+    {
+      "id": "m3-07-01-xc1",
+      "sourceIndex": 3661,
+      "proposalFingerprint": "cc91c31ba0bd321d99dc7644501a05e2da4dd0354e80d449f0b9b40dadad4109",
+      "normalizedHash": "45a79fd0defca0693c711924553e36a8b4750557f3dcdbfc1155ad3bb439f052",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "$A$모둠의 평균은 $50$점, $B$모둠의 평균은 $80$점이다. 두 모둠에 모두 $65$점인 학생이 있을 때, 각 모둠에서 이 점수의 편차를 구하고 편차가 다른 이유를 쓰시오.",
+        "answer": "$A$모둠에서는 $15$점, $B$모둠에서는 $-15$점이다. 편차는 그 자료의 평균을 기준으로 구하므로 평균이 다르면 같은 변량이라도 편차가 달라진다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$15$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$-15$"
+            ]
+          },
+          {
+            "anyOf": [
+              "편차는 평균을 기준으로 한다",
+              "두 모둠의 평균이 다르다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "편차는 자료의 {평균}을 기준으로 하므로, 같은 변량 $70$이라도 평균이 $60$인 자료에서는 편차가 {$10$}, 평균이 $75$인 자료에서는 편차가 {$-5$}이다.",
+        "acceptedAnswers": [
+          [
+            "평균"
+          ],
+          [
+            "$10$"
+          ],
+          [
+            "$-5$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "같은 변량이 다른 자료에 속하는 구체 예가 있어야 기준의 의미가 드러남",
+      "cReason": "둘째 답 '속한 자료의 평균'이 첫째 답을 포함해 베끼기 쉬워 수치 예로 바꿈"
+    },
+    {
+      "id": "m3-07-01-xc2",
+      "sourceIndex": 3662,
+      "proposalFingerprint": "7f0379a51dbfaa701987dbf77cb836bf159af00037ca09cfbf04d6b757b2a9c8",
+      "normalizedHash": "ea249433305498781603779e8c9590b0168c7756898df746bda47c6adbb98b5a",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "어떤 변량이 평균보다 클 때, 평균보다 작을 때, 평균과 같을 때 그 편차는 각각 양수, 음수, $0$ 중 무엇인지 쓰시오.",
+        "answer": "평균보다 크면 양수, 평균보다 작으면 음수, 평균과 같으면 $0$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "크면 양수"
+            ]
+          },
+          {
+            "anyOf": [
+              "작으면 음수"
+            ]
+          },
+          {
+            "anyOf": [
+              "같으면 $0$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "평균보다 큰 변량의 편차는 {양수}, 평균보다 작은 변량의 편차는 {음수}, 평균과 같으면 {$0$}이다.",
+        "acceptedAnswers": [
+          [
+            "양수"
+          ],
+          [
+            "음수"
+          ],
+          [
+            "$0$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "세 경우를 나누어 부호를 답하도록 답의 형태를 정함",
+      "cReason": "세 경우의 부호를 짧게 대응시키는 분명한 빈칸임"
+    },
+    {
+      "id": "m3-07-01-xc3",
+      "sourceIndex": 3663,
+      "proposalFingerprint": "e320b6415de7a7a39910d1117609021806c4be31a7c68b4df2c0fc6f39c9b6e6",
+      "normalizedHash": "09619f124920ca9b66609570545d1109d04c0a1812178f4779ed7254f4358513",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "어떤 자료의 평균이 $72$점이고 한 학생 점수의 편차가 $-5$점이다. 이 학생의 점수를 구하는 방법을 쓰고 점수를 구하시오.",
+        "answer": "(변량) $=$ (평균) $+$ (편차)이므로 $72+(-5)=67$, 즉 $67$점이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "평균에 편차를 더한다",
+              "(평균) $+$ (편차)",
+              "$72+(-5)$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$67$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "편차는 (변량) $-$ (평균)이므로 (변량) $=$ (평균) {$+$} (편차)이다. 예를 들어 평균이 $80$점이고 편차가 $-6$점이면 변량은 {$74$}점이다.",
+        "acceptedAnswers": [
+          [
+            "$+$",
+            "더하기"
+          ],
+          [
+            "$74$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "추상 복원 문장 대신 평균과 편차가 주어진 실제 계산 상황을 제시함",
+      "cReason": "원문 빈칸 '평균', '편차'는 앞 문장에서 그대로 베낄 수 있어 연산과 예로 바꿈"
+    },
+    {
+      "id": "m3-07-01-xc4",
+      "sourceIndex": 3664,
+      "proposalFingerprint": "acceb369ea136c056c1899ebfd5f767c37e3a7ab0ce66f33dfe106fa82cbfc95",
+      "normalizedHash": "3e988d9fa3c2bb1339c0deac10e29d3f60339019ea0b8d819525591ce3c1f71d",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "자료 $1,\\ 1,\\ 1,\\ 5$의 분산을 구할 때 변량의 개수를 몇으로 보아야 하는지 쓰고, 분산을 구하시오.",
+        "answer": "같은 값도 각각 하나의 변량으로 세므로 개수는 $4$이다. 평균은 $2$, 편차의 제곱의 합은 $1+1+1+9=12$이므로 분산은 $3$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "같은 값이 여러 번 나와도 나온 {횟수}만큼 모두 변량으로 센다. 자료 $2,\\ 2,\\ 5$이면 변량의 개수는 {$3$}이고 분산은 {$2$}이다.",
+        "acceptedAnswers": [
+          [
+            "횟수"
+          ],
+          [
+            "$3$"
+          ],
+          [
+            "$2$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "서로 다른 값만 쓰면 답이 달라지는 자료를 주어야 성질이 확인됨",
+      "cReason": "'별개의 변량', '모든 변량'은 메타적 표현이라 구체 자료로 셈 방법을 확인하게 함"
+    },
+    {
+      "id": "m3-07-01-xc5",
+      "sourceIndex": 3665,
+      "proposalFingerprint": "2706981896a93ce3a96d028b8f4210e69292aaaae720a3d41ebe595631a3f3f2",
+      "normalizedHash": "70ca39e6d16e6fea7fe37789bf64fb58a4b8228c14d1b1d7f8b2cf8550305138",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "표준편차는 어떤 단위로 나타내는지 쓰고, 학생들의 몸무게를 $\\mathrm{kg}$으로 조사한 자료의 표준편차는 어떤 단위로 쓰는지 쓰시오.",
+        "answer": "표준편차는 변량과 같은 단위로 나타낸다. 따라서 몸무게 자료의 표준편차는 $\\mathrm{kg}$으로 쓴다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "변량과 같은 단위",
+              "자료와 같은 단위"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\mathrm{kg}$",
+              "킬로그램"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "표준편차는 {변량}과 같은 단위로 나타낸다 — 예를 들어 키를 $\\mathrm{cm}$로 재었으면 표준편차도 $\\mathrm{cm}$로 쓴다.",
+        "acceptedAnswers": [
+          [
+            "변량",
+            "자료의 값"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "일반 규칙과 구체 자료의 단위를 함께 답하게 범위를 정함",
+      "cReason": "긴 구절 빈칸을 핵심어 '변량'으로 줄여 예시가 답 전체를 드러내지 않게 함"
+    },
+    {
+      "id": "m3-07-01-xc6",
+      "sourceIndex": 3666,
+      "proposalFingerprint": "3ff339f6cb93cf3ed3031d079af507d950789bf5c4ad1b64f637d53a8fb4f0ba",
+      "normalizedHash": "97caa7772ef616ba05be4fcf928857a14d929e834a8b8f70e88ef5de2545b6e7",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": {
+        "excluded": "편차 합 $0$과 그 때문에 흩어짐을 못 잰다는 목표가 다른 항목과 겹침"
+      },
+      "C": {
+        "sentence": "편차를 모두 더하면 언제나 {$0$}이 되므로, 편차의 합으로는 흩어진 정도를 {나타낼 수 없다}.",
+        "acceptedAnswers": [
+          [
+            "$0$"
+          ],
+          [
+            "나타낼 수 없다",
+            "알 수 없다",
+            "나타내지 못한다"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "편차 합 $0$과 그 때문에 흩어짐을 못 잰다는 목표가 다른 항목과 겹침",
+      "cReason": "합이 $0$이라는 사실과 그 결과를 연결하는 짧은 빈칸으로 유용함"
+    },
+    {
+      "id": "m3-07-01-xc7",
+      "sourceIndex": 3667,
+      "proposalFingerprint": "805f1ab945c80b4f9b3b67b9c547af3550801263a590ebbc9e0e46ffc06a5b31",
+      "normalizedHash": "be66a60fe715390b1db68c68220f20792e32fb62c84d632d0637339554fa0fff",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "자료 $A$: $10,\\ 10,\\ 10$과 자료 $B$: $0,\\ 10,\\ 20$의 평균을 각각 구하고, 평균만으로는 두 자료를 다 설명할 수 없는 이유를 쓰시오.",
+        "answer": "두 자료의 평균은 모두 $10$이다. 그러나 $A$는 모두 평균과 같고 $B$는 평균에서 멀리 흩어져 있어 흩어진 정도가 다르므로, 평균만으로는 자료를 다 설명할 수 없다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "평균은 모두 $10$",
+              "두 평균이 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "흩어진 정도가 다르다",
+              "퍼진 정도가 다르다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "자료 $4,\\ 5,\\ 6$과 $1,\\ 5,\\ 9$는 평균이 모두 {$5$}이지만 변량이 {흩어진} 정도가 다르므로, 평균만으로는 두 자료를 다 설명할 수 없다.",
+        "acceptedAnswers": [
+          [
+            "$5$"
+          ],
+          [
+            "흩어진",
+            "퍼진"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "평균이 같고 흩어짐이 다른 두 자료를 주어야 '모자란 까닭'이 드러남",
+      "cReason": "둘째 빈칸 '설명'은 다른 말로도 채울 수 있어 모호하므로 예와 핵심어로 바꿈"
+    },
+    {
+      "id": "m3-07-01-xc10",
+      "sourceIndex": 3668,
+      "proposalFingerprint": "5599c1a2ab3871f2a3b4b51f5d0c94274a53f12b7cc5890f244ffcabe59eb213",
+      "normalizedHash": "d8abb325c1158009c6e7a94118f6d20b006a4064019bf95d5f2fa914628bd900",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "변량 $4$개의 편차가 $3$, $-1$, $2$, $x$일 때 $x$의 값을 구하고, 그렇게 구할 수 있는 이유를 쓰시오.",
+        "answer": "편차의 합은 $0$이므로 $3+(-1)+2+x=0$, 따라서 $x=-4$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "편차의 합은 $0$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$-4$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "편차의 합이 $0$이라는 성질을 쓰면 편차 하나를 모를 때 {나머지 편차의 합}의 부호를 바꾸어 구할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "나머지 편차의 합",
+            "다른 편차들의 합"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "방법 제목을 실제 미지 편차가 있는 계산과 근거 질문으로 바꿈",
+      "cReason": "나머지 편차의 합을 부호만 바꾼다는 방법을 짧게 확인함"
+    },
+    {
+      "id": "m3-07-01-xc11",
+      "sourceIndex": 3669,
+      "proposalFingerprint": "4d9cb21e9c9070ce0eeec3f4a930cb1f2640669ace509938f1470308cfe02d68",
+      "normalizedHash": "65157cef223ffbcb50d7f193264d40055bea98d53f6bf13c832b11a608b2cae7",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "변량 $n$개의 평균이 $m$일 때 변량의 합을 $m$, $n$으로 나타내고, 그렇게 되는 까닭을 쓰시오.",
+        "answer": "평균은 (변량의 합) $\\div n$이므로 변량의 합은 $mn$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$mn$",
+              "$m\\times n$",
+              "$nm$"
+            ]
+          },
+          {
+            "anyOf": [
+              "평균은 변량의 합을 개수로 나눈 값",
+              "(변량의 합) $\\div n=m$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "평균은 (변량의 합) $\\div$ (변량의 개수)이므로 (변량의 합) $=$ (평균) {$\\times$} (변량의 개수)이다. 예를 들어 평균이 $7$인 변량 $5$개의 합은 {$35$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\times$",
+            "곱하기"
+          ],
+          [
+            "$35$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "관계를 문자식으로 쓰게 하여 단순 수치 계산으로 줄이지 않음",
+      "cReason": "원문 빈칸 '평균', '변량의 개수'는 앞 구절에서 그대로 베낄 수 있음"
+    },
+    {
+      "id": "m3-07-01-xc12",
+      "sourceIndex": 3670,
+      "proposalFingerprint": "dcdf4d984927c524500f434f6881672ddbc13b35af8a8bf11a6a45d073e4d6f8",
+      "normalizedHash": "d4d08e04142b6ffde316b877fd3cd4db6b26b61243f066040113fe1135886de4",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "자료 $7,\\ 7,\\ 7,\\ 7$의 분산과 표준편차를 구하고, 모든 변량이 같은 자료에서 그런 값이 나오는 이유를 쓰시오.",
+        "answer": "평균이 $7$이므로 편차가 모두 $0$이다. 따라서 분산과 표준편차는 모두 $0$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분산 $0$"
+            ]
+          },
+          {
+            "anyOf": [
+              "표준편차 $0$"
+            ]
+          },
+          {
+            "anyOf": [
+              "편차가 모두 $0$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "모든 변량이 같으면 편차가 모두 {$0$}이므로 분산과 표준편차는 {$0$}이다.",
+        "acceptedAnswers": [
+          [
+            "$0$"
+          ],
+          [
+            "$0$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "구체 자료와 이유를 함께 물어 편차가 모두 $0$임을 연결하게 함",
+      "cReason": "편차 $0$에서 분산·표준편차 $0$으로 이어지는 짧은 빈칸임"
+    },
+    {
+      "id": "m3-07-01-xc13",
+      "sourceIndex": 3671,
+      "proposalFingerprint": "284752c760bf14919d1e5d8abbe7b499463a0c26b8d9225fa91ddec044304f7d",
+      "normalizedHash": "d3e6bb2e398ce2678ea0685bcbc29242733ccbe19d9ca33cf47d77dad03825a7",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "어떤 학생이 분산을 계산하여 $-4$를 얻었다. 이 결과가 틀린 이유를 분산의 뜻을 이용하여 쓰시오.",
+        "answer": "분산은 편차의 제곱의 평균인데 편차의 제곱은 모두 $0$ 이상이므로 분산도 $0$ 이상이어야 한다. 따라서 $-4$는 나올 수 없다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "편차의 제곱은 $0$ 이상",
+              "제곱은 음수가 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분산은 $0$ 이상",
+              "분산은 음수가 될 수 없다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "분산은 편차의 제곱의 평균이므로 언제나 {$0$ 이상}이고, 표준편차도 {음수}가 될 수 없다.",
+        "acceptedAnswers": [
+          [
+            "$0$ 이상",
+            "음이 아닌 수",
+            "$0$보다 크거나 같은 수"
+          ],
+          [
+            "음수"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "오답 사례를 주어 분산의 정의로 부호를 판단하게 함",
+      "cReason": "분산과 표준편차의 부호 범위를 각각 묻는 분명한 빈칸임"
+    },
+    {
+      "id": "m3-07-01-xc15",
+      "sourceIndex": 3672,
+      "proposalFingerprint": "4987f5573b54d03cd84cb6cb063d9669f80c279214621ca92e3ed8ed643579a9",
+      "normalizedHash": "a8ee7bfbe4ba00aeb247d519bdebf3ae7a9186f3e7c6ab4f3937c4abcde4e4e4",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "한 자료에 편차가 $1$인 변량과 편차가 $-3$인 변량이 있다. 분산을 구할 때 두 변량 중 어느 것이 더 크게 영향을 주는지 쓰고, 그 이유를 쓰시오.",
+        "answer": "편차가 $-3$인 변량이다. 편차의 제곱이 각각 $1$, $9$이므로 편차의 절댓값이 큰 변량이 편차의 제곱의 합에 더 크게 반영된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "편차가 $-3$인 변량"
+            ]
+          },
+          {
+            "anyOf": [
+              "편차의 제곱이 더 크다",
+              "$(-3)^2=9>1$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "한 자료에서 편차의 {절댓값}이 큰 변량일수록 편차의 {제곱}이 크므로, 분산을 구하는 편차의 제곱의 합에 더 크게 영향을 준다.",
+        "acceptedAnswers": [
+          [
+            "절댓값"
+          ],
+          [
+            "제곱"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "부호가 다른 편차를 주어 절댓값과 제곱으로 영향을 비교하게 함",
+      "cReason": "'반영된다' 빈칸은 학생에게 어려운 말이라 조건인 절댓값을 묻도록 바꿈"
+    },
+    {
+      "id": "m3-07-01-xc16",
+      "sourceIndex": 3673,
+      "proposalFingerprint": "c842778b41660d9375a28f2e623e020fc7633210d28e0248551a92a85a1362fd",
+      "normalizedHash": "5924a035a5ab54977e1586968f0db0e619108d7b17ebb885a014d09cd865278f",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "변량 $8$개의 분산이 $5$일 때 편차의 제곱의 합을 구하고, 구하는 방법을 쓰시오.",
+        "answer": "분산 $=$ (편차의 제곱의 합) $\\div$ (변량의 개수)이므로 편차의 제곱의 합은 $5\\times8=40$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$40$"
+            ]
+          },
+          {
+            "anyOf": [
+              "분산에 변량의 개수를 곱한다",
+              "$5\\times8$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "분산 $=$ (편차의 제곱의 합) $\\div$ (변량의 개수)이므로 (편차의 제곱의 합) $=$ (분산) {$\\times$} (변량의 개수)이다. 변량이 $5$개이고 분산이 $4$이면 편차의 제곱의 합은 {$20$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\times$",
+            "곱하기"
+          ],
+          [
+            "$20$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "되찾기 방법이 드러나도록 분산과 개수가 주어진 상황을 제시함",
+      "cReason": "원문 빈칸 두 개가 모두 앞 구절의 말을 그대로 옮기면 채워짐"
+    },
+    {
+      "id": "m3-07-01-xc19",
+      "sourceIndex": 3674,
+      "proposalFingerprint": "622e6dc18095649a712eb7b465cc2a35bd4701d461328bc851389602a9c641fe",
+      "normalizedHash": "e07c4543ebd7dec17cd137b65d1768e3b39ccd0c55fffaa17be70f15cdfe21c8",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "평균이 모두 $6$인 두 모둠이 있다. $A$모둠은 $4$명이고 분산이 $2$, $B$모둠은 $6$명이고 분산이 $7$이다. 두 모둠을 합친 자료의 평균과 분산을 구하는 과정과 답을 쓰시오.",
+        "answer": "평균은 그대로 $6$이다. 편차의 제곱의 합은 $4\\times2+6\\times7=50$이므로 분산은 $50\\div10=5$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "평균 $6$"
+            ]
+          },
+          {
+            "anyOf": [
+              "편차의 제곱의 합을 더해 전체 개수로 나눈다",
+              "$50\\div10$"
+            ]
+          },
+          {
+            "anyOf": [
+              "분산 $5$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "평균이 같은 두 모둠을 합치면 평균은 그대로이고, 분산은 두 모둠의 편차의 제곱의 {합}을 전체 {개수}로 나누어 구한다.",
+        "acceptedAnswers": [
+          [
+            "합"
+          ],
+          [
+            "개수",
+            "변량의 개수"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "두 분산의 단순 평균과 답이 달라지는 수치를 주어 방법을 확인함",
+      "cReason": "합과 전체 개수라는 두 단계를 짧게 확인하는 방법 빈칸임"
+    }
+  ]
+}

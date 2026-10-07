@@ -1,0 +1,2096 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T08:40:52.974Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-05-xc24",
+        "section": "중1::8. 통계::도수분포다각형",
+        "term": "계급 내부 값의 한계",
+        "kind": "성질",
+        "level": "상",
+        "definition": "점의 위치로 계급별 개수는 알지만 각 구간 안의 개별 변량까지 {정확히} 알아낼 수는 없다.",
+        "studentC": "점의 위치로 계급별 개수는 알지만 각 구간 안의 개별 변량까지 □ 알아낼 수는 없다.",
+        "answers": [
+          "정확히"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-05-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "도수분포다각형에서 $10$ 이상 $20$ 미만인 계급을 나타내는 점의 높이가 $4$이다. 이 계급에 속한 자료에 대해 그래프로 알 수 있는 것과 알 수 없는 것을 하나씩 쓰시오.",
+        "bAnswer": "이 계급에 속한 자료가 $4$개라는 것은 알 수 있지만, 그 $4$개의 값이 각각 얼마인지는 알 수 없다.",
+        "bGoal": "도수분포다각형으로 알 수 있는 것과 없는 것 구별하기",
+        "bReason": "'계급 내부 값의 한계'가 추상적이라 한 계급의 예로 구별하게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "이 계급에 속한 자료가 $4$개임을 알 수 있다",
+              "이 계급의 도수가 $4$임을 알 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "각 자료의 정확한 값은 알 수 없다",
+              "개별 변량은 알 수 없다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "도수분포다각형의 점으로 각 계급의 {도수}는 알 수 있지만, 그 계급에 속한 변량 하나하나의 값은 알 수 없다.",
+        "cAnswers": [
+          "도수"
+        ],
+        "cReason": "답 '정확히'가 수학 내용이 아닌 부사이고 그래프 이름도 없음",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "점이 알려 주는 것은 도수뿐이라는 한계를 예에 적용",
+        "authorBatch": 25,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2097,
+        "part": "m1plus",
+        "sourceFingerprint": "2ecf2343214ee9fe42b1372f641714cd2088f4180c61ad8ed20b2f82fe521ff3",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2097
+        },
+        "directReview": null,
+        "cMarkedSentence": "도수분포다각형의 점으로 각 계급의 {도수}는 알 수 있지만, 그 계급에 속한 변량 하나하나의 값은 알 수 없다.",
+        "cSlotAnswers": [
+          "도수"
+        ],
+        "cStudentSentence": "도수분포다각형의 점으로 각 계급의 □는 알 수 있지만, 그 계급에 속한 변량 하나하나의 값은 알 수 없다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "도수",
+            "equivalentAnswers": [
+              "도수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "도수"
+          ]
+        ],
+        "proposalFingerprint": "d422f52e4b1143d79ef049ae1598d5ef97d44412b58d704588665e48a0c0c198"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-05-xc25",
+        "section": "중1::8. 통계::도수분포다각형",
+        "term": "두 집단의 점 합치기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "같은 계급으로 정리한 두 집단을 합칠 때는 대응하는 점들의 {세로 좌표}를 더해 새 점의 높이로 삼는다.",
+        "studentC": "같은 계급으로 정리한 두 집단을 합칠 때는 대응하는 점들의 □를 더해 새 점의 높이로 삼는다.",
+        "answers": [
+          "세로 좌표"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-05-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "같은 계급으로 정리한 두 집단의 도수분포다각형이 있다. 두 집단을 합친 자료의 도수분포다각형을 그릴 때 각 계급을 나타내는 점의 높이는 어떻게 정하는지 쓰시오.",
+        "bAnswer": "같은 계급을 나타내는 두 점의 높이(도수)를 더한 값을 새 점의 높이로 한다.",
+        "bGoal": "두 집단을 합친 도수분포다각형의 점의 높이 정하기",
+        "bReason": "'점 합치기'를 합친 자료의 그래프에서 높이를 정하는 물음으로 밝힘",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "같은 계급의 두 점의 높이를 더한다",
+              "같은 계급의 두 도수를 더한다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "같은 계급으로 정리한 두 집단의 도수분포다각형을 합칠 때는 같은 계급을 나타내는 두 점의 세로 좌표를 {더한} 값이 합친 집단에서 그 계급의 {도수}가 된다.",
+        "cAnswers": [
+          "더한",
+          "도수"
+        ],
+        "cReason": "'대응하는 점'이 어려운 말이고 어떤 그래프의 점인지 없음",
+        "learningRole": "procedure",
+        "roleReason": "같은 계급의 도수를 더해 합친 그래프의 점을 정하는 방법",
+        "authorBatch": 25,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2098,
+        "part": "m1plus",
+        "sourceFingerprint": "3065c2ae611278fa1f4a6f683b351ea3a7c35b2fb95b04c9e4c3d4ab6b6d4d86",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2098
+        },
+        "directReview": null,
+        "cMarkedSentence": "같은 계급으로 정리한 두 집단의 도수분포다각형을 합칠 때는 같은 계급을 나타내는 두 점의 세로 좌표를 {더한} 값이 합친 집단에서 그 계급의 {도수}가 된다.",
+        "cSlotAnswers": [
+          "더한",
+          "도수"
+        ],
+        "cStudentSentence": "같은 계급으로 정리한 두 집단의 도수분포다각형을 합칠 때는 같은 계급을 나타내는 두 점의 세로 좌표를 □ 값이 합친 집단에서 그 계급의 □가 된다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "더한",
+            "equivalentAnswers": [
+              "더한",
+              "합한"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "도수",
+            "equivalentAnswers": [
+              "도수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "더한",
+            "accept": [
+              "합한"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "더한",
+            "합한"
+          ],
+          [
+            "도수"
+          ]
+        ],
+        "proposalFingerprint": "daefb0b45e238ffb6f3c26898325a0c74f5a4a5c9de9c9e6788bea7edbf2be4f"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-06-xc1",
+        "section": "중1::8. 통계::상대도수",
+        "term": "상대도수의 기준량",
+        "kind": "성질",
+        "level": "하",
+        "definition": "상대도수를 계산할 때 기준이 되는 양은 한 계급의 도수가 아니라 {전체 도수}이다.",
+        "studentC": "상대도수를 계산할 때 기준이 되는 양은 한 계급의 도수가 아니라 □이다.",
+        "answers": [
+          "전체 도수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-06-xc1",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "무엇으로 나누는지는 m1-08-06-c1의 뜻 물음에서 이미 답하게 됨",
+        "cDecision": "keep",
+        "cReason": "초등에서 배운 '기준이 되는 양'으로 나누는 수를 확인하는 분명한 빈칸",
+        "exclusionReason": "B 제외: m1-08-06-c1(상대도수의 뜻)과 학습 목표가 중복됨",
+        "learningRole": "definition",
+        "roleReason": "상대도수의 기준이 도수의 총합이라는 뜻",
+        "authorBatch": 25,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2099,
+        "part": "m1plus",
+        "sourceFingerprint": "e34361a86f764e7137784a46c6e7407ad16b8d414e66bfe7655e172bcd1e0a5a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2099
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "상대도수를 계산할 때 기준이 되는 양은 한 계급의 도수가 아니라 □이다.",
+        "cFrozenDefinition": "상대도수를 계산할 때 기준이 되는 양은 한 계급의 도수가 아니라 {전체 도수}이다.",
+        "cFrozenAnswers": [
+          "전체 도수"
+        ],
+        "cMarkedSentence": "상대도수를 계산할 때 기준이 되는 양은 한 계급의 도수가 아니라 {전체 도수}이다.",
+        "cSlotAnswers": [
+          "전체 도수"
+        ],
+        "cStudentSentence": "상대도수를 계산할 때 기준이 되는 양은 한 계급의 도수가 아니라 □이다.",
+        "cAnswers": [
+          "전체 도수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "전체 도수",
+            "equivalentAnswers": [
+              "전체 도수",
+              "도수의 총합"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "전체 도수",
+            "accept": [
+              "도수의 총합"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "전체 도수",
+            "도수의 총합"
+          ]
+        ],
+        "proposalFingerprint": "3ab391a88ff7de332e2fb84fee455f13b04c16695e924447e65d6f8e11ecaec7"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-06-xc2",
+        "section": "중1::8. 통계::상대도수",
+        "term": "상대도수의 단위",
+        "kind": "성질",
+        "level": "하",
+        "definition": "도수끼리 나눈 상대도수는 {비율}이므로 명이나 개 같은 단위를 붙이지 않는다.",
+        "studentC": "도수끼리 나눈 상대도수는 □이므로 명이나 개 같은 단위를 붙이지 않는다.",
+        "answers": [
+          "비율"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-06-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "도수의 총합이 $20$명이고 어떤 계급의 도수가 $5$명일 때, 이 계급의 상대도수 $0.25$에는 '명'과 같은 단위를 붙이지 않는다. 그 까닭을 쓰시오.",
+        "bAnswer": "상대도수는 같은 단위의 도수끼리 나눈 비율이어서 단위가 없기 때문이다.",
+        "bGoal": "상대도수에 단위가 없는 까닭 설명하기",
+        "bReason": "'단위'가 무엇의 단위인지 인원수 예를 들어 까닭을 묻게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "같은 단위의 도수끼리 나눈 값이다",
+              "전체에 대한 비율이다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "단위를 붙이지 않는 까닭인 '비율'을 묻는 분명한 빈칸",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "도수끼리 나눈 비율이라 단위가 없다는 까닭",
+        "authorBatch": 25,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2100,
+        "part": "m1plus",
+        "sourceFingerprint": "0fedd62c000123963a43e54ce3337ce01cbb2446fefb6ddb8f80bc1e4f31e345",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2100
+        },
+        "directReview": null,
+        "cFrozenSentence": "도수끼리 나눈 상대도수는 □이므로 명이나 개 같은 단위를 붙이지 않는다.",
+        "cFrozenDefinition": "도수끼리 나눈 상대도수는 {비율}이므로 명이나 개 같은 단위를 붙이지 않는다.",
+        "cFrozenAnswers": [
+          "비율"
+        ],
+        "cMarkedSentence": "도수끼리 나눈 상대도수는 {비율}이므로 명이나 개 같은 단위를 붙이지 않는다.",
+        "cSlotAnswers": [
+          "비율"
+        ],
+        "cStudentSentence": "도수끼리 나눈 상대도수는 □이므로 명이나 개 같은 단위를 붙이지 않는다.",
+        "cAnswers": [
+          "비율"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "비율",
+            "equivalentAnswers": [
+              "비율"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "비율"
+          ]
+        ],
+        "proposalFingerprint": "f45a4100477d1ecf3f5f62f587173ac65e1353365190c8bb6e0a6150178c8ffd"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-06-xc3",
+        "section": "중1::8. 통계::상대도수",
+        "term": "빈 계급의 상대도수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "자료가 없는 계급은 도수가 {$0$}이므로 상대도수도 {$0$}이다.",
+        "studentC": "자료가 없는 계급은 도수가 □이므로 상대도수도 □이다.",
+        "answers": [
+          "$0$",
+          "$0$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-06-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "상대도수가 $0$인 계급과 상대도수가 $1$인 계급은 각각 자료가 어떻게 들어 있는 계급인지 쓰시오.",
+        "bAnswer": "상대도수가 $0$인 계급은 속한 자료가 하나도 없는 계급이고, 상대도수가 $1$인 계급은 모든 자료가 속한 계급이다.",
+        "bGoal": "상대도수가 $0$과 $1$인 계급의 뜻 해석하기",
+        "bReason": "빈 계급만 물으면 단순 수치라 양 끝 값 $0$과 $1$의 뜻을 함께 묻게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "상대도수가 $0$이면 속한 자료가 없다",
+              "상대도수가 $0$이면 도수가 $0$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "상대도수가 $1$이면 모든 자료가 그 계급에 속한다",
+              "상대도수가 $1$이면 도수가 도수의 총합과 같다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "도수 $0$에서 상대도수 $0$으로 이어지는 짧은 계산 빈칸",
+        "learningRole": "application",
+        "roleReason": "상대도수의 양 끝 값을 자료의 상황으로 해석",
+        "authorBatch": 25,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2101,
+        "part": "m1plus",
+        "sourceFingerprint": "3b5638b9855dadb4c0213e911039d46e8475c0dfd6f9d11137b46b1aa816adfb",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2101
+        },
+        "directReview": null,
+        "cFrozenSentence": "자료가 없는 계급은 도수가 □이므로 상대도수도 □이다.",
+        "cFrozenDefinition": "자료가 없는 계급은 도수가 {$0$}이므로 상대도수도 {$0$}이다.",
+        "cFrozenAnswers": [
+          "$0$",
+          "$0$"
+        ],
+        "cMarkedSentence": "자료가 없는 계급은 도수가 {$0$}이므로 상대도수도 {$0$}이다.",
+        "cSlotAnswers": [
+          "$0$",
+          "$0$"
+        ],
+        "cStudentSentence": "자료가 없는 계급은 도수가 □이므로 상대도수도 □이다.",
+        "cAnswers": [
+          "$0$",
+          "$0$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$0$",
+            "equivalentAnswers": [
+              "$0$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$0$",
+            "equivalentAnswers": [
+              "$0$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$0$"
+          ],
+          [
+            "$0$"
+          ]
+        ],
+        "proposalFingerprint": "9c678bd17bf09b38cb5037553cfd50e30581318feb532b1914cb0ccda2921efd"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-06-xc4",
+        "section": "중1::8. 통계::상대도수",
+        "term": "전체가 들어 있는 계급",
+        "kind": "성질",
+        "level": "하",
+        "definition": "모든 자료가 한 계급에 속하면 그 계급의 상대도수는 {$1$}이다.",
+        "studentC": "모든 자료가 한 계급에 속하면 그 계급의 상대도수는 □이다.",
+        "answers": [
+          "$1$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-06-xc4",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "상대도수 $1$인 계급의 뜻을 m1-08-06-xc3에서 함께 묻고 있음",
+        "cDecision": "keep",
+        "cReason": "조건이 분명하고 값 하나를 묻는 짧은 빈칸",
+        "exclusionReason": "B 제외: m1-08-06-xc3(상대도수 $0$과 $1$의 뜻)에 포함되어 목표 중복",
+        "learningRole": "application",
+        "roleReason": "모든 자료가 속한 계급의 상대도수가 $1$임을 확인",
+        "authorBatch": 25,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2102,
+        "part": "m1plus",
+        "sourceFingerprint": "05c98e9fc0ee5cbc38e9736648078ad2cdeb15690c35bc0b36057598b351e1f6",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2102
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "모든 자료가 한 계급에 속하면 그 계급의 상대도수는 □이다.",
+        "cFrozenDefinition": "모든 자료가 한 계급에 속하면 그 계급의 상대도수는 {$1$}이다.",
+        "cFrozenAnswers": [
+          "$1$"
+        ],
+        "cMarkedSentence": "모든 자료가 한 계급에 속하면 그 계급의 상대도수는 {$1$}이다.",
+        "cSlotAnswers": [
+          "$1$"
+        ],
+        "cStudentSentence": "모든 자료가 한 계급에 속하면 그 계급의 상대도수는 □이다.",
+        "cAnswers": [
+          "$1$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$1$",
+            "equivalentAnswers": [
+              "$1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$1$"
+          ]
+        ],
+        "proposalFingerprint": "dc2248ec23a0b755af95029b6bf4b34e3df8f58a493b0eb69884a55c18e4efa2"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-06-xc5",
+        "section": "중1::8. 통계::상대도수",
+        "term": "상대도수를 소수로 읽기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "상대도수는 한 부분이 {전체}에서 차지하는 몫을 나타내며 분수 또는 소수로 쓸 수 있다.",
+        "studentC": "상대도수는 한 부분이 □에서 차지하는 몫을 나타내며 분수 또는 소수로 쓸 수 있다.",
+        "answers": [
+          "전체"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-06-xc5",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "제목(소수로 읽기)과 내용(전체에 대한 비율)이 어긋나고 뜻은 c1과 같음",
+        "cDecision": "exclude",
+        "cReason": "'몫'이 비율의 뜻으로 쓰여 혼란스럽고 xc1의 빈칸과 같은 내용임",
+        "exclusionReason": "B 제외: m1-08-06-c1(상대도수의 뜻)과 목표 중복이며 제목과 내용이 맞지 않음. C 제외: '전체' 빈칸이 m1-08-06-xc1의 '전체 도수' 빈칸과 중복이고 '차지하는 몫'이 나눗셈의 몫과 혼동됨",
+        "coreAfter": "상대도수는 한 계급의 도수가 {도수의 총합}에서 차지하는 {비율}을 나타내며 분수 또는 소수로 쓸 수 있다.",
+        "coreReason": "'몫'은 나눗셈의 몫과 혼동되므로 '비율'로 바꾸고 부분·전체가 무엇인지 밝힘",
+        "learningRole": "definition",
+        "roleReason": "상대도수가 전체에 대한 비율이라는 뜻",
+        "authorBatch": 25,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2103,
+        "part": "m1plus",
+        "sourceFingerprint": "e273cfbfa1655da393139c64ffb91b334ba3bc118be75cd5977da5e7cdb9c77a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2103
+        },
+        "directReview": null,
+        "coreBeforeRepair": "상대도수는 한 계급의 도수가 도수의 총합에서 차지하는 비율을 나타내며 분수 또는 소수로 쓸 수 있다.",
+        "coreRepairReason": "표지가 없어서 추가함. 원래 핵심어 '전체'를 구체적 용어 {도수의 총합}으로 이어받음. 혼동되는 '몫' 대신 {비율}을 표지로 함.",
+        "coreRepairEvidence": "core-repair/core-002",
+        "bRequiredIdeas": null,
+        "proposalFingerprint": "17d76e1bab1fe3575e3b3b5095f97af7a34c57fe2e34353a019f37cc97dfd887"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-06-xc6",
+        "section": "중1::8. 통계::상대도수",
+        "term": "절반인 계급",
+        "kind": "성질",
+        "level": "하",
+        "definition": "전체 자료 중 절반이 어떤 계급에 속하면 그 계급의 상대도수는 {$0.5$}이다.",
+        "studentC": "전체 자료 중 절반이 어떤 계급에 속하면 그 계급의 상대도수는 □이다.",
+        "answers": [
+          "$0.5$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-06-xc6",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "뜻에 절반을 넣어 값 하나를 얻는 것이라 서술형으로 물을 것이 없음",
+        "cDecision": "keep",
+        "cReason": "절반과 $0.5$를 잇는 짧은 계산 빈칸으로 분명함",
+        "exclusionReason": "B 제외: m1-08-06-c1의 뜻에 수 하나를 넣은 단순 수치 확인",
+        "learningRole": "application",
+        "roleReason": "절반인 계급의 상대도수를 $0.5$로 계산",
+        "authorBatch": 25,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2104,
+        "part": "m1plus",
+        "sourceFingerprint": "e04378aa45e6fcce7d17a8920d2dbdc3ecce51fd5e378f6acbfcfbdefc13ad2b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2104
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "전체 자료 중 절반이 어떤 계급에 속하면 그 계급의 상대도수는 □이다.",
+        "cFrozenDefinition": "전체 자료 중 절반이 어떤 계급에 속하면 그 계급의 상대도수는 {$0.5$}이다.",
+        "cFrozenAnswers": [
+          "$0.5$"
+        ],
+        "cMarkedSentence": "전체 자료 중 절반이 어떤 계급에 속하면 그 계급의 상대도수는 {$0.5$}이다.",
+        "cSlotAnswers": [
+          "$0.5$"
+        ],
+        "cStudentSentence": "전체 자료 중 절반이 어떤 계급에 속하면 그 계급의 상대도수는 □이다.",
+        "cAnswers": [
+          "$0.5$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$0.5$",
+            "equivalentAnswers": [
+              "$0.5$",
+              "$\\frac{1}{2}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$0.5$",
+            "accept": [
+              "$\\frac{1}{2}$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$0.5$",
+            "$\\frac{1}{2}$"
+          ]
+        ],
+        "proposalFingerprint": "f882d87ab86583bc1381cd45433e37e7d9668bab699103806ddbb30321d2f5d9"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-06-xc7",
+        "section": "중1::8. 통계::상대도수",
+        "term": "상대도수와 백분율",
+        "kind": "방법",
+        "level": "하",
+        "definition": "상대도수를 백분율로 바꾸려면 {$100$}을 곱한 수에 퍼센트 기호를 붙인다.",
+        "studentC": "상대도수를 백분율로 바꾸려면 □을 곱한 수에 퍼센트 기호를 붙인다.",
+        "answers": [
+          "$100$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-06-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "상대도수를 백분율로 바꾸는 방법을 쓰고, 상대도수 $0.35$를 백분율로, $8\\%$를 상대도수로 각각 나타내시오.",
+        "bAnswer": "상대도수에 $100$을 곱하고 $\\%$를 붙인다. $0.35$는 $35\\%$이고, $8\\%$는 $8\\div 100=0.08$이다.",
+        "bGoal": "상대도수와 백분율을 서로 바꾸기",
+        "bReason": "두 양의 어떤 관계인지 바꾸는 방법으로 특정하고 양방향을 한 번에 확인함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$100$을 곱하고 $\\%$를 붙인다",
+              "$100$배 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$35\\%$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.08$",
+              "$\\frac{8}{100}$",
+              "$\\frac{2}{25}$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "곱하는 수를 묻는 짧고 분명한 방법 빈칸",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "$100$을 곱하거나 나누어 상대도수와 백분율을 바꾸는 방법",
+        "authorBatch": 25,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2105,
+        "part": "m1plus",
+        "sourceFingerprint": "8867cd97f1ebf35e1189591df3927cddb352e92e1c96daac84524c09c5e41e44",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2105
+        },
+        "directReview": null,
+        "cFrozenSentence": "상대도수를 백분율로 바꾸려면 □을 곱한 수에 퍼센트 기호를 붙인다.",
+        "cFrozenDefinition": "상대도수를 백분율로 바꾸려면 {$100$}을 곱한 수에 퍼센트 기호를 붙인다.",
+        "cFrozenAnswers": [
+          "$100$"
+        ],
+        "cMarkedSentence": "상대도수를 백분율로 바꾸려면 {$100$}을 곱한 수에 퍼센트 기호를 붙인다.",
+        "cSlotAnswers": [
+          "$100$"
+        ],
+        "cStudentSentence": "상대도수를 백분율로 바꾸려면 □을 곱한 수에 퍼센트 기호를 붙인다.",
+        "cAnswers": [
+          "$100$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$100$",
+            "equivalentAnswers": [
+              "$100$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$100$"
+          ]
+        ],
+        "proposalFingerprint": "da2916af19b430e504a6d0a45e10f92e2e7ab5bcbe54a82bfd30f90ff2f8fc03"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-06-xc8",
+        "section": "중1::8. 통계::상대도수",
+        "term": "비율이 큰 계급 읽기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "한 자료에서 상대도수들을 비교해 가장 {큰} 값을 찾으면 비중이 가장 큰 계급을 안다.",
+        "studentC": "한 자료에서 상대도수들을 비교해 가장 □ 값을 찾으면 비중이 가장 큰 계급을 안다.",
+        "answers": [
+          "큰"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-06-xc8",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "상대도수가 크면 비율이 크다는 말은 뜻을 되풀이하는 것에 그침",
+        "cDecision": "rewrite",
+        "cAfter": "한 자료에서 전체에서 차지하는 비율이 가장 큰 계급을 찾으려면 {상대도수}가 가장 큰 계급을 찾는다.",
+        "cAnswers": [
+          "상대도수"
+        ],
+        "cReason": "답 '큰'이 뒤의 '가장 큰 계급'에 그대로 나오고 '비중'도 낯선 말임",
+        "exclusionReason": "B 제외: 상대도수의 뜻(c1)을 되풀이하는 조각 제목이며 크기 비교는 c4와 중복",
+        "learningRole": "application",
+        "roleReason": "상대도수의 크기로 비율이 가장 큰 계급 찾기",
+        "authorBatch": 25,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2106,
+        "part": "m1plus",
+        "sourceFingerprint": "622b45329b3d6c95a449c718b6dc8c19b461891e66661499c97180a9ab4871a0",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2106
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "한 자료에서 전체에서 차지하는 비율이 가장 큰 계급을 찾으려면 {상대도수}가 가장 큰 계급을 찾는다.",
+        "cSlotAnswers": [
+          "상대도수"
+        ],
+        "cStudentSentence": "한 자료에서 전체에서 차지하는 비율이 가장 큰 계급을 찾으려면 □가 가장 큰 계급을 찾는다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "상대도수",
+            "equivalentAnswers": [
+              "상대도수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "상대도수"
+          ]
+        ],
+        "proposalFingerprint": "c1fcfdc17e633b5a267d63f7bf65d60f783abbf9eef8b628fec4ae92192413bf"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-06-xc9",
+        "section": "중1::8. 통계::상대도수",
+        "term": "도수의 총합 되찾기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "도수가 양수인 계급에서 그 도수를 {상대도수}로 나누면 {전체 도수}를 구할 수 있다.",
+        "studentC": "도수가 양수인 계급에서 그 도수를 □로 나누면 □를 구할 수 있다.",
+        "answers": [
+          "상대도수",
+          "전체 도수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-06-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "어떤 계급의 도수와 상대도수를 알 때 도수의 총합을 구하는 방법을 쓰고, 도수가 $6$이고 상대도수가 $0.15$인 계급이 있는 자료의 도수의 총합을 구하시오.",
+        "bAnswer": "그 계급의 도수를 상대도수로 나눈다. $6\\div 0.15=40$",
+        "bGoal": "도수와 상대도수로 도수의 총합 구하기",
+        "bReason": "'되찾기'를 무엇을 알 때 무엇을 구하는지로 밝히고 수로 확인하게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "도수를 상대도수로 나눈다",
+              "(도수)$\\div$(상대도수)"
+            ]
+          },
+          {
+            "anyOf": [
+              "$40$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "도수가 $0$이 아닌 계급에서 그 계급의 도수를 {상대도수}로 나누면 도수의 총합을 구할 수 있다.",
+        "cAnswers": [
+          "상대도수"
+        ],
+        "cReason": "나누는 수와 결과가 모두 빈칸이라 결과를 보여 주고 나누는 수만 물음",
+        "studentLabel": "도수의 총합 구하기",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "도수를 상대도수로 나누어 도수의 총합을 구하는 계산",
+        "authorBatch": 25,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2107,
+        "part": "m1plus",
+        "sourceFingerprint": "65972615ff64786c3d6bc84e710c13e2ba703422c1e841c15543fc59c4840c3a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2107
+        },
+        "directReview": null,
+        "cMarkedSentence": "도수가 $0$이 아닌 계급에서 그 계급의 도수를 {상대도수}로 나누면 도수의 총합을 구할 수 있다.",
+        "cSlotAnswers": [
+          "상대도수"
+        ],
+        "cStudentSentence": "도수가 $0$이 아닌 계급에서 그 계급의 도수를 □로 나누면 도수의 총합을 구할 수 있다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "상대도수",
+            "equivalentAnswers": [
+              "상대도수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "상대도수"
+          ]
+        ],
+        "proposalFingerprint": "745026a15106753ab951e93a27187346df012932c2c632f5ca25c150471465df"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-06-xc10",
+        "section": "중1::8. 통계::상대도수",
+        "term": "남은 상대도수 채우기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "나머지 상대도수가 {정확한 값}으로 주어졌다면, 비어 있는 상대도수 한 칸은 {$1$}에서 나머지 상대도수들의 {합}을 빼서 채운다.",
+        "studentC": "나머지 상대도수가 □으로 주어졌다면, 비어 있는 상대도수 한 칸은 □에서 나머지 상대도수들의 □을 빼서 채운다.",
+        "answers": [
+          "정확한 값",
+          "$1$",
+          "합"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-06-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "상대도수의 분포표에서 한 계급의 상대도수만 비어 있고 나머지 세 계급의 상대도수는 $0.1$, $0.3$, $0.4$로 정확히 주어졌다. 빈칸을 구하는 방법을 쓰고 그 값을 구하시오.",
+        "bAnswer": "상대도수의 총합이 $1$이므로 $1$에서 나머지 상대도수의 합을 뺀다. $1-(0.1+0.3+0.4)=0.2$",
+        "bGoal": "상대도수의 총합이 $1$임을 이용해 빈칸 구하기",
+        "bReason": "'남은 상대도수'가 어떤 상황인지 분포표의 빈칸 하나로 밝힘",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$1$에서 나머지 상대도수의 합을 뺀다",
+              "상대도수의 총합이 $1$임을 이용한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.2$",
+              "$\\frac{1}{5}$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "나머지 상대도수가 모두 정확한 값으로 주어졌다면, 비어 있는 상대도수 한 칸은 {$1$}에서 나머지 상대도수들의 {합}을 빼서 구한다.",
+        "cAnswers": [
+          "$1$",
+          "합"
+        ],
+        "cReason": "'정확한 값'은 학생이 떠올릴 수 없는 임의 구절 빈칸이라 문장에 남김",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "총합 $1$에서 나머지를 빼어 빈칸을 구하는 방법",
+        "authorBatch": 25,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2108,
+        "part": "m1plus",
+        "sourceFingerprint": "4314f8cfe49be70f19c309aef645ef663e4cd266109df045c2010f12a69c3d8e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2108
+        },
+        "directReview": null,
+        "cMarkedSentence": "나머지 상대도수가 모두 정확한 값으로 주어졌다면, 비어 있는 상대도수 한 칸은 {$1$}에서 나머지 상대도수들의 {합}을 빼서 구한다.",
+        "cSlotAnswers": [
+          "$1$",
+          "합"
+        ],
+        "cStudentSentence": "나머지 상대도수가 모두 정확한 값으로 주어졌다면, 비어 있는 상대도수 한 칸은 □에서 나머지 상대도수들의 □을 빼서 구한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$1$",
+            "equivalentAnswers": [
+              "$1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "합",
+            "equivalentAnswers": [
+              "합"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "합"
+          ]
+        ],
+        "proposalFingerprint": "219ad6c62f0c5e05b2dde37a6c0bd2c3a9e9604fa887edc54e2717fe6aaffba4"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-06-xc11",
+        "section": "중1::8. 통계::상대도수",
+        "term": "여러 구간의 비중 합치기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "서로 겹치지 않는 계급들을 묶은 비율은 각 계급의 상대도수를 {더해서} 구한다.",
+        "studentC": "서로 겹치지 않는 계급들을 묶은 비율은 각 계급의 상대도수를 □ 구한다.",
+        "answers": [
+          "더해서"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-06-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "상대도수의 분포표에서 서로 겹치지 않는 두 계급의 상대도수가 $0.2$, $0.35$이다. 두 계급을 합친 범위의 자료가 전체에서 차지하는 비율을 구하는 방법을 쓰고 그 값을 구하시오.",
+        "bAnswer": "두 계급의 상대도수를 더한다. $0.2+0.35=0.55$",
+        "bGoal": "여러 계급을 합친 범위의 비율 구하기",
+        "bReason": "'비중 합치기'를 두 계급의 상대도수가 주어진 상황으로 밝힘",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 계급의 상대도수를 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.55$",
+              "$55\\%$",
+              "$\\frac{11}{20}$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "조건이 문장에 있고 연산 하나를 묻는 분명한 빈칸",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "겹치지 않는 계급의 상대도수를 더하는 방법",
+        "authorBatch": 25,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2109,
+        "part": "m1plus",
+        "sourceFingerprint": "1249bb0af66357c5adaff7f948a6d3f89b6c8d17baf67c9a4fe5f96b270f3696",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2109
+        },
+        "directReview": null,
+        "cFrozenSentence": "서로 겹치지 않는 계급들을 묶은 비율은 각 계급의 상대도수를 □ 구한다.",
+        "cFrozenDefinition": "서로 겹치지 않는 계급들을 묶은 비율은 각 계급의 상대도수를 {더해서} 구한다.",
+        "cFrozenAnswers": [
+          "더해서"
+        ],
+        "cMarkedSentence": "서로 겹치지 않는 계급들을 묶은 비율은 각 계급의 상대도수를 {더해서} 구한다.",
+        "cSlotAnswers": [
+          "더해서"
+        ],
+        "cStudentSentence": "서로 겹치지 않는 계급들을 묶은 비율은 각 계급의 상대도수를 □ 구한다.",
+        "cAnswers": [
+          "더해서"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "더해서",
+            "equivalentAnswers": [
+              "더해서",
+              "더하여",
+              "합하여"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "더해서",
+            "accept": [
+              "더하여",
+              "합하여"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "더해서",
+            "더하여",
+            "합하여"
+          ]
+        ],
+        "proposalFingerprint": "a3abf1fdccca2965a5bdd521548186c300fa9f49ebfb440f143f674523f5cc64"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-06-xc12",
+        "section": "중1::8. 통계::상대도수",
+        "term": "같은 전체 안의 비율 비교",
+        "kind": "성질",
+        "level": "중",
+        "definition": "한 자료에서는 전체 도수가 같으므로 상대도수가 더 {큰} 계급의 도수도 더 크다.",
+        "studentC": "한 자료에서는 전체 도수가 같으므로 상대도수가 더 □ 계급의 도수도 더 크다.",
+        "answers": [
+          "큰"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-06-xc12",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "한 자료에서 상대도수와 도수의 크기 관계는 c4의 정비례 물음과 같음",
+        "cDecision": "rewrite",
+        "cAfter": "한 자료에서는 도수의 총합이 같으므로 상대도수가 더 큰 계급은 {도수}도 더 크다.",
+        "cAnswers": [
+          "도수"
+        ],
+        "cReason": "답 '큰'을 뒤의 '더 크다'에서 바로 알 수 있어 비교 대상을 묻게 함",
+        "exclusionReason": "B 제외: m1-08-06-c4(상대도수와 도수의 정비례)와 학습 목표가 중복됨",
+        "learningRole": "application",
+        "roleReason": "한 자료 안에서 상대도수 순서와 도수 순서가 같음",
+        "authorBatch": 25,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2110,
+        "part": "m1plus",
+        "sourceFingerprint": "12863c087ac717d96616a274d63b5b308738a77e9949d6c52c68d51299e5a0c8",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2110
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "한 자료에서는 도수의 총합이 같으므로 상대도수가 더 큰 계급은 {도수}도 더 크다.",
+        "cSlotAnswers": [
+          "도수"
+        ],
+        "cStudentSentence": "한 자료에서는 도수의 총합이 같으므로 상대도수가 더 큰 계급은 □도 더 크다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "도수",
+            "equivalentAnswers": [
+              "도수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "도수"
+          ]
+        ],
+        "proposalFingerprint": "041ad837a3e461d97d94fca39dea773677d52c737d01756dd913eb81077919ed"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-06-xc13",
+        "section": "중1::8. 통계::상대도수",
+        "term": "백분율에서 상대도수로",
+        "kind": "방법",
+        "level": "중",
+        "definition": "백분율의 {$\\%$ 앞의 수}를 {$100$}으로 나누면 상대도수로 나타낼 수 있다.",
+        "studentC": "백분율의 □를 □으로 나누면 상대도수로 나타낼 수 있다.",
+        "answers": [
+          "$\\%$ 앞의 수",
+          "$100$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-06-xc13",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "백분율을 상대도수로 바꾸는 계산을 xc7 물음에 함께 넣었음",
+        "cDecision": "rewrite",
+        "cAfter": "백분율을 상대도수로 나타내려면 $\\%$ 앞의 수를 {$100$}으로 나눈다.",
+        "cAnswers": [
+          "$100$"
+        ],
+        "cReason": "첫 답 '$\\%$ 앞의 수'는 학생이 스스로 쓰기 어려운 임의 구절임",
+        "exclusionReason": "B 제외: m1-08-06-xc7(상대도수와 백분율 바꾸기)의 역방향으로 목표 중복",
+        "learningRole": "procedure",
+        "roleReason": "백분율을 $100$으로 나누어 상대도수로 바꾸는 방법",
+        "authorBatch": 25,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2111,
+        "part": "m1plus",
+        "sourceFingerprint": "076cb5a5861f27479dd0a75a004625f1f93970fd81004ffc5949c868cbe87f11",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2111
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "백분율을 상대도수로 나타내려면 $\\%$ 앞의 수를 {$100$}으로 나눈다.",
+        "cSlotAnswers": [
+          "$100$"
+        ],
+        "cStudentSentence": "백분율을 상대도수로 나타내려면 $\\%$ 앞의 수를 □으로 나눈다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$100$",
+            "equivalentAnswers": [
+              "$100$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$100$"
+          ]
+        ],
+        "proposalFingerprint": "62f4e4e704ca95d75fef2ec628a74ebeaa0e389c3fb8975fef025b87b984a8eb"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-06-xc14",
+        "section": "중1::8. 통계::상대도수",
+        "term": "도수 비를 상대도수 비로",
+        "kind": "성질",
+        "level": "중",
+        "definition": "같은 자료에서 도수가 양수인 두 계급을 택하면 도수의 {비}와 상대도수의 {비}가 같다.",
+        "studentC": "같은 자료에서 도수가 양수인 두 계급을 택하면 도수의 □와 상대도수의 □가 같다.",
+        "answers": [
+          "비",
+          "비"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-06-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "한 자료에서 두 계급의 도수가 $4$와 $6$이다. 두 계급의 상대도수의 비를 가장 간단한 자연수의 비로 나타내고, 도수의 총합을 몰라도 구할 수 있는 까닭을 쓰시오.",
+        "bAnswer": "$2:3$이다. 두 상대도수는 각 도수를 같은 도수의 총합으로 나눈 값이므로 상대도수의 비는 도수의 비와 같다.",
+        "bGoal": "한 자료에서 도수의 비와 상대도수의 비가 같음을 설명하기",
+        "bReason": "두 비의 관계를 구체적인 도수로 묻고 총합 없이 가능한 까닭을 요구함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2:3$",
+              "$4:6$"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 도수를 같은 도수의 총합으로 나누기 때문",
+              "상대도수의 비는 도수의 비와 같다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "같은 자료에서 도수가 $0$이 아닌 두 계급의 도수의 비는 두 계급의 {상대도수}의 비와 같다.",
+        "cAnswers": [
+          "상대도수"
+        ],
+        "cReason": "두 빈칸의 답이 모두 '비'라 무엇을 묻는지 드러나지 않음",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "같은 총합으로 나누므로 두 비가 같다는 근거",
+        "authorBatch": 25,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2112,
+        "part": "m1plus",
+        "sourceFingerprint": "197f3bb7f8f9652685075bc2f2cfefd5babb079b57fef2a98a33159d2a029e0e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2112
+        },
+        "directReview": null,
+        "cMarkedSentence": "같은 자료에서 도수가 $0$이 아닌 두 계급의 도수의 비는 두 계급의 {상대도수}의 비와 같다.",
+        "cSlotAnswers": [
+          "상대도수"
+        ],
+        "cStudentSentence": "같은 자료에서 도수가 $0$이 아닌 두 계급의 도수의 비는 두 계급의 □의 비와 같다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "상대도수",
+            "equivalentAnswers": [
+              "상대도수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "상대도수"
+          ]
+        ],
+        "proposalFingerprint": "f23b9e6293f14c9ea63d866f856a7a2b01ea788d5c6bee3aed6c1bbd82cc889d"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-06-xc15",
+        "section": "중1::8. 통계::상대도수",
+        "term": "서로 다른 전체에서 같은 비율",
+        "kind": "성질",
+        "level": "상",
+        "definition": "두 집단의 상대도수가 같아도 전체 개수가 {다르면} 해당 계급의 도수는 {다를 수 있다}.",
+        "studentC": "두 집단의 상대도수가 같아도 전체 개수가 □ 해당 계급의 도수는 □.",
+        "answers": [
+          "다르면",
+          "다를 수 있다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-06-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "두 집단 $A$, $B$의 도수의 총합은 각각 $20$, $50$이고, 어떤 계급의 상대도수는 두 집단 모두 $0.2$이다. 이 계급의 도수가 두 집단에서 같은지 판단하고 까닭을 쓰시오.",
+        "bAnswer": "같지 않다. 도수는 (도수의 총합)$\\times$(상대도수)이므로 $A$는 $20\\times 0.2=4$, $B$는 $50\\times 0.2=10$이다. 상대도수가 같아도 도수의 총합이 다르면 도수는 다르다.",
+        "bGoal": "상대도수가 같아도 도수가 다를 수 있음을 설명하기",
+        "bReason": "'서로 다른 전체'를 총합이 다른 두 집단의 수로 주어 판단하게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "같지 않다"
+            ]
+          },
+          {
+            "anyOf": [
+              "도수의 총합이 다르기 때문",
+              "$A$는 $4$, $B$는 $10$이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "두 집단에서 어떤 계급의 상대도수가 같아도 {도수의 총합}이 다르면 그 계급의 도수는 서로 다를 수 있다.",
+        "cAnswers": [
+          "도수의 총합"
+        ],
+        "cReason": "조건과 결론이 모두 빈칸이고 '전체 개수'가 무엇인지 분명하지 않음",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "같은 상대도수라도 총합에 따라 도수가 달라짐을 계산으로 확인",
+        "authorBatch": 25,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2113,
+        "part": "m1plus",
+        "sourceFingerprint": "bccbc850f6e10217f282d6da96f40a128bc11f0ba9d762c1873bf2f5f5617012",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2113
+        },
+        "directReview": null,
+        "cMarkedSentence": "두 집단에서 어떤 계급의 상대도수가 같아도 {도수의 총합}이 다르면 그 계급의 도수는 서로 다를 수 있다.",
+        "cSlotAnswers": [
+          "도수의 총합"
+        ],
+        "cStudentSentence": "두 집단에서 어떤 계급의 상대도수가 같아도 □이 다르면 그 계급의 도수는 서로 다를 수 있다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "도수의 총합",
+            "equivalentAnswers": [
+              "도수의 총합",
+              "전체 도수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "도수의 총합",
+            "accept": [
+              "전체 도수"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "도수의 총합",
+            "전체 도수"
+          ]
+        ],
+        "proposalFingerprint": "a471c2c155755772947a31f875c918f42ce8afff1d552046f64e9cacc67610d1"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-06-xc16",
+        "section": "중1::8. 통계::상대도수",
+        "term": "전체를 같은 배로 늘리기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "모든 계급의 도수를 같은 양의 수만큼 곱하면 전체 도수도 같은 배가 되어 상대도수는 {유지된다}.",
+        "studentC": "모든 계급의 도수를 같은 양의 수만큼 곱하면 전체 도수도 같은 배가 되어 상대도수는 □.",
+        "answers": [
+          "유지된다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-06-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "한 자료에서 모든 계급의 도수를 똑같이 $3$배로 하면 각 계급의 상대도수는 어떻게 되는지 쓰고, 그 까닭을 쓰시오.",
+        "bAnswer": "변하지 않는다. 도수의 총합도 $3$배가 되어 (도수)$\\div$(도수의 총합)의 값이 그대로이기 때문이다.",
+        "bGoal": "모든 도수를 같은 배로 늘려도 상대도수가 같은 까닭 설명하기",
+        "bReason": "'전체를 같은 배로'가 무엇을 늘리는지 $3$배의 예로 밝히고 까닭을 묻게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "상대도수는 변하지 않는다",
+              "상대도수는 그대로이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "도수의 총합도 $3$배가 되기 때문",
+              "도수와 총합이 같은 배로 늘어나기 때문"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "모든 계급의 도수에 같은 양수를 곱하면 도수의 총합도 같은 배가 되므로 각 계급의 상대도수는 {변하지 않는다}.",
+        "cAnswers": [
+          "변하지 않는다"
+        ],
+        "cReason": "'같은 양의 수만큼 곱하면'이 어색해 읽기 어려워 표현을 다듬음",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "도수와 총합이 같은 배가 되어 비율이 유지되는 까닭",
+        "authorBatch": 25,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2114,
+        "part": "m1plus",
+        "sourceFingerprint": "5a20ba420b4fb7e2e8f507ba6d25c3b2b0d6f8bbaa679bb0560968d5ba6e73fa",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2114
+        },
+        "directReview": null,
+        "cMarkedSentence": "모든 계급의 도수에 같은 양수를 곱하면 도수의 총합도 같은 배가 되므로 각 계급의 상대도수는 {변하지 않는다}.",
+        "cSlotAnswers": [
+          "변하지 않는다"
+        ],
+        "cStudentSentence": "모든 계급의 도수에 같은 양수를 곱하면 도수의 총합도 같은 배가 되므로 각 계급의 상대도수는 □.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "변하지 않는다",
+            "equivalentAnswers": [
+              "변하지 않는다",
+              "유지된다",
+              "그대로이다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "변하지 않는다",
+            "accept": [
+              "유지된다",
+              "그대로이다"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "변하지 않는다",
+            "유지된다",
+            "그대로이다"
+          ]
+        ],
+        "proposalFingerprint": "a54f8541cb63c999a9df28e8e27922dcc19570c9b8061d951b24d348eefdb3e3"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-06-xc17",
+        "section": "중1::8. 통계::상대도수",
+        "term": "두 집단을 합친 비율",
+        "kind": "방법",
+        "level": "상",
+        "definition": "집단을 합친 상대도수는 해당 계급의 {도수끼리 합한 값}을 두 집단의 {전체 도수 합}으로 나누어 구한다.",
+        "studentC": "집단을 합친 상대도수는 해당 계급의 □을 두 집단의 □으로 나누어 구한다.",
+        "answers": [
+          "도수끼리 합한 값",
+          "전체 도수 합"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-06-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "$A$반 $20$명 중 $4$명, $B$반 $30$명 중 $9$명이 어떤 계급에 속한다. 두 반을 합친 전체에서 이 계급의 상대도수를 구하는 방법을 쓰고 그 값을 구하시오.",
+        "bAnswer": "두 반의 그 계급의 도수의 합 $4+9=13$을 두 반의 도수의 총합의 합 $20+30=50$으로 나눈다. $13\\div 50=0.26$",
+        "bGoal": "두 집단을 합친 자료의 상대도수 구하기",
+        "bReason": "'합친 비율'을 두 반의 인원수로 주어 구하는 방법을 직접 쓰게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 반의 도수의 합을 두 반의 도수의 총합의 합으로 나눈다",
+              "$(4+9)\\div(20+30)$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.26$",
+              "$\\frac{13}{50}$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "두 집단을 합친 자료에서 어떤 계급의 상대도수는 두 집단의 그 계급의 {도수}의 합을 두 집단의 {도수의 총합}의 합으로 나누어 구한다.",
+        "cAnswers": [
+          "도수",
+          "도수의 총합"
+        ],
+        "cReason": "두 답이 긴 임의 구절이고 '해당 계급'이 가리키는 것이 없음",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "도수끼리, 총합끼리 더한 뒤 나누는 계산 절차",
+        "authorBatch": 25,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2115,
+        "part": "m1plus",
+        "sourceFingerprint": "deaeafb7a3ec06d83d006a281b28b92249223de499664f46f055addb88dbfa26",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2115
+        },
+        "directReview": null,
+        "cMarkedSentence": "두 집단을 합친 자료에서 어떤 계급의 상대도수는 두 집단의 그 계급의 {도수}의 합을 두 집단의 {도수의 총합}의 합으로 나누어 구한다.",
+        "cSlotAnswers": [
+          "도수",
+          "도수의 총합"
+        ],
+        "cStudentSentence": "두 집단을 합친 자료에서 어떤 계급의 상대도수는 두 집단의 그 계급의 □의 합을 두 집단의 □의 합으로 나누어 구한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "도수",
+            "equivalentAnswers": [
+              "도수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "도수의 총합",
+            "equivalentAnswers": [
+              "도수의 총합",
+              "전체 도수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "도수의 총합",
+            "accept": [
+              "전체 도수"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "도수"
+          ],
+          [
+            "도수의 총합",
+            "전체 도수"
+          ]
+        ],
+        "proposalFingerprint": "37698b44ca5226fb52cd8fb1098a499548ec80d185afca259520d9ab38e1d473"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-06-xc18",
+        "section": "중1::8. 통계::상대도수",
+        "term": "부분만 늘릴 때의 변화",
+        "kind": "성질",
+        "level": "상",
+        "definition": "한 계급에만 자료를 더하면 도수가 양수인 다른 계급들은 전체에서 차지하는 비율이 {작아진다}.",
+        "studentC": "한 계급에만 자료를 더하면 도수가 양수인 다른 계급들은 전체에서 차지하는 비율이 □.",
+        "answers": [
+          "작아진다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-06-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "한 자료에서 한 계급에만 자료를 더 넣었다. 도수가 $0$이 아닌 다른 계급들의 도수와 상대도수는 각각 어떻게 되는지 쓰고, 상대도수가 그렇게 되는 까닭을 쓰시오.",
+        "bAnswer": "도수는 그대로이고 상대도수는 작아진다. 도수는 변하지 않는데 나누는 수인 도수의 총합이 커지기 때문이다.",
+        "bGoal": "한 계급의 도수만 늘 때 다른 계급의 상대도수 변화 설명하기",
+        "bReason": "'부분만 늘릴 때'가 어떤 상황이고 무엇의 변화를 묻는지 밝힘",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "다른 계급의 상대도수는 작아진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "도수의 총합이 커지기 때문",
+              "도수는 그대로인데 나누는 수가 커지기 때문"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "상황과 대상이 문장에 있고 변화 방향만 묻는 분명한 빈칸",
+        "learningRole": "reason",
+        "roleReason": "총합이 커져 다른 계급의 비율이 작아지는 까닭",
+        "authorBatch": 25,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2116,
+        "part": "m1plus",
+        "sourceFingerprint": "ec217b034e93c263d255b39c2984bd89e605aa794ed1b825f82da5f4902eb690",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2116
+        },
+        "directReview": null,
+        "cFrozenSentence": "한 계급에만 자료를 더하면 도수가 양수인 다른 계급들은 전체에서 차지하는 비율이 □.",
+        "cFrozenDefinition": "한 계급에만 자료를 더하면 도수가 양수인 다른 계급들은 전체에서 차지하는 비율이 {작아진다}.",
+        "cFrozenAnswers": [
+          "작아진다"
+        ],
+        "cMarkedSentence": "한 계급에만 자료를 더하면 도수가 양수인 다른 계급들은 전체에서 차지하는 비율이 {작아진다}.",
+        "cSlotAnswers": [
+          "작아진다"
+        ],
+        "cStudentSentence": "한 계급에만 자료를 더하면 도수가 양수인 다른 계급들은 전체에서 차지하는 비율이 □.",
+        "cAnswers": [
+          "작아진다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "작아진다",
+            "equivalentAnswers": [
+              "작아진다",
+              "줄어든다",
+              "감소한다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "작아진다",
+            "accept": [
+              "줄어든다",
+              "감소한다"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "작아진다",
+            "줄어든다",
+            "감소한다"
+          ]
+        ],
+        "proposalFingerprint": "8a3dfb5715d6bcc88315dc19ddcc10d796974dc7729d708cb25b69714809f3ec"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-06-xc19",
+        "section": "중1::8. 통계::상대도수",
+        "term": "비율로 인원을 구할 조건",
+        "kind": "성질",
+        "level": "상",
+        "definition": "정확한 상대도수와 전체 인원의 곱은 실제 사람 수이므로 {$0$ 이상의 정수}가 되어야 한다.",
+        "studentC": "정확한 상대도수와 전체 인원의 곱은 실제 사람 수이므로 □가 되어야 한다.",
+        "answers": [
+          "$0$ 이상의 정수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-06-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "전체 인원이 $30$명인 자료에서 어떤 계급의 정확한 상대도수가 $0.25$라고 한다. 이 값이 옳을 수 있는지 판단하고 까닭을 쓰시오.",
+        "bAnswer": "옳을 수 없다. 이 계급의 인원은 $30\\times 0.25=7.5$명이 되는데, 사람 수는 $0$ 이상의 정수여야 하기 때문이다.",
+        "bGoal": "상대도수와 전체 인원의 곱이 정수여야 함을 이용해 판단하기",
+        "bReason": "'조건'이 추상적이라 곱이 정수가 안 되는 수를 주어 판단하게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "옳을 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "인원이 $7.5$명이 되어 정수가 아니다",
+              "사람 수는 $0$ 이상의 정수여야 한다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "곱이 사람 수라는 근거가 문장에 있어 조건을 묻는 빈칸이 분명함",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "도수가 정수여야 한다는 조건으로 값의 옳고 그름 판단",
+        "authorBatch": 25,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2117,
+        "part": "m1plus",
+        "sourceFingerprint": "e3c54f24e53bf7a8d8dfbb4181dfecb307b36330f3316ff097611a03fdddb593",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2117
+        },
+        "directReview": null,
+        "cFrozenSentence": "정확한 상대도수와 전체 인원의 곱은 실제 사람 수이므로 □가 되어야 한다.",
+        "cFrozenDefinition": "정확한 상대도수와 전체 인원의 곱은 실제 사람 수이므로 {$0$ 이상의 정수}가 되어야 한다.",
+        "cFrozenAnswers": [
+          "$0$ 이상의 정수"
+        ],
+        "cMarkedSentence": "정확한 상대도수와 전체 인원의 곱은 실제 사람 수이므로 {$0$ 이상의 정수}가 되어야 한다.",
+        "cSlotAnswers": [
+          "$0$ 이상의 정수"
+        ],
+        "cStudentSentence": "정확한 상대도수와 전체 인원의 곱은 실제 사람 수이므로 □가 되어야 한다.",
+        "cAnswers": [
+          "$0$ 이상의 정수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$0$ 이상의 정수",
+            "equivalentAnswers": [
+              "$0$ 이상의 정수",
+              "$0$ 또는 자연수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$0$ 이상의 정수",
+            "accept": [
+              "$0$ 또는 자연수"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$0$ 이상의 정수",
+            "$0$ 또는 자연수"
+          ]
+        ],
+        "proposalFingerprint": "7083f0d56e7af26b3b2b92290bdc09516101315dae7eaa4780dc968815b9454c"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-06-xc20",
+        "section": "중1::8. 통계::상대도수",
+        "term": "반올림한 비율의 합",
+        "kind": "성질",
+        "level": "상",
+        "definition": "각 상대도수를 따로 반올림해 쓰면 표시된 값들의 합은 {$1$}과 조금 {다를 수 있다}.",
+        "studentC": "각 상대도수를 따로 반올림해 쓰면 표시된 값들의 합은 □과 조금 □.",
+        "answers": [
+          "$1$",
+          "다를 수 있다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-06-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "도수의 총합이 $3$이고 세 계급의 도수가 모두 $1$인 자료에서, 각 상대도수를 소수 둘째 자리까지 반올림하여 $0.33$, $0.33$, $0.33$으로 적었다. 적힌 값의 합이 $1$이 되지 않는 까닭을 쓰시오.",
+        "bAnswer": "정확한 상대도수 $\\frac{1}{3}$의 합은 $1$이지만, 각각을 따로 반올림하면서 버린 부분이 있어 적힌 값의 합은 $0.99$로 $1$과 조금 달라진다.",
+        "bGoal": "반올림한 상대도수의 합이 $1$과 다를 수 있는 까닭 설명하기",
+        "bReason": "반올림 상황을 수로 주어야 합이 달라지는 것을 확인할 수 있음",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "각 값을 따로 반올림해서 생긴 차이 때문",
+              "반올림하며 버린 부분이 있기 때문"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "반올림이라는 조건이 문장에 있고 기준 값과 결론을 짧게 물음",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "따로 반올림한 값의 합이 $1$과 어긋나는 까닭",
+        "authorBatch": 25,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2118,
+        "part": "m1plus",
+        "sourceFingerprint": "317313cff1478e1303aaf04398b53f892081fbcc88c6f0e20177dab578f1b74c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2118
+        },
+        "directReview": null,
+        "cFrozenSentence": "각 상대도수를 따로 반올림해 쓰면 표시된 값들의 합은 □과 조금 □.",
+        "cFrozenDefinition": "각 상대도수를 따로 반올림해 쓰면 표시된 값들의 합은 {$1$}과 조금 {다를 수 있다}.",
+        "cFrozenAnswers": [
+          "$1$",
+          "다를 수 있다"
+        ],
+        "cMarkedSentence": "각 상대도수를 따로 반올림해 쓰면 표시된 값들의 합은 {$1$}과 조금 {다를 수 있다}.",
+        "cSlotAnswers": [
+          "$1$",
+          "다를 수 있다"
+        ],
+        "cStudentSentence": "각 상대도수를 따로 반올림해 쓰면 표시된 값들의 합은 □과 조금 □.",
+        "cAnswers": [
+          "$1$",
+          "다를 수 있다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$1$",
+            "equivalentAnswers": [
+              "$1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "다를 수 있다",
+            "equivalentAnswers": [
+              "다를 수 있다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "다를 수 있다"
+          ]
+        ],
+        "proposalFingerprint": "9e4522b3ae29a615b89fb57d08a37bd6c7b3964374356f5e380baaa4330e8532"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-06-xc21",
+        "section": "중1::8. 통계::상대도수",
+        "term": "같은 비율과 다른 도수의 관계",
+        "kind": "성질",
+        "level": "상",
+        "definition": "두 집단의 해당 계급에서 상대도수가 같은 양수라면 도수의 비는 두 집단의 {전체 도수 비}와 같다.",
+        "studentC": "두 집단의 해당 계급에서 상대도수가 같은 양수라면 도수의 비는 두 집단의 □와 같다.",
+        "answers": [
+          "전체 도수 비"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-06-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "두 집단의 도수의 총합은 각각 $30$, $45$이고, 같은 계급의 상대도수가 두 집단에서 $0$이 아닌 같은 값이다. 이 계급의 두 집단의 도수의 비를 가장 간단한 자연수의 비로 구하고, 까닭을 쓰시오.",
+        "bAnswer": "$2:3$이다. 도수는 (도수의 총합)$\\times$(상대도수)이고 상대도수가 같으므로 도수의 비는 도수의 총합의 비 $30:45$와 같다.",
+        "bGoal": "상대도수가 같을 때 도수의 비와 총합의 비의 관계 말하기",
+        "bReason": "'같은 비율과 다른 도수'의 관계를 총합이 주어진 두 집단으로 특정함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2:3$",
+              "$30:45$"
+            ]
+          },
+          {
+            "anyOf": [
+              "도수의 비는 도수의 총합의 비와 같다",
+              "도수는 도수의 총합에 같은 상대도수를 곱한 값이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "두 집단에서 같은 계급의 상대도수가 $0$이 아닌 같은 값이면, 그 계급의 도수의 비는 두 집단의 {도수의 총합}의 비와 같다.",
+        "cAnswers": [
+          "도수의 총합"
+        ],
+        "cReason": "'해당 계급'이 가리키는 것이 문장에 없어 같은 계급임을 밝힘",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "상대도수가 같을 때 도수의 비를 총합의 비로 구하기",
+        "authorBatch": 25,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2119,
+        "part": "m1plus",
+        "sourceFingerprint": "bdbed1c1f8c93dbd5b2cd197f22d738cad10ce784d16bb9913182f53a77a6ceb",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2119
+        },
+        "directReview": null,
+        "cMarkedSentence": "두 집단에서 같은 계급의 상대도수가 $0$이 아닌 같은 값이면, 그 계급의 도수의 비는 두 집단의 {도수의 총합}의 비와 같다.",
+        "cSlotAnswers": [
+          "도수의 총합"
+        ],
+        "cStudentSentence": "두 집단에서 같은 계급의 상대도수가 $0$이 아닌 같은 값이면, 그 계급의 도수의 비는 두 집단의 □의 비와 같다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "도수의 총합",
+            "equivalentAnswers": [
+              "도수의 총합",
+              "전체 도수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "도수의 총합",
+            "accept": [
+              "전체 도수"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "도수의 총합",
+            "전체 도수"
+          ]
+        ],
+        "proposalFingerprint": "b3b1cb54a100f89f325fe84ae07c5cfac795186be64931ded2cf9d8ac4769fc6"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-06-xc22",
+        "section": "중1::8. 통계::상대도수",
+        "term": "비율 비교에 앞선 계급 확인",
+        "kind": "방법",
+        "level": "상",
+        "definition": "집단 사이의 비율을 비교하려면 먼저 비교하는 계급의 {범위}가 같은지 살핀다.",
+        "studentC": "집단 사이의 비율을 비교하려면 먼저 비교하는 계급의 □가 같은지 살핀다.",
+        "answers": [
+          "범위"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-06-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "두 집단의 상대도수를 비교하려는데, $A$ 집단은 $10$ 이상 $20$ 미만인 계급의 상대도수가, $B$ 집단은 $10$ 이상 $30$ 미만인 계급의 상대도수가 주어졌다. 두 값을 그대로 비교해도 되는지 판단하고 까닭을 쓰시오.",
+        "bAnswer": "그대로 비교하면 안 된다. 두 계급의 범위가 달라서 같은 범위의 자료가 차지하는 비율을 비교하는 것이 아니기 때문이다.",
+        "bGoal": "상대도수를 비교하기 전에 계급의 범위가 같은지 확인하기",
+        "bReason": "'계급 확인'이 무엇을 확인하는지 범위가 다른 두 계급의 예로 밝힘",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "그대로 비교하면 안 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 계급의 범위가 다르기 때문",
+              "계급의 범위가 같아야 비교할 수 있다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "두 집단의 상대도수를 비교하려면 먼저 비교하는 계급의 {범위}가 서로 같은지 확인한다.",
+        "cAnswers": [
+          "범위"
+        ],
+        "cReason": "'집단 사이의 비율'이 무엇의 비율인지 모호해 상대도수로 밝힘",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "비교 전에 계급의 범위가 같은지 살피는 점검 단계",
+        "authorBatch": 25,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2120,
+        "part": "m1plus",
+        "sourceFingerprint": "f4d525a018c15d917abd2eb3a665db8622f69a0226312520ae2aecbd48a256f0",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2120
+        },
+        "directReview": null,
+        "cMarkedSentence": "두 집단의 상대도수를 비교하려면 먼저 비교하는 계급의 {범위}가 서로 같은지 확인한다.",
+        "cSlotAnswers": [
+          "범위"
+        ],
+        "cStudentSentence": "두 집단의 상대도수를 비교하려면 먼저 비교하는 계급의 □가 서로 같은지 확인한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "범위",
+            "equivalentAnswers": [
+              "범위",
+              "구간"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "범위",
+            "accept": [
+              "구간"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "범위",
+            "구간"
+          ]
+        ],
+        "proposalFingerprint": "39c34fe94dd6d37be51e5e616131ea1736b31997499f9665dd24d4c3b7208137"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-01-xc1",
+        "section": "중2::1. 수와 식::유리수와 소수",
+        "term": "분수를 소수로 고치기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "분수를 소수로 고치려면 {분자}를 {분모}로 나눈다.",
+        "example": {
+          "prompt": "$\\frac{3}{4}$을 소수로 고치면?",
+          "answer": "$0.75$"
+        },
+        "studentC": "분수를 소수로 고치려면 □를 □로 나눈다.",
+        "answers": [
+          "분자",
+          "분모"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-01-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "분수를 소수로 고치려면 어떤 계산을 하면 되는가? 방법을 말하고 $\\frac{3}{4}$을 소수로 고치시오.",
+        "bAnswer": "분자를 분모로 나눈다. $\\frac{3}{4}=3\\div4=0.75$",
+        "bGoal": "분수를 나눗셈으로 소수로 고치기",
+        "bReason": "일반 방법과 확인용 예를 함께 묻도록 구체화함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "분자를 분모로 나눈다",
+              "$3\\div4$를 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.75$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "짧고 분명한 방법 빈칸임.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "분자÷분모 계산",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2121,
+        "part": "m2plus",
+        "sourceFingerprint": "8a4819bff7bac18ae25e9054fbb6fa3ff270013e0c0c8dd9130ba29eb0675f9f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2121
+        },
+        "directReview": null,
+        "cFrozenSentence": "분수를 소수로 고치려면 □를 □로 나눈다.",
+        "cFrozenDefinition": "분수를 소수로 고치려면 {분자}를 {분모}로 나눈다.",
+        "cFrozenAnswers": [
+          "분자",
+          "분모"
+        ],
+        "cMarkedSentence": "분수를 소수로 고치려면 {분자}를 {분모}로 나눈다.",
+        "cSlotAnswers": [
+          "분자",
+          "분모"
+        ],
+        "cStudentSentence": "분수를 소수로 고치려면 □를 □로 나눈다.",
+        "cAnswers": [
+          "분자",
+          "분모"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "분자",
+            "equivalentAnswers": [
+              "분자"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "분모",
+            "equivalentAnswers": [
+              "분모"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "분자"
+          ],
+          [
+            "분모"
+          ]
+        ],
+        "proposalFingerprint": "25e7127e306962bb658b05e660cea75173356292138fe5b9ff40824629a7b403"
+      }
+    }
+  ]
+}

@@ -1,0 +1,2893 @@
+{
+  "sourceCommit": "13bf05dce",
+  "purpose": "Actual fields captured before direct Codex reading; capture is not a verdict",
+  "start": 2703,
+  "end": 2733,
+  "rows": [
+    {
+      "source": {
+        "sourceIndex": 2703,
+        "sourceFingerprint": "edb9973bfcedb5d2543dd59cfb7c1fa5440bb3e0751aee8dc53eb75ddb0dbade",
+        "part": "e4plus",
+        "id": "e4-2-6-2-xc8",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "term": "정다각형의 변 길이 비교",
+        "kind": "방법",
+        "level": "하",
+        "definition": "자에 대어 잰 변 길이들이 서로 다르면 {정다각형이 아니다}.",
+        "studentC": "자에 대어 잰 변 길이들이 서로 다르면 □.",
+        "answers": [
+          "정다각형이 아니다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2703,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "sourceFingerprint": "edb9973bfcedb5d2543dd59cfb7c1fa5440bb3e0751aee8dc53eb75ddb0dbade",
+        "proposalFingerprint": "381e2e505651081c2e25a31ff92857ba74ef1d90265a3eb0f879a3cb8692bb46",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-2-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "어떤 오각형의 변을 자로 재었더니 길이가 $3$ cm, $3$ cm, $4$ cm, $3$ cm, $3$ cm였다. 이 오각형은 정다각형인지 쓰고 까닭을 설명하시오.",
+        "bAnswer": "정다각형이 아니다. $4$ cm인 변이 있어 변의 길이가 모두 같지 않기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "정다각형이 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "변의 길이가 모두 같지 않다",
+              "길이가 다른 변이 있다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "변 길이로 정다각형 판별",
+        "bReason": "길이가 다른 변 하나로 판별하는 방법을 확인",
+        "cDecision": "rewrite",
+        "cAfter": "자로 잰 변의 길이들이 서로 다르면 정다각형이 {아니다}.",
+        "cReason": "문장 전체를 복원해야 하는 빈칸을 짧은 낱말로 고침",
+        "cSlotEquivalents": [
+          []
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "정다각형의 변 길이 비교",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "자로 잰 변의 길이들이 서로 다르면 정다각형이 {아니다}.",
+        "cStudentSentence": "자로 잰 변의 길이들이 서로 다르면 정다각형이 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "아니다",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "어떤 오각형의 변을 자로 재었더니 길이가 $3$ cm, $3$ cm, $4$ cm, $3$ cm, $3$ cm였다. 이 오각형은 정다각형인지 쓰고 까닭을 설명하시오.",
+          "answer": "정다각형이 아니다. $4$ cm인 변이 있어 변의 길이가 모두 같지 않기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "정다각형이 아니다"
+              ]
+            },
+            {
+              "anyOf": [
+                "변의 길이가 모두 같지 않다",
+                "길이가 다른 변이 있다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "자로 잰 변의 길이들이 서로 다르면 정다각형이 {아니다}.",
+          "acceptedAnswers": [
+            [
+              "아니다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2704,
+        "sourceFingerprint": "33964a3f47deb6f303f4650983a148598f3a57957504313a604355ebedd42471",
+        "part": "e4plus",
+        "id": "e4-2-6-2-xc9",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "term": "정다각형의 각 크기 비교",
+        "kind": "방법",
+        "level": "하",
+        "definition": "각도기로 잰 각 크기 중 다른 것이 있으면 {정다각형이 아니다}.",
+        "studentC": "각도기로 잰 각 크기 중 다른 것이 있으면 □.",
+        "answers": [
+          "정다각형이 아니다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2704,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "sourceFingerprint": "33964a3f47deb6f303f4650983a148598f3a57957504313a604355ebedd42471",
+        "proposalFingerprint": "7c5cf90fabee6f525b8e22c6523c65eb288e7feb54188802e139907cd60d1754",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-2-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "네 변의 길이가 모두 같은 사각형의 각을 각도기로 재었더니 $100^\\circ$, $80^\\circ$, $100^\\circ$, $80^\\circ$였다. 이 사각형은 정다각형인지 쓰고 까닭을 설명하시오.",
+        "bAnswer": "정다각형이 아니다. 각의 크기가 모두 같지 않기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "정다각형이 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "각의 크기가 모두 같지 않다",
+              "크기가 다른 각이 있다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "각 크기로 정다각형 판별",
+        "bReason": "변이 같아도 각이 다르면 아님을 예로 확인",
+        "cDecision": "rewrite",
+        "cAfter": "각도기로 잰 각의 크기 중 다른 것이 있으면 정다각형이 {아니다}.",
+        "cReason": "문장 전체를 복원해야 하는 빈칸을 짧은 낱말로 고침",
+        "cSlotEquivalents": [
+          []
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "정다각형의 각 크기 비교",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "각도기로 잰 각의 크기 중 다른 것이 있으면 정다각형이 {아니다}.",
+        "cStudentSentence": "각도기로 잰 각의 크기 중 다른 것이 있으면 정다각형이 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "아니다",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "네 변의 길이가 모두 같은 사각형의 각을 각도기로 재었더니 $100^\\circ$, $80^\\circ$, $100^\\circ$, $80^\\circ$였다. 이 사각형은 정다각형인지 쓰고 까닭을 설명하시오.",
+          "answer": "정다각형이 아니다. 각의 크기가 모두 같지 않기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "정다각형이 아니다"
+              ]
+            },
+            {
+              "anyOf": [
+                "각의 크기가 모두 같지 않다",
+                "크기가 다른 각이 있다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "각도기로 잰 각의 크기 중 다른 것이 있으면 정다각형이 {아니다}.",
+          "acceptedAnswers": [
+            [
+              "아니다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2705,
+        "sourceFingerprint": "50c41c5da7b8b775c48aa38226e20a8e63022f940c146bd7702d155037e335bc",
+        "part": "e4plus",
+        "id": "e4-2-6-2-xc10",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "term": "정다각형의 둘레 구하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "정다각형의 둘레는 한 변의 길이에 {변의 개수}를 곱하여 구한다.",
+        "studentC": "정다각형의 둘레는 한 변의 길이에 □를 곱하여 구한다.",
+        "answers": [
+          "변의 개수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2705,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "sourceFingerprint": "50c41c5da7b8b775c48aa38226e20a8e63022f940c146bd7702d155037e335bc",
+        "proposalFingerprint": "5d2c30b024f2bdc62ec4d7eeb184e0f506050e11f39aab49de7e6e555c71adef",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-2-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "한 변이 $6$ cm인 정오각형의 둘레는 몇 cm인지 구하고, 어떻게 구했는지 쓰시오.",
+        "bAnswer": "$6\\times5=30$이므로 $30$ cm이다. 한 변의 길이에 변의 개수를 곱한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$30$ cm"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 변의 길이에 변의 개수를 곱한다",
+              "$6\\times5$",
+              "$6$을 $5$번 더한다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "정다각형 둘레 구하는 방법",
+        "bReason": "곱셈으로 둘레를 구하는 방법과 결과를 함께 확인",
+        "cDecision": "keep",
+        "cReason": "곱하는 대상이 변의 개수임을 묻는 친숙한 빈칸",
+        "cSlotEquivalents": [
+          [
+            "변의 수",
+            "변 수"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "정다각형의 둘레 구하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정다각형의 둘레는 한 변의 길이에 {변의 개수}를 곱하여 구한다.",
+        "cStudentSentence": "정다각형의 둘레는 한 변의 길이에 □를 곱하여 구한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "변의 개수",
+            "equivalents": [
+              "변의 수",
+              "변 수"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "정다각형의 둘레는 한 변의 길이에 □를 곱하여 구한다.",
+          "answers": [
+            "변의 개수"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "한 변이 $6$ cm인 정오각형의 둘레는 몇 cm인지 구하고, 어떻게 구했는지 쓰시오.",
+          "answer": "$6\\times5=30$이므로 $30$ cm이다. 한 변의 길이에 변의 개수를 곱한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$30$ cm"
+              ]
+            },
+            {
+              "anyOf": [
+                "한 변의 길이에 변의 개수를 곱한다",
+                "$6\\times5$",
+                "$6$을 $5$번 더한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "정다각형의 둘레는 한 변의 길이에 {변의 개수}를 곱하여 구한다.",
+          "acceptedAnswers": [
+            [
+              "변의 개수",
+              "변의 수",
+              "변 수"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2706,
+        "sourceFingerprint": "66622858eefb5624430c862f721d47b61eb8d55bb212d16cb331c1c9e9f47529",
+        "part": "e4plus",
+        "id": "e4-2-6-2-xc11",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "term": "둘레로 한 변 찾기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "정다각형의 한 변은 전체 둘레를 {변의 개수로 나누어} 구한다.",
+        "studentC": "정다각형의 한 변은 전체 둘레를 □ 구한다.",
+        "answers": [
+          "변의 개수로 나누어"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2706,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "sourceFingerprint": "66622858eefb5624430c862f721d47b61eb8d55bb212d16cb331c1c9e9f47529",
+        "proposalFingerprint": "2f109a41c8e59988417f1a25ed4dc9eaff2c92cd1962987427bcd7305ef4393e",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-2-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "둘레가 $24$ cm인 정육각형이 있다. 한 변의 길이를 구하는 식과 답을 쓰시오.",
+        "bAnswer": "$24\\div6=4$이므로 한 변은 $4$ cm이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$24\\div6$",
+              "둘레를 변의 개수로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$ cm"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "둘레에서 한 변 구하기",
+        "bReason": "나눗셈 식과 결과를 정육각형 예로 확인",
+        "cDecision": "rewrite",
+        "cAfter": "정다각형의 둘레를 변의 개수로 {나누면} 한 변의 길이를 구할 수 있다.",
+        "cReason": "'구한다'와 이어지는 구 빈칸을 연산 낱말로 고침",
+        "cSlotEquivalents": [
+          [
+            "나누어",
+            "나눈다",
+            "나눗셈을 하면"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "둘레로 한 변 찾기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정다각형의 둘레를 변의 개수로 {나누면} 한 변의 길이를 구할 수 있다.",
+        "cStudentSentence": "정다각형의 둘레를 변의 개수로 □ 한 변의 길이를 구할 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "나누면",
+            "equivalents": [
+              "나누어",
+              "나눈다",
+              "나눗셈을 하면"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "둘레가 $24$ cm인 정육각형이 있다. 한 변의 길이를 구하는 식과 답을 쓰시오.",
+          "answer": "$24\\div6=4$이므로 한 변은 $4$ cm이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$24\\div6$",
+                "둘레를 변의 개수로 나눈다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$4$ cm"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "정다각형의 둘레를 변의 개수로 {나누면} 한 변의 길이를 구할 수 있다.",
+          "acceptedAnswers": [
+            [
+              "나누면",
+              "나누어",
+              "나눈다",
+              "나눗셈을 하면"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2707,
+        "sourceFingerprint": "9b9c5ee34ebfff09fbe60c3a7994fd54eed93ecf647df8adaee412d32afd567e",
+        "part": "e4plus",
+        "id": "e4-2-6-2-xc12",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "term": "정사각형이 아닌 직사각형",
+        "kind": "성질",
+        "level": "중",
+        "definition": "가로와 세로가 다른 직사각형은 각이 같아도 {변 길이}가 달라 정다각형이 아니다.",
+        "studentC": "가로와 세로가 다른 직사각형은 각이 같아도 □가 달라 정다각형이 아니다.",
+        "answers": [
+          "변 길이"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2707,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "sourceFingerprint": "9b9c5ee34ebfff09fbe60c3a7994fd54eed93ecf647df8adaee412d32afd567e",
+        "proposalFingerprint": "df0acd5f2ae9704a5c10059152c19437f6641c34cbb731523a12cf778fdf8990",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-2-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "가로가 $5$ cm, 세로가 $3$ cm인 직사각형은 정다각형인지 쓰고, 그 까닭을 변과 각을 살펴 설명하시오.",
+        "bAnswer": "정다각형이 아니다. 네 각은 모두 같지만 변의 길이가 $5$ cm와 $3$ cm로 달라서이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "정다각형이 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "변의 길이가 다르다",
+              "가로와 세로의 길이가 다르다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "직사각형이 정다각형 아닌 까닭",
+        "bReason": "각은 같아도 변이 다르면 아님을 예로 확인",
+        "cDecision": "keep",
+        "cReason": "'각이 같아도'와 대비되는 변 길이를 묻는 빈칸",
+        "cSlotEquivalents": [
+          [
+            "변의 길이",
+            "변",
+            "길이"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "정사각형이 아닌 직사각형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "가로와 세로가 다른 직사각형은 각이 같아도 {변 길이}가 달라 정다각형이 아니다.",
+        "cStudentSentence": "가로와 세로가 다른 직사각형은 각이 같아도 □가 달라 정다각형이 아니다.",
+        "cSlotAnswers": [
+          {
+            "expected": "변 길이",
+            "equivalents": [
+              "변의 길이",
+              "변",
+              "길이"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "가로와 세로가 다른 직사각형은 각이 같아도 □가 달라 정다각형이 아니다.",
+          "answers": [
+            "변 길이"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "가로가 $5$ cm, 세로가 $3$ cm인 직사각형은 정다각형인지 쓰고, 그 까닭을 변과 각을 살펴 설명하시오.",
+          "answer": "정다각형이 아니다. 네 각은 모두 같지만 변의 길이가 $5$ cm와 $3$ cm로 달라서이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "정다각형이 아니다"
+              ]
+            },
+            {
+              "anyOf": [
+                "변의 길이가 다르다",
+                "가로와 세로의 길이가 다르다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "가로와 세로가 다른 직사각형은 각이 같아도 {변 길이}가 달라 정다각형이 아니다.",
+          "acceptedAnswers": [
+            [
+              "변 길이",
+              "변의 길이",
+              "변",
+              "길이"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2708,
+        "sourceFingerprint": "503d91db12b4485cba450c2e5ed108f8558d528d00d2ba072ea95216cf7ef7d2",
+        "part": "e4plus",
+        "id": "e4-2-6-2-xc13",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "term": "직각 없는 마름모",
+        "kind": "성질",
+        "level": "중",
+        "definition": "직각 없는 마름모는 네 변이 같아도 네 {각 크기}가 일치하지 않아 정다각형이 아니다.",
+        "studentC": "직각 없는 마름모는 네 변이 같아도 네 □가 일치하지 않아 정다각형이 아니다.",
+        "answers": [
+          "각 크기"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2708,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "sourceFingerprint": "503d91db12b4485cba450c2e5ed108f8558d528d00d2ba072ea95216cf7ef7d2",
+        "proposalFingerprint": "cd5b10a09d0e1c8bf8b589b84d00d7254318ce8a2f0b1241c7ffa603557ff8bc",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-2-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "네 변의 길이가 모두 같지만 직각이 없는 마름모는 정다각형인지 쓰고, 까닭을 설명하시오.",
+        "bAnswer": "정다각형이 아니다. 네 변은 같지만 네 각의 크기가 모두 같지 않기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "정다각형이 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "각의 크기가 모두 같지 않다",
+              "네 각이 같지 않다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "마름모가 정다각형 아닌 까닭",
+        "bReason": "변은 같아도 각이 다르면 아님을 예로 확인",
+        "cDecision": "keep",
+        "cReason": "'변이 같아도'와 대비되는 각을 묻는 빈칸",
+        "cSlotEquivalents": [
+          [
+            "각의 크기",
+            "각도",
+            "각"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "직각 없는 마름모",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직각 없는 마름모는 네 변이 같아도 네 {각 크기}가 일치하지 않아 정다각형이 아니다.",
+        "cStudentSentence": "직각 없는 마름모는 네 변이 같아도 네 □가 일치하지 않아 정다각형이 아니다.",
+        "cSlotAnswers": [
+          {
+            "expected": "각 크기",
+            "equivalents": [
+              "각의 크기",
+              "각도",
+              "각"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "직각 없는 마름모는 네 변이 같아도 네 □가 일치하지 않아 정다각형이 아니다.",
+          "answers": [
+            "각 크기"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "네 변의 길이가 모두 같지만 직각이 없는 마름모는 정다각형인지 쓰고, 까닭을 설명하시오.",
+          "answer": "정다각형이 아니다. 네 변은 같지만 네 각의 크기가 모두 같지 않기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "정다각형이 아니다"
+              ]
+            },
+            {
+              "anyOf": [
+                "각의 크기가 모두 같지 않다",
+                "네 각이 같지 않다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "직각 없는 마름모는 네 변이 같아도 네 {각 크기}가 일치하지 않아 정다각형이 아니다.",
+          "acceptedAnswers": [
+            [
+              "각 크기",
+              "각의 크기",
+              "각도",
+              "각"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2709,
+        "sourceFingerprint": "ea18f91226e732dd259da7a8badbbdd603a51ea08362e2fed437a71723dfe2f9",
+        "part": "e4plus",
+        "id": "e4-2-6-2-xc14",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "term": "같은 이름과 다른 크기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "두 정육각형은 한 변의 길이가 서로 달라도 모두 {정육각형}이라고 부른다.",
+        "studentC": "두 정육각형은 한 변의 길이가 서로 달라도 모두 □이라고 부른다.",
+        "answers": [
+          "정육각형"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2709,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "sourceFingerprint": "ea18f91226e732dd259da7a8badbbdd603a51ea08362e2fed437a71723dfe2f9",
+        "proposalFingerprint": "a82f94c9baed18247e58840272d48aa862857293a32ff4981325d49e9e898e42",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-2-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "한 변이 $2$ cm인 정육각형과 한 변이 $5$ cm인 정육각형이 있다. 두 도형의 이름은 같은지 다른지 쓰고 까닭을 설명하시오.",
+        "bAnswer": "이름이 같다. 둘 다 변의 길이가 모두 같고 각의 크기도 모두 같은 육각형이므로 한 변의 길이가 달라도 정육각형이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "이름이 같다",
+              "모두 정육각형이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "변과 각이 각각 모두 같은 육각형이다",
+              "정다각형 조건을 만족한다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "크기 달라도 같은 이름",
+        "bReason": "이름은 변·각 조건이지 크기가 아님을 확인",
+        "cDecision": "rewrite",
+        "cAfter": "변의 길이와 각의 크기가 모두 같은 육각형은 한 변의 길이가 서로 달라도 모두 {정육각형}이라고 부른다.",
+        "cReason": "문장 앞부분에 정답이 이미 있어 설명으로 바꿈",
+        "cSlotEquivalents": [
+          []
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "같은 이름과 다른 크기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "변의 길이와 각의 크기가 모두 같은 육각형은 한 변의 길이가 서로 달라도 모두 {정육각형}이라고 부른다.",
+        "cStudentSentence": "변의 길이와 각의 크기가 모두 같은 육각형은 한 변의 길이가 서로 달라도 모두 □이라고 부른다.",
+        "cSlotAnswers": [
+          {
+            "expected": "정육각형",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "한 변이 $2$ cm인 정육각형과 한 변이 $5$ cm인 정육각형이 있다. 두 도형의 이름은 같은지 다른지 쓰고 까닭을 설명하시오.",
+          "answer": "이름이 같다. 둘 다 변의 길이가 모두 같고 각의 크기도 모두 같은 육각형이므로 한 변의 길이가 달라도 정육각형이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "이름이 같다",
+                "모두 정육각형이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "변과 각이 각각 모두 같은 육각형이다",
+                "정다각형 조건을 만족한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "변의 길이와 각의 크기가 모두 같은 육각형은 한 변의 길이가 서로 달라도 모두 {정육각형}이라고 부른다.",
+          "acceptedAnswers": [
+            [
+              "정육각형"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2710,
+        "sourceFingerprint": "365806ff128f073dd2e0853e22939d08188c2ef4827b6407bfa3660e4c0f3db9",
+        "part": "e4plus",
+        "id": "e4-2-6-2-xc15",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "term": "돌려 놓은 정다각형",
+        "kind": "성질",
+        "level": "중",
+        "definition": "모든 변의 길이가 같고 모든 각의 크기가 같은 다각형을 {정다각형}이라 한다. 이 도형을 돌려 놓아도 변의 길이와 각의 크기는 그대로여서 두 조건이 유지된다.",
+        "studentC": "모든 변의 길이가 같고 모든 각의 크기가 같은 다각형을 □이라 한다. 이 도형을 돌려 놓아도 변의 길이와 각의 크기는 그대로여서 두 조건이 유지된다.",
+        "answers": [
+          "정다각형"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2710,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "sourceFingerprint": "365806ff128f073dd2e0853e22939d08188c2ef4827b6407bfa3660e4c0f3db9",
+        "proposalFingerprint": "ff05865dc5d883a429dc67056ff88946eea63c2082b106eaa12180008a4bc9be",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-2-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "정다각형을 돌려 놓으면 정다각형이 아닌 도형이 될까? 까닭과 함께 쓰시오.",
+        "bAnswer": "아니다. 돌려도 변의 길이와 각의 크기는 그대로이므로 여전히 정다각형이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "여전히 정다각형이다",
+              "정다각형이 아니게 되지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "변의 길이와 각의 크기가 그대로이다",
+              "돌려도 달라지지 않는다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "돌려도 정다각형 유지",
+        "bReason": "돌리기가 변·각을 바꾸지 않는다는 이유 확인",
+        "cDecision": "keep",
+        "cReason": "정의 뒤 이름 빈칸이고 둘째 문장에 답이 없음",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "돌려 놓은 정다각형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "모든 변의 길이가 같고 모든 각의 크기가 같은 다각형을 {정다각형}이라 한다. 이 도형을 돌려 놓아도 변의 길이와 각의 크기는 그대로여서 두 조건이 유지된다.",
+        "cStudentSentence": "모든 변의 길이가 같고 모든 각의 크기가 같은 다각형을 □이라 한다. 이 도형을 돌려 놓아도 변의 길이와 각의 크기는 그대로여서 두 조건이 유지된다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "정다각형",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "모든 변의 길이가 같고 모든 각의 크기가 같은 다각형을 □이라 한다. 이 도형을 돌려 놓아도 변의 길이와 각의 크기는 그대로여서 두 조건이 유지된다.",
+          "answers": [
+            "정다각형"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "정다각형을 돌려 놓으면 정다각형이 아닌 도형이 될까? 까닭과 함께 쓰시오.",
+          "answer": "아니다. 돌려도 변의 길이와 각의 크기는 그대로이므로 여전히 정다각형이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "여전히 정다각형이다",
+                "정다각형이 아니게 되지 않는다"
+              ]
+            },
+            {
+              "anyOf": [
+                "변의 길이와 각의 크기가 그대로이다",
+                "돌려도 달라지지 않는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "모든 변의 길이가 같고 모든 각의 크기가 같은 다각형을 {정다각형}이라 한다. 이 도형을 돌려 놓아도 변의 길이와 각의 크기는 그대로여서 두 조건이 유지된다.",
+          "acceptedAnswers": [
+            [
+              "정다각형"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2711,
+        "sourceFingerprint": "9eaedc3e76c6766ca8746b8f16297da9e40017f21a2a73292d1a78916d9266d4",
+        "part": "e4plus",
+        "id": "e4-2-6-2-xc16",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "term": "정다각형의 각을 재는 까닭",
+        "kind": "방법",
+        "level": "중",
+        "definition": "변이 같아 보이는 다각형도 정다각형인지 정하려면 {각}까지 살펴야 한다.",
+        "studentC": "변이 같아 보이는 다각형도 정다각형인지 정하려면 □까지 살펴야 한다.",
+        "answers": [
+          "각"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2711,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "sourceFingerprint": "9eaedc3e76c6766ca8746b8f16297da9e40017f21a2a73292d1a78916d9266d4",
+        "proposalFingerprint": "63a021c1454d74c25da4679db0127a95465287af87fc6d3edf6294ee5da4d17c",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-2-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "네 변의 길이가 같아 보이는 사각형이 있다. 이것을 바로 정다각형이라고 해도 되는지 쓰고, 더 살펴볼 것을 쓰시오.",
+        "bAnswer": "바로 정다각형이라고 할 수 없다. 각의 크기도 모두 같은지 확인해야 한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "바로 정다각형이라고 할 수 없다",
+              "더 확인해야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "각의 크기가 모두 같은지 확인",
+              "각도를 재어 비교"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "각까지 살펴야 하는 까닭",
+        "bReason": "변만 보고 판단하면 부족함을 설명하게 함",
+        "cDecision": "rewrite",
+        "cAfter": "변이 같아 보이는 다각형이 정다각형인지 정하려면 변뿐 아니라 {각}도 살펴야 한다.",
+        "cReason": "'변 말고'를 밝혀 빈칸이 각임이 분명해지게 함",
+        "cSlotEquivalents": [
+          [
+            "각의 크기",
+            "각도"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "정다각형의 각을 재는 까닭",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "변이 같아 보이는 다각형이 정다각형인지 정하려면 변뿐 아니라 {각}도 살펴야 한다.",
+        "cStudentSentence": "변이 같아 보이는 다각형이 정다각형인지 정하려면 변뿐 아니라 □도 살펴야 한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "각",
+            "equivalents": [
+              "각의 크기",
+              "각도"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "네 변의 길이가 같아 보이는 사각형이 있다. 이것을 바로 정다각형이라고 해도 되는지 쓰고, 더 살펴볼 것을 쓰시오.",
+          "answer": "바로 정다각형이라고 할 수 없다. 각의 크기도 모두 같은지 확인해야 한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "바로 정다각형이라고 할 수 없다",
+                "더 확인해야 한다"
+              ]
+            },
+            {
+              "anyOf": [
+                "각의 크기가 모두 같은지 확인",
+                "각도를 재어 비교"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "변이 같아 보이는 다각형이 정다각형인지 정하려면 변뿐 아니라 {각}도 살펴야 한다.",
+          "acceptedAnswers": [
+            [
+              "각",
+              "각의 크기",
+              "각도"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2712,
+        "sourceFingerprint": "536140e9950225b6ce0f0539ee5e909898eb70e367354684f35a2d967c7168af",
+        "part": "e4plus",
+        "id": "e4-2-6-2-xc17",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "term": "같은 한 변과 다른 변 수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "한 변 길이가 같은 정오각형과 정육각형 중 둘레가 긴 것은 {정육각형}이다.",
+        "studentC": "한 변 길이가 같은 정오각형과 정육각형 중 둘레가 긴 것은 □이다.",
+        "answers": [
+          "정육각형"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2712,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "sourceFingerprint": "536140e9950225b6ce0f0539ee5e909898eb70e367354684f35a2d967c7168af",
+        "proposalFingerprint": "dc6f11ee8003b58c484d71ef85cbdae54bd80418ef3e6f7b478cca5288d2c1de",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-2-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "한 변이 $4$ cm인 정오각형과 정육각형이 있다. 둘레가 더 긴 것은 어느 쪽인지 쓰고, 두 둘레를 각각 구하시오.",
+        "bAnswer": "정오각형 $4\\times5=20$ cm, 정육각형 $4\\times6=24$ cm이므로 정육각형의 둘레가 더 길다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "정육각형이 더 길다",
+              "정육각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "$20$ cm와 $24$ cm",
+              "정오각형 $20$ cm, 정육각형 $24$ cm"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "변 수에 따른 둘레 비교",
+        "bReason": "같은 한 변에서 변이 많으면 긴 것을 계산 확인",
+        "cDecision": "keep",
+        "cReason": "두 도형 중 큰 쪽을 고르는 짧은 비교 빈칸",
+        "cSlotEquivalents": [
+          [
+            "육각형"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "같은 한 변과 다른 변 수",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "한 변 길이가 같은 정오각형과 정육각형 중 둘레가 긴 것은 {정육각형}이다.",
+        "cStudentSentence": "한 변 길이가 같은 정오각형과 정육각형 중 둘레가 긴 것은 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "정육각형",
+            "equivalents": [
+              "육각형"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "한 변 길이가 같은 정오각형과 정육각형 중 둘레가 긴 것은 □이다.",
+          "answers": [
+            "정육각형"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "한 변이 $4$ cm인 정오각형과 정육각형이 있다. 둘레가 더 긴 것은 어느 쪽인지 쓰고, 두 둘레를 각각 구하시오.",
+          "answer": "정오각형 $4\\times5=20$ cm, 정육각형 $4\\times6=24$ cm이므로 정육각형의 둘레가 더 길다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "정육각형이 더 길다",
+                "정육각형"
+              ]
+            },
+            {
+              "anyOf": [
+                "$20$ cm와 $24$ cm",
+                "정오각형 $20$ cm, 정육각형 $24$ cm"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "한 변 길이가 같은 정오각형과 정육각형 중 둘레가 긴 것은 {정육각형}이다.",
+          "acceptedAnswers": [
+            [
+              "정육각형",
+              "육각형"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2713,
+        "sourceFingerprint": "2645b9731d6ef3f007260d76f5056fa3001778a1d5f57ba3402363278ffbc224",
+        "part": "e4plus",
+        "id": "e4-2-6-2-xc18",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "term": "한 변을 늘린 정다각형의 둘레",
+        "kind": "성질",
+        "level": "중",
+        "definition": "같은 종류의 정다각형에서 한 변을 두 배로 늘리면 둘레도 {두 배}가 된다.",
+        "studentC": "같은 종류의 정다각형에서 한 변을 두 배로 늘리면 둘레도 □가 된다.",
+        "answers": [
+          "두 배"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2713,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "sourceFingerprint": "2645b9731d6ef3f007260d76f5056fa3001778a1d5f57ba3402363278ffbc224",
+        "proposalFingerprint": "5ef76f208d50e44c8fdc0c746948bf0e6e0949952a7beb1b552f7d1675e85a2e",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-2-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "한 변이 $3$ cm인 정삼각형과 한 변이 $6$ cm인 정삼각형의 둘레를 각각 구하고, 한 변이 두 배가 되면 둘레는 어떻게 되는지 쓰시오.",
+        "bAnswer": "$9$ cm와 $18$ cm이다. 한 변이 두 배가 되면 둘레도 두 배가 된다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$9$ cm와 $18$ cm"
+            ]
+          },
+          {
+            "anyOf": [
+              "둘레도 두 배가 된다",
+              "$2$배가 된다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "한 변 두 배면 둘레도 두 배",
+        "bReason": "수치로 확인하고 규칙을 말하게 함",
+        "cDecision": "keep",
+        "cReason": "두 배 관계를 묻는 선명한 짧은 빈칸",
+        "cSlotEquivalents": [
+          [
+            "$2$배",
+            "두 배로"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "한 변을 늘린 정다각형의 둘레",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "같은 종류의 정다각형에서 한 변을 두 배로 늘리면 둘레도 {두 배}가 된다.",
+        "cStudentSentence": "같은 종류의 정다각형에서 한 변을 두 배로 늘리면 둘레도 □가 된다.",
+        "cSlotAnswers": [
+          {
+            "expected": "두 배",
+            "equivalents": [
+              "$2$배",
+              "두 배로"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "같은 종류의 정다각형에서 한 변을 두 배로 늘리면 둘레도 □가 된다.",
+          "answers": [
+            "두 배"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "한 변이 $3$ cm인 정삼각형과 한 변이 $6$ cm인 정삼각형의 둘레를 각각 구하고, 한 변이 두 배가 되면 둘레는 어떻게 되는지 쓰시오.",
+          "answer": "$9$ cm와 $18$ cm이다. 한 변이 두 배가 되면 둘레도 두 배가 된다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$9$ cm와 $18$ cm"
+              ]
+            },
+            {
+              "anyOf": [
+                "둘레도 두 배가 된다",
+                "$2$배가 된다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "같은 종류의 정다각형에서 한 변을 두 배로 늘리면 둘레도 {두 배}가 된다.",
+          "acceptedAnswers": [
+            [
+              "두 배",
+              "$2$배",
+              "두 배로"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2714,
+        "sourceFingerprint": "bd250691efba581372b354693d2d9fb47463410f8e2e97b28dc56bc8144f3e2b",
+        "part": "e4plus",
+        "id": "e4-2-6-2-xc19",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "term": "일부 변의 합 구하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "정다각형의 연속된 변 몇 개의 길이를 합하려면 한 변 길이에 {그 변들의 수}를 곱한다.",
+        "studentC": "정다각형의 연속된 변 몇 개의 길이를 합하려면 한 변 길이에 □를 곱한다.",
+        "answers": [
+          "그 변들의 수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2714,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "sourceFingerprint": "bd250691efba581372b354693d2d9fb47463410f8e2e97b28dc56bc8144f3e2b",
+        "proposalFingerprint": "09ca0339e29cc0c70ebece83c06d7ce45b3a307beefeee4f0b02539f91a316bd",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-2-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "한 변이 $5$ cm인 정육각형에서 이웃한 변 $3$개의 길이를 모두 더하면 몇 cm인지 쓰고, 구하는 방법을 쓰시오.",
+        "bAnswer": "$5\\times3=15$이므로 $15$ cm이다. 한 변의 길이에 더하려는 변의 수를 곱한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$15$ cm"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 변의 길이에 변의 수를 곱한다",
+              "$5\\times3$",
+              "$5+5+5$"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "일부 변의 합 구하기",
+        "bReason": "전체 변 수가 아닌 더하는 변 수를 곱함을 확인",
+        "cDecision": "rewrite",
+        "cAfter": "한 변이 $5$ cm인 정육각형에서 이웃한 변 $3$개의 길이의 합은 $5\\times${$3$}으로 구한다.",
+        "cReason": "'그 변들의 수'가 모호해 구체 곱셈식으로 고침",
+        "cSlotEquivalents": [
+          [
+            "세"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "일부 변의 합 구하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "한 변이 $5$ cm인 정육각형에서 이웃한 변 $3$개의 길이의 합은 $5\\times${$3$}으로 구한다.",
+        "cStudentSentence": "한 변이 $5$ cm인 정육각형에서 이웃한 변 $3$개의 길이의 합은 $5\\times$□으로 구한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$3$",
+            "equivalents": [
+              "세"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "한 변이 $5$ cm인 정육각형에서 이웃한 변 $3$개의 길이를 모두 더하면 몇 cm인지 쓰고, 구하는 방법을 쓰시오.",
+          "answer": "$5\\times3=15$이므로 $15$ cm이다. 한 변의 길이에 더하려는 변의 수를 곱한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$15$ cm"
+              ]
+            },
+            {
+              "anyOf": [
+                "한 변의 길이에 변의 수를 곱한다",
+                "$5\\times3$",
+                "$5+5+5$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "한 변이 $5$ cm인 정육각형에서 이웃한 변 $3$개의 길이의 합은 $5\\times${$3$}으로 구한다.",
+          "acceptedAnswers": [
+            [
+              "$3$",
+              "세"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2715,
+        "sourceFingerprint": "9b17176bc3e0c9a9598013d316fe0fbf77a661fdafa7ce04286963b22465a529",
+        "part": "e4plus",
+        "id": "e4-2-6-2-xc20",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "term": "같은 둘레와 다른 변 수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "둘레가 같은 정사각형과 정육각형에서는 변이 더 적은 {정사각형}의 한 변이 길다.",
+        "studentC": "둘레가 같은 정사각형과 정육각형에서는 변이 더 적은 □의 한 변이 길다.",
+        "answers": [
+          "정사각형"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2715,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "sourceFingerprint": "9b17176bc3e0c9a9598013d316fe0fbf77a661fdafa7ce04286963b22465a529",
+        "proposalFingerprint": "1a7571db8883d53c0247d60a32689b0bf29c021ee6cd5bde60457089d734e3a6",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-2-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "둘레가 $24$ cm인 정사각형과 정육각형이 있다. 한 변의 길이를 각각 구하고, 어느 쪽의 한 변이 더 긴지 쓰시오.",
+        "bAnswer": "정사각형 $24\\div4=6$ cm, 정육각형 $24\\div6=4$ cm이므로 정사각형의 한 변이 더 길다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "정사각형 $6$ cm, 정육각형 $4$ cm"
+            ]
+          },
+          {
+            "anyOf": [
+              "정사각형의 한 변이 더 길다",
+              "정사각형"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "둘레 같을 때 변 길이 비교",
+        "bReason": "변이 적을수록 한 변이 긴 이유를 계산으로 확인",
+        "cDecision": "keep",
+        "cReason": "'변이 더 적은' 단서가 있는 짧은 선택형 빈칸",
+        "cSlotEquivalents": [
+          [
+            "사각형"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "같은 둘레와 다른 변 수",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "둘레가 같은 정사각형과 정육각형에서는 변이 더 적은 {정사각형}의 한 변이 길다.",
+        "cStudentSentence": "둘레가 같은 정사각형과 정육각형에서는 변이 더 적은 □의 한 변이 길다.",
+        "cSlotAnswers": [
+          {
+            "expected": "정사각형",
+            "equivalents": [
+              "사각형"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "둘레가 같은 정사각형과 정육각형에서는 변이 더 적은 □의 한 변이 길다.",
+          "answers": [
+            "정사각형"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "둘레가 $24$ cm인 정사각형과 정육각형이 있다. 한 변의 길이를 각각 구하고, 어느 쪽의 한 변이 더 긴지 쓰시오.",
+          "answer": "정사각형 $24\\div4=6$ cm, 정육각형 $24\\div6=4$ cm이므로 정사각형의 한 변이 더 길다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "정사각형 $6$ cm, 정육각형 $4$ cm"
+              ]
+            },
+            {
+              "anyOf": [
+                "정사각형의 한 변이 더 길다",
+                "정사각형"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "둘레가 같은 정사각형과 정육각형에서는 변이 더 적은 {정사각형}의 한 변이 길다.",
+          "acceptedAnswers": [
+            [
+              "정사각형",
+              "사각형"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2716,
+        "sourceFingerprint": "c4385b06420955156633289dcbf498316ddecb946877bd63a1ff1b7bff7740a2",
+        "part": "e4plus",
+        "id": "e4-2-6-2-xc21",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "term": "둘레 증가량으로 변 증가량 찾기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "같은 종류의 정다각형에서 둘레가 늘어난 양을 변 수로 나누면 {한 변이 늘어난 양}을 얻는다.",
+        "studentC": "같은 종류의 정다각형에서 둘레가 늘어난 양을 변 수로 나누면 □을 얻는다.",
+        "answers": [
+          "한 변이 늘어난 양"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2716,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "sourceFingerprint": "c4385b06420955156633289dcbf498316ddecb946877bd63a1ff1b7bff7740a2",
+        "proposalFingerprint": "b65336b908eacc86e830b6cb1868f40612f595ae5c26c4a07af203de2b9b5d95",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-2-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "같은 종류의 정다각형에서 한 변을 늘렸더니 정육각형의 둘레가 $12$ cm 늘어났다. 한 변은 몇 cm 늘어났는지 구하고, 방법을 쓰시오.",
+        "bAnswer": "$12\\div6=2$이므로 한 변은 $2$ cm 늘어났다. 늘어난 둘레를 변의 수로 나눈다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2$ cm"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12\\div6$",
+              "늘어난 둘레를 변의 수로 나눈다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "둘레 증가량에서 변 증가량",
+        "bReason": "나눗셈으로 한 변 증가량을 구하는 과정 확인",
+        "cDecision": "rewrite",
+        "cAfter": "정오각형의 둘레가 $10$ cm 늘어났다면 한 변은 $10\\div${$5$}$=2$ (cm)씩 늘어난 것이다.",
+        "cReason": "긴 구 정답을 구체 나눗셈 식 빈칸으로 고침",
+        "cSlotEquivalents": [
+          [
+            "다섯"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "둘레 증가량으로 변 증가량 찾기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정오각형의 둘레가 $10$ cm 늘어났다면 한 변은 $10\\div${$5$}$=2$ (cm)씩 늘어난 것이다.",
+        "cStudentSentence": "정오각형의 둘레가 $10$ cm 늘어났다면 한 변은 $10\\div$□$=2$ (cm)씩 늘어난 것이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$5$",
+            "equivalents": [
+              "다섯"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "같은 종류의 정다각형에서 한 변을 늘렸더니 정육각형의 둘레가 $12$ cm 늘어났다. 한 변은 몇 cm 늘어났는지 구하고, 방법을 쓰시오.",
+          "answer": "$12\\div6=2$이므로 한 변은 $2$ cm 늘어났다. 늘어난 둘레를 변의 수로 나눈다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$2$ cm"
+              ]
+            },
+            {
+              "anyOf": [
+                "$12\\div6$",
+                "늘어난 둘레를 변의 수로 나눈다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "정오각형의 둘레가 $10$ cm 늘어났다면 한 변은 $10\\div${$5$}$=2$ (cm)씩 늘어난 것이다.",
+          "acceptedAnswers": [
+            [
+              "$5$",
+              "다섯"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2717,
+        "sourceFingerprint": "932873ca1f0b734fc4fbff9dd6e6a6bfcc227a9a7f68fb8de703e65681a8f667",
+        "part": "e4plus",
+        "id": "e4-2-6-2-xc22",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "term": "철사에서 남은 길이 빼기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "철사로 정다각형을 만들고 남은 부분이 있다면 처음 길이에서 남은 길이를 빼어 {둘레}를 구한다.",
+        "studentC": "철사로 정다각형을 만들고 남은 부분이 있다면 처음 길이에서 남은 길이를 빼어 □를 구한다.",
+        "answers": [
+          "둘레"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2717,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "sourceFingerprint": "932873ca1f0b734fc4fbff9dd6e6a6bfcc227a9a7f68fb8de703e65681a8f667",
+        "proposalFingerprint": "d813632f137f776ca3fda34bfcb12110db88be02c97795e914ec29ef333dcbf5",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-2-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "철사 $50$ cm로 정팔각형을 만들었더니 $2$ cm가 남았다. 정팔각형의 둘레는 몇 cm인지 구하고 방법을 쓰시오.",
+        "bAnswer": "$50-2=48$이므로 $48$ cm이다. 처음 길이에서 남은 길이를 뺀다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$48$ cm"
+            ]
+          },
+          {
+            "anyOf": [
+              "처음 길이에서 남은 길이를 뺀다",
+              "$50-2$"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "철사 남은 길이로 둘레 구하기",
+        "bReason": "사용한 길이가 둘레임을 뺄셈으로 확인",
+        "cDecision": "keep",
+        "cReason": "만든 도형의 둘레를 묻는 익숙한 낱말 빈칸",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "철사에서 남은 길이 빼기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "철사로 정다각형을 만들고 남은 부분이 있다면 처음 길이에서 남은 길이를 빼어 {둘레}를 구한다.",
+        "cStudentSentence": "철사로 정다각형을 만들고 남은 부분이 있다면 처음 길이에서 남은 길이를 빼어 □를 구한다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "둘레",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "철사로 정다각형을 만들고 남은 부분이 있다면 처음 길이에서 남은 길이를 빼어 □를 구한다.",
+          "answers": [
+            "둘레"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "철사 $50$ cm로 정팔각형을 만들었더니 $2$ cm가 남았다. 정팔각형의 둘레는 몇 cm인지 구하고 방법을 쓰시오.",
+          "answer": "$50-2=48$이므로 $48$ cm이다. 처음 길이에서 남은 길이를 뺀다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$48$ cm"
+              ]
+            },
+            {
+              "anyOf": [
+                "처음 길이에서 남은 길이를 뺀다",
+                "$50-2$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "철사로 정다각형을 만들고 남은 부분이 있다면 처음 길이에서 남은 길이를 빼어 {둘레}를 구한다.",
+          "acceptedAnswers": [
+            [
+              "둘레"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2718,
+        "sourceFingerprint": "b8f1f52d0725fe1c17712e5f35322e3e2cb0bfd50481309318d47fb408502459",
+        "part": "e4plus",
+        "id": "e4-2-6-2-xc23",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "term": "한 변이 같은 여러 정다각형 비교",
+        "kind": "방법",
+        "level": "상",
+        "definition": "같은 한 변을 가진 정다각형들의 둘레 차는 한 변 길이에 {변 수의 차}를 곱해 구할 수 있다.",
+        "studentC": "같은 한 변을 가진 정다각형들의 둘레 차는 한 변 길이에 □를 곱해 구할 수 있다.",
+        "answers": [
+          "변 수의 차"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2718,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "sourceFingerprint": "b8f1f52d0725fe1c17712e5f35322e3e2cb0bfd50481309318d47fb408502459",
+        "proposalFingerprint": "35add91eb3f21d85b9879e84225f60bbe8fd6dffed7fa826292a60f790f3b17d",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-2-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "한 변이 $4$ cm인 정오각형과 정팔각형의 둘레의 차는 몇 cm인지 구하시오. 변의 수가 몇 개 차이 나는지를 이용한 식을 쓰시오.",
+        "bAnswer": "$4\\times(8-5)=4\\times3=12$이므로 $12$ cm이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$12$ cm"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4\\times3$",
+              "$4\\times(8-5)$",
+              "$32-20$"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "변 수의 차로 둘레의 차",
+        "bReason": "한 변에 변 수의 차를 곱하는 방법을 예로 확인",
+        "cDecision": "rewrite",
+        "cAfter": "한 변이 $4$ cm인 정오각형과 정팔각형의 둘레의 차는 $4\\times${$3$}$=12$ (cm)로 구할 수 있다.",
+        "cReason": "'변 수의 차' 구가 모호해 구체 곱셈 빈칸으로 고침",
+        "cSlotEquivalents": [
+          [
+            "세"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "한 변이 같은 여러 정다각형 비교",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "한 변이 $4$ cm인 정오각형과 정팔각형의 둘레의 차는 $4\\times${$3$}$=12$ (cm)로 구할 수 있다.",
+        "cStudentSentence": "한 변이 $4$ cm인 정오각형과 정팔각형의 둘레의 차는 $4\\times$□$=12$ (cm)로 구할 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$3$",
+            "equivalents": [
+              "세"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "한 변이 $4$ cm인 정오각형과 정팔각형의 둘레의 차는 몇 cm인지 구하시오. 변의 수가 몇 개 차이 나는지를 이용한 식을 쓰시오.",
+          "answer": "$4\\times(8-5)=4\\times3=12$이므로 $12$ cm이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$12$ cm"
+              ]
+            },
+            {
+              "anyOf": [
+                "$4\\times3$",
+                "$4\\times(8-5)$",
+                "$32-20$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "한 변이 $4$ cm인 정오각형과 정팔각형의 둘레의 차는 $4\\times${$3$}$=12$ (cm)로 구할 수 있다.",
+          "acceptedAnswers": [
+            [
+              "$3$",
+              "세"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2719,
+        "sourceFingerprint": "2445f20d3ca987fb194c1815599bcf8abcac0887887235d75e5ca6474fe2c076",
+        "part": "e4plus",
+        "id": "e4-2-6-2-xc24",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "term": "두 정다각형을 붙인 둘레",
+        "kind": "방법",
+        "level": "상",
+        "definition": "정다각형 두 개를 한 변 전체끼리 붙이면 둘레 합에서 붙인 변 길이를 {두 번} 뺀다.",
+        "studentC": "정다각형 두 개를 한 변 전체끼리 붙이면 둘레 합에서 붙인 변 길이를 □ 뺀다.",
+        "answers": [
+          "두 번"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2719,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "sourceFingerprint": "2445f20d3ca987fb194c1815599bcf8abcac0887887235d75e5ca6474fe2c076",
+        "proposalFingerprint": "ee1481354fce113e0e9aae6e88297a18a7d7e5792f2783fc59e362190175ca1b",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-2-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "한 변이 $3$ cm인 정삼각형 두 개를 한 변 전체끼리 붙여 새 도형을 만들었다. 새 도형의 둘레는 몇 cm인지 구하고 까닭을 쓰시오.",
+        "bAnswer": "$12$ cm이다. 둘레의 합 $18$ cm에서 붙인 변 $3$ cm를 두 번 빼기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$12$ cm"
+            ]
+          },
+          {
+            "anyOf": [
+              "붙인 변은 안쪽이라 둘레에 넣지 않는다",
+              "붙인 변을 두 번 뺀다",
+              "바깥쪽 변 $4$개의 합"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "붙인 변을 둘레에서 빼기",
+        "bReason": "붙인 변이 두 도형에 하나씩 있어 두 번 뺌을 확인",
+        "cDecision": "keep",
+        "cReason": "'붙인 변을 몇 번 뺄까'를 묻는 짧은 횟수 빈칸",
+        "cSlotEquivalents": [
+          [
+            "$2$번",
+            "두 번만"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "두 정다각형을 붙인 둘레",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정다각형 두 개를 한 변 전체끼리 붙이면 둘레 합에서 붙인 변 길이를 {두 번} 뺀다.",
+        "cStudentSentence": "정다각형 두 개를 한 변 전체끼리 붙이면 둘레 합에서 붙인 변 길이를 □ 뺀다.",
+        "cSlotAnswers": [
+          {
+            "expected": "두 번",
+            "equivalents": [
+              "$2$번",
+              "두 번만"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "정다각형 두 개를 한 변 전체끼리 붙이면 둘레 합에서 붙인 변 길이를 □ 뺀다.",
+          "answers": [
+            "두 번"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "한 변이 $3$ cm인 정삼각형 두 개를 한 변 전체끼리 붙여 새 도형을 만들었다. 새 도형의 둘레는 몇 cm인지 구하고 까닭을 쓰시오.",
+          "answer": "$12$ cm이다. 둘레의 합 $18$ cm에서 붙인 변 $3$ cm를 두 번 빼기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$12$ cm"
+              ]
+            },
+            {
+              "anyOf": [
+                "붙인 변은 안쪽이라 둘레에 넣지 않는다",
+                "붙인 변을 두 번 뺀다",
+                "바깥쪽 변 $4$개의 합"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "정다각형 두 개를 한 변 전체끼리 붙이면 둘레 합에서 붙인 변 길이를 {두 번} 뺀다.",
+          "acceptedAnswers": [
+            [
+              "두 번",
+              "$2$번",
+              "두 번만"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2720,
+        "sourceFingerprint": "cfe0199cbe7117d5fe1963f583f873395e5c3f8987b8550414e7af4a7ac1f7e0",
+        "part": "e4plus",
+        "id": "e4-2-6-2-xc25",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "term": "정다각형을 알아보는 데 부족한 정보",
+        "kind": "성질",
+        "level": "상",
+        "definition": "한 변의 길이만으로는 모든 변의 길이와 모든 각의 크기가 각각 같은지 알 수 없으므로, 그 다각형이 {정다각형}인지 판단할 수 없다.",
+        "studentC": "한 변의 길이만으로는 모든 변의 길이와 모든 각의 크기가 각각 같은지 알 수 없으므로, 그 다각형이 □인지 판단할 수 없다.",
+        "answers": [
+          "정다각형"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2720,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "sourceFingerprint": "cfe0199cbe7117d5fe1963f583f873395e5c3f8987b8550414e7af4a7ac1f7e0",
+        "proposalFingerprint": "19aa05f1d386848614c6ac91721dcd64c350676cb7532d46d0ab3928d34fa137",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-2-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "어떤 다각형의 한 변의 길이가 $5$ cm라는 것만 알 때, 이 다각형이 정다각형인지 알 수 있는지 쓰고 까닭을 설명하시오.",
+        "bAnswer": "알 수 없다. 한 변만으로는 모든 변의 길이와 모든 각의 크기가 각각 같은지 알 수 없기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "알 수 없다",
+              "판단할 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "다른 변과 각을 모르기 때문",
+              "모든 변과 각이 같은지 알 수 없다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "정보 부족 판단 이유",
+        "bReason": "한 변만으로 판별 못 하는 까닭 설명을 요구",
+        "cDecision": "keep",
+        "cReason": "앞의 '모든 변·각이 같은지' 단서가 있는 이름 빈칸",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "정다각형을 알아보는 데 부족한 정보",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "한 변의 길이만으로는 모든 변의 길이와 모든 각의 크기가 각각 같은지 알 수 없으므로, 그 다각형이 {정다각형}인지 판단할 수 없다.",
+        "cStudentSentence": "한 변의 길이만으로는 모든 변의 길이와 모든 각의 크기가 각각 같은지 알 수 없으므로, 그 다각형이 □인지 판단할 수 없다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "정다각형",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "한 변의 길이만으로는 모든 변의 길이와 모든 각의 크기가 각각 같은지 알 수 없으므로, 그 다각형이 □인지 판단할 수 없다.",
+          "answers": [
+            "정다각형"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "어떤 다각형의 한 변의 길이가 $5$ cm라는 것만 알 때, 이 다각형이 정다각형인지 알 수 있는지 쓰고 까닭을 설명하시오.",
+          "answer": "알 수 없다. 한 변만으로는 모든 변의 길이와 모든 각의 크기가 각각 같은지 알 수 없기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "알 수 없다",
+                "판단할 수 없다"
+              ]
+            },
+            {
+              "anyOf": [
+                "다른 변과 각을 모르기 때문",
+                "모든 변과 각이 같은지 알 수 없다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "한 변의 길이만으로는 모든 변의 길이와 모든 각의 크기가 각각 같은지 알 수 없으므로, 그 다각형이 {정다각형}인지 판단할 수 없다.",
+          "acceptedAnswers": [
+            [
+              "정다각형"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2721,
+        "sourceFingerprint": "fe0b653797f08c0a86a89906d75349cdb66e0374e704dd5254f290ce9cfca63d",
+        "part": "e4plus",
+        "id": "e4-2-6-2-xc26",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "term": "크기만 바뀐 정다각형 비교",
+        "kind": "성질",
+        "level": "상",
+        "definition": "정다각형의 {변들을 모두 같은 배로 늘려} 그려도 각 크기를 유지하면 정다각형이다.",
+        "studentC": "정다각형의 □ 그려도 각 크기를 유지하면 정다각형이다.",
+        "answers": [
+          "변들을 모두 같은 배로 늘려"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2721,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "sourceFingerprint": "fe0b653797f08c0a86a89906d75349cdb66e0374e704dd5254f290ce9cfca63d",
+        "proposalFingerprint": "c095a530f4b05671afd1f23b4f6fd8989b5c5813ff46e157e7e7a22e050db2a4",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-2-xc26",
+        "bDecision": "rewrite",
+        "bPrompt": "정삼각형의 모든 변을 똑같이 $2$배로 늘려 새 삼각형을 그렸고 각의 크기는 그대로이다. 새 삼각형도 정삼각형인지 쓰고 까닭을 설명하시오.",
+        "bAnswer": "정삼각형이다. 모든 변이 똑같이 $2$배가 되어 길이가 여전히 모두 같고 각의 크기도 같기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "정삼각형이다",
+              "정다각형이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "변이 똑같이 늘어나 길이가 여전히 같다",
+              "변의 길이가 모두 같다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "크기만 바뀐 정다각형",
+        "bReason": "모든 변을 같은 배로 늘리면 조건이 유지됨을 확인",
+        "cDecision": "rewrite",
+        "cAfter": "정다각형의 모든 변을 똑같이 $2$배로 늘려 그려도 각의 크기가 그대로이면, 변의 길이가 모두 {같으므로} 정다각형이다.",
+        "cReason": "긴 구 정답을 짧은 관계 낱말 빈칸으로 고침",
+        "cSlotEquivalents": [
+          [
+            "같아서",
+            "같고",
+            "같다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "크기만 바뀐 정다각형 비교",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정다각형의 모든 변을 똑같이 $2$배로 늘려 그려도 각의 크기가 그대로이면, 변의 길이가 모두 {같으므로} 정다각형이다.",
+        "cStudentSentence": "정다각형의 모든 변을 똑같이 $2$배로 늘려 그려도 각의 크기가 그대로이면, 변의 길이가 모두 □ 정다각형이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같으므로",
+            "equivalents": [
+              "같아서",
+              "같고",
+              "같다"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "정삼각형의 모든 변을 똑같이 $2$배로 늘려 새 삼각형을 그렸고 각의 크기는 그대로이다. 새 삼각형도 정삼각형인지 쓰고 까닭을 설명하시오.",
+          "answer": "정삼각형이다. 모든 변이 똑같이 $2$배가 되어 길이가 여전히 모두 같고 각의 크기도 같기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "정삼각형이다",
+                "정다각형이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "변이 똑같이 늘어나 길이가 여전히 같다",
+                "변의 길이가 모두 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "정다각형의 모든 변을 똑같이 $2$배로 늘려 그려도 각의 크기가 그대로이면, 변의 길이가 모두 {같으므로} 정다각형이다.",
+          "acceptedAnswers": [
+            [
+              "같으므로",
+              "같아서",
+              "같고",
+              "같다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2722,
+        "sourceFingerprint": "45ba55aa1e036752a594b9b8605e02a21780a56e6f5990e6e141ff37610df955",
+        "part": "e4plus",
+        "id": "e4-2-6-2-xc27",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "term": "정다각형을 주장한 근거 점검",
+        "kind": "방법",
+        "level": "상",
+        "definition": "다각형을 정다각형이라고 하려면 각의 크기가 모두 같다는 것뿐 아니라, 모든 변의 {길이}도 같다는 확인이 필요하다.",
+        "studentC": "다각형을 정다각형이라고 하려면 각의 크기가 모두 같다는 것뿐 아니라, 모든 변의 □도 같다는 확인이 필요하다.",
+        "answers": [
+          "길이"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2722,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "sourceFingerprint": "45ba55aa1e036752a594b9b8605e02a21780a56e6f5990e6e141ff37610df955",
+        "proposalFingerprint": "8456f5e03ab621923e264df1e660cf3a8bc9ce6af022faafd1179f336d2540cc",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-2-xc27",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "reason",
+        "bGoal": "각만 같을 때 변 확인",
+        "bReason": "직사각형 항목과 같은 목표라 B 제외",
+        "cDecision": "keep",
+        "cReason": "각만 같다는 단서 뒤 '변의 □'로 자연스러운 빈칸",
+        "exclusionReason": "각이 같아도 변이 다르면 정다각형이 아니라는 점은 직사각형·마름모 항목 B에서 이미 묻는다.",
+        "cSlotEquivalents": [
+          [
+            "변의 길이"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "정다각형을 주장한 근거 점검",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "다각형을 정다각형이라고 하려면 각의 크기가 모두 같다는 것뿐 아니라, 모든 변의 {길이}도 같다는 확인이 필요하다.",
+        "cStudentSentence": "다각형을 정다각형이라고 하려면 각의 크기가 모두 같다는 것뿐 아니라, 모든 변의 □도 같다는 확인이 필요하다.",
+        "cSlotAnswers": [
+          {
+            "expected": "길이",
+            "equivalents": [
+              "변의 길이"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "다각형을 정다각형이라고 하려면 각의 크기가 모두 같다는 것뿐 아니라, 모든 변의 □도 같다는 확인이 필요하다.",
+          "answers": [
+            "길이"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "다각형을 정다각형이라고 하려면 각의 크기가 모두 같다는 것뿐 아니라, 모든 변의 {길이}도 같다는 확인이 필요하다.",
+          "acceptedAnswers": [
+            [
+              "길이",
+              "변의 길이"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "직사각형 항목과 같은 목표라 B 제외"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2723,
+        "sourceFingerprint": "79ea963c85220f10b8822521d6f7055c67f2c1201ad54f898261d8869442a144",
+        "part": "e4plus",
+        "id": "e4-2-6-2-xc28",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "term": "둘레와 한 변으로 변 수 찾기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "정다각형의 둘레를 한 변 길이로 나누면 {변의 개수}를 찾을 수 있다.",
+        "studentC": "정다각형의 둘레를 한 변 길이로 나누면 □를 찾을 수 있다.",
+        "answers": [
+          "변의 개수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2723,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "sourceFingerprint": "79ea963c85220f10b8822521d6f7055c67f2c1201ad54f898261d8869442a144",
+        "proposalFingerprint": "74ee4f32e7401fce00115414453022bfc7c0e50cb20da2d89abafb4c1a1ff467",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-2-xc28",
+        "bDecision": "rewrite",
+        "bPrompt": "둘레가 $30$ cm이고 한 변이 $5$ cm인 정다각형은 변이 몇 개인지 구하고, 방법을 쓰시오.",
+        "bAnswer": "$30\\div5=6$이므로 변이 $6$개인 정육각형이다. 둘레를 한 변의 길이로 나눈다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$6$개",
+              "정육각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "$30\\div5$",
+              "둘레를 한 변의 길이로 나눈다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "둘레로 변의 개수 구하기",
+        "bReason": "곱셈의 거꾸로인 나눗셈으로 변 수를 구함",
+        "cDecision": "keep",
+        "cReason": "나눈 몫이 무엇인지 묻는 익숙한 낱말 빈칸",
+        "cSlotEquivalents": [
+          [
+            "변의 수",
+            "변 수"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "둘레와 한 변으로 변 수 찾기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정다각형의 둘레를 한 변 길이로 나누면 {변의 개수}를 찾을 수 있다.",
+        "cStudentSentence": "정다각형의 둘레를 한 변 길이로 나누면 □를 찾을 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "변의 개수",
+            "equivalents": [
+              "변의 수",
+              "변 수"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "정다각형의 둘레를 한 변 길이로 나누면 □를 찾을 수 있다.",
+          "answers": [
+            "변의 개수"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "둘레가 $30$ cm이고 한 변이 $5$ cm인 정다각형은 변이 몇 개인지 구하고, 방법을 쓰시오.",
+          "answer": "$30\\div5=6$이므로 변이 $6$개인 정육각형이다. 둘레를 한 변의 길이로 나눈다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$6$개",
+                "정육각형"
+              ]
+            },
+            {
+              "anyOf": [
+                "$30\\div5$",
+                "둘레를 한 변의 길이로 나눈다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "정다각형의 둘레를 한 변 길이로 나누면 {변의 개수}를 찾을 수 있다.",
+          "acceptedAnswers": [
+            [
+              "변의 개수",
+              "변의 수",
+              "변 수"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2724,
+        "sourceFingerprint": "54ead8827b2a6a265412dc9e31d997ca1e020ef67b77839be663473bc43454fb",
+        "part": "e4plus",
+        "id": "e4-2-6-3-xc1",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "term": "대각선의 양 끝",
+        "kind": "정의",
+        "level": "하",
+        "definition": "대각선의 양 끝은 다각형의 {꼭짓점}에 놓인다.",
+        "studentC": "대각선의 양 끝은 다각형의 □에 놓인다.",
+        "answers": [
+          "꼭짓점"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2724,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "sourceFingerprint": "54ead8827b2a6a265412dc9e31d997ca1e020ef67b77839be663473bc43454fb",
+        "proposalFingerprint": "c12e05046246f51a79023060c00235acbf8950608083b839513de0582f369674",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-3-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "다각형의 대각선은 어떤 두 꼭짓점을 이은 선분인지 쓰시오.",
+        "bAnswer": "이웃하지 않은 두 꼭짓점을 이은 선분이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "이웃하지 않은 두 꼭짓점",
+              "서로 이웃하지 않는 꼭짓점끼리"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "대각선의 정의",
+        "bReason": "대각선이 이웃하지 않은 꼭짓점을 잇는 선분임을 확인",
+        "cDecision": "keep",
+        "cReason": "양 끝 위치를 묻는 짧은 낱말 빈칸",
+        "roleEvidence": {
+          "sourceKind": "정의",
+          "sourceTerm": "대각선의 양 끝",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "대각선의 양 끝은 다각형의 {꼭짓점}에 놓인다.",
+        "cStudentSentence": "대각선의 양 끝은 다각형의 □에 놓인다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "꼭짓점",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "대각선의 양 끝은 다각형의 □에 놓인다.",
+          "answers": [
+            "꼭짓점"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "다각형의 대각선은 어떤 두 꼭짓점을 이은 선분인지 쓰시오.",
+          "answer": "이웃하지 않은 두 꼭짓점을 이은 선분이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "이웃하지 않은 두 꼭짓점",
+                "서로 이웃하지 않는 꼭짓점끼리"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "대각선의 양 끝은 다각형의 {꼭짓점}에 놓인다.",
+          "acceptedAnswers": [
+            [
+              "꼭짓점"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2725,
+        "sourceFingerprint": "ff47d2f6b9cce3cc28dd5d5dd3b66c9aaba4fd523700057e8918f92207529c78",
+        "part": "e4plus",
+        "id": "e4-2-6-3-xc2",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "term": "이웃한 꼭짓점을 이은 선",
+        "kind": "성질",
+        "level": "하",
+        "definition": "다각형에서 바로 이웃한 두 꼭짓점을 이으면 대각선이 아니라 {변}이 된다.",
+        "studentC": "다각형에서 바로 이웃한 두 꼭짓점을 이으면 대각선이 아니라 □이 된다.",
+        "answers": [
+          "변"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2725,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "sourceFingerprint": "ff47d2f6b9cce3cc28dd5d5dd3b66c9aaba4fd523700057e8918f92207529c78",
+        "proposalFingerprint": "28631d8750a6308d32c0e44915a3483c63b07fcc90eecafd1cb9890dd0c93fa6",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-3-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "다각형에서 바로 이웃한 두 꼭짓점을 이은 선분은 대각선인지 쓰고, 그 선분의 이름을 쓰시오.",
+        "bAnswer": "대각선이 아니다. 변이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "대각선이 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "변"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "이웃한 꼭짓점은 변",
+        "bReason": "대각선과 변을 구분하는 기준 확인",
+        "cDecision": "keep",
+        "cReason": "대각선이 아니라 무엇인지 묻는 짧은 낱말 빈칸",
+        "cSlotEquivalents": [
+          []
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "이웃한 꼭짓점을 이은 선",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "다각형에서 바로 이웃한 두 꼭짓점을 이으면 대각선이 아니라 {변}이 된다.",
+        "cStudentSentence": "다각형에서 바로 이웃한 두 꼭짓점을 이으면 대각선이 아니라 □이 된다.",
+        "cSlotAnswers": [
+          {
+            "expected": "변",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "다각형에서 바로 이웃한 두 꼭짓점을 이으면 대각선이 아니라 □이 된다.",
+          "answers": [
+            "변"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "다각형에서 바로 이웃한 두 꼭짓점을 이은 선분은 대각선인지 쓰고, 그 선분의 이름을 쓰시오.",
+          "answer": "대각선이 아니다. 변이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "대각선이 아니다"
+              ]
+            },
+            {
+              "anyOf": [
+                "변"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "다각형에서 바로 이웃한 두 꼭짓점을 이으면 대각선이 아니라 {변}이 된다.",
+          "acceptedAnswers": [
+            [
+              "변"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2726,
+        "sourceFingerprint": "77b52b3a192bcf6008ae002fdde8a91185906585d289f6ef110c0ae98f7a51e3",
+        "part": "e4plus",
+        "id": "e4-2-6-3-xc3",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "term": "사각형에서 대각선 찾기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "사각형에서는 한 꼭짓점에서 {마주 보는 꼭짓점}으로 대각선을 긋는다.",
+        "studentC": "사각형에서는 한 꼭짓점에서 □으로 대각선을 긋는다.",
+        "answers": [
+          "마주 보는 꼭짓점"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2726,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "sourceFingerprint": "77b52b3a192bcf6008ae002fdde8a91185906585d289f6ef110c0ae98f7a51e3",
+        "proposalFingerprint": "60f85ab9a0d583cff6547ab1b53319bf48c1fbada1de0c5e10f42786ca6dc151",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-3-xc3",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "사각형 대각선 긋기",
+        "bReason": "사각형 대각선 개수 항목과 같은 목표",
+        "cDecision": "keep",
+        "cReason": "마주 보는 꼭짓점을 잇는 짧은 방법 빈칸",
+        "exclusionReason": "사각형에서 마주 보는 꼭짓점을 잇는다는 내용은 사각형 대각선 개수 항목 B에서 함께 묻는다.",
+        "cSlotEquivalents": [
+          [
+            "맞은편 꼭짓점",
+            "반대쪽 꼭짓점",
+            "이웃하지 않은 꼭짓점"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "사각형에서 대각선 찾기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "사각형에서는 한 꼭짓점에서 {마주 보는 꼭짓점}으로 대각선을 긋는다.",
+        "cStudentSentence": "사각형에서는 한 꼭짓점에서 □으로 대각선을 긋는다.",
+        "cSlotAnswers": [
+          {
+            "expected": "마주 보는 꼭짓점",
+            "equivalents": [
+              "맞은편 꼭짓점",
+              "반대쪽 꼭짓점",
+              "이웃하지 않은 꼭짓점"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "사각형에서는 한 꼭짓점에서 □으로 대각선을 긋는다.",
+          "answers": [
+            "마주 보는 꼭짓점"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "사각형에서는 한 꼭짓점에서 {마주 보는 꼭짓점}으로 대각선을 긋는다.",
+          "acceptedAnswers": [
+            [
+              "마주 보는 꼭짓점",
+              "맞은편 꼭짓점",
+              "반대쪽 꼭짓점",
+              "이웃하지 않은 꼭짓점"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "사각형 대각선 개수 항목과 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2727,
+        "sourceFingerprint": "b52f905546eb2ab8c22c3bc27c244e27c7929b71e11dd3a662c6b23506bb2f00",
+        "part": "e4plus",
+        "id": "e4-2-6-3-xc4",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "term": "삼각형에 대각선이 없는 까닭",
+        "kind": "성질",
+        "level": "하",
+        "definition": "삼각형의 각 꼭짓점에는 다른 두 꼭짓점이 모두 {이웃}해 있다.",
+        "studentC": "삼각형의 각 꼭짓점에는 다른 두 꼭짓점이 모두 □해 있다.",
+        "answers": [
+          "이웃"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2727,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "sourceFingerprint": "b52f905546eb2ab8c22c3bc27c244e27c7929b71e11dd3a662c6b23506bb2f00",
+        "proposalFingerprint": "9b8a31c3edfe51e4804c29f3319a14e20fe91b51579c0f73e26fe9dede103717",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-3-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각형에는 대각선이 없다. 그 까닭을 꼭짓점의 위치와 관련지어 쓰시오.",
+        "bAnswer": "삼각형의 한 꼭짓점에서 다른 두 꼭짓점이 모두 이웃해 있어, 이웃하지 않은 꼭짓점이 없기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "이웃하지 않은 꼭짓점이 없다",
+              "다른 꼭짓점이 모두 이웃해 있다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "삼각형에 대각선 없는 까닭",
+        "bReason": "대각선 정의를 삼각형에 적용한 이유 설명",
+        "cDecision": "keep",
+        "cReason": "이웃해 있다는 익숙한 낱말 빈칸",
+        "cSlotEquivalents": [
+          [
+            "인접"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "삼각형에 대각선이 없는 까닭",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "삼각형의 각 꼭짓점에는 다른 두 꼭짓점이 모두 {이웃}해 있다.",
+        "cStudentSentence": "삼각형의 각 꼭짓점에는 다른 두 꼭짓점이 모두 □해 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "이웃",
+            "equivalents": [
+              "인접"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "삼각형의 각 꼭짓점에는 다른 두 꼭짓점이 모두 □해 있다.",
+          "answers": [
+            "이웃"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "삼각형에는 대각선이 없다. 그 까닭을 꼭짓점의 위치와 관련지어 쓰시오.",
+          "answer": "삼각형의 한 꼭짓점에서 다른 두 꼭짓점이 모두 이웃해 있어, 이웃하지 않은 꼭짓점이 없기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "이웃하지 않은 꼭짓점이 없다",
+                "다른 꼭짓점이 모두 이웃해 있다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "삼각형의 각 꼭짓점에는 다른 두 꼭짓점이 모두 {이웃}해 있다.",
+          "acceptedAnswers": [
+            [
+              "이웃",
+              "인접"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2728,
+        "sourceFingerprint": "a38debe962206bee68d9ae78273a01441ac058de145a2bfe6e136eb519724d99",
+        "part": "e4plus",
+        "id": "e4-2-6-3-xc5",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "term": "사각형의 대각선 개수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "사각형의 꼭짓점들을 맞은편끼리 연결하면 대각선이 {두 개} 생긴다.",
+        "studentC": "사각형의 꼭짓점들을 맞은편끼리 연결하면 대각선이 □ 생긴다.",
+        "answers": [
+          "두 개"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2728,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "sourceFingerprint": "a38debe962206bee68d9ae78273a01441ac058de145a2bfe6e136eb519724d99",
+        "proposalFingerprint": "44c771eaedddce8f60b3f13ef0c2fcb9eac0930cd0ccd640430df60075be9c56",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-3-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "사각형에 그을 수 있는 대각선은 모두 몇 개인지 쓰고, 어떤 꼭짓점끼리 이어지는지 설명하시오.",
+        "bAnswer": "$2$개이다. 마주 보는 꼭짓점끼리 잇는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2$개",
+              "두 개"
+            ]
+          },
+          {
+            "anyOf": [
+              "마주 보는 꼭짓점끼리",
+              "맞은편 꼭짓점끼리",
+              "이웃하지 않은 꼭짓점끼리"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "사각형 대각선 개수와 방법",
+        "bReason": "개수와 연결 방법을 함께 말하게 함",
+        "cDecision": "keep",
+        "cReason": "개수를 묻는 짧은 수 빈칸",
+        "cSlotEquivalents": [
+          [
+            "$2$개"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "사각형의 대각선 개수",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "사각형의 꼭짓점들을 맞은편끼리 연결하면 대각선이 {두 개} 생긴다.",
+        "cStudentSentence": "사각형의 꼭짓점들을 맞은편끼리 연결하면 대각선이 □ 생긴다.",
+        "cSlotAnswers": [
+          {
+            "expected": "두 개",
+            "equivalents": [
+              "$2$개"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "사각형의 꼭짓점들을 맞은편끼리 연결하면 대각선이 □ 생긴다.",
+          "answers": [
+            "두 개"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "사각형에 그을 수 있는 대각선은 모두 몇 개인지 쓰고, 어떤 꼭짓점끼리 이어지는지 설명하시오.",
+          "answer": "$2$개이다. 마주 보는 꼭짓점끼리 잇는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$2$개",
+                "두 개"
+              ]
+            },
+            {
+              "anyOf": [
+                "마주 보는 꼭짓점끼리",
+                "맞은편 꼭짓점끼리",
+                "이웃하지 않은 꼭짓점끼리"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "사각형의 꼭짓점들을 맞은편끼리 연결하면 대각선이 {두 개} 생긴다.",
+          "acceptedAnswers": [
+            [
+              "두 개",
+              "$2$개"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2729,
+        "sourceFingerprint": "792c61d07768ac228588384227c7c30502f5f34797d7ecbbce325baac5cf00e7",
+        "part": "e4plus",
+        "id": "e4-2-6-3-xc6",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "term": "변 가운데 점을 이은 선",
+        "kind": "성질",
+        "level": "하",
+        "definition": "변의 가운데 점끼리 이은 선은 양 끝이 꼭짓점이 아니므로 {대각선이 아니다}.",
+        "studentC": "변의 가운데 점끼리 이은 선은 양 끝이 꼭짓점이 아니므로 □.",
+        "answers": [
+          "대각선이 아니다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2729,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "sourceFingerprint": "792c61d07768ac228588384227c7c30502f5f34797d7ecbbce325baac5cf00e7",
+        "proposalFingerprint": "32dbb828225804186e20930b36e9ab1208febcdc0ce9e81495b1abd582d2bb67",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-3-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "사각형에서 한 변의 가운데 점과 이웃한 변의 가운데 점을 이은 선분은 대각선인지 쓰고 까닭을 설명하시오.",
+        "bAnswer": "대각선이 아니다. 대각선은 양 끝이 꼭짓점이어야 하는데 이 선분은 양 끝이 꼭짓점이 아니기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "대각선이 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "양 끝이 꼭짓점이 아니다",
+              "꼭짓점끼리 이은 선이 아니다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "꼭짓점 아닌 선은 대각선 아님",
+        "bReason": "대각선의 양 끝 조건으로 판단하는 이유 확인",
+        "cDecision": "rewrite",
+        "cAfter": "변의 가운데 점끼리 이은 선은 양 끝이 꼭짓점이 아니므로 대각선이 {아니다}.",
+        "cReason": "문장 전체 정답을 짧은 낱말 빈칸으로 고침",
+        "cSlotEquivalents": [
+          [
+            "안 된다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "변 가운데 점을 이은 선",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "변의 가운데 점끼리 이은 선은 양 끝이 꼭짓점이 아니므로 대각선이 {아니다}.",
+        "cStudentSentence": "변의 가운데 점끼리 이은 선은 양 끝이 꼭짓점이 아니므로 대각선이 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "아니다",
+            "equivalents": [
+              "안 된다"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "사각형에서 한 변의 가운데 점과 이웃한 변의 가운데 점을 이은 선분은 대각선인지 쓰고 까닭을 설명하시오.",
+          "answer": "대각선이 아니다. 대각선은 양 끝이 꼭짓점이어야 하는데 이 선분은 양 끝이 꼭짓점이 아니기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "대각선이 아니다"
+              ]
+            },
+            {
+              "anyOf": [
+                "양 끝이 꼭짓점이 아니다",
+                "꼭짓점끼리 이은 선이 아니다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "변의 가운데 점끼리 이은 선은 양 끝이 꼭짓점이 아니므로 대각선이 {아니다}.",
+          "acceptedAnswers": [
+            [
+              "아니다",
+              "안 된다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2730,
+        "sourceFingerprint": "d967bd511fac2aafe5894e1311f3a57056cd0d05de246d77ed6d24859d82a259",
+        "part": "e4plus",
+        "id": "e4-2-6-3-xc7",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "term": "정사각형에서 두 대각선",
+        "kind": "방법",
+        "level": "하",
+        "definition": "정사각형의 {서로 마주 보는 꼭짓점}을 각각 이으면 대각선 두 개를 찾을 수 있다.",
+        "studentC": "정사각형의 □을 각각 이으면 대각선 두 개를 찾을 수 있다.",
+        "answers": [
+          "서로 마주 보는 꼭짓점"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2730,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "sourceFingerprint": "d967bd511fac2aafe5894e1311f3a57056cd0d05de246d77ed6d24859d82a259",
+        "proposalFingerprint": "662972bed60ddafdb349485f002b2a6002cf1346209d7d7f334238f78927ddfa",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-3-xc7",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "정사각형 대각선 찾기",
+        "bReason": "사각형 대각선 항목과 같은 목표",
+        "cDecision": "keep",
+        "cReason": "각각 이어 대각선 두 개를 찾는 방법 빈칸",
+        "exclusionReason": "정사각형도 마주 보는 꼭짓점을 이어 대각선 두 개를 얻는 같은 목표를 사각형 항목 B에서 다룬다.",
+        "cSlotEquivalents": [
+          [
+            "마주 보는 꼭짓점",
+            "맞은편 꼭짓점",
+            "이웃하지 않은 꼭짓점"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "정사각형에서 두 대각선",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정사각형의 {서로 마주 보는 꼭짓점}을 각각 이으면 대각선 두 개를 찾을 수 있다.",
+        "cStudentSentence": "정사각형의 □을 각각 이으면 대각선 두 개를 찾을 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "서로 마주 보는 꼭짓점",
+            "equivalents": [
+              "마주 보는 꼭짓점",
+              "맞은편 꼭짓점",
+              "이웃하지 않은 꼭짓점"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "정사각형의 □을 각각 이으면 대각선 두 개를 찾을 수 있다.",
+          "answers": [
+            "서로 마주 보는 꼭짓점"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "정사각형의 {서로 마주 보는 꼭짓점}을 각각 이으면 대각선 두 개를 찾을 수 있다.",
+          "acceptedAnswers": [
+            [
+              "서로 마주 보는 꼭짓점",
+              "마주 보는 꼭짓점",
+              "맞은편 꼭짓점",
+              "이웃하지 않은 꼭짓점"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "사각형 대각선 항목과 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2731,
+        "sourceFingerprint": "df02c31af63d1b689ea06628685afb2c8c4d251da77826170b853d7121b097e6",
+        "part": "e4plus",
+        "id": "e4-2-6-3-xc8",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "term": "대각선을 긋는 도구",
+        "kind": "방법",
+        "level": "하",
+        "definition": "이웃하지 않은 두 꼭짓점에 자를 맞추고 {곧은 선분}을 그어 대각선을 표시한다.",
+        "studentC": "이웃하지 않은 두 꼭짓점에 자를 맞추고 □을 그어 대각선을 표시한다.",
+        "answers": [
+          "곧은 선분"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2731,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "sourceFingerprint": "df02c31af63d1b689ea06628685afb2c8c4d251da77826170b853d7121b097e6",
+        "proposalFingerprint": "88c91cc04bb0e5ceb213a83cfb3744a86451f85a2ee6a71f452f89b232dadfcd",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-3-xc8",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "자로 선분 긋기",
+        "bReason": "도구 사용 단순 확인이라 B 제외",
+        "cDecision": "rewrite",
+        "cAfter": "이웃하지 않은 두 꼭짓점에 자를 대고 {곧은 선}을 그어 대각선을 나타낸다.",
+        "cReason": "직선과 혼동되는 선분 대신 쉬운 말로 고침",
+        "exclusionReason": "자를 대고 선을 긋는 도구 사용 확인이라 일반 설명 목표가 약하고 대각선 정의 항목에서 이미 다룬다.",
+        "cSlotEquivalents": [
+          [
+            "곧은 선분",
+            "선분"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "대각선을 긋는 도구",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "이웃하지 않은 두 꼭짓점에 자를 대고 {곧은 선}을 그어 대각선을 나타낸다.",
+        "cStudentSentence": "이웃하지 않은 두 꼭짓점에 자를 대고 □을 그어 대각선을 나타낸다.",
+        "cSlotAnswers": [
+          {
+            "expected": "곧은 선",
+            "equivalents": [
+              "곧은 선분",
+              "선분"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "이웃하지 않은 두 꼭짓점에 자를 대고 {곧은 선}을 그어 대각선을 나타낸다.",
+          "acceptedAnswers": [
+            [
+              "곧은 선",
+              "곧은 선분",
+              "선분"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "도구 사용 단순 확인이라 B 제외"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2732,
+        "sourceFingerprint": "89c79268c18a23814aef513a0e3a6d8f6e87c4889ecb5d59b805f81e77b99d0d",
+        "part": "e4plus",
+        "id": "e4-2-6-3-xc9",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "term": "대각선과 테두리",
+        "kind": "성질",
+        "level": "하",
+        "definition": "다각형의 대각선은 그 도형의 바깥 둘레를 이루는 {변과 다르다}.",
+        "studentC": "다각형의 대각선은 그 도형의 바깥 둘레를 이루는 □.",
+        "answers": [
+          "변과 다르다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2732,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-3 대각선",
+        "sourceFingerprint": "89c79268c18a23814aef513a0e3a6d8f6e87c4889ecb5d59b805f81e77b99d0d",
+        "proposalFingerprint": "b741bb2035b372ca2fee972529d6e2a71a207ddb608ba05155291941f113abda",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-3-xc9",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "definition",
+        "bGoal": "대각선과 변 구분",
+        "bReason": "이웃한 꼭짓점 항목과 같은 목표",
+        "cDecision": "rewrite",
+        "cAfter": "다각형의 대각선은 바깥 둘레를 이루는 변이 {아니다}.",
+        "cReason": "'변과 다르다' 구절 빈칸을 짧은 낱말로 고침",
+        "exclusionReason": "대각선과 변이 다르다는 목표를 이웃한 꼭짓점 항목 B에서 이미 다룬다.",
+        "cSlotEquivalents": [
+          [
+            "다르다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "대각선과 테두리",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "다각형의 대각선은 바깥 둘레를 이루는 변이 {아니다}.",
+        "cStudentSentence": "다각형의 대각선은 바깥 둘레를 이루는 변이 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "아니다",
+            "equivalents": [
+              "다르다"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "다각형의 대각선은 바깥 둘레를 이루는 변이 {아니다}.",
+          "acceptedAnswers": [
+            [
+              "아니다",
+              "다르다"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "이웃한 꼭짓점 항목과 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    }
+  ]
+}

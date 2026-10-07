@@ -1,0 +1,1216 @@
+{
+  "inputFile": "root-middle-final-3575-3600-input.json",
+  "inputSha256": "57158ceb90aac986a75b2f2a566ec5560d4adcfc87053617c94e47a7f100013c",
+  "reader": "Root Codex direct final question/answer/criteria reading",
+  "notIndependentClaudeApproval": true,
+  "rows": [
+    {
+      "id": "m3-05-03-xc18",
+      "sourceIndex": 3575,
+      "proposalFingerprint": "2f2d39253477e9d291398b358f49fea22a31a12a33b746e77067791d59554dbb",
+      "normalizedHash": "54fe6e9f9f334e57dc789187b83423a9fba6412fea6718f66ae299eec7c7bf3d",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "사각형 $ABCD$에서 대각선 $AC$가 사각형의 내부를 지난다. 네 변의 길이와 $\\angle B$, $\\angle D$의 크기를 알 때 삼각비를 이용해 이 사각형의 넓이를 구하는 방법을 설명해 보세요.",
+        "answer": "대각선 $AC$로 삼각형 $ABC$와 $ACD$로 나눈다. 각 삼각형의 넓이를 두 변과 끼인각 $\\angle B$, $\\angle D$의 사인으로 구해(둔각이면 $180^\\circ$에서 뺀 각의 사인) 더한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "대각선으로 두 삼각형으로 나눔"
+            ]
+          },
+          {
+            "anyOf": [
+              "각 삼각형의 넓이를 끼인각의 사인으로 구함"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 넓이를 더함"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "사각형을 내부를 지나는 {대각선}으로 나누면 겹치지 않는 두 삼각형이 되므로, 각 삼각형의 넓이를 끼인각의 {사인}으로 구해 {더한다}.",
+        "acceptedAnswers": [
+          [
+            "대각선"
+          ],
+          [
+            "사인"
+          ],
+          [
+            "더한다"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "꼭짓점 순서와 아는 변·각을 정해 어떻게 나누는지 답할 수 있게 했다.",
+      "cReason": "첫 빈칸 '내부를 지나는 대각선'은 꾸밈말까지 포함된 긴 구였다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "사각형의 내부를 지나는 대각선과 네 변·두 끼인각을 지정한다. 겹치지 않는 두 삼각형으로 나누고 각 넓이를 구해 더하는 방법이 질문과 기준에 일치한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-05-03-xc19",
+      "sourceIndex": 3576,
+      "proposalFingerprint": "46225ee28020e92b77ecbf1fa20cf731171a4a5f99e55cdfbf9d6939b28cc960",
+      "normalizedHash": "853e5cb26278c4ca1b979a11fa5ab325bb6c0efe22e5965ec3e7581316a3f7a2",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "한 변의 길이가 $a$인 정삼각형의 넓이를 두 변과 끼인각의 사인을 이용하는 넓이 공식으로 구하는 과정을 쓰고, 결과를 $a$에 대한 식으로 나타내 보세요.",
+        "answer": "두 변이 모두 $a$이고 끼인각이 $60^\\circ$이므로 넓이는 $\\frac{1}{2}\\times a\\times a\\times\\sin 60^\\circ=\\frac{1}{2}a^2\\times\\frac{\\sqrt{3}}{2}=\\frac{\\sqrt{3}}{4}a^2$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "끼인각 $60^\\circ$와 두 변 $a$를 대입"
+            ]
+          },
+          {
+            "anyOf": [
+              "넓이 $\\frac{\\sqrt{3}}{4}a^2$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "한 변이 $a$인 정삼각형의 넓이는 $\\frac{1}{2}a^2\\sin 60^\\circ$, 곧 {$\\frac{\\sqrt{3}}{4}a^2$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{\\sqrt{3}}{4}a^2$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "공식 암기가 아니라 어느 넓이 공식으로 유도하는지를 묻도록 정했다.",
+      "cReason": "중간 식이 주어지고 정리한 결과만 묻는 짧은 계산 빈칸이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "정삼각형의 두 변a와 끼인각60도를 넓이 공식에 대입해 루트3/4곱하기a제곱으로 정리하도록 요구한다. C도 중간식에서 실제 삼각비값을 계산한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-05-03-xc20",
+      "sourceIndex": 3577,
+      "proposalFingerprint": "06bd332762443de2401b89d209a732f9d02e8e98f419f37116d190d72c76c350",
+      "normalizedHash": "fd3401f8d471b6c3a3cf872a8275831e546a5e08ce0ff645562b1f21f57d7651",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "두 변의 길이가 $a$, $c$로 정해진 삼각형에서 끼인각의 크기만 바꿀 때, 넓이가 가장 커지는 끼인각의 크기를 말하고 그 까닭을 설명해 보세요.",
+        "answer": "$90^\\circ$일 때 가장 크다. 넓이는 $\\frac{1}{2}ac$에 끼인각의 사인(둔각이면 $180^\\circ$에서 뺀 각의 사인)을 곱한 값인데, 이 사인의 값은 $1$보다 작고 $90^\\circ$일 때만 $1$이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "끼인각이 $90^\\circ$일 때 최대"
+            ]
+          },
+          {
+            "anyOf": [
+              "곱해지는 사인의 값이 $90^\\circ$일 때 가장 큰 $1$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "두 변의 길이가 정해진 삼각형의 넓이는 끼인각이 {$90^\\circ$}일 때 가장 크다 — 끼인각이 예각이거나 둔각일 때 넓이 공식에 쓰는 사인의 값은 $\\sin 90^\\circ$의 값인 $1$보다 {작기} 때문이다.",
+        "acceptedAnswers": [
+          [
+            "$90^\\circ$",
+            "직각"
+          ],
+          [
+            "작기"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "무엇이 고정되고 무엇이 변하는지 밝혀 최대가 되는 조건을 묻게 했다.",
+      "cReason": "'둔각의 이웃각의 사인'이 어렵고 빈칸 '$1$보다 작고'는 구 전체였다.",
+      "bVerdict": "revise",
+      "cVerdict": "adopt",
+      "reason": "B의 참조 답은 사인값이1보다 작다고 단정한 뒤90도일 때1이라고 해 모순된다.1이하이고90도일 때만1이라고 쓰거나 예각·둔각일 때만1보다 작다고 제한한다. C는 이미 예각·둔각일 때 작다고 제한해 최대90도를 올바르게 설명한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-05-03-xc21",
+      "sourceIndex": 3578,
+      "proposalFingerprint": "5dcca04f74d75bfe884befebf3f49811134aab29be9209cd98f18de68b7063f0",
+      "normalizedHash": "d726bba71fc6dcd6fce5b1446fca11a47283e69a3733d41760a667751dba48f6",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "삼각형 $ABC$에서 $\\overline{AB}=c$, $\\overline{BC}=a$이고, $A$에서 변 $BC$에 내린 수선의 발 $H$가 변 $BC$의 내부에 있다. $\\overline{BH}$와 $\\overline{HC}$를 각각 $a$, $c$, $\\angle B$의 삼각비로 나타내고 까닭을 설명해 보세요.",
+        "answer": "직각삼각형 $ABH$에서 $\\overline{BH}=c\\cos B$이다. $\\overline{BH}+\\overline{HC}=a$이므로 $\\overline{HC}=a-c\\cos B$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{BH}=c\\cos B$"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 선분의 합이 $a$이므로 $\\overline{HC}=a-c\\cos B$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$\\overline{AB}=c$, $\\overline{BC}=a$인 삼각형 $ABC$에서 $A$에서 내린 수선의 발 $H$가 변 $BC$의 내부에 있으면 $\\overline{BH}=$ {$c\\cos B$}이고, 두 조각의 {합}이 $a$이므로 $\\overline{HC}=$ {$a-c\\cos B$}이다.",
+        "acceptedAnswers": [
+          [
+            "$c\\cos B$"
+          ],
+          [
+            "합"
+          ],
+          [
+            "$a-c\\cos B$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "'두 조각'이 $\\overline{BH}$, $\\overline{HC}$임을 밝히고 수선의 발의 위치 조건을 넣었다.",
+      "cReason": "조건인 '내부'와 결론인 식을 함께 숨겼고 삼각형 $ABC$라는 말도 없었다.",
+      "bVerdict": "adopt",
+      "cVerdict": "revise",
+      "reason": "수선의 발이 변BC 내부라는 조건을 주어 BH=c cosB,HC=a-c cosB가 결정된다. C의 두 조각이라는 말은 불필요하므로 이미 지정된 두 선분BH와HC의 합이라고 분명히 표현한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-05-03-xc22",
+      "sourceIndex": 3579,
+      "proposalFingerprint": "1bd71dabf7d0d91fc1d2c426cd61a19d9326925a126d3a34c67c2b545eef416b",
+      "normalizedHash": "e55ada288a625a947f8e195b29e8b47a2484453a5aae2983ad8bebb0627a735f",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "삼각형 $ABC$에서 $\\overline{AB}=c$이고 $\\angle B$가 둔각이다. $A$에서 직선 $BC$에 내린 수선이 어디에서 만나는지 말하고, 이때 생기는 직각삼각형에서 꼭짓점 $B$의 예각을 $\\angle B$로 나타낸 뒤 높이를 $c$와 삼각비로 나타내 보세요.",
+        "answer": "수선은 변 $BC$의 연장선과 만난다. 수선의 발을 $H$라 하면 직각삼각형 $ABH$에서 $\\angle ABH=180^\\circ-B$이므로 높이는 $\\overline{AH}=c\\sin(180^\\circ-B)$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "수선이 변 $BC$의 연장선과 만남"
+            ]
+          },
+          {
+            "anyOf": [
+              "직각삼각형의 예각이 $180^\\circ-B$"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이 $c\\sin(180^\\circ-B)$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "삼각형 $ABC$에서 $\\angle B$가 둔각이면 $A$에서 직선 $BC$에 내린 수선은 변 $BC$의 {연장선}과 만나고, 이때 생기는 직각삼각형에서 꼭짓점 $B$의 예각의 크기는 {$180^\\circ-B$}이다.",
+        "acceptedAnswers": [
+          [
+            "연장선"
+          ],
+          [
+            "$180^\\circ-B$"
+          ]
+        ]
+      },
+      "coreBefore": "$\\angle B$가 둔각이면 $A$에서 내린 수선은 변 $BC$의 {연장선}과 만나고, 이때 생기는 직각삼각형의 예각은 {$180^\\circ-B$}이다.",
+      "coreAfter": "삼각형 $ABC$에서 $\\angle B$가 둔각이면 $A$에서 직선 $BC$에 내린 수선은 변 $BC$의 {연장선}과 만나고, 이때 생기는 직각삼각형에서 꼭짓점 $B$에 생기는 예각은 {$180^\\circ-B$}이다.",
+      "coreReason": "새로 생기는 직각삼각형에는 예각이 두 개 있다. 따라서 $180^\\circ-B$가 꼭짓점 $B$에 생기는 예각, 곧 $\\angle B$의 이웃각임을 밝혀야 한다. 수선이 닿는 곳이 변 자체가 아니라 연장선 위이므로 '직선 $BC$에 내린 수선'이라고 대상도 분명히 한다.",
+      "bReason": "수선을 내리는 직선과 직각삼각형의 어느 예각인지를 질문에서 정했다.",
+      "cReason": "삼각형 $ABC$와 수선을 내리는 직선이 없고 직각삼각형의 어느 예각인지도 정해지지 않았다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "둔각B인ABC와 직선BC에 내린 수선을 지정하고 직각삼각형에서 B에 생기는 예각을 특정한다. 두 예각을 혼동하던 일반 설명 수정도 수선의 대상과 꼭짓점을 밝혀 옳다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-06-01-xc1",
+      "sourceIndex": 3580,
+      "proposalFingerprint": "00bdb5bc84ff3a10799176d922cefb608253fefd839b3666422f69f26a4395b7",
+      "normalizedHash": "1cf56c4f9ac25dd5e1507d1bbef7d1d968c5fca6aac843837d4b45c219c35a38",
+      "learningRole": "definition",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "원 위의 두 점 $A$, $B$에 대하여 호 $AB$와 현 $AB$는 각각 무엇이고 어떻게 다른가?",
+        "answer": "호 $AB$는 $A$에서 $B$까지의 원의 일부분(곡선)이고, 현 $AB$는 $A$와 $B$를 곧게 이은 선분이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "호는 원의 일부분",
+              "호는 원 위의 곡선 부분"
+            ]
+          },
+          {
+            "anyOf": [
+              "현은 두 점을 이은 선분"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "원 위의 두 점 사이에 놓인 원의 일부분을 {호}라 하고, 두 점을 곧게 이은 선분인 {현}과 구별한다.",
+        "acceptedAnswers": [
+          [
+            "호"
+          ],
+          [
+            "현"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "두 용어를 같은 두 점으로 비교하게 해 차이를 특정했다.",
+      "cReason": "호와 현을 대비하는 짧고 명확한 문장이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "원의 두 점 사이 곡선인 호와 두 점을 곧게 이은 선분인 현을 대비한다. 표준 이름을 뜻에 연결하는 짧고 유용한 정의 확인이다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-06-01-xc2",
+      "sourceIndex": 3581,
+      "proposalFingerprint": "96163aab43c34e35be36d72db72376dc267b4444d6fea56fe10dc0694e597490",
+      "normalizedHash": "8b1c9fed5ec7bdb8858af30b123653964c24ac020350fa453f97d66f37d5be5d",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "반지름이 $r$인 원에서 가장 긴 현은 무엇이며 그 길이는 얼마인가? 그 현이 다른 현보다 긴 까닭도 쓰시오.",
+        "answer": "지름이고 길이는 $2r$이다. 지름이 아닌 현 $AB$는 $\\triangle OAB$에서 $\\overline{AB}<\\overline{OA}+\\overline{OB}=2r$이므로 지름보다 짧다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "지름"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2r$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{AB}<\\overline{OA}+\\overline{OB}=2r$",
+              "삼각형의 두 변의 길이의 합이 나머지 변보다 크다",
+              "$2\\sqrt{r^2-d^2}$에서 $d=0$일 때 가장 길다",
+              "중심까지의 거리가 $0$일 때 가장 길다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "한 원에서 가장 긴 현은 원의 중심을 지나는 {지름}이고, 그 길이는 반지름의 {$2$}배이다.",
+        "acceptedAnswers": [
+          [
+            "지름"
+          ],
+          [
+            "$2$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "가장 긴 현의 이름·길이와 함께 근거를 요구해 암기만 묻지 않게 했다.",
+      "cReason": "지름과 $2$배를 묻는 짧은 비교 빈칸으로 유용하다.",
+      "bVerdict": "revise",
+      "cVerdict": "adopt",
+      "reason": "지름과2r 및 삼각형 부등식에 따른 참조 답은 옳다. B의 이유 기준 중 중심까지 거리가0일 때 가장 길다만 쓰는 대안은 결론을 반복할 뿐이다. 중심거리 증가에 따른 현 길이 감소나 제시된 식·삼각형 부등식을 근거로 확인한다. C는 지름과2배 관계가 명확하다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-06-01-xc3",
+      "sourceIndex": 3582,
+      "proposalFingerprint": "9d4b1e24cc668bcfca6410b863a055c79efc0dee99c2e5488605ba984ce9c015",
+      "normalizedHash": "97dc16b4088af8cc212fb42e29b921cd844ebb709f42cd9a765db791d4f85ee1",
+      "learningRole": "definition",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "원의 중심 $O$에서 현 $AB$까지의 거리는 어떤 선분의 길이로 재는가? 그렇게 재는 까닭도 쓰시오.",
+        "answer": "$O$에서 $AB$에 내린 수선의 길이로 잰다. 점과 선 사이의 거리는 가장 짧은 거리이고, 수선이 가장 짧기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "수선의 길이",
+              "$O$에서 $AB$에 내린 수선"
+            ]
+          },
+          {
+            "anyOf": [
+              "가장 짧은 거리",
+              "수선이 가장 짧다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "원의 중심에서 현까지의 거리는 중심에서 그 현에 그은 {수선}의 길이로 잰다.",
+        "acceptedAnswers": [
+          [
+            "수선"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "'거리'를 어떤 선분으로 재는지와 이유를 묻도록 특정했다.",
+      "cReason": "'수선' 하나를 묻는 분명한 정의 빈칸이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "원의 중심에서 현까지의 거리가 수선의 길이라는 정의와 최단 거리라는 까닭을 구별해 확인한다. 필요한 점·선분 대상이 주어져 있다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-06-01-xc4",
+      "sourceIndex": 3583,
+      "proposalFingerprint": "b70b203df49960e51edbbf0d0dc185776742b49df3bf13f4add5da332ca86d42",
+      "normalizedHash": "d31c318460081e5b919c73aa44ef7170d2b77a98e1e02b85f3ab1bf4d594aaab",
+      "learningRole": "definition",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "원에서 활꼴은 어떤 선들로 둘러싸인 도형인가?",
+        "answer": "현 하나와 그 현의 두 끝을 잇는 호로 둘러싸인 도형이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "현"
+            ]
+          },
+          {
+            "anyOf": [
+              "호"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "원에서 현과 그 현의 두 끝을 잇는 {호}로 둘러싸인 도형을 {활꼴}이라 한다.",
+        "acceptedAnswers": [
+          [
+            "호"
+          ],
+          [
+            "활꼴"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "활꼴을 이루는 경계가 무엇인지 묻도록 범위를 정했다.",
+      "cReason": "원문은 '그 현의'에서 첫 빈칸 '현'을 베낄 수 있어 고쳤다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "현과 그 두 끝을 잇는 호라는 두 경계를 주고 활꼴 이름 및 경계를 묻는다. 답을 요구하는 범위가 분명하다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-06-01-xc5",
+      "sourceIndex": 3584,
+      "proposalFingerprint": "fd04769d3a57fe4f2d540c02d78eb6279aa8e7da9d8c3dba4422ecd600473748",
+      "normalizedHash": "db1e08db8d60d5ff9a12a8af99901c1ca939e334881db7279bcb503e6dd14280",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "원의 중심 $O$와 원 위의 세 점 $A$, $B$, $C$를 이었다. $\\overline{OA}$, $\\overline{OB}$, $\\overline{OC}$의 길이는 어떤 관계인가? 그 까닭도 쓰시오.",
+        "answer": "모두 같다. 셋 다 반지름이고, 원 위의 점은 모두 중심에서 같은 거리에 있기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "길이가 모두 같다",
+              "$\\overline{OA}=\\overline{OB}=\\overline{OC}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "모두 반지름",
+              "원 위의 점은 중심에서 같은 거리"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "한 원에서 중심과 원 위의 점을 이은 선분은 모두 {반지름}이므로 길이가 {같다}.",
+        "acceptedAnswers": [
+          [
+            "반지름"
+          ],
+          [
+            "같다"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "세 점을 지정해 길이 관계와 근거를 묻도록 했다.",
+      "cReason": "반지름과 '같다'를 묻는 짧고 분명한 문장이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "중심과 원 위의 세 점을 지정하여 세 선분이 반지름이라 같은 길이라는 관계를 확인한다. 반지름과 같다는 짧은 빈칸도 수학적 의미가 있다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-06-01-xc6",
+      "sourceIndex": 3585,
+      "proposalFingerprint": "3a1693e6abef6c84d626292d61fa896d083019445a8eac777575787f7c8b43f2",
+      "normalizedHash": "0fafaff2df09f50164541991cc77f424634d8bb3b49beff6ac25bec8e7649e93",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "원의 중심 $O$와 지름이 아닌 현 $AB$의 두 끝을 이어 $\\triangle OAB$를 만들었다. 이 삼각형은 어떤 삼각형이며 그 까닭은? 또 크기가 같은 두 각을 쓰시오.",
+        "answer": "이등변삼각형이다. $\\overline{OA}$와 $\\overline{OB}$가 모두 반지름이라 길이가 같기 때문이다. $\\angle OAB=\\angle OBA$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "이등변삼각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{OA}=\\overline{OB}$",
+              "두 변이 반지름"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle OAB=\\angle OBA$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "중심 $O$와 지름이 아닌 현의 두 끝 $A$, $B$를 이으면 $\\overline{OA}=\\overline{OB}$인 {이등변삼각형}이 생긴다.",
+        "acceptedAnswers": [
+          [
+            "이등변삼각형"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "삼각형의 종류, 근거, 같은 두 각까지 묻도록 범위를 정했다.",
+      "cReason": "조건 $\\overline{OA}=\\overline{OB}$가 주어져 삼각형 이름을 묻는 분명한 빈칸이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "지름이 아닌 현을 지정해 세 점이 실제 삼각형을 이루게 한다. 반지름 두 개가 같으므로 이등변삼각형이고 두 밑각이 같다는 답·기준이 질문에 맞다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-06-01-xc7",
+      "sourceIndex": 3586,
+      "proposalFingerprint": "392d01d5f73651661c21a2103b20c877cb0e422ea5aee05e66dc735585aba8dc",
+      "normalizedHash": "71daec2b1f75a5c154a0c1d713d412b1868edde4c941d043d5c581d66f6117b6",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "원의 중심 $O$와 지름이 아닌 현 $AB$의 중점 $M$을 이었다. $\\overline{OM}$과 $\\overline{AB}$는 어떤 위치 관계인가? 그 까닭도 쓰시오.",
+        "answer": "서로 수직이다. $\\triangle OAM$과 $\\triangle OBM$은 $\\overline{OA}=\\overline{OB}$, $\\overline{AM}=\\overline{BM}$, $\\overline{OM}$ 공통이라 $\\mathrm{SSS}$ 합동이므로 $\\angle OMA=\\angle OMB$이고, 두 각의 합이 $180^\\circ$라 각각 $90^\\circ$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "수직",
+              "$\\overline{OM}\\perp\\overline{AB}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\mathrm{SSS}$ 합동",
+              "$\\triangle OAM\\equiv\\triangle OBM$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle OMA=\\angle OMB=90^\\circ$",
+              "같은 두 각의 합이 $180^\\circ$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "원의 중심과 지름이 아닌 현의 {중점}을 이은 선분은 그 현에 {수직}이다.",
+        "acceptedAnswers": [
+          [
+            "중점"
+          ],
+          [
+            "수직"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "중점 $M$을 주고 위치 관계와 합동 근거를 묻도록 했다.",
+      "cReason": "중점과 수직을 묻는 짧고 명확한 문장이다.",
+      "bVerdict": "revise",
+      "cVerdict": "adopt",
+      "reason": "B는 수직인 까닭을 묻고 증명 방법을 제한하지 않았는데 SSS합동만 필수로 받는다. 반지름 두 변이 같은 이등변삼각형에서 꼭짓점과 밑변 중점을 이은 선이 수직이라는 이미 배운 성질을 올바르게 적용한 설명도 받도록 기준을 맞춘다. C의 중점과 수직 관계는 명확하다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-06-01-xc8",
+      "sourceIndex": 3587,
+      "proposalFingerprint": "8aa8aad99c479d9897345fa3485f09b804f06361963c34c4bdf403306e50d0d1",
+      "normalizedHash": "f30e7d7a52233f7fcdff97df6af69b6fb68a762f0151e4ad152b0e032985d022",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "원의 중심 $O$가 현 $AB$의 수직이등분선 위에 있는 까닭을 $\\overline{OA}$, $\\overline{OB}$를 이용해 쓰시오.",
+        "answer": "$\\overline{OA}=\\overline{OB}$(반지름)이므로 $O$는 $A$, $B$에서 같은 거리에 있다. 두 점 $A$, $B$에서 같은 거리에 있는 점은 선분 $AB$의 수직이등분선 위에 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{OA}=\\overline{OB}$",
+              "$O$는 $A$, $B$에서 같은 거리"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 점에서 같은 거리에 있는 점은 수직이등분선 위에 있다",
+              "합동인 두 삼각형으로 수직이등분선 위임을 보임"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "현 $AB$를 수직이등분하는 직선 위의 점은 두 끝 $A$, $B$에서 {같은} 거리에 있다. 원의 중심 $O$도 $\\overline{OA}$, $\\overline{OB}$가 모두 {반지름}이므로 이 직선 위에 놓인다.",
+        "acceptedAnswers": [
+          [
+            "같은"
+          ],
+          [
+            "반지름"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "중심이 수직이등분선 위에 놓이는 근거를 반지름으로 설명하게 했다.",
+      "cReason": "원문 둘째 빈칸 '직선'은 앞 문장에서 베낄 수 있어 '반지름'으로 바꿨다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "중심에서 현의 두 끝까지 거리가 같은 반지름이라는 조건으로 수직이등분선의 등거리 성질을 연결한다. C의 두 짧은 답도 각각 수학적 관계가 있다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-06-01-xc9",
+      "sourceIndex": 3588,
+      "proposalFingerprint": "6ba8547ae3ec215881c9667bf98cdc56631bb7d5176c5cb03c1ddc74bc568677",
+      "normalizedHash": "8c140c62eec24e7fbebac20f7f046695382d4998978e9ac7a3e415349f0625ac",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "반지름이 $r$인 원에서 중심까지의 거리가 $d$인 현의 길이를 $r$, $d$로 나타내고, 그렇게 되는 까닭을 쓰시오.",
+        "answer": "$2\\sqrt{r^2-d^2}$이다. 중심에서 현에 내린 수선이 현을 이등분하고, 빗변 $r$, 한 변 $d$인 직각삼각형에서 현의 절반이 $\\sqrt{r^2-d^2}$이므로 그 $2$배이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$2\\sqrt{r^2-d^2}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "현의 절반이 $\\sqrt{r^2-d^2}$",
+              "수선이 현을 이등분해 절반의 $2$배"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "반지름이 $r$, 중심에서 현까지의 거리가 $d$이면 현의 길이는 {$2\\sqrt{r^2-d^2}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$2\\sqrt{r^2-d^2}$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "공식만 쓰지 않도록 이등분과 피타고라스 근거까지 요구했다.",
+      "cReason": "$r$, $d$가 모두 정의된 짧은 공식 빈칸이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "반지름r·중심거리d를 정의하고 현의 절반이 루트(r제곱-d제곱)임에서 전체 길이2배를 구한다. 지름일 때도 d0으로 공식은 맞다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-06-01-xc10",
+      "sourceIndex": 3589,
+      "proposalFingerprint": "877e7e88fc1a8288009772d73574c65a91971b56d48cdc9128befdb02d962185",
+      "normalizedHash": "64dc61632dce079aa6022c433a3bc39f9b1c5203c045dce4bd94c51730e239f8",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "길이가 $l$인 현(지름이 아님)과 원의 중심 사이의 거리가 $d$이다. 원의 반지름 $r$을 $l$, $d$로 구하는 식을 쓰시오.",
+        "answer": "현의 절반 $\\frac{l}{2}$과 $d$를 직각을 낀 두 변, $r$을 빗변으로 하는 직각삼각형에서 $r=\\sqrt{\\left(\\frac{l}{2}\\right)^2+d^2}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$r^2=\\left(\\frac{l}{2}\\right)^2+d^2$",
+              "$r=\\sqrt{\\left(\\frac{l}{2}\\right)^2+d^2}$",
+              "$r=\\sqrt{\\frac{l^2}{4}+d^2}$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "길이가 $l$인 현(지름이 아님)과 원의 중심 사이의 거리가 $d$이면, 현의 절반과 $d$를 직각을 낀 두 변으로 하는 직각삼각형에서 반지름 $r$은 {빗변}이므로 $r^2=${$\\left(\\frac{l}{2}\\right)^2+d^2$}이다.",
+        "acceptedAnswers": [
+          [
+            "빗변"
+          ],
+          [
+            "$\\left(\\frac{l}{2}\\right)^2+d^2$",
+            "$\\frac{l^2}{4}+d^2$",
+            "$d^2+\\left(\\frac{l}{2}\\right)^2$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "$l$, $d$를 기호로 주어 반지름을 구하는 관계식을 특정했다.",
+      "cReason": "원문은 끝 문장에서 '절반'을 베낄 수 있고 c7과 같아 반지름 식으로 고쳤다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "지름이 아닌 현 길이l과 중심거리d로 현의 절반을 한 직각변으로 쓰게 한다. 반지름이 빗변인 피타고라스 식과 양의 제곱근이 타당하다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-06-01-xc11",
+      "sourceIndex": 3590,
+      "proposalFingerprint": "7c5aa672d9ab303441479d532c2ed441e8e92182d39337e39e0c7c30d4a56f2c",
+      "normalizedHash": "eb4202404037bf067d835b09ea3990b42378d0e17f828b24ed2ab49b11f27159",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": {
+        "excluded": "현의 길이와 거리의 대소 관계는 xc19 B가 근거까지 묻는다."
+      },
+      "C": {
+        "sentence": "한 원에서 현이 길수록 중심까지의 거리는 {짧고}, 지름은 그 거리가 {$0$}이다.",
+        "acceptedAnswers": [
+          [
+            "짧고"
+          ],
+          [
+            "$0$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "현의 길이와 거리의 대소 관계는 xc19 B가 근거까지 묻는다.",
+      "cReason": "'짧고'와 $0$을 묻는 짧은 비교 빈칸으로 유용하다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "중심에 가까울수록 현이 길고 지름은 중심거리0이라는 대소 관계를 묻는다. B 제외는 근거를 묻는 xc19와의 명시된 중복으로 설명된다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-06-01-xc12",
+      "sourceIndex": 3591,
+      "proposalFingerprint": "6a4262ffa66b7e2b9b6ec5b3c967422f2922e47ea0b69c00a68cd3524d390014",
+      "normalizedHash": "1317d2050a5dae17aa1f9af8e0e7c9593c3e5cd9d2ca8189fdda6c1212afc70a",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "원에 내접하는 $\\triangle ABC$에서 원의 중심에서 변 $AB$까지의 거리와 변 $AC$까지의 거리가 같다. $\\triangle ABC$는 어떤 삼각형인가? 그 까닭도 쓰시오.",
+        "answer": "$\\overline{AB}=\\overline{AC}$인 이등변삼각형이다. 세 변은 모두 원의 현이고, 중심에서 거리가 같은 두 현은 길이가 같기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "이등변삼각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{AB}=\\overline{AC}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "변이 원의 현이고 중심에서 거리가 같은 현은 길이가 같다",
+              "거리가 같은 두 현의 길이가 같다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "원에 내접하는 $\\triangle ABC$에서 중심과 두 변 $AB$, $AC$ 사이의 거리가 같으면 {$\\overline{AB}=\\overline{AC}$}이므로 {이등변삼각형}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\overline{AB}=\\overline{AC}$"
+          ],
+          [
+            "이등변삼각형"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "내접 조건과 거리 조건을 주고 삼각형의 종류와 근거를 물었다.",
+      "cReason": "조건이 다 주어져 결론 두 가지를 묻는 분명한 문장이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "원에 내접한 삼각형의 지정된 두 변AB·AC의 중심거리가 같다는 조건으로 두 현 길이가 같고 이등변삼각형임을 추론한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-06-01-xc13",
+      "sourceIndex": 3592,
+      "proposalFingerprint": "d2db313d20af48895cbb76cdd8752ea7f2f0ad2083e9a1d0529dd929f585b2bd",
+      "normalizedHash": "f884a9f430b8c67ba71648fcc095c7c0f133c5cad8f41f0d651cc7e8e41a1545",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "반지름이 $5$인 원에서 중심까지의 거리가 $3$인 현의 길이를 구하려 한다. 한 학생이 중심, 수선의 발, 현의 한 끝으로 만든 직각삼각형에서 $\\sqrt{5^2-3^2}=4$를 구하고 현의 길이를 $4$라고 답했다. 무엇이 잘못되었는지 쓰고 바른 현의 길이를 구하시오.",
+        "answer": "$4$는 수선의 발에서 현의 한 끝까지의 길이, 즉 현의 절반이다. 수선이 현을 이등분하므로 현의 길이는 $2\\times4=8$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$4$는 현의 절반",
+              "수선의 발에서 끝점까지의 길이는 현의 절반"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "원의 중심에서 지름이 아닌 현에 수선을 내려 만든 직각삼각형에서, 수선의 발부터 현의 한 끝점까지 구한 길이는 현의 {절반}이다. 따라서 현의 길이는 그 값에 {$2$}를 곱해 구한다.",
+        "acceptedAnswers": [
+          [
+            "절반"
+          ],
+          [
+            "$2$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "흔한 오류를 구체 수치로 보여 주고 진단과 수정을 함께 요구했다.",
+      "cReason": "'절반'과 $2$배를 묻는 짧고 유용한 오류 점검 빈칸이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "반지름5·중심거리3에서 구한4는 현 절반이라는 흔한 오류를 진단하여 전체8로 고친다. 수선의 발과 끝점 사이 길이를 명시해 그림 없이도 대상을 알 수 있다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-06-01-xc14",
+      "sourceIndex": 3593,
+      "proposalFingerprint": "2910d177701051243f27fb9d3cb1fa4cd84d60d80df0371595fd9b04ef3430f1",
+      "normalizedHash": "924a34ffc441c83b50600cf791bb8bad5f93850bf80044a8065de8366465e6ff",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "원의 중심 $O$가 아닌 원 안의 점 $P$를 지나는 현들 가운데 가장 긴 현과 가장 짧은 현은 각각 어떤 현인가? 가장 짧은 현이 그렇게 되는 까닭도 쓰시오.",
+        "answer": "가장 긴 현은 $P$와 $O$를 지나는 지름이고, 가장 짧은 현은 $\\overline{OP}$에 수직인 현이다. $P$를 지나는 현과 중심 사이의 거리는 $\\overline{OP}$ 이하이고, 현이 $\\overline{OP}$에 수직일 때 그 거리가 $\\overline{OP}$로 가장 커서 현이 가장 짧다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "가장 긴 현은 지름"
+            ]
+          },
+          {
+            "anyOf": [
+              "가장 짧은 현은 $\\overline{OP}$에 수직인 현"
+            ]
+          },
+          {
+            "anyOf": [
+              "중심까지의 거리가 가장 클 때 현이 가장 짧다",
+              "거리가 $\\overline{OP}$로 최대"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "원 안의 점 가운데 중심이 아닌 한 점을 지나는 현 중에서 가장 긴 것은 {지름}이고, 가장 짧은 것은 그 점과 중심을 이은 선분에 {수직}인 현이다.",
+        "acceptedAnswers": [
+          [
+            "지름"
+          ],
+          [
+            "수직"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "점 $P$의 위치를 정하고 두 극단의 현과 최소의 근거를 물었다.",
+      "cReason": "지름과 수직을 묻는 분명한 비교 문장이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "원의 중심 아닌 내부점P를 지나는 현을 한정한다. 지름이 가장 길고 OP에 수직인 현이 중심거리OP로 가장 짧다는 조건과 이유가 맞다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-06-01-xc16",
+      "sourceIndex": 3594,
+      "proposalFingerprint": "91d16233ae3f602fbcd57751d240f3a9da80fce912c6170fb361515fed17cd4c",
+      "normalizedHash": "c64a270109602ebdbd326299cab2b39f733fbb4e4beeb0f1c0a5d0ba0b1ac2e6",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "원의 중심 $O$에서 지름이 아닌 현 $AB$에 수선을 긋고 수선의 발을 $H$라 할 때, $\\overline{AH}=\\overline{BH}$임을 삼각형의 합동으로 설명하시오.",
+        "answer": "$\\triangle OAH$와 $\\triangle OBH$는 $\\angle OHA=\\angle OHB=90^\\circ$, 빗변 $\\overline{OA}=\\overline{OB}$(반지름), $\\overline{OH}$ 공통이므로 $\\mathrm{RHS}$ 합동이다. 따라서 $\\overline{AH}=\\overline{BH}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{OA}=\\overline{OB}$",
+              "빗변이 반지름으로 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{OH}$ 공통"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\mathrm{RHS}$ 합동"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "원의 중심 $O$에서 지름이 아닌 현 $AB$에 수선 $OH$를 그으면, $\\triangle OAH$와 $\\triangle OBH$는 빗변 $\\overline{OA}=\\overline{OB}$(반지름)이고 $\\overline{OH}$가 공통이므로 {$\\mathrm{RHS}$} 합동이다. 따라서 $\\overline{AH}=${$\\overline{BH}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\mathrm{RHS}$"
+          ],
+          [
+            "$\\overline{BH}$",
+            "$\\overline{HB}$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "점을 지정하고 어떤 합동으로 이등분이 되는지 설명하게 했다.",
+      "cReason": "원문은 끝의 '이등분된다'에서 답을 베낄 수 있어 결론을 선분으로 바꿨다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "중심에서 현에 내린 수선의 발H로 실제 두 직각삼각형을 지정하고 같은 빗변과 공통 직각변을 이용한 RHS합동으로 이등분을 설명한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-06-01-xc17",
+      "sourceIndex": 3595,
+      "proposalFingerprint": "7085fe08020a02950444fffefa89cc869d9c8c1b259b78133feda3633f8c8367",
+      "normalizedHash": "73cb183c29c10cd9ecce5cbb8f7a061c118117a81f550e92d14cd00053eebfb3",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "원의 일부인 활꼴에서 현의 길이의 절반이 $a$, 높이(현의 중점에서 호까지 현에 수직으로 잰 길이)가 $h$이다. 원의 반지름을 $r$이라 할 때 $r$을 구하는 식을 세우고, 그렇게 세우는 까닭을 쓰시오.",
+        "answer": "높이를 재는 선을 늘이면 원의 중심을 지나므로 중심에서 현까지의 거리는 $r-h$이다. 빗변 $r$, 직각을 낀 두 변 $a$, $r-h$인 직각삼각형에서 $r^2=(r-h)^2+a^2$을 세운다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$r^2=(r-h)^2+a^2$",
+              "$r=\\frac{a^2+h^2}{2h}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "중심에서 현까지 거리가 $r-h$",
+              "빗변 $r$, 두 변 $a$와 $r-h$인 직각삼각형"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "원의 일부인 활꼴에서 현의 절반 $a$와 높이 $h$(현의 중점에서 호까지 현에 수직으로 잰 길이)를 알면, 반지름 $r$에 대하여 {$r^2=(r-h)^2+a^2$}을 세워 $r$을 구한다.",
+        "acceptedAnswers": [
+          [
+            "$r^2=(r-h)^2+a^2$",
+            "$(r-h)^2+a^2=r^2$",
+            "$a^2+(r-h)^2=r^2$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "$a$, $h$의 뜻을 질문에 밝혀 직각삼각형을 세우게 했다.",
+      "cReason": "$a$, $h$, $r$의 뜻이 모두 주어진 식 하나를 묻는 빈칸이다.",
+      "bVerdict": "revise",
+      "cVerdict": "adopt",
+      "reason": "활꼴은 큰 호를 경계로 한 경우도 있어 높이h가 반지름r보다 클 수 있다. B의 중심거리r-h 및 두 직각변r-h라는 설명은 음수 길이가 된다. 작은 활꼴이라는 조건을 분명히 하거나 중심거리절댓값r-h로 수정한다. C의 제곱식 자체는 큰 활꼴에도 성립하므로 유지할 수 있다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-06-01-xc19",
+      "sourceIndex": 3596,
+      "proposalFingerprint": "899179d134db4d889edbcd6ec8e94d8351dcf736680c20ae139faa04adba357a",
+      "normalizedHash": "fc47d2fbff823183864054ba0d0f9062a6a0edb2f77b6e184cac3d938115c57d",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "반지름이 $r$인 원에서 두 현과 중심 사이의 거리가 각각 $d_1$, $d_2$이고 $d_1<d_2$이다. 어느 현이 더 긴지 쓰고, 현의 길이가 $2\\sqrt{r^2-d^2}$임을 이용해 까닭을 쓰시오.",
+        "answer": "거리가 $d_1$인 현이 더 길다. $d$가 작을수록 $r^2-d^2$이 커져 $2\\sqrt{r^2-d^2}$도 커지기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "거리가 $d_1$인 현",
+              "중심에 더 가까운 현"
+            ]
+          },
+          {
+            "anyOf": [
+              "$d$가 작을수록 $r^2-d^2$이 커진다",
+              "$r^2-d_1^2>r^2-d_2^2$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "한 원에서 중심까지의 거리가 $d_1<d_2$인 두 현 중 더 긴 것은 거리가 {$d_1$}인 현이다. 현의 길이가 $2\\sqrt{r^2-d^2}$이므로 $d$가 작을수록 $r^2-d^2$의 값이 {커지기} 때문이다.",
+        "acceptedAnswers": [
+          [
+            "$d_1$"
+          ],
+          [
+            "커지기"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "두 거리를 기호로 주고 비교 결과와 식에 근거한 이유를 물었다.",
+      "cReason": "원문 둘째 빈칸 '길다'는 앞의 '더 길다'에서 베낄 수 있어 고쳤다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "한 원의 두 중심거리를d1<d2로 지정하여 거리 작은 현이 길고 제곱근 안 값이 커진다는 식의 비교를 확인한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-06-01-xc20",
+      "sourceIndex": 3597,
+      "proposalFingerprint": "67c243d2a6422e37e773a51d7ccfaa0d4827b558df81a57d7f6e4c092224af18",
+      "normalizedHash": "1d3eddee95e2fd1ffe3824efcbb1c24e246070ea100f5302bc85ea8b42c8b966",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "$\\triangle ABC$의 세 변의 수직이등분선이 모두 외심을 지나는 까닭을 외접원과 현을 이용해 쓰시오.",
+        "answer": "세 변 $AB$, $BC$, $CA$는 외접원의 현이고, 현의 수직이등분선은 원의 중심을 지난다. 외접원의 중심이 외심이므로 세 수직이등분선은 모두 외심을 지난다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "세 변은 외접원의 현"
+            ]
+          },
+          {
+            "anyOf": [
+              "현의 수직이등분선은 원의 중심을 지난다"
+            ]
+          },
+          {
+            "anyOf": [
+              "외접원의 중심이 외심"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "삼각형의 세 변은 외접원의 {현}이므로, 세 변을 각각 수직이등분하는 세 직선은 모두 {외심}을 지난다.",
+        "acceptedAnswers": [
+          [
+            "현"
+          ],
+          [
+            "외심"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "외심을 원과 현의 성질로 다시 설명하도록 관계를 특정했다.",
+      "cReason": "현과 외심을 묻는 짧고 분명한 연결 문장이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "삼각형의 세 변을 외접원의 현으로 보고 현 수직이등분선은 중심을 지난다는 성질에서 외심의 공통 통과를 설명한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-06-01-xc21",
+      "sourceIndex": 3598,
+      "proposalFingerprint": "8506a339210b4b22101a936f791381dd2e18edd7041d32a9f33738766086340a",
+      "normalizedHash": "2a580666ca7de02b700d8924775b2765c8e0e8c3eb67d251b7eadc3d57834f58",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "반지름이 $r$인 원 $O$ 위에 $\\angle AOB=60^\\circ$가 되도록 두 점 $A$, $B$를 잡았다. 현 $AB$의 길이를 구하고 그 까닭을 쓰시오.",
+        "answer": "$r$이다. $\\overline{OA}=\\overline{OB}=r$이므로 $\\triangle OAB$는 이등변삼각형이고, 꼭지각이 $60^\\circ$라 두 밑각도 $60^\\circ$인 정삼각형이다. 따라서 $\\overline{AB}=r$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{AB}=r$",
+              "$r$"
+            ]
+          },
+          {
+            "anyOf": [
+              "정삼각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "밑각이 $60^\\circ$",
+              "$\\overline{OA}=\\overline{OB}$이고 꼭지각이 $60^\\circ$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "반지름이 $r$인 원에서 중심각이 $60^\\circ$인 두 반지름의 끝을 이은 현은 {정삼각형}의 한 변이 되어 길이가 {$r$}이다.",
+        "acceptedAnswers": [
+          [
+            "정삼각형"
+          ],
+          [
+            "$r$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "중심각과 점을 지정해 길이와 정삼각형 근거를 묻도록 했다.",
+      "cReason": "정삼각형과 $r$을 묻는 짧고 명확한 빈칸이다.",
+      "bVerdict": "adopt",
+      "cVerdict": "adopt",
+      "reason": "중심각60도와 같은 반지름 두 변으로 세 각이 모두60도인 정삼각형임을 추론한다. 따라서 현 길이가r이라는 결론과 이유가 일치한다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    },
+    {
+      "id": "m3-06-01-xc22",
+      "sourceIndex": 3599,
+      "proposalFingerprint": "68be4fffcf875d9f4273f4bf6a0a68e952f76633a48b7a8f60029bac62c22f81",
+      "normalizedHash": "38a0ad3ab6b274e1a7a498557fd246c23b501eba0c76fc7cbc9fec177d80128b",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "한 원에서 평행한 두 현이 중심에서 각각 $d_1$, $d_2$만큼 떨어져 있다. 두 현이 중심의 같은 쪽에 있을 때와 반대쪽에 있을 때, 두 현 사이의 거리를 각각 $d_1$, $d_2$로 나타내시오.",
+        "answer": "같은 쪽에 있으면 $|d_1-d_2|$, 반대쪽에 있으면 $d_1+d_2$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "같은 쪽: $|d_1-d_2|$",
+              "같은 쪽: 거리의 차"
+            ]
+          },
+          {
+            "anyOf": [
+              "반대쪽: $d_1+d_2$",
+              "반대쪽: 거리의 합"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "한 원에서 평행한 두 현이 중심의 같은 쪽에 있으면 두 현 사이의 거리는 중심까지 거리의 {차}이고, 반대쪽에 있으면 {합}이다.",
+        "acceptedAnswers": [
+          [
+            "차"
+          ],
+          [
+            "합"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "두 거리를 기호로 주고 두 경우를 나누어 묻도록 했다.",
+      "cReason": "차와 합을 대비하는 짧은 비교 빈칸으로 유용하다.",
+      "bVerdict": "revise",
+      "cVerdict": "adopt",
+      "reason": "B는 d1,d2로 나타내라고 하지만 기준은 거리의 차·합이라는 말만 써도 받는다. 절댓값d1-d2와d1+d2를 실제 식으로 확인하거나 말과 식 모두 가능하도록 질문을 맞춘다. C는 같은 쪽 차와 반대쪽 합의 대비가 명확하다.",
+      "reader": "Root Codex direct final question/answer/criteria reading",
+      "recordedAfterDirectReading": true
+    }
+  ]
+}

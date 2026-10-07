@@ -1,0 +1,750 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e6-1-2-3-c2",
+      "bDecision": "revise",
+      "bPrompt": "삼각기둥의 전개도에는 밑면과 옆면이 각각 어떤 모양으로 몇 개씩 그려지는지 쓰시오.",
+      "bAnswer": "밑면은 삼각형 $2$개, 옆면은 직사각형 $3$개이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "밑면은 삼각형 $2$개이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "옆면은 직사각형 $3$개이다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "삼각기둥의 면의 모양과 개수를 전개도와 연결한다.",
+      "bReason": "밑면과 옆면의 모양과 개수를 각각 따로 판단해야 한다.",
+      "cDecision": "keep",
+      "cAfter": "삼각기둥의 전개도에는 밑면인 {삼각형 두 개}와 옆면인 {직사각형 세 개}가 있다.",
+      "cReason": "면 모양과 개수를 쓰는 슬롯에서 두 개·세 개와2개·3개는 같은 개수 표현이다. 서로 다른 면 종류는 그대로 구분한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "삼각형 두 개",
+            "삼각형 $2$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "직사각형 세 개",
+            "직사각형 $3$개"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0210-0240.json",
+      "codexFinalAmendedFromFingerprint": "b4abdd3e65f25953d3a1218eb66587858127d0b1072a6864bea1df20d0894ea9",
+      "sourceIndex": 216,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-2-3-c2",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-3 각기둥의 전개도",
+        "level": "중",
+        "kind": "성질",
+        "term": "삼각기둥 전개도의 면",
+        "definition": "삼각기둥의 전개도에는 밑면인 {삼각형 두 개}와 옆면인 {직사각형 세 개}가 있다.",
+        "studentC": "삼각기둥의 전개도에는 밑면인 □와 옆면인 □가 있다.",
+        "answers": [
+          "삼각형 두 개",
+          "직사각형 세 개"
+        ]
+      },
+      "sourceFingerprint": "ab6cfdec121822a48468f8536c41423ac3f751754b33feed9d5bb7ce57b4aa2b",
+      "draftEvidence": "evidence/section-061-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "삼각기둥의 전개도에는 밑면인 {삼각형 두 개}와 옆면인 {직사각형 세 개}가 있다.",
+      "cFrozenStudentSentence": "삼각기둥의 전개도에는 밑면인 □와 옆면인 □가 있다.",
+      "cProposedAnswers": [
+        "삼각형 두 개",
+        "직사각형 세 개"
+      ],
+      "cStudentAfter": "삼각기둥의 전개도에는 밑면인 □와 옆면인 □가 있다.",
+      "cMarkedSentence": "삼각기둥의 전개도에는 밑면인 {삼각형 두 개}와 옆면인 {직사각형 세 개}가 있다.",
+      "cStudentSentence": "삼각기둥의 전개도에는 밑면인 □와 옆면인 □가 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "삼각형 두 개",
+          "equivalents": [
+            "삼각형 $2$개"
+          ]
+        },
+        {
+          "key": "직사각형 세 개",
+          "equivalents": [
+            "직사각형 $3$개"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "삼각기둥의 전개도에는 밑면과 옆면이 각각 어떤 모양으로 몇 개씩 그려지는지 쓰시오.",
+        "answer": "밑면은 삼각형 $2$개, 옆면은 직사각형 $3$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "밑면은 삼각형 $2$개이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "옆면은 직사각형 $3$개이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "삼각기둥의 전개도에는 밑면인 {삼각형 두 개}와 옆면인 {직사각형 세 개}가 있다.",
+        "acceptedAnswers": [
+          [
+            "삼각형 두 개",
+            "삼각형 $2$개"
+          ],
+          [
+            "직사각형 세 개",
+            "직사각형 $3$개"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "058a03510ced9e7c00ef492d59c830264d29af9b6c06a6552797fee0e62f057a",
+      "questionRevision": "planning-e5e6-20261006-058a03510ced",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-5-c1",
+      "bDecision": "revise",
+      "bPrompt": "각뿔의 이름은 어느 면의 무엇을 보고 짓는지 쓰시오. 또 밑면이 육각형인 각뿔의 이름을 쓰시오.",
+      "bAnswer": "밑면의 모양(변의 수)을 보고 짓는다. 밑면이 육각형이면 육각뿔이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "밑면의 모양",
+            "밑면의 변의 수",
+            "밑면의 꼭짓점의 수"
+          ]
+        },
+        {
+          "anyOf": [
+            "육각뿔"
+          ]
+        }
+      ],
+      "learningRole": "naming",
+      "bGoal": "밑면의 모양이 각뿔 이름을 정한다는 규칙을 새로운 밑면에 적용한다.",
+      "bReason": "원문은 오각뿔 예뿐이라 육각형 예로 규칙 적용을 확인한다.",
+      "cDecision": "revise",
+      "cAfter": "각뿔의 이름은 {밑면}의 모양에 따라 정한다. 밑면의 변이 $6$개인 각뿔은 {육각뿔}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "밑면"
+          ]
+        },
+        {
+          "anyOf": [
+            "육각뿔"
+          ]
+        }
+      ],
+      "cReason": "아랫면은 놓인 방향에 따라 달라져 각뿔의 밑면과 항상 같은 이름이 아니다. 정식 밑면 이름과 육각뿔 명명 적용만 인정한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0210-0240.json",
+      "codexFinalAmendedFromFingerprint": "f74e2e6c869751ce1352ba758a91bc5a6a77cc9e4ed51001087db0ffb0752c72",
+      "sourceIndex": 222,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-2-5-c1",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-5 각뿔의 이름과 구성 요소",
+        "level": "하",
+        "kind": "정의",
+        "term": "각뿔의 이름",
+        "definition": "각뿔의 이름에는 {밑면의 변 개수}를 쓴다. 변이 다섯이면 오각뿔이다.",
+        "studentC": "각뿔의 이름에는 □를 쓴다. 변이 다섯이면 오각뿔이다.",
+        "answers": [
+          "밑면의 변 개수"
+        ]
+      },
+      "sourceFingerprint": "9b48f58b2d10caad02187847adfc43ba467f6970ecf450256f164841ab10d86b",
+      "draftEvidence": "evidence/section-063-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "밑면",
+        "육각뿔"
+      ],
+      "cStudentAfter": "각뿔의 이름은 □의 모양에 따라 정한다. 밑면의 변이 $6$개인 각뿔은 □이다.",
+      "cMarkedSentence": "각뿔의 이름은 {밑면}의 모양에 따라 정한다. 밑면의 변이 $6$개인 각뿔은 {육각뿔}이다.",
+      "cStudentSentence": "각뿔의 이름은 □의 모양에 따라 정한다. 밑면의 변이 $6$개인 각뿔은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "밑면",
+          "equivalents": []
+        },
+        {
+          "key": "육각뿔",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각뿔의 이름은 어느 면의 무엇을 보고 짓는지 쓰시오. 또 밑면이 육각형인 각뿔의 이름을 쓰시오.",
+        "answer": "밑면의 모양(변의 수)을 보고 짓는다. 밑면이 육각형이면 육각뿔이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "밑면의 모양",
+              "밑면의 변의 수",
+              "밑면의 꼭짓점의 수"
+            ]
+          },
+          {
+            "anyOf": [
+              "육각뿔"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각뿔의 이름은 {밑면}의 모양에 따라 정한다. 밑면의 변이 $6$개인 각뿔은 {육각뿔}이다.",
+        "acceptedAnswers": [
+          [
+            "밑면"
+          ],
+          [
+            "육각뿔"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b775888e2e70502359f783ca51c3f1cdefa893ee449bf95b36021b13af253418",
+      "questionRevision": "planning-e5e6-20261006-b775888e2e70",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-5-c4",
+      "bDecision": "revise",
+      "bPrompt": "각뿔의 꼭대기에 있는 꼭짓점은 몇 개인지 쓰고, 이 꼭짓점에 어떤 면들이 모이는지 쓰시오.",
+      "bAnswer": "$1$개이고, 모든 옆면이 이 꼭짓점에 모인다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1$개",
+            "한 개",
+            "하나"
+          ]
+        },
+        {
+          "anyOf": [
+            "모든 옆면이 모인다",
+            "옆면들이 만난다",
+            "옆면이 모두 만난다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "각뿔의 꼭대기 꼭짓점이 한 개이며 옆면이 모두 모이는 점임을 안다.",
+      "bReason": "'꼭대기 한 점' 구절 암기 대신 개수와 옆면의 관계를 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "각뿔에서 모든 옆면이 모이는 꼭대기의 꼭짓점은 {$1$}개이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$",
+            "한"
+          ]
+        }
+      ],
+      "cReason": "슬롯 뒤에개가 있으므로1개를 넣어1개개가 되는 대안을 제거한다. 숫자1과한은 같은 개수의 유효한 표현이다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0210-0240.json",
+      "codexFinalAmendedFromFingerprint": "3aa1829d7737c8b9241f002dcaeb65a5e8bbb50714cb51c67a69e43707cd2c0e",
+      "sourceIndex": 225,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-2-5-c4",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-5 각뿔의 이름과 구성 요소",
+        "level": "하",
+        "kind": "정의",
+        "term": "각뿔의 꼭짓점",
+        "definition": "각뿔의 꼭짓점은 밑면 밖에서 모든 옆면이 모이는 {꼭대기 한 점}이다.",
+        "studentC": "각뿔의 꼭짓점은 밑면 밖에서 모든 옆면이 모이는 □이다.",
+        "answers": [
+          "꼭대기 한 점"
+        ]
+      },
+      "sourceFingerprint": "024c849e8ddcb5906abf70a207a422f9cf21ffe6d4a5affa27eb4f257a9fc64a",
+      "draftEvidence": "evidence/section-063-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$1$"
+      ],
+      "cStudentAfter": "각뿔에서 모든 옆면이 모이는 꼭대기의 꼭짓점은 □개이다.",
+      "cMarkedSentence": "각뿔에서 모든 옆면이 모이는 꼭대기의 꼭짓점은 {$1$}개이다.",
+      "cStudentSentence": "각뿔에서 모든 옆면이 모이는 꼭대기의 꼭짓점은 □개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": [
+            "한"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각뿔의 꼭대기에 있는 꼭짓점은 몇 개인지 쓰고, 이 꼭짓점에 어떤 면들이 모이는지 쓰시오.",
+        "answer": "$1$개이고, 모든 옆면이 이 꼭짓점에 모인다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$1$개",
+              "한 개",
+              "하나"
+            ]
+          },
+          {
+            "anyOf": [
+              "모든 옆면이 모인다",
+              "옆면들이 만난다",
+              "옆면이 모두 만난다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각뿔에서 모든 옆면이 모이는 꼭대기의 꼭짓점은 {$1$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$1$",
+            "한"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "be80b29054c021646f2a720ce661b9b7fa60aaaa946a1509905aab57a0773f2f",
+      "questionRevision": "planning-e5e6-20261006-be80b29054c0",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-5-c5",
+      "bDecision": "revise",
+      "bPrompt": "각뿔의 높이는 어디에서 어디까지, 어떤 방향으로 잰 길이인지 설명하시오.",
+      "bAnswer": "꼭대기의 꼭짓점에서 밑면까지 밑면에 수직으로 잰 길이이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "꼭대기에서 밑면까지",
+            "꼭짓점에서 밑면까지"
+          ]
+        },
+        {
+          "anyOf": [
+            "수직",
+            "밑면과 직각을 이루는 방향"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "높이를 비스듬한 모서리가 아닌 수직 거리로 이해한다.",
+      "bReason": "밑면에 곧게는 기울어진 선분도 곧다는 점에서 수직과 동의어가 아니다. 시작·끝과 밑면에 수직인 방향을 실제 요청대로 각각 확인한다.",
+      "cDecision": "keep",
+      "cAfter": "각뿔의 높이는 꼭대기에서 밑면에 {수직}으로 닿도록 잰 길이이다.",
+      "cReason": "꼭대기에서 밑면까지 잰다는 조건에서 수직이라는 핵심 낱말을 확인한다.",
+      "exampleNeeded": false,
+      "synonymNotes": "직각으로도 인정 가능.",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0210-0240.json",
+      "codexFinalAmendedFromFingerprint": "b1c0cb2f7606842442e4f64c17efa2e98368734bbdaec8cdbe3e7ea6c86b7363",
+      "sourceIndex": 226,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-2-5-c5",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-5 각뿔의 이름과 구성 요소",
+        "level": "중",
+        "kind": "정의",
+        "term": "높이",
+        "definition": "각뿔의 높이는 꼭대기에서 밑면에 {수직}으로 닿도록 잰 길이이다.",
+        "studentC": "각뿔의 높이는 꼭대기에서 밑면에 □으로 닿도록 잰 길이이다.",
+        "answers": [
+          "수직"
+        ]
+      },
+      "sourceFingerprint": "23872a638b25e1eca701beb90cef6814ef03776da241c1cf97f369e8eb752030",
+      "draftEvidence": "evidence/section-063-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "각뿔의 높이는 꼭대기에서 밑면에 {수직}으로 닿도록 잰 길이이다.",
+      "cFrozenStudentSentence": "각뿔의 높이는 꼭대기에서 밑면에 □으로 닿도록 잰 길이이다.",
+      "cProposedAnswers": [
+        "수직"
+      ],
+      "cStudentAfter": "각뿔의 높이는 꼭대기에서 밑면에 □으로 닿도록 잰 길이이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "수직"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "각뿔의 높이는 꼭대기에서 밑면에 {수직}으로 닿도록 잰 길이이다.",
+      "cStudentSentence": "각뿔의 높이는 꼭대기에서 밑면에 □으로 닿도록 잰 길이이다.",
+      "cSlotAnswers": [
+        {
+          "key": "수직",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각뿔의 높이는 어디에서 어디까지, 어떤 방향으로 잰 길이인지 설명하시오.",
+        "answer": "꼭대기의 꼭짓점에서 밑면까지 밑면에 수직으로 잰 길이이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "꼭대기에서 밑면까지",
+              "꼭짓점에서 밑면까지"
+            ]
+          },
+          {
+            "anyOf": [
+              "수직",
+              "밑면과 직각을 이루는 방향"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각뿔의 높이는 꼭대기에서 밑면에 {수직}으로 닿도록 잰 길이이다.",
+        "acceptedAnswers": [
+          [
+            "수직"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "4bcbb4973539e2467b1193d013ee26bd8c0809ae9fb1435b93df691258f633b3",
+      "questionRevision": "planning-e5e6-20261006-4bcbb4973539",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-2-c1",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "나누어지는 수가 나누는 수보다 작으면 몫이 $1$보다 작다는 비교를 안다.",
+      "bReason": "같은 비교가 xc7의 세 가지 경우(크다·같다·작다) 안에 모두 들어 있어 B가 중복된다.",
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "cDecision": "revise",
+      "cAfter": "$0.6$은 $2$보다 {작으므로} $0.6\\div2$의 몫은 $1$보다 {작다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작으므로",
+            "작아서"
+          ]
+        },
+        {
+          "anyOf": [
+            "작다"
+          ]
+        }
+      ],
+      "cReason": "첫 슬롯 뒤에 조사가 없어작기를 넣으면 문장이 이어지지 않는다. 비교의 이유를 연결하는작으므로·작아서는 모두 실제 문장에 맞는다.",
+      "exampleNeeded": false,
+      "exclusionReason": "B는 xc7과 중복되어 제외하며 대체 ID는 e6-1-3-2-xc7이다.",
+      "coreAfter": null,
+      "coreReason": "'그보다 큰 수'의 '그'가 무엇인지 분명하지 않아 나누어지는 수를 가리키도록 고친다.",
+      "editorialOwner": "Codex",
+      "coreTargetReason": "원문의 그보다 큰 수는 바로 앞의0보다 큰 수만을 가리켜 선행 대상이 하나이다. 이 일반 설명을 바꿀 필요는 없어 기존 표시된 정의와 비교 표적을 그대로 쓰도록 coreAfter 제안을 철회한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0210-0240.json",
+      "codexFinalAmendedFromFingerprint": "6a2c4e8a6e4a1d6e76cfe61e52bad3b582da0a8bcaa170ca1ca111442612cd50",
+      "sourceIndex": 231,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-3-2-c1",
+        "section": "초6::1-3 소수의 나눗셈::1-3-2 몫이 1보다 작은 (소수)÷(자연수) 알아보기",
+        "level": "하",
+        "kind": "성질",
+        "term": "$1$보다 작은 몫",
+        "definition": "$0$보다 큰 수를 {그보다 큰 수}로 나누면 몫은 $1$보다 작다.",
+        "studentC": "$0$보다 큰 수를 □로 나누면 몫은 $1$보다 작다.",
+        "answers": [
+          "그보다 큰 수"
+        ]
+      },
+      "sourceFingerprint": "fb052653bdae4729b2061b50fa941694a54a7d1afc25c5ad1bed4ccffe45aea3",
+      "draftEvidence": "evidence/section-065-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "작으므로",
+        "작다"
+      ],
+      "cStudentAfter": "$0.6$은 $2$보다 □ $0.6\\div2$의 몫은 $1$보다 □.",
+      "cMarkedSentence": "$0.6$은 $2$보다 {작으므로} $0.6\\div2$의 몫은 $1$보다 {작다}.",
+      "cStudentSentence": "$0.6$은 $2$보다 □ $0.6\\div2$의 몫은 $1$보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "작으므로",
+          "equivalents": [
+            "작아서"
+          ]
+        },
+        {
+          "key": "작다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$0.6$은 $2$보다 {작으므로} $0.6\\div2$의 몫은 $1$보다 {작다}.",
+        "acceptedAnswers": [
+          [
+            "작으므로",
+            "작아서"
+          ],
+          [
+            "작다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 xc7과 중복되어 제외하며 대체 ID는 e6-1-3-2-xc7이다."
+      },
+      "proposalFingerprint": "981c045d627b0afa1707c0eea94d23086703dc2f7d538dc0790ff7aa19a66a69",
+      "questionRevision": "planning-e5e6-20261006-981c045d627b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-3-c3",
+      "bDecision": "revise",
+      "bPrompt": "$0.3\\div2$를 계산하면 몫의 $0.1$ 자리에 $1$이 쓰이고 $0.1$짜리 $1$개가 남는다. 다음 자리를 계속 나누려면 남은 것을 어떤 단위 몇 개로 바꾸어야 하는지 쓰고, 그렇게 바꿀 수 있는 까닭과 $0.3\\div2$의 몫을 쓰시오.",
+      "bAnswer": "$0.01$짜리 $10$개로 바꾼다. $0.1$은 $0.01$이 $10$개와 같기 때문이다. $10\\div2=5$이므로 몫은 $0.15$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$0.01$짜리 $10$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.1$은 $0.01$이 $10$개와 같다",
+            "$0.1=0.01\\times10$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.15$"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "남은 $0.1$을 더 작은 단위로 바꾸어 계속 나누는 과정을 설명한다.",
+      "bReason": "단위 바꾸기와 그 까닭을 한 예로 묻되 일반 개념도 함께 요구한다.",
+      "cDecision": "revise",
+      "cAfter": "$0.3\\div2$를 계산할 때 $0.1$짜리 $1$개가 남으면 이를 $0.01$짜리 {$10$}개로 바꾸어 나누고, 몫은 {$0.15$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$10$",
+            "열"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.15$"
+          ]
+        }
+      ],
+      "cReason": "첫 슬롯 뒤에개가 있으므로10개개가 되는 대안을 제거한다. 숫자10과열은 같은 개수 표현이며 계산 결과0.15는 보존한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0210-0240.json",
+      "codexFinalAmendedFromFingerprint": "f44a5ccebc060cb1a689526f4df4bca3cc00cd007c03f9a63ea08aeae43c93c0",
+      "sourceIndex": 236,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-3-3-c3",
+        "section": "초6::1-3 소수의 나눗셈::1-3-3 소수점 아래 0을 내려 계산하는 (소수)÷(자연수) 알아보기",
+        "level": "상",
+        "kind": "성질",
+        "term": "남은 $0.1$짜리 $1$개의 단위 바꾸기",
+        "definition": "$0.1$짜리 $1$개가 남았을 때 이를 {$0.01$짜리 $10$개}로 바꾸면 다음 자리의 나눗셈을 할 수 있다.",
+        "studentC": "$0.1$짜리 $1$개가 남았을 때 이를 □로 바꾸면 다음 자리의 나눗셈을 할 수 있다.",
+        "answers": [
+          "$0.01$짜리 $10$개"
+        ]
+      },
+      "sourceFingerprint": "4435d634045dfa439409876b1231f5979fe9740e7faad24af487d2190f04ff45",
+      "draftEvidence": "evidence/section-066-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$10$",
+        "$0.15$"
+      ],
+      "cStudentAfter": "$0.3\\div2$를 계산할 때 $0.1$짜리 $1$개가 남으면 이를 $0.01$짜리 □개로 바꾸어 나누고, 몫은 □이다.",
+      "cMarkedSentence": "$0.3\\div2$를 계산할 때 $0.1$짜리 $1$개가 남으면 이를 $0.01$짜리 {$10$}개로 바꾸어 나누고, 몫은 {$0.15$}이다.",
+      "cStudentSentence": "$0.3\\div2$를 계산할 때 $0.1$짜리 $1$개가 남으면 이를 $0.01$짜리 □개로 바꾸어 나누고, 몫은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$10$",
+          "equivalents": [
+            "열"
+          ]
+        },
+        {
+          "key": "$0.15$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$0.3\\div2$를 계산하면 몫의 $0.1$ 자리에 $1$이 쓰이고 $0.1$짜리 $1$개가 남는다. 다음 자리를 계속 나누려면 남은 것을 어떤 단위 몇 개로 바꾸어야 하는지 쓰고, 그렇게 바꿀 수 있는 까닭과 $0.3\\div2$의 몫을 쓰시오.",
+        "answer": "$0.01$짜리 $10$개로 바꾼다. $0.1$은 $0.01$이 $10$개와 같기 때문이다. $10\\div2=5$이므로 몫은 $0.15$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$0.01$짜리 $10$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.1$은 $0.01$이 $10$개와 같다",
+              "$0.1=0.01\\times10$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.15$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0.3\\div2$를 계산할 때 $0.1$짜리 $1$개가 남으면 이를 $0.01$짜리 {$10$}개로 바꾸어 나누고, 몫은 {$0.15$}이다.",
+        "acceptedAnswers": [
+          [
+            "$10$",
+            "열"
+          ],
+          [
+            "$0.15$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "88cf3216b6e956eeae82e94e8b5ee0d078699875cb93bb43d2ad0ece8df90a20",
+      "questionRevision": "planning-e5e6-20261006-88cf3216b6e9",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-4-c3",
+      "bDecision": "revise",
+      "bPrompt": "$1.04$에서 소수 첫째 자리의 $0$을 지우고 $1.4$로 쓰면 왜 다른 수가 됩니까? 숫자 $4$가 나타내는 값이 어떻게 달라지는지 설명하시오.",
+      "bAnswer": "$0$을 지우면 $4$가 한 자리 앞으로 와서 $0.04$를 나타내던 것이 $0.4$를 나타내게 된다. 값이 열 배가 되므로 $1.04$는 $1.4$와 다르다.",
+      "bGoal": "가운데 $0$을 지우면 뒤 숫자의 자릿값이 커져 다른 수가 됨을 설명한다.",
+      "bReason": "값이 어떻게 달라지는지 설명하라는 질문에는0.04에서0.4로의 변화나10배라는 설명이 각각 충분하다. 둘을 동시에 필수로 강요하지 않고 같은 뜻의 방법으로 인정한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$4$가 나타내는 값이 $0.04$에서 $0.4$로 바뀐다",
+            "백분의 $4$가 십분의 $4$로 바뀐다",
+            "$4$가 나타내는 값이 $10$배가 된다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "$1.04$에서 $0$을 지워 $1.4$로 쓰면 $4$가 나타내는 값이 $0.04$에서 $0.4$로 바뀌어 {열 배}가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "열 배",
+            "$10$배"
+          ]
+        }
+      ],
+      "cReason": "자릿값이라는 말 대신 $4$가 나타내는 값의 변화를 보여 학생이 이해하기 쉽다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0210-0240.json",
+      "codexFinalAmendedFromFingerprint": "09063973b8ad7bbb851b382bbc8cf6c600901ab020fcc708b91177a6cb6dd474",
+      "sourceIndex": 239,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-3-4-c3",
+        "section": "초6::1-3 소수의 나눗셈::1-3-4 몫의 소수 첫째 자리에 0이 있는 (소수)÷(자연수) 알아보기",
+        "level": "상",
+        "kind": "성질",
+        "term": "가운데 $0$을 생략할 수 없는 까닭",
+        "definition": "소수점 아래에서 $0$ 뒤에 다른 숫자가 있으면, 그 $0$을 지울 때 뒤 숫자의 자릿값이 {열 배}가 되어 다른 수가 된다. $1.04$는 $1.4$가 아니다.",
+        "studentC": "소수점 아래에서 $0$ 뒤에 다른 숫자가 있으면, 그 $0$을 지울 때 뒤 숫자의 자릿값이 □가 되어 다른 수가 된다. $1.04$는 $1.4$가 아니다.",
+        "answers": [
+          "열 배"
+        ]
+      },
+      "sourceFingerprint": "1fbe47a970aef085fe220e54e5a68cc4721747de4dbd5cd32e0e7ac22d4eed5a",
+      "draftEvidence": "evidence/section-067-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "열 배"
+      ],
+      "cStudentAfter": "$1.04$에서 $0$을 지워 $1.4$로 쓰면 $4$가 나타내는 값이 $0.04$에서 $0.4$로 바뀌어 □가 된다.",
+      "cMarkedSentence": "$1.04$에서 $0$을 지워 $1.4$로 쓰면 $4$가 나타내는 값이 $0.04$에서 $0.4$로 바뀌어 {열 배}가 된다.",
+      "cStudentSentence": "$1.04$에서 $0$을 지워 $1.4$로 쓰면 $4$가 나타내는 값이 $0.04$에서 $0.4$로 바뀌어 □가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "열 배",
+          "equivalents": [
+            "$10$배"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$1.04$에서 소수 첫째 자리의 $0$을 지우고 $1.4$로 쓰면 왜 다른 수가 됩니까? 숫자 $4$가 나타내는 값이 어떻게 달라지는지 설명하시오.",
+        "answer": "$0$을 지우면 $4$가 한 자리 앞으로 와서 $0.04$를 나타내던 것이 $0.4$를 나타내게 된다. 값이 열 배가 되므로 $1.04$는 $1.4$와 다르다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$4$가 나타내는 값이 $0.04$에서 $0.4$로 바뀐다",
+              "백분의 $4$가 십분의 $4$로 바뀐다",
+              "$4$가 나타내는 값이 $10$배가 된다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1.04$에서 $0$을 지워 $1.4$로 쓰면 $4$가 나타내는 값이 $0.04$에서 $0.4$로 바뀌어 {열 배}가 된다.",
+        "acceptedAnswers": [
+          [
+            "열 배",
+            "$10$배"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6ab66cb7efd14a25e2f4abbd031e957f2a7a293c129052dfe44c92a1a211dd5f",
+      "questionRevision": "planning-e5e6-20261006-6ab66cb7efd1",
+      "requiresIndependentReview": true
+    }
+  ]
+}

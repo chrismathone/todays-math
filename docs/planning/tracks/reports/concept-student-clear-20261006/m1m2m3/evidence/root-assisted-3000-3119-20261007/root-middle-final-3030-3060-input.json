@@ -1,0 +1,1057 @@
+{
+  "reader": "Root Codex direct final question reading",
+  "file": "root-middle-final-3030-3060-input.json",
+  "rows": [
+    {
+      "id": "m2-07-02-xc17",
+      "sourceIndex": 3030,
+      "proposalFingerprint": "637a0be56d4202f7fe712a29df817118e7e6dbd16549a730cbe19698032fb27c",
+      "normalizedHash": "d0f7873f6d83e10d30e47b6b7f91f2ce88ccbbcafe8669309715ea67ef623731",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "$\\triangle ABC$에서 $\\angle A$의 이등분선이 변 $BC$와 점 $D$에서 만난다. $\\overline{BD}=3$, $\\overline{DC}=2$, $\\overline{AC}=4$일 때 비례식을 세워 $\\overline{AB}$의 길이를 구하시오.",
+        "answer": "$\\overline{AB}:4=3:2$이므로 $\\overline{AB}=6$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{AB}:4=3:2$",
+              "$\\overline{AB}:\\overline{AC}=\\overline{BD}:\\overline{DC}$",
+              "$2\\overline{AB}=12$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{AB}=6$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$\\angle A$의 이등분선이 $\\overline{BC}$와 $D$에서 만날 때 $\\overline{BD}$, $\\overline{DC}$, $\\overline{AC}$를 알면, 비례식 $\\overline{AB}:\\overline{AC}=${$\\overline{BD}:\\overline{DC}$}를 세워 $\\overline{AB}$를 구한다.",
+        "acceptedAnswers": [
+          [
+            "$\\overline{BD}:\\overline{DC}$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "조각에서 변으로 거꾸로 구하는 것이 핵심이라, 세 길이를 주고 구할 변을 지정했다.",
+      "cReason": "'□으로 구한다'는 '비례식'이라는 낱말만 묻기 때문에, 실제 비례식의 대응을 묻게 바꿨다."
+    },
+    {
+      "id": "m2-07-02-xc18",
+      "sourceIndex": 3031,
+      "proposalFingerprint": "ca966653ef9e71ee2afaabf45e404357d6fd4246d7573567b81de194774900c7",
+      "normalizedHash": "d48e4f8a5e793975b61d06406dc30956c9d35611729558aee43e6ff605185b31",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "$\\triangle ABC$에서 $\\angle A$의 이등분선이 $\\overline{BC}$와 점 $D$에서 만난다. 점 $C$를 지나 $\\overline{AD}$에 평행한 직선이 $\\overline{BA}$의 연장선과 점 $E$에서 만날 때, $\\angle AEC$와 $\\angle ACE$가 같은 까닭을 평행선의 성질로 쓰고, $\\overline{AC}$와 길이가 같은 선분을 쓰시오.",
+        "answer": "$\\overline{AD}\\parallel\\overline{EC}$이므로 $\\angle BAD=\\angle AEC$(동위각), $\\angle DAC=\\angle ACE$(엇각)이다. $\\angle BAD=\\angle DAC$이므로 $\\angle AEC=\\angle ACE$이다. 따라서 $\\triangle ACE$는 이등변삼각형이고 $\\overline{AE}=\\overline{AC}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "동위각이므로 $\\angle BAD=\\angle AEC$"
+            ]
+          },
+          {
+            "anyOf": [
+              "엇각이므로 $\\angle DAC=\\angle ACE$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle BAD=\\angle DAC$이므로 두 각이 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{AE}$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$\\triangle ABC$에서 $\\angle A$의 이등분선 $\\overline{AD}$에 평행하게 점 $C$를 지나는 직선이 $\\overline{BA}$의 연장선과 $E$에서 만나면, $\\angle BAD=\\angle AEC$는 {동위각}, $\\angle DAC=\\angle ACE$는 {엇각}이다. $\\angle BAD=\\angle DAC$이므로 $\\triangle ACE$는 이등변삼각형이다.",
+        "acceptedAnswers": [
+          [
+            "동위각"
+          ],
+          [
+            "엇각"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "점 $E$의 위치와 비교할 두 각을 지정해, 동위각과 엇각을 근거로 쓰게 했다.",
+      "cReason": "원래 두 빈칸은 순서를 바꿔 넣어도 맞아 보여서, 각 이름을 짝지어 빈칸마다 대상을 정했다."
+    },
+    {
+      "id": "m2-07-02-xc19",
+      "sourceIndex": 3032,
+      "proposalFingerprint": "7585e268d61c1c045891fa7fa943d43f6d9c7ce748366dbe94a5c10a6b70ceda",
+      "normalizedHash": "0754da831b15c88dc3273fc48d2715946c37d96f269eae9ad17211e3f4c410c3",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "$\\triangle ABC$에서 $\\overline{AB}>\\overline{AC}$이고 $\\angle A$의 외각의 이등분선이 $\\overline{BC}$의 연장선과 점 $D$에서 만난다. $\\overline{BD}$, $\\overline{CD}$와 각각 짝을 이루는 변을 쓰고, 내각의 이등분선일 때와 달리 $\\overline{BD}$와 $\\overline{CD}$가 어떻게 놓여 있는지 쓰시오.",
+        "answer": "$\\overline{BD}$는 $\\overline{AB}$와, $\\overline{CD}$는 $\\overline{AC}$와 짝을 지어 $\\overline{BD}:\\overline{CD}=\\overline{AB}:\\overline{AC}$이다. $D$가 $C$ 바깥에 있어서 $\\overline{BD}$가 $\\overline{CD}$를 포함하며 $\\overline{BD}=\\overline{BC}+\\overline{CD}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{BD}:\\overline{CD}=\\overline{AB}:\\overline{AC}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{BD}=\\overline{BC}+\\overline{CD}$",
+              "$\\overline{BD}$가 $\\overline{CD}$를 포함한다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$\\overline{AB}>\\overline{AC}$인 $\\triangle ABC$에서 $\\angle A$의 외각의 이등분선이 $\\overline{BC}$의 연장선과 $D$에서 만나면, $\\overline{BD}$는 {$\\overline{AB}$}와, $\\overline{CD}$는 {$\\overline{AC}$}와 짝을 짓는다. 이때 $\\overline{BD}$가 $\\overline{CD}$를 포함하여 두 거리가 겹쳐 있다.",
+        "acceptedAnswers": [
+          [
+            "$\\overline{AB}$",
+            "$\\overline{BA}$"
+          ],
+          [
+            "$\\overline{AC}$",
+            "$\\overline{CA}$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "$D$의 위치가 정해지도록 두 변의 대소를 주고, 짝과 겹침을 따로 물었다.",
+      "cReason": "'각을 낀 변', '겹쳐'는 가리키는 대상이 모호해 실제 변 이름으로 짝짓게 바꿨다."
+    },
+    {
+      "id": "m2-07-02-xc20",
+      "sourceIndex": 3033,
+      "proposalFingerprint": "0647a948897960f97ec4cb6be34ee94dff75d5733c8246c2a53bfdc258e09f5f",
+      "normalizedHash": "1e11b9b126786eecd866cd579d0e49151c6d550b05255cc7619cae75490e29b6",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "$\\triangle ABC$에서 $\\overline{AB}>\\overline{AC}$일 때, $\\angle A$의 외각의 이등분선은 $\\overline{BC}$를 점 $B$ 쪽과 점 $C$ 쪽 중 어느 쪽으로 늘인 연장선과 만나는가? 교점을 $D$라 하고 $\\overline{BD}:\\overline{CD}$를 이용해 까닭을 쓰시오.",
+        "answer": "$C$ 쪽이다. $\\overline{BD}:\\overline{CD}=\\overline{AB}:\\overline{AC}$이고 $\\overline{AB}>\\overline{AC}$이므로 $\\overline{BD}>\\overline{CD}$이다. $B$ 쪽 연장선 위의 점은 $C$보다 $B$에 더 가까우므로 $D$는 $C$ 쪽에 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$C$ 쪽"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{BD}>\\overline{CD}$",
+              "$D$는 $B$보다 $C$에 더 가깝다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$\\triangle ABC$에서 $\\overline{AB}>\\overline{AC}$이면 $\\angle A$의 외각의 이등분선은 $\\overline{BC}$를 점 {$C$} 쪽으로 늘인 연장선과 만난다. 교점에서 두 끝 점까지의 거리의 비가 $\\overline{AB}:\\overline{AC}$이므로, 긴 변 쪽 끝 점 $B$가 교점에서 더 {멀어야} 하기 때문이다.",
+        "acceptedAnswers": [
+          [
+            "$C$"
+          ],
+          [
+            "멀어야"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "'짧은 변 쪽'이 어느 끝을 말하는지 모호해서, 꼭짓점 $B$, $C$ 중에서 고르게 했다.",
+      "cReason": "'대변을 짧은 변 쪽으로 늘인'은 방향이 분명하지 않아 꼭짓점 이름으로 바꿨다."
+    },
+    {
+      "id": "m2-07-02-xc21",
+      "sourceIndex": 3034,
+      "proposalFingerprint": "279059ef324e9fa9143fbea64c11be99469fce17a459d4f86d0d9396b2e2f631",
+      "normalizedHash": "1ed5bd1f372214ca19d2eae0415fa48cf41f8fd31b9147b52819c5299351922a",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "삼각형의 한 꼭짓점에서 그은 내각의 이등분선과 외각의 이등분선이 이루는 각의 크기를 구하고 그 까닭을 쓰시오.",
+        "answer": "$90^\\circ$이다. 내각과 외각의 크기의 합이 $180^\\circ$이고, 두 이등분선이 이루는 각은 각각의 절반을 더한 것이므로 $\\frac{180^\\circ}{2}=90^\\circ$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$90^\\circ$",
+              "서로 수직"
+            ]
+          },
+          {
+            "anyOf": [
+              "내각과 외각의 합 $180^\\circ$의 절반",
+              "두 각의 절반을 더하면 $90^\\circ$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "한 꼭짓점에서 내각의 이등분선과 외각의 이등분선은 서로 {수직}이다.",
+        "acceptedAnswers": [
+          [
+            "수직"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "결론인 '수직'을 말하지 않고 각의 크기를 묻고, 그 까닭을 쓰게 했다.",
+      "cReason": "두 이등분선의 위치 관계 하나를 묻는 짧은 빈칸이다."
+    },
+    {
+      "id": "m2-07-02-xc22",
+      "sourceIndex": 3035,
+      "proposalFingerprint": "e7a7b36d706e1f80272cdfbacc00f8353fed6192c16d9caaf03606c30a341b67",
+      "normalizedHash": "4fca3583e522e9413ea172f8bfe1e273111f661a95a3387212acf6c5c9d73179",
+      "learningRole": "definition",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "$\\triangle ABC$의 변 $BC$ 위의 점 $D$에 대하여 $\\overline{BD}:\\overline{DC}=\\overline{AB}:\\overline{AC}$이다. 이때 $\\angle BAD$와 $\\angle DAC$의 크기는 어떤 관계인가?",
+        "answer": "$\\angle BAD=\\angle DAC$이다. 즉 $\\overline{AD}$는 $\\angle A$의 이등분선이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\angle BAD=\\angle DAC$",
+              "$\\overline{AD}$는 $\\angle A$를 이등분한다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$\\triangle ABC$의 변 $BC$ 위의 점 $D$에 대하여 $\\overline{BD}:\\overline{DC}=\\overline{AB}:\\overline{AC}$이면 $\\overline{AD}$는 {$\\angle A$의 이등분선}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\angle A$의 이등분선"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "방향이 거꾸로라는 점이 드러나도록, 비를 조건으로 주고 두 각의 관계를 물었다.",
+      "cReason": "'맞닿은 각을 낀 두 변'이 길고 모호해서, 조건은 기호로 쓰고 결론만 숨겼다."
+    },
+    {
+      "id": "m2-07-02-xc23",
+      "sourceIndex": 3036,
+      "proposalFingerprint": "0517003aae51d9c8372d6354fe2faa8e7cd51c57f731ac0dec9323b4d12fd8be",
+      "normalizedHash": "2c8cf6ee5f360df6db3b08b458eecd430464adec86998f92d2f0fac156a54796",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "B": {
+        "prompt": "$\\triangle ABC$에서 $\\overline{AB}=12$, $\\overline{AC}=8$, $\\overline{BC}=10$이다. $\\angle A$의 이등분선이 $\\overline{BC}$와 점 $D$에서 만나고, $\\angle B$의 이등분선이 $\\overline{AD}$와 점 $I$에서 만난다. $\\overline{BD}$의 길이를 먼저 구한 뒤 $\\triangle ABD$를 이용하여 $\\overline{AI}:\\overline{ID}$를 구하시오.",
+        "answer": "$\\overline{BD}=10\\times\\frac{12}{20}=6$이다. $\\triangle ABD$에서 $\\overline{BI}$는 $\\angle B$의 이등분선이므로 $\\overline{AI}:\\overline{ID}=\\overline{BA}:\\overline{BD}=12:6=2:1$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{BD}=6$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{AI}:\\overline{ID}=\\overline{BA}:\\overline{BD}$",
+              "$\\overline{AI}:\\overline{ID}=12:6$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2:1$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$\\triangle ABC$에서 $\\angle A$, $\\angle B$의 이등분선이 각각 $\\overline{BC}$와 $D$에서, $\\overline{AD}$와 $I$에서 만날 때, 먼저 $\\overline{BD}$를 구하고 $\\triangle ABD$에서 $\\overline{AI}:\\overline{ID}=${$\\overline{AB}:\\overline{BD}$}로 구한다.",
+        "acceptedAnswers": [
+          [
+            "$\\overline{AB}:\\overline{BD}$",
+            "$\\overline{BA}:\\overline{BD}$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "'두 번'이 무엇을 말하는지 알 수 있도록, 두 교점과 두 번째로 쓸 $\\triangle ABD$를 지정했다.",
+      "cReason": "'그 조각을 한 변으로 하는 삼각형'이 어느 삼각형인지 모호해서, 삼각형과 비례식을 밝혔다."
+    },
+    {
+      "id": "m2-07-02-xc24",
+      "sourceIndex": 3037,
+      "proposalFingerprint": "3efc2576a2ca3dad2b1e671b67f5f9e2edc1cea72180b1b48d573918e4d3f252",
+      "normalizedHash": "bdcd579d87c250c0a998f01a964017656383ef449523ceff54672af3b99e8891",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "$\\triangle ABC$에서 $\\overline{AB}=6$, $\\overline{AC}=3$, $\\overline{BC}=4$이고 $\\angle A$의 외각의 이등분선이 변 $BC$의 연장선과 점 $D$에서 만난다. $\\overline{CD}=x$로 놓고 $\\overline{BD}$를 $x$로 나타낸 뒤, 비례식을 세워 $x$를 구하시오.",
+        "answer": "$D$는 $C$ 쪽 연장선 위에 있으므로 $\\overline{BD}=4+x$이다. $(4+x):x=6:3$에서 $4+x=2x$, $x=4$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{BD}=4+x$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$(4+x):x=6:3$",
+              "$3(4+x)=6x$",
+              "$(4+x):x=2:1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=4$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "외각의 이등분선과 대변의 연장선의 교점에서 대변의 가까운 끝 점까지의 거리를 $x$로 놓으면, 먼 끝 점까지의 거리는 대변의 길이에 $x$를 {더한} 것이다. 내각 때 한 조각을 {빼던} 것과 다르다.",
+        "acceptedAnswers": [
+          [
+            "더한",
+            "더하는"
+          ],
+          [
+            "빼던",
+            "뺀",
+            "빼는"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "더하는 식이 핵심이라, $\\overline{CD}=x$로 놓기와 $\\overline{BD}$ 나타내기를 단계로 지정했다.",
+      "cReason": "내각(빼기)과 외각(더하기)의 차이를 짧은 두 빈칸으로 잘 묻는다."
+    },
+    {
+      "id": "m2-07-02-xc25",
+      "sourceIndex": 3038,
+      "proposalFingerprint": "948e42b41c646a59c4300c4a47026757d67445e650e9eee96f811629e73bded7",
+      "normalizedHash": "d3d5a2d980bd4b5e4674c4e5f758f29f77faf9a5a68c215a4db40dbfab130cc1",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "$\\overline{AB}=\\overline{AC}$인 $\\triangle ABC$에서 변 $BA$의 연장선 위에 점 $E$를 잡고, 외각 $\\angle CAE$의 이등분선을 $\\overline{AF}$라 하자. $\\overline{AF}$와 $\\overline{BC}$의 위치 관계를 쓰고, $\\angle CAF$와 $\\angle ACB$를 비교하여 까닭을 쓰시오.",
+        "answer": "평행하다. $\\angle B=\\angle C$이므로 $\\angle CAE=\\angle B+\\angle C=2\\angle C$이고, $\\angle CAF=\\angle C=\\angle ACB$이다. 이 두 각은 엇각이므로 $\\overline{AF}\\parallel\\overline{BC}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "평행",
+              "$\\overline{AF}\\parallel\\overline{BC}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle CAE=\\angle B+\\angle C=2\\angle C$",
+              "외각이 $\\angle C$의 $2$배"
+            ]
+          },
+          {
+            "anyOf": [
+              "엇각 $\\angle CAF$와 $\\angle ACB$가 같다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$\\overline{AB}=\\overline{AC}$이면 $\\angle A$의 외각의 이등분선은 $\\overline{BC}$와 {평행}하다.",
+        "acceptedAnswers": [
+          [
+            "평행"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "외각의 위치를 점 $E$로 정하고 엇각을 비교하게 해서, 평행의 근거를 쓰게 했다.",
+      "cReason": "조건 $\\overline{AB}=\\overline{AC}$는 보이고 위치 관계만 묻는 짧은 빈칸이다."
+    },
+    {
+      "id": "m2-07-03-xc1",
+      "sourceIndex": 3039,
+      "proposalFingerprint": "df5390cdf24a33ede141a8693c171e5ef9013b4296a5709cf4a748240a3921f0",
+      "normalizedHash": "27c1f9613d547a474ef6d9ccf4de4f0c0767f88db6ed158194b628549641dd48",
+      "learningRole": "naming",
+      "bDecision": "exclude",
+      "cDecision": "exclude",
+      "B": {
+        "excluded": "교과서 용어가 아닌 이름을 외우는 문항이고, 다른 질문들은 이미 '평행선과 만나는 직선'으로 조건을 밝힌다."
+      },
+      "C": {
+        "excluded": "교과서 용어가 아니라서 '교차하는 직선'처럼 맞는 표현도 오답이 된다."
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "교과서 용어가 아닌 이름을 외우는 문항이고, 다른 질문들은 이미 '평행선과 만나는 직선'으로 조건을 밝힌다.",
+      "cReason": "교과서 용어가 아니라서 '교차하는 직선'처럼 맞는 표현도 오답이 된다."
+    },
+    {
+      "id": "m2-07-03-xc2",
+      "sourceIndex": 3040,
+      "proposalFingerprint": "291dfb3746c29f9362e3be0a265e519294eafcec675ee6c48d911878242d8527",
+      "normalizedHash": "a0d2bf8aa5977ebe1b8b73205818307f783fe1dc90887af163822efca5fb288d",
+      "learningRole": "definition",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "서로 평행한 세 직선 $l$, $m$, $n$을 직선 $p$가 차례로 점 $A$, $B$, $C$에서, 직선 $q$가 차례로 점 $D$, $E$, $F$에서 만난다. $\\overline{BC}$에 대응하는 $q$ 위의 조각을 쓰고, 어떤 기준으로 대응시키는지 쓰시오.",
+        "answer": "$\\overline{EF}$이다. 같은 두 평행선 $m$, $n$ 사이에 놓인 조각끼리 대응시킨다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{EF}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 두 평행선 사이에 놓인 조각",
+              "$m$과 $n$ 사이에 놓인 조각"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "두 직선에서 같은 두 평행선 사이에 놓인 조각끼리를 {대응}시켜 비교한다.",
+        "acceptedAnswers": [
+          [
+            "대응"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "한 조각을 지정해서, 대응하는 짝과 그 기준을 함께 쓰게 했다.",
+      "cReason": "같은 두 평행선 사이라는 기준이 보이고, '대응' 한 낱말만 묻는다."
+    },
+    {
+      "id": "m2-07-03-xc3",
+      "sourceIndex": 3041,
+      "proposalFingerprint": "3a58945f3c2f7ae70c81987abde4370dc79e4c4f9e87551f162ba2c075364bc8",
+      "normalizedHash": "a6d80cb68609cfb6c01f2883ddc3507f5f84349a5e62f154fb20bce7b6a17979",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": {
+        "excluded": "비를 적는 차례는 xc23의 비례식 대응 오류를 찾는 질문에서 함께 평가된다."
+      },
+      "C": {
+        "sentence": "평행선 사이의 조각을 비로 쓸 때는 두 직선 모두 {같은 평행선}에서 시작해 만나는 차례대로 적는다.",
+        "acceptedAnswers": [
+          [
+            "같은 평행선"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "비를 적는 차례는 xc23의 비례식 대응 오류를 찾는 질문에서 함께 평가된다.",
+      "cReason": "'같은 평행선에서 시작한다'는 적는 규칙을 한 빈칸으로 묻는다."
+    },
+    {
+      "id": "m2-07-03-xc4",
+      "sourceIndex": 3042,
+      "proposalFingerprint": "119bb708b9dc330ed86aab4f392e5597aa52198720a991e8442ba47002405eb4",
+      "normalizedHash": "5b2a72967b85202950bacd12c25c027dbe729e518a0fb2f059654c916a4294a3",
+      "learningRole": "definition",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "평행한 두 직선 사이의 간격은 어떤 방향으로 잰 거리인가? 또 두 직선을 비스듬히 지나는 직선이 두 직선 사이에서 만드는 조각의 길이는 간격과 같은지 쓰시오.",
+        "answer": "두 직선에 수직인 방향으로 잰 거리이다. 비스듬한 조각의 길이는 간격과 같지 않고 더 길다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "수직인 방향",
+              "수선의 길이"
+            ]
+          },
+          {
+            "anyOf": [
+              "간격과 같지 않다",
+              "간격보다 길다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "평행선 사이의 간격은 {수직} 방향으로 잰 거리이며 비스듬한 조각의 길이와는 구별한다.",
+        "acceptedAnswers": [
+          [
+            "수직"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "간격과 조각의 차이를 묻도록, 재는 방향과 비교할 대상을 정했다.",
+      "cReason": "'수직' 한 빈칸으로 간격의 뜻을 분명히 묻는다."
+    },
+    {
+      "id": "m2-07-03-xc5",
+      "sourceIndex": 3043,
+      "proposalFingerprint": "df5390cdf24a33ede141a8693c171e5ef9013b4296a5709cf4a748240a3921f0",
+      "normalizedHash": "fa63fe3c5d5bcb987cde10cae6d18a69abc5799462c05b79f06c10de7d3c23f8",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "cDecision": "exclude",
+      "B": {
+        "excluded": "조각의 개수 $2$는 단순히 세는 것이라 학습 목표가 되기 어렵다."
+      },
+      "C": {
+        "excluded": "개수를 세는 빈칸이라 개념을 확인하지 못한다."
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "조각의 개수 $2$는 단순히 세는 것이라 학습 목표가 되기 어렵다.",
+      "cReason": "개수를 세는 빈칸이라 개념을 확인하지 못한다."
+    },
+    {
+      "id": "m2-07-03-xc6",
+      "sourceIndex": 3044,
+      "proposalFingerprint": "f2513f069502a9a5930c1b7b67a9b60a30d8edd549a6308db8cd2f11d1b676ff",
+      "normalizedHash": "667cd3df7df8c3006fa566ab5b2b8c75187d64819afcd47013e38a98c2ab7f03",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": {
+        "excluded": "두 배 관계는 c2의 '조각의 비가 같다'에 수를 넣은 특수한 경우이다."
+      },
+      "C": {
+        "sentence": "서로 {평행}한 세 직선을 지나는 한 직선의 두 조각이 두 배 관계이면 다른 직선의 대응하는 두 조각도 두 배 관계이다.",
+        "acceptedAnswers": [
+          [
+            "평행"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "두 배 관계는 c2의 '조각의 비가 같다'에 수를 넣은 특수한 경우이다.",
+      "cReason": "결론은 보이고 꼭 필요한 조건 '평행'을 묻는 빈칸이라, 조건의 역할을 확인한다."
+    },
+    {
+      "id": "m2-07-03-xc7",
+      "sourceIndex": 3045,
+      "proposalFingerprint": "521aa83331f081f105410eda995bf7235bee878d654d7d843983a35d137ce319",
+      "normalizedHash": "aa2cf214b11ba1f29b80d93d609fb31415a50bdda6cb4155d0dad076e1e39acf",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": {
+        "excluded": "같은 조각의 비 $1:1$은 표기만 외우는 것이고, c1 질문의 답에 이미 포함된다."
+      },
+      "C": {
+        "sentence": "세 평행선이 직선을 같은 길이로 나누면 두 조각의 길이의 비를 {$1:1$}로 쓴다.",
+        "acceptedAnswers": [
+          [
+            "$1:1$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "같은 조각의 비 $1:1$은 표기만 외우는 것이고, c1 질문의 답에 이미 포함된다.",
+      "cReason": "같은 길이를 비 $1:1$로 옮겨 쓰는 짧은 표기 빈칸이다."
+    },
+    {
+      "id": "m2-07-03-xc8",
+      "sourceIndex": 3046,
+      "proposalFingerprint": "e5d1675f2a2733bf6dcbd5468d1b0ce42edc70ea237d6cec7a5dccff67264f85",
+      "normalizedHash": "a12c2674be9d37c77b4227a8f437f3d0a9cf3a9629ab6a557ef95c7389687965",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": {
+        "excluded": "두 조각을 더해 전체를 구하는 단계는 xc11의 전체와 한 조각의 비를 묻는 질문에 포함된다."
+      },
+      "C": {
+        "sentence": "세 평행선 중 바깥 두 선 사이의 길이는 이웃한 선 사이의 두 조각을 {더해} 구한다.",
+        "acceptedAnswers": [
+          [
+            "더해"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "두 조각을 더해 전체를 구하는 단계는 xc11의 전체와 한 조각의 비를 묻는 질문에 포함된다.",
+      "cReason": "바깥 두 선 사이의 길이가 두 조각의 합임을 짧게 확인한다."
+    },
+    {
+      "id": "m2-07-03-xc9",
+      "sourceIndex": 3047,
+      "proposalFingerprint": "d055b8d9fe6cb102b44ccdd5ec08a3f9ba4ce485ddf30070ef659aa70bd6e7ec",
+      "normalizedHash": "315ead88810cbef712da972a8f1336b30d33b259283d1727294da6cd5a096e3e",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "cDecision": "rewrite",
+      "B": {
+        "excluded": "비의 앞뒤를 바꾸는 표기 규칙은 xc23의 오류 진단 질문에서 함께 평가된다."
+      },
+      "C": {
+        "sentence": "$\\overline{AB}:\\overline{BC}=2:3$이면, 뒤 조각부터 쓴 $\\overline{BC}:\\overline{AB}$는 두 수의 {순서}를 바꾼 $3:2$이다.",
+        "acceptedAnswers": [
+          [
+            "순서"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "비의 앞뒤를 바꾸는 표기 규칙은 xc23의 오류 진단 질문에서 함께 평가된다.",
+      "cReason": "'앞에서부터 비교한 비'가 무엇을 말하는지 모호해서, 실제 비의 예로 대상을 밝혔다."
+    },
+    {
+      "id": "m2-07-03-xc11",
+      "sourceIndex": 3048,
+      "proposalFingerprint": "332225c14abf202328d010bb00aa9499776f0d5f10b277e7b6e63ff659f8e228",
+      "normalizedHash": "fd3b54d790451f5a545f4a63b74ea6b8d9835b008c4fbd6b451bbcee398933f9",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "서로 평행한 세 직선 $l$, $m$, $n$을 직선 $p$가 차례로 점 $A$, $B$, $C$에서, 직선 $q$가 차례로 점 $D$, $E$, $F$에서 만난다. $\\overline{AB}:\\overline{BC}=2:3$, $\\overline{DF}=15$일 때 $\\overline{DE}:\\overline{DF}$를 쓰고 $\\overline{DE}$의 길이를 구하시오.",
+        "answer": "$\\overline{DE}:\\overline{EF}=2:3$이므로 $\\overline{DE}:\\overline{DF}=2:(2+3)=2:5$이다. 따라서 $\\overline{DE}=15\\times\\frac{2}{5}=6$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{DE}:\\overline{DF}=2:5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{DE}=6$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "세 평행선이 만든 두 조각의 비가 $a:b$이면 앞 조각과 전체의 비는 {$a:(a+b)$}이다.",
+        "acceptedAnswers": [
+          [
+            "$a:(a+b)$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "앞 조각과 전체를 점 이름으로 정하고 전체 길이를 주어, 비를 실제로 쓰게 했다.",
+      "cReason": "$a:b$에서 $a:(a+b)$를 만드는 일반식을 묻는 빈칸으로 의미가 분명하다."
+    },
+    {
+      "id": "m2-07-03-xc12",
+      "sourceIndex": 3049,
+      "proposalFingerprint": "1b86e5bdc053cdb636cb70d17ba2875b77ebfb50c99097589f53f5659f934ef6",
+      "normalizedHash": "463e76922d47fbb766b3d8b9f3798653575ffb7da350ba290deda350d6808f41",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "서로 평행한 세 직선을 직선 $q$가 차례로 점 $D$, $E$, $F$에서 지난다. 두 조각의 비가 $\\overline{DE}:\\overline{EF}=3:5$이고 $\\overline{EF}$가 $\\overline{DE}$보다 $4$만큼 길 때, 비의 두 수의 차를 이용하여 $\\overline{DE}$와 $\\overline{EF}$를 구하시오.",
+        "answer": "비의 두 수의 차 $5-3=2$가 길이 $4$에 해당하므로 비의 $1$은 $2$이다. 따라서 $\\overline{DE}=6$, $\\overline{EF}=10$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "비의 차 $2$가 $4$에 해당한다",
+              "$5k-3k=4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{DE}=6$, $\\overline{EF}=10$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "길이가 서로 다른 두 조각의 비와 길이의 차를 알면 비의 두 수의 {차}에 해당하는 길이부터 구한다.",
+        "acceptedAnswers": [
+          [
+            "차"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "'차를 이용한다'가 무엇의 차인지 보이도록, 비와 길이의 차를 수로 주었다.",
+      "cReason": "비의 두 수의 '차'에 길이의 차를 대응시키는 핵심을 한 빈칸으로 묻는다."
+    },
+    {
+      "id": "m2-07-03-xc13",
+      "sourceIndex": 3050,
+      "proposalFingerprint": "df5390cdf24a33ede141a8693c171e5ef9013b4296a5709cf4a748240a3921f0",
+      "normalizedHash": "3b0280a343fb42d5de6aaa23d164c2d684c8608db7a1154a38d6458719e5a5bc",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "cDecision": "exclude",
+      "B": {
+        "excluded": "네 평행선에서 대응 조각을 비교하는 것은 c3의 비례식 질문과 같은 목표이다."
+      },
+      "C": {
+        "excluded": "c3 문장과 같은 내용을 낱말만 바꿔 반복한다."
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "네 평행선에서 대응 조각을 비교하는 것은 c3의 비례식 질문과 같은 목표이다.",
+      "cReason": "c3 문장과 같은 내용을 낱말만 바꿔 반복한다."
+    },
+    {
+      "id": "m2-07-03-xc14",
+      "sourceIndex": 3051,
+      "proposalFingerprint": "cbbae75155fead9e487e313c355d239db4bc3e0a30098ca9749d18410dc600c8",
+      "normalizedHash": "53e7a967469d1fb812b1a9c19be8ee6e7d17505d8987c69dfb423cd73dcc319a",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "이웃한 간격이 같은 평행한 세 직선을 직선 $p$가 점 $A$, $B$, $C$에서 지나고, $p$와 기울어진 정도가 다른 직선 $q$가 점 $D$, $E$, $F$에서 지난다. 이때 $\\overline{AB}=\\overline{BC}$, $\\overline{DE}=\\overline{EF}$이다. $\\overline{AB}=\\overline{DE}$라고 항상 말할 수 있는지 쓰고 그 까닭을 쓰시오.",
+        "answer": "항상 말할 수는 없다. 두 직선에서 같은 것은 조각의 비 $1:1$뿐이고, 조각의 길이는 직선이 기울어진 정도에 따라 다를 수 있다. 예를 들어 $p$가 평행선에 수직이면 $\\overline{AB}$는 간격과 같지만, 비스듬한 $q$의 $\\overline{DE}$는 간격보다 길다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "항상 같다고 할 수 없다",
+              "다를 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 것은 비뿐이다",
+              "길이는 기울어진 정도에 따라 달라진다",
+              "수직인 직선과 비스듬한 직선을 비교한 반례"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "간격이 같은 평행선들을 서로 다른 기울기의 직선이 지나면 각 직선 안의 조각들은 같아도 두 직선의 조각 길이는 {다를 수 있다}.",
+        "acceptedAnswers": [
+          [
+            "다를 수 있다"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "'다를 수 있다'는 판단이 드러나도록, 같은 비라는 조건을 주고 길이가 같은지 물었다.",
+      "cReason": "'다르다'와 '다를 수 있다'를 구별하는 판단을 빈칸으로 묻는 유용한 문장이다."
+    },
+    {
+      "id": "m2-07-03-xc15",
+      "sourceIndex": 3052,
+      "proposalFingerprint": "e765f03c2b911813a23f5d6c853c054239b3089d7e1ac427bfcd194642a49743",
+      "normalizedHash": "25a7d9e3752a55feced9c20b8d9c4bc0dd863cc7c341a0ad5ad3d9a85349ae00",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "서로 평행한 세 직선을 직선 $p$가 차례로 점 $A$, $B$, $C$에서, 직선 $q$가 차례로 점 $D$, $E$, $F$에서 만난다. $\\overline{AB}=x-1$, $\\overline{BC}=4$, $\\overline{DE}=2$, $\\overline{EF}=8$일 때 비례식을 세워 $x$를 구하고, 구한 값이 길이로 알맞은지 확인하시오.",
+        "answer": "$(x-1):4=2:8$에서 $8(x-1)=8$, $x=2$이다. 이때 $\\overline{AB}=1>0$이므로 알맞다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$(x-1):4=2:8$",
+              "$8(x-1)=8$",
+              "$(x-1):2=4:8$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{AB}=1$이 양수이다",
+              "길이가 양수인지 확인한다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "조각을 문자식으로 주면 대응하는 길이로 {비례식}을 세우고 구한 길이가 {양수}인지 확인한다.",
+        "acceptedAnswers": [
+          [
+            "비례식"
+          ],
+          [
+            "양수"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "문자식 조각이 실제로 있어야 하므로 일차식 조각을 주고, 풀이와 양수인지 확인하기를 물었다.",
+      "cReason": "비례식 세우기와 양수인지 확인하기라는 두 절차를 각각 묻는다."
+    },
+    {
+      "id": "m2-07-03-xc16",
+      "sourceIndex": 3053,
+      "proposalFingerprint": "ec83080f047bb3849736510705b319a29df8e86d6dde106e48ecfc5da8ce3ec5",
+      "normalizedHash": "9fad1810cc88a786dc005ba0644aa58f0f24876e308efd78178f9474bc20ee44",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": {
+        "excluded": "두 직선에서 순서를 함께 뒤집는 내용은 c2의 대응 질문과 xc23의 오류 진단에 포함된다."
+      },
+      "C": {
+        "sentence": "평행선들을 반대쪽부터 읽어도 두 직선에서 {함께} 순서를 뒤집으면 비례 관계가 유지된다.",
+        "acceptedAnswers": [
+          [
+            "함께",
+            "모두",
+            "똑같이",
+            "동시에"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "두 직선에서 순서를 함께 뒤집는 내용은 c2의 대응 질문과 xc23의 오류 진단에 포함된다.",
+      "cReason": "한 직선만 뒤집으면 틀린다는 핵심을 '함께' 빈칸으로 묻는다."
+    },
+    {
+      "id": "m2-07-03-xc17",
+      "sourceIndex": 3054,
+      "proposalFingerprint": "e5d53faac4f0fd94764f5a7d4d079d5da8fa550d36c891c7753302b34f0538be",
+      "normalizedHash": "fa5bbda385f550bfaa106ac401a6f849dd51cdcea21cd3d144ef817e088d38cb",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "서로 평행한 네 직선을 직선 $p$가 차례로 점 $A$, $B$, $C$, $D$에서, 직선 $q$가 차례로 점 $E$, $F$, $G$, $H$에서 만난다. $\\overline{AC}:\\overline{CD}$와 같은 비를 $q$ 위의 선분으로 쓰고 그 까닭을 쓰시오.",
+        "answer": "$\\overline{EG}:\\overline{GH}$이다. $A$, $C$, $D$를 지나는 세 평행선만 보면, 그 사이의 조각 $\\overline{AC}$, $\\overline{CD}$가 각각 $\\overline{EG}$, $\\overline{GH}$와 대응하기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{EG}:\\overline{GH}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$A$, $C$, $D$를 지나는 세 평행선으로 본다",
+              "대응 조각을 같은 범위로 합쳐도 비가 같다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "여러 평행선 사이의 조각들을 같은 범위로 합쳐도 두 직선의 대응하는 합 사이의 {비율}은 그대로이다.",
+        "acceptedAnswers": [
+          [
+            "비율"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "'같은 범위로 합친다'를 구체적인 선분으로 정해, 대응하는 합을 묻게 했다.",
+      "cReason": "같은 범위로 합친 조각에서도 '비율'이 그대로라는 점을 한 빈칸으로 묻는다."
+    },
+    {
+      "id": "m2-07-03-xc18",
+      "sourceIndex": 3055,
+      "proposalFingerprint": "2b7ae865b97ba66c25a57b115d8663773d3ae9df2861c6810782ca70caf21045",
+      "normalizedHash": "fe891144b5ed1d0fc161b1c133f5976989ce49fa7d0d3c784011521c83a501aa",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "사다리꼴 $ABCD$에서 $\\overline{AD}\\parallel\\overline{BC}$, $\\overline{AD}=a$, $\\overline{BC}=b$이다. 점 $E$는 $\\overline{AB}$ 위에, 점 $F$는 $\\overline{DC}$ 위에 있고 $\\overline{EF}\\parallel\\overline{BC}$, $\\overline{AE}:\\overline{EB}=m:n$이다. 대각선 $AC$와 $\\overline{EF}$의 교점을 $G$라 하고, $\\overline{EF}$를 $a$, $b$, $m$, $n$으로 나타내시오.",
+        "answer": "$\\triangle ABC$에서 $\\overline{EG}=\\frac{mb}{m+n}$이고, $\\triangle CDA$에서 $\\overline{GF}=\\frac{na}{m+n}$이므로 $\\overline{EF}=\\frac{na+mb}{m+n}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{EG}=\\frac{mb}{m+n}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{GF}=\\frac{na}{m+n}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{EF}=\\frac{na+mb}{m+n}$",
+              "$\\overline{EF}=\\frac{mb+na}{m+n}$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "윗변 $a$, 아랫변 $b$인 사다리꼴에서 옆변을 위부터 $m:n$으로 나누는 평행한 선분의 길이는 {$\\frac{na+mb}{m+n}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{na+mb}{m+n}$"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "공식을 외우는 대신 c4 방법을 일반화하도록, 꼭짓점과 비, 대각선과의 교점을 밝혔다.",
+      "cReason": "윗변, 아랫변, 나누는 비가 문장에 모두 있어 식 하나를 묻는 빈칸이 분명하다."
+    },
+    {
+      "id": "m2-07-03-xc19",
+      "sourceIndex": 3056,
+      "proposalFingerprint": "721ba7e003d7c06c8bf64dcd6319abbdb8a084d5504fabc2158a4f1444f14ee6",
+      "normalizedHash": "37343dab84db16e6c59961a52c94bdb794967504b42bd1747b5b9efd636ec877",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "cDecision": "rewrite",
+      "B": {
+        "excluded": "폭이 늘어나는 양은 xc18 일반식을 '윗변 + 차의 몫'으로 바꿔 쓴 같은 내용이다."
+      },
+      "C": {
+        "sentence": "윗변 $a$, 아랫변 $b$($a<b$)인 사다리꼴에서 옆변을 위부터 $m:n$으로 나누는 점을 지나 밑변에 평행한 선분의 길이는, $a$에 두 밑변의 길이의 {차}의 $\\frac{m}{m+n}$배를 더한 것이다.",
+        "acceptedAnswers": [
+          [
+            "차"
+          ]
+        ]
+      },
+      "coreBefore": "아랫변이 더 긴 사다리꼴에서 밑변에 평행한 폭은 옆변을 내려간 비율만큼 두 밑변의 길이의 {차}가 더해진다.",
+      "coreAfter": "아랫변이 더 긴 사다리꼴에서 옆변을 위부터 $m:n$으로 나누는 점을 지나 밑변에 평행한 선분의 길이는, 윗변의 길이에 두 밑변의 길이의 {차}의 $\\frac{m}{m+n}$배를 더한 것이다.",
+      "coreReason": "'비율만큼 차가 더해진다'는 곱하는 관계가 드러나지 않아 배수를 밝혔다.",
+      "bReason": "폭이 늘어나는 양은 xc18 일반식을 '윗변 + 차의 몫'으로 바꿔 쓴 같은 내용이다.",
+      "cReason": "'내려간 비율만큼'이 무엇에 곱하는지 모호해서, 나누는 비와 배수를 밝혔다."
+    },
+    {
+      "id": "m2-07-03-xc20",
+      "sourceIndex": 3057,
+      "proposalFingerprint": "541920c916e2571e85f6b9bcf2a3c52683769763107bd8ae998d6d2e5c50fb30",
+      "normalizedHash": "6559d24e51789383bab1232e3f61e4c3b05d6649893b472482f676d1188cdbcb",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "사다리꼴 $ABCD$에서 $\\overline{AD}\\parallel\\overline{BC}$, $\\overline{AD}=4$, $\\overline{BC}=10$이다. 점 $E$는 $\\overline{AB}$ 위에, 점 $F$는 $\\overline{DC}$ 위에 있고 $\\overline{EF}\\parallel\\overline{BC}$, $\\overline{EF}=6$이다. 두 밑변의 길이의 차를 이용하여 $\\overline{AE}:\\overline{EB}$를 구하시오.",
+        "answer": "$\\frac{6-4}{10-4}=\\frac{1}{3}$이므로 $\\overline{AE}:\\overline{AB}=1:3$이다. 따라서 $\\overline{AE}:\\overline{EB}=1:2$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{AE}:\\overline{AB}=1:3$",
+              "$\\frac{6-4}{10-4}=\\frac{1}{3}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{AE}:\\overline{EB}=1:2$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "두 밑변의 길이가 다른 사다리꼴에서 중간 폭과 윗변의 차를 아랫변과 윗변의 차로 나누면 위에서 내려온 부분이 옆변 전체에서 차지하는 {비율}이 나온다.",
+        "acceptedAnswers": [
+          [
+            "비율"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "차를 나눈 값이 무엇의 비율인지 드러나도록, 수치와 구할 비를 지정했다.",
+      "cReason": "두 차의 몫이 옆변에서 차지하는 '비율'임을 한 빈칸으로 묻는다."
+    },
+    {
+      "id": "m2-07-03-xc21",
+      "sourceIndex": 3058,
+      "proposalFingerprint": "8fc68360063330c6a971dd4a969d2b5b0e6ea639a9f6d4dcabaf71a2e54f3cbd",
+      "normalizedHash": "e893c4f43f4d0962b99c1e76402a3bdc7399824a48d8675708f42ff03b25f8b6",
+      "learningRole": "application",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "윗변 $a$, 아랫변 $b$($a<b$)인 사다리꼴에서 한 옆변을 $4$등분한 세 점을 지나 밑변에 평행한 선분을 그었다. 윗변부터 아랫변까지 이웃한 두 폭의 차는 각각 얼마인지 쓰시오.",
+        "answer": "모두 $\\frac{b-a}{4}$로 일정하다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{b-a}{4}$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "사다리꼴의 옆변을 같은 길이로 나누고 밑변에 평행한 선분들을 그으면 이웃한 폭의 {차}가 일정하다.",
+        "acceptedAnswers": [
+          [
+            "차"
+          ]
+        ]
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "'일정하다'를 미리 말하지 않고, 등분하는 수와 밑변을 주어 차의 값을 구하게 했다.",
+      "cReason": "이웃한 폭의 '차'가 일정하다는 핵심을 짧게 묻는다."
+    },
+    {
+      "id": "m2-07-03-xc22",
+      "sourceIndex": 3059,
+      "proposalFingerprint": "df5390cdf24a33ede141a8693c171e5ef9013b4296a5709cf4a748240a3921f0",
+      "normalizedHash": "e08fc2ff1230f49376eb459b4ef72c43570bb52c546083070de297063b72ff95",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "cDecision": "exclude",
+      "B": {
+        "excluded": "두 중간 폭의 차는 xc18 일반식과 xc21 등분 문항에서 바로 나오는 계산을 반복한 것이다."
+      },
+      "C": {
+        "excluded": "'두 위치의 분할 비율'이 무엇인지 지면에 없어 빈칸의 대상이 모호하다."
+      },
+      "coreBefore": null,
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "두 중간 폭의 차는 xc18 일반식과 xc21 등분 문항에서 바로 나오는 계산을 반복한 것이다.",
+      "cReason": "'두 위치의 분할 비율'이 무엇인지 지면에 없어 빈칸의 대상이 모호하다."
+    }
+  ]
+}

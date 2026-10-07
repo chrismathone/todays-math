@@ -1,0 +1,2185 @@
+{
+  "input": "C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3/evidence/resume-editorial-20261007/input-737-761.json",
+  "changes": [
+    {
+      "id": "m2-09-03-c6",
+      "cAfter": "공정한 동전 두 개를 서로 영향 없이 던진다. 적어도 하나가 앞면일 확률은 $1$에서 두 동전이 모두 {뒷면}일 확률을 뺀 값이다.",
+      "cReason": "어떤 것이 일어나는지 없는 추상적 지시와 긴 부정 구절 빈칸을 실제 두 동전의 앞면·뒷면으로 구체화한다."
+    },
+    {
+      "id": "m2-09-04-c2",
+      "bPrompt": "두 사건 $A$, $B$가 함께 일어나는 일이 없고, $A$가 일어날 확률이 $p$, $B$가 일어날 확률이 $q$이다. $A$ 또는 $B$가 일어날 확률을 $p$, $q$로 나타내시오. 또 공정한 주사위 한 개를 던질 때 $2$ 이하 또는 $5$ 이상의 눈이 나올 확률을 이 방법으로 구하시오.",
+      "cAfter": "두 사건이 함께 일어나지 않고, 각각의 확률이 $p$, $q$이다. 둘 중 하나가 일어날 확률은 {$p+q$}이다.",
+      "cReason": "함께라는 접속 부사 빈칸 대신 배타 조건을 보이고 실제 확률 합을 확인한다."
+    },
+    {
+      "id": "m2-09-04-c3",
+      "bPrompt": "두 사건 $A$, $B$가 서로 영향을 주지 않고, $A$가 일어날 확률이 $p$, $B$가 일어날 확률이 $q$이다. $A$와 $B$가 모두 일어날 확률을 $p$, $q$로 나타내시오. 또 공정한 동전 한 개와 공정한 주사위 한 개를 서로 영향 없이 던질 때 동전은 앞면, 주사위는 $6$의 눈이 나올 확률을 구하시오.",
+      "cAfter": "두 사건이 서로 영향을 주지 않고, 각각의 확률이 $p$, $q$이다. 두 사건이 모두 일어날 확률은 {$pq$}이다.",
+      "cAcceptedAnswers": [
+        [
+          "$pq$",
+          "$p\\times q$",
+          "$q\\times p$"
+        ]
+      ],
+      "cReason": "영향이라는 일반 낱말 대신 독립 조건에서 실제 두 확률의 곱을 묻는다."
+    },
+    {
+      "id": "m2-09-04-c4",
+      "bPrompt": "주머니에 흰 공 $3$개, 검은 공 $2$개가 있다. 공 한 개를 꺼내 색을 확인하고 다시 넣어 잘 섞은 뒤 한 개를 또 꺼낸다. 매번 각 공이 뽑힐 가능성은 같다. 두 번째에 흰 공이 나올 확률을 구하고, 첫 번째에 흰 공이 나올 확률과 같은지 다른지를 주머니 속 공의 개수로 설명하시오."
+    },
+    {
+      "id": "m2-09-04-c5",
+      "bPrompt": "주머니에 흰 공 $2$개, 검은 공 $1$개가 있다. 각 공이 같은 가능성으로 뽑히도록 한 개씩 두 번 꺼내되 꺼낸 공은 다시 넣지 않는다. 첫 번째에 흰 공이 나왔을 때 두 번째에도 흰 공이 나올 확률을 구하고, 처음에 흰 공을 뽑을 확률과 다른 이유를 쓰시오. 또 두 번 모두 흰 공일 확률을 구하시오.",
+      "cAfter": "흰 공 $2$개와 검은 공 $1$개가 든 주머니에서 각 공이 같은 가능성으로 뽑히도록 흰 공 한 개를 뽑고 돌려놓지 않았다. 흰 공은 {$1$}개, 전체 공은 {$2$}개 남아, 다음 공이 흰 공일 확률은 {$\\frac12$}이다.",
+      "cReason": "동일 가능성의 뽑기 전제를 실제 C에도 밝혀 남은 색·전체 수와 확률의 계산을 일치시킨다."
+    },
+    {
+      "id": "m3-01-01-c6",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$4$의 제곱근은 $2$와 $-2$이다",
+            "$4$의 제곱근은 $\\pm2$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "제곱근 $4$는 $2$뿐이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "양수 $a$의 제곱근은 $\\sqrt a$와 $-\\sqrt a$의 두 수이고, 제곱근 $a$는 양의 제곱근 $\\sqrt a$ 하나이다"
+          ]
+        }
+      ],
+      "bReason": "a에 대한 두 표현의 차이도 질문에서 요청했으므로 양의 제곱근 하나라는 말만 아닌 두 표현의 대상을 함께 확인한다."
+    },
+    {
+      "id": "m3-01-01-c9",
+      "cAfter": "두 양수 $a$, $b$에서 $a<b$이면 $\\sqrt a$ { $<$ } $\\sqrt b$이다.",
+      "cAcceptedAnswers": [
+        [
+          "$<$"
+        ]
+      ],
+      "cReason": "한 문장에서 같은 증가 관계를 두 번 답하게 하지 않고 유용한 제곱근 비교 한 칸을 유지한다."
+    },
+    {
+      "id": "m3-01-01-c10",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$a\\ge0$이면 $a$이고 $a<0$이면 $-a$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\sqrt{a^2}=|a|$"
+          ]
+        }
+      ],
+      "bReason": "부호와 절댓값을 한 인라인 식 안에 표시해 실제 학생에게 보이는 수식과 필수 의미가 일치한다."
+    },
+    {
+      "id": "m3-01-02-c1",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분자와 분모가 모두 정수이고 분모가 0이 아닌 분수로 나타낼 수 있는 수이다",
+            "정수 $a$, $b$에 대하여 $b\\ne0$인 $\\frac ab$로 나타낼 수 있는 수이다"
+          ]
+        }
+      ],
+      "bReason": "분자·분모의 종류만 말하는 답이 아니라 그 분수로 나타낼 수 있다는 유리수의 핵심 정의를 확인한다."
+    },
+    {
+      "id": "m3-01-02-c3",
+      "cAfter": "유리수 또는 무리수인 수를 모두 {실수}라고 부른다.",
+      "cReason": "두 분류 이름을 서로 바꿔 넣어도 참인 나열 빈칸을 두 분류를 모은 표준 이름 확인으로 바꾼다."
+    }
+  ],
+  "rows": [
+    {
+      "id": "m2-09-03-c4",
+      "learningRole": "reason",
+      "roleReason": "확률이 $1$과 $0$이 되는 사건의 이유",
+      "bDecision": "rewrite",
+      "bPrompt": "모든 경우가 같은 가능성으로 일어나는 실험에서, 반드시 일어나는 사건과 절대로 일어나지 않는 사건의 확률을 각각 쓰고 그 이유를 사건의 경우의 수로 설명하시오.",
+      "bAnswer": "반드시 일어나는 사건은 사건의 경우의 수가 모든 경우의 수와 같으므로 확률이 $1$이다. 절대로 일어나지 않는 사건은 사건의 경우의 수가 $0$이므로 확률이 $0$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "반드시 일어나는 사건의 확률은 $1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "절대로 일어나지 않는 사건의 확률은 $0$"
+          ]
+        },
+        {
+          "anyOf": [
+            "반드시 일어나는 사건은 사건의 경우의 수와 모든 경우의 수가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "절대로 일어나지 않는 사건은 사건의 경우의 수가 $0$이다"
+          ]
+        }
+      ],
+      "bGoal": "확률 $0$과 $1$의 의미",
+      "bReason": "두 값을 외우는 데서 그치지 않도록, 경우의 수로 설명하는 이유를 함께 요구한다.",
+      "cDecision": "keep",
+      "cReason": "두 극단 사건의 확률값을 대비하여 묻는 분명한 빈칸이다.",
+      "authorBatch": 51,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 737,
+      "part": "m2",
+      "sourceFingerprint": "9f4a256c6c73d5771dd7a134d0e78da0892ea21652b6e723978d03621fce7566",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 737
+      },
+      "directReview": null,
+      "cFrozenSentence": "반드시 일어나는 사건의 확률은 □이고, 절대로 일어나지 않는 사건의 확률은 □이다.",
+      "cFrozenDefinition": "반드시 일어나는 사건의 확률은 {$1$}이고, 절대로 일어나지 않는 사건의 확률은 {$0$}이다.",
+      "cFrozenAnswers": [
+        "$1$",
+        "$0$"
+      ],
+      "cMarkedSentence": "반드시 일어나는 사건의 확률은 {$1$}이고, 절대로 일어나지 않는 사건의 확률은 {$0$}이다.",
+      "cSlotAnswers": [
+        "$1$",
+        "$0$"
+      ],
+      "cStudentSentence": "반드시 일어나는 사건의 확률은 □이고, 절대로 일어나지 않는 사건의 확률은 □이다.",
+      "cAnswers": [
+        "$1$",
+        "$0$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$1$",
+          "equivalentAnswers": [
+            "$1$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$0$",
+          "equivalentAnswers": [
+            "$0$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$1$"
+        ],
+        [
+          "$0$"
+        ]
+      ],
+      "proposalFingerprint": "fb66eb9ef7da78f4db1488642d21e19fdbc8cfd59d608c05a5d25079b3dc5879"
+    },
+    {
+      "id": "m2-09-03-c5",
+      "learningRole": "procedure",
+      "roleReason": "일어나지 않을 확률을 $1-p$로 구하기",
+      "bDecision": "rewrite",
+      "bPrompt": "사건 $A$가 일어날 확률이 $p$일 때, $A$가 일어나지 않을 확률을 $p$를 써서 나타내고 그 이유를 쓰시오.",
+      "bAnswer": "일어나지 않을 확률은 $1-p$이다. $A$가 일어나는 경우와 일어나지 않는 경우는 겹치지 않으면서 모든 경우를 이루므로, 두 확률의 합이 $1$이기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1-p$"
+          ]
+        },
+        {
+          "anyOf": [
+            "일어날 확률과 일어나지 않을 확률의 합이 $1$이다"
+          ]
+        }
+      ],
+      "bGoal": "일어나지 않을 확률 구하기",
+      "bReason": "$p$를 써서 식을 쓰게 하고, 확률의 합이 $1$이라는 근거를 함께 확인한다.",
+      "cDecision": "keep",
+      "cReason": "기준값 $1$과 빼기 연산을 각각 묻는 분명한 빈칸이다.",
+      "authorBatch": 51,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 738,
+      "part": "m2",
+      "sourceFingerprint": "549549928cb4fdd6441fb014e782662401afb41c06602f0c9b04d713f50164fe",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 738
+      },
+      "directReview": null,
+      "cFrozenSentence": "사건이 일어날 확률이 $p$이면 그 사건이 일어나지 않을 확률은 □에서 $p$를 □ 값이다.",
+      "cFrozenDefinition": "사건이 일어날 확률이 $p$이면 그 사건이 일어나지 않을 확률은 {$1$}에서 $p$를 {뺀} 값이다.",
+      "cFrozenAnswers": [
+        "$1$",
+        "뺀"
+      ],
+      "cMarkedSentence": "사건이 일어날 확률이 $p$이면 그 사건이 일어나지 않을 확률은 {$1$}에서 $p$를 {뺀} 값이다.",
+      "cSlotAnswers": [
+        "$1$",
+        "뺀"
+      ],
+      "cStudentSentence": "사건이 일어날 확률이 $p$이면 그 사건이 일어나지 않을 확률은 □에서 $p$를 □ 값이다.",
+      "cAnswers": [
+        "$1$",
+        "뺀"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$1$",
+          "equivalentAnswers": [
+            "$1$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "뺀",
+          "equivalentAnswers": [
+            "뺀"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$1$"
+        ],
+        [
+          "뺀"
+        ]
+      ],
+      "proposalFingerprint": "3558153ba89b0d2f290bb8444a9c2c7432aa587cab4a67c47c54adccbdae95f4"
+    },
+    {
+      "id": "m2-09-03-c6",
+      "learningRole": "application",
+      "roleReason": "'하나도 일어나지 않음'을 이용해 확률 구하기",
+      "studentLabel": "'적어도 하나'일 확률",
+      "bDecision": "rewrite",
+      "bPrompt": "'적어도 하나가 일어날 확률'을 그 사건이 일어나지 않을 확률을 이용하여 구하는 방법을 쓰시오. 또 공정한 동전 $2$개를 서로 영향 없이 던질 때 적어도 하나가 앞면일 확률을 구하시오.",
+      "bAnswer": "$1$에서 하나도 일어나지 않을 확률을 뺀다. 동전 두 개가 모두 뒷면일 확률은 $\\frac{1}{4}$이므로, 구하는 확률은 $1-\\frac{1}{4}=\\frac{3}{4}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1$에서 하나도 일어나지 않을 확률을 뺀다",
+            "$1-$(모두 뒷면일 확률)"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{4}$"
+          ]
+        }
+      ],
+      "bGoal": "'적어도 하나'일 확률 구하기",
+      "bReason": "'적어도 하나'의 반대가 무엇인지 찾게 하고, 동전 예로 실제 적용까지 확인한다.",
+      "exampleNeeded": true,
+      "cDecision": "rewrite",
+      "cReason": "어떤 것이 일어나는지 없는 추상적 지시와 긴 부정 구절 빈칸을 실제 두 동전의 앞면·뒷면으로 구체화한다.",
+      "authorBatch": 51,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 739,
+      "part": "m2",
+      "sourceFingerprint": "3a6865612cbadf46e62e8e160182b4bec27fb6aa2fc8c0349f505bfefe3af704",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 739
+      },
+      "directReview": null,
+      "cMarkedSentence": "공정한 동전 두 개를 서로 영향 없이 던진다. 적어도 하나가 앞면일 확률은 $1$에서 두 동전이 모두 {뒷면}일 확률을 뺀 값이다.",
+      "cSlotAnswers": [
+        "뒷면"
+      ],
+      "cStudentSentence": "공정한 동전 두 개를 서로 영향 없이 던진다. 적어도 하나가 앞면일 확률은 $1$에서 두 동전이 모두 □일 확률을 뺀 값이다.",
+      "cAnswers": [
+        "뒷면"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "뒷면",
+          "equivalentAnswers": [
+            "뒷면"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "뒷면"
+        ]
+      ],
+      "proposalFingerprint": "1691a550609c63773d06c1b08c48d60907395bb5ec629efaaa73462e79bc5194",
+      "cAfter": "공정한 동전 두 개를 서로 영향 없이 던진다. 적어도 하나가 앞면일 확률은 $1$에서 두 동전이 모두 {뒷면}일 확률을 뺀 값이다."
+    },
+    {
+      "id": "m2-09-03-c7",
+      "learningRole": "procedure",
+      "roleReason": "넓이의 비로 확률 구하기",
+      "bDecision": "rewrite",
+      "bPrompt": "도형 안의 어느 점이나 같은 가능성으로 뽑힐 때, 뽑힌 점이 도형의 어떤 부분 안에 있을 확률을 구하는 방법을 쓰시오.",
+      "bAnswer": "그 부분의 넓이를 도형 전체의 넓이로 나눈다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "그 부분의 넓이를 도형 전체의 넓이로 나눈다",
+            "(부분의 넓이)$\\div$(전체의 넓이)"
+          ]
+        }
+      ],
+      "bGoal": "도형에서의 확률 구하기",
+      "bReason": "점이 같은 가능성으로 뽑힌다는 조건과 사건의 뜻을 밝혀 넓이의 비를 쓰게 한다.",
+      "cDecision": "keep",
+      "cReason": "분자에 쓰는 넓이와 분모에 쓰는 넓이를 구별해 묻는 분명한 빈칸이다.",
+      "authorBatch": 51,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 740,
+      "part": "m2",
+      "sourceFingerprint": "0d649aaf77dd7d374482799f5d2b4bcaff22112bb16fc352f6d7842ec928e771",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 740
+      },
+      "directReview": null,
+      "cFrozenSentence": "도형 안의 어느 점이나 같은 가능성으로 뽑힐 때, 도형에서의 확률은 사건에 해당하는 부분의 □를 도형 □로 나눈 값이다.",
+      "cFrozenDefinition": "도형 안의 어느 점이나 같은 가능성으로 뽑힐 때, 도형에서의 확률은 사건에 해당하는 부분의 {넓이}를 도형 {전체의 넓이}로 나눈 값이다.",
+      "cFrozenAnswers": [
+        "넓이",
+        "전체의 넓이"
+      ],
+      "cMarkedSentence": "도형 안의 어느 점이나 같은 가능성으로 뽑힐 때, 도형에서의 확률은 사건에 해당하는 부분의 {넓이}를 도형 {전체의 넓이}로 나눈 값이다.",
+      "cSlotAnswers": [
+        "넓이",
+        "전체의 넓이"
+      ],
+      "cStudentSentence": "도형 안의 어느 점이나 같은 가능성으로 뽑힐 때, 도형에서의 확률은 사건에 해당하는 부분의 □를 도형 □로 나눈 값이다.",
+      "cAnswers": [
+        "넓이",
+        "전체의 넓이"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "넓이",
+          "equivalentAnswers": [
+            "넓이"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "전체의 넓이",
+          "equivalentAnswers": [
+            "전체의 넓이"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "넓이"
+        ],
+        [
+          "전체의 넓이"
+        ]
+      ],
+      "proposalFingerprint": "aa497a22e5504c90f3c3fa208fa218302b7306c44b61394d3ccea352bb4be651"
+    },
+    {
+      "id": "m2-09-04-c1",
+      "bDecision": "rewrite",
+      "bPrompt": "두 사건 $A$, $B$ 각각의 확률을 알고 있다. '$A$ 또는 $B$가 일어날 확률'을 두 확률의 합으로 구해도 되는 조건과, '$A$와 $B$가 모두 일어날 확률'을 두 확률의 곱으로 구해도 되는 조건을 각각 쓰시오.",
+      "bAnswer": "합: $A$와 $B$가 함께 일어날 수 없을 때. 곱: $A$와 $B$가 서로 영향을 주지 않을 때(한쪽 결과가 다른 쪽이 일어날 가능성을 바꾸지 않을 때).",
+      "bGoal": "덧셈과 곱셈을 쓰는 조건 구별",
+      "bReason": "'가르기'만으로는 무엇을 가르는지 몰라 합과 곱의 조건 두 가지로 특정함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "합은 두 사건이 함께 일어나지 않을 때 쓴다"
+          ]
+        },
+        {
+          "anyOf": [
+            "곱은 두 사건이 서로 영향을 주지 않을 때 쓴다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "조건이 문장에 보이고 더하기·곱하기만 고르는 짧은 빈칸이라 분명함.",
+      "authorBatch": 52,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "procedure",
+      "roleReason": "또는은 더하고 그리고는 곱함",
+      "enrichmentEvidence": "enrichment/enrich-001",
+      "sourceIndex": 741,
+      "part": "m2",
+      "sourceFingerprint": "d9067f0d99119e3e2b1cee1c49401de6ff52eead941faceeab647c2c6fc5aad0",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 741
+      },
+      "directReview": null,
+      "cFrozenSentence": "'또는'으로 이어진 두 사건이 함께 일어날 수 없으면 확률을 □, '그리고'로 이어진 두 사건이 서로 영향을 주지 않으면 확률을 □.",
+      "cFrozenDefinition": "'또는'으로 이어진 두 사건이 함께 일어날 수 없으면 확률을 {더하고}, '그리고'로 이어진 두 사건이 서로 영향을 주지 않으면 확률을 {곱한다}.",
+      "cFrozenAnswers": [
+        "더하고",
+        "곱한다"
+      ],
+      "cMarkedSentence": "'또는'으로 이어진 두 사건이 함께 일어날 수 없으면 확률을 {더하고}, '그리고'로 이어진 두 사건이 서로 영향을 주지 않으면 확률을 {곱한다}.",
+      "cSlotAnswers": [
+        "더하고",
+        "곱한다"
+      ],
+      "cStudentSentence": "'또는'으로 이어진 두 사건이 함께 일어날 수 없으면 확률을 □, '그리고'로 이어진 두 사건이 서로 영향을 주지 않으면 확률을 □.",
+      "cAnswers": [
+        "더하고",
+        "곱한다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "더하고",
+          "equivalentAnswers": [
+            "더하고"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "곱한다",
+          "equivalentAnswers": [
+            "곱한다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "더하고"
+        ],
+        [
+          "곱한다"
+        ]
+      ],
+      "proposalFingerprint": "b6214871c81accc2f5d518b0bbe5793eef3e19069960a93ec4e2c7918d739961"
+    },
+    {
+      "id": "m2-09-04-c2",
+      "bDecision": "rewrite",
+      "bPrompt": "두 사건 $A$, $B$가 함께 일어나는 일이 없고, $A$가 일어날 확률이 $p$, $B$가 일어날 확률이 $q$이다. $A$ 또는 $B$가 일어날 확률을 $p$, $q$로 나타내시오. 또 공정한 주사위 한 개를 던질 때 $2$ 이하 또는 $5$ 이상의 눈이 나올 확률을 이 방법으로 구하시오.",
+      "bAnswer": "$p+q$. $2$ 이하일 확률 $\\frac{2}{6}$, $5$ 이상일 확률 $\\frac{2}{6}$이고 두 사건은 함께 일어나지 않으므로 $\\frac{2}{6}+\\frac{2}{6}=\\frac{2}{3}$.",
+      "bGoal": "함께 일어나지 않는 두 사건의 확률 더하기",
+      "bReason": "조건은 질문에 이미 주어져 있어 식 $p+q$와 값만 요구",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$p+q$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{2}{3}$",
+            "$\\frac{4}{6}$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "두 사건이 함께 일어나지 않고, 각각의 확률이 $p$, $q$이다. 둘 중 하나가 일어날 확률은 {$p+q$}이다.",
+      "cAnswers": [
+        "$p+q$"
+      ],
+      "cReason": "함께라는 접속 부사 빈칸 대신 배타 조건을 보이고 실제 확률 합을 확인한다.",
+      "exampleNeeded": true,
+      "authorBatch": 52,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "procedure",
+      "roleReason": "함께 안 일어나면 확률 더함",
+      "enrichmentEvidence": "enrichment/enrich-001",
+      "sourceIndex": 742,
+      "part": "m2",
+      "sourceFingerprint": "232825f702920c569f44745261b4aa0a61345c186227eae8c2a9b6f09b236303",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 742
+      },
+      "directReview": null,
+      "cMarkedSentence": "두 사건이 함께 일어나지 않고, 각각의 확률이 $p$, $q$이다. 둘 중 하나가 일어날 확률은 {$p+q$}이다.",
+      "cSlotAnswers": [
+        "$p+q$"
+      ],
+      "cStudentSentence": "두 사건이 함께 일어나지 않고, 각각의 확률이 $p$, $q$이다. 둘 중 하나가 일어날 확률은 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$p+q$",
+          "equivalentAnswers": [
+            "$p+q$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "함께",
+          "accept": [
+            "동시에"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$p+q$"
+        ]
+      ],
+      "proposalFingerprint": "3dda6407567785a57abc88296461dedc02488b1903798fc8bafa68599b2b4f47"
+    },
+    {
+      "id": "m2-09-04-c3",
+      "bDecision": "rewrite",
+      "bPrompt": "두 사건 $A$, $B$가 서로 영향을 주지 않고, $A$가 일어날 확률이 $p$, $B$가 일어날 확률이 $q$이다. $A$와 $B$가 모두 일어날 확률을 $p$, $q$로 나타내시오. 또 공정한 동전 한 개와 공정한 주사위 한 개를 서로 영향 없이 던질 때 동전은 앞면, 주사위는 $6$의 눈이 나올 확률을 구하시오.",
+      "bAnswer": "$p\\times q$. 앞면일 확률 $\\frac{1}{2}$, $6$의 눈일 확률 $\\frac{1}{6}$이고 서로 영향을 주지 않으므로 $\\frac{1}{2}\\times\\frac{1}{6}=\\frac{1}{12}$.",
+      "bGoal": "서로 영향 없는 두 사건의 확률 곱하기",
+      "bReason": "조건은 질문에 이미 주어져 있어 식 $p\\times q$와 값만 요구",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$p\\times q$",
+            "$pq$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{12}$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "두 사건이 서로 영향을 주지 않고, 각각의 확률이 $p$, $q$이다. 두 사건이 모두 일어날 확률은 {$pq$}이다.",
+      "cAnswers": [
+        "$pq$"
+      ],
+      "cReason": "영향이라는 일반 낱말 대신 독립 조건에서 실제 두 확률의 곱을 묻는다.",
+      "exampleNeeded": true,
+      "authorBatch": 52,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "procedure",
+      "roleReason": "영향 없으면 확률 곱함",
+      "enrichmentEvidence": "enrichment/enrich-001",
+      "sourceIndex": 743,
+      "part": "m2",
+      "sourceFingerprint": "cf492e45478b1ad70a8c2f64501d6c9f2d88da0e145ff6f3ed51a06902c002d1",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 743
+      },
+      "directReview": null,
+      "cMarkedSentence": "두 사건이 서로 영향을 주지 않고, 각각의 확률이 $p$, $q$이다. 두 사건이 모두 일어날 확률은 {$pq$}이다.",
+      "cSlotAnswers": [
+        "$pq$"
+      ],
+      "cStudentSentence": "두 사건이 서로 영향을 주지 않고, 각각의 확률이 $p$, $q$이다. 두 사건이 모두 일어날 확률은 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$pq$",
+          "equivalentAnswers": [
+            "$pq$",
+            "$p\\times q$",
+            "$q\\times p$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$pq$",
+          "$p\\times q$",
+          "$q\\times p$"
+        ]
+      ],
+      "proposalFingerprint": "a6064bef15140d928866e6b3a93b56eac6231d8071fed121baab7828a273a226"
+    },
+    {
+      "id": "m2-09-04-c4",
+      "bDecision": "rewrite",
+      "bPrompt": "주머니에 흰 공 $3$개, 검은 공 $2$개가 있다. 공 한 개를 꺼내 색을 확인하고 다시 넣어 잘 섞은 뒤 한 개를 또 꺼낸다. 매번 각 공이 뽑힐 가능성은 같다. 두 번째에 흰 공이 나올 확률을 구하고, 첫 번째에 흰 공이 나올 확률과 같은지 다른지를 주머니 속 공의 개수로 설명하시오.",
+      "bAnswer": "$\\frac{3}{5}$으로 첫 번째와 같다. 꺼낸 공을 다시 넣으면 흰 공 $3$개, 전체 $5$개가 그대로이기 때문이다.",
+      "bGoal": "다시 넣고 뽑으면 확률이 그대로인 이유",
+      "bReason": "질문이 구하라고 한 확률 값 $\\frac{3}{5}$가 기준에 없음",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 번째에 흰 공이 나올 확률은 $\\frac{3}{5}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "첫 번째 확률과 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "다시 넣으면 흰 공 $3$개, 전체 $5$개가 그대로이다",
+            "공의 색별 개수와 전체 개수가 변하지 않는다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "상황이 문장 안에 다 있고 '전체 개수', '같다'가 짧아 답하기 분명함.",
+      "exampleNeeded": true,
+      "authorBatch": 52,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "reason",
+      "roleReason": "다시 넣어 구성·개수 그대로",
+      "enrichmentEvidence": "enrichment/enrich-001",
+      "sourceIndex": 744,
+      "part": "m2",
+      "sourceFingerprint": "e8766f125fda2adbef6d768b12b5097f58750f7b74d3f427fc66676dde4b203a",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 744
+      },
+      "directReview": null,
+      "cFrozenSentence": "꺼낸 공을 다시 넣고 고르게 섞어 매번 각 공이 뽑힐 가능성을 같게 하면, 구성과 □가 그대로여서 같은 색을 뽑을 확률도 처음과 □.",
+      "cFrozenDefinition": "꺼낸 공을 다시 넣고 고르게 섞어 매번 각 공이 뽑힐 가능성을 같게 하면, 구성과 {전체 개수}가 그대로여서 같은 색을 뽑을 확률도 처음과 {같다}.",
+      "cFrozenAnswers": [
+        "전체 개수",
+        "같다"
+      ],
+      "cMarkedSentence": "꺼낸 공을 다시 넣고 고르게 섞어 매번 각 공이 뽑힐 가능성을 같게 하면, 구성과 {전체 개수}가 그대로여서 같은 색을 뽑을 확률도 처음과 {같다}.",
+      "cSlotAnswers": [
+        "전체 개수",
+        "같다"
+      ],
+      "cStudentSentence": "꺼낸 공을 다시 넣고 고르게 섞어 매번 각 공이 뽑힐 가능성을 같게 하면, 구성과 □가 그대로여서 같은 색을 뽑을 확률도 처음과 □.",
+      "cAnswers": [
+        "전체 개수",
+        "같다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "전체 개수",
+          "equivalentAnswers": [
+            "전체 개수",
+            "전체 공의 수",
+            "공의 전체 개수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "같다",
+          "equivalentAnswers": [
+            "같다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "전체 개수",
+          "accept": [
+            "전체 공의 수",
+            "공의 전체 개수"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "전체 개수",
+          "전체 공의 수",
+          "공의 전체 개수"
+        ],
+        [
+          "같다"
+        ]
+      ],
+      "proposalFingerprint": "fc0e792ac0131fadeba7c987dcd90709193fdd842d9c9e0e768511873db2d68b"
+    },
+    {
+      "id": "m2-09-04-c5",
+      "bDecision": "rewrite",
+      "bPrompt": "주머니에 흰 공 $2$개, 검은 공 $1$개가 있다. 각 공이 같은 가능성으로 뽑히도록 한 개씩 두 번 꺼내되 꺼낸 공은 다시 넣지 않는다. 첫 번째에 흰 공이 나왔을 때 두 번째에도 흰 공이 나올 확률을 구하고, 처음에 흰 공을 뽑을 확률과 다른 이유를 쓰시오. 또 두 번 모두 흰 공일 확률을 구하시오.",
+      "bAnswer": "$\\frac{1}{2}$. 흰 공 한 개가 빠져 흰 공 $1$개, 전체 $2$개가 남으므로 처음의 $\\frac{2}{3}$와 다르다. 두 번 모두 흰 공일 확률은 $\\frac{2}{3}\\times\\frac{1}{2}=\\frac{1}{3}$.",
+      "bGoal": "다시 넣지 않으면 둘째 확률이 바뀌는 이유",
+      "bReason": "공의 구성이 없으면 확률 변화를 말할 수 없어 흰 공 $2$개, 검은 공 $1$개로 정함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "꺼낸 색의 공과 전체 공이 하나씩 줄어든다"
+          ]
+        },
+        {
+          "anyOf": [
+            "둘째 확률 $\\frac{1}{2}$이 처음 $\\frac{2}{3}$와 다르다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 번 모두 흰 공일 확률 $\\frac{1}{3}$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "흰 공 $2$개와 검은 공 $1$개가 든 주머니에서 각 공이 같은 가능성으로 뽑히도록 흰 공 한 개를 뽑고 돌려놓지 않았다. 흰 공은 {$1$}개, 전체 공은 {$2$}개 남아, 다음 공이 흰 공일 확률은 {$\\frac12$}이다.",
+      "cAnswers": [
+        "$1$",
+        "$2$",
+        "$\\frac12$"
+      ],
+      "cReason": "동일 가능성의 뽑기 전제를 실제 C에도 밝혀 남은 색·전체 수와 확률의 계산을 일치시킨다.",
+      "exampleNeeded": true,
+      "authorBatch": 52,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "reason",
+      "roleReason": "안 넣어 개수 줄어 확률 변함",
+      "enrichmentEvidence": "enrichment/enrich-001",
+      "coreAfter": "서로 다른 색이 섞인 공을 매번 같은 가능성으로 뽑되 돌려놓지 않으면, 전체 공과 방금 뽑힌 색의 공이 각각 {하나씩 줄어들므로} 그 색이 다시 나올 확률은 처음과 {달라진다}. 이때 확률은 처음보다 작아진다.",
+      "coreReason": "원본은 전체 개수만 줄어든다고 하여, 분자에 해당하는 뽑힌 색의 공도 줄어든다는 관계가 빠져 확률이 변하는 이유가 불완전하다.",
+      "sourceIndex": 745,
+      "part": "m2",
+      "sourceFingerprint": "7fc34504195bc718d1087ded1b053fb388b65e9e8c6135659d433d3278f6072b",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 745
+      },
+      "directReview": {
+        "path": "amendments.json",
+        "id": "m2-09-04-c5"
+      },
+      "coreBeforeRepair": "서로 다른 색이 섞인 공을 하나 뽑고 돌려놓지 않으면, {뽑힌 색의 공}과 {전체 공}이 각각 한 개씩 줄어든다. 따라서 방금 뽑힌 색이 다시 나올 확률은 처음보다 {작아진다}.",
+      "coreRepairReason": "기존 교정안은 '매번 같은 가능성으로'라는 조건을 빠뜨렸고, 원본 핵심어를 새 표지 3개로 바꾸었다. 그래서 조건을 되살렸다. 원본 핵심어는 {하나씩 줄어들므로}, {달라진다}로 유지했다. 분자와 분모가 함께 줄어든다는 관계와 '작아진다'는 정확한 방향은 본문에 담았다.",
+      "coreRepairEvidence": "core-repair/core-005",
+      "cMarkedSentence": "흰 공 $2$개와 검은 공 $1$개가 든 주머니에서 각 공이 같은 가능성으로 뽑히도록 흰 공 한 개를 뽑고 돌려놓지 않았다. 흰 공은 {$1$}개, 전체 공은 {$2$}개 남아, 다음 공이 흰 공일 확률은 {$\\frac12$}이다.",
+      "cSlotAnswers": [
+        "$1$",
+        "$2$",
+        "$\\frac12$"
+      ],
+      "cStudentSentence": "흰 공 $2$개와 검은 공 $1$개가 든 주머니에서 각 공이 같은 가능성으로 뽑히도록 흰 공 한 개를 뽑고 돌려놓지 않았다. 흰 공은 □개, 전체 공은 □개 남아, 다음 공이 흰 공일 확률은 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$1$",
+          "equivalentAnswers": [
+            "$1$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$2$",
+          "equivalentAnswers": [
+            "$2$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 2,
+          "answer": "$\\frac12$",
+          "equivalentAnswers": [
+            "$\\frac12$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "달라진다",
+          "accept": [
+            "다르다",
+            "같지 않다"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$1$"
+        ],
+        [
+          "$2$"
+        ],
+        [
+          "$\\frac12$"
+        ]
+      ],
+      "proposalFingerprint": "0510343d50f5a557bfecf30984fe56cff21caa0e381287917f0e5964206c0c8f"
+    },
+    {
+      "id": "m2-09-04-c6",
+      "bDecision": "rewrite",
+      "bPrompt": "한 번 쏠 때 과녁을 맞힐 확률이 $\\frac{1}{2}$인 선수가 두 번 쏘고, 두 결과는 서로 영향을 주지 않는다. '적어도 한 번 맞힐 확률'을 $1$에서 어떤 확률을 빼서 구하는지 쓰고, 그 값을 구하시오.",
+      "bAnswer": "$1$에서 '두 번 모두 맞히지 못할 확률'을 뺀다. 두 번 모두 못 맞힐 확률은 $\\frac{1}{2}\\times\\frac{1}{2}=\\frac{1}{4}$이므로 $1-\\frac{1}{4}=\\frac{3}{4}$.",
+      "bGoal": "적어도 한 번을 반대 경우로 구하기",
+      "bReason": "반대 사건 일반 설명과 곱셈 과정이 한 뜻으로 겹쳐 바른 답이 감점될 수 있음",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1$에서 두 번 모두 맞히지 못할 확률을 뺀다",
+            "$1$에서 한 번도 맞히지 못할 확률을 뺀다",
+            "$1-\\frac{1}{2}\\times\\frac{1}{2}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{4}$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "여러 번의 시도에서 각 결과가 서로 영향을 주지 않을 때, 적어도 한 번 일어날 확률은 $1$에서 각 시도에서 {일어나지 않을} 확률을 모두 {곱한} 값을 뺀 것이다.",
+      "cAnswers": [
+        "일어나지 않을",
+        "곱한"
+      ],
+      "cReason": "'매번 일어나지 않을'이 긴 임의 구절이고 '시행'은 중2에 낯선 말이라 고침.",
+      "exampleNeeded": true,
+      "coreAfter": "여러 번 시도한 결과가 서로 영향을 주지 않을 때, 적어도 한 번 일어날 확률은 $1$에서 {매번 일어나지 않을} 확률, 곧 각 시도에서 일어나지 않을 확률을 모두 {곱}한 값을 뺀 값이다.",
+      "coreReason": "'시행'은 중$2$ 학생에게 낯선 말이라 '시도'로 바꿨다. 무엇을 곱하는지도 모호해서 각 시도에서 일어나지 않을 확률을 곱한다고 밝혔다.",
+      "authorBatch": 52,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "procedure",
+      "roleReason": "1에서 모두 안 일어날 확률 뺌",
+      "enrichmentEvidence": "enrichment/enrich-001",
+      "sourceIndex": 746,
+      "part": "m2",
+      "sourceFingerprint": "723d4ada0880a402081dec03204428dfbc7186553dd9fce7499cc717572b82e6",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 746
+      },
+      "directReview": null,
+      "coreBeforeRepair": "여러 번 시도한 결과가 서로 영향을 주지 않을 때, 적어도 한 번 일어날 확률은 $1$에서 '한 번도 일어나지 않을 확률'(각 시도에서 일어나지 않을 확률을 모두 곱한 값)을 뺀 값이다.",
+      "coreRepairReason": "현재안에서 빠진 원본 핵심어 {매번 일어나지 않을}, {곱}을 되살렸다. 곱의 대상은 풀어서 덧붙였다.",
+      "coreRepairEvidence": "core-repair/core-000",
+      "cMarkedSentence": "여러 번의 시도에서 각 결과가 서로 영향을 주지 않을 때, 적어도 한 번 일어날 확률은 $1$에서 각 시도에서 {일어나지 않을} 확률을 모두 {곱한} 값을 뺀 것이다.",
+      "cSlotAnswers": [
+        "일어나지 않을",
+        "곱한"
+      ],
+      "cStudentSentence": "여러 번의 시도에서 각 결과가 서로 영향을 주지 않을 때, 적어도 한 번 일어날 확률은 $1$에서 각 시도에서 □ 확률을 모두 □ 값을 뺀 것이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "일어나지 않을",
+          "equivalentAnswers": [
+            "일어나지 않을"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "곱한",
+          "equivalentAnswers": [
+            "곱한"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "일어나지 않을"
+        ],
+        [
+          "곱한"
+        ]
+      ],
+      "proposalFingerprint": "3d3f8e225adfa5a47f24c0ef781581d78f9a1d25794bd8cebfe7ca36d5fcad81"
+    },
+    {
+      "id": "m2-09-04-c7",
+      "bDecision": "rewrite",
+      "bPrompt": "$A$가 문제를 맞힐 확률이 $\\frac{2}{3}$, $B$가 맞힐 확률이 $\\frac{1}{2}$이고 두 사람의 결과는 서로 영향을 주지 않는다. '한 사람만 맞힐 확률'을 구할 때 어떤 두 경우로 나누는지 쓰고, 각 경우의 확률과 답을 구하시오.",
+      "bAnswer": "$A$만 맞히는 경우($A$ 맞힘, $B$ 틀림): $\\frac{2}{3}\\times\\frac{1}{2}=\\frac{1}{3}$. $B$만 맞히는 경우($A$ 틀림, $B$ 맞힘): $\\frac{1}{3}\\times\\frac{1}{2}=\\frac{1}{6}$. 두 경우는 함께 일어나지 않으므로 $\\frac{1}{3}+\\frac{1}{6}=\\frac{1}{2}$.",
+      "bGoal": "한 사람만 성공을 두 경우로 나누어 구하기",
+      "bReason": "질문은 각 경우의 확률 값을 묻는데 일반 규칙 문장을 요구함",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$A$만 맞히는 경우와 $B$만 맞히는 경우로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$A$만 맞힐 확률 $\\frac{1}{3}$, $B$만 맞힐 확률 $\\frac{1}{6}$",
+            "$\\frac{2}{3}\\times\\frac{1}{2}$과 $\\frac{1}{3}\\times\\frac{1}{2}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 확률을 더해 $\\frac{1}{2}$",
+            "$\\frac{1}{3}+\\frac{1}{6}=\\frac{1}{2}$"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "A, B와 조건이 문장에 있고 곱셈·덧셈의 순서를 묻는 짧은 빈칸임.",
+      "exampleNeeded": true,
+      "authorBatch": 52,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "procedure",
+      "roleReason": "A만·B만 각각 곱해 더함",
+      "enrichmentEvidence": "enrichment/enrich-001",
+      "sourceIndex": 747,
+      "part": "m2",
+      "sourceFingerprint": "a02dc00d2636dc93acb1e3a751aeadbf8fbca149de56b2a21dd47cd872a80d78",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 747
+      },
+      "directReview": null,
+      "cFrozenSentence": "두 사람의 성공 여부가 서로 영향을 주지 않을 때, 한 사람만 성공할 확률은 '$A$만 성공'과 '$B$만 성공'의 확률을 각각 □으로 구한 뒤 □.",
+      "cFrozenDefinition": "두 사람의 성공 여부가 서로 영향을 주지 않을 때, 한 사람만 성공할 확률은 '$A$만 성공'과 '$B$만 성공'의 확률을 각각 {곱셈}으로 구한 뒤 {더한다}.",
+      "cFrozenAnswers": [
+        "곱셈",
+        "더한다"
+      ],
+      "cMarkedSentence": "두 사람의 성공 여부가 서로 영향을 주지 않을 때, 한 사람만 성공할 확률은 '$A$만 성공'과 '$B$만 성공'의 확률을 각각 {곱셈}으로 구한 뒤 {더한다}.",
+      "cSlotAnswers": [
+        "곱셈",
+        "더한다"
+      ],
+      "cStudentSentence": "두 사람의 성공 여부가 서로 영향을 주지 않을 때, 한 사람만 성공할 확률은 '$A$만 성공'과 '$B$만 성공'의 확률을 각각 □으로 구한 뒤 □.",
+      "cAnswers": [
+        "곱셈",
+        "더한다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "곱셈",
+          "equivalentAnswers": [
+            "곱셈"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "더한다",
+          "equivalentAnswers": [
+            "더한다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "곱셈"
+        ],
+        [
+          "더한다"
+        ]
+      ],
+      "proposalFingerprint": "d9a97c38b7c38dcd9086f8fc86c46d78f2ffd2197e52ae753b41fcf10a27d949"
+    },
+    {
+      "id": "m3-01-01-c1",
+      "bDecision": "rewrite",
+      "bPrompt": "수 $a$의 제곱근이란 어떤 수인지 쓰고, $9$의 제곱근을 모두 구하시오.",
+      "bAnswer": "제곱하여 $a$가 되는 수, 곧 $x^2=a$를 만족하는 $x$이다. $9$의 제곱근은 $3$과 $-3$이다.",
+      "bGoal": "제곱근의 뜻",
+      "bReason": "표준 용어라 뜻을 직접 묻되 양수만 답하는 오류를 보려고 $9$의 제곱근을 덧붙임.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "제곱하여 $a$가 되는 수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$9$의 제곱근은 $3$과 $-3$ 둘 다이다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "식 $x^2=a$가 함께 있어 뜻과 용어를 묻는 빈칸이 분명함.",
+      "authorBatch": 52,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "definition",
+      "roleReason": "제곱해서 a가 되는 수",
+      "enrichmentEvidence": "enrichment/enrich-002",
+      "sourceIndex": 748,
+      "part": "m3",
+      "sourceFingerprint": "74b93611eaa4459af3013c4f4a4bd9e7c138f111ed9e9e981bb3ddb8fb4797e6",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 748
+      },
+      "directReview": null,
+      "cFrozenSentence": "□해서 $a$가 되는 수, 곧 $x^2=a$를 만족하는 $x$가 $a$의 □이다.",
+      "cFrozenDefinition": "{제곱}해서 $a$가 되는 수, 곧 $x^2=a$를 만족하는 $x$가 $a$의 {제곱근}이다.",
+      "cFrozenAnswers": [
+        "제곱",
+        "제곱근"
+      ],
+      "cMarkedSentence": "{제곱}해서 $a$가 되는 수, 곧 $x^2=a$를 만족하는 $x$가 $a$의 {제곱근}이다.",
+      "cSlotAnswers": [
+        "제곱",
+        "제곱근"
+      ],
+      "cStudentSentence": "□해서 $a$가 되는 수, 곧 $x^2=a$를 만족하는 $x$가 $a$의 □이다.",
+      "cAnswers": [
+        "제곱",
+        "제곱근"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "제곱",
+          "equivalentAnswers": [
+            "제곱"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "제곱근",
+          "equivalentAnswers": [
+            "제곱근"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "제곱"
+        ],
+        [
+          "제곱근"
+        ]
+      ],
+      "proposalFingerprint": "b6eac8996b9e1ffe20cddca010b1a1266946ec7c014e338cc2e7a494d7ff54a5"
+    },
+    {
+      "id": "m3-01-01-c2",
+      "bDecision": "rewrite",
+      "bPrompt": "기호 $\\sqrt{\\phantom{a}}$의 이름과 읽는 법을 쓰고, 이 기호가 어떤 수를 나타낼 때 쓰이는지 쓰시오.",
+      "bAnswer": "이름은 근호이고 루트라고 읽는다. 제곱근을 나타낼 때 쓰며, 예를 들어 양수 $a$의 양의 제곱근을 $\\sqrt{a}$로 쓴다.",
+      "bGoal": "근호의 이름·읽기·쓰임",
+      "bReason": "'근호'만으로는 답할 범위가 없어 이름, 읽는 법, 쓰임 세 가지로 정함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "이름은 근호이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "루트라고 읽는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "제곱근을 나타내는 기호이다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "기호가 문장에 보이고 이름과 읽는 법을 묻는 짧은 용어 빈칸임.",
+      "authorBatch": 52,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "naming",
+      "roleReason": "근호 이름과 루트 읽기",
+      "enrichmentEvidence": "enrichment/enrich-002",
+      "sourceIndex": 749,
+      "part": "m3",
+      "sourceFingerprint": "7221e7a033e78cd7f5436204f154d0f550ab9398f938f5ffeb6f1c02e4668ac7",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 749
+      },
+      "directReview": null,
+      "cFrozenSentence": "제곱근을 나타낼 때 수 위에 씌우는 기호 $\\sqrt{\\phantom{a}}$의 이름은 □이고, □라고 읽는다.",
+      "cFrozenDefinition": "제곱근을 나타낼 때 수 위에 씌우는 기호 $\\sqrt{\\phantom{a}}$의 이름은 {근호}이고, {루트}라고 읽는다.",
+      "cFrozenAnswers": [
+        "근호",
+        "루트"
+      ],
+      "cMarkedSentence": "제곱근을 나타낼 때 수 위에 씌우는 기호 $\\sqrt{\\phantom{a}}$의 이름은 {근호}이고, {루트}라고 읽는다.",
+      "cSlotAnswers": [
+        "근호",
+        "루트"
+      ],
+      "cStudentSentence": "제곱근을 나타낼 때 수 위에 씌우는 기호 $\\sqrt{\\phantom{a}}$의 이름은 □이고, □라고 읽는다.",
+      "cAnswers": [
+        "근호",
+        "루트"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "근호",
+          "equivalentAnswers": [
+            "근호"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "루트",
+          "equivalentAnswers": [
+            "루트"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "근호"
+        ],
+        [
+          "루트"
+        ]
+      ],
+      "proposalFingerprint": "b7f402963a6d5be284f3a0d323774c8c019eb26b1afc63520b9c48529d6d97a6"
+    },
+    {
+      "id": "m3-01-01-c3",
+      "bDecision": "rewrite",
+      "bPrompt": "양수 $a$의 양의 제곱근이 무엇인지 쓰고 기호로 나타내시오. 또 $16$의 양의 제곱근을 근호 없이 쓰시오.",
+      "bAnswer": "$a$의 두 제곱근 중 양수인 것으로 $\\sqrt{a}$라 쓴다. $16$의 양의 제곱근은 $4$이다.",
+      "bGoal": "양의 제곱근의 뜻과 기호",
+      "bReason": "$a$가 양수라는 조건과 기호 표기를 질문에 넣고 근호 없이 쓰는 경우를 확인함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 제곱근 중 양수인 것이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "기호 $\\sqrt{a}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$16$의 양의 제곱근은 $4$"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "양수 $a$ 조건이 있고 뜻과 기호를 차례로 묻는 분명한 빈칸임.",
+      "authorBatch": 52,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "definition",
+      "roleReason": "두 제곱근 중 양수인 것",
+      "enrichmentEvidence": "enrichment/enrich-002",
+      "sourceIndex": 750,
+      "part": "m3",
+      "sourceFingerprint": "86435ca6d51e50bb3a47c040c66063a55ffe5f1ca85ecd0ae362d7a1c077816f",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 750
+      },
+      "directReview": null,
+      "cFrozenSentence": "양수 $a$의 제곱근 둘 중 □인 것이 양의 제곱근이고, 기호로 □라 쓴다.",
+      "cFrozenDefinition": "양수 $a$의 제곱근 둘 중 {양수}인 것이 양의 제곱근이고, 기호로 {$\\sqrt{a}$}라 쓴다.",
+      "cFrozenAnswers": [
+        "양수",
+        "$\\sqrt{a}$"
+      ],
+      "cMarkedSentence": "양수 $a$의 제곱근 둘 중 {양수}인 것이 양의 제곱근이고, 기호로 {$\\sqrt{a}$}라 쓴다.",
+      "cSlotAnswers": [
+        "양수",
+        "$\\sqrt{a}$"
+      ],
+      "cStudentSentence": "양수 $a$의 제곱근 둘 중 □인 것이 양의 제곱근이고, 기호로 □라 쓴다.",
+      "cAnswers": [
+        "양수",
+        "$\\sqrt{a}$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "양수",
+          "equivalentAnswers": [
+            "양수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$\\sqrt{a}$",
+          "equivalentAnswers": [
+            "$\\sqrt{a}$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "양수"
+        ],
+        [
+          "$\\sqrt{a}$"
+        ]
+      ],
+      "proposalFingerprint": "33ce0068be0d3869d1e8ca4f6ea35d845f43e5f6bb4f4b4b7359e86206c0f894"
+    },
+    {
+      "id": "m3-01-01-c4",
+      "bDecision": "rewrite",
+      "bPrompt": "양수 $a$의 음의 제곱근이 무엇인지 쓰고 기호로 나타내시오. 또 $a$의 양의 제곱근과 비교하여 같은 점과 다른 점을 쓰시오.",
+      "bAnswer": "$a$의 두 제곱근 중 음수인 것으로 $-\\sqrt{a}$라 쓴다. 양의 제곱근 $\\sqrt{a}$와 절댓값이 같고(둘 다 제곱하면 $a$) 부호만 반대이다.",
+      "bGoal": "음의 제곱근의 뜻과 양의 제곱근과의 관계",
+      "bReason": "같은 점을 절댓값 용어로만 요구하지 않도록 함",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 제곱근 중 음수인 것이다",
+            "제곱하여 $a$가 되는 수 가운데 음수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "기호 $-\\sqrt{a}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "양의 제곱근과 절댓값이 같다",
+            "둘 다 제곱하면 $a$가 된다",
+            "둘 다 $a$의 제곱근이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "부호가 반대이다",
+            "하나는 양수이고 하나는 음수이다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "양수 $a$ 조건이 있고 뜻과 기호를 차례로 묻는 분명한 빈칸임.",
+      "authorBatch": 52,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "definition",
+      "roleReason": "두 제곱근 중 음수인 것",
+      "enrichmentEvidence": "enrichment/enrich-002",
+      "sourceIndex": 751,
+      "part": "m3",
+      "sourceFingerprint": "c535df1e2691ae58ec7ffd047d6006b3b5f8e90f6560a7f20711cbe565ae50c0",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 751
+      },
+      "directReview": null,
+      "cFrozenSentence": "양수 $a$의 제곱근 둘 중 □인 것이 음의 제곱근이고, 기호로 □라 쓴다.",
+      "cFrozenDefinition": "양수 $a$의 제곱근 둘 중 {음수}인 것이 음의 제곱근이고, 기호로 {$-\\sqrt{a}$}라 쓴다.",
+      "cFrozenAnswers": [
+        "음수",
+        "$-\\sqrt{a}$"
+      ],
+      "cMarkedSentence": "양수 $a$의 제곱근 둘 중 {음수}인 것이 음의 제곱근이고, 기호로 {$-\\sqrt{a}$}라 쓴다.",
+      "cSlotAnswers": [
+        "음수",
+        "$-\\sqrt{a}$"
+      ],
+      "cStudentSentence": "양수 $a$의 제곱근 둘 중 □인 것이 음의 제곱근이고, 기호로 □라 쓴다.",
+      "cAnswers": [
+        "음수",
+        "$-\\sqrt{a}$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "음수",
+          "equivalentAnswers": [
+            "음수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$-\\sqrt{a}$",
+          "equivalentAnswers": [
+            "$-\\sqrt{a}$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "음수"
+        ],
+        [
+          "$-\\sqrt{a}$"
+        ]
+      ],
+      "proposalFingerprint": "48be1343067a0b1d7d8adaf8da97b278dc56f53eb33515948ade5aef3b4d8be5"
+    },
+    {
+      "id": "m3-01-01-c5",
+      "bDecision": "rewrite",
+      "bPrompt": "양수, $0$, 음수의 제곱근은 각각 몇 개인지 쓰시오. 양수와 음수의 경우에는 왜 그 개수가 되는지 제곱한 값의 부호로 설명하시오.",
+      "bAnswer": "양수는 $2$개, $0$은 $1$개, 음수는 없다. 절댓값이 같고 부호만 다른 두 수의 제곱은 같은 양수이다. 어떤 수를 제곱해도 $0$ 이상이므로 음수가 되지 않는다.",
+      "bGoal": "실수 범위에서 제곱근의 개수와 제곱의 부호 관계",
+      "bReason": "제곱근의 개수만이라는 제목보다 분류할 대상과 이유의 범위를 정한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "양수의 제곱근은 $2$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0$의 제곱근은 $1$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "음수의 제곱근은 없음"
+          ]
+        },
+        {
+          "anyOf": [
+            "절댓값이 같고 부호만 다른 두 수를 제곱하면 같은 양수가 됨"
+          ]
+        },
+        {
+          "anyOf": [
+            "어떤 수를 제곱해도 $0$ 이상이므로 음수가 되지 않음",
+            "제곱해서 음수가 되는 수는 없음"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "현재 중3이 다루는 실수 범위에서 양수·0·음수의 구분이 문장 안에 있고 개수라는 답의 종류도 명확하다.",
+      "authorBatch": 52,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "reason",
+      "roleReason": "제곱 값 부호로 개수 결정",
+      "enrichmentEvidence": "enrichment/enrich-002",
+      "sourceIndex": 752,
+      "part": "m3",
+      "sourceFingerprint": "2b19a11be61ff1a83303f69998d0f61bfa542d2b401eb85ed692f40d99cb6759",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 752
+      },
+      "directReview": {
+        "path": "direct-review.json",
+        "id": "m3-01-01-c5",
+        "note": "학생의 현 과정 범위를 기준으로 불필요한 복소수 설명을 넣지 않는다. 제곱근 도입에서 아직 배우지 않았을 수 있는 실수라는 용어를 질문에서 뺐다. B에서 물은 개수를 뒤 문장에 직접 알려 주지 않고, 부호만 다른 두 수에는 절댓값도 같다는 조건을 썼다."
+      },
+      "cFrozenSentence": "양수의 제곱근은 □개, $0$의 제곱근은 □개이고, 음수의 제곱근은 □.",
+      "cFrozenDefinition": "양수의 제곱근은 {$2$}개, $0$의 제곱근은 {$1$}개이고, 음수의 제곱근은 {없다}.",
+      "cFrozenAnswers": [
+        "$2$",
+        "$1$",
+        "없다"
+      ],
+      "cMarkedSentence": "양수의 제곱근은 {$2$}개, $0$의 제곱근은 {$1$}개이고, 음수의 제곱근은 {없다}.",
+      "cSlotAnswers": [
+        "$2$",
+        "$1$",
+        "없다"
+      ],
+      "cStudentSentence": "양수의 제곱근은 □개, $0$의 제곱근은 □개이고, 음수의 제곱근은 □.",
+      "cAnswers": [
+        "$2$",
+        "$1$",
+        "없다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$2$",
+          "equivalentAnswers": [
+            "$2$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$1$",
+          "equivalentAnswers": [
+            "$1$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 2,
+          "answer": "없다",
+          "equivalentAnswers": [
+            "없다",
+            "$0$개이다",
+            "존재하지 않는다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "없다",
+          "accept": [
+            "$0$개이다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$2$"
+        ],
+        [
+          "$1$"
+        ],
+        [
+          "없다",
+          "$0$개이다",
+          "존재하지 않는다"
+        ]
+      ],
+      "proposalFingerprint": "0beedd08705857fde54fffb82bed53f06be6838c436b6116e2d3346af37ffd55"
+    },
+    {
+      "id": "m3-01-01-c6",
+      "bDecision": "rewrite",
+      "bPrompt": "'$4$의 제곱근'과 '제곱근 $4$'는 각각 어떤 수를 가리키는지 쓰고, 양수 $a$에 대하여 '$a$의 제곱근'과 '제곱근 $a$'의 차이를 설명하시오.",
+      "bAnswer": "$4$의 제곱근은 $2$와 $-2$, 제곱근 $4$는 $\\sqrt{4}=2$ 하나이다. '$a$의 제곱근'은 $\\sqrt{a}$, $-\\sqrt{a}$ 두 개이고, '제곱근 $a$'는 $\\sqrt{a}$, 곧 $a$의 양의 제곱근 하나만 뜻한다.",
+      "bGoal": "'$a$의 제곱근'과 '제곱근 $a$' 구별",
+      "bReason": "a에 대한 두 표현의 차이도 질문에서 요청했으므로 양의 제곱근 하나라는 말만 아닌 두 표현의 대상을 함께 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$4$의 제곱근은 $2$와 $-2$이다",
+            "$4$의 제곱근은 $\\pm2$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "제곱근 $4$는 $2$뿐이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "양수 $a$의 제곱근은 $\\sqrt a$와 $-\\sqrt a$의 두 수이고, 제곱근 $a$는 양의 제곱근 $\\sqrt a$ 하나이다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "두 표현의 차이를 '양의', '두'로 가르는 짧은 비교 빈칸임.",
+      "exampleNeeded": true,
+      "authorBatch": 52,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "definition",
+      "roleReason": "√a는 양의 제곱근 하나",
+      "enrichmentEvidence": "enrichment/enrich-002",
+      "sourceIndex": 753,
+      "part": "m3",
+      "sourceFingerprint": "705f712e662b0298dfcf17e2ddbe3508f64e6b728003de7d6f1a93666bb8097a",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 753
+      },
+      "directReview": null,
+      "cFrozenSentence": "양수 $a$에 대하여 $\\sqrt{a}$는 '제곱근 $a$'라고 읽고 $a$의 □ 제곱근 하나만 뜻한다 — '$a$의 제곱근'은 □ 개다.",
+      "cFrozenDefinition": "양수 $a$에 대하여 $\\sqrt{a}$는 '제곱근 $a$'라고 읽고 $a$의 {양의} 제곱근 하나만 뜻한다 — '$a$의 제곱근'은 {두} 개다.",
+      "cFrozenAnswers": [
+        "양의",
+        "두"
+      ],
+      "cMarkedSentence": "양수 $a$에 대하여 $\\sqrt{a}$는 '제곱근 $a$'라고 읽고 $a$의 {양의} 제곱근 하나만 뜻한다 — '$a$의 제곱근'은 {두} 개다.",
+      "cSlotAnswers": [
+        "양의",
+        "두"
+      ],
+      "cStudentSentence": "양수 $a$에 대하여 $\\sqrt{a}$는 '제곱근 $a$'라고 읽고 $a$의 □ 제곱근 하나만 뜻한다 — '$a$의 제곱근'은 □ 개다.",
+      "cAnswers": [
+        "양의",
+        "두"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "양의",
+          "equivalentAnswers": [
+            "양의"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "두",
+          "equivalentAnswers": [
+            "두",
+            "$2$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "두",
+          "accept": [
+            "$2$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "양의"
+        ],
+        [
+          "두",
+          "$2$"
+        ]
+      ],
+      "proposalFingerprint": "e8176ba07a7614128b76eff98780e0e312cd4512fe0075205448ddff267e06a7"
+    },
+    {
+      "id": "m3-01-01-c7",
+      "bDecision": "rewrite",
+      "bPrompt": "양수 $a$에 대하여 $\\pm\\sqrt{a}$는 어떤 두 수를 한꺼번에 나타낸 것인지 쓰고, 읽는 법을 쓰시오. 또 $x^2=5$를 만족하는 $x$를 이 기호로 나타내시오.",
+      "bAnswer": "$\\sqrt{a}$와 $-\\sqrt{a}$를 함께 나타낸 것이고 '플러스 마이너스 루트 $a$'라고 읽는다. $x=\\pm\\sqrt{5}$.",
+      "bGoal": "$\\pm\\sqrt{a}$의 뜻과 읽기",
+      "bReason": "기호 하나뿐인 제목이라 무엇을 묶어 쓰는 기호인지와 읽는 법으로 범위를 정함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\sqrt{a}$와 $-\\sqrt{a}$를 한꺼번에 나타낸다"
+          ]
+        },
+        {
+          "anyOf": [
+            "플러스 마이너스 루트 $a$라고 읽는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x=\\pm\\sqrt{5}$"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "기호의 뜻이 문장에 있고 읽는 법만 묻는 분명한 빈칸임.",
+      "studentLabel": "$\\pm\\sqrt{a}$의 뜻과 읽기",
+      "authorBatch": 52,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "naming",
+      "roleReason": "±√a 표기와 읽기",
+      "enrichmentEvidence": "enrichment/enrich-002",
+      "sourceIndex": 754,
+      "part": "m3",
+      "sourceFingerprint": "6ccf16af88bb5d35eb0d4c22ba6b055751f9d41e488dc2e5379ff39a76d1a524",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 754
+      },
+      "directReview": null,
+      "cFrozenSentence": "$\\sqrt{a}$와 $-\\sqrt{a}$를 한 번에 묶어 $\\pm\\sqrt{a}$로 쓰고, □ 루트 $a$라고 읽는다.",
+      "cFrozenDefinition": "$\\sqrt{a}$와 $-\\sqrt{a}$를 한 번에 묶어 $\\pm\\sqrt{a}$로 쓰고, {플러스 마이너스} 루트 $a$라고 읽는다.",
+      "cFrozenAnswers": [
+        "플러스 마이너스"
+      ],
+      "cMarkedSentence": "$\\sqrt{a}$와 $-\\sqrt{a}$를 한 번에 묶어 $\\pm\\sqrt{a}$로 쓰고, {플러스 마이너스} 루트 $a$라고 읽는다.",
+      "cSlotAnswers": [
+        "플러스 마이너스"
+      ],
+      "cStudentSentence": "$\\sqrt{a}$와 $-\\sqrt{a}$를 한 번에 묶어 $\\pm\\sqrt{a}$로 쓰고, □ 루트 $a$라고 읽는다.",
+      "cAnswers": [
+        "플러스 마이너스"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "플러스 마이너스",
+          "equivalentAnswers": [
+            "플러스 마이너스",
+            "플러스마이너스"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "플러스 마이너스",
+          "accept": [
+            "플러스마이너스"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "플러스 마이너스",
+          "플러스마이너스"
+        ]
+      ],
+      "proposalFingerprint": "fac31aeda41adf12bb6458e92b191e7d0fbc781e43ada1fdc797d18bc07c59e5"
+    },
+    {
+      "id": "m3-01-01-c8",
+      "bDecision": "rewrite",
+      "bPrompt": "$a>0$일 때 $(\\sqrt{a})^2$과 $(-\\sqrt{a})^2$의 값을 각각 쓰고, 그렇게 되는 이유를 제곱근의 뜻으로 설명하시오.",
+      "bAnswer": "둘 다 $a$이다. $\\sqrt{a}$와 $-\\sqrt{a}$는 $a$의 제곱근, 곧 제곱하면 $a$가 되는 수이기 때문이다.",
+      "bGoal": "제곱근을 제곱하면 원래 수가 됨",
+      "bReason": "'성질'이 여러 가지라 두 제곱근을 제곱한 값과 그 이유로 범위를 좁힘.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$(\\sqrt{a})^2=a$, $(-\\sqrt{a})^2=a$"
+          ]
+        },
+        {
+          "anyOf": [
+            "제곱근은 제곱하여 $a$가 되는 수이다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "원문은 연산과 결과를 모두 가려 절댓값/√a 같은 다른 옳은 조합도 가능하다. 연산을 제곱으로 밝혀 결과만 묻는다.",
+      "authorBatch": 52,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "reason",
+      "roleReason": "제곱근 뜻에서 제곱하면 a",
+      "enrichmentEvidence": "enrichment/enrich-002",
+      "cAfter": "양수 $a$의 두 제곱근 $\\sqrt{a}$와 $-\\sqrt{a}$를 각각 제곱하면 모두 {$a$}가 된다.",
+      "cAnswers": [
+        "$a$"
+      ],
+      "directReviewNote": "실제 C의 빈칸 두 개를 함께 읽고 다른 참인 답 조합을 확인했다. 조건과 결과를 동시에 숨기지 않는다.",
+      "sourceIndex": 755,
+      "part": "m3",
+      "sourceFingerprint": "8f93de1fe985228f5abfd3087440203fe4461f519ba90d867b1073f43f6794a6",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 755
+      },
+      "directReview": {
+        "path": "amendments.json",
+        "id": "m3-01-01-c8"
+      },
+      "cMarkedSentence": "양수 $a$의 두 제곱근 $\\sqrt{a}$와 $-\\sqrt{a}$를 각각 제곱하면 모두 {$a$}가 된다.",
+      "cSlotAnswers": [
+        "$a$"
+      ],
+      "cStudentSentence": "양수 $a$의 두 제곱근 $\\sqrt{a}$와 $-\\sqrt{a}$를 각각 제곱하면 모두 □가 된다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$a$",
+          "equivalentAnswers": [
+            "$a$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$a$"
+        ]
+      ],
+      "proposalFingerprint": "5100e9bbe9821d3cb0701914fc5740d1536996e26f5a3a19c0c45584d2d54896"
+    },
+    {
+      "id": "m3-01-01-c9",
+      "bDecision": "rewrite",
+      "bPrompt": "두 양수 $a$, $b$에 대하여 $a<b$일 때 $\\sqrt{a}$와 $\\sqrt{b}$의 대소 관계를 쓰고, 넓이가 $a$, $b$인 두 정사각형의 한 변의 길이를 이용하여 이유를 설명하시오.",
+      "bAnswer": "$\\sqrt{a}<\\sqrt{b}$. 넓이가 $a$, $b$인 정사각형의 한 변의 길이는 $\\sqrt{a}$, $\\sqrt{b}$이고, 넓이가 큰 정사각형이 한 변의 길이도 길기 때문이다.",
+      "bGoal": "양의 제곱근의 대소 관계",
+      "bReason": "어떤 제곱근끼리의 대소인지 없어 두 양수의 양의 제곱근으로 한정하고 이유의 근거를 줌.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$a<b$이면 $\\sqrt{a}<\\sqrt{b}$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "넓이가 클수록 정사각형의 한 변이 길다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "두 양수 $a$, $b$에서 $a<b$이면 $\\sqrt a$ { $<$ } $\\sqrt b$이다.",
+      "cAnswers": [
+        "$<$"
+      ],
+      "cReason": "한 문장에서 같은 증가 관계를 두 번 답하게 하지 않고 유용한 제곱근 비교 한 칸을 유지한다.",
+      "authorBatch": 52,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "reason",
+      "roleReason": "넓이 크면 변도 길다",
+      "enrichmentEvidence": "enrichment/enrich-002",
+      "sourceIndex": 756,
+      "part": "m3",
+      "sourceFingerprint": "9d6894e8fd634493874d1778e17e37bca6e9b19ab976773f83ce3507dae1e45a",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 756
+      },
+      "directReview": null,
+      "cMarkedSentence": "두 양수 $a$, $b$에서 $a<b$이면 $\\sqrt a$ { $<$ } $\\sqrt b$이다.",
+      "cSlotAnswers": [
+        "$<$"
+      ],
+      "cStudentSentence": "두 양수 $a$, $b$에서 $a<b$이면 $\\sqrt a$ □ $\\sqrt b$이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$<$",
+          "equivalentAnswers": [
+            "$<$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$<$"
+        ]
+      ],
+      "proposalFingerprint": "d2eae2b3cc37d0e7b2a21864b421ed75e208cccb4bdac4e7c25e3f583f4b17ca"
+    },
+    {
+      "id": "m3-01-01-c10",
+      "bDecision": "rewrite",
+      "bPrompt": "수 $a$에 대하여 $\\sqrt{a^2}$을 근호 없이 나타내시오. $a\\ge0$일 때와 $a<0$일 때를 나누어 쓰고, 두 경우를 절댓값 기호로 한 번에 나타내시오.",
+      "bAnswer": "$a\\ge0$이면 $a$, $a<0$이면 $-a$이다. 두 경우를 합쳐 $\\sqrt{a^2}=|a|$로 쓸 수 있다.",
+      "bGoal": "제곱 뒤 양의 제곱근을 취한 값과 절댓값 관계",
+      "bReason": "부호와 절댓값을 한 인라인 식 안에 표시해 실제 학생에게 보이는 수식과 필수 의미가 일치한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$a\\ge0$이면 $a$이고 $a<0$이면 $-a$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\sqrt{a^2}=|a|$"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "실제 학생 문장에 부호별 조건과 식이 모두 있으며 절댓값과 a/-a를 답할 범위가 분명하다.",
+      "exampleNeeded": true,
+      "authorBatch": 52,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "definition",
+      "roleReason": "a의 부호로 근호 벗기기",
+      "enrichmentEvidence": "enrichment/enrich-002",
+      "sourceIndex": 757,
+      "part": "m3",
+      "sourceFingerprint": "11e2b4c2844fa2797aa7471d6b5473499d33e1931f1060aed4edf21bdb2e367e",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 757
+      },
+      "directReview": {
+        "path": "direct-review.json",
+        "id": "m3-01-01-c10",
+        "note": "C의 유용한 조건별 관계는 보존한다. 조건과 절댓값으로 범위를 정하고 실수라는 추가 용어는 쓰지 않는다."
+      },
+      "cFrozenSentence": "$\\sqrt{a^2}$은 $a$의 □과 같다 — $a\\ge 0$이면 □, $a<0$이면 □.",
+      "cFrozenDefinition": "$\\sqrt{a^2}$은 $a$의 {절댓값}과 같다 — $a\\ge 0$이면 {$a$}, $a<0$이면 {$-a$}.",
+      "cFrozenAnswers": [
+        "절댓값",
+        "$a$",
+        "$-a$"
+      ],
+      "cMarkedSentence": "$\\sqrt{a^2}$은 $a$의 {절댓값}과 같다 — $a\\ge 0$이면 {$a$}, $a<0$이면 {$-a$}.",
+      "cSlotAnswers": [
+        "절댓값",
+        "$a$",
+        "$-a$"
+      ],
+      "cStudentSentence": "$\\sqrt{a^2}$은 $a$의 □과 같다 — $a\\ge 0$이면 □, $a<0$이면 □.",
+      "cAnswers": [
+        "절댓값",
+        "$a$",
+        "$-a$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "절댓값",
+          "equivalentAnswers": [
+            "절댓값",
+            "절대값"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$a$",
+          "equivalentAnswers": [
+            "$a$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 2,
+          "answer": "$-a$",
+          "equivalentAnswers": [
+            "$-a$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "절댓값",
+          "accept": [
+            "절대값"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "절댓값",
+          "절대값"
+        ],
+        [
+          "$a$"
+        ],
+        [
+          "$-a$"
+        ]
+      ],
+      "proposalFingerprint": "78b82e96c043b3fd5b8e1291815372fec3b9efd4772c4bb4c26d116d10e4ba32"
+    },
+    {
+      "id": "m3-01-02-c1",
+      "bDecision": "rewrite",
+      "bPrompt": "분수와 관련지어 유리수의 뜻을 쓰시오. 분자와 분모가 각각 어떤 수여야 하는지와 분모에 대한 제한까지 밝히시오.",
+      "bAnswer": "분자와 분모가 모두 정수이고 분모가 $0$이 아닌 분수로 나타낼 수 있는 수이다.",
+      "bGoal": "분수 꼴로 유리수의 뜻 말하기",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분자와 분모가 모두 정수이고 분모가 0이 아닌 분수로 나타낼 수 있는 수이다",
+            "정수 $a$, $b$에 대하여 $b\\ne0$인 $\\frac ab$로 나타낼 수 있는 수이다"
+          ]
+        }
+      ],
+      "bReason": "분자·분모의 종류만 말하는 답이 아니라 그 분수로 나타낼 수 있다는 유리수의 핵심 정의를 확인한다.",
+      "cDecision": "keep",
+      "cReason": "정수·분수 두 빈칸과 분모 조건이 모두 보이는 짧은 정의라 유지한다.",
+      "learningRole": "definition",
+      "roleReason": "정수끼리의 분수 꼴이라는 유리수의 뜻",
+      "authorBatch": 53,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 758,
+      "part": "m3",
+      "sourceFingerprint": "b35ac9b0f9b9940b81149803c4a1da3090922f62f086e4f656efe45e61d3b719",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 758
+      },
+      "directReview": null,
+      "cFrozenSentence": "분자와 분모가 모두 □인 □로 나타낼 수 있는 수가 유리수이다(분모는 $0$이 아니다).",
+      "cFrozenDefinition": "분자와 분모가 모두 {정수}인 {분수}로 나타낼 수 있는 수가 유리수이다(분모는 $0$이 아니다).",
+      "cFrozenAnswers": [
+        "정수",
+        "분수"
+      ],
+      "cMarkedSentence": "분자와 분모가 모두 {정수}인 {분수}로 나타낼 수 있는 수가 유리수이다(분모는 $0$이 아니다).",
+      "cSlotAnswers": [
+        "정수",
+        "분수"
+      ],
+      "cStudentSentence": "분자와 분모가 모두 □인 □로 나타낼 수 있는 수가 유리수이다(분모는 $0$이 아니다).",
+      "cAnswers": [
+        "정수",
+        "분수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "정수",
+          "equivalentAnswers": [
+            "정수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "분수",
+          "equivalentAnswers": [
+            "분수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "정수"
+        ],
+        [
+          "분수"
+        ]
+      ],
+      "proposalFingerprint": "b6173b74cb6ad69a6bccdae3a6a2d0b1c3cdb274c22a04e1e3a7faf5891c0e1e"
+    },
+    {
+      "id": "m3-01-02-c2",
+      "bDecision": "rewrite",
+      "bPrompt": "유리수가 아닌 수를 무리수라고 한다. 무리수를 소수로 나타내면 소수점 아래가 끝나는지, 같은 숫자 배열이 되풀이되는지 모두 밝혀 쓰시오.",
+      "bAnswer": "소수점 아래가 끝없이 이어지고 되풀이되는 마디도 없는, 순환하지 않는 무한소수가 된다.",
+      "bGoal": "무리수를 소수 모양으로 설명하기",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "끝없이 이어진다",
+            "무한소수"
+          ]
+        },
+        {
+          "anyOf": [
+            "되풀이되는 마디가 없다",
+            "순환하지 않는다"
+          ]
+        }
+      ],
+      "bReason": "소수의 끝남과 순환 여부라는 두 판정 기준을 질문에 명시했다.",
+      "cDecision": "keep",
+      "cReason": "두 빈칸이 이어져도 '순환하지 않는 무한소수' 한 표현으로 범위가 분명하다.",
+      "learningRole": "definition",
+      "roleReason": "순환하지 않는 무한소수라는 무리수의 소수 표현",
+      "authorBatch": 53,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 759,
+      "part": "m3",
+      "sourceFingerprint": "4d89e19ae34bfb6d5090aa51cb69b04a61959631022f18511e7a8c9dc25d46e3",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 759
+      },
+      "directReview": null,
+      "cFrozenSentence": "유리수가 아닌 수가 무리수이고, 소수로 쓰면 □ □가 된다.",
+      "cFrozenDefinition": "유리수가 아닌 수가 무리수이고, 소수로 쓰면 {순환하지 않는} {무한소수}가 된다.",
+      "cFrozenAnswers": [
+        "순환하지 않는",
+        "무한소수"
+      ],
+      "cMarkedSentence": "유리수가 아닌 수가 무리수이고, 소수로 쓰면 {순환하지 않는} {무한소수}가 된다.",
+      "cSlotAnswers": [
+        "순환하지 않는",
+        "무한소수"
+      ],
+      "cStudentSentence": "유리수가 아닌 수가 무리수이고, 소수로 쓰면 □ □가 된다.",
+      "cAnswers": [
+        "순환하지 않는",
+        "무한소수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "순환하지 않는",
+          "equivalentAnswers": [
+            "순환하지 않는",
+            "되풀이되지 않는"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "무한소수",
+          "equivalentAnswers": [
+            "무한소수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "순환하지 않는",
+          "accept": [
+            "되풀이되지 않는"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "순환하지 않는",
+          "되풀이되지 않는"
+        ],
+        [
+          "무한소수"
+        ]
+      ],
+      "proposalFingerprint": "1d2fb4a84d252ee35909189347588c21b2ba601eb676de58d298878ca3d0d840"
+    },
+    {
+      "id": "m3-01-02-c3",
+      "bDecision": "rewrite",
+      "bPrompt": "중학교 $3$학년에서 배우는 실수는 어떤 두 종류의 수를 모두 모은 것인지 쓰시오.",
+      "bAnswer": "유리수와 무리수를 모두 모은 것이다.",
+      "bGoal": "실수를 이루는 두 종류의 수 말하기",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "유리수"
+          ]
+        },
+        {
+          "anyOf": [
+            "무리수"
+          ]
+        }
+      ],
+      "bReason": "답이 수의 종류 이름 두 개임을 질문에서 알 수 있게 했다.",
+      "cDecision": "rewrite",
+      "cReason": "두 분류 이름을 서로 바꿔 넣어도 참인 나열 빈칸을 두 분류를 모은 표준 이름 확인으로 바꾼다.",
+      "learningRole": "definition",
+      "roleReason": "유리수와 무리수의 모임이라는 실수의 뜻",
+      "authorBatch": 53,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 760,
+      "part": "m3",
+      "sourceFingerprint": "50377e67d6db15c5bab27cce23d2f82e46cb37ee9b89d6ceae23456be767f2c0",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 760
+      },
+      "directReview": null,
+      "cMarkedSentence": "유리수 또는 무리수인 수를 모두 {실수}라고 부른다.",
+      "cSlotAnswers": [
+        "실수"
+      ],
+      "cStudentSentence": "유리수 또는 무리수인 수를 모두 □라고 부른다.",
+      "cAnswers": [
+        "실수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "실수",
+          "equivalentAnswers": [
+            "실수"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "실수"
+        ]
+      ],
+      "proposalFingerprint": "790a485f3718772838084d7b06f169842eea5f9e1407d59081e5b4d0590f6147",
+      "cAfter": "유리수 또는 무리수인 수를 모두 {실수}라고 부른다."
+    },
+    {
+      "id": "m3-01-02-c4",
+      "bDecision": "rewrite",
+      "bPrompt": "양의 실수는 $0$과 비교하여 어떤 실수인지 쓰고, 수직선에서 원점을 기준으로 어느 쪽에 놓이는지 쓰시오.",
+      "bAnswer": "$0$보다 큰 실수이고, 수직선에서 원점의 오른쪽에 놓인다.",
+      "bGoal": "양수의 뜻과 수직선 위 위치 연결하기",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$0$보다 크다"
+          ]
+        },
+        {
+          "anyOf": [
+            "원점의 오른쪽"
+          ]
+        }
+      ],
+      "bReason": "양수의 크기 조건과 수직선 위 위치를 함께 묻도록 범위를 정했다.",
+      "cDecision": "keep",
+      "cReason": "위치 한 칸만 묻는 짧은 빈칸으로 분명하다.",
+      "learningRole": "definition",
+      "roleReason": "$0$보다 큰 실수와 원점 오른쪽의 대응",
+      "authorBatch": 53,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 761,
+      "part": "m3",
+      "sourceFingerprint": "04a80b28427c0ec581ab794a7b57c9f187680283b6c3c7e17a07ff30088f0d5e",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 761
+      },
+      "directReview": null,
+      "cFrozenSentence": "$0$보다 큰 실수가 양의 실수(양수)이고, 수직선에서 원점의 □에 놓인다.",
+      "cFrozenDefinition": "$0$보다 큰 실수가 양의 실수(양수)이고, 수직선에서 원점의 {오른쪽}에 놓인다.",
+      "cFrozenAnswers": [
+        "오른쪽"
+      ],
+      "cMarkedSentence": "$0$보다 큰 실수가 양의 실수(양수)이고, 수직선에서 원점의 {오른쪽}에 놓인다.",
+      "cSlotAnswers": [
+        "오른쪽"
+      ],
+      "cStudentSentence": "$0$보다 큰 실수가 양의 실수(양수)이고, 수직선에서 원점의 □에 놓인다.",
+      "cAnswers": [
+        "오른쪽"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "오른쪽",
+          "equivalentAnswers": [
+            "오른쪽"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "오른쪽"
+        ]
+      ],
+      "proposalFingerprint": "91ddeeafe641f53e63d74ae04f7fddbcd043eff145ff45bbfb9d6b14e6b84fbb"
+    }
+  ]
+}

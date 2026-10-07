@@ -1,0 +1,3277 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "capturedAt": "2026-10-07T06:48:28.285584+00:00",
+  "rows": [
+    {
+      "id": "e5-1-4-3-xc13",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "공통분모가 여러 가지일 수 있다는 성질이다.",
+      "bReason": "c3와 xc21의 B와 중복된다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{1}{2}$과 $\\frac{1}{3}$의 공통분모가 될 수 있는 수는 $2$와 $3$의 {공배수}이므로 작은 것부터 {$6$}, {$12$}, {$18$}, …처럼 여러 가지이다.",
+      "cReason": "'여러 가지'라는 막연한 빈칸 대신 공배수라는 근거와 실제 공통분모 세 개를 답하게 했다.",
+      "exclusionReason": "B 제외: c3·xc21과 중복된다.",
+      "exampleNeeded": false,
+      "learningRole": "definition",
+      "rubricEvidence": "evidence/section-014-rubric.json",
+      "sourceIndex": 760,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-3-xc13",
+        "section": "초5::1-4 약분과 통분::1-4-3 통분",
+        "term": "여러 가지 공통분모",
+        "kind": "성질",
+        "level": "중",
+        "definition": "같은 두 분수도 공통분모를 {여러 가지}로 정해 통분할 수 있다.",
+        "example": {
+          "prompt": "$\\frac{1}{2}$과 $\\frac{1}{3}$의 공통분모를 작은 것부터 $3$개 쓰시오.",
+          "answer": "$6,\\ 12,\\ 18$"
+        },
+        "studentC": "같은 두 분수도 공통분모를 □로 정해 통분할 수 있다.",
+        "answers": [
+          "여러 가지"
+        ]
+      },
+      "sourceFingerprint": "db54caa9b634ba644a18ce04b9e2dc9e32e8d8762df14734c0adaab934d007b2",
+      "draftEvidence": "evidence/section-014-draft.json",
+      "cProposedAnswers": [
+        "공배수",
+        "$6$",
+        "$12$",
+        "$18$"
+      ],
+      "cStudentAfter": "$\\frac{1}{2}$과 $\\frac{1}{3}$의 공통분모가 될 수 있는 수는 $2$와 $3$의 □이므로 작은 것부터 □, □, □, …처럼 여러 가지이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "공배수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$18$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$\\frac{1}{2}$과 $\\frac{1}{3}$의 공통분모가 될 수 있는 수는 $2$와 $3$의 {공배수}이므로 작은 것부터 {$6$}, {$12$}, {$18$}, …처럼 여러 가지이다.",
+      "cStudentSentence": "$\\frac{1}{2}$과 $\\frac{1}{3}$의 공통분모가 될 수 있는 수는 $2$와 $3$의 □이므로 작은 것부터 □, □, □, …처럼 여러 가지이다.",
+      "cSlotAnswers": [
+        {
+          "key": "공배수",
+          "equivalents": []
+        },
+        {
+          "key": "$6$",
+          "equivalents": []
+        },
+        {
+          "key": "$12$",
+          "equivalents": []
+        },
+        {
+          "key": "$18$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$\\frac{1}{2}$과 $\\frac{1}{3}$의 공통분모가 될 수 있는 수는 $2$와 $3$의 {공배수}이므로 작은 것부터 {$6$}, {$12$}, {$18$}, …처럼 여러 가지이다.",
+        "acceptedAnswers": [
+          [
+            "공배수"
+          ],
+          [
+            "$6$"
+          ],
+          [
+            "$12$"
+          ],
+          [
+            "$18$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 제외: c3·xc21과 중복된다."
+      },
+      "proposalFingerprint": "c8a19efc5d598205f8958bc533b07bc29d96b0c9d0eff631686be3fda45a1001",
+      "questionRevision": "planning-e5e6-20261006-c8a19efc5d59",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-3-xc14",
+      "bDecision": "revise",
+      "bPrompt": "통분할 때 분모와 분자에 곱했던 수로 통분한 분수를 다시 약분하면 어떤 분수가 되는지 쓰고, 그 까닭을 곱셈과 나눗셈의 관계로 설명하시오. $\\frac{2}{3}$를 $\\frac{8}{12}$로 통분한 경우로 확인하시오.",
+      "bAnswer": "처음 분수가 된다. 분모와 분자에 같은 수를 곱했다가 그 수로 다시 나누면 원래 수로 돌아오기 때문이다. $\\frac{8}{12}$의 분모와 분자를 $4$로 나누면 $\\frac{2}{3}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "처음 분수가 된다",
+            "통분하기 전의 분수가 된다",
+            "원래 분수가 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "곱했던 수로 다시 나누면 원래 수로 돌아오기 때문이다",
+            "곱셈과 나눗셈은 서로 반대 계산이라 되돌아오기 때문이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{8}{12}$을 $4$로 약분하면 $\\frac{2}{3}$이다"
+          ]
+        }
+      ],
+      "bGoal": "통분과 약분이 서로 되돌리는 관계임을 설명한다.",
+      "bReason": "결과만 묻지 않고 곱셈과 나눗셈의 관계라는 설명 관점과 확인할 예를 주었다.",
+      "cDecision": "keep",
+      "cAfter": "통분할 때 곱한 수로 다시 약분하면 {처음 분수}로 돌아온다.",
+      "cReason": "곱한 수로 다시 약분한다는 조건이 문장에 있어 답이 처음 분수로 분명히 정해지는 짧은 문장이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "처음 분수=원래 분수=통분하기 전의 분수 인정.",
+      "learningRole": "reason",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "처음 분수",
+            "원래 분수",
+            "통분하기 전의 분수"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-014-rubric.json",
+      "sourceIndex": 761,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-3-xc14",
+        "section": "초5::1-4 약분과 통분::1-4-3 통분",
+        "term": "통분한 뒤 약분하면",
+        "kind": "성질",
+        "level": "중",
+        "definition": "통분할 때 곱한 수로 다시 약분하면 {처음 분수}로 돌아온다.",
+        "studentC": "통분할 때 곱한 수로 다시 약분하면 □로 돌아온다.",
+        "answers": [
+          "처음 분수"
+        ]
+      },
+      "sourceFingerprint": "9b8384819b54b99cd3e3a4bd248f0e570df354a741fdc854b1ee7c4224fa5446",
+      "draftEvidence": "evidence/section-014-draft.json",
+      "cFrozenDefinition": "통분할 때 곱한 수로 다시 약분하면 {처음 분수}로 돌아온다.",
+      "cFrozenStudentSentence": "통분할 때 곱한 수로 다시 약분하면 □로 돌아온다.",
+      "cProposedAnswers": [
+        "처음 분수"
+      ],
+      "cStudentAfter": "통분할 때 곱한 수로 다시 약분하면 □로 돌아온다.",
+      "cMarkedSentence": "통분할 때 곱한 수로 다시 약분하면 {처음 분수}로 돌아온다.",
+      "cStudentSentence": "통분할 때 곱한 수로 다시 약분하면 □로 돌아온다.",
+      "cSlotAnswers": [
+        {
+          "key": "처음 분수",
+          "equivalents": [
+            "원래 분수",
+            "통분하기 전의 분수"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "통분할 때 분모와 분자에 곱했던 수로 통분한 분수를 다시 약분하면 어떤 분수가 되는지 쓰고, 그 까닭을 곱셈과 나눗셈의 관계로 설명하시오. $\\frac{2}{3}$를 $\\frac{8}{12}$로 통분한 경우로 확인하시오.",
+        "answer": "처음 분수가 된다. 분모와 분자에 같은 수를 곱했다가 그 수로 다시 나누면 원래 수로 돌아오기 때문이다. $\\frac{8}{12}$의 분모와 분자를 $4$로 나누면 $\\frac{2}{3}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "처음 분수가 된다",
+              "통분하기 전의 분수가 된다",
+              "원래 분수가 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "곱했던 수로 다시 나누면 원래 수로 돌아오기 때문이다",
+              "곱셈과 나눗셈은 서로 반대 계산이라 되돌아오기 때문이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{8}{12}$을 $4$로 약분하면 $\\frac{2}{3}$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "통분할 때 곱한 수로 다시 약분하면 {처음 분수}로 돌아온다.",
+        "acceptedAnswers": [
+          [
+            "처음 분수",
+            "원래 분수",
+            "통분하기 전의 분수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "6706f20a71fd2c06317f72eb9c065dba946473f9537d12c400b50256ea463978",
+      "questionRevision": "planning-e5e6-20261006-6706f20a71fd",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-3-xc15",
+      "bDecision": "revise",
+      "bPrompt": "약분과 통분은 각각 분수의 무엇을 어떻게 바꾸는 일인지 비교하여 쓰고, 두 경우에 똑같이 변하지 않는 것은 무엇인지 쓰시오.",
+      "bAnswer": "약분은 한 분수의 분모와 분자를 공약수로 나누어 간단히 하는 일이고, 통분은 분모가 다른 분수들의 분모를 같게 만드는 일이다. 두 경우 모두 분수의 크기는 변하지 않는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "약분은 분모와 분자를 공약수로 나누어 간단히 하는 일이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "통분은 분모가 다른 분수들의 분모를 같게 만드는 일이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 경우 모두 분수의 크기는 변하지 않는다"
+          ]
+        }
+      ],
+      "bGoal": "약분과 통분의 차이와 공통점을 구별해 말한다.",
+      "bReason": "편집용 제목 '가르기' 대신 무엇을 어떻게 바꾸는지와 공통으로 유지되는 것을 물었다.",
+      "studentLabel": "약분과 통분의 차이",
+      "cDecision": "revise",
+      "cAfter": "약분은 한 분수의 분모와 분자를 공약수로 {나누어} 간단히 하는 것이고, 통분은 분모가 다른 분수들의 분모를 {같게} 하는 것이다.",
+      "cReason": "'분모를 작게'는 분자도 함께 나눈다는 점이 빠져 두 방법의 핵심 동작을 각각 답하게 했다.",
+      "exampleNeeded": false,
+      "synonymNotes": "나누어=나눠, 같게=똑같게 인정.",
+      "coreAfter": "약분은 한 분수의 분모와 분자를 $1$보다 큰 공약수로 나누어 {작게} 쓰는 일이고, 통분은 분모가 다른 분수들의 분모를 같게 만드는 일이다. 두 경우 모두 분수의 크기는 변하지 않는다.",
+      "coreReason": "'분모를 작게'만으로는 분자도 함께 나누는 점과 크기 유지가 빠진다.",
+      "learningRole": "definition",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "나누어",
+            "나눠"
+          ]
+        },
+        {
+          "anyOf": [
+            "같게",
+            "똑같게"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-014-rubric.json",
+      "editorialOwner": "Codex",
+      "coreTargetReason": "작게라는 원문 표적을 유지한다. 분모만 작게 하는 것이 아니라 분자도 같은 공약수로 나누며 두 변환 모두 값을 유지한다는 일반 뜻을 명시한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 762,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-3-xc15",
+        "section": "초5::1-4 약분과 통분::1-4-3 통분",
+        "term": "약분과 통분 가르기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "약분은 분모를 {작게}, 통분은 분모를 같게 만드는 일이다.",
+        "studentC": "약분은 분모를 □, 통분은 분모를 같게 만드는 일이다.",
+        "answers": [
+          "작게"
+        ]
+      },
+      "sourceFingerprint": "5f194190f0eee4e924517cd3f05bf6b0dfa43a67126a7ff4d70a149a12c328b6",
+      "draftEvidence": "evidence/section-014-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "나누어",
+        "같게"
+      ],
+      "cStudentAfter": "약분은 한 분수의 분모와 분자를 공약수로 □ 간단히 하는 것이고, 통분은 분모가 다른 분수들의 분모를 □ 하는 것이다.",
+      "cMarkedSentence": "약분은 한 분수의 분모와 분자를 공약수로 {나누어} 간단히 하는 것이고, 통분은 분모가 다른 분수들의 분모를 {같게} 하는 것이다.",
+      "cStudentSentence": "약분은 한 분수의 분모와 분자를 공약수로 □ 간단히 하는 것이고, 통분은 분모가 다른 분수들의 분모를 □ 하는 것이다.",
+      "cSlotAnswers": [
+        {
+          "key": "나누어",
+          "equivalents": [
+            "나눠"
+          ]
+        },
+        {
+          "key": "같게",
+          "equivalents": [
+            "똑같게"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "약분과 통분은 각각 분수의 무엇을 어떻게 바꾸는 일인지 비교하여 쓰고, 두 경우에 똑같이 변하지 않는 것은 무엇인지 쓰시오.",
+        "answer": "약분은 한 분수의 분모와 분자를 공약수로 나누어 간단히 하는 일이고, 통분은 분모가 다른 분수들의 분모를 같게 만드는 일이다. 두 경우 모두 분수의 크기는 변하지 않는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "약분은 분모와 분자를 공약수로 나누어 간단히 하는 일이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "통분은 분모가 다른 분수들의 분모를 같게 만드는 일이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 경우 모두 분수의 크기는 변하지 않는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "약분은 한 분수의 분모와 분자를 공약수로 {나누어} 간단히 하는 것이고, 통분은 분모가 다른 분수들의 분모를 {같게} 하는 것이다.",
+        "acceptedAnswers": [
+          [
+            "나누어",
+            "나눠"
+          ],
+          [
+            "같게",
+            "똑같게"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "0575007874789ca7e19139fcf9a8bb1fa476cda1867c21e8e2ee631e9e0fb6a4",
+      "questionRevision": "planning-e5e6-20261006-057500787478",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-3-xc16",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "가장 작은 공통분모를 최소공배수로 구한다는 내용이다.",
+      "bReason": "c3와 xc2와 같은 내용이다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "빈칸 '가장 작은 공통분모'는 c3 문장을 거꾸로 묻는 구절이라 새로 확인하는 내용이 없다.",
+      "exclusionReason": "B·C 모두 제외: c3·xc2와 중복된다.",
+      "exampleNeeded": false,
+      "learningRole": "definition",
+      "rubricEvidence": "evidence/section-014-rubric.json",
+      "sourceIndex": 763,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-3-xc16",
+        "section": "초5::1-4 약분과 통분::1-4-3 통분",
+        "term": "통분에 쓰는 최소공배수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "통분할 때 {가장 작은 공통분모}를 구하려면 최소공배수를 구하는 방법을 쓴다.",
+        "studentC": "통분할 때 □를 구하려면 최소공배수를 구하는 방법을 쓴다.",
+        "answers": [
+          "가장 작은 공통분모"
+        ]
+      },
+      "sourceFingerprint": "5c90c673ebbc0f157a99d427843de876513f3d6ded1facbd73b3f2a9245b5715",
+      "draftEvidence": "evidence/section-014-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "B·C 모두 제외: c3·xc2와 중복된다.",
+        "cloze": "B·C 모두 제외: c3·xc2와 중복된다."
+      },
+      "proposalFingerprint": "be9c399591600430de3d71abe8ac8ab5e27356238fe970d1a7e1fcc7a35e7d4d",
+      "questionRevision": "planning-e5e6-20261006-be9c39959160",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-3-xc17",
+      "bDecision": "revise",
+      "bPrompt": "분모가 다른 두 분수의 크기를 통분을 이용해 비교하는 방법을 순서대로 쓰고, 그 방법으로 $\\frac{3}{4}$과 $\\frac{5}{6}$ 중 더 큰 분수를 찾으시오.",
+      "bAnswer": "두 분수를 통분하여 분모를 같게 한 다음 분자의 크기를 비교한다. $\\frac{9}{12}$와 $\\frac{10}{12}$이고 $9<10$이므로 $\\frac{5}{6}$가 더 크다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 분수를 통분하여 분모를 같게 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "분자의 크기를 비교한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{5}{6}$가 더 크다"
+          ]
+        }
+      ],
+      "bGoal": "통분한 뒤 분자를 비교해 크기를 판단하는 절차를 수행한다.",
+      "bReason": "까닭은 xc5에서 묻으므로 여기서는 비교 절차와 실제 판단을 묻게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{3}{4}$과 $\\frac{5}{6}$를 공통분모 $12$로 통분하면 분자는 차례로 {$9$}, {$10$}이고, 분모가 같을 때는 {분자}가 큰 분수가 더 크다.",
+      "cReason": "'분자만 견주어' 구절 대신 통분한 분자의 값과 비교 대상인 분자를 답하게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "procedure",
+      "rubricEvidence": "evidence/section-014-rubric.json",
+      "sourceIndex": 764,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-3-xc17",
+        "section": "초5::1-4 약분과 통분::1-4-3 통분",
+        "term": "통분하고 분자만 견주기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "통분하면 두 분수의 {분자만 견주어} 어느 쪽이 큰지 알 수 있다.",
+        "example": {
+          "prompt": "$\\frac{3}{4}$과 $\\frac{5}{6}$를 $12$로 통분한 두 분자는?",
+          "answer": "$9,\\ 10$"
+        },
+        "studentC": "통분하면 두 분수의 □ 어느 쪽이 큰지 알 수 있다.",
+        "answers": [
+          "분자만 견주어"
+        ]
+      },
+      "sourceFingerprint": "4d375c4c36f6771b4032290a5bd26eb1e53211470e603a83caf7505074698f26",
+      "draftEvidence": "evidence/section-014-draft.json",
+      "cProposedAnswers": [
+        "$9$",
+        "$10$",
+        "분자"
+      ],
+      "cStudentAfter": "$\\frac{3}{4}$과 $\\frac{5}{6}$를 공통분모 $12$로 통분하면 분자는 차례로 □, □이고, 분모가 같을 때는 □가 큰 분수가 더 크다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$9$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10$"
+          ]
+        },
+        {
+          "anyOf": [
+            "분자"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$\\frac{3}{4}$과 $\\frac{5}{6}$를 공통분모 $12$로 통분하면 분자는 차례로 {$9$}, {$10$}이고, 분모가 같을 때는 {분자}가 큰 분수가 더 크다.",
+      "cStudentSentence": "$\\frac{3}{4}$과 $\\frac{5}{6}$를 공통분모 $12$로 통분하면 분자는 차례로 □, □이고, 분모가 같을 때는 □가 큰 분수가 더 크다.",
+      "cSlotAnswers": [
+        {
+          "key": "$9$",
+          "equivalents": []
+        },
+        {
+          "key": "$10$",
+          "equivalents": []
+        },
+        {
+          "key": "분자",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "분모가 다른 두 분수의 크기를 통분을 이용해 비교하는 방법을 순서대로 쓰고, 그 방법으로 $\\frac{3}{4}$과 $\\frac{5}{6}$ 중 더 큰 분수를 찾으시오.",
+        "answer": "두 분수를 통분하여 분모를 같게 한 다음 분자의 크기를 비교한다. $\\frac{9}{12}$와 $\\frac{10}{12}$이고 $9<10$이므로 $\\frac{5}{6}$가 더 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 분수를 통분하여 분모를 같게 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분자의 크기를 비교한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{5}{6}$가 더 크다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{3}{4}$과 $\\frac{5}{6}$를 공통분모 $12$로 통분하면 분자는 차례로 {$9$}, {$10$}이고, 분모가 같을 때는 {분자}가 큰 분수가 더 크다.",
+        "acceptedAnswers": [
+          [
+            "$9$"
+          ],
+          [
+            "$10$"
+          ],
+          [
+            "분자"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9455ed46d3d829186db9d128ca96d605a63a2629328f76bb8f9d39c39dea4119",
+      "questionRevision": "planning-e5e6-20261006-9455ed46d3d8",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-3-xc18",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "공통분모와 분모가 같은 분수는 고치지 않는다는 방법이다.",
+      "bReason": "xc7의 B와 같은 상황이다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{1}{4}$과 $\\frac{3}{8}$을 공통분모 $8$로 통분할 때, 분모가 이미 $8$인 $\\frac{3}{8}$은 {그대로} 두고 $\\frac{1}{4}$만 $8$분의 {$2$}로 고친다.",
+      "cReason": "'바꾸지 않는다'를 일반 문장으로 외우게 하지 않고 실제 통분에서 그대로 두는 분수와 고치는 분수를 가르게 했다.",
+      "exclusionReason": "B 제외: xc7과 중복된다.",
+      "exampleNeeded": false,
+      "synonymNotes": "그대로=바꾸지 않고 인정.",
+      "learningRole": "procedure",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "그대로",
+            "바꾸지 않고"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-014-rubric.json",
+      "sourceIndex": 765,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-3-xc18",
+        "section": "초5::1-4 약분과 통분::1-4-3 통분",
+        "term": "그대로 두는 분수",
+        "kind": "방법",
+        "level": "중",
+        "definition": "통분할 때 공통분모가 한쪽 분모와 같으면 그 분수의 분모와 분자는 {바꾸지 않는다}.",
+        "example": {
+          "prompt": "$\\frac{1}{4}$과 $\\frac{3}{8}$을 분모 $8$로 통분하면?",
+          "answer": "$\\frac{2}{8},\\ \\frac{3}{8}$"
+        },
+        "studentC": "통분할 때 공통분모가 한쪽 분모와 같으면 그 분수의 분모와 분자는 □.",
+        "answers": [
+          "바꾸지 않는다"
+        ]
+      },
+      "sourceFingerprint": "18fb1bfed76212120806442f0025f6cb7564b0ff5e0894a87cc18c01db5f625a",
+      "draftEvidence": "evidence/section-014-draft.json",
+      "cProposedAnswers": [
+        "그대로",
+        "$2$"
+      ],
+      "cStudentAfter": "$\\frac{1}{4}$과 $\\frac{3}{8}$을 공통분모 $8$로 통분할 때, 분모가 이미 $8$인 $\\frac{3}{8}$은 □ 두고 $\\frac{1}{4}$만 $8$분의 □로 고친다.",
+      "cMarkedSentence": "$\\frac{1}{4}$과 $\\frac{3}{8}$을 공통분모 $8$로 통분할 때, 분모가 이미 $8$인 $\\frac{3}{8}$은 {그대로} 두고 $\\frac{1}{4}$만 $8$분의 {$2$}로 고친다.",
+      "cStudentSentence": "$\\frac{1}{4}$과 $\\frac{3}{8}$을 공통분모 $8$로 통분할 때, 분모가 이미 $8$인 $\\frac{3}{8}$은 □ 두고 $\\frac{1}{4}$만 $8$분의 □로 고친다.",
+      "cSlotAnswers": [
+        {
+          "key": "그대로",
+          "equivalents": [
+            "바꾸지 않고"
+          ]
+        },
+        {
+          "key": "$2$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$\\frac{1}{4}$과 $\\frac{3}{8}$을 공통분모 $8$로 통분할 때, 분모가 이미 $8$인 $\\frac{3}{8}$은 {그대로} 두고 $\\frac{1}{4}$만 $8$분의 {$2$}로 고친다.",
+        "acceptedAnswers": [
+          [
+            "그대로",
+            "바꾸지 않고"
+          ],
+          [
+            "$2$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 제외: xc7과 중복된다."
+      },
+      "proposalFingerprint": "f4b1489299ae11e132dc525cfbac4ea3d4d4033132c13a125543348f473dc452",
+      "questionRevision": "planning-e5e6-20261006-f4b1489299ae",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-3-xc19",
+      "bDecision": "revise",
+      "bPrompt": "통분할 때 분모와 분자에 같은 수를 곱해도 분수의 크기가 변하지 않는 까닭을, 전체를 똑같이 나눈 조각의 수와 색칠한 조각의 수가 어떻게 달라지는지로 설명하시오. $\\frac{1}{3}$을 $\\frac{4}{12}$로 고친 경우를 예로 드시오.",
+      "bAnswer": "같은 전체에서 조각 하나하나를 똑같이 더 잘게 나누면 전체 조각의 수와 색칠한 조각의 수가 같은 배만큼 늘어날 뿐 색칠한 부분의 크기는 그대로이다. $\\frac{1}{3}$의 각 조각을 $4$개씩으로 나누면 전체는 $12$조각, 색칠한 부분은 $4$조각이 되어 $\\frac{4}{12}$이지만 색칠한 부분의 크기는 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "전체 조각의 수와 색칠한 조각의 수가 모두 같은 배만큼 늘어난다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{3}$의 각 조각을 $4$개씩 나누면 $12$조각 중 $4$조각이 된다"
+          ]
+        }
+      ],
+      "bGoal": "같은 수를 곱해도 크기가 그대로인 까닭을 조각 나누기로 설명한다.",
+      "bReason": "규칙을 되풀이해 말하는 답을 막으려고 조각의 수 변화라는 설명 방법을 지정했다.",
+      "cDecision": "revise",
+      "cAfter": "통분은 각 분수의 분모와 분자에 $0$이 아닌 {같은} 수를 {곱하는} 것이므로 분수의 크기는 변하지 않는다.",
+      "cReason": "'같은 수를 곱하는' 구절을 두 낱말로 나누고 0이 아닌 수라는 조건을 문장에 밝혔다.",
+      "exampleNeeded": false,
+      "learningRole": "reason",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같은",
+            "똑같은"
+          ]
+        },
+        {
+          "anyOf": [
+            "곱하는",
+            "곱한"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-014-rubric.json",
+      "sourceIndex": 766,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-3-xc19",
+        "section": "초5::1-4 약분과 통분::1-4-3 통분",
+        "term": "통분해도 크기가 그대로인 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "통분은 분모와 분자에 {같은 수를 곱하는} 일이라 분수의 크기가 변하지 않는다.",
+        "studentC": "통분은 분모와 분자에 □ 일이라 분수의 크기가 변하지 않는다.",
+        "answers": [
+          "같은 수를 곱하는"
+        ]
+      },
+      "sourceFingerprint": "39c3717ab1d790525fdeb6d6b4f1cf74b5935def7988bba7117627f596c8cbbf",
+      "draftEvidence": "evidence/section-014-draft.json",
+      "cProposedAnswers": [
+        "같은",
+        "곱하는"
+      ],
+      "cStudentAfter": "통분은 각 분수의 분모와 분자에 $0$이 아닌 □ 수를 □ 것이므로 분수의 크기는 변하지 않는다.",
+      "cMarkedSentence": "통분은 각 분수의 분모와 분자에 $0$이 아닌 {같은} 수를 {곱하는} 것이므로 분수의 크기는 변하지 않는다.",
+      "cStudentSentence": "통분은 각 분수의 분모와 분자에 $0$이 아닌 □ 수를 □ 것이므로 분수의 크기는 변하지 않는다.",
+      "cSlotAnswers": [
+        {
+          "key": "같은",
+          "equivalents": [
+            "똑같은"
+          ]
+        },
+        {
+          "key": "곱하는",
+          "equivalents": [
+            "곱한"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "통분할 때 분모와 분자에 같은 수를 곱해도 분수의 크기가 변하지 않는 까닭을, 전체를 똑같이 나눈 조각의 수와 색칠한 조각의 수가 어떻게 달라지는지로 설명하시오. $\\frac{1}{3}$을 $\\frac{4}{12}$로 고친 경우를 예로 드시오.",
+        "answer": "같은 전체에서 조각 하나하나를 똑같이 더 잘게 나누면 전체 조각의 수와 색칠한 조각의 수가 같은 배만큼 늘어날 뿐 색칠한 부분의 크기는 그대로이다. $\\frac{1}{3}$의 각 조각을 $4$개씩으로 나누면 전체는 $12$조각, 색칠한 부분은 $4$조각이 되어 $\\frac{4}{12}$이지만 색칠한 부분의 크기는 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "전체 조각의 수와 색칠한 조각의 수가 모두 같은 배만큼 늘어난다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{3}$의 각 조각을 $4$개씩 나누면 $12$조각 중 $4$조각이 된다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "통분은 각 분수의 분모와 분자에 $0$이 아닌 {같은} 수를 {곱하는} 것이므로 분수의 크기는 변하지 않는다.",
+        "acceptedAnswers": [
+          [
+            "같은",
+            "똑같은"
+          ],
+          [
+            "곱하는",
+            "곱한"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "08bf1357e658404bb508eb3aae5a4ac30126dd8ba1da0032b883bafc47a22957",
+      "questionRevision": "planning-e5e6-20261006-08bf1357e658",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-3-xc20",
+      "bDecision": "revise",
+      "bPrompt": "어떤 수를 공통분모로 하여 두 분수를 통분할 수 있는지 알아보려면 그 수와 두 분모 사이의 무엇을 확인해야 하는지 쓰고, $\\frac{1}{4}$과 $\\frac{1}{6}$을 $18$을 공통분모로 하여 통분할 수 있는지 판단하시오.",
+      "bAnswer": "그 수가 두 분모의 공배수인지(두 분모 각각의 배수인지) 확인한다. $18$은 $6$의 배수이지만 $4$의 배수가 아니므로 통분할 수 없다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "그 수가 두 분모의 공배수인지 확인한다",
+            "그 수가 두 분모 각각의 배수인지 확인한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$18$은 $4$의 배수가 아니므로 통분할 수 없다"
+          ]
+        }
+      ],
+      "bGoal": "주어진 수가 공통분모가 될 수 있는지 공배수로 판단한다.",
+      "bReason": "원문 예의 판단 문제를 살리고 확인할 관계를 먼저 말하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$18$은 $6$의 배수이지만 $4$의 {배수}가 아니므로 $4$와 $6$의 {공배수}가 아니고, $\\frac{1}{4}$과 $\\frac{1}{6}$의 공통분모가 될 수 {없다}.",
+      "cReason": "'두 분모의 공배수' 구절 대신 실제 수로 배수 여부를 따져 결론까지 답하게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "application",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "배수"
+          ]
+        },
+        {
+          "anyOf": [
+            "공배수"
+          ]
+        },
+        {
+          "anyOf": [
+            "없다",
+            "없습니다"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-014-rubric.json",
+      "sourceIndex": 767,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-3-xc20",
+        "section": "초5::1-4 약분과 통분::1-4-3 통분",
+        "term": "주어진 공통분모 확인하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "공통분모가 주어지면 그 수가 {두 분모의 공배수}인지 먼저 확인한다.",
+        "example": {
+          "prompt": "$\\frac{1}{4}$과 $\\frac{1}{6}$을 공통분모 $18$로 통분할 수 있는가?",
+          "answer": "없다"
+        },
+        "studentC": "공통분모가 주어지면 그 수가 □인지 먼저 확인한다.",
+        "answers": [
+          "두 분모의 공배수"
+        ]
+      },
+      "sourceFingerprint": "ad5d195d05f1255afee043529e4e118fac24058e6a30fc7cc92c4d76e7ecab87",
+      "draftEvidence": "evidence/section-014-draft.json",
+      "cProposedAnswers": [
+        "배수",
+        "공배수",
+        "없다"
+      ],
+      "cStudentAfter": "$18$은 $6$의 배수이지만 $4$의 □가 아니므로 $4$와 $6$의 □가 아니고, $\\frac{1}{4}$과 $\\frac{1}{6}$의 공통분모가 될 수 □.",
+      "cMarkedSentence": "$18$은 $6$의 배수이지만 $4$의 {배수}가 아니므로 $4$와 $6$의 {공배수}가 아니고, $\\frac{1}{4}$과 $\\frac{1}{6}$의 공통분모가 될 수 {없다}.",
+      "cStudentSentence": "$18$은 $6$의 배수이지만 $4$의 □가 아니므로 $4$와 $6$의 □가 아니고, $\\frac{1}{4}$과 $\\frac{1}{6}$의 공통분모가 될 수 □.",
+      "cSlotAnswers": [
+        {
+          "key": "배수",
+          "equivalents": []
+        },
+        {
+          "key": "공배수",
+          "equivalents": []
+        },
+        {
+          "key": "없다",
+          "equivalents": [
+            "없습니다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 수를 공통분모로 하여 두 분수를 통분할 수 있는지 알아보려면 그 수와 두 분모 사이의 무엇을 확인해야 하는지 쓰고, $\\frac{1}{4}$과 $\\frac{1}{6}$을 $18$을 공통분모로 하여 통분할 수 있는지 판단하시오.",
+        "answer": "그 수가 두 분모의 공배수인지(두 분모 각각의 배수인지) 확인한다. $18$은 $6$의 배수이지만 $4$의 배수가 아니므로 통분할 수 없다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "그 수가 두 분모의 공배수인지 확인한다",
+              "그 수가 두 분모 각각의 배수인지 확인한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$18$은 $4$의 배수가 아니므로 통분할 수 없다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$18$은 $6$의 배수이지만 $4$의 {배수}가 아니므로 $4$와 $6$의 {공배수}가 아니고, $\\frac{1}{4}$과 $\\frac{1}{6}$의 공통분모가 될 수 {없다}.",
+        "acceptedAnswers": [
+          [
+            "배수"
+          ],
+          [
+            "공배수"
+          ],
+          [
+            "없다",
+            "없습니다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7c790177c58013274fa18a30f6eecabcdaa65bb0b5b4fb8ce4f408b1ed84d1eb",
+      "questionRevision": "planning-e5e6-20261006-7c790177c580",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-3-xc21",
+      "bDecision": "revise",
+      "bPrompt": "두 분수의 공통분모가 될 수 있는 수들은 두 분모의 최소공배수와 어떤 관계인지 쓰고, 이를 이용해 $\\frac{1}{6}$과 $\\frac{3}{8}$의 공통분모 중 $50$에 가장 가까운 수를 구하시오.",
+      "bAnswer": "공통분모가 될 수 있는 수는 두 분모의 공배수이고, 공배수는 최소공배수의 배수이다. $6$과 $8$의 최소공배수는 $24$이고 그 배수는 $24$, $48$, $72$, …이므로 $50$에 가장 가까운 수는 $48$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "공통분모가 될 수 있는 수는 두 분모의 최소공배수의 배수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$48$"
+          ]
+        }
+      ],
+      "bGoal": "공통분모가 최소공배수의 배수임을 이용해 조건에 맞는 공통분모를 찾는다.",
+      "bReason": "'거듭 더해 가며'라는 요령 대신 최소공배수의 배수라는 관계를 말하게 했다.",
+      "studentLabel": "조건에 맞는 공통분모 찾기",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{1}{6}$과 $\\frac{3}{8}$의 공통분모는 두 분모의 최소공배수 {$24$}의 {배수}이다. 공통분모로 쓸 수 있는 수 중 $50$에 가장 가까운 수는 {$48$}이다.",
+      "cReason": "첫 초안은 첫 빈칸의 답 $24$을 바로 뒤 공통분모 목록에 직접 드러냈다. 그 목록을 제거하고 최소공배수와 가까운 공통분모를 직접 구하게 한다.",
+      "exampleNeeded": false,
+      "learningRole": "application",
+      "rubricEvidence": "evidence/section-014-rubric.json",
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$24$"
+          ]
+        },
+        {
+          "anyOf": [
+            "배수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$48$"
+          ]
+        }
+      ],
+      "codexReview": "실제 원문 및 첫 제안 학생 지면을 직접 읽은 뒤 정답 복사와 구체적 조건을 개별 교정함.",
+      "sourceIndex": 768,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-3-xc21",
+        "section": "초5::1-4 약분과 통분::1-4-3 통분",
+        "term": "범위 안의 공통분모",
+        "kind": "방법",
+        "level": "상",
+        "definition": "어느 범위 안의 공통분모는 최소공배수를 {거듭 더해 가며} 찾는다.",
+        "example": {
+          "prompt": "$\\frac{1}{6}$과 $\\frac{3}{8}$의 공통분모 중 $50$에 가장 가까운 수는?",
+          "answer": "$48$"
+        },
+        "studentC": "어느 범위 안의 공통분모는 최소공배수를 □ 찾는다.",
+        "answers": [
+          "거듭 더해 가며"
+        ]
+      },
+      "sourceFingerprint": "e9775b7144693d7c0a7494bab532b28d40a3703148335336ccf807c64ca44fe3",
+      "draftEvidence": "evidence/section-014-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$24$",
+        "배수",
+        "$48$"
+      ],
+      "cStudentAfter": "$\\frac{1}{6}$과 $\\frac{3}{8}$의 공통분모는 두 분모의 최소공배수 □의 □이다. 공통분모로 쓸 수 있는 수 중 $50$에 가장 가까운 수는 □이다.",
+      "cMarkedSentence": "$\\frac{1}{6}$과 $\\frac{3}{8}$의 공통분모는 두 분모의 최소공배수 {$24$}의 {배수}이다. 공통분모로 쓸 수 있는 수 중 $50$에 가장 가까운 수는 {$48$}이다.",
+      "cStudentSentence": "$\\frac{1}{6}$과 $\\frac{3}{8}$의 공통분모는 두 분모의 최소공배수 □의 □이다. 공통분모로 쓸 수 있는 수 중 $50$에 가장 가까운 수는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$24$",
+          "equivalents": []
+        },
+        {
+          "key": "배수",
+          "equivalents": []
+        },
+        {
+          "key": "$48$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 분수의 공통분모가 될 수 있는 수들은 두 분모의 최소공배수와 어떤 관계인지 쓰고, 이를 이용해 $\\frac{1}{6}$과 $\\frac{3}{8}$의 공통분모 중 $50$에 가장 가까운 수를 구하시오.",
+        "answer": "공통분모가 될 수 있는 수는 두 분모의 공배수이고, 공배수는 최소공배수의 배수이다. $6$과 $8$의 최소공배수는 $24$이고 그 배수는 $24$, $48$, $72$, …이므로 $50$에 가장 가까운 수는 $48$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "공통분모가 될 수 있는 수는 두 분모의 최소공배수의 배수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$48$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{1}{6}$과 $\\frac{3}{8}$의 공통분모는 두 분모의 최소공배수 {$24$}의 {배수}이다. 공통분모로 쓸 수 있는 수 중 $50$에 가장 가까운 수는 {$48$}이다.",
+        "acceptedAnswers": [
+          [
+            "$24$"
+          ],
+          [
+            "배수"
+          ],
+          [
+            "$48$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "2c66a81e98ceefdf66ddd7474f1609ff130faa9b19eaa5b9a04a24c20ea5f7c8",
+      "questionRevision": "planning-e5e6-20261006-2c66a81e98ce",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-3-xc22",
+      "bDecision": "revise",
+      "bPrompt": "통분하기 전의 두 분수가 모두 기약분수였다는 것을 알 때, 통분한 분수에서 처음 분수를 찾는 방법을 쓰고, 통분한 결과가 $\\frac{9}{12}$, $\\frac{10}{12}$일 때 처음 두 분수를 구하시오.",
+      "bAnswer": "통분한 각 분수를 더 이상 약분되지 않을 때까지(분모와 분자의 최대공약수로) 약분한다. $\\frac{9}{12}=\\frac{3}{4}$, $\\frac{10}{12}=\\frac{5}{6}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "통분한 각 분수를 기약분수가 될 때까지 약분한다",
+            "더 이상 약분되지 않을 때까지 약분한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{4}$, $\\frac{5}{6}$"
+          ]
+        }
+      ],
+      "bGoal": "통분한 분수를 기약분수로 약분해 처음 분수를 되찾는다.",
+      "bReason": "처음 분수가 기약분수라는 조건을 질문에 밝혀 답이 하나로 정해지게 했다.",
+      "cDecision": "revise",
+      "cAfter": "통분한 결과가 $\\frac{9}{12}$, $\\frac{10}{12}$이고 통분하기 전의 두 분수가 모두 기약분수였다면, 각 분수를 더 이상 약분되지 않을 때까지 약분하여 처음 분수 $4$분의 {$3$}과 $6$분의 {$5$}를 찾을 수 있다.",
+      "cReason": "'기약분수가 될 때까지 약분하면'이라는 긴 구절 대신 실제로 약분한 결과를 답하게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "procedure",
+      "rubricEvidence": "evidence/section-014-rubric.json",
+      "sourceIndex": 769,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-3-xc22",
+        "section": "초5::1-4 약분과 통분::1-4-3 통분",
+        "term": "통분하기 전 분수 찾기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "처음 분수가 기약분수였다면 통분한 분수를 {기약분수가 될 때까지 약분하면} 통분하기 전의 분수를 알 수 있다.",
+        "example": {
+          "prompt": "통분한 결과가 $\\frac{9}{12}$, $\\frac{10}{12}$일 때 처음 두 기약분수는?",
+          "answer": "$\\frac{3}{4},\\ \\frac{5}{6}$"
+        },
+        "studentC": "처음 분수가 기약분수였다면 통분한 분수를 □ 통분하기 전의 분수를 알 수 있다.",
+        "answers": [
+          "기약분수가 될 때까지 약분하면"
+        ]
+      },
+      "sourceFingerprint": "b58d3786ed9c77be250c6ddeae4c763562ec39100dcffb92a16fea1f155bf1f0",
+      "draftEvidence": "evidence/section-014-draft.json",
+      "cProposedAnswers": [
+        "$3$",
+        "$5$"
+      ],
+      "cStudentAfter": "통분한 결과가 $\\frac{9}{12}$, $\\frac{10}{12}$이고 통분하기 전의 두 분수가 모두 기약분수였다면, 각 분수를 더 이상 약분되지 않을 때까지 약분하여 처음 분수 $4$분의 □과 $6$분의 □를 찾을 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "통분한 결과가 $\\frac{9}{12}$, $\\frac{10}{12}$이고 통분하기 전의 두 분수가 모두 기약분수였다면, 각 분수를 더 이상 약분되지 않을 때까지 약분하여 처음 분수 $4$분의 {$3$}과 $6$분의 {$5$}를 찾을 수 있다.",
+      "cStudentSentence": "통분한 결과가 $\\frac{9}{12}$, $\\frac{10}{12}$이고 통분하기 전의 두 분수가 모두 기약분수였다면, 각 분수를 더 이상 약분되지 않을 때까지 약분하여 처음 분수 $4$분의 □과 $6$분의 □를 찾을 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$5$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "통분하기 전의 두 분수가 모두 기약분수였다는 것을 알 때, 통분한 분수에서 처음 분수를 찾는 방법을 쓰고, 통분한 결과가 $\\frac{9}{12}$, $\\frac{10}{12}$일 때 처음 두 분수를 구하시오.",
+        "answer": "통분한 각 분수를 더 이상 약분되지 않을 때까지(분모와 분자의 최대공약수로) 약분한다. $\\frac{9}{12}=\\frac{3}{4}$, $\\frac{10}{12}=\\frac{5}{6}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "통분한 각 분수를 기약분수가 될 때까지 약분한다",
+              "더 이상 약분되지 않을 때까지 약분한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{3}{4}$, $\\frac{5}{6}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "통분한 결과가 $\\frac{9}{12}$, $\\frac{10}{12}$이고 통분하기 전의 두 분수가 모두 기약분수였다면, 각 분수를 더 이상 약분되지 않을 때까지 약분하여 처음 분수 $4$분의 {$3$}과 $6$분의 {$5$}를 찾을 수 있다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "$5$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7e36d25e92328e76003d9c24c74ca44d16555116713a416cfc02cf4323e1158d",
+      "questionRevision": "planning-e5e6-20261006-7e36d25e9232",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-3-xc23",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "두 분모에 1보다 큰 공약수가 있으면 최소공배수가 곱보다 작다는 성질이다.",
+      "bReason": "xc10의 B가 같은 판단을 하게 한다.",
+      "cDecision": "revise",
+      "cAfter": "$4$와 $6$에는 $1$보다 큰 공약수 {$2$}가 있으므로 $4$와 $6$의 최소공배수 {$12$}는 두 수의 곱 $24$보다 {작다}.",
+      "cReason": "원문 빈칸은 곱보다 작은 다른 공배수도 답이 될 수 있어 공약수와 최소공배수의 실제 값으로 바꿨다.",
+      "exclusionReason": "B 제외: xc10과 중복된다.",
+      "exampleNeeded": false,
+      "learningRole": "reason",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "작다",
+            "더 작다"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-014-rubric.json",
+      "sourceIndex": 770,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-3-xc23",
+        "section": "초5::1-4 약분과 통분::1-4-3 통분",
+        "term": "분모의 곱보다 작은 공통분모",
+        "kind": "성질",
+        "level": "상",
+        "definition": "두 분모에 $1$보다 큰 공약수가 있으면 분모의 곱보다 작은 {최소공배수}를 공통분모로 쓸 수 있다.",
+        "example": {
+          "prompt": "$\\frac{1}{4}$과 $\\frac{1}{6}$을 $24$보다 작은 $12$로 통분할 수 있는 까닭은?",
+          "answer": "$12$가 $4$와 $6$의 공배수라서"
+        },
+        "studentC": "두 분모에 $1$보다 큰 공약수가 있으면 분모의 곱보다 작은 □를 공통분모로 쓸 수 있다.",
+        "answers": [
+          "최소공배수"
+        ]
+      },
+      "sourceFingerprint": "55f10c7b448f34956d0c34c040a3e6576ed3bf977c25b0e709524faafabc9cf3",
+      "draftEvidence": "evidence/section-014-draft.json",
+      "cProposedAnswers": [
+        "$2$",
+        "$12$",
+        "작다"
+      ],
+      "cStudentAfter": "$4$와 $6$에는 $1$보다 큰 공약수 □가 있으므로 $4$와 $6$의 최소공배수 □는 두 수의 곱 $24$보다 □.",
+      "cMarkedSentence": "$4$와 $6$에는 $1$보다 큰 공약수 {$2$}가 있으므로 $4$와 $6$의 최소공배수 {$12$}는 두 수의 곱 $24$보다 {작다}.",
+      "cStudentSentence": "$4$와 $6$에는 $1$보다 큰 공약수 □가 있으므로 $4$와 $6$의 최소공배수 □는 두 수의 곱 $24$보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "$12$",
+          "equivalents": []
+        },
+        {
+          "key": "작다",
+          "equivalents": [
+            "더 작다"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$4$와 $6$에는 $1$보다 큰 공약수 {$2$}가 있으므로 $4$와 $6$의 최소공배수 {$12$}는 두 수의 곱 $24$보다 {작다}.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "$12$"
+          ],
+          [
+            "작다",
+            "더 작다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 제외: xc10과 중복된다."
+      },
+      "proposalFingerprint": "d420c767714b773e822f3eeda593b7c5625200dc33d6f2640f83af4dc7a40bfc",
+      "questionRevision": "planning-e5e6-20261006-d420c767714b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-3-xc24",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "길이처럼 단위가 같은 두 양도 통분해 비교한다는 활용이다.",
+      "bReason": "통분 후 분자 비교는 xc17과 중복된다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{1}{2}\\,\\mathrm{m}$와 $\\frac{2}{5}\\,\\mathrm{m}$를 공통분모 $10$으로 통분하면 $10$분의 {$5$} $\\mathrm{m}$와 $10$분의 {$4$} $\\mathrm{m}$이므로 $\\frac{1}{2}\\,\\mathrm{m}$가 더 {길다}.",
+      "cReason": "'단위가 같은 두 양'은 추상적인 구절이라 실제 길이를 통분해 비교하게 했다.",
+      "exclusionReason": "B 제외: xc17과 중복된다.",
+      "exampleNeeded": false,
+      "synonymNotes": "길다=크다 인정.",
+      "learningRole": "application",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "길다",
+            "크다"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-014-rubric.json",
+      "sourceIndex": 771,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-3-xc24",
+        "section": "초5::1-4 약분과 통분::1-4-3 통분",
+        "term": "길이를 견줄 때의 통분",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$\\frac{1}{2}\\,\\mathrm{m}$와 $\\frac{2}{5}\\,\\mathrm{m}$처럼 {단위가 같은 두 양}을 견줄 때도 통분을 쓴다.",
+        "studentC": "$\\frac{1}{2}\\,\\mathrm{m}$와 $\\frac{2}{5}\\,\\mathrm{m}$처럼 □을 견줄 때도 통분을 쓴다.",
+        "answers": [
+          "단위가 같은 두 양"
+        ]
+      },
+      "sourceFingerprint": "199ee50fee54096d2f8c74b0fd5733ed9e7cb74428930073e946494da5064f51",
+      "draftEvidence": "evidence/section-014-draft.json",
+      "cProposedAnswers": [
+        "$5$",
+        "$4$",
+        "길다"
+      ],
+      "cStudentAfter": "$\\frac{1}{2}\\,\\mathrm{m}$와 $\\frac{2}{5}\\,\\mathrm{m}$를 공통분모 $10$으로 통분하면 $10$분의 □ $\\mathrm{m}$와 $10$분의 □ $\\mathrm{m}$이므로 $\\frac{1}{2}\\,\\mathrm{m}$가 더 □.",
+      "cMarkedSentence": "$\\frac{1}{2}\\,\\mathrm{m}$와 $\\frac{2}{5}\\,\\mathrm{m}$를 공통분모 $10$으로 통분하면 $10$분의 {$5$} $\\mathrm{m}$와 $10$분의 {$4$} $\\mathrm{m}$이므로 $\\frac{1}{2}\\,\\mathrm{m}$가 더 {길다}.",
+      "cStudentSentence": "$\\frac{1}{2}\\,\\mathrm{m}$와 $\\frac{2}{5}\\,\\mathrm{m}$를 공통분모 $10$으로 통분하면 $10$분의 □ $\\mathrm{m}$와 $10$분의 □ $\\mathrm{m}$이므로 $\\frac{1}{2}\\,\\mathrm{m}$가 더 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$5$",
+          "equivalents": []
+        },
+        {
+          "key": "$4$",
+          "equivalents": []
+        },
+        {
+          "key": "길다",
+          "equivalents": [
+            "크다"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$\\frac{1}{2}\\,\\mathrm{m}$와 $\\frac{2}{5}\\,\\mathrm{m}$를 공통분모 $10$으로 통분하면 $10$분의 {$5$} $\\mathrm{m}$와 $10$분의 {$4$} $\\mathrm{m}$이므로 $\\frac{1}{2}\\,\\mathrm{m}$가 더 {길다}.",
+        "acceptedAnswers": [
+          [
+            "$5$"
+          ],
+          [
+            "$4$"
+          ],
+          [
+            "길다",
+            "크다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 제외: xc17과 중복된다."
+      },
+      "proposalFingerprint": "2926230eecfe9775290ccf7ed87f6cfcfc725ea8457ec8d5f9811dcb8cb4883d",
+      "questionRevision": "planning-e5e6-20261006-2926230eecfe",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-3-xc25",
+      "bDecision": "revise",
+      "bPrompt": "분모가 다른 두 분수가 얼마나 차이 나는지 알아보려면 통분한 다음 무엇을 계산하면 되는지 쓰고, $\\frac{2}{3}$와 $\\frac{3}{4}$의 차를 구하시오.",
+      "bAnswer": "통분하여 분모를 같게 한 다음 분자의 차를 구해 공통분모 위에 쓴다. $\\frac{8}{12}$과 $\\frac{9}{12}$이므로 차는 $\\frac{1}{12}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "통분한 뒤 분자의 차를 구하고 분모는 공통분모를 그대로 쓴다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{12}$"
+          ]
+        }
+      ],
+      "bGoal": "통분한 분자의 차와 공통분모로 두 분수의 차를 나타낸다.",
+      "bReason": "분자의 차만 답하고 끝나지 않도록 두 분수의 차를 분수로 구하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{2}{3}$와 $\\frac{3}{4}$을 공통분모 $12$로 통분하면 분자는 차례로 {$8$}, {$9$}이므로 두 분수의 차는 $12$분의 {$1$}이다.",
+      "cReason": "'두 분수가 얼마나 차이 나는지'라는 긴 구절 대신 통분한 분자와 실제 차를 답하게 했다.",
+      "exampleNeeded": false,
+      "coreAfter": "통분한 두 분수의 차를 분수로 나타낼 때, 분자에는 {분자의 차}를 쓰고 분모에는 {공통분모}를 쓴다.",
+      "coreReason": "분자의 차 자체가 두 분수의 차로 읽히지 않게 공통분모를 분모로 둔다고 밝혔다.",
+      "learningRole": "application",
+      "rubricEvidence": "evidence/section-014-rubric.json",
+      "editorialOwner": "Codex",
+      "coreTargetReason": "두 분수가 얼마나 차이 나는지라는 불명확한 긴 표적을 실제 차의 분자·분모 두 관계로 나눈다. 분자의 차 자체가 전체 분수의 차인 것처럼 읽히지 않게 한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 772,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-3-xc25",
+        "section": "초5::1-4 약분과 통분::1-4-3 통분",
+        "term": "통분한 분자의 차",
+        "kind": "방법",
+        "level": "상",
+        "definition": "통분한 두 분수의 분자의 차를 보면 {두 분수가 얼마나 차이 나는지} 알 수 있다.",
+        "example": {
+          "prompt": "$\\frac{2}{3}$와 $\\frac{3}{4}$을 $12$로 통분한 두 분자의 차는?",
+          "answer": "$1$"
+        },
+        "studentC": "통분한 두 분수의 분자의 차를 보면 □ 알 수 있다.",
+        "answers": [
+          "두 분수가 얼마나 차이 나는지"
+        ]
+      },
+      "sourceFingerprint": "8383654467247627c06e5dcc2fd79ea1a8713562225333a720b5d20ecf7960d4",
+      "draftEvidence": "evidence/section-014-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$8$",
+        "$9$",
+        "$1$"
+      ],
+      "cStudentAfter": "$\\frac{2}{3}$와 $\\frac{3}{4}$을 공통분모 $12$로 통분하면 분자는 차례로 □, □이므로 두 분수의 차는 $12$분의 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$8$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$9$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$\\frac{2}{3}$와 $\\frac{3}{4}$을 공통분모 $12$로 통분하면 분자는 차례로 {$8$}, {$9$}이므로 두 분수의 차는 $12$분의 {$1$}이다.",
+      "cStudentSentence": "$\\frac{2}{3}$와 $\\frac{3}{4}$을 공통분모 $12$로 통분하면 분자는 차례로 □, □이므로 두 분수의 차는 $12$분의 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$8$",
+          "equivalents": []
+        },
+        {
+          "key": "$9$",
+          "equivalents": []
+        },
+        {
+          "key": "$1$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "분모가 다른 두 분수가 얼마나 차이 나는지 알아보려면 통분한 다음 무엇을 계산하면 되는지 쓰고, $\\frac{2}{3}$와 $\\frac{3}{4}$의 차를 구하시오.",
+        "answer": "통분하여 분모를 같게 한 다음 분자의 차를 구해 공통분모 위에 쓴다. $\\frac{8}{12}$과 $\\frac{9}{12}$이므로 차는 $\\frac{1}{12}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "통분한 뒤 분자의 차를 구하고 분모는 공통분모를 그대로 쓴다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{12}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{2}{3}$와 $\\frac{3}{4}$을 공통분모 $12$로 통분하면 분자는 차례로 {$8$}, {$9$}이므로 두 분수의 차는 $12$분의 {$1$}이다.",
+        "acceptedAnswers": [
+          [
+            "$8$"
+          ],
+          [
+            "$9$"
+          ],
+          [
+            "$1$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "67dc4e16fd2034727c6f167028ea3b8ed203ec1bc125152e86f96fb5466c4eaf",
+      "questionRevision": "planning-e5e6-20261006-67dc4e16fd20",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-3-xc26",
+      "bDecision": "revise",
+      "bPrompt": "같은 두 분수를 서로 다른 공통분모로 통분하여 크기를 비교하면 어느 분수가 더 큰지가 달라지는지 쓰고, 그 까닭을 통분한 분수와 처음 분수의 크기 관계로 설명하시오. $\\frac{1}{2}$과 $\\frac{1}{3}$을 공통분모 $6$과 $12$로 각각 통분하여 확인하시오.",
+      "bAnswer": "달라지지 않는다. 어떤 공통분모로 통분해도 통분한 분수는 처음 분수와 크기가 같기 때문이다. $6$으로 통분하면 $\\frac{3}{6}>\\frac{2}{6}$, $12$로 통분하면 $\\frac{6}{12}>\\frac{4}{12}$로 두 경우 모두 $\\frac{1}{2}$이 더 크다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "어느 분수가 더 큰지는 달라지지 않는다",
+            "크기 비교 결과는 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "통분한 분수는 처음 분수와 크기가 같기 때문이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{6}>\\frac{2}{6}$, $\\frac{6}{12}>\\frac{4}{12}$이므로 모두 $\\frac{1}{2}$이 더 크다"
+          ]
+        }
+      ],
+      "bGoal": "공통분모를 달리해도 크기 비교 결과가 같음을 설명하고 확인한다.",
+      "bReason": "결론을 질문에 넣지 않고 달라지는지 판단하게 한 뒤 까닭의 관점을 지정했다.",
+      "studentLabel": "공통분모를 바꾸어 비교하기",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{1}{2}$과 $\\frac{1}{3}$을 공통분모 $6$으로 통분하면 $\\frac{3}{6}>\\frac{2}{6}$이고, 공통분모 $12$로 통분해도 $12$분의 {$6$}이 $12$분의 {$4$}보다 {크므로} 크기 차례는 바뀌지 않는다.",
+      "cReason": "문장 맨 앞의 조건 구절 빈칸은 맥락 없이 채우기 어려워 두 공통분모로 통분한 값을 비교하게 했다.",
+      "exampleNeeded": false,
+      "synonymNotes": "크므로=커서=크기 때문에 인정.",
+      "learningRole": "reason",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "크므로",
+            "커서",
+            "크기 때문에"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-014-rubric.json",
+      "sourceIndex": 773,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-3-xc26",
+        "section": "초5::1-4 약분과 통분::1-4-3 통분",
+        "term": "공통분모와 크기 차례",
+        "kind": "성질",
+        "level": "상",
+        "definition": "{공통분모를 크게 잡아도} 통분한 분수들의 크기 차례는 바뀌지 않는다.",
+        "studentC": "□ 통분한 분수들의 크기 차례는 바뀌지 않는다.",
+        "answers": [
+          "공통분모를 크게 잡아도"
+        ]
+      },
+      "sourceFingerprint": "ae0ab961b6781f11169a10503c40c1e2dc0ef1bafa810ef505eea0bf66dfbade",
+      "draftEvidence": "evidence/section-014-draft.json",
+      "cProposedAnswers": [
+        "$6$",
+        "$4$",
+        "크므로"
+      ],
+      "cStudentAfter": "$\\frac{1}{2}$과 $\\frac{1}{3}$을 공통분모 $6$으로 통분하면 $\\frac{3}{6}>\\frac{2}{6}$이고, 공통분모 $12$로 통분해도 $12$분의 □이 $12$분의 □보다 □ 크기 차례는 바뀌지 않는다.",
+      "cMarkedSentence": "$\\frac{1}{2}$과 $\\frac{1}{3}$을 공통분모 $6$으로 통분하면 $\\frac{3}{6}>\\frac{2}{6}$이고, 공통분모 $12$로 통분해도 $12$분의 {$6$}이 $12$분의 {$4$}보다 {크므로} 크기 차례는 바뀌지 않는다.",
+      "cStudentSentence": "$\\frac{1}{2}$과 $\\frac{1}{3}$을 공통분모 $6$으로 통분하면 $\\frac{3}{6}>\\frac{2}{6}$이고, 공통분모 $12$로 통분해도 $12$분의 □이 $12$분의 □보다 □ 크기 차례는 바뀌지 않는다.",
+      "cSlotAnswers": [
+        {
+          "key": "$6$",
+          "equivalents": []
+        },
+        {
+          "key": "$4$",
+          "equivalents": []
+        },
+        {
+          "key": "크므로",
+          "equivalents": [
+            "커서",
+            "크기 때문에"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "같은 두 분수를 서로 다른 공통분모로 통분하여 크기를 비교하면 어느 분수가 더 큰지가 달라지는지 쓰고, 그 까닭을 통분한 분수와 처음 분수의 크기 관계로 설명하시오. $\\frac{1}{2}$과 $\\frac{1}{3}$을 공통분모 $6$과 $12$로 각각 통분하여 확인하시오.",
+        "answer": "달라지지 않는다. 어떤 공통분모로 통분해도 통분한 분수는 처음 분수와 크기가 같기 때문이다. $6$으로 통분하면 $\\frac{3}{6}>\\frac{2}{6}$, $12$로 통분하면 $\\frac{6}{12}>\\frac{4}{12}$로 두 경우 모두 $\\frac{1}{2}$이 더 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "어느 분수가 더 큰지는 달라지지 않는다",
+              "크기 비교 결과는 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "통분한 분수는 처음 분수와 크기가 같기 때문이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{3}{6}>\\frac{2}{6}$, $\\frac{6}{12}>\\frac{4}{12}$이므로 모두 $\\frac{1}{2}$이 더 크다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{1}{2}$과 $\\frac{1}{3}$을 공통분모 $6$으로 통분하면 $\\frac{3}{6}>\\frac{2}{6}$이고, 공통분모 $12$로 통분해도 $12$분의 {$6$}이 $12$분의 {$4$}보다 {크므로} 크기 차례는 바뀌지 않는다.",
+        "acceptedAnswers": [
+          [
+            "$6$"
+          ],
+          [
+            "$4$"
+          ],
+          [
+            "크므로",
+            "커서",
+            "크기 때문에"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "8a4de76bfcd0f45de2614c4f0dcf86270bf38cabee6adab1b5bf30eea903d812",
+      "questionRevision": "planning-e5e6-20261006-8a4de76bfcd0",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-3-xc27",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{2}{5}$를 분모가 $15$인 분수로 통분하여 $\\frac{2}{15}$라고 썼다. 통분한 분수를 약분해 보는 방법으로 이 답이 틀린 까닭을 설명하고, 바르게 통분한 분수를 쓰시오.",
+      "bAnswer": "바르게 통분했다면 약분했을 때 처음 분수 $\\frac{2}{5}$가 나와야 하는데, $\\frac{2}{15}$는 $2$와 $15$의 공약수가 $1$뿐이라 더 약분되지 않고 $\\frac{2}{5}$가 아니므로 틀렸다. 분자에도 $3$을 곱한 $\\frac{6}{15}$이 바른 답이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{2}{15}$는 약분해도 $\\frac{2}{5}$가 되지 않는다",
+            "$2$와 $15$의 공약수는 $1$뿐이라 $\\frac{2}{5}$가 나오지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{6}{15}$"
+          ]
+        }
+      ],
+      "bGoal": "약분해서 처음 분수가 나오는지 보는 방법으로 통분의 잘못을 찾는다.",
+      "bReason": "xc11의 크기 비교와 겹치지 않게 약분으로 확인하는 방법을 지정했다.",
+      "studentLabel": "약분으로 통분 확인하기",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{2}{5}$를 분모가 $15$인 분수로 통분한 답은 분모와 분자를 {$3$}으로 나누었을 때 $\\frac{2}{5}$가 나와야 하므로, $\\frac{2}{15}$는 틀리고 $15$분의 {$6$}이 맞다.",
+      "cReason": "'같은 수로 나누어' 구절 대신 실제로 나눌 수와 바른 답을 구하게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "reason",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-014-rubric.json",
+      "sourceIndex": 774,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-3-xc27",
+        "section": "초5::1-4 약분과 통분::1-4-3 통분",
+        "term": "통분 잘못 찾기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "통분한 뒤 분모와 분자를 {같은 수로 나누어} 처음 분수가 나오는지 확인하면 잘못을 찾을 수 있다.",
+        "example": {
+          "prompt": "$\\frac{2}{5}$를 분모 $15$로 통분해 $\\frac{2}{15}$라 한 잘못은?",
+          "answer": "분자에 $3$을 곱하지 않았다"
+        },
+        "studentC": "통분한 뒤 분모와 분자를 □ 처음 분수가 나오는지 확인하면 잘못을 찾을 수 있다.",
+        "answers": [
+          "같은 수로 나누어"
+        ]
+      },
+      "sourceFingerprint": "dcec69cdff3b71b1393e905fa51d033a9c8822e87f49ef9b8463930e1548b4c2",
+      "draftEvidence": "evidence/section-014-draft.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "bAnswer",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cProposedAnswers": [
+        "$3$",
+        "$6$"
+      ],
+      "cStudentAfter": "$\\frac{2}{5}$를 분모가 $15$인 분수로 통분한 답은 분모와 분자를 □으로 나누었을 때 $\\frac{2}{5}$가 나와야 하므로, $\\frac{2}{15}$는 틀리고 $15$분의 □이 맞다.",
+      "cMarkedSentence": "$\\frac{2}{5}$를 분모가 $15$인 분수로 통분한 답은 분모와 분자를 {$3$}으로 나누었을 때 $\\frac{2}{5}$가 나와야 하므로, $\\frac{2}{15}$는 틀리고 $15$분의 {$6$}이 맞다.",
+      "cStudentSentence": "$\\frac{2}{5}$를 분모가 $15$인 분수로 통분한 답은 분모와 분자를 □으로 나누었을 때 $\\frac{2}{5}$가 나와야 하므로, $\\frac{2}{15}$는 틀리고 $15$분의 □이 맞다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$6$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{2}{5}$를 분모가 $15$인 분수로 통분하여 $\\frac{2}{15}$라고 썼다. 통분한 분수를 약분해 보는 방법으로 이 답이 틀린 까닭을 설명하고, 바르게 통분한 분수를 쓰시오.",
+        "answer": "바르게 통분했다면 약분했을 때 처음 분수 $\\frac{2}{5}$가 나와야 하는데, $\\frac{2}{15}$는 $2$와 $15$의 공약수가 $1$뿐이라 더 약분되지 않고 $\\frac{2}{5}$가 아니므로 틀렸다. 분자에도 $3$을 곱한 $\\frac{6}{15}$이 바른 답이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{2}{15}$는 약분해도 $\\frac{2}{5}$가 되지 않는다",
+              "$2$와 $15$의 공약수는 $1$뿐이라 $\\frac{2}{5}$가 나오지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{6}{15}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{2}{5}$를 분모가 $15$인 분수로 통분한 답은 분모와 분자를 {$3$}으로 나누었을 때 $\\frac{2}{5}$가 나와야 하므로, $\\frac{2}{15}$는 틀리고 $15$분의 {$6$}이 맞다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "$6$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e60f896ae34800307acec581af49819c50d0dea9ae3db867ae7cf94a993c01a4",
+      "questionRevision": "planning-e5e6-20261006-e60f896ae348",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-4-xc1",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "분모가 같은 분수는 분자만 비교함을 안다.",
+      "bReason": "c1과 같은 내용을 조건과 결론의 순서만 바꾼 문장이라 따로 서술형을 둘 가치가 없다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{3}{7}$과 $\\frac{5}{7}$는 {분모}가 같으므로 분자만 비교하면 되고, 더 큰 분수는 {$\\frac{5}{7}$}이다.",
+      "cReason": "'분모가 같은'이라는 구절 전체를 빈칸에 쓰게 하는 대신 실제 두 분수에서 낱말과 값을 답하게 했다.",
+      "exclusionReason": "B는 c1과 중복이다. 대체: e5-1-4-4-c1.",
+      "exampleNeeded": false,
+      "sourceIndex": 775,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-4-xc1",
+        "section": "초5::1-4 약분과 통분::1-4-4 분수의 크기 비교",
+        "term": "분자만 보는 비교",
+        "kind": "방법",
+        "level": "하",
+        "definition": "{분모가 같은} 두 분수는 조각의 크기가 같아 분자만 견주면 된다.",
+        "example": {
+          "prompt": "$\\frac{3}{7}$과 $\\frac{5}{7}$ 중 더 큰 분수는?",
+          "answer": "$\\frac{5}{7}$"
+        },
+        "studentC": "□ 두 분수는 조각의 크기가 같아 분자만 견주면 된다.",
+        "answers": [
+          "분모가 같은"
+        ]
+      },
+      "sourceFingerprint": "51ea31f702008aaa6d3da2751994a8797dfba0909ae707486be1d101ddc0f850",
+      "draftEvidence": "evidence/section-015-draft.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "cAfter",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cProposedAnswers": [
+        "분모",
+        "$\\frac{5}{7}$"
+      ],
+      "cStudentAfter": "$\\frac{3}{7}$과 $\\frac{5}{7}$는 □가 같으므로 분자만 비교하면 되고, 더 큰 분수는 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "분모"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{5}{7}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$\\frac{3}{7}$과 $\\frac{5}{7}$는 {분모}가 같으므로 분자만 비교하면 되고, 더 큰 분수는 {$\\frac{5}{7}$}이다.",
+      "cStudentSentence": "$\\frac{3}{7}$과 $\\frac{5}{7}$는 □가 같으므로 분자만 비교하면 되고, 더 큰 분수는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "분모",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{5}{7}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$\\frac{3}{7}$과 $\\frac{5}{7}$는 {분모}가 같으므로 분자만 비교하면 되고, 더 큰 분수는 {$\\frac{5}{7}$}이다.",
+        "acceptedAnswers": [
+          [
+            "분모"
+          ],
+          [
+            "$\\frac{5}{7}$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 c1과 중복이다. 대체: e5-1-4-4-c1."
+      },
+      "proposalFingerprint": "8811088494f2cf5f6745844936aaee7ec2964a77ffed1059a15293be34db0424",
+      "questionRevision": "planning-e5e6-20261006-8811088494f2",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-4-xc2",
+      "learningRole": "naming",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "크기 비교 결과를 부등호로 나타낸다.",
+      "bReason": "부등호는 이전 학년에서 이미 쓰는 기호라 설명형으로 물을 내용이 없다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{2}{9}$는 $\\frac{4}{9}$보다 작으므로 기호로 나타내면 $\\frac{2}{9}$ {$<$} $\\frac{4}{9}$이다.",
+      "cReason": "원문 빈칸은 기호 두 개를 나열하게 해 답이 불분명하므로 실제 비교에서 기호 하나를 쓰게 했다.",
+      "exclusionReason": "B는 사소한 표기 행동이라 제외한다. 기호 쓰기는 C에서 확인한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 776,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-4-xc2",
+        "section": "초5::1-4 약분과 통분::1-4-4 분수의 크기 비교",
+        "term": "크기 비교를 기호로",
+        "kind": "방법",
+        "level": "하",
+        "definition": "두 분수의 크기를 견준 결과는 {$>$, $<$} 같은 기호로 나타낸다.",
+        "example": {
+          "prompt": "$\\frac{2}{9}$ ( ) $\\frac{4}{9}$에 알맞은 기호는?",
+          "answer": "$<$"
+        },
+        "studentC": "두 분수의 크기를 견준 결과는 □ 같은 기호로 나타낸다.",
+        "answers": [
+          "$>$, $<$"
+        ]
+      },
+      "sourceFingerprint": "e95f842de7d06e2930fe4dd56de4dc8e801cca437d99deaebb470f5acd515f02",
+      "draftEvidence": "evidence/section-015-draft.json",
+      "cProposedAnswers": [
+        "$<$"
+      ],
+      "cStudentAfter": "$\\frac{2}{9}$는 $\\frac{4}{9}$보다 작으므로 기호로 나타내면 $\\frac{2}{9}$ □ $\\frac{4}{9}$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$<$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$\\frac{2}{9}$는 $\\frac{4}{9}$보다 작으므로 기호로 나타내면 $\\frac{2}{9}$ {$<$} $\\frac{4}{9}$이다.",
+      "cStudentSentence": "$\\frac{2}{9}$는 $\\frac{4}{9}$보다 작으므로 기호로 나타내면 $\\frac{2}{9}$ □ $\\frac{4}{9}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$<$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$\\frac{2}{9}$는 $\\frac{4}{9}$보다 작으므로 기호로 나타내면 $\\frac{2}{9}$ {$<$} $\\frac{4}{9}$이다.",
+        "acceptedAnswers": [
+          [
+            "$<$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 사소한 표기 행동이라 제외한다. 기호 쓰기는 C에서 확인한다."
+      },
+      "proposalFingerprint": "d19f9d6d4d1956fceed0a4f1e8cc13bdf9dc651cd104c73af5f721408894e950",
+      "questionRevision": "planning-e5e6-20261006-d19f9d6d4d19",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-4-xc3",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "분모를 같게 바꾸어 분자로 비교한다.",
+      "bReason": "c2의 통분 후 비교와 같은 절차를 다시 묻게 된다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{1}{2}$과 $\\frac{2}{5}$를 분모가 $10$인 분수로 바꾸면 $\\frac{5}{10}$와 {$\\frac{4}{10}$}이므로 더 큰 분수는 {$\\frac{1}{2}$}이다.",
+      "cReason": "'크기를 견줄'은 외울 이유가 없는 구절이어서 분모를 같게 바꾼 값과 비교 결과를 쓰게 했다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{4}{10}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{2}$",
+            "$\\frac{5}{10}$"
+          ]
+        }
+      ],
+      "exclusionReason": "B는 c2와 중복이다. 대체: e5-1-4-4-c2.",
+      "exampleNeeded": false,
+      "sourceIndex": 777,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-4-xc3",
+        "section": "초5::1-4 약분과 통분::1-4-4 분수의 크기 비교",
+        "term": "분모를 같게 바꾸고 견주기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "분모가 다른 분수는 분모를 같게 바꾸면 분자만으로 {크기를 견줄} 수 있다.",
+        "example": {
+          "prompt": "$\\frac{1}{2}$과 $\\frac{2}{5}$ 중 더 큰 분수는?",
+          "answer": "$\\frac{1}{2}$"
+        },
+        "studentC": "분모가 다른 분수는 분모를 같게 바꾸면 분자만으로 □ 수 있다.",
+        "answers": [
+          "크기를 견줄"
+        ]
+      },
+      "sourceFingerprint": "7d8ebde06e16d19b202e82674960958d374d72bc427c5b58fd27b0a3dae4d38a",
+      "draftEvidence": "evidence/section-015-draft.json",
+      "cProposedAnswers": [
+        "$\\frac{4}{10}$",
+        "$\\frac{1}{2}$"
+      ],
+      "cStudentAfter": "$\\frac{1}{2}$과 $\\frac{2}{5}$를 분모가 $10$인 분수로 바꾸면 $\\frac{5}{10}$와 □이므로 더 큰 분수는 □이다.",
+      "cMarkedSentence": "$\\frac{1}{2}$과 $\\frac{2}{5}$를 분모가 $10$인 분수로 바꾸면 $\\frac{5}{10}$와 {$\\frac{4}{10}$}이므로 더 큰 분수는 {$\\frac{1}{2}$}이다.",
+      "cStudentSentence": "$\\frac{1}{2}$과 $\\frac{2}{5}$를 분모가 $10$인 분수로 바꾸면 $\\frac{5}{10}$와 □이므로 더 큰 분수는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{4}{10}$",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{1}{2}$",
+          "equivalents": [
+            "$\\frac{5}{10}$"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$\\frac{1}{2}$과 $\\frac{2}{5}$를 분모가 $10$인 분수로 바꾸면 $\\frac{5}{10}$와 {$\\frac{4}{10}$}이므로 더 큰 분수는 {$\\frac{1}{2}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{4}{10}$"
+          ],
+          [
+            "$\\frac{1}{2}$",
+            "$\\frac{5}{10}$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 c2와 중복이다. 대체: e5-1-4-4-c2."
+      },
+      "proposalFingerprint": "41ef6eb8cf17df1efdf641ac0df61fe9b05057025120cb9592ce06c3c3dcb1de",
+      "questionRevision": "planning-e5e6-20261006-41ef6eb8cf17",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-4-xc4",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "단위분수 두 개의 크기를 비교할 때 분모가 큰 쪽과 작은 쪽 중 어느 쪽이 더 큰가요? 같은 전체를 똑같이 나누는 상황으로 까닭을 설명하세요.",
+      "bAnswer": "분모가 작은 단위분수가 더 크다. 같은 전체를 더 적은 수로 똑같이 나눌수록 한 조각이 더 크기 때문이다. 예를 들어 $\\frac{1}{3}$이 $\\frac{1}{8}$보다 크다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분모가 작은 단위분수가 더 크다",
+            "분모가 큰 단위분수가 더 작다"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은 전체를 적게 나눌수록 한 조각이 크다",
+            "같은 전체를 많이 나눌수록 한 조각이 작다"
+          ]
+        }
+      ],
+      "bGoal": "단위분수의 크기가 분모와 반대로 움직이는 까닭을 등분으로 설명한다.",
+      "bReason": "c3의 바탕이 되는 단위분수 이해라서 등분 상황으로 까닭을 묻는 별도 문항으로 두었다.",
+      "cDecision": "revise",
+      "cAfter": "단위분수는 분모가 {작을}수록 더 크다. 그래서 $\\frac{1}{3}$과 $\\frac{1}{8}$ 중 더 큰 분수는 {$\\frac{1}{3}$}이다.",
+      "cReason": "빈칸을 구절에서 방향 낱말 하나로 줄이고 예로 확인하게 했다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작을",
+            "작을수록"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{3}$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 778,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-4-xc4",
+        "section": "초5::1-4 약분과 통분::1-4-4 분수의 크기 비교",
+        "term": "단위분수끼리 견주기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "단위분수는 {분모가 작을수록} 더 크다.",
+        "example": {
+          "prompt": "$\\frac{1}{3}$과 $\\frac{1}{8}$ 중 더 큰 분수는?",
+          "answer": "$\\frac{1}{3}$"
+        },
+        "studentC": "단위분수는 □ 더 크다.",
+        "answers": [
+          "분모가 작을수록"
+        ]
+      },
+      "sourceFingerprint": "79f2ac43cb3d25be9115bc0a599326f992b3b370853e2d5729f734c8a2a181da",
+      "draftEvidence": "evidence/section-015-draft.json",
+      "cProposedAnswers": [
+        "작을",
+        "$\\frac{1}{3}$"
+      ],
+      "cStudentAfter": "단위분수는 분모가 □수록 더 크다. 그래서 $\\frac{1}{3}$과 $\\frac{1}{8}$ 중 더 큰 분수는 □이다.",
+      "cMarkedSentence": "단위분수는 분모가 {작을}수록 더 크다. 그래서 $\\frac{1}{3}$과 $\\frac{1}{8}$ 중 더 큰 분수는 {$\\frac{1}{3}$}이다.",
+      "cStudentSentence": "단위분수는 분모가 □수록 더 크다. 그래서 $\\frac{1}{3}$과 $\\frac{1}{8}$ 중 더 큰 분수는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "작을",
+          "equivalents": [
+            "작을수록"
+          ]
+        },
+        {
+          "key": "$\\frac{1}{3}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "단위분수 두 개의 크기를 비교할 때 분모가 큰 쪽과 작은 쪽 중 어느 쪽이 더 큰가요? 같은 전체를 똑같이 나누는 상황으로 까닭을 설명하세요.",
+        "answer": "분모가 작은 단위분수가 더 크다. 같은 전체를 더 적은 수로 똑같이 나눌수록 한 조각이 더 크기 때문이다. 예를 들어 $\\frac{1}{3}$이 $\\frac{1}{8}$보다 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분모가 작은 단위분수가 더 크다",
+              "분모가 큰 단위분수가 더 작다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 전체를 적게 나눌수록 한 조각이 크다",
+              "같은 전체를 많이 나눌수록 한 조각이 작다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "단위분수는 분모가 {작을}수록 더 크다. 그래서 $\\frac{1}{3}$과 $\\frac{1}{8}$ 중 더 큰 분수는 {$\\frac{1}{3}$}이다.",
+        "acceptedAnswers": [
+          [
+            "작을",
+            "작을수록"
+          ],
+          [
+            "$\\frac{1}{3}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a6ffba6e2bc9e2aff12448ab79d7bd77d20932163c70874379211ee8b478d894",
+      "questionRevision": "planning-e5e6-20261006-a6ffba6e2bc9",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-4-xc5",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{4}{8}$, $\\frac{5}{10}$처럼 분자가 분모의 절반인 분수는 모두 어떤 단위분수와 크기가 같은가요? 분모와 분자를 같은 수로 나누는 방법으로 까닭을 설명하세요.",
+      "bAnswer": "$\\frac{1}{2}$과 크기가 같다. 분모와 분자를 분자와 같은 수로 나누면 분자는 $1$, 분모는 $2$가 되기 때문이다. 예: $\\frac{4}{8}$는 $4$로 나누면 $\\frac{1}{2}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{1}{2}$과 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "분모와 분자를 분자로 나누면 $\\frac{1}{2}$이 된다",
+            "약분하면 $\\frac{1}{2}$이 된다",
+            "$\\frac{4}{8}$를 $4$로 약분하면 $\\frac{1}{2}$이다"
+          ]
+        }
+      ],
+      "bGoal": "분자가 분모의 절반인 분수가 $\\frac{1}{2}$과 같음을 약분으로 설명한다.",
+      "bReason": "값만 답하면 계산 하나가 되므로 약분으로 까닭을 말하게 했다.",
+      "cDecision": "keep",
+      "cAfter": "분자가 분모의 절반인 분수는 {$\\frac{1}{2}$}과 크기가 같다.",
+      "cReason": "분자와 분모의 관계가 문장에 분명하고 답이 $\\frac{1}{2}$ 하나로 정해진다.",
+      "exampleNeeded": false,
+      "sourceIndex": 779,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-4-xc5",
+        "section": "초5::1-4 약분과 통분::1-4-4 분수의 크기 비교",
+        "term": "절반과 같은 분수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "분자가 분모의 절반인 분수는 {$\\frac{1}{2}$}과 크기가 같다.",
+        "example": {
+          "prompt": "$\\frac{4}{8}$와 같은 크기의 단위분수는?",
+          "answer": "$\\frac{1}{2}$"
+        },
+        "studentC": "분자가 분모의 절반인 분수는 □과 크기가 같다.",
+        "answers": [
+          "$\\frac{1}{2}$"
+        ]
+      },
+      "sourceFingerprint": "53447bba92ff8596f55a0696852af5204f4eefb8155aedbb516a0000fd4ace76",
+      "draftEvidence": "evidence/section-015-draft.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "bAnswer",
+          "evidence": "notation-corrections.json"
+        },
+        {
+          "field": "bRequiredIdeas[1].anyOf[2]",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cFrozenDefinition": "분자가 분모의 절반인 분수는 {$\\frac{1}{2}$}과 크기가 같다.",
+      "cFrozenStudentSentence": "분자가 분모의 절반인 분수는 □과 크기가 같다.",
+      "cProposedAnswers": [
+        "$\\frac{1}{2}$"
+      ],
+      "cStudentAfter": "분자가 분모의 절반인 분수는 □과 크기가 같다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{1}{2}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "분자가 분모의 절반인 분수는 {$\\frac{1}{2}$}과 크기가 같다.",
+      "cStudentSentence": "분자가 분모의 절반인 분수는 □과 크기가 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{1}{2}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{4}{8}$, $\\frac{5}{10}$처럼 분자가 분모의 절반인 분수는 모두 어떤 단위분수와 크기가 같은가요? 분모와 분자를 같은 수로 나누는 방법으로 까닭을 설명하세요.",
+        "answer": "$\\frac{1}{2}$과 크기가 같다. 분모와 분자를 분자와 같은 수로 나누면 분자는 $1$, 분모는 $2$가 되기 때문이다. 예: $\\frac{4}{8}$는 $4$로 나누면 $\\frac{1}{2}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{1}{2}$과 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분모와 분자를 분자로 나누면 $\\frac{1}{2}$이 된다",
+              "약분하면 $\\frac{1}{2}$이 된다",
+              "$\\frac{4}{8}$를 $4$로 약분하면 $\\frac{1}{2}$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "분자가 분모의 절반인 분수는 {$\\frac{1}{2}$}과 크기가 같다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{1}{2}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "4b71bb638152c340de92ca97ec28029f5b8ccd8dc806a8ebacffcf20c6cdce52",
+      "questionRevision": "planning-e5e6-20261006-4b71bb638152",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-4-xc6",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "같은 크기의 그림에 색칠한 넓이로 분수의 크기를 비교한다.",
+      "bReason": "그림 없이 글로 물으면 '넓은 쪽이 크다'는 자명한 답만 남고, 같은 전체 조건은 xc23에서 다룬다.",
+      "cDecision": "revise",
+      "cAfter": "{같은} 크기의 그림 두 개에 두 분수만큼 각각 색칠했을 때, 색칠한 부분이 더 {넓은} 분수가 더 크다.",
+      "cReason": "긴 구절 빈칸을 줄이고 그림의 크기가 같아야 한다는 조건을 빈칸으로 확인하게 했다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같은",
+            "똑같은"
+          ]
+        },
+        {
+          "anyOf": [
+            "넓은",
+            "큰",
+            "많은"
+          ]
+        }
+      ],
+      "exclusionReason": "B는 그림 없이 자명한 문장이다. 같은 전체 조건은 e5-1-4-4-xc23에서 다룬다.",
+      "exampleNeeded": false,
+      "sourceIndex": 780,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-4-xc6",
+        "section": "초5::1-4 약분과 통분::1-4-4 분수의 크기 비교",
+        "term": "그림으로 크기 견주기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "같은 크기의 그림에 두 분수만큼 색칠하면 {색칠한 부분이 넓은} 분수가 더 크다.",
+        "studentC": "같은 크기의 그림에 두 분수만큼 색칠하면 □ 분수가 더 크다.",
+        "answers": [
+          "색칠한 부분이 넓은"
+        ]
+      },
+      "sourceFingerprint": "befe11c0fb3fbd4c33f341db1fb0dfa9e671e673479bc27cb9764b4c156c1df3",
+      "draftEvidence": "evidence/section-015-draft.json",
+      "cProposedAnswers": [
+        "같은",
+        "넓은"
+      ],
+      "cStudentAfter": "□ 크기의 그림 두 개에 두 분수만큼 각각 색칠했을 때, 색칠한 부분이 더 □ 분수가 더 크다.",
+      "cMarkedSentence": "{같은} 크기의 그림 두 개에 두 분수만큼 각각 색칠했을 때, 색칠한 부분이 더 {넓은} 분수가 더 크다.",
+      "cStudentSentence": "□ 크기의 그림 두 개에 두 분수만큼 각각 색칠했을 때, 색칠한 부분이 더 □ 분수가 더 크다.",
+      "cSlotAnswers": [
+        {
+          "key": "같은",
+          "equivalents": [
+            "똑같은"
+          ]
+        },
+        {
+          "key": "넓은",
+          "equivalents": [
+            "큰",
+            "많은"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "{같은} 크기의 그림 두 개에 두 분수만큼 각각 색칠했을 때, 색칠한 부분이 더 {넓은} 분수가 더 크다.",
+        "acceptedAnswers": [
+          [
+            "같은",
+            "똑같은"
+          ],
+          [
+            "넓은",
+            "큰",
+            "많은"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 그림 없이 자명한 문장이다. 같은 전체 조건은 e5-1-4-4-xc23에서 다룬다."
+      },
+      "proposalFingerprint": "951305412d59a0ad2e49652cf8661b22e938fac0d430e736a243d7f0077a6834",
+      "questionRevision": "planning-e5e6-20261006-951305412d59",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-4-xc7",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "오른쪽으로 갈수록 수가 커지는 수직선에 두 분수를 나타냈습니다. 두 분수의 위치를 보고 어느 분수가 더 큰지 어떻게 알 수 있나요?",
+      "bAnswer": "더 오른쪽에 있는 분수가 더 크다. 예를 들어 $\\frac{3}{4}$은 $\\frac{1}{4}$보다 오른쪽에 있으므로 더 크다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "오른쪽에 있는 분수가 더 크다",
+            "왼쪽에 있는 분수가 더 작다",
+            "$0$에서 더 멀리 있는 분수가 더 크다"
+          ]
+        }
+      ],
+      "bGoal": "수직선에서의 위치와 분수의 크기 관계를 말한다.",
+      "bReason": "수직선의 방향 조건을 질문에 넣고 위치와 크기의 관계만 짧게 묻도록 했다.",
+      "cDecision": "revise",
+      "cAfter": "수직선에서 $\\frac{3}{4}$은 $\\frac{1}{4}$보다 {오른쪽}에 있으므로 $\\frac{3}{4}$이 $\\frac{1}{4}$보다 더 {크다}.",
+      "cReason": "'오른쪽에 있는'이라는 구절 대신 방향 낱말과 비교 결과를 쓰게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 781,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-4-xc7",
+        "section": "초5::1-4 약분과 통분::1-4-4 분수의 크기 비교",
+        "term": "수직선에서 견주기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "수직선에서 {오른쪽에 있는} 분수가 더 크다.",
+        "example": {
+          "prompt": "수직선에서 $\\frac{3}{4}$과 $\\frac{1}{4}$ 중 오른쪽에 있는 수는?",
+          "answer": "$\\frac{3}{4}$"
+        },
+        "studentC": "수직선에서 □ 분수가 더 크다.",
+        "answers": [
+          "오른쪽에 있는"
+        ]
+      },
+      "sourceFingerprint": "a6314b8995dc4abe557a7b9daa7aebeacd11beef96dff5c85e5121e4013fe502",
+      "draftEvidence": "evidence/section-015-draft.json",
+      "cProposedAnswers": [
+        "오른쪽",
+        "크다"
+      ],
+      "cStudentAfter": "수직선에서 $\\frac{3}{4}$은 $\\frac{1}{4}$보다 □에 있으므로 $\\frac{3}{4}$이 $\\frac{1}{4}$보다 더 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "오른쪽"
+          ]
+        },
+        {
+          "anyOf": [
+            "크다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "수직선에서 $\\frac{3}{4}$은 $\\frac{1}{4}$보다 {오른쪽}에 있으므로 $\\frac{3}{4}$이 $\\frac{1}{4}$보다 더 {크다}.",
+      "cStudentSentence": "수직선에서 $\\frac{3}{4}$은 $\\frac{1}{4}$보다 □에 있으므로 $\\frac{3}{4}$이 $\\frac{1}{4}$보다 더 □.",
+      "cSlotAnswers": [
+        {
+          "key": "오른쪽",
+          "equivalents": []
+        },
+        {
+          "key": "크다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "오른쪽으로 갈수록 수가 커지는 수직선에 두 분수를 나타냈습니다. 두 분수의 위치를 보고 어느 분수가 더 큰지 어떻게 알 수 있나요?",
+        "answer": "더 오른쪽에 있는 분수가 더 크다. 예를 들어 $\\frac{3}{4}$은 $\\frac{1}{4}$보다 오른쪽에 있으므로 더 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "오른쪽에 있는 분수가 더 크다",
+              "왼쪽에 있는 분수가 더 작다",
+              "$0$에서 더 멀리 있는 분수가 더 크다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "수직선에서 $\\frac{3}{4}$은 $\\frac{1}{4}$보다 {오른쪽}에 있으므로 $\\frac{3}{4}$이 $\\frac{1}{4}$보다 더 {크다}.",
+        "acceptedAnswers": [
+          [
+            "오른쪽"
+          ],
+          [
+            "크다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "8ca974ed620492acdfdb888d535179109e21da5694b34b2523ba533bf2669c36",
+      "questionRevision": "planning-e5e6-20261006-8ca974ed6204",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-4-xc8",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "진분수는 $1$보다 큰가요, 작은가요? 분자와 분모의 크기 관계를 이용하여 까닭을 설명하세요.",
+      "bAnswer": "$1$보다 작다. $1$은 분자와 분모가 같은 분수인데, 진분수는 분자가 분모보다 작아서 전체에 못 미치기 때문이다. 예: $\\frac{9}{10}<\\frac{10}{10}=1$.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1$보다 작다"
+          ]
+        },
+        {
+          "anyOf": [
+            "분자가 분모보다 작다",
+            "분자와 분모가 같아야 $1$인데 분자가 더 작다"
+          ]
+        }
+      ],
+      "bGoal": "진분수가 $1$보다 작은 까닭을 분자와 분모의 관계로 설명한다.",
+      "bReason": "진분수의 뜻과 $1$의 크기를 연결하는 까닭을 묻도록 범위를 좁혔다.",
+      "cDecision": "keep",
+      "cAfter": "진분수는 분자가 분모보다 작아 언제나 {$1$보다 작다}.",
+      "cReason": "분자가 분모보다 작다는 근거가 문장에 있고 $1$과의 비교 결과를 짧게 쓰는 문장이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'1보다 작습니다', '1 미만이다'도 같은 뜻으로 인정.",
+      "sourceIndex": 782,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-4-xc8",
+        "section": "초5::1-4 약분과 통분::1-4-4 분수의 크기 비교",
+        "term": "진분수와 $1$",
+        "kind": "성질",
+        "level": "하",
+        "definition": "진분수는 분자가 분모보다 작아 언제나 {$1$보다 작다}.",
+        "example": {
+          "prompt": "$\\frac{9}{10}$와 $1$ 중 큰 수는?",
+          "answer": "$1$"
+        },
+        "studentC": "진분수는 분자가 분모보다 작아 언제나 □.",
+        "answers": [
+          "$1$보다 작다"
+        ]
+      },
+      "sourceFingerprint": "7910e8288b8ab17de8114a0dd1835270d720ca7459587505f8af18a34f735c97",
+      "draftEvidence": "evidence/section-015-draft.json",
+      "cFrozenDefinition": "진분수는 분자가 분모보다 작아 언제나 {$1$보다 작다}.",
+      "cFrozenStudentSentence": "진분수는 분자가 분모보다 작아 언제나 □.",
+      "cProposedAnswers": [
+        "$1$보다 작다"
+      ],
+      "cStudentAfter": "진분수는 분자가 분모보다 작아 언제나 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$보다 작다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "진분수는 분자가 분모보다 작아 언제나 {$1$보다 작다}.",
+      "cStudentSentence": "진분수는 분자가 분모보다 작아 언제나 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$보다 작다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "진분수는 $1$보다 큰가요, 작은가요? 분자와 분모의 크기 관계를 이용하여 까닭을 설명하세요.",
+        "answer": "$1$보다 작다. $1$은 분자와 분모가 같은 분수인데, 진분수는 분자가 분모보다 작아서 전체에 못 미치기 때문이다. 예: $\\frac{9}{10}<\\frac{10}{10}=1$.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$1$보다 작다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분자가 분모보다 작다",
+              "분자와 분모가 같아야 $1$인데 분자가 더 작다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "진분수는 분자가 분모보다 작아 언제나 {$1$보다 작다}.",
+        "acceptedAnswers": [
+          [
+            "$1$보다 작다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "bf28cafd88efad27310fcb79431521672517fd82bd6bfd15ed86f2dc5fc6b37c",
+      "questionRevision": "planning-e5e6-20261006-bf28cafd88ef",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-4-xc9",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "분자가 분모보다 큰 가분수는 $1$과 비교하면 어떠한가요? 또 분자와 분모가 같은 가분수는 $1$과 비교하면 어떠한가요? $\\frac{7}{5}$과 $\\frac{5}{5}$를 예로 들어 설명하세요.",
+      "bAnswer": "분자가 분모보다 큰 가분수는 $1$보다 크고, 분자와 분모가 같은 가분수는 $1$과 같다. $\\frac{5}{5}=1$이고 $\\frac{7}{5}$은 $\\frac{5}{5}$보다 $\\frac{2}{5}$만큼 더 크므로 $1$보다 크다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분자가 분모보다 크면 $1$보다 크다",
+            "$\\frac{7}{5}$은 $1$보다 크다"
+          ]
+        },
+        {
+          "anyOf": [
+            "분자와 분모가 같으면 $1$과 같다",
+            "$\\frac{5}{5}=1$"
+          ]
+        }
+      ],
+      "bGoal": "가분수 중 $1$보다 큰 경우와 $1$과 같은 경우를 구분한다.",
+      "bReason": "가분수에는 분자와 분모가 같은 경우도 있으므로 두 경우를 나누어 물었다.",
+      "cDecision": "keep",
+      "cAfter": "분자가 분모보다 큰 가분수는 {$1$보다 크다}.",
+      "cReason": "'분자가 분모보다 큰'이라는 조건이 있어 수학적으로 정확하고 답이 짧다.",
+      "exampleNeeded": false,
+      "sourceIndex": 783,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-4-xc9",
+        "section": "초5::1-4 약분과 통분::1-4-4 분수의 크기 비교",
+        "term": "가분수와 $1$",
+        "kind": "성질",
+        "level": "하",
+        "definition": "분자가 분모보다 큰 가분수는 {$1$보다 크다}.",
+        "example": {
+          "prompt": "$\\frac{7}{5}$과 $1$ 중 큰 수는?",
+          "answer": "$\\frac{7}{5}$"
+        },
+        "studentC": "분자가 분모보다 큰 가분수는 □.",
+        "answers": [
+          "$1$보다 크다"
+        ]
+      },
+      "sourceFingerprint": "8e26d62d3241320dc58ec2d72f8e09f65b89b383210d3316b4a70a9ac4404eca",
+      "draftEvidence": "evidence/section-015-draft.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "bPrompt",
+          "evidence": "notation-corrections.json"
+        },
+        {
+          "field": "bAnswer",
+          "evidence": "notation-corrections.json"
+        },
+        {
+          "field": "bRequiredIdeas[0].anyOf[1]",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cFrozenDefinition": "분자가 분모보다 큰 가분수는 {$1$보다 크다}.",
+      "cFrozenStudentSentence": "분자가 분모보다 큰 가분수는 □.",
+      "cProposedAnswers": [
+        "$1$보다 크다"
+      ],
+      "cStudentAfter": "분자가 분모보다 큰 가분수는 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$보다 크다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "분자가 분모보다 큰 가분수는 {$1$보다 크다}.",
+      "cStudentSentence": "분자가 분모보다 큰 가분수는 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$보다 크다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "분자가 분모보다 큰 가분수는 $1$과 비교하면 어떠한가요? 또 분자와 분모가 같은 가분수는 $1$과 비교하면 어떠한가요? $\\frac{7}{5}$과 $\\frac{5}{5}$를 예로 들어 설명하세요.",
+        "answer": "분자가 분모보다 큰 가분수는 $1$보다 크고, 분자와 분모가 같은 가분수는 $1$과 같다. $\\frac{5}{5}=1$이고 $\\frac{7}{5}$은 $\\frac{5}{5}$보다 $\\frac{2}{5}$만큼 더 크므로 $1$보다 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분자가 분모보다 크면 $1$보다 크다",
+              "$\\frac{7}{5}$은 $1$보다 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분자와 분모가 같으면 $1$과 같다",
+              "$\\frac{5}{5}=1$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "분자가 분모보다 큰 가분수는 {$1$보다 크다}.",
+        "acceptedAnswers": [
+          [
+            "$1$보다 크다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "dd8bec5b4e54a11ee167b372c7aff5aa05fa661f7d6bbdc6ac37803da2277d44",
+      "questionRevision": "planning-e5e6-20261006-dd8bec5b4e54",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-4-xc10",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "세 분수의 크기 차례를 정하는 두 가지 방법을 안다.",
+      "bReason": "세 분수의 차례 정하기는 xc27에서 실제 통분으로 다루므로 같은 서술형을 두 번 둘 필요가 없다.",
+      "cDecision": "revise",
+      "cAfter": "세 분수의 크기를 비교할 때는 {두} 개씩 차례로 비교하거나, 세 분수를 한꺼번에 {통분}하여 비교한다.",
+      "cReason": "두 방법을 각각 한 낱말로 확인하도록 빈칸을 나누었다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "두",
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "통분"
+          ]
+        }
+      ],
+      "exclusionReason": "B는 xc27과 중복이다. 대체: e5-1-4-4-xc27.",
+      "exampleNeeded": false,
+      "sourceIndex": 784,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-4-xc10",
+        "section": "초5::1-4 약분과 통분::1-4-4 분수의 크기 비교",
+        "term": "세 분수의 크기 차례",
+        "kind": "방법",
+        "level": "하",
+        "definition": "세 분수는 {두 개씩} 견주거나 한꺼번에 통분하여 크기 차례를 정한다.",
+        "example": {
+          "prompt": "$\\frac{1}{5}$, $\\frac{3}{5}$, $\\frac{2}{5}$를 작은 것부터 쓰시오.",
+          "answer": "$\\frac{1}{5},\\ \\frac{2}{5},\\ \\frac{3}{5}$"
+        },
+        "studentC": "세 분수는 □ 견주거나 한꺼번에 통분하여 크기 차례를 정한다.",
+        "answers": [
+          "두 개씩"
+        ]
+      },
+      "sourceFingerprint": "5093c4a321ad5398557bb3ecb4182a7b124d14c2207c500cbdd763303ad92d29",
+      "draftEvidence": "evidence/section-015-draft.json",
+      "cProposedAnswers": [
+        "두",
+        "통분"
+      ],
+      "cStudentAfter": "세 분수의 크기를 비교할 때는 □ 개씩 차례로 비교하거나, 세 분수를 한꺼번에 □하여 비교한다.",
+      "cMarkedSentence": "세 분수의 크기를 비교할 때는 {두} 개씩 차례로 비교하거나, 세 분수를 한꺼번에 {통분}하여 비교한다.",
+      "cStudentSentence": "세 분수의 크기를 비교할 때는 □ 개씩 차례로 비교하거나, 세 분수를 한꺼번에 □하여 비교한다.",
+      "cSlotAnswers": [
+        {
+          "key": "두",
+          "equivalents": [
+            "$2$"
+          ]
+        },
+        {
+          "key": "통분",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "세 분수의 크기를 비교할 때는 {두} 개씩 차례로 비교하거나, 세 분수를 한꺼번에 {통분}하여 비교한다.",
+        "acceptedAnswers": [
+          [
+            "두",
+            "$2$"
+          ],
+          [
+            "통분"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 xc27과 중복이다. 대체: e5-1-4-4-xc27."
+      },
+      "proposalFingerprint": "894d16617b012a29fa62402464d23fda2001d6529ad576ff090770467bafeac8",
+      "questionRevision": "planning-e5e6-20261006-894d16617b01",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-4-xc11",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "두 분수의 분모 대신 분자를 같게 만들어 크기를 비교할 수도 있습니다. 분자를 같게 만든 뒤에는 무엇을 보고 어느 쪽이 더 큰지 정하나요? 이 방법으로 $\\frac{2}{5}$와 $\\frac{4}{11}$의 크기를 비교하세요.",
+      "bAnswer": "분모를 비교하여 분모가 작은 분수가 더 크다고 정한다. $\\frac{2}{5}=\\frac{4}{10}$이고 $\\frac{4}{10}$가 $\\frac{4}{11}$보다 크므로 $\\frac{2}{5}$가 더 크다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분모가 작은 분수가 더 크다",
+            "분모가 큰 분수가 더 작다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{2}{5}$가 더 크다",
+            "$\\frac{4}{10}>\\frac{4}{11}$"
+          ]
+        }
+      ],
+      "bGoal": "분자를 같게 맞춘 뒤 분모로 크기를 판단하는 절차를 실행한다.",
+      "bReason": "분자를 맞춘다는 상황을 질문에 주고 판단 기준과 실제 비교를 묻도록 했다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{2}{5}$와 $\\frac{4}{11}$의 분자를 같게 하면 $\\frac{4}{10}$와 $\\frac{4}{11}$이다. 분자가 같을 때는 분모가 {작은} 분수가 더 크므로 더 큰 분수는 {$\\frac{2}{5}$}이다.",
+      "cReason": "원문은 무엇을 어떻게 같게 만드는지 드러나지 않아 실제 분수로 과정을 보여 주고 기준과 결과를 답하게 했다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작은"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{2}{5}$",
+            "$\\frac{4}{10}$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 785,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-4-xc11",
+        "section": "초5::1-4 약분과 통분::1-4-4 분수의 크기 비교",
+        "term": "분자를 같게 맞추어 견주기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "분자가 $0$이 아닌 두 분수는 분자를 같게 만들면 {분모가 작은} 분수가 더 크다.",
+        "example": {
+          "prompt": "$\\frac{2}{5}$와 $\\frac{4}{11}$ 중 더 큰 분수는?",
+          "answer": "$\\frac{2}{5}$"
+        },
+        "studentC": "분자가 $0$이 아닌 두 분수는 분자를 같게 만들면 □ 분수가 더 크다.",
+        "answers": [
+          "분모가 작은"
+        ]
+      },
+      "sourceFingerprint": "a936499241eb7095bbc99c389b3527c555dc1694ae5af46079a717b87e8c0038",
+      "draftEvidence": "evidence/section-015-draft.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "bAnswer",
+          "evidence": "notation-corrections.json"
+        },
+        {
+          "field": "cAfter",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cProposedAnswers": [
+        "작은",
+        "$\\frac{2}{5}$"
+      ],
+      "cStudentAfter": "$\\frac{2}{5}$와 $\\frac{4}{11}$의 분자를 같게 하면 $\\frac{4}{10}$와 $\\frac{4}{11}$이다. 분자가 같을 때는 분모가 □ 분수가 더 크므로 더 큰 분수는 □이다.",
+      "cMarkedSentence": "$\\frac{2}{5}$와 $\\frac{4}{11}$의 분자를 같게 하면 $\\frac{4}{10}$와 $\\frac{4}{11}$이다. 분자가 같을 때는 분모가 {작은} 분수가 더 크므로 더 큰 분수는 {$\\frac{2}{5}$}이다.",
+      "cStudentSentence": "$\\frac{2}{5}$와 $\\frac{4}{11}$의 분자를 같게 하면 $\\frac{4}{10}$와 $\\frac{4}{11}$이다. 분자가 같을 때는 분모가 □ 분수가 더 크므로 더 큰 분수는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "작은",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{2}{5}$",
+          "equivalents": [
+            "$\\frac{4}{10}$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 분수의 분모 대신 분자를 같게 만들어 크기를 비교할 수도 있습니다. 분자를 같게 만든 뒤에는 무엇을 보고 어느 쪽이 더 큰지 정하나요? 이 방법으로 $\\frac{2}{5}$와 $\\frac{4}{11}$의 크기를 비교하세요.",
+        "answer": "분모를 비교하여 분모가 작은 분수가 더 크다고 정한다. $\\frac{2}{5}=\\frac{4}{10}$이고 $\\frac{4}{10}$가 $\\frac{4}{11}$보다 크므로 $\\frac{2}{5}$가 더 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분모가 작은 분수가 더 크다",
+              "분모가 큰 분수가 더 작다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{2}{5}$가 더 크다",
+              "$\\frac{4}{10}>\\frac{4}{11}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{2}{5}$와 $\\frac{4}{11}$의 분자를 같게 하면 $\\frac{4}{10}$와 $\\frac{4}{11}$이다. 분자가 같을 때는 분모가 {작은} 분수가 더 크므로 더 큰 분수는 {$\\frac{2}{5}$}이다.",
+        "acceptedAnswers": [
+          [
+            "작은"
+          ],
+          [
+            "$\\frac{2}{5}$",
+            "$\\frac{4}{10}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "64ed6fb0c1405600ca7ef15176cffae18a0543ec5d8433cd8cdce46bd1d340f3",
+      "questionRevision": "planning-e5e6-20261006-64ed6fb0c140",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-4-xc12",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "한 분수는 $\\frac{1}{2}$보다 크고 다른 분수는 $\\frac{1}{2}$보다 작다는 것을 알면 두 분수의 크기를 어떻게 정할 수 있나요? $\\frac{3}{7}$과 $\\frac{5}{8}$를 각각 $\\frac{1}{2}$과 비교하여 더 큰 분수를 찾으세요.",
+      "bAnswer": "$\\frac{1}{2}$보다 큰 분수가 $\\frac{1}{2}$보다 작은 분수보다 크다. $7$의 절반은 $3.5$이므로 $\\frac{3}{7}$은 $\\frac{1}{2}$보다 작고, $8$의 절반은 $4$이므로 $\\frac{5}{8}$는 $\\frac{1}{2}$보다 크다. 따라서 $\\frac{5}{8}$가 더 크다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{1}{2}$보다 큰 분수가 더 크다",
+            "$\\frac{1}{2}$보다 작은 분수가 더 작다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{7}$은 $\\frac{1}{2}$보다 작고 $\\frac{5}{8}$는 $\\frac{1}{2}$보다 크다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{5}{8}$가 더 크다"
+          ]
+        }
+      ],
+      "bGoal": "$\\frac{1}{2}$을 기준으로 두 분수의 크기를 통분 없이 정한다.",
+      "bReason": "기준 수와의 비교가 두 분수의 대소로 이어지는 관계와 실제 적용을 묻도록 했다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{3}{7}$은 $\\frac{1}{2}$보다 {작고} $\\frac{5}{8}$는 $\\frac{1}{2}$보다 {크므로}, 통분하지 않아도 더 큰 분수는 {$\\frac{5}{8}$}임을 알 수 있다.",
+      "cReason": "'통분하지 않고도'는 개념의 핵심이 아닌 구절이어서 기준과의 비교 결과를 답하게 했다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작고",
+            "작으며"
+          ]
+        },
+        {
+          "anyOf": [
+            "크므로",
+            "크기 때문에"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{5}{8}$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 786,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-4-xc12",
+        "section": "초5::1-4 약분과 통분::1-4-4 분수의 크기 비교",
+        "term": "절반을 기준으로 견주기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "한 분수는 $\\frac{1}{2}$보다 크고 다른 분수는 작으면 {통분하지 않고도} 크기를 알 수 있다.",
+        "example": {
+          "prompt": "$\\frac{3}{7}$과 $\\frac{5}{8}$ 중 더 큰 분수는?",
+          "answer": "$\\frac{5}{8}$"
+        },
+        "studentC": "한 분수는 $\\frac{1}{2}$보다 크고 다른 분수는 작으면 □ 크기를 알 수 있다.",
+        "answers": [
+          "통분하지 않고도"
+        ]
+      },
+      "sourceFingerprint": "c6dee5e71e08ffd215caee6364638f6e321c7bbb9eff21375dae8f816c61601e",
+      "draftEvidence": "evidence/section-015-draft.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "bPrompt",
+          "evidence": "notation-corrections.json"
+        },
+        {
+          "field": "bAnswer",
+          "evidence": "notation-corrections.json"
+        },
+        {
+          "field": "bRequiredIdeas[1].anyOf[0]",
+          "evidence": "notation-corrections.json"
+        },
+        {
+          "field": "bRequiredIdeas[2].anyOf[0]",
+          "evidence": "notation-corrections.json"
+        },
+        {
+          "field": "cAfter",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cProposedAnswers": [
+        "작고",
+        "크므로",
+        "$\\frac{5}{8}$"
+      ],
+      "cStudentAfter": "$\\frac{3}{7}$은 $\\frac{1}{2}$보다 □ $\\frac{5}{8}$는 $\\frac{1}{2}$보다 □, 통분하지 않아도 더 큰 분수는 □임을 알 수 있다.",
+      "cMarkedSentence": "$\\frac{3}{7}$은 $\\frac{1}{2}$보다 {작고} $\\frac{5}{8}$는 $\\frac{1}{2}$보다 {크므로}, 통분하지 않아도 더 큰 분수는 {$\\frac{5}{8}$}임을 알 수 있다.",
+      "cStudentSentence": "$\\frac{3}{7}$은 $\\frac{1}{2}$보다 □ $\\frac{5}{8}$는 $\\frac{1}{2}$보다 □, 통분하지 않아도 더 큰 분수는 □임을 알 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "작고",
+          "equivalents": [
+            "작으며"
+          ]
+        },
+        {
+          "key": "크므로",
+          "equivalents": [
+            "크기 때문에"
+          ]
+        },
+        {
+          "key": "$\\frac{5}{8}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "한 분수는 $\\frac{1}{2}$보다 크고 다른 분수는 $\\frac{1}{2}$보다 작다는 것을 알면 두 분수의 크기를 어떻게 정할 수 있나요? $\\frac{3}{7}$과 $\\frac{5}{8}$를 각각 $\\frac{1}{2}$과 비교하여 더 큰 분수를 찾으세요.",
+        "answer": "$\\frac{1}{2}$보다 큰 분수가 $\\frac{1}{2}$보다 작은 분수보다 크다. $7$의 절반은 $3.5$이므로 $\\frac{3}{7}$은 $\\frac{1}{2}$보다 작고, $8$의 절반은 $4$이므로 $\\frac{5}{8}$는 $\\frac{1}{2}$보다 크다. 따라서 $\\frac{5}{8}$가 더 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{1}{2}$보다 큰 분수가 더 크다",
+              "$\\frac{1}{2}$보다 작은 분수가 더 작다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{3}{7}$은 $\\frac{1}{2}$보다 작고 $\\frac{5}{8}$는 $\\frac{1}{2}$보다 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{5}{8}$가 더 크다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{3}{7}$은 $\\frac{1}{2}$보다 {작고} $\\frac{5}{8}$는 $\\frac{1}{2}$보다 {크므로}, 통분하지 않아도 더 큰 분수는 {$\\frac{5}{8}$}임을 알 수 있다.",
+        "acceptedAnswers": [
+          [
+            "작고",
+            "작으며"
+          ],
+          [
+            "크므로",
+            "크기 때문에"
+          ],
+          [
+            "$\\frac{5}{8}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "12ddc516417f22849993a64cf0baa1900549a91c4e67d6a57713b6496f40194a",
+      "questionRevision": "planning-e5e6-20261006-12ddc516417f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-4-xc13",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "두 분수를 통분할 때 공통분모는 두 분모와 어떤 관계인 수여야 하나요? $\\frac{5}{6}$와 $\\frac{3}{4}$의 공통분모로 쓸 수 있는 수를 두 개 쓰세요.",
+      "bAnswer": "공통분모는 두 분모의 공배수여야 한다. $6$과 $4$의 공배수인 $12$(최소공배수)와 $24$(두 분모의 곱) 등을 쓸 수 있다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 분모의 공배수",
+            "두 분모 모두의 배수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$와 $24$",
+            "$12$의 배수 두 개(예: $12$, $36$)"
+          ]
+        }
+      ],
+      "bGoal": "공통분모가 두 분모의 공배수임을 알고 실제 수를 찾는다.",
+      "bReason": "곱과 최소공배수를 외우게 하지 않고 공통분모의 조건과 실제 수를 묻도록 했다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{5}{6}$와 $\\frac{3}{4}$을 통분할 때 공통분모로 두 분모의 곱인 {$24$}나 두 분모의 최소공배수인 {$12$}를 쓸 수 있다.",
+      "cReason": "원문 빈칸에는 '공배수'도 수학적으로 맞아 답이 하나로 정해지지 않으므로 실제 값을 쓰게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 787,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-4-xc13",
+        "section": "초5::1-4 약분과 통분::1-4-4 분수의 크기 비교",
+        "term": "비교할 때 쓰는 공통분모",
+        "kind": "방법",
+        "level": "중",
+        "definition": "크기를 견줄 때는 두 분모의 곱이나 {최소공배수}를 공통분모로 쓴다.",
+        "studentC": "크기를 견줄 때는 두 분모의 곱이나 □를 공통분모로 쓴다.",
+        "answers": [
+          "최소공배수"
+        ]
+      },
+      "sourceFingerprint": "98f6a1174631b5ca5b353360ccdbbea0c032fc22406ec03e277f42345adcf655",
+      "draftEvidence": "evidence/section-015-draft.json",
+      "cProposedAnswers": [
+        "$24$",
+        "$12$"
+      ],
+      "cStudentAfter": "$\\frac{5}{6}$와 $\\frac{3}{4}$을 통분할 때 공통분모로 두 분모의 곱인 □나 두 분모의 최소공배수인 □를 쓸 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$24$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$\\frac{5}{6}$와 $\\frac{3}{4}$을 통분할 때 공통분모로 두 분모의 곱인 {$24$}나 두 분모의 최소공배수인 {$12$}를 쓸 수 있다.",
+      "cStudentSentence": "$\\frac{5}{6}$와 $\\frac{3}{4}$을 통분할 때 공통분모로 두 분모의 곱인 □나 두 분모의 최소공배수인 □를 쓸 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "$24$",
+          "equivalents": []
+        },
+        {
+          "key": "$12$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 분수를 통분할 때 공통분모는 두 분모와 어떤 관계인 수여야 하나요? $\\frac{5}{6}$와 $\\frac{3}{4}$의 공통분모로 쓸 수 있는 수를 두 개 쓰세요.",
+        "answer": "공통분모는 두 분모의 공배수여야 한다. $6$과 $4$의 공배수인 $12$(최소공배수)와 $24$(두 분모의 곱) 등을 쓸 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 분모의 공배수",
+              "두 분모 모두의 배수"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12$와 $24$",
+              "$12$의 배수 두 개(예: $12$, $36$)"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{5}{6}$와 $\\frac{3}{4}$을 통분할 때 공통분모로 두 분모의 곱인 {$24$}나 두 분모의 최소공배수인 {$12$}를 쓸 수 있다.",
+        "acceptedAnswers": [
+          [
+            "$24$"
+          ],
+          [
+            "$12$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ae171a64873867e739078ce5a7a340b9b3f88fab654e539894bbfa17650bc0ff",
+      "questionRevision": "planning-e5e6-20261006-ae171a648738",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-4-xc14",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "두 분수 중 하나를 약분했을 때 어떤 경우에 통분하지 않고도 크기를 비교할 수 있나요? $\\frac{6}{8}$과 $\\frac{3}{4}$의 크기를 약분을 이용해 비교하세요.",
+      "bAnswer": "약분했더니 두 분수의 분모가 같아지거나 같은 분수가 되는 경우이다. $\\frac{6}{8}$을 $2$로 약분하면 $\\frac{3}{4}$이므로 두 분수의 크기는 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "약분하면 분모가 같아지는 경우",
+            "약분하면 같은 분수가 되는 경우",
+            "약분하면 바로 비교할 수 있는 모양이 되는 경우"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 분수의 크기가 같다",
+            "$\\frac{6}{8}=\\frac{3}{4}$"
+          ]
+        }
+      ],
+      "bGoal": "약분으로 분모가 같아지면 바로 비교할 수 있음을 안다.",
+      "bReason": "'~할 때가 있다'는 막연한 말을 어떤 경우인지와 실제 비교로 구체화했다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{6}{8}$을 약분하면 {$\\frac{3}{4}$}이므로 $\\frac{6}{8}$과 $\\frac{3}{4}$의 크기는 {같다}.",
+      "cReason": "'통분하지 않고'는 외울 구절이 아니므로 약분한 결과와 비교 결과를 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 788,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-4-xc14",
+        "section": "초5::1-4 약분과 통분::1-4-4 분수의 크기 비교",
+        "term": "약분하여 견주기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "분모가 큰 분수를 약분하면 {통분하지 않고} 견줄 수 있을 때가 있다.",
+        "example": {
+          "prompt": "$\\frac{6}{8}$과 $\\frac{3}{4}$의 크기를 견주면?",
+          "answer": "같다"
+        },
+        "studentC": "분모가 큰 분수를 약분하면 □ 견줄 수 있을 때가 있다.",
+        "answers": [
+          "통분하지 않고"
+        ]
+      },
+      "sourceFingerprint": "621037d8a890281e675c6b4409d55cc9e636b56a3a02bf9127373c2b1bab4d4a",
+      "draftEvidence": "evidence/section-015-draft.json",
+      "cProposedAnswers": [
+        "$\\frac{3}{4}$",
+        "같다"
+      ],
+      "cStudentAfter": "$\\frac{6}{8}$을 약분하면 □이므로 $\\frac{6}{8}$과 $\\frac{3}{4}$의 크기는 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{3}{4}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "같다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$\\frac{6}{8}$을 약분하면 {$\\frac{3}{4}$}이므로 $\\frac{6}{8}$과 $\\frac{3}{4}$의 크기는 {같다}.",
+      "cStudentSentence": "$\\frac{6}{8}$을 약분하면 □이므로 $\\frac{6}{8}$과 $\\frac{3}{4}$의 크기는 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{3}{4}$",
+          "equivalents": []
+        },
+        {
+          "key": "같다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 분수 중 하나를 약분했을 때 어떤 경우에 통분하지 않고도 크기를 비교할 수 있나요? $\\frac{6}{8}$과 $\\frac{3}{4}$의 크기를 약분을 이용해 비교하세요.",
+        "answer": "약분했더니 두 분수의 분모가 같아지거나 같은 분수가 되는 경우이다. $\\frac{6}{8}$을 $2$로 약분하면 $\\frac{3}{4}$이므로 두 분수의 크기는 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "약분하면 분모가 같아지는 경우",
+              "약분하면 같은 분수가 되는 경우",
+              "약분하면 바로 비교할 수 있는 모양이 되는 경우"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 분수의 크기가 같다",
+              "$\\frac{6}{8}=\\frac{3}{4}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{6}{8}$을 약분하면 {$\\frac{3}{4}$}이므로 $\\frac{6}{8}$과 $\\frac{3}{4}$의 크기는 {같다}.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{3}{4}$"
+          ],
+          [
+            "같다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "cfe48788cb8fbc6a488d530b335d2d9be0d7ecdafa8f478a539d8651c27a3b8b",
+      "questionRevision": "planning-e5e6-20261006-cfe48788cb8f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-4-xc15",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "분모가 다른 두 분수를 분자의 크기만 보고 비교하면 안 되는 까닭을 한 조각의 크기와 관련지어 설명하세요. 또 $\\frac{3}{8}$과 $\\frac{2}{3}$ 중 더 큰 분수를 쓰세요.",
+      "bAnswer": "분모가 다르면 한 조각의 크기가 달라서 조각 수(분자)만으로는 크기를 알 수 없다. $\\frac{3}{8}=\\frac{9}{24}$, $\\frac{2}{3}=\\frac{16}{24}$이므로 분자가 작은 $\\frac{2}{3}$가 더 크다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분모가 다르면 한 조각의 크기가 다르다",
+            "조각의 크기가 달라 조각 수만으로 비교할 수 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{2}{3}$가 더 크다"
+          ]
+        }
+      ],
+      "bGoal": "분모가 다를 때 분자만 비교하면 틀리는 까닭을 설명한다.",
+      "bReason": "자주 하는 실수의 원인을 조각 크기로 설명하고 반례가 되는 예를 직접 확인하게 했다.",
+      "cDecision": "keep",
+      "cAfter": "분모가 다른 두 분수는 조각의 크기가 달라, 분자가 더 크다고 분수의 크기도 항상 더 큰 것은 {아니다}.",
+      "cReason": "분모가 다르다는 조건과 조각 크기 근거가 있고 '항상' 성립하는지를 판단하는 문장이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'아닙니다'도 같은 답으로 인정.",
+      "sourceIndex": 789,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-4-xc15",
+        "section": "초5::1-4 약분과 통분::1-4-4 분수의 크기 비교",
+        "term": "분자만 보고 견주는 잘못",
+        "kind": "성질",
+        "level": "중",
+        "definition": "분모가 다른 두 분수는 조각의 크기가 달라, 분자가 더 크다고 분수의 크기도 항상 더 큰 것은 {아니다}.",
+        "example": {
+          "prompt": "$\\frac{3}{8}$과 $\\frac{2}{3}$의 크기를 분자 $3$과 $2$만 보고 견줄 수 없는 까닭은?",
+          "answer": "한 조각의 크기가 달라서"
+        },
+        "studentC": "분모가 다른 두 분수는 조각의 크기가 달라, 분자가 더 크다고 분수의 크기도 항상 더 큰 것은 □.",
+        "answers": [
+          "아니다"
+        ]
+      },
+      "sourceFingerprint": "79e4fe177c4577c7d58a3331cc64557f9c548e6d973b79d86e4c4d9ad1781dcd",
+      "draftEvidence": "evidence/section-015-draft.json",
+      "cFrozenDefinition": "분모가 다른 두 분수는 조각의 크기가 달라, 분자가 더 크다고 분수의 크기도 항상 더 큰 것은 {아니다}.",
+      "cFrozenStudentSentence": "분모가 다른 두 분수는 조각의 크기가 달라, 분자가 더 크다고 분수의 크기도 항상 더 큰 것은 □.",
+      "cProposedAnswers": [
+        "아니다"
+      ],
+      "cStudentAfter": "분모가 다른 두 분수는 조각의 크기가 달라, 분자가 더 크다고 분수의 크기도 항상 더 큰 것은 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "아니다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "분모가 다른 두 분수는 조각의 크기가 달라, 분자가 더 크다고 분수의 크기도 항상 더 큰 것은 {아니다}.",
+      "cStudentSentence": "분모가 다른 두 분수는 조각의 크기가 달라, 분자가 더 크다고 분수의 크기도 항상 더 큰 것은 □.",
+      "cSlotAnswers": [
+        {
+          "key": "아니다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "분모가 다른 두 분수를 분자의 크기만 보고 비교하면 안 되는 까닭을 한 조각의 크기와 관련지어 설명하세요. 또 $\\frac{3}{8}$과 $\\frac{2}{3}$ 중 더 큰 분수를 쓰세요.",
+        "answer": "분모가 다르면 한 조각의 크기가 달라서 조각 수(분자)만으로는 크기를 알 수 없다. $\\frac{3}{8}=\\frac{9}{24}$, $\\frac{2}{3}=\\frac{16}{24}$이므로 분자가 작은 $\\frac{2}{3}$가 더 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분모가 다르면 한 조각의 크기가 다르다",
+              "조각의 크기가 달라 조각 수만으로 비교할 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{2}{3}$가 더 크다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "분모가 다른 두 분수는 조각의 크기가 달라, 분자가 더 크다고 분수의 크기도 항상 더 큰 것은 {아니다}.",
+        "acceptedAnswers": [
+          [
+            "아니다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e694d35b6404d0fcac22bf1ddd033e19a4846a64c3573388c823e88de1af5638",
+      "questionRevision": "planning-e5e6-20261006-e694d35b6404",
+      "requiresIndependentReview": true
+    }
+  ]
+}

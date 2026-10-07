@@ -1,0 +1,502 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e5-2-3-1-xc18",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "두 도형이 합동이 아니라는 것을 보이려면 무엇을 찾으면 되는지 쓰고, 세 변이 $3\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$, $5\\,\\mathrm{cm}$인 삼각형과 세 변이 $3\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$, $6\\,\\mathrm{cm}$인 삼각형이 합동인지 판단하시오.",
+      "bAnswer": "어떻게 포개어도 겹치지 않는 부분, 곧 길이가 맞지 않는 변이나 크기가 맞지 않는 각을 찾으면 된다. 두 삼각형은 $5\\,\\mathrm{cm}$인 변과 $6\\,\\mathrm{cm}$인 변의 길이가 달라서 합동이 아니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "어떻게포개어도같게맞지않는변의길이나각의크기를찾는다",
+            "어떻게포개어도겹치지않는부분을찾는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 삼각형은 합동이 아니다"
+          ]
+        }
+      ],
+      "bGoal": "맞지 않는 변이나 각을 찾아 합동이 아님을 보인다.",
+      "bReason": "'대응하는'이라는 말 없이 묻고, 한 변만 다른 두 삼각형으로 적용하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "두 도형을 어떻게 포개어도 길이가 맞지 않는 변이나 크기가 맞지 않는 각이 있으면 두 도형은 합동이 {아니다}.",
+      "cReason": "원문 빈칸은 '대응하는'이 든 긴 구절이라 이 소단원 학생이 쓰기 어렵다.",
+      "coreAfter": "두 도형을 어떻게 옮기거나 돌리거나 뒤집어도 포개었을 때 완전히 겹치지 않으면 {합동이 아니다}.",
+      "coreReason": "'대응하는 변이나 각이 다른 곳'은 대응을 배우기 전의 학생에게 뜻이 불분명한 표현이다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "coreTargetReason": "대응하는 변이나 각이 다른 곳이라는 학습 전의 긴 표적을 실제 합동 부정 조건으로 고친다. 비교할 변을 임의로 짝지어도 된다는 잘못된 두 번째 초안 문장은 제거한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1250-1290.json",
+      "codexFinalAmendedFromFingerprint": "5c8f29753cede4e3c8433e4d02b99f374e323cf16587b3585f72160c0ffd8903",
+      "sourceIndex": 1254,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-1-xc18",
+        "section": "초5::2-3 합동과 대칭::2-3-1 도형의 합동 알아보기",
+        "term": "합동이 아님을 보이기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "두 도형이 합동이 아님을 보이려면 어떻게 포개어도 {대응하는 변이나 각이 다른 곳}이 있음을 찾으면 된다.",
+        "studentC": "두 도형이 합동이 아님을 보이려면 어떻게 포개어도 □이 있음을 찾으면 된다.",
+        "answers": [
+          "대응하는 변이나 각이 다른 곳"
+        ]
+      },
+      "sourceFingerprint": "3c22e0b8cdddc0f74c4de1ed6c4679d2f06103a750f171f3eb8a26c11eee30db",
+      "draftEvidence": "evidence/section-036-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "아니다"
+      ],
+      "cStudentAfter": "두 도형을 어떻게 포개어도 길이가 맞지 않는 변이나 크기가 맞지 않는 각이 있으면 두 도형은 합동이 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "아니다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "두 도형을 어떻게 포개어도 길이가 맞지 않는 변이나 크기가 맞지 않는 각이 있으면 두 도형은 합동이 {아니다}.",
+      "cStudentSentence": "두 도형을 어떻게 포개어도 길이가 맞지 않는 변이나 크기가 맞지 않는 각이 있으면 두 도형은 합동이 □.",
+      "cSlotAnswers": [
+        {
+          "key": "아니다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 도형이 합동이 아니라는 것을 보이려면 무엇을 찾으면 되는지 쓰고, 세 변이 $3\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$, $5\\,\\mathrm{cm}$인 삼각형과 세 변이 $3\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$, $6\\,\\mathrm{cm}$인 삼각형이 합동인지 판단하시오.",
+        "answer": "어떻게 포개어도 겹치지 않는 부분, 곧 길이가 맞지 않는 변이나 크기가 맞지 않는 각을 찾으면 된다. 두 삼각형은 $5\\,\\mathrm{cm}$인 변과 $6\\,\\mathrm{cm}$인 변의 길이가 달라서 합동이 아니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "어떻게포개어도같게맞지않는변의길이나각의크기를찾는다",
+              "어떻게포개어도겹치지않는부분을찾는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 삼각형은 합동이 아니다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "두 도형을 어떻게 포개어도 길이가 맞지 않는 변이나 크기가 맞지 않는 각이 있으면 두 도형은 합동이 {아니다}.",
+        "acceptedAnswers": [
+          [
+            "아니다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "8c9fed6a16e3467c74855f29af47d91bd81cbc26bebd5980a47dcdd01367f0ce",
+      "questionRevision": "planning-e5e6-20261006-8c9fed6a16e3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-1-xc22",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "변의 수가 다른 정다각형은 합동이 될 수 없음을 안다.",
+      "bReason": "변의수가달라모양이다르면합동이아니라는판단은기본정의·정다각형비교와겹쳐B를제외하고C조건판단은남긴다.",
+      "cDecision": "keep",
+      "cAfter": "변의 수가 다른 두 정다각형은 한 변의 길이가 같아도 {합동이 아니다}.",
+      "cReason": "'한 변의 길이가 같아도'라는 조건 뒤의 판단을 짧게 답하는 문장이다.",
+      "exclusionReason": "B는 자명한 판단이며, 모양이 다른 경우는 e5-2-3-1-xc12에서 다룬다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'합동이 아니다'와 '합동이 될 수 없다'는 같은 답이다.",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1250-1290.json",
+      "codexFinalAmendedFromFingerprint": "a29648d5f8af0bed1430b48d241b34a619a858b58bceb3c8d1a59154cdceef70",
+      "sourceIndex": 1258,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-1-xc22",
+        "section": "초5::2-3 합동과 대칭::2-3-1 도형의 합동 알아보기",
+        "term": "변의 수가 다른 정다각형",
+        "kind": "성질",
+        "level": "상",
+        "definition": "변의 수가 다른 두 정다각형은 한 변의 길이가 같아도 {합동이 아니다}.",
+        "studentC": "변의 수가 다른 두 정다각형은 한 변의 길이가 같아도 □.",
+        "answers": [
+          "합동이 아니다"
+        ]
+      },
+      "sourceFingerprint": "661022df19f11068c449643d0ea3c8606e59294eb30f0f526141dc8e22ed952e",
+      "draftEvidence": "evidence/section-036-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "변의 수가 다른 두 정다각형은 한 변의 길이가 같아도 {합동이 아니다}.",
+      "cFrozenStudentSentence": "변의 수가 다른 두 정다각형은 한 변의 길이가 같아도 □.",
+      "cProposedAnswers": [
+        "합동이 아니다"
+      ],
+      "cStudentAfter": "변의 수가 다른 두 정다각형은 한 변의 길이가 같아도 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "합동이 아니다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "변의 수가 다른 두 정다각형은 한 변의 길이가 같아도 {합동이 아니다}.",
+      "cStudentSentence": "변의 수가 다른 두 정다각형은 한 변의 길이가 같아도 □.",
+      "cSlotAnswers": [
+        {
+          "key": "합동이 아니다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "변의 수가 다른 두 정다각형은 한 변의 길이가 같아도 {합동이 아니다}.",
+        "acceptedAnswers": [
+          [
+            "합동이 아니다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 자명한 판단이며, 모양이 다른 경우는 e5-2-3-1-xc12에서 다룬다."
+      },
+      "proposalFingerprint": "a29648d5f8af0bed1430b48d241b34a619a858b58bceb3c8d1a59154cdceef70",
+      "questionRevision": "planning-e5e6-20261006-a29648d5f8af",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-1-xc23",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "한 변의 길이가 같은 두 마름모는 항상 합동인지 쓰고, 그렇게 판단한 까닭을 마름모의 각과 관련지어 설명하시오.",
+      "bAnswer": "항상 합동인 것은 아니다. 한 변의 길이가 같아도 두 마름모에서 가장 작은 각의 크기가 서로 다를 수 있다. 이때는 어떻게 포개어도 완전히 겹치지 않는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "항상 합동인 것은 아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "한변이같아도가장작은각의크기가다를수있어완전히겹치지않는다",
+            "두마름모의각들을서로모두같게맞출수없는경우가있다"
+          ]
+        }
+      ],
+      "bGoal": "마름모는 변의 길이만으로 합동이 정해지지 않음을 각으로 설명한다.",
+      "bReason": "정사각형(xc5)과 달리 각이 정해져 있지 않다는 차이를 설명하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "한 변의 길이가 같은 두 마름모라도 각각의 가장 작은 각의 {크기}가 다르면 합동이 아니다.",
+      "cReason": "변이 같아도 무엇이 다르면 합동이 아닌지를 짧은 낱말로 답한다.",
+      "exampleNeeded": false,
+      "synonymNotes": "C 답은 '각', '각도'도 같은 뜻이다.",
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "크기"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1250-1290.json",
+      "codexFinalAmendedFromFingerprint": "16d27cdf4818836e908c961b4ee02744c3816cfc20a632c3026d1df8394318f9",
+      "sourceIndex": 1259,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-1-xc23",
+        "section": "초5::2-3 합동과 대칭::2-3-1 도형의 합동 알아보기",
+        "term": "마름모끼리의 합동",
+        "kind": "성질",
+        "level": "상",
+        "definition": "한 변의 길이가 같은 두 마름모도 {각의 크기}가 다르면 합동이 아니다.",
+        "studentC": "한 변의 길이가 같은 두 마름모도 □가 다르면 합동이 아니다.",
+        "answers": [
+          "각의 크기"
+        ]
+      },
+      "sourceFingerprint": "b507313eab96368107a55d71beddbe87b34bca8c7a4e2b2bc7719342cc0e6632",
+      "draftEvidence": "evidence/section-036-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "크기"
+      ],
+      "cStudentAfter": "한 변의 길이가 같은 두 마름모라도 각각의 가장 작은 각의 □가 다르면 합동이 아니다.",
+      "cMarkedSentence": "한 변의 길이가 같은 두 마름모라도 각각의 가장 작은 각의 {크기}가 다르면 합동이 아니다.",
+      "cStudentSentence": "한 변의 길이가 같은 두 마름모라도 각각의 가장 작은 각의 □가 다르면 합동이 아니다.",
+      "cSlotAnswers": [
+        {
+          "key": "크기",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "한 변의 길이가 같은 두 마름모는 항상 합동인지 쓰고, 그렇게 판단한 까닭을 마름모의 각과 관련지어 설명하시오.",
+        "answer": "항상 합동인 것은 아니다. 한 변의 길이가 같아도 두 마름모에서 가장 작은 각의 크기가 서로 다를 수 있다. 이때는 어떻게 포개어도 완전히 겹치지 않는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "항상 합동인 것은 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한변이같아도가장작은각의크기가다를수있어완전히겹치지않는다",
+              "두마름모의각들을서로모두같게맞출수없는경우가있다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "한 변의 길이가 같은 두 마름모라도 각각의 가장 작은 각의 {크기}가 다르면 합동이 아니다.",
+        "acceptedAnswers": [
+          [
+            "크기"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e9f69894e163d60f70d7146cdb6fb4b47516bc44dec8a4b3f9510d271e34f4b9",
+      "questionRevision": "planning-e5e6-20261006-e9f69894e163",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-2-xc9",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "삼각형 ㄱㄴㄷ과 삼각형 ㄹㅁㅂ은 서로 합동이고, 각 ㄱ의 대응각은 각 ㄹ, 각 ㄴ의 대응각은 각 ㅁ이다. 각 ㄱ이 $50 ^\\circ$, 각 ㄴ이 $60 ^\\circ$일 때 각 ㅂ의 크기를 구하는 방법을 설명하고 답을 쓰시오.",
+      "bAnswer": "대응각의 크기는 같으므로 각 ㄹ은 $50 ^\\circ$, 각 ㅁ은 $60 ^\\circ$이다. 삼각형의 세 각의 크기의 합은 $180 ^\\circ$이므로 각 ㅂ은 $180 ^\\circ - 50 ^\\circ - 60 ^\\circ = 70 ^\\circ$이다. (각 ㄷ을 $70 ^\\circ$로 먼저 구하고 그 대응각인 각 ㅂ도 $70 ^\\circ$라고 해도 된다.)",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "대응각의 크기는 서로 같다",
+            "각 ㄹ은 $50 ^\\circ$이고 각 ㅁ은 $60 ^\\circ$이다",
+            "각 ㅂ은 각 ㄷ과 크기가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "삼각형의 세 각의 크기의 합은 $180 ^\\circ$이다",
+            "$180 ^\\circ$에서 두 각을 뺀다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$70 ^\\circ$"
+          ]
+        }
+      ],
+      "bGoal": "대응각의 성질과 삼각형의 세 각의 합을 함께 써서 각을 구한다.",
+      "bReason": "원문은 대응각을 쓰는 단계가 빠져 있어 두 단계를 모두 설명하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "서로 합동인 두 삼각형 중 한 삼각형의 두 각이 $50°$, $60°$이다. 삼각형의 세 각의 크기의 합은 {$180$}$°$이므로 이 삼각형의 나머지 한 각은 {$70$}$°$이고, 다른 삼각형에서 그 각의 대응각도 이와 같다.",
+      "cReason": "원문 답 '세 각의 합 180°'는 구절 전체를 외워야 해서 수 두 개를 답하게 했다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1250-1290.json",
+      "codexFinalAmendedFromFingerprint": "41de0bf2029155fb244b9e499358e89d03c6fd6e12818bc59510b31809002afd",
+      "sourceIndex": 1272,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-2-xc9",
+        "section": "초5::2-3 합동과 대칭::2-3-2 합동인 도형의 성질 알아보기",
+        "term": "합동인 삼각형의 나머지 각",
+        "kind": "방법",
+        "level": "중",
+        "definition": "합동인 삼각형에서 두 각을 알면 {세 각의 합 $180^\\circ$}로 나머지 각을 구한다.",
+        "studentC": "합동인 삼각형에서 두 각을 알면 □로 나머지 각을 구한다.",
+        "answers": [
+          "세 각의 합 $180^\\circ$"
+        ]
+      },
+      "sourceFingerprint": "1eeaf58c17df6675be5625586006787138df82599cb35ca60cd7b297c0573a9c",
+      "draftEvidence": "evidence/section-037-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$180$",
+        "$70$"
+      ],
+      "cStudentAfter": "서로 합동인 두 삼각형 중 한 삼각형의 두 각이 $50°$, $60°$이다. 삼각형의 세 각의 크기의 합은 □$°$이므로 이 삼각형의 나머지 한 각은 □$°$이고, 다른 삼각형에서 그 각의 대응각도 이와 같다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$180$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$70$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "서로 합동인 두 삼각형 중 한 삼각형의 두 각이 $50°$, $60°$이다. 삼각형의 세 각의 크기의 합은 {$180$}$°$이므로 이 삼각형의 나머지 한 각은 {$70$}$°$이고, 다른 삼각형에서 그 각의 대응각도 이와 같다.",
+      "cStudentSentence": "서로 합동인 두 삼각형 중 한 삼각형의 두 각이 $50°$, $60°$이다. 삼각형의 세 각의 크기의 합은 □$°$이므로 이 삼각형의 나머지 한 각은 □$°$이고, 다른 삼각형에서 그 각의 대응각도 이와 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "$180$",
+          "equivalents": []
+        },
+        {
+          "key": "$70$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "삼각형 ㄱㄴㄷ과 삼각형 ㄹㅁㅂ은 서로 합동이고, 각 ㄱ의 대응각은 각 ㄹ, 각 ㄴ의 대응각은 각 ㅁ이다. 각 ㄱ이 $50 ^\\circ$, 각 ㄴ이 $60 ^\\circ$일 때 각 ㅂ의 크기를 구하는 방법을 설명하고 답을 쓰시오.",
+        "answer": "대응각의 크기는 같으므로 각 ㄹ은 $50 ^\\circ$, 각 ㅁ은 $60 ^\\circ$이다. 삼각형의 세 각의 크기의 합은 $180 ^\\circ$이므로 각 ㅂ은 $180 ^\\circ - 50 ^\\circ - 60 ^\\circ = 70 ^\\circ$이다. (각 ㄷ을 $70 ^\\circ$로 먼저 구하고 그 대응각인 각 ㅂ도 $70 ^\\circ$라고 해도 된다.)",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "대응각의 크기는 서로 같다",
+              "각 ㄹ은 $50 ^\\circ$이고 각 ㅁ은 $60 ^\\circ$이다",
+              "각 ㅂ은 각 ㄷ과 크기가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "삼각형의 세 각의 크기의 합은 $180 ^\\circ$이다",
+              "$180 ^\\circ$에서 두 각을 뺀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$70 ^\\circ$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "서로 합동인 두 삼각형 중 한 삼각형의 두 각이 $50°$, $60°$이다. 삼각형의 세 각의 크기의 합은 {$180$}$°$이므로 이 삼각형의 나머지 한 각은 {$70$}$°$이고, 다른 삼각형에서 그 각의 대응각도 이와 같다.",
+        "acceptedAnswers": [
+          [
+            "$180$"
+          ],
+          [
+            "$70$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "1406841a59dd91fe39508358acaa0e407c9ef7c89ce29339d4b62603c83d63ba",
+      "questionRevision": "planning-e5e6-20261006-1406841a59dd",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-2-xc20",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "서로 합동인 두 직사각형의 넓이는 서로 어떤 관계인지 쓰고, 그 까닭을 가로와 세로의 길이로 설명하시오.",
+      "bAnswer": "넓이가 서로 같다. 두 직사각형을 완전히 겹치도록 돌려 놓으면 가로끼리, 세로끼리 길이가 같다. 그러므로 가로와 세로를 곱한 넓이도 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "넓이가 서로 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "돌려서맞추면가로끼리세로끼리길이가같아두길이의곱이같다",
+            "긴변끼리짧은변끼리길이가같아두길이의곱이같다",
+            "대응하는이웃한두변길이가각각같아넓이곱이같다"
+          ]
+        }
+      ],
+      "bGoal": "합동인 직사각형의 넓이가 같은 까닭을 대응변으로 설명한다.",
+      "bReason": "'옮겨 와 곱해'라는 절차 대신 넓이의 관계와 까닭을 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "가로가 $6\\,\\mathrm{cm}$, 세로가 $4\\,\\mathrm{cm}$인 직사각형과 합동인 직사각형은 대응변의 길이가 서로 같으므로 넓이가 {$24$} $\\mathrm{cm} ^2$이다.",
+      "cReason": "원문 답 '대응변인 가로와 세로'는 긴 구절이라 실제 길이로 넓이를 구하게 했다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1250-1290.json",
+      "codexFinalAmendedFromFingerprint": "a77743cfa1a9030cb784e703a9a8eb198b381b66a16bc4b9bdd6634426410315",
+      "sourceIndex": 1283,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-2-xc20",
+        "section": "초5::2-3 합동과 대칭::2-3-2 합동인 도형의 성질 알아보기",
+        "term": "합동인 직사각형의 넓이",
+        "kind": "방법",
+        "level": "상",
+        "definition": "합동인 직사각형의 넓이는 {대응변인 가로와 세로}를 옮겨 와 곱해 구한다.",
+        "studentC": "합동인 직사각형의 넓이는 □를 옮겨 와 곱해 구한다.",
+        "answers": [
+          "대응변인 가로와 세로"
+        ]
+      },
+      "sourceFingerprint": "5a4c78dc64e609d3eee451f5debe6ad5336c0877711b8f57fd1049942c036042",
+      "draftEvidence": "evidence/section-037-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$24$"
+      ],
+      "cStudentAfter": "가로가 $6\\,\\mathrm{cm}$, 세로가 $4\\,\\mathrm{cm}$인 직사각형과 합동인 직사각형은 대응변의 길이가 서로 같으므로 넓이가 □ $\\mathrm{cm} ^2$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$24$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "가로가 $6\\,\\mathrm{cm}$, 세로가 $4\\,\\mathrm{cm}$인 직사각형과 합동인 직사각형은 대응변의 길이가 서로 같으므로 넓이가 {$24$} $\\mathrm{cm} ^2$이다.",
+      "cStudentSentence": "가로가 $6\\,\\mathrm{cm}$, 세로가 $4\\,\\mathrm{cm}$인 직사각형과 합동인 직사각형은 대응변의 길이가 서로 같으므로 넓이가 □ $\\mathrm{cm} ^2$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$24$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "서로 합동인 두 직사각형의 넓이는 서로 어떤 관계인지 쓰고, 그 까닭을 가로와 세로의 길이로 설명하시오.",
+        "answer": "넓이가 서로 같다. 두 직사각형을 완전히 겹치도록 돌려 놓으면 가로끼리, 세로끼리 길이가 같다. 그러므로 가로와 세로를 곱한 넓이도 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "넓이가 서로 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "돌려서맞추면가로끼리세로끼리길이가같아두길이의곱이같다",
+              "긴변끼리짧은변끼리길이가같아두길이의곱이같다",
+              "대응하는이웃한두변길이가각각같아넓이곱이같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "가로가 $6\\,\\mathrm{cm}$, 세로가 $4\\,\\mathrm{cm}$인 직사각형과 합동인 직사각형은 대응변의 길이가 서로 같으므로 넓이가 {$24$} $\\mathrm{cm} ^2$이다.",
+        "acceptedAnswers": [
+          [
+            "$24$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7e9cdefcbe1e5701657d6914413b0ec0488d26ae28a0fc7fff617dea500e607a",
+      "questionRevision": "planning-e5e6-20261006-7e9cdefcbe1e",
+      "requiresIndependentReview": true
+    }
+  ]
+}

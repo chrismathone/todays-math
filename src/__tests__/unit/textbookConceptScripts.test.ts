@@ -563,10 +563,10 @@ describe("lesson, board and semester metadata on the manuscripts", () => {
     expect(authoring).toMatch(/!dialogueKept && !replaceDialogue/);
   });
 
-  it("differs from the first manuscripts by exactly the 147 recorded corrections", () => {
+  it("differs from the first manuscripts by exactly the 280 recorded corrections", () => {
     expect(STATIC_CORRECTIONS.map((correction) => correction.id)).toEqual(
       Array.from(
-        { length: 147 },
+        { length: 280 },
         (_, index) => `SC-${String(index + 1).padStart(3, "0")}`,
       ),
     );
@@ -646,7 +646,7 @@ describe("lesson, board and semester metadata on the manuscripts", () => {
       particle: 1,
       "missing-condition": 8,
       "ambiguous-wording": 4,
-      "bank-definition": 102,
+      "bank-definition": 235,
     });
     // Every bank answer that ends as a sentence is among them, and none keeps "입니다".
     const sentenceAnswers = concepts.filter(

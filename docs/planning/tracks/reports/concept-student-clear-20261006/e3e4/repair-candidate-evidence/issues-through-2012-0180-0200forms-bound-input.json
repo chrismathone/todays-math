@@ -1,0 +1,1151 @@
+[
+  {
+    "id": "e3-2-5-5-xc7",
+    "sourceIndex": 1262,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1262,
+      "sourceFingerprint": "916a49a9e1aa838d65541e7f2e7f582046f431881e3cb0e7594aef7775b484b9",
+      "part": "e3plus",
+      "id": "e3-2-5-5-xc7",
+      "section": "초3::2-5 들이와 무게::2-5-5 무게의 단위",
+      "term": "저울 바늘 읽기",
+      "kind": "방법",
+      "level": "하",
+      "definition": "저울로 무게를 잴 때는 바늘이 멈춘 곳의 {눈금}을 읽는다.",
+      "studentC": "저울로 무게를 잴 때는 바늘이 멈춘 곳의 □을 읽는다.",
+      "answers": [
+        "눈금"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-5-5-xc7",
+      "proposalFingerprint": "0150e307dce98517798bf0bd4d1ebff565fb1017692af1451365b380b9243e51",
+      "learningRole": "naming",
+      "bDecision": "rewrite",
+      "bPrompt": "바늘이 있는 저울로 물건의 무게를 잴 때 무게를 어떻게 읽는지 쓰세요.",
+      "bAnswer": "물건을 저울에 올리고 바늘이 멈추면, 바늘이 가리키는 눈금을 읽습니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "바늘이 멈춘 뒤에 읽는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "바늘이 가리키는 눈금을 읽는다"
+          ]
+        }
+      ],
+      "bGoal": "저울 바늘로 무게를 읽는 방법 설명",
+      "bReason": "'바늘이 있는 저울'로 대상을 밝히고 읽는 방법만 묻게 함",
+      "cDecision": "keep",
+      "cReason": "'바늘이 멈춘 곳의 □을 읽는다'에서 답이 익숙한 낱말 '눈금' 하나임",
+      "cSlotEquivalents": [],
+      "answerNotes": "'눈금' 정답. '숫자', '수'도 뜻이 통하면 허용"
+    },
+    "currentCMarkedSentence": "저울로 무게를 잴 때는 바늘이 멈춘 곳의 {눈금}을 읽는다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "눈금",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "바늘멈춤뒤눈금읽기의주역할은naming보다procedure라역할교정을 제안한다.",
+      "c": "눈금이라는측정대상을확인하며바늘저울의실제예가 도움이 된다."
+    }
+  },
+  {
+    "id": "e3-2-5-5-xc13",
+    "sourceIndex": 1267,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1267,
+      "sourceFingerprint": "b4ff68438e2d3c5dd9ab45e960113292ec12cab96d81800462404407f5c90faa",
+      "part": "e3plus",
+      "id": "e3-2-5-5-xc13",
+      "section": "초3::2-5 들이와 무게::2-5-5 무게의 단위",
+      "term": "저울 눈금 한 칸의 무게",
+      "kind": "방법",
+      "level": "중",
+      "definition": "같은 무게씩 나눈 저울 눈금에서 한 칸의 무게는 {나눈 무게를 칸 수로} 똑같이 나누어 안다.",
+      "example": {
+        "prompt": "같은 무게씩 나눈 저울 눈금에서 한 칸의 무게를 나눗셈으로 구하는 까닭은?",
+        "answer": "칸마다 무게가 같아서"
+      },
+      "studentC": "같은 무게씩 나눈 저울 눈금에서 한 칸의 무게는 □ 똑같이 나누어 안다.",
+      "answers": [
+        "나눈 무게를 칸 수로"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-5-5-xc13",
+      "proposalFingerprint": "bd08e9ea41aa6923f92cd7e1a4bbbb09d4bc0e21ecdcc33d022351844eb0e30f",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "저울의 눈금 $0$부터 $200\\,\\mathrm{g}$까지가 똑같이 $4$칸으로 나누어져 있습니다. 눈금 한 칸의 무게를 구하는 방법과 답을 쓰세요.",
+      "bAnswer": "칸마다 무게가 같으므로 $200\\,\\mathrm{g}$을 $4$칸으로 똑같이 나눕니다. $200\\div4=50$이므로 한 칸은 $50\\,\\mathrm{g}$입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "칸마다 무게가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "전체 무게를 칸 수로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$50\\,\\mathrm{g}$"
+          ]
+        }
+      ],
+      "bGoal": "저울 눈금 한 칸의 무게를 나눗셈으로 구하는 방법 설명",
+      "bReason": "원문은 수가 없는 일반 문장이라 200 g·4칸 상황을 새로 만들어 자립시킴",
+      "cDecision": "rewrite",
+      "cReason": "원문 답 '나눈 무게를 칸 수로'는 뜻이 불분명한 구절을 통째로 복원해야 함. 실제 눈금 계산으로 바꿈",
+      "cSlotEquivalents": [],
+      "exampleNeeded": "$0$과 $200\\,\\mathrm{g}$ 사이가 똑같이 $4$칸으로 나뉜 저울 눈금 그림(글만으로도 풀 수 있음)",
+      "coreAfter": "이웃한 큰 눈금의 무게 {차}를 두 눈금 사이의 {칸 수}로 나누면 한 칸의 무게를 구한다.",
+      "coreReason": "나눈무게를칸수로라는 두량표적을눈금차와칸수로나눠명시한다. 전체값이아닌이웃큰눈금의차를나눈다."
+    },
+    "currentCMarkedSentence": "저울의 눈금 $0$부터 $200\\,\\mathrm{g}$까지가 똑같이 $4$칸으로 나누어져 있으면 눈금 한 칸은 {$50$}$\\,\\mathrm{g}$이다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$50$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "똑같은4칸이라는주어진조건을필수로다시말시키지말고200÷4의방법·50g결과로기준을 정리한다.",
+      "c": "한칸50g과일반정의의눈금차÷칸수는 정확하다."
+    }
+  },
+  {
+    "id": "e3-2-5-5-xc15",
+    "sourceIndex": 1269,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1269,
+      "sourceFingerprint": "3c98b2bd48f28968116604f12888b29c6ced43325a1a10b18d05f77062aa5a2a",
+      "part": "e3plus",
+      "id": "e3-2-5-5-xc15",
+      "section": "초3::2-5 들이와 무게::2-5-5 무게의 단위",
+      "term": "$\\mathrm{kg}$이 같을 때 비교",
+      "kind": "방법",
+      "level": "중",
+      "definition": "$\\mathrm{kg}$이 같은 두 무게는 {$\\mathrm{g}$의 수}만 비교하면 된다.",
+      "studentC": "$\\mathrm{kg}$이 같은 두 무게는 □만 비교하면 된다.",
+      "answers": [
+        "$\\mathrm{g}$의 수"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-5-5-xc15",
+      "proposalFingerprint": "923ebf1eebdac1da227c61137e2cca4fee510b02afb7cab60fef4a0e0d79133b",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "$3\\,\\mathrm{kg}\\ 200\\,\\mathrm{g}$과 $3\\,\\mathrm{kg}\\ 600\\,\\mathrm{g}$ 중 어느 쪽이 더 무거운지 쓰고, 어떻게 비교했는지 설명하세요.",
+      "bAnswer": "$3\\,\\mathrm{kg}\\ 600\\,\\mathrm{g}$이 더 무겁습니다. $\\mathrm{kg}$의 수가 $3$으로 같으므로 $\\mathrm{g}$의 수를 비교하면 $600$이 $200$보다 크기 때문입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "kg의 수가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "g의 수를 비교한다"
+          ]
+        }
+      ],
+      "bGoal": "kg이 같은 두 무게를 비교하는 방법 설명",
+      "bReason": "두 무게를 직접 주어 비교 방법을 쓰게 함",
+      "cDecision": "rewrite",
+      "cReason": "원문은 예가 없어 '□만 비교'에 무엇을 쓸지 알기 어려움. 두 무게를 보여 주고 단위 하나를 쓰게 함",
+      "cSlotEquivalents": [],
+      "answerNotes": "'g', '그램' 허용"
+    },
+    "currentCMarkedSentence": "$3\\,\\mathrm{kg}\\ 200\\,\\mathrm{g}$과 $3\\,\\mathrm{kg}\\ 600\\,\\mathrm{g}$처럼 $\\mathrm{kg}$의 수가 같은 두 무게는 {$\\mathrm{g}$}의 수가 큰 쪽이 더 무겁다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$\\mathrm{g}$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "무거운쪽을쓰라는요청의3kg600g선택이기준에빠져방법과실제결과를함께확인하도록 보완한다.",
+      "c": "kg같을때g수를비교하는방법이다."
+    }
+  },
+  {
+    "id": "e3-2-5-6-xc3",
+    "sourceIndex": 1276,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1276,
+      "sourceFingerprint": "4d8101da09bf60f95fad12521afdfc2722aa6a34ea8564127bb258b9f3cb47b5",
+      "part": "e3plus",
+      "id": "e3-2-5-6-xc3",
+      "section": "초3::2-5 들이와 무게::2-5-6 무게의 합과 차",
+      "term": "같은 단위끼리 더하기",
+      "kind": "방법",
+      "level": "하",
+      "definition": "무게를 더할 때는 $\\mathrm{kg}$의 수는 $\\mathrm{kg}$의 수끼리, $\\mathrm{g}$의 수는 {$\\mathrm{g}$의 수}끼리 더한다.",
+      "studentC": "무게를 더할 때는 $\\mathrm{kg}$의 수는 $\\mathrm{kg}$의 수끼리, $\\mathrm{g}$의 수는 □끼리 더한다.",
+      "answers": [
+        "$\\mathrm{g}$의 수"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-5-6-xc3",
+      "proposalFingerprint": "63a5e7518c1a3db60f8a8d89b7115898c9a232a42ee69c921b97615052943c0f",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "$2\\,\\mathrm{kg}\\ 300\\,\\mathrm{g}+1\\,\\mathrm{kg}\\ 400\\,\\mathrm{g}$을 계산하는 방법을 설명하고 답을 쓰세요.",
+      "bAnswer": "$\\mathrm{kg}$은 $\\mathrm{kg}$끼리, $\\mathrm{g}$은 $\\mathrm{g}$끼리 더합니다. $2+1=3$, $300+400=700$이므로 $3\\,\\mathrm{kg}\\ 700\\,\\mathrm{g}$입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "kg은 kg끼리, g은 g끼리 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3\\,\\mathrm{kg}\\ 700\\,\\mathrm{g}$"
+          ]
+        }
+      ],
+      "bGoal": "무게를 같은 단위끼리 더하는 방법 설명",
+      "bReason": "올림이 없는 식 하나를 주어 방법과 결과를 쓰게 함",
+      "cDecision": "keep",
+      "cReason": "앞부분 'kg의 수는 kg의 수끼리'와 짝을 이루어 답이 분명함",
+      "cSlotEquivalents": [],
+      "answerNotes": "'g의 수', 'g', '그램' 모두 허용. 'kg'은 오답"
+    },
+    "currentCMarkedSentence": "무게를 더할 때는 $\\mathrm{kg}$의 수는 $\\mathrm{kg}$의 수끼리, $\\mathrm{g}$의 수는 {$\\mathrm{g}$의 수}끼리 더한다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$\\mathrm{g}$의 수",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "같은단위끼리더하여3kg700g구하는B는분명하다.",
+      "c": "g수는g수끼리의직접복사C보다실제300과더할400같은수대응으로 고친다."
+    }
+  },
+  {
+    "id": "e3-2-5-6-xc11",
+    "sourceIndex": 1282,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1282,
+      "sourceFingerprint": "ce133155a9c687fcfc9f7935b78290d93a851bb911b2eeb05e0a0c19272da2c2",
+      "part": "e3plus",
+      "id": "e3-2-5-6-xc11",
+      "section": "초3::2-5 들이와 무게::2-5-6 무게의 합과 차",
+      "term": "내림이 있는 무게의 뺄셈",
+      "kind": "성질",
+      "level": "중",
+      "definition": "무게의 뺄셈에서 $1\\,\\mathrm{kg}$을 $1000\\,\\mathrm{g}$으로 바꾸어 빼면 $\\mathrm{kg}$끼리 뺄 때 빼어지는 수가 {$1$ 작아진다}.",
+      "studentC": "무게의 뺄셈에서 $1\\,\\mathrm{kg}$을 $1000\\,\\mathrm{g}$으로 바꾸어 빼면 $\\mathrm{kg}$끼리 뺄 때 빼어지는 수가 □.",
+      "answers": [
+        "$1$ 작아진다"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-5-6-xc11",
+      "proposalFingerprint": "44816bfb41d4a9ed9fc014c5f10ce96cc4ae62c0aa050a31a7ee4d5440943dc1",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "$5\\,\\mathrm{kg}\\ 100\\,\\mathrm{g}-2\\,\\mathrm{kg}\\ 400\\,\\mathrm{g}$에서 $100\\,\\mathrm{g}$에서 $400\\,\\mathrm{g}$을 뺄 수 없습니다. 이럴 때 어떻게 계산하는지 설명하고 답을 쓰세요.",
+      "bAnswer": "$5\\,\\mathrm{kg}$ 중 $1\\,\\mathrm{kg}$을 $1000\\,\\mathrm{g}$으로 바꾸어 $4\\,\\mathrm{kg}\\ 1100\\,\\mathrm{g}$으로 만든 뒤 같은 단위끼리 뺍니다. 답은 $2\\,\\mathrm{kg}\\ 700\\,\\mathrm{g}$입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1\\,\\mathrm{kg}$을 $1000\\,\\mathrm{g}$으로 바꾼다"
+          ]
+        },
+        {
+          "anyOf": [
+            "kg의 수는 $1$ 작아진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\,\\mathrm{kg}\\ 700\\,\\mathrm{g}$"
+          ]
+        }
+      ],
+      "bGoal": "무게의 뺄셈에서 내림하는 방법 설명",
+      "bReason": "원문에 예가 없어 내림이 필요한 식을 새로 만들어 방법을 쓰게 함",
+      "cDecision": "rewrite",
+      "cReason": "원문의 '빼어지는 수'는 초3에게 낯설고 어느 수가 줄어드는지 알기 어려움. 실제 내림 계산으로 바꿈",
+      "cSlotEquivalents": [],
+      "coreAfter": "무게의 뺄셈에서 $\\mathrm{g}$끼리 뺄 수 없으면 $1\\,\\mathrm{kg}$을 $1000\\,\\mathrm{g}$으로 바꾸어 뺀다. 이때 처음 무게의 $\\mathrm{kg}$의 수는 {$1$ 작아진다}.",
+      "coreReason": "1작아진다라는 원래변화표적을보존하며 처음무게의kg수라는대상을명시한다."
+    },
+    "currentCMarkedSentence": "$5\\,\\mathrm{kg}\\ 100\\,\\mathrm{g}-2\\,\\mathrm{kg}\\ 400\\,\\mathrm{g}$은 $5\\,\\mathrm{kg}\\ 100\\,\\mathrm{g}$을 $4\\,\\mathrm{kg}$ {$1100$}$\\,\\mathrm{g}$으로 바꾸어 빼므로 답은 {$2$}$\\,\\mathrm{kg}$ {$700$}$\\,\\mathrm{g}$이다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$1100$",
+        "equivalents": []
+      },
+      {
+        "expected": "$2$",
+        "equivalents": []
+      },
+      {
+        "expected": "$700$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "모두g로바꾸는뺄셈도가능하므로1kg를g로바꾸어받아내린다는방법범위를질문에명시하거나다른방법도 인정한다.",
+      "c": "C는4kg로내림을명시하여1100·2·700을구하며일반정의도처음kg수의감소를 보존한다."
+    }
+  },
+  {
+    "id": "e3-2-6-1-xc5",
+    "sourceIndex": 1290,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1290,
+      "sourceFingerprint": "5d8fd0f9a34a189c49f2748666f0eb423011dd64ba019e43779ebb166c8b100e",
+      "part": "e3plus",
+      "id": "e3-2-6-1-xc5",
+      "section": "초3::2-6 그림그래프::2-6-1 그림그래프 알아보기",
+      "term": "그림그래프의 좋은 점",
+      "kind": "성질",
+      "level": "하",
+      "definition": "그림그래프는 그림의 크기와 개수로 수를 보여 주어 항목끼리의 많고 적음을 {한눈에} 알 수 있다.",
+      "studentC": "그림그래프는 그림의 크기와 개수로 수를 보여 주어 항목끼리의 많고 적음을 □ 알 수 있다.",
+      "answers": [
+        "한눈에"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-6-1-xc5",
+      "proposalFingerprint": "7991ecaaf612fad420dac57f6a4a3556de3e47fd55552f72833b613d960ce0d1",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "없음(그림그래프의 좋은 점은 e3-2-6-1-xc13에서 설명)",
+      "bReason": "표와 견주어 좋은 점을 묻는 xc13 B와 목표가 겹침",
+      "cDecision": "keep",
+      "cReason": "문장이 짧고 답이 익숙한 말 '한눈에'임. 뜻이 같은 다른 말은 answerNotes로 인정",
+      "cSlotEquivalents": [],
+      "exclusionReason": "그림그래프가 많고 적음을 한눈에 보여 준다는 설명은 e3-2-6-1-xc13의 B(표와 그림그래프의 좋은 점)에서 그대로 요구하므로 겹침",
+      "answerNotes": "'한눈에', '쉽게', '바로', '빨리' 허용"
+    },
+    "currentCMarkedSentence": "그림그래프는 그림의 크기와 개수로 수를 보여 주어 항목끼리의 많고 적음을 {한눈에} 알 수 있다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "한눈에",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "표·그림그래프장점설명은1296과같아B를 제외한다.",
+      "c": "한눈에외쉽게·빠르게같은말도자연스럽고수학목표를확인못하는부사복원이므로C제외를 제안한다."
+    }
+  },
+  {
+    "id": "e3-2-6-1-xc7",
+    "sourceIndex": 1292,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1292,
+      "sourceFingerprint": "f87e3dd1020d842e1c585cf12117cfd860d62cd3123e663b82d27902b12ce3ea",
+      "part": "e3plus",
+      "id": "e3-2-6-1-xc7",
+      "section": "초3::2-6 그림그래프::2-6-1 그림그래프 알아보기",
+      "term": "그림 설명 먼저 읽기",
+      "kind": "방법",
+      "level": "하",
+      "definition": "그래프 옆에 적힌 설명을 보고 각 그림이 나타내는 {수}를 먼저 읽는다.",
+      "studentC": "그래프 옆에 적힌 설명을 보고 각 그림이 나타내는 □를 먼저 읽는다.",
+      "answers": [
+        "수"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-6-1-xc7",
+      "proposalFingerprint": "6677e98c6ae55d7b8669a9ae987907ddc2dca08847466815a43fadb39e24e6f1",
+      "learningRole": "naming",
+      "bDecision": "rewrite",
+      "bPrompt": "그림그래프를 읽을 때 그림의 개수를 세기 전에 먼저 확인해야 하는 것이 무엇인지 쓰고, 그 까닭을 쓰세요.",
+      "bAnswer": "큰 그림과 작은 그림이 각각 얼마를 나타내는지 먼저 확인합니다. 그래프마다 그림이 나타내는 수가 달라서 이것을 모르면 수를 읽을 수 없기 때문입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "그림 하나가 나타내는 수를 먼저 확인한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "그림이 나타내는 수를 알아야 수를 읽을 수 있다"
+          ]
+        }
+      ],
+      "bGoal": "그림이 나타내는 수를 먼저 읽는 까닭 설명",
+      "bReason": "'개수를 세기 전에'라는 순서를 주어 무엇을 왜 먼저 보는지 쓰게 함",
+      "cDecision": "keep",
+      "cReason": "'각 그림이 나타내는 □'에서 답이 익숙한 낱말 '수' 하나임",
+      "cSlotEquivalents": [],
+      "answerNotes": "'수', '수량', '값' 허용"
+    },
+    "currentCMarkedSentence": "그래프 옆에 적힌 설명을 보고 각 그림이 나타내는 {수}를 먼저 읽는다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "수",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "그림단위값먼저읽는방법·이유의역할은naming보다procedure가맞다.",
+      "c": "나타내는수라는말만복원하기보다실제범례의한그림값을읽는숫자사례또는C제외를 제안한다."
+    }
+  },
+  {
+    "id": "e3-2-6-1-xc12",
+    "sourceIndex": 1295,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1295,
+      "sourceFingerprint": "6044a3851d4cce2d6e055fd173898a8d28445bccbde39ba03049f755b1f6dfc8",
+      "part": "e3plus",
+      "id": "e3-2-6-1-xc12",
+      "section": "초3::2-6 그림그래프::2-6-1 그림그래프 알아보기",
+      "term": "큰 그림 수가 같을 때",
+      "kind": "방법",
+      "level": "중",
+      "definition": "큰 그림의 수가 같은 항목끼리는 {작은 그림}이 적은 쪽이 수가 더 적다.",
+      "studentC": "큰 그림의 수가 같은 항목끼리는 □이 적은 쪽이 수가 더 적다.",
+      "answers": [
+        "작은 그림"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-6-1-xc12",
+      "proposalFingerprint": "48a53d93d0b3c547995a5d84b5e5716a5db53b93a4613fdf8cc5ea5f4fde6c14",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "큰 그림은 $10$개, 작은 그림은 $1$개를 나타내는 그림그래프에서 사과는 큰 그림 $2$개와 작은 그림 $3$개, 배는 큰 그림 $2$개와 작은 그림 $6$개입니다. 어느 것이 더 적은지 쓰고, 어떻게 비교했는지 설명하세요.",
+      "bAnswer": "사과가 더 적습니다. 큰 그림의 수가 $2$개로 같으므로 작은 그림의 수를 비교하면 $3$개가 $6$개보다 적기 때문입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "큰 그림의 수가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "작은 그림의 수를 비교한다"
+          ]
+        }
+      ],
+      "bGoal": "큰 그림 수가 같을 때 비교하는 방법 설명",
+      "bReason": "두 항목의 그림 개수를 글로 주어 비교 방법을 쓰게 함. $23$과 $26$으로 읽어 비교한 풀이도 인정",
+      "cDecision": "rewrite",
+      "cReason": "원문에 그림그래프라는 말이 없어 무엇에 대한 문장인지 가려짐. 대상을 밝히고 답을 낱말 하나로 줄임",
+      "cSlotEquivalents": [],
+      "answerNotes": "'작은' 정답. '큰'은 오답"
+    },
+    "currentCMarkedSentence": "그림그래프에서 큰 그림의 수가 같은 두 항목은 {작은} 그림이 적은 쪽이 수가 더 적다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "작은",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "적은항목사과를쓰라고했으므로사과선택도기준에넣고큰그림같음·작은3<6방법을함께 확인한다.",
+      "c": "큰그림수가같으면작은그림수로비교하는방법이다."
+    }
+  },
+  {
+    "id": "e3-2-6-1-xc13",
+    "sourceIndex": 1296,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1296,
+      "sourceFingerprint": "ba19b2b500202ef7c1979d3924047a2b798260f02d4e0a2059f294384465936a",
+      "part": "e3plus",
+      "id": "e3-2-6-1-xc13",
+      "section": "초3::2-6 그림그래프::2-6-1 그림그래프 알아보기",
+      "term": "표와 그림그래프",
+      "kind": "성질",
+      "level": "중",
+      "definition": "표는 수를 바로 읽을 수 있고, 그림그래프는 항목끼리 많고 적음을 {눈으로} 쉽게 견줄 수 있다.",
+      "studentC": "표는 수를 바로 읽을 수 있고, 그림그래프는 항목끼리 많고 적음을 □ 쉽게 견줄 수 있다.",
+      "answers": [
+        "눈으로"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-6-1-xc13",
+      "proposalFingerprint": "0694f6671541d4569ad4ed162b66976a45e20a1ac0cc90d0b0a6a988ada5bb30",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "같은 조사 결과를 표로 나타낼 때와 그림그래프로 나타낼 때 각각 좋은 점을 한 가지씩 쓰세요.",
+      "bAnswer": "표는 각 항목의 수를 바로 읽을 수 있습니다. 그림그래프는 어느 항목이 많고 적은지 한눈에 비교할 수 있습니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "표는 수를 바로 읽을 수 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "그림그래프는 많고 적음을 한눈에 비교할 수 있다"
+          ]
+        }
+      ],
+      "bGoal": "표와 그림그래프의 좋은 점을 견주어 설명",
+      "bReason": "두 가지를 한 가지씩 쓰도록 답의 개수와 범위를 정함",
+      "cDecision": "rewrite",
+      "cReason": "원문 답 '눈으로'는 '한눈에', '쉽게' 등과 구별되지 않아 무엇을 쓸지 불분명함. 두 가지를 구별해 이름을 쓰게 바꿈",
+      "cSlotEquivalents": [],
+      "answerNotes": "순서대로 '표', '그림그래프'. 둘을 바꾸어 쓰면 오답. '그래프'만 써도 허용"
+    },
+    "currentCMarkedSentence": "조사한 수를 바로 읽기 쉬운 것은 {표}이고, 항목끼리 많고 적음을 한눈에 비교하기 쉬운 것은 {그림그래프}이다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "표",
+        "equivalents": []
+      },
+      {
+        "expected": "그림그래프",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "각각좋은점한가지라는자유응답에표의정확한수정리·그림의큰단위간결화등다른유효한수학적장점도인정하거나비교측면을 명시한다.",
+      "c": "표·그림그래프의실제같은자료예또는숫자표·그림수표현조건을보여두이름의장점비교를 분명히한다."
+    }
+  },
+  {
+    "id": "e3-2-6-1-xc14",
+    "sourceIndex": 1297,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1297,
+      "sourceFingerprint": "179bc1721144c67372917ae36b483b737bc3c4cb6710ed4bfc6a8524a4230c13",
+      "part": "e3plus",
+      "id": "e3-2-6-1-xc14",
+      "section": "초3::2-6 그림그래프::2-6-1 그림그래프 알아보기",
+      "term": "그림그래프로 합계 구하기",
+      "kind": "방법",
+      "level": "중",
+      "definition": "그림그래프의 {모든 항목의 수를 더하면} 조사한 전체 수인 합계가 된다.",
+      "studentC": "그림그래프의 □ 조사한 전체 수인 합계가 된다.",
+      "answers": [
+        "모든 항목의 수를 더하면"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-6-1-xc14",
+      "proposalFingerprint": "aa66ae2e18a5a3b52d0475d964e216f535cb2661a1ad296a8b3d7d1268384608",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "그림그래프에서 좋아하는 과일별 학생 수를 사과 $23$명, 배 $15$명, 귤 $30$명으로 읽었습니다. 조사한 학생은 모두 몇 명인지 구하는 방법과 답을 쓰세요.",
+      "bAnswer": "모든 항목의 수를 더합니다. $23+15+30=68$이므로 $68$명입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "모든 항목의 수를 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$68$명"
+          ]
+        }
+      ],
+      "bGoal": "그림그래프에서 합계를 구하는 방법 설명",
+      "bReason": "읽은 수 세 개를 주어 합계 구하는 방법과 결과를 쓰게 함",
+      "cDecision": "rewrite",
+      "cReason": "원문 빈칸 '모든 항목의 수를 더하면'은 문장의 앞부분 전체를 복원해야 하는 긴 구절임. 계산 낱말 하나로 줄임",
+      "cSlotEquivalents": [],
+      "answerNotes": "'더해서', '더하여', '합해서' 허용"
+    },
+    "currentCMarkedSentence": "그림그래프에서 조사한 전체 수인 합계는 모든 항목의 수를 {더해서} 구한다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "더해서",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "학생합계는한사람이사과·배·귤중하나만고른조사임을명시하여중복응답으로학생수가더작을수있는경우와 구별한다.",
+      "c": "C도한사람한항목의조사또는전체응답수라는기준을정해야모든항목합이전체인관계가 참이다."
+    }
+  },
+  {
+    "id": "e3-2-6-1-xc17",
+    "sourceIndex": 1298,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1298,
+      "sourceFingerprint": "c4cd04b030f1f35e703b9079d76735a681e85c48231c91efaf1e95feec6afc7a",
+      "part": "e3plus",
+      "id": "e3-2-6-1-xc17",
+      "section": "초3::2-6 그림그래프::2-6-1 그림그래프 알아보기",
+      "term": "작은 그림이 $10$개가 되면",
+      "kind": "성질",
+      "level": "중",
+      "definition": "큰 그림이 $10$, 작은 그림이 $1$을 나타낼 때 작은 그림이 $10$개가 되면 큰 그림 {하나}로 바꾸어 그린다.",
+      "studentC": "큰 그림이 $10$, 작은 그림이 $1$을 나타낼 때 작은 그림이 $10$개가 되면 큰 그림 □로 바꾸어 그린다.",
+      "answers": [
+        "하나"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-6-1-xc17",
+      "proposalFingerprint": "36f643c3fb75ae9d0b76ce99f3cd22b567a591134e475aa271929ae7bd024b8a",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "큰 그림이 $10$, 작은 그림이 $1$을 나타내는 그림그래프에서 작은 그림 $10$개를 큰 그림 $1$개로 바꾸어 그릴 수 있는 까닭을 쓰세요.",
+      "bAnswer": "작은 그림 $10$개가 나타내는 수 $10$이 큰 그림 $1$개가 나타내는 수와 같기 때문입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "작은 그림 $10$개는 $10$을 나타낸다"
+          ]
+        },
+        {
+          "anyOf": [
+            "큰 그림 $1$개가 나타내는 수와 같다"
+          ]
+        }
+      ],
+      "bGoal": "작은 그림 10개를 큰 그림 1개로 바꾸는 까닭 설명",
+      "bReason": "그림이 나타내는 수를 문제에 밝혀 바꾸어 그리는 까닭만 묻게 함",
+      "cDecision": "keep",
+      "cReason": "큰 그림과 작은 그림이 나타내는 수가 문장에 있고 답이 '하나'로 정해지는 짧은 문장임",
+      "cSlotEquivalents": [],
+      "answerNotes": "'하나', '한 개', '$1$개' 허용"
+    },
+    "currentCMarkedSentence": "큰 그림이 $10$, 작은 그림이 $1$을 나타낼 때 작은 그림이 $10$개가 되면 큰 그림 {하나}로 바꾸어 그린다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "하나",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "큰1=작은10의같은수로교환하는B이유는분명하다.",
+      "c": "하나로·한개로·1개로는모두같은그림한개의교환이므로이문장의인정대안을 보완한다."
+    }
+  },
+  {
+    "id": "e3-2-6-1-xc20",
+    "sourceIndex": 1301,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1301,
+      "sourceFingerprint": "d179d7505dceaa90cd192399853cd5bd645b883728bc36dc346ad87cfba64f2f",
+      "part": "e3plus",
+      "id": "e3-2-6-1-xc20",
+      "section": "초3::2-6 그림그래프::2-6-1 그림그래프 알아보기",
+      "term": "그래프를 보고 계획 세우기",
+      "kind": "방법",
+      "level": "상",
+      "definition": "가장 많이 팔린 맛을 그림그래프에서 찾아 다음에는 그 맛을 {더 많이} 준비하는 것처럼 그래프로 계획을 세운다.",
+      "studentC": "가장 많이 팔린 맛을 그림그래프에서 찾아 다음에는 그 맛을 □ 준비하는 것처럼 그래프로 계획을 세운다.",
+      "answers": [
+        "더 많이"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-6-1-xc20",
+      "proposalFingerprint": "e6af76d8fcff329b9db84a3dc9967a944e6877d3486bc90bb18a7c35205ba77e",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "아이스크림 가게에서 일주일 동안 팔린 맛을 그림그래프로 나타냈더니 딸기 맛이 가장 많이, 녹차 맛이 가장 적게 팔렸습니다. 다음 주에 아이스크림을 준비할 때 이 결과를 어떻게 쓰면 좋을지 까닭과 함께 쓰세요.",
+      "bAnswer": "가장 많이 팔린 딸기 맛을 더 많이 준비한다. 많이 팔린 맛은 다음에도 많이 찾을 것이기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가장 많이 팔린 맛을 더 많이 준비"
+          ]
+        },
+        {
+          "anyOf": [
+            "많이 팔렸다는 결과를 까닭으로 듦"
+          ]
+        }
+      ],
+      "bGoal": "그래프 결과를 다음 계획에 쓰는 방법 설명",
+      "bReason": "'계획 세우기'만으로는 답할 범위가 넓어 가게 상황과 팔린 결과를 주었다. 녹차 맛을 줄인다는 답을 덧붙여도 좋다.",
+      "cDecision": "keep",
+      "cReason": "'그 맛을 □ 준비하는'은 많이 팔린 맛이라는 조건이 앞에 있어 쉬운 말로 답이 정해진다.",
+      "cSlotEquivalents": [],
+      "answerNotes": "더 많이, 많이, 넉넉히 인정. '적게'는 오답."
+    },
+    "currentCMarkedSentence": "가장 많이 팔린 맛을 그림그래프에서 찾아 다음에는 그 맛을 {더 많이} 준비하는 것처럼 그래프로 계획을 세운다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "더 많이",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "자유로운준비계획에는딸기더준비뿐아니라적게팔린녹차덜준비도유효하므로기준대안을인정하고미래에도많이찾을것단정은많이찾을수있다로 고친다.",
+      "c": "더많이외다른준비계획도말이되므로주관적계획말복원C를제외하거나특정상황의수량계획으로 고친다."
+    }
+  },
+  {
+    "id": "e3-2-6-1-xc25",
+    "sourceIndex": 1304,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1304,
+      "sourceFingerprint": "43b0a8af7ee2b9dc40a45b6224c144f1a1fa356f654d032475affc754466adcc",
+      "part": "e3plus",
+      "id": "e3-2-6-1-xc25",
+      "section": "초3::2-6 그림그래프::2-6-1 그림그래프 알아보기",
+      "term": "큰 그림 수가 다를 때",
+      "kind": "성질",
+      "level": "상",
+      "definition": "큰 그림이 $10$, 작은 그림이 $1$을 나타내고 작은 그림이 $9$개를 넘지 않으면 큰 그림이 더 많은 항목의 수가 {더 크다}.",
+      "studentC": "큰 그림이 $10$, 작은 그림이 $1$을 나타내고 작은 그림이 $9$개를 넘지 않으면 큰 그림이 더 많은 항목의 수가 □.",
+      "answers": [
+        "더 크다"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-6-1-xc25",
+      "proposalFingerprint": "3ee4b27afa11d57c040388328b41b3677744d01ef50c8f7f9fff8d95c61b6c73",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "큰 그림은 $10$명, 작은 그림은 $1$명을 나타냅니다. 가 반은 큰 그림 $3$개와 작은 그림 $1$개, 나 반은 큰 그림 $2$개와 작은 그림 $9$개입니다. 그림 개수는 나 반이 더 많은데 학생 수는 어느 반이 더 많은지 까닭과 함께 쓰세요.",
+      "bAnswer": "가 반은 $31$명, 나 반은 $29$명이라 가 반이 더 많다. 작은 그림은 $9$개여도 $9$명이라 큰 그림 $1$개인 $10$명보다 작기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가 반이 더 많음"
+          ]
+        },
+        {
+          "anyOf": [
+            "작은 그림 $9$개는 큰 그림 $1$개보다 작음(또는 $31$명과 $29$명으로 견줌)"
+          ]
+        }
+      ],
+      "bGoal": "큰 그림 수가 다르면 큰 그림이 많은 쪽이 큰 까닭",
+      "bReason": "조건이 긴 일반 문장이라 두 반의 그림 개수를 정해 주고 판단과 까닭을 묻게 했다.",
+      "cDecision": "keep",
+      "cReason": "조건이 문장에 다 있고 빈칸은 '더 크다'라는 짧은 견줌 말이다.",
+      "cSlotEquivalents": [],
+      "exampleNeeded": "큰 그림 $3$개·작은 그림 $1$개인 줄과 큰 그림 $2$개·작은 그림 $9$개인 줄이 있는 그림그래프",
+      "answerNotes": "더 크다, 더 많다, 크다 인정."
+    },
+    "currentCMarkedSentence": "큰 그림이 $10$, 작은 그림이 $1$을 나타내고 작은 그림이 $9$개를 넘지 않으면 큰 그림이 더 많은 항목의 수가 {더 크다}.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "더 크다",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "작은9<큰하나10의이유와31>29의직접수비교이유는둘다유효하므로괄호또는표현대신anyOf대안으로 분리한다.",
+      "c": "작은그림최대9의명시된조건에서큰그림많은항목의큰수가 참이다."
+    }
+  },
+  {
+    "id": "e3-2-6-2-xc1",
+    "sourceIndex": 1305,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1305,
+      "sourceFingerprint": "e88d74577261c224e1df2bafbbbc3ad9e49b6460a7bf703dcf29e50b21d9879a",
+      "part": "e3plus",
+      "id": "e3-2-6-2-xc1",
+      "section": "초3::2-6 그림그래프::2-6-2 그림그래프로 나타내기",
+      "term": "그림 하나의 값 먼저 정하기",
+      "kind": "방법",
+      "level": "하",
+      "definition": "그림그래프를 그리기 전에 그림 하나가 나타낼 {수}를 먼저 정한다.",
+      "studentC": "그림그래프를 그리기 전에 그림 하나가 나타낼 □를 먼저 정한다.",
+      "answers": [
+        "수"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-6-2-xc1",
+      "proposalFingerprint": "9d608fa5ea34af92fde8325a33010bdcb6d99f7a4bd45851f49dc82b1aa187b5",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "좋아하는 운동을 조사한 표를 그림그래프로 나타내려고 합니다. 그림을 그리기 시작하기 전에 그림에 대해 무엇을 먼저 정해야 하는지 쓰고, 왜 먼저 정해야 하는지 설명하세요.",
+      "bAnswer": "그림 하나가 몇 명을 나타낼지 먼저 정한다. 그래야 운동마다 그림을 몇 개 그려야 하는지 알 수 있다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "그림 하나가 나타내는 수를 정함"
+          ]
+        },
+        {
+          "anyOf": [
+            "그래야 그릴 그림 개수를 알 수 있음"
+          ]
+        }
+      ],
+      "bGoal": "그림 하나의 값을 먼저 정하는 까닭",
+      "bReason": "무엇을 정하는지와 까닭 두 가지로 답할 범위를 좁혔다.",
+      "cDecision": "keep",
+      "cReason": "'그림 하나가 나타낼 □'은 익숙한 낱말 '수' 하나로 답이 정해진다.",
+      "cSlotEquivalents": [],
+      "answerNotes": "수, 수량, 값 인정."
+    },
+    "currentCMarkedSentence": "그림그래프를 그리기 전에 그림 하나가 나타낼 {수}를 먼저 정한다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "수",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "그림하나값정하기와그릴개수결정의B방법·이유는 분명하다.",
+      "c": "수라는말만복원하기보다정한단위값으로실제그림개수가달라지는숫자사례를C로 제안한다."
+    }
+  },
+  {
+    "id": "e3-2-6-2-xc3",
+    "sourceIndex": 1307,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1307,
+      "sourceFingerprint": "48c0c6b4942fa4ff1007a7b27c90c4a7223cb87d3aee2c28f624ab232c76d71f",
+      "part": "e3plus",
+      "id": "e3-2-6-2-xc3",
+      "section": "초3::2-6 그림그래프::2-6-2 그림그래프로 나타내기",
+      "term": "알맞은 그림 고르기",
+      "kind": "방법",
+      "level": "하",
+      "definition": "좋아하는 과일을 조사했다면 과일 모양처럼 자료와 {어울리는} 그림을 고르면 알아보기 쉽다.",
+      "studentC": "좋아하는 과일을 조사했다면 과일 모양처럼 자료와 □ 그림을 고르면 알아보기 쉽다.",
+      "answers": [
+        "어울리는"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-6-2-xc3",
+      "proposalFingerprint": "52e53506274bd4ef11ccd82b0c801ae8aa57dd896ea7720b5c7c4df257802ac2",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "마을별 사과 생산량을 그림그래프로 나타내려고 합니다. 어떤 모양의 그림을 쓰면 좋을지 하나 정하고, 그렇게 정한 까닭을 쓰세요.",
+      "bAnswer": "사과 모양 그림. 조사한 것과 어울리는 그림이라 무엇을 나타낸 그래프인지 바로 알아볼 수 있다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "조사한 것과 어울리는 그림(사과 등)"
+          ]
+        },
+        {
+          "anyOf": [
+            "알아보기 쉬움"
+          ]
+        }
+      ],
+      "bGoal": "자료와 어울리는 그림을 고르는 까닭",
+      "bReason": "원문의 과일 예와 겹치지 않게 사과 생산량 상황을 주었다. 사과 상자 모양처럼 어울리는 다른 그림도 정답.",
+      "cDecision": "keep",
+      "cReason": "'과일 모양처럼'이라는 예가 있어 쉬운 낱말로 답할 수 있다.",
+      "cSlotEquivalents": [],
+      "answerNotes": "어울리는, 관계있는, 알맞은, 맞는 인정."
+    },
+    "currentCMarkedSentence": "좋아하는 과일을 조사했다면 과일 모양처럼 자료와 {어울리는} 그림을 고르면 알아보기 쉽다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "어울리는",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "사과등주제어울리는그림과알아보기쉽다는B이유는 분명하다.",
+      "c": "어울리는외맞는·알맞은도이문장에서같은뜻이므로맥락대안을인정하거나그림선택사례로 고친다."
+    }
+  },
+  {
+    "id": "e3-2-6-2-xc7",
+    "sourceIndex": 1309,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1309,
+      "sourceFingerprint": "1afae6f7aed047ef7061e489e24ef6bf44578f407953ae8f670909f8bada8e65",
+      "part": "e3plus",
+      "id": "e3-2-6-2-xc7",
+      "section": "초3::2-6 그림그래프::2-6-2 그림그래프로 나타내기",
+      "term": "항목을 빠짐없이",
+      "kind": "방법",
+      "level": "하",
+      "definition": "표에 있는 항목은 하나도 빠뜨리지 않고 그림그래프에 {한 줄씩} 나타낸다.",
+      "studentC": "표에 있는 항목은 하나도 빠뜨리지 않고 그림그래프에 □ 나타낸다.",
+      "answers": [
+        "한 줄씩"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-6-2-xc7",
+      "proposalFingerprint": "df106246bcb408202dd9c5e32ae5f6e5a9bc154e09c0dfad23c7687c4b175c03",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "표에는 사과, 배, 포도, 귤을 좋아하는 학생 수가 적혀 있는데, 이 표를 보고 그린 그림그래프에는 사과, 배, 포도만 있습니다. 이 그림그래프에서 고쳐야 할 점을 쓰세요.",
+      "bAnswer": "귤이 빠졌으므로 귤도 그려 넣어야 한다. 표에 있는 것은 하나도 빠뜨리지 않고 나타내야 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "귤이 빠짐"
+          ]
+        },
+        {
+          "anyOf": [
+            "표에 있는 것은 모두 나타냄"
+          ]
+        }
+      ],
+      "bGoal": "표의 항목을 빠짐없이 그래프에 옮기기",
+      "bReason": "빠진 항목이 있는 상황을 주어 무엇을 고칠지 분명히 했다.",
+      "cDecision": "rewrite",
+      "cReason": "'한 줄씩'은 '모두', '그림으로' 등 다른 답과 구별되지 않았다. 빠짐없이 나타낸다는 목표를 수로 답하게 했다.",
+      "cSlotEquivalents": []
+    },
+    "currentCMarkedSentence": "표에 사과, 배, 포도, 귤 $4$가지가 있으면 그림그래프에도 하나도 빠뜨리지 않고 {$4$}가지를 모두 나타낸다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$4$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "빠진귤과표의모든항목복원이라는B수정은 명확하다.",
+      "c": "본문4를복사하는C대신표네항목·그래프세항목에서빠진귤을찾도록 고친다."
+    }
+  },
+  {
+    "id": "e3-2-6-2-xc8",
+    "sourceIndex": 1310,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1310,
+      "sourceFingerprint": "89c7f61da986d29868f4308d4d7ee0feecd404f5ab3b26954784f8cd6f6f63d2",
+      "part": "e3plus",
+      "id": "e3-2-6-2-xc8",
+      "section": "초3::2-6 그림그래프::2-6-2 그림그래프로 나타내기",
+      "term": "자료를 셀 때 표시하기",
+      "kind": "방법",
+      "level": "하",
+      "definition": "조사한 자료를 셀 때 센 것에 표시를 하면 {빠뜨리거나 두 번 세는 일}을 막을 수 있다.",
+      "studentC": "조사한 자료를 셀 때 센 것에 표시를 하면 □을 막을 수 있다.",
+      "answers": [
+        "빠뜨리거나 두 번 세는 일"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-6-2-xc8",
+      "proposalFingerprint": "ac379177eab609580cee02714c54dc204ecc182beb40ae2dafdf66ca481a88c3",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "조사한 자료를 하나씩 세어 표로 옮길 때, 이미 센 것에 표시를 하면서 셉니다. 표시를 하지 않고 세면 어떤 잘못이 생길 수 있는지 두 가지를 쓰세요.",
+      "bAnswer": "센 것을 또 세거나, 세지 않고 빠뜨릴 수 있다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 번 세기"
+          ]
+        },
+        {
+          "anyOf": [
+            "빠뜨리기"
+          ]
+        }
+      ],
+      "bGoal": "셀 때 표시하는 까닭",
+      "bReason": "표시하는 방법은 문제에 주고 막을 수 있는 잘못 두 가지만 답하게 했다.",
+      "cDecision": "rewrite",
+      "cReason": "'빠뜨리거나 두 번 세는 일'이라는 긴 구절을 통째로 쓰게 했다. 짧은 낱말 하나로 줄였다.",
+      "cSlotEquivalents": [],
+      "answerNotes": "두, $2$, 여러 인정."
+    },
+    "currentCMarkedSentence": "조사한 자료를 셀 때 센 것에 표시를 하면 빠뜨리거나 같은 것을 {두} 번 세는 일을 막을 수 있다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "두",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "표시없는계수의두번세기·빠뜨림오류두가지를 요청한다.",
+      "c": "같은것을여러번세기도가능한현재문장보다한번센것을다시한번세면총두번인상황으로범위를 정한다."
+    }
+  },
+  {
+    "id": "e3-2-6-2-xc12",
+    "sourceIndex": 1313,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1313,
+      "sourceFingerprint": "abc00f6b49f495a23bca8620e5583ff177e01d9574548999087b0c29d8f55162",
+      "part": "e3plus",
+      "id": "e3-2-6-2-xc12",
+      "section": "초3::2-6 그림그래프::2-6-2 그림그래프로 나타내기",
+      "term": "수가 큰 자료의 그림 값",
+      "kind": "성질",
+      "level": "중",
+      "definition": "수가 큰 자료는 그림 하나가 {큰 수}를 나타내도록 정해야 그림 개수가 지나치게 많아지지 않는다.",
+      "studentC": "수가 큰 자료는 그림 하나가 □를 나타내도록 정해야 그림 개수가 지나치게 많아지지 않는다.",
+      "answers": [
+        "큰 수"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-6-2-xc12",
+      "proposalFingerprint": "376c66c84bb01e9185a556bf98b3e160ed031ee00ab92079f2ffa72f918f5185",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "세 학교의 책 수가 $300$권, $500$권, $400$권입니다. 그림 하나가 $1$권을 나타내도록 정하면 어떤 점이 불편한지 쓰고, 그림 하나가 나타내는 수를 어떻게 정하면 좋을지 쓰세요.",
+      "bAnswer": "그림을 $300$개, $500$개씩 그려야 해서 너무 많다. 그림 하나가 $100$권처럼 큰 수를 나타내게 정하면 $3$개, $5$개, $4$개만 그리면 된다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "그림 개수가 너무 많아짐"
+          ]
+        },
+        {
+          "anyOf": [
+            "그림 하나가 큰 수(예: $100$권)를 나타내게 정함"
+          ]
+        }
+      ],
+      "bGoal": "큰 수의 자료에서 그림 값을 크게 정하는 까닭",
+      "bReason": "책 수를 주어 불편한 점과 고치는 방법을 스스로 찾게 했다.",
+      "cDecision": "keep",
+      "cReason": "빈칸이 '큰 수'로 짧고, 그림 개수가 많아지지 않는다는 결과가 뒤에 있다.",
+      "cSlotEquivalents": [],
+      "answerNotes": "큰 수, 많은 수 인정. '작은 수'는 오답."
+    },
+    "currentCMarkedSentence": "수가 큰 자료는 그림 하나가 {큰 수}를 나타내도록 정해야 그림 개수가 지나치게 많아지지 않는다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "큰 수",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "1권단위의그림수과다와큰단위100권같은변경방법의B는분명하다.",
+      "c": "큰수외많은수·큰개수같은말도문맥상맞으므로대안을인정하거나실제그림값선택·개수계산의C로 고친다."
+    }
+  },
+  {
+    "id": "e3-2-6-2-xc17",
+    "sourceIndex": 1317,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1317,
+      "sourceFingerprint": "712f7b778a387d2e4fa456df6e15c943a3025b33f1ed4ad12cf69dbc795bfeff",
+      "part": "e3plus",
+      "id": "e3-2-6-2-xc17",
+      "section": "초3::2-6 그림그래프::2-6-2 그림그래프로 나타내기",
+      "term": "다 그린 뒤 다시 읽기",
+      "kind": "방법",
+      "level": "중",
+      "definition": "그린 그림을 다시 수로 읽어 표의 수와 {맞는지} 확인한다.",
+      "studentC": "그린 그림을 다시 수로 읽어 표의 수와 □ 확인한다.",
+      "answers": [
+        "맞는지"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-6-2-xc17",
+      "proposalFingerprint": "24c6c3b6d7a1d9e65d6d0450032542b6015fa5af949784c522d228439ce165ba",
+      "learningRole": "naming",
+      "bDecision": "rewrite",
+      "bPrompt": "표를 보고 그림그래프를 다 그렸습니다. 잘못 그린 곳이 없는지 확인하는 방법을 한 가지 쓰세요.",
+      "bAnswer": "그린 그림을 다시 수로 읽어서 표에 있는 수와 같은지 견주어 본다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "그림을 다시 수로 읽음"
+          ]
+        },
+        {
+          "anyOf": [
+            "표의 수와 같은지 견줌"
+          ]
+        }
+      ],
+      "bGoal": "그린 그래프를 점검하는 방법",
+      "bReason": "답할 것을 '확인하는 방법 한 가지'로 좁혔다. 읽은 수를 모두 더해 표의 합계와 견주는 방법도 정답.",
+      "cDecision": "keep",
+      "cReason": "'표의 수와 □ 확인한다'는 쉬운 말 하나로 답이 정해진다.",
+      "cSlotEquivalents": [],
+      "answerNotes": "맞는지, 같은지 인정."
+    },
+    "currentCMarkedSentence": "그린 그림을 다시 수로 읽어 표의 수와 {맞는지} 확인한다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "맞는지",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "다시수로읽고표와비교하는검산절차의역할은naming보다procedure가 맞다.",
+      "c": "표수와맞는지·같은지는이문장에서같은값비교이므로인정대안을 보완한다."
+    }
+  },
+  {
+    "id": "e3-2-6-2-xc26",
+    "sourceIndex": 1322,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1322,
+      "sourceFingerprint": "b839bcfda8a5849d0f62f3ca5afd4ee74c57e96d021406eb94f8d6fbe50ed140",
+      "part": "e3plus",
+      "id": "e3-2-6-2-xc26",
+      "section": "초3::2-6 그림그래프::2-6-2 그림그래프로 나타내기",
+      "term": "그림 설명에 단위 붙이기",
+      "kind": "방법",
+      "level": "상",
+      "definition": "사람 수를 조사했으면 그림 설명에도 '명'을, 책 수를 조사했으면 {'권'}을 붙여 단위를 밝힌다.",
+      "studentC": "사람 수를 조사했으면 그림 설명에도 '명'을, 책 수를 조사했으면 □을 붙여 단위를 밝힌다.",
+      "answers": [
+        "'권'"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-6-2-xc26",
+      "proposalFingerprint": "0790c9dfa8538278882e0d7e5fd1a66d970f6df4367d26d56a8120c50cd0652d",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "그림 설명에 조사한 것에 맞는 단위 쓰기",
+      "bReason": "단위 낱말 하나를 고르는 내용이라 C로만 확인한다.",
+      "cDecision": "keep",
+      "cReason": "'명'과 짝을 이루는 익숙한 단위 '권'을 쓰는 빈칸이라 분명하다.",
+      "cSlotEquivalents": [],
+      "exclusionReason": "빈칸이 단위 낱말 '권' 하나라 설명할 내용이 없고, 그림 설명을 적는 까닭은 e3-2-6-2-xc6의 B에서 이미 묻는다.",
+      "answerNotes": "따옴표 없이 '권'만 써도 정답."
+    },
+    "currentCMarkedSentence": "사람 수를 조사했으면 그림 설명에도 '명'을, 책 수를 조사했으면 {'권'}을 붙여 단위를 밝힌다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "'권'",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "책수단위이름만의B를제외하고설명필요성은1308에 남긴다.",
+      "c": "권과따옴표있는권은같은단위이므로학생이따옴표없이쓴권도인정답에 포함한다."
+    }
+  }
+]

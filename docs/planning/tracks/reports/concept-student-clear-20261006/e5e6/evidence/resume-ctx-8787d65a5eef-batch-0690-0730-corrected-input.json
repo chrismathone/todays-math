@@ -1,0 +1,809 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e5-1-3-3-xc26",
+      "bDecision": "revise",
+      "bPrompt": "세발자전거 수를 $\\square$, 바퀴 수를 $\\triangle$라고 정하고 $\\triangle\\times3=\\square$라고 썼다. 세발자전거가 $2$대일 때의 수를 넣어 이 식이 상황과 맞는지 확인하고, 식을 바르게 고치시오. 식이 맞지 않을 때 먼저 무엇을 다시 살펴봐야 하는지도 쓰시오.",
+      "bAnswer": "$2$대이면 바퀴는 $6$개인데 식에 넣으면 $6 \\times 3 = 18$로 $2$가 되지 않아 맞지 않는다. 바른 식은 $\\square\\times3=\\triangle$ (또는 $\\triangle\\div3=\\square$)이다. 각 기호가 어떤 양을 나타내기로 했는지부터 다시 살펴본다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2$대의바퀴$6$개를넣으면$6 \\times 3 = 18$로$2$와다르므로맞지않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\square\\times3=\\triangle$",
+            "$3\\times\\square=\\triangle$",
+            "$\\triangle\\div3=\\square$",
+            "$\\triangle=\\square\\times3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "각 기호가 나타내는 양을 다시 확인한다"
+          ]
+        }
+      ],
+      "bGoal": "기호가 나타내는 양에 비추어 상황과 맞지 않는 식을 찾아 고친다.",
+      "bReason": "'약속', '뜻'이라는 메타 말 대신 기호가 뒤바뀐 실제 식을 고치게 했다.",
+      "cDecision": "revise",
+      "cAfter": "세발자전거 수를 $\\square$, 바퀴 수를 $\\triangle$라고 정했다. 세발자전거가 $2$대이면 바퀴는 {$6$}개이므로, 두 식 ㉠ $\\square\\times3=\\triangle$, ㉡ $\\triangle\\times3=\\square$ 중 상황에 맞는 식은 {㉠}이다.",
+      "cReason": "빈칸 '뜻'은 낱말 맞히기에 그쳐, 정한 기호에 맞는 식을 수를 넣어 고르게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "application",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "㉠",
+            "$\\square\\times3=\\triangle$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-011-rubric.json",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0690-0730.json",
+      "codexFinalAmendedFromFingerprint": "7500599a4da7813d0cf57333dd4aef47f8b72582a401c0adc66392350a3ac30f",
+      "sourceIndex": 696,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-3-3-xc26",
+        "section": "초5::1-3 대응 관계::1-3-3 생활 속에서 대응 관계를 찾아 식으로 나타내기",
+        "term": "상황과 맞지 않는 식 고치기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "대응 관계의 식에서 기호가 어느 양을 나타내는지 정한 약속이 기호의 {뜻}이다. 식이 상황과 맞지 않으면 이 약속부터 다시 확인한다.",
+        "studentC": "대응 관계의 식에서 기호가 어느 양을 나타내는지 정한 약속이 기호의 □이다. 식이 상황과 맞지 않으면 이 약속부터 다시 확인한다.",
+        "answers": [
+          "뜻"
+        ]
+      },
+      "sourceFingerprint": "dc044f11d480e0d957b5af43c57fae28b3e18381948c01b1035011a0cd751f28",
+      "draftEvidence": "evidence/section-011-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$6$",
+        "㉠"
+      ],
+      "cStudentAfter": "세발자전거 수를 $\\square$, 바퀴 수를 $\\triangle$라고 정했다. 세발자전거가 $2$대이면 바퀴는 □개이므로, 두 식 ㉠ $\\square\\times3=\\triangle$, ㉡ $\\triangle\\times3=\\square$ 중 상황에 맞는 식은 □이다.",
+      "cMarkedSentence": "세발자전거 수를 $\\square$, 바퀴 수를 $\\triangle$라고 정했다. 세발자전거가 $2$대이면 바퀴는 {$6$}개이므로, 두 식 ㉠ $\\square\\times3=\\triangle$, ㉡ $\\triangle\\times3=\\square$ 중 상황에 맞는 식은 {㉠}이다.",
+      "cStudentSentence": "세발자전거 수를 $\\square$, 바퀴 수를 $\\triangle$라고 정했다. 세발자전거가 $2$대이면 바퀴는 □개이므로, 두 식 ㉠ $\\square\\times3=\\triangle$, ㉡ $\\triangle\\times3=\\square$ 중 상황에 맞는 식은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$6$",
+          "equivalents": []
+        },
+        {
+          "key": "㉠",
+          "equivalents": [
+            "$\\square\\times3=\\triangle$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "세발자전거 수를 $\\square$, 바퀴 수를 $\\triangle$라고 정하고 $\\triangle\\times3=\\square$라고 썼다. 세발자전거가 $2$대일 때의 수를 넣어 이 식이 상황과 맞는지 확인하고, 식을 바르게 고치시오. 식이 맞지 않을 때 먼저 무엇을 다시 살펴봐야 하는지도 쓰시오.",
+        "answer": "$2$대이면 바퀴는 $6$개인데 식에 넣으면 $6 \\times 3 = 18$로 $2$가 되지 않아 맞지 않는다. 바른 식은 $\\square\\times3=\\triangle$ (또는 $\\triangle\\div3=\\square$)이다. 각 기호가 어떤 양을 나타내기로 했는지부터 다시 살펴본다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$2$대의바퀴$6$개를넣으면$6 \\times 3 = 18$로$2$와다르므로맞지않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\square\\times3=\\triangle$",
+              "$3\\times\\square=\\triangle$",
+              "$\\triangle\\div3=\\square$",
+              "$\\triangle=\\square\\times3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "각 기호가 나타내는 양을 다시 확인한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "세발자전거 수를 $\\square$, 바퀴 수를 $\\triangle$라고 정했다. 세발자전거가 $2$대이면 바퀴는 {$6$}개이므로, 두 식 ㉠ $\\square\\times3=\\triangle$, ㉡ $\\triangle\\times3=\\square$ 중 상황에 맞는 식은 {㉠}이다.",
+        "acceptedAnswers": [
+          [
+            "$6$"
+          ],
+          [
+            "㉠",
+            "$\\square\\times3=\\triangle$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "1bea39d801b6c21bd4fd019a312843563a9b2125a9feac132e7934826d6b418b",
+      "questionRevision": "planning-e5e6-20261006-1bea39d801b6",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-1-xc2",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "분모와 분자에 같은 자연수를 곱해 크기가 같은 분수를 만드는 방법을 안다.",
+      "bReason": "c1과 같은 성질이라 서술형이 중복된다.",
+      "bRequiredIdeas": [],
+      "cDecision": "revise",
+      "cAfter": "분모와 분자 둘 다에 {같은 자연수}를 곱해 만든 분수는 처음 분수와 크기가 같다. 곱하는 수는 $0$이 아니다.",
+      "cReason": "분모에0을곱해분수가정의되지않는경우를제외한다고학생문장에명시한다. 기존같은수·같은자연수의의미동치는그조건안에서보존한다.",
+      "exclusionReason": "B 제외: e5-1-4-1-c1이 같은 성질을 묻는다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'같은 자연수', '0이 아닌 같은 수', '똑같은 수' 인정.",
+      "learningRole": "procedure",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같은 자연수",
+            "같은 수",
+            "똑같은 수",
+            "똑같은 자연수",
+            "$0$이 아닌 같은 수"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-012-rubric.json",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0690-0730.json",
+      "codexFinalAmendedFromFingerprint": "0bc74066bd58bbee865c1587b63c7735506df8504083532424ff1889b15635d1",
+      "sourceIndex": 700,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-1-xc2",
+        "section": "초5::1-4 약분과 통분::1-4-1 크기가 같은 분수 알아보기",
+        "term": "분모와 분자에 같은 수 곱하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "분모와 분자 둘 다에 {같은 자연수}를 곱해 만든 분수는 처음 분수와 크기가 같다.",
+        "example": {
+          "prompt": "$\\frac{2}{3}$의 분모와 분자에 $4$를 곱한 분수는?",
+          "answer": "$\\frac{8}{12}$"
+        },
+        "studentC": "분모와 분자 둘 다에 □를 곱해 만든 분수는 처음 분수와 크기가 같다.",
+        "answers": [
+          "같은 자연수"
+        ]
+      },
+      "sourceFingerprint": "018dd45b5300cf84d3015ed088ae79fd9537199c1da38fda64afd7c5d34d3503",
+      "draftEvidence": "evidence/section-012-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "같은 자연수"
+      ],
+      "cStudentAfter": "분모와 분자 둘 다에 □를 곱해 만든 분수는 처음 분수와 크기가 같다. 곱하는 수는 $0$이 아니다.",
+      "cMarkedSentence": "분모와 분자 둘 다에 {같은 자연수}를 곱해 만든 분수는 처음 분수와 크기가 같다. 곱하는 수는 $0$이 아니다.",
+      "cStudentSentence": "분모와 분자 둘 다에 □를 곱해 만든 분수는 처음 분수와 크기가 같다. 곱하는 수는 $0$이 아니다.",
+      "cSlotAnswers": [
+        {
+          "key": "같은 자연수",
+          "equivalents": [
+            "같은 수",
+            "똑같은 수",
+            "똑같은 자연수",
+            "$0$이 아닌 같은 수"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "분모와 분자 둘 다에 {같은 자연수}를 곱해 만든 분수는 처음 분수와 크기가 같다. 곱하는 수는 $0$이 아니다.",
+        "acceptedAnswers": [
+          [
+            "같은 자연수",
+            "같은 수",
+            "똑같은 수",
+            "똑같은 자연수",
+            "$0$이 아닌 같은 수"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 제외: e5-1-4-1-c1이 같은 성질을 묻는다."
+      },
+      "proposalFingerprint": "08e578afba7ba19e0e71fd9d44dc4cc1acb3596f25820de079a79cf594abf50a",
+      "questionRevision": "planning-e5e6-20261006-08e578afba7b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-1-xc5",
+      "bDecision": "revise",
+      "bPrompt": "분자가 $0$보다 큰 분수의 분모에만 $1$보다 큰 자연수를 곱하면 분수의 크기가 어떻게 되는지, 조각 하나의 크기와 조각의 수로 설명하시오. 또 $\\frac{3}{5}$과 크기가 같고 분모가 $10$인 분수를 쓰시오.",
+      "bAnswer": "분수의 크기가 작아진다. 전체를 더 많은 조각으로 나누어 조각 하나는 작아지는데 조각의 수(분자)는 그대로이기 때문이다. $\\frac{3}{5}$과 크기가 같고 분모가 $10$인 분수는 분자에도 $2$를 곱한 $\\frac{6}{10}$이다.",
+      "bGoal": "분모만 바꾸면 크기가 달라지는 까닭을 알고 분자도 함께 바꾸어 바로잡는다.",
+      "bReason": "원문 예시의 '까닭은?'을 조각 크기와 조각 수라는 설명 관점으로 좁히고 바르게 고친 분수까지 묻게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분수의 크기가 작아진다",
+            "처음보다 작아진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "조각 하나는 작아지고 조각의 수는 그대로이다",
+            "더 많은 조각으로 나누어 한 조각은 작아지고 분자(조각 수)는 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{6}{10}$"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "$\\frac{3}{5}$의 분모에만 $2$를 곱한 $\\frac{3}{10}$은 조각 하나가 작아지고 조각 수는 그대로여서 $\\frac{3}{5}$보다 {작다}. 크기가 같게 하려면 분자에도 {$2$}를 곱해야 한다.",
+      "cReason": "'분수의 크기가 작아지므로'라는 긴 구절 대신 실제 분수에서 크기 비교와 곱할 수를 답하게 했다.",
+      "exampleNeeded": false,
+      "learningRole": "reason",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작다",
+            "더 작다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-012-rubric.json",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0690-0730.json",
+      "codexFinalAmendedFromFingerprint": "adf69286f76b114a66eb58acf6fe2c46adb94e859baefc3f09552afb8a7c9752",
+      "sourceIndex": 703,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-1-xc5",
+        "section": "초5::1-4 약분과 통분::1-4-1 크기가 같은 분수 알아보기",
+        "term": "분모만 바꾸면 달라지는 크기",
+        "kind": "성질",
+        "level": "하",
+        "definition": "분모에만 $1$보다 큰 수를 곱하면 조각이 작아져 {분수의 크기가 작아지므로}, 분자에도 같은 수를 곱해야 크기가 같다.",
+        "example": {
+          "prompt": "$\\frac{3}{5}$의 분모만 $2$배 한 $\\frac{3}{10}$이 $\\frac{3}{5}$보다 작은 까닭은?",
+          "answer": "한 조각이 절반으로 작아져서"
+        },
+        "studentC": "분모에만 $1$보다 큰 수를 곱하면 조각이 작아져 □, 분자에도 같은 수를 곱해야 크기가 같다.",
+        "answers": [
+          "분수의 크기가 작아지므로"
+        ]
+      },
+      "sourceFingerprint": "bc4997cabe03672d038253b84e98c5705cf43b294407fcbdacad986d572dd911",
+      "draftEvidence": "evidence/section-012-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "작다",
+        "$2$"
+      ],
+      "cStudentAfter": "$\\frac{3}{5}$의 분모에만 $2$를 곱한 $\\frac{3}{10}$은 조각 하나가 작아지고 조각 수는 그대로여서 $\\frac{3}{5}$보다 □. 크기가 같게 하려면 분자에도 □를 곱해야 한다.",
+      "cMarkedSentence": "$\\frac{3}{5}$의 분모에만 $2$를 곱한 $\\frac{3}{10}$은 조각 하나가 작아지고 조각 수는 그대로여서 $\\frac{3}{5}$보다 {작다}. 크기가 같게 하려면 분자에도 {$2$}를 곱해야 한다.",
+      "cStudentSentence": "$\\frac{3}{5}$의 분모에만 $2$를 곱한 $\\frac{3}{10}$은 조각 하나가 작아지고 조각 수는 그대로여서 $\\frac{3}{5}$보다 □. 크기가 같게 하려면 분자에도 □를 곱해야 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "작다",
+          "equivalents": [
+            "더 작다"
+          ]
+        },
+        {
+          "key": "$2$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "분자가 $0$보다 큰 분수의 분모에만 $1$보다 큰 자연수를 곱하면 분수의 크기가 어떻게 되는지, 조각 하나의 크기와 조각의 수로 설명하시오. 또 $\\frac{3}{5}$과 크기가 같고 분모가 $10$인 분수를 쓰시오.",
+        "answer": "분수의 크기가 작아진다. 전체를 더 많은 조각으로 나누어 조각 하나는 작아지는데 조각의 수(분자)는 그대로이기 때문이다. $\\frac{3}{5}$과 크기가 같고 분모가 $10$인 분수는 분자에도 $2$를 곱한 $\\frac{6}{10}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분수의 크기가 작아진다",
+              "처음보다 작아진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "조각 하나는 작아지고 조각의 수는 그대로이다",
+              "더 많은 조각으로 나누어 한 조각은 작아지고 분자(조각 수)는 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{6}{10}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{3}{5}$의 분모에만 $2$를 곱한 $\\frac{3}{10}$은 조각 하나가 작아지고 조각 수는 그대로여서 $\\frac{3}{5}$보다 {작다}. 크기가 같게 하려면 분자에도 {$2$}를 곱해야 한다.",
+        "acceptedAnswers": [
+          [
+            "작다",
+            "더 작다"
+          ],
+          [
+            "$2$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "369def651c231327f89b6a6dda25dbcfc3d2b2b173285da30a664e3e210bfdb1",
+      "questionRevision": "planning-e5e6-20261006-369def651c23",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-1-xc11",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{12}{18}$의 분모와 분자를 같은 수로 나누어 크기가 같은 분수를 만들려고 한다. $1$보다 큰 자연수 중에서 나눌 수 있는 수를 모두 쓰고, 그 수들이 $12$와 $18$에 대해 어떤 수인지 설명하시오.",
+      "bAnswer": "$2$, $3$, $6$. $12$와 $18$을 모두 나누어떨어지게 하는 수, 즉 $12$와 $18$의 공약수이다.",
+      "bGoal": "분모와 분자를 나눌 수 있는 수가 두 수의 공약수임을 실제 분수에서 찾아 말한다.",
+      "bReason": "용어 '공약수'를 질문에 드러내지 않고 나눌 수 있는 수를 직접 찾은 뒤 그 수의 성질을 말하게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2$, $3$, $6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$와 $18$의 공약수",
+            "$12$와 $18$을 모두 나누어떨어지게 하는 수"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "분모와 분자를 같은 자연수로 나누어 약분할 때, 나누는 수는 두 수의 {공약수}여야 한다.",
+      "cReason": "약분이라는 목적과 같은 자연수로 나누는 범위를 보여 공약수라는 조건이 성립하게 한다.",
+      "exampleNeeded": false,
+      "learningRole": "definition",
+      "rubricEvidence": "evidence/section-012-rubric.json",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0690-0730.json",
+      "codexFinalAmendedFromFingerprint": "9dbc196f92f35e7c6a4dddf63857dd97dfd70ff6f3bc48469a05f2dd347d1bd0",
+      "sourceIndex": 709,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-1-xc11",
+        "section": "초5::1-4 약분과 통분::1-4-1 크기가 같은 분수 알아보기",
+        "term": "나눌 수 있는 수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "분모와 분자를 나누어 크기가 같은 분수를 만들 때는 두 수의 {공약수}로만 나눌 수 있다.",
+        "studentC": "분모와 분자를 나누어 크기가 같은 분수를 만들 때는 두 수의 □로만 나눌 수 있다.",
+        "answers": [
+          "공약수"
+        ]
+      },
+      "sourceFingerprint": "f671a2ab103082ce9d16333118a508b75c155711325fcea57747662654b4e7d7",
+      "draftEvidence": "evidence/section-012-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "공약수"
+      ],
+      "cStudentAfter": "분모와 분자를 같은 자연수로 나누어 약분할 때, 나누는 수는 두 수의 □여야 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "공약수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "분모와 분자를 같은 자연수로 나누어 약분할 때, 나누는 수는 두 수의 {공약수}여야 한다.",
+      "cStudentSentence": "분모와 분자를 같은 자연수로 나누어 약분할 때, 나누는 수는 두 수의 □여야 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "공약수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{12}{18}$의 분모와 분자를 같은 수로 나누어 크기가 같은 분수를 만들려고 한다. $1$보다 큰 자연수 중에서 나눌 수 있는 수를 모두 쓰고, 그 수들이 $12$와 $18$에 대해 어떤 수인지 설명하시오.",
+        "answer": "$2$, $3$, $6$. $12$와 $18$을 모두 나누어떨어지게 하는 수, 즉 $12$와 $18$의 공약수이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$2$, $3$, $6$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12$와 $18$의 공약수",
+              "$12$와 $18$을 모두 나누어떨어지게 하는 수"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "분모와 분자를 같은 자연수로 나누어 약분할 때, 나누는 수는 두 수의 {공약수}여야 한다.",
+        "acceptedAnswers": [
+          [
+            "공약수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "db6f35f78e70323cab8d1b9fce65881536d60736fdc0ddb067e59887dd30d876",
+      "questionRevision": "planning-e5e6-20261006-db6f35f78e70",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-1-xc15",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "크기가 같은 분수에서 분모가 큰 쪽이 조각은 더 작고 조각 수는 더 많음을 안다.",
+      "bReason": "xc18의 설명에 포함된다.",
+      "bRequiredIdeas": [],
+      "cDecision": "revise",
+      "cAfter": "같은 크기의 도형을 하나는 똑같이 $4$칸으로 나누어 $2$칸, 다른 하나는 똑같이 $8$칸으로 나누어 $4$칸을 색칠했다. 색칠한 넓이는 같지만, $8$칸으로 나눈 쪽의 한 칸은 더 {작고} 색칠한 칸 수는 더 {많다}.",
+      "cReason": "'더 잘게'는 표현이 정해져 있지 않아 두 분수의 조각 크기와 조각 수를 비교하는 낱말로 바꿨다.",
+      "exclusionReason": "B 제외: e5-1-4-1-xc18이 묻는다.",
+      "exampleNeeded": false,
+      "learningRole": "definition",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작고",
+            "작으며"
+          ]
+        },
+        {
+          "anyOf": [
+            "많다"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-012-rubric.json",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0690-0730.json",
+      "codexFinalAmendedFromFingerprint": "ed1bcf9f807a0e85d140d4145f6b458ee2840e28a169210eae5fffe042ac97b1",
+      "sourceIndex": 712,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-1-xc15",
+        "section": "초5::1-4 약분과 통분::1-4-1 크기가 같은 분수 알아보기",
+        "term": "분모가 큰 쪽의 조각",
+        "kind": "성질",
+        "level": "중",
+        "definition": "크기가 같은 분수 가운데 분모가 큰 분수는 같은 양을 {더 잘게} 나눈 것이다.",
+        "studentC": "크기가 같은 분수 가운데 분모가 큰 분수는 같은 양을 □ 나눈 것이다.",
+        "answers": [
+          "더 잘게"
+        ]
+      },
+      "sourceFingerprint": "4e8221eacc3a951d0c8d4d88845fc6caaa23ee3fac16bee19ca7d58e45618772",
+      "draftEvidence": "evidence/section-012-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "작고",
+        "많다"
+      ],
+      "cStudentAfter": "같은 크기의 도형을 하나는 똑같이 $4$칸으로 나누어 $2$칸, 다른 하나는 똑같이 $8$칸으로 나누어 $4$칸을 색칠했다. 색칠한 넓이는 같지만, $8$칸으로 나눈 쪽의 한 칸은 더 □ 색칠한 칸 수는 더 □.",
+      "cMarkedSentence": "같은 크기의 도형을 하나는 똑같이 $4$칸으로 나누어 $2$칸, 다른 하나는 똑같이 $8$칸으로 나누어 $4$칸을 색칠했다. 색칠한 넓이는 같지만, $8$칸으로 나눈 쪽의 한 칸은 더 {작고} 색칠한 칸 수는 더 {많다}.",
+      "cStudentSentence": "같은 크기의 도형을 하나는 똑같이 $4$칸으로 나누어 $2$칸, 다른 하나는 똑같이 $8$칸으로 나누어 $4$칸을 색칠했다. 색칠한 넓이는 같지만, $8$칸으로 나눈 쪽의 한 칸은 더 □ 색칠한 칸 수는 더 □.",
+      "cSlotAnswers": [
+        {
+          "key": "작고",
+          "equivalents": [
+            "작으며"
+          ]
+        },
+        {
+          "key": "많다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "같은 크기의 도형을 하나는 똑같이 $4$칸으로 나누어 $2$칸, 다른 하나는 똑같이 $8$칸으로 나누어 $4$칸을 색칠했다. 색칠한 넓이는 같지만, $8$칸으로 나눈 쪽의 한 칸은 더 {작고} 색칠한 칸 수는 더 {많다}.",
+        "acceptedAnswers": [
+          [
+            "작고",
+            "작으며"
+          ],
+          [
+            "많다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 제외: e5-1-4-1-xc18이 묻는다."
+      },
+      "proposalFingerprint": "e1b9ecfa048dffdd1a47df37e135a43c79b7601c67866319062dcb6aabcd0140",
+      "questionRevision": "planning-e5e6-20261006-e1b9ecfa048d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-1-xc18",
+      "bDecision": "revise",
+      "bPrompt": "분수의 분모와 분자에 $1$보다 큰 같은 자연수를 곱해도 분수의 크기가 변하지 않는 까닭을, 조각 하나의 크기와 조각의 수가 각각 어떻게 달라지는지로 설명하시오. $\\frac{2}{3}$의 분모와 분자에 $3$을 곱하는 경우를 예로 드시오.",
+      "bAnswer": "분모에 수를 곱하면 전체를 더 많은 조각으로 나누어 조각 하나가 작아지고, 분자에 같은 수를 곱하면 그 작은 조각의 수가 같은 배만큼 늘어나므로 나타내는 양은 같다. $\\frac{2}{3}$에서는 조각 하나를 똑같이 $3$개로 나누어 $3$조각 중 $2$조각이 $9$조각 중 $6$조각이 되므로 $\\frac{2}{3}=\\frac{6}{9}$이다.",
+      "bGoal": "같은 수를 곱해도 크기가 같은 까닭을 조각 크기와 조각 수의 변화로 설명한다.",
+      "bReason": "이 소단원의 핵심 까닭이므로 막연한 '왜' 대신 조각 크기와 조각 수라는 두 관점을 정해 묻고 xc15·xc26의 설명도 이 문항에 모았다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분모에 곱하면 전체를 더 많은 조각으로 나누어 조각 하나의 크기가 작아진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "분자에 같은 수를 곱하면 조각의 수가 같은 배만큼 늘어나 작아진 만큼 채워진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{2}{3}$의 분모와 분자에 $3$을 곱한 $\\frac{6}{9}$ 예",
+            "$\\frac{2}{3}=\\frac{6}{9}$"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "전체를 똑같이 $3$칸으로 나누어 $2$칸을 색칠했다. 모든 칸을 다시 똑같이 $3$개씩으로 나누면, 한 칸은 작아지고 색칠한 칸 수는 {$3$}배인 {$6$}칸이 된다. 그래서 분수가 나타내는 양은 {변하지 않는다}.",
+      "cReason": "'전체 양은 그대로'는 뜻이 모호한 구절이라 조각 수의 변화와 결론을 나누어 짧게 답하게 했다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'변하지 않는다', '그대로이다', '같다' 인정.",
+      "coreAfter": "분모와 분자에 $1$보다 큰 자연수를 똑같이 곱하면 조각 하나는 작아지고 조각 수는 같은 배만큼 늘어난다. 그래서 분수가 나타내는 {양은 변하지 않는다}.",
+      "coreReason": "'$3$배 작아진다'는 부정확한 표현이고 '전체 양'은 오해될 수 있다.",
+      "learningRole": "reason",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "변하지 않는다",
+            "그대로이다",
+            "같다"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-012-rubric.json",
+      "editorialOwner": "Codex",
+      "coreTargetReason": "전체 양은 그대로라는 표적을 분수가 나타내는 양의 불변으로 명확히 한다. 작아진다는 설명에는 곱하는 수가1보다 크다는 조건을 넣어1배 예외를 피한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0690-0730.json",
+      "codexFinalAmendedFromFingerprint": "0e001438aca55aa49865162618a5ac048473c19398c477d6e624e29b9e9ded22",
+      "sourceIndex": 714,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-1-xc18",
+        "section": "초5::1-4 약분과 통분::1-4-1 크기가 같은 분수 알아보기",
+        "term": "같은 수를 곱해도 그대로인 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "분모에 $3$을 곱하면 조각이 $3$배 작아지고 분자에 $3$을 곱하면 조각 수가 $3$배가 되어 {전체 양은 그대로}이다.",
+        "studentC": "분모에 $3$을 곱하면 조각이 $3$배 작아지고 분자에 $3$을 곱하면 조각 수가 $3$배가 되어 □이다.",
+        "answers": [
+          "전체 양은 그대로"
+        ]
+      },
+      "sourceFingerprint": "7e5e959e0a702918482ea299bf4bfe203a0ee5fd9358b6d93d56b95b6b42bde1",
+      "draftEvidence": "evidence/section-012-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$3$",
+        "$6$",
+        "변하지 않는다"
+      ],
+      "cStudentAfter": "전체를 똑같이 $3$칸으로 나누어 $2$칸을 색칠했다. 모든 칸을 다시 똑같이 $3$개씩으로 나누면, 한 칸은 작아지고 색칠한 칸 수는 □배인 □칸이 된다. 그래서 분수가 나타내는 양은 □.",
+      "cMarkedSentence": "전체를 똑같이 $3$칸으로 나누어 $2$칸을 색칠했다. 모든 칸을 다시 똑같이 $3$개씩으로 나누면, 한 칸은 작아지고 색칠한 칸 수는 {$3$}배인 {$6$}칸이 된다. 그래서 분수가 나타내는 양은 {변하지 않는다}.",
+      "cStudentSentence": "전체를 똑같이 $3$칸으로 나누어 $2$칸을 색칠했다. 모든 칸을 다시 똑같이 $3$개씩으로 나누면, 한 칸은 작아지고 색칠한 칸 수는 □배인 □칸이 된다. 그래서 분수가 나타내는 양은 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$6$",
+          "equivalents": []
+        },
+        {
+          "key": "변하지 않는다",
+          "equivalents": [
+            "그대로이다",
+            "같다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "분수의 분모와 분자에 $1$보다 큰 같은 자연수를 곱해도 분수의 크기가 변하지 않는 까닭을, 조각 하나의 크기와 조각의 수가 각각 어떻게 달라지는지로 설명하시오. $\\frac{2}{3}$의 분모와 분자에 $3$을 곱하는 경우를 예로 드시오.",
+        "answer": "분모에 수를 곱하면 전체를 더 많은 조각으로 나누어 조각 하나가 작아지고, 분자에 같은 수를 곱하면 그 작은 조각의 수가 같은 배만큼 늘어나므로 나타내는 양은 같다. $\\frac{2}{3}$에서는 조각 하나를 똑같이 $3$개로 나누어 $3$조각 중 $2$조각이 $9$조각 중 $6$조각이 되므로 $\\frac{2}{3}=\\frac{6}{9}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분모에 곱하면 전체를 더 많은 조각으로 나누어 조각 하나의 크기가 작아진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분자에 같은 수를 곱하면 조각의 수가 같은 배만큼 늘어나 작아진 만큼 채워진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{2}{3}$의 분모와 분자에 $3$을 곱한 $\\frac{6}{9}$ 예",
+              "$\\frac{2}{3}=\\frac{6}{9}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "전체를 똑같이 $3$칸으로 나누어 $2$칸을 색칠했다. 모든 칸을 다시 똑같이 $3$개씩으로 나누면, 한 칸은 작아지고 색칠한 칸 수는 {$3$}배인 {$6$}칸이 된다. 그래서 분수가 나타내는 양은 {변하지 않는다}.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "$6$"
+          ],
+          [
+            "변하지 않는다",
+            "그대로이다",
+            "같다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9e50e1ec42415945ea7747a6ada8359af5a7748e623b6ad436236660478b314f",
+      "questionRevision": "planning-e5e6-20261006-9e50e1ec4241",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-4-1-xc21",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{4}{6}$와 크기가 같고 분모가 $10$보다 크고 $20$보다 작은 분수를, 분모와 분자에 자연수를 곱하여 모두 찾으려고 한다. $\\frac{4}{6}$에 바로 자연수를 곱하는 대신 $\\frac{2}{3}$로 약분한 다음 곱하기 시작해야 빠뜨리는 분수가 없는 까닭을 쓰고, 분수를 모두 구하시오.",
+      "bAnswer": "$\\frac{4}{6}$에 $2$, $3$을 곱하면 $\\frac{8}{12}$, $\\frac{12}{18}$만 나와 $\\frac{10}{15}$을 빠뜨리기 때문이다. $\\frac{2}{3}$의 분모와 분자에 $4$, $5$, $6$을 차례로 곱하면 $\\frac{8}{12}$, $\\frac{10}{15}$, $\\frac{12}{18}$이다.",
+      "bGoal": "분모 범위가 정해졌을 때 가장 작은 분수에서 곱하는 수를 차례로 바꾸어 빠짐없이 찾는다.",
+      "bReason": "찾는 방법을 자연수 곱하기로 정해, 다른 방법으로도 찾을 수 있는데 언제나 약분부터 해야 한다고 읽히지 않게 한다. 이 방법에서 약분하지 않고 시작할 때 빠뜨리는 분수와 실제 범위의 분수들을 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "기약분수가 아닌$\\frac{4}{6}$에자연수만곱하면$\\frac{10}{15}$을빠뜨린다",
+            "$\\frac{4}{6}$에서분모는$6$의배수만되므로$15$가될수없지만$\\frac{2}{3}$에서는분모$3$의배수$15$를만들수있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{8}{12}$, $\\frac{10}{15}$, $\\frac{12}{18}$"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "$\\frac{2}{3}$와 크기가 같고 분모가 $10$보다 크고 $20$보다 작은 분수는 $\\frac{2}{3}$의 분모와 분자에 $4$, $5$, {$6$}을 차례로 곱해 찾는다. 이때 분모는 차례로 $12$, {$15$}, {$18$}이다.",
+      "cReason": "실제 세 빈칸은 곱할 수 $6$과 분모 $15$, $18$이다. 보완 응답이 이미 문장에 나온 $12$를 정답 그룹에 더한 오류를 제거하여 각 빈칸의 답 그룹을 맞춘다.",
+      "exampleNeeded": false,
+      "learningRole": "procedure",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$15$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$18$"
+          ]
+        }
+      ],
+      "rubricEvidence": "evidence/section-012-rubric.json",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0690-0730.json",
+      "codexFinalAmendedFromFingerprint": "89ee65c295dedfca5baae3e6d665b08d0fc28a853da7017b184670576b9143de",
+      "sourceIndex": 717,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-4-1-xc21",
+        "section": "초5::1-4 약분과 통분::1-4-1 크기가 같은 분수 알아보기",
+        "term": "범위 안의 크기가 같은 분수",
+        "kind": "방법",
+        "level": "상",
+        "definition": "분모가 정해진 범위에 있는 크기가 같은 분수는 분모와 분자가 가장 작은 분수에서 {곱하는 수를 차례로 바꾸며} 찾는다.",
+        "studentC": "분모가 정해진 범위에 있는 크기가 같은 분수는 분모와 분자가 가장 작은 분수에서 □ 찾는다.",
+        "answers": [
+          "곱하는 수를 차례로 바꾸며"
+        ]
+      },
+      "sourceFingerprint": "7d27f8cd1a566e56238e720494e0c23d810f43b3f176bea179b14795757119c5",
+      "draftEvidence": "evidence/section-012-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$6$",
+        "$15$",
+        "$18$"
+      ],
+      "cStudentAfter": "$\\frac{2}{3}$와 크기가 같고 분모가 $10$보다 크고 $20$보다 작은 분수는 $\\frac{2}{3}$의 분모와 분자에 $4$, $5$, □을 차례로 곱해 찾는다. 이때 분모는 차례로 $12$, □, □이다.",
+      "cMarkedSentence": "$\\frac{2}{3}$와 크기가 같고 분모가 $10$보다 크고 $20$보다 작은 분수는 $\\frac{2}{3}$의 분모와 분자에 $4$, $5$, {$6$}을 차례로 곱해 찾는다. 이때 분모는 차례로 $12$, {$15$}, {$18$}이다.",
+      "cStudentSentence": "$\\frac{2}{3}$와 크기가 같고 분모가 $10$보다 크고 $20$보다 작은 분수는 $\\frac{2}{3}$의 분모와 분자에 $4$, $5$, □을 차례로 곱해 찾는다. 이때 분모는 차례로 $12$, □, □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$6$",
+          "equivalents": []
+        },
+        {
+          "key": "$15$",
+          "equivalents": []
+        },
+        {
+          "key": "$18$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{4}{6}$와 크기가 같고 분모가 $10$보다 크고 $20$보다 작은 분수를, 분모와 분자에 자연수를 곱하여 모두 찾으려고 한다. $\\frac{4}{6}$에 바로 자연수를 곱하는 대신 $\\frac{2}{3}$로 약분한 다음 곱하기 시작해야 빠뜨리는 분수가 없는 까닭을 쓰고, 분수를 모두 구하시오.",
+        "answer": "$\\frac{4}{6}$에 $2$, $3$을 곱하면 $\\frac{8}{12}$, $\\frac{12}{18}$만 나와 $\\frac{10}{15}$을 빠뜨리기 때문이다. $\\frac{2}{3}$의 분모와 분자에 $4$, $5$, $6$을 차례로 곱하면 $\\frac{8}{12}$, $\\frac{10}{15}$, $\\frac{12}{18}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "기약분수가 아닌$\\frac{4}{6}$에자연수만곱하면$\\frac{10}{15}$을빠뜨린다",
+              "$\\frac{4}{6}$에서분모는$6$의배수만되므로$15$가될수없지만$\\frac{2}{3}$에서는분모$3$의배수$15$를만들수있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{8}{12}$, $\\frac{10}{15}$, $\\frac{12}{18}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{2}{3}$와 크기가 같고 분모가 $10$보다 크고 $20$보다 작은 분수는 $\\frac{2}{3}$의 분모와 분자에 $4$, $5$, {$6$}을 차례로 곱해 찾는다. 이때 분모는 차례로 $12$, {$15$}, {$18$}이다.",
+        "acceptedAnswers": [
+          [
+            "$6$"
+          ],
+          [
+            "$15$"
+          ],
+          [
+            "$18$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "8d10dd87b530ad645f1fcfdeb2b25bb86940c3aff277bedb66d8b702d6bf2a3d",
+      "questionRevision": "planning-e5e6-20261006-8d10dd87b530",
+      "requiresIndependentReview": true
+    }
+  ]
+}

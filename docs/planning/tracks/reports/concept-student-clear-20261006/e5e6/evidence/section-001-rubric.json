@@ -1,0 +1,951 @@
+{
+  "rows": [
+    {
+      "id": "e5-1-1-2-c1",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "괄호가 없으면 곱셈을 먼저 계산한다",
+            "곱셈을 덧셈·뺄셈보다 먼저 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$",
+            "$26-20=6$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "먼저",
+            "가장 먼저",
+            "제일 먼저"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-2-c2",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "괄호가 없으면 나눗셈을 먼저 계산한다",
+            "나눗셈을 덧셈·뺄셈보다 먼저 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$33$",
+            "$30+3=33$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "먼저",
+            "가장 먼저",
+            "제일 먼저"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-2-c3",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 묶음의 수에 묶음 수를 곱한 뒤 낱개의 수를 더한다",
+            "묶음에 든 수를 곱셈으로 구하고 낱개를 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12\\times5+7$",
+            "$7+12\\times5$",
+            "$5\\times12+7$"
+          ]
+        },
+        {
+          "anyOf": [
+            "곱셈을 먼저 계산한다",
+            "$12\\times5=60$을 먼저 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$67$",
+            "$67$개"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$30$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$34$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-2-xc1",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [],
+      "bDecision": "exclude",
+      "bReason": "c1과 같은 규칙을 다시 묻는다.",
+      "exclusionReason": "B 제외: c1과 중복",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3\\times4$",
+            "곱셈 부분",
+            "곱셈"
+          ]
+        },
+        {
+          "anyOf": [
+            "$19$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-2-xc2",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [],
+      "bDecision": "exclude",
+      "bReason": "c2와 같은 규칙을 다시 묻는다.",
+      "exclusionReason": "B 제외: c2와 중복",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$12\\div4$",
+            "나눗셈 부분",
+            "나눗셈"
+          ]
+        },
+        {
+          "anyOf": [
+            "$17$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-2-xc3",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [],
+      "bDecision": "exclude",
+      "bReason": "xc11의 B가 같은 내용을 더 넓게 다룬다.",
+      "exclusionReason": "B 제외: xc11과 중복",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "괄호 속 계산",
+            "괄호 안",
+            "괄호 안의 계산",
+            "괄호 속"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-2-xc4",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [],
+      "bDecision": "exclude",
+      "bReason": "'한 덩어리'는 비유 표현이고 규칙은 c1과 같다.",
+      "exclusionReason": "B 제외: c1·xc13과 중복",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-2-xc5",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [],
+      "bDecision": "exclude",
+      "bReason": "xc2와 목표가 같고 c2와 답이 같다.",
+      "exclusionReason": "B 제외: c2·xc2와 중복"
+    },
+    {
+      "id": "e5-1-1-2-xc6",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "남은 덧셈과 뺄셈은 앞에서부터 차례로 계산한다",
+            "남은 덧셈과 뺄셈은 왼쪽부터 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$",
+            "$30-20+2=12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8$",
+            "$30-22=8$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "앞에서부터",
+            "앞에서부터 차례로",
+            "왼쪽부터"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-2-xc7",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [],
+      "bDecision": "exclude",
+      "bReason": "번호를 붙이는 행동만 묻고 c1과 같은 규칙이다.",
+      "exclusionReason": "B 제외: c1과 중복"
+    },
+    {
+      "id": "e5-1-1-2-xc8",
+      "learningRole": "application",
+      "bRequiredIdeas": [],
+      "bDecision": "exclude",
+      "bReason": "c3의 B와 식의 구조가 같다.",
+      "exclusionReason": "B 제외: c3·xc22와 중복",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\times$",
+            "곱셈"
+          ]
+        },
+        {
+          "anyOf": [
+            "$+$",
+            "덧셈"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1700$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-2-xc9",
+      "learningRole": "application",
+      "bRequiredIdeas": [],
+      "bDecision": "exclude",
+      "bReason": "xc23의 B가 같은 식 세우기를 묻는다.",
+      "exclusionReason": "B 제외: xc23과 중복",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\div$",
+            "나눗셈"
+          ]
+        },
+        {
+          "anyOf": [
+            "$+$",
+            "덧셈"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-2-xc10",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$5\\times3+4$는 $5$의 $3$배에 $4$를 더한다",
+            "$5\\times3+4$는 $5$를 $3$번 더한 값에 $4$를 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5+3\\times4$는 $5$에 $3$의 $4$배를 더한다",
+            "$5+3\\times4$는 $5$에 $3$을 $4$번 더한 값을 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$19$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$17$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4\\times3+2$",
+            "$3\\times4+2$",
+            "$2+4\\times3$",
+            "$2+3\\times4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4+3\\times2$",
+            "$4+2\\times3$",
+            "$3\\times2+4$",
+            "$2\\times3+4$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-2-xc11",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "괄호가 없으면 곱셈을 먼저 하고 덧셈을 괄호로 묶으면 덧셈을 먼저 하므로 곱해지는 수가 달라진다",
+            "덧셈을 괄호로 묶으면 그 합에 곱하게 되어 곱해지는 수가 달라진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2+6\\times4$에서 곱하는 수는 $6$이다",
+            "$6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$(2+6)\\times4$에서 곱하는 수는 $8$이다",
+            "$8$",
+            "$2+6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$26$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$32$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7$",
+            "$3+4$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-2-xc12",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "괄호가 없으면 나눗셈 바로 앞의 수만 나누고 합 전체를 나누려면 괄호로 묶어야 한다",
+            "합을 괄호로 묶으면 합 전체를 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$20+10\\div5$에서 나누는 수는 $10$이다",
+            "$10$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$(20+10)\\div5$에서 나누는 수는 $30$이다",
+            "$30$",
+            "$20+10$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$22$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$(18+6)\\div3$",
+            "$(6+18)\\div3$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-2-xc13",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "앞의 뺄셈부터 하면 곱하지 않아야 할 앞의 수까지 곱하게 된다",
+            "앞의 수까지 곱하는 다른 식을 계산한 것이 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$40$",
+            "$(12-2)\\times4=40$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$",
+            "$12-8=4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$(12-2)\\times4$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$(10-2)\\times3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-2-xc14",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나눗셈 부분은 똑같이 나눈 한 묶음의 양을 나타내는 하나의 수이므로 먼저 계산한다",
+            "나눗셈 부분은 하나의 수라서 먼저 구한 뒤 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12\\div4$는 $12$를 $4$로 똑같이 나눈 한 묶음의 양인 $3$이다",
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$23$",
+            "$20+3=23$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$(20+12)\\div4$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$18$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-2-xc15",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 곱셈을 각각 먼저 계산한 뒤 더하거나 뺀다",
+            "곱셈을 모두 먼저 계산하고 나서 덧셈이나 뺄셈을 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$18$",
+            "$30-12=18$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$22$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-2-xc16",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "괄호 안을 먼저 계산하고 괄호 안에서도 곱셈을 덧셈보다 먼저 한다",
+            "괄호 안에서도 곱셈을 먼저 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$24$",
+            "$50-26=24$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "곱셈",
+            "곱셈을 먼저"
+          ]
+        },
+        {
+          "anyOf": [
+            "$26$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-2-xc17",
+      "learningRole": "definition",
+      "bRequiredIdeas": [],
+      "bDecision": "exclude",
+      "bReason": "c1과 c2를 합쳐 되풀이한 문장이다.",
+      "exclusionReason": "B 제외: c1·c2와 중복"
+    },
+    {
+      "id": "e5-1-1-2-xc18",
+      "learningRole": "application",
+      "bRequiredIdeas": [],
+      "bDecision": "exclude",
+      "bReason": "xc21의 B가 같은 내용을 더 넓게 묻는다.",
+      "exclusionReason": "B 제외: xc21과 중복",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$(12-4)\\times3$",
+            "$3\\times(12-4)$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$24$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-2-xc19",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱셈 부분은 같은 수를 여러 번 더한 양을 나타내는 하나의 수이므로 먼저 계산한다",
+            "곱셈을 같은 수의 덧셈으로 바꾸면 곱셈 부분이 하나의 양이 되어 먼저 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5+2+2+2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$11$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5+2$를 먼저 더하면 $(5+2)\\times3=21$이 되어 $5$까지 세 번 더하게 된다",
+            "$5$까지 세 번 더하게 되어 값이 $21$로 달라진다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2+3+3+3+3$",
+            "$3+3+3+3+2$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-2-xc20",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱셈 부분만 묶은 괄호는 괄호가 없어도 곱셈을 먼저 하므로 지워도 값이 같다",
+            "곱셈만 묶은 괄호는 계산 차례를 바꾸지 않으므로 지워도 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$9+(2\\times6)=21$이고 괄호를 지운 $9+2\\times6$도 $21$이다",
+            "$21$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$(9+2)\\times6=66$이고 괄호를 지우면 $21$이 되어 값이 달라진다",
+            "$66$과 $21$로 달라진다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "곱셈",
+            "곱셈을 먼저"
+          ]
+        },
+        {
+          "anyOf": [
+            "$17$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-2-xc21",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "합을 괄호로 묶어야 한다",
+            "합에 괄호를 써야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "괄호가 없으면 곱셈을 먼저 하게 되어 뒤의 수에만 곱해진다",
+            "괄호가 없으면 $6\\times5$를 먼저 계산하게 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$(2+6)\\times5=40$",
+            "$(2+6)\\times5$",
+            "$5\\times(2+6)$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$32$",
+            "$2+6\\times5=32$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "괄호",
+            "소괄호"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-2-xc22",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "물건값 전체를 한 개의 값과 개수의 곱으로 나타내어 낸 돈에서 뺀다",
+            "낸 돈에서 (한 개의 값)×(개수)를 뺀다"
+          ]
+        },
+        {
+          "anyOf": [
+            "곱셈을 먼저 계산한다",
+            "물건값을 먼저 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10000-1500\\times4$",
+            "$10000-4\\times1500$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4000$원",
+            "$4000$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$-$",
+            "뺄셈"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\times$",
+            "곱셈"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1800$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-2-xc23",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "처음 가진 양에 (나눌 양)÷(사람 수)를 더하는 식으로 나타낸다",
+            "처음 가진 양에 한 사람 몫을 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "나눗셈을 먼저 계산한다",
+            "나눗셈이 뒤에 있어도 먼저 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$9+28\\div4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$16$장",
+            "$16$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$35\\div5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$19$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-2-xc24",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "같은 수만큼씩 여러 묶음인 전체에서 얼마를 덜어 내고 남은 양을 구하는 상황이다",
+            "같은 수씩 여러 묶음인 양에서 일부를 빼는 상황이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7$씩 $4$묶음인 양에서 $6$을 덜어 내는 문제 상황을 만든다",
+            "$7\\times4$를 묶음 전체의 양으로 하고 $6$을 덜어 내는 상황이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$22$",
+            "$28-6=22$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$24$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$19$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-2-xc25",
+      "learningRole": "reason",
+      "bRequiredIdeas": [],
+      "bDecision": "exclude",
+      "bReason": "두 식의 비교는 xc11의 B와 같다.",
+      "exclusionReason": "B 제외: xc11·xc26과 중복",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$30$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$25$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-2-xc26",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "어떤 수에 두 수의 합을 곱한 값은 그 수를 두 수에 각각 곱해 더한 값과 같다",
+            "합에 곱한 값과 각각 곱해서 더한 값은 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7\\times10+7\\times3$",
+            "$7\\times3+7\\times10$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7\\times(10+3)=91$이고 $7\\times10+7\\times3=91$로 같다",
+            "두 식의 값은 모두 $91$이다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "더한",
+            "합한"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$72$"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "e5-1-1-2-xc27",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "수를 가까운 몇십이나 몇백으로 바꾸어 바른 차례로 대강 계산한 값과 견주어 크게 다르면 계산 차례를 다시 살핀다",
+            "어림한 값과 크게 다르면 계산 차례가 잘못되었다고 본다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$350$쯤",
+            "$352$쯤",
+            "약 $350$",
+            "$346$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$52+3$을 먼저 더하고 $98$을 곱했다",
+            "$55\\times98$을 계산했다",
+            "덧셈을 먼저 했다"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$250$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$98+3$",
+            "덧셈",
+            "앞의 덧셈"
+          ]
+        }
+      ]
+    }
+  ]
+}

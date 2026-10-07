@@ -10,6 +10,7 @@ import {
   type TextbookFrozenEntry,
 } from "@/contracts/textbookConcept.contract";
 import { CONCEPT_BLANK_BANK } from "@/lib/concept-blank/bank";
+import { conceptSupportsForm } from "@/lib/concept-blank/questions";
 import { getBlankSection } from "@/lib/concept-blank/sections";
 import {
   EXACT_COMPOSITION_VERSION,
@@ -75,7 +76,7 @@ export function listConceptCatalog(
       return false;
     const text =
       entry.entryKind === "concept"
-        ? `${entry.payload.term} ${entry.payload.definition}`
+        ? `${entry.payload.term} ${entry.payload.definition} ${entry.payload.bQuestion?.prompt ?? ""} ${entry.payload.clozeQuestion?.sentence ?? ""}`
         : entry.entryKind === "ox"
           ? entry.payload.statement
           : entry.payload.prompt;
@@ -257,7 +258,9 @@ export function resolveReviewedConcept(
 
 function supports(entry: TextbookFrozenEntry, form: ConceptBlankForm): boolean {
   return entry.entryKind === "concept"
-    ? form !== "figure"
+    ? form === "term" || form === "cloze" || form === "map"
+      ? conceptSupportsForm(entry.payload, form)
+      : form !== "figure"
     : entry.entryKind === "ox"
       ? form === "term"
       : entry.entryKind === "apply"

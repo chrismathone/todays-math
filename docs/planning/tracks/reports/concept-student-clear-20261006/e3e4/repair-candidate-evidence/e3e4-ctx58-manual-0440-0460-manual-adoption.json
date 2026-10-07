@@ -1,0 +1,2132 @@
+{
+  "sourceCommit": "13bf05dce",
+  "directAuthor": "Codex after actual current-hash feedback and full current field reading",
+  "notFinalReread": true,
+  "entries": [
+    {
+      "id": "e4-2-2-3-xc26",
+      "sourceIndex": 2235,
+      "beforeProposal": {
+        "sourceIndex": 2235,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-3 정삼각형의 성질",
+        "sourceFingerprint": "496a66cf2f6fd283297cfd412e8c39d7ee58afabaf2bca6b3f86ccc6a15772db",
+        "proposalFingerprint": "3fa804184f68d9b5af397fa36438d0cd9b25faa2951ed9e21222a93847e4e56a",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-3-xc26",
+        "bDecision": "rewrite",
+        "bPrompt": "세 변의 길이가 모두 $5\\,\\mathrm{cm}$인 삼각형의 한 각의 크기를 구하는 방법과 답을 쓰시오.",
+        "bAnswer": "세 변이 같으면 세 각도 같고 합이 $180^\\circ$이므로 한 각은 $180^\\circ\\div3=60^\\circ$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "세 각이 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$180^\\circ\\div3=60^\\circ$",
+              "$60^\\circ$"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "세 변이 같은 삼각형의 한 각",
+        "bReason": "세 각의 합을 똑같이 나누어 $60^\\circ$를 구하는 문항",
+        "cDecision": "keep",
+        "cReason": "식이 주어지고 계산 결과만 묻는 선명한 빈칸",
+        "cSlotEquivalents": [
+          [
+            "$60$도"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "세 변이 같은 삼각형의 각",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "세 변의 길이가 같은 삼각형은 세 각의 크기도 같으므로, 한 각은 $180^\\circ\\div3=$ {$60^\\circ$}이다.",
+        "cStudentSentence": "세 변의 길이가 같은 삼각형은 세 각의 크기도 같으므로, 한 각은 $180^\\circ\\div3=$ □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$60^\\circ$",
+            "equivalents": [
+              "$60$도"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "세 변의 길이가 같은 삼각형은 세 각의 크기도 같으므로, 한 각은 $180^\\circ\\div3=$ □이다.",
+          "answers": [
+            "$60^\\circ$"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "세 변의 길이가 모두 $5\\,\\mathrm{cm}$인 삼각형의 한 각의 크기를 구하는 방법과 답을 쓰시오.",
+          "answer": "세 변이 같으면 세 각도 같고 합이 $180^\\circ$이므로 한 각은 $180^\\circ\\div3=60^\\circ$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "세 각이 같다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$180^\\circ\\div3=60^\\circ$",
+                "$60^\\circ$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "세 변의 길이가 같은 삼각형은 세 각의 크기도 같으므로, 한 각은 $180^\\circ\\div3=$ {$60^\\circ$}이다.",
+          "acceptedAnswers": [
+            [
+              "$60^\\circ$",
+              "$60$도"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-3-xc26",
+          "sourceIndex": 2235,
+          "proposalFingerprint": "3fa804184f68d9b5af397fa36438d0cd9b25faa2951ed9e21222a93847e4e56a",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "세각같음과60결과만으로방법이완성되지않으므로각합180을셋으로나누는과정을받는다.",
+          "cReason": "각합180÷3의한각60을계산한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "세 변이 같아 세 각도 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "세 각의 합 $180^\\circ$를 $3$으로 나누어 $60^\\circ$이다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-3-xc27",
+      "sourceIndex": 2236,
+      "beforeProposal": {
+        "sourceIndex": 2236,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-3 정삼각형의 성질",
+        "sourceFingerprint": "2e42dedc2ba228088f73c6ca526e690f80c573318098f8d81087cc836e23aa9c",
+        "proposalFingerprint": "705fa8a547a76a838dfb21fbe82ccc0ecd65871df663d1299774a32e39bff2f2",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-3-xc27",
+        "bDecision": "rewrite",
+        "bPrompt": "정삼각형 세 개의 한 각을 한 점에 겹치지 않게 이어 모았다. 모인 각의 크기를 식으로 구하고, 모인 선이 어떤 모양이 되는지 쓰시오.",
+        "bAnswer": "$60^\\circ\\times3=180^\\circ$이므로 일직선이 된다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$180^\\circ$",
+              "$60^\\circ\\times3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "일직선",
+              "곧은 선"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "정삼각형 세 개의 각의 합",
+        "bReason": "$180^\\circ$가 일직선이라는 연결을 확인",
+        "cDecision": "keep",
+        "cReason": "각도 숫자 빈칸이고 일직선이 단서로 있어 선명",
+        "cSlotEquivalents": [
+          [
+            "$180$도"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "정삼각형 세 개를 한 점에",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정삼각형 세 개의 꼭짓점을 한 점에 겹치지 않게 이어 모으면 {$180^\\circ$}로 일직선이 된다.",
+        "cStudentSentence": "정삼각형 세 개의 꼭짓점을 한 점에 겹치지 않게 이어 모으면 □로 일직선이 된다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$180^\\circ$",
+            "equivalents": [
+              "$180$도"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "정삼각형 세 개의 꼭짓점을 한 점에 겹치지 않게 이어 모으면 □로 일직선이 된다.",
+          "answers": [
+            "$180^\\circ$"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "정삼각형 세 개의 한 각을 한 점에 겹치지 않게 이어 모았다. 모인 각의 크기를 식으로 구하고, 모인 선이 어떤 모양이 되는지 쓰시오.",
+          "answer": "$60^\\circ\\times3=180^\\circ$이므로 일직선이 된다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$180^\\circ$",
+                "$60^\\circ\\times3$"
+              ]
+            },
+            {
+              "anyOf": [
+                "일직선",
+                "곧은 선"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "정삼각형 세 개의 꼭짓점을 한 점에 겹치지 않게 이어 모으면 {$180^\\circ$}로 일직선이 된다.",
+          "acceptedAnswers": [
+            [
+              "$180^\\circ$",
+              "$180$도"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-3-xc27",
+          "sourceIndex": 2236,
+          "proposalFingerprint": "705fa8a547a76a838dfb21fbe82ccc0ecd65871df663d1299774a32e39bff2f2",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "식과결과를구별해60×3=180의식을기준으로받는다.",
+          "cReason": "모인각의합이라는대상을C에명시한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$60^\\circ\\times3=180^\\circ$",
+              "$60^\\circ+60^\\circ+60^\\circ=180^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "일직선",
+              "곧은 선"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "정삼각형 세 개의 각을 한 점에 겹치지 않게 차례로 모으면 각의 크기의 합은 {$180^\\circ$}가 되어 양 끝의 변이 일직선을 이룬다.",
+        "cSlotEquivalents": [
+          [
+            "$180$도"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-4-xc1",
+      "sourceIndex": 2237,
+      "beforeProposal": {
+        "sourceIndex": 2237,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-4 삼각형을 각의 크기에 따라 분류하기",
+        "sourceFingerprint": "9f2f18bc09005331e4e46636faa5306a29bf5a9cab0d42caf85c38adc6c3f7e8",
+        "proposalFingerprint": "31a5e24430118d421e2532e5f53c44fcaa8f5fad3d76fc04f990abcf786bc0bb",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-4-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "직각삼각형은 어떤 삼각형인지 세 각에 주목해 설명하시오.",
+        "bAnswer": "세 각 가운데 한 각이 직각인 삼각형이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한 각이 직각",
+              "직각이 하나 있다",
+              "$90^\\circ$인 각이 있다"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "직각삼각형의 뜻",
+        "bReason": "이름이 아닌 각 조건으로 뜻을 말하게 함",
+        "cDecision": "keep",
+        "cReason": "이름 하나만 묻는 친숙한 낱말 빈칸",
+        "roleEvidence": {
+          "sourceKind": "정의",
+          "sourceTerm": "직각삼각형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "세 각 가운데 하나가 직각이면 {직각삼각형}이라 부른다.",
+        "cStudentSentence": "세 각 가운데 하나가 직각이면 □이라 부른다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "직각삼각형",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "세 각 가운데 하나가 직각이면 □이라 부른다.",
+          "answers": [
+            "직각삼각형"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "직각삼각형은 어떤 삼각형인지 세 각에 주목해 설명하시오.",
+          "answer": "세 각 가운데 한 각이 직각인 삼각형이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "한 각이 직각",
+                "직각이 하나 있다",
+                "$90^\\circ$인 각이 있다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "세 각 가운데 하나가 직각이면 {직각삼각형}이라 부른다.",
+          "acceptedAnswers": [
+            [
+              "직각삼각형"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-4-xc1",
+          "sourceIndex": 2237,
+          "proposalFingerprint": "31a5e24430118d421e2532e5f53c44fcaa8f5fad3d76fc04f990abcf786bc0bb",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "definition",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "확립된직각삼각형정의를한직각조건으로묻는다.",
+          "cReason": "세각의대상을제목없이알도록삼각형에서라고명시한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "삼각형의 세 각 가운데 하나가 직각이면 {직각삼각형}이라 부른다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-4-xc3",
+      "sourceIndex": 2239,
+      "beforeProposal": {
+        "sourceIndex": 2239,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-4 삼각형을 각의 크기에 따라 분류하기",
+        "sourceFingerprint": "56b7a7adf16efe5630209564440504598ee265270815a8c845c3b9f10c56cfba",
+        "proposalFingerprint": "f57a0b59cd53af7d149c58da90af325051a60a48fb6551207097f80acbf95bac",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-4-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "세 각이 $60^\\circ$, $70^\\circ$, $50^\\circ$인 삼각형을 각의 크기에 따라 분류하면 무엇인지 까닭과 함께 쓰시오.",
+        "bAnswer": "세 각이 모두 $90^\\circ$보다 작은 예각이므로 예각삼각형이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "예각삼각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "세 각이 모두 예각",
+              "세 각이 모두 $90^\\circ$보다 작다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "세 각으로 예각삼각형 분류",
+        "bReason": "세 각을 직각과 견주어 분류하는 기본 적용",
+        "cDecision": "keep",
+        "cReason": "세 각이 주어진 선명한 이름 빈칸",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "세 각이 모두 예각일 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "세 각이 $60^\\circ$, $70^\\circ$, $50^\\circ$이면 {예각삼각형}이다.",
+        "cStudentSentence": "세 각이 $60^\\circ$, $70^\\circ$, $50^\\circ$이면 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "예각삼각형",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "세 각이 $60^\\circ$, $70^\\circ$, $50^\\circ$이면 □이다.",
+          "answers": [
+            "예각삼각형"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "세 각이 $60^\\circ$, $70^\\circ$, $50^\\circ$인 삼각형을 각의 크기에 따라 분류하면 무엇인지 까닭과 함께 쓰시오.",
+          "answer": "세 각이 모두 $90^\\circ$보다 작은 예각이므로 예각삼각형이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "예각삼각형"
+              ]
+            },
+            {
+              "anyOf": [
+                "세 각이 모두 예각",
+                "세 각이 모두 $90^\\circ$보다 작다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "세 각이 $60^\\circ$, $70^\\circ$, $50^\\circ$이면 {예각삼각형}이다.",
+          "acceptedAnswers": [
+            [
+              "예각삼각형"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-4-xc3",
+          "sourceIndex": 2239,
+          "proposalFingerprint": "f57a0b59cd53af7d149c58da90af325051a60a48fb6551207097f80acbf95bac",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "모든각이90미만이라는까닭으로예각삼각형을고른다.",
+          "cReason": "삼각형에서라는대상을C에명시한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "삼각형의 세 각이 $60^\\circ$, $70^\\circ$, $50^\\circ$이면 {예각삼각형}이다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-4-xc4",
+      "sourceIndex": 2240,
+      "beforeProposal": {
+        "sourceIndex": 2240,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-4 삼각형을 각의 크기에 따라 분류하기",
+        "sourceFingerprint": "ce61c6e9bae22596d4fe1ee5c16b73da8113ba869e87c04c1fbd25f5583641ae",
+        "proposalFingerprint": "8b2b71ab98de9f1bdad8d1a737e5c565841ebcd388504c24f6b780e3e3993934",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-4-xc4",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "둔각 하나 있는 삼각형 분류",
+        "bReason": "둔각 $110^\\circ$로 이름 붙이기",
+        "exclusionReason": "xc3과 같은 '각을 보고 분류' 목표에 수만 다름",
+        "cDecision": "keep",
+        "cReason": "세 각이 주어진 선명한 이름 빈칸",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "둔각이 하나 있을 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "세 각이 $30^\\circ$, $40^\\circ$, $110^\\circ$이면 {둔각삼각형}이다.",
+        "cStudentSentence": "세 각이 $30^\\circ$, $40^\\circ$, $110^\\circ$이면 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "둔각삼각형",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "세 각이 $30^\\circ$, $40^\\circ$, $110^\\circ$이면 □이다.",
+          "answers": [
+            "둔각삼각형"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "세 각이 $30^\\circ$, $40^\\circ$, $110^\\circ$이면 {둔각삼각형}이다.",
+          "acceptedAnswers": [
+            [
+              "둔각삼각형"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "둔각 $110^\\circ$로 이름 붙이기"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-4-xc4",
+          "sourceIndex": 2240,
+          "proposalFingerprint": "8b2b71ab98de9f1bdad8d1a737e5c565841ebcd388504c24f6b780e3e3993934",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "exclude",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "주어진둔각으로분류하는기존B와중복이다.",
+          "cReason": "삼각형에서라는대상을C에명시한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "삼각형의 세 각이 $30^\\circ$, $40^\\circ$, $110^\\circ$이면 {둔각삼각형}이다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-4-xc5",
+      "sourceIndex": 2241,
+      "beforeProposal": {
+        "sourceIndex": 2241,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-4 삼각형을 각의 크기에 따라 분류하기",
+        "sourceFingerprint": "11d73e8f73b303c6efbdf16cbc1e41cd38d5f881bd16790f838adea8c2ef1a73",
+        "proposalFingerprint": "faccbc004740a5512a815829e56a3a15684bc679e69f01b18ad8f27f1f28228f",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-4-xc5",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "직각 하나 있는 삼각형 분류",
+        "bReason": "$90^\\circ$ 하나로 이름 붙이기",
+        "exclusionReason": "xc1이 직각삼각형 뜻을 묻고 xc3과 같은 분류 목표라 중복",
+        "cDecision": "keep",
+        "cReason": "세 각이 주어진 선명한 이름 빈칸",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "직각이 하나 있을 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "세 각이 $30^\\circ$, $60^\\circ$, $90^\\circ$이면 {직각삼각형}이다.",
+        "cStudentSentence": "세 각이 $30^\\circ$, $60^\\circ$, $90^\\circ$이면 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "직각삼각형",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "세 각이 $30^\\circ$, $60^\\circ$, $90^\\circ$이면 □이다.",
+          "answers": [
+            "직각삼각형"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "세 각이 $30^\\circ$, $60^\\circ$, $90^\\circ$이면 {직각삼각형}이다.",
+          "acceptedAnswers": [
+            [
+              "직각삼각형"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "$90^\\circ$ 하나로 이름 붙이기"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-4-xc5",
+          "sourceIndex": 2241,
+          "proposalFingerprint": "faccbc004740a5512a815829e56a3a15684bc679e69f01b18ad8f27f1f28228f",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "exclude",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "직각삼각형정의와분류의기존B와중복이다.",
+          "cReason": "삼각형에서라는대상을C에명시한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "삼각형의 세 각이 $30^\\circ$, $60^\\circ$, $90^\\circ$이면 {직각삼각형}이다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-4-xc7",
+      "sourceIndex": 2243,
+      "beforeProposal": {
+        "sourceIndex": 2243,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-4 삼각형을 각의 크기에 따라 분류하기",
+        "sourceFingerprint": "896707658be3f01ff92d1d88baddf776a0bb63532ebfa59ba61a02f29c9b73f8",
+        "proposalFingerprint": "67c6c5a2be509064e1e8fc12fecd3d72e1306dac726c09c01af1e58264f42e28",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-4-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각자 두 개는 각의 크기에 따라 분류하면 어떤 삼각형인지 까닭과 함께 쓰시오.",
+        "bAnswer": "직각삼각형이다. 삼각자에는 직각이 하나 있다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직각삼각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "직각이 있다",
+              "한 각이 직각"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "삼각자의 각 분류",
+        "bReason": "삼각자의 직각을 보고 이름을 붙이는 문항",
+        "cDecision": "rewrite",
+        "cAfter": "삼각자 두 개는 각의 크기로 분류하면 모두 {직각삼각형}이다.",
+        "cReason": "기준이 가려져 이등변삼각형 등으로 답할 수 있어 기준 명시",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "삼각자를 각으로 분류하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "삼각자 두 개는 각의 크기로 분류하면 모두 {직각삼각형}이다.",
+        "cStudentSentence": "삼각자 두 개는 각의 크기로 분류하면 모두 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "직각삼각형",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "삼각자 두 개는 각의 크기에 따라 분류하면 어떤 삼각형인지 까닭과 함께 쓰시오.",
+          "answer": "직각삼각형이다. 삼각자에는 직각이 하나 있다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "직각삼각형"
+              ]
+            },
+            {
+              "anyOf": [
+                "직각이 있다",
+                "한 각이 직각"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "삼각자 두 개는 각의 크기로 분류하면 모두 {직각삼각형}이다.",
+          "acceptedAnswers": [
+            [
+              "직각삼각형"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-4-xc7",
+          "sourceIndex": 2243,
+          "proposalFingerprint": "67c6c5a2be509064e1e8fc12fecd3d72e1306dac726c09c01af1e58264f42e28",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "어떤두삼각자인지학교에서쓰는한벌의삼각자라고B와C에명시한다.",
+          "cReason": "두삼각자의구체대상을같게명시한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bPrompt": "학교에서 쓰는 한 벌의 삼각자는 두 개이다. 하나의 각은 $45^\\circ$, $45^\\circ$, $90^\\circ$이고 다른 하나의 각은 $30^\\circ$, $60^\\circ$, $90^\\circ$이다. 두 삼각자를 각의 크기에 따라 분류하면 각각 어떤 삼각형인지 까닭과 함께 쓰시오.",
+        "cDecision": "rewrite",
+        "cAfter": "학교에서 쓰는 삼각자 한 벌은 각이 $45^\\circ$, $45^\\circ$, $90^\\circ$인 것과 $30^\\circ$, $60^\\circ$, $90^\\circ$인 것으로 이루어져 있다. 두 삼각자 모두 각의 크기로 분류하면 {직각삼각형}이다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-4-xc9",
+      "sourceIndex": 2245,
+      "beforeProposal": {
+        "sourceIndex": 2245,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-4 삼각형을 각의 크기에 따라 분류하기",
+        "sourceFingerprint": "4423d531fc36afa32fc01e5d562b775d0819092e1a1b13a7ff9118d50d8c4b76",
+        "proposalFingerprint": "ed03b14920a287e5cf9a0259ce6a1a8c586213374d492fb14fc76c0b6b708418",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-4-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각형의 두 각이 $40^\\circ$, $30^\\circ$이다. 이 삼각형을 각의 크기에 따라 분류하고, 그 방법을 쓰시오.",
+        "bAnswer": "나머지 각은 $180^\\circ-40^\\circ-30^\\circ=110^\\circ$로 둔각이므로 둔각삼각형이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "나머지 각이 $110^\\circ$",
+              "$180^\\circ-40^\\circ-30^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "둔각삼각형"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "두 각만 알 때 분류하기",
+        "bReason": "나머지 각을 먼저 구해 분류하는 순서를 확인",
+        "cDecision": "rewrite",
+        "cAfter": "삼각형의 두 각을 알면 나머지 각은 $180^\\circ$에서 두 각의 합을 뺀 크기이므로 알고 있는 두 각만이 아니라 {나머지} 각까지 살펴 분류한다.",
+        "cReason": "'□ 분류한다'는 답 범위가 불명확해 대상을 나머지로 좁힘",
+        "cSlotEquivalents": [
+          [
+            "남은",
+            "세 번째"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "두 각만 알 때 분류하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "삼각형의 두 각을 알면 나머지 각은 $180^\\circ$에서 두 각의 합을 뺀 크기이므로 알고 있는 두 각만이 아니라 {나머지} 각까지 살펴 분류한다.",
+        "cStudentSentence": "삼각형의 두 각을 알면 나머지 각은 $180^\\circ$에서 두 각의 합을 뺀 크기이므로 알고 있는 두 각만이 아니라 □ 각까지 살펴 분류한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "나머지",
+            "equivalents": [
+              "남은",
+              "세 번째"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "삼각형의 두 각이 $40^\\circ$, $30^\\circ$이다. 이 삼각형을 각의 크기에 따라 분류하고, 그 방법을 쓰시오.",
+          "answer": "나머지 각은 $180^\\circ-40^\\circ-30^\\circ=110^\\circ$로 둔각이므로 둔각삼각형이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "나머지 각이 $110^\\circ$",
+                "$180^\\circ-40^\\circ-30^\\circ$"
+              ]
+            },
+            {
+              "anyOf": [
+                "둔각삼각형"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "삼각형의 두 각을 알면 나머지 각은 $180^\\circ$에서 두 각의 합을 뺀 크기이므로 알고 있는 두 각만이 아니라 {나머지} 각까지 살펴 분류한다.",
+          "acceptedAnswers": [
+            [
+              "나머지",
+              "남은",
+              "세 번째"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-4-xc9",
+          "sourceIndex": 2245,
+          "proposalFingerprint": "ed03b14920a287e5cf9a0259ce6a1a8c586213374d492fb14fc76c0b6b708418",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "남은110도계산으로둔각삼각형을고르는방법이다.",
+          "cReason": "나머지라는낱말반복대신두각40·30의실제나머지각을묻는다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "삼각형의 두 각이 $40^\\circ$, $30^\\circ$이면 나머지 각은 {$110^\\circ$}이다. 이 각도 살펴 삼각형을 분류한다.",
+        "cSlotEquivalents": [
+          [
+            "$110$도"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-4-xc10",
+      "sourceIndex": 2246,
+      "beforeProposal": {
+        "sourceIndex": 2246,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-4 삼각형을 각의 크기에 따라 분류하기",
+        "sourceFingerprint": "44b0c18b08ceefbe07c87a5155caa70af8d60d3036d38ab1a28d74866b252045",
+        "proposalFingerprint": "301927804d18db71e2d6d0e9dddd8310e38c5cf2d382193899c2ca5acb68e62a",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-4-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각형에서 두 각의 합이 $90^\\circ$이다. 나머지 한 각의 크기를 구하고, 이 삼각형이 각에 따라 무엇인지 쓰시오.",
+        "bAnswer": "나머지 각은 $180^\\circ-90^\\circ=90^\\circ$로 직각이므로 직각삼각형이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "나머지 각이 $90^\\circ$",
+              "직각"
+            ]
+          },
+          {
+            "anyOf": [
+              "직각삼각형"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "두 각 합 90도의 분류",
+        "bReason": "나머지 각을 구해 직각삼각형으로 연결하는 문항",
+        "cDecision": "keep",
+        "cReason": "근거 문장이 있는 이름 빈칸",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "두 각의 합이 $90^\\circ$일 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "두 각의 합이 $90^\\circ$이면 나머지 각이 직각이라 {직각삼각형}이다.",
+        "cStudentSentence": "두 각의 합이 $90^\\circ$이면 나머지 각이 직각이라 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "직각삼각형",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "두 각의 합이 $90^\\circ$이면 나머지 각이 직각이라 □이다.",
+          "answers": [
+            "직각삼각형"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "삼각형에서 두 각의 합이 $90^\\circ$이다. 나머지 한 각의 크기를 구하고, 이 삼각형이 각에 따라 무엇인지 쓰시오.",
+          "answer": "나머지 각은 $180^\\circ-90^\\circ=90^\\circ$로 직각이므로 직각삼각형이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "나머지 각이 $90^\\circ$",
+                "직각"
+              ]
+            },
+            {
+              "anyOf": [
+                "직각삼각형"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "두 각의 합이 $90^\\circ$이면 나머지 각이 직각이라 {직각삼각형}이다.",
+          "acceptedAnswers": [
+            [
+              "직각삼각형"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-4-xc10",
+          "sourceIndex": 2246,
+          "proposalFingerprint": "301927804d18db71e2d6d0e9dddd8310e38c5cf2d382193899c2ca5acb68e62a",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "남은각90과직각삼각형의두요청이분명하다.",
+          "cReason": "삼각형이라는대상을C에명시한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "삼각형의 두 각의 합이 $90^\\circ$이면 나머지 각이 직각이므로 {직각삼각형}이다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-4-xc11",
+      "sourceIndex": 2247,
+      "beforeProposal": {
+        "sourceIndex": 2247,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-4 삼각형을 각의 크기에 따라 분류하기",
+        "sourceFingerprint": "f30da193d2c8223c69caca384ea793e5151a06a389d9597daffad28c2a7f5549",
+        "proposalFingerprint": "eada521ef3bbe42a73aeabd9f97dc59bb518b17b1082a727838a9992dfad4249",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-4-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각형에서 두 각의 합이 $90^\\circ$보다 작다. 나머지 한 각은 어떤 각이고 이 삼각형은 각에 따라 무엇인지 까닭과 함께 쓰시오.",
+        "bAnswer": "나머지 각은 $180^\\circ$에서 $90^\\circ$보다 작은 수를 뺀 값이라 $90^\\circ$보다 커서 둔각이므로 둔각삼각형이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "나머지 각이 $90^\\circ$보다 크다",
+              "나머지 각이 둔각"
+            ]
+          },
+          {
+            "anyOf": [
+              "둔각삼각형"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "두 각 합이 작을 때의 분류",
+        "bReason": "합이 작으면 남는 각이 커진다는 이유를 확인",
+        "cDecision": "keep",
+        "cReason": "근거 문장이 있는 이름 빈칸",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "두 각의 합이 $90^\\circ$보다 작을 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "두 각의 합이 $90^\\circ$보다 작으면 나머지 각이 둔각이라 {둔각삼각형}이다.",
+        "cStudentSentence": "두 각의 합이 $90^\\circ$보다 작으면 나머지 각이 둔각이라 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "둔각삼각형",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "두 각의 합이 $90^\\circ$보다 작으면 나머지 각이 둔각이라 □이다.",
+          "answers": [
+            "둔각삼각형"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "삼각형에서 두 각의 합이 $90^\\circ$보다 작다. 나머지 한 각은 어떤 각이고 이 삼각형은 각에 따라 무엇인지 까닭과 함께 쓰시오.",
+          "answer": "나머지 각은 $180^\\circ$에서 $90^\\circ$보다 작은 수를 뺀 값이라 $90^\\circ$보다 커서 둔각이므로 둔각삼각형이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "나머지 각이 $90^\\circ$보다 크다",
+                "나머지 각이 둔각"
+              ]
+            },
+            {
+              "anyOf": [
+                "둔각삼각형"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "두 각의 합이 $90^\\circ$보다 작으면 나머지 각이 둔각이라 {둔각삼각형}이다.",
+          "acceptedAnswers": [
+            [
+              "둔각삼각형"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-4-xc11",
+          "sourceIndex": 2247,
+          "proposalFingerprint": "eada521ef3bbe42a73aeabd9f97dc59bb518b17b1082a727838a9992dfad4249",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "둔각이라는결론외에180에서90미만을빼는까닭도기준에포함한다.",
+          "cReason": "삼각형이라는대상을C에명시한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "나머지 각이 둔각이다",
+              "나머지 각은 $90^\\circ$보다 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "둔각삼각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "$180^\\circ$에서 $90^\\circ$보다 작은 수를 빼면 $90^\\circ$보다 큰 각이 남는다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "삼각형의 두 각의 합이 $90^\\circ$보다 작으면 나머지 각이 둔각이므로 {둔각삼각형}이다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-4-xc17",
+      "sourceIndex": 2253,
+      "beforeProposal": {
+        "sourceIndex": 2253,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-4 삼각형을 각의 크기에 따라 분류하기",
+        "sourceFingerprint": "5290e6fbd3813961a3edf13c870a9429c6904def3c532f2cb939bba4b663fd30",
+        "proposalFingerprint": "dd09b7ea85e2148f5913cabd81c514c7804ebec3259dda07724401244771407d",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-4-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "점 종이에 삼각형을 그렸다. 이 삼각형을 예각삼각형, 직각삼각형, 둔각삼각형으로 분류하려면 각을 무엇과 견주어 어떻게 판단하는지 쓰시오.",
+        "bAnswer": "각을 직각과 견준다. 모든 각이 직각보다 작으면 예각삼각형, 직각이 있으면 직각삼각형, 직각보다 큰 각이 있으면 둔각삼각형이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직각과 견준다",
+              "$90^\\circ$와 비교한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "직각보다 작으면 예각, 크면 둔각으로 판단한다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "점 종이 삼각형 분류하는 법",
+        "bReason": "각을 직각과 견주는 판단 기준을 확인",
+        "cDecision": "keep",
+        "cReason": "직각이라는 익숙한 낱말 빈칸이고 범위가 분명",
+        "cSlotEquivalents": [
+          [
+            "$90^\\circ$"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "점 종이에 그린 삼각형을 각으로 분류하는 법",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "점 종이에 그린 삼각형을 예각삼각형·직각삼각형·둔각삼각형으로 분류하려면 각의 크기를 {직각}과 견주어 살핀다.",
+        "cStudentSentence": "점 종이에 그린 삼각형을 예각삼각형·직각삼각형·둔각삼각형으로 분류하려면 각의 크기를 □과 견주어 살핀다.",
+        "cSlotAnswers": [
+          {
+            "expected": "직각",
+            "equivalents": [
+              "$90^\\circ$"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "점 종이에 그린 삼각형을 예각삼각형·직각삼각형·둔각삼각형으로 분류하려면 각의 크기를 □과 견주어 살핀다.",
+          "answers": [
+            "직각"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "점 종이에 삼각형을 그렸다. 이 삼각형을 예각삼각형, 직각삼각형, 둔각삼각형으로 분류하려면 각을 무엇과 견주어 어떻게 판단하는지 쓰시오.",
+          "answer": "각을 직각과 견준다. 모든 각이 직각보다 작으면 예각삼각형, 직각이 있으면 직각삼각형, 직각보다 큰 각이 있으면 둔각삼각형이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "직각과 견준다",
+                "$90^\\circ$와 비교한다"
+              ]
+            },
+            {
+              "anyOf": [
+                "직각보다 작으면 예각, 크면 둔각으로 판단한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "점 종이에 그린 삼각형을 예각삼각형·직각삼각형·둔각삼각형으로 분류하려면 각의 크기를 {직각}과 견주어 살핀다.",
+          "acceptedAnswers": [
+            [
+              "직각",
+              "$90^\\circ$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-4-xc17",
+          "sourceIndex": 2253,
+          "proposalFingerprint": "dd09b7ea85e2148f5913cabd81c514c7804ebec3259dda07724401244771407d",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "직각과의비교외에세분류각각의모두예각·한직각·한둔각조건도기준에맞게넣는다.",
+          "cReason": "분류의기준각인직각과90도의같은의미를받는다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "모든 각이 직각보다 작으면 예각삼각형이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "직각이 있으면 직각삼각형이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "직각보다 큰 각이 있으면 둔각삼각형이다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-4-xc18",
+      "sourceIndex": 2254,
+      "beforeProposal": {
+        "sourceIndex": 2254,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-4 삼각형을 각의 크기에 따라 분류하기",
+        "sourceFingerprint": "deecf2517f3bedd1b647692e314e924759f6afff5311fe6aa0eb0d7fa92a1552",
+        "proposalFingerprint": "3bdce907d14e7ebcd7f878702b21fa2ef88b67b4594b3fad29c71b53fafb7a72",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-4-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각형의 세 각을 재었더니 직각이나 둔각이 하나도 없었다. 이 삼각형은 각에 따라 무엇이고 왜 그렇게 부르는지 쓰시오.",
+        "bAnswer": "예각삼각형이다. 세 각이 모두 $90^\\circ$보다 작은 예각이기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "예각삼각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "세 각이 모두 예각",
+              "세 각이 모두 $90^\\circ$보다 작다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "직각·둔각 없는 삼각형",
+        "bReason": "각을 재어 예각삼각형으로 판정하는 방법",
+        "cDecision": "keep",
+        "cReason": "있다/없다 비교 빈칸으로 짧고 명확",
+        "cSlotEquivalents": [
+          [
+            "없다면",
+            "하나도 없으면"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "직각이나 둔각이 없을 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "세 각을 재어 직각이나 둔각이 {없으면} 예각삼각형이다.",
+        "cStudentSentence": "세 각을 재어 직각이나 둔각이 □ 예각삼각형이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "없으면",
+            "equivalents": [
+              "없다면",
+              "하나도 없으면"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "세 각을 재어 직각이나 둔각이 □ 예각삼각형이다.",
+          "answers": [
+            "없으면"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "삼각형의 세 각을 재었더니 직각이나 둔각이 하나도 없었다. 이 삼각형은 각에 따라 무엇이고 왜 그렇게 부르는지 쓰시오.",
+          "answer": "예각삼각형이다. 세 각이 모두 $90^\\circ$보다 작은 예각이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "예각삼각형"
+              ]
+            },
+            {
+              "anyOf": [
+                "세 각이 모두 예각",
+                "세 각이 모두 $90^\\circ$보다 작다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "세 각을 재어 직각이나 둔각이 {없으면} 예각삼각형이다.",
+          "acceptedAnswers": [
+            [
+              "없으면",
+              "없다면",
+              "하나도 없으면"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-4-xc18",
+          "sourceIndex": 2254,
+          "proposalFingerprint": "3bdce907d14e7ebcd7f878702b21fa2ef88b67b4594b3fad29c71b53fafb7a72",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "직각과둔각이없어세각모두예각인까닭이다.",
+          "cReason": "삼각형이라는대상을C에명시한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "삼각형의 세 각을 재어 직각이나 둔각이 {없으면} 예각삼각형이다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-4-xc19",
+      "sourceIndex": 2255,
+      "beforeProposal": {
+        "sourceIndex": 2255,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-4 삼각형을 각의 크기에 따라 분류하기",
+        "sourceFingerprint": "fe88833bcd10e5a198a92db28b4f9402e6d6da776f316e6c47c8448c2fc029a3",
+        "proposalFingerprint": "da94ce413c49ca34e684fcbc4fc0a3db1ae805304f0c0f0b5e0292b35b76f9f7",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-4-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각형의 가장 큰 각이 예각이다. 나머지 두 각은 어떤 각이고, 이 삼각형은 각에 따라 무엇인지 까닭과 함께 쓰시오.",
+        "bAnswer": "나머지 두 각은 가장 큰 각보다 크지 않아 모두 예각이므로 예각삼각형이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "나머지 두 각도 예각"
+            ]
+          },
+          {
+            "anyOf": [
+              "예각삼각형"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "가장 큰 각이 예각일 때",
+        "bReason": "가장 큰 각만 보면 되는 까닭을 확인",
+        "cDecision": "keep",
+        "cReason": "근거가 보이는 이름 빈칸",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "가장 큰 각이 예각일 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "가장 큰 각이 예각이면 나머지 두 각도 예각이라 {예각삼각형}이다.",
+        "cStudentSentence": "가장 큰 각이 예각이면 나머지 두 각도 예각이라 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "예각삼각형",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "가장 큰 각이 예각이면 나머지 두 각도 예각이라 □이다.",
+          "answers": [
+            "예각삼각형"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "삼각형의 가장 큰 각이 예각이다. 나머지 두 각은 어떤 각이고, 이 삼각형은 각에 따라 무엇인지 까닭과 함께 쓰시오.",
+          "answer": "나머지 두 각은 가장 큰 각보다 크지 않아 모두 예각이므로 예각삼각형이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "나머지 두 각도 예각"
+              ]
+            },
+            {
+              "anyOf": [
+                "예각삼각형"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "가장 큰 각이 예각이면 나머지 두 각도 예각이라 {예각삼각형}이다.",
+          "acceptedAnswers": [
+            [
+              "예각삼각형"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-4-xc19",
+          "sourceIndex": 2255,
+          "proposalFingerprint": "da94ce413c49ca34e684fcbc4fc0a3db1ae805304f0c0f0b5e0292b35b76f9f7",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "가장큰각보다남은두각이클수없다는비교까닭도기준에포함한다.",
+          "cReason": "삼각형이라는대상을C에명시한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "나머지 두 각도 예각이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "예각삼각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "나머지 두 각은 가장 큰 각보다 클 수 없으므로 모두 $90^\\circ$보다 작다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "삼각형의 가장 큰 각이 예각이면 나머지 두 각도 예각이므로 {예각삼각형}이다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-5-xc1",
+      "sourceIndex": 2263,
+      "beforeProposal": {
+        "sourceIndex": 2263,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-5 삼각형을 두 가지 기준으로 분류하기",
+        "sourceFingerprint": "08a6033f82fca21aa370020189e43770ec7900245375d1b2579fa7dae8a8e164",
+        "proposalFingerprint": "f1f0a2c484b77b54633d6a1d4928e25b7a67afc53dba669fb800f00b3ac59a91",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-5-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각형을 두 가지 기준으로 분류하는 표를 만들 때 가로와 세로에 각각 무엇을 놓는지 쓰시오.",
+        "bAnswer": "하나에는 변의 길이를, 다른 하나에는 각의 크기를 놓는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "변의 길이"
+            ]
+          },
+          {
+            "anyOf": [
+              "각의 크기"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "두 기준 분류 표 만들기",
+        "bReason": "표의 두 기준이 변과 각이라는 점을 확인",
+        "cDecision": "rewrite",
+        "cAfter": "삼각형을 두 기준으로 분류하는 표는 가로와 세로에 {변의 길이}와 각의 크기를 하나씩 놓는다.",
+        "cReason": "긴 구절 전체를 가려 답이 모호해 한 기준만 가림",
+        "cSlotEquivalents": [
+          [
+            "변",
+            "변들의 길이"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "두 기준의 분류 표",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "삼각형을 두 기준으로 분류하는 표는 가로와 세로에 {변의 길이}와 각의 크기를 하나씩 놓는다.",
+        "cStudentSentence": "삼각형을 두 기준으로 분류하는 표는 가로와 세로에 □와 각의 크기를 하나씩 놓는다.",
+        "cSlotAnswers": [
+          {
+            "expected": "변의 길이",
+            "equivalents": [
+              "변",
+              "변들의 길이"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "삼각형을 두 가지 기준으로 분류하는 표를 만들 때 가로와 세로에 각각 무엇을 놓는지 쓰시오.",
+          "answer": "하나에는 변의 길이를, 다른 하나에는 각의 크기를 놓는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "변의 길이"
+              ]
+            },
+            {
+              "anyOf": [
+                "각의 크기"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "삼각형을 두 기준으로 분류하는 표는 가로와 세로에 {변의 길이}와 각의 크기를 하나씩 놓는다.",
+          "acceptedAnswers": [
+            [
+              "변의 길이",
+              "변",
+              "변들의 길이"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-5-xc1",
+          "sourceIndex": 2263,
+          "proposalFingerprint": "f1f0a2c484b77b54633d6a1d4928e25b7a67afc53dba669fb800f00b3ac59a91",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "두기준을임의로가정하지않고이등변·정삼각형분류와예각·직각·둔각분류가살피는성질을질문한다.",
+          "cReason": "변의길이와각의크기라는두기준을구별한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bPrompt": "삼각형을 이등변삼각형·정삼각형으로 분류할 때 살피는 성질과, 예각삼각형·직각삼각형·둔각삼각형으로 분류할 때 살피는 성질은 각각 무엇인지 쓰시오.",
+        "bAnswer": "이등변삼각형과 정삼각형으로 분류할 때는 변의 길이를 살피고, 예각·직각·둔각삼각형으로 분류할 때는 각의 크기를 살핀다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "이등변·정삼각형 분류는 변의 길이를 살핀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "예각·직각·둔각삼각형 분류는 각의 크기를 살핀다"
+            ]
+          }
+        ],
+        "cSlotEquivalents": [
+          [
+            "변들의 길이"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-5-xc5",
+      "sourceIndex": 2266,
+      "beforeProposal": {
+        "sourceIndex": 2266,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-5 삼각형을 두 가지 기준으로 분류하기",
+        "sourceFingerprint": "3d5d145543b640e7b3f1c2b84fca76b4fd7d20e173f66e3d6849e7b1aaa63e27",
+        "proposalFingerprint": "61a90a0b64bf1d46ccf506011aab6f369cd2e7becaabf5c609a6d7ce12f876f0",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-5-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "정삼각형을 변의 길이와 각의 크기 두 기준으로 분류하면 각각 어떤 삼각형에 드는지 쓰시오.",
+        "bAnswer": "변으로 보면 이등변삼각형에 들고, 각으로 보면 세 각이 모두 $60^\\circ$이므로 예각삼각형이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "이등변삼각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "예각삼각형"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "정삼각형의 두 기준 분류",
+        "bReason": "정삼각형도 이등변삼각형이라는 점을 확인",
+        "cDecision": "keep",
+        "cReason": "변은 주어지고 각 기준 이름만 묻는 빈칸",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "정삼각형의 두 기준 분류",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정삼각형은 변으로 보면 이등변삼각형에 들고, 각으로 보면 {예각삼각형}이다.",
+        "cStudentSentence": "정삼각형은 변으로 보면 이등변삼각형에 들고, 각으로 보면 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "예각삼각형",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "정삼각형은 변으로 보면 이등변삼각형에 들고, 각으로 보면 □이다.",
+          "answers": [
+            "예각삼각형"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "정삼각형을 변의 길이와 각의 크기 두 기준으로 분류하면 각각 어떤 삼각형에 드는지 쓰시오.",
+          "answer": "변으로 보면 이등변삼각형에 들고, 각으로 보면 세 각이 모두 $60^\\circ$이므로 예각삼각형이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "이등변삼각형"
+              ]
+            },
+            {
+              "anyOf": [
+                "예각삼각형"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "정삼각형은 변으로 보면 이등변삼각형에 들고, 각으로 보면 {예각삼각형}이다.",
+          "acceptedAnswers": [
+            [
+              "예각삼각형"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-5-xc5",
+          "sourceIndex": 2266,
+          "proposalFingerprint": "61a90a0b64bf1d46ccf506011aab6f369cd2e7becaabf5c609a6d7ce12f876f0",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "변길이분류에서정삼각형도맞는답이므로이등변삼각형만강제하지않도록허용한다.",
+          "cReason": "정삼각형이이등변조건을만족하며각으로예각임을확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bAnswer": "변의 길이로 보면 정삼각형이며 두 변이 같다는 이등변삼각형의 조건도 만족한다. 각의 크기로 보면 세 각이 모두 $60^\\circ$이므로 예각삼각형이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "정삼각형",
+              "이등변삼각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "예각삼각형"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-5-xc6",
+      "sourceIndex": 2267,
+      "beforeProposal": {
+        "sourceIndex": 2267,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-5 삼각형을 두 가지 기준으로 분류하기",
+        "sourceFingerprint": "54084d3aefde36f8d1af655a48e1c3ef703da96801b2e4614c2ffae5dfa81023",
+        "proposalFingerprint": "d52c493e3bcce9c47b75ab7dbb7ea08878c4d1387862adefbc71960f6363681f",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-5-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각형을 변의 길이와 각의 크기, 두 기준으로 분류할 때 이름을 어떻게 말해야 하는지 예를 들어 쓰시오.",
+        "bAnswer": "두 기준의 이름을 모두 말한다. 예: 이등변삼각형이면서 둔각삼각형",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 기준의 이름을 함께 말한다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "두 이름을 함께 말하기",
+        "bReason": "한 이름이 아니라 두 이름으로 말한다는 방법 확인",
+        "cDecision": "rewrite",
+        "cAfter": "변의 길이와 각의 크기, 두 기준을 모두 쓰면 이등변삼각형이면서 둔각삼각형처럼 두 {이름}을 함께 말한다.",
+        "cReason": "'□을 모두 쓰면'은 가려진 대상이 막연해 이름으로 좁힘",
+        "cSlotEquivalents": [
+          [
+            "명칭"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "두 이름을 함께 말하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "변의 길이와 각의 크기, 두 기준을 모두 쓰면 이등변삼각형이면서 둔각삼각형처럼 두 {이름}을 함께 말한다.",
+        "cStudentSentence": "변의 길이와 각의 크기, 두 기준을 모두 쓰면 이등변삼각형이면서 둔각삼각형처럼 두 □을 함께 말한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "이름",
+            "equivalents": [
+              "명칭"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "삼각형을 변의 길이와 각의 크기, 두 기준으로 분류할 때 이름을 어떻게 말해야 하는지 예를 들어 쓰시오.",
+          "answer": "두 기준의 이름을 모두 말한다. 예: 이등변삼각형이면서 둔각삼각형",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "두 기준의 이름을 함께 말한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "변의 길이와 각의 크기, 두 기준을 모두 쓰면 이등변삼각형이면서 둔각삼각형처럼 두 {이름}을 함께 말한다.",
+          "acceptedAnswers": [
+            [
+              "이름",
+              "명칭"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-5-xc6",
+          "sourceIndex": 2267,
+          "proposalFingerprint": "d52c493e3bcce9c47b75ab7dbb7ea08878c4d1387862adefbc71960f6363681f",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "이름을함께말한다는출력지시뿐이고실제두기준분류는xc2에서하므로B를제외한다.",
+          "cReason": "이름이라는출력형식낱말만외우는C도제외한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bDecision": "exclude",
+        "bPrompt": "",
+        "bAnswer": "",
+        "bRequiredIdeas": [],
+        "bReason": "이름을 함께 말한다는 출력 방법만 요구한다. 실제 두 기준의 분류는 e4-2-2-5-xc2 등의 문항에서 확인한다.",
+        "cDecision": "exclude",
+        "cReason": "이름이라는 일반 낱말만 복원하여 삼각형을 실제 분류하는지 확인하지 못한다.",
+        "exclusionReason": "B와 C 평가만 제외: 두 이름을 말한다는 형식 안내를 반복한다. 두 기준 분류 자체와 일반 설명은 보존한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-5-xc14",
+      "sourceIndex": 2275,
+      "beforeProposal": {
+        "sourceIndex": 2275,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-5 삼각형을 두 가지 기준으로 분류하기",
+        "sourceFingerprint": "aad72c2a45b80dc05ea6116b7131daf2eceeeabb72ca1f0c96827c5a73334370",
+        "proposalFingerprint": "1d301093c64d7cdea751a5209ba05bdd811170438d55980178781382709514d6",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-5-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "모눈종이에 직각이등변삼각형을 그리려고 한다. 직각을 낀 두 변을 어떻게 그려야 하는지 쓰시오.",
+        "bAnswer": "직각을 낀 두 변을 같은 칸 수로 그린다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "같은 칸 수로 그린다",
+              "두 변의 길이를 같게 그린다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "모눈에 직각이등변삼각형 그리기",
+        "bReason": "두 변을 같게 그리는 작도 방법을 확인",
+        "cDecision": "keep",
+        "cReason": "같은 칸 수라는 짧은 구절이 문맥으로 복원 가능",
+        "cSlotEquivalents": [
+          [
+            "같은 길이",
+            "똑같은 칸 수"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "모눈에 직각이등변삼각형 그리기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "모눈종이에서 직각을 낀 두 변을 {같은 칸 수}로 그리면 직각이등변삼각형이 된다.",
+        "cStudentSentence": "모눈종이에서 직각을 낀 두 변을 □로 그리면 직각이등변삼각형이 된다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같은 칸 수",
+            "equivalents": [
+              "같은 길이",
+              "똑같은 칸 수"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "모눈종이에서 직각을 낀 두 변을 □로 그리면 직각이등변삼각형이 된다.",
+          "answers": [
+            "같은 칸 수"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "모눈종이에 직각이등변삼각형을 그리려고 한다. 직각을 낀 두 변을 어떻게 그려야 하는지 쓰시오.",
+          "answer": "직각을 낀 두 변을 같은 칸 수로 그린다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "같은 칸 수로 그린다",
+                "두 변의 길이를 같게 그린다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "모눈종이에서 직각을 낀 두 변을 {같은 칸 수}로 그리면 직각이등변삼각형이 된다.",
+          "acceptedAnswers": [
+            [
+              "같은 칸 수",
+              "같은 길이",
+              "똑같은 칸 수"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-5-xc14",
+          "sourceIndex": 2275,
+          "proposalFingerprint": "1d301093c64d7cdea751a5209ba05bdd811170438d55980178781382709514d6",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "비스듬한변에서칸수만으로길이판단하는표현을피해모눈가로·세로방향을명시하거나길이로바꾼다.",
+          "cReason": "같은칸수보다같은길이로조건을표현한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bAnswer": "직각을 낀 두 변의 길이를 같게 그린다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직각을 낀 두 변의 길이를 같게 그린다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "모눈종이에 삼각형을 그릴 때 직각을 낀 두 변을 {같은 길이}로 그리면 직각이등변삼각형이 된다.",
+        "cSlotEquivalents": [
+          [
+            "똑같은 길이"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-5-xc19",
+      "sourceIndex": 2279,
+      "beforeProposal": {
+        "sourceIndex": 2279,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-5 삼각형을 두 가지 기준으로 분류하기",
+        "sourceFingerprint": "a3823ea9236b3db74614d4ad615048f103660b33c422b88d4e40fe5ebf983c5e",
+        "proposalFingerprint": "ea84efe04940ebf682a3481fdf9b792588ed03be52bbee95fb4cf607896db31f",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-5-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각형의 세 각의 크기가 모두 다르면 세 변의 길이는 어떠한지 쓰고, 그 까닭을 쓰시오.",
+        "bAnswer": "세 변의 길이도 모두 다르다. 만약 두 변이 같으면 그 두 변과 마주 보는 두 각이 같아야 하는데 세 각이 모두 다르기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "세 변의 길이가 모두 다르다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 변이 같으면 마주 보는 두 각이 같아야 한다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "세 각이 다르면 세 변도 다름",
+        "bReason": "같은 변과 같은 각의 관계로 까닭을 설명",
+        "cDecision": "keep",
+        "cReason": "모두 다르다는 짧은 구절 빈칸이 문맥으로 복원 가능",
+        "cSlotEquivalents": [
+          [
+            "다 다르다",
+            "서로 다르다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "각이 모두 다를 때의 변",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "세 각의 크기가 모두 다르면 세 변의 길이도 {모두 다르다}.",
+        "cStudentSentence": "세 각의 크기가 모두 다르면 세 변의 길이도 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "모두 다르다",
+            "equivalents": [
+              "다 다르다",
+              "서로 다르다"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "세 각의 크기가 모두 다르면 세 변의 길이도 □.",
+          "answers": [
+            "모두 다르다"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "삼각형의 세 각의 크기가 모두 다르면 세 변의 길이는 어떠한지 쓰고, 그 까닭을 쓰시오.",
+          "answer": "세 변의 길이도 모두 다르다. 만약 두 변이 같으면 그 두 변과 마주 보는 두 각이 같아야 하는데 세 각이 모두 다르기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "세 변의 길이가 모두 다르다"
+              ]
+            },
+            {
+              "anyOf": [
+                "두 변이 같으면 마주 보는 두 각이 같아야 한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "세 각의 크기가 모두 다르면 세 변의 길이도 {모두 다르다}.",
+          "acceptedAnswers": [
+            [
+              "모두 다르다",
+              "다 다르다",
+              "서로 다르다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-5-xc19",
+          "sourceIndex": 2279,
+          "proposalFingerprint": "ea84efe04940ebf682a3481fdf9b792588ed03be52bbee95fb4cf607896db31f",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "두변같으면대각같음의모순으로모든변다름을설명한다.",
+          "cReason": "삼각형이라는대상을C에명시한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "삼각형의 세 각의 크기가 모두 다르면 세 변의 길이도 {모두 다르다}."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-5-xc20",
+      "sourceIndex": 2280,
+      "beforeProposal": {
+        "sourceIndex": 2280,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-5 삼각형을 두 가지 기준으로 분류하기",
+        "sourceFingerprint": "f07621f053acdcfa9275bd726f078e9fd25b9d351c5ffd628d270f9596df0c53",
+        "proposalFingerprint": "82f7c3aa0583fc201469ac72921f99c9a65820d5e856c7ccacd3d2d96f3418a5",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-5-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "이등변삼각형에서 같은 두 각이 각각 $45^\\circ$보다 크면 이 삼각형은 각에 따라 어떤 삼각형인지 까닭과 함께 쓰시오.",
+        "bAnswer": "예각삼각형이다. 같은 두 각의 합이 $90^\\circ$보다 커서 나머지 각이 $90^\\circ$보다 작고, 같은 두 각도 $90^\\circ$보다 작아 세 각이 모두 예각이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "예각삼각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 두 각의 합이 $90^\\circ$보다 커서 나머지 각이 $90^\\circ$보다 작다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "예각 이등변삼각형의 조건",
+        "bReason": "$45^\\circ$ 기준이 왜 생기는지 합으로 설명",
+        "cDecision": "rewrite",
+        "cAfter": "같은 두 각이 각각 $45^\\circ$보다 {크면} 이등변삼각형이면서 예각삼각형이다.",
+        "cReason": "□ 안에 조건 구절 전체가 들어가 모호해 비교 낱말만 가림",
+        "cSlotEquivalents": [
+          [
+            "크다면",
+            "클 때"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "예각삼각형인 이등변삼각형의 조건",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "같은 두 각이 각각 $45^\\circ$보다 {크면} 이등변삼각형이면서 예각삼각형이다.",
+        "cStudentSentence": "같은 두 각이 각각 $45^\\circ$보다 □ 이등변삼각형이면서 예각삼각형이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "크면",
+            "equivalents": [
+              "크다면",
+              "클 때"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "이등변삼각형에서 같은 두 각이 각각 $45^\\circ$보다 크면 이 삼각형은 각에 따라 어떤 삼각형인지 까닭과 함께 쓰시오.",
+          "answer": "예각삼각형이다. 같은 두 각의 합이 $90^\\circ$보다 커서 나머지 각이 $90^\\circ$보다 작고, 같은 두 각도 $90^\\circ$보다 작아 세 각이 모두 예각이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "예각삼각형"
+              ]
+            },
+            {
+              "anyOf": [
+                "같은 두 각의 합이 $90^\\circ$보다 커서 나머지 각이 $90^\\circ$보다 작다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "같은 두 각이 각각 $45^\\circ$보다 {크면} 이등변삼각형이면서 예각삼각형이다.",
+          "acceptedAnswers": [
+            [
+              "크면",
+              "크다면",
+              "클 때"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-5-xc20",
+          "sourceIndex": 2280,
+          "proposalFingerprint": "82f7c3aa0583fc201469ac72921f99c9a65820d5e856c7ccacd3d2d96f3418a5",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "두같은각도90미만이라는성질과남은각90미만의이유를함께설명하게기준을완성한다.",
+          "cReason": "이등변삼각형이라는대상을앞에명시해45와비교하는각을식별한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "예각삼각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 두 각의 합이 $90^\\circ$보다 커서 나머지 각은 $90^\\circ$보다 작다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 두 각이 $90^\\circ$ 이상이면 두 각의 합만으로 $180^\\circ$ 이상이 되므로 그 두 각도 $90^\\circ$보다 작다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "이등변삼각형에서 크기가 같은 두 각이 각각 $45^\\circ$보다 {크면} 예각삼각형이다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-5-xc21",
+      "sourceIndex": 2281,
+      "beforeProposal": {
+        "sourceIndex": 2281,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-5 삼각형을 두 가지 기준으로 분류하기",
+        "sourceFingerprint": "65a31122542541b6a246ee2f1fbac951d1c2494898b1a54e8fdd0dcb2141d248",
+        "proposalFingerprint": "52bafa96c7a3acbd4771dad804a90446e5f3bc4347132b167b5883e93a692a1f",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-5-xc21",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "reason",
+        "bGoal": "둔각 이등변삼각형의 조건",
+        "bReason": "같은 두 각이 $45^\\circ$보다 작은 경우",
+        "exclusionReason": "xc20 B와 같은 합의 이유를 방향만 바꾼 것이라 중복",
+        "cDecision": "rewrite",
+        "cAfter": "같은 두 각이 각각 $45^\\circ$보다 {작으면} 이등변삼각형이면서 둔각삼각형이다.",
+        "cReason": "□ 안에 조건 구절 전체가 들어가 모호해 비교 낱말만 가림",
+        "cSlotEquivalents": [
+          [
+            "작다면",
+            "작을 때"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "둔각삼각형인 이등변삼각형의 조건",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "같은 두 각이 각각 $45^\\circ$보다 {작으면} 이등변삼각형이면서 둔각삼각형이다.",
+        "cStudentSentence": "같은 두 각이 각각 $45^\\circ$보다 □ 이등변삼각형이면서 둔각삼각형이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "작으면",
+            "equivalents": [
+              "작다면",
+              "작을 때"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "같은 두 각이 각각 $45^\\circ$보다 {작으면} 이등변삼각형이면서 둔각삼각형이다.",
+          "acceptedAnswers": [
+            [
+              "작으면",
+              "작다면",
+              "작을 때"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "같은 두 각이 $45^\\circ$보다 작은 경우"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-5-xc21",
+          "sourceIndex": 2281,
+          "proposalFingerprint": "52bafa96c7a3acbd4771dad804a90446e5f3bc4347132b167b5883e93a692a1f",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "exclude",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "각합비교의반대방향B는기존문항과중복이다.",
+          "cReason": "이등변삼각형이라는대상을앞에명시한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "이등변삼각형에서 크기가 같은 두 각이 각각 $45^\\circ$보다 {작으면} 둔각삼각형이다."
+      },
+      "isReleaseApproval": false
+    }
+  ]
+}

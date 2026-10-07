@@ -1,0 +1,2756 @@
+{
+  "status": "preliminary-current-question-proposal; NOT compiled or approved",
+  "root": "C:\\Users\\user\\orca\\workspaces\\todays-math\\student-clear-integration-20261006",
+  "rootCommit": "c042550db9a8ad5cf44d84490882bb4c3f6b4fa9",
+  "out": "D:\\tmp\\source-sync-assist-ctx_de9caad71bd4-preliminary-3",
+  "mode": "preliminary",
+  "baselineHash": "c1fb425f0536e8f0f304ec5317511ad44219cc3be230b199571a769109e61f25",
+  "candidateBankHash": "32a86b3b415131b6e5e8824141fa73f3b8162c2737b19773cb1b9c4172e1737f",
+  "summary": {
+    "sections": 360,
+    "turns": 7792,
+    "changedTurns": 136,
+    "definitionChanges": 604,
+    "priorCorrections": 147,
+    "updatedPriorCorrections": 4,
+    "appendedCorrections": 132,
+    "byGrade": [
+      {
+        "code": "e3",
+        "changedTurns": 0
+      },
+      {
+        "code": "e4",
+        "changedTurns": 8
+      },
+      {
+        "code": "e5",
+        "changedTurns": 15
+      },
+      {
+        "code": "e6",
+        "changedTurns": 12
+      },
+      {
+        "code": "m1",
+        "changedTurns": 14
+      },
+      {
+        "code": "m2",
+        "changedTurns": 53
+      },
+      {
+        "code": "m3",
+        "changedTurns": 34
+      }
+    ],
+    "definitionChangesWithoutManuscriptTurns": [
+      {
+        "id": "e3-1-1-2-xc1",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-1-1-3-xc25",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-1-1-4-xc4",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-1-1-4-xc7",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-1-1-4-xc14",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-1-1-4-xc21",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-1-2-3-xc21",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-1-3-1-xc9",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-1-3-1-xc13",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-1-3-2-xc17",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-1-3-2-xc19",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-1-3-2-xc24",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-1-3-4-xc18",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-1-4-1-xc3",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-1-4-1-xc5",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-1-4-2-xc19",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-1-4-5-xc14",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-1-4-5-xc19",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-1-5-1-xc14",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-1-5-2-xc16",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-1-5-2-xc17",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-1-5-2-xc20",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-1-5-2-xc22",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-1-5-4-xc12",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-1-5-5-xc4",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-1-5-5-xc8",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-1-5-5-xc11",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-1-5-5-xc15",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-1-5-6-xc2",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-1-5-6-xc8",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-1-6-1-xc27",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-1-6-2-xc22",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-1-6-5-xc17",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-2-1-1-xc5",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-2-1-1-xc13",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-2-1-2-xc4",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-2-1-2-xc10",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-2-1-2-xc24",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-2-2-1-xc2",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-2-2-1-xc9",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-2-2-1-xc20",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-2-2-2-xc11",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-2-2-4-xc2",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-2-2-4-xc8",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-2-3-2-xc23",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-2-4-4-xc1",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-2-4-5-xc5",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-2-5-2-xc15",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-2-5-3-xc12",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-2-5-4-xc13",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-2-5-4-xc19",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-2-5-5-xc13",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-2-5-6-xc11",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e3-2-6-1-xc18",
+        "part": "e3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e4-1-1-1-xc12",
+        "part": "e4plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e4-1-1-1-xc19",
+        "part": "e4plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e4-1-1-2-xc24",
+        "part": "e4plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e4-1-1-2-xc27",
+        "part": "e4plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e4-1-1-3-xc2",
+        "part": "e4plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e4-1-1-3-xc11",
+        "part": "e4plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e4-1-1-7-xc8",
+        "part": "e4plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e4-1-2-1-xc18",
+        "part": "e4plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e4-1-2-2-xc11",
+        "part": "e4plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e4-1-2-5-xc3",
+        "part": "e4plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e4-1-2-5-xc25",
+        "part": "e4plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e4-1-2-6-xc13",
+        "part": "e4plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e4-1-2-6-xc18",
+        "part": "e4plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e4-1-2-6-xc20",
+        "part": "e4plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e4-1-2-6-xc27",
+        "part": "e4plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e4-1-3-1-xc12",
+        "part": "e4plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e4-1-3-1-xc17",
+        "part": "e4plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e4-1-3-1-xc22",
+        "part": "e4plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e4-1-3-2-xc19",
+        "part": "e4plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e4-1-4-3-xc26",
+        "part": "e4plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e4-1-6-2-xc17",
+        "part": "e4plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e4-2-2-5-xc7",
+        "part": "e4plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e4-2-3-1-xc5",
+        "part": "e4plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e4-2-3-1-xc15",
+        "part": "e4plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e4-2-4-1-xc24",
+        "part": "e4plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e4-2-4-2-xc4",
+        "part": "e4plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e4-2-4-2-xc11",
+        "part": "e4plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e4-2-4-2-xc22",
+        "part": "e4plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e4-2-4-3-xc4",
+        "part": "e4plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e4-2-4-5-xc28",
+        "part": "e4plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-1-2-1-xc21",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-1-2-1-xc22",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-1-2-3-xc7",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-1-2-3-xc18",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-1-2-3-xc27",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-1-2-4-xc3",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-1-2-5-xc14",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-1-2-6-xc2",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-1-2-6-xc15",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-1-2-6-xc21",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-1-2-6-xc22",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-1-2-6-xc23",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-1-3-2-xc6",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-1-3-3-xc2",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-1-3-3-xc4",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-1-3-3-xc12",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-1-3-3-xc16",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-1-4-1-xc18",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-1-4-1-xc19",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-1-4-2-xc3",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-1-4-2-xc9",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-1-4-2-xc21",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-1-4-3-xc9",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-1-4-3-xc15",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-1-4-3-xc25",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-1-4-4-xc23",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-1-5-1-xc10",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-1-5-1-xc25",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-1-5-2-xc23",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-1-5-3-xc4",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-1-5-4-xc6",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-1-6-2-xc20",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-1-6-3-xc4",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-1-6-3-xc5",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-1-6-3-xc17",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-1-6-3-xc18",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-1-6-5-xc17",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-2-1-4-xc4",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-2-1-4-xc13",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-2-1-4-xc19",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-2-1-4-xc23",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-2-1-5-xc19",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-2-1-5-xc25",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-2-1-6-xc22",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-2-2-1-xc26",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-2-2-2-xc22",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-2-2-3-xc19",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-2-2-4-xc7",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-2-2-4-xc19",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-2-3-1-xc18",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-2-3-1-xc20",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-2-3-2-xc11",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-2-3-3-xc7",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-2-3-3-xc22",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-2-4-1-xc18",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-2-4-2-xc23",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-2-4-4-xc5",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-2-4-4-xc15",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-2-4-5-xc4",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-2-4-6-xc14",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-2-4-7-xc22",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-2-4-7-xc26",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-2-5-1-xc12",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-2-5-1-xc22",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-2-5-2-xc9",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-2-5-2-xc10",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-2-5-2-xc27",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-2-5-3-xc18",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-2-5-3-xc21",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-2-5-4-xc1",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-2-5-5-xc20",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-2-6-2-xc26",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e5-2-6-3-xc4",
+        "part": "e5plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e6-1-1-1-xc17",
+        "part": "e6plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e6-1-1-2-xc13",
+        "part": "e6plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e6-1-1-2-xc22",
+        "part": "e6plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e6-1-1-2-xc25",
+        "part": "e6plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e6-1-2-1-xc1",
+        "part": "e6plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e6-1-2-3-xc14",
+        "part": "e6plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e6-1-3-5-xc15",
+        "part": "e6plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e6-1-3-5-xc25",
+        "part": "e6plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e6-1-4-1-xc27",
+        "part": "e6plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e6-1-4-3-xc9",
+        "part": "e6plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e6-1-4-6-xc11",
+        "part": "e6plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e6-1-5-1-xc23",
+        "part": "e6plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e6-1-5-3-xc27",
+        "part": "e6plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e6-1-5-5-xc5",
+        "part": "e6plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e6-1-5-5-xc20",
+        "part": "e6plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e6-1-5-5-xc25",
+        "part": "e6plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e6-1-5-5-xc27",
+        "part": "e6plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e6-1-6-2-xc11",
+        "part": "e6plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e6-2-1-1-xc17",
+        "part": "e6plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e6-2-2-3-xc15",
+        "part": "e6plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e6-2-2-4-xc25",
+        "part": "e6plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e6-2-2-5-xc27",
+        "part": "e6plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e6-2-3-1-xc21",
+        "part": "e6plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e6-2-3-4-xc26",
+        "part": "e6plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e6-2-3-6-xc6",
+        "part": "e6plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e6-2-3-6-xc20",
+        "part": "e6plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e6-2-4-3-xc18",
+        "part": "e6plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e6-2-4-3-xc22",
+        "part": "e6plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e6-2-4-3-xc25",
+        "part": "e6plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e6-2-5-4-xc21",
+        "part": "e6plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "e6-2-5-4-xc25",
+        "part": "e6plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-01-01-xc12",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-01-02-xc1",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-01-02-xc2",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-01-02-xc3",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-01-02-xc9",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-01-02-xc10",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-01-02-xc13",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-01-02-xc15",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-01-02-xc18",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-01-02-xc21",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-01-02-xc22",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-01-03-xc14",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-01-03-xc17",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-01-03-xc18",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-01-04-xc3",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-01-04-xc10",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-01-04-xc11",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-01-04-xc20",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-01-04-xc21",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-01-04-xc22",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-01-05-xc2",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-01-05-xc3",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-01-05-xc9",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-01-05-xc16",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-01-05-xc18",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-01-05-xc22",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-02-01-xc10",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-02-01-xc11",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-02-02-xc10",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-02-02-xc11",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-02-02-xc12",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-02-02-xc21",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-02-02-xc24",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-02-04-xc14",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-02-05-xc3",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-03-01-xc7",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-03-01-xc8",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-03-02-xc4",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-03-02-xc9",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-03-03-xc1",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-03-03-xc13",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-03-03-xc15",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-03-03-xc23",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-03-04-xc19",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-03-04-xc20",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-03-05-xc14",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-03-05-xc24",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-03-07-xc20",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-03-07-xc24",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-03-08-xc16",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-03-08-xc25",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-03-09-xc7",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-03-09-xc20",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-03-11-xc6",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-03-12-xc6",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-03-12-xc10",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-03-13-xc2",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-04-01-xc8",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-04-01-xc18",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-04-01-xc20",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-04-02-xc15",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-04-02-xc16",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-04-04-xc9",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-04-04-xc18",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-04-04-xc22",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-04-05-xc15",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-04-05-xc19",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-04-05-xc23",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-05-01-xc3",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-05-01-xc8",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-05-02-xc4",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-05-02-xc18",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-05-03-xc10",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-05-04-xc6",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-05-04-xc7",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-05-04-xc12",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-05-05-xc12",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-05-05-xc22",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-05-05-xc24",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-05-06-xc21",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-05-07-xc15",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-05-07-xc18",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-06-01-xc9",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-06-01-xc19",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-06-02-xc23",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-06-03-xc9",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-06-03-xc17",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-06-03-xc20",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-06-03-xc21",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-06-04-xc9",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-06-04-xc15",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-06-05-xc16",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-07-01-xc9",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-07-01-xc12",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-07-01-xc16",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-07-02-xc16",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-07-02-xc20",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-07-02-xc23",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-07-04-xc7",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-07-04-xc12",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-07-04-xc18",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-07-04-xc21",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-07-05-xc16",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-07-05-xc20",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-07-05-xc21",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-07-05-xc23",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-07-06-xc5",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-08-01-xc18",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-08-02-xc19",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-08-02-xc22",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-08-04-xc14",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-08-04-xc18",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-08-04-xc24",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-08-05-xc1",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-08-05-xc17",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-08-05-xc18",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m1-08-06-xc5",
+        "part": "m1plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-01-01-xc7",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-01-01-xc11",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-01-01-xc12",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-01-01-xc13",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-01-01-xc15",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-01-01-xc20",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-01-02-xc4",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-01-02-xc8",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-01-02-xc17",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-01-02-xc21",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-01-03-xc2",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-01-03-xc3",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-01-03-xc4",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-01-03-xc15",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-01-03-xc19",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-01-03-xc23",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-01-04-xc13",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-01-04-xc19",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-01-04-xc22",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-01-06-xc18",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-01-06-xc24",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-01-07-xc4",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-01-07-xc6",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-01-08-xc2",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-01-08-xc8",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-02-01-xc9",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-02-01-xc11",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-02-01-xc14",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-02-02-xc13",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-02-03-xc7",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-02-04-xc19",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-02-05-xc6",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-02-05-xc8",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-02-05-xc16",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-02-05-xc20",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-02-05-xc24",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-03-01-xc10",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-03-01-xc15",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-03-02-xc4",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-03-02-xc9",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-03-03-xc14",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-03-04-xc2",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-03-04-xc10",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-03-05-xc6",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-03-05-xc20",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-03-06-xc8",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-03-06-xc14",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-03-06-xc20",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-03-06-xc22",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-03-06-xc25",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-03-07-xc16",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-03-08-xc1",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-03-08-xc17",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-03-08-xc18",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-03-08-xc25",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-03-09-xc20",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-04-01-xc13",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-04-01-xc17",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-04-02-xc12",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-04-02-xc21",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-04-04-xc9",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-04-05-xc10",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-04-06-xc1",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-04-06-xc6",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-04-06-xc13",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-04-06-xc17",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-04-07-xc2",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-04-07-xc11",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-04-07-xc19",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-04-07-xc24",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-04-07-xc25",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-04-09-xc4",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-04-09-xc21",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-05-01-xc5",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-05-01-xc12",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-05-02-xc13",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-05-02-xc15",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-05-02-xc17",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-05-03-xc10",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-05-04-xc10",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-05-05-xc4",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-05-05-xc16",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-05-05-xc21",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-05-06-xc8",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-05-06-xc11",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-05-06-xc17",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-05-07-xc8",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-05-08-xc9",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-05-08-xc21",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-05-09-xc6",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-05-09-xc7",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-05-09-xc10",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-05-09-xc11",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-05-09-xc13",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-05-09-xc18",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-05-09-xc22",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-06-01-xc1",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-06-01-xc16",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-06-01-xc20",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-06-02-xc3",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-06-02-xc12",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-07-01-xc6",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-07-03-xc19",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-07-04-xc3",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-07-04-xc12",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-07-04-xc21",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-07-04-xc22",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-07-04-xc23",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-07-05-xc14",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-07-05-xc18",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-07-06-xc6",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-07-06-xc13",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-07-06-xc22",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-08-01-xc1",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-08-01-xc9",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-08-01-xc11",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-08-01-xc18",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-08-01-xc19",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-08-01-xc21",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-08-02-xc1",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-08-02-xc16",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-08-02-xc21",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-09-02-xc16",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-09-03-xc2",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-09-03-xc3",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-09-03-xc10",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-09-04-xc14",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-09-04-xc15",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-09-04-xc21",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m2-09-04-xc23",
+        "part": "m2plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-01-01-xc7",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-01-01-xc8",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-01-01-xc12",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-01-02-xc3",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-01-02-xc17",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-01-03-xc2",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-01-03-xc6",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-01-03-xc9",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-01-03-xc10",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-02-01-xc19",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-02-02-xc1",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-02-02-xc6",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-02-02-xc19",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-02-03-xc16",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-02-03-xc23",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-02-03-xc25",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-03-01-xc2",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-03-01-xc10",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-03-01-xc16",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-03-01-xc19",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-03-02-xc9",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-03-02-xc13",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-03-02-xc22",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-03-03-xc22",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-03-03-xc23",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-04-01-xc6",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-04-01-xc9",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-04-02-xc6",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-04-02-xc9",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-04-02-xc16",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-04-02-xc17",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-04-02-xc18",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-04-02-xc20",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-04-02-xc22",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-04-02-xc23",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-04-03-xc7",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-04-03-xc13",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-04-03-xc19",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-04-03-xc23",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-04-03-xc24",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-05-01-xc1",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-05-01-xc7",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-05-01-xc9",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-05-01-xc10",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-05-01-xc12",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-05-01-xc18",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-05-01-xc19",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-05-01-xc21",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-05-02-xc2",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-05-02-xc4",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-05-02-xc6",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-05-02-xc10",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-05-02-xc12",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-05-02-xc13",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-05-02-xc18",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-05-02-xc19",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-05-02-xc21",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-05-03-xc7",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-05-03-xc8",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-05-03-xc9",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-05-03-xc13",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-05-03-xc22",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-06-02-xc16",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-06-02-xc19",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-06-03-xc1",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-06-03-xc19",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-06-04-xc2",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-06-04-xc22",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-07-01-xc21",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-07-01-xc22",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      },
+      {
+        "id": "m3-07-02-xc12",
+        "part": "m3plus",
+        "reason": "Base manuscripts do not include this source ID (plus parts stay bank-only)"
+      }
+    ]
+  },
+  "definitionReasonGaps": [],
+  "productionFilesWritten": false,
+  "finalCompilePerformed": false,
+  "semanticApproval": "Not performed; Root/Claude own per-ID mathematics and final release",
+  "pins": {
+    "baselineHash": "c1fb425f0536e8f0f304ec5317511ad44219cc3be230b199571a769109e61f25",
+    "candidateBankHash": "32a86b3b415131b6e5e8824141fa73f3b8162c2737b19773cb1b9c4172e1737f",
+    "planHash": "272d11da48b09f90cb82fb65f7a77527c76fe5a65dbe009f42f33d2f7bb8e2ea",
+    "ledgerSha256": "42de3ead3557fa824696cef6cc485294a1d0c12a62f0e8781e7dd1779f5bb906",
+    "manuscriptSha256": {
+      "e3": "a543da73963b45ec51a5f6bdb06f1030d145620379dc415d151295ce01a0d376",
+      "e4": "261d468a5ef88135dff16d640314c745fb9ebc41203d0ce48dac854c08b8f0f0",
+      "e5": "7c2da9c733b198d80dbd5d297a927dbb849cac4571288a6b37b193032fed009f",
+      "e6": "ad64d57477f115fdb780a8a1c85123e0f50f9ec2390e4869972e2dea062c1d85",
+      "m1": "f078e5ac1ff9d5a751a48b0ff0462df4e7e5efa2938ff12f49a688a93e5c23ed",
+      "m2": "65b8a833522ce9c6d79088522b190296e795b6d4388d8e4a4d1261493153bde8",
+      "m3": "55954190ebc1c7ba4ee2a09c5f68d7b01550c88725204fc7906122e9785efa21"
+    }
+  },
+  "manuscriptOutputs": [
+    {
+      "file": "src/lib/textbook/scripts/e3.json",
+      "beforeSha256": "a543da73963b45ec51a5f6bdb06f1030d145620379dc415d151295ce01a0d376",
+      "afterSha256": "a543da73963b45ec51a5f6bdb06f1030d145620379dc415d151295ce01a0d376",
+      "changedStringTokens": 0
+    },
+    {
+      "file": "src/lib/textbook/scripts/e4.json",
+      "beforeSha256": "261d468a5ef88135dff16d640314c745fb9ebc41203d0ce48dac854c08b8f0f0",
+      "afterSha256": "ef5d06fa62dde1bd8686335b0766488578753afd69377590bdb824a6f039b6d6",
+      "changedStringTokens": 8
+    },
+    {
+      "file": "src/lib/textbook/scripts/e5.json",
+      "beforeSha256": "7c2da9c733b198d80dbd5d297a927dbb849cac4571288a6b37b193032fed009f",
+      "afterSha256": "a90a66f5c49df95377037b81eab70aa5f07261bccad80eef826ded04d03c90e9",
+      "changedStringTokens": 15
+    },
+    {
+      "file": "src/lib/textbook/scripts/e6.json",
+      "beforeSha256": "ad64d57477f115fdb780a8a1c85123e0f50f9ec2390e4869972e2dea062c1d85",
+      "afterSha256": "91c8925a4f2e94e7e107489f99e1202328426a3f6fd6b6feb422c413aa3ee43c",
+      "changedStringTokens": 12
+    },
+    {
+      "file": "src/lib/textbook/scripts/m1.json",
+      "beforeSha256": "f078e5ac1ff9d5a751a48b0ff0462df4e7e5efa2938ff12f49a688a93e5c23ed",
+      "afterSha256": "e1d9e38e2ffb6632ad3f5e9175c7b0d42e39af5669be4b79a8397ceadf74e3c7",
+      "changedStringTokens": 14
+    },
+    {
+      "file": "src/lib/textbook/scripts/m2.json",
+      "beforeSha256": "65b8a833522ce9c6d79088522b190296e795b6d4388d8e4a4d1261493153bde8",
+      "afterSha256": "4a1d1b19be874219766c2e5df19203093b48e996356588ccdca33e615b8d38a6",
+      "changedStringTokens": 53
+    },
+    {
+      "file": "src/lib/textbook/scripts/m3.json",
+      "beforeSha256": "55954190ebc1c7ba4ee2a09c5f68d7b01550c88725204fc7906122e9785efa21",
+      "afterSha256": "a3e8eb6317cedaadfa694a12f1b641e927d9786d43b147df0ae2ef594f925f43",
+      "changedStringTokens": 34
+    },
+    {
+      "file": "src/lib/textbook/scripts/static-corrections.json",
+      "beforeSha256": "42de3ead3557fa824696cef6cc485294a1d0c12a62f0e8781e7dd1779f5bb906",
+      "afterSha256": "711ce59e68a41c8e2ef248291a06eea13c2fa510b48836ab058d9b00c5cf148c",
+      "changedStringTokens": 9
+    }
+  ],
+  "outputFiles": [
+    {
+      "file": "before/src/lib/textbook/scripts/e3.json",
+      "bytes": 555557,
+      "sha256": "a543da73963b45ec51a5f6bdb06f1030d145620379dc415d151295ce01a0d376"
+    },
+    {
+      "file": "after/src/lib/textbook/scripts/e3.json",
+      "bytes": 555557,
+      "sha256": "a543da73963b45ec51a5f6bdb06f1030d145620379dc415d151295ce01a0d376"
+    },
+    {
+      "file": "before/src/lib/textbook/scripts/e4.json",
+      "bytes": 549771,
+      "sha256": "261d468a5ef88135dff16d640314c745fb9ebc41203d0ce48dac854c08b8f0f0"
+    },
+    {
+      "file": "after/src/lib/textbook/scripts/e4.json",
+      "bytes": 549749,
+      "sha256": "ef5d06fa62dde1bd8686335b0766488578753afd69377590bdb824a6f039b6d6"
+    },
+    {
+      "file": "before/src/lib/textbook/scripts/e5.json",
+      "bytes": 576261,
+      "sha256": "7c2da9c733b198d80dbd5d297a927dbb849cac4571288a6b37b193032fed009f"
+    },
+    {
+      "file": "after/src/lib/textbook/scripts/e5.json",
+      "bytes": 577062,
+      "sha256": "a90a66f5c49df95377037b81eab70aa5f07261bccad80eef826ded04d03c90e9"
+    },
+    {
+      "file": "before/src/lib/textbook/scripts/e6.json",
+      "bytes": 583833,
+      "sha256": "ad64d57477f115fdb780a8a1c85123e0f50f9ec2390e4869972e2dea062c1d85"
+    },
+    {
+      "file": "after/src/lib/textbook/scripts/e6.json",
+      "bytes": 583935,
+      "sha256": "91c8925a4f2e94e7e107489f99e1202328426a3f6fd6b6feb422c413aa3ee43c"
+    },
+    {
+      "file": "before/src/lib/textbook/scripts/m1.json",
+      "bytes": 968434,
+      "sha256": "f078e5ac1ff9d5a751a48b0ff0462df4e7e5efa2938ff12f49a688a93e5c23ed"
+    },
+    {
+      "file": "after/src/lib/textbook/scripts/m1.json",
+      "bytes": 969664,
+      "sha256": "e1d9e38e2ffb6632ad3f5e9175c7b0d42e39af5669be4b79a8397ceadf74e3c7"
+    },
+    {
+      "file": "before/src/lib/textbook/scripts/m2.json",
+      "bytes": 1378068,
+      "sha256": "65b8a833522ce9c6d79088522b190296e795b6d4388d8e4a4d1261493153bde8"
+    },
+    {
+      "file": "after/src/lib/textbook/scripts/m2.json",
+      "bytes": 1381557,
+      "sha256": "4a1d1b19be874219766c2e5df19203093b48e996356588ccdca33e615b8d38a6"
+    },
+    {
+      "file": "before/src/lib/textbook/scripts/m3.json",
+      "bytes": 416877,
+      "sha256": "55954190ebc1c7ba4ee2a09c5f68d7b01550c88725204fc7906122e9785efa21"
+    },
+    {
+      "file": "after/src/lib/textbook/scripts/m3.json",
+      "bytes": 419636,
+      "sha256": "a3e8eb6317cedaadfa694a12f1b641e927d9786d43b147df0ae2ef594f925f43"
+    },
+    {
+      "file": "before/src/lib/textbook/scripts/static-corrections.json",
+      "bytes": 127982,
+      "sha256": "42de3ead3557fa824696cef6cc485294a1d0c12a62f0e8781e7dd1779f5bb906"
+    },
+    {
+      "file": "after/src/lib/textbook/scripts/static-corrections.json",
+      "bytes": 254727,
+      "sha256": "711ce59e68a41c8e2ef248291a06eea13c2fa510b48836ab058d9b00c5cf148c"
+    },
+    {
+      "file": "application-plan.json",
+      "bytes": 11677950,
+      "sha256": "2f9b03c484ee4eda2b8d3524bd15d2665cfa573ab548d29e2d6493b6f25dfea3"
+    },
+    {
+      "file": "candidate-parts.json",
+      "bytes": 18775376,
+      "sha256": "151dfc28a25d0fd607fc04b0d150b9442a18a08787117c117f1de2e1ed8cc4b8"
+    },
+    {
+      "file": "changed-turns-reread.json",
+      "bytes": 186392,
+      "sha256": "139d00eb24b3196d148afcc04e5259c4544ce5741bb43286779c961cd5ee3222"
+    },
+    {
+      "file": "unchanged-segments.json",
+      "bytes": 228561,
+      "sha256": "c14579348a9efc08682b71f64f0721e987741900e9556f1fbd77f6406b6c0349"
+    },
+    {
+      "file": "input-byte-sha.json",
+      "bytes": 13312,
+      "sha256": "a2747dae9a66d172353e9140f4a9dc5a4067086936a40afbfb75f5d2fae4bc27"
+    }
+  ]
+}

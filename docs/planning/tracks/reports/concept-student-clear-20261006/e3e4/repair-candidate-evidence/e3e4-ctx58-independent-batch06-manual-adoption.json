@@ -1,0 +1,1662 @@
+{
+  "sourceCommit": "13bf05dce",
+  "directAuthor": "Codex after actual current-hash feedback and full current field reading",
+  "notFinalReread": true,
+  "entries": [
+    {
+      "id": "e3-1-2-5-xc7",
+      "sourceIndex": 548,
+      "beforeProposal": {
+        "sourceIndex": 548,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-2 평면도형::1-2-5 정사각형 알아보기",
+        "sourceFingerprint": "895fb94dc5d3b9b123d410f2a05da39fa72fdbff0cc78fb1d03835cce968a93b",
+        "proposalFingerprint": "8410f9301cdfde3c92575e5e309e3f6b2132473078ac553af63b560778845c3c",
+        "reviewStatus": "draft",
+        "id": "e3-1-2-5-xc7",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "bGoal": "B 설명 목표 없음",
+        "bReason": "그림 속 표시의 뜻을 읽는 약속임",
+        "exclusionReason": "기호(같은 표시) 읽기 약속이라 설명할 이유가 없고 B로 물어도 '길이가 같다' 한 마디가 됨",
+        "cDecision": "rewrite",
+        "cAfter": "두 변에 똑같은 짧은 선 표시($|$)를 그려 길이가 같음을 나타냈습니다. 한 변이 $5$ cm이면 다른 변은 {$5$} cm입니다.",
+        "cReason": "실제 없는 그림을 보라고 하지 않고 같은 길이의 표시 모양과 뜻을 문장에 제시해 다른 변 길이를 구한다.",
+        "answerNotes": "'똑같다' 허용",
+        "cSlotEquivalents": [],
+        "exampleNeeded": "두 변의 가운데에 똑같은 짧은 선 표시가 그려지고 한 변에만 $5$ cm가 적힌 도형 그림",
+        "reviewerEdited": true,
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "같은 길이 표시",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "두 변에 똑같은 짧은 선 표시($|$)를 그려 길이가 같음을 나타냈습니다. 한 변이 $5$ cm이면 다른 변은 {$5$} cm입니다.",
+        "cStudentSentence": "두 변에 똑같은 짧은 선 표시($|$)를 그려 길이가 같음을 나타냈습니다. 한 변이 $5$ cm이면 다른 변은 □ cm입니다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$5$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "두 변에 똑같은 짧은 선 표시($|$)를 그려 길이가 같음을 나타냈습니다. 한 변이 $5$ cm이면 다른 변은 {$5$} cm입니다.",
+          "acceptedAnswers": [
+            [
+              "$5$"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "그림 속 표시의 뜻을 읽는 약속임"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-2-5-xc7",
+          "sourceIndex": 548,
+          "proposalFingerprint": "8410f9301cdfde3c92575e5e309e3f6b2132473078ac553af63b560778845c3c",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "exclude",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "표시읽기의B는제외한다.",
+          "cReason": "짧은선표시모양과뜻을실제로문장에주어없는그림없이다른변5cm를구한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "도형의 두 변에 똑같은 짧은 선 표시($|$)가 있으면 두 변의 길이는 {같다}.",
+        "cSlotEquivalents": [
+          [
+            "똑같다"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-1-3-4-xc25",
+      "sourceIndex": 629,
+      "beforeProposal": {
+        "sourceIndex": 629,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-3 나눗셈::1-3-4 나눗셈의 몫을 곱셈구구로 구하기",
+        "sourceFingerprint": "10a99a7c63fec5424d736310c891fb50c392e9f688cd3a424e73a22bef111ae8",
+        "proposalFingerprint": "8355af0cbc5bc5fdc5b16ab4cfe8922644df4157092a57b2494a6ae7a55d4555",
+        "reviewStatus": "draft",
+        "id": "e3-1-3-4-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "$18$은 $2$단, $3$단, $6$단, $9$단 곱셈구구에 모두 나옵니다. 이 단들의 수 중에서 $18$을 남김없이 나눌 수 있는 수를 모두 쓰고, $3$단을 예로 들어 그렇게 말할 수 있는 까닭을 설명해 보세요.",
+        "bAnswer": "$2$, $3$, $6$, $9$입니다. $3$단에 $3\\times6=18$이 있으므로 $18$은 $3$씩 $6$묶음이 되어 $3$으로 남김없이 나누어집니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "제시된 단의 수 $2$, $3$, $6$, $9$ 모두"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$단의 $3\\times6=18$이 있어 $18$을 $3$씩 $6$묶음으로 남김없이 나눌 수 있다",
+              "$6\\times3=18$이므로 $18\\div3=6$으로 남김없이 나누어진다"
+            ]
+          }
+        ],
+        "bGoal": "여러 단에 나오는 수는 그 단의 수들로 나누어짐",
+        "bReason": "$1$과 $18$도 약수이므로 답의 범위를 '제시된 단의 수 중'으로 한정하고, 요청한 $3$단의 실제 곱셈구구 $3\\times6=18$ 근거를 기준에 넣음",
+        "cDecision": "rewrite",
+        "cAfter": "$12$는 $2$단과 $3$단의 곱셈구구에 모두 나온다. 그래서 $12$는 $2$로도 $3$으로도 남김없이 나눌 수 있고, 몫은 각각 {$6$}과 {$4$}이다.",
+        "cReason": "앞에 준 단 목록의 마지막 수 $6$을 베끼는 빈칸 대신, $2$로 나눌 때와 $3$으로 나눌 때의 실제 몫을 순서대로 구하게 함",
+        "answerNotes": "B에서 1과 18을 덧붙여 써도 틀린 것은 아님. 2, 3, 6, 9 가운데 빠진 것이 있으면 감점",
+        "cSlotEquivalents": [
+          [
+            "여섯"
+          ],
+          [
+            "넷"
+          ]
+        ],
+        "reviewerEdited": true,
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "여러 단에 나오는 수",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$12$는 $2$단과 $3$단의 곱셈구구에 모두 나온다. 그래서 $12$는 $2$로도 $3$으로도 남김없이 나눌 수 있고, 몫은 각각 {$6$}과 {$4$}이다.",
+        "cStudentSentence": "$12$는 $2$단과 $3$단의 곱셈구구에 모두 나온다. 그래서 $12$는 $2$로도 $3$으로도 남김없이 나눌 수 있고, 몫은 각각 □과 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$6$",
+            "equivalents": [
+              "여섯"
+            ]
+          },
+          {
+            "expected": "$4$",
+            "equivalents": [
+              "넷"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$18$은 $2$단, $3$단, $6$단, $9$단 곱셈구구에 모두 나옵니다. 이 단들의 수 중에서 $18$을 남김없이 나눌 수 있는 수를 모두 쓰고, $3$단을 예로 들어 그렇게 말할 수 있는 까닭을 설명해 보세요.",
+          "answer": "$2$, $3$, $6$, $9$입니다. $3$단에 $3\\times6=18$이 있으므로 $18$은 $3$씩 $6$묶음이 되어 $3$으로 남김없이 나누어집니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "제시된 단의 수 $2$, $3$, $6$, $9$ 모두"
+              ]
+            },
+            {
+              "anyOf": [
+                "$3$단의 $3\\times6=18$이 있어 $18$을 $3$씩 $6$묶음으로 남김없이 나눌 수 있다",
+                "$6\\times3=18$이므로 $18\\div3=6$으로 남김없이 나누어진다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$12$는 $2$단과 $3$단의 곱셈구구에 모두 나온다. 그래서 $12$는 $2$로도 $3$으로도 남김없이 나눌 수 있고, 몫은 각각 {$6$}과 {$4$}이다.",
+          "acceptedAnswers": [
+            [
+              "$6$",
+              "여섯"
+            ],
+            [
+              "$4$",
+              "넷"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-3-4-xc25",
+          "sourceIndex": 629,
+          "proposalFingerprint": "8355af0cbc5bc5fdc5b16ab4cfe8922644df4157092a57b2494a6ae7a55d4555",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "제시단2·3·6·9중이라는범위로1·18누락오류를피하고3×6의남김없음근거를받는다.",
+          "cReason": "12를2와3으로나눈실제몫6·4를구한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bPrompt": "$3$단 곱셈구구에 $18$이 나온다는 것을 이용하면 $18$을 $3$으로 남김없이 나눌 수 있다고 말할 수 있습니다. 어떤 곱셈구구를 이용하는지 쓰고, 묶음으로 그 까닭을 설명해 보세요.",
+        "bAnswer": "$3\\times6=18$을 이용합니다. $18$은 $3$씩 $6$묶음이 되어 남는 것이 없으므로 $18\\div3=6$입니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$3\\times6=18$이므로 $18$을 $3$씩 $6$묶음으로 남김없이 나눌 수 있다",
+              "$6\\times3=18$이므로 $18$은 $3$씩 $6$묶음으로 남김없이 나누어진다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-5-2-xc3",
+      "sourceIndex": 1923,
+      "beforeProposal": {
+        "sourceIndex": 1923,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-5 막대그래프::1-5-2 막대그래프 그리기",
+        "sourceFingerprint": "5bc2bf28f3a5320417929c31b6a325867f31575e3dec5ad3cb3e05f205e74afd",
+        "proposalFingerprint": "4b9f82ad6e79e23aa1c9ae74b6527fa040201596181df82ea618e9c569692a6a",
+        "reviewStatus": "draft",
+        "id": "e4-1-5-2-xc3",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "",
+        "bReason": "",
+        "exclusionReason": "필요한 눈금 칸 수를 구하는 xc14와 같은 목표라 중복",
+        "cDecision": "keep",
+        "cReason": "가장 큰 수량이라는 익숙한 빈칸",
+        "cSlotEquivalents": [
+          [
+            "가장 큰 수",
+            "가장 많은 수량"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "눈금의 수 정하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "{가장 큰 수량}을 나타낼 수 있도록 눈금의 수를 정한다.",
+        "cStudentSentence": "□을 나타낼 수 있도록 눈금의 수를 정한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "가장 큰 수량",
+            "equivalents": [
+              "가장 큰 수",
+              "가장 많은 수량"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "□을 나타낼 수 있도록 눈금의 수를 정한다.",
+          "answers": [
+            "가장 큰 수량"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "{가장 큰 수량}을 나타낼 수 있도록 눈금의 수를 정한다.",
+          "acceptedAnswers": [
+            [
+              "가장 큰 수량",
+              "가장 큰 수",
+              "가장 많은 수량"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": ""
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-5-2-xc3",
+          "sourceIndex": 1923,
+          "proposalFingerprint": "4b9f82ad6e79e23aa1c9ae74b6527fa040201596181df82ea618e9c569692a6a",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "exclude",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "눈금 칸 수를 구하는 실제 대응 xc14와 중복되는 제외를 유지한다.",
+          "cReason": "눈금 범위가 가장 큰 수량을 포함해야 한다는 목표는 분명하다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "조사한 수량이 $12$, $27$, $18$일 때 막대그래프에는 셋 중 가장 큰 수량인 {$27$}까지 나타낼 수 있는 눈금이 필요하다.",
+        "cSlotEquivalents": [
+          []
+        ],
+        "bReason": "가장 큰 수량을 나타낼 눈금의 칸 수를 구하는 e4-1-5-2-xc14 B에서 설명한다.",
+        "exclusionReason": "B: 가장 큰 수량을 나타낼 눈금의 칸 수를 정하는 e4-1-5-2-xc14와 중복된다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-5-2-xc17",
+      "sourceIndex": 1935,
+      "beforeProposal": {
+        "sourceIndex": 1935,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-5 막대그래프::1-5-2 막대그래프 그리기",
+        "sourceFingerprint": "9c6e712f86cabdaff002b52c43f51aae80763da5b238fbfa1ed9614f8fbde009",
+        "proposalFingerprint": "756445ad305da83ebdc2803ad9ea6bda5772ebca1ebab1bcba111e5d359ca3c7",
+        "reviewStatus": "draft",
+        "id": "e4-1-5-2-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "막대그래프의 눈금을 매길 때 어떤 수에서부터 어떤 간격으로 매겨야 하는지 쓰라.",
+        "bAnswer": "$0$부터 같은 간격으로 매긴다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0$부터"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 간격",
+              "일정한 간격"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "눈금 매기는 방법",
+        "bReason": "시작 수와 간격 두 조건을 모두 묻게 함",
+        "cDecision": "keep",
+        "cReason": "0부터 □으로 매긴다가 짧고 선명함",
+        "cSlotEquivalents": [
+          [
+            "일정한 간격",
+            "똑같은 간격"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "눈금을 매기는 법",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "눈금은 $0$부터 {같은 간격}으로 매긴다.",
+        "cStudentSentence": "눈금은 $0$부터 □으로 매긴다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같은 간격",
+            "equivalents": [
+              "일정한 간격",
+              "똑같은 간격"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "눈금은 $0$부터 □으로 매긴다.",
+          "answers": [
+            "같은 간격"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "막대그래프의 눈금을 매길 때 어떤 수에서부터 어떤 간격으로 매겨야 하는지 쓰라.",
+          "answer": "$0$부터 같은 간격으로 매긴다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$0$부터"
+              ]
+            },
+            {
+              "anyOf": [
+                "같은 간격",
+                "일정한 간격"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "눈금은 $0$부터 {같은 간격}으로 매긴다.",
+          "acceptedAnswers": [
+            [
+              "같은 간격",
+              "일정한 간격",
+              "똑같은 간격"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-5-2-xc17",
+          "sourceIndex": 1935,
+          "proposalFingerprint": "756445ad305da83ebdc2803ad9ea6bda5772ebca1ebab1bcba111e5d359ca3c7",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "눈금의 시작 0과 같은 간격의 두 조건을 모두 설명한다.",
+          "cReason": "0에서 같은 간격으로 매기는 방법을 확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "막대그래프의 눈금은 $0$부터 매긴다. 이웃한 눈금 사이에 늘어나는 수량은 어디에서나 {같아야} 한다.",
+        "cSlotEquivalents": [
+          [
+            "똑같아야",
+            "일정해야"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-1-5-6-xc6",
+      "sourceIndex": 805,
+      "beforeProposal": {
+        "sourceIndex": 805,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-5 길이와 시간::1-5-6 시간의 뺄셈",
+        "sourceFingerprint": "b1e9292a53667e436f12a5067bdb32a239fa22a06eee4cdc9c9ad82709a6ffd5",
+        "proposalFingerprint": "ecb52ea25cb1ef9119e218e89ba1f21ce1c9841a221e268fae873a635ff8d266",
+        "reviewStatus": "draft",
+        "id": "e3-1-5-6-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "같은 날 오후 $2$시와 오후 $5$시가 있습니다. 늦은 시각 $5$시에서 앞선 시각 $2$시를 빼어 $3$이 나왔습니다. 이 $3$은 '$3$시'인지 '$3$시간'인지 쓰고, 그 까닭을 설명해 보세요.",
+        "bAnswer": "$3$시간이다. 오후 $2$시부터 오후 $5$시까지 흐른 시간의 길이를 나타내기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$3$시간이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 시각 사이에 흐른 시간이다",
+              "$2$시부터 $5$시까지 지난 시간의 길이이다",
+              "시각이 아니라 시간의 길이를 나타낸다"
+            ]
+          }
+        ],
+        "bGoal": "같은 날 같은 낮 동안의 두 시각을 뺀 결과가 두 시각 사이의 시간임을 설명",
+        "bReason": "같은 날 오후라는 범위와 늦은 시각에서 앞선 시각을 뺀다는 조건을 명시하여 날짜나 오전·오후에 따른 다른 해석이 생기지 않게 함",
+        "cDecision": "rewrite",
+        "cReason": "같은 날 같은 오후의 구체 두 시각을 제공해 시각3시와 시간길이3시간을 구별한다. 오후12시를 포함하는 추상 범위에서 숫자만 빼는 것으로 오해하지 않게 한다.",
+        "answerNotes": "'시간', '걸린 시간' 인정. '시각'은 오답.",
+        "cAfter": "같은 날 오후 $2$시부터 오후 $5$시까지 지난 시간을 구하면 $5-2=3$이므로 $3${시간}이다.",
+        "cSlotEquivalents": [],
+        "reviewerEdited": true,
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "시각에서 시각을 뺀 것",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "같은 날 오후 $2$시부터 오후 $5$시까지 지난 시간을 구하면 $5-2=3$이므로 $3${시간}이다.",
+        "cStudentSentence": "같은 날 오후 $2$시부터 오후 $5$시까지 지난 시간을 구하면 $5-2=3$이므로 $3$□이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "시간",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "같은 날 오후 $2$시와 오후 $5$시가 있습니다. 늦은 시각 $5$시에서 앞선 시각 $2$시를 빼어 $3$이 나왔습니다. 이 $3$은 '$3$시'인지 '$3$시간'인지 쓰고, 그 까닭을 설명해 보세요.",
+          "answer": "$3$시간이다. 오후 $2$시부터 오후 $5$시까지 흐른 시간의 길이를 나타내기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$3$시간이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "두 시각 사이에 흐른 시간이다",
+                "$2$시부터 $5$시까지 지난 시간의 길이이다",
+                "시각이 아니라 시간의 길이를 나타낸다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "같은 날 오후 $2$시부터 오후 $5$시까지 지난 시간을 구하면 $5-2=3$이므로 $3${시간}이다.",
+          "acceptedAnswers": [
+            [
+              "시간"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-5-6-xc6",
+          "sourceIndex": 805,
+          "proposalFingerprint": "ecb52ea25cb1ef9119e218e89ba1f21ce1c9841a221e268fae873a635ff8d266",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "같은날오후2시·5시로3시가아닌지난시간3시간을설명한다.",
+          "cReason": "날짜와오후범위를구체로고정하고차3의시간길이단위를묻는다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "같은 날 오후 $2$시에 공부를 시작해 오후 $5$시에 마쳤다. 공부한 동안을 나타내는 $5-2=3$에서 $3$의 단위를 쓰면 $3${시간}이다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-1-6-1-xc1",
+      "sourceIndex": 819,
+      "beforeProposal": {
+        "sourceIndex": 819,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-6 분수와 소수::1-6-1 똑같이 나누기",
+        "sourceFingerprint": "d1ee9cbf4d24b4ec999fd9465354fedf97fa08429ce0f801c71f165b19d90bc7",
+        "proposalFingerprint": "2d904a67bc1878f4f9075b2ec124cda96b88f82664a17f84a0b5130e4da479db",
+        "reviewStatus": "draft",
+        "id": "e3-1-6-1-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "'똑같이 둘로 나눈다'는 것은 나눈 두 부분의 무엇이 같아야 한다는 뜻인지 쓰세요.",
+        "bAnswer": "나눈 두 부분의 크기가 서로 같아야 한다는 뜻이다. 두 부분의 모양이 꼭 같을 필요는 없다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 부분의 크기가 같다",
+              "두 부분의 넓이(양)가 같다"
+            ]
+          }
+        ],
+        "bGoal": "똑같이 둘로 나누기의 뜻(두 부분의 크기가 같음)",
+        "bReason": "정답 문장의 '크기(와 모양)'는 모양까지 같아야 한다는 오해를 주므로 크기가 같다는 뜻만 묻고 답하게 함. 질문에 예상 답을 넣지 않고 '무엇이 같아야'로 범위를 정함.",
+        "cDecision": "rewrite",
+        "cAfter": "전체를 {크기}가 같은 두 부분으로 나누는 것을 똑같이 둘로 나눈다고 한다.",
+        "cReason": "'똑같이 둘로'라는 구절 빈칸은 '반으로', '둘로'도 가능해 답이 흔들림. 핵심 낱말을 묻게 바꿈",
+        "answerNotes": "'크기가 같다', '넓이가 같다' 인정. '개수'는 오답. 모양까지 꼭 같아야 한다고만 쓰면 오개념이므로 오답.",
+        "reviewerEdited": true,
+        "learningRole": "definition",
+        "roleEvidence": {
+          "sourceKind": "정의",
+          "sourceTerm": "똑같이 둘로 나누기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "전체를 {크기}가 같은 두 부분으로 나누는 것을 똑같이 둘로 나눈다고 한다.",
+        "cStudentSentence": "전체를 □가 같은 두 부분으로 나누는 것을 똑같이 둘로 나눈다고 한다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "크기",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "'똑같이 둘로 나눈다'는 것은 나눈 두 부분의 무엇이 같아야 한다는 뜻인지 쓰세요.",
+          "answer": "나눈 두 부분의 크기가 서로 같아야 한다는 뜻이다. 두 부분의 모양이 꼭 같을 필요는 없다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "두 부분의 크기가 같다",
+                "두 부분의 넓이(양)가 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "전체를 {크기}가 같은 두 부분으로 나누는 것을 똑같이 둘로 나눈다고 한다.",
+          "acceptedAnswers": [
+            [
+              "크기"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-6-1-xc1",
+          "sourceIndex": 819,
+          "proposalFingerprint": "2d904a67bc1878f4f9075b2ec124cda96b88f82664a17f84a0b5130e4da479db",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "definition",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "두부분의크기만같으면되고모양동일은필수아님을분명히한다.",
+          "cReason": "둘등분은같은크기라는원래뜻이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bAnswer": "나눈 두 부분의 크기가 서로 같아야 한다는 뜻이다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-1-6-1-xc5",
+      "sourceIndex": 823,
+      "beforeProposal": {
+        "sourceIndex": 823,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-6 분수와 소수::1-6-1 똑같이 나누기",
+        "sourceFingerprint": "c5574ee90fe0983515d4359c5e443f618c2e1e6debd8244ac6dae6cdf6460269",
+        "proposalFingerprint": "d3fa21c8f3841c5c15292a1217c02478babdfbd7896d3d64cf39214065d69340",
+        "reviewStatus": "draft",
+        "id": "e3-1-6-1-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "직사각형 종이의 마주 보는 두 변 전체가 꼭 겹치도록 반으로 접었다 폅니다. 접힌 선을 따라 자르면 똑같이 둘로 나뉘는 까닭을 쓰세요.",
+        "bAnswer": "마주 보는 두 변이 맞닿게 접으면 접힌 선 양쪽의 두 부분이 꼭 겹치므로 두 부분의 크기가 같기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "접으면 두 부분이 꼭 겹치므로 두 부분의 크기가 같다",
+              "접은 선 양쪽의 두 부분이 포개어져 크기가 같다"
+            ]
+          }
+        ],
+        "bGoal": "직사각형을 마주 보는 변이 맞닿게 반으로 접어 자르면 똑같이 나뉘는 까닭",
+        "bReason": "아무 종이를 반으로 접어도 꼭 겹친다는 단정을 피하려고 직사각형의 마주 보는 변을 맞닿게 접는 조건을 문장에 밝힘. 입력에 이미 있는 말만 되풀이하지 않도록 '꼭 겹쳐서 크기가 같다'는 까닭을 필수로 둠.",
+        "cDecision": "rewrite",
+        "cReason": "반 접기가 두 부분이 꼭 겹치는 경우(직사각형의 마주 보는 변을 맞닿게 접음)임을 문장에 밝혀 접힌 선으로 자르면 두 부분의 크기가 같다는 조건을 갖춤.",
+        "answerNotes": "'접힌 선', '접은 선', '접힌 자국' 인정.",
+        "cAfter": "직사각형 종이의 마주 보는 두 변 전체가 꼭 겹치도록 접었다 펴서 {접힌 선}을 따라 자르면 똑같이 둘로 나뉜다.",
+        "cSlotEquivalents": [
+          [
+            "접은 선",
+            "접힌 자국",
+            "접은 자국"
+          ]
+        ],
+        "reviewerEdited": true,
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "접어서 나누기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직사각형 종이의 마주 보는 두 변 전체가 꼭 겹치도록 접었다 펴서 {접힌 선}을 따라 자르면 똑같이 둘로 나뉜다.",
+        "cStudentSentence": "직사각형 종이의 마주 보는 두 변 전체가 꼭 겹치도록 접었다 펴서 □을 따라 자르면 똑같이 둘로 나뉜다.",
+        "cSlotAnswers": [
+          {
+            "expected": "접힌 선",
+            "equivalents": [
+              "접은 선",
+              "접힌 자국",
+              "접은 자국"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "직사각형 종이의 마주 보는 두 변 전체가 꼭 겹치도록 반으로 접었다 폅니다. 접힌 선을 따라 자르면 똑같이 둘로 나뉘는 까닭을 쓰세요.",
+          "answer": "마주 보는 두 변이 맞닿게 접으면 접힌 선 양쪽의 두 부분이 꼭 겹치므로 두 부분의 크기가 같기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "접으면 두 부분이 꼭 겹치므로 두 부분의 크기가 같다",
+                "접은 선 양쪽의 두 부분이 포개어져 크기가 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "직사각형 종이의 마주 보는 두 변 전체가 꼭 겹치도록 접었다 펴서 {접힌 선}을 따라 자르면 똑같이 둘로 나뉜다.",
+          "acceptedAnswers": [
+            [
+              "접힌 선",
+              "접은 선",
+              "접힌 자국",
+              "접은 자국"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-6-1-xc5",
+          "sourceIndex": 823,
+          "proposalFingerprint": "d3fa21c8f3841c5c15292a1217c02478babdfbd7896d3d64cf39214065d69340",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "직사각형마주변전체를포갠조건으로두부분의같은크기를설명한다.",
+          "cReason": "전체변포갬과접힌선절단이라는확실한범위이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "직사각형 종이의 마주 보는 두 변 전체가 꼭 겹치도록 접었다 펴서 접힌 선을 따라 잘랐다. 나뉜 두 부분의 크기는 {같다}.",
+        "cSlotEquivalents": [
+          [
+            "똑같다"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-1-6-1-xc27",
+      "sourceIndex": 839,
+      "beforeProposal": {
+        "sourceIndex": 839,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-6 분수와 소수::1-6-1 똑같이 나누기",
+        "sourceFingerprint": "7694920d23a81952ba51650bf8d60b885f34079a95304a25672be045364ad62b",
+        "proposalFingerprint": "86dd453c078f86d40e826b6c365b837df9c6ff9a57c4f3fd95688669bba76d54",
+        "reviewStatus": "draft",
+        "id": "e3-1-6-1-xc27",
+        "bDecision": "rewrite",
+        "bPrompt": "긴 변이 가로로 놓인 직사각형 종이를 똑같이 셋으로 나누어 자르려고 합니다. 긴 변을 어떻게 나누고, 어느 방향으로 잘라야 하는지 쓰세요.",
+        "bAnswer": "긴 변을 자로 재어 같은 길이씩 셋으로 나누어 표시하고, 표시한 곳에서 짧은 변과 나란하게(세로 방향으로) 곧게 자른다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "긴 변을 같은 길이씩 셋으로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나눈 곳에서 짧은 변과 나란하게(세로 방향으로) 자른다",
+              "나눈 곳에서 긴 변과 직각이 되게 자른다"
+            ]
+          }
+        ],
+        "bGoal": "직사각형을 똑같이 셋으로 나누는 방법(나누는 변과 자르는 방향)",
+        "bReason": "한 변의 셋으로 나눈 점에서 곧게 자르기만 하면 방향이 정해지지 않으므로, 긴 변이 가로임을 밝히고 어느 방향으로 자르는지까지 묻게 함.",
+        "cDecision": "rewrite",
+        "cAfter": "가로로 놓인 직사각형의 긴 변을 같은 길이씩 셋으로 나누고, 나눈 곳마다 짧은 변과 나란하게 자르면 직사각형은 똑같이 {셋}으로 나뉜다.",
+        "cReason": "그림 없이도 자르는 방향이 정해지도록 긴 변이 가로임과 짧은 변과 나란하게 자른다는 조건을 문장에 넣음. 빈칸은 수 낱말 하나로 유지.",
+        "answerNotes": "'셋', '$3$' 인정.",
+        "cSlotEquivalents": [
+          [
+            "$3$"
+          ]
+        ],
+        "reviewerEdited": true,
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "직사각형을 셋으로",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "가로로 놓인 직사각형의 긴 변을 같은 길이씩 셋으로 나누고, 나눈 곳마다 짧은 변과 나란하게 자르면 직사각형은 똑같이 {셋}으로 나뉜다.",
+        "cStudentSentence": "가로로 놓인 직사각형의 긴 변을 같은 길이씩 셋으로 나누고, 나눈 곳마다 짧은 변과 나란하게 자르면 직사각형은 똑같이 □으로 나뉜다.",
+        "cSlotAnswers": [
+          {
+            "expected": "셋",
+            "equivalents": [
+              "$3$"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "긴 변이 가로로 놓인 직사각형 종이를 똑같이 셋으로 나누어 자르려고 합니다. 긴 변을 어떻게 나누고, 어느 방향으로 잘라야 하는지 쓰세요.",
+          "answer": "긴 변을 자로 재어 같은 길이씩 셋으로 나누어 표시하고, 표시한 곳에서 짧은 변과 나란하게(세로 방향으로) 곧게 자른다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "긴 변을 같은 길이씩 셋으로 나눈다"
+              ]
+            },
+            {
+              "anyOf": [
+                "나눈 곳에서 짧은 변과 나란하게(세로 방향으로) 자른다",
+                "나눈 곳에서 긴 변과 직각이 되게 자른다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "가로로 놓인 직사각형의 긴 변을 같은 길이씩 셋으로 나누고, 나눈 곳마다 짧은 변과 나란하게 자르면 직사각형은 똑같이 {셋}으로 나뉜다.",
+          "acceptedAnswers": [
+            [
+              "셋",
+              "$3$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-6-1-xc27",
+          "sourceIndex": 839,
+          "proposalFingerprint": "86dd453c078f86d40e826b6c365b837df9c6ff9a57c4f3fd95688669bba76d54",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "긴변가로와동일세구간표시뒤세로절단방향을명시한다.",
+          "cReason": "짧은변과나란한절단으로같은셋조각을확정한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "직사각형 종이의 긴 변을 같은 길이씩 셋으로 나누고, 나눈 곳마다 짧은 변과 나란하게 끝까지 잘랐다. 세 조각의 크기는 서로 {같다}.",
+        "cSlotEquivalents": [
+          [
+            "똑같다"
+          ]
+        ],
+        "coreAfter": "직사각형의 긴 변을 같은 길이씩 셋으로 나누고, 나눈 곳마다 짧은 변과 나란하게 끝까지 자르면 {똑같이 셋으로} 나뉜다.",
+        "coreReason": "한 변에 같은 길이로 표시해 자르는 것만으로는 자르는 방향이 정해지지 않는다. 짧은 변과 나란하게 끝까지 자른다는 조건을 일반 설명에도 명시한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-1-6-2-xc22",
+      "sourceIndex": 853,
+      "beforeProposal": {
+        "sourceIndex": 853,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-6 분수와 소수::1-6-2 분수 알아보기(1)",
+        "sourceFingerprint": "4723caf220863a9be77eccd715c531dbc6192daf32601b8380992bcc98e8f849",
+        "proposalFingerprint": "fa21ec9a48e55af8a96cbf09427c58da65d82dce24592e761581accda340764b",
+        "reviewStatus": "draft",
+        "id": "e3-1-6-2-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "직사각형의 반을 큰 조각 하나로 두고, 나머지 반을 똑같이 둘로 나누어 작은 조각 $2$개를 만들었습니다. 작은 조각 하나가 전체의 얼마인지 알아내는 방법을 쓰고 분수로 나타내세요.",
+        "bAnswer": "큰 조각도 작은 조각 크기로 둘로 나누면 전체가 똑같은 $4$조각이 된다. 작은 조각 하나는 $\\frac{1}{4}$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "큰 조각을 작은 조각 크기로 다시 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "전체가 똑같은 $4$조각"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{4}$"
+            ]
+          }
+        ],
+        "bGoal": "크기가 다른 조각을 작은 조각으로 다시 나누어 분수로 나타내기",
+        "bReason": "그림 없이도 알 수 있게 조각의 크기 관계를 말로 밝힌 상황을 새로 만듦",
+        "cDecision": "rewrite",
+        "cAfter": "전체를 큰 조각 $1$개와 크기가 같은 작은 조각 $2$개로 나누었고, 큰 조각은 작은 조각 $2$개와 크기가 같다. 큰 조각을 작은 조각 크기로 다시 나누면 전체는 똑같은 조각 {$4$}개가 되므로 작은 조각 하나는 전체의 {$\\frac{1}{4}$}이다.",
+        "cReason": "작은 조각 두 개의 크기가 서로 같다는 조건이 빠져 있어 작은 조각 하나가 $\\frac{1}{4}$로 정해지지 않았음. '크기가 같은 작은 조각 $2$개'로 조건을 밝히고 '전체의 $\\frac{1}{4}$'로 대상을 분명히 함.",
+        "exampleNeeded": "직사각형을 세로로 반 나눈 뒤 왼쪽 반은 그대로(큰 조각), 오른쪽 반은 위아래로 똑같이 나눈(작은 조각 $2$개) 그림",
+        "cSlotEquivalents": [
+          [
+            "넷"
+          ],
+          [
+            "$4$분의 $1$"
+          ]
+        ],
+        "reviewerEdited": true,
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "작은 조각으로 다시 나누기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "전체를 큰 조각 $1$개와 크기가 같은 작은 조각 $2$개로 나누었고, 큰 조각은 작은 조각 $2$개와 크기가 같다. 큰 조각을 작은 조각 크기로 다시 나누면 전체는 똑같은 조각 {$4$}개가 되므로 작은 조각 하나는 전체의 {$\\frac{1}{4}$}이다.",
+        "cStudentSentence": "전체를 큰 조각 $1$개와 크기가 같은 작은 조각 $2$개로 나누었고, 큰 조각은 작은 조각 $2$개와 크기가 같다. 큰 조각을 작은 조각 크기로 다시 나누면 전체는 똑같은 조각 □개가 되므로 작은 조각 하나는 전체의 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$4$",
+            "equivalents": [
+              "넷"
+            ]
+          },
+          {
+            "expected": "$\\frac{1}{4}$",
+            "equivalents": [
+              "$4$분의 $1$"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "직사각형의 반을 큰 조각 하나로 두고, 나머지 반을 똑같이 둘로 나누어 작은 조각 $2$개를 만들었습니다. 작은 조각 하나가 전체의 얼마인지 알아내는 방법을 쓰고 분수로 나타내세요.",
+          "answer": "큰 조각도 작은 조각 크기로 둘로 나누면 전체가 똑같은 $4$조각이 된다. 작은 조각 하나는 $\\frac{1}{4}$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "큰 조각을 작은 조각 크기로 다시 나눈다"
+              ]
+            },
+            {
+              "anyOf": [
+                "전체가 똑같은 $4$조각"
+              ]
+            },
+            {
+              "anyOf": [
+                "$\\frac{1}{4}$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "전체를 큰 조각 $1$개와 크기가 같은 작은 조각 $2$개로 나누었고, 큰 조각은 작은 조각 $2$개와 크기가 같다. 큰 조각을 작은 조각 크기로 다시 나누면 전체는 똑같은 조각 {$4$}개가 되므로 작은 조각 하나는 전체의 {$\\frac{1}{4}$}이다.",
+          "acceptedAnswers": [
+            [
+              "$4$",
+              "넷"
+            ],
+            [
+              "$\\frac{1}{4}$",
+              "$4$분의 $1$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-6-2-xc22",
+          "sourceIndex": 853,
+          "proposalFingerprint": "fa21ec9a48e55af8a96cbf09427c58da65d82dce24592e761581accda340764b",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "반을작은같은둘로나눈상황과큰부분도다시나눠전체넷의1/4를구하는방법이다.",
+          "cReason": "작은두조각의같은크기를C에도명시해전체4와1/4를확정한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "coreAfter": "크기가 다른 조각을 작은 조각과 같은 크기로 남김없이 나눌 수 있을 때, 그 크기로 {다시 나누어} 전체 조각 수를 세면 한 조각을 분수로 나타낼 수 있다.",
+        "coreReason": "원문은 임의의 큰 조각을 항상 작은 조각 크기로 남김없이 나눌 수 있다고 일반화한다. 실제로 그 크기로 남김없이 나눌 수 있는 경우라는 조건을 명시한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-5-3-xc20",
+      "sourceIndex": 1963,
+      "beforeProposal": {
+        "sourceIndex": 1963,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-5 막대그래프::1-5-3 막대그래프의 활용",
+        "sourceFingerprint": "c9561ea4cbfb74b32f63c385312a69465b97ba6b24c5bdd993985a04b042d891",
+        "proposalFingerprint": "f03d8eb75929d2e0962399419fb7f2eddce4055f16e09bdcee957b4f0894cd23",
+        "reviewStatus": "draft",
+        "id": "e4-1-5-3-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "막대그래프에서 가장 긴 막대가 두 개이다. 수량이 가장 많은 항목은 몇 개인지, 이유와 함께 쓰라.",
+        "bAnswer": "두 개이다. 두 막대의 길이가 같으면 수량이 같고 가장 많기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 개",
+              "$2$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 막대의 수량이 같다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "가장 긴 막대가 둘일 때",
+        "bReason": "가장 큰 수량이 같은 항목이 둘임을 설명하게 함",
+        "cDecision": "keep",
+        "cReason": "가장 긴 막대 수와 항목 수를 잇는 짧은 빈칸",
+        "cSlotEquivalents": [
+          [
+            "$2$개",
+            "둘"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "가장 긴 막대가 둘일 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "가장 긴 막대가 두 개이면 수량이 가장 많은 항목도 {두 개}이다.",
+        "cStudentSentence": "가장 긴 막대가 두 개이면 수량이 가장 많은 항목도 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "두 개",
+            "equivalents": [
+              "$2$개",
+              "둘"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "가장 긴 막대가 두 개이면 수량이 가장 많은 항목도 □이다.",
+          "answers": [
+            "두 개"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "막대그래프에서 가장 긴 막대가 두 개이다. 수량이 가장 많은 항목은 몇 개인지, 이유와 함께 쓰라.",
+          "answer": "두 개이다. 두 막대의 길이가 같으면 수량이 같고 가장 많기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "두 개",
+                "$2$개"
+              ]
+            },
+            {
+              "anyOf": [
+                "두 막대의 수량이 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "가장 긴 막대가 두 개이면 수량이 가장 많은 항목도 {두 개}이다.",
+          "acceptedAnswers": [
+            [
+              "두 개",
+              "$2$개",
+              "둘"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-5-3-xc20",
+          "sourceIndex": 1963,
+          "proposalFingerprint": "f03d8eb75929d2e0962399419fb7f2eddce4055f16e09bdcee957b4f0894cd23",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "가장 긴 두 막대가 같은 최대 수량이므로 가장 많은 두 항목인 이유를 설명한다.",
+          "cReason": "최대 길이의 막대 수와 최대 수량의 항목 수를 연결한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 항목의 수량이 같고 다른 모든 항목보다 많으므로 가장 많은 항목은 두 개이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "막대그래프에 막대가 세 개 있고, 눈금으로 읽은 수량이 각각 $5$명, $7$명, $7$명이다. 수량이 가장 많은 항목은 {두 개}이다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-5-3-xc24",
+      "sourceIndex": 1967,
+      "beforeProposal": {
+        "sourceIndex": 1967,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-5 막대그래프::1-5-3 막대그래프의 활용",
+        "sourceFingerprint": "334ae24cd2deb2878d68d281cbca029e3e712245021fa50e18387726c42db872",
+        "proposalFingerprint": "7104adc6be9babb6cd1e7c7262c8e60c1f9903416b95617a1072df133500ff7c",
+        "reviewStatus": "draft",
+        "id": "e4-1-5-3-xc24",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "",
+        "bReason": "",
+        "exclusionReason": "그래프로 준비할 양 정하기 xc14와 같은 목표라 중복",
+        "cDecision": "rewrite",
+        "cAfter": "반 학생이 좋아하는 우유를 막대그래프로 나타내면 우유 {종류}마다 주문할 양을 정할 수 있다.",
+        "cReason": "'종류별로' 어색한 부사 복원 대신 '종류'로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "항목"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "주문할 양 정하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "반 학생이 좋아하는 우유를 막대그래프로 나타내면 우유 {종류}마다 주문할 양을 정할 수 있다.",
+        "cStudentSentence": "반 학생이 좋아하는 우유를 막대그래프로 나타내면 우유 □마다 주문할 양을 정할 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "종류",
+            "equivalents": [
+              "항목"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "반 학생이 좋아하는 우유를 막대그래프로 나타내면 우유 {종류}마다 주문할 양을 정할 수 있다.",
+          "acceptedAnswers": [
+            [
+              "종류",
+              "항목"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": ""
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-5-3-xc24",
+          "sourceIndex": 1967,
+          "proposalFingerprint": "7104adc6be9babb6cd1e7c7262c8e60c1f9903416b95617a1072df133500ff7c",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "exclude",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "각 항목 수량만큼 준비하는 실제 xc14와 중복되는 우유 예의 B를 제외한다.",
+          "cReason": "우유 종류와 주문할 양의 조사 항목을 연결한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "exclude",
+        "cReason": "우유 뒤에 종류나 맛 같은 낱말만 넣는 것은 그래프 해석을 확인하지 못한다. 주문량 판단은 e4-1-5-3-xc14에 남긴다.",
+        "exclusionReason": "B/C: 그래프에서 준비할 양을 정하는 e4-1-5-3-xc14와 겹치고 C는 우유 종류라는 낱말 복원에 그친다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-5-3-xc25",
+      "sourceIndex": 1968,
+      "beforeProposal": {
+        "sourceIndex": 1968,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-5 막대그래프::1-5-3 막대그래프의 활용",
+        "sourceFingerprint": "a198c32c279c6162a869f485ad32924afed9f99857eca8d596d9a0fafe39639a",
+        "proposalFingerprint": "c5de057fada38b18037d1b9d8061d83672de4793c0e4b0436a1adedee3103769",
+        "reviewStatus": "draft",
+        "id": "e4-1-5-3-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "같은 학생들에게 같은 질문을 두 번 하고 같은 항목으로 두 막대그래프를 그렸다. 두 그래프를 견주면 무엇을 알 수 있는지 쓰라.",
+        "bAnswer": "항목별로 고른 학생 수가 어떻게 변했는지 알 수 있다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "고른 학생 수의 변화",
+              "학생 수가 늘었는지 줄었는지"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "두 번 조사한 변화 읽기",
+        "bReason": "두 그래프를 견주어 변화를 읽게 함",
+        "cDecision": "rewrite",
+        "cAfter": "같은 학생들에게 같은 질문을 두 번 하고 같은 항목으로 그린 두 막대그래프에서는 항목별로 고른 학생 수가 어떻게 {변했는지} 알 수 있다.",
+        "cReason": "긴 명사구 복원 대신 '변했는지'만 가림",
+        "cSlotEquivalents": [
+          [
+            "달라졌는지",
+            "바뀌었는지"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "두 번 조사해 견주기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "같은 학생들에게 같은 질문을 두 번 하고 같은 항목으로 그린 두 막대그래프에서는 항목별로 고른 학생 수가 어떻게 {변했는지} 알 수 있다.",
+        "cStudentSentence": "같은 학생들에게 같은 질문을 두 번 하고 같은 항목으로 그린 두 막대그래프에서는 항목별로 고른 학생 수가 어떻게 □ 알 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "변했는지",
+            "equivalents": [
+              "달라졌는지",
+              "바뀌었는지"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "같은 학생들에게 같은 질문을 두 번 하고 같은 항목으로 두 막대그래프를 그렸다. 두 그래프를 견주면 무엇을 알 수 있는지 쓰라.",
+          "answer": "항목별로 고른 학생 수가 어떻게 변했는지 알 수 있다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "고른 학생 수의 변화",
+                "학생 수가 늘었는지 줄었는지"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "같은 학생들에게 같은 질문을 두 번 하고 같은 항목으로 그린 두 막대그래프에서는 항목별로 고른 학생 수가 어떻게 {변했는지} 알 수 있다.",
+          "acceptedAnswers": [
+            [
+              "변했는지",
+              "달라졌는지",
+              "바뀌었는지"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-5-3-xc25",
+          "sourceIndex": 1968,
+          "proposalFingerprint": "c5de057fada38b18037d1b9d8061d83672de4793c0e4b0436a1adedee3103769",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "같은 학생과 질문 및 항목의 두 조사로 선택 인원의 변화를 읽는 목표가 분명하다.",
+          "cReason": "같은 조사 조건에서 수량의 변화를 확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "같은 학생들에게 좋아하는 운동을 두 번 조사했다. 두 막대그래프에서 축구를 고른 학생 수가 처음에는 $15$명, 나중에는 $20$명이었다면 축구를 고른 학생 수는 {늘었다}.",
+        "cSlotEquivalents": [
+          [
+            "많아졌다",
+            "증가했다"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-1-6-7-xc7",
+      "sourceIndex": 924,
+      "beforeProposal": {
+        "sourceIndex": 924,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-6 분수와 소수::1-6-7 소수의 크기 비교",
+        "sourceFingerprint": "926c22313f0ccb7bfceee2c7a50bf94ae6db522983ffd308ad90b86e972b40cd",
+        "proposalFingerprint": "2140e6e0c895a3f86ba5f9af175c73870d26f9988f70801b79d343256def30e7",
+        "reviewStatus": "draft",
+        "id": "e3-1-6-7-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.3$, $0.9$, $0.6$ 가운데 가장 큰 수를 고르고, $0.1$이 각각 몇 개인지를 이용해 까닭을 써 보세요.",
+        "bAnswer": "$0.9$입니다. $0.3$은 $0.1$이 $3$개, $0.9$는 $0.1$이 $9$개, $0.6$은 $0.1$이 $6$개인데 $9$개가 가장 많기 때문입니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.9$를 가장 큰 수로 고른다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.3$은 $0.1$이 $3$개, $0.9$는 $9$개, $0.6$은 $6$개이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.1$이 $9$개로 가장 많아서 $0.9$가 가장 크다"
+            ]
+          }
+        ],
+        "bGoal": "$0.1$의 개수로 소수의 크기를 비교하는 방법",
+        "bReason": "'각각 $0.1$이 몇 개인지 이용'을 요청했으므로 $3$개·$9$개·$6$개의 실제 대응도 기준에 넣고 가장 많은 것이 가장 크다는 결론도 확인함.",
+        "cDecision": "rewrite",
+        "cAfter": "$0.3$, $0.9$, $0.6$ 가운데 가장 큰 수는 {$0.9$}이다.",
+        "cReason": "빈칸 '0.1의 개수가 가장 많은'은 긴 구절이고 결과가 이미 보임. 가장 큰 수를 고르게 함",
+        "reviewerEdited": true,
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "$0.3$, $0.9$, $0.6$ 가운데 가장 큰 소수",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$0.3$, $0.9$, $0.6$ 가운데 가장 큰 수는 {$0.9$}이다.",
+        "cStudentSentence": "$0.3$, $0.9$, $0.6$ 가운데 가장 큰 수는 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$0.9$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$0.3$, $0.9$, $0.6$ 가운데 가장 큰 수를 고르고, $0.1$이 각각 몇 개인지를 이용해 까닭을 써 보세요.",
+          "answer": "$0.9$입니다. $0.3$은 $0.1$이 $3$개, $0.9$는 $0.1$이 $9$개, $0.6$은 $0.1$이 $6$개인데 $9$개가 가장 많기 때문입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$0.9$를 가장 큰 수로 고른다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$0.3$은 $0.1$이 $3$개, $0.9$는 $9$개, $0.6$은 $6$개이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$0.1$이 $9$개로 가장 많아서 $0.9$가 가장 크다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$0.3$, $0.9$, $0.6$ 가운데 가장 큰 수는 {$0.9$}이다.",
+          "acceptedAnswers": [
+            [
+              "$0.9$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-6-7-xc7",
+          "sourceIndex": 924,
+          "proposalFingerprint": "2140e6e0c895a3f86ba5f9af175c73870d26f9988f70801b79d343256def30e7",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "실제0.1개수3·9·6과최대9로0.9선택을설명한다.",
+          "cReason": "세소수중최대0.9를고른다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0.3$은 $0.1$이 $3$개, $0.9$는 $9$개, $0.6$은 $6$개이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.1$이 $9$개로 가장 많아서 $0.9$가 가장 크다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-1-6-2-xc3",
+      "sourceIndex": 1999,
+      "beforeProposal": {
+        "sourceIndex": 1999,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-2 도형의 배열에서 규칙 찾기",
+        "sourceFingerprint": "2db3bca96296192a519ee0b3f7e0878678bd7300563b9b98219859b2dd4dd25e",
+        "proposalFingerprint": "c7eaf0073040e45c28bce1530bb471556890eee3277901850b76b3a4461d291b",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-2-xc3",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "definition",
+        "bGoal": "",
+        "bReason": "",
+        "exclusionReason": "모양이 번갈아 놓이는 예를 읽는 것뿐이며 xc2와 같은 목표",
+        "cDecision": "rewrite",
+        "cAfter": "동그라미, 네모, 동그라미, 네모는 {두} 모양이 번갈아 놓이는 규칙이다.",
+        "cReason": "$\\square$ 기호와 빈칸 □가 헷갈려 낱말로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "$2$"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "모양이 번갈아 놓이는 규칙",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "동그라미, 네모, 동그라미, 네모는 {두} 모양이 번갈아 놓이는 규칙이다.",
+        "cStudentSentence": "동그라미, 네모, 동그라미, 네모는 □ 모양이 번갈아 놓이는 규칙이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "두",
+            "equivalents": [
+              "$2$"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "동그라미, 네모, 동그라미, 네모는 {두} 모양이 번갈아 놓이는 규칙이다.",
+          "acceptedAnswers": [
+            [
+              "두",
+              "$2$"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": ""
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-6-2-xc3",
+          "sourceIndex": 1999,
+          "proposalFingerprint": "c7eaf0073040e45c28bce1530bb471556890eee3277901850b76b3a4461d291b",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "definition",
+          "bDecision": "exclude",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "번갈아 놓인 모양의 단순 예 B 제외를 유지한다.",
+          "cReason": "두 종류의 모양이 번갈아 나오는 실제 구조를 확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "동그라미, 네모, 동그라미, 네모의 순서가 계속 반복된다. 이어서 놓일 모양은 {동그라미}이다.",
+        "cSlotEquivalents": [
+          [
+            "원"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-2-2-2-xc16",
+      "sourceIndex": 1016,
+      "beforeProposal": {
+        "sourceIndex": 1016,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-2 나눗셈::2-2-2 내림이 있는 (몇십)÷(몇), (몇십몇)÷(몇)",
+        "sourceFingerprint": "412bc9a29ff4d7be9d050c89563c0c1a4a0dd0988ac3e14555839de2eacd2ad3",
+        "proposalFingerprint": "eb084fb5d69a3ef64c41a09f163d3ae49e94636af716c1277bb068674dcaf412",
+        "reviewStatus": "draft",
+        "id": "e3-2-2-2-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "$72\\div2=36$입니다. 이것을 이용해 $72\\div4$의 몫을 구하는 방법을 까닭과 함께 설명하세요.",
+        "bAnswer": "나누는 수 $4$는 $2$의 $2$배이므로 몫은 $36$의 반인 $18$이다. 같은 $72$를 $2$배 많은 묶음으로 나누면 한 묶음은 반이 되기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "나누는 수가 $2$에서 $4$로 $2$배가 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "몫은 $36$의 반인 $18$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 $72$를 $2$배 많은 묶음으로 나누면 한 묶음은 반이 된다",
+              "$72\\div2=36$의 한 묶음을 다시 $2$로 똑같이 나누면 $72\\div4$와 같아서 $36$의 반이 된다"
+            ]
+          }
+        ],
+        "bGoal": "나누는 수가 2배가 되면 몫이 반이 되는 관계와 그 까닭",
+        "bReason": "'까닭과 함께'라고 물었는데 기준에는 방법과 결과만 있었음. 같은 전체를 더 많은 묶음으로 나누면 한 묶음이 줄어든다는 까닭을 필수 의미로 추가함.",
+        "cDecision": "keep",
+        "cReason": "수가 모두 나와 있고 빈칸이 '반' 한 낱말이라 선명함",
+        "answerNotes": "'절반'도 정답",
+        "reviewerEdited": true,
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "나누는 수가 두 배일 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$72\\div4$의 몫은 $72\\div2$의 몫 $36$의 {반}인 $18$이다.",
+        "cStudentSentence": "$72\\div4$의 몫은 $72\\div2$의 몫 $36$의 □인 $18$이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "반",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$72\\div4$의 몫은 $72\\div2$의 몫 $36$의 □인 $18$이다.",
+          "answers": [
+            "반"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$72\\div2=36$입니다. 이것을 이용해 $72\\div4$의 몫을 구하는 방법을 까닭과 함께 설명하세요.",
+          "answer": "나누는 수 $4$는 $2$의 $2$배이므로 몫은 $36$의 반인 $18$이다. 같은 $72$를 $2$배 많은 묶음으로 나누면 한 묶음은 반이 되기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "나누는 수가 $2$에서 $4$로 $2$배가 된다"
+              ]
+            },
+            {
+              "anyOf": [
+                "몫은 $36$의 반인 $18$이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "같은 $72$를 $2$배 많은 묶음으로 나누면 한 묶음은 반이 된다",
+                "$72\\div2=36$의 한 묶음을 다시 $2$로 똑같이 나누면 $72\\div4$와 같아서 $36$의 반이 된다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$72\\div4$의 몫은 $72\\div2$의 몫 $36$의 {반}인 $18$이다.",
+          "acceptedAnswers": [
+            [
+              "반"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-2-2-2-xc16",
+          "sourceIndex": 1016,
+          "proposalFingerprint": "eb084fb5d69a3ef64c41a09f163d3ae49e94636af716c1277bb068674dcaf412",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "몫18뿐아니라두배많은묶음에나누면각묶음이반인까닭까지기준에있다.",
+          "cReason": "같은전체에서나누는수가두배면몫은반인관계를확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "$72\\div4$의 몫은 $72\\div2$의 몫 $36$의 {반}이다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e3-2-2-4-xc18",
+      "sourceIndex": 1038,
+      "beforeProposal": {
+        "sourceIndex": 1038,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-2 나눗셈::2-2-4 (세 자리 수)÷(한 자리 수)",
+        "sourceFingerprint": "36c8f179dec23728cce40ea5fb873549245715fdef3be31c9498132b654abf03",
+        "proposalFingerprint": "405a3690fa4e9554f4ea0d85d65cfaaace8dc286dd239a8a53ac312b9055ff35",
+        "reviewStatus": "draft",
+        "id": "e3-2-2-4-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "$63\\div9=7$을 이용하여 $630\\div9$의 몫을 구하는 방법을 까닭과 함께 설명하세요.",
+        "bAnswer": "$630$은 $63$의 $10$배이므로 몫도 $7$의 $10$배인 $70$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$630$은 $63$의 $10$배"
+            ]
+          },
+          {
+            "anyOf": [
+              "몫도 $10$배인 $70$"
+            ]
+          }
+        ],
+        "bGoal": "나누어지는 수가 10배이면 몫도 10배가 되는 관계",
+        "bReason": "원문 예제 630÷9로 방법과 까닭을 묻도록 함",
+        "cDecision": "rewrite",
+        "cAfter": "$63\\div9=7$이다. $630$은 $63$의 $10$배이므로 $630\\div9$의 몫은 $7$의 {$10$}배인 {$70$}이다.",
+        "cReason": "'끝의 0을 뗀 몇십몇' 같은 긴 조건이 초3에게 어려워 구체적인 식으로 바꿈",
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "몇백몇십 나누기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$63\\div9=7$이다. $630$은 $63$의 $10$배이므로 $630\\div9$의 몫은 $7$의 {$10$}배인 {$70$}이다.",
+        "cStudentSentence": "$63\\div9=7$이다. $630$은 $63$의 $10$배이므로 $630\\div9$의 몫은 $7$의 □배인 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$10$",
+            "equivalents": []
+          },
+          {
+            "expected": "$70$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$63\\div9=7$을 이용하여 $630\\div9$의 몫을 구하는 방법을 까닭과 함께 설명하세요.",
+          "answer": "$630$은 $63$의 $10$배이므로 몫도 $7$의 $10$배인 $70$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$630$은 $63$의 $10$배"
+              ]
+            },
+            {
+              "anyOf": [
+                "몫도 $10$배인 $70$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$63\\div9=7$이다. $630$은 $63$의 $10$배이므로 $630\\div9$의 몫은 $7$의 {$10$}배인 {$70$}이다.",
+          "acceptedAnswers": [
+            [
+              "$10$"
+            ],
+            [
+              "$70$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-2-2-4-xc18",
+          "sourceIndex": 1038,
+          "proposalFingerprint": "405a3690fa4e9554f4ea0d85d65cfaaace8dc286dd239a8a53ac312b9055ff35",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "나누는수같고입력10배라몫도70인방법·까닭을 설명한다.",
+          "cReason": "몫의10배관계와실제70을 구한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "$63\\div9=7$이다. $630\\div9$의 몫은 $7$의 {$10$}배인 {$70$}이다."
+      },
+      "isReleaseApproval": false
+    }
+  ]
+}

@@ -1,0 +1,9 @@
+{
+  "inputEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1650-1690-corrected-input.json",
+  "patches": {
+    "1663": {
+      "cAfter": "분수의 나눗셈을 곱셈으로 바꾸어 계산할 때, 분자와 분모를 같은 {공약수}로 나누는 약분을 해도 분수의 크기는 변하지 않는다. 그래서 약분한 뒤 계산해도 몫은 같다."
+    }
+  },
+  "notes": {}
+}

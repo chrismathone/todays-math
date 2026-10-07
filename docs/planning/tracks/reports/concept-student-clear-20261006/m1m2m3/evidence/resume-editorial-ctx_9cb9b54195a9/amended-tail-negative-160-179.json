@@ -1,0 +1,1856 @@
+{
+  "input": "C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3/evidence/resume-editorial-ctx_9cb9b54195a9/input-tail-negative-160-179.json",
+  "changes": [
+    {
+      "id": "m1-03-08-xc16",
+      "cAfter": "연속하는 두 자연수의 합이 $20$이라고 놓으면, 작은 수 $x$에 대한 방정식은 $x+(x+1)=20$이고 해는 {$\\frac{19}{2}$}이다. 이 값은 자연수가 아니므로 조건에 맞는 두 자연수는 없다.",
+      "cMarkedSentence": "연속하는 두 자연수의 합이 $20$이라고 놓으면, 작은 수 $x$에 대한 방정식은 $x+(x+1)=20$이고 해는 {$\\frac{19}{2}$}이다. 이 값은 자연수가 아니므로 조건에 맞는 두 자연수는 없다.",
+      "cAcceptedAnswers": [
+        [
+          "$\\frac{19}{2}$",
+          "$9.5$"
+        ]
+      ],
+      "cReason": "C의 '아니므로'는 연결 표현만 복원한다. 해 자체를 구하는 빈칸으로 바꾸고 자연수 적합성 설명은 보존한다. B와 분수 표기가 아닌 값으로 판단하는 일반 설명은 타당하다."
+    },
+    {
+      "id": "m2-03-05-xc13",
+      "cDecision": "rewrite",
+      "cAfter": "$\\frac{x}{2}+\\frac{y}{2}=1$의 양변에 {$2$}를 곱하면 $x+y=2$가 된다. 이 식과 $x+y=2$를 연립하면 두 식이 같으므로 해는 {무수히 많다}.",
+      "cMarkedSentence": "$\\frac{x}{2}+\\frac{y}{2}=1$의 양변에 {$2$}를 곱하면 $x+y=2$가 된다. 이 식과 $x+y=2$를 연립하면 두 식이 같으므로 해는 {무수히 많다}.",
+      "cAcceptedAnswers": [
+        [
+          "$2$"
+        ],
+        [
+          "무수히 많다",
+          "무한히 많다",
+          "셀 수 없이 많다"
+        ]
+      ],
+      "cReason": "'먼저 정수 계수로 고친다'라는 열린 범위를 실제 양변 연산으로 고정한다. 동치식 비교와 해의 개수 판단을 묻는다. B와 일반 설명은 유지한다."
+    },
+    {
+      "id": "m2-03-06-xc2",
+      "cDecision": "rewrite",
+      "cAfter": "큰 수를 $x$, 작은 수를 $y$로 놓는다. 두 수의 합이 $10$이라는 조건은 {$x+y=10$}, 두 수의 차가 $2$라는 조건은 {$x-y=2$}로 나타내어 함께 푼다.",
+      "cMarkedSentence": "큰 수를 $x$, 작은 수를 $y$로 놓는다. 두 수의 합이 $10$이라는 조건은 {$x+y=10$}, 두 수의 차가 $2$라는 조건은 {$x-y=2$}로 나타내어 함께 푼다.",
+      "cAcceptedAnswers": [
+        [
+          "$x+y=10$",
+          "$y+x=10$"
+        ],
+        [
+          "$x-y=2$",
+          "$x=y+2$"
+        ]
+      ],
+      "cReason": "C의 후속 문장이 두 키 '조건', '식'을 노출한다. 합과 차를 각각 식으로 옮기는 구체 문항으로 고정한다. 독립된 조건의 필요성을 설명하는 B와 일반 설명은 유지한다."
+    },
+    {
+      "id": "m2-03-07-xc9",
+      "cDecision": "rewrite",
+      "cAfter": "연필 한 자루가 $x$원, 공책 한 권이 $y$원이다. 연필 $2$자루와 공책 $1$권이 $1600$원이면 {$2x+y=1600$}, 연필 $1$자루와 공책 $2$권이 $2300$원이면 {$x+2y=2300$}이다.",
+      "cMarkedSentence": "연필 한 자루가 $x$원, 공책 한 권이 $y$원이다. 연필 $2$자루와 공책 $1$권이 $1600$원이면 {$2x+y=1600$}, 연필 $1$자루와 공책 $2$권이 $2300$원이면 {$x+2y=2300$}이다.",
+      "cAcceptedAnswers": [
+        [
+          "$2x+y=1600$",
+          "$y+2x=1600$"
+        ],
+        [
+          "$x+2y=2300$",
+          "$2y+x=2300$"
+        ]
+      ],
+      "cReason": "C의 '두 경우/식'은 범위가 열려 있다. B와 같은 구매 조건을 각각 방정식으로 옮겨 빈칸의 수학적 대상을 명확히 한다. 일반 설명을 숫자 사례로 바꾸지 않는다."
+    },
+    {
+      "id": "m1-04-01-xc9",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "하나로 정해지지 않는다",
+            "그런 점은 무수히 많다"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은 $x$좌표에 서로 다른 $y$좌표가 가능하다",
+            "$y$좌표에 따라 다른 점이 된다",
+            "$(3, 0)$, $(3, 1)$처럼 여러 점이 있다"
+          ]
+        }
+      ],
+      "bReason": "B 둘째 기준의 'y좌표를 알 수 없다'만으로는 여러 점이 가능한 이유가 생략될 수 있다. 가능한 y좌표가 여럿이라는 의미를 기준으로 명시한다. C와 일반 설명은 이미 좌표 두 개의 필요성을 묻고 타당하다."
+    },
+    {
+      "id": "m1-04-01-xc15",
+      "cDecision": "rewrite",
+      "cAfter": "점 $(a+1,2a-6)$이 $x$축 위에 있으면 $y$좌표는 {$0$}이다. 이 조건으로 방정식을 세워 풀면 $a$의 값은 {$3$}이다.",
+      "cMarkedSentence": "점 $(a+1,2a-6)$이 $x$축 위에 있으면 $y$좌표는 {$0$}이다. 이 조건으로 방정식을 세워 풀면 $a$의 값은 {$3$}이다.",
+      "cAcceptedAnswers": [
+        [
+          "$0$"
+        ],
+        [
+          "$3$"
+        ]
+      ],
+      "cReason": "C의 '방정식' 자리는 식·등식 등에도 열려 있다. 축 위 조건의 수치와 그 조건에서 얻는 a를 묻는다. 후보 재독에서 뒤 식의 0 노출을 확인하여 해당 식은 인쇄하지 않도록 정리했다. B와 일반 설명의 일반 방법은 유지한다."
+    },
+    {
+      "id": "m2-03-07-xc23",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "기준 인원이 달라 여학생의 증가율이 전체 증가율에 더 크게 반영된다",
+            "각 집단의 증가 인원을 합하여 전체 기준 인원으로 나누므로 두 증가율의 단순 평균이 아니다",
+            "$\\frac{100\\times0.2+300\\times0.1}{400}$처럼 기준 인원을 반영한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12.5\\%$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "작년 남학생 $100$명은 올해 $20\\%$, 여학생 $300$명은 $10\\%$ 늘었다. 늘어난 전체 인원은 {$50$}명이고, 작년 전체 $400$명을 기준으로 한 증가율은 {$12.5\\%$}이다.",
+      "cMarkedSentence": "작년 남학생 $100$명은 올해 $20\\%$, 여학생 $300$명은 $10\\%$ 늘었다. 늘어난 전체 인원은 {$50$}명이고, 작년 전체 $400$명을 기준으로 한 증가율은 {$12.5\\%$}이다.",
+      "cAcceptedAnswers": [
+        [
+          "$50$"
+        ],
+        [
+          "$12.5\\%$",
+          "$\\frac{1}{8}$",
+          "$0.125$"
+        ]
+      ],
+      "cReason": "B 이유 기준에 기준 양의 크기가 전체 증가율에 반영된다는 관계를 명시한다. C의 문법 조각은 두 집단의 증가 인원 합과 전체 증가율 계산으로 바꾼다. 일반 성질은 유지한다.",
+      "bReason": "B 이유 기준에 기준 양의 크기가 전체 증가율에 반영된다는 관계를 명시한다. C의 문법 조각은 두 집단의 증가 인원 합과 전체 증가율 계산으로 바꾼다. 일반 성질은 유지한다."
+    },
+    {
+      "id": "m2-03-08-xc9",
+      "cDecision": "rewrite",
+      "cAfter": "전체 일을 $1$, $A$, $B$의 하루 작업량을 각각 $x$, $y$라 한다. 함께 $6$일에 끝내면 {$6(x+y)=1$}, $A$가 $4$일 하고 $B$가 $9$일 하여 끝내면 {$4x+9y=1$}이다.",
+      "cMarkedSentence": "전체 일을 $1$, $A$, $B$의 하루 작업량을 각각 $x$, $y$라 한다. 함께 $6$일에 끝내면 {$6(x+y)=1$}, $A$가 $4$일 하고 $B$가 $9$일 하여 끝내면 {$4x+9y=1$}이다.",
+      "cAcceptedAnswers": [
+        [
+          "$6(x+y)=1$",
+          "$6x+6y=1$",
+          "$x+y=\\frac{1}{6}$"
+        ],
+        [
+          "$4x+9y=1$",
+          "$9y+4x=1$"
+        ]
+      ],
+      "cReason": "C에서 어떤 따로 한 경우인지 제시되지 않아 답이 열린다. 일의 전체량을 1로 정하고 함께 일하는 날 수와 차례로 일하는 날 수를 주어 두 식을 고정한다. B와 일반 방법은 유지한다."
+    },
+    {
+      "id": "m2-03-09-xc14",
+      "cAfter": "단백질이 질량의 $10\\%$인 식품 $x\\,\\mathrm{g}$과 $20\\%$인 식품 $y\\,\\mathrm{g}$을 섞었다. 섞인 식품에 단백질이 $30\\,\\mathrm{g}$ 들도록 하는 식은 {$0.1x+0.2y=30$}이다.",
+      "cMarkedSentence": "단백질이 질량의 $10\\%$인 식품 $x\\,\\mathrm{g}$과 $20\\%$인 식품 $y\\,\\mathrm{g}$을 섞었다. 섞인 식품에 단백질이 $30\\,\\mathrm{g}$ 들도록 하는 식은 {$0.1x+0.2y=30$}이다.",
+      "cAcceptedAnswers": [
+        [
+          "$0.1x+0.2y=30$",
+          "$\\frac{x}{10}+\\frac{y}{5}=30$",
+          "$x+2y=300$"
+        ]
+      ],
+      "cReason": "'양/더한'의 일반 어휘 복원을 영양소 양과 식품 질량의 관계를 실제 식으로 세우는 빈칸으로 바꾼다. 단순히 쉬워서 제외하지 않고 평가 대상을 명확하게 한다. 기존 B 형식 제외와 일반 설명은 그대로 둔다."
+    },
+    {
+      "id": "m1-04-03-xc1",
+      "cAfter": null,
+      "cMarkedSentence": null,
+      "cAcceptedAnswers": null,
+      "cReason": "축이 나타내는 양의 이름을 묻는 일반 문장은 양/대상/내용 등 답 범위가 넓고 실질 해석은 B에서 확인한다.",
+      "bPrompt": "그래프의 두 축이 각각 무엇을 나타내는지 알지 못할 때, 점 $(2,15)$의 두 숫자가 실제로 무엇의 값인지 알 수 있는가? 이유와 함께 쓰시오.",
+      "bAnswer": "알 수 없다. 가로축과 세로축이 각각 어떤 양을 나타내는지 알아야 두 숫자가 시간, 기온, 거리 등 무엇의 값인지 해석할 수 있다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 숫자가 무엇의 값인지 알 수 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 축이 나타내는 양을 알아야 좌표값의 실제 의미를 알 수 있다"
+          ]
+        }
+      ],
+      "bReason": "가장 먼저라는 임의 순서보다 축의 정보가 없는 구체상황에서 해석이 어려운 이유를 묻는다.",
+      "cDecision": "exclude",
+      "cStudentSentence": null,
+      "cAnswers": null,
+      "cSlotAnswers": null,
+      "cSlots": null,
+      "exclusionReason": "C 제외: 양의 종류·대상·내용 등 요령 낱말의 답 범위가 열려 있다. 축을 모르면 점의 의미를 알 수 없는 이유를 B에서 묻는다.",
+      "learningRole": "reason",
+      "roleReason": "축이 나타내는 양을 알아야 좌표값의 의미를 해석할 수 있는 이유"
+    },
+    {
+      "id": "m1-04-03-xc3",
+      "cAfter": "가로축이 $x$, 세로축이 $y$인 함수의 그래프가 점 $(3,15)$를 지난다. $x=3$에 대응하는 $y$의 값은 {$15$}이다.",
+      "cMarkedSentence": "가로축이 $x$, 세로축이 $y$인 함수의 그래프가 점 $(3,15)$를 지난다. $x=3$에 대응하는 $y$의 값은 {$15$}이다.",
+      "cAcceptedAnswers": [
+        [
+          "$15$"
+        ]
+      ],
+      "cReason": "C의 물음에 y의 값이라는 목적이 이미 나와 y좌표 복원만 남는다. 좌표를 실제 대응 값으로 읽는 결과를 묻는다. B의 순서와 일반 설명은 유지한다."
+    },
+    {
+      "id": "m2-03-09-xc21",
+      "cDecision": "rewrite",
+      "cAfter": "$8\\%$ 소금물 $300\\,\\mathrm{g}$에서 물만 $100\\,\\mathrm{g}$ 증발시키면 소금은 {$24$}$\\,\\mathrm{g}$ 남는다. 여기에 $5\\%$ 소금물 $100\\,\\mathrm{g}$을 섞으면 소금은 모두 {$29$}$\\,\\mathrm{g}$이다.",
+      "cMarkedSentence": "$8\\%$ 소금물 $300\\,\\mathrm{g}$에서 물만 $100\\,\\mathrm{g}$ 증발시키면 소금은 {$24$}$\\,\\mathrm{g}$ 남는다. 여기에 $5\\%$ 소금물 $100\\,\\mathrm{g}$을 섞으면 소금은 모두 {$29$}$\\,\\mathrm{g}$이다.",
+      "cAcceptedAnswers": [
+        [
+          "$24$"
+        ],
+        [
+          "$29$"
+        ]
+      ],
+      "cReason": "C 첫 키가 뒤 문장에 그대로 나오는 노출을 제거한다. 증발 뒤 남는 소금과 혼합 뒤 총 소금을 계산하게 한다. B와 물만 증발할 때 보존되는 양에 관한 일반 설명은 그대로 둔다."
+    },
+    {
+      "id": "m2-04-03-xc2",
+      "bPrompt": "$y$의 값이 $5$에서 $1$로 바뀔 때 $y$의 값의 증가량을 구하고, 어떻게 계산했는지 쓰시오. 값이 줄어든 경우 증가량을 어떻게 나타내는지도 쓰시오.",
+      "bAnswer": "$1-5=-4$이다. 나중 값에서 처음 값을 뺀다. 값이 줄어들면 증가량을 음수로 나타낸다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나중 값에서 처음 값을 뺌",
+            "$1-5$로 계산"
+          ]
+        },
+        {
+          "anyOf": [
+            "증가량 $-4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "줄어들면 증가량은 음수"
+          ]
+        }
+      ],
+      "bReason": "B 계산 방법이 필수 기준인데 물음은 값과 음수 표기만 요구한다. 방법 설명 요구를 물음에 명시해 기준과 일치시킨다. C와 일반 설명은 정확하다."
+    },
+    {
+      "id": "m1-04-03-xc10",
+      "cAfter": "$0$분부터 $5$분까지 $300\\,\\mathrm{m}$, $5$분부터 $10$분까지 $500\\,\\mathrm{m}$ 이동했다. 같은 시간에 더 멀리 간 구간이 빠르므로, 더 빠른 구간은 {$5$분부터 $10$분까지}이다.",
+      "cMarkedSentence": "$0$분부터 $5$분까지 $300\\,\\mathrm{m}$, $5$분부터 $10$분까지 $500\\,\\mathrm{m}$ 이동했다. 같은 시간에 더 멀리 간 구간이 빠르므로, 더 빠른 구간은 {$5$분부터 $10$분까지}이다.",
+      "cAcceptedAnswers": [
+        [
+          "$5$분부터 $10$분까지",
+          "$5$분에서 $10$분까지",
+          "두 번째 구간"
+        ]
+      ],
+      "cReason": "'많이/빠르게' 자리는 둘 다 크게로 읽힐 수 있다. 같은 시간에 이동한 거리가 다른 두 구간을 구체적으로 주고 더 빠른 구간을 선택하게 한다. B와 증가·감소 모두 변화량 크기로 비교하는 일반 설명은 유지한다."
+    },
+    {
+      "id": "m2-04-04-xc8",
+      "cAfter": "일차함수 $y=ax+b$($a\\ne0$)의 그래프의 모양은 {직선}이다.",
+      "cMarkedSentence": "일차함수 $y=ax+b$($a\\ne0$)의 그래프의 모양은 {직선}이다.",
+      "cReason": "같은 snapshot의 key는 C pass이므로 독립 지적 전체를 실패로 바꾸지 않는다. 다만 blind의 열린 서술 범위 지적에 맞춰 그래프의 '모양'을 묻고 일차함수의 a≠0을 명시한다. 직선이라는 쉬운 정식 이름은 유효한 평가로 유지한다. B 제외와 일반 설명은 보존한다.",
+      "cAcceptedAnswers": [
+        [
+          "직선"
+        ]
+      ]
+    },
+    {
+      "id": "m1-04-04-xc13",
+      "cDecision": "rewrite",
+      "cAfter": "점 $(2,-8)$이 $y=-4x$의 그래프 위에 있는지 알아보려면 $x=2$를 대입한다. 이때 함숫값은 {$-8$}이고 점의 $y$좌표와 같으므로 이 점은 그래프 위에 {있다}.",
+      "cMarkedSentence": "점 $(2,-8)$이 $y=-4x$의 그래프 위에 있는지 알아보려면 $x=2$를 대입한다. 이때 함숫값은 {$-8$}이고 점의 $y$좌표와 같으므로 이 점은 그래프 위에 {있다}.",
+      "cAcceptedAnswers": [
+        [
+          "$-8$"
+        ],
+        [
+          "있다",
+          "놓인다",
+          "속한다"
+        ]
+      ],
+      "cReason": "key는 현재 C pass이지만 blind가 지적한 '같은지'는 문법 조각으로도 복원된다. 대입 결과의 값과 그래프 위 여부를 묻도록 좁힌다. B의 확인 방법과 일반 설명은 유지한다."
+    },
+    {
+      "id": "m2-04-05-xc19",
+      "bPrompt": "① 기울기 $2$, $y$절편 $3$ ② 기울기 $2$, 지나는 점 $(1,5)$ ③ 지나는 두 점 $(1,5)$, $(3,9)$가 주어졌다. 각 경우의 일차함수 식을 구하시오. 두 점만으로 일차함수가 정해지려면 두 좌표에 어떤 조건이 필요한지도 쓰시오.",
+      "bAnswer": "세 경우 모두 $y=2x+3$이다. 두 점의 $x$좌표가 서로 달라야 기울기를 구할 수 있고, $y$좌표도 달라야 기울기가 $0$이 아닌 일차함수가 된다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "세 경우 모두 $y=2x+3$",
+            "① $y=2x+3$, ② $y=2x+3$, ③ $y=2x+3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 점의 $x$좌표와 $y$좌표가 각각 다르다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "두 점 $(1,5)$, $(3,9)$를 지나는 일차함수 $y=ax+b$의 기울기 $a$는 {$2$}이고, 한 점을 대입하여 구한 $y$절편 $b$는 {$3$}이다.",
+      "cMarkedSentence": "두 점 $(1,5)$, $(3,9)$를 지나는 일차함수 $y=ax+b$의 기울기 $a$는 {$2$}이고, 한 점을 대입하여 구한 $y$절편 $b$는 {$3$}이다.",
+      "cAcceptedAnswers": [
+        [
+          "$2$"
+        ],
+        [
+          "$3$"
+        ]
+      ],
+      "cReason": "'이 단원에서 다룬 세 가지'가 보이지 않아 다른 정당한 조합을 막는다. 세 정보 묶음을 물음 자체에 제시해 각각의 식을 구하게 하고 두 점의 좌표 조건도 명시적으로 묻는다. C의 모호한 정보 나열은 두 점으로 계수 결정하기로 바꾼다. 원래 일반 설명과 역할은 유지한다.",
+      "bReason": "'이 단원에서 다룬 세 가지'가 보이지 않아 다른 정당한 조합을 막는다. 세 정보 묶음을 물음 자체에 제시해 각각의 식을 구하게 하고 두 점의 좌표 조건도 명시적으로 묻는다. C의 모호한 정보 나열은 두 점으로 계수 결정하기로 바꾼다. 원래 일반 설명과 역할은 유지한다."
+    },
+    {
+      "id": "m1-04-01-xc19",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$(4, 2)$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x$좌표는 $1$과 $7$의 평균",
+            "$\\frac{1+7}{2}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$y$좌표는 두 끝점에서 같은 $2$로 둔다"
+          ]
+        }
+      ],
+      "bReason": "문제가 요구한 x좌표와 y좌표 각각의 방법을 둘 다 기준에 명시한다."
+    }
+  ],
+  "rows": [
+    {
+      "id": "m1-03-08-xc16",
+      "bDecision": "rewrite",
+      "bPrompt": "연속하는 두 자연수의 합이 $20$이 될 수 있는지 알아보려고 한다. 작은 수를 $x$로 놓고 방정식을 세워 풀고, 그 해를 보고 가능한지 판단하여 까닭과 함께 쓰시오.",
+      "bAnswer": "$x+(x+1)=20$에서 $2x=19$, $x=\\frac{19}{2}$이다. 이 값은 자연수가 아니어서 문제의 조건에 맞지 않으므로 그런 두 자연수는 없다.",
+      "bGoal": "방정식의 해가 자연수 조건에 맞지 않으면 답이 될 수 없음을 판단한다.",
+      "bReason": "제목 '해가 조건에 맞는지'는 어떤 해와 어떤 조건인지 없다. 해가 분수로 나오는 구체 상황에서 풀이와 판단을 함께 쓰게 했다.",
+      "cDecision": "rewrite",
+      "cReason": "C의 '아니므로'는 연결 표현만 복원한다. 해 자체를 구하는 빈칸으로 바꾸고 자연수 적합성 설명은 보존한다. B와 분수 표기가 아닌 값으로 판단하는 일반 설명은 타당하다.",
+      "exampleNeeded": true,
+      "authorBatch": 8,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "방정식 $x+(x+1)=20$ (동치인 식 허용)"
+          ]
+        },
+        {
+          "anyOf": [
+            "해 $x=\\frac{19}{2}$ ($9.5$ 허용)"
+          ]
+        },
+        {
+          "anyOf": [
+            "해가 자연수가 아니므로 그런 두 자연수는 없다(불가능)"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-005",
+      "learningRole": "reason",
+      "roleReason": "자연수 아닌 해는 부적합",
+      "enrichmentEvidence": "enrichment/enrich-006",
+      "sourceIndex": 1336,
+      "part": "m1plus",
+      "sourceFingerprint": "c74b93dc5de1653d5306069aaa82838f9b5a8570a0150376bbb2f507e3b51caf",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1336
+      },
+      "directReview": null,
+      "cMarkedSentence": "연속하는 두 자연수의 합이 $20$이라고 놓으면, 작은 수 $x$에 대한 방정식은 $x+(x+1)=20$이고 해는 {$\\frac{19}{2}$}이다. 이 값은 자연수가 아니므로 조건에 맞는 두 자연수는 없다.",
+      "cSlotAnswers": [
+        "$\\frac{19}{2}$"
+      ],
+      "cStudentSentence": "연속하는 두 자연수의 합이 $20$이라고 놓으면, 작은 수 $x$에 대한 방정식은 $x+(x+1)=20$이고 해는 □이다. 이 값은 자연수가 아니므로 조건에 맞는 두 자연수는 없다.",
+      "cAnswers": [
+        "$\\frac{19}{2}$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\frac{19}{2}$",
+          "equivalentAnswers": [
+            "$\\frac{19}{2}$",
+            "$9.5$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$\\frac{19}{2}$",
+          "$9.5$"
+        ]
+      ],
+      "proposalFingerprint": "280abc34feb54cea74b452ef9dfb1d94968208367644b86ef1b90edcf3e41858",
+      "cAfter": "연속하는 두 자연수의 합이 $20$이라고 놓으면, 작은 수 $x$에 대한 방정식은 $x+(x+1)=20$이고 해는 {$\\frac{19}{2}$}이다. 이 값은 자연수가 아니므로 조건에 맞는 두 자연수는 없다.",
+      "coreAfter": "연속하는 자연수를 구하는 문제에서는 해가 {자연수}인지 확인한다. 음수나 $9.5$처럼 자연수가 아닌 값이 나오면 문제의 조건에 {맞지 않는다}. 분수로 쓰인 값도 약분하면 자연수가 될 수 있으므로 표기만 보고 판단하지 않는다.",
+      "coreReason": "분수형식이면자연수아니라는오류를없애고 실제값의자연수여부를판단한다."
+    },
+    {
+      "id": "m2-03-05-xc13",
+      "bDecision": "rewrite",
+      "bPrompt": "$\\frac{x}{2}+\\frac{y}{3}=1$과 $3x+2y=6$을 연립할 때 해의 개수를 판별하시오. 판별하기 전에 첫째 식을 어떻게 고치는지도 쓰시오.",
+      "bAnswer": "첫째 식의 양변에 $6$을 곱해 정수 계수로 고치면 $3x+2y=6$이 되어 둘째 식과 같다. 그러므로 해가 무수히 많다.",
+      "bGoal": "분수 계수 식을 정리한 뒤 판별",
+      "bReason": "분수 꼴이라 겉보기에 달라 보이는 함정을 보이려고 원문과 다른 분모를 넣었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "양변에 $6$을 곱해 $3x+2y=6$으로 고친다",
+            "분모를 없애 정수 계수로 고친다"
+          ]
+        },
+        {
+          "anyOf": [
+            "해가 무수히 많다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "roleReason": "정수 계수로 고친 뒤 판별",
+      "cDecision": "rewrite",
+      "cReason": "'먼저 정수 계수로 고친다'라는 열린 범위를 실제 양변 연산으로 고정한다. 동치식 비교와 해의 개수 판단을 묻는다. B와 일반 설명은 유지한다.",
+      "exampleNeeded": true,
+      "authorBatch": 35,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2549,
+      "part": "m2plus",
+      "sourceFingerprint": "24a5b3c7b72103cc7538229d096901a537b6e284b6988fb8cd5e9633a5c9d917",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2549
+      },
+      "directReview": null,
+      "cMarkedSentence": "$\\frac{x}{2}+\\frac{y}{2}=1$의 양변에 {$2$}를 곱하면 $x+y=2$가 된다. 이 식과 $x+y=2$를 연립하면 두 식이 같으므로 해는 {무수히 많다}.",
+      "cSlotAnswers": [
+        "$2$",
+        "무수히 많다"
+      ],
+      "cStudentSentence": "$\\frac{x}{2}+\\frac{y}{2}=1$의 양변에 □를 곱하면 $x+y=2$가 된다. 이 식과 $x+y=2$를 연립하면 두 식이 같으므로 해는 □.",
+      "cAnswers": [
+        "$2$",
+        "무수히 많다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$2$",
+          "equivalentAnswers": [
+            "$2$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "무수히 많다",
+          "equivalentAnswers": [
+            "무수히 많다",
+            "무한히 많다",
+            "셀 수 없이 많다"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$2$"
+        ],
+        [
+          "무수히 많다",
+          "무한히 많다",
+          "셀 수 없이 많다"
+        ]
+      ],
+      "proposalFingerprint": "e22924e09d65036c602ab6416d18e131181cfeb68e87c2597dace9e4c9812d45",
+      "cAfter": "$\\frac{x}{2}+\\frac{y}{2}=1$의 양변에 {$2$}를 곱하면 $x+y=2$가 된다. 이 식과 $x+y=2$를 연립하면 두 식이 같으므로 해는 {무수히 많다}."
+    },
+    {
+      "id": "m2-03-06-xc2",
+      "bDecision": "rewrite",
+      "bPrompt": "미지수가 $x$, $y$ 두 개인 문제에서 한 조건으로 $x+y=10$을 세웠다. 이 식의 양변에 $2$를 곱한 $2x+2y=20$을 두 번째 식으로 쓰면 해를 하나로 정할 수 없는 까닭을 쓰시오.",
+      "bAnswer": "$2x+2y=20$은 $x+y=10$과 같은 조건이라 새 정보가 없다. 해를 하나로 정하려면 서로 다른 조건 두 개로 식을 세워야 한다.",
+      "bGoal": "서로 다른 조건 두 개가 필요한 이유 이해",
+      "bReason": "'새 조건이 아니다'를 구체 식으로 보여 이유를 묻게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2x+2y=20$은 $x+y=10$과 같은 조건이다",
+            "새 조건이 아니다",
+            "두 식을 만족하는 $x$, $y$가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "서로 다른 조건 두 개가 있어야 한다",
+            "이 두 식을 만족하는 $x$, $y$가 여러 쌍이라 해가 하나로 정해지지 않는다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "C의 후속 문장이 두 키 '조건', '식'을 노출한다. 합과 차를 각각 식으로 옮기는 구체 문항으로 고정한다. 독립된 조건의 필요성을 설명하는 B와 일반 설명은 유지한다.",
+      "exampleNeeded": true,
+      "learningRole": "reason",
+      "roleReason": "독립된 두 조건이 필요한 까닭",
+      "authorBatch": 36,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2560,
+      "part": "m2plus",
+      "sourceFingerprint": "ca33f425f4201edfb2ef0c63bc62a7f71abb3f052e65c30eb540435f3f647e62",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2560
+      },
+      "directReview": null,
+      "cMarkedSentence": "큰 수를 $x$, 작은 수를 $y$로 놓는다. 두 수의 합이 $10$이라는 조건은 {$x+y=10$}, 두 수의 차가 $2$라는 조건은 {$x-y=2$}로 나타내어 함께 푼다.",
+      "cSlotAnswers": [
+        "$x+y=10$",
+        "$x-y=2$"
+      ],
+      "cStudentSentence": "큰 수를 $x$, 작은 수를 $y$로 놓는다. 두 수의 합이 $10$이라는 조건은 □, 두 수의 차가 $2$라는 조건은 □로 나타내어 함께 푼다.",
+      "cAnswers": [
+        "$x+y=10$",
+        "$x-y=2$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$x+y=10$",
+          "equivalentAnswers": [
+            "$x+y=10$",
+            "$y+x=10$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$x-y=2$",
+          "equivalentAnswers": [
+            "$x-y=2$",
+            "$x=y+2$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$x+y=10$",
+          "$y+x=10$"
+        ],
+        [
+          "$x-y=2$",
+          "$x=y+2$"
+        ]
+      ],
+      "proposalFingerprint": "0798691f12a4bc511aacfe99d6073e82dcbb45b133d50f0590b0f97cbe433119",
+      "cAfter": "큰 수를 $x$, 작은 수를 $y$로 놓는다. 두 수의 합이 $10$이라는 조건은 {$x+y=10$}, 두 수의 차가 $2$라는 조건은 {$x-y=2$}로 나타내어 함께 푼다."
+    },
+    {
+      "id": "m2-03-07-xc9",
+      "bDecision": "rewrite",
+      "bPrompt": "연필 $2$자루와 공책 $1$권이 $1600$원, 연필 $1$자루와 공책 $2$권이 $2300$원이다. 연필 한 자루를 $x$원, 공책 한 권을 $y$원으로 놓고 연립방정식을 세워 연필 한 자루의 값을 구하시오.",
+      "bAnswer": "$2x+y=1600$, $x+2y=2300$. 풀면 $x=300$, $y=1000$이므로 연필 한 자루는 $300$원이다.",
+      "bGoal": "두 경우로 두 물건 값 구하기",
+      "bReason": "산 방법이 다른 두 경우를 구체 값으로 주었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2x+y=1600$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x+2y=2300$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$300$원"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "C의 '두 경우/식'은 범위가 열려 있다. B와 같은 구매 조건을 각각 방정식으로 옮겨 빈칸의 수학적 대상을 명확히 한다. 일반 설명을 숫자 사례로 바꾸지 않는다.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "두 구매 경우로 연립",
+      "authorBatch": 36,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2587,
+      "part": "m2plus",
+      "sourceFingerprint": "a26fe34c07083c1a48cf8b9799c343ce46bc37fa66229f363c90f42ec0bd6335",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2587
+      },
+      "directReview": null,
+      "cMarkedSentence": "연필 한 자루가 $x$원, 공책 한 권이 $y$원이다. 연필 $2$자루와 공책 $1$권이 $1600$원이면 {$2x+y=1600$}, 연필 $1$자루와 공책 $2$권이 $2300$원이면 {$x+2y=2300$}이다.",
+      "cSlotAnswers": [
+        "$2x+y=1600$",
+        "$x+2y=2300$"
+      ],
+      "cStudentSentence": "연필 한 자루가 $x$원, 공책 한 권이 $y$원이다. 연필 $2$자루와 공책 $1$권이 $1600$원이면 □, 연필 $1$자루와 공책 $2$권이 $2300$원이면 □이다.",
+      "cAnswers": [
+        "$2x+y=1600$",
+        "$x+2y=2300$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$2x+y=1600$",
+          "equivalentAnswers": [
+            "$2x+y=1600$",
+            "$y+2x=1600$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$x+2y=2300$",
+          "equivalentAnswers": [
+            "$x+2y=2300$",
+            "$2y+x=2300$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$2x+y=1600$",
+          "$y+2x=1600$"
+        ],
+        [
+          "$x+2y=2300$",
+          "$2y+x=2300$"
+        ]
+      ],
+      "proposalFingerprint": "30da710dd792894365d2180702954000627e919fb22e08f8293240a9b1bd0cd0",
+      "cAfter": "연필 한 자루가 $x$원, 공책 한 권이 $y$원이다. 연필 $2$자루와 공책 $1$권이 $1600$원이면 {$2x+y=1600$}, 연필 $1$자루와 공책 $2$권이 $2300$원이면 {$x+2y=2300$}이다."
+    },
+    {
+      "id": "m1-04-01-xc9",
+      "bDecision": "rewrite",
+      "bPrompt": "좌표평면에서 어떤 점의 $x$좌표가 $3$이라는 것만 알 때, 그 점이 하나로 정해지는지 판단하고 까닭을 쓰시오.",
+      "bAnswer": "정해지지 않는다. $(3, 0)$, $(3, 1)$, $(3, -2)$처럼 $y$좌표에 따라 서로 다른 점이 무수히 많기 때문이다.",
+      "bGoal": "점을 정하려면 두 좌표가 모두 필요함",
+      "bReason": "B 둘째 기준의 'y좌표를 알 수 없다'만으로는 여러 점이 가능한 이유가 생략될 수 있다. 가능한 y좌표가 여럿이라는 의미를 기준으로 명시한다. C와 일반 설명은 이미 좌표 두 개의 필요성을 묻고 타당하다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "하나로 정해지지 않는다",
+            "그런 점은 무수히 많다"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은 $x$좌표에 서로 다른 $y$좌표가 가능하다",
+            "$y$좌표에 따라 다른 점이 된다",
+            "$(3, 0)$, $(3, 1)$처럼 여러 점이 있다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "좌표평면에서 점 하나를 정하려면 $x$좌표와 {$y$좌표}가 모두 있어야 하며, $x$좌표만 알면 그런 점은 {무수히 많다}.",
+      "cAnswers": [
+        "$y$좌표",
+        "무수히 많다"
+      ],
+      "cReason": "'정해지지 않는다'는 긴 구절 빈칸이라 빠진 좌표와 점의 개수를 묻게 바꿈.",
+      "exampleNeeded": true,
+      "learningRole": "reason",
+      "roleReason": "$y$좌표가 정해지지 않아 점이 무수히 많음",
+      "authorBatch": 11,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1475,
+      "part": "m1plus",
+      "sourceFingerprint": "9617754114fe854fe99ab11b7ffcd420b5b12ee042934532f4d2545c16b8ee0e",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1475
+      },
+      "directReview": null,
+      "cMarkedSentence": "좌표평면에서 점 하나를 정하려면 $x$좌표와 {$y$좌표}가 모두 있어야 하며, $x$좌표만 알면 그런 점은 {무수히 많다}.",
+      "cSlotAnswers": [
+        "$y$좌표",
+        "무수히 많다"
+      ],
+      "cStudentSentence": "좌표평면에서 점 하나를 정하려면 $x$좌표와 □가 모두 있어야 하며, $x$좌표만 알면 그런 점은 □.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$y$좌표",
+          "equivalentAnswers": [
+            "$y$좌표"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "무수히 많다",
+          "equivalentAnswers": [
+            "무수히 많다",
+            "셀 수 없이 많다",
+            "무한히 많다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "무수히 많다",
+          "accept": [
+            "셀 수 없이 많다",
+            "무한히 많다"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$y$좌표"
+        ],
+        [
+          "무수히 많다",
+          "셀 수 없이 많다",
+          "무한히 많다"
+        ]
+      ],
+      "proposalFingerprint": "5eab9af3e5e1e502649a90518b0488f3df2a7943f1b5e473d9ef78b7eaaef9d7"
+    },
+    {
+      "id": "m1-04-01-xc15",
+      "bDecision": "rewrite",
+      "bPrompt": "점 $(a+1, 2a-6)$이 $x$축 위에 있다. 이 조건을 $a$에 대한 방정식으로 나타내고, 이 점의 좌표를 구하시오.",
+      "bAnswer": "$x$축 위의 점은 $y$좌표가 $0$이므로 $2a-6=0$, $a=3$이다. 따라서 점의 좌표는 $(4, 0)$이다.",
+      "bGoal": "축 위에 있다는 조건을 방정식으로 바꾸기",
+      "bReason": "문자가 든 구체 점을 주어 조건을 방정식으로 옮기는 과정을 묻게 함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2a-6=0$",
+            "$y$좌표가 $0$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$(4, 0)$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "C의 '방정식' 자리는 식·등식 등에도 열려 있다. 축 위 조건의 수치와 그 조건에서 얻는 a를 묻는다. 후보 재독에서 뒤 식의 0 노출을 확인하여 해당 식은 인쇄하지 않도록 정리했다. B와 일반 설명의 일반 방법은 유지한다.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "$x$축 위이면 $y$좌표 식을 $0$으로 놓기",
+      "authorBatch": 11,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1481,
+      "part": "m1plus",
+      "sourceFingerprint": "4d8c6166afba3ed8b39e5598c5e9533ea6728bb012fd7db53621485973c797c6",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1481
+      },
+      "directReview": null,
+      "cMarkedSentence": "점 $(a+1,2a-6)$이 $x$축 위에 있으면 $y$좌표는 {$0$}이다. 이 조건으로 방정식을 세워 풀면 $a$의 값은 {$3$}이다.",
+      "cSlotAnswers": [
+        "$0$",
+        "$3$"
+      ],
+      "cStudentSentence": "점 $(a+1,2a-6)$이 $x$축 위에 있으면 $y$좌표는 □이다. 이 조건으로 방정식을 세워 풀면 $a$의 값은 □이다.",
+      "cAnswers": [
+        "$0$",
+        "$3$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$0$",
+          "equivalentAnswers": [
+            "$0$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$3$",
+          "equivalentAnswers": [
+            "$3$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$0$"
+        ],
+        [
+          "$3$"
+        ]
+      ],
+      "proposalFingerprint": "03fe71edfa106af119f52df39cfe1f08f1d4f7bf39cce34d1b5da25249cafa73",
+      "cAfter": "점 $(a+1,2a-6)$이 $x$축 위에 있으면 $y$좌표는 {$0$}이다. 이 조건으로 방정식을 세워 풀면 $a$의 값은 {$3$}이다."
+    },
+    {
+      "id": "m2-03-07-xc23",
+      "bDecision": "rewrite",
+      "bPrompt": "작년 남학생이 $100$명, 여학생이 $300$명이었다. 올해 남학생은 $20\\%$, 여학생은 $10\\%$ 늘었다. 전체 학생 수의 증가율이 $\\frac{20+10}{2}=15\\%$가 아닌 까닭을 쓰고, 실제 증가율을 구하시오.",
+      "bAnswer": "두 증가율의 기준 양이 달라 학생 수가 많은 여학생의 증가율이 더 크게 반영된다. 늘어난 수는 $20+30=50$명이므로 $\\frac{50}{400}\\times100=12.5\\%$이다.",
+      "bGoal": "증가율을 단순 평균하지 않는 이유",
+      "bReason": "B 이유 기준에 기준 양의 크기가 전체 증가율에 반영된다는 관계를 명시한다. C의 문법 조각은 두 집단의 증가 인원 합과 전체 증가율 계산으로 바꾼다. 일반 성질은 유지한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "기준 인원이 달라 여학생의 증가율이 전체 증가율에 더 크게 반영된다",
+            "각 집단의 증가 인원을 합하여 전체 기준 인원으로 나누므로 두 증가율의 단순 평균이 아니다",
+            "$\\frac{100\\times0.2+300\\times0.1}{400}$처럼 기준 인원을 반영한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12.5\\%$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "B 이유 기준에 기준 양의 크기가 전체 증가율에 반영된다는 관계를 명시한다. C의 문법 조각은 두 집단의 증가 인원 합과 전체 증가율 계산으로 바꾼다. 일반 성질은 유지한다.",
+      "exampleNeeded": true,
+      "learningRole": "reason",
+      "roleReason": "크기에 따라 전체 증가율이 달라짐",
+      "authorBatch": 36,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2598,
+      "part": "m2plus",
+      "sourceFingerprint": "911f10287310ed43da0c056862ab3dd22d99353e6b2b554a8a99367864ca1ecf",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2598
+      },
+      "directReview": null,
+      "cMarkedSentence": "작년 남학생 $100$명은 올해 $20\\%$, 여학생 $300$명은 $10\\%$ 늘었다. 늘어난 전체 인원은 {$50$}명이고, 작년 전체 $400$명을 기준으로 한 증가율은 {$12.5\\%$}이다.",
+      "cSlotAnswers": [
+        "$50$",
+        "$12.5\\%$"
+      ],
+      "cStudentSentence": "작년 남학생 $100$명은 올해 $20\\%$, 여학생 $300$명은 $10\\%$ 늘었다. 늘어난 전체 인원은 □명이고, 작년 전체 $400$명을 기준으로 한 증가율은 □이다.",
+      "cAnswers": [
+        "$50$",
+        "$12.5\\%$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$50$",
+          "equivalentAnswers": [
+            "$50$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$12.5\\%$",
+          "equivalentAnswers": [
+            "$12.5\\%$",
+            "$\\frac{1}{8}$",
+            "$0.125$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$50$"
+        ],
+        [
+          "$12.5\\%$",
+          "$\\frac{1}{8}$",
+          "$0.125$"
+        ]
+      ],
+      "proposalFingerprint": "4bf6d2b83fee3c8a72b8f7a05b3241111b45bc5ae3fe029e320f5d60a05f19d0",
+      "cAfter": "작년 남학생 $100$명은 올해 $20\\%$, 여학생 $300$명은 $10\\%$ 늘었다. 늘어난 전체 인원은 {$50$}명이고, 작년 전체 $400$명을 기준으로 한 증가율은 {$12.5\\%$}이다."
+    },
+    {
+      "id": "m1-04-01-xc19",
+      "bDecision": "rewrite",
+      "bPrompt": "좌표평면 위의 두 점 $(1, 2)$, $(7, 2)$를 이은 선분의 한가운데 점의 좌표를 구하고, $x$좌표와 $y$좌표를 각각 어떻게 정했는지 쓰시오.",
+      "bAnswer": "$(4, 2)$이다. $y$좌표는 두 점이 같으므로 $2$ 그대로 두고, $x$좌표는 $1$과 $7$의 평균인 $\\frac{1+7}{2}=4$로 정했다.",
+      "bGoal": "축에 평행한 선분의 한가운데 점 구하기",
+      "bReason": "문제가 요구한 x좌표와 y좌표 각각의 방법을 둘 다 기준에 명시한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$(4, 2)$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x$좌표는 $1$과 $7$의 평균",
+            "$\\frac{1+7}{2}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$y$좌표는 두 끝점에서 같은 $2$로 둔다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "좌표축에 평행한 선분의 한가운데 점은 두 끝점에서 같은 좌표는 그대로 두고, 다른 좌표는 두 값의 {평균}, 곧 두 값을 더해 {$2$}로 나눈 값을 쓴다.",
+      "cAnswers": [
+        "평균",
+        "$2$"
+      ],
+      "cReason": "'그대로'는 임의로 자른 낱말이라 평균과 그 계산법을 묻게 바꿈.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "같은 좌표는 두고 다른 좌표는 평균으로 구하기",
+      "authorBatch": 11,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1485,
+      "part": "m1plus",
+      "sourceFingerprint": "dec871640a19caf3b60c6d9e1dc82c72c137da5a27fa498f74c89bb1c8513942",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1485
+      },
+      "directReview": null,
+      "cMarkedSentence": "좌표축에 평행한 선분의 한가운데 점은 두 끝점에서 같은 좌표는 그대로 두고, 다른 좌표는 두 값의 {평균}, 곧 두 값을 더해 {$2$}로 나눈 값을 쓴다.",
+      "cSlotAnswers": [
+        "평균",
+        "$2$"
+      ],
+      "cStudentSentence": "좌표축에 평행한 선분의 한가운데 점은 두 끝점에서 같은 좌표는 그대로 두고, 다른 좌표는 두 값의 □, 곧 두 값을 더해 □로 나눈 값을 쓴다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "평균",
+          "equivalentAnswers": [
+            "평균"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$2$",
+          "equivalentAnswers": [
+            "$2$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "평균"
+        ],
+        [
+          "$2$"
+        ]
+      ],
+      "proposalFingerprint": "a9982b514fb0abb526768f4d987959af4dabb115b4cfb3e5b3ba3d01bdc2379d"
+    },
+    {
+      "id": "m1-04-01-xc7",
+      "bDecision": "rewrite",
+      "bPrompt": "좌표평면에서 두 점 $(2, 1)$, $(2, 5)$처럼 $x$좌표가 같고 $y$좌표가 다른 두 점을 이은 선분은 어느 좌표축과 평행한지 쓰고, 그 까닭을 설명하시오.",
+      "bAnswer": "$y$축에 평행하다. 두 점의 가로 위치($x$좌표)가 같아 $y$축에서 같은 쪽으로 같은 거리에 있으므로 선분이 세로로 놓이기 때문이다.",
+      "bGoal": "좌표가 같은 두 점을 이은 선분과 좌표축의 관계",
+      "bReason": "어떤 선분이 어느 축에 평행한지 예와 함께 이유를 묻게 함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$y$축에 평행하다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 점이 $y$축에서 같은 거리에 있다",
+            "가로 위치가 같고 세로 위치만 다르다",
+            "두 점이 같은 세로선 위에 있다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "서로 다른 점을 주고 뒤의 축 이름을 베껴 쓸 수 없도록 방향을 묻는다.",
+      "exampleNeeded": true,
+      "learningRole": "reason",
+      "roleReason": "$x$좌표가 같으면 세로로 놓여 $y$축에 평행",
+      "authorBatch": 11,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1473,
+      "part": "m1plus",
+      "sourceFingerprint": "ab8d7aa4db08096adab95ebe20626af0c238a344bc05394540bab67ca4061f6b",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1473
+      },
+      "directReview": null,
+      "cMarkedSentence": "좌표평면의 두 점 $(2,1)$, $(2,5)$는 $x$좌표가 같고 $y$좌표가 다르므로, 두 점을 이은 선분은 {$y$축}에 평행하다.",
+      "cSlotAnswers": [
+        "$y$축"
+      ],
+      "cStudentSentence": "좌표평면의 두 점 $(2,1)$, $(2,5)$는 $x$좌표가 같고 $y$좌표가 다르므로, 두 점을 이은 선분은 □에 평행하다.",
+      "cAnswers": [
+        "$y$축"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$y$축",
+          "equivalentAnswers": [
+            "$y$축"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$y$축"
+        ]
+      ],
+      "proposalFingerprint": "a3ff73bd62e6a69f1a31bb0f95b9998bdc6856bf6e640cd71a4bbe8a4cd313f0",
+      "cAfter": "좌표평면의 두 점 $(2,1)$, $(2,5)$는 $x$좌표가 같고 $y$좌표가 다르므로, 두 점을 이은 선분은 {$y$축}에 평행하다."
+    },
+    {
+      "id": "m2-03-08-xc9",
+      "bDecision": "rewrite",
+      "bPrompt": "전체 일의 양을 $1$, $A$, $B$가 하루에 하는 일의 양을 각각 $x$, $y$로 놓는다. '$A$, $B$가 함께 하면 $6$일 걸린다', '$A$가 $4$일 한 뒤 나머지를 $B$가 $9$일 해서 끝냈다'를 각각 식으로 나타내시오.",
+      "bAnswer": "$6(x+y)=1$, $4x+9y=1$",
+      "bGoal": "함께 한 경우와 따로 한 경우로 연립식 세우기",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$6(x+y)=1$",
+            "$6x+6y=1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4x+9y=1$"
+          ]
+        }
+      ],
+      "bReason": "'함께/따로'라는 낱말 대신 두 조건을 실제 식으로 쓰게 했다.",
+      "cDecision": "rewrite",
+      "cReason": "C에서 어떤 따로 한 경우인지 제시되지 않아 답이 열린다. 일의 전체량을 1로 정하고 함께 일하는 날 수와 차례로 일하는 날 수를 주어 두 식을 고정한다. B와 일반 방법은 유지한다.",
+      "learningRole": "application",
+      "roleReason": "두 조건을 일의 양 식 두 개로 옮기기",
+      "authorBatch": 37,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2610,
+      "part": "m2plus",
+      "sourceFingerprint": "465fa54cf52d8b935f9850e62c4e3d2518c585ea3c9a675dc7f50359db157514",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2610
+      },
+      "directReview": null,
+      "cMarkedSentence": "전체 일을 $1$, $A$, $B$의 하루 작업량을 각각 $x$, $y$라 한다. 함께 $6$일에 끝내면 {$6(x+y)=1$}, $A$가 $4$일 하고 $B$가 $9$일 하여 끝내면 {$4x+9y=1$}이다.",
+      "cSlotAnswers": [
+        "$6(x+y)=1$",
+        "$4x+9y=1$"
+      ],
+      "cStudentSentence": "전체 일을 $1$, $A$, $B$의 하루 작업량을 각각 $x$, $y$라 한다. 함께 $6$일에 끝내면 □, $A$가 $4$일 하고 $B$가 $9$일 하여 끝내면 □이다.",
+      "cAnswers": [
+        "$6(x+y)=1$",
+        "$4x+9y=1$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$6(x+y)=1$",
+          "equivalentAnswers": [
+            "$6(x+y)=1$",
+            "$6x+6y=1$",
+            "$x+y=\\frac{1}{6}$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$4x+9y=1$",
+          "equivalentAnswers": [
+            "$4x+9y=1$",
+            "$9y+4x=1$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "따로",
+          "accept": [
+            "나누어",
+            "각자"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$6(x+y)=1$",
+          "$6x+6y=1$",
+          "$x+y=\\frac{1}{6}$"
+        ],
+        [
+          "$4x+9y=1$",
+          "$9y+4x=1$"
+        ]
+      ],
+      "proposalFingerprint": "ecb17fcbad09bb2e26b9c2caf176a94884c7eed7c9261c8dedf54b9010a0343c",
+      "cAfter": "전체 일을 $1$, $A$, $B$의 하루 작업량을 각각 $x$, $y$라 한다. 함께 $6$일에 끝내면 {$6(x+y)=1$}, $A$가 $4$일 하고 $B$가 $9$일 하여 끝내면 {$4x+9y=1$}이다."
+    },
+    {
+      "id": "m2-03-09-xc14",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "영양소 양을 더하는 식은 xc24 B의 적용 문제에서 요구한다.",
+      "cDecision": "rewrite",
+      "cAfter": "단백질이 질량의 $10\\%$인 식품 $x\\,\\mathrm{g}$과 $20\\%$인 식품 $y\\,\\mathrm{g}$을 섞었다. 섞인 식품에 단백질이 $30\\,\\mathrm{g}$ 들도록 하는 식은 {$0.1x+0.2y=30$}이다.",
+      "cAnswers": [
+        "$0.1x+0.2y=30$"
+      ],
+      "cReason": "'양/더한'의 일반 어휘 복원을 영양소 양과 식품 질량의 관계를 실제 식으로 세우는 빈칸으로 바꾼다. 단순히 쉬워서 제외하지 않고 평가 대상을 명확하게 한다. 기존 B 형식 제외와 일반 설명은 그대로 둔다.",
+      "exclusionReason": "B 제외: xc24 B와 목표 중복.",
+      "learningRole": "procedure",
+      "roleReason": "비율이 아닌 영양소 양끼리 더하기",
+      "authorBatch": 37,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2633,
+      "part": "m2plus",
+      "sourceFingerprint": "72aa138aeecbf9d67dea34c298fb3adf9abff39fe006e092df8b4bcd10c80fe1",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2633
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cMarkedSentence": "단백질이 질량의 $10\\%$인 식품 $x\\,\\mathrm{g}$과 $20\\%$인 식품 $y\\,\\mathrm{g}$을 섞었다. 섞인 식품에 단백질이 $30\\,\\mathrm{g}$ 들도록 하는 식은 {$0.1x+0.2y=30$}이다.",
+      "cSlotAnswers": [
+        "$0.1x+0.2y=30$"
+      ],
+      "cStudentSentence": "단백질이 질량의 $10\\%$인 식품 $x\\,\\mathrm{g}$과 $20\\%$인 식품 $y\\,\\mathrm{g}$을 섞었다. 섞인 식품에 단백질이 $30\\,\\mathrm{g}$ 들도록 하는 식은 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$0.1x+0.2y=30$",
+          "equivalentAnswers": [
+            "$0.1x+0.2y=30$",
+            "$\\frac{x}{10}+\\frac{y}{5}=30$",
+            "$x+2y=300$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$0.1x+0.2y=30$",
+          "$\\frac{x}{10}+\\frac{y}{5}=30$",
+          "$x+2y=300$"
+        ]
+      ],
+      "proposalFingerprint": "76541041ab4e8e563779c0f8e9a158fd2e2a55a801ba58871225eae3c67010f7"
+    },
+    {
+      "id": "m1-04-03-xc1",
+      "learningRole": "reason",
+      "roleReason": "축이 나타내는 양을 알아야 좌표값의 의미를 해석할 수 있는 이유",
+      "bDecision": "rewrite",
+      "bPrompt": "그래프의 두 축이 각각 무엇을 나타내는지 알지 못할 때, 점 $(2,15)$의 두 숫자가 실제로 무엇의 값인지 알 수 있는가? 이유와 함께 쓰시오.",
+      "bAnswer": "알 수 없다. 가로축과 세로축이 각각 어떤 양을 나타내는지 알아야 두 숫자가 시간, 기온, 거리 등 무엇의 값인지 해석할 수 있다.",
+      "bGoal": "두 축이 나타내는 양부터 확인하기",
+      "bReason": "가장 먼저라는 임의 순서보다 축의 정보가 없는 구체상황에서 해석이 어려운 이유를 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 숫자가 무엇의 값인지 알 수 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 축이 나타내는 양을 알아야 좌표값의 실제 의미를 알 수 있다"
+          ]
+        }
+      ],
+      "cDecision": "exclude",
+      "cReason": "축이 나타내는 양의 이름을 묻는 일반 문장은 양/대상/내용 등 답 범위가 넓고 실질 해석은 B에서 확인한다.",
+      "authorBatch": 12,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1512,
+      "part": "m1plus",
+      "sourceFingerprint": "13bd49cc27c131c7a1f9189b1d117032c75766b2570fd95e22325401d3f773de",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1512
+      },
+      "directReview": null,
+      "cMarkedSentence": null,
+      "cSlotAnswers": null,
+      "cStudentSentence": null,
+      "cAnswers": null,
+      "cSlots": null,
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "가로축",
+          "accept": [
+            "$x$축"
+          ]
+        },
+        {
+          "answer": "세로축",
+          "accept": [
+            "$y$축"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": null,
+      "proposalFingerprint": "f465a8a3a8dfa535298af1628e485ba1fa8a8aa94ee575c4d9ac94b210be727a",
+      "cAfter": null,
+      "exclusionReason": "C 제외: 양의 종류·대상·내용 등 요령 낱말의 답 범위가 열려 있다. 축을 모르면 점의 의미를 알 수 없는 이유를 B에서 묻는다."
+    },
+    {
+      "id": "m1-04-03-xc3",
+      "learningRole": "procedure",
+      "roleReason": "그래프에서 $x$의 값에 대응하는 $y$의 값 읽기",
+      "bDecision": "rewrite",
+      "bPrompt": "가로축이 $x$, 세로축이 $y$인 그래프에서 $x=3$일 때의 $y$의 값을 찾는 순서를 쓰시오. 그래프가 점 $(3, 15)$를 지난다면 그 값은 얼마인가?",
+      "bAnswer": "가로축에서 $x=3$인 곳을 찾아 그 위에 있는 그래프의 점을 찾고, 그 점의 $y$좌표를 읽는다. 그래프가 $(3, 15)$를 지나므로 $y$의 값은 $15$이다.",
+      "bGoal": "그래프에서 값을 찾는 순서 말하기",
+      "bReason": "무엇을 찾는지($x$가 정해졌을 때의 $y$)와 구체적인 점을 질문에 넣었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x=3$에 해당하는 그래프 위의 점을 찾는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "그 점의 $y$좌표를 읽는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$15$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "가로축이 $x$, 세로축이 $y$인 함수의 그래프가 점 $(3,15)$를 지난다. $x=3$에 대응하는 $y$의 값은 {$15$}이다.",
+      "cAnswers": [
+        "$15$"
+      ],
+      "cReason": "C의 물음에 y의 값이라는 목적이 이미 나와 y좌표 복원만 남는다. 좌표를 실제 대응 값으로 읽는 결과를 묻는다. B의 순서와 일반 설명은 유지한다.",
+      "exampleNeeded": true,
+      "authorBatch": 12,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1514,
+      "part": "m1plus",
+      "sourceFingerprint": "888dcb761bd1a835ff26585eec77d5f568a6076ab29fa4792c58a13c35f06aee",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1514
+      },
+      "directReview": null,
+      "cMarkedSentence": "가로축이 $x$, 세로축이 $y$인 함수의 그래프가 점 $(3,15)$를 지난다. $x=3$에 대응하는 $y$의 값은 {$15$}이다.",
+      "cSlotAnswers": [
+        "$15$"
+      ],
+      "cStudentSentence": "가로축이 $x$, 세로축이 $y$인 함수의 그래프가 점 $(3,15)$를 지난다. $x=3$에 대응하는 $y$의 값은 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$15$",
+          "equivalentAnswers": [
+            "$15$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "$y$좌표",
+          "accept": [
+            "$y$의 값"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$15$"
+        ]
+      ],
+      "proposalFingerprint": "24aa0cae9816787025b40ccd9ba3efd11e4c32a1525a3b55e02bddbd81558867"
+    },
+    {
+      "id": "m2-03-09-xc21",
+      "bDecision": "rewrite",
+      "bPrompt": "$8\\%$ 소금물 $300\\,\\mathrm{g}$에서 물만 $100\\,\\mathrm{g}$ 증발시킨 뒤, $5\\%$ 소금물 $100\\,\\mathrm{g}$을 섞었다. 증발하는 동안 변하지 않는 양은 무엇이며, 마지막 소금물 속 소금은 몇 $\\mathrm{g}$인가?",
+      "bAnswer": "소금의 양이 변하지 않는다. 처음 소금 $24\\,\\mathrm{g}$에 새로 넣은 소금 $5\\,\\mathrm{g}$을 더해 $29\\,\\mathrm{g}$이다.",
+      "bGoal": "증발과 섞기에서 소금 양 추적",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "소금의 양"
+          ]
+        },
+        {
+          "anyOf": [
+            "$29\\,\\mathrm{g}$"
+          ]
+        }
+      ],
+      "bReason": "증발과 섞기 두 단계를 수치로 주어 불변량과 합을 적용하게 했다.",
+      "cDecision": "rewrite",
+      "cReason": "C 첫 키가 뒤 문장에 그대로 나오는 노출을 제거한다. 증발 뒤 남는 소금과 혼합 뒤 총 소금을 계산하게 한다. B와 물만 증발할 때 보존되는 양에 관한 일반 설명은 그대로 둔다.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "증발 뒤 섞을 때 소금 양 합 구하기",
+      "authorBatch": 37,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2640,
+      "part": "m2plus",
+      "sourceFingerprint": "8c253d628714e65b404f7138f70c2ff25ea1520770547b9f988a84ac16592f11",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2640
+      },
+      "directReview": null,
+      "cMarkedSentence": "$8\\%$ 소금물 $300\\,\\mathrm{g}$에서 물만 $100\\,\\mathrm{g}$ 증발시키면 소금은 {$24$}$\\,\\mathrm{g}$ 남는다. 여기에 $5\\%$ 소금물 $100\\,\\mathrm{g}$을 섞으면 소금은 모두 {$29$}$\\,\\mathrm{g}$이다.",
+      "cSlotAnswers": [
+        "$24$",
+        "$29$"
+      ],
+      "cStudentSentence": "$8\\%$ 소금물 $300\\,\\mathrm{g}$에서 물만 $100\\,\\mathrm{g}$ 증발시키면 소금은 □$\\,\\mathrm{g}$ 남는다. 여기에 $5\\%$ 소금물 $100\\,\\mathrm{g}$을 섞으면 소금은 모두 □$\\,\\mathrm{g}$이다.",
+      "cAnswers": [
+        "$24$",
+        "$29$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$24$",
+          "equivalentAnswers": [
+            "$24$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$29$",
+          "equivalentAnswers": [
+            "$29$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$24$"
+        ],
+        [
+          "$29$"
+        ]
+      ],
+      "proposalFingerprint": "bdfe42606ba282698c48be1428a180df24bc7d4e34cae121d19d126ac9a4347f",
+      "cAfter": "$8\\%$ 소금물 $300\\,\\mathrm{g}$에서 물만 $100\\,\\mathrm{g}$ 증발시키면 소금은 {$24$}$\\,\\mathrm{g}$ 남는다. 여기에 $5\\%$ 소금물 $100\\,\\mathrm{g}$을 섞으면 소금은 모두 {$29$}$\\,\\mathrm{g}$이다."
+    },
+    {
+      "id": "m2-04-03-xc2",
+      "bDecision": "rewrite",
+      "bPrompt": "$y$의 값이 $5$에서 $1$로 바뀔 때 $y$의 값의 증가량을 구하고, 어떻게 계산했는지 쓰시오. 값이 줄어든 경우 증가량을 어떻게 나타내는지도 쓰시오.",
+      "bAnswer": "$1-5=-4$이다. 나중 값에서 처음 값을 뺀다. 값이 줄어들면 증가량을 음수로 나타낸다.",
+      "bGoal": "줄어든 양을 음수인 증가량으로 나타내기",
+      "bReason": "B 계산 방법이 필수 기준인데 물음은 값과 음수 표기만 요구한다. 방법 설명 요구를 물음에 명시해 기준과 일치시킨다. C와 일반 설명은 정확하다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나중 값에서 처음 값을 뺌",
+            "$1-5$로 계산"
+          ]
+        },
+        {
+          "anyOf": [
+            "증가량 $-4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "줄어들면 증가량은 음수"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$y$의 값이 $5$에서 $1$로 바뀌면 $y$의 값의 증가량은 (나중 값)$-$({처음 값})이므로 {$-4$}이다.",
+      "cAnswers": [
+        "처음 값",
+        "$-4$"
+      ],
+      "cReason": "'뺀'은 문장만 읽어도 채워지는 빈칸이라 음수 증가량 계산으로 바꿈.",
+      "exampleNeeded": true,
+      "authorBatch": 38,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "definition",
+      "roleReason": "줄면 증가량이 음수",
+      "enrichmentEvidence": "enrichment/enrich-008",
+      "sourceIndex": 2676,
+      "part": "m2plus",
+      "sourceFingerprint": "b853fabde90ca86242ab75bc1c06249c2f245093bf87de9a131ca0696a9ace2d",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2676
+      },
+      "directReview": null,
+      "cMarkedSentence": "$y$의 값이 $5$에서 $1$로 바뀌면 $y$의 값의 증가량은 (나중 값)$-$({처음 값})이므로 {$-4$}이다.",
+      "cSlotAnswers": [
+        "처음 값",
+        "$-4$"
+      ],
+      "cStudentSentence": "$y$의 값이 $5$에서 $1$로 바뀌면 $y$의 값의 증가량은 (나중 값)$-$(□)이므로 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "처음 값",
+          "equivalentAnswers": [
+            "처음 값",
+            "처음의 값",
+            "처음"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$-4$",
+          "equivalentAnswers": [
+            "$-4$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "처음 값",
+          "accept": [
+            "처음의 값",
+            "처음"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "처음 값",
+          "처음의 값",
+          "처음"
+        ],
+        [
+          "$-4$"
+        ]
+      ],
+      "proposalFingerprint": "220772e9198def635c636f1855bd5daf3462f99a0aa7740ff4280b02b8afdcd1"
+    },
+    {
+      "id": "m1-04-03-xc10",
+      "learningRole": "procedure",
+      "roleReason": "같은 시간 동안 변한 양으로 빠르기 견주기",
+      "bDecision": "rewrite",
+      "bPrompt": "출발한 뒤 $0$분에서 $5$분까지 $300\\,\\mathrm{m}$, $5$분에서 $10$분까지 $500\\,\\mathrm{m}$를 갔다. 어느 구간에서 더 빠르게 이동했는지, 무엇을 견주어 판단했는지 쓰시오.",
+      "bAnswer": "$5$분에서 $10$분까지가 더 빠르다. 두 구간의 시간이 $5$분으로 같으므로 그동안 이동한 거리가 더 큰 구간이 더 빠르다.",
+      "bGoal": "같은 시간 동안 변한 양으로 빠르기 견주기",
+      "bReason": "두 구간의 시간과 변한 양을 주어 견주는 기준을 답하게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$5$분에서 $10$분까지"
+          ]
+        },
+        {
+          "anyOf": [
+            "걸린 시간이 같으므로 이동한 거리가 큰 쪽이 빠르다",
+            "같은 시간 동안 변한 양을 견준다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$0$분부터 $5$분까지 $300\\,\\mathrm{m}$, $5$분부터 $10$분까지 $500\\,\\mathrm{m}$ 이동했다. 같은 시간에 더 멀리 간 구간이 빠르므로, 더 빠른 구간은 {$5$분부터 $10$분까지}이다.",
+      "cAnswers": [
+        "$5$분부터 $10$분까지"
+      ],
+      "cReason": "'많이/빠르게' 자리는 둘 다 크게로 읽힐 수 있다. 같은 시간에 이동한 거리가 다른 두 구간을 구체적으로 주고 더 빠른 구간을 선택하게 한다. B와 증가·감소 모두 변화량 크기로 비교하는 일반 설명은 유지한다.",
+      "exampleNeeded": true,
+      "authorBatch": 12,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1521,
+      "part": "m1plus",
+      "sourceFingerprint": "561f4df1f73899a1a25dddf26a7da88566f559695bd68f3aa54e7c9e42244675",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1521
+      },
+      "directReview": null,
+      "cMarkedSentence": "$0$분부터 $5$분까지 $300\\,\\mathrm{m}$, $5$분부터 $10$분까지 $500\\,\\mathrm{m}$ 이동했다. 같은 시간에 더 멀리 간 구간이 빠르므로, 더 빠른 구간은 {$5$분부터 $10$분까지}이다.",
+      "cSlotAnswers": [
+        "$5$분부터 $10$분까지"
+      ],
+      "cStudentSentence": "$0$분부터 $5$분까지 $300\\,\\mathrm{m}$, $5$분부터 $10$분까지 $500\\,\\mathrm{m}$ 이동했다. 같은 시간에 더 멀리 간 구간이 빠르므로, 더 빠른 구간은 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$5$분부터 $10$분까지",
+          "equivalentAnswers": [
+            "$5$분부터 $10$분까지",
+            "$5$분에서 $10$분까지",
+            "두 번째 구간"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "많이",
+          "accept": [
+            "크게"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$5$분부터 $10$분까지",
+          "$5$분에서 $10$분까지",
+          "두 번째 구간"
+        ]
+      ],
+      "proposalFingerprint": "40d24152eb8164410edb5aba110af8a0d1137de1d5449c03997075f444519db7"
+    },
+    {
+      "id": "m2-04-04-xc8",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "'그래프는 직선'이라는 조각 사실이며 c3 B·C에서 직선임을 이미 다룬다.",
+      "cDecision": "rewrite",
+      "cAfter": "일차함수 $y=ax+b$($a\\ne0$)의 그래프의 모양은 {직선}이다.",
+      "cAnswers": [
+        "직선"
+      ],
+      "cReason": "같은 snapshot의 key는 C pass이므로 독립 지적 전체를 실패로 바꾸지 않는다. 다만 blind의 열린 서술 범위 지적에 맞춰 그래프의 '모양'을 묻고 일차함수의 a≠0을 명시한다. 직선이라는 쉬운 정식 이름은 유효한 평가로 유지한다. B 제외와 일반 설명은 보존한다.",
+      "exclusionReason": "B 제외: 조각 제목으로, 독립 질문이 되면 '직선' 한 단어만 묻게 되고 c3과 중복된다.",
+      "learningRole": "definition",
+      "roleReason": "일차함수 그래프는 직선",
+      "authorBatch": 39,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2695,
+      "part": "m2plus",
+      "sourceFingerprint": "9229dc56b68b15061cd34165faf1c90c9aa353e0a3ee544f36e171a7663dbbc6",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2695
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cMarkedSentence": "일차함수 $y=ax+b$($a\\ne0$)의 그래프의 모양은 {직선}이다.",
+      "cSlotAnswers": [
+        "직선"
+      ],
+      "cStudentSentence": "일차함수 $y=ax+b$($a\\ne0$)의 그래프의 모양은 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "직선",
+          "equivalentAnswers": [
+            "직선"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "직선"
+        ]
+      ],
+      "proposalFingerprint": "9b3a3f8ac0e1b62e474a26c8a9df5242e7c643be6b6d38e42f00ba18db1bd878"
+    },
+    {
+      "id": "m1-04-04-xc12",
+      "bDecision": "rewrite",
+      "bPrompt": "$y=-\\frac{3}{4}x$의 그래프가 지나는 사분면을 모두 쓰고, 식의 어느 부분을 보고 판단했는지 쓰시오.",
+      "bAnswer": "제$2$, $4$사분면을 지난다. $x$에 곱해진 수 $-\\frac{3}{4}$이 음수이기 때문이다.",
+      "bGoal": "$a$의 부호로 지나는 사분면 판단하기",
+      "bReason": "판단할 식이 없어 분수 계수의 식을 주고 근거가 부호임을 쓰게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "제$2$, $4$사분면"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x$에 곱해진 수가 음수이다",
+            "$a<0$이다",
+            "$-\\frac{3}{4}<0$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$y=ax$의 그래프가 지나는 사분면은 $a$의 {부호}로 정해진다. 예를 들어 $y=-\\frac{3}{4}x$의 그래프는 제{$2$, $4$}사분면을 지난다.",
+      "cAnswers": [
+        "부호",
+        "$2$, $4$"
+      ],
+      "cReason": "한 빈칸에 요구하는 두 사분면의 나열 순서는 의미 차이가 없으므로 역순도 허용한다.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "식을 보고 사분면 판단하기",
+      "authorBatch": 13,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1546,
+      "part": "m1plus",
+      "sourceFingerprint": "fdebd31f26c1f1ac693d4de316eea7fdb5b228625bf610c9831077af7d88b184",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1546
+      },
+      "directReview": null,
+      "cMarkedSentence": "$y=ax$의 그래프가 지나는 사분면은 $a$의 {부호}로 정해진다. 예를 들어 $y=-\\frac{3}{4}x$의 그래프는 제{$2$, $4$}사분면을 지난다.",
+      "cSlotAnswers": [
+        "부호",
+        "$2$, $4$"
+      ],
+      "cStudentSentence": "$y=ax$의 그래프가 지나는 사분면은 $a$의 □로 정해진다. 예를 들어 $y=-\\frac{3}{4}x$의 그래프는 제□사분면을 지난다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "부호",
+          "equivalentAnswers": [
+            "부호"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$2$, $4$",
+          "equivalentAnswers": [
+            "$2$, $4$",
+            "$4$, $2$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "부호"
+        ],
+        [
+          "$2$, $4$",
+          "$4$, $2$"
+        ]
+      ],
+      "proposalFingerprint": "7c446490dde22c9a5251a6ae014136df9e58c5622e2efb44378a90961ba950b3"
+    },
+    {
+      "id": "m1-04-04-xc13",
+      "bDecision": "rewrite",
+      "bPrompt": "점 $(2, -8)$이 $y=-4x$의 그래프 위에 있는지 판단하고, 확인한 방법을 쓰시오.",
+      "bAnswer": "있다. $x=2$를 대입하면 $y=-4\\times2=-8$로 점의 $y$좌표와 같다.",
+      "bGoal": "대입으로 그래프 위의 점인지 판단하기",
+      "bReason": "확인할 점과 식이 없어 구체 좌표를 주고 방법까지 쓰게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "그래프 위에 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x=2$를 대입한 값 $-8$이 $y$좌표와 같다",
+            "$-8=-4\\times2$가 성립한다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "key는 현재 C pass이지만 blind가 지적한 '같은지'는 문법 조각으로도 복원된다. 대입 결과의 값과 그래프 위 여부를 묻도록 좁힌다. B의 확인 방법과 일반 설명은 유지한다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "점이 그래프 위에 있는지 확인",
+      "authorBatch": 13,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 1547,
+      "part": "m1plus",
+      "sourceFingerprint": "f8e3f9a3f639b0069b98577312456c7950eaa52ef14c9afc196b30a04236e83e",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1547
+      },
+      "directReview": null,
+      "cMarkedSentence": "점 $(2,-8)$이 $y=-4x$의 그래프 위에 있는지 알아보려면 $x=2$를 대입한다. 이때 함숫값은 {$-8$}이고 점의 $y$좌표와 같으므로 이 점은 그래프 위에 {있다}.",
+      "cSlotAnswers": [
+        "$-8$",
+        "있다"
+      ],
+      "cStudentSentence": "점 $(2,-8)$이 $y=-4x$의 그래프 위에 있는지 알아보려면 $x=2$를 대입한다. 이때 함숫값은 □이고 점의 $y$좌표와 같으므로 이 점은 그래프 위에 □.",
+      "cAnswers": [
+        "$-8$",
+        "있다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$-8$",
+          "equivalentAnswers": [
+            "$-8$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "있다",
+          "equivalentAnswers": [
+            "있다",
+            "놓인다",
+            "속한다"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$-8$"
+        ],
+        [
+          "있다",
+          "놓인다",
+          "속한다"
+        ]
+      ],
+      "proposalFingerprint": "a4caa71c9716143d8b3bd88743b8f3dd17005dba1629d468c9b41c69a64e6f3f",
+      "cAfter": "점 $(2,-8)$이 $y=-4x$의 그래프 위에 있는지 알아보려면 $x=2$를 대입한다. 이때 함숫값은 {$-8$}이고 점의 $y$좌표와 같으므로 이 점은 그래프 위에 {있다}."
+    },
+    {
+      "id": "m2-04-05-xc19",
+      "bDecision": "rewrite",
+      "bPrompt": "① 기울기 $2$, $y$절편 $3$ ② 기울기 $2$, 지나는 점 $(1,5)$ ③ 지나는 두 점 $(1,5)$, $(3,9)$가 주어졌다. 각 경우의 일차함수 식을 구하시오. 두 점만으로 일차함수가 정해지려면 두 좌표에 어떤 조건이 필요한지도 쓰시오.",
+      "bAnswer": "세 경우 모두 $y=2x+3$이다. 두 점의 $x$좌표가 서로 달라야 기울기를 구할 수 있고, $y$좌표도 달라야 기울기가 $0$이 아닌 일차함수가 된다.",
+      "bGoal": "식을 정하는 조건의 종류 정리",
+      "bReason": "'이 단원에서 다룬 세 가지'가 보이지 않아 다른 정당한 조합을 막는다. 세 정보 묶음을 물음 자체에 제시해 각각의 식을 구하게 하고 두 점의 좌표 조건도 명시적으로 묻는다. C의 모호한 정보 나열은 두 점으로 계수 결정하기로 바꾼다. 원래 일반 설명과 역할은 유지한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "세 경우 모두 $y=2x+3$",
+            "① $y=2x+3$, ② $y=2x+3$, ③ $y=2x+3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 점의 $x$좌표와 $y$좌표가 각각 다르다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "'이 단원에서 다룬 세 가지'가 보이지 않아 다른 정당한 조합을 막는다. 세 정보 묶음을 물음 자체에 제시해 각각의 식을 구하게 하고 두 점의 좌표 조건도 명시적으로 묻는다. C의 모호한 정보 나열은 두 점으로 계수 결정하기로 바꾼다. 원래 일반 설명과 역할은 유지한다.",
+      "learningRole": "procedure",
+      "roleReason": "주어진 정보로 풀이 방법 선택",
+      "authorBatch": 39,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2715,
+      "part": "m2plus",
+      "sourceFingerprint": "31bb536f110a7eb198b6adc92d692083961d2df65cd8e4852e961b3a22f9c0d7",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2715
+      },
+      "directReview": null,
+      "cMarkedSentence": "두 점 $(1,5)$, $(3,9)$를 지나는 일차함수 $y=ax+b$의 기울기 $a$는 {$2$}이고, 한 점을 대입하여 구한 $y$절편 $b$는 {$3$}이다.",
+      "cSlotAnswers": [
+        "$2$",
+        "$3$"
+      ],
+      "cStudentSentence": "두 점 $(1,5)$, $(3,9)$를 지나는 일차함수 $y=ax+b$의 기울기 $a$는 □이고, 한 점을 대입하여 구한 $y$절편 $b$는 □이다.",
+      "cAnswers": [
+        "$2$",
+        "$3$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$2$",
+          "equivalentAnswers": [
+            "$2$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$3$",
+          "equivalentAnswers": [
+            "$3$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$2$"
+        ],
+        [
+          "$3$"
+        ]
+      ],
+      "proposalFingerprint": "7c9764345036d33a25e63a8824a2a49b1761b6ccbc0fb924356df5aeb1f4c821",
+      "cAfter": "두 점 $(1,5)$, $(3,9)$를 지나는 일차함수 $y=ax+b$의 기울기 $a$는 {$2$}이고, 한 점을 대입하여 구한 $y$절편 $b$는 {$3$}이다."
+    }
+  ]
+}

@@ -1,0 +1,128 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e6-2-6-3-c5",
+      "bDecision": "revise",
+      "bPrompt": "원뿔의 모선은 어디에서 어디까지 이은 선분인지 설명하시오.",
+      "bAnswer": "꼭짓점에서 밑면 둘레의 한 점까지 옆면 위에 곧게 이은 선분이다.",
+      "bGoal": "모선의 양 끝점을 안다.",
+      "bReason": "'선분'만 묻는 것보다 두 끝점이 핵심이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "꼭짓점에서 시작한다",
+            "한쪽 끝이 꼭짓점이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "밑면 둘레의 한 점까지 잇는다",
+            "밑면의 둘레 위의 점에서 끝난다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "revise",
+      "cAfter": "원뿔의 모선은 {꼭짓점}에서 밑면 {둘레}의 한 점까지 옆면 위에 곧게 이은 선분이다.",
+      "cReason": "원주는둘레의길이이고둘레는점들이놓이는테두리이다. 모선의끝점위치를묻는슬롯에서길이인원주를둘레와같은답으로묶지않는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "꼭짓점",
+            "꼭대기 점",
+            "꼭대기"
+          ]
+        },
+        {
+          "anyOf": [
+            "둘레",
+            "원의 둘레"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-fix386.json",
+      "codexFinalAmendedFromFingerprint": "25dd092a57fb4856b0ad34caf3c5a1b34576a2ce9025ec58b0a35ae2f1d592a2",
+      "sourceIndex": 386,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-6-3-c5",
+        "section": "초6::2-6 원기둥, 원뿔, 구::2-6-3 원뿔 알아보기",
+        "level": "중",
+        "kind": "정의",
+        "term": "모선",
+        "definition": "꼭짓점에서 밑면 둘레의 한 점으로 곧게 이은, 옆면 위의 {선분}을 모선이라 한다.",
+        "studentC": "꼭짓점에서 밑면 둘레의 한 점으로 곧게 이은, 옆면 위의 □을 모선이라 한다.",
+        "answers": [
+          "선분"
+        ]
+      },
+      "sourceFingerprint": "a3e234f8a2c6f7921cb08cd7b9107a90a04899179f7dbb0757986b4d9bf3cbbf",
+      "draftEvidence": "evidence/section-110-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "꼭짓점",
+        "둘레"
+      ],
+      "cStudentAfter": "원뿔의 모선은 □에서 밑면 □의 한 점까지 옆면 위에 곧게 이은 선분이다.",
+      "cMarkedSentence": "원뿔의 모선은 {꼭짓점}에서 밑면 {둘레}의 한 점까지 옆면 위에 곧게 이은 선분이다.",
+      "cStudentSentence": "원뿔의 모선은 □에서 밑면 □의 한 점까지 옆면 위에 곧게 이은 선분이다.",
+      "cSlotAnswers": [
+        {
+          "key": "꼭짓점",
+          "equivalents": [
+            "꼭대기 점",
+            "꼭대기"
+          ]
+        },
+        {
+          "key": "둘레",
+          "equivalents": [
+            "원의 둘레"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원뿔의 모선은 어디에서 어디까지 이은 선분인지 설명하시오.",
+        "answer": "꼭짓점에서 밑면 둘레의 한 점까지 옆면 위에 곧게 이은 선분이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "꼭짓점에서 시작한다",
+              "한쪽 끝이 꼭짓점이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "밑면 둘레의 한 점까지 잇는다",
+              "밑면의 둘레 위의 점에서 끝난다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원뿔의 모선은 {꼭짓점}에서 밑면 {둘레}의 한 점까지 옆면 위에 곧게 이은 선분이다.",
+        "acceptedAnswers": [
+          [
+            "꼭짓점",
+            "꼭대기 점",
+            "꼭대기"
+          ],
+          [
+            "둘레",
+            "원의 둘레"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "4565d631f76d7c1d47aa492f1f24c7a5027add6ce9e829575d8bbea6c9e318f7",
+      "questionRevision": "planning-e5e6-20261006-4565d631f76d",
+      "requiresIndependentReview": true
+    }
+  ]
+}

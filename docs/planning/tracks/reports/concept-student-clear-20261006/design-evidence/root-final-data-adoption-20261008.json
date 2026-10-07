@@ -1,0 +1,247 @@
+{
+  "status": "Actual authorized file adoption; runtime, print, memory and deployment verification still pending",
+  "checkedAt": "2026-10-07T15:49:24.255Z",
+  "count": 9119,
+  "candidateBankHash": "8d8f436aab6f07f8815c80488c8c93cf14d74d6f253f96c7cd6682979f3cfd47",
+  "definitionChanges": 606,
+  "examplePromptChanges": 1,
+  "bankFiles": 28,
+  "bookFiles": 8,
+  "manuscriptTurns": 137,
+  "priorWorkerReadingsBoundToUnchangedTurnText": 136,
+  "rootActuallyRereadDelta": [
+    {
+      "sectionKey": "중3::5. 삼각비::삼각비의 값",
+      "turnIndex": 5,
+      "entryId": "m3-05-02-c2",
+      "correctionId": "SC-274",
+      "before": "**삼각비의 표**\n\n$0^\\circ$부터 $90^\\circ$까지 **$1^\\circ$** 간격으로 삼각비의 어림값을 늘어놓은 표가 삼각비의 표이고, 각의 **가로줄**과 $\\sin$ · $\\cos$ · $\\tan$의 세로줄이 만나는 칸을 읽는다.",
+      "after": "**삼각비의 표**\n\n삼각비의 표는 각의 크기에 따른 사인·코사인·탄젠트의 **어림값**을 정리한 표이다. 각과 삼각비의 종류에 해당하는 **칸**을 찾아 읽는다.",
+      "contentHash": "7642aa466f937bf52016c41869a4f13272a95f462309c1d21d17ec00d3bfaa5e",
+      "sourceDefinitionBefore": "$0^\\circ$부터 $90^\\circ$까지 {$1^\\circ$} 간격으로 삼각비의 어림값을 늘어놓은 표가 삼각비의 표이고, 각의 {가로줄}과 $\\sin$ · $\\cos$ · $\\tan$의 세로줄이 만나는 칸을 읽는다.",
+      "sourceDefinitionAfter": "삼각비의 표는 각의 크기에 따른 사인·코사인·탄젠트의 {어림값}을 정리한 표이다. 각과 삼각비의 종류에 해당하는 {칸}을 찾아 읽는다.",
+      "reason": "표마다 간격과 행·열의 배치가 달라질 수 있어 이를 고정된 수학 성질로 쓰지 않는다. 탄젠트의 값이 없는 직각까지 모든 칸의 값이 존재한다는 오해도 피한다.",
+      "evidence": "Actual manuscript/source correspondence only; per-ID mathematics remains Root/Claude"
+    }
+  ],
+  "openingSections": 69,
+  "files": [
+    {
+      "file": "src/lib/concept-blank/bank/e3.ts",
+      "beforeSha256": "36591dccfbf2845284d261412c1ec0b6fcb9177cee037e906a7dfcbc9aec7b65",
+      "afterSha256": "e4321eebdc3bc8071f758cf0413691cbd0258fd0b9f2f8bd8b586c6573630ee9",
+      "bytes": 149588
+    },
+    {
+      "file": "src/lib/concept-blank/bank/assessments/e3.json",
+      "beforeSha256": null,
+      "afterSha256": "ca9e3d51c3697e5971c4d852dd41da2b9e7334700547bb7fa97fffe06fbd7d67",
+      "bytes": 188631
+    },
+    {
+      "file": "src/lib/concept-blank/bank/e4.ts",
+      "beforeSha256": "f4a14a295731b03fdf11ee052c5a989d1e9733c0dbe1d07cf34454acde1a8976",
+      "afterSha256": "fead189c3015285d0c16419e01392c7e779d0f478c0ee5154b5de1cec38a9f40",
+      "bytes": 84391
+    },
+    {
+      "file": "src/lib/concept-blank/bank/assessments/e4.json",
+      "beforeSha256": null,
+      "afterSha256": "3d26ff184748150ffe76034822140b3fb64dd42ffa5ee4e610f046137485ee91",
+      "bytes": 144897
+    },
+    {
+      "file": "src/lib/concept-blank/bank/e5.ts",
+      "beforeSha256": "153c787e0c0b5469132721f2916e7b1792e02693e5692c831ad4ca6ef225e2b5",
+      "afterSha256": "67e1f5889ae306363114257ef28b829e72360eb6915e4d1b5674601474031535",
+      "bytes": 89511
+    },
+    {
+      "file": "src/lib/concept-blank/bank/assessments/e5.json",
+      "beforeSha256": null,
+      "afterSha256": "4da0c071decb23f04fd22a9d4b2b9778f10c812664357faec562d3f2c19af255",
+      "bytes": 205936
+    },
+    {
+      "file": "src/lib/concept-blank/bank/e6.ts",
+      "beforeSha256": "2409ea144ccca9b5fbf7f8fb72c6e5c19800d857dad692330cf209416c57e9d2",
+      "afterSha256": "bf61c815650eb73166ea496af784f790c8368efe265bcb45f48f5b47cb9dbeda",
+      "bytes": 99901
+    },
+    {
+      "file": "src/lib/concept-blank/bank/assessments/e6.json",
+      "beforeSha256": null,
+      "afterSha256": "2ff28fb6db8857e783c9b8d773b5da188266e9f5c5955f37fb92bd61d7337119",
+      "bytes": 202318
+    },
+    {
+      "file": "src/lib/concept-blank/bank/m1.ts",
+      "beforeSha256": "b4b7fd31eb0dbe224fbcb3c9a60d7b59ba3a6a90b3f6e2a5b52788b65fa5d7e5",
+      "afterSha256": "8e5e56f59d2734d6355a67237a2e3f9d9078da6802dd9f463281dc5aa36ddbf7",
+      "bytes": 216059
+    },
+    {
+      "file": "src/lib/concept-blank/bank/assessments/m1.json",
+      "beforeSha256": null,
+      "afterSha256": "e584c4f9e314280f0d5afa025b59dadeeb34d1c42e8cfeecc8c99c93930803b5",
+      "bytes": 380351
+    },
+    {
+      "file": "src/lib/concept-blank/bank/m2.ts",
+      "beforeSha256": "521510732d1969971c3648ca25d153148493985a828b4480631c4d1e833f2503",
+      "afterSha256": "da62cea306b5b6eb15af5e99aa331cbfeae76a5d923a6582768d6226c4f6cf60",
+      "bytes": 267936
+    },
+    {
+      "file": "src/lib/concept-blank/bank/assessments/m2.json",
+      "beforeSha256": null,
+      "afterSha256": "a3625c23369107f397578ea3a311ea30a81bcb81df5b69d66b99b87f2f2dfc34",
+      "bytes": 401076
+    },
+    {
+      "file": "src/lib/concept-blank/bank/m3.ts",
+      "beforeSha256": "adb25c4017f6bd295bc41b56a18d8844514ca3debec6709725f9a06e73a2971a",
+      "afterSha256": "30f0585abfef6859768fe919e1a6983d655321bab21a0cc8d8c4449e12b5fa8f",
+      "bytes": 126666
+    },
+    {
+      "file": "src/lib/concept-blank/bank/assessments/m3.json",
+      "beforeSha256": null,
+      "afterSha256": "68253d997f1bd08e5df321e5314564ff0c18fc64cb12916b11cfdbc8dba88856",
+      "bytes": 186438
+    },
+    {
+      "file": "src/lib/concept-blank/bank/e3-plus.ts",
+      "beforeSha256": "a825bf9b9491342f78c41b9a3b1894f25650827145373676aecf25ade0a86279",
+      "afterSha256": "68d2daec5da9a50ed71ded58dc0f986215931721d97aa777458917778c4b8f64",
+      "bytes": 690550
+    },
+    {
+      "file": "src/lib/concept-blank/bank/assessments/e3-plus.json",
+      "beforeSha256": null,
+      "afterSha256": "2896c2cf38cedc1fc5a0dfc1df75dc271dedc873c618d044b2cce5a2c68361a4",
+      "bytes": 823335
+    },
+    {
+      "file": "src/lib/concept-blank/bank/e4-plus.ts",
+      "beforeSha256": "929afc97d20a4d0385ebacc5483b9f4b7f90023ebcc4edb2f952763e2030ec1e",
+      "afterSha256": "b833578232b9cbbd0b27a4cc194ef1f9c45e7daa424d5918a5adff440ce8fcc9",
+      "bytes": 916090
+    },
+    {
+      "file": "src/lib/concept-blank/bank/assessments/e4-plus.json",
+      "beforeSha256": null,
+      "afterSha256": "81c8b9a63c67585a54aba09addaa96facf8d09e9bf9e6ddf29757e814bdec990",
+      "bytes": 1134014
+    },
+    {
+      "file": "src/lib/concept-blank/bank/e5-plus.ts",
+      "beforeSha256": "9a333374ffd29e8a85dbf3a2363a33aa711fcd8851301fb461a887fce2310376",
+      "afterSha256": "145e6a74d7f46b643375842e1ca0c15f4ae7dff578550699f9add4b6c419b1ca",
+      "bytes": 762496
+    },
+    {
+      "file": "src/lib/concept-blank/bank/assessments/e5-plus.json",
+      "beforeSha256": null,
+      "afterSha256": "e6b6c465ef5a69922e045cd6735475c23705081ff3d84ad7d0dce2636f31330c",
+      "bytes": 1192539
+    },
+    {
+      "file": "src/lib/concept-blank/bank/e6-plus.ts",
+      "beforeSha256": "b871bb8b55f5846f4f9d723aaaaadd8178494417d94ab903b1e4669e11954a22",
+      "afterSha256": "609ff42e2915e0b4dcfad02c10cd2498e03450e12b003f2e3db03120728aad8d",
+      "bytes": 683855
+    },
+    {
+      "file": "src/lib/concept-blank/bank/assessments/e6-plus.json",
+      "beforeSha256": null,
+      "afterSha256": "5bff02cf519006c933f004a87012e4be925cead15d3025224a93d402439cc1f6",
+      "bytes": 907495
+    },
+    {
+      "file": "src/lib/concept-blank/bank/m1-plus.ts",
+      "beforeSha256": "aedfef12b9f3ee597095b3f2a5997c12586c7bfc7758bf498dd1c125f83b0cdc",
+      "afterSha256": "3dd082b8288a151c9bccd8cebb0bc677627a66f71480b01847a117207bc87bfb",
+      "bytes": 927702
+    },
+    {
+      "file": "src/lib/concept-blank/bank/assessments/m1-plus.json",
+      "beforeSha256": null,
+      "afterSha256": "d1b961513a0dec8dc0d9f44c8692af065ff9790d6a97806b98aa373716a30c8e",
+      "bytes": 1284455
+    },
+    {
+      "file": "src/lib/concept-blank/bank/m2-plus.ts",
+      "beforeSha256": "0abbd3e639fc23110da5e3f9a9064689e831eaa86ddcbc30c212a5d1e8e92811",
+      "afterSha256": "2f34748aa129eb186bb0577516875c962a2e9a3b450ecb9c35dd14fd98099681",
+      "bytes": 738030
+    },
+    {
+      "file": "src/lib/concept-blank/bank/assessments/m2-plus.json",
+      "beforeSha256": null,
+      "afterSha256": "99a05d3c0f1a095a82a6a314f3a911535067d0c17dc2f3a4eb9ce945537e79ef",
+      "bytes": 1064270
+    },
+    {
+      "file": "src/lib/concept-blank/bank/m3-plus.ts",
+      "beforeSha256": "0ac4de93afa1eb50b56a04ed15aa72caa97c457faa9201099f6b6901ced99643",
+      "afterSha256": "a73420cbad0326bd101f6dc8a01b7fee6839f98367c7cd03dff977f400db7ef8",
+      "bytes": 324465
+    },
+    {
+      "file": "src/lib/concept-blank/bank/assessments/m3-plus.json",
+      "beforeSha256": null,
+      "afterSha256": "22a9108645e2c1e322e5c94500c61eb39d496f0226ea591ce5ff8f5db87faaac",
+      "bytes": 490091
+    },
+    {
+      "file": "src/lib/textbook/scripts/e3.json",
+      "beforeSha256": "a543da73963b45ec51a5f6bdb06f1030d145620379dc415d151295ce01a0d376",
+      "afterSha256": "a543da73963b45ec51a5f6bdb06f1030d145620379dc415d151295ce01a0d376",
+      "changedStringTokens": 0
+    },
+    {
+      "file": "src/lib/textbook/scripts/e4.json",
+      "beforeSha256": "261d468a5ef88135dff16d640314c745fb9ebc41203d0ce48dac854c08b8f0f0",
+      "afterSha256": "ef5d06fa62dde1bd8686335b0766488578753afd69377590bdb824a6f039b6d6",
+      "changedStringTokens": 8
+    },
+    {
+      "file": "src/lib/textbook/scripts/e5.json",
+      "beforeSha256": "7c2da9c733b198d80dbd5d297a927dbb849cac4571288a6b37b193032fed009f",
+      "afterSha256": "a90a66f5c49df95377037b81eab70aa5f07261bccad80eef826ded04d03c90e9",
+      "changedStringTokens": 15
+    },
+    {
+      "file": "src/lib/textbook/scripts/e6.json",
+      "beforeSha256": "ad64d57477f115fdb780a8a1c85123e0f50f9ec2390e4869972e2dea062c1d85",
+      "afterSha256": "91c8925a4f2e94e7e107489f99e1202328426a3f6fd6b6feb422c413aa3ee43c",
+      "changedStringTokens": 12
+    },
+    {
+      "file": "src/lib/textbook/scripts/m1.json",
+      "beforeSha256": "f078e5ac1ff9d5a751a48b0ff0462df4e7e5efa2938ff12f49a688a93e5c23ed",
+      "afterSha256": "e1d9e38e2ffb6632ad3f5e9175c7b0d42e39af5669be4b79a8397ceadf74e3c7",
+      "changedStringTokens": 14
+    },
+    {
+      "file": "src/lib/textbook/scripts/m2.json",
+      "beforeSha256": "65b8a833522ce9c6d79088522b190296e795b6d4388d8e4a4d1261493153bde8",
+      "afterSha256": "4a1d1b19be874219766c2e5df19203093b48e996356588ccdca33e615b8d38a6",
+      "changedStringTokens": 53
+    },
+    {
+      "file": "src/lib/textbook/scripts/m3.json",
+      "beforeSha256": "55954190ebc1c7ba4ee2a09c5f68d7b01550c88725204fc7906122e9785efa21",
+      "afterSha256": "8458bc1f99b6a1c76a0f24ca562ca552331c97eaf89e51a1efce25966f6cfafe",
+      "changedStringTokens": 35
+    },
+    {
+      "file": "src/lib/textbook/scripts/static-corrections.json",
+      "beforeSha256": "42de3ead3557fa824696cef6cc485294a1d0c12a62f0e8781e7dd1779f5bb906",
+      "afterSha256": "8951ad3aaec4e266e8cb29a8f6418eb4db5ecca0a8aa7b938e183cbc35faf5bd",
+      "changedStringTokens": 9
+    }
+  ],
+  "studentRecordsWritten": false
+}

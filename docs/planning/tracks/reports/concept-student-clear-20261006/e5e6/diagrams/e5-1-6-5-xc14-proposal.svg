@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="410" height="320" viewBox="0 0 410 320">
+  <style>text { font-family: 'Malgun Gothic', sans-serif; font-size: 17px; fill: #182329; } .edge {stroke:#182329;stroke-width:2.5;fill:none} .diagonal {stroke:#64747c;stroke-width:1.5;stroke-dasharray:6 4;fill:none}</style>
+  <rect width="410" height="320" fill="white"/>
+  <rect x="55" y="50" width="270" height="180" fill="#e8edf1"/>
+  <polygon points="55,140 190,50 325,140 190,230" fill="#a9d4c3"/>
+  <rect x="55" y="50" width="270" height="180" class="edge"/>
+  <polygon points="55,140 190,50 325,140 190,230" class="edge"/>
+  <path d="M55 140 H325 M190 50 V230" class="diagonal"/>
+  <path d="M190 131 H199 V140" class="edge"/>
+  <text x="160" y="269">6 cm</text><text x="337" y="145">4 cm</text>
+</svg>

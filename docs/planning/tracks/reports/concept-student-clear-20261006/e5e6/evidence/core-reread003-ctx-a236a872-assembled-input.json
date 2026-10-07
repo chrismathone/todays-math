@@ -1,0 +1,385 @@
+{
+  "sourceCommit": "13bf05dce",
+  "scope": "Actual assembled learning definitions read by Codex; capture alone is not adoption.",
+  "rows": [
+    {
+      "id": "e6-1-1-2-xc22",
+      "sourceIndex": 1673,
+      "sourceFingerprint": "b0a467cdbc1c21331d17a3bf64ffcf5922fa81cde96ca958f74eef62ec82be73",
+      "proposalFingerprint": "6fca8df91a824017a4fd3a718667e923c7b9679b5f952a6912c7a79eda3f1997",
+      "proposed": true,
+      "definition": "나누어지는 분수와 나누는 자연수에 $0$보다 큰 {같은 수}를 곱해도 몫은 변하지 않는다.",
+      "definitionFingerprint": "7eea3cebb814dcd93aa1ec39ae44eec93ac71c6809985f2d7d69ba97f233d446",
+      "visibleLength": 46,
+      "targets": [
+        "같은 수"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e6-1-1-2-xc25",
+      "sourceIndex": 1676,
+      "sourceFingerprint": "2eb3b1552531632f5f55ae08b70ca7d96fd0bb1a3326a55f363188fcc5733636",
+      "proposalFingerprint": "423d0bccb989a7028e74333f911c866a854bd0546a9a8e5032c4a29a490dd9a9",
+      "proposed": true,
+      "definition": "단위분수를 자연수로 나누면, 원래 분모와 그 자연수를 {곱한 값}이 몫의 분모가 된다. 몫의 분자는 $1$이다.",
+      "definitionFingerprint": "ba30ffea4e284ecf2987140c0fb2f6064374e3ec8c80dc1f289b37a38bb6ed58",
+      "visibleLength": 58,
+      "targets": [
+        "곱한 값"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e6-1-2-1-xc1",
+      "sourceIndex": 1701,
+      "sourceFingerprint": "3a98c4bab37f0860549ddc072cc5122e09fd86613169b07a2f6c1f7da38f91b5",
+      "proposalFingerprint": "aab06136b511df91f1ac99cf2abb3a4d1fa380d85238782dc893c7c7459bc5ca",
+      "proposed": true,
+      "definition": "입체도형은 길이, 너비, {높이}가 있어 공간을 차지하는 도형이다.",
+      "definitionFingerprint": "60b64f4395eac5a030b4959cd0faa596a9c35d83f1fa885f78aecd3c81ed9fe3",
+      "visibleLength": 35,
+      "targets": [
+        "높이"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e6-1-2-3-xc14",
+      "sourceIndex": 1764,
+      "sourceFingerprint": "fc4942497e70b6d7235033d384bb2ca714e00f1d6c019eef0cc541f16c204560",
+      "proposalFingerprint": "ab7c2c8f519062af4c4be8c039cb2d67f7094e6a43d1cc038ac9ac11cb6585ee",
+      "proposed": true,
+      "definition": "옆면들을 한 줄로 이은 직사각형의 {같은 쪽 변}에 밑면 두 개를 모두 붙이면, 접었을 때 두 밑면이 겹치고 반대쪽이 비므로 전개도가 아니다.",
+      "definitionFingerprint": "72c277b122e85b54c2fae9654b1112f64fc51c0d349c83a1996368f2cb535634",
+      "visibleLength": 77,
+      "targets": [
+        "같은 쪽 변"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e6-1-3-2-xc24",
+      "sourceIndex": 1854,
+      "sourceFingerprint": "a8d67bb4c77c8474a467533dc7f99208243fa32dcab5c30b05e2d63d268e6100",
+      "proposalFingerprint": "e445577b80f2ea9a7adf9b8fc5df416130f0a76e716f189682509e1df0b5b5c4",
+      "proposed": false,
+      "definition": "쓴 답에 나누는 수를 곱한 값이 나누어지는 수의 몇 배이면, 쓴 답도 실제 몫의 {같은 배}이다. $10$배이면 쓴 답이 실제 몫의 $10$배이다. 이것만으로 어떤 쓰기 실수인지 단정할 수는 없다.",
+      "definitionFingerprint": "24d89839bc1b594c430d34459bbe6610d5d54a4b38da3493dbb86c79043ecbe2",
+      "visibleLength": 104,
+      "targets": [
+        "같은 배"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e6-1-3-5-xc15",
+      "sourceIndex": 1886,
+      "sourceFingerprint": "9275cc9ec6ac2930365aa17b86b329380dcb3d8789aeb70adac1122778f7645a",
+      "proposalFingerprint": "f84fc07b5d36458c826573ce0cec9b27282c1428cd85a9bf9f50d036b35ac488",
+      "proposed": true,
+      "definition": "어림할 때는 나누어지는 수를 가까운 수 중에서 {나누는 수의 배수}로 바꾸면 나누어떨어져 계산하기 쉽다.",
+      "definitionFingerprint": "9c07a3969980aa5ed621282193c0a51ad751de167c956dd710438fdbfd6a03a7",
+      "visibleLength": 56,
+      "targets": [
+        "나누는 수의 배수"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e6-1-3-5-xc25",
+      "sourceIndex": 1892,
+      "sourceFingerprint": "28884f4a134f15ad07868eb794409c23e5adaca118c6be1b4ca5e010fbe8473e",
+      "proposalFingerprint": "d88289b65061811408b850994603646de01b4b9c645639e98f064ec05300f578",
+      "proposed": true,
+      "definition": "자연수끼리 나눌 때 나누어지는 수가 나누는 수보다 {작으면}, 몫은 $1$보다 작아 일의 자리가 $0$이다.",
+      "definitionFingerprint": "d8d95d663a79c8ac8662a7bd5db04c5ea9fea4c5664b92886f189de9fb3cf9c0",
+      "visibleLength": 54,
+      "targets": [
+        "작으면"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e6-1-4-3-xc9",
+      "sourceIndex": 1928,
+      "sourceFingerprint": "a0e4bf64f6559b437f7fcda8e8d33f2b2da6f7cb91724a889bf62f930866cc4a",
+      "proposalFingerprint": "e0a3cd90992e369105e45df709ebc0407cf83c9df94ab22a498bcf5a23226017",
+      "proposed": true,
+      "definition": "기준량이 $0$보다 클 때, 비교하는 양이 기준량보다 {작으면} 비율은 $1$보다 작다.",
+      "definitionFingerprint": "035f60f3517d70bbf742b49aec9aca735d154bbac039b54fdd1c101fc3a532f9",
+      "visibleLength": 43,
+      "targets": [
+        "작으면"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e6-1-5-3-xc27",
+      "sourceIndex": 2061,
+      "sourceFingerprint": "e18c4b136e6aaa9073e904fc374f9dc8aba34c489bde70f9c2f063a1ccd84598",
+      "proposalFingerprint": "42925f5ec1915de87e05205e04ce56c88579d688c9d4285791494b155b79e360",
+      "proposed": true,
+      "definition": "같은 원그래프에서 두 항목의 사람 수의 차를 전체 사람 수로 나누면 {두 항목의 비율의 차}가 된다. 이 값을 백분율로 나타내려면 {$100$}을 곱하고 $\\%$를 붙인다. 이는 두 항목의 백분율을 빼서 구한 차와 같다.",
+      "definitionFingerprint": "e16e0d4c46ad1b48adeaa57acd7332b854b7c958181a165587df1f5ce7721f4f",
+      "visibleLength": 115,
+      "targets": [
+        "두 항목의 비율의 차",
+        "$100$"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e6-1-5-5-xc5",
+      "sourceIndex": 2085,
+      "sourceFingerprint": "b59e24f4128618e98629fdeaf4938479c7f3454ac456ec9e751d1ea434ecb6e8",
+      "proposalFingerprint": "4f197f7a1e4d92621da46d3954cf62ba5ad2cb58748f9bd3f8840369450c02ad",
+      "proposed": true,
+      "definition": "원그래프는 전체를 원 하나로 보고, 각 항목이 전체에서 차지하는 {비율}을 원의 부분으로 나타낸 그래프이다.",
+      "definitionFingerprint": "5fc63bd3da179106d9835d76e7c3e98a7e747e950f0d58e4cca64b5fe2838b07",
+      "visibleLength": 58,
+      "targets": [
+        "비율"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e6-1-5-5-xc20",
+      "sourceIndex": 2100,
+      "sourceFingerprint": "30e40086e89ccf9df029a78762b985592cd9f25c92000b07e4ae27bef0e9296c",
+      "proposalFingerprint": "82afa5f18e0e6d52c03e3661b4c1ceee4ccb1e8f626629de58e6ca5243bdb09e",
+      "proposed": true,
+      "definition": "같은 집단을 나타낸 두 그래프에서 막대그래프로 알아낸 {전체 수}는 띠그래프나 원그래프의 {$100\\%$}에 해당한다. 각 항목의 비율은 그 전체를 기준으로 읽는다.",
+      "definitionFingerprint": "bb0735fb13fe2e9b84d53831c89e69562f667f5a158492033a8a64e5a75d37c2",
+      "visibleLength": 86,
+      "targets": [
+        "전체 수",
+        "$100\\%$"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e6-1-5-5-xc25",
+      "sourceIndex": 2104,
+      "sourceFingerprint": "5808dde749a238e35b254cb275b50026b4b3e791131030a71af9e84ae858227d",
+      "proposalFingerprint": "89adc11f4074c0cc41e4d59fef1dfeb1d5691195a1c65d11ae857bf9f45a879e",
+      "proposed": true,
+      "definition": "띠그래프나 원그래프는 각 항목을 더하면 {전체 양}이 되는 자료에 쓴다. 같은 것을 여러 항목에서 중복으로 센 자료는 그 전체에 대한 비율로 바로 나타낼 수 없다.",
+      "definitionFingerprint": "1cfbeaf17dcdb6570af9a43e6e2726d509af2d9e52334918c2113cb6979d0b11",
+      "visibleLength": 89,
+      "targets": [
+        "전체 양"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e6-1-5-5-xc27",
+      "sourceIndex": 2105,
+      "sourceFingerprint": "f3af9161c329ba8bd38eab3e28d7d9ec58dc06c3e3b23b25d3b3a1c78ef3892b",
+      "proposalFingerprint": "35ce1ab9e4ba657c929c95ad4f7425938e50bd9c86b8258f6fe22473b823b592",
+      "proposed": true,
+      "definition": "백분율이 $0\\%$보다 큰 항목의 실제 수는 비율만으로 {정할 수 없고} {전체 수}도 필요하다. 백분율이 정확히 $0\\%$인 항목의 실제 수는 $0$이다.",
+      "definitionFingerprint": "c071435a988579a07e972df7503be55fda030c37358879bac97e5ca61f3049b5",
+      "visibleLength": 77,
+      "targets": [
+        "정할 수 없고",
+        "전체 수"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e6-2-2-3-xc15",
+      "sourceIndex": 2260,
+      "sourceFingerprint": "92dcbc23b9026c4c64a2d1d37fdda68f691170ea7cbcb394071ece87b11ee00d",
+      "proposalFingerprint": "3f987181368ddc162ef73fc1f5d0592e4c3f2bc20133f00a4cad21873098ae16",
+      "proposed": true,
+      "definition": "$0$보다 큰 자연수를 $1$보다 큰 소수로 나누면 몫은 나누어지는 자연수보다 {작다}.",
+      "definitionFingerprint": "2d5512a01371a55f3033f65fbb272ffa09d77728ca2553ab0e81c8b778c6af9f",
+      "visibleLength": 43,
+      "targets": [
+        "작다"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e6-2-2-4-xc25",
+      "sourceIndex": 2279,
+      "sourceFingerprint": "9a6ac21b1b29850c5c50508fb5df3d32e157509d709f4b697367fa6852e452ef",
+      "proposalFingerprint": "8878daf0cc0d02a7df0f290d4ed370de9d696e68c1bd3bec84d4cf6c54ef6228",
+      "proposed": true,
+      "definition": "같은 몫을 소수 아래 더 많은 자리까지 반올림하면 정확한 몫과의 차는 {작아지거나 같아진다}.",
+      "definitionFingerprint": "bebce6ccecb10d86454e7af1a2e3109e7eea155cde770fe8f80f03d8daea20ce",
+      "visibleLength": 50,
+      "targets": [
+        "작아지거나 같아진다"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e6-2-2-5-xc27",
+      "sourceIndex": 2293,
+      "sourceFingerprint": "9bffc90644fd7046cdede924755a4e5139fa1df55d5895dc4bc7debefa182121",
+      "proposalFingerprint": "ee6c3838a5885829995d0646b0985a3cd0c0c8925fb6f00aca77bd3aead8b210",
+      "proposed": true,
+      "definition": "두 수에 {같은 수}를 곱해 나누는 수를 자연수로 만들어도 몫은 같다. 나누어지는 수에 소수가 남아 있어도 계산할 수 있으며, 나머지는 {곱한 수로 나누어} 원래 크기로 되돌린다.",
+      "definitionFingerprint": "7c701c944efccf4a92101d2bd32c93fc1544a3028a26ecb299a7c192e5062ec1",
+      "visibleLength": 96,
+      "targets": [
+        "같은 수",
+        "곱한 수로 나누어"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e6-2-3-1-xc21",
+      "sourceIndex": 2314,
+      "sourceFingerprint": "922a5f15fceca4d28a596b96de1fc992a6055c42307e885250c9eb40e257dd6b",
+      "proposalFingerprint": "ca72e27799328774aae0a200c9e11108458eb0fe315281d3f62f182a4041cf17",
+      "proposed": true,
+      "definition": "위, 앞, 뒤, 왼쪽, 오른쪽에서 보아도 안 보이는 쌓기나무는, 각 방향에서 다른 쌓기나무가 {가리고 있다}.",
+      "definitionFingerprint": "e923943cf5230e904106dfdbe8ecb0d7bcc4d9f4cc3e12e637516e127f91544b",
+      "visibleLength": 59,
+      "targets": [
+        "가리고 있다"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e6-2-3-4-xc26",
+      "sourceIndex": 2377,
+      "sourceFingerprint": "da40a01b4076126100790c90e8fce4350be36ee2d40588769d5ec497eaae4952",
+      "proposalFingerprint": "31297af2f5f79fcf46dd156d51876f401fa8333722a832452243d2e6dc3c4ec3",
+      "proposed": true,
+      "definition": "앞에서 본 모양의 정사각형 수는 위에서 본 칸에 적힌 수를 모두 더한 값, 곧 쌓기나무 전체 개수보다 {크지 않다}.",
+      "definitionFingerprint": "148c0f3b130ea4467fc0d613fc3034a38b22ffb4e68d68def9930702415304ab",
+      "visibleLength": 63,
+      "targets": [
+        "크지 않다"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e6-2-3-6-xc6",
+      "sourceIndex": 2402,
+      "sourceFingerprint": "bf6ef5b1150fb29f67b933e78a51f3bfbcc13bb2b229ec176c80e5cf50a745be",
+      "proposalFingerprint": "ba61172820032451ff82ec1935acfd191d1c28c7029885a23dff95cda3e75946",
+      "proposed": true,
+      "definition": "크기가 같은 쌓기나무를 같은 수만큼 쓰면, 모양이 달라도 차지하는 공간의 크기인 {부피}는 같다.",
+      "definitionFingerprint": "326744b78b973a4e34029bc2e0d48f3c19e887bc6abccce6ad0f1c29d83bc7c0",
+      "visibleLength": 52,
+      "targets": [
+        "부피"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e6-2-3-6-xc20",
+      "sourceIndex": 2411,
+      "sourceFingerprint": "fcb7c95c04a94d3c9dc6e5457e0190653a21de13938a4c9aea9d7ea64905d28c",
+      "proposalFingerprint": "9c6b26b9ec620805fa7b3cd7979f4cc5a1cf394ebee2ef83c544c6e690a3ac45",
+      "proposed": true,
+      "definition": "크기가 같은 쌓기나무로 빈틈없이 만든 직육면체를 쌓기나무 한 개 높이씩 층별로 나누면, 각 층의 모양은 서로 {같다}.",
+      "definitionFingerprint": "5b5b87ea854aaadce00a46f94466560fe2a8e1b2c07314ed64e235e825391173",
+      "visibleLength": 64,
+      "targets": [
+        "같다"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e6-2-4-3-xc18",
+      "sourceIndex": 2458,
+      "sourceFingerprint": "dd50b3040e28abad4541757be7bdf31dc65e3462898cdd97cbf2ea7dfaa3271a",
+      "proposalFingerprint": "794ca5c9967dcf7f5dc2a861131252258f8f255fdf3891a45202c22dda7c6486",
+      "proposed": true,
+      "definition": "네 수가 모두 $0$이 아니고 서로 다른 비례식에서는 일부 수의 {자리를 알맞게 바꾸어} 다른 비례식을 만들 수 있다. 예를 들어 $2:3=4:6$의 안쪽 두 수를 바꾸면 $2:4=3:6$이다. 아무렇게나 바꾸면 안 된다.",
+      "definitionFingerprint": "f59dd15c5867246d085477748eae9f68bacc1fecbaef29bc78051e38198429f1",
+      "visibleLength": 116,
+      "targets": [
+        "자리를 알맞게 바꾸어"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e6-2-4-3-xc22",
+      "sourceIndex": 2460,
+      "sourceFingerprint": "05232a346a30741b31cbf623a28f7e40c86041639ca4a0227c21a0db0c0bc790",
+      "proposalFingerprint": "cd840d095b919b4065c3daee9e85adb77956e2e511b0eb8573b25eef45e2439a",
+      "proposed": true,
+      "definition": "네 수가 모두 $0$이 아닌 비례식에서, 둘째 비의 앞의 수는 첫째 비의 앞의 수의 몇 배이고, 뒤의 수도 첫째 비의 뒤의 수의 {같은 배}이다.",
+      "definitionFingerprint": "da723da31451728010f3af6ddaf02d0c90de5a151808ea11973617310269452e",
+      "visibleLength": 77,
+      "targets": [
+        "같은 배"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e6-2-4-3-xc25",
+      "sourceIndex": 2462,
+      "sourceFingerprint": "763f334aee51e11f7211a353ea148b04274c4b2e9b5c7071c309d31ab1c17856",
+      "proposalFingerprint": "b07e02e41509a1c8829b9ce4b4c87997cb47182484b5bd581559b92a65332840",
+      "proposed": true,
+      "definition": "앞의 수와 뒤의 수가 같고 $0$이 아닌 비끼리는 비율이 모두 $1$이므로 {비례식으로 이을 수 있다}.",
+      "definitionFingerprint": "646c90c7f0cd343d4703eb947bb68421a7fab989067003401892231a3a5d46a8",
+      "visibleLength": 52,
+      "targets": [
+        "비례식으로 이을 수 있다"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e6-2-5-4-xc21",
+      "sourceIndex": 2544,
+      "sourceFingerprint": "626342b8ebdc52ebd0b7a7f0e66da79f5a15f26395e7dabc787d26c24d7f5f23",
+      "proposalFingerprint": "078a5f6171c58719ee4e10653cb5860f23915bb198df7672849c46073c57abc1",
+      "proposed": true,
+      "definition": "작은 두 원의 지름의 합이 큰 원의 지름과 같으면, 작은 두 원의 넓이의 합은 큰 원의 넓이보다 {작다}.",
+      "definitionFingerprint": "00630191a3beac0045fac7d5e3ad1a99ff7ab6344b1bc333d539b20d9ca15a33",
+      "visibleLength": 57,
+      "targets": [
+        "작다"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e6-2-5-4-xc25",
+      "sourceIndex": 2547,
+      "sourceFingerprint": "648625387d39f9ff3a17af6f55298299aedad6db7e9f4d1cae419f43f3b4e080",
+      "proposalFingerprint": "6d70f25d57e4b4a1c9eb540780b48f519d61a237c222d1fe553ae00de24e12e8",
+      "proposed": true,
+      "definition": "직사각형의 마주 보는 두 변에 그 변을 지름으로 하는 반원을 바깥쪽에 하나씩 붙인 모양의 넓이는, 직사각형의 넓이에 {원 하나의 넓이}를 더한 값이다.",
+      "definitionFingerprint": "161eae7fc49e03940d430412721a9ff60bd98b2e6fa579ed95706f976e187040",
+      "visibleLength": 82,
+      "targets": [
+        "원 하나의 넓이"
+      ],
+      "valid": true,
+      "issues": []
+    }
+  ]
+}

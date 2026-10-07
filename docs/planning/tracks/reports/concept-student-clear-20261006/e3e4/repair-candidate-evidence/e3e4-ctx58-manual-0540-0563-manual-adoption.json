@@ -1,0 +1,2598 @@
+{
+  "sourceCommit": "13bf05dce",
+  "directAuthor": "Codex after actual current-hash feedback and full current field reading",
+  "notFinalReread": true,
+  "entries": [
+    {
+      "id": "e4-2-4-7-xc9",
+      "sourceIndex": 2570,
+      "beforeProposal": {
+        "sourceIndex": 2570,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "sourceFingerprint": "28d735ddea174a6382a1e25f48789447d9f935e08f10c9e97fb10e56726ead60",
+        "proposalFingerprint": "d5835af0db447d7f40e5878dd50dbfaf63523472ca508edb35e5926c5cdaadb6",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-7-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "정사각형에는 직사각형, 마름모 같은 다른 이름도 붙일 수 있다. 그 까닭을 쓰시오.",
+        "bAnswer": "정사각형이 직사각형과 마름모 같은 여러 분류의 조건을 모두 만족하기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "여러 분류의 조건을 모두 만족한다",
+              "직사각형과 마름모의 조건을 모두 가진다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "이름이 여러 개 붙는 까닭",
+        "bReason": "여러 조건을 동시에 만족함을 설명하게 함",
+        "cDecision": "keep",
+        "cReason": "익숙한 낱말 '여러 개' 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "여러 가지"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "같은 사각형에 붙는 여러 이름",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "사각형 하나가 여러 분류의 조건을 만족하면 이름을 {여러 개} 붙일 수 있다.",
+        "cStudentSentence": "사각형 하나가 여러 분류의 조건을 만족하면 이름을 □ 붙일 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "여러 개",
+            "equivalents": [
+              "여러 가지"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "사각형 하나가 여러 분류의 조건을 만족하면 이름을 □ 붙일 수 있다.",
+          "answers": [
+            "여러 개"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "정사각형에는 직사각형, 마름모 같은 다른 이름도 붙일 수 있다. 그 까닭을 쓰시오.",
+          "answer": "정사각형이 직사각형과 마름모 같은 여러 분류의 조건을 모두 만족하기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "여러 분류의 조건을 모두 만족한다",
+                "직사각형과 마름모의 조건을 모두 가진다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "사각형 하나가 여러 분류의 조건을 만족하면 이름을 {여러 개} 붙일 수 있다.",
+          "acceptedAnswers": [
+            [
+              "여러 개",
+              "여러 가지"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-4-7-xc9",
+          "sourceIndex": 2570,
+          "proposalFingerprint": "d5835af0db447d7f40e5878dd50dbfaf63523472ca508edb35e5926c5cdaadb6",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "여러조건을만족한다는결론만이아닌네직각과동일네변의실제조건을기준으로받는다.",
+          "cReason": "여러조건을갖는한도형의복수분류가능성을확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bAnswer": "정사각형은 네 각이 모두 직각이어서 직사각형이고, 네 변의 길이가 모두 같아서 마름모이기도 하기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "네 각이 모두 직각이므로 직사각형이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "네 변의 길이가 모두 같으므로 마름모이다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-4-7-xc26",
+      "sourceIndex": 2587,
+      "beforeProposal": {
+        "sourceIndex": 2587,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "sourceFingerprint": "da3581672c69cc9d2c6c9af3f7f6b868ff7514991712a78c858ba53364a203be",
+        "proposalFingerprint": "106aa931a73d684de74ba0833540a0dc24b3b04c65c1e7dbdd237a649ca217da",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-7-xc26",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "변이 같을 때 더 살필 것",
+        "bReason": "xc16과 같은 목표",
+        "exclusionReason": "정사각형은 변뿐 아니라 각도 확인한다는 xc16과 같은 목표",
+        "cDecision": "keep",
+        "cReason": "원문 빈칸은 유지하고 직사각형도 허용함",
+        "cSlotEquivalents": [
+          [
+            "직사각형"
+          ]
+        ],
+        "answerNotes": "변이 모두 같고 각을 모를 때 직사각형인지 정사각형인지 모두 더 살펴야 하므로 둘 다 맞음",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "주어진 성질만으로 이름 고르기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "사각형의 변 길이만 모두 같다고 알려 주면 마름모는 확실하지만 {정사각형}인지는 더 살펴야 한다.",
+        "cStudentSentence": "사각형의 변 길이만 모두 같다고 알려 주면 마름모는 확실하지만 □인지는 더 살펴야 한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "정사각형",
+            "equivalents": [
+              "직사각형"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "사각형의 변 길이만 모두 같다고 알려 주면 마름모는 확실하지만 □인지는 더 살펴야 한다.",
+          "answers": [
+            "정사각형"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "사각형의 변 길이만 모두 같다고 알려 주면 마름모는 확실하지만 {정사각형}인지는 더 살펴야 한다.",
+          "acceptedAnswers": [
+            [
+              "정사각형",
+              "직사각형"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc16과 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-4-7-xc26",
+          "sourceIndex": 2587,
+          "proposalFingerprint": "106aa931a73d684de74ba0833540a0dc24b3b04c65c1e7dbdd237a649ca217da",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "exclude",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "정사각형의변과각확인B는기존문항과중복이다.",
+          "cReason": "정사각형·직사각형이름의다른답을동의어로섞지말고정사각형에추가확인할직각조건을묻는다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "네 변의 길이가 모두 같은 사각형이 정사각형인지 알려면, 네 각이 모두 {직각}인지도 살펴야 한다.",
+        "cSlotEquivalents": [
+          [
+            "$90^\\circ$",
+            "$90$도"
+          ]
+        ],
+        "cReason": "직사각형과 정사각형을 동의어로 섞지 않고 추가로 확인할 각의 조건을 묻는다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-5-1-xc12",
+      "sourceIndex": 2599,
+      "beforeProposal": {
+        "sourceIndex": 2599,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-1 꺾은선그래프 알아보기",
+        "sourceFingerprint": "f28a87cc168b5304c2a3caedc71fb2e61b99808cf42b9f227e75b3f9ef628ee8",
+        "proposalFingerprint": "c30ed4bf44575bb8ac2eeaa14604288cf204822186c254637aceaf3e60872637",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-1-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "꺾은선그래프에서 선이 오른쪽 위로 올라갔다가 아래로 내려가면 값이 어떻게 변했는지 쓰시오.",
+        "bAnswer": "늘었다가 줄었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "늘었다가 줄었다",
+              "커졌다가 작아졌다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "선의 모양으로 변화 읽기",
+        "bReason": "선의 오르내림을 값의 변화로 해석함",
+        "cDecision": "rewrite",
+        "cAfter": "선이 오른쪽 위로 갔다가 아래로 내려가면 값은 늘었다가 {줄었다}.",
+        "cReason": "긴 구절 대신 낱말 '줄었다' 빈칸으로",
+        "cSlotEquivalents": [
+          [
+            "줄어들었다",
+            "작아졌다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "늘었다가 줄어드는 선",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "선이 오른쪽 위로 갔다가 아래로 내려가면 값은 늘었다가 {줄었다}.",
+        "cStudentSentence": "선이 오른쪽 위로 갔다가 아래로 내려가면 값은 늘었다가 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "줄었다",
+            "equivalents": [
+              "줄어들었다",
+              "작아졌다"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "꺾은선그래프에서 선이 오른쪽 위로 올라갔다가 아래로 내려가면 값이 어떻게 변했는지 쓰시오.",
+          "answer": "늘었다가 줄었다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "늘었다가 줄었다",
+                "커졌다가 작아졌다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "선이 오른쪽 위로 갔다가 아래로 내려가면 값은 늘었다가 {줄었다}.",
+          "acceptedAnswers": [
+            [
+              "줄었다",
+              "줄어들었다",
+              "작아졌다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-5-1-xc12",
+          "sourceIndex": 2599,
+          "proposalFingerprint": "c30ed4bf44575bb8ac2eeaa14604288cf204822186c254637aceaf3e60872637",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "가로시간오른쪽진행·세로값위쪽증가조건을질문에명시한다.",
+          "cReason": "C에도방향조건을명시해늘었다가줄어듦을판단한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bPrompt": "꺾은선그래프의 가로축은 오른쪽으로 갈수록 나중 때이고, 세로 눈금은 위로 갈수록 커진다. 선이 오른쪽 위로 올라갔다가 오른쪽 아래로 내려가면 값이 어떻게 변했는지 쓰시오.",
+        "cDecision": "rewrite",
+        "cAfter": "가로축은 오른쪽으로 갈수록 나중 때이고 세로 눈금은 위로 갈수록 커지는 꺾은선그래프가 있다. 선이 오른쪽 위로 올라갔다가 오른쪽 아래로 내려가면 값은 늘었다가 {줄었다}."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-5-1-xc13",
+      "sourceIndex": 2600,
+      "beforeProposal": {
+        "sourceIndex": 2600,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-1 꺾은선그래프 알아보기",
+        "sourceFingerprint": "254925a05833f7ec47945e02e4dc7d1aafa9273ac1c4c95a8d0b01f3e77f7b66",
+        "proposalFingerprint": "654d2bed2549fadba4ca5deb1cbc5f1bc71912615402fc3c37312e45eadd7aa8",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-1-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "세로 눈금이 위로 갈수록 커지는 꺾은선그래프에서 선이 오른쪽 아래로 내려갔다가 다시 위로 올라간다. 이 구간에서 값이 어떻게 변했는지 쓰시오.",
+        "bAnswer": "처음에는 줄어들다가 그다음에는 늘어난다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "먼저 줄어든다",
+              "처음에는 작아진다",
+              "내려가면 값이 줄어든다"
+            ]
+          },
+          {
+            "anyOf": [
+              "그다음 늘어난다",
+              "나중에는 커진다",
+              "올라가면 값이 늘어난다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "선의 오르내림으로 변화 읽기",
+        "bReason": "선 모양을 값의 줄고 늚으로 풀어 말하게 함",
+        "cDecision": "rewrite",
+        "cAfter": "선이 오른쪽 아래로 갔다가 위로 올라가면 값은 먼저 {줄고} 나중에 {늘어난다}.",
+        "cReason": "긴 구절 빈칸을 쉬운 낱말 두 개로 나눔",
+        "cSlotEquivalents": [
+          [
+            "줄어들고",
+            "작아지고",
+            "감소하고"
+          ],
+          [
+            "커진다",
+            "증가한다",
+            "많아진다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "줄었다가 늘어나는 선",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "선이 오른쪽 아래로 갔다가 위로 올라가면 값은 먼저 {줄고} 나중에 {늘어난다}.",
+        "cStudentSentence": "선이 오른쪽 아래로 갔다가 위로 올라가면 값은 먼저 □ 나중에 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "줄고",
+            "equivalents": [
+              "줄어들고",
+              "작아지고",
+              "감소하고"
+            ]
+          },
+          {
+            "expected": "늘어난다",
+            "equivalents": [
+              "커진다",
+              "증가한다",
+              "많아진다"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "세로 눈금이 위로 갈수록 커지는 꺾은선그래프에서 선이 오른쪽 아래로 내려갔다가 다시 위로 올라간다. 이 구간에서 값이 어떻게 변했는지 쓰시오.",
+          "answer": "처음에는 줄어들다가 그다음에는 늘어난다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "먼저 줄어든다",
+                "처음에는 작아진다",
+                "내려가면 값이 줄어든다"
+              ]
+            },
+            {
+              "anyOf": [
+                "그다음 늘어난다",
+                "나중에는 커진다",
+                "올라가면 값이 늘어난다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "선이 오른쪽 아래로 갔다가 위로 올라가면 값은 먼저 {줄고} 나중에 {늘어난다}.",
+          "acceptedAnswers": [
+            [
+              "줄고",
+              "줄어들고",
+              "작아지고",
+              "감소하고"
+            ],
+            [
+              "늘어난다",
+              "커진다",
+              "증가한다",
+              "많아진다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-5-1-xc13",
+          "sourceIndex": 2600,
+          "proposalFingerprint": "654d2bed2549fadba4ca5deb1cbc5f1bc71912615402fc3c37312e45eadd7aa8",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "B에는세로값위쪽증가조건이분명하다.",
+          "cReason": "C에도그세로방향조건을명시한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "세로 눈금이 위로 갈수록 커지는 꺾은선그래프에서, 선이 오른쪽 아래로 내려갔다가 오른쪽 위로 올라가면 값은 먼저 {줄고} 나중에 {늘어난다}."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-5-1-xc17",
+      "sourceIndex": 2604,
+      "beforeProposal": {
+        "sourceIndex": 2604,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-1 꺾은선그래프 알아보기",
+        "sourceFingerprint": "53f2df7b903fa6117b9afc705e3b6fcf66a0f0b014071004f07e51072e4750b0",
+        "proposalFingerprint": "a6d422577056d5756c7c751512fa7a5f3baecc55dfed18e01c83d62123993af0",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-1-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "꺾은선그래프에서 가장 가파르게 올라간 구간의 끝점이 언제나 그래프에서 가장 높은 점이라고 할 수 있는지 쓰고 이유를 설명하시오.",
+        "bAnswer": "할 수 없다. 그 앞이나 뒤에 더 높은 점이 있을 수 있기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "할 수 없다",
+              "아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "다른 점이 더 높을 수 있다",
+              "앞이나 뒤에 더 높은 점이 있을 수 있다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "가파름과 최고점 구별",
+        "bReason": "가파른 정도와 높이를 혼동하지 않게 함",
+        "cDecision": "rewrite",
+        "cAfter": "가장 가파르게 올라간 구간의 끝점이 언제나 가장 {높은} 점인 것은 아니다.",
+        "cReason": "빈칸 구절을 한 낱말로 줄여 답 범위를 좁힘",
+        "cSlotEquivalents": [
+          [
+            "큰"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "올라간 구간과 큰 값 구별",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "가장 가파르게 올라간 구간의 끝점이 언제나 가장 {높은} 점인 것은 아니다.",
+        "cStudentSentence": "가장 가파르게 올라간 구간의 끝점이 언제나 가장 □ 점인 것은 아니다.",
+        "cSlotAnswers": [
+          {
+            "expected": "높은",
+            "equivalents": [
+              "큰"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "꺾은선그래프에서 가장 가파르게 올라간 구간의 끝점이 언제나 그래프에서 가장 높은 점이라고 할 수 있는지 쓰고 이유를 설명하시오.",
+          "answer": "할 수 없다. 그 앞이나 뒤에 더 높은 점이 있을 수 있기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "할 수 없다",
+                "아니다"
+              ]
+            },
+            {
+              "anyOf": [
+                "다른 점이 더 높을 수 있다",
+                "앞이나 뒤에 더 높은 점이 있을 수 있다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "가장 가파르게 올라간 구간의 끝점이 언제나 가장 {높은} 점인 것은 아니다.",
+          "acceptedAnswers": [
+            [
+              "높은",
+              "큰"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-5-1-xc17",
+          "sourceIndex": 2604,
+          "proposalFingerprint": "a6d422577056d5756c7c751512fa7a5f3baecc55dfed18e01c83d62123993af0",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "빠른상승과최대높이는다른성질이고다른점이더높을수있음을설명한다.",
+          "cReason": "높은점과큰점은위치와물리적크기가달라큰별칭을제거한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cSlotEquivalents": [
+          []
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-5-1-xc18",
+      "sourceIndex": 2605,
+      "beforeProposal": {
+        "sourceIndex": 2605,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-1 꺾은선그래프 알아보기",
+        "sourceFingerprint": "362a4538329f25dff0846b8cd91ab9fd238aae6ae2606a9e4dc0662af433f920",
+        "proposalFingerprint": "8cd81dca6c01bbe75945a7d2f4efa296ae5d7b315ef49bb1c928a47ee4f326bd",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-1-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "날짜가 가로축인 꺾은선그래프로 시간에 따른 변화를 읽기 전에 가로축의 어떤 점을 확인해야 하는지 쓰시오.",
+        "bAnswer": "조사한 때 사이의 간격이 같은지, 빠진 날짜가 없는지 확인한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "조사한 때 사이의 간격",
+              "시간 간격",
+              "날짜가 빠지지 않았는지"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "변화 읽기 전 가로축 확인",
+        "bReason": "가로축 확인 항목을 직접 말하게 함",
+        "cDecision": "rewrite",
+        "cAfter": "시간에 따른 변화를 읽기 전에 가로축에서 조사한 때와 때 사이의 {간격}을 확인한다.",
+        "cReason": "'시간 간격'은 '때' '날짜'로도 답해 한 낱말로 좁힘",
+        "cSlotEquivalents": [
+          [
+            "시간 간격",
+            "시간"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "날짜가 빠졌는지 확인하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "시간에 따른 변화를 읽기 전에 가로축에서 조사한 때와 때 사이의 {간격}을 확인한다.",
+        "cStudentSentence": "시간에 따른 변화를 읽기 전에 가로축에서 조사한 때와 때 사이의 □을 확인한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "간격",
+            "equivalents": [
+              "시간 간격",
+              "시간"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "날짜가 가로축인 꺾은선그래프로 시간에 따른 변화를 읽기 전에 가로축의 어떤 점을 확인해야 하는지 쓰시오.",
+          "answer": "조사한 때 사이의 간격이 같은지, 빠진 날짜가 없는지 확인한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "조사한 때 사이의 간격",
+                "시간 간격",
+                "날짜가 빠지지 않았는지"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "시간에 따른 변화를 읽기 전에 가로축에서 조사한 때와 때 사이의 {간격}을 확인한다.",
+          "acceptedAnswers": [
+            [
+              "간격",
+              "시간 간격",
+              "시간"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-5-1-xc18",
+          "sourceIndex": 2605,
+          "proposalFingerprint": "8cd81dca6c01bbe75945a7d2f4efa296ae5d7b315ef49bb1c928a47ee4f326bd",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "날짜간격과누락날짜의확인대상을묻는다.",
+          "cReason": "시간이라는시점이름을간격의동의어로두지않는다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cSlotEquivalents": [
+          [
+            "시간 간격"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-5-1-xc21",
+      "sourceIndex": 2608,
+      "beforeProposal": {
+        "sourceIndex": 2608,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-1 꺾은선그래프 알아보기",
+        "sourceFingerprint": "3bc0e16314bbed7e2d69d2044313bd992f533c8bbda58539fba1683e2c2257e6",
+        "proposalFingerprint": "03128f490b47373a6ec69c80acc78905630e035ca5002d0d71b99966a5adab3d",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-1-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "선 모양이 비슷하게 가파른 서로 다른 두 꺾은선그래프가 있다. 어느 쪽이 더 많이 변했는지 비교하려면 두 그래프에서 무엇을 함께 살펴야 하는지 쓰시오.",
+        "bAnswer": "가로·세로 눈금 한 칸이 나타내는 양(눈금 간격)을 함께 살펴야 한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "눈금 간격",
+              "한 칸이 나타내는 양",
+              "눈금의 크기",
+              "눈금"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "그래프 비교 때 눈금 확인",
+        "bReason": "선 모양만으로 비교하면 틀리는 이유를 점검",
+        "cDecision": "rewrite",
+        "cAfter": "두 그래프의 선 모양으로 변화 크기를 비교하려면 가로·세로의 {눈금} 간격도 함께 살핀다.",
+        "cReason": "'눈금 간격'의 앞말만 비워 답을 짧게 함",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "기울기 비교에 필요한 조건",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "두 그래프의 선 모양으로 변화 크기를 비교하려면 가로·세로의 {눈금} 간격도 함께 살핀다.",
+        "cStudentSentence": "두 그래프의 선 모양으로 변화 크기를 비교하려면 가로·세로의 □ 간격도 함께 살핀다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "눈금",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "선 모양이 비슷하게 가파른 서로 다른 두 꺾은선그래프가 있다. 어느 쪽이 더 많이 변했는지 비교하려면 두 그래프에서 무엇을 함께 살펴야 하는지 쓰시오.",
+          "answer": "가로·세로 눈금 한 칸이 나타내는 양(눈금 간격)을 함께 살펴야 한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "눈금 간격",
+                "한 칸이 나타내는 양",
+                "눈금의 크기",
+                "눈금"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "두 그래프의 선 모양으로 변화 크기를 비교하려면 가로·세로의 {눈금} 간격도 함께 살핀다.",
+          "acceptedAnswers": [
+            [
+              "눈금"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-5-1-xc21",
+          "sourceIndex": 2608,
+          "proposalFingerprint": "03128f490b47373a6ec69c80acc78905630e035ca5002d0d71b99966a5adab3d",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "선모양비교에서가로와세로두눈금의실제단위를모두받도록기준을명시한다.",
+          "cReason": "두축눈금간격도살펴야하는비교조건이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "가로와 세로 눈금에서 한 칸이 각각 나타내는 양을 살핀다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-5-2-xc9",
+      "sourceIndex": 2624,
+      "beforeProposal": {
+        "sourceIndex": 2624,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-2 꺾은선그래프 내용 알아보기",
+        "sourceFingerprint": "4a22af8efe13f14357269378c3f3fed8e0b50a43730b000f1eecc74704318fbb",
+        "proposalFingerprint": "b51e4933c5296932016b80fb614bf07ddb65de6cfe9005b1335e0060805727b4",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-2-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "꺾은선그래프에서 값이 $30$이었던 때를 모두 찾는 방법을 쓰시오.",
+        "bAnswer": "세로 눈금 $30$과 같은 높이의 점을 모두 찾아 각 점의 아래 가로축에서 때를 읽는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$30$과 같은 높이의 점을 모두 찾는다",
+              "눈금 $30$과 높이가 같은 점"
+            ]
+          },
+          {
+            "anyOf": [
+              "가로축에서 때를 읽는다",
+              "아래로 따라가 때를 읽는다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "같은 값의 때 모두 찾기",
+        "bReason": "여러 점이 있을 수 있음까지 포함해 방법 확인",
+        "cDecision": "keep",
+        "cReason": "같은 높이 빈칸이 짧고 익숙함",
+        "cSlotEquivalents": [
+          [
+            "같은 위치",
+            "똑같은 높이"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "같은 값이 나온 때 찾기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "원하는 세로 눈금과 {같은 높이}의 점을 모두 찾아 조사한 때를 읽는다.",
+        "cStudentSentence": "원하는 세로 눈금과 □의 점을 모두 찾아 조사한 때를 읽는다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같은 높이",
+            "equivalents": [
+              "같은 위치",
+              "똑같은 높이"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "원하는 세로 눈금과 □의 점을 모두 찾아 조사한 때를 읽는다.",
+          "answers": [
+            "같은 높이"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "꺾은선그래프에서 값이 $30$이었던 때를 모두 찾는 방법을 쓰시오.",
+          "answer": "세로 눈금 $30$과 같은 높이의 점을 모두 찾아 각 점의 아래 가로축에서 때를 읽는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$30$과 같은 높이의 점을 모두 찾는다",
+                "눈금 $30$과 높이가 같은 점"
+              ]
+            },
+            {
+              "anyOf": [
+                "가로축에서 때를 읽는다",
+                "아래로 따라가 때를 읽는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "원하는 세로 눈금과 {같은 높이}의 점을 모두 찾아 조사한 때를 읽는다.",
+          "acceptedAnswers": [
+            [
+              "같은 높이",
+              "같은 위치",
+              "똑같은 높이"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-5-2-xc9",
+          "sourceIndex": 2624,
+          "proposalFingerprint": "b51e4933c5296932016b80fb614bf07ddb65de6cfe9005b1335e0060805727b4",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "원하는30과동일높이의점모두에서가로축시각을읽는방법이다.",
+          "cReason": "같은위치와같은높이는다른관계이므로같은위치별칭을제거한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cSlotEquivalents": [
+          [
+            "똑같은 높이"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-5-2-xc15",
+      "sourceIndex": 2630,
+      "beforeProposal": {
+        "sourceIndex": 2630,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-2 꺾은선그래프 내용 알아보기",
+        "sourceFingerprint": "6038b222773470bdc5c4f406ad8f1432836673d71f2c1c13c79d06ecb624e4fb",
+        "proposalFingerprint": "81e6a5c4865ee5dc73431cfc77a86da5595572ee6ebb9dbbe96a921bc7ff0887",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-2-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "꺾은선그래프에서 조사 기간 전체에서 값이 얼마나 달라졌는지 알려면 어느 두 값을 비교해야 하는지 쓰시오.",
+        "bAnswer": "처음 값과 마지막 값을 비교한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "처음 값",
+              "첫 번째 값"
+            ]
+          },
+          {
+            "anyOf": [
+              "마지막 값",
+              "끝 값"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "전체 변화는 처음과 끝 비교",
+        "bReason": "전체 기간 변화가 비교할 두 값을 확인",
+        "cDecision": "keep",
+        "cReason": "두 낱말 빈칸이 짧고 순서가 바뀌어도 맞음",
+        "cSlotEquivalents": [
+          [
+            "첫 값",
+            "맨 처음 값",
+            "마지막 값",
+            "끝값"
+          ],
+          [
+            "끝값",
+            "끝 값",
+            "마지막",
+            "처음 값",
+            "첫 값"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "전체 기간의 변화 읽기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "조사 기간 전체에서 얼마가 달라졌는지는 {처음 값}과 {마지막 값}을 비교한다.",
+        "cStudentSentence": "조사 기간 전체에서 얼마가 달라졌는지는 □과 □을 비교한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "처음 값",
+            "equivalents": [
+              "첫 값",
+              "맨 처음 값",
+              "마지막 값",
+              "끝값"
+            ]
+          },
+          {
+            "expected": "마지막 값",
+            "equivalents": [
+              "끝값",
+              "끝 값",
+              "마지막",
+              "처음 값",
+              "첫 값"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "조사 기간 전체에서 얼마가 달라졌는지는 □과 □을 비교한다.",
+          "answers": [
+            "처음 값",
+            "마지막 값"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "꺾은선그래프에서 조사 기간 전체에서 값이 얼마나 달라졌는지 알려면 어느 두 값을 비교해야 하는지 쓰시오.",
+          "answer": "처음 값과 마지막 값을 비교한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "처음 값",
+                "첫 번째 값"
+              ]
+            },
+            {
+              "anyOf": [
+                "마지막 값",
+                "끝 값"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "조사 기간 전체에서 얼마가 달라졌는지는 {처음 값}과 {마지막 값}을 비교한다.",
+          "acceptedAnswers": [
+            [
+              "처음 값",
+              "첫 값",
+              "맨 처음 값",
+              "마지막 값",
+              "끝값"
+            ],
+            [
+              "마지막 값",
+              "끝값",
+              "끝 값",
+              "마지막",
+              "처음 값",
+              "첫 값"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-5-2-xc15",
+          "sourceIndex": 2630,
+          "proposalFingerprint": "81e6a5c4865ee5dc73431cfc77a86da5595572ee6ebb9dbbe96a921bc7ff0887",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "전체변화의처음과마지막두값을묻는다.",
+          "cReason": "두답을각자리에모두허용하면같은답두번통과하므로한쪽을문장에명시하고다른한값만묻는다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "조사 기간 전체에서 값이 얼마나 달라졌는지는 처음 값과 {마지막 값}을 비교한다.",
+        "cSlotEquivalents": [
+          [
+            "끝값",
+            "끝 값",
+            "맨 마지막 값"
+          ]
+        ],
+        "cReason": "순서를 바꾸어 쓸 수 있는 두 답을 빈칸마다 중복 허용하지 않고 한쪽을 고정해 한 값만 묻는다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-5-2-xc18",
+      "sourceIndex": 2633,
+      "beforeProposal": {
+        "sourceIndex": 2633,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-2 꺾은선그래프 내용 알아보기",
+        "sourceFingerprint": "35fc8c4fab3f133a850603cd3da4ac24965fd54e22df5521c24b5a1d6f984642",
+        "proposalFingerprint": "3bb4cbd16a9c0adc8e2445ae41eb6e2dfe7949db6cc40547e1decc21595db226",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-2-xc18",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "definition",
+        "bGoal": "같은 값이 여러 번 나옴",
+        "bReason": "xc9의 같은 높이 점 찾기와 중복",
+        "exclusionReason": "xc9가 같은 높이의 점을 모두 찾는 같은 목표를 이미 묻는다",
+        "cDecision": "rewrite",
+        "cAfter": "한 그래프에서 같은 값이 서로 다른 때에 {여러} 번 나타날 수도 있다.",
+        "cReason": "'여러 시각' 구절 대신 낱말 빈칸으로 단순화",
+        "cSlotEquivalents": [
+          [
+            "두",
+            "몇",
+            "세"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "값이 같은 점이 여러 개일 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "한 그래프에서 같은 값이 서로 다른 때에 {여러} 번 나타날 수도 있다.",
+        "cStudentSentence": "한 그래프에서 같은 값이 서로 다른 때에 □ 번 나타날 수도 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "여러",
+            "equivalents": [
+              "두",
+              "몇",
+              "세"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "한 그래프에서 같은 값이 서로 다른 때에 {여러} 번 나타날 수도 있다.",
+          "acceptedAnswers": [
+            [
+              "여러",
+              "두",
+              "몇",
+              "세"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc9의 같은 높이 점 찾기와 중복"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-5-2-xc18",
+          "sourceIndex": 2633,
+          "proposalFingerprint": "3bb4cbd16a9c0adc8e2445ae41eb6e2dfe7949db6cc40547e1decc21595db226",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "definition",
+          "bDecision": "exclude",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "같은값의모든때찾기B는중복이다.",
+          "cReason": "여러·두·세는동의어가아니므로실제같은값이세번나타나는자료로횟수를묻는다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "월요일부터 금요일까지 잰 키가 차례로 $20$, $21$, $21$, $22$, $21\\,\\mathrm{cm}$이다. 키가 $21\\,\\mathrm{cm}$인 때는 서로 다른 날에 모두 {$3$}번 나타났다.",
+        "cSlotEquivalents": [
+          [
+            "세"
+          ]
+        ],
+        "cReason": "여러와 두 및 세를 동의어로 취급하지 않고 같은 값이 실제 세 번 나타나는 자료를 제시한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-5-2-xc25",
+      "sourceIndex": 2640,
+      "beforeProposal": {
+        "sourceIndex": 2640,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-2 꺾은선그래프 내용 알아보기",
+        "sourceFingerprint": "2526b486c26a342b511efea71bd05702a344fb199dd3af652b6da4420982f7b5",
+        "proposalFingerprint": "9d7dad59d1bcb00ed1754cef8b3a6341362e2e3c9cea8162c00d94ba3d80dd5a",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-2-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "꺾은선그래프에서 값이 $20$보다 큰 날의 수를 세려고 한다. 값이 정확히 $20$인 날은 세어야 하는지 쓰고 이유를 설명하시오.",
+        "bAnswer": "세지 않는다. $20$은 $20$보다 크지 않기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "세지 않는다",
+              "제외한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$20$은 $20$보다 크지 않다",
+              "같은 값은 크지 않다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "기준보다 큰 자료 세기",
+        "bReason": "같다와 크다를 구별해 세는 이유 확인",
+        "cDecision": "keep",
+        "cReason": "같은 값 빈칸이 짧고 기준과 대비됨",
+        "cSlotEquivalents": [
+          [
+            "같은 자료",
+            "같은 점",
+            "같은 수"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "기준보다 높은 값의 개수",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "기준값보다 큰 자료를 셀 때 기준과 {같은 값}은 제외한다.",
+        "cStudentSentence": "기준값보다 큰 자료를 셀 때 기준과 □은 제외한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같은 값",
+            "equivalents": [
+              "같은 자료",
+              "같은 점",
+              "같은 수"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "기준값보다 큰 자료를 셀 때 기준과 □은 제외한다.",
+          "answers": [
+            "같은 값"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "꺾은선그래프에서 값이 $20$보다 큰 날의 수를 세려고 한다. 값이 정확히 $20$인 날은 세어야 하는지 쓰고 이유를 설명하시오.",
+          "answer": "세지 않는다. $20$은 $20$보다 크지 않기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "세지 않는다",
+                "제외한다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$20$은 $20$보다 크지 않다",
+                "같은 값은 크지 않다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "기준값보다 큰 자료를 셀 때 기준과 {같은 값}은 제외한다.",
+          "acceptedAnswers": [
+            [
+              "같은 값",
+              "같은 자료",
+              "같은 점",
+              "같은 수"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-5-2-xc25",
+          "sourceIndex": 2640,
+          "proposalFingerprint": "9d7dad59d1bcb00ed1754cef8b3a6341362e2e3c9cea8162c00d94ba3d80dd5a",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "20초과조건에20자체가포함되지않는까닭이다.",
+          "cReason": "같은값과같은점을섞지않고기준값동일수량으로답범위를명시한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "기준값보다 큰 값을 셀 때는 기준값과 {같은 값}을 제외한다.",
+        "cSlotEquivalents": [
+          [
+            "같은 수",
+            "똑같은 값"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-5-3-xc8",
+      "sourceIndex": 2651,
+      "beforeProposal": {
+        "sourceIndex": 2651,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "0c467bb05ee54a1b7fbe2c9f1e368cf76d4d1a8d17e011ef9218409031d251a8",
+        "proposalFingerprint": "53bfca2edd146c8acb2f26892ba34930488c0f9151ce0190b6ab2eb1befa5d79",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "표에는 자료가 $6$개 있는데 그래프에는 점이 $5$개 찍혀 있다. 무엇을 알 수 있는지 쓰고 어떻게 고쳐야 하는지 설명하시오.",
+        "bAnswer": "점을 하나 빠뜨렸다. 표와 비교해 빠진 때를 찾아 점을 찍는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "점이 하나 빠졌다",
+              "점을 빠뜨렸다"
+            ]
+          },
+          {
+            "anyOf": [
+              "표와 비교해 빠진 때를 찾아 점을 찍는다",
+              "빠진 점을 찍는다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "점 누락 확인",
+        "bReason": "자료 수와 점 수를 견주어 누락을 찾음",
+        "cDecision": "keep",
+        "cReason": "점의 수 빈칸이 짧고 앞과 대응됨",
+        "cSlotEquivalents": [
+          [
+            "점의 개수"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "점을 빠뜨리지 않았는지 확인하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "표의 자료 수와 찍힌 {점의 수}를 견주어 누락을 확인한다.",
+        "cStudentSentence": "표의 자료 수와 찍힌 □를 견주어 누락을 확인한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "점의 수",
+            "equivalents": [
+              "점의 개수"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "표의 자료 수와 찍힌 □를 견주어 누락을 확인한다.",
+          "answers": [
+            "점의 수"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "표에는 자료가 $6$개 있는데 그래프에는 점이 $5$개 찍혀 있다. 무엇을 알 수 있는지 쓰고 어떻게 고쳐야 하는지 설명하시오.",
+          "answer": "점을 하나 빠뜨렸다. 표와 비교해 빠진 때를 찾아 점을 찍는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "점이 하나 빠졌다",
+                "점을 빠뜨렸다"
+              ]
+            },
+            {
+              "anyOf": [
+                "표와 비교해 빠진 때를 찾아 점을 찍는다",
+                "빠진 점을 찍는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "표의 자료 수와 찍힌 {점의 수}를 견주어 누락을 확인한다.",
+          "acceptedAnswers": [
+            [
+              "점의 수",
+              "점의 개수"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-5-3-xc8",
+          "sourceIndex": 2651,
+          "proposalFingerprint": "53bfca2edd146c8acb2f26892ba34930488c0f9151ce0190b6ab2eb1befa5d79",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "표의여섯자료는서로다른조사때의한값씩이라는조건을명시해한점누락을확정한다.",
+          "cReason": "표자료수와점개수대조로누락확인방법이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bPrompt": "서로 다른 $6$일 동안 매일 한 번씩 조사한 값이 표에 있다. 조사한 날마다 점을 하나씩 찍어 꺾은선그래프를 그리기로 했는데 점을 $5$개만 찍었다. 무엇을 빠뜨렸는지 쓰고, 어떻게 고칠지 설명하시오."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-5-3-xc16",
+      "sourceIndex": 2659,
+      "beforeProposal": {
+        "sourceIndex": 2659,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "294291e438943a4ee28ec07b75e5bc2486fa47c3d9ad846992919c0fc362c496",
+        "proposalFingerprint": "9b89d7fb04c74e31f55e0b38fdadf1cd92d805a9f5e16c08901877c0a0e01c94",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "꺾은선그래프에서 한 점의 값이 틀리게 찍혔다. 그 점을 옮기는 것 말고 또 무엇을 고쳐야 하는지 쓰고 이유를 설명하시오.",
+        "bAnswer": "그 점에 이어진 선분도 고친다. 점이 옮겨지면 연결된 선분의 모양이 바뀌기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "그 점에 이어진 선분",
+              "점과 연결된 선"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "점을 고칠 때 선분도 고치기",
+        "bReason": "점과 선분이 이어져 있음을 알고 고치게 함",
+        "cDecision": "keep",
+        "cReason": "선분 빈칸이 짧고 익숙함",
+        "cSlotEquivalents": [
+          [
+            "선",
+            "연결선"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "그려진 점의 잘못 고치기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "점 하나의 값이 틀렸다면 그 점을 옮기고 그 점에 이어진 {선분}도 고친다.",
+        "cStudentSentence": "점 하나의 값이 틀렸다면 그 점을 옮기고 그 점에 이어진 □도 고친다.",
+        "cSlotAnswers": [
+          {
+            "expected": "선분",
+            "equivalents": [
+              "선",
+              "연결선"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "점 하나의 값이 틀렸다면 그 점을 옮기고 그 점에 이어진 □도 고친다.",
+          "answers": [
+            "선분"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "꺾은선그래프에서 한 점의 값이 틀리게 찍혔다. 그 점을 옮기는 것 말고 또 무엇을 고쳐야 하는지 쓰고 이유를 설명하시오.",
+          "answer": "그 점에 이어진 선분도 고친다. 점이 옮겨지면 연결된 선분의 모양이 바뀌기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "그 점에 이어진 선분",
+                "점과 연결된 선"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "점 하나의 값이 틀렸다면 그 점을 옮기고 그 점에 이어진 {선분}도 고친다.",
+          "acceptedAnswers": [
+            [
+              "선분",
+              "선",
+              "연결선"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-5-3-xc16",
+          "sourceIndex": 2659,
+          "proposalFingerprint": "9b89d7fb04c74e31f55e0b38fdadf1cd92d805a9f5e16c08901877c0a0e01c94",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "이어진선분이라는대상외에점이옮겨지면서연결선도달라지는이유를기준에넣는다.",
+          "cReason": "수정점에연결된선분도고치는관계이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "그 점에 이어진 선분도 고친다"
+            ]
+          },
+          {
+            "anyOf": [
+              "점이 옮겨지면 연결된 선분의 끝점이 달라져 선분의 모양도 바뀌기 때문이다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-5-3-xc18",
+      "sourceIndex": 2661,
+      "beforeProposal": {
+        "sourceIndex": 2661,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "5693b03d959c70ad63040656ff54e9c927b98ad787c959f19774928df81151f4",
+        "proposalFingerprint": "2d0c627d86463777ed85f3d44b3e23863d26b9a8551d3d209376ae5838a29366",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "식물이 시간이 지나며 얼마나 자라는지 알아보려고 한다. 어떤 자료를 어떻게 모아야 하는지 쓰시오.",
+        "bAnswer": "같은 식물의 키를 여러 때에 재어 모은다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "같은 식물"
+            ]
+          },
+          {
+            "anyOf": [
+              "여러 때에 잰다",
+              "일정한 간격으로 여러 번 잰다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "변화 조사에 맞는 자료",
+        "bReason": "같은 대상을 여러 때에 재야 함을 확인",
+        "cDecision": "rewrite",
+        "cAfter": "식물의 자람을 조사하려면 같은 식물의 키를 여러 {때}에 재어 모은다.",
+        "cReason": "'여러 때' 구절 빈칸을 한 낱말로 줄임",
+        "cSlotEquivalents": [
+          [
+            "날",
+            "시기",
+            "날짜"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "관찰 목적에 맞는 자료 모으기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "식물의 자람을 조사하려면 같은 식물의 키를 여러 {때}에 재어 모은다.",
+        "cStudentSentence": "식물의 자람을 조사하려면 같은 식물의 키를 여러 □에 재어 모은다.",
+        "cSlotAnswers": [
+          {
+            "expected": "때",
+            "equivalents": [
+              "날",
+              "시기",
+              "날짜"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "식물이 시간이 지나며 얼마나 자라는지 알아보려고 한다. 어떤 자료를 어떻게 모아야 하는지 쓰시오.",
+          "answer": "같은 식물의 키를 여러 때에 재어 모은다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "같은 식물"
+              ]
+            },
+            {
+              "anyOf": [
+                "여러 때에 잰다",
+                "일정한 간격으로 여러 번 잰다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "식물의 자람을 조사하려면 같은 식물의 키를 여러 {때}에 재어 모은다.",
+          "acceptedAnswers": [
+            [
+              "때",
+              "날",
+              "시기",
+              "날짜"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-5-3-xc18",
+          "sourceIndex": 2661,
+          "proposalFingerprint": "2d0c627d86463777ed85f3d44b3e23863d26b9a8551d3d209376ae5838a29366",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "키자료를목표로하는것을질문에명시하고같은식물의키를여러때잰다는세요소를받는다.",
+          "cReason": "같은식물의키를여러때측정하는조건이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bPrompt": "한 식물의 키가 시간이 지나며 얼마나 자라는지 알아보려고 한다. 어떤 자료를 어떻게 모아야 하는지 쓰시오.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "같은 식물의 키를 여러 때에 재어 모은다",
+              "같은 식물의 키를 일정한 간격으로 여러 번 잰다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-5-3-xc22",
+      "sourceIndex": 2665,
+      "beforeProposal": {
+        "sourceIndex": 2665,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "533b109d32083f036e03bac76ab6c79fc0eb2cfaafc9fb45b48417d3bc16d73a",
+        "proposalFingerprint": "ada2241ae6cb78e7563ec8d7b6b52acf345813ee1b26d98aa8ea5212d990aada",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "$1$일, $2$일, $4$일에 조사하고 $3$일에는 조사하지 못했다. 가로축에서 $2$일과 $4$일 사이는 어떻게 나타내야 하는지 쓰시오.",
+        "bAnswer": "$3$일 자리를 비워 두고 실제 날수만큼, 즉 두 칸 간격으로 나타낸다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$3$일 자리를 비워 둔다",
+              "실제 날수만큼 간격을 둔다",
+              "두 칸 간격"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "빠진 날도 실제 간격 유지",
+        "bReason": "조사 안 한 날도 시간 간격에 포함",
+        "cDecision": "rewrite",
+        "cAfter": "조사하지 않은 날이 있어도 날짜의 간격은 실제 {시간} 간격에 맞게 표시한다.",
+        "cReason": "앞 구절 빈칸을 쉬운 낱말로 줄임",
+        "cSlotEquivalents": [
+          [
+            "날짜",
+            "날",
+            "때"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "가로축에서 빠진 날짜 처리",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "조사하지 않은 날이 있어도 날짜의 간격은 실제 {시간} 간격에 맞게 표시한다.",
+        "cStudentSentence": "조사하지 않은 날이 있어도 날짜의 간격은 실제 □ 간격에 맞게 표시한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "시간",
+            "equivalents": [
+              "날짜",
+              "날",
+              "때"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$1$일, $2$일, $4$일에 조사하고 $3$일에는 조사하지 못했다. 가로축에서 $2$일과 $4$일 사이는 어떻게 나타내야 하는지 쓰시오.",
+          "answer": "$3$일 자리를 비워 두고 실제 날수만큼, 즉 두 칸 간격으로 나타낸다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$3$일 자리를 비워 둔다",
+                "실제 날수만큼 간격을 둔다",
+                "두 칸 간격"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "조사하지 않은 날이 있어도 날짜의 간격은 실제 {시간} 간격에 맞게 표시한다.",
+          "acceptedAnswers": [
+            [
+              "시간",
+              "날짜",
+              "날",
+              "때"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-5-3-xc22",
+          "sourceIndex": 2665,
+          "proposalFingerprint": "ada2241ae6cb78e7563ec8d7b6b52acf345813ee1b26d98aa8ea5212d990aada",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "한날한칸이라는척도가없는데두칸을답하므로B에하루한칸조건을명시한다.",
+          "cReason": "누락날이있어도실제시간간격으로표시하는원칙이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bPrompt": "$1$일, $2$일, $4$일에 조사하고 $3$일에는 조사하지 못했다. 꺾은선그래프의 가로축에서 하루를 한 칸으로 나타낼 때, $2$일과 $4$일 사이는 어떻게 표시해야 하는지 쓰시오.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$3$일의 자리를 남겨 $2$일과 $4$일 사이를 두 칸으로 표시한다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-5-3-xc23",
+      "sourceIndex": 2666,
+      "beforeProposal": {
+        "sourceIndex": 2666,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "7acf1635b60c18646f58bec4d22cbf8cf9396a13c65ea718a804a724a456c303",
+        "proposalFingerprint": "95797cb0558029a5a214902797b70922fe82d2561624249fb221e36779376de0",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc23",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "두 그래프 눈금 맞추기",
+        "bReason": "2-5-2 xc23 눈금 비교와 중복",
+        "exclusionReason": "눈금이 다른 두 그래프 비교는 2-5-2 xc23에서 구체 수로 이미 묻는다",
+        "cDecision": "keep",
+        "cReason": "눈금 크기 빈칸이 짧고 문맥이 분명함",
+        "cSlotEquivalents": [
+          [
+            "눈금",
+            "한 칸의 크기",
+            "눈금 간격"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "서로 다른 두 그래프의 눈금 맞추기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "같은 변화량이 같은 길이로 보이게 비교하려면 두 그래프의 {눈금 크기}를 맞춘다.",
+        "cStudentSentence": "같은 변화량이 같은 길이로 보이게 비교하려면 두 그래프의 □를 맞춘다.",
+        "cSlotAnswers": [
+          {
+            "expected": "눈금 크기",
+            "equivalents": [
+              "눈금",
+              "한 칸의 크기",
+              "눈금 간격"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "같은 변화량이 같은 길이로 보이게 비교하려면 두 그래프의 □를 맞춘다.",
+          "answers": [
+            "눈금 크기"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "같은 변화량이 같은 길이로 보이게 비교하려면 두 그래프의 {눈금 크기}를 맞춘다.",
+          "acceptedAnswers": [
+            [
+              "눈금 크기",
+              "눈금",
+              "한 칸의 크기",
+              "눈금 간격"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "2-5-2 xc23 눈금 비교와 중복"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-5-3-xc23",
+          "sourceIndex": 2666,
+          "proposalFingerprint": "95797cb0558029a5a214902797b70922fe82d2561624249fb221e36779376de0",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "exclude",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "눈금크기비교B는기존구체문항과중복이다.",
+          "cReason": "물리적칸길이와칸의수량을구별해같은모눈길이조건에서한칸양을맞추도록묻는다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "rewrite",
+        "cAfter": "크기가 같은 모눈으로 두 꺾은선그래프를 그릴 때, 같은 변화량이 같은 길이로 보이게 하려면 눈금 한 칸이 나타내는 {양}을 같게 맞춘다.",
+        "cSlotEquivalents": [
+          [
+            "값",
+            "수량"
+          ]
+        ],
+        "cReason": "모눈의 물리적 길이와 한 칸이 나타내는 양을 구별해 비교 조건을 명시한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-5-3-xc28",
+      "sourceIndex": 2671,
+      "beforeProposal": {
+        "sourceIndex": 2671,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "c90e8f30c62572269958ad3a30cd1423217454eab408a8b542497373a92b009e",
+        "proposalFingerprint": "18901bb375dc166b981f96e60fa06d0f5d60c19df56c15c373ee7fa8784c537e",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc28",
+        "bDecision": "rewrite",
+        "bPrompt": "꺾은선그래프의 세로 눈금을 정할 때 지켜야 할 기준 두 가지를 쓰시오.",
+        "bAnswer": "전체 자료가 들어가야 하고 값의 차를 읽기 쉽게 정한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "전체 자료가 들어간다",
+              "모든 자료가 들어간다"
+            ]
+          },
+          {
+            "anyOf": [
+              "값의 차를 읽기 쉽다",
+              "변화를 알아보기 쉽다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "적당한 눈금의 기준",
+        "bReason": "자료 포함과 읽기 쉬움 두 기준을 확인",
+        "cDecision": "keep",
+        "cReason": "쉽게 빈칸이 짧고 뒤 문장이 이유를 보충",
+        "cSlotEquivalents": [
+          [
+            "편하게",
+            "좋게",
+            "편리하게"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "적당한 눈금인지 설명하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "꺾은선그래프의 눈금은 전체 자료가 들어가고 값의 차를 읽기 {쉽게} 정한다. 그래야 다른 사람도 변화를 알아볼 수 있다.",
+        "cStudentSentence": "꺾은선그래프의 눈금은 전체 자료가 들어가고 값의 차를 읽기 □ 정한다. 그래야 다른 사람도 변화를 알아볼 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "쉽게",
+            "equivalents": [
+              "편하게",
+              "좋게",
+              "편리하게"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "꺾은선그래프의 눈금은 전체 자료가 들어가고 값의 차를 읽기 □ 정한다. 그래야 다른 사람도 변화를 알아볼 수 있다.",
+          "answers": [
+            "쉽게"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "꺾은선그래프의 세로 눈금을 정할 때 지켜야 할 기준 두 가지를 쓰시오.",
+          "answer": "전체 자료가 들어가야 하고 값의 차를 읽기 쉽게 정한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "전체 자료가 들어간다",
+                "모든 자료가 들어간다"
+              ]
+            },
+            {
+              "anyOf": [
+                "값의 차를 읽기 쉽다",
+                "변화를 알아보기 쉽다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "꺾은선그래프의 눈금은 전체 자료가 들어가고 값의 차를 읽기 {쉽게} 정한다. 그래야 다른 사람도 변화를 알아볼 수 있다.",
+          "acceptedAnswers": [
+            [
+              "쉽게",
+              "편하게",
+              "좋게",
+              "편리하게"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-5-3-xc28",
+          "sourceIndex": 2671,
+          "proposalFingerprint": "18901bb375dc166b981f96e60fa06d0f5d60c19df56c15c373ee7fa8784c537e",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "전체자료포함과읽을만한변화의두눈금선택기준을요청한다.",
+          "cReason": "쉽게라는권고표현만복원하는C는수학판단이없어제외한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "cDecision": "exclude",
+        "cReason": "쉽게라는 일반 권고를 채우는 빈칸은 수학적 판단을 확인하지 못한다. 전체 자료 포함과 변화 읽기의 두 기준을 설명하는 B를 사용한다.",
+        "exclusionReason": "C: 수학적 판단 없이 권고 표현을 복원하는 빈칸이므로 제외한다. B와 일반 설명은 유지한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-6-1-xc5",
+      "sourceIndex": 2676,
+      "beforeProposal": {
+        "sourceIndex": 2676,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "sourceFingerprint": "9dc0ba29e92117c24378578852a830ffbd7c43e4c1e476f27c9c4efefb48315b",
+        "proposalFingerprint": "c2e04ad9e2fe97322381a22f02de427c583ecf79322255d58c37ca1929fc40d9",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-1-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "변이 $2$개인 다각형을 만들 수 있는지 쓰고, 다각형이 되려면 변이 적어도 몇 개 있어야 하는지 이유와 함께 쓰시오.",
+        "bAnswer": "만들 수 없다. 선분 $2$개로는 닫힌 도형이 되지 않고 적어도 세 개 있어야 한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "만들 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "적어도 세 개",
+              "$3$개 이상"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "다각형 최소 변의 수",
+        "bReason": "두 선분으로 안 닫힘을 이유로 설명",
+        "cDecision": "keep",
+        "cReason": "세 개 빈칸이 짧고 조건이 분명함",
+        "cSlotEquivalents": [
+          [
+            "$3$개",
+            "$3$",
+            "세"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "다각형에 필요한 가장 적은 변",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "다각형을 만들려면 변이 적어도 {세 개} 있어야 한다.",
+        "cStudentSentence": "다각형을 만들려면 변이 적어도 □ 있어야 한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "세 개",
+            "equivalents": [
+              "$3$개",
+              "$3$",
+              "세"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "다각형을 만들려면 변이 적어도 □ 있어야 한다.",
+          "answers": [
+            "세 개"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "변이 $2$개인 다각형을 만들 수 있는지 쓰고, 다각형이 되려면 변이 적어도 몇 개 있어야 하는지 이유와 함께 쓰시오.",
+          "answer": "만들 수 없다. 선분 $2$개로는 닫힌 도형이 되지 않고 적어도 세 개 있어야 한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "만들 수 없다"
+              ]
+            },
+            {
+              "anyOf": [
+                "적어도 세 개",
+                "$3$개 이상"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "다각형을 만들려면 변이 적어도 {세 개} 있어야 한다.",
+          "acceptedAnswers": [
+            [
+              "세 개",
+              "$3$개",
+              "$3$",
+              "세"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-6-1-xc5",
+          "sourceIndex": 2676,
+          "proposalFingerprint": "c2e04ad9e2fe97322381a22f02de427c583ecf79322255d58c37ca1929fc40d9",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "불가와최소세개외에두선분으로닫지못하는요청한까닭도기준에넣는다.",
+          "cReason": "다각형의최소세변조건이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "변 $2$개로는 만들 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "적어도 세 개",
+              "$3$개 이상"
+            ]
+          },
+          {
+            "anyOf": [
+              "선분 $2$개로는 둘러싸인 닫힌 도형을 만들 수 없다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-6-1-xc12",
+      "sourceIndex": 2683,
+      "beforeProposal": {
+        "sourceIndex": 2683,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "sourceFingerprint": "152bda1da308c24be3750d4db384d0ffdb630c88625f91d29fb1ba45aa6cb880",
+        "proposalFingerprint": "efe296dade2208671c30e81869dad14d270bdc6f8521167af67b584678723c96",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-1-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "다각형의 변의 개수를 셀 때 같은 변을 두 번 세지 않으려면 어떻게 하면 좋은지 쓰시오.",
+        "bAnswer": "시작한 변에 표시를 하고 차례대로 한 바퀴 돌며 센다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "시작한 변에 표시한다",
+              "센 변마다 표시한다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "변을 빠짐없이 한 번씩 세기",
+        "bReason": "표시해서 중복을 줄이는 방법 확인",
+        "cDecision": "keep",
+        "cReason": "두 번 빈칸이 짧고 문맥이 분명함",
+        "cSlotEquivalents": [
+          [
+            "$2$번",
+            "두"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "둘레를 한 번만 따라 세기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "다각형의 변을 셀 때 시작한 변을 표시하면 같은 변을 {두 번} 세는 일을 줄일 수 있다.",
+        "cStudentSentence": "다각형의 변을 셀 때 시작한 변을 표시하면 같은 변을 □ 세는 일을 줄일 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "두 번",
+            "equivalents": [
+              "$2$번",
+              "두"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "다각형의 변을 셀 때 시작한 변을 표시하면 같은 변을 □ 세는 일을 줄일 수 있다.",
+          "answers": [
+            "두 번"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "다각형의 변의 개수를 셀 때 같은 변을 두 번 세지 않으려면 어떻게 하면 좋은지 쓰시오.",
+          "answer": "시작한 변에 표시를 하고 차례대로 한 바퀴 돌며 센다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "시작한 변에 표시한다",
+                "센 변마다 표시한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "다각형의 변을 셀 때 시작한 변을 표시하면 같은 변을 {두 번} 세는 일을 줄일 수 있다.",
+          "acceptedAnswers": [
+            [
+              "두 번",
+              "$2$번",
+              "두"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-6-1-xc12",
+          "sourceIndex": 2683,
+          "proposalFingerprint": "efe296dade2208671c30e81869dad14d270bdc6f8521167af67b584678723c96",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "시작표시만강제하지말고시작을기억하여한방향한바퀴만세는다른바른방법도허용한다.",
+          "cReason": "시작표시로같은변의두번세기를줄이는방법이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "시작한 변에 표시하고 한 방향으로 한 바퀴만 센다",
+              "센 변마다 표시하며 아직 세지 않은 변만 센다",
+              "시작한 변을 기억하고 한 방향으로 돌아 시작점에 오면 멈춘다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-6-1-xc15",
+      "sourceIndex": 2686,
+      "beforeProposal": {
+        "sourceIndex": 2686,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "sourceFingerprint": "07a79bf8092c104d0b1a84472da112705c99caa1b2f00d10ac8313cdaf93066a",
+        "proposalFingerprint": "57a95b4084a363954b45449da3692cb8c774fa159db7ee5cb345d9c5f16694b6",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-1-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "직사각형의 한 모서리를 이웃한 두 변의 가운데 점끼리 곧게 이어 삼각형 모양으로 잘라 냈다. 남은 도형의 이름과 변의 개수를 쓰고 이유를 설명하시오.",
+        "bAnswer": "오각형이고 변은 $5$개이다. 자른 선분이 새 변으로 생겨 원래 $4$개보다 하나 늘었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "오각형",
+              "$5$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "자른 선분이 새 변이 된다",
+              "변이 하나 늘었다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "모서리를 자르면 변이 늘어남",
+        "bReason": "새 변이 생기는 이유를 설명",
+        "exampleNeeded": "직사각형의 한 모서리를 곧게 잘라 낸 그림",
+        "cDecision": "rewrite",
+        "cAfter": "사각형의 한 모서리를 이웃한 두 변 위의 점끼리 곧게 이어 잘라 내면 남은 도형의 변은 {$5$}개이다.",
+        "cReason": "긴 조건 문장을 쉬운 예와 수 빈칸으로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "다섯"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "꼭짓점 한 곳을 잘라 낸 뒤",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "사각형의 한 모서리를 이웃한 두 변 위의 점끼리 곧게 이어 잘라 내면 남은 도형의 변은 {$5$}개이다.",
+        "cStudentSentence": "사각형의 한 모서리를 이웃한 두 변 위의 점끼리 곧게 이어 잘라 내면 남은 도형의 변은 □개이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$5$",
+            "equivalents": [
+              "다섯"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "직사각형의 한 모서리를 이웃한 두 변의 가운데 점끼리 곧게 이어 삼각형 모양으로 잘라 냈다. 남은 도형의 이름과 변의 개수를 쓰고 이유를 설명하시오.",
+          "answer": "오각형이고 변은 $5$개이다. 자른 선분이 새 변으로 생겨 원래 $4$개보다 하나 늘었다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "오각형",
+                "$5$개"
+              ]
+            },
+            {
+              "anyOf": [
+                "자른 선분이 새 변이 된다",
+                "변이 하나 늘었다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "사각형의 한 모서리를 이웃한 두 변 위의 점끼리 곧게 이어 잘라 내면 남은 도형의 변은 {$5$}개이다.",
+          "acceptedAnswers": [
+            [
+              "$5$",
+              "다섯"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-6-1-xc15",
+          "sourceIndex": 2686,
+          "proposalFingerprint": "57a95b4084a363954b45449da3692cb8c774fa159db7ee5cb345d9c5f16694b6",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "이름과변개수를각각요청하므로오각형과5개를구별해기준에넣는다.",
+          "cReason": "C절단점도꼭짓점이아닌점을명시해야항상다섯변이남는다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "오각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "변은 $5$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "자른 선분이 새 변이 되어 원래 네 변에서 하나 늘었다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "직사각형의 한 모서리를 이웃한 두 변의 가운데 점끼리 곧게 이어 삼각형 모양으로 잘라 내면, 남은 도형의 변은 {$5$}개이다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-6-1-xc21",
+      "sourceIndex": 2692,
+      "beforeProposal": {
+        "sourceIndex": 2692,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "sourceFingerprint": "02a1419b6781ab268e59a7dcc3843f71703dd86afe5504e0b8ff70d302b0636a",
+        "proposalFingerprint": "ef4512752d1690cf35a0386571de86b698c4d0df32904b17f5c3c9edcbda9d6f",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-1-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각형 가는 세 변이 각각 $10$ cm이고, 육각형 나는 여섯 변이 각각 $1$ cm이다. 변이 더 많은 쪽의 둘레가 더 긴지 쓰고 이유를 설명하시오.",
+        "bAnswer": "아니다. 가의 둘레는 $30$ cm, 나의 둘레는 $6$ cm이다. 변의 수보다 길이를 모두 더해 비교한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "아니다",
+              "더 짧다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$30$ cm와 $6$ cm",
+              "변의 길이를 모두 더해 비교한다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "변 수와 둘레 길이 구별",
+        "bReason": "변이 많아도 둘레가 짧을 수 있음",
+        "cDecision": "rewrite",
+        "cAfter": "변이 더 많은 다각형이라도 변의 길이가 짧으면 둘레가 더 {짧을} 수 있다.",
+        "cReason": "'정할 수 없다' 구절을 구체 낱말로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "작을"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "변 수와 둘레 길이 비교",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "변이 더 많은 다각형이라도 변의 길이가 짧으면 둘레가 더 {짧을} 수 있다.",
+        "cStudentSentence": "변이 더 많은 다각형이라도 변의 길이가 짧으면 둘레가 더 □ 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "짧을",
+            "equivalents": [
+              "작을"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "삼각형 가는 세 변이 각각 $10$ cm이고, 육각형 나는 여섯 변이 각각 $1$ cm이다. 변이 더 많은 쪽의 둘레가 더 긴지 쓰고 이유를 설명하시오.",
+          "answer": "아니다. 가의 둘레는 $30$ cm, 나의 둘레는 $6$ cm이다. 변의 수보다 길이를 모두 더해 비교한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "아니다",
+                "더 짧다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$30$ cm와 $6$ cm",
+                "변의 길이를 모두 더해 비교한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "변이 더 많은 다각형이라도 변의 길이가 짧으면 둘레가 더 {짧을} 수 있다.",
+          "acceptedAnswers": [
+            [
+              "짧을",
+              "작을"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-6-1-xc21",
+          "sourceIndex": 2692,
+          "proposalFingerprint": "ef4512752d1690cf35a0386571de86b698c4d0df32904b17f5c3c9edcbda9d6f",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "일반길이합방법만으로판정이유가아니므로30cm와6cm의실제비교를기준에반영한다.",
+          "cReason": "많은변이반드시긴둘레를뜻하지않는관계이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "변이 더 많은 육각형의 둘레가 더 짧다",
+              "아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "삼각형의 둘레는 $30\\,\\mathrm{cm}$이고 육각형의 둘레는 $6\\,\\mathrm{cm}$이기 때문이다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-6-1-xc24",
+      "sourceIndex": 2695,
+      "beforeProposal": {
+        "sourceIndex": 2695,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "sourceFingerprint": "1f4d33346b9b2bae9e3bf56fae6522f31f75e54b0b7b14d972522848f1379f18",
+        "proposalFingerprint": "8f9226051035fbce2ee02cd4706e8648bc5ce6cdd6c1cebcc27c5b1d9291730d",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-1-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "선분 $4$개를 이어 다각형을 그리려고 한다. 둘레의 선분들을 이을 때 지켜야 할 점은 무엇인지 쓰시오.",
+        "bAnswer": "선분들이 중간에서 서로 가로지르지 않게 이어 한 바퀴 닫는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "서로 가로지르지 않는다",
+              "중간에서 만나지 않는다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "다각형 둘레를 그리는 조건",
+        "bReason": "선분이 엇갈리지 않아야 함을 확인",
+        "cDecision": "rewrite",
+        "cAfter": "다각형을 그릴 때에는 둘레의 선분들이 중간에서 서로 {가로지르지} 않게 잇는다.",
+        "cReason": "구절 빈칸을 한 낱말로 줄임",
+        "cSlotEquivalents": [
+          [
+            "만나지",
+            "겹치지",
+            "교차하지"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "선분이 서로 가로지르는 그림",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "다각형을 그릴 때에는 둘레의 선분들이 중간에서 서로 {가로지르지} 않게 잇는다.",
+        "cStudentSentence": "다각형을 그릴 때에는 둘레의 선분들이 중간에서 서로 □ 않게 잇는다.",
+        "cSlotAnswers": [
+          {
+            "expected": "가로지르지",
+            "equivalents": [
+              "만나지",
+              "겹치지",
+              "교차하지"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "선분 $4$개를 이어 다각형을 그리려고 한다. 둘레의 선분들을 이을 때 지켜야 할 점은 무엇인지 쓰시오.",
+          "answer": "선분들이 중간에서 서로 가로지르지 않게 이어 한 바퀴 닫는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "서로 가로지르지 않는다",
+                "중간에서 만나지 않는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "다각형을 그릴 때에는 둘레의 선분들이 중간에서 서로 {가로지르지} 않게 잇는다.",
+          "acceptedAnswers": [
+            [
+              "가로지르지",
+              "만나지",
+              "겹치지",
+              "교차하지"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-6-1-xc24",
+          "sourceIndex": 2695,
+          "proposalFingerprint": "8f9226051035fbce2ee02cd4706e8648bc5ce6cdd6c1cebcc27c5b1d9291730d",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "needs-revision",
+          "bReason": "중간교차없음외에끝점으로한바퀴닫는다는모범답조건도기준에넣는다.",
+          "cReason": "둘레중간의교차금지조건이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "선분들이 중간에서 서로 가로지르지 않게 잇는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "끝점끼리 이어 한 바퀴 닫히게 한다"
+            ]
+          }
+        ]
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-6-2-xc12",
+      "sourceIndex": 2707,
+      "beforeProposal": {
+        "sourceIndex": 2707,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "sourceFingerprint": "9b9c5ee34ebfff09fbe60c3a7994fd54eed93ecf647df8adaee412d32afd567e",
+        "proposalFingerprint": "df0acd5f2ae9704a5c10059152c19437f6641c34cbb731523a12cf778fdf8990",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-2-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "가로가 $5$ cm, 세로가 $3$ cm인 직사각형은 정다각형인지 쓰고, 그 까닭을 변과 각을 살펴 설명하시오.",
+        "bAnswer": "정다각형이 아니다. 네 각은 모두 같지만 변의 길이가 $5$ cm와 $3$ cm로 달라서이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "정다각형이 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "변의 길이가 다르다",
+              "가로와 세로의 길이가 다르다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "직사각형이 정다각형 아닌 까닭",
+        "bReason": "각은 같아도 변이 다르면 아님을 예로 확인",
+        "cDecision": "keep",
+        "cReason": "'각이 같아도'와 대비되는 변 길이를 묻는 빈칸",
+        "cSlotEquivalents": [
+          [
+            "변의 길이",
+            "변",
+            "길이"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "정사각형이 아닌 직사각형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "가로와 세로가 다른 직사각형은 각이 같아도 {변 길이}가 달라 정다각형이 아니다.",
+        "cStudentSentence": "가로와 세로가 다른 직사각형은 각이 같아도 □가 달라 정다각형이 아니다.",
+        "cSlotAnswers": [
+          {
+            "expected": "변 길이",
+            "equivalents": [
+              "변의 길이",
+              "변",
+              "길이"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "가로와 세로가 다른 직사각형은 각이 같아도 □가 달라 정다각형이 아니다.",
+          "answers": [
+            "변 길이"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "가로가 $5$ cm, 세로가 $3$ cm인 직사각형은 정다각형인지 쓰고, 그 까닭을 변과 각을 살펴 설명하시오.",
+          "answer": "정다각형이 아니다. 네 각은 모두 같지만 변의 길이가 $5$ cm와 $3$ cm로 달라서이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "정다각형이 아니다"
+              ]
+            },
+            {
+              "anyOf": [
+                "변의 길이가 다르다",
+                "가로와 세로의 길이가 다르다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "가로와 세로가 다른 직사각형은 각이 같아도 {변 길이}가 달라 정다각형이 아니다.",
+          "acceptedAnswers": [
+            [
+              "변 길이",
+              "변의 길이",
+              "변",
+              "길이"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-6-2-xc12",
+          "sourceIndex": 2707,
+          "proposalFingerprint": "df0acd5f2ae9704a5c10059152c19437f6641c34cbb731523a12cf778fdf8990",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "needs-revision",
+          "bReason": "변과각을살펴설명하라는범위이므로같은네직각과5·3의다른변길이를함께기준으로받는다.",
+          "cReason": "각같음만으로정다각형이아닌변길이조건이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "manualPatch": {
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "정다각형이 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "네 각은 모두 같은 직각이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "변의 길이는 $5\\,\\mathrm{cm}$와 $3\\,\\mathrm{cm}$로 다르다"
+            ]
+          }
+        ],
+        "cSlotEquivalents": [
+          [
+            "변의 길이",
+            "길이"
+          ]
+        ]
+      },
+      "isReleaseApproval": false
+    }
+  ]
+}

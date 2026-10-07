@@ -281,6 +281,35 @@ export const textbookBlockSchema = z
     }),
   ])
   .superRefine((block, ctx) => {
+    if (block.semantic?.node?.kind === "conceptQuestions") {
+      const node = block.semantic.node;
+      if (
+        block.kind !== "concept-recall" ||
+        block.phase !== "sentences" ||
+        ![
+          "termRecall",
+          "sentenceRecall",
+          "explainActivity",
+          "conceptMap",
+          "preparation",
+        ].includes(block.semantic.activity)
+      )
+        ctx.addIssue({
+          code: "custom",
+          message:
+            "개념 질문은 해당 질문 활동의 문장 회상 블록에만 사용합니다.",
+        });
+      if (
+        block.kind === "concept-recall" &&
+        block.markdown !==
+          node.questions.map(({ question }) => question.prompt).join("\n\n")
+      )
+        ctx.addIssue({
+          code: "custom",
+          path: ["markdown"],
+          message: "질문 본문과 고정한 물음이 일치하지 않습니다.",
+        });
+    }
     if (
       block.kind === "concept-recall" &&
       block.phase !== "study" &&

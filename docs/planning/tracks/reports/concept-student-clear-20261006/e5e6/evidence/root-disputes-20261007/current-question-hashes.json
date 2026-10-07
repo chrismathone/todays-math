@@ -1,0 +1,2352 @@
+[
+  {
+    "id": "e5-1-3-2-c2",
+    "sourceIndex": 33,
+    "disposition": "retain",
+    "beforeNormalizedHash": "5eefbe562f3eb450777e70b5c008416ee11ab6f791a0ebc8a3278cd702941d88",
+    "currentNormalizedHash": "5eefbe562f3eb450777e70b5c008416ee11ab6f791a0ebc8a3278cd702941d88",
+    "currentProposalFingerprint": "91e7b1795e594d7179bce04eaef5ea4bac17889c74e72fbe924214bf34932d1c",
+    "independentStatus": "pending",
+    "reason": "선택지의 문구를 쓰는 것만으로는 의자 수 2와 5에 대응하는 8과 20을 구하는 두 기준을 채우지 못한다. 기호의 변하는 값을 묻는 선택형 설명도 유효하다."
+  },
+  {
+    "id": "e5-1-3-3-c1",
+    "sourceIndex": 35,
+    "disposition": "retain",
+    "beforeNormalizedHash": "0ccc1acdb4f867afce07afb2202c5b613a1495cc38b873f91ef2d5fc95b46a60",
+    "currentNormalizedHash": "0ccc1acdb4f867afce07afb2202c5b613a1495cc38b873f91ef2d5fc95b46a60",
+    "currentProposalFingerprint": "066a872f712e413b0fde6626f13323d2aae980bd21ad5f3f90611d94108b7037",
+    "independentStatus": "pending",
+    "reason": "봉지가 한 개 늘 때 증가량이 한 봉지의 6개라는 해석은 유효하다. 입력값과 결과값이 같다는 사실은 복사의 근거가 아니며 증가량과 대응이라는 두 연결된 의미를 함께 묻는다."
+  },
+  {
+    "id": "e5-1-6-5-c6",
+    "sourceIndex": 85,
+    "disposition": "revise",
+    "beforeNormalizedHash": "ac3d3324f8aa7fda559d87cb7f0de70493a3d082a1a8bec01e1a772b3d014a27",
+    "currentNormalizedHash": "dc58083f4ee3cf91aaf8cd5010c5ca7442197ee74b980ece22ca661ace10e9f4",
+    "currentProposalFingerprint": "b4c0784c531940824e4a46bd426eb66797aa1c53fc3f77d87bc09760d8f34e22",
+    "independentStatus": "pending",
+    "reason": "밑변 사이의 거리만으로 수직을 뜻했다고 판정하는 대안은 모호하여 제거한다. 가장 짧은 선분은 수직 거리와 같은 수학적 의미이므로 구체적으로 남긴다."
+  },
+  {
+    "id": "e5-2-1-5-c2",
+    "sourceIndex": 101,
+    "disposition": "retain",
+    "beforeNormalizedHash": "5d4180e20592b0152174eb8a13e27afc4db646dcd331572ae17cd7644d25be34",
+    "currentNormalizedHash": "5d4180e20592b0152174eb8a13e27afc4db646dcd331572ae17cd7644d25be34",
+    "currentProposalFingerprint": "592ea72751c02616b4d5e6fe823c410cb9556594c7bc810e92fc60dc5658d4ae",
+    "independentStatus": "pending",
+    "reason": "모든 양수에서 버림한 값은 작거나 같다. 작다는 답만 썼다면 같은 경우를 빠뜨려 불완전하다는 판정이 분명하며 key 단계도 pass이다."
+  },
+  {
+    "id": "e5-2-5-6-c1",
+    "sourceIndex": 182,
+    "disposition": "revise",
+    "beforeNormalizedHash": "8e8f2fca5646fb7b902df74db8f3e5377154c8c7b4a0f1b1399bf571710fc98a",
+    "currentNormalizedHash": "b6d1287d6553e140daa32a84c0d4d64caa3bcbb47ac432fa1130adf0c0c4bc4e",
+    "currentProposalFingerprint": "bf12fe31a99ad640c785757e390a706cc361d0fcf197dbe81f5cda0de385c553",
+    "independentStatus": "pending",
+    "reason": "일부 모서리를 잘라 여섯 면이 이어진 채 펼친다는 조건을 B와 C에 함께 명시한다."
+  },
+  {
+    "id": "e6-1-2-1-c3",
+    "sourceIndex": 208,
+    "disposition": "revise",
+    "beforeNormalizedHash": "f467a502d6d277c723355c04143243b8b35ddd3f8c0c19b0bcd8a64a196a3c97",
+    "currentNormalizedHash": "1152ffbcb5aafae2f7b054ea348aafe6e0de075ece910df9d564b5585ceb5cde",
+    "currentProposalFingerprint": "d8bcb2d56884bc5ada2cad7a9d618e22e6dc766329f8ac178c1a6b63568b020b",
+    "independentStatus": "pending",
+    "reason": "옆면에서 무엇을 채울지 모양으로 한정하여 면이라는 일반명사로도 참이 되는 슬롯을 없앤다."
+  },
+  {
+    "id": "e6-1-2-4-c2",
+    "sourceIndex": 219,
+    "disposition": "revise",
+    "beforeNormalizedHash": "b10f2c150d992e30850547a9ea107892d3c3beaa3faffa92184be866af5249e0",
+    "currentNormalizedHash": "d85024aa690d9de34feba57a4ccf1b9c57794360594643da0e4b0abeb3e51c7c",
+    "currentProposalFingerprint": "c95e4b2256758c4bab86e332671e47b546348fb4f2f9f413f0bf38ba0182f5c9",
+    "independentStatus": "pending",
+    "reason": "불명확한 바탕 표현을 C에서 제거하고 올바른 일반설명의 조건과 밑면 이름을 묻는다."
+  },
+  {
+    "id": "e6-1-2-4-c3",
+    "sourceIndex": 220,
+    "disposition": "retain",
+    "beforeNormalizedHash": "fba9be15d14051abcc1cbeb1631c1648de299d68e5b561c012574204efc8ea15",
+    "currentNormalizedHash": "fba9be15d14051abcc1cbeb1631c1648de299d68e5b561c012574204efc8ea15",
+    "currentProposalFingerprint": "1bb44a317969379a2a3277d048d929e42525bbd40f5028d17ee691b4b92a62e6",
+    "independentStatus": "pending",
+    "reason": "변과 꼭대기를 이용하라는 것은 사용할 대상의 지정이다. 두 대상을 이어 삼각형 면을 만든다는 동작과 모양은 학생이 설명해야 하므로 지문의 대상명 복사만으로 기준을 채우지 못한다."
+  },
+  {
+    "id": "e6-1-3-1-c3",
+    "sourceIndex": 230,
+    "disposition": "revise",
+    "beforeNormalizedHash": "91a850bcb8dce9616f4a7b4242760972921ef2ad04a939c3059415c3891d153f",
+    "currentNormalizedHash": "9e4f33ab5eacf78070be409615f81c766aea4baff2b118ff3797338a64b2131b",
+    "currentProposalFingerprint": "21d10c9c9d842ba7029d18012472596a5ab9d9237d8ef7f4792377f77a100fca",
+    "independentStatus": "pending",
+    "reason": "계산한 개수 2가 뒤에 미리 적힌 실제 노출을 제거한다. 자릿값 개수의 변환, 나눗셈, 몫을 연결하는 의미는 보존한다."
+  },
+  {
+    "id": "e6-1-3-2-c1",
+    "sourceIndex": 231,
+    "disposition": "revise",
+    "beforeNormalizedHash": "15d7195db8ddb19ae9ea97fc79ea0b24ba6213c114001e3a8cbfc34f03557d46",
+    "currentNormalizedHash": "3e55f3c960d9947257ed328f4a471f3eadea1fbfeb8af519801e75033298e71d",
+    "currentProposalFingerprint": "6a2c4e8a6e4a1d6e76cfe61e52bad3b582da0a8bcaa170ca1ca111442612cd50",
+    "independentStatus": "pending",
+    "reason": "수학적으로 올바른 원문을 교정한다고 기록한 이유만 있었으므로 coreReason을 지운다. 작은 두 수의 비교를 묻는 현재 C는 유지한다."
+  },
+  {
+    "id": "e6-1-3-4-c3",
+    "sourceIndex": 239,
+    "disposition": "revise",
+    "beforeNormalizedHash": "2f677e986769d893cc58366a09fb8d1f980b6293717ec709824a64b9a0a6f6ce",
+    "currentNormalizedHash": "66fece3daff7c1c49468e65db931cca1b28c63613655054e6b8db6003f3e99d5",
+    "currentProposalFingerprint": "c9a150c0cd5c5b43d584b80da58d3724d0b631d0f18785a7687be0fa5232cd67",
+    "independentStatus": "pending",
+    "reason": "값이 어떻게 비교되는지 묻는 슬롯임을 원래의 몇 배라는 구조로 한정한다."
+  },
+  {
+    "id": "e6-1-4-2-c3",
+    "sourceIndex": 248,
+    "disposition": "retain",
+    "beforeNormalizedHash": "76d9f99ba07abec00199041bb1a5c62e908feb24dfb6b8089dd973361ae0a3b4",
+    "currentNormalizedHash": "76d9f99ba07abec00199041bb1a5c62e908feb24dfb6b8089dd973361ae0a3b4",
+    "currentProposalFingerprint": "3bf0ee44bab38db1ca81f55ea97d9f903cd9e9a14924deb7d40c13b338a3e810",
+    "independentStatus": "pending",
+    "reason": "3:5의 기준 교환과 4:4의 기준 교환을 각각 판단한다. 두 수가 같다는 입력조건으로 비가 유지됨을 해석하는 짧은 판단은 유효하고 단어가 같다는 것만으로 노출이라 할 수 없다."
+  },
+  {
+    "id": "e6-1-4-4-c2",
+    "sourceIndex": 255,
+    "disposition": "retain",
+    "beforeNormalizedHash": "d00fea5aead6b37c188f9307c7af602b9e5e87f36d2999a374aafa2db99f3ea5",
+    "currentNormalizedHash": "d00fea5aead6b37c188f9307c7af602b9e5e87f36d2999a374aafa2db99f3ea5",
+    "currentProposalFingerprint": "539395be61ccb1e669c78582c508d99aaaec3a20c367a94e44ebb982fcb92d1e",
+    "independentStatus": "pending",
+    "reason": "시간당 거리는 학습목표인 단위시간의 거리라는 의미를 제공한다. 이동 거리를 무엇으로 나눌지 판단해야 하며 문장에 걸린 시간이 그대로 제시되지 않는다."
+  },
+  {
+    "id": "e6-1-4-5-c4",
+    "sourceIndex": 260,
+    "disposition": "retain",
+    "beforeNormalizedHash": "3ba7b464075dea7f41537db8a22d337f3295c40d5612ee4cf8d64c2a958e80e4",
+    "currentNormalizedHash": "3ba7b464075dea7f41537db8a22d337f3295c40d5612ee4cf8d64c2a958e80e4",
+    "currentProposalFingerprint": "dc0d4953d7ae1998808a08e2df50595b9c31510345227992e5e8276ec25fbb17",
+    "independentStatus": "pending",
+    "reason": "비율을 기준량으로 나눈 값으로 이해해 조건을 거꾸로 판단하는 문항이다. 비교하는 양 대 기준량과 비율 대 1은 서로 다른 두 비교이며 크다는 낱말의 반복은 복사가 아니다."
+  },
+  {
+    "id": "e6-1-5-1-c2",
+    "sourceIndex": 265,
+    "disposition": "revise",
+    "beforeNormalizedHash": "929af38f1c4107fcca7af9c6d8808fc3a908a40f06f4d38524a650d8c1239119",
+    "currentNormalizedHash": "e65ad74362c7b7cb250ce874b96d253bf85502ad260c7409a9873412cf785ad1",
+    "currentProposalFingerprint": "4caab1dbe233cae4d9c5b1101a30f8eea1f7d57096a0ad2d9dc00674da61fad1",
+    "independentStatus": "pending",
+    "reason": "몇 퍼센트라는 요구에 전체라는 말만으로 충분하지 않으므로 해당 대안을 제거한다."
+  },
+  {
+    "id": "e6-1-6-1-c4",
+    "sourceIndex": 282,
+    "disposition": "retain",
+    "beforeNormalizedHash": "fce6b720f640f67c8111ad0e2a4afb5ed5c0d2e8e7c03445beb6d16c4356df9f",
+    "currentNormalizedHash": "fce6b720f640f67c8111ad0e2a4afb5ed5c0d2e8e7c03445beb6d16c4356df9f",
+    "currentProposalFingerprint": "047a780441c8ee5b769d5f7af12b1b599d5556af58838817ff5be98af84e644e",
+    "independentStatus": "pending",
+    "reason": "면의 넓이의 합과 모서리의 길이의 합을 구분하여 각각 넓이 단위와 길이 단위를 연결한다. 합이라는 단서와 학습 용어가 나와도 두 측정량의 구분이 필요하며 전 기준은 단위 판단을 포함한다."
+  },
+  {
+    "id": "e6-2-1-3-c3",
+    "sourceIndex": 300,
+    "disposition": "revise",
+    "beforeNormalizedHash": "4ed05c749efb09769596f5137a37250dbe40d7475530ca82c63fe8d31f0ad278",
+    "currentNormalizedHash": "6c70c62cd226c7929f9994ecddf38841ce3986a1475fce4082f377bcd4f7144f",
+    "currentProposalFingerprint": "5a902769bc3ecbcf0fc03bb65ee7cf66e27daae4f03bc336b610a66919346b19",
+    "independentStatus": "pending",
+    "reason": "몫 4를 별도 필수로 평가하는 현재 기준에 맞춰 물음에서 실제 몫을 구하라고 명시한다."
+  },
+  {
+    "id": "e6-2-3-1-c1",
+    "sourceIndex": 322,
+    "disposition": "revise",
+    "beforeNormalizedHash": "f46e84060ff85388d067c0987398191eeab99d4f2407c324c09f071a992112a0",
+    "currentNormalizedHash": "5d11976daf5e292304975bd9ee0cf00193beb8ab214c1c2aa7103da61a68c30a",
+    "currentProposalFingerprint": "077f099078e2e1493acd568450745748d9a7634ce05290210b78913373470efa",
+    "independentStatus": "pending",
+    "reason": "방향 변화 조건을 이유로 재진술하는 데 그치지 않도록 보이는 면이나 부분이 달라짐을 답과 기준에서 요청한다."
+  },
+  {
+    "id": "e6-2-3-1-c2",
+    "sourceIndex": 323,
+    "disposition": "retain",
+    "beforeNormalizedHash": "67fb54ca1000950bb1c5697eef99df9a5536592e92dc070f3996c2bdb924e6fe",
+    "currentNormalizedHash": "67fb54ca1000950bb1c5697eef99df9a5536592e92dc070f3996c2bdb924e6fe",
+    "currentProposalFingerprint": "fae0432c0ef52e66d8271f716f609deac64e50e8e6974928e024fb77cf32430e",
+    "independentStatus": "pending",
+    "reason": "앞쪽과 기준 방향은 이 문항에서 같은 좌표 기준을 말하는 대안이다. 그 기준은 정할 대상의 이름을 제시한 말이 아니며 어떤 방향을 먼저 고정하는지 답해야 한다."
+  },
+  {
+    "id": "e6-2-3-5-c1",
+    "sourceIndex": 334,
+    "disposition": "retain",
+    "beforeNormalizedHash": "7202fc05cb91236ec9967ff3d85d62a6e256b06f202c388c8cf85ed028ae9881",
+    "currentNormalizedHash": "7202fc05cb91236ec9967ff3d85d62a6e256b06f202c388c8cf85ed028ae9881",
+    "currentProposalFingerprint": "1050085fe56e0d894f9d0a01da66b8a7ebf008259ae3e339589cb15156918626",
+    "independentStatus": "pending",
+    "reason": "같은 층과 같은 높이는 쌓기나무 층의 정의상 동치이다. 한 장에 모을 자리의 높이가 같다는 의미를 물으며 인정한 동치 표현을 순환 정의라는 이유로 금지할 필요가 없다."
+  },
+  {
+    "id": "e6-2-3-5-c3",
+    "sourceIndex": 336,
+    "disposition": "retain",
+    "beforeNormalizedHash": "c4a4f709b045540daf4a5f5b88065e4c892677571b52c46557a2b779f79f5ac6",
+    "currentNormalizedHash": "c4a4f709b045540daf4a5f5b88065e4c892677571b52c46557a2b779f79f5ac6",
+    "currentProposalFingerprint": "0faafe8f6b81cb7edc673709124722d31d97d02a8f88da633d8c5ddf54f6081e",
+    "independentStatus": "pending",
+    "reason": "공중에 뜨지 않는다는 조건에서 바로 아래 자리가 차 있어야 한다는 지지 관계를 판단한다. 쌓기나무라는 대상이 물음에 나오는 것은 노출이 아니며 쉬운 조건 해석도 유효하다."
+  },
+  {
+    "id": "e6-2-4-2-c1",
+    "sourceIndex": 344,
+    "disposition": "revise",
+    "beforeNormalizedHash": "94d1567948d63a9dcd001b4b08b86a947d641a065669b5e25d6bc1d799f7d106",
+    "currentNormalizedHash": "b739bafa45e9b3337a3ef3b27397a6495fcfa3cadac88a9a3982ab3e9ebea4cc",
+    "currentProposalFingerprint": "74eca6a4bf472a172f4381014da81bdc599a8112431f69cc26e0091d11fc0ebf",
+    "independentStatus": "pending",
+    "reason": "계산 결과 2와 3을 뒷문장에 미리 주는 노출을 없앤다."
+  },
+  {
+    "id": "e6-2-4-4-c3",
+    "sourceIndex": 353,
+    "disposition": "revise",
+    "beforeNormalizedHash": "354ef05744c238e6a01c153eb474e0967c547a0ad7f8a1e00c404646d499f1cd",
+    "currentNormalizedHash": "aab51888c7ed975f427f4c0a60ca474955fd8111fcf17e6890aaf9c9380636f2",
+    "currentProposalFingerprint": "95420cfffdb841587e9cb2507d970be2ee35417eb89e20c6383b11254c292e99",
+    "independentStatus": "pending",
+    "reason": "미지수 기호와 학생 빈칸 기호가 충돌하지 않도록 미지수를 동그라미로 구분한다."
+  },
+  {
+    "id": "e6-2-5-1-c4",
+    "sourceIndex": 360,
+    "disposition": "revise",
+    "beforeNormalizedHash": "2fbe43cbc67b6e2867e8b789a4516351555ae43f00399097dd6066d18ac0084b",
+    "currentNormalizedHash": "baaabce32b8554cf38084eabf2e6bbcf516fee9a0b2e322e51f426d9ba23eb06",
+    "currentProposalFingerprint": "0ba15058233d11a64129d62a3344e3aabbd30fee977a5801a7c66439752cf833",
+    "independentStatus": "pending",
+    "reason": "아무 하한과 상한도 가능한 범위를 연속한 두 자연수 사이로 한정한다. 재독해: 물음이 두 자연수를 쓰라고 바뀌었으므로 B 참고답과 필수 의미도 숫자 3·4 및 그 순서에 맞춘다."
+  },
+  {
+    "id": "e6-2-6-2-c1",
+    "sourceIndex": 379,
+    "disposition": "revise",
+    "beforeNormalizedHash": "6124f2536b1d58f711a5fa3d1fee1ecb59a81eea92ef6f190b4aef0b1b8677a6",
+    "currentNormalizedHash": "31d0cd80f62823824ee080eba41774f0390e6bbfffd6518a3cd863ccc19096c8",
+    "currentProposalFingerprint": "89c8c09fcd6ce89ceee2e7a5fc386cb85e17691e546443e33612fc240b008a0b",
+    "independentStatus": "pending",
+    "reason": "전개도의 옆면과 밑면을 지정하여 도형 순서를 문맥으로 고정한다."
+  },
+  {
+    "id": "e6-2-6-2-c2",
+    "sourceIndex": 380,
+    "disposition": "revise",
+    "beforeNormalizedHash": "abb0f124a36c210ecc7776ec399b7b7e558b54363bb2fa95dcdb081c3166411f",
+    "currentNormalizedHash": "1a0e8ed6fc04dd6775e6a79246d45570e46d3f21354c17f7f63b6ac735cae648",
+    "currentProposalFingerprint": "fdbd494388f051992f91acc1ac6324bf797282a0525690c2455ba7830c0a3c39",
+    "independentStatus": "pending",
+    "reason": "슬롯 답과 같은 뜻의 밑면 둘레를 문장에서 먼저 주는 실제 노출을 제거하고 대응하는 길이를 묻는다."
+  },
+  {
+    "id": "e6-2-6-2-c3",
+    "sourceIndex": 381,
+    "disposition": "revise",
+    "beforeNormalizedHash": "1c8edce906fb2c32761fd5a7edb0f2324a0792cb250da9db9200b11b69a65305",
+    "currentNormalizedHash": "850d878c53571c135265690f99d64f753607e58ef70ed9461bb5fdecd3d09fb3",
+    "currentProposalFingerprint": "932083fb4097814f10a40e2d8f743fdd3713e0deb493a687899917ec74ede09d",
+    "independentStatus": "pending",
+    "reason": "높이라는 답을 높이 방향이라는 지문에서 직접 알려 주는 부분을 밑면과 맞닿지 않는 변으로 바꾼다."
+  },
+  {
+    "id": "e6-2-6-3-c4",
+    "sourceIndex": 385,
+    "disposition": "revise",
+    "beforeNormalizedHash": "b90a11eb63e2180ae1cfb18b9977fbdced958dbfe47b6bf5e10074707f53367e",
+    "currentNormalizedHash": "6cb2774342df1f7480ca648a04bb357f870c9e4724ec01efd43892aa565c23ac",
+    "currentProposalFingerprint": "67bd8e77fdd00f9ae3493daefb617c2d71b2f52d7083be211c56ffb7425d04f4",
+    "independentStatus": "pending",
+    "reason": "옆면이 모이는 한 점이라는 충분한 정의를 별도 뾰족함 없이도 인정하도록 하나의 필수 의미로 합친다. 재독해: C에도 일반명사 점으로 참인 답을 쓸 수 있으므로 옆면이 모이는 점의 이름인 꼭짓점을 묻도록 한다."
+  },
+  {
+    "id": "e5-1-1-1-xc4",
+    "sourceIndex": 396,
+    "disposition": "revise",
+    "beforeNormalizedHash": "9f96bf1aab1767c5349fd2ac604fc3b085dc058219ac0699260e0858fc0d8e7a",
+    "currentNormalizedHash": "6c52905e76f1ab935a191972f609d4b305992bfeb8289a8591aa3f42f1036840",
+    "currentProposalFingerprint": "35a4e979b2376c55624be78fe584267102bbe64e90e07be6c8a5eae2346c3052",
+    "independentStatus": "pending",
+    "reason": "C 제외를 B 제외의 복사로 기록하지 않고 실제 같은 우선순위 규칙을 묻는 대상 ID를 명시한다. 재독해: B의 제외 이유도 실제 대체 ID에서 평가하는 우선순위와 계산 적용으로 구체화한다."
+  },
+  {
+    "id": "e5-1-1-1-xc5",
+    "sourceIndex": 397,
+    "disposition": "revise",
+    "beforeNormalizedHash": "15b10396efaf83cc514a0e140feb11f34854d52ddb971fd343a61a5dedfbf192",
+    "currentNormalizedHash": "070b25f36b83ba660f556ed72ad05e418301ba0a1c576175335b09c47b3a9c5e",
+    "currentProposalFingerprint": "aa494aa2f4d09e85bd34d50704d8429433049c48a1cf6d3b4ade4acc95ea491d",
+    "independentStatus": "pending",
+    "reason": "형식별 제외 이유를 구체화한다. 표시 그림 없이 표시 행위를 평가하거나 임의의 표시 약속을 유일한 답으로 만들지 않는다."
+  },
+  {
+    "id": "e5-1-1-1-xc8",
+    "sourceIndex": 400,
+    "disposition": "revise",
+    "beforeNormalizedHash": "14764414579414a3925266302dde6ffb275d29137bd4551f45f234c38eaadd92",
+    "currentNormalizedHash": "4393b992b377b1b95bbd6139542e7b29d8b0bc701efa2b47c840c646bdf19a62",
+    "currentProposalFingerprint": "3d6695dc81f5da52843bf47f4486074580378c798a3a1c9158a9bd276ae4a305",
+    "independentStatus": "pending",
+    "reason": "괄호의 두 표지가 한 쌍이라는 약속은 c5의 역할 질문과 구분되므로 C를 복원한다. B는 역할·적용을 묻는 c5보다 표기 확인 한 가지로 좁다는 제외 근거를 쓴다."
+  },
+  {
+    "id": "e5-1-1-2-xc17",
+    "sourceIndex": 434,
+    "disposition": "revise",
+    "beforeNormalizedHash": "79001d3f10740bdb7787dc18fbfc7cacfc9174e450af05fdf7ef9c6620936e66",
+    "currentNormalizedHash": "b6db95b5fe0780390081f259c5b207db0a6df1badb13e1b72cbebaf3644f03f8",
+    "currentProposalFingerprint": "7a6597bb38728e2ebd446716f9935749e8cea7369a50627ad4c7cbf4fa94e815",
+    "independentStatus": "pending",
+    "reason": "C의 중복 대상과 실제 공통 평가 의미를 별도로 명시한다."
+  },
+  {
+    "id": "e5-1-1-2-xc25",
+    "sourceIndex": 442,
+    "disposition": "revise",
+    "beforeNormalizedHash": "635d415c2dc348870ab30164537733f570ca7f968daed51acad0af4e47f732de",
+    "currentNormalizedHash": "f798794b6647e8d20ed881c72af39547a795749a3338b06916e7d9ef07474518",
+    "currentProposalFingerprint": "823d0e216c403c62f756cc9e55ab658feb6bd7f3720fd0fa4299232abed0ed98",
+    "independentStatus": "pending",
+    "reason": "분배법칙 xc26을 잘못된 중복 대상으로 든 부분을 제거하고 실제 괄호 유무에 따른 차례·값 비교 문항을 명시한다."
+  },
+  {
+    "id": "e5-1-1-2-xc26",
+    "sourceIndex": 443,
+    "disposition": "revise",
+    "beforeNormalizedHash": "21367b89263c5f49d3638a58a14dbb34e153ffeca0e83aa8fd24b93357a0dde4",
+    "currentNormalizedHash": "92b5dfb4287f07eaba2cefece33af528950f1de8aeed21db00bf65a7de6cacc2",
+    "currentProposalFingerprint": "07198fdee08287452b696da600389f53393084ec04385a5279aa8c257d7fb135",
+    "independentStatus": "pending",
+    "reason": "뒤의 덧셈기호가 앞 슬롯의 더한을 미리 알려 주지 않도록 식을 합치는 연산과 결과만 묻는다."
+  },
+  {
+    "id": "e5-1-1-3-xc2",
+    "sourceIndex": 446,
+    "disposition": "retain",
+    "beforeNormalizedHash": "de782b391cdf40e07c4d8f2e7bad9c7b1e1919e4ba1139125d4eef476087206f",
+    "currentNormalizedHash": "de782b391cdf40e07c4d8f2e7bad9c7b1e1919e4ba1139125d4eef476087206f",
+    "currentProposalFingerprint": "0b1ccb4ffc0eca36ec611ec89a3ff1be9785b32f0f15c5f05a16078438876078",
+    "independentStatus": "pending",
+    "reason": "연산 이름들을 제시하고 세 단계 우선순위를 묻는 것은 유효하다. 덧셈·뺄셈을 마지막 그룹으로 묶는 규칙이 필요하며 후보 용어가 지문에 있다는 것만으로 직접 정답 노출은 아니다."
+  },
+  {
+    "id": "e5-1-1-3-xc10",
+    "sourceIndex": 454,
+    "disposition": "revise",
+    "beforeNormalizedHash": "1aa933493c8e79fbcd8676a40c167bc9af1658b5e3d77b6456b3d1af7f704099",
+    "currentNormalizedHash": "554a8663d2d5d579cdfbe182296b58875f3ce456d1783595e7b80ef53f899151",
+    "currentProposalFingerprint": "f558dcb8b7705eef5c06d56ea410642b17842405b9fde7443b3fc142e78a9d7b",
+    "independentStatus": "pending",
+    "reason": "낮은 가치라는 주관적 제외 이유를 실제 평가상의 한계로 바꾼다."
+  },
+  {
+    "id": "e5-1-1-3-xc25",
+    "sourceIndex": 468,
+    "disposition": "revise",
+    "beforeNormalizedHash": "369ddf1845044dffbc3d244638099a995735589b32bb10650029422867cee291",
+    "currentNormalizedHash": "1583a10f5e63805fb4b3c51e06431edb7feff1da88836632bbb1385560e27afe",
+    "currentProposalFingerprint": "ccabe4f667473a6da44330962c1c4eadf86c08592e521211ae3a38ededd40e90",
+    "independentStatus": "pending",
+    "reason": "요청하지 않은 마지막 비교 예에서 기호만 바뀐 식을 수만 바뀐 식이라고 한 오류를 삭제한다."
+  },
+  {
+    "id": "e5-1-2-1-xc6",
+    "sourceIndex": 476,
+    "disposition": "revise",
+    "beforeNormalizedHash": "9898d3864db6c01118a729fa9a8efc709959267da588e84d2d2f316e37769deb",
+    "currentNormalizedHash": "3a4cd767345806d97e1d6b8388c1c74909db26662f89493ce4a137d8793d177e",
+    "currentProposalFingerprint": "e262a0f378d3a35e4ac8bdbf8d480e23bb096b3daebf16ff6b4be0896fad6abe",
+    "independentStatus": "pending",
+    "reason": "일반 배수 정의의 구체화라는 중복 근거를 형식별로 남긴다."
+  },
+  {
+    "id": "e5-1-2-1-xc12",
+    "sourceIndex": 482,
+    "disposition": "revise",
+    "beforeNormalizedHash": "0f92116e6e7bb62c2166b72ea06f1fbe76fb967571303a7415592176e19ddf60",
+    "currentNormalizedHash": "bd4d7cba90e7d5be7da8f679762a17ad32927f657b13f3f9d8968719222f67b5",
+    "currentProposalFingerprint": "dd9764000cc7b5440ba780f7458e7185a1b8db12a57c4929b603551c353ec43b",
+    "independentStatus": "pending",
+    "reason": "배수의 최소 크기 설명을 이미 평가하는 실제 B를 근거로 쓴다."
+  },
+  {
+    "id": "e5-1-2-1-xc14",
+    "sourceIndex": 484,
+    "disposition": "revise",
+    "beforeNormalizedHash": "5c7a2d97cf8837377a6f9afb28ada561865a49d07ce31cac921b50686a202f73",
+    "currentNormalizedHash": "8dc1b893ab7af9accfdedeb64551e943451687fe7af2517fc9d64837b525f768",
+    "currentProposalFingerprint": "499ed4983038ffc697c98379b3e943f8c2694809315b5ab56e6a0b691b2ed2ee",
+    "independentStatus": "pending",
+    "reason": "모든 자연수의 약수 1이라는 이유가 실제 xc3 B에 포함됨을 명시한다."
+  },
+  {
+    "id": "e5-1-2-1-xc15",
+    "sourceIndex": 485,
+    "disposition": "revise",
+    "beforeNormalizedHash": "25b3e6469abc870cfa7e365f41ca168ef1b1fbf946cbb9294a71b01cdce8c923",
+    "currentNormalizedHash": "fa79bb811a00e21777eebac700daeb9049d4ea08c303ab22413d66fc57ab2c59",
+    "currentProposalFingerprint": "6da6b503e28ff7623a4520883fa2029f5fad675670990f75513bcfa8bbbd15b5",
+    "independentStatus": "pending",
+    "reason": "두 형식 모두 실제 xc4에서 자기 자신이 1배인 배수임을 평가하는 점을 명시한다."
+  },
+  {
+    "id": "e5-1-2-1-xc21",
+    "sourceIndex": 491,
+    "disposition": "revise",
+    "beforeNormalizedHash": "3c29bf1c1e60099b07048ce62084f6a1e09d8c2aa7e1c1a5df374a4cafac8c23",
+    "currentNormalizedHash": "8cd2d6294217f27cad9576f57794f05c3071e00b87bd8e37b5cc47720adf312a",
+    "currentProposalFingerprint": "f5123fd40f4b0b4d1f202cddca1b44e0847159e59cb240ae9468721b2dee5f55",
+    "independentStatus": "pending",
+    "reason": "일반설명에 1부터의 범위와 나머지를 따로 구한 정수 몫이라는 조건을 보충한다. 가장 큰 배수 48에서 8을 계산하는 것은 직접 숫자 복사는 아니나 불필요한 추가 단서는 제거한다."
+  },
+  {
+    "id": "e5-1-2-1-xc24",
+    "sourceIndex": 494,
+    "disposition": "revise",
+    "beforeNormalizedHash": "1b2e3f0b03f44acf09d4ed57b163b3e59810f06bc49bf9fc2a2a812cc6c8deff",
+    "currentNormalizedHash": "eff66fb9ef7f3bf747d728a81dcf8d4894cd0837439f5d13978c045d5ab69985",
+    "currentProposalFingerprint": "c37b30a007487cc2518f0400823ed2861d614c1125b601d60cc078cadc251324",
+    "independentStatus": "pending",
+    "reason": "정의 적용 없이 자연수라는 범위 약속만 재진술하는 형식의 한계를 명시한다."
+  },
+  {
+    "id": "e5-1-2-2-xc24",
+    "sourceIndex": 520,
+    "disposition": "revise",
+    "beforeNormalizedHash": "24703a9e7beaac0fc32ff7644c94ec24695873c51e6b9f64cd9644acb4439dd8",
+    "currentNormalizedHash": "13072d4c7338220e8a4a9ff346d5c6a30218f289aed103c64a12eb10662f40aa",
+    "currentProposalFingerprint": "06fc6887ae480176a7f969e82a9b93e73cdacffc58929a3de0e50008e8560e88",
+    "independentStatus": "pending",
+    "reason": "언제 멈추어도라는 표현을 어느 때 멈추면으로 고쳐 요청을 분명히 하고, 뒤 문장에 앞 슬롯 답 9와 5를 적어 주는 C를 제거한다."
+  },
+  {
+    "id": "e5-1-2-3-xc3",
+    "sourceIndex": 525,
+    "disposition": "revise",
+    "beforeNormalizedHash": "b5f79f3f305d7294260f827d2d2b0bb2cff1ed9e6d2d24429c5fe05d368606b0",
+    "currentNormalizedHash": "32f3b5c3fb92dc1fd4f91609aaef5a5b4546430507c709123e362d1b363b358b",
+    "currentProposalFingerprint": "030e723f880063d959bdca2d2d86a33b7153ba8ba52ef6795e485dcdc3310547",
+    "independentStatus": "pending",
+    "reason": "첫 문장에서 이미 쓴 공약수라는 답을 두 번째 슬롯으로 반복시키지 않는다. 나머지 0 조건과 주어진 두 나눗셈의 판정이라는 의미는 한 문장으로 유지한다."
+  },
+  {
+    "id": "e5-1-2-3-xc11",
+    "sourceIndex": 533,
+    "disposition": "retain",
+    "beforeNormalizedHash": "4356673f756c56504804ff1f9b812f3aaa5d8c3e138537a115901e28c33d7641",
+    "currentNormalizedHash": "4356673f756c56504804ff1f9b812f3aaa5d8c3e138537a115901e28c33d7641",
+    "currentProposalFingerprint": "da41db4b101e618eb5c7deb6d1d8a60344d8781dc11a4b2b04071223c780bdc2",
+    "independentStatus": "pending",
+    "reason": "공약수가 하나뿐이라는 결과에서 그 수가 최대공약수라는 뜻을 해석하는 문제이다. 수치 1이 같아도 주어진 공약수 집합의 최댓값을 판단하는 유효한 쉬운 문항이다."
+  },
+  {
+    "id": "e5-1-2-3-xc12",
+    "sourceIndex": 534,
+    "disposition": "revise",
+    "beforeNormalizedHash": "d2cf5c9e51cf1035206fe7389e1e74b9a6b24fa94f481aa2c9695c896ec911d9",
+    "currentNormalizedHash": "70a97e618bd300717bdbf81897b11210ed520ae6a4d4b7196e669476e7bb3073",
+    "currentProposalFingerprint": "d9357dce1cceb48c07495a22640fe714046abf81a00b2538321e3b81934d6165",
+    "independentStatus": "pending",
+    "reason": "공약수라는 슬롯 답을 물음의 도입에서 직접 주지 않도록 나눗셈과 결과 해석만 남긴다."
+  },
+  {
+    "id": "e5-1-2-4-xc18",
+    "sourceIndex": 566,
+    "disposition": "revise",
+    "beforeNormalizedHash": "8147c213fed5136309d4085ceb1d0aed25a3b776469d8fdbbaa9c35292983d9b",
+    "currentNormalizedHash": "2ee3eff8302afb71eafb6242e16b26f9ec672c2a37fdf0f3b06fc454b0070eaf",
+    "currentProposalFingerprint": "33dfe2e2426249692d56b4fc2202119963a3f6d89acd18098ff6d9659f6c21bf",
+    "independentStatus": "pending",
+    "reason": "앞에 준 몫 5를 같은 슬롯에 그대로 쓰는 노출을 제거하고 두 나눗셈 방법으로 결과를 구하게 한다."
+  },
+  {
+    "id": "e5-1-2-5-xc12",
+    "sourceIndex": 587,
+    "disposition": "retain",
+    "beforeNormalizedHash": "6e215f902e1431a3e90a64c4d646f710e7149ebfd12e8135883d5980de50ce2a",
+    "currentNormalizedHash": "6e215f902e1431a3e90a64c4d646f710e7149ebfd12e8135883d5980de50ce2a",
+    "currentProposalFingerprint": "08167c564ad92d359673ba741e4c7244961680bfae464a589d2cd06fa1da09a6",
+    "independentStatus": "pending",
+    "reason": "공배수 목록을 보고 가장 작은 수를 선택하는 것은 최소공배수의 정의를 적용하는 유효한 해석이다. 첫 항이 답과 같다는 사실만으로 지문 답 복사라 할 수 없고 목록에서 무엇을 선택할지 판단해야 한다."
+  },
+  {
+    "id": "e5-1-2-5-xc17",
+    "sourceIndex": 592,
+    "disposition": "revise",
+    "beforeNormalizedHash": "55ea03b8f8a7fdc864d2543da829e245aa81e579d539a7e122fa488de3ca213f",
+    "currentNormalizedHash": "692e9b28629a5914e9f041aec9360af8f4881067518e87939df4d6adf83363ed",
+    "currentProposalFingerprint": "75220dc23175864c80a9c1f84504cd0d6e325bd2aef7d0ff7763892972f46856",
+    "independentStatus": "pending",
+    "reason": "배수의 이유를 나타내는 비문을 자연수를 곱한다는 명확한 뜻으로 고친다."
+  },
+  {
+    "id": "e5-1-2-5-xc21",
+    "sourceIndex": 596,
+    "disposition": "revise",
+    "beforeNormalizedHash": "d0e85a75d7007d55a00e1bcf60ed23ab5701506ac874fb0389c441996d2e93a5",
+    "currentNormalizedHash": "56ca085f6bd614af97a608ef0fd05121b55807af60947232fed429fbd704f1d0",
+    "currentProposalFingerprint": "1d1aad464d6872ac12b87c36a9b9b742912ff5ef3f8fdc41712db281aad30526",
+    "independentStatus": "pending",
+    "reason": "LaTex 안의 숫자 중괄호는 계약상 슬롯이 아니므로 개념 키와 계산 키를 수식 밖에 분명히 만들고 인정답 둘과 연결한다."
+  },
+  {
+    "id": "e5-1-2-5-xc22",
+    "sourceIndex": 597,
+    "disposition": "revise",
+    "beforeNormalizedHash": "a58ca4bfbff403b5198056d440d034987bd1d92b7d53c9ff6ec3f4c0907d531c",
+    "currentNormalizedHash": "45d7312023f50c09e3f4e2ced675e9fa8b0d442b4dd88549a2f6f6125c21498a",
+    "currentProposalFingerprint": "0db35693840d37070f5df75f11bf92ba48a61ca8c346876d1be1e1d4c97c4a3b",
+    "independentStatus": "pending",
+    "reason": "수식 안 숫자 중괄호를 슬롯처럼 보이게 쓴 표기를 없애고 계산 결과도 실제 빈칸과 인정답으로 대응시킨다."
+  },
+  {
+    "id": "e5-1-2-5-xc23",
+    "sourceIndex": 598,
+    "disposition": "retain",
+    "beforeNormalizedHash": "916d555665c4dcc55f558d869b3211136e8ce73fb62fbaad91afb7eca4d547b9",
+    "currentNormalizedHash": "916d555665c4dcc55f558d869b3211136e8ce73fb62fbaad91afb7eca4d547b9",
+    "currentProposalFingerprint": "77bd4e1ee9eb98b1f8a9e17ff1d78790ea980e1be5181ff8767165d748479161",
+    "independentStatus": "pending",
+    "reason": "두 수의 배율 5를 최소공배수에도 적용하는 스케일 관계를 해석한다. 입력 배율과 답 배율이 같다는 것은 불변관계의 적용이며 직접 최소공배수를 구하는 다른 타당한 풀이도 금지하지 않는다."
+  },
+  {
+    "id": "e5-1-2-6-xc3",
+    "sourceIndex": 605,
+    "disposition": "retain",
+    "beforeNormalizedHash": "f5e47a7ec42e861f812563ee33e2b91657670ac33492f6ba993dc593b62c666a",
+    "currentNormalizedHash": "f5e47a7ec42e861f812563ee33e2b91657670ac33492f6ba993dc593b62c666a",
+    "currentProposalFingerprint": "2b8c6b5c702788281235eb22785f1941283e7773c0215fab447e36fe00b2ce5a",
+    "independentStatus": "pending",
+    "reason": "인수의 공통 쌍을 하나씩 사용하고 남은 인수를 곱하여 24를 구하는 절차를 적용한다. 과정 단서를 제공한 간단한 계산 문항도 유효하며 모든 결과가 지문에 나와 있는 것은 아니다."
+  },
+  {
+    "id": "e5-1-2-6-xc10",
+    "sourceIndex": 612,
+    "disposition": "revise",
+    "beforeNormalizedHash": "b1506b64e1831c69ee98e5402c5404b579ba9b9acc0616b662e35c0a8742f1d8",
+    "currentNormalizedHash": "7d8531fc98fcffe0cf47ba35a9941ad466e93a5617a446f1d2ec0bf92c8950c2",
+    "currentProposalFingerprint": "dd49006132c7b0ef52a7758caed76bae07ef44e906b7e9b5449b2b419229b94a",
+    "independentStatus": "pending",
+    "reason": "xc25의 불완전한 지목을 전체 ID와 실제 같은 두 수의 최소공배수 평가 내용으로 명시한다. 다른 절의 xc25와 혼동하지 않는다."
+  },
+  {
+    "id": "e5-1-3-1-xc1",
+    "sourceIndex": 630,
+    "disposition": "retain",
+    "beforeNormalizedHash": "1a64ad7cd0bebb7f5aad8920a22d106f872689740619728ea37f0d87593bd3d5",
+    "currentNormalizedHash": "1a64ad7cd0bebb7f5aad8920a22d106f872689740619728ea37f0d87593bd3d5",
+    "currentProposalFingerprint": "40107705d3e6568bb11b410b9b758ee95a4ddc5f6108bfb7b3c257bf94b85428",
+    "independentStatus": "pending",
+    "reason": "의자가 하나 늘 때 다리 증가량은 그 의자 하나의 다리 4개이다. 주어진 수 4를 증가량으로 해석하는 유효한 관계 판단이며 입력과 결과가 같아도 복사로 단정할 수 없다."
+  },
+  {
+    "id": "e5-1-3-2-xc8",
+    "sourceIndex": 660,
+    "disposition": "revise",
+    "beforeNormalizedHash": "ba7ab3082deb8de051761b2c65f5b26a87aecc6788443e27418d5b8e7b75439e",
+    "currentNormalizedHash": "3d4aaaf431a4dfccf4143ea43539f3d882e8cc888b86fa9d032f2848e81a6d1c",
+    "currentProposalFingerprint": "14f46ec6be5b61169c8f5999894d6d9cf224500277c0327c293d23586453fbc4",
+    "independentStatus": "pending",
+    "reason": "교체하라고 직접 준 기호를 그대로 옮기는 첫 슬롯은 제거하고 기호의 뜻과 규칙이 유지될 때 관계가 같은지 판단하는 슬롯을 보존한다."
+  },
+  {
+    "id": "e5-1-3-2-xc12",
+    "sourceIndex": 664,
+    "disposition": "retain",
+    "beforeNormalizedHash": "db40dd647351c5cec1c3cfaf5462cbd23fdd45ed2a8e57e74e002c1ace6e54d3",
+    "currentNormalizedHash": "db40dd647351c5cec1c3cfaf5462cbd23fdd45ed2a8e57e74e002c1ace6e54d3",
+    "currentProposalFingerprint": "92a04d8021e6383d1885532b31df572380591166f61dad49c900893e29d5b6a5",
+    "independentStatus": "pending",
+    "reason": "좋은 점 한 가지를 묻는 열린 질문에 표에 없는 짝의 계산과 짧고 분명한 규칙 표현은 서로 다른 타당한 답이다. 문항이 방법을 지정하지 않았으므로 다른 유효한 장점을 막지 않는다. 두 번째 기준은 대응값 300을 별도로 확인한다."
+  },
+  {
+    "id": "e5-1-3-3-xc1",
+    "sourceIndex": 677,
+    "disposition": "revise",
+    "beforeNormalizedHash": "d4cfe4e44396005b701311e986ebfc0dca5103c00103110bd19081aec07f7621",
+    "currentNormalizedHash": "99f03233c7584ba21ad9ef302d50d6fa93cf83304e3895ac87886553251d0ae7",
+    "currentProposalFingerprint": "63df9439423c12f92551fb4ba6f7fc0bd01503fa8f2141f77a5a266900729d45",
+    "independentStatus": "pending",
+    "reason": "대응이라는 관계 전체를 막연하게 설명하는 칸을 물건 수에 단가를 어떤 연산으로 적용할지 묻는 슬롯으로 좁힌다."
+  },
+  {
+    "id": "e5-1-3-3-xc27",
+    "sourceIndex": 697,
+    "disposition": "revise",
+    "beforeNormalizedHash": "9823840d8c199ca53031b5fe29a0032e8487dfe654d1d6764854daae84f7ac9c",
+    "currentNormalizedHash": "5f5f6fdffe453625d624d8e868eb89308b2a20b8b9f4382fce0982dd103001be",
+    "currentProposalFingerprint": "321f700cbdefd5006caa1847fd64ca4d32b284a797a860787cd738fc49e704af",
+    "independentStatus": "pending",
+    "reason": "얼마만큼이라는 수량을 명확히 요청하도록 증가 방향을 고정하고 숫자만 빈칸으로 둔다."
+  },
+  {
+    "id": "e5-1-4-1-xc4",
+    "sourceIndex": 702,
+    "disposition": "revise",
+    "beforeNormalizedHash": "da9e5d2375abddef189d7e32f603e28a7d259dd70cefe6ee26b35937f628e545",
+    "currentNormalizedHash": "b5c79abe15066d9195f5b808f8595f943342fc5527b1d8b9a4442bab524759df",
+    "currentProposalFingerprint": "dcca6ae83bf69214e021de8549347b29949cd5e404b014c4560a7c1fedac9991",
+    "independentStatus": "pending",
+    "reason": "같은 크기의 분수 개수를 평가하는 실제 xc25와의 겹침을 각 형식별로 기록한다."
+  },
+  {
+    "id": "e5-1-4-1-xc5",
+    "sourceIndex": 703,
+    "disposition": "retain",
+    "beforeNormalizedHash": "4c6f5288e152438fe93816c8005f9a9a070addfbda99373479dae0481a8bf2a4",
+    "currentNormalizedHash": "4c6f5288e152438fe93816c8005f9a9a070addfbda99373479dae0481a8bf2a4",
+    "currentProposalFingerprint": "369def651c231327f89b6a6dda25dbcfc3d2b2b173285da30a664e3e210bfdb1",
+    "independentStatus": "pending",
+    "reason": "분모에 곱한 2를 분자에도 적용해야 크기가 유지된다는 핵심 대응을 묻는다. 분모의 배율을 분자의 배율로 해석하는 판단이며 숫자 반복 자체를 답 노출로 볼 수 없다."
+  },
+  {
+    "id": "e5-1-4-1-xc10",
+    "sourceIndex": 708,
+    "disposition": "revise",
+    "beforeNormalizedHash": "bec70a9e6dc8acd9e2c49731a09da27a7c09fbd787f9661fa88cad195554b856",
+    "currentNormalizedHash": "145b9c247da27ff262e63fcca87993dadab83a9b075eb794564e1fb4b1907674",
+    "currentProposalFingerprint": "a723b6481df544a8a60b560677dcb02086cb67704b866b8c78bfc63100b11fb9",
+    "independentStatus": "pending",
+    "reason": "같은 수로 나누는 타당한 대안이 열려 있는 두 번째 연산 슬롯을 제거한다. 학습개념인 같은 자연수를 더할 때 크기가 달라지는 비교만 분명하게 평가한다."
+  },
+  {
+    "id": "e5-1-4-2-xc9",
+    "sourceIndex": 730,
+    "disposition": "revise",
+    "beforeNormalizedHash": "25448e7b72e533b6d165cf9e3108b79569cd77b9da30e2f1d9d66efdfa7a99e2",
+    "currentNormalizedHash": "b104d882a3d57a2423468e34da676ccc3c23135aeb33bc195317810dbf8f6537",
+    "currentProposalFingerprint": "1bfae43e5668f2e85544d26ccf9bb5a6939bf11b19fcd1e710bf84f3c92430db",
+    "independentStatus": "pending",
+    "reason": "나눌 수 있는 공약수에 1을 포함해 답해도 타당해 보이는 요청을 약분에 쓰는 1보다 큰 자연수로 한정한다."
+  },
+  {
+    "id": "e5-1-4-2-xc10",
+    "sourceIndex": 731,
+    "disposition": "revise",
+    "beforeNormalizedHash": "596173809da125209f7982bc407570436bff2511b441cdd042aea4c26770b85a",
+    "currentNormalizedHash": "7e0f6b067ed7e88d14cf758ab7ad1187cc2305b1e7169b6be85022c40b6f53d1",
+    "currentProposalFingerprint": "06010e5f78a6464976c68e279df7c0000bedd465e1ae10dd6f78be32298a087f",
+    "independentStatus": "pending",
+    "reason": "분모와 분자를 1보다 큰 공약수로 나누는 조건을 C에 명시하여 1로 나눈 원분수를 결과 개수에 넣지 않도록 한다."
+  },
+  {
+    "id": "e5-1-4-2-xc24",
+    "sourceIndex": 744,
+    "disposition": "retain",
+    "beforeNormalizedHash": "acaa67e3ec685643080082775fa1c7e491ccd49b7ab3d3fba1f90e85db40942b",
+    "currentNormalizedHash": "acaa67e3ec685643080082775fa1c7e491ccd49b7ab3d3fba1f90e85db40942b",
+    "currentProposalFingerprint": "0fa1b4246a7c2e403bce0f243cf617c029673d0408ea836ba76901628d9adb7a",
+    "independentStatus": "pending",
+    "reason": "1시간을 60등분한 단위로 20분을 표현하므로 60을 분모로 놓는 단위 변환이다. 주어진 시간 관계를 분모로 해석하는 것이며 입력 숫자와 분모가 같다는 사실만으로 복사가 아니다."
+  },
+  {
+    "id": "e5-1-4-2-xc25",
+    "sourceIndex": 745,
+    "disposition": "retain",
+    "beforeNormalizedHash": "572dc7707731231b0c565f21162fb369bde039c96607e7e4ffcbdab8e4c952d2",
+    "currentNormalizedHash": "572dc7707731231b0c565f21162fb369bde039c96607e7e4ffcbdab8e4c952d2",
+    "currentProposalFingerprint": "f2c5273009232f026942c8f2a6c29ef2d21c8dd96c3659a9e84e4a79b6bc9f94",
+    "independentStatus": "pending",
+    "reason": "약분에 쓴 5를 다시 곱하여 원분수로 돌아가는 역연산을 선택한다. 나눈 수와 곱할 수가 같은 것은 역연산의 핵심이며 곱해는 문법이 아니라 수학적 연산 선택이다."
+  },
+  {
+    "id": "e5-1-4-2-xc27",
+    "sourceIndex": 747,
+    "disposition": "revise",
+    "beforeNormalizedHash": "efb0c78ddc8de044a9458225af75427109f79d8def0820d55aa880de635f3801",
+    "currentNormalizedHash": "296ab10c37d555a09d1b4a8327a08a715b4e5a99e8eea653288bc9a649cc8092",
+    "currentProposalFingerprint": "d5eece19bff7e884a090f4c18da7b40fc665fecd1c002f34fa26cd3e9a41d599",
+    "independentStatus": "pending",
+    "reason": "기약분수의 성질 전부가 들어갈 수 있는 슬롯을 서로 다른 결과의 가짓수로 한정한다."
+  },
+  {
+    "id": "e5-1-4-3-xc5",
+    "sourceIndex": 752,
+    "disposition": "retain",
+    "beforeNormalizedHash": "c98c58d35cffc8392925198e2d7d688c4ff9e2fecb67a7009ae47efa84c6e12b",
+    "currentNormalizedHash": "c98c58d35cffc8392925198e2d7d688c4ff9e2fecb67a7009ae47efa84c6e12b",
+    "currentProposalFingerprint": "a2651f09b70f9290ba234eb38561ac627b6ed160c4c6dede899224e088396281",
+    "independentStatus": "pending",
+    "reason": "통분한 분모 6을 전체의 등분 수로 해석하고 두 같은 분모에 대응하는 한 조각의 크기가 같음을 판단한다. 수치와 표현의 반복은 분모의 의미를 적용하는 유효한 쉬운 문항이다."
+  },
+  {
+    "id": "e5-1-4-3-xc20",
+    "sourceIndex": 767,
+    "disposition": "revise",
+    "beforeNormalizedHash": "26ec7b0d27aa8acb9585706f221d2d7bd6e79f0a36245ae0a8b1748c6bc358dd",
+    "currentNormalizedHash": "e5a049032d65eebd2b542cd2e8aae7f3eb1d6a4e4a44bd617fd1d99a3d5cfef5",
+    "currentProposalFingerprint": "a49b09e31bc757d8d507da0a3ed60ab8c3653cea06679e12e99b73246a8fc0f4",
+    "independentStatus": "pending",
+    "reason": "앞의 배수라는 단어와 평행하게 놓인 첫 슬롯을 제거하고 공배수 여부 및 공통분모 가능 여부의 두 판단을 남긴다."
+  },
+  {
+    "id": "e5-1-4-4-xc9",
+    "sourceIndex": 783,
+    "disposition": "revise",
+    "beforeNormalizedHash": "0b9ed50874c75985649a0dff0a59931b3a9e0ab8d59c7949b6d7695c91bd9bae",
+    "currentNormalizedHash": "c8b2028c00a9eef65e1895e9f3134d64db03c1a4beecda542fd609f517f18f8c",
+    "currentProposalFingerprint": "2cbba118b002723736bebd2be64e63e9775d9d86f7c651baa81145f25d419689",
+    "independentStatus": "pending",
+    "reason": "어떤 대상과의 비교인지 1을 명시하여 임의의 참인 가분수 성질이 들어가지 않도록 한다."
+  },
+  {
+    "id": "e5-1-4-4-xc14",
+    "sourceIndex": 788,
+    "disposition": "revise",
+    "beforeNormalizedHash": "737f57827f470bfc064bad667fc7de5900def6d977351f5d7f6deb4719291dc0",
+    "currentNormalizedHash": "84bae6423a4ccce0b3bdf59ef350f340d5c5d16c2f0f102808ba5f90174cec0b",
+    "currentProposalFingerprint": "051d0ec55465b57092a3289ea6f2f2a3e2719f25ba0604d9c08a3dfcde0ff143",
+    "independentStatus": "pending",
+    "reason": "어떤 경우에라는 문장의 문법을 바로잡고 C의 첫 답 3/4를 뒤에 다시 주는 노출을 없앤다."
+  },
+  {
+    "id": "e5-1-4-4-xc15",
+    "sourceIndex": 789,
+    "disposition": "retain",
+    "beforeNormalizedHash": "b274c999cba054c8af95d91c1137a8265a96a0bdc9b647bbe090dc9bc4e40cda",
+    "currentNormalizedHash": "b274c999cba054c8af95d91c1137a8265a96a0bdc9b647bbe090dc9bc4e40cda",
+    "currentProposalFingerprint": "e694d35b6404d0fcac22bf1ddd033e19a4846a64c3573388c823e88de1af5638",
+    "independentStatus": "pending",
+    "reason": "분모가 다를 때 분자만으로 대소를 항상 정할 수 있다는 주장을 부정하는 참·거짓 판단이다. 서술어 슬롯이라도 비교 명제의 판단이 필요하므로 문법 복원으로 단정하지 않는다."
+  },
+  {
+    "id": "e5-1-4-5-xc4",
+    "sourceIndex": 804,
+    "disposition": "retain",
+    "beforeNormalizedHash": "75ec5c5f24c7d528ce71d8447c166cd8d117610caba60f8ec765471ee3918110",
+    "currentNormalizedHash": "75ec5c5f24c7d528ce71d8447c166cd8d117610caba60f8ec765471ee3918110",
+    "currentProposalFingerprint": "bb5237e4bd2b32ef1b8aa20fa4d58e30c25da15b254c4f5a62575ceadc28d90c",
+    "independentStatus": "pending",
+    "reason": "47/100의 분자 47을 0.01 단위의 개수로 해석하고 0.47과 0.03을 구한다. 분자의 의미를 단위 개수에 대응하는 학습이며 숫자 반복만으로 복사라 할 수 없다."
+  },
+  {
+    "id": "e5-1-4-5-xc5",
+    "sourceIndex": 805,
+    "disposition": "retain",
+    "beforeNormalizedHash": "ab071878fd49c78ed0a377fcf0611031215365c12d6dc18a93b2be02b10998a2",
+    "currentNormalizedHash": "ab071878fd49c78ed0a377fcf0611031215365c12d6dc18a93b2be02b10998a2",
+    "currentProposalFingerprint": "26aa2191d360e557863c334205ccc874934a2298004bab08bdae6ced74d78292",
+    "independentStatus": "pending",
+    "reason": "1/2에서 5/10으로 분모와 분자를 바꾸는 같은 배율을 찾고 소수로 변환한다. 5가 보이더라도 분자·분모의 동시 배율 해석이 필요하며 단순하고 타당한 변환 문항이다."
+  },
+  {
+    "id": "e5-1-4-5-xc16",
+    "sourceIndex": 815,
+    "disposition": "retain",
+    "beforeNormalizedHash": "0e77ebf0eb3dbf9719ef05f467d7bdb831b6c118df8bcc3b18946d3667daf3fa",
+    "currentNormalizedHash": "0e77ebf0eb3dbf9719ef05f467d7bdb831b6c118df8bcc3b18946d3667daf3fa",
+    "currentProposalFingerprint": "35e0520f374e4a62495329ee1db9f22e8d3f1a80e8c8561f1560ae32b19075e8",
+    "independentStatus": "pending",
+    "reason": "소수 첫째 자리의 3을 1/10 단위의 개수로 해석하여 분자에 놓는다. 3/10을 단위 분수에서 조립하는 것은 학습목표 자체이며 숫자 반복을 복사로 판정하지 않는다."
+  },
+  {
+    "id": "e5-1-4-5-xc25",
+    "sourceIndex": 824,
+    "disposition": "revise",
+    "beforeNormalizedHash": "3ee5e7b0e41fcf95feb6176f15a53b003c21b7c5143e40342b3adff6e5ff0fcd",
+    "currentNormalizedHash": "1546117c270eafbc9ba582c3421f1c60aea864bf1d4bbcbbf25bf2f45347d36e",
+    "currentProposalFingerprint": "fc81d2f511918aea57f98116d13d1ca0d1a04f6bc6b56edba7dd07dffec70712",
+    "independentStatus": "pending",
+    "reason": "약분 결과를 뒤에 다시 적어 주는 직접 노출을 제거한다."
+  },
+  {
+    "id": "e5-1-5-3-xc4",
+    "sourceIndex": 882,
+    "disposition": "revise",
+    "beforeNormalizedHash": "8b1e6c2e30b104c0865c11cda608700c6578888e2bf36b4142166f7a1a078134",
+    "currentNormalizedHash": "2efbb7cee081440c35467247682584f079467601d875915cdc564dd30b6cb3a8",
+    "currentProposalFingerprint": "e34e68144cb37288a4f97a4e0609b074793a9a3c06bc77ba451a9f5b49c547ba",
+    "independentStatus": "pending",
+    "reason": "띄어쓰기를 복원하고 최소공배수가 곱과 같은 경우도 있어 반드시 편해진다는 일반 전제를 두지 않도록 이 예의 비교로 묻는다. 일반설명에도 작거나 같은 조건을 바로잡는다."
+  },
+  {
+    "id": "e5-1-5-3-xc8",
+    "sourceIndex": 886,
+    "disposition": "revise",
+    "beforeNormalizedHash": "441a72dba0f896908a80fce931c988035e993c1b11d4cb048df70c1435dea3a0",
+    "currentNormalizedHash": "abde734a77320d1cf37fa217070f4553700f8c8a0f55f81ae07cc6d0b5ba5bad",
+    "currentProposalFingerprint": "b607b5e756308ac13b3865e21c03f3a470d9660a27c975930d30455b4301950e",
+    "independentStatus": "pending",
+    "reason": "자명하다는 주관적 사유 대신 B의 재진술과 실제 C의 동치분수 적용 차이를 설명한다."
+  },
+  {
+    "id": "e5-1-5-3-xc17",
+    "sourceIndex": 895,
+    "disposition": "revise",
+    "beforeNormalizedHash": "bdd4ebb570edf7347bb047f932720b3abd56d251e7da81abf1678ea7d0805cce",
+    "currentNormalizedHash": "b88a0533541678d327b25173ca5a9771a321ee983f0a822f8aaae92a512b1a33",
+    "currentProposalFingerprint": "77619557c1eef2cf3164da75f0ea3de27241ed279a8cf603ccfdd977b7f51269",
+    "independentStatus": "pending",
+    "reason": "낮은 가치라는 표현 대신 구체 양이 없는 B와 현재 C의 연산 선택 평가가 겹침을 밝힌다."
+  },
+  {
+    "id": "e5-1-5-4-xc1",
+    "sourceIndex": 906,
+    "disposition": "retain",
+    "beforeNormalizedHash": "8993c47a4c5e62968ca84bd062236b8adf36872ad3b137d853bb19dbc0cb2202",
+    "currentNormalizedHash": "8993c47a4c5e62968ca84bd062236b8adf36872ad3b137d853bb19dbc0cb2202",
+    "currentProposalFingerprint": "4262a8df7b8bc70306559e7571ece3d73bf8c5a48d7415312a5902016ee42f09",
+    "independentStatus": "pending",
+    "reason": "분모는 그대로 두고 분자에 적용할 연산을 고르는 규칙을 묻는다. 앞부분의 자연수 뺄셈과 분수의 분자 뺄셈을 연결해야 하며 빼고 외의 연산도 문법상 들어갈 수 있어 단순 문법 복원이 아니다."
+  },
+  {
+    "id": "e5-1-5-4-xc19",
+    "sourceIndex": 924,
+    "disposition": "revise",
+    "beforeNormalizedHash": "8ef74e1e9edaab8d7c206e816b8306ce07deb8dfd55172837535ca73fad9e32e",
+    "currentNormalizedHash": "57d7ebf2d12305d8bb4742fcd4ad8da8a6e3da9df77a91c7f7530601c71761b7",
+    "currentProposalFingerprint": "38b279f84b312cb98874307a9565188d6082c3ebcbd24d1775119871773dd2bd",
+    "independentStatus": "pending",
+    "reason": "붙어 있는 세 조건·결론을 각각 읽을 수 있는 필수 의미로 나눈다."
+  },
+  {
+    "id": "e5-1-5-4-xc20",
+    "sourceIndex": 925,
+    "disposition": "retain",
+    "beforeNormalizedHash": "e0bf0ed80a442374c05ae5108b7eb9bafe5f0670b5e5e39c96831dc276203798",
+    "currentNormalizedHash": "e0bf0ed80a442374c05ae5108b7eb9bafe5f0670b5e5e39c96831dc276203798",
+    "currentProposalFingerprint": "fe607f3537aca7a706a5dd1a1dd39f5b914b9d7d62565742c82bfddef89cb308",
+    "independentStatus": "pending",
+    "reason": "2와 1/4를 1과 5/4로 바꾸어도 값이 같은지 판단하는 받아내림의 불변관계이다. 차가 달라지지 않는다는 결론을 해당 수의 동치로 해석하는 간단한 판단도 유효하다."
+  },
+  {
+    "id": "e5-1-5-4-xc28",
+    "sourceIndex": 931,
+    "disposition": "revise",
+    "beforeNormalizedHash": "18b274ca5a9fc619ec0f2a0b69aa15b885ac4f9995fc89a91fe71b218198be80",
+    "currentNormalizedHash": "3082787a2db90385d1bf6755f64ad477bd1452aa5ce91f7821db784cb7e4696d",
+    "currentProposalFingerprint": "55d153cbe30d0de154c58723b86e87aa1aa9e95557cd30d6d13f95b153d9f44e",
+    "independentStatus": "pending",
+    "reason": "이유 기준의 두 대안의 띄어쓰기를 복원하여 분수 부분의 근접성과 거리 비교라는 타당한 두 설명을 모두 보존한다."
+  },
+  {
+    "id": "e5-1-6-1-xc6",
+    "sourceIndex": 937,
+    "disposition": "revise",
+    "beforeNormalizedHash": "d8ac54cab477beecbf288557f96662b3497c2618b8a8f735a4133c05cad54c7f",
+    "currentNormalizedHash": "550ca48f42481b38b34f93fb8b919dd80fc6d594d39af91ca4d4733c563c2bd4",
+    "currentProposalFingerprint": "35938fe04501d221943cbdaa519d84fc9d649ca113cfd49b1dd7f57c2fb80933",
+    "independentStatus": "pending",
+    "reason": "미확인 대체와 자명하다는 표현을 제거하고 실제 단위 비교 항목을 명시한다."
+  },
+  {
+    "id": "e5-1-6-1-xc12",
+    "sourceIndex": 943,
+    "disposition": "revise",
+    "beforeNormalizedHash": "d1ec2d009ca59db0b3d1c42717ba52815ca4d07ffca3cfd4cc1d2f710401687e",
+    "currentNormalizedHash": "d85254c2ba856035617e0abfc48f48f2644aa30a9b20a63eefcbc318fd265b25",
+    "currentProposalFingerprint": "b8489b5535707799c5848bbe1ba3e60f7207ea22cda0f8945381b928420e83ea",
+    "independentStatus": "pending",
+    "reason": "둘 다라는 표현이 그대로 보장하는 같다는 두 번째 슬롯은 제거하고 각 도형의 둘레 계산을 남긴다."
+  },
+  {
+    "id": "e5-1-6-1-xc16",
+    "sourceIndex": 947,
+    "disposition": "revise",
+    "beforeNormalizedHash": "0f7395af40a4b40f73e2af9381c853032f70a8cee0a994bd481165ac783d4933",
+    "currentNormalizedHash": "1ff9a8fb6e9d183bfaa4ae726011453ebe56803e8830845256032b6ba383cd60",
+    "currentProposalFingerprint": "5c6f197a061a4152414820f9512e5fa4195e6b5d47d707d7bff8e8958b1b6626",
+    "independentStatus": "pending",
+    "reason": "세 번째 기준의 띄어쓰기를 복원하고 두 다른 양수 순서쌍이라는 의미를 분명히 한다. 합 조건과 실제 두 예의 생성은 다른 요청이므로 둘 다 남긴다."
+  },
+  {
+    "id": "e5-1-6-1-xc21",
+    "sourceIndex": 952,
+    "disposition": "retain",
+    "beforeNormalizedHash": "ade2152692be85877b3491a7d02872605124845781fa50377578ecfb950e9693",
+    "currentNormalizedHash": "ade2152692be85877b3491a7d02872605124845781fa50377578ecfb950e9693",
+    "currentProposalFingerprint": "71212224bf9e96aa97838fd75dd3d766b955b8838442ef5b964d7eba2b9ac0c3",
+    "independentStatus": "pending",
+    "reason": "변의 길이 배율이 둘레의 배율로 이어지는 선형 관계를 판단한다. 길이 배율과 둘레 배율이 같은 것은 검증할 수학적 결과이며 2의 반복만으로 복사로 판정하지 않는다."
+  },
+  {
+    "id": "e5-1-6-2-xc3",
+    "sourceIndex": 958,
+    "disposition": "retain",
+    "beforeNormalizedHash": "6284829e8bd7517f54cc34c044ebd2b280370082d620b4b69b3d8d14a5ef4e7a",
+    "currentNormalizedHash": "6284829e8bd7517f54cc34c044ebd2b280370082d620b4b69b3d8d14a5ef4e7a",
+    "currentProposalFingerprint": "e17e98293fab4a22e81e9c8766eb98a1688b145c05a90f09279f6296a2dffa53",
+    "independentStatus": "pending",
+    "reason": "넓이 12cm²를 단위넓이 1cm²의 개수 12로 해석하는 단위넓이의 정의 적용이다. 측정 결과에서 단위 개수를 읽는 유효한 문제이며 숫자 반복 자체는 노출이 아니다."
+  },
+  {
+    "id": "e5-1-6-2-xc6",
+    "sourceIndex": 959,
+    "disposition": "revise",
+    "beforeNormalizedHash": "27ad665c095cf76bca73b3c86eb5a8139d76041179b2f96e5b176144c180da15",
+    "currentNormalizedHash": "7908fdc66a3e8f46a6f360beed8474c829236d77a2f34bd9cc12be68f6a465c0",
+    "currentProposalFingerprint": "e20752a06abbebd747f1be24d0ba85924b8e3dcf91b8a5488d2b0bd9562d21a7",
+    "independentStatus": "pending",
+    "reason": "실제 대체 B와 C가 cm²를 넓이 단위로 확인하는 겹침을 각각 명시한다."
+  },
+  {
+    "id": "e5-1-6-2-xc7",
+    "sourceIndex": 960,
+    "disposition": "revise",
+    "beforeNormalizedHash": "96265e718877a42139ce9f4141f94def8be32860b13e627a9a451611599631a0",
+    "currentNormalizedHash": "cbd4c0d7808d9a56ce5964ba15374d8b7965a1f7e053589b2fabe9045539015a",
+    "currentProposalFingerprint": "cccb69d87aae4e03183ac58417b6253afc9732d2407bf984ac0f8ebdbdbdd803",
+    "independentStatus": "pending",
+    "reason": "단위넓이 개수를 세는 실제 문항과 모눈 칸 세기의 같은 평가 의미를 구체화한다."
+  },
+  {
+    "id": "e5-1-6-2-xc10",
+    "sourceIndex": 963,
+    "disposition": "revise",
+    "beforeNormalizedHash": "48eb5708aa57ba712fe50425322fd22acefec44af767fd99134a63c64dfbe0fc",
+    "currentNormalizedHash": "0f86c180e3f7beff0886c5db78ea4a3a2b578eb9921b20adab027217c5a1f126",
+    "currentProposalFingerprint": "5b90cbd7ae76227ac7a789d2dac0c62b6f990c1dff3282d560cf13ad1639b52d",
+    "independentStatus": "pending",
+    "reason": "가로·세로·넓이 곱셈식의 역연산을 읽을 수 있도록 두 대안의 띄어쓰기를 복원한다."
+  },
+  {
+    "id": "e5-1-6-2-xc18",
+    "sourceIndex": 971,
+    "disposition": "retain",
+    "beforeNormalizedHash": "b4e99e868ad2d0fab458d139ca29b22b1497160f4ee17a0c0100124909270c96",
+    "currentNormalizedHash": "b4e99e868ad2d0fab458d139ca29b22b1497160f4ee17a0c0100124909270c96",
+    "currentProposalFingerprint": "a4d4ca7a501c2fbcdd90bc7cee027acaec854ad0225e418c50895424b992976b",
+    "independentStatus": "pending",
+    "reason": "세로를 고정하고 가로의 배율만 넓이에 적용하는 곱의 관계를 판단한다. 가로 배율과 넓이 배율이 같은 결과는 수학적 적용이며 숫자 2가 같다는 이유로 복사라 하지 않는다."
+  },
+  {
+    "id": "e5-1-6-2-xc20",
+    "sourceIndex": 973,
+    "disposition": "revise",
+    "beforeNormalizedHash": "0b0267de36ae493dc8949a651f117d5be6db00dfb123a2bc09ebc2ccfdfb2bcb",
+    "currentNormalizedHash": "a75106fd7d39e71bff171040104079f795c1dce92620cb0f40e7780f58416af6",
+    "currentProposalFingerprint": "ca5eb94dd580f37aa75c770b5857f14f143534b23f4a5c960a2a54b57c9ac906",
+    "independentStatus": "pending",
+    "reason": "다섯 순서쌍과 각 넓이의 대응을 읽을 수 있는 표준 문장으로 정리한다. 순서를 고정해 채점하는 의미가 아니라 각 쌍과 넓이의 대응을 확인한다."
+  },
+  {
+    "id": "e5-1-6-2-xc23",
+    "sourceIndex": 976,
+    "disposition": "revise",
+    "beforeNormalizedHash": "da323e6c4f5315117f1850be283731af584170909e7e1a360a6b5a834e345d24",
+    "currentNormalizedHash": "98fb70f17311be771202e2e23b0b61106e2e69ed3835f4259e64d8fea8714370",
+    "currentProposalFingerprint": "b8f2f5beb11157a266fad6827b55062d521a39c5979dabdb6df1e37b1b50d76c",
+    "independentStatus": "pending",
+    "reason": "실제로 넓이와 둘레의 다른 뜻을 평가하는 B를 근거로 쓴다."
+  },
+  {
+    "id": "e5-1-6-2-xc25",
+    "sourceIndex": 978,
+    "disposition": "revise",
+    "beforeNormalizedHash": "9b5a43fe4b95132aba9358f044e4c4bdbc7e439841dd6811ee2c370e13df26d4",
+    "currentNormalizedHash": "a1b16d520e8a9182299a929a9ac9883cb7a98f2e0eacb227348d8bd4ac7351d9",
+    "currentProposalFingerprint": "1ccf51fa6cc5c088905008198322497023b813e15cfc13dc7457e8d06db0baed",
+    "independentStatus": "pending",
+    "reason": "다른 오개념이라는 점은 인정하되 왜 B의 역연산 설명이 기존 문항과 겹치는지 구체화한다."
+  },
+  {
+    "id": "e5-1-6-4-xc5",
+    "sourceIndex": 1006,
+    "disposition": "retain",
+    "beforeNormalizedHash": "1507b929bcf96f5c62cc6ca418ba00d45050fd0f4074454f83a1df0aa2260483",
+    "currentNormalizedHash": "1507b929bcf96f5c62cc6ca418ba00d45050fd0f4074454f83a1df0aa2260483",
+    "currentProposalFingerprint": "10120fca750f631c5ae1dd241f94c9414f9c3898cc918cbed76860e49b75f0c2",
+    "independentStatus": "pending",
+    "reason": "문장이 밑변으로 정할 수 있는 변은 모두 몇 개인지 명시한다. 평행한 변의 쌍 수는 요청하지 않았으므로 삼각형 3개와 평행사변형 4개가 분명하며 blind의 쌍 해석은 물음과 다르다."
+  },
+  {
+    "id": "e5-1-6-4-xc9",
+    "sourceIndex": 1010,
+    "disposition": "revise",
+    "beforeNormalizedHash": "4212af6cd275f885ca9696af595cb61886a05136dad8a9cedc4c249b2e916189",
+    "currentNormalizedHash": "2c83b8473870099c8a43078da596dbdeced040fe519a31c12028bab1c424edf2",
+    "currentProposalFingerprint": "767f48ee0bcfb5813e8f35d4a2cba0b87444e91f3c029d7e354097a96b960d10",
+    "independentStatus": "pending",
+    "reason": "넓이식과 역연산 설명 기준의 띄어쓰기를 복원한다."
+  },
+  {
+    "id": "e5-1-6-4-xc13",
+    "sourceIndex": 1014,
+    "disposition": "revise",
+    "beforeNormalizedHash": "b169964d470f9f46b010c7006f332450640c7d42ff2a79796b484bf9f453fd88",
+    "currentNormalizedHash": "1e2fea483cd9a604eb08e5370a95ce1c7b047a2417a3b567a8863ffda57e3b9c",
+    "currentProposalFingerprint": "0a392546c8f88cb20f857048c4aa18f1e44e1e3108bca3591ef13260dd77e1a7",
+    "independentStatus": "pending",
+    "reason": "밖에 그려지는 경우를 둔각을 이루는 한 변을 밑변으로 정한 조건으로 한정한다. 일반설명의 가능성 명제는 참이므로 보존한다."
+  },
+  {
+    "id": "e5-1-6-5-xc5",
+    "sourceIndex": 1029,
+    "disposition": "retain",
+    "beforeNormalizedHash": "f13f782ba32448874cd703e2f7b0750129a76017c919dec16fde7aea0365cb75",
+    "currentNormalizedHash": "f13f782ba32448874cd703e2f7b0750129a76017c919dec16fde7aea0365cb75",
+    "currentProposalFingerprint": "70af007e331be6a948abf6f1def46f787102f385486ba0c6ddcb0fed0b6d69b8",
+    "independentStatus": "pending",
+    "reason": "네 꼭짓점을 지나는 둘러싼 직사각형의 위치 관계를 학습하려면 해당 그림이 필요하다는 기존 형식 제외를 유지한다. xc14도 제외라는 사실은 이 개념의 중복 승인이나 평가 완료를 뜻하지 않으며 필수 그림 없이 임의로 활성화하지 않는다."
+  },
+  {
+    "id": "e5-2-1-1-xc13",
+    "sourceIndex": 1056,
+    "disposition": "revise",
+    "beforeNormalizedHash": "62c8dd8c55035a4c28fe37fd23ee47c821fcc600c0160792863e6dfb25d8924c",
+    "currentNormalizedHash": "368c29c2e442707efa1ff681a427d17c3a3d48fe9bcac4b79298d24ba3ac36fc",
+    "currentProposalFingerprint": "a1544e92107ec2891615ae90f835faa5adb107df61a392686760341532acd609",
+    "independentStatus": "pending",
+    "reason": "이유를 묻는 B에 결론 재진술만 허용하는 대안을 제거한다. C의 범위 최댓값 해석은 유지하되 문법상의 부정어 슬롯은 없앤다."
+  },
+  {
+    "id": "e5-2-1-1-xc14",
+    "sourceIndex": 1057,
+    "disposition": "revise",
+    "beforeNormalizedHash": "dec63a1594958fe90e05c3975b7a741c9593a581974682015cf95a6c4636075b",
+    "currentNormalizedHash": "cdf81bc769c217906eb8616e844562d395b1992e22aa09d9adc795a7cb47fced",
+    "currentProposalFingerprint": "45ea81978048f87381a50d977eeedb0f13fc6abcae6457c48ae38d0ab8f0c02b",
+    "independentStatus": "pending",
+    "reason": "양 끝 수의 해석도 유효하지만 이 항목의 핵심인 경계 포함 표시를 직접 슬롯으로 확인하도록 C를 바꾼다."
+  },
+  {
+    "id": "e5-2-1-2-xc8",
+    "sourceIndex": 1069,
+    "disposition": "revise",
+    "beforeNormalizedHash": "ccfa132e83a18a172c25ad0ed3a0c1e3a2f493f9084a7d0d4b9b06727c2cf738",
+    "currentNormalizedHash": "3b8aac9db34fe5e81ac2c5973d1d3facfe5b902018522fee8c49565d2f014148",
+    "currentProposalFingerprint": "2d8cabdb34e0d16e14cf8632fe16af6e56eeb2e93620bb8b1b332df43ce08799",
+    "independentStatus": "pending",
+    "reason": "B 대안의 띄어쓰기를 복원한다. 물음은 자연수로 제한하지 않으므로 반례 0도 수학적으로 타당해 보존한다. C의 소수 대소 해석도 유효하다."
+  },
+  {
+    "id": "e5-2-1-2-xc15",
+    "sourceIndex": 1074,
+    "disposition": "retain",
+    "beforeNormalizedHash": "415ffccb5ce245a4ec6195ba8e15ae7407eff84a310d6b1f1204f4e635e8dc8e",
+    "currentNormalizedHash": "415ffccb5ce245a4ec6195ba8e15ae7407eff84a310d6b1f1204f4e635e8dc8e",
+    "currentProposalFingerprint": "ef559f0bf8fc431766d4983b82f0f0ef33db7762865817385c74bd83ae72d726",
+    "independentStatus": "pending",
+    "reason": "열거된 자연수의 집합을 이상이라는 포함 경계로 나타내는 해석이다. 첫 수 7을 경계로 택하는 판단이 필요하며 목록의 수가 결과와 같다는 사실은 복사가 아니다."
+  },
+  {
+    "id": "e5-2-1-2-xc16",
+    "sourceIndex": 1075,
+    "disposition": "retain",
+    "beforeNormalizedHash": "8146628c04467983a98ef8a54b79d06f952b6bce19b73ce7dbc66e570e355877",
+    "currentNormalizedHash": "8146628c04467983a98ef8a54b79d06f952b6bce19b73ce7dbc66e570e355877",
+    "currentProposalFingerprint": "f026833c8791f282c34a6c3af1d6d574980007a74fd61be017966642c9336959",
+    "independentStatus": "pending",
+    "reason": "열거된 자연수의 집합을 이하라는 포함 경계로 나타내는 해석이다. 마지막 수 9를 경계로 택하는 판단이 필요하며 주어진 목록의 경계 해석은 유효하다."
+  },
+  {
+    "id": "e5-2-1-4-xc23",
+    "sourceIndex": 1121,
+    "disposition": "revise",
+    "beforeNormalizedHash": "cee3ed45540e8b1b363a05fd354d33abc960084bd988296dbdb307ed83a95642",
+    "currentNormalizedHash": "94db28d0908f22b1e69c7698675257dce3548e5e839447564f6d3eff6c8b5878",
+    "currentProposalFingerprint": "6cf1bc1c31f0dde8b90814d303672be7deb6fadeed66803faec1e462738965a4",
+    "independentStatus": "pending",
+    "reason": "B의 불명확한 둘째 대안을 제거하고 차의 이유를 띄어 쓴다. C의 상한은 99보다 큰 수 중 최솟값인 자연수로 한정한다."
+  },
+  {
+    "id": "e5-2-1-5-xc19",
+    "sourceIndex": 1137,
+    "disposition": "revise",
+    "beforeNormalizedHash": "d8af023ddb555971b7f69c893fce22c72f03d29a8c6531e7eb235418a26e95dc",
+    "currentNormalizedHash": "c916d0a584b101b6d4fe24de823a73ede37bc5ee6e2c113bca3e2b92410c81ad",
+    "currentProposalFingerprint": "d93b19dc5d74028bdf94c118ba07481d644c97ed24f9faae3cf46f547da56ac2",
+    "independentStatus": "pending",
+    "reason": "B의 긴 붙임 문자열을 조건·범위에 맞는 이유 문장으로 정리한다. 물음이 범위와 양 끝 자연수를 각각 요청하므로 둘 다 기준에 남긴다."
+  },
+  {
+    "id": "e5-2-1-5-xc24",
+    "sourceIndex": 1140,
+    "disposition": "revise",
+    "beforeNormalizedHash": "e2b1ed7224b4af8810ca842c2a36b4b9ffe1a678b2ffd5be8eef5b76daccf58a",
+    "currentNormalizedHash": "38fc4bf8c27ddbe947ea785ea16d81913797e670a47fbc906f4eda55790353c2",
+    "currentProposalFingerprint": "518d23ee6654dc99503471c281f5b3101bf3527ba1838ad564afdefecb64cf19",
+    "independentStatus": "pending",
+    "reason": "범위라는 표현법 이름 대신 구체 버림 결과에서 두 경계 수를 직접 쓰게 하여 임의의 참인 표현법이 들어가는 슬롯을 없앤다."
+  },
+  {
+    "id": "e5-2-1-5-xc25",
+    "sourceIndex": 1141,
+    "disposition": "retain",
+    "beforeNormalizedHash": "ce5ecbe01df237490c0bd45e49e70db8e0b5c102f7b0ee82f2d80dfdd9a42632",
+    "currentNormalizedHash": "ce5ecbe01df237490c0bd45e49e70db8e0b5c102f7b0ee82f2d80dfdd9a42632",
+    "currentProposalFingerprint": "e98f93d86cf4b9efaaba70807258ada6862a3d253b9cf3aca0808b6e94fdbb63",
+    "independentStatus": "pending",
+    "reason": "버림한 값 2.3이 원래 수 범위의 포함되는 하한임을 해석한다. 같은 수가 결과와 하한에 나타나는 것은 버림의 불변조건이며 2.4 미만이라는 위쪽 경계도 별도 판단한다."
+  },
+  {
+    "id": "e5-2-1-6-xc11",
+    "sourceIndex": 1150,
+    "disposition": "revise",
+    "beforeNormalizedHash": "1c76a213da8cd8b4885aca56c20cdf40d7debfd106a329e819c35e62a4d9b7b9",
+    "currentNormalizedHash": "44982736f0a9a566a2d31dd1724751c3eb11bb6dc6367a8ab4400b8c1dad8389",
+    "currentProposalFingerprint": "e00813336420073d6b43fb23a6f9045693b938589c372b1affde223f7016476d",
+    "independentStatus": "pending",
+    "reason": "첫 슬롯에 수를 쓰는지 방법을 쓰는지 분명히 하기 위해 결과를 먼저 명명하고 방법과 나누어 문장을 쓴다."
+  },
+  {
+    "id": "e5-2-1-6-xc17",
+    "sourceIndex": 1154,
+    "disposition": "revise",
+    "beforeNormalizedHash": "8461739ed6a39155b14a3a9d0b1f77337336a9c70c63c8e9513cca312edf99bd",
+    "currentNormalizedHash": "070feb0c7e787bb22f4d14a37c000c86b11ff983e9cd889d67cca3e09ba5e310",
+    "currentProposalFingerprint": "e6a5d0b2bd9398f46c1156570c793632ad73decb468975c129feed850ba88922",
+    "independentStatus": "pending",
+    "reason": "일반 의미로 쓰인 설명과 맞는 예는 문자열 매칭이 아니지만 읽기 쉽게 구체 조건과 예 요건으로 정리한다."
+  },
+  {
+    "id": "e5-2-2-1-xc1",
+    "sourceIndex": 1162,
+    "disposition": "revise",
+    "beforeNormalizedHash": "0fe0df82698c2cc2c21529c6f9b8f7450a2cbe24acb26a01efb584bed8d4a8f0",
+    "currentNormalizedHash": "9a575620dc9b0b9df0329a6198e4db17d3357c8d07f8ca71c9c5c882612fd06c",
+    "currentProposalFingerprint": "fb090eeab865c46c31af38cbb143d5868f9d5a0ce554b0d97a8278ca20bcc114",
+    "independentStatus": "pending",
+    "reason": "B 반복덧셈 의미와 덧셈식 기준의 띄어쓰기를 복원한다. C의 곱하는 자연수 3을 반복횟수로 해석하는 판단은 유효하여 유지한다."
+  },
+  {
+    "id": "e5-2-2-2-xc4",
+    "sourceIndex": 1184,
+    "disposition": "revise",
+    "beforeNormalizedHash": "96c3ffdbf103f38ec3e2d51aaa034cfc412bd6b6736c0d4c276fdd9a87282120",
+    "currentNormalizedHash": "9a9346f0c05faf310583ff082f952330a93bfd5bd63861e981539226183937c5",
+    "currentProposalFingerprint": "a2222f20a2f0f08decbde523a3c8a0e43224964b3c1bf00b7e7e2c62f0df8fca",
+    "independentStatus": "pending",
+    "reason": "간단한 정리라는 이유만으로 제외하지 않고 현재 C에서 약분과 대분수 정리의 실제 적용을 이미 평가하는 중복을 설명한다."
+  },
+  {
+    "id": "e5-2-2-2-xc5",
+    "sourceIndex": 1185,
+    "disposition": "retain",
+    "beforeNormalizedHash": "15b36dc56d20cd14c8e6a9be8d70915ff26c78319cb49f451b63f080c5b46aef",
+    "currentNormalizedHash": "15b36dc56d20cd14c8e6a9be8d70915ff26c78319cb49f451b63f080c5b46aef",
+    "currentProposalFingerprint": "a3b0b9f523862d7946e784637357bd07a3448a84c2809d636b89b1b41ca15c17",
+    "independentStatus": "pending",
+    "reason": "현재 지적의 key는 실제 C에 pass이며 부정 blind 내용이 없다. B는 제외인데 key가 pass라고 표시된 형식 판정 불일치는 독립 응답 자체의 문제로 남긴다. 분모 배수이면 곱이 자연수라는 C는 타당하다."
+  },
+  {
+    "id": "e5-2-2-2-xc6",
+    "sourceIndex": 1186,
+    "disposition": "revise",
+    "beforeNormalizedHash": "3df233c4843e6da242f9ba8b87c628f3a6f618b6691aad7fe00dadda56891258",
+    "currentNormalizedHash": "99707b06d66a4e670605c25b0766fd6c7454bdae16cc65769a2add67af535b2c",
+    "currentProposalFingerprint": "2237ddf9bf415e5c34159b67e905a61ca140d252169cb066c0803e39c21c2481",
+    "independentStatus": "pending",
+    "reason": "B 제외의 자명하다는 표현을 현재 C의 직접 계산과 같은 관계 설명의 중복으로 구체화한다. C의 모두라는 단서로 같은 결과를 이미 말한 슬롯도 제거한다."
+  },
+  {
+    "id": "e5-2-2-2-xc7",
+    "sourceIndex": 1187,
+    "disposition": "retain",
+    "beforeNormalizedHash": "00546e9fff11ec295a0b8e70d146acd2f2a0d9d755f8772b5d607360e347bd44",
+    "currentNormalizedHash": "00546e9fff11ec295a0b8e70d146acd2f2a0d9d755f8772b5d607360e347bd44",
+    "currentProposalFingerprint": "9db5b8f30cfddbccc1b62f0a5fe4e60474697c075acf1767e27f5a9ea0cd0cd0",
+    "independentStatus": "pending",
+    "reason": "분모 3을 전체를 나눌 묶음 수로, 분자 2를 모을 묶음 수로 해석하여 8을 구한다. 수치 반복은 분수 곱의 뜻을 적용하는 과정이다. key의 제외 B에 대한 pass 표시는 독립 형식 판정 불일치로 남긴다."
+  },
+  {
+    "id": "e5-2-2-2-xc12",
+    "sourceIndex": 1189,
+    "disposition": "retain",
+    "beforeNormalizedHash": "8d4d6fc246424fa8ab2c1a21479f056a68cb609509ede492c7f76fb890c6b3f6",
+    "currentNormalizedHash": "8d4d6fc246424fa8ab2c1a21479f056a68cb609509ede492c7f76fb890c6b3f6",
+    "currentProposalFingerprint": "2a5874f9ee154a5fa5562cee79606317ed8b210650e7a50ad4bcb869bf4166be",
+    "independentStatus": "pending",
+    "reason": "자연수에 1보다 큰 대분수를 곱할 때 원래 수보다 커지는 관계는 수학적으로 옳고 비교 대상이 명확하다. key의 제외 B에 대한 pass 표시는 독립 응답의 형식 불일치이지 C의 수학 오류는 아니다."
+  },
+  {
+    "id": "e5-2-2-3-xc13",
+    "sourceIndex": 1209,
+    "disposition": "retain",
+    "beforeNormalizedHash": "bf2242cf552679385226f95b31537c2b85f893aa7714e3278f690f569a6ca54d",
+    "currentNormalizedHash": "bf2242cf552679385226f95b31537c2b85f893aa7714e3278f690f569a6ca54d",
+    "currentProposalFingerprint": "696bf71b0ea50703649c0976c8b584b303bba1f5118ba400d75065b212914fb6",
+    "independentStatus": "pending",
+    "reason": "분모에 적용할 연산과 그 값 10을 함께 쓰므로 문법만으로 두 슬롯을 채울 수 없다. 더하기가 잘못이라는 단서는 오개념 교정의 조건이며 곱하기 선택과 실제 분모 계산은 유효하다."
+  },
+  {
+    "id": "e5-2-2-3-xc20",
+    "sourceIndex": 1214,
+    "disposition": "retain",
+    "beforeNormalizedHash": "4c5402842e8d0a66e4d72a2473243b0006d3f777bf8018d27be1a75b07a022c6",
+    "currentNormalizedHash": "4c5402842e8d0a66e4d72a2473243b0006d3f777bf8018d27be1a75b07a022c6",
+    "currentProposalFingerprint": "99e4f2d1d413246c92e211446edda0e3ebb408d6576a478f0fe98dca38a904ab",
+    "independentStatus": "pending",
+    "reason": "곱이 최대가 되도록 두 진분수의 크기를 택하는 일반 규칙을 묻는다. 가장 크게와 가장 큰 두 수는 서로 다른 대상의 관계이며 같은 어근이 나온다는 사실은 답 복사가 아니다."
+  },
+  {
+    "id": "e5-2-3-1-xc13",
+    "sourceIndex": 1249,
+    "disposition": "retain",
+    "beforeNormalizedHash": "d1feaa52d9db60a972e8a43b6c147f0ea091c44a2ff28fda0f798f30e12fd39e",
+    "currentNormalizedHash": "d1feaa52d9db60a972e8a43b6c147f0ea091c44a2ff28fda0f798f30e12fd39e",
+    "currentProposalFingerprint": "9d2605d321ac37d7551ba8eb220892d5b2dabfa9379198c083d0ca8499dc9613",
+    "independentStatus": "pending",
+    "reason": "직사각형의 합동에 가로만 같아서는 충분하지 않고 세로도 같아야 함을 판단한다. 가로와 세로가 짝말이라는 사실만으로 이 조건 판단을 문법 복원이라 하지 않는다."
+  },
+  {
+    "id": "e5-2-3-1-xc23",
+    "sourceIndex": 1259,
+    "disposition": "revise",
+    "beforeNormalizedHash": "094708775e57e54711095534cf6df440b2f41e65c3587ac2fa994953d47cc9f7",
+    "currentNormalizedHash": "23a5a8fea7b8795ca74f8c439d244980a01736d6d25f572c45f9292f70a0ba1d",
+    "currentProposalFingerprint": "7985953a237450b04f9a614e566f2ed69f914094a2270899b3036e58eba1f311",
+    "independentStatus": "pending",
+    "reason": "띄어쓰기를 복원하고 작은 각의 차이 및 각들을 일치시킬 수 없음이라는 같은 비합동 이유의 타당한 대안 둘을 보존한다. anyOf는 정확 문자열 검색 규칙이 아니다."
+  },
+  {
+    "id": "e5-2-3-2-xc22",
+    "sourceIndex": 1285,
+    "disposition": "retain",
+    "beforeNormalizedHash": "da9c207483c700c7ec454a4afc69e482be6b12d943019c6c5b70924691de1da8",
+    "currentNormalizedHash": "da9c207483c700c7ec454a4afc69e482be6b12d943019c6c5b70924691de1da8",
+    "currentProposalFingerprint": "672cfd14effc3667acbe6df5194953b532653a3e7454c3d73e5b43cce7a6d31f",
+    "independentStatus": "pending",
+    "reason": "합동 대응은 꼭짓점의 이웃 관계와 변의 연결을 보존한다는 성질을 묻는다. 한 변의 두 대응점도 다른 한 변의 끝이라는 불변 관계의 판단이며 변이라는 이름 반복만으로 노출은 아니다."
+  },
+  {
+    "id": "e5-2-3-4-xc2",
+    "sourceIndex": 1313,
+    "disposition": "revise",
+    "beforeNormalizedHash": "83c7a5c3ce640f439804d065ef0fb37b04e65ed56c72ca53467687360c5bdde0",
+    "currentNormalizedHash": "6f09cdd4ae262db1cbcdafb765b4271e71588d64a37a4e058755c53e88ab72bd",
+    "currentProposalFingerprint": "a14538e8294a22bc18d3b37b01cab8f16cc1136a7d25df9db96b0efe8f5395d4",
+    "independentStatus": "pending",
+    "reason": "회전량을 임의의 참인 표현으로 쓸 수 없도록 도 단위를 명시하고 수만 요청한다. 재독해: B 제외의 단순 값이라는 표현을 현재 C의 같은 각도 확인과의 중복으로 구체화한다."
+  },
+  {
+    "id": "e5-2-3-4-xc23",
+    "sourceIndex": 1334,
+    "disposition": "revise",
+    "beforeNormalizedHash": "0c293a1283dab472863224aa6044e8a709d2e6312aaec52834d88e9f7ac7a451",
+    "currentNormalizedHash": "70aacd35ddf598af45ff3a24a7321f0c8908de33de8d913f04b54fd98cf17dd0",
+    "currentProposalFingerprint": "233db3ebec4896eb5d47538ed2caa8e743c168d274b7086dabdb0047c1d376a7",
+    "independentStatus": "pending",
+    "reason": "무엇이 같다는지 불명확한 보조 문장을 명확히 고친다. 한 바퀴와 반 바퀴를 구분하는 개념상 단서는 유효하여 보존한다."
+  },
+  {
+    "id": "e5-2-4-4-xc1",
+    "sourceIndex": 1374,
+    "disposition": "retain",
+    "beforeNormalizedHash": "1c1b16c62d42d985c5f11bd565f6582aa546d5019299c477bcb76cd32f9e8aa7",
+    "currentNormalizedHash": "1c1b16c62d42d985c5f11bd565f6582aa546d5019299c477bcb76cd32f9e8aa7",
+    "currentProposalFingerprint": "946c145912ede654bfe5c1830551fd4376830dbaa7a3c7c19be1f34625a65576",
+    "independentStatus": "pending",
+    "reason": "1.5=1+0.5를 어떤 수의 1배와 0.5배의 합으로 적용하는 설명은 수학적으로 타당하다. 절반이라는 동치 어휘를 반드시 써야만 이해한 것은 아니므로 타당한 다른 설명 대안을 보존한다."
+  },
+  {
+    "id": "e5-2-4-5-xc25",
+    "sourceIndex": 1401,
+    "disposition": "revise",
+    "beforeNormalizedHash": "a38ad253f5b26d541bdd8c0725a5fbc03ac4fcd8b32c24bcd6cdf8860ba92b78",
+    "currentNormalizedHash": "65a0e23cba157b1753f4a10ef68770fb980c2d524c5c30a9741357062d6d8481",
+    "currentProposalFingerprint": "3472f26952df8eecb616266e935aa17bd01af3547fb39f90290de2c2a14b97bf",
+    "independentStatus": "pending",
+    "reason": "끝의 0을 지우는 것은 유효한 소수 동치 해석이나 모두라는 표현이 보장하는 같다는 슬롯은 불필요해 제거한다. 읽은 B 기준의 붙임 문자열도 함께 정리한다."
+  },
+  {
+    "id": "e5-2-5-3-xc23",
+    "sourceIndex": 1491,
+    "disposition": "revise",
+    "beforeNormalizedHash": "9d5f0f613e4d0b82ef533ab85ed0b86cafc4a638252337c46d5423f68ca6d0fd",
+    "currentNormalizedHash": "83dec59db268eac9c0f75f9dbd6ea73d3883efb1c744de1b3b8f21c62cb74162",
+    "currentProposalFingerprint": "7b45cfd9e921818aed1f0b4fa248a572f7f17a684570c3247638d60e8107b305",
+    "independentStatus": "pending",
+    "reason": "만나는 위치와 각도 관계가 모두 들어갈 수 있는 문장을 만나는 각의 종류로 한정한다."
+  },
+  {
+    "id": "e5-2-5-4-xc10",
+    "sourceIndex": 1503,
+    "disposition": "retain",
+    "beforeNormalizedHash": "2ee0593712bf7adedca49569a75f01290fafeee44fe1b860689803f38e77cb46",
+    "currentNormalizedHash": "2ee0593712bf7adedca49569a75f01290fafeee44fe1b860689803f38e77cb46",
+    "currentProposalFingerprint": "51fdf4e931daac03c057eae11c321d322ce04eae73919f4be6c406249261dbd7",
+    "independentStatus": "pending",
+    "reason": "실제 입체의 평행 관계가 겨냥도에서도 보존되는지를 묻는다. 평행이라는 이름 반복은 대상이 입체 모서리에서 도면 선분으로 바뀐 불변관계의 적용이므로 유효하다."
+  },
+  {
+    "id": "e5-2-5-4-xc27",
+    "sourceIndex": 1519,
+    "disposition": "revise",
+    "beforeNormalizedHash": "c15406f36a64d91debd5e81ec3742453d76f5af13d68b872e112f0e46f13329f",
+    "currentNormalizedHash": "d9d5eaadb8f1214f8e22f94b202ef66ee3e6b39592456e1b7d9754c856674762",
+    "currentProposalFingerprint": "dfd5b4c81107af9d1f7dc3b3d261fe570b5cdf99ee2ff866a65817c961c0e451",
+    "independentStatus": "pending",
+    "reason": "방향과 길이 관계를 세 번째 기준으로 평가함을 물음에 명시하고 붙임 문자열을 정상 문장으로 고친다."
+  },
+  {
+    "id": "e5-2-5-5-xc7",
+    "sourceIndex": 1526,
+    "disposition": "revise",
+    "beforeNormalizedHash": "529dd0703ef03e7b82831d8b0dafc6151bdfd42da48ecc7b067a6149291051fc",
+    "currentNormalizedHash": "52480085305abdd24c5b7ad8d34c16b1e63752117a20ef2b2f3e63f789db0244",
+    "currentProposalFingerprint": "7426ca7f350ed001ba2c7315918e66c3b1f468920d916995fde28379bdc27980",
+    "independentStatus": "pending",
+    "reason": "모서리라는 만나는 위치도 참이 되는 슬롯을 두 면 사이의 각으로 한정한다."
+  },
+  {
+    "id": "e5-2-5-5-xc15",
+    "sourceIndex": 1534,
+    "disposition": "revise",
+    "beforeNormalizedHash": "6e4277f9d72b6a665828296e0b49af45722dbdb742c06265f857f19350a6d0ac",
+    "currentNormalizedHash": "5b2e0fb29518188db75256ae3a80a8446a951b42555165a002c92a9e7a1a76db",
+    "currentProposalFingerprint": "0627674f54fedb5378548f7a4821ca27aa10d97be2b2211d6b9458a3aa6769f7",
+    "independentStatus": "pending",
+    "reason": "기준이라는 임의의 표현 대신 바닥에 놓는 면의 수학적 이름을 요청한다. 재독해: 바닥에 놓을 면의 표준 이름을 묻는 문장으로 고치고, 임의의 전개도 접는 요령을 유일한 방법으로 채점하기 어려운 B 이유를 명시한다."
+  },
+  {
+    "id": "e5-2-5-6-xc5",
+    "sourceIndex": 1549,
+    "disposition": "revise",
+    "beforeNormalizedHash": "8964269a81bfb792249f2f7c7468cb84fe996028763715f1559eaf8d2812cfe6",
+    "currentNormalizedHash": "b637c2015ab3e73d8553ad1559301a69fece617d37c08dd0122f810fbe8b75d1",
+    "currentProposalFingerprint": "7f061d10af3707a276aca284d3821bfd3dd011c074d91ad102c5a8f43e850576",
+    "independentStatus": "pending",
+    "reason": "쌍의 개수를 단위로 명시해 다른 참인 부사가 들어가는 슬롯을 없앤다."
+  },
+  {
+    "id": "e5-2-5-6-xc9",
+    "sourceIndex": 1553,
+    "disposition": "revise",
+    "beforeNormalizedHash": "3dca4c2e9d965d8e362742c78667895a30d4598b055484fc5c247456d9c575e4",
+    "currentNormalizedHash": "dad1a2d08a7f57a2b14c6d295e82df90340bb5a7035c6431fedbdf2b251759dd",
+    "currentProposalFingerprint": "d54ad497d6b43742c72e1e89b646006715fd8003adf9791dbb5cf10e13860f0b",
+    "independentStatus": "pending",
+    "reason": "면의 겹침과 맞닿는 선분의 길이를 서로 다른 요청으로 명시한다."
+  },
+  {
+    "id": "e5-2-5-6-xc12",
+    "sourceIndex": 1555,
+    "disposition": "revise",
+    "beforeNormalizedHash": "95bdb46e4568d26342a85b6f0506d99ffc830e583de8c393d627de41bbce0bc2",
+    "currentNormalizedHash": "9ef5e989a16e61edfeee62861fab86d20d3d281543975863f44d8f365375a146",
+    "currentProposalFingerprint": "1cff916145756c0fceda199c99833c7c754da131be82a6a73afc1a9bf5ae98d9",
+    "independentStatus": "pending",
+    "reason": "모서리의 종류가 아니라 개수를 묻도록 개 단위를 문장에 고정한다."
+  },
+  {
+    "id": "e5-2-5-6-xc13",
+    "sourceIndex": 1556,
+    "disposition": "revise",
+    "beforeNormalizedHash": "6a804aaef8e9a8f24fb3debe6a4ee90d4a1cd820e945fe622b015c9fe97876b5",
+    "currentNormalizedHash": "30ab1dff625e473778681584cc850d4c0231d26b72ef285863d41d7e63283b9b",
+    "currentProposalFingerprint": "88d02315d290bd3880dfbcc924db39f43db17ec04a417ad4c0eb7d236570d480",
+    "independentStatus": "pending",
+    "reason": "면의 개수를 묻도록 개 단위를 고정해 임의의 면 특징을 쓰는 슬롯을 없앤다."
+  },
+  {
+    "id": "e5-2-5-6-xc14",
+    "sourceIndex": 1557,
+    "disposition": "retain",
+    "beforeNormalizedHash": "b7c9a555b63a64b21c263945e5b8dbf792022c3a44685e16ecbba23fd15cbbd0",
+    "currentNormalizedHash": "b7c9a555b63a64b21c263945e5b8dbf792022c3a44685e16ecbba23fd15cbbd0",
+    "currentProposalFingerprint": "2e1b74f12d8101fb4033794c957fb92caf59039d4003f2b66abc859303ea49e6",
+    "independentStatus": "pending",
+    "reason": "가운데 밑면의 사방에 옆면을 펼치고 나머지 밑면을 맞은편 변에 붙이는 배치를 실제로 판단하려면 전개도 그림이 필요한 기존 제외 항목이다. 다른 문항에서 평가되지 않았다는 것만으로 필수 그림 없이 활성화하지 않는다."
+  },
+  {
+    "id": "e5-2-5-6-xc24",
+    "sourceIndex": 1564,
+    "disposition": "revise",
+    "beforeNormalizedHash": "321b27f8c82c7bed97e3b16a82800dbded0b522c098ef90273ae60eddc4b7750",
+    "currentNormalizedHash": "7c27bf22e896d3be739e9a2460bcd701814a0bb5a271865b817945ea46fae0e9",
+    "currentProposalFingerprint": "816d42164f5214512eb9164128c4fed0ed0142d9a9c2abce7bfe718af097aafa",
+    "independentStatus": "pending",
+    "reason": "xc16의 가로 길이 평가를 세로 높이 평가의 중복 근거로 잘못 든 부분을 제거한다."
+  },
+  {
+    "id": "e5-2-5-6-xc27",
+    "sourceIndex": 1566,
+    "disposition": "retain",
+    "beforeNormalizedHash": "db229a79d1fe11e7f842ed1be0f77b54345252a10dea749eb1f97587119e7b9a",
+    "currentNormalizedHash": "db229a79d1fe11e7f842ed1be0f77b54345252a10dea749eb1f97587119e7b9a",
+    "currentProposalFingerprint": "f4ed63e4d4e1914c50fcf124ebd66864a42b2f69ef61bcb8351986cb78a70177",
+    "independentStatus": "pending",
+    "reason": "잘라진 모서리 하나가 경계 선분 둘, 다시 붙일 한 쌍이 된다는 대응을 적용한다. 모서리 7개와 선분 짝 7쌍의 숫자가 같다는 것은 이 대응의 결과이며 숫자 복사라는 이유로 금지할 수 없다."
+  },
+  {
+    "id": "e5-2-6-1-xc2",
+    "sourceIndex": 1567,
+    "disposition": "revise",
+    "beforeNormalizedHash": "2eec9882402f9d8b6801566f120043fd018904dee74407bdbe0a0555805077bf",
+    "currentNormalizedHash": "2707aeed3f5f8ecc0632468f27c2c5d2b0e6d7175d4b9d9283af0593d113dd78",
+    "currentProposalFingerprint": "5e21438aeea948681f789d0939278246dc73723446442a02ebdf149fd660b961",
+    "independentStatus": "pending",
+    "reason": "특정한 이동 방식만 필수인 세 번째 기준을 제거한다. 물음이 한 가지 이동 경로를 정하지 않았으므로 다른 타당한 재분배 설명도 첫째 기준과 평균 5로 인정한다."
+  },
+  {
+    "id": "e6-1-1-1-xc25",
+    "sourceIndex": 1649,
+    "disposition": "revise",
+    "beforeNormalizedHash": "fc45f88da8bdfcbcc7b70cee6cab9bbd91ee0bd52627a132671b62410a828c38",
+    "currentNormalizedHash": "e03aea85ff9b3f4cb21e4ff94e9c9589ee2b52515bfbbf2e3c1646aef8a75276",
+    "currentProposalFingerprint": "8e7350a08bcf32569b980db81208204bd88189855da42d918279038ac274af4d",
+    "independentStatus": "pending",
+    "reason": "글에 원의 개수·등분 수가 있어 그림 없이 충분한 상황이다. 나누어지는 수를 직접 지정하는 불필요한 힌트만 빼고 나눗셈식 및 몫의 해석을 묻는다."
+  },
+  {
+    "id": "e6-1-1-2-xc1",
+    "sourceIndex": 1652,
+    "disposition": "revise",
+    "beforeNormalizedHash": "52ea90074c279a3b59641122d86281cc478ceabad8371f1d472298b8db4803e3",
+    "currentNormalizedHash": "a652bfcfc095a016ef7571bcef0aa491632763425ca298119fbc4b2ccbd157ff",
+    "currentProposalFingerprint": "6aed7ada8edf1e74f7dce485303844a829f97156259175669cfbe22c0fb09fef",
+    "independentStatus": "pending",
+    "reason": "한 명이 마신 양이라는 요구 답을 물음에 먼저 주지 않고 나눗셈식이 나타내는 양을 해석하게 한다."
+  },
+  {
+    "id": "e6-1-1-2-xc11",
+    "sourceIndex": 1662,
+    "disposition": "revise",
+    "beforeNormalizedHash": "6fe9959549be1b1103eef104eb59d5e2447b3b333d0f0d8d297a969680387ccc",
+    "currentNormalizedHash": "502bdc90509806f3e9ff759636c91577c52fa1cc156dcc8241ca4687e608189c",
+    "currentProposalFingerprint": "3b204ab7b4e354bc20aa2bc171f7645a01bd11ade195070d34bd63b713bbebf6",
+    "independentStatus": "pending",
+    "reason": "뒤 문장에 같은 분수라는 정답 의미가 그대로 있는 노출을 제거한다."
+  },
+  {
+    "id": "e6-1-1-2-xc12",
+    "sourceIndex": 1663,
+    "disposition": "revise",
+    "beforeNormalizedHash": "64799ddd64379aa6275d90b807dc5cebf380264f1c5ee441adc081d147d2afbc",
+    "currentNormalizedHash": "e47d5d532454091130dd59049f8ea3119f45ef9351fe6b4c8cd3280b7e82707f",
+    "currentProposalFingerprint": "62b6875600c212e0cf416372b4bad7442c95a0574bd16a5ae5b30927d0b98995",
+    "independentStatus": "pending",
+    "reason": "일반명사 수도 들어갈 수 있는 슬롯을 약분에 쓰는 자연수의 분모·분자에 대한 이름으로 한정한다."
+  },
+  {
+    "id": "e6-1-1-2-xc19",
+    "sourceIndex": 1670,
+    "disposition": "retain",
+    "beforeNormalizedHash": "9c4fdb8130dc66285e293936002aab6e74b08883bf32208fdb9f64d626cd2f2b",
+    "currentNormalizedHash": "9c4fdb8130dc66285e293936002aab6e74b08883bf32208fdb9f64d626cd2f2b",
+    "currentProposalFingerprint": "e31bc4942152e59c476f77e5d20d7119afaf3d71c3be2726d2298cad226d37aa",
+    "independentStatus": "pending",
+    "reason": "분자·분모를 같은 수로 곱한 것을 약분해 원분수로 돌아가 동치를 확인하는 것은 배운 약분 성질을 쓰는 타당한 다른 설명이다. 조각 설명만 허용한다고 물음이 정하지 않았으므로 해당 대안을 보존한다."
+  },
+  {
+    "id": "e6-1-2-1-xc5",
+    "sourceIndex": 1705,
+    "disposition": "revise",
+    "beforeNormalizedHash": "f46920a9741e1c945891dc13c2e7a4f96f90b47321a30bedcf120c9a01b43ffc",
+    "currentNormalizedHash": "ce8f499f2c40b60b454e0f2eba2342e1611010abcdfba5929586bacd2c11acf3",
+    "currentProposalFingerprint": "baf33078987086d3d3a16ded02dd74e0150d8568eb0eb2ed33b9a6c3721cd90a",
+    "independentStatus": "pending",
+    "reason": "밑면의 변·꼭짓점·각 수가 모두 같아 참인 여러 답이 가능하므로 구체 각기둥의 옆면 수로 C를 좁힌다."
+  },
+  {
+    "id": "e6-1-2-1-xc6",
+    "sourceIndex": 1706,
+    "disposition": "revise",
+    "beforeNormalizedHash": "dbe67342e60bbc8cad7490c7943d8d73fce1192e41c2cb51a51c98a806c728aa",
+    "currentNormalizedHash": "300859f15451c43e5a41446aff23be1e6b7e0116212d63b3b6de4c16cc7f1c2b",
+    "currentProposalFingerprint": "3567c6fc2cab85873371b50d0ae3d653efd0d5758ef729c696ed266cb71861a5",
+    "independentStatus": "pending",
+    "reason": "모서리라는 위치와 수직이라는 각도 관계를 구별하여 각의 종류를 묻는다. 재독해: 사소한 이름이라는 이유 대신 C와 같은 각도 관계 확인이 반복되는 형식의 근거를 명시한다."
+  },
+  {
+    "id": "e6-1-2-1-xc8",
+    "sourceIndex": 1708,
+    "disposition": "revise",
+    "beforeNormalizedHash": "b23baf163bc256ec079f733a1c9b08adf409450e87b63078a655e3a3aa4951f1",
+    "currentNormalizedHash": "379745f3044f131e3b9227715c8cc3fba3c0dd2e2c245b9f187c8c6d203c3d83",
+    "currentProposalFingerprint": "d20a5910c1b5ad3458a31bed717d02aecba4683f3455d6f221dd002fd6eaeda1",
+    "independentStatus": "pending",
+    "reason": "분류 체계를 평면도형과 입체도형으로 지정하여 다각형이라는 다른 유효한 분류가 들어가지 않게 한다. 재독해: 사소한 문항이라는 주관적 제외 이유 대신 현재 C의 동일한 분류 기준 평가와의 겹침을 쓴다."
+  },
+  {
+    "id": "e6-1-2-1-xc13",
+    "sourceIndex": 1713,
+    "disposition": "retain",
+    "beforeNormalizedHash": "f7a485e3db18efe98f1ff20fd9bd10a1d920f60bc1e19129e686b2df835c3ae6",
+    "currentNormalizedHash": "f7a485e3db18efe98f1ff20fd9bd10a1d920f60bc1e19129e686b2df835c3ae6",
+    "currentProposalFingerprint": "fc19fd86cdcb4f16c565a59d6434390c2107400657f5f50aa619a5f230eda975",
+    "independentStatus": "pending",
+    "reason": "모양과 크기에 대해 설명하라는 대상 지정은 합동 여부의 결론을 주지 않는다. 평행뿐 아니라 모양과 크기가 같아야 한다는 조건 판단을 해야 하므로 유효한 단서이다."
+  },
+  {
+    "id": "e6-1-2-1-xc19",
+    "sourceIndex": 1719,
+    "disposition": "retain",
+    "beforeNormalizedHash": "693e5f4cc331622bd67962bc55a488bd938fe29ecf687a1201e342cddbff31aa",
+    "currentNormalizedHash": "693e5f4cc331622bd67962bc55a488bd938fe29ecf687a1201e342cddbff31aa",
+    "currentProposalFingerprint": "03f18766aa489001fc5fdd0470381eebf797b2b2de1e01fa4bc9e0b7b37d51a4",
+    "independentStatus": "pending",
+    "reason": "삼각형이라는 밑면 모양에서 평행하고 합동인 두 면을 고르고 직사각형들은 서로 평행하지 않음을 설명한다. C도 삼각형 두 면의 평행·합동 관계를 판단하며 쉬운 면 식별을 노출로 단정하지 않는다."
+  },
+  {
+    "id": "e6-1-2-1-xc20",
+    "sourceIndex": 1720,
+    "disposition": "revise",
+    "beforeNormalizedHash": "4ec167368d846705213b0afe96a2bcea69db4630488cd3981e96cf711c6a0fbe",
+    "currentNormalizedHash": "9a26aa913fc0ba71248f4db6872458dd518bb1c98254dbcb02d49c512323261e",
+    "currentProposalFingerprint": "82ceccc7adc96705a6ecbaf7556b00c7017b5f1618ea9c97876300d7b65ed6a0",
+    "independentStatus": "pending",
+    "reason": "밑면 두 개를 합한 꼭짓점 수와 혼동되지 않도록 한 밑면의 수를 명시한다."
+  },
+  {
+    "id": "e6-1-2-1-xc22",
+    "sourceIndex": 1722,
+    "disposition": "revise",
+    "beforeNormalizedHash": "fa270c804b3bd27f7df5ad9ff9282e8fa54dfc5c5355a22eb7ba7ddaa1142344",
+    "currentNormalizedHash": "486544e19d348fb4aff41f8825ebcd3fa726149d0be007b8e1035434636e44e1",
+    "currentProposalFingerprint": "636132b35bdbfb24c69ea2ce7b3364851eb4d65f825c93d38388094406d1cb09",
+    "independentStatus": "pending",
+    "reason": "일반명사 면·사각형도 들어갈 수 있는 모양 슬롯을 옆면의 변 길이 합과 밑면 둘레의 대응으로 구체화한다."
+  },
+  {
+    "id": "e6-1-2-2-xc4",
+    "sourceIndex": 1730,
+    "disposition": "revise",
+    "beforeNormalizedHash": "f52aeb7a627476ea13f67925f2c3fbf4738533e17b3bb9af83b11afa14b3ba18",
+    "currentNormalizedHash": "a6cf2ac7187fd4191b3fee87952c370544363a48786c8c74acde1a9735734727",
+    "currentProposalFingerprint": "c482bc966b3a8878aa8a0602d0c29a55564a4a599faad4866d49e7e918c8b5aa",
+    "independentStatus": "pending",
+    "reason": "임의의 구성 요소 셋을 나열하는 요청을 세 대상의 설명에 대응하는 이름으로 한정한다."
+  },
+  {
+    "id": "e6-1-2-2-xc9",
+    "sourceIndex": 1735,
+    "disposition": "retain",
+    "beforeNormalizedHash": "64389ce898da73c48e225712d0b1ba429b233dedf647f30c5e59899f3167b088",
+    "currentNormalizedHash": "64389ce898da73c48e225712d0b1ba429b233dedf647f30c5e59899f3167b088",
+    "currentProposalFingerprint": "68f259c0e466858d7aae2da90efe4a2508cd71616d567c163fc0ef0107e84497",
+    "independentStatus": "pending",
+    "reason": "한 밑면의 꼭짓점 6과 전체 12에서 곱하는 2를 찾아 두 밑면 관계를 확인한다. 12÷6이라는 타당한 역산도 물음이 금지하지 않았으며 간단한 결과 해석을 허용한다."
+  },
+  {
+    "id": "e6-1-2-3-xc5",
+    "sourceIndex": 1756,
+    "disposition": "retain",
+    "beforeNormalizedHash": "31b2c4dc50373a8a87cf8f174e530ccfb616221b923c7ad628cb92a5f43483ed",
+    "currentNormalizedHash": "31b2c4dc50373a8a87cf8f174e530ccfb616221b923c7ad628cb92a5f43483ed",
+    "currentProposalFingerprint": "5e6afe685ee1e78dabd9ffa932e4cff9d7630a3567db1600dbb9d4ad654f217f",
+    "independentStatus": "pending",
+    "reason": "직사각형 여러 개를 한 줄로 연결할 때 전체 모양이 무엇인지 묻는다. 부분 도형 이름이 주어져도 합친 전체가 직사각형이라는 관계는 판단해야 하며 같은 이름 반복만으로 노출은 아니다."
+  },
+  {
+    "id": "e6-1-2-3-xc7",
+    "sourceIndex": 1758,
+    "disposition": "retain",
+    "beforeNormalizedHash": "2b6922fd579c5873bd29638fe0039efe3e4f4a1b4b5f3d60b133ffb67a2f889a",
+    "currentNormalizedHash": "2b6922fd579c5873bd29638fe0039efe3e4f4a1b4b5f3d60b133ffb67a2f889a",
+    "currentProposalFingerprint": "c9895d8f987c42e1e5dd64af0c27e02463c20daa0cdf69ef63dc79d3c3d4d193",
+    "independentStatus": "pending",
+    "reason": "완전히 맞붙는다는 조건에서 길이가 같아야 함과 다르면 틈이나 어긋남이 생김을 설명한다. 다를 때의 실패 조건은 동일 문구 복사와 구별되는 유효한 간단한 이유이다."
+  },
+  {
+    "id": "e6-1-2-3-xc11",
+    "sourceIndex": 1761,
+    "disposition": "retain",
+    "beforeNormalizedHash": "1b6b5d1a96d4781b7b50c8ef6bb5738524592c7dfc5fa93fa329a60fdcf5070a",
+    "currentNormalizedHash": "1b6b5d1a96d4781b7b50c8ef6bb5738524592c7dfc5fa93fa329a60fdcf5070a",
+    "currentProposalFingerprint": "9a503092b0a4f869d3d7bc183c9d4d141e91a0cc744fb481689ca2a46b847d77",
+    "independentStatus": "pending",
+    "reason": "전개도의 여러 면에서 표시된 꼭짓점들을 접은 입체의 한 꼭짓점으로 세는 대응을 묻는다. 한 점으로 만난다는 조건에서 중복 표지를 하나로 해석하는 것은 유효하다."
+  },
+  {
+    "id": "e6-1-2-3-xc12",
+    "sourceIndex": 1762,
+    "disposition": "retain",
+    "beforeNormalizedHash": "df3b72d687284c3df5e9c2ac7cff898b986fc64c6c883e1f538f3efc7a427dbe",
+    "currentNormalizedHash": "df3b72d687284c3df5e9c2ac7cff898b986fc64c6c883e1f538f3efc7a427dbe",
+    "currentProposalFingerprint": "aec309eaebbadb0991139e13d48b2392ce7780ce40f005b17353fe2fef6ab080",
+    "independentStatus": "pending",
+    "reason": "맞닿는 두 선분의 길이 일치를 이용해 미지의 변에 알려진 5cm를 옮기는 관계 적용이다. 입력 길이와 구한 길이가 같다는 것만으로 복사라 판정하지 않는다."
+  },
+  {
+    "id": "e6-1-2-3-xc25",
+    "sourceIndex": 1775,
+    "disposition": "revise",
+    "beforeNormalizedHash": "cf594e9e19fb80c91b10c1e305320f145813a26ec55dc9da9693308ab8140469",
+    "currentNormalizedHash": "786160932aacd37da3cca9059092905299bb0c0268da32301924d16192b8435d",
+    "currentProposalFingerprint": "201d58931718d34c81ec5c05ac507b63007d612852a0e2d6f04b22b9bf86abab",
+    "independentStatus": "pending",
+    "reason": "겹치는 면과 빈틈 없이라는 어색한 문장을 면의 겹침 여부와 빈틈을 분리한 문장으로 고친다."
+  },
+  {
+    "id": "e6-1-2-4-xc17",
+    "sourceIndex": 1794,
+    "disposition": "revise",
+    "beforeNormalizedHash": "93d765bc7f7efc0b7d956c3c75df42b366e32f9344bfe5de65e79068b3e051a1",
+    "currentNormalizedHash": "d78e6de122c808e57f01abff002ea100d0711ec01c6a5a24d6c706b3d96a5e38",
+    "currentProposalFingerprint": "37744c0e16b8a25ed0a92410a2b61122e96cab6c39862d8379a9cdc7e421f866",
+    "independentStatus": "pending",
+    "reason": "옆면 도형의 종류 대신 서로의 모양·크기 관계를 수학 용어로 나타내도록 한정한다."
+  },
+  {
+    "id": "e6-1-3-1-xc1",
+    "sourceIndex": 1827,
+    "disposition": "retain",
+    "beforeNormalizedHash": "b60db0065ad81b337251c4b93d44546029b6b61d4c662c0ec2c9c5c3a41194a6",
+    "currentNormalizedHash": "b60db0065ad81b337251c4b93d44546029b6b61d4c662c0ec2c9c5c3a41194a6",
+    "currentProposalFingerprint": "9f4044d6d6be0736f2e7318839a4de17e823d3ed081233161364c7cccd8fc6af",
+    "independentStatus": "pending",
+    "reason": "나누는 수를 고정하면 나누어지는 수의 1/10배 변화가 몫의 1/10배 변화로 이어짐을 적용한다. 같은 배율이라는 불변 관계를 묻는 것이며 다른 타당한 직접 계산법도 금지하지 않는다."
+  },
+  {
+    "id": "e6-1-3-2-xc13",
+    "sourceIndex": 1851,
+    "disposition": "revise",
+    "beforeNormalizedHash": "5048e840a1911c45271d28ec8f3384d0b6ffe13d75fb1b589a7a2f8c72710c48",
+    "currentNormalizedHash": "3820decc4c250bb1a56df515074d5b224f18d8c61ef2e07631a3d5744112516e",
+    "currentProposalFingerprint": "672165ea66ebaf763b9a1b55cc131b8cec453c82a3f3c15eabcea1b0d5eb1c20",
+    "independentStatus": "pending",
+    "reason": "몫을 나눈 묶음과 혼동하는 표현을 사람 수와 한 사람 양으로 고친다. 이유를 물음에서 미리 주는 문구도 제거한다."
+  },
+  {
+    "id": "e6-1-3-2-xc24",
+    "sourceIndex": 1854,
+    "disposition": "revise",
+    "beforeNormalizedHash": "ec1d919875012c199bf03bb120a0ac27e8ec7a60d1bab8c9575966c35bcabf8f",
+    "currentNormalizedHash": "6c7af8dd19ac134c8c4da3f0abd9d97535196bac120804b7e5ad8aa1e6fc7a83",
+    "currentProposalFingerprint": "6c236d8c2c49beb152d507be41944a05f5100d5a849953d78171395e57c3c353",
+    "independentStatus": "pending",
+    "reason": "원문의 같은 배 관계는 올바르므로 일반 설명은 보존하고 교정문 없는 수정 의도만 기록한 coreReason을 지운다."
+  },
+  {
+    "id": "e6-1-3-4-xc16",
+    "sourceIndex": 1874,
+    "disposition": "revise",
+    "beforeNormalizedHash": "b5c201723d43d4ee3fe28eb6372219e3b3639a75d27339333203878f6fb49674",
+    "currentNormalizedHash": "38f94b8630c9c8a64a005221a5dcb1c915ba0438915ffba46f5cab91c2817723",
+    "currentProposalFingerprint": "cbcfaebbfaaf5c2f5b03f85a8eea1a0cd924ae70774c967abbcba8090c7f040e",
+    "independentStatus": "pending",
+    "reason": "지워도라는 동사 활용 대신 두 소수에서 0을 지운 뒤의 실제 크기 관계를 각각 묻는다. 읽은 B의 붙임 문자열도 함께 정리한다."
+  },
+  {
+    "id": "e6-1-3-5-xc6",
+    "sourceIndex": 1881,
+    "disposition": "retain",
+    "beforeNormalizedHash": "acbc8d894f2eb7950bf8e51da0cc92a4b66b79b2b45099837a3c60004c1433a9",
+    "currentNormalizedHash": "acbc8d894f2eb7950bf8e51da0cc92a4b66b79b2b45099837a3c60004c1433a9",
+    "currentProposalFingerprint": "88ee21355a5a73f9fd9e77723e86cb813871d380cc594be640a311ee7000d984",
+    "independentStatus": "pending",
+    "reason": "2.52와 어림값 25의 차이를 통해 소수점 위치 오류를 판단하고 25.8이 비슷해도 정확성이 보장되지 않음을 판단한다. 잘못·없다라는 서술어도 두 수학적 주장의 참·거짓을 결정하므로 문법 복원으로 단정하지 않는다."
+  },
+  {
+    "id": "e6-1-3-5-xc11",
+    "sourceIndex": 1883,
+    "disposition": "revise",
+    "beforeNormalizedHash": "3e5b4e3f037827ca50069f19395de00256329175817c23048f97d483b063f1e4",
+    "currentNormalizedHash": "7246aa34799d4e38a66b724320680d4c17b50c4cd90f0985b740416fa0fa4288",
+    "currentProposalFingerprint": "d62b8681a671cb8cc82d3abb8a1259d0c230db6aee7a1696571d1a2de85b6532",
+    "independentStatus": "pending",
+    "reason": "일반적으로 무엇을 점검할지 열려 있는 B를 구체적인 몫과 어림값의 비교·역곱셈 검산으로 한정한다."
+  },
+  {
+    "id": "e6-1-4-3-xc24",
+    "sourceIndex": 1939,
+    "disposition": "retain",
+    "beforeNormalizedHash": "95870e5dd243301aab5ce5aaebd3b22caa6e238b9d3f18079750b662f92eb3f7",
+    "currentNormalizedHash": "95870e5dd243301aab5ce5aaebd3b22caa6e238b9d3f18079750b662f92eb3f7",
+    "currentProposalFingerprint": "bd2c8df4eb8e490b952d6c0845411ddd8332b8167e323fea5f9e5b1e26d930fc",
+    "independentStatus": "pending",
+    "reason": "비교하는 양 0과 양의 기준량 5의 나눗셈을 해석하여 비율이 0일 조건을 판단한다. 예를 함께 주어 일반 조건을 확인하는 유효한 쉬운 문항이다."
+  },
+  {
+    "id": "e6-1-5-1-xc2",
+    "sourceIndex": 2001,
+    "disposition": "revise",
+    "beforeNormalizedHash": "4ac4cdea7e5811b11aa5fdb863b14cdd126f3c6739b01001e65e72897888e978",
+    "currentNormalizedHash": "2a5d5c8258cab37da4d0e8d8faa1de952662ae2685e622a9021e66ae0cd9be6d",
+    "currentProposalFingerprint": "32c8f3303b63e8fb60d32e34d1b1ac42e920ecda1a4454fe2c003080477551c8",
+    "independentStatus": "pending",
+    "reason": "백분율 자체를 읽는 것은 유효하지만 별도 변환을 평가하려면 분수 형식을 요청해야 한다. C를 기약분수로 지정하고 인정답을 그 형식에 맞춘다. 재독해: 사소한 읽기라는 B 제외 이유를 현재 C의 백분율 해석과 같은 평가 의미로 구체화한다."
+  },
+  {
+    "id": "e6-1-5-1-xc23",
+    "sourceIndex": 2019,
+    "disposition": "revise",
+    "beforeNormalizedHash": "7223d6572b9f6abc30005fff1a88ba7e1667a3e1ee5602a4e1b5bd0b66f6809f",
+    "currentNormalizedHash": "aa05e57ff86fa663202817079255856e687bce11872cc379e5bd1bfbc79c6c13",
+    "currentProposalFingerprint": "c4dfdd94e78e8cee66eb502fea8bcb5ce35de72968d14a345381b6fa4d9ecba1",
+    "independentStatus": "pending",
+    "reason": "같은 길이 띠를 나란히 보기 때문이라는 조건 재진술만으로 이유가 되지 않도록 직접 비교 가능한 조각 길이를 명시한다."
+  },
+  {
+    "id": "e6-1-5-2-xc6",
+    "sourceIndex": 2028,
+    "disposition": "retain",
+    "beforeNormalizedHash": "d4c124f9b907fb9f1718c2d3b4c4bae2b253395a20c715ff4c0e8a65233f2d62",
+    "currentNormalizedHash": "d4c124f9b907fb9f1718c2d3b4c4bae2b253395a20c715ff4c0e8a65233f2d62",
+    "currentProposalFingerprint": "bcbdafc9856af819fe30ec2d556ce66e795181d93237e9662fbf89681e44cd51",
+    "independentStatus": "pending",
+    "reason": "20명을 빠짐없이 중복 없이 한 항목씩 세면 합이 전체 20과 같다는 분할의 보존 관계를 적용한다. 한 명의 중복에서 합이 커진다는 판단도 포함하며 입력 전체와 합 숫자가 같은 것이 오류는 아니다."
+  },
+  {
+    "id": "e6-1-5-3-xc3",
+    "sourceIndex": 2045,
+    "disposition": "revise",
+    "beforeNormalizedHash": "b310149d3f6de5354d849e19335bd22c1582dbe48e5861c82254898edbd83d6f",
+    "currentNormalizedHash": "91c73bdb923fd7dd4d7a352dd3d343d1d3a232fdf5be877340e5c6a6a2a3dcdb",
+    "currentProposalFingerprint": "6035b23655d7fadd8aa997b918054eb93a613de050ebfade96689504bd577721",
+    "independentStatus": "pending",
+    "reason": "그래프에 이미 적힌 30%를 그대로 말하기보다 전체 대비 크기를 분수로 해석하도록 물음과 기준을 맞춘다."
+  },
+  {
+    "id": "e6-1-5-3-xc8",
+    "sourceIndex": 2049,
+    "disposition": "revise",
+    "beforeNormalizedHash": "c97614665c3ddd5625b7a4c12e94ad43854a3aa208686722d62483f173791cd0",
+    "currentNormalizedHash": "430ea19e313746d9593c92b0b40466ee44a260424eb51e9eb8133d5b410c4eec",
+    "currentProposalFingerprint": "b5b7f0f5b1b057f7ef87a9b7b24c3cf58613b882e63385cfd11c40f7b9be4936",
+    "independentStatus": "pending",
+    "reason": "조각이 나뉘는 곳 대신 나누는 선분들이 서로 만나는 점을 명시해 중심으로 한정한다."
+  },
+  {
+    "id": "e6-1-5-4-xc5",
+    "sourceIndex": 2065,
+    "disposition": "revise",
+    "beforeNormalizedHash": "18ea48ca8c8d00c71ddb655b0ab42fa358c655e50ab703cc744af3d0efee9a28",
+    "currentNormalizedHash": "f3313b958cbe4f5fcce5fb863adf7146ca62acb041b9423466d9d5297c4fcd73",
+    "currentProposalFingerprint": "0132a109954453210009f7d004f472842e71f2726b2a6ce90027f5fa660d5e83",
+    "independentStatus": "pending",
+    "reason": "비율과 크기의 순환 설명 대신 조각의 넓이와 전체 넓이가 바뀌지 않는 실제 근거를 말한다."
+  },
+  {
+    "id": "e6-1-5-4-xc8",
+    "sourceIndex": 2067,
+    "disposition": "revise",
+    "beforeNormalizedHash": "0cd61dd92e4e3fb62ee45c8d2c6ff21bfd206cdcad9f90ccfef047da244985bf",
+    "currentNormalizedHash": "2b457c39c48107e20a5901d94e554bc2863acd5a116d80bb4face1f158784201",
+    "currentProposalFingerprint": "94309c0bc2b6caccff405fea704990056b2ce51f3f07530f8100ef11ebffa611",
+    "independentStatus": "pending",
+    "reason": "항목들이 전체를 이룬다는 조건은 합을 정하기 위한 필수 전제이다. 이유 기준은 전체의 백분율이 100%라는 의미까지 연결하여 조건만 복사하는 답을 막는다. 재독해: 전체 백분율 100%라는 새 이유 기준의 의미를 참고답에도 명시한다."
+  },
+  {
+    "id": "e6-1-5-4-xc13",
+    "sourceIndex": 2071,
+    "disposition": "retain",
+    "beforeNormalizedHash": "3200786ed9e31913edc2e6c7dbd5f3278435eb23ec80889d82bfa64f435fd7dd",
+    "currentNormalizedHash": "3200786ed9e31913edc2e6c7dbd5f3278435eb23ec80889d82bfa64f435fd7dd",
+    "currentProposalFingerprint": "e68f44524de48db052fd71c4441e2bd61ee89578431057f346641ded8fea304b",
+    "independentStatus": "pending",
+    "reason": "서로 다른 실제 비율 12.4%와 11.6%가 같은 반올림값 12%가 되는 반례를 해석한다. 주어진 두 수의 비교는 유효하며 간단하다는 이유로 답 노출이라 할 수 없다."
+  },
+  {
+    "id": "e6-1-5-4-xc14",
+    "sourceIndex": 2072,
+    "disposition": "revise",
+    "beforeNormalizedHash": "0cc1b13b23d633ff760f60bc2f8ea7cd40f013cd3c2254a514d1b587f5c155b8",
+    "currentNormalizedHash": "d131d8bcd18a9586a209fbb39bc7005a84af8dc2dc52323c1c40fb37b0ede7ca",
+    "currentProposalFingerprint": "97c27a92f9ff03c170244ad4e8cfec788098fe7a92f5eca5894a07af2087fcb7",
+    "independentStatus": "pending",
+    "reason": "25%라는 요구 결론을 이유로 재진술하는 대안 대신 4등분과 1/4의 연결을 기준에 명시한다."
+  },
+  {
+    "id": "e6-1-5-4-xc15",
+    "sourceIndex": 2073,
+    "disposition": "revise",
+    "beforeNormalizedHash": "a54c9b3ecf6b0221ec4a8afbb482b02f8e4d4b5f918e060ffee684ed3ef30b3c",
+    "currentNormalizedHash": "587777112adc7e782030fbd9d49d6e792efd6524337bbc8730bdea9aaba9420f",
+    "currentProposalFingerprint": "922aafed53948d0096a4ffc95e12bcc38ca2906a09bacc4d0cf4f269ec51a909",
+    "independentStatus": "pending",
+    "reason": "항목별 수를 정리한 표도 가능하므로 두 그래프에 곧바로 사용할 전체를 100으로 본 비율의 표현 형식으로 요청을 한정한다."
+  },
+  {
+    "id": "e6-1-5-4-xc18",
+    "sourceIndex": 2075,
+    "disposition": "revise",
+    "beforeNormalizedHash": "dd35516f6d5c5b4a7fc654e675874f8aff8141520a6cfe59b215d98b79333d81",
+    "currentNormalizedHash": "388a3d9add931ceaa84f2e83c9df88d02b4e89e8e5fccced0e92809aa2cc56b6",
+    "currentProposalFingerprint": "aed2c23bb8e0348eaaa1fb8a674951255f36b9cb98480e6d56eef000e15356bf",
+    "independentStatus": "pending",
+    "reason": "B의 무엇이라는 열린 대상 질문을 자료표와 이름·백분율·조각 크기를 대조하는 방법으로 지정한다. C에서 임의의 부분 이름을 채우는 슬롯은 제거하고 실제 비율 해석만 남긴다."
+  },
+  {
+    "id": "e6-1-5-4-xc23",
+    "sourceIndex": 2077,
+    "disposition": "revise",
+    "beforeNormalizedHash": "d09c734c1e94bde8c9a084c6d89f7a127e6fcd57dc64227398d8933b974f4612",
+    "currentNormalizedHash": "960bd325d3041b1dc4f53b31c59c2a0656b6aad7009c3b4c975059c6d31f7682",
+    "currentProposalFingerprint": "4847a5b79a97a934d33ec4e143d0af8681b4e558e49d1b254dbadbd9937e0916",
+    "independentStatus": "pending",
+    "reason": "각도·항목 수 등 임의의 불변량이 들어가지 않게 백분율이라는 비교 대상을 고정하고 변하는지 판단한다."
+  },
+  {
+    "id": "e6-1-5-4-xc25",
+    "sourceIndex": 2078,
+    "disposition": "retain",
+    "beforeNormalizedHash": "1dd17325faf393b851a4574fe7efef245899714d30d87d9912473501f5ea45e7",
+    "currentNormalizedHash": "1dd17325faf393b851a4574fe7efef245899714d30d87d9912473501f5ea45e7",
+    "currentProposalFingerprint": "d0d873ac0aee362188474b976685c26e1f02af44234e2cbf583df6ab1171cd34",
+    "independentStatus": "pending",
+    "reason": "비율 비교 목적과 각 학생 키의 크기 비교 목적 중 더 알맞은 것을 고르는 문항이다. 부분 합이 학생 전체라는 이유와 키 자체를 비교하려는 목적이라는 이유는 서로 다른 타당한 풀이이므로 모두 인정한다. 키의 합도 수학적으로 하나의 전체로 삼을 수 있으나 물음의 목적에 막대가 더 알맞다는 참고답은 옳다."
+  },
+  {
+    "id": "e6-1-5-5-xc20",
+    "sourceIndex": 2100,
+    "disposition": "revise",
+    "beforeNormalizedHash": "e8b4a812a590f20eef6cb421da0af83620143baa57d160ed8655d71defc826e1",
+    "currentNormalizedHash": "ec47fc1f2f4a8b18ad8bf7eab0173476e3be6e645cf979695645d40897c7562c",
+    "currentProposalFingerprint": "41d3501accbcf07eeb0083c59aace77ecd13e114127fbb3bc02d9bb51151af03",
+    "independentStatus": "pending",
+    "reason": "막대에서 어떤 수를 읽는지 모호한 첫 슬롯을 모든 항목의 수를 더한 합으로 명시하고 100% 대응을 묻는다."
+  },
+  {
+    "id": "e6-1-5-5-xc21",
+    "sourceIndex": 2101,
+    "disposition": "revise",
+    "beforeNormalizedHash": "e3b9102a0afd9e50b0c83f942195facfb4b3a2afee56849435539658d0c57a77",
+    "currentNormalizedHash": "e3843ba61478b2a553fe9d1a75f10dc9ce44aaf11e5a07f72fedd4ecdf74b65e",
+    "currentProposalFingerprint": "daa18b936d63edafaa94307d6523b5bdf5e1883e83322bbcc8307ec7ab5829ef",
+    "independentStatus": "pending",
+    "reason": "시각적 차이와 수량 비율의 혼동을 실제 보이는 길이 2배와 실제 수량 비율의 비교로 한정하고 기준의 띄어쓰기를 복원한다."
+  },
+  {
+    "id": "e6-1-6-1-xc9",
+    "sourceIndex": 2113,
+    "disposition": "revise",
+    "beforeNormalizedHash": "f93994d2c122e2ab30f4de22b3d65f75b91b09ec6d8da2fe10902620032618db",
+    "currentNormalizedHash": "e0132fccbbed2e1c483f7c5478206c891bc7c7c0c84e7f11e956c5d6149aa65c",
+    "currentProposalFingerprint": "a41b17b4f960a86cb1be770ad6ca8d5d0f200aa8311acfd47004dac6f73d8f77",
+    "independentStatus": "pending",
+    "reason": "옆면의 넓이를 구한다만으로 네 면의 합을 확인하지 못하는 대안을 제거하고 밑면 두 면의 합과 연결한다."
+  },
+  {
+    "id": "e6-1-6-1-xc16",
+    "sourceIndex": 2120,
+    "disposition": "revise",
+    "beforeNormalizedHash": "05306eaf647e8fa0cbbd992c921fd0a9c7837bb3df6723c3b4b7e5d59c47f0d9",
+    "currentNormalizedHash": "b5dffff03146b103a912d5b47a9f3de97f8addf1f112941d923cee09b8cf6827",
+    "currentProposalFingerprint": "1f89973513ff955b45fbd09da9035271c1ace9a76546b2a92e788e85c4df37ec",
+    "independentStatus": "pending",
+    "reason": "가로 단위 환산 답 200을 뒤 식에 다시 적어 주는 직접 노출을 제거한다."
+  },
+  {
+    "id": "e6-1-6-2-xc6",
+    "sourceIndex": 2132,
+    "disposition": "revise",
+    "beforeNormalizedHash": "2ec8786ff09ea3f741944323109883a8e7c77c60979626e01ce9312d11477cde",
+    "currentNormalizedHash": "b6de10b2ce2b84474e6477c574d6aafe17866db5ad20c081de18d70af7573a32",
+    "currentProposalFingerprint": "13f82e86f4343fbd91190eda2ed1b0a540c211d1afeacaf8adff951bea52a038",
+    "independentStatus": "pending",
+    "reason": "단위 부피 개수라는 의미는 올바르지만 개수인지 명사인지 모호한 표현을 구체 수치와 단위로 묻는다."
+  },
+  {
+    "id": "e6-1-6-2-xc15",
+    "sourceIndex": 2139,
+    "disposition": "revise",
+    "beforeNormalizedHash": "47be457695ff6d8399259b167af319e212097828fb28e21a5467d30c52ce8f51",
+    "currentNormalizedHash": "4dcc70ff103223ced99b93223356dd50f6887bbdd6a421a8f9259dcea3192293",
+    "currentProposalFingerprint": "89495d7e5b56851b774d7588317b6ec4fc720d4454e2eaf2c6dfc84e2ce8c028",
+    "independentStatus": "pending",
+    "reason": "어느 쪽을 비교할지 분명하도록 두 밑면의 넓이를 글로 제시한다. 그림 없이 이 정보로 충분하다."
+  },
+  {
+    "id": "e6-2-1-1-xc19",
+    "sourceIndex": 2176,
+    "disposition": "revise",
+    "beforeNormalizedHash": "fc3ba46e614a5aba4083822d7d82ed4814bdb1070cebff9e41e182f4854b3c4c",
+    "currentNormalizedHash": "a2d56221c36d26af9fdacbc4eeeab738ec0b984c7b7cc80aa6e7b99870d18614",
+    "currentProposalFingerprint": "04bd064b3217ea13613c4defdc23cf3288c8b0365821104cb440051d2b9012a5",
+    "independentStatus": "pending",
+    "reason": "동치분수라는 전제만 이유로 복사하는 기준을 두 수의 배 관계가 몫을 정한다는 근거로 구체화한다."
+  },
+  {
+    "id": "e6-2-1-2-xc4",
+    "sourceIndex": 2181,
+    "disposition": "revise",
+    "beforeNormalizedHash": "e3421fd22ee7f4b8d581858c237f8d4a1444b8307c59c0e1a1d3c2f24d2a57c3",
+    "currentNormalizedHash": "b011f50dd1606480eb3334de78695700ce909c423bc8a050a8e7dd0eb7b17dca",
+    "currentProposalFingerprint": "364b3f95416c4ed6820a11a21d83b3b194dc3866227e86abf0f4c93414d38fa3",
+    "independentStatus": "pending",
+    "reason": "C는 최솟값의 수치가 아니라 공배수 중 가장 작은 수의 이름을 묻는 표준 용어 문항이므로 유지한다. 실제 읽은 B 이유 기준의 띄어쓰기만 복원한다."
+  },
+  {
+    "id": "e6-2-1-2-xc24",
+    "sourceIndex": 2191,
+    "disposition": "retain",
+    "beforeNormalizedHash": "3a342d021feb8550af77fac676db63bc3b6897beb48253e5f125edf19fb0f1c0",
+    "currentNormalizedHash": "3a342d021feb8550af77fac676db63bc3b6897beb48253e5f125edf19fb0f1c0",
+    "currentProposalFingerprint": "3dbab97663f6cbfc2a1667f057fd94db667ddaa1f98cec94dceaa34a0ec04246",
+    "independentStatus": "pending",
+    "reason": "큰 분모가 작은 분모의 배수라는 조건에서 한쪽만 큰 분모에 맞출 수 있음을 판단한다. 비교 대상의 이름이 지문에도 나온다는 것은 주어진 조건이며 통분 기준을 택하는 유효한 적용이다."
+  },
+  {
+    "id": "e6-2-1-2-xc26",
+    "sourceIndex": 2193,
+    "disposition": "retain",
+    "beforeNormalizedHash": "40d712832ee5a9ad3de3e3874b7b2f8ecc435b9ec02354e4e361a1f2a41b341b",
+    "currentNormalizedHash": "40d712832ee5a9ad3de3e3874b7b2f8ecc435b9ec02354e4e361a1f2a41b341b",
+    "currentProposalFingerprint": "0b5ae9ad34595a0c7fd345a2b910a33f27165f418cbd96e1930c6ad98fdcb330",
+    "independentStatus": "pending",
+    "reason": "가로와 세로의 곱인 넓이에서 가로로 나누면 세로가 된다는 역연산 관계를 묻는다. 구성 양 이름이 제시된 것은 관계의 조건이며 수학적 역연산 적용 없이 단순 이름 복원만으로 정답은 결정되지 않는다."
+  },
+  {
+    "id": "e6-2-1-3-xc2",
+    "sourceIndex": 2194,
+    "disposition": "retain",
+    "beforeNormalizedHash": "aa4be520d66d93907de6096af500488d32923cf75268e129f3fe58d634406d05",
+    "currentNormalizedHash": "aa4be520d66d93907de6096af500488d32923cf75268e129f3fe58d634406d05",
+    "currentProposalFingerprint": "43d4ce4a31f5ac3fc6518b9a330d52a27e0020772930dc34b66a4d6738a4019e",
+    "independentStatus": "pending",
+    "reason": "3/5만큼의 양에서 분자로 나눈 값을 1/5만큼으로 해석하고 단위분수 양에 분모를 곱해 전체를 복원한다. 20÷4 역산도 타당한 다른 풀이이며 물음이 이를 금지하지 않는다."
+  },
+  {
+    "id": "e6-2-1-3-xc4",
+    "sourceIndex": 2195,
+    "disposition": "retain",
+    "beforeNormalizedHash": "dd44d606f19234c1e105475a8e8b422f481c6f6731ef4447a1b3c6526ad135ab",
+    "currentNormalizedHash": "dd44d606f19234c1e105475a8e8b422f481c6f6731ef4447a1b3c6526ad135ab",
+    "currentProposalFingerprint": "c72858c030f9ab03f0f5189614cda8bf4208410cdddbe6d3ba3aee65da3df62b",
+    "independentStatus": "pending",
+    "reason": "분모를 맞춘 뒤 같은 단위 조각의 개수인 두 분자를 나눗셈의 순서에 맞게 놓는 절차를 적용한다. 분자 수를 읽는 것은 단위 조각 수 해석의 핵심이며 숫자 반복 자체는 복사가 아니다."
+  },
+  {
+    "id": "e6-2-1-3-xc6",
+    "sourceIndex": 2196,
+    "disposition": "retain",
+    "beforeNormalizedHash": "774407bf43df30aaca78afc562c67d11c52546dc5f19d127bb2c77cfbbf8e215",
+    "currentNormalizedHash": "774407bf43df30aaca78afc562c67d11c52546dc5f19d127bb2c77cfbbf8e215",
+    "currentProposalFingerprint": "9b78587a3549838d139ed55d9f2add9773da36a65ca598c64f7544fa31578976",
+    "independentStatus": "pending",
+    "reason": "한 묶음의 크기와 묶음 수, 실제 몫의 관계를 연결하는 조건·결론 판단이다. 묶음 수가 많다는 말을 몫이 원래 자연수보다 크다는 비교로 해석하는 유효한 문항이다."
+  },
+  {
+    "id": "e6-2-1-5-xc13",
+    "sourceIndex": 2224,
+    "disposition": "retain",
+    "beforeNormalizedHash": "9ed691b965f57b236b1744cf9f1390988430d23d8ccc7d26051cbca057635475",
+    "currentNormalizedHash": "9ed691b965f57b236b1744cf9f1390988430d23d8ccc7d26051cbca057635475",
+    "currentProposalFingerprint": "448b3b702341b4b2cb35c878c7d294dd1503dacd3d6419be2f86aa2f52463a96",
+    "independentStatus": "pending",
+    "reason": "나누어지는 수 대 나누는 수와 몫 대 1이라는 서로 다른 비교를 연결한다. 비교 대상과 양수 조건이 명확하며 작다라는 어근이 같아도 수학적 관계 판단이 필요한 쉬운 문항이다."
+  },
+  {
+    "id": "e6-2-1-5-xc16",
+    "sourceIndex": 2226,
+    "disposition": "retain",
+    "beforeNormalizedHash": "912fa46df70678dd73559bf647b28a5f0e44c0fcff8fd3e4293661a50fcfd8da",
+    "currentNormalizedHash": "912fa46df70678dd73559bf647b28a5f0e44c0fcff8fd3e4293661a50fcfd8da",
+    "currentProposalFingerprint": "cf6ea40d1f53a172a73bfd6a8439912f8d30eb8e0987d80acf1edc6101a914b8",
+    "independentStatus": "pending",
+    "reason": "대분수의 크기 비교와 몫 대 1을 연결하는 유효한 조건 판단이다. 크다와 크면의 어근 반복만으로 답 노출이라 볼 수 없으며 사용자가 승인한 동종 비교 문항 원칙을 따른다."
+  },
+  {
+    "id": "e6-2-2-1-xc5",
+    "sourceIndex": 2231,
+    "disposition": "retain",
+    "beforeNormalizedHash": "095c1c559dc21c940fa7143cc9e6ab4531edbb4009fe939cd590ed0bf49c1919",
+    "currentNormalizedHash": "095c1c559dc21c940fa7143cc9e6ab4531edbb4009fe939cd590ed0bf49c1919",
+    "currentProposalFingerprint": "8cc2c695c21e68895ee9ddd7a482ae56af19a2466052ee2633b383c487bb422d",
+    "independentStatus": "pending",
+    "reason": "나누는 수를 10배 한 만큼 나누어지는 수도 10배 해야 몫이 유지됨을 적용한다. 같은 이동 자리 수라는 불변관계를 해석하는 것이며 한이라는 수의 반복 자체는 복사가 아니다."
+  },
+  {
+    "id": "e6-2-2-2-xc8",
+    "sourceIndex": 2248,
+    "disposition": "revise",
+    "beforeNormalizedHash": "6d620d8f674638088f2e62c2de57d9411f5614b6a6ddcbe7f8dc68edefbacd1b",
+    "currentNormalizedHash": "1f165b84144babda448954a04bfb59e4aae8824a7273822dac10b9270d004b58",
+    "currentProposalFingerprint": "9a6b7cd0b0922b7f9e5c31ebc3ce31f7eff9879ab609deb2c206c129f1e6c96a",
+    "independentStatus": "pending",
+    "reason": "같은 배와 구체 배율 모두 가능한 일반 슬롯을 두 수가 모두 자연수가 되는 가장 작은 자연수 배율로 한정한다. 재독해: 임의의 자연수 배율이면 25도 3.6과 0.12를 자연수로 만들므로 100이 최솟값이 아니다. 소수점 이동 방법에 맞춰 허용 배율을 10·100·1000 등의 열 배씩인 수로 명시한다."
+  },
+  {
+    "id": "e6-2-2-2-xc15",
+    "sourceIndex": 2251,
+    "disposition": "retain",
+    "beforeNormalizedHash": "5a79ad60a7e65701754d650790a39fc82b2b9b1a52c6cf167be34a8726deba3e",
+    "currentNormalizedHash": "5a79ad60a7e65701754d650790a39fc82b2b9b1a52c6cf167be34a8726deba3e",
+    "currentProposalFingerprint": "8812c6c1bdfcdcd3e63b227f1d23718f23eefcc6bfcb93615ba7085ea6818965",
+    "independentStatus": "pending",
+    "reason": "나누는 수만 10배 하고 나누어지는 수는 그대로 둔 서로 다른 배율 변화와 몫 오류를 판단한다. 다른은 문법만이 아니라 두 배율의 비교 결론이며 양수 조건은 일반 규칙의 0 예외를 막는 옳은 조건이다."
+  },
+  {
+    "id": "e6-2-2-4-xc12",
+    "sourceIndex": 2271,
+    "disposition": "revise",
+    "beforeNormalizedHash": "0e45084c4f701e440e7682312cc6e3d6ffb8c1ed89b39ac02022b3b219a7fbfa",
+    "currentNormalizedHash": "4708ab43b1b49039055b1ba98c020e85314f54e165f94796b5cc19ed94e236e8",
+    "currentProposalFingerprint": "66021cfb9367c4a012cef9a67ab7a22fcfe2d002f71b6c15b9c08fdc80820799",
+    "independentStatus": "pending",
+    "reason": "값이 3인 동치 표현과 지정 자리 표시를 구분하여 소수 첫째 자리 숫자를 직접 묻는다."
+  },
+  {
+    "id": "e6-2-2-4-xc19",
+    "sourceIndex": 2276,
+    "disposition": "revise",
+    "beforeNormalizedHash": "2e87f1c3771ba7d1243477d3f4e65375b3313bfdbd9b134eceda0b874aadb944",
+    "currentNormalizedHash": "7cb9f4009424c9220fe4a05ccdf019862805764628d61c002b59b5b6e998579e",
+    "currentProposalFingerprint": "f932e22d258e64e49cd13f275d363693a44e9e150c2e587acf29cceca9b8b13f",
+    "independentStatus": "pending",
+    "reason": "항상 이하라는 임의의 상한을 차의 가능한 최댓값으로 한정한다. 재독해: 최대 차를 묻는 B의 참고답과 첫 기준을 최대값 0.05로 직접 명시한다."
+  },
+  {
+    "id": "e6-2-2-4-xc25",
+    "sourceIndex": 2279,
+    "disposition": "revise",
+    "beforeNormalizedHash": "01f6f34778566f605237bc37f5d3ae990e5ffd92fb0298b73b2dacf7dd54b3cf",
+    "currentNormalizedHash": "50ffc3feb783cf42c8c8af86bc7fdf19de8012f9473c6aad04a9414dbfe0eb25",
+    "currentProposalFingerprint": "8e8e9becfc418be2d42198c772f9c50d83cc164ba7c6c28161f0ba1fa956c2de",
+    "independentStatus": "pending",
+    "reason": "일반 관계의 같아질 수 있는 경우도 확인할 수 있도록 차가 0인 두 자리 반올림 예를 함께 제시한다. 원래 올바른 일반설명은 보존한다."
+  },
+  {
+    "id": "e6-2-2-5-xc17",
+    "sourceIndex": 2289,
+    "disposition": "revise",
+    "beforeNormalizedHash": "97048b3338788e6ff8e17919c9315e40eccc9ec99d453554219a97f98b67c953",
+    "currentNormalizedHash": "f3d18c302330e0d3ae0a3b818905069520ac64ac0c0fcf61b8be0648ee037c6f",
+    "currentProposalFingerprint": "6f56514055e62d0bf0a28e7853939358b11debb08e50dd64e0ce0c54bc38d0ef",
+    "independentStatus": "pending",
+    "reason": "빈칸에 용어 표현을 쓴다는 문장틀로 좁히고 자연스러운 동치 표현을 함께 인정한다."
+  },
+  {
+    "id": "e6-2-3-1-xc4",
+    "sourceIndex": 2297,
+    "disposition": "revise",
+    "beforeNormalizedHash": "9b88903ad60e78e0afc3e0bec991f39df2d6190a3207ae4927ef727b2d3ca4f1",
+    "currentNormalizedHash": "7ae3a15935af1f4d4957385504bc9039c46f7b23d87f845dce2d6331e0bd8582",
+    "currentProposalFingerprint": "3ce178552f2f07aedd662f1e1dc39bb63663929e1e6a7402dc773d07ff7afd5e",
+    "independentStatus": "pending",
+    "reason": "높이·윗면·기둥 등 여러 해석이 가능한 일반 요청을 위에서 본 칸의 존재와 실제 자리의 유무 대응으로 한정한다."
+  },
+  {
+    "id": "e6-2-3-1-xc6",
+    "sourceIndex": 2299,
+    "disposition": "retain",
+    "beforeNormalizedHash": "476724d7f003322cca150748d32ed8d48c29b8a22c7467fdea330cce23635641",
+    "currentNormalizedHash": "476724d7f003322cca150748d32ed8d48c29b8a22c7467fdea330cce23635641",
+    "currentProposalFingerprint": "df59a3cf473798fa6c399cc9c27e9cccc6d4be4f23d5d36dac7947eec7694f5c",
+    "independentStatus": "pending",
+    "reason": "한 가지 이상이라는 물음에 좌우 순서와 가려짐은 서로 다른 타당한 관찰 방법이다. 물음이 한 방법을 정하지 않았으므로 anyOf에 다른 유효한 풀이를 허용하는 것은 올바르며 정확 문자열 검색 규칙으로 제한하지 않는다."
+  },
+  {
+    "id": "e6-2-3-1-xc8",
+    "sourceIndex": 2301,
+    "disposition": "revise",
+    "beforeNormalizedHash": "7e2751fd28608fd379af0bc094754caca95bdd674e13361f19cba3837f52683a",
+    "currentNormalizedHash": "07a5daf8f46cf087fce15a8cc1db86c5d2c4f7b2620723516a828cbebbf26939",
+    "currentProposalFingerprint": "8ba3af64bc5781bf56b7563a92d1059c82e99c644f3e82f836003665d249d967",
+    "independentStatus": "pending",
+    "reason": "B가 요청한 밑면과의 같은 모양 관계를 단순 삼각형이라는 조건 재진술로 대체하지 않게 한다. C의 밑면과 윗면은 합동이므로 타당한 다른 면 표현도 인정한다."
+  },
+  {
+    "id": "e6-2-3-1-xc13",
+    "sourceIndex": 2306,
+    "disposition": "retain",
+    "beforeNormalizedHash": "45b540d13523b5c30168550a8eee39434d11d08116c5645cedfcf7ff37ffb06d",
+    "currentNormalizedHash": "45b540d13523b5c30168550a8eee39434d11d08116c5645cedfcf7ff37ffb06d",
+    "currentProposalFingerprint": "a2e747def9662577c41c29a0d43f3e48ffed35925f5cbee7ab1e4336d74df123",
+    "independentStatus": "pending",
+    "reason": "가려진 것이 없는 경우 같으므로 일반 명제는 적거나 같다가 옳다. 적다는 답만 쓰면 같은 경우를 누락한 불완전한 일반 답이며 질문의 비교 대상은 명확하다. key도 실제 문항에 pass이다."
+  },
+  {
+    "id": "e6-2-3-1-xc15",
+    "sourceIndex": 2308,
+    "disposition": "revise",
+    "beforeNormalizedHash": "82cc86413ecca49111d631a4613c0a3d9fd6400c9b3914b0f57be77cb25fd77c",
+    "currentNormalizedHash": "b51e3f4e63eefc53ef0a0d8c814554647345d1464d9876f71b980939d8c03a49",
+    "currentProposalFingerprint": "b88641be4a145fd5f50b7a84eb00efd029e9a8e869510c4a42d2771904d9ed60",
+    "independentStatus": "pending",
+    "reason": "알 수 있다는 전제를 이유로 되풀이하지 않도록 줄별 최대 높이와 전체 최고 층이 보존되는 근거를 설명한다."
+  },
+  {
+    "id": "e6-2-3-1-xc18",
+    "sourceIndex": 2311,
+    "disposition": "retain",
+    "beforeNormalizedHash": "e410e8f15a20ef998f29f4087e9930b8bf071ea0af779e19a606105ebc74f784",
+    "currentNormalizedHash": "e410e8f15a20ef998f29f4087e9930b8bf071ea0af779e19a606105ebc74f784",
+    "currentProposalFingerprint": "74379c72cbf1548e698e2486723ccd9d4b015dd542556eac6a40ccd738d596d0",
+    "independentStatus": "pending",
+    "reason": "좌우 한 줄 한 층이라는 조건에서 가려지는 쌓기나무가 없으므로 실제 4개가 앞에서 4칸에 대응함을 해석한다. 입력 개수와 보이는 칸 수가 같아도 단순 복사로 판정하지 않는다."
+  },
+  {
+    "id": "e6-2-3-1-xc21",
+    "sourceIndex": 2314,
+    "disposition": "retain",
+    "beforeNormalizedHash": "b524d0abddd8616c6268846e5a1d38b7981bd23b99317f2397cce7252b90ecac",
+    "currentNormalizedHash": "b524d0abddd8616c6268846e5a1d38b7981bd23b99317f2397cce7252b90ecac",
+    "currentProposalFingerprint": "6a529d5883660fb112246149283dae1cd3efce8a3c80da4a4418dc3096d00808",
+    "independentStatus": "pending",
+    "reason": "각 방향에서 보이지 않으므로 그 방향의 다른 쌓기나무가 시선을 가린다는 관계를 묻는다. 바로 붙어 있다는 것은 일반적으로 필수나 참이 아니며 가리고와 막고는 같은 관계의 동치 표현이다. 원문의 모호함을 고친 현재 일반설명도 보존한다."
+  },
+  {
+    "id": "e6-2-3-1-xc22",
+    "sourceIndex": 2315,
+    "disposition": "retain",
+    "beforeNormalizedHash": "81f73cd7e36e9b7d52f92b673637e4b72e7f37ed1e9bed12894f650ae2f9cd7d",
+    "currentNormalizedHash": "81f73cd7e36e9b7d52f92b673637e4b72e7f37ed1e9bed12894f650ae2f9cd7d",
+    "currentProposalFingerprint": "e3431cb801d9570b3fe6b8da4b7bd07188008e283fdd8844f476d32c1136d441",
+    "independentStatus": "pending",
+    "reason": "정육면체의 세 방향 투영 정사각형이 같은 크기라는 불변관계이다. 몇 칸인지가 아니라 서로의 크기 관계를 묻기 때문에 한 모서리 개수 조건이 필요 없고 3×3이라는 답은 요구와 다르다."
+  },
+  {
+    "id": "e6-2-3-2-xc2",
+    "sourceIndex": 2322,
+    "disposition": "retain",
+    "beforeNormalizedHash": "b17b356e5d4b2e8c5c8094145ad5c25ffec9f647e55d2417ab1b1fa58b270bef",
+    "currentNormalizedHash": "b17b356e5d4b2e8c5c8094145ad5c25ffec9f647e55d2417ab1b1fa58b270bef",
+    "currentProposalFingerprint": "6d5aa7fcf3ece99851cf129e0837661d705b9892bc503168689b2ec2a70c30c8",
+    "independentStatus": "pending",
+    "reason": "겨냥도는 이 원천의 초5·6 직육면체·쌓기나무 단원에서 사용하는 학습 용어이며 중학교만의 이름이라는 지적은 원천과 맞지 않는다. 주어진 보이는·보이지 않는 모서리의 표기에서 표준 이름을 회상하는 문항은 유효하고 key도 pass이다."
+  },
+  {
+    "id": "e6-2-3-2-xc9",
+    "sourceIndex": 2328,
+    "disposition": "revise",
+    "beforeNormalizedHash": "5da8bfd28c096bf139019202eed740852e2584038e95babffab5ed4fad9f3f27",
+    "currentNormalizedHash": "68106356615439c6c1a36ffb864d439df84af5ee7a26cb6cc59b30e9644f2df0",
+    "currentProposalFingerprint": "bfecf2b70af4a38bf5ca154dadfefea134ca48096f350fdaeb06af87059ddc8c",
+    "independentStatus": "pending",
+    "reason": "어느 자리·몇 개의 문법 단위만 채우기보다 위치별 층수가 전체 개수로 이어지는 구체 정보 적용을 평가한다. 재독해: 총개수만 구하던 수정안은 위치별 개수라는 원래 역할을 충분히 보존하지 못했다. 자리 가·나의 층수를 같은 자리의 개수로 각각 해석하도록 바꾼다."
+  },
+  {
+    "id": "e6-2-3-2-xc12",
+    "sourceIndex": 2331,
+    "disposition": "revise",
+    "beforeNormalizedHash": "af0ba8c8be925ae328250424a9d475745699174d380116731a639b6709560375",
+    "currentNormalizedHash": "3fea8ec75fef26420c3691f027a791cdade98a878d1ff6f1bd3dda3cd383fed9",
+    "currentProposalFingerprint": "d4736edd96ac6c20e839005bcf74d44b389e30c1611f790c833faa19efef725c",
+    "independentStatus": "pending",
+    "reason": "최대한 채운다는 동어반복과 막연한 조건 기준을 앞·옆 투영에서 각 칸의 최대 높이를 정하는 실제 절차로 바꾼다. 그림 없이 일반 절차의 조건을 글로 분명히 지정한다."
+  },
+  {
+    "id": "e6-2-3-2-xc13",
+    "sourceIndex": 2332,
+    "disposition": "revise",
+    "beforeNormalizedHash": "f0982e9165103597687b596afd3d484394a63fd3b6483dd86c301b3455d858a5",
+    "currentNormalizedHash": "4dc011edad75f8954384858c3d6b0978414989479187070e1144fd7843c318b7",
+    "currentProposalFingerprint": "edea0195dc16f3e7eebc305a04346c726e522c64fa0a3b5472383b3f145c2f5a",
+    "independentStatus": "pending",
+    "reason": "위에서 본 모양으로 임의 높이를 알 수 없음을 명시하고 칸의 유무를 실제 자리의 유무로 해석하는 판단을 묻는다."
+  },
+  {
+    "id": "e6-2-3-2-xc18",
+    "sourceIndex": 2336,
+    "disposition": "retain",
+    "beforeNormalizedHash": "00be4ead853a763bf314dfc1814e6b28de9572527c29f4d7ce3d095d6ef960e3",
+    "currentNormalizedHash": "00be4ead853a763bf314dfc1814e6b28de9572527c29f4d7ce3d095d6ef960e3",
+    "currentProposalFingerprint": "de87cf33bfa4c9f4843cf8cbdc4cfc979dca88cc86d6ab39b38454667e66040f",
+    "independentStatus": "pending",
+    "reason": "보이는 개수와 실제 개수의 일반 관계는 적거나 같다. 가려진 것이 있으면 적고 없으면 같은데 적다만으로 두 경우를 모두 나타낼 수 없다는 판정이 분명하다. 수학적으로 동치인 작거나 같다는 표현은 의미상 허용할 수 있으며 목록 부재만으로 금지하지 않는다."
+  },
+  {
+    "id": "e6-2-3-3-xc1",
+    "sourceIndex": 2343,
+    "disposition": "revise",
+    "beforeNormalizedHash": "fa0e3d5ccfa8a9576027c66616df0908617e7dd9c855b4b277c3efe38997e026",
+    "currentNormalizedHash": "a6598eb49869db56afed53efcf01bf9bbc1088d6dfdf8590ae0a1dfdfad2eb1d",
+    "currentProposalFingerprint": "0845742e94ce24aa8b6ac3f51ce1fc29e76e02120f99e496be19753569376808",
+    "independentStatus": "pending",
+    "reason": "관찰 그림의 세로와 바닥의 앞뒤 방향을 혼동하지 않도록 바닥에서의 선택 대상을 명시한다."
+  },
+  {
+    "id": "e6-2-3-3-xc2",
+    "sourceIndex": 2344,
+    "disposition": "revise",
+    "beforeNormalizedHash": "7d405e905ec9e14a7d9170252fff0854d0093f6072afd4c1aa300403840dda5b",
+    "currentNormalizedHash": "a204834b961f93395e8d1224b1a43f3dd0ba554bbd53f1ac33b2e3c938511265",
+    "currentProposalFingerprint": "91847c72c51ea68cdd786a5c35e592188a6884e650f74ca08e7b689cf7b42b62",
+    "independentStatus": "pending",
+    "reason": "앞뒤·좌우의 바닥 방향과 투영 그림의 세로를 구분하고 응답 대상과 형식을 명시한다."
+  },
+  {
+    "id": "e6-2-3-3-xc14",
+    "sourceIndex": 2354,
+    "disposition": "revise",
+    "beforeNormalizedHash": "9e6f4457b136ef28bca30f93c8aa356aff015a2c187aa448e7b61e592cf05554",
+    "currentNormalizedHash": "64ee5b6bacad8ba0c8c7855ca193ce565d4c784a5584497c9048d07df821027a",
+    "currentProposalFingerprint": "a59d2a7ca6ec22bfee2c7273c0f760fe48365571c256612525f191bc208ea16c",
+    "independentStatus": "pending",
+    "reason": "어떤 두 가지라는 막연한 수를 지시하는 대신 위 칸의 최소 개수와 앞·옆 줄의 높이라는 두 대상에 대해 별도로 묻는다."
+  },
+  {
+    "id": "e6-2-3-3-xc23",
+    "sourceIndex": 2359,
+    "disposition": "revise",
+    "beforeNormalizedHash": "6a346c8ec23bdc91ad34e9dbb16152548cd06e740b7e4ba802309085c86ed28c",
+    "currentNormalizedHash": "c8ffc5888f38ab00b0c53b1bedf58d5c3e1becefa90147645e01b12de992b3c8",
+    "currentProposalFingerprint": "8f50a5b3d7c588fe4bcfb116822f08c5065c5931b2fa6cca30714064256b87d2",
+    "independentStatus": "pending",
+    "reason": "최고 줄이 각각 유일하고 최고 높이가 같다는 조건을 명시한다. 교차 칸이 없으면 두 투영을 동시에 만족시킬 수 없다는 필요한 결론을 요청한다."
+  },
+  {
+    "id": "e6-2-3-4-xc3",
+    "sourceIndex": 2363,
+    "disposition": "revise",
+    "beforeNormalizedHash": "3078cfd47b079f4e225fd3c39f7985c7ed3c4c3acde6a9b3efefd08b6902ee54",
+    "currentNormalizedHash": "12abc07505ca638a6a841e092ffe474007feb4ab7467f6c8ad1caf44f2bd00e4",
+    "currentProposalFingerprint": "1d870d854c3a56885b0726ec8ccdba939943e8dbb4ac3b1f1a2e2d0063bb535c",
+    "independentStatus": "pending",
+    "reason": "칸의 숫자가 개수라는 전제만 복사하는 대안을 제거하고 개수·층수 및 최댓값의 관계를 기준에 연결한다."
+  },
+  {
+    "id": "e6-2-3-5-xc9",
+    "sourceIndex": 2383,
+    "disposition": "revise",
+    "beforeNormalizedHash": "641e29b98741a888234b76f4356101f1177ca2653266138236cb975629880685",
+    "currentNormalizedHash": "a39b2560d1063f1ccf8475bed9822d0d63d17863ee673a23f466a722a0a8aadf",
+    "currentProposalFingerprint": "f88f2ac8fa0c4e9eb14a2fd0c822bd8a282c8a17dc9b4163f62e078ac8e046ac",
+    "independentStatus": "pending",
+    "reason": "같은 자리의 환언보다 층별 두 칸이 위에서 한 칸으로 포개지는 대응을 구체적으로 묻는다."
+  },
+  {
+    "id": "e6-2-3-5-xc10",
+    "sourceIndex": 2384,
+    "disposition": "retain",
+    "beforeNormalizedHash": "739206de22e3fd057e6186d9f6eaefa236483ea77d397af7366a03c01529c15e",
+    "currentNormalizedHash": "739206de22e3fd057e6186d9f6eaefa236483ea77d397af7366a03c01529c15e",
+    "currentProposalFingerprint": "9eb8369e634092e0a5b13e2ae3bafd4584d5412451d22b9c7524cd72fe5f5110",
+    "independentStatus": "pending",
+    "reason": "2층에 칸이 있다는 조건이 1층 같은 자리에 받침을 요구하는 층 사이의 위치 관계를 판단한다. 칸이 있는이라는 표현이 반복돼도 서로 다른 층의 존재 관계를 적용해야 한다."
+  },
+  {
+    "id": "e6-2-3-6-xc8",
+    "sourceIndex": 2404,
+    "disposition": "retain",
+    "beforeNormalizedHash": "05bf27896324389b79b03d8db0ec596307636e4eaaecc74afead2a0a170a0518",
+    "currentNormalizedHash": "05bf27896324389b79b03d8db0ec596307636e4eaaecc74afead2a0a170a0518",
+    "currentProposalFingerprint": "1def9461dc76372d622d7ed6d8e12065503c2313a81d742ccfd6b4677fd59d8b",
+    "independentStatus": "pending",
+    "reason": "층별 개수의 합이라는 계산 방법을 주고 전체 개수를 구하는 절차 적용 문항이다. 계산 과정의 일부를 제공한 간단한 문제도 유효하며 답 9가 지문에 직접 노출된 것은 아니다."
+  },
+  {
+    "id": "e6-2-3-6-xc27",
+    "sourceIndex": 2418,
+    "disposition": "retain",
+    "beforeNormalizedHash": "53319e480e8447d8761d948a63f8c850a9385893f6061eef6422e8cc186f4f0f",
+    "currentNormalizedHash": "53319e480e8447d8761d948a63f8c850a9385893f6061eef6422e8cc186f4f0f",
+    "currentProposalFingerprint": "85ddb6bb13c5b51c33302b23a500ebbb93a3a0aac7fee03d8fe8300340ccd560",
+    "independentStatus": "pending",
+    "reason": "돌리기·뒤집기에도 겹치지 않는 조건을 서로 다른 모양이라는 판정으로 해석한다. 주어진 기준을 적용하는 참·거짓 및 분류 판단은 유효하며 다른이라는 결과 이름을 문법만으로 정할 수 없다."
+  },
+  {
+    "id": "e6-2-4-1-xc18",
+    "sourceIndex": 2427,
+    "disposition": "revise",
+    "beforeNormalizedHash": "53865c5637c4271fe986ffcd6868a28c18621fb24dd5f11ecb5710056782e87e",
+    "currentNormalizedHash": "a1b51e8f10898aa09ddce8fe337be507c85eb25ffaab4cf660a43e54e156bf15",
+    "currentProposalFingerprint": "b38302a31574f95953c8aeb5971c649ed8126e507ac64ae9463aa0d3090e2458",
+    "independentStatus": "pending",
+    "reason": "0으로 나눌 수 없다는 결론을 물음에 먼저 주지 않고 해당 비의 두 나눗셈이 가능한지 판단하게 한다."
+  },
+  {
+    "id": "e6-2-4-3-xc6",
+    "sourceIndex": 2450,
+    "disposition": "revise",
+    "beforeNormalizedHash": "e3b5604b2685e995d8e22554ce9d2b3c6522b6ebc01aad07bb9f25966e4d56af",
+    "currentNormalizedHash": "96e9b7e5e2f62b5febefddc948faf46b7c411ae2033d94e9440b8e5d79bb984e",
+    "currentProposalFingerprint": "c395d205728aac227a6e9c716eeb69ea0e054e352b8cf42eeaae2e0c12c29fe6",
+    "independentStatus": "pending",
+    "reason": "한 비와 빈칸마다라는 어색한 문장을 두 비가 비례식을 이루는 비율 조건으로 한정한다."
+  },
+  {
+    "id": "e6-2-4-3-xc14",
+    "sourceIndex": 2455,
+    "disposition": "revise",
+    "beforeNormalizedHash": "83c428ad086910e77e77d240e74f06a4dee7be57b12de8ff4d2d4b0617891e80",
+    "currentNormalizedHash": "4261dd5af49ded1c1b9d5e9d5377352a86813173916f0e794fb107bf1c9e49b6",
+    "currentProposalFingerprint": "6c357cd6ca586a266bf26581aaa5631b400b8820dec1c32e7108bbf4e07bbfd3",
+    "independentStatus": "pending",
+    "reason": "어떤 참인 조건도 들어갈 수 있는 긴 슬롯을 비율이라는 대상과 같음의 조건으로 좁힌다."
+  },
+  {
+    "id": "e6-2-4-4-xc14",
+    "sourceIndex": 2468,
+    "disposition": "revise",
+    "beforeNormalizedHash": "6e3520578763f916228792e0f49d971934d048ac5ee949ce13d92448dc3689dd",
+    "currentNormalizedHash": "0f1aba7348713910fef2a770afa77f565597993266cd0b54792c2f5d112960f1",
+    "currentProposalFingerprint": "aae8a075360580cd1e9acfdabec1762ebab22515eff70ea2577747003b7dccf4",
+    "independentStatus": "pending",
+    "reason": "두 풀이의 같은 비율과 두 곱의 같음이라는 근거를 명확히 대응시키고 이유를 설명하지 않는 12 하나뿐이라는 대안만 제거한다."
+  },
+  {
+    "id": "e6-2-4-4-xc18",
+    "sourceIndex": 2470,
+    "disposition": "retain",
+    "beforeNormalizedHash": "854282456d2ffac621cac1777e6a5e34ebe010a293b36d5b47c6133aaa363c44",
+    "currentNormalizedHash": "854282456d2ffac621cac1777e6a5e34ebe010a293b36d5b47c6133aaa363c44",
+    "currentProposalFingerprint": "64f4d621ddaa7aad083192e18a288f47673275982caae5d4a0e00420ea380262",
+    "independentStatus": "pending",
+    "reason": "비례식에서 두 가운데 항의 위치를 바꾸어도 두 곱이 유지되므로 다시 비례식이라는 불변관계의 판단이다. 비례식이라는 말의 반복은 변경 전후 다른 식의 비교이므로 복사로 판정하지 않는다."
+  },
+  {
+    "id": "e6-2-4-5-xc6",
+    "sourceIndex": 2476,
+    "disposition": "revise",
+    "beforeNormalizedHash": "1a16e89b3e396827a7e332942e3d0ba36ede661b80bab2ce5e25abe0b022fbc5",
+    "currentNormalizedHash": "643728b10958a980a201b75ad5a47506a032fa0dfdb512a654977cf22916b3f4",
+    "currentProposalFingerprint": "dd1d2988f8bfe601ec802f9bb217593f35c7f37e6958d819f1e3ca381767d274",
+    "independentStatus": "pending",
+    "reason": "비를 약분하는 계산만 남은 C에 비례배분의 실제 두 몫과 처음 비의 관계를 함께 넣어 원래 역할을 회복한다. 재독해: 순서 없는 두 몫의 열거를 고정 슬롯으로 채점하지 않도록 앞항 2와 뒤항 3에 대응하는 몫의 위치를 각각 명시한다."
+  },
+  {
+    "id": "e6-2-4-5-xc13",
+    "sourceIndex": 2479,
+    "disposition": "revise",
+    "beforeNormalizedHash": "3a326259251648d4b6d951f2274a133a1f122195bb29e34d0d3a9676697c67b9",
+    "currentNormalizedHash": "e0819807b0b3e3ba652edf62fb4519290307766139f837e7bf080c345fa86bd0",
+    "currentProposalFingerprint": "29017884d013ad7c655a2c1767016f218c5c7bbd3f1895ae47e1dabb20d56374",
+    "independentStatus": "pending",
+    "reason": "두 항이 같은 경우를 막연하게 쓰지 않고 같은 전체를 1:1로 나눈다는 별도 적용 예로 명시한다. 일반설명의 같을 때 차 0 관계는 보존한다."
+  },
+  {
+    "id": "e6-2-5-3-xc6",
+    "sourceIndex": 2517,
+    "disposition": "revise",
+    "beforeNormalizedHash": "240e6a082932ef12d0776d3c4ceb7ebdab1722f35727c7236aa3f7ffb524f56c",
+    "currentNormalizedHash": "a4052274accc8119821ab53f5325abc371b82717d22541bacb14f77b70f21639",
+    "currentProposalFingerprint": "e89fdcad36f43a57e73df44364f76f0cf2189c483d885595692afcb80b9d14dd",
+    "independentStatus": "pending",
+    "reason": "일부와 나머지의 짝말 슬롯 대신 원 테두리 선이 칸 내부를 지나는 관계를 직접 판단한다."
+  },
+  {
+    "id": "e6-2-6-2-xc6",
+    "sourceIndex": 2571,
+    "disposition": "revise",
+    "beforeNormalizedHash": "7b9deaaf67faf6f0dd4bf963cac7740167b0f5285f1297ede1bb1794317a0705",
+    "currentNormalizedHash": "99f9cedcfc5678a6f5b85fcb8d5ec623ce286744e8ff01163eacb159a178a27f",
+    "currentProposalFingerprint": "aa7e1f6ae65716f94a1d5eccd2bd9ff54751d4311bf9a92d3a0785554ff9c4f3",
+    "independentStatus": "pending",
+    "reason": "물음이 배치 개수를 요청하지 않아도 의미가 완성되는 하나씩을 별도 필수에서 제거한다."
+  },
+  {
+    "id": "e6-2-6-3-xc11",
+    "sourceIndex": 2591,
+    "disposition": "revise",
+    "beforeNormalizedHash": "67a6b1e96a7df5f796118a2e1dd07ea73b3b14d5e96c67a36b99b3abb8c4dac7",
+    "currentNormalizedHash": "3b3b14ce452b11317f2afd29272ce7ef0ad99fae5f7910fe5ac527587772b390",
+    "currentProposalFingerprint": "af1fbc04bd555854c6e2fd4b23d1f93a4e3ac6933e7fedc485bf3a1f41ff2a39",
+    "independentStatus": "pending",
+    "reason": "일반적인 모선 이름만 묻던 C에 원래 학습역할인 앞에서 본 삼각형의 두 변과 모선의 대응을 넣는다."
+  },
+  {
+    "id": "e6-2-6-4-xc7",
+    "sourceIndex": 2606,
+    "disposition": "revise",
+    "beforeNormalizedHash": "e94722c8c7eb67ff87b127173a60bf9ee29114a4786a2ca309787c41fe9c0295",
+    "currentNormalizedHash": "0d5f70c396006578d8654957339a2d98c2a4bda6c7fd256fcebdf0f08d562f36",
+    "currentProposalFingerprint": "280f15414a9dc4045bac7bfe332b4d5f8b50dc23ef53727dc7a5481eac09cea9",
+    "independentStatus": "pending",
+    "reason": "잘 굴러간다는 일상 서술어 대신 중심에서 접점까지 거리의 불변 관계를 직접 묻는다."
+  },
+  {
+    "id": "e6-2-6-4-xc25",
+    "sourceIndex": 2620,
+    "disposition": "retain",
+    "beforeNormalizedHash": "d8f60155b88d47e50660f41e360a821bf9748f3c69ee4fe8b18199af287a5f55",
+    "currentNormalizedHash": "d8f60155b88d47e50660f41e360a821bf9748f3c69ee4fe8b18199af287a5f55",
+    "currentProposalFingerprint": "b167573646495127eecf57613d09e61a078bed96da099bc69f85b924e3437f9a",
+    "independentStatus": "pending",
+    "reason": "구에는 평평한 밑면이 없다는 성질을 원기둥·원뿔과 구별하여 판단한다. 있지만이라는 문법만으로 어떤 종류의 면이 없는지 참·거짓을 정할 수 없고 간단한 대조 분류도 유효하다."
+  }
+]

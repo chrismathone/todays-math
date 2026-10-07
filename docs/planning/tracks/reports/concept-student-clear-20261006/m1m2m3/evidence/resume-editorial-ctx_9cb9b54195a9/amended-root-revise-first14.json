@@ -1,0 +1,1152 @@
+{
+  "input": "C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3/evidence/resume-editorial-ctx_9cb9b54195a9/input-root-revise-first14.json",
+  "changes": [
+    {
+      "id": "m2-07-01-xc11",
+      "cAfter": "비례식 $6:4=9:x$에서 $4$와 $9$는 {내항}이고, $6$과 $x$는 {외항}이다. 두 쌍의 곱이 같음을 이용하면 $x$의 값은 {$6$}이다.",
+      "cReason": "내항외항의위치를지정해순서뒤바꿈을없애고실제미지수까지구한다."
+    },
+    {
+      "id": "m2-07-01-xc19",
+      "cAfter": "$\\triangle ABC$의 변 $AB$, $BC$, $CA$ 위에 각각 점 $D$, $F$, $E$가 있고 사각형 $DBFE$가 마름모이다. $\\overline{AB}=6$, $\\overline{BC}=9$이고 마름모의 한 변의 길이를 $x$라 하면 $\\overline{AD}=6-x$이다. $\\overline{DE}\\parallel\\overline{BC}$에서 $(6-x):6=x:9$이므로 $x$의 값은 {$\\frac{18}{5}$}이다.",
+      "cAcceptedAnswers": [
+        [
+          "$\\frac{18}{5}$",
+          "$3.6$"
+        ]
+      ],
+      "exampleNeeded": true,
+      "exampleReason": "삼각형안에놓인마름모DBFE의네꼭짓점과남는작은삼각형ADE를보이는예시그림이유익하다.",
+      "cReason": "마름모의실제꼭짓점과길이를제시해숨은그림없이비례식으로값을구한다."
+    },
+    {
+      "id": "m2-07-01-xc22",
+      "cAfter": "$n$이 $4$ 이상인 자연수일 때, 삼각형의 꼭짓점에서 밑변으로 이어지는 한 변을 $n$등분한 점마다 밑변에 평행한 선분을 다른 변까지 그으면, 그 길이는 꼭짓점 쪽부터 차례로 밑변의 길이의 $\\dfrac{1}{n}$배, {$\\dfrac{2}{n}$}배, {$\\dfrac{3}{n}$}배, …가 되어 같은 간격으로 늘어난다.",
+      "cReason": "세번째내부선분이존재하도록n4이상조건을명시한다."
+    },
+    {
+      "id": "m2-07-02-xc3",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\overline{BD}:\\overline{DC}=\\overline{AB}:\\overline{AC}=1:1$",
+            "두 변이 같아 나뉜 길이의 비가 $1:1$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\overline{BD}=\\overline{DC}$",
+            "두 길이가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$D$는 $\\overline{BC}$의 중점이다"
+          ]
+        }
+      ],
+      "cAfter": "$\\triangle ABC$에서 $\\overline{AB}=\\overline{AC}$이면 $\\angle A$의 이등분선은 $\\overline{BC}$를 {이등분}한다.",
+      "bReason": "길이관계와중점이름이라는서로다른요구를각각확인한다.",
+      "cReason": "삼각형ABC라는대상을문장에명시한다."
+    },
+    {
+      "id": "m2-07-02-xc9",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "내심"
+          ]
+        },
+        {
+          "anyOf": [
+            "세 변까지의 거리가 모두 같다",
+            "세 변에 내린 수선의 길이가 모두 같다"
+          ]
+        }
+      ],
+      "cAfter": "삼각형의 세 내각의 이등분선이 모두 지나는 점을 {내심}이라 한다.",
+      "bReason": "내접원의중심이라는이름설명만으로는거리관계를답하지않았으므로수선거리같음을확인한다.",
+      "cReason": "세각과세선이어떤삼각형에속하는지분명히한다."
+    },
+    {
+      "id": "m2-07-02-xc10",
+      "bPrompt": "$\\triangle ABC$에서 $\\angle A$의 이등분선이 길이가 $6$인 $\\overline{BC}$와 점 $D$에서 만난다. $\\overline{AB}=4$, $\\overline{AC}=3$이고 $\\overline{BD}=x$라 할 때, $x$에 대한 비례식을 세워 $x$의 값을 구하시오.",
+      "bAnswer": "$\\overline{DC}=6-x$이므로 $x:(6-x)=4:3$이다. $3x=4(6-x)$에서 $7x=24$이므로 $x=\\frac{24}{7}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x:(6-x)=4:3$",
+            "$3x=4(6-x)$",
+            "$(6-x):x=3:4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x=\\frac{24}{7}$"
+          ]
+        }
+      ],
+      "cAfter": "삼각형의 한 내각의 이등분선이 나눈 맞은편 변에서, 한 부분의 길이를 $x$라 하면 다른 부분의 길이는 그 변 전체의 길이에서 $x$를 {뺀} 것이다. 두 부분의 길이의 비를 그 각을 낀 {두 변}의 길이의 비와 같게 놓아 $x$를 구한다.",
+      "bReason": "4+3=7인불가능한삼각형을4,3,6으로고치고비례식과답24/7을함께재계산했다.",
+      "cReason": "대변과이등분선의대상인삼각형및한내각을지문안에서밝힌다."
+    },
+    {
+      "id": "m2-07-02-xc13",
+      "cAfter": "$\\triangle ABC$의 변 $BC$ 위에 꼭짓점이 아닌 점 $D$가 있다. $\\triangle ABD$와 $\\triangle ADC$는 꼭짓점 $A$에서 직선 $BC$까지의 높이가 같으므로, 두 삼각형의 넓이의 비는 $\\overline{BD}:$ {$\\overline{DC}$}이다.",
+      "cAcceptedAnswers": [
+        [
+          "$\\overline{DC}$",
+          "$\\overline{CD}$"
+        ]
+      ],
+      "cReason": "두조각이라는명사대신실제삼각형과밑변의대응을묻는다."
+    },
+    {
+      "id": "m2-07-02-xc15",
+      "bPrompt": "$\\angle C=90^\\circ$인 직각삼각형 $ABC$에서 $\\overline{CA}=6$, $\\overline{CB}=8$, $\\overline{AB}=10$이다. $\\angle C$의 이등분선이 빗변 $AB$와 점 $D$에서 만날 때, $\\overline{AD}:\\overline{DB}$를 구하고 이를 이용해 $\\overline{AD}$의 길이를 구하는 과정을 쓰시오.",
+      "bReason": "채점에서필수로보는분할비와풀이과정을질문에서도요구한다."
+    },
+    {
+      "id": "m2-07-02-xc20",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$C$ 쪽"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\overline{BD}:\\overline{CD}=\\overline{AB}:\\overline{AC}$이고 $AB>AC$여서 $BD>CD$이므로 $D$는 $C$에 더 가깝다"
+          ]
+        }
+      ],
+      "bReason": "외각이등분선비와주어진변의대소를연결해방향을판단한이유를확인한다."
+    },
+    {
+      "id": "m2-07-03-xc9",
+      "cAfter": "$\\overline{AB}:\\overline{BC}=2:3$일 때, 비교하는 두 길이의 순서를 바꾸면 $\\overline{BC}:\\overline{AB}=$ {$3:2$}이다.",
+      "cReason": "순서라는설명낱말복원대신뒤집힌실제비를구하게한다."
+    },
+    {
+      "id": "m2-07-03-xc15",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$(x-1):4=2:8$",
+            "$8(x-1)=8$",
+            "$(x-1):2=4:8$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x=2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\overline{AB}=1>0$이므로 길이로 알맞다"
+          ]
+        }
+      ],
+      "cAfter": "서로 평행한 세 직선을 한 직선이 차례로 $A$, $B$, $C$에서, 다른 직선이 차례로 $D$, $E$, $F$에서 만난다. $AB=x-1$, $BC=4$, $DE=2$, $EF=8$이면 $(x-1):4=2:8$에서 $x$의 값은 {$2$}이다. 따라서 $AB$의 길이는 {$1$}이고 양수이므로 알맞다.",
+      "cReason": "실제교점과대응길이를제시하여x와양수인길이를구하게한다.",
+      "bReason": "양수인지확인한다는일반지시가아니라실제AB1양수판정을확인한다."
+    },
+    {
+      "id": "m2-07-03-xc18",
+      "bPrompt": "사다리꼴 $ABCD$에서 $\\overline{AD}\\parallel\\overline{BC}$, $\\overline{AD}=a$, $\\overline{BC}=b$이다. 점 $E$는 $\\overline{AB}$ 위에, 점 $F$는 $\\overline{DC}$ 위에 있고 $\\overline{EF}\\parallel\\overline{BC}$, $\\overline{AE}:\\overline{EB}=m:n$이다. 대각선 $AC$와 $\\overline{EF}$의 교점을 $G$라 할 때, $\\overline{EG}$와 $\\overline{GF}$의 길이를 각각 구한 뒤 $\\overline{EF}$의 길이를 $a$, $b$, $m$, $n$으로 나타내시오.",
+      "cAfter": "윗변의 길이가 $a$, 아랫변의 길이가 $b$인 사다리꼴에서, 두 밑변에 평행하며 양쪽 옆변을 위부터 $m:n$으로 나누는 선분의 길이는 {$\\frac{na+mb}{m+n}$}이다.",
+      "cAcceptedAnswers": [
+        [
+          "$\\frac{na+mb}{m+n}$",
+          "$\\frac{mb+na}{m+n}$"
+        ]
+      ],
+      "bReason": "필수채점하는두중간선분길이를질문에서명시한다.",
+      "cReason": "밑변과평행한선분임을밝히고같은분자의순서만다른동치식을인정한다."
+    },
+    {
+      "id": "m2-07-03-xc20",
+      "cAfter": "두 밑변의 길이가 다른 사다리꼴에서, 양쪽 옆변을 잇고 두 밑변에 평행한 선분을 그었다. 이 선분의 길이와 윗변의 길이의 차를 아랫변과 윗변의 길이의 차로 나누면, 윗변부터 이 선분까지의 옆변 부분이 옆변 전체에서 차지하는 {비율}이 나온다.",
+      "cReason": "중간폭이라는대신실제평행한선분과옆변의비교범위를밝힌다."
+    },
+    {
+      "id": "m2-07-03-xc23",
+      "cAfter": "서로 평행한 세 직선을 한 직선이 차례로 $A$, $B$, $C$에서, 다른 직선이 같은 세 직선과 차례로 $D$, $E$, $F$에서 만난다. 대응하는 두 부분을 같은 순서로 쓰면 $\\overline{AB}:\\overline{BC}=\\overline{DE}:$ {$\\overline{EF}$}이다.",
+      "cAcceptedAnswers": [
+        [
+          "$\\overline{EF}$",
+          "$\\overline{FE}$"
+        ]
+      ],
+      "cReason": "평행선조건과실제대응선분을명시하여단순한앞조각낱말복원을없앤다."
+    }
+  ],
+  "rows": [
+    {
+      "id": "m2-07-01-xc11",
+      "bDecision": "rewrite",
+      "bPrompt": "$\\triangle ABC$의 변 $AB$, $AC$ 위에 각각 점 $D$, $E$가 있고 $\\overline{DE}\\parallel\\overline{BC}$이다. $\\overline{AD}=6$, $\\overline{DB}=4$, $\\overline{AE}=9$일 때 $\\overline{EC}=x$로 놓고 비례식을 세워 $x$의 값을 구하시오. 비례식을 풀 때 쓴 성질도 쓰시오.",
+      "bAnswer": "$6:4=9:x$이다. 비례식에서 외항의 곱과 내항의 곱이 같으므로 $6x=36$, $x=6$이다.",
+      "bGoal": "비례식을 세우고 풀어 길이 구하기",
+      "bReason": "미지수 구하기는 실제 길이가 있어야 풀이 과정을 쓸 수 있어 수를 넣었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$6:4=9:x$",
+            "$6:9=4:x$"
+          ]
+        },
+        {
+          "anyOf": [
+            "외항의 곱과 내항의 곱이 같다",
+            "$6x=4\\times9$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x=6$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "내항외항의위치를지정해순서뒤바꿈을없애고실제미지수까지구한다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "내항과 외항의 곱으로 비례식을 푸는 과정",
+      "authorBatch": 46,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3004,
+      "part": "m2plus",
+      "sourceFingerprint": "637739bce91daa89c57e372ded70608bb2e4a7a742841bc05dcc1917481fbdc6",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3004
+      },
+      "directReview": null,
+      "cMarkedSentence": "비례식 $6:4=9:x$에서 $4$와 $9$는 {내항}이고, $6$과 $x$는 {외항}이다. 두 쌍의 곱이 같음을 이용하면 $x$의 값은 {$6$}이다.",
+      "cSlotAnswers": [
+        "내항",
+        "외항",
+        "$6$"
+      ],
+      "cStudentSentence": "비례식 $6:4=9:x$에서 $4$와 $9$는 □이고, $6$과 $x$는 □이다. 두 쌍의 곱이 같음을 이용하면 $x$의 값은 □이다.",
+      "cAnswers": [
+        "내항",
+        "외항",
+        "$6$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "내항",
+          "equivalentAnswers": [
+            "내항"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "외항",
+          "equivalentAnswers": [
+            "외항"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 2,
+          "answer": "$6$",
+          "equivalentAnswers": [
+            "$6$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "내항"
+        ],
+        [
+          "외항"
+        ],
+        [
+          "$6$"
+        ]
+      ],
+      "proposalFingerprint": "8e4a245bb753fd1def1c34981e08354788cd6ad064f1eb743d3957724f83b270",
+      "cAfter": "비례식 $6:4=9:x$에서 $4$와 $9$는 {내항}이고, $6$과 $x$는 {외항}이다. 두 쌍의 곱이 같음을 이용하면 $x$의 값은 {$6$}이다."
+    },
+    {
+      "id": "m2-07-01-xc19",
+      "bDecision": "rewrite",
+      "bPrompt": "$\\overline{AB}=6$, $\\overline{BC}=9$인 $\\triangle ABC$가 있다. 변 $AB$ 위의 점 $D$, 변 $BC$ 위의 점 $F$, 변 $CA$ 위의 점 $E$에 대해 사각형 $DBFE$가 마름모일 때, 마름모의 한 변의 길이를 $x$로 놓고 비례식을 세워 $x$의 값을 구하시오.",
+      "bAnswer": "$\\overline{DE}\\parallel\\overline{BC}$이므로 $\\triangle ADE\\backsim\\triangle ABC$이다. $\\overline{AD}=6-x$, $\\overline{DE}=x$이므로 $(6-x):6=x:9$이고, $9(6-x)=6x$에서 $x=\\dfrac{18}{5}$이다.",
+      "bGoal": "삼각형 안의 마름모의 한 변을 비례식으로 구하기",
+      "bReason": "마름모의 꼭짓점이 어느 변 위에 있는지와 변의 길이가 있어야 식을 세울 수 있어 예를 넣었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$(6-x):6=x:9$",
+            "$(9-x):9=x:6$",
+            "$x:(6-x)=(9-x):x$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x=\\dfrac{18}{5}$",
+            "$x=3.6$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "마름모의실제꼭짓점과길이를제시해숨은그림없이비례식으로값을구한다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "한 변을 $x$로 놓고 닮음의 비례식을 세우는 과정",
+      "authorBatch": 46,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3011,
+      "part": "m2plus",
+      "sourceFingerprint": "14b646859e4d6f261ba9035e88a9efe08e1e4267046c4342cbff927ee85cfe3b",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3011
+      },
+      "directReview": null,
+      "cMarkedSentence": "$\\triangle ABC$의 변 $AB$, $BC$, $CA$ 위에 각각 점 $D$, $F$, $E$가 있고 사각형 $DBFE$가 마름모이다. $\\overline{AB}=6$, $\\overline{BC}=9$이고 마름모의 한 변의 길이를 $x$라 하면 $\\overline{AD}=6-x$이다. $\\overline{DE}\\parallel\\overline{BC}$에서 $(6-x):6=x:9$이므로 $x$의 값은 {$\\frac{18}{5}$}이다.",
+      "cSlotAnswers": [
+        "$\\frac{18}{5}$"
+      ],
+      "cStudentSentence": "$\\triangle ABC$의 변 $AB$, $BC$, $CA$ 위에 각각 점 $D$, $F$, $E$가 있고 사각형 $DBFE$가 마름모이다. $\\overline{AB}=6$, $\\overline{BC}=9$이고 마름모의 한 변의 길이를 $x$라 하면 $\\overline{AD}=6-x$이다. $\\overline{DE}\\parallel\\overline{BC}$에서 $(6-x):6=x:9$이므로 $x$의 값은 □이다.",
+      "cAnswers": [
+        "$\\frac{18}{5}$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\frac{18}{5}$",
+          "equivalentAnswers": [
+            "$\\frac{18}{5}$",
+            "$3.6$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "미지수",
+          "accept": [
+            "$x$"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "$\\frac{18}{5}$",
+          "$3.6$"
+        ]
+      ],
+      "proposalFingerprint": "cd51eb995b75134d96b30790faa3d284b20152768b12121f79dc3e36624780ff",
+      "cAfter": "$\\triangle ABC$의 변 $AB$, $BC$, $CA$ 위에 각각 점 $D$, $F$, $E$가 있고 사각형 $DBFE$가 마름모이다. $\\overline{AB}=6$, $\\overline{BC}=9$이고 마름모의 한 변의 길이를 $x$라 하면 $\\overline{AD}=6-x$이다. $\\overline{DE}\\parallel\\overline{BC}$에서 $(6-x):6=x:9$이므로 $x$의 값은 {$\\frac{18}{5}$}이다.",
+      "exampleReason": "삼각형안에놓인마름모DBFE의네꼭짓점과남는작은삼각형ADE를보이는예시그림이유익하다."
+    },
+    {
+      "id": "m2-07-01-xc22",
+      "bDecision": "rewrite",
+      "bPrompt": "$\\triangle ABC$의 변 $AB$를 $4$등분한 점을 꼭짓점 $A$에서 가까운 차례로 $P$, $Q$, $R$라 하고, 각 점에서 변 $BC$에 평행한 선분을 변 $AC$까지 그었다. $\\overline{BC}=12$일 때 세 선분의 길이를 $A$에서 가까운 차례로 구하고, 길이가 어떤 규칙으로 변하는지 쓰시오.",
+      "bAnswer": "$\\overline{AP}:\\overline{AB}=1:4$, $\\overline{AQ}:\\overline{AB}=2:4$, $\\overline{AR}:\\overline{AB}=3:4$이므로 길이는 차례로 $3$, $6$, $9$이다. $\\overline{BC}$의 $\\dfrac{1}{4}$배, $\\dfrac{2}{4}$배, $\\dfrac{3}{4}$배로 $3$씩 일정하게 늘어난다.",
+      "bGoal": "등분점에서 그은 평행한 선분의 길이 규칙 찾기",
+      "bReason": "$n$등분의 규칙은 실제로 길이를 구해 보아야 드러나 $4$등분의 예를 넣었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$3$, $6$, $9$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$씩 일정하게 늘어난다",
+            "밑변의 $\\dfrac{1}{4}$배, $\\dfrac{2}{4}$배, $\\dfrac{3}{4}$배이다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$n$이 $4$ 이상인 자연수일 때, 삼각형의 꼭짓점에서 밑변으로 이어지는 한 변을 $n$등분한 점마다 밑변에 평행한 선분을 다른 변까지 그으면, 그 길이는 꼭짓점 쪽부터 차례로 밑변의 길이의 $\\dfrac{1}{n}$배, {$\\dfrac{2}{n}$}배, {$\\dfrac{3}{n}$}배, …가 되어 같은 간격으로 늘어난다.",
+      "cAnswers": [
+        "$\\dfrac{2}{n}$",
+        "$\\dfrac{3}{n}$"
+      ],
+      "cReason": "세번째내부선분이존재하도록n4이상조건을명시한다.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "등분점마다 닮음비를 적용해 길이의 규칙 찾기",
+      "authorBatch": 46,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3014,
+      "part": "m2plus",
+      "sourceFingerprint": "7bc4f89be53cfd6621423a0421d12fa8c48d918e743f1dff47f780930c6e9af7",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3014
+      },
+      "directReview": null,
+      "cMarkedSentence": "$n$이 $4$ 이상인 자연수일 때, 삼각형의 꼭짓점에서 밑변으로 이어지는 한 변을 $n$등분한 점마다 밑변에 평행한 선분을 다른 변까지 그으면, 그 길이는 꼭짓점 쪽부터 차례로 밑변의 길이의 $\\dfrac{1}{n}$배, {$\\dfrac{2}{n}$}배, {$\\dfrac{3}{n}$}배, …가 되어 같은 간격으로 늘어난다.",
+      "cSlotAnswers": [
+        "$\\dfrac{2}{n}$",
+        "$\\dfrac{3}{n}$"
+      ],
+      "cStudentSentence": "$n$이 $4$ 이상인 자연수일 때, 삼각형의 꼭짓점에서 밑변으로 이어지는 한 변을 $n$등분한 점마다 밑변에 평행한 선분을 다른 변까지 그으면, 그 길이는 꼭짓점 쪽부터 차례로 밑변의 길이의 $\\dfrac{1}{n}$배, □배, □배, …가 되어 같은 간격으로 늘어난다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\dfrac{2}{n}$",
+          "equivalentAnswers": [
+            "$\\dfrac{2}{n}$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$\\dfrac{3}{n}$",
+          "equivalentAnswers": [
+            "$\\dfrac{3}{n}$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$\\dfrac{2}{n}$"
+        ],
+        [
+          "$\\dfrac{3}{n}$"
+        ]
+      ],
+      "proposalFingerprint": "862cafc5b2a22cb2c933b5ac70a6a2643908258f09c571feab4b03c56ed83ef5"
+    },
+    {
+      "id": "m2-07-02-xc3",
+      "bDecision": "rewrite",
+      "bPrompt": "$\\triangle ABC$에서 $\\overline{AB}=\\overline{AC}$이고 $\\angle A$의 이등분선이 $\\overline{BC}$와 점 $D$에서 만난다. 내각의 이등분선의 성질을 이용하여 $\\overline{BD}$와 $\\overline{DC}$의 길이 관계를 쓰고, 점 $D$가 $\\overline{BC}$의 어떤 점인지 쓰시오.",
+      "bAnswer": "$\\overline{BD}:\\overline{DC}=\\overline{AB}:\\overline{AC}=1:1$이므로 $\\overline{BD}=\\overline{DC}$이고, $D$는 $\\overline{BC}$의 중점이다.",
+      "bGoal": "두 변이 같을 때 이등분선 성질의 특수한 경우",
+      "bReason": "길이관계와중점이름이라는서로다른요구를각각확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\overline{BD}:\\overline{DC}=\\overline{AB}:\\overline{AC}=1:1$",
+            "두 변이 같아 나뉜 길이의 비가 $1:1$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\overline{BD}=\\overline{DC}$",
+            "두 길이가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$D$는 $\\overline{BC}$의 중점이다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "삼각형ABC라는대상을문장에명시한다.",
+      "studentLabel": "두 변이 같을 때 이등분선과 중점",
+      "learningRole": "application",
+      "roleReason": "조각의 비 $1:1$에서 중점임을 끌어냄",
+      "authorBatch": 47,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3017,
+      "part": "m2plus",
+      "sourceFingerprint": "e5c377bf375de93966210306146130280c03d6dd17f3c3804fd7401673ed4c76",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3017
+      },
+      "directReview": null,
+      "cMarkedSentence": "$\\triangle ABC$에서 $\\overline{AB}=\\overline{AC}$이면 $\\angle A$의 이등분선은 $\\overline{BC}$를 {이등분}한다.",
+      "cSlotAnswers": [
+        "이등분"
+      ],
+      "cStudentSentence": "$\\triangle ABC$에서 $\\overline{AB}=\\overline{AC}$이면 $\\angle A$의 이등분선은 $\\overline{BC}$를 □한다.",
+      "cAnswers": [
+        "이등분"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "이등분",
+          "equivalentAnswers": [
+            "이등분"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "이등분"
+        ]
+      ],
+      "proposalFingerprint": "0ccff36072f31f3a312839e62299e1f9faf8590c016e751a2e8b75844433f729",
+      "cAfter": "$\\triangle ABC$에서 $\\overline{AB}=\\overline{AC}$이면 $\\angle A$의 이등분선은 $\\overline{BC}$를 {이등분}한다."
+    },
+    {
+      "id": "m2-07-02-xc9",
+      "bDecision": "rewrite",
+      "bPrompt": "삼각형의 세 내각의 이등분선은 한 점에서 만난다. 이 점의 이름을 쓰고, 이 점에서 세 변까지의 거리 사이에 어떤 관계가 있는지 쓰시오.",
+      "bAnswer": "내심이다. 내심에서 세 변까지의 거리는 모두 같다.",
+      "bGoal": "세 내각의 이등분선의 교점의 이름과 성질",
+      "bReason": "내접원의중심이라는이름설명만으로는거리관계를답하지않았으므로수선거리같음을확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "내심"
+          ]
+        },
+        {
+          "anyOf": [
+            "세 변까지의 거리가 모두 같다",
+            "세 변에 내린 수선의 길이가 모두 같다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "세각과세선이어떤삼각형에속하는지분명히한다.",
+      "learningRole": "naming",
+      "roleReason": "세 내각의 이등분선의 교점인 내심",
+      "authorBatch": 47,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3022,
+      "part": "m2plus",
+      "sourceFingerprint": "7a4869faee1a1d609d2b3917e9723d0dcf4599a49137d2cf9e7c4d42315d7b47",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3022
+      },
+      "directReview": null,
+      "cMarkedSentence": "삼각형의 세 내각의 이등분선이 모두 지나는 점을 {내심}이라 한다.",
+      "cSlotAnswers": [
+        "내심"
+      ],
+      "cStudentSentence": "삼각형의 세 내각의 이등분선이 모두 지나는 점을 □이라 한다.",
+      "cAnswers": [
+        "내심"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "내심",
+          "equivalentAnswers": [
+            "내심"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "내심"
+        ]
+      ],
+      "proposalFingerprint": "267150c2a8a75c2f84b65397367b4b6da30b7394079adcb10fcfeb28bb94a8ed",
+      "cAfter": "삼각형의 세 내각의 이등분선이 모두 지나는 점을 {내심}이라 한다."
+    },
+    {
+      "id": "m2-07-02-xc10",
+      "bDecision": "rewrite",
+      "bPrompt": "$\\triangle ABC$에서 $\\angle A$의 이등분선이 길이가 $6$인 $\\overline{BC}$와 점 $D$에서 만난다. $\\overline{AB}=4$, $\\overline{AC}=3$이고 $\\overline{BD}=x$라 할 때, $x$에 대한 비례식을 세워 $x$의 값을 구하시오.",
+      "bAnswer": "$\\overline{DC}=6-x$이므로 $x:(6-x)=4:3$이다. $3x=4(6-x)$에서 $7x=24$이므로 $x=\\frac{24}{7}$이다.",
+      "bGoal": "조각을 미지수로 놓고 비례식 세우기",
+      "bReason": "4+3=7인불가능한삼각형을4,3,6으로고치고비례식과답24/7을함께재계산했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$x:(6-x)=4:3$",
+            "$3x=4(6-x)$",
+            "$(6-x):x=3:4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x=\\frac{24}{7}$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "대변과이등분선의대상인삼각형및한내각을지문안에서밝힌다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "한 조각을 $x$, 다른 조각을 전체에서 $x$를 뺀 값으로 놓기",
+      "authorBatch": 47,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3023,
+      "part": "m2plus",
+      "sourceFingerprint": "8f4e62547613d17da75e0de69a980c27e2e906bf3522d42c46a8f1ee44e7e40d",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3023
+      },
+      "directReview": null,
+      "cMarkedSentence": "삼각형의 한 내각의 이등분선이 나눈 맞은편 변에서, 한 부분의 길이를 $x$라 하면 다른 부분의 길이는 그 변 전체의 길이에서 $x$를 {뺀} 것이다. 두 부분의 길이의 비를 그 각을 낀 {두 변}의 길이의 비와 같게 놓아 $x$를 구한다.",
+      "cSlotAnswers": [
+        "뺀",
+        "두 변"
+      ],
+      "cStudentSentence": "삼각형의 한 내각의 이등분선이 나눈 맞은편 변에서, 한 부분의 길이를 $x$라 하면 다른 부분의 길이는 그 변 전체의 길이에서 $x$를 □ 것이다. 두 부분의 길이의 비를 그 각을 낀 □의 길이의 비와 같게 놓아 $x$를 구한다.",
+      "cAnswers": [
+        "뺀",
+        "두 변"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "뺀",
+          "equivalentAnswers": [
+            "뺀"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "두 변",
+          "equivalentAnswers": [
+            "두 변"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "뺀"
+        ],
+        [
+          "두 변"
+        ]
+      ],
+      "proposalFingerprint": "2a3bd2990f4ef3bf6de2d983baddec4e0370b1895e6c2bbc2522820c0699a33d",
+      "cAfter": "삼각형의 한 내각의 이등분선이 나눈 맞은편 변에서, 한 부분의 길이를 $x$라 하면 다른 부분의 길이는 그 변 전체의 길이에서 $x$를 {뺀} 것이다. 두 부분의 길이의 비를 그 각을 낀 {두 변}의 길이의 비와 같게 놓아 $x$를 구한다."
+    },
+    {
+      "id": "m2-07-02-xc13",
+      "bDecision": "rewrite",
+      "bPrompt": "$\\triangle ABC$의 변 $BC$ 위에 점 $D$가 있다. $\\overline{AD}$가 각의 이등분선이 아니어도 된다. $\\triangle ABD$와 $\\triangle ADC$의 넓이의 비를 선분의 길이의 비로 나타내고 그 까닭을 쓰시오.",
+      "bAnswer": "$\\overline{BD}:\\overline{DC}$이다. 두 삼각형은 꼭짓점 $A$에서 직선 $BC$까지의 높이가 같아서 넓이의 비가 밑변의 비와 같기 때문이다.",
+      "bGoal": "높이가 같은 두 삼각형의 넓이의 비",
+      "bReason": "이등분선과 상관없는 일반 성질임을 조건에 밝혀 c3과 구별했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\overline{BD}:\\overline{DC}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "꼭짓점 $A$에서 $\\overline{BC}$까지의 높이가 같다",
+            "높이가 같아 넓이가 밑변에 비례한다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "두조각이라는명사대신실제삼각형과밑변의대응을묻는다.",
+      "learningRole": "reason",
+      "roleReason": "높이가 같으면 넓이의 비가 밑변의 비",
+      "authorBatch": 47,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3026,
+      "part": "m2plus",
+      "sourceFingerprint": "958590916b83c1301221529ed16b392b28b605ac69f87409873b8a00104de0c5",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3026
+      },
+      "directReview": null,
+      "cMarkedSentence": "$\\triangle ABC$의 변 $BC$ 위에 꼭짓점이 아닌 점 $D$가 있다. $\\triangle ABD$와 $\\triangle ADC$는 꼭짓점 $A$에서 직선 $BC$까지의 높이가 같으므로, 두 삼각형의 넓이의 비는 $\\overline{BD}:$ {$\\overline{DC}$}이다.",
+      "cSlotAnswers": [
+        "$\\overline{DC}$"
+      ],
+      "cStudentSentence": "$\\triangle ABC$의 변 $BC$ 위에 꼭짓점이 아닌 점 $D$가 있다. $\\triangle ABD$와 $\\triangle ADC$는 꼭짓점 $A$에서 직선 $BC$까지의 높이가 같으므로, 두 삼각형의 넓이의 비는 $\\overline{BD}:$ □이다.",
+      "cAnswers": [
+        "$\\overline{DC}$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\overline{DC}$",
+          "equivalentAnswers": [
+            "$\\overline{DC}$",
+            "$\\overline{CD}$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$\\overline{DC}$",
+          "$\\overline{CD}$"
+        ]
+      ],
+      "proposalFingerprint": "184b2dd267ae69f492679941aaa57176256cc9aa8ad5ccd0362825ffdd0dfd30",
+      "cAfter": "$\\triangle ABC$의 변 $BC$ 위에 꼭짓점이 아닌 점 $D$가 있다. $\\triangle ABD$와 $\\triangle ADC$는 꼭짓점 $A$에서 직선 $BC$까지의 높이가 같으므로, 두 삼각형의 넓이의 비는 $\\overline{BD}:$ {$\\overline{DC}$}이다."
+    },
+    {
+      "id": "m2-07-02-xc15",
+      "bDecision": "rewrite",
+      "bPrompt": "$\\angle C=90^\\circ$인 직각삼각형 $ABC$에서 $\\overline{CA}=6$, $\\overline{CB}=8$, $\\overline{AB}=10$이다. $\\angle C$의 이등분선이 빗변 $AB$와 점 $D$에서 만날 때, $\\overline{AD}:\\overline{DB}$를 구하고 이를 이용해 $\\overline{AD}$의 길이를 구하는 과정을 쓰시오.",
+      "bAnswer": "$\\overline{AD}:\\overline{DB}=\\overline{CA}:\\overline{CB}=6:8=3:4$이므로 $\\overline{AD}=10\\times\\frac{3}{7}=\\frac{30}{7}$이다.",
+      "bGoal": "직각에도 이등분선의 성질 적용",
+      "bReason": "채점에서필수로보는분할비와풀이과정을질문에서도요구한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\overline{AD}:\\overline{DB}=3:4$",
+            "$\\overline{AD}:\\overline{DB}=6:8$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\overline{AD}=\\frac{30}{7}$"
+          ]
+        }
+      ],
+      "cDecision": "exclude",
+      "cReason": "c2 문장을 직각삼각형에 그대로 옮긴 '비' 한 칸이라 새로 평가하는 것이 없다.",
+      "exclusionReason": "C 제외: c2의 '두 변의 비로 나눈다'를 직각삼각형으로 반복한 '비' 빈칸이다.",
+      "exampleNeeded": true,
+      "learningRole": "application",
+      "roleReason": "직각의 이등분선에 같은 성질 적용",
+      "authorBatch": 47,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3028,
+      "part": "m2plus",
+      "sourceFingerprint": "86f58533816db0beaf40ccc07fd1430606318db420e79e98921eebe5a34db456",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3028
+      },
+      "directReview": null,
+      "proposalFingerprint": "6e4d79c3528ce2acbc2864457f0e6a4dd58aa99dd2456ba8b299c3d7cd9b2020"
+    },
+    {
+      "id": "m2-07-02-xc20",
+      "bDecision": "rewrite",
+      "bPrompt": "$\\triangle ABC$에서 $\\overline{AB}>\\overline{AC}$일 때, $\\angle A$의 외각의 이등분선은 $\\overline{BC}$를 점 $B$ 쪽과 점 $C$ 쪽 중 어느 쪽으로 늘인 연장선과 만나는가? 교점을 $D$라 하고 $\\overline{BD}:\\overline{CD}$를 이용해 까닭을 쓰시오.",
+      "bAnswer": "$C$ 쪽이다. $\\overline{BD}:\\overline{CD}=\\overline{AB}:\\overline{AC}$이고 $\\overline{AB}>\\overline{AC}$이므로 $\\overline{BD}>\\overline{CD}$이다. $B$ 쪽 연장선 위의 점은 $C$보다 $B$에 더 가까우므로 $D$는 $C$ 쪽에 있다.",
+      "bGoal": "외각 이등분선의 교점 위치 판단",
+      "bReason": "외각이등분선비와주어진변의대소를연결해방향을판단한이유를확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$C$ 쪽"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\overline{BD}:\\overline{CD}=\\overline{AB}:\\overline{AC}$이고 $AB>AC$여서 $BD>CD$이므로 $D$는 $C$에 더 가깝다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$\\triangle ABC$에서 $\\overline{AB}>\\overline{AC}$이면 $\\angle A$의 외각의 이등분선은 $\\overline{BC}$를 점 {$C$} 쪽으로 늘인 연장선과 만난다. 교점에서 두 끝 점까지의 거리의 비가 $\\overline{AB}:\\overline{AC}$이므로, 긴 변 쪽 끝 점 $B$가 교점에서 더 {멀어야} 하기 때문이다.",
+      "cAnswers": [
+        "$C$",
+        "멀어야"
+      ],
+      "cReason": "'대변을 짧은 변 쪽으로 늘인'은 방향이 분명하지 않아 꼭짓점 이름으로 바꿨다.",
+      "learningRole": "reason",
+      "roleReason": "거리의 비로 교점의 위치를 정하는 까닭",
+      "authorBatch": 47,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3033,
+      "part": "m2plus",
+      "sourceFingerprint": "542cae57d7224b4c341481763bb596401442cb602e9b9319dd478f64fd98af9d",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3033
+      },
+      "directReview": null,
+      "cMarkedSentence": "$\\triangle ABC$에서 $\\overline{AB}>\\overline{AC}$이면 $\\angle A$의 외각의 이등분선은 $\\overline{BC}$를 점 {$C$} 쪽으로 늘인 연장선과 만난다. 교점에서 두 끝 점까지의 거리의 비가 $\\overline{AB}:\\overline{AC}$이므로, 긴 변 쪽 끝 점 $B$가 교점에서 더 {멀어야} 하기 때문이다.",
+      "cSlotAnswers": [
+        "$C$",
+        "멀어야"
+      ],
+      "cStudentSentence": "$\\triangle ABC$에서 $\\overline{AB}>\\overline{AC}$이면 $\\angle A$의 외각의 이등분선은 $\\overline{BC}$를 점 □ 쪽으로 늘인 연장선과 만난다. 교점에서 두 끝 점까지의 거리의 비가 $\\overline{AB}:\\overline{AC}$이므로, 긴 변 쪽 끝 점 $B$가 교점에서 더 □ 하기 때문이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$C$",
+          "equivalentAnswers": [
+            "$C$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "멀어야",
+          "equivalentAnswers": [
+            "멀어야"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$C$"
+        ],
+        [
+          "멀어야"
+        ]
+      ],
+      "proposalFingerprint": "de16317ffc3bf3094c2c32770e7e81bc4e84adc1e9cc11ae81f66d549ea51052"
+    },
+    {
+      "id": "m2-07-03-xc9",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "비의 앞뒤를 바꾸는 표기 규칙은 xc23의 오류 진단 질문에서 함께 평가된다.",
+      "cDecision": "rewrite",
+      "cAfter": "$\\overline{AB}:\\overline{BC}=2:3$일 때, 비교하는 두 길이의 순서를 바꾸면 $\\overline{BC}:\\overline{AB}=$ {$3:2$}이다.",
+      "cAnswers": [
+        "$3:2$"
+      ],
+      "cReason": "순서라는설명낱말복원대신뒤집힌실제비를구하게한다.",
+      "exclusionReason": "B 제외: 표기 규칙이라 xc23과 목표가 겹친다.",
+      "learningRole": "procedure",
+      "roleReason": "비교하는 차례를 바꾸면 비의 두 수도 바뀜",
+      "authorBatch": 47,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3047,
+      "part": "m2plus",
+      "sourceFingerprint": "07785bb2ac282807c2a4de1f66004c78a2b12e2d432740a456563bf1bb408c82",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3047
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cMarkedSentence": "$\\overline{AB}:\\overline{BC}=2:3$일 때, 비교하는 두 길이의 순서를 바꾸면 $\\overline{BC}:\\overline{AB}=$ {$3:2$}이다.",
+      "cSlotAnswers": [
+        "$3:2$"
+      ],
+      "cStudentSentence": "$\\overline{AB}:\\overline{BC}=2:3$일 때, 비교하는 두 길이의 순서를 바꾸면 $\\overline{BC}:\\overline{AB}=$ □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$3:2$",
+          "equivalentAnswers": [
+            "$3:2$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$3:2$"
+        ]
+      ],
+      "proposalFingerprint": "9676e648153158bafdbe223888b833aac79e08475d0a7bcf4a6bbae3045390cc"
+    },
+    {
+      "id": "m2-07-03-xc15",
+      "bDecision": "rewrite",
+      "bPrompt": "서로 평행한 세 직선을 직선 $p$가 차례로 점 $A$, $B$, $C$에서, 직선 $q$가 차례로 점 $D$, $E$, $F$에서 만난다. $\\overline{AB}=x-1$, $\\overline{BC}=4$, $\\overline{DE}=2$, $\\overline{EF}=8$일 때 비례식을 세워 $x$를 구하고, 구한 값이 길이로 알맞은지 확인하시오.",
+      "bAnswer": "$(x-1):4=2:8$에서 $8(x-1)=8$, $x=2$이다. 이때 $\\overline{AB}=1>0$이므로 알맞다.",
+      "bGoal": "문자식으로 주어진 조각으로 비례식을 풀고 확인하기",
+      "bReason": "양수인지확인한다는일반지시가아니라실제AB1양수판정을확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$(x-1):4=2:8$",
+            "$8(x-1)=8$",
+            "$(x-1):2=4:8$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x=2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\overline{AB}=1>0$이므로 길이로 알맞다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "실제교점과대응길이를제시하여x와양수인길이를구하게한다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "비례식을 풀고 길이가 양수인지 확인",
+      "authorBatch": 47,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3052,
+      "part": "m2plus",
+      "sourceFingerprint": "8d9f97ce41b38616e2f452bfaf2cc3ee7ddc740a3156dcfe3df1addeff4fd0c3",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3052
+      },
+      "directReview": null,
+      "cMarkedSentence": "서로 평행한 세 직선을 한 직선이 차례로 $A$, $B$, $C$에서, 다른 직선이 차례로 $D$, $E$, $F$에서 만난다. $AB=x-1$, $BC=4$, $DE=2$, $EF=8$이면 $(x-1):4=2:8$에서 $x$의 값은 {$2$}이다. 따라서 $AB$의 길이는 {$1$}이고 양수이므로 알맞다.",
+      "cSlotAnswers": [
+        "$2$",
+        "$1$"
+      ],
+      "cStudentSentence": "서로 평행한 세 직선을 한 직선이 차례로 $A$, $B$, $C$에서, 다른 직선이 차례로 $D$, $E$, $F$에서 만난다. $AB=x-1$, $BC=4$, $DE=2$, $EF=8$이면 $(x-1):4=2:8$에서 $x$의 값은 □이다. 따라서 $AB$의 길이는 □이고 양수이므로 알맞다.",
+      "cAnswers": [
+        "$2$",
+        "$1$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$2$",
+          "equivalentAnswers": [
+            "$2$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$1$",
+          "equivalentAnswers": [
+            "$1$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$2$"
+        ],
+        [
+          "$1$"
+        ]
+      ],
+      "proposalFingerprint": "71c6d6eea3dc41b4b0b880abe064faa7976b0b3bc9b9d041f6158437c78090fe",
+      "cAfter": "서로 평행한 세 직선을 한 직선이 차례로 $A$, $B$, $C$에서, 다른 직선이 차례로 $D$, $E$, $F$에서 만난다. $AB=x-1$, $BC=4$, $DE=2$, $EF=8$이면 $(x-1):4=2:8$에서 $x$의 값은 {$2$}이다. 따라서 $AB$의 길이는 {$1$}이고 양수이므로 알맞다."
+    },
+    {
+      "id": "m2-07-03-xc18",
+      "bDecision": "rewrite",
+      "bPrompt": "사다리꼴 $ABCD$에서 $\\overline{AD}\\parallel\\overline{BC}$, $\\overline{AD}=a$, $\\overline{BC}=b$이다. 점 $E$는 $\\overline{AB}$ 위에, 점 $F$는 $\\overline{DC}$ 위에 있고 $\\overline{EF}\\parallel\\overline{BC}$, $\\overline{AE}:\\overline{EB}=m:n$이다. 대각선 $AC$와 $\\overline{EF}$의 교점을 $G$라 할 때, $\\overline{EG}$와 $\\overline{GF}$의 길이를 각각 구한 뒤 $\\overline{EF}$의 길이를 $a$, $b$, $m$, $n$으로 나타내시오.",
+      "bAnswer": "$\\triangle ABC$에서 $\\overline{EG}=\\frac{mb}{m+n}$이고, $\\triangle CDA$에서 $\\overline{GF}=\\frac{na}{m+n}$이므로 $\\overline{EF}=\\frac{na+mb}{m+n}$이다.",
+      "bGoal": "사다리꼴 안의 평행한 선분의 길이를 일반식으로 유도",
+      "bReason": "필수채점하는두중간선분길이를질문에서명시한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\overline{EG}=\\frac{mb}{m+n}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\overline{GF}=\\frac{na}{m+n}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\overline{EF}=\\frac{na+mb}{m+n}$",
+            "$\\overline{EF}=\\frac{mb+na}{m+n}$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "밑변과평행한선분임을밝히고같은분자의순서만다른동치식을인정한다.",
+      "learningRole": "procedure",
+      "roleReason": "대각선으로 나눈 두 부분의 합으로 폭 구하기",
+      "authorBatch": 47,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3055,
+      "part": "m2plus",
+      "sourceFingerprint": "d330dcafaf562dd3c21ca96ed9769a51f2f5ae91811003a2123cc4d839160f6e",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3055
+      },
+      "directReview": null,
+      "cMarkedSentence": "윗변의 길이가 $a$, 아랫변의 길이가 $b$인 사다리꼴에서, 두 밑변에 평행하며 양쪽 옆변을 위부터 $m:n$으로 나누는 선분의 길이는 {$\\frac{na+mb}{m+n}$}이다.",
+      "cSlotAnswers": [
+        "$\\frac{na+mb}{m+n}$"
+      ],
+      "cStudentSentence": "윗변의 길이가 $a$, 아랫변의 길이가 $b$인 사다리꼴에서, 두 밑변에 평행하며 양쪽 옆변을 위부터 $m:n$으로 나누는 선분의 길이는 □이다.",
+      "cAnswers": [
+        "$\\frac{na+mb}{m+n}$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\frac{na+mb}{m+n}$",
+          "equivalentAnswers": [
+            "$\\frac{na+mb}{m+n}$",
+            "$\\frac{mb+na}{m+n}$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$\\frac{na+mb}{m+n}$",
+          "$\\frac{mb+na}{m+n}$"
+        ]
+      ],
+      "proposalFingerprint": "49d3799c6faeaa61c473172c40e4fc991365bcef0c6baa89e177609e85b48f78",
+      "cAfter": "윗변의 길이가 $a$, 아랫변의 길이가 $b$인 사다리꼴에서, 두 밑변에 평행하며 양쪽 옆변을 위부터 $m:n$으로 나누는 선분의 길이는 {$\\frac{na+mb}{m+n}$}이다."
+    },
+    {
+      "id": "m2-07-03-xc20",
+      "bDecision": "rewrite",
+      "bPrompt": "사다리꼴 $ABCD$에서 $\\overline{AD}\\parallel\\overline{BC}$, $\\overline{AD}=4$, $\\overline{BC}=10$이다. 점 $E$는 $\\overline{AB}$ 위에, 점 $F$는 $\\overline{DC}$ 위에 있고 $\\overline{EF}\\parallel\\overline{BC}$, $\\overline{EF}=6$이다. 두 밑변의 길이의 차를 이용하여 $\\overline{AE}:\\overline{EB}$를 구하시오.",
+      "bAnswer": "$\\frac{6-4}{10-4}=\\frac{1}{3}$이므로 $\\overline{AE}:\\overline{AB}=1:3$이다. 따라서 $\\overline{AE}:\\overline{EB}=1:2$이다.",
+      "bGoal": "폭의 길이로 옆변이 나뉜 비 구하기",
+      "bReason": "차를 나눈 값이 무엇의 비율인지 드러나도록, 수치와 구할 비를 지정했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\overline{AE}:\\overline{AB}=1:3$",
+            "$\\frac{6-4}{10-4}=\\frac{1}{3}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\overline{AE}:\\overline{EB}=1:2$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "중간폭이라는대신실제평행한선분과옆변의비교범위를밝힌다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "폭과 윗변의 차를 두 밑변의 차로 나누기",
+      "authorBatch": 47,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3057,
+      "part": "m2plus",
+      "sourceFingerprint": "30d14d1246a30ed8b940a9968175c5f397e019b8af6a8c4d8ff3998cfd7871a7",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3057
+      },
+      "directReview": null,
+      "cMarkedSentence": "두 밑변의 길이가 다른 사다리꼴에서, 양쪽 옆변을 잇고 두 밑변에 평행한 선분을 그었다. 이 선분의 길이와 윗변의 길이의 차를 아랫변과 윗변의 길이의 차로 나누면, 윗변부터 이 선분까지의 옆변 부분이 옆변 전체에서 차지하는 {비율}이 나온다.",
+      "cSlotAnswers": [
+        "비율"
+      ],
+      "cStudentSentence": "두 밑변의 길이가 다른 사다리꼴에서, 양쪽 옆변을 잇고 두 밑변에 평행한 선분을 그었다. 이 선분의 길이와 윗변의 길이의 차를 아랫변과 윗변의 길이의 차로 나누면, 윗변부터 이 선분까지의 옆변 부분이 옆변 전체에서 차지하는 □이 나온다.",
+      "cAnswers": [
+        "비율"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "비율",
+          "equivalentAnswers": [
+            "비율"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "비율"
+        ]
+      ],
+      "proposalFingerprint": "fa78089c95edb35171b9a7cbf4d63e9312a7c7938dc5cce6a72cb19b5889fd91",
+      "cAfter": "두 밑변의 길이가 다른 사다리꼴에서, 양쪽 옆변을 잇고 두 밑변에 평행한 선분을 그었다. 이 선분의 길이와 윗변의 길이의 차를 아랫변과 윗변의 길이의 차로 나누면, 윗변부터 이 선분까지의 옆변 부분이 옆변 전체에서 차지하는 {비율}이 나온다."
+    },
+    {
+      "id": "m2-07-03-xc23",
+      "bDecision": "rewrite",
+      "bPrompt": "서로 평행한 세 직선을 직선 $p$가 차례로 점 $A$, $B$, $C$에서, 직선 $q$가 차례로 점 $D$, $E$, $F$에서 만난다. $\\overline{AB}=4$, $\\overline{BC}=6$, $\\overline{DE}=x$, $\\overline{EF}=9$일 때 한 학생이 $4:6=9:x$라고 썼다. 잘못된 점을 쓰고, 바른 비례식으로 $x$를 구하시오.",
+      "bAnswer": "$\\overline{AB}$와 대응하는 $\\overline{DE}$가 앞항에 와야 하는데 $\\overline{EF}$를 앞항에 두었다. 바른 비례식은 $4:6=x:9$이고 $x=6$이다.",
+      "bGoal": "비례식의 대응 차례 오류 찾기",
+      "bReason": "'대응 오류'가 무엇인지 보이도록, 실제로 틀린 식을 주고 고치게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "앞 조각 $\\overline{DE}$가 앞항에 와야 한다",
+            "대응하는 차례가 뒤바뀌었다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4:6=x:9$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x=6$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "평행선조건과실제대응선분을명시하여단순한앞조각낱말복원을없앤다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "두 직선의 조각을 같은 차례로 비례식에 놓기",
+      "authorBatch": 47,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3060,
+      "part": "m2plus",
+      "sourceFingerprint": "52aaba56be2c4d091125875813a780f71c2a2c560707cde3d934a6a69125e3d5",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3060
+      },
+      "directReview": null,
+      "cMarkedSentence": "서로 평행한 세 직선을 한 직선이 차례로 $A$, $B$, $C$에서, 다른 직선이 같은 세 직선과 차례로 $D$, $E$, $F$에서 만난다. 대응하는 두 부분을 같은 순서로 쓰면 $\\overline{AB}:\\overline{BC}=\\overline{DE}:$ {$\\overline{EF}$}이다.",
+      "cSlotAnswers": [
+        "$\\overline{EF}$"
+      ],
+      "cStudentSentence": "서로 평행한 세 직선을 한 직선이 차례로 $A$, $B$, $C$에서, 다른 직선이 같은 세 직선과 차례로 $D$, $E$, $F$에서 만난다. 대응하는 두 부분을 같은 순서로 쓰면 $\\overline{AB}:\\overline{BC}=\\overline{DE}:$ □이다.",
+      "cAnswers": [
+        "$\\overline{EF}$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$\\overline{EF}$",
+          "equivalentAnswers": [
+            "$\\overline{EF}$",
+            "$\\overline{FE}$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$\\overline{EF}$",
+          "$\\overline{FE}$"
+        ]
+      ],
+      "proposalFingerprint": "2f974162cafc5319e67b06020f03a05bddf022c9e079e8a441db4ef9e4c89c95",
+      "cAfter": "서로 평행한 세 직선을 한 직선이 차례로 $A$, $B$, $C$에서, 다른 직선이 같은 세 직선과 차례로 $D$, $E$, $F$에서 만난다. 대응하는 두 부분을 같은 순서로 쓰면 $\\overline{AB}:\\overline{BC}=\\overline{DE}:$ {$\\overline{EF}$}이다."
+    }
+  ]
+}

@@ -8,3 +8,6 @@ docs/design/mockups/math-prerequisite-hifi.html text eol=lf
 
 # Keep the retired-corpus aggregate reproducible across Windows worktrees.
 /src/lib/english/listening/creation/assessment-patterns.json text eol=lf
+
+# Preserve captured review input/output bytes and their SHA-256 on Windows.
+/docs/planning/tracks/reports/concept-student-clear-20261006/** -text

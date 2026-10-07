@@ -1,0 +1,1177 @@
+[
+  {
+    "id": "e3-2-5-1-xc11",
+    "sourceIndex": 1192,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1192,
+      "sourceFingerprint": "0a0c619eaf13dcfa4f9e2f5cd95800360a113bcc85df48ec06f6868c0b2dba9b",
+      "part": "e3plus",
+      "id": "e3-2-5-1-xc11",
+      "section": "초3::2-5 들이와 무게::2-5-1 들이 비교하기",
+      "term": "작은 컵과 큰 컵",
+      "kind": "성질",
+      "level": "중",
+      "definition": "같은 그릇을 매번 가득 담은 컵으로 채울 때 작은 컵을 쓰면 큰 컵을 쓸 때보다 부어야 하는 횟수가 {많다}.",
+      "studentC": "같은 그릇을 매번 가득 담은 컵으로 채울 때 작은 컵을 쓰면 큰 컵을 쓸 때보다 부어야 하는 횟수가 □.",
+      "answers": [
+        "많다"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-5-1-xc11",
+      "proposalFingerprint": "cdfeb23d9a15345c95c0991fb5da83a922900eadcf3af3b6b53564927b5b5a39",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "같은 물통을 작은 컵으로 채울 때와 큰 컵으로 채울 때, 어느 컵으로 더 여러 번 부어야 하는지 쓰고 그 까닭을 설명해 보세요.",
+      "bAnswer": "작은 컵으로 더 여러 번 부어야 한다. 한 번에 붓는 양이 적어서 같은 양을 채우려면 횟수가 늘어나기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "작은 컵"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 번에 붓는 양이 적다"
+          ]
+        }
+      ],
+      "bGoal": "컵의 크기와 부은 횟수의 관계 설명",
+      "bReason": "판단과 이유를 함께 쓰는 자립 질문으로 만듦",
+      "cDecision": "keep",
+      "cReason": "조건이 문장에 다 있고 '많다/적다' 가운데 고르는 짧은 비교 빈칸임",
+      "cSlotEquivalents": [],
+      "answerNotes": "'많다', '더 많다' 인정."
+    },
+    "currentCMarkedSentence": "같은 그릇을 매번 가득 담은 컵으로 채울 때 작은 컵을 쓰면 큰 컵을 쓸 때보다 부어야 하는 횟수가 {많다}.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "많다",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "마지막부분컵이나넘침이있으면작은컵·큰컵의횟수가같을수있다;두컵모두가득양으로빈그릇을꼭맞게채운경우로조건을 한정한다.",
+      "c": "C도두측정이모두남김없이꼭맞는가득컵횟수인조건을주어많다가 참이되게 한다."
+    }
+  },
+  {
+    "id": "e3-2-5-1-xc12",
+    "sourceIndex": 1193,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1193,
+      "sourceFingerprint": "78050cd504381ce7de0b447489a93e675c59de0e13df29671e4f497498240dbf",
+      "part": "e3plus",
+      "id": "e3-2-5-1-xc12",
+      "section": "초3::2-5 들이와 무게::2-5-1 들이 비교하기",
+      "term": "눈으로 어림한 들이",
+      "kind": "성질",
+      "level": "중",
+      "definition": "높이와 폭이 모두 다른 그릇은 눈으로만 보아서는 들이를 알기 어려워 직접 {물을 부어} 비교한다.",
+      "studentC": "높이와 폭이 모두 다른 그릇은 눈으로만 보아서는 들이를 알기 어려워 직접 □ 비교한다.",
+      "answers": [
+        "물을 부어"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-5-1-xc12",
+      "proposalFingerprint": "c384f45c26ebd1cd8051b63b202d4fd060cea82e07c4d06dd1a2905f1685e890",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "키가 크고 좁은 병과 키가 작고 넓은 그릇이 있습니다. 눈으로만 보고 들이를 비교하기 어려운 까닭과, 정확하게 비교하는 방법을 한 가지 써 보세요.",
+      "bAnswer": "높이와 폭이 모두 달라 어느 쪽에 더 많이 담기는지 눈으로 알 수 없다. 한쪽에 물을 가득 채워 다른 쪽에 옮겨 부어 보면 알 수 있다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "높이와 폭이 모두 달라 눈으로 알기 어렵다"
+          ]
+        },
+        {
+          "anyOf": [
+            "직접 물을 부어 비교한다"
+          ]
+        }
+      ],
+      "bGoal": "눈어림의 한계와 직접 비교의 필요성 설명",
+      "bReason": "두 그릇의 모양을 말로 정해 주어 그림 없이도 답할 수 있게 함",
+      "cDecision": "rewrite",
+      "cReason": "'물을 부어'는 '담아', '옮겨' 등 말꼴이 흩어져 낱말 하나만 쓰게 줄임",
+      "cSlotEquivalents": [],
+      "answerNotes": "'물', '쌀', '콩' 등 부을 수 있는 것 인정. B의 방법은 같은 컵으로 몇 번 들어가는지 세기, 똑같은 통에 옮겨 높이 보기도 정답."
+    },
+    "currentCMarkedSentence": "높이와 폭이 모두 다른 두 그릇은 눈으로만 보아서는 어느 쪽 들이가 큰지 알기 어렵다. 그래서 직접 {물}을 부어 보고 비교한다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "물",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "한가지방법을묻기에직접옮겨붓기외동일통높이·동일컵수등의유효방법도기준대안으로 인정한다.",
+      "c": "직접붓는재료는물외쌀·콩도가능하고재료말복원이수학목표를확인못하므로C제외를 제안한다."
+    }
+  },
+  {
+    "id": "e3-2-5-1-xc18",
+    "sourceIndex": 1198,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1198,
+      "sourceFingerprint": "09011451e5d98c85c4df4309e3ea25c3bbac598923015b2d5a8e3c59a728f771",
+      "part": "e3plus",
+      "id": "e3-2-5-1-xc18",
+      "section": "초3::2-5 들이와 무게::2-5-1 들이 비교하기",
+      "term": "넘친 물과 들이의 차",
+      "kind": "성질",
+      "level": "상",
+      "definition": "큰 그릇에 가득 담은 물을 빈 작은 그릇에 부어 {넘친 물의 양}은 두 그릇의 들이의 차와 같다.",
+      "studentC": "큰 그릇에 가득 담은 물을 빈 작은 그릇에 부어 □은 두 그릇의 들이의 차와 같다.",
+      "answers": [
+        "넘친 물의 양"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-5-1-xc18",
+      "proposalFingerprint": "b8a4391ce1987abeffc2c1e1d9cbf0eea23f375275c0182ef8fa4038914820c1",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "컵 $5$개만큼 들어가는 큰 그릇에 물을 가득 담아, 컵 $3$개만큼 들어가는 빈 작은 그릇에 모두 부었습니다. 넘친 물은 컵 몇 개만큼인지 쓰고 그 까닭을 설명해 보세요.",
+      "bAnswer": "컵 $2$개만큼이다. 작은 그릇에는 $3$컵까지만 담기므로 $5$컵 중 나머지 $5-3=2$(컵)가 넘친다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "컵 $2$개만큼"
+          ]
+        },
+        {
+          "anyOf": [
+            "작은 그릇에 담기는 만큼을 빼고 남은 물이 넘친다"
+          ]
+        }
+      ],
+      "bGoal": "넘친 물의 양이 두 들이의 차임을 설명",
+      "bReason": "컵 수로 두 들이를 정해 넘친 양을 구하고 이유를 쓰게 함",
+      "cDecision": "rewrite",
+      "cReason": "'넘친 물의 양'은 문장 주어 전체를 복원해야 해서 컵 수를 주고 차를 구하는 계산 빈칸으로 바꿈",
+      "cSlotEquivalents": []
+    },
+    "currentCMarkedSentence": "컵 $5$개만큼 들어가는 큰 그릇에 가득 담은 물을 컵 $3$개만큼 들어가는 빈 작은 그릇에 모두 부으면, 컵 {$2$}개만큼의 물이 넘친다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$2$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "5컵·3컵은같은컵으로잰들이라고명시하여두컵차를확정한다.",
+      "c": "C도같은컵이라는단위기준을주어2의물차를 확정한다."
+    }
+  },
+  {
+    "id": "e3-2-5-1-xc26",
+    "sourceIndex": 1203,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1203,
+      "sourceFingerprint": "9ee94f278b52b4b421a8c572cfb760c31161d277130a0d237e82cbd98a81aac3",
+      "part": "e3plus",
+      "id": "e3-2-5-1-xc26",
+      "section": "초3::2-5 들이와 무게::2-5-1 들이 비교하기",
+      "term": "어림과 실제",
+      "kind": "방법",
+      "level": "상",
+      "definition": "어림한 들이와 실제로 잰 들이의 {차}가 작을수록 잘 어림한 것이다.",
+      "studentC": "어림한 들이와 실제로 잰 들이의 □가 작을수록 잘 어림한 것이다.",
+      "answers": [
+        "차"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-5-1-xc26",
+      "proposalFingerprint": "c8760425e6eb01c757c451f8f646c9a38962c52063d99f99326fed7d17c3cc0d",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "실제 들이가 $500\\,\\mathrm{mL}$인 물병을 민지는 약 $400\\,\\mathrm{mL}$, 준호는 약 $550\\,\\mathrm{mL}$로 어림했습니다. 누가 더 잘 어림했는지 쓰고, 그 까닭을 쓰세요.",
+      "bAnswer": "준호입니다. 실제 들이와의 차가 민지는 $100\\,\\mathrm{mL}$, 준호는 $50\\,\\mathrm{mL}$로 준호가 더 작기 때문입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "어림한 값과 실제 값의 차를 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "차가 작은 쪽이 더 잘 어림한 것이다"
+          ]
+        }
+      ],
+      "bGoal": "어림을 잘했는지 실제 값과의 차로 판단함을 설명",
+      "bReason": "두 사람의 어림값을 주어 판단 기준을 스스로 쓰게 함",
+      "cDecision": "keep",
+      "cReason": "빈칸 답이 '차' 한 낱말이고 '□가 작을수록'으로 답의 종류가 분명함",
+      "cSlotEquivalents": [],
+      "answerNotes": "'차', '차이' 허용. '합'은 오답"
+    },
+    "currentCMarkedSentence": "어림한 들이와 실제로 잰 들이의 {차}가 작을수록 잘 어림한 것이다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "차",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "누구인지요청했지만기준에준호선택이빠져있다;준호와550의실제500근접성또는차50<100의이유를 넣는다.",
+      "c": "작은차가좋은어림이라는수치비교기준이다."
+    }
+  },
+  {
+    "id": "e3-2-5-2-xc6",
+    "sourceIndex": 1209,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1209,
+      "sourceFingerprint": "3dc0e8394e998778d82a553bdbc8447cec57d83d7fd56fec1af072a53e55b3bf",
+      "part": "e3plus",
+      "id": "e3-2-5-2-xc6",
+      "section": "초3::2-5 들이와 무게::2-5-2 들이의 단위",
+      "term": "몇 $\\mathrm{L}$ 몇 $\\mathrm{mL}$로 쓰기",
+      "kind": "정의",
+      "level": "하",
+      "definition": "$\\mathrm{L}$로 딱 떨어지지 않는 들이는 {몇 $\\mathrm{L}$ 몇 $\\mathrm{mL}$}로 쓴다.",
+      "example": {
+        "prompt": "$1\\,\\mathrm{L}\\ 300\\,\\mathrm{mL}$에서 $300$이 세는 것은?",
+        "answer": "$1\\,\\mathrm{L}$를 넘는 $\\mathrm{mL}$"
+      },
+      "studentC": "$\\mathrm{L}$로 딱 떨어지지 않는 들이는 □로 쓴다.",
+      "answers": [
+        "몇 $\\mathrm{L}$ 몇 $\\mathrm{mL}$"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-5-2-xc6",
+      "proposalFingerprint": "e54b35691dc4f66b10cd7566b6128a95312905f90009e61067e8d169ce300835",
+      "learningRole": "definition",
+      "bDecision": "rewrite",
+      "bPrompt": "$1\\,\\mathrm{L}\\ 300\\,\\mathrm{mL}$는 어떤 들이인지, $1$과 $300$이 각각 무엇을 나타내는지 넣어 설명하세요.",
+      "bAnswer": "$1\\,\\mathrm{L}$보다 $300\\,\\mathrm{mL}$ 더 많은 들이입니다. $1$은 $\\mathrm{L}$의 수이고, $300$은 $1\\,\\mathrm{L}$를 넘는 나머지 $\\mathrm{mL}$의 수입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1\\,\\mathrm{L}$보다 $300\\,\\mathrm{mL}$ 더 많은 들이"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$은 L의 수, $300$은 남는 mL의 수"
+          ]
+        }
+      ],
+      "bGoal": "몇 L 몇 mL 표기의 뜻 설명",
+      "bReason": "'몇 L 몇 mL'라는 형식 이름 대신 실제 들이 하나로 두 수의 뜻을 묻게 함",
+      "cDecision": "rewrite",
+      "cReason": "원문 답 '몇 L 몇 mL'는 형식 이름을 통째로 떠올려야 하는 구절임. 실제 수를 쓰는 빈칸으로 바꿈",
+      "cSlotEquivalents": []
+    },
+    "currentCMarkedSentence": "$1\\,\\mathrm{L}$보다 $300\\,\\mathrm{mL}$ 더 많은 들이는 {$1$}$\\,\\mathrm{L}$ {$300$}$\\,\\mathrm{mL}$라고 쓴다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$1$",
+        "equivalents": []
+      },
+      {
+        "expected": "$300$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "두단위성분1·300의뜻을설명하는B는분명하다.",
+      "c": "같은단위의숫자1·300을그대로복사하는C는1300mL변환으로고치거나단순복합표기중복으로 제외한다."
+    }
+  },
+  {
+    "id": "e3-2-5-2-xc8",
+    "sourceIndex": 1210,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1210,
+      "sourceFingerprint": "d85b9321311d4ce10c906bf9bec0dad2b30cdf18449f33566fd1789bdc48536a",
+      "part": "e3plus",
+      "id": "e3-2-5-2-xc8",
+      "section": "초3::2-5 들이와 무게::2-5-2 들이의 단위",
+      "term": "눈금 읽는 자세",
+      "kind": "방법",
+      "level": "하",
+      "definition": "비커나 계량컵의 눈금을 읽을 때는 물 윗면과 {눈높이}를 맞춘다.",
+      "studentC": "비커나 계량컵의 눈금을 읽을 때는 물 윗면과 □를 맞춘다.",
+      "answers": [
+        "눈높이"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-5-2-xc8",
+      "proposalFingerprint": "45690328292107d4b3ed586256b660109f8cb5ceca1eae0fb0b79ba640ee1ef7",
+      "learningRole": "naming",
+      "bDecision": "rewrite",
+      "bPrompt": "계량컵에 담긴 물의 눈금을 읽을 때 눈을 어디에 두어야 하는지 쓰고, 위에서 내려다보며 읽으면 안 되는 까닭을 쓰세요.",
+      "bAnswer": "눈을 물 윗면과 같은 높이에 맞춥니다. 위에서 내려다보면 물 윗면이 가리키는 눈금이 실제와 다르게 보여 잘못 읽을 수 있기 때문입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "눈높이를 물 윗면에 맞춘다"
+          ]
+        },
+        {
+          "anyOf": [
+            "비스듬히 보면 눈금을 잘못 읽는다"
+          ]
+        }
+      ],
+      "bGoal": "눈금 읽는 자세와 그 까닭 설명",
+      "bReason": "어디에 눈을 두는지와 잘못 읽는 경우를 나누어 물어 답의 범위를 정함",
+      "cDecision": "keep",
+      "cReason": "'물 윗면과 □를 맞춘다'에서 답이 익숙한 낱말 '눈높이' 하나로 정해짐",
+      "cSlotEquivalents": [],
+      "answerNotes": "'눈높이', '눈의 높이', '눈' 허용"
+    },
+    "currentCMarkedSentence": "비커나 계량컵의 눈금을 읽을 때는 물 윗면과 {눈높이}를 맞춘다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "눈높이",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "눈높이의측정절차와오독이유를묻는현재역할은naming보다procedure가맞아역할교정을 제안한다.",
+      "c": "물윗면과눈높이정렬이라는실제방법이며눈금읽는자세예가 도움이 된다."
+    }
+  },
+  {
+    "id": "e3-2-5-2-xc15",
+    "sourceIndex": 1217,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1217,
+      "sourceFingerprint": "ae55708dbd719bd95b2b93fe94c8a209488b852cbdffb2168322af00947056a4",
+      "part": "e3plus",
+      "id": "e3-2-5-2-xc15",
+      "section": "초3::2-5 들이와 무게::2-5-2 들이의 단위",
+      "term": "눈금 한 칸의 들이",
+      "kind": "방법",
+      "level": "중",
+      "definition": "같은 들이씩 나눈 눈금에서 한 칸의 들이는 {나눈 들이를 칸 수로} 똑같이 나누어 안다.",
+      "example": {
+        "prompt": "같은 들이씩 나눈 눈금에서 한 칸의 들이를 나눗셈으로 구하는 까닭은?",
+        "answer": "칸마다 들이가 같아서"
+      },
+      "studentC": "같은 들이씩 나눈 눈금에서 한 칸의 들이는 □ 똑같이 나누어 안다.",
+      "answers": [
+        "나눈 들이를 칸 수로"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-5-2-xc15",
+      "proposalFingerprint": "498bb16731dcca8abf23a6b0cad192bceeb7bbb54a6148830c4a1ddf19663006",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "비커의 눈금 $0$부터 $100\\,\\mathrm{mL}$까지가 똑같이 $5$칸으로 나누어져 있습니다. 눈금 한 칸의 들이를 구하는 방법과 답을 쓰세요.",
+      "bAnswer": "칸마다 들이가 같으므로 $100\\,\\mathrm{mL}$를 $5$칸으로 똑같이 나눕니다. $100\\div5=20$이므로 한 칸은 $20\\,\\mathrm{mL}$입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "칸마다 들이가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "전체 들이를 칸 수로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$20\\,\\mathrm{mL}$"
+          ]
+        }
+      ],
+      "bGoal": "눈금 한 칸의 들이를 나눗셈으로 구하는 방법 설명",
+      "bReason": "원문은 수가 없는 일반 문장이라 100 mL·5칸 상황을 새로 만들어 자립시킴",
+      "cDecision": "rewrite",
+      "cReason": "원문 답 '나눈 들이를 칸 수로'는 뜻이 불분명한 구절을 통째로 복원해야 함. 실제 눈금 계산으로 바꿈",
+      "cSlotEquivalents": [],
+      "exampleNeeded": "$0$과 $100\\,\\mathrm{mL}$ 사이가 똑같이 $5$칸으로 나뉜 비커 눈금 그림(글만으로도 풀 수 있음)",
+      "coreAfter": "이웃한 큰 눈금의 들이 {차}를 두 눈금 사이의 {칸 수}로 나누면 한 칸의 들이를 구한다.",
+      "coreReason": "나눈들이를칸수로라는 표적의두량을이웃눈금의차와칸수로명시한다. 전체높이가아닌눈금사이차를나눈다는 실제방법을보존한다."
+    },
+    "currentCMarkedSentence": "비커의 눈금 $0$부터 $100\\,\\mathrm{mL}$까지가 똑같이 $5$칸으로 나누어져 있으면 눈금 한 칸은 {$20$}$\\,\\mathrm{mL}$이다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$20$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "똑같이5칸이라는이미준조건을별도필수로되풀이하지않고100÷5의방법·20mL결과를기준에 남긴다.",
+      "c": "같은5칸의한칸20이며일반정의도눈금차÷칸수를 명시한다."
+    }
+  },
+  {
+    "id": "e3-2-5-2-xc17",
+    "sourceIndex": 1219,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1219,
+      "sourceFingerprint": "39ca27770ee1647cac9e210394e19b5f272c3c90e109810948f97184d128bd8c",
+      "part": "e3plus",
+      "id": "e3-2-5-2-xc17",
+      "section": "초3::2-5 들이와 무게::2-5-2 들이의 단위",
+      "term": "$\\mathrm{L}$가 같을 때 비교",
+      "kind": "방법",
+      "level": "중",
+      "definition": "$\\mathrm{L}$가 같은 두 들이는 {$\\mathrm{mL}$의 수}만 비교하면 된다.",
+      "studentC": "$\\mathrm{L}$가 같은 두 들이는 □만 비교하면 된다.",
+      "answers": [
+        "$\\mathrm{mL}$의 수"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-5-2-xc17",
+      "proposalFingerprint": "41ec6ae05dd4570e5304201942882b3cba74f29c15482bf9b0c212e8e52a970e",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "$2\\,\\mathrm{L}\\ 300\\,\\mathrm{mL}$와 $2\\,\\mathrm{L}\\ 700\\,\\mathrm{mL}$ 중 어느 쪽이 더 많은지 쓰고, 어떻게 비교했는지 설명하세요.",
+      "bAnswer": "$2\\,\\mathrm{L}\\ 700\\,\\mathrm{mL}$가 더 많습니다. $\\mathrm{L}$의 수가 $2$로 같으므로 $\\mathrm{mL}$의 수를 비교하면 $700$이 $300$보다 크기 때문입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "L의 수가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "mL의 수를 비교한다"
+          ]
+        }
+      ],
+      "bGoal": "L가 같은 두 들이를 비교하는 방법 설명",
+      "bReason": "두 들이를 직접 주어 비교 방법을 쓰게 함",
+      "cDecision": "rewrite",
+      "cReason": "원문은 예가 없어 '□만 비교'에 무엇을 쓸지 알기 어려움. 두 들이를 보여 주고 단위 하나를 쓰게 함",
+      "cSlotEquivalents": [],
+      "answerNotes": "'mL', '밀리리터' 허용"
+    },
+    "currentCMarkedSentence": "$2\\,\\mathrm{L}\\ 300\\,\\mathrm{mL}$와 $2\\,\\mathrm{L}\\ 700\\,\\mathrm{mL}$처럼 $\\mathrm{L}$의 수가 같은 두 들이는 {$\\mathrm{mL}$}의 수가 큰 쪽이 더 많다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$\\mathrm{mL}$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "더많은쪽을쓰라고했으므로실제2L700mL선택도기준에포함해야하며현재기준은방법만있다.",
+      "c": "L같을때비교할mL의수라는방법이다."
+    }
+  },
+  {
+    "id": "e3-2-5-2-xc21",
+    "sourceIndex": 1221,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1221,
+      "sourceFingerprint": "5d4effeb316bd4efd16a89d26c35f9a137f0557b6221493850c13e7a4516984f",
+      "part": "e3plus",
+      "id": "e3-2-5-2-xc21",
+      "section": "초3::2-5 들이와 무게::2-5-2 들이의 단위",
+      "term": "$1\\,\\mathrm{L}$보다 많고 $10\\,\\mathrm{L}$보다 적은 들이를 $\\mathrm{mL}$로만 쓴 수",
+      "kind": "성질",
+      "level": "상",
+      "definition": "$1\\,\\mathrm{L}$보다 많고 $10\\,\\mathrm{L}$보다 적은 들이를 $\\mathrm{mL}$로만 쓰면 $1000$보다 크고 $10000$보다 작아 {네 자리 수}가 된다.",
+      "studentC": "$1\\,\\mathrm{L}$보다 많고 $10\\,\\mathrm{L}$보다 적은 들이를 $\\mathrm{mL}$로만 쓰면 $1000$보다 크고 $10000$보다 작아 □가 된다.",
+      "answers": [
+        "네 자리 수"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-5-2-xc21",
+      "proposalFingerprint": "20f26c56f5544f01fcb07d28fb96d1a7fed6b939cb525fb3311e47167a11f76d",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "$1\\,\\mathrm{L}$보다 많고 $10\\,\\mathrm{L}$보다 적은 들이를 $\\mathrm{mL}$로만 나타내면 몇 자리 수가 되는지 쓰고, 그 까닭을 설명하세요.",
+      "bAnswer": "네 자리 수가 됩니다. $1\\,\\mathrm{L}=1000\\,\\mathrm{mL}$, $10\\,\\mathrm{L}=10000\\,\\mathrm{mL}$이므로 $1000$보다 크고 $10000$보다 작은 수가 되기 때문입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "네 자리 수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1000$보다 크고 $10000$보다 작다"
+          ]
+        }
+      ],
+      "bGoal": "1 L~10 L 사이 들이를 mL로 쓴 수의 자릿수와 까닭 설명",
+      "bReason": "자릿수와 까닭 두 가지로 답할 범위를 밝힘",
+      "cDecision": "keep",
+      "cReason": "'$1000$보다 크고 $10000$보다 작아'라는 단서가 문장에 있어 답 '네 자리 수'가 분명함",
+      "cSlotEquivalents": [],
+      "answerNotes": "'네 자리 수', '4자리 수' 허용"
+    },
+    "currentCMarkedSentence": "$1\\,\\mathrm{L}$보다 많고 $10\\,\\mathrm{L}$보다 적은 들이를 $\\mathrm{mL}$로만 쓰면 $1000$보다 크고 $10000$보다 작아 {네 자리 수}가 된다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "네 자리 수",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "1000.5mL도구간안이므로mL로썼을때자연수가되는들이조건을명시해야네자리수라는단정이정확하다.",
+      "c": "C도mL수자연수조건을보완하거나구체적인복합들이의자릿수를 묻는다."
+    }
+  },
+  {
+    "id": "e3-2-5-3-xc3",
+    "sourceIndex": 1224,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1224,
+      "sourceFingerprint": "894ca945e707a9b342950fe7cdc208a098fbdba85377196bf077d135ed571a4b",
+      "part": "e3plus",
+      "id": "e3-2-5-3-xc3",
+      "section": "초3::2-5 들이와 무게::2-5-3 들이의 합과 차",
+      "term": "세로셈의 줄 맞추기",
+      "kind": "방법",
+      "level": "하",
+      "definition": "세로로 계산할 때는 $\\mathrm{L}$는 $\\mathrm{L}$ 아래에, $\\mathrm{mL}$는 {$\\mathrm{mL}$} 아래에 줄을 맞추어 쓴다.",
+      "studentC": "세로로 계산할 때는 $\\mathrm{L}$는 $\\mathrm{L}$ 아래에, $\\mathrm{mL}$는 □ 아래에 줄을 맞추어 쓴다.",
+      "answers": [
+        "$\\mathrm{mL}$"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-5-3-xc3",
+      "proposalFingerprint": "b24070669f1b64c1bffd2f3d3049e41c81446f4aae3203eae096529de02b49f9",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "$2\\,\\mathrm{L}\\ 300\\,\\mathrm{mL}+1\\,\\mathrm{L}\\ 400\\,\\mathrm{mL}$를 세로로 계산할 때 수를 어떻게 줄 맞추어 쓰는지와 그 까닭을 쓰세요.",
+      "bAnswer": "$\\mathrm{L}$는 $\\mathrm{L}$ 아래에, $\\mathrm{mL}$는 $\\mathrm{mL}$ 아래에 맞추어 씁니다. 같은 단위끼리 계산해야 하기 때문입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "L는 L끼리, mL는 mL끼리 줄을 맞춘다"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은 단위끼리 계산한다"
+          ]
+        }
+      ],
+      "bGoal": "들이 세로셈에서 줄을 맞추는 방법과 까닭 설명",
+      "bReason": "식 하나를 주어 줄 맞추는 방법과 이유를 묻게 함. 계산 결과는 묻지 않음",
+      "cDecision": "keep",
+      "cReason": "앞부분 'L는 L 아래에'와 짝을 이루어 답 '$\\mathrm{mL}$'가 분명함",
+      "cSlotEquivalents": [],
+      "answerNotes": "'mL', '밀리리터' 허용"
+    },
+    "currentCMarkedSentence": "세로로 계산할 때는 $\\mathrm{L}$는 $\\mathrm{L}$ 아래에, $\\mathrm{mL}$는 {$\\mathrm{mL}$} 아래에 줄을 맞추어 쓴다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$\\mathrm{mL}$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "두단위위아래정렬과같은단위계산의B는분명하다.",
+      "c": "mL는mL의단어복사대신300아래쓸실제400같은수정렬을묻는C로 고친다."
+    }
+  },
+  {
+    "id": "e3-2-5-3-xc8",
+    "sourceIndex": 1227,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1227,
+      "sourceFingerprint": "cae75e140ec347543719324ab747a6c603fb5e0cec965341cd44ce4180a8be0e",
+      "part": "e3plus",
+      "id": "e3-2-5-3-xc8",
+      "section": "초3::2-5 들이와 무게::2-5-3 들이의 합과 차",
+      "term": "답에 단위 붙이기",
+      "kind": "방법",
+      "level": "하",
+      "definition": "물의 양을 적을 때 $\\mathrm{L}$와 $\\mathrm{mL}$ 중 무엇으로 잰 양인지 알 수 있도록, 답의 수 뒤에 {단위}를 꼭 붙인다.",
+      "studentC": "물의 양을 적을 때 $\\mathrm{L}$와 $\\mathrm{mL}$ 중 무엇으로 잰 양인지 알 수 있도록, 답의 수 뒤에 □를 꼭 붙인다.",
+      "answers": [
+        "단위"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-5-3-xc8",
+      "proposalFingerprint": "57805174549e5752558d08b2eedcbb31657b79a3bec8bec44d5bc14724332533",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "물의 양을 계산한 답을 '$500$'이라고만 쓰면 안 되는 까닭을 쓰세요.",
+      "bAnswer": "$500\\,\\mathrm{L}$인지 $500\\,\\mathrm{mL}$인지 알 수 없기 때문입니다. 수 뒤에 단위를 붙여야 양이 정해집니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "단위가 없으면 L인지 mL인지 알 수 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "수 뒤에 단위를 붙인다"
+          ]
+        }
+      ],
+      "bGoal": "답에 단위를 붙여야 하는 까닭 설명",
+      "bReason": "단위를 빼고 쓴 답 '500'을 보여 주어 까닭만 묻게 함",
+      "cDecision": "keep",
+      "cReason": "'L와 mL 중 무엇으로 잰 양인지'라는 단서가 있어 답 '단위'가 분명함",
+      "cSlotEquivalents": [],
+      "answerNotes": "'단위' 정답. 'L', 'mL'만 쓰면 오답"
+    },
+    "currentCMarkedSentence": "물의 양을 적을 때 $\\mathrm{L}$와 $\\mathrm{mL}$ 중 무엇으로 잰 양인지 알 수 있도록, 답의 수 뒤에 {단위}를 꼭 붙인다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "단위",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "단위를몰라L·mL를구별못한다는이유면충분하므로단위를붙인다는추가행동을별도필수로 요구하지 않는다.",
+      "c": "알려줄측정단위라는기본양표현조건이다."
+    }
+  },
+  {
+    "id": "e3-2-5-3-xc12",
+    "sourceIndex": 1229,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1229,
+      "sourceFingerprint": "1fbeda3d32cc1a4a47b7c30b9d5bcf81831c7c922511602086e06e9dcb91f2dc",
+      "part": "e3plus",
+      "id": "e3-2-5-3-xc12",
+      "section": "초3::2-5 들이와 무게::2-5-3 들이의 합과 차",
+      "term": "내림이 있는 들이의 뺄셈",
+      "kind": "성질",
+      "level": "중",
+      "definition": "들이의 뺄셈에서 $1\\,\\mathrm{L}$를 $1000\\,\\mathrm{mL}$로 바꾸어 빼면 $\\mathrm{L}$끼리 뺄 때 빼어지는 수가 {$1$ 작아진다}.",
+      "studentC": "들이의 뺄셈에서 $1\\,\\mathrm{L}$를 $1000\\,\\mathrm{mL}$로 바꾸어 빼면 $\\mathrm{L}$끼리 뺄 때 빼어지는 수가 □.",
+      "answers": [
+        "$1$ 작아진다"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-5-3-xc12",
+      "proposalFingerprint": "85065a00937515e7d3b540efe9bc898692928a43eeb513311d389faab7d36f19",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "$3\\,\\mathrm{L}\\ 200\\,\\mathrm{mL}-1\\,\\mathrm{L}\\ 500\\,\\mathrm{mL}$에서 $200\\,\\mathrm{mL}$에서 $500\\,\\mathrm{mL}$를 뺄 수 없습니다. 이럴 때 어떻게 계산하는지 설명하고 답을 쓰세요.",
+      "bAnswer": "$3\\,\\mathrm{L}$ 중 $1\\,\\mathrm{L}$를 $1000\\,\\mathrm{mL}$로 바꾸어 $2\\,\\mathrm{L}\\ 1200\\,\\mathrm{mL}$로 만든 뒤 같은 단위끼리 뺍니다. 답은 $1\\,\\mathrm{L}\\ 700\\,\\mathrm{mL}$입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1\\,\\mathrm{L}$를 $1000\\,\\mathrm{mL}$로 바꾼다"
+          ]
+        },
+        {
+          "anyOf": [
+            "L의 수는 $1$ 작아진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1\\,\\mathrm{L}\\ 700\\,\\mathrm{mL}$"
+          ]
+        }
+      ],
+      "bGoal": "들이의 뺄셈에서 내림하는 방법 설명",
+      "bReason": "원문에 예가 없어 내림이 필요한 식을 새로 만들어 방법을 쓰게 함",
+      "cDecision": "rewrite",
+      "cReason": "원문의 '빼어지는 수'는 초3에게 낯설고 어느 수가 줄어드는지 알기 어려움. 실제 내림 계산으로 바꿈",
+      "cSlotEquivalents": [],
+      "coreAfter": "들이의 뺄셈에서 $\\mathrm{mL}$끼리 뺄 수 없으면 $1\\,\\mathrm{L}$를 $1000\\,\\mathrm{mL}$로 바꾸어 뺀다. 이때 처음 들이의 $\\mathrm{L}$의 수는 {$1$ 작아진다}.",
+      "coreReason": "1작아진다라는 원래변화표적을보존하고 처음들이의L수라는감소대상을명시한다."
+    },
+    "currentCMarkedSentence": "$3\\,\\mathrm{L}\\ 200\\,\\mathrm{mL}-1\\,\\mathrm{L}\\ 500\\,\\mathrm{mL}$는 $3\\,\\mathrm{L}\\ 200\\,\\mathrm{mL}$를 $2\\,\\mathrm{L}$ {$1200$}$\\,\\mathrm{mL}$로 바꾸어 빼므로 답은 {$1$}$\\,\\mathrm{L}$ {$700$}$\\,\\mathrm{mL}$이다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$1200$",
+        "equivalents": []
+      },
+      {
+        "expected": "$1$",
+        "equivalents": []
+      },
+      {
+        "expected": "$700$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "계산방법을일반적으로묻기에모두mL로변환하는방법도옳다;L한개를바꾸어계산하는방법이라고범위를정하거나다른방법을 인정한다.",
+      "c": "C는2L로받아내리는차례를고정해1200·1·700을구하며일반정의도감소대상을 명시한다."
+    }
+  },
+  {
+    "id": "e3-2-5-3-xc25",
+    "sourceIndex": 1233,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1233,
+      "sourceFingerprint": "ec91e93c9193aae4cf044ea9be1cad9d1cbaac2fda9d936e58a46bca4bb7f6d2",
+      "part": "e3plus",
+      "id": "e3-2-5-3-xc25",
+      "section": "초3::2-5 들이와 무게::2-5-3 들이의 합과 차",
+      "term": "들이의 합 어림하기",
+      "kind": "방법",
+      "level": "상",
+      "definition": "들이의 합을 가까운 몇 리터로 어림할 때 $2\\,\\mathrm{L}\\;800\\,\\mathrm{mL}$는 약 {$3\\,\\mathrm{L}$}, $1\\,\\mathrm{L}\\;300\\,\\mathrm{mL}$는 약 {$1\\,\\mathrm{L}$}로 바꾸어 더한다. 이 값으로 계산한 답이 맞는지 짐작한다.",
+      "example": {
+        "prompt": "$1\\,\\mathrm{L}\\ 900\\,\\mathrm{mL}+2\\,\\mathrm{L}\\ 100\\,\\mathrm{mL}$를 약 $4\\,\\mathrm{L}$로 어림하는 까닭은?",
+        "answer": "약 $2\\,\\mathrm{L}$ 두 개라서"
+      },
+      "studentC": "들이의 합을 가까운 몇 리터로 어림할 때 $2\\,\\mathrm{L}\\;800\\,\\mathrm{mL}$는 약 □, $1\\,\\mathrm{L}\\;300\\,\\mathrm{mL}$는 약 □로 바꾸어 더한다. 이 값으로 계산한 답이 맞는지 짐작한다.",
+      "answers": [
+        "$3\\,\\mathrm{L}$",
+        "$1\\,\\mathrm{L}$"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-5-3-xc25",
+      "proposalFingerprint": "f944bb932fb4cffe1fe73cf2c9feeac8f7e42f5ff9d0860454cd616a34c4785e",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "$2\\,\\mathrm{L}\\ 800\\,\\mathrm{mL}+1\\,\\mathrm{L}\\ 300\\,\\mathrm{mL}$의 합을 가까운 몇 $\\mathrm{L}$로 어림하는 방법을 설명하고, 약 몇 $\\mathrm{L}$인지 쓰세요.",
+      "bAnswer": "$2\\,\\mathrm{L}\\ 800\\,\\mathrm{mL}$는 약 $3\\,\\mathrm{L}$, $1\\,\\mathrm{L}\\ 300\\,\\mathrm{mL}$는 약 $1\\,\\mathrm{L}$로 보고 더합니다. 합은 약 $4\\,\\mathrm{L}$입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "각 들이를 가까운 몇 L로 바꾼다"
+          ]
+        },
+        {
+          "anyOf": [
+            "약 $4\\,\\mathrm{L}$"
+          ]
+        }
+      ],
+      "bGoal": "들이의 합을 가까운 L로 어림하는 방법 설명",
+      "bReason": "원문 정의에 있는 두 들이를 그대로 써서 어림 방법과 결과를 쓰게 함",
+      "cDecision": "keep",
+      "cReason": "'가까운 몇 리터로 어림'이라는 기준과 두 들이가 문장에 있어 답 $3\\,\\mathrm{L}$, $1\\,\\mathrm{L}$가 분명한 짧은 계산임",
+      "cSlotEquivalents": [],
+      "answerNotes": "'3 L', '3 리터' 표기 모두 허용. 첫 빈칸에 $2\\,\\mathrm{L}$를 쓰면 오답"
+    },
+    "currentCMarkedSentence": "들이의 합을 가까운 몇 리터로 어림할 때 $2\\,\\mathrm{L}\\;800\\,\\mathrm{mL}$는 약 {$3\\,\\mathrm{L}$}, $1\\,\\mathrm{L}\\;300\\,\\mathrm{mL}$는 약 {$1\\,\\mathrm{L}$}로 바꾸어 더한다. 이 값으로 계산한 답이 맞는지 짐작한다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$3\\,\\mathrm{L}$",
+        "equivalents": []
+      },
+      {
+        "expected": "$1\\,\\mathrm{L}$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "합을가까운L로어림하는방법에는실제합4L100mL를4L로어림하는방법도있다;각각어림해더하라는범위로좁히거나대안을 인정한다.",
+      "c": "C는각들이의가까운3L·1L를묻는범위가 명확하다."
+    }
+  },
+  {
+    "id": "e3-2-5-4-xc1",
+    "sourceIndex": 1235,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1235,
+      "sourceFingerprint": "7c6552735a75104ccf4da872c152a37e8310211f2ed0214df84950d98253604a",
+      "part": "e3plus",
+      "id": "e3-2-5-4-xc1",
+      "section": "초3::2-5 들이와 무게::2-5-4 무게 비교하기",
+      "term": "손으로 들어 비교하기",
+      "kind": "방법",
+      "level": "하",
+      "definition": "두 물건을 양손에 하나씩 들어 보면 더 {묵직하게} 느껴지는 쪽이 무겁다.",
+      "studentC": "두 물건을 양손에 하나씩 들어 보면 더 □ 느껴지는 쪽이 무겁다.",
+      "answers": [
+        "묵직하게"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-5-4-xc1",
+      "proposalFingerprint": "1671b1ca5b8377ce2a049db30bcc232c3e4058f523d819973e9aaa4eb6d12788",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "저울 없이 두 물건의 무게를 비교하는 방법을 한 가지 쓰고, 어느 쪽이 더 무거운지 어떻게 아는지 설명하세요.",
+      "bAnswer": "두 물건을 양손에 하나씩 들어 봅니다. 더 묵직하게(힘이 더 들게) 느껴지는 쪽이 더 무겁습니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "양손에 하나씩 들어 본다"
+          ]
+        },
+        {
+          "anyOf": [
+            "더 묵직하게 느껴지는 쪽이 무겁다"
+          ]
+        }
+      ],
+      "bGoal": "손으로 들어 무게를 비교하는 방법 설명",
+      "bReason": "'저울 없이'라는 조건을 주어 방법과 판단 기준을 쓰게 함",
+      "cDecision": "rewrite",
+      "cReason": "원문 답 '묵직하게'는 초3에게 낯선 말이고 '무겁게'와 헷갈림. 판단 결과 '무겁다'를 쓰게 바꿈",
+      "cSlotEquivalents": [],
+      "answerNotes": "'무겁다' 정답. '가볍다'는 오답"
+    },
+    "currentCMarkedSentence": "두 물건을 양손에 하나씩 들어 보았을 때 힘이 더 많이 드는 쪽이 더 {무겁다}.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "무겁다",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "저울없이한가지방법을묻기에양손뿐아니라같은손으로번갈아들어무게감을비교하는방법도기준대안으로 인정한다.",
+      "c": "힘이더드는쪽의무겁다관계를 확인한다."
+    }
+  },
+  {
+    "id": "e3-2-5-4-xc5",
+    "sourceIndex": 1239,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1239,
+      "sourceFingerprint": "ac75e64c1ca22cf21791ad8591a0a1812c512466248b3fa5a195470fe00e14aa",
+      "part": "e3plus",
+      "id": "e3-2-5-4-xc5",
+      "section": "초3::2-5 들이와 무게::2-5-4 무게 비교하기",
+      "term": "추의 개수로 말하기",
+      "kind": "방법",
+      "level": "하",
+      "definition": "무게가 모두 같은 추를 저울이 나란해질 때까지 올리면 물건이 {추 몇 개의 무게와 같은지}로 무게를 말할 수 있다.",
+      "studentC": "무게가 모두 같은 추를 저울이 나란해질 때까지 올리면 물건이 □로 무게를 말할 수 있다.",
+      "answers": [
+        "추 몇 개의 무게와 같은지"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-5-4-xc5",
+      "proposalFingerprint": "1162725c0cf973d2059d8f7f31c3d6f6e466aac459547686bc12aa7f9814da8a",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "무게가 모두 같은 추와 양팔저울을 사용하여 지우개의 무게를 '추 몇 개'로 나타내는 방법을 설명하세요.",
+      "bAnswer": "한쪽 접시에 지우개를 놓고 다른 쪽 접시에 추를 하나씩 올립니다. 저울이 수평이 되었을 때 올린 추의 개수로 지우개의 무게를 말합니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "다른 쪽 접시에 추를 올린다"
+          ]
+        },
+        {
+          "anyOf": [
+            "수평이 될 때의 추 개수로 말한다"
+          ]
+        }
+      ],
+      "bGoal": "추의 개수로 무게를 나타내는 방법 설명",
+      "bReason": "지우개라는 구체물을 주어 재는 순서를 쓰게 함",
+      "cDecision": "rewrite",
+      "cReason": "원문 답 '추 몇 개의 무게와 같은지'는 문장 일부를 통째로 복원해야 하는 긴 구절임. 구체 상황의 개수를 쓰게 바꿈",
+      "cSlotEquivalents": []
+    },
+    "currentCMarkedSentence": "양팔저울의 한쪽에 지우개를 놓고 다른 쪽에 무게가 같은 추를 $4$개 올렸더니 저울이 기울지 않았다. 지우개의 무게는 추 {$4$}개의 무게와 같다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$4$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "같은추몇개로정확히수평이되는지우개라는조건을주어추수로무게를나타내는방법의응답범위를 정한다.",
+      "c": "실제같은추4개로수평이된조건의무게동등관계다."
+    }
+  },
+  {
+    "id": "e3-2-5-4-xc9",
+    "sourceIndex": 1243,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1243,
+      "sourceFingerprint": "9b499ca7f0a87346998694192ed75ac2484e14d2767201da7d88cf9286ca5da2",
+      "part": "e3plus",
+      "id": "e3-2-5-4-xc9",
+      "section": "초3::2-5 들이와 무게::2-5-4 무게 비교하기",
+      "term": "무게를 견주는 말",
+      "kind": "정의",
+      "level": "하",
+      "definition": "두 물건의 무게를 견줄 때는 '더 무겁다', '더 {가볍다}'라고 말한다.",
+      "studentC": "두 물건의 무게를 견줄 때는 '더 무겁다', '더 □'라고 말한다.",
+      "answers": [
+        "가볍다"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-5-4-xc9",
+      "proposalFingerprint": "e1fd4461c4d83312dcb2b2a3d500a62f699d34aed5dd99a022a5b51045ab8673",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "없음(비교하는 말 한 쌍)",
+      "bReason": "낱말 짝 하나를 떠올리는 내용",
+      "cDecision": "keep",
+      "cReason": "'더 무겁다'와 짝이 되는 말로 답 '가볍다'가 분명하고 익숙함",
+      "cSlotEquivalents": [],
+      "exclusionReason": "'더 무겁다/더 가볍다'라는 말 한 쌍을 아는지만 확인하는 내용이라 설명할 이유나 방법이 없음. C로 충분함",
+      "answerNotes": "'가볍다' 정답"
+    },
+    "currentCMarkedSentence": "두 물건의 무게를 견줄 때는 '더 무겁다', '더 {가볍다}'라고 말한다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "가볍다",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "말짝하나만의B제외를 유지한다.",
+      "c": "무겁다의반대말만복원하는C는실제무게관계를확인하지못하므로C제외를 제안한다."
+    }
+  },
+  {
+    "id": "e3-2-5-4-xc17",
+    "sourceIndex": 1250,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1250,
+      "sourceFingerprint": "7428bdc23bbaf130cf90573d294b5711f86c07cdd9931aa00ce14eef002f7a53",
+      "part": "e3plus",
+      "id": "e3-2-5-4-xc17",
+      "section": "초3::2-5 들이와 무게::2-5-4 무게 비교하기",
+      "term": "추를 더 얹어 차 알기",
+      "kind": "방법",
+      "level": "중",
+      "definition": "가벼운 쪽 접시에 추를 하나씩 더 얹어 저울이 {나란해지면} 더 얹은 추만큼 무게 차가 난다.",
+      "studentC": "가벼운 쪽 접시에 추를 하나씩 더 얹어 저울이 □ 더 얹은 추만큼 무게 차가 난다.",
+      "answers": [
+        "나란해지면"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-5-4-xc17",
+      "proposalFingerprint": "969969d2ee17129d5fc2f720c4b2424c509b3c175d330fd45ec7106b49bdb12a",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "양팔저울에 두 물건을 올렸더니 한쪽으로 기울었습니다. 무게가 같은 추를 사용하여 두 물건의 무게 차를 알아내는 방법을 설명하세요.",
+      "bAnswer": "가벼운(올라간) 쪽 접시에 추를 하나씩 올립니다. 저울이 수평이 되었을 때 더 올린 추의 개수만큼 무게 차가 납니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가벼운 쪽에 추를 더 올린다"
+          ]
+        },
+        {
+          "anyOf": [
+            "수평이 될 때 올린 추의 개수가 무게 차이다"
+          ]
+        }
+      ],
+      "bGoal": "추를 더 얹어 무게 차를 아는 방법 설명",
+      "bReason": "기운 저울 상황을 주고 방법만 쓰게 함",
+      "cDecision": "rewrite",
+      "cReason": "원문 빈칸 '나란해지면'은 조건을 가려 '수평이 되면', '같아지면' 등 답이 흩어짐. 추 개수를 쓰는 구체 상황으로 바꿈",
+      "cSlotEquivalents": []
+    },
+    "currentCMarkedSentence": "양팔저울의 가벼운 쪽 접시에 무게가 같은 추를 $3$개 더 올렸더니 저울이 수평이 되었다. 두 물건의 무게 차는 추 {$3$}개의 무게와 같다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$3$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "같은추몇개로무게차에정확히수평이되는조건또는실제균형예를주어남는작은차가있는경우와 구별한다.",
+      "c": "같은추3개추가로정확히평형이된조건의무게차가 확정된다."
+    }
+  },
+  {
+    "id": "e3-2-5-4-xc18",
+    "sourceIndex": 1251,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1251,
+      "sourceFingerprint": "911ae2ff0a79e468f821732da942b50265d8232165d9ce7270300030428ceb17",
+      "part": "e3plus",
+      "id": "e3-2-5-4-xc18",
+      "section": "초3::2-5 들이와 무게::2-5-4 무게 비교하기",
+      "term": "아는 무게와 견주기",
+      "kind": "방법",
+      "level": "중",
+      "definition": "이미 무게를 아는 물건을 떠올려 다른 물건이 그보다 무거운지 가벼운지 {견주어} 어림한다.",
+      "studentC": "이미 무게를 아는 물건을 떠올려 다른 물건이 그보다 무거운지 가벼운지 □ 어림한다.",
+      "answers": [
+        "견주어"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-5-4-xc18",
+      "proposalFingerprint": "b0ded3163557c6542d5ceae6097a262735b35bf1174d5338498de55f763b4104",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "저울이 없을 때, 무게를 이미 아는 물건을 이용하여 다른 물건의 무게를 어림하는 방법을 설명하세요.",
+      "bAnswer": "무게를 아는 물건을 떠올리거나 들어 보고, 어림하려는 물건이 그보다 무거운지 가벼운지 비교하여 어림합니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "무게를 아는 물건을 기준으로 삼는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "그보다 무거운지 가벼운지 비교한다"
+          ]
+        }
+      ],
+      "bGoal": "아는 무게와 견주어 어림하는 방법 설명",
+      "bReason": "'저울이 없을 때'라는 조건을 주어 방법을 쓰게 함. 단위는 아직 쓰지 않음",
+      "cDecision": "rewrite",
+      "cReason": "원문 답 '견주어'는 초3에게 어려운 말이고 '비교하여', '보고' 등으로 흩어짐. 기준이 되는 물건의 조건 낱말을 쓰게 바꿈",
+      "cSlotEquivalents": [],
+      "answerNotes": "'아는', '알고 있는' 허용"
+    },
+    "currentCMarkedSentence": "수박의 무게를 어림할 때, 무게를 이미 {아는} 설탕 한 봉지를 떠올려 수박이 그보다 무거운지 가벼운지 비교한다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "아는",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "아는무게를기준으로다른것을들어비교하는B방법은분명하다.",
+      "c": "이미아는의문법복원은실제무게어림을확인못하므로C제외또는주어진기준무게로어림하는수치사례를 제안한다."
+    }
+  },
+  {
+    "id": "e3-2-5-5-xc4",
+    "sourceIndex": 1260,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1260,
+      "sourceFingerprint": "2d9301a6fc9ae6230e533861ee57eea0fb3d80ad371aa3df79c5c82c5a3be169",
+      "part": "e3plus",
+      "id": "e3-2-5-5-xc4",
+      "section": "초3::2-5 들이와 무게::2-5-5 무게의 단위",
+      "term": "몇 $\\mathrm{kg}$ 몇 $\\mathrm{g}$으로 쓰기",
+      "kind": "정의",
+      "level": "하",
+      "definition": "$\\mathrm{kg}$으로 딱 떨어지지 않는 무게는 {몇 $\\mathrm{kg}$ 몇 $\\mathrm{g}$}으로 쓴다.",
+      "example": {
+        "prompt": "$1\\,\\mathrm{kg}\\ 500\\,\\mathrm{g}$에서 $500$이 세는 것은?",
+        "answer": "$1\\,\\mathrm{kg}$을 넘는 $\\mathrm{g}$"
+      },
+      "studentC": "$\\mathrm{kg}$으로 딱 떨어지지 않는 무게는 □으로 쓴다.",
+      "answers": [
+        "몇 $\\mathrm{kg}$ 몇 $\\mathrm{g}$"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-5-5-xc4",
+      "proposalFingerprint": "cf47654363a37902ae5073dbd7a0f061f5d263a7fa6acfddebce842e84ee1713",
+      "learningRole": "definition",
+      "bDecision": "rewrite",
+      "bPrompt": "$1\\,\\mathrm{kg}\\ 500\\,\\mathrm{g}$은 어떤 무게인지, $1$과 $500$이 각각 무엇을 나타내는지 넣어 설명하세요.",
+      "bAnswer": "$1\\,\\mathrm{kg}$보다 $500\\,\\mathrm{g}$ 더 무거운 무게입니다. $1$은 $\\mathrm{kg}$의 수이고, $500$은 $1\\,\\mathrm{kg}$을 넘는 나머지 $\\mathrm{g}$의 수입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1\\,\\mathrm{kg}$보다 $500\\,\\mathrm{g}$ 더 무거운 무게"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$은 kg의 수, $500$은 남는 g의 수"
+          ]
+        }
+      ],
+      "bGoal": "몇 kg 몇 g 표기의 뜻 설명",
+      "bReason": "형식 이름 대신 원문 예시의 무게 하나로 두 수의 뜻을 묻게 함",
+      "cDecision": "rewrite",
+      "cReason": "원문 답 '몇 kg 몇 g'은 형식 이름을 통째로 떠올려야 하는 구절임. 실제 수를 쓰는 빈칸으로 바꿈",
+      "cSlotEquivalents": []
+    },
+    "currentCMarkedSentence": "$1\\,\\mathrm{kg}$보다 $500\\,\\mathrm{g}$ 더 무거운 무게는 {$1$}$\\,\\mathrm{kg}$ {$500$}$\\,\\mathrm{g}$이라고 쓴다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$1$",
+        "equivalents": []
+      },
+      {
+        "expected": "$500$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "kg1과추가g500의각단위뜻을묻는B는 분명하다.",
+      "c": "1·500을그대로다시쓰는C보다1500g같은단위변환또는C중복제외를 제안한다."
+    }
+  },
+  {
+    "id": "e3-2-5-5-xc6",
+    "sourceIndex": 1261,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1261,
+      "sourceFingerprint": "21f4497013b1b528962f0cadb03cf077c4601a3ee055c0277dee1e9a40ce64be",
+      "part": "e3plus",
+      "id": "e3-2-5-5-xc6",
+      "section": "초3::2-5 들이와 무게::2-5-5 무게의 단위",
+      "term": "무게의 단위를 쓰는 까닭",
+      "kind": "성질",
+      "level": "하",
+      "definition": "바둑돌이나 클립처럼 저마다 다른 물건으로 잰 무게는 {서로 견주기 어려워} 누구나 같이 쓰는 단위로 나타낸다.",
+      "studentC": "바둑돌이나 클립처럼 저마다 다른 물건으로 잰 무게는 □ 누구나 같이 쓰는 단위로 나타낸다.",
+      "answers": [
+        "서로 견주기 어려워"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-5-5-xc6",
+      "proposalFingerprint": "039f3fcb01e4c78811c06ac9e4b08850c6493b2db8de3c91ce1697fb7de6b0a0",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "무게를 '바둑돌 몇 개'처럼 말하지 않고 $\\mathrm{kg}$, $\\mathrm{g}$ 같은 단위로 나타내는 까닭을 쓰세요.",
+      "bAnswer": "재는 물건마다 무게가 달라 개수로 말하면 서로 비교하기 어렵기 때문입니다. 누구나 똑같이 쓰는 단위로 나타내면 같은 무게로 알아들을 수 있습니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "재는 물건마다 무게가 달라 개수로는 견주기 어렵다"
+          ]
+        },
+        {
+          "anyOf": [
+            "누구나 같이 쓰는 단위가 필요하다"
+          ]
+        }
+      ],
+      "bGoal": "무게의 단위가 필요한 까닭 설명",
+      "bReason": "'바둑돌 몇 개'라는 구체적인 말하기와 견주어 단위를 쓰는 이유만 묻게 함",
+      "cDecision": "rewrite",
+      "cReason": "원문 빈칸 '서로 견주기 어려워'는 긴 구절이고 '견주기'가 초3에게 어려움. '같다/다르다' 판단으로 바꿈",
+      "cSlotEquivalents": [],
+      "answerNotes": "'다르다', '달라진다', '같지 않다' 허용. '같다'는 오답"
+    },
+    "currentCMarkedSentence": "같은 물건이라도 바둑돌로 잴 때와 클립으로 잴 때 개수가 서로 {다르다}. 그래서 누구나 같이 쓰는 단위 $\\mathrm{kg}$과 $\\mathrm{g}$으로 무게를 나타낸다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "다르다",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "기준물건한개무게가다를수있어공통단위필요라는B이유는 맞다.",
+      "c": "바둑돌·클립이름만으로개수가항상다름을단정하지말고한개무게가서로다르고동일물건을정확히측정했다는조건을 명시한다."
+    }
+  }
+]
