@@ -375,6 +375,19 @@
   margin-left: 240px;
   min-height: 100dvh;
 }
+.topbarActions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  min-width: 0;
+  justify-self: end;
+  margin-left: auto;
+}
+.topbarActions .accountSlot {
+  min-width: 0;
+  margin-left: 0;
+}
 .maximizeButton {
   display: inline-flex;
   align-items: center;
@@ -387,6 +400,39 @@
   background: #fff;
   color: #415979;
   white-space: nowrap;
+}
+@media (max-width: 1320px) {
+  .maximizeButton {
+    width: 44px;
+    padding-inline: 0;
+  }
+  .maximizeLabel {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+@media (max-width: 760px) {
+  .workspace[data-authenticated="true"] .topbarActions {
+    grid-column: 1 / -1;
+    width: 100%;
+    padding-top: 4px;
+    border-top: 1px solid #e4e9f1;
+  }
+  .workspace[data-authenticated="true"] .topbarActions .accountSlot {
+    flex: 1;
+    padding-top: 0;
+    border-top: 0;
+  }
+  .workspace[data-maximized="true"] .topbarActions {
+    grid-column: auto;
+    width: auto;
+    padding: 0;
+    border: 0;
+  }
 }
 .workspace[data-maximized="true"] .sidebar {
   display: none;

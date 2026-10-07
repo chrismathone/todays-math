@@ -21,23 +21,43 @@ export default function EnglishExamPicker({
     <section className={s.context} aria-label="학교와 시험 선택">
       <div className={s.schoolField}>
         <span className={s.label}>학교</span>
-        <div className={s.schools} role="group" aria-label="학교">
-          {schools.map((school) => (
-            <button
-              key={school}
-              type="button"
-              className={s.chip}
-              aria-pressed={school === exam.school}
-              onClick={() => {
-                if (school === exam.school) return;
-                const first = exams.find((item) => item.school === school);
-                if (first) onSelect(first.id);
-              }}
-            >
-              {school}
-            </button>
-          ))}
-        </div>
+        {schools.length > 3 ? (
+          <select
+            className={s.examSelect}
+            aria-label="학교 고르기"
+            value={exam.school}
+            onChange={(event) => {
+              const first = exams.find(
+                (item) => item.school === event.target.value,
+              );
+              if (first) onSelect(first.id);
+            }}
+          >
+            {schools.map((school) => (
+              <option key={school} value={school}>
+                {school}
+              </option>
+            ))}
+          </select>
+        ) : (
+          <div className={s.schools} role="group" aria-label="학교">
+            {schools.map((school) => (
+              <button
+                key={school}
+                type="button"
+                className={s.chip}
+                aria-pressed={school === exam.school}
+                onClick={() => {
+                  if (school === exam.school) return;
+                  const first = exams.find((item) => item.school === school);
+                  if (first) onSelect(first.id);
+                }}
+              >
+                {school}
+              </button>
+            ))}
+          </div>
+        )}
       </div>
       <label className={s.examField}>
         <span className={s.label}>시험</span>

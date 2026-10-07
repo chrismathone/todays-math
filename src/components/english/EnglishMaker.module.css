@@ -292,7 +292,7 @@
 }
 .workarea {
   display: grid;
-  grid-template-columns: minmax(0, 360px) minmax(0, 1fr);
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
   gap: 24px;
   align-items: start;
 }
