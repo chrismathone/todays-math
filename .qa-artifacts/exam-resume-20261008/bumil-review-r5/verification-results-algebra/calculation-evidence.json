@@ -1,0 +1,312 @@
+{
+  "schemaVersion": 1,
+  "verifierId": "orca-codex-exam-twin-author-algebra-20261008",
+  "scope": "r5 author-r2 q10 q19 only",
+  "verificationInputSha256": "91a3c6baffc9dc5d67bb210ff63a0a8a476b761493a1c20d4b08982055a9b8e2",
+  "codeCalculations": true,
+  "noInferentialApi": true,
+  "questions": [
+    {
+      "questionNumber": 10,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r2-q10",
+      "digests": {
+        "studentDigest": "33606d31af0dc51fe06bf158f44101ce7a749c41e643d0ad92ee5327c7c7e934",
+        "candidateDigest": "a44d112ea0647bc9858e5f9199da0d23718e833fab7ee1339f70cbbb050089f8",
+        "assetDigest": "6e051c4bd40203816b3208f73cf93dd6be3f212357583d69bd906b6f379640f4",
+        "solveDigest": "29182eecaced72f34f0bc88be8b19e5816661fcb940c194bd18d18623ff74226"
+      },
+      "allFourDigestsRecomputed": true,
+      "independentSolveFileSha256": "737f631552889b80bbcb8e6c8a8c625f693aeb9629ee6eb96909c8519a994004",
+      "independentSolver": "orca-codex-exam-twin-author-algebra-20261008",
+      "authorId": "orca-codex-exam-twin-parent-image-context-20261008",
+      "answersAgree": true,
+      "mathematics": {
+        "CE": 12.8,
+        "AG": 1.6,
+        "BC": 11.200000000000001,
+        "tableTan": 1.6003,
+        "GE": 6.998687746047617,
+        "roundedGE": 7,
+        "choices": [
+          {
+            "mark": "①",
+            "valueM": 6.5,
+            "matches": false
+          },
+          {
+            "mark": "②",
+            "valueM": 6.8,
+            "matches": false
+          },
+          {
+            "mark": "③",
+            "valueM": 7,
+            "matches": true
+          },
+          {
+            "mark": "④",
+            "valueM": 7.2,
+            "matches": false
+          },
+          {
+            "mark": "⑤",
+            "valueM": 11.2,
+            "matches": false
+          }
+        ],
+        "uniqueChoice": "③",
+        "positive": true,
+        "angleInMiddleRange": true,
+        "roundingDecimalPlaces": 1
+      },
+      "geometry": {
+        "coordinateUnit": "engine spec coordinates; not raster measurements",
+        "pixelsPerMetre": 20,
+        "lengths": {
+          "AB": 139.9737549209523,
+          "BC": 224,
+          "AC": 264.13756277112657,
+          "AG": 32,
+          "BE": 32,
+          "CE": 256,
+          "GE": 139.9737549209523
+        },
+        "metres": {
+          "AB": 6.998687746047615,
+          "BC": 11.2,
+          "AC": 13.206878138556329,
+          "AG": 1.6,
+          "BE": 1.6,
+          "CE": 12.8,
+          "GE": 6.998687746047615
+        },
+        "angleBAC": 57.99944443701303,
+        "angleABC": 90,
+        "angleDifferenceFromLabelDegrees": -0.0005555629869675727,
+        "allMetricLengthsMatch": true,
+        "AGParallelBE": true,
+        "ABParallelGE": true
+      },
+      "assetChecks": [
+        {
+          "role": "stem",
+          "specPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r5\\package\\private\\q10\\figure-1.spec.json",
+          "specSha256": "0f139d0a29202278d30f110547d365ed616a6d46df084e6604052bf2032fb484",
+          "svgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r5\\package\\private\\q10\\figure-1.svg",
+          "svgSha256": "a0924a0c32ceb18d08f1126358a0ecfe495dfb02a3e462e72d14507257337cd3",
+          "studentSvgMatches": true,
+          "intendedWidthMm": 70,
+          "embeddedRasterCount": 1,
+          "engineLabels": [],
+          "resources": {
+            "rasterSha256": "72c2deb6fd213e9e372af15bdf7e108e79aaf538c448be8860b1a565b478d7ba",
+            "generationSha256": "ac77edc7e2d7712cdb2a0cb45a4bdec2b527f033fafd812d3537a0b7341de155",
+            "embeddedRasterMatches": true,
+            "newGeneratedSourceMatches": true,
+            "sourceFigureNotReusedDeclared": true,
+            "sceneOnly": "illustration only; separate engine figure provides all mathematical relations",
+            "mathAuthority": "explicit-math-facts-not-image-pixels",
+            "newFactsMatch": true,
+            "generationTool": "built-in image_gen.imagegen",
+            "generationAssetId": "gym-window-observation-r1",
+            "generatedAt": "2026-10-07T18:34:32.156Z",
+            "promptContainsNoNumericMathLabels": true,
+            "rights": "pending"
+          }
+        },
+        {
+          "role": "stem",
+          "specPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r5\\package\\private\\q10\\figure-2.spec.json",
+          "specSha256": "977b2bf1c01715ab6f37b513e91af8d3acd3f06f8ad8ac0f67dfb2558ab975fd",
+          "svgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r5\\package\\private\\q10\\figure-2.svg",
+          "svgSha256": "010b2097764d3a0ab98f4f17c9f13637f50b55e73dbc48c398891b2f6dc9164e",
+          "studentSvgMatches": true,
+          "intendedWidthMm": 70,
+          "embeddedRasterCount": 0,
+          "engineLabels": [
+            "58^\\circ",
+            "A",
+            "B",
+            "C",
+            "E",
+            "G"
+          ],
+          "strictLocalRender": {
+            "strict": true,
+            "localOnly": true,
+            "typesetMathLabels": true,
+            "droppedDimensions": [],
+            "svgSha256": "010b2097764d3a0ab98f4f17c9f13637f50b55e73dbc48c398891b2f6dc9164e",
+            "matchesRawSvg": true
+          }
+        }
+      ],
+      "mathSyntax": {
+        "katexExpressions": 31,
+        "strict": true,
+        "passed": true
+      },
+      "engineLabelPhysicalScale": {
+        "viewBox": [
+          0,
+          0,
+          206.304,
+          302.53
+        ],
+        "font_size": 20,
+        "angle_font_size": 18,
+        "nominalPointLabelMm": 6.786102062975027,
+        "nominalAngleLabelMm": 6.107491856677525,
+        "intendedWidthMm": 70,
+        "visualInspectionReference": "student-preview-r5 PDF page PNGs; own exact70mm proof"
+      }
+    },
+    {
+      "questionNumber": 19,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r2-q19",
+      "digests": {
+        "studentDigest": "dc9f646e5897008384c4f3a96a4db3b0bdf253cd491ab719aa4079870a205a75",
+        "candidateDigest": "4241865fd9d1676dbe7dd30ea55459f4da6d8fa98f2bb8c7cb64bcb13964354e",
+        "assetDigest": "26cfe0d9c548d205dc6650a634e29df73e8d605b0b53743022d5eae9d9d889e5",
+        "solveDigest": "e2800ff85f56aec92277f838f130e3a912fd3583b534e338c6f48dabdefca3bb"
+      },
+      "allFourDigestsRecomputed": true,
+      "independentSolveFileSha256": "0d3a426e5f2dd651cf16605d54f61b090f5db6050f8afe081a3afabfee92f72a",
+      "independentSolver": "orca-codex-exam-twin-author-algebra-20261008",
+      "authorId": "orca-codex-exam-twin-parent-image-context-20261008",
+      "answersAgree": true,
+      "mathematics": {
+        "BC": 73.48469228349533,
+        "BH": 63.639610306789265,
+        "AB": 89.99999999999997,
+        "CH": 36.74234614174767,
+        "AH": 63.639610306789265,
+        "AC": 100.38195644853693,
+        "exact": {
+          "BH": "45*sqrt(2)",
+          "AB": "90",
+          "CH": "15*sqrt(6)",
+          "AH": "45*sqrt(2)",
+          "AC": "45*sqrt(2)+15*sqrt(6)"
+        },
+        "angleA": 45,
+        "angleB": 75,
+        "angleC": 60,
+        "footHInsideAC": true,
+        "positiveLengths": true,
+        "triangleInequalities": [
+          true,
+          true,
+          true
+        ],
+        "pythagoreanResiduals": [
+          -9.094947017729282e-13,
+          2.7284841053187847e-12
+        ],
+        "choicesPresent": 0
+      },
+      "geometry": {
+        "coordinateUnit": "normalized engine pixels; not scene raster measurements",
+        "pixelsPerMetre": 2,
+        "lengths": {
+          "AB": 180,
+          "BC": 146.96938456699067,
+          "AC": 200.7639128970739
+        },
+        "metres": {
+          "AB": 90,
+          "BC": 73.48469228349533,
+          "AC": 100.38195644853695
+        },
+        "angles": {
+          "A": 45,
+          "B": 75,
+          "C": 59.99999999999999
+        },
+        "allMetricLengthsMatch": true,
+        "AB180PixelsMeans90Metres": true
+      },
+      "assetChecks": [
+        {
+          "role": "stem",
+          "specPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r5\\package\\private\\q19\\figure-1.spec.json",
+          "specSha256": "dc7ef00c9f87c4b58b70e7758724a60e6457a083dca7f07738a526f8c73f782b",
+          "svgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r5\\package\\private\\q19\\figure-1.svg",
+          "svgSha256": "0c1e6d3c4ab1c275f1f87b238b504830a92b5ca24e15af527b5a46bb43ffa0ae",
+          "studentSvgMatches": true,
+          "intendedWidthMm": 70,
+          "embeddedRasterCount": 1,
+          "engineLabels": [],
+          "resources": {
+            "rasterSha256": "d2ef090378549870c86f0943ea1c26ba2b5d2802f71459963cd8dd29277a1026",
+            "generationSha256": "ee091600287b19fff886e399d48e19e1a863f201b781b620aa13ca14eeb548af",
+            "embeddedRasterMatches": true,
+            "newGeneratedSourceMatches": true,
+            "sourceFigureNotReusedDeclared": true,
+            "sceneOnly": "illustration only; separate engine figure provides all mathematical relations",
+            "mathAuthority": "explicit-math-facts-not-image-pixels",
+            "newFactsMatch": true,
+            "generationTool": "built-in image_gen.imagegen",
+            "generationAssetId": "park-survey-markers-r1",
+            "generatedAt": "2026-10-07T18:34:32.176Z",
+            "promptContainsNoNumericMathLabels": true,
+            "rights": "pending"
+          }
+        },
+        {
+          "role": "stem",
+          "specPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r5\\package\\private\\q19\\figure-2.spec.json",
+          "specSha256": "3f848d72b5c17f39c4f6b0d56a493258cd653a54ebbd6cf583dcd97f545337e3",
+          "svgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r5\\package\\private\\q19\\figure-2.svg",
+          "svgSha256": "d888f10d13749d6028d247850891df6ce7ac9b784761e7697226b69bcea9e201",
+          "studentSvgMatches": true,
+          "intendedWidthMm": 70,
+          "embeddedRasterCount": 0,
+          "engineLabels": [
+            "45^\\circ",
+            "75^\\circ",
+            "A",
+            "B",
+            "C"
+          ],
+          "strictLocalRender": {
+            "strict": true,
+            "localOnly": true,
+            "typesetMathLabels": true,
+            "droppedDimensions": [],
+            "svgSha256": "d888f10d13749d6028d247850891df6ce7ac9b784761e7697226b69bcea9e201",
+            "matchesRawSvg": true
+          }
+        }
+      ],
+      "mathSyntax": {
+        "katexExpressions": 21,
+        "strict": true,
+        "passed": true
+      },
+      "engineLabelPhysicalScale": {
+        "viewBox": [
+          0,
+          0,
+          249.9,
+          204.602
+        ],
+        "font_size": 20,
+        "angle_font_size": 18,
+        "nominalPointLabelMm": 5.602240896358544,
+        "nominalAngleLabelMm": 5.042016806722689,
+        "intendedWidthMm": 70,
+        "visualInspectionReference": "student-preview-r5 PDF page PNGs; own exact70mm proof"
+      }
+    }
+  ],
+  "inputReferences": {
+    "curriculumEvidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+    "sourceQuestionOnlySha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+    "registrySnapshotSha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+    "parentGeneratorCodePath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+    "parentGeneratorCodeSha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+    "ownGeneratorCodeSha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+    "sameGeneratorCode": true
+  }
+}
