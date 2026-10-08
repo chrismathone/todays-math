@@ -1,0 +1,431 @@
+{
+  "status": "verified",
+  "studentDigest": "239e5959efba640245ef5e016922b2c3d1ba465a4a47affdd121846d8ac6aa5c",
+  "candidateDigest": "028c686938d29d7e19b53cf6b4593578a2921752edc4d087ecd3b40906ce5f64",
+  "assetDigest": "ef7943638f592ebf74764764a3980d97860864995af79ffd539bc1ca0ebc8c08",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-exam-twin-author-geometry-20261008",
+  "solveDigest": "7d987171e31054d715aff4cb9dedd8239e4efd563a0513a6e5b370a290ab316f",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": true,
+    "scoreAppropriate": true
+  },
+  "evidence": {
+    "questionNumber": 13,
+    "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q13",
+    "reviewedAtKst": "2026-10-08",
+    "independence": {
+      "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+      "verifierIsDifferentAuthor": true,
+      "blindSolveCommit": "c998ea12a6447970c71679e6dd97d06d0fa3dc6b",
+      "answerExposure": "only after parent copied/hash-fixed this solver independent result",
+      "solveRawFileSha256": "23c2cf9b8319cb11cd525efa8af1e9f5aefc60737957b04a17170c9fb9cadd3b",
+      "solveRawBytesMatchParent": true,
+      "solveFileUneditedSinceCommit": true,
+      "originalAnswersOrSolutionsRead": false,
+      "geometryAuthorCandidatesReviewed": false
+    },
+    "binding": {
+      "contract": "parent scripts/import/exam-twin/candidatePack.mjs bindCandidate(candidate.json); digest(independentSolve)",
+      "candidateObjectAndAssetBindingsRecomputed": true,
+      "allFourProvidedDigestsMatch": true,
+      "candidateFileSha256": "86ea15507db69f1eb5400da7ea39bcbe5d31823bd98c048905d6e6ab97269e70",
+      "verificationInputsPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r3\\verification\\verification-inputs.json",
+      "verificationInputsSha256": "7a65c7e1dafec63917ad2ce53b0ba6e88dd1d70c58fe86640976fce44142c145",
+      "manifestInputHashMatched": true,
+      "alteredBytesPolicy": "fail closed; no altered candidate/student/spec/svg/solve detected",
+      "contractFileSha256": "38353f841004b34453e53ba0eb537e6d7cb398c1cc2791f571927990a2f4cb59"
+    },
+    "checkEvidence": {
+      "answerCorrect": {
+        "authorAnswer": "②",
+        "sealedIndependentAnswer": "②",
+        "codeChoiceMatches": [
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "calculation": {
+          "radius": "4√3",
+          "height": "4",
+          "radiusSquared": "48",
+          "volumePiCoefficient": "64",
+          "pythagoreanWitness": "48+16=64"
+        }
+      },
+      "solutionCorrect": "명시된 축 단면 절반 SOA의 O직각/A30°와 빗변8에서 OA=8cos30=4√3, SO=8sin30=4를 각각 구한다. 밑면 넓이48π에 높이4를 곱하고 1/3을 적용해64πcm³이다. 일반 공간각 정의나 정사영을 도입하지 않는다.",
+      "existenceUniqueness": "반지름·높이·모선은 모두 양수이고 반지름과 높이는 모선 8보다 작다. 48+16=64로 직각삼각형이 존재한다. 넓이 단위 cm²와 부피 단위 cm³를 구분했다. 원뿔 개형과 라벨·직각·30°·8cm를 가진 단면 그림 두 장을 모두 확인했다.",
+      "choicesCorrect": {
+        "allFiveChecked": true,
+        "details": [
+          {
+            "choice": 1,
+            "matches": false,
+            "reason": "반지름과 높이를 반대로 적었다."
+          },
+          {
+            "choice": 2,
+            "matches": true,
+            "reason": "반지름 4√3, 높이 4, 부피 64π가 모두 맞다."
+          },
+          {
+            "choice": 3,
+            "matches": false,
+            "reason": "반지름·높이는 맞지만 부피에서 1/3을 적용하지 않았다."
+          },
+          {
+            "choice": 4,
+            "matches": false,
+            "reason": "반지름이 8√3으로 빗변 8보다 커 실제 직각삼각형과 맞지 않는다."
+          },
+          {
+            "choice": 5,
+            "matches": false,
+            "reason": "높이를 8로 기록해 주어진 빗변과 30° 조건에 맞지 않는다."
+          }
+        ],
+        "codeMatchesSealedBlindChoiceChecks": true
+      },
+      "figureConsistent": "원뿔 개형과 명시된 SOA 단면 두 실제 SVG를 모두 확인했다. 단면에는 O직각, A30°, SA8cm 및 S/O/A가 보인다. 원뿔 그림의 표면 치수를 추측하지 않고 단면에서 읽는다.",
+      "sameCoreConceptAndProcedure": "원본은 원뿔의 모선/반지름/높이 직각 단면에서 특수각 삼각비로 두 길이를 얻어 부피를 계산한다. 새 후보도 같은 직접 비와 원뿔 부피 절차이다.",
+      "distinctPresentation": "원본의 부피 한 값 질문을 반지름·높이·부피의 세 측정 기록 완성으로 바꿨다. 암묵적 공간 그림에 기대던 단면을 별도 새 직각삼각형 그림과 본문으로 명시했다. 모선6→8 숫자 교체만의 변형이 아니다.",
+      "naturalKorean": "원뿔 꼭짓점·밑면 중심·원 위 점, 축 포함 단면 절반을 본문에 명시하며 반지름/높이/부피의 단위를 구분한다.",
+      "curriculumAppropriate": "원뿔 및 그 축 단면의 절반인 직각삼각형을 명시해 삼각비를 평면30°에 적용한다. 중1 회전체와 원뿔 부피, 초등 원 넓이, 근호 사칙계산. 공간 정사영·벡터·고교 입체각 이론은 필요 없다. 학교·AI·family 존재가 아니라 아래 공식 문구 및 실제 요구 절차로 판정했다.",
+      "allStudentSurfacesInScope": {
+        "stem": "원뿔 및 그 축 단면의 절반인 직각삼각형을 명시해 삼각비를 평면30°에 적용한다.",
+        "choices": "반지름·높이·부피 삼중항이며 근호/π와 단순 곱이다. 오답의 반지름8√3>모선8도 같은 정의/길이 비교 범위 안에서 배제한다.",
+        "figuresAndTables": "원뿔 개형과 명시된 SOA 단면 두 실제 SVG를 모두 확인했다. 단면에는 O직각, A30°, SA8cm 및 S/O/A가 보인다. 원뿔 그림의 표면 치수를 추측하지 않고 단면에서 읽는다.",
+        "notation": "30°·90°, sin/cos, cm/cm³, √3와π 및1/3 부피식이다. 벡터·직선과 평면 각의 일반 정의가 없다.",
+        "answer": "4√3,4,64π 및②로 중3까지 배운 수와 원뿔 부피식 안에 있다.",
+        "studentSolution": "명시된 축 단면 절반 SOA의 O직각/A30°와 빗변8에서 OA=8cos30=4√3, SO=8sin30=4를 각각 구한다. 밑면 넓이48π에 높이4를 곱하고 1/3을 적용해64πcm³이다. 일반 공간각 정의나 정사영을 도입하지 않는다.",
+        "prerequisites": "중1 회전체와 원뿔 부피, 초등 원 넓이, 근호 사칙계산. 공간 정사영·벡터·고교 입체각 이론은 필요 없다."
+      },
+      "unitFamilyFit": "live 활용02는 원뿔 단면에서 반지름/모선/높이 중 한 길이를 cos 또는 tan 정의로 얻는다. 새 후보는 알려진 모선에서 반지름/높이를 반대 방향으로 얻는 동일 직각삼각형 관계이고 부피는 그 길이를 쓰는 기존 중1 선수 계산이다.",
+      "scoreAppropriate": "기본 제안 및4점 적정. 별도 단면이 제공되어 입체에서 단면을 찾아내는 어려움이 없다. 특수각 두 값으로 반지름/높이를 기록하고 단순 부피 계산을 하는 직접 적용이다. live 응용이라는 등급을 그대로 전용하지 않았다."
+    },
+    "deterministicMath": {
+      "tool": "Python fractions.Fraction / decimal.Decimal / exact sign and symbolic-side classifications",
+      "executed": true,
+      "sourceOfInputs": "already blinded student statement/figures, not author facts or old answers",
+      "calculationCode": "r coefficient=8/2 in √3; h=8/2; r²=16*3=48; r²+h²=64; V/pi=r²*h/3 (Fraction)",
+      "results": {
+        "radius": "4√3",
+        "height": "4",
+        "radiusSquared": "48",
+        "volumePiCoefficient": "64",
+        "pythagoreanWitness": "48+16=64"
+      },
+      "choiceMatches": [
+        false,
+        true,
+        false,
+        false,
+        false
+      ],
+      "matchesPreExposureSolve": true
+    },
+    "studentRenderReview": {
+      "localChromium": true,
+      "networkRequestsBlocked": true,
+      "katexThrowOnError": true,
+      "mathSpanCount": 18,
+      "reviewerViewedFullStemChoicesTablesFiguresAndNewSolution": true,
+      "inspectionPngSha256": "1f8d2c6d621d9c652ba20875ac02cfbef41b0f4ddad0a1a5fd63699260b8bfff",
+      "inspectionArtifactRetained": false,
+      "layoutScope": "temporary neutral local review layout; no claim to parent production pagination",
+      "observations": "원뿔 개형과 명시된 SOA 단면 두 실제 SVG를 모두 확인했다. 단면에는 O직각, A30°, SA8cm 및 S/O/A가 보인다. 원뿔 그림의 표면 치수를 추측하지 않고 단면에서 읽는다.",
+      "assets": [
+        {
+          "role": "stem",
+          "specPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r3\\package\\private\\q13\\figure-1.spec.json",
+          "svgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r3\\package\\private\\q13\\figure-1.svg",
+          "specSha256": "3859e7099253c684a5247f6e3f0e439fdbda6b119a146dad02fb92e8b6071c7b",
+          "svgSha256": "9ae1f4bc2e0d47c99967540212596e25dfd004916ddd0048851e647681ccb2da",
+          "intendedWidthMm": 55,
+          "studentPath": "figures/q13-1.svg",
+          "privateAndBlindSvgBytesMatch": true,
+          "specJsonParsed": true,
+          "visuallyReviewed": true
+        },
+        {
+          "role": "stem",
+          "specPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r3\\package\\private\\q13\\figure-2.spec.json",
+          "svgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r3\\package\\private\\q13\\figure-2.svg",
+          "specSha256": "d54efed7cca85dbc728ca709d8e65ddaef7d4e0312cdc10e7643529d62a601cd",
+          "svgSha256": "7612b1082354efbadddcf0538f0c880621d007c4a7ecdde864fd1fcd3aca2571",
+          "intendedWidthMm": 65,
+          "studentPath": "figures/q13-2.svg",
+          "privateAndBlindSvgBytesMatch": true,
+          "specJsonParsed": true,
+          "visuallyReviewed": true
+        }
+      ]
+    },
+    "sourceComparison": {
+      "referencePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-twin-v2\\prepared\\source-reference\\problems.json",
+      "referenceFileSha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+      "questionNumber": 13,
+      "contentSha256": "8b7cfc79e6a7f3f240658147d667322e488e4a5ad4e837703a89685645a91d5f",
+      "contentHashMatched": true,
+      "redactedAnswerFree": true,
+      "originalAnswerOrSolutionNotAccessed": true,
+      "figures": [
+        {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-twin-v2\\prepared\\source-reference\\figures\\q13.png",
+          "sha256": "f952979c9d3ce28543bc3fbfed88335c6fe126e458c85c5b64ec9dc9353e390b",
+          "purpose": "answer-free reference, no copied stem/choice asset",
+          "visuallyReviewed": true
+        }
+      ],
+      "sameProcedure": "원본은 원뿔의 모선/반지름/높이 직각 단면에서 특수각 삼각비로 두 길이를 얻어 부피를 계산한다. 새 후보도 같은 직접 비와 원뿔 부피 절차이다.",
+      "substantiveDelta": "원본의 부피 한 값 질문을 반지름·높이·부피의 세 측정 기록 완성으로 바꿨다. 암묵적 공간 그림에 기대던 단면을 별도 새 직각삼각형 그림과 본문으로 명시했다. 모선6→8 숫자 교체만의 변형이 아니다."
+    },
+    "curriculum": {
+      "targetGrade": "중3",
+      "targetEdition": "2015",
+      "status": "independently-reviewed-selected-student-surfaces",
+      "official2015Pdf": {
+        "id": "moe-2015-74-math-pdf",
+        "url": "https://www.moe.go.kr/boardCnts/fileDown.do?m=040401&s=moe&fileSeq=dc926a43bf953203951fb928ff098b1c",
+        "archive_member": "별책8_수학과 교육과정.pdf",
+        "sha256": "4bd2b84e978865a71d90577d8eb6240f0ecf24a9884642d627cde460d71ab88e",
+        "bytes": 2533289,
+        "local_path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-2015-74-book8-math.pdf",
+        "primary": true,
+        "retrieved_date_kst": "2026-10-08",
+        "format": "pdf"
+      },
+      "evidencePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\curriculum-evidence.json",
+      "evidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "standardRefs": [
+        {
+          "code": "9수04-18",
+          "verifiedText": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+          "physicalPages1Based": [
+            38
+          ],
+          "pdfTextIndependentlyMatched": true,
+          "extractEvidenceSource": "moe-2020-236-math-hwp"
+        },
+        {
+          "code": "9수04-09",
+          "verifiedText": "입체도형의 겉넓이와 부피를 구할 수 있다.",
+          "physicalPages1Based": [
+            37
+          ],
+          "pdfTextIndependentlyMatched": true,
+          "extractEvidenceSource": "moe-2020-236-math-hwp"
+        },
+        {
+          "code": "9수04-17",
+          "verifiedText": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+          "physicalPages1Based": [
+            38
+          ],
+          "pdfTextIndependentlyMatched": true,
+          "extractEvidenceSource": "moe-2020-236-math-hwp"
+        },
+        {
+          "code": "9수04-08",
+          "verifiedText": "회전체의 성질을 이해한다.",
+          "physicalPages1Based": [
+            37
+          ],
+          "pdfTextIndependentlyMatched": true,
+          "extractEvidenceSource": "moe-2020-236-math-hwp"
+        },
+        {
+          "code": "6수03-08",
+          "verifiedText": "원주와 원의 넓이를 구하는 방법을 이해하고, 이를 구할 수 있다.",
+          "physicalPages1Based": [
+            29
+          ],
+          "pdfTextIndependentlyMatched": true,
+          "extractEvidenceSource": "moe-2020-236-math-hwp"
+        }
+      ],
+      "restrictionsVerified": [
+        {
+          "id": "no_vieta",
+          "physicalPages1Based": [
+            35
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "no_ratio_identities",
+          "physicalPages1Based": [
+            39
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "angle_range",
+          "physicalPages1Based": [
+            39
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "no_circle_proportionality",
+          "physicalPages1Based": [
+            39
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "real_quadratic_roots",
+          "physicalPages1Based": [
+            35
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "no_complex_equation_applications",
+          "physicalPages1Based": [
+            35
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "no_complex_function_applications",
+          "physicalPages1Based": [
+            37
+          ],
+          "textMatchesOfficial2015Pdf": true
+        },
+        {
+          "id": "no_complex_geometry_measurement",
+          "physicalPages1Based": [
+            39
+          ],
+          "textMatchesOfficial2015Pdf": true
+        }
+      ],
+      "surfaceEvidence": {
+        "stem": "원뿔 및 그 축 단면의 절반인 직각삼각형을 명시해 삼각비를 평면30°에 적용한다.",
+        "choices": "반지름·높이·부피 삼중항이며 근호/π와 단순 곱이다. 오답의 반지름8√3>모선8도 같은 정의/길이 비교 범위 안에서 배제한다.",
+        "figuresAndTables": "원뿔 개형과 명시된 SOA 단면 두 실제 SVG를 모두 확인했다. 단면에는 O직각, A30°, SA8cm 및 S/O/A가 보인다. 원뿔 그림의 표면 치수를 추측하지 않고 단면에서 읽는다.",
+        "notation": "30°·90°, sin/cos, cm/cm³, √3와π 및1/3 부피식이다. 벡터·직선과 평면 각의 일반 정의가 없다.",
+        "answer": "4√3,4,64π 및②로 중3까지 배운 수와 원뿔 부피식 안에 있다.",
+        "studentSolution": "명시된 축 단면 절반 SOA의 O직각/A30°와 빗변8에서 OA=8cos30=4√3, SO=8sin30=4를 각각 구한다. 밑면 넓이48π에 높이4를 곱하고 1/3을 적용해64πcm³이다. 일반 공간각 정의나 정사영을 도입하지 않는다.",
+        "prerequisites": "중1 회전체와 원뿔 부피, 초등 원 넓이, 근호 사칙계산. 공간 정사영·벡터·고교 입체각 이론은 필요 없다."
+      },
+      "rolloutSources": [
+        {
+          "id": "moe-60747",
+          "url": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=60747&lev=0&m=040401&opType=N&page=1&s=moe",
+          "sha256": "e63cd4ff5188027810e25dc139844abcdf971ec012c6b7c403d41bf8ca6cea80",
+          "phaseInTextChecked": true
+        },
+        {
+          "id": "moe-93458",
+          "url": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=93458&lev=0&m=040401&opType=N&page=1&s=moe",
+          "sha256": "78d9ce2854a03cfc40fee7a8f28eb81020f93f11b684533f9df446183789abd2",
+          "phaseInTextChecked": true
+        }
+      ],
+      "phaseInConclusion": "2015 중3 적용은 2020-03-01, 2022 중3 적용은 2027-03-01. 자료의 2025/2026 출처 연도 차이는 이 범위의 2015 적용 결론을 바꾸지 않는다. 출처 확정은 별도 보류.",
+      "normalization": "PDF 추출의 공백/줄바꿈/U+0001 제어 구분자만 제거하여 제공된 2020 HWP 추출 증거의 해당 문구와 2015 PDF를 대조했다. 새 HWP 추출을 수행했다고 주장하지 않는다.",
+      "amendmentReviewBoundary": "선택 문항의 기준·각도 범위·금지 방법·복잡도 제한 및 시행 시점에 한정했다. 관련 문구에서 실질 변경/불확실성은 발견되지 않았다. 전체 2015 개정 고시 연혁을 감사하거나 2022 재출판을 승인한 결과는 아니다.",
+      "specificForbiddenMethodsAvoided": "미분, 근과 계수 관계, 삼각비 항등식, 90° 밖 삼각비, 사인/코사인 법칙, 일반 삼각형 사인 넓이 암기식, 원과 비례/원의 거듭제곱, 라디안, 정사영/벡터 없음. q12 수선 높이와 q13 명시 단면만 사용."
+    },
+    "taxonomy": {
+      "unitSnapshotPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-20261008.json",
+      "unitSnapshotSha256": "164c611b84b3d9b16c30f74e2d0220ed54b2d642845d0bf1e72d9a347b969a9b",
+      "registrySnapshotPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\registry-read-20261008.json",
+      "registrySnapshotSha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "snapshotScope": "parent supplied read-only 2026-10-07 snapshot; no DB call or claim of later live recapture",
+      "unit": {
+        "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 활용",
+        "semester": 2,
+        "orderIndex": 483,
+        "problemCodePrefix": "J30503"
+      },
+      "unitAppropriate": true,
+      "familyKey": "mid:3-2|삼각비의 활용|02",
+      "registryMatch": {
+        "key": "3-2|삼각비의 활용|02",
+        "grade": "중3",
+        "unitSection": "삼각비의 활용",
+        "rpmBook": "3-2",
+        "rpmMinor": "삼각비의 활용",
+        "rpmType": "02",
+        "rpmTitle": "입체도형에서 직각삼각형의 변의 길이의 활용"
+      },
+      "liveCount": 22,
+      "liveFamilySnapshotMatch": true,
+      "generator": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m3Trig.ts",
+        "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+        "mode": "read-only relevant family source, no generator execution or edits",
+        "relevantLines1Based": [
+          1928,
+          1963
+        ]
+      },
+      "semanticDecision": "matched",
+      "reason": "live 활용02는 원뿔 단면에서 반지름/모선/높이 중 한 길이를 cos 또는 tan 정의로 얻는다. 새 후보는 알려진 모선에서 반지름/높이를 반대 방향으로 얻는 동일 직각삼각형 관계이고 부피는 그 길이를 쓰는 기존 중1 선수 계산이다."
+    },
+    "objectiveDifficultyAndScore": {
+      "authorDifficultyProposal": "기본",
+      "reviewerDifficultyBand": "기본",
+      "candidateScore": 4,
+      "scoreAppropriate": true,
+      "candidateQuestionType": "객관식",
+      "authorProblemTypeProposal": "활용",
+      "reviewerProblemType": "활용",
+      "reason": "기본 제안 및4점 적정. 별도 단면이 제공되어 입체에서 단면을 찾아내는 어려움이 없다. 특수각 두 값으로 반지름/높이를 기록하고 단순 부피 계산을 하는 직접 적용이다. live 응용이라는 등급을 그대로 전용하지 않았다.",
+      "empiricalCalibrationClaimed": false,
+      "sourceOrGeneratorDifficultyAutoApplied": false
+    },
+    "holds": [],
+    "nonblockingSuggestions": [],
+    "releaseBoundary": {
+      "reviewStatusCovers": "only these selected independent mathematics, full student-surface curriculum, presentation/language, difficulty/score and taxonomy dimensions",
+      "nativeProvenance": "blocked-parent-owned",
+      "rights": "blocked-parent-owned",
+      "sourceIdentity": "pending-parent-attestation",
+      "productionUseApproved": false,
+      "DBWrites": false,
+      "paidCalls": false,
+      "pushes": false,
+      "inferenceAPICalls": false
+    },
+    "consumerValidation": {
+      "module": "parent candidatePack.mjs evaluateReview",
+      "executed": true,
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "productionWrites": false,
+      "selectedReviewReasons": [],
+      "effect": "technical dimensions preserved separately; no production approval"
+    }
+  },
+  "curriculumSurfaces": {
+    "stem": "passed",
+    "choices": "passed",
+    "figuresAndTables": "passed",
+    "notation": "passed",
+    "answer": "passed",
+    "studentSolution": "passed",
+    "prerequisites": "passed"
+  }
+}

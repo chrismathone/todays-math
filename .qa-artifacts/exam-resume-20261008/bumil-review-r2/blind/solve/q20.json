@@ -1,0 +1,99 @@
+{
+  "studentDigest": "06788db5de931162daba02380191c669e768016ab2279a63fed039814378b94f",
+  "solverId": "orca-codex-exam-twin-author-algebra-20261008",
+  "answer": "$(6\\pi+9\\sqrt{3})\\,\\mathrm{cm}^{2}$",
+  "solution": "$\\mathrm{O}$가 지름 $\\overline{AB}$ 위에 있으므로 $\\angle OBC=\\angle ABC=30^{\\circ}$이다. $\\overline{OB}=\\overline{OC}=6\\,\\mathrm{cm}$인 이등변삼각형 $\\mathrm{OBC}$에서 $\\angle OCB=30^{\\circ}$이므로 $\\angle COB=180^{\\circ}-30^{\\circ}-30^{\\circ}=120^{\\circ}$이다.\n따라서 작은 호 $CB$에 대응하는 부채꼴 $\\mathrm{COB}$의 넓이는 $\\frac{120}{360}\\times\\pi\\times6^{2}=12\\pi\\,\\mathrm{cm}^{2}$이다.\n점 $\\mathrm{C}$에서 지름 $\\overline{AB}$에 내린 수선의 발을 $\\mathrm{H}$라 하자. $\\angle COB=120^{\\circ}$이므로 $\\mathrm{H}$는 $\\mathrm{A}$와 $\\mathrm{O}$ 사이에 있고, $\\angle COH=60^{\\circ}$이다. 직각삼각형 $\\mathrm{COH}$에서 $\\overline{CH}=6\\sin60^{\\circ}=3\\sqrt{3}\\,\\mathrm{cm}$이다.\n삼각형 $\\mathrm{OBC}$에서 밑변 $\\overline{OB}$에 대한 높이는 $\\overline{CH}$이므로 넓이는 $\\frac{1}{2}\\times6\\times3\\sqrt{3}=9\\sqrt{3}\\,\\mathrm{cm}^{2}$이다.\n색칠한 부분의 넓이는 부채꼴에서 삼각형을 뺀 $(12\\pi-9\\sqrt{3})\\,\\mathrm{cm}^{2}$이다.\n반원 전체 넓이는 $\\frac{1}{2}\\pi\\times6^{2}=18\\pi\\,\\mathrm{cm}^{2}$이므로 색칠하지 않은 부분의 넓이는 $18\\pi-(12\\pi-9\\sqrt{3})=6\\pi+9\\sqrt{3}\\,\\mathrm{cm}^{2}$이다.",
+  "evidence": {
+    "questionNumber": 20,
+    "method": [
+      "반지름이 같은 이등변삼각형과 내각의 합",
+      "부채꼴의 중심각과 넓이",
+      "60° 직각삼각형의 삼각비 정의로 높이 계산",
+      "삼각형 넓이와 영역의 차"
+    ],
+    "conditions": {
+      "radiusCm": 6,
+      "diameterCm": 12,
+      "anglesDegrees": {
+        "ABC": 30,
+        "OCB": 30,
+        "COB": 120,
+        "COH": 60
+      },
+      "minorArcCentralAngleBelow180": true,
+      "trigonometricAngleWithin0To90": true,
+      "heightCm": "3sqrt(3)",
+      "sectorAreaCm2": "12pi",
+      "triangleAreaCm2": "9sqrt(3)",
+      "shadedAreaCm2": "12pi-9sqrt(3)",
+      "semicircleAreaCm2": "18pi",
+      "requestedUnshadedAreaCm2": "6pi+9sqrt(3)",
+      "shadedAndUnshadedAreasPositive": true,
+      "eachAreaBelowSemicircleArea": true
+    },
+    "choiceReview": [],
+    "uniqueAnswer": true,
+    "uniquenessReason": "B의 30°와 같은 길이의 두 반지름에서 작은 호 CB의 중심각 120°가 정해진다. 반지름 6으로 두 영역의 넓이가 하나로 정해진다.",
+    "figureObservation": "그림의 C는 반원의 위쪽 호 위에 있고 회색 부분은 현 CB와 작은 호 CB로 둘러싸인 영역이다. OC는 점선이고 AB는 지름이며, B의 30°도 본문과 일치한다. 요구 영역은 회색 부분을 제외한 흰색 나머지 영역이다.",
+    "excludedMethods": [
+      "일반 삼각형의 sin120° 넓이 암기식",
+      "라디안·일반각의 삼각함수",
+      "적분·벡터"
+    ],
+    "input": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r2/blind/student-problems.json",
+      "sha256": "252ea8959ca5d96e13959ea9bf4b393fe00b0ff476f2b457b292c568fe6763b4",
+      "studentDigest": "06788db5de931162daba02380191c669e768016ab2279a63fed039814378b94f",
+      "digestHandling": "copied verbatim from student-only export; no author package read",
+      "grade": "중3",
+      "curriculum": "2015"
+    },
+    "figures": [
+      {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r2/blind/figures/q20-1.svg",
+        "sha256": "9f4ecc3d85b8608cefcd69840a458fd9a047347a2aca68e0f8752b30b6a0ade1",
+        "matchesStudentExportHash": true,
+        "previewPath": ".qa-artifacts/exam-resume-20261008/bumil-review-r2/blind-results-algebra/previews/q20-1.png",
+        "previewSha256": "027202e2b54db556755d5b44fdfd2cc2d522ed68f5df0115fe1ecb4a846300c1",
+        "inspection": "view_image completed",
+        "embeddedRasterIncluded": false
+      }
+    ],
+    "calculation": {
+      "artifact": ".qa-artifacts/exam-resume-20261008/bumil-review-r2/blind-results-algebra/calculations.json",
+      "sha256": "2eaab47cbb07445bb57a79b0d7041bedf3f6f8e9e8918aa9fa8250dc8ff7fadc",
+      "jsonPointer": "/results/q20",
+      "data": {
+        "radius": 6,
+        "diameter": 12,
+        "angles": {
+          "ABC": 30,
+          "OCB": 30,
+          "COB": 120,
+          "COH": 60
+        },
+        "height": "3sqrt(3)",
+        "sectorCOB": "12pi",
+        "triangleCOB": "9sqrt(3)",
+        "shadedSegment": "12pi-9sqrt(3)",
+        "semicircle": "18pi",
+        "unshaded": "6pi+9sqrt(3)",
+        "numeric": {
+          "height": 5.196152422706632,
+          "sector": 37.69911184307752,
+          "triangle": 15.588457268119896,
+          "shaded": 22.11065457495762,
+          "semicircle": 56.548667764616276,
+          "remaining": 34.438013189658655
+        }
+      }
+    },
+    "reviewBoundary": {
+      "authorAnswersRead": false,
+      "originalAnswersRead": false,
+      "selfAuthoredCandidateReviewed": false,
+      "scope": "independent blind solve; final curriculum/rights/publication approval not issued"
+    }
+  },
+  "status": "solved"
+}

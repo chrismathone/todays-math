@@ -3,11 +3,22 @@ import test from "node:test";
 import {
   digest,
   evaluateReview,
+  normalizeAnswer,
+  middle3CurriculumForExamYear,
   REVIEW_CHECKS,
   studentPayload,
   SURFACES,
   validateCandidate,
 } from "./candidatePack.mjs";
+
+test("middle3 rollout cannot reuse 2015 source mapping for 2027", () => {
+  assert.equal(middle3CurriculumForExamYear(2025), "2015");
+  assert.equal(middle3CurriculumForExamYear(2026), "2015");
+  assert.equal(middle3CurriculumForExamYear(2027), "2022");
+  const outdated = structuredClone(candidate);
+  outdated.metadata.sourceExamYear = 2027;
+  assert.throws(() => validateCandidate(outdated), /curriculum mismatch/);
+});
 
 // Synthetic controls only. These are not verification reports for real twins.
 const candidate = {
@@ -97,6 +108,17 @@ test("student payload exposes no answer, solution, private calibration or origin
       !("sourceReference" in payload),
   );
 });
+test("answer presentation permits TeX braces but preserves value and unit differences", () => {
+  assert.equal(
+    normalizeAnswer("$(6\\pi+9\\sqrt3)\\,\\mathrm{cm}^2$"),
+    normalizeAnswer("$(6\\pi+9\\sqrt{3})\\,\\mathrm{cm}^{2}$"),
+  );
+  assert.notEqual(
+    normalizeAnswer("$8\\,\\mathrm{cm}$"),
+    normalizeAnswer("$8\\,\\mathrm{m}$"),
+  );
+  assert.notEqual(normalizeAnswer("$9\\sqrt3$"), normalizeAnswer("$9\\sqrt6$"));
+});
 test("different key order preserves semantic digest and content changes invalidate it", () => {
   assert.equal(digest({ a: 1, b: [2, 3] }), digest({ b: [2, 3], a: 1 }));
   assert.notEqual(digest({ a: 1 }), digest({ a: 2 }));
@@ -131,6 +153,24 @@ test("uncertain or rejected surface/curriculum evidence blocks", () => {
     assert.equal(result.gradeReviewed, false);
     assert.equal(result.overallVerified, false);
   }
+});
+test("detailed curriculum audit preserves each surface basis and fails closed without it", () => {
+  const c = control();
+  c.review.curriculumSurfaces = Object.fromEntries(
+    SURFACES.map((s) => [
+      s,
+      { status: "passed", basis: "synthetic surface evidence" },
+    ]),
+  );
+  assert.equal(
+    evaluateReview(c.binding, c.solve, c.review).gradeReviewed,
+    true,
+  );
+  c.review.curriculumSurfaces.studentSolution = { status: "passed" };
+  assert.equal(
+    evaluateReview(c.binding, c.solve, c.review).gradeReviewed,
+    false,
+  );
 });
 test("new math evidence never clears provenance, rights or production gates", () => {
   const c = control();

@@ -1,0 +1,86 @@
+{
+  "studentDigest": "d8c1897e23b4400046a65e85765d617f744337da6fd43ede0a5b0522ca8ae41c",
+  "solverId": "orca-codex-exam-twin-author-geometry-20261008",
+  "answer": "③",
+  "solution": "특수각의 값을 각각 대입한다. 가는 $2\\times\\frac12\\div\\frac{\\sqrt2}{2}=\\sqrt2$, 나는 $1+2\\times\\frac12=2$, 다는 $(1+\\frac12)(1-\\frac12)=\\frac34$, 라는 $\\sqrt3\\div1=\\sqrt3$, 마는 $\\frac{\\sqrt3}{2}\\div\\frac{\\sqrt3}{3}=\\frac32$이다. 모두 양수이며 제곱값을 비교하면 $\\frac34<\\sqrt2<\\frac32<\\sqrt3<2$이다. 작은 값부터 세 번째는 마, $\\frac32$이므로 정답은 ③이다.",
+  "evidence": {
+    "questionNumber": 8,
+    "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q08",
+    "input": {
+      "studentProblemsPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r3/blind/student-problems.json",
+      "studentProblemsSha256": "77987a3499f60da5ea0e04f108cdc8f8779b499edacd829a45cb39122123e70d",
+      "solveBriefPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r3/blind/SOLVE-BRIEF.md",
+      "solveBriefSha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5"
+    },
+    "figures": [],
+    "choiceChecks": [
+      {
+        "choice": 1,
+        "matches": false,
+        "reason": "가의 값 √2는 맞지만 순서가 두 번째이다."
+      },
+      {
+        "choice": 2,
+        "matches": false,
+        "reason": "라의 값 √3는 맞지만 순서가 네 번째이다."
+      },
+      {
+        "choice": 3,
+        "matches": true,
+        "reason": "마의 값 3/2가 세 번째이다."
+      },
+      {
+        "choice": 4,
+        "matches": false,
+        "reason": "나의 값 2는 맞지만 순서가 다섯 번째이다."
+      },
+      {
+        "choice": 5,
+        "matches": false,
+        "reason": "다의 값 3/4는 맞지만 순서가 첫 번째이다."
+      }
+    ],
+    "codeCalculation": {
+      "tool": "Python fractions.Fraction exact square comparisons and Decimal(precision=50) sorting cross-check",
+      "exactValues": {
+        "가": "√2",
+        "나": "2",
+        "다": "3/4",
+        "라": "√3",
+        "마": "3/2"
+      },
+      "order": [
+        "다",
+        "가",
+        "마",
+        "라",
+        "나"
+      ],
+      "positiveSquareComparisons": [
+        "9/16 < 2",
+        "2 < 9/4",
+        "9/4 < 3",
+        "3 < 4"
+      ],
+      "choiceMatches": [
+        false,
+        false,
+        true,
+        false,
+        false
+      ]
+    },
+    "existenceUniquenessAndDomain": "각도는 모두 0°~90° 안이다. 나누는 sin45°, cos0°, tan30°는 0이 아니다. 다섯 값은 모두 양수이고 서로 다르므로 세 번째 카드가 유일하다. (1+cos60°)(1−cos60°)는 1/2를 직접 넣어 계산했다.",
+    "blindness": {
+      "readMaterials": "SOLVE-BRIEF.md, student-problems.json, and listed student SVGs only",
+      "authorAnswerRead": false,
+      "authorSolutionRead": false,
+      "originalAnswersOrSolutionsRead": false,
+      "privateSpecOrPackageRead": false,
+      "parentHtmlOrSolutionPreviewRead": false,
+      "solverAuthoredThisCandidate": false
+    },
+    "scope": "중3/2015 학생 방법의 독립 수학 풀이·보기 및 자산 대조. 전체 범위/난이도/metadata 승인은 후속 별도 검토."
+  },
+  "status": "solved"
+}

@@ -75,6 +75,10 @@ async function main() {
   fs.mkdirSync(path.join(output, "figures"));
   const styleFile = path.join(output, "katex.css");
   fs.copyFileSync(
+    path.resolve("node_modules/katex/LICENSE"),
+    path.join(output, "KaTeX-LICENSE.txt"),
+  );
+  fs.copyFileSync(
     path.resolve("node_modules/katex/dist/katex.min.css"),
     styleFile,
   );
@@ -110,14 +114,14 @@ async function main() {
           ? `<details class="solution"><summary>정답·해설 검토</summary><p>${markdown(c.answer)}</p>${markdown(c.solution)}</details>`
           : "";
       const graphChoices = b.assets.some((a) => a.role.startsWith("choice:"));
-      return `<article id="q${c.questionNumber}"><header><b>${c.questionNumber}.</b><span>${c.score}점</span></header>${markdown(c.content)}${figures}${choices ? `<ul class="choices${graphChoices ? " graph-choices" : ""}">${choices}</ul>` : ""}${solution}</article>`;
+      return `<article id="q${c.questionNumber}"><header><b>${c.questionNumber}.</b><span>${c.score}점</span></header>${markdown(c.content)}<div class="stem-figures">${figures}</div>${choices ? `<ul class="choices${graphChoices ? " graph-choices" : ""}">${choices}</ul>` : ""}${solution}</article>`;
     })
     .join("");
   const html = `<!doctype html><html lang="ko"><head><meta charset="utf-8"><title>새 문항 ${mode === "review" ? "검토" : "문제지"}</title><link rel="stylesheet" href="katex.css"><style>@page{size:A4;margin:12mm}*{box-sizing:border-box}body{margin:0;background:#e8e9e8;color:#15191b;font-family:'Malgun Gothic','Noto Sans KR',sans-serif;font-size:15px;line-height:1.7}.paper{width:185mm;margin:24px auto;background:white;padding:20px 26px}.title{font-size:20px;border-bottom:2px solid #202b32;padding-bottom:12px}article{padding:18px 0;break-inside:avoid;border-bottom:1px solid #c9d0d4}article header{display:flex;justify-content:space-between}header b{font-size:18px}header span{color:#556069}p{margin:10px 0}table{border-collapse:collapse;margin:12px 0;width:100%;font-size:14px}th,td{border:1px solid #788189;padding:7px 12px;text-align:center}th{background:#f4f6f7;font-weight:500}figure{margin:14px auto}figure img{width:100%;height:auto;display:block}.choices{padding:0;list-style:none;display:grid;grid-template-columns:1fr;gap:5px}.choices li{display:flex;align-items:baseline;gap:10px}.choices p{margin:0}.mark{min-width:22px}.solution{margin-top:16px;background:#f5f7f6;padding:12px}.solution summary{cursor:pointer}.katex{font-size:1.04em}.katex-display{margin:.5em 0}@media print{body{background:white}.paper{width:100%;margin:0;padding:0}.solution{display:none}}</style></head><body><main class="paper"><div class="title">새 문항 ${mode === "review" ? "검토본" : "문제지"} · 중3</div>${cards}</main></body></html>`;
   const htmlPath = path.join(output, "preview.html");
   const finalHtml = html.replace(
     "</style>",
-    ".graph-choices{grid-template-columns:1fr 1fr}.graph-choices li{break-inside:avoid}</style>",
+    ".graph-choices{grid-template-columns:1fr 1fr}.graph-choices li{break-inside:avoid}.stem-figures{display:flex;justify-content:center;gap:4mm;align-items:center;flex-wrap:wrap}.stem-figures figure{margin:14px 0}@media print{.title{display:none}article{padding:14px 0}table{margin:10px 0}th,td{padding:4px 10px}p{margin:7px 0}.choices{break-inside:avoid}}</style>",
   );
   fs.writeFileSync(htmlPath, finalHtml, { flag: "wx" });
   const browser = await chromium.launch({ headless: true });
@@ -178,14 +182,12 @@ async function main() {
         }),
       );
       for (const b of bindings)
-        await page
-          .locator(`#q${b.candidate.questionNumber}`)
-          .screenshot({
-            path: path.join(
-              output,
-              `q${String(b.candidate.questionNumber).padStart(2, "0")}.solution.png`,
-            ),
-          });
+        await page.locator(`#q${b.candidate.questionNumber}`).screenshot({
+          path: path.join(
+            output,
+            `q${String(b.candidate.questionNumber).padStart(2, "0")}.solution.png`,
+          ),
+        });
     }
     if (mode === "student")
       await page.pdf({

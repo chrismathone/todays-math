@@ -1,0 +1,592 @@
+{
+  "status": "pending",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-exam-twin-author-algebra-20261008",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": null,
+    "scoreAppropriate": true
+  },
+  "curriculumSurfaces": {
+    "stem": "passed",
+    "choices": "passed",
+    "figuresAndTables": "passed",
+    "notation": "passed",
+    "answer": "passed",
+    "studentSolution": "passed",
+    "prerequisites": "passed"
+  },
+  "evidence": {
+    "questionNumber": 10,
+    "mathReview": "고정된 블라인드 풀이의 ③과 저자 답이 일치한다. 높이 차 9.6−1.6=8, 표의 tan58°=1.6003, 거리 8/1.6003=4.9990626757…를 소수 첫째 자리로 반올림하면 5.0 m이다. 높이 차·분모·거리가 모두 양수이고 다섯 보기 중 ③만 맞는다.",
+    "solutionReview": "저자 해설은 직각삼각형 ABC의 tan 정의와 눈높이 보정, AB=GE인 수평거리 관계를 사용한다. B를 눈높이 수평선과 수직 벽의 교점으로 정의한 본문이 BE=AG를 보장한다. 삼각비 항등식·라디안·일반각·상위 학년 기법은 없다.",
+    "transformationReview": "원문 질문 자료는 수평거리와 눈높이를 주고 석탑의 총높이를 구한다. 새 문항은 환기창의 총높이와 눈높이를 주어 관측할 수평거리를 역산한다. 실제 대상·관측 목적·자료 기록표와 미지량이 바뀌며, 눈높이를 더하는 절차가 높이 차를 뺀 뒤 나누는 절차로 전환된다. 삼각비 선택·눈높이 보정이라는 핵심은 같다.",
+    "wordingReview": "지면·벽·눈높이 선·각 점의 역할과 반올림 자리가 명시되어 자연스럽고 해석이 하나다. 관계도와 별도 삽화라는 구분이 본문의 '아래 관계도' 표현에 맞는다.",
+    "difficultyScoreReview": {
+      "status": "passed-comparative-review",
+      "sourceScore": 4,
+      "candidateScore": 4,
+      "proposal": "응용",
+      "reason": "원문과 새 문항 모두 비특수각 표 선택, 눈높이 보정, 삼각비의 비로 미지 길이 계산, 같은 자리 반올림이 필요하다. 새 미지량은 나눗셈으로 바뀌지만 새 선수 개념이나 방정식 차수는 추가되지 않는다. 기록표가 자료를 분리하므로 독해 부담도 통제된다."
+    },
+    "surfaceEvidence": {
+      "stem": "58°는 예각이며 삼각비 표를 주므로 임의각 값을 암기하거나 고등학교 삼각함수를 쓰지 않는다. 두 중3 후보 Unit 모두 삼각비의 값/활용 영역이다.",
+      "choices": "길이 4.5·4.8·5.0·5.2·8.0 m로 양수와 단위가 일관된다.",
+      "figuresAndTables": "좌측 생성 래스터는 장면만 제공하고 우측 엔진 도형이 수평·수직·58°를 제공한다. 표는 계산용 입력이며 래스터 픽셀을 사실로 측정하지 않았다.",
+      "notation": "선분 위 막대는 길이, 각은 도 단위, 소수와 m는 중학교 표기다.",
+      "answer": "소수 첫째 자리의 5.0 m이며 반올림 조건에 맞는다.",
+      "studentSolution": "tan의 정의, 평행/수직과 직사각형의 변, 산술·반올림만 쓴다.",
+      "prerequisites": "초·중학교 소수 계산·반올림, 수평/수직과 직사각형, 중3 삼각비 정의·표 활용이다. 삼각비끼리의 관계식을 요구하지 않는다."
+    },
+    "holds": [
+      {
+        "dimension": "unitFamilyFit",
+        "reason": "Unit와 family가 의도적으로 null이다. 생활 올려본각·눈높이 보정의 활용03과 비특수각 표를 쓰는 삼각비17의 두 중3 후보가 남아 있으며 어느 현재 규칙이 이 역방향과 눈높이 보정을 함께 수용하는지 확정되지 않았다.",
+        "requiredEvidence": "해당 두 후보 중 주 개념/필수 절차를 함께 수용하는 Unit·live family의 명시적 의미 대응 판정",
+        "forceLabel": false
+      },
+      {
+        "dimension": "printLegibility",
+        "reason": "95 mm 복합 그림에서 수학 라벨의 최소 em 크기는 약 8.25 pt이다. 359 px의 96 dpi 화면 교정본에서는 식별했지만, 다른 단독 도형보다 작으므로 부모의 실제 지면 치수 검수에 이 수치를 넘긴다.",
+        "requiredEvidence": "현재 95 mm 배치에서 수학 패널 글자 크기의 문제은행 지면 적합 판정"
+      }
+    ],
+    "bindingAudit": {
+      "verificationInputsPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r2/verification/verification-inputs.json",
+      "verificationInputsSha256": "d95b08d3c66132071e0c25b3488187ab4d3bc73b87d3c5a25ff8649ff8f20d81",
+      "candidateFile": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r2/package/private/q10/candidate.json",
+      "candidateFileSha256": "2249b4d94875d1ad44d6385f12825ce857d0431b18d26e449068285d99e265a5",
+      "allFourDigestsRecomputed": true,
+      "digestImplementation": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/scripts/import/exam-twin/candidatePack.mjs",
+      "digestImplementationSha256": "38353f841004b34453e53ba0eb537e6d7cb398c1cc2791f571927990a2f4cb59",
+      "solveFile": ".qa-artifacts/exam-resume-20261008/bumil-review-r2/blind-results-algebra/solve/q10.json",
+      "solveFileSha256": "321ec1c51892b2d4e75d1e66e3401326fa26aca5a90a29840ae8124d20700a7f",
+      "parentSolveCanonicalDigestMatchesFrozen": true,
+      "authorId": "orca-codex-exam-twin-parent-image-context-20261008",
+      "authorDiffersFromVerifier": true,
+      "authorAnswerComparedOnlyAfterBlindFreeze": "0e2ee38d597e2e7a8782a673a0a0235c4910630f"
+    },
+    "independentEvidence": {
+      "answer": "③",
+      "solution": "눈높이의 수평선과 수직인 벽, 수평인 지면이 만드는 사각형 $\\mathrm{ABEG}$는 직사각형이므로 $\\overline{BE}=\\overline{AG}=1.6\\,\\mathrm{m}$이고 $\\overline{GE}=\\overline{AB}$이다.\n따라서 직각삼각형 $\\mathrm{ABC}$의 높이 차는 $\\overline{BC}=\\overline{CE}-\\overline{BE}=9.6-1.6=8\\,\\mathrm{m}$이다.\n삼각비의 정의에서 $\\tan58^{\\circ}=\\frac{\\overline{BC}}{\\overline{AB}}$이므로 표의 값을 사용하면 $\\overline{GE}=\\overline{AB}=\\frac{8}{1.6003}\\fallingdotseq4.9991\\,\\mathrm{m}$이다.\n소수점 아래 둘째 자리에서 반올림하면 $5.0\\,\\mathrm{m}$이므로 정답은 ③이다.",
+      "conditions": {
+        "heightDifferenceM": 8,
+        "acuteAngleDegrees": 58,
+        "positiveHorizontalDistance": true,
+        "rounding": "소수 둘째 자리에서 반올림하여 소수 첫째 자리까지",
+        "usesProvidedTable": true
+      },
+      "choiceReview": [
+        {
+          "choiceNumber": 1,
+          "correct": false,
+          "reason": "4.5 m는 8/1.6003의 반올림값과 다르다."
+        },
+        {
+          "choiceNumber": 2,
+          "correct": false,
+          "reason": "4.8 m는 8/1.6003의 반올림값과 다르다."
+        },
+        {
+          "choiceNumber": 3,
+          "correct": true,
+          "reason": "5.0 m만 소수 첫째 자리 반올림값과 같다."
+        },
+        {
+          "choiceNumber": 4,
+          "correct": false,
+          "reason": "5.2 m는 8/1.6003의 반올림값과 다르다."
+        },
+        {
+          "choiceNumber": 5,
+          "correct": false,
+          "reason": "8.0 m는 높이 차이고 요구한 수평거리가 아니다."
+        }
+      ]
+    },
+    "sourceQuestionOnly": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/problems.json",
+      "sha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+      "jsonPointer": "/9",
+      "contentSha256": "65593e3d19187b6219ba9336e8a6d2b2a7e879c15bd83e8e71d709fd1ac2b993",
+      "originalAnswersRead": false,
+      "sourceScore": 4,
+      "candidateScore": 4,
+      "scorePreserved": true,
+      "sourceFigureReferences": [
+        "figures/q10-t.png",
+        "figures/q10.png"
+      ]
+    },
+    "curriculumGrounding": {
+      "grade": "중3",
+      "edition": "2015",
+      "officialEvidencePath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+      "officialEvidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "standardCodes": [
+        "9수04-18",
+        "9수04-17",
+        "9수02-02",
+        "9수04-12"
+      ],
+      "supplementaryReviewerCodes": [
+        "9수04-12"
+      ],
+      "standards": [
+        {
+          "code": "9수02-02",
+          "verified_text": "식의 값을 구할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 3900,
+            "record_offset_in_uncompressed_stream": 199304,
+            "extracted_paragraph_1based": 793
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              34
+            ],
+            "printed_pages": [
+              30
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수04-12",
+          "verified_text": "사각형의 성질을 이해하고 설명할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4308,
+            "record_offset_in_uncompressed_stream": 217962,
+            "extracted_paragraph_1based": 883
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수04-17",
+          "verified_text": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4341,
+            "record_offset_in_uncompressed_stream": 219120,
+            "extracted_paragraph_1based": 891
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        },
+        {
+          "code": "9수04-18",
+          "verified_text": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+          "source_id": "moe-2020-236-math-hwp",
+          "hwp_locator": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record_1based": 4345,
+            "record_offset_in_uncompressed_stream": 219292,
+            "extracted_paragraph_1based": 892
+          },
+          "original_2015_pdf_locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          },
+          "scope": "middle_school_grades_1_to_3_band"
+        }
+      ],
+      "gradeBandCodeAloneUsedAsApproval": false,
+      "exactGradeAnchors": [
+        {
+          "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "section": "삼각비의 활용",
+          "semester": 2,
+          "orderIndex": 483,
+          "problemCodePrefix": "J30503"
+        },
+        {
+          "id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "section": "삼각비의 값",
+          "semester": 2,
+          "orderIndex": 482,
+          "problemCodePrefix": "J30502"
+        }
+      ],
+      "targetYearApplication": {
+        "nominalSourceYear": 2025,
+        "middle3In2025And2026": "2015",
+        "middle3In2027": "2022 requires separate retarget review",
+        "evidence": {
+          "2015": {
+            "source_id": "moe-60747",
+            "locator": "부칙 1 가~라",
+            "phases": [
+              {
+                "date": "2017-03-01",
+                "grades": [
+                  "elementary1",
+                  "elementary2"
+                ]
+              },
+              {
+                "date": "2018-03-01",
+                "grades": [
+                  "elementary3",
+                  "elementary4",
+                  "middle1",
+                  "high1"
+                ]
+              },
+              {
+                "date": "2019-03-01",
+                "grades": [
+                  "elementary5",
+                  "elementary6",
+                  "middle2",
+                  "high2"
+                ]
+              },
+              {
+                "date": "2020-03-01",
+                "grades": [
+                  "middle3",
+                  "high3"
+                ]
+              }
+            ]
+          },
+          "2022": {
+            "source_id": "moe-93458",
+            "locator": "부칙 1 가~라",
+            "phases": [
+              {
+                "date": "2024-03-01",
+                "grades": [
+                  "elementary1",
+                  "elementary2"
+                ]
+              },
+              {
+                "date": "2025-03-01",
+                "grades": [
+                  "elementary3",
+                  "elementary4",
+                  "middle1",
+                  "high1"
+                ]
+              },
+              {
+                "date": "2026-03-01",
+                "grades": [
+                  "elementary5",
+                  "elementary6",
+                  "middle2",
+                  "high2"
+                ]
+              },
+              {
+                "date": "2027-03-01",
+                "grades": [
+                  "middle3",
+                  "high3"
+                ]
+              }
+            ]
+          },
+          "pilot_reference_2025_middle3": "2015_revision",
+          "middle3_2026": "2015_revision",
+          "middle3_2027": "2022_revision_requires_separate_mapping",
+          "source_correction": "93457 is special education 2022-34; general education is 93458 2022-33"
+        }
+      },
+      "restrictionCompliance": {
+        "trigAnglesInStudentCalculation": [
+          58
+        ],
+        "trigRatioIdentitiesUsed": false,
+        "circlePowerOrProportionalityUsed": false,
+        "vietaDiscriminantDerivativesVectorsInStudentMethod": false
+      },
+      "materialAmendmentReview": {
+        "status": "pending-final-publication-attestation-on-selected-provisions",
+        "scope": "Only listed standard texts and relevant trig/circle restrictions for middle3/2015; no unrelated whole-policy audit requested.",
+        "providedEditionChecks": "2015 PDF and 2020 HWP selected clauses match after whitespace normalization",
+        "materialConflictEvidenced": false,
+        "completePost2020AmendmentChainClaimed": false,
+        "owner": "parent",
+        "blocksAutomaticRelease": true
+      }
+    },
+    "taxonomyGrounding": {
+      "registryPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/registry-read-20261008.json",
+      "registrySha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "snapshotCapturedAt": "2026-10-07T16:08:32.171Z",
+      "assignment": {
+        "status": "pending",
+        "unitId": null,
+        "familyKey": null,
+        "currentUnit": null,
+        "currentRegistryMatch": null,
+        "liveCount": null,
+        "checkedAt": "2026-10-07 15:57:15.290971+00",
+        "evidence": "실생활의 올려본각 높이 문제이면서 비특수각 58°의 표 값과 눈높이 보정이 필수다. 기존 활용03과 표 활용17이 서로 다른 Unit에 등록되어 있어 주 단원 선택을 보류한다.",
+        "candidates": [
+          {
+            "registryKey": "3-2|삼각비의 활용|03",
+            "registryTitle": "실생활에서 직각삼각형의 변의 길이의 활용 ⑴",
+            "section": "삼각비의 활용",
+            "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+            "family": "mid:3-2|삼각비의 활용|03",
+            "confidence": "low",
+            "evidence": "생활 장면과 올려본각 높이 절차는 일치하지만 현재 엔진은 특수각·지면 관측형이다.",
+            "sameUnitLiveCount": 24,
+            "currentUnit": {
+              "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+              "grade": "중3",
+              "chapter": "5. 삼각비",
+              "section": "삼각비의 활용",
+              "semester": 2,
+              "orderIndex": 483,
+              "problemCodePrefix": "J30503"
+            },
+            "currentRegistryMatch": {
+              "key": "3-2|삼각비의 활용|03",
+              "grade": "중3",
+              "unitSection": "삼각비의 활용",
+              "rpmBook": "3-2",
+              "rpmMinor": "삼각비의 활용",
+              "rpmType": "03",
+              "rpmTitle": "실생활에서 직각삼각형의 변의 길이의 활용 ⑴"
+            },
+            "currentLiveCount": 24
+          },
+          {
+            "registryKey": "3-2|삼각비|17",
+            "registryTitle": "삼각비의 표를 이용하여 변의 길이 구하기",
+            "section": "삼각비의 값",
+            "unitId": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+            "family": "mid:3-2|삼각비|17",
+            "confidence": "low",
+            "evidence": "비특수각 표에서 변의 길이를 구하는 절차는 일치하지만 생활 높이·눈높이 보정은 현재 엔진에 없다.",
+            "sameUnitLiveCount": 20,
+            "currentUnit": {
+              "id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+              "grade": "중3",
+              "chapter": "5. 삼각비",
+              "section": "삼각비의 값",
+              "semester": 2,
+              "orderIndex": 482,
+              "problemCodePrefix": "J30502"
+            },
+            "currentRegistryMatch": {
+              "key": "3-2|삼각비|17",
+              "grade": "중3",
+              "unitSection": "삼각비의 값",
+              "rpmBook": "3-2",
+              "rpmMinor": "삼각비",
+              "rpmType": "17",
+              "rpmTitle": "삼각비의 표를 이용하여 변의 길이 구하기"
+            },
+            "currentLiveCount": 20
+          }
+        ]
+      },
+      "registryMatch": null,
+      "verifierAssignedSemanticType": null,
+      "unknownTypeNullIsNotValidationFailure": true,
+      "forcedUnitOrFamily": false
+    },
+    "assetReview": [
+      {
+        "role": "stem",
+        "specPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\package\\private\\q10\\figure-1.spec.json",
+        "specSha256": "9d8c50f2ab07ef73154791026fb4fb5239779e8fbdb3601971168bd642714e25",
+        "svgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\package\\private\\q10\\figure-1.svg",
+        "svgSha256": "f9b1cb9351ffbf85b25df75c17873442ebf0ec1a4d422dea1450d47e7e0c03af",
+        "intendedWidthMm": 95,
+        "actualStudentSvgByteHashMatches": true,
+        "visualInspectionCompleted": true,
+        "mathNeverMeasuredFromRaster": true,
+        "printMetrics": {
+          "minimumLabelEmMm": 2.9104695988498586,
+          "minimumLabelEmPt": 8.25015004398385,
+          "labelCount": 6,
+          "screenWidthAt96Dpi": 359,
+          "screenSizeProofInspected": true,
+          "screenAssessment": "labels identifiable but small; parent print-dimension decision pending",
+          "physicalPaperProofInspected": false,
+          "dimensionsOwner": "parent"
+        },
+        "geometryCalculationScope": "coordinates are used only to validate authored vector geometry, not as the student solution method",
+        "mathBinding": {
+          "curriculum": {
+            "grade": "중3",
+            "edition": "2015",
+            "status": "pending"
+          },
+          "calculationAuthority": "explicit-math-facts-not-image-pixels",
+          "pointRoles": {
+            "A": "관측자의 눈",
+            "G": "관측자 발밑",
+            "B": "눈높이와 벽의 교점",
+            "C": "환기창 중심",
+            "E": "창 중심 바로 아래 지면"
+          },
+          "facts": {
+            "heightM": 9.6,
+            "eyeHeightM": 1.6,
+            "elevationDegrees": 58,
+            "displayedTan": "1.6003",
+            "distanceM": 4.999062675748297,
+            "roundedM": 5
+          },
+          "factRelations": [
+            "CB=CE-AG=8",
+            "tan58=CB/AB",
+            "AB=8/1.6003",
+            "GE=AB"
+          ],
+          "constraints": [
+            "level ground; vertical wall; eye line horizontal",
+            "height>eyeHeight>0",
+            "0<angle<90",
+            "positive unique distance",
+            "use supplied table and stated rounding"
+          ],
+          "rasterRole": "scene-only; mathematical point roles refer to the separate engine diagram"
+        },
+        "mathBindingFactsMatchCandidate": true,
+        "resourceBindings": [
+          {
+            "sourceRasterPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\package\\private\\q10\\figure-1-raster-1.png",
+            "sourceGenerationPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\package\\private\\q10\\figure-1-generation-1.json",
+            "rasterSha256": "72c2deb6fd213e9e372af15bdf7e108e79aaf538c448be8860b1a565b478d7ba",
+            "generationSha256": "ac77edc7e2d7712cdb2a0cb45a4bdec2b527f033fafd812d3537a0b7341de155",
+            "widthPx": 1536,
+            "heightPx": 1024,
+            "prompt": "Use case: scientific-educational. Asset type: a new grayscale illustration layer for a Korean middle-school mathematics problem bank. Draw an economical textbook-style side-view scene: one student observer standing on level ground to the left of a simple gymnasium exterior wall on the right, looking up toward one high ventilation window. White background, clear black/gray linework, minimal shading and detail. Keep generous empty white space between observer and wall for an independently drawn right-triangle overlay. The main wall edge must be vertical and ground horizontal. Observer is small relative to the high window, with head approximately one sixth of the window height above ground. Position observer eye around 20% canvas width / 74% height, wall-window around 60% width / 15% height, and both ground contacts around 86% height. These are compositing anchor guides, not mathematical facts. No numbers, letters, text, school signs, angles, dimension arrows, connecting sight lines, logos or watermarks. Do not depict a stone tower, monument, tents or copied scenery. The image is a completely new illustration, not an edit or reproduction of any source figure. Keep it crisp and legible at 70mm print width.",
+            "tool": "built-in image_gen.imagegen",
+            "paidApiCliFallback": false,
+            "promptHashMatchesSpec": true,
+            "immutableRasterPixelsEmbedded": true,
+            "rasterContainsMathLabels": false,
+            "role": "scene-only; exact separate engine panel owns point roles and conditions",
+            "nativeGenerationSourceProvenance": "pending-parent-owned",
+            "rightsStatus": "pending-parent-owned"
+          }
+        ],
+        "engineNativeReference": {
+          "declaredSha256": "f1305ad19a809516b258bf64670f32e2705da6af8340efe1ff25dec3b7857d3e",
+          "standaloneSourceIncludedInPackage": false,
+          "originalStandaloneHashReconstructionClaimed": false,
+          "status": "pending-native-provenance-owned-by-parent",
+          "reviewedMathAuthority": "displayed vector bytes bound in authored SVG and numerically checked"
+        },
+        "geometryChecks": {
+          "BACdegrees": 57.99950972635111,
+          "Bdegrees": 90,
+          "eyeHeightOverTotalHeight": 0.16666666666666666,
+          "ABminusGE": 0,
+          "BCoverAB": 1.6003040577709764
+        }
+      }
+    ],
+    "syntaxCheck": {
+      "engine": "KaTeX strict",
+      "studentMathSpans": 31,
+      "passed": true,
+      "surfaceKeywordViolations": []
+    },
+    "judgmentDesign": {
+      "skillPath": ".agents/skills/typesafe-ai/SKILL.md",
+      "liveDocs": [
+        "https://docs.typesafe.ai/llms.txt",
+        "https://docs.typesafe.ai/confidence",
+        "https://docs.typesafe.ai/cookbooks/citation_check"
+      ],
+      "apiCalls": 0,
+      "jevResponses": null,
+      "probabilities": null,
+      "mode": "manual scoped judgments with named evidence; exact math and binding in code",
+      "aggregation": "Out-of-grade required methods reject; insufficient evidence holds its own dimension; no probability or hash grants release.",
+      "apiCallsScope": "TypeSafe/Jev/OpenAI inference endpoints; only public documentation was fetched"
+    },
+    "releaseBoundary": {
+      "automaticReleaseAllowed": false,
+      "dbOrApplyWrites": 0,
+      "sourceIdentity": "pending-parent-attestation",
+      "rights": "pending-parent-review",
+      "nativeProvenance": "pending-parent-review",
+      "materialAmendmentFinalAttestation": "pending-parent-on-selected-provisions",
+      "statusMeaning": "verified is only this scoped independent review; it is not publishing or rights permission"
+    },
+    "readOnlyGateAudit": {
+      "mathematicalVerified": true,
+      "gradeReviewed": true,
+      "overallVerified": false,
+      "loadable": false,
+      "reasons": [
+        "review-status-pending",
+        "review-unitFamilyFit-not-passed",
+        "source-identity-held",
+        "taxonomy-held",
+        "rights-review-pending",
+        "similarity-review-pending",
+        "native-exam-twin-provenance-not-implemented"
+      ],
+      "productionWrites": false
+    }
+  },
+  "studentDigest": "fa3a4d05b624a90797c4e05c3996d48c41800f30e957bbcd7060eb0ff6500faf",
+  "candidateDigest": "68c0f9ffe4c7e13f051f65e1223ff88f5574924d658538c7597b8cf5f4833e28",
+  "assetDigest": "2fec6a0c2b2cc806b633e5ed1290e24e510e37eb8840ee5db09d0f5927807e29",
+  "solveDigest": "b5b527c5dfe6da57bcca0d05a70d6bde7690725165e8f3417255799ab2de4a2b"
+}

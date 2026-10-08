@@ -22,7 +22,7 @@ function newDirectory(directory) {
   fs.mkdirSync(result, { recursive: true });
   return result;
 }
-function currentPackage(directory) {
+export function currentPackage(directory) {
   const manifest = readJson(path.join(directory, "manifest.json"));
   assert.equal(manifest.kind, "authored-exam-twin-review/v1");
   assert.equal(
@@ -155,12 +155,31 @@ function freeze(directory, files) {
     ),
     scope:
       "authored-subset; no source exam completeness or production authorization implied",
-    bindings: bindings.map(
-      ({ candidate, candidateFile, student, validation, assets, ...b }) => ({
-        ...b,
-        assets: assets.map(({ sourceSpecPath, sourceSvgPath, ...a }) => a),
-      }),
-    ),
+    bindings: bindings.map((b) => ({
+      privateCandidatePath: b.privateCandidatePath,
+      authoredInput: b.authoredInput,
+      candidateFileSha256: b.candidateFileSha256,
+      candidateDigest: b.candidateDigest,
+      studentDigest: b.studentDigest,
+      assetDigest: b.assetDigest,
+      assets: b.assets.map((a) => ({
+        role: a.role,
+        specSha256: a.specSha256,
+        svgSha256: a.svgSha256,
+        intendedWidthMm: a.intendedWidthMm,
+        studentPath: a.studentPath,
+        ...(a.resources
+          ? {
+              resources: a.resources.map((r) => ({
+                rasterSha256: r.rasterSha256,
+                generationSha256: r.generationSha256,
+                widthPx: r.widthPx,
+                heightPx: r.heightPx,
+              })),
+            }
+          : {}),
+      })),
+    })),
     independentReports:
       "external evidence only; no mathematical correctness inferred from IDs/digests/render or original answer agreement",
     gates: {
@@ -215,8 +234,7 @@ function prepareBlind(directory, newBlindDirectory) {
     }),
   );
 }
-function verifyPack(directory, blindDirectory, newReviewDirectory) {
-  const { manifest, bindings } = currentPackage(directory);
+function auditBlind(blindDirectory, manifest, bindings) {
   const blind = readJson(path.join(blindDirectory, "blind-manifest.json"));
   assert.equal(blind.packageDigest, manifest.packageDigest);
   assert.equal(
@@ -230,6 +248,23 @@ function verifyPack(directory, blindDirectory, newReviewDirectory) {
       a.sha256,
       "Blind figure changed",
     );
+  const students = readJson(path.join(blindDirectory, "student-problems.json"));
+  assert.deepEqual(
+    students,
+    bindings.map((b) => ({ ...b.student, studentDigest: b.studentDigest })),
+    "Blind student input does not match frozen package",
+  );
+  assert.deepEqual(
+    blind.figures,
+    bindings.flatMap((b) =>
+      b.assets.map((a) => ({ path: a.studentPath, sha256: a.svgSha256 })),
+    ),
+    "Blind figure manifest does not match frozen package",
+  );
+}
+function verifyPack(directory, blindDirectory, newReviewDirectory) {
+  const { manifest, bindings } = currentPackage(directory);
+  auditBlind(blindDirectory, manifest, bindings);
   const inputs = bindings.map((b) => {
     const solvePath = path.join(
       blindDirectory,
@@ -286,8 +321,9 @@ function verifyPack(directory, blindDirectory, newReviewDirectory) {
     }),
   );
 }
-function collect(directory, blindDirectory, reviewDirectory, newResultFile) {
+export function auditCollectedPack(directory, blindDirectory, reviewDirectory) {
   const { manifest, bindings } = currentPackage(directory);
+  auditBlind(blindDirectory, manifest, bindings);
   const verification = readJson(
     path.join(reviewDirectory, "verification-manifest.json"),
   );
@@ -320,7 +356,7 @@ function collect(directory, blindDirectory, reviewDirectory, newResultFile) {
       ...evaluateReview(b, solve, report, manifest.gates),
     };
   });
-  const result = {
+  return {
     kind: "authored-exam-twin-review-result/v1",
     packageDigest: manifest.packageDigest,
     createdAt: new Date().toISOString(),
@@ -332,6 +368,9 @@ function collect(directory, blindDirectory, reviewDirectory, newResultFile) {
     productionWrites: false,
     results,
   };
+}
+function collect(directory, blindDirectory, reviewDirectory, newResultFile) {
+  const result = auditCollectedPack(directory, blindDirectory, reviewDirectory);
   const out = newOutputPath(newResultFile);
   newJson(out, result);
   console.log(

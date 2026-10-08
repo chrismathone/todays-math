@@ -1,0 +1,1182 @@
+[
+  {
+    "candidate": {
+      "schemaVersion": 1,
+      "questionNumber": 10,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r2-q10",
+      "authorId": "orca-codex-exam-twin-parent-image-context-20261008",
+      "content": "체육관 환기창을 관측할 위치를 정하려고 한다. 두 번째 그림의 관계도에서 $\\mathrm{A}$는 민준의 눈, $\\mathrm{G}$는 발밑, $\\mathrm{C}$는 환기창의 중심이며, $\\mathrm{E}$는 창 중심 바로 아래 지면이다. 지면은 수평이고 벽은 수직이다. $\\mathrm{B}$는 눈높이의 수평선과 벽이 만나는 점이다.\n\n| 관측 기록 | 값 |\n| --- | --- |\n| 지면에서 환기창 중심까지의 높이 $\\overline{CE}$ | $12.8\\,\\mathrm{m}$ |\n| 민준의 눈높이 $\\overline{AG}$ | $1.6\\,\\mathrm{m}$ |\n| 환기창 중심을 올려다본 각 $\\angle BAC$ | $58^\\circ$ |\n\n| 각 | $\\sin$ | $\\cos$ | $\\tan$ |\n| --- | --- | --- | --- |\n| $58^\\circ$ | $0.8480$ | $0.5299$ | $1.6003$ |\n\n위 삼각비 표를 이용할 때 민준의 발밑에서 벽까지의 수평거리 $\\overline{GE}$는? (소수점 아래 둘째 자리에서 반올림한다.)",
+      "choices": [
+        "$6.5\\,\\mathrm{m}$",
+        "$6.8\\,\\mathrm{m}$",
+        "$7.0\\,\\mathrm{m}$",
+        "$7.2\\,\\mathrm{m}$",
+        "$11.2\\,\\mathrm{m}$"
+      ],
+      "answer": "③",
+      "solution": "눈높이 위의 높이는 $\\overline{CB}=12.8-1.6=11.2\\,(\\mathrm{m})$이다. 직각삼각형 $\\mathrm{ABC}$에서 $\\tan58^\\circ=\\dfrac{\\overline{CB}}{\\overline{AB}}$이므로 표의 값을 대입하면 $1.6003=\\dfrac{11.2}{\\overline{AB}}$이다. 따라서 $\\overline{AB}=11.2\\div1.6003=6.998\\cdots$이다. 지면과 눈높이의 수평선이 평행하므로 $\\overline{GE}=\\overline{AB}$이며, 소수점 아래 둘째 자리에서 반올림하면 $7.0\\,\\mathrm{m}$이다. 정답은 ③이다.",
+      "score": 4,
+      "questionType": "객관식",
+      "facts": {
+        "heightM": 12.8,
+        "eyeHeightM": 1.6,
+        "elevationDegrees": 58,
+        "displayedTan": "1.6003",
+        "distanceM": 6.998687746047615,
+        "roundedM": 7
+      },
+      "figureArtifacts": [
+        {
+          "role": "stem",
+          "specPath": "figure-1.spec.json",
+          "svgPath": "figure-1.svg",
+          "intendedWidthMm": 70,
+          "rasterResources": [
+            {
+              "path": "figure-1-raster-1.png",
+              "generationPath": "figure-1-generation-1.json"
+            }
+          ]
+        },
+        {
+          "role": "stem",
+          "specPath": "figure-2.spec.json",
+          "svgPath": "figure-2.svg",
+          "intendedWidthMm": 70
+        }
+      ],
+      "variantDelta": {
+        "modes": [
+          "context",
+          "structure",
+          "inverse-target"
+        ],
+        "before": "수평거리 5.5m, 눈높이 1.7m, 올려본각 58°와 sin/cos/tan 표가 제시된다.",
+        "after": "석탑 높이를 구하는 직접 계산에서 체육관 환기창의 관측 위치를 정하는 거리 역산으로 바꾸고 두 기록표로 자료를 제시한다.",
+        "sharedConcept": "표에서 필요한 삼각비를 골라 눈높이 위 높이를 계산한 뒤 눈높이를 합한다.",
+        "sharedProcedure": "표에서 필요한 직각삼각형의 삼각비를 선택하고 눈높이 보정과 비의 관계를 사용한다. 미지 대상을 총높이에서 거리로 전환한다.",
+        "printRevision": "Split previously composed95mm scene/diagram into two separate70mm authored assets matching the bank cap; enlarge engine labels; numeric conditions regenerated and new independent solve required. Substantive delta from original exam remains context/structure/inverse target."
+      },
+      "curriculumReview": {
+        "grade": "중3",
+        "edition": "2015",
+        "status": "author-proposed",
+        "standardCodes": [
+          "9수04-18",
+          "9수04-17",
+          "9수02-02"
+        ],
+        "surfaces": {
+          "stem": "author-proposed",
+          "choices": "author-proposed",
+          "figuresAndTables": "author-proposed",
+          "notation": "author-proposed",
+          "answer": "author-proposed",
+          "studentSolution": "author-proposed",
+          "prerequisites": "author-proposed"
+        },
+        "evidence": [
+          {
+            "code": "9수04-18",
+            "role": "primary-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4345,
+              "record_offset_in_uncompressed_stream": 219292,
+              "extracted_paragraph_1based": 892
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                38
+              ],
+              "printed_pages": [
+                34
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수04-17",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4341,
+              "record_offset_in_uncompressed_stream": 219120,
+              "extracted_paragraph_1based": 891
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                38
+              ],
+              "printed_pages": [
+                34
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수02-02",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 3900,
+              "record_offset_in_uncompressed_stream": 199304,
+              "extracted_paragraph_1based": 793
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                34
+              ],
+              "printed_pages": [
+                30
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          }
+        ]
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 2,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 2,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "score": 4,
+        "difficultyProposal": "응용",
+        "difficultyStatus": "pending-new-candidate-review",
+        "problemTypeProposal": "활용",
+        "problemTypeStatus": "pending-new-candidate-review",
+        "hasFigure": true,
+        "assignment": {
+          "status": "pending",
+          "unitId": null,
+          "familyKey": null,
+          "currentUnit": null,
+          "currentRegistryMatch": null,
+          "liveCount": null,
+          "checkedAt": "2026-10-07 15:57:15.290971+00",
+          "evidence": "실생활의 올려본각 높이 문제이면서 비특수각 58°의 표 값과 눈높이 보정이 필수다. 기존 활용03과 표 활용17이 서로 다른 Unit에 등록되어 있어 주 단원 선택을 보류한다.",
+          "candidates": [
+            {
+              "registryKey": "3-2|삼각비의 활용|03",
+              "registryTitle": "실생활에서 직각삼각형의 변의 길이의 활용 ⑴",
+              "section": "삼각비의 활용",
+              "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+              "family": "mid:3-2|삼각비의 활용|03",
+              "confidence": "low",
+              "evidence": "생활 장면과 올려본각 높이 절차는 일치하지만 현재 엔진은 특수각·지면 관측형이다.",
+              "sameUnitLiveCount": 24,
+              "currentUnit": {
+                "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+                "grade": "중3",
+                "chapter": "5. 삼각비",
+                "section": "삼각비의 활용",
+                "semester": 2,
+                "orderIndex": 483,
+                "problemCodePrefix": "J30503"
+              },
+              "currentRegistryMatch": {
+                "key": "3-2|삼각비의 활용|03",
+                "grade": "중3",
+                "unitSection": "삼각비의 활용",
+                "rpmBook": "3-2",
+                "rpmMinor": "삼각비의 활용",
+                "rpmType": "03",
+                "rpmTitle": "실생활에서 직각삼각형의 변의 길이의 활용 ⑴"
+              },
+              "currentLiveCount": 24
+            },
+            {
+              "registryKey": "3-2|삼각비|17",
+              "registryTitle": "삼각비의 표를 이용하여 변의 길이 구하기",
+              "section": "삼각비의 값",
+              "unitId": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+              "family": "mid:3-2|삼각비|17",
+              "confidence": "low",
+              "evidence": "비특수각 표에서 변의 길이를 구하는 절차는 일치하지만 생활 높이·눈높이 보정은 현재 엔진에 없다.",
+              "sameUnitLiveCount": 20,
+              "currentUnit": {
+                "id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+                "grade": "중3",
+                "chapter": "5. 삼각비",
+                "section": "삼각비의 값",
+                "semester": 2,
+                "orderIndex": 482,
+                "problemCodePrefix": "J30502"
+              },
+              "currentRegistryMatch": {
+                "key": "3-2|삼각비|17",
+                "grade": "중3",
+                "unitSection": "삼각비의 값",
+                "rpmBook": "3-2",
+                "rpmMinor": "삼각비",
+                "rpmType": "17",
+                "rpmTitle": "삼각비의 표를 이용하여 변의 길이 구하기"
+              },
+              "currentLiveCount": 20
+            }
+          ]
+        },
+        "achievementStandardRefs": [
+          {
+            "code": "9수04-18",
+            "role": "primary-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4345,
+              "record_offset_in_uncompressed_stream": 219292,
+              "extracted_paragraph_1based": 892
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                38
+              ],
+              "printed_pages": [
+                34
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수04-17",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4341,
+              "record_offset_in_uncompressed_stream": 219120,
+              "extracted_paragraph_1based": 891
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                38
+              ],
+              "printed_pages": [
+                34
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수02-02",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 3900,
+              "record_offset_in_uncompressed_stream": 199304,
+              "extracted_paragraph_1based": 793
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                34
+              ],
+              "printed_pages": [
+                30
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          }
+        ],
+        "achievementStandardStatus": "expert-proposal-not-candidate-approval",
+        "curriculumMethodProposal": "수평거리·눈높이·높이 차를 직각삼각형으로 구성하고 제공된 표의 tan58° 값으로 계산한 뒤 눈높이를 더한다.",
+        "curriculumSpecificHold": "표 tan58°=1.6003과 m 단위 및 반올림 자리가 조건이다. 현행 live family는 부모 작업에서 확인해야 한다.",
+        "sourceIdentityReview": {
+          "status": "pending-attestation",
+          "nominalSourceSchool": "범일중",
+          "nominalExamYear": 2025,
+          "observations": [
+            "PDF header2025; editorial footer26년",
+            "Filename school범일중; document anonymizedBI중"
+          ],
+          "effect": "No silent year/school rewrite; both2025/2026 middle3 phase-in2015; actual provenance still pending"
+        },
+        "generatorRuleReview": {
+          "status": "pending-semantic-match",
+          "registryPath": ".qa-artifacts/exam-resume-20261008/registry-read-20261008.json",
+          "historicalSourceSuggestions": [
+            "D:/todays-math/src/lib/middle/m3Trig.ts:1575",
+            "D:/todays-math/src/lib/middle/m3Trig.ts:1968"
+          ]
+        }
+      },
+      "sourceReference": {
+        "externalId": "personal-9967cfbb759aa6d369883bac4c986aaa-10",
+        "examId": "personal-9967cfbb759aa6d369883bac4c986aaa",
+        "school": "범일중",
+        "questionNumber": 10,
+        "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중3/[범일중][3][25-2-중간][비상] (완료).PDF",
+        "sourceContentSha256": "65593e3d19187b6219ba9336e8a6d2b2a7e879c15bd83e8e71d709fd1ac2b993",
+        "sourceObservation": "수평거리 5.5m, 눈높이 1.7m, 올려본각 58°와 sin/cos/tan 표가 제시된다.",
+        "sharedConceptProcedure": "표에서 필요한 삼각비를 골라 눈높이 위 높이를 계산한 뒤 눈높이를 합한다."
+      },
+      "schoolNamePolicy": {
+        "actual": "범일중",
+        "display": "새봄누리중학교",
+        "role": "fictional-display-alias-only",
+        "originalOccurrencesInStem": 0,
+        "surfaces": [
+          "content",
+          "choices",
+          "tables",
+          "figureLabels",
+          "solution"
+        ],
+        "review": "pending-new-candidate"
+      },
+      "independentVerification": null,
+      "review": {
+        "status": "pending",
+        "gradeCurriculum": "pending",
+        "equivalentConceptAndMethod": "pending",
+        "distinctPresentation": "pending",
+        "naturalKorean": "pending",
+        "mathematicalCorrectness": "pending",
+        "figure": "pending",
+        "rights": "pending",
+        "similarity": "pending"
+      },
+      "directUseAllowed": false,
+      "assetAuthoring": {
+        "tool": "built-in image_gen.imagegen",
+        "rasterHash": "72c2deb6fd213e9e372af15bdf7e108e79aaf538c448be8860b1a565b478d7ba",
+        "generatedRasterReuse": "same NEW authored scene, no original source raster reused",
+        "enginePath": "new renderFigureSpec(strict)->local vendor",
+        "rasterMathAuthority": false,
+        "productionReady": false
+      },
+      "priorCandidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\bumil-authoring-r1\\image-context\\q10.json",
+        "sha256": "4fc6124f69929f80ce79f233e9d81b16226b7460242ffd2941fe59ff375b3ea4",
+        "reviewUse": "historical only; new student/assets/answers/solutions must be re-solved and reviewed"
+      }
+    },
+    "assets": [
+      {
+        "role": "stem",
+        "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r5\\package\\private\\q10\\figure-1.spec.json",
+        "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r5\\package\\private\\q10\\figure-1.svg",
+        "specSha256": "0f139d0a29202278d30f110547d365ed616a6d46df084e6604052bf2032fb484",
+        "svgSha256": "a0924a0c32ceb18d08f1126358a0ecfe495dfb02a3e462e72d14507257337cd3",
+        "intendedWidthMm": 70,
+        "studentPath": "figures/q10-1.svg",
+        "resources": [
+          {
+            "sourceRasterPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r5\\package\\private\\q10\\figure-1-raster-1.png",
+            "sourceGenerationPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r5\\package\\private\\q10\\figure-1-generation-1.json",
+            "rasterSha256": "72c2deb6fd213e9e372af15bdf7e108e79aaf538c448be8860b1a565b478d7ba",
+            "generationSha256": "ac77edc7e2d7712cdb2a0cb45a4bdec2b527f033fafd812d3537a0b7341de155",
+            "widthPx": 1536,
+            "heightPx": 1024
+          }
+        ]
+      },
+      {
+        "role": "stem",
+        "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r5\\package\\private\\q10\\figure-2.spec.json",
+        "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r5\\package\\private\\q10\\figure-2.svg",
+        "specSha256": "977b2bf1c01715ab6f37b513e91af8d3acd3f06f8ad8ac0f67dfb2558ab975fd",
+        "svgSha256": "010b2097764d3a0ab98f4f17c9f13637f50b55e73dbc48c398891b2f6dc9164e",
+        "intendedWidthMm": 70,
+        "studentPath": "figures/q10-2.svg"
+      }
+    ],
+    "studentDigest": "33606d31af0dc51fe06bf158f44101ce7a749c41e643d0ad92ee5327c7c7e934",
+    "candidateDigest": "a44d112ea0647bc9858e5f9199da0d23718e833fab7ee1339f70cbbb050089f8",
+    "assetDigest": "6e051c4bd40203816b3208f73cf93dd6be3f212357583d69bd906b6f379640f4",
+    "independentSolve": {
+      "studentDigest": "33606d31af0dc51fe06bf158f44101ce7a749c41e643d0ad92ee5327c7c7e934",
+      "solverId": "orca-codex-exam-twin-author-algebra-20261008",
+      "answer": "③",
+      "solution": "눈높이의 수평선이 벽과 만나는 점이 B이므로 $\\overline{BE}=\\overline{AG}=1.6\\,\\mathrm{m}$이고 $\\overline{AB}=\\overline{GE}$이다. 따라서 눈높이에서 환기창 중심까지의 높이는 $\\overline{BC}=\\overline{CE}-\\overline{BE}=12.8-1.6=11.2\\,\\mathrm{m}$이다.\n\n직각삼각형 ABC에서 $\\tan 58^\\circ=\\dfrac{\\overline{BC}}{\\overline{AB}}$이다. 주어진 표의 값을 대입하면 $1.6003=\\dfrac{11.2}{\\overline{AB}}$이므로 $\\overline{GE}=\\overline{AB}=\\dfrac{11.2}{1.6003}\\approx6.998687746\\,\\mathrm{m}$이다. 소수점 아래 둘째 자리에서 반올림하면 $7.0\\,\\mathrm{m}$이므로 정답은 ③이다.",
+      "evidence": {
+        "mode": "fresh-blind-student-only",
+        "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r2-q10",
+        "grade": "중3",
+        "curriculum": "2015",
+        "scoreObserved": 4,
+        "answerValue": {
+          "exactUsingTable": "11.2/1.6003",
+          "rounded": "7.0",
+          "unit": "m"
+        },
+        "studentMethods": [
+          "수평선과 수직선으로 생긴 직사각형의 마주 보는 변의 길이",
+          "눈높이를 뺀 높이",
+          "직각삼각형의 탄젠트",
+          "소수의 나눗셈과 반올림"
+        ],
+        "conditionChecks": [
+          "주어진 높이 12.8m와 눈높이 1.6m를 새 학생 입력에서 읽었다. 높이 차는 11.2m로 양수이다.",
+          "58°는 0°보다 크고 90°보다 작다. AB가 수평이고 BC가 수직이므로 ABC는 B에서 직각인 삼각형이다.",
+          "tan 58°의 표 값 1.6003이 양수이므로 GE=11.2/1.6003은 양수인 하나의 값으로 결정된다.",
+          "코드로 sin·cos·tan 각 열을 소수 네 자리에서 확인했으며 0.8480, 0.5299, 1.6003이 맞았다. 학생 풀이에는 주어진 탄젠트 값을 그대로 사용했다.",
+          "반올림 전 GE는 약 6.998687746m이다. 소수점 아래 둘째 자리에서 반올림하므로 소수 첫째 자리까지 7.0m로 쓴다."
+        ],
+        "choiceReview": [
+          {
+            "mark": "①",
+            "value": "6.5m",
+            "matches": false,
+            "reason": "반올림한 수평거리 7.0m와 다르다."
+          },
+          {
+            "mark": "②",
+            "value": "6.8m",
+            "matches": false,
+            "reason": "반올림한 수평거리 7.0m와 다르다."
+          },
+          {
+            "mark": "③",
+            "value": "7.0m",
+            "matches": true,
+            "reason": "주어진 탄젠트 표로 계산한 수평거리의 반올림값이다."
+          },
+          {
+            "mark": "④",
+            "value": "7.2m",
+            "matches": false,
+            "reason": "반올림한 수평거리 7.0m와 다르다."
+          },
+          {
+            "mark": "⑤",
+            "value": "11.2m",
+            "matches": false,
+            "reason": "BC의 높이 차이며 GE의 수평거리가 아니다."
+          }
+        ],
+        "uniqueAnswer": true,
+        "figureReview": {
+          "viewed": true,
+          "authoritativeStudentLayout": "student-preview-r2/q10.png",
+          "sourceOrder": "왼쪽 장면, 오른쪽 관계도",
+          "separateAssetWidthMm": 70,
+          "observations": [
+            "새 A4 배치 미리보기에서 본문·두 표·그림·다섯 보기가 모두 잘림 없이 보인다. 본문의 두 번째 그림은 오른쪽 관계도에 해당한다.",
+            "장면은 체육관 벽·환기창·관측자의 배경이다. 길이와 각의 근거는 학생 기록과 별도 관계도이다.",
+            "70mm 관계도에서 A와 G, B와 E가 각각 분리되어 읽히고 C, 수평 점선 AB, 수직 벽 CE, 지면 GE, B의 직각 표시가 보인다.",
+            "58° 표기는 아래쪽에 놓였지만 연결선이 A의 위쪽 각호에 닿으므로 각 BAC를 나타낸다. 점 이름·각도·선이 겹치거나 잘리지 않았다.",
+            "이 문항의 두 학생용 SVG 바이트 해시는 제공된 값과 같았다. 장면 래스터 픽셀에서 수학적 길이나 각을 측정하지 않았다."
+          ]
+        },
+        "scope": "독립 풀이와 학생용 시각 확인만 완료. 저자 답·해설·비공개 스펙을 읽지 않았으며 최종 교육과정·분류·권리 승인을 뜻하지 않는다.",
+        "bindings": {
+          "studentInputPath": "bumil-review-r5/blind/student-problems.json",
+          "studentInputSha256": "b0a75b81b9618e1450fc90dad49f17ad4a043dd45c6ed557dfc28407b03d3212",
+          "studentDigest": "33606d31af0dc51fe06bf158f44101ce7a749c41e643d0ad92ee5327c7c7e934",
+          "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r2-q10",
+          "studentFigures": [
+            {
+              "questionNumber": 10,
+              "role": "stem",
+              "studentSvgPath": "figures/q10-1.svg",
+              "studentSvgSha256": "a0924a0c32ceb18d08f1126358a0ecfe495dfb02a3e462e72d14507257337cd3",
+              "intendedWidthMm": 70,
+              "previewPath": "previews/q10-1-70mm.png",
+              "previewSha256": "387b57b0a6f141e4e4b7930d475aac9f1fe4cd7269e241671eb16d9807f17912",
+              "previewPixels": [
+                265,
+                177
+              ],
+              "densityDpi": 96,
+              "renderedWidthMm": 70.11458333333333,
+              "labelText": [],
+              "embeddedImageCount": 1,
+              "studentViewBox": [
+                0,
+                0,
+                1536,
+                1024
+              ]
+            },
+            {
+              "questionNumber": 10,
+              "role": "stem",
+              "studentSvgPath": "figures/q10-2.svg",
+              "studentSvgSha256": "010b2097764d3a0ab98f4f17c9f13637f50b55e73dbc48c398891b2f6dc9164e",
+              "intendedWidthMm": 70,
+              "previewPath": "previews/q10-2-70mm.png",
+              "previewSha256": "7371b4e115e46f8af814f5b0956cd6d1fec2475002c35e48ffc87bc0baced921",
+              "previewPixels": [
+                265,
+                389
+              ],
+              "densityDpi": 96,
+              "renderedWidthMm": 70.11458333333333,
+              "labelText": [
+                "58^\\circ",
+                "A",
+                "B",
+                "C",
+                "E",
+                "G"
+              ],
+              "embeddedImageCount": 0,
+              "studentViewBox": [
+                0,
+                0,
+                206.304,
+                302.53
+              ]
+            }
+          ],
+          "authoritativePrintPreview": {
+            "questionNumber": 10,
+            "path": "student-preview-r2/q10.png",
+            "sha256": "bdee4529adf437b63d55603efd632aa2e9c414af8e20397bb667416a0ceb5a14",
+            "layout": "separate70mm-side-by-side-source-order-left-to-right",
+            "viewed": true
+          },
+          "native70mmProof": {
+            "questionNumber": 10,
+            "nativeProofPath": "previews/q10-70mm-proof.svg",
+            "nativeProofSha256": "50b093d762e4dc832401f4fcdb56e8663d7c74697740085f30291e8c01e28fc6",
+            "previewPath": "previews/q10-70mm-proof.png",
+            "previewSha256": "edd18d746466ee1f533644a3ee235cb7a1d4cca3e9a6687a8d46e73825203f1e",
+            "pageWidthMm": 210,
+            "assetWidthMm": 70,
+            "separateAssets": 2
+          },
+          "calculationPath": "calculations.json",
+          "calculationSha256": "3e08649559dcf283164ce4cd87e54a323dfbf3d282a19b27c66e557538dc1816"
+        }
+      },
+      "status": "solved"
+    },
+    "solveDigest": "29182eecaced72f34f0bc88be8b19e5816661fcb940c194bd18d18623ff74226"
+  },
+  {
+    "candidate": {
+      "schemaVersion": 1,
+      "questionNumber": 19,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r2-q19",
+      "authorId": "orca-codex-exam-twin-parent-image-context-20261008",
+      "content": "공원 측량 기록에서 두 측량 표지 $\\mathrm{A},\\mathrm{B}$ 사이의 거리만 빠져 있다. $\\mathrm{C}$는 관개 제어함의 위치이며, 세 위치를 이은 삼각형에 대한 기록은 다음과 같다.\n\n| 측량 항목 | 기록 |\n| --- | --- |\n| 표지 $\\mathrm{B}$에서 제어함 $\\mathrm{C}$까지의 거리 | $30\\sqrt{6}\\,\\mathrm{m}$ |\n| $\\angle BAC$ | $45^\\circ$ |\n| $\\angle ABC$ | $75^\\circ$ |\n\n빠진 거리 $\\overline{AB}$를 구하고 풀이 과정을 쓰시오.",
+      "choices": [],
+      "answer": "$90\\,\\mathrm{m}$",
+      "solution": "삼각형의 내각의 합으로 $\\angle ACB=180^\\circ-45^\\circ-75^\\circ=60^\\circ$이다. 점 $\\mathrm{B}$에서 선분 $\\mathrm{AC}$에 내린 수선의 발을 $\\mathrm{H}$라 하자. 직각삼각형 $\\mathrm{BCH}$에서 $\\overline{BH}=\\overline{BC}\\sin60^\\circ=30\\sqrt6\\times\\dfrac{\\sqrt3}{2}=45\\sqrt2\\,(\\mathrm{m})$이다. 직각삼각형 $\\mathrm{ABH}$에서 $\\sin45^\\circ=\\dfrac{\\overline{BH}}{\\overline{AB}}$이므로 $\\overline{AB}=45\\sqrt2\\div\\dfrac{\\sqrt2}{2}=90\\,(\\mathrm{m})$이다. 따라서 두 표지 사이의 거리는 $90\\,\\mathrm{m}$이다.",
+      "score": 7,
+      "questionType": "서술형",
+      "facts": {
+        "givenBC": "30*sqrt(6)",
+        "angleA": 45,
+        "angleB": 75,
+        "angleC": 60,
+        "targetAB": 90
+      },
+      "figureArtifacts": [
+        {
+          "role": "stem",
+          "specPath": "figure-1.spec.json",
+          "svgPath": "figure-1.svg",
+          "intendedWidthMm": 70,
+          "rasterResources": [
+            {
+              "path": "figure-1-raster-1.png",
+              "generationPath": "figure-1-generation-1.json"
+            }
+          ]
+        },
+        {
+          "role": "stem",
+          "specPath": "figure-2.spec.json",
+          "svgPath": "figure-2.svg",
+          "intendedWidthMm": 70
+        }
+      ],
+      "variantDelta": {
+        "modes": [
+          "context",
+          "structure",
+          "inverse-target"
+        ],
+        "before": "AB=70m, ∠A=45°, ∠B=75°인 삼각형 ABC에서 BC를 묻는다.",
+        "after": "캠핑장의 두 텐트 사이 거리에서 시설까지 거리 구하기를, 공원 시설까지 거리로 빠진 표지 사이 거리를 복구하는 기록표로 전환한다.",
+        "sharedConcept": "나머지 각을 구하고 높이를 보조선으로 삼아 알려진 변·특수각의 삼각비로 필요한 변을 표현한다.",
+        "sharedProcedure": "내각의 합과 보조 수선으로 45°·60° 직각삼각형을 만들고 삼각비로 선분 길이를 구한다. 미지 선분을 역으로 전환한다.",
+        "printRevision": "Split previously composed95mm scene/diagram into two separate70mm authored assets matching the bank cap; enlarge engine labels; numeric conditions regenerated and new independent solve required. Substantive delta from original exam remains context/structure/inverse target."
+      },
+      "curriculumReview": {
+        "grade": "중3",
+        "edition": "2015",
+        "status": "author-proposed",
+        "standardCodes": [
+          "9수04-18",
+          "9수04-17",
+          "9수04-05",
+          "9수04-10",
+          "9수01-10"
+        ],
+        "surfaces": {
+          "stem": "author-proposed",
+          "choices": "author-proposed",
+          "figuresAndTables": "author-proposed",
+          "notation": "author-proposed",
+          "answer": "author-proposed",
+          "studentSolution": "author-proposed",
+          "prerequisites": "author-proposed"
+        },
+        "evidence": [
+          {
+            "code": "9수04-18",
+            "role": "primary-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4345,
+              "record_offset_in_uncompressed_stream": 219292,
+              "extracted_paragraph_1based": 892
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                38
+              ],
+              "printed_pages": [
+                34
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수04-17",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4341,
+              "record_offset_in_uncompressed_stream": 219120,
+              "extracted_paragraph_1based": 891
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                38
+              ],
+              "printed_pages": [
+                34
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수04-05",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4272,
+              "record_offset_in_uncompressed_stream": 216602,
+              "extracted_paragraph_1based": 874
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                37
+              ],
+              "printed_pages": [
+                33
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수04-10",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4300,
+              "record_offset_in_uncompressed_stream": 217636,
+              "extracted_paragraph_1based": 881
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                37
+              ],
+              "printed_pages": [
+                33
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수01-10",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 3788,
+              "record_offset_in_uncompressed_stream": 193301,
+              "extracted_paragraph_1based": 771
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                33
+              ],
+              "printed_pages": [
+                29
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          }
+        ]
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 2,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 2,
+        "sourceExamRound": "중간",
+        "questionType": "서술형",
+        "score": 7,
+        "difficultyProposal": "응용",
+        "difficultyStatus": "pending-new-candidate-review",
+        "problemTypeProposal": "서술형",
+        "problemTypeStatus": "pending-new-candidate-review",
+        "hasFigure": true,
+        "assignment": {
+          "status": "proposed",
+          "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+          "familyKey": "mid:3-2|삼각비의 활용|05",
+          "currentUnit": {
+            "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+            "grade": "중3",
+            "chapter": "5. 삼각비",
+            "section": "삼각비의 활용",
+            "semester": 2,
+            "orderIndex": 483,
+            "problemCodePrefix": "J30503"
+          },
+          "currentRegistryMatch": {
+            "key": "3-2|삼각비의 활용|05",
+            "grade": "중3",
+            "unitSection": "삼각비의 활용",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비의 활용",
+            "rpmType": "05",
+            "rpmTitle": "일반 삼각형의 변의 길이 구하기 한 변의 길이와 그 양 끝 각의 크기를 아는 경우"
+          },
+          "liveCount": 24,
+          "checkedAt": "2026-10-07 15:57:15.290971+00",
+          "evidence": "한 변 AB와 그 양 끝 A,B의 각이 주어져 다른 변 BC를 구하는 일반 삼각형 유형05와 일치한다. 풍경 그림은 문제의 주 절차를 바꾸지 않는다.",
+          "candidates": []
+        },
+        "achievementStandardRefs": [
+          {
+            "code": "9수04-18",
+            "role": "primary-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4345,
+              "record_offset_in_uncompressed_stream": 219292,
+              "extracted_paragraph_1based": 892
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                38
+              ],
+              "printed_pages": [
+                34
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수04-17",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4341,
+              "record_offset_in_uncompressed_stream": 219120,
+              "extracted_paragraph_1based": 891
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                38
+              ],
+              "printed_pages": [
+                34
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수04-05",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4272,
+              "record_offset_in_uncompressed_stream": 216602,
+              "extracted_paragraph_1based": 874
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                37
+              ],
+              "printed_pages": [
+                33
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수04-10",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4300,
+              "record_offset_in_uncompressed_stream": 217636,
+              "extracted_paragraph_1based": 881
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                37
+              ],
+              "printed_pages": [
+                33
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수01-10",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 3788,
+              "record_offset_in_uncompressed_stream": 193301,
+              "extracted_paragraph_1based": 771
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                33
+              ],
+              "printed_pages": [
+                29
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          }
+        ],
+        "achievementStandardStatus": "expert-proposal-not-candidate-approval",
+        "curriculumMethodProposal": "B에서 AC에 수선을 내린다. AB를 빗변으로 하는 45° 직각삼각형과 C의 내각 60°인 직각삼각형을 차례로 사용해 BC를 구한다.",
+        "curriculumSpecificHold": "75°의 sin/cos/tan 값을 공식으로 구할 필요가 없다. 높이의 발이 선분 AC 위라는 위치와 사인법칙/각의 덧셈 배제를 확인한다.",
+        "sourceIdentityReview": {
+          "status": "pending-attestation",
+          "nominalSourceSchool": "범일중",
+          "nominalExamYear": 2025,
+          "observations": [
+            "PDF header2025; editorial footer26년",
+            "Filename school범일중; document anonymizedBI중"
+          ],
+          "effect": "No silent year/school rewrite; both2025/2026 middle3 phase-in2015; actual provenance still pending"
+        },
+        "generatorRuleReview": {
+          "status": "pending-semantic-match",
+          "registryPath": ".qa-artifacts/exam-resume-20261008/registry-read-20261008.json",
+          "historicalSourceSuggestions": [
+            "D:/todays-math/src/lib/middle/m3Trig.ts:2084"
+          ]
+        }
+      },
+      "sourceReference": {
+        "externalId": "personal-9967cfbb759aa6d369883bac4c986aaa-19",
+        "examId": "personal-9967cfbb759aa6d369883bac4c986aaa",
+        "school": "범일중",
+        "questionNumber": 19,
+        "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중3/[범일중][3][25-2-중간][비상] (완료).PDF",
+        "sourceContentSha256": "1ca06e12a9b63387b3a827941c62d93ebb4b2eaf02f6e6db743f71608a6afb96",
+        "sourceObservation": "AB=70m, ∠A=45°, ∠B=75°인 삼각형 ABC에서 BC를 묻는다.",
+        "sharedConceptProcedure": "나머지 각을 구하고 높이를 보조선으로 삼아 알려진 변·특수각의 삼각비로 필요한 변을 표현한다."
+      },
+      "schoolNamePolicy": {
+        "actual": "범일중",
+        "display": "새봄누리중학교",
+        "role": "fictional-display-alias-only",
+        "originalOccurrencesInStem": 0,
+        "surfaces": [
+          "content",
+          "choices",
+          "tables",
+          "figureLabels",
+          "solution"
+        ],
+        "review": "pending-new-candidate"
+      },
+      "independentVerification": null,
+      "review": {
+        "status": "pending",
+        "gradeCurriculum": "pending",
+        "equivalentConceptAndMethod": "pending",
+        "distinctPresentation": "pending",
+        "naturalKorean": "pending",
+        "mathematicalCorrectness": "pending",
+        "figure": "pending",
+        "rights": "pending",
+        "similarity": "pending"
+      },
+      "directUseAllowed": false,
+      "assetAuthoring": {
+        "tool": "built-in image_gen.imagegen",
+        "rasterHash": "d2ef090378549870c86f0943ea1c26ba2b5d2802f71459963cd8dd29277a1026",
+        "generatedRasterReuse": "same NEW authored scene, no original source raster reused",
+        "enginePath": "new renderFigureSpec(strict)->local vendor",
+        "rasterMathAuthority": false,
+        "productionReady": false
+      },
+      "priorCandidate": {
+        "path": ".qa-artifacts\\exam-resume-20261008\\bumil-authoring-r1\\image-context\\q19.json",
+        "sha256": "cb09eff725b736e5580df0faa16317111770acade37d291ad8385871740fcf19",
+        "reviewUse": "historical only; new student/assets/answers/solutions must be re-solved and reviewed"
+      }
+    },
+    "assets": [
+      {
+        "role": "stem",
+        "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r5\\package\\private\\q19\\figure-1.spec.json",
+        "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r5\\package\\private\\q19\\figure-1.svg",
+        "specSha256": "dc7ef00c9f87c4b58b70e7758724a60e6457a083dca7f07738a526f8c73f782b",
+        "svgSha256": "0c1e6d3c4ab1c275f1f87b238b504830a92b5ca24e15af527b5a46bb43ffa0ae",
+        "intendedWidthMm": 70,
+        "studentPath": "figures/q19-1.svg",
+        "resources": [
+          {
+            "sourceRasterPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r5\\package\\private\\q19\\figure-1-raster-1.png",
+            "sourceGenerationPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r5\\package\\private\\q19\\figure-1-generation-1.json",
+            "rasterSha256": "d2ef090378549870c86f0943ea1c26ba2b5d2802f71459963cd8dd29277a1026",
+            "generationSha256": "ee091600287b19fff886e399d48e19e1a863f201b781b620aa13ca14eeb548af",
+            "widthPx": 1536,
+            "heightPx": 1024
+          }
+        ]
+      },
+      {
+        "role": "stem",
+        "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r5\\package\\private\\q19\\figure-2.spec.json",
+        "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r5\\package\\private\\q19\\figure-2.svg",
+        "specSha256": "3f848d72b5c17f39c4f6b0d56a493258cd653a54ebbd6cf583dcd97f545337e3",
+        "svgSha256": "d888f10d13749d6028d247850891df6ce7ac9b784761e7697226b69bcea9e201",
+        "intendedWidthMm": 70,
+        "studentPath": "figures/q19-2.svg"
+      }
+    ],
+    "studentDigest": "dc9f646e5897008384c4f3a96a4db3b0bdf253cd491ab719aa4079870a205a75",
+    "candidateDigest": "4241865fd9d1676dbe7dd30ea55459f4da6d8fa98f2bb8c7cb64bcb13964354e",
+    "assetDigest": "26cfe0d9c548d205dc6650a634e29df73e8d605b0b53743022d5eae9d9d889e5",
+    "independentSolve": {
+      "studentDigest": "dc9f646e5897008384c4f3a96a4db3b0bdf253cd491ab719aa4079870a205a75",
+      "solverId": "orca-codex-exam-twin-author-algebra-20261008",
+      "answer": "$90\\,\\mathrm{m}$",
+      "solution": "삼각형 ABC의 내각의 합은 $180^\\circ$이므로 $\\angle ACB=180^\\circ-45^\\circ-75^\\circ=60^\\circ$이다. B에서 변 AC에 수선을 내리고 그 발을 H라 하자. A와 C의 각이 모두 예각이므로 H는 변 AC 위에 있다.\n\n직각삼각형 BCH에서 $\\sin 60^\\circ=\\dfrac{\\overline{BH}}{\\overline{BC}}$이므로 $\\overline{BH}=30\\sqrt{6}\\times\\dfrac{\\sqrt{3}}{2}=15\\sqrt{18}=45\\sqrt{2}\\,\\mathrm{m}$이다. 직각삼각형 ABH에서는 $\\angle BAH=45^\\circ$이므로 $\\sin 45^\\circ=\\dfrac{\\overline{BH}}{\\overline{AB}}$이다. 따라서 $\\overline{AB}=\\dfrac{45\\sqrt{2}}{\\sqrt{2}/2}=90\\,\\mathrm{m}$이다.",
+      "evidence": {
+        "mode": "fresh-blind-student-only",
+        "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r2-q19",
+        "grade": "중3",
+        "curriculum": "2015",
+        "scoreObserved": 7,
+        "answerValue": {
+          "exact": "90",
+          "unit": "m"
+        },
+        "studentMethods": [
+          "삼각형의 내각의 합",
+          "변에 내린 수선으로 두 직각삼각형 만들기",
+          "60°·45° 직각삼각형의 사인",
+          "제곱근의 곱셈과 나눗셈"
+        ],
+        "conditionChecks": [
+          "새 학생 입력의 BC=30√6m, A=45°, B=75°를 사용했다. C=60°로 세 각은 모두 0°보다 크고 180°보다 작다.",
+          "A와 C가 모두 예각이므로 B에서 AC에 내린 수선의 발 H는 AC 내부에 있다. 75°의 삼각비를 계산할 필요가 없다.",
+          "BH=45√2m, CH=15√6m, AH=45√2m, AB=90m, AC=45√2+15√6m로 모든 길이가 양수이다.",
+          "직각삼각형 BCH의 B쪽 각은 30°이고 ABH의 B쪽 각은 45°이므로 둘을 합친 ABC의 B쪽 각은 기록과 같은 75°이다.",
+          "코드로 BCH·ABH의 피타고라스 관계와 ABC의 세 삼각부등식을 확인했다. 계산 오차를 제외한 잔차는 0이다.",
+          "BC의 길이와 양 끝 각 B=75°, C=60°가 정해져 삼각형은 합동 조건으로 하나로 정해진다. 두 직각삼각형에서 BH와 AB도 각각 하나의 양수로 결정된다."
+        ],
+        "choiceReview": [],
+        "choiceReviewNote": "서술형이며 학생 입력의 choices는 빈 배열이다. 비교할 보기는 없다.",
+        "uniqueAnswer": true,
+        "figureReview": {
+          "viewed": true,
+          "authoritativeStudentLayout": "student-preview-r2/q19.png",
+          "sourceOrder": "왼쪽 장면, 오른쪽 관계도",
+          "separateAssetWidthMm": 70,
+          "observations": [
+            "새 A4 배치 미리보기에서 측량 기록의 30√6m·45°·75°와 AB를 구하라는 문장이 선명하며 두 그림이 잘리지 않는다.",
+            "왼쪽 장면에는 공원·표지·제어함이 보이고 오른쪽에는 별도의 삼각형 관계도가 있다. 장면 픽셀을 길이·각의 근거로 사용하지 않았다.",
+            "70mm 관계도에서 A는 왼쪽 밑점, B는 오른쪽 밑점, C는 위쪽 점으로 구분된다. A의 45°와 B의 75° 표기는 각각 해당 각호 안쪽에 읽히고 선·점 이름과 겹치지 않는다.",
+            "그림은 C가 예각인 삼각형과 일치한다. 보조점 H는 주어진 그림의 점이 아니라 학생 풀이에서 새로 정한 수선의 발이다.",
+            "이 문항의 두 학생용 SVG 바이트 해시가 제공된 값과 같다. 독립 풀이에는 내각의 합과 60°·45°의 직각삼각비만 사용했다."
+          ]
+        },
+        "scope": "독립 풀이와 학생용 시각 확인만 완료. 저자 답·해설·비공개 스펙을 읽지 않았으며 최종 교육과정·분류·권리 승인을 뜻하지 않는다.",
+        "bindings": {
+          "studentInputPath": "bumil-review-r5/blind/student-problems.json",
+          "studentInputSha256": "b0a75b81b9618e1450fc90dad49f17ad4a043dd45c6ed557dfc28407b03d3212",
+          "studentDigest": "dc9f646e5897008384c4f3a96a4db3b0bdf253cd491ab719aa4079870a205a75",
+          "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r2-q19",
+          "studentFigures": [
+            {
+              "questionNumber": 19,
+              "role": "stem",
+              "studentSvgPath": "figures/q19-1.svg",
+              "studentSvgSha256": "0c1e6d3c4ab1c275f1f87b238b504830a92b5ca24e15af527b5a46bb43ffa0ae",
+              "intendedWidthMm": 70,
+              "previewPath": "previews/q19-1-70mm.png",
+              "previewSha256": "3375db4524124b634b45178755666a417262052dc73e88a36b4741b73e34effb",
+              "previewPixels": [
+                265,
+                177
+              ],
+              "densityDpi": 96,
+              "renderedWidthMm": 70.11458333333333,
+              "labelText": [],
+              "embeddedImageCount": 1,
+              "studentViewBox": [
+                0,
+                0,
+                1536,
+                1024
+              ]
+            },
+            {
+              "questionNumber": 19,
+              "role": "stem",
+              "studentSvgPath": "figures/q19-2.svg",
+              "studentSvgSha256": "d888f10d13749d6028d247850891df6ce7ac9b784761e7697226b69bcea9e201",
+              "intendedWidthMm": 70,
+              "previewPath": "previews/q19-2-70mm.png",
+              "previewSha256": "30897577bba5b73d0191c3a8683bf3f961e7335f7800ee7fe6214df7efc50d45",
+              "previewPixels": [
+                265,
+                217
+              ],
+              "densityDpi": 96,
+              "renderedWidthMm": 70.11458333333333,
+              "labelText": [
+                "45^\\circ",
+                "75^\\circ",
+                "A",
+                "B",
+                "C"
+              ],
+              "embeddedImageCount": 0,
+              "studentViewBox": [
+                0,
+                0,
+                249.9,
+                204.602
+              ]
+            }
+          ],
+          "authoritativePrintPreview": {
+            "questionNumber": 19,
+            "path": "student-preview-r2/q19.png",
+            "sha256": "af9e456934a4410755c423552041189c10eef1fda3fef31c9faf298725eb2b6c",
+            "layout": "separate70mm-side-by-side-source-order-left-to-right",
+            "viewed": true
+          },
+          "native70mmProof": {
+            "questionNumber": 19,
+            "nativeProofPath": "previews/q19-70mm-proof.svg",
+            "nativeProofSha256": "0274b6f59a30e5b53338cd66839b93c9b407052c44fc948c0d0a2e7e4df20b8e",
+            "previewPath": "previews/q19-70mm-proof.png",
+            "previewSha256": "739b0391ced7515e611a7514aac7e17b99a36f75be753d4e0716dbaec93de2ed",
+            "pageWidthMm": 210,
+            "assetWidthMm": 70,
+            "separateAssets": 2
+          },
+          "calculationPath": "calculations.json",
+          "calculationSha256": "3e08649559dcf283164ce4cd87e54a323dfbf3d282a19b27c66e557538dc1816"
+        }
+      },
+      "status": "solved"
+    },
+    "solveDigest": "e2800ff85f56aec92277f838f130e3a912fd3583b534e338c6f48dabdefca3bb"
+  }
+]

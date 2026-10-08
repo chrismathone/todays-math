@@ -13,3 +13,5 @@
 `compose-image-figure.mjs <PNG> <엔진SVG> <생성기록JSON> <새SVG> <새스펙> <수학조건JSON>`는 내장 imagegen으로 제작한 픽셀을 수정하지 않고 상황 삽화와 정확한 기존 엔진 도형을 별도 패널로 조합한다. 점/길이/각/해의 근거는 수학 조건이다. 생성 PNG·도구/정확한 프롬프트·스펙·그림 해시를 연결하고 블라인드 자산에도 픽셀을 보존한다. 앱에서 스킬을 직접 호출한다고 가정하지 않으며 운영 보안/serializer/표시/선택 계약을 구현한 상태가 아니다.
 
 검사: `node --test scripts/import/exam-twin/candidatePack.test.mjs scripts/import/exam-twin/reviewWorkflow.test.mjs`. 합성 제어 시험은 실제 문항 독립 검산과 별도다.
+
+`summarize-reviewed-batch.mjs <현재후보인덱스> <새결과JSON> <검수폴더...>`는 현재 저자 ID와 원본 바이트 해시로 정확히 한 검수를 선택한다. 같은 문항 번호의 이전 버전을 통과 집계에 섞지 않는다. 수집 시에도 블라인드 본문/그림과 답 공개 전 풀이 해시를 재확인한다. 동결 시 바뀐 자산 파일명은 따로 비교하고 내용·그림·자료 바이트는 같아야 한다. 결과는 수학/학년/내용·분류 보류와 전체 승인/적재0을 구분한다.

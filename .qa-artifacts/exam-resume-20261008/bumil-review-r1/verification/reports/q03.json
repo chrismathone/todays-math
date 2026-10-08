@@ -1,0 +1,606 @@
+{
+  "status": "verified",
+  "studentDigest": "d6095c275426e8f3728660cc3bb6d4f33a9cddb3014a708455585c5e159e82a9",
+  "candidateDigest": "4b763285173adb0385e1854674722bc90e619ce6b3e317104f2a8cf3959cea3d",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-exam-twin-source-identity-20261008",
+  "solveDigest": "979ad4de3878095b55ef5315fcf81db15b046de702df7123d39211686ae82235",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": true,
+    "scoreAppropriate": true
+  },
+  "evidence": {
+    "questionNumber": 3,
+    "answerReview": "독립 풀이와 저자 답은 모두 ④(t=5)이다. 꼭짓점 (-2,0)에서 y=a(x+2)², y절편 20에서 a=5, x=-3에서 t=5를 얻는다. facts의 축·꼭짓점·계수 결정 인자 4·a=5·t=5가 모두 일치한다.",
+    "solutionReview": "저자는 축과 x축 위 꼭짓점을 함께 써 (-2,0)을 정한 뒤 (0,20)을 대입하여 a=5를 구하고 마지막에 x=-3을 대입한다. a≠0을 명시했고 음수의 제곱 부호를 올바르게 처리했다. 각 단계가 변경 없는 독립 풀이와 같다.",
+    "existenceUniquenessReview": "축과 꼭짓점 위치가 수평 이동 -2와 수직 이동0을 정한다. 4a=20이 계수5를 하나로 결정하며 a≠0이다. 실제 y=5(x+2)²은 모든 표 조건을 만족한다.",
+    "choicesReview": "t=-5,-1,1,5,20이면 x=-3에서 (x+2)²=1이므로 a=t이다. 이때 y(0)는 -20,-4,4,20,80이 되어 보기④만 조건을 만족한다.",
+    "figureReview": "수학 도형은 없고 네 항목의 기록표가 유일한 자료이다. 입력 assets는 빈 배열이며 student figures도 없다. r2 미리보기에서 (-2), x축 위, (0,20), (-3,t)와 별도 질문 문단·다섯 보기가 읽힌다. 숨은 그림 조건을 사용하지 않았다.",
+    "coreAndDeltaReview": "출처는 축·꼭짓점·다른 점을 알려 주고 y절편 좌표를 묻는다. 새 문제는 y절편(0,20)을 조건으로 바꾸고 다른 점(-3,t)의 미지 y좌표를 묻는다. 글머리표가 기록표로 바뀐 것뿐 아니라 두 점의 알려진/구할 역할이 뒤집힌다. 꼭짓점형→한 점으로a 결정→다른 점 평가의 핵심 절차는 같다.",
+    "naturalKoreanReview": "‘그래프를 조사하여 ... 기록표를 만들었다’와 ‘이 기록표에서 t의 값’은 자연스럽고 표의 빈 수치와 정확히 연결된다. ‘그래프 위의 다른 점’은 이미 주어진 y절편과 다른 점이라는 의미가 명확하다.",
+    "unitFamilyReview": "실제 중3 Unit478(a0a58e33-01fd-4f33-af01-6d85e8e28624)의 1학기 이차함수와 그래프에 registry 14 및 live24가 대응한다. m3Func.ts:1076-1101 mode0는 꼭짓점(p,0)과 점(m,v)에서 y=a(x-p)²를 세워 계수를 정한다. p=-2,m=0,a=5,v=20은 규칙의 범위에 맞고 이후 x=-3 평가가 붙는다. 지배적인 ‘식 결정’ 단계가 family14이며 계수가 처음부터 주어진 단순 함숫값 유형과 구분된다.",
+    "difficultyReview": {
+      "status": "passed",
+      "authorProposal": "기본",
+      "reviewedRecommendation": "기본",
+      "basis": "새 후보에서는 꼭짓점 (-2,0)을 정한 뒤 4a=20과 t=a라는 두 번의 단순 대입만 한다. 변수는 a 하나이고 연립방정식·경우 분류·다른 단원과의 결합이 없다. 수치 인자 4와 1이 고정돼 계산 부담도 작아 후보 자체의 기본 제안을 지지한다. 현재 family14의 응용 표기는 범용 유형의 descriptor이며 이 후보의 객관적 부담을 자동으로 결정하지 않는다.",
+      "limit": "학생 수행시간·정답률로 측정한 난이도는 아니다. 조건 수, 연산 단계, 미지수 수와 경우 분류 여부를 근거로 한 후보별 판단이다."
+    },
+    "problemTypeReview": {
+      "status": "passed",
+      "authorProposal": "계산",
+      "basis": "이차함수의 식을 결정해 특정 점의 미지 좌표를 계산한다. 생활 상황이나 증명형 조건이 없다."
+    },
+    "scoreReview": "후보·학생 입력·v2 준비는 모두4점이다. 꼭짓점형 구성과 두 번의 대입이 필요하지만 수치 연산은 짧고 객관식이다. 8점 도형 서술형처럼 성질·보조선·유도 전 과정을 요구하지 않아 상대 배점4는 타당하다. 난이도 라벨의 보류와 배점 판정은 구분했다.",
+    "curriculumDecision": {
+      "sourceEraSuitability": "passed: 2025 middle3 / 2015 mathematics",
+      "allSevenStudentSurfaces": "passed",
+      "materialUnverifiedMathematicalOrGradePrerequisiteProvision": null,
+      "materialAmendmentUncertaintyIdentified": [],
+      "basis": "Actual source date/grade + official 2015/2022 grade-specific phase-in + redecoded 2015-74/2020-236 mathematics standards + exact Unit/seeds/prerequisite order and legitimate student solution. No unrelated whole-policy completeness gate.",
+      "publicationAndFutureEdition": "Separate from source-era suitability; rights/provenance/loading remain pending, and republication targeting 2022 requires a new target-edition review."
+    },
+    "generatorCoverage": {
+      "procedureCoverage": "passed",
+      "exactAuthoredPresentationCoverage": "pending",
+      "basis": "family14 mode0의 계수 결정 절차는 직접 확인했다. 현재 규칙은 식을 구하게 하며 새 기록표와 추가 함숫값 질문을 직접 출력하는 별도 분기는 확인되지 않았다."
+    },
+    "holds": [
+      "정확한 새 표/질문 출력 지원, 취득/변환 이력·권리·공유 적재는 별도 pending이다."
+    ],
+    "metadataPromotionPerformed": false,
+    "originalAnswersReadThisReview": false,
+    "reviewedAtUtc": "2026-10-07T19:15:40.742974+00:00",
+    "binding": {
+      "packageDigest": "3b6706318763917e3b65f257031823643748034df3e44bd1f2c2633c8c72e906",
+      "verificationInputsSha256": "64decaf1ca991d3ddfd72165e0cdcf7e544a2a583d92b242323638c674e2510f",
+      "givenSolveDigest": "979ad4de3878095b55ef5315fcf81db15b046de702df7123d39211686ae82235",
+      "independentSolveFileSha256": "72915e6696b6c11b97de55a5eb0ac3b756193b7f30a81ae9c1061cd12baebe8a",
+      "originalBlindCommit": "041af22f85f4292d0db01f2848e35e0a5583e407",
+      "parentSolveCopyByteIdentical": true,
+      "embeddedSolveEqualsImmutableFile": true,
+      "candidateStudentFieldsEqualBlindStudentFields": true,
+      "allFourGivenDigestsCopiedUnchanged": true,
+      "blindSolveEdited": false
+    },
+    "independentCalculation": {
+      "runtime": "Python standard library fractions.Fraction; executed before author-answer access",
+      "executedCode": "from fractions import Fraction as F\na = F(20, 4)\nt = a * F(-3+2)**2\nchoices = [F(-5), F(-1), F(1), F(5), F(20)]\ny_intercepts = [4*v for v in choices]\nvalid = [i+1 for i, y in enumerate(y_intercepts) if y == 20]\nassert a != 0 and a == 5 and t == 5 and valid == [4]\nprint(a, t, y_intercepts, valid)",
+      "actualResults": {
+        "vertex": [
+          "-2",
+          "0"
+        ],
+        "a": "5",
+        "t": "5",
+        "choiceImpliedYIntercepts": [
+          "-20",
+          "-4",
+          "4",
+          "20",
+          "80"
+        ],
+        "validChoiceNumbers": [
+          4
+        ]
+      }
+    },
+    "actualIndependentChoiceChecks": [
+      {
+        "number": 1,
+        "t": "-5",
+        "impliedA": "-5",
+        "impliedYIntercept": "-20",
+        "matches20": false
+      },
+      {
+        "number": 2,
+        "t": "-1",
+        "impliedA": "-1",
+        "impliedYIntercept": "-4",
+        "matches20": false
+      },
+      {
+        "number": 3,
+        "t": "1",
+        "impliedA": "1",
+        "impliedYIntercept": "4",
+        "matches20": false
+      },
+      {
+        "number": 4,
+        "t": "5",
+        "impliedA": "5",
+        "impliedYIntercept": "20",
+        "matches20": true
+      },
+      {
+        "number": 5,
+        "t": "20",
+        "impliedA": "20",
+        "impliedYIntercept": "80",
+        "matches20": false
+      }
+    ],
+    "sourceEditionReview": {
+      "documentaryIdentity": "confirmed for selected question only",
+      "actualExamYear": 2025,
+      "actualExamDate": "2025-09-23",
+      "grade": 3,
+      "sourceSemester": 2,
+      "referenceCurriculum": "2015",
+      "phaseInBasis": {
+        "2015": {
+          "source_id": "moe-60747",
+          "locator": "부칙 1 가~라",
+          "phases": [
+            {
+              "date": "2017-03-01",
+              "grades": [
+                "elementary1",
+                "elementary2"
+              ]
+            },
+            {
+              "date": "2018-03-01",
+              "grades": [
+                "elementary3",
+                "elementary4",
+                "middle1",
+                "high1"
+              ]
+            },
+            {
+              "date": "2019-03-01",
+              "grades": [
+                "elementary5",
+                "elementary6",
+                "middle2",
+                "high2"
+              ]
+            },
+            {
+              "date": "2020-03-01",
+              "grades": [
+                "middle3",
+                "high3"
+              ]
+            }
+          ]
+        },
+        "2022": {
+          "source_id": "moe-93458",
+          "locator": "부칙 1 가~라",
+          "phases": [
+            {
+              "date": "2024-03-01",
+              "grades": [
+                "elementary1",
+                "elementary2"
+              ]
+            },
+            {
+              "date": "2025-03-01",
+              "grades": [
+                "elementary3",
+                "elementary4",
+                "middle1",
+                "high1"
+              ]
+            },
+            {
+              "date": "2026-03-01",
+              "grades": [
+                "elementary5",
+                "elementary6",
+                "middle2",
+                "high2"
+              ]
+            },
+            {
+              "date": "2027-03-01",
+              "grades": [
+                "middle3",
+                "high3"
+              ]
+            }
+          ]
+        },
+        "pilot_reference_2025_middle3": "2015_revision",
+        "middle3_2026": "2015_revision",
+        "middle3_2027": "2022_revision_requires_separate_mapping",
+        "source_correction": "93457 is special education 2022-34; general education is 93458 2022-33"
+      },
+      "scopeLimit": "Phase-in and documentary identity establish the reference; they do not grant rights or attest all later consolidated policy. No original answer/solution was read for this review."
+    },
+    "curriculumEvidenceFileSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+    "standardsChecked": [
+      {
+        "code": "9수03-10",
+        "text": "이차함수의 그래프의 성질을 이해한다.",
+        "hwpSource": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-2020-236-book8-math.hwp",
+        "hwpSha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4150,
+          "record_offset_in_uncompressed_stream": 210353,
+          "extracted_paragraph_1based": 850
+        },
+        "hwpOffsetRedecodedMatches": true,
+        "pdfSource": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-2015-74-book8-math.pdf",
+        "pdfSha256": "4bd2b84e978865a71d90577d8eb6240f0ecf24a9884642d627cde460d71ab88e",
+        "pdfPhysicalPages": [
+          36
+        ],
+        "pdfTextReadMatches": true,
+        "supplementedByVerifier": false
+      },
+      {
+        "code": "9수03-01",
+        "text": "순서쌍과 좌표를 이해한다.",
+        "hwpSource": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-2020-236-book8-math.hwp",
+        "hwpSha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4102,
+          "record_offset_in_uncompressed_stream": 208503,
+          "extracted_paragraph_1based": 838
+        },
+        "hwpOffsetRedecodedMatches": true,
+        "pdfSource": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-2015-74-book8-math.pdf",
+        "pdfSha256": "4bd2b84e978865a71d90577d8eb6240f0ecf24a9884642d627cde460d71ab88e",
+        "pdfPhysicalPages": [
+          36
+        ],
+        "pdfTextReadMatches": true,
+        "supplementedByVerifier": false
+      },
+      {
+        "code": "9수02-02",
+        "text": "식의 값을 구할 수 있다.",
+        "hwpSource": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-2020-236-book8-math.hwp",
+        "hwpSha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3900,
+          "record_offset_in_uncompressed_stream": 199304,
+          "extracted_paragraph_1based": 793
+        },
+        "hwpOffsetRedecodedMatches": true,
+        "pdfSource": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-2015-74-book8-math.pdf",
+        "pdfSha256": "4bd2b84e978865a71d90577d8eb6240f0ecf24a9884642d627cde460d71ab88e",
+        "pdfPhysicalPages": [
+          34
+        ],
+        "pdfTextReadMatches": true,
+        "supplementedByVerifier": false
+      },
+      {
+        "code": "9수02-05",
+        "text": "일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+        "hwpSource": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-2020-236-book8-math.hwp",
+        "hwpSha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+        "hwpLocator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3916,
+          "record_offset_in_uncompressed_stream": 199888,
+          "extracted_paragraph_1based": 797
+        },
+        "hwpOffsetRedecodedMatches": true,
+        "pdfSource": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-2015-74-book8-math.pdf",
+        "pdfSha256": "4bd2b84e978865a71d90577d8eb6240f0ecf24a9884642d627cde460d71ab88e",
+        "pdfPhysicalPages": [
+          34
+        ],
+        "pdfTextReadMatches": true,
+        "supplementedByVerifier": true
+      }
+    ],
+    "actualClassificationRecords": {
+      "unit": {
+        "id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+        "grade": "중3",
+        "chapter": "4. 이차함수",
+        "section": "이차함수와 그래프",
+        "semester": 1,
+        "orderIndex": 478,
+        "problemCodePrefix": "J30401"
+      },
+      "liveFamily": {
+        "unit_id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+        "family_key": "mid:3-1|이차함수의 그래프 ⑴|14",
+        "live_count": 24
+      },
+      "registryEntry": {
+        "key": "3-1|이차함수의 그래프 ⑴|14",
+        "grade": "중3",
+        "unitSection": "이차함수와 그래프",
+        "rpmBook": "3-1",
+        "rpmMinor": "이차함수의 그래프 ⑴",
+        "rpmType": "14",
+        "rpmTitle": "이차함수의 식 구하기"
+      },
+      "bankCapturedAt": "2026-10-07 15:57:15.290971+00",
+      "registryCapturedAt": "2026-10-07T16:08:32.171Z",
+      "bankSnapshotSha256": "164c611b84b3d9b16c30f74e2d0220ed54b2d642845d0bf1e72d9a347b969a9b",
+      "registrySnapshotSha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "livePresenceDoesNotProveFit": true,
+      "candidateMetadataLeftProposed": true
+    },
+    "generationRulesRead": [
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\m3Func.ts",
+        "sha256": "ab681385a70d9450cdcc8230c3268618ec2be3ff4aada862e038f94669a1dbf3",
+        "lines1Based": [
+          1076,
+          1101
+        ],
+        "method": "source read only; no generation/DB execution"
+      }
+    ],
+    "schoolNameSurfaceCheck": {
+      "status": "passed",
+      "studentSurfaceOriginalOrAliasOccurrences": 0,
+      "checkedSurfaces": [
+        "content",
+        "choices",
+        "tables embedded in content",
+        "answer",
+        "studentSolution",
+        "figure labels"
+      ],
+      "namesRemainInternalMetadataOnly": true
+    },
+    "assetsHashChecked": [],
+    "readonlyInputReferences": [
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r1\\verification\\VERIFY-BRIEF.md",
+        "sha256": "0ba3301b43b6101974345048a56594dd96d9c872aee6878ce65f907cda025ca3"
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r1\\verification\\verification-inputs.json",
+        "sha256": "64decaf1ca991d3ddfd72165e0cdcf7e544a2a583d92b242323638c674e2510f"
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r1\\verification\\verification-manifest.json",
+        "sha256": "bb383574163ae18210badf68077bb04124357d96ed8b2b486aedd1b0d559d3b6"
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\curriculum-evidence.json",
+        "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d"
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-20261008.json",
+        "sha256": "164c611b84b3d9b16c30f74e2d0220ed54b2d642845d0bf1e72d9a347b969a9b"
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\registry-read-20261008.json",
+        "sha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1"
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-twin-v2\\prepared\\preparation.json",
+        "sha256": "63ecbb464db0a369df48e2a7abfceafb4e8314552119c686e12266066987af35"
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-authoring-r1\\source-identity\\source-review.json",
+        "sha256": "fcce4f3355719258e6e98a3a3b30631aa60e0122288b2de12c0870ce89b75a86"
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-authoring-r1\\source-identity\\SOURCE-REVIEW.md",
+        "sha256": "b0aaa6ed5fcfbd36a35a9765b70fcd5b14bdb765625fa11a7c8213ae26cfc682"
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\prisma\\seed-data\\units.ts",
+        "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e"
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\curriculum\\unitSemester.ts",
+        "sha256": "d5df49e1ac37434bc48446512b0740a6bdc7e2089fd43db9d22c80bb41a3ca85"
+      },
+      {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\src\\lib\\middle\\generate.ts",
+        "sha256": "4bdb90431cdb94a3023da05ad3731aa721d0a5ddcbf284bf3e2d7be1540faaab"
+      }
+    ],
+    "typesafeGuidance": {
+      "projectSkill": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-source-identity-20261008\\.agents\\skills\\typesafe-ai\\SKILL.md",
+      "projectSkillRead": true,
+      "liveDocsRead": [
+        "https://docs.typesafe.ai/llms.txt",
+        "https://docs.typesafe.ai/concepts/how-to-build-with-system-one",
+        "https://docs.typesafe.ai/primitives/noul",
+        "https://docs.typesafe.ai/confidence",
+        "https://docs.typesafe.ai/cookbooks/citation_check"
+      ],
+      "application": "Separate propositions and evidence; code handles exact calculations/hash bindings; unknown checks remain false/pending. No weighted approval or probability as proof.",
+      "modelApiCalls": 0,
+      "fabricatedProbabilities": false
+    },
+    "publicationGates": {
+      "rights": "pending",
+      "acquisitionAndExportProvenance": "pending",
+      "loading": "pending",
+      "outsideGradeRequiredMethodFound": false,
+      "newAuthorAnswersReadOnlyAfterOriginalBlindCommitAndParentManifestBinding": true
+    },
+    "boundedEditionReview": {
+      "status": "passed for mathematical/grade prerequisite provisions of these four source-era candidates",
+      "mathematicalProvisionsStillUnverified": [],
+      "sourceYear": 2025,
+      "referenceEdition": "2015",
+      "officialPhaseIn": {
+        "2015": {
+          "source_id": "moe-60747",
+          "locator": "부칙 1 가~라",
+          "phases": [
+            {
+              "date": "2017-03-01",
+              "grades": [
+                "elementary1",
+                "elementary2"
+              ]
+            },
+            {
+              "date": "2018-03-01",
+              "grades": [
+                "elementary3",
+                "elementary4",
+                "middle1",
+                "high1"
+              ]
+            },
+            {
+              "date": "2019-03-01",
+              "grades": [
+                "elementary5",
+                "elementary6",
+                "middle2",
+                "high2"
+              ]
+            },
+            {
+              "date": "2020-03-01",
+              "grades": [
+                "middle3",
+                "high3"
+              ]
+            }
+          ]
+        },
+        "2022": {
+          "source_id": "moe-93458",
+          "locator": "부칙 1 가~라",
+          "phases": [
+            {
+              "date": "2024-03-01",
+              "grades": [
+                "elementary1",
+                "elementary2"
+              ]
+            },
+            {
+              "date": "2025-03-01",
+              "grades": [
+                "elementary3",
+                "elementary4",
+                "middle1",
+                "high1"
+              ]
+            },
+            {
+              "date": "2026-03-01",
+              "grades": [
+                "elementary5",
+                "elementary6",
+                "middle2",
+                "high2"
+              ]
+            },
+            {
+              "date": "2027-03-01",
+              "grades": [
+                "middle3",
+                "high3"
+              ]
+            }
+          ]
+        },
+        "pilot_reference_2025_middle3": "2015_revision",
+        "middle3_2026": "2015_revision",
+        "middle3_2027": "2022_revision_requires_separate_mapping",
+        "source_correction": "93457 is special education 2022-34; general education is 93458 2022-33"
+      },
+      "directOfficialSources": [
+        {
+          "id": "moe-60747",
+          "url": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=60747&lev=0&m=040401&opType=N&page=1&s=moe",
+          "localPath": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-60747.html",
+          "sha256": "e63cd4ff5188027810e25dc139844abcdf971ec012c6b7c403d41bf8ca6cea80",
+          "cacheHashVerified": true
+        },
+        {
+          "id": "moe-93458",
+          "url": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=93458&lev=0&m=040401&opType=N&page=1&s=moe",
+          "localPath": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-93458.html",
+          "sha256": "78d9ce2854a03cfc40fee7a8f28eb81020f93f11b684533f9df446183789abd2",
+          "cacheHashVerified": true
+        },
+        {
+          "id": "moe-2015-74-math-pdf",
+          "url": "https://www.moe.go.kr/boardCnts/fileDown.do?m=040401&s=moe&fileSeq=dc926a43bf953203951fb928ff098b1c",
+          "localPath": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-2015-74-book8-math.pdf",
+          "sha256": "4bd2b84e978865a71d90577d8eb6240f0ecf24a9884642d627cde460d71ab88e",
+          "cacheHashVerified": true
+        },
+        {
+          "id": "moe-2020-236-math-hwp",
+          "url": "https://www.moe.go.kr/boardCnts/fileDown.do?m=0404&s=moe&fileSeq=9626ca7f4483de728b1e9b14e8f41f84",
+          "localPath": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-2020-236-book8-math.hwp",
+          "sha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+          "cacheHashVerified": true
+        }
+      ],
+      "laterNoticeUrl": "https://ncic.re.kr/board/B0033.cs?act=read&bwrId=2114&m=34&pageIndex=1&pageUnit=15&searchCondition=&searchEndDt=&searchKeyword=&searchStartDt=",
+      "laterNoticeObservation": "2024-1 is effective 2025-03-01 and enumerates amended booklets including middle-school booklet3; mathematics booklet8 is not among them. No provision affecting the eleven mathematics standards/prerequisites used here was identified. This observation does not claim a complete amendment-chain audit.",
+      "fullPolicyChainAuditPerformed": false,
+      "whyNoWholePolicyHold": "The historical setup limit identified no specific missing 2025-effective mathematical/grade prerequisite provision that could invalidate these four actual student solutions. The present review checks those provisions directly; unrelated policy completeness is not a candidate grade gate.",
+      "currentOrFutureRepublication": {
+        "2026_middle3_2015_target": "Same grade-specific rollout supports continued 2015 target; this report checks the named candidate math, not permission to publish.",
+        "2027_middle3_or_any_2022_target": "pending separate target-edition standards/prerequisite review; 2022 phase-in for middle3 starts 2027-03-01.",
+        "new_stem_solution_assets_or_grade": "new digest-bound review required"
+      }
+    }
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "축x=-2, x축 위의 꼭짓점, 두 점의 기록은 9수03-10의 그래프 성질과9수03-01 좌표이다. Unit478 및 실제family14의 꼭짓점형 식 결정 범위이다.",
+      "reviewScope": "Source-era 2025 middle3 / explicit 2015 target: primary mathematics standards, actual middle3 Unit/seeds and legitimate student method. Future 2022 retargeting and publication gates are separate."
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "정수 -5,-1,1,5,20만 있고 좌표 대입으로 정오를 판정한다. 새로운 선수 개념이나 답안 형식이 없다.",
+      "reviewScope": "Source-era 2025 middle3 / explicit 2015 target: primary mathematics standards, actual middle3 Unit/seeds and legitimate student method. Future 2022 retargeting and publication gates are separate."
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "네 행의 표로 축·꼭짓점·y절편·다른 점을 제시하며 수치 관계는 함수 단원 안이다. 원문 손그림을 도형 조건으로 이식하지 않았다.",
+      "reviewScope": "Source-era 2025 middle3 / explicit 2015 target: primary mathematics standards, actual middle3 Unit/seeds and legitimate student method. Future 2022 retargeting and publication gates are separate."
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "순서쌍, x축/y축, 이차함수, 축과 꼭짓점, t는 함수·좌표 학습 요소이다. 초점/준선이나 상위 이차곡선 기호가 없다.",
+      "reviewScope": "Source-era 2025 middle3 / explicit 2015 target: primary mathematics standards, actual middle3 Unit/seeds and legitimate student method. Future 2022 retargeting and publication gates are separate."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "④의 값5는 좌표값 t로서 별도의 길이 단위를 부여하지 않는다. 실수이자 정수이다.",
+      "reviewScope": "Source-era 2025 middle3 / explicit 2015 target: primary mathematics standards, actual middle3 Unit/seeds and legitimate student method. Future 2022 retargeting and publication gates are separate."
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "y=a(x+2)², a≠0, 4a=20, t=5는 9수03-10,9수02-02,9수02-05의 범위이다. 미분·판별식·근과 계수 관계를 쓰지 않는다.",
+      "reviewScope": "Source-era 2025 middle3 / explicit 2015 target: primary mathematics standards, actual middle3 Unit/seeds and legitimate student method. Future 2022 retargeting and publication gates are separate."
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "좌표9수03-01, 식의 값9수02-02, 일차방정식9수02-05와 부호/제곱 연산이다. 중3seed478에 앞선 선수로 정당화된다. 그래프 식 결정은 실제 중3family14에서 확인했다.",
+      "reviewScope": "Source-era 2025 middle3 / explicit 2015 target: primary mathematics standards, actual middle3 Unit/seeds and legitimate student method. Future 2022 retargeting and publication gates are separate."
+    }
+  }
+}

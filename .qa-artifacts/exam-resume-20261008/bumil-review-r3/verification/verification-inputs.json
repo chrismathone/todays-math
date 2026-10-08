@@ -1,0 +1,2884 @@
+[
+  {
+    "candidate": {
+      "schemaVersion": 1,
+      "questionNumber": 6,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q06",
+      "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+      "content": "그림의 세 직각삼각형 $\\mathrm{PQR}$, $\\mathrm{STU}$, $\\mathrm{VWX}$에서 표시한 예각의 크기는 모두 $\\theta$이다. 각 삼각형의 변을 이용하여 다음 기록표를 완성하려고 한다.\n\n| 사용하는 삼각형 | $\\mathrm{PQR}$ | $\\mathrm{STU}$ | $\\mathrm{VWX}$ |\n| --- | --- | --- | --- |\n| 기록할 삼각비 | $\\sin\\theta$ | $\\cos\\theta$ | $\\tan\\theta$ |\n| 변의 길이로 나타낸 비 | ㉠ | ㉡ | ㉢ |\n\n㉠, ㉡, ㉢에 들어갈 비를 차례로 바르게 짝지은 것은?",
+      "choices": [
+        "$\\frac{\\overline{\\mathrm{PR}}}{\\overline{\\mathrm{QR}}}$, $\\frac{\\overline{\\mathrm{ST}}}{\\overline{\\mathrm{SU}}}$, $\\frac{\\overline{\\mathrm{WX}}}{\\overline{\\mathrm{VW}}}$",
+        "$\\frac{\\overline{\\mathrm{QR}}}{\\overline{\\mathrm{PR}}}$, $\\frac{\\overline{\\mathrm{ST}}}{\\overline{\\mathrm{TU}}}$, $\\frac{\\overline{\\mathrm{WX}}}{\\overline{\\mathrm{VW}}}$",
+        "$\\frac{\\overline{\\mathrm{QR}}}{\\overline{\\mathrm{PR}}}$, $\\frac{\\overline{\\mathrm{ST}}}{\\overline{\\mathrm{SU}}}$, $\\frac{\\overline{\\mathrm{WX}}}{\\overline{\\mathrm{VX}}}$",
+        "$\\frac{\\overline{\\mathrm{QR}}}{\\overline{\\mathrm{PQ}}}$, $\\frac{\\overline{\\mathrm{ST}}}{\\overline{\\mathrm{SU}}}$, $\\frac{\\overline{\\mathrm{VX}}}{\\overline{\\mathrm{VW}}}$",
+        "$\\frac{\\overline{\\mathrm{QR}}}{\\overline{\\mathrm{PR}}}$, $\\frac{\\overline{\\mathrm{ST}}}{\\overline{\\mathrm{SU}}}$, $\\frac{\\overline{\\mathrm{WX}}}{\\overline{\\mathrm{VW}}}$"
+      ],
+      "answer": "⑤",
+      "solution": "삼각형 $\\mathrm{PQR}$에서는 $\\angle\\mathrm{Q}=90^{\\circ}$이고 표시한 예각은 $\\angle\\mathrm{P}$이다. 빗변은 $\\overline{\\mathrm{PR}}$, 이 예각의 대변은 $\\overline{\\mathrm{QR}}$이므로 $\\sin\\theta=\\frac{\\overline{\\mathrm{QR}}}{\\overline{\\mathrm{PR}}}$이다.\n삼각형 $\\mathrm{STU}$에서는 $\\angle\\mathrm{T}=90^{\\circ}$이고 표시한 예각은 $\\angle\\mathrm{S}$이다. 빗변은 $\\overline{\\mathrm{SU}}$, 이 예각에 이웃한 변은 $\\overline{\\mathrm{ST}}$이므로 $\\cos\\theta=\\frac{\\overline{\\mathrm{ST}}}{\\overline{\\mathrm{SU}}}$이다.\n삼각형 $\\mathrm{VWX}$에서는 $\\angle\\mathrm{W}=90^{\\circ}$이고 표시한 예각은 $\\angle\\mathrm{V}$이다. 대변은 $\\overline{\\mathrm{WX}}$, 이웃한 변은 $\\overline{\\mathrm{VW}}$이므로 $\\tan\\theta=\\frac{\\overline{\\mathrm{WX}}}{\\overline{\\mathrm{VW}}}$이다.\n따라서 세 비를 모두 바르게 기록한 것은 ⑤이다.",
+      "score": 4,
+      "questionType": "객관식",
+      "facts": {
+        "rightVertices": [
+          "Q",
+          "T",
+          "W"
+        ],
+        "acuteVertices": [
+          "P",
+          "S",
+          "V"
+        ],
+        "adjacentOppositeHypotenuse": [
+          [
+            "PQ",
+            "QR",
+            "PR"
+          ],
+          [
+            "ST",
+            "TU",
+            "SU"
+          ],
+          [
+            "VW",
+            "WX",
+            "VX"
+          ]
+        ],
+        "renderLegLengths": [
+          [
+            60,
+            45
+          ],
+          [
+            64,
+            48
+          ],
+          [
+            72,
+            54
+          ]
+        ],
+        "choiceRatioTriples": [
+          [
+            "PR/QR",
+            "ST/SU",
+            "WX/VW"
+          ],
+          [
+            "QR/PR",
+            "ST/TU",
+            "WX/VW"
+          ],
+          [
+            "QR/PR",
+            "ST/SU",
+            "WX/VX"
+          ],
+          [
+            "QR/PQ",
+            "ST/SU",
+            "VX/VW"
+          ],
+          [
+            "QR/PR",
+            "ST/SU",
+            "WX/VW"
+          ]
+        ],
+        "correctRatioTriple": [
+          "QR/PR",
+          "ST/SU",
+          "WX/VW"
+        ],
+        "numericLengthsNotStudentGivens": true,
+        "nativeTable": true
+      },
+      "figureArtifacts": [
+        {
+          "role": "stem",
+          "specPath": "figure-1.spec.json",
+          "svgPath": "figure-1.svg",
+          "intendedWidthMm": 90
+        }
+      ],
+      "variantDelta": {
+        "modes": [
+          "structure",
+          "representation"
+        ],
+        "before": "하나의 공통 꼭짓점을 가진 세 직각삼각형과 개별 등식에서 옳은 것 하나를 고른다.",
+        "after": "방향을 바꾼 세 직각삼각형에 같은 예각을 따로 표시하고 각 그림에서 서로 다른 삼각비를 읽어 세 열의 기록을 완성한다.",
+        "sharedConcept": "동일한 예각을 기준으로 빗변·대변·이웃변을 식별하는 삼각비의 정의",
+        "sharedProcedure": "그림에서 직각의 위치와 표시한 예각을 확인하고 sin·cos·tan의 정의를 각 삼각형에 직접 적용한다. 삼각비 사이의 관계식은 사용하지 않는다.",
+        "preparationAdjustment": "세 삼각형을 한 공통 꼭짓점에 겹치지 않고 서로 다른 방향으로 분리해 그렸다. 하나의 등식을 고르는 대신 세 정의의 비를 동시에 대응시키며 수치 길이를 학생에게 주지 않는다."
+      },
+      "curriculumReview": {
+        "grade": "중3",
+        "edition": "2015",
+        "standardCodes": [
+          "9수04-17",
+          "9수04-13",
+          "9수04-14"
+        ],
+        "allowedProcedure": [
+          "각 삼각형의 직각과 표시한 예각에서 빗변·대변·이웃변을 식별한다.",
+          "각 삼각비의 정의를 따로 적용하고 세 비의 기록을 대조한다."
+        ],
+        "forbiddenAvoided": [
+          "삼각비 사이의 관계식",
+          "삼각함수 항등식·덧셈정리",
+          "라디안·일반각·벡터",
+          "사인법칙·코사인법칙"
+        ],
+        "surfaceScope": {
+          "stem": "같은 예각을 명시한 세 직각삼각형과 정의 대응표",
+          "choices": "선분 위 막대로 길이를 나타내는 세 분수",
+          "figureAndNotation": "실제로 같은 예각과 세 직각을 표시하며 숫자 길이나 상위 학년 표기를 넣지 않는다.",
+          "studentSolution": "sin·cos·tan의 정의를 각각 직접 적용",
+          "prerequisites": "직각삼각형, 예각, 빗변·대변·이웃변, 길이의 비"
+        },
+        "status": "author-proposed",
+        "reviewStatus": "pending",
+        "evidence": {
+          "path": ".qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+          "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+          "mappingJsonPointer": "/question_mappings/5",
+          "standards": [
+            {
+              "code": "9수04-13",
+              "verified_text": "도형의 닮음의 의미와 닮은 도형의 성질을 이해한다.",
+              "source_id": "moe-2020-236-math-hwp",
+              "hwp_locator": {
+                "stream": "BodyText/Section0",
+                "tag": 67,
+                "record_1based": 4316,
+                "record_offset_in_uncompressed_stream": 218218,
+                "extracted_paragraph_1based": 885
+              },
+              "original_2015_pdf_locator": {
+                "source_id": "moe-2015-74-math-pdf",
+                "physical_pages_1based": [
+                  38
+                ],
+                "printed_pages": [
+                  34
+                ],
+                "code_found": true,
+                "same_text_after_whitespace_normalization": true
+              },
+              "scope": "middle_school_grades_1_to_3_band"
+            },
+            {
+              "code": "9수04-14",
+              "verified_text": "삼각형의 닮음 조건을 이해하고, 이를 이용하여 두 삼각형이 닮음인지 판별할 수 있다.",
+              "source_id": "moe-2020-236-math-hwp",
+              "hwp_locator": {
+                "stream": "BodyText/Section0",
+                "tag": 67,
+                "record_1based": 4320,
+                "record_offset_in_uncompressed_stream": 218380,
+                "extracted_paragraph_1based": 886
+              },
+              "original_2015_pdf_locator": {
+                "source_id": "moe-2015-74-math-pdf",
+                "physical_pages_1based": [
+                  38
+                ],
+                "printed_pages": [
+                  34
+                ],
+                "code_found": true,
+                "same_text_after_whitespace_normalization": true
+              },
+              "scope": "middle_school_grades_1_to_3_band"
+            },
+            {
+              "code": "9수04-17",
+              "verified_text": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+              "source_id": "moe-2020-236-math-hwp",
+              "hwp_locator": {
+                "stream": "BodyText/Section0",
+                "tag": 67,
+                "record_1based": 4341,
+                "record_offset_in_uncompressed_stream": 219120,
+                "extracted_paragraph_1based": 891
+              },
+              "original_2015_pdf_locator": {
+                "source_id": "moe-2015-74-math-pdf",
+                "physical_pages_1based": [
+                  38
+                ],
+                "printed_pages": [
+                  34
+                ],
+                "code_found": true,
+                "same_text_after_whitespace_normalization": true
+              },
+              "scope": "middle_school_grades_1_to_3_band"
+            }
+          ],
+          "bandCaveat": {
+            "text": "[9수...] is the middle-school 1~3 grade band, not an automatic exact-grade/semester approval. Pair it with the verified Unit grade/semester, live family and actual generator rule and a full review of each candidate.",
+            "source_id": "moe-2020-236-math-hwp",
+            "locator": {
+              "stream": "BodyText/Section0",
+              "record_1based": 3713,
+              "record_offset_in_uncompressed_stream": 190162,
+              "text": "[중학교 1~3학년]"
+            },
+            "original_pdf_page_1based": 32,
+            "original_pdf_printed_page": 28
+          },
+          "versionLimitations": {
+            "verified_math_editions": [
+              "2015-74 book8 PDF",
+              "2020-236 amended book8 HWP"
+            ],
+            "post_2020_complete_amendment_chain_audited": false,
+            "final_candidate_approval_allowed": false,
+            "reason": "SETUP evidence is exact for the fetched editions and relevant matching provisions; later consolidated policy/amendment scope and exact grade sequencing require review before final approval. No expansion into a complete amendment-history task."
+          }
+        }
+      },
+      "independentVerification": null,
+      "sourceReference": {
+        "externalId": "personal-9967cfbb759aa6d369883bac4c986aaa-6",
+        "examId": "personal-9967cfbb759aa6d369883bac4c986aaa",
+        "school": "범일중",
+        "questionNumber": 6,
+        "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중3/[범일중][3][25-2-중간][비상] (완료).PDF",
+        "sourceContentSha256": "463f8baedf5ae2fed8172af0118542eafc45ec1a8a4dcb1cba7de406ac603113",
+        "sourceObservation": "공통 ∠A를 가진 세 직각삼각형 ABC,ADE,AFG와 여러 변의 비가 제시된다.",
+        "sharedConceptProcedure": "각 A 기준의 대변·이웃변·빗변을 골라 삼각비 정의와 각 선택지의 비를 대조한다.",
+        "referenceInputPath": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/problems.json",
+        "referenceInputSha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+        "referenceJsonPointer": "/5/content",
+        "preparationBatchId": "exam-twin-bumil-2025-2-mid-v2",
+        "preparationPath": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/preparation.json",
+        "preparationSha256": "63ecbb464db0a369df48e2a7abfceafb4e8314552119c686e12266066987af35"
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 2,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 2,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "score": 4,
+        "difficultyProposal": "응용",
+        "difficultyStatus": "pending-new-candidate-review",
+        "problemTypeProposal": "개념",
+        "problemTypeStatus": "pending-new-candidate-review",
+        "hasFigure": true,
+        "assignment": {
+          "status": "proposed",
+          "unitId": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+          "familyKey": "mid:3-2|삼각비|01",
+          "currentUnit": {
+            "id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+            "grade": "중3",
+            "chapter": "5. 삼각비",
+            "section": "삼각비의 뜻",
+            "semester": 2,
+            "orderIndex": 481,
+            "problemCodePrefix": "J30501"
+          },
+          "currentRegistryMatch": {
+            "key": "3-2|삼각비|01",
+            "grade": "중3",
+            "unitSection": "삼각비의 뜻",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비",
+            "rpmType": "01",
+            "rpmTitle": "삼각비의 값"
+          },
+          "liveCount": 24,
+          "checkedAt": "2026-10-07 15:57:15.290971+00",
+          "evidence": "같은 예각의 대변·이웃변·빗변을 식별해 sin·cos·tan의 정의를 적용하는 문제다. 닮음은 비가 일정함을 설명하지만 기존 04/05는 빗변 수선과 대응각 이동을 요구하여 이 문항의 핵심 절차와 다르다.",
+          "candidates": []
+        },
+        "achievementStandardRefs": [
+          {
+            "code": "9수04-17",
+            "role": "primary-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4341,
+              "record_offset_in_uncompressed_stream": 219120,
+              "extracted_paragraph_1based": 891
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                38
+              ],
+              "printed_pages": [
+                34
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수04-13",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4316,
+              "record_offset_in_uncompressed_stream": 218218,
+              "extracted_paragraph_1based": 885
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                38
+              ],
+              "printed_pages": [
+                34
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수04-14",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4320,
+              "record_offset_in_uncompressed_stream": 218380,
+              "extracted_paragraph_1based": 886
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                38
+              ],
+              "printed_pages": [
+                34
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          }
+        ],
+        "achievementStandardStatus": "expert-proposal-not-candidate-approval",
+        "curriculumMethodProposal": "각 삼각형의 직각과 표시한 예각에서 빗변·대변·이웃변을 식별한다. 각 삼각비의 정의를 따로 적용하고 세 비의 기록을 대조한다.",
+        "curriculumSpecificHold": "pending-full-new-candidate-curriculum-review",
+        "sourceIdentityReview": {
+          "status": "pending-attestation",
+          "nominalSourceSchool": "범일중",
+          "nominalExamYear": 2025,
+          "observations": [
+            "PDF header2025; editorial footer26년",
+            "Filename school범일중; document anonymizedBI중"
+          ],
+          "effect": "No silent year/school rewrite; both2025/2026 middle3 phase-in2015; actual provenance still pending"
+        },
+        "generatorRuleReview": {
+          "status": "pending-semantic-match",
+          "registryPath": ".qa-artifacts/exam-resume-20261008/registry-read-20261008.json",
+          "historicalSourceSuggestions": [
+            "D:/todays-math/src/lib/middle/m3Trig.ts:949",
+            "D:/todays-math/src/lib/middle/m3Trig.ts:1061"
+          ],
+          "authorObservation": {
+            "status": "author-proposed-not-family-approval",
+            "path": "src/lib/middle/m3Trig.ts",
+            "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+            "scope": "read-only-procedure-comparison",
+            "familyType": "trig-01"
+          }
+        },
+        "source": "transformed",
+        "originProblemId": null,
+        "problemCode": null,
+        "schoolNamePolicy": {
+          "actual": "범일중",
+          "display": "새봄누리중학교",
+          "role": "fictional-display-alias-only",
+          "originalOccurrencesInStem": 0,
+          "surfaces": [
+            "content",
+            "choices",
+            "tables",
+            "figureLabels",
+            "solution"
+          ],
+          "review": "pending-new-candidate"
+        },
+        "publicationStatus": "author-proposed-not-approved",
+        "independentVerificationStatus": "pending-parent-blind-verification",
+        "gradeApprovalStatus": "pending-parent-review",
+        "rightsReviewStatus": "pending-parent-review",
+        "similarityReviewStatus": "pending-parent-review",
+        "directUseAllowed": false,
+        "sourceQuestionType": "객관식",
+        "sourceScore": 4,
+        "objectiveDifficultyScorePolicy": "preserve-v2-difficulty-proposal-and-source-score; final-objective-review-pending",
+        "curriculumSourceMethodProposal": "각이 같은 직각삼각형에서 대응하는 빗변·높이·밑변을 확인하고 각 삼각비의 정의를 직접 적용한다.",
+        "sourceCurriculumSpecificHold": "그림의 직각 B,D,F와 대응 점을 확인한다. 삼각비 사이의 공식으로 설명하지 않는다.",
+        "authorSanityChecks": {
+          "reportedBy": "author",
+          "independent": false,
+          "reviewDecision": null,
+          "requiredFields": "present",
+          "uniqueCorrectChoice": "⑤",
+          "mathSpanCount": 43,
+          "mathSyntax": "katex-strict-pass",
+          "difficultyAndScore": "source-score-and-v2-difficulty-preserved; objective-review-pending",
+          "distractorPolicy": "Incorrect side roles remain incorrect for every acute angle; no 45-degree coincidence required."
+        },
+        "authorFigureRender": {
+          "entrypoint": "src/lib/figure/renderFigureSpec.ts",
+          "options": {
+            "strict": true,
+            "typeset": true
+          },
+          "transport": "local-python",
+          "enginePath": "vendor/figure-engine",
+          "inspection": "author-view-image-completed",
+          "finalFigureApproval": "pending-parent-review",
+          "artifacts": [
+            {
+              "role": "stem",
+              "specSha256": "f23f6146443bd79347326eba1fa58fa3097cb9a119b300ba5b084ffbdd2fb27e",
+              "svgSha256": "6753257982880fe3cd5782a38a5120d987c3ff90e365edb2b51a959ac10b3a3c",
+              "previewPath": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q06.preview.png",
+              "previewSha256": "aab33d7d6c752751ebd4fd71d3624fe89458786b47d461f351baea2096a4149f",
+              "droppedDimensions": []
+            }
+          ]
+        }
+      },
+      "review": {
+        "status": "pending",
+        "gradeCurriculum": "pending",
+        "equivalentConceptAndMethod": "pending",
+        "distinctPresentation": "pending",
+        "naturalKorean": "pending",
+        "mathematicalCorrectness": "pending",
+        "figure": "pending",
+        "rights": "pending",
+        "similarity": "pending"
+      }
+    },
+    "assets": [
+      {
+        "role": "stem",
+        "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r3\\package\\private\\q06\\figure-1.spec.json",
+        "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r3\\package\\private\\q06\\figure-1.svg",
+        "specSha256": "f23f6146443bd79347326eba1fa58fa3097cb9a119b300ba5b084ffbdd2fb27e",
+        "svgSha256": "6753257982880fe3cd5782a38a5120d987c3ff90e365edb2b51a959ac10b3a3c",
+        "intendedWidthMm": 90,
+        "studentPath": "figures/q06-1.svg"
+      }
+    ],
+    "studentDigest": "2bd42ccd5098fb0d9b9349e2d815b7d447a11625be456fa23aa8f30bfc533dd8",
+    "candidateDigest": "47ebed960014bc5409cb8152f8c3c73ed920bb23d23ad25ab7a7b4f745164f7e",
+    "assetDigest": "e6887d771941784d10e83857bb099cbf68e25bc9d91725c71bef9a87d4d85598",
+    "independentSolve": {
+      "studentDigest": "2bd42ccd5098fb0d9b9349e2d815b7d447a11625be456fa23aa8f30bfc533dd8",
+      "solverId": "orca-codex-exam-twin-author-geometry-20261008",
+      "answer": "⑤",
+      "solution": "그림에서 삼각형 $\\mathrm{PQR}$의 직각은 $\\mathrm{Q}$, 표시한 예각은 $\\mathrm{P}$에 있다. 따라서 $\\sin\\theta=\\frac{\\overline{QR}}{\\overline{PR}}$이다. 삼각형 $\\mathrm{STU}$의 직각은 $\\mathrm{T}$, 표시한 예각은 $\\mathrm{S}$에 있으므로 $\\cos\\theta=\\frac{\\overline{ST}}{\\overline{SU}}$이다. 삼각형 $\\mathrm{VWX}$의 직각은 $\\mathrm{W}$, 표시한 예각은 $\\mathrm{V}$에 있으므로 $\\tan\\theta=\\frac{\\overline{WX}}{\\overline{VW}}$이다. 세 비를 모두 바르게 적은 것은 ⑤이다.",
+      "evidence": {
+        "questionNumber": 6,
+        "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q06",
+        "input": {
+          "studentProblemsPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r3/blind/student-problems.json",
+          "studentProblemsSha256": "77987a3499f60da5ea0e04f108cdc8f8779b499edacd829a45cb39122123e70d",
+          "solveBriefPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r3/blind/SOLVE-BRIEF.md",
+          "solveBriefSha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5"
+        },
+        "figures": [
+          {
+            "role": "stem",
+            "svgPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r3/blind/figures/q06-1.svg",
+            "sha256": "6753257982880fe3cd5782a38a5120d987c3ff90e365edb2b51a959ac10b3a3c",
+            "hashMatchesStudentInput": true,
+            "visuallyInspected": true,
+            "observation": "PQR: Q 직각/P의 θ. STU: T 직각/S의 θ. VWX: W 직각/V의 θ. 세 삼각형의 모든 점 표기를 확인했다."
+          }
+        ],
+        "choiceChecks": [
+          {
+            "choice": 1,
+            "matches": false,
+            "reason": "첫 비가 빗변/높이로 거꾸로 되어 있다."
+          },
+          {
+            "choice": 2,
+            "matches": false,
+            "reason": "두 번째 비의 분모 TU는 빗변 SU가 아니다."
+          },
+          {
+            "choice": 3,
+            "matches": false,
+            "reason": "세 번째 비의 분모 VX는 빗변이며 tan의 밑변 VW가 아니다."
+          },
+          {
+            "choice": 4,
+            "matches": false,
+            "reason": "첫 비의 분모 PQ는 빗변 PR이 아니고, 세 번째 비도 빗변/밑변으로 틀렸다."
+          },
+          {
+            "choice": 5,
+            "matches": true,
+            "reason": "높이/빗변, 밑변/빗변, 높이/밑변이 각 그림의 θ 위치에 모두 맞다."
+          }
+        ],
+        "codeCalculation": {
+          "tool": "Python exact side-role tuples; rational example as a secondary arithmetic check",
+          "requiredRatios": [
+            [
+              "QR",
+              "PR"
+            ],
+            [
+              "ST",
+              "SU"
+            ],
+            [
+              "WX",
+              "VW"
+            ]
+          ],
+          "choiceMatches": [
+            false,
+            false,
+            false,
+            false,
+            true
+          ],
+          "secondaryExample": "세 삼각형의 θ 대응 변을 각각 3:4:5로 두어 비 계산만 대조했다. 그림에 없는 수치를 실제 주어진 길이로 간주하지 않았다.",
+          "secondaryChoiceRatioValues": [
+            [
+              "5/3",
+              "4/5",
+              "3/4"
+            ],
+            [
+              "3/5",
+              "4/3",
+              "3/4"
+            ],
+            [
+              "3/5",
+              "4/5",
+              "3/5"
+            ],
+            [
+              "3/4",
+              "4/5",
+              "5/4"
+            ],
+            [
+              "3/5",
+              "4/5",
+              "3/4"
+            ]
+          ]
+        },
+        "existenceUniquenessAndDomain": "θ는 예각이므로 높이·밑변·빗변은 모두 양수이다. 각 직각삼각형의 빗변은 두 직각변보다 길다. 따라서 잘못 바꾼 분모/역수는 예각에서 우연히 정답과 같아지지 않으며 세 정의에 맞는 보기는 ⑤ 하나이다. 삼각비 사이의 항등식은 쓰지 않았다.",
+        "blindness": {
+          "readMaterials": "SOLVE-BRIEF.md, student-problems.json, and listed student SVGs only",
+          "authorAnswerRead": false,
+          "authorSolutionRead": false,
+          "originalAnswersOrSolutionsRead": false,
+          "privateSpecOrPackageRead": false,
+          "parentHtmlOrSolutionPreviewRead": false,
+          "solverAuthoredThisCandidate": false
+        },
+        "scope": "중3/2015 학생 방법의 독립 수학 풀이·보기 및 자산 대조. 전체 범위/난이도/metadata 승인은 후속 별도 검토."
+      },
+      "status": "solved"
+    },
+    "solveDigest": "a0c28612f366747eda4b0b922c7bdd1c4667b7df5df67739fcf5588259108919"
+  },
+  {
+    "candidate": {
+      "schemaVersion": 1,
+      "questionNumber": 8,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q08",
+      "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+      "content": "다음 다섯 계산 카드를 계산한 값이 작은 것부터 큰 것 순서로 놓으려고 한다.\n\n| 카드 | 계산식 |\n| --- | --- |\n| 가 | $2\\cos60^{\\circ}\\div\\sin45^{\\circ}$ |\n| 나 | $\\sin90^{\\circ}+2\\sin30^{\\circ}$ |\n| 다 | $(1+\\cos60^{\\circ})(1-\\cos60^{\\circ})$ |\n| 라 | $\\tan60^{\\circ}\\div\\cos0^{\\circ}$ |\n| 마 | $\\cos30^{\\circ}\\div\\tan30^{\\circ}$ |\n\n세 번째 칸에 놓일 카드와 그 계산값을 바르게 짝지은 것은?",
+      "choices": [
+        "가, $\\sqrt{2}$",
+        "라, $\\sqrt{3}$",
+        "마, $\\frac{3}{2}$",
+        "나, $2$",
+        "다, $\\frac{3}{4}$"
+      ],
+      "answer": "③",
+      "solution": "각 카드에 특수각의 삼각비 값을 직접 대입한다.\n가: $2\\times\\frac{1}{2}\\div\\frac{\\sqrt{2}}{2}=\\sqrt{2}$\n나: $1+2\\times\\frac{1}{2}=2$\n다: $(1+\\frac{1}{2})(1-\\frac{1}{2})=\\frac{3}{2}\\times\\frac{1}{2}=\\frac{3}{4}$\n라: $\\sqrt{3}\\div1=\\sqrt{3}$\n마: $\\frac{\\sqrt{3}}{2}\\div\\frac{\\sqrt{3}}{3}=\\frac{3}{2}$\n모두 양수이고 $2<\\frac{9}{4}<3<4$이므로 $\\sqrt{2}<\\frac{3}{2}<\\sqrt{3}<2$이다. 또 $\\frac{3}{4}<1<\\sqrt{2}$이다.\n따라서 작은 것부터 다, 가, 마, 라, 나의 순서이며, 세 번째 카드는 마이고 값은 $\\frac{3}{2}$이다. 정답은 ③이다.",
+      "score": 4,
+      "questionType": "객관식",
+      "facts": {
+        "cardValues": {
+          "가": "sqrt(2)",
+          "나": "2",
+          "다": "3/4",
+          "라": "sqrt(3)",
+          "마": "3/2"
+        },
+        "ascendingOrder": [
+          "다",
+          "가",
+          "마",
+          "라",
+          "나"
+        ],
+        "targetRank": 3,
+        "targetCard": "마",
+        "targetValueNumerator": 3,
+        "targetValueDenominator": 2,
+        "anglesDegrees": [
+          0,
+          30,
+          45,
+          60,
+          90
+        ],
+        "nativeTable": true
+      },
+      "figureArtifacts": [],
+      "variantDelta": {
+        "modes": [
+          "structure",
+          "inverse-target"
+        ],
+        "before": "다섯 삼각비 계산식 중 계산값이 가장 큰 식의 번호를 고른다.",
+        "after": "계산식 카드를 수치 크기 순서로 배치하여 가운데 순위의 카드와 계산값을 복구한다. 모든 보기의 카드와 값 자체는 올바르게 연결되어 있으므로 순위를 판단해야 한다.",
+        "sharedConcept": "특수각과 경계각의 삼각비 대입, 근호 식 계산과 양수의 크기 비교",
+        "sharedProcedure": "정의 가능한 0°·30°·45°·60°·90° 삼각비 값을 각각 대입해 다섯 식을 계산하고 근호의 크기를 비교한다.",
+        "preparationAdjustment": "v2의 최댓값 카드·값 대응에서 세 번째 순위의 카드·값 대응으로 질문 대상을 바꾸었다. 원문의 계산·비교 절차와 기본 난이도 제안을 유지하되 최종 난이도 판정은 보류한다."
+      },
+      "curriculumReview": {
+        "grade": "중3",
+        "edition": "2015",
+        "standardCodes": [
+          "9수04-17",
+          "9수01-09",
+          "9수01-10",
+          "9수02-12"
+        ],
+        "allowedProcedure": [
+          "특수각·경계각의 정의 가능한 삼각비 값을 직접 대입한다.",
+          "분수와 근호의 사칙계산을 수행한다.",
+          "양수인 값의 제곱을 비교하여 다섯 계산값의 순서를 정한다."
+        ],
+        "forbiddenAvoided": [
+          "삼각비 사이의 관계식·삼각함수 항등식",
+          "덧셈·배각·반각 공식",
+          "tan90°·0으로 나누기",
+          "라디안·0°~90° 밖의 일반각"
+        ],
+        "surfaceScope": {
+          "stem": "다섯 특수각 계산 카드와 세 번째 순위 질문",
+          "choices": "카드 이름과 정확한 계산값",
+          "figureAndNotation": "그림 없이 도 단위와 sin·cos·tan을 사용하며 tan90°는 없다.",
+          "studentSolution": "각 값을 직접 대입한 사칙계산과 양수 근호의 대소 비교",
+          "prerequisites": "특수각의 삼각비, 실수의 대소, 근호의 사칙계산, 분수 계산"
+        },
+        "status": "author-proposed",
+        "reviewStatus": "pending",
+        "evidence": {
+          "path": ".qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+          "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+          "mappingJsonPointer": "/question_mappings/7",
+          "standards": [
+            {
+              "code": "9수01-09",
+              "verified_text": "실수의 대소 관계를 판단할 수 있다.",
+              "source_id": "moe-2020-236-math-hwp",
+              "hwp_locator": {
+                "stream": "BodyText/Section0",
+                "tag": 67,
+                "record_1based": 3784,
+                "record_offset_in_uncompressed_stream": 193153,
+                "extracted_paragraph_1based": 770
+              },
+              "original_2015_pdf_locator": {
+                "source_id": "moe-2015-74-math-pdf",
+                "physical_pages_1based": [
+                  33
+                ],
+                "printed_pages": [
+                  29
+                ],
+                "code_found": true,
+                "same_text_after_whitespace_normalization": true
+              },
+              "scope": "middle_school_grades_1_to_3_band"
+            },
+            {
+              "code": "9수01-10",
+              "verified_text": "근호를 포함한 식의 사칙계산을 할 수 있다.",
+              "source_id": "moe-2020-236-math-hwp",
+              "hwp_locator": {
+                "stream": "BodyText/Section0",
+                "tag": 67,
+                "record_1based": 3788,
+                "record_offset_in_uncompressed_stream": 193301,
+                "extracted_paragraph_1based": 771
+              },
+              "original_2015_pdf_locator": {
+                "source_id": "moe-2015-74-math-pdf",
+                "physical_pages_1based": [
+                  33
+                ],
+                "printed_pages": [
+                  29
+                ],
+                "code_found": true,
+                "same_text_after_whitespace_normalization": true
+              },
+              "scope": "middle_school_grades_1_to_3_band"
+            },
+            {
+              "code": "9수02-12",
+              "verified_text": "다항식의 곱셈과 인수분해를 할 수 있다.",
+              "source_id": "moe-2020-236-math-hwp",
+              "hwp_locator": {
+                "stream": "BodyText/Section0",
+                "tag": 67,
+                "record_1based": 3956,
+                "record_offset_in_uncompressed_stream": 201534,
+                "extracted_paragraph_1based": 807
+              },
+              "original_2015_pdf_locator": {
+                "source_id": "moe-2015-74-math-pdf",
+                "physical_pages_1based": [
+                  34
+                ],
+                "printed_pages": [
+                  30
+                ],
+                "code_found": true,
+                "same_text_after_whitespace_normalization": true
+              },
+              "scope": "middle_school_grades_1_to_3_band"
+            },
+            {
+              "code": "9수04-17",
+              "verified_text": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+              "source_id": "moe-2020-236-math-hwp",
+              "hwp_locator": {
+                "stream": "BodyText/Section0",
+                "tag": 67,
+                "record_1based": 4341,
+                "record_offset_in_uncompressed_stream": 219120,
+                "extracted_paragraph_1based": 891
+              },
+              "original_2015_pdf_locator": {
+                "source_id": "moe-2015-74-math-pdf",
+                "physical_pages_1based": [
+                  38
+                ],
+                "printed_pages": [
+                  34
+                ],
+                "code_found": true,
+                "same_text_after_whitespace_normalization": true
+              },
+              "scope": "middle_school_grades_1_to_3_band"
+            }
+          ],
+          "bandCaveat": {
+            "text": "[9수...] is the middle-school 1~3 grade band, not an automatic exact-grade/semester approval. Pair it with the verified Unit grade/semester, live family and actual generator rule and a full review of each candidate.",
+            "source_id": "moe-2020-236-math-hwp",
+            "locator": {
+              "stream": "BodyText/Section0",
+              "record_1based": 3713,
+              "record_offset_in_uncompressed_stream": 190162,
+              "text": "[중학교 1~3학년]"
+            },
+            "original_pdf_page_1based": 32,
+            "original_pdf_printed_page": 28
+          },
+          "versionLimitations": {
+            "verified_math_editions": [
+              "2015-74 book8 PDF",
+              "2020-236 amended book8 HWP"
+            ],
+            "post_2020_complete_amendment_chain_audited": false,
+            "final_candidate_approval_allowed": false,
+            "reason": "SETUP evidence is exact for the fetched editions and relevant matching provisions; later consolidated policy/amendment scope and exact grade sequencing require review before final approval. No expansion into a complete amendment-history task."
+          }
+        }
+      },
+      "independentVerification": null,
+      "sourceReference": {
+        "externalId": "personal-9967cfbb759aa6d369883bac4c986aaa-8",
+        "examId": "personal-9967cfbb759aa6d369883bac4c986aaa",
+        "school": "범일중",
+        "questionNumber": 8,
+        "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중3/[범일중][3][25-2-중간][비상] (완료).PDF",
+        "sourceContentSha256": "0c929304dd97121656bd6c8a41b8ae692ed7266a437c0df6f40bb097b65161c6",
+        "sourceObservation": "다섯 식에 0°,30°,45°,60°,90°의 sin·cos·tan과 곱셈·나눗셈이 섞여 있다.",
+        "sharedConceptProcedure": "특수각 및 경계각 삼각비 값을 대입하고 각 식을 정리한 뒤 값의 크기를 비교한다.",
+        "referenceInputPath": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/problems.json",
+        "referenceInputSha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+        "referenceJsonPointer": "/7/content",
+        "preparationBatchId": "exam-twin-bumil-2025-2-mid-v2",
+        "preparationPath": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/preparation.json",
+        "preparationSha256": "63ecbb464db0a369df48e2a7abfceafb4e8314552119c686e12266066987af35"
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 2,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 2,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "score": 4,
+        "difficultyProposal": "기본",
+        "difficultyStatus": "pending-new-candidate-review",
+        "problemTypeProposal": "계산",
+        "problemTypeStatus": "pending-new-candidate-review",
+        "hasFigure": false,
+        "assignment": {
+          "status": "proposed",
+          "unitId": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+          "familyKey": "mid:3-2|삼각비|13",
+          "currentUnit": {
+            "id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+            "grade": "중3",
+            "chapter": "5. 삼각비",
+            "section": "삼각비의 값",
+            "semester": 2,
+            "orderIndex": 482,
+            "problemCodePrefix": "J30502"
+          },
+          "currentRegistryMatch": {
+            "key": "3-2|삼각비|13",
+            "grade": "중3",
+            "unitSection": "삼각비의 값",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비",
+            "rpmType": "13",
+            "rpmTitle": "의 삼각비의 값"
+          },
+          "liveCount": 18,
+          "checkedAt": "2026-10-07 15:57:15.290971+00",
+          "evidence": "0°·90°와 30°·45°·60°의 알려진 값을 대입해 식을 계산한다. 기존 14/15는 각의 구간에 따른 대소·부호 판단이 핵심이어서 계산 후 선택지 비교라는 겉형식만으로 선택하지 않는다.",
+          "candidates": []
+        },
+        "achievementStandardRefs": [
+          {
+            "code": "9수04-17",
+            "role": "primary-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4341,
+              "record_offset_in_uncompressed_stream": 219120,
+              "extracted_paragraph_1based": 891
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                38
+              ],
+              "printed_pages": [
+                34
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수01-09",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 3784,
+              "record_offset_in_uncompressed_stream": 193153,
+              "extracted_paragraph_1based": 770
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                33
+              ],
+              "printed_pages": [
+                29
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수01-10",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 3788,
+              "record_offset_in_uncompressed_stream": 193301,
+              "extracted_paragraph_1based": 771
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                33
+              ],
+              "printed_pages": [
+                29
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수02-12",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 3956,
+              "record_offset_in_uncompressed_stream": 201534,
+              "extracted_paragraph_1based": 807
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                34
+              ],
+              "printed_pages": [
+                30
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          }
+        ],
+        "achievementStandardStatus": "expert-proposal-not-candidate-approval",
+        "curriculumMethodProposal": "특수각·경계각의 정의 가능한 삼각비 값을 직접 대입한다. 분수와 근호의 사칙계산을 수행한다. 양수인 값의 제곱을 비교하여 다섯 계산값의 순서를 정한다.",
+        "curriculumSpecificHold": "pending-full-new-candidate-curriculum-review",
+        "sourceIdentityReview": {
+          "status": "pending-attestation",
+          "nominalSourceSchool": "범일중",
+          "nominalExamYear": 2025,
+          "observations": [
+            "PDF header2025; editorial footer26년",
+            "Filename school범일중; document anonymizedBI중"
+          ],
+          "effect": "No silent year/school rewrite; both2025/2026 middle3 phase-in2015; actual provenance still pending"
+        },
+        "generatorRuleReview": {
+          "status": "pending-semantic-match",
+          "registryPath": ".qa-artifacts/exam-resume-20261008/registry-read-20261008.json",
+          "historicalSourceSuggestions": [
+            "D:/todays-math/src/lib/middle/m3Trig.ts:1382",
+            "D:/todays-math/src/lib/middle/m3Trig.ts:1410"
+          ],
+          "authorObservation": {
+            "status": "author-proposed-not-family-approval",
+            "path": "src/lib/middle/m3Trig.ts",
+            "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+            "scope": "read-only-procedure-comparison",
+            "familyType": "trig-13"
+          }
+        },
+        "source": "transformed",
+        "originProblemId": null,
+        "problemCode": null,
+        "schoolNamePolicy": {
+          "actual": "범일중",
+          "display": "새봄누리중학교",
+          "role": "fictional-display-alias-only",
+          "originalOccurrencesInStem": 0,
+          "surfaces": [
+            "content",
+            "choices",
+            "tables",
+            "figureLabels",
+            "solution"
+          ],
+          "review": "pending-new-candidate"
+        },
+        "publicationStatus": "author-proposed-not-approved",
+        "independentVerificationStatus": "pending-parent-blind-verification",
+        "gradeApprovalStatus": "pending-parent-review",
+        "rightsReviewStatus": "pending-parent-review",
+        "similarityReviewStatus": "pending-parent-review",
+        "directUseAllowed": false,
+        "sourceQuestionType": "객관식",
+        "sourceScore": 4,
+        "objectiveDifficultyScorePolicy": "preserve-v2-difficulty-proposal-and-source-score; final-objective-review-pending",
+        "curriculumSourceMethodProposal": "30°,45°,60°의 직각삼각형에서 얻은 값과 0°,90°의 정의 가능한 값을 직접 대입하여 근호 식의 값을 비교한다.",
+        "sourceCurriculumSpecificHold": "삼각비 항등식으로 정리하지 않는다. 0°~90°라 하여 tan90°나 0으로 나누기를 허용하지 않는다.",
+        "authorSanityChecks": {
+          "reportedBy": "author",
+          "independent": false,
+          "reviewDecision": null,
+          "requiredFields": "present",
+          "uniqueCorrectChoice": "③",
+          "mathSpanCount": 19,
+          "mathSyntax": "katex-strict-pass",
+          "difficultyAndScore": "source-score-and-v2-difficulty-preserved; objective-review-pending"
+        }
+      },
+      "review": {
+        "status": "pending",
+        "gradeCurriculum": "pending",
+        "equivalentConceptAndMethod": "pending",
+        "distinctPresentation": "pending",
+        "naturalKorean": "pending",
+        "mathematicalCorrectness": "pending",
+        "figure": "pending",
+        "rights": "pending",
+        "similarity": "pending"
+      }
+    },
+    "assets": [],
+    "studentDigest": "d8c1897e23b4400046a65e85765d617f744337da6fd43ede0a5b0522ca8ae41c",
+    "candidateDigest": "7e62c0ac7c94734332108f1330dfd00a7d1c7f7860bb85543a57de21336b5619",
+    "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "independentSolve": {
+      "studentDigest": "d8c1897e23b4400046a65e85765d617f744337da6fd43ede0a5b0522ca8ae41c",
+      "solverId": "orca-codex-exam-twin-author-geometry-20261008",
+      "answer": "③",
+      "solution": "특수각의 값을 각각 대입한다. 가는 $2\\times\\frac12\\div\\frac{\\sqrt2}{2}=\\sqrt2$, 나는 $1+2\\times\\frac12=2$, 다는 $(1+\\frac12)(1-\\frac12)=\\frac34$, 라는 $\\sqrt3\\div1=\\sqrt3$, 마는 $\\frac{\\sqrt3}{2}\\div\\frac{\\sqrt3}{3}=\\frac32$이다. 모두 양수이며 제곱값을 비교하면 $\\frac34<\\sqrt2<\\frac32<\\sqrt3<2$이다. 작은 값부터 세 번째는 마, $\\frac32$이므로 정답은 ③이다.",
+      "evidence": {
+        "questionNumber": 8,
+        "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q08",
+        "input": {
+          "studentProblemsPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r3/blind/student-problems.json",
+          "studentProblemsSha256": "77987a3499f60da5ea0e04f108cdc8f8779b499edacd829a45cb39122123e70d",
+          "solveBriefPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r3/blind/SOLVE-BRIEF.md",
+          "solveBriefSha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5"
+        },
+        "figures": [],
+        "choiceChecks": [
+          {
+            "choice": 1,
+            "matches": false,
+            "reason": "가의 값 √2는 맞지만 순서가 두 번째이다."
+          },
+          {
+            "choice": 2,
+            "matches": false,
+            "reason": "라의 값 √3는 맞지만 순서가 네 번째이다."
+          },
+          {
+            "choice": 3,
+            "matches": true,
+            "reason": "마의 값 3/2가 세 번째이다."
+          },
+          {
+            "choice": 4,
+            "matches": false,
+            "reason": "나의 값 2는 맞지만 순서가 다섯 번째이다."
+          },
+          {
+            "choice": 5,
+            "matches": false,
+            "reason": "다의 값 3/4는 맞지만 순서가 첫 번째이다."
+          }
+        ],
+        "codeCalculation": {
+          "tool": "Python fractions.Fraction exact square comparisons and Decimal(precision=50) sorting cross-check",
+          "exactValues": {
+            "가": "√2",
+            "나": "2",
+            "다": "3/4",
+            "라": "√3",
+            "마": "3/2"
+          },
+          "order": [
+            "다",
+            "가",
+            "마",
+            "라",
+            "나"
+          ],
+          "positiveSquareComparisons": [
+            "9/16 < 2",
+            "2 < 9/4",
+            "9/4 < 3",
+            "3 < 4"
+          ],
+          "choiceMatches": [
+            false,
+            false,
+            true,
+            false,
+            false
+          ]
+        },
+        "existenceUniquenessAndDomain": "각도는 모두 0°~90° 안이다. 나누는 sin45°, cos0°, tan30°는 0이 아니다. 다섯 값은 모두 양수이고 서로 다르므로 세 번째 카드가 유일하다. (1+cos60°)(1−cos60°)는 1/2를 직접 넣어 계산했다.",
+        "blindness": {
+          "readMaterials": "SOLVE-BRIEF.md, student-problems.json, and listed student SVGs only",
+          "authorAnswerRead": false,
+          "authorSolutionRead": false,
+          "originalAnswersOrSolutionsRead": false,
+          "privateSpecOrPackageRead": false,
+          "parentHtmlOrSolutionPreviewRead": false,
+          "solverAuthoredThisCandidate": false
+        },
+        "scope": "중3/2015 학생 방법의 독립 수학 풀이·보기 및 자산 대조. 전체 범위/난이도/metadata 승인은 후속 별도 검토."
+      },
+      "status": "solved"
+    },
+    "solveDigest": "48bed13b8cdcf26c4d9869ce31baad09d3fa4baec2a8cdcb1bbb54eb47109670"
+  },
+  {
+    "candidate": {
+      "schemaVersion": 1,
+      "questionNumber": 9,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q09",
+      "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+      "content": "그림은 중심이 $\\mathrm{O}$이고 반지름의 길이가 $1$인 사분원이다. 사분원 위의 점 $\\mathrm{P}$에 대하여 $\\angle\\mathrm{POA}=54^{\\circ}$이고, 점 $\\mathrm{P}$에서 $\\overline{\\mathrm{OA}}$에 내린 수선의 발이 $\\mathrm{H}$이다. 점 $\\mathrm{A}$에서 $\\overline{\\mathrm{OA}}$에 수직인 직선과 반직선 $\\mathrm{OP}$가 만나는 점을 $\\mathrm{Q}$라 하자.\n\n| 삼각비 | 계산에 사용할 근삿값 |\n| --- | --- |\n| $\\sin54^{\\circ}$ | $0.81$ |\n| $\\cos54^{\\circ}$ | $0.59$ |\n| $\\tan54^{\\circ}$ | $1.38$ |\n\n표의 근삿값으로 선분의 길이를 계산할 때, $(\\overline{\\mathrm{AQ}}-\\overline{\\mathrm{OH}})\\times\\overline{\\mathrm{PH}}$의 값은?\n(단, 계산 결과는 소수점 아래 셋째 자리에서 반올림한다.)",
+      "choices": [
+        "$0.47$",
+        "$0.64$",
+        "$0.79$",
+        "$1.12$",
+        "$1.60$"
+      ],
+      "answer": "②",
+      "solution": "직각삼각형 $\\mathrm{OPH}$에서 $\\overline{\\mathrm{OP}}=1$이므로 $\\overline{\\mathrm{PH}}=1\\times\\sin54^{\\circ}\\fallingdotseq0.81$, $\\overline{\\mathrm{OH}}=1\\times\\cos54^{\\circ}\\fallingdotseq0.59$이다.\n직각삼각형 $\\mathrm{OAQ}$에서는 $\\overline{\\mathrm{OA}}=1$이고 $\\angle\\mathrm{QOA}=54^{\\circ}$이므로 $\\overline{\\mathrm{AQ}}=1\\times\\tan54^{\\circ}\\fallingdotseq1.38$이다.\n표의 근삿값을 사용하면 구하는 값은 $(1.38-0.59)\\times0.81=0.79\\times0.81=0.6399$이다.\n이를 소수점 아래 셋째 자리에서 반올림하면 $0.64$이므로 정답은 ②이다.",
+      "score": 4,
+      "questionType": "객관식",
+      "facts": {
+        "radius": 1,
+        "angleDegrees": 54,
+        "displayValues": {
+          "sin": 0.81,
+          "cos": 0.59,
+          "tan": 1.38
+        },
+        "segmentApproxValues": {
+          "PH": 0.81,
+          "OH": 0.59,
+          "AQ": 1.38
+        },
+        "difference": 0.79,
+        "productUsingDisplayValues": "6399/10000",
+        "roundedResult": "0.64",
+        "roundingRule": "hundredths; round at third decimal place",
+        "studentArithmeticUses": "given rounded table values",
+        "renderUses": "unrounded 54-degree geometry",
+        "nativeTable": true
+      },
+      "figureArtifacts": [
+        {
+          "role": "stem",
+          "specPath": "figure-1.spec.json",
+          "svgPath": "figure-1.svg",
+          "intendedWidthMm": 75
+        }
+      ],
+      "variantDelta": {
+        "modes": [
+          "structure",
+          "representation"
+        ],
+        "before": "사분원에 표시된 길이로 sin·cos·tan 값을 읽어 주어진 삼각비 식을 계산한다.",
+        "after": "삼각비 근삿값을 표로 주고, 사분원의 수선과 수직선에서 대응하는 선분 길이를 복구하여 길이의 차와 곱을 계산한다. 학생에게 주는 계산식은 삼각비 식이 아닌 선분 길이 식이다.",
+        "sharedConcept": "반지름 1 사분원과 두 직각삼각형에서 sin·cos·tan에 대응하는 선분 길이",
+        "sharedProcedure": "sin·cos·tan의 정의로 길이를 대응시킨 후 주어진 근삿값으로 차·곱과 반올림을 수행한다.",
+        "preparationAdjustment": "v2의 54°·소수 둘째 자리 근삿값 제안을 채택했다. 계산은 표 값 기준임을 명시하고 도형의 내부 좌표는 반올림하지 않은 54° 자료로 만들었다. 수직선을 구성으로 정의하여 일반 접선 이론을 추가하지 않는다."
+      },
+      "curriculumReview": {
+        "grade": "중3",
+        "edition": "2015",
+        "standardCodes": [
+          "9수04-17",
+          "9수02-02"
+        ],
+        "allowedProcedure": [
+          "반지름 1인 OPH와 OAQ의 직각삼각형에서 삼각비의 정의로 세 선분 길이를 읽는다.",
+          "표의 근삿값으로 소수의 차와 곱을 구한다.",
+          "소수점 아래 셋째 자리에서 반올림한다."
+        ],
+        "forbiddenAvoided": [
+          "일반 단위원·사분면별 삼각함수",
+          "라디안·일반각",
+          "삼각비 관계식·삼각함수 항등식",
+          "접선의 방정식·미분"
+        ],
+        "surfaceScope": {
+          "stem": "사분원·수선·명시한 수직선·삼각비 근삿값 표·길이 식",
+          "choices": "양수 소수 계산값",
+          "figureAndNotation": "54°·반지름 1·두 직각을 일치시키며 정확한 도형에 계산용 근삿값을 억지 좌표로 대입하지 않는다.",
+          "studentSolution": "직각삼각형에서의 삼각비 정의와 소수 계산·반올림",
+          "prerequisites": "사분원, 반지름, 수선, 반직선, 삼각비의 뜻, 소수 사칙계산·반올림"
+        },
+        "status": "author-proposed",
+        "reviewStatus": "pending",
+        "evidence": {
+          "path": ".qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+          "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+          "mappingJsonPointer": "/question_mappings/8",
+          "standards": [
+            {
+              "code": "9수02-02",
+              "verified_text": "식의 값을 구할 수 있다.",
+              "source_id": "moe-2020-236-math-hwp",
+              "hwp_locator": {
+                "stream": "BodyText/Section0",
+                "tag": 67,
+                "record_1based": 3900,
+                "record_offset_in_uncompressed_stream": 199304,
+                "extracted_paragraph_1based": 793
+              },
+              "original_2015_pdf_locator": {
+                "source_id": "moe-2015-74-math-pdf",
+                "physical_pages_1based": [
+                  34
+                ],
+                "printed_pages": [
+                  30
+                ],
+                "code_found": true,
+                "same_text_after_whitespace_normalization": true
+              },
+              "scope": "middle_school_grades_1_to_3_band"
+            },
+            {
+              "code": "9수04-17",
+              "verified_text": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+              "source_id": "moe-2020-236-math-hwp",
+              "hwp_locator": {
+                "stream": "BodyText/Section0",
+                "tag": 67,
+                "record_1based": 4341,
+                "record_offset_in_uncompressed_stream": 219120,
+                "extracted_paragraph_1based": 891
+              },
+              "original_2015_pdf_locator": {
+                "source_id": "moe-2015-74-math-pdf",
+                "physical_pages_1based": [
+                  38
+                ],
+                "printed_pages": [
+                  34
+                ],
+                "code_found": true,
+                "same_text_after_whitespace_normalization": true
+              },
+              "scope": "middle_school_grades_1_to_3_band"
+            }
+          ],
+          "bandCaveat": {
+            "text": "[9수...] is the middle-school 1~3 grade band, not an automatic exact-grade/semester approval. Pair it with the verified Unit grade/semester, live family and actual generator rule and a full review of each candidate.",
+            "source_id": "moe-2020-236-math-hwp",
+            "locator": {
+              "stream": "BodyText/Section0",
+              "record_1based": 3713,
+              "record_offset_in_uncompressed_stream": 190162,
+              "text": "[중학교 1~3학년]"
+            },
+            "original_pdf_page_1based": 32,
+            "original_pdf_printed_page": 28
+          },
+          "versionLimitations": {
+            "verified_math_editions": [
+              "2015-74 book8 PDF",
+              "2020-236 amended book8 HWP"
+            ],
+            "post_2020_complete_amendment_chain_audited": false,
+            "final_candidate_approval_allowed": false,
+            "reason": "SETUP evidence is exact for the fetched editions and relevant matching provisions; later consolidated policy/amendment scope and exact grade sequencing require review before final approval. No expansion into a complete amendment-history task."
+          }
+        }
+      },
+      "independentVerification": null,
+      "sourceReference": {
+        "externalId": "personal-9967cfbb759aa6d369883bac4c986aaa-9",
+        "examId": "personal-9967cfbb759aa6d369883bac4c986aaa",
+        "school": "범일중",
+        "questionNumber": 9,
+        "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중3/[범일중][3][25-2-중간][비상] (완료).PDF",
+        "sourceContentSha256": "6addbf376a1d0bae2f1d667e7692722f528d8a2d4877d555f2ed003d9a4d6ceb",
+        "sourceObservation": "사분원 그림에 55°,0.82,0.57,1.43이 대응하는 수선·접선 길이로 표시된다.",
+        "sharedConceptProcedure": "사분원의 y좌표·x좌표·접선 교점 높이를 각각 sin·cos·tan 값으로 읽어 요구식을 계산한다.",
+        "referenceInputPath": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/problems.json",
+        "referenceInputSha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+        "referenceJsonPointer": "/8/content",
+        "preparationBatchId": "exam-twin-bumil-2025-2-mid-v2",
+        "preparationPath": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/preparation.json",
+        "preparationSha256": "63ecbb464db0a369df48e2a7abfceafb4e8314552119c686e12266066987af35"
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 2,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 2,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "score": 4,
+        "difficultyProposal": "기본",
+        "difficultyStatus": "pending-new-candidate-review",
+        "problemTypeProposal": "활용",
+        "problemTypeStatus": "pending-new-candidate-review",
+        "hasFigure": true,
+        "assignment": {
+          "status": "proposed",
+          "unitId": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+          "familyKey": "mid:3-2|삼각비|12",
+          "currentUnit": {
+            "id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+            "grade": "중3",
+            "chapter": "5. 삼각비",
+            "section": "삼각비의 값",
+            "semester": 2,
+            "orderIndex": 482,
+            "problemCodePrefix": "J30502"
+          },
+          "currentRegistryMatch": {
+            "key": "3-2|삼각비|12",
+            "grade": "중3",
+            "unitSection": "삼각비의 값",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비",
+            "rpmType": "12",
+            "rpmTitle": "사분원을 이용하여 삼각비의 값 구하기"
+          },
+          "liveCount": 20,
+          "checkedAt": "2026-10-07 15:57:15.290971+00",
+          "evidence": "반지름 1 사분원의 세 선분 길이로 sin·cos·tan을 읽는 절차가 기존 12와 일치한다. 최종 곱·차는 읽은 값의 후속 계산이다.",
+          "candidates": []
+        },
+        "achievementStandardRefs": [
+          {
+            "code": "9수04-17",
+            "role": "primary-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4341,
+              "record_offset_in_uncompressed_stream": 219120,
+              "extracted_paragraph_1based": 891
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                38
+              ],
+              "printed_pages": [
+                34
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수02-02",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 3900,
+              "record_offset_in_uncompressed_stream": 199304,
+              "extracted_paragraph_1based": 793
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                34
+              ],
+              "printed_pages": [
+                30
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          }
+        ],
+        "achievementStandardStatus": "expert-proposal-not-candidate-approval",
+        "curriculumMethodProposal": "반지름 1인 OPH와 OAQ의 직각삼각형에서 삼각비의 정의로 세 선분 길이를 읽는다. 표의 근삿값으로 소수의 차와 곱을 구한다. 소수점 아래 셋째 자리에서 반올림한다.",
+        "curriculumSpecificHold": "pending-full-new-candidate-curriculum-review",
+        "sourceIdentityReview": {
+          "status": "pending-attestation",
+          "nominalSourceSchool": "범일중",
+          "nominalExamYear": 2025,
+          "observations": [
+            "PDF header2025; editorial footer26년",
+            "Filename school범일중; document anonymizedBI중"
+          ],
+          "effect": "No silent year/school rewrite; both2025/2026 middle3 phase-in2015; actual provenance still pending"
+        },
+        "generatorRuleReview": {
+          "status": "pending-semantic-match",
+          "registryPath": ".qa-artifacts/exam-resume-20261008/registry-read-20261008.json",
+          "historicalSourceSuggestions": [
+            "D:/todays-math/src/lib/middle/m3Trig.ts:1355"
+          ],
+          "authorObservation": {
+            "status": "author-proposed-not-family-approval",
+            "path": "src/lib/middle/m3Trig.ts",
+            "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+            "scope": "read-only-procedure-comparison",
+            "familyType": "trig-12"
+          }
+        },
+        "source": "transformed",
+        "originProblemId": null,
+        "problemCode": null,
+        "schoolNamePolicy": {
+          "actual": "범일중",
+          "display": "새봄누리중학교",
+          "role": "fictional-display-alias-only",
+          "originalOccurrencesInStem": 0,
+          "surfaces": [
+            "content",
+            "choices",
+            "tables",
+            "figureLabels",
+            "solution"
+          ],
+          "review": "pending-new-candidate"
+        },
+        "publicationStatus": "author-proposed-not-approved",
+        "independentVerificationStatus": "pending-parent-blind-verification",
+        "gradeApprovalStatus": "pending-parent-review",
+        "rightsReviewStatus": "pending-parent-review",
+        "similarityReviewStatus": "pending-parent-review",
+        "directUseAllowed": false,
+        "sourceQuestionType": "객관식",
+        "sourceScore": 4,
+        "objectiveDifficultyScorePolicy": "preserve-v2-difficulty-proposal-and-source-score; final-objective-review-pending",
+        "curriculumSourceMethodProposal": "반지름 1인 사분원의 직각삼각형·접선 도형에 표시된 길이로 sin55°,cos55°,tan55°를 각각 읽고 산술 및 반올림을 수행한다.",
+        "sourceCurriculumSpecificHold": "초안에 길이 표시 0.57,0.82,1.43과 사분원 그림이 빠져 있다. 일반 단위원, 라디안, 사분면별 삼각함수 이론은 제외.",
+        "authorSanityChecks": {
+          "reportedBy": "author",
+          "independent": false,
+          "reviewDecision": null,
+          "requiredFields": "present",
+          "uniqueCorrectChoice": "②",
+          "mathSpanCount": 33,
+          "mathSyntax": "katex-strict-pass",
+          "difficultyAndScore": "source-score-and-v2-difficulty-preserved; objective-review-pending"
+        },
+        "authorFigureRender": {
+          "entrypoint": "src/lib/figure/renderFigureSpec.ts",
+          "options": {
+            "strict": true,
+            "typeset": true
+          },
+          "transport": "local-python",
+          "enginePath": "vendor/figure-engine",
+          "inspection": "author-view-image-completed",
+          "finalFigureApproval": "pending-parent-review",
+          "artifacts": [
+            {
+              "role": "stem",
+              "specSha256": "fe31c5f3ded3ca3a9b591acf68b8647cc9a002e35f17e9554c6839e937f54e78",
+              "svgSha256": "34bd3dbd562aeb1bdf50ea5655d61b8638dea90e01ee4e7f6b4f39fb5dcb821b",
+              "previewPath": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q09.preview.png",
+              "previewSha256": "36510cde51d0104fb5aacd4f198119ee0c3d6c0dd03e3927e25da0685569942f",
+              "droppedDimensions": []
+            }
+          ]
+        }
+      },
+      "review": {
+        "status": "pending",
+        "gradeCurriculum": "pending",
+        "equivalentConceptAndMethod": "pending",
+        "distinctPresentation": "pending",
+        "naturalKorean": "pending",
+        "mathematicalCorrectness": "pending",
+        "figure": "pending",
+        "rights": "pending",
+        "similarity": "pending"
+      }
+    },
+    "assets": [
+      {
+        "role": "stem",
+        "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r3\\package\\private\\q09\\figure-1.spec.json",
+        "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r3\\package\\private\\q09\\figure-1.svg",
+        "specSha256": "fe31c5f3ded3ca3a9b591acf68b8647cc9a002e35f17e9554c6839e937f54e78",
+        "svgSha256": "34bd3dbd562aeb1bdf50ea5655d61b8638dea90e01ee4e7f6b4f39fb5dcb821b",
+        "intendedWidthMm": 75,
+        "studentPath": "figures/q09-1.svg"
+      }
+    ],
+    "studentDigest": "eec76a7cd7525161485e0b7d51731dc7ab027d287c0bcc4d838d074f1829bb70",
+    "candidateDigest": "be899f4423c4add9bc677013e190a78dadca66f2841d96effeed02009a0ce644",
+    "assetDigest": "739706ee201c80df5b14a5947bf122a55a6c7cb42fe9f0d4c231d2841a58ea69",
+    "independentSolve": {
+      "studentDigest": "eec76a7cd7525161485e0b7d51731dc7ab027d287c0bcc4d838d074f1829bb70",
+      "solverId": "orca-codex-exam-twin-author-geometry-20261008",
+      "answer": "②",
+      "solution": "반지름 $\\overline{OP}=\\overline{OA}=1$이다. 직각삼각형 $\\mathrm{OPH}$에서 $\\overline{OH}=\\cos54^\\circ\\approx0.59$, $\\overline{PH}=\\sin54^\\circ\\approx0.81$이다. 직각삼각형 $\\mathrm{OAQ}$에서는 $\\overline{AQ}=\\tan54^\\circ\\approx1.38$이다. 문제의 표에 있는 근삿값을 그대로 쓰면 $(1.38-0.59)\\times0.81=0.6399$이다. 소수점 아래 셋째 자리에서 반올림하면 $0.64$이므로 정답은 ②이다.",
+      "evidence": {
+        "questionNumber": 9,
+        "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q09",
+        "input": {
+          "studentProblemsPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r3/blind/student-problems.json",
+          "studentProblemsSha256": "77987a3499f60da5ea0e04f108cdc8f8779b499edacd829a45cb39122123e70d",
+          "solveBriefPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r3/blind/SOLVE-BRIEF.md",
+          "solveBriefSha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5"
+        },
+        "figures": [
+          {
+            "role": "stem",
+            "svgPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r3/blind/figures/q09-1.svg",
+            "sha256": "34bd3dbd562aeb1bdf50ea5655d61b8638dea90e01ee4e7f6b4f39fb5dcb821b",
+            "hashMatchesStudentInput": true,
+            "visuallyInspected": true,
+            "observation": "O-A가 수평, PH와 AQ가 수직이며 O-P-Q가 한 반직선 위에 있다. P는 사분원 위, H는 OA 내부, Q는 원 밖이고 54°는 O에 있다."
+          }
+        ],
+        "choiceChecks": [
+          {
+            "choice": 1,
+            "matches": false,
+            "reason": "표의 값으로 계산한 0.6399를 반올림한 수가 아니다."
+          },
+          {
+            "choice": 2,
+            "matches": true,
+            "reason": "정확한 표 계산 결과 0.6399를 두 자리로 반올림하면 0.64이다."
+          },
+          {
+            "choice": 3,
+            "matches": false,
+            "reason": "0.79는 AQ−OH의 값만 계산하고 PH를 곱하지 않은 수이다."
+          },
+          {
+            "choice": 4,
+            "matches": false,
+            "reason": "표 계산 및 지정된 반올림 결과와 다르다."
+          },
+          {
+            "choice": 5,
+            "matches": false,
+            "reason": "표 계산 및 지정된 반올림 결과와 다르다."
+          }
+        ],
+        "codeCalculation": {
+          "tool": "Python Decimal, precision=50, ROUND_HALF_UP",
+          "usedPrintedTableOnly": true,
+          "AQ": "1.38",
+          "OH": "0.59",
+          "PH": "0.81",
+          "difference": "0.79",
+          "unrounded": "0.6399",
+          "rounded": "0.64",
+          "choiceMatches": [
+            false,
+            true,
+            false,
+            false,
+            false
+          ]
+        },
+        "existenceUniquenessAndDomain": "54°는 예각이며 0<OH<OA=1, PH>0, AQ>0이다. Q는 반직선 OP 위에서 P보다 먼 점이고 A에서 OA에 수직인 선 위에 있다. 표는 근삿값이므로 그 값들에 정확한 삼각비 항등식을 강요하지 않았다. 그림과 본문에 길이 단위가 없어 임의의 cm 단위를 추가하지 않았다.",
+        "blindness": {
+          "readMaterials": "SOLVE-BRIEF.md, student-problems.json, and listed student SVGs only",
+          "authorAnswerRead": false,
+          "authorSolutionRead": false,
+          "originalAnswersOrSolutionsRead": false,
+          "privateSpecOrPackageRead": false,
+          "parentHtmlOrSolutionPreviewRead": false,
+          "solverAuthoredThisCandidate": false
+        },
+        "scope": "중3/2015 학생 방법의 독립 수학 풀이·보기 및 자산 대조. 전체 범위/난이도/metadata 승인은 후속 별도 검토."
+      },
+      "status": "solved"
+    },
+    "solveDigest": "ce017a1d59249f594db2fb28cfae94449b62b24ddfec109208522245376d7612"
+  },
+  {
+    "candidate": {
+      "schemaVersion": 1,
+      "questionNumber": 12,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q12",
+      "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+      "content": "그림의 사각형 $\\mathrm{ABCD}$에서 $\\angle\\mathrm{ABC}=90^{\\circ}$, $\\angle\\mathrm{CAB}=45^{\\circ}$, $\\angle\\mathrm{ACD}=60^{\\circ}$이고, $\\overline{\\mathrm{BC}}=8\\,\\mathrm{cm}$이다. 대각선 $\\mathrm{AC}$로 나눈 두 부분의 넓이를 기록한 표에서 일부 기록이 지워졌다.\n\n| 영역 | 넓이 |\n| --- | --- |\n| 삼각형 $\\mathrm{ABC}$ | 지워짐 |\n| 삼각형 $\\mathrm{ACD}$ | 지워짐 |\n| 사각형 $\\mathrm{ABCD}$ 전체 | $(32+12\\sqrt{6})\\,\\mathrm{cm}^{2}$ |\n\n지워진 기록을 복원할 때, 선분 $\\mathrm{DC}$의 길이는?\n(단, $\\mathrm{H}$는 점 $\\mathrm{D}$에서 선분 $\\mathrm{AC}$에 내린 수선의 발이다.)",
+      "choices": [
+        "$3\\,\\mathrm{cm}$",
+        "$4\\,\\mathrm{cm}$",
+        "$5\\,\\mathrm{cm}$",
+        "$6\\,\\mathrm{cm}$",
+        "$8\\,\\mathrm{cm}$"
+      ],
+      "answer": "④",
+      "solution": "직각삼각형 $\\mathrm{ABC}$에서 $\\tan45^{\\circ}=\\frac{\\overline{\\mathrm{BC}}}{\\overline{\\mathrm{AB}}}=1$이므로 $\\overline{\\mathrm{AB}}=8\\,\\mathrm{cm}$이다. 또 $\\sin45^{\\circ}=\\frac{8}{\\overline{\\mathrm{AC}}}=\\frac{\\sqrt{2}}{2}$이므로 $\\overline{\\mathrm{AC}}=8\\sqrt{2}\\,\\mathrm{cm}$이다.\n삼각형 $\\mathrm{ABC}$의 넓이는 $\\frac{1}{2}\\times8\\times8=32\\,\\mathrm{cm}^{2}$이다. 따라서 삼각형 $\\mathrm{ACD}$의 넓이는 $(32+12\\sqrt{6})-32=12\\sqrt{6}\\,\\mathrm{cm}^{2}$이다.\n삼각형 $\\mathrm{ACD}$에서 밑변을 $\\overline{\\mathrm{AC}}$, 높이를 $\\overline{\\mathrm{DH}}$로 보면 $\\frac{1}{2}\\times8\\sqrt{2}\\times\\overline{\\mathrm{DH}}=12\\sqrt{6}$이다. 따라서 $\\overline{\\mathrm{DH}}=3\\sqrt{3}\\,\\mathrm{cm}$이다.\n직각삼각형 $\\mathrm{DCH}$에서 $\\sin60^{\\circ}=\\frac{\\overline{\\mathrm{DH}}}{\\overline{\\mathrm{DC}}}=\\frac{\\sqrt{3}}{2}$이므로 $\\overline{\\mathrm{DC}}=3\\sqrt{3}\\div\\frac{\\sqrt{3}}{2}=6\\,\\mathrm{cm}$이다. 정답은 ④이다.",
+      "score": 4,
+      "questionType": "객관식",
+      "facts": {
+        "anglesDegrees": {
+          "ABC": 90,
+          "CAB": 45,
+          "ACD": 60
+        },
+        "BC": 8,
+        "AB": 8,
+        "AC": "8sqrt(2)",
+        "areaABC": 32,
+        "areaACD": "12sqrt(6)",
+        "areaQuadrilateral": "32+12sqrt(6)",
+        "DH": "3sqrt(3)",
+        "DC": 6,
+        "CH": 3,
+        "HOnSegmentAC": true,
+        "choiceLengths": [
+          3,
+          4,
+          5,
+          6,
+          8
+        ],
+        "nativeTable": true
+      },
+      "figureArtifacts": [
+        {
+          "role": "stem",
+          "specPath": "figure-1.spec.json",
+          "svgPath": "figure-1.svg",
+          "intendedWidthMm": 80
+        }
+      ],
+      "variantDelta": {
+        "modes": [
+          "structure",
+          "inverse-target"
+        ],
+        "before": "사각형의 두 변 길이와 각을 주고 대각선으로 나눈 두 삼각형의 넓이를 더하여 전체 넓이를 구한다.",
+        "after": "전체 넓이는 복원 자료로 알려 주고 한 변 DC의 길이를 누락시킨다. 첫 삼각형의 넓이를 뺀 나머지 넓이에서 높이를 복구한 뒤 DC를 역으로 구한다.",
+        "sharedConcept": "직각삼각형의 삼각비·공통 대각선·삼각형의 밑변과 높이·사각형 넓이의 분할",
+        "sharedProcedure": "45°인 직각삼각형에서 대각선 길이를 구하고 다른 삼각형에 수선을 내려 60°의 삼각비를 사용한다. 두 영역의 넓이가 전체 넓이를 이루는 관계를 역으로 적용한다.",
+        "preparationAdjustment": "v2의 단순 부분 넓이 대응표 대신 BC=8과 전체 넓이를 주고 DC를 복원하는 역방향을 채택했다. D에서 AC로 수선을 내려 발이 선분 안에 놓이도록 구성했으며 일반 삼각형의 사인 넓이 암기식은 쓰지 않는다. 응용 난이도 제안과 4점은 유지하고 최종 난이도 검토는 보류한다."
+      },
+      "curriculumReview": {
+        "grade": "중3",
+        "edition": "2015",
+        "standardCodes": [
+          "9수04-18",
+          "9수04-17",
+          "6수03-06",
+          "9수01-10"
+        ],
+        "allowedProcedure": [
+          "45° 직각삼각형의 삼각비로 AB와 AC를 구한다.",
+          "전체 넓이에서 첫 삼각형 넓이를 뺀다.",
+          "AC를 밑변, 수선 DH를 높이로 하는 삼각형 넓이식으로 높이를 복구한다.",
+          "DCH에서 sin60°의 정의로 DC를 구한다."
+        ],
+        "forbiddenAvoided": [
+          "일반 삼각형의 사인 넓이 암기식·사인법칙·코사인법칙",
+          "삼각비 사이의 관계식",
+          "벡터·내적·좌표 거리 공식",
+          "미분·최적화"
+        ],
+        "surfaceScope": {
+          "stem": "각·변·전체 넓이를 명시한 사각형과 지워진 부분 넓이 기록",
+          "choices": "길이 단위 cm를 가진 양수",
+          "figureAndNotation": "공통 대각선·선분 안 수선의 발·직각 두 개·45°·60°를 정확히 표시한다.",
+          "studentSolution": "수선과 높이에 의한 삼각형 넓이, 삼각비 정의, 근호의 사칙계산",
+          "prerequisites": "직각삼각형의 삼각비, 수선의 발, 삼각형 넓이, 넓이의 합·차, 근호 계산"
+        },
+        "status": "author-proposed",
+        "reviewStatus": "pending",
+        "evidence": {
+          "path": ".qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+          "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+          "mappingJsonPointer": "/question_mappings/11",
+          "standards": [
+            {
+              "code": "6수03-06",
+              "verified_text": "평행사변형, 삼각형, 사다리꼴, 마름모의 넓이를 구하는 방법을 다양하게 추론하고, 이와 관련된 문제를 해결할 수 있다.",
+              "source_id": "moe-2020-236-math-hwp",
+              "hwp_locator": {
+                "stream": "BodyText/Section0",
+                "tag": 67,
+                "record_1based": 3433,
+                "record_offset_in_uncompressed_stream": 176573,
+                "extracted_paragraph_1based": 690
+              },
+              "original_2015_pdf_locator": {
+                "source_id": "moe-2015-74-math-pdf",
+                "physical_pages_1based": [
+                  29
+                ],
+                "printed_pages": [
+                  25
+                ],
+                "code_found": true,
+                "same_text_after_whitespace_normalization": true
+              },
+              "scope": "elementary_grade_band"
+            },
+            {
+              "code": "9수01-10",
+              "verified_text": "근호를 포함한 식의 사칙계산을 할 수 있다.",
+              "source_id": "moe-2020-236-math-hwp",
+              "hwp_locator": {
+                "stream": "BodyText/Section0",
+                "tag": 67,
+                "record_1based": 3788,
+                "record_offset_in_uncompressed_stream": 193301,
+                "extracted_paragraph_1based": 771
+              },
+              "original_2015_pdf_locator": {
+                "source_id": "moe-2015-74-math-pdf",
+                "physical_pages_1based": [
+                  33
+                ],
+                "printed_pages": [
+                  29
+                ],
+                "code_found": true,
+                "same_text_after_whitespace_normalization": true
+              },
+              "scope": "middle_school_grades_1_to_3_band"
+            },
+            {
+              "code": "9수04-17",
+              "verified_text": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+              "source_id": "moe-2020-236-math-hwp",
+              "hwp_locator": {
+                "stream": "BodyText/Section0",
+                "tag": 67,
+                "record_1based": 4341,
+                "record_offset_in_uncompressed_stream": 219120,
+                "extracted_paragraph_1based": 891
+              },
+              "original_2015_pdf_locator": {
+                "source_id": "moe-2015-74-math-pdf",
+                "physical_pages_1based": [
+                  38
+                ],
+                "printed_pages": [
+                  34
+                ],
+                "code_found": true,
+                "same_text_after_whitespace_normalization": true
+              },
+              "scope": "middle_school_grades_1_to_3_band"
+            },
+            {
+              "code": "9수04-18",
+              "verified_text": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+              "source_id": "moe-2020-236-math-hwp",
+              "hwp_locator": {
+                "stream": "BodyText/Section0",
+                "tag": 67,
+                "record_1based": 4345,
+                "record_offset_in_uncompressed_stream": 219292,
+                "extracted_paragraph_1based": 892
+              },
+              "original_2015_pdf_locator": {
+                "source_id": "moe-2015-74-math-pdf",
+                "physical_pages_1based": [
+                  38
+                ],
+                "printed_pages": [
+                  34
+                ],
+                "code_found": true,
+                "same_text_after_whitespace_normalization": true
+              },
+              "scope": "middle_school_grades_1_to_3_band"
+            }
+          ],
+          "bandCaveat": {
+            "text": "[9수...] is the middle-school 1~3 grade band, not an automatic exact-grade/semester approval. Pair it with the verified Unit grade/semester, live family and actual generator rule and a full review of each candidate.",
+            "source_id": "moe-2020-236-math-hwp",
+            "locator": {
+              "stream": "BodyText/Section0",
+              "record_1based": 3713,
+              "record_offset_in_uncompressed_stream": 190162,
+              "text": "[중학교 1~3학년]"
+            },
+            "original_pdf_page_1based": 32,
+            "original_pdf_printed_page": 28
+          },
+          "versionLimitations": {
+            "verified_math_editions": [
+              "2015-74 book8 PDF",
+              "2020-236 amended book8 HWP"
+            ],
+            "post_2020_complete_amendment_chain_audited": false,
+            "final_candidate_approval_allowed": false,
+            "reason": "SETUP evidence is exact for the fetched editions and relevant matching provisions; later consolidated policy/amendment scope and exact grade sequencing require review before final approval. No expansion into a complete amendment-history task."
+          }
+        }
+      },
+      "independentVerification": null,
+      "sourceReference": {
+        "externalId": "personal-9967cfbb759aa6d369883bac4c986aaa-12",
+        "examId": "personal-9967cfbb759aa6d369883bac4c986aaa",
+        "school": "범일중",
+        "questionNumber": 12,
+        "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중3/[범일중][3][25-2-중간][비상] (완료).PDF",
+        "sourceContentSha256": "e2590bd5a6113fd693dd09ed231a6afb94aa3205ca06475d2f33afba7e6d7303",
+        "sourceObservation": "사각형 ABCD에 대각선 AC, 직각 B, ∠CAB=45°, ∠ACD=60°, BC=10cm, DC=4cm가 표시된다.",
+        "sharedConceptProcedure": "직각삼각형에서 공통 대각선 길이를 정하고 각 삼각형의 넓이를 구해 합한다.",
+        "referenceInputPath": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/problems.json",
+        "referenceInputSha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+        "referenceJsonPointer": "/11/content",
+        "preparationBatchId": "exam-twin-bumil-2025-2-mid-v2",
+        "preparationPath": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/preparation.json",
+        "preparationSha256": "63ecbb464db0a369df48e2a7abfceafb4e8314552119c686e12266066987af35"
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 2,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 2,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "score": 4,
+        "difficultyProposal": "응용",
+        "difficultyStatus": "pending-new-candidate-review",
+        "problemTypeProposal": "활용",
+        "problemTypeStatus": "pending-new-candidate-review",
+        "hasFigure": true,
+        "assignment": {
+          "status": "proposed",
+          "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+          "familyKey": "mid:3-2|삼각비의 활용|10",
+          "currentUnit": {
+            "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+            "grade": "중3",
+            "chapter": "5. 삼각비",
+            "section": "삼각비의 활용",
+            "semester": 2,
+            "orderIndex": 483,
+            "problemCodePrefix": "J30503"
+          },
+          "currentRegistryMatch": {
+            "key": "3-2|삼각비의 활용|10",
+            "grade": "중3",
+            "unitSection": "삼각비의 활용",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비의 활용",
+            "rpmType": "10",
+            "rpmTitle": "다각형의 넓이"
+          },
+          "liveCount": 18,
+          "checkedAt": "2026-10-07 15:57:15.290971+00",
+          "evidence": "대각선 AC로 나눈 두 삼각형의 넓이를 합하는 기존 다각형 넓이10의 절차다. 사각형 넓이라는 제목의 12는 두 대각선의 길이와 끼인각을 쓰는 다른 절차다.",
+          "candidates": []
+        },
+        "achievementStandardRefs": [
+          {
+            "code": "9수04-18",
+            "role": "primary-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4345,
+              "record_offset_in_uncompressed_stream": 219292,
+              "extracted_paragraph_1based": 892
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                38
+              ],
+              "printed_pages": [
+                34
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수04-17",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4341,
+              "record_offset_in_uncompressed_stream": 219120,
+              "extracted_paragraph_1based": 891
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                38
+              ],
+              "printed_pages": [
+                34
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "6수03-06",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 3433,
+              "record_offset_in_uncompressed_stream": 176573,
+              "extracted_paragraph_1based": 690
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                29
+              ],
+              "printed_pages": [
+                25
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수01-10",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 3788,
+              "record_offset_in_uncompressed_stream": 193301,
+              "extracted_paragraph_1based": 771
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                33
+              ],
+              "printed_pages": [
+                29
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          }
+        ],
+        "achievementStandardStatus": "expert-proposal-not-candidate-approval",
+        "curriculumMethodProposal": "45° 직각삼각형의 삼각비로 AB와 AC를 구한다. 전체 넓이에서 첫 삼각형 넓이를 뺀다. AC를 밑변, 수선 DH를 높이로 하는 삼각형 넓이식으로 높이를 복구한다. DCH에서 sin60°의 정의로 DC를 구한다.",
+        "curriculumSpecificHold": "pending-full-new-candidate-curriculum-review",
+        "sourceIdentityReview": {
+          "status": "pending-attestation",
+          "nominalSourceSchool": "범일중",
+          "nominalExamYear": 2025,
+          "observations": [
+            "PDF header2025; editorial footer26년",
+            "Filename school범일중; document anonymizedBI중"
+          ],
+          "effect": "No silent year/school rewrite; both2025/2026 middle3 phase-in2015; actual provenance still pending"
+        },
+        "generatorRuleReview": {
+          "status": "pending-semantic-match",
+          "registryPath": ".qa-artifacts/exam-resume-20261008/registry-read-20261008.json",
+          "historicalSourceSuggestions": [
+            "D:/todays-math/src/lib/middle/m3Trig.ts:2290",
+            "D:/todays-math/src/lib/middle/m3Trig.ts:2365"
+          ],
+          "authorObservation": {
+            "status": "author-proposed-not-family-approval",
+            "path": "src/lib/middle/m3Trig.ts",
+            "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+            "scope": "read-only-procedure-comparison",
+            "familyType": "trig-application-10",
+            "variation": "inverse total-area-to-side; full semantic review pending"
+          }
+        },
+        "source": "transformed",
+        "originProblemId": null,
+        "problemCode": null,
+        "schoolNamePolicy": {
+          "actual": "범일중",
+          "display": "새봄누리중학교",
+          "role": "fictional-display-alias-only",
+          "originalOccurrencesInStem": 0,
+          "surfaces": [
+            "content",
+            "choices",
+            "tables",
+            "figureLabels",
+            "solution"
+          ],
+          "review": "pending-new-candidate"
+        },
+        "publicationStatus": "author-proposed-not-approved",
+        "independentVerificationStatus": "pending-parent-blind-verification",
+        "gradeApprovalStatus": "pending-parent-review",
+        "rightsReviewStatus": "pending-parent-review",
+        "similarityReviewStatus": "pending-parent-review",
+        "directUseAllowed": false,
+        "sourceQuestionType": "객관식",
+        "sourceScore": 4,
+        "objectiveDifficultyScorePolicy": "preserve-v2-difficulty-proposal-and-source-score; final-objective-review-pending",
+        "curriculumSourceMethodProposal": "그림의 ∠ABC=90°를 확인하고 대각선 AC로 둘로 나눈다. ABC의 45° 삼각비로 길이를 얻고 A에서 DC에 수선을 내려 60°인 직각삼각형의 높이로 ADC 넓이를 구한다.",
+        "sourceCurriculumSpecificHold": "일반 삼각형의 넓이 공식 1/2 ab sin C를 암기식으로 쓰지 않고 수선·높이를 제시한다. 그림의 직각 누락은 보류.",
+        "authorSanityChecks": {
+          "reportedBy": "author",
+          "independent": false,
+          "reviewDecision": null,
+          "requiredFields": "present",
+          "uniqueCorrectChoice": "④",
+          "mathSpanCount": 36,
+          "mathSyntax": "katex-strict-pass",
+          "difficultyAndScore": "source-score-and-v2-difficulty-preserved; objective-review-pending"
+        },
+        "authorFigureRender": {
+          "entrypoint": "src/lib/figure/renderFigureSpec.ts",
+          "options": {
+            "strict": true,
+            "typeset": true
+          },
+          "transport": "local-python",
+          "enginePath": "vendor/figure-engine",
+          "inspection": "author-view-image-completed",
+          "finalFigureApproval": "pending-parent-review",
+          "artifacts": [
+            {
+              "role": "stem",
+              "specSha256": "71755c43fe6ae1b65c54ca26e3a9095d0646f56fb8502dc8b2f88cef69af7af9",
+              "svgSha256": "7b6aa3b966e0fac866bbe4c0fbc9c1dd5c275a8957815c4301c2a27aacd2beb3",
+              "previewPath": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q12.preview.png",
+              "previewSha256": "bf96b5457c856864fee9d2e95a6a22965d25ef78045eb144eb2a3c174bd255ca",
+              "droppedDimensions": []
+            }
+          ]
+        }
+      },
+      "review": {
+        "status": "pending",
+        "gradeCurriculum": "pending",
+        "equivalentConceptAndMethod": "pending",
+        "distinctPresentation": "pending",
+        "naturalKorean": "pending",
+        "mathematicalCorrectness": "pending",
+        "figure": "pending",
+        "rights": "pending",
+        "similarity": "pending"
+      }
+    },
+    "assets": [
+      {
+        "role": "stem",
+        "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r3\\package\\private\\q12\\figure-1.spec.json",
+        "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r3\\package\\private\\q12\\figure-1.svg",
+        "specSha256": "71755c43fe6ae1b65c54ca26e3a9095d0646f56fb8502dc8b2f88cef69af7af9",
+        "svgSha256": "7b6aa3b966e0fac866bbe4c0fbc9c1dd5c275a8957815c4301c2a27aacd2beb3",
+        "intendedWidthMm": 80,
+        "studentPath": "figures/q12-1.svg"
+      }
+    ],
+    "studentDigest": "1d18d08c21c4e4cf632f9d43d194ba86c0e84d6e536daa0a94468657146965ad",
+    "candidateDigest": "0a6e78f8d11c57baf2525b9c93cd4fb8d04e8adaec7f405f2947f49de3de110e",
+    "assetDigest": "e276997e862902248020eb679caf83a9f5eb714ef2f660bdd37b7ba2dc438173",
+    "independentSolve": {
+      "studentDigest": "1d18d08c21c4e4cf632f9d43d194ba86c0e84d6e536daa0a94468657146965ad",
+      "solverId": "orca-codex-exam-twin-author-geometry-20261008",
+      "answer": "④",
+      "solution": "삼각형 $\\mathrm{ABC}$는 직각이 $\\mathrm{B}$이고 $\\angle CAB=45^\\circ$인 이등변 직각삼각형이다. 따라서 $\\overline{AB}=\\overline{BC}=8\\,\\mathrm{cm}$, $\\overline{AC}=8\\sqrt2\\,\\mathrm{cm}$이고 넓이는 $\\frac12\\times8\\times8=32\\,\\mathrm{cm}^2$이다. 전체 넓이에서 이를 빼면 삼각형 $\\mathrm{ACD}$의 넓이는 $12\\sqrt6\\,\\mathrm{cm}^2$이다. 밑변 AC와 높이 DH를 사용하면 $\\overline{DH}=\\frac{2\\times12\\sqrt6}{8\\sqrt2}=3\\sqrt3\\,\\mathrm{cm}$이다. 직각삼각형 $\\mathrm{DCH}$에서 $\\angle DCH=60^\\circ$이므로 $\\frac{\\overline{DH}}{\\overline{DC}}=\\frac{\\sqrt3}{2}$이다. 따라서 $\\overline{DC}=6\\,\\mathrm{cm}$이고 정답은 ④이다.",
+      "evidence": {
+        "questionNumber": 12,
+        "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q12",
+        "input": {
+          "studentProblemsPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r3/blind/student-problems.json",
+          "studentProblemsSha256": "77987a3499f60da5ea0e04f108cdc8f8779b499edacd829a45cb39122123e70d",
+          "solveBriefPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r3/blind/SOLVE-BRIEF.md",
+          "solveBriefSha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5"
+        },
+        "figures": [
+          {
+            "role": "stem",
+            "svgPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r3/blind/figures/q12-1.svg",
+            "sha256": "7b6aa3b966e0fac866bbe4c0fbc9c1dd5c275a8957815c4301c2a27aacd2beb3",
+            "hashMatchesStudentInput": true,
+            "visuallyInspected": true,
+            "observation": "AC는 수평 대각선이고 B는 아래, D는 위. B의 직각, A의 45°, C의 60°, BC의 8cm, DH의 수선/직각 및 H의 내부 위치를 확인했다."
+          }
+        ],
+        "choiceChecks": [
+          {
+            "choice": 1,
+            "matches": false,
+            "reason": "DC=3이면 △ACD 넓이가 6√6이 되어 기록에 맞지 않는다."
+          },
+          {
+            "choice": 2,
+            "matches": false,
+            "reason": "DC=4이면 △ACD 넓이가 8√6이다."
+          },
+          {
+            "choice": 3,
+            "matches": false,
+            "reason": "DC=5이면 △ACD 넓이가 10√6이다."
+          },
+          {
+            "choice": 4,
+            "matches": true,
+            "reason": "DC=6이면 △ACD 넓이가 12√6으로 전체 기록과 일치한다."
+          },
+          {
+            "choice": 5,
+            "matches": false,
+            "reason": "DC=8이면 △ACD 넓이가 16√6이다."
+          }
+        ],
+        "codeCalculation": {
+          "tool": "Python fractions.Fraction for exact radical coefficients",
+          "AB": "8",
+          "BC": "8",
+          "AC": "8√2",
+          "areaABC": "32",
+          "areaACD": "12√6",
+          "DH": "3√3",
+          "DC": "6",
+          "candidateAreaACDSqrt6Coefficients": [
+            "6",
+            "8",
+            "10",
+            "12",
+            "16"
+          ],
+          "choiceMatches": [
+            false,
+            false,
+            false,
+            true,
+            false
+          ]
+        },
+        "existenceUniquenessAndDomain": "그림에서 D와 B는 AC의 반대쪽에 있고 AC가 두 삼각형을 겹침 없이 나눈다. 모든 길이와 두 넓이는 양수이다. CH=DC/2=3<8√2=AC이므로 H가 선분 AC 내부에 존재한다. DC는 양의 비례식에서 유일하다. 사인 넓이 공식이나 사인/코사인 법칙을 쓰지 않았다.",
+        "blindness": {
+          "readMaterials": "SOLVE-BRIEF.md, student-problems.json, and listed student SVGs only",
+          "authorAnswerRead": false,
+          "authorSolutionRead": false,
+          "originalAnswersOrSolutionsRead": false,
+          "privateSpecOrPackageRead": false,
+          "parentHtmlOrSolutionPreviewRead": false,
+          "solverAuthoredThisCandidate": false
+        },
+        "scope": "중3/2015 학생 방법의 독립 수학 풀이·보기 및 자산 대조. 전체 범위/난이도/metadata 승인은 후속 별도 검토."
+      },
+      "status": "solved"
+    },
+    "solveDigest": "b4207797d473bfd6edf8fedcf6813a327c3b77dc3b2ea6fcfe91d1fc4f9edfbd"
+  },
+  {
+    "candidate": {
+      "schemaVersion": 1,
+      "questionNumber": 13,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q13",
+      "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+      "content": "그림은 원뿔과 그 축을 포함하는 단면의 절반인 직각삼각형 $\\mathrm{SOA}$이다. $\\mathrm{S}$는 원뿔의 꼭짓점, $\\mathrm{O}$는 밑면의 중심, $\\mathrm{A}$는 밑면의 원 위의 점이다.\n$\\overline{\\mathrm{SA}}=8\\,\\mathrm{cm}$이고 $\\angle\\mathrm{SAO}=30^{\\circ}$일 때, 다음 측정 기록표를 완성하려고 한다.\n\n| 기록 항목 | 밑면의 반지름 | 원뿔의 높이 | 원뿔의 부피 |\n| --- | --- | --- | --- |\n| 측정·계산 결과 | ㉠ $\\mathrm{cm}$ | ㉡ $\\mathrm{cm}$ | ㉢ $\\mathrm{cm}^{3}$ |\n\n㉠, ㉡, ㉢에 들어갈 수를 차례로 바르게 짝지은 것은?",
+      "choices": [
+        "$4$, $4\\sqrt{3}$, $\\frac{64\\sqrt{3}}{3}\\pi$",
+        "$4\\sqrt{3}$, $4$, $64\\pi$",
+        "$4\\sqrt{3}$, $4$, $192\\pi$",
+        "$8\\sqrt{3}$, $4$, $256\\pi$",
+        "$4\\sqrt{3}$, $8$, $128\\pi$"
+      ],
+      "answer": "②",
+      "solution": "직각삼각형 $\\mathrm{SOA}$에서 빗변은 모선 $\\overline{\\mathrm{SA}}=8\\,\\mathrm{cm}$이다.\n밑면의 반지름은 $\\overline{\\mathrm{OA}}=8\\cos30^{\\circ}=8\\times\\frac{\\sqrt{3}}{2}=4\\sqrt{3}\\,\\mathrm{cm}$이고, 높이는 $\\overline{\\mathrm{SO}}=8\\sin30^{\\circ}=8\\times\\frac{1}{2}=4\\,\\mathrm{cm}$이다.\n원뿔의 부피는 밑면의 넓이와 높이의 곱의 $\\frac{1}{3}$이므로\n$\\frac{1}{3}\\times\\pi(4\\sqrt{3})^{2}\\times4=\\frac{1}{3}\\times48\\pi\\times4=64\\pi\\,\\mathrm{cm}^{3}$이다.\n따라서 ㉠, ㉡, ㉢에 들어갈 수는 차례로 $4\\sqrt{3}$, $4$, $64\\pi$이므로 정답은 ②이다.",
+      "score": 4,
+      "questionType": "객관식",
+      "facts": {
+        "slantLength": 8,
+        "sectionAngleDegrees": 30,
+        "radius": "4sqrt(3)",
+        "height": 4,
+        "radiusSquared": 48,
+        "volumePiCoefficient": 64,
+        "sectionRightVertex": "O",
+        "choiceRecords": [
+          [
+            "4",
+            "4sqrt(3)",
+            "64sqrt(3)/3"
+          ],
+          [
+            "4sqrt(3)",
+            "4",
+            "64"
+          ],
+          [
+            "4sqrt(3)",
+            "4",
+            "192"
+          ],
+          [
+            "8sqrt(3)",
+            "4",
+            "256"
+          ],
+          [
+            "4sqrt(3)",
+            "8",
+            "128"
+          ]
+        ],
+        "nativeTable": true
+      },
+      "figureArtifacts": [
+        {
+          "role": "stem",
+          "specPath": "figure-1.spec.json",
+          "svgPath": "figure-1.svg",
+          "intendedWidthMm": 55
+        },
+        {
+          "role": "stem",
+          "specPath": "figure-2.spec.json",
+          "svgPath": "figure-2.svg",
+          "intendedWidthMm": 65
+        }
+      ],
+      "variantDelta": {
+        "modes": [
+          "structure",
+          "representation"
+        ],
+        "before": "원뿔의 모선과 밑면이 이루는 각에서 원뿔의 부피 하나를 구한다.",
+        "after": "원뿔과 축을 포함하는 단면의 절반을 함께 제시하고 모선·단면의 예각을 반지름·높이·부피의 세 기록에 대응시킨다. 반지름과 높이를 바꿔 기록하거나 지름을 반지름으로 기록하는 선택지를 구별해야 한다.",
+        "sharedConcept": "원뿔의 축 단면에서 직각삼각형의 두 변을 삼각비로 구하고 원뿔 부피를 계산하기",
+        "sharedProcedure": "30°의 sin·cos를 모선에 적용해 높이와 반지름을 구한 뒤 중학교 원뿔 부피식에 대입한다.",
+        "preparationAdjustment": "v2의 모선 8 cm·30° 제안을 사용했다. 수치가 드러나지 않는 기존 로컬 cone kind와 모선·30°만 표시한 v2 단면을 함께 사용하여 반지름·높이를 그림에 답으로 적지 않는다."
+      },
+      "curriculumReview": {
+        "grade": "중3",
+        "edition": "2015",
+        "standardCodes": [
+          "9수04-18",
+          "9수04-09",
+          "9수04-17",
+          "9수04-08",
+          "6수03-08"
+        ],
+        "allowedProcedure": [
+          "축을 포함하는 단면의 절반을 직각삼각형으로 읽는다.",
+          "sin30°·cos30°를 직접 적용해 높이와 반지름을 구한다.",
+          "원뿔 부피 공식에 밑면 넓이와 높이를 대입한다."
+        ],
+        "forbiddenAvoided": [
+          "공간 좌표·벡터·정사영 이론",
+          "삼각비 사이의 관계식",
+          "라디안·일반각",
+          "사인법칙·코사인법칙·미적분"
+        ],
+        "surfaceScope": {
+          "stem": "직각 단면과 모선·30°, 길이·부피 기록표",
+          "choices": "근호 길이와 원뿔 부피의 수치 세 개, 단위는 표에 명시",
+          "figureAndNotation": "원뿔의 숨은 밑면 선은 점선이고 단면의 30°와 직각을 명시한다. 반지름·높이의 답은 표기하지 않는다.",
+          "studentSolution": "30°의 삼각비 직접 적용과 중학교 원뿔 부피 공식",
+          "prerequisites": "원뿔의 모선·중심·축 단면, 원의 넓이, 원뿔의 부피, 특수각 삼각비·근호 계산"
+        },
+        "status": "author-proposed",
+        "reviewStatus": "pending",
+        "evidence": {
+          "path": ".qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+          "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+          "mappingJsonPointer": "/question_mappings/12",
+          "standards": [
+            {
+              "code": "6수03-08",
+              "verified_text": "원주와 원의 넓이를 구하는 방법을 이해하고, 이를 구할 수 있다.",
+              "source_id": "moe-2020-236-math-hwp",
+              "hwp_locator": {
+                "stream": "BodyText/Section0",
+                "tag": 67,
+                "record_1based": 3445,
+                "record_offset_in_uncompressed_stream": 177155,
+                "extracted_paragraph_1based": 693
+              },
+              "original_2015_pdf_locator": {
+                "source_id": "moe-2015-74-math-pdf",
+                "physical_pages_1based": [
+                  29
+                ],
+                "printed_pages": [
+                  25
+                ],
+                "code_found": true,
+                "same_text_after_whitespace_normalization": true
+              },
+              "scope": "elementary_grade_band"
+            },
+            {
+              "code": "9수04-08",
+              "verified_text": "회전체의 성질을 이해한다.",
+              "source_id": "moe-2020-236-math-hwp",
+              "hwp_locator": {
+                "stream": "BodyText/Section0",
+                "tag": 67,
+                "record_1based": 4288,
+                "record_offset_in_uncompressed_stream": 217232,
+                "extracted_paragraph_1based": 878
+              },
+              "original_2015_pdf_locator": {
+                "source_id": "moe-2015-74-math-pdf",
+                "physical_pages_1based": [
+                  37
+                ],
+                "printed_pages": [
+                  33
+                ],
+                "code_found": true,
+                "same_text_after_whitespace_normalization": true
+              },
+              "scope": "middle_school_grades_1_to_3_band"
+            },
+            {
+              "code": "9수04-09",
+              "verified_text": "입체도형의 겉넓이와 부피를 구할 수 있다.",
+              "source_id": "moe-2020-236-math-hwp",
+              "hwp_locator": {
+                "stream": "BodyText/Section0",
+                "tag": 67,
+                "record_1based": 4292,
+                "record_offset_in_uncompressed_stream": 217366,
+                "extracted_paragraph_1based": 879
+              },
+              "original_2015_pdf_locator": {
+                "source_id": "moe-2015-74-math-pdf",
+                "physical_pages_1based": [
+                  37
+                ],
+                "printed_pages": [
+                  33
+                ],
+                "code_found": true,
+                "same_text_after_whitespace_normalization": true
+              },
+              "scope": "middle_school_grades_1_to_3_band"
+            },
+            {
+              "code": "9수04-17",
+              "verified_text": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+              "source_id": "moe-2020-236-math-hwp",
+              "hwp_locator": {
+                "stream": "BodyText/Section0",
+                "tag": 67,
+                "record_1based": 4341,
+                "record_offset_in_uncompressed_stream": 219120,
+                "extracted_paragraph_1based": 891
+              },
+              "original_2015_pdf_locator": {
+                "source_id": "moe-2015-74-math-pdf",
+                "physical_pages_1based": [
+                  38
+                ],
+                "printed_pages": [
+                  34
+                ],
+                "code_found": true,
+                "same_text_after_whitespace_normalization": true
+              },
+              "scope": "middle_school_grades_1_to_3_band"
+            },
+            {
+              "code": "9수04-18",
+              "verified_text": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+              "source_id": "moe-2020-236-math-hwp",
+              "hwp_locator": {
+                "stream": "BodyText/Section0",
+                "tag": 67,
+                "record_1based": 4345,
+                "record_offset_in_uncompressed_stream": 219292,
+                "extracted_paragraph_1based": 892
+              },
+              "original_2015_pdf_locator": {
+                "source_id": "moe-2015-74-math-pdf",
+                "physical_pages_1based": [
+                  38
+                ],
+                "printed_pages": [
+                  34
+                ],
+                "code_found": true,
+                "same_text_after_whitespace_normalization": true
+              },
+              "scope": "middle_school_grades_1_to_3_band"
+            }
+          ],
+          "bandCaveat": {
+            "text": "[9수...] is the middle-school 1~3 grade band, not an automatic exact-grade/semester approval. Pair it with the verified Unit grade/semester, live family and actual generator rule and a full review of each candidate.",
+            "source_id": "moe-2020-236-math-hwp",
+            "locator": {
+              "stream": "BodyText/Section0",
+              "record_1based": 3713,
+              "record_offset_in_uncompressed_stream": 190162,
+              "text": "[중학교 1~3학년]"
+            },
+            "original_pdf_page_1based": 32,
+            "original_pdf_printed_page": 28
+          },
+          "versionLimitations": {
+            "verified_math_editions": [
+              "2015-74 book8 PDF",
+              "2020-236 amended book8 HWP"
+            ],
+            "post_2020_complete_amendment_chain_audited": false,
+            "final_candidate_approval_allowed": false,
+            "reason": "SETUP evidence is exact for the fetched editions and relevant matching provisions; later consolidated policy/amendment scope and exact grade sequencing require review before final approval. No expansion into a complete amendment-history task."
+          }
+        }
+      },
+      "independentVerification": null,
+      "sourceReference": {
+        "externalId": "personal-9967cfbb759aa6d369883bac4c986aaa-13",
+        "examId": "personal-9967cfbb759aa6d369883bac4c986aaa",
+        "school": "범일중",
+        "questionNumber": 13,
+        "sourceFile": "2025 기출모음/2025년 2학기 중간고사 모음/pdf/중3/[범일중][3][25-2-중간][비상] (완료).PDF",
+        "sourceContentSha256": "8b7cfc79e6a7f3f240658147d667322e488e4a5ad4e837703a89685645a91d5f",
+        "sourceObservation": "원뿔 모선 6cm, 모선과 밑면의 각 30°, 중심 수선 AH가 원본 그림에 표시된다.",
+        "sharedConceptProcedure": "원뿔의 직각 단면에서 sin·cos로 높이와 반지름을 정하고 원뿔 부피식을 적용한다.",
+        "referenceInputPath": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/problems.json",
+        "referenceInputSha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+        "referenceJsonPointer": "/12/content",
+        "preparationBatchId": "exam-twin-bumil-2025-2-mid-v2",
+        "preparationPath": ".qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/preparation.json",
+        "preparationSha256": "63ecbb464db0a369df48e2a7abfceafb4e8314552119c686e12266066987af35"
+      },
+      "metadata": {
+        "grade": "중3",
+        "subject": "수학",
+        "curriculum": {
+          "sourceExam": "2015",
+          "target": "2015",
+          "grade": "중3",
+          "sourceExamSemester": 2,
+          "republicationTo2022": "requires-separate-review"
+        },
+        "sourceExamYear": 2025,
+        "sourceExamSemester": 2,
+        "sourceExamRound": "중간",
+        "questionType": "객관식",
+        "score": 4,
+        "difficultyProposal": "기본",
+        "difficultyStatus": "pending-new-candidate-review",
+        "problemTypeProposal": "활용",
+        "problemTypeStatus": "pending-new-candidate-review",
+        "hasFigure": true,
+        "assignment": {
+          "status": "proposed",
+          "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+          "familyKey": "mid:3-2|삼각비의 활용|02",
+          "currentUnit": {
+            "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+            "grade": "중3",
+            "chapter": "5. 삼각비",
+            "section": "삼각비의 활용",
+            "semester": 2,
+            "orderIndex": 483,
+            "problemCodePrefix": "J30503"
+          },
+          "currentRegistryMatch": {
+            "key": "3-2|삼각비의 활용|02",
+            "grade": "중3",
+            "unitSection": "삼각비의 활용",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비의 활용",
+            "rpmType": "02",
+            "rpmTitle": "입체도형에서 직각삼각형의 변의 길이의 활용"
+          },
+          "liveCount": 22,
+          "checkedAt": "2026-10-07 15:57:15.290971+00",
+          "evidence": "원뿔의 축을 포함하는 단면에서 모선·반지름·높이의 직각삼각형을 이용한다. 부피는 이렇게 정한 길이를 쓰는 마지막 계산이며 입체도형 변 길이 절차가 주 개념이다.",
+          "candidates": []
+        },
+        "achievementStandardRefs": [
+          {
+            "code": "9수04-18",
+            "role": "primary-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4345,
+              "record_offset_in_uncompressed_stream": 219292,
+              "extracted_paragraph_1based": 892
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                38
+              ],
+              "printed_pages": [
+                34
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수04-09",
+            "role": "primary-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4292,
+              "record_offset_in_uncompressed_stream": 217366,
+              "extracted_paragraph_1based": 879
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                37
+              ],
+              "printed_pages": [
+                33
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수04-17",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4341,
+              "record_offset_in_uncompressed_stream": 219120,
+              "extracted_paragraph_1based": 891
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                38
+              ],
+              "printed_pages": [
+                34
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "9수04-08",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 4288,
+              "record_offset_in_uncompressed_stream": 217232,
+              "extracted_paragraph_1based": 878
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                37
+              ],
+              "printed_pages": [
+                33
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          },
+          {
+            "code": "6수03-08",
+            "role": "prerequisite-proposal",
+            "sourceId": "moe-2020-236-math-hwp",
+            "hwpLocator": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record_1based": 3445,
+              "record_offset_in_uncompressed_stream": 177155,
+              "extracted_paragraph_1based": 693
+            },
+            "pdfLocator": {
+              "source_id": "moe-2015-74-math-pdf",
+              "physical_pages_1based": [
+                29
+              ],
+              "printed_pages": [
+                25
+              ],
+              "code_found": true,
+              "same_text_after_whitespace_normalization": true
+            },
+            "status": "expert-proposal-not-candidate-approval"
+          }
+        ],
+        "achievementStandardStatus": "expert-proposal-not-candidate-approval",
+        "curriculumMethodProposal": "축을 포함하는 단면의 절반을 직각삼각형으로 읽는다. sin30°·cos30°를 직접 적용해 높이와 반지름을 구한다. 원뿔 부피 공식에 밑면 넓이와 높이를 대입한다.",
+        "curriculumSpecificHold": "pending-full-new-candidate-curriculum-review",
+        "sourceIdentityReview": {
+          "status": "pending-attestation",
+          "nominalSourceSchool": "범일중",
+          "nominalExamYear": 2025,
+          "observations": [
+            "PDF header2025; editorial footer26년",
+            "Filename school범일중; document anonymizedBI중"
+          ],
+          "effect": "No silent year/school rewrite; both2025/2026 middle3 phase-in2015; actual provenance still pending"
+        },
+        "generatorRuleReview": {
+          "status": "pending-semantic-match",
+          "registryPath": ".qa-artifacts/exam-resume-20261008/registry-read-20261008.json",
+          "historicalSourceSuggestions": [
+            "D:/todays-math/src/lib/middle/m3Trig.ts:1928"
+          ],
+          "authorObservation": {
+            "status": "author-proposed-not-family-approval",
+            "path": "src/lib/middle/m3Trig.ts",
+            "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+            "scope": "read-only-procedure-comparison",
+            "familyType": "trig-application-02"
+          }
+        },
+        "source": "transformed",
+        "originProblemId": null,
+        "problemCode": null,
+        "schoolNamePolicy": {
+          "actual": "범일중",
+          "display": "새봄누리중학교",
+          "role": "fictional-display-alias-only",
+          "originalOccurrencesInStem": 0,
+          "surfaces": [
+            "content",
+            "choices",
+            "tables",
+            "figureLabels",
+            "solution"
+          ],
+          "review": "pending-new-candidate"
+        },
+        "publicationStatus": "author-proposed-not-approved",
+        "independentVerificationStatus": "pending-parent-blind-verification",
+        "gradeApprovalStatus": "pending-parent-review",
+        "rightsReviewStatus": "pending-parent-review",
+        "similarityReviewStatus": "pending-parent-review",
+        "directUseAllowed": false,
+        "sourceQuestionType": "객관식",
+        "sourceScore": 4,
+        "objectiveDifficultyScorePolicy": "preserve-v2-difficulty-proposal-and-source-score; final-objective-review-pending",
+        "curriculumSourceMethodProposal": "원뿔의 축을 포함하는 단면에서 모선·반지름·높이와 명시된 30°를 직각삼각형으로 읽고 원뿔 부피를 계산한다.",
+        "sourceCurriculumSpecificHold": "공간에서 직선과 평면이 이루는 각을 일반 정사영/벡터로 정의하는 새 표현은 제외. 단면의 30°와 직각을 명시해야 한다.",
+        "authorSanityChecks": {
+          "reportedBy": "author",
+          "independent": false,
+          "reviewDecision": null,
+          "requiredFields": "present",
+          "uniqueCorrectChoice": "②",
+          "mathSpanCount": 33,
+          "mathSyntax": "katex-strict-pass",
+          "difficultyAndScore": "source-score-and-v2-difficulty-preserved; objective-review-pending"
+        },
+        "authorFigureRender": {
+          "entrypoint": "src/lib/figure/renderFigureSpec.ts",
+          "options": {
+            "strict": true,
+            "typeset": true
+          },
+          "transport": "local-python",
+          "enginePath": "vendor/figure-engine",
+          "inspection": "author-view-image-completed",
+          "finalFigureApproval": "pending-parent-review",
+          "artifacts": [
+            {
+              "role": "stem",
+              "specSha256": "3859e7099253c684a5247f6e3f0e439fdbda6b119a146dad02fb92e8b6071c7b",
+              "svgSha256": "9ae1f4bc2e0d47c99967540212596e25dfd004916ddd0048851e647681ccb2da",
+              "previewPath": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q13.cone.preview.png",
+              "previewSha256": "6b37c5c9ffa385936680e12cc84ed82aa1ba403bea5c1abefeb39ca97fdade12",
+              "droppedDimensions": []
+            },
+            {
+              "role": "stem",
+              "specSha256": "d54efed7cca85dbc728ca709d8e65ddaef7d4e0312cdc10e7643529d62a601cd",
+              "svgSha256": "7612b1082354efbadddcf0538f0c880621d007c4a7ecdde864fd1fcd3aca2571",
+              "previewPath": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q13.section.preview.png",
+              "previewSha256": "1039e81fd42f28364a0b557e2eb9755c27e1874c11f30968e84765c093b3f030",
+              "droppedDimensions": []
+            }
+          ]
+        }
+      },
+      "review": {
+        "status": "pending",
+        "gradeCurriculum": "pending",
+        "equivalentConceptAndMethod": "pending",
+        "distinctPresentation": "pending",
+        "naturalKorean": "pending",
+        "mathematicalCorrectness": "pending",
+        "figure": "pending",
+        "rights": "pending",
+        "similarity": "pending"
+      }
+    },
+    "assets": [
+      {
+        "role": "stem",
+        "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r3\\package\\private\\q13\\figure-1.spec.json",
+        "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r3\\package\\private\\q13\\figure-1.svg",
+        "specSha256": "3859e7099253c684a5247f6e3f0e439fdbda6b119a146dad02fb92e8b6071c7b",
+        "svgSha256": "9ae1f4bc2e0d47c99967540212596e25dfd004916ddd0048851e647681ccb2da",
+        "intendedWidthMm": 55,
+        "studentPath": "figures/q13-1.svg"
+      },
+      {
+        "role": "stem",
+        "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r3\\package\\private\\q13\\figure-2.spec.json",
+        "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r3\\package\\private\\q13\\figure-2.svg",
+        "specSha256": "d54efed7cca85dbc728ca709d8e65ddaef7d4e0312cdc10e7643529d62a601cd",
+        "svgSha256": "7612b1082354efbadddcf0538f0c880621d007c4a7ecdde864fd1fcd3aca2571",
+        "intendedWidthMm": 65,
+        "studentPath": "figures/q13-2.svg"
+      }
+    ],
+    "studentDigest": "239e5959efba640245ef5e016922b2c3d1ba465a4a47affdd121846d8ac6aa5c",
+    "candidateDigest": "028c686938d29d7e19b53cf6b4593578a2921752edc4d087ecd3b40906ce5f64",
+    "assetDigest": "ef7943638f592ebf74764764a3980d97860864995af79ffd539bc1ca0ebc8c08",
+    "independentSolve": {
+      "studentDigest": "239e5959efba640245ef5e016922b2c3d1ba465a4a47affdd121846d8ac6aa5c",
+      "solverId": "orca-codex-exam-twin-author-geometry-20261008",
+      "answer": "②",
+      "solution": "직각삼각형 $\\mathrm{SOA}$에서 빗변은 $\\overline{SA}=8\\,\\mathrm{cm}$이고 $\\angle SAO=30^\\circ$이다. 따라서 밑면의 반지름 $\\overline{OA}=8\\cos30^\\circ=4\\sqrt3\\,\\mathrm{cm}$, 원뿔의 높이 $\\overline{SO}=8\\sin30^\\circ=4\\,\\mathrm{cm}$이다. 원뿔의 부피는 $\\frac13\\pi(4\\sqrt3)^2\\times4=64\\pi\\,\\mathrm{cm}^3$이다. 세 기록은 $(4\\sqrt3,4,64\\pi)$이므로 정답은 ②이다.",
+      "evidence": {
+        "questionNumber": 13,
+        "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q13",
+        "input": {
+          "studentProblemsPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r3/blind/student-problems.json",
+          "studentProblemsSha256": "77987a3499f60da5ea0e04f108cdc8f8779b499edacd829a45cb39122123e70d",
+          "solveBriefPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r3/blind/SOLVE-BRIEF.md",
+          "solveBriefSha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5"
+        },
+        "figures": [
+          {
+            "role": "stem",
+            "svgPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r3/blind/figures/q13-1.svg",
+            "sha256": "9ae1f4bc2e0d47c99967540212596e25dfd004916ddd0048851e647681ccb2da",
+            "hashMatchesStudentInput": true,
+            "visuallyInspected": true,
+            "observation": "첫 자산은 원뿔의 개형이며 밑면의 앞/뒤 경계가 구분된다."
+          },
+          {
+            "role": "stem",
+            "svgPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r3/blind/figures/q13-2.svg",
+            "sha256": "7612b1082354efbadddcf0538f0c880621d007c4a7ecdde864fd1fcd3aca2571",
+            "hashMatchesStudentInput": true,
+            "visuallyInspected": true,
+            "observation": "둘째 자산은 O의 직각, A의 30°, 빗변 SA의 8cm와 S/O/A 표기를 담은 단면 직각삼각형이다."
+          }
+        ],
+        "choiceChecks": [
+          {
+            "choice": 1,
+            "matches": false,
+            "reason": "반지름과 높이를 반대로 적었다."
+          },
+          {
+            "choice": 2,
+            "matches": true,
+            "reason": "반지름 4√3, 높이 4, 부피 64π가 모두 맞다."
+          },
+          {
+            "choice": 3,
+            "matches": false,
+            "reason": "반지름·높이는 맞지만 부피에서 1/3을 적용하지 않았다."
+          },
+          {
+            "choice": 4,
+            "matches": false,
+            "reason": "반지름이 8√3으로 빗변 8보다 커 실제 직각삼각형과 맞지 않는다."
+          },
+          {
+            "choice": 5,
+            "matches": false,
+            "reason": "높이를 8로 기록해 주어진 빗변과 30° 조건에 맞지 않는다."
+          }
+        ],
+        "codeCalculation": {
+          "tool": "Python fractions.Fraction with exact a+b√3 tuples; π factored from volume",
+          "radius": "4√3",
+          "height": "4",
+          "slantLength": "8",
+          "pythagoreanCheck": "48+16=64",
+          "volumePiCoefficient": "64",
+          "choiceMatches": [
+            false,
+            true,
+            false,
+            false,
+            false
+          ]
+        },
+        "existenceUniquenessAndDomain": "반지름·높이·모선은 모두 양수이고 반지름과 높이는 모선 8보다 작다. 48+16=64로 직각삼각형이 존재한다. 넓이 단위 cm²와 부피 단위 cm³를 구분했다. 원뿔 개형과 라벨·직각·30°·8cm를 가진 단면 그림 두 장을 모두 확인했다.",
+        "blindness": {
+          "readMaterials": "SOLVE-BRIEF.md, student-problems.json, and listed student SVGs only",
+          "authorAnswerRead": false,
+          "authorSolutionRead": false,
+          "originalAnswersOrSolutionsRead": false,
+          "privateSpecOrPackageRead": false,
+          "parentHtmlOrSolutionPreviewRead": false,
+          "solverAuthoredThisCandidate": false
+        },
+        "scope": "중3/2015 학생 방법의 독립 수학 풀이·보기 및 자산 대조. 전체 범위/난이도/metadata 승인은 후속 별도 검토."
+      },
+      "status": "solved"
+    },
+    "solveDigest": "7d987171e31054d715aff4cb9dedd8239e4efd563a0513a6e5b370a290ab316f"
+  }
+]

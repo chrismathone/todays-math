@@ -1,0 +1,92 @@
+{
+  "studentDigest": "74893ff23a48dfaa5b298a8febb65c1849ec4f1b35d9b95294ea3b6e1947da81",
+  "solverId": "orca-codex-exam-twin-author-algebra-20261008",
+  "answer": "$60\\,\\mathrm{m}$",
+  "solution": "삼각형 $\\mathrm{ABC}$의 세 내각의 크기의 합에서 $\\angle ACB=180^{\\circ}-45^{\\circ}-75^{\\circ}=60^{\\circ}$이다.\n점 $\\mathrm{B}$에서 선분 $\\mathrm{AC}$에 수선을 내리고 그 발을 $\\mathrm{H}$라 하자. $\\angle BAC$와 $\\angle ACB$가 모두 예각이므로 $\\mathrm{H}$는 선분 $\\mathrm{AC}$의 내부에 있다.\n직각삼각형 $\\mathrm{BCH}$에서 $\\overline{BH}=\\overline{BC}\\sin60^{\\circ}=20\\sqrt{6}\\times\\frac{\\sqrt{3}}{2}=30\\sqrt{2}\\,\\mathrm{m}$이다.\n직각삼각형 $\\mathrm{ABH}$에서 $\\sin45^{\\circ}=\\frac{\\overline{BH}}{\\overline{AB}}=\\frac{\\sqrt{2}}{2}$이므로 $\\overline{AB}=30\\sqrt{2}\\div\\frac{\\sqrt{2}}{2}=60\\,\\mathrm{m}$이다.\n따라서 빠진 표지 사이의 거리는 $60\\,\\mathrm{m}$이다.",
+  "evidence": {
+    "questionNumber": 19,
+    "method": [
+      "삼각형 내각의 합",
+      "B에서 AC로 내린 수선",
+      "60°·45° 직각삼각형에서 삼각비의 정의 직접 적용",
+      "근호의 사칙계산"
+    ],
+    "conditions": {
+      "anglesDegrees": {
+        "A": 45,
+        "B": 75,
+        "C": 60
+      },
+      "allGivenAndDerivedAnglesAcute": true,
+      "unit": "m",
+      "BHM": "30sqrt(2)",
+      "CHM": "10sqrt(6)",
+      "AHM": "30sqrt(2)",
+      "ABM": 60,
+      "HInsideAC": true,
+      "allRequiredLengthsPositive": true,
+      "triangleInequalitiesSatisfied": true
+    },
+    "choiceReview": [],
+    "uniqueAnswer": true,
+    "uniquenessReason": "각 C=60°가 정해지고 주어진 BC에서 높이 BH가 하나로 정해진다. sin45°는 양수이므로 AB도 하나로 정해진다.",
+    "figureObservation": "왼쪽은 측량 표지와 제어함의 새 래스터 삽화이다. 오른쪽 관계도에서 A·B·C가 서로 다른 삼각형 꼭짓점이고 A=45°, B=75° 표시가 본문과 일치한다. 계산에서는 본문에 주어진 BC의 길이와 정확한 관계도를 사용했다.",
+    "excludedMethods": [
+      "사인법칙·코사인법칙",
+      "75°의 덧셈 공식",
+      "벡터·내적"
+    ],
+    "input": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r2/blind/student-problems.json",
+      "sha256": "252ea8959ca5d96e13959ea9bf4b393fe00b0ff476f2b457b292c568fe6763b4",
+      "studentDigest": "74893ff23a48dfaa5b298a8febb65c1849ec4f1b35d9b95294ea3b6e1947da81",
+      "digestHandling": "copied verbatim from student-only export; no author package read",
+      "grade": "중3",
+      "curriculum": "2015"
+    },
+    "figures": [
+      {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r2/blind/figures/q19-1.svg",
+        "sha256": "2d03d431374553629a8764af00b4ff50e5e90e9438ef97678ed3ccc771b7f1f2",
+        "matchesStudentExportHash": true,
+        "previewPath": ".qa-artifacts/exam-resume-20261008/bumil-review-r2/blind-results-algebra/previews/q19-1.png",
+        "previewSha256": "2d9fb8f8f0aea01537f784417f4ee4cb48eaa670ffc1feddbbb683bb0105c626",
+        "inspection": "view_image completed",
+        "embeddedRasterIncluded": true
+      }
+    ],
+    "calculation": {
+      "artifact": ".qa-artifacts/exam-resume-20261008/bumil-review-r2/blind-results-algebra/calculations.json",
+      "sha256": "2eaab47cbb07445bb57a79b0d7041bedf3f6f8e9e8918aa9fa8250dc8ff7fadc",
+      "jsonPointer": "/results/q19",
+      "data": {
+        "angles": {
+          "A": 45,
+          "B": 75,
+          "C": 60
+        },
+        "BC": "20sqrt(6)",
+        "BH": "30sqrt(2)",
+        "CH": "10sqrt(6)",
+        "AH": "30sqrt(2)",
+        "AB": 60,
+        "altitudeFootOnAC": true,
+        "numeric": {
+          "bc": 48.98979485566356,
+          "bh": 42.426406871192846,
+          "ch": 24.49489742783178,
+          "ah": 42.426406871192846,
+          "ab": 59.999999999999986,
+          "ac": 66.92130429902463
+        }
+      }
+    },
+    "reviewBoundary": {
+      "authorAnswersRead": false,
+      "originalAnswersRead": false,
+      "selfAuthoredCandidateReviewed": false,
+      "scope": "independent blind solve; final curriculum/rights/publication approval not issued"
+    }
+  },
+  "status": "solved"
+}

@@ -50,6 +50,13 @@ export function canonicalJson(value) {
 }
 export const digest = (value) => sha256(canonicalJson(value));
 export const readJson = (file) => JSON.parse(fs.readFileSync(file, "utf8"));
+// MOE 2022 general-education phase-in (93458): middle3 starts in 2027.
+// This offline pilot supports middle3/2015. A 2022 candidate requires new
+// template/standards and seven-surface review, never a relabel.
+export function middle3CurriculumForExamYear(year) {
+  assert(Number.isInteger(year) && year >= 2025);
+  return year >= 2027 ? "2022" : "2015";
+}
 
 export function newOutputPath(input, workspace = process.cwd()) {
   const root = fs.realpathSync(workspace);
@@ -186,6 +193,11 @@ export function validateCandidate(candidate) {
     Number.isInteger(metadata.sourceExamYear) &&
       metadata.sourceExamYear >= 2025,
     "Only 2025+ source exams",
+  );
+  assert.equal(
+    metadata.curriculum.sourceExam,
+    middle3CurriculumForExamYear(metadata.sourceExamYear),
+    "Source year/grade curriculum mismatch",
   );
   assert.equal(metadata.questionType, candidate.questionType);
   assert.equal(metadata.score, candidate.score);
@@ -350,8 +362,12 @@ export function normalizeAnswer(text) {
   return String(text)
     .normalize("NFKC")
     .replace(/\$(.*?)\$/g, "$1")
+    .replace(/^\\\(([\s\S]*)\\\)$/, "$1")
     .replace(/\\(?:left|right)|\\[,!; ]|[~\s]/g, "")
-    .replace(/\\(?:mathrm|text)\{cm\}|厘米|cm/g, "cm");
+    .replace(/\\(?:dfrac|tfrac)/g, "\\frac")
+    .replace(/\\sqrt([0-9])/g, "\\sqrt{$1}")
+    .replace(/\^([0-9])/g, "^{$1}")
+    .replace(/\\(?:mathrm|text)\{(cm|m)\}/g, "$1");
 }
 
 export function evaluateReview(binding, solve, review, gates = {}) {
@@ -397,9 +413,18 @@ export function evaluateReview(binding, solve, review, gates = {}) {
       fail("independent-reasoning-missing");
     for (const key of REVIEW_CHECKS)
       if (review.checks?.[key] !== true) fail(`review-${key}-not-passed`);
-    for (const surface of SURFACES)
-      if (review.curriculumSurfaces?.[surface] !== "passed")
-        fail(`curriculum-${surface}-not-passed`);
+    for (const surface of SURFACES) {
+      const audit = review.curriculumSurfaces?.[surface];
+      const status =
+        typeof audit === "object" && audit !== null ? audit.status : audit;
+      if (status !== "passed") fail(`curriculum-${surface}-not-passed`);
+      if (
+        typeof audit === "object" &&
+        audit !== null &&
+        !(audit.basis || audit.evidence)
+      )
+        fail(`curriculum-${surface}-basis-missing`);
+    }
     // Each dimension is reported independently. A taxonomy hold cannot turn an
     // actually checked answer into an unchecked one; no partial pass permits use.
     const authentic = !reasons.some((r) =>

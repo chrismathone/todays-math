@@ -1,0 +1,39 @@
+{
+  "schemaVersion": 1,
+  "kind": "source-and-current-variant-method-links",
+  "role": "Effective method clarification; frozen author/source metadata preserved and linked, no old approval reused",
+  "questions": [
+    {
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r2-q10",
+      "candidatePath": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r2/image-context/q10.json",
+      "sourceOnlyField": "sourceReference.sharedConceptProcedure records original height recovery and adding eye height",
+      "sourceTarget": "total tower height from horizontal distance, eye height and elevation/table",
+      "currentTarget": "horizontal observation distance from total gym-window height, eye height and elevation/table",
+      "sharedConcept": "삼각비 표에서 필요한 직각삼각형의 비를 선택하고 총높이와 눈높이의 차를 연결한다.",
+      "sharedRelation": "tan(theta)=(H-h)/d; H>h>0, d>0, 0<theta<90",
+      "sourceProcedure": "Known distance times supplied tan gives height above the eye; add eye height",
+      "currentProcedure": "Subtract eye height from total height, divide by supplied tan, identify equal horizontal lengths, then use stated rounding",
+      "currentGiven": {"H": 12.8, "h": 1.6, "thetaDegrees": 58, "tableTan": "1.6003"},
+      "currentChecks": ["supplied table precision", "positive denominator", "unique distance", "one correct rounded choice", "both exact engine relation and 70mm layout checked"],
+      "reviewPath": ".qa-artifacts/exam-resume-20261008/bumil-review-r5/verification-results-algebra/reports/q10.json",
+      "taxonomy": "held: application03 vs table17; do not manufacture family assignment",
+      "rights": "pending"
+    },
+    {
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r2-q19",
+      "candidatePath": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r2/image-context/q19.json",
+      "sourceOnlyField": "sourceReference.sharedConceptProcedure records original AB-to-BC direction",
+      "sourceTarget": "BC campsite facility distance given AB and A/B angles",
+      "currentTarget": "AB park-marker distance given BC and A/B angles",
+      "sharedConcept": "내각의 합과 수선으로 두 직각삼각형을 만들고 특수각의 삼각비와 공통 높이로 두 변을 연결한다.",
+      "sharedRelation": "H lies on AC; BH=AB*sin(A)=BC*sin(C), using two right-triangle definitions separately",
+      "sourceProcedure": "Angle sum gives C=60; drop B perpendicular to AC; obtain common height from AB and 45 degrees, then BC from 60 degrees",
+      "currentProcedure": "Angle sum gives C=60; drop B perpendicular to AC; obtain common height from BC and 60 degrees, then AB from 45 degrees",
+      "currentGiven": {"BC": "30*sqrt(6) metres", "angleA": 45, "angleB": 75, "angleC": 60},
+      "currentChecks": ["H inside AC", "positive lengths", "angle sum180", "unique requested side", "no 75-degree trig value or general trigonometric law required", "new raw-engine/raster provenance and 70mm layout checked"],
+      "reviewPath": ".qa-artifacts/exam-resume-20261008/bumil-review-r5/verification-results-algebra/reports/q19.json",
+      "taxonomy": "existing family05 semantic fit independently reviewed; finite current generator outputs not claimed equivalent",
+      "rights": "pending"
+    }
+  ]
+}

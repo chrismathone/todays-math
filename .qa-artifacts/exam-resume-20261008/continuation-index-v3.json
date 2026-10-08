@@ -1,0 +1,165 @@
+{
+  "version": 3,
+  "createdAt": "2026-10-07T19:32:56.862071+00:00",
+  "supersedes": ".qa-artifacts\\exam-resume-20261008\\continuation-index-v2.json",
+  "latestDirective": "docs/planning/tracks/brief-exam-extraction-resume-20261008-addendum-2.md",
+  "latestDirectiveSha256": "fb911ce3f90d5e08f69b1fb86e957368c03ce28f47b53abbdaafba4a7d56cdb6",
+  "currentOwnerDirection": {
+    "updatedAt": "2026-10-07T16:18:13.584Z",
+    "scope": "2025+ source exams -> same concepts/core methods with changed stem structure, context, equivalent mathematical representation, or inverse target",
+    "answersAndSolutions": "Regenerate all to current bank quality; originals are reference only; independently verify the changed questions.",
+    "figures": "Regenerate all geometry with bank engine/style; restore code-infeasible images through built-in imagegen skill.",
+    "schoolNames": "Replace school names in content/choices/figure labels/solutions consistently; preserve actual source school as provenance.",
+    "metadata": "Per-question curriculum/unit/live family/difficulty/type/format/source/twin identity/figure/provenance and verification evidence for filtering/search.",
+    "copyright": "Minimal numeric/name/composition changes are not automatic copyright clearance; preserve review status.",
+    "engineUpgrade": "After source extraction, implement ALL useful feasible generator improvements: types, constraints, correctness, explanations, vector geometry, imagegen-backed image problems, metadata/filter/search, reproducibility and verification; track pending reasons.",
+    "legacyPilotVerified": 21,
+    "finalTwinVerified": 0,
+    "brief": "docs/planning/tracks/brief-exam-extraction-resume-20261008.md",
+    "imageEnginePlan": "Built-in imagegen skill for authoring reviewed assets/templates; combine with explicit mathematical data/conditions and provenance in the engine. Do not assume skills are callable in the production app; scope any runtime provider separately.",
+    "priority": "Grade and applied curriculum suitability is mandatory for stem/choices/figures/notation/answer/student solution/prerequisites; out of scope => reject; unknown => hold",
+    "addendum": "docs/planning/tracks/brief-exam-extraction-resume-20261008-addendum-1.md",
+    "executionAuthorization": "docs/planning/tracks/brief-exam-extraction-resume-20261008-addendum-2.md"
+  },
+  "scope": "actual-first-batch-authoring-and-independent-review-in-progress",
+  "counts": {
+    "historicalSourceVerifications": 21,
+    "plannedTwins": 21,
+    "authoredTwins": 20,
+    "figureInstancesRecreated": 23,
+    "imagegenImagesGenerated": 2,
+    "blindSolvesBound": 18,
+    "mathematicalReviewed": 4,
+    "gradeReviewed": 4,
+    "wholeQuestionReviewPassed": 3,
+    "verifiedTwins": 0,
+    "loadableTwins": 0,
+    "heldBeforeAuthoring": [
+      7
+    ],
+    "taxonomyInitiallyProposed": 16,
+    "taxonomyInitiallyHeld": [
+      10,
+      11,
+      14,
+      18,
+      20
+    ],
+    "newReviewedTaxonomyHold": [
+      15
+    ],
+    "remainingWholeReviews": 16,
+    "engineUpgradeCandidates": 28,
+    "engineUpgradesImplementedInProduction": 0
+  },
+  "report": "docs/planning/tracks/reports/exam-twin-authoring-progress-20261008.md",
+  "statusLedger": ".qa-artifacts\\exam-resume-20261008\\status-ledger-v3.json",
+  "statusLedgerSha256": "32633db36a952ae7baa8e42bd06f18eca7a18c47a78a0a75086257fb22af37e5",
+  "candidateIndex": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/candidate-index-r1.json",
+  "candidateIndexSha256": "e1afc8b9158c9d97a80fd56529d8bd9d8036d447dacb60a2bdd74bd8d5dd9fed",
+  "sourceIdentityEvidence": {
+    "path": ".qa-artifacts\\exam-resume-20261008\\bumil-authoring-r1\\source-identity\\source-review.json",
+    "sha256": "fcce4f3355719258e6e98a3a3b30631aa60e0122288b2de12c0870ce89b75a86",
+    "confirmedQuestions": [
+      2,
+      3,
+      15,
+      21
+    ],
+    "actualDate": "2025-09-23",
+    "actualYear": 2025,
+    "actualSchool": "?????",
+    "preparationFooter": "26? ?? is an editorial/preparation label, not the exam administration date",
+    "otherQuestionsNotConfirmedByThisReview": true,
+    "custodyPublisherRightsNotCleared": true
+  },
+  "reviewPackages": [
+    {
+      "version": 1,
+      "path": ".qa-artifacts\\exam-resume-20261008\\bumil-review-r1\\package",
+      "manifestSha256": "7b609562670103c0a8d9f3ba66b3ab109b782fb4420c36e9e4f103b181d63724",
+      "questionCount": 4,
+      "blindSolvesBound": 4,
+      "reviewStatus": "collected-first4-snapshot"
+    },
+    {
+      "version": 2,
+      "path": ".qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\package",
+      "manifestSha256": "6a17a124daabdf2161711014ca3701990897f984512fa1d435a91d6e47821810",
+      "questionCount": 9,
+      "blindSolvesBound": 9,
+      "reviewStatus": "peer-review-in-progress"
+    },
+    {
+      "version": 3,
+      "path": ".qa-artifacts\\exam-resume-20261008\\bumil-review-r3\\package",
+      "manifestSha256": "200f55ba7d27897a14ba170a021efe1295ffb27468924aa8335157fd3f31ea1c",
+      "questionCount": 5,
+      "blindSolvesBound": 5,
+      "reviewStatus": "peer-review-in-progress"
+    },
+    {
+      "version": 4,
+      "path": ".qa-artifacts\\exam-resume-20261008\\bumil-review-r4\\package",
+      "manifestSha256": "229814a33b588d4d3162ffaaf4ee35fce2397528710c7b6f019b91352eafde61",
+      "questionCount": 2,
+      "blindSolvesBound": 0,
+      "reviewStatus": "blind-task-in-progress"
+    }
+  ],
+  "reviewResult": {
+    "path": ".qa-artifacts\\exam-resume-20261008\\bumil-review-r1\\result-r1.json",
+    "sha256": "752b74b59c43f2d1d97683459084946ce3281aef49e3b8aba99c9fe4236c6527",
+    "reviewerSnapshot": ".qa-artifacts\\exam-resume-20261008\\bumil-review-r1\\verification\\reviewer-report-snapshot-r1.json",
+    "kind": "committed independent reviewer reports; point-in-time parent copies byte-match ba35ced10",
+    "sourceIdentityJoin": "freeze manifest retains pending gate; source evidence is separately confirmed above",
+    "math4Grade4DoesNotAuthorizeUse": true,
+    "workerCommit": "ba35ced10",
+    "workerReviewNote": ".qa-artifacts\\exam-resume-20261008\\bumil-review-r1\\verification-results\\REVIEW.md",
+    "workerReviewNoteSha256": "ef8045f1f12ab4bdb81ff96325839a56136f9e6dd67e1103b1d0501a3212ab80"
+  },
+  "engineUpgradeProgress": ".qa-artifacts\\exam-resume-20261008\\engine-upgrades-progress-r1.json",
+  "historicalInventory": {
+    "date": "2026-10-03",
+    "jobs": 1715,
+    "ready": 1388,
+    "hold": 323,
+    "registeredExams": 4,
+    "registeredRows": 82,
+    "completedPairsInReady": 643,
+    "notSelectedPairsInReady": 745,
+    "manifestPath": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-inventory-20261003\\extraction-job-manifest-reviewed.json",
+    "sha256": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88"
+  },
+  "nextFiveAudit": ".qa-artifacts/exam-resume-20261008/next-five-audit.json",
+  "bankRead": ".qa-artifacts/exam-resume-20261008/bank-read-20261008.json",
+  "bankReadCaptureAt": "2026-10-07 15:57:15.290971+00",
+  "protectedLedgers": "unchanged, no operational writes performed; protected lock observation is point-in-time",
+  "currentWorkers": [
+    {
+      "name": "exam-twin-author-algebra-20261008",
+      "branch": "chrismathone/exam-twin-author-algebra-20261008",
+      "stage": "full peer review q10/q16/q17/q19/q20",
+      "terminal": "term_96d5d3c8-12f8-4d84-bd31-fde090144e66"
+    },
+    {
+      "name": "exam-twin-author-geometry-20261008",
+      "branch": "chrismathone/exam-twin-author-geometry-20261008",
+      "stage": "full peer review q1/q4/q5/q18/q6/q8/q9/q12/q13",
+      "terminal": "term_0e513da0-cb1a-466b-ace2-84b762f87803"
+    },
+    {
+      "name": "exam-twin-source-identity-20261008",
+      "branch": "chrismathone/exam-twin-source-identity-20261008",
+      "stage": "first4 review committed and integrated; blind q11/q14 in progress",
+      "terminal": "term_c1193961-c5e3-4a60-bff3-e14c7531ad38"
+    }
+  ],
+  "nextActions": [
+    "Finish/freeze all peer reviews and last2 blind solves before new answer exposure",
+    "Resolve five initial metadata holds plus q15 inverse-family purpose without fictitious UUID/family",
+    "Confirm remaining17 Bumil source content linkage and q7 curriculum assessment scope",
+    "Continue next5 question-only extraction/pair-content checks using originals/drafts only as references, grade gate and fresh DB read before any future duplicate/load decision",
+    "After extraction analysis implement/test all useful production generator improvements (initial28 plus new findings), including full authored image/provenance/search/render/curriculum gates; never report investigation-only completion"
+  ]
+}

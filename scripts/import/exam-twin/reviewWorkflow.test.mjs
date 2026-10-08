@@ -3,8 +3,14 @@ import fs from "node:fs";
 import path from "node:path";
 import { spawnSync } from "node:child_process";
 import test from "node:test";
-import { bindCandidate, newOutputPath } from "./candidatePack.mjs";
+import {
+  bindCandidate,
+  digest,
+  newOutputPath,
+  sha256,
+} from "./candidatePack.mjs";
 import { composeImageFigure } from "./compose-image-figure.mjs";
+import { summarizeReviewedBatch } from "./summarize-reviewed-batch.mjs";
 
 const cli = path.resolve("scripts/import/exam-twin/review-exam-twins.mjs");
 function fixture() {
@@ -149,6 +155,136 @@ test("independent solve is frozen before new answer exposure; later alteration r
     assert.notEqual(result.status, 0);
     assert.match(result.stderr, /Independent solve was edited/);
     assert(!fs.existsSync(path.join(f.root, "result.json")));
+  } finally {
+    f.clean();
+  }
+});
+test("collection rechecks blind student bytes after answer exposure", () => {
+  const f = fixture();
+  try {
+    assert.equal(f.run("freeze", "package", "candidate.json").status, 0);
+    assert.equal(f.run("blind", "package", "blind").status, 0);
+    const students = JSON.parse(
+      fs.readFileSync(path.join(f.root, "blind/student-problems.json")),
+    );
+    fs.writeFileSync(
+      path.join(f.root, "blind/solve/q02.json"),
+      JSON.stringify({
+        studentDigest: students[0].studentDigest,
+        solverId: "independent",
+        answer: "②",
+        solution: "control",
+        evidence: "control",
+        status: "solved",
+      }),
+    );
+    assert.equal(f.run("verify-pack", "package", "blind", "verify").status, 0);
+    fs.appendFileSync(path.join(f.root, "blind/student-problems.json"), " ");
+    const result = f.run(
+      "collect",
+      "package",
+      "blind",
+      "verify",
+      "result.json",
+    );
+    assert.notEqual(result.status, 0);
+    assert.match(result.stderr, /Blind student input changed/);
+    assert(!fs.existsSync(path.join(f.root, "result.json")));
+  } finally {
+    f.clean();
+  }
+});
+test("batch counts select the exact current ID and never reuse an old question-number review", () => {
+  const f = fixture();
+  try {
+    const roots = [];
+    for (const revision of [1, 2]) {
+      const root = path.join(f.root, `review-${revision}`);
+      fs.mkdirSync(root);
+      const name = `candidate-${revision}.json`;
+      const candidate = {
+        ...f.candidate,
+        twinExternalId: `exam-twin-synthetic-revision-${revision}`,
+        content: `control revision ${revision}`,
+      };
+      fs.writeFileSync(path.join(f.root, name), JSON.stringify(candidate));
+      assert.equal(f.run("freeze", root + "/package", name).status, 0);
+      assert.equal(
+        f.run("blind", root + "/package", root + "/blind").status,
+        0,
+      );
+      const binding = bindCandidate(
+        root + "/package/private/q02/candidate.json",
+      );
+      const solve = {
+        studentDigest: binding.studentDigest,
+        solverId: "independent",
+        answer: "②",
+        solution: "control",
+        evidence: "control",
+        status: "solved",
+      };
+      fs.writeFileSync(root + "/blind/solve/q02.json", JSON.stringify(solve));
+      assert.equal(
+        f.run(
+          "verify-pack",
+          root + "/package",
+          root + "/blind",
+          root + "/verification",
+        ).status,
+        0,
+      );
+      fs.writeFileSync(
+        root + "/verification/reports/q02.json",
+        JSON.stringify({
+          status: "pending",
+          studentDigest: binding.studentDigest,
+          candidateDigest: binding.candidateDigest,
+          assetDigest: binding.assetDigest,
+          method: "independent-solve-then-review",
+          verifierId: "independent",
+          solveDigest: digest(solve),
+          evidence: "synthetic control; no actual content approval",
+          checks: {},
+          curriculumSurfaces: {},
+        }),
+      );
+      roots.push(root);
+    }
+    const candidateFile = path.join(f.root, "candidate-2.json");
+    const indexFile = path.join(f.root, "index.json");
+    const index = {
+      questions: [
+        {
+          n: 2,
+          id: "exam-twin-synthetic-revision-2",
+          candidate: candidateFile,
+          sha256: sha256(fs.readFileSync(candidateFile)),
+        },
+      ],
+    };
+    fs.writeFileSync(indexFile, JSON.stringify(index));
+    const result = summarizeReviewedBatch(indexFile, roots);
+    assert.equal(result.counts.authored, 1);
+    assert.equal(result.counts.historicalCandidateVersions, 2);
+    assert.equal(
+      result.questions[0].twinExternalId,
+      "exam-twin-synthetic-revision-2",
+    );
+    assert.equal(
+      result.supersededReviews[0].twinExternalId,
+      "exam-twin-synthetic-revision-1",
+    );
+    assert.throws(
+      () => summarizeReviewedBatch(indexFile, roots.slice(0, 1)),
+      /exactly one selected review/,
+    );
+    index.questions[0].sha256 = "0".repeat(64);
+    fs.writeFileSync(indexFile, JSON.stringify(index));
+    assert.throws(
+      () => summarizeReviewedBatch(indexFile, roots),
+      /index author hash is stale/,
+    );
   } finally {
     f.clean();
   }
