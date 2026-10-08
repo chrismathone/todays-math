@@ -11,6 +11,7 @@
     const win = doc.defaultView;
     const marker = doc.createElement("div");
     marker.className = "exam-reorder-marker";
+    marker.textContent = "여기로 문제 이동";
     marker.setAttribute("aria-hidden", "true");
     marker.hidden = true;
     doc.body.append(marker);
@@ -200,8 +201,8 @@
       const y = after ? rect.bottom : rect.top;
       let left = Math.max(4, rect.left);
       let right = Math.min(win.innerWidth - 4, rect.right);
-      let top = 2;
-      let bottom = win.innerHeight - 2;
+      let top = 0;
+      let bottom = win.innerHeight;
       // The overlay is outside document flow, but must respect scroll clipping.
       for (
         let node = reference.parentElement;
@@ -219,9 +220,18 @@
           right = Math.min(right, bounds.right);
         }
       }
-      marker.hidden = y < top || y > bottom || right <= left;
+      const markerHeight = Number.parseFloat(
+        win.getComputedStyle(marker).height,
+      );
+      // Scrolling to a card can leave its edge a fraction of a pixel outside.
+      marker.hidden =
+        y < top - 1 ||
+        y > bottom + 1 ||
+        right <= left ||
+        bottom - top < markerHeight;
       marker.style.left = `${left}px`;
-      marker.style.top = `${y}px`;
+      // Keep the whole row visible without moving cards or changing the drop target.
+      marker.style.top = `${Math.max(top + markerHeight / 2, Math.min(y, bottom - markerHeight / 2))}px`;
       marker.style.width = `${Math.max(0, right - left)}px`;
     }
 
