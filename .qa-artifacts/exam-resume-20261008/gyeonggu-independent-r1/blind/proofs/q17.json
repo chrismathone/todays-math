@@ -1,0 +1,179 @@
+{
+  "questionNumber": 17,
+  "studentDigest": "b7a97db53d0f8ebab88a31174afd8395f5899416fed9b2e975e6bcc553de9f24",
+  "inputContentSha256": "efe51651df793b8e008f970d9faa0b47eb48e3caf6878f9b7902b816c290b481",
+  "exactRequestedValues": [
+    "14"
+  ],
+  "freshCalculations": {
+    "annulusArea": "49*pi",
+    "R_squared_minus_r_squared": "49",
+    "AH": "7",
+    "AB": "14",
+    "radiusFreedom": "r>0 arbitrary, R=sqrt(r²+49); radii not individually unique; chord uniquely14"
+  },
+  "conditionChecks": [
+    {
+      "condition": "positive chord and distinct circles",
+      "passed": true,
+      "calculation": "14"
+    }
+  ],
+  "coordinateWitness": {
+    "points": {
+      "O": [
+        0,
+        0
+      ],
+      "H": [
+        0,
+        3
+      ],
+      "A": [
+        -7,
+        3
+      ],
+      "B": [
+        7,
+        3
+      ]
+    },
+    "relations": [
+      {
+        "relation": "lengthSquared",
+        "points": [
+          "O",
+          "A"
+        ],
+        "calculated": "58",
+        "required": 58,
+        "passed": true
+      },
+      {
+        "relation": "lengthSquared",
+        "points": [
+          "O",
+          "H"
+        ],
+        "calculated": "9",
+        "required": 9,
+        "passed": true
+      },
+      {
+        "relation": "perpendicular",
+        "points": [
+          "O",
+          "H",
+          "A",
+          "B"
+        ],
+        "calculated": "0",
+        "required": 0,
+        "passed": true
+      }
+    ],
+    "method": "Independent exact coordinate witness; supplemental validation only"
+  },
+  "codeSha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50",
+  "calculationIsCurriculumPermission": false,
+  "authorOrOriginalAnswerUsed": false,
+  "choiceCheck": {
+    "allChoices": [
+      {
+        "index1based": 1,
+        "studentChoice": "$7\\,\\mathrm{cm}$",
+        "parsedValues": [
+          "7"
+        ],
+        "matchesEachRequestedPart": [
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "positiveFullChord": true,
+          "squaredHalfChord49": false
+        },
+        "differencesFromIndependentRequestedValues": [
+          "-7"
+        ]
+      },
+      {
+        "index1based": 2,
+        "studentChoice": "$10\\,\\mathrm{cm}$",
+        "parsedValues": [
+          "10"
+        ],
+        "matchesEachRequestedPart": [
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "positiveFullChord": true,
+          "squaredHalfChord49": false
+        },
+        "differencesFromIndependentRequestedValues": [
+          "-4"
+        ]
+      },
+      {
+        "index1based": 3,
+        "studentChoice": "$12\\,\\mathrm{cm}$",
+        "parsedValues": [
+          "12"
+        ],
+        "matchesEachRequestedPart": [
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "positiveFullChord": true,
+          "squaredHalfChord49": false
+        },
+        "differencesFromIndependentRequestedValues": [
+          "-2"
+        ]
+      },
+      {
+        "index1based": 4,
+        "studentChoice": "$14\\,\\mathrm{cm}$",
+        "parsedValues": [
+          "14"
+        ],
+        "matchesEachRequestedPart": [
+          true
+        ],
+        "matches": true,
+        "domainAndGivenConditionChecks": {
+          "positiveFullChord": true,
+          "squaredHalfChord49": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "0"
+        ]
+      },
+      {
+        "index1based": 5,
+        "studentChoice": "$28\\,\\mathrm{cm}$",
+        "parsedValues": [
+          "28"
+        ],
+        "matchesEachRequestedPart": [
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "positiveFullChord": true,
+          "squaredHalfChord49": false
+        },
+        "differencesFromIndependentRequestedValues": [
+          "14"
+        ]
+      }
+    ],
+    "matchingIndices1based": [
+      4
+    ],
+    "exactlyOneChoice": true,
+    "basis": "Parsed actual copied student choices; no author/original key"
+  }
+}

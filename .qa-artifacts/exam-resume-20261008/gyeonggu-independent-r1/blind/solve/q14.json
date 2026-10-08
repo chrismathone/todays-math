@@ -1,0 +1,421 @@
+{
+  "schema": "independent-blind-solve.v1",
+  "questionNumber": 14,
+  "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q14",
+  "studentDigest": "12a1eb7e685efcbe2d82058a84720701caed9fdf50365c0bce0bd0c65a790eac",
+  "solverId": "orca-codex-exam-twin-source-identity-20261008",
+  "status": "solved",
+  "answer": "④: OM=8 cm",
+  "answerParts": {
+    "OM": "8 cm"
+  },
+  "solution": "원의 중심에서 현에 내린 수선은 현을 이등분하므로 AM=12/2=6 cm이다. OA는 반지름으로10 cm이고 OMA는 M에서 직각이다. 따라서 OM²=10²−6²=64이다. 거리OM은 양수이므로 OM=8 cm, ④이다.",
+  "evidence": {
+    "method": "independent-student-input-solve-before-author-answer-exposure",
+    "studentMethod": "중심에서 현에 내린 수선의 이등분 성질, 피타고라스",
+    "conditionAndDomainNotes": "현12<지름20이므로 중심에서 현까지 거리는 양수. 가능한 거리0<OM<10; 선택지12는 이 범위 밖이다.",
+    "exactValuesFromCode": [
+      "8"
+    ],
+    "code": {
+      "path": "solve_math.py",
+      "sha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50"
+    },
+    "proof": {
+      "path": "blind/proofs/q14.json",
+      "sha256": "9da43ca206c2174b03a6268052f350d902b2c20051d4f42ad73455a3f5979159"
+    },
+    "studentSolutionSource": {
+      "path": "student_solutions.json",
+      "wholeFileSha256": "adbcd31c366b68051b20e460727edc017c8160cd0d80fb6ff6c4b079d88c947d",
+      "questionRecordSha256": "dd3df5183bc62f734f950162a8b5908169fd2bf0245d6a6319a157d9b147a3d8"
+    },
+    "wholeStudentInputSha256": "6e137d65894e6506710e6c980136cfd26a25d4fec141785f4ed521f8eb89e1ca",
+    "contentSha256Utf8": "4418d59a90d8b9c878472e121ff8ba588e27f3f67632ad5a247e7631e9dcf3fd",
+    "studentObjectCanonicalSha256": "9d870f339bde425720d7c1de81ef35842b60f4bc1aa606e4bdb63b3d5534ba35",
+    "canonicalHashLimit": "This diagnostic canonical hash is not a claim about Root studentDigest algorithm; supplied studentDigest is retained unchanged.",
+    "choiceCheck": {
+      "allChoices": [
+        {
+          "index1based": 1,
+          "studentChoice": "$4\\,\\mathrm{cm}$",
+          "parsedValues": [
+            "4"
+          ],
+          "matchesEachRequestedPart": [
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "centerChordDistanceRange": true,
+            "radiusPythagoras": false
+          },
+          "differencesFromIndependentRequestedValues": [
+            "-4"
+          ]
+        },
+        {
+          "index1based": 2,
+          "studentChoice": "$5\\,\\mathrm{cm}$",
+          "parsedValues": [
+            "5"
+          ],
+          "matchesEachRequestedPart": [
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "centerChordDistanceRange": true,
+            "radiusPythagoras": false
+          },
+          "differencesFromIndependentRequestedValues": [
+            "-3"
+          ]
+        },
+        {
+          "index1based": 3,
+          "studentChoice": "$6\\,\\mathrm{cm}$",
+          "parsedValues": [
+            "6"
+          ],
+          "matchesEachRequestedPart": [
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "centerChordDistanceRange": true,
+            "radiusPythagoras": false
+          },
+          "differencesFromIndependentRequestedValues": [
+            "-2"
+          ]
+        },
+        {
+          "index1based": 4,
+          "studentChoice": "$8\\,\\mathrm{cm}$",
+          "parsedValues": [
+            "8"
+          ],
+          "matchesEachRequestedPart": [
+            true
+          ],
+          "matches": true,
+          "domainAndGivenConditionChecks": {
+            "centerChordDistanceRange": true,
+            "radiusPythagoras": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "0"
+          ]
+        },
+        {
+          "index1based": 5,
+          "studentChoice": "$12\\,\\mathrm{cm}$",
+          "parsedValues": [
+            "12"
+          ],
+          "matchesEachRequestedPart": [
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "centerChordDistanceRange": false,
+            "radiusPythagoras": false
+          },
+          "differencesFromIndependentRequestedValues": [
+            "4"
+          ]
+        }
+      ],
+      "matchingIndices1based": [
+        4
+      ],
+      "exactlyOneChoice": true,
+      "basis": "Parsed actual copied student choices; no author/original key"
+    },
+    "existenceUniquenessPositivity": {
+      "actualCodeChecks": [
+        {
+          "condition": "chord shorter than diameter, positive distance",
+          "passed": true,
+          "calculation": {
+            "squaredDistance": "64"
+          }
+        }
+      ],
+      "supplementalExactCoordinateWitness": null,
+      "uniqueRequestedAnswer": true,
+      "wholeConfigurationMustBeUnique": false,
+      "limit": "q17 radii and q22 triangle placements can vary while requested answers are unique. No pixel lengths or model probability determine uniqueness."
+    },
+    "figures": [
+      {
+        "svgPath": "figures/q14-1.svg",
+        "sha256": "737459562b14522af802c0440ded60d46470731810652edd859423f6204f2b16",
+        "intendedWidthMm": 70
+      }
+    ],
+    "directFigureInspections": [
+      {
+        "questionNumber": 14,
+        "svg": "figures/q14-1.svg",
+        "svgSha256": "737459562b14522af802c0440ded60d46470731810652edd859423f6204f2b16",
+        "intendedWidthMm": 70,
+        "renderedPdfWidthMm": 70.00000161064996,
+        "renderedHeightMm": 70.0,
+        "viewBox": [
+          0.0,
+          0.0,
+          205.9,
+          205.9
+        ],
+        "png": "blind/rendered/q14-1-300dpi.png",
+        "pngSha256": "921ea25d1e2c0a96017960eec7d93e1ee8bdbe6b53609c3ff78385f6777e2fba",
+        "pdf": "blind/rendered/q14-1-300dpi.pdf",
+        "pdfSha256": "5df08c166f36210c6faf84524ea7c43ee3f7c55b6897ed2132da0bb3176ba94b",
+        "svgTextLabels": [],
+        "mathematicalOracle": false,
+        "renderer": "Existing PyMuPDF SVG->vector PDF at physical width->300dpi PNG; Cairo runtime absent; no installs",
+        "visualInspection": "direct view_image completed on 2026-10-08",
+        "observation": "O center, chordAB, M perpendicular-foot midpoint; OM right marker clear.",
+        "labelsReadableAtSpecifiedPhysicalWidth": true,
+        "pixelMeasurementsUsedToSolve": false,
+        "physicalPrintProductionApproval": false
+      }
+    ],
+    "sevenStudentSurfaces": [
+      {
+        "surface": "stem",
+        "observation": "현12<지름20이므로 중심에서 현까지 거리는 양수. 가능한 거리0<OM<10; 선택지12는 이 범위 밖이다.",
+        "inGradeForUsedStudentMethod": true,
+        "limit": "New student stem only; original-twin faithfulness and provenance are not reviewed."
+      },
+      {
+        "surface": "choices",
+        "observation": "All actual student choices parsed and every requested component/strict interval compared.",
+        "detailedCodeResult": {
+          "allChoices": [
+            {
+              "index1based": 1,
+              "studentChoice": "$4\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "4"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "centerChordDistanceRange": true,
+                "radiusPythagoras": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "-4"
+              ]
+            },
+            {
+              "index1based": 2,
+              "studentChoice": "$5\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "5"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "centerChordDistanceRange": true,
+                "radiusPythagoras": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "-3"
+              ]
+            },
+            {
+              "index1based": 3,
+              "studentChoice": "$6\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "6"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "centerChordDistanceRange": true,
+                "radiusPythagoras": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "-2"
+              ]
+            },
+            {
+              "index1based": 4,
+              "studentChoice": "$8\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "8"
+              ],
+              "matchesEachRequestedPart": [
+                true
+              ],
+              "matches": true,
+              "domainAndGivenConditionChecks": {
+                "centerChordDistanceRange": true,
+                "radiusPythagoras": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "0"
+              ]
+            },
+            {
+              "index1based": 5,
+              "studentChoice": "$12\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "12"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "centerChordDistanceRange": false,
+                "radiusPythagoras": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "4"
+              ]
+            }
+          ],
+          "matchingIndices1based": [
+            4
+          ],
+          "exactlyOneChoice": true,
+          "basis": "Parsed actual copied student choices; no author/original key"
+        },
+        "inGradeForUsedStudentMethod": true
+      },
+      {
+        "surface": "figure_and_graph_semantics",
+        "observation": [
+          "O center, chordAB, M perpendicular-foot midpoint; OM right marker clear."
+        ],
+        "specifiedPhysicalWidthsViewed": [
+          70
+        ],
+        "inGradeForUsedStudentMethod": true,
+        "pixelOracle": false,
+        "limit": "Standalone SVG physical rendering only; no claim about a complete final paper/student UI layout."
+      },
+      {
+        "surface": "notation",
+        "observation": "전체 현12와 반현6을 혼동하지 않고 단위cm. 원과 비례/원의 거듭제곱을 사용하지 않는다.",
+        "inGradeForUsedStudentMethod": true,
+        "trigScope": "Only acute-angle trig definitions and30/45/60 values used; arbitrary-angle formula, ratio identity, vector or calculus notation is not necessary."
+      },
+      {
+        "surface": "answer_format",
+        "observation": "④: OM=8 cm",
+        "partsWithUnits": {
+          "OM": "8 cm"
+        },
+        "inGradeForUsedStudentMethod": true,
+        "limit": "Own raw exact answer; Root may normalize formatting only after binding hashes."
+      },
+      {
+        "surface": "student_solution",
+        "observation": "원의 중심에서 현에 내린 수선은 현을 이등분하므로 AM=12/2=6 cm이다. OA는 반지름으로10 cm이고 OMA는 M에서 직각이다. 따라서 OM²=10²−6²=64이다. 거리OM은 양수이므로 OM=8 cm, ④이다.",
+        "inGradeForUsedStudentMethod": true,
+        "basis": "Full fresh elementary student proof written before authored-solution exposure; calculation alone does not grant curricular permission."
+      },
+      {
+        "surface": "necessary_procedure",
+        "observation": "중심에서 현에 내린 수선의 이등분 성질, 피타고라스",
+        "conditions": "현12<지름20이므로 중심에서 현까지 거리는 양수. 가능한 거리0<OM<10; 선택지12는 이 범위 밖이다.",
+        "primaryStandardReferences": [
+          {
+            "id": "9수04-19",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4353,
+              "paragraph1based": 894,
+              "offset": 219558,
+              "text": "[9수04-19]원의 현에 관한 성질과 접선에 관한 성질을 이해한다."
+            },
+            "pdfPhysicalPage1based": 38,
+            "pdfPrintedPage": 34,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수04-16",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4333,
+              "paragraph1based": 889,
+              "offset": 218866,
+              "text": "[9수04-16]피타고라스 정리를 이해하고 설명할 수 있다."
+            },
+            "pdfPhysicalPage1based": 38,
+            "pdfPrintedPage": 34,
+            "wholeClausePdfMatch": true
+          }
+        ],
+        "inGradeForUsedStudentMethod": true,
+        "forbiddenStudentPrerequisiteUsed": false
+      }
+    ],
+    "curriculumMethod": {
+      "reference": "actual2025middle3 ->2015",
+      "legitimateStudentMethodFound": true,
+      "standards": [
+        {
+          "id": "9수04-19",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4353,
+            "paragraph1based": 894,
+            "offset": 219558,
+            "text": "[9수04-19]원의 현에 관한 성질과 접선에 관한 성질을 이해한다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-16",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4333,
+            "paragraph1based": 889,
+            "offset": 218866,
+            "text": "[9수04-16]피타고라스 정리를 이해하고 설명할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        }
+      ],
+      "restrictionsFile": "curriculum-method-evidence.json",
+      "restrictionsFileSha256": "20a90e8060b73d09eb8749f8b6636e0d960e3148c53111d8bc4db8da4c95af2d",
+      "approvalForRightsFamilyNativeOrLoading": false,
+      "fullCurrentFuturePublicationApproval": false
+    },
+    "annotationsAndSourceFamiliarityDisclosure": "Prior original exam source familiarity is possible and earlier Bumil scan annotations were incidentally seen. No Gyeonggu original/source/keys were reopened; these new candidate answers, authored solutions and other solver results were not read. Work proceeds solely from copied new student inputs.",
+    "newAuthorCandidateAnswersKnownBeforeThisSolve": false,
+    "originalKeyAgreementUsed": false,
+    "otherSolverRead": false,
+    "inferenceApiCalls": 0,
+    "limits": [
+      "Independent blind solve and bounded legitimate-method observations only. Exact Unit/live family, rights/native provenance, author-solution comparison and overall loading are outside this stage."
+    ]
+  },
+  "heldReasons": [],
+  "rejectedStudentMethods": [
+    "No arbitrary trig ratio identities or addition/half-angle formulas.",
+    "No upper-grade extrema/calculus, law of sines/cosines, vectors or circle power.",
+    "q09 uses congruence and Pythagoras instead of an unverified angle-bisector length theorem."
+  ]
+}

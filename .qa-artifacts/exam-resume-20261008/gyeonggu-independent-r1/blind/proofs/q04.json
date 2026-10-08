@@ -1,0 +1,134 @@
+{
+  "questionNumber": 4,
+  "studentDigest": "297db22d9b30a39d5722c0c910a92a726ec7a7a88fd7d7bd773979e5a19aad8c",
+  "inputContentSha256": "db1db82bec220e6b1ec518a98d8d7b9e4b3f4dbf91af23f81590dc0c30f4ebcd",
+  "exactRequestedValues": [
+    "7/13"
+  ],
+  "freshCalculations": {
+    "QR": "13",
+    "triangleArea": "30",
+    "PM": "60/13",
+    "cosTheta": "12/13",
+    "cosPhi": "5/13",
+    "difference": "7/13"
+  },
+  "conditionChecks": [
+    {
+      "condition": "same triangle area yields altitude",
+      "passed": true,
+      "calculation": "30"
+    },
+    {
+      "condition": "two acute cosines/positive difference",
+      "passed": true,
+      "calculation": "7/13"
+    },
+    {
+      "condition": "internal foot and right subtriangles",
+      "passed": true,
+      "calculation": {
+        "QM": "25/13",
+        "MR": "144/13"
+      }
+    }
+  ],
+  "coordinateWitness": null,
+  "codeSha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50",
+  "calculationIsCurriculumPermission": false,
+  "authorOrOriginalAnswerUsed": false,
+  "choiceCheck": {
+    "allChoices": [
+      {
+        "index1based": 1,
+        "studentChoice": "$\\frac5{13}$",
+        "parsedValues": [
+          "5/13"
+        ],
+        "matchesEachRequestedPart": [
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "differenceOfAcuteCosinesRange": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "-2/13"
+        ]
+      },
+      {
+        "index1based": 2,
+        "studentChoice": "$\\frac{12}{13}$",
+        "parsedValues": [
+          "12/13"
+        ],
+        "matchesEachRequestedPart": [
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "differenceOfAcuteCosinesRange": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "5/13"
+        ]
+      },
+      {
+        "index1based": 3,
+        "studentChoice": "$\\frac{17}{13}$",
+        "parsedValues": [
+          "17/13"
+        ],
+        "matchesEachRequestedPart": [
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "differenceOfAcuteCosinesRange": false
+        },
+        "differencesFromIndependentRequestedValues": [
+          "10/13"
+        ]
+      },
+      {
+        "index1based": 4,
+        "studentChoice": "$\\frac7{13}$",
+        "parsedValues": [
+          "7/13"
+        ],
+        "matchesEachRequestedPart": [
+          true
+        ],
+        "matches": true,
+        "domainAndGivenConditionChecks": {
+          "differenceOfAcuteCosinesRange": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "0"
+        ]
+      },
+      {
+        "index1based": 5,
+        "studentChoice": "$\\frac{13}{7}$",
+        "parsedValues": [
+          "13/7"
+        ],
+        "matchesEachRequestedPart": [
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "differenceOfAcuteCosinesRange": false
+        },
+        "differencesFromIndependentRequestedValues": [
+          "120/91"
+        ]
+      }
+    ],
+    "matchingIndices1based": [
+      4
+    ],
+    "exactlyOneChoice": true,
+    "basis": "Parsed actual copied student choices; no author/original key"
+  }
+}

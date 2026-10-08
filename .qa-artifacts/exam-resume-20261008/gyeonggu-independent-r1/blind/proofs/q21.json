@@ -1,0 +1,134 @@
+{
+  "questionNumber": 21,
+  "studentDigest": "5d198a08b208a6cb2f331632a436a1fb98befb7f1060e0e48c2e0da7a47291c6",
+  "inputContentSha256": "64c99c3e759972b5239ef3e8edab981f4d989a166d8e1591cf2242e6e659fdb1",
+  "exactRequestedValues": [
+    "75",
+    "2*sqrt(3)",
+    "4*sqrt(3)",
+    "-9 + 9*sqrt(3)"
+  ],
+  "freshCalculations": {
+    "AB": "6",
+    "BC": "6",
+    "DC": "2*sqrt(3)",
+    "BD": "4*sqrt(3)",
+    "anglePBC": "30",
+    "angleBCP": "45",
+    "angleBPC": "105",
+    "angleAPB": "75",
+    "PH": "-3 + 3*sqrt(3)",
+    "BH": "9 - 3*sqrt(3)",
+    "HC": "-3 + 3*sqrt(3)",
+    "areaBPC": "-9 + 9*sqrt(3)"
+  },
+  "conditionChecks": [
+    {
+      "condition": "all positive lengths; H and P internal",
+      "passed": true,
+      "calculation": {
+        "BH+HC": "6",
+        "BC": "6",
+        "PH": "-3 + 3*sqrt(3)"
+      }
+    },
+    {
+      "condition": "unique linear intersection height",
+      "passed": true,
+      "calculation": "-3 + 3*sqrt(3)"
+    }
+  ],
+  "coordinateWitness": {
+    "points": {
+      "A": [
+        0,
+        6
+      ],
+      "B": [
+        0,
+        0
+      ],
+      "C": [
+        6,
+        0
+      ],
+      "D": [
+        6,
+        "2*sqrt(3)"
+      ],
+      "P": [
+        "9 - 3*sqrt(3)",
+        "-3 + 3*sqrt(3)"
+      ],
+      "H": [
+        "9 - 3*sqrt(3)",
+        0
+      ]
+    },
+    "relations": [
+      {
+        "relation": "collinear",
+        "points": [
+          "A",
+          "P",
+          "C"
+        ],
+        "calculated": "0",
+        "required": 0,
+        "passed": true
+      },
+      {
+        "relation": "collinear",
+        "points": [
+          "B",
+          "P",
+          "D"
+        ],
+        "calculated": "0",
+        "required": 0,
+        "passed": true
+      },
+      {
+        "relation": "perpendicular",
+        "points": [
+          "P",
+          "H",
+          "B",
+          "C"
+        ],
+        "calculated": "0",
+        "required": 0,
+        "passed": true
+      },
+      {
+        "relation": "lengthSquared",
+        "points": [
+          "A",
+          "C"
+        ],
+        "calculated": "72",
+        "required": 72,
+        "passed": true
+      },
+      {
+        "relation": "lengthSquared",
+        "points": [
+          "B",
+          "D"
+        ],
+        "calculated": "48",
+        "required": 48,
+        "passed": true
+      }
+    ],
+    "method": "Independent exact coordinate witness; supplemental validation only"
+  },
+  "codeSha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50",
+  "calculationIsCurriculumPermission": false,
+  "authorOrOriginalAnswerUsed": false,
+  "choiceCheck": {
+    "notApplicable": true,
+    "multiPartCount": 4,
+    "eachPartExplicit": true
+  }
+}

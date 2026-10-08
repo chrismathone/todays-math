@@ -1,0 +1,487 @@
+{
+  "schema": "independent-blind-solve.v1",
+  "questionNumber": 16,
+  "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q16",
+  "studentDigest": "d72b1736d099a09c014f5b702c42a60a0f2173667e1c7300bd0226c8da3b9d9f",
+  "solverId": "orca-codex-exam-twin-source-identity-20261008",
+  "status": "solved",
+  "answer": "②: BP=2 cm",
+  "answerParts": {
+    "BP": "2 cm"
+  },
+  "solution": "접선AP는 접점A의 반지름OA와 수직이다. 삼각형OAP의 넓이24=(OA×AP)/2=(8×AP)/2이므로 AP=6 cm이다. 피타고라스 정리에서 OP=√(8²+6²)=10 cm이다. O,B,P 순서이고 OB=반지름8 cm이므로 BP=OP−OB=10−8=2 cm, ②이다.",
+  "evidence": {
+    "method": "independent-student-input-solve-before-author-answer-exposure",
+    "studentMethod": "접선-반지름 수직, 직각삼각형 넓이와 피타고라스, 일직선 길이 차",
+    "conditionAndDomainNotes": "OP10>반지름8, P가 원 밖. BP는OP가 아니라 밖의 부분2. AP6>0.",
+    "exactValuesFromCode": [
+      "2"
+    ],
+    "code": {
+      "path": "solve_math.py",
+      "sha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50"
+    },
+    "proof": {
+      "path": "blind/proofs/q16.json",
+      "sha256": "4864fce5947ead2efc84b9750db3bc35d97c510a2f298ad00e6736f16424fdb5"
+    },
+    "studentSolutionSource": {
+      "path": "student_solutions.json",
+      "wholeFileSha256": "adbcd31c366b68051b20e460727edc017c8160cd0d80fb6ff6c4b079d88c947d",
+      "questionRecordSha256": "c9386c3150b3a6eeb9e5643a24570aa4a0316bd91ee381eb31ac4a7365093c1e"
+    },
+    "wholeStudentInputSha256": "6e137d65894e6506710e6c980136cfd26a25d4fec141785f4ed521f8eb89e1ca",
+    "contentSha256Utf8": "2e47d6cb0ae2304f953f2c4909d1cd3ff01c837e2b4211a15112db9bd77fc68b",
+    "studentObjectCanonicalSha256": "52b0a5791364f4a620bfe78bb0f3008a6e568fc5718ead203f2a170ffc681080",
+    "canonicalHashLimit": "This diagnostic canonical hash is not a claim about Root studentDigest algorithm; supplied studentDigest is retained unchanged.",
+    "choiceCheck": {
+      "allChoices": [
+        {
+          "index1based": 1,
+          "studentChoice": "$1\\,\\mathrm{cm}$",
+          "parsedValues": [
+            "1"
+          ],
+          "matchesEachRequestedPart": [
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "outsideSegmentPositive": true,
+            "givenRadiusAndAreaTriangle": false
+          },
+          "differencesFromIndependentRequestedValues": [
+            "-1"
+          ]
+        },
+        {
+          "index1based": 2,
+          "studentChoice": "$2\\,\\mathrm{cm}$",
+          "parsedValues": [
+            "2"
+          ],
+          "matchesEachRequestedPart": [
+            true
+          ],
+          "matches": true,
+          "domainAndGivenConditionChecks": {
+            "outsideSegmentPositive": true,
+            "givenRadiusAndAreaTriangle": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "0"
+          ]
+        },
+        {
+          "index1based": 3,
+          "studentChoice": "$3\\,\\mathrm{cm}$",
+          "parsedValues": [
+            "3"
+          ],
+          "matchesEachRequestedPart": [
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "outsideSegmentPositive": true,
+            "givenRadiusAndAreaTriangle": false
+          },
+          "differencesFromIndependentRequestedValues": [
+            "1"
+          ]
+        },
+        {
+          "index1based": 4,
+          "studentChoice": "$4\\,\\mathrm{cm}$",
+          "parsedValues": [
+            "4"
+          ],
+          "matchesEachRequestedPart": [
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "outsideSegmentPositive": true,
+            "givenRadiusAndAreaTriangle": false
+          },
+          "differencesFromIndependentRequestedValues": [
+            "2"
+          ]
+        },
+        {
+          "index1based": 5,
+          "studentChoice": "$6\\,\\mathrm{cm}$",
+          "parsedValues": [
+            "6"
+          ],
+          "matchesEachRequestedPart": [
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "outsideSegmentPositive": true,
+            "givenRadiusAndAreaTriangle": false
+          },
+          "differencesFromIndependentRequestedValues": [
+            "4"
+          ]
+        }
+      ],
+      "matchingIndices1based": [
+        2
+      ],
+      "exactlyOneChoice": true,
+      "basis": "Parsed actual copied student choices; no author/original key"
+    },
+    "existenceUniquenessPositivity": {
+      "actualCodeChecks": [
+        {
+          "condition": "external P and O-B-P ordering",
+          "passed": true,
+          "calculation": {
+            "OP": "10",
+            "BP": "2"
+          }
+        }
+      ],
+      "supplementalExactCoordinateWitness": {
+        "points": {
+          "O": [
+            0,
+            0
+          ],
+          "P": [
+            10,
+            0
+          ],
+          "B": [
+            8,
+            0
+          ],
+          "A": [
+            "32/5",
+            "24/5"
+          ]
+        },
+        "relations": [
+          {
+            "relation": "perpendicular",
+            "points": [
+              "O",
+              "A",
+              "P",
+              "A"
+            ],
+            "calculated": "0",
+            "required": 0,
+            "passed": true
+          },
+          {
+            "relation": "lengthSquared",
+            "points": [
+              "O",
+              "A"
+            ],
+            "calculated": "64",
+            "required": 64,
+            "passed": true
+          },
+          {
+            "relation": "lengthSquared",
+            "points": [
+              "P",
+              "A"
+            ],
+            "calculated": "36",
+            "required": 36,
+            "passed": true
+          },
+          {
+            "relation": "collinear",
+            "points": [
+              "O",
+              "B",
+              "P"
+            ],
+            "calculated": "0",
+            "required": 0,
+            "passed": true
+          }
+        ],
+        "method": "Independent exact coordinate witness; supplemental validation only"
+      },
+      "uniqueRequestedAnswer": true,
+      "wholeConfigurationMustBeUnique": false,
+      "limit": "q17 radii and q22 triangle placements can vary while requested answers are unique. No pixel lengths or model probability determine uniqueness."
+    },
+    "figures": [
+      {
+        "svgPath": "figures/q16-1.svg",
+        "sha256": "debe11f60fd127c38991e13896a8aebcccf3815eeac0fd89c73f6c042a8b7d4e",
+        "intendedWidthMm": 70
+      }
+    ],
+    "directFigureInspections": [
+      {
+        "questionNumber": 16,
+        "svg": "figures/q16-1.svg",
+        "svgSha256": "debe11f60fd127c38991e13896a8aebcccf3815eeac0fd89c73f6c042a8b7d4e",
+        "intendedWidthMm": 70,
+        "renderedPdfWidthMm": 70.00000161064996,
+        "renderedHeightMm": 59.55317557712411,
+        "viewBox": [
+          0.0,
+          0.0,
+          242.019,
+          205.9
+        ],
+        "png": "blind/rendered/q16-1-300dpi.png",
+        "pngSha256": "e1037243e360b20f0dc43b761688074cc4044b0e01adc67b7fe98259be877725",
+        "pdf": "blind/rendered/q16-1-300dpi.pdf",
+        "pdfSha256": "481b18c7e08d7cae2506b7ecc2d6fd8cadc436f1bed3630b3388d3141b017de9",
+        "svgTextLabels": [],
+        "mathematicalOracle": false,
+        "renderer": "Existing PyMuPDF SVG->vector PDF at physical width->300dpi PNG; Cairo runtime absent; no installs",
+        "visualInspection": "direct view_image completed on 2026-10-08",
+        "observation": "O-P line intersects circle atB and radiusOA is perpendicular tangentAP. B label is displaced below the intersection; student stem explicitly states O,B,P in order. No radius/length read from pixels.",
+        "labelsReadableAtSpecifiedPhysicalWidth": true,
+        "pixelMeasurementsUsedToSolve": false,
+        "physicalPrintProductionApproval": false
+      }
+    ],
+    "sevenStudentSurfaces": [
+      {
+        "surface": "stem",
+        "observation": "OP10>반지름8, P가 원 밖. BP는OP가 아니라 밖의 부분2. AP6>0.",
+        "inGradeForUsedStudentMethod": true,
+        "limit": "New student stem only; original-twin faithfulness and provenance are not reviewed."
+      },
+      {
+        "surface": "choices",
+        "observation": "All actual student choices parsed and every requested component/strict interval compared.",
+        "detailedCodeResult": {
+          "allChoices": [
+            {
+              "index1based": 1,
+              "studentChoice": "$1\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "1"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "outsideSegmentPositive": true,
+                "givenRadiusAndAreaTriangle": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "-1"
+              ]
+            },
+            {
+              "index1based": 2,
+              "studentChoice": "$2\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "2"
+              ],
+              "matchesEachRequestedPart": [
+                true
+              ],
+              "matches": true,
+              "domainAndGivenConditionChecks": {
+                "outsideSegmentPositive": true,
+                "givenRadiusAndAreaTriangle": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "0"
+              ]
+            },
+            {
+              "index1based": 3,
+              "studentChoice": "$3\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "3"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "outsideSegmentPositive": true,
+                "givenRadiusAndAreaTriangle": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "1"
+              ]
+            },
+            {
+              "index1based": 4,
+              "studentChoice": "$4\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "4"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "outsideSegmentPositive": true,
+                "givenRadiusAndAreaTriangle": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "2"
+              ]
+            },
+            {
+              "index1based": 5,
+              "studentChoice": "$6\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "6"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "outsideSegmentPositive": true,
+                "givenRadiusAndAreaTriangle": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "4"
+              ]
+            }
+          ],
+          "matchingIndices1based": [
+            2
+          ],
+          "exactlyOneChoice": true,
+          "basis": "Parsed actual copied student choices; no author/original key"
+        },
+        "inGradeForUsedStudentMethod": true
+      },
+      {
+        "surface": "figure_and_graph_semantics",
+        "observation": [
+          "O-P line intersects circle atB and radiusOA is perpendicular tangentAP. B label is displaced below the intersection; student stem explicitly states O,B,P in order. No radius/length read from pixels."
+        ],
+        "specifiedPhysicalWidthsViewed": [
+          70
+        ],
+        "inGradeForUsedStudentMethod": true,
+        "pixelOracle": false,
+        "limit": "Standalone SVG physical rendering only; no claim about a complete final paper/student UI layout."
+      },
+      {
+        "surface": "notation",
+        "observation": "B의 그림 라벨은 교점 아래로 떨어져 있지만 O,B,P 순서는 발문에서 명확하다. 접선-할선 곱 관계를 쓰지 않는다.",
+        "inGradeForUsedStudentMethod": true,
+        "trigScope": "Only acute-angle trig definitions and30/45/60 values used; arbitrary-angle formula, ratio identity, vector or calculus notation is not necessary."
+      },
+      {
+        "surface": "answer_format",
+        "observation": "②: BP=2 cm",
+        "partsWithUnits": {
+          "BP": "2 cm"
+        },
+        "inGradeForUsedStudentMethod": true,
+        "limit": "Own raw exact answer; Root may normalize formatting only after binding hashes."
+      },
+      {
+        "surface": "student_solution",
+        "observation": "접선AP는 접점A의 반지름OA와 수직이다. 삼각형OAP의 넓이24=(OA×AP)/2=(8×AP)/2이므로 AP=6 cm이다. 피타고라스 정리에서 OP=√(8²+6²)=10 cm이다. O,B,P 순서이고 OB=반지름8 cm이므로 BP=OP−OB=10−8=2 cm, ②이다.",
+        "inGradeForUsedStudentMethod": true,
+        "basis": "Full fresh elementary student proof written before authored-solution exposure; calculation alone does not grant curricular permission."
+      },
+      {
+        "surface": "necessary_procedure",
+        "observation": "접선-반지름 수직, 직각삼각형 넓이와 피타고라스, 일직선 길이 차",
+        "conditions": "OP10>반지름8, P가 원 밖. BP는OP가 아니라 밖의 부분2. AP6>0.",
+        "primaryStandardReferences": [
+          {
+            "id": "9수04-19",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4353,
+              "paragraph1based": 894,
+              "offset": 219558,
+              "text": "[9수04-19]원의 현에 관한 성질과 접선에 관한 성질을 이해한다."
+            },
+            "pdfPhysicalPage1based": 38,
+            "pdfPrintedPage": 34,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수04-16",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4333,
+              "paragraph1based": 889,
+              "offset": 218866,
+              "text": "[9수04-16]피타고라스 정리를 이해하고 설명할 수 있다."
+            },
+            "pdfPhysicalPage1based": 38,
+            "pdfPrintedPage": 34,
+            "wholeClausePdfMatch": true
+          }
+        ],
+        "inGradeForUsedStudentMethod": true,
+        "forbiddenStudentPrerequisiteUsed": false
+      }
+    ],
+    "curriculumMethod": {
+      "reference": "actual2025middle3 ->2015",
+      "legitimateStudentMethodFound": true,
+      "standards": [
+        {
+          "id": "9수04-19",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4353,
+            "paragraph1based": 894,
+            "offset": 219558,
+            "text": "[9수04-19]원의 현에 관한 성질과 접선에 관한 성질을 이해한다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-16",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4333,
+            "paragraph1based": 889,
+            "offset": 218866,
+            "text": "[9수04-16]피타고라스 정리를 이해하고 설명할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        }
+      ],
+      "restrictionsFile": "curriculum-method-evidence.json",
+      "restrictionsFileSha256": "20a90e8060b73d09eb8749f8b6636e0d960e3148c53111d8bc4db8da4c95af2d",
+      "approvalForRightsFamilyNativeOrLoading": false,
+      "fullCurrentFuturePublicationApproval": false
+    },
+    "annotationsAndSourceFamiliarityDisclosure": "Prior original exam source familiarity is possible and earlier Bumil scan annotations were incidentally seen. No Gyeonggu original/source/keys were reopened; these new candidate answers, authored solutions and other solver results were not read. Work proceeds solely from copied new student inputs.",
+    "newAuthorCandidateAnswersKnownBeforeThisSolve": false,
+    "originalKeyAgreementUsed": false,
+    "otherSolverRead": false,
+    "inferenceApiCalls": 0,
+    "limits": [
+      "Independent blind solve and bounded legitimate-method observations only. Exact Unit/live family, rights/native provenance, author-solution comparison and overall loading are outside this stage."
+    ]
+  },
+  "heldReasons": [],
+  "rejectedStudentMethods": [
+    "No arbitrary trig ratio identities or addition/half-angle formulas.",
+    "No upper-grade extrema/calculus, law of sines/cosines, vectors or circle power.",
+    "q09 uses congruence and Pythagoras instead of an unverified angle-bisector length theorem."
+  ]
+}

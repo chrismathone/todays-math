@@ -1,0 +1,473 @@
+{
+  "schema": "independent-blind-solve.v1",
+  "questionNumber": 21,
+  "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q21",
+  "studentDigest": "5d198a08b208a6cb2f331632a436a1fb98befb7f1060e0e48c2e0da7a47291c6",
+  "solverId": "orca-codex-exam-twin-source-identity-20261008",
+  "status": "solved",
+  "answer": "⑴ 75°; ⑵ DC=2√3 cm; ⑶ BD=4√3 cm; ⑷ 넓이 BPC=9(√3−1) cm²",
+  "answerParts": {
+    "⑴ ∠APB": "75°",
+    "⑵ DC": "2√3 cm",
+    "⑶ BD": "4√3 cm",
+    "⑷ 넓이 BPC": "9(√3−1) cm²"
+  },
+  "solution": "AB와DC는 수평선BC에 수직이다. 삼각형 ABC는B에서 직각이고 ∠BAC=45°이므로 AB=BC=AC/√2=(6√2)/√2=6 cm이다. ⑴ 삼각형BDC에서C가90°,D가60°이므로 ∠DBC=30°이다. 또 ∠ACB=45°이다. 따라서 삼각형BPC의 P각은180°−30°−45°=105°이고, PA와PC는 반대 방향이므로 ∠APB=180°−105°=75°이다. ⑵ 직각삼각형BDC에서 tan60°=BC/DC=√3이므로 DC=6/√3=2√3 cm이다. ⑶ 같은 삼각형에서 sin60°=BC/BD=√3/2이므로 BD=6÷(√3/2)=4√3 cm이다. ⑷ PH=h cm라 하면 직각삼각형BPH에서 tan30°=h/BH=1/√3이므로 BH=√3h이다. 직각삼각형CPH의 C각은45°이므로 HC=h이다. H가BC 내부이므로(√3+1)h=BH+HC=6, h=6/(√3+1)=3(√3−1)이다. 따라서 넓이BPC=BC×PH/2=6×3(√3−1)/2=9(√3−1) cm²이다.",
+  "evidence": {
+    "method": "independent-student-input-solve-before-author-answer-exposure",
+    "studentMethod": "두 직각삼각형, 각 합/일직선 각,30°/45°/60° 정의, 교점 높이 일차식",
+    "conditionAndDomainNotes": "H 내부, BH=9−3√3>0, HC=PH=3√3−3>0, PH<DC. 75°와105°는각합의결과이며 임의각삼각비공식을 평가하지 않는다.",
+    "exactValuesFromCode": [
+      "75",
+      "2*sqrt(3)",
+      "4*sqrt(3)",
+      "-9 + 9*sqrt(3)"
+    ],
+    "code": {
+      "path": "solve_math.py",
+      "sha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50"
+    },
+    "proof": {
+      "path": "blind/proofs/q21.json",
+      "sha256": "62bd7729426c9b178859816528ac5949f39e720bd3fbaae1b4833782ce04763b"
+    },
+    "studentSolutionSource": {
+      "path": "student_solutions.json",
+      "wholeFileSha256": "adbcd31c366b68051b20e460727edc017c8160cd0d80fb6ff6c4b079d88c947d",
+      "questionRecordSha256": "fa7472915e18dbb122620dd5928adbb0b9eb72f1f403a47a5baf598dec86904f"
+    },
+    "wholeStudentInputSha256": "6e137d65894e6506710e6c980136cfd26a25d4fec141785f4ed521f8eb89e1ca",
+    "contentSha256Utf8": "64c99c3e759972b5239ef3e8edab981f4d989a166d8e1591cf2242e6e659fdb1",
+    "studentObjectCanonicalSha256": "015692eb9611684f1767e854cddb603195943cf44490a16a98c12c5c0c1934bd",
+    "canonicalHashLimit": "This diagnostic canonical hash is not a claim about Root studentDigest algorithm; supplied studentDigest is retained unchanged.",
+    "choiceCheck": {
+      "notApplicable": true,
+      "multiPartCount": 4,
+      "eachPartExplicit": true
+    },
+    "existenceUniquenessPositivity": {
+      "actualCodeChecks": [
+        {
+          "condition": "all positive lengths; H and P internal",
+          "passed": true,
+          "calculation": {
+            "BH+HC": "6",
+            "BC": "6",
+            "PH": "-3 + 3*sqrt(3)"
+          }
+        },
+        {
+          "condition": "unique linear intersection height",
+          "passed": true,
+          "calculation": "-3 + 3*sqrt(3)"
+        }
+      ],
+      "supplementalExactCoordinateWitness": {
+        "points": {
+          "A": [
+            0,
+            6
+          ],
+          "B": [
+            0,
+            0
+          ],
+          "C": [
+            6,
+            0
+          ],
+          "D": [
+            6,
+            "2*sqrt(3)"
+          ],
+          "P": [
+            "9 - 3*sqrt(3)",
+            "-3 + 3*sqrt(3)"
+          ],
+          "H": [
+            "9 - 3*sqrt(3)",
+            0
+          ]
+        },
+        "relations": [
+          {
+            "relation": "collinear",
+            "points": [
+              "A",
+              "P",
+              "C"
+            ],
+            "calculated": "0",
+            "required": 0,
+            "passed": true
+          },
+          {
+            "relation": "collinear",
+            "points": [
+              "B",
+              "P",
+              "D"
+            ],
+            "calculated": "0",
+            "required": 0,
+            "passed": true
+          },
+          {
+            "relation": "perpendicular",
+            "points": [
+              "P",
+              "H",
+              "B",
+              "C"
+            ],
+            "calculated": "0",
+            "required": 0,
+            "passed": true
+          },
+          {
+            "relation": "lengthSquared",
+            "points": [
+              "A",
+              "C"
+            ],
+            "calculated": "72",
+            "required": 72,
+            "passed": true
+          },
+          {
+            "relation": "lengthSquared",
+            "points": [
+              "B",
+              "D"
+            ],
+            "calculated": "48",
+            "required": 48,
+            "passed": true
+          }
+        ],
+        "method": "Independent exact coordinate witness; supplemental validation only"
+      },
+      "uniqueRequestedAnswer": true,
+      "wholeConfigurationMustBeUnique": false,
+      "limit": "q17 radii and q22 triangle placements can vary while requested answers are unique. No pixel lengths or model probability determine uniqueness."
+    },
+    "figures": [
+      {
+        "svgPath": "figures/q21-1.svg",
+        "sha256": "ea23ffe8b6b6ffb72f99717f0934d4c8418e690119c09d5bf4958847fb89c4c1",
+        "intendedWidthMm": 70
+      }
+    ],
+    "directFigureInspections": [
+      {
+        "questionNumber": 21,
+        "svg": "figures/q21-1.svg",
+        "svgSha256": "ea23ffe8b6b6ffb72f99717f0934d4c8418e690119c09d5bf4958847fb89c4c1",
+        "intendedWidthMm": 70,
+        "renderedPdfWidthMm": 70.00000161064996,
+        "renderedHeightMm": 67.65313519391084,
+        "viewBox": [
+          0.0,
+          0.0,
+          275.9,
+          266.65
+        ],
+        "png": "blind/rendered/q21-1-300dpi.png",
+        "pngSha256": "013c3bab0c59577091f3f2c2c2f27349518a5033d8b1596ea949224c43c99cee",
+        "pdf": "blind/rendered/q21-1-300dpi.pdf",
+        "pdfSha256": "8eba4e36a6c482840ca6cec2788f646fc665d5719d7be148162a9348eb94afbe",
+        "svgTextLabels": [],
+        "mathematicalOracle": false,
+        "renderer": "Existing PyMuPDF SVG->vector PDF at physical width->300dpi PNG; Cairo runtime absent; no installs",
+        "visualInspection": "direct view_image completed on 2026-10-08",
+        "observation": "Vertical supportsAB/DC, crossed AC/BD meetingP, PH foot toBC;45 atA and60 atD. APB is the left wedge, not the lower105degree wedge.",
+        "labelsReadableAtSpecifiedPhysicalWidth": true,
+        "pixelMeasurementsUsedToSolve": false,
+        "physicalPrintProductionApproval": false
+      }
+    ],
+    "sevenStudentSurfaces": [
+      {
+        "surface": "stem",
+        "observation": "H 내부, BH=9−3√3>0, HC=PH=3√3−3>0, PH<DC. 75°와105°는각합의결과이며 임의각삼각비공식을 평가하지 않는다.",
+        "inGradeForUsedStudentMethod": true,
+        "limit": "New student stem only; original-twin faithfulness and provenance are not reviewed."
+      },
+      {
+        "surface": "choices",
+        "observation": "No choices; every numbered subpart answered, including required relationship explanation.",
+        "detailedCodeResult": {
+          "notApplicable": true,
+          "multiPartCount": 4,
+          "eachPartExplicit": true
+        },
+        "inGradeForUsedStudentMethod": true
+      },
+      {
+        "surface": "figure_and_graph_semantics",
+        "observation": [
+          "Vertical supportsAB/DC, crossed AC/BD meetingP, PH foot toBC;45 atA and60 atD. APB is the left wedge, not the lower105degree wedge."
+        ],
+        "specifiedPhysicalWidthsViewed": [
+          70
+        ],
+        "inGradeForUsedStudentMethod": true,
+        "pixelOracle": false,
+        "limit": "Standalone SVG physical rendering only; no claim about a complete final paper/student UI layout."
+      },
+      {
+        "surface": "notation",
+        "observation": "네 소문항 모두 별도 답과 단위. APB는왼쪽쐐기, BPC는아래105°쐐기. 넓이를ADP와바꾸지 않는다. 배점2+2+2+4=10.",
+        "inGradeForUsedStudentMethod": true,
+        "trigScope": "Only acute-angle trig definitions and30/45/60 values used; arbitrary-angle formula, ratio identity, vector or calculus notation is not necessary."
+      },
+      {
+        "surface": "answer_format",
+        "observation": "⑴ 75°; ⑵ DC=2√3 cm; ⑶ BD=4√3 cm; ⑷ 넓이 BPC=9(√3−1) cm²",
+        "partsWithUnits": {
+          "⑴ ∠APB": "75°",
+          "⑵ DC": "2√3 cm",
+          "⑶ BD": "4√3 cm",
+          "⑷ 넓이 BPC": "9(√3−1) cm²"
+        },
+        "inGradeForUsedStudentMethod": true,
+        "limit": "Own raw exact answer; Root may normalize formatting only after binding hashes."
+      },
+      {
+        "surface": "student_solution",
+        "observation": "AB와DC는 수평선BC에 수직이다. 삼각형 ABC는B에서 직각이고 ∠BAC=45°이므로 AB=BC=AC/√2=(6√2)/√2=6 cm이다. ⑴ 삼각형BDC에서C가90°,D가60°이므로 ∠DBC=30°이다. 또 ∠ACB=45°이다. 따라서 삼각형BPC의 P각은180°−30°−45°=105°이고, PA와PC는 반대 방향이므로 ∠APB=180°−105°=75°이다. ⑵ 직각삼각형BDC에서 tan60°=BC/DC=√3이므로 DC=6/√3=2√3 cm이다. ⑶ 같은 삼각형에서 sin60°=BC/BD=√3/2이므로 BD=6÷(√3/2)=4√3 cm이다. ⑷ PH=h cm라 하면 직각삼각형BPH에서 tan30°=h/BH=1/√3이므로 BH=√3h이다. 직각삼각형CPH의 C각은45°이므로 HC=h이다. H가BC 내부이므로(√3+1)h=BH+HC=6, h=6/(√3+1)=3(√3−1)이다. 따라서 넓이BPC=BC×PH/2=6×3(√3−1)/2=9(√3−1) cm²이다.",
+        "inGradeForUsedStudentMethod": true,
+        "basis": "Full fresh elementary student proof written before authored-solution exposure; calculation alone does not grant curricular permission."
+      },
+      {
+        "surface": "necessary_procedure",
+        "observation": "두 직각삼각형, 각 합/일직선 각,30°/45°/60° 정의, 교점 높이 일차식",
+        "conditions": "H 내부, BH=9−3√3>0, HC=PH=3√3−3>0, PH<DC. 75°와105°는각합의결과이며 임의각삼각비공식을 평가하지 않는다.",
+        "primaryStandardReferences": [
+          {
+            "id": "9수04-01",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4248,
+              "paragraph1based": 868,
+              "offset": 215704,
+              "text": "[9수04-01]점, 선, 면, 각을 이해하고, 점, 직선, 평면의 위치 관계를 설명할 수 있다."
+            },
+            "pdfPhysicalPage1based": 37,
+            "pdfPrintedPage": 33,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수04-02",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4252,
+              "paragraph1based": 869,
+              "offset": 215902,
+              "text": "[9수04-02]평행선에서 동위각과 엇각의 성질을 이해한다."
+            },
+            "pdfPhysicalPage1based": 37,
+            "pdfPrintedPage": 33,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수04-05",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4272,
+              "paragraph1based": 874,
+              "offset": 216602,
+              "text": "[9수04-05]다각형의 성질을 이해한다."
+            },
+            "pdfPhysicalPage1based": 37,
+            "pdfPrintedPage": 33,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수04-17",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4341,
+              "paragraph1based": 891,
+              "offset": 219120,
+              "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다."
+            },
+            "pdfPhysicalPage1based": 38,
+            "pdfPrintedPage": 34,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수04-18",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4345,
+              "paragraph1based": 892,
+              "offset": 219292,
+              "text": "[9수04-18]삼각비를 활용하여 여러 가지 문제를 해결할 수 있다."
+            },
+            "pdfPhysicalPage1based": 38,
+            "pdfPrintedPage": 34,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수02-05",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 3916,
+              "paragraph1based": 797,
+              "offset": 199888,
+              "text": "[9수02-05]일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다."
+            },
+            "pdfPhysicalPage1based": 34,
+            "pdfPrintedPage": 30,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수01-10",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 3788,
+              "paragraph1based": 771,
+              "offset": 193301,
+              "text": "[9수01-10]근호를 포함한 식의 사칙계산을 할 수 있다."
+            },
+            "pdfPhysicalPage1based": 33,
+            "pdfPrintedPage": 29,
+            "wholeClausePdfMatch": true
+          }
+        ],
+        "inGradeForUsedStudentMethod": true,
+        "forbiddenStudentPrerequisiteUsed": false
+      }
+    ],
+    "curriculumMethod": {
+      "reference": "actual2025middle3 ->2015",
+      "legitimateStudentMethodFound": true,
+      "standards": [
+        {
+          "id": "9수04-01",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4248,
+            "paragraph1based": 868,
+            "offset": 215704,
+            "text": "[9수04-01]점, 선, 면, 각을 이해하고, 점, 직선, 평면의 위치 관계를 설명할 수 있다."
+          },
+          "pdfPhysicalPage1based": 37,
+          "pdfPrintedPage": 33,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-02",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4252,
+            "paragraph1based": 869,
+            "offset": 215902,
+            "text": "[9수04-02]평행선에서 동위각과 엇각의 성질을 이해한다."
+          },
+          "pdfPhysicalPage1based": 37,
+          "pdfPrintedPage": 33,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-05",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4272,
+            "paragraph1based": 874,
+            "offset": 216602,
+            "text": "[9수04-05]다각형의 성질을 이해한다."
+          },
+          "pdfPhysicalPage1based": 37,
+          "pdfPrintedPage": 33,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-17",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4341,
+            "paragraph1based": 891,
+            "offset": 219120,
+            "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-18",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4345,
+            "paragraph1based": 892,
+            "offset": 219292,
+            "text": "[9수04-18]삼각비를 활용하여 여러 가지 문제를 해결할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수02-05",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 3916,
+            "paragraph1based": 797,
+            "offset": 199888,
+            "text": "[9수02-05]일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다."
+          },
+          "pdfPhysicalPage1based": 34,
+          "pdfPrintedPage": 30,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수01-10",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 3788,
+            "paragraph1based": 771,
+            "offset": 193301,
+            "text": "[9수01-10]근호를 포함한 식의 사칙계산을 할 수 있다."
+          },
+          "pdfPhysicalPage1based": 33,
+          "pdfPrintedPage": 29,
+          "wholeClausePdfMatch": true
+        }
+      ],
+      "restrictionsFile": "curriculum-method-evidence.json",
+      "restrictionsFileSha256": "20a90e8060b73d09eb8749f8b6636e0d960e3148c53111d8bc4db8da4c95af2d",
+      "approvalForRightsFamilyNativeOrLoading": false,
+      "fullCurrentFuturePublicationApproval": false
+    },
+    "annotationsAndSourceFamiliarityDisclosure": "Prior original exam source familiarity is possible and earlier Bumil scan annotations were incidentally seen. No Gyeonggu original/source/keys were reopened; these new candidate answers, authored solutions and other solver results were not read. Work proceeds solely from copied new student inputs.",
+    "newAuthorCandidateAnswersKnownBeforeThisSolve": false,
+    "originalKeyAgreementUsed": false,
+    "otherSolverRead": false,
+    "inferenceApiCalls": 0,
+    "limits": [
+      "Independent blind solve and bounded legitimate-method observations only. Exact Unit/live family, rights/native provenance, author-solution comparison and overall loading are outside this stage."
+    ]
+  },
+  "heldReasons": [],
+  "rejectedStudentMethods": [
+    "No arbitrary trig ratio identities or addition/half-angle formulas.",
+    "No upper-grade extrema/calculus, law of sines/cosines, vectors or circle power.",
+    "q09 uses congruence and Pythagoras instead of an unverified angle-bisector length theorem."
+  ]
+}

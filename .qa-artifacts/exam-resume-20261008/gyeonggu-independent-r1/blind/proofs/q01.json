@@ -1,0 +1,141 @@
+{
+  "questionNumber": 1,
+  "studentDigest": "2a5d89e15f071d3cb081c22c717bd8fbd7261670952bd572d31d5db7d8fe7606",
+  "inputContentSha256": "c628f3cecabd8eeab1e2a8963b5e0db0706ade861e49512863f6b84978fe9a1f",
+  "exactRequestedValues": [
+    "5/13",
+    "5/12"
+  ],
+  "freshCalculations": {
+    "PQ": "13",
+    "QR": "5",
+    "PR": "12",
+    "cosQ": "5/13",
+    "tanP": "5/12"
+  },
+  "conditionChecks": [
+    {
+      "condition": "positive nondegenerate right triangle",
+      "passed": true,
+      "calculation": "169"
+    }
+  ],
+  "coordinateWitness": null,
+  "codeSha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50",
+  "calculationIsCurriculumPermission": false,
+  "authorOrOriginalAnswerUsed": false,
+  "choiceCheck": {
+    "allChoices": [
+      {
+        "index1based": 1,
+        "studentChoice": "$\\frac{12}{13}$, $\\frac{5}{12}$",
+        "parsedValues": [
+          "12/13",
+          "5/12"
+        ],
+        "matchesEachRequestedPart": [
+          false,
+          true
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "cosineAcuteRange": true,
+          "tangentPositive": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "7/13",
+          "0"
+        ]
+      },
+      {
+        "index1based": 2,
+        "studentChoice": "$\\frac{5}{13}$, $\\frac{12}{5}$",
+        "parsedValues": [
+          "5/13",
+          "12/5"
+        ],
+        "matchesEachRequestedPart": [
+          true,
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "cosineAcuteRange": true,
+          "tangentPositive": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "0",
+          "119/60"
+        ]
+      },
+      {
+        "index1based": 3,
+        "studentChoice": "$\\frac{5}{13}$, $\\frac{5}{12}$",
+        "parsedValues": [
+          "5/13",
+          "5/12"
+        ],
+        "matchesEachRequestedPart": [
+          true,
+          true
+        ],
+        "matches": true,
+        "domainAndGivenConditionChecks": {
+          "cosineAcuteRange": true,
+          "tangentPositive": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "0",
+          "0"
+        ]
+      },
+      {
+        "index1based": 4,
+        "studentChoice": "$\\frac{13}{5}$, $\\frac{5}{12}$",
+        "parsedValues": [
+          "13/5",
+          "5/12"
+        ],
+        "matchesEachRequestedPart": [
+          false,
+          true
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "cosineAcuteRange": false,
+          "tangentPositive": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "144/65",
+          "0"
+        ]
+      },
+      {
+        "index1based": 5,
+        "studentChoice": "$\\frac{5}{13}$, $\\frac{12}{13}$",
+        "parsedValues": [
+          "5/13",
+          "12/13"
+        ],
+        "matchesEachRequestedPart": [
+          true,
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "cosineAcuteRange": true,
+          "tangentPositive": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "0",
+          "79/156"
+        ]
+      }
+    ],
+    "matchingIndices1based": [
+      3
+    ],
+    "exactlyOneChoice": true,
+    "basis": "Parsed actual copied student choices; no author/original key"
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "questionNumber": 7,
+  "studentDigest": "4a6c9fde8d5b6bbd3d96233ad6b61ed6202c06fbc6cec638c5491eb6b19fec44",
+  "inputContentSha256": "ac849509161a2ef056d5e8df770b4ce7225e405a68b6d2d5e775bb56d62e9970",
+  "exactRequestedValues": [
+    "3/4",
+    "1/2",
+    "-sqrt(3)/3 + sqrt(2)"
+  ],
+  "freshCalculations": {
+    "ga": "3/4",
+    "na": "1/2",
+    "da": "-sqrt(3)/3 + sqrt(2)",
+    "substitutions": {
+      "sin60": "sqrt(3)/2",
+      "cos30": "sqrt(3)/2",
+      "tan45": "1",
+      "sin30": "1/2",
+      "sin45": "sqrt(2)/2",
+      "cos60": "1/2",
+      "tan30": "sqrt(3)/3"
+    }
+  },
+  "conditionChecks": [
+    {
+      "condition": "all three results and nonzero divisor",
+      "passed": true,
+      "calculation": [
+        "3/4",
+        "1/2",
+        "-sqrt(3)/3 + sqrt(2)"
+      ]
+    }
+  ],
+  "coordinateWitness": null,
+  "codeSha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50",
+  "calculationIsCurriculumPermission": false,
+  "authorOrOriginalAnswerUsed": false,
+  "choiceCheck": {
+    "allChoices": [
+      {
+        "index1based": 1,
+        "studentChoice": "$\\frac34$, $\\frac12$, $\\sqrt2-\\frac{\\sqrt3}{3}$",
+        "parsedValues": [
+          "3/4",
+          "1/2",
+          "-sqrt(3)/3 + sqrt(2)"
+        ],
+        "matchesEachRequestedPart": [
+          true,
+          true,
+          true
+        ],
+        "matches": true,
+        "domainAndGivenConditionChecks": {
+          "allResultsPositive": true,
+          "givenCos60DivisorNonzero": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "0",
+          "0",
+          "0"
+        ]
+      },
+      {
+        "index1based": 2,
+        "studentChoice": "$\\frac{\\sqrt3}{2}$, $\\frac12$, $\\sqrt2-\\frac{\\sqrt3}{3}$",
+        "parsedValues": [
+          "sqrt(3)/2",
+          "1/2",
+          "-sqrt(3)/3 + sqrt(2)"
+        ],
+        "matchesEachRequestedPart": [
+          false,
+          true,
+          true
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "allResultsPositive": true,
+          "givenCos60DivisorNonzero": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "-3/4 + sqrt(3)/2",
+          "0",
+          "0"
+        ]
+      },
+      {
+        "index1based": 3,
+        "studentChoice": "$\\frac34$, $1$, $\\sqrt2-\\frac{\\sqrt3}{3}$",
+        "parsedValues": [
+          "3/4",
+          "1",
+          "-sqrt(3)/3 + sqrt(2)"
+        ],
+        "matchesEachRequestedPart": [
+          true,
+          false,
+          true
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "allResultsPositive": true,
+          "givenCos60DivisorNonzero": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "0",
+          "1/2",
+          "0"
+        ]
+      },
+      {
+        "index1based": 4,
+        "studentChoice": "$\\frac34$, $\\frac12$, $\\sqrt2-\\sqrt3$",
+        "parsedValues": [
+          "3/4",
+          "1/2",
+          "-sqrt(3) + sqrt(2)"
+        ],
+        "matchesEachRequestedPart": [
+          true,
+          true,
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "allResultsPositive": false,
+          "givenCos60DivisorNonzero": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "0",
+          "0",
+          "-2*sqrt(3)/3"
+        ]
+      },
+      {
+        "index1based": 5,
+        "studentChoice": "$\\frac12$, $\\frac34$, $\\sqrt2-\\frac{\\sqrt3}{3}$",
+        "parsedValues": [
+          "1/2",
+          "3/4",
+          "-sqrt(3)/3 + sqrt(2)"
+        ],
+        "matchesEachRequestedPart": [
+          false,
+          false,
+          true
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "allResultsPositive": true,
+          "givenCos60DivisorNonzero": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "-1/4",
+          "1/4",
+          "0"
+        ]
+      }
+    ],
+    "matchingIndices1based": [
+      1
+    ],
+    "exactlyOneChoice": true,
+    "basis": "Parsed actual copied student choices; no author/original key"
+  }
+}

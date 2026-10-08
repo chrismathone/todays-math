@@ -1,0 +1,194 @@
+{
+  "questionNumber": 16,
+  "studentDigest": "d72b1736d099a09c014f5b702c42a60a0f2173667e1c7300bd0226c8da3b9d9f",
+  "inputContentSha256": "2e47d6cb0ae2304f953f2c4909d1cd3ff01c837e2b4211a15112db9bd77fc68b",
+  "exactRequestedValues": [
+    "2"
+  ],
+  "freshCalculations": {
+    "OA": "8",
+    "areaOAP": "24",
+    "AP": "6",
+    "OP": "10",
+    "OB": "8",
+    "BP": "2"
+  },
+  "conditionChecks": [
+    {
+      "condition": "external P and O-B-P ordering",
+      "passed": true,
+      "calculation": {
+        "OP": "10",
+        "BP": "2"
+      }
+    }
+  ],
+  "coordinateWitness": {
+    "points": {
+      "O": [
+        0,
+        0
+      ],
+      "P": [
+        10,
+        0
+      ],
+      "B": [
+        8,
+        0
+      ],
+      "A": [
+        "32/5",
+        "24/5"
+      ]
+    },
+    "relations": [
+      {
+        "relation": "perpendicular",
+        "points": [
+          "O",
+          "A",
+          "P",
+          "A"
+        ],
+        "calculated": "0",
+        "required": 0,
+        "passed": true
+      },
+      {
+        "relation": "lengthSquared",
+        "points": [
+          "O",
+          "A"
+        ],
+        "calculated": "64",
+        "required": 64,
+        "passed": true
+      },
+      {
+        "relation": "lengthSquared",
+        "points": [
+          "P",
+          "A"
+        ],
+        "calculated": "36",
+        "required": 36,
+        "passed": true
+      },
+      {
+        "relation": "collinear",
+        "points": [
+          "O",
+          "B",
+          "P"
+        ],
+        "calculated": "0",
+        "required": 0,
+        "passed": true
+      }
+    ],
+    "method": "Independent exact coordinate witness; supplemental validation only"
+  },
+  "codeSha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50",
+  "calculationIsCurriculumPermission": false,
+  "authorOrOriginalAnswerUsed": false,
+  "choiceCheck": {
+    "allChoices": [
+      {
+        "index1based": 1,
+        "studentChoice": "$1\\,\\mathrm{cm}$",
+        "parsedValues": [
+          "1"
+        ],
+        "matchesEachRequestedPart": [
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "outsideSegmentPositive": true,
+          "givenRadiusAndAreaTriangle": false
+        },
+        "differencesFromIndependentRequestedValues": [
+          "-1"
+        ]
+      },
+      {
+        "index1based": 2,
+        "studentChoice": "$2\\,\\mathrm{cm}$",
+        "parsedValues": [
+          "2"
+        ],
+        "matchesEachRequestedPart": [
+          true
+        ],
+        "matches": true,
+        "domainAndGivenConditionChecks": {
+          "outsideSegmentPositive": true,
+          "givenRadiusAndAreaTriangle": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "0"
+        ]
+      },
+      {
+        "index1based": 3,
+        "studentChoice": "$3\\,\\mathrm{cm}$",
+        "parsedValues": [
+          "3"
+        ],
+        "matchesEachRequestedPart": [
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "outsideSegmentPositive": true,
+          "givenRadiusAndAreaTriangle": false
+        },
+        "differencesFromIndependentRequestedValues": [
+          "1"
+        ]
+      },
+      {
+        "index1based": 4,
+        "studentChoice": "$4\\,\\mathrm{cm}$",
+        "parsedValues": [
+          "4"
+        ],
+        "matchesEachRequestedPart": [
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "outsideSegmentPositive": true,
+          "givenRadiusAndAreaTriangle": false
+        },
+        "differencesFromIndependentRequestedValues": [
+          "2"
+        ]
+      },
+      {
+        "index1based": 5,
+        "studentChoice": "$6\\,\\mathrm{cm}$",
+        "parsedValues": [
+          "6"
+        ],
+        "matchesEachRequestedPart": [
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "outsideSegmentPositive": true,
+          "givenRadiusAndAreaTriangle": false
+        },
+        "differencesFromIndependentRequestedValues": [
+          "4"
+        ]
+      }
+    ],
+    "matchingIndices1based": [
+      2
+    ],
+    "exactlyOneChoice": true,
+    "basis": "Parsed actual copied student choices; no author/original key"
+  }
+}

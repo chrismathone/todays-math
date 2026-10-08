@@ -1,0 +1,183 @@
+{
+  "questionNumber": 22,
+  "studentDigest": "cc29ffdc073ac83afa04d2bfcfca6ac0af6c45fec0c63aa5dd707bb5d6890aa9",
+  "inputContentSha256": "7ef1559749f7bfb4bd35391daaf58217dfefb6c95367d0ff64ad21bef103537b",
+  "exactRequestedValues": [
+    "3*sqrt(3)",
+    "3",
+    "6"
+  ],
+  "freshCalculations": {
+    "perimeter": "6*sqrt(3)",
+    "identity": "AB+AC+BC=AP+AQ=2*AP",
+    "AP=AQ": "3*sqrt(3)",
+    "radius": "3",
+    "AO": "6",
+    "anglePAO": 30,
+    "triangleShapeFreedom": "B and C are not individually fixed; AP, radius, AO are unique."
+  },
+  "conditionChecks": [
+    {
+      "condition": "positive target lengths and right triangle",
+      "passed": true,
+      "calculation": [
+        "3*sqrt(3)",
+        "3",
+        "6"
+      ]
+    },
+    {
+      "condition": "explicit witness perimeter and positive internal placements",
+      "passed": true,
+      "calculation": {
+        "AB": "2*sqrt(3)",
+        "AC": "2*sqrt(3)",
+        "BC": "2*sqrt(3)",
+        "AP": "3*sqrt(3)",
+        "AO": "6"
+      }
+    }
+  ],
+  "coordinateWitness": {
+    "points": {
+      "A": [
+        0,
+        0
+      ],
+      "O": [
+        6,
+        0
+      ],
+      "P": [
+        "9/2",
+        "3*sqrt(3)/2"
+      ],
+      "Q": [
+        "9/2",
+        "-3*sqrt(3)/2"
+      ],
+      "C": [
+        3,
+        "sqrt(3)"
+      ],
+      "B": [
+        3,
+        "-sqrt(3)"
+      ],
+      "D": [
+        3,
+        0
+      ]
+    },
+    "relations": [
+      {
+        "relation": "perpendicular",
+        "points": [
+          "O",
+          "P",
+          "A",
+          "P"
+        ],
+        "calculated": "0",
+        "required": 0,
+        "passed": true
+      },
+      {
+        "relation": "perpendicular",
+        "points": [
+          "O",
+          "Q",
+          "A",
+          "Q"
+        ],
+        "calculated": "0",
+        "required": 0,
+        "passed": true
+      },
+      {
+        "relation": "perpendicular",
+        "points": [
+          "O",
+          "D",
+          "B",
+          "C"
+        ],
+        "calculated": "0",
+        "required": 0,
+        "passed": true
+      },
+      {
+        "relation": "lengthSquared",
+        "points": [
+          "O",
+          "P"
+        ],
+        "calculated": "9",
+        "required": 9,
+        "passed": true
+      },
+      {
+        "relation": "lengthSquared",
+        "points": [
+          "O",
+          "Q"
+        ],
+        "calculated": "9",
+        "required": 9,
+        "passed": true
+      },
+      {
+        "relation": "lengthSquared",
+        "points": [
+          "O",
+          "D"
+        ],
+        "calculated": "9",
+        "required": 9,
+        "passed": true
+      },
+      {
+        "relation": "collinear",
+        "points": [
+          "A",
+          "C",
+          "P"
+        ],
+        "calculated": "0",
+        "required": 0,
+        "passed": true
+      },
+      {
+        "relation": "collinear",
+        "points": [
+          "A",
+          "B",
+          "Q"
+        ],
+        "calculated": "0",
+        "required": 0,
+        "passed": true
+      },
+      {
+        "relation": "collinear",
+        "points": [
+          "B",
+          "D",
+          "C"
+        ],
+        "calculated": "0",
+        "required": 0,
+        "passed": true
+      }
+    ],
+    "method": "Independent exact coordinate witness; supplemental validation only"
+  },
+  "codeSha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50",
+  "calculationIsCurriculumPermission": false,
+  "authorOrOriginalAnswerUsed": false,
+  "choiceCheck": {
+    "notApplicable": true,
+    "multiPartCount": 3,
+    "eachPartExplicit": true
+  }
+}

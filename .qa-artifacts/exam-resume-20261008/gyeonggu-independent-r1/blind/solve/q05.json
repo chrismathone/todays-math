@@ -1,0 +1,379 @@
+{
+  "schema": "independent-blind-solve.v1",
+  "questionNumber": 5,
+  "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q05",
+  "studentDigest": "1b71f79d7da85aef72e90951e0cf45b5c4964e565709cf7525fadf48163add41",
+  "solverId": "orca-codex-exam-twin-source-identity-20261008",
+  "status": "solved",
+  "answer": "③: (√3−1)/2",
+  "answerParts": {
+    "남은 큰 값−작은 값": "(√3−1)/2"
+  },
+  "solution": "반지름이 같은 사분원에서 급각이 커지면 가로로 내린 길이가 짧아지므로 cosine 값이 작아진다. 따라서 cos75°<cos60°=1/2=sin30°이다. 이웃변의 길이를1로 고정한 직각삼각형에서는 급각이45°보다 크면 대변이 이웃변보다 길어지므로 tan55°>tan45°=1이다. 또한 cos30°=√3/2이고 1/2<√3/2<1이다. 그러므로 순서는 다<가<나<라이다. 양 끝 다·라를 치우면 가·나가 남으므로 큰 값에서 작은 값을 뺀 결과는 √3/2−1/2=(√3−1)/2, ③이다.",
+  "evidence": {
+    "method": "independent-student-input-solve-before-author-answer-exposure",
+    "studentMethod": "급각에 따른 사분원/직각삼각형 길이의 기하적 비교와30°의 특수각 값",
+    "conditionAndDomainNotes": "네 각은0°~90° 안. cos75°의 정확한 값이나 tan55°의 수치표가 없어도 순서를 결정할 수 있다. cos75=sin15, 덧셈/반각, 미분을 쓰지 않는다.",
+    "exactValuesFromCode": [
+      "-1/2 + sqrt(3)/2"
+    ],
+    "code": {
+      "path": "solve_math.py",
+      "sha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50"
+    },
+    "proof": {
+      "path": "blind/proofs/q05.json",
+      "sha256": "74e46e9745f5d9f07124377a755133733b24a0bbd7d9332a7f1c70436c960c28"
+    },
+    "studentSolutionSource": {
+      "path": "student_solutions.json",
+      "wholeFileSha256": "adbcd31c366b68051b20e460727edc017c8160cd0d80fb6ff6c4b079d88c947d",
+      "questionRecordSha256": "8d65581aa41567bccac3367376850720f5a049ac45ed60620a6a5af5035ab76d"
+    },
+    "wholeStudentInputSha256": "6e137d65894e6506710e6c980136cfd26a25d4fec141785f4ed521f8eb89e1ca",
+    "contentSha256Utf8": "3b2c29d1d69960fc6f3563fe19f7cf0a6623abcb8e893a061301ffacacf901c5",
+    "studentObjectCanonicalSha256": "84e96cf9e0ad9fe6ecf9e96b097bbc9751215ea6454ff85a150909ccc9acba47",
+    "canonicalHashLimit": "This diagnostic canonical hash is not a claim about Root studentDigest algorithm; supplied studentDigest is retained unchanged.",
+    "choiceCheck": {
+      "allChoices": [
+        {
+          "index1based": 1,
+          "studentChoice": "$\\frac{\\sqrt3+1}{2}$",
+          "parsedValues": [
+            "1/2 + sqrt(3)/2"
+          ],
+          "matchesEachRequestedPart": [
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "middleCardDifferencePositiveLessThanHalf": false
+          },
+          "differencesFromIndependentRequestedValues": [
+            "1"
+          ]
+        },
+        {
+          "index1based": 2,
+          "studentChoice": "$\\sqrt3-1$",
+          "parsedValues": [
+            "-1 + sqrt(3)"
+          ],
+          "matchesEachRequestedPart": [
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "middleCardDifferencePositiveLessThanHalf": false
+          },
+          "differencesFromIndependentRequestedValues": [
+            "-1/2 + sqrt(3)/2"
+          ]
+        },
+        {
+          "index1based": 3,
+          "studentChoice": "$\\frac{\\sqrt3-1}{2}$",
+          "parsedValues": [
+            "-1/2 + sqrt(3)/2"
+          ],
+          "matchesEachRequestedPart": [
+            true
+          ],
+          "matches": true,
+          "domainAndGivenConditionChecks": {
+            "middleCardDifferencePositiveLessThanHalf": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "0"
+          ]
+        },
+        {
+          "index1based": 4,
+          "studentChoice": "$\\frac{\\sqrt3-\\sqrt2}{2}$",
+          "parsedValues": [
+            "-sqrt(2)/2 + sqrt(3)/2"
+          ],
+          "matchesEachRequestedPart": [
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "middleCardDifferencePositiveLessThanHalf": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "1/2 - sqrt(2)/2"
+          ]
+        },
+        {
+          "index1based": 5,
+          "studentChoice": "$\\frac{\\sqrt2-1}{2}$",
+          "parsedValues": [
+            "-1/2 + sqrt(2)/2"
+          ],
+          "matchesEachRequestedPart": [
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "middleCardDifferencePositiveLessThanHalf": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "-sqrt(3)/2 + sqrt(2)/2"
+          ]
+        }
+      ],
+      "matchingIndices1based": [
+        3
+      ],
+      "exactlyOneChoice": true,
+      "basis": "Parsed actual copied student choices; no author/original key"
+    },
+    "existenceUniquenessPositivity": {
+      "actualCodeChecks": [
+        {
+          "condition": "card ordering independently checked numerically",
+          "passed": true,
+          "calculation": {
+            "sin30": 0.49999999999999994,
+            "cos30": 0.8660254037844387,
+            "cos75": 0.25881904510252074,
+            "tan55": 1.4281480067421144
+          }
+        }
+      ],
+      "supplementalExactCoordinateWitness": null,
+      "uniqueRequestedAnswer": true,
+      "wholeConfigurationMustBeUnique": false,
+      "limit": "q17 radii and q22 triangle placements can vary while requested answers are unique. No pixel lengths or model probability determine uniqueness."
+    },
+    "figures": [],
+    "directFigureInspections": [],
+    "sevenStudentSurfaces": [
+      {
+        "surface": "stem",
+        "observation": "네 각은0°~90° 안. cos75°의 정확한 값이나 tan55°의 수치표가 없어도 순서를 결정할 수 있다. cos75=sin15, 덧셈/반각, 미분을 쓰지 않는다.",
+        "inGradeForUsedStudentMethod": true,
+        "limit": "New student stem only; original-twin faithfulness and provenance are not reviewed."
+      },
+      {
+        "surface": "choices",
+        "observation": "All actual student choices parsed and every requested component/strict interval compared.",
+        "detailedCodeResult": {
+          "allChoices": [
+            {
+              "index1based": 1,
+              "studentChoice": "$\\frac{\\sqrt3+1}{2}$",
+              "parsedValues": [
+                "1/2 + sqrt(3)/2"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "middleCardDifferencePositiveLessThanHalf": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "1"
+              ]
+            },
+            {
+              "index1based": 2,
+              "studentChoice": "$\\sqrt3-1$",
+              "parsedValues": [
+                "-1 + sqrt(3)"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "middleCardDifferencePositiveLessThanHalf": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "-1/2 + sqrt(3)/2"
+              ]
+            },
+            {
+              "index1based": 3,
+              "studentChoice": "$\\frac{\\sqrt3-1}{2}$",
+              "parsedValues": [
+                "-1/2 + sqrt(3)/2"
+              ],
+              "matchesEachRequestedPart": [
+                true
+              ],
+              "matches": true,
+              "domainAndGivenConditionChecks": {
+                "middleCardDifferencePositiveLessThanHalf": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "0"
+              ]
+            },
+            {
+              "index1based": 4,
+              "studentChoice": "$\\frac{\\sqrt3-\\sqrt2}{2}$",
+              "parsedValues": [
+                "-sqrt(2)/2 + sqrt(3)/2"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "middleCardDifferencePositiveLessThanHalf": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "1/2 - sqrt(2)/2"
+              ]
+            },
+            {
+              "index1based": 5,
+              "studentChoice": "$\\frac{\\sqrt2-1}{2}$",
+              "parsedValues": [
+                "-1/2 + sqrt(2)/2"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "middleCardDifferencePositiveLessThanHalf": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "-sqrt(3)/2 + sqrt(2)/2"
+              ]
+            }
+          ],
+          "matchingIndices1based": [
+            3
+          ],
+          "exactlyOneChoice": true,
+          "basis": "Parsed actual copied student choices; no author/original key"
+        },
+        "inGradeForUsedStudentMethod": true
+      },
+      {
+        "surface": "figure_and_graph_semantics",
+        "observation": [
+          "No student figure provided; stem determines the calculation."
+        ],
+        "specifiedPhysicalWidthsViewed": [],
+        "inGradeForUsedStudentMethod": true,
+        "pixelOracle": false,
+        "limit": "Standalone SVG physical rendering only; no claim about a complete final paper/student UI layout."
+      },
+      {
+        "surface": "notation",
+        "observation": "네 카드 모두 구별하고 양 끝만 제거. 임의각 수치의 코드 계산은 순서의 보조 검산이며 학생의 필수 계산이 아니다.",
+        "inGradeForUsedStudentMethod": true,
+        "trigScope": "Only acute-angle trig definitions and30/45/60 values used; arbitrary-angle formula, ratio identity, vector or calculus notation is not necessary."
+      },
+      {
+        "surface": "answer_format",
+        "observation": "③: (√3−1)/2",
+        "partsWithUnits": {
+          "남은 큰 값−작은 값": "(√3−1)/2"
+        },
+        "inGradeForUsedStudentMethod": true,
+        "limit": "Own raw exact answer; Root may normalize formatting only after binding hashes."
+      },
+      {
+        "surface": "student_solution",
+        "observation": "반지름이 같은 사분원에서 급각이 커지면 가로로 내린 길이가 짧아지므로 cosine 값이 작아진다. 따라서 cos75°<cos60°=1/2=sin30°이다. 이웃변의 길이를1로 고정한 직각삼각형에서는 급각이45°보다 크면 대변이 이웃변보다 길어지므로 tan55°>tan45°=1이다. 또한 cos30°=√3/2이고 1/2<√3/2<1이다. 그러므로 순서는 다<가<나<라이다. 양 끝 다·라를 치우면 가·나가 남으므로 큰 값에서 작은 값을 뺀 결과는 √3/2−1/2=(√3−1)/2, ③이다.",
+        "inGradeForUsedStudentMethod": true,
+        "basis": "Full fresh elementary student proof written before authored-solution exposure; calculation alone does not grant curricular permission."
+      },
+      {
+        "surface": "necessary_procedure",
+        "observation": "급각에 따른 사분원/직각삼각형 길이의 기하적 비교와30°의 특수각 값",
+        "conditions": "네 각은0°~90° 안. cos75°의 정확한 값이나 tan55°의 수치표가 없어도 순서를 결정할 수 있다. cos75=sin15, 덧셈/반각, 미분을 쓰지 않는다.",
+        "primaryStandardReferences": [
+          {
+            "id": "9수04-17",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4341,
+              "paragraph1based": 891,
+              "offset": 219120,
+              "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다."
+            },
+            "pdfPhysicalPage1based": 38,
+            "pdfPrintedPage": 34,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수01-10",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 3788,
+              "paragraph1based": 771,
+              "offset": 193301,
+              "text": "[9수01-10]근호를 포함한 식의 사칙계산을 할 수 있다."
+            },
+            "pdfPhysicalPage1based": 33,
+            "pdfPrintedPage": 29,
+            "wholeClausePdfMatch": true
+          }
+        ],
+        "inGradeForUsedStudentMethod": true,
+        "forbiddenStudentPrerequisiteUsed": false
+      }
+    ],
+    "curriculumMethod": {
+      "reference": "actual2025middle3 ->2015",
+      "legitimateStudentMethodFound": true,
+      "standards": [
+        {
+          "id": "9수04-17",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4341,
+            "paragraph1based": 891,
+            "offset": 219120,
+            "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수01-10",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 3788,
+            "paragraph1based": 771,
+            "offset": 193301,
+            "text": "[9수01-10]근호를 포함한 식의 사칙계산을 할 수 있다."
+          },
+          "pdfPhysicalPage1based": 33,
+          "pdfPrintedPage": 29,
+          "wholeClausePdfMatch": true
+        }
+      ],
+      "restrictionsFile": "curriculum-method-evidence.json",
+      "restrictionsFileSha256": "20a90e8060b73d09eb8749f8b6636e0d960e3148c53111d8bc4db8da4c95af2d",
+      "approvalForRightsFamilyNativeOrLoading": false,
+      "fullCurrentFuturePublicationApproval": false
+    },
+    "annotationsAndSourceFamiliarityDisclosure": "Prior original exam source familiarity is possible and earlier Bumil scan annotations were incidentally seen. No Gyeonggu original/source/keys were reopened; these new candidate answers, authored solutions and other solver results were not read. Work proceeds solely from copied new student inputs.",
+    "newAuthorCandidateAnswersKnownBeforeThisSolve": false,
+    "originalKeyAgreementUsed": false,
+    "otherSolverRead": false,
+    "inferenceApiCalls": 0,
+    "limits": [
+      "Independent blind solve and bounded legitimate-method observations only. Exact Unit/live family, rights/native provenance, author-solution comparison and overall loading are outside this stage."
+    ]
+  },
+  "heldReasons": [],
+  "rejectedStudentMethods": [
+    "No arbitrary trig ratio identities or addition/half-angle formulas.",
+    "No upper-grade extrema/calculus, law of sines/cosines, vectors or circle power.",
+    "q09 uses congruence and Pythagoras instead of an unverified angle-bisector length theorem."
+  ]
+}

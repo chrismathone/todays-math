@@ -1,0 +1,138 @@
+{
+  "questionNumber": 5,
+  "studentDigest": "1b71f79d7da85aef72e90951e0cf45b5c4964e565709cf7525fadf48163add41",
+  "inputContentSha256": "3b2c29d1d69960fc6f3563fe19f7cf0a6623abcb8e893a061301ffacacf901c5",
+  "exactRequestedValues": [
+    "-1/2 + sqrt(3)/2"
+  ],
+  "freshCalculations": {
+    "cardOrder": [
+      "다: cos75",
+      "가: sin30",
+      "나: cos30",
+      "라: tan55"
+    ],
+    "retained": [
+      "가",
+      "나"
+    ],
+    "difference": "-1/2 + sqrt(3)/2",
+    "numericalDiagnosticsOnly": {
+      "sin30": 0.49999999999999994,
+      "cos30": 0.8660254037844387,
+      "cos75": 0.25881904510252074,
+      "tan55": 1.4281480067421144
+    },
+    "studentProof": "Quarter-circle cos decreases with acute angle; fixed adjacent leg tan increases; exact values needed only at 30 degrees."
+  },
+  "conditionChecks": [
+    {
+      "condition": "card ordering independently checked numerically",
+      "passed": true,
+      "calculation": {
+        "sin30": 0.49999999999999994,
+        "cos30": 0.8660254037844387,
+        "cos75": 0.25881904510252074,
+        "tan55": 1.4281480067421144
+      }
+    }
+  ],
+  "coordinateWitness": null,
+  "codeSha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50",
+  "calculationIsCurriculumPermission": false,
+  "authorOrOriginalAnswerUsed": false,
+  "choiceCheck": {
+    "allChoices": [
+      {
+        "index1based": 1,
+        "studentChoice": "$\\frac{\\sqrt3+1}{2}$",
+        "parsedValues": [
+          "1/2 + sqrt(3)/2"
+        ],
+        "matchesEachRequestedPart": [
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "middleCardDifferencePositiveLessThanHalf": false
+        },
+        "differencesFromIndependentRequestedValues": [
+          "1"
+        ]
+      },
+      {
+        "index1based": 2,
+        "studentChoice": "$\\sqrt3-1$",
+        "parsedValues": [
+          "-1 + sqrt(3)"
+        ],
+        "matchesEachRequestedPart": [
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "middleCardDifferencePositiveLessThanHalf": false
+        },
+        "differencesFromIndependentRequestedValues": [
+          "-1/2 + sqrt(3)/2"
+        ]
+      },
+      {
+        "index1based": 3,
+        "studentChoice": "$\\frac{\\sqrt3-1}{2}$",
+        "parsedValues": [
+          "-1/2 + sqrt(3)/2"
+        ],
+        "matchesEachRequestedPart": [
+          true
+        ],
+        "matches": true,
+        "domainAndGivenConditionChecks": {
+          "middleCardDifferencePositiveLessThanHalf": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "0"
+        ]
+      },
+      {
+        "index1based": 4,
+        "studentChoice": "$\\frac{\\sqrt3-\\sqrt2}{2}$",
+        "parsedValues": [
+          "-sqrt(2)/2 + sqrt(3)/2"
+        ],
+        "matchesEachRequestedPart": [
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "middleCardDifferencePositiveLessThanHalf": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "1/2 - sqrt(2)/2"
+        ]
+      },
+      {
+        "index1based": 5,
+        "studentChoice": "$\\frac{\\sqrt2-1}{2}$",
+        "parsedValues": [
+          "-1/2 + sqrt(2)/2"
+        ],
+        "matchesEachRequestedPart": [
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "middleCardDifferencePositiveLessThanHalf": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "-sqrt(3)/2 + sqrt(2)/2"
+        ]
+      }
+    ],
+    "matchingIndices1based": [
+      3
+    ],
+    "exactlyOneChoice": true,
+    "basis": "Parsed actual copied student choices; no author/original key"
+  }
+}

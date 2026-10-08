@@ -1,0 +1,123 @@
+{
+  "questionNumber": 12,
+  "studentDigest": "4e64d6f387b1ea07e4731e774660cabae47b267052b2538c275c9853f7bed203",
+  "inputContentSha256": "c6b0501ed482e1d395616c8bb4efa50ea8ac20655b65c8409c19629ff32d1e8b",
+  "exactRequestedValues": [
+    "2*sqrt(3) + 6"
+  ],
+  "freshCalculations": {
+    "AH": "6",
+    "BH": "2*sqrt(3)",
+    "HC": "6",
+    "BC": "2*sqrt(3) + 6",
+    "baseAnglesDegrees": [
+      60,
+      45
+    ]
+  },
+  "conditionChecks": [
+    {
+      "condition": "both feet lengths positive and H internal",
+      "passed": true,
+      "calculation": "2*sqrt(3) + 6"
+    }
+  ],
+  "coordinateWitness": null,
+  "codeSha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50",
+  "calculationIsCurriculumPermission": false,
+  "authorOrOriginalAnswerUsed": false,
+  "choiceCheck": {
+    "allChoices": [
+      {
+        "index1based": 1,
+        "studentChoice": "$6-2\\sqrt3\\,\\mathrm{cm}$",
+        "parsedValues": [
+          "6 - 2*sqrt(3)"
+        ],
+        "matchesEachRequestedPart": [
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "baseSumGreaterThanHC6": false
+        },
+        "differencesFromIndependentRequestedValues": [
+          "-4*sqrt(3)"
+        ]
+      },
+      {
+        "index1based": 2,
+        "studentChoice": "$6+2\\sqrt3\\,\\mathrm{cm}$",
+        "parsedValues": [
+          "2*sqrt(3) + 6"
+        ],
+        "matchesEachRequestedPart": [
+          true
+        ],
+        "matches": true,
+        "domainAndGivenConditionChecks": {
+          "baseSumGreaterThanHC6": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "0"
+        ]
+      },
+      {
+        "index1based": 3,
+        "studentChoice": "$6\\sqrt3\\,\\mathrm{cm}$",
+        "parsedValues": [
+          "6*sqrt(3)"
+        ],
+        "matchesEachRequestedPart": [
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "baseSumGreaterThanHC6": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "-6 + 4*sqrt(3)"
+        ]
+      },
+      {
+        "index1based": 4,
+        "studentChoice": "$12\\,\\mathrm{cm}$",
+        "parsedValues": [
+          "12"
+        ],
+        "matchesEachRequestedPart": [
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "baseSumGreaterThanHC6": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "6 - 2*sqrt(3)"
+        ]
+      },
+      {
+        "index1based": 5,
+        "studentChoice": "$2+6\\sqrt3\\,\\mathrm{cm}$",
+        "parsedValues": [
+          "2 + 6*sqrt(3)"
+        ],
+        "matchesEachRequestedPart": [
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "baseSumGreaterThanHC6": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "-4 + 4*sqrt(3)"
+        ]
+      }
+    ],
+    "matchingIndices1based": [
+      2
+    ],
+    "exactlyOneChoice": true,
+    "basis": "Parsed actual copied student choices; no author/original key"
+  }
+}

@@ -1,0 +1,154 @@
+{
+  "questionNumber": 15,
+  "studentDigest": "7b61a50898da19a33394b5240e64cfca1f8bf0b226e351289d7cc4ad5b2f2df8",
+  "inputContentSha256": "72c2899c82fb4cb4a384b29b6a8c38b3f5ad94a8f5aadd51afec6486e10be40f",
+  "exactRequestedValues": [
+    "30",
+    "64"
+  ],
+  "freshCalculations": {
+    "equalCenterDistances": "OM=ON -> AB=AC",
+    "allXRoots": [
+      "30"
+    ],
+    "angleB": "58",
+    "angleC": "58",
+    "angleA": "64"
+  },
+  "conditionChecks": [
+    {
+      "condition": "unique x and every triangle angle positive",
+      "passed": true,
+      "calculation": {
+        "angles": [
+          "64",
+          "58",
+          "58"
+        ]
+      }
+    }
+  ],
+  "coordinateWitness": null,
+  "codeSha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50",
+  "calculationIsCurriculumPermission": false,
+  "authorOrOriginalAnswerUsed": false,
+  "choiceCheck": {
+    "allChoices": [
+      {
+        "index1based": 1,
+        "studentChoice": "$30$, $58^\\circ$",
+        "parsedValues": [
+          "30",
+          "58"
+        ],
+        "matchesEachRequestedPart": [
+          true,
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "equalBaseAngleRecords": true,
+          "AEqualsAngleSumRemainder": false,
+          "allTriangleAnglesPositive": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "0",
+          "-6"
+        ]
+      },
+      {
+        "index1based": 2,
+        "studentChoice": "$32$, $60^\\circ$",
+        "parsedValues": [
+          "32",
+          "60"
+        ],
+        "matchesEachRequestedPart": [
+          false,
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "equalBaseAngleRecords": false,
+          "AEqualsAngleSumRemainder": false,
+          "allTriangleAnglesPositive": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "2",
+          "-4"
+        ]
+      },
+      {
+        "index1based": 3,
+        "studentChoice": "$28$, $68^\\circ$",
+        "parsedValues": [
+          "28",
+          "68"
+        ],
+        "matchesEachRequestedPart": [
+          false,
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "equalBaseAngleRecords": false,
+          "AEqualsAngleSumRemainder": false,
+          "allTriangleAnglesPositive": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "-2",
+          "4"
+        ]
+      },
+      {
+        "index1based": 4,
+        "studentChoice": "$30$, $64^\\circ$",
+        "parsedValues": [
+          "30",
+          "64"
+        ],
+        "matchesEachRequestedPart": [
+          true,
+          true
+        ],
+        "matches": true,
+        "domainAndGivenConditionChecks": {
+          "equalBaseAngleRecords": true,
+          "AEqualsAngleSumRemainder": true,
+          "allTriangleAnglesPositive": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "0",
+          "0"
+        ]
+      },
+      {
+        "index1based": 5,
+        "studentChoice": "$30$, $116^\\circ$",
+        "parsedValues": [
+          "30",
+          "116"
+        ],
+        "matchesEachRequestedPart": [
+          true,
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "equalBaseAngleRecords": true,
+          "AEqualsAngleSumRemainder": false,
+          "allTriangleAnglesPositive": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "0",
+          "52"
+        ]
+      }
+    ],
+    "matchingIndices1based": [
+      4
+    ],
+    "exactlyOneChoice": true,
+    "basis": "Parsed actual copied student choices; no author/original key"
+  }
+}

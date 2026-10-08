@@ -1,0 +1,155 @@
+{
+  "questionNumber": 11,
+  "studentDigest": "522306fe1543b4bae6ad8b0fe2ba86084df12a5fc24a7e377333b58e157f4631",
+  "inputContentSha256": "b587fcb2a87d8b5f7d0683221e40d182726a5db326c90fc1e3f66dad37919b6f",
+  "exactRequestedValues": [
+    "sqrt(6)",
+    "12*sqrt(6)"
+  ],
+  "freshCalculations": {
+    "baseSide": "6",
+    "baseArea": "36",
+    "diagonal": "6*sqrt(2)",
+    "AH": "3*sqrt(2)",
+    "heightOH": "sqrt(6)",
+    "pyramidVolume": "12*sqrt(6)"
+  },
+  "conditionChecks": [
+    {
+      "condition": "positive height and proper pyramid factor",
+      "passed": true,
+      "calculation": [
+        "sqrt(6)",
+        "12*sqrt(6)"
+      ]
+    },
+    {
+      "condition": "cross section acute30",
+      "passed": true,
+      "calculation": "sqrt(3)/3"
+    }
+  ],
+  "coordinateWitness": null,
+  "codeSha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50",
+  "calculationIsCurriculumPermission": false,
+  "authorOrOriginalAnswerUsed": false,
+  "choiceCheck": {
+    "allChoices": [
+      {
+        "index1based": 1,
+        "studentChoice": "$\\sqrt6$, $36\\sqrt6$",
+        "parsedValues": [
+          "sqrt(6)",
+          "36*sqrt(6)"
+        ],
+        "matchesEachRequestedPart": [
+          true,
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "positiveHeightVolume": true,
+          "pyramidVolumeFactor": false,
+          "given30degCrossSection": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "0",
+          "24*sqrt(6)"
+        ]
+      },
+      {
+        "index1based": 2,
+        "studentChoice": "$3\\sqrt2$, $36\\sqrt2$",
+        "parsedValues": [
+          "3*sqrt(2)",
+          "36*sqrt(2)"
+        ],
+        "matchesEachRequestedPart": [
+          false,
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "positiveHeightVolume": true,
+          "pyramidVolumeFactor": true,
+          "given30degCrossSection": false
+        },
+        "differencesFromIndependentRequestedValues": [
+          "-sqrt(6) + 3*sqrt(2)",
+          "-12*sqrt(6) + 36*sqrt(2)"
+        ]
+      },
+      {
+        "index1based": 3,
+        "studentChoice": "$2\\sqrt6$, $24\\sqrt6$",
+        "parsedValues": [
+          "2*sqrt(6)",
+          "24*sqrt(6)"
+        ],
+        "matchesEachRequestedPart": [
+          false,
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "positiveHeightVolume": true,
+          "pyramidVolumeFactor": true,
+          "given30degCrossSection": false
+        },
+        "differencesFromIndependentRequestedValues": [
+          "sqrt(6)",
+          "12*sqrt(6)"
+        ]
+      },
+      {
+        "index1based": 4,
+        "studentChoice": "$\\sqrt6$, $12\\sqrt6$",
+        "parsedValues": [
+          "sqrt(6)",
+          "12*sqrt(6)"
+        ],
+        "matchesEachRequestedPart": [
+          true,
+          true
+        ],
+        "matches": true,
+        "domainAndGivenConditionChecks": {
+          "positiveHeightVolume": true,
+          "pyramidVolumeFactor": true,
+          "given30degCrossSection": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "0",
+          "0"
+        ]
+      },
+      {
+        "index1based": 5,
+        "studentChoice": "$\\sqrt2$, $12\\sqrt2$",
+        "parsedValues": [
+          "sqrt(2)",
+          "12*sqrt(2)"
+        ],
+        "matchesEachRequestedPart": [
+          false,
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "positiveHeightVolume": true,
+          "pyramidVolumeFactor": true,
+          "given30degCrossSection": false
+        },
+        "differencesFromIndependentRequestedValues": [
+          "-sqrt(6) + sqrt(2)",
+          "-12*sqrt(6) + 12*sqrt(2)"
+        ]
+      }
+    ],
+    "matchingIndices1based": [
+      4
+    ],
+    "exactlyOneChoice": true,
+    "basis": "Parsed actual copied student choices; no author/original key"
+  }
+}

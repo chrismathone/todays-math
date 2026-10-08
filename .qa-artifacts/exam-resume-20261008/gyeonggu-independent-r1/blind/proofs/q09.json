@@ -1,0 +1,265 @@
+{
+  "questionNumber": 9,
+  "studentDigest": "ec923ff716c42c8337fd99a5fa5ab699afd9e5715b236d8f54f5d0bf777ba37c",
+  "inputContentSha256": "a7c58820a5a8ca62c16f12ad69034269d9dbdbb24008558e6c510ad3a3106ed0",
+  "exactRequestedValues": [
+    "15/2",
+    "2"
+  ],
+  "freshCalculations": {
+    "BC": "20",
+    "AE": "15",
+    "BE": "10",
+    "equation": "-d**2 + (20 - d)**2 - 100",
+    "allRealRoots": [
+      "15/2"
+    ],
+    "DC": "15/2",
+    "DE": "15/2",
+    "BD": "25/2",
+    "tanTheta": "2"
+  },
+  "conditionChecks": [
+    {
+      "condition": "unique internal D and E",
+      "passed": true,
+      "calculation": {
+        "DC": "15/2",
+        "AE": "15"
+      }
+    },
+    {
+      "condition": "theta acute",
+      "passed": true,
+      "calculation": 63.43494882292201
+    }
+  ],
+  "coordinateWitness": {
+    "points": {
+      "A": [
+        20,
+        15
+      ],
+      "B": [
+        0,
+        0
+      ],
+      "C": [
+        20,
+        0
+      ],
+      "D": [
+        "25/2",
+        0
+      ],
+      "E": [
+        8,
+        6
+      ]
+    },
+    "relations": [
+      {
+        "relation": "lengthSquared",
+        "points": [
+          "A",
+          "B"
+        ],
+        "calculated": "625",
+        "required": 625,
+        "passed": true
+      },
+      {
+        "relation": "lengthSquared",
+        "points": [
+          "A",
+          "C"
+        ],
+        "calculated": "225",
+        "required": 225,
+        "passed": true
+      },
+      {
+        "relation": "lengthSquared",
+        "points": [
+          "D",
+          "C"
+        ],
+        "calculated": "225/4",
+        "required": "225/4",
+        "passed": true
+      },
+      {
+        "relation": "lengthSquared",
+        "points": [
+          "D",
+          "E"
+        ],
+        "calculated": "225/4",
+        "required": "225/4",
+        "passed": true
+      },
+      {
+        "relation": "perpendicular",
+        "points": [
+          "D",
+          "E",
+          "A",
+          "B"
+        ],
+        "calculated": "0",
+        "required": 0,
+        "passed": true
+      },
+      {
+        "relation": "collinear",
+        "points": [
+          "A",
+          "E",
+          "B"
+        ],
+        "calculated": "0",
+        "required": 0,
+        "passed": true
+      },
+      {
+        "relation": "collinear",
+        "points": [
+          "B",
+          "D",
+          "C"
+        ],
+        "calculated": "0",
+        "required": 0,
+        "passed": true
+      }
+    ],
+    "method": "Independent exact coordinate witness; supplemental validation only"
+  },
+  "codeSha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50",
+  "calculationIsCurriculumPermission": false,
+  "authorOrOriginalAnswerUsed": false,
+  "choiceCheck": {
+    "allChoices": [
+      {
+        "index1based": 1,
+        "studentChoice": "$\\frac{25}{2}$, $\\frac65$",
+        "parsedValues": [
+          "25/2",
+          "6/5"
+        ],
+        "matchesEachRequestedPart": [
+          false,
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "DInternalBC": true,
+          "positiveTangent": true,
+          "bisectorRightTriangleEquation": false,
+          "tanADCDefinition": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "5",
+          "-4/5"
+        ]
+      },
+      {
+        "index1based": 2,
+        "studentChoice": "$\\frac{15}{2}$, $2$",
+        "parsedValues": [
+          "15/2",
+          "2"
+        ],
+        "matchesEachRequestedPart": [
+          true,
+          true
+        ],
+        "matches": true,
+        "domainAndGivenConditionChecks": {
+          "DInternalBC": true,
+          "positiveTangent": true,
+          "bisectorRightTriangleEquation": true,
+          "tanADCDefinition": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "0",
+          "0"
+        ]
+      },
+      {
+        "index1based": 3,
+        "studentChoice": "$10$, $\\frac32$",
+        "parsedValues": [
+          "10",
+          "3/2"
+        ],
+        "matchesEachRequestedPart": [
+          false,
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "DInternalBC": true,
+          "positiveTangent": true,
+          "bisectorRightTriangleEquation": false,
+          "tanADCDefinition": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "5/2",
+          "-1/2"
+        ]
+      },
+      {
+        "index1based": 4,
+        "studentChoice": "$\\frac{15}{2}$, $\\frac12$",
+        "parsedValues": [
+          "15/2",
+          "1/2"
+        ],
+        "matchesEachRequestedPart": [
+          true,
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "DInternalBC": true,
+          "positiveTangent": true,
+          "bisectorRightTriangleEquation": true,
+          "tanADCDefinition": false
+        },
+        "differencesFromIndependentRequestedValues": [
+          "0",
+          "-3/2"
+        ]
+      },
+      {
+        "index1based": 5,
+        "studentChoice": "$5$, $3$",
+        "parsedValues": [
+          "5",
+          "3"
+        ],
+        "matchesEachRequestedPart": [
+          false,
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "DInternalBC": true,
+          "positiveTangent": true,
+          "bisectorRightTriangleEquation": false,
+          "tanADCDefinition": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "-5/2",
+          "1"
+        ]
+      }
+    ],
+    "matchingIndices1based": [
+      2
+    ],
+    "exactlyOneChoice": true,
+    "basis": "Parsed actual copied student choices; no author/original key"
+  }
+}

@@ -1,0 +1,437 @@
+{
+  "schema": "independent-blind-solve.v1",
+  "questionNumber": 12,
+  "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q12",
+  "studentDigest": "4e64d6f387b1ea07e4731e774660cabae47b267052b2538c275c9853f7bed203",
+  "solverId": "orca-codex-exam-twin-source-identity-20261008",
+  "status": "solved",
+  "answer": "②: 6+2√3 cm",
+  "answerParts": {
+    "BC": "6+2√3 cm"
+  },
+  "solution": "AH가 바닥에 수직이고 H는 BC 내부이다. 직각삼각형 ABH에서 tan60°=AH/BH=√3이므로 BH=6/√3=2√3 cm이다. 직각삼각형 AHC에서 tan45°=AH/HC=1이므로 HC=6 cm이다. 따라서 BC=BH+HC=2√3+6 cm, ②이다.",
+  "evidence": {
+    "method": "independent-student-input-solve-before-author-answer-exposure",
+    "studentMethod": "수직 높이로 나뉜 두 직각삼각형의 tangent 정의",
+    "conditionAndDomainNotes": "지지대는 바닥과60°/45°; 두 수평 길이 양수, H 내부라 합이며 차가 아니다.",
+    "exactValuesFromCode": [
+      "2*sqrt(3) + 6"
+    ],
+    "code": {
+      "path": "solve_math.py",
+      "sha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50"
+    },
+    "proof": {
+      "path": "blind/proofs/q12.json",
+      "sha256": "9287df156d422fb6f24e7145940c92866fbcb950bfce8e7b0e64b0e37543f163"
+    },
+    "studentSolutionSource": {
+      "path": "student_solutions.json",
+      "wholeFileSha256": "adbcd31c366b68051b20e460727edc017c8160cd0d80fb6ff6c4b079d88c947d",
+      "questionRecordSha256": "716aff274002918e9f5990ff3a59f24e5666d9030ec0f1547361f39df5ac2de7"
+    },
+    "wholeStudentInputSha256": "6e137d65894e6506710e6c980136cfd26a25d4fec141785f4ed521f8eb89e1ca",
+    "contentSha256Utf8": "c6b0501ed482e1d395616c8bb4efa50ea8ac20655b65c8409c19629ff32d1e8b",
+    "studentObjectCanonicalSha256": "31d42671a4e2792bff29034d29f3b37b694dcc84147a5a3e14b6de0c649421b4",
+    "canonicalHashLimit": "This diagnostic canonical hash is not a claim about Root studentDigest algorithm; supplied studentDigest is retained unchanged.",
+    "choiceCheck": {
+      "allChoices": [
+        {
+          "index1based": 1,
+          "studentChoice": "$6-2\\sqrt3\\,\\mathrm{cm}$",
+          "parsedValues": [
+            "6 - 2*sqrt(3)"
+          ],
+          "matchesEachRequestedPart": [
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "baseSumGreaterThanHC6": false
+          },
+          "differencesFromIndependentRequestedValues": [
+            "-4*sqrt(3)"
+          ]
+        },
+        {
+          "index1based": 2,
+          "studentChoice": "$6+2\\sqrt3\\,\\mathrm{cm}$",
+          "parsedValues": [
+            "2*sqrt(3) + 6"
+          ],
+          "matchesEachRequestedPart": [
+            true
+          ],
+          "matches": true,
+          "domainAndGivenConditionChecks": {
+            "baseSumGreaterThanHC6": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "0"
+          ]
+        },
+        {
+          "index1based": 3,
+          "studentChoice": "$6\\sqrt3\\,\\mathrm{cm}$",
+          "parsedValues": [
+            "6*sqrt(3)"
+          ],
+          "matchesEachRequestedPart": [
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "baseSumGreaterThanHC6": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "-6 + 4*sqrt(3)"
+          ]
+        },
+        {
+          "index1based": 4,
+          "studentChoice": "$12\\,\\mathrm{cm}$",
+          "parsedValues": [
+            "12"
+          ],
+          "matchesEachRequestedPart": [
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "baseSumGreaterThanHC6": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "6 - 2*sqrt(3)"
+          ]
+        },
+        {
+          "index1based": 5,
+          "studentChoice": "$2+6\\sqrt3\\,\\mathrm{cm}$",
+          "parsedValues": [
+            "2 + 6*sqrt(3)"
+          ],
+          "matchesEachRequestedPart": [
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "baseSumGreaterThanHC6": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "-4 + 4*sqrt(3)"
+          ]
+        }
+      ],
+      "matchingIndices1based": [
+        2
+      ],
+      "exactlyOneChoice": true,
+      "basis": "Parsed actual copied student choices; no author/original key"
+    },
+    "existenceUniquenessPositivity": {
+      "actualCodeChecks": [
+        {
+          "condition": "both feet lengths positive and H internal",
+          "passed": true,
+          "calculation": "2*sqrt(3) + 6"
+        }
+      ],
+      "supplementalExactCoordinateWitness": null,
+      "uniqueRequestedAnswer": true,
+      "wholeConfigurationMustBeUnique": false,
+      "limit": "q17 radii and q22 triangle placements can vary while requested answers are unique. No pixel lengths or model probability determine uniqueness."
+    },
+    "figures": [
+      {
+        "svgPath": "figures/q12-1.svg",
+        "sha256": "4d79d78db1c6022df5c2df68c5398ca694f946d3f814beebd7e88dfe61689329",
+        "intendedWidthMm": 70
+      }
+    ],
+    "directFigureInspections": [
+      {
+        "questionNumber": 12,
+        "svg": "figures/q12-1.svg",
+        "svgSha256": "4d79d78db1c6022df5c2df68c5398ca694f946d3f814beebd7e88dfe61689329",
+        "intendedWidthMm": 70,
+        "renderedPdfWidthMm": 70.00000161064996,
+        "renderedHeightMm": 52.55339135461494,
+        "viewBox": [
+          0.0,
+          0.0,
+          249.104,
+          187.018
+        ],
+        "png": "blind/rendered/q12-1-300dpi.png",
+        "pngSha256": "2c424cd12967d63225b0f1809d8b79c1fd902b2218e625a8625bb1e540652aa6",
+        "pdf": "blind/rendered/q12-1-300dpi.pdf",
+        "pdfSha256": "a86ec8d4b567321d8888bb04e68d517359d6a47a977bab8af4d7a566c269530b",
+        "svgTextLabels": [],
+        "mathematicalOracle": false,
+        "renderer": "Existing PyMuPDF SVG->vector PDF at physical width->300dpi PNG; Cairo runtime absent; no installs",
+        "visualInspection": "direct view_image completed on 2026-10-08",
+        "observation": "H internalBC, AH vertical;60 atB and45 atC; right mark atH readable.",
+        "labelsReadableAtSpecifiedPhysicalWidth": true,
+        "pixelMeasurementsUsedToSolve": false,
+        "physicalPrintProductionApproval": false
+      }
+    ],
+    "sevenStudentSurfaces": [
+      {
+        "surface": "stem",
+        "observation": "지지대는 바닥과60°/45°; 두 수평 길이 양수, H 내부라 합이며 차가 아니다.",
+        "inGradeForUsedStudentMethod": true,
+        "limit": "New student stem only; original-twin faithfulness and provenance are not reviewed."
+      },
+      {
+        "surface": "choices",
+        "observation": "All actual student choices parsed and every requested component/strict interval compared.",
+        "detailedCodeResult": {
+          "allChoices": [
+            {
+              "index1based": 1,
+              "studentChoice": "$6-2\\sqrt3\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "6 - 2*sqrt(3)"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "baseSumGreaterThanHC6": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "-4*sqrt(3)"
+              ]
+            },
+            {
+              "index1based": 2,
+              "studentChoice": "$6+2\\sqrt3\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "2*sqrt(3) + 6"
+              ],
+              "matchesEachRequestedPart": [
+                true
+              ],
+              "matches": true,
+              "domainAndGivenConditionChecks": {
+                "baseSumGreaterThanHC6": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "0"
+              ]
+            },
+            {
+              "index1based": 3,
+              "studentChoice": "$6\\sqrt3\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "6*sqrt(3)"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "baseSumGreaterThanHC6": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "-6 + 4*sqrt(3)"
+              ]
+            },
+            {
+              "index1based": 4,
+              "studentChoice": "$12\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "12"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "baseSumGreaterThanHC6": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "6 - 2*sqrt(3)"
+              ]
+            },
+            {
+              "index1based": 5,
+              "studentChoice": "$2+6\\sqrt3\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "2 + 6*sqrt(3)"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "baseSumGreaterThanHC6": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "-4 + 4*sqrt(3)"
+              ]
+            }
+          ],
+          "matchingIndices1based": [
+            2
+          ],
+          "exactlyOneChoice": true,
+          "basis": "Parsed actual copied student choices; no author/original key"
+        },
+        "inGradeForUsedStudentMethod": true
+      },
+      {
+        "surface": "figure_and_graph_semantics",
+        "observation": [
+          "H internalBC, AH vertical;60 atB and45 atC; right mark atH readable."
+        ],
+        "specifiedPhysicalWidthsViewed": [
+          70
+        ],
+        "inGradeForUsedStudentMethod": true,
+        "pixelOracle": false,
+        "limit": "Standalone SVG physical rendering only; no claim about a complete final paper/student UI layout."
+      },
+      {
+        "surface": "notation",
+        "observation": "지지대 길이가 아니라 바닥BC를 요청. 각 표기의 위치, 단위cm, 다섯 길이 선택지를 확인.",
+        "inGradeForUsedStudentMethod": true,
+        "trigScope": "Only acute-angle trig definitions and30/45/60 values used; arbitrary-angle formula, ratio identity, vector or calculus notation is not necessary."
+      },
+      {
+        "surface": "answer_format",
+        "observation": "②: 6+2√3 cm",
+        "partsWithUnits": {
+          "BC": "6+2√3 cm"
+        },
+        "inGradeForUsedStudentMethod": true,
+        "limit": "Own raw exact answer; Root may normalize formatting only after binding hashes."
+      },
+      {
+        "surface": "student_solution",
+        "observation": "AH가 바닥에 수직이고 H는 BC 내부이다. 직각삼각형 ABH에서 tan60°=AH/BH=√3이므로 BH=6/√3=2√3 cm이다. 직각삼각형 AHC에서 tan45°=AH/HC=1이므로 HC=6 cm이다. 따라서 BC=BH+HC=2√3+6 cm, ②이다.",
+        "inGradeForUsedStudentMethod": true,
+        "basis": "Full fresh elementary student proof written before authored-solution exposure; calculation alone does not grant curricular permission."
+      },
+      {
+        "surface": "necessary_procedure",
+        "observation": "수직 높이로 나뉜 두 직각삼각형의 tangent 정의",
+        "conditions": "지지대는 바닥과60°/45°; 두 수평 길이 양수, H 내부라 합이며 차가 아니다.",
+        "primaryStandardReferences": [
+          {
+            "id": "9수04-17",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4341,
+              "paragraph1based": 891,
+              "offset": 219120,
+              "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다."
+            },
+            "pdfPhysicalPage1based": 38,
+            "pdfPrintedPage": 34,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수04-18",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4345,
+              "paragraph1based": 892,
+              "offset": 219292,
+              "text": "[9수04-18]삼각비를 활용하여 여러 가지 문제를 해결할 수 있다."
+            },
+            "pdfPhysicalPage1based": 38,
+            "pdfPrintedPage": 34,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수01-10",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 3788,
+              "paragraph1based": 771,
+              "offset": 193301,
+              "text": "[9수01-10]근호를 포함한 식의 사칙계산을 할 수 있다."
+            },
+            "pdfPhysicalPage1based": 33,
+            "pdfPrintedPage": 29,
+            "wholeClausePdfMatch": true
+          }
+        ],
+        "inGradeForUsedStudentMethod": true,
+        "forbiddenStudentPrerequisiteUsed": false
+      }
+    ],
+    "curriculumMethod": {
+      "reference": "actual2025middle3 ->2015",
+      "legitimateStudentMethodFound": true,
+      "standards": [
+        {
+          "id": "9수04-17",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4341,
+            "paragraph1based": 891,
+            "offset": 219120,
+            "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-18",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4345,
+            "paragraph1based": 892,
+            "offset": 219292,
+            "text": "[9수04-18]삼각비를 활용하여 여러 가지 문제를 해결할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수01-10",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 3788,
+            "paragraph1based": 771,
+            "offset": 193301,
+            "text": "[9수01-10]근호를 포함한 식의 사칙계산을 할 수 있다."
+          },
+          "pdfPhysicalPage1based": 33,
+          "pdfPrintedPage": 29,
+          "wholeClausePdfMatch": true
+        }
+      ],
+      "restrictionsFile": "curriculum-method-evidence.json",
+      "restrictionsFileSha256": "20a90e8060b73d09eb8749f8b6636e0d960e3148c53111d8bc4db8da4c95af2d",
+      "approvalForRightsFamilyNativeOrLoading": false,
+      "fullCurrentFuturePublicationApproval": false
+    },
+    "annotationsAndSourceFamiliarityDisclosure": "Prior original exam source familiarity is possible and earlier Bumil scan annotations were incidentally seen. No Gyeonggu original/source/keys were reopened; these new candidate answers, authored solutions and other solver results were not read. Work proceeds solely from copied new student inputs.",
+    "newAuthorCandidateAnswersKnownBeforeThisSolve": false,
+    "originalKeyAgreementUsed": false,
+    "otherSolverRead": false,
+    "inferenceApiCalls": 0,
+    "limits": [
+      "Independent blind solve and bounded legitimate-method observations only. Exact Unit/live family, rights/native provenance, author-solution comparison and overall loading are outside this stage."
+    ]
+  },
+  "heldReasons": [],
+  "rejectedStudentMethods": [
+    "No arbitrary trig ratio identities or addition/half-angle formulas.",
+    "No upper-grade extrema/calculus, law of sines/cosines, vectors or circle power.",
+    "q09 uses congruence and Pythagoras instead of an unverified angle-bisector length theorem."
+  ]
+}

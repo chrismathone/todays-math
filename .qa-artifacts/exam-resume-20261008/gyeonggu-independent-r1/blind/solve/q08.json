@@ -1,0 +1,417 @@
+{
+  "schema": "independent-blind-solve.v1",
+  "questionNumber": 8,
+  "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q08",
+  "studentDigest": "f05d647e2defce842751a47b7cfd06a2cdde812f6ba53d4232d10cbdefe50fe1",
+  "solverId": "orca-codex-exam-twin-source-identity-20261008",
+  "status": "solved",
+  "answer": "③: 9(1+tan35°) cm",
+  "answerParts": {
+    "BC": "9(1+tan35°) cm"
+  },
+  "solution": "직각삼각형 ABH에서 ∠ABH=45°이므로 BH=AH=9 cm이다. 직각삼각형 AHC에서 ∠CAH=35°에 대한 tangent 정의는 tan35°=HC/AH이다. 따라서 HC=9tan35° cm이다. H가 BC 내부이므로 BC=BH+HC=9+9tan35°=9(1+tan35°) cm, ③이다.",
+  "evidence": {
+    "method": "independent-student-input-solve-before-author-answer-exposure",
+    "studentMethod": "두 직각삼각형의 분해,45° 등변 성질과 tangent 정의",
+    "conditionAndDomainNotes": "35°는 급각이므로 tan35>0, H 내부이므로 두 길이를 더한다. 상징식이 정확한 요청 값이며 tan35의 소수값은 필요하지 않다.",
+    "exactValuesFromCode": [
+      "9*T35 + 9"
+    ],
+    "code": {
+      "path": "solve_math.py",
+      "sha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50"
+    },
+    "proof": {
+      "path": "blind/proofs/q08.json",
+      "sha256": "f4f45618095aa620c537a0e97b570d050bb72c1df9d35a6aa8cf528965aa53f1"
+    },
+    "studentSolutionSource": {
+      "path": "student_solutions.json",
+      "wholeFileSha256": "adbcd31c366b68051b20e460727edc017c8160cd0d80fb6ff6c4b079d88c947d",
+      "questionRecordSha256": "0fcdc2ab9314f7b622038fea59abafef6a8640898c2f3f6830e319b3652b2030"
+    },
+    "wholeStudentInputSha256": "6e137d65894e6506710e6c980136cfd26a25d4fec141785f4ed521f8eb89e1ca",
+    "contentSha256Utf8": "5868667865d1849f52763a3a24ed499f6882298b06a8e8642fcb5e61a9a51c66",
+    "studentObjectCanonicalSha256": "b4fc6f80806c977869afed5bacd0bc788a7fd17164ca34132d342429e0281194",
+    "canonicalHashLimit": "This diagnostic canonical hash is not a claim about Root studentDigest algorithm; supplied studentDigest is retained unchanged.",
+    "choiceCheck": {
+      "allChoices": [
+        {
+          "index1based": 1,
+          "studentChoice": "$9\\tan35^\\circ\\,\\mathrm{cm}$",
+          "parsedValues": [
+            "9*T35"
+          ],
+          "matchesEachRequestedPart": [
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "positiveLengthForPositiveTan35": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "-9"
+          ]
+        },
+        {
+          "index1based": 2,
+          "studentChoice": "$9(1+2\\tan35^\\circ)\\,\\mathrm{cm}$",
+          "parsedValues": [
+            "18*T35 + 9"
+          ],
+          "matchesEachRequestedPart": [
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "positiveLengthForPositiveTan35": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "9*T35"
+          ]
+        },
+        {
+          "index1based": 3,
+          "studentChoice": "$9(1+\\tan35^\\circ)\\,\\mathrm{cm}$",
+          "parsedValues": [
+            "9*T35 + 9"
+          ],
+          "matchesEachRequestedPart": [
+            true
+          ],
+          "matches": true,
+          "domainAndGivenConditionChecks": {
+            "positiveLengthForPositiveTan35": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "0"
+          ]
+        },
+        {
+          "index1based": 4,
+          "studentChoice": "$9(2+\\tan35^\\circ)\\,\\mathrm{cm}$",
+          "parsedValues": [
+            "9*T35 + 18"
+          ],
+          "matchesEachRequestedPart": [
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "positiveLengthForPositiveTan35": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "9"
+          ]
+        },
+        {
+          "index1based": 5,
+          "studentChoice": "$18(1+\\tan35^\\circ)\\,\\mathrm{cm}$",
+          "parsedValues": [
+            "18*T35 + 18"
+          ],
+          "matchesEachRequestedPart": [
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "positiveLengthForPositiveTan35": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "9*T35 + 9"
+          ]
+        }
+      ],
+      "matchingIndices1based": [
+        3
+      ],
+      "exactlyOneChoice": true,
+      "basis": "Parsed actual copied student choices; no author/original key"
+    },
+    "existenceUniquenessPositivity": {
+      "actualCodeChecks": [
+        {
+          "condition": "internal foot, acute35 and positive sum",
+          "passed": true,
+          "calculation": {
+            "BH": "9",
+            "HC": "9*T35"
+          }
+        },
+        {
+          "condition": "symbolic tangent definition",
+          "passed": true,
+          "calculation": "T35"
+        }
+      ],
+      "supplementalExactCoordinateWitness": null,
+      "uniqueRequestedAnswer": true,
+      "wholeConfigurationMustBeUnique": false,
+      "limit": "q17 radii and q22 triangle placements can vary while requested answers are unique. No pixel lengths or model probability determine uniqueness."
+    },
+    "figures": [
+      {
+        "svgPath": "figures/q08-1.svg",
+        "sha256": "0b7c69d510f68e1da6b15ea8da72ebf0ef4096bf0aa27d9aec55a7026bc08733",
+        "intendedWidthMm": 70
+      }
+    ],
+    "directFigureInspections": [
+      {
+        "questionNumber": 8,
+        "svg": "figures/q08-1.svg",
+        "svgSha256": "0b7c69d510f68e1da6b15ea8da72ebf0ef4096bf0aa27d9aec55a7026bc08733",
+        "intendedWidthMm": 70,
+        "renderedPdfWidthMm": 70.00000161064996,
+        "renderedHeightMm": 50.435947561632084,
+        "viewBox": [
+          0.0,
+          0.0,
+          247.071,
+          178.018
+        ],
+        "png": "blind/rendered/q08-1-300dpi.png",
+        "pngSha256": "0c47dfa35453950c0fe342d080458887a9f4065c0c092504950539a66fbc4a23",
+        "pdf": "blind/rendered/q08-1-300dpi.pdf",
+        "pdfSha256": "5082c1ac0fd37f2530c04fdb34c17cdffc539b5345ddcd325c38fd2d17677a10",
+        "svgTextLabels": [],
+        "mathematicalOracle": false,
+        "renderer": "Existing PyMuPDF SVG->vector PDF at physical width->300dpi PNG; Cairo runtime absent; no installs",
+        "visualInspection": "direct view_image completed on 2026-10-08",
+        "observation": "H internal BC, AH perpendicular BC,45degree atB,35degree betweenCA andAH; labels readable.",
+        "labelsReadableAtSpecifiedPhysicalWidth": true,
+        "pixelMeasurementsUsedToSolve": false,
+        "physicalPrintProductionApproval": false
+      }
+    ],
+    "sevenStudentSurfaces": [
+      {
+        "surface": "stem",
+        "observation": "35°는 급각이므로 tan35>0, H 내부이므로 두 길이를 더한다. 상징식이 정확한 요청 값이며 tan35의 소수값은 필요하지 않다.",
+        "inGradeForUsedStudentMethod": true,
+        "limit": "New student stem only; original-twin faithfulness and provenance are not reviewed."
+      },
+      {
+        "surface": "choices",
+        "observation": "All actual student choices parsed and every requested component/strict interval compared.",
+        "detailedCodeResult": {
+          "allChoices": [
+            {
+              "index1based": 1,
+              "studentChoice": "$9\\tan35^\\circ\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "9*T35"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "positiveLengthForPositiveTan35": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "-9"
+              ]
+            },
+            {
+              "index1based": 2,
+              "studentChoice": "$9(1+2\\tan35^\\circ)\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "18*T35 + 9"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "positiveLengthForPositiveTan35": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "9*T35"
+              ]
+            },
+            {
+              "index1based": 3,
+              "studentChoice": "$9(1+\\tan35^\\circ)\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "9*T35 + 9"
+              ],
+              "matchesEachRequestedPart": [
+                true
+              ],
+              "matches": true,
+              "domainAndGivenConditionChecks": {
+                "positiveLengthForPositiveTan35": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "0"
+              ]
+            },
+            {
+              "index1based": 4,
+              "studentChoice": "$9(2+\\tan35^\\circ)\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "9*T35 + 18"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "positiveLengthForPositiveTan35": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "9"
+              ]
+            },
+            {
+              "index1based": 5,
+              "studentChoice": "$18(1+\\tan35^\\circ)\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "18*T35 + 18"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "positiveLengthForPositiveTan35": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "9*T35 + 9"
+              ]
+            }
+          ],
+          "matchingIndices1based": [
+            3
+          ],
+          "exactlyOneChoice": true,
+          "basis": "Parsed actual copied student choices; no author/original key"
+        },
+        "inGradeForUsedStudentMethod": true
+      },
+      {
+        "surface": "figure_and_graph_semantics",
+        "observation": [
+          "H internal BC, AH perpendicular BC,45degree atB,35degree betweenCA andAH; labels readable."
+        ],
+        "specifiedPhysicalWidthsViewed": [
+          70
+        ],
+        "inGradeForUsedStudentMethod": true,
+        "pixelOracle": false,
+        "limit": "Standalone SVG physical rendering only; no claim about a complete final paper/student UI layout."
+      },
+      {
+        "surface": "notation",
+        "observation": "35°는 C의 각이 아니라 A에서 CA와AH 사이의 각. 선택지의 양수 tangent 계수/상수 차이를 전부 검산.",
+        "inGradeForUsedStudentMethod": true,
+        "trigScope": "Only acute-angle trig definitions and30/45/60 values used; arbitrary-angle formula, ratio identity, vector or calculus notation is not necessary."
+      },
+      {
+        "surface": "answer_format",
+        "observation": "③: 9(1+tan35°) cm",
+        "partsWithUnits": {
+          "BC": "9(1+tan35°) cm"
+        },
+        "inGradeForUsedStudentMethod": true,
+        "limit": "Own raw exact answer; Root may normalize formatting only after binding hashes."
+      },
+      {
+        "surface": "student_solution",
+        "observation": "직각삼각형 ABH에서 ∠ABH=45°이므로 BH=AH=9 cm이다. 직각삼각형 AHC에서 ∠CAH=35°에 대한 tangent 정의는 tan35°=HC/AH이다. 따라서 HC=9tan35° cm이다. H가 BC 내부이므로 BC=BH+HC=9+9tan35°=9(1+tan35°) cm, ③이다.",
+        "inGradeForUsedStudentMethod": true,
+        "basis": "Full fresh elementary student proof written before authored-solution exposure; calculation alone does not grant curricular permission."
+      },
+      {
+        "surface": "necessary_procedure",
+        "observation": "두 직각삼각형의 분해,45° 등변 성질과 tangent 정의",
+        "conditions": "35°는 급각이므로 tan35>0, H 내부이므로 두 길이를 더한다. 상징식이 정확한 요청 값이며 tan35의 소수값은 필요하지 않다.",
+        "primaryStandardReferences": [
+          {
+            "id": "9수04-17",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4341,
+              "paragraph1based": 891,
+              "offset": 219120,
+              "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다."
+            },
+            "pdfPhysicalPage1based": 38,
+            "pdfPrintedPage": 34,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수04-18",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4345,
+              "paragraph1based": 892,
+              "offset": 219292,
+              "text": "[9수04-18]삼각비를 활용하여 여러 가지 문제를 해결할 수 있다."
+            },
+            "pdfPhysicalPage1based": 38,
+            "pdfPrintedPage": 34,
+            "wholeClausePdfMatch": true
+          }
+        ],
+        "inGradeForUsedStudentMethod": true,
+        "forbiddenStudentPrerequisiteUsed": false
+      }
+    ],
+    "curriculumMethod": {
+      "reference": "actual2025middle3 ->2015",
+      "legitimateStudentMethodFound": true,
+      "standards": [
+        {
+          "id": "9수04-17",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4341,
+            "paragraph1based": 891,
+            "offset": 219120,
+            "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-18",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4345,
+            "paragraph1based": 892,
+            "offset": 219292,
+            "text": "[9수04-18]삼각비를 활용하여 여러 가지 문제를 해결할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        }
+      ],
+      "restrictionsFile": "curriculum-method-evidence.json",
+      "restrictionsFileSha256": "20a90e8060b73d09eb8749f8b6636e0d960e3148c53111d8bc4db8da4c95af2d",
+      "approvalForRightsFamilyNativeOrLoading": false,
+      "fullCurrentFuturePublicationApproval": false
+    },
+    "annotationsAndSourceFamiliarityDisclosure": "Prior original exam source familiarity is possible and earlier Bumil scan annotations were incidentally seen. No Gyeonggu original/source/keys were reopened; these new candidate answers, authored solutions and other solver results were not read. Work proceeds solely from copied new student inputs.",
+    "newAuthorCandidateAnswersKnownBeforeThisSolve": false,
+    "originalKeyAgreementUsed": false,
+    "otherSolverRead": false,
+    "inferenceApiCalls": 0,
+    "limits": [
+      "Independent blind solve and bounded legitimate-method observations only. Exact Unit/live family, rights/native provenance, author-solution comparison and overall loading are outside this stage."
+    ]
+  },
+  "heldReasons": [],
+  "rejectedStudentMethods": [
+    "No arbitrary trig ratio identities or addition/half-angle formulas.",
+    "No upper-grade extrema/calculus, law of sines/cosines, vectors or circle power.",
+    "q09 uses congruence and Pythagoras instead of an unverified angle-bisector length theorem."
+  ]
+}

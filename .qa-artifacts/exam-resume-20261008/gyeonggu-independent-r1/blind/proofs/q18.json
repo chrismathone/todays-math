@@ -1,0 +1,224 @@
+{
+  "questionNumber": 18,
+  "studentDigest": "bd5d03ea26191f246c2f704c4c8376716487d9ae0ab8e815266a6115dde372b7",
+  "inputContentSha256": "00846389d0f4c13ee77eec2f6c5296190be11109c3659e63f90649dc00270545",
+  "exactRequestedValues": [
+    "42"
+  ],
+  "freshCalculations": {
+    "AE": "3",
+    "DE": "12",
+    "AD": "15",
+    "CF": "3",
+    "DF": "9",
+    "AF=BC": "12",
+    "perimeter": "42",
+    "radius": "6"
+  },
+  "conditionChecks": [
+    {
+      "condition": "positive perimeter, F and E internal",
+      "passed": true,
+      "calculation": {
+        "AE": "3",
+        "DE": "12",
+        "AD": "15",
+        "CF": "3",
+        "DF": "9",
+        "AF=BC": "12",
+        "perimeter": "42",
+        "radius": "6"
+      }
+    }
+  ],
+  "coordinateWitness": {
+    "points": {
+      "A": [
+        0,
+        3
+      ],
+      "B": [
+        0,
+        0
+      ],
+      "C": [
+        12,
+        0
+      ],
+      "D": [
+        12,
+        12
+      ],
+      "F": [
+        12,
+        3
+      ],
+      "O": [
+        6,
+        0
+      ],
+      "E": [
+        "12/5",
+        "24/5"
+      ]
+    },
+    "relations": [
+      {
+        "relation": "perpendicular",
+        "points": [
+          "O",
+          "E",
+          "A",
+          "D"
+        ],
+        "calculated": "0",
+        "required": 0,
+        "passed": true
+      },
+      {
+        "relation": "lengthSquared",
+        "points": [
+          "O",
+          "E"
+        ],
+        "calculated": "36",
+        "required": 36,
+        "passed": true
+      },
+      {
+        "relation": "lengthSquared",
+        "points": [
+          "A",
+          "E"
+        ],
+        "calculated": "9",
+        "required": 9,
+        "passed": true
+      },
+      {
+        "relation": "lengthSquared",
+        "points": [
+          "D",
+          "E"
+        ],
+        "calculated": "144",
+        "required": 144,
+        "passed": true
+      },
+      {
+        "relation": "collinear",
+        "points": [
+          "A",
+          "E",
+          "D"
+        ],
+        "calculated": "0",
+        "required": 0,
+        "passed": true
+      }
+    ],
+    "method": "Independent exact coordinate witness; supplemental validation only"
+  },
+  "codeSha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50",
+  "calculationIsCurriculumPermission": false,
+  "authorOrOriginalAnswerUsed": false,
+  "choiceCheck": {
+    "allChoices": [
+      {
+        "index1based": 1,
+        "studentChoice": "$24\\,\\mathrm{cm}$",
+        "parsedValues": [
+          "24"
+        ],
+        "matchesEachRequestedPart": [
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "inferredBCPositive": false,
+          "AD15_DF9_Pythagoras": false
+        },
+        "differencesFromIndependentRequestedValues": [
+          "-18"
+        ]
+      },
+      {
+        "index1based": 2,
+        "studentChoice": "$27\\,\\mathrm{cm}$",
+        "parsedValues": [
+          "27"
+        ],
+        "matchesEachRequestedPart": [
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "inferredBCPositive": false,
+          "AD15_DF9_Pythagoras": false
+        },
+        "differencesFromIndependentRequestedValues": [
+          "-15"
+        ]
+      },
+      {
+        "index1based": 3,
+        "studentChoice": "$30\\,\\mathrm{cm}$",
+        "parsedValues": [
+          "30"
+        ],
+        "matchesEachRequestedPart": [
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "inferredBCPositive": false,
+          "AD15_DF9_Pythagoras": false
+        },
+        "differencesFromIndependentRequestedValues": [
+          "-12"
+        ]
+      },
+      {
+        "index1based": 4,
+        "studentChoice": "$39\\,\\mathrm{cm}$",
+        "parsedValues": [
+          "39"
+        ],
+        "matchesEachRequestedPart": [
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "inferredBCPositive": true,
+          "AD15_DF9_Pythagoras": false
+        },
+        "differencesFromIndependentRequestedValues": [
+          "-3"
+        ]
+      },
+      {
+        "index1based": 5,
+        "studentChoice": "$42\\,\\mathrm{cm}$",
+        "parsedValues": [
+          "42"
+        ],
+        "matchesEachRequestedPart": [
+          true
+        ],
+        "matches": true,
+        "domainAndGivenConditionChecks": {
+          "inferredBCPositive": true,
+          "AD15_DF9_Pythagoras": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "0"
+        ]
+      }
+    ],
+    "matchingIndices1based": [
+      5
+    ],
+    "exactlyOneChoice": true,
+    "basis": "Parsed actual copied student choices; no author/original key"
+  }
+}

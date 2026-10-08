@@ -1,0 +1,559 @@
+{
+  "schema": "independent-blind-solve.v1",
+  "questionNumber": 11,
+  "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q11",
+  "studentDigest": "522306fe1543b4bae6ad8b0fe2ba86084df12a5fc24a7e377333b58e157f4631",
+  "solverId": "orca-codex-exam-twin-source-identity-20261008",
+  "status": "solved",
+  "answer": "④: ㉠ 높이 √6 cm, ㉡ 부피 12√6 cm³",
+  "answerParts": {
+    "㉠ 높이 OH": "√6 cm",
+    "㉡ 사각뿔 부피": "12√6 cm³"
+  },
+  "solution": "밑면 정사각형의 대각선 길이는√(6²+6²)=6√2 cm이다. 대각선의 교점H는 중점이므로 AH=3√2 cm이다. 발문이 OAH를 H에서 직각인 삼각형으로 제시했으므로 tan30°=OH/AH이고 OH=(3√2)×(√3/3)=√6 cm이다. 밑넓이는6²=36 cm²이다. 사각뿔의 부피는 밑넓이×높이÷3이므로36×√6÷3=12√6 cm³이다. 높이·부피 순서쌍은(√6,12√6), ④이다.",
+  "evidence": {
+    "method": "independent-student-input-solve-before-author-answer-exposure",
+    "studentMethod": "정사각형 대각선/중점, 주어진 평면 직각단면의 tangent 정의, 뿔 부피",
+    "conditionAndDomainNotes": "높이 양수, O에서 밑면 수선발H와 직각단면이 발문에 명시됨. 상위 공간각/벡터/선-면 각 정리를 요구하지 않는다.",
+    "exactValuesFromCode": [
+      "sqrt(6)",
+      "12*sqrt(6)"
+    ],
+    "code": {
+      "path": "solve_math.py",
+      "sha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50"
+    },
+    "proof": {
+      "path": "blind/proofs/q11.json",
+      "sha256": "c7a7f4ba50b5d16f63679c3a04cd4c18e5f3aa5a66ad8cab8e23f1ad6a37c5e2"
+    },
+    "studentSolutionSource": {
+      "path": "student_solutions.json",
+      "wholeFileSha256": "adbcd31c366b68051b20e460727edc017c8160cd0d80fb6ff6c4b079d88c947d",
+      "questionRecordSha256": "85196adf8a231b67de247a2d08284e66a29c38934423c5cade86e241a90a6d13"
+    },
+    "wholeStudentInputSha256": "6e137d65894e6506710e6c980136cfd26a25d4fec141785f4ed521f8eb89e1ca",
+    "contentSha256Utf8": "b587fcb2a87d8b5f7d0683221e40d182726a5db326c90fc1e3f66dad37919b6f",
+    "studentObjectCanonicalSha256": "7e70c6d6c06da77fc61ed415c56e087b0efe53adb78ccfa23d689a44c40fc1ff",
+    "canonicalHashLimit": "This diagnostic canonical hash is not a claim about Root studentDigest algorithm; supplied studentDigest is retained unchanged.",
+    "choiceCheck": {
+      "allChoices": [
+        {
+          "index1based": 1,
+          "studentChoice": "$\\sqrt6$, $36\\sqrt6$",
+          "parsedValues": [
+            "sqrt(6)",
+            "36*sqrt(6)"
+          ],
+          "matchesEachRequestedPart": [
+            true,
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "positiveHeightVolume": true,
+            "pyramidVolumeFactor": false,
+            "given30degCrossSection": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "0",
+            "24*sqrt(6)"
+          ]
+        },
+        {
+          "index1based": 2,
+          "studentChoice": "$3\\sqrt2$, $36\\sqrt2$",
+          "parsedValues": [
+            "3*sqrt(2)",
+            "36*sqrt(2)"
+          ],
+          "matchesEachRequestedPart": [
+            false,
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "positiveHeightVolume": true,
+            "pyramidVolumeFactor": true,
+            "given30degCrossSection": false
+          },
+          "differencesFromIndependentRequestedValues": [
+            "-sqrt(6) + 3*sqrt(2)",
+            "-12*sqrt(6) + 36*sqrt(2)"
+          ]
+        },
+        {
+          "index1based": 3,
+          "studentChoice": "$2\\sqrt6$, $24\\sqrt6$",
+          "parsedValues": [
+            "2*sqrt(6)",
+            "24*sqrt(6)"
+          ],
+          "matchesEachRequestedPart": [
+            false,
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "positiveHeightVolume": true,
+            "pyramidVolumeFactor": true,
+            "given30degCrossSection": false
+          },
+          "differencesFromIndependentRequestedValues": [
+            "sqrt(6)",
+            "12*sqrt(6)"
+          ]
+        },
+        {
+          "index1based": 4,
+          "studentChoice": "$\\sqrt6$, $12\\sqrt6$",
+          "parsedValues": [
+            "sqrt(6)",
+            "12*sqrt(6)"
+          ],
+          "matchesEachRequestedPart": [
+            true,
+            true
+          ],
+          "matches": true,
+          "domainAndGivenConditionChecks": {
+            "positiveHeightVolume": true,
+            "pyramidVolumeFactor": true,
+            "given30degCrossSection": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "0",
+            "0"
+          ]
+        },
+        {
+          "index1based": 5,
+          "studentChoice": "$\\sqrt2$, $12\\sqrt2$",
+          "parsedValues": [
+            "sqrt(2)",
+            "12*sqrt(2)"
+          ],
+          "matchesEachRequestedPart": [
+            false,
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "positiveHeightVolume": true,
+            "pyramidVolumeFactor": true,
+            "given30degCrossSection": false
+          },
+          "differencesFromIndependentRequestedValues": [
+            "-sqrt(6) + sqrt(2)",
+            "-12*sqrt(6) + 12*sqrt(2)"
+          ]
+        }
+      ],
+      "matchingIndices1based": [
+        4
+      ],
+      "exactlyOneChoice": true,
+      "basis": "Parsed actual copied student choices; no author/original key"
+    },
+    "existenceUniquenessPositivity": {
+      "actualCodeChecks": [
+        {
+          "condition": "positive height and proper pyramid factor",
+          "passed": true,
+          "calculation": [
+            "sqrt(6)",
+            "12*sqrt(6)"
+          ]
+        },
+        {
+          "condition": "cross section acute30",
+          "passed": true,
+          "calculation": "sqrt(3)/3"
+        }
+      ],
+      "supplementalExactCoordinateWitness": null,
+      "uniqueRequestedAnswer": true,
+      "wholeConfigurationMustBeUnique": false,
+      "limit": "q17 radii and q22 triangle placements can vary while requested answers are unique. No pixel lengths or model probability determine uniqueness."
+    },
+    "figures": [
+      {
+        "svgPath": "figures/q11-1.svg",
+        "sha256": "3835ef33ba9643db3b23c4cabfd1827827502681c75660eebdbd5d0b43110374",
+        "intendedWidthMm": 55
+      },
+      {
+        "svgPath": "figures/q11-2.svg",
+        "sha256": "9005125d53af14796b39cc9650aad3f070adfde50e87be9816941f13cc418bb6",
+        "intendedWidthMm": 55
+      }
+    ],
+    "directFigureInspections": [
+      {
+        "questionNumber": 11,
+        "svg": "figures/q11-1.svg",
+        "svgSha256": "3835ef33ba9643db3b23c4cabfd1827827502681c75660eebdbd5d0b43110374",
+        "intendedWidthMm": 55,
+        "renderedPdfWidthMm": 55.0000020345052,
+        "renderedHeightMm": 49.275422003843715,
+        "viewBox": [
+          0.0,
+          0.0,
+          211.254,
+          189.266
+        ],
+        "png": "blind/rendered/q11-1-300dpi.png",
+        "pngSha256": "4b6c6ead791433076050dc5afd9cef024fd4e1ce16fe6d1194f59dd9648853e5",
+        "pdf": "blind/rendered/q11-1-300dpi.pdf",
+        "pdfSha256": "bfa5b5e6f1a9ece30476a96a14c65dcf90e555e0dd4b19428f2d43ca8c2e717c",
+        "svgTextLabels": [],
+        "mathematicalOracle": false,
+        "renderer": "Existing PyMuPDF SVG->vector PDF at physical width->300dpi PNG; Cairo runtime absent; no installs",
+        "visualInspection": "direct view_image completed on 2026-10-08",
+        "observation": "Two separate55mm figures: squareABCD with crossing diagonalsH; triangleOAH with H right angle and A30degrees. It exposes the requested perpendicular cross section without hidden 3D inference.",
+        "labelsReadableAtSpecifiedPhysicalWidth": true,
+        "pixelMeasurementsUsedToSolve": false,
+        "physicalPrintProductionApproval": false
+      },
+      {
+        "questionNumber": 11,
+        "svg": "figures/q11-2.svg",
+        "svgSha256": "9005125d53af14796b39cc9650aad3f070adfde50e87be9816941f13cc418bb6",
+        "intendedWidthMm": 55,
+        "renderedPdfWidthMm": 55.0000020345052,
+        "renderedHeightMm": 40.20172123074702,
+        "viewBox": [
+          0.0,
+          0.0,
+          193.931,
+          141.752
+        ],
+        "png": "blind/rendered/q11-2-300dpi.png",
+        "pngSha256": "1c20c7669a0c696bd37fc9a78cedfc0aa83da05c326d249fccc4464655d818b9",
+        "pdf": "blind/rendered/q11-2-300dpi.pdf",
+        "pdfSha256": "bbbb323767d3ba318fbf24f7cef1f9ffa3c500d091786cb7c400202d5acea870",
+        "svgTextLabels": [],
+        "mathematicalOracle": false,
+        "renderer": "Existing PyMuPDF SVG->vector PDF at physical width->300dpi PNG; Cairo runtime absent; no installs",
+        "visualInspection": "direct view_image completed on 2026-10-08",
+        "observation": "Two separate55mm figures: squareABCD with crossing diagonalsH; triangleOAH with H right angle and A30degrees. It exposes the requested perpendicular cross section without hidden 3D inference.",
+        "labelsReadableAtSpecifiedPhysicalWidth": true,
+        "pixelMeasurementsUsedToSolve": false,
+        "physicalPrintProductionApproval": false
+      }
+    ],
+    "sevenStudentSurfaces": [
+      {
+        "surface": "stem",
+        "observation": "높이 양수, O에서 밑면 수선발H와 직각단면이 발문에 명시됨. 상위 공간각/벡터/선-면 각 정리를 요구하지 않는다.",
+        "inGradeForUsedStudentMethod": true,
+        "limit": "New student stem only; original-twin faithfulness and provenance are not reviewed."
+      },
+      {
+        "surface": "choices",
+        "observation": "All actual student choices parsed and every requested component/strict interval compared.",
+        "detailedCodeResult": {
+          "allChoices": [
+            {
+              "index1based": 1,
+              "studentChoice": "$\\sqrt6$, $36\\sqrt6$",
+              "parsedValues": [
+                "sqrt(6)",
+                "36*sqrt(6)"
+              ],
+              "matchesEachRequestedPart": [
+                true,
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "positiveHeightVolume": true,
+                "pyramidVolumeFactor": false,
+                "given30degCrossSection": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "0",
+                "24*sqrt(6)"
+              ]
+            },
+            {
+              "index1based": 2,
+              "studentChoice": "$3\\sqrt2$, $36\\sqrt2$",
+              "parsedValues": [
+                "3*sqrt(2)",
+                "36*sqrt(2)"
+              ],
+              "matchesEachRequestedPart": [
+                false,
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "positiveHeightVolume": true,
+                "pyramidVolumeFactor": true,
+                "given30degCrossSection": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "-sqrt(6) + 3*sqrt(2)",
+                "-12*sqrt(6) + 36*sqrt(2)"
+              ]
+            },
+            {
+              "index1based": 3,
+              "studentChoice": "$2\\sqrt6$, $24\\sqrt6$",
+              "parsedValues": [
+                "2*sqrt(6)",
+                "24*sqrt(6)"
+              ],
+              "matchesEachRequestedPart": [
+                false,
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "positiveHeightVolume": true,
+                "pyramidVolumeFactor": true,
+                "given30degCrossSection": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "sqrt(6)",
+                "12*sqrt(6)"
+              ]
+            },
+            {
+              "index1based": 4,
+              "studentChoice": "$\\sqrt6$, $12\\sqrt6$",
+              "parsedValues": [
+                "sqrt(6)",
+                "12*sqrt(6)"
+              ],
+              "matchesEachRequestedPart": [
+                true,
+                true
+              ],
+              "matches": true,
+              "domainAndGivenConditionChecks": {
+                "positiveHeightVolume": true,
+                "pyramidVolumeFactor": true,
+                "given30degCrossSection": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "0",
+                "0"
+              ]
+            },
+            {
+              "index1based": 5,
+              "studentChoice": "$\\sqrt2$, $12\\sqrt2$",
+              "parsedValues": [
+                "sqrt(2)",
+                "12*sqrt(2)"
+              ],
+              "matchesEachRequestedPart": [
+                false,
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "positiveHeightVolume": true,
+                "pyramidVolumeFactor": true,
+                "given30degCrossSection": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "-sqrt(6) + sqrt(2)",
+                "-12*sqrt(6) + 12*sqrt(2)"
+              ]
+            }
+          ],
+          "matchingIndices1based": [
+            4
+          ],
+          "exactlyOneChoice": true,
+          "basis": "Parsed actual copied student choices; no author/original key"
+        },
+        "inGradeForUsedStudentMethod": true
+      },
+      {
+        "surface": "figure_and_graph_semantics",
+        "observation": [
+          "Two separate55mm figures: squareABCD with crossing diagonalsH; triangleOAH with H right angle and A30degrees. It exposes the requested perpendicular cross section without hidden 3D inference.",
+          "Two separate55mm figures: squareABCD with crossing diagonalsH; triangleOAH with H right angle and A30degrees. It exposes the requested perpendicular cross section without hidden 3D inference."
+        ],
+        "specifiedPhysicalWidthsViewed": [
+          55,
+          55
+        ],
+        "inGradeForUsedStudentMethod": true,
+        "pixelOracle": false,
+        "limit": "Standalone SVG physical rendering only; no claim about a complete final paper/student UI layout."
+      },
+      {
+        "surface": "notation",
+        "observation": "서로 다른55mm 그림 두 개를 확인. cm와cm³를 분리하며 부피를36√6으로 두는 것은1/3 계수 누락이다.",
+        "inGradeForUsedStudentMethod": true,
+        "trigScope": "Only acute-angle trig definitions and30/45/60 values used; arbitrary-angle formula, ratio identity, vector or calculus notation is not necessary."
+      },
+      {
+        "surface": "answer_format",
+        "observation": "④: ㉠ 높이 √6 cm, ㉡ 부피 12√6 cm³",
+        "partsWithUnits": {
+          "㉠ 높이 OH": "√6 cm",
+          "㉡ 사각뿔 부피": "12√6 cm³"
+        },
+        "inGradeForUsedStudentMethod": true,
+        "limit": "Own raw exact answer; Root may normalize formatting only after binding hashes."
+      },
+      {
+        "surface": "student_solution",
+        "observation": "밑면 정사각형의 대각선 길이는√(6²+6²)=6√2 cm이다. 대각선의 교점H는 중점이므로 AH=3√2 cm이다. 발문이 OAH를 H에서 직각인 삼각형으로 제시했으므로 tan30°=OH/AH이고 OH=(3√2)×(√3/3)=√6 cm이다. 밑넓이는6²=36 cm²이다. 사각뿔의 부피는 밑넓이×높이÷3이므로36×√6÷3=12√6 cm³이다. 높이·부피 순서쌍은(√6,12√6), ④이다.",
+        "inGradeForUsedStudentMethod": true,
+        "basis": "Full fresh elementary student proof written before authored-solution exposure; calculation alone does not grant curricular permission."
+      },
+      {
+        "surface": "necessary_procedure",
+        "observation": "정사각형 대각선/중점, 주어진 평면 직각단면의 tangent 정의, 뿔 부피",
+        "conditions": "높이 양수, O에서 밑면 수선발H와 직각단면이 발문에 명시됨. 상위 공간각/벡터/선-면 각 정리를 요구하지 않는다.",
+        "primaryStandardReferences": [
+          {
+            "id": "9수04-09",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4292,
+              "paragraph1based": 879,
+              "offset": 217366,
+              "text": "[9수04-09]입체도형의 겉넓이와 부피를 구할 수 있다."
+            },
+            "pdfPhysicalPage1based": 37,
+            "pdfPrintedPage": 33,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수04-12",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4308,
+              "paragraph1based": 883,
+              "offset": 217962,
+              "text": "[9수04-12]사각형의 성질을 이해하고 설명할 수 있다."
+            },
+            "pdfPhysicalPage1based": 38,
+            "pdfPrintedPage": 34,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수04-16",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4333,
+              "paragraph1based": 889,
+              "offset": 218866,
+              "text": "[9수04-16]피타고라스 정리를 이해하고 설명할 수 있다."
+            },
+            "pdfPhysicalPage1based": 38,
+            "pdfPrintedPage": 34,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수04-17",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4341,
+              "paragraph1based": 891,
+              "offset": 219120,
+              "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다."
+            },
+            "pdfPhysicalPage1based": 38,
+            "pdfPrintedPage": 34,
+            "wholeClausePdfMatch": true
+          }
+        ],
+        "inGradeForUsedStudentMethod": true,
+        "forbiddenStudentPrerequisiteUsed": false
+      }
+    ],
+    "curriculumMethod": {
+      "reference": "actual2025middle3 ->2015",
+      "legitimateStudentMethodFound": true,
+      "standards": [
+        {
+          "id": "9수04-09",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4292,
+            "paragraph1based": 879,
+            "offset": 217366,
+            "text": "[9수04-09]입체도형의 겉넓이와 부피를 구할 수 있다."
+          },
+          "pdfPhysicalPage1based": 37,
+          "pdfPrintedPage": 33,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-12",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4308,
+            "paragraph1based": 883,
+            "offset": 217962,
+            "text": "[9수04-12]사각형의 성질을 이해하고 설명할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-16",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4333,
+            "paragraph1based": 889,
+            "offset": 218866,
+            "text": "[9수04-16]피타고라스 정리를 이해하고 설명할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-17",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4341,
+            "paragraph1based": 891,
+            "offset": 219120,
+            "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        }
+      ],
+      "restrictionsFile": "curriculum-method-evidence.json",
+      "restrictionsFileSha256": "20a90e8060b73d09eb8749f8b6636e0d960e3148c53111d8bc4db8da4c95af2d",
+      "approvalForRightsFamilyNativeOrLoading": false,
+      "fullCurrentFuturePublicationApproval": false
+    },
+    "annotationsAndSourceFamiliarityDisclosure": "Prior original exam source familiarity is possible and earlier Bumil scan annotations were incidentally seen. No Gyeonggu original/source/keys were reopened; these new candidate answers, authored solutions and other solver results were not read. Work proceeds solely from copied new student inputs.",
+    "newAuthorCandidateAnswersKnownBeforeThisSolve": false,
+    "originalKeyAgreementUsed": false,
+    "otherSolverRead": false,
+    "inferenceApiCalls": 0,
+    "limits": [
+      "Independent blind solve and bounded legitimate-method observations only. Exact Unit/live family, rights/native provenance, author-solution comparison and overall loading are outside this stage."
+    ]
+  },
+  "heldReasons": [],
+  "rejectedStudentMethods": [
+    "No arbitrary trig ratio identities or addition/half-angle formulas.",
+    "No upper-grade extrema/calculus, law of sines/cosines, vectors or circle power.",
+    "q09 uses congruence and Pythagoras instead of an unverified angle-bisector length theorem."
+  ]
+}

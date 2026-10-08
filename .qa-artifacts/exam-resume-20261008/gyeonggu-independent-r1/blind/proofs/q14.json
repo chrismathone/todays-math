@@ -1,0 +1,126 @@
+{
+  "questionNumber": 14,
+  "studentDigest": "12a1eb7e685efcbe2d82058a84720701caed9fdf50365c0bce0bd0c65a790eac",
+  "inputContentSha256": "4418d59a90d8b9c878472e121ff8ba588e27f3f67632ad5a247e7631e9dcf3fd",
+  "exactRequestedValues": [
+    "8"
+  ],
+  "freshCalculations": {
+    "radius": "10",
+    "AB": "12",
+    "AM": "6",
+    "OM": "8"
+  },
+  "conditionChecks": [
+    {
+      "condition": "chord shorter than diameter, positive distance",
+      "passed": true,
+      "calculation": {
+        "squaredDistance": "64"
+      }
+    }
+  ],
+  "coordinateWitness": null,
+  "codeSha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50",
+  "calculationIsCurriculumPermission": false,
+  "authorOrOriginalAnswerUsed": false,
+  "choiceCheck": {
+    "allChoices": [
+      {
+        "index1based": 1,
+        "studentChoice": "$4\\,\\mathrm{cm}$",
+        "parsedValues": [
+          "4"
+        ],
+        "matchesEachRequestedPart": [
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "centerChordDistanceRange": true,
+          "radiusPythagoras": false
+        },
+        "differencesFromIndependentRequestedValues": [
+          "-4"
+        ]
+      },
+      {
+        "index1based": 2,
+        "studentChoice": "$5\\,\\mathrm{cm}$",
+        "parsedValues": [
+          "5"
+        ],
+        "matchesEachRequestedPart": [
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "centerChordDistanceRange": true,
+          "radiusPythagoras": false
+        },
+        "differencesFromIndependentRequestedValues": [
+          "-3"
+        ]
+      },
+      {
+        "index1based": 3,
+        "studentChoice": "$6\\,\\mathrm{cm}$",
+        "parsedValues": [
+          "6"
+        ],
+        "matchesEachRequestedPart": [
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "centerChordDistanceRange": true,
+          "radiusPythagoras": false
+        },
+        "differencesFromIndependentRequestedValues": [
+          "-2"
+        ]
+      },
+      {
+        "index1based": 4,
+        "studentChoice": "$8\\,\\mathrm{cm}$",
+        "parsedValues": [
+          "8"
+        ],
+        "matchesEachRequestedPart": [
+          true
+        ],
+        "matches": true,
+        "domainAndGivenConditionChecks": {
+          "centerChordDistanceRange": true,
+          "radiusPythagoras": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "0"
+        ]
+      },
+      {
+        "index1based": 5,
+        "studentChoice": "$12\\,\\mathrm{cm}$",
+        "parsedValues": [
+          "12"
+        ],
+        "matchesEachRequestedPart": [
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "centerChordDistanceRange": false,
+          "radiusPythagoras": false
+        },
+        "differencesFromIndependentRequestedValues": [
+          "4"
+        ]
+      }
+    ],
+    "matchingIndices1based": [
+      4
+    ],
+    "exactlyOneChoice": true,
+    "basis": "Parsed actual copied student choices; no author/original key"
+  }
+}

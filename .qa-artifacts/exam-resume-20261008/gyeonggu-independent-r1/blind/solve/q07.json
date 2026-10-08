@@ -1,0 +1,454 @@
+{
+  "schema": "independent-blind-solve.v1",
+  "questionNumber": 7,
+  "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q07",
+  "studentDigest": "4a6c9fde8d5b6bbd3d96233ad6b61ed6202c06fbc6cec638c5491eb6b19fec44",
+  "solverId": "orca-codex-exam-twin-source-identity-20261008",
+  "status": "solved",
+  "answer": "①: ㉠ 3/4, ㉡ 1/2, ㉢ √2−√3/3",
+  "answerParts": {
+    "㉠": "3/4",
+    "㉡": "1/2",
+    "㉢": "√2−√3/3"
+  },
+  "solution": "가: sin60°=√3/2, cos30°=√3/2이므로 (√3/2)×(√3/2)=3/4이다. 나: tan45°=1, sin30°=1/2이므로1×1/2=1/2이다. 다: sin45°=√2/2, cos60°=1/2, tan30°=√3/3이므로 (√2/2)÷(1/2)−√3/3=√2−√3/3이다. 세 기록을 가·나·다 순서로 묶으면 ①만 일치한다.",
+  "evidence": {
+    "method": "independent-student-input-solve-before-author-answer-exposure",
+    "studentMethod": "30°/45°/60° 직각삼각형의 정의상 특수각 값을 개별 대입하고 근호 사칙 계산",
+    "conditionAndDomainNotes": "세 계산식 모두 무차원, 나눗셈 분모cos60=1/2≠0. 하나의 주어진 비로 다른 비를 변환하는 항등식은 필요하지 않다.",
+    "exactValuesFromCode": [
+      "3/4",
+      "1/2",
+      "-sqrt(3)/3 + sqrt(2)"
+    ],
+    "code": {
+      "path": "solve_math.py",
+      "sha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50"
+    },
+    "proof": {
+      "path": "blind/proofs/q07.json",
+      "sha256": "a9a0e9c9299f312f409d00bd1ece3aa1896e9fee6454e98f3d28690856d50954"
+    },
+    "studentSolutionSource": {
+      "path": "student_solutions.json",
+      "wholeFileSha256": "adbcd31c366b68051b20e460727edc017c8160cd0d80fb6ff6c4b079d88c947d",
+      "questionRecordSha256": "e0e6e04f12d79b01271ce34551f7cf2ce009cc2e18c09b4af87784d81fabb813"
+    },
+    "wholeStudentInputSha256": "6e137d65894e6506710e6c980136cfd26a25d4fec141785f4ed521f8eb89e1ca",
+    "contentSha256Utf8": "ac849509161a2ef056d5e8df770b4ce7225e405a68b6d2d5e775bb56d62e9970",
+    "studentObjectCanonicalSha256": "5556b5c0c9115902e9adf945a9b1dda71b51d8bb91d2454cba415dfda86a13e8",
+    "canonicalHashLimit": "This diagnostic canonical hash is not a claim about Root studentDigest algorithm; supplied studentDigest is retained unchanged.",
+    "choiceCheck": {
+      "allChoices": [
+        {
+          "index1based": 1,
+          "studentChoice": "$\\frac34$, $\\frac12$, $\\sqrt2-\\frac{\\sqrt3}{3}$",
+          "parsedValues": [
+            "3/4",
+            "1/2",
+            "-sqrt(3)/3 + sqrt(2)"
+          ],
+          "matchesEachRequestedPart": [
+            true,
+            true,
+            true
+          ],
+          "matches": true,
+          "domainAndGivenConditionChecks": {
+            "allResultsPositive": true,
+            "givenCos60DivisorNonzero": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "0",
+            "0",
+            "0"
+          ]
+        },
+        {
+          "index1based": 2,
+          "studentChoice": "$\\frac{\\sqrt3}{2}$, $\\frac12$, $\\sqrt2-\\frac{\\sqrt3}{3}$",
+          "parsedValues": [
+            "sqrt(3)/2",
+            "1/2",
+            "-sqrt(3)/3 + sqrt(2)"
+          ],
+          "matchesEachRequestedPart": [
+            false,
+            true,
+            true
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "allResultsPositive": true,
+            "givenCos60DivisorNonzero": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "-3/4 + sqrt(3)/2",
+            "0",
+            "0"
+          ]
+        },
+        {
+          "index1based": 3,
+          "studentChoice": "$\\frac34$, $1$, $\\sqrt2-\\frac{\\sqrt3}{3}$",
+          "parsedValues": [
+            "3/4",
+            "1",
+            "-sqrt(3)/3 + sqrt(2)"
+          ],
+          "matchesEachRequestedPart": [
+            true,
+            false,
+            true
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "allResultsPositive": true,
+            "givenCos60DivisorNonzero": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "0",
+            "1/2",
+            "0"
+          ]
+        },
+        {
+          "index1based": 4,
+          "studentChoice": "$\\frac34$, $\\frac12$, $\\sqrt2-\\sqrt3$",
+          "parsedValues": [
+            "3/4",
+            "1/2",
+            "-sqrt(3) + sqrt(2)"
+          ],
+          "matchesEachRequestedPart": [
+            true,
+            true,
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "allResultsPositive": false,
+            "givenCos60DivisorNonzero": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "0",
+            "0",
+            "-2*sqrt(3)/3"
+          ]
+        },
+        {
+          "index1based": 5,
+          "studentChoice": "$\\frac12$, $\\frac34$, $\\sqrt2-\\frac{\\sqrt3}{3}$",
+          "parsedValues": [
+            "1/2",
+            "3/4",
+            "-sqrt(3)/3 + sqrt(2)"
+          ],
+          "matchesEachRequestedPart": [
+            false,
+            false,
+            true
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "allResultsPositive": true,
+            "givenCos60DivisorNonzero": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "-1/4",
+            "1/4",
+            "0"
+          ]
+        }
+      ],
+      "matchingIndices1based": [
+        1
+      ],
+      "exactlyOneChoice": true,
+      "basis": "Parsed actual copied student choices; no author/original key"
+    },
+    "existenceUniquenessPositivity": {
+      "actualCodeChecks": [
+        {
+          "condition": "all three results and nonzero divisor",
+          "passed": true,
+          "calculation": [
+            "3/4",
+            "1/2",
+            "-sqrt(3)/3 + sqrt(2)"
+          ]
+        }
+      ],
+      "supplementalExactCoordinateWitness": null,
+      "uniqueRequestedAnswer": true,
+      "wholeConfigurationMustBeUnique": false,
+      "limit": "q17 radii and q22 triangle placements can vary while requested answers are unique. No pixel lengths or model probability determine uniqueness."
+    },
+    "figures": [],
+    "directFigureInspections": [],
+    "sevenStudentSurfaces": [
+      {
+        "surface": "stem",
+        "observation": "세 계산식 모두 무차원, 나눗셈 분모cos60=1/2≠0. 하나의 주어진 비로 다른 비를 변환하는 항등식은 필요하지 않다.",
+        "inGradeForUsedStudentMethod": true,
+        "limit": "New student stem only; original-twin faithfulness and provenance are not reviewed."
+      },
+      {
+        "surface": "choices",
+        "observation": "All actual student choices parsed and every requested component/strict interval compared.",
+        "detailedCodeResult": {
+          "allChoices": [
+            {
+              "index1based": 1,
+              "studentChoice": "$\\frac34$, $\\frac12$, $\\sqrt2-\\frac{\\sqrt3}{3}$",
+              "parsedValues": [
+                "3/4",
+                "1/2",
+                "-sqrt(3)/3 + sqrt(2)"
+              ],
+              "matchesEachRequestedPart": [
+                true,
+                true,
+                true
+              ],
+              "matches": true,
+              "domainAndGivenConditionChecks": {
+                "allResultsPositive": true,
+                "givenCos60DivisorNonzero": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "0",
+                "0",
+                "0"
+              ]
+            },
+            {
+              "index1based": 2,
+              "studentChoice": "$\\frac{\\sqrt3}{2}$, $\\frac12$, $\\sqrt2-\\frac{\\sqrt3}{3}$",
+              "parsedValues": [
+                "sqrt(3)/2",
+                "1/2",
+                "-sqrt(3)/3 + sqrt(2)"
+              ],
+              "matchesEachRequestedPart": [
+                false,
+                true,
+                true
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "allResultsPositive": true,
+                "givenCos60DivisorNonzero": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "-3/4 + sqrt(3)/2",
+                "0",
+                "0"
+              ]
+            },
+            {
+              "index1based": 3,
+              "studentChoice": "$\\frac34$, $1$, $\\sqrt2-\\frac{\\sqrt3}{3}$",
+              "parsedValues": [
+                "3/4",
+                "1",
+                "-sqrt(3)/3 + sqrt(2)"
+              ],
+              "matchesEachRequestedPart": [
+                true,
+                false,
+                true
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "allResultsPositive": true,
+                "givenCos60DivisorNonzero": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "0",
+                "1/2",
+                "0"
+              ]
+            },
+            {
+              "index1based": 4,
+              "studentChoice": "$\\frac34$, $\\frac12$, $\\sqrt2-\\sqrt3$",
+              "parsedValues": [
+                "3/4",
+                "1/2",
+                "-sqrt(3) + sqrt(2)"
+              ],
+              "matchesEachRequestedPart": [
+                true,
+                true,
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "allResultsPositive": false,
+                "givenCos60DivisorNonzero": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "0",
+                "0",
+                "-2*sqrt(3)/3"
+              ]
+            },
+            {
+              "index1based": 5,
+              "studentChoice": "$\\frac12$, $\\frac34$, $\\sqrt2-\\frac{\\sqrt3}{3}$",
+              "parsedValues": [
+                "1/2",
+                "3/4",
+                "-sqrt(3)/3 + sqrt(2)"
+              ],
+              "matchesEachRequestedPart": [
+                false,
+                false,
+                true
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "allResultsPositive": true,
+                "givenCos60DivisorNonzero": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "-1/4",
+                "1/4",
+                "0"
+              ]
+            }
+          ],
+          "matchingIndices1based": [
+            1
+          ],
+          "exactlyOneChoice": true,
+          "basis": "Parsed actual copied student choices; no author/original key"
+        },
+        "inGradeForUsedStudentMethod": true
+      },
+      {
+        "surface": "figure_and_graph_semantics",
+        "observation": [
+          "No student figure provided; stem determines the calculation."
+        ],
+        "specifiedPhysicalWidthsViewed": [],
+        "inGradeForUsedStudentMethod": true,
+        "pixelOracle": false,
+        "limit": "Standalone SVG physical rendering only; no claim about a complete final paper/student UI layout."
+      },
+      {
+        "surface": "notation",
+        "observation": "표의 세 칸과 다섯 선택지의 세 성분을 모두 비교. 임의각의 관계식/덧셈공식을 사용하지 않는다.",
+        "inGradeForUsedStudentMethod": true,
+        "trigScope": "Only acute-angle trig definitions and30/45/60 values used; arbitrary-angle formula, ratio identity, vector or calculus notation is not necessary."
+      },
+      {
+        "surface": "answer_format",
+        "observation": "①: ㉠ 3/4, ㉡ 1/2, ㉢ √2−√3/3",
+        "partsWithUnits": {
+          "㉠": "3/4",
+          "㉡": "1/2",
+          "㉢": "√2−√3/3"
+        },
+        "inGradeForUsedStudentMethod": true,
+        "limit": "Own raw exact answer; Root may normalize formatting only after binding hashes."
+      },
+      {
+        "surface": "student_solution",
+        "observation": "가: sin60°=√3/2, cos30°=√3/2이므로 (√3/2)×(√3/2)=3/4이다. 나: tan45°=1, sin30°=1/2이므로1×1/2=1/2이다. 다: sin45°=√2/2, cos60°=1/2, tan30°=√3/3이므로 (√2/2)÷(1/2)−√3/3=√2−√3/3이다. 세 기록을 가·나·다 순서로 묶으면 ①만 일치한다.",
+        "inGradeForUsedStudentMethod": true,
+        "basis": "Full fresh elementary student proof written before authored-solution exposure; calculation alone does not grant curricular permission."
+      },
+      {
+        "surface": "necessary_procedure",
+        "observation": "30°/45°/60° 직각삼각형의 정의상 특수각 값을 개별 대입하고 근호 사칙 계산",
+        "conditions": "세 계산식 모두 무차원, 나눗셈 분모cos60=1/2≠0. 하나의 주어진 비로 다른 비를 변환하는 항등식은 필요하지 않다.",
+        "primaryStandardReferences": [
+          {
+            "id": "9수04-17",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4341,
+              "paragraph1based": 891,
+              "offset": 219120,
+              "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다."
+            },
+            "pdfPhysicalPage1based": 38,
+            "pdfPrintedPage": 34,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수01-10",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 3788,
+              "paragraph1based": 771,
+              "offset": 193301,
+              "text": "[9수01-10]근호를 포함한 식의 사칙계산을 할 수 있다."
+            },
+            "pdfPhysicalPage1based": 33,
+            "pdfPrintedPage": 29,
+            "wholeClausePdfMatch": true
+          }
+        ],
+        "inGradeForUsedStudentMethod": true,
+        "forbiddenStudentPrerequisiteUsed": false
+      }
+    ],
+    "curriculumMethod": {
+      "reference": "actual2025middle3 ->2015",
+      "legitimateStudentMethodFound": true,
+      "standards": [
+        {
+          "id": "9수04-17",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4341,
+            "paragraph1based": 891,
+            "offset": 219120,
+            "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수01-10",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 3788,
+            "paragraph1based": 771,
+            "offset": 193301,
+            "text": "[9수01-10]근호를 포함한 식의 사칙계산을 할 수 있다."
+          },
+          "pdfPhysicalPage1based": 33,
+          "pdfPrintedPage": 29,
+          "wholeClausePdfMatch": true
+        }
+      ],
+      "restrictionsFile": "curriculum-method-evidence.json",
+      "restrictionsFileSha256": "20a90e8060b73d09eb8749f8b6636e0d960e3148c53111d8bc4db8da4c95af2d",
+      "approvalForRightsFamilyNativeOrLoading": false,
+      "fullCurrentFuturePublicationApproval": false
+    },
+    "annotationsAndSourceFamiliarityDisclosure": "Prior original exam source familiarity is possible and earlier Bumil scan annotations were incidentally seen. No Gyeonggu original/source/keys were reopened; these new candidate answers, authored solutions and other solver results were not read. Work proceeds solely from copied new student inputs.",
+    "newAuthorCandidateAnswersKnownBeforeThisSolve": false,
+    "originalKeyAgreementUsed": false,
+    "otherSolverRead": false,
+    "inferenceApiCalls": 0,
+    "limits": [
+      "Independent blind solve and bounded legitimate-method observations only. Exact Unit/live family, rights/native provenance, author-solution comparison and overall loading are outside this stage."
+    ]
+  },
+  "heldReasons": [],
+  "rejectedStudentMethods": [
+    "No arbitrary trig ratio identities or addition/half-angle formulas.",
+    "No upper-grade extrema/calculus, law of sines/cosines, vectors or circle power.",
+    "q09 uses congruence and Pythagoras instead of an unverified angle-bisector length theorem."
+  ]
+}
