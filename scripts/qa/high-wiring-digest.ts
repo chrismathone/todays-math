@@ -14,7 +14,7 @@
  *   npx tsx scripts/qa/high-wiring-digest.ts --dump     # 지문에 든 줄 그대로(앞 400자)
  */
 import { createHash } from "node:crypto";
-import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
+import { mkdtempSync, rmdirSync, unlinkSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 
@@ -190,7 +190,9 @@ record("제자리 갱신", "픽스처 등록부로 되만듦", () => {
       conflicts: got.conflicts,
     };
   } finally {
-    rmSync(dir, { recursive: true, force: true });
+    // 지우기는 파일 · 빈 폴더를 하나씩 — 재귀 지우기는 한글 경로에서 노드가 죽는다(`noRmSync.test.ts`).
+    unlinkSync(file);
+    rmdirSync(dir);
   }
 });
 
@@ -371,6 +373,11 @@ const VALUE_PAIRS: [string, string][] = [
   [
     String.raw`$\begin{pmatrix}1&2\\3&4\end{pmatrix}$`,
     String.raw`$\begin{pmatrix}1&3\\2&4\end{pmatrix}$`,
+  ],
+  // 열 수는 같고 행 수만 다른 쌍 — 칸 수가 같은 위의 쌍만으로는 «행 수 대조»를 빼도 답이 같다(변이 [33])
+  [
+    String.raw`$\begin{pmatrix}1&2\end{pmatrix}$`,
+    String.raw`$\begin{pmatrix}1&2\\3&4\end{pmatrix}$`,
   ],
   ["$(n-r)!$", "$(n-r)(n-r-1)!$"],
   ["$|x-1|$", "$|1-x|$"],

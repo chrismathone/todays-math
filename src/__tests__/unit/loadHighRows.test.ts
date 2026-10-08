@@ -40,6 +40,7 @@ import {
   unloadedHigh,
 } from "../../../scripts/qa/checkUnloadedTypes";
 import { rebuild } from "../../../scripts/qa/refresh-engine-content";
+import { intBetween } from "@/lib/elementary/rng";
 import { parseProblemContent } from "@/lib/problem/parseProblemContent";
 import { classifyFormat, classifyOrigin } from "@/lib/problem/provenance";
 import {
@@ -304,8 +305,29 @@ describe('㉠ 적재기 — `engine: "high"`', () => {
   });
 
   it("변형 공간이 좁아 못 채우면 던진다 — 중등과 같이 조용히 덜 내지 않는다", () => {
+    // 낼 수 있는 문항이 **둘뿐인** 유형으로 다섯 벌을 묻는다. 픽스처 유형은 수천 가지를 내서, 그것으로
+    // 5,000벌을 물으면 던지기까지 수십 초가 걸렸다(전체 시험의 부하 속에서 20초 상한을 넘었다 — 2026-10-08).
+    const [base] = fixtureHighEntries();
+    const narrow = createHighRegistry([
+      {
+        ...base!,
+        handler: (rng) => {
+          const n = intBetween(rng, 1, 2) * 10 + 1;
+          return {
+            ...base!.handler(rng),
+            content: `두 상수항의 합이 $${n}$일 때, 그 합을 구하시오.`,
+            answer: `$${n}$`,
+            solution: `두 상수항의 합은 $${n}$이다.\n따라서 구하는 값은 $${n}$이다.`,
+            facts: { n },
+          };
+        },
+      },
+    ]);
     expect(() =>
-      buildHighRows({ ...targetA, variants: 5000 }, SEED, registry),
+      buildHighRows({ ...targetA, variants: 2 }, SEED, narrow),
+    ).not.toThrow();
+    expect(() =>
+      buildHighRows({ ...targetA, variants: 5 }, SEED, narrow),
     ).toThrow(/변형 공간/);
   });
 });

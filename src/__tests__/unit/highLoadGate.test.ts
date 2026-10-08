@@ -427,6 +427,12 @@ describe("㉡ 값 읽개 — 보기 둘이 같은 값인가", () => {
       String.raw`$\begin{pmatrix}1\\2\end{pmatrix}$`,
       String.raw`$\begin{pmatrix}1&2\end{pmatrix}$`,
     ],
+    // 열 수는 같고 행 수만 다른 행렬 — 앞의 칸이 같아도 다른 행렬이다. 칸 수가 같은 위의 쌍은 열 수만 봐도
+    // 갈려서, 행 수 대조를 빼는 변이가 «산출물이 그대로»로 판정 거부였다(2026-10-08 변이 [33]).
+    [
+      String.raw`$\begin{pmatrix}1&2\end{pmatrix}$`,
+      String.raw`$\begin{pmatrix}1&2\\3&4\end{pmatrix}$`,
+    ],
     ["$n!$", "$(n-1)!$"],
     ["$Q(x)$", "$2Q(x)$"],
     // 식과 조건은 다른 갈래다
