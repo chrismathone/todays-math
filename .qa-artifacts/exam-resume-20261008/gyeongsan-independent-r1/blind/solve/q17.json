@@ -1,0 +1,203 @@
+{
+  "studentDigest": "95af94c3735454c56c7e6d25d89e4dff2ef6512fafd3b3eac1cc0c80ee94da6c",
+  "solverId": "orca-codex-exam-twin-author-geometry-20261008",
+  "status": "solved",
+  "answer": "③",
+  "solution": "먼저AB=√(15²+8²)=17cm이다. ACD는 D에서 직각이므로x=90°−∠A이다. ABC에서∠B=90°−∠A이므로x=∠B이다. 마찬가지로 BCD의 각의 합에서y=90°−∠B=∠A이다. 이제 ABC의 실제 변비로cosx=cosB=BC/AB=8/17, siny=sinA=BC/AB=8/17이다. 일반적인 삼각비 관계식을 쓰지 않고 실제로 같은 각과 변을 대응시킨 것이며 정답은 ③이다.",
+  "evidence": {
+    "method": "blind-student-only-independent-solve",
+    "questionNumber": 17,
+    "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q17",
+    "createdBeforeAuthorAnswerExposureAtUtc": "2026-10-08T12:48:10.354Z",
+    "authorAnswersSolutionsOpened": false,
+    "originalExamsOpened": false,
+    "authorCandidateChecksReportsOpened": false,
+    "inputRawSha256": "1297372bbfb577f88c861ff27bf4d5d0b272f3737e408b68c38df793c53ff79a",
+    "inputQuestionDigest": "95af94c3735454c56c7e6d25d89e4dff2ef6512fafd3b3eac1cc0c80ee94da6c",
+    "blindManifestRawSha256": "45c0cdc08485593a79a1d274acf79b8837bf9b4f1b989bc2a891817d55185849",
+    "opaquePackageDigestProvided": "e637863aa50b870c4dee7a15b9fbee080b992308e173c9b88bb3fc1546b92c0a",
+    "calculationCodePath": "calculation.py",
+    "calculationCodeSha256": "140182a95c30c4d42b4e9cdd6047ee9dadd24cf3a6790e03e8227274293a0050",
+    "calculationOutputPath": "calculation-output.json",
+    "calculationOutputSha256": "bc86a91bf98947442cf96b57aa001c9aca082a5689560c18d93f25e21755adfe",
+    "exactCalculation": {
+      "AC": 15,
+      "BC": 8,
+      "AB": "17",
+      "angleCorrespondence": {
+        "x": "angleB by sums in ACD/ABC",
+        "y": "angleA by sums in BCD/ABC"
+      },
+      "actualCosB": "8/17",
+      "actualSinA": "8/17",
+      "positiveAltitude": "120/17",
+      "method": "Equal actual angles,then side-ratio definitions;no general complementary-trig identity.",
+      "allFiveActualChoiceValues": [
+        [
+          "15/17",
+          "8/17"
+        ],
+        [
+          "8/17",
+          "15/17"
+        ],
+        [
+          "8/17",
+          "8/17"
+        ],
+        [
+          "15/8",
+          "8/17"
+        ],
+        [
+          "8/15",
+          "8/15"
+        ]
+      ],
+      "choiceCorrectness": [
+        false,
+        false,
+        true,
+        false,
+        false
+      ],
+      "correctChoiceNumber": 3,
+      "semanticDuplicateChoices": [],
+      "oneCorrectChoice": true
+    },
+    "knownHolds": [],
+    "mathematicalAnswerUnique": true,
+    "choicesReadyForFinalApproval": true,
+    "studentPreview": {
+      "path": "inspection/q17.png",
+      "sha256": "6091fd477e4e0414dcea7849bbd56f517e361328a637928d5b03a332ffee01c2",
+      "columnWidthMm": 70,
+      "personallyViewed": true
+    },
+    "suppliedFigures": [
+      {
+        "role": "stem",
+        "svgPath": "figures/q17-1.svg",
+        "sha256": "194ccb69a95ac6b76d2f8c25150f4258b51ec3ba670057f52bbe974633eaf55c",
+        "intendedWidthMm": 70
+      }
+    ],
+    "figureInspection": [
+      {
+        "role": "stem",
+        "svgPath": "figures/q17-1.svg",
+        "svgSha256": "194ccb69a95ac6b76d2f8c25150f4258b51ec3ba670057f52bbe974633eaf55c",
+        "widthMm": 70,
+        "png": "inspection/figures/q17-1.png",
+        "pngSha256": "2faaea286c8a3549891935e9ac8e9611f133ef477a654e519e6abc295dc3466f",
+        "personallyViewed": true
+      }
+    ],
+    "curriculumSurfaces": {
+      "stem": {
+        "status": "in-scope-student-input-proposed",
+        "basis": "아래 독립 학생 풀이의 실제 절차와 선택 공식2015 근거를 연결;저자/학교/분류로 승인하지 않음",
+        "standards": [
+          {
+            "code": "9수04-16",
+            "exactText": "피타고라스 정리를 이해하고 설명할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-05",
+            "exactText": "다각형의 성질을 이해한다.",
+            "physicalPage1based": 37,
+            "printedPage": 33,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-17",
+            "exactText": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          }
+        ]
+      },
+      "choices": {
+        "status": "independently-checked",
+        "basis": "실제 다섯 보기를 모두 확인;정답은 한 개. q22의②③은동치인오답으로별도보류",
+        "choiceCorrectness": [
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "semanticDuplicateChoices": []
+      },
+      "figuresAndTables": {
+        "status": "independently-inspected",
+        "basis": "C와D의 직각, D가AB내부, C의두각x/y가 각 ACD/DCB에 대응한다.",
+        "previewPath": "inspection/q17.png",
+        "previewSha256": "6091fd477e4e0414dcea7849bbd56f517e361328a637928d5b03a332ffee01c2",
+        "suppliedSvgBindings": [
+          {
+            "role": "stem",
+            "svgPath": "figures/q17-1.svg",
+            "sha256": "194ccb69a95ac6b76d2f8c25150f4258b51ec3ba670057f52bbe974633eaf55c",
+            "intendedWidthMm": 70
+          }
+        ]
+      },
+      "notation": {
+        "status": "in-scope-student-input-proposed",
+        "basis": "좌표/함수/실제삼각비/근호/도단위/반직선의점순서 등2015 중학교 표기;벡터/라디안/일반함수미적분 표기 없음"
+      },
+      "answer": {
+        "status": "independently-derived",
+        "basis": "새 독립 정답만 계산;저자답은노출전"
+      },
+      "studentSolution": {
+        "status": "independently-derived",
+        "basis": "아래완전한학생풀이,특정도형/특수각/그래프정의만사용;저자풀이미노출"
+      },
+      "prerequisites": {
+        "status": "in-scope-independent-method-proposed",
+        "basis": "기초이차함수그래프/일차식/근호/합동/직각삼각형/특수각/접선/밑변높이넓이",
+        "standards": [
+          {
+            "code": "9수04-16",
+            "exactText": "피타고라스 정리를 이해하고 설명할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-05",
+            "exactText": "다각형의 성질을 이해한다.",
+            "physicalPage1based": 37,
+            "printedPage": 33,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-17",
+            "exactText": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          }
+        ]
+      }
+    },
+    "curriculumEvidenceSha256": "8e48a48446bbcebb4cb9ae637a8dbb2fb2e8286574b24735a74ad4d2b2696a9d",
+    "curriculumGate": {
+      "grade": "중3",
+      "edition": "2015",
+      "independentStudentMethod": "in-scope-proposed",
+      "outOfGradeMethodRequired": false,
+      "unknownStudentMethodHold": false,
+      "authorAnswerSolutionReview": "not-yet-exposed",
+      "finalGradeApproval": false,
+      "complexityAndSourceEquivalenceReview": "separate-final-review"
+    },
+    "scopeLimits": "Raw independent solve only. Student math methods are distinguished from private symbolic/coordinate checks. No general trig identity,quadratic-inequality student algorithm,calculus,power-of-point,circle proportion,sine-area law or vector student method. Taxonomy/author/source/difficulty/rights/native/final reviews remain unexposed/pending."
+  }
+}

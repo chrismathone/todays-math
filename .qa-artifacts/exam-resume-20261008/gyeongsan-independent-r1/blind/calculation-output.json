@@ -1,0 +1,1301 @@
+{
+  "method": "fresh independent SymPy exact calculations on blind student inputs;visual observations only from supplied SVGs",
+  "independentCalculation": true,
+  "inputRawSha256": "1297372bbfb577f88c861ff27bf4d5d0b272f3737e408b68c38df793c53ff79a",
+  "results": [
+    {
+      "questionNumber": 1,
+      "target": [
+        0,
+        3
+      ],
+      "status": "independently-computed",
+      "evidence": {
+        "functionsFromStudent": [
+          "1 - 2*x**2",
+          "(x - 1)**2/2 - 2",
+          "-x**2/2 - 1",
+          "2*x**2 + 3"
+        ],
+        "axisAndAbsoluteLeadingCoefficient": [
+          [
+            "0",
+            "2"
+          ],
+          [
+            "1",
+            "1/2"
+          ],
+          [
+            "0",
+            "1/2"
+          ],
+          [
+            "0",
+            "2"
+          ]
+        ],
+        "actualChoicePairs": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "reason": "Vertical shifts and vertical reflection preserve width; axis requires same vertex x.",
+        "allFiveActualChoiceValues": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "choiceCorrectness": [
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "correctChoiceNumber": 3,
+        "semanticDuplicateChoices": [],
+        "oneCorrectChoice": true
+      },
+      "knownHolds": []
+    },
+    {
+      "questionNumber": 2,
+      "target": "-x**2/2 - 3",
+      "status": "independently-computed",
+      "evidence": {
+        "a": "-1/2",
+        "function": "-x**2/2 - 3",
+        "allFourConditionsForEachChoice": [
+          {
+            "axisY": true,
+            "interceptMinus3": true,
+            "point2minus5": false,
+            "entirelyBelowXAxis": false
+          },
+          {
+            "axisY": true,
+            "interceptMinus3": false,
+            "point2minus5": false,
+            "entirelyBelowXAxis": false
+          },
+          {
+            "axisY": false,
+            "interceptMinus3": false,
+            "point2minus5": false,
+            "entirelyBelowXAxis": true
+          },
+          {
+            "axisY": true,
+            "interceptMinus3": true,
+            "point2minus5": true,
+            "entirelyBelowXAxis": true
+          },
+          {
+            "axisY": true,
+            "interceptMinus3": true,
+            "point2minus5": false,
+            "entirelyBelowXAxis": true
+          }
+        ],
+        "maximum": -3,
+        "existence": "a nonzero;unique from4a−3=−5",
+        "allFiveActualChoiceValues": [
+          "x**2/2 - 3",
+          "3 - x**2/2",
+          "-(x - 1)**2/2 - 3",
+          "-x**2/2 - 3",
+          "-x**2 - 3"
+        ],
+        "choiceCorrectness": [
+          false,
+          false,
+          false,
+          true,
+          false
+        ],
+        "correctChoiceNumber": 4,
+        "semanticDuplicateChoices": [],
+        "oneCorrectChoice": true
+      },
+      "knownHolds": []
+    },
+    {
+      "questionNumber": 3,
+      "target": "-3",
+      "status": "independently-computed",
+      "evidence": {
+        "beforeLeadingCoefficient": "a+1",
+        "afterLeadingCoefficient": -2,
+        "uniqueA": "-3",
+        "completedOriginal": "18 - 2*(x - 3)**2",
+        "translation": [
+          -4,
+          -15
+        ],
+        "actualCurvaturesByChoice": [
+          "-3",
+          "-2",
+          "-1",
+          "0",
+          "2"
+        ],
+        "degenerateChoiceAminus1Excluded": true,
+        "method": "Translation preserves leading coefficient; completing square gives actual shift witness.",
+        "allFiveActualChoiceValues": [
+          "-4",
+          "-3",
+          "-2",
+          "-1",
+          "1"
+        ],
+        "choiceCorrectness": [
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "correctChoiceNumber": 2,
+        "semanticDuplicateChoices": [],
+        "oneCorrectChoice": true
+      },
+      "knownHolds": []
+    },
+    {
+      "questionNumber": 4,
+      "target": "1 - 2*(x - 4)**2",
+      "status": "independently-computed",
+      "evidence": {
+        "firstAxis": -2,
+        "rightShift": 6,
+        "requiredSecondAxis": 4,
+        "allChoiceAxes": [
+          "-8",
+          "-4",
+          "2",
+          "4",
+          "6"
+        ],
+        "allFiveActualChoiceValues": [
+          "2*(x + 8)**2",
+          "1 - (x + 4)**2",
+          "(x - 2)**2/2 - 3",
+          "1 - 2*(x - 4)**2",
+          "3*(x - 6)**2 - 2"
+        ],
+        "choiceCorrectness": [
+          false,
+          false,
+          false,
+          true,
+          false
+        ],
+        "correctChoiceNumber": 4,
+        "semanticDuplicateChoices": [],
+        "oneCorrectChoice": true
+      },
+      "knownHolds": []
+    },
+    {
+      "questionNumber": 5,
+      "target": "27",
+      "status": "independently-computed",
+      "evidence": {
+        "vertex": [
+          2,
+          0
+        ],
+        "coefficient": 3,
+        "interceptRecheck": "12",
+        "function": "3*(x - 2)**2",
+        "targetYAtMinus1": "27",
+        "uniqueZero": 2,
+        "method": "Single x-axis meeting is the vertex;4a=12;no discriminant formula.",
+        "allFiveActualChoiceValues": [
+          "3",
+          "9",
+          "12",
+          "27",
+          "36"
+        ],
+        "choiceCorrectness": [
+          false,
+          false,
+          false,
+          true,
+          false
+        ],
+        "correctChoiceNumber": 4,
+        "semanticDuplicateChoices": [],
+        "oneCorrectChoice": true
+      },
+      "knownHolds": []
+    },
+    {
+      "questionNumber": 6,
+      "target": [
+        "2",
+        "4"
+      ],
+      "status": "independently-computed",
+      "evidence": {
+        "t": 2,
+        "vertex": [
+          "2",
+          "4"
+        ],
+        "lineRecheck": 4,
+        "uniqueEquation": "5t=10",
+        "allChoiceVertexAndLineChecks": [
+          {
+            "vertexLocus": false,
+            "line": false
+          },
+          {
+            "vertexLocus": true,
+            "line": true
+          },
+          {
+            "vertexLocus": false,
+            "line": false
+          },
+          {
+            "vertexLocus": false,
+            "line": false
+          },
+          {
+            "vertexLocus": false,
+            "line": false
+          }
+        ],
+        "allFiveActualChoiceValues": [
+          [
+            "-2",
+            "4"
+          ],
+          [
+            "2",
+            "4"
+          ],
+          [
+            "2",
+            "-4"
+          ],
+          [
+            "4",
+            "2"
+          ],
+          [
+            "2",
+            "8"
+          ]
+        ],
+        "choiceCorrectness": [
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "correctChoiceNumber": 2,
+        "semanticDuplicateChoices": [],
+        "oneCorrectChoice": true
+      },
+      "knownHolds": []
+    },
+    {
+      "questionNumber": 7,
+      "target": [
+        -1,
+        -1
+      ],
+      "status": "independently-computed",
+      "evidence": {
+        "vertexCoordinates": "(a,−b)",
+        "requiredSigns": {
+          "a": "negative",
+          "b": "negative"
+        },
+        "visuallyObservedFiveSlopeInterceptSigns": [
+          [
+            1,
+            1
+          ],
+          [
+            -1,
+            1
+          ],
+          [
+            1,
+            -1
+          ],
+          [
+            -1,
+            -1
+          ],
+          [
+            -1,
+            0
+          ]
+        ],
+        "numericExistenceWitness": {
+          "a": -1,
+          "b": -1,
+          "vertex": [
+            -1,
+            1
+          ],
+          "line": "y=−x−1"
+        },
+        "allFiveChoiceFiguresPersonallyViewed": true,
+        "allFiveActualChoiceValues": [
+          [
+            1,
+            1
+          ],
+          [
+            -1,
+            1
+          ],
+          [
+            1,
+            -1
+          ],
+          [
+            -1,
+            -1
+          ],
+          [
+            -1,
+            0
+          ]
+        ],
+        "choiceCorrectness": [
+          false,
+          false,
+          false,
+          true,
+          false
+        ],
+        "correctChoiceNumber": 4,
+        "semanticDuplicateChoices": [],
+        "oneCorrectChoice": true
+      },
+      "knownHolds": []
+    },
+    {
+      "questionNumber": 8,
+      "target": [
+        "3",
+        "<",
+        "3"
+      ],
+      "status": "independently-computed",
+      "evidence": {
+        "vertex": [
+          3,
+          1
+        ],
+        "opens": "down",
+        "increasingBranch": "x<3",
+        "elementaryCheck": {
+          "f1": -7,
+          "f2": -1,
+          "f4": -1,
+          "f5": -7
+        },
+        "endpointConvention": "Open left branch in displayed options;vertex is the boundary. No differentiation.",
+        "allFiveActualChoiceValues": [
+          [
+            "-3",
+            "<",
+            "-3"
+          ],
+          [
+            "3",
+            ">",
+            "3"
+          ],
+          [
+            "-3",
+            ">",
+            "-3"
+          ],
+          [
+            "3",
+            "<",
+            "3"
+          ],
+          [
+            "1",
+            "<",
+            "1"
+          ]
+        ],
+        "choiceCorrectness": [
+          false,
+          false,
+          false,
+          true,
+          false
+        ],
+        "correctChoiceNumber": 4,
+        "semanticDuplicateChoices": [],
+        "oneCorrectChoice": true
+      },
+      "knownHolds": []
+    },
+    {
+      "questionNumber": 9,
+      "target": "-15",
+      "status": "independently-computed",
+      "evidence": {
+        "originalVertex": [
+          5,
+          -3
+        ],
+        "translation": [
+          -3,
+          4
+        ],
+        "translatedVertex": [
+          2,
+          1
+        ],
+        "mn": "-15",
+        "allFiveActualChoiceValues": [
+          "-20",
+          "-15",
+          "-5",
+          "15",
+          "20"
+        ],
+        "choiceCorrectness": [
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "correctChoiceNumber": 2,
+        "semanticDuplicateChoices": [],
+        "oneCorrectChoice": true
+      },
+      "knownHolds": []
+    },
+    {
+      "questionNumber": 10,
+      "target": [
+        "2",
+        "-8",
+        "5",
+        "-1"
+      ],
+      "status": "independently-computed",
+      "evidence": {
+        "vertex": [
+          2,
+          -3
+        ],
+        "givenPoint": [
+          0,
+          5
+        ],
+        "a": "2",
+        "expandedFunction": "2*x**2 - 8*x + 5",
+        "sumCoefficientsEqualsF1": "-1",
+        "positiveAndNegativePlotLandmarks": true,
+        "allFiveActualChoiceValues": [
+          [
+            "2",
+            "8",
+            "5",
+            "15"
+          ],
+          [
+            "2",
+            "-8",
+            "5",
+            "-1"
+          ],
+          [
+            "-2",
+            "8",
+            "5",
+            "11"
+          ],
+          [
+            "2",
+            "-8",
+            "-5",
+            "-11"
+          ],
+          [
+            "2",
+            "-4",
+            "5",
+            "3"
+          ]
+        ],
+        "choiceCorrectness": [
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "correctChoiceNumber": 2,
+        "semanticDuplicateChoices": [],
+        "oneCorrectChoice": true
+      },
+      "knownHolds": []
+    },
+    {
+      "questionNumber": 11,
+      "target": [
+        "ge",
+        "9/4"
+      ],
+      "status": "independently-computed",
+      "evidence": {
+        "completedForm": "k(x+2)^2−9",
+        "kNegative": "All y<=−9;cannot enterI orII",
+        "kPositiveVertex": [
+          -2,
+          -9
+        ],
+        "intercept": "4k−9",
+        "noIVCondition": "4k−9>=0 because right branch increases for x>0",
+        "completeKRange": "k>=9/4",
+        "boundaryK": "9/4",
+        "boundaryIncluded": true,
+        "axesAreNotQuadrants": true,
+        "existenceAtBoundary": {
+          "I": [
+            1,
+            "45/4"
+          ],
+          "II": [
+            -5,
+            "45/4"
+          ],
+          "III": [
+            -2,
+            -9
+          ]
+        },
+        "belowBoundaryCounterexample": {
+          "k": 1,
+          "IVPoint": [
+            "1/2",
+            "-11/4"
+          ]
+        },
+        "method": "Opening,vertex,intercept,right branch;simple linear inequality in k. No general quadratic-inequality or calculus student method.",
+        "allFiveActualChoiceValues": [
+          [
+            "lt0",
+            0
+          ],
+          [
+            "betweenOpen",
+            "9/4"
+          ],
+          [
+            "betweenClosed",
+            "9/4"
+          ],
+          [
+            "gt",
+            "9/4"
+          ],
+          [
+            "ge",
+            "9/4"
+          ]
+        ],
+        "choiceCorrectness": [
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "correctChoiceNumber": 5,
+        "semanticDuplicateChoices": [],
+        "oneCorrectChoice": true
+      },
+      "knownHolds": []
+    },
+    {
+      "questionNumber": 12,
+      "target": [
+        "1",
+        "-3",
+        "3"
+      ],
+      "status": "independently-computed",
+      "evidence": {
+        "factorization": "−(x+1)(x−3)",
+        "A": [
+          0,
+          3
+        ],
+        "B": [
+          -1,
+          0
+        ],
+        "C": [
+          3,
+          0
+        ],
+        "D": [
+          "1",
+          0
+        ],
+        "areaABC": 6,
+        "areaABD": 3,
+        "areaADC": 3,
+        "DInsideBC": true,
+        "line": "y=−3x+3",
+        "method": "Equal height means equal bases;median ofBC;linear line through A/D.",
+        "allFiveActualChoiceValues": [
+          [
+            "1",
+            "3",
+            "3"
+          ],
+          [
+            "1",
+            "-3",
+            "3"
+          ],
+          [
+            "2",
+            "-3",
+            "3"
+          ],
+          [
+            "1",
+            "-3",
+            "-3"
+          ],
+          [
+            "0",
+            "-3",
+            "3"
+          ]
+        ],
+        "choiceCorrectness": [
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "correctChoiceNumber": 2,
+        "semanticDuplicateChoices": [],
+        "oneCorrectChoice": true
+      },
+      "knownHolds": []
+    },
+    {
+      "questionNumber": 13,
+      "target": "10",
+      "status": "independently-computed",
+      "evidence": {
+        "adjacentAC": "10",
+        "hypotenuseAB": 26,
+        "otherLegBC": "24",
+        "cosARecheck": "5/13",
+        "positiveNondegenerateTriangle": true,
+        "method": "cosA=AC/AB only.",
+        "allFiveActualChoiceValues": [
+          "5",
+          "10",
+          "12",
+          "13",
+          "24"
+        ],
+        "choiceCorrectness": [
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "correctChoiceNumber": 2,
+        "semanticDuplicateChoices": [],
+        "oneCorrectChoice": true
+      },
+      "knownHolds": []
+    },
+    {
+      "questionNumber": 14,
+      "target": [
+        "3*sqrt(34)/34",
+        "3/5"
+      ],
+      "status": "independently-computed",
+      "evidence": {
+        "AB": 3,
+        "AC": 5,
+        "BC": "sqrt(34)",
+        "cosB": "3*sqrt(34)/34",
+        "tanC": "3/5",
+        "method": "Pythagoras;actual adjacent/opposite sides at B/C;no trig identity.",
+        "allFiveActualChoiceValues": [
+          [
+            "5*sqrt(34)/34",
+            "3/5"
+          ],
+          [
+            "3*sqrt(34)/34",
+            "3/5"
+          ],
+          [
+            "3*sqrt(34)/34",
+            "5/3"
+          ],
+          [
+            "3/5",
+            "3*sqrt(34)/34"
+          ],
+          [
+            "sqrt(34)/3",
+            "3/5"
+          ]
+        ],
+        "choiceCorrectness": [
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "correctChoiceNumber": 2,
+        "semanticDuplicateChoices": [],
+        "oneCorrectChoice": true
+      },
+      "knownHolds": []
+    },
+    {
+      "questionNumber": 16,
+      "target": "5",
+      "status": "independently-computed",
+      "evidence": {
+        "sin60": "sqrt(3)/2",
+        "tan45": 1,
+        "cos30": "sqrt(3)/2",
+        "sin90": 1,
+        "nonzeroDivisor": "sqrt(3)/2",
+        "coefficientOfA": 1,
+        "equation": "a−1=4",
+        "uniqueA": "5",
+        "method": "Finite given special-angle values only.",
+        "allFiveActualChoiceValues": [
+          "2",
+          "3",
+          "4",
+          "5",
+          "6"
+        ],
+        "choiceCorrectness": [
+          false,
+          false,
+          false,
+          true,
+          false
+        ],
+        "correctChoiceNumber": 4,
+        "semanticDuplicateChoices": [],
+        "oneCorrectChoice": true
+      },
+      "knownHolds": []
+    },
+    {
+      "questionNumber": 17,
+      "target": [
+        "8/17",
+        "8/17"
+      ],
+      "status": "independently-computed",
+      "evidence": {
+        "AC": 15,
+        "BC": 8,
+        "AB": "17",
+        "angleCorrespondence": {
+          "x": "angleB by sums in ACD/ABC",
+          "y": "angleA by sums in BCD/ABC"
+        },
+        "actualCosB": "8/17",
+        "actualSinA": "8/17",
+        "positiveAltitude": "120/17",
+        "method": "Equal actual angles,then side-ratio definitions;no general complementary-trig identity.",
+        "allFiveActualChoiceValues": [
+          [
+            "15/17",
+            "8/17"
+          ],
+          [
+            "8/17",
+            "15/17"
+          ],
+          [
+            "8/17",
+            "8/17"
+          ],
+          [
+            "15/8",
+            "8/17"
+          ],
+          [
+            "8/15",
+            "8/15"
+          ]
+        ],
+        "choiceCorrectness": [
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "correctChoiceNumber": 3,
+        "semanticDuplicateChoices": [],
+        "oneCorrectChoice": true
+      },
+      "knownHolds": []
+    },
+    {
+      "questionNumber": 18,
+      "target": "2",
+      "status": "independently-computed",
+      "evidence": {
+        "triangleAngles": [
+          "40",
+          "60",
+          "80"
+        ],
+        "secondLargestA": 60,
+        "cos60": "1/2",
+        "sin60": "sqrt(3)/2",
+        "tan60": "sqrt(3)",
+        "leftAtU2": "7*sqrt(3)/3",
+        "nonzeroSin": true,
+        "method": "Known60-degree scalars substituted individually;no generic ratio identity.",
+        "allFiveActualChoiceValues": [
+          "1/3",
+          "1",
+          "2",
+          "3",
+          "7/3"
+        ],
+        "choiceCorrectness": [
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "correctChoiceNumber": 3,
+        "semanticDuplicateChoices": [],
+        "oneCorrectChoice": true
+      },
+      "knownHolds": []
+    },
+    {
+      "questionNumber": 19,
+      "target": "10",
+      "status": "independently-computed",
+      "evidence": {
+        "DFequalsBE": "5*sqrt(6)",
+        "BF": "5*sqrt(2)",
+        "FC": "5*sqrt(2)",
+        "AB": "10*sqrt(3)",
+        "BC": "10",
+        "CD": "5*sqrt(2) + 5*sqrt(6)",
+        "ADpositive": "-5*sqrt(2) + 5*sqrt(6)",
+        "tan30Recheck": "sqrt(3)/3",
+        "coordinateWitnessForCodeOnly": {
+          "D": [
+            0,
+            0
+          ],
+          "E": [
+            "5*sqrt(2)",
+            0
+          ],
+          "B": [
+            "5*sqrt(2)",
+            "5*sqrt(6)"
+          ],
+          "F": [
+            0,
+            "5*sqrt(6)"
+          ],
+          "C": [
+            0,
+            "5*sqrt(2) + 5*sqrt(6)"
+          ],
+          "A": [
+            "-5*sqrt(6) + 5*sqrt(2)",
+            0
+          ]
+        },
+        "method": "AE=BE→45-degree AEB;right angleABC→45-degree BFC;CD=BE+FC;tan30 in ABC. No tan75 or angle-addition formula.",
+        "allFiveActualChoiceValues": [
+          "5",
+          "5*sqrt(2)",
+          "10",
+          "10*sqrt(3)",
+          "15"
+        ],
+        "choiceCorrectness": [
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "correctChoiceNumber": 3,
+        "semanticDuplicateChoices": [],
+        "oneCorrectChoice": true
+      },
+      "knownHolds": []
+    },
+    {
+      "questionNumber": 20,
+      "target": "4",
+      "status": "independently-computed",
+      "evidence": {
+        "radius": "4",
+        "tangentLengthOAequalsOB": "4*sqrt(3)",
+        "RHSRightTriangles": "OAS andOBS shareOS and equal radii;OA=OB;OSbisects60deg",
+        "angleAOS": 30,
+        "triangleOAB": "Equilateral:OA=OB and angleAOB60",
+        "yInterceptY": 12,
+        "OAFromRightTriangleYOA": "4*sqrt(3)",
+        "radiusFromOAandTan30": "4",
+        "chordSlope": "-sqrt(3)",
+        "chordIntercept": "12",
+        "allChoiceIntercepts": [
+          "6",
+          "9",
+          "12",
+          "12*sqrt(3)",
+          "18"
+        ],
+        "coordinateWitnessForCodeOnly": {
+          "O": [
+            0,
+            0
+          ],
+          "S": [
+            "4*sqrt(3)",
+            "4"
+          ],
+          "A": [
+            "4*sqrt(3)",
+            0
+          ],
+          "B": [
+            "2*sqrt(3)",
+            "6"
+          ],
+          "Y": [
+            0,
+            12
+          ]
+        },
+        "otherDistanceBranch": "r−sqrt3*h=+2r would h=−r/sqrt3<0,excluded by center first quadrant",
+        "method": "Radii perpendicular to tangents,RHS congruence,60/30 right triangles,axis intercept;no power-of-point/circle proportion/point-line distance student formula.",
+        "allFiveActualChoiceValues": [
+          "2",
+          "3",
+          "4",
+          "4*sqrt(3)",
+          "6"
+        ],
+        "choiceCorrectness": [
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "correctChoiceNumber": 3,
+        "semanticDuplicateChoices": [],
+        "oneCorrectChoice": true
+      },
+      "knownHolds": []
+    },
+    {
+      "questionNumber": 21,
+      "target": "8391/10000",
+      "status": "independently-computed",
+      "evidence": {
+        "recordedSQ": "1607/2500",
+        "recordedScalarSum": "14819/10000",
+        "recordedUT": "8391/10000",
+        "privateNumericRecordValidationNotStudentMethod": {
+          "sin40At40Digits": "0.6427876096865393263226434099072634329076",
+          "tan40At40Digits": "0.8390996311772800117631272981231813646874",
+          "separateRound4": [
+            "0.6428",
+            "0.8391"
+          ],
+          "sumOfRecordedValues": "1.4819"
+        },
+        "roundingContract": "Sum of separately rounded values,not rounding an inferred unknown expression",
+        "method": "OQ=OU=1;actual right-triangle definitions identify recordedSQ andUT;subtract two recorded numbers.",
+        "allFiveActualChoiceValues": [
+          "1607/2500",
+          "383/500",
+          "8391/10000",
+          "1607/1250",
+          "14819/10000"
+        ],
+        "choiceCorrectness": [
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "correctChoiceNumber": 3,
+        "semanticDuplicateChoices": [],
+        "oneCorrectChoice": true
+      },
+      "knownHolds": []
+    },
+    {
+      "questionNumber": 22,
+      "target": "v/2",
+      "status": "independently-computed",
+      "evidence": {
+        "angleTransfer": "UT parallel SQ andT,Q,O collinear;angleOQS=beta",
+        "correctSideRatio": "cos beta=SQ/OQ=SQ/2 in actual right triangleOSQ",
+        "counterexampleToEachWrongChoice": {
+          "alpha": 30,
+          "OS": "sqrt(3)",
+          "SQ": 1,
+          "UT": "2*sqrt(3)/3",
+          "allFiveDisplayedValues": [
+            "sqrt(3)/2",
+            "sqrt(3)/3",
+            "sqrt(3)/3",
+            "1/2",
+            "sqrt(3)"
+          ],
+          "cosBeta": "1/2"
+        },
+        "allDisplayExpressions": [
+          "h/2",
+          "t/2",
+          "v/h",
+          "v/2",
+          "h/v"
+        ],
+        "choice2EqualsChoice3BySimilarity": true,
+        "method": "Transfer the actual angle through parallel segments;cos definition. No general cos(beta)=sin(alpha) identity.",
+        "allFiveActualChoiceValues": [
+          "h/2",
+          "t/2",
+          "v/h",
+          "v/2",
+          "h/v"
+        ],
+        "choiceCorrectness": [
+          false,
+          false,
+          false,
+          true,
+          false
+        ],
+        "correctChoiceNumber": 4,
+        "semanticDuplicateChoices": [
+          [
+            2,
+            3
+          ]
+        ],
+        "oneCorrectChoice": true
+      },
+      "knownHolds": [
+        {
+          "kind": "equivalent-incorrect-distractors",
+          "choices": [
+            2,
+            3
+          ],
+          "reason": "Parallel right triangles give UT/OU=SQ/OS;OU=2,soUT/2=SQ/OS for every allowed configuration. Unique correct expression remainsSQ/2."
+        }
+      ]
+    },
+    {
+      "questionNumber": 23,
+      "target": "90",
+      "status": "independently-computed",
+      "evidence": {
+        "GEequalsPR": "90",
+        "PGequalsRE": "90",
+        "RQ": "90*sqrt(3)",
+        "QE": "90 + 90*sqrt(3)",
+        "heightSum": "90*sqrt(3) + 180",
+        "eyeHeightExtra": 0,
+        "positiveHeights": true,
+        "method": "tan45 andtan60 in two actual right triangles;same horizontal ground;one linear equation.",
+        "allFiveActualChoiceValues": [
+          "45",
+          "90",
+          "90*sqrt(3)",
+          "45 + 45*sqrt(3)",
+          "90*sqrt(3) + 180"
+        ],
+        "choiceCorrectness": [
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "correctChoiceNumber": 2,
+        "semanticDuplicateChoices": [],
+        "oneCorrectChoice": true
+      },
+      "knownHolds": []
+    },
+    {
+      "questionNumber": 24,
+      "target": "10",
+      "status": "independently-computed",
+      "evidence": {
+        "CD": "10",
+        "BC": "10*sqrt(3)",
+        "EH": "15 - 5*sqrt(3)",
+        "BH": "sqrt(3)*(15 - 5*sqrt(3))",
+        "CH": "15 - 5*sqrt(3)",
+        "HInsideBC": true,
+        "EOnBothSegments": {
+          "AEpositive": "-15*sqrt(2) + 10*sqrt(6)",
+          "ECpositive": "sqrt(2)*(15 - 5*sqrt(3))",
+          "BEpositive": "30 - 10*sqrt(3)",
+          "EDpositive": "-10 + 10*sqrt(3)"
+        },
+        "areaInK": "3*k**2*(-1 + sqrt(3))/4",
+        "areaAt10": "-75 + 75*sqrt(3)",
+        "positiveKUnique": true,
+        "method": "C45→CH=EH;DBC angleB30→BH=sqrt3 EH;BC=sqrt3 CD;triangle base-height area and positive square root. No sine area formula.",
+        "allFiveActualChoiceValues": [
+          "5",
+          "10",
+          "15",
+          "20",
+          "25"
+        ],
+        "choiceCorrectness": [
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "correctChoiceNumber": 2,
+        "semanticDuplicateChoices": [],
+        "oneCorrectChoice": true
+      },
+      "knownHolds": []
+    },
+    {
+      "questionNumber": 25,
+      "target": [
+        "16*sqrt(3)/3",
+        "64*sqrt(3)/3"
+      ],
+      "status": "independently-computed",
+      "evidence": {
+        "AF": "8",
+        "AB": "16",
+        "BF": "8*sqrt(3)",
+        "angleABWithOriginalRightTopRay": 30,
+        "foldEqualAngleCAB": 30,
+        "angleCAF": 30,
+        "FC": "8*sqrt(3)/3",
+        "BC": "16*sqrt(3)/3",
+        "areaABC": "64*sqrt(3)/3",
+        "CLeftOfB": true,
+        "nondegeneratePositiveArea": true,
+        "method": "Pythagoras/special30 fromAF/AB;fold preserves angle withcrease;tan30 inAFC;BC=BF−FC;base-height triangle area.",
+        "allFiveActualChoiceValues": [
+          [
+            "8*sqrt(3)/3",
+            "64*sqrt(3)/3"
+          ],
+          [
+            "16*sqrt(3)/3",
+            "32*sqrt(3)/3"
+          ],
+          [
+            "16*sqrt(3)/3",
+            "64*sqrt(3)/3"
+          ],
+          [
+            "8*sqrt(3)",
+            "64*sqrt(3)"
+          ],
+          [
+            "16*sqrt(3)/3",
+            "128*sqrt(3)/3"
+          ]
+        ],
+        "choiceCorrectness": [
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "correctChoiceNumber": 3,
+        "semanticDuplicateChoices": [],
+        "oneCorrectChoice": true
+      },
+      "knownHolds": []
+    }
+  ]
+}

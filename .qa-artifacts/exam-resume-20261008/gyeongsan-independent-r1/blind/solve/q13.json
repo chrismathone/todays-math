@@ -1,0 +1,169 @@
+{
+  "studentDigest": "fbf32a3822dc0ab31f61459df1b1aaf45752807988e4086d0c9179780cdeb123",
+  "solverId": "orca-codex-exam-twin-author-geometry-20261008",
+  "status": "solved",
+  "answer": "②",
+  "solution": "직각이C이므로 AB는 빗변, 각A의 이웃변은AC이다. cosA=AC/AB이므로5/13=x/26이다. 따라서x=26×5/13=10cm이다. 나머지 직각변은√(26²−10²)=24cm로 양수이므로 실제 직각삼각형도 존재한다. 정답은 ②이다.",
+  "evidence": {
+    "method": "blind-student-only-independent-solve",
+    "questionNumber": 13,
+    "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q13",
+    "createdBeforeAuthorAnswerExposureAtUtc": "2026-10-08T12:48:10.354Z",
+    "authorAnswersSolutionsOpened": false,
+    "originalExamsOpened": false,
+    "authorCandidateChecksReportsOpened": false,
+    "inputRawSha256": "1297372bbfb577f88c861ff27bf4d5d0b272f3737e408b68c38df793c53ff79a",
+    "inputQuestionDigest": "fbf32a3822dc0ab31f61459df1b1aaf45752807988e4086d0c9179780cdeb123",
+    "blindManifestRawSha256": "45c0cdc08485593a79a1d274acf79b8837bf9b4f1b989bc2a891817d55185849",
+    "opaquePackageDigestProvided": "e637863aa50b870c4dee7a15b9fbee080b992308e173c9b88bb3fc1546b92c0a",
+    "calculationCodePath": "calculation.py",
+    "calculationCodeSha256": "140182a95c30c4d42b4e9cdd6047ee9dadd24cf3a6790e03e8227274293a0050",
+    "calculationOutputPath": "calculation-output.json",
+    "calculationOutputSha256": "bc86a91bf98947442cf96b57aa001c9aca082a5689560c18d93f25e21755adfe",
+    "exactCalculation": {
+      "adjacentAC": "10",
+      "hypotenuseAB": 26,
+      "otherLegBC": "24",
+      "cosARecheck": "5/13",
+      "positiveNondegenerateTriangle": true,
+      "method": "cosA=AC/AB only.",
+      "allFiveActualChoiceValues": [
+        "5",
+        "10",
+        "12",
+        "13",
+        "24"
+      ],
+      "choiceCorrectness": [
+        false,
+        true,
+        false,
+        false,
+        false
+      ],
+      "correctChoiceNumber": 2,
+      "semanticDuplicateChoices": [],
+      "oneCorrectChoice": true
+    },
+    "knownHolds": [],
+    "mathematicalAnswerUnique": true,
+    "choicesReadyForFinalApproval": true,
+    "studentPreview": {
+      "path": "inspection/q13.png",
+      "sha256": "266b3cd3d32b0a629213d2ac0d13c2be4bd19e286d51f3421e8084166209a700",
+      "columnWidthMm": 70,
+      "personallyViewed": true
+    },
+    "suppliedFigures": [
+      {
+        "role": "stem",
+        "svgPath": "figures/q13-1.svg",
+        "sha256": "eda63438dcf35eadbeb2af186900f8b8e0b21f83b09206240c57cc190151b34e",
+        "intendedWidthMm": 70
+      }
+    ],
+    "figureInspection": [
+      {
+        "role": "stem",
+        "svgPath": "figures/q13-1.svg",
+        "svgSha256": "eda63438dcf35eadbeb2af186900f8b8e0b21f83b09206240c57cc190151b34e",
+        "widthMm": 70,
+        "png": "inspection/figures/q13-1.png",
+        "pngSha256": "234b371575f74d016e2dad73449b918e0fe457fdb966476f9694d230166eef79",
+        "personallyViewed": true
+      }
+    ],
+    "curriculumSurfaces": {
+      "stem": {
+        "status": "in-scope-student-input-proposed",
+        "basis": "아래 독립 학생 풀이의 실제 절차와 선택 공식2015 근거를 연결;저자/학교/분류로 승인하지 않음",
+        "standards": [
+          {
+            "code": "9수04-17",
+            "exactText": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-16",
+            "exactText": "피타고라스 정리를 이해하고 설명할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          }
+        ]
+      },
+      "choices": {
+        "status": "independently-checked",
+        "basis": "실제 다섯 보기를 모두 확인;정답은 한 개. q22의②③은동치인오답으로별도보류",
+        "choiceCorrectness": [
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "semanticDuplicateChoices": []
+      },
+      "figuresAndTables": {
+        "status": "independently-inspected",
+        "basis": "C 직각,AB26cm와AC의x 치수 라벨 및 세 꼭짓점을 확인했다.",
+        "previewPath": "inspection/q13.png",
+        "previewSha256": "266b3cd3d32b0a629213d2ac0d13c2be4bd19e286d51f3421e8084166209a700",
+        "suppliedSvgBindings": [
+          {
+            "role": "stem",
+            "svgPath": "figures/q13-1.svg",
+            "sha256": "eda63438dcf35eadbeb2af186900f8b8e0b21f83b09206240c57cc190151b34e",
+            "intendedWidthMm": 70
+          }
+        ]
+      },
+      "notation": {
+        "status": "in-scope-student-input-proposed",
+        "basis": "좌표/함수/실제삼각비/근호/도단위/반직선의점순서 등2015 중학교 표기;벡터/라디안/일반함수미적분 표기 없음"
+      },
+      "answer": {
+        "status": "independently-derived",
+        "basis": "새 독립 정답만 계산;저자답은노출전"
+      },
+      "studentSolution": {
+        "status": "independently-derived",
+        "basis": "아래완전한학생풀이,특정도형/특수각/그래프정의만사용;저자풀이미노출"
+      },
+      "prerequisites": {
+        "status": "in-scope-independent-method-proposed",
+        "basis": "기초이차함수그래프/일차식/근호/합동/직각삼각형/특수각/접선/밑변높이넓이",
+        "standards": [
+          {
+            "code": "9수04-17",
+            "exactText": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-16",
+            "exactText": "피타고라스 정리를 이해하고 설명할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          }
+        ]
+      }
+    },
+    "curriculumEvidenceSha256": "8e48a48446bbcebb4cb9ae637a8dbb2fb2e8286574b24735a74ad4d2b2696a9d",
+    "curriculumGate": {
+      "grade": "중3",
+      "edition": "2015",
+      "independentStudentMethod": "in-scope-proposed",
+      "outOfGradeMethodRequired": false,
+      "unknownStudentMethodHold": false,
+      "authorAnswerSolutionReview": "not-yet-exposed",
+      "finalGradeApproval": false,
+      "complexityAndSourceEquivalenceReview": "separate-final-review"
+    },
+    "scopeLimits": "Raw independent solve only. Student math methods are distinguished from private symbolic/coordinate checks. No general trig identity,quadratic-inequality student algorithm,calculus,power-of-point,circle proportion,sine-area law or vector student method. Taxonomy/author/source/difficulty/rights/native/final reviews remain unexposed/pending."
+  }
+}

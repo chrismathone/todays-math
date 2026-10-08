@@ -1,0 +1,148 @@
+{
+  "studentDigest": "86c79ff10b05424e5c5e1d98975a591fecb888715e8bfdfdde1602b12429c311",
+  "solverId": "orca-codex-exam-twin-author-geometry-20261008",
+  "status": "solved",
+  "answer": "④",
+  "solution": "각각의 알려진 특수각 값을 대입한다. sin60°=√3/2, tan45°=1, cos30°=√3/2, sin90°=1이다. 따라서 기록한 식은a×(√3/2)×1÷(√3/2)−1=a−1이다. 이것이4이므로a=5, 정답은 ④이다. 나눗셈에 쓰인cos30°는0이 아니다.",
+  "evidence": {
+    "method": "blind-student-only-independent-solve",
+    "questionNumber": 16,
+    "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q16",
+    "createdBeforeAuthorAnswerExposureAtUtc": "2026-10-08T12:48:10.354Z",
+    "authorAnswersSolutionsOpened": false,
+    "originalExamsOpened": false,
+    "authorCandidateChecksReportsOpened": false,
+    "inputRawSha256": "1297372bbfb577f88c861ff27bf4d5d0b272f3737e408b68c38df793c53ff79a",
+    "inputQuestionDigest": "86c79ff10b05424e5c5e1d98975a591fecb888715e8bfdfdde1602b12429c311",
+    "blindManifestRawSha256": "45c0cdc08485593a79a1d274acf79b8837bf9b4f1b989bc2a891817d55185849",
+    "opaquePackageDigestProvided": "e637863aa50b870c4dee7a15b9fbee080b992308e173c9b88bb3fc1546b92c0a",
+    "calculationCodePath": "calculation.py",
+    "calculationCodeSha256": "140182a95c30c4d42b4e9cdd6047ee9dadd24cf3a6790e03e8227274293a0050",
+    "calculationOutputPath": "calculation-output.json",
+    "calculationOutputSha256": "bc86a91bf98947442cf96b57aa001c9aca082a5689560c18d93f25e21755adfe",
+    "exactCalculation": {
+      "sin60": "sqrt(3)/2",
+      "tan45": 1,
+      "cos30": "sqrt(3)/2",
+      "sin90": 1,
+      "nonzeroDivisor": "sqrt(3)/2",
+      "coefficientOfA": 1,
+      "equation": "a−1=4",
+      "uniqueA": "5",
+      "method": "Finite given special-angle values only.",
+      "allFiveActualChoiceValues": [
+        "2",
+        "3",
+        "4",
+        "5",
+        "6"
+      ],
+      "choiceCorrectness": [
+        false,
+        false,
+        false,
+        true,
+        false
+      ],
+      "correctChoiceNumber": 4,
+      "semanticDuplicateChoices": [],
+      "oneCorrectChoice": true
+    },
+    "knownHolds": [],
+    "mathematicalAnswerUnique": true,
+    "choicesReadyForFinalApproval": true,
+    "studentPreview": {
+      "path": "inspection/q16.png",
+      "sha256": "549a30bf08666f022576d2f910018e125868080e64bd2ce13de0c1245945ce4e",
+      "columnWidthMm": 70,
+      "personallyViewed": true
+    },
+    "suppliedFigures": [],
+    "figureInspection": [],
+    "curriculumSurfaces": {
+      "stem": {
+        "status": "in-scope-student-input-proposed",
+        "basis": "아래 독립 학생 풀이의 실제 절차와 선택 공식2015 근거를 연결;저자/학교/분류로 승인하지 않음",
+        "standards": [
+          {
+            "code": "9수04-17",
+            "exactText": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수02-05",
+            "exactText": "일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+            "physicalPage1based": 34,
+            "printedPage": 30,
+            "source": "2015-74 math booklet8 official PDF"
+          }
+        ]
+      },
+      "choices": {
+        "status": "independently-checked",
+        "basis": "실제 다섯 보기를 모두 확인;정답은 한 개. q22의②③은동치인오답으로별도보류",
+        "choiceCorrectness": [
+          false,
+          false,
+          false,
+          true,
+          false
+        ],
+        "semanticDuplicateChoices": []
+      },
+      "figuresAndTables": {
+        "status": "independently-inspected",
+        "basis": "제공 본문/표/실제 선택지 전체를70mm 학생 전용 화면에서 확인",
+        "previewPath": "inspection/q16.png",
+        "previewSha256": "549a30bf08666f022576d2f910018e125868080e64bd2ce13de0c1245945ce4e",
+        "suppliedSvgBindings": []
+      },
+      "notation": {
+        "status": "in-scope-student-input-proposed",
+        "basis": "좌표/함수/실제삼각비/근호/도단위/반직선의점순서 등2015 중학교 표기;벡터/라디안/일반함수미적분 표기 없음"
+      },
+      "answer": {
+        "status": "independently-derived",
+        "basis": "새 독립 정답만 계산;저자답은노출전"
+      },
+      "studentSolution": {
+        "status": "independently-derived",
+        "basis": "아래완전한학생풀이,특정도형/특수각/그래프정의만사용;저자풀이미노출"
+      },
+      "prerequisites": {
+        "status": "in-scope-independent-method-proposed",
+        "basis": "기초이차함수그래프/일차식/근호/합동/직각삼각형/특수각/접선/밑변높이넓이",
+        "standards": [
+          {
+            "code": "9수04-17",
+            "exactText": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수02-05",
+            "exactText": "일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+            "physicalPage1based": 34,
+            "printedPage": 30,
+            "source": "2015-74 math booklet8 official PDF"
+          }
+        ]
+      }
+    },
+    "curriculumEvidenceSha256": "8e48a48446bbcebb4cb9ae637a8dbb2fb2e8286574b24735a74ad4d2b2696a9d",
+    "curriculumGate": {
+      "grade": "중3",
+      "edition": "2015",
+      "independentStudentMethod": "in-scope-proposed",
+      "outOfGradeMethodRequired": false,
+      "unknownStudentMethodHold": false,
+      "authorAnswerSolutionReview": "not-yet-exposed",
+      "finalGradeApproval": false,
+      "complexityAndSourceEquivalenceReview": "separate-final-review"
+    },
+    "scopeLimits": "Raw independent solve only. Student math methods are distinguished from private symbolic/coordinate checks. No general trig identity,quadratic-inequality student algorithm,calculus,power-of-point,circle proportion,sine-area law or vector student method. Taxonomy/author/source/difficulty/rights/native/final reviews remain unexposed/pending."
+  }
+}

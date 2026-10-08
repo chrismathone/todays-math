@@ -1,0 +1,233 @@
+{
+  "schemaVersion": 1,
+  "solverId": "orca-codex-exam-twin-author-geometry-20261008",
+  "method": "blind-independent-solve-before-answer-exposure",
+  "preExposureAtUtc": "2026-10-08T12:48:10.354Z",
+  "inputRawSha256": "1297372bbfb577f88c861ff27bf4d5d0b272f3737e408b68c38df793c53ff79a",
+  "blindManifestRawSha256": "45c0cdc08485593a79a1d274acf79b8837bf9b4f1b989bc2a891817d55185849",
+  "opaquePackageDigestProvided": "e637863aa50b870c4dee7a15b9fbee080b992308e173c9b88bb3fc1546b92c0a",
+  "solved": 24,
+  "pending": 0,
+  "knownChoiceHolds": [
+    22
+  ],
+  "finalReviewerApprovals": 0,
+  "solves": [
+    {
+      "questionNumber": 1,
+      "studentDigest": "a04555d3dbf7cb76374375ebfa08cd9574510b1460105353544b8f07c6cca413",
+      "path": "solve/q01.json",
+      "solveDigest": "39cd7c25553be3cb0cf616a71d22e9f9c68fd508908f56d8cd3ae951ca669cca",
+      "rawSolveSha256": "c7f3170146ac1570bdc42e7e122a2b4b53e1b3ddb2e78b2336441fd26878b727",
+      "status": "solved",
+      "knownHoldCount": 0
+    },
+    {
+      "questionNumber": 2,
+      "studentDigest": "d148cbceda10cd301f80ade45cca99c5cdcb483bcb6f95e897b91609cc10d56b",
+      "path": "solve/q02.json",
+      "solveDigest": "50b8f8bf39db3a6d0399530879ee3602b56a807516b2cb552a3bd098af9ad4cb",
+      "rawSolveSha256": "198dbb8e7534384c04a550c7503a699abd1b198b1caccc4b7eb8e3bbb33cb7d5",
+      "status": "solved",
+      "knownHoldCount": 0
+    },
+    {
+      "questionNumber": 3,
+      "studentDigest": "0d1d12430c6d2ef9cb0f77651a4c895cda55790eb1ddf38268eae4dad57eb3e4",
+      "path": "solve/q03.json",
+      "solveDigest": "27b7a83aa577e6cba241ac852fd02ae76bc842f8377a4be3c1c50fc6be5f2395",
+      "rawSolveSha256": "36438dde702e38e12558fd2188b5918e2dcae37845f6c6c086bd8ea78a9dddb0",
+      "status": "solved",
+      "knownHoldCount": 0
+    },
+    {
+      "questionNumber": 4,
+      "studentDigest": "0efaaf342a78cd52c656108ee5eb7e2bf3c11475ee67f738bd7059f7779d72b1",
+      "path": "solve/q04.json",
+      "solveDigest": "2915f4542bf66b2cfde000c6aa68f73694f66a2c9448c86ddb67ba8206a974f3",
+      "rawSolveSha256": "c65f3e6708b2b3c5a5be5df6e560b5d0c96e6856ec8309c65a44b7559e6a7cb7",
+      "status": "solved",
+      "knownHoldCount": 0
+    },
+    {
+      "questionNumber": 5,
+      "studentDigest": "7c7cbe4912743bd1dc87fb4e231162c91352fbc73fb9fe3254e246cfbb248b23",
+      "path": "solve/q05.json",
+      "solveDigest": "cffb7f7c944c261cfe95dde64ded2989d5b9a36a0ad9f8b8b9bbf861dfbc01f0",
+      "rawSolveSha256": "b3b98efe420768d5d8b49bb2585c2dd666f3a3b4b736a58c88cc234596fd87ae",
+      "status": "solved",
+      "knownHoldCount": 0
+    },
+    {
+      "questionNumber": 6,
+      "studentDigest": "ce3ffcbd3bc0e556dd9c4979dd01a3d3666d7bb4c664ab9811708f16c2ff3242",
+      "path": "solve/q06.json",
+      "solveDigest": "e7923123d8efdd81a4ac7ee0a31a6f77bdbd452865c48f8cb52c08b8f7b37aa9",
+      "rawSolveSha256": "73ff1f1cfde8fdf90441fb1a5e9117db4f1b86078adf131f0542e17664a73741",
+      "status": "solved",
+      "knownHoldCount": 0
+    },
+    {
+      "questionNumber": 7,
+      "studentDigest": "9fe79105603083e99f00c4d047f8a8717f086f80142e2aca45fb563c1f159eb6",
+      "path": "solve/q07.json",
+      "solveDigest": "3d4fef7771fb6fae584380c7e2d6f34bd51f9fd76da56e15ff261c487ccbac5d",
+      "rawSolveSha256": "2b24222fa42deb0c597c84950c5bd80a76963298370bd65f014d33361f5d4093",
+      "status": "solved",
+      "knownHoldCount": 0
+    },
+    {
+      "questionNumber": 8,
+      "studentDigest": "79210fe06498b07f552240e84319bfd36f89b0ec00320eb88c8f48b7eb12cf4b",
+      "path": "solve/q08.json",
+      "solveDigest": "5f625595ed900a5b42a2ec61472e960c08c58554366d77648be281563824e23a",
+      "rawSolveSha256": "a35553b4835d4f665bbc7e2b9ad7a6113f2a5cd26450695386ae42a38c2a56bb",
+      "status": "solved",
+      "knownHoldCount": 0
+    },
+    {
+      "questionNumber": 9,
+      "studentDigest": "5c543fdc2da4c007d7d7ea88eca6e89e6e78fbdde785b4a6cafb462ee4bb176a",
+      "path": "solve/q09.json",
+      "solveDigest": "104496ac5de41a84a0bc0c36b76568a5e3cfdfc9be76b2f32316975765523716",
+      "rawSolveSha256": "1d2150f9667b891e7a406c05f1b32c44346061f01a752ecccb4f648b53a547d3",
+      "status": "solved",
+      "knownHoldCount": 0
+    },
+    {
+      "questionNumber": 10,
+      "studentDigest": "42c5205c0db1990eca755c75bf7bd6979daa2a41e5c5abf185456bfe79b1244f",
+      "path": "solve/q10.json",
+      "solveDigest": "0f91a48a515e0989318c50040cabf33ac4cbff534c367ac222512d46fefde6df",
+      "rawSolveSha256": "4559428fde2beb4cb12095e979b7b0446c4909916cf1845a20af6acc0529ac16",
+      "status": "solved",
+      "knownHoldCount": 0
+    },
+    {
+      "questionNumber": 11,
+      "studentDigest": "f87bb0e20db98b03278156fb32ce34bf2414e352aa585bf6d632a3e2034fb2a6",
+      "path": "solve/q11.json",
+      "solveDigest": "3755f9b0f920e2e1add0fc6972c67c777c540f771af181f8098330a2c0999ebe",
+      "rawSolveSha256": "35d7c800c56260de67ed3b7ff8758631dc45fa3c917e7af58481f12d0c2090ca",
+      "status": "solved",
+      "knownHoldCount": 0
+    },
+    {
+      "questionNumber": 12,
+      "studentDigest": "8b83dae75670e87b426b14bb5c822a87dd8b92abb5fe9bdc6f4943ed6a3d0e9f",
+      "path": "solve/q12.json",
+      "solveDigest": "9bdc548109134889deeb67bd0a9074e738233f61cdf4dadccadd8a0bd75c8691",
+      "rawSolveSha256": "7a79af561639b10d6bdb352afeb53bdc74638b02d4f2a77e478b8c89ec98dfb5",
+      "status": "solved",
+      "knownHoldCount": 0
+    },
+    {
+      "questionNumber": 13,
+      "studentDigest": "fbf32a3822dc0ab31f61459df1b1aaf45752807988e4086d0c9179780cdeb123",
+      "path": "solve/q13.json",
+      "solveDigest": "4056c06c1e59c1e05a2fd9ec0e1d6b611ac464647f4d210dea9fab0acd6cc57d",
+      "rawSolveSha256": "e1d96ce587a3855c2a3006269d87670857173bef0f1c12c0e6f92f399c2d03af",
+      "status": "solved",
+      "knownHoldCount": 0
+    },
+    {
+      "questionNumber": 14,
+      "studentDigest": "423fb19ffa88b8c3ad43a192610e35757e9dc7bff1dca0b9c1bcea535426f6ad",
+      "path": "solve/q14.json",
+      "solveDigest": "11fd26392feff3c79cc07b719f62e2d697296b2a0e9d73a443ba14eb812c6b52",
+      "rawSolveSha256": "fb8a1297a876bbf4093211088d5a838fc3da371a4721df9c88999a4663a0da5c",
+      "status": "solved",
+      "knownHoldCount": 0
+    },
+    {
+      "questionNumber": 16,
+      "studentDigest": "86c79ff10b05424e5c5e1d98975a591fecb888715e8bfdfdde1602b12429c311",
+      "path": "solve/q16.json",
+      "solveDigest": "5a18fa17c704066a358c31150750c5426cdffe3ada620b278d9e644b6d2d3d37",
+      "rawSolveSha256": "e5216d55ab62df9ba141b4937914fd1dcf9be43078a0a75050a93075815b4272",
+      "status": "solved",
+      "knownHoldCount": 0
+    },
+    {
+      "questionNumber": 17,
+      "studentDigest": "95af94c3735454c56c7e6d25d89e4dff2ef6512fafd3b3eac1cc0c80ee94da6c",
+      "path": "solve/q17.json",
+      "solveDigest": "e7896e11417db823bdf5545bc902c317cb08fe62032372e3d093df9029eb43d6",
+      "rawSolveSha256": "a424fdace6ba729e3920cd629a11b6e31684b7ad935cd6b250653719bd772fb8",
+      "status": "solved",
+      "knownHoldCount": 0
+    },
+    {
+      "questionNumber": 18,
+      "studentDigest": "5c599c3a7311139ea0709a0b0f959b720d3d46fd6d8d953137c4f10b5b0ebd5e",
+      "path": "solve/q18.json",
+      "solveDigest": "702eaa6c72ed0be0a262fb5e0362d58acfe9e753013e0b3c63948b4753081e20",
+      "rawSolveSha256": "ed681fa55d8a18793c15e2092f99ba9778a96bdbb253bb0d7843ddc7b89c1471",
+      "status": "solved",
+      "knownHoldCount": 0
+    },
+    {
+      "questionNumber": 19,
+      "studentDigest": "97a6595ddcd5f1f99e5e8c385929503bc317164c1f24a79d02310637bf6e9880",
+      "path": "solve/q19.json",
+      "solveDigest": "153c5232282d884fb0b908e21ec4477e16f12e90ef8a28e32c58b8f2a2c8dbad",
+      "rawSolveSha256": "af040fbce6ea53a8d1042fe4ebf8db73f8c976f89009878b7d830d403f22eae8",
+      "status": "solved",
+      "knownHoldCount": 0
+    },
+    {
+      "questionNumber": 20,
+      "studentDigest": "ff73f103ee18d2c55ad81b5628c7825c9a2ae3307d79533a57c72b15f1093cd3",
+      "path": "solve/q20.json",
+      "solveDigest": "37b48f5c14350a213c98d89d79ceaf5454823f4573f57c5c82149fc2cd329084",
+      "rawSolveSha256": "e2b5d0b6b8d862000ad409c3f260929dad3ed9e2a7fab096d516d854ea91d15e",
+      "status": "solved",
+      "knownHoldCount": 0
+    },
+    {
+      "questionNumber": 21,
+      "studentDigest": "f2b74591299c729d6da0cc4c03d70ac61e157d80edfe6c84ceba21b2ef867a4e",
+      "path": "solve/q21.json",
+      "solveDigest": "92c239264768442e4f144d38c478037023d87dcd7aefe250a712d089936fa801",
+      "rawSolveSha256": "7c671611bf27dcca657b6cb03633837291da5be8696a87161a871a0f77a46820",
+      "status": "solved",
+      "knownHoldCount": 0
+    },
+    {
+      "questionNumber": 22,
+      "studentDigest": "bc05620c77d8e779fb3c814cb177b08f4547b24978a6dd24719c5cbe38bc4851",
+      "path": "solve/q22.json",
+      "solveDigest": "a6f36688418fff4ed6ec310952e8dcae3cf7790f8a4281c619ad9d222d0edccf",
+      "rawSolveSha256": "916798e5a8a5f9bb5ca4bfaf27b463ff526ad372d31df3a0fa1c82c7c9d221f3",
+      "status": "solved",
+      "knownHoldCount": 1
+    },
+    {
+      "questionNumber": 23,
+      "studentDigest": "5c1d7c4c23d9376db61796a5576915fda58bbd889ee56e800c29d47766670437",
+      "path": "solve/q23.json",
+      "solveDigest": "5f467e07ce334ef70c50a2157b44fab101db410080ecdaa3ed8263461c914e69",
+      "rawSolveSha256": "86d862162ee94c5f878342290a1e38f17f8fe0116aea518bd042139fbcc74871",
+      "status": "solved",
+      "knownHoldCount": 0
+    },
+    {
+      "questionNumber": 24,
+      "studentDigest": "dcfe60a5eb37164dad2c1e53beed2e3f8cf503c4095f3d34642370ec5cd9a62b",
+      "path": "solve/q24.json",
+      "solveDigest": "3b153faa18debfab6f68b8172036869e29e8b86dbe3190016eed65019c5fb8e3",
+      "rawSolveSha256": "fc23bd4119ddef43990fad1ed8685db643bbaa31a66070e9ade1d7de37b14882",
+      "status": "solved",
+      "knownHoldCount": 0
+    },
+    {
+      "questionNumber": 25,
+      "studentDigest": "54f88e20373f48e87f92b4525aff0abceabcd41cd381409752608de617f3df9d",
+      "path": "solve/q25.json",
+      "solveDigest": "35ee9a326748531baacaa816f339c13678b226f91fd3fda949cb50b658334f53",
+      "rawSolveSha256": "3d36c42fac401faaa5072ae15dc1e7342fc3aed0b436e5aa7fa8f6d40f71a73f",
+      "status": "solved",
+      "knownHoldCount": 0
+    }
+  ]
+}
