@@ -26,8 +26,8 @@
  * ## 되짚는 열쇠는 `externalId` — 적재기와 **같은 코드**로 만든다
  *
  * 2026-08-30 에 «쓰는 쪽»과 «되짚는 쪽»의 형식이 갈려 4,640건이 조용히 안 걸린 적이 있다.
- * 여기서는 형식을 옮겨 적지 않는다 — 적재 계획을 `buildElemRows` · `buildMiddleRows` · `buildComboRows` 로
- * **그대로 다시 돌려** 나온 `externalId` 로 맞댄다. 못 맞댄 행 수는 반드시 찍는다.
+ * 여기서는 형식을 옮겨 적지 않는다 — 적재 계획을 적재기의 분기 함수 `buildTargetRows`(초등 · 중등 · 결합형 ·
+ * 판정형)로 **그대로 다시 돌려** 나온 `externalId` 로 맞댄다. 못 맞댄 행 수는 반드시 찍는다.
  *
  * ## 원장은 DB 보다 먼저 · 누적만 · 되돌릴 때는 «지금 값이 내가 쓴 값일 때만»
  */
@@ -44,10 +44,11 @@ import path from "node:path";
 import { PrismaClient } from "@prisma/client";
 
 import {
-  buildComboRows,
   buildElemRows,
-  buildMiddleRows,
+  buildTargetRows,
+  type Target as PlanTarget,
 } from "../import/load-engine-problems";
+import type { JudgeRegistry } from "../../src/lib/middle/judge/registry";
 import { renderFigureSpec } from "../../src/lib/figure/renderFigureSpec";
 import { deadBackslashHits } from "./probe-middle-raw-latex";
 import {
@@ -121,8 +122,17 @@ async function mapLimit<T, R>(
   return out;
 }
 
-/** 계획 파일들 → `externalId` 로 묶은 «지금 엔진이 내는 행». */
-function rebuild(planFiles: string[]): {
+/**
+ * 계획 파일들 → `externalId` 로 묶은 «지금 엔진이 내는 행».
+ *
+ * 🔴 target 은 **적재기의 분기 함수(`buildTargetRows`)** 로 되만든다 — 적재기와 같은 함수다. 종전에는 여기서
+ *    `elem ? … : combo ? … : buildMiddleRows` 를 따로 적어, 모르는 target 이 중등 유형으로 흘러갔다.
+ *    `deps` 는 시험이 픽스처 판정형 등록부를 넣는 자리다(`loadJudgeRows.test.ts`).
+ */
+export function rebuild(
+  planFiles: string[],
+  deps: { judges?: JudgeRegistry } = {},
+): {
   made: Map<string, Made>;
   failures: string[];
   conflicts: string[];
@@ -140,12 +150,7 @@ function rebuild(planFiles: string[]): {
       let rows: Made[];
       console.log = () => {};
       try {
-        rows =
-          t.engine === "elem"
-            ? buildElemRows(t as never, seedBase)
-            : t.engine === "combo"
-              ? buildComboRows(t as never, seedBase)
-              : buildMiddleRows(t as never, seedBase);
+        rows = buildTargetRows(t as PlanTarget, seedBase, deps);
       } catch (e) {
         console.log = quiet;
         // 🔴 대상 하나가 던지면 그 대상의 행이 통째로 «못 맞댐»이 된다 — 숫자 뒤에 숨기지 않는다.
