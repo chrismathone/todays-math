@@ -1,0 +1,222 @@
+{
+  "q01": {
+    "method": "PR=√(13²−5²)=12; cosQ=QR/PQ=5/13, tanP=QR/PR=5/12. The authored explanation names adjacent/opposite sides correctly for two different angles.",
+    "conditions": "All three sides positive; 5²+12²=13²; both requested angles acute. Ordered pair reversals and wrong denominators are distinct distractors.",
+    "sourceDelta": "Final question-only source gives C right, AB5, BC3 and asks which ratio equality is correct. New PQR triangle supplies hypotenuse13/leg5 and asks an ordered measurement table for cosQ and tanP. Definitions, side recovery and angle-to-side correspondence remain the assessment core; two-angle record reconstruction changes the response structure.",
+    "grade": "The task reads each ratio from actual side lengths, without deriving one unknown trig ratio from another. Pythagoras and positive square root precede two applications of9수04-17.",
+    "family": "Live 삼각비01 has two legs as givens and one ratio of one angle as target. The candidate shares its definition/Pythagorean purpose but adds hypotenuse-to-leg inversion and a two-angle ordered pair. No actual family key is assigned; multi-target support/classification is pending, not a curricular rejection.",
+    "difficulty": "기본 is plausible: one integer Pythagorean recovery and two direct definitions; the main demand is careful side/angle correspondence.",
+    "score": "3 points plausibly covers side recovery and two short ratio records; no long proof or hidden method is needed.",
+    "language": "측정 기록/기록할 값/차례로 consistently identify the ordered pair. The numbers and right angle make the stem complete without drawing measurements."
+  },
+  "q02": {
+    "method": "From sinA=BC/AB=3/5 and AB=10√2, BC=6√2; CA²=200−72=128, so CA=8√2. The author selects the positive root and preserves the BC,CA order.",
+    "conditions": "Positive legs, hypotenuse squared200, sinA strictly between0 and1. All five ordered pairs checked; only② satisfies both the given sine definition and Pythagoras.",
+    "sourceDelta": "Source gives actual hypotenuse6√5 and sinA2/3, asking CA. New table supplies hypotenuse10√2 and sinA3/5, requesting both actual legs. Length recovery from a ratio plus Pythagoras is retained; recording the intermediate leg and recovered leg changes the structure.",
+    "grade": "This is a side-length task, not a same-angle ratio-to-ratio assessment. No cosA or tanA target/identity appears. Radical arithmetic is middle3 semester1 prerequisite; two actual lengths use9수04-16/17/18.",
+    "family": "Live 삼각비02 directly recovers one length from a ratio and another length;03 instead assesses transfer to a different same-angle ratio and carries2015 restriction risk. Candidate's two-leg radical records/Pythagorean second target exceed02's actual one-target branches. Missing exact multipart branch is distinct from03's purpose mismatch.",
+    "difficulty": "기본 is plausible: one multiplication by3/5 and one positive radical recovery; table makes requested roles explicit.",
+    "score": "3 points fits the two short length calculations with familiar radical simplification.",
+    "language": "빗변, 두 직각변 and BC,CA table labels distinguish sides and units; a figure is unnecessary because C is explicitly right."
+  },
+  "q03": {
+    "method": "PQ=√(4²+3²)=5; tanP=3/4 and sinQ=4/5 from separate side definitions; product3/5 lies strictly between1/2 and2/3. Author checks the same open interval.",
+    "conditions": "All endpoints and all five actual intervals checked exactly; t is not an endpoint. Triangle legs are positive, and the product is dimensionless.",
+    "sourceDelta": "Source right triangle AC√3/BC1 asks a product of tanA and sinB. New right triangle PR4/QR3 asks the containing open interval for the corresponding two-angle product. Definition/product core remains; exact-value response becomes interval classification.",
+    "grade": "The solution computes two concrete values from given sides, then rational multiplication/comparison. It does not require a complementary-angle identity or derive an unknown ratio from a given ratio.",
+    "family": "삼각비01 asks one ratio;20 takes same-angle sine/cosine values as inputs to a scalar expression. The candidate has side-length inputs, distinct-angle ratios and an interval target. Composition/interval support is unassigned;20's input/assessment purpose does not match.",
+    "difficulty": "기본 is plausible:3-4-5 recovery, two simple definitions and rational interval comparison.",
+    "score": "3 points is proportionate to short numerical work plus strict interval selection.",
+    "language": "수직선의 구간 and 들어가는 구간 naturally express an interval containing t; no unnecessary length unit is attached to t."
+  },
+  "q04": {
+    "method": "QR13; equal triangle areas give PM=60/13. In PQM, cosθ=PM/PQ=12/13; in PRM, cosφ=PM/PR=5/13; their difference7/13. The two triangle names and denominators are correct.",
+    "conditions": "M is internal; QM25/13 and MR144/13 sum13, with both right subtriangles valid. θ andφ are acute, each cosine in(0,1), and the requested ordered difference is positive.",
+    "sourceDelta": "Source gives rightA, AB6/AC4 with a hypotenuse foot and asks cosx+cosy. Candidate uses5/12 lengths, an explicit common-height reconstruction, and the ordered difference cosθ−cosφ. Same two right subtriangle ratio definitions; sum-to-difference and record reconstruction are substantive response changes.",
+    "grade": "No sin/cos identity is needed. The new authored solution uses ordinary area, Pythagoras and cosine definitions on two actual right triangles; all are within2015 middle3 and earlier prerequisites.",
+    "family": "삼각비04 has matching outer-leg/altitude geometry but one ratio via angle correspondence;05 instead gives altitude/one foot distance. New two-cosine difference has no checked whole target branch. Partial conceptual fit is acknowledged; exact classification remains null.",
+    "difficulty": "기본 at the upper routine boundary is plausible: common altitude is derived once, then reused twice; no unfamiliar theorem is required.",
+    "score": "3 points is defensible with small5-12-13 data and no proof request, though the common-height step makes this more demanding than a single definition item.",
+    "language": "θ=QPM andφ=MPR fix the subtraction order. 두 계산 기록의 차 is understandable, and the precise expression removes ambiguity."
+  },
+  "q05": {
+    "method": "cos75<cos60=1/2=sin30<cos30=√3/2<1=tan45<tan55. Remove outer cards 다/라; remaining difference(√3−1)/2. Author's acute-angle comparison and special-value arithmetic support the result.",
+    "conditions": "All angles lie strictly inside0..90; four card values distinct. All five radical differences checked exactly; only③ is the retained difference. Numerical trig values are supplemental diagnostics only.",
+    "sourceDelta": "Source orders sin30,cos30,cos80,tan50. Candidate orders sin30,cos30,cos75,tan55, removes extreme cards, and requests the exact difference of the middle two. Ordering remains necessary; trimming and subsequent value computation change the assessment structure.",
+    "grade": "Acute cos comparison can be explained on a fixed-radius quarter circle, tan comparison using a fixed adjacent leg. Exact arbitrary-angle values, derivative/extrema machinery, ratio identities and addition formulas are unnecessary. This is comparison plus recalled30° constants.",
+    "family": "삼각비14 compares sin/cos/tan at one angle and selects an extreme.15 uses general-angle radical/sign expressions;16 has one-function table branches, including lookup/sum/difference. Candidate compares four different angle-function cards then trims and subtracts. These actual purposes do not support the whole task;15 is not a permission source.",
+    "difficulty": "기본-to-low응용 boundary: comparison to familiar45/60 thresholds and one exact subtraction. Proposed기본 is defensible with no arbitrary-angle evaluation; this is expert task analysis, not measured facility.",
+    "score": "3 points is reasonable for ordering plus one short radical difference; no exactcos75 or tan55 calculation is asked.",
+    "language": "양 끝에 놓인 카드 두 장, 남은 두 카드, 큰 값에서 작은 값을 빼서 clearly define the operation. No tie convention is needed because all values differ."
+  },
+  "q06": {
+    "method": "OAD gives AD/OA=tanθ with OA1. Unique table record0.8391 selects40°. OPH has OP1, hence PH records sin40=0.6428 and OH records cos40=0.7660. Author uses approximations, not exact decimal identities.",
+    "conditions": "All12 supplied table cells independently rounded to4 decimals and checked. θ is explicitly one of four rows, and onlytan40 rounds to0.8391. Exact actual lengths are sin40/cos40; rounded projections need not have squared sum exactly1.",
+    "sourceDelta": "Source quarter-circle question uses a horizontal projection record0.5446 and an angle table. Candidate gives the vertical tangent-line AD record and asks two projections in order. It retains geometric ratio interpretation and table use, while reversing the input/output route. A literal old sin32 table discrepancy is source evidence only and is not inherited by the checked new table.",
+    "grade": "Quarter-circle and two explicit right triangles use9수04-17/18. Table angle identification and recording approximations require no inverse trig function notation. All trig arguments are36/40/50/54, within scope.",
+    "family": "삼각비12 supplies all lengths and asks a ratio.16 mode0 really does support inverse angle lookup, and other modes sum/difference table values. Candidate adds tan-from-geometric-record identification and two projection reconstructions. Hold is for whole composite support, not a claim that no inverse lookup exists.",
+    "difficulty": "기본 is plausible: one unit-radius interpretation, unique table lookup and two ordered records; table removes arbitrary-angle arithmetic.",
+    "score": "3 points fits the definition/lookup/two-record sequence.",
+    "language": "표의 근삿값으로 기록 and 같은 표로 기록 accurately distinguish records from actual exact lengths. PH,OH order and the rays/lines are explicit."
+  },
+  "q07": {
+    "method": "Substitute independently known special values: sin60 cos30=3/4; tan45 sin30=1/2; sin45÷cos60−tan30=√2−√3/3. Author respects division before subtraction.",
+    "conditions": "All three requested blanks and all five triples checked; cos60=1/2 is nonzero; no ambiguous grouping or root branch occurs.",
+    "sourceDelta": "Source evaluates three displayed special-angle statements and chooses the true ones. Candidate records results in three blanks and selects an ordered triple, with a division-minus-subtraction expression. Special constants/arithmetic remain core; truth-set selection becomes complete record reconstruction.",
+    "grade": "This Gyeonggu q07 is distinct from rejected Bumil q07. It combines recalled fixed30/45/60 constants, not transfer from one provided same-angle ratio to another. No prohibited relation is required.",
+    "family": "삼각비08 actually generates one two-operand/one-operation expression. The three-output table and third expression's two operations are not that complete branch. Basic special-value purpose is shared but structured multi-result support remains unassigned.",
+    "difficulty": "기본: direct special-value recall and rational/radical arithmetic; the third row adds only operation-order care.",
+    "score": "3 points, approximately one point per short record, is proportionate.",
+    "language": "가/나/다 row labels and㉠/㉡/㉢ blanks stay aligned; 차례로 specifies the triple order."
+  },
+  "q08": {
+    "method": "tan45=AH/BH=1 gives BH9. For CAH35, tan35=CH/AH gives HC9tan35. Internal H implies BC=BH+HC=9(1+tan35). Author's reference angle and opposite leg are correct.",
+    "conditions": "Both horizontal parts positive;45 and35 are acute; H is internal. All five symbolic expressions compared exactly with tan35 as a positive fixed-angle constant.",
+    "sourceDelta": "Source gives BC8, baseB45/C40 and asks the height formula. Candidate gives height9 and apex-side35, recovering the base expression. Same split into two right triangles; height-to-base inversion and symbolic sum change the route.",
+    "grade": "No complement formula or numeric tan35 evaluation is required. Actual right-triangle tangent definitions yield each part. Expressing a length in a fixed acute ratio is9수04-18 application.",
+    "family": "활용01 has hypotenuse/special-angle inputs and area/perimeter targets;06 base/angles→height. Candidate height→base sum includes an unevaluatedtan35 term. Missing inverse/symbolic branch is separate from the valid student method.",
+    "difficulty": "응용: identify two different adjacent/opposite orientations and sum the parts, with an explicit foot reducing construction demands.",
+    "score": "4 points fits two right-triangle definitions plus internal-foot sum.",
+    "language": "수평, 내부, 수선의 발 and CAH remove exterior-foot and angle-placement ambiguity; 받침대 is a natural simple context."
+  },
+  "q09": {
+    "method": "BC20. ADE/ADC are ASA congruent from commonAD, equalA angles and equalD angles after right-angle sums; DE=DC=t. BDE~BAC byAA; (20−t)/25=t/15 gives t15/2, tanADC=15/t=2. New code checks this author similarity route and the independent Pythagorean route.",
+    "conditions": "D lies strictly insideBC: DC7.5<20; E is internalAB. Exact coordinate witness satisfies perpendicularDE, equalDE/DC and given sides. θ≈63.43° acute; all five pairs checked.",
+    "sourceDelta": "Source right triangle AB20/AC12, angle-bisectorAD and D∈BC asks tanADC. Candidate25/15 triangle supplies footE and asks DC plus tan in a record. Bisector-to-right-triangle reconstruction and tangent definition remain; explicit auxiliary line and two records change presentation.",
+    "grade": "Author actually proves congruence then uses middle2 AA similarity,9수04-04/13/14, and a linear equation. It never invokes an angle-bisector length theorem, circle proportionality, law of sines/cosines or trig identities.",
+    "family": "활용05 takes a general triangle base and base angles, then height/one-side recovery. It lacks the actual angle-bisector+perpendicularE condition, congruence/AA reconstruction and DC/tan pair. This is a substantive method/input-purpose mismatch, not merely absent inverse support.",
+    "difficulty": "응용 at the upper end: ASA→AA→linear ratio→tan; explicitE makes the construction available. The route remains elementary.",
+    "score": "4 points is defensible with providedE and small25-15-20 data; more demanding than a direct tangent-definition item.",
+    "language": "이등분선 and 수선의 발E are explicit. Author spells out why both angle conditions andAA hold, avoiding an unexplained ratio shortcut."
+  },
+  "q10": {
+    "method": "DAF=90−45−30=15°. ABE45 gives BE2√3,AE2√6; AEF30 gives EF2√2,AF4√2; ECF45 gives EC=CF=2. Thus AD2√3+2 and cosDAF=AD/AF=(√6+√2)/4. All intermediate authored equalities independently checked.",
+    "conditions": "E andF internal to rectangle edges;0<CF2<CD2√3. Both AEF andADF satisfy Pythagoras; all five angle/cosine pairs checked. Actual constructed angle15 and positive acute cosine are consistent.",
+    "sourceDelta": "Source rectangle AB√3 with BAE45,EAF30,AE⊥EF asks sin15. Candidate uses2√3 and asks the angle plus cosine via horizontal projection. Same30/45 constructed right-triangle method; vertical-to-horizontal target and paired record change the representation.",
+    "grade": "15° is obtained by ordinary angle subtraction; its cosine is an actual adjacent/hypotenuse ratio after30/45 construction. The authored explanation uses no addition, subtraction, half-angle or arbitrary trig-ratio relationship formula.",
+    "family": "삼각비18 actually supplies tabulatedsin/cos at one angle and asks complementary-angle ratios. It does not construct this rectangle/three right triangles or exactcos15. Shared angle vocabulary is a purpose mismatch, so no assignment is promoted.",
+    "difficulty": "응용: linked45/30/45 lengths, projection sum and one radical rationalization; explicit givens guide all constructions.",
+    "score": "4 points fits the length chain and final ratio; a separate formal geometric proof is not demanded.",
+    "language": "Each requested blank has a role in the table; E/F placement andAE⊥EF are stated. Cosine target is namedDAF throughout."
+  },
+  "q11": {
+    "method": "Base diagonal6√2, half diagonalAH3√2. Explicit right triangleOAH gives OH=AHtan30=√6. Base area36; pyramid volume36OH/3=12√6. Author uses the correct one-third factor and cm³.",
+    "conditions": "Square centerH and footH are given. Both planar55mm figures are legible; positive height yields a valid pyramid. All five height/volume pairs checked against both tangent30 and volume relation.",
+    "sourceDelta": "Source square-base pyramid side2 and OAH60 asks volume. Candidate side6/OAH30 asks height and volume and separates the base andOAH into two planar diagrams. Same half-diagonal/right-triangle height and pyramid-volume core; cross-section representation and paired response are substantive.",
+    "grade": "No spatial trigonometry, dihedral-angle definition or inference about line-plane angles is required: H and the rightOAH triangle are explicitly given. Simple square diagonal, tangent30 and ordinary pyramid volume use earlier geometry plus9수04-17/18.",
+    "family": "활용02's pyramid branch gives a side-face/base angle and uses half a side to find height. Candidate gives vertex-to-center OAH and uses half a diagonal, then also volume. Solid topic overlaps; actual angle geometry and complete targets differ. Generator's descriptor does not grant spatial prerequisite permission.",
+    "difficulty": "응용: read two related planar views, calculate half-diagonal, height and ordinary pyramid volume; no complex solid is transformed.",
+    "score": "4 points fits three short steps and two records; base and right cross-section are supplied.",
+    "language": "First/second figure, H definition, height and volume units are explicit. The stem does not rely on a perspective sketch as a theorem."
+  },
+  "q12": {
+    "method": "Known height6 gives BH=6/tan60=2√3 and HC=6/tan45=6. H insideBC means add, so BC6+2√3. Author correctly avoids subtracting same-side observation distances.",
+    "conditions": "Both parts positive andH strictly internal; angles60/45 acute. All five length choices checked; only② equals the sum. Source final crop also shows an interior foot, so context delta does not silently change side placement.",
+    "sourceDelta": "Source has tower/height foot betweenB,C, BC10 with60/45 angles and asks height. Candidate specifies support height6 and asks ground spanBC. Same two right-triangle sum method; known/unknown length directions are reversed.",
+    "grade": "Tangent definitions in two plane right triangles and positive length addition suffice. No reciprocal identity notation, law of sines or exterior-foot assumption is required.",
+    "family": "활용03's tree/ladder/kite branches contain one observation triangle;06 gives base/angles and asksheight. Candidate has knownheight and two-sided inverse base sum. Nearby purpose partly overlaps06, but a full inverse branch is unassigned.",
+    "difficulty": "응용: two definitions and correct interior-foot sum in a support context.",
+    "score": "4 points is appropriate for two recovered base parts and combined span.",
+    "language": "H insideBC, vertical rod and each support's ground angle are explicit. '각각60°,45°' aligns AB/AC in order."
+  },
+  "q13": {
+    "method": "For the NEW ADC105 condition, BDC75 andBCD45. LetBD=t>0: BEt/2, DE=EC=t√3/2; sideAB=t(1+√3)/2; AD=t(√3−1)/2; CF=t√3(1+√3)/4. AreaADC=t²√3/8=18√3 yields only positiveBD12.",
+    "conditions": "Real roots±12; negative length excluded. D is internalAB because AB6+6√3>12, AD6√3−6>0. Both feet/incidences and the actual105° angle are checked; all five choices are distinct, only④ works for the NEW stem.",
+    "sourceDelta": "Normalized final source says∠BDC105, while its printed question-only crop shows the105° arc apparently onADC. Frozen NEW candidate explicitly givesADC105 and inverts partial area toBD. The intended equilateral/special-angle/area core is plausible from the crop, but the named angle conflict prevents confirmed source-method linkage.",
+    "grade": "105° is an ordinary geometric given, not a trig argument. Student evaluates only60° and45° ratios, derives an elementary triangle area and takes the positive square root. Two supplied feet avoid a hidden construction. No sin105/cos105 or sine law is used.",
+    "family": "활용08's triangleArea helper DOES have inversearea→side mode1; it uses one known side and included30/45/60 angle. Candidate instead has an equilateral partial triangle,105° geometric angle, two feet, and a quadratic area coefficient inBD. Hold is for that full geometry/purpose, not nonexistent generic inverse support. Source angle conflict is independent.",
+    "difficulty": "심화하 is defensible: supplement/triangle angles, two feet, an exterior-toAD altitude and positive-root area inversion. Complexity is higher than ordinary one-triangle area but no advanced theorem is necessary.",
+    "score": "5 points is proportionate to the longer special-triangle chain and inverse area. SuppliedE/F bounds construction demands.",
+    "language": "NEW stem identifiesADC105 and F on lineAB, avoiding an incorrect assumption about altitude bases. Author's BDC75 is supplementary to that NEW named angle. Source naming remains a separate unresolved fact."
+  },
+  "q14": {
+    "method": "Center perpendicular bisects chord: AM6. OMA right gives OM=√(10²−6²)=8, taking the positive distance. Author uses the radius as hypotenuse.",
+    "conditions": "0<AB12<diameter20, OM>0. All five alternatives tested against OM²+36=100 and distance range; only④ satisfies both.",
+    "sourceDelta": "Source radius6/center-distance4 askschord. Candidate radius10/chord12 askscenter-distance in a circular signboard. The same chord-bisection/Pythagorean relation is solved for another component.",
+    "grade": "9수04-19 chord property,9수04-16 Pythagoras, positive square root. No proportional-circle theorem or trig is needed.",
+    "family": "원과직선01 gives radius/distance→chord;02 giveschord/distance→radius. Underlying center/chord purpose matches. Candidate's radius/chord→distance branch is not checked in current generators; exact inverse-target assignment remains null. This is missing branch support, not a claim of conceptual purpose mismatch.",
+    "difficulty": "기본: halve12, subtract36 from100 and take positive root.",
+    "score": "3 points fits chord property and one Pythagorean computation.",
+    "language": "안내판 centerO, perpendicular footM and '중심과 현 사이의 거리' agree; unitscm are consistent."
+  },
+  "q15": {
+    "method": "Equal center distances implyAB=AC; base angles equal. x+28=2x−2 givesx30; each base58, soBAC64. Author distinguishes x from the angle value.",
+    "conditions": "One linear root; angles58,58,64 are positive and sum180. Actual spec points lie on one circle and perpendicular-foot distances equal. All five x/A pairs checked.",
+    "sourceDelta": "Source equal center distances and apex52 asks a base angle. Candidate records two base angles as linear expressions and asks x plus apex. The same equal-chord/isosceles core is retained; input records and inverse apex/parameter target change the structure.",
+    "grade": "The added linear-equation step is a real prerequisite addition to the source's arithmetic, but it is earlier middle1,9수02-05. It is not a new outside-grade prerequisite. Circle chord and isosceles properties are within9수04-19/10.",
+    "family": "원과직선06 uses numericalapex→baseangle. Candidate shares equal-distance/equal-chord purpose but requires fitting two linearbase records and a two-parttarget. Missing parameter/multipart branch; assignment remains null.",
+    "difficulty": "기본: familiar chord equality, one linear equation and triangle-angle sum.",
+    "score": "3 points is proportionate to the circle inference and two short algebra/angle records.",
+    "language": "Table labelsB/C and requestx,BAC prevent confusing x30 withbase58. No length unit is added to x."
+  },
+  "q16": {
+    "method": "Tangent radiusOA⊥AP; area24=(1/2)8AP yieldsAP6. OP=√(64+36)=10, OB8, soBP2. Author uses O-B-P order to subtract the radius.",
+    "conditions": "P outside:OP10>8; positiveBP2 andAP6. Exact tangent witness and O/B/P collinearity valid. All five proposedoutside lengths checked against Pythagoras and givenarea.",
+    "sourceDelta": "Source radius5/outsideBP6 asks areaOAP. Candidate radius8/area24 recoversoutsideBP. Same tangent-right-triangle and ordinary area; inverse given/target route is substantive.",
+    "grade": "Ordinary area inversion, tangent-radius perpendicularity, Pythagoras and positive subtraction suffice. No tangent-secant power product or circle proportionality.",
+    "family": "원과직선07 has length-given right-triangle branches and radius+30°→OP. Candidate's area-driven recovery and external radius-subtracted target are absent from the whole branch, despite shared tangent-right-triangle purpose.",
+    "difficulty": "기본: area inversion creates6-8-10 triangle then one subtraction; angle is not independently solved.",
+    "score": "3 points is appropriate for these short steps.",
+    "language": "O,B,P in this order is explicit; B's label is below the diagram intersection but the ordered stem and geometry fix it. No inference from label pixels is required."
+  },
+  "q17": {
+    "method": "OH=r and H midpointAB. Pythagoras givesAH²=R²−r²; annulus areaπ(R²−r²)=49π fixespositiveAH7, fullchordAB14. Author explicitly keepsR>r>0.",
+    "conditions": "Individualradii nonunique: r3/R√58 andr4/R√65 both satisfygivens, both giveAB14. This freedom does not invalidate the unique requestedchord. All five fullchord alternatives checked.",
+    "sourceDelta": "Source fullchord12 tangent tosmall concentriccircle asksannulusarea. Candidate annulus49π asksfullchord14. The same Pythagorean radius-square-difference invariant is inverted.",
+    "grade": "Elementary circle area subtraction, tangent radius and chord midpoint plus Pythagoras. SymbolsR,r,t merely labellengths. No circle power/proportionality or free-variable optimization is assessed.",
+    "family": "원과직선08 mode3 haschord→annulusarea and other modesradius/chord→radius/chord. Same invariant/purpose is present, butannulusarea→fullchord is not a checked branch. 원의접선 Unit fits the essential inner-circle tangency. Hold is inverse support/classification, not lack of allowedmath.",
+    "difficulty": "기본: recognize radius-square cancellation through a righttriangle and double the positive halfchord; variable radii are unnecessary targets.",
+    "score": "3 points is plausible for property recognition and one root/doubling.",
+    "language": "서로 다른 두 동심원, 고리 부분, 큰 원의 현 and 접점H are explicit; answer is fullAB rather thanAH."
+  },
+  "q18": {
+    "method": "Same-point tangents giveAE3,DE12 andAD15. AB/CD both perpendicular todiameter, CF3,DF9. AFD Pythagoras givesAF=BC12; perimeter3+12+12+15=42. Authored explanation supplies the missing parallel-height rationale.",
+    "conditions": "E andF internal; radius6, contactE=(12/5,24/5) in a positive coordinatewitness. All five perimeter alternatives checked; inferreddiameterpositive12. Required tangencies verified independently.",
+    "sourceDelta": "Source halfcircle betweendiameterends withtwo given tangentheights asksdiameter. Candidate windowframe withheights3/12, suppliedfootF, asksfour-edgeperimeter. Same equal-tangent+height-difference+Pythagorean diameter core remains; final combined target/context changes.",
+    "grade": "Tangent equality/perpendicularradius, parallel-heightdifference and one Pythagorean triangle suffice. This is one simple trapezoid perimeter, not arbitrarily transformed complex geometry or circle proportionality.",
+    "family": "Independently confirmed 원과직선11 mode1 in currentm3Tangent.ts. Enginea3,b12,r6 is an actualT11 parameter. Enginevertices A→newB,B→newC,C→newD,D→newA,E→newE,H→newF. Givens,diameterrecovery andfour-edgeperimetertarget agree. Snapshot live46 rows belong to exact원접선Unit; descriptor심화하 independently compared with actual work. This confirmscontentfit, not DB assignment/authority.",
+    "difficulty": "Lower심화하 is defensible: integrate equal tangents, parallel-heightdifference and Pythagoras before summing fouredges. SuppliedF and integer3-12-15/9-12-15 data reduce complexity; descriptor alone is not the basis.",
+    "score": "3 sourcepoints are defensible here becauseF is supplied, integerlengths are short and no writtenproof is demanded; score is not inferred from심화하 label.",
+    "language": "네 변을 따라 잰 둘레 means fourpolygonedges, not semicirclearclength. Diameter endpoints,threecontacts andE internal are stated."
+  },
+  "q19": {
+    "method": "Square side5. AuthorusesCE=x:AF=AB5,EF=EC=x,AE5+x,DE5−x. Pythagoras(5+x)²=25+(5−x)² givesCE5/4; requestedDE15/4. Fresh code verifiesCE/DE roles rather than treating authorx as independentx.",
+    "conditions": "E internalCD:CE1.25,DE3.75 bothpositive;F internalAE and actualradius2.5 tangency hold. All fivechoices checked; only③ givescorrectcornerdistance, notCE.",
+    "sourceDelta": "Source square withinnersemicircle andtangentAE givesAE6 asksquareside. Candidate givesperimeter20 andaskscornerdistanceDE. Same tangentlength/Pythagorean reconstruction; dimension-known input andpartial-edge target change the inverse structure.",
+    "grade": "Pythagorean squares cancel tolinear20x25. Ordinary squareperimeter andtangentlength equality useearlieralgebra and9수04-19; no circle power orquadraticextraneous branch is required.",
+    "family": "원과직선11 mode3 DOES invert diameter+one tangentheight→otherheight. NewABCE contains a relatedsemicircletrapezoid, buta5,b5/4,r5/2 is outsideactualT11pool andrequestedDE is complement withinfullsquare, withperimeter asinput.16 usesfullcircle/four-sidedcircumscription, anothergeometry. No wholecheckedtarget/parameterbranch is assigned; do not claim allsemicircleinverse support absent.",
+    "difficulty": "응용: convertperimeter, transfer two tangentlengths, writeonePythagoreanequation and distinguishCE fromDE.",
+    "score": "4 points fits the shortalgebraic reconstruction andrequestedoffset.",
+    "language": "모서리D에서접선의끝점E까지 explicitlyasksDE. Author'sCE variable is defined andconverted at theend."
+  },
+  "q21": {
+    "method": "ABC45°right withAC6√2 givesAB=BC6. AngleAPB75 bytrianglesums;DC=6/tan60=2√3;BD=DC/cos60=4√3. LetPH=t:BH=√3t,CH=t; total6 givespositive t3(√3−1), areaBPC9(√3−1). All four authoredsubparts checked.",
+    "conditions": "P internal bothcrossingsegments;H internalBC, positiveheight. Witness satisfies bothgivens andallincidences. Fourrequestedangles/lengths/area uniquelyfixed;cm,cm²anddegrees separatelybound.",
+    "sourceDelta": "Sourcecrossedverticalsupports withA45/D60 andCD4 asksAPB,BD,AC,areaAPB. CandidateAC6√2 asksAPB,DC,BD,areaBPC. Same righttriangle/intersectionheight mechanism; knownlength/inverselegs andlowerarea target replace the oldorientation.",
+    "grade": "Angle75 is a geometricangle-sum result. Trigargumentsonly30/45/60. Elementaryrighttriangles andlinearheightpartition replaceangleaddition, generalcoordinategeometry oradvancedtrianglelaws.",
+    "family": "활용05 isonegeneraltriangle side-frombase/angles,08 isone trianglearea orsinglearea inversion. Candidatecrossedtwosupports plusfourwrittenparts/intersectionheight is a different completepurpose. Noexactfamily assigned; inversefeatures of08 do not establish thisfit.",
+    "difficulty": "응용 withlargerwrittenworkload: three directangle/lengthparts followedoneunknownheightpartition andarea. Notan75 computation orhiddenadvancedtheorem.",
+    "score": "2+2+2+4=10 fits directangle,twodirectlengths andmoreinvolvedintersectionheightarea. Parenttotal countedonce.",
+    "language": "교점P,footH,verticalsupports andbelowtriangleBPC areexplicit; allfourtargets aredistinct andauthorunits correct."
+  },
+  "q22": {
+    "method": "Internal placements+equaltangents giveBC=BD+DC=BQ+CP,AB+BQ=AQ,AC+CP=AP; perimeter=AP+AQ=2AP. ThusAP3√3. RHS congruenceAOP/AOQ givesA30; r=APtan30=3;AO=AP/cos30=6. Author includesrelationshipproof,notonlyvalues.",
+    "conditions": "Explicitwitness A(0,0),O(6,0),B/C(3,∓√3),P/Q(9/2,±3√3/2),D(3,0) satisfiescontactsandallinternalpredicates. B/C positions mayvary, butAP,r,AOandperimeterrelation arefixed. Circle liesoutsideABC; noincircleassumption.",
+    "sourceDelta": "SourceOA4/A60 asksradius,AP,perimeter; arrownotationisray depiction,notvectoroperation. Candidateexplicitlines/internalpoints,perimeter6√3 asksrelationship+AP,r,AO. Sameequaltangents/righttriangle core;perimeter-driven inverse andexplanatoryrelation changewrittenstructure.",
+    "grade": "9수04-19 tangentproperties,9수04-04 righttrianglecongruence andsimple30°definitions. No vectors,circlepower,proportionality orformalcomplexdeduction. Shortsegmentaddition is required andshown.",
+    "family": "원과직선10 modes3/4 deriveperimeter fromAO/r orr/60. Purposeandtangentperimeteridentity partiallymatch. Candidateinvertsperimeter intoAP/r/AO andrequiresrelationshipproof plus3parts;completeinverse/multipartbranchnotchecked. Hold isexactsupport/classification,notpurposeconflict orgradepermission.",
+    "difficulty": "응용: establishsegment-sumidentity withthreecontacts,thenRHS anglebisection andtwo30°lengths. Pointorderingstatedboundstheproof.",
+    "score": "4+2+2=8 giveslargestweight torelationshipproof/AP recovery andtwo points toeachshortderivedlength. Differentfromold2+2+4 butsame total;notdoublecounted.",
+    "language": "B/CbetweenAandcontacts,DinsideBCandrelationshipexplanation areexplicit;원밖점Adoesnotdescribea circleinsidetriangle. Unitscm attached toeachlength."
+  },
+  "q23": {
+    "method": "Tangentperpendiculars giveangleP+minorAOB180;ratio1:2 gives60/120. RHScongruence givesP30,PA=r√3. Region=two righttriangles−120°sector=r²(√3−π/3);given12√3−4π impliesr²12,r2√3>0;OP=r/sin30=4√3. Allauthoredsubpartsandpositivecoefficient checked.",
+    "conditions": "Minorcentral120<180,externalOP=2r>r. Shade istangent-boundedoutside-circle region,nottrianglePABorwholequad. Coefficient√3−π/3>0,soonlypositive radius2√3. Exactwitness tangenciesvalid;threesubpartsuniquelydetermined.",
+    "sourceDelta": "SourceOA3 andangleP:angleO1:2 askscentralangle,OP,outsidecurvedarea. Candidategivenoutsidearea askscentralangle,r,OP. Sameangle-sum/equalrighttriangles/sector-subtraction core;area-to-radius inversionsubstantivelyreverses the scale input.",
+    "grade": "120° iscentralangle/sectorfraction,neveratrigargument. Studenttrigonly30°. Two simplecongruentrighttriangles minusonesector isboundedarea composition;ordinarypositive square root,notuppergrade extrema/circlepower.",
+    "family": "원과직선09 hasdirectangle/tangent/chordtargets;원주각03 askstheinscribedangleatlongarcC,whichdoesnotexistinthecandidate. Neitherhasoutsidecurvedarea→radius/OPandthreeparts. Angle-vocabularysimilarity cannotreplacewholepurposecheck.",
+    "difficulty": "응용 atupperend:angle-ratiorecovery,onecongruence,scalearea coefficient andpositive root,then30°distance. Shapes aretwo simpletriangles andonesector,notarbitrarycomplexdeformation.",
+    "score": "3+4+3=10 putsfourpoints oninversecurvedarea andthreeeach onangleandOP;newdistribution differsfromold3+3+4 whilepreservingtotal.",
+    "language": "작은호 중심각 and원바깥색칠부분explicitlyidentifysectorandregion. Theanswerandfullsolutionretainallthreesubpartsandcorrectlengthunits."
+  }
+}

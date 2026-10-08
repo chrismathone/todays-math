@@ -1,0 +1,1774 @@
+{
+  "schema": "independent-exam-final-review.v1",
+  "questionNumber": 23,
+  "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q23",
+  "status": "pending",
+  "studentDigest": "5d537e833859e8b1f8a2bb082663654ec3cbbaed3ea0507c0d4d090bc3342bd6",
+  "candidateDigest": "ac42fb71ec64803686a91ebb2e9aaf04213926cb381855c3b74e28e8de95d018",
+  "assetDigest": "ff6e28b980343582365b3edcbdbb1f1dcfaf77eb12a27c46ebfa49edd3bfb48b",
+  "solveDigest": "c0c1e214c7984eeaacee53ac33e3626c6ce460bdc52fef94770a07279a5c819b",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-exam-twin-source-identity-20261008",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "scoreAppropriate": true,
+    "unitFamilyFit": false
+  },
+  "evidence": {
+    "answerCorrect": {
+      "status": "passed",
+      "basis": [
+        {
+          "role": "minor AOB",
+          "unit": "degree",
+          "rawPartKey": "⑴ 작은 호 중심각 ∠AOB",
+          "rawTextUnchanged": "120°",
+          "parsedRawExact": "120",
+          "authorPrintedExact": "120",
+          "freshCalculationExact": "120",
+          "difference": "0",
+          "equivalent": true,
+          "unitBasis": "Explicit printed choice/record table/stem subpart; raw answer retains units. Dimensionless trig ratios never inherit cm."
+        },
+        {
+          "role": "radius",
+          "unit": "cm",
+          "rawPartKey": "⑵ 반지름",
+          "rawTextUnchanged": "2√3 cm",
+          "parsedRawExact": "2*sqrt(3)",
+          "authorPrintedExact": "2*sqrt(3)",
+          "freshCalculationExact": "2*sqrt(3)",
+          "difference": "0",
+          "equivalent": true,
+          "unitBasis": "Explicit printed choice/record table/stem subpart; raw answer retains units. Dimensionless trig ratios never inherit cm."
+        },
+        {
+          "role": "OP",
+          "unit": "cm",
+          "rawPartKey": "⑶ OP",
+          "rawTextUnchanged": "4√3 cm",
+          "parsedRawExact": "4*sqrt(3)",
+          "authorPrintedExact": "4*sqrt(3)",
+          "freshCalculationExact": "4*sqrt(3)",
+          "difference": "0",
+          "equivalent": true,
+          "unitBasis": "Explicit printed choice/record table/stem subpart; raw answer retains units. Dimensionless trig ratios never inherit cm."
+        }
+      ],
+      "extraRequiredRelationship": null
+    },
+    "solutionCorrect": {
+      "status": "passed",
+      "basis": "Tangentperpendiculars giveangleP+minorAOB180;ratio1:2 gives60/120. RHScongruence givesP30,PA=r√3. Region=two righttriangles−120°sector=r²(√3−π/3);given12√3−4π impliesr²12,r2√3>0;OP=r/sin30=4√3. Allauthoredsubpartsandpositivecoefficient checked.",
+      "freshAuthoredRouteCalculations": [
+        {
+          "claim": "inverse curved-region area",
+          "left": "12",
+          "right": "12",
+          "difference": "0",
+          "passed": true
+        },
+        {
+          "claim": "small sector subtraction",
+          "left": "-4*pi + 12*sqrt(3)",
+          "right": "-4*pi + 12*sqrt(3)",
+          "difference": "0",
+          "passed": true
+        }
+      ],
+      "authoredSolutionSha256Utf8": "71d4044199ed385926934178d4623a29daf2c1604be9aeac889a42cab00458ed",
+      "authorFrozenFile": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-authoring-r1/candidates/q23/q23.json",
+        "sha256": "acc89aa2c0a75427945778b1a28681a749142c6b018db936674d354c6df0dd38"
+      }
+    },
+    "existenceUniqueness": {
+      "status": "passed",
+      "basis": "Minorcentral120<180,externalOP=2r>r. Shade istangent-boundedoutside-circle region,nottrianglePABorwholequad. Coefficient√3−π/3>0,soonlypositive radius2√3. Exactwitness tangenciesvalid;threesubpartsuniquelydetermined.",
+      "preExposureDetailedChecks": {
+        "actualCodeChecks": [
+          {
+            "condition": "angle ratio and full quadrilateral angle sum",
+            "passed": true,
+            "calculation": {
+              "angleAOB": "120",
+              "angleAPB": "60"
+            }
+          },
+          {
+            "condition": "nonzero positive area coefficient and unique positive radius",
+            "passed": true,
+            "calculation": {
+              "coefficientApprox": 0.6848532563722796,
+              "rSquared": "12"
+            }
+          },
+          {
+            "condition": "sector subtraction gives actual stated shaded area",
+            "passed": true,
+            "calculation": "-4*pi + 12*sqrt(3)"
+          }
+        ],
+        "supplementalExactCoordinateWitness": {
+          "points": {
+            "O": [
+              0,
+              0
+            ],
+            "P": [
+              "4*sqrt(3)",
+              0
+            ],
+            "A": [
+              "sqrt(3)",
+              3
+            ],
+            "B": [
+              "sqrt(3)",
+              -3
+            ]
+          },
+          "relations": [
+            {
+              "relation": "perpendicular",
+              "points": [
+                "O",
+                "A",
+                "P",
+                "A"
+              ],
+              "calculated": "0",
+              "required": 0,
+              "passed": true
+            },
+            {
+              "relation": "perpendicular",
+              "points": [
+                "O",
+                "B",
+                "P",
+                "B"
+              ],
+              "calculated": "0",
+              "required": 0,
+              "passed": true
+            },
+            {
+              "relation": "lengthSquared",
+              "points": [
+                "O",
+                "A"
+              ],
+              "calculated": "12",
+              "required": 12,
+              "passed": true
+            },
+            {
+              "relation": "lengthSquared",
+              "points": [
+                "O",
+                "B"
+              ],
+              "calculated": "12",
+              "required": 12,
+              "passed": true
+            },
+            {
+              "relation": "lengthSquared",
+              "points": [
+                "P",
+                "A"
+              ],
+              "calculated": "36",
+              "required": 36,
+              "passed": true
+            },
+            {
+              "relation": "lengthSquared",
+              "points": [
+                "P",
+                "B"
+              ],
+              "calculated": "36",
+              "required": 36,
+              "passed": true
+            }
+          ],
+          "method": "Independent exact coordinate witness; supplemental validation only"
+        },
+        "uniqueRequestedAnswer": true,
+        "wholeConfigurationMustBeUnique": false,
+        "limit": "q17 radii and q22 triangle placements can vary while requested answers are unique. No pixel lengths or model probability determine uniqueness."
+      },
+      "freshCalculationProof": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/answer-equivalence-evidence.json",
+        "sha256": "b2b9033a9598f68d802479419a83c6a0c0af3be7d477cad1fcf473ac9b865469",
+        "pointer": "/results/21"
+      }
+    },
+    "choicesCorrect": {
+      "status": "passed",
+      "basis": "Written item; all requested subparts,units andq22relationshipproof separately checked; choices not applicable.",
+      "actualChoices": [],
+      "preExposureChoiceChecks": {
+        "notApplicable": true,
+        "multiPartCount": 3,
+        "eachPartExplicit": true
+      }
+    },
+    "figureConsistent": {
+      "status": "passed",
+      "basis": {
+        "questionNumber": 23,
+        "figures": [
+          {
+            "spec": {
+              "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q23/figure-1.spec.json",
+              "sha256": "9b8f0f09d24c0d5fd81090b5e2de69a44a8bd714f899c13160e97fb164951d4e"
+            },
+            "svg": {
+              "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q23/figure-1.svg",
+              "sha256": "34bce92dab2708d4f50d2449084fbadacd3dea95bdc25325f6e194ee4e4416de"
+            },
+            "intendedWidthMm": 70,
+            "rawCoordinateSemanticsChecks": [
+              {
+                "condition": "angle_A right angle",
+                "computed": 90.00000000000001,
+                "required": 90,
+                "passed": true
+              },
+              {
+                "condition": "angle_B right angle",
+                "computed": 90.00000000000001,
+                "required": 90,
+                "passed": true
+              },
+              {
+                "condition": "A on circle",
+                "computed": 83.1384387633061,
+                "required": 83.13843876330611,
+                "passed": true
+              },
+              {
+                "condition": "B on circle",
+                "computed": 83.1384387633061,
+                "required": 83.13843876330611,
+                "passed": true
+              },
+              {
+                "condition": "minor AOB120",
+                "computed": 119.99999999999999,
+                "required": 120,
+                "passed": true
+              },
+              {
+                "condition": "APB60",
+                "computed": 59.99999999999999,
+                "required": 60,
+                "passed": true
+              }
+            ],
+            "svgIdenticalToPreExposureViewedFigure": true,
+            "limits": "Coordinates verify supplied FigureSpec construction only. They do not define givens or prove a theorem; exact mathematical witnesses and student proofs are separate."
+          }
+        ],
+        "status": "passed",
+        "noFigureNeeded": false,
+        "figurePixelMeasurementsUsedAsMathOracle": false
+      },
+      "actualRenderedViews": [
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-authoring-r1/qa/q23-student.png",
+          "sha256": "f31bbba5acdc32686c120686bb6d08fa17cf6db9f5d6704517235394b2a5b0ad",
+          "questionNumber": 23,
+          "role": "student",
+          "pixels": [
+            530,
+            962
+          ],
+          "viewed": true,
+          "html": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-authoring-r1/qa/q23-author.html",
+            "sha256": "767e46a265c613ed7eb4e9f6d2d26355e958475232494af89006345ad3f59bbf"
+          },
+          "inspection": "Student RGB pane exactly equals directly inspected authored-layout prefix (independently compared all pixels); q01-q04 also inspected separately earlier.",
+          "claimLimit": "Local authored PNG layout only; standalone physical70mm/55mm SVG previews retained from immutable blind stage. No production UI or complete printed paper approval."
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-authoring-r1/qa/q23-author.png",
+          "sha256": "6c21a69b0ff07b7f54f27d83bda9be46f1ba9b67428de3e8478704f65760b060",
+          "questionNumber": 23,
+          "role": "author",
+          "pixels": [
+            530,
+            1892
+          ],
+          "viewed": true,
+          "html": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-authoring-r1/qa/q23-author.html",
+            "sha256": "767e46a265c613ed7eb4e9f6d2d26355e958475232494af89006345ad3f59bbf"
+          },
+          "inspection": "Direct view_image of authored student+solution layout on2026-10-08",
+          "claimLimit": "Local authored PNG layout only; standalone physical70mm/55mm SVG previews retained from immutable blind stage. No production UI or complete printed paper approval."
+        }
+      ],
+      "physicalStandaloneViewsBeforeExposure": [
+        {
+          "questionNumber": 23,
+          "svg": "figures/q23-1.svg",
+          "svgSha256": "34bce92dab2708d4f50d2449084fbadacd3dea95bdc25325f6e194ee4e4416de",
+          "intendedWidthMm": 70,
+          "renderedPdfWidthMm": 70.00000161064996,
+          "renderedHeightMm": 52.296024197743336,
+          "viewBox": [
+            0,
+            0,
+            311.434,
+            232.668
+          ],
+          "png": "blind/rendered/q23-1-300dpi.png",
+          "pngSha256": "6b9cbb946c97f85f7776206f78ba9e43192bc34394202943079ee51a587020da",
+          "pdf": "blind/rendered/q23-1-300dpi.pdf",
+          "pdfSha256": "37bf2b9e6dab8523a4565ee424bce79a8743ac9325b21abdf96b4ba16ceb6b32",
+          "svgTextLabels": [],
+          "mathematicalOracle": false,
+          "renderer": "Existing PyMuPDF SVG->vector PDF at physical width->300dpi PNG; Cairo runtime absent; no installs",
+          "visualInspection": "direct view_image completed on 2026-10-08",
+          "observation": "Exterior shaded region between PA/PB and near small arcAB, excluding the circle; radii to tangent points perpendicular. Subtract120degree sector from OAPB quadrilateral, not just trianglePAB.",
+          "labelsReadableAtSpecifiedPhysicalWidth": true,
+          "pixelMeasurementsUsedToSolve": false,
+          "physicalPrintProductionApproval": false
+        }
+      ],
+      "pixelOracle": false
+    },
+    "sameCoreConceptAndProcedure": {
+      "status": "passed",
+      "evidence": "SourceOA3 andangleP:angleO1:2 askscentralangle,OP,outsidecurvedarea. Candidategivenoutsidearea askscentralangle,r,OP. Sameangle-sum/equalrighttriangles/sector-subtraction core;area-to-radius inversionsubstantivelyreverses the scale input.",
+      "sourceQuestionRecord": {
+        "file": {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeonggu/packet/questions.json",
+          "sha256": "b6b40385cee9146ce74792ce2ca9675b7b562eb27aa65005cb4706f52347820f"
+        },
+        "pointer": "/questions/22",
+        "number": 23,
+        "canonicalQuestionOnlyRecordSha256": "57519d720f57d2222bab951c6c1e5997d1bcb006acfbc0bd4609f97e643d6bed"
+      },
+      "sourceJoinRow": {
+        "questionNumber": 23,
+        "originalQuestionId": "2025-gyeonggu-3-2-mid-23",
+        "finalSourceContentDigest": "5604fd23af639aa89dc750e14d2954d4bdd8f78bdaab3f1666dd2460629978a9",
+        "provisionalQuestionDigest": "10155f42ce2f6ff40addade3df69daf849e551750a20f0accbb06fd4e58230ae",
+        "finalQuestionDigest": "a73e7d589af1639d962e041822553817a95d7158aecfed933af879d838e00045",
+        "changedOriginalTextFields": [],
+        "sourceImageLocations": {
+          "prior": [
+            {
+              "file": "gyeonggu\\packet\\images\\q23-part1.png",
+              "sha256": "338077d76b629b4731190ae54fd45b9c7aea1e5b49923677915c8fd665fc8c77",
+              "page": 8,
+              "column": 0,
+              "bbox": [
+                55,
+                83,
+                375,
+                943
+              ]
+            }
+          ],
+          "final": [
+            {
+              "file": "images/q23-part1.png",
+              "sha256": "338077d76b629b4731190ae54fd45b9c7aea1e5b49923677915c8fd665fc8c77",
+              "page": 8,
+              "column": 0,
+              "bbox": [
+                55,
+                83,
+                375,
+                943
+              ]
+            }
+          ]
+        },
+        "cropComparison": {
+          "questionNumber": 23,
+          "oldPath": ".qa-artifacts/exam-resume-20261008/gyeonggu-authoring-r1/evidence/source-provisional/images/q23-part1.png",
+          "oldSha256": "338077d76b629b4731190ae54fd45b9c7aea1e5b49923677915c8fd665fc8c77",
+          "newPath": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeonggu/packet/images/q23-part1.png",
+          "newSha256": "338077d76b629b4731190ae54fd45b9c7aea1e5b49923677915c8fd665fc8c77",
+          "oldBBox": [
+            55,
+            83,
+            375,
+            943
+          ],
+          "newBBox": [
+            55,
+            83,
+            375,
+            943
+          ],
+          "oldPixels": [
+            640,
+            1720
+          ],
+          "newPixels": [
+            640,
+            1720
+          ],
+          "sameBytes": true,
+          "oldRGBIsExactContainedWindow": true,
+          "oldWindowOffsetPixels": [
+            0,
+            0
+          ],
+          "comparisonIsContentPermission": false
+        },
+        "originalScore": 10,
+        "finalSourceHolds": [
+          "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+          "source_custody_rights_permission_pending",
+          "canonical_text_product_render_review_pending"
+        ],
+        "sourceCandidateMeaningReview": {
+          "decision": "student source statement,choices and sharedcontext unchanged; original crop RGB fully contained in final crop",
+          "visualInspection": "unchanged captured crop",
+          "notGradeOrRightsApproval": true
+        },
+        "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q23",
+        "authorCandidate": {
+          "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q23\\q23.json",
+          "sha256": "acc89aa2c0a75427945778b1a28681a749142c6b018db936674d354c6df0dd38"
+        },
+        "candidateDigest": "eb6bf1c94aee0c451390db87be1a65ae1ca93121572e0a868edeae838f34b249",
+        "studentDigest": "5d537e833859e8b1f8a2bb082663654ec3cbbaed3ea0507c0d4d090bc3342bd6",
+        "assetDigest": "ff6e28b980343582365b3edcbdbb1f1dcfaf77eb12a27c46ebfa49edd3bfb48b",
+        "newScore": 10,
+        "authorSourceSnapshotPreserved": true,
+        "sourceSnapshotRelation": "exact captured provisional input; effective final source joined separately",
+        "sourceMathLiteralAccuracyHold": null
+      },
+      "originalAnswerAgreementUsed": false,
+      "scope": "Concept/procedure and deliberate input/target/structure/context change from question-only source; native/custody/rights are separate."
+    },
+    "distinctPresentation": {
+      "status": "passed",
+      "basis": "SourceOA3 andangleP:angleO1:2 askscentralangle,OP,outsidecurvedarea. Candidategivenoutsidearea askscentralangle,r,OP. Sameangle-sum/equalrighttriangles/sector-subtraction core;area-to-radius inversionsubstantivelyreverses the scale input.",
+      "criterion": "Necessary inverse/input-target or response-structure/context change; not just changed numbers/letters."
+    },
+    "naturalKorean": {
+      "status": "passed",
+      "basis": "작은호 중심각 and원바깥색칠부분explicitlyidentifysectorandregion. Theanswerandfullsolutionretainallthreesubpartsandcorrectlengthunits.",
+      "fullAuthoredStudentAndSolutionReviewed": true
+    },
+    "curriculumAppropriate": {
+      "status": "passed",
+      "basis": "120° iscentralangle/sectorfraction,neveratrigargument. Studenttrigonly30°. Two simplecongruentrighttriangles minusonesector isboundedarea composition;ordinarypositive square root,notuppergrade extrema/circlepower.",
+      "exactStandards": [
+        {
+          "id": "9수04-19",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4353,
+            "paragraph1based": 894,
+            "offset": 219558,
+            "text": "[9수04-19]원의 현에 관한 성질과 접선에 관한 성질을 이해한다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-04",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4264,
+            "paragraph1based": 872,
+            "offset": 216294,
+            "text": "[9수04-04]삼각형의 합동 조건을 이해하고, 이를 이용하여 두 삼각형이 합동인지 판별할 수 있다."
+          },
+          "pdfPhysicalPage1based": 37,
+          "pdfPrintedPage": 33,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-05",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4272,
+            "paragraph1based": 874,
+            "offset": 216602,
+            "text": "[9수04-05]다각형의 성질을 이해한다."
+          },
+          "pdfPhysicalPage1based": 37,
+          "pdfPrintedPage": 33,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-06",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4276,
+            "paragraph1based": 932,
+            "offset": 216736,
+            "text": "[9수04-06]\u001e부채꼴의 중심각과 호의 관계를 이해하고, 이를 이용하여 부채꼴의 넓이와 호의 길이를 구할 수 있다.\r"
+          },
+          "pdfPhysicalPage1based": 37,
+          "pdfPrintedPage": 33,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-17",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4341,
+            "paragraph1based": 891,
+            "offset": 219120,
+            "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수01-07",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 3776,
+            "paragraph1based": 768,
+            "offset": 192865,
+            "text": "[9수01-07]제곱근의 뜻을 알고, 그 성질을 이해한다."
+          },
+          "pdfPhysicalPage1based": 33,
+          "pdfPrintedPage": 29,
+          "wholeClausePdfMatch": true
+        }
+      ],
+      "restrictions": [
+        {
+          "id": "no_trig_ratio_relationships",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4440,
+            "paragraph1based": 908,
+            "offset": 224820,
+            "text": "삼각비 사이의 관계는 다루지 않는다."
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "angle_range",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4444,
+            "paragraph1based": 909,
+            "offset": 224946,
+            "text": "삼각비의 값은 0°에서 90°까지의 각도에 대한 것만 다룬다."
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "no_circle_proportionality",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4452,
+            "paragraph1based": 911,
+            "offset": 225374,
+            "text": "원과 비례에 관한 성질은 다루지 않는다."
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "no_complex_geometry_measurement",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4472,
+            "paragraph1based": 916,
+            "offset": 226554,
+            "text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다."
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "no_formal_complex_justification",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4476,
+            "paragraph1based": 917,
+            "offset": 226792,
+            "text": "정확한 용어와 기호의 사용, 복잡한 형식 논리 규칙의 이용을 요구하는 연역적 정당화 문제는 다루지 않는다."
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePdfMatch": true
+        }
+      ],
+      "allSevenSurfacesReviewBelow": true
+    },
+    "allStudentSurfacesInScope": {
+      "status": "passed",
+      "basis": "Each actual new student surface, including the full authored solution and required prerequisites, was individually checked below."
+    },
+    "unitFamilyFit": {
+      "status": "pending",
+      "unitStatus": "passed",
+      "actualUnit": {
+        "id": "635abab8-4a87-452b-ad6c-d59065822f29",
+        "grade": "중3",
+        "chapter": "6. 원의 성질",
+        "section": "원의 접선",
+        "semester": 2,
+        "orderIndex": 485,
+        "problemCodePrefix": "J30602"
+      },
+      "frozenAssignmentStatus": "pending",
+      "frozenFamilyKey": null,
+      "ruleComparison": "원과직선09 hasdirectangle/tangent/chordtargets;원주각03 askstheinscribedangleatlongarcC,whichdoesnotexistinthecandidate. Neitherhasoutsidecurvedarea→radius/OPandthreeparts. Angle-vocabularysimilarity cannotreplacewholepurposecheck.",
+      "actualRulesInspected": [
+        {
+          "key": "3-2|원주각|03",
+          "source": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3.ts",
+            "sha256": "aebe6db83ef404352029de1bbbd4607733fcb2a6ca4345dfd59109795d9d69e3",
+            "startLine1based": 295,
+            "endLine1based": 315
+          },
+          "blockSha256Utf8": "202df91c6996c0c27584a797c32c94d4e8c2900dc024ade2287eb40742e2fb37",
+          "registryAndLive": {
+            "registryPointer": "/entries/8",
+            "registry": {
+              "key": "3-2|원주각|03",
+              "grade": "중3",
+              "unitSection": "원주각",
+              "rpmBook": "3-2",
+              "rpmMinor": "원주각",
+              "rpmType": "03",
+              "rpmTitle": "원주각과 중심각의 크기 두 접선이 주어진 경우"
+            },
+            "liveMatches": [
+              {
+                "pointer": "/liveFamilies/251",
+                "record": {
+                  "unit_id": "bd2f6e4b-2822-421c-a67d-855ab4a60103",
+                  "family_key": "mid:3-2|원주각|03",
+                  "live_count": 28
+                }
+              }
+            ]
+          }
+        },
+        {
+          "key": "3-2|원과 직선|09",
+          "source": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Tangent.ts",
+            "sha256": "334fcad938df352b43bc23bebf7885fbaa77561f8587188c2e6112c0839fdbaa",
+            "startLine1based": 972,
+            "endLine1based": 1040
+          },
+          "blockSha256Utf8": "cf53ffe07c52d2627562704c03dd3632f88205c39db2fc99f9b808f8305b9054",
+          "registryAndLive": {
+            "registryPointer": "/entries/22",
+            "registry": {
+              "key": "3-2|원과 직선|09",
+              "grade": "중3",
+              "unitSection": "원의 접선",
+              "rpmBook": "3-2",
+              "rpmMinor": "원과 직선",
+              "rpmType": "09",
+              "rpmTitle": "원의 접선의 성질"
+            },
+            "liveMatches": [
+              {
+                "pointer": "/liveFamilies/142",
+                "record": {
+                  "unit_id": "635abab8-4a87-452b-ad6c-d59065822f29",
+                  "family_key": "mid:3-2|원과 직선|09",
+                  "live_count": 46
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "currentSeed": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+        "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+        "startLine1based": 2943,
+        "endLine1based": 2987,
+        "text": "    grade: \"중3\",\n    chapter: \"4. 이차함수\",\n    section: \"이차함수 y=ax^2+bx+c의 그래프\",\n    orderIndex: 479,\n  },\n  {\n    grade: \"중3\",\n    chapter: \"4. 이차함수\",\n    section: \"이차함수의 최댓값과 최솟값\",\n    orderIndex: 480,\n  },\n  // ── 5. 삼각비 ──\n  {\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 뜻\",\n    orderIndex: 481,\n  },\n  {\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 값\",\n    orderIndex: 482,\n  },\n  {\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 활용\",\n    orderIndex: 483,\n  },\n  // ── 6. 원의 성질 ──\n  {\n    grade: \"중3\",\n    chapter: \"6. 원의 성질\",\n    section: \"원과 현\",\n    orderIndex: 484,\n  },\n  {\n    grade: \"중3\",\n    chapter: \"6. 원의 성질\",\n    section: \"원의 접선\",\n    orderIndex: 485,\n  },\n  { grade: \"중3\", chapter: \"6. 원의 성질\", section: \"원주각\", orderIndex: 486 },\n  {"
+      },
+      "snapshotBank": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bank-read-fresh-r2-20261008.json",
+        "sha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b"
+      },
+      "snapshotRegistry": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/registry-read-20261008.json",
+        "sha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1"
+      },
+      "snapshotCapturedAt": "2026-10-08 04:53:45.769124+00",
+      "liveDatabaseReadByVerifier": false,
+      "currentDatabaseAssertion": false,
+      "dbAssignmentPromoted": false,
+      "schoolOrModelConfidenceIsAllowance": false,
+      "reopenCriteria": "Bind an actual declared family to this exact input/target/method/representation, including required inverse/multipart/parameter support; review changed classification/rule evidence. No automatic promotion from a title or shared concept."
+    },
+    "scoreAppropriate": {
+      "status": "passed",
+      "sourcePrintedParentScore": 10.0,
+      "newParentScore": 10,
+      "newSubScores": [
+        3,
+        4,
+        3
+      ],
+      "parentAndChildNotDoubleCounted": true,
+      "basis": "3+4+3=10 putsfourpoints oninversecurvedarea andthreeeach onangleandOP;newdistribution differsfromold3+3+4 whilepreservingtotal."
+    }
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "120° iscentralangle/sectorfraction,neveratrigargument. Studenttrigonly30°. Two simplecongruentrighttriangles minusonesector isboundedarea composition;ordinarypositive square root,notuppergrade extrema/circlepower.",
+      "conditionsReviewed": "Minorcentral120<180,externalOP=2r>r. Shade istangent-boundedoutside-circle region,nottrianglePABorwholequad. Coefficient√3−π/3>0,soonlypositive radius2√3. Exactwitness tangenciesvalid;threesubpartsuniquelydetermined.",
+      "actualContentSha256Utf8": "243092fb4926aa6e52addcaaa9d47a8f0ac056d451806ece2df7f34bcbe829bb",
+      "standards": [
+        {
+          "id": "9수04-19",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4353,
+            "paragraph1based": 894,
+            "offset": 219558,
+            "text": "[9수04-19]원의 현에 관한 성질과 접선에 관한 성질을 이해한다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-04",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4264,
+            "paragraph1based": 872,
+            "offset": 216294,
+            "text": "[9수04-04]삼각형의 합동 조건을 이해하고, 이를 이용하여 두 삼각형이 합동인지 판별할 수 있다."
+          },
+          "pdfPhysicalPage1based": 37,
+          "pdfPrintedPage": 33,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-05",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4272,
+            "paragraph1based": 874,
+            "offset": 216602,
+            "text": "[9수04-05]다각형의 성질을 이해한다."
+          },
+          "pdfPhysicalPage1based": 37,
+          "pdfPrintedPage": 33,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-06",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4276,
+            "paragraph1based": 932,
+            "offset": 216736,
+            "text": "[9수04-06]\u001e부채꼴의 중심각과 호의 관계를 이해하고, 이를 이용하여 부채꼴의 넓이와 호의 길이를 구할 수 있다.\r"
+          },
+          "pdfPhysicalPage1based": 37,
+          "pdfPrintedPage": 33,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-17",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4341,
+            "paragraph1based": 891,
+            "offset": 219120,
+            "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수01-07",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 3776,
+            "paragraph1based": 768,
+            "offset": 192865,
+            "text": "[9수01-07]제곱근의 뜻을 알고, 그 성질을 이해한다."
+          },
+          "pdfPhysicalPage1based": 33,
+          "pdfPrintedPage": 29,
+          "wholeClausePdfMatch": true
+        }
+      ]
+    },
+    "choices": {
+      "status": "passed",
+      "basis": {
+        "status": "passed",
+        "basis": "Written item; all requested subparts,units andq22relationshipproof separately checked; choices not applicable.",
+        "actualChoices": [],
+        "preExposureChoiceChecks": {
+          "notApplicable": true,
+          "multiPartCount": 3,
+          "eachPartExplicit": true
+        }
+      },
+      "noOutsideGradeDistractorNotation": true
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": {
+        "questionNumber": 23,
+        "figures": [
+          {
+            "spec": {
+              "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q23/figure-1.spec.json",
+              "sha256": "9b8f0f09d24c0d5fd81090b5e2de69a44a8bd714f899c13160e97fb164951d4e"
+            },
+            "svg": {
+              "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q23/figure-1.svg",
+              "sha256": "34bce92dab2708d4f50d2449084fbadacd3dea95bdc25325f6e194ee4e4416de"
+            },
+            "intendedWidthMm": 70,
+            "rawCoordinateSemanticsChecks": [
+              {
+                "condition": "angle_A right angle",
+                "computed": 90.00000000000001,
+                "required": 90,
+                "passed": true
+              },
+              {
+                "condition": "angle_B right angle",
+                "computed": 90.00000000000001,
+                "required": 90,
+                "passed": true
+              },
+              {
+                "condition": "A on circle",
+                "computed": 83.1384387633061,
+                "required": 83.13843876330611,
+                "passed": true
+              },
+              {
+                "condition": "B on circle",
+                "computed": 83.1384387633061,
+                "required": 83.13843876330611,
+                "passed": true
+              },
+              {
+                "condition": "minor AOB120",
+                "computed": 119.99999999999999,
+                "required": 120,
+                "passed": true
+              },
+              {
+                "condition": "APB60",
+                "computed": 59.99999999999999,
+                "required": 60,
+                "passed": true
+              }
+            ],
+            "svgIdenticalToPreExposureViewedFigure": true,
+            "limits": "Coordinates verify supplied FigureSpec construction only. They do not define givens or prove a theorem; exact mathematical witnesses and student proofs are separate."
+          }
+        ],
+        "status": "passed",
+        "noFigureNeeded": false,
+        "figurePixelMeasurementsUsedAsMathOracle": false
+      },
+      "tableCheck": "Actual tables/figure labels fix ordinary lengths,angles ororderedrecords; no graph/vector/formula prerequisite is hidden.",
+      "simpleGeometryLimit": "응용 atupperend:angle-ratiorecovery,onecongruence,scalearea coefficient andpositive root,then30°distance. Shapes aretwo simpletriangles andonesector,notarbitrarycomplexdeformation.",
+      "actualRenderedPanesInspected": true
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "Actual marks are ordinary point/segment/right-angle/radical/acute sin-cos-tan notation. Degree105/120 labels are geometric angles, not out-of-range trig evaluations. Unit meanings are bound to the roles below.",
+      "roleUnitMap": [
+        {
+          "role": "minor AOB",
+          "unit": "degree",
+          "rawPartKey": "⑴ 작은 호 중심각 ∠AOB",
+          "rawTextUnchanged": "120°",
+          "parsedRawExact": "120",
+          "authorPrintedExact": "120",
+          "freshCalculationExact": "120",
+          "difference": "0",
+          "equivalent": true,
+          "unitBasis": "Explicit printed choice/record table/stem subpart; raw answer retains units. Dimensionless trig ratios never inherit cm."
+        },
+        {
+          "role": "radius",
+          "unit": "cm",
+          "rawPartKey": "⑵ 반지름",
+          "rawTextUnchanged": "2√3 cm",
+          "parsedRawExact": "2*sqrt(3)",
+          "authorPrintedExact": "2*sqrt(3)",
+          "freshCalculationExact": "2*sqrt(3)",
+          "difference": "0",
+          "equivalent": true,
+          "unitBasis": "Explicit printed choice/record table/stem subpart; raw answer retains units. Dimensionless trig ratios never inherit cm."
+        },
+        {
+          "role": "OP",
+          "unit": "cm",
+          "rawPartKey": "⑶ OP",
+          "rawTextUnchanged": "4√3 cm",
+          "parsedRawExact": "4*sqrt(3)",
+          "authorPrintedExact": "4*sqrt(3)",
+          "freshCalculationExact": "4*sqrt(3)",
+          "difference": "0",
+          "equivalent": true,
+          "unitBasis": "Explicit printed choice/record table/stem subpart; raw answer retains units. Dimensionless trig ratios never inherit cm."
+        }
+      ],
+      "specificBasis": "120° iscentralangle/sectorfraction,neveratrigargument. Studenttrigonly30°. Two simplecongruentrighttriangles minusonesector isboundedarea composition;ordinarypositive square root,notuppergrade extrema/circlepower."
+    },
+    "answer": {
+      "status": "passed",
+      "basis": [
+        {
+          "role": "minor AOB",
+          "unit": "degree",
+          "rawPartKey": "⑴ 작은 호 중심각 ∠AOB",
+          "rawTextUnchanged": "120°",
+          "parsedRawExact": "120",
+          "authorPrintedExact": "120",
+          "freshCalculationExact": "120",
+          "difference": "0",
+          "equivalent": true,
+          "unitBasis": "Explicit printed choice/record table/stem subpart; raw answer retains units. Dimensionless trig ratios never inherit cm."
+        },
+        {
+          "role": "radius",
+          "unit": "cm",
+          "rawPartKey": "⑵ 반지름",
+          "rawTextUnchanged": "2√3 cm",
+          "parsedRawExact": "2*sqrt(3)",
+          "authorPrintedExact": "2*sqrt(3)",
+          "freshCalculationExact": "2*sqrt(3)",
+          "difference": "0",
+          "equivalent": true,
+          "unitBasis": "Explicit printed choice/record table/stem subpart; raw answer retains units. Dimensionless trig ratios never inherit cm."
+        },
+        {
+          "role": "OP",
+          "unit": "cm",
+          "rawPartKey": "⑶ OP",
+          "rawTextUnchanged": "4√3 cm",
+          "parsedRawExact": "4*sqrt(3)",
+          "authorPrintedExact": "4*sqrt(3)",
+          "freshCalculationExact": "4*sqrt(3)",
+          "difference": "0",
+          "equivalent": true,
+          "unitBasis": "Explicit printed choice/record table/stem subpart; raw answer retains units. Dimensionless trig ratios never inherit cm."
+        }
+      ],
+      "requiredQ22Proof": null,
+      "rawAnswerUnedited": "⑴ ∠AOB=120°; ⑵ 반지름=2√3 cm; ⑶ OP=4√3 cm",
+      "formattingOnlyMismatchIsNotGradeFailure": true
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "Tangentperpendiculars giveangleP+minorAOB180;ratio1:2 gives60/120. RHScongruence givesP30,PA=r√3. Region=two righttriangles−120°sector=r²(√3−π/3);given12√3−4π impliesr²12,r2√3>0;OP=r/sin30=4√3. Allauthoredsubpartsandpositivecoefficient checked.",
+      "fullNewAuthoredSolution": "⑴ 접점의 반지름과 접선은 수직이다. 따라서 사각형 PAOB의 A각과 B각은 직각이고, 나머지 두 각의 합은 $180^\\circ$이다. 두 각의 비가 1:2이므로 $\\angle\\mathrm{AOB}=120^\\circ$, $\\angle\\mathrm{APB}=60^\\circ$이다.\n⑵ 반지름을 $r\\,\\mathrm{cm}$라 하자. 두 직각삼각형 PAO와 PBO는 빗변 PO가 공통이고 반지름 OA, OB가 같으므로 합동이다. 따라서 $\\angle\\mathrm{APO}=30^\\circ$이다. $\\tan30^\\circ=\\frac r{\\overline{\\mathrm{PA}}}$이므로 $\\overline{\\mathrm{PA}}=r\\sqrt3$이다.\n사각형 PAOB의 넓이는 두 직각삼각형 넓이의 합이므로 $r^2\\sqrt3$이다. 작은 부채꼴 AOB의 넓이는 $\\frac{120}{360}\\pi r^2=\\frac{\\pi r^2}{3}$이다. 따라서 색칠한 넓이는 $r^2(\\sqrt3-\\frac\\pi3)$이다.\n주어진 넓이는 $12(\\sqrt3-\\frac\\pi3)$이다. 실제 색칠 영역은 양의 넓이이므로 괄호의 값은 0이 아니다. 두 식을 비교하면 $r^2=12$이고, 양의 반지름은 $r=2\\sqrt3\\,\\mathrm{cm}$이다.\n⑶ 직각삼각형 PAO에서 $\\sin30^\\circ=\\frac r{\\overline{\\mathrm{OP}}}=\\frac12$이므로 $\\overline{\\mathrm{OP}}=2r=4\\sqrt3\\,\\mathrm{cm}$이다.",
+      "fullAuthoredSolutionReviewedForForbiddenProcedure": true,
+      "curricularApplication": "120° iscentralangle/sectorfraction,neveratrigargument. Studenttrigonly30°. Two simplecongruentrighttriangles minusonesector isboundedarea composition;ordinarypositive square root,notuppergrade extrema/circlepower.",
+      "restrictions": [
+        {
+          "id": "no_trig_ratio_relationships",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4440,
+            "paragraph1based": 908,
+            "offset": 224820,
+            "text": "삼각비 사이의 관계는 다루지 않는다."
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "angle_range",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4444,
+            "paragraph1based": 909,
+            "offset": 224946,
+            "text": "삼각비의 값은 0°에서 90°까지의 각도에 대한 것만 다룬다."
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "no_circle_proportionality",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4452,
+            "paragraph1based": 911,
+            "offset": 225374,
+            "text": "원과 비례에 관한 성질은 다루지 않는다."
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "no_complex_geometry_measurement",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4472,
+            "paragraph1based": 916,
+            "offset": 226554,
+            "text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다."
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "no_formal_complex_justification",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4476,
+            "paragraph1based": 917,
+            "offset": 226792,
+            "text": "정확한 용어와 기호의 사용, 복잡한 형식 논리 규칙의 이용을 요구하는 연역적 정당화 문제는 다루지 않는다."
+          },
+          "pdfPhysicalPage1based": 39,
+          "pdfPrintedPage": 35,
+          "wholeClausePdfMatch": true
+        }
+      ]
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "120° iscentralangle/sectorfraction,neveratrigargument. Studenttrigonly30°. Two simplecongruentrighttriangles minusonesector isboundedarea composition;ordinarypositive square root,notuppergrade extrema/circlepower.",
+      "officialStandards": [
+        {
+          "id": "9수04-19",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4353,
+            "paragraph1based": 894,
+            "offset": 219558,
+            "text": "[9수04-19]원의 현에 관한 성질과 접선에 관한 성질을 이해한다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-04",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4264,
+            "paragraph1based": 872,
+            "offset": 216294,
+            "text": "[9수04-04]삼각형의 합동 조건을 이해하고, 이를 이용하여 두 삼각형이 합동인지 판별할 수 있다."
+          },
+          "pdfPhysicalPage1based": 37,
+          "pdfPrintedPage": 33,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-05",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4272,
+            "paragraph1based": 874,
+            "offset": 216602,
+            "text": "[9수04-05]다각형의 성질을 이해한다."
+          },
+          "pdfPhysicalPage1based": 37,
+          "pdfPrintedPage": 33,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-06",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4276,
+            "paragraph1based": 932,
+            "offset": 216736,
+            "text": "[9수04-06]\u001e부채꼴의 중심각과 호의 관계를 이해하고, 이를 이용하여 부채꼴의 넓이와 호의 길이를 구할 수 있다.\r"
+          },
+          "pdfPhysicalPage1based": 37,
+          "pdfPrintedPage": 33,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-17",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4341,
+            "paragraph1based": 891,
+            "offset": 219120,
+            "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수01-07",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 3776,
+            "paragraph1based": 768,
+            "offset": 192865,
+            "text": "[9수01-07]제곱근의 뜻을 알고, 그 성질을 이해한다."
+          },
+          "pdfPhysicalPage1based": 33,
+          "pdfPrintedPage": 29,
+          "wholeClausePdfMatch": true
+        }
+      ],
+      "actualPrerequisiteSeedEvidence": [
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2384,
+          "endLine1based": 2389,
+          "text": "  {\n    grade: \"중1\",\n    chapter: \"3. 방정식\",\n    section: \"일차방정식의 풀이\",\n    orderIndex: 376,\n  },"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2483,
+          "endLine1based": 2511,
+          "text": "  { grade: \"중1\", chapter: \"5. 기본 도형\", section: \"평행선\", orderIndex: 393 },\n  { grade: \"중1\", chapter: \"5. 기본 도형\", section: \"작도\", orderIndex: 394 },\n  { grade: \"중1\", chapter: \"5. 기본 도형\", section: \"합동\", orderIndex: 395 },\n  // ── 6. 평면도형 ──\n  { grade: \"중1\", chapter: \"6. 평면도형\", section: \"다각형\", orderIndex: 396 },\n  {\n    grade: \"중1\",\n    chapter: \"6. 평면도형\",\n    section: \"삼각형의 내각과 외각\",\n    orderIndex: 397,\n  },\n  {\n    grade: \"중1\",\n    chapter: \"6. 평면도형\",\n    section: \"다각형의 내각과 외각\",\n    orderIndex: 398,\n  },\n  {\n    grade: \"중1\",\n    chapter: \"6. 평면도형\",\n    section: \"원과 부채꼴\",\n    orderIndex: 399,\n  },\n  {\n    grade: \"중1\",\n    chapter: \"6. 평면도형\",\n    section: \"부채꼴의 호의 길이와 넓이\",\n    orderIndex: 400,\n  },"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2527,
+          "endLine1based": 2532,
+          "text": "  {\n    grade: \"중1\",\n    chapter: \"7. 입체도형\",\n    section: \"뿔의 겉넓이와 부피\",\n    orderIndex: 405,\n  },"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2745,
+          "endLine1based": 2756,
+          "text": "  {\n    grade: \"중2\",\n    chapter: \"5. 도형의 성질\",\n    section: \"이등변삼각형의 성질\",\n    orderIndex: 446,\n  },\n  {\n    grade: \"중2\",\n    chapter: \"5. 도형의 성질\",\n    section: \"직각삼각형의 합동\",\n    orderIndex: 447,\n  },"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2799,
+          "endLine1based": 2811,
+          "text": "  // ── 6. 도형의 닮음 ──\n  {\n    grade: \"중2\",\n    chapter: \"6. 도형의 닮음\",\n    section: \"닮은 도형\",\n    orderIndex: 455,\n  },\n  {\n    grade: \"중2\",\n    chapter: \"6. 도형의 닮음\",\n    section: \"삼각형의 닮음 조건\",\n    orderIndex: 456,\n  },"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2849,
+          "endLine1based": 2861,
+          "text": "  // ── 8. 피타고라스 정리 ──\n  {\n    grade: \"중2\",\n    chapter: \"8. 피타고라스 정리\",\n    section: \"피타고라스 정리\",\n    orderIndex: 463,\n  },\n  {\n    grade: \"중2\",\n    chapter: \"8. 피타고라스 정리\",\n    section: \"피타고라스 정리의 활용\",\n    orderIndex: 464,\n  },"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2879,
+          "endLine1based": 2896,
+          "text": "  {\n    grade: \"중3\",\n    chapter: \"1. 실수와 그 계산\",\n    section: \"제곱근의 뜻과 성질\",\n    orderIndex: 469,\n  },\n  {\n    grade: \"중3\",\n    chapter: \"1. 실수와 그 계산\",\n    section: \"무리수와 실수\",\n    orderIndex: 470,\n  },\n  {\n    grade: \"중3\",\n    chapter: \"1. 실수와 그 계산\",\n    section: \"근호를 포함한 식의 계산\",\n    orderIndex: 471,\n  },"
+        }
+      ],
+      "addedStepLimit": "Any extra ordinary arithmetic/linear-equation/root step is explicitly checked as an earlier-or-middle3 prerequisite; shared school name/family presence does not authorize a forbidden assessed relation.",
+      "outsideGradeMethodRequired": false
+    }
+  },
+  "dimensions": {
+    "math": "passed",
+    "existenceAndRequestedUniqueness": "passed",
+    "allSeven2015Surfaces": "passed",
+    "sourceCore": "passed",
+    "substantiveDelta": "passed",
+    "korean": "passed",
+    "score": "passed",
+    "actualUnit": "passed",
+    "exactLiveFamily": "pending",
+    "objectiveDifficulty": "passed_task_analysis",
+    "formattingOnlyComparator": "pending",
+    "rights": "pending",
+    "nativeProvenance": "pending",
+    "loading": "pending"
+  },
+  "objectiveDifficulty": {
+    "status": "passed",
+    "proposal": "응용",
+    "basis": "응용 atupperend:angle-ratiorecovery,onecongruence,scalearea coefficient andpositive root,then30°distance. Shapes aretwo simpletriangles andonesector,notarbitrarycomplexdeformation.",
+    "registryDescriptorIsObjectiveProof": false,
+    "measuredStudentFacilityClaim": false
+  },
+  "answerEquivalence": {
+    "status": "passed",
+    "evidence": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/answer-equivalence-evidence.json",
+      "sha256": "b2b9033a9598f68d802479419a83c6a0c0af3be7d477cad1fcf473ac9b865469",
+      "pointer": "/results/21"
+    },
+    "currentLiteralComparatorMatches": false,
+    "contractEvidence": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/contract-bindings-r2.json",
+      "sha256": "dffff53926e5f9140a009b5cff39b8aabe111365edd518173350bd52078dee8b"
+    },
+    "typedConstantsHelperIsApproval": false,
+    "rawAnswerRewritten": false
+  },
+  "officialScope": {
+    "basis": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/curriculum-surface-basis.json",
+      "sha256": "fa183df33400ce8f167eda3be05d6ac0d40fed433aff8e1e6431a96022cdf252"
+    },
+    "identifiedMaterial2025MathProvisionUnknown": [],
+    "2027Middle3Republication": "requiresnew2022-specificreview",
+    "unrelatedWholePolicyCompletenessGate": false
+  },
+  "frozenInputBinding": {
+    "questionNumber": 23,
+    "providedDigests": {
+      "studentDigest": "5d537e833859e8b1f8a2bb082663654ec3cbbaed3ea0507c0d4d090bc3342bd6",
+      "candidateDigest": "ac42fb71ec64803686a91ebb2e9aaf04213926cb381855c3b74e28e8de95d018",
+      "assetDigest": "ff6e28b980343582365b3edcbdbb1f1dcfaf77eb12a27c46ebfa49edd3bfb48b",
+      "solveDigest": "c0c1e214c7984eeaacee53ac33e3626c6ce460bdc52fef94770a07279a5c819b"
+    },
+    "rawBlindFile": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/solve/q23.json",
+      "sha256": "5877b4b431cfb0187c6dfaed885db627db1e0dc5f79223901ae44908938155a3"
+    },
+    "rootCanonicalRawCopy": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/blind/solve/q23.json",
+      "sha256": "5877b4b431cfb0187c6dfaed885db627db1e0dc5f79223901ae44908938155a3"
+    },
+    "authorFrozenFile": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-authoring-r1/candidates/q23/q23.json",
+      "sha256": "acc89aa2c0a75427945778b1a28681a749142c6b018db936674d354c6df0dd38"
+    },
+    "authorFreezeEntry": {
+      "questionNumber": 23,
+      "candidateDigest": "eb6bf1c94aee0c451390db87be1a65ae1ca93121572e0a868edeae838f34b249",
+      "studentDigest": "5d537e833859e8b1f8a2bb082663654ec3cbbaed3ea0507c0d4d090bc3342bd6",
+      "assetDigest": "ff6e28b980343582365b3edcbdbb1f1dcfaf77eb12a27c46ebfa49edd3bfb48b"
+    },
+    "candidatePackageOnlyPathChanges": [
+      {
+        "pointer": "/figureArtifacts/0/specPath",
+        "author": "stem-1.spec.json",
+        "package": "figure-1.spec.json"
+      },
+      {
+        "pointer": "/figureArtifacts/0/svgPath",
+        "author": "stem-1.svg",
+        "package": "figure-1.svg"
+      }
+    ],
+    "candidateContentSolutionMetadataUnchangedByPackaging": true,
+    "finalSourceQuestionOnly": {
+      "number": 23,
+      "stem": "[서술형 $4$] 원 밖의 점 $\\mathrm{P}$에서 원 $\\mathrm{O}$에 그은 두 접선의 접점을 각각 $\\mathrm{A},~B$라 하자. $\\angle \\mathrm{APB}:\\angle \\mathrm{AOB}=1:2$ 일 때, 물음에 답하시오. [총 $10$점]\n\n⑴ $\\angle \\mathrm{AOB}$의 크기를 구하시오. [$3$점]\n⑵ $\\overline{OP}$의 길이를 구하시오. [$3$점]\n⑶ 색칠한 부분의 넓이를 구하시오. [$4$점]",
+      "choices": [],
+      "hwpScriptStem": "[서술형 $4$] 원 밖의 점 $rmP$에서 원 $rmO$에 그은 두 접선의 접점을 각각 $rmA,~B $라 하자. $anglermAPB:anglermAOB = 1:2$ 일 때, 물음에 답하시오. [총 $10$점]\n\n⑴ $anglermAOB$의 크기를 구하시오. [$3$점]\n⑵ $rmbarOP$의 길이를 구하시오. [$3$점]\n⑶ 색칠한 부분의 넓이를 구하시오. [$4$점]",
+      "hwpScriptChoices": [],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 10.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 10.0,
+        "referenceParentScore": 10.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [
+          3.0,
+          3.0,
+          4.0
+        ],
+        "subquestionCount": 3,
+        "parentAndChildrenMustNotBeAddedTogether": true
+      },
+      "subQuestions": [
+        {
+          "number": 1,
+          "stem": "⑴ $\\angle \\mathrm{AOB}$의 크기를 구하시오. [$3$점]",
+          "score": 3.0,
+          "parentSharedFigure": true
+        },
+        {
+          "number": 2,
+          "stem": "⑵ $\\overline{OP}$의 길이를 구하시오. [$3$점]",
+          "score": 3.0,
+          "parentSharedFigure": true
+        },
+        {
+          "number": 3,
+          "stem": "⑶ 색칠한 부분의 넓이를 구하시오. [$4$점]",
+          "score": 4.0,
+          "parentSharedFigure": true
+        }
+      ],
+      "structuredGivenData": {},
+      "figureGivenObservation": "OA=3; ∠APB:∠AOB=1:2; 음영은 접선 삼각형에서 부채꼴을 뺀 영역.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "원의 현·접선·원주각",
+        "coreMethodCandidate": "두 접점의 직각과 중심각 관계에서 선분과 삼각형-부채꼴 넓이를 구성한다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수04-19",
+            "officialStatement": "원의 현에 관한 성질과 접선에 관한 성질을 이해한다.",
+            "pdfPage": 38,
+            "printedPage": 34,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "6. 원의 성질",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": null,
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "5604fd23af639aa89dc750e14d2954d4bdd8f78bdaab3f1666dd2460629978a9",
+      "sourceQuestionId": "2025-gyeonggu-3-2-mid-23",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q23-part1.png",
+          "sha256": "338077d76b629b4731190ae54fd45b9c7aea1e5b49923677915c8fd665fc8c77",
+          "page": 8,
+          "column": 0,
+          "bbox": [
+            55,
+            83,
+            375,
+            943.0
+          ]
+        }
+      ],
+      "subquestionNumbers": [
+        1,
+        2,
+        3
+      ],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 2920,
+        "inflatedByteOffset": 125631,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "9db03105931a974a71450232e3430c3909a67a1c4ebfee5597bc230c362251ef"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 8,
+          "column": 0,
+          "bbox": [
+            55,
+            83,
+            375,
+            943.0
+          ]
+        }
+      ]
+    },
+    "finalSourceJoinRow": {
+      "questionNumber": 23,
+      "originalQuestionId": "2025-gyeonggu-3-2-mid-23",
+      "finalSourceContentDigest": "5604fd23af639aa89dc750e14d2954d4bdd8f78bdaab3f1666dd2460629978a9",
+      "provisionalQuestionDigest": "10155f42ce2f6ff40addade3df69daf849e551750a20f0accbb06fd4e58230ae",
+      "finalQuestionDigest": "a73e7d589af1639d962e041822553817a95d7158aecfed933af879d838e00045",
+      "changedOriginalTextFields": [],
+      "sourceImageLocations": {
+        "prior": [
+          {
+            "file": "gyeonggu\\packet\\images\\q23-part1.png",
+            "sha256": "338077d76b629b4731190ae54fd45b9c7aea1e5b49923677915c8fd665fc8c77",
+            "page": 8,
+            "column": 0,
+            "bbox": [
+              55,
+              83,
+              375,
+              943
+            ]
+          }
+        ],
+        "final": [
+          {
+            "file": "images/q23-part1.png",
+            "sha256": "338077d76b629b4731190ae54fd45b9c7aea1e5b49923677915c8fd665fc8c77",
+            "page": 8,
+            "column": 0,
+            "bbox": [
+              55,
+              83,
+              375,
+              943
+            ]
+          }
+        ]
+      },
+      "cropComparison": {
+        "questionNumber": 23,
+        "oldPath": ".qa-artifacts/exam-resume-20261008/gyeonggu-authoring-r1/evidence/source-provisional/images/q23-part1.png",
+        "oldSha256": "338077d76b629b4731190ae54fd45b9c7aea1e5b49923677915c8fd665fc8c77",
+        "newPath": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeonggu/packet/images/q23-part1.png",
+        "newSha256": "338077d76b629b4731190ae54fd45b9c7aea1e5b49923677915c8fd665fc8c77",
+        "oldBBox": [
+          55,
+          83,
+          375,
+          943
+        ],
+        "newBBox": [
+          55,
+          83,
+          375,
+          943
+        ],
+        "oldPixels": [
+          640,
+          1720
+        ],
+        "newPixels": [
+          640,
+          1720
+        ],
+        "sameBytes": true,
+        "oldRGBIsExactContainedWindow": true,
+        "oldWindowOffsetPixels": [
+          0,
+          0
+        ],
+        "comparisonIsContentPermission": false
+      },
+      "originalScore": 10,
+      "finalSourceHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sourceCandidateMeaningReview": {
+        "decision": "student source statement,choices and sharedcontext unchanged; original crop RGB fully contained in final crop",
+        "visualInspection": "unchanged captured crop",
+        "notGradeOrRightsApproval": true
+      },
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q23",
+      "authorCandidate": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q23\\q23.json",
+        "sha256": "acc89aa2c0a75427945778b1a28681a749142c6b018db936674d354c6df0dd38"
+      },
+      "candidateDigest": "eb6bf1c94aee0c451390db87be1a65ae1ca93121572e0a868edeae838f34b249",
+      "studentDigest": "5d537e833859e8b1f8a2bb082663654ec3cbbaed3ea0507c0d4d090bc3342bd6",
+      "assetDigest": "ff6e28b980343582365b3edcbdbb1f1dcfaf77eb12a27c46ebfa49edd3bfb48b",
+      "newScore": 10,
+      "authorSourceSnapshotPreserved": true,
+      "sourceSnapshotRelation": "exact captured provisional input; effective final source joined separately",
+      "sourceMathLiteralAccuracyHold": null
+    },
+    "newScore": 10,
+    "sourceOriginalScore": 10.0,
+    "authorAssignment": {
+      "status": "pending",
+      "unitId": "635abab8-4a87-452b-ad6c-d59065822f29",
+      "unitSection": "원의 접선",
+      "familyKey": null,
+      "evidence": {
+        "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+        "timestampScope": "부모 readOnly RepeatableRead 시점의 스냅샷이다. 현재DB 단언이 아니다.",
+        "seedOrderIndex": 485,
+        "registryCapturedAt": "2026-10-07T16:08:32.171Z",
+        "comparedRegistryEntries": [
+          {
+            "key": "3-2|원주각|03",
+            "grade": "중3",
+            "unitSection": "원주각",
+            "rpmBook": "3-2",
+            "rpmMinor": "원주각",
+            "rpmType": "03",
+            "rpmTitle": "원주각과 중심각의 크기 두 접선이 주어진 경우"
+          },
+          {
+            "key": "3-2|원과 직선|09",
+            "grade": "중3",
+            "unitSection": "원의 접선",
+            "rpmBook": "3-2",
+            "rpmMinor": "원과 직선",
+            "rpmType": "09",
+            "rpmTitle": "원의 접선의 성질"
+          }
+        ],
+        "fullRuleComparison": "09는 두접선 길이/각/현 길이이고 원주각03은 중심각과 원주각. 새 접선 바깥영역 넓이→반지름/OP 역산과 세 소문항을 지원하지 않는다.",
+        "reopenCriteria": "새 givens/목표/핵심 순서/형식의 전체를 지지하는 기존 실제 규칙과 독립 분류 검토. 가까운 제목/신뢰도 자동배정 금지."
+      }
+    },
+    "difficultyProposal": "응용",
+    "figures": [
+      {
+        "role": "stem",
+        "spec": {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q23/figure-1.spec.json",
+          "sha256": "9b8f0f09d24c0d5fd81090b5e2de69a44a8bd714f899c13160e97fb164951d4e"
+        },
+        "svg": {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q23/figure-1.svg",
+          "sha256": "34bce92dab2708d4f50d2449084fbadacd3dea95bdc25325f6e194ee4e4416de"
+        },
+        "intendedWidthMm": 70,
+        "specContent": {
+          "version": 2,
+          "theme": "exam-thin",
+          "style": {
+            "font_size": 18,
+            "angle_font_size": 17,
+            "angle_radius": 16,
+            "angle_label_distance": 26,
+            "padding": 22,
+            "show_points": false
+          },
+          "points": {
+            "O": [
+              0.0,
+              0.0
+            ],
+            "P": [
+              -166.27687752661222,
+              0.0
+            ],
+            "A": [
+              -41.569219381653056,
+              -71.99999999999999
+            ],
+            "B": [
+              -41.569219381653056,
+              71.99999999999999
+            ]
+          },
+          "segments": {
+            "PA": [
+              "P",
+              "A"
+            ],
+            "PB": [
+              "P",
+              "B"
+            ],
+            "OA": {
+              "points": [
+                "O",
+                "A"
+              ],
+              "dash": "4 3"
+            },
+            "OB": {
+              "points": [
+                "O",
+                "B"
+              ],
+              "dash": "4 3"
+            },
+            "OP": {
+              "points": [
+                "O",
+                "P"
+              ],
+              "dash": "4 3"
+            }
+          },
+          "labels": {
+            "O": "O",
+            "P": "P",
+            "A": "A",
+            "B": "B"
+          },
+          "circles": {
+            "c": {
+              "center": "O",
+              "radius": 83.13843876330611
+            }
+          },
+          "angles": {
+            "angle_A": {
+              "vertex": "A",
+              "points": [
+                "O",
+                "P"
+              ],
+              "right": true,
+              "radius": 8
+            },
+            "angle_B": {
+              "vertex": "B",
+              "points": [
+                "O",
+                "P"
+              ],
+              "right": true,
+              "radius": 8
+            }
+          },
+          "regions": {
+            "outside": {
+              "fill": "#eeeeee",
+              "boundary": [
+                {
+                  "seg": [
+                    "P",
+                    "A"
+                  ]
+                },
+                {
+                  "arc": {
+                    "circle": "c",
+                    "from": "A",
+                    "to": "B",
+                    "dir": "ccw"
+                  }
+                },
+                {
+                  "seg": [
+                    "B",
+                    "P"
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "sameAsPreExposureStudentSvg": true
+      }
+    ],
+    "studentPaneExactlyEqualsPrefixOfAuthorLayout": true,
+    "originalAnswerOrSolutionUsed": false
+  },
+  "blindIndependence": {
+    "rawCommit": "c02838323307f69648124f837285503a53e99bd3",
+    "authorFreezeCommit": "bf8b132fb1e78bbdb8f1b6e55e1db99d1321147d",
+    "rawBlindSolve": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/solve/q23.json",
+      "sha256": "5877b4b431cfb0187c6dfaed885db627db1e0dc5f79223901ae44908938155a3"
+    },
+    "rootByteExactCanonicalCopy": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/blind/solve/q23.json",
+      "sha256": "5877b4b431cfb0187c6dfaed885db627db1e0dc5f79223901ae44908938155a3"
+    },
+    "priorSourceFamiliarityDisclosed": true,
+    "originalScanAnnotationsIncidentallySeenDuringAuthorizedQ13SourceInspection": true,
+    "originalKeysOrHandwritingUsedToApprove": false,
+    "otherSolverUsed": false,
+    "disclosure": "The authorized original printed page03 contains handwritten workings and circled choices, incidentally visible during this source-only inspection, including neighboring questions. These are not cited, transcribed, tested or reused as new answers, solutions, grade permission or approval. The22 raw independent solves were committed c028 before author exposure; the22 exact-equivalence evidence was already written before this original-scan inspection."
+  },
+  "heldReasons": [
+    {
+      "dimension": "exactLiveFamily",
+      "basis": "원과직선09 hasdirectangle/tangent/chordtargets;원주각03 askstheinscribedangleatlongarcC,whichdoesnotexistinthecandidate. Neitherhasoutsidecurvedarea→radius/OPandthreeparts. Angle-vocabularysimilarity cannotreplacewholepurposecheck.",
+      "reopenCriteria": "Bind an actual declared family to this exact input/target/method/representation, including required inverse/multipart/parameter support; review changed classification/rule evidence. No automatic promotion from a title or shared concept."
+    }
+  ],
+  "separateNonReviewHolds": [
+    "Current literal formatting comparator does not match detailed raw answers; Root may consume exact role/unit/value evidence without editing raw bytes.",
+    "Rights/custody/publisher authorization and native provenance have no approval from this contentreview. No DB/loading authority."
+  ],
+  "inferenceApiCalls": 0,
+  "dbReads": 0,
+  "dbWrites": 0,
+  "loadApproved": false
+}

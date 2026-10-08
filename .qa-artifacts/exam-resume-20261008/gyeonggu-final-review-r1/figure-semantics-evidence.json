@@ -1,0 +1,1396 @@
+{
+  "code": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/figure_semantics.py",
+    "sha256": "79b98e05dda4e01591b01f6eb7c69f1297bb30a3ead0de4990c46bd755b33c00"
+  },
+  "results": [
+    {
+      "questionNumber": 1,
+      "figures": [
+        {
+          "spec": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q01/figure-1.spec.json",
+            "sha256": "22977a72ef5022a642b5c24dfbd13448649a33b4cd6875b58911b88f8531ba03"
+          },
+          "svg": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q01/figure-1.svg",
+            "sha256": "7e2109d2ce1b75bb2268a845cb7afb6e2499a954075d5c59faa45fb328b4f579"
+          },
+          "intendedWidthMm": 70,
+          "rawCoordinateSemanticsChecks": [
+            {
+              "condition": "angle_R right angle",
+              "computed": 90.0,
+              "required": 90,
+              "passed": true
+            },
+            {
+              "condition": "QR/PQ=5/13",
+              "computed": 0.38461538461538464,
+              "required": 0.38461538461538464,
+              "passed": true
+            }
+          ],
+          "svgIdenticalToPreExposureViewedFigure": true,
+          "limits": "Coordinates verify supplied FigureSpec construction only. They do not define givens or prove a theorem; exact mathematical witnesses and student proofs are separate."
+        }
+      ],
+      "status": "passed",
+      "noFigureNeeded": false,
+      "figurePixelMeasurementsUsedAsMathOracle": false
+    },
+    {
+      "questionNumber": 2,
+      "figures": [],
+      "status": "passed",
+      "noFigureNeeded": true,
+      "figurePixelMeasurementsUsedAsMathOracle": false
+    },
+    {
+      "questionNumber": 3,
+      "figures": [
+        {
+          "spec": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q03/figure-1.spec.json",
+            "sha256": "0220a1c4df40af37173b25706d6e21ebc4067f3a350861fbf1010991872b2ea3"
+          },
+          "svg": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q03/figure-1.svg",
+            "sha256": "a25d811ce63ff6ad83e6b8906e9a1247be9a350bf830259d3372f7422a9f9f76"
+          },
+          "intendedWidthMm": 70,
+          "rawCoordinateSemanticsChecks": [
+            {
+              "condition": "angle_R right angle",
+              "computed": 90.0,
+              "required": 90,
+              "passed": true
+            },
+            {
+              "condition": "QR/PR=3/4",
+              "computed": 0.75,
+              "required": 0.75,
+              "passed": true
+            }
+          ],
+          "svgIdenticalToPreExposureViewedFigure": true,
+          "limits": "Coordinates verify supplied FigureSpec construction only. They do not define givens or prove a theorem; exact mathematical witnesses and student proofs are separate."
+        }
+      ],
+      "status": "passed",
+      "noFigureNeeded": false,
+      "figurePixelMeasurementsUsedAsMathOracle": false
+    },
+    {
+      "questionNumber": 4,
+      "figures": [
+        {
+          "spec": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q04/figure-1.spec.json",
+            "sha256": "006379f0b113f333b2151b3de03d7e589f8deb9bcf20a36645fe731b8ca66322"
+          },
+          "svg": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q04/figure-1.svg",
+            "sha256": "8204cc211b93e03757a4adda13cffd9f5896d0b81522954e31de3f09a802bf7a"
+          },
+          "intendedWidthMm": 70,
+          "rawCoordinateSemanticsChecks": [
+            {
+              "condition": "angle_M right angle",
+              "computed": 90.0,
+              "required": 90,
+              "passed": true
+            },
+            {
+              "condition": "PQ/PR=5/12",
+              "computed": 0.4166666666666667,
+              "required": 0.4166666666666667,
+              "passed": true
+            },
+            {
+              "condition": "P is right angle",
+              "computed": 90.0,
+              "required": 90,
+              "passed": true
+            },
+            {
+              "condition": "M lies on QR",
+              "computed": 0.0,
+              "required": 0,
+              "passed": true
+            },
+            {
+              "condition": "M internal to QR",
+              "segmentFraction": 0.14792899408284024,
+              "passed": true
+            }
+          ],
+          "svgIdenticalToPreExposureViewedFigure": true,
+          "limits": "Coordinates verify supplied FigureSpec construction only. They do not define givens or prove a theorem; exact mathematical witnesses and student proofs are separate."
+        }
+      ],
+      "status": "passed",
+      "noFigureNeeded": false,
+      "figurePixelMeasurementsUsedAsMathOracle": false
+    },
+    {
+      "questionNumber": 5,
+      "figures": [],
+      "status": "passed",
+      "noFigureNeeded": true,
+      "figurePixelMeasurementsUsedAsMathOracle": false
+    },
+    {
+      "questionNumber": 6,
+      "figures": [
+        {
+          "spec": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q06/figure-1.spec.json",
+            "sha256": "fd8e3a9f4e6701292b9db0067ba1cac1eb582538fe68627d46c6cf2de805cb10"
+          },
+          "svg": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q06/figure-1.svg",
+            "sha256": "de5887d92121ba0ccb6d4d2d700592ca4c40730404dadc779db990e99c95221b"
+          },
+          "intendedWidthMm": 70,
+          "rawCoordinateSemanticsChecks": [
+            {
+              "condition": "angle_H right angle",
+              "computed": 90.0,
+              "required": 90,
+              "passed": true
+            },
+            {
+              "condition": "angle_A right angle",
+              "computed": 90.0,
+              "required": 90,
+              "passed": true
+            },
+            {
+              "condition": "P on unit-scaled circle",
+              "computed": 130.0,
+              "required": 130,
+              "passed": true
+            },
+            {
+              "condition": "H lies on OA",
+              "computed": 0.0,
+              "required": 0,
+              "passed": true
+            },
+            {
+              "condition": "H internal to OA",
+              "segmentFraction": 0.766044443118978,
+              "passed": true
+            },
+            {
+              "condition": "P lies on OD",
+              "computed": 0.0,
+              "required": 0,
+              "passed": true
+            },
+            {
+              "condition": "P internal to OD",
+              "segmentFraction": 0.7660444431189779,
+              "passed": true
+            },
+            {
+              "condition": "theta chosen40 from AD table",
+              "computed": 40.00000000000001,
+              "required": 40,
+              "passed": true
+            },
+            {
+              "condition": "actual AD/OA=tan40",
+              "computed": 0.8390996311772799,
+              "required": 0.8390996311772799,
+              "passed": true
+            }
+          ],
+          "svgIdenticalToPreExposureViewedFigure": true,
+          "limits": "Coordinates verify supplied FigureSpec construction only. They do not define givens or prove a theorem; exact mathematical witnesses and student proofs are separate."
+        }
+      ],
+      "status": "passed",
+      "noFigureNeeded": false,
+      "figurePixelMeasurementsUsedAsMathOracle": false
+    },
+    {
+      "questionNumber": 7,
+      "figures": [],
+      "status": "passed",
+      "noFigureNeeded": true,
+      "figurePixelMeasurementsUsedAsMathOracle": false
+    },
+    {
+      "questionNumber": 8,
+      "figures": [
+        {
+          "spec": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q08/figure-1.spec.json",
+            "sha256": "f503be90469e4253d1c580de6224eb08bd1d4a510826121b3e5fe80079e1dca0"
+          },
+          "svg": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q08/figure-1.svg",
+            "sha256": "0b7c69d510f68e1da6b15ea8da72ebf0ef4096bf0aa27d9aec55a7026bc08733"
+          },
+          "intendedWidthMm": 70,
+          "rawCoordinateSemanticsChecks": [
+            {
+              "condition": "angle_H right angle",
+              "computed": 90.0,
+              "required": 90,
+              "passed": true
+            },
+            {
+              "condition": "angle_B degree annotation",
+              "computed": 45.00000000000001,
+              "required": 45,
+              "passed": true
+            },
+            {
+              "condition": "angle_A degree annotation",
+              "computed": 34.99999999999999,
+              "required": 35,
+              "passed": true
+            },
+            {
+              "condition": "H lies on BC",
+              "computed": 0.0,
+              "required": 0,
+              "passed": true
+            },
+            {
+              "condition": "H internal to BC",
+              "segmentFraction": 0.5881634903542324,
+              "passed": true
+            }
+          ],
+          "svgIdenticalToPreExposureViewedFigure": true,
+          "limits": "Coordinates verify supplied FigureSpec construction only. They do not define givens or prove a theorem; exact mathematical witnesses and student proofs are separate."
+        }
+      ],
+      "status": "passed",
+      "noFigureNeeded": false,
+      "figurePixelMeasurementsUsedAsMathOracle": false
+    },
+    {
+      "questionNumber": 9,
+      "figures": [
+        {
+          "spec": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q09/figure-1.spec.json",
+            "sha256": "4e796fac23bf222bc4c210297dc6cebb3fa00819b3ef3ac31166db4b02f58f78"
+          },
+          "svg": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q09/figure-1.svg",
+            "sha256": "daa5c4c7e4b484122a7fbf5e635b57691613d27189037576683a558080d44a7b"
+          },
+          "intendedWidthMm": 70,
+          "rawCoordinateSemanticsChecks": [
+            {
+              "condition": "angle_C right angle",
+              "computed": 90.0,
+              "required": 90,
+              "passed": true
+            },
+            {
+              "condition": "angle_E right angle",
+              "computed": 90.0,
+              "required": 90,
+              "passed": true
+            },
+            {
+              "condition": "D lies on BC",
+              "computed": 0.0,
+              "required": 0,
+              "passed": true
+            },
+            {
+              "condition": "D internal to BC",
+              "segmentFraction": 0.625,
+              "passed": true
+            },
+            {
+              "condition": "E lies on AB",
+              "computed": 0.0,
+              "required": 0,
+              "passed": true
+            },
+            {
+              "condition": "E internal to AB",
+              "segmentFraction": 0.6,
+              "passed": true
+            },
+            {
+              "condition": "AB/AC=25/15",
+              "computed": 1.6666666666666667,
+              "required": 1.6666666666666667,
+              "passed": true
+            },
+            {
+              "condition": "bisector angles",
+              "computed": 26.565051177077994,
+              "required": 26.565051177077994,
+              "passed": true
+            },
+            {
+              "condition": "equal perpendicular distances DE=DC",
+              "computed": 67.5,
+              "required": 67.5,
+              "passed": true
+            }
+          ],
+          "svgIdenticalToPreExposureViewedFigure": true,
+          "limits": "Coordinates verify supplied FigureSpec construction only. They do not define givens or prove a theorem; exact mathematical witnesses and student proofs are separate."
+        }
+      ],
+      "status": "passed",
+      "noFigureNeeded": false,
+      "figurePixelMeasurementsUsedAsMathOracle": false
+    },
+    {
+      "questionNumber": 10,
+      "figures": [
+        {
+          "spec": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q10/figure-1.spec.json",
+            "sha256": "2b7a0583065e7d83a7bf2308f5c89d4dc8a5df3c1ae35ffd5a24fd2afc681b49"
+          },
+          "svg": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q10/figure-1.svg",
+            "sha256": "87cb8b976c4b4ff1bcc93ce5cf82cd90facef0ad74be233d5d62d62089ad393f"
+          },
+          "intendedWidthMm": 70,
+          "rawCoordinateSemanticsChecks": [
+            {
+              "condition": "angle_a1 degree annotation",
+              "computed": 45.0,
+              "required": 45,
+              "passed": true
+            },
+            {
+              "condition": "angle_a2 degree annotation",
+              "computed": 30.000000000000004,
+              "required": 30,
+              "passed": true
+            },
+            {
+              "condition": "angle_E right angle",
+              "computed": 90.0,
+              "required": 90,
+              "passed": true
+            },
+            {
+              "condition": "E lies on BC",
+              "computed": 0.0,
+              "required": 0,
+              "passed": true
+            },
+            {
+              "condition": "E internal to BC",
+              "segmentFraction": 0.6339745962155613,
+              "passed": true
+            },
+            {
+              "condition": "F lies on CD",
+              "computed": 0.0,
+              "required": 0,
+              "passed": true
+            },
+            {
+              "condition": "F internal to CD",
+              "segmentFraction": 0.5773502691896258,
+              "passed": true
+            },
+            {
+              "condition": "rectangle AB=CD",
+              "computed": 110.85125168440814,
+              "required": 110.85125168440814,
+              "passed": true
+            },
+            {
+              "condition": "constructed DAF15",
+              "computed": 14.999999999999996,
+              "required": 15,
+              "passed": true
+            }
+          ],
+          "svgIdenticalToPreExposureViewedFigure": true,
+          "limits": "Coordinates verify supplied FigureSpec construction only. They do not define givens or prove a theorem; exact mathematical witnesses and student proofs are separate."
+        }
+      ],
+      "status": "passed",
+      "noFigureNeeded": false,
+      "figurePixelMeasurementsUsedAsMathOracle": false
+    },
+    {
+      "questionNumber": 11,
+      "figures": [
+        {
+          "spec": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q11/figure-1.spec.json",
+            "sha256": "e17941ff2e5230dfe61f71d1314f537bd2949caf19c3e08fb8f6ac19c50b676e"
+          },
+          "svg": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q11/figure-1.svg",
+            "sha256": "3835ef33ba9643db3b23c4cabfd1827827502681c75660eebdbd5d0b43110374"
+          },
+          "intendedWidthMm": 55,
+          "rawCoordinateSemanticsChecks": [
+            {
+              "condition": "square equal edges BC",
+              "computed": 132.0,
+              "required": 132.0,
+              "passed": true
+            },
+            {
+              "condition": "square equal edges CD",
+              "computed": 132.0,
+              "required": 132.0,
+              "passed": true
+            },
+            {
+              "condition": "square equal edges DA",
+              "computed": 132.0,
+              "required": 132.0,
+              "passed": true
+            },
+            {
+              "condition": "square angle",
+              "computed": 90.0,
+              "required": 90,
+              "passed": true
+            },
+            {
+              "condition": "H lies on AC",
+              "computed": 0.0,
+              "required": 0,
+              "passed": true
+            },
+            {
+              "condition": "H internal to AC",
+              "segmentFraction": 0.5,
+              "passed": true
+            },
+            {
+              "condition": "H lies on BD",
+              "computed": 0.0,
+              "required": 0,
+              "passed": true
+            },
+            {
+              "condition": "H internal to BD",
+              "segmentFraction": 0.5,
+              "passed": true
+            }
+          ],
+          "svgIdenticalToPreExposureViewedFigure": true,
+          "limits": "Coordinates verify supplied FigureSpec construction only. They do not define givens or prove a theorem; exact mathematical witnesses and student proofs are separate."
+        },
+        {
+          "spec": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q11/figure-2.spec.json",
+            "sha256": "82efca4ef7af9f27dc92ab3c2731ca60b82f8c5bd23d047b3e1913c5eda51dab"
+          },
+          "svg": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q11/figure-2.svg",
+            "sha256": "9005125d53af14796b39cc9650aad3f070adfde50e87be9816941f13cc418bb6"
+          },
+          "intendedWidthMm": 55,
+          "rawCoordinateSemanticsChecks": [
+            {
+              "condition": "angle_H right angle",
+              "computed": 90.0,
+              "required": 90,
+              "passed": true
+            },
+            {
+              "condition": "angle_A degree annotation",
+              "computed": 30.000000000000004,
+              "required": 30,
+              "passed": true
+            }
+          ],
+          "svgIdenticalToPreExposureViewedFigure": true,
+          "limits": "Coordinates verify supplied FigureSpec construction only. They do not define givens or prove a theorem; exact mathematical witnesses and student proofs are separate."
+        }
+      ],
+      "status": "passed",
+      "noFigureNeeded": false,
+      "figurePixelMeasurementsUsedAsMathOracle": false
+    },
+    {
+      "questionNumber": 12,
+      "figures": [
+        {
+          "spec": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q12/figure-1.spec.json",
+            "sha256": "3ec103a2953a58e0a04ae0d5b38398309925dabe823d94a48bbd008f4d2bb774"
+          },
+          "svg": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q12/figure-1.svg",
+            "sha256": "4d79d78db1c6022df5c2df68c5398ca694f946d3f814beebd7e88dfe61689329"
+          },
+          "intendedWidthMm": 70,
+          "rawCoordinateSemanticsChecks": [
+            {
+              "condition": "angle_H right angle",
+              "computed": 90.0,
+              "required": 90,
+              "passed": true
+            },
+            {
+              "condition": "angle_B degree annotation",
+              "computed": 60.00000000000001,
+              "required": 60,
+              "passed": true
+            },
+            {
+              "condition": "angle_C degree annotation",
+              "computed": 45.00000000000001,
+              "required": 45,
+              "passed": true
+            },
+            {
+              "condition": "H lies on BC",
+              "computed": 0.0,
+              "required": 0,
+              "passed": true
+            },
+            {
+              "condition": "H internal to BC",
+              "segmentFraction": 0.3660254037844386,
+              "passed": true
+            }
+          ],
+          "svgIdenticalToPreExposureViewedFigure": true,
+          "limits": "Coordinates verify supplied FigureSpec construction only. They do not define givens or prove a theorem; exact mathematical witnesses and student proofs are separate."
+        }
+      ],
+      "status": "passed",
+      "noFigureNeeded": false,
+      "figurePixelMeasurementsUsedAsMathOracle": false
+    },
+    {
+      "questionNumber": 13,
+      "figures": [
+        {
+          "spec": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q13/figure-1.spec.json",
+            "sha256": "7fc2a2ddb25d62b4355f5103cb2b5a7dad127e2a7990334dd68822f9f3cdfb8d"
+          },
+          "svg": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q13/figure-1.svg",
+            "sha256": "9e9df471c7173c01a876a57280ca7bbb7e1d50da6ec020975320f75a8150b32f"
+          },
+          "intendedWidthMm": 70,
+          "rawCoordinateSemanticsChecks": [
+            {
+              "condition": "angle_E right angle",
+              "computed": 90.0,
+              "required": 90,
+              "passed": true
+            },
+            {
+              "condition": "angle_F right angle",
+              "computed": 90.0,
+              "required": 90,
+              "passed": true
+            },
+            {
+              "condition": "angle_D degree annotation",
+              "computed": 105.0,
+              "required": 105,
+              "passed": true
+            },
+            {
+              "condition": "equilateral AB=BC",
+              "computed": 163.92304845413264,
+              "required": 163.92304845413264,
+              "passed": true
+            },
+            {
+              "condition": "equilateral AC=BC",
+              "computed": 163.92304845413264,
+              "required": 163.92304845413264,
+              "passed": true
+            },
+            {
+              "condition": "D lies on AB",
+              "computed": 0.0,
+              "required": 0,
+              "passed": true
+            },
+            {
+              "condition": "D internal to AB",
+              "segmentFraction": 0.2679491924311227,
+              "passed": true
+            },
+            {
+              "condition": "E lies on BC",
+              "computed": 0.0,
+              "required": 0,
+              "passed": true
+            },
+            {
+              "condition": "E internal to BC",
+              "segmentFraction": 0.36602540378443865,
+              "passed": true
+            },
+            {
+              "condition": "F lies on AB",
+              "computed": 0.0,
+              "required": 0,
+              "passed": true
+            },
+            {
+              "condition": "F internal to AB",
+              "segmentFraction": 0.5,
+              "passed": true
+            },
+            {
+              "condition": "area/BD squared=sqrt3/8",
+              "computed": 0.21650635094610968,
+              "required": 0.21650635094610965,
+              "passed": true
+            }
+          ],
+          "svgIdenticalToPreExposureViewedFigure": true,
+          "limits": "Coordinates verify supplied FigureSpec construction only. They do not define givens or prove a theorem; exact mathematical witnesses and student proofs are separate."
+        }
+      ],
+      "status": "passed",
+      "noFigureNeeded": false,
+      "figurePixelMeasurementsUsedAsMathOracle": false
+    },
+    {
+      "questionNumber": 14,
+      "figures": [
+        {
+          "spec": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q14/figure-1.spec.json",
+            "sha256": "d08e329143c8f8782d6934f5eb55990d5f7fbb7baa59a6c7213577609c4c56b8"
+          },
+          "svg": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q14/figure-1.svg",
+            "sha256": "737459562b14522af802c0440ded60d46470731810652edd859423f6204f2b16"
+          },
+          "intendedWidthMm": 70,
+          "rawCoordinateSemanticsChecks": [
+            {
+              "condition": "angle_M right angle",
+              "computed": 90.0,
+              "required": 90,
+              "passed": true
+            },
+            {
+              "condition": "A on circle",
+              "computed": 80.0,
+              "required": 80,
+              "passed": true
+            },
+            {
+              "condition": "B on circle",
+              "computed": 80.0,
+              "required": 80,
+              "passed": true
+            },
+            {
+              "condition": "M lies on AB",
+              "computed": 0.0,
+              "required": 0,
+              "passed": true
+            },
+            {
+              "condition": "M internal to AB",
+              "segmentFraction": 0.5,
+              "passed": true
+            },
+            {
+              "condition": "AB/radius=12/10",
+              "computed": 1.2,
+              "required": 1.2,
+              "passed": true
+            }
+          ],
+          "svgIdenticalToPreExposureViewedFigure": true,
+          "limits": "Coordinates verify supplied FigureSpec construction only. They do not define givens or prove a theorem; exact mathematical witnesses and student proofs are separate."
+        }
+      ],
+      "status": "passed",
+      "noFigureNeeded": false,
+      "figurePixelMeasurementsUsedAsMathOracle": false
+    },
+    {
+      "questionNumber": 15,
+      "figures": [
+        {
+          "spec": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q15/figure-1.spec.json",
+            "sha256": "826160f03f51d66693079fbf1809fa3a30e277e769e58fb468dd1069681bfc69"
+          },
+          "svg": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q15/figure-1.svg",
+            "sha256": "e43be1edbb198d4209f09f98fbb084c6102f499d2e857aa07052c48c3a599396"
+          },
+          "intendedWidthMm": 70,
+          "rawCoordinateSemanticsChecks": [
+            {
+              "condition": "angle_M right angle",
+              "computed": 90.0,
+              "required": 90,
+              "passed": true
+            },
+            {
+              "condition": "angle_N right angle",
+              "computed": 90.0,
+              "required": 90,
+              "passed": true
+            },
+            {
+              "condition": "A on circle",
+              "computed": 90.0,
+              "required": 90,
+              "passed": true
+            },
+            {
+              "condition": "B on circle",
+              "computed": 90.0,
+              "required": 90,
+              "passed": true
+            },
+            {
+              "condition": "C on circle",
+              "computed": 90.0,
+              "required": 90,
+              "passed": true
+            },
+            {
+              "condition": "M lies on AB",
+              "computed": 0.0,
+              "required": 0,
+              "passed": true
+            },
+            {
+              "condition": "M internal to AB",
+              "segmentFraction": 0.5,
+              "passed": true
+            },
+            {
+              "condition": "N lies on AC",
+              "computed": 0.0,
+              "required": 0,
+              "passed": true
+            },
+            {
+              "condition": "N internal to AC",
+              "segmentFraction": 0.5,
+              "passed": true
+            },
+            {
+              "condition": "OM=ON",
+              "computed": 47.69273378098845,
+              "required": 47.69273378098845,
+              "passed": true
+            },
+            {
+              "condition": "base B58",
+              "computed": 57.99999999999999,
+              "required": 58,
+              "passed": true
+            },
+            {
+              "condition": "base C58",
+              "computed": 57.99999999999999,
+              "required": 58,
+              "passed": true
+            }
+          ],
+          "svgIdenticalToPreExposureViewedFigure": true,
+          "limits": "Coordinates verify supplied FigureSpec construction only. They do not define givens or prove a theorem; exact mathematical witnesses and student proofs are separate."
+        }
+      ],
+      "status": "passed",
+      "noFigureNeeded": false,
+      "figurePixelMeasurementsUsedAsMathOracle": false
+    },
+    {
+      "questionNumber": 16,
+      "figures": [
+        {
+          "spec": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q16/figure-1.spec.json",
+            "sha256": "45d73b8804d456ecd263bf8f5072cdcce64ad591e4b1badd4d09fc74077790f2"
+          },
+          "svg": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q16/figure-1.svg",
+            "sha256": "debe11f60fd127c38991e13896a8aebcccf3815eeac0fd89c73f6c042a8b7d4e"
+          },
+          "intendedWidthMm": 70,
+          "rawCoordinateSemanticsChecks": [
+            {
+              "condition": "angle_A right angle",
+              "computed": 90.0,
+              "required": 90,
+              "passed": true
+            },
+            {
+              "condition": "A on circle",
+              "computed": 80.0,
+              "required": 80,
+              "passed": true
+            },
+            {
+              "condition": "B on circle",
+              "computed": 80.0,
+              "required": 80,
+              "passed": true
+            },
+            {
+              "condition": "B lies on OP",
+              "computed": 0.0,
+              "required": 0,
+              "passed": true
+            },
+            {
+              "condition": "B internal to OP",
+              "segmentFraction": 0.8,
+              "passed": true
+            },
+            {
+              "condition": "OA/OP=8/10",
+              "computed": 0.8,
+              "required": 0.8,
+              "passed": true
+            }
+          ],
+          "svgIdenticalToPreExposureViewedFigure": true,
+          "limits": "Coordinates verify supplied FigureSpec construction only. They do not define givens or prove a theorem; exact mathematical witnesses and student proofs are separate."
+        }
+      ],
+      "status": "passed",
+      "noFigureNeeded": false,
+      "figurePixelMeasurementsUsedAsMathOracle": false
+    },
+    {
+      "questionNumber": 17,
+      "figures": [
+        {
+          "spec": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q17/figure-1.spec.json",
+            "sha256": "8f0605be9920598e7b43de57d474e66b678b53decaf43797a0a01ea9d3eaf7d7"
+          },
+          "svg": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q17/figure-1.svg",
+            "sha256": "0634afd15ee79eace48bc124efe5329560864412d2d92df373bf179db0d2b2d1"
+          },
+          "intendedWidthMm": 70,
+          "rawCoordinateSemanticsChecks": [
+            {
+              "condition": "angle_H right angle",
+              "computed": 90.0,
+              "required": 90,
+              "passed": true
+            },
+            {
+              "condition": "H lies on AB",
+              "computed": 0.0,
+              "required": 0,
+              "passed": true
+            },
+            {
+              "condition": "H internal to AB",
+              "segmentFraction": 0.5,
+              "passed": true
+            },
+            {
+              "condition": "OH small radius",
+              "computed": 40.0,
+              "required": 40,
+              "passed": true
+            },
+            {
+              "condition": "A large circle",
+              "computed": 80.62257748298549,
+              "required": 80.62257748298549,
+              "passed": true
+            },
+            {
+              "condition": "B large circle",
+              "computed": 80.62257748298549,
+              "required": 80.62257748298549,
+              "passed": true
+            },
+            {
+              "condition": "difference radii squares=halfchord²",
+              "computed": 4899.999999999999,
+              "required": 4900.0,
+              "passed": true
+            }
+          ],
+          "svgIdenticalToPreExposureViewedFigure": true,
+          "limits": "Coordinates verify supplied FigureSpec construction only. They do not define givens or prove a theorem; exact mathematical witnesses and student proofs are separate."
+        }
+      ],
+      "status": "passed",
+      "noFigureNeeded": false,
+      "figurePixelMeasurementsUsedAsMathOracle": false
+    },
+    {
+      "questionNumber": 18,
+      "figures": [
+        {
+          "spec": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q18/figure-1.spec.json",
+            "sha256": "f164e60740278b34a83338f2d55cccb7fb74acd9bb5672a6d42f16014976ddbe"
+          },
+          "svg": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q18/figure-1.svg",
+            "sha256": "4e9b91d170a01bcf07c4d6818446082c4b081d7558076eec1eeb1204c81c56e2"
+          },
+          "intendedWidthMm": 70,
+          "rawCoordinateSemanticsChecks": [
+            {
+              "condition": "angle_B right angle",
+              "computed": 90.0,
+              "required": 90,
+              "passed": true
+            },
+            {
+              "condition": "angle_C right angle",
+              "computed": 90.0,
+              "required": 90,
+              "passed": true
+            },
+            {
+              "condition": "angle_F right angle",
+              "computed": 90.0,
+              "required": 90,
+              "passed": true
+            },
+            {
+              "condition": "B on circle",
+              "computed": 78.0,
+              "required": 78,
+              "passed": true
+            },
+            {
+              "condition": "C on circle",
+              "computed": 78.0,
+              "required": 78,
+              "passed": true
+            },
+            {
+              "condition": "E on circle",
+              "computed": 78.0,
+              "required": 78,
+              "passed": true
+            },
+            {
+              "condition": "E lies on AD",
+              "computed": -1.1959167676172627e-17,
+              "required": 0,
+              "passed": true
+            },
+            {
+              "condition": "E internal to AD",
+              "segmentFraction": 0.2,
+              "passed": true
+            },
+            {
+              "condition": "F lies on CD",
+              "computed": 0.0,
+              "required": 0,
+              "passed": true
+            },
+            {
+              "condition": "F internal to CD",
+              "segmentFraction": 0.25,
+              "passed": true
+            },
+            {
+              "condition": "AB/CD=3/12",
+              "computed": 0.25,
+              "required": 0.25,
+              "passed": true
+            },
+            {
+              "condition": "AE=AB",
+              "computed": 39.0,
+              "required": 39.0,
+              "passed": true
+            },
+            {
+              "condition": "DE=CD",
+              "computed": 156.0,
+              "required": 156.0,
+              "passed": true
+            },
+            {
+              "condition": "OE perpendicular AD",
+              "computed": 5.979583838086313e-17,
+              "required": 0,
+              "passed": true
+            }
+          ],
+          "svgIdenticalToPreExposureViewedFigure": true,
+          "limits": "Coordinates verify supplied FigureSpec construction only. They do not define givens or prove a theorem; exact mathematical witnesses and student proofs are separate."
+        }
+      ],
+      "status": "passed",
+      "noFigureNeeded": false,
+      "figurePixelMeasurementsUsedAsMathOracle": false
+    },
+    {
+      "questionNumber": 19,
+      "figures": [
+        {
+          "spec": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q19/figure-1.spec.json",
+            "sha256": "17e28b8591c821b89b1d637e709cf13f893635f3f0d48f2210c8d53fb7d83f13"
+          },
+          "svg": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q19/figure-1.svg",
+            "sha256": "0792bf34fd9213c6d946f3789a5b8baca8ddf8a30f01bee84e2b3f4e64ec8767"
+          },
+          "intendedWidthMm": 70,
+          "rawCoordinateSemanticsChecks": [
+            {
+              "condition": "angle_F right angle",
+              "computed": 90.0,
+              "required": 90,
+              "passed": true
+            },
+            {
+              "condition": "angle_B right angle",
+              "computed": 90.0,
+              "required": 90,
+              "passed": true
+            },
+            {
+              "condition": "angle_D right angle",
+              "computed": 90.0,
+              "required": 90,
+              "passed": true
+            },
+            {
+              "condition": "B on circle",
+              "computed": 80.0,
+              "required": 80.0,
+              "passed": true
+            },
+            {
+              "condition": "C on circle",
+              "computed": 80.0,
+              "required": 80.0,
+              "passed": true
+            },
+            {
+              "condition": "F on circle",
+              "computed": 80.0,
+              "required": 80.0,
+              "passed": true
+            },
+            {
+              "condition": "E lies on CD",
+              "computed": 0.0,
+              "required": 0,
+              "passed": true
+            },
+            {
+              "condition": "E internal to CD",
+              "segmentFraction": 0.25,
+              "passed": true
+            },
+            {
+              "condition": "F lies on AE",
+              "computed": 0.0,
+              "required": 0,
+              "passed": true
+            },
+            {
+              "condition": "F internal to AE",
+              "segmentFraction": 0.8,
+              "passed": true
+            },
+            {
+              "condition": "square AB=BC",
+              "computed": 160.0,
+              "required": 160.0,
+              "passed": true
+            },
+            {
+              "condition": "DE/side=3/4",
+              "computed": 0.75,
+              "required": 0.75,
+              "passed": true
+            }
+          ],
+          "svgIdenticalToPreExposureViewedFigure": true,
+          "limits": "Coordinates verify supplied FigureSpec construction only. They do not define givens or prove a theorem; exact mathematical witnesses and student proofs are separate."
+        }
+      ],
+      "status": "passed",
+      "noFigureNeeded": false,
+      "figurePixelMeasurementsUsedAsMathOracle": false
+    },
+    {
+      "questionNumber": 21,
+      "figures": [
+        {
+          "spec": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q21/figure-1.spec.json",
+            "sha256": "e8a725014cf33845a029f86aeff558f23e1639410dccd599137ed6698c1c18c2"
+          },
+          "svg": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q21/figure-1.svg",
+            "sha256": "ea23ffe8b6b6ffb72f99717f0934d4c8418e690119c09d5bf4958847fb89c4c1"
+          },
+          "intendedWidthMm": 70,
+          "rawCoordinateSemanticsChecks": [
+            {
+              "condition": "angle_A degree annotation",
+              "computed": 45.00000000000001,
+              "required": 45,
+              "passed": true
+            },
+            {
+              "condition": "angle_D degree annotation",
+              "computed": 60.00000000000001,
+              "required": 60,
+              "passed": true
+            },
+            {
+              "condition": "angle_B right angle",
+              "computed": 90.0,
+              "required": 90,
+              "passed": true
+            },
+            {
+              "condition": "angle_C right angle",
+              "computed": 90.0,
+              "required": 90,
+              "passed": true
+            },
+            {
+              "condition": "angle_H right angle",
+              "computed": 90.0,
+              "required": 90,
+              "passed": true
+            },
+            {
+              "condition": "P lies on AC",
+              "computed": 0.0,
+              "required": 0,
+              "passed": true
+            },
+            {
+              "condition": "P internal to AC",
+              "segmentFraction": 0.6339745962155614,
+              "passed": true
+            },
+            {
+              "condition": "P lies on BD",
+              "computed": 4.210623619319112e-17,
+              "required": 0,
+              "passed": true
+            },
+            {
+              "condition": "P internal to BD",
+              "segmentFraction": 0.6339745962155613,
+              "passed": true
+            },
+            {
+              "condition": "H lies on BC",
+              "computed": 0.0,
+              "required": 0,
+              "passed": true
+            },
+            {
+              "condition": "H internal to BC",
+              "segmentFraction": 0.6339745962155614,
+              "passed": true
+            },
+            {
+              "condition": "AC/BC=sqrt2",
+              "computed": 1.4142135623730951,
+              "required": 1.4142135623730951,
+              "passed": true
+            }
+          ],
+          "svgIdenticalToPreExposureViewedFigure": true,
+          "limits": "Coordinates verify supplied FigureSpec construction only. They do not define givens or prove a theorem; exact mathematical witnesses and student proofs are separate."
+        }
+      ],
+      "status": "passed",
+      "noFigureNeeded": false,
+      "figurePixelMeasurementsUsedAsMathOracle": false
+    },
+    {
+      "questionNumber": 22,
+      "figures": [
+        {
+          "spec": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q22/figure-1.spec.json",
+            "sha256": "665b084ebe063b4e715deb692002e377a613c75ff49b661c3f85252f9d5e8315"
+          },
+          "svg": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q22/figure-1.svg",
+            "sha256": "25c7c8585e15514d91f02484df88a87b3687e6d2c714345f63874624fb30be8d"
+          },
+          "intendedWidthMm": 70,
+          "rawCoordinateSemanticsChecks": [
+            {
+              "condition": "angle_A degree annotation",
+              "computed": 60.00000000000001,
+              "required": 60,
+              "passed": true
+            },
+            {
+              "condition": "angle_P right angle",
+              "computed": 90.0,
+              "required": 90,
+              "passed": true
+            },
+            {
+              "condition": "angle_Q right angle",
+              "computed": 90.0,
+              "required": 90,
+              "passed": true
+            },
+            {
+              "condition": "P on circle",
+              "computed": 69.0,
+              "required": 69,
+              "passed": true
+            },
+            {
+              "condition": "Q on circle",
+              "computed": 69.0,
+              "required": 69,
+              "passed": true
+            },
+            {
+              "condition": "D on circle",
+              "computed": 69.0,
+              "required": 69,
+              "passed": true
+            },
+            {
+              "condition": "C lies on AP",
+              "computed": -6.367672770236843e-17,
+              "required": 0,
+              "passed": true
+            },
+            {
+              "condition": "C internal to AP",
+              "segmentFraction": 0.6666666666666666,
+              "passed": true
+            },
+            {
+              "condition": "B lies on AQ",
+              "computed": 6.367672770236843e-17,
+              "required": 0,
+              "passed": true
+            },
+            {
+              "condition": "B internal to AQ",
+              "segmentFraction": 0.6666666666666666,
+              "passed": true
+            },
+            {
+              "condition": "D lies on BC",
+              "computed": 0.0,
+              "required": 0,
+              "passed": true
+            },
+            {
+              "condition": "D internal to BC",
+              "segmentFraction": 0.5,
+              "passed": true
+            },
+            {
+              "condition": "OD perpendicular BC",
+              "computed": 0.0,
+              "required": 0,
+              "passed": true
+            },
+            {
+              "condition": "perimeter=2AP",
+              "computed": 239.02301144450504,
+              "required": 239.02301144450507,
+              "passed": true
+            }
+          ],
+          "svgIdenticalToPreExposureViewedFigure": true,
+          "limits": "Coordinates verify supplied FigureSpec construction only. They do not define givens or prove a theorem; exact mathematical witnesses and student proofs are separate."
+        }
+      ],
+      "status": "passed",
+      "noFigureNeeded": false,
+      "figurePixelMeasurementsUsedAsMathOracle": false
+    },
+    {
+      "questionNumber": 23,
+      "figures": [
+        {
+          "spec": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q23/figure-1.spec.json",
+            "sha256": "9b8f0f09d24c0d5fd81090b5e2de69a44a8bd714f899c13160e97fb164951d4e"
+          },
+          "svg": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-review-r1/package/private/q23/figure-1.svg",
+            "sha256": "34bce92dab2708d4f50d2449084fbadacd3dea95bdc25325f6e194ee4e4416de"
+          },
+          "intendedWidthMm": 70,
+          "rawCoordinateSemanticsChecks": [
+            {
+              "condition": "angle_A right angle",
+              "computed": 90.00000000000001,
+              "required": 90,
+              "passed": true
+            },
+            {
+              "condition": "angle_B right angle",
+              "computed": 90.00000000000001,
+              "required": 90,
+              "passed": true
+            },
+            {
+              "condition": "A on circle",
+              "computed": 83.1384387633061,
+              "required": 83.13843876330611,
+              "passed": true
+            },
+            {
+              "condition": "B on circle",
+              "computed": 83.1384387633061,
+              "required": 83.13843876330611,
+              "passed": true
+            },
+            {
+              "condition": "minor AOB120",
+              "computed": 119.99999999999999,
+              "required": 120,
+              "passed": true
+            },
+            {
+              "condition": "APB60",
+              "computed": 59.99999999999999,
+              "required": 60,
+              "passed": true
+            }
+          ],
+          "svgIdenticalToPreExposureViewedFigure": true,
+          "limits": "Coordinates verify supplied FigureSpec construction only. They do not define givens or prove a theorem; exact mathematical witnesses and student proofs are separate."
+        }
+      ],
+      "status": "passed",
+      "noFigureNeeded": false,
+      "figurePixelMeasurementsUsedAsMathOracle": false
+    }
+  ],
+  "figureCount": 20,
+  "layoutPanes": 44
+}
