@@ -1,0 +1,83 @@
+{
+  "questionNumber": 7,
+  "normalizedInput": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q07/normalized-question.json",
+    "sha256": "992c1fa793f27afa1cd6fdf1d94e7486e7a2d32cc552a3f3581f5efbd4772607"
+  },
+  "parentNormalizedByteIdentical": true,
+  "retainedSourceAuditCommit": "c348f02772f8d8eb4b698a61417c3a681e337b3e",
+  "normalizedQuestion": {
+    "schema": "bumil-normalized-question-only.v2",
+    "question_number": 7,
+    "original_label": "7",
+    "question_type": "객관식",
+    "partial_credit_printed": false,
+    "score": 4,
+    "stem": "이차방정식 9x²-12x+4=0의 한 근이 sin A의 값과 같을 때, cos A÷tan A의 값은? (단, 0°<A<90°)",
+    "givens": [
+      "9x²-12x+4=0",
+      "한 근=sin A",
+      "0°<A<90°"
+    ],
+    "choices": [
+      "1/6",
+      "2/3",
+      "5/6",
+      "6/5",
+      "15/2"
+    ],
+    "figure_labels": [],
+    "diagram_observation": "원본 종이에 손으로 그린 삼각형은 인쇄 문제 그림이 아니므로 입력에서 제외함.",
+    "transcription_method": "Human normalization of the complete printed question, not a solution or automatic scan OCR.",
+    "author_input_policy": "Only normalized printed content and clean HWP/completed-PDF question figures/crops; no scan handwriting, answers or solutions."
+  },
+  "priorHold": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/CURRICULUM-HOLD-q07.md",
+    "sha256": "4a49ce137eea1fbc1cde99f9d1993e27ed6b5909ae4660aa5d6938e58c3ad371"
+  },
+  "curriculumEvidence": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+    "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d"
+  },
+  "priorQuestionMapping": {
+    "question_number": 7,
+    "original_id": "personal-9967cfbb759aa6d369883bac4c986aaa-7",
+    "source_content_sha256_utf8": "017ec2b4d6558273a223961c431db61ccb051d33de3a7f6ea3f67da4586c0df3",
+    "source_locator": {
+      "draft_json_pointer": "/6/content",
+      "paper_physical_page_1based": 2
+    },
+    "observed_unit_hint": "삼각비",
+    "proposed_unit_topic": "삼각비",
+    "primary_standard_codes": [
+      "9수02-13",
+      "9수04-17"
+    ],
+    "prerequisite_standard_codes": [
+      "9수02-12",
+      "9수04-16",
+      "9수01-07",
+      "9수01-10"
+    ],
+    "proposed_middle3_method": "완전제곱으로 방정식을 풀고 sin A=2/3을 빗변 3, 대변 2인 직각삼각형으로 해석한다. 피타고라스로 나머지 변을 구해 cos A와 tan A를 각각 정의로 계산한다.",
+    "specific_gate_notes": "삼각비 사이의 관계를 다루지 않는다는 제한과 충돌할 소지가 있다. 도형을 통한 해석도 자동 승인이 아니며 교과 검토자가 평가 의도를 확인해야 한다. sin²A+cos²A=1, tan A=sin A/cos A를 공식으로 사용하면 제외.",
+    "figure_or_table_required": false,
+    "draft_hasFigure": false,
+    "mapping_status": "expert_proposal_only",
+    "candidate_grade_approval": "pending",
+    "generator_binding": {
+      "owner": "parent exam-extraction-resume-20261008",
+      "current_unit_id": null,
+      "current_live_family": null,
+      "generator_source_hash": null,
+      "rule_scope_review": "pending_current_bank_and_source_review"
+    },
+    "new_candidate_id": null,
+    "new_candidate_hash": null,
+    "mathematical_correctness_of_new_candidate": "not_run",
+    "full_surface_curriculum_review_of_new_candidate": "not_run"
+  },
+  "sourceAuditRepeated": false,
+  "originalAnswerLookup": false,
+  "priorExposure": "Original scan annotations were incidentally seen in the completed source audit. No original answer/solution agreement is used here; no blind original-answer claim."
+}

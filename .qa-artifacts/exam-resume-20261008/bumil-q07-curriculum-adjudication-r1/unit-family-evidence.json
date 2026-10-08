@@ -1,0 +1,151 @@
+{
+  "snapshots": [
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bank-read-20261008.json",
+      "sha256": "164c611b84b3d9b16c30f74e2d0220ed54b2d642845d0bf1e72d9a347b969a9b",
+      "capturedAt": "2026-10-07 15:57:15.290971+00",
+      "unitPointer": "/units/12",
+      "unit": {
+        "id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 뜻",
+        "semester": 2,
+        "orderIndex": 481,
+        "problemCodePrefix": "J30501"
+      },
+      "familyPointer": "/liveFamilies/85",
+      "family": {
+        "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+        "family_key": "mid:3-2|삼각비|03",
+        "live_count": 24
+      },
+      "dbReadByThisWorker": false
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bank-read-fresh-r2-20261008.json",
+      "sha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b",
+      "capturedAt": "2026-10-08 04:53:45.769124+00",
+      "unitPointer": "/units/12",
+      "unit": {
+        "id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 뜻",
+        "semester": 2,
+        "orderIndex": 481,
+        "problemCodePrefix": "J30501"
+      },
+      "familyPointer": "/liveFamilies/85",
+      "family": {
+        "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+        "family_key": "mid:3-2|삼각비|03",
+        "live_count": 24
+      },
+      "dbReadByThisWorker": false
+    }
+  ],
+  "registry": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/registry-read-20261008.json",
+    "sha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+    "pointer": "/entries/72",
+    "entry": {
+      "key": "3-2|삼각비|03",
+      "grade": "중3",
+      "unitSection": "삼각비의 뜻",
+      "rpmBook": "3-2",
+      "rpmMinor": "삼각비",
+      "rpmType": "03",
+      "rpmTitle": "한 삼각비의 값을 알 때 다른 삼각비의 값 구하기"
+    }
+  },
+  "generator": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+    "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+    "lines1based": [
+      1023,
+      1059
+    ],
+    "excerpt": "  def(\n    \"삼각비\",\n    \"03\",\n    \"한 삼각비의 값을 알 때 다른 삼각비의 값 구하기\",\n    SEC.뜻,\n    \"응용\",\n    (rng) =>\n      attempt(120, () => {\n        // 세 쌍을 **기약으로** 줄인다 — 안 그러면 발문의 `tan A=3/4` 와 해설의\n        // 「밑변 16, 높이 12」가 따로 논다(같은 값인데 학생은 딴 삼각형으로 읽는다).\n        const [p0, q0, r0] = pick(rng, TRIPLES);\n        const g0 = gcd(gcd(p0, q0), r0);\n        const [p, q, r] = [p0 / g0, q0 / g0, r0 / g0];\n        const given = intBetween(rng, 0, 2);\n        const want = intBetween(rng, 0, 2);\n        if (given === want) return null;\n        // $\\tan$ 은 «대변/이웃변»이라 진분수가 아니면 지면에서 대분수가 된다.\n        if ((given === 2 || want === 2) && p >= q) return null;\n        const pair = (fn: number): [number, number] =>\n          fn === 0 ? red(p, r) : fn === 1 ? red(q, r) : red(p, q);\n        const [gn, gd] = pair(given);\n        const [wn, wd] = pair(want);\n        const legText =\n          given === 0\n            ? `빗변의 길이가 $${r}$, 높이가 $${p}$인 직각삼각형에서 밑변의 길이는 $\\\\sqrt{${r}^2-${p}^2}=${q}$`\n            : given === 1\n              ? `빗변의 길이가 $${r}$, 밑변의 길이가 $${q}$인 직각삼각형에서 높이는 $\\\\sqrt{${r}^2-${q}^2}=${p}$`\n              : `밑변의 길이가 $${q}$, 높이가 $${p}$인 직각삼각형에서 빗변의 길이는 $\\\\sqrt{${p}^2+${q}^2}=${r}$`;\n        return {\n          content: `$0^\\\\circ<A<90^\\\\circ$인 $\\\\angle A$에 대하여 $${trigOf(given, \"A\")}=${frac(gn, gd)}$일 때, $${trigOf(want, \"A\")}$의 값을 구하시오.`,\n          answer: `$${frac(wn, wd)}$`,\n          solution: `$${trigOf(given, \"A\")}=${frac(gn, gd)}$이므로 ${legText}이다.\\n따라서 $${trigOf(want, \"A\")}=${frac(wn, wd)}$이다.`,\n          facts: { p, q, r, given, want, gnum: gn, gden: gd, num: wn, den: wd },\n          figureSpec: null,\n        };\n      }),\n  ),",
+    "observedPurpose": "One same-angle trig ratio given; choose a different same-angle ratio as target; reconstruct missing side by Pythagoras. No ratio-relation curriculum exception is evidenced by this rule.",
+    "q07CompoundQuotientSupportedByThisExactRule": false
+  },
+  "unitPrerequisiteSeed": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+    "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+    "records": [
+      {
+        "orderIndex": 463,
+        "lines1based": [
+          2851,
+          2855
+        ],
+        "sourceExcerpt": "    grade: \"중2\",\n    chapter: \"8. 피타고라스 정리\",\n    section: \"피타고라스 정리\",\n    orderIndex: 463,\n  },"
+      },
+      {
+        "orderIndex": 464,
+        "lines1based": [
+          2857,
+          2861
+        ],
+        "sourceExcerpt": "    grade: \"중2\",\n    chapter: \"8. 피타고라스 정리\",\n    section: \"피타고라스 정리의 활용\",\n    orderIndex: 464,\n  },"
+      },
+      {
+        "orderIndex": 469,
+        "lines1based": [
+          2880,
+          2884
+        ],
+        "sourceExcerpt": "    grade: \"중3\",\n    chapter: \"1. 실수와 그 계산\",\n    section: \"제곱근의 뜻과 성질\",\n    orderIndex: 469,\n  },"
+      },
+      {
+        "orderIndex": 471,
+        "lines1based": [
+          2892,
+          2896
+        ],
+        "sourceExcerpt": "    grade: \"중3\",\n    chapter: \"1. 실수와 그 계산\",\n    section: \"근호를 포함한 식의 계산\",\n    orderIndex: 471,\n  },"
+      },
+      {
+        "orderIndex": 472,
+        "lines1based": [
+          2899,
+          2903
+        ],
+        "sourceExcerpt": "    grade: \"중3\",\n    chapter: \"2. 다항식의 곱셈과 인수분해\",\n    section: \"다항식의 곱셈\",\n    orderIndex: 472,\n  },"
+      },
+      {
+        "orderIndex": 473,
+        "lines1based": [
+          2905,
+          2909
+        ],
+        "sourceExcerpt": "    grade: \"중3\",\n    chapter: \"2. 다항식의 곱셈과 인수분해\",\n    section: \"인수분해\",\n    orderIndex: 473,\n  },"
+      },
+      {
+        "orderIndex": 475,
+        "lines1based": [
+          2918,
+          2922
+        ],
+        "sourceExcerpt": "    grade: \"중3\",\n    chapter: \"3. 이차방정식\",\n    section: \"이차방정식의 풀이\",\n    orderIndex: 475,\n  },"
+      },
+      {
+        "orderIndex": 481,
+        "lines1based": [
+          2956,
+          2960
+        ],
+        "sourceExcerpt": "    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 뜻\",\n    orderIndex: 481,\n  },"
+      }
+    ]
+  },
+  "classificationIsPermission": false,
+  "exactQ07UnitFamilyAssignmentMade": false,
+  "recommendation": {
+    "family": "mid:3-2|삼각비|03",
+    "curriculum": "2015",
+    "eligibility": "do_not_use_as_curriculum_allowance; explicit restriction-risk review required for same-angle ratio-to-ratio purpose",
+    "scope": "Recommendation only; no global row decision, code edit, DB lock, live-content approval, or automatic 2022 allowance."
+  }
+}

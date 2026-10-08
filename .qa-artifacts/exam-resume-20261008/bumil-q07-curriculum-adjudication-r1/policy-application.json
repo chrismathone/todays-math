@@ -1,0 +1,93 @@
+{
+  "reference": "actual 2025 middle3; 2015 revision",
+  "operativeMathEvidence": [
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-2015-74-book8-math.pdf",
+      "sha256": "4bd2b84e978865a71d90577d8eb6240f0ecf24a9884642d627cde460d71ab88e",
+      "url": "https://www.moe.go.kr/boardCnts/fileDown.do?m=040401&s=moe&fileSeq=dc926a43bf953203951fb928ff098b1c",
+      "archiveMember": "별책8_수학과 교육과정.pdf"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-2020-236-book8-math.hwp",
+      "sha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+      "url": "https://www.moe.go.kr/boardCnts/fileDown.do?m=0404&s=moe&fileSeq=9626ca7f4483de728b1e9b14e8f41f84"
+    }
+  ],
+  "2022_2Amendment": {
+    "source": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-q07-curriculum-adjudication-r1/official-notices/moe-2022-2-notice.hwp",
+      "sha256": "65fe75153d3c9f3d67cfdf38108cba0eac29a8d2bcc57f67af71c47bb699a8cb",
+      "url": "https://www.moe.go.kr/boardCnts/fileDown.do?fileSeq=2b69253bc6744cab14e91cc8ce4150ad&m=&s=moe",
+      "noticeBoard": "https://www.moe.go.kr/boardCnts/viewRenew.do?boardID=141&boardSeq=90411&lev=0&searchType="
+    },
+    "selectedRecords": [
+      {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "level": 1,
+        "record_1based": 25,
+        "paragraph_1based": 4,
+        "offset_in_uncompressed_stream": 707,
+        "text": "초・중등교육법 제23조제2항 및 제48조제3항에 따라 초‧중등학교 교육과정(교육부 고시 제2020-248호(2020. 12. 31.))중 초‧중등학교 교육과정 총론을 일부 개정하여 다음과 같이 고시한다."
+      },
+      {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "level": 1,
+        "record_1based": 43,
+        "paragraph_1based": 7,
+        "offset_in_uncompressed_stream": 1449,
+        "text": "【별책 1】 총론의 제Ⅱ장 ‘학교 급별 교육과정 편성․운영의 기준’ 중 ‘1. 기본사항’, ‘4. 고등학교’, 제Ⅳ장 ‘학교 교육과정의 지원’ 중 ‘2. 교육청 수준의 지원’의 개정 사항은 다음과 같다."
+      },
+      {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "level": 1,
+        "record_1based": 624,
+        "paragraph_1based": 135,
+        "offset_in_uncompressed_stream": 26448,
+        "text": "1. 초․중등학교 교육과정 총론은 【별책1】과 같다."
+      },
+      {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "level": 1,
+        "record_1based": 628,
+        "paragraph_1based": 136,
+        "offset_in_uncompressed_stream": 26596,
+        "text": "2. 고등학교 교육과정은 【별책4】와 같다."
+      }
+    ],
+    "observedScope": "General curriculum book1 and high-school curriculum book4; no math book8 amendment in this notice.",
+    "changesQ07MathProvisions": false
+  },
+  "2024_1Amendment": {
+    "url": "https://ncic.re.kr/board/B0033.cs?act=read&bwrId=2114&m=34&pageIndex=1&pageUnit=15&searchCondition=&searchEndDt=&searchKeyword=&searchStartDt=",
+    "locator": "Notice dated 2024-08-16, published 2024-08-29; numbered amendment subjects 1-11, supplementary provision 1",
+    "booksNamed": [
+      2,
+      3,
+      4,
+      7,
+      9,
+      12,
+      19,
+      24,
+      27,
+      28,
+      30,
+      39,
+      40,
+      42,
+      43
+    ],
+    "effectiveDate": "2025-03-01",
+    "mathBook8Listed": false,
+    "observation": "Direct official NCIC page read through web tool on 2026-10-08; tool reports archived crawl. No new raw local HTML hash is asserted.",
+    "changesQ07MathProvisionsEvidenced": false
+  },
+  "completeGeneralPolicyHistoryClaim": false,
+  "identifiedMaterialAmendmentUncertainty": [],
+  "unrelatedWholePolicyCompletenessIsAdditionalApprovalGate": false,
+  "limits": "Bounded to the relevant 2015 math clauses, phase-in, and specifically flagged 2022-2/2024-1 amendments. No claim that every post-2020 policy has been exhaustively audited; no identified later math change to the cited provisions. This rejection does not approve current/future publication."
+}
