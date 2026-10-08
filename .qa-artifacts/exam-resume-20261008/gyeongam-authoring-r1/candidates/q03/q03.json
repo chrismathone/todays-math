@@ -1,0 +1,229 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 3,
+  "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q03",
+  "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+  "content": "두 가림 카드에 적힌 수 $a,b$는 자연수이고 $a<b$이다. 이 카드를 사용한 두 자료의 중앙값을 다음과 같이 기록했다.\n\n| 자료 | 변량 | 중앙값 |\n| --- | --- | --- |\n| Ⅰ | $2,3,a,b,8$ | $6$ |\n| Ⅱ | $10,a,b,18$ | $9$ |\n\n두 카드의 수 $a,b$를 차례로 바르게 복구한 것은?",
+  "choices": [
+    "$4$, $8$",
+    "$6$, $8$",
+    "$6$, $12$",
+    "$8$, $10$",
+    "$5$, $10$"
+  ],
+  "answer": "②",
+  "solution": "자료 Ⅰ의 가운데 값 $6$은 원래 자료의 변량 중 하나여야 한다. 알려진 값 $2,3,8$ 중에는 없으므로 $a$ 또는 $b$가 $6$이다.\n만약 $b=6$이면 $a<6$이어서 $2,3,a$의 세 값이 모두 $6$보다 작다. 그러면 세 번째 값이 $6$이 될 수 없다. 따라서 $a=6$이고 $b>6$이다.\n자료 Ⅱ는 $6,10,b,18$이다. $b\\ge10$이면 가운데 두 값이 모두 $10$ 이상이어서 중앙값 $9$가 될 수 없다. 따라서 $6<b<10$이고 정렬 순서는 $6,b,10,18$이다.\n$\\frac{b+10}{2}=9$를 풀면 $b=8$이다. 두 카드는 $6,8$이므로 정답은 ②이다.",
+  "score": 4.0,
+  "questionType": "객관식",
+  "facts": {
+    "givens": {
+      "A": [
+        2,
+        3,
+        "a",
+        "b",
+        8
+      ],
+      "medianA": 6,
+      "B": [
+        10,
+        "a",
+        "b",
+        18
+      ],
+      "medianB": 9,
+      "domain": "a,b positive integers;a<b"
+    },
+    "mathDataPath": "math-data.json",
+    "mathDataSha256": "bcad8c997055483f9522a509a7127c0646aeb70809a2b8f97e0508b45cd3545c",
+    "rawSourceObservationPath": "../../evidence/source-observations.json",
+    "rawSourceObservationSha256": "56dcd7f8a34433011abf1e6d0fc7b17fb63e19d91ed8c11697f8c6b9f14ba59c",
+    "newDataStatus": "author-constructed",
+    "sourceScoreEvidence": {
+      "selectedHwpPdfPrintedParentScore": 4.0,
+      "selectedPairScoreStatus": "literal_match",
+      "originalPrintedParentScore": 4.0,
+      "referenceParentScore": 4.0,
+      "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+      "parentCountedOnce": true,
+      "childScores": [],
+      "subquestionCount": 0,
+      "parentAndChildrenMustNotBeAddedTogether": false
+    },
+    "authorRubric": [],
+    "subQuestions": []
+  },
+  "figureArtifacts": [],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation",
+      "inverse-target"
+    ],
+    "before": "두 자연수의 중앙값 조건으로 차 b−a를 구한다.",
+    "after": "두 자료의 중앙값 기록을 이용해 두 가림 카드 자체의 값을 복구한다.",
+    "sharedConcept": "홀수/짝수 자료 중앙값과 두 미지수의 순서",
+    "sharedProcedure": "중앙값이 실제 변량→a<b로 불가능한 배치 제외→짝수 정렬 범위→두 카드 복구."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수05-06",
+      "9수02-05"
+    ],
+    "allowedProcedure": "중앙값이 실제 변량→a<b로 불가능한 배치 제외→짝수 정렬 범위→두 카드 복구.",
+    "forbiddenAvoided": [
+      "任意삼각비관계식",
+      "원/외접원비례법칙/원의거듭제곱",
+      "사인/코사인법칙",
+      "반각/덧셈정리",
+      "삼각비넓이공식",
+      "라디안/벡터",
+      "상위통계/최적화"
+    ],
+    "status": "author-proposed",
+    "wholeSurfaceGate": "7 surfaces mapped to specific procedure/prerequisites; source school/registry is not grade approval",
+    "specificRisk": "",
+    "independentReviewStatus": "pending-other-worker"
+  },
+  "studentSurfaceReview": {
+    "stem": {
+      "status": "author-proposed",
+      "evidence": "新본문조건/표/자료조직과점순서명시"
+    },
+    "choices": {
+      "status": "author-proposed",
+      "evidence": "actual-option parser로14객관식의유일정답/중복검사;written choices=[]"
+    },
+    "figuresAndTables": {
+      "status": "author-proposed",
+      "evidence": "새스펙/로컬strictSVG/70mm이하실미리보기와데이터결합"
+    },
+    "notation": {
+      "status": "author-proposed",
+      "evidence": "2015중등표기,도단위/예각,정렬/평균/편차정의;벡터/라디안/상위통계기호없음"
+    },
+    "answer": {
+      "status": "author-proposed",
+      "evidence": "새정확답/단위/서술부분과MC동그라미번호"
+    },
+    "studentSolution": {
+      "status": "author-proposed",
+      "evidence": "중앙값이 실제 변량→a<b로 불가능한 배치 제외→짝수 정렬 범위→두 카드 복구."
+    },
+    "prerequisites": {
+      "status": "author-proposed",
+      "evidence": [
+        {
+          "code": "9수05-06",
+          "text": "중앙값, 최빈값, 평균의 의미를 이해하고, 이를 구할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              40
+            ],
+            "printed_pages": [
+              36
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수02-05",
+          "text": "일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              34
+            ],
+            "printed_pages": [
+              30
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        }
+      ]
+    }
+  },
+  "sourceReference": {
+    "externalId": "2025-gyeongam-3-2-mid-3",
+    "sourceExamExternalId": "personal-5eb35ea19488aaf195e724ed05fe8806",
+    "sourceLogicalExamId": "2025-gyeongam-3-2-mid",
+    "questionNumber": 3,
+    "sourceContentSha256": "53b9aa39e79d11bda07116a45a6d6c6fb8cbd74bf3b3d16db6bdeaa08df684c4",
+    "sourceContentDigest": "6e0b5177207b284e125a02e531044b306e1342f187f2e1dda9bb83d286412301",
+    "sourcePacketPath": "../../evidence/source-final/questions.json",
+    "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+    "sourceFinalCommit": "4cc9278da",
+    "jsonPointer": "/questions/2",
+    "originalReferenceScore": 4.0,
+    "originalReferenceSubQuestions": [],
+    "referenceFigures": [
+      {
+        "path": "../../evidence/source-final/images/q03-part1.png",
+        "sha256": "b20674924062d850e990101a7535af80e194cb347fa3b95ecd74ec9115f750b1",
+        "page": 1,
+        "referenceOnly": true
+      }
+    ],
+    "sourceIdentityDecision": "2025_original_header_school_footer_and_completed_question_identity_supported",
+    "originalAnswerSolutionWithheld": true,
+    "realSchool": "경암중",
+    "studentSchoolAlias": "온빛누리중학교",
+    "directUseAllowed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015"
+    },
+    "sourceExamYear": 2025,
+    "sourceIdentityStatus": "root-final-question-only-packet4cc9278da;native/full-pair-not-approved",
+    "realSchool": "경암중",
+    "studentSchoolAlias": "온빛누리중학교",
+    "questionType": "객관식",
+    "score": 4.0,
+    "difficultyProposal": "응용",
+    "difficultyStatus": "author-proposed-independent-review-pending",
+    "problemTypeProposal": "객관식",
+    "problemTypeStatus": "author-proposed",
+    "scoreStatus": "reference-parent-total-and-subparts-preserved;rubric-author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "unitSection": "대푯값과 산포도",
+      "familyKey": null,
+      "evidence": {
+        "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+        "notCurrentDbAssertion": true,
+        "unitSeedOrderIndex": 488,
+        "comparedRegistryEntries": [
+          {
+            "key": "3-2|산포도|11T",
+            "grade": "중3",
+            "unitSection": "대푯값과 산포도",
+            "rpmBook": "3-2",
+            "rpmMinor": "산포도",
+            "rpmType": "11T",
+            "rpmTitle": "평균과 중앙값이 같은 변량 구하기"
+          }
+        ],
+        "wholeRuleComparison": "11T는평균=중앙값의조건이며 새홀수/짝수두중앙값과a<b의두가림카드복구가 아니다.",
+        "reopenCriteria": "실제기존rule의새given/질문/전체절차/서술부분/난도가일치하는문항별증거및독립분류검토;가까운제목자동배정금지"
+      }
+    },
+    "independentSolveStatus": "pending-other-worker",
+    "independentReviewStatus": "pending-other-worker",
+    "rightsStatus": "pending",
+    "nativeStatus": "pending",
+    "sourceCustodyStatus": "pending",
+    "similarityStatus": "pending",
+    "publishStatus": "not-authorized",
+    "loadStatus": "not-authorized",
+    "directUseAllowed": false
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "questionNumber": 4,
+  "sourceDataObservationLedger": "../../evidence/source-observations.json#/observations/3",
+  "newDataStatus": "author-constructed-not-source-observation",
+  "givens": {
+    "beforeCount": 7,
+    "beforeMean": 6,
+    "afterCount": 10,
+    "afterMean": 7,
+    "knownAdded": [
+      8,
+      9
+    ],
+    "missing": "m"
+  },
+  "newFigureConstructionModel": []
+}

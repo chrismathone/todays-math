@@ -1,0 +1,48 @@
+{
+  "questionNumber": 10,
+  "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+  "method": "exact-author-recomputation-and-actual-displayed-option-check",
+  "status": "author-check-passed",
+  "independentVerification": false,
+  "candidateFileSha256": "d137f2befe75a99eec02eb09023ccbc3b7f62913de4dca15791c3413905d8a26",
+  "mathDataSha256": "b5b194d871ba8680adf56501c071e6b975a8a24dbee8733e94290ac161b59d20",
+  "targets": [
+    "3/5",
+    "3/4"
+  ],
+  "evidence": {
+    "PFunctions": {
+      "\\sin": "4/5",
+      "\\cos": "3/5",
+      "\\tan": "4/3"
+    },
+    "QFunctions": {
+      "\\sin": "3/5",
+      "\\cos": "4/5",
+      "\\tan": "3/4"
+    },
+    "ratioNames": [
+      "cos",
+      "tan"
+    ],
+    "method": "actual finite side-role ratios, no arbitrary identity"
+  },
+  "choices": {
+    "count": 5,
+    "distinctDisplayedValuesOrRecords": true,
+    "oneCorrect": true,
+    "correctChoiceIndex": 2
+  },
+  "assets": [
+    {
+      "specSha256": "e921594bd209e9feb0c5bc1d625f19d888952152edd7be53bd4ac04dc82fdb3b",
+      "geometryMatchesNewGivens": true,
+      "coordinateTolerance": "1e-8",
+      "pictorialProjectionOnly": false
+    }
+  ],
+  "leafKeys": [
+    "10"
+  ],
+  "limits": "No source answers/keys used. This is an author check, not a blind solve or curriculum/rights/family approval."
+}

@@ -1,0 +1,37 @@
+{
+  "questionNumber": 18,
+  "sourceDataObservationLedger": "../../evidence/source-observations.json#/observations/17",
+  "newDataStatus": "author-constructed-not-source-observation",
+  "givens": {
+    "rightAngle": "B",
+    "DInsideAB": true,
+    "ADequalsCD": true,
+    "CDBdeg": 45,
+    "AB": "5+5sqrt(2)",
+    "unit": "cm"
+  },
+  "newFigureConstructionModel": [
+    {
+      "points": {
+        "A": [
+          -12.071067811865476,
+          0
+        ],
+        "D": [
+          -5,
+          0
+        ],
+        "B": [
+          0,
+          0
+        ],
+        "C": [
+          0,
+          5
+        ]
+      },
+      "scale": 14,
+      "coordinateUse": "private construction model; SVG y down"
+    }
+  ]
+}

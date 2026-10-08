@@ -1,0 +1,177 @@
+{
+  "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+  "method": "existing renderFigureSpec; native vectors only",
+  "strict": true,
+  "typeset": true,
+  "local": true,
+  "modelOrPaidApiCalls": 0,
+  "sourceCropFinalArtCount": 0,
+  "renderScriptPath": "render.mts",
+  "renderScriptSha256": "7accff44cfd64d384fdfc3bdffb4645b01048f1e37aa812d5c4d1f2810d5c105",
+  "engineInputs": [
+    {
+      "repositoryPath": "src/lib/figure/renderFigureSpec.ts",
+      "sha256": "243a0c11108ca842d4ce5b14a936d7c9d128ed6c8cee583e7d4bc34fe8e62feb"
+    },
+    {
+      "repositoryPath": "src/lib/figure/mathjaxSubstitute.ts",
+      "sha256": "5cf79fb0dfff1f99bcba025fcf0ef24f7f05900f9a40276d1e218070f9e4de21"
+    },
+    {
+      "repositoryPath": "src/lib/figure/mathjaxLabel.ts",
+      "sha256": "1fea1628a51754de8c1654c59903eb562001b67f23e5ab97e78eed4b316d34fd"
+    },
+    {
+      "repositoryPath": "scripts/figure/render_spec.py",
+      "sha256": "773b75c61d5e55f72f1c31a5babff698b61f280c077e305ac35587697d333627"
+    },
+    {
+      "repositoryPath": "scripts/figure/engine_path.py",
+      "sha256": "96e6a07ec22dfa3393c85affd6a6117c8303f4eb31e95bc5a3707388af8b0375"
+    },
+    {
+      "repositoryPath": "scripts/figure/elementary.py",
+      "sha256": "36ffdef55df1a2575f0ea17e37f70d5d62fae4fb0225a92fa2fa1817b3426c8e"
+    },
+    {
+      "repositoryPath": "scripts/figure/elem_advanced.py",
+      "sha256": "eb71f0804ed6a2d442ee749c1c9a9a4a85d16ae02804341523091ef0a22ce6d4"
+    },
+    {
+      "repositoryPath": "vendor/figure-engine/core/__init__.py",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "repositoryPath": "vendor/figure-engine/core/figure_quality.py",
+      "sha256": "62e4284e3d435eb55053af77cd33102c3cbdc32f6cf65829bbf946dd515a5934"
+    },
+    {
+      "repositoryPath": "vendor/figure-engine/core/figure_scene.py",
+      "sha256": "b8b1f5e121617a8d5a44b947da03df8cec25ac1ac86b4e3390d119c16c27ee9e"
+    },
+    {
+      "repositoryPath": "vendor/figure-engine/core/figure_solid.py",
+      "sha256": "2e6c3c44f496e38453250c7f1aa3c6d886fa5cbba3a54dc2398ca42184357293"
+    },
+    {
+      "repositoryPath": "vendor/figure-engine/core/figure_svg.py",
+      "sha256": "81587508b3f04a4e6e85feafc9b41caed42cdde1de1cd0098e1e489f67c7f1d8"
+    },
+    {
+      "repositoryPath": "vendor/figure-engine/core/label_markup.py",
+      "sha256": "3e8d625f15f6c4f094d2d08dfd1d0f07a6ffb7fe1a8160d04d6275ac8fef1c4c"
+    }
+  ],
+  "strictRenderPath": "checks/strict-render.json",
+  "strictRenderSha256": "d3f2eecff1d83a79255ea80f35e8907d133a61ec080b86d085aee71d36102b32",
+  "jobs": [
+    {
+      "spec": "candidates/q01/stem-1.spec.json",
+      "svg": "candidates/q01/stem-1.svg",
+      "specSha256": "d273f0b4396cb0fe103c243c7016a89da67b119004b448c99a3c3920d41aa412",
+      "svgSha256": "f653c394c4774058e7ee1a51fd4da37bb0d36ac0954a24d99a56451ef48a39ea",
+      "ok": true,
+      "strict": true,
+      "typeset": true,
+      "local": true,
+      "droppedDimensions": [],
+      "bytes": 11080
+    },
+    {
+      "spec": "candidates/q09/stem-1.spec.json",
+      "svg": "candidates/q09/stem-1.svg",
+      "specSha256": "b42e9178ede5acdfd29083fa00dc6bba82745954c6eea874cc2b7ae3f4acd9bb",
+      "svgSha256": "cd22dfa3852b209389749ee665d4ecdb44956e7f1a8166192195eb75b6ea5fff",
+      "ok": true,
+      "strict": true,
+      "typeset": true,
+      "local": true,
+      "droppedDimensions": [],
+      "bytes": 24150
+    },
+    {
+      "spec": "candidates/q10/stem-1.spec.json",
+      "svg": "candidates/q10/stem-1.svg",
+      "specSha256": "e921594bd209e9feb0c5bc1d625f19d888952152edd7be53bd4ac04dc82fdb3b",
+      "svgSha256": "a64c8e2f2c1f5b398f6d900681fa4fb9880f7dcc2a59bf6e9d7da72067bcd574",
+      "ok": true,
+      "strict": true,
+      "typeset": true,
+      "local": true,
+      "droppedDimensions": [],
+      "bytes": 3741
+    },
+    {
+      "spec": "candidates/q11/stem-1.spec.json",
+      "svg": "candidates/q11/stem-1.svg",
+      "specSha256": "3395004e0e551644d9c713fb63e37b0dcb1da0d6fc857ee851edf66864568596",
+      "svgSha256": "76987cbb6c0b2189f61e2b8fbfe03fe74978acc1bb46c5828452555d0384cd87",
+      "ok": true,
+      "strict": true,
+      "typeset": true,
+      "local": true,
+      "droppedDimensions": [],
+      "bytes": 8974
+    },
+    {
+      "spec": "candidates/q11/stem-2.spec.json",
+      "svg": "candidates/q11/stem-2.svg",
+      "specSha256": "c446305e3a51b4c8fe6c065e48025c9f8ffca0ca6cf1241a92c6942a133ee2bc",
+      "svgSha256": "3552f8d0a5514faa1ba4309ab93aa6a1eaee896db7ef3f6131f68cc5a7d7833e",
+      "ok": true,
+      "strict": true,
+      "typeset": true,
+      "local": true,
+      "droppedDimensions": [],
+      "bytes": 4785
+    },
+    {
+      "spec": "candidates/q12/stem-1.spec.json",
+      "svg": "candidates/q12/stem-1.svg",
+      "specSha256": "20917209d13d415f4ae631c79317d8c698a622b96d958f81e60235cfa065cd1f",
+      "svgSha256": "ae14b4bc481a4e4db967133384a2f7810322d1415f73ebdf920f7f6378250257",
+      "ok": true,
+      "strict": true,
+      "typeset": true,
+      "local": true,
+      "droppedDimensions": [],
+      "bytes": 3749
+    },
+    {
+      "spec": "candidates/q13/stem-1.spec.json",
+      "svg": "candidates/q13/stem-1.svg",
+      "specSha256": "8992c0aed99737c494cd27fe542485d63f6de8dd24c82a1fbbaf951aad0b419a",
+      "svgSha256": "22046aa9028d3fdad7a2e2daf268137352780de248ab3c6bad860bc5762fe1d3",
+      "ok": true,
+      "strict": true,
+      "typeset": true,
+      "local": true,
+      "droppedDimensions": [],
+      "bytes": 9527
+    },
+    {
+      "spec": "candidates/q18/stem-1.spec.json",
+      "svg": "candidates/q18/stem-1.svg",
+      "specSha256": "acdab1a1e9d202f2790ef16b7e2af044e2994529aa9ad5d9a8fcdb88241ee527",
+      "svgSha256": "c2c3151654b679240a7ff6961de7e9f1be94fc36b804c991debf3ab6997e06c0",
+      "ok": true,
+      "strict": true,
+      "typeset": true,
+      "local": true,
+      "droppedDimensions": [],
+      "bytes": 7702
+    },
+    {
+      "spec": "candidates/q19/stem-1.spec.json",
+      "svg": "candidates/q19/stem-1.svg",
+      "specSha256": "763d7eb50509c73afae026ee59a03a1fa5a8cef874354838c6d404ff4ae6a6d5",
+      "svgSha256": "8a86ab8cd4e44173c441794b7b524b376109f7ee94cbd65be1094652c684f565",
+      "ok": true,
+      "strict": true,
+      "typeset": true,
+      "local": true,
+      "droppedDimensions": [],
+      "bytes": 8632
+    }
+  ]
+}

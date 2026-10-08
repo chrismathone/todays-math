@@ -1,0 +1,65 @@
+{
+  "questionNumber": 9,
+  "sourceDataObservationLedger": "../../evidence/source-observations.json#/observations/8",
+  "newDataStatus": "author-constructed-not-source-observation",
+  "givens": {
+    "points": [
+      [
+        10,
+        30
+      ],
+      [
+        20,
+        40
+      ],
+      [
+        30,
+        20
+      ],
+      [
+        30,
+        60
+      ],
+      [
+        40,
+        40
+      ],
+      [
+        40,
+        70
+      ],
+      [
+        50,
+        30
+      ],
+      [
+        50,
+        50
+      ],
+      [
+        50,
+        70
+      ],
+      [
+        60,
+        40
+      ],
+      [
+        60,
+        60
+      ],
+      [
+        70,
+        50
+      ]
+    ],
+    "count": 12,
+    "axes": [
+      "읽기(점)",
+      "쓰기(점)"
+    ],
+    "excludedCondition": "x>=50 and y>=50",
+    "unit": "명"
+  },
+  "newFigureConstructionModel": []
+}

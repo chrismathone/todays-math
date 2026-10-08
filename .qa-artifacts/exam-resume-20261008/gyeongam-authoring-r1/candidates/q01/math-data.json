@@ -1,0 +1,29 @@
+{
+  "questionNumber": 1,
+  "sourceDataObservationLedger": "../../evidence/source-observations.json#/observations/0",
+  "newDataStatus": "author-constructed-not-source-observation",
+  "givens": {
+    "total": 30,
+    "knownRows": [
+      [
+        "소설",
+        8
+      ],
+      [
+        "과학",
+        5
+      ],
+      [
+        "역사",
+        4
+      ],
+      [
+        "예술",
+        3
+      ]
+    ],
+    "missingCategory": "만화",
+    "unit": "명"
+  },
+  "newFigureConstructionModel": []
+}

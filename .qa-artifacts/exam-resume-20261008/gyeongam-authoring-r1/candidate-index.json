@@ -1,0 +1,2057 @@
+{
+  "schemaVersion": 1,
+  "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+  "bindingContract": "candidatePack.mjs bindCandidate; candidateDigest=digest({candidate,assetBindings}); assetDigest=digest(assetBindings); studentDigest=digest(studentPayload)",
+  "contentDigestContract": "digest({content,choices,answer,solution,score,questionType,facts})",
+  "considered": 19,
+  "sourceLeaves": 20,
+  "authored": 18,
+  "authoredLeaves": 19,
+  "mc": 14,
+  "written": 4,
+  "authoredParentScoreTotal": 95,
+  "heldBeforeAuthoring": [
+    15
+  ],
+  "excludedBeforeAuthoring": [],
+  "sourceFinalCommit": "4cc9278da",
+  "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+  "sourceCopyReceiptSha256": "82312445d3f8e4308abe08dc0bea75bea76314e63f14056600a121c81e4422b6",
+  "sourceManifestMetadataSha256": "e8e4c1897ec4ee5754dfa624ac638b40fc7554c6a07ea2b105c7b923fcdf366e",
+  "sourceObservationsSha256": "56dcd7f8a34433011abf1e6d0fc7b17fb63e19d91ed8c11697f8c6b9f14ba59c",
+  "considerationLedgerSha256": "8a4fa32210ce22a8db4cd98886f97598d4836b3398fab658589f4a9923add061",
+  "holdEvidence": [
+    {
+      "questionNumber": 15,
+      "status": "held-before-authoring",
+      "candidatePath": null,
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-15",
+      "sourceContentDigest": "d864414c9f457c5f5ba676aacb1a59b413f0d7f9a4e6386adcba9c601a102171",
+      "referenceScore": 5,
+      "reason": "一般예각 A에서두삼각비 sin A,cos A의대소로제곱근부호를선택하는핵심이다. 실제직각변비교로설명할여지는있지만2015공식「삼각비사이의관계는다루지않는다」와이일반비교의적용경계는현근거로확정하지못했다. 고정수치각으로바꾸면같은핵심을보존하지못한다.",
+      "basis": {
+        "restrictionId": "no_ratio_identities",
+        "exactText": "삼각비 사이의 관계는 다루지 않는다.",
+        "pdfPhysicalPage": 39,
+        "pdfPrintedPage": 35,
+        "hwpRecord": 4440,
+        "hwpParagraph": 908
+      },
+      "reopenCriteria": "일반 A의기하적변비교→제곱근부호단계를이공식제한에어긋나지않게가르칠수있다는문항별공식/전문범위근거와독립전체학생면검토. 학교출제/기존registry15/AI신뢰도는승인이아니다.",
+      "authorAnswerCreated": false,
+      "independentApprovals": 0,
+      "directUseAllowed": false
+    }
+  ],
+  "bankEvidenceScope": "2026-10-08 04:53:45.769124+00",
+  "notCurrentDbAssertion": true,
+  "independentApprovals": 0,
+  "finalGradeApprovals": 0,
+  "familyAssignments": 0,
+  "directUseAllowed": false,
+  "candidates": [
+    {
+      "questionNumber": 1,
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q01",
+      "candidatePath": "candidates/q01/q01.json",
+      "candidateFileSha256": "c8adab6c830e14222efe1c3a32d99b16145e36a5b83112bca4d0d14cb58ba7a9",
+      "candidateDigest": "b39e70ac2a8714bd2dd3904f22f3c06b133ec15cdfafff84b226db6d363421f0",
+      "studentDigest": "a76d26de5f7f893914813c7bdae027abb048a4560e065988b7c030523dc267f5",
+      "assetDigest": "acf7128bcda01933448a0fe55d4e8621f329e957b889fe6c20bf8f761a1eb574",
+      "assetBindings": [
+        {
+          "role": "stem",
+          "specSha256": "d273f0b4396cb0fe103c243c7016a89da67b119004b448c99a3c3920d41aa412",
+          "svgSha256": "f653c394c4774058e7ee1a51fd4da37bb0d36ac0954a24d99a56451ef48a39ea",
+          "intendedWidthMm": 70
+        }
+      ],
+      "contentDigest": "a982c7b10925636daefc823174c19a15d05977b6858bdb4e416a1d98fa86d55b",
+      "contentDigestFields": [
+        "content",
+        "choices",
+        "answer",
+        "solution",
+        "score",
+        "questionType",
+        "facts"
+      ],
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-1",
+      "sourceDigestProvidedByPacket": "320fdf237818030c85a3e178c90b4ba3cd9771c387c0eea5d9c2b48df2180d39",
+      "sourceQuestionCanonicalDigest": "8a744ec0fbd1ab6af5f1ffeac82d2aa71874067827893f3f3a1b3f4a8d30e81b",
+      "sourceStemSha256": "2116488c69c662b25bb664f9083f391c91767e541dbca500eb2b2ddcb7076c24",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceSafeFigureBindings": [
+        {
+          "file": "images/q01-part1.png",
+          "sha256": "49e50d50cf2beefcd765944eb9400cc813fe9b272e8108fe44a2f92c0811eefe",
+          "page": 1
+        }
+      ],
+      "sourceReferenceScore": 3,
+      "score": 3,
+      "subQuestions": [],
+      "leafKeys": [
+        "1"
+      ],
+      "sourceSubquestionNumbers": [],
+      "mathDataPath": "candidates/q01/math-data.json",
+      "mathDataSha256": "e8d279b11026015f10f5e73e2622c7ce1f05c48a1f04bf20a0e836a172fe6da4",
+      "mathScriptBindings": [
+        {
+          "path": "bootstrap.py",
+          "sha256": "4d1a3a401bcea3ee6ee6ab0ef207ce3cf85b53d16b9cdc1e04d30b82dd52a6c9"
+        },
+        {
+          "path": "drafts.py",
+          "sha256": "c5250279b1a6de083f9ac56382f4ca5ebacad069c6fcfea6534805d9dc2a3fb5"
+        },
+        {
+          "path": "build.py",
+          "sha256": "9f8759a9683e1635c6937f855decc452399bc64069f2661b38877825aa456c43"
+        },
+        {
+          "path": "checks.py",
+          "sha256": "fd2e5253e3161108532e2f33c4b3f0bd128e4345faa99d09630fefed3ee6ba65"
+        },
+        {
+          "path": "render.mts",
+          "sha256": "7accff44cfd64d384fdfc3bdffb4645b01048f1e37aa812d5c4d1f2810d5c105"
+        },
+        {
+          "path": "node-render-check.mts",
+          "sha256": "4a7309d1c78cf1b0f7825e5da95d61fc949388799de494aff18f355b427600b4"
+        },
+        {
+          "path": "preview.mjs",
+          "sha256": "b7d21beec188efa3ae9fc1d6b2be830f754f916cde389317cdfc7bf57159aa4b"
+        },
+        {
+          "path": "registry.mts",
+          "sha256": "d3b3dc9be284344f118a8e8f6f4d63de66e30381cd173260e6ae0512b65485b8"
+        },
+        {
+          "path": "author-review.py",
+          "sha256": "7e8dd20be3732cf2fcb6eef14312ec631392c00842143c00c7bf9cc66ff599e2"
+        },
+        {
+          "path": "seal.mjs",
+          "sha256": "a50aaa6c220b5aac8e7b67965224433cb8fec5751edc48c7af270468e58e1910"
+        },
+        {
+          "path": "verify-freeze.mjs",
+          "sha256": "6313e6a20a99dd4803118a99e330960f55f9012a3aca6fe6b576ab5acf136f19"
+        }
+      ],
+      "figureGenerationEvidenceSha256": "ea0b2682550c1560096b0fbce119a24c66b66fee844a468769f4adfa7c277e6c",
+      "nodeReproductionSha256": "d889c793340b9afe81de62552d596a343100e2f55ad98deb5439733d73d462d6",
+      "authorCheckPath": "checks/q01.json",
+      "authorCheckSha256": "8d1a2e45c49e7f88ec3f5906d3966cc4971bed5c5c6f14cd3b61f7b58ffdbdf6",
+      "authorSevenSurfaceReviewSha256": "a3bd48c8533f49948ed2979b6354a1d4900234b86f75a8a89190bd3970e9eb18",
+      "visualReviewSha256": "0ca76840facd5daee4d4e6556bdaf93a2b5df3079448cceb7d5024e8b6586f3d",
+      "authorPreviewSha256": "92247c85a5e33b45a4deaf0831a48dbd564fc0c13ae5ecd7d44bd62db70c4e4a",
+      "studentPreviewSha256": "c1b99a1511f89f7f61a8f417154667e388fea8b7272e2dc77dfbe60f38b7bff3",
+      "unitProposal": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "familyKey": null,
+      "difficultyProposal": "기본",
+      "questionType": "객관식",
+      "status": "author-proposed-awaiting-other-worker-blind-solve-and-review",
+      "independentApprovals": 0,
+      "finalGradeApproval": false,
+      "rightsStatus": "pending",
+      "nativeStatus": "pending",
+      "sourceCustodyStatus": "pending",
+      "similarityStatus": "pending",
+      "directUseAllowed": false
+    },
+    {
+      "questionNumber": 2,
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q02",
+      "candidatePath": "candidates/q02/q02.json",
+      "candidateFileSha256": "fb876bc7a2222639d805e2da2f907be132aa6c7f1b9b40c2fcace933c6d6cdf2",
+      "candidateDigest": "df2f2e9e10750c9c9467bdc8f48456e6d69b37841eb6aae493677d27b40884c7",
+      "studentDigest": "27ec87cab738c64d677012c8d6f7fc7fb8129eb174622eee102f33f9c6361479",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "assetBindings": [],
+      "contentDigest": "d88a110b32fcf90499a38e96a37274fdfbf974d120b863417a452992de20891d",
+      "contentDigestFields": [
+        "content",
+        "choices",
+        "answer",
+        "solution",
+        "score",
+        "questionType",
+        "facts"
+      ],
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-2",
+      "sourceDigestProvidedByPacket": "0405aae43843a2d8b13b0bdc4d57564201aa05cc9262dc4bf22c80fabb498e45",
+      "sourceQuestionCanonicalDigest": "8d861d0003eb043cc38cf0ebd5303a64b0ed85100af5ba23093783cd00a64a21",
+      "sourceStemSha256": "01c95f8cd6d1a7f947b2722058e84fa76b9bc9c0fb142695dd4bda62db1c6b9a",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceSafeFigureBindings": [
+        {
+          "file": "images/q02-part1.png",
+          "sha256": "b10ce6d1200a8ca27d7734e5d2cdd84e6d7e70eebe98693b898be80112fdd856",
+          "page": 1
+        }
+      ],
+      "sourceReferenceScore": 4,
+      "score": 4,
+      "subQuestions": [],
+      "leafKeys": [
+        "2"
+      ],
+      "sourceSubquestionNumbers": [],
+      "mathDataPath": "candidates/q02/math-data.json",
+      "mathDataSha256": "9013e8eb09ec469add3f3b43a129efb89f6207ec339dd66b03f2c84d7a380033",
+      "mathScriptBindings": [
+        {
+          "path": "bootstrap.py",
+          "sha256": "4d1a3a401bcea3ee6ee6ab0ef207ce3cf85b53d16b9cdc1e04d30b82dd52a6c9"
+        },
+        {
+          "path": "drafts.py",
+          "sha256": "c5250279b1a6de083f9ac56382f4ca5ebacad069c6fcfea6534805d9dc2a3fb5"
+        },
+        {
+          "path": "build.py",
+          "sha256": "9f8759a9683e1635c6937f855decc452399bc64069f2661b38877825aa456c43"
+        },
+        {
+          "path": "checks.py",
+          "sha256": "fd2e5253e3161108532e2f33c4b3f0bd128e4345faa99d09630fefed3ee6ba65"
+        },
+        {
+          "path": "render.mts",
+          "sha256": "7accff44cfd64d384fdfc3bdffb4645b01048f1e37aa812d5c4d1f2810d5c105"
+        },
+        {
+          "path": "node-render-check.mts",
+          "sha256": "4a7309d1c78cf1b0f7825e5da95d61fc949388799de494aff18f355b427600b4"
+        },
+        {
+          "path": "preview.mjs",
+          "sha256": "b7d21beec188efa3ae9fc1d6b2be830f754f916cde389317cdfc7bf57159aa4b"
+        },
+        {
+          "path": "registry.mts",
+          "sha256": "d3b3dc9be284344f118a8e8f6f4d63de66e30381cd173260e6ae0512b65485b8"
+        },
+        {
+          "path": "author-review.py",
+          "sha256": "7e8dd20be3732cf2fcb6eef14312ec631392c00842143c00c7bf9cc66ff599e2"
+        },
+        {
+          "path": "seal.mjs",
+          "sha256": "a50aaa6c220b5aac8e7b67965224433cb8fec5751edc48c7af270468e58e1910"
+        },
+        {
+          "path": "verify-freeze.mjs",
+          "sha256": "6313e6a20a99dd4803118a99e330960f55f9012a3aca6fe6b576ab5acf136f19"
+        }
+      ],
+      "figureGenerationEvidenceSha256": "ea0b2682550c1560096b0fbce119a24c66b66fee844a468769f4adfa7c277e6c",
+      "nodeReproductionSha256": "d889c793340b9afe81de62552d596a343100e2f55ad98deb5439733d73d462d6",
+      "authorCheckPath": "checks/q02.json",
+      "authorCheckSha256": "4da668797d62213c5f552a25eba10808aab8bc798aeef2a5893878bd41039f2e",
+      "authorSevenSurfaceReviewSha256": "a3bd48c8533f49948ed2979b6354a1d4900234b86f75a8a89190bd3970e9eb18",
+      "visualReviewSha256": "0ca76840facd5daee4d4e6556bdaf93a2b5df3079448cceb7d5024e8b6586f3d",
+      "authorPreviewSha256": "0ed642c438440454b82f750c1392a452a650e08e130b89afd0468a731313bd29",
+      "studentPreviewSha256": "5f6fdbc51c06f61b35c9705432ae03c3fafc3c490f7dcb4097ecfad448184ff9",
+      "unitProposal": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "familyKey": null,
+      "difficultyProposal": "응용",
+      "questionType": "객관식",
+      "status": "author-proposed-awaiting-other-worker-blind-solve-and-review",
+      "independentApprovals": 0,
+      "finalGradeApproval": false,
+      "rightsStatus": "pending",
+      "nativeStatus": "pending",
+      "sourceCustodyStatus": "pending",
+      "similarityStatus": "pending",
+      "directUseAllowed": false
+    },
+    {
+      "questionNumber": 3,
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q03",
+      "candidatePath": "candidates/q03/q03.json",
+      "candidateFileSha256": "e335a8b32f4e7b2da0959336db2b263751312160ed621b35c0c5cfe13fa10a15",
+      "candidateDigest": "6234d90231e4d149c3a7eefcb388c91f85b0bd77622720afe81b3536291711b2",
+      "studentDigest": "8d876ea3ae7bd6f303dccba8c6a234a5e516e94f69290fc3ba4d42b2b0e32a4c",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "assetBindings": [],
+      "contentDigest": "2cd8ec50e6ae898086662e05181cfdf3ae99e1b9a9d4879d51f7b6864550fc5f",
+      "contentDigestFields": [
+        "content",
+        "choices",
+        "answer",
+        "solution",
+        "score",
+        "questionType",
+        "facts"
+      ],
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-3",
+      "sourceDigestProvidedByPacket": "6e0b5177207b284e125a02e531044b306e1342f187f2e1dda9bb83d286412301",
+      "sourceQuestionCanonicalDigest": "857c04b5d9953993739eeb4c1e8bdc00514e0c202420c547b0a9d508fa125b09",
+      "sourceStemSha256": "53b9aa39e79d11bda07116a45a6d6c6fb8cbd74bf3b3d16db6bdeaa08df684c4",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceSafeFigureBindings": [
+        {
+          "file": "images/q03-part1.png",
+          "sha256": "b20674924062d850e990101a7535af80e194cb347fa3b95ecd74ec9115f750b1",
+          "page": 1
+        }
+      ],
+      "sourceReferenceScore": 4,
+      "score": 4,
+      "subQuestions": [],
+      "leafKeys": [
+        "3"
+      ],
+      "sourceSubquestionNumbers": [],
+      "mathDataPath": "candidates/q03/math-data.json",
+      "mathDataSha256": "bcad8c997055483f9522a509a7127c0646aeb70809a2b8f97e0508b45cd3545c",
+      "mathScriptBindings": [
+        {
+          "path": "bootstrap.py",
+          "sha256": "4d1a3a401bcea3ee6ee6ab0ef207ce3cf85b53d16b9cdc1e04d30b82dd52a6c9"
+        },
+        {
+          "path": "drafts.py",
+          "sha256": "c5250279b1a6de083f9ac56382f4ca5ebacad069c6fcfea6534805d9dc2a3fb5"
+        },
+        {
+          "path": "build.py",
+          "sha256": "9f8759a9683e1635c6937f855decc452399bc64069f2661b38877825aa456c43"
+        },
+        {
+          "path": "checks.py",
+          "sha256": "fd2e5253e3161108532e2f33c4b3f0bd128e4345faa99d09630fefed3ee6ba65"
+        },
+        {
+          "path": "render.mts",
+          "sha256": "7accff44cfd64d384fdfc3bdffb4645b01048f1e37aa812d5c4d1f2810d5c105"
+        },
+        {
+          "path": "node-render-check.mts",
+          "sha256": "4a7309d1c78cf1b0f7825e5da95d61fc949388799de494aff18f355b427600b4"
+        },
+        {
+          "path": "preview.mjs",
+          "sha256": "b7d21beec188efa3ae9fc1d6b2be830f754f916cde389317cdfc7bf57159aa4b"
+        },
+        {
+          "path": "registry.mts",
+          "sha256": "d3b3dc9be284344f118a8e8f6f4d63de66e30381cd173260e6ae0512b65485b8"
+        },
+        {
+          "path": "author-review.py",
+          "sha256": "7e8dd20be3732cf2fcb6eef14312ec631392c00842143c00c7bf9cc66ff599e2"
+        },
+        {
+          "path": "seal.mjs",
+          "sha256": "a50aaa6c220b5aac8e7b67965224433cb8fec5751edc48c7af270468e58e1910"
+        },
+        {
+          "path": "verify-freeze.mjs",
+          "sha256": "6313e6a20a99dd4803118a99e330960f55f9012a3aca6fe6b576ab5acf136f19"
+        }
+      ],
+      "figureGenerationEvidenceSha256": "ea0b2682550c1560096b0fbce119a24c66b66fee844a468769f4adfa7c277e6c",
+      "nodeReproductionSha256": "d889c793340b9afe81de62552d596a343100e2f55ad98deb5439733d73d462d6",
+      "authorCheckPath": "checks/q03.json",
+      "authorCheckSha256": "0a16cd468634ee7916edf97c615c96153c457840a0791c30e3a695e98a160954",
+      "authorSevenSurfaceReviewSha256": "a3bd48c8533f49948ed2979b6354a1d4900234b86f75a8a89190bd3970e9eb18",
+      "visualReviewSha256": "0ca76840facd5daee4d4e6556bdaf93a2b5df3079448cceb7d5024e8b6586f3d",
+      "authorPreviewSha256": "fdd7fc31647d7a3eae60f591de20abd7dba1437a04fee86533c18049417fb7db",
+      "studentPreviewSha256": "3016df156312dc23ccc9e8422d08639402c21eccb7ecd962a885fb8bf2a7599f",
+      "unitProposal": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "familyKey": null,
+      "difficultyProposal": "응용",
+      "questionType": "객관식",
+      "status": "author-proposed-awaiting-other-worker-blind-solve-and-review",
+      "independentApprovals": 0,
+      "finalGradeApproval": false,
+      "rightsStatus": "pending",
+      "nativeStatus": "pending",
+      "sourceCustodyStatus": "pending",
+      "similarityStatus": "pending",
+      "directUseAllowed": false
+    },
+    {
+      "questionNumber": 4,
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q04",
+      "candidatePath": "candidates/q04/q04.json",
+      "candidateFileSha256": "4521fd0da384cd3893038f8ec6fa072d03359fba482a255eb575c9845d2eafd5",
+      "candidateDigest": "a6cd85210fee1dd84c3845775d36c603bc75ce6ed4e36cf228a9a47ef9ca747a",
+      "studentDigest": "e62189798c2656dc78ea39bf2049fcec4b594695ca8fb930c8e6084bc32308a8",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "assetBindings": [],
+      "contentDigest": "a738a550799559dad35c8b953c3c89f4cbcf0a1f6ef934e9a68dc1dec8ac07af",
+      "contentDigestFields": [
+        "content",
+        "choices",
+        "answer",
+        "solution",
+        "score",
+        "questionType",
+        "facts"
+      ],
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-4",
+      "sourceDigestProvidedByPacket": "6e6c5ffa3af092015ca327ac93327d00749c148c0b84810e3e76410bf448e42d",
+      "sourceQuestionCanonicalDigest": "413c4bf93cac24c1d0ae53d5f3ed531512a0cf55f9ab24ecf1452bec100e8358",
+      "sourceStemSha256": "5429ccccd2193c1810879802b274431008662af99a08d11387f57748b8817864",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceSafeFigureBindings": [
+        {
+          "file": "images/q04-part1.png",
+          "sha256": "2852f6677f965a3b7ddcab943244e88245432ba0d15dde3754308ee4f1a1823b",
+          "page": 1
+        }
+      ],
+      "sourceReferenceScore": 4,
+      "score": 4,
+      "subQuestions": [],
+      "leafKeys": [
+        "4"
+      ],
+      "sourceSubquestionNumbers": [],
+      "mathDataPath": "candidates/q04/math-data.json",
+      "mathDataSha256": "f289d1561265bf033587d7b38d64140ce5e57c7c8ec0e8b7146ed6ff2c548188",
+      "mathScriptBindings": [
+        {
+          "path": "bootstrap.py",
+          "sha256": "4d1a3a401bcea3ee6ee6ab0ef207ce3cf85b53d16b9cdc1e04d30b82dd52a6c9"
+        },
+        {
+          "path": "drafts.py",
+          "sha256": "c5250279b1a6de083f9ac56382f4ca5ebacad069c6fcfea6534805d9dc2a3fb5"
+        },
+        {
+          "path": "build.py",
+          "sha256": "9f8759a9683e1635c6937f855decc452399bc64069f2661b38877825aa456c43"
+        },
+        {
+          "path": "checks.py",
+          "sha256": "fd2e5253e3161108532e2f33c4b3f0bd128e4345faa99d09630fefed3ee6ba65"
+        },
+        {
+          "path": "render.mts",
+          "sha256": "7accff44cfd64d384fdfc3bdffb4645b01048f1e37aa812d5c4d1f2810d5c105"
+        },
+        {
+          "path": "node-render-check.mts",
+          "sha256": "4a7309d1c78cf1b0f7825e5da95d61fc949388799de494aff18f355b427600b4"
+        },
+        {
+          "path": "preview.mjs",
+          "sha256": "b7d21beec188efa3ae9fc1d6b2be830f754f916cde389317cdfc7bf57159aa4b"
+        },
+        {
+          "path": "registry.mts",
+          "sha256": "d3b3dc9be284344f118a8e8f6f4d63de66e30381cd173260e6ae0512b65485b8"
+        },
+        {
+          "path": "author-review.py",
+          "sha256": "7e8dd20be3732cf2fcb6eef14312ec631392c00842143c00c7bf9cc66ff599e2"
+        },
+        {
+          "path": "seal.mjs",
+          "sha256": "a50aaa6c220b5aac8e7b67965224433cb8fec5751edc48c7af270468e58e1910"
+        },
+        {
+          "path": "verify-freeze.mjs",
+          "sha256": "6313e6a20a99dd4803118a99e330960f55f9012a3aca6fe6b576ab5acf136f19"
+        }
+      ],
+      "figureGenerationEvidenceSha256": "ea0b2682550c1560096b0fbce119a24c66b66fee844a468769f4adfa7c277e6c",
+      "nodeReproductionSha256": "d889c793340b9afe81de62552d596a343100e2f55ad98deb5439733d73d462d6",
+      "authorCheckPath": "checks/q04.json",
+      "authorCheckSha256": "819bc554c8a54e4f05a9ecc42e316a026f192b56c181816cab8552d24de89c14",
+      "authorSevenSurfaceReviewSha256": "a3bd48c8533f49948ed2979b6354a1d4900234b86f75a8a89190bd3970e9eb18",
+      "visualReviewSha256": "0ca76840facd5daee4d4e6556bdaf93a2b5df3079448cceb7d5024e8b6586f3d",
+      "authorPreviewSha256": "8d9da42f980c5284157d06f989de1dec60418ad4c23feb114ca7e522804ef350",
+      "studentPreviewSha256": "82388873be00adaf04caf230e70e7f78c64cbd6b704241468103838e34951fb1",
+      "unitProposal": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "familyKey": null,
+      "difficultyProposal": "응용",
+      "questionType": "객관식",
+      "status": "author-proposed-awaiting-other-worker-blind-solve-and-review",
+      "independentApprovals": 0,
+      "finalGradeApproval": false,
+      "rightsStatus": "pending",
+      "nativeStatus": "pending",
+      "sourceCustodyStatus": "pending",
+      "similarityStatus": "pending",
+      "directUseAllowed": false
+    },
+    {
+      "questionNumber": 5,
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q05",
+      "candidatePath": "candidates/q05/q05.json",
+      "candidateFileSha256": "edecfbd70649fb8a6221e74051d88581619a4abade98ea4374e8ef115ef4a883",
+      "candidateDigest": "86f4325e0386831bc02719dbdbe903f1ed7b88326a961c0730044dab94fab32b",
+      "studentDigest": "9230c29fa2035a201ba81bfceded6d2915e2fc75142b29c82c64d9a1be070765",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "assetBindings": [],
+      "contentDigest": "a753ae24d4b9b44b88b50e2f9621f4f3dbfe478818e5eb1873c4f312a159af9d",
+      "contentDigestFields": [
+        "content",
+        "choices",
+        "answer",
+        "solution",
+        "score",
+        "questionType",
+        "facts"
+      ],
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-5",
+      "sourceDigestProvidedByPacket": "9b91aeaca5f015bfaf57a52a96b20d0a5bac98aaa9696c4b234b9b7fcb88d50a",
+      "sourceQuestionCanonicalDigest": "b7cb3b783dbbc6b7f060f1d8ec875e8d1336c32513fb706aa1d97da7d4a5ebb1",
+      "sourceStemSha256": "b78b4e6ce9cf0f1582f144a43dae7a20c0b9c8f5a6b598793c00a9c5a1f6e178",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceSafeFigureBindings": [
+        {
+          "file": "images/q05-part1.png",
+          "sha256": "e5e886bf83dc7e92d988b91b4db3fd042e009ac16df22d0d6e8fb7b22d2d8277",
+          "page": 2
+        }
+      ],
+      "sourceReferenceScore": 4,
+      "score": 4,
+      "subQuestions": [],
+      "leafKeys": [
+        "5"
+      ],
+      "sourceSubquestionNumbers": [],
+      "mathDataPath": "candidates/q05/math-data.json",
+      "mathDataSha256": "a32fa7b65dc73a828f1faa91dca67e53f6a86de545ed2e8985b7cd53f423cec6",
+      "mathScriptBindings": [
+        {
+          "path": "bootstrap.py",
+          "sha256": "4d1a3a401bcea3ee6ee6ab0ef207ce3cf85b53d16b9cdc1e04d30b82dd52a6c9"
+        },
+        {
+          "path": "drafts.py",
+          "sha256": "c5250279b1a6de083f9ac56382f4ca5ebacad069c6fcfea6534805d9dc2a3fb5"
+        },
+        {
+          "path": "build.py",
+          "sha256": "9f8759a9683e1635c6937f855decc452399bc64069f2661b38877825aa456c43"
+        },
+        {
+          "path": "checks.py",
+          "sha256": "fd2e5253e3161108532e2f33c4b3f0bd128e4345faa99d09630fefed3ee6ba65"
+        },
+        {
+          "path": "render.mts",
+          "sha256": "7accff44cfd64d384fdfc3bdffb4645b01048f1e37aa812d5c4d1f2810d5c105"
+        },
+        {
+          "path": "node-render-check.mts",
+          "sha256": "4a7309d1c78cf1b0f7825e5da95d61fc949388799de494aff18f355b427600b4"
+        },
+        {
+          "path": "preview.mjs",
+          "sha256": "b7d21beec188efa3ae9fc1d6b2be830f754f916cde389317cdfc7bf57159aa4b"
+        },
+        {
+          "path": "registry.mts",
+          "sha256": "d3b3dc9be284344f118a8e8f6f4d63de66e30381cd173260e6ae0512b65485b8"
+        },
+        {
+          "path": "author-review.py",
+          "sha256": "7e8dd20be3732cf2fcb6eef14312ec631392c00842143c00c7bf9cc66ff599e2"
+        },
+        {
+          "path": "seal.mjs",
+          "sha256": "a50aaa6c220b5aac8e7b67965224433cb8fec5751edc48c7af270468e58e1910"
+        },
+        {
+          "path": "verify-freeze.mjs",
+          "sha256": "6313e6a20a99dd4803118a99e330960f55f9012a3aca6fe6b576ab5acf136f19"
+        }
+      ],
+      "figureGenerationEvidenceSha256": "ea0b2682550c1560096b0fbce119a24c66b66fee844a468769f4adfa7c277e6c",
+      "nodeReproductionSha256": "d889c793340b9afe81de62552d596a343100e2f55ad98deb5439733d73d462d6",
+      "authorCheckPath": "checks/q05.json",
+      "authorCheckSha256": "42aedbbcc21d1657afb32998c24ea2103a4a10779410ab96bce294d768304e96",
+      "authorSevenSurfaceReviewSha256": "a3bd48c8533f49948ed2979b6354a1d4900234b86f75a8a89190bd3970e9eb18",
+      "visualReviewSha256": "0ca76840facd5daee4d4e6556bdaf93a2b5df3079448cceb7d5024e8b6586f3d",
+      "authorPreviewSha256": "41c85a5c4c56df74d571adeaf17a420d2e736ecfed1907f6595ddb21fddd2f44",
+      "studentPreviewSha256": "b84ad75bc0c15c52bf8b80cc19f449c87453ba9300990afec2c44dea46e9b00f",
+      "unitProposal": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "familyKey": null,
+      "difficultyProposal": "응용",
+      "questionType": "객관식",
+      "status": "author-proposed-awaiting-other-worker-blind-solve-and-review",
+      "independentApprovals": 0,
+      "finalGradeApproval": false,
+      "rightsStatus": "pending",
+      "nativeStatus": "pending",
+      "sourceCustodyStatus": "pending",
+      "similarityStatus": "pending",
+      "directUseAllowed": false
+    },
+    {
+      "questionNumber": 6,
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q06",
+      "candidatePath": "candidates/q06/q06.json",
+      "candidateFileSha256": "2b41ba553b809cfacf630fa8a5d2cb48eda391854da576f233d3eb5eab033cac",
+      "candidateDigest": "69d6a70843b1f00e3f403b2ae5a730c794dcfe33cc60bcaa4be070667a7190f6",
+      "studentDigest": "f42af3cf9fa7a6df2b1af5ddbafb081912c3e17d5628e32b551ebac086d62498",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "assetBindings": [],
+      "contentDigest": "78d78989a766864473acc3dfa4545e0bd6333c8d7f25bf5a00487e469b608f8c",
+      "contentDigestFields": [
+        "content",
+        "choices",
+        "answer",
+        "solution",
+        "score",
+        "questionType",
+        "facts"
+      ],
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-6",
+      "sourceDigestProvidedByPacket": "4df5256dac02491164e7faeb0d8615a27ab26063d82adecc31e2ad2a3ed1b434",
+      "sourceQuestionCanonicalDigest": "32321823bd1dce1912bd53a0f397756f22329b4a7515d2c7d8b2dc261b242510",
+      "sourceStemSha256": "2c154e02ed06478a2451c6052189c591771e662bdbe41cfd8771b6c9d2b51093",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceSafeFigureBindings": [
+        {
+          "file": "images/q06-part1.png",
+          "sha256": "21c8dee6fcc6124a2c71a26adcecdbd6aa7d1646bf37a914da56ae36d8269aa6",
+          "page": 2
+        }
+      ],
+      "sourceReferenceScore": 4,
+      "score": 4,
+      "subQuestions": [],
+      "leafKeys": [
+        "6"
+      ],
+      "sourceSubquestionNumbers": [],
+      "mathDataPath": "candidates/q06/math-data.json",
+      "mathDataSha256": "2409a5f4e730e11ad02e3c2592818b707a8eb6f76846f2e9cab87e8bfc07439c",
+      "mathScriptBindings": [
+        {
+          "path": "bootstrap.py",
+          "sha256": "4d1a3a401bcea3ee6ee6ab0ef207ce3cf85b53d16b9cdc1e04d30b82dd52a6c9"
+        },
+        {
+          "path": "drafts.py",
+          "sha256": "c5250279b1a6de083f9ac56382f4ca5ebacad069c6fcfea6534805d9dc2a3fb5"
+        },
+        {
+          "path": "build.py",
+          "sha256": "9f8759a9683e1635c6937f855decc452399bc64069f2661b38877825aa456c43"
+        },
+        {
+          "path": "checks.py",
+          "sha256": "fd2e5253e3161108532e2f33c4b3f0bd128e4345faa99d09630fefed3ee6ba65"
+        },
+        {
+          "path": "render.mts",
+          "sha256": "7accff44cfd64d384fdfc3bdffb4645b01048f1e37aa812d5c4d1f2810d5c105"
+        },
+        {
+          "path": "node-render-check.mts",
+          "sha256": "4a7309d1c78cf1b0f7825e5da95d61fc949388799de494aff18f355b427600b4"
+        },
+        {
+          "path": "preview.mjs",
+          "sha256": "b7d21beec188efa3ae9fc1d6b2be830f754f916cde389317cdfc7bf57159aa4b"
+        },
+        {
+          "path": "registry.mts",
+          "sha256": "d3b3dc9be284344f118a8e8f6f4d63de66e30381cd173260e6ae0512b65485b8"
+        },
+        {
+          "path": "author-review.py",
+          "sha256": "7e8dd20be3732cf2fcb6eef14312ec631392c00842143c00c7bf9cc66ff599e2"
+        },
+        {
+          "path": "seal.mjs",
+          "sha256": "a50aaa6c220b5aac8e7b67965224433cb8fec5751edc48c7af270468e58e1910"
+        },
+        {
+          "path": "verify-freeze.mjs",
+          "sha256": "6313e6a20a99dd4803118a99e330960f55f9012a3aca6fe6b576ab5acf136f19"
+        }
+      ],
+      "figureGenerationEvidenceSha256": "ea0b2682550c1560096b0fbce119a24c66b66fee844a468769f4adfa7c277e6c",
+      "nodeReproductionSha256": "d889c793340b9afe81de62552d596a343100e2f55ad98deb5439733d73d462d6",
+      "authorCheckPath": "checks/q06.json",
+      "authorCheckSha256": "71e3b59b0eba521ca030f42507558ff6d8ca2e8a6b601dc8565ad2f89839cb7d",
+      "authorSevenSurfaceReviewSha256": "a3bd48c8533f49948ed2979b6354a1d4900234b86f75a8a89190bd3970e9eb18",
+      "visualReviewSha256": "0ca76840facd5daee4d4e6556bdaf93a2b5df3079448cceb7d5024e8b6586f3d",
+      "authorPreviewSha256": "e6a3a35dcaead5a5fbe778874a097eaa56411dbad1090bd8620ddf0318a581ff",
+      "studentPreviewSha256": "2ebfe612fdd408fff7e3e0270306c5095beba2c4b1f8ad80508d591e7a47af19",
+      "unitProposal": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "familyKey": null,
+      "difficultyProposal": "응용",
+      "questionType": "객관식",
+      "status": "author-proposed-awaiting-other-worker-blind-solve-and-review",
+      "independentApprovals": 0,
+      "finalGradeApproval": false,
+      "rightsStatus": "pending",
+      "nativeStatus": "pending",
+      "sourceCustodyStatus": "pending",
+      "similarityStatus": "pending",
+      "directUseAllowed": false
+    },
+    {
+      "questionNumber": 7,
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q07",
+      "candidatePath": "candidates/q07/q07.json",
+      "candidateFileSha256": "b455dad2c682ad3e04afaa12bc5e16b7fd9a27e49558fd19f9707d1aa7d00822",
+      "candidateDigest": "e26611abce7bc0772d8d031eb21b549b12bdff44c6a78bf6280d46ccc0fc9cc5",
+      "studentDigest": "eb0cd4a7591db651ba96c56d0cd84198ed7913be2b1d9e218d7b74b95cc916bf",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "assetBindings": [],
+      "contentDigest": "2fa5cad8176039db76da075f2acbab2f1db8c695612d1612797d779a45b28fe4",
+      "contentDigestFields": [
+        "content",
+        "choices",
+        "answer",
+        "solution",
+        "score",
+        "questionType",
+        "facts"
+      ],
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-7",
+      "sourceDigestProvidedByPacket": "a6f3dbd7bc68108e6ed1d289f04fb1fc14412ebd10068688cb2091ab6aeaba96",
+      "sourceQuestionCanonicalDigest": "03abc154840e64f99ebd1fe6fb43a343dd828ec41b997751e917d2b38191a99b",
+      "sourceStemSha256": "0233755efe5153fff9cee918dc93bc858b3a4a8cdc753e5f20c7dceac4521e47",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceSafeFigureBindings": [
+        {
+          "file": "images/q07-part1.png",
+          "sha256": "018c44b87619e6c4ab8aa10c93be04686e0de397c07a127beeba2c9db017c79e",
+          "page": 2
+        }
+      ],
+      "sourceReferenceScore": 5,
+      "score": 5,
+      "subQuestions": [],
+      "leafKeys": [
+        "7"
+      ],
+      "sourceSubquestionNumbers": [],
+      "mathDataPath": "candidates/q07/math-data.json",
+      "mathDataSha256": "0ef23b8d1f11e6c1fe647393fe2c5b25e03e3df6864a68aa53542c7d43c88119",
+      "mathScriptBindings": [
+        {
+          "path": "bootstrap.py",
+          "sha256": "4d1a3a401bcea3ee6ee6ab0ef207ce3cf85b53d16b9cdc1e04d30b82dd52a6c9"
+        },
+        {
+          "path": "drafts.py",
+          "sha256": "c5250279b1a6de083f9ac56382f4ca5ebacad069c6fcfea6534805d9dc2a3fb5"
+        },
+        {
+          "path": "build.py",
+          "sha256": "9f8759a9683e1635c6937f855decc452399bc64069f2661b38877825aa456c43"
+        },
+        {
+          "path": "checks.py",
+          "sha256": "fd2e5253e3161108532e2f33c4b3f0bd128e4345faa99d09630fefed3ee6ba65"
+        },
+        {
+          "path": "render.mts",
+          "sha256": "7accff44cfd64d384fdfc3bdffb4645b01048f1e37aa812d5c4d1f2810d5c105"
+        },
+        {
+          "path": "node-render-check.mts",
+          "sha256": "4a7309d1c78cf1b0f7825e5da95d61fc949388799de494aff18f355b427600b4"
+        },
+        {
+          "path": "preview.mjs",
+          "sha256": "b7d21beec188efa3ae9fc1d6b2be830f754f916cde389317cdfc7bf57159aa4b"
+        },
+        {
+          "path": "registry.mts",
+          "sha256": "d3b3dc9be284344f118a8e8f6f4d63de66e30381cd173260e6ae0512b65485b8"
+        },
+        {
+          "path": "author-review.py",
+          "sha256": "7e8dd20be3732cf2fcb6eef14312ec631392c00842143c00c7bf9cc66ff599e2"
+        },
+        {
+          "path": "seal.mjs",
+          "sha256": "a50aaa6c220b5aac8e7b67965224433cb8fec5751edc48c7af270468e58e1910"
+        },
+        {
+          "path": "verify-freeze.mjs",
+          "sha256": "6313e6a20a99dd4803118a99e330960f55f9012a3aca6fe6b576ab5acf136f19"
+        }
+      ],
+      "figureGenerationEvidenceSha256": "ea0b2682550c1560096b0fbce119a24c66b66fee844a468769f4adfa7c277e6c",
+      "nodeReproductionSha256": "d889c793340b9afe81de62552d596a343100e2f55ad98deb5439733d73d462d6",
+      "authorCheckPath": "checks/q07.json",
+      "authorCheckSha256": "8a0dadc9a26fc86e505dad5c8d9b5b3018ac842c9e3d2d805a3193c0e2340f3a",
+      "authorSevenSurfaceReviewSha256": "a3bd48c8533f49948ed2979b6354a1d4900234b86f75a8a89190bd3970e9eb18",
+      "visualReviewSha256": "0ca76840facd5daee4d4e6556bdaf93a2b5df3079448cceb7d5024e8b6586f3d",
+      "authorPreviewSha256": "fb8546643db228aab7ae470c1827081c3356fd19b7fd396238b665bf19937667",
+      "studentPreviewSha256": "f7acbf61e067e20704df3696d692e24481796c88092968c8b279ad7d4b20024f",
+      "unitProposal": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "familyKey": null,
+      "difficultyProposal": "응용",
+      "questionType": "객관식",
+      "status": "author-proposed-awaiting-other-worker-blind-solve-and-review",
+      "independentApprovals": 0,
+      "finalGradeApproval": false,
+      "rightsStatus": "pending",
+      "nativeStatus": "pending",
+      "sourceCustodyStatus": "pending",
+      "similarityStatus": "pending",
+      "directUseAllowed": false
+    },
+    {
+      "questionNumber": 8,
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q08",
+      "candidatePath": "candidates/q08/q08.json",
+      "candidateFileSha256": "a46b7f7ae2192daab52e9b40eb9a0dfe169bdc0eef398b6250868bae66418c2b",
+      "candidateDigest": "dbe8467d91b5440125cff6def5a36fcc9483f32a36261b318f75cc65b0f6ba42",
+      "studentDigest": "13413d9efcc365a8c802d0da9974273a4c9f9502ce59740593b1e091120cae66",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "assetBindings": [],
+      "contentDigest": "6198d2b815c8251a02f6971931b7e25ab42857cbc2d2e8da6c7b1398f80b607e",
+      "contentDigestFields": [
+        "content",
+        "choices",
+        "answer",
+        "solution",
+        "score",
+        "questionType",
+        "facts"
+      ],
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-8",
+      "sourceDigestProvidedByPacket": "d1cb244a5a17c8f95ab3edd2e355df964c4675bb758ba17a4ad3d590eb0e56a3",
+      "sourceQuestionCanonicalDigest": "16828d0bf8e2f8014c3a74acdf562134764896fc62b8408154be3ee8878a57be",
+      "sourceStemSha256": "cb016e02213b8e4d43fbc75c13ffab573673240be4c5f1cbac45d1dfc33a8967",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceSafeFigureBindings": [
+        {
+          "file": "images/q08-part1.png",
+          "sha256": "f8882bd83a7c4ba775200de983e1d6952dbb2ceb340c4b3b70cda1faeb7825df",
+          "page": 2
+        }
+      ],
+      "sourceReferenceScore": 5,
+      "score": 5,
+      "subQuestions": [],
+      "leafKeys": [
+        "8"
+      ],
+      "sourceSubquestionNumbers": [],
+      "mathDataPath": "candidates/q08/math-data.json",
+      "mathDataSha256": "01e9140c9ed08fbb4227018b5f1776d4c701ccbb319c2f7a4a7420dd6e13dc1f",
+      "mathScriptBindings": [
+        {
+          "path": "bootstrap.py",
+          "sha256": "4d1a3a401bcea3ee6ee6ab0ef207ce3cf85b53d16b9cdc1e04d30b82dd52a6c9"
+        },
+        {
+          "path": "drafts.py",
+          "sha256": "c5250279b1a6de083f9ac56382f4ca5ebacad069c6fcfea6534805d9dc2a3fb5"
+        },
+        {
+          "path": "build.py",
+          "sha256": "9f8759a9683e1635c6937f855decc452399bc64069f2661b38877825aa456c43"
+        },
+        {
+          "path": "checks.py",
+          "sha256": "fd2e5253e3161108532e2f33c4b3f0bd128e4345faa99d09630fefed3ee6ba65"
+        },
+        {
+          "path": "render.mts",
+          "sha256": "7accff44cfd64d384fdfc3bdffb4645b01048f1e37aa812d5c4d1f2810d5c105"
+        },
+        {
+          "path": "node-render-check.mts",
+          "sha256": "4a7309d1c78cf1b0f7825e5da95d61fc949388799de494aff18f355b427600b4"
+        },
+        {
+          "path": "preview.mjs",
+          "sha256": "b7d21beec188efa3ae9fc1d6b2be830f754f916cde389317cdfc7bf57159aa4b"
+        },
+        {
+          "path": "registry.mts",
+          "sha256": "d3b3dc9be284344f118a8e8f6f4d63de66e30381cd173260e6ae0512b65485b8"
+        },
+        {
+          "path": "author-review.py",
+          "sha256": "7e8dd20be3732cf2fcb6eef14312ec631392c00842143c00c7bf9cc66ff599e2"
+        },
+        {
+          "path": "seal.mjs",
+          "sha256": "a50aaa6c220b5aac8e7b67965224433cb8fec5751edc48c7af270468e58e1910"
+        },
+        {
+          "path": "verify-freeze.mjs",
+          "sha256": "6313e6a20a99dd4803118a99e330960f55f9012a3aca6fe6b576ab5acf136f19"
+        }
+      ],
+      "figureGenerationEvidenceSha256": "ea0b2682550c1560096b0fbce119a24c66b66fee844a468769f4adfa7c277e6c",
+      "nodeReproductionSha256": "d889c793340b9afe81de62552d596a343100e2f55ad98deb5439733d73d462d6",
+      "authorCheckPath": "checks/q08.json",
+      "authorCheckSha256": "e93c524129450653070e2412dfdab67716c99952f82ffebd482d6d4d7b047d11",
+      "authorSevenSurfaceReviewSha256": "a3bd48c8533f49948ed2979b6354a1d4900234b86f75a8a89190bd3970e9eb18",
+      "visualReviewSha256": "0ca76840facd5daee4d4e6556bdaf93a2b5df3079448cceb7d5024e8b6586f3d",
+      "authorPreviewSha256": "e2dc367d76572b7ac5450b91238cea7f776981f1566a3483f7092ad0dc360445",
+      "studentPreviewSha256": "a82382905a960dbe8b7be1c1ffbbb59458ffe4af39f35dbbe5eef8963c238c6b",
+      "unitProposal": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "familyKey": null,
+      "difficultyProposal": "응용",
+      "questionType": "객관식",
+      "status": "author-proposed-awaiting-other-worker-blind-solve-and-review",
+      "independentApprovals": 0,
+      "finalGradeApproval": false,
+      "rightsStatus": "pending",
+      "nativeStatus": "pending",
+      "sourceCustodyStatus": "pending",
+      "similarityStatus": "pending",
+      "directUseAllowed": false
+    },
+    {
+      "questionNumber": 9,
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q09",
+      "candidatePath": "candidates/q09/q09.json",
+      "candidateFileSha256": "a3e5edea69316507c20cb95755c89d498ec829840db318f62187a91bd7a739f9",
+      "candidateDigest": "6bebfbe8afef80bb5935cb011edc31ec34bb46d15a99a5d78454ab35a7d0b153",
+      "studentDigest": "aae404817e043d121db73f24b3c1ce382d7230c1c802e3cb4e8bdd63377da712",
+      "assetDigest": "08d807e611a1bddbce961f753d8d4c691fe9a8a98f49b88bbeadedab9cc0a2c4",
+      "assetBindings": [
+        {
+          "role": "stem",
+          "specSha256": "b42e9178ede5acdfd29083fa00dc6bba82745954c6eea874cc2b7ae3f4acd9bb",
+          "svgSha256": "cd22dfa3852b209389749ee665d4ecdb44956e7f1a8166192195eb75b6ea5fff",
+          "intendedWidthMm": 70
+        }
+      ],
+      "contentDigest": "2c7b4f3fefed3481b8a5fc03d4851edc3b1d6354cfd26a34c34f3f4b869b3d9a",
+      "contentDigestFields": [
+        "content",
+        "choices",
+        "answer",
+        "solution",
+        "score",
+        "questionType",
+        "facts"
+      ],
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-9",
+      "sourceDigestProvidedByPacket": "0ca70fdb538424c553d4d73f568078c7c2755721cb9b9191442088c42979cc62",
+      "sourceQuestionCanonicalDigest": "83f68474d716b6ac97190d2adca250cc7777a1eee121ae80cf0a50ff741dcbe6",
+      "sourceStemSha256": "2fd8448f5d4e3a315a814e745ae1eec2e4d20b56e3091d8c6d08d32b2eba4f03",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceSafeFigureBindings": [
+        {
+          "file": "images/q09-part1.png",
+          "sha256": "32d87776889d0fe6ca15ef49cfa5ff13cba1ed28bb1dc068f787c8d08c74112f",
+          "page": 3
+        }
+      ],
+      "sourceReferenceScore": 3,
+      "score": 3,
+      "subQuestions": [],
+      "leafKeys": [
+        "9"
+      ],
+      "sourceSubquestionNumbers": [],
+      "mathDataPath": "candidates/q09/math-data.json",
+      "mathDataSha256": "851331cc6ffc900b789eeaa94f892b38b8d27d1524e4c8ac5c9cb03314f96ce2",
+      "mathScriptBindings": [
+        {
+          "path": "bootstrap.py",
+          "sha256": "4d1a3a401bcea3ee6ee6ab0ef207ce3cf85b53d16b9cdc1e04d30b82dd52a6c9"
+        },
+        {
+          "path": "drafts.py",
+          "sha256": "c5250279b1a6de083f9ac56382f4ca5ebacad069c6fcfea6534805d9dc2a3fb5"
+        },
+        {
+          "path": "build.py",
+          "sha256": "9f8759a9683e1635c6937f855decc452399bc64069f2661b38877825aa456c43"
+        },
+        {
+          "path": "checks.py",
+          "sha256": "fd2e5253e3161108532e2f33c4b3f0bd128e4345faa99d09630fefed3ee6ba65"
+        },
+        {
+          "path": "render.mts",
+          "sha256": "7accff44cfd64d384fdfc3bdffb4645b01048f1e37aa812d5c4d1f2810d5c105"
+        },
+        {
+          "path": "node-render-check.mts",
+          "sha256": "4a7309d1c78cf1b0f7825e5da95d61fc949388799de494aff18f355b427600b4"
+        },
+        {
+          "path": "preview.mjs",
+          "sha256": "b7d21beec188efa3ae9fc1d6b2be830f754f916cde389317cdfc7bf57159aa4b"
+        },
+        {
+          "path": "registry.mts",
+          "sha256": "d3b3dc9be284344f118a8e8f6f4d63de66e30381cd173260e6ae0512b65485b8"
+        },
+        {
+          "path": "author-review.py",
+          "sha256": "7e8dd20be3732cf2fcb6eef14312ec631392c00842143c00c7bf9cc66ff599e2"
+        },
+        {
+          "path": "seal.mjs",
+          "sha256": "a50aaa6c220b5aac8e7b67965224433cb8fec5751edc48c7af270468e58e1910"
+        },
+        {
+          "path": "verify-freeze.mjs",
+          "sha256": "6313e6a20a99dd4803118a99e330960f55f9012a3aca6fe6b576ab5acf136f19"
+        }
+      ],
+      "figureGenerationEvidenceSha256": "ea0b2682550c1560096b0fbce119a24c66b66fee844a468769f4adfa7c277e6c",
+      "nodeReproductionSha256": "d889c793340b9afe81de62552d596a343100e2f55ad98deb5439733d73d462d6",
+      "authorCheckPath": "checks/q09.json",
+      "authorCheckSha256": "6447d2a1e59537f0c6d229ab5e083c0569a98e29b1846b6e9b9b0c94c590d1a0",
+      "authorSevenSurfaceReviewSha256": "a3bd48c8533f49948ed2979b6354a1d4900234b86f75a8a89190bd3970e9eb18",
+      "visualReviewSha256": "0ca76840facd5daee4d4e6556bdaf93a2b5df3079448cceb7d5024e8b6586f3d",
+      "authorPreviewSha256": "c5826f9f7540a2eae092d4a887ec6b0ca37c3034b147c64c31189e44ab2915f7",
+      "studentPreviewSha256": "44c884679b3e7c320e3d1490198c92e9f0f7203aa7e2b9fd177da4a2097ebf18",
+      "unitProposal": "6209acdc-9fcf-498a-af2e-13f614d0f277",
+      "familyKey": null,
+      "difficultyProposal": "기본",
+      "questionType": "객관식",
+      "status": "author-proposed-awaiting-other-worker-blind-solve-and-review",
+      "independentApprovals": 0,
+      "finalGradeApproval": false,
+      "rightsStatus": "pending",
+      "nativeStatus": "pending",
+      "sourceCustodyStatus": "pending",
+      "similarityStatus": "pending",
+      "directUseAllowed": false
+    },
+    {
+      "questionNumber": 10,
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q10",
+      "candidatePath": "candidates/q10/q10.json",
+      "candidateFileSha256": "d137f2befe75a99eec02eb09023ccbc3b7f62913de4dca15791c3413905d8a26",
+      "candidateDigest": "0a959a9d94b4fa7f105e3ac1cd77e68df40a6963add892731433794890863fdc",
+      "studentDigest": "840ff70deb1a4eac4cf504f5c2a802b0917c9c1a671b37fd1bd9def090cdf03a",
+      "assetDigest": "6b98fb018044a487b957bd071ff1c417c0cffb4442277248a6c94a2b537359a9",
+      "assetBindings": [
+        {
+          "role": "stem",
+          "specSha256": "e921594bd209e9feb0c5bc1d625f19d888952152edd7be53bd4ac04dc82fdb3b",
+          "svgSha256": "a64c8e2f2c1f5b398f6d900681fa4fb9880f7dcc2a59bf6e9d7da72067bcd574",
+          "intendedWidthMm": 70
+        }
+      ],
+      "contentDigest": "88e40a53c095aedf64dae8a55743f73db8e664ae5d1e4beb0779089672b0fe33",
+      "contentDigestFields": [
+        "content",
+        "choices",
+        "answer",
+        "solution",
+        "score",
+        "questionType",
+        "facts"
+      ],
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-10",
+      "sourceDigestProvidedByPacket": "485761e8b9850d604e790ec22759c914cabdf3e54c7741af6702c09ae15a0eb2",
+      "sourceQuestionCanonicalDigest": "ef4422c9ab8209820f3728b2a382ea064eae07a00080c683e3fe2d54d16b33d6",
+      "sourceStemSha256": "71c2d6119230b9aab99cd1abfab590dbf72267ad12d11f903f9c2197817c664c",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceSafeFigureBindings": [
+        {
+          "file": "images/q10-part1.png",
+          "sha256": "198e89eedec180ecc2b6efb2b467026fa408ee0131cba7a24b31a33970610c5b",
+          "page": 3
+        }
+      ],
+      "sourceReferenceScore": 3,
+      "score": 3,
+      "subQuestions": [],
+      "leafKeys": [
+        "10"
+      ],
+      "sourceSubquestionNumbers": [],
+      "mathDataPath": "candidates/q10/math-data.json",
+      "mathDataSha256": "b5b194d871ba8680adf56501c071e6b975a8a24dbee8733e94290ac161b59d20",
+      "mathScriptBindings": [
+        {
+          "path": "bootstrap.py",
+          "sha256": "4d1a3a401bcea3ee6ee6ab0ef207ce3cf85b53d16b9cdc1e04d30b82dd52a6c9"
+        },
+        {
+          "path": "drafts.py",
+          "sha256": "c5250279b1a6de083f9ac56382f4ca5ebacad069c6fcfea6534805d9dc2a3fb5"
+        },
+        {
+          "path": "build.py",
+          "sha256": "9f8759a9683e1635c6937f855decc452399bc64069f2661b38877825aa456c43"
+        },
+        {
+          "path": "checks.py",
+          "sha256": "fd2e5253e3161108532e2f33c4b3f0bd128e4345faa99d09630fefed3ee6ba65"
+        },
+        {
+          "path": "render.mts",
+          "sha256": "7accff44cfd64d384fdfc3bdffb4645b01048f1e37aa812d5c4d1f2810d5c105"
+        },
+        {
+          "path": "node-render-check.mts",
+          "sha256": "4a7309d1c78cf1b0f7825e5da95d61fc949388799de494aff18f355b427600b4"
+        },
+        {
+          "path": "preview.mjs",
+          "sha256": "b7d21beec188efa3ae9fc1d6b2be830f754f916cde389317cdfc7bf57159aa4b"
+        },
+        {
+          "path": "registry.mts",
+          "sha256": "d3b3dc9be284344f118a8e8f6f4d63de66e30381cd173260e6ae0512b65485b8"
+        },
+        {
+          "path": "author-review.py",
+          "sha256": "7e8dd20be3732cf2fcb6eef14312ec631392c00842143c00c7bf9cc66ff599e2"
+        },
+        {
+          "path": "seal.mjs",
+          "sha256": "a50aaa6c220b5aac8e7b67965224433cb8fec5751edc48c7af270468e58e1910"
+        },
+        {
+          "path": "verify-freeze.mjs",
+          "sha256": "6313e6a20a99dd4803118a99e330960f55f9012a3aca6fe6b576ab5acf136f19"
+        }
+      ],
+      "figureGenerationEvidenceSha256": "ea0b2682550c1560096b0fbce119a24c66b66fee844a468769f4adfa7c277e6c",
+      "nodeReproductionSha256": "d889c793340b9afe81de62552d596a343100e2f55ad98deb5439733d73d462d6",
+      "authorCheckPath": "checks/q10.json",
+      "authorCheckSha256": "ba2813b0872d79537e1dda842bbada581e38a83bf35380c199b8ef85af4218d2",
+      "authorSevenSurfaceReviewSha256": "a3bd48c8533f49948ed2979b6354a1d4900234b86f75a8a89190bd3970e9eb18",
+      "visualReviewSha256": "0ca76840facd5daee4d4e6556bdaf93a2b5df3079448cceb7d5024e8b6586f3d",
+      "authorPreviewSha256": "6ee63b9bbd9da15487fef03a2b746df21bc002bb8c91242474b1fc1f0ef5f140",
+      "studentPreviewSha256": "510fcf9c4a6c7f9eaabdbd27c31dd44e528428e916db321a015f82065b6ecacd",
+      "unitProposal": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+      "familyKey": null,
+      "difficultyProposal": "기본",
+      "questionType": "객관식",
+      "status": "author-proposed-awaiting-other-worker-blind-solve-and-review",
+      "independentApprovals": 0,
+      "finalGradeApproval": false,
+      "rightsStatus": "pending",
+      "nativeStatus": "pending",
+      "sourceCustodyStatus": "pending",
+      "similarityStatus": "pending",
+      "directUseAllowed": false
+    },
+    {
+      "questionNumber": 11,
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q11",
+      "candidatePath": "candidates/q11/q11.json",
+      "candidateFileSha256": "f58872a061f2f7caa04e50def805e3e9a941f8dec6689a78b3e44a2fab9d53b4",
+      "candidateDigest": "bc16a97f1886a820f8228f6918a918a4a6a3394173795c26cf78e238e8b2e204",
+      "studentDigest": "7abd1dc86101a51b55a2b8f3492597d7f2f066c1b951df0597b528bf72d37bcc",
+      "assetDigest": "38da377ceeb6a359b4d1bfec9fc2787abc3e59ceae12bc067d2be19970c27d88",
+      "assetBindings": [
+        {
+          "role": "stem",
+          "specSha256": "3395004e0e551644d9c713fb63e37b0dcb1da0d6fc857ee851edf66864568596",
+          "svgSha256": "76987cbb6c0b2189f61e2b8fbfe03fe74978acc1bb46c5828452555d0384cd87",
+          "intendedWidthMm": 55
+        },
+        {
+          "role": "stem",
+          "specSha256": "c446305e3a51b4c8fe6c065e48025c9f8ffca0ca6cf1241a92c6942a133ee2bc",
+          "svgSha256": "3552f8d0a5514faa1ba4309ab93aa6a1eaee896db7ef3f6131f68cc5a7d7833e",
+          "intendedWidthMm": 55
+        }
+      ],
+      "contentDigest": "c688ab356ddc1ae3f2b9ca56cab762a7d64e0623d5ba652e9ef8be91cbab48da",
+      "contentDigestFields": [
+        "content",
+        "choices",
+        "answer",
+        "solution",
+        "score",
+        "questionType",
+        "facts"
+      ],
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-11",
+      "sourceDigestProvidedByPacket": "092997340d10540760a1abc046ecb5b09fe1bf62437924ff423d6def6185464b",
+      "sourceQuestionCanonicalDigest": "4401b7dadfeab3e95f890ee919b886afca00ddea532f05771310387d7f39c4a1",
+      "sourceStemSha256": "0ad62eff9aa41ec7152f264518fc00ca84b82d024eb3040f8f3b5bb9dceb9224",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceSafeFigureBindings": [
+        {
+          "file": "images/q11-part1.png",
+          "sha256": "a6b0c5a8d896159334f7e125d434afae8cd4ba66f11a89cd34fb374d8f0bc304",
+          "page": 3
+        }
+      ],
+      "sourceReferenceScore": 4,
+      "score": 4,
+      "subQuestions": [],
+      "leafKeys": [
+        "11"
+      ],
+      "sourceSubquestionNumbers": [],
+      "mathDataPath": "candidates/q11/math-data.json",
+      "mathDataSha256": "1e530963d3357d3ff360ae36122f2d16c1dc6a030557c12c0b473d4ec0440ff3",
+      "mathScriptBindings": [
+        {
+          "path": "bootstrap.py",
+          "sha256": "4d1a3a401bcea3ee6ee6ab0ef207ce3cf85b53d16b9cdc1e04d30b82dd52a6c9"
+        },
+        {
+          "path": "drafts.py",
+          "sha256": "c5250279b1a6de083f9ac56382f4ca5ebacad069c6fcfea6534805d9dc2a3fb5"
+        },
+        {
+          "path": "build.py",
+          "sha256": "9f8759a9683e1635c6937f855decc452399bc64069f2661b38877825aa456c43"
+        },
+        {
+          "path": "checks.py",
+          "sha256": "fd2e5253e3161108532e2f33c4b3f0bd128e4345faa99d09630fefed3ee6ba65"
+        },
+        {
+          "path": "render.mts",
+          "sha256": "7accff44cfd64d384fdfc3bdffb4645b01048f1e37aa812d5c4d1f2810d5c105"
+        },
+        {
+          "path": "node-render-check.mts",
+          "sha256": "4a7309d1c78cf1b0f7825e5da95d61fc949388799de494aff18f355b427600b4"
+        },
+        {
+          "path": "preview.mjs",
+          "sha256": "b7d21beec188efa3ae9fc1d6b2be830f754f916cde389317cdfc7bf57159aa4b"
+        },
+        {
+          "path": "registry.mts",
+          "sha256": "d3b3dc9be284344f118a8e8f6f4d63de66e30381cd173260e6ae0512b65485b8"
+        },
+        {
+          "path": "author-review.py",
+          "sha256": "7e8dd20be3732cf2fcb6eef14312ec631392c00842143c00c7bf9cc66ff599e2"
+        },
+        {
+          "path": "seal.mjs",
+          "sha256": "a50aaa6c220b5aac8e7b67965224433cb8fec5751edc48c7af270468e58e1910"
+        },
+        {
+          "path": "verify-freeze.mjs",
+          "sha256": "6313e6a20a99dd4803118a99e330960f55f9012a3aca6fe6b576ab5acf136f19"
+        }
+      ],
+      "figureGenerationEvidenceSha256": "ea0b2682550c1560096b0fbce119a24c66b66fee844a468769f4adfa7c277e6c",
+      "nodeReproductionSha256": "d889c793340b9afe81de62552d596a343100e2f55ad98deb5439733d73d462d6",
+      "authorCheckPath": "checks/q11.json",
+      "authorCheckSha256": "bb07a2a3cc3ef51c12f382c462a03558c46224251dd304cae8830ed18cca935d",
+      "authorSevenSurfaceReviewSha256": "a3bd48c8533f49948ed2979b6354a1d4900234b86f75a8a89190bd3970e9eb18",
+      "visualReviewSha256": "0ca76840facd5daee4d4e6556bdaf93a2b5df3079448cceb7d5024e8b6586f3d",
+      "authorPreviewSha256": "5f03deb185e417650d530b70b4b5b4cbe8aa5b34944d71733c04f7935273f5b3",
+      "studentPreviewSha256": "dd08effba869a8f2cfcb739675619e331a29826571b5b44ce54e5c7f1897af54",
+      "unitProposal": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+      "familyKey": null,
+      "difficultyProposal": "응용",
+      "questionType": "객관식",
+      "status": "author-proposed-awaiting-other-worker-blind-solve-and-review",
+      "independentApprovals": 0,
+      "finalGradeApproval": false,
+      "rightsStatus": "pending",
+      "nativeStatus": "pending",
+      "sourceCustodyStatus": "pending",
+      "similarityStatus": "pending",
+      "directUseAllowed": false
+    },
+    {
+      "questionNumber": 12,
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q12",
+      "candidatePath": "candidates/q12/q12.json",
+      "candidateFileSha256": "13ea2d0c32bfbe08e674be04805346419d9a161079e6ab84a9dffd7ad94d1a3c",
+      "candidateDigest": "34174ac63c18e9ad51f970dc99b8d0017335c217627cd4ebdf27c8720fbc1a6a",
+      "studentDigest": "0b3a68064ec73ea0a26892e5d719014123bef5bbc6212508a9c02b04ea76304e",
+      "assetDigest": "6c1d145fffaf412d22d2d1fd12b5dc64f0004650c9cb4e7afd3cbbb2d49bba72",
+      "assetBindings": [
+        {
+          "role": "stem",
+          "specSha256": "20917209d13d415f4ae631c79317d8c698a622b96d958f81e60235cfa065cd1f",
+          "svgSha256": "ae14b4bc481a4e4db967133384a2f7810322d1415f73ebdf920f7f6378250257",
+          "intendedWidthMm": 70
+        }
+      ],
+      "contentDigest": "3079c054f3cb29c901f1d9473c7e6c4b3e805c62770ca2b8b9de8a2db1dd30a9",
+      "contentDigestFields": [
+        "content",
+        "choices",
+        "answer",
+        "solution",
+        "score",
+        "questionType",
+        "facts"
+      ],
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-12",
+      "sourceDigestProvidedByPacket": "e163659c2ce2d1439862348f43b5457314763ca821be46ac3c95693c33276334",
+      "sourceQuestionCanonicalDigest": "4edf8c3dbf5e4b18f2ce01f618e6b8ed2c5742db539f6cd916aff2beefbefa60",
+      "sourceStemSha256": "b816494a274804225d581c71fb6819824054d79924d3b34f144299c9ca50c033",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceSafeFigureBindings": [
+        {
+          "file": "images/q12-part1.png",
+          "sha256": "0bdc0b96742e95266c25f855ba2f985b386cd5d80607ff713e821c18861ad7fc",
+          "page": 3
+        }
+      ],
+      "sourceReferenceScore": 4,
+      "score": 4,
+      "subQuestions": [],
+      "leafKeys": [
+        "12"
+      ],
+      "sourceSubquestionNumbers": [],
+      "mathDataPath": "candidates/q12/math-data.json",
+      "mathDataSha256": "aeec409b05271853ecafd9b70fc81f3ae7ff9b1c86fe563fd680e35e92a82c04",
+      "mathScriptBindings": [
+        {
+          "path": "bootstrap.py",
+          "sha256": "4d1a3a401bcea3ee6ee6ab0ef207ce3cf85b53d16b9cdc1e04d30b82dd52a6c9"
+        },
+        {
+          "path": "drafts.py",
+          "sha256": "c5250279b1a6de083f9ac56382f4ca5ebacad069c6fcfea6534805d9dc2a3fb5"
+        },
+        {
+          "path": "build.py",
+          "sha256": "9f8759a9683e1635c6937f855decc452399bc64069f2661b38877825aa456c43"
+        },
+        {
+          "path": "checks.py",
+          "sha256": "fd2e5253e3161108532e2f33c4b3f0bd128e4345faa99d09630fefed3ee6ba65"
+        },
+        {
+          "path": "render.mts",
+          "sha256": "7accff44cfd64d384fdfc3bdffb4645b01048f1e37aa812d5c4d1f2810d5c105"
+        },
+        {
+          "path": "node-render-check.mts",
+          "sha256": "4a7309d1c78cf1b0f7825e5da95d61fc949388799de494aff18f355b427600b4"
+        },
+        {
+          "path": "preview.mjs",
+          "sha256": "b7d21beec188efa3ae9fc1d6b2be830f754f916cde389317cdfc7bf57159aa4b"
+        },
+        {
+          "path": "registry.mts",
+          "sha256": "d3b3dc9be284344f118a8e8f6f4d63de66e30381cd173260e6ae0512b65485b8"
+        },
+        {
+          "path": "author-review.py",
+          "sha256": "7e8dd20be3732cf2fcb6eef14312ec631392c00842143c00c7bf9cc66ff599e2"
+        },
+        {
+          "path": "seal.mjs",
+          "sha256": "a50aaa6c220b5aac8e7b67965224433cb8fec5751edc48c7af270468e58e1910"
+        },
+        {
+          "path": "verify-freeze.mjs",
+          "sha256": "6313e6a20a99dd4803118a99e330960f55f9012a3aca6fe6b576ab5acf136f19"
+        }
+      ],
+      "figureGenerationEvidenceSha256": "ea0b2682550c1560096b0fbce119a24c66b66fee844a468769f4adfa7c277e6c",
+      "nodeReproductionSha256": "d889c793340b9afe81de62552d596a343100e2f55ad98deb5439733d73d462d6",
+      "authorCheckPath": "checks/q12.json",
+      "authorCheckSha256": "b7cc8540df41b2634202eed11d903361ac7679298adea6e555ae4cf18331ac43",
+      "authorSevenSurfaceReviewSha256": "a3bd48c8533f49948ed2979b6354a1d4900234b86f75a8a89190bd3970e9eb18",
+      "visualReviewSha256": "0ca76840facd5daee4d4e6556bdaf93a2b5df3079448cceb7d5024e8b6586f3d",
+      "authorPreviewSha256": "5f68819a3a347f20b8c0f735a840b7ed793947a4a830b934e0189a0c0dbf8e54",
+      "studentPreviewSha256": "29df7969494335c717c30179f9e6273c00004d671ffa9ae00c9a0e454f1d2f50",
+      "unitProposal": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+      "familyKey": null,
+      "difficultyProposal": "응용",
+      "questionType": "객관식",
+      "status": "author-proposed-awaiting-other-worker-blind-solve-and-review",
+      "independentApprovals": 0,
+      "finalGradeApproval": false,
+      "rightsStatus": "pending",
+      "nativeStatus": "pending",
+      "sourceCustodyStatus": "pending",
+      "similarityStatus": "pending",
+      "directUseAllowed": false
+    },
+    {
+      "questionNumber": 13,
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q13",
+      "candidatePath": "candidates/q13/q13.json",
+      "candidateFileSha256": "3c1aa8d2edc84d3343bd8e834356433ab2daf9a85ea4164c7a29aee6d2b7a2a1",
+      "candidateDigest": "2f756c58b54f98370820fdc1e55161d9588ce3b076b04ea4ca4bdf8f37530fff",
+      "studentDigest": "42979320a40728ebbe000264ff119aa26021320928eb788dd89bd862132b51b5",
+      "assetDigest": "759fd6bc87eff2a381e7c27a00aedf4da1f4b8228fa422151223af127c813529",
+      "assetBindings": [
+        {
+          "role": "stem",
+          "specSha256": "8992c0aed99737c494cd27fe542485d63f6de8dd24c82a1fbbaf951aad0b419a",
+          "svgSha256": "22046aa9028d3fdad7a2e2daf268137352780de248ab3c6bad860bc5762fe1d3",
+          "intendedWidthMm": 70
+        }
+      ],
+      "contentDigest": "b0d455367d688cf5d80c5c70d2cafa88b97df47420790fcea343ec3131306517",
+      "contentDigestFields": [
+        "content",
+        "choices",
+        "answer",
+        "solution",
+        "score",
+        "questionType",
+        "facts"
+      ],
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-13",
+      "sourceDigestProvidedByPacket": "c39e112bb53847669a7615e2f9060b3e1d775448213d6dcaf47fc3b0c1126c62",
+      "sourceQuestionCanonicalDigest": "5a8c4ebd20ef36c9483ccb66a36644d50d2bb4af5dafc73049c9f5b2a4565622",
+      "sourceStemSha256": "3624c14d09a32e6c2ac51327751b4c96a74fcc204309af13a722d2fd2f1e3b7c",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceSafeFigureBindings": [
+        {
+          "file": "images/q13-part1.png",
+          "sha256": "7f0aafcefecd1a462feac091912648893d1e2f59a7c19357be68a2705b09a67a",
+          "page": 4
+        }
+      ],
+      "sourceReferenceScore": 4,
+      "score": 4,
+      "subQuestions": [],
+      "leafKeys": [
+        "13"
+      ],
+      "sourceSubquestionNumbers": [],
+      "mathDataPath": "candidates/q13/math-data.json",
+      "mathDataSha256": "b50eb1c65e992b064b01a5be5e15a78b995354cce1949248950e5acda653ec6f",
+      "mathScriptBindings": [
+        {
+          "path": "bootstrap.py",
+          "sha256": "4d1a3a401bcea3ee6ee6ab0ef207ce3cf85b53d16b9cdc1e04d30b82dd52a6c9"
+        },
+        {
+          "path": "drafts.py",
+          "sha256": "c5250279b1a6de083f9ac56382f4ca5ebacad069c6fcfea6534805d9dc2a3fb5"
+        },
+        {
+          "path": "build.py",
+          "sha256": "9f8759a9683e1635c6937f855decc452399bc64069f2661b38877825aa456c43"
+        },
+        {
+          "path": "checks.py",
+          "sha256": "fd2e5253e3161108532e2f33c4b3f0bd128e4345faa99d09630fefed3ee6ba65"
+        },
+        {
+          "path": "render.mts",
+          "sha256": "7accff44cfd64d384fdfc3bdffb4645b01048f1e37aa812d5c4d1f2810d5c105"
+        },
+        {
+          "path": "node-render-check.mts",
+          "sha256": "4a7309d1c78cf1b0f7825e5da95d61fc949388799de494aff18f355b427600b4"
+        },
+        {
+          "path": "preview.mjs",
+          "sha256": "b7d21beec188efa3ae9fc1d6b2be830f754f916cde389317cdfc7bf57159aa4b"
+        },
+        {
+          "path": "registry.mts",
+          "sha256": "d3b3dc9be284344f118a8e8f6f4d63de66e30381cd173260e6ae0512b65485b8"
+        },
+        {
+          "path": "author-review.py",
+          "sha256": "7e8dd20be3732cf2fcb6eef14312ec631392c00842143c00c7bf9cc66ff599e2"
+        },
+        {
+          "path": "seal.mjs",
+          "sha256": "a50aaa6c220b5aac8e7b67965224433cb8fec5751edc48c7af270468e58e1910"
+        },
+        {
+          "path": "verify-freeze.mjs",
+          "sha256": "6313e6a20a99dd4803118a99e330960f55f9012a3aca6fe6b576ab5acf136f19"
+        }
+      ],
+      "figureGenerationEvidenceSha256": "ea0b2682550c1560096b0fbce119a24c66b66fee844a468769f4adfa7c277e6c",
+      "nodeReproductionSha256": "d889c793340b9afe81de62552d596a343100e2f55ad98deb5439733d73d462d6",
+      "authorCheckPath": "checks/q13.json",
+      "authorCheckSha256": "c09c9e7e2844dae064af63271e0c19f8d8f19a3a6099ca7850f96ad06ab88b7d",
+      "authorSevenSurfaceReviewSha256": "a3bd48c8533f49948ed2979b6354a1d4900234b86f75a8a89190bd3970e9eb18",
+      "visualReviewSha256": "0ca76840facd5daee4d4e6556bdaf93a2b5df3079448cceb7d5024e8b6586f3d",
+      "authorPreviewSha256": "8b408902eaf67096ca618d55c4e1f77a10c77d895f8a40ea568de185bfae3de4",
+      "studentPreviewSha256": "1e346f7c2d860b87cb56fdd9edfe142f46e1dd51e2d8359fe922ca97ec7b0932",
+      "unitProposal": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+      "familyKey": null,
+      "difficultyProposal": "응용",
+      "questionType": "객관식",
+      "status": "author-proposed-awaiting-other-worker-blind-solve-and-review",
+      "independentApprovals": 0,
+      "finalGradeApproval": false,
+      "rightsStatus": "pending",
+      "nativeStatus": "pending",
+      "sourceCustodyStatus": "pending",
+      "similarityStatus": "pending",
+      "directUseAllowed": false
+    },
+    {
+      "questionNumber": 14,
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q14",
+      "candidatePath": "candidates/q14/q14.json",
+      "candidateFileSha256": "657e67db6c1a76d48821141c22579062f937c652d8cb06512d1d7d46c1f4f204",
+      "candidateDigest": "247580323f9675f99cbfae7b0c7447cd300c0392418b08b474634c7810197e83",
+      "studentDigest": "c2b0d60e59cddc14701ff1e587f4c35a1e1eb221ceca23529730a96f7e2ba1cd",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "assetBindings": [],
+      "contentDigest": "a700cb5cb2a8747da434377ce929d23a92f83fd460fdf63b0e273c756de83b26",
+      "contentDigestFields": [
+        "content",
+        "choices",
+        "answer",
+        "solution",
+        "score",
+        "questionType",
+        "facts"
+      ],
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-14",
+      "sourceDigestProvidedByPacket": "c8bee5ef4841113c7f14610f4c0b8df48c7223b0a3a61a56e1fd38fefc61f46a",
+      "sourceQuestionCanonicalDigest": "8126f25f31d87947c942cffa5cfc146a53611d5fc24178a7535744454b23843a",
+      "sourceStemSha256": "9ac1338e4886cd968a153047167f6ee7befeb9b3a0e4e6d3303216bac9626c24",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceSafeFigureBindings": [
+        {
+          "file": "images/q14-part1.png",
+          "sha256": "54f6abb12f94bd25496cf9410b8bffa89ba13290aade5a8633b05ecec1d92749",
+          "page": 4
+        }
+      ],
+      "sourceReferenceScore": 4,
+      "score": 4,
+      "subQuestions": [],
+      "leafKeys": [
+        "14"
+      ],
+      "sourceSubquestionNumbers": [],
+      "mathDataPath": "candidates/q14/math-data.json",
+      "mathDataSha256": "0145e17da0f17733e321ad535b583a8373397dd9e3eef1cfb33a4b673b7ee7e5",
+      "mathScriptBindings": [
+        {
+          "path": "bootstrap.py",
+          "sha256": "4d1a3a401bcea3ee6ee6ab0ef207ce3cf85b53d16b9cdc1e04d30b82dd52a6c9"
+        },
+        {
+          "path": "drafts.py",
+          "sha256": "c5250279b1a6de083f9ac56382f4ca5ebacad069c6fcfea6534805d9dc2a3fb5"
+        },
+        {
+          "path": "build.py",
+          "sha256": "9f8759a9683e1635c6937f855decc452399bc64069f2661b38877825aa456c43"
+        },
+        {
+          "path": "checks.py",
+          "sha256": "fd2e5253e3161108532e2f33c4b3f0bd128e4345faa99d09630fefed3ee6ba65"
+        },
+        {
+          "path": "render.mts",
+          "sha256": "7accff44cfd64d384fdfc3bdffb4645b01048f1e37aa812d5c4d1f2810d5c105"
+        },
+        {
+          "path": "node-render-check.mts",
+          "sha256": "4a7309d1c78cf1b0f7825e5da95d61fc949388799de494aff18f355b427600b4"
+        },
+        {
+          "path": "preview.mjs",
+          "sha256": "b7d21beec188efa3ae9fc1d6b2be830f754f916cde389317cdfc7bf57159aa4b"
+        },
+        {
+          "path": "registry.mts",
+          "sha256": "d3b3dc9be284344f118a8e8f6f4d63de66e30381cd173260e6ae0512b65485b8"
+        },
+        {
+          "path": "author-review.py",
+          "sha256": "7e8dd20be3732cf2fcb6eef14312ec631392c00842143c00c7bf9cc66ff599e2"
+        },
+        {
+          "path": "seal.mjs",
+          "sha256": "a50aaa6c220b5aac8e7b67965224433cb8fec5751edc48c7af270468e58e1910"
+        },
+        {
+          "path": "verify-freeze.mjs",
+          "sha256": "6313e6a20a99dd4803118a99e330960f55f9012a3aca6fe6b576ab5acf136f19"
+        }
+      ],
+      "figureGenerationEvidenceSha256": "ea0b2682550c1560096b0fbce119a24c66b66fee844a468769f4adfa7c277e6c",
+      "nodeReproductionSha256": "d889c793340b9afe81de62552d596a343100e2f55ad98deb5439733d73d462d6",
+      "authorCheckPath": "checks/q14.json",
+      "authorCheckSha256": "b4c6760c9f3119a1a251c809ccbe29874899d8be1141dd50d20d7a18ec0387c2",
+      "authorSevenSurfaceReviewSha256": "a3bd48c8533f49948ed2979b6354a1d4900234b86f75a8a89190bd3970e9eb18",
+      "visualReviewSha256": "0ca76840facd5daee4d4e6556bdaf93a2b5df3079448cceb7d5024e8b6586f3d",
+      "authorPreviewSha256": "7eda4afec348e9075b380b32fa35d05b231a89eb843b11a09cbdd93951486fc7",
+      "studentPreviewSha256": "966b342f006baef5e3d2fff4d011bb8a9a173dcfd478ddbacbe0afe403cf3b5a",
+      "unitProposal": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+      "familyKey": null,
+      "difficultyProposal": "응용",
+      "questionType": "객관식",
+      "status": "author-proposed-awaiting-other-worker-blind-solve-and-review",
+      "independentApprovals": 0,
+      "finalGradeApproval": false,
+      "rightsStatus": "pending",
+      "nativeStatus": "pending",
+      "sourceCustodyStatus": "pending",
+      "similarityStatus": "pending",
+      "directUseAllowed": false
+    },
+    {
+      "questionNumber": 16,
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q16",
+      "candidatePath": "candidates/q16/q16.json",
+      "candidateFileSha256": "5edf90592c4c2dd0f937745f81e60f89ca7abfe291aacdf8e79dcc5dcffc6dd3",
+      "candidateDigest": "735d251f2fb963db4ce15a64b50a0700664558c520a9d282fd2237ccf18342fa",
+      "studentDigest": "622fbe2eeac514d357a9e5d89740fcf74995e53cb7e7d380ca5c9db4c1196228",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "assetBindings": [],
+      "contentDigest": "2571ae55092c3ab6a44ad94ebbfd9b07116000ae746d0378881d00f5d378100b",
+      "contentDigestFields": [
+        "content",
+        "choices",
+        "answer",
+        "solution",
+        "score",
+        "questionType",
+        "facts"
+      ],
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-16",
+      "sourceDigestProvidedByPacket": "fa31a0897884b6fa3e19555814071c3c0043aa5f4b732c5e07021422d8fa580c",
+      "sourceQuestionCanonicalDigest": "80af8c1d9bc342b14a2d564d14ea929384c47dfe2abb07b064ea1330929b67c3",
+      "sourceStemSha256": "fb93e58723f24318700fe2ec4a0f245e11326e96f7e39354b92b47a781b395b4",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceSafeFigureBindings": [
+        {
+          "file": "images/q16-part1.png",
+          "sha256": "d4f0050c791448c28af9c38719b786b2501c21cc2ac89845d51c8a39a9e38101",
+          "page": 5
+        }
+      ],
+      "sourceReferenceScore": 8,
+      "score": 8,
+      "subQuestions": [],
+      "leafKeys": [
+        "16"
+      ],
+      "sourceSubquestionNumbers": [],
+      "mathDataPath": "candidates/q16/math-data.json",
+      "mathDataSha256": "c7711edaca8d6f12a279a20b7fb3243e107d15e9291fcba3543cf7f4c4359731",
+      "mathScriptBindings": [
+        {
+          "path": "bootstrap.py",
+          "sha256": "4d1a3a401bcea3ee6ee6ab0ef207ce3cf85b53d16b9cdc1e04d30b82dd52a6c9"
+        },
+        {
+          "path": "drafts.py",
+          "sha256": "c5250279b1a6de083f9ac56382f4ca5ebacad069c6fcfea6534805d9dc2a3fb5"
+        },
+        {
+          "path": "build.py",
+          "sha256": "9f8759a9683e1635c6937f855decc452399bc64069f2661b38877825aa456c43"
+        },
+        {
+          "path": "checks.py",
+          "sha256": "fd2e5253e3161108532e2f33c4b3f0bd128e4345faa99d09630fefed3ee6ba65"
+        },
+        {
+          "path": "render.mts",
+          "sha256": "7accff44cfd64d384fdfc3bdffb4645b01048f1e37aa812d5c4d1f2810d5c105"
+        },
+        {
+          "path": "node-render-check.mts",
+          "sha256": "4a7309d1c78cf1b0f7825e5da95d61fc949388799de494aff18f355b427600b4"
+        },
+        {
+          "path": "preview.mjs",
+          "sha256": "b7d21beec188efa3ae9fc1d6b2be830f754f916cde389317cdfc7bf57159aa4b"
+        },
+        {
+          "path": "registry.mts",
+          "sha256": "d3b3dc9be284344f118a8e8f6f4d63de66e30381cd173260e6ae0512b65485b8"
+        },
+        {
+          "path": "author-review.py",
+          "sha256": "7e8dd20be3732cf2fcb6eef14312ec631392c00842143c00c7bf9cc66ff599e2"
+        },
+        {
+          "path": "seal.mjs",
+          "sha256": "a50aaa6c220b5aac8e7b67965224433cb8fec5751edc48c7af270468e58e1910"
+        },
+        {
+          "path": "verify-freeze.mjs",
+          "sha256": "6313e6a20a99dd4803118a99e330960f55f9012a3aca6fe6b576ab5acf136f19"
+        }
+      ],
+      "figureGenerationEvidenceSha256": "ea0b2682550c1560096b0fbce119a24c66b66fee844a468769f4adfa7c277e6c",
+      "nodeReproductionSha256": "d889c793340b9afe81de62552d596a343100e2f55ad98deb5439733d73d462d6",
+      "authorCheckPath": "checks/q16.json",
+      "authorCheckSha256": "fc12053f4641563002103f6345d4e10bb231508609027dfed63c3fbe41635dc8",
+      "authorSevenSurfaceReviewSha256": "a3bd48c8533f49948ed2979b6354a1d4900234b86f75a8a89190bd3970e9eb18",
+      "visualReviewSha256": "0ca76840facd5daee4d4e6556bdaf93a2b5df3079448cceb7d5024e8b6586f3d",
+      "authorPreviewSha256": "e85692d40c2bc5454828c0d7b7593050df89653f2bf1526edf5b23cd74f5e819",
+      "studentPreviewSha256": "2f0f4d4b95f7208d7cbf5c92ec827cd604c4b7ddf38af1704fff2cd8047fc38f",
+      "unitProposal": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "familyKey": null,
+      "difficultyProposal": "응용",
+      "questionType": "서술형",
+      "status": "author-proposed-awaiting-other-worker-blind-solve-and-review",
+      "independentApprovals": 0,
+      "finalGradeApproval": false,
+      "rightsStatus": "pending",
+      "nativeStatus": "pending",
+      "sourceCustodyStatus": "pending",
+      "similarityStatus": "pending",
+      "directUseAllowed": false
+    },
+    {
+      "questionNumber": 17,
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q17",
+      "candidatePath": "candidates/q17/q17.json",
+      "candidateFileSha256": "e4b7923fcd0d97ff52d4641aa50e470703f6fea922462513f83e622c8faa23bd",
+      "candidateDigest": "f594b6bfbd9a8ee539548871987d7b5ea09091daea388b7b2b8a8db9043437d4",
+      "studentDigest": "75422a301a173ecd7b8d6fe84e460dc4ec74c2aba11714aab46468d608b50bce",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "assetBindings": [],
+      "contentDigest": "e9ba62687adec128604ed7e358d263f072901eb8ecb8a73eaf37a4afb7797427",
+      "contentDigestFields": [
+        "content",
+        "choices",
+        "answer",
+        "solution",
+        "score",
+        "questionType",
+        "facts"
+      ],
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-17",
+      "sourceDigestProvidedByPacket": "1a805e77b9739c85c8f0d05ad9533d4f7abe40670c02678abd0ad359d625430a",
+      "sourceQuestionCanonicalDigest": "2b3e49d5f240f91e098c10391717b54c8d409301eb8237972b815b1a15c5b849",
+      "sourceStemSha256": "e01c73e4e291f123bf9fc6e27678d5ac995ea40c977c4f59291dfa58d2c8d03a",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceSafeFigureBindings": [
+        {
+          "file": "images/q17-part1.png",
+          "sha256": "4ae11816785b36ff9457054b6fa08429d589921f9c3dc4b1ad29ede14b8a2719",
+          "page": 5
+        }
+      ],
+      "sourceReferenceScore": 10,
+      "score": 10,
+      "subQuestions": [
+        {
+          "number": 1,
+          "score": 5,
+          "target": "reference-student count"
+        },
+        {
+          "number": 2,
+          "score": 5,
+          "target": "actual standard deviation"
+        }
+      ],
+      "leafKeys": [
+        "17.1",
+        "17.2"
+      ],
+      "sourceSubquestionNumbers": [
+        1,
+        2
+      ],
+      "mathDataPath": "candidates/q17/math-data.json",
+      "mathDataSha256": "491a719abb3623d851207fd2037438a62ea79278677d706a39d15b305451b78b",
+      "mathScriptBindings": [
+        {
+          "path": "bootstrap.py",
+          "sha256": "4d1a3a401bcea3ee6ee6ab0ef207ce3cf85b53d16b9cdc1e04d30b82dd52a6c9"
+        },
+        {
+          "path": "drafts.py",
+          "sha256": "c5250279b1a6de083f9ac56382f4ca5ebacad069c6fcfea6534805d9dc2a3fb5"
+        },
+        {
+          "path": "build.py",
+          "sha256": "9f8759a9683e1635c6937f855decc452399bc64069f2661b38877825aa456c43"
+        },
+        {
+          "path": "checks.py",
+          "sha256": "fd2e5253e3161108532e2f33c4b3f0bd128e4345faa99d09630fefed3ee6ba65"
+        },
+        {
+          "path": "render.mts",
+          "sha256": "7accff44cfd64d384fdfc3bdffb4645b01048f1e37aa812d5c4d1f2810d5c105"
+        },
+        {
+          "path": "node-render-check.mts",
+          "sha256": "4a7309d1c78cf1b0f7825e5da95d61fc949388799de494aff18f355b427600b4"
+        },
+        {
+          "path": "preview.mjs",
+          "sha256": "b7d21beec188efa3ae9fc1d6b2be830f754f916cde389317cdfc7bf57159aa4b"
+        },
+        {
+          "path": "registry.mts",
+          "sha256": "d3b3dc9be284344f118a8e8f6f4d63de66e30381cd173260e6ae0512b65485b8"
+        },
+        {
+          "path": "author-review.py",
+          "sha256": "7e8dd20be3732cf2fcb6eef14312ec631392c00842143c00c7bf9cc66ff599e2"
+        },
+        {
+          "path": "seal.mjs",
+          "sha256": "a50aaa6c220b5aac8e7b67965224433cb8fec5751edc48c7af270468e58e1910"
+        },
+        {
+          "path": "verify-freeze.mjs",
+          "sha256": "6313e6a20a99dd4803118a99e330960f55f9012a3aca6fe6b576ab5acf136f19"
+        }
+      ],
+      "figureGenerationEvidenceSha256": "ea0b2682550c1560096b0fbce119a24c66b66fee844a468769f4adfa7c277e6c",
+      "nodeReproductionSha256": "d889c793340b9afe81de62552d596a343100e2f55ad98deb5439733d73d462d6",
+      "authorCheckPath": "checks/q17.json",
+      "authorCheckSha256": "f687db034731417982f778ec32131ca7d979c6a98036d424008ed42ad4892db3",
+      "authorSevenSurfaceReviewSha256": "a3bd48c8533f49948ed2979b6354a1d4900234b86f75a8a89190bd3970e9eb18",
+      "visualReviewSha256": "0ca76840facd5daee4d4e6556bdaf93a2b5df3079448cceb7d5024e8b6586f3d",
+      "authorPreviewSha256": "6fd22dc7390fc6158b731538eb132c213c8c6ceb7c04bcf51d80942d905bf885",
+      "studentPreviewSha256": "29c06e0e8372753632ccc999aafeb081825c342120c53dea8efb965bc3a55794",
+      "unitProposal": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "familyKey": null,
+      "difficultyProposal": "응용",
+      "questionType": "서술형",
+      "status": "author-proposed-awaiting-other-worker-blind-solve-and-review",
+      "independentApprovals": 0,
+      "finalGradeApproval": false,
+      "rightsStatus": "pending",
+      "nativeStatus": "pending",
+      "sourceCustodyStatus": "pending",
+      "similarityStatus": "pending",
+      "directUseAllowed": false
+    },
+    {
+      "questionNumber": 18,
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q18",
+      "candidatePath": "candidates/q18/q18.json",
+      "candidateFileSha256": "416001fe8317af6f3ba171b01724d2c73c82013d91d81fe54eda6c700e07bc62",
+      "candidateDigest": "291635f032bf5c5eb361ab9dfb0572ac6ab881d1f063ce48a49732d0bc0be373",
+      "studentDigest": "2485ccf205b049b7dd6badc011e5933fa167a12eecd15d4922a578db69069341",
+      "assetDigest": "32f69bdaf8080fc81016e6becd05661327f0392df67799ec197711cf81fee937",
+      "assetBindings": [
+        {
+          "role": "stem",
+          "specSha256": "acdab1a1e9d202f2790ef16b7e2af044e2994529aa9ad5d9a8fcdb88241ee527",
+          "svgSha256": "c2c3151654b679240a7ff6961de7e9f1be94fc36b804c991debf3ab6997e06c0",
+          "intendedWidthMm": 70
+        }
+      ],
+      "contentDigest": "13f144235bf678c325d033d5548427e26df828410e4cb096a98a062e30b7097d",
+      "contentDigestFields": [
+        "content",
+        "choices",
+        "answer",
+        "solution",
+        "score",
+        "questionType",
+        "facts"
+      ],
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-18",
+      "sourceDigestProvidedByPacket": "c694c06df5e2bed974a7fa9aac31864b4badca8f91779aa65f01447b0cbcc686",
+      "sourceQuestionCanonicalDigest": "e5bbd94cbaced17f813d086d3e216b667e08fc22250e2403ccb1a5bc5340c304",
+      "sourceStemSha256": "b4ac4601b956aef865b0ed6cd9623d708f1af151e3a63fc2d0dc339fc5675371",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceSafeFigureBindings": [
+        {
+          "file": "images/q18-part1.png",
+          "sha256": "1bdf2c01b9afa15d5e1302987b17e6ff719ebe17e9961ea4b4a266c2475f019f",
+          "page": 6
+        }
+      ],
+      "sourceReferenceScore": 12,
+      "score": 12,
+      "subQuestions": [],
+      "leafKeys": [
+        "18"
+      ],
+      "sourceSubquestionNumbers": [],
+      "mathDataPath": "candidates/q18/math-data.json",
+      "mathDataSha256": "a5155fd12f00e64c888d9db0ef9d26bd795703e59f0a9bbfb5d3c046de3dca55",
+      "mathScriptBindings": [
+        {
+          "path": "bootstrap.py",
+          "sha256": "4d1a3a401bcea3ee6ee6ab0ef207ce3cf85b53d16b9cdc1e04d30b82dd52a6c9"
+        },
+        {
+          "path": "drafts.py",
+          "sha256": "c5250279b1a6de083f9ac56382f4ca5ebacad069c6fcfea6534805d9dc2a3fb5"
+        },
+        {
+          "path": "build.py",
+          "sha256": "9f8759a9683e1635c6937f855decc452399bc64069f2661b38877825aa456c43"
+        },
+        {
+          "path": "checks.py",
+          "sha256": "fd2e5253e3161108532e2f33c4b3f0bd128e4345faa99d09630fefed3ee6ba65"
+        },
+        {
+          "path": "render.mts",
+          "sha256": "7accff44cfd64d384fdfc3bdffb4645b01048f1e37aa812d5c4d1f2810d5c105"
+        },
+        {
+          "path": "node-render-check.mts",
+          "sha256": "4a7309d1c78cf1b0f7825e5da95d61fc949388799de494aff18f355b427600b4"
+        },
+        {
+          "path": "preview.mjs",
+          "sha256": "b7d21beec188efa3ae9fc1d6b2be830f754f916cde389317cdfc7bf57159aa4b"
+        },
+        {
+          "path": "registry.mts",
+          "sha256": "d3b3dc9be284344f118a8e8f6f4d63de66e30381cd173260e6ae0512b65485b8"
+        },
+        {
+          "path": "author-review.py",
+          "sha256": "7e8dd20be3732cf2fcb6eef14312ec631392c00842143c00c7bf9cc66ff599e2"
+        },
+        {
+          "path": "seal.mjs",
+          "sha256": "a50aaa6c220b5aac8e7b67965224433cb8fec5751edc48c7af270468e58e1910"
+        },
+        {
+          "path": "verify-freeze.mjs",
+          "sha256": "6313e6a20a99dd4803118a99e330960f55f9012a3aca6fe6b576ab5acf136f19"
+        }
+      ],
+      "figureGenerationEvidenceSha256": "ea0b2682550c1560096b0fbce119a24c66b66fee844a468769f4adfa7c277e6c",
+      "nodeReproductionSha256": "d889c793340b9afe81de62552d596a343100e2f55ad98deb5439733d73d462d6",
+      "authorCheckPath": "checks/q18.json",
+      "authorCheckSha256": "97ce256ce2e4cd26ba9c00b5294e096ccf2c896a561b30038be7141235a846c6",
+      "authorSevenSurfaceReviewSha256": "a3bd48c8533f49948ed2979b6354a1d4900234b86f75a8a89190bd3970e9eb18",
+      "visualReviewSha256": "0ca76840facd5daee4d4e6556bdaf93a2b5df3079448cceb7d5024e8b6586f3d",
+      "authorPreviewSha256": "748fa3f07b039cf747fc5c2499e7dabdfcf6705eca0014f208ac50f45f064b3c",
+      "studentPreviewSha256": "1cf49f469162f5c6a4e30115e8cacbe14a903744f986dfe379dafe4be0ea4a0c",
+      "unitProposal": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+      "familyKey": null,
+      "difficultyProposal": "심화하",
+      "questionType": "서술형",
+      "status": "author-proposed-awaiting-other-worker-blind-solve-and-review",
+      "independentApprovals": 0,
+      "finalGradeApproval": false,
+      "rightsStatus": "pending",
+      "nativeStatus": "pending",
+      "sourceCustodyStatus": "pending",
+      "similarityStatus": "pending",
+      "directUseAllowed": false
+    },
+    {
+      "questionNumber": 19,
+      "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q19",
+      "candidatePath": "candidates/q19/q19.json",
+      "candidateFileSha256": "8b26fe5116fa820f07cd8e636a26715f2b32532a1078673f6a3737f2c2dba644",
+      "candidateDigest": "c76dd33cd19874b7e2dcf3a34680054b20a85b632c9379f4862cf25f95ca36d4",
+      "studentDigest": "241f6c4ac7efec4435a3355e4b06bd5a5a83722bd61785411ae90b5535e239ff",
+      "assetDigest": "de259aa8a4b80f406def1a1f462118e961b6660fd0ce3dec87f58c6e847237fd",
+      "assetBindings": [
+        {
+          "role": "stem",
+          "specSha256": "763d7eb50509c73afae026ee59a03a1fa5a8cef874354838c6d404ff4ae6a6d5",
+          "svgSha256": "8a86ab8cd4e44173c441794b7b524b376109f7ee94cbd65be1094652c684f565",
+          "intendedWidthMm": 70
+        }
+      ],
+      "contentDigest": "37ea947c3c2af50ec3323d6ba5795dfde66d62ec1e8017fc95839ab58ee5b8ea",
+      "contentDigestFields": [
+        "content",
+        "choices",
+        "answer",
+        "solution",
+        "score",
+        "questionType",
+        "facts"
+      ],
+      "sourceQuestionId": "2025-gyeongam-3-2-mid-19",
+      "sourceDigestProvidedByPacket": "f903574a21863dd5d39ef74e2626173f763980a755a8480c25939532aa681b44",
+      "sourceQuestionCanonicalDigest": "b4ccdd918b1f372f1003f1fa47e31218d040354e34c324344f2a60f6ad2562b4",
+      "sourceStemSha256": "7f6852cbb6d3dbe0409dbcb69c5a3f482d074c6a452f391e294890367637ee42",
+      "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "sourceSafeFigureBindings": [
+        {
+          "file": "images/q19-part1.png",
+          "sha256": "31aa5758e81628241391a04c1dbe601f91218ef2c48728686aaab0752110312a",
+          "page": 6
+        }
+      ],
+      "sourceReferenceScore": 10,
+      "score": 10,
+      "subQuestions": [],
+      "leafKeys": [
+        "19"
+      ],
+      "sourceSubquestionNumbers": [],
+      "mathDataPath": "candidates/q19/math-data.json",
+      "mathDataSha256": "f87e0bdd72b843e1132566303a0691ccf57b585e3f584ce4b565d4ea056365a9",
+      "mathScriptBindings": [
+        {
+          "path": "bootstrap.py",
+          "sha256": "4d1a3a401bcea3ee6ee6ab0ef207ce3cf85b53d16b9cdc1e04d30b82dd52a6c9"
+        },
+        {
+          "path": "drafts.py",
+          "sha256": "c5250279b1a6de083f9ac56382f4ca5ebacad069c6fcfea6534805d9dc2a3fb5"
+        },
+        {
+          "path": "build.py",
+          "sha256": "9f8759a9683e1635c6937f855decc452399bc64069f2661b38877825aa456c43"
+        },
+        {
+          "path": "checks.py",
+          "sha256": "fd2e5253e3161108532e2f33c4b3f0bd128e4345faa99d09630fefed3ee6ba65"
+        },
+        {
+          "path": "render.mts",
+          "sha256": "7accff44cfd64d384fdfc3bdffb4645b01048f1e37aa812d5c4d1f2810d5c105"
+        },
+        {
+          "path": "node-render-check.mts",
+          "sha256": "4a7309d1c78cf1b0f7825e5da95d61fc949388799de494aff18f355b427600b4"
+        },
+        {
+          "path": "preview.mjs",
+          "sha256": "b7d21beec188efa3ae9fc1d6b2be830f754f916cde389317cdfc7bf57159aa4b"
+        },
+        {
+          "path": "registry.mts",
+          "sha256": "d3b3dc9be284344f118a8e8f6f4d63de66e30381cd173260e6ae0512b65485b8"
+        },
+        {
+          "path": "author-review.py",
+          "sha256": "7e8dd20be3732cf2fcb6eef14312ec631392c00842143c00c7bf9cc66ff599e2"
+        },
+        {
+          "path": "seal.mjs",
+          "sha256": "a50aaa6c220b5aac8e7b67965224433cb8fec5751edc48c7af270468e58e1910"
+        },
+        {
+          "path": "verify-freeze.mjs",
+          "sha256": "6313e6a20a99dd4803118a99e330960f55f9012a3aca6fe6b576ab5acf136f19"
+        }
+      ],
+      "figureGenerationEvidenceSha256": "ea0b2682550c1560096b0fbce119a24c66b66fee844a468769f4adfa7c277e6c",
+      "nodeReproductionSha256": "d889c793340b9afe81de62552d596a343100e2f55ad98deb5439733d73d462d6",
+      "authorCheckPath": "checks/q19.json",
+      "authorCheckSha256": "d947290a1f8c4157f36e5043ebb1a70cfa8aea6064080b9e5a4bff418a98c1e1",
+      "authorSevenSurfaceReviewSha256": "a3bd48c8533f49948ed2979b6354a1d4900234b86f75a8a89190bd3970e9eb18",
+      "visualReviewSha256": "0ca76840facd5daee4d4e6556bdaf93a2b5df3079448cceb7d5024e8b6586f3d",
+      "authorPreviewSha256": "b6c54daf9971fbdce2aa647768d204a3fb73e401bcd932dec5c036a16dcf7721",
+      "studentPreviewSha256": "ad2c1546886cfd754bf6b608bdddfc5ca835eebe67cd66499d5b584780aa572c",
+      "unitProposal": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+      "familyKey": null,
+      "difficultyProposal": "응용",
+      "questionType": "서술형",
+      "status": "author-proposed-awaiting-other-worker-blind-solve-and-review",
+      "independentApprovals": 0,
+      "finalGradeApproval": false,
+      "rightsStatus": "pending",
+      "nativeStatus": "pending",
+      "sourceCustodyStatus": "pending",
+      "similarityStatus": "pending",
+      "directUseAllowed": false
+    }
+  ]
+}

@@ -1,0 +1,39 @@
+{
+  "questionNumber": 19,
+  "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+  "method": "exact-author-recomputation-and-actual-displayed-option-check",
+  "status": "author-check-passed",
+  "independentVerification": false,
+  "candidateFileSha256": "8b26fe5116fa820f07cd8e636a26715f2b32532a1078673f6a3737f2c2dba644",
+  "mathDataSha256": "f87e0bdd72b843e1132566303a0691ccf57b585e3f584ce4b565d4ea056365a9",
+  "targets": [
+    "4"
+  ],
+  "evidence": {
+    "areaExpression": "3*sqrt(3)*r**2/8",
+    "radiusPositive": "4",
+    "AC": "2*sqrt(3)",
+    "CB": "2",
+    "BD": "4*sqrt(3)",
+    "quadArea": "6*sqrt(3)",
+    "proof": "Only actual60-degree right triangles and trapezoid base-distance area;no sector/circumcircle/power/upper-grade law",
+    "rubricTotal": 10
+  },
+  "choices": {
+    "count": 0,
+    "exactWrittenTargets": true,
+    "rubricTotal": 10.0
+  },
+  "assets": [
+    {
+      "specSha256": "763d7eb50509c73afae026ee59a03a1fa5a8cef874354838c6d404ff4ae6a6d5",
+      "geometryMatchesNewGivens": true,
+      "coordinateTolerance": "1e-8",
+      "pictorialProjectionOnly": false
+    }
+  ],
+  "leafKeys": [
+    "19"
+  ],
+  "limits": "No source answers/keys used. This is an author check, not a blind solve or curriculum/rights/family approval."
+}

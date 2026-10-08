@@ -1,0 +1,70 @@
+{
+  "questionNumber": 11,
+  "sourceDataObservationLedger": "../../evidence/source-observations.json#/observations/10",
+  "newDataStatus": "author-constructed-not-source-observation",
+  "givens": {
+    "edge": 4,
+    "topFace": "square ABCD",
+    "BFPerpendicularBD": true,
+    "theta": "BFD",
+    "unit": "cm"
+  },
+  "newFigureConstructionModel": [
+    {
+      "points": {
+        "F": [
+          0,
+          0
+        ],
+        "G": [
+          4,
+          0
+        ],
+        "B": [
+          0,
+          4
+        ],
+        "C": [
+          4,
+          4
+        ],
+        "E": [
+          1.5,
+          1.5
+        ],
+        "H": [
+          5.5,
+          1.5
+        ],
+        "A": [
+          1.5,
+          5.5
+        ],
+        "D": [
+          5.5,
+          5.5
+        ]
+      },
+      "scale": 25,
+      "coordinateUse": "nonmetric cube pictorial projection; no projected angle claim"
+    },
+    {
+      "points": {
+        "F": [
+          0,
+          0
+        ],
+        "B": [
+          0,
+          4
+        ],
+        "D": [
+          5.656854249492381,
+          4
+        ]
+      },
+      "scale": 25,
+      "coordinateUse": "private construction model; SVG y down"
+    }
+  ]
+}

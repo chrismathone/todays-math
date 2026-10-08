@@ -1,0 +1,303 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 18,
+  "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q18",
+  "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+  "content": "직각삼각형 ABC에서 $\\angle\\mathrm{B}=90^\\circ$이고 D는 선분 AB의 내부에 있다. $\\overline{\\mathrm{AD}}=\\overline{\\mathrm{CD}}$, $\\angle\\mathrm{CDB}=45^\\circ$이다. 길이 기록에는 $\\overline{\\mathrm{AB}}=(5+5\\sqrt2)\\,\\mathrm{cm}$만 남아 있다.\n지워진 $\\overline{\\mathrm{BC}}$의 길이와 $\\tan\\angle\\mathrm{CAB}$의 값을 복구하고, 각 CAB의 크기를 확인하는 풀이를 함께 쓰시오.",
+  "choices": [],
+  "answer": "$\\overline{\\mathrm{BC}}=5\\,\\mathrm{cm}$, $\\angle\\mathrm{CAB}=22.5^\\circ$, $\\tan\\angle\\mathrm{CAB}=\\sqrt2-1$",
+  "solution": "$\\overline{\\mathrm{BC}}=t$라 하자. 직각삼각형 CDB의 D각이 $45^\\circ$이므로 $\\overline{\\mathrm{DB}}=t$이고 피타고라스 정리에서 $\\overline{\\mathrm{CD}}=t\\sqrt2$이다.\nAD=CD이고 D가 AB의 내부에 있으므로 $\\overline{\\mathrm{AB}}=\\overline{\\mathrm{AD}}+\\overline{\\mathrm{DB}}=t(1+\\sqrt2)$이다. 주어진 길이 $5(1+\\sqrt2)$와 비교하면 $t=5$이다.\n삼각형 ADC는 AD=CD인 이등변삼각형이다. A,D,B가 한 직선에 이 순서로 놓이므로 $\\angle\\mathrm{ADC}=180^\\circ-45^\\circ=135^\\circ$이다. 나머지 같은 두 각은 각각 $\\frac{180^\\circ-135^\\circ}{2}=22.5^\\circ$이다. 따라서 $\\angle\\mathrm{CAB}=22.5^\\circ$이다.\n직각삼각형 ABC에서 $\\tan\\angle\\mathrm{CAB}=\\frac{\\overline{\\mathrm{BC}}}{\\overline{\\mathrm{AB}}}=\\frac5{5(1+\\sqrt2)}=\\frac1{1+\\sqrt2}=\\sqrt2-1$이다.",
+  "score": 12.0,
+  "questionType": "서술형",
+  "facts": {
+    "givens": {
+      "rightAngle": "B",
+      "DInsideAB": true,
+      "ADequalsCD": true,
+      "CDBdeg": 45,
+      "AB": "5+5sqrt(2)",
+      "unit": "cm"
+    },
+    "mathDataPath": "math-data.json",
+    "mathDataSha256": "a5155fd12f00e64c888d9db0ef9d26bd795703e59f0a9bbfb5d3c046de3dca55",
+    "rawSourceObservationPath": "../../evidence/source-observations.json",
+    "rawSourceObservationSha256": "56dcd7f8a34433011abf1e6d0fc7b17fb63e19d91ed8c11697f8c6b9f14ba59c",
+    "newDataStatus": "author-constructed",
+    "sourceScoreEvidence": {
+      "selectedHwpPdfPrintedParentScore": 12.0,
+      "selectedPairScoreStatus": "literal_match",
+      "originalPrintedParentScore": 12.0,
+      "referenceParentScore": 12.0,
+      "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+      "parentCountedOnce": true,
+      "childScores": [],
+      "subquestionCount": 0,
+      "parentAndChildrenMustNotBeAddedTogether": false
+    },
+    "authorRubric": [
+      {
+        "criterion": "45도 삼각형의 DB와CD",
+        "score": 3
+      },
+      {
+        "criterion": "AD=CD와AB기록으로 BC 복구",
+        "score": 3
+      },
+      {
+        "criterion": "이등변삼각형과각의합으로22.5도",
+        "score": 3
+      },
+      {
+        "criterion": "tan 정의와분모유리화",
+        "score": 3
+      }
+    ],
+    "subQuestions": []
+  },
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "stem-1.spec.json",
+      "svgPath": "stem-1.svg",
+      "intendedWidthMm": 70,
+      "mathDataPath": "math-data.json",
+      "mathDataSha256": "a5155fd12f00e64c888d9db0ef9d26bd795703e59f0a9bbfb5d3c046de3dca55"
+    }
+  ],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation",
+      "inverse-target"
+    ],
+    "before": "주어진 BC와45도/이등변 조건으로 tan22.5를 구하는 과정을 쓴다.",
+    "after": "AB의 전체 길이를 입력으로 지워진 직각변을 복구한 뒤 각/직각 비의 기록을 설명한다.",
+    "sharedConcept": "45도 직각삼각형, 이등변삼각형과 특정각의 tan 정의",
+    "sharedProcedure": "DB=BC→CD 피타고라스→AD=CD와길이합으로BC→삼각형각의합→유한직각 비/분모유리화."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수04-17",
+      "9수04-18",
+      "9수04-16",
+      "9수04-10",
+      "9수04-05",
+      "9수01-10"
+    ],
+    "allowedProcedure": "DB=BC→CD 피타고라스→AD=CD와길이합으로BC→삼각형각의합→유한직각 비/분모유리화.",
+    "forbiddenAvoided": [
+      "任意삼각비관계식",
+      "원/외접원비례법칙/원의거듭제곱",
+      "사인/코사인법칙",
+      "반각/덧셈정리",
+      "삼각비넓이공식",
+      "라디안/벡터",
+      "상위통계/최적화"
+    ],
+    "status": "author-proposed",
+    "wholeSurfaceGate": "7 surfaces mapped to specific procedure/prerequisites; source school/registry is not grade approval",
+    "specificRisk": "제시된D만 쓴다. 반각/덧셈정리나 임의각 관계식은 없다. 특정22.5도값을 실제변비로 도출하는 전체 절차/12점 적정성은 독립 검토가 남는다.",
+    "independentReviewStatus": "pending-other-worker"
+  },
+  "studentSurfaceReview": {
+    "stem": {
+      "status": "author-proposed",
+      "evidence": "新본문조건/표/자료조직과점순서명시"
+    },
+    "choices": {
+      "status": "author-proposed",
+      "evidence": "actual-option parser로14객관식의유일정답/중복검사;written choices=[]"
+    },
+    "figuresAndTables": {
+      "status": "author-proposed",
+      "evidence": "새스펙/로컬strictSVG/70mm이하실미리보기와데이터결합"
+    },
+    "notation": {
+      "status": "author-proposed",
+      "evidence": "2015중등표기,도단위/예각,정렬/평균/편차정의;벡터/라디안/상위통계기호없음"
+    },
+    "answer": {
+      "status": "author-proposed",
+      "evidence": "새정확답/단위/서술부분과MC동그라미번호"
+    },
+    "studentSolution": {
+      "status": "author-proposed",
+      "evidence": "DB=BC→CD 피타고라스→AD=CD와길이합으로BC→삼각형각의합→유한직각 비/분모유리화."
+    },
+    "prerequisites": {
+      "status": "author-proposed",
+      "evidence": [
+        {
+          "code": "9수04-17",
+          "text": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수04-18",
+          "text": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수04-16",
+          "text": "피타고라스 정리를 이해하고 설명할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수04-10",
+          "text": "이등변삼각형의 성질을 이해하고 설명할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              37
+            ],
+            "printed_pages": [
+              33
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수04-05",
+          "text": "다각형의 성질을 이해한다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              37
+            ],
+            "printed_pages": [
+              33
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수01-10",
+          "text": "근호를 포함한 식의 사칙계산을 할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              33
+            ],
+            "printed_pages": [
+              29
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        }
+      ]
+    }
+  },
+  "sourceReference": {
+    "externalId": "2025-gyeongam-3-2-mid-18",
+    "sourceExamExternalId": "personal-5eb35ea19488aaf195e724ed05fe8806",
+    "sourceLogicalExamId": "2025-gyeongam-3-2-mid",
+    "questionNumber": 18,
+    "sourceContentSha256": "b4ac4601b956aef865b0ed6cd9623d708f1af151e3a63fc2d0dc339fc5675371",
+    "sourceContentDigest": "c694c06df5e2bed974a7fa9aac31864b4badca8f91779aa65f01447b0cbcc686",
+    "sourcePacketPath": "../../evidence/source-final/questions.json",
+    "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+    "sourceFinalCommit": "4cc9278da",
+    "jsonPointer": "/questions/17",
+    "originalReferenceScore": 12.0,
+    "originalReferenceSubQuestions": [],
+    "referenceFigures": [
+      {
+        "path": "../../evidence/source-final/images/q18-part1.png",
+        "sha256": "1bdf2c01b9afa15d5e1302987b17e6ff719ebe17e9961ea4b4a266c2475f019f",
+        "page": 6,
+        "referenceOnly": true
+      }
+    ],
+    "sourceIdentityDecision": "2025_original_header_school_footer_and_completed_question_identity_supported",
+    "originalAnswerSolutionWithheld": true,
+    "realSchool": "경암중",
+    "studentSchoolAlias": "온빛누리중학교",
+    "directUseAllowed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015"
+    },
+    "sourceExamYear": 2025,
+    "sourceIdentityStatus": "root-final-question-only-packet4cc9278da;native/full-pair-not-approved",
+    "realSchool": "경암중",
+    "studentSchoolAlias": "온빛누리중학교",
+    "questionType": "서술형",
+    "score": 12.0,
+    "difficultyProposal": "심화하",
+    "difficultyStatus": "author-proposed-independent-review-pending",
+    "problemTypeProposal": "서술형",
+    "problemTypeStatus": "author-proposed",
+    "scoreStatus": "reference-parent-total-and-subparts-preserved;rubric-author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+      "unitSection": "삼각비의 활용",
+      "familyKey": null,
+      "evidence": {
+        "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+        "notCurrentDbAssertion": true,
+        "unitSeedOrderIndex": 483,
+        "comparedRegistryEntries": [
+          {
+            "key": "3-2|삼각비의 활용|01",
+            "grade": "중3",
+            "unitSection": "삼각비의 활용",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비의 활용",
+            "rpmType": "01",
+            "rpmTitle": "직각삼각형의 변의 길이 구하기"
+          }
+        ],
+        "wholeRuleComparison": "활용01의전체갈래가새D내부/AD=CD/45도/전체AB→BC/특정22.5도tan의증명및12점서술을지원하지않는다. 특정숫자각키를invent하지않는다.",
+        "reopenCriteria": "실제기존rule의새given/질문/전체절차/서술부분/난도가일치하는문항별증거및독립분류검토;가까운제목자동배정금지"
+      }
+    },
+    "independentSolveStatus": "pending-other-worker",
+    "independentReviewStatus": "pending-other-worker",
+    "rightsStatus": "pending",
+    "nativeStatus": "pending",
+    "sourceCustodyStatus": "pending",
+    "similarityStatus": "pending",
+    "publishStatus": "not-authorized",
+    "loadStatus": "not-authorized",
+    "directUseAllowed": false
+  }
+}

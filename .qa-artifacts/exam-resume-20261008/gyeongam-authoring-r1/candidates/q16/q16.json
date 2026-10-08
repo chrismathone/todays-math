@@ -1,0 +1,240 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 16,
+  "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q16",
+  "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+  "content": "학생 $10$명이 같은 퍼즐을 푸는 데 걸린 시간의 평균은 $13$분이었다. 기록 중 한 값 $m$이 지워져 다음 표만 남았다.\n\n| 확인된 시간(분) | $4$ | $5$ | $6$ | $7$ | $8$ |\n| --- | --- | --- | --- | --- | --- |\n| 학생 수(명) | $1$ | $2$ | $2$ | $3$ | $1$ |\n\n지워진 시간 $m$을 복구한 뒤, 평균과 중앙값 중 이 자료의 대표값으로 더 적절한 것을 정하여 그 값과 이유를 쓰시오.",
+  "choices": [],
+  "answer": "$m=75$분; 중앙값 $6.5$분이 더 적절하다.",
+  "solution": "확인된 아홉 기록의 합은 $4\\times1+5\\times2+6\\times2+7\\times3+8\\times1=55$분이다. 전체 합은 평균과 개수에서 $13\\times10=130$분이므로 $m=130-55=75$분이다.\n열 시간을 정렬하면 $4,5,5,6,6,7,7,7,8,75$이다. 가운데 다섯 번째와 여섯 번째 값은 $6,7$이므로 중앙값은 $\\frac{6+7}{2}=6.5$분이다.\n다른 아홉 학생의 시간은 $4$분부터 $8$분 사이에 모여 있는데 $75$분 한 값이 평균을 크게 높인다. 평균 $13$분은 이 대부분의 시간을 나타내기에 적절하지 않다. 극단적으로 큰 값의 영향을 덜 받는 중앙값 $6.5$분을 대표값으로 선택한다.",
+  "score": 8.0,
+  "questionType": "서술형",
+  "facts": {
+    "givens": {
+      "count": 10,
+      "mean": 13,
+      "knownFrequencies": [
+        [
+          4,
+          1
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          6,
+          2
+        ],
+        [
+          7,
+          3
+        ],
+        [
+          8,
+          1
+        ]
+      ],
+      "missing": "m",
+      "unit": "분"
+    },
+    "mathDataPath": "math-data.json",
+    "mathDataSha256": "c7711edaca8d6f12a279a20b7fb3243e107d15e9291fcba3543cf7f4c4359731",
+    "rawSourceObservationPath": "../../evidence/source-observations.json",
+    "rawSourceObservationSha256": "56dcd7f8a34433011abf1e6d0fc7b17fb63e19d91ed8c11697f8c6b9f14ba59c",
+    "newDataStatus": "author-constructed",
+    "sourceScoreEvidence": {
+      "selectedHwpPdfPrintedParentScore": 8.0,
+      "selectedPairScoreStatus": "literal_match",
+      "originalPrintedParentScore": 8.0,
+      "referenceParentScore": 8.0,
+      "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+      "parentCountedOnce": true,
+      "childScores": [],
+      "subquestionCount": 0,
+      "parentAndChildrenMustNotBeAddedTogether": false
+    },
+    "authorRubric": [
+      {
+        "criterion": "총합과 확인된 기록합으로 m 복구",
+        "score": 2
+      },
+      {
+        "criterion": "정렬/가운데 두 값과 중앙값",
+        "score": 3
+      },
+      {
+        "criterion": "75의 평균 영향과 중앙값 선택 이유",
+        "score": 3
+      }
+    ],
+    "subQuestions": []
+  },
+  "figureArtifacts": [],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation",
+      "inverse-target",
+      "material"
+    ],
+    "before": "10개 원자료에서 평균/중앙값 중 적절한 대표값과 이유를 구한다.",
+    "after": "부분 도수와 평균에서 지워진 극단값을 복구한 후 대표값의 값/이유를 판단한다.",
+    "sharedConcept": "평균/중앙값 및 극단값의 대표성",
+    "sharedProcedure": "도수×값의 합→평균×10에서 누락값→정렬 가운데 두 값→극단값의 영향 설명."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수05-06"
+    ],
+    "allowedProcedure": "도수×값의 합→평균×10에서 누락값→정렬 가운데 두 값→극단값의 영향 설명.",
+    "forbiddenAvoided": [
+      "任意삼각비관계식",
+      "원/외접원비례법칙/원의거듭제곱",
+      "사인/코사인법칙",
+      "반각/덧셈정리",
+      "삼각비넓이공식",
+      "라디안/벡터",
+      "상위통계/최적화"
+    ],
+    "status": "author-proposed",
+    "wholeSurfaceGate": "7 surfaces mapped to specific procedure/prerequisites; source school/registry is not grade approval",
+    "specificRisk": "",
+    "independentReviewStatus": "pending-other-worker"
+  },
+  "studentSurfaceReview": {
+    "stem": {
+      "status": "author-proposed",
+      "evidence": "新본문조건/표/자료조직과점순서명시"
+    },
+    "choices": {
+      "status": "author-proposed",
+      "evidence": "actual-option parser로14객관식의유일정답/중복검사;written choices=[]"
+    },
+    "figuresAndTables": {
+      "status": "author-proposed",
+      "evidence": "새스펙/로컬strictSVG/70mm이하실미리보기와데이터결합"
+    },
+    "notation": {
+      "status": "author-proposed",
+      "evidence": "2015중등표기,도단위/예각,정렬/평균/편차정의;벡터/라디안/상위통계기호없음"
+    },
+    "answer": {
+      "status": "author-proposed",
+      "evidence": "새정확답/단위/서술부분과MC동그라미번호"
+    },
+    "studentSolution": {
+      "status": "author-proposed",
+      "evidence": "도수×값의 합→평균×10에서 누락값→정렬 가운데 두 값→극단값의 영향 설명."
+    },
+    "prerequisites": {
+      "status": "author-proposed",
+      "evidence": [
+        {
+          "code": "9수05-06",
+          "text": "중앙값, 최빈값, 평균의 의미를 이해하고, 이를 구할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              40
+            ],
+            "printed_pages": [
+              36
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        }
+      ]
+    }
+  },
+  "sourceReference": {
+    "externalId": "2025-gyeongam-3-2-mid-16",
+    "sourceExamExternalId": "personal-5eb35ea19488aaf195e724ed05fe8806",
+    "sourceLogicalExamId": "2025-gyeongam-3-2-mid",
+    "questionNumber": 16,
+    "sourceContentSha256": "fb93e58723f24318700fe2ec4a0f245e11326e96f7e39354b92b47a781b395b4",
+    "sourceContentDigest": "fa31a0897884b6fa3e19555814071c3c0043aa5f4b732c5e07021422d8fa580c",
+    "sourcePacketPath": "../../evidence/source-final/questions.json",
+    "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+    "sourceFinalCommit": "4cc9278da",
+    "jsonPointer": "/questions/15",
+    "originalReferenceScore": 8.0,
+    "originalReferenceSubQuestions": [],
+    "referenceFigures": [
+      {
+        "path": "../../evidence/source-final/images/q16-part1.png",
+        "sha256": "d4f0050c791448c28af9c38719b786b2501c21cc2ac89845d51c8a39a9e38101",
+        "page": 5,
+        "referenceOnly": true
+      }
+    ],
+    "sourceIdentityDecision": "2025_original_header_school_footer_and_completed_question_identity_supported",
+    "originalAnswerSolutionWithheld": true,
+    "realSchool": "경암중",
+    "studentSchoolAlias": "온빛누리중학교",
+    "directUseAllowed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015"
+    },
+    "sourceExamYear": 2025,
+    "sourceIdentityStatus": "root-final-question-only-packet4cc9278da;native/full-pair-not-approved",
+    "realSchool": "경암중",
+    "studentSchoolAlias": "온빛누리중학교",
+    "questionType": "서술형",
+    "score": 8.0,
+    "difficultyProposal": "응용",
+    "difficultyStatus": "author-proposed-independent-review-pending",
+    "problemTypeProposal": "서술형",
+    "problemTypeStatus": "author-proposed",
+    "scoreStatus": "reference-parent-total-and-subparts-preserved;rubric-author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "unitSection": "대푯값과 산포도",
+      "familyKey": null,
+      "evidence": {
+        "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+        "notCurrentDbAssertion": true,
+        "unitSeedOrderIndex": 488,
+        "comparedRegistryEntries": [
+          {
+            "key": "3-2|산포도|05",
+            "grade": "중3",
+            "unitSection": "대푯값과 산포도",
+            "rpmBook": "3-2",
+            "rpmMinor": "산포도",
+            "rpmType": "05",
+            "rpmTitle": "자료의 이해"
+          },
+          {
+            "key": "3-2|산포도|11T",
+            "grade": "중3",
+            "unitSection": "대푯값과 산포도",
+            "rpmBook": "3-2",
+            "rpmMinor": "산포도",
+            "rpmType": "11T",
+            "rpmTitle": "평균과 중앙값이 같은 변량 구하기"
+          }
+        ],
+        "wholeRuleComparison": "05는완전자료평균,11T는평균=중앙값미지값이다. 새부분도수/알려진평균→극단값복구/대표값선택/이유서술의전체규칙이없다.",
+        "reopenCriteria": "실제기존rule의새given/질문/전체절차/서술부분/난도가일치하는문항별증거및독립분류검토;가까운제목자동배정금지"
+      }
+    },
+    "independentSolveStatus": "pending-other-worker",
+    "independentReviewStatus": "pending-other-worker",
+    "rightsStatus": "pending",
+    "nativeStatus": "pending",
+    "sourceCustodyStatus": "pending",
+    "similarityStatus": "pending",
+    "publishStatus": "not-authorized",
+    "loadStatus": "not-authorized",
+    "directUseAllowed": false
+  }
+}
