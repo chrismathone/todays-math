@@ -160,60 +160,146 @@ const EnglishResourceBank = dynamic(
  * 제품(수학 · 영어)은 뷰에서 파생하고 따로 저장하지 않는다(`productOf`).
  */
 type View = Exclude<WorkspaceMenu, "english-school"> | EnglishView;
+/**
+ * 옆 메뉴의 짜임은 두 제품이 한 벌이다(원장님 2026-10-08 «왼쪽에 많은 탭을 둬도 되지만 편의상 수학 · 영어로
+ * 구분한 것 — 통일»). `common` 은 두 제품에 같은 자리 · 같은 일로 서는 메뉴(오늘의 작업 → 시험지 만들기 →
+ * 문항을 얻는 길 → 내 보관함)이고 위에 선다. `own` 은 그 제품에만 있는 메뉴이고 금 아래에 선다.
+ * 같은 자리의 메뉴는 그림(`icon`)과 좁은 화면의 짧은 이름(`short`)도 맞춘다.
+ */
 type NavItem = {
   id: View;
   label: string;
   short: string;
   icon: WorkspaceIconName;
+  group: "common" | "own";
 };
 const mathNav: NavItem[] = [
-  { id: "home", label: "오늘의 작업", short: "홈", icon: "home" },
-  { id: "bank", label: "시험지 만들기", short: "만들기", icon: "bank" },
-  { id: "studio", label: "문제 추출", short: "문제 추출", icon: "crop" },
-  { id: "export", label: "시험지 · 내보내기", short: "시험지", icon: "paper" },
-  { id: "library", label: "내 시험지", short: "보관함", icon: "folder" },
-  { id: "textbook", label: "교재 제작", short: "교재 제작", icon: "paper" },
+  {
+    id: "home",
+    label: "오늘의 작업",
+    short: "홈",
+    icon: "home",
+    group: "common",
+  },
+  {
+    id: "bank",
+    label: "시험지 만들기",
+    short: "만들기",
+    icon: "bank",
+    group: "common",
+  },
+  {
+    id: "studio",
+    label: "문제 추출",
+    short: "문제 추출",
+    icon: "crop",
+    group: "common",
+  },
+  {
+    id: "export",
+    label: "시험지 · 내보내기",
+    short: "시험지",
+    icon: "paper",
+    group: "common",
+  },
+  {
+    id: "library",
+    label: "내 시험지",
+    short: "보관함",
+    icon: "folder",
+    group: "common",
+  },
+  // 여기부터 수학만의 메뉴 — 금 아래
+  {
+    id: "textbook",
+    label: "교재 제작",
+    short: "교재 제작",
+    icon: "paper",
+    group: "own",
+  },
   {
     id: "teaching",
     label: "수업 · 학생 관리",
     short: "수업·학생",
     icon: "class",
+    group: "own",
   },
   // D-124 ⑽ — «수업 · 학생 관리» 바로 아래
-  { id: "concept", label: "오늘의 개념", short: "개념", icon: "play" },
+  {
+    id: "concept",
+    label: "오늘의 개념",
+    short: "개념",
+    icon: "play",
+    group: "own",
+  },
   // D-150 — «오늘의 개념» 바로 아래(원장님 캡처)
-  { id: "conceptBlank", label: "개념 백지", short: "백지", icon: "pen" },
-  { id: "srs", label: "오늘의 기억 · SRS", short: "기억 학습", icon: "clock" },
+  {
+    id: "conceptBlank",
+    label: "개념 백지",
+    short: "백지",
+    icon: "pen",
+    group: "own",
+  },
+  {
+    id: "srs",
+    label: "오늘의 기억 · SRS",
+    short: "기억 학습",
+    icon: "clock",
+    group: "own",
+  },
 ];
-/** 오늘의 영어 옆 메뉴 — 기존 내신 작업과 승인된 영어듣기. */
+/** 오늘의 영어 옆 메뉴 — 위 넷은 수학의 같은 자리와 짝이고, 영어듣기 · 자료은행은 영어만의 메뉴다. */
 const englishNav: NavItem[] = [
-  { id: "english", label: "오늘의 작업", short: "오늘", icon: "school" },
+  {
+    id: "english",
+    label: "오늘의 작업",
+    short: "홈",
+    icon: "home",
+    group: "common",
+  },
   {
     id: "english-questions",
     label: "시험지 만들기",
-    short: "시험지",
-    icon: "pen",
+    short: "만들기",
+    icon: "bank",
+    group: "common",
   },
   {
     id: "english-maker",
     label: "AI 문제 제작",
     short: "AI 제작",
     icon: "spark",
+    group: "common",
   },
   {
     id: "english-library",
     label: "내 문제 세트",
     short: "문제 세트",
     icon: "folder",
+    group: "common",
   },
+  // 여기부터 영어만의 메뉴 — 금 아래
   {
     id: "english-listening",
     label: "영어듣기",
     short: "듣기",
     icon: "headphones",
+    group: "own",
   },
-  { id: "english-bank", label: "자료은행", short: "자료은행", icon: "bank" },
+  // «시험지 만들기»가 수학과 같은 책꽂이 그림을 쓰므로 자료은행은 문서 그림으로 — 접힌 옆 메뉴는 그림만 보인다
+  {
+    id: "english-bank",
+    label: "자료은행",
+    short: "자료은행",
+    icon: "paper",
+    group: "own",
+  },
 ];
+/** 접힌 옆 메뉴의 마크 귀퉁이 딱지 — 그림만 남은 메뉴에서 지금 제품을 알린다 */
+const PRODUCT_BADGE: Record<WorkspaceProduct, string> = {
+  math: "수",
+  english: "영",
+};
 const navItemsOf: Record<WorkspaceProduct, NavItem[]> = {
   math: mathNav,
   english: englishNav,
@@ -330,6 +416,11 @@ function UnifiedWorkspaceContent({
     .map((item) =>
       item.id === "library" ? { ...item, label: libraryLabel } : item,
     );
+  // 금은 아래 묶음의 **첫 메뉴**에 붙는다(메뉴 id 에 박지 않는다 — 그 메뉴가 꺼진 계정에서 금이 사라졌다).
+  // 위 묶음이 비어 있으면 가를 것이 없으므로 금도 없다.
+  const ownStart = availableNav.some((item) => item.group === "common")
+    ? availableNav.find((item) => item.group === "own")?.id
+    : undefined;
   /** 빠른 검색(Ctrl K)에는 두 제품이 다 선다 */
   const quickNav = allNavItems
     .filter((item) => can(item.id))
@@ -431,8 +522,9 @@ function UnifiedWorkspaceContent({
     setNoticeError(error);
   }, []);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  const [englishMaximized, setEnglishMaximized] = useState(false);
-  const workspaceMaximized = product === "english" && englishMaximized;
+  // 상단바는 두 제품이 한 벌이다 — «화면 최대화»도 제품을 보지 않는다(원장님 2026-10-08 «헤더는 영수 통일»)
+  const [maximized, setMaximized] = useState(false);
+  const workspaceMaximized = hasMenus && maximized;
   useEffect(() => {
     if (!workspaceMaximized) return;
     const restore = (event: KeyboardEvent) => {
@@ -441,7 +533,7 @@ function UnifiedWorkspaceContent({
         !event.defaultPrevented &&
         !document.querySelector('dialog[open], [aria-modal="true"]')
       )
-        setEnglishMaximized(false);
+        setMaximized(false);
     };
     window.addEventListener("keydown", restore);
     return () => window.removeEventListener("keydown", restore);
@@ -1025,8 +1117,8 @@ function UnifiedWorkspaceContent({
       data-maximized={workspaceMaximized}
       data-authenticated={Boolean(currentUser)}
       data-menu-count={availableNav.length}
-      // 영어일 때만 붙는 표지(D-148 · 05 §8.23 ⑷) — 접힌 옆 메뉴의 마크·딱지 배치가 이것을 본다. 수학은 표지 없이 기준 그대로
-      data-product={product === "english" ? "english" : undefined}
+      // 지금 제품의 표지. 셸의 배치는 이것을 보지 않는다 — 옆 메뉴 · 접힌 머리 · 상단바는 두 제품이 한 벌이다
+      data-product={product}
     >
       {saveDialog}
       <a
@@ -1094,15 +1186,13 @@ function UnifiedWorkspaceContent({
               >
                 <span className={s.brandMark}>
                   <TodayMathMark size={36} inverse />
-                  {product === "english" && (
-                    <span
-                      className={s.productBadge}
-                      data-testid="product-badge"
-                      aria-hidden="true"
-                    >
-                      영
-                    </span>
-                  )}
+                  <span
+                    className={s.productBadge}
+                    data-testid="product-badge"
+                    aria-hidden="true"
+                  >
+                    {PRODUCT_BADGE[product]}
+                  </span>
                 </span>
                 <span className={s.brandName}>
                   {productLabel}
@@ -1124,15 +1214,13 @@ function UnifiedWorkspaceContent({
               >
                 <span className={s.brandMark}>
                   <TodayMathMark size={36} inverse />
-                  {product === "english" && (
-                    <span
-                      className={s.productBadge}
-                      data-testid="product-badge"
-                      aria-hidden="true"
-                    >
-                      영
-                    </span>
-                  )}
+                  <span
+                    className={s.productBadge}
+                    data-testid="product-badge"
+                    aria-hidden="true"
+                  >
+                    {PRODUCT_BADGE[product]}
+                  </span>
                 </span>
                 <span>{productLabel}</span>
               </button>
@@ -1225,12 +1313,12 @@ function UnifiedWorkspaceContent({
                 <span>새 시험지 만들기</span>
               </button>
             )}
-        {product === "english" && <p className={s.navCaption}>오늘의 영어</p>}
         <nav className={s.navigation} aria-label="작업실 메뉴">
           {availableNav.map((item) => (
             <div
               key={item.id}
-              className={item.id === "teaching" ? s.teachingNav : ""}
+              className={item.id === ownStart ? s.navGroupStart : ""}
+              data-nav-group-start={item.id === ownStart ? "true" : undefined}
             >
               <button
                 aria-label={item.label}
@@ -1344,7 +1432,7 @@ function UnifiedWorkspaceContent({
                 <WorkspaceAccount user={currentUser} />
               </div>
             )}
-            {product === "english" && (
+            {hasMenus && (
               <button
                 type="button"
                 className={s.maximizeButton}
@@ -1354,7 +1442,7 @@ function UnifiedWorkspaceContent({
                     ? "화면 복원 (Esc)"
                     : "메뉴를 숨기고 작업 화면 최대화"
                 }
-                onClick={() => setEnglishMaximized((value) => !value)}
+                onClick={() => setMaximized((value) => !value)}
               >
                 <Icon
                   name={workspaceMaximized ? "restore" : "maximize"}

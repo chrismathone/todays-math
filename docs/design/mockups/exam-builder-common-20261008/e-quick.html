@@ -1,0 +1,1521 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>E · 빠른 구성 — 공통 시험지 만들기</title>
+    <style>
+      @font-face {
+        font-family: Pretendard;
+        src: url("../../../../public/fonts/PretendardVariable.woff2")
+          format("woff2");
+        font-weight: 100 900;
+        font-display: swap;
+      }
+      :root {
+        --learn-ink: #172b4d;
+        --learn-muted: #596c86;
+        --learn-accent: #3159df;
+        --learn-accent-hover: #2448bd;
+        --learn-bg: #f4f6fa;
+        --learn-surface: #fff;
+        --learn-nav: #14243d;
+        --learn-soft: #edf2ff;
+        --learn-track: #dde3ec;
+        --learn-control: #b8c4d6;
+        --learn-danger: #b42318;
+        --learn-done: #1d7550;
+        --learn-warning-bg: #fff4df;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--learn-bg);
+        color: var(--learn-ink);
+        font:
+          14px/1.55 Pretendard,
+          "Malgun Gothic",
+          sans-serif;
+      }
+      button,
+      input,
+      select {
+        font: inherit;
+        color: inherit;
+      }
+      button,
+      a,
+      input,
+      select,
+      summary {
+        outline-offset: 4px;
+      }
+      button:focus-visible,
+      a:focus-visible,
+      input:focus-visible,
+      select:focus-visible,
+      summary:focus-visible {
+        outline: 3px solid var(--learn-accent);
+      }
+      button,
+      a {
+        touch-action: manipulation;
+      }
+      button {
+        cursor: pointer;
+      }
+      button:disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button {
+        background: white;
+        border: 1px solid var(--learn-control);
+        border-radius: 8px;
+        min-height: 44px;
+        padding: 9px 15px;
+        font-weight: 600;
+      }
+      button:hover:enabled {
+        background: var(--learn-soft);
+      }
+      button.primary {
+        background: var(--learn-accent);
+        color: white;
+        border-color: var(--learn-accent);
+      }
+      button.primary:hover:enabled {
+        background: var(--learn-accent-hover);
+      }
+      .quiet {
+        border-color: transparent;
+        background: transparent;
+      }
+      .danger {
+        color: var(--learn-danger);
+      }
+      h1,
+      h2,
+      h3,
+      p {
+        margin: 0;
+      }
+      h1 {
+        font-size: 24px;
+        line-height: 1.3;
+        letter-spacing: -0.035em;
+      }
+      h2 {
+        font-size: 18px;
+      }
+      h3 {
+        font-size: 14px;
+      }
+      .muted {
+        color: var(--learn-muted);
+      }
+      .caption {
+        font-size: 12px;
+      }
+      .demo {
+        background: white;
+        border-bottom: 1px solid var(--learn-track);
+        padding: 9px 20px;
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        font-size: 12px;
+      }
+      .demo a {
+        text-decoration: underline;
+        text-underline-offset: 3px;
+      }
+      .shell {
+        display: grid;
+        grid-template-columns: 212px minmax(0, 1fr);
+        min-height: calc(100vh - 38px);
+      }
+      .nav {
+        background: var(--learn-nav);
+        color: #e4ebf7;
+        padding: 26px 16px;
+      }
+      .brand {
+        font-size: 18px;
+        font-weight: 750;
+        padding: 0 12px 25px;
+      }
+      .brand small {
+        font-size: 11px;
+        display: block;
+        font-weight: 500;
+        letter-spacing: 2px;
+        color: #a5b6d2;
+        margin-top: 4px;
+      }
+      .nav-label {
+        padding: 16px 12px 8px;
+        font-size: 11px;
+        color: #a5b6d2;
+      }
+      .nav a {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+        padding: 10px 12px;
+        border-radius: 8px;
+        margin-bottom: 4px;
+      }
+      .nav .active {
+        background: #293f61;
+        color: white;
+      }
+      .nav a:hover {
+        background: #293f61;
+      }
+      .nav-foot {
+        margin: 32px 12px;
+        color: #a5b6d2;
+        font-size: 12px;
+      }
+      .topbar {
+        min-height: 56px;
+        background: white;
+        border-bottom: 1px solid var(--learn-track);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 12px 28px;
+        gap: 16px;
+      }
+      .avatar {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: var(--learn-soft);
+        color: var(--learn-accent);
+        font-size: 12px;
+        font-weight: 700;
+      }
+      .top-right {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-size: 12px;
+      }
+      .main {
+        max-width: 1440px;
+        margin: auto;
+        padding: 28px;
+      }
+      .heading {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        align-items: center;
+        margin-bottom: 24px;
+      }
+      .heading p {
+        margin-top: 7px;
+        color: var(--learn-muted);
+      }
+      .eyebrow {
+        font-size: 11px;
+        letter-spacing: 1.7px;
+        color: var(--learn-accent);
+        font-weight: 750;
+        margin-bottom: 7px;
+      }
+      .panel {
+        background: white;
+        border: 1px solid var(--learn-track);
+        border-radius: 12px;
+        padding: 24px;
+      }
+      .section-top {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 16px;
+        margin-bottom: 20px;
+      }
+      .number {
+        width: 26px;
+        height: 26px;
+        display: inline-grid;
+        place-items: center;
+        background: var(--learn-soft);
+        color: var(--learn-accent);
+        border-radius: 7px;
+        margin-right: 10px;
+        font-size: 13px;
+      }
+      .presets {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 12px;
+        margin-bottom: 24px;
+      }
+      .preset {
+        text-align: left;
+        padding: 18px;
+        background: white;
+        border: 1px solid var(--learn-track);
+        border-radius: 10px;
+        min-width: 0;
+      }
+      .preset strong {
+        display: block;
+        font-size: 15px;
+      }
+      .preset span {
+        display: block;
+        color: var(--learn-muted);
+        font-size: 12px;
+        font-weight: 400;
+        margin-top: 4px;
+      }
+      .preset[aria-pressed="true"] {
+        border-color: var(--learn-accent);
+        background: var(--learn-soft);
+        box-shadow: inset 0 0 0 1px var(--learn-accent);
+      }
+      .preset b {
+        display: inline-block;
+        color: var(--learn-accent);
+        margin-top: 14px;
+        font-size: 12px;
+      }
+      .fields {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+      label.field {
+        display: grid;
+        gap: 7px;
+        font-size: 12px;
+        font-weight: 650;
+      }
+      select,
+      input[type="text"],
+      input[type="number"] {
+        width: 100%;
+        min-width: 0;
+        min-height: 44px;
+        padding: 10px 12px;
+        border: 1px solid var(--learn-control);
+        background: white;
+        border-radius: 8px;
+        font-size: 14px;
+      }
+      fieldset {
+        border: 0;
+        margin: 0;
+        padding: 0;
+        min-width: 0;
+      }
+      legend {
+        font-size: 12px;
+        font-weight: 650;
+        margin-bottom: 10px;
+      }
+      .scopes {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+      }
+      .scope {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        border: 1px solid var(--learn-track);
+        border-radius: 8px;
+        min-height: 54px;
+        padding: 12px;
+        cursor: pointer;
+      }
+      .scope:has(input:checked) {
+        background: var(--learn-soft);
+        border-color: var(--learn-accent);
+      }
+      input[type="checkbox"] {
+        accent-color: var(--learn-accent);
+        width: 17px;
+        height: 17px;
+        flex-shrink: 0;
+      }
+      .scope em {
+        font-size: 11px;
+        color: var(--learn-muted);
+        font-style: normal;
+        display: block;
+      }
+      .setup-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 20px;
+        border-top: 1px solid var(--learn-track);
+        padding-top: 20px;
+        margin-top: 24px;
+      }
+      .setup-bottom p {
+        color: var(--learn-muted);
+        font-size: 12px;
+      }
+      .welcome-note {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+        padding: 28px 8px;
+      }
+      .welcome-note strong {
+        font-size: 13px;
+        display: block;
+        margin-bottom: 4px;
+      }
+      .welcome-note p {
+        font-size: 12px;
+        color: var(--learn-muted);
+      }
+      .scope-bar {
+        padding: 14px 18px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        justify-content: space-between;
+        background: white;
+        border: 1px solid var(--learn-track);
+        border-radius: 10px;
+        margin-bottom: 20px;
+      }
+      .scope-bar strong {
+        margin-right: 10px;
+      }
+      .scope-bar span {
+        font-size: 12px;
+        color: var(--learn-muted);
+      }
+      .review-grid {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 240px;
+        gap: 20px;
+      }
+      .review-main {
+        min-width: 0;
+      }
+      .review-tools {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 16px;
+      }
+      .review-tools h2 span {
+        color: var(--learn-accent);
+        font-variant-numeric: tabular-nums;
+      }
+      .actions {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .group {
+        margin-bottom: 24px;
+      }
+      .group-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        border-bottom: 1px solid var(--learn-track);
+        padding: 0 0 10px;
+        margin-bottom: 12px;
+      }
+      .group-head h3 {
+        font-size: 14px;
+      }
+      .group-head small {
+        font-size: 12px;
+        font-weight: 400;
+        color: var(--learn-muted);
+        margin-left: 8px;
+      }
+      .questions {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+      }
+      .question {
+        min-width: 0;
+        background: white;
+        border: 1px solid var(--learn-track);
+        border-radius: 10px;
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        scroll-margin-top: 20px;
+      }
+      .q-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        margin-bottom: 16px;
+      }
+      .q-no {
+        font-weight: 750;
+        font-size: 15px;
+        font-variant-numeric: tabular-nums;
+      }
+      .badge {
+        font-size: 11px;
+        color: var(--learn-muted);
+        background: var(--learn-bg);
+        padding: 3px 7px;
+        border-radius: 4px;
+      }
+      .q-body {
+        line-height: 1.8;
+        min-height: 76px;
+        white-space: pre-line;
+        overflow-wrap: anywhere;
+      }
+      .q-actions {
+        display: flex;
+        gap: 3px;
+        align-items: center;
+        border-top: 1px solid #edf0f6;
+        padding-top: 10px;
+        margin-top: 20px;
+        flex-wrap: wrap;
+      }
+      .q-actions button {
+        padding: 8px;
+        font-size: 12px;
+        border-color: transparent;
+      }
+      .q-actions button:first-child {
+        color: var(--learn-accent);
+      }
+      .q-actions .move {
+        margin-left: auto;
+      }
+      .answer {
+        margin-top: 12px;
+        color: var(--learn-done);
+        font-size: 12px;
+      }
+      .passage {
+        background: white;
+        border-left: 3px solid var(--learn-accent);
+        padding: 16px 20px;
+        margin-bottom: 12px;
+        line-height: 1.8;
+      }
+      .passage strong {
+        font-size: 12px;
+        color: var(--learn-accent);
+        display: block;
+        margin-bottom: 5px;
+      }
+      .summary {
+        align-self: start;
+        position: sticky;
+        top: 20px;
+        padding: 20px;
+      }
+      .summary h3 {
+        margin-bottom: 18px;
+      }
+      .metric {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 10px 0;
+        font-size: 12px;
+      }
+      .metric strong {
+        font-size: 14px;
+      }
+      .distribution {
+        height: 7px;
+        display: flex;
+        border-radius: 4px;
+        overflow: hidden;
+        margin: 12px 0 8px;
+        gap: 2px;
+      }
+      .distribution span {
+        background: var(--learn-accent);
+      }
+      .numbers {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 6px;
+        margin: 20px 0;
+      }
+      .numbers a {
+        display: grid;
+        place-items: center;
+        min-height: 38px;
+        border: 1px solid var(--learn-track);
+        border-radius: 6px;
+        font-size: 12px;
+      }
+      .numbers a:hover {
+        background: var(--learn-soft);
+      }
+      .summary .primary {
+        width: 100%;
+        margin-top: 6px;
+      }
+      .summary p {
+        font-size: 11px;
+        color: var(--learn-muted);
+        margin-top: 10px;
+      }
+      .empty {
+        padding: 40px;
+        text-align: center;
+        background: white;
+        border: 1px dashed var(--learn-control);
+        border-radius: 10px;
+      }
+      .alert {
+        padding: 12px 16px;
+        background: var(--learn-warning-bg);
+        border-radius: 8px;
+        margin-bottom: 16px;
+        font-size: 13px;
+      }
+      .toast {
+        position: fixed;
+        left: 50%;
+        bottom: 22px;
+        transform: translateX(-50%);
+        background: var(--learn-nav);
+        color: white;
+        box-shadow: 0 8px 30px #172b4d30;
+        border-radius: 10px;
+        padding: 8px 12px 8px 18px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        z-index: 20;
+        max-width: calc(100vw - 32px);
+      }
+      .toast button {
+        background: transparent;
+        color: white;
+        border-color: #61718a;
+        white-space: nowrap;
+      }
+      .toast[hidden],
+      [hidden] {
+        display: none !important;
+      }
+      dialog {
+        color: var(--learn-ink);
+        width: min(600px, calc(100vw - 24px));
+        max-height: calc(100dvh - 32px);
+        border: 0;
+        padding: 0;
+        border-radius: 16px;
+        box-shadow: 0 24px 80px #14243d45;
+      }
+      dialog::backdrop {
+        background: #14243d66;
+      }
+      .dialog-inner {
+        padding: 24px;
+      }
+      .dialog-head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 14px;
+        margin-bottom: 18px;
+      }
+      .dialog-head h2 {
+        font-size: 18px;
+      }
+      .candidates {
+        display: grid;
+        gap: 12px;
+        margin-top: 16px;
+      }
+      .candidate {
+        text-align: left;
+        padding: 16px;
+        font-weight: 400;
+      }
+      .candidate span {
+        display: block;
+        font-size: 11px;
+        color: var(--learn-muted);
+        margin-bottom: 8px;
+      }
+      .candidate b {
+        display: block;
+        margin-top: 12px;
+        color: var(--learn-accent);
+        font-size: 12px;
+      }
+      .dialog-controls {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .preview-dialog {
+        width: min(900px, calc(100vw - 24px));
+      }
+      .paper {
+        background: white;
+        border: 1px solid var(--learn-track);
+        padding: 40px;
+        margin-top: 20px;
+      }
+      .paper h2 {
+        text-align: center;
+        font-size: 22px;
+        margin-bottom: 12px;
+      }
+      .paper-meta {
+        display: flex;
+        justify-content: space-between;
+        border-bottom: 2px solid var(--learn-ink);
+        padding-bottom: 16px;
+        font-size: 12px;
+      }
+      .paper-list {
+        columns: 2;
+        column-gap: 40px;
+        margin-top: 24px;
+      }
+      .paper-q {
+        break-inside: avoid;
+        padding-bottom: 32px;
+        white-space: pre-line;
+        line-height: 1.8;
+      }
+      .paper-q small {
+        font-size: 11px;
+        color: var(--learn-muted);
+      }
+      .paper-passage {
+        font-size: 12px;
+        background: var(--learn-bg);
+        padding: 10px;
+        line-height: 1.7;
+        margin-bottom: 12px;
+      }
+      @media (min-width: 1500px) {
+        .main {
+          padding: 32px 40px;
+        }
+      }
+      @media (max-width: 1150px) {
+        .shell {
+          grid-template-columns: 176px minmax(0, 1fr);
+        }
+        .main {
+          padding: 24px 20px;
+        }
+        .review-grid {
+          grid-template-columns: minmax(0, 1fr) 210px;
+        }
+        .questions {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 860px) {
+        .shell {
+          grid-template-columns: 1fr;
+        }
+        .nav {
+          display: none;
+        }
+        .review-grid {
+          grid-template-columns: 1fr;
+        }
+        .summary {
+          position: static;
+        }
+        .numbers {
+          grid-template-columns: repeat(8, 1fr);
+        }
+        .summary .primary {
+          width: auto;
+        }
+        .fields {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .questions {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .topbar {
+          padding: 12px 20px;
+        }
+      }
+      @media (max-width: 600px) {
+        .main {
+          padding: 20px 14px;
+        }
+        .demo {
+          padding: 9px 14px;
+          flex-wrap: wrap;
+          gap: 3px;
+        }
+        .topbar {
+          padding: 10px 14px;
+        }
+        .top-right span {
+          display: none;
+        }
+        .heading {
+          align-items: start;
+          gap: 12px;
+        }
+        .heading .caption {
+          display: none;
+        }
+        .panel {
+          padding: 18px 16px;
+        }
+        .presets {
+          gap: 8px;
+        }
+        .preset {
+          padding: 12px 10px;
+        }
+        .preset strong {
+          font-size: 13px;
+        }
+        .preset span {
+          display: none;
+        }
+        .preset b {
+          margin-top: 6px;
+          font-size: 11px;
+        }
+        .scopes {
+          grid-template-columns: 1fr;
+        }
+        .setup-bottom {
+          align-items: stretch;
+          flex-direction: column;
+          gap: 12px;
+        }
+        .welcome-note {
+          grid-template-columns: 1fr;
+          gap: 16px;
+          padding: 24px 4px;
+        }
+        .questions {
+          grid-template-columns: 1fr;
+        }
+        .scope-bar {
+          align-items: flex-start;
+        }
+        .scope-bar strong {
+          display: block;
+        }
+        .review-tools {
+          flex-wrap: wrap;
+        }
+        .review-tools .actions {
+          width: 100%;
+          justify-content: space-between;
+        }
+        .q-body {
+          min-height: 50px;
+        }
+        .dialog-inner {
+          padding: 18px 14px;
+        }
+        .paper {
+          padding: 20px 14px;
+        }
+        .paper-list {
+          columns: 1;
+        }
+        .paper-meta {
+          gap: 16px;
+        }
+        .numbers {
+          grid-template-columns: repeat(6, 1fr);
+        }
+        .toast {
+          bottom: 12px;
+          gap: 10px;
+          width: calc(100vw - 28px);
+          font-size: 12px;
+        }
+        .fields {
+          gap: 12px;
+        }
+        .group-head h3 small {
+          display: block;
+          margin-left: 0;
+        }
+      }
+      @media print {
+        body > * {
+          display: none !important;
+        }
+        body > dialog[open] {
+          display: block !important;
+          position: static;
+          width: 100%;
+          max-height: none;
+          box-shadow: none;
+          border: 0;
+        }
+        dialog .dialog-head,
+        dialog .dialog-controls,
+        dialog .preview-note {
+          display: none !important;
+        }
+        .paper {
+          border: 0;
+          margin: 0;
+          padding: 0;
+        }
+        .paper-list {
+          columns: 2;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="demo">
+      <span><b>시안 E</b> · 빠른 구성 후 수정 · 예시 문항 · 실제 저장 없음</span
+      ><a href="index.html">5가지 시안 비교로 돌아가기 ↗</a>
+    </div>
+    <div class="shell">
+      <aside class="nav">
+        <div class="brand">교사 작업실<small>TEACHER WORKSPACE</small></div>
+        <div class="nav-label">공통 제작 흐름</div>
+        <a href="index.html">시안 모아보기</a
+        ><a href="e-quick.html" class="active" aria-current="page"
+          >시험지 만들기</a
+        >
+        <div class="nav-label">다른 작업 방식</div>
+        <a href="a-guided.html">A · 단계별 진행</a
+        ><a href="b-workbench.html">B · 조건과 초안</a
+        ><a href="c-paper.html">C · 시험지 중심</a
+        ><a href="d-blueprint.html">D · 단원별 구성표</a>
+        <div class="nav-foot">과목이 달라도<br />만드는 방법은 같습니다.</div>
+      </aside>
+      <div>
+        <div class="topbar">
+          <span class="caption muted"
+            >수업 준비 &nbsp; / &nbsp;
+            <b style="color: var(--learn-ink)">시험지 만들기</b></span
+          >
+          <div class="top-right">
+            <span>공통 과목 작업실</span>
+            <div class="avatar">T</div>
+          </div>
+        </div>
+        <main class="main">
+          <div class="heading">
+            <div>
+              <div class="eyebrow">QUICK COMPOSE</div>
+              <h1>시험지 만들기</h1>
+              <p>범위를 정하고, 필요한 문제만 다듬으세요.</p>
+            </div>
+            <span class="caption muted">조건 설정 → 문항 검토 → 출력</span>
+          </div>
+          <div id="setup"></div>
+          <div id="review" hidden></div>
+        </main>
+      </div>
+    </div>
+    <div class="toast" id="toast" role="status" hidden>
+      <span id="toast-text"></span><button id="undo">되돌리기</button
+      ><button id="dismiss" aria-label="알림 닫기">닫기</button>
+    </div>
+    <dialog id="picker" aria-labelledby="picker-title">
+      <div class="dialog-inner">
+        <div class="dialog-head">
+          <div>
+            <h2 id="picker-title">문항 교체</h2>
+            <p class="caption muted" id="picker-help"></p>
+          </div>
+          <button class="quiet" data-close="picker" aria-label="문항 선택 닫기">
+            닫기
+          </button>
+        </div>
+        <div id="picker-list" class="candidates"></div>
+      </div>
+    </dialog>
+    <dialog id="output" class="preview-dialog" aria-labelledby="output-title">
+      <div class="dialog-inner">
+        <div class="dialog-head">
+          <h2 id="output-title">출력 미리보기</h2>
+          <button
+            class="quiet"
+            data-close="output"
+            aria-label="출력 미리보기 닫기"
+          >
+            닫기
+          </button>
+        </div>
+        <div class="dialog-controls">
+          <label class="field" style="flex: 1; min-width: 150px"
+            >시험지 제목<input
+              type="text"
+              id="paper-title"
+              maxlength="80" /></label
+          ><label class="scope" style="border: 0"
+            ><input id="paper-answer" type="checkbox" />정답 포함</label
+          ><button class="primary" id="print">인쇄</button>
+        </div>
+        <p class="caption muted preview-note" style="margin-top: 12px">
+          예시 문항으로 만든 시안입니다. 저장 없이 인쇄 미리보기를 확인합니다.
+        </p>
+        <div id="paper" class="paper"></div>
+      </div>
+    </dialog>
+    <script>
+      "use strict";
+      const SUBJECTS = {
+        수학: {
+          units: ["문자와 식", "일차방정식", "좌표와 그래프"],
+          grade: "중1",
+          passages: [],
+        },
+        영어: {
+          units: ["일상과 계획", "환경과 실천", "경험과 배움"],
+          grade: "중1",
+          passages: [
+            "Mina walks to school every morning. On rainy days, she takes the bus with her brother. She plans to join the school library club next week.",
+            "Our class started a small garden behind the school. We collect rainwater and use it for the plants. Working together helps us learn how to care for nature.",
+            "Last summer, Jisu visited her grandmother. They made bread together. The first bread was too hard, but Jisu tried again and learned to wait longer for the dough to rise.",
+          ],
+        },
+        국어: {
+          units: ["설명하는 글", "주장하는 글", "문학 감상"],
+          grade: "중1",
+          passages: [
+            "도서관의 책은 주제에 따라 나뉜다. 책등의 분류 기호를 알면 원하는 책을 쉽게 찾을 수 있다. 책을 읽은 뒤에는 지정된 반납대에 두어야 한다.",
+            "학교에 작은 쉼터를 만들자. 쉬는 시간에 학생들이 편하게 이야기할 공간이 필요하기 때문이다. 비어 있는 교실 한 칸을 활용하면 큰 공사 없이도 시작할 수 있다.",
+            "비 그친 운동장에 / 작은 웅덩이가 남았다 / 구름 한 조각을 품은 채 / 아이들의 웃음을 기다린다",
+          ],
+        },
+        과학: {
+          units: ["생물의 다양성", "여러 가지 힘", "물질의 상태"],
+          grade: "중1",
+          passages: [],
+        },
+        사회: {
+          units: ["지도와 위치", "기후와 생활", "민주주의와 참여"],
+          grade: "중1",
+          passages: [],
+        },
+      };
+      const samples = {
+        영어: [
+          [
+            ["Mina가 비 오는 날 학교에 가는 방법은?", "버스"],
+            ["Mina가 다음 주에 가입하려는 동아리는?", "학교 도서관 동아리"],
+            ["every morning이 나타내는 뜻은?", "매일 아침"],
+            ["Mina가 버스를 함께 타는 사람은?", "그녀의 남자 형제"],
+            [
+              "첫 문장에서 walks에 -s가 붙는 이유를 쓰세요.",
+              "주어가 3인칭 단수이고 현재의 습관을 나타내기 때문이다.",
+            ],
+            [
+              "Mina의 평소 등교 방법과 비 오는 날의 방법을 비교하세요.",
+              "평소에는 걷고 비 오는 날에는 버스를 탄다.",
+            ],
+          ],
+          [
+            ["정원이 있는 장소는?", "학교 뒤"],
+            ["학생들은 식물에 줄 물을 어떻게 마련하나요?", "빗물을 모은다."],
+            ["together의 뜻은?", "함께"],
+            [
+              "글의 중심 내용은?",
+              "학급 정원을 함께 가꾸며 자연 돌보기를 배운다.",
+            ],
+            ["it이 가리키는 것은?", "모은 빗물"],
+            ["정원 활동을 통해 배우는 것은?", "자연을 돌보는 방법"],
+          ],
+          [
+            ["Jisu가 지난여름 방문한 사람은?", "할머니"],
+            ["함께 만든 음식은?", "빵"],
+            ["처음 만든 빵은 어떠했나요?", "너무 딱딱했다."],
+            ["tried again의 뜻은?", "다시 시도했다."],
+            ["Jisu가 배운 점은?", "반죽이 부풀도록 더 오래 기다리는 것"],
+            ["글에 드러난 Jisu의 태도는?", "실패해도 다시 시도하며 배운다."],
+          ],
+        ],
+        국어: [
+          [
+            ["도서관의 책을 나누는 기준은 무엇인가요?", "주제"],
+            ["원하는 책을 찾는 데 도움이 되는 것은?", "책등의 분류 기호"],
+            ["읽은 책을 두어야 하는 곳은?", "지정된 반납대"],
+            [
+              "이 글을 쓴 주된 목적은?",
+              "도서관에서 책을 찾고 반납하는 방법을 설명하려고",
+            ],
+            [
+              "둘째 문장의 내용을 바탕으로 분류 기호의 역할을 쓰세요.",
+              "원하는 책을 쉽게 찾도록 돕는다.",
+            ],
+            [
+              "도서관을 처음 이용하는 사람에게 알려 줄 내용을 두 가지 쓰세요.",
+              "분류 기호로 책 찾기, 반납대에 책 두기",
+            ],
+          ],
+          [
+            ["글쓴이의 주장은 무엇인가요?", "학교에 작은 쉼터를 만들자."],
+            [
+              "쉼터가 필요한 이유는?",
+              "학생들이 편하게 이야기할 공간이 필요하다.",
+            ],
+            ["쉼터로 활용하려는 장소는?", "비어 있는 교실 한 칸"],
+            [
+              "주장을 뒷받침하는 문장을 찾으세요.",
+              "쉬는 시간에 학생들이 편하게 이야기할 공간이 필요하기 때문이다.",
+            ],
+            ["글쓴이가 제시한 방법의 장점은?", "큰 공사 없이 시작할 수 있다."],
+            [
+              "이 제안을 검토할 때 더 확인할 정보를 하나 쓰세요.",
+              "빈 교실의 사용 가능 여부 등",
+            ],
+          ],
+          [
+            ["시의 배경이 되는 장소는?", "운동장"],
+            ["웅덩이에 비친 것은 무엇인가요?", "구름"],
+            ["시간적 배경을 알려 주는 표현은?", "비 그친"],
+            ["사람처럼 표현한 부분을 찾으세요.", "아이들의 웃음을 기다린다"],
+            [
+              "웅덩이에 구름이 담긴 것처럼 보이는 이유는?",
+              "물에 하늘의 구름이 비치기 때문이다.",
+            ],
+            [
+              "시에서 떠올릴 수 있는 장면을 설명하세요.",
+              "비가 그친 운동장의 웅덩이에 구름이 비치고 아이들이 올 모습을 기다리는 장면",
+            ],
+          ],
+        ],
+        과학: [
+          [
+            [
+              "생물을 분류할 때 공통된 특징을 사용하는 이유는?",
+              "닮은 특징을 가진 생물을 체계적으로 묶기 위해서",
+            ],
+            ["척추동물과 무척추동물을 나누는 기준은?", "척추의 유무"],
+            ["식물이 빛을 이용해 양분을 만드는 과정은?", "광합성"],
+            [
+              "같은 종의 생물 사이에서도 나타나는 모습의 차이를 무엇이라 하나요?",
+              "변이",
+            ],
+            ["생물 다양성을 보전하는 방법을 하나 쓰세요.", "서식지 보호 등"],
+            [
+              "서식지가 줄면 생물 다양성이 감소할 수 있는 이유는?",
+              "생물이 살아갈 공간과 자원이 줄기 때문이다.",
+            ],
+          ],
+          [
+            ["지구가 물체를 끌어당기는 힘은?", "중력"],
+            ["늘어난 용수철이 원래 길이로 돌아가려는 힘은?", "탄성력"],
+            ["물체의 운동을 방해하는 접촉력의 예는?", "마찰력"],
+            [
+              "책상을 밀어도 움직이지 않을 때 마찰력은 어느 방향으로 작용하나요?",
+              "미는 힘과 반대 방향",
+            ],
+            ["물속의 물체를 위로 밀어 올리는 힘은?", "부력"],
+            [
+              "용수철을 더 많이 늘리면 탄성력은 어떻게 되나요? (탄성 한계 안)",
+              "커진다.",
+            ],
+          ],
+          [
+            ["얼음이 물로 변하는 상태 변화는?", "융해"],
+            ["물이 수증기로 변하는 상태 변화는?", "기화"],
+            ["수증기가 물방울로 변하는 상태 변화는?", "액화"],
+            ["물이 얼음으로 변하는 상태 변화는?", "응고"],
+            [
+              "젖은 빨래가 마르는 것은 어떤 상태 변화인가요?",
+              "물이 기체로 변하는 기화",
+            ],
+            [
+              "차가운 컵 바깥에 물방울이 맺히는 까닭은?",
+              "공기 중 수증기가 액화하기 때문이다.",
+            ],
+          ],
+        ],
+        사회: [
+          [
+            ["지도에서 실제 거리를 일정한 비율로 줄인 정도는?", "축척"],
+            ["지도에 쓰인 기호의 뜻을 설명한 것은?", "범례"],
+            ["위도 0°의 기준이 되는 선은?", "적도"],
+            ["경도 0°의 기준이 되는 선은?", "본초 자오선"],
+            ["축척이 1:100,000인 지도에서 1cm는 실제 몇 km인가요?", "1km"],
+            ["등고선 간격이 좁은 곳의 경사는 어떠한가요?", "급하다."],
+          ],
+          [
+            ["한 지역에서 오랜 기간 나타나는 평균적인 대기 상태는?", "기후"],
+            ["오늘 비가 오는 것처럼 짧은 기간의 대기 상태는?", "날씨"],
+            ["기온과 강수량은 무엇을 구분할 때 쓰는 주요 요소인가요?", "기후"],
+            [
+              "비가 적게 오는 건조 지역에서 물을 아껴야 하는 이유는?",
+              "이용할 수 있는 물이 적기 때문이다.",
+            ],
+            [
+              "기후가 사람들의 생활에 영향을 주는 예를 하나 쓰세요.",
+              "추운 지역에서 보온이 잘되는 옷을 입는 것 등",
+            ],
+            [
+              "날씨와 기후의 차이를 시간 규모로 설명하세요.",
+              "날씨는 짧은 기간, 기후는 오랜 기간의 평균 상태이다.",
+            ],
+          ],
+          [
+            ["민주주의에서 국가의 주권은 누구에게 있나요?", "국민"],
+            ["대표자를 뽑는 정치 참여 방법은?", "선거"],
+            [
+              "다수결을 할 때 소수 의견도 존중해야 하는 이유는?",
+              "구성원의 권리와 다양한 의견을 보호하기 위해서",
+            ],
+            [
+              "공동 문제에 대해 의견을 나누는 과정을 무엇이라 하나요?",
+              "토의 또는 토론",
+            ],
+            [
+              "학생이 학교의 의사 결정에 참여하는 예를 쓰세요.",
+              "학생회 선거, 학급 회의 등",
+            ],
+            [
+              "합리적인 의사 결정을 위해 필요한 태도는?",
+              "다른 의견을 듣고 근거를 살펴 판단하는 태도",
+            ],
+          ],
+        ],
+      };
+      function poolFor(subject) {
+        return SUBJECTS[subject].units.flatMap((unit, u) =>
+          Array.from({ length: 6 }, (_, i) => {
+            let pair;
+            if (subject === "수학") {
+              const n = i + 2;
+              pair =
+                u === 0
+                  ? [`${n}a + ${n + 1}a를 간단히 하세요.`, `${2 * n + 1}a`]
+                  : u === 1
+                    ? [
+                        `일차방정식 ${n}x + ${n + 1} = ${n * 3 + n + 1}의 해를 구하세요.`,
+                        "x = 3",
+                      ]
+                    : [
+                        `점 A(${n}, ${n + 1})를 x축의 방향으로 2만큼 평행이동한 점의 좌표를 구하세요.`,
+                        `(${n + 2}, ${n + 1})`,
+                      ];
+            } else pair = samples[subject][u][i];
+            return {
+              id: subject + "-" + u + "-" + i,
+              unit: u,
+              level: ["기본", "기본", "보통", "보통", "심화", "심화"][i],
+              body: pair[0],
+              answer: pair[1],
+            };
+          }),
+        );
+      }
+      const $ = (id) => document.getElementById(id);
+      const escapeHtml = (value) =>
+        String(value).replace(
+          /[&<>"']/g,
+          (c) =>
+            ({
+              "&": "&amp;",
+              "<": "&lt;",
+              ">": "&gt;",
+              '"': "&quot;",
+              "'": "&#39;",
+            })[c],
+        );
+      let state = {
+          subject: "수학",
+          grade: "중1",
+          scope: [0, 1],
+          count: 6,
+          level: "고르게",
+          preset: "수업 복습",
+          questions: [],
+          composed: false,
+          title: "",
+          answers: false,
+        },
+        history = [],
+        pickMode = null,
+        returnFocus = null,
+        lastNotice = "";
+      function snapshot() {
+        history.push(JSON.stringify(state));
+        if (history.length > 20) history.shift();
+      }
+      function notify(message) {
+        lastNotice = message;
+        $("toast-text").textContent = message;
+        $("toast").hidden = false;
+        $("undo").disabled = !history.length;
+      }
+      function configuredPool() {
+        return poolFor(state.subject).filter(
+          (q) =>
+            state.scope.includes(q.unit) &&
+            (state.level === "고르게" || q.level === state.level),
+        );
+      }
+      function scopeText() {
+        return state.scope
+          .map((u) => SUBJECTS[state.subject].units[u])
+          .join(" · ");
+      }
+      function renderSetup() {
+        const meta = SUBJECTS[state.subject];
+        $("setup").innerHTML =
+          `<section class="panel" aria-labelledby="setup-title"><div class="section-top"><h2 id="setup-title"><span class="number">1</span>어떤 시험지를 만들까요?</h2><span class="caption muted">구성 방식 선택</span></div><div class="presets">${[
+            ["단원 확인", "핵심 내용을 짧게 확인", "4문항 · 기본"],
+            ["수업 복습", "오늘 배운 내용을 골고루", "6문항 · 고르게"],
+            ["범위 점검", "여러 단원을 한 번에 확인", "8문항 · 고르게"],
+          ]
+            .map(
+              ([name, desc, meta]) =>
+                `<button class="preset" data-preset="${name}" aria-pressed="${state.preset === name}"><strong>${name}</strong><span>${desc}</span><b>${meta}</b></button>`,
+            )
+            .join(
+              "",
+            )}</div><div class="fields"><label class="field">과목<select id="subject">${Object.keys(
+            SUBJECTS,
+          )
+            .map(
+              (s) =>
+                `<option${s === state.subject ? " selected" : ""}>${s}</option>`,
+            )
+            .join(
+              "",
+            )}</select></label><label class="field">학년<select id="grade"><option>중1</option></select></label><label class="field">문항 수<select id="count">${[4, 6, 8].map((n) => `<option value="${n}"${n === state.count ? " selected" : ""}>${n}문항</option>`).join("")}</select></label><label class="field">난이도<select id="level">${["고르게", "기본", "보통", "심화"].map((v) => `<option${v === state.level ? " selected" : ""}>${v}</option>`).join("")}</select></label></div><fieldset><legend>출제 범위 <span class="muted" style="font-weight:400">· 여러 개 선택 가능</span></legend><div class="scopes">${meta.units.map((u, i) => `<label class="scope"><input type="checkbox" name="scope" value="${i}"${state.scope.includes(i) ? " checked" : ""}><span>${escapeHtml(u)}<em>${state.subject === "영어" || state.subject === "국어" ? "공통 지문 · 6개 예시 문항" : "6개 예시 문항"}</em></span></label>`).join("")}</div></fieldset><div class="setup-bottom"><div><strong id="availability">${state.scope.length}개 범위 · 조건에 맞는 예시 ${configuredPool().length}문항</strong><p>구성한 뒤 문항을 교체하거나 추가·삭제할 수 있습니다.</p></div><button id="compose" class="primary"${!state.scope.length ? " disabled" : ""}>${state.composed ? "변경한 조건으로 다시 구성" : state.count + "문항 구성하기"} →</button></div></section>${state.composed ? "" : `<div class="welcome-note"><div><strong>01 &nbsp; 범위만 정하세요</strong><p>선택한 조건 안에서 문항 초안을 구성합니다.</p></div><div><strong>02 &nbsp; 필요한 부분만 수정하세요</strong><p>문제 옆에서 교체·추가·삭제를 할 수 있습니다.</p></div><div><strong>03 &nbsp; 바로 수업에 사용하세요</strong><p>제목과 정답 표시를 정한 뒤 출력합니다.</p></div></div>`}`;
+        $("subject").onchange = (e) => {
+          snapshot();
+          state.subject = e.target.value;
+          state.scope = [0, 1];
+          state.questions = [];
+          state.composed = false;
+          state.title = "";
+          state.answers = false;
+          render();
+          notify("과목을 바꾸었습니다. 이전 초안은 되돌릴 수 있습니다.");
+        };
+        $("count").onchange = (e) => {
+          state.count = Number(e.target.value);
+          state.preset = "직접 설정";
+          renderSetup();
+        };
+        $("level").onchange = (e) => {
+          state.level = e.target.value;
+          state.preset = "직접 설정";
+          renderSetup();
+        };
+        document.querySelectorAll("[name=scope]").forEach(
+          (el) =>
+            (el.onchange = () => {
+              state.scope = Array.from(
+                document.querySelectorAll("[name=scope]:checked"),
+                (e) => Number(e.value),
+              );
+              renderSetup();
+            }),
+        );
+        document.querySelectorAll("[data-preset]").forEach(
+          (el) =>
+            (el.onclick = () => {
+              state.preset = el.dataset.preset;
+              state.count = { "단원 확인": 4, "수업 복습": 6, "범위 점검": 8 }[
+                state.preset
+              ];
+              state.level = state.preset === "단원 확인" ? "기본" : "고르게";
+              renderSetup();
+            }),
+        );
+        $("compose").onclick = compose;
+      }
+      function compose() {
+        snapshot();
+        const pool = configuredPool();
+        const ordered = [];
+        for (const i of [0, 2, 4, 1, 3, 5])
+          for (const unit of state.scope) {
+            const q = pool.filter((p) => p.unit === unit)[i];
+            if (q) ordered.push(q);
+          }
+        state.questions = ordered.slice(0, state.count);
+        state.composed = true;
+        state.title = `${state.subject} ${state.preset === "직접 설정" ? "단원 학습" : state.preset}`;
+        render();
+        notify(
+          state.questions.length < state.count
+            ? `요청 ${state.count}문항 중 ${state.questions.length}문항을 구성했습니다. 조건을 넓혀보세요.`
+            : `${state.questions.length}문항을 구성했습니다.`,
+        );
+        $("review").querySelector("h2").focus();
+      }
+      function qCard(q, index) {
+        return `<article class="question" id="q-${q.id}"><div class="q-top"><span class="q-no">${String(index + 1).padStart(2, "0")}</span><span class="badge">${q.level}</span></div>${SUBJECTS[state.subject].passages[q.unit] ? `<details style="margin-bottom:12px"><summary style="min-height:44px;padding:10px 0;cursor:pointer;font-size:12px;color:var(--learn-accent)">지문 · ${SUBJECTS[state.subject].units[q.unit]}</summary><p class="paper-passage">${escapeHtml(SUBJECTS[state.subject].passages[q.unit])}</p></details>` : ""}<p class="q-body">${escapeHtml(q.body)}</p>${state.answers ? `<p class="answer">정답 · ${escapeHtml(q.answer)}</p>` : ""}<div class="q-actions"><button data-replace="${q.id}">교체</button><button class="danger" data-remove="${q.id}">삭제</button><button class="move" data-move="${q.id}" data-direction="-1" aria-label="${index + 1}번 문항 앞으로"${index === 0 ? " disabled" : ""}>↑</button><button data-move="${q.id}" data-direction="1" aria-label="${index + 1}번 문항 뒤로"${index === state.questions.length - 1 ? " disabled" : ""}>↓</button></div></article>`;
+      }
+      function renderReview() {
+        const qs = state.questions;
+        const meta = SUBJECTS[state.subject];
+        $("review").innerHTML =
+          `<div class="scope-bar"><div><strong>${state.subject} · ${state.grade}</strong><span>${escapeHtml(scopeText())} / ${state.level}</span></div><button class="quiet" id="edit-scope">조건 수정</button></div><div class="review-grid"><div class="review-main"><div class="review-tools"><h2 tabindex="-1">문항 검토 <span>${qs.length}</span></h2><div class="actions"><label class="caption"><input id="answers" type="checkbox"${state.answers ? " checked" : ""}> 정답 보기</label><button id="add">＋ 문항 추가</button></div></div>${qs.length < state.count ? `<div class="alert">목표 ${state.count}문항 · 현재 ${qs.length}문항입니다. 문항을 추가하거나 조건을 조정할 수 있습니다.</div>` : ""}${qs.length ? `<div class="questions">${qs.map(qCard).join("")}</div>` : `<div class="empty"><h3>구성된 문항이 없습니다.</h3><p class="muted">문항 추가 또는 조건 수정으로 이어가세요.</p></div>`}${meta.passages.length ? `<details style="margin-top:20px"><summary style="cursor:pointer;min-height:44px;padding:10px 0">공통 지문 확인 · 출력 시 문항과 함께 표시</summary>${[...new Set(qs.map((q) => q.unit))].map((u) => `<div class="passage"><strong>${meta.units[u]}</strong>${escapeHtml(meta.passages[u])}</div>`).join("")}</details>` : ""}</div><aside class="summary panel"><h3>시험지 구성</h3><div class="metric"><span>전체 문항</span><strong>${qs.length}문항</strong></div>${["기본", "보통", "심화"].map((l) => `<div class="metric"><span>${l}</span><strong>${qs.filter((q) => q.level === l).length}</strong></div>`).join("")}<div class="distribution" aria-hidden="true">${["기본", "보통", "심화"].map((l, i) => `<span style="flex:${qs.filter((q) => q.level === l).length};opacity:${1 - i * 0.25}"></span>`).join("")}</div><nav class="numbers" aria-label="구성된 문항으로 이동">${qs.map((q, i) => `<a href="#q-${q.id}" aria-label="${i + 1}번 문항으로 이동">${i + 1}</a>`).join("")}</nav><button id="open-output" class="primary"${!qs.length ? " disabled" : ""}>출력 미리보기 →</button><p>제목 · 학생용 · 정답 포함 설정</p></aside></div>`;
+        $("edit-scope").onclick = () => {
+          $("setup").hidden = false;
+          $("review").hidden = true;
+          renderSetup();
+          $("setup-title").setAttribute("tabindex", "-1");
+          $("setup-title").focus();
+        };
+        $("answers").onchange = (e) => {
+          state.answers = e.target.checked;
+          renderReview();
+        };
+        $("add").onclick = () => openPicker("add");
+        $("open-output").onclick = preview;
+        document
+          .querySelectorAll("[data-replace]")
+          .forEach((el) => (el.onclick = () => openPicker(el.dataset.replace)));
+        document.querySelectorAll("[data-remove]").forEach(
+          (el) =>
+            (el.onclick = () => {
+              snapshot();
+              state.questions = qs.filter((q) => q.id !== el.dataset.remove);
+              renderReview();
+              notify("문항을 삭제했습니다.");
+              $("add").focus();
+            }),
+        );
+        document.querySelectorAll("[data-move]").forEach(
+          (el) =>
+            (el.onclick = () => {
+              const index = qs.findIndex((q) => q.id === el.dataset.move),
+                next = index + Number(el.dataset.direction);
+              if (next < 0 || next >= qs.length) return;
+              snapshot();
+              [qs[index], qs[next]] = [qs[next], qs[index]];
+              renderReview();
+              document
+                .querySelector(
+                  `[data-move="${el.dataset.move}"][data-direction="${el.dataset.direction}"]`,
+                )
+                .focus();
+              notify("문항 순서를 변경했습니다.");
+            }),
+        );
+      }
+      function render() {
+        renderSetup();
+        $("setup").hidden = state.composed;
+        $("review").hidden = !state.composed;
+        if (state.composed) renderReview();
+      }
+      function openPicker(mode) {
+        pickMode = mode;
+        returnFocus = document.activeElement;
+        const current = state.questions.find((q) => q.id === mode);
+        const selected = new Set(state.questions.map((q) => q.id));
+        let candidates = poolFor(state.subject).filter(
+          (q) => !selected.has(q.id) && state.scope.includes(q.unit),
+        );
+        if (current)
+          candidates = candidates.filter((q) => q.unit === current.unit);
+        $("picker-title").textContent = current ? "문항 교체" : "문항 추가";
+        $("picker-help").textContent = current
+          ? `${SUBJECTS[state.subject].units[current.unit]} · 번호와 나머지 문항은 유지됩니다.`
+          : `${scopeText()} · 이미 구성한 문항 제외`;
+        $("picker-list").innerHTML = candidates.length
+          ? candidates
+              .map(
+                (q) =>
+                  `<button class="candidate" data-pick="${q.id}"><span>${SUBJECTS[state.subject].units[q.unit]} · ${q.level}</span>${escapeHtml(q.body)}<b>${current ? "이 문항으로 교체" : "이 문항 추가"} →</b></button>`,
+              )
+              .join("")
+          : '<p class="alert">현재 범위에서 선택할 수 있는 다른 예시 문항이 없습니다. 조건 수정에서 범위를 넓혀주세요.</p>';
+        document.querySelectorAll("[data-pick]").forEach(
+          (el) =>
+            (el.onclick = () => {
+              const q = poolFor(state.subject).find(
+                (q) => q.id === el.dataset.pick,
+              );
+              snapshot();
+              if (current)
+                state.questions[
+                  state.questions.findIndex((q) => q.id === mode)
+                ] = q;
+              else state.questions.push(q);
+              $("picker").close();
+              renderReview();
+              notify(current ? "문항을 교체했습니다." : "문항을 추가했습니다.");
+              const focus = current
+                ? document.querySelector(`[data-replace="${q.id}"]`)
+                : $("add");
+              focus?.focus();
+            }),
+        );
+        $("picker").showModal();
+      }
+      function preview() {
+        returnFocus = document.activeElement;
+        $("paper-title").value = state.title;
+        $("paper-answer").checked = state.answers;
+        renderPaper();
+        $("output").showModal();
+      }
+      function renderPaper() {
+        const meta = SUBJECTS[state.subject];
+        $("paper").innerHTML =
+          `<h2>${escapeHtml($("paper-title").value || "시험지")}</h2><div class="paper-meta"><span>${state.grade} ${state.subject} · ${state.questions.length}문항</span><span>이름 __________________</span></div><div class="paper-list">${state.questions.map((q, i) => `<div class="paper-q">${meta.passages[q.unit] ? `<div class="paper-passage">${escapeHtml(meta.passages[q.unit])}</div>` : ""}<b>${i + 1}.</b> ${escapeHtml(q.body)}${$("paper-answer").checked ? `<p class="answer">정답 · ${escapeHtml(q.answer)}</p>` : ""}</div>`).join("")}</div>`;
+      }
+      $("paper-title").oninput = () => {
+        state.title = $("paper-title").value;
+        renderPaper();
+      };
+      $("paper-answer").onchange = renderPaper;
+      $("print").onclick = () => window.print();
+      document
+        .querySelectorAll("[data-close]")
+        .forEach((el) => (el.onclick = () => $(el.dataset.close).close()));
+      document.querySelectorAll("dialog").forEach((el) =>
+        el.addEventListener("close", () => {
+          if (returnFocus?.isConnected) returnFocus.focus();
+        }),
+      );
+      $("undo").onclick = () => {
+        if (!history.length) return;
+        state = JSON.parse(history.pop());
+        render();
+        notify("직전 변경을 되돌렸습니다.");
+      };
+      $("dismiss").onclick = () => {
+        $("toast").hidden = true;
+      };
+      render();
+    </script>
+  </body>
+</html>

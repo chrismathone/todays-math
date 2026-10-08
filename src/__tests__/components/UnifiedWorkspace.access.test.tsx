@@ -1352,6 +1352,110 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
     );
   });
 
+  it("상단바의 «화면 최대화»는 수학에도 같은 자리에 선다 — 옆 메뉴를 숨기고 Esc 로 되돌린다", async () => {
+    const { container } = render(
+      <UnifiedWorkspace initialData={initialData} allowedMenus={MATH_ONLY} />,
+    );
+    await screen.findByRole("heading", { name: "오늘의 작업" });
+    fireEvent.click(screen.getByRole("button", { name: "화면 최대화" }));
+    expect(container.querySelector('[data-maximized="true"]')).not.toBeNull();
+    expect(
+      screen.queryByRole("navigation", { name: "작업실 메뉴" }),
+    ).toBeNull();
+    expect(screen.getByRole("button", { name: "화면 복원" })).toHaveAttribute(
+      "aria-pressed",
+      "true",
+    );
+    fireEvent.keyDown(window, { key: "Escape" });
+    expect(
+      screen.getByRole("navigation", { name: "작업실 메뉴" }),
+    ).toBeVisible();
+    expect(screen.getByRole("button", { name: "화면 최대화" })).toHaveAttribute(
+      "aria-pressed",
+      "false",
+    );
+  });
+
+  it("옆 메뉴는 두 제품이 같은 짜임이다 — 위는 공통 메뉴, 금 아래는 그 제품만의 메뉴", async () => {
+    const labels = () =>
+      nav()
+        .getAllByRole("button")
+        .map((button) => button.getAttribute("aria-label"));
+    const groupStarts = () =>
+      Array.from(
+        document.querySelectorAll('nav [data-nav-group-start="true"]'),
+      ).map((item) => item.querySelector("button")?.getAttribute("aria-label"));
+    const iconOf = (name: string) =>
+      nav().getByRole("button", { name }).querySelector("svg")?.innerHTML;
+    render(<UnifiedWorkspace initialData={initialData} allowedMenus={ALL} />);
+    expect(labels()).toEqual([
+      "오늘의 작업",
+      "시험지 만들기",
+      "문제 추출",
+      "내 시험지",
+      "교재 제작",
+      "수업 · 학생 관리",
+      "오늘의 개념",
+      "개념 백지",
+      "오늘의 기억 · SRS",
+    ]);
+    // 수학: 금은 «교재 제작» 위 — 영어에 짝이 없는 메뉴는 전부 아래 묶음이다
+    expect(groupStarts()).toEqual(["교재 제작"]);
+    const mathIcons = ["오늘의 작업", "시험지 만들기"].map(iconOf);
+    const mathFolder = iconOf("내 시험지");
+
+    fireEvent.click(brand());
+    fireEvent.click(screen.getByRole("option", { name: "오늘의영어" }));
+    await screen.findByRole("heading", { name: "영어 패널" });
+    expect(labels()).toEqual([...ENGLISH_NAV, "영어듣기", "자료은행"]);
+    expect(groupStarts()).toEqual(["영어듣기"]);
+    // 같은 자리 · 같은 일의 메뉴는 그림도 같다
+    expect(["오늘의 작업", "시험지 만들기"].map(iconOf)).toEqual(mathIcons);
+    expect(iconOf("내 문제 세트")).toBe(mathFolder);
+    // 한 제품 안에서 같은 그림이 두 번 서지 않는다(접힌 옆 메뉴는 그림만 보인다)
+    const english = labels().map((name) => iconOf(name!));
+    expect(new Set(english).size).toBe(english.length);
+  });
+
+  it("금은 아래 묶음의 첫 메뉴에 붙는다 — 공통 메뉴가 하나도 없으면 금도 없다", () => {
+    const groupStarts = () =>
+      Array.from(
+        document.querySelectorAll('nav [data-nav-group-start="true"]'),
+      ).map((item) => item.querySelector("button")?.getAttribute("aria-label"));
+    const { unmount } = render(
+      <UnifiedWorkspace
+        initialData={initialData}
+        allowedMenus={["home", "teaching", "concept"]}
+      />,
+    );
+    // «교재 제작»이 꺼진 계정: 금은 다음 메뉴로 내려간다(예전에는 «수업 · 학생 관리»에 박혀 있었다)
+    expect(groupStarts()).toEqual(["수업 · 학생 관리"]);
+    unmount();
+    const second = render(
+      <UnifiedWorkspace
+        initialData={initialData}
+        allowedMenus={["home", "concept", "srs"]}
+      />,
+    );
+    expect(groupStarts()).toEqual(["오늘의 개념"]);
+    second.unmount();
+    const third = render(
+      <UnifiedWorkspace
+        initialData={initialData}
+        allowedMenus={["teaching", "concept"]}
+      />,
+    );
+    expect(groupStarts()).toEqual([]);
+    third.unmount();
+    render(
+      <UnifiedWorkspace
+        initialData={initialData}
+        allowedMenus={["english-listening", "english-bank"]}
+      />,
+    );
+    expect(groupStarts()).toEqual([]);
+  });
+
   it("does not send a set deep link without library access and removes a revoked view", async () => {
     window.history.replaceState(null, "", `/?set=${SET_ID}#english-library`);
     const { rerender } = render(
@@ -1451,7 +1555,8 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
       await screen.findByRole("heading", { name: "영어 패널" }),
     ).toBeVisible();
     expect(screen.getByTestId("english-view")).toHaveTextContent("english");
-    expect(screen.getByText("오늘의 영어", { selector: "p" })).toBeVisible();
+    // 옆 메뉴는 두 제품이 한 벌이다 — 수학에 없는 캡션 줄은 영어에도 없다(원장님 2026-10-08)
+    expect(screen.queryByText("오늘의 영어", { selector: "p" })).toBeNull();
     expect(screen.getByRole("button", { name: "새 시험 등록" })).toBeVisible();
     expect(
       screen.queryByRole("button", { name: "새 시험지 만들기" }),
@@ -1608,16 +1713,15 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
     expect(window.location.hash).toBe("");
   });
 
-  it("접힌 옆 메뉴 — 수학은 표지·딱지 없이 기준 그대로, 영어일 때만 data-product 표지와 딱지 «영»이 붙고 마크를 누르면 목록이 뜬다 (검토 #1 #2)", async () => {
+  it("접힌 옆 메뉴 — 두 제품이 같은 머리다: 마크(고르기 단추)가 접기 단추 위에 서고 딱지 «수» · «영»이 붙는다", async () => {
     const root = () => document.querySelector("[data-sidebar-collapsed]")!;
     const { unmount } = render(
       <UnifiedWorkspace initialData={initialData} allowedMenus={MATH_ONLY} />,
     );
     fireEvent.click(screen.getByRole("button", { name: "왼쪽 메뉴 접기" }));
-    // 제품 하나 계정: 기준 커밋과 같은 표지 집합 — data-product · data-picker 둘 다 없다
-    expect(root()).not.toHaveAttribute("data-product");
-    expect(root()).not.toHaveAttribute("data-picker");
-    expect(screen.queryByTestId("product-badge")).toBeNull();
+    // 제품 하나 계정도 같은 표지 · 같은 딱지 — 접힌 머리의 배치는 제품을 보지 않는다
+    expect(root()).toHaveAttribute("data-product", "math");
+    expect(screen.getByTestId("product-badge")).toHaveTextContent("수");
     unmount();
     // 접힘은 브라우저 설정으로 남는다 — 다음 렌더가 그것을 되살리지 않게 지운다
     localStorage.removeItem("today-math-sidebar-collapsed");
@@ -1627,23 +1731,24 @@ describe("제품 전환 — 브랜드 자리 고르기 단추 (D-148)", () => {
     expect(
       screen.getByRole("button", { name: "왼쪽 메뉴 펼치기" }),
     ).toBeVisible();
-    // 수학 접힘: 제품이 둘이어도 표지·딱지 없음 — 수학 접힌 머리는 지금 모습 그대로(05 §8.23 ⑷)
-    expect(root()).not.toHaveAttribute("data-product");
-    expect(root()).not.toHaveAttribute("data-picker");
-    expect(screen.queryByTestId("product-badge")).toBeNull();
+    expect(root()).toHaveAttribute("data-product", "math");
+    const mathBadge = screen.getByTestId("product-badge");
+    expect(mathBadge).toHaveTextContent("수");
+    expect(mathBadge).toHaveAttribute("aria-hidden", "true");
+    // 딱지는 브랜드 단추의 마크 안에 있다 — 수학에서도 접힌 채 마크를 눌러 제품을 바꾼다
+    expect(brand().contains(mathBadge)).toBe(true);
     fireEvent.click(brand());
     fireEvent.click(screen.getByRole("option", { name: "오늘의영어" }));
     expect(root()).toHaveAttribute("data-product", "english");
     const badge = screen.getByTestId("product-badge");
     expect(badge).toHaveTextContent("영");
     expect(badge).toHaveAttribute("aria-hidden", "true");
-    // 딱지는 브랜드 단추의 마크 안에 있다
     expect(brand().contains(badge)).toBe(true);
     fireEvent.click(brand());
     expect(screen.getByRole("listbox", { name: "제품" })).toBeVisible();
     fireEvent.click(screen.getByRole("option", { name: "오늘의수학" }));
-    expect(root()).not.toHaveAttribute("data-product");
-    expect(screen.queryByTestId("product-badge")).toBeNull();
+    expect(root()).toHaveAttribute("data-product", "math");
+    expect(screen.getByTestId("product-badge")).toHaveTextContent("수");
   });
 
   it("영어만 있는 계정도 접힘에서 표지와 딱지 «영»이 붙는다 (검토 #9)", () => {
