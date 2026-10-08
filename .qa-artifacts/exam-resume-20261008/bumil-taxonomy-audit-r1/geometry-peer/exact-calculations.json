@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "method": "deterministic-recalculation-after-prior-reviewed-answer-exposure",
+  "newIndependentBlindSolveClaimed": false,
+  "sourceInputs": "selected current new student givens only; no original answers/solutions",
+  "calculations": {
+    "q05": {
+      "method": "exact integer graph substitution and identity",
+      "roots": [
+        -1,
+        3
+      ],
+      "rootValues": [
+        0,
+        0
+      ],
+      "vertex": [
+        1,
+        -4
+      ],
+      "base": 4,
+      "height": 4,
+      "area": 8,
+      "live08CounterfactualHeight": 3,
+      "live08CounterfactualArea": 6,
+      "choiceMatches": [
+        false,
+        false,
+        false,
+        true,
+        false
+      ]
+    },
+    "q10": {
+      "method": "BigInt rational using printed table decimal, round-half-up to tenths",
+      "heightDifference": "12.8-1.6=11.2",
+      "tan": "16003/10000",
+      "distance": "112000/16003",
+      "roundedDistance": "7.0 m",
+      "distancePositive": true,
+      "choiceMatches": [
+        false,
+        false,
+        true,
+        false,
+        false
+      ],
+      "roundingCode": "tenths=(2*n*10+d)/(2*d), integer division for positive n/d"
+    },
+    "q18": {
+      "method": "exact integer linear equations followed by completed square and line substitution",
+      "equations": [
+        "3a+b=14",
+        "a+b=10"
+      ],
+      "a": 2,
+      "b": 8,
+      "vertex": [
+        1,
+        6
+      ],
+      "c": 8,
+      "coefficientSum": 10,
+      "pointY": 14,
+      "nonzeroA": true,
+      "choiceMatches": [
+        false,
+        false,
+        true,
+        false,
+        false
+      ]
+    }
+  }
+}

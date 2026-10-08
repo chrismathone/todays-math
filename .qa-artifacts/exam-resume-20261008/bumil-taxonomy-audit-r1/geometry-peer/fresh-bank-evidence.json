@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "kind": "additional-timestamped-parent-read-only-snapshot-evidence",
+  "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-fresh-r2-20261008.json",
+  "sha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b",
+  "capturedAtUtc": "2026-10-08 04:53:45.769124+00",
+  "capturedAtKst": "2026-10-08 13:53:45.769124 +09:00",
+  "transactionReadOnly": "on",
+  "isolation": "repeatable read",
+  "priorSnapshot": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bank-read-20261008.json",
+    "sha256": "164c611b84b3d9b16c30f74e2d0220ed54b2d642845d0bf1e72d9a347b969a9b",
+    "capturedAtUTC": "2026-10-07 15:57:15.290971+00",
+    "capturedAtKst": "2026-10-08 00:57:15.290971 +09:00",
+    "originalSourceSnapshotAt": "2026-10-03T14:02:44.800Z",
+    "transactionReadOnly": "on",
+    "livePredicate": "중3; pool=shared; review_status=approved; direct_use_allowed=true; btrim(answer)<>''; answer<>'(정답 없음)'; family_key IS NOT NULL",
+    "liveProblemRowIdsProvided": false
+  },
+  "comparison": {
+    "unitRows": 22,
+    "unitRowsIdentical": true,
+    "liveFamilyRows": 302,
+    "allUnitFamilyCountsIdentical": true,
+    "comparisonMethod": "exact parsed rows sorted by Unit.id and (unit_id,family_key), no fuzzy comparison",
+    "classificationConclusionsChanged": false
+  },
+  "parentSnapshotScope": {
+    "oldExams": 4,
+    "protectedRowCount": 82,
+    "unlocked": 0,
+    "identityMismatches": 0,
+    "correctionMismatches": 0,
+    "productionWrites": 0
+  },
+  "addendum3": {
+    "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\docs\\planning\\tracks\\brief-exam-extraction-resume-20261008-addendum-3.md",
+    "sha256": "679641b872a0eac3a277a36d329b77d1b2e0d004b66e9dfb20d359684105ed11",
+    "read": true,
+    "role": "parent continuous-work/watch instruction read; no automation/control changes by this peer"
+  },
+  "parentReportedIntegration": {
+    "source": "owner update in this same audit",
+    "current20ProofCommit": "59c827e42",
+    "originMain": "6ecf0ee99",
+    "integrationCommit": "7e1e8080a",
+    "checks": "19 tests + all packs pass",
+    "independentlyRerunByThisAudit": false,
+    "observedParentHead": "7e1e8080ad5741b53d9bb7ebf8e3a72ff5596db5"
+  },
+  "currentDatabaseQueriedByThisPeer": false,
+  "priorFrozenReferencesReplaced": false,
+  "parentCandidatesSolvesReviewsRightsNativeGatesChanged": false
+}

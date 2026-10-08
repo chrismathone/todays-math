@@ -1,0 +1,353 @@
+{
+  "schemaVersion": 1,
+  "reviewerId": "orca-codex-exam-twin-author-geometry-20261008",
+  "scope": [
+    5,
+    10,
+    18
+  ],
+  "kind": "classification-audit-sidecar-input-bindings",
+  "candidateIndex": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r2/candidate-index-r2.json",
+    "sha256": "841d5e2fa4971c828a6c5baf9f9c2aa68beaec3e57fb6d1895a712f5cf2e39fb"
+  },
+  "methodLinks": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r2/variant-method-links-r2.json",
+    "sha256": "6316e4e23761b1570236ea00553351fd120269cced4cea3a90ca5c0bf0a0f491",
+    "q10": {
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r2-q10",
+      "candidatePath": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r2/image-context/q10.json",
+      "sourceOnlyField": "sourceReference.sharedConceptProcedure records original height recovery and adding eye height",
+      "sourceTarget": "total tower height from horizontal distance, eye height and elevation/table",
+      "currentTarget": "horizontal observation distance from total gym-window height, eye height and elevation/table",
+      "sharedConcept": "삼각비 표에서 필요한 직각삼각형의 비를 선택하고 총높이와 눈높이의 차를 연결한다.",
+      "sharedRelation": "tan(theta)=(H-h)/d; H>h>0, d>0, 0<theta<90",
+      "sourceProcedure": "Known distance times supplied tan gives height above the eye; add eye height",
+      "currentProcedure": "Subtract eye height from total height, divide by supplied tan, identify equal horizontal lengths, then use stated rounding",
+      "currentGiven": {
+        "H": 12.8,
+        "h": 1.6,
+        "thetaDegrees": 58,
+        "tableTan": "1.6003"
+      },
+      "currentChecks": [
+        "supplied table precision",
+        "positive denominator",
+        "unique distance",
+        "one correct rounded choice",
+        "both exact engine relation and 70mm layout checked"
+      ],
+      "reviewPath": ".qa-artifacts/exam-resume-20261008/bumil-review-r5/verification-results-algebra/reports/q10.json",
+      "taxonomy": "held: application03 vs table17; do not manufacture family assignment",
+      "rights": "pending"
+    }
+  },
+  "selected": [
+    {
+      "questionNumber": 5,
+      "round": 2,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q05",
+      "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+      "indexRow": {
+        "n": 5,
+        "id": "exam-twin-bumil-2025-2-mid-author-r1-q05",
+        "candidate": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q05.json",
+        "sha256": "2221faec82674818c0a13fbcc7d6254ad88dca5d22298ec18ab45b357295b1d8",
+        "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+        "figureCount": 1,
+        "modes": [
+          "structure",
+          "representation"
+        ],
+        "unitId": "03097b76-d9cb-4525-a520-b70c03a45c77",
+        "familyKey": "mid:3-1|이차함수의 그래프 ⑵|08",
+        "taxonomyStatus": "proposed",
+        "gradeStatus": "author-proposed"
+      },
+      "candidateFileSha256": "2221faec82674818c0a13fbcc7d6254ad88dca5d22298ec18ab45b357295b1d8",
+      "packageCandidateFileSha256": "40dda286ec1630f66bb582e847c8564f3820a65c5d9c8960d2918e47fc917342",
+      "providedAndRecomputed": {
+        "studentDigest": "8e74b40b3a420a33dd4cbff54fc95e8479fb59b096c8fc61d0dbf6e2b2cda962",
+        "candidateDigest": "f09ee6672bef661f8b4204a07fb86a7b91a4e1d3a66b37880c7cf431a2f7da58",
+        "assetDigest": "6cb5046ecd9c4bf7df0dcdbe11b4f10ee8664c6cfa51282776b4259b6159dd7d",
+        "solveDigest": "cc9b86049c62a6abd781092bd2a11cf4a568c9c283bb519e6d10d1d48005df52"
+      },
+      "authorPackageOnlyPathsDiffer": true,
+      "source": {
+        "externalId": "personal-9967cfbb759aa6d369883bac4c986aaa-5",
+        "contentSha256": "9d7184823e0d2561574b0c2944dcb5e5ad2429613d8e467c42504f80545adeb7",
+        "referenceFileSha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+        "figures": [
+          {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-twin-v2\\prepared\\source-reference\\figures\\q05.png",
+            "sha256": "24b6901ce82af2086683ec54ab8608ca00dc77ed3830e35168174ebc16c1f841",
+            "referenceOnly": true
+          }
+        ]
+      },
+      "review": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r2/verification/reports/q05.json",
+        "rawSha256": "3d7b02070bfcafac16fa34355cf36f547494241c5678e23483a598f48c2f23d2",
+        "canonicalDigest": "eb961750d2a9f037c33a1d28b73a353ab2394c56b0248a848386458e8d1f3917",
+        "peerPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r2/verification-results-geometry/reports/q05.json",
+        "peerRawSha256": "3d7b02070bfcafac16fa34355cf36f547494241c5678e23483a598f48c2f23d2",
+        "status": "pending",
+        "checks": {
+          "answerCorrect": true,
+          "solutionCorrect": true,
+          "existenceUniqueness": true,
+          "choicesCorrect": true,
+          "figureConsistent": true,
+          "sameCoreConceptAndProcedure": true,
+          "distinctPresentation": true,
+          "naturalKorean": true,
+          "curriculumAppropriate": true,
+          "allStudentSurfacesInScope": true,
+          "unitFamilyFit": null,
+          "scoreAppropriate": true
+        }
+      },
+      "solve": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r2/blind/solve/q05.json",
+        "rawSha256": "847c7debcfbfd0d17ee8d947182ec0904eb23d7cfc6a7a52194ef502777ba881",
+        "canonicalDigest": "cc9b86049c62a6abd781092bd2a11cf4a568c9c283bb519e6d10d1d48005df52",
+        "solverId": "orca-codex-exam-twin-author-geometry-20261008"
+      },
+      "assets": [
+        {
+          "role": "stem",
+          "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\package\\private\\q05\\figure-1.spec.json",
+          "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r2\\package\\private\\q05\\figure-1.svg",
+          "specSha256": "b24cfc8fa9c7abf018e5c4db4fd3eeaf17936c066651e57bc1efbd631f5e121b",
+          "svgSha256": "d3471b102182c4de573c5bbd9ef3a70fd05cee74fb8692973cdde49162e5043a",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q05-1.svg",
+          "resources": []
+        }
+      ]
+    },
+    {
+      "questionNumber": 18,
+      "round": 2,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q18",
+      "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+      "indexRow": {
+        "n": 18,
+        "id": "exam-twin-bumil-2025-2-mid-author-r1-q18",
+        "candidate": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/algebra/q18.json",
+        "sha256": "78216350cc7d8268a3f0609bba6d2e51c63797a03aae4875e4e0e7bfd53c11b6",
+        "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+        "figureCount": 0,
+        "modes": [
+          "structure",
+          "inverse-target"
+        ],
+        "unitId": "03097b76-d9cb-4525-a520-b70c03a45c77",
+        "familyKey": null,
+        "taxonomyStatus": "pending",
+        "gradeStatus": "author-proposed"
+      },
+      "candidateFileSha256": "78216350cc7d8268a3f0609bba6d2e51c63797a03aae4875e4e0e7bfd53c11b6",
+      "packageCandidateFileSha256": "78216350cc7d8268a3f0609bba6d2e51c63797a03aae4875e4e0e7bfd53c11b6",
+      "providedAndRecomputed": {
+        "studentDigest": "7560f9f6c5dcf51efcb593ccc24873d941d6d7fb26339aada218c7eba6af98ac",
+        "candidateDigest": "0360d1fcae6d467e221d669743cadf3d60f560b7943da51d082f0d045f572e82",
+        "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+        "solveDigest": "3e35d55f8e2fd2b1aa26fdbb29eef4d55576ee6337c176f075475366b42cc6b2"
+      },
+      "authorPackageOnlyPathsDiffer": false,
+      "source": {
+        "externalId": "personal-9967cfbb759aa6d369883bac4c986aaa-18",
+        "contentSha256": "f4deafdc27156f764d585406d49164f2b783b0fa234d2f03c57ba8450da08819",
+        "referenceFileSha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+        "figures": []
+      },
+      "review": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r2/verification/reports/q18.json",
+        "rawSha256": "d1e9d098d22427be3e90884cc5073cdae5e81ec17960c17893b9be7ca797fd1f",
+        "canonicalDigest": "0deacfa80af4e099ef497b5541dc40701dbd886dbb591e73f1944d4152996149",
+        "peerPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r2/verification-results-geometry/reports/q18.json",
+        "peerRawSha256": "d1e9d098d22427be3e90884cc5073cdae5e81ec17960c17893b9be7ca797fd1f",
+        "status": "pending",
+        "checks": {
+          "answerCorrect": true,
+          "solutionCorrect": true,
+          "existenceUniqueness": true,
+          "choicesCorrect": true,
+          "figureConsistent": true,
+          "sameCoreConceptAndProcedure": true,
+          "distinctPresentation": true,
+          "naturalKorean": true,
+          "curriculumAppropriate": true,
+          "allStudentSurfacesInScope": true,
+          "unitFamilyFit": null,
+          "scoreAppropriate": true
+        }
+      },
+      "solve": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r2/blind/solve/q18.json",
+        "rawSha256": "775cd629fa36066e871b260cee7ce6e1184884d0a0384fc2174c216b6f14e910",
+        "canonicalDigest": "3e35d55f8e2fd2b1aa26fdbb29eef4d55576ee6337c176f075475366b42cc6b2",
+        "solverId": "orca-codex-exam-twin-author-geometry-20261008"
+      },
+      "assets": []
+    },
+    {
+      "questionNumber": 10,
+      "round": 5,
+      "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r2-q10",
+      "authorId": "orca-codex-exam-twin-parent-image-context-20261008",
+      "indexRow": {
+        "n": 10,
+        "id": "exam-twin-bumil-2025-2-mid-author-r2-q10",
+        "candidate": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r2/image-context/q10.json",
+        "sha256": "75e82d33f3d27ad9084a084f8168fcaa0930c21857cd4fd59740a4c4067003dc",
+        "authorId": "orca-codex-exam-twin-parent-image-context-20261008",
+        "figureCount": 2,
+        "modes": [
+          "context",
+          "structure",
+          "inverse-target"
+        ],
+        "unitId": null,
+        "familyKey": null,
+        "taxonomyStatus": "pending",
+        "gradeStatus": "author-proposed",
+        "historicalCandidate": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/image-context/q10.json",
+        "revisionReason": "Respect70mm bank cap, split scene/exact diagram and regenerate numeric conditions/answers/solutions; new blind proof required"
+      },
+      "candidateFileSha256": "75e82d33f3d27ad9084a084f8168fcaa0930c21857cd4fd59740a4c4067003dc",
+      "packageCandidateFileSha256": "a9ca9c47eb52145bf7d1697bf23fb179fbefe90622ab62c3a1c3366494d2720c",
+      "providedAndRecomputed": {
+        "studentDigest": "33606d31af0dc51fe06bf158f44101ce7a749c41e643d0ad92ee5327c7c7e934",
+        "candidateDigest": "a44d112ea0647bc9858e5f9199da0d23718e833fab7ee1339f70cbbb050089f8",
+        "assetDigest": "6e051c4bd40203816b3208f73cf93dd6be3f212357583d69bd906b6f379640f4",
+        "solveDigest": "29182eecaced72f34f0bc88be8b19e5816661fcb940c194bd18d18623ff74226"
+      },
+      "authorPackageOnlyPathsDiffer": true,
+      "source": {
+        "externalId": "personal-9967cfbb759aa6d369883bac4c986aaa-10",
+        "contentSha256": "65593e3d19187b6219ba9336e8a6d2b2a7e879c15bd83e8e71d709fd1ac2b993",
+        "referenceFileSha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+        "figures": [
+          {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-twin-v2\\prepared\\source-reference\\figures\\q10-t.png",
+            "sha256": "ad1161e00d16df0a2f2db0404e16d7ddf29dd6c86208f510a60e90fbdf9f9d32",
+            "referenceOnly": true
+          },
+          {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-twin-v2\\prepared\\source-reference\\figures\\q10.png",
+            "sha256": "06552fcee2e598d92667c50ffb34c5b5afc18748352e7c2619faf0c816b114ec",
+            "referenceOnly": true
+          }
+        ]
+      },
+      "review": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r5/verification/reports/q10.json",
+        "rawSha256": "395c2c781bcd26008bb255f10eaca466a3a03cc0f46564b9e05471bdf5d2e428",
+        "canonicalDigest": "474cdbfba0f2ea70bad6568b653fa5e4d44e3478d1add0bad4a24cf0a65f651e",
+        "peerPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r5/verification-results-algebra/reports/q10.json",
+        "peerRawSha256": "395c2c781bcd26008bb255f10eaca466a3a03cc0f46564b9e05471bdf5d2e428",
+        "status": "pending",
+        "checks": {
+          "answerCorrect": true,
+          "solutionCorrect": true,
+          "existenceUniqueness": true,
+          "choicesCorrect": true,
+          "figureConsistent": true,
+          "sameCoreConceptAndProcedure": true,
+          "distinctPresentation": true,
+          "naturalKorean": true,
+          "curriculumAppropriate": true,
+          "allStudentSurfacesInScope": true,
+          "unitFamilyFit": null,
+          "scoreAppropriate": true
+        }
+      },
+      "solve": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r5/blind/solve/q10.json",
+        "rawSha256": "737f631552889b80bbcb8e6c8a8c625f693aeb9629ee6eb96909c8519a994004",
+        "canonicalDigest": "29182eecaced72f34f0bc88be8b19e5816661fcb940c194bd18d18623ff74226",
+        "solverId": "orca-codex-exam-twin-author-algebra-20261008"
+      },
+      "assets": [
+        {
+          "role": "stem",
+          "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r5\\package\\private\\q10\\figure-1.spec.json",
+          "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r5\\package\\private\\q10\\figure-1.svg",
+          "specSha256": "0f139d0a29202278d30f110547d365ed616a6d46df084e6604052bf2032fb484",
+          "svgSha256": "a0924a0c32ceb18d08f1126358a0ecfe495dfb02a3e462e72d14507257337cd3",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q10-1.svg",
+          "resources": [
+            {
+              "sourceRasterPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r5\\package\\private\\q10\\figure-1-raster-1.png",
+              "sourceGenerationPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r5\\package\\private\\q10\\figure-1-generation-1.json",
+              "rasterSha256": "72c2deb6fd213e9e372af15bdf7e108e79aaf538c448be8860b1a565b478d7ba",
+              "generationSha256": "ac77edc7e2d7712cdb2a0cb45a4bdec2b527f033fafd812d3537a0b7341de155",
+              "widthPx": 1536,
+              "heightPx": 1024
+            }
+          ]
+        },
+        {
+          "role": "stem",
+          "sourceSpecPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r5\\package\\private\\q10\\figure-2.spec.json",
+          "sourceSvgPath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-review-r5\\package\\private\\q10\\figure-2.svg",
+          "specSha256": "977b2bf1c01715ab6f37b513e91af8d3acd3f06f8ad8ac0f67dfb2558ab975fd",
+          "svgSha256": "010b2097764d3a0ab98f4f17c9f13637f50b55e73dbc48c398891b2f6dc9164e",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q10-2.svg",
+          "resources": []
+        }
+      ]
+    }
+  ],
+  "q07": {
+    "status": "unchanged hold; not audited/authored/released",
+    "indexRecord": {
+      "n": 7,
+      "stage": "before-authoring",
+      "status": "pending-curriculum-conflict",
+      "evidence": "CURRICULUM-HOLD-q07.md"
+    }
+  },
+  "snapshot": {
+    "bank": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bank-read-20261008.json",
+      "sha256": "164c611b84b3d9b16c30f74e2d0220ed54b2d642845d0bf1e72d9a347b969a9b",
+      "capturedAtUTC": "2026-10-07 15:57:15.290971+00",
+      "capturedAtKst": "2026-10-08 00:57:15.290971 +09:00",
+      "originalSourceSnapshotAt": "2026-10-03T14:02:44.800Z",
+      "transactionReadOnly": "on",
+      "livePredicate": "중3; pool=shared; review_status=approved; direct_use_allowed=true; btrim(answer)<>''; answer<>'(정답 없음)'; family_key IS NOT NULL",
+      "liveProblemRowIdsProvided": false
+    },
+    "registry": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/registry-read-20261008.json",
+      "sha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "capturedAtUTC": "2026-10-07T16:08:32.171Z",
+      "capturedAtKst": "2026-10-08 01:08:32.171 +09:00"
+    },
+    "currentDatabaseQueried": false
+  },
+  "contract": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/scripts/import/exam-twin/candidatePack.mjs",
+    "sha256": "12dac57d5515ee8c5a75fbce14f3529446f04992f82be1d7e2a678a00b499ffd",
+    "exactJSBindingApplied": true
+  },
+  "q10Previews": [
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r5/blind-results-algebra/previews/q10-1-70mm.png",
+      "sha256": "387b57b0a6f141e4e4b7930d475aac9f1fe4cd7269e241671eb16d9807f17912",
+      "widthMm": 70,
+      "personallyViewed": true
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r5/blind-results-algebra/previews/q10-2-70mm.png",
+      "sha256": "7371b4e115e46f8af814f5b0956cd6d1fec2475002c35e48ffc87bc0baced921",
+      "widthMm": 70,
+      "personallyViewed": true
+    }
+  ]
+}

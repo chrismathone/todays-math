@@ -1,0 +1,340 @@
+{
+  "schemaVersion": 1,
+  "kind": "reviewer-classification-proposal-sidecar",
+  "questionNumber": 5,
+  "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q05",
+  "reviewerId": "orca-codex-exam-twin-author-geometry-20261008",
+  "method": "independent-peer-classification-audit-of-frozen-new-candidate",
+  "observedAtUtc": "2026-10-08T04:48:55.338067+00:00",
+  "status": "pending",
+  "fullUnitFamilyMatchSupported": false,
+  "proposedFamilyKey": null,
+  "binding": {
+    "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-5",
+    "sourceContentSha256": "9d7184823e0d2561574b0c2944dcb5e5ad2429613d8e467c42504f80545adeb7",
+    "sourceReferenceFileSha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+    "indexedAuthorCandidateRawSha256": "2221faec82674818c0a13fbcc7d6254ad88dca5d22298ec18ab45b357295b1d8",
+    "packageCandidateRawSha256": "40dda286ec1630f66bb582e847c8564f3820a65c5d9c8960d2918e47fc917342",
+    "studentDigest": "8e74b40b3a420a33dd4cbff54fc95e8479fb59b096c8fc61d0dbf6e2b2cda962",
+    "candidateDigest": "f09ee6672bef661f8b4204a07fb86a7b91a4e1d3a66b37880c7cf431a2f7da58",
+    "assetDigest": "6cb5046ecd9c4bf7df0dcdbe11b4f10ee8664c6cfa51282776b4259b6159dd7d",
+    "solveDigest": "cc9b86049c62a6abd781092bd2a11cf4a568c9c283bb519e6d10d1d48005df52",
+    "reviewRawSha256": "3d7b02070bfcafac16fa34355cf36f547494241c5678e23483a598f48c2f23d2",
+    "reviewCanonicalDigest": "eb961750d2a9f037c33a1d28b73a353ab2394c56b0248a848386458e8d1f3917",
+    "reviewPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r2/verification/reports/q05.json",
+    "peerReviewRawSha256": "3d7b02070bfcafac16fa34355cf36f547494241c5678e23483a598f48c2f23d2",
+    "inputBindingsPath": "input-bindings.json",
+    "inputBindingsSha256": "513e93d7c0d2e60b6db8be482a7931e9e47c7d359db232cab286e0a050b22c43"
+  },
+  "frozenMetadata": {
+    "unitId": "03097b76-d9cb-4525-a520-b70c03a45c77",
+    "familyKey": "mid:3-1|이차함수의 그래프 ⑵|08",
+    "candidateAndExistingReviewsUnedited": true
+  },
+  "newSolutionPurpose": {
+    "givens": [
+      "y=x²-2x-3",
+      "A/B are real x-intercepts ordered by x",
+      "C is vertex"
+    ],
+    "target": "ordered base AB, positive height, triangle area triple",
+    "coreSequence": [
+      "factor y=0 -> A(-1,0),B(3,0)",
+      "complete square -> C(1,-4)",
+      "base4; height4; area8",
+      "match ordered triple -> choice④"
+    ],
+    "codeCalculation": {
+      "method": "exact integer graph substitution and identity",
+      "roots": [
+        -1,
+        3
+      ],
+      "rootValues": [
+        0,
+        0
+      ],
+      "vertex": [
+        1,
+        -4
+      ],
+      "base": 4,
+      "height": 4,
+      "area": 8,
+      "live08CounterfactualHeight": 3,
+      "live08CounterfactualArea": 6,
+      "choiceMatches": [
+        false,
+        false,
+        false,
+        true,
+        false
+      ]
+    },
+    "newBlindSolveClaimed": false
+  },
+  "unitProposal": {
+    "unitId": "03097b76-d9cb-4525-a520-b70c03a45c77",
+    "state": "supported-existing-unit-proposal",
+    "section": "이차함수 y=ax^2+bx+c의 그래프",
+    "semester": 1,
+    "orderIndex": 479,
+    "problemCodePrefix": "J30402",
+    "UUIDFromSnapshot": true,
+    "exactNaturalKeyMatchesCurrentSeed": true,
+    "derivedSemesterAndPrefixMatch": true,
+    "reason": "고정된 이차함수의 x절편·꼭짓점·높이로 삼각형 기록을 구한다. 최대값이나 움직이는 점 문제가 아니므로 일반형 그래프 Unit479가 맞는다.",
+    "secondaryReferenceOnlyUnitId": null,
+    "changesFrozenMetadata": false
+  },
+  "familyComparisons": [
+    {
+      "familyKey": "mid:3-1|이차함수의 그래프 ⑵|08",
+      "unitId": "03097b76-d9cb-4525-a520-b70c03a45c77",
+      "currentRegistryRow": {
+        "key": "3-1|이차함수의 그래프 ⑵|08",
+        "grade": "중3",
+        "unitSection": "이차함수 y=ax^2+bx+c의 그래프",
+        "rpmBook": "3-1",
+        "rpmMinor": "이차함수의 그래프 ⑵",
+        "rpmType": "08",
+        "rpmTitle": "이차함수의 그래프와 삼각형의 넓이"
+      },
+      "snapshotLiveCount": 22,
+      "liveTimestamp": "2026-10-08 00:57:15.290971 +09:00",
+      "ruleEvidenceId": "quadratic08",
+      "fullMatchDimensions": {
+        "newGivensSupported": false,
+        "newQuestionSupported": false,
+        "fullNewCoreSequenceSupported": false
+      },
+      "fullNewCandidateSupported": false,
+      "sharedSubsteps": "numeric quadratic, real roots, x-axis base, triangle area",
+      "unsupportedPart": "C is (0,constant term) in08. New C is vertex(1,-4), requiring completed square and |vertex y|.08 scalar area output does not provide new base/vertex-height/area triple.",
+      "decision": "not-supported-as-full-family"
+    },
+    {
+      "familyKey": "mid:3-1|이차함수의 그래프 ⑵|02",
+      "unitId": "03097b76-d9cb-4525-a520-b70c03a45c77",
+      "currentRegistryRow": {
+        "key": "3-1|이차함수의 그래프 ⑵|02",
+        "grade": "중3",
+        "unitSection": "이차함수 y=ax^2+bx+c의 그래프",
+        "rpmBook": "3-1",
+        "rpmMinor": "이차함수의 그래프 ⑵",
+        "rpmType": "02",
+        "rpmTitle": "이차함수 의 그래프의 꼭짓점과 축"
+      },
+      "snapshotLiveCount": 21,
+      "liveTimestamp": "2026-10-08 00:57:15.290971 +09:00",
+      "ruleEvidenceId": "quadratic02",
+      "fullMatchDimensions": {
+        "newGivensSupported": true,
+        "newQuestionSupported": false,
+        "fullNewCoreSequenceSupported": false
+      },
+      "fullNewCandidateSupported": false,
+      "sharedSubsteps": "completed square recovers vertex(1,-4)",
+      "unsupportedPart": "No root/base calculation or triangle area record. New final purpose is full triangle record, not vertex/axis.",
+      "decision": "not-supported-as-full-family"
+    },
+    {
+      "familyKey": "mid:3-1|이차함수의 그래프 ⑵|05",
+      "unitId": "03097b76-d9cb-4525-a520-b70c03a45c77",
+      "currentRegistryRow": {
+        "key": "3-1|이차함수의 그래프 ⑵|05",
+        "grade": "중3",
+        "unitSection": "이차함수 y=ax^2+bx+c의 그래프",
+        "rpmBook": "3-1",
+        "rpmMinor": "이차함수의 그래프 ⑵",
+        "rpmType": "05",
+        "rpmTitle": "이차함수의 그래프와 축축과의 교점"
+      },
+      "snapshotLiveCount": 22,
+      "liveTimestamp": "2026-10-08 00:57:15.290971 +09:00",
+      "ruleEvidenceId": "quadratic05",
+      "fullMatchDimensions": {
+        "newGivensSupported": true,
+        "newQuestionSupported": false,
+        "fullNewCoreSequenceSupported": false
+      },
+      "fullNewCandidateSupported": false,
+      "sharedSubsteps": "factor y=0 and distance between x-intercepts",
+      "unsupportedPart": "Stops at base/intercepts. Does not recover vertex height or triangle area.",
+      "decision": "not-supported-as-full-family"
+    },
+    {
+      "familyKey": "mid:3-1|이차함수의 그래프 ⑵|01",
+      "unitId": "03097b76-d9cb-4525-a520-b70c03a45c77",
+      "currentRegistryRow": {
+        "key": "3-1|이차함수의 그래프 ⑵|01",
+        "grade": "중3",
+        "unitSection": "이차함수 y=ax^2+bx+c의 그래프",
+        "rpmBook": "3-1",
+        "rpmMinor": "이차함수의 그래프 ⑵",
+        "rpmType": "01",
+        "rpmTitle": "이차함수 를 의 꼴로 고치기"
+      },
+      "snapshotLiveCount": 22,
+      "liveTimestamp": "2026-10-08 00:57:15.290971 +09:00",
+      "ruleEvidenceId": "quadratic01",
+      "fullMatchDimensions": {
+        "newGivensSupported": true,
+        "newQuestionSupported": false,
+        "fullNewCoreSequenceSupported": false
+      },
+      "fullNewCandidateSupported": false,
+      "sharedSubsteps": "numeric quadratic can be completed to (x-1)^2-4",
+      "unsupportedPart": "Completed-square representation alone omits roots/base/positive height/area record.",
+      "decision": "not-supported-as-full-family"
+    },
+    {
+      "familyKey": "mid:3-1|이차함수의 그래프 ⑵|19",
+      "unitId": "e3645b9f-56bb-4548-9015-d86b32d89057",
+      "currentRegistryRow": {
+        "key": "3-1|이차함수의 그래프 ⑵|19",
+        "grade": "중3",
+        "unitSection": "이차함수의 최댓값과 최솟값",
+        "rpmBook": "3-1",
+        "rpmMinor": "이차함수의 그래프 ⑵",
+        "rpmType": "19",
+        "rpmTitle": "이차함수의 활용 도형의 넓이"
+      },
+      "snapshotLiveCount": 20,
+      "liveTimestamp": "2026-10-08 00:57:15.290971 +09:00",
+      "ruleEvidenceId": "quadratic19",
+      "fullMatchDimensions": {
+        "newGivensSupported": false,
+        "newQuestionSupported": false,
+        "fullNewCoreSequenceSupported": false
+      },
+      "fullNewCandidateSupported": false,
+      "sharedSubsteps": "triangle/rectangle area formula",
+      "unsupportedPart": "Different Unit480 and variable area maximization. New triangle is fixed and asks no maximum.",
+      "decision": "not-supported-as-full-family"
+    },
+    {
+      "familyKey": "mid:3-1|이차함수의 그래프 ⑵|21",
+      "unitId": "e3645b9f-56bb-4548-9015-d86b32d89057",
+      "currentRegistryRow": {
+        "key": "3-1|이차함수의 그래프 ⑵|21",
+        "grade": "중3",
+        "unitSection": "이차함수의 최댓값과 최솟값",
+        "rpmBook": "3-1",
+        "rpmMinor": "이차함수의 그래프 ⑵",
+        "rpmType": "21",
+        "rpmTitle": "이차함수의 활용 내접하는 도형의 넓이"
+      },
+      "snapshotLiveCount": 20,
+      "liveTimestamp": "2026-10-08 00:57:15.290971 +09:00",
+      "ruleEvidenceId": "quadratic21",
+      "fullMatchDimensions": {
+        "newGivensSupported": false,
+        "newQuestionSupported": false,
+        "fullNewCoreSequenceSupported": false
+      },
+      "fullNewCandidateSupported": false,
+      "sharedSubsteps": "area from coordinates",
+      "unsupportedPart": "Different Unit480; point moves along line and output is maximum inscribed area, absent in new givens.",
+      "decision": "not-supported-as-full-family"
+    }
+  ],
+  "familyDecision": {
+    "state": "pending-full-match-not-established",
+    "supportedExistingLiveFamilies": [],
+    "partialMatchesAreNotAssignments": true,
+    "nearestFuzzyOrConfidenceMatchUsed": false,
+    "inventedKeyOrRule": false,
+    "reason": "기존08의 y절편 높이와 새 꼭짓점 높이가 다르다. 새 식에08 절차를 그대로 적용하면 높이3·넓이6이고 실제 기록은 높이4·넓이8이다.02/05의 부분 절차를 합쳐 하나의 기존 family라고 명명할 수 없다.",
+    "reopenCriteria": [
+      "현재 등록된 family 또는 승인된 기존 하위 갈래가 두 x절편+꼭짓점의 고정 삼각형 및 밑변/양의 높이/넓이 기록 전부를 지원한다는 규칙 근거를 제시한다.",
+      "그 근거의 exact registry key/Unit UUID/양의 live snapshot row와 새 난이도·객관식 출력의 대응을 부모가 수집한다.",
+      "기존08을 고치거나 후보를 바꾸는 후속 작업은 이 감사와 별도 승인·버전·검수로 진행한다. 현재 동결 문항을 조용히 y절편 문제로 바꾸지 않는다."
+    ]
+  },
+  "difficultyAndFormat": {
+    "authorDifficultyProposal": "기본",
+    "reviewerDifficultyProposal": "기본",
+    "reviewerProblemTypeProposal": "활용",
+    "problemTypeLabelFromNativeContract": true,
+    "questionType": "객관식",
+    "score": 4,
+    "choiceCount": 5,
+    "candidateContractValidated": true,
+    "candidateTierFunctionResult": "기본",
+    "reason": "새 후보는 작은 정수 인수분해 한 번, 완전제곱 한 번, 밑변/절댓값 높이/넓이와 삼중항 선택이다. 기본 제안 및4점은 이전 독립 검수와 같은 근거로 수용 가능한 reviewer proposal이다. 다만 실제08은 심화하이고 네 씨앗 모두 심화하를 출력했다. tier.ts는 심화하를 기본으로 내리지 않으므로08 난이도 규칙과 일치한다고 주장하지 않는다.",
+    "formatComparison": "새 형식은 객관식5보기·정답④·4점, 밑변/높이/넓이 삼중 기록. 실제08 raw handler는 넓이 한 스칼라를 구하시오로 출력한다. 객관식 변환 가능성만으로 새로운 꼭짓점 절차/삼중 목표까지 규칙에 포함되지는 않는다.",
+    "fullMatchingFamilyDifficultyProfileConfirmed": false,
+    "sourceOrFamilyDifficultyAutoApplied": false,
+    "measuredStudentDifficultyClaimed": false,
+    "finalApproval": false,
+    "rawGeneratorContract": {
+      "path": "D:/todays-math/src/lib/middle/types.ts",
+      "scoreFieldPresent": false,
+      "questionTypeFieldPresent": false,
+      "ruleEvidenceMeaning": "compare raw target/answer/difficulty; score and MC choice format are separate authored-candidate reviewer proposals, not an inherited handler score/type profile"
+    }
+  },
+  "snapshotScope": {
+    "bank": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bank-read-20261008.json",
+      "sha256": "164c611b84b3d9b16c30f74e2d0220ed54b2d642845d0bf1e72d9a347b969a9b",
+      "capturedAtUTC": "2026-10-07 15:57:15.290971+00",
+      "capturedAtKst": "2026-10-08 00:57:15.290971 +09:00",
+      "originalSourceSnapshotAt": "2026-10-03T14:02:44.800Z",
+      "transactionReadOnly": "on",
+      "livePredicate": "중3; pool=shared; review_status=approved; direct_use_allowed=true; btrim(answer)<>''; answer<>'(정답 없음)'; family_key IS NOT NULL",
+      "liveProblemRowIdsProvided": false
+    },
+    "registry": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/registry-read-20261008.json",
+      "sha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "capturedAtUTC": "2026-10-07T16:08:32.171Z",
+      "capturedAtKst": "2026-10-08 01:08:32.171 +09:00"
+    },
+    "currentDatabaseQueried": false,
+    "additionalFreshParentBank": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-fresh-r2-20261008.json",
+      "sha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b",
+      "capturedAtUtc": "2026-10-08 04:53:45.769124+00",
+      "capturedAtKst": "2026-10-08 13:53:45.769124 +09:00",
+      "sameUnitRowsAndAllFamilyCounts": true,
+      "conclusionsChanged": false,
+      "currentDatabaseQueriedByThisPeer": false,
+      "priorReferencesRetained": true
+    }
+  },
+  "evidenceFiles": {
+    "repository": "repository-evidence.json",
+    "repositorySha256": "382c11321e63663b506a525a1cf37c0788f7afad170115aa16b688657129c513",
+    "rules": "rule-evidence.json",
+    "rulesSha256": "a51a3177dffff7eee3f16a5aaa27d052eb43bd6915e9e3ab5fd25e0cd4c7ba0d",
+    "exactCalculations": "exact-calculations.json",
+    "exactCalculationsSha256": "c0aefd311784179f15004bf300a1d7833d095abd5bf6c7d34dd3953b6ca3f5ab",
+    "sourceTaxonomyLinks": "source-taxonomy-links.json",
+    "sourceTaxonomyLinksSha256": "65f9af6379275520d19574f074b3b72ebc45c1389dbbd60a6382453310f03eb4",
+    "freshParentBank": "fresh-bank-evidence.json",
+    "freshParentBankSha256": "68cdfd884e04113169f2cde5e0e04d3d07502e4d18daf0bb24fa80b457d5d70f"
+  },
+  "preservation": {
+    "parentFrozenInputsNoWrites": true,
+    "ownPriorCommit": "9ffb3f203e5b03bdf0953c8e724388edfaa822da",
+    "ownPriorArtifacts61BytesUnchanged": true,
+    "q07UnchangedHold": true,
+    "q10CurrentAuthorVersion": null
+  },
+  "boundary": {
+    "classificationSidecarOnly": true,
+    "priorMathAndCurriculumDimensionsNotOverwritten": true,
+    "parentAggregationRequired": true,
+    "finalApproval": false,
+    "rightsCleared": false,
+    "nativeProvenanceCleared": false,
+    "loadable": false,
+    "DBAccess": false,
+    "inferenceOrPaidAPICalls": false,
+    "install": false,
+    "push": false,
+    "scopeExcludesOwnGeometryAndOtherPeerQuestions": true
+  }
+}

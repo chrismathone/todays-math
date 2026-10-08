@@ -1,0 +1,339 @@
+{
+  "schemaVersion": 1,
+  "kind": "reviewer-classification-proposal-sidecar",
+  "questionNumber": 18,
+  "twinExternalId": "exam-twin-bumil-2025-2-mid-author-r1-q18",
+  "reviewerId": "orca-codex-exam-twin-author-geometry-20261008",
+  "method": "independent-peer-classification-audit-of-frozen-new-candidate",
+  "observedAtUtc": "2026-10-08T04:48:55.338067+00:00",
+  "status": "pending",
+  "fullUnitFamilyMatchSupported": false,
+  "proposedFamilyKey": null,
+  "binding": {
+    "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-18",
+    "sourceContentSha256": "f4deafdc27156f764d585406d49164f2b783b0fa234d2f03c57ba8450da08819",
+    "sourceReferenceFileSha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257",
+    "indexedAuthorCandidateRawSha256": "78216350cc7d8268a3f0609bba6d2e51c63797a03aae4875e4e0e7bfd53c11b6",
+    "packageCandidateRawSha256": "78216350cc7d8268a3f0609bba6d2e51c63797a03aae4875e4e0e7bfd53c11b6",
+    "studentDigest": "7560f9f6c5dcf51efcb593ccc24873d941d6d7fb26339aada218c7eba6af98ac",
+    "candidateDigest": "0360d1fcae6d467e221d669743cadf3d60f560b7943da51d082f0d045f572e82",
+    "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "solveDigest": "3e35d55f8e2fd2b1aa26fdbb29eef4d55576ee6337c176f075475366b42cc6b2",
+    "reviewRawSha256": "d1e9d098d22427be3e90884cc5073cdae5e81ec17960c17893b9be7ca797fd1f",
+    "reviewCanonicalDigest": "0deacfa80af4e099ef497b5541dc40701dbd886dbb591e73f1944d4152996149",
+    "reviewPath": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r2/verification/reports/q18.json",
+    "peerReviewRawSha256": "d1e9d098d22427be3e90884cc5073cdae5e81ec17960c17893b9be7ca797fd1f",
+    "inputBindingsPath": "input-bindings.json",
+    "inputBindingsSha256": "513e93d7c0d2e60b6db8be482a7931e9e47c7d359db232cab286e0a050b22c43"
+  },
+  "frozenMetadata": {
+    "unitId": "03097b76-d9cb-4525-a520-b70c03a45c77",
+    "familyKey": null,
+    "candidateAndExistingReviewsUnedited": true
+  },
+  "newSolutionPurpose": {
+    "givens": [
+      "a≠0; y=ax²-2ax+b",
+      "point(-1,14)",
+      "a+b=10",
+      "vertex lies on y=-2x+c"
+    ],
+    "target": "line y-intercept parameter c, not full quadratic equation",
+    "coreSequence": [
+      "point ->3a+b=14",
+      "combine with a+b=10 ->a2,b8",
+      "complete square ->vertex(1,6)",
+      "vertex into y=-2x+c ->c8",
+      "choice③"
+    ],
+    "codeCalculation": {
+      "method": "exact integer linear equations followed by completed square and line substitution",
+      "equations": [
+        "3a+b=14",
+        "a+b=10"
+      ],
+      "a": 2,
+      "b": 8,
+      "vertex": [
+        1,
+        6
+      ],
+      "c": 8,
+      "coefficientSum": 10,
+      "pointY": 14,
+      "nonzeroA": true,
+      "choiceMatches": [
+        false,
+        false,
+        true,
+        false,
+        false
+      ]
+    },
+    "newBlindSolveClaimed": false
+  },
+  "unitProposal": {
+    "unitId": "03097b76-d9cb-4525-a520-b70c03a45c77",
+    "state": "supported-existing-unit-proposal",
+    "section": "이차함수 y=ax^2+bx+c의 그래프",
+    "semester": 1,
+    "orderIndex": 479,
+    "problemCodePrefix": "J30402",
+    "UUIDFromSnapshot": true,
+    "exactNaturalKeyMatchesCurrentSeed": true,
+    "derivedSemesterAndPrefixMatch": true,
+    "reason": "알려진 꼴 ax²-2ax+b의 계수를 두 일차 조건으로 정하고 완전제곱으로 꼭짓점과 직선의 관계를 쓴다. 일반형 그래프479가 주 Unit이며 최대·최소 최적화 문제가 아니다.",
+    "secondaryReferenceOnlyUnitId": null,
+    "changesFrozenMetadata": false
+  },
+  "familyComparisons": [
+    {
+      "familyKey": "mid:3-1|이차함수의 그래프 ⑵|02",
+      "unitId": "03097b76-d9cb-4525-a520-b70c03a45c77",
+      "currentRegistryRow": {
+        "key": "3-1|이차함수의 그래프 ⑵|02",
+        "grade": "중3",
+        "unitSection": "이차함수 y=ax^2+bx+c의 그래프",
+        "rpmBook": "3-1",
+        "rpmMinor": "이차함수의 그래프 ⑵",
+        "rpmType": "02",
+        "rpmTitle": "이차함수 의 그래프의 꼭짓점과 축"
+      },
+      "snapshotLiveCount": 21,
+      "liveTimestamp": "2026-10-08 00:57:15.290971 +09:00",
+      "ruleEvidenceId": "quadratic02",
+      "fullMatchDimensions": {
+        "newGivensSupported": false,
+        "newQuestionSupported": false,
+        "fullNewCoreSequenceSupported": false
+      },
+      "fullNewCandidateSupported": false,
+      "sharedSubsteps": "completed square locates vertex",
+      "unsupportedPart": "Rule supplies numeric coefficients; new a,b must first be recovered from point and coefficient sum, and final target is line intercept c.",
+      "decision": "not-supported-as-full-family"
+    },
+    {
+      "familyKey": "mid:3-1|이차함수의 그래프 ⑵|10",
+      "unitId": "03097b76-d9cb-4525-a520-b70c03a45c77",
+      "currentRegistryRow": {
+        "key": "3-1|이차함수의 그래프 ⑵|10",
+        "grade": "중3",
+        "unitSection": "이차함수 y=ax^2+bx+c의 그래프",
+        "rpmBook": "3-1",
+        "rpmMinor": "이차함수의 그래프 ⑵",
+        "rpmType": "10",
+        "rpmTitle": "이차함수의 식 구하기 꼭짓점과 다른 한 점을 알 때"
+      },
+      "snapshotLiveCount": 22,
+      "liveTimestamp": "2026-10-08 00:57:15.290971 +09:00",
+      "ruleEvidenceId": "quadratic10",
+      "fullMatchDimensions": {
+        "newGivensSupported": false,
+        "newQuestionSupported": false,
+        "fullNewCoreSequenceSupported": false
+      },
+      "fullNewCandidateSupported": false,
+      "sharedSubsteps": "vertex and point determine a quadratic",
+      "unsupportedPart": "Rule gives full numeric vertex, then solves leading coefficient and outputs quadratic equation. New vertex is unknown until two linear constraints are solved; output is line intercept.",
+      "decision": "not-supported-as-full-family"
+    },
+    {
+      "familyKey": "mid:3-1|이차함수의 그래프 ⑵|11",
+      "unitId": "03097b76-d9cb-4525-a520-b70c03a45c77",
+      "currentRegistryRow": {
+        "key": "3-1|이차함수의 그래프 ⑵|11",
+        "grade": "중3",
+        "unitSection": "이차함수 y=ax^2+bx+c의 그래프",
+        "rpmBook": "3-1",
+        "rpmMinor": "이차함수의 그래프 ⑵",
+        "rpmType": "11",
+        "rpmTitle": "이차함수의 식 구하기 축의 방정식과 두 점을 알 때"
+      },
+      "snapshotLiveCount": 22,
+      "liveTimestamp": "2026-10-08 00:57:15.290971 +09:00",
+      "ruleEvidenceId": "quadratic11",
+      "fullMatchDimensions": {
+        "newGivensSupported": false,
+        "newQuestionSupported": false,
+        "fullNewCoreSequenceSupported": false
+      },
+      "fullNewCandidateSupported": false,
+      "sharedSubsteps": "axis and a pair of linear coefficient equations",
+      "unsupportedPart": "Rule gives axis plus two explicit integer-coordinate points. New gives one point plus coefficient sum a+b=10, followed by vertex-to-line condition; no second supplied point or equation-output target.",
+      "decision": "not-supported-as-full-family"
+    },
+    {
+      "familyKey": "mid:3-1|이차함수의 그래프 ⑵|12",
+      "unitId": "03097b76-d9cb-4525-a520-b70c03a45c77",
+      "currentRegistryRow": {
+        "key": "3-1|이차함수의 그래프 ⑵|12",
+        "grade": "중3",
+        "unitSection": "이차함수 y=ax^2+bx+c의 그래프",
+        "rpmBook": "3-1",
+        "rpmMinor": "이차함수의 그래프 ⑵",
+        "rpmType": "12",
+        "rpmTitle": "이차함수의 식 구하기 서로 다른 세 점을 알 때"
+      },
+      "snapshotLiveCount": 22,
+      "liveTimestamp": "2026-10-08 00:57:15.290971 +09:00",
+      "ruleEvidenceId": "quadratic12",
+      "fullMatchDimensions": {
+        "newGivensSupported": false,
+        "newQuestionSupported": false,
+        "fullNewCoreSequenceSupported": false
+      },
+      "fullNewCandidateSupported": false,
+      "sharedSubsteps": "linear constraints solve coefficients",
+      "unsupportedPart": "Needs three points including known y-intercept; new b is unknown and neither remaining two points nor equation target are provided.",
+      "decision": "not-supported-as-full-family"
+    },
+    {
+      "familyKey": "mid:3-1|이차함수의 그래프 ⑵|13",
+      "unitId": "03097b76-d9cb-4525-a520-b70c03a45c77",
+      "currentRegistryRow": {
+        "key": "3-1|이차함수의 그래프 ⑵|13",
+        "grade": "중3",
+        "unitSection": "이차함수 y=ax^2+bx+c의 그래프",
+        "rpmBook": "3-1",
+        "rpmMinor": "이차함수의 그래프 ⑵",
+        "rpmType": "13",
+        "rpmTitle": "이차함수의 식 구하기 축과의 두 교점과 다른 한 점을 알 때"
+      },
+      "snapshotLiveCount": 22,
+      "liveTimestamp": "2026-10-08 00:57:15.290971 +09:00",
+      "ruleEvidenceId": "quadratic13",
+      "fullMatchDimensions": {
+        "newGivensSupported": false,
+        "newQuestionSupported": false,
+        "fullNewCoreSequenceSupported": false
+      },
+      "fullNewCandidateSupported": false,
+      "sharedSubsteps": "point substitution in a quadratic",
+      "unsupportedPart": "Requires two real x-axis intersections. New solved function2(x-1)^2+6 has no real x-axis intersection and asks line intercept.",
+      "decision": "not-supported-as-full-family"
+    },
+    {
+      "familyKey": "mid:3-1|이차함수의 그래프 ⑵|22T",
+      "unitId": "03097b76-d9cb-4525-a520-b70c03a45c77",
+      "currentRegistryRow": {
+        "key": "3-1|이차함수의 그래프 ⑵|22T",
+        "grade": "중3",
+        "unitSection": "이차함수 y=ax^2+bx+c의 그래프",
+        "rpmBook": "3-1",
+        "rpmMinor": "이차함수의 그래프 ⑵",
+        "rpmType": "22T",
+        "rpmTitle": "꼭짓점의 사분면으로 계수 정하기"
+      },
+      "snapshotLiveCount": 22,
+      "liveTimestamp": "2026-10-08 00:57:15.290971 +09:00",
+      "ruleEvidenceId": "quadratic22T",
+      "fullMatchDimensions": {
+        "newGivensSupported": false,
+        "newQuestionSupported": false,
+        "fullNewCoreSequenceSupported": false
+      },
+      "fullNewCandidateSupported": false,
+      "sharedSubsteps": "point condition plus vertex condition",
+      "unsupportedPart": "Rule obtains two roots for one parameter and filters by vertex quadrant. New linear system uniquely fixes a,b; no two candidates or quadrant condition, and c is another line parameter.",
+      "decision": "not-supported-as-full-family"
+    }
+  ],
+  "familyDecision": {
+    "state": "pending-full-match-not-established",
+    "supportedExistingLiveFamilies": [],
+    "partialMatchesAreNotAssignments": true,
+    "nearestFuzzyOrConfidenceMatchUsed": false,
+    "inventedKeyOrRule": false,
+    "reason": "미지 계수 두 일차 조건→꼭짓점→직선 절편의 복합 절차가 현행02/10/11/12/13/22T 어느 전체 rule에도 없다. coefficient sum을 주어진 다른 점으로 바꿨다고 가정하거나 부분 family를 이어 붙여 새 key를 만들 수 없다.",
+    "reopenCriteria": [
+      "한 점+계수 합으로 a,b를 정한 뒤 꼭짓점의 직선 조건에서 c를 복구하는 전체 입력/질문/순서를 포함하는 기존 등록/승인 branch를 제시한다.",
+      "그 branch의 Unit479 UUID와 exact live family row 및 난이도/객관식 숫자 목표의 근거를 연결한다.",
+      "근거가 없으면 family=null을 유지한 별도 분류/규칙 과제를 부모가 집계한다. known-vertex10이나 two-points11로 자동 승격하지 않는다."
+    ]
+  },
+  "difficultyAndFormat": {
+    "authorDifficultyProposal": "기본",
+    "reviewerDifficultyProposal": "기본",
+    "reviewerProblemTypeProposal": "활용",
+    "problemTypeLabelFromNativeContract": true,
+    "questionType": "객관식",
+    "score": 4,
+    "choiceCount": 5,
+    "candidateContractValidated": true,
+    "candidateTierFunctionResult": "기본",
+    "reason": "대입→두 일차식 차감→완전제곱→직선 대입의 짧은 네 단계, 정수 계산과 기록표이다. 기본 상단의4점 객관식이라는 이전 검수 평가를 유지할 수 있으나 matching rule 난이도 상속을 주장하지 않는다.02는 기본,10~13은 응용,22T는 심화중이며 각 목적이 달라 단순 평균/가장 가까운 라벨로 정하지 않는다.",
+    "formatComparison": "새 형식은5보기·③·4점, 상수 c 한 숫자.02는 꼭짓점/축 또는 좌표 합,10~13은 이차함수 식,22T는 사분면으로 걸러낸 k를 낸다. 새 최종 목표까지 다룬 기존 rule은 확인되지 않았다. source 서술형7점에서 새 객관식4점으로 바뀐 부담은 별도 평가이다.",
+    "fullMatchingFamilyDifficultyProfileConfirmed": false,
+    "sourceOrFamilyDifficultyAutoApplied": false,
+    "measuredStudentDifficultyClaimed": false,
+    "finalApproval": false,
+    "rawGeneratorContract": {
+      "path": "D:/todays-math/src/lib/middle/types.ts",
+      "scoreFieldPresent": false,
+      "questionTypeFieldPresent": false,
+      "ruleEvidenceMeaning": "compare raw target/answer/difficulty; score and MC choice format are separate authored-candidate reviewer proposals, not an inherited handler score/type profile"
+    }
+  },
+  "snapshotScope": {
+    "bank": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/bank-read-20261008.json",
+      "sha256": "164c611b84b3d9b16c30f74e2d0220ed54b2d642845d0bf1e72d9a347b969a9b",
+      "capturedAtUTC": "2026-10-07 15:57:15.290971+00",
+      "capturedAtKst": "2026-10-08 00:57:15.290971 +09:00",
+      "originalSourceSnapshotAt": "2026-10-03T14:02:44.800Z",
+      "transactionReadOnly": "on",
+      "livePredicate": "중3; pool=shared; review_status=approved; direct_use_allowed=true; btrim(answer)<>''; answer<>'(정답 없음)'; family_key IS NOT NULL",
+      "liveProblemRowIdsProvided": false
+    },
+    "registry": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/registry-read-20261008.json",
+      "sha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "capturedAtUTC": "2026-10-07T16:08:32.171Z",
+      "capturedAtKst": "2026-10-08 01:08:32.171 +09:00"
+    },
+    "currentDatabaseQueried": false,
+    "additionalFreshParentBank": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-fresh-r2-20261008.json",
+      "sha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b",
+      "capturedAtUtc": "2026-10-08 04:53:45.769124+00",
+      "capturedAtKst": "2026-10-08 13:53:45.769124 +09:00",
+      "sameUnitRowsAndAllFamilyCounts": true,
+      "conclusionsChanged": false,
+      "currentDatabaseQueriedByThisPeer": false,
+      "priorReferencesRetained": true
+    }
+  },
+  "evidenceFiles": {
+    "repository": "repository-evidence.json",
+    "repositorySha256": "382c11321e63663b506a525a1cf37c0788f7afad170115aa16b688657129c513",
+    "rules": "rule-evidence.json",
+    "rulesSha256": "a51a3177dffff7eee3f16a5aaa27d052eb43bd6915e9e3ab5fd25e0cd4c7ba0d",
+    "exactCalculations": "exact-calculations.json",
+    "exactCalculationsSha256": "c0aefd311784179f15004bf300a1d7833d095abd5bf6c7d34dd3953b6ca3f5ab",
+    "sourceTaxonomyLinks": "source-taxonomy-links.json",
+    "sourceTaxonomyLinksSha256": "65f9af6379275520d19574f074b3b72ebc45c1389dbbd60a6382453310f03eb4",
+    "freshParentBank": "fresh-bank-evidence.json",
+    "freshParentBankSha256": "68cdfd884e04113169f2cde5e0e04d3d07502e4d18daf0bb24fa80b457d5d70f"
+  },
+  "preservation": {
+    "parentFrozenInputsNoWrites": true,
+    "ownPriorCommit": "9ffb3f203e5b03bdf0953c8e724388edfaa822da",
+    "ownPriorArtifacts61BytesUnchanged": true,
+    "q07UnchangedHold": true,
+    "q10CurrentAuthorVersion": null
+  },
+  "boundary": {
+    "classificationSidecarOnly": true,
+    "priorMathAndCurriculumDimensionsNotOverwritten": true,
+    "parentAggregationRequired": true,
+    "finalApproval": false,
+    "rightsCleared": false,
+    "nativeProvenanceCleared": false,
+    "loadable": false,
+    "DBAccess": false,
+    "inferenceOrPaidAPICalls": false,
+    "install": false,
+    "push": false,
+    "scopeExcludesOwnGeometryAndOtherPeerQuestions": true
+  }
+}
