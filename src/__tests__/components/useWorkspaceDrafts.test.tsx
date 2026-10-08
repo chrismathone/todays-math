@@ -39,6 +39,43 @@ afterEach(() => {
 });
 
 describe("useWorkspaceDrafts browser lifecycle", () => {
+  it("shares early prepare with tab activation and StrictMode without publishing ready or saving early", async () => {
+    const server = privateServer();
+    const fetch = vi.fn<typeof globalThis.fetch>(async (url, init) => {
+      await new Promise((resolve) => setTimeout(resolve, 100));
+      return server.transport(url, init);
+    });
+    vi.stubGlobal("fetch", fetch);
+    const set = vi.spyOn(Storage.prototype, "setItem");
+    const { result, rerender } = renderHook(
+      ({ active }) => useWorkspaceDrafts("owner-a", true, active),
+      { initialProps: { active: false }, wrapper: StrictMode },
+    );
+    let preparing: void | Promise<void>;
+    act(() => {
+      preparing = result.current.prepare();
+      expect(result.current.prepare()).toBe(preparing);
+      result.current.setTitle("must not overwrite recovery");
+    });
+    rerender({ active: true });
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(99);
+    });
+    expect(result.current.hydrated).toBe(false);
+    expect(set).not.toHaveBeenCalled();
+    expect(fetch).toHaveBeenCalledTimes(1);
+    await act(async () => {
+      await vi.advanceTimersByTimeAsync(1);
+      await preparing;
+    });
+    expect(result.current.hydrated).toBe(true);
+    expect(result.current.draft.title).not.toBe("must not overwrite recovery");
+    expect(fetch).toHaveBeenCalledTimes(1);
+    expect(
+      server.transport.mock.calls.some(([, init]) => init?.method === "PUT"),
+    ).toBe(false);
+  });
+
   it("defers account storage until a worksheet tab opens and keeps the draft when leaving", async () => {
     const server = privateServer();
     vi.stubGlobal("fetch", server.transport);
