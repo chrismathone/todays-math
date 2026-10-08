@@ -1,0 +1,13 @@
+import fs from 'node:fs';import path from 'node:path';import {fileURLToPath} from 'node:url';import {createRequire} from 'node:module';import assert from 'node:assert/strict';import {execFileSync} from 'node:child_process';import {createHash} from 'node:crypto';
+const root=path.dirname(fileURLToPath(import.meta.url)),parent='C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008';
+const require=createRequire(path.join(parent,'package.json'));
+const {registeredTypes}=require(path.join(parent,'src/lib/middle/generate.ts'));const {CURRICULUM_UNITS}=require(path.join(parent,'prisma/seed-data/units.ts'));
+const bank=JSON.parse(fs.readFileSync(path.join(root,'evidence/bank-read-fresh-r3-20261008.json'),'utf8')),unit=bank.units.find(u=>u.id==='468b8d96-7097-4ef3-8ccf-42c53d90b45f');
+const seed=CURRICULUM_UNITS.find(u=>u.grade===unit.grade&&u.section===unit.section);assert(seed);assert.equal(seed.orderIndex,unit.orderIndex);assert.equal(seed.chapter,unit.chapter);
+const rules=registeredTypes().filter(e=>e.grade==='중3'&&e.unitSection===unit.section).map(({key,grade,unitSection,rpmBook,rpmMinor,rpmType,rpmTitle})=>({key,grade,unitSection,rpmBook,rpmMinor,rpmType,rpmTitle}));
+const live=bank.liveFamilies.filter(f=>f.unit_id===unit.id);
+for(const f of live)assert(rules.find(r=>'mid:'+r.key===f.family_key),'Live family not in actual registry');assert.equal(rules.length,11);
+const sha=(p:string)=>createHash('sha256').update(fs.readFileSync(p)).digest('hex');
+const out={method:'pure registeredTypes and Unit seeds; no generation handler/DB/model invoked',parentRepositoryCommit:execFileSync('git',['rev-parse','HEAD'],{cwd:parent,encoding:'utf8'}).trim(),bankCapturedAt:bank.capturedAt,notCurrentDbAssertion:true,unit,unitSeedExactMatch:true,registryEntries:rules,liveRows:live,liveCountIsNotSemanticPermission:true,ruleSources:['src/lib/middle/m3Stat2.ts','src/lib/middle/m3Top.ts','prisma/seed-data/units.ts'].map(p=>({path:p,sha256:sha(path.join(parent,p))})),sourceReviewNeededForEachWholePurpose:true};
+const dest=path.join(root,'evidence/registry.json'),bytes=JSON.stringify(out,null,2)+'\n';if(fs.existsSync(path.join(root,'review-freeze.json')))assert.equal(fs.readFileSync(dest,'utf8'),bytes);else fs.writeFileSync(dest,bytes);
+console.log('Stat Unit UUID/seed match;r3 eleven live families matched actual registry;semantic decisions separate.');

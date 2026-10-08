@@ -1,0 +1,242 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 14,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q14",
+  "authorId": "root-codex-exam-extraction-resume-20261008",
+  "content": "표는 열 번의 미니 퀴즈에서 맞힌 문항 수와 그 횟수이다. 이 자료의 분산과 표준편차를 순서대로 옳게 나타낸 것은?\n\n|맞힌 문항 수(개)|$1$|$4$|$5$|$6$|$7$|$8$|$11$|\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n|횟수(회)|$1$|$1$|$1$|$4$|$1$|$1$|$1$|",
+  "choices": [
+    "$4,\\ 2$",
+    "$6,\\ \\sqrt6$",
+    "$6,\\ 6$",
+    "$10,\\ \\sqrt{10}$",
+    "$60,\\ 2\\sqrt{15}$"
+  ],
+  "answer": "②",
+  "solution": "횟수의 합은 $10$이고 맞힌 문항 수의 합은 $1+4+5+6\\times4+7+8+11=60$이므로 평균은 $6$이다. 편차 제곱의 총합은 $25+4+1+0\\times4+1+4+25=60$이다. 따라서 분산은 $60\\div10=6$, 표준편차는 $\\sqrt6$이다.",
+  "score": 5,
+  "questionType": "객관식",
+  "facts": {
+    "rows": [
+      {
+        "value": 1,
+        "frequency": 1
+      },
+      {
+        "value": 4,
+        "frequency": 1
+      },
+      {
+        "value": 5,
+        "frequency": 1
+      },
+      {
+        "value": 6,
+        "frequency": 4
+      },
+      {
+        "value": 7,
+        "frequency": 1
+      },
+      {
+        "value": 8,
+        "frequency": 1
+      },
+      {
+        "value": 11,
+        "frequency": 1
+      }
+    ],
+    "stats": {
+      "count": 10,
+      "total": "60",
+      "squareTotal": "420",
+      "mean": {
+        "numerator": "6",
+        "denominator": "1"
+      },
+      "median": {
+        "numerator": "6",
+        "denominator": "1"
+      },
+      "variance": {
+        "numerator": "6",
+        "denominator": "1"
+      },
+      "standardDeviationSquared": {
+        "numerator": "6",
+        "denominator": "1"
+      },
+      "middlePositions": [
+        5,
+        6
+      ],
+      "maxFrequency": 4,
+      "maximalFrequencyValues": [
+        6
+      ],
+      "uniqueModalValue": 6,
+      "modeConvention": "maximal frequencies exposed; a tied set is never a unique mode",
+      "approval": "calculation-only"
+    },
+    "unique": true,
+    "calculationOnly": true
+  },
+  "figureArtifacts": [],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "context",
+      "representation"
+    ],
+    "before": "다음은 볼링 공을 $10$번 던졌을 때 넘어진 핀의 수이다. 이 자료의 분산과 표준편차를 옳게 짝지은 것은?\n[$5$점]\n$4,~~4,~~9,~~6,~~6,~~9,~~3,~~8,~~6,~~5$\n\n분산\n\n표준편차",
+    "after": "볼링의 나열 자료→퀴즈 기록의 도수 표로 자료를 조직하고 분산·표준편차 산출",
+    "sharedConcept": "분산과 표준편차",
+    "sharedProcedure": "도수만큼 각 값을 합해 평균을 구하고, 편차 제곱의 총합을 자료 수로 나눈 뒤 양수 제곱근을 취한다.",
+    "objectiveDifficulty": "원문 배점과 요구를 기준으로 한 저자 제안; 역추론/도수 읽기 추가 부담은 독립 검토",
+    "sourceTableReplaced": "new Markdown data organization; no original crop used",
+    "scoreDelta": {
+      "source": 5,
+      "authored": 5,
+      "changed": false
+    }
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수05-07"
+    ],
+    "status": "author-proposed",
+    "allowedProcedure": "도수만큼 각 값을 합해 평균을 구하고, 편차 제곱의 총합을 자료 수로 나눈 뒤 양수 제곱근을 취한다.",
+    "gradeBasis": "2025 중3은 2015 적용. 공식 PDF physical40/printed36에 대푯값·편차·분산·표준편차 및 자료에 맞는 대표값 비교가 있다. 각 문항 전체는 별도 독립 심사 필요.",
+    "surfaces": {
+      "stem": {
+        "status": "author-proposed",
+        "evidence": "분산과 표준편차: 도수만큼 각 값을 합해 평균을 구하고, 편차 제곱의 총합을 자료 수로 나눈 뒤 양수 제곱근을 취한다.; stem에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+      },
+      "choices": {
+        "status": "author-proposed",
+        "evidence": "분산과 표준편차: 도수만큼 각 값을 합해 평균을 구하고, 편차 제곱의 총합을 자료 수로 나눈 뒤 양수 제곱근을 취한다.; choices에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+      },
+      "figuresAndTables": {
+        "status": "author-proposed",
+        "evidence": "분산과 표준편차: 도수만큼 각 값을 합해 평균을 구하고, 편차 제곱의 총합을 자료 수로 나눈 뒤 양수 제곱근을 취한다.; figuresAndTables에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+      },
+      "notation": {
+        "status": "author-proposed",
+        "evidence": "분산과 표준편차: 도수만큼 각 값을 합해 평균을 구하고, 편차 제곱의 총합을 자료 수로 나눈 뒤 양수 제곱근을 취한다.; notation에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+      },
+      "answer": {
+        "status": "author-proposed",
+        "evidence": "분산과 표준편차: 도수만큼 각 값을 합해 평균을 구하고, 편차 제곱의 총합을 자료 수로 나눈 뒤 양수 제곱근을 취한다.; answer에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+      },
+      "studentSolution": {
+        "status": "author-proposed",
+        "evidence": "분산과 표준편차: 도수만큼 각 값을 합해 평균을 구하고, 편차 제곱의 총합을 자료 수로 나눈 뒤 양수 제곱근을 취한다.; studentSolution에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+      },
+      "prerequisites": {
+        "status": "author-proposed",
+        "evidence": "분산과 표준편차: 도수만큼 각 값을 합해 평균을 구하고, 편차 제곱의 총합을 자료 수로 나눈 뒤 양수 제곱근을 취한다.; prerequisites에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+      }
+    },
+    "exactGradeApproval": false
+  },
+  "sourceReference": {
+    "externalId": "2025-gyeongsang-3-2-mid-14",
+    "examId": "personal-5ac2088d148a02d086d0ce69d38aa646",
+    "sourcePacketExamId": "2025-gyeongsang-3-2-mid",
+    "school": "경상중",
+    "questionNumber": 14,
+    "sourceContentSha256": "0be676b98bbfac946e30d5f28b1377128484f3ea895a2c5aa78d760c09cde6a5",
+    "sourcePacketSha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+    "sourceQuestionScore": 5,
+    "sourceQuestionType": "객관식",
+    "originalAnswersOrSolutionsUsed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "score": 5,
+    "difficultyProposal": "응용",
+    "difficultyStatus": "pending-independent-review",
+    "problemTypeProposal": "분산과 표준편차",
+    "problemTypeStatus": "pending-independent-review",
+    "hasFigure": false,
+    "hasRecreatedTable": true,
+    "assignment": {
+      "status": "pending",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "familyKey": null,
+      "evidence": "실제 중3 Unit UUID/차시는 읽기 전용 r2 관측에 있다. 역추론·도수 조직·답 목적과 생성규칙에 정확히 맞는 live family는 별도 심사; 가까운 키를 임의 배정하지 않음.",
+      "unitProposal": {
+        "id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+        "grade": "중3",
+        "chapter": "7. 통계",
+        "section": "대푯값과 산포도",
+        "semester": 2,
+        "orderIndex": 488,
+        "problemCodePrefix": "J30701"
+      },
+      "bankReadAt": "2026-10-08 04:53:45.769124+00",
+      "liveFamilyDecision": "held"
+    },
+    "achievementStandardRefs": [
+      {
+        "code": "9수05-07",
+        "officialStatement": "분산과 표준편차의 의미를 이해하고, 이를 구할 수 있다.",
+        "pdfPage": 40,
+        "printedPage": 36,
+        "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+        "notPerQuestionApproval": true
+      }
+    ],
+    "sourceIdentityReview": {
+      "status": "2025_original_header_school_footer_and_completed_question_identity_supported",
+      "custody": "held",
+      "rights": "held",
+      "fullPair": "held"
+    },
+    "answerFormat": "single circled choice",
+    "authorEvidence": {
+      "calculationPath": "author-calculations.json",
+      "scriptSha256": "88183fe6562f5c9c37671089df4871ae3226e42c748de655f727b43bd6ba7e53",
+      "statisticsKernelSha256": "36c4dcf877bcd842869335980a00555be3a7263278a5d33cb1e80922cfacf000",
+      "calculationOnly": true,
+      "independentApproval": false
+    },
+    "bankEvidence": {
+      "path": ".qa-artifacts/exam-resume-20261008/bank-read-fresh-r2-20261008.json",
+      "sha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b"
+    }
+  },
+  "schoolNamePolicy": {
+    "actual": "경상중",
+    "display": "해솔누리중학교",
+    "actualSchoolRetainedInternally": true,
+    "visibleOriginalSchoolOccurrences": 0,
+    "review": "author-proposed"
+  },
+  "independentVerification": null,
+  "review": {
+    "status": "pending",
+    "mathematicalCorrectness": "pending-independent-blind-solve",
+    "gradeCurriculum": "pending-independent-review",
+    "equivalentConceptAndMethod": "pending-independent-review",
+    "distinctPresentation": "pending-independent-review",
+    "rights": "pending",
+    "similarity": "pending",
+    "nativeCompatibility": "pending",
+    "physicalPaper": "not-approved"
+  },
+  "directUseAllowed": false
+}

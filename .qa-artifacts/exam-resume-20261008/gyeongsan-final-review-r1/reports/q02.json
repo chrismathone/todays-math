@@ -1,0 +1,307 @@
+{
+  "questionNumber": 2,
+  "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q02",
+  "status": "verified",
+  "studentDigest": "d148cbceda10cd301f80ade45cca99c5cdcb483bcb6f95e897b91609cc10d56b",
+  "candidateDigest": "9612a64dfa20784b4e44fb287161f2465ac1fbe98f0e06205faf1144fc53b842",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "solveDigest": "50b8f8bf39db3a6d0399530879ee3602b56a807516b2cb552a3bd098af9ad4cb",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-exam-twin-author-geometry-20261008",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": true,
+    "scoreAppropriate": true
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "함수 식에서 설명을 고르던 방향을 네 그래프 메모에서 식을 복구하는 역문제로 전환했다. 명시 조건과 요청은 아래 실제 중학교 해법으로 해결된다.",
+      "standardCodes": [
+        "9수03-10",
+        "9수02-05"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "실제5보기 전부 계산/도형 비교;정답 하나,나머지 비동치 오답. ",
+      "standardCodes": [
+        "9수03-10",
+        "9수02-05"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "본문 표/수치/함수 기록을 직접 확인;별도 그림 없음. 70mm 검사 화면에서 텍스트와 자산 역할 확인.",
+      "standardCodes": [
+        "9수03-10",
+        "9수02-05"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "통상 좌표/함수/선분/도 단위/근호/실제 삼각비 표기. 일반 라디안·벡터·고교 공식 표기 없음. ",
+      "standardCodes": [
+        "9수03-10",
+        "9수02-05"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "축0/절편−3→y=ax²−3;점(2,−5)→a=−1/2.각 보기의4조건 전부 확인;④만 일치,항상 y≤−3<0. circled choice는 역할·값·단위가 독립 결과와 일치.",
+      "standardCodes": [
+        "9수03-10",
+        "9수02-05"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "축/절편으로 꼭짓점(0,−3),한 점 대입으로 a,결과 개형 확인. 공개된 새 저자 풀이의 모든 단계와 실제 정의를 읽고 검산. ",
+      "standardCodes": [
+        "9수03-10",
+        "9수02-05"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "축/절편으로 꼭짓점(0,−3),한 점 대입으로 a,결과 개형 확인. 공식 선택 성취기준의 중학교 범위와 초등 밑변높이 원리;필요한 보조점/조건 명시 여부 확인.",
+      "standardCodes": [
+        "9수03-10",
+        "9수02-05"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    }
+  },
+  "evidence": {
+    "binding": {
+      "questionNumber": 2,
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q02",
+      "studentDigest": "d148cbceda10cd301f80ade45cca99c5cdcb483bcb6f95e897b91609cc10d56b",
+      "candidateDigest": "9612a64dfa20784b4e44fb287161f2465ac1fbe98f0e06205faf1144fc53b842",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "50b8f8bf39db3a6d0399530879ee3602b56a807516b2cb552a3bd098af9ad4cb",
+      "candidateFileSha256": "a48d55175a299687755542a939da443da1df67c71f07fb56ae6ee27ca7e379c5",
+      "rawSolveSha256": "198dbb8e7534384c04a550c7503a699abd1b198b1caccc4b7eb8e3bbb33cb7d5",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-2",
+      "sourceQuestionCanonicalDigest": "31fa9ff08ff536d57898c1911455d23b9d8ae0b3b72d55eed11609d784581ad1",
+      "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceProvidedDigest": "90bc15ab1d0a124d2bca4eff254062cb1080c8f56ac19d4dd3420430acc4f90c",
+      "sourceHashContract": "supplied sourceContentDigest separate from raw stem or complete canonical source-row digest",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    "independentSolveCommit": "c8f8aeadfb28becb1d7447240fd4e28b6702fc4c",
+    "rawSolveUnchanged": true,
+    "answerComparison": {
+      "literalEqual": true,
+      "semanticEqual": true,
+      "role": "single selected choice",
+      "authorAnswer": "④",
+      "independentAnswer": "④",
+      "allFiveChoiceTruthValues": [
+        false,
+        false,
+        false,
+        true,
+        false
+      ],
+      "semanticDuplicateChoices": [],
+      "unitAndTargetOrderChecked": true,
+      "writtenPartsRequested": [],
+      "writtenRubricApplicable": false
+    },
+    "independentExactCalculation": {
+      "questionNumber": 2,
+      "target": "-x**2/2 - 3",
+      "status": "independently-computed",
+      "evidence": {
+        "a": "-1/2",
+        "function": "-x**2/2 - 3",
+        "allFourConditionsForEachChoice": [
+          {
+            "axisY": true,
+            "interceptMinus3": true,
+            "point2minus5": false,
+            "entirelyBelowXAxis": false
+          },
+          {
+            "axisY": true,
+            "interceptMinus3": false,
+            "point2minus5": false,
+            "entirelyBelowXAxis": false
+          },
+          {
+            "axisY": false,
+            "interceptMinus3": false,
+            "point2minus5": false,
+            "entirelyBelowXAxis": true
+          },
+          {
+            "axisY": true,
+            "interceptMinus3": true,
+            "point2minus5": true,
+            "entirelyBelowXAxis": true
+          },
+          {
+            "axisY": true,
+            "interceptMinus3": true,
+            "point2minus5": false,
+            "entirelyBelowXAxis": true
+          }
+        ],
+        "maximum": -3,
+        "existence": "a nonzero;unique from4a−3=−5",
+        "allFiveActualChoiceValues": [
+          "x**2/2 - 3",
+          "3 - x**2/2",
+          "-(x - 1)**2/2 - 3",
+          "-x**2/2 - 3",
+          "-x**2 - 3"
+        ],
+        "choiceCorrectness": [
+          false,
+          false,
+          false,
+          true,
+          false
+        ],
+        "correctChoiceNumber": 4,
+        "semanticDuplicateChoices": [],
+        "oneCorrectChoice": true
+      },
+      "knownHolds": []
+    },
+    "mathAndNewSolution": "축0/절편−3→y=ax²−3;점(2,−5)→a=−1/2.각 보기의4조건 전부 확인;④만 일치,항상 y≤−3<0.",
+    "coreAndSubstantiveDelta": "함수 식에서 설명을 고르던 방향을 네 그래프 메모에서 식을 복구하는 역문제로 전환했다.",
+    "allowedWholeStudentMethod": "축/절편으로 꼭짓점(0,−3),한 점 대입으로 a,결과 개형 확인.",
+    "sourceQuestionOnly": {
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-2",
+      "packetRawSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceDigestProvided": "90bc15ab1d0a124d2bca4eff254062cb1080c8f56ac19d4dd3420430acc4f90c",
+      "images": [
+        {
+          "file": "images/q02-part1.png",
+          "rawSha256": "6cbf56e62b74fb9554839f510ebea11b5b3803a53dca268d5bc50c3465433fca",
+          "personallyViewed": true
+        }
+      ],
+      "sourceCropsNotNewAssets": true,
+      "originalKeyOrSolutionFilesRead": false
+    },
+    "visualReview": {
+      "questionNumber": 2,
+      "studentDigest": "d148cbceda10cd301f80ade45cca99c5cdcb483bcb6f95e897b91609cc10d56b",
+      "candidateDigest": "9612a64dfa20784b4e44fb287161f2465ac1fbe98f0e06205faf1144fc53b842",
+      "columnWidthMm": 70,
+      "png": "inspection/q02-expanded.png",
+      "pngSha256": "a9a956186ab63e3218c874ee40268c38bbe2403f1d6a9f56dbb7a70cb4363176",
+      "overflow": [],
+      "unclippedPng": null,
+      "figureCount": 0,
+      "figureWidthMm": 70,
+      "figureArrangement": "ordered roles",
+      "personallyViewed": true,
+      "imageRawSha256": "a9a956186ab63e3218c874ee40268c38bbe2403f1d6a9f56dbb7a70cb4363176",
+      "actualQuestionAndExpandedSolutionInspected": true,
+      "allSuppliedChoiceFiguresInspected": false,
+      "assets": [],
+      "strictRegenerationResults": [],
+      "nativeCompatibilityNotApproved": true
+    },
+    "naturalKorean": "조건·대상각·선분·기록값·단위가 자연스럽고 모호한 원본 조건을 명시했다. 허구 학교 표시 해솔누리중학교와 실제 학교 내부 보존을 구별;원학교로 학년 승인하지 않음.",
+    "scoreAndDifficulty": {
+      "score": 4,
+      "sourceScorePreserved": true,
+      "authorDifficultyProposal": "응용",
+      "reviewerDifficultyProposal": "응용",
+      "basis": "축/절편으로 꼭짓점(0,−3),한 점 대입으로 a,결과 개형 확인. 4점은 원문과 동일하고 필요한 단계 수를 근거로 제안. 검토자는 심화하/기본과 응용 차이를 기록하며 실측 난도나 학교 자동 승인 주장 없음.",
+      "measuredDifficulty": false
+    },
+    "taxonomy": {
+      "unitUuidProposal": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "unit": {
+        "id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+        "grade": "중3",
+        "chapter": "4. 이차함수",
+        "section": "이차함수와 그래프",
+        "semester": 1,
+        "orderIndex": 478,
+        "problemCodePrefix": "J30401"
+      },
+      "unitSeedExactMatch": true,
+      "candidateMetadataAssignmentUnedited": {
+        "status": "proposed",
+        "unitId": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+        "familyKey": "mid:3-1|이차함수의 그래프 ⑴|11",
+        "currentUnit": {
+          "id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+          "grade": "중3",
+          "chapter": "4. 이차함수",
+          "section": "이차함수와 그래프",
+          "semester": 1,
+          "orderIndex": 478,
+          "problemCodePrefix": "J30401"
+        },
+        "currentRegistryMatch": {
+          "key": "3-1|이차함수의 그래프 ⑴|11",
+          "grade": "중3",
+          "unitSection": "이차함수와 그래프",
+          "rpmBook": "3-1",
+          "rpmMinor": "이차함수의 그래프 ⑴",
+          "rpmType": "11",
+          "rpmTitle": "이차함수의 식 구하기"
+        },
+        "liveCount": 24,
+        "checkedAt": "2026-10-08 04:53:45.769124+00",
+        "evidence": "y=ax²+q의 알려진 점/절편으로 이차함수 식을 정하는 입력과 절차가 현재 유형11에 대응한다. 추가 위치 메모는 구한 식의 단순 성질을 확인한다.",
+        "generatorRuleEvidence": {
+          "module": "src/lib/middle/m3Func.ts",
+          "family": "g1 11",
+          "observed": "주어진 점·조건을 y=ax²+q에 대입하여 계수를 결정한다.",
+          "status": "author-semantic-proposal"
+        },
+        "approval": "author-proposal-only"
+      },
+      "existingLiveFamilyProposal": "mid:3-1|이차함수의 그래프 ⑴|11",
+      "semanticFamilyOnly": null,
+      "status": "supported-proposal",
+      "basis": "g1-11 mode0는 꼭짓점(0,q)+한 점으로 y=ax²+q를 결정한다. 본문 축0/절편은 동일 꼭짓점 조건이고 점으로 a를 복원한다. 추가 아래 위치는 새 절차 없이 식에서 확인하는 일관성 조건. 실제 a=−1/2,q=−3,m=2가 규칙 범위에 있고 응용 난도도 일치.",
+      "formatComparison": "Actual generation rule emits a mathematical open answer. Candidate MC wraps the same mathematical target in5 displayed choices checked independently; q08 also records the axis already read in the rule solution. This is purpose/method support only; native format/import approval stays pending.",
+      "bankCapturedAt": "2026-10-08 13:00:16.891043+00",
+      "snapshotScopeOnly": true,
+      "liveCountNotPermission": true
+    },
+    "q22RepairRead": false,
+    "q23SourceRoleMetadataBoundary": null
+  },
+  "holds": [],
+  "gates": {
+    "rights": "held",
+    "custody": "held",
+    "similarity": "pending",
+    "nativeCompatibility": "pending",
+    "directUseAllowed": false,
+    "loadable": false,
+    "dbWrites": 0,
+    "modelCalls": 0,
+    "finalPublicationApproval": false
+  }
+}

@@ -1,0 +1,301 @@
+{
+  "questionNumber": 8,
+  "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q08",
+  "status": "verified",
+  "studentDigest": "79210fe06498b07f552240e84319bfd36f89b0ec00320eb88c8f48b7eb12cf4b",
+  "candidateDigest": "7b73701a7b32ecfd1497f81eebe486241f784c1caa971b991eb6cad481b54d4a",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "solveDigest": "5f625595ed900a5b42a2ec61472e960c08c58554366d77648be281563824e23a",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-exam-twin-author-geometry-20261008",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": true,
+    "scoreAppropriate": true
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "증가 경계에서 상수 역산→축과 증가 범위의 두 누락 기록 동시 복원. 경계/축 관계 유지. 명시 조건과 요청은 아래 실제 중학교 해법으로 해결된다.",
+      "standardCodes": [
+        "9수03-10"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "실제5보기 전부 계산/도형 비교;정답 하나,나머지 비동치 오답. ",
+      "standardCodes": [
+        "9수03-10"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "본문 표/수치/함수 기록을 직접 확인;별도 그림 없음. 70mm 검사 화면에서 텍스트와 자산 역할 확인.",
+      "standardCodes": [
+        "9수03-10"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "통상 좌표/함수/선분/도 단위/근호/실제 삼각비 표기. 일반 라디안·벡터·고교 공식 표기 없음. ",
+      "standardCodes": [
+        "9수03-10"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "축3,음수 계수→왼쪽 x<3에서 증가;④.열린 가지 범위로 표시된 선택지의 경계 convention 확인;미분 사용 없음. circled choice는 역할·값·단위가 독립 결과와 일치.",
+      "standardCodes": [
+        "9수03-10"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "표준형 p와 계수 부호→축/열린 방향→증가하는 가지. 공개된 새 저자 풀이의 모든 단계와 실제 정의를 읽고 검산. ",
+      "standardCodes": [
+        "9수03-10"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "표준형 p와 계수 부호→축/열린 방향→증가하는 가지. 공식 선택 성취기준의 중학교 범위와 초등 밑변높이 원리;필요한 보조점/조건 명시 여부 확인.",
+      "standardCodes": [
+        "9수03-10"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    }
+  },
+  "evidence": {
+    "binding": {
+      "questionNumber": 8,
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q08",
+      "studentDigest": "79210fe06498b07f552240e84319bfd36f89b0ec00320eb88c8f48b7eb12cf4b",
+      "candidateDigest": "7b73701a7b32ecfd1497f81eebe486241f784c1caa971b991eb6cad481b54d4a",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "5f625595ed900a5b42a2ec61472e960c08c58554366d77648be281563824e23a",
+      "candidateFileSha256": "9ee3e57c3d410e1cac2c1edec40841ed8554d94e7d9270312532c795f5d0193e",
+      "rawSolveSha256": "a35553b4835d4f665bbc7e2b9ad7a6113f2a5cd26450695386ae42a38c2a56bb",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-8",
+      "sourceQuestionCanonicalDigest": "fa606e8e9556bac3a55743612041d6f3566d216c318064f30f1107336fdc749c",
+      "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceProvidedDigest": "93709cc24c2bc9351824f9f548eef1f2382bb85dc630c538183506640fcd8842",
+      "sourceHashContract": "supplied sourceContentDigest separate from raw stem or complete canonical source-row digest",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    "independentSolveCommit": "c8f8aeadfb28becb1d7447240fd4e28b6702fc4c",
+    "rawSolveUnchanged": true,
+    "answerComparison": {
+      "literalEqual": true,
+      "semanticEqual": true,
+      "role": "single selected choice",
+      "authorAnswer": "④",
+      "independentAnswer": "④",
+      "allFiveChoiceTruthValues": [
+        false,
+        false,
+        false,
+        true,
+        false
+      ],
+      "semanticDuplicateChoices": [],
+      "unitAndTargetOrderChecked": true,
+      "writtenPartsRequested": [],
+      "writtenRubricApplicable": false
+    },
+    "independentExactCalculation": {
+      "questionNumber": 8,
+      "target": [
+        "3",
+        "<",
+        "3"
+      ],
+      "status": "independently-computed",
+      "evidence": {
+        "vertex": [
+          3,
+          1
+        ],
+        "opens": "down",
+        "increasingBranch": "x<3",
+        "elementaryCheck": {
+          "f1": -7,
+          "f2": -1,
+          "f4": -1,
+          "f5": -7
+        },
+        "endpointConvention": "Open left branch in displayed options;vertex is the boundary. No differentiation.",
+        "allFiveActualChoiceValues": [
+          [
+            "-3",
+            "<",
+            "-3"
+          ],
+          [
+            "3",
+            ">",
+            "3"
+          ],
+          [
+            "-3",
+            ">",
+            "-3"
+          ],
+          [
+            "3",
+            "<",
+            "3"
+          ],
+          [
+            "1",
+            "<",
+            "1"
+          ]
+        ],
+        "choiceCorrectness": [
+          false,
+          false,
+          false,
+          true,
+          false
+        ],
+        "correctChoiceNumber": 4,
+        "semanticDuplicateChoices": [],
+        "oneCorrectChoice": true
+      },
+      "knownHolds": []
+    },
+    "mathAndNewSolution": "축3,음수 계수→왼쪽 x<3에서 증가;④.열린 가지 범위로 표시된 선택지의 경계 convention 확인;미분 사용 없음.",
+    "coreAndSubstantiveDelta": "증가 경계에서 상수 역산→축과 증가 범위의 두 누락 기록 동시 복원. 경계/축 관계 유지.",
+    "allowedWholeStudentMethod": "표준형 p와 계수 부호→축/열린 방향→증가하는 가지.",
+    "sourceQuestionOnly": {
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-8",
+      "packetRawSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceDigestProvided": "93709cc24c2bc9351824f9f548eef1f2382bb85dc630c538183506640fcd8842",
+      "images": [
+        {
+          "file": "images/q08-part1.png",
+          "rawSha256": "b8b1709833a93ffd1c8c7d7bc071430f2b791dd339f4e130e0955ab1338f92c4",
+          "personallyViewed": true
+        }
+      ],
+      "sourceCropsNotNewAssets": true,
+      "originalKeyOrSolutionFilesRead": false
+    },
+    "visualReview": {
+      "questionNumber": 8,
+      "studentDigest": "79210fe06498b07f552240e84319bfd36f89b0ec00320eb88c8f48b7eb12cf4b",
+      "candidateDigest": "7b73701a7b32ecfd1497f81eebe486241f784c1caa971b991eb6cad481b54d4a",
+      "columnWidthMm": 70,
+      "png": "inspection/q08-expanded.png",
+      "pngSha256": "ec4a0128a7848e91c957209bb5a6cc9f9c49d132e73361f97a58db0a1945cd67",
+      "overflow": [],
+      "unclippedPng": null,
+      "figureCount": 0,
+      "figureWidthMm": 70,
+      "figureArrangement": "ordered roles",
+      "personallyViewed": true,
+      "imageRawSha256": "ec4a0128a7848e91c957209bb5a6cc9f9c49d132e73361f97a58db0a1945cd67",
+      "actualQuestionAndExpandedSolutionInspected": true,
+      "allSuppliedChoiceFiguresInspected": false,
+      "assets": [],
+      "strictRegenerationResults": [],
+      "nativeCompatibilityNotApproved": true
+    },
+    "naturalKorean": "조건·대상각·선분·기록값·단위가 자연스럽고 모호한 원본 조건을 명시했다. 허구 학교 표시 해솔누리중학교와 실제 학교 내부 보존을 구별;원학교로 학년 승인하지 않음.",
+    "scoreAndDifficulty": {
+      "score": 3,
+      "sourceScorePreserved": true,
+      "authorDifficultyProposal": "응용",
+      "reviewerDifficultyProposal": "응용",
+      "basis": "표준형 p와 계수 부호→축/열린 방향→증가하는 가지. 3점은 원문과 동일하고 필요한 단계 수를 근거로 제안. 검토자는 심화하/기본과 응용 차이를 기록하며 실측 난도나 학교 자동 승인 주장 없음.",
+      "measuredDifficulty": false
+    },
+    "taxonomy": {
+      "unitUuidProposal": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "unit": {
+        "id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+        "grade": "중3",
+        "chapter": "4. 이차함수",
+        "section": "이차함수와 그래프",
+        "semester": 1,
+        "orderIndex": 478,
+        "problemCodePrefix": "J30401"
+      },
+      "unitSeedExactMatch": true,
+      "candidateMetadataAssignmentUnedited": {
+        "status": "proposed",
+        "unitId": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+        "familyKey": "mid:3-1|이차함수의 그래프 ⑴|16",
+        "currentUnit": {
+          "id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+          "grade": "중3",
+          "chapter": "4. 이차함수",
+          "section": "이차함수와 그래프",
+          "semester": 1,
+          "orderIndex": 478,
+          "problemCodePrefix": "J30401"
+        },
+        "currentRegistryMatch": {
+          "key": "3-1|이차함수의 그래프 ⑴|16",
+          "grade": "중3",
+          "unitSection": "이차함수와 그래프",
+          "rpmBook": "3-1",
+          "rpmMinor": "이차함수의 그래프 ⑴",
+          "rpmType": "16",
+          "rpmTitle": "이차함수 의 증가와 감소"
+        },
+        "liveCount": 24,
+        "checkedAt": "2026-10-08 04:53:45.769124+00",
+        "evidence": "표준형의 p와 a의 부호로 x가 증가할 때 y가 증가하는 범위를 정하는 현재 유형16의 입력/절차이다. 누락 축과 구간을 같이 읽는 표는 표현 변경이다.",
+        "generatorRuleEvidence": {
+          "module": "src/lib/middle/m3Func.ts",
+          "family": "g1 16",
+          "observed": "a의 부호와 표준형 꼭짓점 p로 증가·감소하는 x 범위를 정한다.",
+          "status": "author-semantic-proposal"
+        },
+        "approval": "author-proposal-only"
+      },
+      "existingLiveFamilyProposal": "mid:3-1|이차함수의 그래프 ⑴|16",
+      "semanticFamilyOnly": null,
+      "status": "supported-proposal",
+      "basis": "g1-16은 표준형 a,p,q에서 부호와 축 p로 증가/감소 범위를 결정한다. 본문 a=−2,p=3,q=1은 실제 풀에 포함;추가 축 기록은 같은 필수 단계의 출력. 응용 난도와 일치.",
+      "formatComparison": "Actual generation rule emits a mathematical open answer. Candidate MC wraps the same mathematical target in5 displayed choices checked independently; q08 also records the axis already read in the rule solution. This is purpose/method support only; native format/import approval stays pending.",
+      "bankCapturedAt": "2026-10-08 13:00:16.891043+00",
+      "snapshotScopeOnly": true,
+      "liveCountNotPermission": true
+    },
+    "q22RepairRead": false,
+    "q23SourceRoleMetadataBoundary": null
+  },
+  "holds": [],
+  "gates": {
+    "rights": "held",
+    "custody": "held",
+    "similarity": "pending",
+    "nativeCompatibility": "pending",
+    "directUseAllowed": false,
+    "loadable": false,
+    "dbWrites": 0,
+    "modelCalls": 0,
+    "finalPublicationApproval": false
+  }
+}

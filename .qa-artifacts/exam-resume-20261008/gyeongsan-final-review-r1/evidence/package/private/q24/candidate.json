@@ -1,0 +1,352 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 24,
+  "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q24",
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "content": "두 직각삼각형 $ABC$, $DBC$에서 $\\angle BAC=\\angle BCD=90^\\circ$, $\\angle ACB=45^\\circ$, $\\angle BDC=60^\\circ$이다. $E$는 선분 $AC$와 $BD$의 교점이고, $H$는 $E$에서 $BC$에 내린 수선의 발이다. 음영 부분 $\\triangle EBC$의 넓이가 $75(\\sqrt3-1)\\,\\mathrm{cm}^2$일 때, $CD$의 길이는?",
+  "choices": [
+    "$5\\,\\mathrm{cm}$",
+    "$10\\,\\mathrm{cm}$",
+    "$15\\,\\mathrm{cm}$",
+    "$20\\,\\mathrm{cm}$",
+    "$25\\,\\mathrm{cm}$"
+  ],
+  "answer": "②",
+  "solution": "$CD=t\\,\\mathrm{cm}$, $EH=h\\,\\mathrm{cm}$라 하자. 직각삼각형 $DBC$에서 $BC=t\\tan60^\\circ=t\\sqrt3$이고 $\\angle DBC=30^\\circ$이다.\n\n직각삼각형 $BEH$에서 $BH=\\dfrac h{\\tan30^\\circ}=h\\sqrt3$이다. 또 $E$가 $AC$ 위에 있으므로 $\\angle ECH=45^\\circ$이고, 직각삼각형 $ECH$에서 $HC=\\dfrac h{\\tan45^\\circ}=h$이다.\n\n$BC=BH+HC$이므로 $t\\sqrt3=h(\\sqrt3+1)$이다. 따라서 $h=\\dfrac{t\\sqrt3}{\\sqrt3+1}=\\dfrac t2(3-\\sqrt3)$이다.\n\n$\\triangle EBC$의 넓이는 $\\dfrac12 BC\\cdot EH=\\dfrac12 t\\sqrt3\\cdot\\dfrac t2(3-\\sqrt3)=\\dfrac{3t^2}{4}(\\sqrt3-1)$이다. 이를 기록과 비교하고 양수 $\\sqrt3-1$로 나누면 $\\dfrac{3t^2}{4}=75$에서 $t^2=100$이다. 길이는 양수이므로 $t=10$이다. 정답은 ②이다.",
+  "score": 5,
+  "questionType": "객관식",
+  "facts": {
+    "CD": 10,
+    "BC": 17.32050807568877,
+    "EH": 6.339745962155613,
+    "area": 54.903810567665786,
+    "points": {
+      "B": [
+        0,
+        0
+      ],
+      "C": [
+        17.32050807568877,
+        0
+      ],
+      "D": [
+        17.32050807568877,
+        10
+      ],
+      "A": [
+        8.660254037844386,
+        8.660254037844386
+      ],
+      "E": [
+        10.980762113533157,
+        6.339745962155613
+      ],
+      "H": [
+        10.980762113533157,
+        0
+      ]
+    },
+    "rendererScalePxPerCm": 20,
+    "answerValue": 10
+  },
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "figure-1.spec.json",
+      "svgPath": "figure-1.svg",
+      "intendedWidthMm": 70
+    }
+  ],
+  "variantDelta": {
+    "modes": [
+      "inverse-target",
+      "structure",
+      "representation"
+    ],
+    "before": "두 직각삼각형에서 CD=20과45°/60°로 교차 부분 EBC의 넓이를 구한다.",
+    "after": "새 음영 넓이 기록을 주고 기준 수직 변 CD를 복구한다. 실제 수선 H를 표시하여 넓이의 높이를 명확히 했다.",
+    "sharedConcept": "두 직각삼각형의 특수각으로 공통 밑변의 분할 길이와 높이를 구성하여 넓이를 구한다.",
+    "sharedProcedure": "CD=t로 BC=t√3, EH=h로 BH=h√3/HC=h를 구해 공통 밑변을 연결한 뒤 넓이식의 양의 t를 복구한다.",
+    "objectiveDifficulty": "원문의45°/60°-교차삼각형-밑변높이 연결을 유지한5점 역산이다. 일반 교점 이론이나 임의각 삼각비 계산을 쓰지 않는다.",
+    "scoreDelta": {
+      "source": 5,
+      "authored": 5,
+      "changed": false
+    }
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수04-17",
+      "9수04-18",
+      "9수04-05",
+      "9수02-13",
+      "9수01-10"
+    ],
+    "allowedProcedure": "CD=t로 BC=t√3, EH=h로 BH=h√3/HC=h를 구해 공통 밑변을 연결한 뒤 넓이식의 양의 t를 복구한다.",
+    "forbiddenAvoided": [
+      "삼각비 사이의 항등식",
+      "사인·코사인 법칙",
+      "각의 덧셈정리",
+      "미분·최적화",
+      "좌표 벡터·행렬"
+    ],
+    "status": "author-proposed",
+    "surfaces": {
+      "stem": {
+        "status": "author-proposed",
+        "evidence": "직각 위치·점의 교차·수선과 새 넓이를 명확히 주었다."
+      },
+      "choices": {
+        "status": "author-proposed",
+        "evidence": "다섯 양의 cm 길이에 따른 넓이를 모두 계산한다."
+      },
+      "figuresAndTables": {
+        "status": "author-proposed",
+        "evidence": "새 정확 좌표는 A/C 직각, C45°/D60°, E의 두 선분 내부 교차와 H의 수선을 만족한다."
+      },
+      "notation": {
+        "status": "author-proposed",
+        "evidence": "선분·삼각형·각·도·근호·좌표와 삼각비를 중학교 정의대로 사용한다."
+      },
+      "answer": {
+        "status": "author-proposed",
+        "evidence": "새 조건에서 계산한 유일한 객관식 답이다. 원본 답이나 해설을 읽지 않았다."
+      },
+      "studentSolution": {
+        "status": "author-proposed",
+        "evidence": "실제 직각삼각형에서 각 비를 각각 써 밑변·높이를 연결하고 양의 근을 택한다."
+      },
+      "prerequisites": {
+        "status": "author-proposed",
+        "evidence": "중1 내각, 중3 삼각비 활용·근호·t² 양의 근과 삼각형 넓이"
+      }
+    },
+    "gradeBasis": "실제 직각삼각형의30°/45°/60°만 사용한다. t²=100의 양의 근 선택은 중3 이차방정식 범위이며 최적화가 아니다.",
+    "exactGradeApproval": false
+  },
+  "sourceReference": {
+    "externalId": "2025-gyeongsan-3-2-mid-24",
+    "examId": "personal-aa35a05fbaf41074c2ebcfcd6f16e876",
+    "sourcePacketExamId": "2025-gyeongsan-3-2-mid",
+    "school": "경산중",
+    "questionNumber": 24,
+    "sourceContentSha256": "f4c7757a1069051518ac5b7701563c8cf881da3d7117fde9add36645d2ee40db",
+    "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+    "sourceQuestionOnlySnapshot": "source-snapshot/packet/questions.json",
+    "sourceQuestionScore": 5,
+    "sourceQuestionType": "객관식",
+    "sourceQuestionParts": [],
+    "sourceStatus": "source_reference_reviewed_all_final_approval_gates_held",
+    "sourceObservation": "두 직각삼각형에서 CD=20과45°/60°로 교차 부분 EBC의 넓이를 구한다.",
+    "originalAnswersOrSolutionsUsed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "score": 5,
+    "difficultyProposal": "응용",
+    "difficultyStatus": "pending-independent-review",
+    "problemTypeProposal": null,
+    "problemTypeStatus": "pending-independent-review",
+    "hasFigure": true,
+    "assignment": {
+      "status": "pending",
+      "unitId": null,
+      "familyKey": null,
+      "currentUnit": null,
+      "currentRegistryMatch": null,
+      "liveCount": null,
+      "checkedAt": "2026-10-08 04:53:45.769124+00",
+      "evidence": "삼각형 넓이 유형과 넓이→기준변 역산의 정확 현재 규칙 대응은 추가 검토 전 null이다.",
+      "candidates": []
+    },
+    "achievementStandardRefs": [
+      {
+        "code": "9수01-10",
+        "verified_text": "근호를 포함한 식의 사칙계산을 할 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3788,
+          "record_offset_in_uncompressed_stream": 193301,
+          "extracted_paragraph_1based": 771
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            33
+          ],
+          "printed_pages": [
+            29
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      },
+      {
+        "code": "9수02-13",
+        "verified_text": "이차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3964,
+          "record_offset_in_uncompressed_stream": 201786,
+          "extracted_paragraph_1based": 809
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            34
+          ],
+          "printed_pages": [
+            30
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      },
+      {
+        "code": "9수04-05",
+        "verified_text": "다각형의 성질을 이해한다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4272,
+          "record_offset_in_uncompressed_stream": 216602,
+          "extracted_paragraph_1based": 874
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            37
+          ],
+          "printed_pages": [
+            33
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      },
+      {
+        "code": "9수04-17",
+        "verified_text": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4341,
+          "record_offset_in_uncompressed_stream": 219120,
+          "extracted_paragraph_1based": 891
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            38
+          ],
+          "printed_pages": [
+            34
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      },
+      {
+        "code": "9수04-18",
+        "verified_text": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4345,
+          "record_offset_in_uncompressed_stream": 219292,
+          "extracted_paragraph_1based": 892
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            38
+          ],
+          "printed_pages": [
+            34
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      }
+    ],
+    "achievementStandardStatus": "official-text-matched-candidate-author-proposed",
+    "sourceIdentityReview": {
+      "status": "source-packet-identity-supported-full-custody-held",
+      "sourceSchool": "경산중",
+      "sourceYear": 2025,
+      "sourcePacketDecision": "2025_original_header_school_footer_and_completed_question_identity_supported",
+      "fullPairCertification": "held",
+      "custody": "held",
+      "rights": "held"
+    },
+    "bankEvidence": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-fresh-r2-20261008.json",
+      "sha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b",
+      "capturedAt": "2026-10-08 04:53:45.769124+00",
+      "registrySha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "curriculumEvidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "databaseAccessByAuthor": false
+    },
+    "authorEvidence": {
+      "calculationsPath": "author-calculations.json",
+      "authoringScriptSha256": "52fa4de88bed4f45d2b40452d36d4296e228751d2844e363036e8f2f253637ca",
+      "visualReview": "pending-local-view",
+      "mathematicalReview": "author-self-check-only"
+    }
+  },
+  "schoolNamePolicy": {
+    "actual": "경산중",
+    "display": "해솔누리중학교",
+    "role": "fictional-display-alias-only",
+    "originalOccurrencesInStem": 0,
+    "surfaces": [
+      "content",
+      "choices",
+      "tables",
+      "figureLabels",
+      "solution"
+    ],
+    "review": "author-proposed"
+  },
+  "independentVerification": null,
+  "review": {
+    "status": "pending",
+    "mathematicalCorrectness": "pending-independent-blind-solve",
+    "gradeCurriculum": "pending-independent-review",
+    "equivalentConceptAndMethod": "pending-independent-review",
+    "distinctPresentation": "pending-independent-review",
+    "naturalKorean": "pending-independent-review",
+    "figure": "pending-independent-review",
+    "rights": "pending",
+    "similarity": "pending",
+    "nativeCompatibility": "pending",
+    "physicalPaper": "not-approved"
+  },
+  "directUseAllowed": false
+}

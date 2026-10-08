@@ -1,0 +1,620 @@
+{
+  "method": "independent-solve-then-review",
+  "reviewed": 24,
+  "mathematicalAnswersAndNewSolutionsPassed": 24,
+  "sevenStudentSurfacesGradePassed": 24,
+  "choiceQualityPassed": 23,
+  "choiceQualityHeld": 1,
+  "verified": 2,
+  "pending": 22,
+  "rejected": 0,
+  "supportedFamilyProposals": 2,
+  "semanticFamilyWithDifficultyHold": 1,
+  "all24MC": true,
+  "points": 96,
+  "q22OriginalR1DuplicateFindingPreserved": true,
+  "allOriginalSolvesUnedited": true,
+  "rightsCleared": 0,
+  "nativeApproved": 0,
+  "loadable": 0,
+  "results": [
+    {
+      "questionNumber": 1,
+      "status": "pending",
+      "mathematics": "passed",
+      "sevenStudentSurfaces": "passed",
+      "choiceQuality": "passed",
+      "unitUuidProposal": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "supportedFamily": null,
+      "semanticFamilyOnly": null,
+      "difficulty": {
+        "score": 4,
+        "sourceScorePreserved": true,
+        "authorDifficultyProposal": "응용",
+        "reviewerDifficultyProposal": "응용",
+        "basis": "표준형 축 p와 |a|를 읽고 두 조건을 동시에 비교한다. 4점은 원문과 동일하고 필요한 단계 수를 근거로 제안. 검토자는 심화하/기본과 응용 차이를 기록하며 실측 난도나 학교 자동 승인 주장 없음.",
+        "measuredDifficulty": false
+      },
+      "holds": [
+        {
+          "code": "exact-unit-live-family-contract-pending",
+          "basis": "g1-05는 x축 대칭식/계수곱,06은 한 y=ax²의 성질 개수;17은 한 표준형의 성질 개수. 서로 다른4카드의 축+폭 동시 묶음을 지원하는 전체 규칙이 확인되지 않음.",
+          "reopen": "실제 live 규칙의 전체 조건/요청 목표/핵심 절차/난도/형식을 지원하는 근거를 제시하거나 별도 새 메타데이터 계약을 검토. Unit·제목·live count만으로 확정하지 않음."
+        }
+      ]
+    },
+    {
+      "questionNumber": 2,
+      "status": "verified",
+      "mathematics": "passed",
+      "sevenStudentSurfaces": "passed",
+      "choiceQuality": "passed",
+      "unitUuidProposal": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "supportedFamily": "mid:3-1|이차함수의 그래프 ⑴|11",
+      "semanticFamilyOnly": null,
+      "difficulty": {
+        "score": 4,
+        "sourceScorePreserved": true,
+        "authorDifficultyProposal": "응용",
+        "reviewerDifficultyProposal": "응용",
+        "basis": "축/절편으로 꼭짓점(0,−3),한 점 대입으로 a,결과 개형 확인. 4점은 원문과 동일하고 필요한 단계 수를 근거로 제안. 검토자는 심화하/기본과 응용 차이를 기록하며 실측 난도나 학교 자동 승인 주장 없음.",
+        "measuredDifficulty": false
+      },
+      "holds": []
+    },
+    {
+      "questionNumber": 3,
+      "status": "pending",
+      "mathematics": "passed",
+      "sevenStudentSurfaces": "passed",
+      "choiceQuality": "passed",
+      "unitUuidProposal": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "supportedFamily": null,
+      "semanticFamilyOnly": null,
+      "difficulty": {
+        "score": 3,
+        "sourceScorePreserved": true,
+        "authorDifficultyProposal": "응용",
+        "reviewerDifficultyProposal": "응용",
+        "basis": "곱 전개→이차항 비교→간단한 일차방정식;완전제곱의 실제 이동 증거. 3점은 원문과 동일하고 필요한 단계 수를 근거로 제안. 검토자는 심화하/기본과 응용 차이를 기록하며 실측 난도나 학교 자동 승인 주장 없음.",
+        "measuredDifficulty": false
+      },
+      "holds": [
+        {
+          "code": "exact-unit-live-family-contract-pending",
+          "basis": "g1-19는 이미 완전한 표준형/이동량 또는 전후 식에서 식·꼭짓점·이동량 합을 구함. 본문 곱형의 미지 이차계수와 이동 가능성 역산까지의 전체 입력/목표는 확인되지 않음.",
+          "reopen": "실제 live 규칙의 전체 조건/요청 목표/핵심 절차/난도/형식을 지원하는 근거를 제시하거나 별도 새 메타데이터 계약을 검토. Unit·제목·live count만으로 확정하지 않음."
+        }
+      ]
+    },
+    {
+      "questionNumber": 4,
+      "status": "pending",
+      "mathematics": "passed",
+      "sevenStudentSurfaces": "passed",
+      "choiceQuality": "passed",
+      "unitUuidProposal": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "supportedFamily": null,
+      "semanticFamilyOnly": null,
+      "difficulty": {
+        "score": 3,
+        "sourceScorePreserved": true,
+        "authorDifficultyProposal": "응용",
+        "reviewerDifficultyProposal": "기본",
+        "basis": "축 읽기→정수 좌표 이동→모든 보기 축 비교. 3점은 원문과 동일하고 필요한 단계 수를 근거로 제안. 검토자는 심화하/기본과 응용 차이를 기록하며 실측 난도나 학교 자동 승인 주장 없음.",
+        "measuredDifficulty": false
+      },
+      "holds": [
+        {
+          "code": "exact-unit-live-family-contract-pending",
+          "basis": "g1-12는 한 y=a(x−p)²의 꼭짓점/축,15는 이동/축/점의 계수식 목표. 서로 다른 두 그래프의 상대 축 거리로 전체 보기 식을 선택하는 규칙은 미확정.",
+          "reopen": "실제 live 규칙의 전체 조건/요청 목표/핵심 절차/난도/형식을 지원하는 근거를 제시하거나 별도 새 메타데이터 계약을 검토. Unit·제목·live count만으로 확정하지 않음."
+        }
+      ]
+    },
+    {
+      "questionNumber": 5,
+      "status": "pending",
+      "mathematics": "passed",
+      "sevenStudentSurfaces": "passed",
+      "choiceQuality": "passed",
+      "unitUuidProposal": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "supportedFamily": null,
+      "semanticFamilyOnly": null,
+      "difficulty": {
+        "score": 4,
+        "sourceScorePreserved": true,
+        "authorDifficultyProposal": "응용",
+        "reviewerDifficultyProposal": "응용",
+        "basis": "축/만남으로 꼭짓점→y절편으로 a→새 x대입. 4점은 원문과 동일하고 필요한 단계 수를 근거로 제안. 검토자는 심화하/기본과 응용 차이를 기록하며 실측 난도나 학교 자동 승인 주장 없음.",
+        "measuredDifficulty": false
+      },
+      "holds": [
+        {
+          "code": "exact-unit-live-family-contract-pending",
+          "basis": "g1-14는 꼭짓점(p,0)+점으로 식만 구하고 mode1은 계수가 이미 주어진 이동식. g1-11 mode1은 다른 점 값을 묻지만 p=0만 지원한다. 본문 p=2,계수 복원 뒤 다른 점 y목표 전체가 일치하는 규칙은 미확정.",
+          "reopen": "실제 live 규칙의 전체 조건/요청 목표/핵심 절차/난도/형식을 지원하는 근거를 제시하거나 별도 새 메타데이터 계약을 검토. Unit·제목·live count만으로 확정하지 않음."
+        }
+      ]
+    },
+    {
+      "questionNumber": 6,
+      "status": "pending",
+      "mathematics": "passed",
+      "sevenStudentSurfaces": "passed",
+      "choiceQuality": "passed",
+      "unitUuidProposal": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "supportedFamily": null,
+      "semanticFamilyOnly": null,
+      "difficulty": {
+        "score": 4,
+        "sourceScorePreserved": true,
+        "authorDifficultyProposal": "응용",
+        "reviewerDifficultyProposal": "응용",
+        "basis": "꼭짓점의 두 좌표를 t로 읽어 직선에 대입하고 일차방정식으로 좌표 복원. 4점은 원문과 동일하고 필요한 단계 수를 근거로 제안. 검토자는 심화하/기본과 응용 차이를 기록하며 실측 난도나 학교 자동 승인 주장 없음.",
+        "measuredDifficulty": false
+      },
+      "holds": [
+        {
+          "code": "exact-unit-live-family-contract-pending",
+          "basis": "g1-15 mode2는 축을 이미 주고 두 독립 상수 p,q의 합을 구한다. 본문 축이 미지이고 높이3t−2로 연결된 한 상수의 실제 좌표 목표까지 전체 규칙은 미확정.",
+          "reopen": "실제 live 규칙의 전체 조건/요청 목표/핵심 절차/난도/형식을 지원하는 근거를 제시하거나 별도 새 메타데이터 계약을 검토. Unit·제목·live count만으로 확정하지 않음."
+        }
+      ]
+    },
+    {
+      "questionNumber": 7,
+      "status": "pending",
+      "mathematics": "passed",
+      "sevenStudentSurfaces": "passed",
+      "choiceQuality": "passed",
+      "unitUuidProposal": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "supportedFamily": null,
+      "semanticFamilyOnly": null,
+      "difficulty": {
+        "score": 4,
+        "sourceScorePreserved": true,
+        "authorDifficultyProposal": "응용",
+        "reviewerDifficultyProposal": "응용",
+        "basis": "실제 꼭짓점 부호→일차함수 기울기/절편 부호→5그림 비교. 4점은 원문과 동일하고 필요한 단계 수를 근거로 제안. 검토자는 심화하/기본과 응용 차이를 기록하며 실측 난도나 학교 자동 승인 주장 없음.",
+        "measuredDifficulty": false
+      },
+      "holds": [
+        {
+          "code": "exact-unit-live-family-contract-pending",
+          "basis": "g1-20은 포물선그림의a,p,q부호/다른포물선 꼭짓점 등,22T는 한 점 대입 이차방정식 두 근을 꼭짓점 사분면으로 선별. 본문 역방향 부호로 다른 일차함수5그림 선택하는 전체 규칙 아님.",
+          "reopen": "실제 live 규칙의 전체 조건/요청 목표/핵심 절차/난도/형식을 지원하는 근거를 제시하거나 별도 새 메타데이터 계약을 검토. Unit·제목·live count만으로 확정하지 않음."
+        }
+      ]
+    },
+    {
+      "questionNumber": 8,
+      "status": "verified",
+      "mathematics": "passed",
+      "sevenStudentSurfaces": "passed",
+      "choiceQuality": "passed",
+      "unitUuidProposal": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "supportedFamily": "mid:3-1|이차함수의 그래프 ⑴|16",
+      "semanticFamilyOnly": null,
+      "difficulty": {
+        "score": 3,
+        "sourceScorePreserved": true,
+        "authorDifficultyProposal": "응용",
+        "reviewerDifficultyProposal": "응용",
+        "basis": "표준형 p와 계수 부호→축/열린 방향→증가하는 가지. 3점은 원문과 동일하고 필요한 단계 수를 근거로 제안. 검토자는 심화하/기본과 응용 차이를 기록하며 실측 난도나 학교 자동 승인 주장 없음.",
+        "measuredDifficulty": false
+      },
+      "holds": []
+    },
+    {
+      "questionNumber": 9,
+      "status": "pending",
+      "mathematics": "passed",
+      "sevenStudentSurfaces": "passed",
+      "choiceQuality": "passed",
+      "unitUuidProposal": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "supportedFamily": null,
+      "semanticFamilyOnly": null,
+      "difficulty": {
+        "score": 4,
+        "sourceScorePreserved": true,
+        "authorDifficultyProposal": "응용",
+        "reviewerDifficultyProposal": "응용",
+        "basis": "전후 꼭짓점 좌표와 두 이동량의 일차 관계를 역산,곱 계산. 4점은 원문과 동일하고 필요한 단계 수를 근거로 제안. 검토자는 심화하/기본과 응용 차이를 기록하며 실측 난도나 학교 자동 승인 주장 없음.",
+        "measuredDifficulty": false
+      },
+      "holds": [
+        {
+          "code": "exact-unit-live-family-contract-pending",
+          "basis": "제안된 g1-19 mode0/1/2 실제 출력은 이동후 식/꼭짓점/이동량m+n이다. 원래 미지 꼭짓점의 두 상수를 역산하여 곱mn을 묻는 전체 규칙은 직접 지원 근거가 없음. 개념 대응과 native family 수용은 분리;제안을 자동 확정하지 않음.",
+          "reopen": "실제 live 규칙의 전체 조건/요청 목표/핵심 절차/난도/형식을 지원하는 근거를 제시하거나 별도 새 메타데이터 계약을 검토. Unit·제목·live count만으로 확정하지 않음."
+        }
+      ]
+    },
+    {
+      "questionNumber": 10,
+      "status": "pending",
+      "mathematics": "passed",
+      "sevenStudentSurfaces": "passed",
+      "choiceQuality": "passed",
+      "unitUuidProposal": "03097b76-d9cb-4525-a520-b70c03a45c77",
+      "supportedFamily": null,
+      "semanticFamilyOnly": null,
+      "difficulty": {
+        "score": 5,
+        "sourceScorePreserved": true,
+        "authorDifficultyProposal": "응용",
+        "reviewerDifficultyProposal": "응용",
+        "basis": "꼭짓점 표준형→점 대입→전개→f(1). 5점은 원문과 동일하고 필요한 단계 수를 근거로 제안. 검토자는 심화하/기본과 응용 차이를 기록하며 실측 난도나 학교 자동 승인 주장 없음.",
+        "measuredDifficulty": false
+      },
+      "holds": [
+        {
+          "code": "exact-unit-live-family-contract-pending",
+          "basis": "g2-09는 부호만 판별,10은 꼭짓점+점으로 일반형 식만 출력. 본문 4항 기록의 f(1)까지 포함한 묶음/유형·난도 계약은 추가 확인 전 held;title-only 선택 금지.",
+          "reopen": "실제 live 규칙의 전체 조건/요청 목표/핵심 절차/난도/형식을 지원하는 근거를 제시하거나 별도 새 메타데이터 계약을 검토. Unit·제목·live count만으로 확정하지 않음."
+        }
+      ]
+    },
+    {
+      "questionNumber": 11,
+      "status": "pending",
+      "mathematics": "passed",
+      "sevenStudentSurfaces": "passed",
+      "choiceQuality": "passed",
+      "unitUuidProposal": "03097b76-d9cb-4525-a520-b70c03a45c77",
+      "supportedFamily": null,
+      "semanticFamilyOnly": null,
+      "difficulty": {
+        "score": 5,
+        "sourceScorePreserved": true,
+        "authorDifficultyProposal": "응용",
+        "reviewerDifficultyProposal": "심화하",
+        "basis": "완전제곱→개형/증가 가지→y절편의 일차부등식;일반 이차부등식 해법·미분·최적화 필요 없음. 5점은 원문과 동일하고 필요한 단계 수를 근거로 제안. 검토자는 심화하/기본과 응용 차이를 기록하며 실측 난도나 학교 자동 승인 주장 없음.",
+        "measuredDifficulty": false
+      },
+      "holds": [
+        {
+          "code": "exact-unit-live-family-contract-pending",
+          "basis": "g2-09는 고정된 그림의 계수/함숫값 부호,22T는 한 점 대입 이차방정식의 두 수를 꼭짓점 사분면으로 선별. 본문 계수k의 연속 전체 범위와 사분면 배제/등호 계약을 지원하지 않음.",
+          "reopen": "실제 live 규칙의 전체 조건/요청 목표/핵심 절차/난도/형식을 지원하는 근거를 제시하거나 별도 새 메타데이터 계약을 검토. Unit·제목·live count만으로 확정하지 않음."
+        }
+      ]
+    },
+    {
+      "questionNumber": 12,
+      "status": "pending",
+      "mathematics": "passed",
+      "sevenStudentSurfaces": "passed",
+      "choiceQuality": "passed",
+      "unitUuidProposal": "03097b76-d9cb-4525-a520-b70c03a45c77",
+      "supportedFamily": null,
+      "semanticFamilyOnly": null,
+      "difficulty": {
+        "score": 5,
+        "sourceScorePreserved": true,
+        "authorDifficultyProposal": "응용",
+        "reviewerDifficultyProposal": "심화하",
+        "basis": "인수분해 축교점→같은 높이의 밑변 중점→두 점의 일차함수. 5점은 원문과 동일하고 필요한 단계 수를 근거로 제안. 검토자는 심화하/기본과 응용 차이를 기록하며 실측 난도나 학교 자동 승인 주장 없음.",
+        "measuredDifficulty": false
+      },
+      "holds": [
+        {
+          "code": "exact-unit-live-family-contract-pending",
+          "basis": "g2-08은 축교점삼각형의 전체 넓이만 구한다. 본문 넓이 이등분→중점→새 일차함수의 세 항목까지 지원하는 전체 규칙은 미확정.",
+          "reopen": "실제 live 규칙의 전체 조건/요청 목표/핵심 절차/난도/형식을 지원하는 근거를 제시하거나 별도 새 메타데이터 계약을 검토. Unit·제목·live count만으로 확정하지 않음."
+        }
+      ]
+    },
+    {
+      "questionNumber": 13,
+      "status": "pending",
+      "mathematics": "passed",
+      "sevenStudentSurfaces": "passed",
+      "choiceQuality": "passed",
+      "unitUuidProposal": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+      "supportedFamily": null,
+      "semanticFamilyOnly": "mid:3-2|삼각비|02",
+      "difficulty": {
+        "score": 3,
+        "sourceScorePreserved": true,
+        "authorDifficultyProposal": "응용",
+        "reviewerDifficultyProposal": "기본",
+        "basis": "대상각/빗변/이웃변 구별→정의 비례식 한 번의 곱. 3점은 원문과 동일하고 필요한 단계 수를 근거로 제안. 검토자는 심화하/기본과 응용 차이를 기록하며 실측 난도나 학교 자동 승인 주장 없음.",
+        "measuredDifficulty": false
+      },
+      "holds": [
+        {
+          "code": "exact-unit-live-family-contract-pending",
+          "basis": "실제 삼각비02의 cos branch는 빗변+cos를 주고 이웃 직각변을 구함;5-12-13의2배26/10은 풀에 있음. Unit/목적/절차는 정확하나 실제 rule 난도는 기본,봉인 candidate.metadata.difficultyProposal은 응용이어서 현행 난도 계약은 불일치.",
+          "reopen": "실제 live 규칙의 전체 조건/요청 목표/핵심 절차/난도/형식을 지원하는 근거를 제시하거나 별도 새 메타데이터 계약을 검토. Unit·제목·live count만으로 확정하지 않음."
+        },
+        {
+          "code": "difficulty-proposal-mismatch",
+          "basis": "난도 제안 응용→기본 정정 및 새 메타데이터 바인딩/검토가 필요.3점은 원문 지면과 같고 적절.",
+          "reopen": "수정은 새 버전으로 봉인/해시 바인딩 후 해당 차원 독립 재검토. 원본 풀이/후보 불변."
+        }
+      ]
+    },
+    {
+      "questionNumber": 14,
+      "status": "pending",
+      "mathematics": "passed",
+      "sevenStudentSurfaces": "passed",
+      "choiceQuality": "passed",
+      "unitUuidProposal": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+      "supportedFamily": null,
+      "semanticFamilyOnly": null,
+      "difficulty": {
+        "score": 4,
+        "sourceScorePreserved": true,
+        "authorDifficultyProposal": "응용",
+        "reviewerDifficultyProposal": "응용",
+        "basis": "두 직각변→빗변 양의 제곱근→두 각에서 각각 정의. 4점은 원문과 동일하고 필요한 단계 수를 근거로 제안. 검토자는 심화하/기본과 응용 차이를 기록하며 실측 난도나 학교 자동 승인 주장 없음.",
+        "measuredDifficulty": false
+      },
+      "holds": [
+        {
+          "code": "exact-unit-live-family-contract-pending",
+          "basis": "제안된 삼각비01은 정수 피타고라스 TRIPLES의 두 변으로 한 각의 한 삼각비만 출력,기본. 본문 비정수√34 빗변·유리화·다른 두 각의 쌍과 응용 계약까지 미지원. 정의 개념이 가까운 것으로 전체 매핑 확정하지 않음.",
+          "reopen": "실제 live 규칙의 전체 조건/요청 목표/핵심 절차/난도/형식을 지원하는 근거를 제시하거나 별도 새 메타데이터 계약을 검토. Unit·제목·live count만으로 확정하지 않음."
+        }
+      ]
+    },
+    {
+      "questionNumber": 16,
+      "status": "pending",
+      "mathematics": "passed",
+      "sevenStudentSurfaces": "passed",
+      "choiceQuality": "passed",
+      "unitUuidProposal": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+      "supportedFamily": null,
+      "semanticFamilyOnly": null,
+      "difficulty": {
+        "score": 3,
+        "sourceScorePreserved": true,
+        "authorDifficultyProposal": "응용",
+        "reviewerDifficultyProposal": "기본",
+        "basis": "네 유한 특수각 값→근호 사칙→일차방정식. 3점은 원문과 동일하고 필요한 단계 수를 근거로 제안. 검토자는 심화하/기본과 응용 차이를 기록하며 실측 난도나 학교 자동 승인 주장 없음.",
+        "measuredDifficulty": false
+      },
+      "holds": [
+        {
+          "code": "exact-unit-live-family-contract-pending",
+          "basis": "삼각비08/13은 특수각 수치 식의 직접 값,15는 대소 관계 연산. 네 항/계수 미지 역산의 전체 규칙은 확인되지 않음.",
+          "reopen": "실제 live 규칙의 전체 조건/요청 목표/핵심 절차/난도/형식을 지원하는 근거를 제시하거나 별도 새 메타데이터 계약을 검토. Unit·제목·live count만으로 확정하지 않음."
+        }
+      ]
+    },
+    {
+      "questionNumber": 17,
+      "status": "pending",
+      "mathematics": "passed",
+      "sevenStudentSurfaces": "passed",
+      "choiceQuality": "passed",
+      "unitUuidProposal": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+      "supportedFamily": null,
+      "semanticFamilyOnly": null,
+      "difficulty": {
+        "score": 4,
+        "sourceScorePreserved": true,
+        "authorDifficultyProposal": "응용",
+        "reviewerDifficultyProposal": "응용",
+        "basis": "피타고라스→두 보조 직각삼각형의 같은 각→원삼각형에서 각별 정의. 4점은 원문과 동일하고 필요한 단계 수를 근거로 제안. 검토자는 심화하/기본과 응용 차이를 기록하며 실측 난도나 학교 자동 승인 주장 없음.",
+        "measuredDifficulty": false
+      },
+      "holds": [
+        {
+          "code": "exact-unit-live-family-contract-pending",
+          "basis": "04는 원 직각변 두 개와 수선에서 한 각/한 비;05는 수선 높이·빗변 일부에서 한 비. 본문 두 수선 각의 cos/sin 동시 기록은 전체 target 미확정.19 제목 여각으로 자동 배정하지 않는다.",
+          "reopen": "실제 live 규칙의 전체 조건/요청 목표/핵심 절차/난도/형식을 지원하는 근거를 제시하거나 별도 새 메타데이터 계약을 검토. Unit·제목·live count만으로 확정하지 않음."
+        }
+      ]
+    },
+    {
+      "questionNumber": 18,
+      "status": "pending",
+      "mathematics": "passed",
+      "sevenStudentSurfaces": "passed",
+      "choiceQuality": "passed",
+      "unitUuidProposal": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+      "supportedFamily": null,
+      "semanticFamilyOnly": null,
+      "difficulty": {
+        "score": 4,
+        "sourceScorePreserved": true,
+        "authorDifficultyProposal": "응용",
+        "reviewerDifficultyProposal": "응용",
+        "basis": "내각 비와180합→60특수각 값 각각 대입→근호 일차식. 4점은 원문과 동일하고 필요한 단계 수를 근거로 제안. 검토자는 심화하/기본과 응용 차이를 기록하며 실측 난도나 학교 자동 승인 주장 없음.",
+        "measuredDifficulty": false
+      },
+      "holds": [
+        {
+          "code": "exact-unit-live-family-contract-pending",
+          "basis": "특수각 직접 값 유형과 내각 비+계수 역산 복합 전체 목적을 지원하는 현재 live 규칙은 미확정. 일반 삼각비 관계식 유형을 대체 배정하지 않는다.",
+          "reopen": "실제 live 규칙의 전체 조건/요청 목표/핵심 절차/난도/형식을 지원하는 근거를 제시하거나 별도 새 메타데이터 계약을 검토. Unit·제목·live count만으로 확정하지 않음."
+        }
+      ]
+    },
+    {
+      "questionNumber": 19,
+      "status": "pending",
+      "mathematics": "passed",
+      "sevenStudentSurfaces": "passed",
+      "choiceQuality": "passed",
+      "unitUuidProposal": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+      "supportedFamily": null,
+      "semanticFamilyOnly": null,
+      "difficulty": {
+        "score": 5,
+        "sourceScorePreserved": true,
+        "authorDifficultyProposal": "응용",
+        "reviewerDifficultyProposal": "심화하",
+        "basis": "tan30→AB,sin45→BE/CF,직사각형 대변→높이합,일차역산;tan75/덧셈정리 없음. 5점은 원문과 동일하고 필요한 단계 수를 근거로 제안. 검토자는 심화하/기본과 응용 차이를 기록하며 실측 난도나 학교 자동 승인 주장 없음.",
+        "measuredDifficulty": false
+      },
+      "holds": [
+        {
+          "code": "exact-unit-live-family-contract-pending",
+          "basis": "활용01/04/05는 한 삼각형 길이;본문 두 등변직각 삼각형+직사각형의 높이합 역산을 모두 지원하는 live 목적/조건은 미확정.",
+          "reopen": "실제 live 규칙의 전체 조건/요청 목표/핵심 절차/난도/형식을 지원하는 근거를 제시하거나 별도 새 메타데이터 계약을 검토. Unit·제목·live count만으로 확정하지 않음."
+        }
+      ]
+    },
+    {
+      "questionNumber": 20,
+      "status": "pending",
+      "mathematics": "passed",
+      "sevenStudentSurfaces": "passed",
+      "choiceQuality": "passed",
+      "unitUuidProposal": "635abab8-4a87-452b-ad6c-d59065822f29",
+      "supportedFamily": null,
+      "semanticFamilyOnly": null,
+      "difficulty": {
+        "score": 5,
+        "sourceScorePreserved": true,
+        "authorDifficultyProposal": "응용",
+        "reviewerDifficultyProposal": "심화하",
+        "basis": "접선 직각→합동/이등분→30/60의 실제 삼각형 길이→두 점의 일차식 대입;원의 방정식/점직선거리/방멱/원비례 없음. 5점은 원문과 동일하고 필요한 단계 수를 근거로 제안. 검토자는 심화하/기본과 응용 차이를 기록하며 실측 난도나 학교 자동 승인 주장 없음.",
+        "measuredDifficulty": false
+      },
+      "holds": [
+        {
+          "code": "exact-unit-live-family-contract-pending",
+          "basis": "원과직선09는 접선각/접선길이/현 길이,10은 외접삼각형 둘레.삼각비06은 직선의 기울기.본문 접점 좌표+AB절편→반지름 역산 전체 규칙은 확인되지 않음;복합 Unit 주 목적 제안만 제공.",
+          "reopen": "실제 live 규칙의 전체 조건/요청 목표/핵심 절차/난도/형식을 지원하는 근거를 제시하거나 별도 새 메타데이터 계약을 검토. Unit·제목·live count만으로 확정하지 않음."
+        }
+      ]
+    },
+    {
+      "questionNumber": 21,
+      "status": "pending",
+      "mathematics": "passed",
+      "sevenStudentSurfaces": "passed",
+      "choiceQuality": "passed",
+      "unitUuidProposal": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+      "supportedFamily": null,
+      "semanticFamilyOnly": null,
+      "difficulty": {
+        "score": 3,
+        "sourceScorePreserved": true,
+        "authorDifficultyProposal": "기본",
+        "reviewerDifficultyProposal": "기본",
+        "basis": "OSQ/OUT에서 실제 변 비 읽기→주어진4자리 기록 소수 뺄셈. 3점은 원문과 동일하고 필요한 단계 수를 근거로 제안. 검토자는 심화하/기본과 응용 차이를 기록하며 실측 난도나 학교 자동 승인 주장 없음.",
+        "measuredDifficulty": false
+      },
+      "holds": [
+        {
+          "code": "exact-unit-live-family-contract-pending",
+          "basis": "삼각비12는 수선·투영·접선 세 길이를 모두 주고 단일 비 또는 sin+cos/cos+tan의 직접 값(2자리)을 출력. 본문 일부 기록+sin/tan합→누락값/4자리 역산의 전체 규칙 미지원.",
+          "reopen": "실제 live 규칙의 전체 조건/요청 목표/핵심 절차/난도/형식을 지원하는 근거를 제시하거나 별도 새 메타데이터 계약을 검토. Unit·제목·live count만으로 확정하지 않음."
+        }
+      ]
+    },
+    {
+      "questionNumber": 22,
+      "status": "pending",
+      "mathematics": "passed",
+      "sevenStudentSurfaces": "passed",
+      "choiceQuality": "held duplicate2/3",
+      "unitUuidProposal": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+      "supportedFamily": null,
+      "semanticFamilyOnly": null,
+      "difficulty": {
+        "score": 4,
+        "sourceScorePreserved": true,
+        "authorDifficultyProposal": "응용",
+        "reviewerDifficultyProposal": "응용",
+        "basis": "평행각 대응→실제 OSQ의 cos정의.오답 동치의 검증은 AA닮음,원비례 정리 아님. 4점은 원문과 동일하고 필요한 단계 수를 근거로 제안. 검토자는 심화하/기본과 응용 차이를 기록하며 실측 난도나 학교 자동 승인 주장 없음.",
+        "measuredDifficulty": false
+      },
+      "holds": [
+        {
+          "code": "exact-unit-live-family-contract-pending",
+          "basis": "삼각비12는 단위 사분원의 수치 길이 직접 읽기.19는 다른 입력의 여각 관련 유형.반지름2/접선 쪽 각/기호식 비교 전체 live 규칙은 미확정.",
+          "reopen": "실제 live 규칙의 전체 조건/요청 목표/핵심 절차/난도/형식을 지원하는 근거를 제시하거나 별도 새 메타데이터 계약을 검토. Unit·제목·live count만으로 확정하지 않음."
+        },
+        {
+          "code": "duplicate-incorrect-distractors",
+          "basis": "원안r1의②③은모든허용도형에서동일한오답.새로운오답을고쳐새버전/자산·학생digest를고정후독립재검토.수리본미열람;원시풀이Finding불변.",
+          "reopen": "수정은 새 버전으로 봉인/해시 바인딩 후 해당 차원 독립 재검토. 원본 풀이/후보 불변."
+        }
+      ]
+    },
+    {
+      "questionNumber": 23,
+      "status": "pending",
+      "mathematics": "passed",
+      "sevenStudentSurfaces": "passed",
+      "choiceQuality": "passed",
+      "unitUuidProposal": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+      "supportedFamily": null,
+      "semanticFamilyOnly": null,
+      "difficulty": {
+        "score": 4,
+        "sourceScorePreserved": true,
+        "authorDifficultyProposal": "응용",
+        "reviewerDifficultyProposal": "응용",
+        "basis": "각45/60의 두 직각삼각형→공통높이의 두 번 포함→일차역산. 4점은 원문과 동일하고 필요한 단계 수를 근거로 제안. 검토자는 심화하/기본과 응용 차이를 기록하며 실측 난도나 학교 자동 승인 주장 없음.",
+        "measuredDifficulty": false
+      },
+      "holds": [
+        {
+          "code": "exact-unit-live-family-contract-pending",
+          "basis": "활용03은 나무/사다리/연의 단일 직각삼각형;13은 같은 한 건물의 지상 두 관측점에서 이동거리로 높이를 구함.본문 옥상 올림/내림·두탑 높이합/간격 역산 전체 규칙 미지원.원본 역사적 키 충돌은해당source/native권리별도보류.",
+          "reopen": "실제 live 규칙의 전체 조건/요청 목표/핵심 절차/난도/형식을 지원하는 근거를 제시하거나 별도 새 메타데이터 계약을 검토. Unit·제목·live count만으로 확정하지 않음."
+        }
+      ]
+    },
+    {
+      "questionNumber": 24,
+      "status": "pending",
+      "mathematics": "passed",
+      "sevenStudentSurfaces": "passed",
+      "choiceQuality": "passed",
+      "unitUuidProposal": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+      "supportedFamily": null,
+      "semanticFamilyOnly": null,
+      "difficulty": {
+        "score": 5,
+        "sourceScorePreserved": true,
+        "authorDifficultyProposal": "응용",
+        "reviewerDifficultyProposal": "심화하",
+        "basis": "30/45/60 직각삼각형의 분할 길이→공통 밑변/높이→초등 넓이→양의 제곱근.일반 교점/사인넓이공식 없음.보조수선H가문제에주어져추가복잡구성없음. 5점은 원문과 동일하고 필요한 단계 수를 근거로 제안. 검토자는 심화하/기본과 응용 차이를 기록하며 실측 난도나 학교 자동 승인 주장 없음.",
+        "measuredDifficulty": false
+      },
+      "holds": [
+        {
+          "code": "exact-unit-live-family-contract-pending",
+          "basis": "활용08의 triangleArea는 두 변과 끼인각으로 직접 넓이;05는 한 밑변과 두각으로 다른변.본문 교차삼각형 음영넓이→기준변의 양수 역복원 전체 규칙 미확정.",
+          "reopen": "실제 live 규칙의 전체 조건/요청 목표/핵심 절차/난도/형식을 지원하는 근거를 제시하거나 별도 새 메타데이터 계약을 검토. Unit·제목·live count만으로 확정하지 않음."
+        }
+      ]
+    },
+    {
+      "questionNumber": 25,
+      "status": "pending",
+      "mathematics": "passed",
+      "sevenStudentSurfaces": "passed",
+      "choiceQuality": "passed",
+      "unitUuidProposal": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+      "supportedFamily": null,
+      "semanticFamilyOnly": null,
+      "difficulty": {
+        "score": 4,
+        "sourceScorePreserved": true,
+        "authorDifficultyProposal": "응용",
+        "reviewerDifficultyProposal": "심화하",
+        "basis": "접기 합동/평행각→30/60 실제 직각삼각형→밑변차→밑변높이넓이.120°는 내각 기록이며sin120을 사용하지 않음;벡터반사법없음.수선F이미주어짐. 4점은 원문과 동일하고 필요한 단계 수를 근거로 제안. 검토자는 심화하/기본과 응용 차이를 기록하며 실측 난도나 학교 자동 승인 주장 없음.",
+        "measuredDifficulty": false
+      },
+      "holds": [
+        {
+          "code": "exact-unit-live-family-contract-pending",
+          "basis": "활용08의 단일두변끼인각넓이 또는10/12의 다각형·사각형 넓이는 실제 접기 전후와교점순서·밑변/면적쌍까지지원하지않음.전체규칙미확정.",
+          "reopen": "실제 live 규칙의 전체 조건/요청 목표/핵심 절차/난도/형식을 지원하는 근거를 제시하거나 별도 새 메타데이터 계약을 검토. Unit·제목·live count만으로 확정하지 않음."
+        }
+      ]
+    }
+  ]
+}

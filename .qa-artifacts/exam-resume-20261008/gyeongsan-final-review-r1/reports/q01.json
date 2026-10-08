@@ -1,0 +1,320 @@
+{
+  "questionNumber": 1,
+  "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q01",
+  "status": "pending",
+  "studentDigest": "a04555d3dbf7cb76374375ebfa08cd9574510b1460105353544b8f07c6cca413",
+  "candidateDigest": "79527f217bddd4c760e43c9b9f985e4a65c653be5324830bc50435e1da830b11",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "solveDigest": "39cd7c25553be3cb0cf616a71d22e9f9c68fd508908f56d8cd3ae951ca669cca",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-exam-twin-author-geometry-20261008",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "성질 설명 하나를 고르던 원문에서 서로 다른 네 카드를 두 조건으로 묶는 쌍 선택으로 바꾸었다. 축과 폭 비교라는 핵심을 유지한다. 명시 조건과 요청은 아래 실제 중학교 해법으로 해결된다.",
+      "standardCodes": [
+        "9수03-09",
+        "9수03-10"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "실제5보기 전부 계산/도형 비교;정답 하나,나머지 비동치 오답. ",
+      "standardCodes": [
+        "9수03-09",
+        "9수03-10"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "본문 표/수치/함수 기록을 직접 확인;별도 그림 없음. 70mm 검사 화면에서 텍스트와 자산 역할 확인.",
+      "standardCodes": [
+        "9수03-09",
+        "9수03-10"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "통상 좌표/함수/선분/도 단위/근호/실제 삼각비 표기. 일반 라디안·벡터·고교 공식 표기 없음. ",
+      "standardCodes": [
+        "9수03-09",
+        "9수03-10"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "각 카드의 (축, |a|)는 (0,2),(1,1/2),(0,1/2),(0,2); 다섯 실제 쌍 중③만 두 조건을 만족한다. circled choice는 역할·값·단위가 독립 결과와 일치.",
+      "standardCodes": [
+        "9수03-09",
+        "9수03-10"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "표준형 축 p와 |a|를 읽고 두 조건을 동시에 비교한다. 공개된 새 저자 풀이의 모든 단계와 실제 정의를 읽고 검산. ",
+      "standardCodes": [
+        "9수03-09",
+        "9수03-10"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "표준형 축 p와 |a|를 읽고 두 조건을 동시에 비교한다. 공식 선택 성취기준의 중학교 범위와 초등 밑변높이 원리;필요한 보조점/조건 명시 여부 확인.",
+      "standardCodes": [
+        "9수03-09",
+        "9수03-10"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    }
+  },
+  "evidence": {
+    "binding": {
+      "questionNumber": 1,
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q01",
+      "studentDigest": "a04555d3dbf7cb76374375ebfa08cd9574510b1460105353544b8f07c6cca413",
+      "candidateDigest": "79527f217bddd4c760e43c9b9f985e4a65c653be5324830bc50435e1da830b11",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "39cd7c25553be3cb0cf616a71d22e9f9c68fd508908f56d8cd3ae951ca669cca",
+      "candidateFileSha256": "32626db4dc32fa4a82cd9908b9d220af7c20506dce0b810fb20f0e85da5106d1",
+      "rawSolveSha256": "c7f3170146ac1570bdc42e7e122a2b4b53e1b3ddb2e78b2336441fd26878b727",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-1",
+      "sourceQuestionCanonicalDigest": "8293ef22566e4a10b0b492cadf1073ec1dc57ed54644323f19b184acb9a49379",
+      "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceProvidedDigest": "56c36a8b956791033e075af3de7764e756c2b2ac76f1aff214b360db6fb24e33",
+      "sourceHashContract": "supplied sourceContentDigest separate from raw stem or complete canonical source-row digest",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    "independentSolveCommit": "c8f8aeadfb28becb1d7447240fd4e28b6702fc4c",
+    "rawSolveUnchanged": true,
+    "answerComparison": {
+      "literalEqual": true,
+      "semanticEqual": true,
+      "role": "single selected choice",
+      "authorAnswer": "③",
+      "independentAnswer": "③",
+      "allFiveChoiceTruthValues": [
+        false,
+        false,
+        true,
+        false,
+        false
+      ],
+      "semanticDuplicateChoices": [],
+      "unitAndTargetOrderChecked": true,
+      "writtenPartsRequested": [],
+      "writtenRubricApplicable": false
+    },
+    "independentExactCalculation": {
+      "questionNumber": 1,
+      "target": [
+        0,
+        3
+      ],
+      "status": "independently-computed",
+      "evidence": {
+        "functionsFromStudent": [
+          "1 - 2*x**2",
+          "(x - 1)**2/2 - 2",
+          "-x**2/2 - 1",
+          "2*x**2 + 3"
+        ],
+        "axisAndAbsoluteLeadingCoefficient": [
+          [
+            "0",
+            "2"
+          ],
+          [
+            "1",
+            "1/2"
+          ],
+          [
+            "0",
+            "1/2"
+          ],
+          [
+            "0",
+            "2"
+          ]
+        ],
+        "actualChoicePairs": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "reason": "Vertical shifts and vertical reflection preserve width; axis requires same vertex x.",
+        "allFiveActualChoiceValues": [
+          [
+            0,
+            1
+          ],
+          [
+            0,
+            2
+          ],
+          [
+            0,
+            3
+          ],
+          [
+            1,
+            2
+          ],
+          [
+            2,
+            3
+          ]
+        ],
+        "choiceCorrectness": [
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "correctChoiceNumber": 3,
+        "semanticDuplicateChoices": [],
+        "oneCorrectChoice": true
+      },
+      "knownHolds": []
+    },
+    "mathAndNewSolution": "각 카드의 (축, |a|)는 (0,2),(1,1/2),(0,1/2),(0,2); 다섯 실제 쌍 중③만 두 조건을 만족한다.",
+    "coreAndSubstantiveDelta": "성질 설명 하나를 고르던 원문에서 서로 다른 네 카드를 두 조건으로 묶는 쌍 선택으로 바꾸었다. 축과 폭 비교라는 핵심을 유지한다.",
+    "allowedWholeStudentMethod": "표준형 축 p와 |a|를 읽고 두 조건을 동시에 비교한다.",
+    "sourceQuestionOnly": {
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-1",
+      "packetRawSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceDigestProvided": "56c36a8b956791033e075af3de7764e756c2b2ac76f1aff214b360db6fb24e33",
+      "images": [
+        {
+          "file": "images/q01-part1.png",
+          "rawSha256": "6c486e3a8104aa0c8f0a10cf966763f5598944945bd20451c3596d393a37adc7",
+          "personallyViewed": true
+        }
+      ],
+      "sourceCropsNotNewAssets": true,
+      "originalKeyOrSolutionFilesRead": false
+    },
+    "visualReview": {
+      "questionNumber": 1,
+      "studentDigest": "a04555d3dbf7cb76374375ebfa08cd9574510b1460105353544b8f07c6cca413",
+      "candidateDigest": "79527f217bddd4c760e43c9b9f985e4a65c653be5324830bc50435e1da830b11",
+      "columnWidthMm": 70,
+      "png": "inspection/q01-expanded.png",
+      "pngSha256": "2bde8c533694038a5eb1e4cc31c87557ca075df62f6a037b500d20553b1541e2",
+      "overflow": [],
+      "unclippedPng": null,
+      "figureCount": 0,
+      "figureWidthMm": 70,
+      "figureArrangement": "ordered roles",
+      "personallyViewed": true,
+      "imageRawSha256": "2bde8c533694038a5eb1e4cc31c87557ca075df62f6a037b500d20553b1541e2",
+      "actualQuestionAndExpandedSolutionInspected": true,
+      "allSuppliedChoiceFiguresInspected": false,
+      "assets": [],
+      "strictRegenerationResults": [],
+      "nativeCompatibilityNotApproved": true
+    },
+    "naturalKorean": "조건·대상각·선분·기록값·단위가 자연스럽고 모호한 원본 조건을 명시했다. 허구 학교 표시 해솔누리중학교와 실제 학교 내부 보존을 구별;원학교로 학년 승인하지 않음.",
+    "scoreAndDifficulty": {
+      "score": 4,
+      "sourceScorePreserved": true,
+      "authorDifficultyProposal": "응용",
+      "reviewerDifficultyProposal": "응용",
+      "basis": "표준형 축 p와 |a|를 읽고 두 조건을 동시에 비교한다. 4점은 원문과 동일하고 필요한 단계 수를 근거로 제안. 검토자는 심화하/기본과 응용 차이를 기록하며 실측 난도나 학교 자동 승인 주장 없음.",
+      "measuredDifficulty": false
+    },
+    "taxonomy": {
+      "unitUuidProposal": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "unit": {
+        "id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+        "grade": "중3",
+        "chapter": "4. 이차함수",
+        "section": "이차함수와 그래프",
+        "semester": 1,
+        "orderIndex": 478,
+        "problemCodePrefix": "J30401"
+      },
+      "unitSeedExactMatch": true,
+      "candidateMetadataAssignmentUnedited": {
+        "status": "pending",
+        "unitId": null,
+        "familyKey": null,
+        "currentUnit": null,
+        "currentRegistryMatch": null,
+        "liveCount": null,
+        "checkedAt": "2026-10-08 04:53:45.769124+00",
+        "evidence": "중3 이차함수와 그래프의 폭/축 성질은 확인했지만 두 조건 카드 묶음의 정확 live subtype은 별도 검토한다. 가깝다는 이유만으로 배정하지 않았다.",
+        "candidates": []
+      },
+      "existingLiveFamilyProposal": null,
+      "semanticFamilyOnly": null,
+      "status": "held",
+      "basis": "g1-05는 x축 대칭식/계수곱,06은 한 y=ax²의 성질 개수;17은 한 표준형의 성질 개수. 서로 다른4카드의 축+폭 동시 묶음을 지원하는 전체 규칙이 확인되지 않음.",
+      "formatComparison": "Complete new target/format/difficulty support is unconfirmed as described in basis; no nearest/title mapping.",
+      "bankCapturedAt": "2026-10-08 13:00:16.891043+00",
+      "snapshotScopeOnly": true,
+      "liveCountNotPermission": true
+    },
+    "q22RepairRead": false,
+    "q23SourceRoleMetadataBoundary": null
+  },
+  "holds": [
+    {
+      "code": "exact-unit-live-family-contract-pending",
+      "basis": "g1-05는 x축 대칭식/계수곱,06은 한 y=ax²의 성질 개수;17은 한 표준형의 성질 개수. 서로 다른4카드의 축+폭 동시 묶음을 지원하는 전체 규칙이 확인되지 않음.",
+      "reopen": "실제 live 규칙의 전체 조건/요청 목표/핵심 절차/난도/형식을 지원하는 근거를 제시하거나 별도 새 메타데이터 계약을 검토. Unit·제목·live count만으로 확정하지 않음."
+    }
+  ],
+  "gates": {
+    "rights": "held",
+    "custody": "held",
+    "similarity": "pending",
+    "nativeCompatibility": "pending",
+    "directUseAllowed": false,
+    "loadable": false,
+    "dbWrites": 0,
+    "modelCalls": 0,
+    "finalPublicationApproval": false
+  }
+}

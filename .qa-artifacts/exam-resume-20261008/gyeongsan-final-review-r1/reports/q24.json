@@ -1,0 +1,312 @@
+{
+  "questionNumber": 24,
+  "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q24",
+  "status": "pending",
+  "studentDigest": "dcfe60a5eb37164dad2c1e53beed2e3f8cf503c4095f3d34642370ec5cd9a62b",
+  "candidateDigest": "8804f8321d4f16a74d4be26ce1d53a4125bcc49054e9d565458f448efea56ab4",
+  "assetDigest": "5a3425197b573f1a96205932325788b47343c7882fbcbddf82f940a268f62c9d",
+  "solveDigest": "3b153faa18debfab6f68b8172036869e29e8b86dbe3190016eed65019c5fb8e3",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-exam-twin-author-geometry-20261008",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "기준변과각으로 교차부 넓이→그 넓이로 기준변 역복원,주어진수선H로 실제높이를명시.같은특수각·밑변높이절차 유지. 명시 조건과 요청은 아래 실제 중학교 해법으로 해결된다.",
+      "standardCodes": [
+        "9수04-17",
+        "9수04-18",
+        "6수03-06",
+        "9수01-07",
+        "9수01-10"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "실제5보기 전부 계산/도형 비교;정답 하나,나머지 비동치 오답. ",
+      "standardCodes": [
+        "9수04-17",
+        "9수04-18",
+        "6수03-06",
+        "9수01-07",
+        "9수01-10"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "새 SVG 1개의 라벨·직각·각·점순서·영역을 stem과 함께 확인. 70mm 검사 화면에서 텍스트와 자산 역할 확인.",
+      "standardCodes": [
+        "9수04-17",
+        "9수04-18",
+        "6수03-06",
+        "9수01-07",
+        "9수01-10"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "통상 좌표/함수/선분/도 단위/근호/실제 삼각비 표기. 일반 라디안·벡터·고교 공식 표기 없음. ",
+      "standardCodes": [
+        "9수04-17",
+        "9수04-18",
+        "6수03-06",
+        "9수01-07",
+        "9수01-10"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "CD=t>0,BC=t√3;EH=h,BH=h√3,HC=h;높이 t(3−√3)/2.넓이3t²(√3−1)/4=75(√3−1)→t²100→양수10cm.E/수선발이선분내부,도형존재 확인. circled choice는 역할·값·단위가 독립 결과와 일치.",
+      "standardCodes": [
+        "9수04-17",
+        "9수04-18",
+        "6수03-06",
+        "9수01-07",
+        "9수01-10"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "30/45/60 직각삼각형의 분할 길이→공통 밑변/높이→초등 넓이→양의 제곱근.일반 교점/사인넓이공식 없음.보조수선H가문제에주어져추가복잡구성없음. 공개된 새 저자 풀이의 모든 단계와 실제 정의를 읽고 검산. 공학 코드에서의 좌표/삼각함수 값 검증을 학생 풀이 방법으로 취급하지 않음.",
+      "standardCodes": [
+        "9수04-17",
+        "9수04-18",
+        "6수03-06",
+        "9수01-07",
+        "9수01-10"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "30/45/60 직각삼각형의 분할 길이→공통 밑변/높이→초등 넓이→양의 제곱근.일반 교점/사인넓이공식 없음.보조수선H가문제에주어져추가복잡구성없음. 공식 선택 성취기준의 중학교 범위와 초등 밑변높이 원리;필요한 보조점/조건 명시 여부 확인.",
+      "standardCodes": [
+        "9수04-17",
+        "9수04-18",
+        "6수03-06",
+        "9수01-07",
+        "9수01-10"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    }
+  },
+  "evidence": {
+    "binding": {
+      "questionNumber": 24,
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q24",
+      "studentDigest": "dcfe60a5eb37164dad2c1e53beed2e3f8cf503c4095f3d34642370ec5cd9a62b",
+      "candidateDigest": "8804f8321d4f16a74d4be26ce1d53a4125bcc49054e9d565458f448efea56ab4",
+      "assetDigest": "5a3425197b573f1a96205932325788b47343c7882fbcbddf82f940a268f62c9d",
+      "solveDigest": "3b153faa18debfab6f68b8172036869e29e8b86dbe3190016eed65019c5fb8e3",
+      "candidateFileSha256": "78ff4bdc9ef504ebfec7d0a18540710ec0a58fad719c9cdcf0f82a2c00d4a743",
+      "rawSolveSha256": "fc23bd4119ddef43990fad1ed8685db643bbaa31a66070e9ade1d7de37b14882",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-24",
+      "sourceQuestionCanonicalDigest": "1ba3a5ba6ccf9d6b0c2b88f05c1a9a02d2678161b3ebddc84cb9d250d98632f1",
+      "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceProvidedDigest": "f4c7757a1069051518ac5b7701563c8cf881da3d7117fde9add36645d2ee40db",
+      "sourceHashContract": "supplied sourceContentDigest separate from raw stem or complete canonical source-row digest",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    "independentSolveCommit": "c8f8aeadfb28becb1d7447240fd4e28b6702fc4c",
+    "rawSolveUnchanged": true,
+    "answerComparison": {
+      "literalEqual": true,
+      "semanticEqual": true,
+      "role": "single selected choice",
+      "authorAnswer": "②",
+      "independentAnswer": "②",
+      "allFiveChoiceTruthValues": [
+        false,
+        true,
+        false,
+        false,
+        false
+      ],
+      "semanticDuplicateChoices": [],
+      "unitAndTargetOrderChecked": true,
+      "writtenPartsRequested": [],
+      "writtenRubricApplicable": false
+    },
+    "independentExactCalculation": {
+      "questionNumber": 24,
+      "target": "10",
+      "status": "independently-computed",
+      "evidence": {
+        "CD": "10",
+        "BC": "10*sqrt(3)",
+        "EH": "15 - 5*sqrt(3)",
+        "BH": "sqrt(3)*(15 - 5*sqrt(3))",
+        "CH": "15 - 5*sqrt(3)",
+        "HInsideBC": true,
+        "EOnBothSegments": {
+          "AEpositive": "-15*sqrt(2) + 10*sqrt(6)",
+          "ECpositive": "sqrt(2)*(15 - 5*sqrt(3))",
+          "BEpositive": "30 - 10*sqrt(3)",
+          "EDpositive": "-10 + 10*sqrt(3)"
+        },
+        "areaInK": "3*k**2*(-1 + sqrt(3))/4",
+        "areaAt10": "-75 + 75*sqrt(3)",
+        "positiveKUnique": true,
+        "method": "C45→CH=EH;DBC angleB30→BH=sqrt3 EH;BC=sqrt3 CD;triangle base-height area and positive square root. No sine area formula.",
+        "allFiveActualChoiceValues": [
+          "5",
+          "10",
+          "15",
+          "20",
+          "25"
+        ],
+        "choiceCorrectness": [
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "correctChoiceNumber": 2,
+        "semanticDuplicateChoices": [],
+        "oneCorrectChoice": true
+      },
+      "knownHolds": []
+    },
+    "mathAndNewSolution": "CD=t>0,BC=t√3;EH=h,BH=h√3,HC=h;높이 t(3−√3)/2.넓이3t²(√3−1)/4=75(√3−1)→t²100→양수10cm.E/수선발이선분내부,도형존재 확인.",
+    "coreAndSubstantiveDelta": "기준변과각으로 교차부 넓이→그 넓이로 기준변 역복원,주어진수선H로 실제높이를명시.같은특수각·밑변높이절차 유지.",
+    "allowedWholeStudentMethod": "30/45/60 직각삼각형의 분할 길이→공통 밑변/높이→초등 넓이→양의 제곱근.일반 교점/사인넓이공식 없음.보조수선H가문제에주어져추가복잡구성없음.",
+    "sourceQuestionOnly": {
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-24",
+      "packetRawSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceDigestProvided": "f4c7757a1069051518ac5b7701563c8cf881da3d7117fde9add36645d2ee40db",
+      "images": [
+        {
+          "file": "images/q24-part1.png",
+          "rawSha256": "7462cc173e1726dab64ccde2be855ee70ca60807fdd7fc5781f64223cca91fd0",
+          "personallyViewed": true
+        }
+      ],
+      "sourceCropsNotNewAssets": true,
+      "originalKeyOrSolutionFilesRead": false
+    },
+    "visualReview": {
+      "questionNumber": 24,
+      "studentDigest": "dcfe60a5eb37164dad2c1e53beed2e3f8cf503c4095f3d34642370ec5cd9a62b",
+      "candidateDigest": "8804f8321d4f16a74d4be26ce1d53a4125bcc49054e9d565458f448efea56ab4",
+      "columnWidthMm": 70,
+      "png": "inspection/q24-expanded.png",
+      "pngSha256": "8ec24d3ba876d558cb35bc1c9b24593480e8376ff460b194592e750470781c21",
+      "overflow": [],
+      "unclippedPng": null,
+      "figureCount": 1,
+      "figureWidthMm": 70,
+      "figureArrangement": "ordered roles",
+      "personallyViewed": true,
+      "imageRawSha256": "8ec24d3ba876d558cb35bc1c9b24593480e8376ff460b194592e750470781c21",
+      "actualQuestionAndExpandedSolutionInspected": true,
+      "allSuppliedChoiceFiguresInspected": false,
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "779d4a86107d3a21ce6bd8d62a020477e96dab89f779ed3fcc4a6fe0228eff0c",
+          "svgSha256": "c2a463d9bd783bb10d9bf09d3455ef5333b3ec7b04d5aa13f75eb4c086d4de41",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q24-1.svg"
+        }
+      ],
+      "strictRegenerationResults": [
+        {
+          "questionNumber": 24,
+          "role": "stem",
+          "specSha256": "779d4a86107d3a21ce6bd8d62a020477e96dab89f779ed3fcc4a6fe0228eff0c",
+          "frozenSvgSha256": "c2a463d9bd783bb10d9bf09d3455ef5333b3ec7b04d5aa13f75eb4c086d4de41",
+          "regeneratedSvgSha256": "c2a463d9bd783bb10d9bf09d3455ef5333b3ec7b04d5aa13f75eb4c086d4de41",
+          "byteEqual": true,
+          "strict": true,
+          "localOnly": true,
+          "droppedDimensions": []
+        }
+      ],
+      "nativeCompatibilityNotApproved": true
+    },
+    "naturalKorean": "조건·대상각·선분·기록값·단위가 자연스럽고 모호한 원본 조건을 명시했다. 허구 학교 표시 해솔누리중학교와 실제 학교 내부 보존을 구별;원학교로 학년 승인하지 않음.",
+    "scoreAndDifficulty": {
+      "score": 5,
+      "sourceScorePreserved": true,
+      "authorDifficultyProposal": "응용",
+      "reviewerDifficultyProposal": "심화하",
+      "basis": "30/45/60 직각삼각형의 분할 길이→공통 밑변/높이→초등 넓이→양의 제곱근.일반 교점/사인넓이공식 없음.보조수선H가문제에주어져추가복잡구성없음. 5점은 원문과 동일하고 필요한 단계 수를 근거로 제안. 검토자는 심화하/기본과 응용 차이를 기록하며 실측 난도나 학교 자동 승인 주장 없음.",
+      "measuredDifficulty": false
+    },
+    "taxonomy": {
+      "unitUuidProposal": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+      "unit": {
+        "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 활용",
+        "semester": 2,
+        "orderIndex": 483,
+        "problemCodePrefix": "J30503"
+      },
+      "unitSeedExactMatch": true,
+      "candidateMetadataAssignmentUnedited": {
+        "status": "pending",
+        "unitId": null,
+        "familyKey": null,
+        "currentUnit": null,
+        "currentRegistryMatch": null,
+        "liveCount": null,
+        "checkedAt": "2026-10-08 04:53:45.769124+00",
+        "evidence": "삼각형 넓이 유형과 넓이→기준변 역산의 정확 현재 규칙 대응은 추가 검토 전 null이다.",
+        "candidates": []
+      },
+      "existingLiveFamilyProposal": null,
+      "semanticFamilyOnly": null,
+      "status": "held",
+      "basis": "활용08의 triangleArea는 두 변과 끼인각으로 직접 넓이;05는 한 밑변과 두각으로 다른변.본문 교차삼각형 음영넓이→기준변의 양수 역복원 전체 규칙 미확정.",
+      "formatComparison": "Complete new target/format/difficulty support is unconfirmed as described in basis; no nearest/title mapping.",
+      "bankCapturedAt": "2026-10-08 13:00:16.891043+00",
+      "snapshotScopeOnly": true,
+      "liveCountNotPermission": true
+    },
+    "q22RepairRead": false,
+    "q23SourceRoleMetadataBoundary": null
+  },
+  "holds": [
+    {
+      "code": "exact-unit-live-family-contract-pending",
+      "basis": "활용08의 triangleArea는 두 변과 끼인각으로 직접 넓이;05는 한 밑변과 두각으로 다른변.본문 교차삼각형 음영넓이→기준변의 양수 역복원 전체 규칙 미확정.",
+      "reopen": "실제 live 규칙의 전체 조건/요청 목표/핵심 절차/난도/형식을 지원하는 근거를 제시하거나 별도 새 메타데이터 계약을 검토. Unit·제목·live count만으로 확정하지 않음."
+    }
+  ],
+  "gates": {
+    "rights": "held",
+    "custody": "held",
+    "similarity": "pending",
+    "nativeCompatibility": "pending",
+    "directUseAllowed": false,
+    "loadable": false,
+    "dbWrites": 0,
+    "modelCalls": 0,
+    "finalPublicationApproval": false
+  }
+}

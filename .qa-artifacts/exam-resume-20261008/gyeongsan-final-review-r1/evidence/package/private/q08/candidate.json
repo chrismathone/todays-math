@@ -1,0 +1,262 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 8,
+  "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q08",
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "content": "함수 $y=-2(x-3)^2+1$의 그래프 검사표에서 두 칸이 지워졌다.\n\n| 항목 | 지워진 기록 |\n| --- | --- |\n| 대칭축 | (가) |\n| $x$가 증가할 때 $y$도 증가하는 범위 | (나) |\n\n(가), (나)를 바르게 복구한 것은?",
+  "choices": [
+    "(가) $x=-3$, (나) $x<-3$",
+    "(가) $x=3$, (나) $x>3$",
+    "(가) $x=-3$, (나) $x>-3$",
+    "(가) $x=3$, (나) $x<3$",
+    "(가) $x=1$, (나) $x<1$"
+  ],
+  "answer": "④",
+  "solution": "표준형 $y=-2(x-3)^2+1$의 대칭축은 $x=3$이다. 이차항의 계수가 음수이므로 그래프는 위로 볼록하다.\n\n이 그래프에서 꼭짓점의 왼쪽인 $x<3$에서는 $x$가 증가할수록 꼭짓점에 가까워져 $y$도 증가한다. 꼭짓점의 오른쪽에서는 $y$가 감소한다. 따라서 (가)는 $x=3$, (나)는 $x<3$이므로 정답은 ④이다.",
+  "score": 3,
+  "questionType": "객관식",
+  "facts": {
+    "a": -2,
+    "p": 3,
+    "q": 1,
+    "increasing": "x<3"
+  },
+  "figureArtifacts": [],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation"
+    ],
+    "before": "증가 범위의 경계를 이용해 표준형 안의 미지 상수 p를 구한다.",
+    "after": "경계 상수 하나 대신 대칭축과 증가 범위라는 두 누락 기록을 복구하는 쌍 판정으로 전환한다.",
+    "sharedConcept": "포물선 대칭축과 증가/감소 구간의 대응",
+    "sharedProcedure": "표준형의 축과 열린 방향을 읽어 꼭짓점 왼쪽의 증가 구간을 정하고 두 기록을 함께 대조한다.",
+    "objectiveDifficulty": "증가 경계와 축의 관계를 읽는 원문의 한 핵심을 유지하고 두 일관된 기록으로 표현한다. 3점을 유지한다.",
+    "scoreDelta": {
+      "source": 3,
+      "authored": 3,
+      "changed": false
+    }
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수03-09",
+      "9수03-10"
+    ],
+    "allowedProcedure": "표준형의 축과 열린 방향을 읽어 꼭짓점 왼쪽의 증가 구간을 정하고 두 기록을 함께 대조한다.",
+    "forbiddenAvoided": [
+      "일반 이차함수 최적화",
+      "미분",
+      "근과 계수의 관계",
+      "일반 포물선/직선 교점 이론"
+    ],
+    "status": "author-proposed",
+    "surfaces": {
+      "stem": {
+        "status": "author-proposed",
+        "evidence": "표준형 포물선의 증가 범위와 축이다."
+      },
+      "choices": {
+        "status": "author-proposed",
+        "evidence": "다섯 축/범위 쌍을 모두 검사하여 두 기록이 맞는 하나를 찾는다."
+      },
+      "figuresAndTables": {
+        "status": "author-proposed",
+        "evidence": "새 두 칸의 native 검사표를 사용한다."
+      },
+      "notation": {
+        "status": "author-proposed",
+        "evidence": "선분·좌표·도 또는 식의 표기는 실제 학생 풀이에 쓰는 중학교 수학 표기만 사용한다."
+      },
+      "answer": {
+        "status": "author-proposed",
+        "evidence": "유일한 보기 하나를 고르는 객관식 답 형식이며, 값·부호·조건이 코드 계산과 맞는다."
+      },
+      "studentSolution": {
+        "status": "author-proposed",
+        "evidence": "음수 계수와 꼭짓점 왼쪽이라는 그래프 성질을 설명한다."
+      },
+      "prerequisites": {
+        "status": "author-proposed",
+        "evidence": "중3 포물선의 개형과 중2 부등식의 부호 표기"
+      }
+    },
+    "gradeBasis": "9수03-10의 그래프 증가/감소 성질이다. 미분이나 제한구간 최적화로 증가구간을 정하지 않는다.",
+    "exactGradeApproval": false
+  },
+  "sourceReference": {
+    "externalId": "2025-gyeongsan-3-2-mid-8",
+    "examId": "personal-aa35a05fbaf41074c2ebcfcd6f16e876",
+    "sourcePacketExamId": "2025-gyeongsan-3-2-mid",
+    "school": "경산중",
+    "questionNumber": 8,
+    "sourceContentSha256": "93709cc24c2bc9351824f9f548eef1f2382bb85dc630c538183506640fcd8842",
+    "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+    "sourceQuestionOnlySnapshot": "source-snapshot/packet/questions.json",
+    "sourceQuestionScore": 3,
+    "sourceQuestionType": "객관식",
+    "sourceQuestionParts": [],
+    "sourceStatus": "source_reference_reviewed_all_final_approval_gates_held",
+    "sourceObservation": "증가 범위의 경계를 이용해 표준형 안의 미지 상수 p를 구한다.",
+    "originalAnswersOrSolutionsUsed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "score": 3,
+    "difficultyProposal": "응용",
+    "difficultyStatus": "pending-independent-review",
+    "problemTypeProposal": null,
+    "problemTypeStatus": "pending-independent-review",
+    "hasFigure": false,
+    "assignment": {
+      "status": "proposed",
+      "unitId": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "familyKey": "mid:3-1|이차함수의 그래프 ⑴|16",
+      "currentUnit": {
+        "id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+        "grade": "중3",
+        "chapter": "4. 이차함수",
+        "section": "이차함수와 그래프",
+        "semester": 1,
+        "orderIndex": 478,
+        "problemCodePrefix": "J30401"
+      },
+      "currentRegistryMatch": {
+        "key": "3-1|이차함수의 그래프 ⑴|16",
+        "grade": "중3",
+        "unitSection": "이차함수와 그래프",
+        "rpmBook": "3-1",
+        "rpmMinor": "이차함수의 그래프 ⑴",
+        "rpmType": "16",
+        "rpmTitle": "이차함수 의 증가와 감소"
+      },
+      "liveCount": 24,
+      "checkedAt": "2026-10-08 04:53:45.769124+00",
+      "evidence": "표준형의 p와 a의 부호로 x가 증가할 때 y가 증가하는 범위를 정하는 현재 유형16의 입력/절차이다. 누락 축과 구간을 같이 읽는 표는 표현 변경이다.",
+      "generatorRuleEvidence": {
+        "module": "src/lib/middle/m3Func.ts",
+        "family": "g1 16",
+        "observed": "a의 부호와 표준형 꼭짓점 p로 증가·감소하는 x 범위를 정한다.",
+        "status": "author-semantic-proposal"
+      },
+      "approval": "author-proposal-only"
+    },
+    "achievementStandardRefs": [
+      {
+        "code": "9수03-09",
+        "verified_text": "이차함수의 의미를 이해하고, 그 그래프를 그릴 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4146,
+          "record_offset_in_uncompressed_stream": 210185,
+          "extracted_paragraph_1based": 849
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            36
+          ],
+          "printed_pages": [
+            32
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      },
+      {
+        "code": "9수03-10",
+        "verified_text": "이차함수의 그래프의 성질을 이해한다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4150,
+          "record_offset_in_uncompressed_stream": 210353,
+          "extracted_paragraph_1based": 850
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            36
+          ],
+          "printed_pages": [
+            32
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      }
+    ],
+    "achievementStandardStatus": "official-text-matched-candidate-author-proposed",
+    "sourceIdentityReview": {
+      "status": "source-packet-identity-supported-full-custody-held",
+      "sourceSchool": "경산중",
+      "sourceYear": 2025,
+      "sourcePacketDecision": "2025_original_header_school_footer_and_completed_question_identity_supported",
+      "fullPairCertification": "held",
+      "custody": "held",
+      "rights": "held"
+    },
+    "bankEvidence": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-fresh-r2-20261008.json",
+      "sha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b",
+      "capturedAt": "2026-10-08 04:53:45.769124+00",
+      "registrySha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "curriculumEvidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "databaseAccessByAuthor": false
+    },
+    "authorEvidence": {
+      "calculationsPath": "author-calculations.json",
+      "authoringScriptSha256": "a93435986c20fa222f4a9c9bdbc2b6fa6242f334fafcffed2f692f22e997f7b5",
+      "visualReview": "pending-local-view",
+      "mathematicalReview": "author-self-check-only"
+    }
+  },
+  "schoolNamePolicy": {
+    "actual": "경산중",
+    "display": "해솔누리중학교",
+    "role": "fictional-display-alias-only",
+    "originalOccurrencesInStem": 0,
+    "surfaces": [
+      "content",
+      "choices",
+      "tables",
+      "figureLabels",
+      "solution"
+    ],
+    "review": "author-proposed"
+  },
+  "independentVerification": null,
+  "review": {
+    "status": "pending",
+    "mathematicalCorrectness": "pending-independent-blind-solve",
+    "gradeCurriculum": "pending-independent-review",
+    "equivalentConceptAndMethod": "pending-independent-review",
+    "distinctPresentation": "pending-independent-review",
+    "naturalKorean": "pending-independent-review",
+    "figure": "pending-independent-review",
+    "rights": "pending",
+    "similarity": "pending",
+    "nativeCompatibility": "pending",
+    "physicalPaper": "not-approved"
+  },
+  "directUseAllowed": false
+}

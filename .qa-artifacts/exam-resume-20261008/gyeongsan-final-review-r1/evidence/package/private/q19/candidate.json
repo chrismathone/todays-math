@@ -1,0 +1,353 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 19,
+  "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q19",
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "content": "그림에서 $A,D,E$는 이 순서로 한 직선 위에 있고, $D,F,C$도 이 순서로 한 직선 위에 있다. 사각형 $DEBF$는 직사각형이며 $\\overline{AE}=\\overline{BE}$이다. 다음 측정 기록을 만족할 때, 누락된 $\\overline{BC}$의 길이는?\n\n| 항목 | 기록 |\n| --- | --- |\n| $\\angle ABC$ | $90^\\circ$ |\n| $\\angle CAB$ | $30^\\circ$ |\n| $\\overline{CD}$ | $5(\\sqrt6+\\sqrt2)\\,\\mathrm{cm}$ |",
+  "choices": [
+    "$5\\,\\mathrm{cm}$",
+    "$5\\sqrt2\\,\\mathrm{cm}$",
+    "$10\\,\\mathrm{cm}$",
+    "$10\\sqrt3\\,\\mathrm{cm}$",
+    "$15\\,\\mathrm{cm}$"
+  ],
+  "answer": "③",
+  "solution": "$\\overline{BC}=t\\,\\mathrm{cm}$라 하자. 직각삼각형 $ABC$에서 $\\tan30^\\circ=\\dfrac{t}{\\overline{AB}}=\\dfrac1{\\sqrt3}$이므로 $\\overline{AB}=t\\sqrt3$이다.\n\n직각삼각형 $ABE$는 $\\overline{AE}=\\overline{BE}$이므로 두 예각이 $45^\\circ$이다. 따라서 $\\overline{BE}=\\overline{AB}\\sin45^\\circ=\\dfrac{t\\sqrt6}{2}$이다.\n\n직사각형의 변 $BF$는 $AE$와 평행하므로 $\\angle ABF=45^\\circ$이다. $\\angle ABC=90^\\circ$에서 $\\angle FBC=45^\\circ$이고, 직각삼각형 $BCF$에서 $\\overline{CF}=t\\sin45^\\circ=\\dfrac{t\\sqrt2}{2}$이다.\n\n$\\overline{FD}=\\overline{BE}$이므로 $\\overline{CD}=\\overline{CF}+\\overline{FD}=\\dfrac t2(\\sqrt2+\\sqrt6)$이다. 기록과 비교하여 $\\dfrac t2(\\sqrt2+\\sqrt6)=5(\\sqrt2+\\sqrt6)$에서 $t=10$이다. 정답은 ③이다.",
+  "score": 5,
+  "questionType": "객관식",
+  "facts": {
+    "BC": 9.999999999999998,
+    "AB": 17.320508075688767,
+    "BE": 12.247448713915887,
+    "CF": 7.071067811865475,
+    "CD": 19.318516525781362,
+    "normalizedPoints": {
+      "A": [
+        0,
+        0
+      ],
+      "B": [
+        12.24744871391589,
+        12.24744871391589
+      ],
+      "C": [
+        5.176380902050414,
+        19.318516525781362
+      ],
+      "D": [
+        5.176380902050414,
+        0
+      ],
+      "E": [
+        12.24744871391589,
+        0
+      ],
+      "F": [
+        5.176380902050414,
+        12.24744871391589
+      ]
+    },
+    "rendererScalePxPerCm": 15,
+    "answerValue": 9.999999999999998
+  },
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "figure-1.spec.json",
+      "svgPath": "figure-1.svg",
+      "intendedWidthMm": 70
+    }
+  ],
+  "variantDelta": {
+    "modes": [
+      "inverse-target",
+      "structure",
+      "representation"
+    ],
+    "before": "30°인 직각삼각형과 등변 직각삼각형·직사각형에서 주어진 BC로 전체 높이 CD를 구한다.",
+    "after": "전체 높이와 각/직사각형 기록을 주고 원래 기준 변 BC를 복구한다. 서로 다른 두 높이의 합을 먼저 구성해야 한다.",
+    "sharedConcept": "특수각의 삼각비로 부분 길이를 구하여 직사각형 높이에 더하는 관계",
+    "sharedProcedure": "ABC의 tan30으로 AB, ABE의 sin45로 BE, BCF의 sin45로 CF를 구한 뒤 CD=BE+CF를 세워 t를 역산한다.",
+    "objectiveDifficulty": "원문의 두 직각삼각형 연결과 높이 합을 유지하고 마지막의 일차 역산을 추가한 5점 제안이다. 75° 삼각비는 요구하지 않는다.",
+    "scoreDelta": {
+      "source": 5,
+      "authored": 5,
+      "changed": false
+    }
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수04-17",
+      "9수04-18",
+      "9수04-10",
+      "9수01-10",
+      "9수02-05"
+    ],
+    "allowedProcedure": "ABC의 tan30으로 AB, ABE의 sin45로 BE, BCF의 sin45로 CF를 구한 뒤 CD=BE+CF를 세워 t를 역산한다.",
+    "forbiddenAvoided": [
+      "삼각비 사이의 항등식",
+      "사인·코사인 법칙",
+      "각의 덧셈정리",
+      "미분·최적화",
+      "좌표 벡터·행렬"
+    ],
+    "status": "author-proposed",
+    "surfaces": {
+      "stem": {
+        "status": "author-proposed",
+        "evidence": "점의 순서와 직사각형·등변 조건을 명시한 부분 길이 역산이다."
+      },
+      "choices": {
+        "status": "author-proposed",
+        "evidence": "다섯 양의 cm 길이를 CD 관계에 각각 대입한다."
+      },
+      "figuresAndTables": {
+        "status": "author-proposed",
+        "evidence": "새 정확 좌표는 직각 B, 직사각형 DEBF, AE=BE, CAB=30°와 모든 점 순서를 만족한다."
+      },
+      "notation": {
+        "status": "author-proposed",
+        "evidence": "선분·삼각형·각·도·근호·좌표와 삼각비를 중학교 정의대로 사용한다."
+      },
+      "answer": {
+        "status": "author-proposed",
+        "evidence": "새 조건에서 계산한 유일한 객관식 답이다. 원본 답이나 해설을 읽지 않았다."
+      },
+      "studentSolution": {
+        "status": "author-proposed",
+        "evidence": "실제 각을 30°/45°로 구한 뒤 각 삼각형의 변 비를 각각 쓴다."
+      },
+      "prerequisites": {
+        "status": "author-proposed",
+        "evidence": "중1 평행선·내각, 중2 등변 직각삼각형, 중3 특수각과 근호·일차방정식"
+      }
+    },
+    "gradeBasis": "30°/45°의 정의와 값, 직사각형·이등변삼각형, 근호 계산과 일차방정식이다.",
+    "exactGradeApproval": false
+  },
+  "sourceReference": {
+    "externalId": "2025-gyeongsan-3-2-mid-19",
+    "examId": "personal-aa35a05fbaf41074c2ebcfcd6f16e876",
+    "sourcePacketExamId": "2025-gyeongsan-3-2-mid",
+    "school": "경산중",
+    "questionNumber": 19,
+    "sourceContentSha256": "f4462e8b8b08193b04420254fb7a0145443a7cfefee9d193a6130c8f6d927c37",
+    "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+    "sourceQuestionOnlySnapshot": "source-snapshot/packet/questions.json",
+    "sourceQuestionScore": 5,
+    "sourceQuestionType": "객관식",
+    "sourceQuestionParts": [],
+    "sourceStatus": "source_reference_reviewed_all_final_approval_gates_held",
+    "sourceObservation": "30°인 직각삼각형과 등변 직각삼각형·직사각형에서 주어진 BC로 전체 높이 CD를 구한다.",
+    "originalAnswersOrSolutionsUsed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "score": 5,
+    "difficultyProposal": "응용",
+    "difficultyStatus": "pending-independent-review",
+    "problemTypeProposal": null,
+    "problemTypeStatus": "pending-independent-review",
+    "hasFigure": true,
+    "assignment": {
+      "status": "pending",
+      "unitId": null,
+      "familyKey": null,
+      "currentUnit": null,
+      "currentRegistryMatch": null,
+      "liveCount": null,
+      "checkedAt": "2026-10-08 04:53:45.769124+00",
+      "evidence": "30° 삼각형·등변 직각삼각형·직사각형의 높이 합을 역산하는 정확 live family 규칙이 확인되지 않아 null이다.",
+      "candidates": []
+    },
+    "achievementStandardRefs": [
+      {
+        "code": "9수01-10",
+        "verified_text": "근호를 포함한 식의 사칙계산을 할 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3788,
+          "record_offset_in_uncompressed_stream": 193301,
+          "extracted_paragraph_1based": 771
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            33
+          ],
+          "printed_pages": [
+            29
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      },
+      {
+        "code": "9수02-05",
+        "verified_text": "일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3916,
+          "record_offset_in_uncompressed_stream": 199888,
+          "extracted_paragraph_1based": 797
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            34
+          ],
+          "printed_pages": [
+            30
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      },
+      {
+        "code": "9수04-10",
+        "verified_text": "이등변삼각형의 성질을 이해하고 설명할 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4300,
+          "record_offset_in_uncompressed_stream": 217636,
+          "extracted_paragraph_1based": 881
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            37
+          ],
+          "printed_pages": [
+            33
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      },
+      {
+        "code": "9수04-17",
+        "verified_text": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4341,
+          "record_offset_in_uncompressed_stream": 219120,
+          "extracted_paragraph_1based": 891
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            38
+          ],
+          "printed_pages": [
+            34
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      },
+      {
+        "code": "9수04-18",
+        "verified_text": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4345,
+          "record_offset_in_uncompressed_stream": 219292,
+          "extracted_paragraph_1based": 892
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            38
+          ],
+          "printed_pages": [
+            34
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      }
+    ],
+    "achievementStandardStatus": "official-text-matched-candidate-author-proposed",
+    "sourceIdentityReview": {
+      "status": "source-packet-identity-supported-full-custody-held",
+      "sourceSchool": "경산중",
+      "sourceYear": 2025,
+      "sourcePacketDecision": "2025_original_header_school_footer_and_completed_question_identity_supported",
+      "fullPairCertification": "held",
+      "custody": "held",
+      "rights": "held"
+    },
+    "bankEvidence": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-fresh-r2-20261008.json",
+      "sha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b",
+      "capturedAt": "2026-10-08 04:53:45.769124+00",
+      "registrySha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "curriculumEvidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "databaseAccessByAuthor": false
+    },
+    "authorEvidence": {
+      "calculationsPath": "author-calculations.json",
+      "authoringScriptSha256": "52fa4de88bed4f45d2b40452d36d4296e228751d2844e363036e8f2f253637ca",
+      "visualReview": "pending-local-view",
+      "mathematicalReview": "author-self-check-only"
+    }
+  },
+  "schoolNamePolicy": {
+    "actual": "경산중",
+    "display": "해솔누리중학교",
+    "role": "fictional-display-alias-only",
+    "originalOccurrencesInStem": 0,
+    "surfaces": [
+      "content",
+      "choices",
+      "tables",
+      "figureLabels",
+      "solution"
+    ],
+    "review": "author-proposed"
+  },
+  "independentVerification": null,
+  "review": {
+    "status": "pending",
+    "mathematicalCorrectness": "pending-independent-blind-solve",
+    "gradeCurriculum": "pending-independent-review",
+    "equivalentConceptAndMethod": "pending-independent-review",
+    "distinctPresentation": "pending-independent-review",
+    "naturalKorean": "pending-independent-review",
+    "figure": "pending-independent-review",
+    "rights": "pending",
+    "similarity": "pending",
+    "nativeCompatibility": "pending",
+    "physicalPaper": "not-approved"
+  },
+  "directUseAllowed": false
+}

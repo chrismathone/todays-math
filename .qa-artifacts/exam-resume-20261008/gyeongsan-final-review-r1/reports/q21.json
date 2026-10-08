@@ -1,0 +1,282 @@
+{
+  "questionNumber": 21,
+  "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q21",
+  "status": "pending",
+  "studentDigest": "f2b74591299c729d6da0cc4c03d70ac61e157d80edfe6c84ceba21b2ef867a4e",
+  "candidateDigest": "781e1defab4d41b1f9b2b9cb229b4ac81dd519e2abc78c90be19bd1b58a7c933",
+  "assetDigest": "e51a1a5a915fe67693e1d02fa13fa21eb0e32b0f44701ad5a79c90e50d5075aa",
+  "solveDigest": "92c239264768442e4f144d38c478037023d87dcd7aefe250a712d089936fa801",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-exam-twin-author-geometry-20261008",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "수선/접선 길이로 sin+tan 합→수선과 합 기록에서 누락 접선 길이 역복원. 각별 정의 유지. 명시 조건과 요청은 아래 실제 중학교 해법으로 해결된다.",
+      "standardCodes": [
+        "9수04-17"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "실제5보기 전부 계산/도형 비교;정답 하나,나머지 비동치 오답. ",
+      "standardCodes": [
+        "9수04-17"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "새 SVG 1개의 라벨·직각·각·점순서·영역을 stem과 함께 확인. 70mm 검사 화면에서 텍스트와 자산 역할 확인.",
+      "standardCodes": [
+        "9수04-17"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "통상 좌표/함수/선분/도 단위/근호/실제 삼각비 표기. 일반 라디안·벡터·고교 공식 표기 없음. ",
+      "standardCodes": [
+        "9수04-17"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "단위 OQ/OU에서 SQ의 기록=sin40,UT=tan40;각각 반올림 기록합1.4819−0.6428=0.8391.원래 실수합 재반올림과 구별되게 명시되어 있음. circled choice는 역할·값·단위가 독립 결과와 일치.",
+      "standardCodes": [
+        "9수04-17"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "OSQ/OUT에서 실제 변 비 읽기→주어진4자리 기록 소수 뺄셈. 공개된 새 저자 풀이의 모든 단계와 실제 정의를 읽고 검산. 공학 코드에서의 좌표/삼각함수 값 검증을 학생 풀이 방법으로 취급하지 않음.",
+      "standardCodes": [
+        "9수04-17"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "OSQ/OUT에서 실제 변 비 읽기→주어진4자리 기록 소수 뺄셈. 공식 선택 성취기준의 중학교 범위와 초등 밑변높이 원리;필요한 보조점/조건 명시 여부 확인.",
+      "standardCodes": [
+        "9수04-17"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    }
+  },
+  "evidence": {
+    "binding": {
+      "questionNumber": 21,
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q21",
+      "studentDigest": "f2b74591299c729d6da0cc4c03d70ac61e157d80edfe6c84ceba21b2ef867a4e",
+      "candidateDigest": "781e1defab4d41b1f9b2b9cb229b4ac81dd519e2abc78c90be19bd1b58a7c933",
+      "assetDigest": "e51a1a5a915fe67693e1d02fa13fa21eb0e32b0f44701ad5a79c90e50d5075aa",
+      "solveDigest": "92c239264768442e4f144d38c478037023d87dcd7aefe250a712d089936fa801",
+      "candidateFileSha256": "782e7de0db666e02ce6de645ae9b9528dfda9b0da0ee26b8f4b741a55c3bc4a4",
+      "rawSolveSha256": "7c671611bf27dcca657b6cb03633837291da5be8696a87161a871a0f77a46820",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-21",
+      "sourceQuestionCanonicalDigest": "29ef1c574dcaf8eb39bb511187a252fcc9d3ae1b357f88efef36c267a187d6d8",
+      "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceProvidedDigest": "4576aa18787502f1284182f0ee2338773f3d9e319f36b27bf42c90d08261d44a",
+      "sourceHashContract": "supplied sourceContentDigest separate from raw stem or complete canonical source-row digest",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    "independentSolveCommit": "c8f8aeadfb28becb1d7447240fd4e28b6702fc4c",
+    "rawSolveUnchanged": true,
+    "answerComparison": {
+      "literalEqual": true,
+      "semanticEqual": true,
+      "role": "single selected choice",
+      "authorAnswer": "③",
+      "independentAnswer": "③",
+      "allFiveChoiceTruthValues": [
+        false,
+        false,
+        true,
+        false,
+        false
+      ],
+      "semanticDuplicateChoices": [],
+      "unitAndTargetOrderChecked": true,
+      "writtenPartsRequested": [],
+      "writtenRubricApplicable": false
+    },
+    "independentExactCalculation": {
+      "questionNumber": 21,
+      "target": "8391/10000",
+      "status": "independently-computed",
+      "evidence": {
+        "recordedSQ": "1607/2500",
+        "recordedScalarSum": "14819/10000",
+        "recordedUT": "8391/10000",
+        "privateNumericRecordValidationNotStudentMethod": {
+          "sin40At40Digits": "0.6427876096865393263226434099072634329076",
+          "tan40At40Digits": "0.8390996311772800117631272981231813646874",
+          "separateRound4": [
+            "0.6428",
+            "0.8391"
+          ],
+          "sumOfRecordedValues": "1.4819"
+        },
+        "roundingContract": "Sum of separately rounded values,not rounding an inferred unknown expression",
+        "method": "OQ=OU=1;actual right-triangle definitions identify recordedSQ andUT;subtract two recorded numbers.",
+        "allFiveActualChoiceValues": [
+          "1607/2500",
+          "383/500",
+          "8391/10000",
+          "1607/1250",
+          "14819/10000"
+        ],
+        "choiceCorrectness": [
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "correctChoiceNumber": 3,
+        "semanticDuplicateChoices": [],
+        "oneCorrectChoice": true
+      },
+      "knownHolds": []
+    },
+    "mathAndNewSolution": "단위 OQ/OU에서 SQ의 기록=sin40,UT=tan40;각각 반올림 기록합1.4819−0.6428=0.8391.원래 실수합 재반올림과 구별되게 명시되어 있음.",
+    "coreAndSubstantiveDelta": "수선/접선 길이로 sin+tan 합→수선과 합 기록에서 누락 접선 길이 역복원. 각별 정의 유지.",
+    "allowedWholeStudentMethod": "OSQ/OUT에서 실제 변 비 읽기→주어진4자리 기록 소수 뺄셈.",
+    "sourceQuestionOnly": {
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-21",
+      "packetRawSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceDigestProvided": "4576aa18787502f1284182f0ee2338773f3d9e319f36b27bf42c90d08261d44a",
+      "images": [
+        {
+          "file": "images/q21-part1.png",
+          "rawSha256": "c65cd5504624636af7bade592f6e2b113b319cf313e4f6302696da251ed04b48",
+          "personallyViewed": true
+        }
+      ],
+      "sourceCropsNotNewAssets": true,
+      "originalKeyOrSolutionFilesRead": false
+    },
+    "visualReview": {
+      "questionNumber": 21,
+      "studentDigest": "f2b74591299c729d6da0cc4c03d70ac61e157d80edfe6c84ceba21b2ef867a4e",
+      "candidateDigest": "781e1defab4d41b1f9b2b9cb229b4ac81dd519e2abc78c90be19bd1b58a7c933",
+      "columnWidthMm": 70,
+      "png": "inspection/q21-expanded.png",
+      "pngSha256": "99aa31b04537ec5974f420be233aa65b7e9d26cf8aad963f089f69e0542aff17",
+      "overflow": [],
+      "unclippedPng": null,
+      "figureCount": 1,
+      "figureWidthMm": 70,
+      "figureArrangement": "ordered roles",
+      "personallyViewed": true,
+      "imageRawSha256": "99aa31b04537ec5974f420be233aa65b7e9d26cf8aad963f089f69e0542aff17",
+      "actualQuestionAndExpandedSolutionInspected": true,
+      "allSuppliedChoiceFiguresInspected": false,
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "bb0d17a80f3319afd09740ffdfa974c4cb483bf6989ac56fb85048abc9ed35a4",
+          "svgSha256": "3756cc3a36e3c5a2051a7a965fba427547239d38e7780dbf25fe7805ade8aaf5",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q21-1.svg"
+        }
+      ],
+      "strictRegenerationResults": [
+        {
+          "questionNumber": 21,
+          "role": "stem",
+          "specSha256": "bb0d17a80f3319afd09740ffdfa974c4cb483bf6989ac56fb85048abc9ed35a4",
+          "frozenSvgSha256": "3756cc3a36e3c5a2051a7a965fba427547239d38e7780dbf25fe7805ade8aaf5",
+          "regeneratedSvgSha256": "3756cc3a36e3c5a2051a7a965fba427547239d38e7780dbf25fe7805ade8aaf5",
+          "byteEqual": true,
+          "strict": true,
+          "localOnly": true,
+          "droppedDimensions": []
+        }
+      ],
+      "nativeCompatibilityNotApproved": true
+    },
+    "naturalKorean": "조건·대상각·선분·기록값·단위가 자연스럽고 모호한 원본 조건을 명시했다. 허구 학교 표시 해솔누리중학교와 실제 학교 내부 보존을 구별;원학교로 학년 승인하지 않음.",
+    "scoreAndDifficulty": {
+      "score": 3,
+      "sourceScorePreserved": true,
+      "authorDifficultyProposal": "기본",
+      "reviewerDifficultyProposal": "기본",
+      "basis": "OSQ/OUT에서 실제 변 비 읽기→주어진4자리 기록 소수 뺄셈. 3점은 원문과 동일하고 필요한 단계 수를 근거로 제안. 검토자는 심화하/기본과 응용 차이를 기록하며 실측 난도나 학교 자동 승인 주장 없음.",
+      "measuredDifficulty": false
+    },
+    "taxonomy": {
+      "unitUuidProposal": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+      "unit": {
+        "id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 값",
+        "semester": 2,
+        "orderIndex": 482,
+        "problemCodePrefix": "J30502"
+      },
+      "unitSeedExactMatch": true,
+      "candidateMetadataAssignmentUnedited": {
+        "status": "pending",
+        "unitId": null,
+        "familyKey": null,
+        "currentUnit": null,
+        "currentRegistryMatch": null,
+        "liveCount": null,
+        "checkedAt": "2026-10-08 04:53:45.769124+00",
+        "evidence": "현재 단위 사분원 삼각비 읽기 유형과 합 기록→접선 길이 복구 유형의 정확 규칙 대응은 별도 검토 전 null이다.",
+        "candidates": []
+      },
+      "existingLiveFamilyProposal": null,
+      "semanticFamilyOnly": null,
+      "status": "held",
+      "basis": "삼각비12는 수선·투영·접선 세 길이를 모두 주고 단일 비 또는 sin+cos/cos+tan의 직접 값(2자리)을 출력. 본문 일부 기록+sin/tan합→누락값/4자리 역산의 전체 규칙 미지원.",
+      "formatComparison": "Complete new target/format/difficulty support is unconfirmed as described in basis; no nearest/title mapping.",
+      "bankCapturedAt": "2026-10-08 13:00:16.891043+00",
+      "snapshotScopeOnly": true,
+      "liveCountNotPermission": true
+    },
+    "q22RepairRead": false,
+    "q23SourceRoleMetadataBoundary": null
+  },
+  "holds": [
+    {
+      "code": "exact-unit-live-family-contract-pending",
+      "basis": "삼각비12는 수선·투영·접선 세 길이를 모두 주고 단일 비 또는 sin+cos/cos+tan의 직접 값(2자리)을 출력. 본문 일부 기록+sin/tan합→누락값/4자리 역산의 전체 규칙 미지원.",
+      "reopen": "실제 live 규칙의 전체 조건/요청 목표/핵심 절차/난도/형식을 지원하는 근거를 제시하거나 별도 새 메타데이터 계약을 검토. Unit·제목·live count만으로 확정하지 않음."
+    }
+  ],
+  "gates": {
+    "rights": "held",
+    "custody": "held",
+    "similarity": "pending",
+    "nativeCompatibility": "pending",
+    "directUseAllowed": false,
+    "loadable": false,
+    "dbWrites": 0,
+    "modelCalls": 0,
+    "finalPublicationApproval": false
+  }
+}

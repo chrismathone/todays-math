@@ -1,0 +1,195 @@
+{
+  "questionNumber": 14,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q14",
+  "status": "pending",
+  "studentDigest": "932bd02d867b4be8c568117884472eda10a7c4fcee8ae3f95729a1921bb63802",
+  "candidateDigest": "d7e20582d4f3887deb1c756b47310d2058854f4eeb5cb5b548d1999133c3b795",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "solveDigest": "c2c219f06dfa6eecdac55c9f0d51391e5a508553c2bc8ff7220f50e666b6924c",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-exam-twin-author-geometry-20261008",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "볼링 원자료 나열→퀴즈 빈도표로 조직하여 분산·표준편차 순서쌍 선택. 평균→편차제곱 평균→양의 제곱근 절차 유지. 요청 개념과 조건이 2015 범위.",
+      "standardCodes": [
+        "9수05-07"
+      ],
+      "evidence": [
+        "evidence/curriculum.json",
+        "inspection/q14-expanded.png"
+      ]
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "MC 다섯 값과 오답을 전부 검산; 조건을 만족하는 선택 하나.",
+      "standardCodes": [
+        "9수05-07"
+      ],
+      "evidence": [
+        "evidence/curriculum.json",
+        "inspection/q14-expanded.png"
+      ]
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "7개 값1,4,5,6,7,8,11의 횟수1,1,1,4,1,1,1; 도수와 관측값을 분리 확인.",
+      "standardCodes": [
+        "9수05-07"
+      ],
+      "evidence": [
+        "evidence/curriculum.json",
+        "inspection/q14-expanded.png"
+      ]
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "정수·소수·통상 빈칸·편차·도수·제곱근 표기만 사용; 상위 통계 기호 없음.",
+      "standardCodes": [
+        "9수05-07"
+      ],
+      "evidence": [
+        "evidence/curriculum.json",
+        "inspection/q14-expanded.png"
+      ]
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "도수합10,총합60,평균6,편차제곱합60→분산6/표준편차√6. 모분산 정의의 분모10.",
+      "standardCodes": [
+        "9수05-07"
+      ],
+      "evidence": [
+        "evidence/curriculum.json",
+        "inspection/q14-expanded.png"
+      ]
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "도수합10,총합60,평균6,편차제곱합60→분산6/표준편차√6. 모분산 정의의 분모10. 공개 새 저자 풀이의 모든 단계가 정의·기초 산술만 사용.",
+      "standardCodes": [
+        "9수05-07"
+      ],
+      "evidence": [
+        "evidence/curriculum.json",
+        "inspection/q14-expanded.png"
+      ]
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "도수·평균·편차·분산·표준편차, 양의 제곱근.",
+      "standardCodes": [
+        "9수05-07"
+      ],
+      "evidence": [
+        "evidence/curriculum.json",
+        "inspection/q14-expanded.png"
+      ]
+    }
+  },
+  "evidence": {
+    "math": "도수합10,총합60,평균6,편차제곱합60→분산6/표준편차√6. 모분산 정의의 분모10.",
+    "newSolutionIndividuallyRead": true,
+    "exactCodeOutput": ".qa-artifacts\\exam-resume-20261008\\gyeongsang-stat-review-r1\\blind\\calculation-output.json",
+    "independentCodeOutputSha256": "99856554ca8ac60fa0edece44e9ee9a00157bfc8bc3a34b4f471e3fe68d0b3d7",
+    "independentInputRawSha256": "f0e720a54643cbe495662598b26e0e8f4045a6d9fb1f767fe2e0a02628dc72e3",
+    "bindingRecord": {
+      "questionNumber": 14,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q14",
+      "studentDigest": "932bd02d867b4be8c568117884472eda10a7c4fcee8ae3f95729a1921bb63802",
+      "candidateDigest": "d7e20582d4f3887deb1c756b47310d2058854f4eeb5cb5b548d1999133c3b795",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "candidateFileSha256": "113b4512fe9fb93c802a208ce60163144f0d324ea75eedf0e1e7cee38d332330",
+      "solveDigest": "c2c219f06dfa6eecdac55c9f0d51391e5a508553c2bc8ff7220f50e666b6924c",
+      "rawSolveSha256": "d43540a3e6e1958436995f2e12c4282dd7d7fe059b3b18df3ab1711c3c0017e5",
+      "sourceQuestionCanonicalDigest": "bacbd1ce98e80d028c3f692f87992ec5e55022ee24b6e3dfa7091eb9706df275",
+      "sourceStemRawSha256": "dccf9c86cf59d0d2009b3fd697e8dd204715bf1f6b9dd0cae1d7b78db587a9d9",
+      "sourcePacketSha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+      "sourceDigestProvided": "0be676b98bbfac946e30d5f28b1377128484f3ea895a2c5aa78d760c09cde6a5",
+      "sourceHashContractNote": "candidate sourceContentSha256 binds the supplied sourceContentDigest; it is not a raw-stem digest. before exactly matches safe stem; separate raw stem/whole row digests retained.",
+      "sourceReferenceImages": [
+        {
+          "file": "images/q14-part1.png",
+          "sha256": "551a03fcd5a0767e021186f851ab1db7819582fb980b9e88fb7912ba3bf2b528",
+          "page": 3,
+          "column": 1,
+          "bbox": [
+            370,
+            471.4420166015625,
+            688,
+            943
+          ]
+        }
+      ],
+      "candidatePrivatePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-stat-review-r1\\package\\private\\q14\\candidate.json",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    "answerComparison": {
+      "literalEqual": true,
+      "semanticEqual": true,
+      "unitMeaningChecked": true,
+      "choiceNumber": 2
+    },
+    "coreAndSubstantiveDelta": "볼링 원자료 나열→퀴즈 빈도표로 조직하여 분산·표준편차 순서쌍 선택. 평균→편차제곱 평균→양의 제곱근 절차 유지.",
+    "naturalKorean": "조건·대상·단위가 자연스럽고 실제 학교 노출 없음. 실제70mm 확대 학생+풀이 화면을 사람이 확인.",
+    "scoreReview": {
+      "score": 5,
+      "proposedDifficulty": "응용",
+      "reviewerDifficultyProposal": "응용",
+      "basis": "도수합10,총합60,평균6,편차제곱합60→분산6/표준편차√6. 모분산 정의의 분모10. 5점은 원문 점수와 같고 필요한 단계 수에 과도한 새 구성을 추가하지 않음; 측정 난도 주장 없음."
+    },
+    "actualVisualReview": {
+      "image": "inspection/q14-expanded.png",
+      "sha256": "e64e71432e23e2dced9f3fc2b2e1b478912e152d17f3130b968dce886388e410",
+      "intendedWidthMm": 70,
+      "personallyViewed": true,
+      "overflow": false,
+      "tablesTextBound": true
+    },
+    "unitFamily": {
+      "unitUuidSupported": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "actualUnitSeedMatch": true,
+      "familyKey": null,
+      "status": "held",
+      "bankCapturedAt": "2026-10-08 13:00:16.891043+00",
+      "notCurrentDbAssertion": true,
+      "basis": "08은5개 DISTINCT 완전 관측값, 목표 분산 하나.03은 이미 평균중심 편차가 주어짐.09는 제곱편차합 등이 이미 주어짐.10회 도수→평균→분산/SD 두 목표 전체를 지원하지 않음."
+    },
+    "nonStudentMetadataFindings": []
+  },
+  "holds": [
+    {
+      "code": "live-family-unassigned",
+      "basis": "08은5개 DISTINCT 완전 관측값, 목표 분산 하나.03은 이미 평균중심 편차가 주어짐.09는 제곱편차합 등이 이미 주어짐.10회 도수→평균→분산/SD 두 목표 전체를 지원하지 않음.",
+      "reopen": "같은 Unit 내 실제 live 규칙의 전체 입력/목표/핵심 절차/난도/형식 대응을 제시; 가까운 유형을 임의 배정하지 않는다."
+    }
+  ],
+  "gates": {
+    "rights": "held",
+    "custody": "held",
+    "nativeCompatibility": "pending",
+    "similarity": "pending",
+    "directUseAllowed": false,
+    "loadable": false,
+    "dbWrites": 0,
+    "modelCalls": 0
+  }
+}

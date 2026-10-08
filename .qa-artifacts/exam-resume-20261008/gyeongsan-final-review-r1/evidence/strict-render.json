@@ -1,0 +1,225 @@
+{
+  "method": "readonly frozen specs; current integrated repository renderFigureSpec strict:true;local engine only;candidate assets unmodified",
+  "runtimeRepositoryFiles": [
+    {
+      "path": "src/lib/figure/renderFigureSpec.ts",
+      "rawSha256": "243a0c11108ca842d4ce5b14a936d7c9d128ed6c8cee583e7d4bc34fe8e62feb"
+    },
+    {
+      "path": "src/lib/figure/mathjaxSubstitute.ts",
+      "rawSha256": "5cf79fb0dfff1f99bcba025fcf0ef24f7f05900f9a40276d1e218070f9e4de21"
+    },
+    {
+      "path": "scripts/figure/render_spec.py",
+      "rawSha256": "773b75c61d5e55f72f1c31a5babff698b61f280c077e305ac35587697d333627"
+    },
+    {
+      "path": "docs/planning/09-figure-engine-guide.md",
+      "rawSha256": "29ac3bba8ffeebd5ce91ba2b0b611bab0547eb07116c1f85ed9a6c1f3ab31cc1"
+    },
+    {
+      "path": "scripts/figure/engine-catalog.json",
+      "rawSha256": "8543d256e75b513772c9f2cd47d21ec9698ab7189e9c9daa9613308a58ebb409"
+    }
+  ],
+  "results": [
+    {
+      "questionNumber": 7,
+      "role": "choice:1",
+      "specSha256": "19180b3bb8ccc916de4e843a13be5a06429d1aa09e41db96534e1986a044ca39",
+      "frozenSvgSha256": "e4a126c1aa7f46596e8c7472eb34bbc209505cfdd698e8b4d5b237892b7d2d09",
+      "regeneratedSvgSha256": "e4a126c1aa7f46596e8c7472eb34bbc209505cfdd698e8b4d5b237892b7d2d09",
+      "byteEqual": true,
+      "strict": true,
+      "localOnly": true,
+      "droppedDimensions": []
+    },
+    {
+      "questionNumber": 7,
+      "role": "choice:2",
+      "specSha256": "3172663d9037e8d6e15efaa24fa642e03875130ddaf8c8a0c3fc2beb713e8210",
+      "frozenSvgSha256": "2d4befb28e779f2812c5ecbf6a9d56c099ee56bf3f23de504b2b2f3edad1a6af",
+      "regeneratedSvgSha256": "2d4befb28e779f2812c5ecbf6a9d56c099ee56bf3f23de504b2b2f3edad1a6af",
+      "byteEqual": true,
+      "strict": true,
+      "localOnly": true,
+      "droppedDimensions": []
+    },
+    {
+      "questionNumber": 7,
+      "role": "choice:3",
+      "specSha256": "2c10900f47c7065b95f65920a32595ee4fecda51bbe989302741825f5358838e",
+      "frozenSvgSha256": "3ac36a888cbf5e9e3d40bd56397ec2c8ffac47cec41f39976ac538d4811f5803",
+      "regeneratedSvgSha256": "3ac36a888cbf5e9e3d40bd56397ec2c8ffac47cec41f39976ac538d4811f5803",
+      "byteEqual": true,
+      "strict": true,
+      "localOnly": true,
+      "droppedDimensions": []
+    },
+    {
+      "questionNumber": 7,
+      "role": "choice:4",
+      "specSha256": "d7b0598a1effac516e73c7e2626e967fde6528a134c77b2ca339f02bdcf8b576",
+      "frozenSvgSha256": "fe3e38ce6dca0a570747ef4f3417ba5104e18ee130270a83ed69b120bb7bf25e",
+      "regeneratedSvgSha256": "fe3e38ce6dca0a570747ef4f3417ba5104e18ee130270a83ed69b120bb7bf25e",
+      "byteEqual": true,
+      "strict": true,
+      "localOnly": true,
+      "droppedDimensions": []
+    },
+    {
+      "questionNumber": 7,
+      "role": "choice:5",
+      "specSha256": "9e3159d69d93051c745ab82ec08a569c373a9ff66c2c2aee5dccf94271ab51b3",
+      "frozenSvgSha256": "253bab5c19748db0fa63f032acee3390f53e96f40e729d06796d8c7ce4c77059",
+      "regeneratedSvgSha256": "253bab5c19748db0fa63f032acee3390f53e96f40e729d06796d8c7ce4c77059",
+      "byteEqual": true,
+      "strict": true,
+      "localOnly": true,
+      "droppedDimensions": []
+    },
+    {
+      "questionNumber": 10,
+      "role": "stem",
+      "specSha256": "8c7a3939b99d7c4d45ba0fc4e54e87981128b4d6e01a40ae0740fab66aea162e",
+      "frozenSvgSha256": "9b06c64f87fc37f778a7618cf5843388f2033002b5f2891c14d3dcb2115a77b7",
+      "regeneratedSvgSha256": "9b06c64f87fc37f778a7618cf5843388f2033002b5f2891c14d3dcb2115a77b7",
+      "byteEqual": true,
+      "strict": true,
+      "localOnly": true,
+      "droppedDimensions": []
+    },
+    {
+      "questionNumber": 12,
+      "role": "stem",
+      "specSha256": "cb550e2d39aca7698204558ef89c8dfb9f0f5a9b882c8f543c5f59a219e232ab",
+      "frozenSvgSha256": "4c277f13f3839f79f1726cc8898070447704a763588db0680121f3990e7ef717",
+      "regeneratedSvgSha256": "4c277f13f3839f79f1726cc8898070447704a763588db0680121f3990e7ef717",
+      "byteEqual": true,
+      "strict": true,
+      "localOnly": true,
+      "droppedDimensions": []
+    },
+    {
+      "questionNumber": 13,
+      "role": "stem",
+      "specSha256": "99bb9745858317d2507be2492916e34d66942404a875e0ea60f1b60fdb7b6fbe",
+      "frozenSvgSha256": "eda63438dcf35eadbeb2af186900f8b8e0b21f83b09206240c57cc190151b34e",
+      "regeneratedSvgSha256": "eda63438dcf35eadbeb2af186900f8b8e0b21f83b09206240c57cc190151b34e",
+      "byteEqual": true,
+      "strict": true,
+      "localOnly": true,
+      "droppedDimensions": []
+    },
+    {
+      "questionNumber": 14,
+      "role": "stem",
+      "specSha256": "aa7b311699ea32bf206438f6b3a444709328064552ba931aa393d90abf8a5570",
+      "frozenSvgSha256": "69f513e4224f4f0f32357985144548a5d33ede2c8c7a918a2b774ba5562860d4",
+      "regeneratedSvgSha256": "69f513e4224f4f0f32357985144548a5d33ede2c8c7a918a2b774ba5562860d4",
+      "byteEqual": true,
+      "strict": true,
+      "localOnly": true,
+      "droppedDimensions": []
+    },
+    {
+      "questionNumber": 17,
+      "role": "stem",
+      "specSha256": "223d85fc456a50ea1c2f13d49ce2901efa6a058e1128cff1a3397e7bc74914c3",
+      "frozenSvgSha256": "194ccb69a95ac6b76d2f8c25150f4258b51ec3ba670057f52bbe974633eaf55c",
+      "regeneratedSvgSha256": "194ccb69a95ac6b76d2f8c25150f4258b51ec3ba670057f52bbe974633eaf55c",
+      "byteEqual": true,
+      "strict": true,
+      "localOnly": true,
+      "droppedDimensions": []
+    },
+    {
+      "questionNumber": 19,
+      "role": "stem",
+      "specSha256": "ba6874e9c23529f2bd85ffae8a3ef5cc51759dfab244c8e656bfb752525dd792",
+      "frozenSvgSha256": "7dc84d5ac01573925edf38b82926ed6518ea297d4e00c96cc002f9214bb16f33",
+      "regeneratedSvgSha256": "7dc84d5ac01573925edf38b82926ed6518ea297d4e00c96cc002f9214bb16f33",
+      "byteEqual": true,
+      "strict": true,
+      "localOnly": true,
+      "droppedDimensions": []
+    },
+    {
+      "questionNumber": 20,
+      "role": "stem",
+      "specSha256": "a1233643bf21bd84e5ea00c180c97cf3000189c7f0b6029b0adc92ca9a22e8d0",
+      "frozenSvgSha256": "db3eb9bf93e9125578b5a48775830a8bb5380f07f4d9ca0964202894dacb6cac",
+      "regeneratedSvgSha256": "db3eb9bf93e9125578b5a48775830a8bb5380f07f4d9ca0964202894dacb6cac",
+      "byteEqual": true,
+      "strict": true,
+      "localOnly": true,
+      "droppedDimensions": []
+    },
+    {
+      "questionNumber": 21,
+      "role": "stem",
+      "specSha256": "bb0d17a80f3319afd09740ffdfa974c4cb483bf6989ac56fb85048abc9ed35a4",
+      "frozenSvgSha256": "3756cc3a36e3c5a2051a7a965fba427547239d38e7780dbf25fe7805ade8aaf5",
+      "regeneratedSvgSha256": "3756cc3a36e3c5a2051a7a965fba427547239d38e7780dbf25fe7805ade8aaf5",
+      "byteEqual": true,
+      "strict": true,
+      "localOnly": true,
+      "droppedDimensions": []
+    },
+    {
+      "questionNumber": 22,
+      "role": "stem",
+      "specSha256": "c281d4be98045dc36a54bd393e70f3c197139b7ba2434d6134887cd0e0bff675",
+      "frozenSvgSha256": "63dc539bdd3adf2ea3b52f71a519eb959d4428138d222e5b8a32535497645111",
+      "regeneratedSvgSha256": "63dc539bdd3adf2ea3b52f71a519eb959d4428138d222e5b8a32535497645111",
+      "byteEqual": true,
+      "strict": true,
+      "localOnly": true,
+      "droppedDimensions": []
+    },
+    {
+      "questionNumber": 23,
+      "role": "stem",
+      "specSha256": "7a36b53bcffe4de1a6fe4834543a4e8147d804157b30ee80397e27806ef2eaa4",
+      "frozenSvgSha256": "6dea7f9e53fba81da0d17218bb115d2e8a2992b562e00ba14c97f8e2cbdfde0c",
+      "regeneratedSvgSha256": "6dea7f9e53fba81da0d17218bb115d2e8a2992b562e00ba14c97f8e2cbdfde0c",
+      "byteEqual": true,
+      "strict": true,
+      "localOnly": true,
+      "droppedDimensions": []
+    },
+    {
+      "questionNumber": 24,
+      "role": "stem",
+      "specSha256": "779d4a86107d3a21ce6bd8d62a020477e96dab89f779ed3fcc4a6fe0228eff0c",
+      "frozenSvgSha256": "c2a463d9bd783bb10d9bf09d3455ef5333b3ec7b04d5aa13f75eb4c086d4de41",
+      "regeneratedSvgSha256": "c2a463d9bd783bb10d9bf09d3455ef5333b3ec7b04d5aa13f75eb4c086d4de41",
+      "byteEqual": true,
+      "strict": true,
+      "localOnly": true,
+      "droppedDimensions": []
+    },
+    {
+      "questionNumber": 25,
+      "role": "stem",
+      "specSha256": "9aeec552a0e39814991e17a01547bcfdd5616efaf422bc3d69e70a0605905097",
+      "frozenSvgSha256": "d2cd7bd357403bcd8ef77d603b5134d14f60f42c84dcecc11922c5347a4eea95",
+      "regeneratedSvgSha256": "d2cd7bd357403bcd8ef77d603b5134d14f60f42c84dcecc11922c5347a4eea95",
+      "byteEqual": true,
+      "strict": true,
+      "localOnly": true,
+      "droppedDimensions": []
+    },
+    {
+      "questionNumber": 25,
+      "role": "stem",
+      "specSha256": "3bb9c2127cbf4bb57a4c64e158ce2c2e6fbc35694b9fe57d3393303e9711ebe6",
+      "frozenSvgSha256": "f7f11686c98a400462254b6e0198ee8f63cb87e042fe6b6236e7e3f2f3364820",
+      "regeneratedSvgSha256": "f7f11686c98a400462254b6e0198ee8f63cb87e042fe6b6236e7e3f2f3364820",
+      "byteEqual": true,
+      "strict": true,
+      "localOnly": true,
+      "droppedDimensions": []
+    }
+  ]
+}

@@ -1,0 +1,2454 @@
+/**
+ * 중3 「삼각비」 — RPM 3-2 «삼각비» 18유형 + 우리 유형 19~21
+ * + «삼각비의 활용» 14유형 = 35유형.
+ *
+ * 물결 3E 세션 소유 모듈 — 이 파일과 짝 시험(`middleM3Trig.test.ts`)만 이 세션이
+ * 만진다(middle-engine-wave3-plan.md §9 소유권 규칙). 합본 `m3.ts` 에는 import 한 줄과
+ * spread 한 줄만 더한다.
+ *
+ * 우리 단원(prisma/seed-data/units.ts 481~483): 「삼각비의 뜻」·「삼각비의 값」·
+ * 「삼각비의 활용」. 유형 번호·제목은 `scripts/rpm/rpm-type-catalog.json` 3-2 색인의
+ * **바이트 그대로**다 — 08·09·10·13·18 의 제목이 「의 …」로 시작하는 것은 색인이 앞의
+ * 각도 표기(`30^\circ, 45^\circ, 60^\circ` 등)를 잃은 흔적이고, 손으로 고치면
+ * `middleTypeCoverage.test.ts` 의 전량 대조가 빨개진다.
+ *
+ * ## 생성 규칙 — 답을 먼저 정하고 발문을 만든다
+ *
+ * 변의 길이는 피타고라스 세 쌍에서, 특수각 계산은 아래 **정확한 무리수 대수**(`Surd`)
+ * 에서 나온다. 발문에서 답을 역산하지 않는다. `facts` 에는 «발문의 원 수치»만 싣고,
+ * 시험은 그 수치로 **다른 식**(부동소수 삼각함수·코사인법칙·사인법칙)을 세워 답을
+ * 다시 유도한다 — 같은 식을 옮겨 적으면 동어반복이다.
+ *
+ * ## ⚠️ 가분수를 쓰지 않는다 (2026-08-23 계량기)
+ *
+ * 제품 전처리 `improperToMixed` 가 **지면에서** `\dfrac{3}{2}` 를 `1\frac{1}{2}` 로,
+ * `\dfrac{4}{2}` 를 `2` 로 고쳐 쓴다(docs/planning/tracks/mixed-number-preprocess-20260823.md).
+ * 삼각비는 `\dfrac{4}{3}` 같은 값이 흔하므로 **순수 숫자 분수는 반드시 진분수**여야 한다.
+ * 그 규칙을 지키는 자리가 `frac()` 하나뿐이고, 어기면 **던진다**(조용히 나가지 않는다).
+ * 분자가 `\sqrt{3}` 처럼 숫자가 아니면 그 정규식이 안 물므로 `surdText()` 는 안전하다.
+ * 시험은 제품 `preprocessMathText` 를 **실제로 돌려** 수식 안의 수가 그대로인지 본다.
+ *
+ * ## 그림 (FigureSpec v2 — 계층 A, 09 §1)
+ *
+ * 직각삼각형·일반 삼각형·사각형·사분원·정다각형만 쓴다. 새 kind 를 만들지 않는다.
+ * 입체도형(직육면체·사각뿔·원뿔)과 특수각 계산 유형은 **발문이 그림 없이 완결**되게
+ * 썼다 — 계층 B 를 이 세션이 새로 파지 않는다.
+ * 그림의 각·변 비율은 발문의 실제 값으로 계산한다(09 §4-20: 값이 찍히는 순간 도형이
+ * 값과 안 맞는 것이 보인다).
+ */
+import { intBetween, pick } from "../elementary/rng";
+import type { Rng } from "../elementary/types";
+
+import type { MidProblem, TypeEntry } from "./types";
+import { dimCm } from "./figureDims";
+import { eulReul, iGa } from "./m2Josa";
+
+const GRADE = "중3";
+const BOOK = "3-2";
+const MINOR_TRIG = "삼각비";
+const MINOR_APPLY = "삼각비의 활용";
+
+/** 우리 Unit.section 정확한 이름 (prisma/seed-data/units.ts 481~483). */
+const SEC = {
+  뜻: "삼각비의 뜻",
+  값: "삼각비의 값",
+  활용: "삼각비의 활용",
+} as const;
+
+/** 조건을 만족할 때까지 다시 뽑는다 — 못 찾으면 던진다(조용히 기본값 금지). */
+function attempt<T>(tries: number, f: () => T | null): T {
+  for (let i = 0; i < tries; i += 1) {
+    const v = f();
+    if (v !== null) return v;
+  }
+  throw new Error("유형 생성 재시도 초과 — 매개변수 범위를 확인하십시오");
+}
+
+function gcd(a: number, b: number): number {
+  return b === 0 ? a : gcd(b, a % b);
+}
+
+function r2(v: number): number {
+  return Math.round(v * 100) / 100;
+}
+
+/* ────────────────────────────────────────────────────────────────────────
+ * 정확한 무리수 대수 — n√r / d
+ * ──────────────────────────────────────────────────────────────────────── */
+
+/** `n\sqrt{r}/d` 꼴. `r` 은 제곱인수를 뺀 값, `d>0`, 부호는 `n` 이 갖는다. */
+type Surd = { n: number; r: number; d: number };
+
+/** 제곱인수를 밖으로 빼고 약분한다. 정규형이 하나여야 `+`/`-` 를 가를 수 있다. */
+function surd(n: number, r: number, d: number): Surd {
+  if (d === 0) throw new Error("무리수 분모가 0입니다");
+  let nn = n;
+  let rr = r;
+  let dd = d;
+  if (dd < 0) {
+    nn = -nn;
+    dd = -dd;
+  }
+  if (rr < 1) throw new Error(`근호 안이 ${rr} 입니다`);
+  for (let k = 2; k * k <= rr; k += 1) {
+    while (rr % (k * k) === 0) {
+      rr /= k * k;
+      nn *= k;
+    }
+  }
+  if (nn === 0) return { n: 0, r: 1, d: 1 };
+  const g = gcd(Math.abs(nn), dd);
+  return { n: nn / g, r: rr, d: dd / g };
+}
+
+function surdMul(a: Surd, b: Surd): Surd {
+  return surd(a.n * b.n, a.r * b.r, a.d * b.d);
+}
+
+/**
+ * `a / b` — 분모를 유리화한다.
+ * `(n1√r1/d1) ÷ (n2√r2/d2) = n1·d2·√(r1·r2) / (d1·n2·r2)`.
+ *
+ * ⚠️ 2026-08-23: 처음 판은 `d2`·`r2` 를 빠뜨려 **`d2 === r2` 인 45° 계열에서만
+ * 우연히 맞았다.** `20 ÷ cos 30°` 가 `20√3` 으로 나왔고(참값 `40√3/3`),
+ * 시험이 아니라 **미리보기를 눈으로 보다** 드러났다. 시험은 이 함수를 안 쓰고
+ * 부동소수 삼각함수로 답을 다시 유도하므로 이제는 빨개진다.
+ */
+function surdDiv(a: Surd, b: Surd): Surd {
+  if (b.n === 0) throw new Error("무리수를 0으로 나눌 수 없습니다");
+  return surd(a.n * b.d, a.r * b.r, a.d * b.n * b.r);
+}
+
+/** 근호가 같을 때만 더한다 — 다르면 `null`(호출자가 그 조합을 버린다). */
+function surdAdd(a: Surd, b: Surd): Surd | null {
+  if (a.n === 0) return b;
+  if (b.n === 0) return a;
+  if (a.r !== b.r) return null;
+  return surd(a.n * b.d + b.n * a.d, a.r, a.d * b.d);
+}
+
+function surdSub(a: Surd, b: Surd): Surd | null {
+  return surdAdd(a, { n: -b.n, r: b.r, d: b.d });
+}
+
+function surdValue(s: Surd): number {
+  return (s.n * Math.sqrt(s.r)) / s.d;
+}
+
+/**
+ * **순수 숫자 분수는 진분수만** 낸다 — 가분수는 지면에서 대분수로 바뀐다.
+ * 어기면 던진다(조용히 `1\frac{1}{2}` 가 나가는 것을 막는다).
+ */
+function frac(n: number, d: number): string {
+  if (d === 0) throw new Error("분모가 0입니다");
+  const sign = n * d < 0 ? -1 : 1;
+  const a = Math.abs(n);
+  const b = Math.abs(d);
+  const g = gcd(a, b) || 1;
+  const p = a / g;
+  const q = b / g;
+  if (q === 1) return `${sign * p}`;
+  if (p >= q) {
+    throw new Error(
+      `가분수 ${sign * p}/${q} — 지면 전처리가 대분수로 고쳐 쓴다(mixed-number-preprocess-20260823.md)`,
+    );
+  }
+  return `${sign < 0 ? "-" : ""}\\dfrac{${p}}{${q}}`;
+}
+
+/** `n√r/d` 를 LaTeX 로. 근호가 있으면 분자가 숫자가 아니라 전처리가 안 문다. */
+function surdText(s: Surd): string {
+  if (s.n === 0) return "0";
+  if (s.r === 1) return frac(s.n, s.d);
+  const sign = s.n < 0 ? "-" : "";
+  const mag = Math.abs(s.n);
+  const top = mag === 1 ? `\\sqrt{${s.r}}` : `${mag}\\sqrt{${s.r}}`;
+  return s.d === 1 ? `${sign}${top}` : `${sign}\\dfrac{${top}}{${s.d}}`;
+}
+
+/** `c0 + c1√root` 를 괄호 없이 — 길이·넓이 답의 표준 꼴. */
+function binomText(c0: number, c1: number, root: number): string {
+  if (c1 === 0) return `${c0}`;
+  const t = surdText(surd(c1, root, 1));
+  if (c0 === 0) return t;
+  if (c0 > 0) return c1 > 0 ? `${c0}+${t}` : `${c0}${t}`;
+  // 유리항이 음수면 무리항을 앞에 둔다 — 교과서 표기는 `4\sqrt{3}-4` 이지
+  // `-4+4\sqrt{3}` 이 아니다.
+  return `${t}${c0}`;
+}
+
+/* ────────────────────────────────────────────────────────────────────────
+ * 특수각의 정확한 삼각비 값
+ * ──────────────────────────────────────────────────────────────────────── */
+
+const FN_NAMES = ["\\sin", "\\cos", "\\tan"] as const;
+
+/** `[fn][angle]` — `tan 90°` 는 없다(`null`). */
+const EXACT: Record<number, (Surd | null)[]> = {
+  0: [surd(0, 1, 1), surd(1, 1, 1), surd(0, 1, 1)],
+  30: [surd(1, 1, 2), surd(1, 3, 2), surd(1, 3, 3)],
+  45: [surd(1, 2, 2), surd(1, 2, 2), surd(1, 1, 1)],
+  60: [surd(1, 3, 2), surd(1, 1, 2), surd(1, 3, 1)],
+  90: [surd(1, 1, 1), surd(0, 1, 1), null],
+};
+
+function exact(fn: number, angle: number): Surd | null {
+  const row = EXACT[angle];
+  if (!row) throw new Error(`특수각이 아닙니다: ${angle}`);
+  return row[fn] ?? null;
+}
+
+/** `\sin 30^\circ` 처럼 — 발문·해설이 같은 문자열을 쓰게 한다. */
+function trigText(fn: number, angle: number): string {
+  return `${FN_NAMES[fn]} ${angle}^\\circ`;
+}
+
+const OP_TEXT = ["+", "-", "\\times", "\\div"] as const;
+
+function applyOp(op: number, a: Surd, b: Surd): Surd | null {
+  if (op === 0) return surdAdd(a, b);
+  if (op === 1) return surdSub(a, b);
+  if (op === 2) return surdMul(a, b);
+  if (b.n === 0) return null;
+  return surdDiv(a, b);
+}
+
+/* ────────────────────────────────────────────────────────────────────────
+ * 피타고라스 세 쌍 — 변의 길이·삼각비가 전부 유리수가 된다
+ * ──────────────────────────────────────────────────────────────────────── */
+
+/** `[짧은 변, 긴 변, 빗변]`. */
+const TRIPLES = [
+  [3, 4, 5],
+  [6, 8, 10],
+  [5, 12, 13],
+  [9, 12, 15],
+  [8, 15, 17],
+  [12, 16, 20],
+  [7, 24, 25],
+  [15, 20, 25],
+  [10, 24, 26],
+  [20, 21, 29],
+  [18, 24, 30],
+  [16, 30, 34],
+  [12, 35, 37],
+  [9, 40, 41],
+] as const;
+
+type Body = Pick<
+  MidProblem,
+  "content" | "answer" | "solution" | "facts" | "figureSpec" | "distractors"
+>;
+
+function def(
+  minor: string,
+  rpmType: string,
+  rpmTitle: string,
+  unitSection: string,
+  difficulty: MidProblem["difficulty"],
+  gen: (rng: Rng) => Body,
+): TypeEntry {
+  return {
+    key: `${BOOK}|${minor}|${rpmType}`,
+    grade: GRADE,
+    unitSection,
+    rpmBook: BOOK,
+    rpmMinor: minor,
+    rpmType,
+    rpmTitle,
+    handler: (rng) => ({
+      grade: GRADE,
+      unitSection,
+      rpmBook: BOOK,
+      rpmMinor: minor,
+      rpmType,
+      rpmTitle,
+      difficulty,
+      ...gen(rng),
+    }),
+  };
+}
+
+/* ────────────────────────────────────────────────────────────────────────
+ * FigureSpec v2 빌더 — 좌표만 계산한다. 스펙 검증은 엔진이 정본이다(09 §0.1).
+ *
+ * ## 치수는 **`dimensions`** 로 넣는다 (2026-08-25 원장님 지적으로 되돌림)
+ *
+ * 원장님: 「**길이를 표현하는 치수선(점선/곡선)이 렌더링 안 된다**」
+ * (`J30503-A05-002` 는 길이 표시가 아예 없고 `A04-002` 는 $\overline{AB}$ 가 없다).
+ *
+ * ⚠️ 종전에는 여기 「치수는 `dimensions` 로 넣지 않는다」가 적혀 있었다. 실측 근거도
+ * 있었다 — 2026-08-23 실렌더 60건 중 19건이 `dimension … has no collision-free
+ * layout` 으로 던졌고, `offset`×`side` 15가지를 다 대 봐도 안 되는 유형이 있었다.
+ * **그 관찰은 사실이었지만 원인 진단이 없었다.**
+ *
+ * 뿌리는 엔진의 **배치 순서**였다: 점 이름(A·B·C)을 치수보다 **먼저** 놓는데,
+ * 점 이름은 늘 「그 꼭짓점 바로 바깥」을 집고 그 자리가 곧 치수 곡선이 지나갈 자리다.
+ * 자유도가 큰 쪽(8방향×5거리)이 먼저 자리를 차지하니 자유도가 작은 쪽(제 현을
+ * 붙들어야 하는 치수)이 갈 데가 없었다. `figure_scene.resolve()` 를
+ * **«자유도가 적은 것부터»** 로 바꾸자 같은 도형이 그대로 그려진다.
+ *
+ * 그래서 여기서는 **엔진에 치수를 맡긴다** — 점선 `6 4` + halo 는 이 저장소가 정한
+ * 치수 규격이고(09 §4-16), 날 `<text>` 는 「선에서 8px 도 안 떨어진 길이 표기」라는
+ * `lint_svg` 규칙 4 를 정면으로 어긴다.
+ *
+ * `dims` 의 키는 **두 점 이름**(`"BC"`)이고 엔진 이름은 `d_` 를 붙인다 — 기하 객체
+ * 이름은 한 네임스페이스를 쓴다(09 §4-2).
+ * ──────────────────────────────────────────────────────────────────────── */
+
+type FigureSpec = Record<string, unknown>;
+type XY = [number, number];
+
+const DEG = Math.PI / 180;
+
+/**
+ * 수학 좌표(y-위) → SVG 좌표(y-아래), 220×190 균일 배율 (m2GeoSim 과 같은 규약).
+ * export 하는 이유: 시험이 캔버스 상수를 옮겨 적지 않게. 문턱은 안 든다.
+ */
+export function fitPts(pts: Record<string, XY>): Record<string, XY> {
+  const xs = Object.values(pts).map((p) => p[0]);
+  const ys = Object.values(pts).map((p) => p[1]);
+  const minX = Math.min(...xs);
+  const maxX = Math.max(...xs);
+  const minY = Math.min(...ys);
+  const maxY = Math.max(...ys);
+  const m = 22;
+  const s = Math.min(
+    (220 - 2 * m) / Math.max(maxX - minX, 1e-9),
+    (190 - 2 * m) / Math.max(maxY - minY, 1e-9),
+  );
+  const out: Record<string, XY> = {};
+  for (const [k, [x, y]] of Object.entries(pts)) {
+    out[k] = [r2(m + (x - minX) * s), r2(190 - m - (y - minY) * s)];
+  }
+  return out;
+}
+
+/**
+ * 맞춘 뒤 변 길이(px). 치수 곡선을 붙이려면 이 길이는 되어야 한다.
+ *
+ * 실측(제품 경로, `geometry=1`): 80px(AB=12·BC=16·150°)은 던지고
+ * 83px(AB=8·BC=13·120°)은 그린다. 5px 여유.
+ *
+ * 쪽을 `left`/`right` 로 고정해도 안 된다 — left 는 text, right 는 geometry.
+ * 짧은 변에 억지로 달지 말고 값을 다시 뽑는다(m2Pytha 마름모 · 09 §4-27).
+ */
+const MIN_DIM_SIDE_PX = 85;
+
+function fittedSidePx(pts: Record<string, XY>, p: string, q: string): number {
+  const fitted = fitPts(pts);
+  const u = fitted[p]!;
+  const v = fitted[q]!;
+  return Math.hypot(u[0] - v[0], u[1] - v[1]);
+}
+
+type Draft = {
+  pts: Record<string, XY>;
+  segments: Record<string, unknown>;
+  angles?: Record<string, unknown>;
+  /** 변 이름(두 점) → 그 변에 붙일 치수. 예: `{ AB: "8 cm" }` */
+  dims?: Record<string, string>;
+  /**
+   * 치수 쪽 고정 — `"left"`/`"right"`. 안 주면 `"auto"`(엔진이 둘 다 대 본다).
+   * ⚠️ 「도형 안을 지나는 선」(수선 등)에 auto 를 주면 엔진이 안쪽으로도 대 보다가
+   *    다른 변과 부딪혀 던질 수 있다 — 그런 변만 쪽을 못 박는다.
+   */
+  side?: Record<string, "left" | "right">;
+  labels: Record<string, string>;
+};
+
+/**
+ * 좌표를 맞추고 치수를 붙인다.
+ *
+ * ⚠️ `label` 은 **plain text** 여야 한다 — `dimensions.label` 은 KaTeX 로 다시
+ *    렌더링되지 않는다(09 §4-26). `dimCm()` 이 그것을 지킨다.
+ */
+function build(d: Draft): FigureSpec {
+  const fitted = fitPts(d.pts);
+  const spec: FigureSpec = {
+    version: 2,
+    points: { ...fitted },
+    segments: d.segments,
+    labels: { ...d.labels },
+  };
+  const dims = Object.entries(d.dims ?? {});
+  if (dims.length > 0) {
+    const dimensions: Record<string, unknown> = {};
+    for (const [pair, text] of dims) {
+      const p = pair[0]!;
+      const q = pair[1]!;
+      if (!fitted[p] || !fitted[q])
+        throw new Error(`치수의 끝점이 없습니다: ${pair}`);
+      dimensions[`d_${pair}`] = {
+        points: [p, q],
+        label: text,
+        side: d.side?.[pair] ?? "auto",
+      };
+    }
+    spec.dimensions = dimensions;
+  }
+  if (d.angles && Object.keys(d.angles).length > 0) spec.angles = d.angles;
+  return spec;
+}
+
+/**
+ * 직각삼각형 — $\angle B=90^\circ$, $B$ 는 왼쪽 아래, $A$ 는 위, $C$ 는 오른쪽.
+ * 세로·가로에는 **발문의 실제 값**을 넣는다(도형이 값과 안 맞으면 지면에서 보인다).
+ */
+function figRight(opts: {
+  vert: number;
+  horz: number;
+  dims?: Record<string, string>;
+  angA?: string;
+  angC?: string;
+}): FigureSpec {
+  const k = 130 / Math.max(opts.vert, opts.horz);
+  const pts: Record<string, XY> = {
+    B: [0, 0],
+    A: [0, r2(opts.vert * k)],
+    C: [r2(opts.horz * k), 0],
+  };
+  const angles: Record<string, unknown> = {
+    r_B: { vertex: "B", points: ["A", "C"], right: true },
+  };
+  if (opts.angA) {
+    angles.a_A = { vertex: "A", points: ["B", "C"], label: opts.angA };
+  }
+  if (opts.angC) {
+    angles.a_C = { vertex: "C", points: ["A", "B"], label: opts.angC };
+  }
+  return build({
+    pts,
+    segments: { AB: ["A", "B"], BC: ["B", "C"], CA: ["C", "A"] },
+    angles,
+    dims: opts.dims,
+    labels: { A: "A", B: "B", C: "C" },
+  });
+}
+
+/**
+ * $\angle A=90^\circ$ 인 직각삼각형과 빗변 위의 수선의 발 $H$ (닮음 유형).
+ * `ab`·`ac` 는 두 직각변의 실제 길이 — $H$ 자리도 그 값에서 나온다.
+ */
+function figAltitude(opts: {
+  ab: number;
+  ac: number;
+  dims?: Record<string, string>;
+  angBAH?: string;
+  angCAH?: string;
+}): FigureSpec {
+  const a = Math.hypot(opts.ab, opts.ac);
+  const k = 150 / a;
+  const bh = (opts.ab * opts.ab) / a;
+  const ah = (opts.ab * opts.ac) / a;
+  const pts: Record<string, XY> = {
+    B: [0, 0],
+    C: [r2(a * k), 0],
+    H: [r2(bh * k), 0],
+    A: [r2(bh * k), r2(ah * k)],
+  };
+  const angles: Record<string, unknown> = {
+    r_A: { vertex: "A", points: ["B", "C"], right: true },
+    r_H: { vertex: "H", points: ["A", "C"], right: true },
+  };
+  if (opts.angBAH) {
+    angles.a_BAH = { vertex: "A", points: ["B", "H"], label: opts.angBAH };
+  }
+  if (opts.angCAH) {
+    angles.a_CAH = { vertex: "A", points: ["C", "H"], label: opts.angCAH };
+  }
+  return build({
+    pts,
+    segments: {
+      BC: ["B", "C"],
+      AB: ["A", "B"],
+      AC: ["A", "C"],
+      AH: ["A", "H"],
+    },
+    angles,
+    dims: opts.dims,
+    labels: { A: "A", B: "B", C: "C", H: "H" },
+  });
+}
+
+/** 두 변과 끼인각 — $\angle B$ 가 끼인각. `ab`·`bc` 는 실제 길이. */
+function figTwoSides(opts: {
+  ab: number;
+  bc: number;
+  angB: number;
+  dims?: Record<string, string>;
+}): FigureSpec {
+  const k = 140 / Math.max(opts.ab, opts.bc);
+  const pts: Record<string, XY> = {
+    B: [0, 0],
+    C: [r2(opts.bc * k), 0],
+    A: [
+      r2(opts.ab * k * Math.cos(opts.angB * DEG)),
+      r2(opts.ab * k * Math.sin(opts.angB * DEG)),
+    ],
+  };
+  return build({
+    pts,
+    segments: { AB: ["A", "B"], BC: ["B", "C"], CA: ["C", "A"] },
+    angles: {
+      a_B: { vertex: "B", points: ["A", "C"], label: `${opts.angB}°` },
+    },
+    dims: opts.dims,
+    labels: { A: "A", B: "B", C: "C" },
+  });
+}
+
+/**
+ * 한 변과 양 끝 각 — `foot` 이면 꼭짓점 $A$ 에서 내린 수선을 **점선**으로 같이 긋는다.
+ */
+function figTwoAngles(opts: {
+  bc: number;
+  angB: number;
+  angC: number;
+  foot?: boolean;
+  dims?: Record<string, string>;
+}): FigureSpec {
+  const cotB = 1 / Math.tan(opts.angB * DEG);
+  const cotC = 1 / Math.tan(opts.angC * DEG);
+  const h = opts.bc / (cotB + cotC);
+  const k = 150 / Math.max(opts.bc, h * 1.4);
+  const ax = h * cotB;
+  const pts: Record<string, XY> = {
+    B: [0, 0],
+    C: [r2(opts.bc * k), 0],
+    A: [r2(ax * k), r2(h * k)],
+  };
+  const segments: Record<string, unknown> = {
+    AB: ["A", "B"],
+    BC: ["B", "C"],
+    CA: ["C", "A"],
+  };
+  const angles: Record<string, unknown> = {
+    a_B: { vertex: "B", points: ["A", "C"], label: `${opts.angB}°` },
+    a_C: { vertex: "C", points: ["A", "B"], label: `${opts.angC}°` },
+  };
+  const labels: Record<string, string> = { A: "A", B: "B", C: "C" };
+  if (opts.foot) {
+    pts.H = [r2(ax * k), 0];
+    segments.AH = { points: ["A", "H"], dash: "5 4" };
+    angles.r_H = { vertex: "H", points: ["A", "C"], right: true };
+    labels.H = "H";
+  }
+  return build({ pts, segments, angles, dims: opts.dims, labels });
+}
+
+/**
+ * 한 각이 둔각인 삼각형의 높이 — 수선의 발 $H$ 가 $\overline{BC}$ 의 **바깥**에 선다.
+ * `outer` 는 $\angle ABH(=180^\circ-\angle ABC)$, `angC` 는 예각이다.
+ *
+ * ⚠️ 직각 표시의 반쪽은 $\overline{HB}$ 로 잡는다 — $H$ 에서 $C$ 로 가는 **선분이
+ * 없어서** `points:["A","C"]` 로 쓰면 엔진이 「ray is not covered by a rendered
+ * segment」로 던진다(실측). $\overline{HB}$ 는 $\overline{HC}$ 와 같은 직선이라
+ * 표시하는 각은 같다.
+ */
+function figObtuseHeight(opts: {
+  bc: number;
+  outer: number;
+  angC: number;
+  dims?: Record<string, string>;
+}): FigureSpec {
+  const cotOuter = 1 / Math.tan(opts.outer * DEG);
+  const cotC = 1 / Math.tan(opts.angC * DEG);
+  const h = opts.bc / (cotC - cotOuter);
+  const back = h * cotOuter;
+  const pts: Record<string, XY> = {
+    H: [0, 0],
+    B: [r2(back), 0],
+    C: [r2(back + opts.bc), 0],
+    A: [0, r2(h)],
+  };
+  return build({
+    pts,
+    segments: {
+      AB: ["A", "B"],
+      BC: ["B", "C"],
+      CA: ["C", "A"],
+      AH: { points: ["A", "H"], dash: "5 4" },
+      HB: { points: ["H", "B"], dash: "5 4" },
+    },
+    angles: {
+      r_H: { vertex: "H", points: ["A", "B"], right: true },
+      a_C: { vertex: "C", points: ["A", "B"], label: `${opts.angC}°` },
+    },
+    dims: opts.dims,
+    labels: { A: "A", B: "B", C: "C", H: "H" },
+  });
+}
+
+/** 대각선 $AC$ 로 나뉜 사각형 $ABCD$ — 두 삼각형의 끼인각이 $\angle B$·$\angle D$. */
+function figQuadDiag(opts: {
+  ab: number;
+  bc: number;
+  angB: number;
+  ad: number;
+  dc: number;
+  angD: number;
+  dims?: Record<string, string>;
+}): FigureSpec {
+  const B: XY = [0, 0];
+  const C: XY = [opts.bc, 0];
+  const A: XY = [
+    opts.ab * Math.cos(opts.angB * DEG),
+    opts.ab * Math.sin(opts.angB * DEG),
+  ];
+  const ac = Math.hypot(C[0] - A[0], C[1] - A[1]);
+  // $A$ 에서 $\overline{AC}$ 방향으로 t, 그 수직으로 hd — $B$ 의 반대쪽에 $D$.
+  const t = (opts.ad * opts.ad - opts.dc * opts.dc + ac * ac) / (2 * ac);
+  const hd = Math.sqrt(Math.max(opts.ad * opts.ad - t * t, 0));
+  const ux = (C[0] - A[0]) / ac;
+  const uy = (C[1] - A[1]) / ac;
+  // 부호 규약: 점 `P` 의 «쪽»은 `(P-A)×u` 의 z 성분이다. 아래 오프셋 `s·(uy,-ux)` 의
+  // z 성분은 그대로 `s` 이므로 **`B` 의 반대쪽은 `-sideB`** 다.
+  // (2026-08-23: 처음엔 `+sideB` 라 `D` 가 삼각형 안으로 들어와 사각형이 겹쳤다.
+  //  발문은 사각형이라 하는데 그림은 아니었다 — 미리보기에서 드러났다.)
+  const sideB = Math.sign((B[0] - A[0]) * uy - (B[1] - A[1]) * ux) || 1;
+  const s = -sideB;
+  const D: XY = [
+    r2(A[0] + ux * t + s * uy * hd),
+    r2(A[1] + uy * t - s * ux * hd),
+  ];
+  return build({
+    pts: { A: [r2(A[0]), r2(A[1])], B, C, D },
+    segments: {
+      AB: ["A", "B"],
+      BC: ["B", "C"],
+      CD: ["C", "D"],
+      DA: ["D", "A"],
+      AC: ["A", "C"],
+    },
+    angles: {
+      a_B: { vertex: "B", points: ["A", "C"], label: `${opts.angB}°` },
+      a_D: { vertex: "D", points: ["A", "C"], label: `${opts.angD}°` },
+    },
+    dims: opts.dims,
+    labels: { A: "A", B: "B", C: "C", D: "D" },
+  });
+}
+
+/** 평행사변형 $ABCD$ — $\angle A$ 가 이웃한 두 변 $\overline{AB}$·$\overline{AD}$ 의 끼인각. */
+function figParallelogram(opts: {
+  ab: number;
+  ad: number;
+  angA: number;
+  dims?: Record<string, string>;
+}): FigureSpec {
+  const k = 140 / Math.max(opts.ab, opts.ad);
+  const dx = opts.ad * k * Math.cos(opts.angA * DEG);
+  const dy = opts.ad * k * Math.sin(opts.angA * DEG);
+  const pts: Record<string, XY> = {
+    A: [0, 0],
+    B: [r2(opts.ab * k), 0],
+    C: [r2(opts.ab * k + dx), r2(dy)],
+    D: [r2(dx), r2(dy)],
+  };
+  return build({
+    pts,
+    segments: {
+      AB: ["A", "B"],
+      BC: ["B", "C"],
+      CD: ["C", "D"],
+      DA: ["D", "A"],
+    },
+    angles: {
+      a_A: { vertex: "A", points: ["B", "D"], label: `${opts.angA}°` },
+    },
+    dims: opts.dims,
+    labels: { A: "A", B: "B", C: "C", D: "D" },
+  });
+}
+
+/**
+ * 두 대각선이 점 $P$ 에서 각 `ang` 로 만나는 사각형 $ABCD$.
+ *
+ * ⚠️ 대각선은 $\overline{AP}$·$\overline{PC}$·$\overline{BP}$·$\overline{PD}$ 넷으로
+ * **쪼개서** 긋는다 — 통째로 그으면 $P$ 가 끝점이 아니라서 $\angle DPC$ 표시가
+ * 「ray is not covered by a rendered segment」로 거부된다(실측).
+ */
+function figQuadCross(opts: {
+  d1: number;
+  d2: number;
+  ang: number;
+  dims?: Record<string, string>;
+}): FigureSpec {
+  const k = 150 / Math.max(opts.d1, opts.d2);
+  const u = 0.45 * opts.d1 * k;
+  const v = 0.4 * opts.d2 * k;
+  const cx = Math.cos(opts.ang * DEG);
+  const cy = Math.sin(opts.ang * DEG);
+  const pts: Record<string, XY> = {
+    P: [0, 0],
+    A: [r2(-u), 0],
+    C: [r2(opts.d1 * k - u), 0],
+    B: [r2(-v * cx), r2(-v * cy)],
+    D: [r2((opts.d2 * k - v) * cx), r2((opts.d2 * k - v) * cy)],
+  };
+  return build({
+    pts,
+    segments: {
+      AB: ["A", "B"],
+      BC: ["B", "C"],
+      CD: ["C", "D"],
+      DA: ["D", "A"],
+      AP: ["A", "P"],
+      PC: ["P", "C"],
+      BP: ["B", "P"],
+      PD: ["P", "D"],
+    },
+    angles: {
+      a_P: { vertex: "P", points: ["C", "D"], label: `${opts.ang}°` },
+    },
+    dims: opts.dims,
+    labels: { A: "A", B: "B", C: "C", D: "D", P: "P" },
+  });
+}
+
+const CX = 118;
+const CY = 100;
+const R_PX = 82;
+
+/**
+ * 반지름 $1$ 인 사분원 — $\angle AOB=$`ang`, $\overline{BH}\perp\overline{OA}$,
+ * $\overline{AT}\perp\overline{OA}$. 원은 **호만** 그린다(`draw:false` + `arcs`).
+ *
+ * ⚠️ $\overline{OT}$ 를 통째로 긋지 않고 $\overline{OB}$·$\overline{BT}$ 로 나눈다 —
+ * 그래야 $\angle AOB$ 표시의 $B$ 쪽 반쪽이 «그려진 선분»에 얹힌다(실측).
+ */
+function figQuadrant(opts: { ang: number }): FigureSpec {
+  const t = Math.tan(opts.ang * DEG);
+  const rad = t > 1.35 ? 62 : R_PX;
+  const bx = rad * Math.cos(opts.ang * DEG);
+  return {
+    version: 2,
+    points: {
+      O: [CX, CY],
+      A: { type: "on_circle", circle: "c", angle: 0 },
+      Q: { type: "on_circle", circle: "c", angle: 90 },
+      B: { type: "on_circle", circle: "c", angle: opts.ang },
+      H: [r2(CX + bx), CY],
+      T: [r2(CX + rad), r2(CY - rad * t)],
+    },
+    circles: { c: { center: "O", radius: rad, draw: false } },
+    arcs: { q_AQ: { circle: "c", from: "A", to: "Q", dir: "ccw" } },
+    segments: {
+      OA: ["O", "A"],
+      OQ: ["O", "Q"],
+      OB: ["O", "B"],
+      BT: ["B", "T"],
+      BH: ["B", "H"],
+      AT: ["A", "T"],
+    },
+    angles: {
+      a_O: { vertex: "O", points: ["A", "B"], label: `${opts.ang}°` },
+      r_H: { vertex: "H", points: ["B", "O"], right: true },
+      r_A: { vertex: "A", points: ["O", "T"], right: true },
+    },
+    labels: { O: "O", A: "A", B: "B", H: "H", T: "T" },
+  };
+}
+
+/**
+ * 반지름 `R` 인 원에 내접하는 정 `n` 각형 — 중심 $O$ 와 반지름 하나를 긋는다.
+ *
+ * ⚠️ **반지름에 값은 안 적는다.** 두 가지가 겹친다.
+ *   ⑴ 발문이 이미 「반지름의 길이가 $R$ cm 인 원」이라 말한다 — 09 §4-20-b 의
+ *      「발문이 이미 말했는가」(원장님 확정 2026-08-22)에 그대로 해당한다.
+ *   ⑵ 그리고 **들어갈 자리가 없다.** 정 $n$ 각형 안에서 반지름 옆 통로는 대략
+ *      $R/2$ 인데 값 상자는 45단위쯤이다. 실측(반지름 82~120 × $n$=3·4·6·8·12):
+ *      **정삼각형은 어느 크기에서도 안 들어가고** 정사각형은 반지름 95부터 들어간다.
+ *      그렇다고 날 `<text>` 를 옆에 놓으면 그것은 「선에서 떨어진 맨 길이 표기」라
+ *      lint 규칙 4 위반이다 — 종전 `n_R` 이 바로 그것이었고, 이번 판정기가 물었다.
+ */
+function figRegularPoly(opts: { n: number }): FigureSpec {
+  const names = Array.from({ length: opts.n }, (_, i) => `P${i + 1}`);
+  const points: Record<string, unknown> = { O: [CX, CY] };
+  const segments: Record<string, unknown> = {};
+  const step = 360 / opts.n;
+  for (let i = 0; i < opts.n; i += 1) {
+    points[names[i]!] = {
+      type: "on_circle",
+      circle: "c",
+      angle: r2(90 + i * step),
+    };
+    segments[`s${i + 1}`] = [names[i]!, names[(i + 1) % opts.n]!];
+  }
+  segments.r1 = ["O", names[0]!];
+  return {
+    version: 2,
+    points,
+    circles: { c: { center: "O", radius: R_PX } },
+    segments,
+    labels: { O: "O" },
+  };
+}
+
+/**
+ * 두 지점에서 올려본각을 잰 장면 — 건물 밑면 $H$, 꼭대기 $T$, 먼 지점 $A$, 가까운 지점 $B$.
+ * 수선의 발이 $\overline{AB}$ 바깥에 있는 «높이 구하기»와 같은 모양이다.
+ */
+function figElevationTwo(opts: {
+  d: number;
+  ang1: number;
+  ang2: number;
+  label: string;
+}): FigureSpec {
+  const h =
+    opts.d / (1 / Math.tan(opts.ang1 * DEG) - 1 / Math.tan(opts.ang2 * DEG));
+  const b1 = h / Math.tan(opts.ang2 * DEG);
+  return build({
+    pts: {
+      H: [0, 0],
+      B: [r2(b1), 0],
+      A: [r2(b1 + opts.d), 0],
+      T: [0, r2(h)],
+    },
+    segments: {
+      HT: ["H", "T"],
+      HA: ["H", "A"],
+      TB: ["T", "B"],
+      TA: ["T", "A"],
+    },
+    angles: {
+      r_H: { vertex: "H", points: ["T", "A"], right: true },
+      a_A: { vertex: "A", points: ["T", "H"], label: `${opts.ang1}°` },
+      a_B: { vertex: "B", points: ["T", "H"], label: `${opts.ang2}°` },
+    },
+    dims: { BA: opts.label },
+    labels: { A: "A", B: "B", H: "H", T: "T" },
+  });
+}
+
+/* ────────────────────────────────────────────────────────────────────────
+ * 발문 조각 — 같은 문자열을 발문·해설·그림이 함께 쓴다
+ * ──────────────────────────────────────────────────────────────────────── */
+
+/** `$` 안에 들어갈 `12\,\mathrm{cm}`. 단위는 언제나 수식 안이다. */
+function cm(v: number | string): string {
+  return `${v}\\,\\mathrm{cm}`;
+}
+
+/** `$` 안에 들어갈 `12\,\mathrm{cm}^2`. */
+function cm2(v: number | string): string {
+  return `${v}\\,\\mathrm{cm}^2`;
+}
+
+/**
+ * `facts` 한 칸 — 갈래마다 키가 달라도 **여기서** `Record<string, number>` 로 좁힌다.
+ * 안 좁히면 두 갈래의 객체 타입이 합쳐지며 `a?: undefined` 가 생겨 `Body` 에 안 맞는다.
+ */
+function nums(o: Record<string, number>): Record<string, number> {
+  return o;
+}
+
+/** 기약분수의 분자·분모. */
+function red(n: number, d: number): [number, number] {
+  const g = gcd(Math.abs(n), Math.abs(d)) || 1;
+  return [n / g, d / g];
+}
+
+/** `\sin A`·`\cos A`·`\tan A` (일반각 표기). */
+function trigOf(fn: number, name: string): string {
+  return `${FN_NAMES[fn]} ${name}`;
+}
+
+/**
+ * 삼각비의 표 한 칸 — **계산해서** 만든다. 손으로 옮긴 표는 샌다
+ * (CLAUDE.md 2026-08-18 「목록을 손으로 쓰면 세는 쪽과 고치는 쪽이 같이 눈이 먼다」).
+ * 시험도 같은 방법으로 다시 계산해 대조하므로, 값이 틀리면 시험이 빨개진다.
+ */
+function tableValue(fn: number, deg: number): number {
+  const f = [Math.sin, Math.cos, Math.tan][fn]!;
+  return Number(f(deg * DEG).toFixed(4));
+}
+
+/** `$(12-4\sqrt{3})\,\mathrm{cm}$` — 두 항이면 괄호로 묶는다(단위가 무리항에만 붙어 보이지 않게). */
+function lenText(c0: number, c1: number, root: number, unit: string): string {
+  const t = binomText(c0, c1, root);
+  const two = c0 !== 0 && c1 !== 0;
+  return `${two ? `(${t})` : t}\\,\\mathrm{${unit}}`;
+}
+
+/**
+ * 삼각형의 넓이 유형(활용 08 예각 · 09 둔각)이 **같은 자를 쓴다**.
+ * 둔각은 $\sin(180^\circ-A)$ 로 예각의 값을 그대로 쓴다 — 두 유형이 규칙을
+ * 따로 들고 있으면 한쪽만 고쳐진다(이 저장소의 반복 결함).
+ */
+function triangleArea(rng: Rng, angles: readonly number[]): Body {
+  return attempt(200, () => {
+    const ang = pick(rng, angles);
+    const a = intBetween(rng, 3, 16);
+    const b = intBetween(rng, 3, 16);
+    const sinT = exact(0, ang > 90 ? 180 - ang : ang)!;
+    const area = surdMul(surdMul(surd(a * b, 1, 1), sinT), surd(1, 1, 2));
+    if (area.d !== 1) return null;
+    // 짧은 $\overline{AB}$ 에 치수를 달면 엔진이 변과 겹쳐 던진다
+    // (J30503-A09, 적재 씨앗 20260827 v0: 4cm/16cm @120° → 맞춘 뒤 39px).
+    const ax = a * Math.cos(ang * DEG);
+    const raw: Record<string, XY> = {
+      B: [0, 0],
+      C: [b, 0],
+      A: [ax, a * Math.sin(ang * DEG)],
+    };
+    if (fittedSidePx(raw, "A", "B") < MIN_DIM_SIDE_PX) return null;
+    // 끼인각 B 가 예각이어도 $a\cos B > b$ 이면 C 가 둔각이라 C 가 AB 밑에
+    // 붙는다. 그때 AB 치수 곡선은 안쪽·바깥쪽 모두 변과 겹친다
+    // (활용 08, 15cm/8cm @30° — 맞춘 뒤 AB 는 203px 로 **긴데** 던진다).
+    if (ax > b + 1e-6) return null;
+    const mode = intBetween(rng, 0, 1);
+    const shrink =
+      ang > 90 ? `\\sin(180^\\circ-${ang}^\\circ)` : `\\sin ${ang}^\\circ`;
+    const rule = `(삼각형의 넓이)$=\\dfrac{1}{2}\\times\\overline{AB}\\times\\overline{BC}\\times${shrink}$`;
+    if (mode === 0) {
+      return {
+        content: `삼각형 $ABC$에서 $\\overline{AB}=${cm(a)}$, $\\overline{BC}=${cm(b)}$, $\\angle B=${ang}^\\circ$일 때, 삼각형 $ABC$의 넓이를 구하시오.`,
+        answer: `$${cm2(surdText(area))}$`,
+        solution: `${rule}이다.\n따라서 넓이는 $\\dfrac{1}{2}\\times${a}\\times${b}\\times${surdText(sinT)}=${surdText(area)}\\,(\\mathrm{cm}^2)$이다.`,
+        facts: { a, b, ang, mode, an: area.n, ar: area.r },
+        figureSpec: figTwoSides({
+          ab: a,
+          bc: b,
+          angB: ang,
+          dims: { AB: dimCm(a), BC: dimCm(b) },
+        }),
+      };
+    }
+    return {
+      content: `삼각형 $ABC$에서 $\\overline{AB}=${cm(a)}$, $\\angle B=${ang}^\\circ$이고 넓이가 $${cm2(surdText(area))}$일 때, $\\overline{BC}$의 길이를 구하시오.`,
+      answer: `$${cm(b)}$`,
+      solution: `${rule}이다.\n$\\dfrac{1}{2}\\times${a}\\times\\overline{BC}\\times${surdText(sinT)}=${surdText(area)}$이므로 $\\overline{BC}=${b}\\,(\\mathrm{cm})$이다.`,
+      facts: { a, b, ang, mode, an: area.n, ar: area.r },
+      figureSpec: figTwoSides({
+        ab: a,
+        bc: b,
+        angB: ang,
+        dims: { AB: dimCm(a) },
+      }),
+    };
+  });
+}
+
+const SIDE_NAMES = ["\\overline{AB}", "\\overline{BC}", "\\overline{AC}"];
+
+/** 변 색인 0=$\overline{AB}$(이웃변) · 1=$\overline{BC}$(대변) · 2=$\overline{AC}$(빗변). */
+const SIDE_STEP: Record<string, { div: boolean; fn: number }> = {
+  "0-1": { div: false, fn: 2 },
+  "0-2": { div: true, fn: 1 },
+  "1-0": { div: true, fn: 2 },
+  "1-2": { div: true, fn: 0 },
+  "2-0": { div: false, fn: 1 },
+  "2-1": { div: false, fn: 0 },
+};
+
+export const M3_TRIG: TypeEntry[] = [
+  /* ── 삼각비 01~07 → 우리 단원 「삼각비의 뜻」 ───────────────────── */
+
+  def("삼각비", "01", "삼각비의 값", SEC.뜻, "기본", (rng) => {
+    const [p, q, r] = pick(rng, TRIPLES);
+    const mode = intBetween(rng, 0, 2);
+    // $\angle B=90^\circ$ — $\overline{BC}$ 가 $\angle A$ 의 대변, $\overline{AB}$ 가 이웃변.
+    // mode 2($\tan A=\overline{BC}/\overline{AB}$)는 진분수여야 하므로 대변을 짧게 고정한다.
+    const swap = mode === 2 ? false : rng() < 0.5;
+    const bc = swap ? q : p;
+    const ab = swap ? p : q;
+    const [num, den] = red(mode === 1 ? ab : bc, mode === 2 ? ab : r);
+    const asked = trigOf(mode, "A");
+    const ratio = [
+      `\\dfrac{\\overline{BC}}{\\overline{AC}}`,
+      `\\dfrac{\\overline{AB}}{\\overline{AC}}`,
+      `\\dfrac{\\overline{BC}}{\\overline{AB}}`,
+    ][mode]!;
+    const raw = [
+      `\\dfrac{${bc}}{${r}}`,
+      `\\dfrac{${ab}}{${r}}`,
+      `\\dfrac{${bc}}{${ab}}`,
+    ][mode]!;
+    return {
+      content: `직각삼각형 $ABC$에서 $\\angle B=90^\\circ$이고 $\\overline{AB}=${cm(ab)}$, $\\overline{BC}=${cm(bc)}$일 때, $${asked}$의 값을 구하시오.`,
+      answer: `$${frac(num, den)}$`,
+      solution: `피타고라스 정리에서 $\\overline{AC}=\\sqrt{${ab}^2+${bc}^2}=${r}\\,(\\mathrm{cm})$이다.\n따라서 $${asked}=${ratio}=${raw === frac(num, den) ? raw : `${raw}=${frac(num, den)}`}$이다.`,
+      facts: { ab, bc, ac: r, mode, num, den },
+      figureSpec: figRight({
+        vert: ab,
+        horz: bc,
+        dims: { AB: dimCm(ab), BC: dimCm(bc) },
+      }),
+    };
+  }),
+
+  def(
+    "삼각비",
+    "02",
+    "삼각비를 이용하여 삼각형의 변의 길이 구하기",
+    SEC.뜻,
+    "기본",
+    (rng) =>
+      attempt(120, () => {
+        const [p, q, r] = pick(rng, TRIPLES);
+        const mode = intBetween(rng, 0, 2);
+        const t = intBetween(rng, 1, 4);
+        // $\angle B=90^\circ$ · $\angle A$ 기준: 대변 $pt$, 이웃변 $qt$, 빗변 $rt$.
+        const opp = p * t;
+        const adj = q * t;
+        const hyp = r * t;
+        if (hyp > 80) return null;
+        const [gnum, gden] = red(mode === 1 ? q : p, mode === 2 ? q : r);
+        if (gnum >= gden) return null;
+        const given = mode === 2 ? adj : hyp;
+        const x = mode === 1 ? adj : opp;
+        const givenSide = mode === 2 ? SIDE_NAMES[0]! : SIDE_NAMES[2]!;
+        const askSide = mode === 1 ? SIDE_NAMES[0]! : SIDE_NAMES[1]!;
+        const relation = [
+          `\\sin A=\\dfrac{\\overline{BC}}{\\overline{AC}}`,
+          `\\cos A=\\dfrac{\\overline{AB}}{\\overline{AC}}`,
+          `\\tan A=\\dfrac{\\overline{BC}}{\\overline{AB}}`,
+        ][mode]!;
+        return {
+          content: `직각삼각형 $ABC$에서 $\\angle B=90^\\circ$이고 $${trigOf(mode, "A")}=${frac(gnum, gden)}$, $${givenSide}=${cm(given)}$일 때, $${askSide}$의 길이를 구하시오.`,
+          answer: `$${cm(x)}$`,
+          solution: `$${relation}$이다.\n따라서 $${askSide}=${given}\\times${frac(gnum, gden)}=${x}\\,(\\mathrm{cm})$이다.`,
+          facts: { num: gnum, den: gden, given, x, mode },
+          figureSpec: figRight({
+            vert: adj,
+            horz: opp,
+            dims: mode === 2 ? { AB: dimCm(given) } : { CA: dimCm(given) },
+          }),
+        };
+      }),
+  ),
+
+  def(
+    "삼각비",
+    "03",
+    "한 삼각비의 값을 알 때 다른 삼각비의 값 구하기",
+    SEC.뜻,
+    "응용",
+    (rng) =>
+      attempt(120, () => {
+        // 세 쌍을 **기약으로** 줄인다 — 안 그러면 발문의 `tan A=3/4` 와 해설의
+        // 「밑변 16, 높이 12」가 따로 논다(같은 값인데 학생은 딴 삼각형으로 읽는다).
+        const [p0, q0, r0] = pick(rng, TRIPLES);
+        const g0 = gcd(gcd(p0, q0), r0);
+        const [p, q, r] = [p0 / g0, q0 / g0, r0 / g0];
+        const given = intBetween(rng, 0, 2);
+        const want = intBetween(rng, 0, 2);
+        if (given === want) return null;
+        // $\tan$ 은 «대변/이웃변»이라 진분수가 아니면 지면에서 대분수가 된다.
+        if ((given === 2 || want === 2) && p >= q) return null;
+        const pair = (fn: number): [number, number] =>
+          fn === 0 ? red(p, r) : fn === 1 ? red(q, r) : red(p, q);
+        const [gn, gd] = pair(given);
+        const [wn, wd] = pair(want);
+        const legText =
+          given === 0
+            ? `빗변의 길이가 $${r}$, 높이가 $${p}$인 직각삼각형에서 밑변의 길이는 $\\sqrt{${r}^2-${p}^2}=${q}$`
+            : given === 1
+              ? `빗변의 길이가 $${r}$, 밑변의 길이가 $${q}$인 직각삼각형에서 높이는 $\\sqrt{${r}^2-${q}^2}=${p}$`
+              : `밑변의 길이가 $${q}$, 높이가 $${p}$인 직각삼각형에서 빗변의 길이는 $\\sqrt{${p}^2+${q}^2}=${r}$`;
+        return {
+          content: `$0^\\circ<A<90^\\circ$인 $\\angle A$에 대하여 $${trigOf(given, "A")}=${frac(gn, gd)}$일 때, $${trigOf(want, "A")}$의 값을 구하시오.`,
+          answer: `$${frac(wn, wd)}$`,
+          solution: `$${trigOf(given, "A")}=${frac(gn, gd)}$이므로 ${legText}이다.\n따라서 $${trigOf(want, "A")}=${frac(wn, wd)}$이다.`,
+          facts: { p, q, r, given, want, gnum: gn, gden: gd, num: wn, den: wd },
+          figureSpec: null,
+        };
+      }),
+  ),
+
+  def("삼각비", "04", "직각삼각형의 닮음과 삼각비⑴", SEC.뜻, "응용", (rng) =>
+    attempt(120, () => {
+      const [p, q, r] = pick(rng, TRIPLES);
+      const swap = rng() < 0.5;
+      const ab = swap ? q : p;
+      const ac = swap ? p : q;
+      const which = intBetween(rng, 0, 1);
+      const fn = intBetween(rng, 0, 2);
+      // $\angle BAH=\angle C$, $\angle CAH=\angle B$ — 닮음이 옮겨 주는 각이다.
+      // which 0 은 $\angle C$(대변 $\overline{AB}$), which 1 은 $\angle B$(대변 $\overline{AC}$).
+      const opp = which === 0 ? ab : ac;
+      const adj = which === 0 ? ac : ab;
+      if (fn === 2 && opp >= adj) return null;
+      const [num, den] =
+        fn === 2 ? red(opp, adj) : red(fn === 0 ? opp : adj, r);
+      const same = which === 0 ? `\\angle C` : `\\angle B`;
+      const oppName = which === 0 ? `\\overline{AB}` : `\\overline{AC}`;
+      const adjName = which === 0 ? `\\overline{AC}` : `\\overline{AB}`;
+      const ratio = [
+        `\\dfrac{${oppName}}{\\overline{BC}}`,
+        `\\dfrac{${adjName}}{\\overline{BC}}`,
+        `\\dfrac{${oppName}}{${adjName}}`,
+      ][fn]!;
+      const angName = which === 0 ? `\\angle BAH` : `\\angle CAH`;
+      return {
+        content: `$\\angle A=90^\\circ$인 직각삼각형 $ABC$에서 꼭짓점 $A$에서 빗변 $BC$에 내린 수선의 발을 $H$라 하자. $\\overline{AB}=${cm(ab)}$, $\\overline{AC}=${cm(ac)}$이고 $${angName}=x$일 때, $${trigOf(fn, "x")}$의 값을 구하시오.`,
+        answer: `$${frac(num, den)}$`,
+        solution: `직각삼각형 $ABH$와 직각삼각형 $CBA$는 닮은 도형이므로 $${angName}=${same}$이다.\n피타고라스 정리에서 $\\overline{BC}=\\sqrt{${ab}^2+${ac}^2}=${r}\\,(\\mathrm{cm})$이다.\n따라서 $${trigOf(fn, "x")}=${trigOf(fn, same)}=${ratio}=${frac(num, den)}$이다.`,
+        facts: { ab, ac, bc: r, which, fn, num, den },
+        figureSpec: figAltitude({
+          ab,
+          ac,
+          dims: { AB: dimCm(ab), AC: dimCm(ac) },
+          angBAH: which === 0 ? "x" : undefined,
+          angCAH: which === 1 ? "x" : undefined,
+        }),
+      };
+    }),
+  ),
+
+  def("삼각비", "05", "직각삼각형의 닮음과 삼각비⑵", SEC.뜻, "심화하", (rng) =>
+    attempt(120, () => {
+      const [p, q, r] = pick(rng, TRIPLES);
+      const swap = rng() < 0.5;
+      const ah = swap ? q : p;
+      const bh = swap ? p : q;
+      // 직각삼각형 $ABH$($\angle AHB=90^\circ$)에서 빗변은 $\overline{AB}=r$.
+      // $\angle B$ 의 대변은 $\overline{AH}$, $\angle BAH(=\angle C)$ 의 대변은 $\overline{BH}$.
+      const which = intBetween(rng, 0, 1);
+      const fn = intBetween(rng, 0, 2);
+      const opp = which === 0 ? ah : bh;
+      const adj = which === 0 ? bh : ah;
+      if (fn === 2 && opp >= adj) return null;
+      const [num, den] =
+        fn === 2 ? red(opp, adj) : red(fn === 0 ? opp : adj, r);
+      const target = which === 0 ? `B` : `C`;
+      const oppName = which === 0 ? `\\overline{AH}` : `\\overline{BH}`;
+      const adjName = which === 0 ? `\\overline{BH}` : `\\overline{AH}`;
+      const ratio = [
+        `\\dfrac{${oppName}}{\\overline{AB}}`,
+        `\\dfrac{${adjName}}{\\overline{AB}}`,
+        `\\dfrac{${oppName}}{${adjName}}`,
+      ][fn]!;
+      const lead =
+        which === 0
+          ? `직각삼각형 $ABH$에서 $\\angle AHB=90^\\circ$이다.`
+          : `직각삼각형 $ABH$와 직각삼각형 $CBA$는 닮은 도형이므로 $\\angle BAH=\\angle C$이다.`;
+      const named = which === 0 ? `\\angle B` : `\\angle BAH`;
+      return {
+        content: `$\\angle A=90^\\circ$인 직각삼각형 $ABC$에서 꼭짓점 $A$에서 빗변 $BC$에 내린 수선의 발을 $H$라 하자. $\\overline{AH}=${cm(ah)}$, $\\overline{BH}=${cm(bh)}$일 때, $${trigOf(fn, target)}$의 값을 구하시오.`,
+        answer: `$${frac(num, den)}$`,
+        solution: `${lead}\n피타고라스 정리에서 $\\overline{AB}=\\sqrt{${ah}^2+${bh}^2}=${r}\\,(\\mathrm{cm})$이다.\n따라서 $${trigOf(fn, target)}=${trigOf(fn, named)}=${ratio}=${frac(num, den)}$이다.`,
+        facts: { ah, bh, ab: r, which, fn, num, den },
+        figureSpec: figAltitude({
+          ab: r,
+          ac: r2((ah * r) / bh),
+          dims: { AH: dimCm(ah), BH: dimCm(bh) },
+        }),
+      };
+    }),
+  ),
+
+  def("삼각비", "06", "직선의 방정식과 삼각비", SEC.뜻, "응용", (rng) =>
+    attempt(120, () => {
+      const [p, q, r] = pick(rng, TRIPLES);
+      // 기울기 $\tan a=\dfrac{p}{q}$ 는 **진분수**만 쓴다 — 가분수는 지면에서 대분수가 된다.
+      if (p >= q) return null;
+      const c = intBetween(rng, 2, 12);
+      const mode = intBetween(rng, 0, 2);
+      const [num, den] =
+        mode === 0 ? red(p, r) : mode === 1 ? red(q, r) : red(p, q);
+      return {
+        content: `직선 $${p}x-${q}y+${c}=0$이 $x$축의 양의 방향과 이루는 예각의 크기를 $a$라 할 때, $${trigOf(mode, "a")}$의 값을 구하시오.`,
+        answer: `$${frac(num, den)}$`,
+        solution: `직선 $${p}x-${q}y+${c}=0$의 기울기가 $${frac(p, q)}$이므로 $\\tan a=${frac(p, q)}$이다.\n밑변의 길이가 $${q}$, 높이가 $${p}$인 직각삼각형에서 빗변의 길이는 $\\sqrt{${p}^2+${q}^2}=${r}$이다.\n따라서 $${trigOf(mode, "a")}=${frac(num, den)}$이다.`,
+        facts: { p, q, r, c, mode, num, den },
+        figureSpec: null,
+      };
+    }),
+  ),
+
+  def(
+    "삼각비",
+    "07",
+    "입체도형에서 삼각비의 값 구하기",
+    SEC.뜻,
+    "심화하",
+    (rng) =>
+      attempt(120, () => {
+        // $[가로, 세로, 밑면의 대각선, 높이, 직육면체의 대각선]$ —
+        // 두 번 다 피타고라스 세 쌍이라 두 대각선이 모두 정수다.
+        const [a, b, d, h, s] = pick(rng, [
+          [3, 4, 5, 12, 13],
+          [6, 8, 10, 24, 26],
+          [9, 12, 15, 8, 17],
+          [12, 16, 20, 15, 25],
+          [12, 16, 20, 21, 29],
+          [18, 24, 30, 16, 34],
+          [24, 32, 40, 9, 41],
+          [24, 32, 40, 30, 50],
+        ] as const);
+        const mode = intBetween(rng, 0, 2);
+        if (mode === 2 && h >= d) return null;
+        const [num, den] =
+          mode === 0 ? red(h, s) : mode === 1 ? red(d, s) : red(h, d);
+        const expr = [
+          `\\dfrac{${h}}{${s}}`,
+          `\\dfrac{${d}}{${s}}`,
+          `\\dfrac{${h}}{${d}}`,
+        ][mode]!;
+        return {
+          content: `가로, 세로, 높이의 길이가 각각 $${cm(a)}$, $${cm(b)}$, $${cm(h)}$인 직육면체가 있다. 이 직육면체의 대각선이 밑면과 이루는 각의 크기를 $x$라 할 때, $${trigOf(mode, "x")}$의 값을 구하시오.`,
+          answer: `$${frac(num, den)}$`,
+          solution: `밑면의 대각선의 길이는 $\\sqrt{${a}^2+${b}^2}=${d}\\,(\\mathrm{cm})$이다.\n직육면체의 대각선의 길이는 $\\sqrt{${d}^2+${h}^2}=${s}\\,(\\mathrm{cm})$이다.\n밑면의 대각선과 높이, 직육면체의 대각선이 이루는 직각삼각형에서 $${trigOf(mode, "x")}=${expr === frac(num, den) ? expr : `${expr}=${frac(num, den)}`}$이다.`,
+          facts: { a, b, d, h, s, mode, num, den },
+          figureSpec: null,
+        };
+      }),
+  ),
+
+  /* ── 삼각비 08~18 → 우리 단원 「삼각비의 값」 ────────────────────── */
+
+  def("삼각비", "08", "의 삼각비의 값", SEC.값, "기본", (rng) =>
+    attempt(300, () => {
+      const angles = [30, 45, 60] as const;
+      const a1 = pick(rng, angles);
+      const a2 = pick(rng, angles);
+      const f1 = intBetween(rng, 0, 2);
+      const f2 = intBetween(rng, 0, 2);
+      if (a1 === a2 && f1 === f2) return null;
+      const op = intBetween(rng, 0, 3);
+      const v1 = exact(f1, a1);
+      const v2 = exact(f2, a2);
+      if (!v1 || !v2) return null;
+      const res = applyOp(op, v1, v2);
+      if (!res) return null;
+      if (res.r === 1 && res.d > 1 && Math.abs(res.n) >= res.d) return null;
+      const expr = `${trigText(f1, a1)} ${OP_TEXT[op]} ${trigText(f2, a2)}`;
+      return {
+        content: `$${expr}$의 값을 구하시오.`,
+        answer: `$${surdText(res)}$`,
+        solution: `$${trigText(f1, a1)}=${surdText(v1)}$, $${trigText(f2, a2)}=${surdText(v2)}$이다.\n따라서 $${expr}=${surdText(v1)} ${OP_TEXT[op]} ${surdText(v2)}=${surdText(res)}$이다.`,
+        facts: { f1, a1, op, f2, a2, an: res.n, ar: res.r, ad: res.d },
+        figureSpec: null,
+      };
+    }),
+  ),
+
+  def(
+    "삼각비",
+    "09",
+    "의 삼각비의 값을 이용하여 각의 크기 구하기",
+    SEC.값,
+    "기본",
+    (rng) =>
+      attempt(300, () => {
+        const fn = intBetween(rng, 0, 2);
+        const theta = pick(rng, [30, 45, 60] as const);
+        const m = intBetween(rng, 1, 3);
+        const off = pick(rng, [-30, -20, -15, -10, 10, 15, 20, 30] as const);
+        if ((theta - off) % m !== 0) return null;
+        const x = (theta - off) / m;
+        if (x <= 0 || x >= 90) return null;
+        const v = exact(fn, theta);
+        if (!v) return null;
+        const coef = m === 1 ? "x" : `${m}x`;
+        const inner =
+          off > 0 ? `${coef}+${off}^\\circ` : `${coef}-${-off}^\\circ`;
+        return {
+          content: `$${inner}$가 예각이고 $${FN_NAMES[fn]}(${inner})=${surdText(v)}$일 때, $x$의 크기를 구하시오.`,
+          answer: `$${x}^\\circ$`,
+          solution: `$${trigText(fn, theta)}=${surdText(v)}$이고 $${inner}$가 예각이므로 $${inner}=${theta}^\\circ$이다.\n따라서 $x=${x}^\\circ$이다.`,
+          facts: { fn, theta, m, off, x, an: v.n, ar: v.r, ad: v.d },
+          figureSpec: null,
+        };
+      }),
+  ),
+
+  def(
+    "삼각비",
+    "10",
+    "의 삼각비의 값을 이용하여 변의 길이 구하기",
+    SEC.값,
+    "응용",
+    (rng) =>
+      attempt(300, () => {
+        const theta = pick(rng, [30, 45, 60] as const);
+        const gi = intBetween(rng, 0, 2);
+        const wi = pick(
+          rng,
+          [0, 1, 2].filter((v) => v !== gi),
+        );
+        const step = SIDE_STEP[`${gi}-${wi}`]!;
+        const v = exact(step.fn, theta)!;
+        const g = pick(rng, [4, 6, 8, 10, 12, 16, 18, 20, 24] as const);
+        const gs = surd(g, 1, 1);
+        const res = step.div ? surdDiv(gs, v) : surdMul(gs, v);
+        if (res.d !== 1 || res.n > 120) return null;
+        // 그림은 발문의 실제 길이로 그린다 — 값이 안 맞으면 지면에서 보인다.
+        const hyp =
+          gi === 2
+            ? g
+            : gi === 0
+              ? g / Math.cos(theta * DEG)
+              : g / Math.sin(theta * DEG);
+        const adj = r2(hyp * Math.cos(theta * DEG));
+        const opp = r2(hyp * Math.sin(theta * DEG));
+        const relation = [
+          `\\sin ${theta}^\\circ=\\dfrac{\\overline{BC}}{\\overline{AC}}`,
+          `\\cos ${theta}^\\circ=\\dfrac{\\overline{AB}}{\\overline{AC}}`,
+          `\\tan ${theta}^\\circ=\\dfrac{\\overline{BC}}{\\overline{AB}}`,
+        ][step.fn]!;
+        // 나누는 값이 `1` 이면 분수를 안 쓴다 — `\dfrac{10}{1}` 은 지면 전처리가
+        // **`10` 으로 접어** 해설의 한 단계가 사라진다(2026-08-23 시험이 잡았다).
+        const vText = surdText(v);
+        const calc =
+          vText === "1"
+            ? `${g}`
+            : step.div
+              ? `\\dfrac{${g}}{${vText}}`
+              : `${g}\\times${vText}`;
+        const dimKey = ["AB", "BC", "CA"][gi]!;
+        return {
+          content: `직각삼각형 $ABC$에서 $\\angle B=90^\\circ$, $\\angle A=${theta}^\\circ$이고 $${SIDE_NAMES[gi]}=${cm(g)}$일 때, $${SIDE_NAMES[wi]}$의 길이를 구하시오.`,
+          answer: `$${cm(surdText(res))}$`,
+          solution: `$${relation}$이고 $${trigText(step.fn, theta)}=${surdText(v)}$이다.\n따라서 $${SIDE_NAMES[wi]}=${calc}=${surdText(res)}\\,(\\mathrm{cm})$이다.`,
+          facts: { theta, gi, wi, given: g, an: res.n, ar: res.r },
+          figureSpec: figRight({
+            vert: adj,
+            horz: opp,
+            angA: `${theta}°`,
+            dims: { [dimKey]: dimCm(g) },
+          }),
+        };
+      }),
+  ),
+
+  def("삼각비", "11", "직선의 기울기와 삼각비", SEC.값, "응용", (rng) =>
+    attempt<Body>(120, () => {
+      const mode = intBetween(rng, 0, 1);
+      const ang = pick(rng, [30, 45, 60] as const);
+      const tanT = exact(2, ang)!;
+      if (mode === 0) {
+        const n = pick(rng, [-6, -4, -3, -2, 2, 3, 4, 6] as const);
+        const slopeText = ang === 45 ? "x" : `${surdText(tanT)}x`;
+        const rhs = n > 0 ? `${slopeText}+${n}` : `${slopeText}-${-n}`;
+        return {
+          content: `직선 $y=${rhs}$${iGa(n)} $x$축의 양의 방향과 이루는 예각의 크기를 구하시오.`,
+          answer: `$${ang}^\\circ$`,
+          solution: `직선의 기울기는 그 직선이 $x$축의 양의 방향과 이루는 각 $a$에 대하여 $\\tan a$와 같다.\n$\\tan a=${surdText(tanT)}$이므로 $a=${ang}^\\circ$이다.`,
+          facts: nums({ mode, ang, n, x: ang }),
+          figureSpec: null,
+        };
+      }
+      const a = ang === 30 ? 3 * intBetween(rng, 1, 4) : intBetween(rng, 1, 8);
+      const b = intBetween(rng, 1, 12);
+      const slope = surdMul(surd(a, 1, 1), tanT);
+      if (slope.d !== 1 || slope.n === 0) return null;
+      return {
+        content: `$x$축의 양의 방향과 이루는 각의 크기가 $${ang}^\\circ$이고 점 $(${a},\\ ${b})$${eulReul(b)} 지나는 직선의 $y$절편을 구하시오.`,
+        answer: `$${binomText(b, -slope.n, slope.r)}$`,
+        solution: `직선의 기울기는 $\\tan ${ang}^\\circ=${surdText(tanT)}$이다.\n$y$절편을 $k$라 하면 $${b}=${surdText(tanT)}\\times${a}+k$이므로 $k=${binomText(b, -slope.n, slope.r)}$이다.`,
+        facts: nums({ mode, ang, a, b, c0: b, c1: -slope.n, root: slope.r }),
+        figureSpec: null,
+      };
+    }),
+  ),
+
+  def(
+    "삼각비",
+    "12",
+    "사분원을 이용하여 삼각비의 값 구하기",
+    SEC.값,
+    "응용",
+    (rng) => {
+      const ang = intBetween(rng, 25, 65);
+      const rad = ang * DEG;
+      const s100 = Math.round(Math.sin(rad) * 100);
+      const c100 = Math.round(Math.cos(rad) * 100);
+      const t100 = Math.round(Math.tan(rad) * 100);
+      const mode = intBetween(rng, 0, 4);
+      const parts = [[s100], [c100], [t100], [s100, c100], [c100, t100]][mode]!;
+      const x100 = parts.reduce((u, v) => u + v, 0);
+      const asked = [
+        `\\sin ${ang}^\\circ`,
+        `\\cos ${ang}^\\circ`,
+        `\\tan ${ang}^\\circ`,
+        `\\sin ${ang}^\\circ+\\cos ${ang}^\\circ`,
+        `\\cos ${ang}^\\circ+\\tan ${ang}^\\circ`,
+      ][mode]!;
+      const two = (v: number): string => (v / 100).toFixed(2);
+      return {
+        content: `반지름의 길이가 $1$인 사분원에서 $\\angle AOB=${ang}^\\circ$이다. 점 $B$에서 $\\overline{OA}$에 내린 수선의 발을 $H$라 하고, 점 $A$를 지나고 $\\overline{OA}$에 수직인 직선이 $\\overrightarrow{OB}$와 만나는 점을 $T$라 하자. $\\overline{BH}=${two(s100)}$, $\\overline{OH}=${two(c100)}$, $\\overline{AT}=${two(t100)}$일 때, $${asked}$의 값을 구하시오.`,
+        answer: `$${two(x100)}$`,
+        solution: `$\\overline{OB}=\\overline{OA}=1$이므로 $\\sin ${ang}^\\circ=\\dfrac{\\overline{BH}}{\\overline{OB}}=\\overline{BH}$, $\\cos ${ang}^\\circ=\\dfrac{\\overline{OH}}{\\overline{OB}}=\\overline{OH}$, $\\tan ${ang}^\\circ=\\dfrac{\\overline{AT}}{\\overline{OA}}=\\overline{AT}$이다.\n따라서 $${asked}=${two(x100)}$이다.`,
+        facts: { ang, s100, c100, t100, mode, x100 },
+        figureSpec: figQuadrant({ ang }),
+      };
+    },
+  ),
+
+  def("삼각비", "13", "의 삼각비의 값", SEC.값, "기본", (rng) =>
+    attempt(300, () => {
+      const angles = [0, 30, 45, 60, 90] as const;
+      const a1 = pick(rng, angles);
+      const a2 = pick(rng, angles);
+      // 이 유형의 열쇠는 $0^\circ$·$90^\circ$ 다 — 적어도 한 항은 거기서 나온다.
+      if (a1 !== 0 && a1 !== 90 && a2 !== 0 && a2 !== 90) return null;
+      const f1 = intBetween(rng, 0, 2);
+      const f2 = intBetween(rng, 0, 2);
+      if (a1 === a2 && f1 === f2) return null;
+      const op = intBetween(rng, 0, 3);
+      const v1 = exact(f1, a1);
+      const v2 = exact(f2, a2);
+      if (!v1 || !v2) return null;
+      const res = applyOp(op, v1, v2);
+      if (!res) return null;
+      if (res.r === 1 && res.d > 1 && Math.abs(res.n) >= res.d) return null;
+      const expr = `${trigText(f1, a1)} ${OP_TEXT[op]} ${trigText(f2, a2)}`;
+      return {
+        content: `$${expr}$의 값을 구하시오.`,
+        answer: `$${surdText(res)}$`,
+        solution: `$${trigText(f1, a1)}=${surdText(v1)}$, $${trigText(f2, a2)}=${surdText(v2)}$이다.\n따라서 $${expr}=${surdText(v1)} ${OP_TEXT[op]} ${surdText(v2)}=${surdText(res)}$이다.`,
+        facts: { f1, a1, op, f2, a2, an: res.n, ar: res.r, ad: res.d },
+        figureSpec: null,
+      };
+    }),
+  ),
+
+  def("삼각비", "14", "삼각비의 값의 대소 관계", SEC.값, "응용", (rng) => {
+    // $45^\circ$ 부근은 두 값이 붙어 대소가 «학생이 아는 근거»로 안 갈린다 —
+    // 양쪽으로 떼어 놓는다($\cos A$ 와 $\tan A$ 는 $38.17^\circ$ 부근에서 뒤집힌다).
+    const ang = rng() < 0.5 ? intBetween(rng, 10, 35) : intBetween(rng, 55, 80);
+    const rad = ang * DEG;
+    const vals = [Math.sin(rad), Math.cos(rad), Math.tan(rad)];
+    const mode = intBetween(rng, 0, 1);
+    let best = 0;
+    for (let i = 1; i < 3; i += 1) {
+      if (mode === 0 ? vals[i]! > vals[best]! : vals[i]! < vals[best]!)
+        best = i;
+    }
+    const word = mode === 0 ? "가장 큰" : "가장 작은";
+    const reason =
+      ang < 45
+        ? `$0^\\circ<A<45^\\circ$이면 $\\sin A<\\tan A<\\cos A$이다.`
+        : `$45^\\circ<A<90^\\circ$이면 $\\cos A<\\sin A<\\tan A$이다.`;
+    return {
+      content: `$\\sin ${ang}^\\circ$, $\\cos ${ang}^\\circ$, $\\tan ${ang}^\\circ$ 중에서 그 값이 ${word} 것을 구하시오.`,
+      answer: `$${trigText(best, ang)}$`,
+      solution: `${reason}\n$${ang}^\\circ$는 그 범위에 있으므로 ${word} 것은 $${trigText(best, ang)}$이다.`,
+      facts: { ang, mode, pick: best },
+      figureSpec: null,
+    };
+  }),
+
+  def(
+    "삼각비",
+    "15",
+    "삼각비의 값의 대소 관계를 이용한 식의 계산",
+    SEC.값,
+    "심화하",
+    (rng) => {
+      const mode = intBetween(rng, 0, 4);
+      const spec = [
+        {
+          lo: 0,
+          hi: 45,
+          expr: `\\sqrt{(\\sin A-\\cos A)^2}+\\sqrt{(\\sin A+\\cos A)^2}`,
+          c0: 0,
+          cs: 0,
+          cc: 2,
+          ct: 0,
+          why: `$0^\\circ<A<45^\\circ$이면 $\\sin A<\\cos A$이므로 $\\sqrt{(\\sin A-\\cos A)^2}=\\cos A-\\sin A$이고, $\\sin A+\\cos A>0$이므로 $\\sqrt{(\\sin A+\\cos A)^2}=\\sin A+\\cos A$이다.`,
+        },
+        {
+          lo: 45,
+          hi: 90,
+          expr: `\\sqrt{(\\sin A-\\cos A)^2}+\\sqrt{(\\sin A+\\cos A)^2}`,
+          c0: 0,
+          cs: 2,
+          cc: 0,
+          ct: 0,
+          why: `$45^\\circ<A<90^\\circ$이면 $\\cos A<\\sin A$이므로 $\\sqrt{(\\sin A-\\cos A)^2}=\\sin A-\\cos A$이고, $\\sin A+\\cos A>0$이므로 $\\sqrt{(\\sin A+\\cos A)^2}=\\sin A+\\cos A$이다.`,
+        },
+        {
+          lo: 0,
+          hi: 45,
+          expr: `\\sqrt{(\\tan A-1)^2}-\\sqrt{(1-\\tan A)^2}`,
+          c0: 0,
+          cs: 0,
+          cc: 0,
+          ct: 0,
+          why: `$0^\\circ<A<45^\\circ$이면 $\\tan A<1$이므로 $\\sqrt{(\\tan A-1)^2}=1-\\tan A$이고 $\\sqrt{(1-\\tan A)^2}=1-\\tan A$이다.`,
+        },
+        {
+          lo: 0,
+          hi: 90,
+          expr: `\\sqrt{(1-\\sin A)^2}+\\sqrt{(\\sin A-1)^2}`,
+          c0: 2,
+          cs: -2,
+          cc: 0,
+          ct: 0,
+          why: `$0^\\circ<A<90^\\circ$이면 $\\sin A<1$이므로 두 근호 안의 식은 모두 $(1-\\sin A)^2$과 같다.`,
+        },
+        {
+          lo: 45,
+          hi: 90,
+          expr: `\\sqrt{(\\cos A-\\sin A)^2}-\\sqrt{(\\cos A+\\sin A)^2}`,
+          c0: 0,
+          cs: 0,
+          cc: -2,
+          ct: 0,
+          why: `$45^\\circ<A<90^\\circ$이면 $\\cos A<\\sin A$이므로 $\\sqrt{(\\cos A-\\sin A)^2}=\\sin A-\\cos A$이고, $\\cos A+\\sin A>0$이므로 $\\sqrt{(\\cos A+\\sin A)^2}=\\cos A+\\sin A$이다.`,
+        },
+      ][mode]!;
+      const terms: string[] = [];
+      if (spec.c0 !== 0) terms.push(`${spec.c0}`);
+      const push = (c: number, t: string): void => {
+        if (c === 0) return;
+        const mag = Math.abs(c) === 1 ? "" : `${Math.abs(c)}`;
+        const sign = c < 0 ? "-" : terms.length > 0 ? "+" : "";
+        terms.push(`${sign}${mag}${t}`);
+      };
+      push(spec.cs, `\\sin A`);
+      push(spec.cc, `\\cos A`);
+      push(spec.ct, `\\tan A`);
+      const ansText = terms.length === 0 ? "0" : terms.join("");
+      return {
+        content: `$${spec.lo}^\\circ<A<${spec.hi}^\\circ$일 때, $${spec.expr}$을 간단히 하시오.`,
+        answer: `$${ansText}$`,
+        solution: `${spec.why}\n따라서 $${spec.expr}=${ansText}$이다.`,
+        facts: {
+          mode,
+          lo: spec.lo,
+          hi: spec.hi,
+          c0: spec.c0,
+          cs: spec.cs,
+          cc: spec.cc,
+          ct: spec.ct,
+        },
+        figureSpec: null,
+      };
+    },
+  ),
+
+  def(
+    "삼각비",
+    "16",
+    "삼각비의 표를 이용하여 삼각비의 값 구하기",
+    SEC.값,
+    "기본",
+    (rng) => {
+      const b = intBetween(rng, 30, 58);
+      const fn = intBetween(rng, 0, 2);
+      const table = [0, 1, 2].map((i) => tableValue(fn, b + i));
+      const mode = intBetween(rng, 0, 2);
+      const rows = [0, 1, 2]
+        .map((i) => `$${trigText(fn, b + i)}=${table[i]!.toFixed(4)}$`)
+        .join(", ");
+      const head = `삼각비의 표에서 ${rows}이다.`;
+      if (mode === 0) {
+        return {
+          // 소수 넷째 자리까지 적으므로 마지막에 읽는 숫자는 만 배 한 정수의 끝 자리다.
+          content: `${head} 이때 $${FN_NAMES[fn]} x=${table[2]!.toFixed(4)}$${eulReul(Math.round(table[2]! * 10000))} 만족시키는 $x$의 크기를 구하시오.`,
+          answer: `$${b + 2}^\\circ$`,
+          solution: `표에서 값이 $${table[2]!.toFixed(4)}$인 각을 찾으면 $${b + 2}^\\circ$이다.\n따라서 $x=${b + 2}^\\circ$이다.`,
+          facts: { b, fn, mode, target: b + 2, val: table[2]! },
+          figureSpec: null,
+        };
+      }
+      if (mode === 1) {
+        const sum = Number((table[0]! + table[2]!).toFixed(4));
+        return {
+          content: `${head} 이때 $${trigText(fn, b)}+${trigText(fn, b + 2)}$의 값을 구하시오.`,
+          answer: `$${sum.toFixed(4)}$`,
+          solution: `표에서 $${trigText(fn, b)}=${table[0]!.toFixed(4)}$, $${trigText(fn, b + 2)}=${table[2]!.toFixed(4)}$이다.\n따라서 구하는 값은 $${table[0]!.toFixed(4)}+${table[2]!.toFixed(4)}=${sum.toFixed(4)}$이다.`,
+          facts: { b, fn, mode, target: b, val: sum },
+          figureSpec: null,
+        };
+      }
+      // 차 — 큰 값에서 작은 값을 뺀다($\cos$ 는 각이 커질수록 작아진다).
+      const hi = fn === 1 ? b : b + 2;
+      const lo = fn === 1 ? b + 2 : b;
+      const diff = Number((tableValue(fn, hi) - tableValue(fn, lo)).toFixed(4));
+      return {
+        content: `${head} 이때 $${trigText(fn, hi)}-${trigText(fn, lo)}$의 값을 구하시오.`,
+        answer: `$${diff.toFixed(4)}$`,
+        solution: `표에서 $${trigText(fn, hi)}=${tableValue(fn, hi).toFixed(4)}$, $${trigText(fn, lo)}=${tableValue(fn, lo).toFixed(4)}$이다.\n따라서 구하는 값은 $${tableValue(fn, hi).toFixed(4)}-${tableValue(fn, lo).toFixed(4)}=${diff.toFixed(4)}$이다.`,
+        facts: { b, fn, mode, target: hi, val: diff },
+        figureSpec: null,
+      };
+    },
+  ),
+
+  def(
+    "삼각비",
+    "17",
+    "삼각비의 표를 이용하여 변의 길이 구하기",
+    SEC.값,
+    "응용",
+    (rng) => {
+      const ang = intBetween(rng, 20, 70);
+      const sv = tableValue(0, ang);
+      const cv = tableValue(1, ang);
+      const tv = tableValue(2, ang);
+      const mode = intBetween(rng, 0, 2);
+      const given = 100;
+      const val = [sv, cv, tv][mode]!;
+      const x = Number((given * val).toFixed(2));
+      const givenSide = mode === 2 ? SIDE_NAMES[0]! : SIDE_NAMES[2]!;
+      const askSide = mode === 1 ? SIDE_NAMES[0]! : SIDE_NAMES[1]!;
+      const relation = [
+        `\\sin ${ang}^\\circ=\\dfrac{\\overline{BC}}{\\overline{AC}}`,
+        `\\cos ${ang}^\\circ=\\dfrac{\\overline{AB}}{\\overline{AC}}`,
+        `\\tan ${ang}^\\circ=\\dfrac{\\overline{BC}}{\\overline{AB}}`,
+      ][mode]!;
+      const opp = r2(mode === 2 ? given * tv : given * sv);
+      const adj = r2(mode === 2 ? given : given * cv);
+      return {
+        content: `직각삼각형 $ABC$에서 $\\angle B=90^\\circ$, $\\angle A=${ang}^\\circ$이고 $${givenSide}=${cm(given)}$이다. 삼각비의 표에서 $\\sin ${ang}^\\circ=${sv.toFixed(4)}$, $\\cos ${ang}^\\circ=${cv.toFixed(4)}$, $\\tan ${ang}^\\circ=${tv.toFixed(4)}$일 때, $${askSide}$의 길이를 구하시오.`,
+        answer: `$${cm(x)}$`,
+        solution: `$${relation}$이다.\n따라서 $${askSide}=${given}\\times${val.toFixed(4)}=${x}\\,(\\mathrm{cm})$이다.`,
+        facts: { ang, mode, given, val, x },
+        figureSpec: figRight({
+          vert: adj,
+          horz: opp,
+          angA: `${ang}°`,
+          dims: mode === 2 ? { AB: dimCm(given) } : { CA: dimCm(given) },
+        }),
+      };
+    },
+  ),
+
+  def(
+    "삼각비",
+    "18",
+    "의 삼각비의 값을 이용하여 다른 삼각비의 값 구하기",
+    SEC.값,
+    "심화하",
+    (rng) => {
+      const a = pick(
+        rng,
+        Array.from({ length: 51 }, (_, i) => i + 20).filter((v) => v !== 45),
+      );
+      const sv = tableValue(0, a);
+      const cv = tableValue(1, a);
+      const mode = intBetween(rng, 0, 2);
+      const co = 90 - a;
+      const asked = [
+        `\\cos ${co}^\\circ`,
+        `\\sin ${co}^\\circ`,
+        `\\sin ${co}^\\circ+\\cos ${co}^\\circ`,
+      ][mode]!;
+      const val = [sv, cv, Number((sv + cv).toFixed(4))][mode]!;
+      const candidates = [
+        [cv, 1 - sv, 1 - cv, 1, (sv + cv) / 2, Math.abs(sv - cv), sv * cv],
+        [sv, 1 - cv, 1 - sv, 1, (sv + cv) / 2, Math.abs(sv - cv), sv * cv],
+        [sv, cv, Math.abs(sv - cv), 1, 2 * sv, 2 * cv],
+      ][mode]!;
+      // 실제 보기에 적는 네 자리 값으로 중복을 가른다. 후보 순서대로 골라
+      // 난수를 더 쓰지 않고, 모자라면 공용 파생기의 기존 경로를 남긴다.
+      const seen = new Set([val.toFixed(4)]);
+      const distractors: string[] = [];
+      for (const candidate of candidates) {
+        const shown = candidate.toFixed(4);
+        if (Number(shown) <= 0 || seen.has(shown)) continue;
+        seen.add(shown);
+        distractors.push(`$${shown}$`);
+        if (distractors.length === 4) break;
+      }
+      const why = [
+        `$\\cos ${co}^\\circ=\\cos(90^\\circ-${a}^\\circ)=\\sin ${a}^\\circ$이다.`,
+        `$\\sin ${co}^\\circ=\\sin(90^\\circ-${a}^\\circ)=\\cos ${a}^\\circ$이다.`,
+        `$\\sin ${co}^\\circ=\\cos ${a}^\\circ$이고 $\\cos ${co}^\\circ=\\sin ${a}^\\circ$이다.`,
+      ][mode]!;
+      return {
+        content: `삼각비의 표에서 $\\sin ${a}^\\circ=${sv.toFixed(4)}$, $\\cos ${a}^\\circ=${cv.toFixed(4)}$일 때, $${asked}$의 값을 구하시오.`,
+        answer: `$${val.toFixed(4)}$`,
+        solution: `${why}\n따라서 $${asked}=${val.toFixed(4)}$이다.`,
+        facts: { a, sv, cv, mode, val },
+        figureSpec: null,
+        ...(distractors.length === 4 ? { distractors } : {}),
+      };
+    },
+  ),
+
+  /**
+   * **19 — 여각의 삼각비** (2026-08-29 추가, RPM 삼각비 01~18 다음 번호).
+   *
+   * 기존 일곱(뜻)의 시작과 끝:
+   *   01 두 변 → 삼각비 · 02 삼각비+한 변 → 다른 변
+   *   **03 한 삼각비 → 같은 각의 다른 삼각비** · 04·05 수선의 발 → 삼각비
+   *   06 직선의 기울기 → 삼각비 · 07 직육면체 대각선 → 삼각비
+   *
+   * **「한 각의 삼각비 → 여각의 삼각비」가 없다.** 03 은 같은 각에서 끝나고,
+   * 08~18(삼각비의 값)의 18 은 **표의 특수각**에서 여각을 쓴다. 뜻 단원에서
+   * 비로 정의한 일반각의 여각이 비어 있었다.
+   *
+   * 답이 발문과 같은 수가 되는 자리(예: $\\sin A$ → $\\cos(90^\\circ-A)$)는
+   * 항등식이 답을 말해 버리므로 버린다.
+   */
+  def("삼각비", "19", "여각의 삼각비", SEC.뜻, "응용", (rng) =>
+    attempt(120, () => {
+      const [p0, q0, r0] = pick(rng, TRIPLES);
+      const g0 = gcd(gcd(p0, q0), r0);
+      const p = p0 / g0;
+      const q = q0 / g0;
+      const r = r0 / g0;
+      const given = intBetween(rng, 0, 2);
+      const want = intBetween(rng, 0, 2);
+      const givenPair = (fn: number): [number, number] =>
+        fn === 0 ? red(p, r) : fn === 1 ? red(q, r) : red(p, q);
+      const wantPair = (fn: number): [number, number] =>
+        fn === 0 ? red(q, r) : fn === 1 ? red(p, r) : red(q, p);
+      const [gn, gd] = givenPair(given);
+      const [wn, wd] = wantPair(want);
+      if (gn >= gd || wn >= wd) return null;
+      if (gn === wn && gd === wd) return null;
+      const asked = `${FN_NAMES[want]} (90^\\circ-A)`;
+      const givenTex = trigOf(given, "A");
+      const same = [
+        `\\cos A=\\dfrac{${q}}{${r}}`,
+        `\\sin A=\\dfrac{${p}}{${r}}`,
+        `\\dfrac{1}{\\tan A}=\\dfrac{${q}}{${p}}`,
+      ][want]!;
+      const iden = [
+        `${asked}=\\cos A`,
+        `${asked}=\\sin A`,
+        `${asked}=\\dfrac{1}{\\tan A}`,
+      ][want]!;
+      return {
+        content: `$0^\\circ<A<90^\\circ$인 $\\angle A$에 대하여 $${givenTex}=${frac(gn, gd)}$일 때, $${asked}$의 값을 구하시오.`,
+        answer: `$${frac(wn, wd)}$`,
+        solution: `$${givenTex}=${frac(gn, gd)}$이므로 높이가 $${p}$, 밑변의 길이가 $${q}$, 빗변의 길이가 $${r}$인 직각삼각형에서 $${same}$이다.\n$${iden}$이므로 $${asked}=${frac(wn, wd)}$이다.`,
+        facts: { p, q, r, given, want, gnum: gn, gden: gd, num: wn, den: wd },
+        figureSpec: null,
+      };
+    }),
+  ),
+
+  /* ── 20·21 은 RPM 색인 밖이다 (2026-08-29). ────────────────────────────
+   *
+   * 일일테스트는 **현재 진도 소단원 하나**만 범위로 삼고(`resolveRange.ts`)
+   * 「한 시험지에 같은 문항류는 1개만」(원장님 확정 2026-08-26)이라 **유형 수가
+   * 곧 한 시험지의 상한**이다. 「삼각비의 뜻」은 01~07·19 여덟뿐이라 10문항
+   * 일일테스트를 구조적으로 못 채웠다.
+   *
+   * 갈래도 세어 봤다(제품 `resolveMiddleTier` 실측): 연산 0 · 기본 2 · 응용 4 ·
+   * 심화 2. **밑단이 없다** — 하위반 배분(연산 1)이 이 소단원에서 한 문항도
+   * 못 채운다. 그래서 20 은 연산, 21 은 모자란 기본으로 지었다.
+   *
+   * 끝(무엇을 묻고 끝나는가)도 겹치지 않게 골랐다:
+   *   01·03·19 삼각비의 값 · 02 변의 길이 · 04·05 닮음 · 06 기울기 · 07 입체
+   *   → **20 식의 값** · **21 넓이** 가 비어 있었다.
+   */
+
+  /**
+   * **20 — 두 삼각비의 값을 이용한 식의 계산** (연산).
+   *
+   * 03(한 삼각비 → 다른 삼각비)과 묻는 것이 다르다. 03 은 **하나**를 주고
+   * 피타고라스로 **다른 삼각비**를 구하게 하고, 여기는 **둘**을 주고 그 둘로
+   * 만든 **식의 값**을 구하게 한다 — 분수 계산 한 줄이 전부인 밑단이다.
+   *
+   * ⚠️ 세 갈래 모두 **진분수**로 떨어지는 것이 우연이 아니다:
+   *   `sin×cos` $=\dfrac{uv}{w^{2}}$ 는 $w^{2}=u^{2}+v^{2}\geq 2uv>uv$ 라 늘 진분수,
+   *   `sin÷cos` $=\dfrac{u}{v}$ 는 표가 $u<v$ 뿐이라 진분수,
+   *   `sin×tan` $=\dfrac{u^{2}}{vw}$ 는 $u<v$·$u<w$ 라 진분수다.
+   * 가분수가 되면 `frac()` 이 **던진다**(지면 전처리가 대분수로 고쳐 쓴다).
+   */
+  def(
+    "삼각비",
+    "20",
+    "두 삼각비의 값을 이용한 식의 계산",
+    SEC.뜻,
+    "연산",
+    (rng) =>
+      attempt(120, () => {
+        const [p0, q0, r0] = pick(rng, TRIPLES);
+        const g0 = gcd(gcd(p0, q0), r0);
+        const u = p0 / g0;
+        const v = q0 / g0;
+        const w = r0 / g0;
+        if (u >= v) return null;
+        const mode = intBetween(rng, 0, 2);
+        const sinTex = frac(u, w);
+        const cosTex = frac(v, w);
+        const [num, den] =
+          mode === 0
+            ? red(u * v, w * w)
+            : mode === 1
+              ? red(u, v)
+              : red(u * u, v * w);
+        if (num >= den) return null;
+        // 밑단이므로 답이 커지면 안 된다 — $\dfrac{420}{1369}$ 은 연산이 아니다.
+        if (den > 300) return null;
+        const asked =
+          mode === 0
+            ? "\\sin A\\times\\cos A"
+            : mode === 1
+              ? "\\sin A\\div\\cos A"
+              : "\\sin A\\times\\tan A";
+        const [tn, td] = red(u, v);
+        const work =
+          mode === 0
+            ? `$${asked}=${sinTex}\\times${cosTex}=${frac(num, den)}$이다.`
+            : mode === 1
+              ? `$${asked}=${sinTex}\\div${cosTex}=${frac(num, den)}$이다.`
+              : `$\\tan A=\\sin A\\div\\cos A=${sinTex}\\div${cosTex}=${frac(tn, td)}$이다.\n` +
+                `$${asked}=${sinTex}\\times${frac(tn, td)}=${frac(num, den)}$이다.`;
+        return {
+          content: `$0^\\circ<A<90^\\circ$인 $\\angle A$에 대하여 $\\sin A=${sinTex}$, $\\cos A=${cosTex}$일 때, $${asked}$의 값을 구하시오.`,
+          answer: `$${frac(num, den)}$`,
+          solution: `${work}\n따라서 구하는 값은 $${frac(num, den)}$이다.`,
+          facts: nums({ u, v, w, mode, num, den }),
+          figureSpec: null,
+        };
+      }),
+  ),
+
+  /**
+   * **21 — 삼각비를 이용하여 직각삼각형의 넓이 구하기** (기본).
+   *
+   * 02(삼각비 → 변의 길이)에서 **한 걸음 더** 간다: 구한 변으로 **넓이**를 낸다.
+   * 이 소단원의 여덟은 전부 「삼각비의 값」 아니면 「변의 길이」에서 끝났다 —
+   * 넓이로 끝나는 자리가 비어 있었다.
+   *
+   * ⚠️ 「삼각비의 활용」 08(삼각형의 넓이)과 다르다. 그쪽은 $\dfrac12ab\sin C$ 로
+   *    **끼인각**을 쓰고, 여기는 직각삼각형에서 두 변을 구해 곱한다. 소단원도 다르다.
+   */
+  def(
+    "삼각비",
+    "21",
+    "삼각비를 이용하여 직각삼각형의 넓이 구하기",
+    SEC.뜻,
+    "기본",
+    (rng) =>
+      attempt(120, () => {
+        const [p0, q0, r0] = pick(rng, TRIPLES);
+        const g0 = gcd(gcd(p0, q0), r0);
+        const u = p0 / g0;
+        const v = q0 / g0;
+        const w = r0 / g0;
+        if (u >= v) return null;
+        const t = intBetween(rng, 1, 4);
+        const opp = u * t; // $\overline{BC}$
+        const adj = v * t; // $\overline{AB}$
+        const hyp = w * t; // $\overline{AC}$
+        if (hyp > 60) return null;
+        if ((opp * adj) % 2 !== 0) return null;
+        const area = (opp * adj) / 2;
+        const mode = intBetween(rng, 0, 2);
+        // 주어지는 변과 삼각비 — 0: 빗변+sin · 1: 빗변+cos · 2: 이웃변+tan
+        const givenLen = mode === 2 ? adj : hyp;
+        const givenSide = mode === 2 ? SIDE_NAMES[0]! : SIDE_NAMES[2]!;
+        const [gn, gd] =
+          mode === 0 ? red(u, w) : mode === 1 ? red(v, w) : red(u, v);
+        if (gn >= gd) return null;
+        const relation = [
+          `\\sin A=\\dfrac{\\overline{BC}}{\\overline{AC}}`,
+          `\\cos A=\\dfrac{\\overline{AB}}{\\overline{AC}}`,
+          `\\tan A=\\dfrac{\\overline{BC}}{\\overline{AB}}`,
+        ][mode]!;
+        // 삼각비로 바로 나오는 변과, 피타고라스로 되찾는 변.
+        const direct = mode === 1 ? adj : opp;
+        const directSide = mode === 1 ? SIDE_NAMES[0]! : SIDE_NAMES[1]!;
+        const other = mode === 1 ? opp : mode === 0 ? adj : hyp;
+        const otherSide = mode === 1 ? SIDE_NAMES[1]! : SIDE_NAMES[0]!;
+        const pytha =
+          mode === 2
+            ? ``
+            : `피타고라스 정리에 의하여 $${otherSide}=\\sqrt{${hyp}^2-${direct}^2}=${other}\\,(\\mathrm{cm})$이다.\n`;
+        return {
+          content: `직각삼각형 $ABC$에서 $\\angle B=90^\\circ$이고 $${trigOf(mode, "A")}=${frac(gn, gd)}$, $${givenSide}=${cm(givenLen)}$일 때, 삼각형 $ABC$의 넓이를 구하시오.`,
+          answer: `$${cm2(area)}$`,
+          solution:
+            `$${relation}$이므로 $${directSide}=${givenLen}\\times${frac(gn, gd)}=${direct}\\,(\\mathrm{cm})$이다.\n` +
+            pytha +
+            `따라서 삼각형 $ABC$의 넓이는 $\\dfrac{1}{2}\\times${adj}\\times${opp}=${area}\\,(\\mathrm{cm}^2)$이다.`,
+          facts: nums({ u, v, w, t, mode, area, given: givenLen }),
+          figureSpec: null,
+        };
+      }),
+  ),
+
+  /* ── 삼각비의 활용 01~14 → 우리 단원 「삼각비의 활용」 ──────────── */
+
+  def(
+    "삼각비의 활용",
+    "01",
+    "직각삼각형의 변의 길이 구하기",
+    SEC.활용,
+    "기본",
+    (rng) =>
+      attempt<Body>(200, () => {
+        const theta = pick(rng, [30, 45, 60] as const);
+        const g = pick(rng, [4, 6, 8, 10, 12, 16, 20] as const);
+        const mode = intBetween(rng, 0, 1);
+        const sinT = exact(0, theta)!;
+        const cosT = exact(1, theta)!;
+        const adj = surdMul(surd(g, 1, 1), cosT);
+        const opp = surdMul(surd(g, 1, 1), sinT);
+        if (mode === 0) {
+          // (넓이) $=\dfrac{1}{2}\times\overline{AB}\times\overline{BC}$
+          const area = surdMul(surdMul(adj, opp), surd(1, 1, 2));
+          if (area.d !== 1) return null;
+          return {
+            content: `직각삼각형 $ABC$에서 $\\angle B=90^\\circ$, $\\angle A=${theta}^\\circ$이고 $\\overline{AC}=${cm(g)}$일 때, 직각삼각형 $ABC$의 넓이를 구하시오.`,
+            answer: `$${cm2(surdText(area))}$`,
+            solution: `$\\overline{AB}=${g}\\times\\cos ${theta}^\\circ=${surdText(adj)}\\,(\\mathrm{cm})$, $\\overline{BC}=${g}\\times\\sin ${theta}^\\circ=${surdText(opp)}\\,(\\mathrm{cm})$이다.\n따라서 (넓이)$=\\dfrac{1}{2}\\times${surdText(adj)}\\times${surdText(opp)}=${surdText(area)}\\,(\\mathrm{cm}^2)$이다.`,
+            facts: nums({ theta, given: g, mode, an: area.n, ar: area.r }),
+            figureSpec: figRight({
+              vert: surdValue(adj),
+              horz: surdValue(opp),
+              angA: `${theta}°`,
+              dims: { CA: dimCm(g) },
+            }),
+          };
+        }
+        // 둘레 — 유리항과 무리항을 따로 모은다($45^\circ$ 는 둘 다 $\sqrt{2}$ 라 합쳐진다).
+        let c0 = g;
+        let irr: Surd = { n: 0, r: 1, d: 1 };
+        for (const s of [adj, opp]) {
+          if (s.r === 1) {
+            c0 += s.n / s.d;
+            continue;
+          }
+          const t = surdAdd(irr, s);
+          if (!t) return null;
+          irr = t;
+        }
+        if (!Number.isInteger(c0)) return null;
+        if (irr.n === 0 || irr.d !== 1) return null;
+        return {
+          content: `직각삼각형 $ABC$에서 $\\angle B=90^\\circ$, $\\angle A=${theta}^\\circ$이고 $\\overline{AC}=${cm(g)}$일 때, 직각삼각형 $ABC$의 둘레의 길이를 구하시오.`,
+          answer: `$${lenText(c0, irr.n, irr.r, "cm")}$`,
+          solution: `$\\overline{AB}=${g}\\times\\cos ${theta}^\\circ=${surdText(adj)}\\,(\\mathrm{cm})$, $\\overline{BC}=${g}\\times\\sin ${theta}^\\circ=${surdText(opp)}\\,(\\mathrm{cm})$이다.\n따라서 (둘레)$=${g}+${surdText(adj)}+${surdText(opp)}=${binomText(c0, irr.n, irr.r)}\\,(\\mathrm{cm})$이다.`,
+          facts: nums({ theta, given: g, mode, c0, c1: irr.n, root: irr.r }),
+          figureSpec: figRight({
+            vert: surdValue(adj),
+            horz: surdValue(opp),
+            angA: `${theta}°`,
+            dims: { CA: dimCm(g) },
+          }),
+        };
+      }),
+  ),
+
+  def(
+    "삼각비의 활용",
+    "02",
+    "입체도형에서 직각삼각형의 변의 길이의 활용",
+    SEC.활용,
+    "응용",
+    (rng) =>
+      attempt(200, () => {
+        const theta = pick(rng, [30, 45, 60] as const);
+        const mode = intBetween(rng, 0, 2);
+        const base = pick(rng, [3, 4, 6, 8, 9, 12] as const);
+        const tanT = exact(2, theta)!;
+        const cosT = exact(1, theta)!;
+        const bs = surd(base, 1, 1);
+        const res = mode === 1 ? surdDiv(bs, cosT) : surdMul(bs, tanT);
+        if (res.d !== 1 || res.n > 90) return null;
+        const scene = [
+          {
+            content: `밑면이 한 변의 길이가 $${cm(2 * base)}$인 정사각형이고 옆면과 밑면이 이루는 각의 크기가 $${theta}^\\circ$인 정사각뿔이 있다. 이 정사각뿔의 높이를 구하시오.`,
+            solution: `밑면의 한 변의 중점과 밑면의 중심 사이의 거리는 $${base}\\,\\mathrm{cm}$이다.\n높이를 $h\\,\\mathrm{cm}$라 하면 $\\tan ${theta}^\\circ=\\dfrac{h}{${base}}$이다.\n따라서 $h=${base}\\times${surdText(tanT)}=${surdText(res)}$이므로 높이는 $${cm(surdText(res))}$이다.`,
+          },
+          {
+            content: `밑면의 반지름의 길이가 $${cm(base)}$이고 모선과 밑면이 이루는 각의 크기가 $${theta}^\\circ$인 원뿔이 있다. 이 원뿔의 모선의 길이를 구하시오.`,
+            solution: `모선의 길이를 $l\\,\\mathrm{cm}$라 하면 밑면의 반지름과 모선이 이루는 직각삼각형에서 $\\cos ${theta}^\\circ=\\dfrac{${base}}{l}$이다.\n따라서 $l=\\dfrac{${base}}{${surdText(cosT)}}=${surdText(res)}$이므로 모선의 길이는 $${cm(surdText(res))}$이다.`,
+          },
+          {
+            content: `밑면의 반지름의 길이가 $${cm(base)}$이고 모선과 밑면이 이루는 각의 크기가 $${theta}^\\circ$인 원뿔이 있다. 이 원뿔의 높이를 구하시오.`,
+            solution: `높이를 $h\\,\\mathrm{cm}$라 하면 밑면의 반지름과 높이가 이루는 직각삼각형에서 $\\tan ${theta}^\\circ=\\dfrac{h}{${base}}$이다.\n따라서 $h=${base}\\times${surdText(tanT)}=${surdText(res)}$이므로 높이는 $${cm(surdText(res))}$이다.`,
+          },
+        ][mode]!;
+        return {
+          content: scene.content,
+          answer: `$${cm(surdText(res))}$`,
+          solution: scene.solution,
+          facts: { theta, base, mode, an: res.n, ar: res.r },
+          figureSpec: null,
+        };
+      }),
+  ),
+
+  def(
+    "삼각비의 활용",
+    "03",
+    "실생활에서 직각삼각형의 변의 길이의 활용 ⑴",
+    SEC.활용,
+    "응용",
+    (rng) =>
+      attempt(200, () => {
+        const theta = pick(rng, [30, 45, 60] as const);
+        const d = pick(rng, [6, 8, 9, 10, 12, 15, 18, 20] as const);
+        const mode = intBetween(rng, 0, 2);
+        const sinT = exact(0, theta)!;
+        const cosT = exact(1, theta)!;
+        const tanT = exact(2, theta)!;
+        const ds = surd(d, 1, 1);
+        const res =
+          mode === 0
+            ? surdMul(ds, tanT)
+            : mode === 1
+              ? surdDiv(ds, cosT)
+              : surdMul(ds, sinT);
+        if (res.d !== 1 || res.n > 90) return null;
+        const height =
+          mode === 2
+            ? surdValue(res)
+            : mode === 0
+              ? surdValue(res)
+              : d * Math.tan(theta * DEG);
+        const ground = mode === 2 ? d * Math.cos(theta * DEG) : d;
+        const scene = [
+          {
+            content: `지면에 수직으로 서 있는 나무의 밑동에서 $${d}\\,\\mathrm{m}$ 떨어진 지점에서 나무의 꼭대기를 올려본각의 크기가 $${theta}^\\circ$이었다. 이 나무의 높이를 구하시오.`,
+            solution: `나무의 높이를 $h\\,\\mathrm{m}$라 하면 $\\tan ${theta}^\\circ=\\dfrac{h}{${d}}$이다.\n따라서 $h=${d}\\times\\tan ${theta}^\\circ=${surdText(res)}$이므로 나무의 높이는 $${surdText(res)}\\,\\mathrm{m}$이다.`,
+            dimKey: "BC",
+          },
+          {
+            content: `벽에 사다리를 기대어 놓았더니 사다리가 지면과 이루는 각의 크기가 $${theta}^\\circ$이고, 사다리의 아래 끝이 벽에서 $${d}\\,\\mathrm{m}$ 떨어져 있었다. 이 사다리의 길이를 구하시오.`,
+            solution: `사다리의 길이를 $l\\,\\mathrm{m}$라 하면 $\\cos ${theta}^\\circ=\\dfrac{${d}}{l}$이다.\n따라서 $l=\\dfrac{${d}}{${surdText(cosT)}}=${surdText(res)}$이므로 사다리의 길이는 $${surdText(res)}\\,\\mathrm{m}$이다.`,
+            dimKey: "BC",
+          },
+          {
+            content: `길이가 $${d}\\,\\mathrm{m}$인 실을 모두 풀어 연을 날렸더니 실이 지면과 이루는 각의 크기가 $${theta}^\\circ$이었다. 실이 팽팽하다고 할 때, 지면에서 연까지의 높이를 구하시오.`,
+            solution: `연까지의 높이를 $h\\,\\mathrm{m}$라 하면 $\\sin ${theta}^\\circ=\\dfrac{h}{${d}}$이다.\n따라서 $h=${d}\\times\\sin ${theta}^\\circ=${surdText(res)}$이므로 연까지의 높이는 $${surdText(res)}\\,\\mathrm{m}$이다.`,
+            dimKey: "CA",
+          },
+        ][mode]!;
+        return {
+          content: scene.content,
+          answer: `$${surdText(res)}\\,\\mathrm{m}$`,
+          solution: scene.solution,
+          facts: { theta, d, mode, an: res.n, ar: res.r },
+          figureSpec: figRight({
+            vert: r2(height),
+            horz: r2(ground),
+            angC: `${theta}°`,
+            dims: { [scene.dimKey]: `${d} m` },
+          }),
+        };
+      }),
+  ),
+
+  def(
+    "삼각비의 활용",
+    "04",
+    "일반 삼각형의 변의 길이 구하기 두 변의 길이와 그 끼인각의 크기를 아는 경우",
+    SEC.활용,
+    "응용",
+    (rng) => {
+      // $[\overline{AB}$의 계수·근호, $\overline{BC}$, $\angle B$, $\overline{BH}$,
+      //  $\overline{AH}$의 계수·근호, $\overline{HC}$, $\overline{AC}]$ —
+      // 전부 수선의 발 $H$ 로 실제 계산해 둔 값이라 답이 정수다.
+      const [abC, abR, bc, ang, bh, ahC, ahR, hc, ac] = pick(rng, [
+        [8, 1, 5, 60, 4, 4, 3, 1, 7],
+        [8, 1, 15, 60, 4, 4, 3, 11, 13],
+        [16, 1, 21, 60, 8, 8, 3, 13, 19],
+        [6, 1, 16, 60, 3, 3, 3, 13, 14],
+        [10, 1, 16, 60, 5, 5, 3, 11, 14],
+        [24, 1, 35, 60, 12, 12, 3, 23, 31],
+        [8, 1, 7, 120, 4, 4, 3, 11, 13],
+        [16, 1, 5, 120, 8, 8, 3, 13, 19],
+        [6, 1, 10, 120, 3, 3, 3, 13, 14],
+        [10, 1, 6, 120, 5, 5, 3, 11, 14],
+        [24, 1, 11, 120, 12, 12, 3, 23, 31],
+        [3, 2, 7, 45, 3, 3, 1, 4, 5],
+        [6, 2, 14, 45, 6, 6, 1, 8, 10],
+        [5, 2, 17, 45, 5, 5, 1, 12, 13],
+        [12, 2, 17, 45, 12, 12, 1, 5, 13],
+        [5, 2, 7, 135, 5, 5, 1, 12, 13],
+        [8, 2, 7, 135, 8, 8, 1, 15, 17],
+        [7, 2, 17, 135, 7, 7, 1, 24, 25],
+      ] as const);
+      const abText = surdText(surd(abC, abR, 1));
+      const ahText = surdText(surd(ahC, ahR, 1));
+      const outer = ang > 90 ? 180 - ang : ang;
+      const where =
+        ang > 90
+          ? `꼭짓점 $A$에서 $\\overline{BC}$의 연장선에 내린 수선의 발을 $H$라 하면 $\\angle ABH=${outer}^\\circ$이므로`
+          : `꼭짓점 $A$에서 $\\overline{BC}$에 내린 수선의 발을 $H$라 하면`;
+      return {
+        content: `삼각형 $ABC$에서 $\\overline{AB}=${cm(abText)}$, $\\overline{BC}=${cm(bc)}$, $\\angle B=${ang}^\\circ$일 때, $\\overline{AC}$의 길이를 구하시오.`,
+        answer: `$${cm(ac)}$`,
+        solution: `${where} $\\overline{BH}=${abText}\\times\\cos ${outer}^\\circ=${bh}\\,(\\mathrm{cm})$, $\\overline{AH}=${abText}\\times\\sin ${outer}^\\circ=${ahText}\\,(\\mathrm{cm})$이다.\n$\\overline{HC}=${hc}\\,\\mathrm{cm}$이므로 직각삼각형 $AHC$에서 $\\overline{AC}=\\sqrt{(${ahText})^2+${hc}^2}=${ac}\\,(\\mathrm{cm})$이다.`,
+        facts: { abC, abR, bc, ang, bh, hc, ac },
+        // 원장님 지적 2026-08-25 — `J30503-A04-002` 는 발문이 $\overline{AB}$·
+        // $\overline{BC}$ 를 둘 다 말하는데 그림엔 `6 cm` **하나뿐**이었다.
+        // 「받은 치수를 다 적는다」는 09 §4-20 이 이미 정한 규칙이다.
+        figureSpec: figTwoSides({
+          ab: abC * Math.sqrt(abR),
+          bc,
+          angB: ang,
+          dims: { AB: dimCm(abText), BC: dimCm(bc) },
+        }),
+      };
+    },
+  ),
+
+  def(
+    "삼각비의 활용",
+    "05",
+    "일반 삼각형의 변의 길이 구하기 한 변의 길이와 그 양 끝 각의 크기를 아는 경우",
+    SEC.활용,
+    "응용",
+    (rng) => {
+      const k = intBetween(rng, 1, 6);
+      const cfg = pick(rng, [
+        // $[\angle B, \angle C]$ 와 $\overline{BC}=k(c_0+c_1\sqrt{root})$,
+        // 그때의 $\overline{AB}=k\cdot abC\sqrt{abR}$, $\overline{AC}=k\cdot acC\sqrt{acR}$.
+        {
+          id: 0,
+          b: 30,
+          c: 45,
+          c0: 1,
+          c1: 1,
+          root: 3,
+          hC: 1,
+          abC: 2,
+          abR: 1,
+          acC: 1,
+          acR: 2,
+        },
+        {
+          id: 1,
+          b: 45,
+          c: 60,
+          c0: 3,
+          c1: 1,
+          root: 3,
+          hC: 3,
+          abC: 3,
+          abR: 2,
+          acC: 2,
+          acR: 3,
+        },
+        {
+          id: 2,
+          b: 30,
+          c: 60,
+          c0: 0,
+          c1: 4,
+          root: 3,
+          hC: 3,
+          abC: 6,
+          abR: 1,
+          acC: 2,
+          acR: 3,
+        },
+        {
+          id: 3,
+          b: 45,
+          c: 45,
+          c0: 2,
+          c1: 0,
+          root: 1,
+          hC: 1,
+          abC: 1,
+          abR: 2,
+          acC: 1,
+          acR: 2,
+        },
+      ] as const);
+      const ask = intBetween(rng, 0, 1);
+      const bcC0 = cfg.c0 * k;
+      const bcC1 = cfg.c1 * k;
+      const bcText = binomText(bcC0, bcC1, cfg.root);
+      const bcVal = bcC0 + bcC1 * Math.sqrt(cfg.root);
+      const res = surd(
+        (ask === 0 ? cfg.abC : cfg.acC) * k,
+        ask === 0 ? cfg.abR : cfg.acR,
+        1,
+      );
+      const angA = 180 - cfg.b - cfg.c;
+      const askName = ask === 0 ? `\\overline{AB}` : `\\overline{AC}`;
+      // 직각삼각형 $ABH$ 에서 \sin B = AH/AB 이므로 구하는 변은
+      // «높이 ÷ 그 각의 sin» 이다. `hVal` 은 그 높이(정수).
+      const nearAng = ask === 0 ? cfg.b : cfg.c;
+      const hVal = cfg.hC * k;
+      const paren = bcC0 !== 0 && bcC1 !== 0 ? `(${bcText})` : bcText;
+      return {
+        content: `삼각형 $ABC$에서 $\\overline{BC}=${cm(paren)}$, $\\angle B=${cfg.b}^\\circ$, $\\angle C=${cfg.c}^\\circ$일 때, $${askName}$의 길이를 구하시오.`,
+        answer: `$${cm(surdText(res))}$`,
+        solution: `$\\angle A=180^\\circ-${cfg.b}^\\circ-${cfg.c}^\\circ=${angA}^\\circ$이다.\n꼭짓점 $A$에서 $\\overline{BC}$에 내린 수선의 발을 $H$라 하고 $\\overline{AH}=h\\,\\mathrm{cm}$라 하면 $\\overline{BH}=\\dfrac{h}{\\tan ${cfg.b}^\\circ}$, $\\overline{CH}=\\dfrac{h}{\\tan ${cfg.c}^\\circ}$이다.\n$\\overline{BH}+\\overline{CH}=\\overline{BC}$에 대입해 풀면 $h=${hVal}$이다.\n직각삼각형 $A${ask === 0 ? "B" : "C"}H$에서 $\\sin ${nearAng}^\\circ=\\dfrac{h}{${askName}}$이므로 $${askName}=\\dfrac{${hVal}}{${surdText(exact(0, nearAng)!)}}=${surdText(res)}\\,(\\mathrm{cm})$이다.`,
+        facts: {
+          config: cfg.id,
+          k,
+          ask,
+          angB: cfg.b,
+          angC: cfg.c,
+          bcC0,
+          bcC1,
+          bcRoot: cfg.root,
+          h: hVal,
+          an: res.n,
+          ar: res.r,
+        },
+        // 원장님 지적 2026-08-25 — 이 유형은 **길이 표시가 하나도 없었다**
+        // (`J30503-A05-002`: 발문이 $\overline{BC}$ 를 말하는데 그림엔 각뿐).
+        figureSpec: figTwoAngles({
+          bc: bcVal,
+          angB: cfg.b,
+          angC: cfg.c,
+          dims: { BC: dimCm(paren) },
+        }),
+      };
+    },
+  ),
+
+  def(
+    "삼각비의 활용",
+    "06",
+    "삼각형의 높이 구하기 주어진 각이 모두 예각인 경우",
+    SEC.활용,
+    "심화하",
+    (rng) => {
+      const k = intBetween(rng, 1, 6);
+      const cfg = pick(rng, [
+        { b: 45, c: 60, mul: 2, c0: 3, c1: -1, root: 3 },
+        { b: 30, c: 45, mul: 2, c0: -1, c1: 1, root: 3 },
+        { b: 30, c: 60, mul: 4, c0: 0, c1: 1, root: 3 },
+        { b: 45, c: 45, mul: 2, c0: 1, c1: 0, root: 1 },
+      ] as const);
+      const bc = cfg.mul * k;
+      const c0 = cfg.c0 * k;
+      const c1 = cfg.c1 * k;
+      return {
+        content: `삼각형 $ABC$에서 $\\overline{BC}=${cm(bc)}$, $\\angle B=${cfg.b}^\\circ$, $\\angle C=${cfg.c}^\\circ$이다. 꼭짓점 $A$에서 $\\overline{BC}$에 내린 수선의 발을 $H$라 할 때, $\\overline{AH}$의 길이를 구하시오.`,
+        answer: `$${lenText(c0, c1, cfg.root, "cm")}$`,
+        solution: `$\\overline{AH}=h\\,\\mathrm{cm}$라 하면 $\\overline{BH}=\\dfrac{h}{\\tan ${cfg.b}^\\circ}$, $\\overline{CH}=\\dfrac{h}{\\tan ${cfg.c}^\\circ}$이다.\n$\\overline{BH}+\\overline{CH}=\\overline{BC}$이므로 $\\dfrac{h}{\\tan ${cfg.b}^\\circ}+\\dfrac{h}{\\tan ${cfg.c}^\\circ}=${bc}$이다.\n이 식을 풀면 $h=${binomText(c0, c1, cfg.root)}$이므로 $\\overline{AH}=${lenText(c0, c1, cfg.root, "cm")}$이다.`,
+        facts: { angB: cfg.b, angC: cfg.c, bc, c0, c1, root: cfg.root },
+        figureSpec: figTwoAngles({
+          bc,
+          angB: cfg.b,
+          angC: cfg.c,
+          foot: true,
+          dims: { BC: dimCm(bc) },
+        }),
+      };
+    },
+  ),
+
+  def(
+    "삼각비의 활용",
+    "07",
+    "삼각형의 높이 구하기 주어진 각 중 한 각이 둔각인 경우",
+    SEC.활용,
+    "심화하",
+    (rng) => {
+      const k = intBetween(rng, 1, 6);
+      const cfg = pick(rng, [
+        { abc: 120, outer: 60, c: 45, c0: 3, c1: 1, root: 3 },
+        { abc: 135, outer: 45, c: 30, c0: 1, c1: 1, root: 3 },
+        { abc: 120, outer: 60, c: 30, c0: 0, c1: 1, root: 3 },
+      ] as const);
+      const bc = 2 * k;
+      const c0 = cfg.c0 * k;
+      const c1 = cfg.c1 * k;
+      return {
+        content: `삼각형 $ABC$에서 $\\overline{BC}=${cm(bc)}$, $\\angle ABC=${cfg.abc}^\\circ$, $\\angle C=${cfg.c}^\\circ$이다. 꼭짓점 $A$에서 $\\overline{BC}$의 연장선에 내린 수선의 발을 $H$라 할 때, $\\overline{AH}$의 길이를 구하시오.`,
+        answer: `$${lenText(c0, c1, cfg.root, "cm")}$`,
+        solution: `$\\angle ABH=180^\\circ-${cfg.abc}^\\circ=${cfg.outer}^\\circ$이다.\n$\\overline{AH}=h\\,\\mathrm{cm}$라 하면 $\\overline{BH}=\\dfrac{h}{\\tan ${cfg.outer}^\\circ}$, $\\overline{CH}=\\dfrac{h}{\\tan ${cfg.c}^\\circ}$이고 $\\overline{CH}-\\overline{BH}=\\overline{BC}$이므로 $\\dfrac{h}{\\tan ${cfg.c}^\\circ}-\\dfrac{h}{\\tan ${cfg.outer}^\\circ}=${bc}$이다.\n이 식을 풀면 $h=${binomText(c0, c1, cfg.root)}$이므로 $\\overline{AH}=${lenText(c0, c1, cfg.root, "cm")}$이다.`,
+        facts: {
+          abc: cfg.abc,
+          outer: cfg.outer,
+          angC: cfg.c,
+          bc,
+          c0,
+          c1,
+          root: cfg.root,
+        },
+        figureSpec: figObtuseHeight({
+          bc,
+          outer: cfg.outer,
+          angC: cfg.c,
+          dims: { BC: dimCm(bc) },
+        }),
+      };
+    },
+  ),
+
+  def(
+    "삼각비의 활용",
+    "08",
+    "삼각형의 넓이 예각이 주어진 경우",
+    SEC.활용,
+    "응용",
+    (rng) => triangleArea(rng, [30, 45, 60]),
+  ),
+
+  def(
+    "삼각비의 활용",
+    "09",
+    "삼각형의 넓이 둔각이 주어진 경우",
+    SEC.활용,
+    "응용",
+    (rng) => triangleArea(rng, [120, 135, 150]),
+  ),
+
+  def("삼각비의 활용", "10", "다각형의 넓이", SEC.활용, "심화하", (rng) => {
+    // $\overline{AC}$ 가 양쪽 삼각형에서 **같은 값**이 되도록 짝지은 표다 —
+    // 안 그러면 사각형이 닫히지 않아 그림이 거짓말을 한다.
+    const [ab, bc, ad, dc, ac] = pick(rng, [
+      [6, 16, 6, 10, 14],
+      [10, 16, 6, 10, 14],
+      [14, 30, 14, 16, 26],
+      [16, 30, 14, 16, 26],
+      [10, 42, 10, 32, 38],
+      [32, 42, 10, 32, 38],
+    ] as const);
+    const s1 = (ab * bc) / 4;
+    const s2 = (ad * dc) / 4;
+    const total = s1 + s2;
+    return {
+      content: `사각형 $ABCD$에서 $\\overline{AB}=${cm(ab)}$, $\\overline{BC}=${cm(bc)}$, $\\overline{AD}=${cm(ad)}$, $\\overline{DC}=${cm(dc)}$이고 $\\angle B=60^\\circ$, $\\angle D=120^\\circ$일 때, 사각형 $ABCD$의 넓이를 구하시오.`,
+      answer: `$${cm2(`${total}\\sqrt{3}`)}$`,
+      solution: `대각선 $AC$를 그으면 삼각형 $ABC$의 넓이는 $\\dfrac{1}{2}\\times${ab}\\times${bc}\\times\\sin 60^\\circ=${s1}\\sqrt{3}\\,(\\mathrm{cm}^2)$이다.\n삼각형 $ACD$의 넓이는 $\\dfrac{1}{2}\\times${ad}\\times${dc}\\times\\sin(180^\\circ-120^\\circ)=${s2}\\sqrt{3}\\,(\\mathrm{cm}^2)$이다.\n따라서 사각형 $ABCD$의 넓이는 $${s1}\\sqrt{3}+${s2}\\sqrt{3}=${total}\\sqrt{3}\\,(\\mathrm{cm}^2)$이다.`,
+      // 각 두 개도 `facts` 에 싣는다 — 그림의 각 라벨이 발문과 같은 값인지
+      // 시험이 대조하려면 그 값이 여기 있어야 한다(그림 따로 발문 따로 방지).
+      facts: { ab, bc, angB: 60, ad, dc, angD: 120, ac, s1, s2, total },
+      figureSpec: figQuadDiag({
+        ab,
+        bc,
+        angB: 60,
+        ad,
+        dc,
+        angD: 120,
+        // $\overline{AD}$ 치수는 안 단다. 둔각 120° 에 붙은 이 변은 표 6행
+        // 전량이 `d_DA` geometry 충돌로 던진다 — 혼자 달아도 같다(쪽 고정
+        // 불가). 발문이 네 변을 이미 말하므로 그릴 수 있는 세 변만 단다
+        // (09 §4-20-b · m2Pytha 마름모 대각선과 같은 판단).
+        dims: {
+          AB: dimCm(ab),
+          BC: dimCm(bc),
+          CD: dimCm(dc),
+        },
+      }),
+    };
+  }),
+
+  def("삼각비의 활용", "11", "평행사변형의 넓이", SEC.활용, "응용", (rng) =>
+    attempt(200, () => {
+      const ang = pick(rng, [30, 45, 60, 120, 135, 150] as const);
+      const a = intBetween(rng, 3, 14);
+      const b = intBetween(rng, 3, 14);
+      const sinT = exact(0, ang > 90 ? 180 - ang : ang)!;
+      const area = surdMul(surd(a * b, 1, 1), sinT);
+      if (area.d !== 1) return null;
+      const mode = intBetween(rng, 0, 1);
+      const shrink =
+        ang > 90 ? `\\sin(180^\\circ-${ang}^\\circ)` : `\\sin ${ang}^\\circ`;
+      if (mode === 0) {
+        return {
+          content: `평행사변형 $ABCD$에서 $\\overline{AB}=${cm(a)}$, $\\overline{AD}=${cm(b)}$, $\\angle A=${ang}^\\circ$일 때, 평행사변형 $ABCD$의 넓이를 구하시오.`,
+          answer: `$${cm2(surdText(area))}$`,
+          solution: `(평행사변형의 넓이)$=\\overline{AB}\\times\\overline{AD}\\times${shrink}$이다.\n따라서 넓이는 $${a}\\times${b}\\times${surdText(sinT)}=${surdText(area)}\\,(\\mathrm{cm}^2)$이다.`,
+          facts: { a, b, ang, mode, an: area.n, ar: area.r },
+          figureSpec: figParallelogram({
+            ab: a,
+            ad: b,
+            angA: ang,
+            dims: { AB: dimCm(a), DA: dimCm(b) },
+          }),
+        };
+      }
+      return {
+        content: `평행사변형 $ABCD$에서 $\\overline{AB}=${cm(a)}$, $\\angle A=${ang}^\\circ$이고 넓이가 $${cm2(surdText(area))}$일 때, $\\overline{AD}$의 길이를 구하시오.`,
+        answer: `$${cm(b)}$`,
+        solution: `(평행사변형의 넓이)$=\\overline{AB}\\times\\overline{AD}\\times${shrink}$이다.\n$${a}\\times\\overline{AD}\\times${surdText(sinT)}=${surdText(area)}$이므로 $\\overline{AD}=${b}\\,(\\mathrm{cm})$이다.`,
+        facts: { a, b, ang, mode, an: area.n, ar: area.r },
+        figureSpec: figParallelogram({
+          ab: a,
+          ad: b,
+          angA: ang,
+          dims: { AB: dimCm(a) },
+        }),
+      };
+    }),
+  ),
+
+  def("삼각비의 활용", "12", "사각형의 넓이", SEC.활용, "응용", (rng) =>
+    attempt(200, () => {
+      const ang = pick(rng, [30, 45, 60, 120, 135, 150] as const);
+      const d1 = intBetween(rng, 4, 16);
+      const d2 = intBetween(rng, 4, 16);
+      const sinT = exact(0, ang > 90 ? 180 - ang : ang)!;
+      const area = surdMul(surdMul(surd(d1 * d2, 1, 1), sinT), surd(1, 1, 2));
+      if (area.d !== 1) return null;
+      const mode = intBetween(rng, 0, 1);
+      const shrink =
+        ang > 90 ? `\\sin(180^\\circ-${ang}^\\circ)` : `\\sin ${ang}^\\circ`;
+      if (mode === 0) {
+        return {
+          content: `사각형 $ABCD$에서 두 대각선 $AC$, $BD$의 길이가 각각 $${cm(d1)}$, $${cm(d2)}$이고 두 대각선이 이루는 각의 크기가 $${ang}^\\circ$일 때, 사각형 $ABCD$의 넓이를 구하시오.`,
+          answer: `$${cm2(surdText(area))}$`,
+          solution: `(사각형의 넓이)$=\\dfrac{1}{2}\\times\\overline{AC}\\times\\overline{BD}\\times${shrink}$이다.\n따라서 넓이는 $\\dfrac{1}{2}\\times${d1}\\times${d2}\\times${surdText(sinT)}=${surdText(area)}\\,(\\mathrm{cm}^2)$이다.`,
+          facts: { d1, d2, ang, mode, an: area.n, ar: area.r },
+          figureSpec: figQuadCross({ d1, d2, ang }),
+        };
+      }
+      return {
+        content: `사각형 $ABCD$에서 대각선 $AC$의 길이가 $${cm(d1)}$이고 두 대각선이 이루는 각의 크기가 $${ang}^\\circ$이다. 사각형 $ABCD$의 넓이가 $${cm2(surdText(area))}$일 때, 대각선 $BD$의 길이를 구하시오.`,
+        answer: `$${cm(d2)}$`,
+        solution: `(사각형의 넓이)$=\\dfrac{1}{2}\\times\\overline{AC}\\times\\overline{BD}\\times${shrink}$이다.\n$\\dfrac{1}{2}\\times${d1}\\times\\overline{BD}\\times${surdText(sinT)}=${surdText(area)}$이므로 $\\overline{BD}=${d2}\\,(\\mathrm{cm})$이다.`,
+        facts: { d1, d2, ang, mode, an: area.n, ar: area.r },
+        figureSpec: figQuadCross({ d1, d2, ang }),
+      };
+    }),
+  ),
+
+  def(
+    "삼각비의 활용",
+    "13",
+    "실생활에서 직각삼각형의 변의 길이의 활용 ⑵",
+    SEC.활용,
+    "심화하",
+    (rng) => {
+      const k = intBetween(rng, 1, 8);
+      const cfg = pick(rng, [
+        { a1: 30, a2: 60, c0: 0, c1: 1, root: 3 },
+        { a1: 45, a2: 60, c0: 3, c1: 1, root: 3 },
+        { a1: 30, a2: 45, c0: 1, c1: 1, root: 3 },
+      ] as const);
+      const d = 2 * k;
+      const c0 = cfg.c0 * k;
+      const c1 = cfg.c1 * k;
+      return {
+        content: `지면에 수직으로 서 있는 건물의 높이를 구하려고 한다. 지면 위의 한 지점 $A$에서 건물의 꼭대기를 올려본각의 크기가 $${cfg.a1}^\\circ$이고, $A$에서 건물 쪽으로 $${d}\\,\\mathrm{m}$만큼 다가간 지점 $B$에서 올려본각의 크기가 $${cfg.a2}^\\circ$이었다. 이 건물의 높이를 구하시오.`,
+        answer: `$${lenText(c0, c1, cfg.root, "m")}$`,
+        solution: `건물의 밑면을 $H$, 꼭대기를 $T$, 건물의 높이를 $h\\,\\mathrm{m}$라 하면 $\\overline{AH}=\\dfrac{h}{\\tan ${cfg.a1}^\\circ}$, $\\overline{BH}=\\dfrac{h}{\\tan ${cfg.a2}^\\circ}$이다.\n$\\overline{AH}-\\overline{BH}=\\overline{AB}=${d}$이므로 $\\dfrac{h}{\\tan ${cfg.a1}^\\circ}-\\dfrac{h}{\\tan ${cfg.a2}^\\circ}=${d}$이다.\n이 식을 풀면 $h=${binomText(c0, c1, cfg.root)}$이므로 건물의 높이는 $${lenText(c0, c1, cfg.root, "m")}$이다.`,
+        facts: { a1: cfg.a1, a2: cfg.a2, d, c0, c1, root: cfg.root },
+        figureSpec: figElevationTwo({
+          d,
+          ang1: cfg.a1,
+          ang2: cfg.a2,
+          label: `${d} m`,
+        }),
+      };
+    },
+  ),
+
+  def("삼각비의 활용", "14", "정다각형의 넓이", SEC.활용, "심화하", (rng) =>
+    attempt(200, () => {
+      const n = pick(rng, [3, 4, 6, 8, 12] as const);
+      const R = intBetween(rng, 2, 12);
+      const central = 360 / n;
+      const sinT = exact(0, central > 90 ? 180 - central : central)!;
+      const area = surdMul(surdMul(surd(n * R * R, 1, 1), sinT), surd(1, 1, 2));
+      if (area.d !== 1) return null;
+      const name = { 3: "삼", 4: "사", 6: "육", 8: "팔", 12: "십이" }[n]!;
+      const shrink =
+        central > 90
+          ? `\\sin(180^\\circ-${central}^\\circ)`
+          : `\\sin ${central}^\\circ`;
+      return {
+        content: `반지름의 길이가 $${cm(R)}$인 원에 내접하는 정${name}각형의 넓이를 구하시오.`,
+        answer: `$${cm2(surdText(area))}$`,
+        solution: `정${name}각형은 원의 중심을 꼭짓점으로 하는 합동인 이등변삼각형 ${n === 3 ? "세" : n === 4 ? "네" : n === 6 ? "여섯" : n === 8 ? "여덟" : "열두"} 개로 나뉘고, 각 삼각형의 꼭지각의 크기는 $\\dfrac{360^\\circ}{${n}}=${central}^\\circ$이다.\n따라서 넓이는 $${n}\\times\\dfrac{1}{2}\\times${R}\\times${R}\\times${shrink}=${surdText(area)}\\,(\\mathrm{cm}^2)$이다.`,
+        facts: { n, R, central, an: area.n, ar: area.r },
+        figureSpec: figRegularPoly({ n }),
+      };
+    }),
+  ),
+];
+
+/**
+ * 브리프 계약 5·6 — 중단원 이름은 RPM 색인 정본 바이트다. 여기 상수로 고정해
+ * 시험이 실측 리터럴로 잠그고, `middleTypeCoverage.test.ts` 가 색인과 전량 대조한다.
+ */
+export const M3_TRIG_MINORS = [MINOR_TRIG, MINOR_APPLY] as const;

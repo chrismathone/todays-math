@@ -1,0 +1,626 @@
+/**
+ * 중3 **확대 갈래**(`심화중`·`심화상`) — D-116, 원장님 확정 2026-08-31.
+ *
+ * 병렬 세션 소유 모듈. 이 파일과 `generate.ts` 의 `...M3_TOP` 한 줄만 이 세션이
+ * 만진다(브리프 `tracks/briefs/mid-extending-tiers.md` §6).
+ *
+ * ## 🔴 이것은 «채우기»가 아니라 «새로 짓기»다
+ *
+ * `resolveMiddleTier(declared, content, hasFigure)` 는 등록값을 **내리기만** 한다
+ * (`기본`→`연산`, D-106). 그래서 위 두 칸은 유형이 `difficulty` 로 **스스로 선언**해야
+ * 생긴다. 착수 시점 `grep -rn "심화중|심화상" src/lib/middle/` → **0건**이었다.
+ *
+ * ## 잣대 (D-115 ⑾ · D-116 ⑵ — 매쓰홀릭 중등 실물에서 왔다)
+ *
+ * ```
+ * 심화중   되짚기 사슬에 값이 하나로 굳지 않는 마디가 하나 있고,
+ *          그 소단원의 성질이 후보를 «끝까지 계산하지 않고» 걸러 낸다.
+ * 심화상   성질로 못 굳혀 후보를 **실제로 다 만들어 견주어야** 하나(또는 몇)가 남는다.
+ * ```
+ *
+ * 판정의 참은 **«해설이 밟는 길»** 이다(D-115 ⑾·⑸). 그래서 아래 해설은 그 길을
+ * 글자 그대로 밟는다 — 심화중은 꼭짓점의 부호 판정으로 접고, 심화상은 후보를
+ * 하나씩 세워 각각 검사한다.
+ *
+ * ## 🔴 왜 «설계»를 `plan…()` 으로 따로 내보내나 — 없는 축은 변이시킬 수 없다
+ *
+ * 초등이 네 물결에 걸쳐 물린 함정이 둘이다(`tier-fill-g6-w3-adversarial.md` §7.1):
+ *
+ * ```
+ * ㉠ 창을 한쪽 끝만 주면 살아남는 후보는 언제나 목록의 같은 자리다
+ *    → 굳힘의 «값»은 유일성에 필요하지만 «어느 후보인가»를 한 번도 안 고른다.
+ * ㉡ 굳힘을 지워도 답이 그대로면 그것은 굳힘이 아니라 장식이다.
+ * ```
+ *
+ * 이 둘을 **밖에서 잴 수 있으려면** 「후보 집합」과 「굳힘이 남긴 것」이 문항 밖에
+ * 있어야 한다. 발문·해설 문자열만 내보내면 그 축이 **아예 없어서** 변이시킬 수도
+ * 없다. 그래서 유형마다 순수 설계 함수 `plan…()` 을 **export** 하고, 판정기
+ * (`scripts/qa/probe-middle-top-m3.ts`)와 시험이 그것을 직접 부른다. 발문·해설은 그
+ * 설계를 **읽기만** 하므로 규칙이 두 벌이 되지 않는다.
+ *
+ * ## 굳힘의 참은 «다시 계산»이다 — 만든 식으로 검산하지 않는다
+ *
+ * 후보는 식으로 만들고(빠르다), **살아남는지는 실제 자료를 정렬해 대푯값을 다시
+ * 계산해서** 정한다. 만든 식으로 검산하면 동어반복이 된다(2026-08-18 「지표의
+ * «참»이 제품 상수에서 나오면 성적이 오른다」). 게다가 해설이 사람에게 말하는
+ * 자리 조건(`need.text`)과 그 실제 판정이 어긋나면 **해설이 거짓말을 하게** 되므로,
+ * 생성기가 둘의 일치를 씨앗마다 단언하고 어긋나면 그 씨앗을 버린다.
+ */
+import { intBetween, pick } from "../elementary/rng";
+import type { Rng } from "../elementary/types";
+import { eulReul, waGwa } from "./m2Josa";
+import type { MidProblem, TypeEntry } from "./types";
+
+const GRADE = "중3";
+
+type Body = Pick<
+  MidProblem,
+  "content" | "answer" | "solution" | "facts" | "figureSpec"
+>;
+
+/** 조건을 만족할 때까지 다시 뽑는다 — 못 찾으면 던진다(조용히 기본값 금지). */
+function attempt<T>(tries: number, f: () => T | null): T {
+  for (let i = 0; i < tries; i += 1) {
+    const v = f();
+    if (v !== null) return v;
+  }
+  throw new Error(
+    "m3Top: 유형 생성 재시도 초과 — 매개변수 범위를 확인하십시오",
+  );
+}
+
+/**
+ * **되짚기가 만든 후보와 굳힘이 남긴 것.** ㉠·㉡ 을 밖에서 재는 유일한 통로다.
+ *
+ * `candidates` 는 수이므로 «가장 큰 것»·«가장 작은 것»이 정의된다 — ㉠(「굳힘을
+ * 안 읽고 극단을 집으면 몇 %가 맞나」)를 재려면 그 극단이 있어야 한다.
+ */
+export type Sift = {
+  /** 되짚기가 만든 후보 전부. 굳힘을 안 읽으면 여기까지가 학생이 아는 전부다. */
+  candidates: number[];
+  /** 굳힘이 남긴 것. `candidates` 의 **진부분집합**이어야 한다(아니면 굳힘이 장식). */
+  kept: number[];
+};
+
+/** 계수 `c` 인 항을 `+3k`·`-k`·`+5` 로. **앞에 항이 있는 자리**에 쓴다. */
+function term(c: number, v: string): string {
+  if (c === 0) return "";
+  const sign = c > 0 ? "+" : "-";
+  const m = Math.abs(c);
+  return `${sign}${m === 1 && v !== "" ? "" : m}${v}`;
+}
+
+/** 근 `r` 에 대한 일차식 `(k-3)` / `(k+3)`. */
+function linear(r: number): string {
+  return r >= 0 ? `(k-${r})` : `(k+${-r})`;
+}
+
+/**
+ * 음수만 괄호로 — `$(-9)^2$` 는 필요하고 `$(9)^2$` 는 군더더기다.
+ *
+ * ⚠️ 조사(「은/는」·「을/를」)는 **이 모듈에 규칙을 새로 쓰지 않는다.** 있는 것은
+ *    `m2Josa` 에서 읽어 쓰고(`eulReul`), 없는 것(「은/는」)은 **조사가 필요 없는
+ *    문장으로 쓴다** — 「$x=1$는」 대신 「이 값은」. 판정 규칙이 두 벌이 되면 한쪽만
+ *    고쳐도 아무도 모른다(2026-08-18).
+ */
+function paren(n: number): string {
+  return n < 0 ? `(${n})` : `${n}`;
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// A. 3-2 «산포도» (우리 소단원: 대푯값과 산포도)
+//    — 평균과 중앙값이 같은 변량. 후보 셋을 다 만들어 견준다.
+// ────────────────────────────────────────────────────────────────────────────
+
+/**
+ * 실제로 정렬해서 중앙값을 낸다 — **규칙을 옮겨 적지 않는다.**
+ * 후보를 만들 때 쓴 「$x$ 가 몇째 자리면 중앙값이 무엇」은 **가설**이고,
+ * 살아남는지는 이 함수와 `meanOf` 가 정한다.
+ */
+export function medianOf(values: readonly number[]): number {
+  const s = [...values].sort((a, b) => a - b);
+  const n = s.length;
+  if (n === 0) throw new Error("medianOf: 자료가 비었습니다");
+  return n % 2 === 1 ? s[(n - 1) / 2]! : (s[n / 2 - 1]! + s[n / 2]!) / 2;
+}
+
+export function meanOf(values: readonly number[]): number {
+  if (values.length === 0) throw new Error("meanOf: 자료가 비었습니다");
+  return values.reduce((a, b) => a + b, 0) / values.length;
+}
+
+/**
+ * 🔴 **되짚기가 낸 후보 셋** — 굳힘을 안 읽으면 학생이 아는 전부가 이것이다.
+ *
+ * 2차 물결부터는 이런 «설계 함수»가 관례인데(`m3Top2.ts` `solveAbsSumEquation`),
+ * 1차 물결은 그것이 `planMedianMean` 안에 **인라인**으로만 있었다. 그래서 «지우기»
+ * 축이 밖에서 이 규칙을 **옮겨 적어야** 잴 수 있었다 — 규칙이 두 벌이 되면 한쪽만
+ * 고쳐도 아무도 모른다(2026-08-18). 밖으로 빼고 생성기가 이것을 부르게 했다.
+ */
+export function medianMeanCandidates(
+  a: number,
+  b: number,
+  c: number,
+  d: number,
+): [number, number, number] {
+  const s = a + b + c + d;
+  return [5 * b - s, s / 4, 5 * c - s];
+}
+
+/**
+ * 🔴 **굳힘 «둘»을 각각 인자로 받는다** — ㉡ 을 밖에서 재는 통로다.
+ *
+ * `useSlot` 은 자리 조건(그 $x$ 를 실제로 넣어 정렬한 중앙값이 평균과 같은가),
+ * `useNatural` 은 「변량은 자연수」다.
+ *
+ * ⚠️ 자리 조건을 「$x\le b$」 따위로 **다시 쓰지 않고 정렬해 계산한다** — 후보를
+ *    만들 때 쓴 식으로 검산하면 동어반복이 된다(이 파일 머리말).
+ */
+export function medianMeanAlive(
+  a: number,
+  b: number,
+  c: number,
+  d: number,
+  x: number,
+  useSlot: boolean,
+  useNatural: boolean,
+): boolean {
+  if (useNatural && !(Number.isInteger(x) && x >= 1)) return false;
+  if (!useSlot) return true;
+  const data = [a, b, c, d, x];
+  return medianOf(data) === meanOf(data);
+}
+
+/** 굳힘을 댄 뒤 남은 후보. 둘을 다 끄면 후보 셋이 그대로 돌아온다. */
+export function solveMedianMean(
+  a: number,
+  b: number,
+  c: number,
+  d: number,
+  useSlot: boolean,
+  useNatural: boolean,
+): number[] {
+  return medianMeanCandidates(a, b, c, d).filter((x) =>
+    medianMeanAlive(a, b, c, d, x, useSlot, useNatural),
+  );
+}
+
+export type MedianMeanRow = {
+  /** 이 자리에서 되짚기가 낸 후보 */
+  x: number;
+  /** 그 자리가 성립하려면 $x$ 가 만족해야 하는 조건 — **해설이 그대로 읽는다** */
+  needText: string;
+  /** 위 조건의 판정. 해설이 말하는 것과 실제가 어긋나지 않는지 생성기가 단언한다. */
+  needHolds: boolean;
+  /** 변량은 자연수라고 발문이 못 박는다 */
+  natural: boolean;
+  /** 그 $x$ 를 실제로 넣어 정렬해 본 중앙값 */
+  median: number;
+  /** 그 $x$ 를 실제로 넣은 평균 */
+  mean: number;
+  /** 살아남았나 — **정렬해서 다시 계산한 값**으로만 정한다 */
+  ok: boolean;
+};
+
+export type MedianMeanPlan = {
+  /** 발문에 적히는 네 변량 — 오름차순 */
+  base: [number, number, number, number];
+  sift: Sift;
+  rows: MedianMeanRow[];
+};
+
+/**
+ * **A1 «심화상»** — 「평균과 중앙값이 같게 하는 변량을 모두 구하시오」.
+ *
+ * 되짚기: 답 $x$ ← 「평균 = 중앙값」. 마디는 **$x$ 가 정렬에서 어느 자리에 오는가**이고
+ * 그것이 안 굳는다. 자리마다 중앙값이 달라 방정식이 **셋** 서고, 어느 것이 사는지는
+ * 그 후보를 **실제로 만들어** 자리 조건과 자연수 조건에 대 보아야 안다. 성질 한 줄로
+ * 못 접으므로 D-115 ⑾ 의 «상»이다.
+ *
+ * 네 변량 $a<b<c<d$, 합 $S$. 자리는 셋이다:
+ *
+ * ```
+ * x ≤ b     → 중앙값 b → (S+x)/5 = b → x = 5b − S
+ * b < x ≤ c → 중앙값 x → (S+x)/5 = x → x = S/4
+ * x > c     → 중앙값 c → (S+x)/5 = c → x = 5c − S
+ * ```
+ *
+ * 🔴 **굳힘이 두 겹**이다 — 자리 조건과 «자연수» 조건. 매쓰홀릭 고난도가 실제로
+ * 그 꼴이다(「조건이 두 번 걸려 매개변수로 접은 뒤에도 자연수 조건이 다시 걸러야」,
+ * `matholic-mid-scan.md` §4.2).
+ *
+ * ## 🔴 자연 분포는 ㉠ 에 걸렸다 — 그래서 «살아남는 자리»를 고르게 뽑는다
+ *
+ * 처음 판은 파라미터를 그냥 무작위로 뽑았다. 판정기가 잡았다 —
+ * **「굳힘을 안 읽고 최솟값만 집으면 69.0%」**(우연 수준 33.3%). 초6 이 병합을 두 번
+ * 막힌 그 자리다(`tier-fill-g6-w3-adversarial.md` §7.1 R1).
+ *
+ * 까닭을 짚으니 굳힘이 **$S$ 와 $4b$·$4c$ 의 대소 하나로 퇴화**하고 있었다:
+ *
+ * ```
+ * S < 4b        → ㉠✗ ㉡✗ ㉢✓   답이 후보의 **최댓값**
+ * 4b ≤ S ≤ 4c   → 셋 다 삶      (굳힘이 아무도 안 거른다 → 버린다)
+ * S > 4c        → ㉠✓ ㉡✗ ㉢✗   답이 후보의 **최솟값**
+ * ```
+ *
+ * 곧 **가운데 후보는 «살면 셋 다 사는» 자리라 도달할 수 없고**, 남는 둘이 하필
+ * 크기의 양 끝이다. 자연 분포에서 아래쪽이 흔해 69% 가 됐다.
+ *
+ * 고침은 **셋째 갈래를 살리는 것**이다 — $4b\le S\le 4c$ 이면서 $x=5b-S$ 가 **자연수가
+ * 아닌** 씨앗에서는 ㉠ 만 죽고 답이 **둘**이 된다(`{㉡,㉢}`). 그 자리를 넣어 결과
+ * 세 갈래(`{㉠}` · `{㉢}` · `{㉡,㉢}`)를 **고르게 뽑는다.** 답이 둘인 씨앗에서는
+ * 「단일 극단 집기」가 자동으로 틀리고, 나머지 둘은 최소·최대가 반반이라 극단 집기가
+ * 우연 수준으로 내려간다. 실측은 판정기가 찍는다.
+ *
+ * ⚠️ 이것은 «지표에 맞춰 데이터를 고른 것»이 아니다 — 세 갈래 다 이 설계가 원래 낼
+ *    수 있는 문항이고, 한쪽으로 치우쳐 뽑고 있던 것을 고르게 바꿨을 뿐이다. 그리고
+ *    치우침을 없애자 **굳힘의 두 겹이 각각 일하는 씨앗**이 둘 다 나온다(자리 조건이
+ *    일하는 `{㉠}`·`{㉢}` · 자연수 조건이 일하는 `{㉡,㉢}`).
+ *
+ * ⚠️ 이 갈래는 답이 **여럿일 수 있다**. 「모두 구하시오」로 묻는 까닭이 그것이다.
+ */
+export function planMedianMean(rng: Rng): MedianMeanPlan {
+  // 결과의 세 갈래를 고르게 — 위 머리말 참조. 0:{㉠} 1:{㉢} 2:{㉡,㉢}
+  const want = intBetween(rng, 0, 2);
+  const wantSlots = [[0], [2], [1, 2]][want]!;
+  return attempt(20000, () => {
+    const a = intBetween(rng, 1, 12);
+    const b = a + intBetween(rng, 1, 9);
+    const c = b + intBetween(rng, 1, 12);
+    const d = c + intBetween(rng, 1, 14);
+    const S = a + b + c + d;
+    if (S % 4 !== 0) return null;
+
+    const base: [number, number, number, number] = [a, b, c, d];
+    // 후보 셋은 `medianMeanCandidates` 한 곳에서만 만든다 — 판정기가 부르는 것과
+    // 같은 함수여야 한다(규칙을 두 벌 두지 않는다).
+    const cand = medianMeanCandidates(a, b, c, d);
+    const raw: { x: number; needText: string; needHolds: boolean }[] = [
+      { x: cand[0], needText: `x\\le ${b}`, needHolds: cand[0] <= b },
+      {
+        x: cand[1],
+        needText: `${b}<x\\le ${c}`,
+        needHolds: cand[1] > b && cand[1] <= c,
+      },
+      { x: cand[2], needText: `x>${c}`, needHolds: cand[2] > c },
+    ];
+    // 후보가 겹치면 「후보 셋」이 거짓말이 된다.
+    if (new Set(raw.map((r) => r.x)).size !== 3) return null;
+
+    const rows: MedianMeanRow[] = raw.map((r) => {
+      const natural = Number.isInteger(r.x) && r.x >= 1;
+      const data = [a, b, c, d, r.x];
+      const median = medianOf(data);
+      const mean = meanOf(data);
+      // 살아남음의 판정도 판정기와 **같은 함수**로 한다.
+      return {
+        ...r,
+        natural,
+        median,
+        mean,
+        ok: medianMeanAlive(a, b, c, d, r.x, true, true),
+      };
+    });
+
+    // 🔴 해설이 말하는 자리 조건과 **실제 정렬 결과**가 어긋나면 해설이 거짓말을
+    //    한다. 경계($x=b$·$x=c$)에서 갈릴 수 있는 자리라 씨앗마다 확인하고 버린다.
+    for (const r of rows) {
+      if (!r.natural) continue;
+      if (r.needHolds !== (r.median === r.mean)) return null;
+    }
+
+    const liveSlots = rows.map((r, i) => (r.ok ? i : -1)).filter((i) => i >= 0);
+    // ㉡ — 굳힘이 실제로 걸러야 한다. 셋 다 살면 굳힘은 장식이다.
+    if (liveSlots.length === 0 || liveSlots.length === raw.length) return null;
+    // 결과의 세 갈래를 고르게 — 자연 분포는 ㉠ 에 걸린다(머리말).
+    if (
+      liveSlots.length !== wantSlots.length ||
+      !wantSlots.every((s, i) => s === liveSlots[i])
+    ) {
+      return null;
+    }
+    const kept = rows.filter((r) => r.ok).map((r) => r.x);
+    // 지면이 읽기 좋은 범위로 — 수를 키우는 것은 난이도가 아니다(D-115 ⑽③).
+    if (rows.some((r) => r.x > 99 || r.x < -99)) return null;
+
+    return { base, sift: { candidates: raw.map((r) => r.x), kept }, rows };
+  });
+}
+
+/**
+ * ⚠️ **목적격 조사를 문자열에 함께 적는다.** 「시간」은 받침이 있어 「시간을」이고
+ * 「수」는 「수를」이다 — 「운동한 시간를」이 실제로 지면에 나갔다(눈으로 잡았다).
+ * `eulReul` 은 **수** 뒤의 조사를 가르는 자라 한글 명사에는 못 쓴다.
+ */
+const MEDIAN_MEAN_SCENES = [
+  { who: "학생", what: "가지고 있는 연필의 수를" },
+  { who: "학생", what: "한 달 동안 읽은 책의 수를" },
+  { who: "학생", what: "일주일 동안 운동한 시간을" },
+  { who: "회원", what: "하루 동안 마신 물의 잔 수를" },
+] as const;
+
+function renderMedianMean(rng: Rng): Body {
+  const plan = planMedianMean(rng);
+  const scene = pick(rng, MEDIAN_MEAN_SCENES);
+  const [a, b, c, d] = plan.base;
+  const S = a + b + c + d;
+  const listed = [a, b, c, d].map((v) => `$${v}$`).join(", ");
+  const answers = [...plan.sift.kept].sort((p, q) => p - q);
+
+  const content =
+    `다음은 ${scene.who} $5$명이 ${scene.what} 조사하여 나타낸 것이다.\n` +
+    `${listed}, $x$\n` +
+    `이 자료의 평균과 중앙값이 서로 같을 때, 자연수 $x$의 값을 모두 구하시오.`;
+
+  const marks = ["㉠", "㉡", "㉢"];
+  const lines: string[] = [
+    `자료의 개수가 $5$이므로 중앙값은 크기순으로 나열했을 때 셋째 값이고, $x$가 어느 자리에 오는지에 따라 중앙값이 달라진다.`,
+    `$x$를 뺀 네 값은 $${a}<${b}<${c}<${d}$이고 그 합이 $${a}+${b}+${c}+${d}=${S}$이므로 평균은 $\\dfrac{${S}+x}{5}$이다.`,
+  ];
+  const setup = [
+    `$x\\le ${b}$이면 중앙값은 $${b}$이므로 $\\dfrac{${S}+x}{5}=${b}$에서 $${S}+x=${5 * b}$, 즉 $x=${5 * b - S}$이다.`,
+    `$${b}<x\\le ${c}$이면 중앙값은 $x$이므로 $\\dfrac{${S}+x}{5}=x$에서 $${S}+x=5x$, $4x=${S}$, 즉 $x=${S / 4}$이다.`,
+    `$x>${c}$이면 중앙값은 $${c}$이므로 $\\dfrac{${S}+x}{5}=${c}$에서 $${S}+x=${5 * c}$, 즉 $x=${5 * c - S}$이다.`,
+  ];
+  plan.rows.forEach((r, i) => {
+    lines.push(`${marks[i]} ${setup[i]}`);
+    const sorted = [...plan.base, r.x].sort((p, q) => p - q);
+    if (!r.natural) {
+      lines.push(`그런데 이 값은 자연수가 아니므로 조건에 맞지 않는다.`);
+    } else if (!r.ok) {
+      lines.push(
+        `그런데 이 값은 조건 $${r.needText}$에 맞지 않는다. 실제로 자료를 크기순으로 나열하면 $${sorted.join(", ")}$이어서 중앙값은 $${r.median}$이고, 이것은 평균 $\\dfrac{${S + r.x}}{5}=${r.mean}$${waGwa(r.mean)} 같지 않다.`,
+      );
+    } else {
+      lines.push(
+        `이 값은 조건 $${r.needText}$에 맞는다. 실제로 자료를 크기순으로 나열하면 $${sorted.join(", ")}$이어서 중앙값은 $${r.median}$이고 평균도 $\\dfrac{${S + r.x}}{5}=${r.mean}$이다.`,
+      );
+    }
+  });
+  lines.push(`따라서 구하는 $x$의 값은 $${answers.join("$, $")}$이다.`);
+
+  return {
+    content,
+    answer: `$${answers.join("$, $")}$`,
+    solution: lines.join("\n"),
+    facts: {
+      a,
+      b,
+      c,
+      d,
+      sum: S,
+      candCount: plan.sift.candidates.length,
+      keptCount: plan.sift.kept.length,
+      candMin: Math.min(...plan.sift.candidates),
+      candMax: Math.max(...plan.sift.candidates),
+      answerMin: answers[0]!,
+      answerMax: answers[answers.length - 1]!,
+    },
+    figureSpec: null,
+  };
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// B. 3-1 «이차함수의 그래프 ⑵» — 꼭짓점의 사분면이 두 후보 중 하나를 고른다
+// ────────────────────────────────────────────────────────────────────────────
+
+/** 점 $(x,y)$ 가 앉는 사분면. 축 위면 `0`. */
+export function quadrantOf(x: number, y: number): number {
+  if (x === 0 || y === 0) return 0;
+  if (x > 0) return y > 0 ? 1 : 4;
+  return y > 0 ? 2 : 3;
+}
+
+/**
+ * 🔴 **굳힘을 «인자로» 받는 순수 함수** — ㉡ 을 밖에서 재는 통로다.
+ *
+ * 후보는 점을 지나는 조건이 낸 두 근이고, 굳힘은 「꼭짓점 $(k,\;k^2-t)$ 가 발문이
+ * 지정한 사분면 위에 있는가」다. `useQuadrant` 를 끄면 둘이 그대로 남는다.
+ *
+ * ⚠️ 사분면 판정은 `quadrantOf` **하나**가 한다 — 「$k>0$ 이고 $k^2>t$ 이면 제1」
+ *    처럼 다시 쓰지 않는다(규칙을 두 벌 두지 않는다).
+ */
+export function solveVertexQuadrant(
+  k1: number,
+  k2: number,
+  t: number,
+  quadrant: number,
+  useQuadrant: boolean,
+): number[] {
+  return [k1, k2].filter(
+    (k) => !useQuadrant || quadrantOf(k, k * k - t) === quadrant,
+  );
+}
+
+export type VertexQuadrantPlan = {
+  /** 되짚기가 만든 두 후보 */
+  roots: [number, number];
+  /** 상수항의 $-t$ */
+  t: number;
+  /** 그래프가 지나는 점 */
+  point: [number, number];
+  /** 발문이 지정하는 사분면 (1~4) */
+  quadrant: number;
+  sift: Sift;
+  /** 후보마다 꼭짓점과 그 사분면 — 해설이 그대로 읽는다 */
+  rows: { k: number; vy: number; quadrant: number }[];
+};
+
+/**
+ * **B1 «심화중»** — 「점을 지나는 조건이 $k$ 를 둘로만 좁히고, **꼭짓점의 사분면**이
+ * 그중 하나를 고른다」.
+ *
+ * 매쓰홀릭 중3 실물 꼴 그대로다(`matholic-mid-scan.md` §4.1) — 「후보를 둘 만들고,
+ * 어느 쪽인지는 **그래프 개형·꼭짓점**(= 그 소단원 개념)이 굳힌다」.
+ *
+ * $y=x^2-2kx+2k^2-t=(x-k)^2+(k^2-t)$ 이므로 꼭짓점은 $(k,\;k^2-t)$ 다. 굳힘은
+ * **부호 판정 두 번**이라 답을 다시 구하지 않는다 — D-115 ⑾ 의 «중».
+ *
+ * 🔴 **굳힘이 «양쪽 창»이 되게 골랐다.** 제3·제4사분면 조건은 $k^2<t$ 라
+ * $-\sqrt t<k<\sqrt t$ 의 **양쪽**을 다 쓴다(초6 `2-6-3` 이 「높이−반지름 $=d$」로
+ * 간 자리와 같은 처방, `tier-fill-g6-w3-adversarial.md` §7.1 R1). 그리고 답이 큰
+ * 근인 씨앗과 작은 근인 씨앗이 **둘 다 난다** — 그래서 「굳힘을 안 읽고 큰 쪽(또는
+ * 작은 쪽)을 집기」가 우연 수준에 머문다. 그 값은 판정기가 씨앗 전량에서 잰다.
+ *
+ * ## 🔴 2026-09-06 — 그래도 **반쪽 하나로 $85.6\%$ 가 맞는다. 그리고 못 고친다.**
+ *
+ * 굳힘은 부호 판정 **둘**(㉠ $k$ 의 부호 · ㉡ $k^2-t$ 의 부호)인데, ㉠ **하나만으로**
+ * $85.6\%$ 가 맞는다(우연 $50\%$) — 두 근의 부호가 다르면($71.2\%$) 발문의 사분면이
+ * $k$ 의 부호를 이미 고정하기 때문이다.
+ *
+ * 앞 회차의 처방(「두 근이 같은 부호이게 뽑아라」)은 **더 나쁘다**: ㉠ 이 $50.0\%$ 로
+ * 완벽해지는 대신 ㉡ 이 $79.8\% \to \mathbf{100.0\%}$ 가 된다(같은 부호면 사분면이
+ * 곧 $|k|$ 의 대소다). 섞어도 안 된다 — 반반이면 둘 다 $81.6\%$ 다.
+ * **구조다**: 서로 다른 두 정수 근은 «부호가 다르거나 $|k|$ 가 다르거나» 둘 중
+ * 하나라($k_1=-k_2$ 는 위에서 이미 막았다) 두 반쪽 중 하나는 **언제나** 답을 정한다.
+ * 씨앗 고르기로는 못 고치고 **설계**를 바꿔야 한다 — 원장님 판단 몫이다.
+ * 수와 그 맞바꿈은 `middleM3Top.test.ts` 「🔴 22T — 사분면이 알려 주는 «부호»만으로」가
+ * 못 박는다(주장이 아니라 **격자로 확인**한다).
+ *
+ * 역산: 근 $k_1,k_2$ 를 먼저 고르면 $p=k_1+k_2$, $q=k_1^2+k_2^2-t$ 로 지나는 점이
+ * 정수로 나온다(대입하면 $k^2-(k_1+k_2)k+k_1k_2=0$ 이 된다).
+ */
+export function planVertexQuadrant(rng: Rng): VertexQuadrantPlan {
+  return attempt(6000, () => {
+    const k1 = intBetween(rng, -7, 7);
+    const k2 = intBetween(rng, -7, 7);
+    if (k1 === k2 || k1 === 0 || k2 === 0) return null;
+    const t = intBetween(rng, 1, 50);
+    // 꼭짓점이 좌표축 위에 앉으면 «사분면 위»라는 발문이 성립하지 않는다.
+    if (k1 * k1 === t || k2 * k2 === t) return null;
+
+    const rows = [k1, k2].map((k) => {
+      const vy = k * k - t;
+      return { k, vy, quadrant: quadrantOf(k, vy) };
+    });
+    // ㉡ — 두 꼭짓점이 같은 사분면이면 굳힘이 아무것도 안 고른다.
+    if (rows[0]!.quadrant === rows[1]!.quadrant) return null;
+
+    const quadrant = pick(rng, rows).quadrant;
+    // 굳힘은 `solveVertexQuadrant` 한 곳에서만 — 판정기가 부르는 것과 같은 함수다.
+    const kept = solveVertexQuadrant(k1, k2, t, quadrant, true);
+    if (kept.length !== 1) return null;
+
+    const p = k1 + k2;
+    const q = k1 * k1 + k2 * k2 - t;
+    // 🔴 $p=0$ 이면 $k_2=-k_1$ 이라 **두 꼭짓점의 $y$ 좌표가 같아진다.** 그러면
+    //    사분면 판정이 「$k$ 의 부호」 하나로 줄어 «양쪽 창»이 무너지고, 굳힘의 절반
+    //    ($k^2$ 와 $t$ 의 대소)이 아무 일도 안 한다. 창을 한쪽 끝만 주는 그 자리다.
+    if (p === 0) return null;
+    // 지면이 읽기 좋은 범위로 — 수를 키우는 것은 난이도가 아니다(D-115 ⑽③).
+    if (Math.abs(q) > 120 || Math.abs(p) > 14) return null;
+
+    return {
+      roots: [k1, k2],
+      t,
+      point: [p, q],
+      quadrant,
+      sift: { candidates: [k1, k2], kept },
+      rows,
+    };
+  });
+}
+
+const QUADRANT_NAME = ["", "제$1$", "제$2$", "제$3$", "제$4$"] as const;
+
+function renderVertexQuadrant(rng: Rng): Body {
+  const plan = planVertexQuadrant(rng);
+  const [p, q] = plan.point;
+  const [k1, k2] = plan.roots;
+  const t = plan.t;
+  const ans = plan.sift.kept[0]!;
+  const dropped = plan.rows.find((r) => r.k !== ans)!;
+  const prod = k1 * k2;
+  const body = `x^2-2kx+2k^2-${t}`;
+
+  const pointText = `(${p},\\ ${q})`;
+  const content =
+    `이차함수 $y=${body}$의 그래프가 점 $${pointText}$${eulReul(q)} 지난다. ` +
+    `이 그래프의 꼭짓점이 ${QUADRANT_NAME[plan.quadrant]}사분면 위에 있을 때, 상수 $k$의 값을 구하시오.`;
+
+  const solution = [
+    `그래프가 점 $${pointText}$${eulReul(q)} 지나므로 $x=${p}$, $y=${q}$${eulReul(q)} 대입하면 $${paren(p)}^2-2k\\times${paren(p)}+2k^2-${t}=${q}$이다.`,
+    `정리하면 $2k^2${term(-2 * p, "k")}${term(p * p - t - q, "")}=0$이고, 양변을 $2$로 나누면 $k^2${term(-p, "k")}${term(prod, "")}=0$이다.`,
+    `좌변을 인수분해하면 $${linear(k1)}${linear(k2)}=0$이므로 $k=${k1}$ 또는 $k=${k2}$이다.`,
+    `한편 $y=${body}=(x-k)^2+(k^2-${t})$이므로 이 그래프의 꼭짓점의 좌표는 $(k,\\ k^2-${t})$이다.`,
+    `$k=${plan.rows[0]!.k}$일 때 꼭짓점은 $(${plan.rows[0]!.k},\\ ${plan.rows[0]!.vy})$이므로 ${QUADRANT_NAME[plan.rows[0]!.quadrant]}사분면 위에 있다.`,
+    `$k=${plan.rows[1]!.k}$일 때 꼭짓점은 $(${plan.rows[1]!.k},\\ ${plan.rows[1]!.vy})$이므로 ${QUADRANT_NAME[plan.rows[1]!.quadrant]}사분면 위에 있다.`,
+    `꼭짓점이 ${QUADRANT_NAME[plan.quadrant]}사분면 위에 있어야 하므로 $k=${dropped.k}$인 경우는 조건에 맞지 않는다.`,
+    `따라서 $k=${ans}$이다.`,
+  ].join("\n");
+
+  return {
+    content,
+    answer: `$k=${ans}$`,
+    solution,
+    facts: {
+      root0: k1,
+      root1: k2,
+      t,
+      px: p,
+      py: q,
+      quadrant: plan.quadrant,
+      answer: ans,
+      candCount: plan.sift.candidates.length,
+      keptCount: plan.sift.kept.length,
+      candMin: Math.min(k1, k2),
+      candMax: Math.max(k1, k2),
+    },
+    figureSpec: null,
+  };
+}
+
+// ────────────────────────────────────────────────────────────────────────────
+// 등록
+// ────────────────────────────────────────────────────────────────────────────
+
+function def(
+  book: string,
+  minor: string,
+  rpmType: string,
+  rpmTitle: string,
+  unitSection: string,
+  difficulty: MidProblem["difficulty"],
+  gen: (rng: Rng) => Body,
+): TypeEntry {
+  return {
+    key: `${book}|${minor}|${rpmType}`,
+    grade: GRADE,
+    unitSection,
+    rpmBook: book,
+    rpmMinor: minor,
+    rpmType,
+    rpmTitle,
+    handler: (rng) => ({
+      grade: GRADE,
+      unitSection,
+      rpmBook: book,
+      rpmMinor: minor,
+      rpmType,
+      rpmTitle,
+      difficulty,
+      ...gen(rng),
+    }),
+  };
+}
+
+export const M3_TOP: TypeEntry[] = [
+  def(
+    "3-2",
+    "산포도",
+    "11T",
+    "평균과 중앙값이 같은 변량 구하기",
+    "대푯값과 산포도",
+    "심화상",
+    renderMedianMean,
+  ),
+  def(
+    "3-1",
+    "이차함수의 그래프 ⑵",
+    "22T",
+    "꼭짓점의 사분면으로 계수 정하기",
+    "이차함수 y=ax^2+bx+c의 그래프",
+    "심화중",
+    renderVertexQuadrant,
+  ),
+];

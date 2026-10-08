@@ -1,0 +1,195 @@
+{
+  "questionNumber": 15,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q15",
+  "status": "pending",
+  "studentDigest": "bbf42bad5ff2c95b7997c8ace9b122abaca6bfe4905a224b5d4e63a23f80fd31",
+  "candidateDigest": "d50439d436a4c41e87f34dbec233f1c69d88d2bbb5f89593944f8386ee085ac9",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "solveDigest": "014ce1f60a5772b896dbc78d462d7155e542d52c7af6ff2209c5833f5a265190",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-exam-twin-author-geometry-20261008",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "프로그램별 고름 선택→A가 단독으로 가장 고른 조건에서 A의 미지 SD 선택. 같은 단위 SD 비교 유지. 요청 개념과 조건이 2015 범위.",
+      "standardCodes": [
+        "9수05-07"
+      ],
+      "evidence": [
+        "evidence/curriculum.json",
+        "inspection/q15-expanded.png"
+      ]
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "MC 다섯 값과 오답을 전부 검산; 조건을 만족하는 선택 하나.",
+      "standardCodes": [
+        "9수05-07"
+      ],
+      "evidence": [
+        "evidence/curriculum.json",
+        "inspection/q15-expanded.png"
+      ]
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "평균12,13,11,14,10과 SD 빈칸,0.8,0.9,1.1,1.3의 행을 확인; 평균 크기로 순위 정하지 않음.",
+      "standardCodes": [
+        "9수05-07"
+      ],
+      "evidence": [
+        "evidence/curriculum.json",
+        "inspection/q15-expanded.png"
+      ]
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "정수·소수·통상 빈칸·편차·도수·제곱근 표기만 사용; 상위 통계 기호 없음.",
+      "standardCodes": [
+        "9수05-07"
+      ],
+      "evidence": [
+        "evidence/curriculum.json",
+        "inspection/q15-expanded.png"
+      ]
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "0.7<0.8,0.9,1.1,1.3;0.8은B와 동률이라 제외.각 평균/SD에 맞는 양수5개 관측값 존재를 독립 코드로 증명.",
+      "standardCodes": [
+        "9수05-07"
+      ],
+      "evidence": [
+        "evidence/curriculum.json",
+        "inspection/q15-expanded.png"
+      ]
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "0.7<0.8,0.9,1.1,1.3;0.8은B와 동률이라 제외.각 평균/SD에 맞는 양수5개 관측값 존재를 독립 코드로 증명. 공개 새 저자 풀이의 모든 단계가 정의·기초 산술만 사용.",
+      "standardCodes": [
+        "9수05-07"
+      ],
+      "evidence": [
+        "evidence/curriculum.json",
+        "inspection/q15-expanded.png"
+      ]
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "같은 분 단위 표준편차의 산포 의미; 단순 소수 크기 비교.",
+      "standardCodes": [
+        "9수05-07"
+      ],
+      "evidence": [
+        "evidence/curriculum.json",
+        "inspection/q15-expanded.png"
+      ]
+    }
+  },
+  "evidence": {
+    "math": "0.7<0.8,0.9,1.1,1.3;0.8은B와 동률이라 제외.각 평균/SD에 맞는 양수5개 관측값 존재를 독립 코드로 증명.",
+    "newSolutionIndividuallyRead": true,
+    "exactCodeOutput": ".qa-artifacts\\exam-resume-20261008\\gyeongsang-stat-review-r1\\blind\\calculation-output.json",
+    "independentCodeOutputSha256": "99856554ca8ac60fa0edece44e9ee9a00157bfc8bc3a34b4f471e3fe68d0b3d7",
+    "independentInputRawSha256": "f0e720a54643cbe495662598b26e0e8f4045a6d9fb1f767fe2e0a02628dc72e3",
+    "bindingRecord": {
+      "questionNumber": 15,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q15",
+      "studentDigest": "bbf42bad5ff2c95b7997c8ace9b122abaca6bfe4905a224b5d4e63a23f80fd31",
+      "candidateDigest": "d50439d436a4c41e87f34dbec233f1c69d88d2bbb5f89593944f8386ee085ac9",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "candidateFileSha256": "179ae63d5e8448909b63e78d27b6ca3309efe4a13c9eb1acb502fe3838b3b0ed",
+      "solveDigest": "014ce1f60a5772b896dbc78d462d7155e542d52c7af6ff2209c5833f5a265190",
+      "rawSolveSha256": "d4e5d09caf6fca560a82bb4068a4ab6031622a6b60df15f682641b8034f19b67",
+      "sourceQuestionCanonicalDigest": "1d5e6988067d194592b3893f7bb00ca1d1037c9dce4899aa9628112a4dfdb50b",
+      "sourceStemRawSha256": "6a1fe3857dc1f3af0aaa4a36213918c63d157dc5c6ee59f596808f64cf31356a",
+      "sourcePacketSha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+      "sourceDigestProvided": "cfd8411fb4ee839b4585d91b0c7ab3ba60b97355013e57dc6ce7dc4e88ca9d5a",
+      "sourceHashContractNote": "candidate sourceContentSha256 binds the supplied sourceContentDigest; it is not a raw-stem digest. before exactly matches safe stem; separate raw stem/whole row digests retained.",
+      "sourceReferenceImages": [
+        {
+          "file": "images/q15-part1.png",
+          "sha256": "2ad56e1ea936ccd9cb6cdfcead0f5ddeffdbcc689e8c68a223093f56566d0c6f",
+          "page": 4,
+          "column": 0,
+          "bbox": [
+            55,
+            83,
+            375,
+            478.75225830078125
+          ]
+        }
+      ],
+      "candidatePrivatePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-stat-review-r1\\package\\private\\q15\\candidate.json",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    "answerComparison": {
+      "literalEqual": true,
+      "semanticEqual": true,
+      "unitMeaningChecked": true,
+      "choiceNumber": 1
+    },
+    "coreAndSubstantiveDelta": "프로그램별 고름 선택→A가 단독으로 가장 고른 조건에서 A의 미지 SD 선택. 같은 단위 SD 비교 유지.",
+    "naturalKorean": "조건·대상·단위가 자연스럽고 실제 학교 노출 없음. 실제70mm 확대 학생+풀이 화면을 사람이 확인.",
+    "scoreReview": {
+      "score": 4,
+      "proposedDifficulty": "응용",
+      "reviewerDifficultyProposal": "기본",
+      "basis": "0.7<0.8,0.9,1.1,1.3;0.8은B와 동률이라 제외.각 평균/SD에 맞는 양수5개 관측값 존재를 독립 코드로 증명. 4점은 원문 점수와 같고 필요한 단계 수에 과도한 새 구성을 추가하지 않음; 측정 난도 주장 없음."
+    },
+    "actualVisualReview": {
+      "image": "inspection/q15-expanded.png",
+      "sha256": "526b320614693ed0baeea9d9ea56b363608a25c30c1b76db159f0c90adfb4a9a",
+      "intendedWidthMm": 70,
+      "personallyViewed": true,
+      "overflow": false,
+      "tablesTextBound": true
+    },
+    "unitFamily": {
+      "unitUuidSupported": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "actualUnitSeedMatch": true,
+      "familyKey": null,
+      "status": "held",
+      "bankCapturedAt": "2026-10-08 13:00:16.891043+00",
+      "notCurrentDbAssertion": true,
+      "basis": "03/07/09는 SD 계산/변환. 서로 다른5개 프로그램의 SD 비교와 엄격한 최소 조건에 해당하는 live 규칙 없음."
+    },
+    "nonStudentMetadataFindings": []
+  },
+  "holds": [
+    {
+      "code": "live-family-unassigned",
+      "basis": "03/07/09는 SD 계산/변환. 서로 다른5개 프로그램의 SD 비교와 엄격한 최소 조건에 해당하는 live 규칙 없음.",
+      "reopen": "같은 Unit 내 실제 live 규칙의 전체 입력/목표/핵심 절차/난도/형식 대응을 제시; 가까운 유형을 임의 배정하지 않는다."
+    }
+  ],
+  "gates": {
+    "rights": "held",
+    "custody": "held",
+    "nativeCompatibility": "pending",
+    "similarity": "pending",
+    "directUseAllowed": false,
+    "loadable": false,
+    "dbWrites": 0,
+    "modelCalls": 0
+  }
+}

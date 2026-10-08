@@ -1,0 +1,11 @@
+{
+  "candidateAndRawSolveEdits": 0,
+  "date": "2026-10-08",
+  "observations": [
+    {"finding":"Unit seed has no semester property, while bank row does. An initial harness assertion undefined===1 was inappropriate.","correction":"Compare actual common seed grade/section/chapter/orderIndex; retain semester as timestamped bank evidence. All6 actual Unit matches established.","notMathFailure":true},
+    {"finding":"An expanded SymPy expression was compared to a factored expression with structural == and failed despite equality.","correction":"Use simplify(lhs-rhs)==0. Exact q11 polynomial identity passed. Original independent calculation output was never changed.","notMathFailure":true},
+    {"finding":"Reviewer Markdown renderer initially split bold markup at inline math, exposing two asterisks around q04 emphasis.","correction":"Process bold around the complete rendered inline sequence. Re-rendered and personally viewed q04; candidate stem unchanged.","notCandidateDefect":true},
+    {"finding":"Reviewer default stacked two stem figures even though q25 wording says before left/after right.","correction":"Place unchanged original SVGs at35mm each side by side within70mm; personally view both final panels. Native placement remains separately pending.","candidateAssetsUnchanged":true},
+    {"finding":"Light q24 shading looked subtle in an expanded screenshot.","correction":"Actual SVG has data-region shade fill#eeeeee;actual PNG has32183 pixels of(238,238,238).Region EBC is retained,not dropped.","notCandidateDefect":true}
+  ]
+}

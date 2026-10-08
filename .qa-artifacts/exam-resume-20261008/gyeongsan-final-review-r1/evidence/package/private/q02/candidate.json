@@ -1,0 +1,266 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 2,
+  "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q02",
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "content": "지워진 이차함수 식을 그래프 검사 메모로 복구하려고 한다. 다음 기록을 **모두** 만족하는 식은?\n\n| 검사 항목 | 기록 |\n| --- | --- |\n| 대칭축 | $y$축 |\n| $y$축과 만나는 점 | $(0,-3)$ |\n| 그래프 위의 점 | $(2,-5)$ |\n| $x$축과의 위치 | 그래프 전체가 $x$축 아래에 있음 |",
+  "choices": [
+    "$y=\\frac12x^2-3$",
+    "$y=-\\frac12x^2+3$",
+    "$y=-\\frac12(x-1)^2-3$",
+    "$y=-\\frac12x^2-3$",
+    "$y=-x^2-3$"
+  ],
+  "answer": "④",
+  "solution": "대칭축이 $y$축이고 $y$절편이 $-3$이므로 식을 $y=ax^2-3$으로 놓을 수 있다. 점 $(2,-5)$를 대입하면 $-5=4a-3$이므로 $a=-\\frac12$이다.\n\n따라서 식은 $y=-\\frac12x^2-3$이다. 모든 실수 $x$에 대해 $x^2\\geq0$이므로 이 식의 그래프는 $x$축보다 항상 아래에 있다. ①은 아래로 열린 그래프가 아니고, ②는 $y$절편이 다르며, ③은 축이 다르고, ⑤는 점 $(2,-5)$를 지나지 않는다. 정답은 ④이다.",
+  "score": 4,
+  "questionType": "객관식",
+  "facts": {
+    "a": -0.5,
+    "p": 0,
+    "q": -3,
+    "point": [
+      2,
+      -5
+    ]
+  },
+  "figureArtifacts": [],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation",
+      "inverse-target"
+    ],
+    "before": "주어진 y=-x²/2−5의 여러 그래프 성질 중 옳은 설명 하나를 고른다.",
+    "after": "식에서 성질을 읽던 방향을 바꾸어 네 검사 메모에서 빠진 식을 복구한다. 새로운 좌표·축·위치 조건을 함께 연결한다.",
+    "sharedConcept": "y=ax²+q의 축·절편·열린 방향과 함숫값",
+    "sharedProcedure": "대칭축과 절편으로 표준형을 정하고 한 점을 대입해 계수를 구한 뒤 x축 위아래 위치를 확인한다.",
+    "objectiveDifficulty": "성질 판별을 기록에 맞는 식 복구로 바꿨다. 간단한 일차방정식과 음수 계수 확인으로 끝나는 4점 응용이다.",
+    "scoreDelta": {
+      "source": 4,
+      "authored": 4,
+      "changed": false
+    }
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수03-09",
+      "9수03-10"
+    ],
+    "allowedProcedure": "대칭축과 절편으로 표준형을 정하고 한 점을 대입해 계수를 구한 뒤 x축 위아래 위치를 확인한다.",
+    "forbiddenAvoided": [
+      "일반 이차함수 최적화",
+      "미분",
+      "근과 계수의 관계",
+      "일반 포물선/직선 교점 이론"
+    ],
+    "status": "author-proposed",
+    "surfaces": {
+      "stem": {
+        "status": "author-proposed",
+        "evidence": "축·절편·한 점·x축 아래라는 중3 그래프 메모이다."
+      },
+      "choices": {
+        "status": "author-proposed",
+        "evidence": "다섯 새 함수의 축, 절편, 점 대입과 부호를 모두 확인한다."
+      },
+      "figuresAndTables": {
+        "status": "author-proposed",
+        "evidence": "정확한 새 좌표를 네 행의 native 표로 제공한다."
+      },
+      "notation": {
+        "status": "author-proposed",
+        "evidence": "선분·좌표·도 또는 식의 표기는 실제 학생 풀이에 쓰는 중학교 수학 표기만 사용한다."
+      },
+      "answer": {
+        "status": "author-proposed",
+        "evidence": "유일한 보기 하나를 고르는 객관식 답 형식이며, 값·부호·조건이 코드 계산과 맞는다."
+      },
+      "studentSolution": {
+        "status": "author-proposed",
+        "evidence": "a를 일차방정식으로 정하고 음수 제곱항의 부호만 확인한다."
+      },
+      "prerequisites": {
+        "status": "author-proposed",
+        "evidence": "일차방정식, 좌표 대입과 제곱의 비음수 성질"
+      }
+    },
+    "gradeBasis": "중3 그래프의 축/절편과 한 점 대입이며, 범위 최적화나 이차부등식 해법을 쓰지 않는다.",
+    "exactGradeApproval": false
+  },
+  "sourceReference": {
+    "externalId": "2025-gyeongsan-3-2-mid-2",
+    "examId": "personal-aa35a05fbaf41074c2ebcfcd6f16e876",
+    "sourcePacketExamId": "2025-gyeongsan-3-2-mid",
+    "school": "경산중",
+    "questionNumber": 2,
+    "sourceContentSha256": "90bc15ab1d0a124d2bca4eff254062cb1080c8f56ac19d4dd3420430acc4f90c",
+    "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+    "sourceQuestionOnlySnapshot": "source-snapshot/packet/questions.json",
+    "sourceQuestionScore": 4,
+    "sourceQuestionType": "객관식",
+    "sourceQuestionParts": [],
+    "sourceStatus": "source_reference_reviewed_all_final_approval_gates_held",
+    "sourceObservation": "주어진 y=-x²/2−5의 여러 그래프 성질 중 옳은 설명 하나를 고른다.",
+    "originalAnswersOrSolutionsUsed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "score": 4,
+    "difficultyProposal": "응용",
+    "difficultyStatus": "pending-independent-review",
+    "problemTypeProposal": null,
+    "problemTypeStatus": "pending-independent-review",
+    "hasFigure": false,
+    "assignment": {
+      "status": "proposed",
+      "unitId": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "familyKey": "mid:3-1|이차함수의 그래프 ⑴|11",
+      "currentUnit": {
+        "id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+        "grade": "중3",
+        "chapter": "4. 이차함수",
+        "section": "이차함수와 그래프",
+        "semester": 1,
+        "orderIndex": 478,
+        "problemCodePrefix": "J30401"
+      },
+      "currentRegistryMatch": {
+        "key": "3-1|이차함수의 그래프 ⑴|11",
+        "grade": "중3",
+        "unitSection": "이차함수와 그래프",
+        "rpmBook": "3-1",
+        "rpmMinor": "이차함수의 그래프 ⑴",
+        "rpmType": "11",
+        "rpmTitle": "이차함수의 식 구하기"
+      },
+      "liveCount": 24,
+      "checkedAt": "2026-10-08 04:53:45.769124+00",
+      "evidence": "y=ax²+q의 알려진 점/절편으로 이차함수 식을 정하는 입력과 절차가 현재 유형11에 대응한다. 추가 위치 메모는 구한 식의 단순 성질을 확인한다.",
+      "generatorRuleEvidence": {
+        "module": "src/lib/middle/m3Func.ts",
+        "family": "g1 11",
+        "observed": "주어진 점·조건을 y=ax²+q에 대입하여 계수를 결정한다.",
+        "status": "author-semantic-proposal"
+      },
+      "approval": "author-proposal-only"
+    },
+    "achievementStandardRefs": [
+      {
+        "code": "9수03-09",
+        "verified_text": "이차함수의 의미를 이해하고, 그 그래프를 그릴 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4146,
+          "record_offset_in_uncompressed_stream": 210185,
+          "extracted_paragraph_1based": 849
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            36
+          ],
+          "printed_pages": [
+            32
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      },
+      {
+        "code": "9수03-10",
+        "verified_text": "이차함수의 그래프의 성질을 이해한다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4150,
+          "record_offset_in_uncompressed_stream": 210353,
+          "extracted_paragraph_1based": 850
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            36
+          ],
+          "printed_pages": [
+            32
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      }
+    ],
+    "achievementStandardStatus": "official-text-matched-candidate-author-proposed",
+    "sourceIdentityReview": {
+      "status": "source-packet-identity-supported-full-custody-held",
+      "sourceSchool": "경산중",
+      "sourceYear": 2025,
+      "sourcePacketDecision": "2025_original_header_school_footer_and_completed_question_identity_supported",
+      "fullPairCertification": "held",
+      "custody": "held",
+      "rights": "held"
+    },
+    "bankEvidence": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-fresh-r2-20261008.json",
+      "sha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b",
+      "capturedAt": "2026-10-08 04:53:45.769124+00",
+      "registrySha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "curriculumEvidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "databaseAccessByAuthor": false
+    },
+    "authorEvidence": {
+      "calculationsPath": "author-calculations.json",
+      "authoringScriptSha256": "a93435986c20fa222f4a9c9bdbc2b6fa6242f334fafcffed2f692f22e997f7b5",
+      "visualReview": "pending-local-view",
+      "mathematicalReview": "author-self-check-only"
+    }
+  },
+  "schoolNamePolicy": {
+    "actual": "경산중",
+    "display": "해솔누리중학교",
+    "role": "fictional-display-alias-only",
+    "originalOccurrencesInStem": 0,
+    "surfaces": [
+      "content",
+      "choices",
+      "tables",
+      "figureLabels",
+      "solution"
+    ],
+    "review": "author-proposed"
+  },
+  "independentVerification": null,
+  "review": {
+    "status": "pending",
+    "mathematicalCorrectness": "pending-independent-blind-solve",
+    "gradeCurriculum": "pending-independent-review",
+    "equivalentConceptAndMethod": "pending-independent-review",
+    "distinctPresentation": "pending-independent-review",
+    "naturalKorean": "pending-independent-review",
+    "figure": "pending-independent-review",
+    "rights": "pending",
+    "similarity": "pending",
+    "nativeCompatibility": "pending",
+    "physicalPaper": "not-approved"
+  },
+  "directUseAllowed": false
+}

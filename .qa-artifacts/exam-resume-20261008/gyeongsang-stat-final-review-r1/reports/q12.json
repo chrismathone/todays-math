@@ -1,0 +1,195 @@
+{
+  "questionNumber": 12,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q12",
+  "status": "pending",
+  "studentDigest": "cec5227a345b1de1218b8ef83d68dc1c9c7cf1e22fef58c0d3d0a14e74bf2ea8",
+  "candidateDigest": "71195ddad2cf9fb0be72ec578ea8fc4b97878d7ac11ca0c7cfa44fc71cad3585",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "solveDigest": "4c9c3f9eb3e3da7879aca739282379c5b575bc2723d928b92778f8c5ab774a19",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-exam-twin-author-geometry-20261008",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "신발크기 원자료의 최빈값→도수표와 단독 최빈값 조건으로 남은 카드값 결정. 최빈값 정의 유지. 요청 개념과 조건이 2015 범위.",
+      "standardCodes": [
+        "9수05-06"
+      ],
+      "evidence": [
+        "evidence/curriculum.json",
+        "inspection/q12-expanded.png"
+      ]
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "MC 다섯 값과 오답을 전부 검산; 조건을 만족하는 선택 하나.",
+      "standardCodes": [
+        "9수05-06"
+      ],
+      "evidence": [
+        "evidence/curriculum.json",
+        "inspection/q12-expanded.png"
+      ]
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "도수4,4,3,2,1 합14; 미확인1장 포함15. 다섯 수/도수 행을 실제70mm에서 확인.",
+      "standardCodes": [
+        "9수05-06"
+      ],
+      "evidence": [
+        "evidence/curriculum.json",
+        "inspection/q12-expanded.png"
+      ]
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "정수·소수·통상 빈칸·편차·도수·제곱근 표기만 사용; 상위 통계 기호 없음.",
+      "standardCodes": [
+        "9수05-06"
+      ],
+      "evidence": [
+        "evidence/curriculum.json",
+        "inspection/q12-expanded.png"
+      ]
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "다섯 추가값을 전부 검사;25만 도수5의 유일 최빈값.20은20이 최빈값,30/35/40은25의 단독 최빈값 조건 실패.",
+      "standardCodes": [
+        "9수05-06"
+      ],
+      "evidence": [
+        "evidence/curriculum.json",
+        "inspection/q12-expanded.png"
+      ]
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "다섯 추가값을 전부 검사;25만 도수5의 유일 최빈값.20은20이 최빈값,30/35/40은25의 단독 최빈값 조건 실패. 공개 새 저자 풀이의 모든 단계가 정의·기초 산술만 사용.",
+      "standardCodes": [
+        "9수05-06"
+      ],
+      "evidence": [
+        "evidence/curriculum.json",
+        "inspection/q12-expanded.png"
+      ]
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "도수 세기와 최빈값; 동률 처리.",
+      "standardCodes": [
+        "9수05-06"
+      ],
+      "evidence": [
+        "evidence/curriculum.json",
+        "inspection/q12-expanded.png"
+      ]
+    }
+  },
+  "evidence": {
+    "math": "다섯 추가값을 전부 검사;25만 도수5의 유일 최빈값.20은20이 최빈값,30/35/40은25의 단독 최빈값 조건 실패.",
+    "newSolutionIndividuallyRead": true,
+    "exactCodeOutput": ".qa-artifacts\\exam-resume-20261008\\gyeongsang-stat-review-r1\\blind\\calculation-output.json",
+    "independentCodeOutputSha256": "99856554ca8ac60fa0edece44e9ee9a00157bfc8bc3a34b4f471e3fe68d0b3d7",
+    "independentInputRawSha256": "f0e720a54643cbe495662598b26e0e8f4045a6d9fb1f767fe2e0a02628dc72e3",
+    "bindingRecord": {
+      "questionNumber": 12,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q12",
+      "studentDigest": "cec5227a345b1de1218b8ef83d68dc1c9c7cf1e22fef58c0d3d0a14e74bf2ea8",
+      "candidateDigest": "71195ddad2cf9fb0be72ec578ea8fc4b97878d7ac11ca0c7cfa44fc71cad3585",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "candidateFileSha256": "adf4c838de0fb5abd69fb9c381991b7f9586352ba715bcd2308f257a4db7e6c8",
+      "solveDigest": "4c9c3f9eb3e3da7879aca739282379c5b575bc2723d928b92778f8c5ab774a19",
+      "rawSolveSha256": "bad01eadd33df7333660d2a078e0ac10ad989d36862fe37347d43affbc4af09a",
+      "sourceQuestionCanonicalDigest": "f5bd8eaefd882495823e3981e9ef32f9d69758092fca413d7a07fa361ed99ce8",
+      "sourceStemRawSha256": "b6e02f8cb1de0ddb98e04fede12d224580752f53716093d7092e354be41509dd",
+      "sourcePacketSha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+      "sourceDigestProvided": "3fc1eda84a41908ab58dba7be0553c7c8f77f12627d86a51a9d4bcf5b7098950",
+      "sourceHashContractNote": "candidate sourceContentSha256 binds the supplied sourceContentDigest; it is not a raw-stem digest. before exactly matches safe stem; separate raw stem/whole row digests retained.",
+      "sourceReferenceImages": [
+        {
+          "file": "images/q12-part1.png",
+          "sha256": "7e5a9bd81868fd5a9086a20b3647b990aabc8d22a499a5bbfdec55208472bede",
+          "page": 3,
+          "column": 0,
+          "bbox": [
+            55,
+            473.6004333496094,
+            375,
+            943
+          ]
+        }
+      ],
+      "candidatePrivatePath": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongsang-stat-review-r1\\package\\private\\q12\\candidate.json",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    "answerComparison": {
+      "literalEqual": true,
+      "semanticEqual": true,
+      "unitMeaningChecked": true,
+      "choiceNumber": 2
+    },
+    "coreAndSubstantiveDelta": "신발크기 원자료의 최빈값→도수표와 단독 최빈값 조건으로 남은 카드값 결정. 최빈값 정의 유지.",
+    "naturalKorean": "조건·대상·단위가 자연스럽고 실제 학교 노출 없음. 실제70mm 확대 학생+풀이 화면을 사람이 확인.",
+    "scoreReview": {
+      "score": 3,
+      "proposedDifficulty": "기본",
+      "reviewerDifficultyProposal": "기본",
+      "basis": "다섯 추가값을 전부 검사;25만 도수5의 유일 최빈값.20은20이 최빈값,30/35/40은25의 단독 최빈값 조건 실패. 3점은 원문 점수와 같고 필요한 단계 수에 과도한 새 구성을 추가하지 않음; 측정 난도 주장 없음."
+    },
+    "actualVisualReview": {
+      "image": "inspection/q12-expanded.png",
+      "sha256": "e28a64b98cd9402a4a185044745cb9545f2be170c2f98fac31f97dd55458198b",
+      "intendedWidthMm": 70,
+      "personallyViewed": true,
+      "overflow": false,
+      "tablesTextBound": true
+    },
+    "unitFamily": {
+      "unitUuidSupported": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "actualUnitSeedMatch": true,
+      "familyKey": null,
+      "status": "held",
+      "bankCapturedAt": "2026-10-08 13:00:16.891043+00",
+      "notCurrentDbAssertion": true,
+      "basis": "11개 live 산포도 규칙에 최빈값 또는 동률을 깨는 빈도 역문제 없음."
+    },
+    "nonStudentMetadataFindings": []
+  },
+  "holds": [
+    {
+      "code": "live-family-unassigned",
+      "basis": "11개 live 산포도 규칙에 최빈값 또는 동률을 깨는 빈도 역문제 없음.",
+      "reopen": "같은 Unit 내 실제 live 규칙의 전체 입력/목표/핵심 절차/난도/형식 대응을 제시; 가까운 유형을 임의 배정하지 않는다."
+    }
+  ],
+  "gates": {
+    "rights": "held",
+    "custody": "held",
+    "nativeCompatibility": "pending",
+    "similarity": "pending",
+    "directUseAllowed": false,
+    "loadable": false,
+    "dbWrites": 0,
+    "modelCalls": 0
+  }
+}

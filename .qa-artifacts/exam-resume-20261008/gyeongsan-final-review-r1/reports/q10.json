@@ -1,0 +1,317 @@
+{
+  "questionNumber": 10,
+  "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q10",
+  "status": "pending",
+  "studentDigest": "42c5205c0db1990eca755c75bf7bd6979daa2a41e5c5abf185456bfe79b1244f",
+  "candidateDigest": "95b656a7c948446bf9b49acb0c3aa2201f12979888589a3442bbe5de0a534463",
+  "assetDigest": "54119090dd42c4274e16828aef3d71685be0bf0f70d53a52d14db28fda930f83",
+  "solveDigest": "0f91a48a515e0989318c50040cabf33ac4cbff534c367ac222512d46fefde6df",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-exam-twin-author-geometry-20261008",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "개형으로 계수/식 부호 판별→정확 꼭짓점/한 점에서 세 계수와 f(1)의 검산 기록 복원. 같은 그래프-계수-함숫값 연결. 명시 조건과 요청은 아래 실제 중학교 해법으로 해결된다.",
+      "standardCodes": [
+        "9수03-10",
+        "9수02-12"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "실제5보기 전부 계산/도형 비교;정답 하나,나머지 비동치 오답. ",
+      "standardCodes": [
+        "9수03-10",
+        "9수02-12"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "새 SVG 1개의 라벨·직각·각·점순서·영역을 stem과 함께 확인. 70mm 검사 화면에서 텍스트와 자산 역할 확인.",
+      "standardCodes": [
+        "9수03-10",
+        "9수02-12"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "통상 좌표/함수/선분/도 단위/근호/실제 삼각비 표기. 일반 라디안·벡터·고교 공식 표기 없음. ",
+      "standardCodes": [
+        "9수03-10",
+        "9수02-12"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "V(2,−3),P(0,5)→a=2;전개2x²−8x+5→(2,−8,5,−1).최종값 f(1)도 대입 재확인. circled choice는 역할·값·단위가 독립 결과와 일치.",
+      "standardCodes": [
+        "9수03-10",
+        "9수02-12"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "꼭짓점 표준형→점 대입→전개→f(1). 공개된 새 저자 풀이의 모든 단계와 실제 정의를 읽고 검산. ",
+      "standardCodes": [
+        "9수03-10",
+        "9수02-12"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "꼭짓점 표준형→점 대입→전개→f(1). 공식 선택 성취기준의 중학교 범위와 초등 밑변높이 원리;필요한 보조점/조건 명시 여부 확인.",
+      "standardCodes": [
+        "9수03-10",
+        "9수02-12"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    }
+  },
+  "evidence": {
+    "binding": {
+      "questionNumber": 10,
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q10",
+      "studentDigest": "42c5205c0db1990eca755c75bf7bd6979daa2a41e5c5abf185456bfe79b1244f",
+      "candidateDigest": "95b656a7c948446bf9b49acb0c3aa2201f12979888589a3442bbe5de0a534463",
+      "assetDigest": "54119090dd42c4274e16828aef3d71685be0bf0f70d53a52d14db28fda930f83",
+      "solveDigest": "0f91a48a515e0989318c50040cabf33ac4cbff534c367ac222512d46fefde6df",
+      "candidateFileSha256": "214893222a715b476f7e7c60861c5a2747aaec594951a9ea89736b57c36c4b22",
+      "rawSolveSha256": "4559428fde2beb4cb12095e979b7b0446c4909916cf1845a20af6acc0529ac16",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-10",
+      "sourceQuestionCanonicalDigest": "8bef795441bf72b1057990e091bcf1e25215b447670e656e1f90a024f2b0113e",
+      "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceProvidedDigest": "3d4b6858cfeae92d26a9ced5e3056d0ed1ae350ae73e1ef89643e8d43d8c7784",
+      "sourceHashContract": "supplied sourceContentDigest separate from raw stem or complete canonical source-row digest",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    "independentSolveCommit": "c8f8aeadfb28becb1d7447240fd4e28b6702fc4c",
+    "rawSolveUnchanged": true,
+    "answerComparison": {
+      "literalEqual": true,
+      "semanticEqual": true,
+      "role": "single selected choice",
+      "authorAnswer": "②",
+      "independentAnswer": "②",
+      "allFiveChoiceTruthValues": [
+        false,
+        true,
+        false,
+        false,
+        false
+      ],
+      "semanticDuplicateChoices": [],
+      "unitAndTargetOrderChecked": true,
+      "writtenPartsRequested": [],
+      "writtenRubricApplicable": false
+    },
+    "independentExactCalculation": {
+      "questionNumber": 10,
+      "target": [
+        "2",
+        "-8",
+        "5",
+        "-1"
+      ],
+      "status": "independently-computed",
+      "evidence": {
+        "vertex": [
+          2,
+          -3
+        ],
+        "givenPoint": [
+          0,
+          5
+        ],
+        "a": "2",
+        "expandedFunction": "2*x**2 - 8*x + 5",
+        "sumCoefficientsEqualsF1": "-1",
+        "positiveAndNegativePlotLandmarks": true,
+        "allFiveActualChoiceValues": [
+          [
+            "2",
+            "8",
+            "5",
+            "15"
+          ],
+          [
+            "2",
+            "-8",
+            "5",
+            "-1"
+          ],
+          [
+            "-2",
+            "8",
+            "5",
+            "11"
+          ],
+          [
+            "2",
+            "-8",
+            "-5",
+            "-11"
+          ],
+          [
+            "2",
+            "-4",
+            "5",
+            "3"
+          ]
+        ],
+        "choiceCorrectness": [
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "correctChoiceNumber": 2,
+        "semanticDuplicateChoices": [],
+        "oneCorrectChoice": true
+      },
+      "knownHolds": []
+    },
+    "mathAndNewSolution": "V(2,−3),P(0,5)→a=2;전개2x²−8x+5→(2,−8,5,−1).최종값 f(1)도 대입 재확인.",
+    "coreAndSubstantiveDelta": "개형으로 계수/식 부호 판별→정확 꼭짓점/한 점에서 세 계수와 f(1)의 검산 기록 복원. 같은 그래프-계수-함숫값 연결.",
+    "allowedWholeStudentMethod": "꼭짓점 표준형→점 대입→전개→f(1).",
+    "sourceQuestionOnly": {
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-10",
+      "packetRawSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceDigestProvided": "3d4b6858cfeae92d26a9ced5e3056d0ed1ae350ae73e1ef89643e8d43d8c7784",
+      "images": [
+        {
+          "file": "images/q10-part1.png",
+          "rawSha256": "946b21b26bee2c3985979aa3afeb587fd55f984a383855365cb12a6ad41759b7",
+          "personallyViewed": true
+        }
+      ],
+      "sourceCropsNotNewAssets": true,
+      "originalKeyOrSolutionFilesRead": false
+    },
+    "visualReview": {
+      "questionNumber": 10,
+      "studentDigest": "42c5205c0db1990eca755c75bf7bd6979daa2a41e5c5abf185456bfe79b1244f",
+      "candidateDigest": "95b656a7c948446bf9b49acb0c3aa2201f12979888589a3442bbe5de0a534463",
+      "columnWidthMm": 70,
+      "png": "inspection/q10-expanded.png",
+      "pngSha256": "610dcda96b23ac86efc58c482e9f9b85afacb5b1931b11fd8ee7836f1f4997e9",
+      "overflow": [],
+      "unclippedPng": null,
+      "figureCount": 1,
+      "figureWidthMm": 70,
+      "figureArrangement": "ordered roles",
+      "personallyViewed": true,
+      "imageRawSha256": "610dcda96b23ac86efc58c482e9f9b85afacb5b1931b11fd8ee7836f1f4997e9",
+      "actualQuestionAndExpandedSolutionInspected": true,
+      "allSuppliedChoiceFiguresInspected": false,
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "8c7a3939b99d7c4d45ba0fc4e54e87981128b4d6e01a40ae0740fab66aea162e",
+          "svgSha256": "9b06c64f87fc37f778a7618cf5843388f2033002b5f2891c14d3dcb2115a77b7",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q10-1.svg"
+        }
+      ],
+      "strictRegenerationResults": [
+        {
+          "questionNumber": 10,
+          "role": "stem",
+          "specSha256": "8c7a3939b99d7c4d45ba0fc4e54e87981128b4d6e01a40ae0740fab66aea162e",
+          "frozenSvgSha256": "9b06c64f87fc37f778a7618cf5843388f2033002b5f2891c14d3dcb2115a77b7",
+          "regeneratedSvgSha256": "9b06c64f87fc37f778a7618cf5843388f2033002b5f2891c14d3dcb2115a77b7",
+          "byteEqual": true,
+          "strict": true,
+          "localOnly": true,
+          "droppedDimensions": []
+        }
+      ],
+      "nativeCompatibilityNotApproved": true
+    },
+    "naturalKorean": "조건·대상각·선분·기록값·단위가 자연스럽고 모호한 원본 조건을 명시했다. 허구 학교 표시 해솔누리중학교와 실제 학교 내부 보존을 구별;원학교로 학년 승인하지 않음.",
+    "scoreAndDifficulty": {
+      "score": 5,
+      "sourceScorePreserved": true,
+      "authorDifficultyProposal": "응용",
+      "reviewerDifficultyProposal": "응용",
+      "basis": "꼭짓점 표준형→점 대입→전개→f(1). 5점은 원문과 동일하고 필요한 단계 수를 근거로 제안. 검토자는 심화하/기본과 응용 차이를 기록하며 실측 난도나 학교 자동 승인 주장 없음.",
+      "measuredDifficulty": false
+    },
+    "taxonomy": {
+      "unitUuidProposal": "03097b76-d9cb-4525-a520-b70c03a45c77",
+      "unit": {
+        "id": "03097b76-d9cb-4525-a520-b70c03a45c77",
+        "grade": "중3",
+        "chapter": "4. 이차함수",
+        "section": "이차함수 y=ax^2+bx+c의 그래프",
+        "semester": 1,
+        "orderIndex": 479,
+        "problemCodePrefix": "J30402"
+      },
+      "unitSeedExactMatch": true,
+      "candidateMetadataAssignmentUnedited": {
+        "status": "pending",
+        "unitId": null,
+        "familyKey": null,
+        "currentUnit": null,
+        "currentRegistryMatch": null,
+        "liveCount": null,
+        "checkedAt": "2026-10-08 04:53:45.769124+00",
+        "evidence": "계수/부호의 유형09와 꼭짓점+한 점 식 복구 유형10 중 새 네 항목 검산 기록의 주 subtype은 미확정이다. 임의 가까운 유형을 배정하지 않는다.",
+        "candidates": []
+      },
+      "existingLiveFamilyProposal": null,
+      "semanticFamilyOnly": null,
+      "status": "held",
+      "basis": "g2-09는 부호만 판별,10은 꼭짓점+점으로 일반형 식만 출력. 본문 4항 기록의 f(1)까지 포함한 묶음/유형·난도 계약은 추가 확인 전 held;title-only 선택 금지.",
+      "formatComparison": "Complete new target/format/difficulty support is unconfirmed as described in basis; no nearest/title mapping.",
+      "bankCapturedAt": "2026-10-08 13:00:16.891043+00",
+      "snapshotScopeOnly": true,
+      "liveCountNotPermission": true
+    },
+    "q22RepairRead": false,
+    "q23SourceRoleMetadataBoundary": null
+  },
+  "holds": [
+    {
+      "code": "exact-unit-live-family-contract-pending",
+      "basis": "g2-09는 부호만 판별,10은 꼭짓점+점으로 일반형 식만 출력. 본문 4항 기록의 f(1)까지 포함한 묶음/유형·난도 계약은 추가 확인 전 held;title-only 선택 금지.",
+      "reopen": "실제 live 규칙의 전체 조건/요청 목표/핵심 절차/난도/형식을 지원하는 근거를 제시하거나 별도 새 메타데이터 계약을 검토. Unit·제목·live count만으로 확정하지 않음."
+    }
+  ],
+  "gates": {
+    "rights": "held",
+    "custody": "held",
+    "similarity": "pending",
+    "nativeCompatibility": "pending",
+    "directUseAllowed": false,
+    "loadable": false,
+    "dbWrites": 0,
+    "modelCalls": 0,
+    "finalPublicationApproval": false
+  }
+}

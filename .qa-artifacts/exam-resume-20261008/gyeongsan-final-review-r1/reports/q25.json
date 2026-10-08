@@ -1,0 +1,344 @@
+{
+  "questionNumber": 25,
+  "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q25",
+  "status": "pending",
+  "studentDigest": "54f88e20373f48e87f92b4525aff0abceabcd41cd381409752608de617f3df9d",
+  "candidateDigest": "468457b80cafc4f9c3e818a0b068692b6795ad27451b771cfcb0ab259b6db6c3",
+  "assetDigest": "d1da28e0dff49eb6b5ae5c6c51bb95f3e41d952579e14240da612bdffec26d4a",
+  "solveDigest": "35ee9a326748531baacaa816f339c13678b226f91fd3fda949cb50b658334f53",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-exam-twin-author-geometry-20261008",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "종이 접기 한 지면/면적→명확한 전·후 두 새자산과 접힌변 방향/교점순서,밑변과면적의 두 항목검산으로 변경.길이바꾸기만이아님. 명시 조건과 요청은 아래 실제 중학교 해법으로 해결된다.",
+      "standardCodes": [
+        "9수04-16",
+        "9수04-04",
+        "9수04-17",
+        "6수03-06",
+        "9수04-02"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "실제5보기 전부 계산/도형 비교;정답 하나,나머지 비동치 오답. ",
+      "standardCodes": [
+        "9수04-16",
+        "9수04-04",
+        "9수04-17",
+        "6수03-06",
+        "9수04-02"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "새 SVG 2개의 라벨·직각·각·점순서·영역을 stem과 함께 확인. 전·후 자산은35mm씩 왼쪽/오른쪽 배치로 실제 보기 확인.",
+      "standardCodes": [
+        "9수04-16",
+        "9수04-04",
+        "9수04-17",
+        "6수03-06",
+        "9수04-02"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "통상 좌표/함수/선분/도 단위/근호/실제 삼각비 표기. 일반 라디안·벡터·고교 공식 표기 없음. 120°는 내각 합으로 얻는 각;그 각의 삼각비는 호출하지 않는다.",
+      "standardCodes": [
+        "9수04-16",
+        "9수04-04",
+        "9수04-17",
+        "6수03-06",
+        "9수04-02"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "AF8,AB16→30°,BF8√3.접기같은각과평행선→ACF60°,CF8√3/3;BC16√3/3,면적64√3/3.0<CF<BF로F-C-B의점순서/유일긍정가지 확인. circled choice는 역할·값·단위가 독립 결과와 일치.",
+      "standardCodes": [
+        "9수04-16",
+        "9수04-04",
+        "9수04-17",
+        "6수03-06",
+        "9수04-02"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "접기 합동/평행각→30/60 실제 직각삼각형→밑변차→밑변높이넓이.120°는 내각 기록이며sin120을 사용하지 않음;벡터반사법없음.수선F이미주어짐. 공개된 새 저자 풀이의 모든 단계와 실제 정의를 읽고 검산. 공학 코드에서의 좌표/삼각함수 값 검증을 학생 풀이 방법으로 취급하지 않음.",
+      "standardCodes": [
+        "9수04-16",
+        "9수04-04",
+        "9수04-17",
+        "6수03-06",
+        "9수04-02"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "접기 합동/평행각→30/60 실제 직각삼각형→밑변차→밑변높이넓이.120°는 내각 기록이며sin120을 사용하지 않음;벡터반사법없음.수선F이미주어짐. 공식 선택 성취기준의 중학교 범위와 초등 밑변높이 원리;필요한 보조점/조건 명시 여부 확인.",
+      "standardCodes": [
+        "9수04-16",
+        "9수04-04",
+        "9수04-17",
+        "6수03-06",
+        "9수04-02"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    }
+  },
+  "evidence": {
+    "binding": {
+      "questionNumber": 25,
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q25",
+      "studentDigest": "54f88e20373f48e87f92b4525aff0abceabcd41cd381409752608de617f3df9d",
+      "candidateDigest": "468457b80cafc4f9c3e818a0b068692b6795ad27451b771cfcb0ab259b6db6c3",
+      "assetDigest": "d1da28e0dff49eb6b5ae5c6c51bb95f3e41d952579e14240da612bdffec26d4a",
+      "solveDigest": "35ee9a326748531baacaa816f339c13678b226f91fd3fda949cb50b658334f53",
+      "candidateFileSha256": "caff8163aa43eba616ee79a88f600341a96d3e0fe760b59a7f5e1f73b658431f",
+      "rawSolveSha256": "3d36c42fac401faaa5072ae15dc1e7342fc3aed0b436e5aa7fa8f6d40f71a73f",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-25",
+      "sourceQuestionCanonicalDigest": "03a4b58a35302c05801d414ff2578315abec90f831d39946a8f223d08063548e",
+      "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceProvidedDigest": "e39eb1b0a237f729d2833d73fcfdb1a54f39798d69a1f689afa566fa5056c8fb",
+      "sourceHashContract": "supplied sourceContentDigest separate from raw stem or complete canonical source-row digest",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    "independentSolveCommit": "c8f8aeadfb28becb1d7447240fd4e28b6702fc4c",
+    "rawSolveUnchanged": true,
+    "answerComparison": {
+      "literalEqual": true,
+      "semanticEqual": true,
+      "role": "single selected choice",
+      "authorAnswer": "③",
+      "independentAnswer": "③",
+      "allFiveChoiceTruthValues": [
+        false,
+        false,
+        true,
+        false,
+        false
+      ],
+      "semanticDuplicateChoices": [],
+      "unitAndTargetOrderChecked": true,
+      "writtenPartsRequested": [],
+      "writtenRubricApplicable": false
+    },
+    "independentExactCalculation": {
+      "questionNumber": 25,
+      "target": [
+        "16*sqrt(3)/3",
+        "64*sqrt(3)/3"
+      ],
+      "status": "independently-computed",
+      "evidence": {
+        "AF": "8",
+        "AB": "16",
+        "BF": "8*sqrt(3)",
+        "angleABWithOriginalRightTopRay": 30,
+        "foldEqualAngleCAB": 30,
+        "angleCAF": 30,
+        "FC": "8*sqrt(3)/3",
+        "BC": "16*sqrt(3)/3",
+        "areaABC": "64*sqrt(3)/3",
+        "CLeftOfB": true,
+        "nondegeneratePositiveArea": true,
+        "method": "Pythagoras/special30 fromAF/AB;fold preserves angle withcrease;tan30 inAFC;BC=BF−FC;base-height triangle area.",
+        "allFiveActualChoiceValues": [
+          [
+            "8*sqrt(3)/3",
+            "64*sqrt(3)/3"
+          ],
+          [
+            "16*sqrt(3)/3",
+            "32*sqrt(3)/3"
+          ],
+          [
+            "16*sqrt(3)/3",
+            "64*sqrt(3)/3"
+          ],
+          [
+            "8*sqrt(3)",
+            "64*sqrt(3)"
+          ],
+          [
+            "16*sqrt(3)/3",
+            "128*sqrt(3)/3"
+          ]
+        ],
+        "choiceCorrectness": [
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "correctChoiceNumber": 3,
+        "semanticDuplicateChoices": [],
+        "oneCorrectChoice": true
+      },
+      "knownHolds": []
+    },
+    "mathAndNewSolution": "AF8,AB16→30°,BF8√3.접기같은각과평행선→ACF60°,CF8√3/3;BC16√3/3,면적64√3/3.0<CF<BF로F-C-B의점순서/유일긍정가지 확인.",
+    "coreAndSubstantiveDelta": "종이 접기 한 지면/면적→명확한 전·후 두 새자산과 접힌변 방향/교점순서,밑변과면적의 두 항목검산으로 변경.길이바꾸기만이아님.",
+    "allowedWholeStudentMethod": "접기 합동/평행각→30/60 실제 직각삼각형→밑변차→밑변높이넓이.120°는 내각 기록이며sin120을 사용하지 않음;벡터반사법없음.수선F이미주어짐.",
+    "sourceQuestionOnly": {
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-25",
+      "packetRawSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceDigestProvided": "e39eb1b0a237f729d2833d73fcfdb1a54f39798d69a1f689afa566fa5056c8fb",
+      "images": [
+        {
+          "file": "images/q25-part1.png",
+          "rawSha256": "a0970aa4920818c7707548d3985395c4670a4f6fc5cec1cb3a0a4fe185de5dd2",
+          "personallyViewed": true
+        }
+      ],
+      "sourceCropsNotNewAssets": true,
+      "originalKeyOrSolutionFilesRead": false
+    },
+    "visualReview": {
+      "questionNumber": 25,
+      "studentDigest": "54f88e20373f48e87f92b4525aff0abceabcd41cd381409752608de617f3df9d",
+      "candidateDigest": "468457b80cafc4f9c3e818a0b068692b6795ad27451b771cfcb0ab259b6db6c3",
+      "columnWidthMm": 70,
+      "png": "inspection/q25-expanded.png",
+      "pngSha256": "2e2cdcae3db0834bd1c4666312834b65a91c0a540c5e786a6d9517af88343bda",
+      "overflow": [],
+      "unclippedPng": null,
+      "figureCount": 2,
+      "figureWidthMm": 35,
+      "figureArrangement": "before left/after right",
+      "personallyViewed": true,
+      "imageRawSha256": "2e2cdcae3db0834bd1c4666312834b65a91c0a540c5e786a6d9517af88343bda",
+      "actualQuestionAndExpandedSolutionInspected": true,
+      "allSuppliedChoiceFiguresInspected": false,
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "9aeec552a0e39814991e17a01547bcfdd5616efaf422bc3d69e70a0605905097",
+          "svgSha256": "d2cd7bd357403bcd8ef77d603b5134d14f60f42c84dcecc11922c5347a4eea95",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q25-1.svg"
+        },
+        {
+          "role": "stem",
+          "specSha256": "3bb9c2127cbf4bb57a4c64e158ce2c2e6fbc35694b9fe57d3393303e9711ebe6",
+          "svgSha256": "f7f11686c98a400462254b6e0198ee8f63cb87e042fe6b6236e7e3f2f3364820",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q25-2.svg"
+        }
+      ],
+      "strictRegenerationResults": [
+        {
+          "questionNumber": 25,
+          "role": "stem",
+          "specSha256": "9aeec552a0e39814991e17a01547bcfdd5616efaf422bc3d69e70a0605905097",
+          "frozenSvgSha256": "d2cd7bd357403bcd8ef77d603b5134d14f60f42c84dcecc11922c5347a4eea95",
+          "regeneratedSvgSha256": "d2cd7bd357403bcd8ef77d603b5134d14f60f42c84dcecc11922c5347a4eea95",
+          "byteEqual": true,
+          "strict": true,
+          "localOnly": true,
+          "droppedDimensions": []
+        },
+        {
+          "questionNumber": 25,
+          "role": "stem",
+          "specSha256": "3bb9c2127cbf4bb57a4c64e158ce2c2e6fbc35694b9fe57d3393303e9711ebe6",
+          "frozenSvgSha256": "f7f11686c98a400462254b6e0198ee8f63cb87e042fe6b6236e7e3f2f3364820",
+          "regeneratedSvgSha256": "f7f11686c98a400462254b6e0198ee8f63cb87e042fe6b6236e7e3f2f3364820",
+          "byteEqual": true,
+          "strict": true,
+          "localOnly": true,
+          "droppedDimensions": []
+        }
+      ],
+      "nativeCompatibilityNotApproved": true
+    },
+    "naturalKorean": "조건·대상각·선분·기록값·단위가 자연스럽고 모호한 원본 조건을 명시했다. 허구 학교 표시 해솔누리중학교와 실제 학교 내부 보존을 구별;원학교로 학년 승인하지 않음.",
+    "scoreAndDifficulty": {
+      "score": 4,
+      "sourceScorePreserved": true,
+      "authorDifficultyProposal": "응용",
+      "reviewerDifficultyProposal": "심화하",
+      "basis": "접기 합동/평행각→30/60 실제 직각삼각형→밑변차→밑변높이넓이.120°는 내각 기록이며sin120을 사용하지 않음;벡터반사법없음.수선F이미주어짐. 4점은 원문과 동일하고 필요한 단계 수를 근거로 제안. 검토자는 심화하/기본과 응용 차이를 기록하며 실측 난도나 학교 자동 승인 주장 없음.",
+      "measuredDifficulty": false
+    },
+    "taxonomy": {
+      "unitUuidProposal": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+      "unit": {
+        "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 활용",
+        "semester": 2,
+        "orderIndex": 483,
+        "problemCodePrefix": "J30503"
+      },
+      "unitSeedExactMatch": true,
+      "candidateMetadataAssignmentUnedited": {
+        "status": "pending",
+        "unitId": null,
+        "familyKey": null,
+        "currentUnit": null,
+        "currentRegistryMatch": null,
+        "liveCount": null,
+        "checkedAt": "2026-10-08 04:53:45.769124+00",
+        "evidence": "접기 전후 두 자산과 밑변/넓이 검산쌍에 정확히 해당하는 live family 규칙이 확인되지 않아 null로 보류한다.",
+        "candidates": []
+      },
+      "existingLiveFamilyProposal": null,
+      "semanticFamilyOnly": null,
+      "status": "held",
+      "basis": "활용08의 단일두변끼인각넓이 또는10/12의 다각형·사각형 넓이는 실제 접기 전후와교점순서·밑변/면적쌍까지지원하지않음.전체규칙미확정.",
+      "formatComparison": "Complete new target/format/difficulty support is unconfirmed as described in basis; no nearest/title mapping.",
+      "bankCapturedAt": "2026-10-08 13:00:16.891043+00",
+      "snapshotScopeOnly": true,
+      "liveCountNotPermission": true
+    },
+    "q22RepairRead": false,
+    "q23SourceRoleMetadataBoundary": null
+  },
+  "holds": [
+    {
+      "code": "exact-unit-live-family-contract-pending",
+      "basis": "활용08의 단일두변끼인각넓이 또는10/12의 다각형·사각형 넓이는 실제 접기 전후와교점순서·밑변/면적쌍까지지원하지않음.전체규칙미확정.",
+      "reopen": "실제 live 규칙의 전체 조건/요청 목표/핵심 절차/난도/형식을 지원하는 근거를 제시하거나 별도 새 메타데이터 계약을 검토. Unit·제목·live count만으로 확정하지 않음."
+    }
+  ],
+  "gates": {
+    "rights": "held",
+    "custody": "held",
+    "similarity": "pending",
+    "nativeCompatibility": "pending",
+    "directUseAllowed": false,
+    "loadable": false,
+    "dbWrites": 0,
+    "modelCalls": 0,
+    "finalPublicationApproval": false
+  }
+}

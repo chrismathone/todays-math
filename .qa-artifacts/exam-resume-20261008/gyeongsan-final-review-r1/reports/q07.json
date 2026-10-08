@@ -1,0 +1,409 @@
+{
+  "questionNumber": 7,
+  "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q07",
+  "status": "pending",
+  "studentDigest": "9fe79105603083e99f00c4d047f8a8717f086f80142e2aca45fb563c1f159eb6",
+  "candidateDigest": "27fb6d302263ca4f1da6968fe3e69b75c56038973f0477a1cdd76abac51b142e",
+  "assetDigest": "c299754d1e86a8bd0a47379bd411496aee80feb9eadff9c1df3aea2d2f1a6d19",
+  "solveDigest": "3d4fef7771fb6fae584380c7e2d6f34bd51f9fd76da56e15ff261c487ccbac5d",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-exam-twin-author-geometry-20261008",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "직선→포물선 꼭짓점 사분면에서 포물선 사분면→직선 그래프 선택으로 역방향 전환;두 부호 연결 유지. 명시 조건과 요청은 아래 실제 중학교 해법으로 해결된다.",
+      "standardCodes": [
+        "9수03-10",
+        "9수03-06",
+        "9수03-01"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "실제5보기 전부 계산/도형 비교;정답 하나,나머지 비동치 오답. 다섯 choice:N 그림에서 기울기·절편 부호를 따로 확인.",
+      "standardCodes": [
+        "9수03-10",
+        "9수03-06",
+        "9수03-01"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "새 SVG 5개의 라벨·직각·각·점순서·영역을 stem과 함께 확인. 70mm 검사 화면에서 텍스트와 자산 역할 확인.",
+      "standardCodes": [
+        "9수03-10",
+        "9수03-06",
+        "9수03-01"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "통상 좌표/함수/선분/도 단위/근호/실제 삼각비 표기. 일반 라디안·벡터·고교 공식 표기 없음. ",
+      "standardCodes": [
+        "9수03-10",
+        "9수03-06",
+        "9수03-01"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "꼭짓점(a,−b)의QII에서 a<0,b<0.실제5직선의 부호쌍(+,+),(−,+),(+,−),(−,−),(−,0);④만 만족. 다섯 SVG 별도 블라인드 실제 검토/해시 불변. circled choice는 역할·값·단위가 독립 결과와 일치.",
+      "standardCodes": [
+        "9수03-10",
+        "9수03-06",
+        "9수03-01"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "실제 꼭짓점 부호→일차함수 기울기/절편 부호→5그림 비교. 공개된 새 저자 풀이의 모든 단계와 실제 정의를 읽고 검산. ",
+      "standardCodes": [
+        "9수03-10",
+        "9수03-06",
+        "9수03-01"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "실제 꼭짓점 부호→일차함수 기울기/절편 부호→5그림 비교. 공식 선택 성취기준의 중학교 범위와 초등 밑변높이 원리;필요한 보조점/조건 명시 여부 확인.",
+      "standardCodes": [
+        "9수03-10",
+        "9수03-06",
+        "9수03-01"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    }
+  },
+  "evidence": {
+    "binding": {
+      "questionNumber": 7,
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q07",
+      "studentDigest": "9fe79105603083e99f00c4d047f8a8717f086f80142e2aca45fb563c1f159eb6",
+      "candidateDigest": "27fb6d302263ca4f1da6968fe3e69b75c56038973f0477a1cdd76abac51b142e",
+      "assetDigest": "c299754d1e86a8bd0a47379bd411496aee80feb9eadff9c1df3aea2d2f1a6d19",
+      "solveDigest": "3d4fef7771fb6fae584380c7e2d6f34bd51f9fd76da56e15ff261c487ccbac5d",
+      "candidateFileSha256": "95d0dbc4aad9355396ef44b722fcfad32752da502c8af134a05066fb75858d91",
+      "rawSolveSha256": "2b24222fa42deb0c597c84950c5bd80a76963298370bd65f014d33361f5d4093",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-7",
+      "sourceQuestionCanonicalDigest": "da7f8c7cf4fdbc1fb742c90e8dd91c5d01ddc94082474f8d7b06fa2a01946405",
+      "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceProvidedDigest": "9d6ef537b275816f5049d4f7dcea31767c98b1e1685d8b9aec047497127b571b",
+      "sourceHashContract": "supplied sourceContentDigest separate from raw stem or complete canonical source-row digest",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    "independentSolveCommit": "c8f8aeadfb28becb1d7447240fd4e28b6702fc4c",
+    "rawSolveUnchanged": true,
+    "answerComparison": {
+      "literalEqual": true,
+      "semanticEqual": true,
+      "role": "single selected choice",
+      "authorAnswer": "④",
+      "independentAnswer": "④",
+      "allFiveChoiceTruthValues": [
+        false,
+        false,
+        false,
+        true,
+        false
+      ],
+      "semanticDuplicateChoices": [],
+      "unitAndTargetOrderChecked": true,
+      "writtenPartsRequested": [],
+      "writtenRubricApplicable": false
+    },
+    "independentExactCalculation": {
+      "questionNumber": 7,
+      "target": [
+        -1,
+        -1
+      ],
+      "status": "independently-computed",
+      "evidence": {
+        "vertexCoordinates": "(a,−b)",
+        "requiredSigns": {
+          "a": "negative",
+          "b": "negative"
+        },
+        "visuallyObservedFiveSlopeInterceptSigns": [
+          [
+            1,
+            1
+          ],
+          [
+            -1,
+            1
+          ],
+          [
+            1,
+            -1
+          ],
+          [
+            -1,
+            -1
+          ],
+          [
+            -1,
+            0
+          ]
+        ],
+        "numericExistenceWitness": {
+          "a": -1,
+          "b": -1,
+          "vertex": [
+            -1,
+            1
+          ],
+          "line": "y=−x−1"
+        },
+        "allFiveChoiceFiguresPersonallyViewed": true,
+        "allFiveActualChoiceValues": [
+          [
+            1,
+            1
+          ],
+          [
+            -1,
+            1
+          ],
+          [
+            1,
+            -1
+          ],
+          [
+            -1,
+            -1
+          ],
+          [
+            -1,
+            0
+          ]
+        ],
+        "choiceCorrectness": [
+          false,
+          false,
+          false,
+          true,
+          false
+        ],
+        "correctChoiceNumber": 4,
+        "semanticDuplicateChoices": [],
+        "oneCorrectChoice": true
+      },
+      "knownHolds": []
+    },
+    "mathAndNewSolution": "꼭짓점(a,−b)의QII에서 a<0,b<0.실제5직선의 부호쌍(+,+),(−,+),(+,−),(−,−),(−,0);④만 만족. 다섯 SVG 별도 블라인드 실제 검토/해시 불변.",
+    "coreAndSubstantiveDelta": "직선→포물선 꼭짓점 사분면에서 포물선 사분면→직선 그래프 선택으로 역방향 전환;두 부호 연결 유지.",
+    "allowedWholeStudentMethod": "실제 꼭짓점 부호→일차함수 기울기/절편 부호→5그림 비교.",
+    "sourceQuestionOnly": {
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-7",
+      "packetRawSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceDigestProvided": "9d6ef537b275816f5049d4f7dcea31767c98b1e1685d8b9aec047497127b571b",
+      "images": [
+        {
+          "file": "images/q07-part1.png",
+          "rawSha256": "72e11b48b7bd108689ad15464b6f7603725146384103054da8c11de37c99dfe7",
+          "personallyViewed": true
+        }
+      ],
+      "sourceCropsNotNewAssets": true,
+      "originalKeyOrSolutionFilesRead": false
+    },
+    "visualReview": {
+      "questionNumber": 7,
+      "studentDigest": "9fe79105603083e99f00c4d047f8a8717f086f80142e2aca45fb563c1f159eb6",
+      "candidateDigest": "27fb6d302263ca4f1da6968fe3e69b75c56038973f0477a1cdd76abac51b142e",
+      "columnWidthMm": 70,
+      "png": "inspection/q07-expanded.png",
+      "pngSha256": "73cb1ce81b2a6be9cad8d724e6988990bdad91355c6e2728dfcf05183419067a",
+      "overflow": [],
+      "unclippedPng": null,
+      "figureCount": 5,
+      "figureWidthMm": 70,
+      "figureArrangement": "ordered roles",
+      "personallyViewed": true,
+      "imageRawSha256": "73cb1ce81b2a6be9cad8d724e6988990bdad91355c6e2728dfcf05183419067a",
+      "actualQuestionAndExpandedSolutionInspected": true,
+      "allSuppliedChoiceFiguresInspected": true,
+      "assets": [
+        {
+          "role": "choice:1",
+          "specSha256": "19180b3bb8ccc916de4e843a13be5a06429d1aa09e41db96534e1986a044ca39",
+          "svgSha256": "e4a126c1aa7f46596e8c7472eb34bbc209505cfdd698e8b4d5b237892b7d2d09",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q07-1.svg"
+        },
+        {
+          "role": "choice:2",
+          "specSha256": "3172663d9037e8d6e15efaa24fa642e03875130ddaf8c8a0c3fc2beb713e8210",
+          "svgSha256": "2d4befb28e779f2812c5ecbf6a9d56c099ee56bf3f23de504b2b2f3edad1a6af",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q07-2.svg"
+        },
+        {
+          "role": "choice:3",
+          "specSha256": "2c10900f47c7065b95f65920a32595ee4fecda51bbe989302741825f5358838e",
+          "svgSha256": "3ac36a888cbf5e9e3d40bd56397ec2c8ffac47cec41f39976ac538d4811f5803",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q07-3.svg"
+        },
+        {
+          "role": "choice:4",
+          "specSha256": "d7b0598a1effac516e73c7e2626e967fde6528a134c77b2ca339f02bdcf8b576",
+          "svgSha256": "fe3e38ce6dca0a570747ef4f3417ba5104e18ee130270a83ed69b120bb7bf25e",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q07-4.svg"
+        },
+        {
+          "role": "choice:5",
+          "specSha256": "9e3159d69d93051c745ab82ec08a569c373a9ff66c2c2aee5dccf94271ab51b3",
+          "svgSha256": "253bab5c19748db0fa63f032acee3390f53e96f40e729d06796d8c7ce4c77059",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q07-5.svg"
+        }
+      ],
+      "strictRegenerationResults": [
+        {
+          "questionNumber": 7,
+          "role": "choice:1",
+          "specSha256": "19180b3bb8ccc916de4e843a13be5a06429d1aa09e41db96534e1986a044ca39",
+          "frozenSvgSha256": "e4a126c1aa7f46596e8c7472eb34bbc209505cfdd698e8b4d5b237892b7d2d09",
+          "regeneratedSvgSha256": "e4a126c1aa7f46596e8c7472eb34bbc209505cfdd698e8b4d5b237892b7d2d09",
+          "byteEqual": true,
+          "strict": true,
+          "localOnly": true,
+          "droppedDimensions": []
+        },
+        {
+          "questionNumber": 7,
+          "role": "choice:2",
+          "specSha256": "3172663d9037e8d6e15efaa24fa642e03875130ddaf8c8a0c3fc2beb713e8210",
+          "frozenSvgSha256": "2d4befb28e779f2812c5ecbf6a9d56c099ee56bf3f23de504b2b2f3edad1a6af",
+          "regeneratedSvgSha256": "2d4befb28e779f2812c5ecbf6a9d56c099ee56bf3f23de504b2b2f3edad1a6af",
+          "byteEqual": true,
+          "strict": true,
+          "localOnly": true,
+          "droppedDimensions": []
+        },
+        {
+          "questionNumber": 7,
+          "role": "choice:3",
+          "specSha256": "2c10900f47c7065b95f65920a32595ee4fecda51bbe989302741825f5358838e",
+          "frozenSvgSha256": "3ac36a888cbf5e9e3d40bd56397ec2c8ffac47cec41f39976ac538d4811f5803",
+          "regeneratedSvgSha256": "3ac36a888cbf5e9e3d40bd56397ec2c8ffac47cec41f39976ac538d4811f5803",
+          "byteEqual": true,
+          "strict": true,
+          "localOnly": true,
+          "droppedDimensions": []
+        },
+        {
+          "questionNumber": 7,
+          "role": "choice:4",
+          "specSha256": "d7b0598a1effac516e73c7e2626e967fde6528a134c77b2ca339f02bdcf8b576",
+          "frozenSvgSha256": "fe3e38ce6dca0a570747ef4f3417ba5104e18ee130270a83ed69b120bb7bf25e",
+          "regeneratedSvgSha256": "fe3e38ce6dca0a570747ef4f3417ba5104e18ee130270a83ed69b120bb7bf25e",
+          "byteEqual": true,
+          "strict": true,
+          "localOnly": true,
+          "droppedDimensions": []
+        },
+        {
+          "questionNumber": 7,
+          "role": "choice:5",
+          "specSha256": "9e3159d69d93051c745ab82ec08a569c373a9ff66c2c2aee5dccf94271ab51b3",
+          "frozenSvgSha256": "253bab5c19748db0fa63f032acee3390f53e96f40e729d06796d8c7ce4c77059",
+          "regeneratedSvgSha256": "253bab5c19748db0fa63f032acee3390f53e96f40e729d06796d8c7ce4c77059",
+          "byteEqual": true,
+          "strict": true,
+          "localOnly": true,
+          "droppedDimensions": []
+        }
+      ],
+      "nativeCompatibilityNotApproved": true
+    },
+    "naturalKorean": "조건·대상각·선분·기록값·단위가 자연스럽고 모호한 원본 조건을 명시했다. 허구 학교 표시 해솔누리중학교와 실제 학교 내부 보존을 구별;원학교로 학년 승인하지 않음.",
+    "scoreAndDifficulty": {
+      "score": 4,
+      "sourceScorePreserved": true,
+      "authorDifficultyProposal": "응용",
+      "reviewerDifficultyProposal": "응용",
+      "basis": "실제 꼭짓점 부호→일차함수 기울기/절편 부호→5그림 비교. 4점은 원문과 동일하고 필요한 단계 수를 근거로 제안. 검토자는 심화하/기본과 응용 차이를 기록하며 실측 난도나 학교 자동 승인 주장 없음.",
+      "measuredDifficulty": false
+    },
+    "taxonomy": {
+      "unitUuidProposal": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "unit": {
+        "id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+        "grade": "중3",
+        "chapter": "4. 이차함수",
+        "section": "이차함수와 그래프",
+        "semester": 1,
+        "orderIndex": 478,
+        "problemCodePrefix": "J30401"
+      },
+      "unitSeedExactMatch": true,
+      "candidateMetadataAssignmentUnedited": {
+        "status": "pending",
+        "unitId": null,
+        "familyKey": null,
+        "currentUnit": null,
+        "currentRegistryMatch": null,
+        "liveCount": null,
+        "checkedAt": "2026-10-08 04:53:45.769124+00",
+        "evidence": "꼭짓점 사분면의 계수 부호 복구는 정당한 중3 해법이지만 다섯 직선 그림 선택의 정확 family 대응은 별도 검토하며 임의 타입을 부여하지 않는다.",
+        "candidates": []
+      },
+      "existingLiveFamilyProposal": null,
+      "semanticFamilyOnly": null,
+      "status": "held",
+      "basis": "g1-20은 포물선그림의a,p,q부호/다른포물선 꼭짓점 등,22T는 한 점 대입 이차방정식 두 근을 꼭짓점 사분면으로 선별. 본문 역방향 부호로 다른 일차함수5그림 선택하는 전체 규칙 아님.",
+      "formatComparison": "Complete new target/format/difficulty support is unconfirmed as described in basis; no nearest/title mapping.",
+      "bankCapturedAt": "2026-10-08 13:00:16.891043+00",
+      "snapshotScopeOnly": true,
+      "liveCountNotPermission": true
+    },
+    "q22RepairRead": false,
+    "q23SourceRoleMetadataBoundary": null
+  },
+  "holds": [
+    {
+      "code": "exact-unit-live-family-contract-pending",
+      "basis": "g1-20은 포물선그림의a,p,q부호/다른포물선 꼭짓점 등,22T는 한 점 대입 이차방정식 두 근을 꼭짓점 사분면으로 선별. 본문 역방향 부호로 다른 일차함수5그림 선택하는 전체 규칙 아님.",
+      "reopen": "실제 live 규칙의 전체 조건/요청 목표/핵심 절차/난도/형식을 지원하는 근거를 제시하거나 별도 새 메타데이터 계약을 검토. Unit·제목·live count만으로 확정하지 않음."
+    }
+  ],
+  "gates": {
+    "rights": "held",
+    "custody": "held",
+    "similarity": "pending",
+    "nativeCompatibility": "pending",
+    "directUseAllowed": false,
+    "loadable": false,
+    "dbWrites": 0,
+    "modelCalls": 0,
+    "finalPublicationApproval": false
+  }
+}
