@@ -1,0 +1,61 @@
+.notice {
+  display: grid;
+  gap: 8px;
+  padding: 16px;
+  border: 1px solid var(--learn-border);
+  border-radius: 12px;
+  background: var(--learn-surface);
+  color: var(--learn-ink);
+  font-size: 14px;
+}
+.notice p,
+.question p {
+  margin: 0;
+}
+.notice label {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+.notice select {
+  min-height: 44px;
+  max-width: 100%;
+  min-width: 0;
+}
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: var(--learn-muted);
+}
+.actions button,
+.question button {
+  min-height: 44px;
+  padding: 8px 12px;
+  background: var(--learn-surface);
+  border: 1px solid var(--learn-border);
+  border-radius: 8px;
+  color: var(--learn-ink);
+}
+.question {
+  display: grid;
+  gap: 12px;
+}
+.question > p {
+  color: var(--learn-muted);
+  font-size: 12px;
+}
+.question summary {
+  cursor: pointer;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
+}
+.passage {
+  white-space: pre-wrap;
+  line-height: 1.8;
+  max-width: 78ch;
+}
