@@ -19,3 +19,15 @@ q23은 원문 답/old key를 열지 않고 packet의 지면/관측점/두 끝점
 `author-index-group1.json`은 source/variant/student/candidate/asset/calculation/metadata/author-review digest와 원문 ID·배점·분류 상태를 연결한다. `author-review.json`은 작성자의 코드/시각 자체 체크이며 독립 검산 승인이나 최종 grade 승인으로 표시하지 않았다. independentVerification은 null, directUseAllowed는 false이며 권리/출처/custody/native/생산 게이트는 별도 held이다. 기존 82개 출제 잠금과 경산여19 영구 제외에는 아무 변경도 하지 않았다.
 
 현재 집계: 실제 작성 9, 저작 전 학년 제외 1(q15), 아직 작성 중 15, 새 그림 5, 독립 승인 0, grade 최종 승인 0, 권리 승인 0. 작은 묶음 커밋 후 나머지를 계속한다.
+
+## 두 번째 묶음
+
+q10–q14, q16–q18의 실제 후보 8개를 추가했다. 새 계수/함숫값 기록 복구, 세 사분면 통과와 한 사분면 배제의 k 범위, 중선 직선의 좌표/기울기/절편 기록, 코사인 기록에서 누락 변 복구, 두 각의 삼각비 기록, 특수각 계산 계수 역산, 수선이 만든 두 각의 비 기록, 내각 비/특수각 계수 복구로 바꿨다. q13은 3점을 그대로 유지했고 이 묶음의 점수 합은 33점이다. 새 strict SVG는 5개이다.
+
+q11은 개형·축의 오른쪽 증가 성질·y절편을 일차부등식으로 판단한다. formal 이차 최적화나 제한구간 극값을 쓰지 않는다. q12는 인수분해, 같은 높이 삼각형의 밑변 비와 두 점의 직선으로 해결한다. q17은 내각 합으로 실제 두 각이 원래 삼각형의 각과 같음을 확인하고, 실제 두 변에서 각 비를 독립 계산한다. 삼각비 사이의 항등식으로 답을 만들지 않았다. q18의 40°/80° 값은 구하지 않으며 실제 계산 대상은 60°이다.
+
+첫 미리보기에서 q10 좌표 이름이 선과 겹치고 q12 강조 문자가 남는 문제, q17 각 라벨의 혼동 가능성을 발견해 동결 전 새 초안에서 수치/답을 유지한 채 라벨·표시를 고쳤다. q12에서는 점 이름 B/C/D와 곡선·x축 이름 충돌까지 확인해 분리했다. 최종 q10/q17은 `preview-group2-r2`, q12는 `preview-q12-r4`의 문항 PNG를 직접 보았다. 다른 다섯 문항은 `preview-group2`에서 직접 확인했다. 수정 전 초안과 첫 freeze의 bytes/해시는 `draft-history/group2-prefinal`에 미승인 이력으로 보존했다. 이미 커밋한 group1에는 변경이 없다.
+
+`author-index-group2.json`과 각 author-review에 새 student/asset/candidate/calculation/variant/metadata/review digest를 연결했다. preview와 현재 후보의 metadata-only 저작 코드 해시 갱신은 구분했고, 학생/자산 digest의 정확한 일치를 검사했다. 수학 조건 변경은 없다. q13/14의 실제 정의 입력과 현재 유형02/01의 same core 절차를 비교해 author-proposed 분류만 제안했고, 주 subtype 불명은 null로 유지한다. 모든 독립/grade/권리 승인 수는 0이다.
+
+현재 누계: 실제 작성 17, 저작 전 학년 제외 1(q15), 남은 저작 7(q19–q25), 새 SVG 10, 보존한 authored points 66. 나머지 일곱 문항을 이어서 실제 작성한다.

@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "questionNumber": 14,
+  "sourceQuestionDigest": "34487df4cbb2507d6fca54b99bfa825874c5b8e808976c441be7bf2eb83025cd",
+  "variantDigest": "7d97437493edbdc480a3307d60de5cbc3001a3c0a356b9bbfef751938db2a407",
+  "mathInCode": true,
+  "authorSelfCheckOnly": true,
+  "independentApproval": false,
+  "answerIndex": 1,
+  "facts": {
+    "AB": 3,
+    "AC": 5,
+    "BC": 5.8309518948453,
+    "BCExact": "sqrt(34)",
+    "cosB": 0.5144957554275266,
+    "tanC": 0.6,
+    "exactCosB": "3*sqrt(34)/34"
+  },
+  "optionChecks": [
+    {
+      "index": 1,
+      "pair": [
+        0.8574929257125442,
+        0.6
+      ],
+      "correct": false
+    },
+    {
+      "index": 2,
+      "pair": [
+        0.5144957554275266,
+        0.6
+      ],
+      "correct": true
+    },
+    {
+      "index": 3,
+      "pair": [
+        0.5144957554275266,
+        1.6666666666666667
+      ],
+      "correct": false
+    },
+    {
+      "index": 4,
+      "pair": [
+        0.6,
+        0.5144957554275266
+      ],
+      "correct": false
+    },
+    {
+      "index": 5,
+      "pair": [
+        1.9436506316151003,
+        0.6
+      ],
+      "correct": false
+    }
+  ],
+  "domainChecks": [
+    {
+      "condition": "세 변은 양수이며 빗변이 더 길고 코사인은 0과 1 사이, 탄젠트 분모는 양수이다.",
+      "passed": true
+    }
+  ]
+}

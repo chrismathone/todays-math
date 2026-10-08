@@ -1,0 +1,306 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 10,
+  "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q10",
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "content": "그림의 포물선은 $y=ax^2+bx+c$의 그래프이다. 꼭짓점은 $V(2,-3)$이고 점 $P(0,5)$를 지난다. 계수와 함숫값을 복구한 기록 $(a,b,c,a+b+c)$로 옳은 것은?",
+  "choices": [
+    "$(2,8,5,15)$",
+    "$(2,-8,5,-1)$",
+    "$(-2,8,5,11)$",
+    "$(2,-8,-5,-11)$",
+    "$(2,-4,5,3)$"
+  ],
+  "answer": "②",
+  "solution": "꼭짓점이 $(2,-3)$이므로 식은 $y=a(x-2)^2-3$이다. 점 $(0,5)$를 대입하면 $5=4a-3$에서 $a=2$이다.\n\n이를 전개하면 $y=2x^2-8x+5$이므로 $b=-8$, $c=5$이다. 또 $a+b+c$는 $x=1$일 때의 함숫값으로 $2-8+5=-1$이다. 따라서 기록은 $(2,-8,5,-1)$이며 정답은 ②이다.",
+  "score": 5,
+  "questionType": "객관식",
+  "facts": {
+    "a": 2,
+    "b": -8,
+    "c": 5,
+    "vertex": [
+      2,
+      -3
+    ],
+    "point": [
+      0,
+      5
+    ],
+    "valueAt1": -1
+  },
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "stem.spec.json",
+      "svgPath": "stem.svg",
+      "intendedWidthMm": 70
+    }
+  ],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation",
+      "inverse-target"
+    ],
+    "before": "포물선 개형/꼭짓점/절편에서 일반형 계수와 특정 식의 부호를 판정한다.",
+    "after": "새 꼭짓점과 한 점의 정확한 그래프를 주고 계수 세 개와 x=1의 검산값을 하나의 기록으로 복구한다.",
+    "sharedConcept": "표준형/일반형 계수와 꼭짓점·절편·함숫값의 대응",
+    "sharedProcedure": "꼭짓점으로 표준형을 세우고 한 점으로 a를 정한 뒤 전개해 b,c와 a+b+c를 구한다.",
+    "objectiveDifficulty": "원문의 그래프와 계수/식 부호를 연결하는 5점 절차를 실제 수치 검산 기록으로 전환했다. 새 고교 방법을 요구하지 않는다.",
+    "scoreDelta": {
+      "source": 5,
+      "authored": 5,
+      "changed": false
+    }
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수03-09",
+      "9수03-10",
+      "9수02-12",
+      "9수02-02"
+    ],
+    "allowedProcedure": "꼭짓점으로 표준형을 세우고 한 점으로 a를 정한 뒤 전개해 b,c와 a+b+c를 구한다.",
+    "forbiddenAvoided": [
+      "일반 이차함수 최적화",
+      "미분",
+      "근과 계수의 관계",
+      "일반 포물선/직선 교점 이론"
+    ],
+    "status": "author-proposed",
+    "surfaces": {
+      "stem": {
+        "status": "author-proposed",
+        "evidence": "새 꼭짓점과 한 점은 중3 표준형 복구 조건이다."
+      },
+      "choices": {
+        "status": "author-proposed",
+        "evidence": "다섯 계수/값 기록을 네 항목 모두 비교한다."
+      },
+      "figuresAndTables": {
+        "status": "author-proposed",
+        "evidence": "새 strict 좌표 그래프의 실제 곡선·V/P와 좌표가 주어진 조건과 일치한다."
+      },
+      "notation": {
+        "status": "author-proposed",
+        "evidence": "좌표·선분·각·근호·도·삼각비의 표기는 실제 중학교 해법에 쓰는 범위이다."
+      },
+      "answer": {
+        "status": "author-proposed",
+        "evidence": "새 조건을 계산한 유일한 객관식 답이며 원문 정답을 가져오지 않았다."
+      },
+      "studentSolution": {
+        "status": "author-proposed",
+        "evidence": "a=2, 일반형 계수 -8/5, x=1 값 -1을 구한다."
+      },
+      "prerequisites": {
+        "status": "author-proposed",
+        "evidence": "다항식 전개·좌표 대입·일차방정식"
+      }
+    },
+    "gradeBasis": "꼭짓점과 한 점 대입, 완전제곱 전개와 함숫값이다. 판별식·근과 계수 관계·최적화를 쓰지 않는다.",
+    "exactGradeApproval": false
+  },
+  "sourceReference": {
+    "externalId": "2025-gyeongsan-3-2-mid-10",
+    "examId": "personal-aa35a05fbaf41074c2ebcfcd6f16e876",
+    "sourcePacketExamId": "2025-gyeongsan-3-2-mid",
+    "school": "경산중",
+    "questionNumber": 10,
+    "sourceContentSha256": "3d4b6858cfeae92d26a9ced5e3056d0ed1ae350ae73e1ef89643e8d43d8c7784",
+    "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+    "sourceQuestionOnlySnapshot": "source-snapshot/packet/questions.json",
+    "sourceQuestionScore": 5,
+    "sourceQuestionType": "객관식",
+    "sourceQuestionParts": [],
+    "sourceStatus": "source_reference_reviewed_all_final_approval_gates_held",
+    "sourceObservation": "포물선 개형/꼭짓점/절편에서 일반형 계수와 특정 식의 부호를 판정한다.",
+    "originalAnswersOrSolutionsUsed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "score": 5,
+    "difficultyProposal": "응용",
+    "difficultyStatus": "pending-independent-review",
+    "problemTypeProposal": null,
+    "problemTypeStatus": "pending-independent-review",
+    "hasFigure": true,
+    "assignment": {
+      "status": "pending",
+      "unitId": null,
+      "familyKey": null,
+      "currentUnit": null,
+      "currentRegistryMatch": null,
+      "liveCount": null,
+      "checkedAt": "2026-10-08 04:53:45.769124+00",
+      "evidence": "계수/부호의 유형09와 꼭짓점+한 점 식 복구 유형10 중 새 네 항목 검산 기록의 주 subtype은 미확정이다. 임의 가까운 유형을 배정하지 않는다.",
+      "candidates": []
+    },
+    "achievementStandardRefs": [
+      {
+        "code": "9수02-02",
+        "verified_text": "식의 값을 구할 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3900,
+          "record_offset_in_uncompressed_stream": 199304,
+          "extracted_paragraph_1based": 793
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            34
+          ],
+          "printed_pages": [
+            30
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      },
+      {
+        "code": "9수02-12",
+        "verified_text": "다항식의 곱셈과 인수분해를 할 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3956,
+          "record_offset_in_uncompressed_stream": 201534,
+          "extracted_paragraph_1based": 807
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            34
+          ],
+          "printed_pages": [
+            30
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      },
+      {
+        "code": "9수03-09",
+        "verified_text": "이차함수의 의미를 이해하고, 그 그래프를 그릴 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4146,
+          "record_offset_in_uncompressed_stream": 210185,
+          "extracted_paragraph_1based": 849
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            36
+          ],
+          "printed_pages": [
+            32
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      },
+      {
+        "code": "9수03-10",
+        "verified_text": "이차함수의 그래프의 성질을 이해한다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4150,
+          "record_offset_in_uncompressed_stream": 210353,
+          "extracted_paragraph_1based": 850
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            36
+          ],
+          "printed_pages": [
+            32
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      }
+    ],
+    "achievementStandardStatus": "official-text-matched-candidate-author-proposed",
+    "sourceIdentityReview": {
+      "status": "source-packet-identity-supported-full-custody-held",
+      "sourceSchool": "경산중",
+      "sourceYear": 2025,
+      "sourcePacketDecision": "2025_original_header_school_footer_and_completed_question_identity_supported",
+      "fullPairCertification": "held",
+      "custody": "held",
+      "rights": "held"
+    },
+    "bankEvidence": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-fresh-r2-20261008.json",
+      "sha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b",
+      "capturedAt": "2026-10-08 04:53:45.769124+00",
+      "registrySha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "curriculumEvidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "databaseAccessByAuthor": false
+    },
+    "authorEvidence": {
+      "calculationsPath": "author-calculations.json",
+      "authoringScriptSha256": "9850c1bd934bafac38f1eab43d6e99fd16cd08984eb96cdaac8a8b44532e5bda",
+      "visualReview": "pending-local-view",
+      "mathematicalReview": "author-self-check-only"
+    }
+  },
+  "schoolNamePolicy": {
+    "actual": "경산중",
+    "display": "해솔누리중학교",
+    "role": "fictional-display-alias-only",
+    "originalOccurrencesInStem": 0,
+    "surfaces": [
+      "content",
+      "choices",
+      "tables",
+      "figureLabels",
+      "solution"
+    ],
+    "review": "author-proposed"
+  },
+  "independentVerification": null,
+  "review": {
+    "status": "pending",
+    "mathematicalCorrectness": "pending-independent-blind-solve",
+    "gradeCurriculum": "pending-independent-review",
+    "equivalentConceptAndMethod": "pending-independent-review",
+    "distinctPresentation": "pending-independent-review",
+    "naturalKorean": "pending-independent-review",
+    "figure": "pending-independent-review",
+    "rights": "pending",
+    "similarity": "pending",
+    "nativeCompatibility": "pending",
+    "physicalPaper": "not-approved"
+  },
+  "directUseAllowed": false
+}

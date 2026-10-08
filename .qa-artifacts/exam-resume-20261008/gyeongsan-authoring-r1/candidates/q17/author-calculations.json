@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "questionNumber": 17,
+  "sourceQuestionDigest": "62879fae83d546aac6d545703e8aefea4de814b331d7a774a4e1ad9a46f78c29",
+  "variantDigest": "2433f9e1578525795e9ef4a496d2331204a6edf2da0488fad8913b26f4c9019c",
+  "mathInCode": true,
+  "authorSelfCheckOnly": true,
+  "independentApproval": false,
+  "answerIndex": 2,
+  "facts": {
+    "AC": 15,
+    "BC": 8,
+    "AB": 17,
+    "cosx": 0.47058823529411764,
+    "siny": 0.47058823529411764,
+    "footDParameter": 0.7785467128027682,
+    "footD": [
+      184.56747404844293,
+      333.56401384083046
+    ]
+  },
+  "optionChecks": [
+    {
+      "index": 1,
+      "pair": [
+        0.8823529411764706,
+        0.47058823529411764
+      ],
+      "correct": false
+    },
+    {
+      "index": 2,
+      "pair": [
+        0.47058823529411764,
+        0.8823529411764706
+      ],
+      "correct": false
+    },
+    {
+      "index": 3,
+      "pair": [
+        0.47058823529411764,
+        0.47058823529411764
+      ],
+      "correct": true
+    },
+    {
+      "index": 4,
+      "pair": [
+        1.875,
+        0.47058823529411764
+      ],
+      "correct": false
+    },
+    {
+      "index": 5,
+      "pair": [
+        0.5333333333333333,
+        0.5333333333333333
+      ],
+      "correct": false
+    }
+  ],
+  "domainChecks": [
+    {
+      "condition": "두 변과 빗변은 양수, D는 AB 내부, x/y는 예각이며 변 비를 각각 정의할 수 있다.",
+      "passed": true
+    }
+  ]
+}

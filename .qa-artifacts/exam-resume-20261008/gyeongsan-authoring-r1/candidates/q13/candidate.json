@@ -1,0 +1,270 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 13,
+  "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q13",
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "content": "직각삼각형 $ABC$의 측정 기록에서 한 변이 지워졌다.\n\n| 항목 | 기록 |\n| --- | --- |\n| 직각인 꼭짓점 | $C$ |\n| 빗변 $\\overline{AB}$ | $26\\,\\mathrm{cm}$ |\n| $\\cos A$ | $\\frac{5}{13}$ |\n\n그림의 $x=\\overline{AC}$는?",
+  "choices": [
+    "$5\\,\\mathrm{cm}$",
+    "$10\\,\\mathrm{cm}$",
+    "$12\\,\\mathrm{cm}$",
+    "$13\\,\\mathrm{cm}$",
+    "$24\\,\\mathrm{cm}$"
+  ],
+  "answer": "②",
+  "solution": "직각은 $C$에 있으므로 빗변은 $AB$이다. $A$에 이웃한 직각변은 $AC$이므로 $\\cos A=\\dfrac{\\overline{AC}}{\\overline{AB}}=\\dfrac{x}{26}$이다.\n\n$\\dfrac{x}{26}=\\dfrac{5}{13}$에서 $x=26\\times\\dfrac{5}{13}=10$이다. 따라서 $\\overline{AC}=10\\,\\mathrm{cm}$이며 정답은 ②이다.",
+  "score": 3,
+  "questionType": "객관식",
+  "facts": {
+    "hypotenuse": 26,
+    "adjacent": 10,
+    "opposite": 24,
+    "cosA": 0.38461538461538464,
+    "answerValue": 10
+  },
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "stem.spec.json",
+      "svgPath": "stem.svg",
+      "intendedWidthMm": 70
+    }
+  ],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation",
+      "inverse-target"
+    ],
+    "before": "직각삼각형의 알려진 세 변에서 cos A의 값을 구한다. 실제 지면 배점은 3점이다.",
+    "after": "삼각비를 읽는 방향을 뒤집어 빗변과 코사인 측정 기록에서 빠진 이웃 변의 길이를 복구한다.",
+    "sharedConcept": "코사인=이웃한 직각변/빗변의 정의",
+    "sharedProcedure": "직각과 대상 각에서 두 변의 역할을 정하고 코사인 정의에 대입해 누락 길이를 구한다.",
+    "objectiveDifficulty": "정의와 한 번의 곱셈이라는 기본 3점 수준을 유지했다. 실제 source13의 3점을 그대로 보존한다.",
+    "scoreDelta": {
+      "source": 3,
+      "authored": 3,
+      "changed": false
+    }
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수04-17",
+      "9수04-18"
+    ],
+    "allowedProcedure": "직각과 대상 각에서 두 변의 역할을 정하고 코사인 정의에 대입해 누락 길이를 구한다.",
+    "forbiddenAvoided": [
+      "삼각비 사이의 관계식",
+      "사인/코사인 법칙",
+      "고교 삼각함수"
+    ],
+    "status": "author-proposed",
+    "surfaces": {
+      "stem": {
+        "status": "author-proposed",
+        "evidence": "직각·빗변·코사인 값과 실제 누락 변의 기록이다."
+      },
+      "choices": {
+        "status": "author-proposed",
+        "evidence": "다섯 양수 cm 길이를 정의식과 비교한다."
+      },
+      "figuresAndTables": {
+        "status": "author-proposed",
+        "evidence": "새 삼각형은 실제 10/24/26 길이 비이며 답인 10을 쓰지 않고 x로 표시한다."
+      },
+      "notation": {
+        "status": "author-proposed",
+        "evidence": "좌표·선분·각·근호·도·삼각비의 표기는 실제 중학교 해법에 쓰는 범위이다."
+      },
+      "answer": {
+        "status": "author-proposed",
+        "evidence": "새 조건을 계산한 유일한 객관식 답이며 원문 정답을 가져오지 않았다."
+      },
+      "studentSolution": {
+        "status": "author-proposed",
+        "evidence": "cos A=x/26을 직접 사용한다."
+      },
+      "prerequisites": {
+        "status": "author-proposed",
+        "evidence": "직각삼각형의 빗변과 간단한 분수 곱셈"
+      }
+    },
+    "gradeBasis": "한 삼각비와 실제 한 변에서 다른 변을 구하는 직각삼각형 문제이다. 한 삼각비에서 다른 삼각비를 복구하는 관계식 문제로 바꾸지 않았다.",
+    "exactGradeApproval": false
+  },
+  "sourceReference": {
+    "externalId": "2025-gyeongsan-3-2-mid-13",
+    "examId": "personal-aa35a05fbaf41074c2ebcfcd6f16e876",
+    "sourcePacketExamId": "2025-gyeongsan-3-2-mid",
+    "school": "경산중",
+    "questionNumber": 13,
+    "sourceContentSha256": "6bdb93fc858a191c0db0e4569df8515960db109a29cd9c74bced9d7b2ce3991e",
+    "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+    "sourceQuestionOnlySnapshot": "source-snapshot/packet/questions.json",
+    "sourceQuestionScore": 3,
+    "sourceQuestionType": "객관식",
+    "sourceQuestionParts": [],
+    "sourceStatus": "source_reference_reviewed_all_final_approval_gates_held",
+    "sourceObservation": "직각삼각형의 알려진 세 변에서 cos A의 값을 구한다. 실제 지면 배점은 3점이다.",
+    "originalAnswersOrSolutionsUsed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "score": 3,
+    "difficultyProposal": "응용",
+    "difficultyStatus": "pending-independent-review",
+    "problemTypeProposal": null,
+    "problemTypeStatus": "pending-independent-review",
+    "hasFigure": true,
+    "assignment": {
+      "status": "proposed",
+      "unitId": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+      "familyKey": "mid:3-2|삼각비|02",
+      "currentUnit": {
+        "id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 뜻",
+        "semester": 2,
+        "orderIndex": 481,
+        "problemCodePrefix": "J30501"
+      },
+      "currentRegistryMatch": {
+        "key": "3-2|삼각비|02",
+        "grade": "중3",
+        "unitSection": "삼각비의 뜻",
+        "rpmBook": "3-2",
+        "rpmMinor": "삼각비",
+        "rpmType": "02",
+        "rpmTitle": "삼각비를 이용하여 삼각형의 변의 길이 구하기"
+      },
+      "liveCount": 24,
+      "checkedAt": "2026-10-08 04:53:45.769124+00",
+      "evidence": "주어진 코사인과 빗변으로 실제 누락 직각변을 구하는 현재 유형02의 입력/목표/정의 사용과 대응한다.",
+      "generatorRuleEvidence": {
+        "module": "src/lib/middle/m3Trig.ts",
+        "family": "삼각비 02",
+        "observed": "삼각비의 값과 실제 한 변을 주고 비의 정의로 다른 변을 구한다.",
+        "status": "author-semantic-proposal"
+      },
+      "approval": "author-proposal-only"
+    },
+    "achievementStandardRefs": [
+      {
+        "code": "9수04-17",
+        "verified_text": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4341,
+          "record_offset_in_uncompressed_stream": 219120,
+          "extracted_paragraph_1based": 891
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            38
+          ],
+          "printed_pages": [
+            34
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      },
+      {
+        "code": "9수04-18",
+        "verified_text": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4345,
+          "record_offset_in_uncompressed_stream": 219292,
+          "extracted_paragraph_1based": 892
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            38
+          ],
+          "printed_pages": [
+            34
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      }
+    ],
+    "achievementStandardStatus": "official-text-matched-candidate-author-proposed",
+    "sourceIdentityReview": {
+      "status": "source-packet-identity-supported-full-custody-held",
+      "sourceSchool": "경산중",
+      "sourceYear": 2025,
+      "sourcePacketDecision": "2025_original_header_school_footer_and_completed_question_identity_supported",
+      "fullPairCertification": "held",
+      "custody": "held",
+      "rights": "held"
+    },
+    "bankEvidence": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-fresh-r2-20261008.json",
+      "sha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b",
+      "capturedAt": "2026-10-08 04:53:45.769124+00",
+      "registrySha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "curriculumEvidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "databaseAccessByAuthor": false
+    },
+    "authorEvidence": {
+      "calculationsPath": "author-calculations.json",
+      "authoringScriptSha256": "968f4138a9be3a7960b4b2a2ce76c3625a6e0df382b168d6dbe457cb833bcd35",
+      "visualReview": "pending-local-view",
+      "mathematicalReview": "author-self-check-only"
+    }
+  },
+  "schoolNamePolicy": {
+    "actual": "경산중",
+    "display": "해솔누리중학교",
+    "role": "fictional-display-alias-only",
+    "originalOccurrencesInStem": 0,
+    "surfaces": [
+      "content",
+      "choices",
+      "tables",
+      "figureLabels",
+      "solution"
+    ],
+    "review": "author-proposed"
+  },
+  "independentVerification": null,
+  "review": {
+    "status": "pending",
+    "mathematicalCorrectness": "pending-independent-blind-solve",
+    "gradeCurriculum": "pending-independent-review",
+    "equivalentConceptAndMethod": "pending-independent-review",
+    "distinctPresentation": "pending-independent-review",
+    "naturalKorean": "pending-independent-review",
+    "figure": "pending-independent-review",
+    "rights": "pending",
+    "similarity": "pending",
+    "nativeCompatibility": "pending",
+    "physicalPaper": "not-approved"
+  },
+  "directUseAllowed": false
+}

@@ -1,0 +1,328 @@
+{
+  "schemaVersion": 1,
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "questionNumber": 11,
+  "sourceQuestionDigest": "670a3f3f93d320be6bffc4fdc69002305be6a84c6a36ce369475e0da7e725ed4",
+  "variantDigest": "a6dbd21eee645820039ed874907039379fcc4a08fd9f66ef7d18c8ec6d12eac9",
+  "mathInCode": true,
+  "authorSelfCheckOnly": true,
+  "independentApproval": false,
+  "answerIndex": 4,
+  "facts": {
+    "p": -2,
+    "q": -9,
+    "intercept": "4*k-9",
+    "condition": "k>0 && 4*k-9>=0",
+    "lowerBound": 2.25,
+    "inclusive": true,
+    "boundaryWitness": {
+      "k": 2.25,
+      "I": [
+        1,
+        11.25
+      ],
+      "II": [
+        -5,
+        11.25
+      ],
+      "III": [
+        -2,
+        -9
+      ],
+      "IV": false
+    }
+  },
+  "optionChecks": [
+    {
+      "index": 1,
+      "correct": false,
+      "boundaryMembership": false,
+      "witnessComparisons": [
+        {
+          "k": -100,
+          "selected": true,
+          "required": false
+        },
+        {
+          "k": -2,
+          "selected": true,
+          "required": false
+        },
+        {
+          "k": -0.1,
+          "selected": true,
+          "required": false
+        },
+        {
+          "k": 0.1,
+          "selected": false,
+          "required": false
+        },
+        {
+          "k": 1,
+          "selected": false,
+          "required": false
+        },
+        {
+          "k": 2,
+          "selected": false,
+          "required": false
+        },
+        {
+          "k": 2.25,
+          "selected": false,
+          "required": true
+        },
+        {
+          "k": 2.250001,
+          "selected": false,
+          "required": true
+        },
+        {
+          "k": 3,
+          "selected": false,
+          "required": true
+        },
+        {
+          "k": 100,
+          "selected": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "correct": false,
+      "boundaryMembership": false,
+      "witnessComparisons": [
+        {
+          "k": -100,
+          "selected": false,
+          "required": false
+        },
+        {
+          "k": -2,
+          "selected": false,
+          "required": false
+        },
+        {
+          "k": -0.1,
+          "selected": false,
+          "required": false
+        },
+        {
+          "k": 0.1,
+          "selected": true,
+          "required": false
+        },
+        {
+          "k": 1,
+          "selected": true,
+          "required": false
+        },
+        {
+          "k": 2,
+          "selected": true,
+          "required": false
+        },
+        {
+          "k": 2.25,
+          "selected": false,
+          "required": true
+        },
+        {
+          "k": 2.250001,
+          "selected": false,
+          "required": true
+        },
+        {
+          "k": 3,
+          "selected": false,
+          "required": true
+        },
+        {
+          "k": 100,
+          "selected": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "correct": false,
+      "boundaryMembership": true,
+      "witnessComparisons": [
+        {
+          "k": -100,
+          "selected": false,
+          "required": false
+        },
+        {
+          "k": -2,
+          "selected": false,
+          "required": false
+        },
+        {
+          "k": -0.1,
+          "selected": false,
+          "required": false
+        },
+        {
+          "k": 0.1,
+          "selected": true,
+          "required": false
+        },
+        {
+          "k": 1,
+          "selected": true,
+          "required": false
+        },
+        {
+          "k": 2,
+          "selected": true,
+          "required": false
+        },
+        {
+          "k": 2.25,
+          "selected": true,
+          "required": true
+        },
+        {
+          "k": 2.250001,
+          "selected": false,
+          "required": true
+        },
+        {
+          "k": 3,
+          "selected": false,
+          "required": true
+        },
+        {
+          "k": 100,
+          "selected": false,
+          "required": true
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "correct": false,
+      "boundaryMembership": false,
+      "witnessComparisons": [
+        {
+          "k": -100,
+          "selected": false,
+          "required": false
+        },
+        {
+          "k": -2,
+          "selected": false,
+          "required": false
+        },
+        {
+          "k": -0.1,
+          "selected": false,
+          "required": false
+        },
+        {
+          "k": 0.1,
+          "selected": false,
+          "required": false
+        },
+        {
+          "k": 1,
+          "selected": false,
+          "required": false
+        },
+        {
+          "k": 2,
+          "selected": false,
+          "required": false
+        },
+        {
+          "k": 2.25,
+          "selected": false,
+          "required": true
+        },
+        {
+          "k": 2.250001,
+          "selected": true,
+          "required": true
+        },
+        {
+          "k": 3,
+          "selected": true,
+          "required": true
+        },
+        {
+          "k": 100,
+          "selected": true,
+          "required": true
+        }
+      ]
+    },
+    {
+      "index": 5,
+      "correct": true,
+      "boundaryMembership": true,
+      "witnessComparisons": [
+        {
+          "k": -100,
+          "selected": false,
+          "required": false
+        },
+        {
+          "k": -2,
+          "selected": false,
+          "required": false
+        },
+        {
+          "k": -0.1,
+          "selected": false,
+          "required": false
+        },
+        {
+          "k": 0.1,
+          "selected": false,
+          "required": false
+        },
+        {
+          "k": 1,
+          "selected": false,
+          "required": false
+        },
+        {
+          "k": 2,
+          "selected": false,
+          "required": false
+        },
+        {
+          "k": 2.25,
+          "selected": true,
+          "required": true
+        },
+        {
+          "k": 2.250001,
+          "selected": true,
+          "required": true
+        },
+        {
+          "k": 3,
+          "selected": true,
+          "required": true
+        },
+        {
+          "k": 100,
+          "selected": true,
+          "required": true
+        }
+      ]
+    }
+  ],
+  "domainChecks": [
+    {
+      "condition": "이차함수 k≠0, 양수 k와 y절편≥0이 충분·필요조건이다. 경계 k=9/4에서도 정확 세 사분면을 지난다.",
+      "passed": true
+    }
+  ]
+}
