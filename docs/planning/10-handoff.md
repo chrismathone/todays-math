@@ -35,6 +35,11 @@
   원장님 확인 대기: 표본(학생지 · 정답지) · `mix4` 난이도 «응용» · 해설 넉 줄 짜임. 🔴 **정답지에서 해설 줄의 큰 분수가 위아래 줄과 맞닿는다** — 판정형 20문항 전부 틈 0px 이고
   기존 엔진(m1Calc 유리수 계산)도 20문항 중 11문항이 맞닿는다(작업자 실측) — 정답지 줄 간격(인쇄)의 문제라 따로 올린다. 후속 일감(겹침 검사 `e2e/answer-key-overlap/`)은 세션이 끊겨
   미완 · 미커밋으로 그 작업트리(`C:\Users\user\orca\workspaces\todays-math\engine-judge`)에 남아 있다. 다음은 2단계(곱셈 · 나눗셈 · 식의 값 · 비교 4+1) → 3단계(② 설명 판정) → ③-0 고등 배선.
+  **2026-10-08 밤 덧붙임** — ⑴ 2단계 · ③-0 은 오르카 작업자가 가지 `chrismathone/engine-judge-2` · `chrismathone/high-wiring` 에서 진행 중(세션이 끊겨 한 번 다시 띄웠다 — 지시서 `E:\todays-math-textbook-import\briefs\`).
+  ⑵ 🔴 **식이 든 보기가 보기 칸에서 접힌다**(2단계 작업자 실측): 보기 열 수를 정하는 폭 자가 `\left(\dfrac{a}{b}\right)` 를 실제보다 좁게 본다(16단위 ≈ 112px 로 보는데 실제 134px · 2단 시험지의 2열 칸은 127.6px).
+  1단계의 `calc-mix4` 는 1열인데도 2단 시험지에서 85% 접혀 **12문항을 잠갔다**(원장 `scripts/qa/reports/refresh-engine-content/2026-10-08-판정형-mix4-지면접힘.json` — `lock-problems.ts --revert` 로 되돌린다). 실린 판정형 36 가운데 출제 가능 24.
+  2단계는 판정형 쪽 «지면 관문»(제품의 열 수 규칙을 불러 칸에 안 들어가는 식은 안 낸다)으로 막고, 폭 자 자체의 고침은 인쇄 변경이라 원장님께 올린다.
+  ⑶ 고등 배선 작업자가 찾은 공용 렌더 결함 — `$$…$$` 블록 바로 뒤의 홑 줄바꿈이 사라져 연립식 · 행렬 다음 줄이 붙어 나갔다 — 은 리드가 고쳐 main `420b7eef5`(교과서 문항 218행의 지면이 «줄이 갈리는 쪽»으로 · `/dev/print-check` 의 `math-block-tail-break` 대기).
   🔴 실측: 고등 과목 문항은 교과서 3,250 뿐 · 엔진 `high:` 0 · `SUPPORTED_GRADES` 는 초3 ~ 중3 — 고등 교과서 문항은 출제 범위 고르개에 안 보인다(고등을 열지는 원장님 결정 대기).
 - 🔴 main 의 빨간 시험(H1 작업자가 origin/main 으로 되돌려도 빨갛다고 보고): `ProblemBank` 출처 기대값 · english/questions `withErrorLog` · 교재 백지 `questionMode` · 보기 그림 해시 — 4파일 5건. pre-push 는 전체 vitest 를 안 돌려 안 막힌다.
 
