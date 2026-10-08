@@ -247,9 +247,10 @@
         color: #c4cddd;
       }
       .wrap {
-        max-width: 1160px;
+        width: 100%;
+        max-width: none;
         margin: 0 auto;
-        padding: 24px 28px 40px;
+        padding: 16px 20px;
       }
       .workbench.wrap {
         max-width: 1440px;
@@ -338,7 +339,7 @@
       }
       .scope-layout {
         display: grid;
-        grid-template-columns: minmax(0, 1fr) 270px;
+        grid-template-columns: minmax(0, 1fr) clamp(280px, 24vw, 360px);
         gap: 24px;
         margin-top: 0;
       }
@@ -446,6 +447,10 @@
         font-weight: 600;
         overflow-wrap: anywhere;
         word-break: keep-all;
+      }
+      .guided-review .q-copy,
+      .guided-review .passage {
+        max-width: 78ch;
       }
       .options {
         display: grid;
@@ -841,10 +846,6 @@
         break-after: avoid;
       }
       @media (min-width: 1000px) {
-        .guided-review {
-          max-width: 900px;
-          margin: auto;
-        }
         .workbench .question-list {
           gap: 12px;
         }
@@ -866,15 +867,8 @@
         .workbench .q-tools > .row {
           gap: 4px;
         }
-        .wrap {
-          padding: 20px;
-        }
-        .scope-layout {
-          grid-template-columns: minmax(0, 1fr) 240px;
-          gap: 24px;
-        }
       }
-      @media (max-width: 700px) {
+      @media (max-width: 860px) {
         .topbar {
           padding: 6px 16px;
           gap: 8px;
@@ -883,7 +877,7 @@
           display: none;
         }
         .wrap {
-          padding: 20px 16px 28px;
+          padding: 14px 16px;
         }
         .pagehead {
           margin-bottom: 20px;
@@ -902,7 +896,7 @@
         }
         .panelbody,
         .panelhead {
-          padding: 20px;
+          padding: 16px;
         }
         .step {
           gap: 8px;
@@ -993,9 +987,6 @@
         }
       }
       @media (max-width: 360px) {
-        .wrap {
-          padding: 16px 12px 24px;
-        }
         .panelbody,
         .panelhead {
           padding: 16px;
