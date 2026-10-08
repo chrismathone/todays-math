@@ -57,6 +57,13 @@
 - 편집 카드 padding 24px, 좁은 viewport 16px, editor container 480px 이하에서 정답·해설을 쌓는다.
 - 수학 PrivateLibrary의 전 계정 자료·사본/소유자 기능을 영어에도 있는 것처럼 설명하지 않는다. 전체 시험 통합 보관함도 현재 기능이 아니다.
 
+### 시험지 만들기 개편 시안의 공통 마지막 단계 — 사용자 결정, 2026-10-08
+
+- 범위 선택 → 문항 구성·검토 다음에는 문제 추출의 마지막 **시험지 구성** 화면을 함께 사용한다. 시안마다 간단한 출력 폼을 별도로 만들지 않는다.
+- 공통 구현 기준은 `UnifiedWorkspace`의 export 단계가 사용하는 `WorksheetEditor`와 그 안의 `PrintOptionsPanel`, `WorksheetPrint`다. 기존 여섯 양식과 세부 인쇄 설정을 재사용한다.
+- [5개 시안](mockups/exam-builder-common-20261008/README.txt)은 `/dev/exam-builder-output`에서 실제 컴포넌트를 재사용한다. 선택한 문항·제목·순서를 넘기고, 검토 화면으로 복귀할 때 변경을 반영한다.
+- 이는 개발용 시안 연결이다. 운영 영어 `EnglishBankPrint`나 수학 문제은행의 제작 진입 흐름을 전환한 상태는 아니며, 실제 저장·권한·문항 계약의 통합은 운영 구현 때 유지해야 한다.
+
 ### 영어듣기 — `english-listening`
 
 구현: [ListeningStudio](../../src/components/english/listening/ListeningStudio.tsx), [ListeningTeacherWorkspace](../../src/components/english/listening/ListeningTeacherWorkspace.tsx), [CSS](../../src/components/english/listening/ListeningTeacherWorkspace.module.css).
