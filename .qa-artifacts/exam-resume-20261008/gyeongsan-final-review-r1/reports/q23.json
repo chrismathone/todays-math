@@ -1,0 +1,290 @@
+{
+  "questionNumber": 23,
+  "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q23",
+  "status": "pending",
+  "studentDigest": "5c1d7c4c23d9376db61796a5576915fda58bbd889ee56e800c29d47766670437",
+  "candidateDigest": "a0f1056b4f2c8b9db3f0f022fa83d4437e53282d9b8146b9da35e1791d436a9c",
+  "assetDigest": "5e62477e358bc3b9a81e4ce20734f3f79439f50a1f37d5c1a790b1be3dcdd8ae",
+  "solveDigest": "5f467e07ce334ef70c50a2157b44fab101db410080ecdaa3ed8263461c914e69",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-exam-twin-author-geometry-20261008",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "건물 간격으로 두 높이합→허구 학교의 측량 관측탑 높이합으로 간격 역산. 아래 높이가 두 탑에 포함되는 구조 유지. 명시 조건과 요청은 아래 실제 중학교 해법으로 해결된다.",
+      "standardCodes": [
+        "9수04-17",
+        "9수04-18",
+        "9수02-05"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "실제5보기 전부 계산/도형 비교;정답 하나,나머지 비동치 오답. ",
+      "standardCodes": [
+        "9수04-17",
+        "9수04-18",
+        "9수02-05"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "새 SVG 1개의 라벨·직각·각·점순서·영역을 stem과 함께 확인. 70mm 검사 화면에서 텍스트와 자산 역할 확인.",
+      "standardCodes": [
+        "9수04-17",
+        "9수04-18",
+        "9수02-05"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "통상 좌표/함수/선분/도 단위/근호/실제 삼각비 표기. 일반 라디안·벡터·고교 공식 표기 없음. ",
+      "standardCodes": [
+        "9수04-17",
+        "9수04-18",
+        "9수02-05"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "PR=GE=d,ER=PG=d,RQ=d√3,QE=d+d√3;두 높이 합d(2+√3)에서d90m.양수이고 관측 눈높이를 별도 더하지 않음. circled choice는 역할·값·단위가 독립 결과와 일치.",
+      "standardCodes": [
+        "9수04-17",
+        "9수04-18",
+        "9수02-05"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "각45/60의 두 직각삼각형→공통높이의 두 번 포함→일차역산. 공개된 새 저자 풀이의 모든 단계와 실제 정의를 읽고 검산. 공학 코드에서의 좌표/삼각함수 값 검증을 학생 풀이 방법으로 취급하지 않음.",
+      "standardCodes": [
+        "9수04-17",
+        "9수04-18",
+        "9수02-05"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "각45/60의 두 직각삼각형→공통높이의 두 번 포함→일차역산. 공식 선택 성취기준의 중학교 범위와 초등 밑변높이 원리;필요한 보조점/조건 명시 여부 확인.",
+      "standardCodes": [
+        "9수04-17",
+        "9수04-18",
+        "9수02-05"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    }
+  },
+  "evidence": {
+    "binding": {
+      "questionNumber": 23,
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q23",
+      "studentDigest": "5c1d7c4c23d9376db61796a5576915fda58bbd889ee56e800c29d47766670437",
+      "candidateDigest": "a0f1056b4f2c8b9db3f0f022fa83d4437e53282d9b8146b9da35e1791d436a9c",
+      "assetDigest": "5e62477e358bc3b9a81e4ce20734f3f79439f50a1f37d5c1a790b1be3dcdd8ae",
+      "solveDigest": "5f467e07ce334ef70c50a2157b44fab101db410080ecdaa3ed8263461c914e69",
+      "candidateFileSha256": "26002c1ae2f9305cbbb52d0788e0ed1000e4b523e410be8124ff3b054a7394fc",
+      "rawSolveSha256": "86d862162ee94c5f878342290a1e38f17f8fe0116aea518bd042139fbcc74871",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-23",
+      "sourceQuestionCanonicalDigest": "47de83c567558f55705d73c93d2c0b7c70c1ef37be70ad6267f4355153b4a3d4",
+      "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceProvidedDigest": "fa8cc2e911c7c2e5715fcd1d2bb52166499020bee2e577fd3e58fc2aa75ae30e",
+      "sourceHashContract": "supplied sourceContentDigest separate from raw stem or complete canonical source-row digest",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    "independentSolveCommit": "c8f8aeadfb28becb1d7447240fd4e28b6702fc4c",
+    "rawSolveUnchanged": true,
+    "answerComparison": {
+      "literalEqual": true,
+      "semanticEqual": true,
+      "role": "single selected choice",
+      "authorAnswer": "②",
+      "independentAnswer": "②",
+      "allFiveChoiceTruthValues": [
+        false,
+        true,
+        false,
+        false,
+        false
+      ],
+      "semanticDuplicateChoices": [],
+      "unitAndTargetOrderChecked": true,
+      "writtenPartsRequested": [],
+      "writtenRubricApplicable": false
+    },
+    "independentExactCalculation": {
+      "questionNumber": 23,
+      "target": "90",
+      "status": "independently-computed",
+      "evidence": {
+        "GEequalsPR": "90",
+        "PGequalsRE": "90",
+        "RQ": "90*sqrt(3)",
+        "QE": "90 + 90*sqrt(3)",
+        "heightSum": "90*sqrt(3) + 180",
+        "eyeHeightExtra": 0,
+        "positiveHeights": true,
+        "method": "tan45 andtan60 in two actual right triangles;same horizontal ground;one linear equation.",
+        "allFiveActualChoiceValues": [
+          "45",
+          "90",
+          "90*sqrt(3)",
+          "45 + 45*sqrt(3)",
+          "90*sqrt(3) + 180"
+        ],
+        "choiceCorrectness": [
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "correctChoiceNumber": 2,
+        "semanticDuplicateChoices": [],
+        "oneCorrectChoice": true
+      },
+      "knownHolds": []
+    },
+    "mathAndNewSolution": "PR=GE=d,ER=PG=d,RQ=d√3,QE=d+d√3;두 높이 합d(2+√3)에서d90m.양수이고 관측 눈높이를 별도 더하지 않음.",
+    "coreAndSubstantiveDelta": "건물 간격으로 두 높이합→허구 학교의 측량 관측탑 높이합으로 간격 역산. 아래 높이가 두 탑에 포함되는 구조 유지.",
+    "allowedWholeStudentMethod": "각45/60의 두 직각삼각형→공통높이의 두 번 포함→일차역산.",
+    "sourceQuestionOnly": {
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-23",
+      "packetRawSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceDigestProvided": "fa8cc2e911c7c2e5715fcd1d2bb52166499020bee2e577fd3e58fc2aa75ae30e",
+      "images": [
+        {
+          "file": "images/q23-part1.png",
+          "rawSha256": "ceb8f2fb46ae28cf8581ce4424d57b97c1552ed38ff695bb28509e0f3a980baf",
+          "personallyViewed": true
+        }
+      ],
+      "sourceCropsNotNewAssets": true,
+      "originalKeyOrSolutionFilesRead": false
+    },
+    "visualReview": {
+      "questionNumber": 23,
+      "studentDigest": "5c1d7c4c23d9376db61796a5576915fda58bbd889ee56e800c29d47766670437",
+      "candidateDigest": "a0f1056b4f2c8b9db3f0f022fa83d4437e53282d9b8146b9da35e1791d436a9c",
+      "columnWidthMm": 70,
+      "png": "inspection/q23-expanded.png",
+      "pngSha256": "523f42eb3d01a078e6f6369827e1067cd841702848276d5c64cb36db14d975b9",
+      "overflow": [],
+      "unclippedPng": null,
+      "figureCount": 1,
+      "figureWidthMm": 70,
+      "figureArrangement": "ordered roles",
+      "personallyViewed": true,
+      "imageRawSha256": "523f42eb3d01a078e6f6369827e1067cd841702848276d5c64cb36db14d975b9",
+      "actualQuestionAndExpandedSolutionInspected": true,
+      "allSuppliedChoiceFiguresInspected": false,
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "7a36b53bcffe4de1a6fe4834543a4e8147d804157b30ee80397e27806ef2eaa4",
+          "svgSha256": "6dea7f9e53fba81da0d17218bb115d2e8a2992b562e00ba14c97f8e2cbdfde0c",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q23-1.svg"
+        }
+      ],
+      "strictRegenerationResults": [
+        {
+          "questionNumber": 23,
+          "role": "stem",
+          "specSha256": "7a36b53bcffe4de1a6fe4834543a4e8147d804157b30ee80397e27806ef2eaa4",
+          "frozenSvgSha256": "6dea7f9e53fba81da0d17218bb115d2e8a2992b562e00ba14c97f8e2cbdfde0c",
+          "regeneratedSvgSha256": "6dea7f9e53fba81da0d17218bb115d2e8a2992b562e00ba14c97f8e2cbdfde0c",
+          "byteEqual": true,
+          "strict": true,
+          "localOnly": true,
+          "droppedDimensions": []
+        }
+      ],
+      "nativeCompatibilityNotApproved": true
+    },
+    "naturalKorean": "조건·대상각·선분·기록값·단위가 자연스럽고 모호한 원본 조건을 명시했다. 허구 학교 표시 해솔누리중학교와 실제 학교 내부 보존을 구별;원학교로 학년 승인하지 않음.",
+    "scoreAndDifficulty": {
+      "score": 4,
+      "sourceScorePreserved": true,
+      "authorDifficultyProposal": "응용",
+      "reviewerDifficultyProposal": "응용",
+      "basis": "각45/60의 두 직각삼각형→공통높이의 두 번 포함→일차역산. 4점은 원문과 동일하고 필요한 단계 수를 근거로 제안. 검토자는 심화하/기본과 응용 차이를 기록하며 실측 난도나 학교 자동 승인 주장 없음.",
+      "measuredDifficulty": false
+    },
+    "taxonomy": {
+      "unitUuidProposal": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+      "unit": {
+        "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 활용",
+        "semester": 2,
+        "orderIndex": 483,
+        "problemCodePrefix": "J30503"
+      },
+      "unitSeedExactMatch": true,
+      "candidateMetadataAssignmentUnedited": {
+        "status": "pending",
+        "unitId": null,
+        "familyKey": null,
+        "currentUnit": null,
+        "currentRegistryMatch": null,
+        "liveCount": null,
+        "checkedAt": "2026-10-08 04:53:45.769124+00",
+        "evidence": "실측 높이 역산과 두 높이 합의 doublebaseline 구조를 포함하는 정확 live family는 독립 검토 전 null이다. 원본 역사적 키 충돌은 별도 source-semantic hold로 남는다.",
+        "candidates": []
+      },
+      "existingLiveFamilyProposal": null,
+      "semanticFamilyOnly": null,
+      "status": "held",
+      "basis": "활용03은 나무/사다리/연의 단일 직각삼각형;13은 같은 한 건물의 지상 두 관측점에서 이동거리로 높이를 구함.본문 옥상 올림/내림·두탑 높이합/간격 역산 전체 규칙 미지원.원본 역사적 키 충돌은해당source/native권리별도보류.",
+      "formatComparison": "Complete new target/format/difficulty support is unconfirmed as described in basis; no nearest/title mapping.",
+      "bankCapturedAt": "2026-10-08 13:00:16.891043+00",
+      "snapshotScopeOnly": true,
+      "liveCountNotPermission": true
+    },
+    "q22RepairRead": false,
+    "q23SourceRoleMetadataBoundary": "Matching frozen q23 contains author source-role derivation metadata. New answer90m was independently sealed before exposure; source numerical derivation is not answer authority."
+  },
+  "holds": [
+    {
+      "code": "exact-unit-live-family-contract-pending",
+      "basis": "활용03은 나무/사다리/연의 단일 직각삼각형;13은 같은 한 건물의 지상 두 관측점에서 이동거리로 높이를 구함.본문 옥상 올림/내림·두탑 높이합/간격 역산 전체 규칙 미지원.원본 역사적 키 충돌은해당source/native권리별도보류.",
+      "reopen": "실제 live 규칙의 전체 조건/요청 목표/핵심 절차/난도/형식을 지원하는 근거를 제시하거나 별도 새 메타데이터 계약을 검토. Unit·제목·live count만으로 확정하지 않음."
+    }
+  ],
+  "gates": {
+    "rights": "held",
+    "custody": "held",
+    "similarity": "pending",
+    "nativeCompatibility": "pending",
+    "directUseAllowed": false,
+    "loadable": false,
+    "dbWrites": 0,
+    "modelCalls": 0,
+    "finalPublicationApproval": false
+  }
+}

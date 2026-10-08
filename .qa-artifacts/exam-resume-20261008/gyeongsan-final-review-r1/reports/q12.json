@@ -1,0 +1,336 @@
+{
+  "questionNumber": 12,
+  "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q12",
+  "status": "pending",
+  "studentDigest": "8b83dae75670e87b426b14bb5c822a87dd8b92abb5fe9bdc6f4943ed6a3d0e9f",
+  "candidateDigest": "ebfaac76241068cab461045bc6ff91d7719ca1f780a6fca50ea3419a0540b037",
+  "assetDigest": "e9f63de6f7978643914d9346e8844370e4d9b2712d5103bc2cb4ea274eafc6ce",
+  "solveDigest": "9bdc548109134889deeb67bd0a9074e738233f61cdf4dadccadd8a0bd75c8691",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-exam-twin-author-geometry-20261008",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "이등분 직선 식 선택→중점 위치·기울기·절편 세 항목 검산. 근의 공식 대신 같은 인수분해/밑변높이/두 점 직선 사용. 명시 조건과 요청은 아래 실제 중학교 해법으로 해결된다.",
+      "standardCodes": [
+        "9수03-10",
+        "9수02-13",
+        "9수03-06",
+        "6수03-06"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "실제5보기 전부 계산/도형 비교;정답 하나,나머지 비동치 오답. ",
+      "standardCodes": [
+        "9수03-10",
+        "9수02-13",
+        "9수03-06",
+        "6수03-06"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "새 SVG 1개의 라벨·직각·각·점순서·영역을 stem과 함께 확인. 70mm 검사 화면에서 텍스트와 자산 역할 확인.",
+      "standardCodes": [
+        "9수03-10",
+        "9수02-13",
+        "9수03-06",
+        "6수03-06"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "통상 좌표/함수/선분/도 단위/근호/실제 삼각비 표기. 일반 라디안·벡터·고교 공식 표기 없음. ",
+      "standardCodes": [
+        "9수03-10",
+        "9수02-13",
+        "9수03-06",
+        "6수03-06"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "B(−1,0),C(3,0),A(0,3).같은 높이 넓이→D중점(1,0);두 점 대입→m−3,n3.기록② 유일. circled choice는 역할·값·단위가 독립 결과와 일치.",
+      "standardCodes": [
+        "9수03-10",
+        "9수02-13",
+        "9수03-06",
+        "6수03-06"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "인수분해 축교점→같은 높이의 밑변 중점→두 점의 일차함수. 공개된 새 저자 풀이의 모든 단계와 실제 정의를 읽고 검산. ",
+      "standardCodes": [
+        "9수03-10",
+        "9수02-13",
+        "9수03-06",
+        "6수03-06"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "인수분해 축교점→같은 높이의 밑변 중점→두 점의 일차함수. 공식 선택 성취기준의 중학교 범위와 초등 밑변높이 원리;필요한 보조점/조건 명시 여부 확인.",
+      "standardCodes": [
+        "9수03-10",
+        "9수02-13",
+        "9수03-06",
+        "6수03-06"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    }
+  },
+  "evidence": {
+    "binding": {
+      "questionNumber": 12,
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q12",
+      "studentDigest": "8b83dae75670e87b426b14bb5c822a87dd8b92abb5fe9bdc6f4943ed6a3d0e9f",
+      "candidateDigest": "ebfaac76241068cab461045bc6ff91d7719ca1f780a6fca50ea3419a0540b037",
+      "assetDigest": "e9f63de6f7978643914d9346e8844370e4d9b2712d5103bc2cb4ea274eafc6ce",
+      "solveDigest": "9bdc548109134889deeb67bd0a9074e738233f61cdf4dadccadd8a0bd75c8691",
+      "candidateFileSha256": "2c1c34c479a1e968478fa9e9294d7074adc4e5c57bb926c662bd1f6b0038aa74",
+      "rawSolveSha256": "7a79af561639b10d6bdb352afeb53bdc74638b02d4f2a77e478b8c89ec98dfb5",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-12",
+      "sourceQuestionCanonicalDigest": "c03f0b3a8c042c7c82c1c267341aa5452718cde92e55d6561dd6e70a0dd4df4d",
+      "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceProvidedDigest": "2fc0b7c94d7c305089f381a96982fae896b126d5461303006bbae692f6ee4a25",
+      "sourceHashContract": "supplied sourceContentDigest separate from raw stem or complete canonical source-row digest",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    "independentSolveCommit": "c8f8aeadfb28becb1d7447240fd4e28b6702fc4c",
+    "rawSolveUnchanged": true,
+    "answerComparison": {
+      "literalEqual": true,
+      "semanticEqual": true,
+      "role": "single selected choice",
+      "authorAnswer": "②",
+      "independentAnswer": "②",
+      "allFiveChoiceTruthValues": [
+        false,
+        true,
+        false,
+        false,
+        false
+      ],
+      "semanticDuplicateChoices": [],
+      "unitAndTargetOrderChecked": true,
+      "writtenPartsRequested": [],
+      "writtenRubricApplicable": false
+    },
+    "independentExactCalculation": {
+      "questionNumber": 12,
+      "target": [
+        "1",
+        "-3",
+        "3"
+      ],
+      "status": "independently-computed",
+      "evidence": {
+        "factorization": "−(x+1)(x−3)",
+        "A": [
+          0,
+          3
+        ],
+        "B": [
+          -1,
+          0
+        ],
+        "C": [
+          3,
+          0
+        ],
+        "D": [
+          "1",
+          0
+        ],
+        "areaABC": 6,
+        "areaABD": 3,
+        "areaADC": 3,
+        "DInsideBC": true,
+        "line": "y=−3x+3",
+        "method": "Equal height means equal bases;median ofBC;linear line through A/D.",
+        "allFiveActualChoiceValues": [
+          [
+            "1",
+            "3",
+            "3"
+          ],
+          [
+            "1",
+            "-3",
+            "3"
+          ],
+          [
+            "2",
+            "-3",
+            "3"
+          ],
+          [
+            "1",
+            "-3",
+            "-3"
+          ],
+          [
+            "0",
+            "-3",
+            "3"
+          ]
+        ],
+        "choiceCorrectness": [
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "correctChoiceNumber": 2,
+        "semanticDuplicateChoices": [],
+        "oneCorrectChoice": true
+      },
+      "knownHolds": []
+    },
+    "mathAndNewSolution": "B(−1,0),C(3,0),A(0,3).같은 높이 넓이→D중점(1,0);두 점 대입→m−3,n3.기록② 유일.",
+    "coreAndSubstantiveDelta": "이등분 직선 식 선택→중점 위치·기울기·절편 세 항목 검산. 근의 공식 대신 같은 인수분해/밑변높이/두 점 직선 사용.",
+    "allowedWholeStudentMethod": "인수분해 축교점→같은 높이의 밑변 중점→두 점의 일차함수.",
+    "sourceQuestionOnly": {
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-12",
+      "packetRawSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceDigestProvided": "2fc0b7c94d7c305089f381a96982fae896b126d5461303006bbae692f6ee4a25",
+      "images": [
+        {
+          "file": "images/q12-part1.png",
+          "rawSha256": "307d06d60529ee695b7d390c9bc9c378ba06fb3ec724b97a3e71e61ffabb0472",
+          "personallyViewed": true
+        }
+      ],
+      "sourceCropsNotNewAssets": true,
+      "originalKeyOrSolutionFilesRead": false
+    },
+    "visualReview": {
+      "questionNumber": 12,
+      "studentDigest": "8b83dae75670e87b426b14bb5c822a87dd8b92abb5fe9bdc6f4943ed6a3d0e9f",
+      "candidateDigest": "ebfaac76241068cab461045bc6ff91d7719ca1f780a6fca50ea3419a0540b037",
+      "columnWidthMm": 70,
+      "png": "inspection/q12-expanded.png",
+      "pngSha256": "18633670faf60497e4a5e78135e6e02ee927c19609b5e46cce4df18c6edc1ceb",
+      "overflow": [],
+      "unclippedPng": null,
+      "figureCount": 1,
+      "figureWidthMm": 70,
+      "figureArrangement": "ordered roles",
+      "personallyViewed": true,
+      "imageRawSha256": "18633670faf60497e4a5e78135e6e02ee927c19609b5e46cce4df18c6edc1ceb",
+      "actualQuestionAndExpandedSolutionInspected": true,
+      "allSuppliedChoiceFiguresInspected": false,
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "cb550e2d39aca7698204558ef89c8dfb9f0f5a9b882c8f543c5f59a219e232ab",
+          "svgSha256": "4c277f13f3839f79f1726cc8898070447704a763588db0680121f3990e7ef717",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q12-1.svg"
+        }
+      ],
+      "strictRegenerationResults": [
+        {
+          "questionNumber": 12,
+          "role": "stem",
+          "specSha256": "cb550e2d39aca7698204558ef89c8dfb9f0f5a9b882c8f543c5f59a219e232ab",
+          "frozenSvgSha256": "4c277f13f3839f79f1726cc8898070447704a763588db0680121f3990e7ef717",
+          "regeneratedSvgSha256": "4c277f13f3839f79f1726cc8898070447704a763588db0680121f3990e7ef717",
+          "byteEqual": true,
+          "strict": true,
+          "localOnly": true,
+          "droppedDimensions": []
+        }
+      ],
+      "nativeCompatibilityNotApproved": true
+    },
+    "naturalKorean": "조건·대상각·선분·기록값·단위가 자연스럽고 모호한 원본 조건을 명시했다. 허구 학교 표시 해솔누리중학교와 실제 학교 내부 보존을 구별;원학교로 학년 승인하지 않음.",
+    "scoreAndDifficulty": {
+      "score": 5,
+      "sourceScorePreserved": true,
+      "authorDifficultyProposal": "응용",
+      "reviewerDifficultyProposal": "심화하",
+      "basis": "인수분해 축교점→같은 높이의 밑변 중점→두 점의 일차함수. 5점은 원문과 동일하고 필요한 단계 수를 근거로 제안. 검토자는 심화하/기본과 응용 차이를 기록하며 실측 난도나 학교 자동 승인 주장 없음.",
+      "measuredDifficulty": false
+    },
+    "taxonomy": {
+      "unitUuidProposal": "03097b76-d9cb-4525-a520-b70c03a45c77",
+      "unit": {
+        "id": "03097b76-d9cb-4525-a520-b70c03a45c77",
+        "grade": "중3",
+        "chapter": "4. 이차함수",
+        "section": "이차함수 y=ax^2+bx+c의 그래프",
+        "semester": 1,
+        "orderIndex": 479,
+        "problemCodePrefix": "J30402"
+      },
+      "unitSeedExactMatch": true,
+      "candidateMetadataAssignmentUnedited": {
+        "status": "pending",
+        "unitId": null,
+        "familyKey": null,
+        "currentUnit": null,
+        "currentRegistryMatch": null,
+        "liveCount": null,
+        "checkedAt": "2026-10-08 04:53:45.769124+00",
+        "evidence": "그래프와 삼각형 넓이의 중3 Unit은 확인했지만 중선 직선의 세 항목 검산은 현행 유형08의 구체 생성 규칙과 추가 대조가 필요하여 family는 null이다.",
+        "candidates": []
+      },
+      "existingLiveFamilyProposal": null,
+      "semanticFamilyOnly": null,
+      "status": "held",
+      "basis": "g2-08은 축교점삼각형의 전체 넓이만 구한다. 본문 넓이 이등분→중점→새 일차함수의 세 항목까지 지원하는 전체 규칙은 미확정.",
+      "formatComparison": "Complete new target/format/difficulty support is unconfirmed as described in basis; no nearest/title mapping.",
+      "bankCapturedAt": "2026-10-08 13:00:16.891043+00",
+      "snapshotScopeOnly": true,
+      "liveCountNotPermission": true
+    },
+    "q22RepairRead": false,
+    "q23SourceRoleMetadataBoundary": null
+  },
+  "holds": [
+    {
+      "code": "exact-unit-live-family-contract-pending",
+      "basis": "g2-08은 축교점삼각형의 전체 넓이만 구한다. 본문 넓이 이등분→중점→새 일차함수의 세 항목까지 지원하는 전체 규칙은 미확정.",
+      "reopen": "실제 live 규칙의 전체 조건/요청 목표/핵심 절차/난도/형식을 지원하는 근거를 제시하거나 별도 새 메타데이터 계약을 검토. Unit·제목·live count만으로 확정하지 않음."
+    }
+  ],
+  "gates": {
+    "rights": "held",
+    "custody": "held",
+    "similarity": "pending",
+    "nativeCompatibility": "pending",
+    "directUseAllowed": false,
+    "loadable": false,
+    "dbWrites": 0,
+    "modelCalls": 0,
+    "finalPublicationApproval": false
+  }
+}

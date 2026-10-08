@@ -1,0 +1,1337 @@
+/**
+ * 중3 **확대 갈래 4차 물결**(`심화중`·`심화상`) — D-116, 번호 접미사 **`W`**.
+ *
+ * 병렬 세션 소유 모듈. 이 파일과 `generate.ts` 의 `...M3_TOP_4` **한 줄**만 이 갈래가
+ * 건드린다(등록 한 줄은 리드가 넣는다).
+ *
+ * ## ⑴ 왜 또 새 파일인가
+ *
+ * `m3Top.ts`(1차 `T`)·`m3Top2.ts`(2차 `U`)·`m3Top3.ts`(3차 `V`)는 자기 시험이
+ * 「등록한 유형이 정확히 N개」를 **개수로 얼려** 두었다. 거기에 유형을 더하면 그
+ * 가드가 빨개지고, 초록으로 되돌리는 유일한 길이 **가드를 무르는 것**이 된다.
+ * 그리고 오르카 다중 세션이 같은 파일을 동시에 만지면 병합에서 부딪힌다 —
+ * 새 파일 하나 + spread 한 줄이면 그 둘을 다 피한다.
+ *
+ * ## ⑵ 무엇이 «중»이고 무엇이 «상»인가 (D-115 ⑾ · `m3Top3.ts` 머리말과 한 벌)
+ *
+ * ```
+ * 심화중   마디 하나가 안 굳고, **그 소단원의 개념**이 그것을 굳힌다.
+ *          성질 하나가 후보를 «끝까지 계산하지 않고» 거른다.
+ * 심화상   성질로 못 굳혀 후보를 **다 만들어 견줘야** 한다.
+ * ```
+ *
+ * | 키 | 갈래 | 안 굳는 마디 | 무엇이 굳히나 | 같은 소단원 `심화하`와 무엇이 다른가 |
+ * |---|---|---|---|---|
+ * | `인수분해\|55W` | **심화상** | 두 상수항 $m$, $n$ — 발문이 «합 $a+b$» 하나만 준다 | 굳지 **않는다.** $(m+1)(n+1)=S+1$ 은 후보를 **만들어 줄 뿐 고르지는 못한다** — $S+1$ 의 약수쌍을 **모두 만들어** 「$m\ge1$인가」·「$m\ne n$인가」를 하나씩 대 봐야 산 것과 죽은 것이 갈린다 | `05`(근호 안 완전제곱식)·`50`(상수항의 합)은 **식이 이미 주어져** 인수분해 한 번이면 끝이고 후보가 아예 없다 |
+ * | `무리수와 실수\|56W` | **심화중** | 소수 부분 $b=\sqrt N-a$ — **무리수라 끝까지 안 굳는다** | 이 소단원의 개념 둘. ⓐ 「$m^2<N<(m+1)^2\Rightarrow m<\sqrt N<m+1$」(`05`·`06` 의 열쇠)이 정수 부분 $a$ 를 주고 ⓑ 「$a+b=\sqrt N$」이라는 소수 부분의 정의가 $b^2+2ab$ 를 $(a+b)^2-a^2$ 으로 접어 **$b$ 를 한 번도 계산하지 않고** 답이 나온다 | `08`(세 실수의 대소)은 차의 부호를 세 번 읽으면 끝이고 «접히는» 마디가 없다 |
+ * | `상자그림\|57W` | **심화상** | $x$ 의 **자리** — 발문이 값도 범위도 안 준다 | 굳지 **않는다.** 중앙값 조건이 자리를 셋으로 좁혀 주지만, 그 셋에서 제$1$·제$3$사분위수가 **상수가 되기도 $x$ 자신이 되기도** 해서 셋을 각각 세우고 「구한 $x$ 가 그 구간 안인가」를 대 봐야 한다 | `02`(사분위수가 주어질 때 변량)는 「단, $14<x<23$」으로 **자리를 발문이 정해 준다** — 경우가 하나뿐이고 한 줄로 끝난다 |
+ * | `산점도와 상관관계\|58W` | **심화중** | **어느 두 명인가** — 뽑는 방법이 $\binom82=28$ 가지인데 발문이 아무것도 안 정한다 | 이 소단원의 개념 「두 변량의 차」(`07`·`14` 가 쓰는 그 값). 차 $d_i$ 여덟 개만 만들면 「$d_i+d_j=0$」인 짝만 보면 되므로 **28쌍의 합을 한 번도 계산하지 않고** 후보가 하나로 걸러진다 | `09`(두 점수의 합이 $S$ 이상인 학생 수)는 여덟 명의 합을 **전부** 구해 세는 판이라 거르는 성질이 없다 |
+ *
+ * ## ⑶ 🔴 3차 물결이 **실제로 낸 결함** — 4차는 이렇게 막았다
+ *
+ * 전부 **값은 맞고 KaTeX 도 초록**이라 어느 자도 구조적으로 못 보던 부류다.
+ *
+ * ㉮ **해설이 정답지 한 단을 넘었다**(중1 `53V`, 최대 1242px · 한 단 964.8px).
+ *    넘치면 세로로 잘리는 게 아니라 **같은 쪽 다른 문항의 해설이 통째로 사라진다.**
+ *    이 넷은 제품 `estimateSolutionPx` 로 **씨앗 800판**을 재어 최대를 시험이 못 박는다.
+ *    ⚠️ 그렇다고 **걸음을 지우지 않는다**(D-116 ⑹) — 줄이는 길은 「훑는 후보 수를
+ *    줄이거나 나열을 압축하기」다. 그래서 `55W` 는 살아남는 후보를 **2~4개**로,
+ *    `57W` 는 경우를 **셋**으로 묶어 둔다.
+ * ㉯ **해설이 걸음을 건너뛰었다**(중2 `38V` — 「$22-2x\ge1$에서 $x\le10$」인데 참 해는
+ *    $x\le10.5$). 정수로 뛰는 자리마다 **그 자리에서** 근거를 적는다 — `55W` 는
+ *    「$mn>0$ 이라 부호가 같고 $m+n>0$ 이라 둘 다 자연수」를 한 줄로 세우고,
+ *    `57W` 는 「이 구간의 자연수는 $x=\ldots$뿐이다」를 셈으로 적는다.
+ * ㉰ **해설이 기약이 아닌 분수를 찍었다**(중1 `52V`, `$\dfrac{50}{4}$`).
+ *    🔴 이 넷은 **분수를 아예 안 쓴다.** `57W` 의 평균조차 $\dfrac{119}{7}$ 이 아니라
+ *    $119\div 7=17$ 로 적는다 — 「약분 전 중간식」은 기약 규칙과 늘 부딪히므로
+ *    그 자리를 만들지 않는 쪽을 골랐다. 시험이 「`frac` 이 하나도 없다」를 잠근다.
+ * ㉱ **발문이 스스로 전제한 상한을 해설이 어겼다**(중2 `36V` — 「100점 만점」인데 107점).
+ *    `58W` 는 점수 상·하한을 상수 하나로 두고 **파생되는 모든 값**(국어·영어 열여섯)이
+ *    그 안에 있는지 생성기가 검사한다.
+ * ㉲ **정답이 «구간»이면 파생 오답이 뒤집힌다**(중2 `35V`). 넷 다 정답이 **한 수**다.
+ * ㉳ **해설의 «말»을 지키는 시험이 없었다**(중1 `51V` — 「배수↔약수」를 맞바꿔도 초록).
+ *    시험이 논리 낱말(자연수/정수·크다/작다·같다/다르다·많다/적다)을 맞바꿔 본다.
+ * ㉴ **정답이 한 값에 쏠렸다**(중3 `52V`, 최빈 51.2%). 넷 다 **답을 먼저 고르고**
+ *    그에 맞는 씨앗을 뽑는다(`ANSWERS` 상수들). 시험이 분포를 잠근다.
+ * ㉵ **지름길** — 발문의 수를 한두 번 곱하거나 나눈 값이 답이면 심화가 아니다.
+ *    `oneStepReach` 한 함수로 넷을 다 막는다. ⚠️ **`58W` 는 구조적으로 못 막는다** —
+ *    묻는 것이 «두 점수의 합»이라 답은 **언제나** 적힌 두 수의 합이다. 숨기지 않고
+ *    ⑷㉢ 에 적고, 그 대신 **우연 수준**(28쌍 중 하나 = $3.6\%$)과 극단 집기를 잰다.
+ *
+ * ## ⑷ 함정 ㉠㉡㉢ — 초등이 네 물결에 걸쳐 물린 자리
+ *
+ * ㉠ **창을 한쪽 끝만 주면 굳힘이 장식이 된다.** 「살아남는 후보가 언제나 목록의 같은
+ *    자리」면 굳힘은 «어느 후보인가»를 한 번도 안 고른다.
+ *
+ *    · `55W` — 답이 **살아남은 것 전부의 합**이라 목록의 어느 자리도 답이 아니다.
+ *      ⚠️ **정직하게 적는다** — 약수쌍 $(1,\,T)$ 는 **언제나 죽는다**($m=0$). 이는 이
+ *      설계의 구조적 사실이지 ㉠ 을 넘긴 근거가 **아니다.** 근거는 ⓐ 답이 «합»이고
+ *      ⓑ 사는 것이 $2$~$4$ 개인데 **몇 개가 사는지는 약수쌍을 다 만들어 봐야** 알고
+ *      ⓒ $T$ 가 제곱수인 씨앗에서는 **가운데 쌍도 죽는다**는 것이다(풀 $76$ 중 $4$).
+ *
+ *      🔴 **그리고 처음엔 «$b$ 의 값을 모두»를 물었는데, 그러면 굳힘 ⑴ 이 장식이었다.**
+ *      죽는 쌍 $(1,\,T)$ 는 $m=0$ 이라 $b=mn=0$ 이고, **$0$ 을 더해도 합이 그대로다** —
+ *      「자연수라서 죽는다」를 통째로 지워도 정답이 같다(실측 $S=87$: $176=176$).
+ *      값 검산도 KaTeX 도 조사 자도 이 자리를 **구조적으로 못 본다.** 그래서 묻는 것을
+ *      $a=m+n$ 으로 바꿨다 — 그 쌍의 $a$ 는 $T-1=S$ 라 지우면 합이 반드시 달라진다.
+ *      시험이 **둘 다** 못 박는다(「$a$ 로는 달라진다」·「$b$ 로는 그대로다」).
+ *    · `56W` — **후보 목록이 아예 없다**(값이 하나로 굳는다). 중1 `94T`·2차 `42U`·
+ *      3차 `52V` 와 같은 자리다. ⚠️ 「축이 없다」와 「축이 초록이다」는 **다른 말**이므로
+ *      시험과 판정기는 이 갈래에 ㉠ 을 **«잴 축 없음»으로 따로 찍는다.**
+ *    · `57W` — 🔴 **살아남는 자리를 먼저 고른다**(`planBoxMean` 의 `wantSlot`).
+ *      자연 분포로 뽑으면 «$x$ 가 사분위수가 되는 가운데 경우»가 $95\%$ 를 넘어
+ *      「늘 가운데를 고른다」로 찍힌다 — 실측했다. 다섯 자리(아래 갈래 셋 ·
+ *      위 갈래 둘)를 **먼저 고르고** 거기에 맞는 씨앗만 뽑는다.
+ *    · `58W` — 후보가 **28쌍**이고 답이 그중 하나라 우연 수준이 $3.6\%$ 다.
+ *      극단 집기(국어 합이 가장 큰/작은 짝)를 `edgeScore` 가 잰다.
+ *
+ * ㉡ **「굳힘이 항등식」** — 굳힘을 지우고 같은 씨앗으로 돌려 답이 그대로면 그것은
+ *    굳힘이 아니라 장식이다. 넷 다 굳힘을 **인자로 받는 순수 함수**로 뽑아 두었다:
+ *    `solveFactorB(S, useNatural, useDistinct)` ·
+ *    `foldParts(n, c, k)`(계수가 $2$ 라야 무리수 항이 사라진다) ·
+ *    `solveBoxCases(vs, M, Q, useMedian)` ·
+ *    `solvePairSum(xs, ys, useDiff)`.
+ *    시험이 그 인자를 흔들어 답이 실제로 달라지는지 잰다.
+ *
+ * ㉢ **갈래끼리 겹침** — 새 갈래가 그 소단원의 `심화하`·`응용` 과 한 시험지에 실린다.
+ *    「수+정답」 열쇠에는 **천장**이 있으므로 쌍마다 천장을 먼저 찍고, 천장이 낮으면
+ *    «겹침 없음»이 아니라 **«판정 불가»** 로 읽어야 한다.
+ *    ⚠️ `55W` 는 같은 중단원(`다항식의 인수분해`)에 2차 `43U`(「$x^2-y^2=D$ 를 만족시키는
+ *    자연수 순서쌍을 모두, $x$ 의 합」)가 있어 「약수쌍 전수 → 값의 합」 뼈대가 겹친다.
+ *    갈라 내는 것은 ⓐ 발문이 **인수분해된 꼴**을 조건으로 준다는 것과 ⓑ 죽는 근거가
+ *    「자연수가 아니다」·「상수항이 같다」 **둘**이라는 것이다. 낱말 겹침을 판정기가 찍는다.
+ *    ⚠️ `57W` 는 1차 `11T`(대푯값과 산포도, 「평균과 중앙값이 같도록 하는 $x$ 를 모두」)와
+ *    「자료+미지수+경우 나누기」 뼈대가 닮았다. 갈라 내는 것은 ⓐ 굳힘이 평균·중앙값이
+ *    아니라 **사분위수의 «자리»**이고 ⓑ 답이 「모두 구하여 합」이 아니라 **평균**이라는
+ *    것이다. ⓑ 는 그 자체로 값어치가 있다 — 지금 중3 확장 심화상 다섯 중 넷이
+ *    「모두 구하고 그 합」이라 정답지가 단조롭다.
+ *
+ * ## ⑸ 번호 규약 — **`W` 접미사**
+ *
+ * `extensionNumberReason`(`src/__tests__/helpers/rpmCatalog.ts`)은 `숫자+영문 대문자 한
+ * 글자` 를 「색인 번호와 절대 안 겹친다」로 통과시킨다. 이미 `A`(색인 밖)·`T`(1차)·
+ * `U`(2차)·`V`(3차)가 쓰였으므로 **4차 물결은 `W`** 다.
+ *
+ * ⚠️ **소단원 이름과 RPM 중단원 이름이 다른 것이 셋이다.** 우리 소단원은
+ * 「인수분해」·「상자그림」·「산점도와 상관관계」인데 RPM 중단원은 각각
+ * 「다항식의 인수분해」·「상자그림과 산점도」(둘 다)이다. 손으로 적으면 어긋난다.
+ *
+ * ## 계약 (이웃 모듈과 한 벌)
+ *
+ * 1. **정답을 먼저 뽑고 발문을 역산한다.**
+ * 2. `facts.x` 가 **답의 첫 수**다.
+ * 3. 숫자는 전부 `$...$` 안에 (`elementary/rules` `bareNumbers` 가드).
+ * 4. `attempt`·`pick` 이 낼 것이 없으면 **던진다** — 조용히 기본값을 내지 않는다.
+ * 5. 그림이 없으므로 발문이 **지면을 가리키지 않는다**(`figureSpec: null`).
+ *    ⚠️ `58W` 는 소단원이 「산점도와 상관관계」인데 그림이 없다. 형제 `06`~`15` 는
+ *    `scatterPlot` 스펙을 싣지만, 우리 발문은 낱말 「산점도」를 **한 번도 안 쓰고**
+ *    순서쌍을 본문에 다 적어 그림 없이 완결된다(`pointsAtFigure` 가 `null` 을 내는
+ *    것을 시험이 확인한다). 형제 `50`~`54`(상자그림)도 같은 무늬다.
+ * 6. 🔴 **해설이 걸음을 건너뛰지 않는다**(D-116 ⑸, 원장님 완료 조건). 후보를 견주는
+ *    갈래는 **후보를 하나씩 적고 각각 왜 살고 죽는지**까지 적는다.
+ * 7. 🔴 **해설에 분수를 안 쓴다**(위 ㉰).
+ *
+ * ## 왜 «설계»를 `plan…()` 으로 따로 내보내나 — 없는 축은 변이시킬 수 없다
+ *
+ * ㉠·㉡ 을 **밖에서 재려면** 「후보 집합」과 「굳힘이 남긴 것」이 문항 밖에 있어야 한다.
+ * 발문·해설 문자열만 내보내면 그 축이 **아예 없어서** 변이시킬 수도 없다. 그래서 유형마다
+ * 순수 설계 함수를 export 하고, 발문·해설은 그 설계를 **읽기만** 한다(규칙이 두 벌이 되지
+ * 않는다). `Sift` 는 1차 물결의 것을 **그대로 쓴다** — 판정기
+ * `scripts/qa/probe-middle-top-m3.ts` 의 `edgeScore`·`siftScore` 가 그 모양을 본다.
+ */
+import { intBetween, pick } from "../elementary/rng";
+import type { Rng } from "../elementary/types";
+
+import { eulReul, euroRo, waGwa } from "./m2Josa";
+import type { Sift } from "./m3Top";
+import type { MidProblem, TypeEntry } from "./types";
+
+const GRADE = "중3";
+const BOOK1 = "3-1";
+const BOOK2 = "3-2";
+
+/** 우리 `Unit.section` 정확한 이름 (`prisma/seed-data/units.ts` 470·473·489·490 실측). */
+const SEC = {
+  무리수: "무리수와 실수",
+  인수분해: "인수분해",
+  산점도: "산점도와 상관관계",
+  상자그림: "상자그림",
+} as const;
+
+/**
+ * RPM 중단원 이름 — 이웃 모듈(`m3Poly`·`m3Root`·`m3Stat2`)이 쓰는 글자 그대로.
+ *
+ * ⚠️ 「인수분해」의 중단원 이름은 **「다항식의 인수분해」**이고, 「상자그림」과
+ *    「산점도와 상관관계」는 **같은 중단원 「상자그림과 산점도」**를 나눠 쓴다.
+ *    둘은 다른 정본에서 온다(`units.ts` / `scripts/rpm/rpm-type-catalog.json`).
+ */
+const MINOR = {
+  무리수: "무리수와 실수",
+  인수분해: "다항식의 인수분해",
+  상자산점도: "상자그림과 산점도",
+} as const;
+
+type Body = Pick<
+  MidProblem,
+  "content" | "answer" | "solution" | "facts" | "figureSpec"
+>;
+
+/** 후보를 하나씩 짚는 표지. 55W 의 약수쌍이 최대 다섯이라 여덟까지 둔다. */
+const MARKS = ["㉠", "㉡", "㉢", "㉣", "㉤", "㉥", "㉦", "㉧"] as const;
+
+/**
+ * 🔴 **풀을 «적재할 때»가 아니라 «처음 쓸 때» 만든다.**
+ *
+ * `generate.ts` 가 이 모듈을 import 하므로, 풀을 최상위 `const` 로 두면
+ * **중등 엔진을 건드리는 모든 시험 파일**이 그 값을 치른다. `boxMeanPool()` 은
+ * 격자가 $15{,}625$ 벌이라 실측 $1{,}013$ms 였다 — 관문 148파일에 그대로 실린다.
+ * 게으르게 만들면 실제로 `57W` 를 뽑는 파일만 한 번 치른다(실측 import $<20$ms).
+ *
+ * 함수는 순수(같은 입력 없음·같은 결과)라 캐시가 뜻을 안 바꾼다. 변이 하네스는
+ * 프로세스를 새로 띄우므로 캐시가 변이를 가리지 않는다.
+ */
+const FACTOR_CACHE: { pool?: FactorSeed[]; answers?: number[] } = {};
+const FRAC_CACHE: { pool?: FracSeed[]; answers?: number[] } = {};
+const BOX_CACHE: { pool?: BoxSeed[]; bySlot?: Map<string, BoxSeed[]> } = {};
+
+// ── 지면 소품 — 「값은 맞는데 글자가 나쁜」 부류를 **여기 한 곳**에서 막는다 ──────
+
+/**
+ * 주격 조사 — `$41$이` · `$5$가`.
+ *
+ * ⚠️ 받침 판정은 새로 쓰지 않고 `m2Josa` **한 곳**에서 온다(`eulReul`·`waGwa`·`euroRo`
+ *    는 그대로 부른다). 규칙이 두 벌이 되면 한쪽만 고쳐도 아무도 모른다(2026-08-18).
+ *    그리고 이 부류는 **값 검산이 구조적으로 못 본다** — 산술은 맞고 글자만 틀리다.
+ *
+ * ⚠️ 공용 조사 자(`josaMismatches`)는 「이」를 **일부러 안 본다**(서술격 「$5$이다」와
+ *    구분이 안 돼 거짓 경보가 난다). 그래서 이 함수는 «가를 써야 할 자리에 이를 썼다»를
+ *    자에게 들키지 않는다 — 그 반쪽은 여기서 옳게 짓는 수밖에 없다.
+ */
+function iGa(n: number): "이" | "가" {
+  return eulReul(n) === "을" ? "이" : "가";
+}
+
+/** 정수 제곱근 — 제곱수가 아니면 `null`. 부동소수 반올림을 **정수 곱으로** 되짚는다. */
+export function intSqrt(n: number): number | null {
+  if (n < 0) return null;
+  const r = Math.round(Math.sqrt(n));
+  return r * r === n ? r : null;
+}
+
+/** 오름차순 약수 전부. */
+export function divisors(n: number): number[] {
+  const out: number[] = [];
+  for (let d = 1; d * d <= n; d += 1) {
+    if (n % d !== 0) continue;
+    out.push(d);
+    if (d !== n / d) out.push(n / d);
+  }
+  return out.sort((a, b) => a - b);
+}
+
+/**
+ * 🔴 **㉵ — 발문에 적힌 수에서 «한 걸음»에 닿는 값 전부**(부호 양쪽).
+ *
+ * 3차 `51V` 는 「적힌 수 하나 집기」를 막아 놓고 「적힌 두 수를 **한 번 나눈** 값」을
+ * **57.1%** 놓쳤다. 그래서 여기서는 네 셈(＋−×÷)을 **전부** 센다. 나눗셈은
+ * 나누어떨어지는 것만 — 지면에서 학생이 암산으로 얻는 값만 세려는 것이다.
+ *
+ * ⚠️ 이 함수 **하나**를 넷이 같이 쓴다. 유형마다 다시 적으면 한쪽만 고쳐도 아무도
+ *    모른다(2026-08-18 「목록을 손으로 쓰면 세는 쪽과 고치는 쪽이 같이 눈이 먼다」).
+ */
+export function oneStepReach(nums: readonly number[]): Set<number> {
+  const out = new Set<number>();
+  const add = (v: number): void => {
+    if (!Number.isFinite(v)) return;
+    out.add(v);
+    out.add(-v);
+  };
+  for (const v of nums) add(v);
+  for (const a of nums) {
+    for (const b of nums) {
+      add(a + b);
+      add(a - b);
+      add(a * b);
+      if (b !== 0 && a % b === 0) add(a / b);
+    }
+  }
+  return out;
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// A. 55W  두 계수의 합이 주어진 이차식이 인수분해되는 경우를 모두 구하기   (심화상)
+//    3-1 «다항식의 인수분해» → 우리 소단원 「인수분해」
+// ════════════════════════════════════════════════════════════════════════════
+
+/**
+ * 🔴 **굳힘을 «인자로» 받는 순수 함수** — ㉡ 을 밖에서 재는 통로다.
+ *
+ * $x^2+ax+b=(x+m)(x+n)$ 이면 $a=m+n$, $b=mn$ 이고 $a+b=S$ 에서
+ * $m+n+mn=S$, 곧 $(m+1)(n+1)=S+1$ 이다. 후보는 $S+1$ 의 약수쌍 전부다.
+ *
+ * 굳힘이 **둘**이다.
+ *   · `useNatural`  — $a$, $b$ 가 자연수라야 하므로 $m\ge1$ (약수쌍 $(1,\,T)$ 가 죽는다)
+ *   · `useDistinct` — 두 일차식의 상수항이 **서로 달라야** 하므로 $m\ne n$
+ *                     ($T$ 가 제곱수인 씨앗에서 가운데 쌍이 죽는다)
+ *
+ * 돌려주는 것은 **살아남은 $a=m+n$ 의 목록**(오름차순)이다.
+ *
+ * 🔴 **왜 $b$ 가 아니라 $a$ 를 묻나** — 첫 판은 $b$ 를 물었는데, 죽는 약수쌍 $(1,\,T)$ 는
+ * $m=0$ 이라 $b=mn=0$ 이다. 그래서 **굳힘 ⑴ 을 지워도 «합»이 그대로였다**(실측 $S=87$:
+ * $176=176$) — 값 검산으로는 절대 안 보이는 자리다. $a=m+n$ 은 그 쌍에서 $T-1=S$ 라
+ * 지우면 합이 반드시 달라진다. 시험이 그 사실을 잠근다.
+ */
+export function solveFactorA(
+  s: number,
+  useNatural: boolean,
+  useDistinct: boolean,
+): number[] {
+  const t = s + 1;
+  const out: number[] = [];
+  for (const d of divisors(t)) {
+    if (d * d > t) continue;
+    const m = d - 1;
+    const n = t / d - 1;
+    if (useNatural && (m < 1 || n < 1)) continue;
+    if (useDistinct && m === n) continue;
+    out.push(m + n);
+  }
+  return out.sort((x, y) => x - y);
+}
+
+/** 같은 굳힘으로 고른 **$b=mn$** 의 목록 — 해설이 「자연수가 아니다」를 말하는 근거다. */
+export function solveFactorB(
+  s: number,
+  useNatural: boolean,
+  useDistinct: boolean,
+): number[] {
+  const t = s + 1;
+  const out: number[] = [];
+  for (const d of divisors(t)) {
+    if (d * d > t) continue;
+    const m = d - 1;
+    const n = t / d - 1;
+    if (useNatural && (m < 1 || n < 1)) continue;
+    if (useDistinct && m === n) continue;
+    out.push(m * n);
+  }
+  return out.sort((x, y) => x - y);
+}
+
+/** 후보 전부 — 약수쌍 $(d,\,T/d)$ ($d\le T/d$) 가 낳는 $a=m+n$ 오름차순. */
+function factorCandidates(s: number): number[] {
+  return solveFactorA(s, false, false);
+}
+
+export type FactorSeed = { s: number; kept: number[]; answer: number };
+
+export type FactorPlan = {
+  /** 발문이 주는 $a+b$ */
+  s: number;
+  /** $S+1$ */
+  t: number;
+  /** 약수쌍 $(m+1,\,n+1)$ — $m+1\le n+1$ */
+  pairs: [number, number][];
+  /** 살아남은 $a=m+n$ (오름차순) */
+  kept: number[];
+  sift: Sift;
+  answer: number;
+};
+
+/**
+ * 쓸 수 있는 $S$ 를 **프로그램으로 뽑는다** — 손 목록은 세는 쪽과 고치는 쪽을 같이
+ * 눈멀게 한다(2026-08-18). 조건마다 까닭이 있다.
+ *
+ * ```
+ * 8 ≤ S ≤ 250        수를 키우는 것은 난이도가 아니다 (D-115 ⑽③)
+ * 사는 것 2~4개       ㉮ 해설이 정답지 한 단을 넘지 않게 (나열이 곧 해설 길이다)
+ *                     — 하나뿐이면 「모두 구하고 합」이 말이 안 되기도 한다
+ * 죽는 것 ≥1          굳힘이 «일할 자리»가 있어야 한다 (㉡)
+ * 답이 한 걸음에 안 닿는다   ㉵ — 적힌 수는 $S$ 와 지수 $2$ 다
+ * ```
+ *
+ * 🔴 **D-20 손실 원장**(실측) — $8\le S\le250$ 의 **$243$** 개 가운데
+ * 「사는 것 $2$~$4$ 개」가 **$84$**(34.6%)를 남긴다. 「죽는 것 $\ge1$」은 여기서
+ * **아무것도 안 버린다** — 약수쌍 $(1,\,T)$ 가 언제나 죽기 때문이다(그래서 그 줄은
+ * 가드가 아니라 **불변식의 기록**이다). ㉵ 가 여덟을 더 버려 **$76$** 이 된다.
+ * 잘라 낸 $159$ 개는 대부분 «사는 것이 하나»($S+1$ 이 소수이거나 약수가 적을 때)이고,
+ * 그 씨앗은 「모두 구하고 그 합」이라는 발문 자체가 성립하지 않는다.
+ */
+export function factorSumPool(): FactorSeed[] {
+  if (FACTOR_CACHE.pool) return FACTOR_CACHE.pool;
+  const out: FactorSeed[] = [];
+  for (let s = 8; s <= 250; s += 1) {
+    const cand = factorCandidates(s);
+    const kept = solveFactorA(s, true, true);
+    if (kept.length < 2 || kept.length > 4) continue;
+    if (cand.length - kept.length < 1) continue;
+    const answer = kept.reduce((t, v) => t + v, 0);
+    // ㉵ — 답이 발문에서 **한 걸음**에 닿으면 안 된다(적힌 수는 $S$ 와 지수 $2$).
+    if (oneStepReach([0, 1, 2, s]).has(answer)) continue;
+    out.push({ s, kept, answer });
+  }
+  FACTOR_CACHE.pool = out;
+  return out;
+}
+
+/**
+ * 🔴 **풀이 낼 수 있는 답 전부**(오름차순) — 답을 «고르게» 뽑기 위한 축이다(㉴).
+ *
+ * 3차 `52V` 는 풀에서 그냥 하나를 뽑아 **최빈 정답이 51.2%** 였다. 여기서는 답을
+ * 먼저 고른다. 실측으로 $S$ 하나가 답 하나에 거의 일대일이라 이 축만으로 충분하다.
+ */
+export function factorAnswers(): number[] {
+  if (!FACTOR_CACHE.answers) {
+    FACTOR_CACHE.answers = [
+      ...new Set(factorSumPool().map((r) => r.answer)),
+    ].sort((x, y) => x - y);
+  }
+  return FACTOR_CACHE.answers;
+}
+
+/** **55W «심화상»** — 「$a+b$ 가 주어진 이차식이 인수분해될 때 $a$ 를 모두」. */
+export function planFactorSum(rng: Rng): FactorPlan {
+  const want = pick(rng, factorAnswers());
+  const sub = factorSumPool().filter((r) => r.answer === want);
+  if (sub.length === 0) {
+    throw new Error(`m3Top4 55W: 답 ${want} 에 맞는 씨앗이 없습니다`);
+  }
+  const { s } = pick(rng, sub);
+  const t = s + 1;
+  /**
+   * 🔴 **약수쌍 $(1,\,T)$ 는 여기서 뺀다.** 바로 앞 굳힘 줄이
+   * 「$m+1$ 과 $n+1$ 은 모두 $2$ 이상이다」라고 못 박기 때문이다.
+   *
+   * ⚠️ 처음에는 $d=1$ 도 담고 ㉠ 에서 「$b=mn=0$ 이라 자연수가 아니다」로 버렸다.
+   *    그러면 지면이 **자기가 한 줄 앞에 세운 제약을 스스로 어긴다** — 게다가
+   *    버리는 근거마저 그 제약이 아니라 다른 것이다. 리드 실측 1,200/1,200판
+   *    (100%)에 나가고 있었다. 값·KaTeX·해설 높이 어느 자도 이 부류를 못 본다.
+   *    ($d\ge2$ 이므로 아래 열거에서 $m=d-1\ge1$ 이 **불변식**이 된다.)
+   */
+  const pairs: [number, number][] = [];
+  for (const d of divisors(t)) {
+    if (d < 2 || d * d > t) continue;
+    pairs.push([d, t / d]);
+  }
+  if (pairs.length === 0) {
+    throw new Error(`m3Top4 55W: $2$ 이상인 약수쌍이 없습니다 (T=${t})`);
+  }
+  const cand = factorCandidates(s);
+  const kept = solveFactorA(s, true, true);
+  if (kept.length < 2) {
+    throw new Error(`m3Top4 55W: 살아남은 후보가 모자랍니다 (S=${s})`);
+  }
+  return {
+    s,
+    t,
+    pairs,
+    kept,
+    sift: { candidates: cand, kept },
+    answer: kept.reduce((acc, v) => acc + v, 0),
+  };
+}
+
+function renderFactorSum(rng: Rng): Body {
+  const plan = planFactorSum(rng);
+  const { s, t, pairs, kept, answer } = plan;
+
+  const content =
+    `$a$, $b$가 모두 자연수이고 $a+b=${s}$이다. 이차식 $x^{2}+ax+b$가 ` +
+    `계수와 상수항이 모두 정수이고 상수항이 서로 다른 두 일차식의 곱으로 ` +
+    `인수분해될 때, $a$의 값을 모두 구하고 그 합을 구하시오.`;
+
+  const lines: string[] = [
+    `$x^{2}$의 계수가 $1$이므로 주어진 이차식은 $(x+m)(x+n)$ ($m$, $n$은 정수)의 ` +
+      `꼴로 인수분해된다.`,
+    `$(x+m)(x+n)=x^{2}+(m+n)x+mn$이므로 $a=m+n$, $b=mn$이다.`,
+    // ㉯ — 「둘 다 자연수」로 뛰는 자리의 근거를 그 자리에서 적는다.
+    `$b=mn$이 자연수이므로 $m$과 $n$은 부호가 서로 같고, $a=m+n$도 자연수이므로 ` +
+      `$m$과 $n$은 모두 자연수이다.`,
+    `$a+b=${s}$이므로 $m+n+mn=${s}$이고, 양변에 $1$을 더하면 ` +
+      `$mn+m+n+1=${t}$, 곧 $(m+1)(n+1)=${t}$이다.`,
+    // 굳힘 ⑴ — 이 한 줄이 약수쌍 $(1,\,T)$ 를 죽인다.
+    `$m$과 $n$이 모두 자연수이므로 $m+1$과 $n+1$은 모두 $2$ 이상이다.`,
+    `$${t}$${eulReul(t)} $2$ 이상인 두 자연수의 곱으로 나타내면 ` +
+      `${pairs.map(([p, q]) => `$${t}=${p}\\times ${q}$`).join(", ")}이다.`,
+  ];
+  pairs.forEach(([p, q], i) => {
+    const mark = MARKS[i]!;
+    const m = p - 1;
+    const n = q - 1;
+    const head = `${mark} $m+1=${p}$, $n+1=${q}$이면 $m=${m}$, $n=${n}$이다.`;
+    // $d\ge2$ 로 걸렀으므로 $m\ge1$ 이다 — 「자연수가 아니다」 갈래는 여기 없다.
+    if (m === n) {
+      lines.push(
+        `${head} 이때 두 일차식의 상수항이 $${m}$${euroRo(m)} 서로 같으므로 ` +
+          `조건에 맞지 않는다.`,
+      );
+    } else {
+      lines.push(
+        `${head} 두 상수항이 서로 다르므로 조건에 맞고, ` +
+          `$b=mn=${m}\\times ${n}=${m * n}$, $a=m+n=${m}+${n}=${m + n}$이다.`,
+      );
+    }
+  });
+  lines.push(
+    `따라서 $a$의 값은 $${kept.join("$, $")}$이고, ` +
+      `그 합은 $${kept.join("+")}=${answer}$이다.`,
+  );
+
+  return {
+    content,
+    answer: `$${answer}$`,
+    solution: lines.join("\n"),
+    facts: { s, t, keptCount: kept.length, x: answer },
+    figureSpec: null,
+  };
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// B. 56W  무리수의 소수 부분을 구하지 않고 식의 값 구하기                 (심화중)
+//    3-1 «무리수와 실수» → 우리 소단원 「무리수와 실수」
+// ════════════════════════════════════════════════════════════════════════════
+
+/**
+ * 🔴 **굳힘을 «인자로» 받는 순수 함수** — ㉡ 을 밖에서 재는 통로다.
+ *
+ * $b=\sqrt n-a$ ($a=\lfloor\sqrt n\rfloor$) 를 $b^2+k\,ab+c$ 에 넣어 펴면
+ *
+ * $$b^2+k\,ab+c=\bigl(n+(1-k)a^2+c\bigr)+(k-2)\,a\sqrt n$$
+ *
+ * 이다. 곧 **$k=2$ 일 때만** 무리수 항이 사라져 값이 유리수가 된다 — 그것이 이
+ * 문항의 굳힘이고, 발문의 계수 $2$ 가 그 자리다. `useFold` 를 끄는 대신 **계수를
+ * 흔들어** 재는 이유는 「접힌다」가 계수의 성질이기 때문이다.
+ *
+ * ⚠️ 무리수를 부동소수로 재지 않는다 — `rational` 과 `root`(=$\sqrt n$ 의 계수)를
+ *    **정수 산술로** 따로 돌려주고, 유리수인지는 `root === 0` 으로 판정한다.
+ */
+export function foldParts(
+  n: number,
+  c: number,
+  k: number,
+): { rational: number; root: number } {
+  const a = Math.floor(Math.sqrt(n));
+  return { rational: n + (1 - k) * a * a + c, root: (k - 2) * a };
+}
+
+export type FracSeed = { n: number; c: number; a: number; answer: number };
+
+export type FracPartPlan = {
+  /** 발문의 근호 안 수 */
+  n: number;
+  /** 발문의 상수항 */
+  c: number;
+  /** 정수 부분 */
+  a: number;
+  /** $b^2+2ab$ 의 값 = $n-a^2$ */
+  fold: number;
+  answer: number;
+};
+
+/**
+ * 쓸 수 있는 $(n,c)$ 를 프로그램으로 뽑는다.
+ *
+ * ```
+ * 11 ≤ n ≤ 200, n 은 제곱수가 아니다   제곱수면 소수 부분이 $0$ 이라 문항이 안 된다
+ * 1 ≤ c ≤ 30                          수를 키우는 것은 난이도가 아니다
+ * 답이 한 걸음에 안 닿는다              ㉵ — 적힌 수는 $n$, $2$, $c$ 다
+ * ```
+ *
+ * ⚠️ **처음엔 「$n-a^2\ge3$」을 한 줄 더 두었다가 지웠다.** 답이 $(n-a^2)+c$ 이므로
+ *    $n-a^2$ 가 $1$·$2$ 면 답이 $c+1$·$c+2$ 인데, 그 둘은 **아래 ㉵ 한 줄이 이미
+ *    삼킨다**($1$ 과 $2$ 가 «적힌 수»에 들어 있다). 변이 하네스가 그 줄을 지워도
+ *    **산출물이 글자까지 그대로**여서 「죽은 규칙」으로 드러났다 — 규칙이 두 벌이면
+ *    한쪽만 고쳐도 아무도 모른다(2026-08-18).
+ *
+ * 🔴 **발문의 계수를 «$2a$ 라는 수»로 적으면 안 된다.** 적는 순간 답이
+ * $n-(2a\div2)^2+c$ 라는 **두 걸음**이 되어 지름길이 열린다. 반드시 문자로
+ * `$b^{2}+2ab+c$` 라고 쓴다 — 그래서 $a$ 는 발문에 **한 번도 수로 안 나온다.**
+ *
+ * 🔴 **D-20 손실 원장**(실측) — 제곱수가 아닌 $n$ $\times$ $c$ 는 **$5{,}370$** 조합.
+ * ㉵ 한 줄이 **$4{,}342$** 를 남긴다(−19.1%). 남은 것에서 $n$ 은 **$156$ 종**,
+ * 서로 다른 답은 **$52$ 종**이다.
+ * (참고: 지운 「$n-a^2\ge3$」을 따로 세면 $4{,}680$ 인데, ㉵ 를 통과한 뒤 수는
+ *  **똑같이 $4{,}342$** 다 — 그래서 죽은 규칙이었다.)
+ */
+export function fracPartPool(): FracSeed[] {
+  if (FRAC_CACHE.pool) return FRAC_CACHE.pool;
+  const out: FracSeed[] = [];
+  for (let n = 11; n <= 200; n += 1) {
+    if (intSqrt(n) !== null) continue;
+    const a = Math.floor(Math.sqrt(n));
+    const fold = n - a * a;
+    for (let c = 1; c <= 30; c += 1) {
+      const answer = fold + c;
+      // ㉵ — 이 한 줄이 「$n-a^2\ge3$」까지 삼킨다(머리말 ⚠️). 규칙을 두 벌 두지 않는다.
+      if (oneStepReach([0, 1, 2, n, c]).has(answer)) continue;
+      out.push({ n, c, a, answer });
+    }
+  }
+  FRAC_CACHE.pool = out;
+  return out;
+}
+
+/** 🔴 풀이 낼 수 있는 답 전부(오름차순) — 답을 «고르게» 뽑기 위한 축이다(㉴). */
+export function fracAnswers(): number[] {
+  if (!FRAC_CACHE.answers) {
+    FRAC_CACHE.answers = [...new Set(fracPartPool().map((r) => r.answer))].sort(
+      (x, y) => x - y,
+    );
+  }
+  return FRAC_CACHE.answers;
+}
+
+/** **56W «심화중»** — 「$\sqrt n$ 의 소수 부분을 구하지 않고 식의 값」. */
+export function planFracPart(rng: Rng): FracPartPlan {
+  const want = pick(rng, fracAnswers());
+  const sub = fracPartPool().filter((r) => r.answer === want);
+  if (sub.length === 0) {
+    throw new Error(`m3Top4 56W: 답 ${want} 에 맞는 씨앗이 없습니다`);
+  }
+  const { n, c, a, answer } = pick(rng, sub);
+  const parts = foldParts(n, c, 2);
+  if (parts.root !== 0 || parts.rational !== answer) {
+    throw new Error(`m3Top4 56W: 접힘이 유리수가 아닙니다 (n=${n})`);
+  }
+  return { n, c, a, fold: n - a * a, answer };
+}
+
+function renderFracPart(rng: Rng): Body {
+  const plan = planFracPart(rng);
+  const { n, c, a, fold, answer } = plan;
+
+  const content =
+    `$\\sqrt{${n}}$의 정수 부분을 $a$, 소수 부분을 $b$라 할 때, ` +
+    `$b^{2}+2ab+${c}$의 값을 구하시오.`;
+
+  const lines = [
+    // ⚠️ 「$121$과 $144$ 사이」로 적는 까닭 — 공용 조사 자(`josaMismatches`)는
+    //    수식이 `)`·문자로 끝나면 판정을 건너뛴다. 이 유형의 다른 줄은 전부 그
+    //    모양이라, 이 한 줄이 없으면 그 자가 **구조적으로 0** 이 된다(3차의 한
+    //    유형이 800/800 을 건너뛴 그 자리). 시험이 「몇 자리를 실제로 읽었나」를 센다.
+    `$${a}^{2}=${a * a}$, $${a + 1}^{2}=${(a + 1) * (a + 1)}$이고 ` +
+      `$${n}$${iGa(n)} $${a * a}$${waGwa(a * a)} $${(a + 1) * (a + 1)}$ 사이의 수이므로 ` +
+      `$${a}<\\sqrt{${n}}<${a + 1}$이다.`,
+    `따라서 $\\sqrt{${n}}$의 정수 부분은 $a=${a}$이고, ` +
+      `소수 부분은 $b=\\sqrt{${n}}-${a}$이다.`,
+    `곧 $a+b=\\sqrt{${n}}$이다.`,
+    `$(a+b)^{2}=a^{2}+2ab+b^{2}$이므로 $b^{2}+2ab=(a+b)^{2}-a^{2}$이다.`,
+    `$a+b=\\sqrt{${n}}$이므로 $(a+b)^{2}=${n}$이고, $a=${a}$이므로 $a^{2}=${a * a}$이다.`,
+    `따라서 $b^{2}+2ab$의 값은 $${n}-${a * a}=${fold}$이다.`,
+    `그러므로 $b^{2}+2ab+${c}$의 값은 $${fold}+${c}=${answer}$이다.`,
+  ];
+
+  return {
+    content,
+    answer: `$${answer}$`,
+    solution: lines.join("\n"),
+    facts: { n, c, a, fold, x: answer },
+    figureSpec: null,
+  };
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// C. 57W  미지수가 있는 자료에서 사분위수 조건으로 평균 구하기            (심화상)
+//    3-2 «상자그림과 산점도» → 우리 소단원 「상자그림」
+// ════════════════════════════════════════════════════════════════════════════
+
+/** 자료 일곱 개의 사분위수 — 제$1$=둘째, 중앙값=넷째, 제$3$=여섯째. */
+export function quartilesOfSeven(values: readonly number[]): {
+  q1: number;
+  med: number;
+  q3: number;
+} {
+  if (values.length !== 7) {
+    throw new Error(`m3Top4 57W: 자료가 일곱 개가 아닙니다 (${values.length})`);
+  }
+  const s = [...values].sort((a, b) => a - b);
+  return { q1: s[1]!, med: s[3]!, q3: s[5]! };
+}
+
+/**
+ * $x$ 가 정렬 뒤 **$k$ 번째**($1\le k\le7$)일 때 세 사분위수 —
+ * 값이 $x$ 자신이면 `null` 로 돌려준다(그 자리가 «변수 자리»다).
+ *
+ * ⚠️ 규칙을 옮겨 적지 않는다 — 자리표에 문자열 `"x"` 를 꽂고 `quartilesOfSeven` 과
+ *    **같은 자리**(둘째·넷째·여섯째)를 읽는다.
+ */
+export function slotQuartiles(
+  vs: readonly number[],
+  k: number,
+): { q1: number | null; med: number | null; q3: number | null } {
+  // ⚠️ 배열을 새로 만들지 않는다 — 이 함수를 풀 만들기가 백만 번 부른다.
+  //    자리표만 옮겨 읽으므로 `quartilesOfSeven` 과 **같은 자리**(둘째·넷째·여섯째)다.
+  const at = (i: number): number | null => {
+    if (i === k - 1) return null; // 그 자리가 $x$ 다
+    return i < k - 1 ? vs[i]! : vs[i - 1]!;
+  };
+  return { q1: at(1), med: at(3), q3: at(5) };
+}
+
+export type BoxCase = {
+  /** 정렬 뒤 $x$ 의 자리 (1~7) */
+  slot: number;
+  /** 이 자리가 되는 $x$ 의 범위 — 여닫이 없이 **열린 구간** (자료값과 겹치지 않는다) */
+  lo: number | null;
+  hi: number | null;
+  /** 사분위수범위가 상수면 그 값, $x$ 가 들어가면 `null` */
+  constIqr: number | null;
+  /** 이 자리에서 조건을 만족하는 자연수 $x$ 전부 */
+  hits: number[];
+};
+
+/**
+ * 🔴 **굳힘을 «인자로» 받는 순수 함수** — ㉡ 을 밖에서 재는 통로다.
+ *
+ * `useMedian` 이 곧 굳힘이다 — 중앙값 조건이 $x$ 의 자리를 일곱에서 **셋**으로
+ * 좁힌다. 끄면 일곱 자리를 다 훑게 되고, 사분위수범위만으로는 답이 하나로 안
+ * 정해진다(상수 구간이 통째로 걸리거나 위쪽이 열려 무한히 많아진다).
+ *
+ * 🔴 **네째 자리($x$ 자신이 중앙값)를 처음에는 못 훑고 있었다.** 그 자리만 따로
+ *    받는 갈래가 있었는데 $x=m$ **하나만** 시험했고, 게다가 그 갈래의 조건이
+ *    `!useMedian || m === m` 이라 **늘 참인 죽은 조건**이었다. 실측: 격자 씨앗
+ *    11,386 중 **1,058(9.3%)** 에서 참보다 적게 셌다(더 센 자리는 0).
+ *    보기 — `vs=2,4,6,8,10,14 · m=6 · q=6` 에서 $\{5,9\}$ 를 냈으나 참은
+ *    $\{5,7,9\}$ 다($x=7$ 은 $Q_1=4$·$Q_3=10$ 이라 상수 구간에 든다).
+ *
+ *    그 자리는 $Q_1$·$Q_3$ 가 **둘 다 상수**라 아래 `constIqr` 갈래와 **같은
+ *    셈**이다. 그래서 갈래를 따로 두지 않고 지웠다 — 두 벌이면 한쪽만 고쳐도
+ *    아무도 모른다. (`useMedian` 이 참이면 그 자리는 위 `continue` 가 이미
+ *    걸러 낸다: `sq.med` 가 `null` 이므로 `m` 과 같을 수 없다. 씨앗의 $m$ 은
+ *    늘 자료값이라 「$x=m$」 은 「값이 서로 다른」에 걸려 애초에 답이 못 된다.)
+ *
+ *    ✅ 고친 뒤 `vs=2,4,6,8,10,14 · m=6 · q=6` 이 $\{5,7,9\}$ 를 낸다 — $x$ 를
+ *    $1..60$ 까지 **전부 넣어 직접 판정한 참**과 같다. 그리고 `boxMeanPool` 의
+ *    D-20 표를 다시 세니 **한 자리도 안 바뀌었다**(그 까닭은 그 표 옆에 적었다).
+ */
+export function solveBoxCases(
+  vs: readonly number[],
+  m: number,
+  q: number,
+  useMedian: boolean,
+): BoxCase[] {
+  const out: BoxCase[] = [];
+  for (let k = 1; k <= 7; k += 1) {
+    const sq = slotQuartiles(vs, k);
+    if (useMedian && sq.med !== m) continue;
+    const lo = k === 1 ? null : vs[k - 2]!;
+    const hi = k === 7 ? null : vs[k - 1]!;
+    const constIqr = sq.q1 !== null && sq.q3 !== null ? sq.q3 - sq.q1 : null;
+    const hits: number[] = [];
+    const inRange = (x: number): boolean =>
+      (lo === null || x > lo) && (hi === null || x < hi);
+    if (constIqr !== null) {
+      if (constIqr === q) {
+        const from = lo === null ? 1 : lo + 1;
+        const to = hi === null ? Infinity : hi - 1;
+        if (to === Infinity) hits.push(Infinity);
+        else for (let x = from; x <= to; x += 1) hits.push(x);
+      }
+    } else if (sq.q1 === null) {
+      const x = sq.q3! - q;
+      if (inRange(x) && x >= 1) hits.push(x);
+    } else {
+      const x = sq.q1 + q;
+      if (inRange(x) && x >= 1) hits.push(x);
+    }
+    out.push({ slot: k, lo, hi, constIqr, hits });
+  }
+  return out;
+}
+
+export type BoxSeed = {
+  vs: number[];
+  /** `"lo"` 면 중앙값이 셋째 값(→ $x$ 가 아래쪽) · `"hi"` 면 넷째 값 */
+  branch: "lo" | "hi";
+  m: number;
+  q: number;
+  x: number;
+  /** 살아남은 자리 (1~7) */
+  slot: number;
+  mean: number;
+};
+
+export type BoxPlan = BoxSeed & {
+  cases: BoxCase[];
+  sift: Sift;
+  sum: number;
+  answer: number;
+};
+
+/**
+ * 쓸 수 있는 씨앗을 프로그램으로 뽑는다. 격자는 작게 잡되(모듈 적재가 느려진다)
+ * 「살아남는 자리」 다섯을 다 덮게 했다.
+ *
+ * ```
+ * v1 ∈ 2..8 · 간격 ∈ 2..6      자료가 여섯 개, 값이 서로 다르다
+ * 조건을 만족하는 x 가 **정확히 하나**   답이 하나로 정해져야 한다(㉲)
+ * x 가 자료값과 겹치지 않는다      발문이 「값이 서로 다른」이라 못 겹친다
+ * **중앙값 굳힘을 끄면 후보가 둘 이상**  ㉡ — 안 그러면 그 조건이 이 씨앗에서 장식이다
+ * 평균이 정수                    ㉰ — 지면에 분수를 안 낸다
+ * 답이 발문에 적혀 있지 않다       ㉵ — 자료 여섯 · 중앙값 · 사분위수범위
+ * 답이 (중앙값, 사분위수범위) 한 걸음이 아니다   ㉵ — 학생이 먼저 집는 두 수
+ * ```
+ *
+ * 🔴 **D-20 손실 원장**(실측 · 격자 $7\times5^5=21{,}875$ 벌):
+ * 「유일해」 **$143{,}125$** 행 → 「굳힘이 일한다(끄면 $\ge2$)」 **$124{,}375$**(−13.1%)
+ * → 「평균이 정수」 **$17{,}796$**(−85.7% · 이게 가장 크다) → 「답이 발문에 안 적힘」
+ * **$11{,}446$**(−35.7%) → 「$(M,Q)$ 한 걸음 아님」 **$11{,}386$**(−0.5%).
+ * 남은 자리 분포는 아래 `boxBySlot()` 이 그대로 들고 있다.
+ *
+ * ✅ **2026-09-03 재검산 — 위 다섯 수는 그대로다.** 같은 날 `solveBoxCases` 의
+ *    네째 자리 결함을 고쳤는데(그 함수 머리말 참조), 격자 전수로 다시 세니
+ *    $143{,}125 \to 124{,}375$(−13.1%)·풀 $11{,}386$ 이 **자리까지 같았다.**
+ *    까닭은 옛 코드가 그 자리에서 **아무것도 안 담았기** 때문이다 —
+ *    `inRange(m)` 은 $m$ 이 곧 $v_3$ 이나 $v_4$ 라 **늘 거짓**이었다. 그래서
+ *    「후보가 둘 이상인가」라는 이 판정은 다른 자리들이 이미 채우고 있었다.
+ *    곧 **함수 계약만 고쳐졌고 제품은 한 판도 안 움직였다** — 고치고 나서
+ *    이 표를 다시 세지 않았으면 그 사실을 몰랐을 것이다.
+ */
+export function boxMeanPool(): BoxSeed[] {
+  if (BOX_CACHE.pool) return BOX_CACHE.pool;
+  const out: BoxSeed[] = [];
+  for (let v1 = 2; v1 <= 8; v1 += 1) {
+    for (let g1 = 2; g1 <= 6; g1 += 1)
+      for (let g2 = 2; g2 <= 6; g2 += 1)
+        for (let g3 = 2; g3 <= 6; g3 += 1)
+          for (let g4 = 2; g4 <= 6; g4 += 1)
+            for (let g5 = 2; g5 <= 6; g5 += 1) {
+              const vs = [
+                v1,
+                v1 + g1,
+                v1 + g1 + g2,
+                v1 + g1 + g2 + g3,
+                v1 + g1 + g2 + g3 + g4,
+                v1 + g1 + g2 + g3 + g4 + g5,
+              ];
+              const sum6 = vs.reduce((t, v) => t + v, 0);
+              for (const branch of ["lo", "hi"] as const) {
+                const m = branch === "lo" ? vs[2]! : vs[3]!;
+                // 이 자료·이 중앙값에서 나올 수 있는 사분위수범위 후보.
+                //
+                // ⚠️ **변수 자리는 「평균이 정수」를 먼저 걸러** 후보를 줄인다 —
+                //    안 그러면 `solveBoxCases` 를 일곱 배 부른다(실측 866→약 300ms).
+                //    상수 자리의 사분위수범위는 **거르지 않고 전부** 넣는다: 그 자리가
+                //    사는 씨앗(자리 1·3·5)은 $x$ 가 «구간의 유일한 자연수»라 여기서
+                //    미리 알 수 없기 때문이다. 거르면 그 세 자리가 통째로 사라진다.
+                const qs = new Set<number>();
+                for (let k = 1; k <= 7; k += 1) {
+                  const sq = slotQuartiles(vs, k);
+                  if (sq.med !== m) continue;
+                  if (sq.q1 !== null && sq.q3 !== null) qs.add(sq.q3 - sq.q1);
+                  else if (sq.q1 === null) {
+                    for (let x = vs[k - 2]! + 1; x < vs[k - 1]!; x += 1)
+                      if ((sum6 + x) % 7 === 0) qs.add(sq.q3! - x);
+                  } else {
+                    for (let x = vs[k - 2]! + 1; x < vs[k - 1]!; x += 1)
+                      if ((sum6 + x) % 7 === 0) qs.add(x - sq.q1);
+                  }
+                }
+                for (const q of qs) {
+                  if (q <= 0) continue;
+                  const cases = solveBoxCases(vs, m, q, true);
+                  const hits = cases.flatMap((c) => c.hits);
+                  if (hits.length !== 1) continue;
+                  const x = hits[0]!;
+                  if (!Number.isFinite(x)) continue;
+                  if (vs.includes(x)) continue;
+                  // 🔴 **중앙값 굳힘이 «일할 자리»가 있어야 한다**(㉡). 중앙값 조건을
+                  //    끄고도 답이 하나면 그 조건은 이 씨앗에서 **장식**이다 —
+                  //    시험이 그것을 잡았다(실측 vs=3,5,9,13,19,25).
+                  const loose = solveBoxCases(vs, m, q, false).flatMap(
+                    (c) => c.hits,
+                  );
+                  if (loose.length < 2) continue;
+                  if ((sum6 + x) % 7 !== 0) continue;
+                  const mean = (sum6 + x) / 7;
+                  if ([...vs, m, q].includes(mean)) continue;
+                  if (oneStepReach([m, q]).has(mean)) continue;
+                  const slot = cases.find((c) => c.hits.includes(x))!.slot;
+                  out.push({ vs, branch, m, q, x, slot, mean });
+                }
+              }
+            }
+  }
+  BOX_CACHE.pool = out;
+  return out;
+}
+
+/**
+ * 🔴 **살아남는 자리별 씨앗** — ㉠ 을 위한 축이다.
+ *
+ * 자연 분포로 뽑으면 «$x$ 가 사분위수가 되는 가운데 자리»(아래 갈래 $2$ · 위 갈래 $6$)가
+ * **$89\%$ 를 넘는다**(풀 $11{,}386$ 중 $10{,}146$ — 실측). 그러면 「늘 가운데 경우를
+ * 고른다」로 굳힘을 한 번도 안 읽고 찍을 수 있다. 3차 `51V` 의 `wantDeadIsMin` 과
+ * **같은 처방**으로, 자리를 **먼저** 고르고 거기에 맞는 씨앗만 뽑는다($89\% \to 54\%$).
+ *
+ * ⚠️ 이것은 «지표에 맞춰 데이터를 고른 것»이 아니다 — 다섯 자리 다 이 설계가 원래 낼
+ *    수 있는 문항이고, 한쪽으로 치우쳐 뽑고 있던 것을 고르게 바꿨을 뿐이다.
+ */
+export function boxBySlot(): Map<string, BoxSeed[]> {
+  if (!BOX_CACHE.bySlot) {
+    const m = new Map<string, BoxSeed[]>();
+    for (const r of boxMeanPool()) {
+      const key = `${r.branch}${r.slot}`;
+      const arr = m.get(key) ?? [];
+      arr.push(r);
+      m.set(key, arr);
+    }
+    BOX_CACHE.bySlot = m;
+  }
+  return BOX_CACHE.bySlot;
+}
+
+/**
+ * 자리 고르기의 **무게**.
+ *
+ * ## 🔴 2026-09-06 — 옛 무게는 쏠림을 «가운데»로 **옮겨 놓고** 있었다
+ *
+ * 옛 무게(`1·2·1·1·2`)의 주석은 「극단 집기가 각각 $29.2\%$·$12.5\%$ 로 내려간다」고
+ * 적었다. 사실이었다 — 그런데 **내려간 만큼은 어디로 갔나.** 가운데다:
+ * 「세 경우 중 **가운데**를 집는다」가 **$59.3\%$**(우연 $33.3\%$)였다.
+ * `edgeScore` 가 **극단 둘만** 재고 가운데를 구조적으로 안 봐서 아무도 몰랐다
+ * (그 자에 `bestHit` 를 넣어 이제 본다). 「가드는 쏠림을 없애지 않고 옆으로
+ * 옮긴다」(CLAUDE.md 2026-09-04)가 그대로 났다.
+ *
+ * ## 자리가 곧 «몇째»다 — 그래서 무게 말고는 손댈 데가 없다
+ *
+ * 실측(풀 $11{,}386$ 벌 전수)에서 자리와 «답이 후보의 몇째인가»가 **완전히 굳어** 있다:
+ *
+ * | 자리 | 씨앗 | 세 경우 중 | 남은 후보 중 |
+ * |---|---|---|---|
+ * | `lo1` | $182$ | 왼쪽 $100\%$ | 최솟값 $100\%$ |
+ * | `lo2` | $4{,}996$ | **가운데** $100\%$ | 최솟값 $100\%$ |
+ * | `lo3` | $518$ | 오른쪽 $100\%$ | 최솟값 $100\%$ |
+ * | `hi5` | $540$ | 왼쪽 $100\%$ | 최댓값 $100\%$ |
+ * | `hi6` | $5{,}150$ | **가운데** $100\%$ | 최댓값 $100\%$ |
+ *
+ * 앞 회차가 남긴 처방(「자리 가중치가 아니라 «참 $x$ 가 후보의 몇째인가»를 고르게
+ * 뽑아라」)은 **쓸 수 없다** — 몇째는 자리가 정하므로 그 둘이 같은 손잡이다.
+ * 무게 $1..8$ 전수(32,768벌)를 훑어 파레토 앞면을 냈다.
+ *
+ * ## 고른 값과 그 값이 잃는 것
+ *
+ * ⚠️ **아래 수는 모형이 아니라 «제품 draw» $3{,}000$ 판 실측이다.** 자리별 성적의
+ * 가중 평균으로 먼저 모형을 세웠더니 실측과 $2$pp 갈렸다 — `planBoxMean` 이 자리를
+ * 고른 뒤 **평균을 한 겹 더** 고르기 때문이다(`wantMean`). 무게를 고를 때는
+ * 제품이 걷는 그 걸음으로 재야 한다.
+ *
+ * ⚠️ **이미 서 있는 가드를 넘지 않는다** — 시험이 「한 자리 몫 $<40\%$」와
+ * 「가운데 자리(`lo2`+`hi6`) 합 $<65\%$」를 물고 있다. 그것을 어기는 값(`5·1·4·1·7`
+ * 은 `hi6` 가 $44.6\%$)은 세 경우 성적이 좋아도 **버렸다** — 새 축을 고치자고
+ * 옛 축을 깨면 앞뒤가 안 맞는다.
+ *
+ * 그 울타리 안에서 훑어 `4·2·3·2·5` 를 골랐다(제품 draw $3{,}000$ 판):
+ * 세 경우 벗어남 $24.4\% \to 15.5\%$ · 남은 후보 극단 벗어남 $12.1\% \to 11.1\%$ —
+ * **두 축이 같이 좋아진다.** 한 자리 최대 몫 $33.7\%$ · 가운데 자리 $45.9\%$.
+ * (세 경우만 더 낮추는 값들 — `5·1·3·1·5` $14.2\%$ · `4·2·3·2·4` $14.2\%$ — 은
+ * 남은 후보 축이나 되풀이가 옛 값보다 나빠진다.)
+ * ⚠️ 어느 쪽도 $0$ 이 **될 수 없다**: 세 경우를 완벽히 고르게 하는 무게(`1·1·2·1·1`)는
+ * 남은 후보 축을 $30.7\%$ 로 밀어 올린다. 다섯 자리가 낼 수 있는 조합이 위 표뿐이라
+ * 이것이 **설계의 상한**이지 게으름이 아니다.
+ * ⚠️ 값싼 개선이 아니다 — 씨앗이 $182$ 벌뿐인 `lo1` 의 몫이 늘어
+ * $3{,}000$ 판에서 **최빈 발문이 $1.6\% \to 2.7\%$** 로 는다.
+ * 자리를 **하나도 버리지 않았다** — 다섯 다 이 설계가 낼 수 있는 문항이고,
+ * 다섯 다 무게 $\ge 2$ 다.
+ */
+const BOX_SLOT_WEIGHTS: readonly (readonly [string, number])[] = [
+  ["lo1", 4],
+  ["lo2", 2],
+  ["lo3", 3],
+  ["hi5", 2],
+  ["hi6", 5],
+];
+
+/** **57W «심화상»** — 「미지수가 있는 자료에서 사분위수 조건으로 평균」. */
+export function planBoxMean(rng: Rng): BoxPlan {
+  const bySlot = boxBySlot();
+  const bag: string[] = [];
+  for (const [key, w] of BOX_SLOT_WEIGHTS) {
+    if (!bySlot.has(key)) continue;
+    for (let i = 0; i < w; i += 1) bag.push(key);
+  }
+  if (bag.length === 0) throw new Error("m3Top4 57W: 쓸 자리가 없습니다");
+  const wantSlot = pick(rng, bag);
+  const sub = bySlot.get(wantSlot)!;
+  // 답도 고르게 — 자리 안에서 평균이 한 값에 쏠리지 않게 한 겹 더 고른다(㉴).
+  const means = [...new Set(sub.map((r) => r.mean))].sort((a, b) => a - b);
+  const wantMean = pick(rng, means);
+  const seed = pick(
+    rng,
+    sub.filter((r) => r.mean === wantMean),
+  );
+  const cases = solveBoxCases(seed.vs, seed.m, seed.q, true);
+  if (cases.length !== 3) {
+    throw new Error(`m3Top4 57W: 중앙값 조건이 셋으로 안 좁혀졌습니다`);
+  }
+  const sum = seed.vs.reduce((t, v) => t + v, 0) + seed.x;
+  return {
+    ...seed,
+    cases,
+    sift: { candidates: cases.map((c) => c.slot), kept: [seed.slot] },
+    sum,
+    answer: seed.mean,
+  };
+}
+
+/** 「$x<3$」·「$3<x<7$」·「$x>9$」 — 자리의 범위를 지면 글자로. */
+function rangeTex(lo: number | null, hi: number | null): string {
+  if (lo === null) return `x<${hi}`;
+  if (hi === null) return `x>${lo}`;
+  return `${lo}<x<${hi}`;
+}
+
+/** 그 자리의 범위를 말로 — 「$2$보다 작은」·「$2$보다 크고 $6$보다 작은」. */
+function rangeWords(lo: number | null, hi: number | null): string {
+  if (lo === null) return `$${hi}$보다 작은`;
+  if (hi === null) return `$${lo}$보다 큰`;
+  return `$${lo}$보다 크고 $${hi}$보다 작은`;
+}
+
+function renderBoxMean(rng: Rng): Body {
+  const plan = planBoxMean(rng);
+  const { vs, m, q, x, slot, cases, sum, answer } = plan;
+
+  // ⚠️ 「다음은 어떤 자료를 조사한 것이다」로 열면 같은 소단원 `50`·`51`·`54` 와
+  //    낱말 겹침이 $0.538$ 이 된다(실측). 여는 문장을 바꿔 $0.17$ 로 내렸다.
+  //
+  // 🔴 **「값이 서로 다른」이 장식이 아니다.** $x$ 가 자료값과 같으면 정렬에 같은 값이
+  //    둘이 되어 $x$ 의 «자리»가 두 경우에 걸치고, 그때 조건을 만족하는 $x$ 가 **둘**이
+  //    되는 씨앗이 생긴다(실측 — 시험의 전수 훑기가 잡았다). 세 경우로 나누는 해설이
+  //    참이 되려면 이 한마디가 발문에 있어야 한다.
+  const content =
+    `값이 서로 다른 일곱 개의 자료가 다음과 같다.\n` +
+    `$${vs.join("$, $")}$, $x$\n` +
+    `이 자료의 중앙값이 $${m}$이고 사분위수범위가 $${q}$일 때, ` +
+    `이 자료의 평균을 구하시오. (단, $x$는 자연수)`;
+
+  const lines: string[] = [
+    `자료가 $7$개이고 값이 모두 다르므로 크기순으로 나열하면 제$1$사분위수는 둘째 값, ` +
+      `중앙값은 넷째 값, 제$3$사분위수는 여섯째 값이다.`,
+  ];
+  // 굳힘 — 중앙값 조건이 $x$ 의 자리를 일곱에서 셋으로 좁힌다.
+  if (plan.branch === "lo") {
+    lines.push(
+      `$x>${m}$이면 넷째 값이 $${m}$보다 커지므로 중앙값이 $${m}$${iGa(m)} 되려면 ` +
+        `$x<${m}$이어야 한다.`,
+    );
+  } else {
+    lines.push(
+      `$x<${m}$이면 넷째 값이 $${m}$보다 작아지므로 중앙값이 $${m}$${iGa(m)} 되려면 ` +
+        `$x>${m}$이어야 한다.`,
+    );
+  }
+  lines.push(`그러므로 $x$의 자리에 따라 다음 세 경우를 살펴본다.`);
+
+  cases.forEach((c, i) => {
+    const mark = MARKS[i]!;
+    const sq = slotQuartiles(vs, c.slot);
+    const q1Tex = sq.q1 === null ? "x" : `${sq.q1}`;
+    const q3Tex = sq.q3 === null ? "x" : `${sq.q3}`;
+    const head =
+      `${mark} $${rangeTex(c.lo, c.hi)}$일 때 제$1$사분위수는 $${q1Tex}$, ` +
+      `제$3$사분위수는 $${q3Tex}$이다.`;
+    if (c.constIqr !== null) {
+      if (c.constIqr === q) {
+        // ㉯ — 「자연수는 하나뿐」으로 뛰는 자리의 근거를 그 자리에서 적는다.
+        lines.push(
+          `${head} 사분위수범위는 $${sq.q3!}-${sq.q1!}=${c.constIqr}$${euroRo(
+            c.constIqr,
+          )} 일정하여 조건을 만족한다. ` +
+            `${rangeWords(c.lo, c.hi)} 자연수는 $x=${c.hits[0]}$뿐이다.`,
+        );
+      } else {
+        lines.push(
+          `${head} 사분위수범위는 $${sq.q3!}-${sq.q1!}=${c.constIqr}$${euroRo(
+            c.constIqr,
+          )} 일정한데 $${c.constIqr}$${iGa(c.constIqr)} $${q}$${waGwa(q)} ` +
+            `다르므로 조건에 맞지 않는다.`,
+        );
+      }
+    } else {
+      const solved = sq.q1 === null ? sq.q3! - q : sq.q1! + q;
+      const eq =
+        sq.q1 === null
+          ? `${sq.q3!}-x=${q}$에서 $x=${solved}`
+          : `x-${sq.q1!}=${q}$에서 $x=${solved}`;
+      const ok = c.hits.length > 0;
+      lines.push(
+        `${head} 사분위수범위가 $${q}$이므로 $${eq}$이고, 이 값은 ` +
+          `${rangeWords(c.lo, c.hi)} 수${ok ? "이므로 조건에 맞는다" : "가 아니므로 조건에 맞지 않는다"}.`,
+      );
+    }
+  });
+
+  lines.push(
+    `따라서 $x=${x}$이고, 자료의 총합은 ` +
+      `$${[...vs, x].join("+")}=${sum}$이다.`,
+  );
+  lines.push(`그러므로 평균은 $${sum}\\div 7=${answer}$이다.`);
+
+  return {
+    content,
+    answer: `$${answer}$`,
+    solution: lines.join("\n"),
+    facts: { m, q, xValue: x, slot, sum, x: answer },
+    figureSpec: null,
+  };
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// D. 58W  두 변량의 차로 조건에 맞는 두 학생 찾기                        (심화중)
+//    3-2 «상자그림과 산점도» → 우리 소단원 「산점도와 상관관계」
+// ════════════════════════════════════════════════════════════════════════════
+
+/** 점수의 상·하한 — ㉱ 「발문이 전제한 상한을 파생값이 어기지 않는다」. */
+export const SCORE_MIN = 40;
+export const SCORE_MAX = 95;
+
+/**
+ * 🔴 **굳힘을 «인자로» 받는 순수 함수** — ㉡ 을 밖에서 재는 통로다.
+ *
+ * `useDiff` 가 곧 굳힘이다 — 「두 사람의 국어 합 $=$ 영어 합」은
+ * $(x_i-y_i)+(x_j-y_j)=0$ 과 같은 말이라, 차 여덟 개만 만들면 **28쌍의 합을 한
+ * 번도 계산하지 않고** 짝이 걸러진다. 끄면 $\binom82=28$ 쌍이 전부 후보로 남는다.
+ *
+ * 돌려주는 것은 **각 후보 쌍의 «국어 점수의 합»** (오름차순)이다 — 그것이 곧 답의 꼴이다.
+ */
+export function solvePairSum(
+  xs: readonly number[],
+  ys: readonly number[],
+  useDiff: boolean,
+): number[] {
+  const out: number[] = [];
+  for (let i = 0; i < xs.length; i += 1) {
+    for (let j = i + 1; j < xs.length; j += 1) {
+      if (useDiff && xs[i]! - ys[i]! + (xs[j]! - ys[j]!) !== 0) continue;
+      out.push(xs[i]! + xs[j]!);
+    }
+  }
+  return out.sort((a, b) => a - b);
+}
+
+export type ScatterPlan = {
+  xs: number[];
+  ys: number[];
+  /** 차 $d_i=x_i-y_i$ */
+  ds: number[];
+  /** 짝이 되는 두 학생의 자리(0부터) */
+  hit: [number, number];
+  /** 그 짝의 $|d|$ */
+  k: number;
+  sift: Sift;
+  answer: number;
+};
+
+/**
+ * 답 후보 — 두 국어 점수의 합. 답을 **먼저** 고르고 그에 맞는 점수를 뽑는다(㉴).
+ *
+ * 3차 `52V` 가 최빈 정답 $51.2\%$ 로 걸렸던 자리다. 여기서는 합이 $110$~$180$ 이면
+ * 두 점수가 둘 다 $[40,95]$ 안에 들어갈 자리가 넉넉하다.
+ */
+export const SCATTER_ANSWERS: number[] = Array.from(
+  { length: 71 },
+  (_, i) => 110 + i,
+);
+
+/** **58W «심화중»** — 「두 변량의 차로 조건에 맞는 두 학생 찾기」. */
+export function planScatterPair(rng: Rng): ScatterPlan {
+  const n = 8;
+  for (let attempt = 0; attempt < 400; attempt += 1) {
+    const answer = pick(rng, SCATTER_ANSWERS);
+    // ⑴ 짝이 되는 두 학생의 국어 점수 — 합이 곧 답이다.
+    const loX = Math.max(SCORE_MIN, answer - SCORE_MAX);
+    const hiX = Math.min(SCORE_MAX, answer - SCORE_MIN);
+    if (hiX - loX < 6) continue;
+    const xa = intBetween(rng, loX, hiX);
+    const xb = answer - xa;
+    if (xa === xb) continue;
+    // ⑵ 그 짝의 차 — 한쪽은 $+k$, 다른 쪽은 $-k$.
+    const k = intBetween(rng, 3, 18);
+    const ya = xa - k;
+    const yb = xb + k;
+    if (ya < SCORE_MIN || ya > SCORE_MAX) continue;
+    if (yb < SCORE_MIN || yb > SCORE_MAX) continue;
+    // ⑶ 나머지 여섯 — 차의 절댓값이 서로 다르고 $k$·$0$ 과도 다르다.
+    const used = new Set<number>([0, k]);
+    const xs = [xa, xb];
+    const ys = [ya, yb];
+    let ok = true;
+    for (let i = 0; i < n - 2; i += 1) {
+      let placed = false;
+      for (let t = 0; t < 60 && !placed; t += 1) {
+        const mag = intBetween(rng, 1, 26);
+        if (used.has(mag)) continue;
+        const sign = intBetween(rng, 0, 1) === 0 ? 1 : -1;
+        const d = sign * mag;
+        const x = intBetween(rng, SCORE_MIN, SCORE_MAX);
+        const y = x - d;
+        if (y < SCORE_MIN || y > SCORE_MAX) continue;
+        used.add(mag);
+        xs.push(x);
+        ys.push(y);
+        placed = true;
+      }
+      if (!placed) {
+        ok = false;
+        break;
+      }
+    }
+    if (!ok) continue;
+    // ⑷ 학생 순서를 섞는다 — 짝이 늘 앞 둘이면 「앞 둘 집기」로 찍힌다.
+    const order = [...xs.keys()];
+    for (let i = order.length - 1; i > 0; i -= 1) {
+      const j = intBetween(rng, 0, i);
+      const t = order[i]!;
+      order[i] = order[j]!;
+      order[j] = t;
+    }
+    const sx = order.map((i) => xs[i]!);
+    const sy = order.map((i) => ys[i]!);
+    const ds = sx.map((v, i) => v - sy[i]!);
+    // ⑸ 짝이 **하나뿐**인가 — 규칙을 옮겨 적지 않고 굳힘 함수로 다시 센다.
+    const kept = solvePairSum(sx, sy, true);
+    if (kept.length !== 1 || kept[0] !== answer) continue;
+    // ⑹ 순서쌍이 겹치지 않는가 — 같은 점이 둘이면 지면이 흉하다.
+    if (new Set(sx.map((v, i) => `${v},${sy[i]}`)).size !== n) continue;
+    const hitIdx: number[] = [];
+    ds.forEach((d, i) => {
+      if (Math.abs(d) === k) hitIdx.push(i);
+    });
+    if (hitIdx.length !== 2) continue;
+    return {
+      xs: sx,
+      ys: sy,
+      ds,
+      hit: [hitIdx[0]!, hitIdx[1]!],
+      k,
+      sift: { candidates: solvePairSum(sx, sy, false), kept },
+      answer,
+    };
+  }
+  throw new Error("m3Top4 58W: 조건을 만족하는 자료를 못 만들었습니다");
+}
+
+function renderScatterPair(rng: Rng): Body {
+  const plan = planScatterPair(rng);
+  const { xs, ys, ds, hit, k, answer } = plan;
+  const [i, j] = hit;
+  const plus = ds[i]! > 0 ? i : j;
+  const minus = ds[i]! > 0 ? j : i;
+
+  const pairs = xs.map((v, t) => `$(${v},\\ ${ys[t]})$`).join(", ");
+  const content =
+    `다음은 학생 $8$명의 국어 점수와 영어 점수를 조사하여 ` +
+    `(국어 점수, 영어 점수)의 순서쌍으로 나타낸 것이다.\n` +
+    `${pairs}\n` +
+    `이 학생들 중에서 두 명을 뽑았더니 두 사람의 국어 점수의 합과 영어 점수의 합이 ` +
+    `서로 같았다. 이 두 사람의 국어 점수의 합을 구하시오.`;
+
+  const abs = ds.map((d) => Math.abs(d));
+  const lines = [
+    `두 사람의 국어 점수의 합과 영어 점수의 합이 같으므로, ` +
+      `두 사람의 (국어 점수)$-$(영어 점수)의 값의 합은 $0$이다.`,
+    `학생마다 (국어 점수)$-$(영어 점수)를 구하면 차례로 $${ds.join("$, $")}$이다.`,
+    `따라서 이 값의 절댓값이 같고 부호가 서로 다른 두 학생을 찾으면 된다. ` +
+      `이는 국어 점수와 영어 점수가 같은 점들이 이루는 직선 $y=x$에서 ` +
+      `서로 반대쪽으로 같은 만큼 떨어진 두 학생이라는 뜻이다.`,
+    `절댓값을 차례로 나열하면 $${abs.join("$, $")}$이고, ` +
+      `이 가운데 두 번 나오는 것은 $${k}$뿐이다.`,
+    // ⚠️ 순서쌍 뒤에 조사를 붙이지 않는다 — `$(61,\ 48)$와` 는 수식이 `)` 로 끝나
+    //    공용 조사 자가 판정을 건너뛴다. 대신 아래 `$${k}$${waGwa(k)}` 가
+    //    그 자에게 실제로 읽히는 자리다(시험이 읽은 자리 수를 센다).
+    `그 두 학생은 $(${xs[plus]},\\ ${ys[plus]})$, $(${xs[minus]},\\ ${ys[minus]})$이고 ` +
+      `두 값이 각각 $${k}$${waGwa(k)} $${-k}$이므로, ` +
+      `$${xs[plus]}-${ys[plus]}=${k}$, $${xs[minus]}-${ys[minus]}=${-k}$에서 ` +
+      `두 값의 합이 $0$이 되어 조건을 만족한다.`,
+    `그러므로 구하는 국어 점수의 합은 $${xs[plus]}+${xs[minus]}=${answer}$이다.`,
+    `실제로 두 사람의 영어 점수의 합도 $${ys[plus]}+${ys[minus]}=${answer}$이다.`,
+  ];
+
+  const facts: Record<string, number> = { k, x: answer };
+  xs.forEach((v, t) => {
+    facts[`x${t}`] = v;
+    facts[`y${t}`] = ys[t]!;
+  });
+
+  return {
+    content,
+    answer: `$${answer}$`,
+    solution: lines.join("\n"),
+    facts,
+    figureSpec: null,
+  };
+}
+
+// ════════════════════════════════════════════════════════════════════════════
+// 등록
+// ════════════════════════════════════════════════════════════════════════════
+
+function def(
+  book: string,
+  minor: string,
+  rpmType: string,
+  rpmTitle: string,
+  unitSection: string,
+  difficulty: MidProblem["difficulty"],
+  gen: (rng: Rng) => Body,
+): TypeEntry {
+  return {
+    key: `${book}|${minor}|${rpmType}`,
+    grade: GRADE,
+    unitSection,
+    rpmBook: book,
+    rpmMinor: minor,
+    rpmType,
+    rpmTitle,
+    handler: (rng) => ({
+      grade: GRADE,
+      unitSection,
+      rpmBook: book,
+      rpmMinor: minor,
+      rpmType,
+      rpmTitle,
+      difficulty,
+      ...gen(rng),
+    }),
+  };
+}
+
+export const M3_TOP_4: TypeEntry[] = [
+  def(
+    BOOK1,
+    MINOR.인수분해,
+    "55W",
+    "두 계수의 합이 주어진 이차식이 인수분해되는 경우를 모두 구하기",
+    SEC.인수분해,
+    "심화상",
+    renderFactorSum,
+  ),
+  def(
+    BOOK1,
+    MINOR.무리수,
+    "56W",
+    "무리수의 소수 부분을 구하지 않고 식의 값 구하기",
+    SEC.무리수,
+    "심화중",
+    renderFracPart,
+  ),
+  def(
+    BOOK2,
+    MINOR.상자산점도,
+    "57W",
+    "미지수가 있는 자료에서 사분위수 조건으로 평균 구하기",
+    SEC.상자그림,
+    "심화상",
+    renderBoxMean,
+  ),
+  def(
+    BOOK2,
+    MINOR.상자산점도,
+    "58W",
+    "두 변량의 차로 조건에 맞는 두 학생 찾기",
+    SEC.산점도,
+    "심화중",
+    renderScatterPair,
+  ),
+];

@@ -1,0 +1,274 @@
+{
+  "questionNumber": 18,
+  "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q18",
+  "status": "pending",
+  "studentDigest": "5c599c3a7311139ea0709a0b0f959b720d3d46fd6d8d953137c4f10b5b0ebd5e",
+  "candidateDigest": "bc266381869476d941dd14ff338da9cda190dd3f0aee4cc19eda20580e19c3f8",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "solveDigest": "702eaa6c72ed0be0a262fb5e0362d58acfe9e753013e0b3c63948b4753081e20",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-exam-twin-author-geometry-20261008",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "내각 비에서 가운데 각의 삼각비 식 값→새 각도비/결과 기록에서 계수 역산. 명시 조건과 요청은 아래 실제 중학교 해법으로 해결된다.",
+      "standardCodes": [
+        "9수04-05",
+        "9수04-17",
+        "9수02-05"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "실제5보기 전부 계산/도형 비교;정답 하나,나머지 비동치 오답. ",
+      "standardCodes": [
+        "9수04-05",
+        "9수04-17",
+        "9수02-05"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "본문 표/수치/함수 기록을 직접 확인;별도 그림 없음. 70mm 검사 화면에서 텍스트와 자산 역할 확인.",
+      "standardCodes": [
+        "9수04-05",
+        "9수04-17",
+        "9수02-05"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "통상 좌표/함수/선분/도 단위/근호/실제 삼각비 표기. 일반 라디안·벡터·고교 공식 표기 없음. ",
+      "standardCodes": [
+        "9수04-05",
+        "9수04-17",
+        "9수02-05"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "각40,60,80,A60;cos60/sin60=√3/3,tan60=√3→1/3+u=7/3→2.40/80의 삼각비를 계산하지 않고 일반 cot 관계도 사용하지 않음. circled choice는 역할·값·단위가 독립 결과와 일치.",
+      "standardCodes": [
+        "9수04-05",
+        "9수04-17",
+        "9수02-05"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "내각 비와180합→60특수각 값 각각 대입→근호 일차식. 공개된 새 저자 풀이의 모든 단계와 실제 정의를 읽고 검산. 공학 코드에서의 좌표/삼각함수 값 검증을 학생 풀이 방법으로 취급하지 않음.",
+      "standardCodes": [
+        "9수04-05",
+        "9수04-17",
+        "9수02-05"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "내각 비와180합→60특수각 값 각각 대입→근호 일차식. 공식 선택 성취기준의 중학교 범위와 초등 밑변높이 원리;필요한 보조점/조건 명시 여부 확인.",
+      "standardCodes": [
+        "9수04-05",
+        "9수04-17",
+        "9수02-05"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    }
+  },
+  "evidence": {
+    "binding": {
+      "questionNumber": 18,
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q18",
+      "studentDigest": "5c599c3a7311139ea0709a0b0f959b720d3d46fd6d8d953137c4f10b5b0ebd5e",
+      "candidateDigest": "bc266381869476d941dd14ff338da9cda190dd3f0aee4cc19eda20580e19c3f8",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "702eaa6c72ed0be0a262fb5e0362d58acfe9e753013e0b3c63948b4753081e20",
+      "candidateFileSha256": "e34e8484ac395e7dc6656ee14a9506b21e8f035304769eba81e19efec43c96b8",
+      "rawSolveSha256": "ed681fa55d8a18793c15e2092f99ba9778a96bdbb253bb0d7843ddc7b89c1471",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-18",
+      "sourceQuestionCanonicalDigest": "5b928a5f2851916b21c10eb69b1dcad989042018ec8ed1cc7b4a14814e96395f",
+      "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceProvidedDigest": "2caf1ec80ca04794a94a4593dc0972648cfb808e13ce6f8c263a79c01cfd8dd9",
+      "sourceHashContract": "supplied sourceContentDigest separate from raw stem or complete canonical source-row digest",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    "independentSolveCommit": "c8f8aeadfb28becb1d7447240fd4e28b6702fc4c",
+    "rawSolveUnchanged": true,
+    "answerComparison": {
+      "literalEqual": true,
+      "semanticEqual": true,
+      "role": "single selected choice",
+      "authorAnswer": "③",
+      "independentAnswer": "③",
+      "allFiveChoiceTruthValues": [
+        false,
+        false,
+        true,
+        false,
+        false
+      ],
+      "semanticDuplicateChoices": [],
+      "unitAndTargetOrderChecked": true,
+      "writtenPartsRequested": [],
+      "writtenRubricApplicable": false
+    },
+    "independentExactCalculation": {
+      "questionNumber": 18,
+      "target": "2",
+      "status": "independently-computed",
+      "evidence": {
+        "triangleAngles": [
+          "40",
+          "60",
+          "80"
+        ],
+        "secondLargestA": 60,
+        "cos60": "1/2",
+        "sin60": "sqrt(3)/2",
+        "tan60": "sqrt(3)",
+        "leftAtU2": "7*sqrt(3)/3",
+        "nonzeroSin": true,
+        "method": "Known60-degree scalars substituted individually;no generic ratio identity.",
+        "allFiveActualChoiceValues": [
+          "1/3",
+          "1",
+          "2",
+          "3",
+          "7/3"
+        ],
+        "choiceCorrectness": [
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "correctChoiceNumber": 3,
+        "semanticDuplicateChoices": [],
+        "oneCorrectChoice": true
+      },
+      "knownHolds": []
+    },
+    "mathAndNewSolution": "각40,60,80,A60;cos60/sin60=√3/3,tan60=√3→1/3+u=7/3→2.40/80의 삼각비를 계산하지 않고 일반 cot 관계도 사용하지 않음.",
+    "coreAndSubstantiveDelta": "내각 비에서 가운데 각의 삼각비 식 값→새 각도비/결과 기록에서 계수 역산.",
+    "allowedWholeStudentMethod": "내각 비와180합→60특수각 값 각각 대입→근호 일차식.",
+    "sourceQuestionOnly": {
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-18",
+      "packetRawSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceDigestProvided": "2caf1ec80ca04794a94a4593dc0972648cfb808e13ce6f8c263a79c01cfd8dd9",
+      "images": [
+        {
+          "file": "images/q18-part1.png",
+          "rawSha256": "c14afb0e48ad076927488b85b389c970e37ae1e4654c6d7fad4b7d5ade3c625f",
+          "personallyViewed": true
+        }
+      ],
+      "sourceCropsNotNewAssets": true,
+      "originalKeyOrSolutionFilesRead": false
+    },
+    "visualReview": {
+      "questionNumber": 18,
+      "studentDigest": "5c599c3a7311139ea0709a0b0f959b720d3d46fd6d8d953137c4f10b5b0ebd5e",
+      "candidateDigest": "bc266381869476d941dd14ff338da9cda190dd3f0aee4cc19eda20580e19c3f8",
+      "columnWidthMm": 70,
+      "png": "inspection/q18-expanded.png",
+      "pngSha256": "412a822aa680bc51eceba8508baed644a11bd5076bbadaaffc1889e7c7311d6d",
+      "overflow": [],
+      "unclippedPng": null,
+      "figureCount": 0,
+      "figureWidthMm": 70,
+      "figureArrangement": "ordered roles",
+      "personallyViewed": true,
+      "imageRawSha256": "412a822aa680bc51eceba8508baed644a11bd5076bbadaaffc1889e7c7311d6d",
+      "actualQuestionAndExpandedSolutionInspected": true,
+      "allSuppliedChoiceFiguresInspected": false,
+      "assets": [],
+      "strictRegenerationResults": [],
+      "nativeCompatibilityNotApproved": true
+    },
+    "naturalKorean": "조건·대상각·선분·기록값·단위가 자연스럽고 모호한 원본 조건을 명시했다. 허구 학교 표시 해솔누리중학교와 실제 학교 내부 보존을 구별;원학교로 학년 승인하지 않음.",
+    "scoreAndDifficulty": {
+      "score": 4,
+      "sourceScorePreserved": true,
+      "authorDifficultyProposal": "응용",
+      "reviewerDifficultyProposal": "응용",
+      "basis": "내각 비와180합→60특수각 값 각각 대입→근호 일차식. 4점은 원문과 동일하고 필요한 단계 수를 근거로 제안. 검토자는 심화하/기본과 응용 차이를 기록하며 실측 난도나 학교 자동 승인 주장 없음.",
+      "measuredDifficulty": false
+    },
+    "taxonomy": {
+      "unitUuidProposal": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+      "unit": {
+        "id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 값",
+        "semester": 2,
+        "orderIndex": 482,
+        "problemCodePrefix": "J30502"
+      },
+      "unitSeedExactMatch": true,
+      "candidateMetadataAssignmentUnedited": {
+        "status": "pending",
+        "unitId": null,
+        "familyKey": null,
+        "currentUnit": null,
+        "currentRegistryMatch": null,
+        "liveCount": null,
+        "checkedAt": "2026-10-08 04:53:45.769124+00",
+        "evidence": "내각 비의 가운데 각과 계수 역산을 연결한 정확 live subtype은 별도 검토 전 null이다. 삼각비 관계식 유형으로 자동 배정하지 않는다.",
+        "candidates": []
+      },
+      "existingLiveFamilyProposal": null,
+      "semanticFamilyOnly": null,
+      "status": "held",
+      "basis": "특수각 직접 값 유형과 내각 비+계수 역산 복합 전체 목적을 지원하는 현재 live 규칙은 미확정. 일반 삼각비 관계식 유형을 대체 배정하지 않는다.",
+      "formatComparison": "Complete new target/format/difficulty support is unconfirmed as described in basis; no nearest/title mapping.",
+      "bankCapturedAt": "2026-10-08 13:00:16.891043+00",
+      "snapshotScopeOnly": true,
+      "liveCountNotPermission": true
+    },
+    "q22RepairRead": false,
+    "q23SourceRoleMetadataBoundary": null
+  },
+  "holds": [
+    {
+      "code": "exact-unit-live-family-contract-pending",
+      "basis": "특수각 직접 값 유형과 내각 비+계수 역산 복합 전체 목적을 지원하는 현재 live 규칙은 미확정. 일반 삼각비 관계식 유형을 대체 배정하지 않는다.",
+      "reopen": "실제 live 규칙의 전체 조건/요청 목표/핵심 절차/난도/형식을 지원하는 근거를 제시하거나 별도 새 메타데이터 계약을 검토. Unit·제목·live count만으로 확정하지 않음."
+    }
+  ],
+  "gates": {
+    "rights": "held",
+    "custody": "held",
+    "similarity": "pending",
+    "nativeCompatibility": "pending",
+    "directUseAllowed": false,
+    "loadable": false,
+    "dbWrites": 0,
+    "modelCalls": 0,
+    "finalPublicationApproval": false
+  }
+}

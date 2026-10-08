@@ -1,0 +1,347 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 12,
+  "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q12",
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "content": "그림은 $y=-x^2+2x+3$의 그래프이다. $A$는 $y$축과 만나는 점이고, $B,C$는 왼쪽부터 차례로 $x$축과 만나는 점이다. $A$를 지나는 직선 $\\ell:y=mx+n$이 삼각형 $ABC$의 넓이를 이등분한다. $D$를 직선 $\\ell$과 선분 $BC$의 교점이라 할 때, 검산 기록 ($D$의 $x$좌표, $m$, $n$)으로 옳은 것은?",
+  "choices": [
+    "$(1,3,3)$",
+    "$(1,-3,3)$",
+    "$(2,-3,3)$",
+    "$(1,-3,-3)$",
+    "$(0,-3,3)$"
+  ],
+  "answer": "②",
+  "solution": "$-x^2+2x+3=-(x-3)(x+1)$이므로 $B=(-1,0)$, $C=(3,0)$이다. $x=0$을 대입하면 $A=(0,3)$이다.\n\n삼각형 $ABD$와 $ADC$는 밑변이 같은 직선 $BC$ 위에 있고 높이가 같으므로 넓이가 같으려면 $\\overline{BD}=\\overline{DC}$여야 한다. 따라서 $D$는 $BC$의 중점이고 $D=(1,0)$이다.\n\n직선은 $A=(0,3)$을 지나므로 $n=3$이다. $D=(1,0)$도 지나므로 $0=m+3$에서 $m=-3$이다. 기록은 $(1,-3,3)$이며 정답은 ②이다.",
+  "score": 5,
+  "questionType": "객관식",
+  "facts": {
+    "coefficients": [
+      -1,
+      2,
+      3
+    ],
+    "A": [
+      0,
+      3
+    ],
+    "B": [
+      -1,
+      0
+    ],
+    "C": [
+      3,
+      0
+    ],
+    "D": [
+      1,
+      0
+    ],
+    "m": -3,
+    "n": 3,
+    "totalArea": 6,
+    "halfAreas": [
+      3,
+      3
+    ]
+  },
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "figure-1.spec.json",
+      "svgPath": "figure-1.svg",
+      "intendedWidthMm": 70
+    }
+  ],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation",
+      "inverse-target"
+    ],
+    "before": "포물선의 두 x절편/한 y절편이 만든 삼각형의 넓이를 A를 지나는 직선으로 이등분하고 그 식을 찾는다.",
+    "after": "새 포물선과 이등분 직선의 좌표/기울기/절편 검산 기록 세 칸을 복구한다. x절편 간 거리나 이름만 바꾸는 변경이 아니다.",
+    "sharedConcept": "이차함수 축 교점과 삼각형의 같은 높이 넓이비·중점·일차함수 식",
+    "sharedProcedure": "인수분해로 두 x절편과 대입으로 y절편을 구하고 같은 높이 넓이비로 밑변 중점을 정한 뒤 두 점의 직선을 구한다.",
+    "objectiveDifficulty": "원문의 인수분해·같은 높이 넓이비·직선 복구를 그대로 유지하고 출력 기록을 좌표/두 계수로 바꾼 5점 문항이다.",
+    "scoreDelta": {
+      "source": 5,
+      "authored": 5,
+      "changed": false
+    }
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수03-09",
+      "9수03-10",
+      "9수02-12",
+      "9수04-05",
+      "9수03-05"
+    ],
+    "allowedProcedure": "인수분해로 두 x절편과 대입으로 y절편을 구하고 같은 높이 넓이비로 밑변 중점을 정한 뒤 두 점의 직선을 구한다.",
+    "forbiddenAvoided": [
+      "일반 이차함수 최적화",
+      "미분",
+      "근과 계수의 관계",
+      "일반 포물선/직선 교점 이론"
+    ],
+    "status": "author-proposed",
+    "surfaces": {
+      "stem": {
+        "status": "author-proposed",
+        "evidence": "이차함수와 x/y축 교점, 삼각형 넓이 이등분을 묻는다."
+      },
+      "choices": {
+        "status": "author-proposed",
+        "evidence": "다섯 새 중점/기울기/절편 기록을 모두 확인한다."
+      },
+      "figuresAndTables": {
+        "status": "author-proposed",
+        "evidence": "새 포물선·삼각형·이등분선 그림은 정확한 같은 좌표를 사용한다. 이름 없는 원문 잉크를 추가 조건으로 쓰지 않았다."
+      },
+      "notation": {
+        "status": "author-proposed",
+        "evidence": "좌표·선분·각·근호·도·삼각비의 표기는 실제 중학교 해법에 쓰는 범위이다."
+      },
+      "answer": {
+        "status": "author-proposed",
+        "evidence": "새 조건을 계산한 유일한 객관식 답이며 원문 정답을 가져오지 않았다."
+      },
+      "studentSolution": {
+        "status": "author-proposed",
+        "evidence": "인수분해와 같은 높이의 넓이, 두 점의 일차함수만 사용한다."
+      },
+      "prerequisites": {
+        "status": "author-proposed",
+        "evidence": "중3 인수분해, 중1 삼각형 넓이, 중2 일차함수"
+      }
+    },
+    "gradeBasis": "특정 x축 교점은 인수분해로, 넓이 이등분은 같은 높이의 밑변 비교로 구한다. 일반 포물선/직선 교점 위치론이나 Vieta·정적분을 사용하지 않는다.",
+    "exactGradeApproval": false
+  },
+  "sourceReference": {
+    "externalId": "2025-gyeongsan-3-2-mid-12",
+    "examId": "personal-aa35a05fbaf41074c2ebcfcd6f16e876",
+    "sourcePacketExamId": "2025-gyeongsan-3-2-mid",
+    "school": "경산중",
+    "questionNumber": 12,
+    "sourceContentSha256": "2fc0b7c94d7c305089f381a96982fae896b126d5461303006bbae692f6ee4a25",
+    "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+    "sourceQuestionOnlySnapshot": "source-snapshot/packet/questions.json",
+    "sourceQuestionScore": 5,
+    "sourceQuestionType": "객관식",
+    "sourceQuestionParts": [],
+    "sourceStatus": "source_reference_reviewed_all_final_approval_gates_held",
+    "sourceObservation": "포물선의 두 x절편/한 y절편이 만든 삼각형의 넓이를 A를 지나는 직선으로 이등분하고 그 식을 찾는다.",
+    "originalAnswersOrSolutionsUsed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "score": 5,
+    "difficultyProposal": "응용",
+    "difficultyStatus": "pending-independent-review",
+    "problemTypeProposal": null,
+    "problemTypeStatus": "pending-independent-review",
+    "hasFigure": true,
+    "assignment": {
+      "status": "pending",
+      "unitId": null,
+      "familyKey": null,
+      "currentUnit": null,
+      "currentRegistryMatch": null,
+      "liveCount": null,
+      "checkedAt": "2026-10-08 04:53:45.769124+00",
+      "evidence": "그래프와 삼각형 넓이의 중3 Unit은 확인했지만 중선 직선의 세 항목 검산은 현행 유형08의 구체 생성 규칙과 추가 대조가 필요하여 family는 null이다.",
+      "candidates": []
+    },
+    "achievementStandardRefs": [
+      {
+        "code": "9수02-12",
+        "verified_text": "다항식의 곱셈과 인수분해를 할 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3956,
+          "record_offset_in_uncompressed_stream": 201534,
+          "extracted_paragraph_1based": 807
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            34
+          ],
+          "printed_pages": [
+            30
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      },
+      {
+        "code": "9수03-05",
+        "verified_text": "일차함수의 의미를 이해하고, 그 그래프를 그릴 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4122,
+          "record_offset_in_uncompressed_stream": 209259,
+          "extracted_paragraph_1based": 843
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            36
+          ],
+          "printed_pages": [
+            32
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      },
+      {
+        "code": "9수03-09",
+        "verified_text": "이차함수의 의미를 이해하고, 그 그래프를 그릴 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4146,
+          "record_offset_in_uncompressed_stream": 210185,
+          "extracted_paragraph_1based": 849
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            36
+          ],
+          "printed_pages": [
+            32
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      },
+      {
+        "code": "9수03-10",
+        "verified_text": "이차함수의 그래프의 성질을 이해한다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4150,
+          "record_offset_in_uncompressed_stream": 210353,
+          "extracted_paragraph_1based": 850
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            36
+          ],
+          "printed_pages": [
+            32
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      },
+      {
+        "code": "9수04-05",
+        "verified_text": "다각형의 성질을 이해한다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4272,
+          "record_offset_in_uncompressed_stream": 216602,
+          "extracted_paragraph_1based": 874
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            37
+          ],
+          "printed_pages": [
+            33
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      }
+    ],
+    "achievementStandardStatus": "official-text-matched-candidate-author-proposed",
+    "sourceIdentityReview": {
+      "status": "source-packet-identity-supported-full-custody-held",
+      "sourceSchool": "경산중",
+      "sourceYear": 2025,
+      "sourcePacketDecision": "2025_original_header_school_footer_and_completed_question_identity_supported",
+      "fullPairCertification": "held",
+      "custody": "held",
+      "rights": "held"
+    },
+    "bankEvidence": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-fresh-r2-20261008.json",
+      "sha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b",
+      "capturedAt": "2026-10-08 04:53:45.769124+00",
+      "registrySha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "curriculumEvidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "databaseAccessByAuthor": false
+    },
+    "authorEvidence": {
+      "calculationsPath": "author-calculations.json",
+      "authoringScriptSha256": "968f4138a9be3a7960b4b2a2ce76c3625a6e0df382b168d6dbe457cb833bcd35",
+      "visualReview": "pending-local-view",
+      "mathematicalReview": "author-self-check-only"
+    }
+  },
+  "schoolNamePolicy": {
+    "actual": "경산중",
+    "display": "해솔누리중학교",
+    "role": "fictional-display-alias-only",
+    "originalOccurrencesInStem": 0,
+    "surfaces": [
+      "content",
+      "choices",
+      "tables",
+      "figureLabels",
+      "solution"
+    ],
+    "review": "author-proposed"
+  },
+  "independentVerification": null,
+  "review": {
+    "status": "pending",
+    "mathematicalCorrectness": "pending-independent-blind-solve",
+    "gradeCurriculum": "pending-independent-review",
+    "equivalentConceptAndMethod": "pending-independent-review",
+    "distinctPresentation": "pending-independent-review",
+    "naturalKorean": "pending-independent-review",
+    "figure": "pending-independent-review",
+    "rights": "pending",
+    "similarity": "pending",
+    "nativeCompatibility": "pending",
+    "physicalPaper": "not-approved"
+  },
+  "directUseAllowed": false
+}

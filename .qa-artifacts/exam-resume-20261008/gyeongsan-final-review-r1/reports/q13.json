@@ -1,0 +1,308 @@
+{
+  "questionNumber": 13,
+  "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q13",
+  "status": "pending",
+  "studentDigest": "fbf32a3822dc0ab31f61459df1b1aaf45752807988e4086d0c9179780cdeb123",
+  "candidateDigest": "e919fe72bf3817f5c112744c255bee3116b236beb836983a56f41f2f46f4a694",
+  "assetDigest": "0366b971fec363b1fe37c4b63824fe8c47af4e420dc77062a896e47ae570665a",
+  "solveDigest": "4056c06c1e59c1e05a2fd9ec0e1d6b611ac464647f4d210dea9fab0acd6cc57d",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-exam-twin-author-geometry-20261008",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "세 변에서 cos 값→cos와 빗변으로 이웃 직각변 역복원. 정의를 독립적으로 적용. 명시 조건과 요청은 아래 실제 중학교 해법으로 해결된다.",
+      "standardCodes": [
+        "9수04-17",
+        "9수04-16"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "실제5보기 전부 계산/도형 비교;정답 하나,나머지 비동치 오답. ",
+      "standardCodes": [
+        "9수04-17",
+        "9수04-16"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "새 SVG 1개의 라벨·직각·각·점순서·영역을 stem과 함께 확인. 70mm 검사 화면에서 텍스트와 자산 역할 확인.",
+      "standardCodes": [
+        "9수04-17",
+        "9수04-16"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "통상 좌표/함수/선분/도 단위/근호/실제 삼각비 표기. 일반 라디안·벡터·고교 공식 표기 없음. ",
+      "standardCodes": [
+        "9수04-17",
+        "9수04-16"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "cos A=AC/AB=x/26=5/13→10cm.다른 변24>0,실제 직각삼각형 존재;5보기 유일. circled choice는 역할·값·단위가 독립 결과와 일치.",
+      "standardCodes": [
+        "9수04-17",
+        "9수04-16"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "대상각/빗변/이웃변 구별→정의 비례식 한 번의 곱. 공개된 새 저자 풀이의 모든 단계와 실제 정의를 읽고 검산. 공학 코드에서의 좌표/삼각함수 값 검증을 학생 풀이 방법으로 취급하지 않음.",
+      "standardCodes": [
+        "9수04-17",
+        "9수04-16"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "대상각/빗변/이웃변 구별→정의 비례식 한 번의 곱. 공식 선택 성취기준의 중학교 범위와 초등 밑변높이 원리;필요한 보조점/조건 명시 여부 확인.",
+      "standardCodes": [
+        "9수04-17",
+        "9수04-16"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    }
+  },
+  "evidence": {
+    "binding": {
+      "questionNumber": 13,
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q13",
+      "studentDigest": "fbf32a3822dc0ab31f61459df1b1aaf45752807988e4086d0c9179780cdeb123",
+      "candidateDigest": "e919fe72bf3817f5c112744c255bee3116b236beb836983a56f41f2f46f4a694",
+      "assetDigest": "0366b971fec363b1fe37c4b63824fe8c47af4e420dc77062a896e47ae570665a",
+      "solveDigest": "4056c06c1e59c1e05a2fd9ec0e1d6b611ac464647f4d210dea9fab0acd6cc57d",
+      "candidateFileSha256": "5284bdd357b8233d9fd664c195c3736cabe2c55dc70411d0618415f6dd5df0c7",
+      "rawSolveSha256": "e1d96ce587a3855c2a3006269d87670857173bef0f1c12c0e6f92f399c2d03af",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-13",
+      "sourceQuestionCanonicalDigest": "6d21b54b8ce32e9ab20884c83d7250342053a1a23ab8d71d2d0f802cc81d4bad",
+      "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceProvidedDigest": "6bdb93fc858a191c0db0e4569df8515960db109a29cd9c74bced9d7b2ce3991e",
+      "sourceHashContract": "supplied sourceContentDigest separate from raw stem or complete canonical source-row digest",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    "independentSolveCommit": "c8f8aeadfb28becb1d7447240fd4e28b6702fc4c",
+    "rawSolveUnchanged": true,
+    "answerComparison": {
+      "literalEqual": true,
+      "semanticEqual": true,
+      "role": "single selected choice",
+      "authorAnswer": "②",
+      "independentAnswer": "②",
+      "allFiveChoiceTruthValues": [
+        false,
+        true,
+        false,
+        false,
+        false
+      ],
+      "semanticDuplicateChoices": [],
+      "unitAndTargetOrderChecked": true,
+      "writtenPartsRequested": [],
+      "writtenRubricApplicable": false
+    },
+    "independentExactCalculation": {
+      "questionNumber": 13,
+      "target": "10",
+      "status": "independently-computed",
+      "evidence": {
+        "adjacentAC": "10",
+        "hypotenuseAB": 26,
+        "otherLegBC": "24",
+        "cosARecheck": "5/13",
+        "positiveNondegenerateTriangle": true,
+        "method": "cosA=AC/AB only.",
+        "allFiveActualChoiceValues": [
+          "5",
+          "10",
+          "12",
+          "13",
+          "24"
+        ],
+        "choiceCorrectness": [
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "correctChoiceNumber": 2,
+        "semanticDuplicateChoices": [],
+        "oneCorrectChoice": true
+      },
+      "knownHolds": []
+    },
+    "mathAndNewSolution": "cos A=AC/AB=x/26=5/13→10cm.다른 변24>0,실제 직각삼각형 존재;5보기 유일.",
+    "coreAndSubstantiveDelta": "세 변에서 cos 값→cos와 빗변으로 이웃 직각변 역복원. 정의를 독립적으로 적용.",
+    "allowedWholeStudentMethod": "대상각/빗변/이웃변 구별→정의 비례식 한 번의 곱.",
+    "sourceQuestionOnly": {
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-13",
+      "packetRawSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceDigestProvided": "6bdb93fc858a191c0db0e4569df8515960db109a29cd9c74bced9d7b2ce3991e",
+      "images": [
+        {
+          "file": "images/q13-part1.png",
+          "rawSha256": "2a379c79da79bfe76e40df74d03852c46cd8ec8d35f20f84c4cc25d14821ffda",
+          "personallyViewed": true
+        }
+      ],
+      "sourceCropsNotNewAssets": true,
+      "originalKeyOrSolutionFilesRead": false
+    },
+    "visualReview": {
+      "questionNumber": 13,
+      "studentDigest": "fbf32a3822dc0ab31f61459df1b1aaf45752807988e4086d0c9179780cdeb123",
+      "candidateDigest": "e919fe72bf3817f5c112744c255bee3116b236beb836983a56f41f2f46f4a694",
+      "columnWidthMm": 70,
+      "png": "inspection/q13-expanded.png",
+      "pngSha256": "de510f2fa42171a8f6a10aead1460cbc0dea0729f8d251d10d2a32237da6c30a",
+      "overflow": [],
+      "unclippedPng": null,
+      "figureCount": 1,
+      "figureWidthMm": 70,
+      "figureArrangement": "ordered roles",
+      "personallyViewed": true,
+      "imageRawSha256": "de510f2fa42171a8f6a10aead1460cbc0dea0729f8d251d10d2a32237da6c30a",
+      "actualQuestionAndExpandedSolutionInspected": true,
+      "allSuppliedChoiceFiguresInspected": false,
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "99bb9745858317d2507be2492916e34d66942404a875e0ea60f1b60fdb7b6fbe",
+          "svgSha256": "eda63438dcf35eadbeb2af186900f8b8e0b21f83b09206240c57cc190151b34e",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q13-1.svg"
+        }
+      ],
+      "strictRegenerationResults": [
+        {
+          "questionNumber": 13,
+          "role": "stem",
+          "specSha256": "99bb9745858317d2507be2492916e34d66942404a875e0ea60f1b60fdb7b6fbe",
+          "frozenSvgSha256": "eda63438dcf35eadbeb2af186900f8b8e0b21f83b09206240c57cc190151b34e",
+          "regeneratedSvgSha256": "eda63438dcf35eadbeb2af186900f8b8e0b21f83b09206240c57cc190151b34e",
+          "byteEqual": true,
+          "strict": true,
+          "localOnly": true,
+          "droppedDimensions": []
+        }
+      ],
+      "nativeCompatibilityNotApproved": true
+    },
+    "naturalKorean": "조건·대상각·선분·기록값·단위가 자연스럽고 모호한 원본 조건을 명시했다. 허구 학교 표시 해솔누리중학교와 실제 학교 내부 보존을 구별;원학교로 학년 승인하지 않음.",
+    "scoreAndDifficulty": {
+      "score": 3,
+      "sourceScorePreserved": true,
+      "authorDifficultyProposal": "응용",
+      "reviewerDifficultyProposal": "기본",
+      "basis": "대상각/빗변/이웃변 구별→정의 비례식 한 번의 곱. 3점은 원문과 동일하고 필요한 단계 수를 근거로 제안. 검토자는 심화하/기본과 응용 차이를 기록하며 실측 난도나 학교 자동 승인 주장 없음.",
+      "measuredDifficulty": false
+    },
+    "taxonomy": {
+      "unitUuidProposal": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+      "unit": {
+        "id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 뜻",
+        "semester": 2,
+        "orderIndex": 481,
+        "problemCodePrefix": "J30501"
+      },
+      "unitSeedExactMatch": true,
+      "candidateMetadataAssignmentUnedited": {
+        "status": "proposed",
+        "unitId": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+        "familyKey": "mid:3-2|삼각비|02",
+        "currentUnit": {
+          "id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "section": "삼각비의 뜻",
+          "semester": 2,
+          "orderIndex": 481,
+          "problemCodePrefix": "J30501"
+        },
+        "currentRegistryMatch": {
+          "key": "3-2|삼각비|02",
+          "grade": "중3",
+          "unitSection": "삼각비의 뜻",
+          "rpmBook": "3-2",
+          "rpmMinor": "삼각비",
+          "rpmType": "02",
+          "rpmTitle": "삼각비를 이용하여 삼각형의 변의 길이 구하기"
+        },
+        "liveCount": 24,
+        "checkedAt": "2026-10-08 04:53:45.769124+00",
+        "evidence": "주어진 코사인과 빗변으로 실제 누락 직각변을 구하는 현재 유형02의 입력/목표/정의 사용과 대응한다.",
+        "generatorRuleEvidence": {
+          "module": "src/lib/middle/m3Trig.ts",
+          "family": "삼각비 02",
+          "observed": "삼각비의 값과 실제 한 변을 주고 비의 정의로 다른 변을 구한다.",
+          "status": "author-semantic-proposal"
+        },
+        "approval": "author-proposal-only"
+      },
+      "existingLiveFamilyProposal": null,
+      "semanticFamilyOnly": "mid:3-2|삼각비|02",
+      "status": "held",
+      "basis": "실제 삼각비02의 cos branch는 빗변+cos를 주고 이웃 직각변을 구함;5-12-13의2배26/10은 풀에 있음. Unit/목적/절차는 정확하나 실제 rule 난도는 기본,봉인 candidate.metadata.difficultyProposal은 응용이어서 현행 난도 계약은 불일치.",
+      "formatComparison": "Complete new target/format/difficulty support is unconfirmed as described in basis; no nearest/title mapping.",
+      "bankCapturedAt": "2026-10-08 13:00:16.891043+00",
+      "snapshotScopeOnly": true,
+      "liveCountNotPermission": true
+    },
+    "q22RepairRead": false,
+    "q23SourceRoleMetadataBoundary": null
+  },
+  "holds": [
+    {
+      "code": "exact-unit-live-family-contract-pending",
+      "basis": "실제 삼각비02의 cos branch는 빗변+cos를 주고 이웃 직각변을 구함;5-12-13의2배26/10은 풀에 있음. Unit/목적/절차는 정확하나 실제 rule 난도는 기본,봉인 candidate.metadata.difficultyProposal은 응용이어서 현행 난도 계약은 불일치.",
+      "reopen": "실제 live 규칙의 전체 조건/요청 목표/핵심 절차/난도/형식을 지원하는 근거를 제시하거나 별도 새 메타데이터 계약을 검토. Unit·제목·live count만으로 확정하지 않음."
+    },
+    {
+      "code": "difficulty-proposal-mismatch",
+      "basis": "난도 제안 응용→기본 정정 및 새 메타데이터 바인딩/검토가 필요.3점은 원문 지면과 같고 적절.",
+      "reopen": "수정은 새 버전으로 봉인/해시 바인딩 후 해당 차원 독립 재검토. 원본 풀이/후보 불변."
+    }
+  ],
+  "gates": {
+    "rights": "held",
+    "custody": "held",
+    "similarity": "pending",
+    "nativeCompatibility": "pending",
+    "directUseAllowed": false,
+    "loadable": false,
+    "dbWrites": 0,
+    "modelCalls": 0,
+    "finalPublicationApproval": false
+  }
+}

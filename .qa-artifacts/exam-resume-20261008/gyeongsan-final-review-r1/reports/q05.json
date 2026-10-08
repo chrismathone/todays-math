@@ -1,0 +1,265 @@
+{
+  "questionNumber": 5,
+  "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q05",
+  "status": "pending",
+  "studentDigest": "7c7cbe4912743bd1dc87fb4e231162c91352fbc73fb9fe3254e246cfbb248b23",
+  "candidateDigest": "fc93dc7fc50c2d5b3d1c2f63b2ba012d5963a6913b80953a60781d2db67541b2",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "solveDigest": "cffb7f7c944c261cfe95dde64ded2989d5b9a36a0ad9f8b8b9bbf861dfbc01f0",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-exam-twin-author-geometry-20261008",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "세 조건에 맞는 식 선택→관측 표에서 새 점의 y좌표 복원. 꼭짓점/한 점으로 식 결정 후 한 대입 유지. 명시 조건과 요청은 아래 실제 중학교 해법으로 해결된다.",
+      "standardCodes": [
+        "9수03-10",
+        "9수02-05"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "실제5보기 전부 계산/도형 비교;정답 하나,나머지 비동치 오답. ",
+      "standardCodes": [
+        "9수03-10",
+        "9수02-05"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "본문 표/수치/함수 기록을 직접 확인;별도 그림 없음. 70mm 검사 화면에서 텍스트와 자산 역할 확인.",
+      "standardCodes": [
+        "9수03-10",
+        "9수02-05"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "통상 좌표/함수/선분/도 단위/근호/실제 삼각비 표기. 일반 라디안·벡터·고교 공식 표기 없음. ",
+      "standardCodes": [
+        "9수03-10",
+        "9수02-05"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "한 x축 만남+축2→꼭짓점(2,0);12=4a→a=3;x=−1→27.判別式 없이 그래프 대칭으로 한 점 만남 정당화. circled choice는 역할·값·단위가 독립 결과와 일치.",
+      "standardCodes": [
+        "9수03-10",
+        "9수02-05"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "축/만남으로 꼭짓점→y절편으로 a→새 x대입. 공개된 새 저자 풀이의 모든 단계와 실제 정의를 읽고 검산. ",
+      "standardCodes": [
+        "9수03-10",
+        "9수02-05"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "축/만남으로 꼭짓점→y절편으로 a→새 x대입. 공식 선택 성취기준의 중학교 범위와 초등 밑변높이 원리;필요한 보조점/조건 명시 여부 확인.",
+      "standardCodes": [
+        "9수03-10",
+        "9수02-05"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    }
+  },
+  "evidence": {
+    "binding": {
+      "questionNumber": 5,
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q05",
+      "studentDigest": "7c7cbe4912743bd1dc87fb4e231162c91352fbc73fb9fe3254e246cfbb248b23",
+      "candidateDigest": "fc93dc7fc50c2d5b3d1c2f63b2ba012d5963a6913b80953a60781d2db67541b2",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "cffb7f7c944c261cfe95dde64ded2989d5b9a36a0ad9f8b8b9bbf861dfbc01f0",
+      "candidateFileSha256": "937e966e7f00a7bb853e632aac46f5376123d21571d255c8ee3a4306f234c4ee",
+      "rawSolveSha256": "b3b98efe420768d5d8b49bb2585c2dd666f3a3b4b736a58c88cc234596fd87ae",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-5",
+      "sourceQuestionCanonicalDigest": "7651244afe73f80e157bfc5839b6a3b69c3245117485f26901762ce08eac6b95",
+      "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceProvidedDigest": "c7696bfcfde5a6816f6e06f89eb3e807df007d2b63445172a75402919dcd7917",
+      "sourceHashContract": "supplied sourceContentDigest separate from raw stem or complete canonical source-row digest",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    "independentSolveCommit": "c8f8aeadfb28becb1d7447240fd4e28b6702fc4c",
+    "rawSolveUnchanged": true,
+    "answerComparison": {
+      "literalEqual": true,
+      "semanticEqual": true,
+      "role": "single selected choice",
+      "authorAnswer": "④",
+      "independentAnswer": "④",
+      "allFiveChoiceTruthValues": [
+        false,
+        false,
+        false,
+        true,
+        false
+      ],
+      "semanticDuplicateChoices": [],
+      "unitAndTargetOrderChecked": true,
+      "writtenPartsRequested": [],
+      "writtenRubricApplicable": false
+    },
+    "independentExactCalculation": {
+      "questionNumber": 5,
+      "target": "27",
+      "status": "independently-computed",
+      "evidence": {
+        "vertex": [
+          2,
+          0
+        ],
+        "coefficient": 3,
+        "interceptRecheck": "12",
+        "function": "3*(x - 2)**2",
+        "targetYAtMinus1": "27",
+        "uniqueZero": 2,
+        "method": "Single x-axis meeting is the vertex;4a=12;no discriminant formula.",
+        "allFiveActualChoiceValues": [
+          "3",
+          "9",
+          "12",
+          "27",
+          "36"
+        ],
+        "choiceCorrectness": [
+          false,
+          false,
+          false,
+          true,
+          false
+        ],
+        "correctChoiceNumber": 4,
+        "semanticDuplicateChoices": [],
+        "oneCorrectChoice": true
+      },
+      "knownHolds": []
+    },
+    "mathAndNewSolution": "한 x축 만남+축2→꼭짓점(2,0);12=4a→a=3;x=−1→27.判別式 없이 그래프 대칭으로 한 점 만남 정당화.",
+    "coreAndSubstantiveDelta": "세 조건에 맞는 식 선택→관측 표에서 새 점의 y좌표 복원. 꼭짓점/한 점으로 식 결정 후 한 대입 유지.",
+    "allowedWholeStudentMethod": "축/만남으로 꼭짓점→y절편으로 a→새 x대입.",
+    "sourceQuestionOnly": {
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-5",
+      "packetRawSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceDigestProvided": "c7696bfcfde5a6816f6e06f89eb3e807df007d2b63445172a75402919dcd7917",
+      "images": [
+        {
+          "file": "images/q05-part1.png",
+          "rawSha256": "58a2a7d4890f0e30fd3580c8b2b0e1e75412cf650141030b52ed3641c5fc0fa0",
+          "personallyViewed": true
+        }
+      ],
+      "sourceCropsNotNewAssets": true,
+      "originalKeyOrSolutionFilesRead": false
+    },
+    "visualReview": {
+      "questionNumber": 5,
+      "studentDigest": "7c7cbe4912743bd1dc87fb4e231162c91352fbc73fb9fe3254e246cfbb248b23",
+      "candidateDigest": "fc93dc7fc50c2d5b3d1c2f63b2ba012d5963a6913b80953a60781d2db67541b2",
+      "columnWidthMm": 70,
+      "png": "inspection/q05-expanded.png",
+      "pngSha256": "f547caba01225fa95ca879b39eb2e425a52e8b37f20957c8633c1048d69be368",
+      "overflow": [],
+      "unclippedPng": null,
+      "figureCount": 0,
+      "figureWidthMm": 70,
+      "figureArrangement": "ordered roles",
+      "personallyViewed": true,
+      "imageRawSha256": "f547caba01225fa95ca879b39eb2e425a52e8b37f20957c8633c1048d69be368",
+      "actualQuestionAndExpandedSolutionInspected": true,
+      "allSuppliedChoiceFiguresInspected": false,
+      "assets": [],
+      "strictRegenerationResults": [],
+      "nativeCompatibilityNotApproved": true
+    },
+    "naturalKorean": "조건·대상각·선분·기록값·단위가 자연스럽고 모호한 원본 조건을 명시했다. 허구 학교 표시 해솔누리중학교와 실제 학교 내부 보존을 구별;원학교로 학년 승인하지 않음.",
+    "scoreAndDifficulty": {
+      "score": 4,
+      "sourceScorePreserved": true,
+      "authorDifficultyProposal": "응용",
+      "reviewerDifficultyProposal": "응용",
+      "basis": "축/만남으로 꼭짓점→y절편으로 a→새 x대입. 4점은 원문과 동일하고 필요한 단계 수를 근거로 제안. 검토자는 심화하/기본과 응용 차이를 기록하며 실측 난도나 학교 자동 승인 주장 없음.",
+      "measuredDifficulty": false
+    },
+    "taxonomy": {
+      "unitUuidProposal": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "unit": {
+        "id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+        "grade": "중3",
+        "chapter": "4. 이차함수",
+        "section": "이차함수와 그래프",
+        "semester": 1,
+        "orderIndex": 478,
+        "problemCodePrefix": "J30401"
+      },
+      "unitSeedExactMatch": true,
+      "candidateMetadataAssignmentUnedited": {
+        "status": "pending",
+        "unitId": null,
+        "familyKey": null,
+        "currentUnit": null,
+        "currentRegistryMatch": null,
+        "liveCount": null,
+        "checkedAt": "2026-10-08 04:53:45.769124+00",
+        "evidence": "꼭짓점/절편으로 식을 정한 뒤 다른 점을 복구하는 새 표현에 대한 정확 subtype은 분류 검토 전 null이다.",
+        "candidates": []
+      },
+      "existingLiveFamilyProposal": null,
+      "semanticFamilyOnly": null,
+      "status": "held",
+      "basis": "g1-14는 꼭짓점(p,0)+점으로 식만 구하고 mode1은 계수가 이미 주어진 이동식. g1-11 mode1은 다른 점 값을 묻지만 p=0만 지원한다. 본문 p=2,계수 복원 뒤 다른 점 y목표 전체가 일치하는 규칙은 미확정.",
+      "formatComparison": "Complete new target/format/difficulty support is unconfirmed as described in basis; no nearest/title mapping.",
+      "bankCapturedAt": "2026-10-08 13:00:16.891043+00",
+      "snapshotScopeOnly": true,
+      "liveCountNotPermission": true
+    },
+    "q22RepairRead": false,
+    "q23SourceRoleMetadataBoundary": null
+  },
+  "holds": [
+    {
+      "code": "exact-unit-live-family-contract-pending",
+      "basis": "g1-14는 꼭짓점(p,0)+점으로 식만 구하고 mode1은 계수가 이미 주어진 이동식. g1-11 mode1은 다른 점 값을 묻지만 p=0만 지원한다. 본문 p=2,계수 복원 뒤 다른 점 y목표 전체가 일치하는 규칙은 미확정.",
+      "reopen": "실제 live 규칙의 전체 조건/요청 목표/핵심 절차/난도/형식을 지원하는 근거를 제시하거나 별도 새 메타데이터 계약을 검토. Unit·제목·live count만으로 확정하지 않음."
+    }
+  ],
+  "gates": {
+    "rights": "held",
+    "custody": "held",
+    "similarity": "pending",
+    "nativeCompatibility": "pending",
+    "directUseAllowed": false,
+    "loadable": false,
+    "dbWrites": 0,
+    "modelCalls": 0,
+    "finalPublicationApproval": false
+  }
+}

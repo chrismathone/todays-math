@@ -1,0 +1,9 @@
+{
+  "path":"evidence/package/private/q25/figure-1.svg",
+  "rawSha256":"d2cd7bd357403bcd8ef77d603b5134d14f60f42c84dcecc11922c5347a4eea95",
+  "line":13,
+  "finding":"Four spaces in a native engine empty group line; cosmetic trailing whitespace.",
+  "basis":"Exact supplied/frozen SVG and strict current local engine regeneration are byte-identical. Preserve frozen asset bytes; do not trim. Same finding already retained in sealed blind evidence.",
+  "mathOrGradeFailure":false,
+  "scope":"Only this exact line and raw hash;no other diff-check waiver."
+}

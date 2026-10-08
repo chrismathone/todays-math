@@ -1,0 +1,1376 @@
+{
+  "schemaVersion": 1,
+  "sealedAtUtc": "2026-10-08T14:15:45.351915+00:00",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-exam-twin-author-geometry-20261008",
+  "preExposureSolveCommit": "c8f8aeadfb28becb1d7447240fd4e28b6702fc4c",
+  "parentVerificationManifestRawSha256": "26b1522564d9fb119d8d635ee589439a376ea047fd14c660d002a19bcdb7d22e",
+  "counts": {
+    "reviewed": 24,
+    "mathematicalAnswersAndNewSolutionsPassed": 24,
+    "sevenStudentSurfacesGradePassed": 24,
+    "choiceQualityPassed": 23,
+    "choiceQualityHeld": 1,
+    "verified": 2,
+    "pending": 22,
+    "rejected": 0,
+    "supportedFamilyProposals": 2,
+    "semanticFamilyWithDifficultyHold": 1,
+    "points": 96,
+    "rightsCleared": 0,
+    "nativeApproved": 0,
+    "loadable": 0
+  },
+  "allOriginalRawSolvesAndOld743Unchanged": true,
+  "q22DuplicateFindingUnchanged": true,
+  "rootQ22RepairRead": false,
+  "files": [
+    {
+      "path": ".gitattributes",
+      "rawSha256": "705fd4d6451a31d36b3df7de96f83f30ac976c9b4a6d1e51671d8e2f33e2d0da",
+      "bytes": 8
+    },
+    {
+      "path": "bootstrap.py",
+      "rawSha256": "eb7590abac046a50123e45201e589e00e2edb1d58b57d0c75fd72dc3926cbe7f",
+      "bytes": 4008
+    },
+    {
+      "path": "check-bindings.mjs",
+      "rawSha256": "e37ed7747d8e380fe0ce5bb793117b3904bb21b6a29355c30982f95edb996bd5",
+      "bytes": 3732
+    },
+    {
+      "path": "evidence/bank-read-fresh-r3-20261008.json",
+      "rawSha256": "31f6e3369f5d62072e6728566f8cd71f44f4d451c4ff2dd87a132a6ff6fa1a26",
+      "bytes": 78216
+    },
+    {
+      "path": "evidence/bindings.json",
+      "rawSha256": "e0a16db57e4b1fb834cfd3db5a69af5c5f6726cb1f46c4684f66cc9b520637cd",
+      "bytes": 31867
+    },
+    {
+      "path": "evidence/curriculum-scope-input.json",
+      "rawSha256": "8e48a48446bbcebb4cb9ae637a8dbb2fb2e8286574b24735a74ad4d2b2696a9d",
+      "bytes": 6888
+    },
+    {
+      "path": "evidence/curriculum-validation.json",
+      "rawSha256": "bc87793c61c864a6730f9b27738a1c6cd0b3e72a2c31525395681248c3b1e7e7",
+      "bytes": 1348
+    },
+    {
+      "path": "evidence/input-receipt.json",
+      "rawSha256": "4b91712299f423b38b6f8135d15a089a5f7485aec4191877cb192d43f7ed450a",
+      "bytes": 38548
+    },
+    {
+      "path": "evidence/instructions/addendum-6.md",
+      "rawSha256": "d6cb4b6d9eac55c0d71ad9f4f67302804aca7247f3a20386f14f8e82b9bf623e",
+      "bytes": 2083
+    },
+    {
+      "path": "evidence/instructions/AGENTS.md",
+      "rawSha256": "5ae255a2bff8a0de1ceb26ee2b57b088733fd976184fbc5448aaa6895968b598",
+      "bytes": 12206
+    },
+    {
+      "path": "evidence/judgment-design.json",
+      "rawSha256": "452a484c80766e28036b12dbdd646b9df85876c7ae3ebcd5cbbb5c178992f14a",
+      "bytes": 787
+    },
+    {
+      "path": "evidence/package/private/q01/candidate.json",
+      "rawSha256": "32626db4dc32fa4a82cd9908b9d220af7c20506dce0b810fb20f0e85da5106d1",
+      "bytes": 10084
+    },
+    {
+      "path": "evidence/package/private/q02/candidate.json",
+      "rawSha256": "a48d55175a299687755542a939da443da1df67c71f07fb56ae6ee27ca7e379c5",
+      "bytes": 10769
+    },
+    {
+      "path": "evidence/package/private/q03/candidate.json",
+      "rawSha256": "0cd3cce1125e978520f7e9d53e4110ac164ec34af79c901cc135750b22ff5003",
+      "bytes": 9736
+    },
+    {
+      "path": "evidence/package/private/q04/candidate.json",
+      "rawSha256": "4ab24190d1a38b2280dbd5adf35528891236d189e497890bcf029fb36fb36c89",
+      "bytes": 9556
+    },
+    {
+      "path": "evidence/package/private/q05/candidate.json",
+      "rawSha256": "937e966e7f00a7bb853e632aac46f5376123d21571d255c8ee3a4306f234c4ee",
+      "bytes": 9555
+    },
+    {
+      "path": "evidence/package/private/q06/candidate.json",
+      "rawSha256": "df1935a9a9132cc04fed9be127ba42687f9322a286a6d3d02d546b38b0c02e0a",
+      "bytes": 9486
+    },
+    {
+      "path": "evidence/package/private/q07/candidate.json",
+      "rawSha256": "95d0dbc4aad9355396ef44b722fcfad32752da502c8af134a05066fb75858d91",
+      "bytes": 10866
+    },
+    {
+      "path": "evidence/package/private/q07/figure-1.spec.json",
+      "rawSha256": "19180b3bb8ccc916de4e843a13be5a06429d1aa09e41db96534e1986a044ca39",
+      "bytes": 405
+    },
+    {
+      "path": "evidence/package/private/q07/figure-1.svg",
+      "rawSha256": "e4a126c1aa7f46596e8c7472eb34bbc209505cfdd698e8b4d5b237892b7d2d09",
+      "bytes": 5324
+    },
+    {
+      "path": "evidence/package/private/q07/figure-2.spec.json",
+      "rawSha256": "3172663d9037e8d6e15efaa24fa642e03875130ddaf8c8a0c3fc2beb713e8210",
+      "bytes": 406
+    },
+    {
+      "path": "evidence/package/private/q07/figure-2.svg",
+      "rawSha256": "2d4befb28e779f2812c5ecbf6a9d56c099ee56bf3f23de504b2b2f3edad1a6af",
+      "bytes": 4366
+    },
+    {
+      "path": "evidence/package/private/q07/figure-3.spec.json",
+      "rawSha256": "2c10900f47c7065b95f65920a32595ee4fecda51bbe989302741825f5358838e",
+      "bytes": 406
+    },
+    {
+      "path": "evidence/package/private/q07/figure-3.svg",
+      "rawSha256": "3ac36a888cbf5e9e3d40bd56397ec2c8ffac47cec41f39976ac538d4811f5803",
+      "bytes": 4390
+    },
+    {
+      "path": "evidence/package/private/q07/figure-4.spec.json",
+      "rawSha256": "d7b0598a1effac516e73c7e2626e967fde6528a134c77b2ca339f02bdcf8b576",
+      "bytes": 407
+    },
+    {
+      "path": "evidence/package/private/q07/figure-4.svg",
+      "rawSha256": "fe3e38ce6dca0a570747ef4f3417ba5104e18ee130270a83ed69b120bb7bf25e",
+      "bytes": 4366
+    },
+    {
+      "path": "evidence/package/private/q07/figure-5.spec.json",
+      "rawSha256": "9e3159d69d93051c745ab82ec08a569c373a9ff66c2c2aee5dccf94271ab51b3",
+      "bytes": 406
+    },
+    {
+      "path": "evidence/package/private/q07/figure-5.svg",
+      "rawSha256": "253bab5c19748db0fa63f032acee3390f53e96f40e729d06796d8c7ce4c77059",
+      "bytes": 4691
+    },
+    {
+      "path": "evidence/package/private/q08/candidate.json",
+      "rawSha256": "9ee3e57c3d410e1cac2c1edec40841ed8554d94e7d9270312532c795f5d0193e",
+      "bytes": 10513
+    },
+    {
+      "path": "evidence/package/private/q09/candidate.json",
+      "rawSha256": "60f8b35a54ed47edec2b365afc16fc6e47075710c89d118bb7cba6ad57f33764",
+      "bytes": 10528
+    },
+    {
+      "path": "evidence/package/private/q10/candidate.json",
+      "rawSha256": "214893222a715b476f7e7c60861c5a2747aaec594951a9ea89736b57c36c4b22",
+      "bytes": 11188
+    },
+    {
+      "path": "evidence/package/private/q10/figure-1.spec.json",
+      "rawSha256": "8c7a3939b99d7c4d45ba0fc4e54e87981128b4d6e01a40ae0740fab66aea162e",
+      "bytes": 810
+    },
+    {
+      "path": "evidence/package/private/q10/figure-1.svg",
+      "rawSha256": "9b06c64f87fc37f778a7618cf5843388f2033002b5f2891c14d3dcb2115a77b7",
+      "bytes": 7315
+    },
+    {
+      "path": "evidence/package/private/q11/candidate.json",
+      "rawSha256": "7e3dde94158986d2c939c3300ae271bd7f53c61d79cc020a1fcd9166902237bf",
+      "bytes": 12217
+    },
+    {
+      "path": "evidence/package/private/q12/candidate.json",
+      "rawSha256": "2c1c34c479a1e968478fa9e9294d7074adc4e5c57bb926c662bd1f6b0038aa74",
+      "bytes": 12866
+    },
+    {
+      "path": "evidence/package/private/q12/figure-1.spec.json",
+      "rawSha256": "cb550e2d39aca7698204558ef89c8dfb9f0f5a9b882c8f543c5f59a219e232ab",
+      "bytes": 1576
+    },
+    {
+      "path": "evidence/package/private/q12/figure-1.svg",
+      "rawSha256": "4c277f13f3839f79f1726cc8898070447704a763588db0680121f3990e7ef717",
+      "bytes": 8596
+    },
+    {
+      "path": "evidence/package/private/q13/candidate.json",
+      "rawSha256": "5284bdd357b8233d9fd664c195c3736cabe2c55dc70411d0618415f6dd5df0c7",
+      "bytes": 10535
+    },
+    {
+      "path": "evidence/package/private/q13/figure-1.spec.json",
+      "rawSha256": "99bb9745858317d2507be2492916e34d66942404a875e0ea60f1b60fdb7b6fbe",
+      "bytes": 867
+    },
+    {
+      "path": "evidence/package/private/q13/figure-1.svg",
+      "rawSha256": "eda63438dcf35eadbeb2af186900f8b8e0b21f83b09206240c57cc190151b34e",
+      "bytes": 11567
+    },
+    {
+      "path": "evidence/package/private/q14/candidate.json",
+      "rawSha256": "c68d3cf55226381664b0b4b8f6fabf4992f906e322e47fcdbd7cb8981ff418e5",
+      "bytes": 11544
+    },
+    {
+      "path": "evidence/package/private/q14/figure-1.spec.json",
+      "rawSha256": "aa7b311699ea32bf206438f6b3a444709328064552ba931aa393d90abf8a5570",
+      "bytes": 879
+    },
+    {
+      "path": "evidence/package/private/q14/figure-1.svg",
+      "rawSha256": "69f513e4224f4f0f32357985144548a5d33ede2c8c7a918a2b774ba5562860d4",
+      "bytes": 13718
+    },
+    {
+      "path": "evidence/package/private/q16/candidate.json",
+      "rawSha256": "e224133377e2dc7522ac8834b2355de4265d9c1bc41314b00cb8a9a237aa417d",
+      "bytes": 10145
+    },
+    {
+      "path": "evidence/package/private/q17/candidate.json",
+      "rawSha256": "4e50aa8a5209b64b796240266a5fbb6d86922e4e491d3ce17a38fff8404607e1",
+      "bytes": 11447
+    },
+    {
+      "path": "evidence/package/private/q17/figure-1.spec.json",
+      "rawSha256": "223d85fc456a50ea1c2f13d49ce2901efa6a058e1128cff1a3397e7bc74914c3",
+      "bytes": 1164
+    },
+    {
+      "path": "evidence/package/private/q17/figure-1.svg",
+      "rawSha256": "194ccb69a95ac6b76d2f8c25150f4258b51ec3ba670057f52bbe974633eaf55c",
+      "bytes": 8591
+    },
+    {
+      "path": "evidence/package/private/q18/candidate.json",
+      "rawSha256": "e34e8484ac395e7dc6656ee14a9506b21e8f035304769eba81e19efec43c96b8",
+      "bytes": 11697
+    },
+    {
+      "path": "evidence/package/private/q19/candidate.json",
+      "rawSha256": "56815ca4660c04d3a996a90dc1bd56a92b3a665635e50e817bbd8ead9408c81f",
+      "bytes": 13542
+    },
+    {
+      "path": "evidence/package/private/q19/figure-1.spec.json",
+      "rawSha256": "ba6874e9c23529f2bd85ffae8a3ef5cc51759dfab244c8e656bfb752525dd792",
+      "bytes": 1386
+    },
+    {
+      "path": "evidence/package/private/q19/figure-1.svg",
+      "rawSha256": "7dc84d5ac01573925edf38b82926ed6518ea297d4e00c96cc002f9214bb16f33",
+      "bytes": 10328
+    },
+    {
+      "path": "evidence/package/private/q20/candidate.json",
+      "rawSha256": "8e70dac00fb58a66e3ddde9a08a02bea06168355124cd035580cb71e87673269",
+      "bytes": 14613
+    },
+    {
+      "path": "evidence/package/private/q20/figure-1.spec.json",
+      "rawSha256": "a1233643bf21bd84e5ea00c180c97cf3000189c7f0b6029b0adc92ca9a22e8d0",
+      "bytes": 1685
+    },
+    {
+      "path": "evidence/package/private/q20/figure-1.svg",
+      "rawSha256": "db3eb9bf93e9125578b5a48775830a8bb5380f07f4d9ca0964202894dacb6cac",
+      "bytes": 11543
+    },
+    {
+      "path": "evidence/package/private/q21/candidate.json",
+      "rawSha256": "782e7de0db666e02ce6de645ae9b9528dfda9b0da0ee26b8f4b741a55c3bc4a4",
+      "bytes": 12142
+    },
+    {
+      "path": "evidence/package/private/q21/figure-1.spec.json",
+      "rawSha256": "bb0d17a80f3319afd09740ffdfa974c4cb483bf6989ac56fb85048abc9ed35a4",
+      "bytes": 1455
+    },
+    {
+      "path": "evidence/package/private/q21/figure-1.svg",
+      "rawSha256": "3756cc3a36e3c5a2051a7a965fba427547239d38e7780dbf25fe7805ade8aaf5",
+      "bytes": 8573
+    },
+    {
+      "path": "evidence/package/private/q22/candidate.json",
+      "rawSha256": "9cf0407faa7a314eaf6729cb3f5e2243cd6197a0db8fa11c5fe68c22e036568d",
+      "bytes": 12300
+    },
+    {
+      "path": "evidence/package/private/q22/figure-1.spec.json",
+      "rawSha256": "c281d4be98045dc36a54bd393e70f3c197139b7ba2434d6134887cd0e0bff675",
+      "bytes": 1587
+    },
+    {
+      "path": "evidence/package/private/q22/figure-1.svg",
+      "rawSha256": "63dc539bdd3adf2ea3b52f71a519eb959d4428138d222e5b8a32535497645111",
+      "bytes": 9621
+    },
+    {
+      "path": "evidence/package/private/q23/candidate.json",
+      "rawSha256": "26002c1ae2f9305cbbb52d0788e0ed1000e4b523e410be8124ff3b054a7394fc",
+      "bytes": 15054
+    },
+    {
+      "path": "evidence/package/private/q23/figure-1.spec.json",
+      "rawSha256": "7a36b53bcffe4de1a6fe4834543a4e8147d804157b30ee80397e27806ef2eaa4",
+      "bytes": 1340
+    },
+    {
+      "path": "evidence/package/private/q23/figure-1.svg",
+      "rawSha256": "6dea7f9e53fba81da0d17218bb115d2e8a2992b562e00ba14c97f8e2cbdfde0c",
+      "bytes": 12637
+    },
+    {
+      "path": "evidence/package/private/q24/candidate.json",
+      "rawSha256": "78ff4bdc9ef504ebfec7d0a18540710ec0a58fad719c9cdcf0f82a2c00d4a743",
+      "bytes": 13259
+    },
+    {
+      "path": "evidence/package/private/q24/figure-1.spec.json",
+      "rawSha256": "779d4a86107d3a21ce6bd8d62a020477e96dab89f779ed3fcc4a6fe0228eff0c",
+      "bytes": 2038
+    },
+    {
+      "path": "evidence/package/private/q24/figure-1.svg",
+      "rawSha256": "c2a463d9bd783bb10d9bf09d3455ef5333b3ec7b04d5aa13f75eb4c086d4de41",
+      "bytes": 13220
+    },
+    {
+      "path": "evidence/package/private/q25/candidate.json",
+      "rawSha256": "caff8163aa43eba616ee79a88f600341a96d3e0fe760b59a7f5e1f73b658431f",
+      "bytes": 13962
+    },
+    {
+      "path": "evidence/package/private/q25/figure-1.spec.json",
+      "rawSha256": "9aeec552a0e39814991e17a01547bcfdd5616efaf422bc3d69e70a0605905097",
+      "bytes": 784
+    },
+    {
+      "path": "evidence/package/private/q25/figure-1.svg",
+      "rawSha256": "d2cd7bd357403bcd8ef77d603b5134d14f60f42c84dcecc11922c5347a4eea95",
+      "bytes": 2648
+    },
+    {
+      "path": "evidence/package/private/q25/figure-2.spec.json",
+      "rawSha256": "3bb9c2127cbf4bb57a4c64e158ce2c2e6fbc35694b9fe57d3393303e9711ebe6",
+      "bytes": 1634
+    },
+    {
+      "path": "evidence/package/private/q25/figure-2.svg",
+      "rawSha256": "f7f11686c98a400462254b6e0198ee8f63cb87e042fe6b6236e7e3f2f3364820",
+      "bytes": 5185
+    },
+    {
+      "path": "evidence/post-exposure-math.json",
+      "rawSha256": "38641b6457dc72c12bbf9432c5df3bc50bcf60dfa2ce2f25d0661cd24eca21dd",
+      "bytes": 1227
+    },
+    {
+      "path": "evidence/preservation.json",
+      "rawSha256": "905ecd998183c93a2cfaf9a2a25748a493becf4adc47701fd38fc177223fb67a",
+      "bytes": 148072
+    },
+    {
+      "path": "evidence/registry.json",
+      "rawSha256": "199e360d639a3567c80fde41a06c9aff699c066e33c1f38ff2f41e3ab3a828fc",
+      "bytes": 38230
+    },
+    {
+      "path": "evidence/repository/.agents/skills/typesafe-ai/SKILL.md",
+      "rawSha256": "0ab58b7533ebe4ba5342ad6260d69e492cd0955ca9d3ee20b3c91375eea0203d",
+      "bytes": 10189
+    },
+    {
+      "path": "evidence/repository/prisma/seed-data/units.ts.txt",
+      "rawSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+      "bytes": 112584
+    },
+    {
+      "path": "evidence/repository/scripts/import/exam-twin/candidatePack.mjs",
+      "rawSha256": "19958b0382e5ebca739aceba87a9357944d4cdb8921cc19d3ce413918905f079",
+      "bytes": 16698
+    },
+    {
+      "path": "evidence/repository/src/lib/middle/generate.ts.txt",
+      "rawSha256": "4bdb90431cdb94a3023da05ad3731aa721d0a5ddcbf284bf3e2d7be1540faaab",
+      "bytes": 8598
+    },
+    {
+      "path": "evidence/repository/src/lib/middle/m3AngleApply.ts.txt",
+      "rawSha256": "f1f760790c94acd92bf9ac2e352bd87cec7f36c556fbbb424a8741ae914a115e",
+      "bytes": 72008
+    },
+    {
+      "path": "evidence/repository/src/lib/middle/m3Func.ts.txt",
+      "rawSha256": "ab681385a70d9450cdcc8230c3268618ec2be3ff4aada862e038f94669a1dbf3",
+      "bytes": 110942
+    },
+    {
+      "path": "evidence/repository/src/lib/middle/m3Tangent.ts.txt",
+      "rawSha256": "334fcad938df352b43bc23bebf7885fbaa77561f8587188c2e6112c0839fdbaa",
+      "bytes": 69470
+    },
+    {
+      "path": "evidence/repository/src/lib/middle/m3Top.ts.txt",
+      "rawSha256": "b4c2565fc682d67f1bec68013eea8155cc493766c0328bc8c9f9ac398e335142",
+      "bytes": 29160
+    },
+    {
+      "path": "evidence/repository/src/lib/middle/m3Top4.ts.txt",
+      "rawSha256": "8c43cf73d995e07bb1ccc8ad60956ed0d8c76e4068943f3e0d4b7e800bea4d7b",
+      "bytes": 67390
+    },
+    {
+      "path": "evidence/repository/src/lib/middle/m3Trig.ts.txt",
+      "rawSha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+      "bytes": 108963
+    },
+    {
+      "path": "evidence/review-results.json",
+      "rawSha256": "93136ada350a632ec279040b5feaea3b70f8cf8a23763e42346bf38bb4c7acb8",
+      "bytes": 34271
+    },
+    {
+      "path": "evidence/reviewer-harness-observations.json",
+      "rawSha256": "4918044a9fe78d3d32c6a37c7519eabaf1321f491dd9b1c55748c9af370fb849",
+      "bytes": 1550
+    },
+    {
+      "path": "evidence/source/images/q01-part1.png",
+      "rawSha256": "6c486e3a8104aa0c8f0a10cf966763f5598944945bd20451c3596d393a37adc7",
+      "bytes": 42146
+    },
+    {
+      "path": "evidence/source/images/q02-part1.png",
+      "rawSha256": "6cbf56e62b74fb9554839f510ebea11b5b3803a53dca268d5bc50c3465433fca",
+      "bytes": 39081
+    },
+    {
+      "path": "evidence/source/images/q03-part1.png",
+      "rawSha256": "494307e87d43710ab075d37e310e0e6f2eab5b047b3bebcbcf4d40129bb95e1c",
+      "bytes": 25920
+    },
+    {
+      "path": "evidence/source/images/q04-part1.png",
+      "rawSha256": "73f215cf465400de8f3f9892ba48fc4a3fa91f305f5eddb0dba2d9430511e500",
+      "bytes": 22739
+    },
+    {
+      "path": "evidence/source/images/q05-part1.png",
+      "rawSha256": "58a2a7d4890f0e30fd3580c8b2b0e1e75412cf650141030b52ed3641c5fc0fa0",
+      "bytes": 32195
+    },
+    {
+      "path": "evidence/source/images/q06-part1.png",
+      "rawSha256": "e35214918afca8a1b0ca09bc73ae1a4a902d2350a3c9706898ecfcb4b05d5c43",
+      "bytes": 21501
+    },
+    {
+      "path": "evidence/source/images/q07-part1.png",
+      "rawSha256": "72e11b48b7bd108689ad15464b6f7603725146384103054da8c11de37c99dfe7",
+      "bytes": 50320
+    },
+    {
+      "path": "evidence/source/images/q08-part1.png",
+      "rawSha256": "b8b1709833a93ffd1c8c7d7bc071430f2b791dd339f4e130e0955ab1338f92c4",
+      "bytes": 25506
+    },
+    {
+      "path": "evidence/source/images/q09-part1.png",
+      "rawSha256": "4f8dd9d66769f13db8ab78ac3331d02d87c81eea03eb3412328492c7344e6d46",
+      "bytes": 27648
+    },
+    {
+      "path": "evidence/source/images/q10-part1.png",
+      "rawSha256": "946b21b26bee2c3985979aa3afeb587fd55f984a383855365cb12a6ad41759b7",
+      "bytes": 51499
+    },
+    {
+      "path": "evidence/source/images/q11-part1.png",
+      "rawSha256": "89d9f3e544f4d4d2874545d83db57aa9bb118424ce32d964455509aa1ad611bc",
+      "bytes": 23209
+    },
+    {
+      "path": "evidence/source/images/q12-part1.png",
+      "rawSha256": "307d06d60529ee695b7d390c9bc9c378ba06fb3ec724b97a3e71e61ffabb0472",
+      "bytes": 75458
+    },
+    {
+      "path": "evidence/source/images/q13-part1.png",
+      "rawSha256": "2a379c79da79bfe76e40df74d03852c46cd8ec8d35f20f84c4cc25d14821ffda",
+      "bytes": 37377
+    },
+    {
+      "path": "evidence/source/images/q14-part1.png",
+      "rawSha256": "c6f70b7e1c640ad65c5e37540cad1a418a6e1cca395103271d6618ae1d886073",
+      "bytes": 33771
+    },
+    {
+      "path": "evidence/source/images/q16-part1.png",
+      "rawSha256": "7a917f06df40d2c3145beed7654829797992b391d3027b295cec70ad4eed2bfe",
+      "bytes": 14588
+    },
+    {
+      "path": "evidence/source/images/q17-part1.png",
+      "rawSha256": "a18280540b4015aa55ecc68c6e25c642c35aac70e241ca1440a802e18a3f66ab",
+      "bytes": 47038
+    },
+    {
+      "path": "evidence/source/images/q18-part1.png",
+      "rawSha256": "c14afb0e48ad076927488b85b389c970e37ae1e4654c6d7fad4b7d5ade3c625f",
+      "bytes": 23399
+    },
+    {
+      "path": "evidence/source/images/q19-part1.png",
+      "rawSha256": "85828cb4f20f08d866972553cd2ca66b3362b5010797a89cb6a3e3084f7b610c",
+      "bytes": 56978
+    },
+    {
+      "path": "evidence/source/images/q20-part1.png",
+      "rawSha256": "d41edb1ea71e08cbaedc5e08a7828d731c964b5bc81cacec69882485089ed70c",
+      "bytes": 76327
+    },
+    {
+      "path": "evidence/source/images/q21-part1.png",
+      "rawSha256": "c65cd5504624636af7bade592f6e2b113b319cf313e4f6302696da251ed04b48",
+      "bytes": 54618
+    },
+    {
+      "path": "evidence/source/images/q22-part1.png",
+      "rawSha256": "c7797cf295e4b5b0d07d3b63433995720b07fd6ba96e0ef0f36541273a9a89f9",
+      "bytes": 58126
+    },
+    {
+      "path": "evidence/source/images/q23-part1.png",
+      "rawSha256": "ceb8f2fb46ae28cf8581ce4424d57b97c1552ed38ff695bb28509e0f3a980baf",
+      "bytes": 113219
+    },
+    {
+      "path": "evidence/source/images/q24-part1.png",
+      "rawSha256": "7462cc173e1726dab64ccde2be855ee70ca60807fdd7fc5781f64223cca91fd0",
+      "bytes": 100146
+    },
+    {
+      "path": "evidence/source/images/q25-part1.png",
+      "rawSha256": "a0970aa4920818c7707548d3985395c4670a4f6fc5cec1cb3a0a4fe185de5dd2",
+      "bytes": 89076
+    },
+    {
+      "path": "evidence/source/questions.json",
+      "rawSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "bytes": 134083
+    },
+    {
+      "path": "evidence/strict-render.json",
+      "rawSha256": "cf236154cb621a8f60c1dbb70c568fedaf11cf2468245ef6e1d70d91eda1748a",
+      "bytes": 8962
+    },
+    {
+      "path": "evidence/verification/verification-inputs.json",
+      "rawSha256": "8fe5fe2740033b1a6df57326b6db6e2e578283c6f909587748d316fc6c25515c",
+      "bytes": 537507
+    },
+    {
+      "path": "evidence/verification/verification-manifest.json",
+      "rawSha256": "26b1522564d9fb119d8d635ee589439a376ea047fd14c660d002a19bcdb7d22e",
+      "bytes": 5523
+    },
+    {
+      "path": "evidence/verification/VERIFY-BRIEF.md",
+      "rawSha256": "0ba3301b43b6101974345048a56594dd96d9c872aee6878ce65f907cda025ca3",
+      "bytes": 1238
+    },
+    {
+      "path": "evidence/whitespace-waiver.json",
+      "rawSha256": "3aafd1ce9d9906dc1a045966ca399038c8602a83df83a246ed21138dcdc8e2c2",
+      "bytes": 553
+    },
+    {
+      "path": "finalize.py",
+      "rawSha256": "a0f00046a6a2b84b2d6eec3920ec8d8d49d7076994b0fe0ee0ef73543d0a1349",
+      "bytes": 14469
+    },
+    {
+      "path": "inspection/layout.json",
+      "rawSha256": "f681f52306f3536bca734a4c0d2f7d2d7b00ab2252e575ce3b5f1bfcc2a480c9",
+      "bytes": 12992
+    },
+    {
+      "path": "inspection/q01-expanded.png",
+      "rawSha256": "2bde8c533694038a5eb1e4cc31c87557ca075df62f6a037b500d20553b1541e2",
+      "bytes": 65002
+    },
+    {
+      "path": "inspection/q02-expanded.png",
+      "rawSha256": "a9a956186ab63e3218c874ee40268c38bbe2403f1d6a9f56dbb7a70cb4363176",
+      "bytes": 68188
+    },
+    {
+      "path": "inspection/q03-expanded.png",
+      "rawSha256": "9d67b3a9be91776344c07804ef19b23d4542e4456ec090228541550010c8818e",
+      "bytes": 63893
+    },
+    {
+      "path": "inspection/q04-expanded.png",
+      "rawSha256": "5fa5c0e5de6f8fbc8417f3ea3e04d9cac9743a51bfa34bee01d86a0b1071d60c",
+      "bytes": 65938
+    },
+    {
+      "path": "inspection/q05-expanded.png",
+      "rawSha256": "f547caba01225fa95ca879b39eb2e425a52e8b37f20957c8633c1048d69be368",
+      "bytes": 49942
+    },
+    {
+      "path": "inspection/q06-expanded.png",
+      "rawSha256": "b11aaba520cae81cb08c7c85fc36410da7bca6d0d6ecc4324b172e51bac8b911",
+      "bytes": 57024
+    },
+    {
+      "path": "inspection/q07-expanded.png",
+      "rawSha256": "73cb1ce81b2a6be9cad8d724e6988990bdad91355c6e2728dfcf05183419067a",
+      "bytes": 108129
+    },
+    {
+      "path": "inspection/q08-expanded.png",
+      "rawSha256": "ec4a0128a7848e91c957209bb5a6cc9f9c49d132e73361f97a58db0a1945cd67",
+      "bytes": 61616
+    },
+    {
+      "path": "inspection/q09-expanded.png",
+      "rawSha256": "9d1c7cfb71575a56009dcc9370fdbd7935e9ac95aafe5eddfec5a197d1390870",
+      "bytes": 63248
+    },
+    {
+      "path": "inspection/q10-expanded.png",
+      "rawSha256": "610dcda96b23ac86efc58c482e9f9b85afacb5b1931b11fd8ee7836f1f4997e9",
+      "bytes": 76848
+    },
+    {
+      "path": "inspection/q11-expanded.png",
+      "rawSha256": "81ef521bb7d8240e2674ead5d828b58dff1ac5e16b682e7c9a1b1afbcc12eb63",
+      "bytes": 95950
+    },
+    {
+      "path": "inspection/q12-expanded.png",
+      "rawSha256": "18633670faf60497e4a5e78135e6e02ee927c19609b5e46cce4df18c6edc1ceb",
+      "bytes": 103979
+    },
+    {
+      "path": "inspection/q13-expanded.png",
+      "rawSha256": "de510f2fa42171a8f6a10aead1460cbc0dea0729f8d251d10d2a32237da6c30a",
+      "bytes": 74522
+    },
+    {
+      "path": "inspection/q14-expanded.png",
+      "rawSha256": "325623cbfdbff9782c6cba148c6ee2e6bd9a4d59f11784df3cc817cfbc508121",
+      "bytes": 83797
+    },
+    {
+      "path": "inspection/q16-expanded.png",
+      "rawSha256": "4b16d54607e23724b03a0b7347a4f87014262d4d17ba964532834761d7de397f",
+      "bytes": 46198
+    },
+    {
+      "path": "inspection/q17-expanded.png",
+      "rawSha256": "b8cdaf0969f6db0412b78ed67dcddb6934b8ef2d501d88721623ba7cf5f4f625",
+      "bytes": 98720
+    },
+    {
+      "path": "inspection/q18-expanded.png",
+      "rawSha256": "412a822aa680bc51eceba8508baed644a11bd5076bbadaaffc1889e7c7311d6d",
+      "bytes": 61456
+    },
+    {
+      "path": "inspection/q19-expanded.png",
+      "rawSha256": "c80379671cf7264e4d41b7872e98afc43e4b72afe73bd0d68debc46f3a8c3d2a",
+      "bytes": 111459
+    },
+    {
+      "path": "inspection/q20-expanded.png",
+      "rawSha256": "59410bcf5c439c9ce6995f5c338fcdbf2789ab7796b0f92067cb8257d2d3dd13",
+      "bytes": 136499
+    },
+    {
+      "path": "inspection/q21-expanded.png",
+      "rawSha256": "99aa31b04537ec5974f420be233aa65b7e9d26cf8aad963f089f69e0542aff17",
+      "bytes": 106409
+    },
+    {
+      "path": "inspection/q22-expanded.png",
+      "rawSha256": "5db07e2c96a750e7898b638a0526f7a950535f7e98fb4bdf11b03d6021f10f84",
+      "bytes": 101673
+    },
+    {
+      "path": "inspection/q23-expanded.png",
+      "rawSha256": "523f42eb3d01a078e6f6369827e1067cd841702848276d5c64cb36db14d975b9",
+      "bytes": 130245
+    },
+    {
+      "path": "inspection/q24-expanded.png",
+      "rawSha256": "8ec24d3ba876d558cb35bc1c9b24593480e8376ff460b194592e750470781c21",
+      "bytes": 117597
+    },
+    {
+      "path": "inspection/q25-expanded.png",
+      "rawSha256": "2e2cdcae3db0834bd1c4666312834b65a91c0a540c5e786a6d9517af88343bda",
+      "bytes": 153335
+    },
+    {
+      "path": "registry.mts",
+      "rawSha256": "33d53860e9b1ebba45a03e6512d1be70a9cd5d6ece8a10e1e02aefdba29ebbfa",
+      "bytes": 1935
+    },
+    {
+      "path": "render-review.mjs",
+      "rawSha256": "879101e963e02adb12668d8e9d3915586cfbf31445ce5df0e66028c55c5e0a48",
+      "bytes": 5202
+    },
+    {
+      "path": "reports/q01.json",
+      "rawSha256": "0d508117e601d1802a851a5a84063ed8ada998681c543888845f86b12f6d1cdf",
+      "bytes": 12389
+    },
+    {
+      "path": "reports/q02.json",
+      "rawSha256": "36cd395317803f34565436c5b258bcbf570288ace7189dd987288a852d52bfce",
+      "bytes": 13064
+    },
+    {
+      "path": "reports/q03.json",
+      "rawSha256": "58bca30caf59ac5b9afd5d96233287c039bb87db3a21ee1cab0553da0e4340f6",
+      "bytes": 11954
+    },
+    {
+      "path": "reports/q04.json",
+      "rawSha256": "85311039a3e8f929fd04c9c6591f9627c6e4da2fe7e11bf10a0b62a97edb5793",
+      "bytes": 11452
+    },
+    {
+      "path": "reports/q05.json",
+      "rawSha256": "a32bc7c43497ff201de3b9cc88fa7f1f7b1ee8c91c15cad67ec4f6b28622c9ec",
+      "bytes": 11554
+    },
+    {
+      "path": "reports/q06.json",
+      "rawSha256": "f494fb548ea3de3e3664d20f5c1eff482a74737f6ccbb636cc35ed667abdbdda",
+      "bytes": 12283
+    },
+    {
+      "path": "reports/q07.json",
+      "rawSha256": "d167b7d345b4fac7d560e5d77dfae3571b417fae0638aae6f1357d5f5c3fd84a",
+      "bytes": 16666
+    },
+    {
+      "path": "reports/q08.json",
+      "rawSha256": "cfe7b3a6850e505fc3cd43da86af58276222672d66591e3914ca8e89070dfdcc",
+      "bytes": 12472
+    },
+    {
+      "path": "reports/q09.json",
+      "rawSha256": "073d642d397a5b744184aed14ddddf854360275bc2ee98cbf20bc03637f7133f",
+      "bytes": 12481
+    },
+    {
+      "path": "reports/q10.json",
+      "rawSha256": "66afc468d38578da54434c3fc30f982d0d06a78af8585deb0654aac9e24e2f44",
+      "bytes": 12695
+    },
+    {
+      "path": "reports/q11.json",
+      "rawSha256": "cc1a56883e9e3bc4089f987f1811db47a68110e8bbb5717c9cb445a8bb5ffbea",
+      "bytes": 12937
+    },
+    {
+      "path": "reports/q12.json",
+      "rawSha256": "be190370c6c46251b692994459b119d99b252ac79ee0b94728da798a158d375c",
+      "bytes": 13181
+    },
+    {
+      "path": "reports/q13.json",
+      "rawSha256": "0705538cebfa42a050ca0d194bd75ee1c1cc5dd617ca94dc7f3e969cd2ba58c9",
+      "bytes": 13605
+    },
+    {
+      "path": "reports/q14.json",
+      "rawSha256": "65bc16c54bd7752d506434cc5e313a3998cfa22f5798657a4213fc7aec40346d",
+      "bytes": 13807
+    },
+    {
+      "path": "reports/q16.json",
+      "rawSha256": "38016d2b1bea1620486103eb0ad2190cf7b381aaa6de15f06ca00b5e16397d0e",
+      "bytes": 11400
+    },
+    {
+      "path": "reports/q17.json",
+      "rawSha256": "a9fa22d32b16a7a8988408d5ed6ee841b70ef87d360e4d5f5d55d4b86653ebed",
+      "bytes": 13209
+    },
+    {
+      "path": "reports/q18.json",
+      "rawSha256": "56530e752c79d38ec1dccf8be8ae500146b89721bf6b528ba8b88f45937e7172",
+      "bytes": 11794
+    },
+    {
+      "path": "reports/q19.json",
+      "rawSha256": "77975caa1c07648b3ae5c145c98b6de7140950e6eab393f5c752b7f0e6837cdf",
+      "bytes": 13419
+    },
+    {
+      "path": "reports/q20.json",
+      "rawSha256": "ff8456ee76e243a7f7737c1288f65fc16dbd6415e58714780b72a6656ecd38ee",
+      "bytes": 14498
+    },
+    {
+      "path": "reports/q21.json",
+      "rawSha256": "def730e6329f59e32b2a4a87051f5901005fff52ef86e4c3b61d1d92e8eebd0a",
+      "bytes": 12813
+    },
+    {
+      "path": "reports/q22.json",
+      "rawSha256": "c1af2cedefbbe24fe8dc11027d1ef63cc25090748d73ee3ce52f3b97a3886d17",
+      "bytes": 14270
+    },
+    {
+      "path": "reports/q23.json",
+      "rawSha256": "d7b1dfc866c0bff66ec1a82d462384995d27cd94c0f7504c7e03b73a725c086f",
+      "bytes": 13148
+    },
+    {
+      "path": "reports/q24.json",
+      "rawSha256": "3f04ba446a528e7a04d08681e27c564da361621d35cf80dfe9d2a6df367d54b9",
+      "bytes": 13856
+    },
+    {
+      "path": "reports/q25.json",
+      "rawSha256": "07b7250cf2536dc8723e8ab5cc1f365c32f9b5d8e3a9ee5a5162e29a47fc6b74",
+      "bytes": 14892
+    },
+    {
+      "path": "review-decisions.json",
+      "rawSha256": "5b0c2c2b5701039f17d18f66f570475fecd06e57b9a37604ae5ac4b520b883ca",
+      "bytes": 17359
+    },
+    {
+      "path": "REVIEW.md",
+      "rawSha256": "a114a1bfd3b012504ea5910fada35c286464617e5a396c053a38215c46d8027f",
+      "bytes": 5003
+    },
+    {
+      "path": "seal.py",
+      "rawSha256": "5fe0191c515c69dafcb9658cec34fe60f55c0cfbe7741acefebb876dc32519a2",
+      "bytes": 3073
+    },
+    {
+      "path": "strict-render.mts",
+      "rawSha256": "3f1d1cde5b45aa0d24b4da2223d7e8a9eda12624c635b5b5ba8f8b6ec0390c25",
+      "bytes": 2293
+    },
+    {
+      "path": "validate.py",
+      "rawSha256": "802d81ff5177741ddb58a4ba04e4b3da188516f2b959e40dc66bd809925b8f41",
+      "bytes": 1373
+    }
+  ],
+  "bindings": [
+    {
+      "questionNumber": 1,
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q01",
+      "studentDigest": "a04555d3dbf7cb76374375ebfa08cd9574510b1460105353544b8f07c6cca413",
+      "candidateDigest": "79527f217bddd4c760e43c9b9f985e4a65c653be5324830bc50435e1da830b11",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "39cd7c25553be3cb0cf616a71d22e9f9c68fd508908f56d8cd3ae951ca669cca",
+      "candidateFileSha256": "32626db4dc32fa4a82cd9908b9d220af7c20506dce0b810fb20f0e85da5106d1",
+      "rawSolveSha256": "c7f3170146ac1570bdc42e7e122a2b4b53e1b3ddb2e78b2336441fd26878b727",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-1",
+      "sourceQuestionCanonicalDigest": "8293ef22566e4a10b0b492cadf1073ec1dc57ed54644323f19b184acb9a49379",
+      "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceProvidedDigest": "56c36a8b956791033e075af3de7764e756c2b2ac76f1aff214b360db6fb24e33",
+      "sourceHashContract": "supplied sourceContentDigest separate from raw stem or complete canonical source-row digest",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    {
+      "questionNumber": 2,
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q02",
+      "studentDigest": "d148cbceda10cd301f80ade45cca99c5cdcb483bcb6f95e897b91609cc10d56b",
+      "candidateDigest": "9612a64dfa20784b4e44fb287161f2465ac1fbe98f0e06205faf1144fc53b842",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "50b8f8bf39db3a6d0399530879ee3602b56a807516b2cb552a3bd098af9ad4cb",
+      "candidateFileSha256": "a48d55175a299687755542a939da443da1df67c71f07fb56ae6ee27ca7e379c5",
+      "rawSolveSha256": "198dbb8e7534384c04a550c7503a699abd1b198b1caccc4b7eb8e3bbb33cb7d5",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-2",
+      "sourceQuestionCanonicalDigest": "31fa9ff08ff536d57898c1911455d23b9d8ae0b3b72d55eed11609d784581ad1",
+      "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceProvidedDigest": "90bc15ab1d0a124d2bca4eff254062cb1080c8f56ac19d4dd3420430acc4f90c",
+      "sourceHashContract": "supplied sourceContentDigest separate from raw stem or complete canonical source-row digest",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    {
+      "questionNumber": 3,
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q03",
+      "studentDigest": "0d1d12430c6d2ef9cb0f77651a4c895cda55790eb1ddf38268eae4dad57eb3e4",
+      "candidateDigest": "65518b53edd3958be4565c283b62b3dff9e2b4f5d7d0361be6a3449a6561ab34",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "27b7a83aa577e6cba241ac852fd02ae76bc842f8377a4be3c1c50fc6be5f2395",
+      "candidateFileSha256": "0cd3cce1125e978520f7e9d53e4110ac164ec34af79c901cc135750b22ff5003",
+      "rawSolveSha256": "36438dde702e38e12558fd2188b5918e2dcae37845f6c6c086bd8ea78a9dddb0",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-3",
+      "sourceQuestionCanonicalDigest": "82acbf48368ce75d210e85720d9db0db098e88b37ae50e557f8f642c405d51ce",
+      "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceProvidedDigest": "c890235169998a1bd168e66bbc3c55ab13bb505f7668b02fd92653fb76f056d6",
+      "sourceHashContract": "supplied sourceContentDigest separate from raw stem or complete canonical source-row digest",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    {
+      "questionNumber": 4,
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q04",
+      "studentDigest": "0efaaf342a78cd52c656108ee5eb7e2bf3c11475ee67f738bd7059f7779d72b1",
+      "candidateDigest": "2fa5e8e2dbd839789e0f26a08d868a09ce9906e9b71e424bb35c2bb63e09c0f3",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "2915f4542bf66b2cfde000c6aa68f73694f66a2c9448c86ddb67ba8206a974f3",
+      "candidateFileSha256": "4ab24190d1a38b2280dbd5adf35528891236d189e497890bcf029fb36fb36c89",
+      "rawSolveSha256": "c65f3e6708b2b3c5a5be5df6e560b5d0c96e6856ec8309c65a44b7559e6a7cb7",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-4",
+      "sourceQuestionCanonicalDigest": "1187438fded757e8b0995639ebe92a189c4da45e4be15342e6590d28dcb1fe76",
+      "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceProvidedDigest": "93d870d55dd9fecde9dc6d6aba844ce71c82416c810682501cb2da76a3cd4739",
+      "sourceHashContract": "supplied sourceContentDigest separate from raw stem or complete canonical source-row digest",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    {
+      "questionNumber": 5,
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q05",
+      "studentDigest": "7c7cbe4912743bd1dc87fb4e231162c91352fbc73fb9fe3254e246cfbb248b23",
+      "candidateDigest": "fc93dc7fc50c2d5b3d1c2f63b2ba012d5963a6913b80953a60781d2db67541b2",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "cffb7f7c944c261cfe95dde64ded2989d5b9a36a0ad9f8b8b9bbf861dfbc01f0",
+      "candidateFileSha256": "937e966e7f00a7bb853e632aac46f5376123d21571d255c8ee3a4306f234c4ee",
+      "rawSolveSha256": "b3b98efe420768d5d8b49bb2585c2dd666f3a3b4b736a58c88cc234596fd87ae",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-5",
+      "sourceQuestionCanonicalDigest": "7651244afe73f80e157bfc5839b6a3b69c3245117485f26901762ce08eac6b95",
+      "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceProvidedDigest": "c7696bfcfde5a6816f6e06f89eb3e807df007d2b63445172a75402919dcd7917",
+      "sourceHashContract": "supplied sourceContentDigest separate from raw stem or complete canonical source-row digest",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    {
+      "questionNumber": 6,
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q06",
+      "studentDigest": "ce3ffcbd3bc0e556dd9c4979dd01a3d3666d7bb4c664ab9811708f16c2ff3242",
+      "candidateDigest": "d2b118b5451d5a18a7687abcc5eb4590e40586de68db1dca328ebc1ad05f9a58",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "e7923123d8efdd81a4ac7ee0a31a6f77bdbd452865c48f8cb52c08b8f7b37aa9",
+      "candidateFileSha256": "df1935a9a9132cc04fed9be127ba42687f9322a286a6d3d02d546b38b0c02e0a",
+      "rawSolveSha256": "73ff1f1cfde8fdf90441fb1a5e9117db4f1b86078adf131f0542e17664a73741",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-6",
+      "sourceQuestionCanonicalDigest": "5a7d89a55f11b48fae44c14d4053824a84c70fc114da6d8053a5e1163089684e",
+      "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceProvidedDigest": "97c308d328df8b57c8935750b62056a0a89b34105fa84b9d4bc2ae170b6e82c8",
+      "sourceHashContract": "supplied sourceContentDigest separate from raw stem or complete canonical source-row digest",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    {
+      "questionNumber": 7,
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q07",
+      "studentDigest": "9fe79105603083e99f00c4d047f8a8717f086f80142e2aca45fb563c1f159eb6",
+      "candidateDigest": "27fb6d302263ca4f1da6968fe3e69b75c56038973f0477a1cdd76abac51b142e",
+      "assetDigest": "c299754d1e86a8bd0a47379bd411496aee80feb9eadff9c1df3aea2d2f1a6d19",
+      "solveDigest": "3d4fef7771fb6fae584380c7e2d6f34bd51f9fd76da56e15ff261c487ccbac5d",
+      "candidateFileSha256": "95d0dbc4aad9355396ef44b722fcfad32752da502c8af134a05066fb75858d91",
+      "rawSolveSha256": "2b24222fa42deb0c597c84950c5bd80a76963298370bd65f014d33361f5d4093",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-7",
+      "sourceQuestionCanonicalDigest": "da7f8c7cf4fdbc1fb742c90e8dd91c5d01ddc94082474f8d7b06fa2a01946405",
+      "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceProvidedDigest": "9d6ef537b275816f5049d4f7dcea31767c98b1e1685d8b9aec047497127b571b",
+      "sourceHashContract": "supplied sourceContentDigest separate from raw stem or complete canonical source-row digest",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    {
+      "questionNumber": 8,
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q08",
+      "studentDigest": "79210fe06498b07f552240e84319bfd36f89b0ec00320eb88c8f48b7eb12cf4b",
+      "candidateDigest": "7b73701a7b32ecfd1497f81eebe486241f784c1caa971b991eb6cad481b54d4a",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "5f625595ed900a5b42a2ec61472e960c08c58554366d77648be281563824e23a",
+      "candidateFileSha256": "9ee3e57c3d410e1cac2c1edec40841ed8554d94e7d9270312532c795f5d0193e",
+      "rawSolveSha256": "a35553b4835d4f665bbc7e2b9ad7a6113f2a5cd26450695386ae42a38c2a56bb",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-8",
+      "sourceQuestionCanonicalDigest": "fa606e8e9556bac3a55743612041d6f3566d216c318064f30f1107336fdc749c",
+      "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceProvidedDigest": "93709cc24c2bc9351824f9f548eef1f2382bb85dc630c538183506640fcd8842",
+      "sourceHashContract": "supplied sourceContentDigest separate from raw stem or complete canonical source-row digest",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    {
+      "questionNumber": 9,
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q09",
+      "studentDigest": "5c543fdc2da4c007d7d7ea88eca6e89e6e78fbdde785b4a6cafb462ee4bb176a",
+      "candidateDigest": "ddd0134b4dc8d9d32f6c101d840a250762ae30845ec20a2771c8bce6163131fa",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "104496ac5de41a84a0bc0c36b76568a5e3cfdfc9be76b2f32316975765523716",
+      "candidateFileSha256": "60f8b35a54ed47edec2b365afc16fc6e47075710c89d118bb7cba6ad57f33764",
+      "rawSolveSha256": "1d2150f9667b891e7a406c05f1b32c44346061f01a752ecccb4f648b53a547d3",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-9",
+      "sourceQuestionCanonicalDigest": "58a41f05f0182c28f6402460dd640ecbfde7f6018ed555e31f96af00ebac61a7",
+      "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceProvidedDigest": "68e133d63444d750e6abebb82393363bf97842901db1d760f17adbca4a7b1054",
+      "sourceHashContract": "supplied sourceContentDigest separate from raw stem or complete canonical source-row digest",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    {
+      "questionNumber": 10,
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q10",
+      "studentDigest": "42c5205c0db1990eca755c75bf7bd6979daa2a41e5c5abf185456bfe79b1244f",
+      "candidateDigest": "95b656a7c948446bf9b49acb0c3aa2201f12979888589a3442bbe5de0a534463",
+      "assetDigest": "54119090dd42c4274e16828aef3d71685be0bf0f70d53a52d14db28fda930f83",
+      "solveDigest": "0f91a48a515e0989318c50040cabf33ac4cbff534c367ac222512d46fefde6df",
+      "candidateFileSha256": "214893222a715b476f7e7c60861c5a2747aaec594951a9ea89736b57c36c4b22",
+      "rawSolveSha256": "4559428fde2beb4cb12095e979b7b0446c4909916cf1845a20af6acc0529ac16",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-10",
+      "sourceQuestionCanonicalDigest": "8bef795441bf72b1057990e091bcf1e25215b447670e656e1f90a024f2b0113e",
+      "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceProvidedDigest": "3d4b6858cfeae92d26a9ced5e3056d0ed1ae350ae73e1ef89643e8d43d8c7784",
+      "sourceHashContract": "supplied sourceContentDigest separate from raw stem or complete canonical source-row digest",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    {
+      "questionNumber": 11,
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q11",
+      "studentDigest": "f87bb0e20db98b03278156fb32ce34bf2414e352aa585bf6d632a3e2034fb2a6",
+      "candidateDigest": "e91a52b146441256906edfeb9ade470ec2d3e9bd8fe6776382e3bb60ae1451d8",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "3755f9b0f920e2e1add0fc6972c67c777c540f771af181f8098330a2c0999ebe",
+      "candidateFileSha256": "7e3dde94158986d2c939c3300ae271bd7f53c61d79cc020a1fcd9166902237bf",
+      "rawSolveSha256": "35d7c800c56260de67ed3b7ff8758631dc45fa3c917e7af58481f12d0c2090ca",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-11",
+      "sourceQuestionCanonicalDigest": "509a05440dfc5ba9a9f8eec1bbd1b8add8982c3b9c21736f77034fe4cf68d836",
+      "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceProvidedDigest": "670a3f3f93d320be6bffc4fdc69002305be6a84c6a36ce369475e0da7e725ed4",
+      "sourceHashContract": "supplied sourceContentDigest separate from raw stem or complete canonical source-row digest",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    {
+      "questionNumber": 12,
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q12",
+      "studentDigest": "8b83dae75670e87b426b14bb5c822a87dd8b92abb5fe9bdc6f4943ed6a3d0e9f",
+      "candidateDigest": "ebfaac76241068cab461045bc6ff91d7719ca1f780a6fca50ea3419a0540b037",
+      "assetDigest": "e9f63de6f7978643914d9346e8844370e4d9b2712d5103bc2cb4ea274eafc6ce",
+      "solveDigest": "9bdc548109134889deeb67bd0a9074e738233f61cdf4dadccadd8a0bd75c8691",
+      "candidateFileSha256": "2c1c34c479a1e968478fa9e9294d7074adc4e5c57bb926c662bd1f6b0038aa74",
+      "rawSolveSha256": "7a79af561639b10d6bdb352afeb53bdc74638b02d4f2a77e478b8c89ec98dfb5",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-12",
+      "sourceQuestionCanonicalDigest": "c03f0b3a8c042c7c82c1c267341aa5452718cde92e55d6561dd6e70a0dd4df4d",
+      "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceProvidedDigest": "2fc0b7c94d7c305089f381a96982fae896b126d5461303006bbae692f6ee4a25",
+      "sourceHashContract": "supplied sourceContentDigest separate from raw stem or complete canonical source-row digest",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    {
+      "questionNumber": 13,
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q13",
+      "studentDigest": "fbf32a3822dc0ab31f61459df1b1aaf45752807988e4086d0c9179780cdeb123",
+      "candidateDigest": "e919fe72bf3817f5c112744c255bee3116b236beb836983a56f41f2f46f4a694",
+      "assetDigest": "0366b971fec363b1fe37c4b63824fe8c47af4e420dc77062a896e47ae570665a",
+      "solveDigest": "4056c06c1e59c1e05a2fd9ec0e1d6b611ac464647f4d210dea9fab0acd6cc57d",
+      "candidateFileSha256": "5284bdd357b8233d9fd664c195c3736cabe2c55dc70411d0618415f6dd5df0c7",
+      "rawSolveSha256": "e1d96ce587a3855c2a3006269d87670857173bef0f1c12c0e6f92f399c2d03af",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-13",
+      "sourceQuestionCanonicalDigest": "6d21b54b8ce32e9ab20884c83d7250342053a1a23ab8d71d2d0f802cc81d4bad",
+      "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceProvidedDigest": "6bdb93fc858a191c0db0e4569df8515960db109a29cd9c74bced9d7b2ce3991e",
+      "sourceHashContract": "supplied sourceContentDigest separate from raw stem or complete canonical source-row digest",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    {
+      "questionNumber": 14,
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q14",
+      "studentDigest": "423fb19ffa88b8c3ad43a192610e35757e9dc7bff1dca0b9c1bcea535426f6ad",
+      "candidateDigest": "8829c7c6dd22198c8ecd016815f6a0eeae74b054e2969b4c154e39b4bd0502ab",
+      "assetDigest": "5c2526da7a5a07b0bba8df7dfc611dc5c55a5b83e702265bc17720a3e490b94c",
+      "solveDigest": "11fd26392feff3c79cc07b719f62e2d697296b2a0e9d73a443ba14eb812c6b52",
+      "candidateFileSha256": "c68d3cf55226381664b0b4b8f6fabf4992f906e322e47fcdbd7cb8981ff418e5",
+      "rawSolveSha256": "fb8a1297a876bbf4093211088d5a838fc3da371a4721df9c88999a4663a0da5c",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-14",
+      "sourceQuestionCanonicalDigest": "f42055a3c757acf381fc9f64b7f4b8b24715d246618cd4e1c5117514b0f87051",
+      "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceProvidedDigest": "34487df4cbb2507d6fca54b99bfa825874c5b8e808976c441be7bf2eb83025cd",
+      "sourceHashContract": "supplied sourceContentDigest separate from raw stem or complete canonical source-row digest",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    {
+      "questionNumber": 16,
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q16",
+      "studentDigest": "86c79ff10b05424e5c5e1d98975a591fecb888715e8bfdfdde1602b12429c311",
+      "candidateDigest": "77ee443744ae8b7830ef3e994fc1d3c692442c151833ff4c1c769c21700b83ba",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "5a18fa17c704066a358c31150750c5426cdffe3ada620b278d9e644b6d2d3d37",
+      "candidateFileSha256": "e224133377e2dc7522ac8834b2355de4265d9c1bc41314b00cb8a9a237aa417d",
+      "rawSolveSha256": "e5216d55ab62df9ba141b4937914fd1dcf9be43078a0a75050a93075815b4272",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-16",
+      "sourceQuestionCanonicalDigest": "411fa8fe475e415286b45af7efc9af6efd8072c0fe5142d8003a74450b0d0b1f",
+      "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceProvidedDigest": "722b9396285b9e4bde59bf83e1da173e92821bb6a531d0fc212b8174bf524f81",
+      "sourceHashContract": "supplied sourceContentDigest separate from raw stem or complete canonical source-row digest",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    {
+      "questionNumber": 17,
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q17",
+      "studentDigest": "95af94c3735454c56c7e6d25d89e4dff2ef6512fafd3b3eac1cc0c80ee94da6c",
+      "candidateDigest": "da7ca5ab84f3c15863ae5264238d227e37680f88ba92d15595ea1420e0148d51",
+      "assetDigest": "abb58855f5492ef413941d0fd836d6af64aea152faf997bbcf34d9361d014e88",
+      "solveDigest": "e7896e11417db823bdf5545bc902c317cb08fe62032372e3d093df9029eb43d6",
+      "candidateFileSha256": "4e50aa8a5209b64b796240266a5fbb6d86922e4e491d3ce17a38fff8404607e1",
+      "rawSolveSha256": "a424fdace6ba729e3920cd629a11b6e31684b7ad935cd6b250653719bd772fb8",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-17",
+      "sourceQuestionCanonicalDigest": "edcb79e26409ad7c2d2abeaf1216cc7959ad64ce0906668af63668598c6291a1",
+      "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceProvidedDigest": "62879fae83d546aac6d545703e8aefea4de814b331d7a774a4e1ad9a46f78c29",
+      "sourceHashContract": "supplied sourceContentDigest separate from raw stem or complete canonical source-row digest",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    {
+      "questionNumber": 18,
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q18",
+      "studentDigest": "5c599c3a7311139ea0709a0b0f959b720d3d46fd6d8d953137c4f10b5b0ebd5e",
+      "candidateDigest": "bc266381869476d941dd14ff338da9cda190dd3f0aee4cc19eda20580e19c3f8",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "702eaa6c72ed0be0a262fb5e0362d58acfe9e753013e0b3c63948b4753081e20",
+      "candidateFileSha256": "e34e8484ac395e7dc6656ee14a9506b21e8f035304769eba81e19efec43c96b8",
+      "rawSolveSha256": "ed681fa55d8a18793c15e2092f99ba9778a96bdbb253bb0d7843ddc7b89c1471",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-18",
+      "sourceQuestionCanonicalDigest": "5b928a5f2851916b21c10eb69b1dcad989042018ec8ed1cc7b4a14814e96395f",
+      "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceProvidedDigest": "2caf1ec80ca04794a94a4593dc0972648cfb808e13ce6f8c263a79c01cfd8dd9",
+      "sourceHashContract": "supplied sourceContentDigest separate from raw stem or complete canonical source-row digest",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    {
+      "questionNumber": 19,
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q19",
+      "studentDigest": "97a6595ddcd5f1f99e5e8c385929503bc317164c1f24a79d02310637bf6e9880",
+      "candidateDigest": "d8c3d0ad3a4a234f2c4107f123150147d024f8419d085920905736811f0d3c9d",
+      "assetDigest": "0a9c9aefc00f08c89fb624ebe1e5e39126ef0bf396f91d68d684db9c3abcc9ae",
+      "solveDigest": "153c5232282d884fb0b908e21ec4477e16f12e90ef8a28e32c58b8f2a2c8dbad",
+      "candidateFileSha256": "56815ca4660c04d3a996a90dc1bd56a92b3a665635e50e817bbd8ead9408c81f",
+      "rawSolveSha256": "af040fbce6ea53a8d1042fe4ebf8db73f8c976f89009878b7d830d403f22eae8",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-19",
+      "sourceQuestionCanonicalDigest": "7d299d359b45ac5bba0ee0ab3ba610e7cdfc4f4768e6b0680944ed8f410edc53",
+      "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceProvidedDigest": "f4462e8b8b08193b04420254fb7a0145443a7cfefee9d193a6130c8f6d927c37",
+      "sourceHashContract": "supplied sourceContentDigest separate from raw stem or complete canonical source-row digest",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    {
+      "questionNumber": 20,
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q20",
+      "studentDigest": "ff73f103ee18d2c55ad81b5628c7825c9a2ae3307d79533a57c72b15f1093cd3",
+      "candidateDigest": "dbcd0dee65411cfd86e249b8b92a2297843d3420de12587ebb110d3ded7fe46d",
+      "assetDigest": "afa541d1dcab31712d7f6f51ea41cc60887d564ef500ab28f0b0387eed73fee4",
+      "solveDigest": "37b48f5c14350a213c98d89d79ceaf5454823f4573f57c5c82149fc2cd329084",
+      "candidateFileSha256": "8e70dac00fb58a66e3ddde9a08a02bea06168355124cd035580cb71e87673269",
+      "rawSolveSha256": "e2b5d0b6b8d862000ad409c3f260929dad3ed9e2a7fab096d516d854ea91d15e",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-20",
+      "sourceQuestionCanonicalDigest": "3227ab135c1847057659b735252b3c68402818bb18d57150a0e1c6fabf9a1ad2",
+      "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceProvidedDigest": "a464def1311cc3fdcf508e46b65fca7e6d23679f506facbf70fedeaf73197658",
+      "sourceHashContract": "supplied sourceContentDigest separate from raw stem or complete canonical source-row digest",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    {
+      "questionNumber": 21,
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q21",
+      "studentDigest": "f2b74591299c729d6da0cc4c03d70ac61e157d80edfe6c84ceba21b2ef867a4e",
+      "candidateDigest": "781e1defab4d41b1f9b2b9cb229b4ac81dd519e2abc78c90be19bd1b58a7c933",
+      "assetDigest": "e51a1a5a915fe67693e1d02fa13fa21eb0e32b0f44701ad5a79c90e50d5075aa",
+      "solveDigest": "92c239264768442e4f144d38c478037023d87dcd7aefe250a712d089936fa801",
+      "candidateFileSha256": "782e7de0db666e02ce6de645ae9b9528dfda9b0da0ee26b8f4b741a55c3bc4a4",
+      "rawSolveSha256": "7c671611bf27dcca657b6cb03633837291da5be8696a87161a871a0f77a46820",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-21",
+      "sourceQuestionCanonicalDigest": "29ef1c574dcaf8eb39bb511187a252fcc9d3ae1b357f88efef36c267a187d6d8",
+      "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceProvidedDigest": "4576aa18787502f1284182f0ee2338773f3d9e319f36b27bf42c90d08261d44a",
+      "sourceHashContract": "supplied sourceContentDigest separate from raw stem or complete canonical source-row digest",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    {
+      "questionNumber": 22,
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q22",
+      "studentDigest": "bc05620c77d8e779fb3c814cb177b08f4547b24978a6dd24719c5cbe38bc4851",
+      "candidateDigest": "eeaa1fb2c27b15ea2f76c614c2455b0eccc7cff7148d134d7ce3b7a8e0615545",
+      "assetDigest": "07cd7a6cec5b99919d1f136521416f05e7c372c5d95df7389e45dcfb8aa1fb50",
+      "solveDigest": "a6f36688418fff4ed6ec310952e8dcae3cf7790f8a4281c619ad9d222d0edccf",
+      "candidateFileSha256": "9cf0407faa7a314eaf6729cb3f5e2243cd6197a0db8fa11c5fe68c22e036568d",
+      "rawSolveSha256": "916798e5a8a5f9bb5ca4bfaf27b463ff526ad372d31df3a0fa1c82c7c9d221f3",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-22",
+      "sourceQuestionCanonicalDigest": "acf02f0934ba10ef6c54d42dd7fba833d2d6699599d1ed40f37cd1b2a962ba59",
+      "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceProvidedDigest": "392220d015d572d27b2784214b0935d38440d4686945c0442a0409a3484e14d0",
+      "sourceHashContract": "supplied sourceContentDigest separate from raw stem or complete canonical source-row digest",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    {
+      "questionNumber": 23,
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q23",
+      "studentDigest": "5c1d7c4c23d9376db61796a5576915fda58bbd889ee56e800c29d47766670437",
+      "candidateDigest": "a0f1056b4f2c8b9db3f0f022fa83d4437e53282d9b8146b9da35e1791d436a9c",
+      "assetDigest": "5e62477e358bc3b9a81e4ce20734f3f79439f50a1f37d5c1a790b1be3dcdd8ae",
+      "solveDigest": "5f467e07ce334ef70c50a2157b44fab101db410080ecdaa3ed8263461c914e69",
+      "candidateFileSha256": "26002c1ae2f9305cbbb52d0788e0ed1000e4b523e410be8124ff3b054a7394fc",
+      "rawSolveSha256": "86d862162ee94c5f878342290a1e38f17f8fe0116aea518bd042139fbcc74871",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-23",
+      "sourceQuestionCanonicalDigest": "47de83c567558f55705d73c93d2c0b7c70c1ef37be70ad6267f4355153b4a3d4",
+      "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceProvidedDigest": "fa8cc2e911c7c2e5715fcd1d2bb52166499020bee2e577fd3e58fc2aa75ae30e",
+      "sourceHashContract": "supplied sourceContentDigest separate from raw stem or complete canonical source-row digest",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    {
+      "questionNumber": 24,
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q24",
+      "studentDigest": "dcfe60a5eb37164dad2c1e53beed2e3f8cf503c4095f3d34642370ec5cd9a62b",
+      "candidateDigest": "8804f8321d4f16a74d4be26ce1d53a4125bcc49054e9d565458f448efea56ab4",
+      "assetDigest": "5a3425197b573f1a96205932325788b47343c7882fbcbddf82f940a268f62c9d",
+      "solveDigest": "3b153faa18debfab6f68b8172036869e29e8b86dbe3190016eed65019c5fb8e3",
+      "candidateFileSha256": "78ff4bdc9ef504ebfec7d0a18540710ec0a58fad719c9cdcf0f82a2c00d4a743",
+      "rawSolveSha256": "fc23bd4119ddef43990fad1ed8685db643bbaa31a66070e9ade1d7de37b14882",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-24",
+      "sourceQuestionCanonicalDigest": "1ba3a5ba6ccf9d6b0c2b88f05c1a9a02d2678161b3ebddc84cb9d250d98632f1",
+      "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceProvidedDigest": "f4c7757a1069051518ac5b7701563c8cf881da3d7117fde9add36645d2ee40db",
+      "sourceHashContract": "supplied sourceContentDigest separate from raw stem or complete canonical source-row digest",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    {
+      "questionNumber": 25,
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q25",
+      "studentDigest": "54f88e20373f48e87f92b4525aff0abceabcd41cd381409752608de617f3df9d",
+      "candidateDigest": "468457b80cafc4f9c3e818a0b068692b6795ad27451b771cfcb0ab259b6db6c3",
+      "assetDigest": "d1da28e0dff49eb6b5ae5c6c51bb95f3e41d952579e14240da612bdffec26d4a",
+      "solveDigest": "35ee9a326748531baacaa816f339c13678b226f91fd3fda949cb50b658334f53",
+      "candidateFileSha256": "caff8163aa43eba616ee79a88f600341a96d3e0fe760b59a7f5e1f73b658431f",
+      "rawSolveSha256": "3d36c42fac401faaa5072ae15dc1e7342fc3aed0b436e5aa7fa8f6d40f71a73f",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-25",
+      "sourceQuestionCanonicalDigest": "03a4b58a35302c05801d414ff2578315abec90f831d39946a8f223d08063548e",
+      "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceProvidedDigest": "e39eb1b0a237f729d2833d73fcfdb1a54f39798d69a1f689afa566fa5056c8fb",
+      "sourceHashContract": "supplied sourceContentDigest separate from raw stem or complete canonical source-row digest",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    }
+  ]
+}

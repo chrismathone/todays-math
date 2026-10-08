@@ -1,0 +1,136 @@
+{
+  "version": 2,
+  "theme": "exam-thin",
+  "points": {
+    "O": [
+      40,
+      340
+    ],
+    "S": [
+      178.56406460551017,
+      260
+    ],
+    "A": [
+      178.56406460551017,
+      340
+    ],
+    "B": [
+      109.28203230275508,
+      220
+    ],
+    "H": [
+      40,
+      100
+    ],
+    "X": [
+      300,
+      340
+    ],
+    "Y": [
+      40,
+      20
+    ],
+    "T": [
+      178.56406460551017,
+      100
+    ]
+  },
+  "segments": {
+    "OX": [
+      "O",
+      "X"
+    ],
+    "OY": [
+      "O",
+      "Y"
+    ],
+    "OB": [
+      "O",
+      "B"
+    ],
+    "BT": [
+      "B",
+      "T"
+    ],
+    "SA": [
+      "S",
+      "A"
+    ],
+    "SB": [
+      "S",
+      "B"
+    ],
+    "OS": {
+      "points": [
+        "O",
+        "S"
+      ],
+      "dashed": "5 4"
+    },
+    "HB": [
+      "H",
+      "B"
+    ],
+    "BA": [
+      "B",
+      "A"
+    ]
+  },
+  "angles": {
+    "angO": {
+      "vertex": "O",
+      "points": [
+        "A",
+        "B"
+      ],
+      "label": "60°",
+      "radius": 32
+    },
+    "rightA": {
+      "vertex": "A",
+      "points": [
+        "O",
+        "S"
+      ],
+      "right": true,
+      "radius": 10
+    },
+    "rightB": {
+      "vertex": "B",
+      "points": [
+        "O",
+        "S"
+      ],
+      "right": true,
+      "radius": 10
+    }
+  },
+  "labels": {
+    "O": "O",
+    "S": "S",
+    "A": "A",
+    "B": "B",
+    "X": {
+      "text": "x",
+      "italic": true
+    },
+    "Y": {
+      "text": "y",
+      "italic": true
+    },
+    "T": {
+      "text": "ℓ",
+      "italic": true
+    }
+  },
+  "style": {
+    "font_size": 20,
+    "angle_font_size": 18
+  },
+  "circles": {
+    "circle": {
+      "center": "S",
+      "radius": 80
+    }
+  }
+}

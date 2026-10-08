@@ -1,0 +1,331 @@
+{
+  "questionNumber": 19,
+  "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q19",
+  "status": "pending",
+  "studentDigest": "97a6595ddcd5f1f99e5e8c385929503bc317164c1f24a79d02310637bf6e9880",
+  "candidateDigest": "d8c3d0ad3a4a234f2c4107f123150147d024f8419d085920905736811f0d3c9d",
+  "assetDigest": "0a9c9aefc00f08c89fb624ebe1e5e39126ef0bf396f91d68d684db9c3abcc9ae",
+  "solveDigest": "153c5232282d884fb0b908e21ec4477e16f12e90ef8a28e32c58b8f2a2c8dbad",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-exam-twin-author-geometry-20261008",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "BC로 전체 높이CD 계산→두 부분 높이의 합을 주고 기준변BC 역산. 같은30/45 직각삼각형 연결 유지. 명시 조건과 요청은 아래 실제 중학교 해법으로 해결된다.",
+      "standardCodes": [
+        "9수04-12",
+        "9수04-10",
+        "9수04-17",
+        "9수04-18",
+        "9수01-10"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "실제5보기 전부 계산/도형 비교;정답 하나,나머지 비동치 오답. ",
+      "standardCodes": [
+        "9수04-12",
+        "9수04-10",
+        "9수04-17",
+        "9수04-18",
+        "9수01-10"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "새 SVG 1개의 라벨·직각·각·점순서·영역을 stem과 함께 확인. 70mm 검사 화면에서 텍스트와 자산 역할 확인.",
+      "standardCodes": [
+        "9수04-12",
+        "9수04-10",
+        "9수04-17",
+        "9수04-18",
+        "9수01-10"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "통상 좌표/함수/선분/도 단위/근호/실제 삼각비 표기. 일반 라디안·벡터·고교 공식 표기 없음. ",
+      "standardCodes": [
+        "9수04-12",
+        "9수04-10",
+        "9수04-17",
+        "9수04-18",
+        "9수01-10"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "BC=t→AB=t√3,BE=t√6/2,CF=t√2/2;CD=BE+CF→t10.양수와AD>0,D-F-C 및A-D-E순서 재검산. circled choice는 역할·값·단위가 독립 결과와 일치.",
+      "standardCodes": [
+        "9수04-12",
+        "9수04-10",
+        "9수04-17",
+        "9수04-18",
+        "9수01-10"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "tan30→AB,sin45→BE/CF,직사각형 대변→높이합,일차역산;tan75/덧셈정리 없음. 공개된 새 저자 풀이의 모든 단계와 실제 정의를 읽고 검산. 공학 코드에서의 좌표/삼각함수 값 검증을 학생 풀이 방법으로 취급하지 않음.",
+      "standardCodes": [
+        "9수04-12",
+        "9수04-10",
+        "9수04-17",
+        "9수04-18",
+        "9수01-10"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "tan30→AB,sin45→BE/CF,직사각형 대변→높이합,일차역산;tan75/덧셈정리 없음. 공식 선택 성취기준의 중학교 범위와 초등 밑변높이 원리;필요한 보조점/조건 명시 여부 확인.",
+      "standardCodes": [
+        "9수04-12",
+        "9수04-10",
+        "9수04-17",
+        "9수04-18",
+        "9수01-10"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    }
+  },
+  "evidence": {
+    "binding": {
+      "questionNumber": 19,
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q19",
+      "studentDigest": "97a6595ddcd5f1f99e5e8c385929503bc317164c1f24a79d02310637bf6e9880",
+      "candidateDigest": "d8c3d0ad3a4a234f2c4107f123150147d024f8419d085920905736811f0d3c9d",
+      "assetDigest": "0a9c9aefc00f08c89fb624ebe1e5e39126ef0bf396f91d68d684db9c3abcc9ae",
+      "solveDigest": "153c5232282d884fb0b908e21ec4477e16f12e90ef8a28e32c58b8f2a2c8dbad",
+      "candidateFileSha256": "56815ca4660c04d3a996a90dc1bd56a92b3a665635e50e817bbd8ead9408c81f",
+      "rawSolveSha256": "af040fbce6ea53a8d1042fe4ebf8db73f8c976f89009878b7d830d403f22eae8",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-19",
+      "sourceQuestionCanonicalDigest": "7d299d359b45ac5bba0ee0ab3ba610e7cdfc4f4768e6b0680944ed8f410edc53",
+      "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceProvidedDigest": "f4462e8b8b08193b04420254fb7a0145443a7cfefee9d193a6130c8f6d927c37",
+      "sourceHashContract": "supplied sourceContentDigest separate from raw stem or complete canonical source-row digest",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    "independentSolveCommit": "c8f8aeadfb28becb1d7447240fd4e28b6702fc4c",
+    "rawSolveUnchanged": true,
+    "answerComparison": {
+      "literalEqual": true,
+      "semanticEqual": true,
+      "role": "single selected choice",
+      "authorAnswer": "③",
+      "independentAnswer": "③",
+      "allFiveChoiceTruthValues": [
+        false,
+        false,
+        true,
+        false,
+        false
+      ],
+      "semanticDuplicateChoices": [],
+      "unitAndTargetOrderChecked": true,
+      "writtenPartsRequested": [],
+      "writtenRubricApplicable": false
+    },
+    "independentExactCalculation": {
+      "questionNumber": 19,
+      "target": "10",
+      "status": "independently-computed",
+      "evidence": {
+        "DFequalsBE": "5*sqrt(6)",
+        "BF": "5*sqrt(2)",
+        "FC": "5*sqrt(2)",
+        "AB": "10*sqrt(3)",
+        "BC": "10",
+        "CD": "5*sqrt(2) + 5*sqrt(6)",
+        "ADpositive": "-5*sqrt(2) + 5*sqrt(6)",
+        "tan30Recheck": "sqrt(3)/3",
+        "coordinateWitnessForCodeOnly": {
+          "D": [
+            0,
+            0
+          ],
+          "E": [
+            "5*sqrt(2)",
+            0
+          ],
+          "B": [
+            "5*sqrt(2)",
+            "5*sqrt(6)"
+          ],
+          "F": [
+            0,
+            "5*sqrt(6)"
+          ],
+          "C": [
+            0,
+            "5*sqrt(2) + 5*sqrt(6)"
+          ],
+          "A": [
+            "-5*sqrt(6) + 5*sqrt(2)",
+            0
+          ]
+        },
+        "method": "AE=BE→45-degree AEB;right angleABC→45-degree BFC;CD=BE+FC;tan30 in ABC. No tan75 or angle-addition formula.",
+        "allFiveActualChoiceValues": [
+          "5",
+          "5*sqrt(2)",
+          "10",
+          "10*sqrt(3)",
+          "15"
+        ],
+        "choiceCorrectness": [
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "correctChoiceNumber": 3,
+        "semanticDuplicateChoices": [],
+        "oneCorrectChoice": true
+      },
+      "knownHolds": []
+    },
+    "mathAndNewSolution": "BC=t→AB=t√3,BE=t√6/2,CF=t√2/2;CD=BE+CF→t10.양수와AD>0,D-F-C 및A-D-E순서 재검산.",
+    "coreAndSubstantiveDelta": "BC로 전체 높이CD 계산→두 부분 높이의 합을 주고 기준변BC 역산. 같은30/45 직각삼각형 연결 유지.",
+    "allowedWholeStudentMethod": "tan30→AB,sin45→BE/CF,직사각형 대변→높이합,일차역산;tan75/덧셈정리 없음.",
+    "sourceQuestionOnly": {
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-19",
+      "packetRawSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceDigestProvided": "f4462e8b8b08193b04420254fb7a0145443a7cfefee9d193a6130c8f6d927c37",
+      "images": [
+        {
+          "file": "images/q19-part1.png",
+          "rawSha256": "85828cb4f20f08d866972553cd2ca66b3362b5010797a89cb6a3e3084f7b610c",
+          "personallyViewed": true
+        }
+      ],
+      "sourceCropsNotNewAssets": true,
+      "originalKeyOrSolutionFilesRead": false
+    },
+    "visualReview": {
+      "questionNumber": 19,
+      "studentDigest": "97a6595ddcd5f1f99e5e8c385929503bc317164c1f24a79d02310637bf6e9880",
+      "candidateDigest": "d8c3d0ad3a4a234f2c4107f123150147d024f8419d085920905736811f0d3c9d",
+      "columnWidthMm": 70,
+      "png": "inspection/q19-expanded.png",
+      "pngSha256": "c80379671cf7264e4d41b7872e98afc43e4b72afe73bd0d68debc46f3a8c3d2a",
+      "overflow": [],
+      "unclippedPng": null,
+      "figureCount": 1,
+      "figureWidthMm": 70,
+      "figureArrangement": "ordered roles",
+      "personallyViewed": true,
+      "imageRawSha256": "c80379671cf7264e4d41b7872e98afc43e4b72afe73bd0d68debc46f3a8c3d2a",
+      "actualQuestionAndExpandedSolutionInspected": true,
+      "allSuppliedChoiceFiguresInspected": false,
+      "assets": [
+        {
+          "role": "stem",
+          "specSha256": "ba6874e9c23529f2bd85ffae8a3ef5cc51759dfab244c8e656bfb752525dd792",
+          "svgSha256": "7dc84d5ac01573925edf38b82926ed6518ea297d4e00c96cc002f9214bb16f33",
+          "intendedWidthMm": 70,
+          "studentPath": "figures/q19-1.svg"
+        }
+      ],
+      "strictRegenerationResults": [
+        {
+          "questionNumber": 19,
+          "role": "stem",
+          "specSha256": "ba6874e9c23529f2bd85ffae8a3ef5cc51759dfab244c8e656bfb752525dd792",
+          "frozenSvgSha256": "7dc84d5ac01573925edf38b82926ed6518ea297d4e00c96cc002f9214bb16f33",
+          "regeneratedSvgSha256": "7dc84d5ac01573925edf38b82926ed6518ea297d4e00c96cc002f9214bb16f33",
+          "byteEqual": true,
+          "strict": true,
+          "localOnly": true,
+          "droppedDimensions": []
+        }
+      ],
+      "nativeCompatibilityNotApproved": true
+    },
+    "naturalKorean": "조건·대상각·선분·기록값·단위가 자연스럽고 모호한 원본 조건을 명시했다. 허구 학교 표시 해솔누리중학교와 실제 학교 내부 보존을 구별;원학교로 학년 승인하지 않음.",
+    "scoreAndDifficulty": {
+      "score": 5,
+      "sourceScorePreserved": true,
+      "authorDifficultyProposal": "응용",
+      "reviewerDifficultyProposal": "심화하",
+      "basis": "tan30→AB,sin45→BE/CF,직사각형 대변→높이합,일차역산;tan75/덧셈정리 없음. 5점은 원문과 동일하고 필요한 단계 수를 근거로 제안. 검토자는 심화하/기본과 응용 차이를 기록하며 실측 난도나 학교 자동 승인 주장 없음.",
+      "measuredDifficulty": false
+    },
+    "taxonomy": {
+      "unitUuidProposal": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+      "unit": {
+        "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 활용",
+        "semester": 2,
+        "orderIndex": 483,
+        "problemCodePrefix": "J30503"
+      },
+      "unitSeedExactMatch": true,
+      "candidateMetadataAssignmentUnedited": {
+        "status": "pending",
+        "unitId": null,
+        "familyKey": null,
+        "currentUnit": null,
+        "currentRegistryMatch": null,
+        "liveCount": null,
+        "checkedAt": "2026-10-08 04:53:45.769124+00",
+        "evidence": "30° 삼각형·등변 직각삼각형·직사각형의 높이 합을 역산하는 정확 live family 규칙이 확인되지 않아 null이다.",
+        "candidates": []
+      },
+      "existingLiveFamilyProposal": null,
+      "semanticFamilyOnly": null,
+      "status": "held",
+      "basis": "활용01/04/05는 한 삼각형 길이;본문 두 등변직각 삼각형+직사각형의 높이합 역산을 모두 지원하는 live 목적/조건은 미확정.",
+      "formatComparison": "Complete new target/format/difficulty support is unconfirmed as described in basis; no nearest/title mapping.",
+      "bankCapturedAt": "2026-10-08 13:00:16.891043+00",
+      "snapshotScopeOnly": true,
+      "liveCountNotPermission": true
+    },
+    "q22RepairRead": false,
+    "q23SourceRoleMetadataBoundary": null
+  },
+  "holds": [
+    {
+      "code": "exact-unit-live-family-contract-pending",
+      "basis": "활용01/04/05는 한 삼각형 길이;본문 두 등변직각 삼각형+직사각형의 높이합 역산을 모두 지원하는 live 목적/조건은 미확정.",
+      "reopen": "실제 live 규칙의 전체 조건/요청 목표/핵심 절차/난도/형식을 지원하는 근거를 제시하거나 별도 새 메타데이터 계약을 검토. Unit·제목·live count만으로 확정하지 않음."
+    }
+  ],
+  "gates": {
+    "rights": "held",
+    "custody": "held",
+    "similarity": "pending",
+    "nativeCompatibility": "pending",
+    "directUseAllowed": false,
+    "loadable": false,
+    "dbWrites": 0,
+    "modelCalls": 0,
+    "finalPublicationApproval": false
+  }
+}

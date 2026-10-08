@@ -1,0 +1,2227 @@
+/**
+ * 중3 「이차함수」 — RPM 3-1 «이차함수의 그래프 ⑴» 01~21 + «이차함수의 그래프 ⑵» 01~21.
+ *
+ * 물결 5A 세션 소유 모듈 (docs/planning/tracks/middle-engine-wave3-plan.md §12).
+ * 합본 `m3.ts` 에는 두 줄(import + spread)만 더한다.
+ *
+ * ## 생성 규칙 — **답을 먼저 정하고 발문을 만든다**
+ *
+ * 꼭짓점 $(p, q)$ 와 $x^2$ 의 계수 $a$ 를 **먼저** 고르고, 지나는 점·일반형 계수를
+ * 그것에서 역산한다. 그래서 시험은 **표준형 ↔ 일반형** 두 꼴을 각각 파싱해
+ * 여러 정수 점에 대입한다 — 두 꼴이 서로의 검산이다(5A 브리프).
+ *
+ * ## 부호를 조심한 자리 (브리프가 미리 짚은 것)
+ *
+ * - `y=a(x-p)^2+q` 에서 `p>0` 이면 그래프는 **오른쪽**으로 간다. 발문의
+ *   「$x$축의 방향으로 $-3$만큼」과 식의 `(x+3)` 이 맞는지 `facts` 에 이동량을
+ *   따로 실어 시험이 **원함수를 옮겨서** 다시 확인한다(⑴09·⑴12·⑴19·⑵07).
+ * - **최댓값·최솟값은 `a` 의 부호가 가른다.** `a>0` 이면 최솟값만, `a<0` 이면
+ *   최댓값만 있다. `facts.isMax` 를 싣고 시험이 `(a<0) === isMax` 를 잠근다
+ *   (⑵14·⑵15·⑵16·⑵20).
+ * - **평행이동과 대칭이동을 한 유형에서 섞지 않는다.** 대칭이동은 ⑴05 에만 있고,
+ *   그 유형에는 평행이동이 없다.
+ * - 근이 무리수가 되는 갈래는 내지 않는다 — $x$축 교점을 묻는 유형(⑵05·⑵08·⑵13)은
+ *   **정수 근에서 역산**해 만든다(`\sqrt{8}` 이 지면에 나갈 자리가 없다).
+ *
+ * ## 그림 (FigureSpec v2 — `curveGraph`, 물결 4A)
+ *
+ * 이 모듈이 `curveGraph` 의 첫 실사용자다(09 §2.1). 폭은 240 에 박혀 있어 지면
+ * 등급이 하나다. 엔진이 던지는 조건 — 꼭짓점이 범위 밖 · `marks` 가 곡선 위가
+ * 아님 · 보이는 팔이 1.2칸 미만 · 범위 안에서 1칸 미만으로 휨 — 을 `parabolaFig`
+ * 가 **미리 만족시키고**, 못 맞추면 `null` 을 돌려 갈래를 다시 뽑는다.
+ * 그림이 붙는 유형은 `M3_FUNC_FIGURE_KEYS` 에 모아 두었고 시험이 **실제 엔진으로**
+ * 전량 그려 본다 — `marks` 가 곡선 위가 아니면 엔진이 던지므로 그림이 곧 검산이다.
+ *
+ * **엔진은 5E 가 소유한다.** 여기서는 쓰기만 한다.
+ *
+ * ## 우리 단원 (prisma/seed-data/units.ts 「4. 이차함수」 orderIndex 478~480)
+ *
+ * - ⑴ 01~21 → 「이차함수와 그래프」
+ * - ⑵ 01~13 → 「이차함수 y=ax^2+bx+c의 그래프」
+ * - ⑵ 14~21 → 「이차함수의 최댓값과 최솟값」
+ */
+import { intBetween, pick } from "../elementary/rng";
+import type { Rng } from "../elementary/types";
+import { CHOOSE_ALL_ANSWER_COUNT } from "../problem/chooseAllRule";
+import { CHOICE_COUNT, CHOICE_MARKS } from "../problem/choiceCountRule";
+
+import { eulReul, euroRo, waGwa } from "./m2Josa";
+import type { MidProblem, TypeEntry } from "./types";
+
+const GRADE = "중3";
+const BOOK = "3-1";
+const MINOR_G1 = "이차함수의 그래프 ⑴";
+const MINOR_G2 = "이차함수의 그래프 ⑵";
+
+/** 우리 Unit.section 정확한 이름 (prisma/seed-data/units.ts 실측) */
+const SEC = {
+  그래프: "이차함수와 그래프",
+  일반형: "이차함수 y=ax^2+bx+c의 그래프",
+  최대최소: "이차함수의 최댓값과 최솟값",
+} as const;
+
+/** 조건을 만족할 때까지 다시 뽑는다 — 못 찾으면 던진다(조용히 기본값 금지). */
+function attempt<T>(tries: number, f: () => T | null): T {
+  for (let i = 0; i < tries; i += 1) {
+    const v = f();
+    if (v !== null) return v;
+  }
+  throw new Error("유형 생성 재시도 초과 — 매개변수 범위를 확인하십시오");
+}
+
+/* ────────────────────────────────────────────────────────────────────────
+ * 유리수 — 이차항의 계수 `a` 가 분수인 갈래가 있다(⑴ 전반)
+ * ──────────────────────────────────────────────────────────────────────── */
+
+/** `[분자, 분모]` — 분모는 양수, 기약. */
+export type Rat = readonly [number, number];
+
+function gcd(a: number, b: number): number {
+  return b === 0 ? Math.abs(a) : gcd(b, Math.abs(a) % Math.abs(b));
+}
+
+function rat(n: number, d: number): Rat {
+  if (d === 0) throw new Error("분모가 0 입니다");
+  let nn = n;
+  let dd = d;
+  if (dd < 0) {
+    nn = -nn;
+    dd = -dd;
+  }
+  const g = gcd(nn, dd) || 1;
+  return [nn / g, dd / g];
+}
+
+const rInt = (n: number): Rat => [n, 1];
+const rVal = (r: Rat): number => r[0] / r[1];
+const rNeg = (r: Rat): Rat => [-r[0], r[1]];
+const rAdd = (a: Rat, b: Rat): Rat =>
+  rat(a[0] * b[1] + b[0] * a[1], a[1] * b[1]);
+const rMul = (a: Rat, b: Rat): Rat => rat(a[0] * b[0], a[1] * b[1]);
+
+/** 기약분수 LaTeX. 정수면 정수, 음수면 앞에 `-`. 대분수는 쓰지 않는다(D-73). */
+function ratTex(r: Rat): string {
+  if (r[1] === 1) return String(r[0]);
+  return r[0] < 0 ? `-\\dfrac{${-r[0]}}{${r[1]}}` : `\\dfrac{${r[0]}}{${r[1]}}`;
+}
+
+/**
+ * 항 하나 — 계수 `r`, 문자 부분 `v`. `lead` 면 맨 앞이라 `+` 를 생략한다.
+ * 계수가 $0$ 이면 빈 문자열, $\pm1$ 이면 수를 안 적는다(`1x^2` 가 지면에 못 나간다).
+ */
+function termTex(r: Rat, v: string, lead = false): string {
+  if (r[0] === 0) return "";
+  const sign = r[0] < 0 ? "-" : lead ? "" : "+";
+  const abs: Rat = [Math.abs(r[0]), r[1]];
+  if (v === "") return `${sign}${ratTex(abs)}`;
+  if (abs[0] === 1 && abs[1] === 1) return `${sign}${v}`;
+  return `${sign}${ratTex(abs)}${v}`;
+}
+
+/** `(x-p)^2` — `p` 가 $0$ 이면 `x^2`. 부호를 여기 한 곳에서만 뒤집는다. */
+function sqTex(p: number): string {
+  if (p === 0) return "x^2";
+  return `(x${p > 0 ? "-" : "+"}${Math.abs(p)})^2`;
+}
+
+/** `(x-r)` — 근이 $0$ 이면 괄호 없이 `x`. `(x-0)` 이 지면에 나가면 안 된다. */
+function rootTex(r: number): string {
+  return r === 0 ? "x" : `(x${r > 0 ? "-" : "+"}${Math.abs(r)})`;
+}
+
+/** 인수분해 꼴 `a(x-r_1)(x-r_2)` — 계수는 `termTex` 가 맡아 `1`·`-1` 을 안 적는다. */
+function factoredTex(a: Rat, r1: number, r2: number): string {
+  return termTex(a, `${rootTex(r1)}${rootTex(r2)}`, true);
+}
+
+/** 미지수 `a` 를 그대로 둔 인수분해 꼴 — 「$y=a(x-r_1)(x-r_2)$ 로 놓는다」. */
+function factoredWithA(r1: number, r2: number): string {
+  return `a${rootTex(r1)}${rootTex(r2)}`;
+}
+
+/** 표준형 우변 `a(x-p)^2+q`. */
+function stdRhs(a: Rat, p: number, q: number): string {
+  return `${termTex(a, sqTex(p), true)}${termTex(rInt(q), "")}`;
+}
+
+/**
+ * `표준형=일반형` — 꼭짓점이 $y$축 위($p=0$)면 두 꼴이 같아 `x^2-2=x^2-2` 가 되므로 한 번만 적는다.
+ */
+function stdEqGen(std: string, gen: string): string {
+  return std === gen ? gen : `${std}=${gen}`;
+}
+
+/** 일반형 우변 `ax^2+bx+c`. */
+function genRhs(A: Rat, B: Rat, C: Rat): string {
+  const head = termTex(A, "x^2", true);
+  return `${head}${termTex(B, "x")}${termTex(C, "")}`;
+}
+
+/** 표준형 → 일반형 계수. 시험은 두 꼴을 각각 파싱해 값으로 견준다. */
+function expand(a: Rat, p: number, q: number): { A: Rat; B: Rat; C: Rat } {
+  return {
+    A: a,
+    B: rMul(a, rInt(-2 * p)),
+    C: rAdd(rMul(a, rInt(p * p)), rInt(q)),
+  };
+}
+
+/**
+ * 식 안에서 다른 수 뒤에 오는 수 — **음수만** 괄호로 싼다.
+ * `2	imes(2)^2` 처럼 양수를 싸면 지면이 흉하다(값 검사는 통과한다 — 2026-08-24).
+ */
+function baseTex(v: number): string {
+  return v < 0 ? `(${v})` : String(v);
+}
+
+/** 좌표 `(m, n)`. */
+function pt(m: number, n: number): string {
+  return `(${m}, ${n})`;
+}
+
+/** `이동량 만큼` 앞에 붙는 수 — 음수도 그대로 적는다(발문의 「$-3$만큼」). */
+function shiftTex(v: number): string {
+  return String(v);
+}
+
+/**
+ * 수 뒤의 조사 — 끝 자리를 한자 수사로 읽었을 때 받침이 있는가로 가른다(`m2Josa` 와 같은 규칙).
+ * 「(으)로」는 여기 두지 않고 `m2Josa.euroRo` 를 쓴다 — 받침 유무만 보면 ㄹ 받침(1·7·8)에
+ * 「$7$으로」가 나간다(일로·칠로·팔로가 맞다).
+ */
+function vowelFinal(n: number): boolean {
+  const d = Math.abs(n) % 10;
+  return d === 2 || d === 4 || d === 5 || d === 9;
+}
+
+/** 「$3$과」·「$4$와」 */
+function waGwaTex(n: number): "와" | "과" {
+  return vowelFinal(n) ? "와" : "과";
+}
+
+/**
+ * 평행이동 설명의 「$x$ 대신 $x-3$」 — 부호를 여기 한 곳에서만 뒤집는다.
+ * `x-(-3)` 이 지면에 나가면 안 된다.
+ */
+function shiftedVarTex(v: string, t: number): string {
+  return t >= 0 ? `${v}-${t}` : `${v}+${-t}`;
+}
+
+/* ────────────────────────────────────────────────────────────────────────
+ * 그림 — `curveGraph` (엔진은 5E 소유, 여기서는 쓰기만 한다)
+ * ──────────────────────────────────────────────────────────────────────── */
+
+/** 엔진이 요구하는 것보다 **여유를 두고** 잡는다 — 경계에 딱 붙으면 흠집으로 보인다. */
+const FIG_MIN_ARC = 1.6; // 엔진 하한 1.2
+const FIG_MIN_RISE = 1.4; // 엔진 하한 1.0
+/**
+ * 꼭짓점 **양쪽**으로 보여야 하는 칸수.
+ *
+ * 엔진은 「꼭짓점이 범위 안」까지만 본다. 그런데 꼭짓점이 범위의 **모서리**에 있으면
+ * 팔이 한쪽만 그려져 **포물선으로 안 읽힌다** — 「그림에서 $p$, $q$ 의 부호를
+ * 읽으시오」류는 그 순간 답을 못 구하는 문항이 된다(2026-08-24 실렌더 육안:
+ * ⑴20·⑵09 가 그렇게 났다). 그래서 여기서 한 겹 더 좁힌다.
+ */
+const FIG_MIN_SIDE = 1.0;
+
+/** 범위 후보 — 원점을 품고 폭 4~12칸, 필요한 값이 다 들어가는 것. */
+function rangeCandidates(needLo: number, needHi: number): [number, number][] {
+  const out: [number, number][] = [];
+  for (let lo = -12; lo <= -1; lo += 1) {
+    for (let hi = 1; hi <= 12; hi += 1) {
+      const span = hi - lo;
+      if (span < 4 || span > 12) continue;
+      if (lo > needLo || hi < needHi) continue;
+      out.push([lo, hi]);
+    }
+  }
+  // 폭이 좁을수록·원점이 가운데일수록 먼저 — 그림이 프레임을 채운다.
+  out.sort(
+    (u, v) =>
+      u[1] - u[0] - (v[1] - v[0]) ||
+      Math.abs(u[0] + u[1]) - Math.abs(v[0] + v[1]),
+  );
+  return out;
+}
+
+/**
+ * 표식 숫자가 **원점 글자 `O` 와 겹치는 자리**인가.
+ *
+ * 엔진은 표식의 $x$ 숫자를 눈금에서 $5$ 만큼 **원점 쪽으로** 밀어 적고
+ * (`_cp_mark_parts`), `O` 는 축 왼쪽 아래 $7$ 에 적는다. 그래서 $x=\pm1$ 인 표식은
+ * 칸 크기가 작을 때 `O` 위에 올라앉아 지면에서 **`-10` 으로 읽힌다**
+ * (2026-08-24 실렌더 육안 — ⑵08·⑴18 에서 실제로 났다). $y=-1$ 도 같은 자리다.
+ *
+ * 엔진은 5E 소유라 여기서 고치지 않는다 — 그런 자리를 **안 쓴다**.
+ * (겹침 회피는 엔진에 있어야 할 규칙이므로 main 세션에 알린다.)
+ */
+function markCollidesWithOrigin(mx: number, my: number): boolean {
+  return Math.abs(mx) === 1 || my === -1;
+}
+
+/**
+ * 포물선 그림 한 장. 못 그리는 조합이면 **`null`** 을 돌려 갈래를 다시 뽑게 한다
+ * (조용히 그림 없이 내보내지 않는다).
+ *
+ * 여기서 재는 것은 엔진이 던지는 조건과 **같은 성질**이되 여유가 더 크다 —
+ * 정본은 엔진이고, 시험이 이 스펙을 **실제 엔진으로 그려서** 확인한다.
+ *
+ * `coverX` 를 주면 **그 구간이 보이는 토막 안에** 들어와야 한다. 「$y$축과의 교점으로
+ * $c$ 의 부호를 읽으시오」류는 곡선이 $x=0$ 에서 상자 밖으로 나가 있으면 **발문이
+ * 묻는 것이 그림에 없다** — 값 검사로는 안 잡히고 실렌더를 눈으로 봐야 나온다
+ * (2026-08-24 ⑵09 에서 실제로 났다).
+ */
+function parabolaFig(
+  a: Rat,
+  p: number,
+  q: number,
+  marks: readonly (readonly [number, number])[],
+  coverX?: readonly [number, number],
+): Record<string, unknown> | null {
+  const av = rVal(a);
+  if (Math.abs(av) < 1 / 8 || Math.abs(av) > 8) return null;
+  if (Math.abs(p) > 12 || Math.abs(q) > 20) return null;
+  for (const [mx, my] of marks) {
+    if (!Number.isInteger(mx) || !Number.isInteger(my)) return null;
+    if (mx === 0 && my === 0) return null; // 원점은 O 로 이미 적힌다
+    if (markCollidesWithOrigin(mx, my)) return null;
+    if (Math.abs(my - (av * (mx - p) * (mx - p) + q)) > 1e-9) return null;
+  }
+  const f = (x: number): number => av * (x - p) * (x - p) + q;
+  const xsNeed = [p, ...marks.map((m) => m[0])];
+  const ysNeed = [q, ...marks.map((m) => m[1])];
+  if (coverX) {
+    xsNeed.push(coverX[0], coverX[1]);
+    ysNeed.push(f(coverX[0]), f(coverX[1]));
+    if (!ysNeed.every(Number.isFinite)) return null;
+  }
+  const yCands = rangeCandidates(
+    Math.floor(Math.min(...ysNeed)),
+    Math.ceil(Math.max(...ysNeed)),
+  );
+  const xCands = rangeCandidates(Math.min(...xsNeed), Math.max(...xsNeed));
+  for (const [ylo, yhi] of yCands) {
+    // 꼭짓점 위(아래)로 남은 세로 여유가 곧 보이는 팔의 길이를 정한다.
+    const head = av > 0 ? yhi - q : q - ylo;
+    if (head <= 0) continue;
+    const w = Math.sqrt(head / Math.abs(av));
+    for (const [xlo, xhi] of xCands) {
+      const ra = Math.max(xlo, p - w);
+      const rb = Math.min(xhi, p + w);
+      if (rb - ra < FIG_MIN_ARC) continue;
+      // 꼭짓점이 모서리에 붙으면 팔이 한쪽만 그려져 포물선으로 안 읽힌다.
+      if (p - ra < FIG_MIN_SIDE || rb - p < FIG_MIN_SIDE) continue;
+      const rise = Math.max(Math.abs(f(ra) - q), Math.abs(f(rb) - q));
+      if (rise < FIG_MIN_RISE) continue;
+      if (coverX && (ra > coverX[0] + 1e-9 || rb < coverX[1] - 1e-9)) continue;
+      return {
+        version: "elem-1",
+        kind: "curveGraph",
+        curves: [{ type: "quadratic", a: av, p, q }],
+        xRange: [xlo, xhi],
+        yRange: [ylo, yhi],
+        ...(marks.length > 0 ? { marks: marks.map((m) => [m[0], m[1]]) } : {}),
+      };
+    }
+  }
+  return null;
+}
+
+/* ────────────────────────────────────────────────────────────────────────
+ * 보기 — 제품 렌더러가 줄바꿈으로 읽는 표식만 쓴다
+ *
+ * `renderMathHtml` 은 개행 뒤에 ①~⑮ 또는 `1.` 이 올 때만 줄을 바꾼다
+ * (`BODY_CHOICE_CLASS`). 「ㄱ. ㄴ.」로 쓰면 보기가 한 줄로 죽 이어진다
+ * (m2Rational 이 2026-08-23 실렌더로 확인).
+ * ──────────────────────────────────────────────────────────────────────── */
+
+/** 표식은 `choiceCountRule` 한 곳에서 온다 — 세 모듈이 각자 적으면 한쪽만 고쳐진다. */
+const MARKS = CHOICE_MARKS;
+
+function listTex(items: readonly string[]): string {
+  return items.map((t, i) => `${MARKS[i]!} ${t}`).join("\n");
+}
+
+function marksOf(flags: readonly boolean[]): string {
+  const out: string[] = [];
+  flags.forEach((v, i) => {
+    if (v) out.push(MARKS[i]!);
+  });
+  return out.join(", ");
+}
+
+/** 배열에서 `count` 개를 섞어 뽑는다 — Fisher–Yates(앞쪽 편중 방지). */
+function pickSome<T>(rng: Rng, items: readonly T[], count: number): T[] {
+  if (count > items.length) throw new Error("뽑을 개수가 전체보다 많습니다");
+  const bag = [...items];
+  for (let i = bag.length - 1; i > 0; i -= 1) {
+    const j = intBetween(rng, 0, i);
+    const t = bag[i]!;
+    bag[i] = bag[j]!;
+    bag[j] = t;
+  }
+  return bag.slice(0, count);
+}
+
+/** 서로 다른 색인 `count` 개 — Fisher–Yates 로 섞는다(앞쪽 편중 방지). */
+function distinctIndices(rng: Rng, total: number, count: number): number[] {
+  return pickSome(
+    rng,
+    Array.from({ length: total }, (_, i) => i),
+    count,
+  );
+}
+
+/**
+ * 「모두 고르시오」 보기 다섯 — **참 2개 + 거짓 3개**를 골라 담아 섞는다
+ * (원장님 2026-08-25, `CHOOSE_ALL_ANSWER_COUNT`).
+ *
+ * 🔴 **거르지 않고 만든다.** 예전에는 아홉 중 다섯을 그냥 뽑고 참이 1~4개면
+ *    받았다. 그런데 이 풀들은 참이 6~7개라, 계수 부호에 따라 **거짓이 두 개뿐인
+ *    구간**이 생긴다 — 거기서는 「참 2개」가 **아예 나올 수 없다**(실측
+ *    2026-08-25: ⑴06 은 2개가 7.0%, ⑵06 은 14.0%). 그래서 거르는 것으로는
+ *    못 고치고, 풀에 **거짓 명제를 더해** 언제나 셋을 고를 수 있게 했다.
+ *    풀이 모자라면 조용히 보기 넷을 내지 않고 **던진다.**
+ */
+function chooseFivePropIndices(
+  rng: Rng,
+  props: readonly { ok: boolean }[],
+): number[] {
+  const trueIdx = props.map((_p, i) => i).filter((i) => props[i]!.ok);
+  const falseIdx = props.map((_p, i) => i).filter((i) => !props[i]!.ok);
+  const need = CHOOSE_ALL_ANSWER_COUNT;
+  if (trueIdx.length < need || falseIdx.length < 5 - need) {
+    throw new Error(
+      `보기 풀이 모자랍니다: 참 ${trueIdx.length}(필요 ${need}) · 거짓 ${falseIdx.length}(필요 ${5 - need})`,
+    );
+  }
+  return pickSome(
+    rng,
+    [...pickSome(rng, trueIdx, need), ...pickSome(rng, falseIdx, 5 - need)],
+    5,
+  );
+}
+
+/* ────────────────────────────────────────────────────────────────────────
+ * 매개변수 풀
+ * ──────────────────────────────────────────────────────────────────────── */
+
+/** `y=ax^2` 계열의 계수 크기 — 엔진 상한(|a| ≤ 8) 안이고 폭 비교가 갈린다. */
+const A_MAGS: Rat[] = [
+  [1, 4],
+  [1, 3],
+  [1, 2],
+  [2, 3],
+  [3, 4],
+  [3, 2],
+  [4, 3],
+  [2, 1],
+  [5, 2],
+  [3, 1],
+  [4, 1],
+  [5, 1],
+];
+
+const SIGNS = [1, -1] as const;
+
+/** 부호 붙은 계수 하나. */
+function pickA(rng: Rng): Rat {
+  const m = pick(rng, A_MAGS);
+  return pick(rng, SIGNS) === 1 ? m : rNeg(m);
+}
+
+/**
+ * ⑴01 보기 풀 — **시험은 여기 진리값을 가져다 쓰지 않는다.**
+ * 지면 글자를 파싱해 여러 점에서 재고 «이차식인가」를 스스로 판정한다.
+ */
+export const QUAD_DEF_POOL: readonly string[] = [
+  "x^2-4x+1",
+  "3x-5",
+  "x(x+2)-x^2",
+  "(x-1)^2+x",
+  "\\dfrac{1}{x^2}",
+  "2x^3-x^2",
+  "(x+3)(x-2)",
+  "(x+1)^2-(x-1)^2",
+  "-x^2+7",
+  "x(x-5)",
+  "\\dfrac{x^2}{2}-x",
+  "(2x-1)(x+4)-2x^2",
+];
+
+/** 보기 명제 풀의 크기 — 시험의 판정표가 같은 길이인지 잠근다. */
+export const M3_FUNC_POOL_SIZES = {
+  뜻: QUAD_DEF_POOL.length,
+  성질06: 12,
+  성질10: 9,
+  성질13: 11,
+  성질17: 9,
+  성질G06: 12,
+} as const;
+
+/* ────────────────────────────────────────────────────────────────────────
+ * 유형 등록 뼈대
+ * ──────────────────────────────────────────────────────────────────────── */
+
+type Body = Pick<
+  MidProblem,
+  "content" | "answer" | "solution" | "facts" | "figureSpec"
+>;
+
+function def(
+  minor: string,
+  rpmType: string,
+  rpmTitle: string,
+  unitSection: string,
+  difficulty: MidProblem["difficulty"],
+  gen: (rng: Rng) => Body,
+): TypeEntry {
+  return {
+    key: `${BOOK}|${minor}|${rpmType}`,
+    grade: GRADE,
+    unitSection,
+    rpmBook: BOOK,
+    rpmMinor: minor,
+    rpmType,
+    rpmTitle,
+    handler: (rng) => ({
+      grade: GRADE,
+      unitSection,
+      rpmBook: BOOK,
+      rpmMinor: minor,
+      rpmType,
+      rpmTitle,
+      difficulty,
+      ...gen(rng),
+    }),
+  };
+}
+
+const g1 = (
+  n: string,
+  title: string,
+  d: MidProblem["difficulty"],
+  gen: (rng: Rng) => Body,
+): TypeEntry => def(MINOR_G1, n, title, SEC.그래프, d, gen);
+
+const g2 = (
+  n: string,
+  title: string,
+  section: string,
+  d: MidProblem["difficulty"],
+  gen: (rng: Rng) => Body,
+): TypeEntry => def(MINOR_G2, n, title, section, d, gen);
+
+/* ────────────────────────────────────────────────────────────────────────
+ * 풀이 조각 — 일반형 ↔ 표준형
+ * ──────────────────────────────────────────────────────────────────────── */
+
+/** `a(x^2-2px)+C` — 계수로 묶은 꼴. */
+function groupTex(a: number, p: number, C: number): string {
+  const body = `(x^2${termTex(rInt(-2 * p), "x")})`;
+  return `${termTex(rInt(a), body, true)}${termTex(rInt(C), "")}`;
+}
+
+/** 완전제곱식으로 고친 중간 꼴. `|a|=1` 이면 중괄호를 안 쓴다. */
+function squareTex(a: number, p: number, C: number): string {
+  if (Math.abs(a) === 1) {
+    return `${termTex(rInt(a), sqTex(p), true)}${termTex(rInt(-a * p * p), "")}${termTex(rInt(C), "")}`;
+  }
+  const body = `\\{${sqTex(p)}-${p * p}\\}`;
+  return `${termTex(rInt(a), body, true)}${termTex(rInt(C), "")}`;
+}
+
+/**
+ * 일반형 → 표준형 풀이 줄. `a`·`p` 는 정수다(그래야 묶는 계수 $-2p$ 가 정수라
+ * 지면에 분수가 안 낀다) — ⑵ 계열은 전부 정수 `a` 로 만든다.
+ */
+function toStdLines(a: number, p: number, q: number): string[] {
+  if (p === 0) {
+    throw new Error("일반형 → 표준형 풀이는 일차항이 있는 갈래에만 씁니다");
+  }
+  const C = a * p * p + q;
+  const std = stdRhs(rInt(a), p, q);
+  // ⚠️ **항상 두 줄이다.** $|a|=1$ 일 때 묶는 줄을 건너뛰면 해설이 한 줄로 뭉쳐
+  //    「단계 사이 줄바꿈」 가드에 걸린다(2026-08-24 시험이 잡았다).
+  if (Math.abs(a) === 1) {
+    return [
+      `$x$의 계수의 절반의 제곱인 $${p * p}$${eulReul(p * p)} 더하고 빼면 $y=${squareTex(a, p, C)}$이다.`,
+      `따라서 $y=${std}$이다.`,
+    ];
+  }
+  return [
+    `$x^2$의 계수 $${a}$${euroRo(a)} 묶으면 $y=${groupTex(a, p, C)}$이다.`,
+    `완전제곱식으로 고치면 $y=${squareTex(a, p, C)}$이므로 $y=${std}$이다.`,
+  ];
+}
+
+/* ────────────────────────────────────────────────────────────────────────
+ * ⑴ 이차함수의 그래프 ⑴ — 「이차함수와 그래프」
+ * ──────────────────────────────────────────────────────────────────────── */
+
+const TYPES_G1: TypeEntry[] = [
+  g1("01", "이차함수의 뜻", "기본", (rng) =>
+    attempt(60, (): Body | null => {
+      const idx = distinctIndices(rng, QUAD_DEF_POOL.length, 5);
+      // 진리값은 여기서 세지 않는다 — 시험이 지면 글자로 판정한다.
+      // 답이 0 이나 5 면 「보기를 볼 필요가 없는」 문항이 되므로 다시 뽑는다.
+      const truth = [
+        true,
+        false,
+        false,
+        true,
+        false,
+        false,
+        true,
+        false,
+        true,
+        true,
+        true,
+        false,
+      ];
+      const ans = idx.filter((i) => truth[i]!).length;
+      if (ans < 1 || ans > 4) return null;
+      const items = idx.map((i) => `$y=${QUAD_DEF_POOL[i]!}$`);
+      return {
+        content: `다음 보기 중 $y$가 $x$에 대한 이차함수인 것은 모두 몇 개인지 구하시오.\n${listTex(items)}`,
+        answer: `$${ans}$개`,
+        solution: `$y$가 $x$에 대한 이차함수이려면 우변을 정리했을 때 $x$에 대한 이차식이어야 한다.\n괄호를 풀어 정리하면 이차식인 것은 ${marksOf(idx.map((i) => truth[i]!))}이다.\n따라서 이차함수인 것은 $${ans}$개이다.`,
+        facts: {
+          i0: idx[0]!,
+          i1: idx[1]!,
+          i2: idx[2]!,
+          i3: idx[3]!,
+          i4: idx[4]!,
+          ans,
+        },
+        figureSpec: null,
+      };
+    }),
+  ),
+
+  g1("02", "이차함수가 되도록 하는 조건", "응용", (rng): Body => {
+    const mode = intBetween(rng, 0, 1);
+    const u = intBetween(rng, 1, 5);
+    const m = intBetween(rng, 1, 6);
+    const n = intBetween(rng, 1, 6);
+    const c = intBetween(rng, 1, 9);
+    const ans = u * u;
+    const expr =
+      mode === 0
+        ? `(${u === 1 ? "" : u}x+${m})^2-kx^2+${c}`
+        : `kx^2-(${u === 1 ? "" : u}x+${m})(${u === 1 ? "" : u}x-${n})`;
+    const coefWord = mode === 0 ? `$${ans}-k$` : `$k-${ans}$`;
+    return {
+      content: `함수 $y=${expr}$ 에서 $y$가 $x$에 대한 이차함수가 되도록 하는 상수 $k$의 조건을 구하시오.`,
+      answer: `$k \\neq ${ans}$`,
+      solution: `우변을 전개하여 정리하면 $x^2$의 계수는 ${coefWord}이다.\n이차함수가 되려면 $x^2$의 계수가 $0$이 아니어야 한다.\n따라서 $k \\neq ${ans}$이다.`,
+      facts: { mode, u, m, n, c, ans },
+      figureSpec: null,
+    };
+  }),
+
+  g1("03", "이차함수의 함숫값", "기본", (rng) =>
+    attempt(60, (): Body | null => {
+      const a = pick(rng, [1, -1, 2, -2, 3, -3] as const);
+      const h = intBetween(rng, -3, 3);
+      const k = intBetween(rng, -6, 6);
+      const p = intBetween(rng, -3, 3);
+      const q = intBetween(rng, -3, 3);
+      if (p === q) return null;
+      const mode = intBetween(rng, 0, 2);
+      const { A, B, C } = expand(rInt(a), h, k);
+      const fp = a * (p - h) * (p - h) + k;
+      const fq = a * (q - h) * (q - h) + k;
+      const ask = ["f(", "f(", "2f("][mode]!;
+      const value = mode === 0 ? fp + fq : mode === 1 ? fp - fq : 2 * fp + fq;
+      const askTex =
+        mode === 0
+          ? `f(${p})+f(${q})`
+          : mode === 1
+            ? `f(${p})-f(${q})`
+            : `2f(${p})+f(${q})`;
+      if (ask === "") return null;
+      return {
+        content: `이차함수 $f(x)=${genRhs(A, B, C)}$ 에 대하여 $${askTex}$의 값을 구하시오.`,
+        answer: `$${value}$`,
+        solution: `$f(${p})=${fp}$, $f(${q})=${fq}$이다.\n따라서 $${askTex}=${value}$이다.`,
+        facts: { a, h, k, p, q, mode, fp, fq, ans: value },
+        figureSpec: null,
+      };
+    }),
+  ),
+
+  g1("04", "이차함수 의 그래프", "기본", (rng) =>
+    attempt(60, (): Body | null => {
+      // 🔴 보기는 **정확히 다섯** (원장님 2026-08-25: 「4지선다를 5지선다로」).
+      //    예전에는 넷이었다 — `CHOICE_COUNT` 한 곳에서 온다.
+      const idx = distinctIndices(rng, A_MAGS.length, CHOICE_COUNT);
+      const mags = idx.map((i) => A_MAGS[i]!);
+      const coefs = mags.map((m) => (pick(rng, SIGNS) === 1 ? m : rNeg(m)));
+      const abs = coefs.map((c) => Math.abs(rVal(c)));
+      const mode = intBetween(rng, 0, 1);
+      const target = mode === 0 ? Math.min(...abs) : Math.max(...abs);
+      if (abs.filter((v) => v === target).length !== 1) return null;
+      const at = abs.indexOf(target);
+      const ansR = coefs[at]!;
+      const items = coefs.map((c) => `$y=${termTex(c, "x^2", true)}$`);
+      const word = mode === 0 ? "넓은" : "좁은";
+      const rule =
+        mode === 0
+          ? `$x^2$의 계수의 절댓값이 작을수록 그래프의 폭이 넓다.`
+          : `$x^2$의 계수의 절댓값이 클수록 그래프의 폭이 좁다.`;
+      return {
+        content: `다음 보기의 이차함수의 그래프 중 폭이 가장 ${word} 것의 $x^2$의 계수를 구하시오.\n${listTex(items)}`,
+        answer: `$${ratTex(ansR)}$`,
+        solution: `${rule}\n각 계수의 절댓값을 비교하면 폭이 가장 ${word} 것은 ${MARKS[at]!}이다.\n따라서 구하는 계수는 $${ratTex(ansR)}$이다.`,
+        facts: {
+          mode,
+          n0: coefs[0]![0],
+          d0: coefs[0]![1],
+          n1: coefs[1]![0],
+          d1: coefs[1]![1],
+          n2: coefs[2]![0],
+          d2: coefs[2]![1],
+          n3: coefs[3]![0],
+          d3: coefs[3]![1],
+          n4: coefs[4]![0],
+          d4: coefs[4]![1],
+          at,
+          ansN: ansR[0],
+          ansD: ansR[1],
+        },
+        figureSpec: null,
+      };
+    }),
+  ),
+
+  g1("05", "두 이차함수 의 그래프의 관계", "기본", (rng): Body => {
+    const mode = intBetween(rng, 0, 1);
+    if (mode === 0) {
+      const a = pickA(rng);
+      const b = rNeg(a);
+      return {
+        content: `이차함수 $y=${termTex(a, "x^2", true)}$의 그래프와 $x$축에 대하여 대칭인 그래프를 나타내는 이차함수의 식을 구하시오.`,
+        answer: `$y=${termTex(b, "x^2", true)}$`,
+        solution: `$x$축에 대하여 대칭인 그래프는 $x^2$의 계수의 부호만 반대이다.\n따라서 구하는 이차함수의 식은 $y=${termTex(b, "x^2", true)}$이다.`,
+        facts: { mode, aN: a[0], aD: a[1], ansN: b[0], ansD: b[1] },
+        figureSpec: null,
+      };
+    }
+    // 답(=상수 a, b)을 먼저 뽑고, 발문에는 그 부호를 뒤집은 식을 적는다.
+    const a = pickA(rng);
+    const b = pickA(rng);
+    const prod = rMul(a, b);
+    return {
+      content: `이차함수 $y=${termTex(rNeg(a), "x^2", true)}$의 그래프는 이차함수 $y=ax^2$의 그래프와 $x$축에 대하여 대칭이고, 이차함수 $y=bx^2$의 그래프는 이차함수 $y=${termTex(rNeg(b), "x^2", true)}$의 그래프와 $x$축에 대하여 대칭이다. 상수 $a$, $b$에 대하여 $ab$의 값을 구하시오.`,
+      answer: `$${ratTex(prod)}$`,
+      solution: `$x$축에 대하여 대칭인 두 그래프는 $x^2$의 계수의 부호만 반대이므로 $a=${ratTex(a)}$, $b=${ratTex(b)}$이다.\n따라서 $ab=${ratTex(prod)}$이다.`,
+      facts: {
+        mode,
+        aN: a[0],
+        aD: a[1],
+        bN: b[0],
+        bD: b[1],
+        ansN: prod[0],
+        ansD: prod[1],
+      },
+      figureSpec: null,
+    };
+  }),
+
+  g1("06", "이차함수 의 그래프의 성질", "응용", (rng) =>
+    attempt(80, (): Body | null => {
+      const a = pickA(rng);
+      const av = rVal(a);
+      if (Math.abs(av) === 1) return null;
+      const props: { text: string; ok: boolean }[] = [
+        { text: `그래프는 원점을 지난다.`, ok: true },
+        { text: `축의 방정식은 $x=0$이다.`, ok: true },
+        { text: `아래로 볼록한 포물선이다.`, ok: av > 0 },
+        { text: `위로 볼록한 포물선이다.`, ok: av < 0 },
+        {
+          text: `이차함수 $y=${termTex(rNeg(a), "x^2", true)}$의 그래프와 $x$축에 대하여 대칭이다.`,
+          ok: true,
+        },
+        { text: `꼭짓점의 좌표는 $(0, 0)$이다.`, ok: true },
+        {
+          text: `이차함수 $y=x^2$의 그래프보다 폭이 좁다.`,
+          ok: Math.abs(av) > 1,
+        },
+        {
+          text: `$x>0$일 때, $x$의 값이 증가하면 $y$의 값도 증가한다.`,
+          ok: av > 0,
+        },
+        { text: `제$3$사분면과 제$4$사분면을 지난다.`, ok: av < 0 },
+        // ── 아래 셋은 「참 2 · 거짓 3」을 언제나 담을 수 있게 더한 **거짓 쪽**이다.
+        //    위 아홉만으로는 $|a|>1$ 일 때 거짓이 **둘뿐**이라 정답 2개가
+        //    구조적으로 불가능했다(2026-08-25 실측 7.0%). 반드시 **끝에** 붙인다 —
+        //    앞 색인이 밀리면 시험의 손 판정표가 통째로 어긋난다.
+        {
+          text: `이차함수 $y=x^2$의 그래프보다 폭이 넓다.`,
+          ok: Math.abs(av) < 1,
+        },
+        { text: `$x$축과 서로 다른 두 점에서 만난다.`, ok: false },
+        { text: `그래프는 점 $(1, 0)$을 지난다.`, ok: false },
+      ];
+      const idx = chooseFivePropIndices(rng, props);
+      const flags = idx.map((i) => props[i]!.ok);
+      const count = flags.filter(Boolean).length;
+      return {
+        content: `이차함수 $y=${termTex(a, "x^2", true)}$의 그래프에 대한 다음 보기의 설명 중 옳은 것을 모두 고르시오.\n${listTex(idx.map((i) => props[i]!.text))}`,
+        answer: marksOf(flags),
+        solution: `$x^2$의 계수가 $${ratTex(a)}$이므로 그래프는 ${av > 0 ? "아래" : "위"}로 볼록하고, 절댓값이 $1$보다 ${Math.abs(av) > 1 ? "크므로" : "작으므로"} $y=x^2$의 그래프보다 폭이 ${Math.abs(av) > 1 ? "좁다" : "넓다"}.\n꼭짓점은 원점이고 축의 방정식은 $x=0$이다.\n따라서 옳은 것은 ${marksOf(flags)}이다.`,
+        facts: {
+          aN: a[0],
+          aD: a[1],
+          i0: idx[0]!,
+          i1: idx[1]!,
+          i2: idx[2]!,
+          i3: idx[3]!,
+          i4: idx[4]!,
+          ans: count,
+        },
+        figureSpec: null,
+      };
+    }),
+  ),
+
+  g1("07", "이차함수 의 그래프 위의 점", "응용", (rng) =>
+    attempt(120, (): Body | null => {
+      const mode = intBetween(rng, 0, 1);
+      // 표식이 $x=\pm1$ 이면 숫자가 원점 글자 `O` 와 겹친다 (`markCollidesWithOrigin`).
+      const m = intBetween(rng, 2, 4) * pick(rng, SIGNS);
+      const a = pickA(rng);
+      const v = rMul(a, rInt(m * m));
+      if (v[1] !== 1) return null; // 지나는 점은 격자점이어야 그림에 찍힌다
+      const n = v[0];
+      if (n === 0 || Math.abs(n) > 12) return null;
+      if (mode === 0) {
+        const fig = parabolaFig(a, 0, 0, [[m, n]]);
+        if (fig === null) return null;
+        return {
+          content: `오른쪽 그림과 같이 이차함수 $y=ax^2$의 그래프가 점 $${pt(m, n)}$${eulReul(n)} 지날 때, 상수 $a$의 값을 구하시오.`,
+          answer: `$${ratTex(a)}$`,
+          solution: `$y=ax^2$에 $x=${m}$, $y=${n}$${eulReul(n)} 대입하면 $${n}=a\\times${baseTex(m)}^2$이다.\n즉 $${termTex(rInt(m * m), "a", true)}=${n}$이므로 $a=${ratTex(a)}$이다.`,
+          facts: { mode, m, n, aN: a[0], aD: a[1] },
+          figureSpec: fig,
+        };
+      }
+      const k = intBetween(rng, 1, 4) * pick(rng, SIGNS);
+      if (k === m) return null;
+      const t = rMul(a, rInt(k * k));
+      if (t[1] !== 1 || Math.abs(t[0]) > 40) return null;
+      const fig = parabolaFig(a, 0, 0, [[m, n]]);
+      if (fig === null) return null;
+      return {
+        content: `오른쪽 그림과 같이 이차함수 $y=ax^2$의 그래프가 점 $${pt(m, n)}$${eulReul(n)} 지난다. 이 그래프가 점 $(${k}, t)$를 지날 때, $t$의 값을 구하시오.`,
+        answer: `$${t[0]}$`,
+        solution: `$y=ax^2$에 $x=${m}$, $y=${n}$${eulReul(n)} 대입하면 $a=${ratTex(a)}$이다.\n$y=${termTex(a, "x^2", true)}$에 $x=${k}$${eulReul(k)} 대입하면 $t=${ratTex(a)}\\times${baseTex(k)}^2=${t[0]}$이다.`,
+        facts: { mode, m, n, k, t: t[0], aN: a[0], aD: a[1] },
+        figureSpec: fig,
+      };
+    }),
+  ),
+
+  g1("08", "이차함수의 식 구하기", "응용", (rng) =>
+    attempt(120, (): Body | null => {
+      const mode = intBetween(rng, 0, 1);
+      const a = pickA(rng);
+      const m = intBetween(rng, 1, 4) * pick(rng, SIGNS);
+      const v = rMul(a, rInt(m * m));
+      if (v[1] !== 1 || v[0] === 0 || Math.abs(v[0]) > 40) return null;
+      const n = v[0];
+      if (mode === 0) {
+        return {
+          content: `원점을 꼭짓점으로 하고 점 $${pt(m, n)}$${eulReul(n)} 지나는 포물선을 그래프로 하는 이차함수의 식을 구하시오.`,
+          answer: `$y=${termTex(a, "x^2", true)}$`,
+          solution: `꼭짓점이 원점이므로 구하는 식을 $y=ax^2$으로 놓는다.\n$x=${m}$, $y=${n}$${eulReul(n)} 대입하면 $${termTex(rInt(m * m), "a", true)}=${n}$이므로 $a=${ratTex(a)}$이다.\n따라서 구하는 이차함수의 식은 $y=${termTex(a, "x^2", true)}$이다.`,
+          facts: { mode, m, n, aN: a[0], aD: a[1] },
+          figureSpec: null,
+        };
+      }
+      const k = intBetween(rng, 1, 5);
+      if (k === Math.abs(m)) return null;
+      const w = rMul(a, rInt(k * k));
+      if (w[1] !== 1 || Math.abs(w[0]) > 60) return null;
+      return {
+        content: `원점을 꼭짓점으로 하는 포물선을 그래프로 하는 이차함수의 그래프가 두 점 $${pt(m, n)}$, $(k, ${w[0]})$${eulReul(w[0])} 지날 때, 양수 $k$의 값을 구하시오.`,
+        answer: `$${k}$`,
+        solution: `구하는 식을 $y=ax^2$으로 놓고 $x=${m}$, $y=${n}$${eulReul(n)} 대입하면 $a=${ratTex(a)}$이다.\n$y=${termTex(a, "x^2", true)}$에 $y=${w[0]}$${eulReul(w[0])} 대입하면 $k^2=${k * k}$이다.\n$k$는 양수이므로 $k=${k}$이다.`,
+        facts: { mode, m, n, k, w: w[0], aN: a[0], aD: a[1] },
+        figureSpec: null,
+      };
+    }),
+  ),
+
+  g1("09", "이차함수 의 그래프", "기본", (rng) =>
+    attempt(60, (): Body | null => {
+      const a = pickA(rng);
+      const q = intBetween(rng, 1, 9) * pick(rng, SIGNS);
+      const mode = intBetween(rng, 0, 2);
+      if (mode === 0) {
+        return {
+          content: `이차함수 $y=${termTex(a, "x^2", true)}$의 그래프를 $y$축의 방향으로 $${shiftTex(q)}$만큼 평행이동한 그래프를 나타내는 이차함수의 식을 구하시오.`,
+          answer: `$y=${stdRhs(a, 0, q)}$`,
+          solution: `$y$축의 방향으로 $${shiftTex(q)}$만큼 평행이동하면 $y$ 대신 $${shiftedVarTex("y", q)}$${eulReul(Math.abs(q))} 대입한 것과 같다.\n따라서 구하는 이차함수의 식은 $y=${stdRhs(a, 0, q)}$이다.`,
+          facts: { mode, aN: a[0], aD: a[1], q, p: 0, my: q },
+          figureSpec: null,
+        };
+      }
+      if (mode === 1) {
+        return {
+          content: `이차함수 $y=${stdRhs(a, 0, q)}$의 그래프의 꼭짓점의 좌표와 축의 방정식을 차례로 구하시오.`,
+          answer: `$(0, ${q})$, $x=0$`,
+          solution: `$y=ax^2+q$의 그래프의 꼭짓점의 좌표는 $(0, q)$이고 축의 방정식은 $x=0$이다.\n따라서 꼭짓점의 좌표는 $(0, ${q})$이고 축의 방정식은 $x=0$이다.`,
+          facts: { mode, aN: a[0], aD: a[1], q, p: 0, my: q },
+          figureSpec: null,
+        };
+      }
+      const m = intBetween(rng, 1, 4) * pick(rng, SIGNS);
+      const v = rAdd(rMul(a, rInt(m * m)), rInt(q));
+      if (v[1] !== 1 || Math.abs(v[0]) > 40) return null;
+      return {
+        content: `이차함수 $y=${termTex(a, "x^2", true)}$의 그래프를 $y$축의 방향으로 $q$만큼 평행이동하였더니 점 $${pt(m, v[0])}$${eulReul(v[0])} 지났다. 상수 $q$의 값을 구하시오.`,
+        answer: `$${q}$`,
+        solution: `평행이동한 그래프의 식은 $y=${termTex(a, "x^2", true)}+q$이다.\n$x=${m}$, $y=${v[0]}$${eulReul(v[0])} 대입하면 $${ratTex(rMul(a, rInt(m * m)))}+q=${v[0]}$이다.\n따라서 $q=${q}$이다.`,
+        facts: { mode, aN: a[0], aD: a[1], q, m, v: v[0], p: 0, my: q },
+        figureSpec: null,
+      };
+    }),
+  ),
+
+  g1("10", "이차함수 의 그래프의 성질", "응용", (rng) =>
+    attempt(80, (): Body | null => {
+      const a = pickA(rng);
+      const av = rVal(a);
+      const q = intBetween(rng, 1, 8) * pick(rng, SIGNS);
+      const props: { text: string; ok: boolean }[] = [
+        { text: `꼭짓점의 좌표는 $(0, ${q})$이다.`, ok: true },
+        { text: `축의 방정식은 $x=0$이다.`, ok: true },
+        { text: `아래로 볼록한 포물선이다.`, ok: av > 0 },
+        {
+          text: `이차함수 $y=${termTex(a, "x^2", true)}$의 그래프를 $y$축의 방향으로 $${shiftTex(q)}$만큼 평행이동한 것이다.`,
+          ok: true,
+        },
+        { text: `$y$축과 점 $(0, ${q})$에서 만난다.`, ok: true },
+        {
+          text: `모든 사분면을 지난다.`,
+          ok: (av > 0 && q < 0) || (av < 0 && q > 0),
+        },
+        {
+          text: `$x<0$일 때, $x$의 값이 증가하면 $y$의 값은 감소한다.`,
+          ok: av > 0,
+        },
+        { text: `제$1$사분면을 지난다.`, ok: av > 0 || q > 0 },
+        { text: `그래프는 원점을 지난다.`, ok: false },
+      ];
+      const idx = distinctIndices(rng, props.length, 5);
+      const flags = idx.map((i) => props[i]!.ok);
+      const count = flags.filter(Boolean).length;
+      if (count < 1 || count > 4) return null;
+      return {
+        content: `이차함수 $y=${stdRhs(a, 0, q)}$의 그래프에 대한 다음 보기의 설명 중 옳은 것은 모두 몇 개인지 구하시오.\n${listTex(idx.map((i) => props[i]!.text))}`,
+        answer: `$${count}$개`,
+        solution: `$y=${stdRhs(a, 0, q)}$의 그래프는 $y=${termTex(a, "x^2", true)}$의 그래프를 $y$축의 방향으로 $${shiftTex(q)}$만큼 평행이동한 것이다.\n꼭짓점의 좌표는 $(0, ${q})$, 축의 방정식은 $x=0$이고 그래프는 ${av > 0 ? "아래" : "위"}로 볼록하다.\n따라서 옳은 것은 ${marksOf(flags)}의 $${count}$개이다.`,
+        facts: {
+          aN: a[0],
+          aD: a[1],
+          q,
+          i0: idx[0]!,
+          i1: idx[1]!,
+          i2: idx[2]!,
+          i3: idx[3]!,
+          i4: idx[4]!,
+          ans: count,
+        },
+        figureSpec: null,
+      };
+    }),
+  ),
+
+  g1("11", "이차함수의 식 구하기", "응용", (rng) =>
+    attempt(120, (): Body | null => {
+      const mode = intBetween(rng, 0, 1);
+      const a = pickA(rng);
+      const q = intBetween(rng, 1, 8) * pick(rng, SIGNS);
+      const m = intBetween(rng, 1, 4) * pick(rng, SIGNS);
+      const v = rAdd(rMul(a, rInt(m * m)), rInt(q));
+      if (v[1] !== 1 || Math.abs(v[0]) > 40) return null;
+      if (mode === 0) {
+        return {
+          content: `꼭짓점의 좌표가 $(0, ${q})$이고 점 $${pt(m, v[0])}$${eulReul(v[0])} 지나는 포물선을 그래프로 하는 이차함수의 식을 구하시오.`,
+          answer: `$y=${stdRhs(a, 0, q)}$`,
+          solution: `꼭짓점의 좌표가 $(0, ${q})$이므로 구하는 식을 $y=ax^2${termTex(rInt(q), "")}$ 꼴로 놓는다.\n$x=${m}$, $y=${v[0]}$${eulReul(v[0])} 대입하면 $a=${ratTex(a)}$이다.\n따라서 구하는 이차함수의 식은 $y=${stdRhs(a, 0, q)}$이다.`,
+          facts: { mode, aN: a[0], aD: a[1], q, m, v: v[0] },
+          figureSpec: null,
+        };
+      }
+      const k = intBetween(rng, 1, 4) * pick(rng, SIGNS);
+      if (k === m) return null;
+      const w = rAdd(rMul(a, rInt(k * k)), rInt(q));
+      if (w[1] !== 1 || Math.abs(w[0]) > 40) return null;
+      return {
+        content: `꼭짓점의 좌표가 $(0, ${q})$이고 점 $${pt(m, v[0])}$${eulReul(v[0])} 지나는 포물선을 그래프로 하는 이차함수의 그래프가 점 $(${k}, t)$를 지날 때, $t$의 값을 구하시오.`,
+        answer: `$${w[0]}$`,
+        solution: `구하는 식을 $y=ax^2${termTex(rInt(q), "")}$ 꼴로 놓고 $x=${m}$, $y=${v[0]}$${eulReul(v[0])} 대입하면 $a=${ratTex(a)}$이다.\n$y=${stdRhs(a, 0, q)}$에 $x=${k}$${eulReul(k)} 대입하면 $t=${w[0]}$이다.`,
+        facts: { mode, aN: a[0], aD: a[1], q, m, v: v[0], k, w: w[0] },
+        figureSpec: null,
+      };
+    }),
+  ),
+
+  g1("12", "이차함수 의 그래프", "기본", (rng) =>
+    attempt(60, (): Body | null => {
+      const a = pickA(rng);
+      const p = intBetween(rng, 1, 6) * pick(rng, SIGNS);
+      const mode = intBetween(rng, 0, 2);
+      if (mode === 0) {
+        return {
+          content: `이차함수 $y=${termTex(a, "x^2", true)}$의 그래프를 $x$축의 방향으로 $${shiftTex(p)}$만큼 평행이동한 그래프를 나타내는 이차함수의 식을 구하시오.`,
+          answer: `$y=${stdRhs(a, p, 0)}$`,
+          solution: `$x$축의 방향으로 $${shiftTex(p)}$만큼 평행이동하면 $x$ 대신 $${shiftedVarTex("x", p)}$${eulReul(Math.abs(p))} 대입한 것과 같다.\n따라서 구하는 이차함수의 식은 $y=${stdRhs(a, p, 0)}$이다.`,
+          facts: { mode, aN: a[0], aD: a[1], p, mx: p, q: 0 },
+          figureSpec: null,
+        };
+      }
+      if (mode === 1) {
+        return {
+          content: `이차함수 $y=${stdRhs(a, p, 0)}$의 그래프의 꼭짓점의 좌표와 축의 방정식을 차례로 구하시오.`,
+          answer: `$(${p}, 0)$, $x=${p}$`,
+          solution: `$y=a(x-p)^2$의 그래프의 꼭짓점의 좌표는 $(p, 0)$이고 축의 방정식은 $x=p$이다.\n따라서 꼭짓점의 좌표는 $(${p}, 0)$이고 축의 방정식은 $x=${p}$이다.`,
+          facts: { mode, aN: a[0], aD: a[1], p, mx: p, q: 0 },
+          figureSpec: null,
+        };
+      }
+      const m = intBetween(rng, 1, 4) * pick(rng, SIGNS);
+      if (m === p) return null;
+      const v = rMul(a, rInt((m - p) * (m - p)));
+      if (v[1] !== 1 || Math.abs(v[0]) > 60) return null;
+      return {
+        content: `이차함수 $y=${stdRhs(a, p, 0)}$의 그래프가 점 $(${m}, v)$를 지날 때, $v$의 값을 구하시오.`,
+        answer: `$${v[0]}$`,
+        solution: `$y=${stdRhs(a, p, 0)}$에 $x=${m}$${eulReul(m)} 대입하면 $v=${ratTex(a)}\\times${baseTex(m - p)}^2=${v[0]}$이다.`,
+        facts: { mode, aN: a[0], aD: a[1], p, m, v: v[0], mx: p, q: 0 },
+        figureSpec: null,
+      };
+    }),
+  ),
+
+  g1("13", "이차함수 의 그래프의 성질", "응용", (rng) =>
+    attempt(80, (): Body | null => {
+      const a = pickA(rng);
+      const av = rVal(a);
+      const p = intBetween(rng, 1, 5) * pick(rng, SIGNS);
+      const yInt = rMul(a, rInt(p * p));
+      if (yInt[1] !== 1 || Math.abs(yInt[0]) > 60) return null;
+      const props: { text: string; ok: boolean }[] = [
+        { text: `꼭짓점의 좌표는 $(${p}, 0)$이다.`, ok: true },
+        { text: `축의 방정식은 $x=${p}$이다.`, ok: true },
+        {
+          text: `이차함수 $y=${termTex(a, "x^2", true)}$의 그래프를 $x$축의 방향으로 $${shiftTex(p)}$만큼 평행이동한 것이다.`,
+          ok: true,
+        },
+        { text: `아래로 볼록한 포물선이다.`, ok: av > 0 },
+        { text: `위로 볼록한 포물선이다.`, ok: av < 0 },
+        {
+          text: `$x>${p}$일 때, $x$의 값이 증가하면 $y$의 값도 증가한다.`,
+          ok: av > 0,
+        },
+        {
+          text: `$x<${p}$일 때, $x$의 값이 증가하면 $y$의 값은 감소한다.`,
+          ok: av > 0,
+        },
+        { text: `$x$축과 한 점에서 만난다.`, ok: true },
+        { text: `$y$축과 점 $(0, ${yInt[0]})$에서 만난다.`, ok: true },
+        { text: `그래프는 원점을 지난다.`, ok: false },
+        { text: `축의 방정식은 $y=${p}$이다.`, ok: false },
+      ];
+      const trueIdx = props
+        .map((v, i) => (v.ok ? i : -1))
+        .filter((i) => i >= 0);
+      const falseIdx = props
+        .map((v, i) => (v.ok ? -1 : i))
+        .filter((i) => i >= 0);
+      if (trueIdx.length < 4 || falseIdx.length < 1) return null;
+      const badAt = pick(rng, falseIdx);
+      const goods = distinctIndices(rng, trueIdx.length, 4).map(
+        (i) => trueIdx[i]!,
+      );
+      const slot = intBetween(rng, 0, 4);
+      const idx: number[] = [];
+      let g = 0;
+      for (let i = 0; i < 5; i += 1) {
+        idx.push(i === slot ? badAt : goods[g++]!);
+      }
+      return {
+        content: `이차함수 $y=${stdRhs(a, p, 0)}$의 그래프에 대한 다음 보기의 설명 중 옳지 않은 것을 고르시오.\n${listTex(idx.map((i) => props[i]!.text))}`,
+        answer: MARKS[slot]!,
+        solution: `꼭짓점의 좌표는 $(${p}, 0)$, 축의 방정식은 $x=${p}$이고 그래프는 ${av > 0 ? "아래" : "위"}로 볼록하다.\n$x=0$일 때 $y=${yInt[0]}$이므로 $y$축과 점 $(0, ${yInt[0]})$에서 만난다.\n따라서 옳지 않은 것은 ${MARKS[slot]!}이다.`,
+        facts: {
+          aN: a[0],
+          aD: a[1],
+          p,
+          i0: idx[0]!,
+          i1: idx[1]!,
+          i2: idx[2]!,
+          i3: idx[3]!,
+          i4: idx[4]!,
+          slot,
+        },
+        figureSpec: null,
+      };
+    }),
+  ),
+
+  g1("14", "이차함수의 식 구하기", "응용", (rng) =>
+    attempt(120, (): Body | null => {
+      const mode = intBetween(rng, 0, 1);
+      const a = pickA(rng);
+      const p = intBetween(rng, 1, 5) * pick(rng, SIGNS);
+      const m = intBetween(rng, -5, 5);
+      if (m === p) return null;
+      const v = rMul(a, rInt((m - p) * (m - p)));
+      if (v[1] !== 1 || v[0] === 0 || Math.abs(v[0]) > 60) return null;
+      if (mode === 0) {
+        return {
+          content: `꼭짓점의 좌표가 $(${p}, 0)$이고 점 $${pt(m, v[0])}$${eulReul(v[0])} 지나는 포물선을 그래프로 하는 이차함수의 식을 구하시오.`,
+          answer: `$y=${stdRhs(a, p, 0)}$`,
+          solution: `꼭짓점의 좌표가 $(${p}, 0)$이므로 구하는 식을 $y=a${sqTex(p)}$으로 놓는다.\n$x=${m}$, $y=${v[0]}$${eulReul(v[0])} 대입하면 $${termTex(rInt((m - p) * (m - p)), "a", true)}=${v[0]}$이므로 $a=${ratTex(a)}$이다.\n따라서 구하는 이차함수의 식은 $y=${stdRhs(a, p, 0)}$이다.`,
+          facts: { mode, aN: a[0], aD: a[1], p, m, v: v[0] },
+          figureSpec: null,
+        };
+      }
+      return {
+        content: `이차함수 $y=${termTex(a, "x^2", true)}$의 그래프를 $x$축의 방향으로 평행이동하였더니 점 $${pt(m, v[0])}$${eulReul(v[0])} 지나고 축의 방정식이 $x=${p}$인 그래프가 되었다. 이 그래프를 나타내는 이차함수의 식을 구하시오.`,
+        answer: `$y=${stdRhs(a, p, 0)}$`,
+        solution: `축의 방정식이 $x=${p}$이므로 평행이동한 그래프의 식은 $y=${termTex(a, sqTex(p), true)}$이다.\n$x=${m}$${eulReul(m)} 대입하면 $y=${v[0]}$이므로 주어진 점을 지난다.\n따라서 구하는 이차함수의 식은 $y=${stdRhs(a, p, 0)}$이다.`,
+        facts: { mode, aN: a[0], aD: a[1], p, m, v: v[0] },
+        figureSpec: null,
+      };
+    }),
+  ),
+
+  g1("15", "이차함수 의 그래프", "응용", (rng) =>
+    attempt(120, (): Body | null => {
+      const mode = intBetween(rng, 0, 2);
+      const a = pickA(rng);
+      const p = intBetween(rng, 1, 5) * pick(rng, SIGNS);
+      const q = intBetween(rng, 1, 8) * pick(rng, SIGNS);
+      if (mode === 0) {
+        // 축의 방정식과 지나는 점으로 a, p 를 정한다 (발문은 y=a(x+p)^2+q 꼴).
+        const m = intBetween(rng, -5, 5);
+        if (m === p) return null;
+        const v = rAdd(rMul(a, rInt((m - p) * (m - p))), rInt(q));
+        if (v[1] !== 1 || Math.abs(v[0]) > 40) return null;
+        const pp = -p; // 발문의 (x+p)^2 에서의 p
+        const ansR = rAdd(a, rInt(-pp));
+        return {
+          content: `이차함수 $y=a(x+p)^2${termTex(rInt(q), "")}$의 그래프가 직선 $x=${p}$${eulReul(p)} 축으로 하고 점 $${pt(m, v[0])}$${eulReul(v[0])} 지날 때, 상수 $a$, $p$에 대하여 $a-p$의 값을 구하시오.`,
+          answer: `$${ratTex(ansR)}$`,
+          solution: `$y=a(x+p)^2${termTex(rInt(q), "")}$의 축의 방정식은 $x=-p$이므로 $-p=${p}$에서 $p=${pp}$이다.\n$y=a${sqTex(p)}${termTex(rInt(q), "")}$에 $x=${m}$, $y=${v[0]}$${eulReul(v[0])} 대입하면 $a=${ratTex(a)}$이다.\n따라서 $a-p=${ratTex(ansR)}$이다.`,
+          facts: {
+            mode,
+            aN: a[0],
+            aD: a[1],
+            p,
+            q,
+            m,
+            v: v[0],
+            pp,
+            ansN: ansR[0],
+            ansD: ansR[1],
+          },
+          figureSpec: null,
+        };
+      }
+      if (mode === 1) {
+        const ans = p - q + p;
+        return {
+          content: `이차함수 $y=${termTex(a, "x^2", true)}$의 그래프를 $x$축의 방향으로 $${shiftTex(p)}$만큼, $y$축의 방향으로 $${shiftTex(q)}$만큼 평행이동한 그래프는 꼭짓점의 좌표가 $(s, t)$이고 직선 $x=k$를 축으로 한다. 이때 $s-t+k$의 값을 구하시오.`,
+          answer: `$${ans}$`,
+          solution: `평행이동한 그래프의 식은 $y=${stdRhs(a, p, q)}$이다.\n꼭짓점의 좌표는 $(${p}, ${q})$이고 축의 방정식은 $x=${p}$이므로 $s=${p}$, $t=${q}$, $k=${p}$이다.\n따라서 $s-t+k=${ans}$이다.`,
+          facts: { mode, aN: a[0], aD: a[1], p, q, ans },
+          figureSpec: null,
+        };
+      }
+      // 꼭짓점이 직선 y=cx+d 위에 있다 — 답(p, q)을 먼저 정하고 d 를 역산한다.
+      const c = intBetween(rng, 1, 4) * pick(rng, SIGNS);
+      const d = q - c * p;
+      const pp = -p;
+      const ans = pp + q;
+      return {
+        content: `이차함수 $y=${termTex(a, "(x+p)^2", true)}+q$의 그래프의 축의 방정식이 $x=${p}$이고 꼭짓점이 직선 $y=${termTex(rInt(c), "x", true)}${termTex(rInt(d), "")}$ 위에 있을 때, 상수 $p$, $q$에 대하여 $p+q$의 값을 구하시오.`,
+        answer: `$${ans}$`,
+        solution: `축의 방정식이 $x=-p$이므로 $-p=${p}$에서 $p=${pp}$이다.\n꼭짓점의 좌표는 $(${p}, q)$이고 이 점이 직선 위에 있으므로 $q=${termTex(rInt(c), "", true)}\\times${baseTex(p)}${termTex(rInt(d), "")}=${q}$이다.\n따라서 $p+q=${ans}$이다.`,
+        facts: { mode, aN: a[0], aD: a[1], p, q, c, d, pp, ans },
+        figureSpec: null,
+      };
+    }),
+  ),
+
+  g1("16", "이차함수 의 증가와 감소", "응용", (rng): Body => {
+    const a = pickA(rng);
+    const av = rVal(a);
+    const p = intBetween(rng, 1, 6) * pick(rng, SIGNS);
+    const q = intBetween(rng, 1, 8) * pick(rng, SIGNS);
+    const mode = intBetween(rng, 0, 1); // 0: 증가하는 범위 · 1: 감소하는 범위
+    // a>0 이면 x>p 에서 증가, a<0 이면 x<p 에서 증가.
+    const growRight = av > 0;
+    const right = mode === 0 ? growRight : !growRight;
+    // 「증가할 때 y도 증가하는」/「증가할 때 y는 감소하는」 — 관형형으로 잇는다.
+    const clause = mode === 0 ? "$y$의 값도 증가하는" : "$y$의 값은 감소하는";
+    const rel = right ? ">" : "<";
+    return {
+      content: `이차함수 $y=${stdRhs(a, p, q)}$ 에서 $x$의 값이 증가할 때 ${clause} $x$의 값의 범위를 구하시오.`,
+      answer: `$x${rel}${p}$`,
+      solution: `그래프는 ${av > 0 ? "아래" : "위"}로 볼록하고 축의 방정식은 $x=${p}$이다.\n${av > 0 ? `축의 오른쪽에서 $y$의 값이 증가하고 왼쪽에서 감소한다.` : `축의 왼쪽에서 $y$의 값이 증가하고 오른쪽에서 감소한다.`}\n따라서 구하는 범위는 $x${rel}${p}$이다.`,
+      facts: { aN: a[0], aD: a[1], p, q, mode, right: right ? 1 : 0 },
+      figureSpec: null,
+    };
+  }),
+
+  g1("17", "이차함수 의 그래프의 성질", "응용", (rng) =>
+    attempt(80, (): Body | null => {
+      const a = pickA(rng);
+      const av = rVal(a);
+      const p = intBetween(rng, 1, 5) * pick(rng, SIGNS);
+      const q = intBetween(rng, 1, 8) * pick(rng, SIGNS);
+      const yInt = rAdd(rMul(a, rInt(p * p)), rInt(q));
+      if (yInt[1] !== 1) return null;
+      const props: { text: string; ok: boolean }[] = [
+        { text: `꼭짓점의 좌표는 $(${p}, ${q})$이다.`, ok: true },
+        { text: `축의 방정식은 $x=${p}$이다.`, ok: true },
+        {
+          text: `이차함수 $y=${termTex(a, "x^2", true)}$의 그래프를 $x$축의 방향으로 $${shiftTex(p)}$만큼, $y$축의 방향으로 $${shiftTex(q)}$만큼 평행이동한 것이다.`,
+          ok: true,
+        },
+        { text: `$y$축과 만나는 점의 좌표는 $(0, ${yInt[0]})$이다.`, ok: true },
+        { text: `아래로 볼록한 포물선이다.`, ok: av > 0 },
+        { text: `위로 볼록한 포물선이다.`, ok: av < 0 },
+        {
+          text: `$x>${p}$일 때, $x$의 값이 증가하면 $y$의 값도 증가한다.`,
+          ok: av > 0,
+        },
+        {
+          text: `$x<${p}$일 때, $x$의 값이 증가하면 $y$의 값은 감소한다.`,
+          ok: av > 0,
+        },
+        {
+          text: `$x$축과 서로 다른 두 점에서 만난다.`,
+          ok: (av > 0 && q < 0) || (av < 0 && q > 0),
+        },
+      ];
+      const idx = distinctIndices(rng, props.length, 5);
+      const flags = idx.map((i) => props[i]!.ok);
+      const count = flags.filter(Boolean).length;
+      if (count < 1 || count > 4) return null;
+      return {
+        content: `이차함수 $y=${stdRhs(a, p, q)}$의 그래프에 대한 다음 보기의 설명 중 옳은 것은 모두 몇 개인지 구하시오.\n${listTex(idx.map((i) => props[i]!.text))}`,
+        answer: `$${count}$개`,
+        solution: `꼭짓점의 좌표는 $(${p}, ${q})$, 축의 방정식은 $x=${p}$이고 그래프는 ${av > 0 ? "아래" : "위"}로 볼록하다.\n$x=0$일 때 $y=${yInt[0]}$이므로 $y$축과 점 $(0, ${yInt[0]})$에서 만난다.\n따라서 옳은 것은 ${marksOf(flags)}의 $${count}$개이다.`,
+        facts: {
+          aN: a[0],
+          aD: a[1],
+          p,
+          q,
+          i0: idx[0]!,
+          i1: idx[1]!,
+          i2: idx[2]!,
+          i3: idx[3]!,
+          i4: idx[4]!,
+          ans: count,
+        },
+        figureSpec: null,
+      };
+    }),
+  ),
+
+  g1("18", "이차함수의 식 구하기", "응용", (rng) =>
+    attempt(200, (): Body | null => {
+      const a = pick(rng, [
+        [1, 1],
+        [-1, 1],
+        [2, 1],
+        [-2, 1],
+        [1, 2],
+        [-1, 2],
+        [3, 1],
+        [-3, 1],
+      ] as const) as Rat;
+      const p = intBetween(rng, -4, 4);
+      const q = intBetween(rng, -6, 6);
+      if (p === 0 && q === 0) return null; // 꼭짓점이 원점이면 표식을 못 찍는다
+      const s = pick(rng, [-2, -1, 1, 2] as const);
+      const m = p + s;
+      const v = rAdd(rMul(a, rInt(s * s)), rInt(q));
+      if (v[1] !== 1) return null;
+      if (m === 0 && v[0] === 0) return null;
+      const fig = parabolaFig(a, p, q, [
+        [p, q],
+        [m, v[0]],
+      ]);
+      if (fig === null) return null;
+      return {
+        content: `오른쪽 그림과 같이 꼭짓점의 좌표가 $${pt(p, q)}$이고 점 $${pt(m, v[0])}$${eulReul(v[0])} 지나는 포물선이 있다. 이 포물선을 그래프로 하는 이차함수의 식을 구하시오.`,
+        answer: `$y=${stdRhs(a, p, q)}$`,
+        solution: `꼭짓점의 좌표가 $${pt(p, q)}$이므로 구하는 식을 $y=a${sqTex(p)}${termTex(rInt(q), "")}$ 꼴로 놓는다.\n$x=${m}$, $y=${v[0]}$${eulReul(v[0])} 대입하면 $${termTex(rInt(s * s), "a", true)}${termTex(rInt(q), "")}=${v[0]}$이므로 $a=${ratTex(a)}$이다.\n따라서 구하는 이차함수의 식은 $y=${stdRhs(a, p, q)}$이다.`,
+        facts: { aN: a[0], aD: a[1], p, q, m, v: v[0], s },
+        figureSpec: fig,
+      };
+    }),
+  ),
+
+  g1("19", "이차함수 의 그래프의 평행이동", "응용", (rng) =>
+    attempt(60, (): Body | null => {
+      const a = pickA(rng);
+      const p = intBetween(rng, -5, 5);
+      const q = intBetween(rng, -8, 8);
+      const mx = intBetween(rng, 1, 5) * pick(rng, SIGNS);
+      const my = intBetween(rng, 1, 6) * pick(rng, SIGNS);
+      const p2 = p + mx;
+      const q2 = q + my;
+      if (Math.abs(p2) > 9 || Math.abs(q2) > 14) return null;
+      const mode = intBetween(rng, 0, 2);
+      if (mode === 0) {
+        return {
+          content: `이차함수 $y=${stdRhs(a, p, q)}$의 그래프를 $x$축의 방향으로 $${shiftTex(mx)}$만큼, $y$축의 방향으로 $${shiftTex(my)}$만큼 평행이동한 그래프를 나타내는 이차함수의 식을 구하시오.`,
+          answer: `$y=${stdRhs(a, p2, q2)}$`,
+          solution: `$x$ 대신 $${shiftedVarTex("x", mx)}$, $y$ 대신 $${shiftedVarTex("y", my)}$${eulReul(Math.abs(my))} 대입한다.\n꼭짓점 $${pt(p, q)}$${eulReul(q)} 옮기면 $${pt(p2, q2)}$이다.\n따라서 구하는 이차함수의 식은 $y=${stdRhs(a, p2, q2)}$이다.`,
+          facts: { mode, aN: a[0], aD: a[1], p, q, mx, my, p2, q2 },
+          figureSpec: null,
+        };
+      }
+      if (mode === 1) {
+        return {
+          content: `이차함수 $y=${stdRhs(a, p, q)}$의 그래프를 $x$축의 방향으로 $${shiftTex(mx)}$만큼, $y$축의 방향으로 $${shiftTex(my)}$만큼 평행이동한 그래프의 꼭짓점의 좌표를 구하시오.`,
+          answer: `$${pt(p2, q2)}$`,
+          solution: `평행이동하기 전 그래프의 꼭짓점의 좌표는 $${pt(p, q)}$이다.\n$x$축의 방향으로 $${shiftTex(mx)}$만큼, $y$축의 방향으로 $${shiftTex(my)}$만큼 옮기면 꼭짓점은 $${pt(p2, q2)}$이다.`,
+          facts: { mode, aN: a[0], aD: a[1], p, q, mx, my, p2, q2 },
+          figureSpec: null,
+        };
+      }
+      return {
+        content: `이차함수 $y=${stdRhs(a, p, q)}$의 그래프를 $x$축의 방향으로 $m$만큼, $y$축의 방향으로 $n$만큼 평행이동하였더니 이차함수 $y=${stdRhs(a, p2, q2)}$의 그래프와 일치하였다. 이때 $m+n$의 값을 구하시오.`,
+        answer: `$${mx + my}$`,
+        solution: `평행이동한 그래프의 식은 $y=${termTex(a, `\\{x-(${p}+m)\\}^2`, true)}${termTex(rInt(q), "")}+n$이므로 꼭짓점은 $(${p}+m, ${q}+n)$이다.\n이것이 $${pt(p2, q2)}$${waGwa(q2)} 같으므로 $m=${mx}$, $n=${my}$이다.\n따라서 $m+n=${mx + my}$이다.`,
+        facts: { mode, aN: a[0], aD: a[1], p, q, mx, my, p2, q2 },
+        figureSpec: null,
+      };
+    }),
+  ),
+
+  g1("20", "이차함수 의 그래프에서 의 부호", "심화하", (rng) =>
+    attempt(200, (): Body | null => {
+      const a = pick(rng, [
+        [1, 1],
+        [-1, 1],
+        [1, 2],
+        [-1, 2],
+        [2, 1],
+        [-2, 1],
+      ] as const) as Rat;
+      const p = intBetween(rng, 1, 4) * pick(rng, SIGNS);
+      const q = intBetween(rng, 1, 5) * pick(rng, SIGNS);
+      // $y$축을 지나는 자리가 보여야 「좌표평면 위의 그래프」로 읽힌다.
+      const fig = parabolaFig(a, p, q, [], [0, 0]);
+      if (fig === null) return null;
+      const av = rVal(a);
+      const sa = av > 0 ? ">" : "<";
+      const sp = p > 0 ? ">" : "<";
+      const sq = q > 0 ? ">" : "<";
+      const quad = p > 0 ? (q > 0 ? 1 : 4) : q > 0 ? 2 : 3;
+      // ⚠️ 이 유형은 **그림이 문항의 전부**라 발문이 늘 같은 글자가 된다. 그러면
+      //    `generateMiddleSet` 의 「발문이 같으면 버린다」에 걸려 한 시험지에
+      //    한 문항밖에 못 낸다(실측: 40변형에서 발문 1가지). 그래서 **묻는 것**을 돌린다.
+      const mode = intBetween(rng, 0, 4);
+      const stem = `오른쪽 그림은 이차함수 $y=a(x-p)^2+q$의 그래프이다.`;
+      const opened = `그래프가 ${av > 0 ? "아래" : "위"}로 볼록하므로 $a${sa}0$이고, 꼭짓점 $(p, q)$가 제$${quad}$사분면 위에 있으므로 $p${sp}0$, $q${sq}0$이다.`;
+      const facts = {
+        mode,
+        aN: a[0],
+        aD: a[1],
+        p,
+        q,
+        sa: av > 0 ? 1 : -1,
+        sp: p > 0 ? 1 : -1,
+        sq: q > 0 ? 1 : -1,
+        quad,
+      };
+      const sign = (v: number): string => (v > 0 ? ">" : "<");
+      if (mode === 1) {
+        // 꼭짓점이 $(p, a)$ 인 다른 이차함수 — 부호만으로 사분면이 정해진다.
+        const quad2 = p > 0 ? (av > 0 ? 1 : 4) : av > 0 ? 2 : 3;
+        return {
+          content: `${stem} 이차함수 $y=q(x-p)^2+a$의 그래프의 꼭짓점은 제몇 사분면 위에 있는지 구하시오.`,
+          answer: `제$${quad2}$사분면`,
+          solution: `${opened}\n$y=q(x-p)^2+a$의 그래프의 꼭짓점의 좌표는 $(p, a)$이고 $p${sp}0$, $a${sa}0$이다.\n따라서 꼭짓점은 제$${quad2}$사분면 위에 있다.`,
+          facts: { ...facts, quad2 },
+          figureSpec: fig,
+        };
+      }
+      if (mode === 2) {
+        const s2 = sign(av * p);
+        return {
+          content: `${stem} $ap$의 부호를 부등호를 사용하여 나타내시오.`,
+          answer: `$ap${s2}0$`,
+          solution: `${opened}\n$a${sa}0$, $p${sp}0$이므로 두 수의 부호는 ${av * p > 0 ? "같다" : "서로 다르다"}.\n따라서 $ap${s2}0$이다.`,
+          facts,
+          figureSpec: fig,
+        };
+      }
+      if (mode === 3) {
+        const s3 = sign(av * p * q);
+        return {
+          content: `${stem} $apq$의 부호를 부등호를 사용하여 나타내시오.`,
+          answer: `$apq${s3}0$`,
+          solution: `${opened}\n음수인 것의 개수가 $${[av, p, q].filter((v) => v < 0).length}$개이다.\n따라서 $apq${s3}0$이다.`,
+          facts,
+          figureSpec: fig,
+        };
+      }
+      if (mode === 4) {
+        const s4 = sign(q / av);
+        return {
+          content: `${stem} $\\dfrac{q}{a}$의 부호를 부등호를 사용하여 나타내시오.`,
+          answer: `$\\dfrac{q}{a}${s4}0$`,
+          solution: `${opened}\n$a${sa}0$, $q${sq}0$이므로 두 수의 부호는 ${q * av > 0 ? "같다" : "서로 다르다"}.\n따라서 $\\dfrac{q}{a}${s4}0$이다.`,
+          facts,
+          figureSpec: fig,
+        };
+      }
+      return {
+        content: `${stem} 상수 $a$, $p$, $q$의 부호를 각각 부등호를 사용하여 나타내시오.`,
+        answer: `$a${sa}0$, $p${sp}0$, $q${sq}0$`,
+        solution: `그래프가 ${av > 0 ? "아래" : "위"}로 볼록하므로 $a${sa}0$이다.\n꼭짓점 $(p, q)$가 제$${quad}$사분면 위에 있으므로 $p${sp}0$, $q${sq}0$이다.`,
+        facts,
+        figureSpec: fig,
+      };
+    }),
+  ),
+
+  g1("21", "이차함수의 그래프의 활용", "심화하", (rng) =>
+    attempt(200, (): Body | null => {
+      const a = pickA(rng);
+      if (rVal(a) < 0) return null; // 제1사분면 위의 점이라야 직사각형이 그려진다
+      const m = intBetween(rng, 2, 4); // 표식이 $x=1$ 이면 원점 글자와 겹친다
+      const h = rMul(a, rInt(m * m));
+      if (h[1] !== 1 || h[0] < 1 || h[0] > 12) return null;
+      const fig = parabolaFig(a, 0, 0, [[m, h[0]]]);
+      if (fig === null) return null;
+      const mode = intBetween(rng, 0, 1);
+      const area = m * h[0];
+      const peri = 2 * (m + h[0]);
+      return {
+        content: `오른쪽 그림과 같이 이차함수 $y=${termTex(a, "x^2", true)}$의 그래프 위의 점 $\\mathrm{P}${pt(m, h[0])}$에서 $x$축, $y$축에 내린 수선의 발을 각각 $\\mathrm{Q}$, $\\mathrm{R}$라 하자. 직사각형 $\\mathrm{OQPR}$의 ${mode === 0 ? "넓이" : "둘레의 길이"}를 구하시오. (단, $\\mathrm{O}$는 원점이다.)`,
+        answer: `$${mode === 0 ? area : peri}$`,
+        solution: `점 $\\mathrm{P}$의 좌표가 $${pt(m, h[0])}$이므로 $\\overline{\\mathrm{OQ}}=${m}$, $\\overline{\\mathrm{PQ}}=${h[0]}$이다.\n따라서 직사각형 $\\mathrm{OQPR}$의 ${mode === 0 ? `넓이는 $${m}\\times${h[0]}=${area}$` : `둘레의 길이는 $2\\times(${m}+${h[0]})=${peri}$`}이다.`,
+        facts: {
+          mode,
+          m,
+          h: h[0],
+          aN: a[0],
+          aD: a[1],
+          ans: mode === 0 ? area : peri,
+        },
+        figureSpec: fig,
+      };
+    }),
+  ),
+];
+
+/* ────────────────────────────────────────────────────────────────────────
+ * ⑵ 이차함수의 그래프 ⑵
+ * ──────────────────────────────────────────────────────────────────────── */
+
+/** ⑵ 계열의 `a` — 정수만 쓴다(묶는 계수 $-2p$ 가 정수라 지면에 분수가 안 낀다). */
+const A_INT = [1, -1, 2, -2, 3, -3, 4, -4] as const;
+
+const TYPES_G2: TypeEntry[] = [
+  g2("01", "이차함수 를 의 꼴로 고치기", SEC.일반형, "기본", (rng) =>
+    attempt(60, (): Body | null => {
+      const a = pick(rng, A_INT);
+      const p = intBetween(rng, 1, 5) * pick(rng, SIGNS);
+      const q = intBetween(rng, -9, 9);
+      const { A, B, C } = expand(rInt(a), p, q);
+      if (Math.abs(C[0]) > 60) return null;
+      return {
+        content: `이차함수 $y=${genRhs(A, B, C)}$${C[0] !== 0 ? eulReul(C[0]) : B[0] !== 0 ? "를" : "을"} $y=a(x-p)^2+q$ 꼴로 나타내시오. (단, $a$, $p$, $q$는 상수이다.)`,
+        answer: `$y=${stdRhs(rInt(a), p, q)}$`,
+        solution: toStdLines(a, p, q).join("\n"),
+        facts: { a, p, q, A: A[0], B: B[0], C: C[0] },
+        figureSpec: null,
+      };
+    }),
+  ),
+
+  g2("02", "이차함수 의 그래프의 꼭짓점과 축", SEC.일반형, "기본", (rng) =>
+    attempt(60, (): Body | null => {
+      const a = pick(rng, A_INT);
+      const p = intBetween(rng, 1, 5) * pick(rng, SIGNS);
+      const q = intBetween(rng, -9, 9);
+      const { A, B, C } = expand(rInt(a), p, q);
+      if (Math.abs(C[0]) > 60) return null;
+      const mode = intBetween(rng, 0, 1);
+      if (mode === 0) {
+        return {
+          content: `이차함수 $y=${genRhs(A, B, C)}$의 그래프의 꼭짓점의 좌표와 축의 방정식을 차례로 구하시오.`,
+          answer: `$${pt(p, q)}$, $x=${p}$`,
+          solution: `${toStdLines(a, p, q).join("\n")}\n따라서 꼭짓점의 좌표는 $${pt(p, q)}$이고 축의 방정식은 $x=${p}$이다.`,
+          facts: { mode, a, p, q, C: C[0] },
+          figureSpec: null,
+        };
+      }
+      return {
+        content: `이차함수 $y=${genRhs(A, B, C)}$의 그래프의 꼭짓점의 좌표를 $(s, t)$, 축의 방정식을 $x=k$라 할 때, $s+t+k$의 값을 구하시오.`,
+        answer: `$${2 * p + q}$`,
+        solution: `${toStdLines(a, p, q).join("\n")}\n꼭짓점의 좌표는 $${pt(p, q)}$이고 축의 방정식은 $x=${p}$이므로 $s=${p}$, $t=${q}$, $k=${p}$이다.\n따라서 $s+t+k=${2 * p + q}$이다.`,
+        facts: { mode, a, p, q, C: C[0], ans: 2 * p + q },
+        figureSpec: null,
+      };
+    }),
+  ),
+
+  g2("03", "이차함수 의 그래프 그리기", SEC.일반형, "응용", (rng) =>
+    attempt(200, (): Body | null => {
+      // 지나지 않는 사분면이 정확히 하나가 되도록 (a, p, q, c) 의 부호를 짠다.
+      const cfg = intBetween(rng, 0, 3);
+      const aPos = cfg === 0 || cfg === 1;
+      const pPos = cfg === 0 || cfg === 2;
+      const a = intBetween(rng, 1, 3) * (aPos ? 1 : -1);
+      const p = intBetween(rng, 1, 4) * (pPos ? 1 : -1);
+      const q = intBetween(rng, 1, 9) * (aPos ? -1 : 1);
+      const { A, B, C } = expand(rInt(a), p, q);
+      if (aPos ? C[0] <= 0 : C[0] >= 0) return null;
+      if (Math.abs(C[0]) > 40) return null;
+      const miss = cfg === 0 ? 3 : cfg === 1 ? 4 : cfg === 2 ? 2 : 1;
+      return {
+        content: `이차함수 $y=${genRhs(A, B, C)}$의 그래프가 지나지 않는 사분면을 구하시오.`,
+        answer: `제$${miss}$사분면`,
+        solution: `${toStdLines(a, p, q).join("\n")}\n꼭짓점의 좌표는 $${pt(p, q)}$이고 그래프는 ${aPos ? "아래" : "위"}로 볼록하며 $y$축과 점 $(0, ${C[0]})$에서 만난다.\n이를 이용하여 그래프를 그리면 제$${miss}$사분면을 지나지 않는다.`,
+        facts: { cfg, a, p, q, C: C[0], miss },
+        figureSpec: null,
+      };
+    }),
+  ),
+
+  g2("04", "이차함수 의 증가와 감소", SEC.일반형, "응용", (rng) =>
+    attempt(60, (): Body | null => {
+      const a = pick(rng, A_INT);
+      const p = intBetween(rng, 1, 5) * pick(rng, SIGNS);
+      const q = intBetween(rng, -9, 9);
+      const { A, B, C } = expand(rInt(a), p, q);
+      if (Math.abs(C[0]) > 60) return null;
+      const mode = intBetween(rng, 0, 1);
+      const growRight = a > 0;
+      const right = mode === 0 ? growRight : !growRight;
+      const clause = mode === 0 ? "$y$의 값도 증가하는" : "$y$의 값은 감소하는";
+      const rel = right ? ">" : "<";
+      return {
+        content: `이차함수 $y=${genRhs(A, B, C)}$ 에서 $x$의 값이 증가할 때 ${clause} $x$의 값의 범위를 구하시오.`,
+        answer: `$x${rel}${p}$`,
+        solution: `${toStdLines(a, p, q).join("\n")}\n축의 방정식이 $x=${p}$이고 그래프가 ${a > 0 ? "아래" : "위"}로 볼록하므로 축의 ${a > 0 ? "오른쪽" : "왼쪽"}에서 $y$의 값이 증가하고 ${a > 0 ? "왼쪽" : "오른쪽"}에서 감소한다.\n따라서 구하는 범위는 $x${rel}${p}$이다.`,
+        facts: { mode, a, p, q, C: C[0], right: right ? 1 : 0 },
+        figureSpec: null,
+      };
+    }),
+  ),
+
+  g2("05", "이차함수의 그래프와 축축과의 교점", SEC.일반형, "응용", (rng) =>
+    attempt(120, (): Body | null => {
+      // 근을 먼저 고른다 — 판별식이 제곱수라 근호가 지면에 안 나간다.
+      const a = pick(rng, [1, -1, 2, -2] as const);
+      const r1 = intBetween(rng, -5, 2);
+      const r2 = r1 + intBetween(rng, 2, 7);
+      if (Math.abs(r2) > 6) return null;
+      const A = rInt(a);
+      const B = rInt(-a * (r1 + r2));
+      const C = rInt(a * r1 * r2);
+      const mode = intBetween(rng, 0, 1);
+      if (mode === 0) {
+        return {
+          content: `이차함수 $y=${genRhs(A, B, C)}$의 그래프가 $x$축과 만나는 두 점을 각각 $\\mathrm{A}$, $\\mathrm{B}$라 할 때, 선분 $\\mathrm{AB}$의 길이를 구하시오.`,
+          answer: `$${r2 - r1}$`,
+          solution: `$y=0$${eulReul(0)} 대입하면 $${genRhs(A, B, C)}=0$이고, 좌변을 인수분해하면 $${factoredTex(A, r1, r2)}=0$이다.\n즉 $x=${r1}$ 또는 $x=${r2}$이므로 두 점의 좌표는 $${pt(r1, 0)}$, $${pt(r2, 0)}$이다.\n따라서 선분 $\\mathrm{AB}$의 길이는 $${r2}-${baseTex(r1)}=${r2 - r1}$이다.`,
+          facts: { mode, a, r1, r2, B: B[0], C: C[0], ans: r2 - r1 },
+          figureSpec: null,
+        };
+      }
+      return {
+        content: `이차함수 $y=${genRhs(A, B, C)}$의 그래프가 $x$축과 만나는 두 점 중 한 점의 좌표가 $${pt(r1, 0)}$일 때, 다른 한 점의 좌표를 구하시오.`,
+        answer: `$${pt(r2, 0)}$`,
+        solution: `$y=0$${eulReul(0)} 대입하여 좌변을 인수분해하면 $${factoredTex(A, r1, r2)}=0$이다.\n즉 $x=${r1}$ 또는 $x=${r2}$이다.\n따라서 다른 한 점의 좌표는 $${pt(r2, 0)}$이다.`,
+        facts: { mode, a, r1, r2, B: B[0], C: C[0] },
+        figureSpec: null,
+      };
+    }),
+  ),
+
+  g2("06", "이차함수 의 그래프의 성질", SEC.일반형, "응용", (rng) =>
+    attempt(80, (): Body | null => {
+      const a = pick(rng, A_INT);
+      const p = intBetween(rng, 1, 4) * pick(rng, SIGNS);
+      const q = intBetween(rng, 1, 8) * pick(rng, SIGNS);
+      const { A, B, C } = expand(rInt(a), p, q);
+      if (C[0] === 0 || Math.abs(C[0]) > 40) return null;
+      const props: { text: string; ok: boolean }[] = [
+        { text: `꼭짓점의 좌표는 $${pt(p, q)}$이다.`, ok: true },
+        { text: `축의 방정식은 $x=${p}$이다.`, ok: true },
+        { text: `$y$축과 만나는 점의 $y$좌표는 $${C[0]}$이다.`, ok: true },
+        { text: `아래로 볼록한 포물선이다.`, ok: a > 0 },
+        {
+          text: `이차함수 $y=${termTex(rInt(a), "x^2", true)}$의 그래프를 평행이동한 것이다.`,
+          ok: true,
+        },
+        {
+          text: `$x>${p}$일 때, $x$의 값이 증가하면 $y$의 값도 증가한다.`,
+          ok: a > 0,
+        },
+        {
+          text: `$x$축과 서로 다른 두 점에서 만난다.`,
+          ok: (a > 0 && q < 0) || (a < 0 && q > 0),
+        },
+        { text: `그래프는 원점을 지난다.`, ok: false },
+        { text: `위로 볼록한 포물선이다.`, ok: a < 0 },
+        // ── 아래 셋은 「참 2 · 거짓 3」을 언제나 담을 수 있게 더한 **거짓 쪽**이다.
+        //    위 아홉만으로는 $a>0$·$q<0$ 일 때 거짓이 **둘뿐**이라 정답 2개가
+        //    구조적으로 불가능했다(2026-08-25 실측 14.0%). 반드시 **끝에** 붙인다.
+        {
+          text: `$x$축과 만나지 않는다.`,
+          ok: !((a > 0 && q < 0) || (a < 0 && q > 0)),
+        },
+        // $q\ne0$ 이므로 접하는 일이 없다 — 언제나 거짓이다.
+        { text: `$x$축과 한 점에서 만난다.`, ok: false },
+        {
+          text: `$x<${p}$일 때, $x$의 값이 증가하면 $y$의 값도 증가한다.`,
+          ok: a < 0,
+        },
+      ];
+      const idx = chooseFivePropIndices(rng, props);
+      const flags = idx.map((i) => props[i]!.ok);
+      const count = flags.filter(Boolean).length;
+      return {
+        content: `이차함수 $y=${genRhs(A, B, C)}$의 그래프에 대한 다음 보기의 설명 중 옳은 것을 모두 고르시오.\n${listTex(idx.map((i) => props[i]!.text))}`,
+        answer: marksOf(flags),
+        solution: `${toStdLines(a, p, q).join("\n")}\n꼭짓점의 좌표는 $${pt(p, q)}$, 축의 방정식은 $x=${p}$이고 $y$축과 점 $(0, ${C[0]})$에서 만난다.\n따라서 옳은 것은 ${marksOf(flags)}이다.`,
+        facts: {
+          a,
+          p,
+          q,
+          C: C[0],
+          i0: idx[0]!,
+          i1: idx[1]!,
+          i2: idx[2]!,
+          i3: idx[3]!,
+          i4: idx[4]!,
+          ans: count,
+        },
+        figureSpec: null,
+      };
+    }),
+  ),
+
+  g2("07", "이차함수 의 그래프의 평행이동", SEC.일반형, "응용", (rng) =>
+    attempt(60, (): Body | null => {
+      const a = pick(rng, A_INT);
+      const p = intBetween(rng, 1, 4) * pick(rng, SIGNS);
+      const q = intBetween(rng, -8, 8);
+      const mx = intBetween(rng, 1, 4) * pick(rng, SIGNS);
+      const my = intBetween(rng, 1, 5) * pick(rng, SIGNS);
+      const p2 = p + mx;
+      const q2 = q + my;
+      const src = expand(rInt(a), p, q);
+      const dst = expand(rInt(a), p2, q2);
+      if (Math.abs(src.C[0]) > 60 || Math.abs(dst.C[0]) > 60) return null;
+      // 옮긴 꼭짓점이 y축 위면 표준형과 일반형이 같은 글자가 되어 풀이 두 줄이 겹친다.
+      if (p2 === 0) return null;
+      const ans = dst.A[0] + dst.B[0] - dst.C[0];
+      return {
+        content: `이차함수 $y=${genRhs(src.A, src.B, src.C)}$의 그래프를 $x$축의 방향으로 $${shiftTex(mx)}$만큼, $y$축의 방향으로 $${shiftTex(my)}$만큼 평행이동하였더니 이차함수 $y=ax^2+bx+c$의 그래프와 일치하였다. 상수 $a$, $b$, $c$에 대하여 $a+b-c$의 값을 구하시오.`,
+        answer: `$${ans}$`,
+        solution: `${toStdLines(a, p, q).join("\n")}\n$x$축의 방향으로 $${shiftTex(mx)}$만큼, $y$축의 방향으로 $${shiftTex(my)}$만큼 평행이동하면 $y=${stdRhs(rInt(a), p2, q2)}$이다.\n우변을 전개하면 $y=${genRhs(dst.A, dst.B, dst.C)}$이므로 $a=${dst.A[0]}$, $b=${dst.B[0]}$, $c=${dst.C[0]}$이다.\n따라서 $a+b-c=${ans}$이다.`,
+        facts: {
+          a,
+          p,
+          q,
+          mx,
+          my,
+          p2,
+          q2,
+          A: dst.A[0],
+          B: dst.B[0],
+          C: dst.C[0],
+          ans,
+        },
+        figureSpec: null,
+      };
+    }),
+  ),
+
+  g2("08", "이차함수의 그래프와 삼각형의 넓이", SEC.일반형, "심화하", (rng) =>
+    attempt(300, (): Body | null => {
+      const a = pick(rng, [1, -1, 2, -2] as const);
+      const r1 = intBetween(rng, -5, 1);
+      const r2 = r1 + pick(rng, [2, 4, 6] as const);
+      if (Math.abs(r2) > 6) return null;
+      if (r1 === 0 || r2 === 0) return null; // y절편이 0 이면 삼각형이 안 생긴다
+      const A = rInt(a);
+      const B = rInt(-a * (r1 + r2));
+      const C = rInt(a * r1 * r2);
+      const p = (r1 + r2) / 2;
+      if (!Number.isInteger(p)) return null;
+      // 꼭짓점 y좌표 — y=a(x-r1)(x-r2) 의 꼭짓점은 (p, -a(r2-r1)^2/4) 이다.
+      const vy = -(a * (r2 - r1) * (r2 - r1)) / 4;
+      if (!Number.isInteger(vy)) return null;
+      const fig = parabolaFig(rInt(a), p, vy, [
+        [r1, 0],
+        [r2, 0],
+        [0, C[0]],
+      ]);
+      if (fig === null) return null;
+      const area = (Math.abs(r2 - r1) * Math.abs(C[0])) / 2;
+      if (!Number.isInteger(area)) return null;
+      return {
+        content: `오른쪽 그림과 같이 이차함수 $y=${genRhs(A, B, C)}$의 그래프가 $x$축과 두 점 $\\mathrm{A}$, $\\mathrm{B}$에서 만나고 $y$축과 점 $\\mathrm{C}$에서 만난다. 삼각형 $\\mathrm{ABC}$의 넓이를 구하시오.`,
+        answer: `$${area}$`,
+        solution: `$y=0$${eulReul(0)} 대입하면 $x=${r1}$ 또는 $x=${r2}$이므로 $\\mathrm{A}${pt(r1, 0)}$, $\\mathrm{B}${pt(r2, 0)}$이다.\n$x=0$${eulReul(0)} 대입하면 $y=${C[0]}$이므로 $\\mathrm{C}(0, ${C[0]})$이다.\n밑변의 길이는 $${r2 - r1}$, 높이는 $${Math.abs(C[0])}$이므로 넓이는 $\\dfrac{1}{2}\\times${r2 - r1}\\times${Math.abs(C[0])}=${area}$이다.`,
+        facts: { a, r1, r2, C: C[0], p, vy, area },
+        figureSpec: fig,
+      };
+    }),
+  ),
+
+  g2("09", "이차함수 의 그래프에서 의 부호", SEC.일반형, "심화하", (rng) =>
+    attempt(300, (): Body | null => {
+      const a = pick(rng, [1, -1, 2, -2] as const);
+      const p = intBetween(rng, 1, 3) * pick(rng, SIGNS);
+      const q = intBetween(rng, 1, 5) * pick(rng, SIGNS);
+      const { C } = expand(rInt(a), p, q);
+      if (C[0] === 0) return null;
+      const b = -2 * a * p;
+      // 묻는 것이 $c=f(0)$ · $a+b+c=f(1)$ · $a-b+c=f(-1)$ 이다 —
+      // 그 자리가 프레임 밖이면 **발문이 묻는 것이 그림에 없다**.
+      const fig = parabolaFig(rInt(a), p, q, [], [-1, 1]);
+      if (fig === null) return null;
+      const sa = a > 0 ? ">" : "<";
+      const sb = b > 0 ? ">" : "<";
+      const sc = C[0] > 0 ? ">" : "<";
+      // $f(1)=a+b+c$ · $f(-1)=a-b+c$ 를 묻는 갈래가 있으므로 $0$ 이 되면 안 된다.
+      const f1 = a + b + C[0];
+      const fm1 = a - b + C[0];
+      if (f1 === 0 || fm1 === 0) return null;
+      // ⑴20 과 같은 이유로 **묻는 것**을 돌린다 — 그림이 문항의 전부라
+      // 발문이 늘 같으면 한 시험지에 한 문항밖에 못 낸다.
+      const mode = intBetween(rng, 0, 4);
+      const stem = `오른쪽 그림은 이차함수 $y=ax^2+bx+c$의 그래프이다.`;
+      const opened = `그래프가 ${a > 0 ? "아래" : "위"}로 볼록하므로 $a${sa}0$이고, 축이 $y$축의 ${p > 0 ? "오른쪽" : "왼쪽"}에 있으므로 $b${sb}0$이며, $y$축과의 교점이 원점의 ${C[0] > 0 ? "위쪽" : "아래쪽"}에 있으므로 $c${sc}0$이다.`;
+      const facts = {
+        mode,
+        a,
+        p,
+        q,
+        b,
+        c: C[0],
+        f1,
+        fm1,
+        sa: a > 0 ? 1 : -1,
+        sb: b > 0 ? 1 : -1,
+        sc: C[0] > 0 ? 1 : -1,
+      };
+      const sign = (v: number): string => (v > 0 ? ">" : "<");
+      if (mode === 1) {
+        return {
+          content: `${stem} $abc$의 부호를 부등호를 사용하여 나타내시오.`,
+          answer: `$abc${sign(a * b * C[0])}0$`,
+          solution: `${opened}\n음수인 것의 개수가 $${[a, b, C[0]].filter((v) => v < 0).length}$개이다.\n따라서 $abc${sign(a * b * C[0])}0$이다.`,
+          facts,
+          figureSpec: fig,
+        };
+      }
+      if (mode === 2) {
+        return {
+          content: `${stem} $a+b+c$의 부호를 부등호를 사용하여 나타내시오.`,
+          answer: `$a+b+c${sign(f1)}0$`,
+          solution: `$a+b+c$는 $x=1$일 때의 $y$의 값이다.\n그래프에서 $x=1$인 점이 $x$축의 ${f1 > 0 ? "위쪽" : "아래쪽"}에 있다.\n따라서 $a+b+c${sign(f1)}0$이다.`,
+          facts,
+          figureSpec: fig,
+        };
+      }
+      if (mode === 3) {
+        return {
+          content: `${stem} $a-b+c$의 부호를 부등호를 사용하여 나타내시오.`,
+          answer: `$a-b+c${sign(fm1)}0$`,
+          solution: `$a-b+c$는 $x=-1$일 때의 $y$의 값이다.\n그래프에서 $x=-1$인 점이 $x$축의 ${fm1 > 0 ? "위쪽" : "아래쪽"}에 있다.\n따라서 $a-b+c${sign(fm1)}0$이다.`,
+          facts,
+          figureSpec: fig,
+        };
+      }
+      if (mode === 4) {
+        return {
+          content: `${stem} $\\dfrac{b}{a}$의 부호를 부등호를 사용하여 나타내시오.`,
+          answer: `$\\dfrac{b}{a}${sign(b / a)}0$`,
+          solution: `${opened}\n$a${sa}0$, $b${sb}0$이므로 두 수의 부호는 ${a * b > 0 ? "같다" : "서로 다르다"}.\n따라서 $\\dfrac{b}{a}${sign(b / a)}0$이다.`,
+          facts,
+          figureSpec: fig,
+        };
+      }
+      return {
+        content: `${stem} 상수 $a$, $b$, $c$의 부호를 각각 부등호를 사용하여 나타내시오.`,
+        answer: `$a${sa}0$, $b${sb}0$, $c${sc}0$`,
+        solution: `그래프가 ${a > 0 ? "아래" : "위"}로 볼록하므로 $a${sa}0$이다.\n축이 $y$축의 ${p > 0 ? "오른쪽" : "왼쪽"}에 있으므로 $-\\dfrac{b}{2a}${p > 0 ? ">" : "<"}0$에서 $a$와 $b$의 부호는 ${p > 0 ? "서로 다르다" : "같다"}. 따라서 $b${sb}0$이다.\n$y$축과의 교점이 원점의 ${C[0] > 0 ? "위쪽" : "아래쪽"}에 있으므로 $c${sc}0$이다.`,
+        facts,
+        figureSpec: fig,
+      };
+    }),
+  ),
+
+  g2(
+    "10",
+    "이차함수의 식 구하기 꼭짓점과 다른 한 점을 알 때",
+    SEC.일반형,
+    "응용",
+    (rng) =>
+      attempt(60, (): Body | null => {
+        const a = pick(rng, A_INT);
+        const p = intBetween(rng, -4, 4);
+        const q = intBetween(rng, -8, 8);
+        const s = pick(rng, [-3, -2, -1, 1, 2, 3] as const);
+        const m = p + s;
+        const v = a * s * s + q;
+        if (Math.abs(v) > 40) return null;
+        const { A, B, C } = expand(rInt(a), p, q);
+        if (Math.abs(C[0]) > 60) return null;
+        return {
+          content: `꼭짓점의 좌표가 $${pt(p, q)}$이고 점 $${pt(m, v)}$${eulReul(v)} 지나는 포물선을 그래프로 하는 이차함수의 식을 $y=ax^2+bx+c$ 꼴로 나타내시오. (단, $a$, $b$, $c$는 상수이다.)`,
+          answer: `$y=${genRhs(A, B, C)}$`,
+          solution: `꼭짓점의 좌표가 $${pt(p, q)}$이므로 구하는 식을 $y=a${sqTex(p)}${termTex(rInt(q), "")}$ 꼴로 놓는다.\n$x=${m}$, $y=${v}$${eulReul(v)} 대입하면 $${termTex(rInt(s * s), "a", true)}${termTex(rInt(q), "")}=${v}$이므로 $a=${a}$이다.\n따라서 $y=${stdEqGen(stdRhs(rInt(a), p, q), genRhs(A, B, C))}$이다.`,
+          facts: { a, p, q, m, v, A: A[0], B: B[0], C: C[0] },
+          figureSpec: null,
+        };
+      }),
+  ),
+
+  g2(
+    "11",
+    "이차함수의 식 구하기 축의 방정식과 두 점을 알 때",
+    SEC.일반형,
+    "응용",
+    (rng) =>
+      attempt(60, (): Body | null => {
+        const a = pick(rng, A_INT);
+        const p = intBetween(rng, -3, 3);
+        const q = intBetween(rng, -8, 8);
+        const s1 = pick(rng, [-3, -2, -1] as const);
+        const s2 = pick(rng, [1, 2, 3] as const);
+        // ⚠️ 두 점이 **축에 대칭**이면(|s1|=|s2|) 대입한 두 식이 글자까지 같아진다.
+        //    조건이 하나뿐이므로 $a$ 가 안 정해지고 **답이 무수히 많다** — 그런데
+        //    적힌 답도 조건을 만족하니 **값 검사는 통과한다.** 9가지 중 3가지라
+        //    실측 33.3% 가 그랬다(2026-08-24). `probe-middle-uniqueness.ts` 가 잡아 준다.
+        if (s1 * s1 === s2 * s2) return null;
+        const m1 = p + s1;
+        const m2 = p + s2;
+        const v1 = a * s1 * s1 + q;
+        const v2 = a * s2 * s2 + q;
+        if (Math.abs(v1) > 40 || Math.abs(v2) > 40) return null;
+        const { A, B, C } = expand(rInt(a), p, q);
+        if (Math.abs(C[0]) > 60) return null;
+        return {
+          content: `축의 방정식이 $x=${p}$이고 두 점 $${pt(m1, v1)}$, $${pt(m2, v2)}$${eulReul(v2)} 지나는 포물선을 그래프로 하는 이차함수의 식을 $y=ax^2+bx+c$ 꼴로 나타내시오. (단, $a$, $b$, $c$는 상수이다.)`,
+          answer: `$y=${genRhs(A, B, C)}$`,
+          solution: `축의 방정식이 $x=${p}$이므로 구하는 식을 $y=a${sqTex(p)}+q$로 놓는다.\n두 점의 좌표를 대입하면 $${termTex(rInt(s1 * s1), "a", true)}+q=${v1}$, $${termTex(rInt(s2 * s2), "a", true)}+q=${v2}$이다.\n두 식을 연립하여 풀면 $a=${a}$, $q=${q}$이다.\n따라서 $y=${stdEqGen(stdRhs(rInt(a), p, q), genRhs(A, B, C))}$이다.`,
+          facts: { a, p, q, m1, v1, m2, v2, A: A[0], B: B[0], C: C[0] },
+          figureSpec: null,
+        };
+      }),
+  ),
+
+  g2(
+    "12",
+    "이차함수의 식 구하기 서로 다른 세 점을 알 때",
+    SEC.일반형,
+    "응용",
+    (rng) =>
+      attempt(60, (): Body | null => {
+        const a = pick(rng, A_INT);
+        const p = intBetween(rng, -3, 3);
+        const q = intBetween(rng, -8, 8);
+        const { A, B, C } = expand(rInt(a), p, q);
+        if (Math.abs(C[0]) > 40) return null;
+        const x1 = pick(rng, [-3, -2, -1] as const);
+        const x2 = pick(rng, [1, 2, 3] as const);
+        const f = (x: number): number => a * (x - p) * (x - p) + q;
+        const y1 = f(x1);
+        const y2 = f(x2);
+        if (Math.abs(y1) > 40 || Math.abs(y2) > 40) return null;
+        return {
+          content: `세 점 $(0, ${C[0]})$, $${pt(x1, y1)}$, $${pt(x2, y2)}$${eulReul(y2)} 지나는 포물선을 그래프로 하는 이차함수의 식을 $y=ax^2+bx+c$ 꼴로 나타내시오. (단, $a$, $b$, $c$는 상수이다.)`,
+          answer: `$y=${genRhs(A, B, C)}$`,
+          solution: `구하는 식을 $y=ax^2+bx+c$로 놓는다.\n점 $(0, ${C[0]})$${eulReul(C[0])} 지나므로 $c=${C[0]}$이다.\n나머지 두 점을 대입하면 $${termTex(rInt(x1 * x1), "a", true)}${termTex(rInt(x1), "b")}${termTex(C, "")}=${y1}$, $${termTex(rInt(x2 * x2), "a", true)}${termTex(rInt(x2), "b")}${termTex(C, "")}=${y2}$이다.\n두 식을 연립하여 풀면 $a=${A[0]}$, $b=${B[0]}$이다.\n따라서 $y=${genRhs(A, B, C)}$이다.`,
+          facts: { a, p, q, x1, y1, x2, y2, A: A[0], B: B[0], C: C[0] },
+          figureSpec: null,
+        };
+      }),
+  ),
+
+  g2(
+    "13",
+    "이차함수의 식 구하기 축과의 두 교점과 다른 한 점을 알 때",
+    SEC.일반형,
+    "응용",
+    (rng) =>
+      attempt(120, (): Body | null => {
+        const a = pick(rng, A_INT);
+        const r1 = intBetween(rng, -5, 1);
+        const r2 = r1 + intBetween(rng, 2, 6);
+        if (Math.abs(r2) > 5) return null;
+        const m = pick(rng, [
+          r1 - 1,
+          r2 + 1,
+          (r1 + r2) % 2 === 0 ? (r1 + r2) / 2 : r2 + 2,
+        ] as const);
+        if (m === r1 || m === r2) return null;
+        const v = a * (m - r1) * (m - r2);
+        if (Math.abs(v) > 40 || v === 0) return null;
+        const A = rInt(a);
+        const B = rInt(-a * (r1 + r2));
+        const C = rInt(a * r1 * r2);
+        if (Math.abs(C[0]) > 60) return null;
+        return {
+          content: `$x$축과 두 점 $${pt(r1, 0)}$, $${pt(r2, 0)}$에서 만나고 점 $${pt(m, v)}$${eulReul(v)} 지나는 포물선을 그래프로 하는 이차함수의 식을 $y=ax^2+bx+c$ 꼴로 나타내시오. (단, $a$, $b$, $c$는 상수이다.)`,
+          answer: `$y=${genRhs(A, B, C)}$`,
+          solution: `$x$축과 두 점 $${pt(r1, 0)}$, $${pt(r2, 0)}$에서 만나므로 구하는 식을 $y=${factoredWithA(r1, r2)}$${r2 === 0 ? "로" : euroRo(r2)} 놓는다.\n$x=${m}$, $y=${v}$${eulReul(v)} 대입하면 $${termTex(rInt((m - r1) * (m - r2)), "a", true)}=${v}$이므로 $a=${a}$이다.\n따라서 $y=${genRhs(A, B, C)}$이다.`,
+          facts: { a, r1, r2, m, v, A: A[0], B: B[0], C: C[0] },
+          figureSpec: null,
+        };
+      }),
+  ),
+
+  g2("14", "이차함수의 최댓값과 최솟값", SEC.최대최소, "응용", (rng) =>
+    attempt(60, (): Body | null => {
+      const a = pick(rng, A_INT);
+      const p = intBetween(rng, 1, 5) * pick(rng, SIGNS);
+      const q = intBetween(rng, -9, 9);
+      const { A, B, C } = expand(rInt(a), p, q);
+      if (Math.abs(C[0]) > 60) return null;
+      // a>0 이면 최솟값만, a<0 이면 최댓값만 있다 — 묻는 것을 부호가 가른다.
+      const isMax = a < 0;
+      const word = isMax ? "최댓값" : "최솟값";
+      return {
+        content: `이차함수 $y=${genRhs(A, B, C)}$의 ${word}${eulReul(0)} 구하시오.`,
+        answer: `$${q}$`,
+        solution: `${toStdLines(a, p, q).join("\n")}\n$x^2$의 계수가 ${isMax ? "음수이므로 그래프는 위로 볼록하고" : "양수이므로 그래프는 아래로 볼록하고"} $x=${p}$일 때 ${word}${eulReul(0)} 갖는다.\n따라서 ${word}은 $${q}$이다.`,
+        facts: { a, p, q, C: C[0], isMax: isMax ? 1 : 0 },
+        figureSpec: null,
+      };
+    }),
+  ),
+
+  g2(
+    "15",
+    "이차함수의 최댓값 또는 최솟값이 주어질 때 미지수의 값 구하기 ⑴",
+    SEC.최대최소,
+    "응용",
+    (rng) =>
+      attempt(60, (): Body | null => {
+        const a = pick(rng, A_INT);
+        const p = intBetween(rng, 1, 5) * pick(rng, SIGNS);
+        const q = intBetween(rng, -9, 9);
+        const { A, B, C } = expand(rInt(a), p, q);
+        if (Math.abs(C[0]) > 60) return null;
+        const isMax = a < 0;
+        const word = isMax ? "최댓값" : "최솟값";
+        return {
+          content: `이차함수 $y=${termTex(A, "x^2", true)}${termTex(B, "x")}+k$의 ${word}이 $${q}$일 때, 상수 $k$의 값을 구하시오.`,
+          answer: `$${C[0]}$`,
+          solution: `$y=${termTex(A, "x^2", true)}${termTex(B, "x")}+k=${termTex(A, sqTex(p), true)}${termTex(rInt(-a * p * p), "")}+k$이다.\n${word}을 갖는 것은 $x=${p}$일 때이고 그 값이 $${-a * p * p}+k$이다.\n이 값이 $${q}$이므로 $k=${C[0]}$이다.`,
+          facts: { a, p, q, A: A[0], B: B[0], C: C[0], isMax: isMax ? 1 : 0 },
+          figureSpec: null,
+        };
+      }),
+  ),
+
+  g2(
+    "16",
+    "이차함수의 최댓값 또는 최솟값이 주어질 때 미지수의 값 구하기 ⑵",
+    SEC.최대최소,
+    "응용",
+    (rng) =>
+      attempt(60, (): Body | null => {
+        const a = pick(rng, A_INT);
+        const p = intBetween(rng, 1, 5) * pick(rng, SIGNS);
+        const q = intBetween(rng, -9, 9);
+        const { A, B, C } = expand(rInt(a), p, q);
+        if (Math.abs(C[0]) > 60) return null;
+        const isMax = a < 0;
+        const word = isMax ? "최댓값" : "최솟값";
+        const ans = B[0] + C[0];
+        return {
+          content: `이차함수 $y=${termTex(A, "x^2", true)}+bx+c$는 $x=${p}$일 때 ${word} $${q}$${eulReul(q)} 갖는다. 상수 $b$, $c$에 대하여 $b+c$의 값을 구하시오.`,
+          answer: `$${ans}$`,
+          solution: `$x=${p}$일 때 ${word} $${q}$${eulReul(q)} 가지므로 $y=${termTex(A, sqTex(p), true)}${termTex(rInt(q), "")}$이다.\n우변을 전개하면 $y=${genRhs(A, B, C)}$이므로 $b=${B[0]}$, $c=${C[0]}$이다.\n따라서 $b+c=${ans}$이다.`,
+          facts: {
+            a,
+            p,
+            q,
+            A: A[0],
+            B: B[0],
+            C: C[0],
+            isMax: isMax ? 1 : 0,
+            ans,
+          },
+          figureSpec: null,
+        };
+      }),
+  ),
+
+  g2(
+    "17",
+    "이차함수의 활용 합 또는 차가 일정한 두 수의 곱",
+    SEC.최대최소,
+    "응용",
+    (rng): Body => {
+      const mode = intBetween(rng, 0, 2);
+      const h = intBetween(rng, 3, 12);
+      const m = 2 * h;
+      if (mode === 0) {
+        return {
+          content: `합이 $${m}$인 두 수의 곱의 최댓값을 구하시오.`,
+          answer: `$${h * h}$`,
+          solution: `두 수를 $x$, $${m}-x$라 하고 곱을 $y$라 하면 $y=x(${m}-x)=-x^2+${m}x$이다.\n$y=-(x-${h})^2+${h * h}$이므로 $x=${h}$일 때 최댓값 $${h * h}$${eulReul(h * h)} 갖는다.`,
+          facts: { mode, m, h, ans: h * h },
+          figureSpec: null,
+        };
+      }
+      if (mode === 1) {
+        return {
+          content: `차가 $${m}$인 두 수의 곱이 최소가 될 때, 그 두 수를 구하시오.`,
+          answer: `$${-h}$${waGwaTex(-h)} $${h}$`,
+          solution: `두 수를 $x$, $x+${m}$${eulReul(m) === "을" ? "이라" : "라"} 하고 곱을 $y$라 하면 $y=x(x+${m})=x^2+${m}x$이다.\n$y=(x+${h})^2-${h * h}$이므로 $x=${-h}$일 때 최솟값을 갖는다.\n따라서 구하는 두 수는 $${-h}$${waGwaTex(-h)} $${h}$이다.`,
+          facts: { mode, m, h, ans: h },
+          figureSpec: null,
+        };
+      }
+      // 2x-y=m 일 때 xy 의 최솟값 — 답이 정수가 되도록 m 을 4의 배수로 잡는다.
+      const m4 = 4 * intBetween(rng, 1, 5);
+      const t = m4 / 4;
+      const ans = -(m4 * m4) / 8;
+      return {
+        content: `두 수 $x$, $y$에 대하여 $2x-y=${m4}$${eulReul(m4)} 항상 만족할 때, $xy$의 최솟값을 구하시오.`,
+        answer: `$${ans}$`,
+        solution: `$y=2x-${m4}$${eulReul(m4)} $xy$에 대입하면 $xy=x(2x-${m4})=2x^2-${m4}x$이다.\n$2x^2-${m4}x=2(x-${t})^2-${(m4 * m4) / 8}$이므로 $x=${t}$일 때 최솟값 $${ans}$${eulReul(ans)} 갖는다.`,
+        facts: { mode, m: m4, h: t, ans },
+        figureSpec: null,
+      };
+    },
+  ),
+
+  g2(
+    "18",
+    "이차함수의 활용 쏘아 올린 물체",
+    SEC.최대최소,
+    "응용",
+    (rng): Body => {
+      const k = intBetween(rng, 2, 8);
+      const v = 10 * k;
+      const top = 5 * k * k;
+      const mode = intBetween(rng, 0, 2);
+      const stem = `지면에서 초속 $${v}\\,\\mathrm{m}$로 똑바로 위로 쏘아 올린 물체의 $x$초 후의 지면으로부터의 높이를 $y\\,\\mathrm{m}$라 하면 $y=${v}x-5x^2$인 관계가 성립한다.`;
+      const std = `$y=-5(x-${k})^2+${top}$`;
+      if (mode === 0) {
+        return {
+          content: `${stem} 이 물체가 최고 높이에 도달하는 것은 쏘아 올린 지 몇 초 후인지 구하시오.`,
+          answer: `$${k}$초 후`,
+          solution: `${std}이므로 $x=${k}$일 때 $y$의 값이 최대가 된다.\n따라서 최고 높이에 도달하는 것은 쏘아 올린 지 $${k}$초 후이다.`,
+          facts: { mode, v, k, top },
+          figureSpec: null,
+        };
+      }
+      if (mode === 1) {
+        return {
+          content: `${stem} 이 물체가 도달하는 최고 높이를 구하시오.`,
+          answer: `$${top}\\,\\mathrm{m}$`,
+          solution: `${std}이므로 $x=${k}$일 때 최댓값 $${top}$${eulReul(top)} 갖는다.\n따라서 최고 높이는 $${top}\\,\\mathrm{m}$이다.`,
+          facts: { mode, v, k, top },
+          figureSpec: null,
+        };
+      }
+      return {
+        content: `${stem} 이 물체가 다시 지면에 떨어지는 것은 쏘아 올린 지 몇 초 후인지 구하시오.`,
+        answer: `$${2 * k}$초 후`,
+        solution: `지면에 떨어질 때 $y=0$이므로 $${v}x-5x^2=0$에서 $5x(${2 * k}-x)=0$이다.\n즉 $x=0$ 또는 $x=${2 * k}$이다.\n따라서 다시 지면에 떨어지는 것은 쏘아 올린 지 $${2 * k}$초 후이다.`,
+        facts: { mode, v, k, top },
+        figureSpec: null,
+      };
+    },
+  ),
+
+  g2(
+    "19",
+    "이차함수의 활용 도형의 넓이",
+    SEC.최대최소,
+    "심화하",
+    (rng): Body => {
+      const h = intBetween(rng, 3, 14);
+      const mode = intBetween(rng, 0, 2);
+      if (mode === 0) {
+        return {
+          content: `둘레의 길이가 $${4 * h}\\,\\mathrm{cm}$인 직사각형의 넓이의 최댓값을 구하시오.`,
+          answer: `$${h * h}\\,\\mathrm{cm}^2$`,
+          solution: `가로의 길이를 $x\\,\\mathrm{cm}$라 하면 세로의 길이는 $(${2 * h}-x)\\,\\mathrm{cm}$이다.\n넓이를 $y\\,\\mathrm{cm}^2$라 하면 $y=x(${2 * h}-x)=-(x-${h})^2+${h * h}$이다.\n따라서 $x=${h}$일 때 넓이의 최댓값은 $${h * h}\\,\\mathrm{cm}^2$이다.`,
+          facts: { mode, h, ans: h * h },
+          figureSpec: null,
+        };
+      }
+      if (mode === 1) {
+        return {
+          content: `가로와 세로의 길이의 합이 $${2 * h}\\,\\mathrm{cm}$인 직사각형 중에서 넓이가 가장 큰 것의 가로의 길이를 구하시오.`,
+          answer: `$${h}\\,\\mathrm{cm}$`,
+          solution: `가로의 길이를 $x\\,\\mathrm{cm}$라 하면 세로의 길이는 $(${2 * h}-x)\\,\\mathrm{cm}$이다.\n넓이를 $y\\,\\mathrm{cm}^2$라 하면 $y=-(x-${h})^2+${h * h}$이다.\n따라서 넓이가 가장 클 때의 가로의 길이는 $${h}\\,\\mathrm{cm}$이다.`,
+          facts: { mode, h, ans: h },
+          figureSpec: null,
+        };
+      }
+      const s = 2 * h;
+      return {
+        content: `한 변의 길이가 $${s}\\,\\mathrm{cm}$인 정사각형 $\\mathrm{ABCD}$에서 점 $\\mathrm{P}$는 변 $\\mathrm{AB}$ 위를, 점 $\\mathrm{Q}$는 변 $\\mathrm{AD}$ 위를 움직이고 $\\overline{\\mathrm{AP}}=\\overline{\\mathrm{DQ}}$이다. 삼각형 $\\mathrm{APQ}$의 넓이의 최댓값을 구하시오.`,
+        answer: `$${(h * h) / 2}\\,\\mathrm{cm}^2$`,
+        solution: `$\\overline{\\mathrm{AP}}=x\\,\\mathrm{cm}$라 하면 $\\overline{\\mathrm{DQ}}=x\\,\\mathrm{cm}$이므로 $\\overline{\\mathrm{AQ}}=(${s}-x)\\,\\mathrm{cm}$이다.\n삼각형 $\\mathrm{APQ}$의 넓이를 $y\\,\\mathrm{cm}^2$라 하면 $y=\\dfrac{1}{2}x(${s}-x)=-\\dfrac{1}{2}(x-${h})^2+${(h * h) / 2}$이다.\n따라서 $x=${h}$일 때 넓이의 최댓값은 $${(h * h) / 2}\\,\\mathrm{cm}^2$이다.`,
+        facts: { mode, h, ans: (h * h) / 2 },
+        figureSpec: null,
+      };
+    },
+  ),
+
+  g2(
+    "20",
+    "최댓값의 최솟값 또는 최솟값의 최댓값",
+    SEC.최대최소,
+    "심화하",
+    (rng): Body => {
+      const mode = intBetween(rng, 0, 1);
+      if (mode === 0) {
+        const t = 2 * intBetween(rng, 1, 6);
+        const ans = -((t * t) / 4);
+        return {
+          content: `이차함수 $y=-x^2+2kx+${t}k$의 최댓값을 $M$이라 할 때, $M$의 최솟값을 구하시오. (단, $k$는 상수이다.)`,
+          answer: `$${ans}$`,
+          solution: `$y=-(x-k)^2+k^2+${t}k$이므로 최댓값은 $M=k^2+${t}k$이다.\n$M=(k+${t / 2})^2-${(t * t) / 4}$이므로 $k=${-t / 2}$일 때 $M$의 최솟값은 $${ans}$이다.`,
+          facts: { mode, t, ans },
+          figureSpec: null,
+        };
+      }
+      const A = intBetween(rng, 1, 4);
+      const ans = 2 * A;
+      return {
+        content: `이차함수 $y=${termTex(rInt(A), "x^2", true)}-ax+a$의 최솟값을 $m$이라 할 때, $m$의 값이 최대가 되도록 하는 상수 $a$의 값을 구하시오.`,
+        answer: `$${ans}$`,
+        solution: `$y=${A === 1 ? "" : A}\\left(x-\\dfrac{a}{${2 * A}}\\right)^2-\\dfrac{a^2}{${4 * A}}+a$이므로 최솟값은 $m=-\\dfrac{a^2}{${4 * A}}+a$이다.\n$m=-\\dfrac{1}{${4 * A}}(a-${2 * A})^2+${A}$이므로 $a=${ans}$일 때 $m$이 최대가 된다.`,
+        facts: { mode, A, ans },
+        figureSpec: null,
+      };
+    },
+  ),
+
+  g2(
+    "21",
+    "이차함수의 활용 내접하는 도형의 넓이",
+    SEC.최대최소,
+    "심화하",
+    (rng): Body => {
+      const mode = intBetween(rng, 0, 2);
+      if (mode === 0) {
+        const h = intBetween(rng, 2, 9);
+        const b = 2 * h;
+        return {
+          content: `직선 $y=-x+${b}$ 위에 있는 제$1$사분면 위의 점 $\\mathrm{P}$에서 $x$축, $y$축에 내린 수선의 발을 각각 $\\mathrm{Q}$, $\\mathrm{R}$라 할 때, 직사각형 $\\mathrm{OQPR}$의 넓이의 최댓값을 구하시오. (단, $\\mathrm{O}$는 원점이다.)`,
+          answer: `$${h * h}$`,
+          solution: `점 $\\mathrm{P}$의 좌표를 $(x, -x+${b})$${eulReul(b) === "을" ? "이라" : "라"} 하면 $\\overline{\\mathrm{OQ}}=x$, $\\overline{\\mathrm{PQ}}=-x+${b}$이다.\n넓이를 $y$라 하면 $y=x(-x+${b})=-(x-${h})^2+${h * h}$이다.\n따라서 $x=${h}$일 때 넓이의 최댓값은 $${h * h}$이다.`,
+          facts: { mode, b, h, ans: h * h },
+          figureSpec: null,
+        };
+      }
+      if (mode === 1) {
+        const m = pick(rng, [2, 4] as const);
+        const h = intBetween(rng, 1, 5);
+        const b = 2 * m * h;
+        const ans = m * h * h;
+        return {
+          content: `직선 $y=-${m}x+${b}$ 위에 있는 제$1$사분면 위의 점 $\\mathrm{P}$에서 $x$축, $y$축에 내린 수선의 발을 각각 $\\mathrm{Q}$, $\\mathrm{R}$라 할 때, 직사각형 $\\mathrm{OQPR}$의 넓이의 최댓값을 구하시오. (단, $\\mathrm{O}$는 원점이다.)`,
+          answer: `$${ans}$`,
+          solution: `점 $\\mathrm{P}$의 좌표를 $(x, -${m}x+${b})$${eulReul(b) === "을" ? "이라" : "라"} 하면 넓이는 $y=x(-${m}x+${b})=-${m}x^2+${b}x$이다.\n$y=-${m}(x-${h})^2+${ans}$이므로 $x=${h}$일 때 최댓값 $${ans}$${eulReul(ans)} 갖는다.`,
+          facts: { mode, m, b, h, ans },
+          figureSpec: null,
+        };
+      }
+      const m = 2;
+      const h = intBetween(rng, 1, 5);
+      const b = 2 * m * h;
+      const ans = (m * h * h) / 2;
+      return {
+        content: `직선 $y=-${m}x+${b}$ 위에 있는 제$1$사분면 위의 점 $\\mathrm{P}$에서 $x$축, $y$축에 내린 수선의 발을 각각 $\\mathrm{Q}$, $\\mathrm{R}$라 할 때, 직각삼각형 $\\mathrm{PRQ}$의 넓이의 최댓값을 구하시오.`,
+        answer: `$${ans}$`,
+        solution: `점 $\\mathrm{P}$의 좌표를 $(x, -${m}x+${b})$${eulReul(b) === "을" ? "이라" : "라"} 하면 $\\overline{\\mathrm{PR}}=x$, $\\overline{\\mathrm{PQ}}=-${m}x+${b}$이다.\n넓이를 $y$라 하면 $y=\\dfrac{1}{2}x(-${m}x+${b})=${termTex(rInt(-m / 2), `(x-${h})^2`, true)}${termTex(rInt(ans), "")}$이다.\n따라서 $x=${h}$일 때 넓이의 최댓값은 $${ans}$이다.`,
+        facts: { mode, m, b, h, ans },
+        figureSpec: null,
+      };
+    },
+  ),
+
+  // ── 확장 유형 (갈래 C, 70~99) ─────────────────────────
+  // 이 소단원은 기존 8유형이 전부 응용·심화라 **기본이 하나도 없다.**
+  // 시험지 배분(1:4:4:1)에서 기본이 넷 필요하므로 새 둘을 기본으로 낸다.
+
+  def(
+    MINOR_G2,
+    "70",
+    "표준형에서 최댓값 또는 최솟값 읽기",
+    SEC.최대최소,
+    "기본",
+    (rng): Body => {
+      const a = pick(rng, [-3, -2, -1, 1, 2, 3] as const);
+      const p = intBetween(rng, -5, 5);
+      const qv = intBetween(rng, -8, 8);
+      const isMax = a < 0;
+      return {
+        content: `이차함수 $y=${stdRhs(rInt(a), p, qv)}$의 ${isMax ? "최댓값" : "최솟값"}을 구하시오.`,
+        answer: `$${qv}$`,
+        solution: `꼭짓점의 좌표가 $(${p}, ${qv})$이고 $x^2$의 계수가 ${a < 0 ? "음수이므로 위로 볼록하다" : "양수이므로 아래로 볼록하다"}.\n따라서 $x=${p}$일 때 ${isMax ? "최댓값" : "최솟값"} $${qv}$${eulReul(qv)} 갖는다.`,
+        facts: { a, p, q: qv, ans: qv, isMax: isMax ? 1 : 0 },
+      };
+    },
+  ),
+
+  def(
+    MINOR_G2,
+    "71",
+    "꼭짓점의 좌표로 최댓값 또는 최솟값 구하기",
+    SEC.최대최소,
+    "기본",
+    (rng): Body => {
+      const a = pick(rng, [-2, -1, 1, 2] as const);
+      const p = intBetween(rng, -4, 4);
+      const qv = intBetween(rng, -7, 7);
+      const isMax = a < 0;
+      return {
+        content: `꼭짓점의 좌표가 $(${p}, ${qv})$이고 $x^2$의 계수가 $${a}$인 이차함수의 ${isMax ? "최댓값" : "최솟값"}을 구하시오.`,
+        answer: `$${qv}$`,
+        solution: `이차함수의 식은 $y=${stdRhs(rInt(a), p, qv)}$이다.\n$x^2$의 계수가 ${a < 0 ? "음수이므로 위로 볼록해 꼭짓점에서 최댓값" : "양수이므로 아래로 볼록해 꼭짓점에서 최솟값"}을 갖는다.\n따라서 ${isMax ? "최댓값" : "최솟값"}은 $${qv}$이다.`,
+        facts: { a, p, q: qv, ans: qv, isMax: isMax ? 1 : 0 },
+      };
+    },
+  ),
+];
+
+export const M3_FUNC: TypeEntry[] = [...TYPES_G1, ...TYPES_G2];
+
+/** 중단원 이름 — RPM 색인 정본 바이트. 시험이 리터럴로 잠근다. */
+export const M3_FUNC_MINORS = [MINOR_G1, MINOR_G2] as const;
+
+/** 그림이 붙는 유형 — 시험이 **실제 엔진으로** 전량 그려 본다. */
+export const M3_FUNC_FIGURE_KEYS: readonly string[] = [
+  `${BOOK}|${MINOR_G1}|07`,
+  `${BOOK}|${MINOR_G1}|18`,
+  `${BOOK}|${MINOR_G1}|20`,
+  `${BOOK}|${MINOR_G1}|21`,
+  `${BOOK}|${MINOR_G2}|08`,
+  `${BOOK}|${MINOR_G2}|09`,
+];

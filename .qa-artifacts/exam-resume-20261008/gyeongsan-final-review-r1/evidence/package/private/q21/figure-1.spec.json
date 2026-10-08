@@ -1,0 +1,115 @@
+{
+  "version": 2,
+  "theme": "exam-thin",
+  "points": {
+    "O": [
+      40,
+      220
+    ],
+    "U": [
+      220,
+      220
+    ],
+    "V": [
+      40,
+      40
+    ],
+    "Q": [
+      177.88799976141604,
+      104.29823025642294
+    ],
+    "S": [
+      177.88799976141604,
+      220
+    ],
+    "T": [
+      220,
+      68.96206638808962
+    ]
+  },
+  "segments": {
+    "OS": [
+      "O",
+      "S"
+    ],
+    "SU": [
+      "S",
+      "U"
+    ],
+    "OV": [
+      "O",
+      "V"
+    ],
+    "OQ": [
+      "O",
+      "Q"
+    ],
+    "QT": [
+      "Q",
+      "T"
+    ],
+    "QS": [
+      "Q",
+      "S"
+    ],
+    "UT": [
+      "U",
+      "T"
+    ]
+  },
+  "angles": {
+    "angO": {
+      "vertex": "O",
+      "points": [
+        "S",
+        "Q"
+      ],
+      "label": "40°",
+      "radius": 32
+    },
+    "rightS": {
+      "vertex": "S",
+      "points": [
+        "O",
+        "Q"
+      ],
+      "right": true,
+      "radius": 10
+    },
+    "rightU": {
+      "vertex": "U",
+      "points": [
+        "S",
+        "T"
+      ],
+      "right": true,
+      "radius": 10
+    }
+  },
+  "labels": {
+    "O": "O",
+    "U": "U",
+    "Q": "Q",
+    "S": "S",
+    "T": "T"
+  },
+  "style": {
+    "font_size": 20,
+    "angle_font_size": 18
+  },
+  "circles": {
+    "quarter": {
+      "center": "O",
+      "radius": 180,
+      "draw": false
+    }
+  },
+  "arcs": {
+    "arcUV": {
+      "circle": "quarter",
+      "from": "U",
+      "to": "V",
+      "dir": "ccw"
+    }
+  }
+}

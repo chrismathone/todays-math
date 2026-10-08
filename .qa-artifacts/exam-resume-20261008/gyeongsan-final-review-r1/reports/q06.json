@@ -1,0 +1,309 @@
+{
+  "questionNumber": 6,
+  "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q06",
+  "status": "pending",
+  "studentDigest": "ce3ffcbd3bc0e556dd9c4979dd01a3d3666d7bb4c664ab9811708f16c2ff3242",
+  "candidateDigest": "d2b118b5451d5a18a7687abcc5eb4590e40586de68db1dca328ebc1ad05f9a58",
+  "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+  "solveDigest": "e7923123d8efdd81a4ac7ee0a31a6f77bdbd452865c48f8cb52c08b8f7b37aa9",
+  "method": "independent-solve-then-review",
+  "verifierId": "orca-codex-exam-twin-author-geometry-20261008",
+  "checks": {
+    "answerCorrect": true,
+    "solutionCorrect": true,
+    "existenceUniqueness": true,
+    "choicesCorrect": true,
+    "figureConsistent": true,
+    "sameCoreConceptAndProcedure": true,
+    "distinctPresentation": true,
+    "naturalKorean": true,
+    "curriculumAppropriate": true,
+    "allStudentSurfacesInScope": true,
+    "unitFamilyFit": false,
+    "scoreAppropriate": true
+  },
+  "curriculumSurfaces": {
+    "stem": {
+      "status": "passed",
+      "basis": "꼭짓점의 상수 구하기→두 관측 기록에서 실제 두 좌표 복구. 같은 꼭짓점 읽기와 직선 대입을 사용. 명시 조건과 요청은 아래 실제 중학교 해법으로 해결된다.",
+      "standardCodes": [
+        "9수03-10",
+        "9수03-06",
+        "9수02-05"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "choices": {
+      "status": "passed",
+      "basis": "실제5보기 전부 계산/도형 비교;정답 하나,나머지 비동치 오답. ",
+      "standardCodes": [
+        "9수03-10",
+        "9수03-06",
+        "9수02-05"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "figuresAndTables": {
+      "status": "passed",
+      "basis": "본문 표/수치/함수 기록을 직접 확인;별도 그림 없음. 70mm 검사 화면에서 텍스트와 자산 역할 확인.",
+      "standardCodes": [
+        "9수03-10",
+        "9수03-06",
+        "9수02-05"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "notation": {
+      "status": "passed",
+      "basis": "통상 좌표/함수/선분/도 단위/근호/실제 삼각비 표기. 일반 라디안·벡터·고교 공식 표기 없음. ",
+      "standardCodes": [
+        "9수03-10",
+        "9수03-06",
+        "9수02-05"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "answer": {
+      "status": "passed",
+      "basis": "P=(t,3t−2),직선 대입→5t=10→(2,4).다섯 후보의 꼭짓점 궤적/직선 조건을 모두 검사. circled choice는 역할·값·단위가 독립 결과와 일치.",
+      "standardCodes": [
+        "9수03-10",
+        "9수03-06",
+        "9수02-05"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "studentSolution": {
+      "status": "passed",
+      "basis": "꼭짓점의 두 좌표를 t로 읽어 직선에 대입하고 일차방정식으로 좌표 복원. 공개된 새 저자 풀이의 모든 단계와 실제 정의를 읽고 검산. ",
+      "standardCodes": [
+        "9수03-10",
+        "9수03-06",
+        "9수02-05"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    },
+    "prerequisites": {
+      "status": "passed",
+      "basis": "꼭짓점의 두 좌표를 t로 읽어 직선에 대입하고 일차방정식으로 좌표 복원. 공식 선택 성취기준의 중학교 범위와 초등 밑변높이 원리;필요한 보조점/조건 명시 여부 확인.",
+      "standardCodes": [
+        "9수03-10",
+        "9수03-06",
+        "9수02-05"
+      ],
+      "officialEvidence": "evidence/curriculum-scope-input.json + curriculum-validation.json"
+    }
+  },
+  "evidence": {
+    "binding": {
+      "questionNumber": 6,
+      "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q06",
+      "studentDigest": "ce3ffcbd3bc0e556dd9c4979dd01a3d3666d7bb4c664ab9811708f16c2ff3242",
+      "candidateDigest": "d2b118b5451d5a18a7687abcc5eb4590e40586de68db1dca328ebc1ad05f9a58",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "solveDigest": "e7923123d8efdd81a4ac7ee0a31a6f77bdbd452865c48f8cb52c08b8f7b37aa9",
+      "candidateFileSha256": "df1935a9a9132cc04fed9be127ba42687f9322a286a6d3d02d546b38b0c02e0a",
+      "rawSolveSha256": "73ff1f1cfde8fdf90441fb1a5e9117db4f1b86078adf131f0542e17664a73741",
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-6",
+      "sourceQuestionCanonicalDigest": "5a7d89a55f11b48fae44c14d4053824a84c70fc114da6d8053a5e1163089684e",
+      "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceProvidedDigest": "97c308d328df8b57c8935750b62056a0a89b34105fa84b9d4bc2ae170b6e82c8",
+      "sourceHashContract": "supplied sourceContentDigest separate from raw stem or complete canonical source-row digest",
+      "validation": {
+        "structurallyValid": true,
+        "surfaceKeywordViolations": [],
+        "semanticGradeReviewStillRequired": true
+      }
+    },
+    "independentSolveCommit": "c8f8aeadfb28becb1d7447240fd4e28b6702fc4c",
+    "rawSolveUnchanged": true,
+    "answerComparison": {
+      "literalEqual": true,
+      "semanticEqual": true,
+      "role": "single selected choice",
+      "authorAnswer": "②",
+      "independentAnswer": "②",
+      "allFiveChoiceTruthValues": [
+        false,
+        true,
+        false,
+        false,
+        false
+      ],
+      "semanticDuplicateChoices": [],
+      "unitAndTargetOrderChecked": true,
+      "writtenPartsRequested": [],
+      "writtenRubricApplicable": false
+    },
+    "independentExactCalculation": {
+      "questionNumber": 6,
+      "target": [
+        "2",
+        "4"
+      ],
+      "status": "independently-computed",
+      "evidence": {
+        "t": 2,
+        "vertex": [
+          "2",
+          "4"
+        ],
+        "lineRecheck": 4,
+        "uniqueEquation": "5t=10",
+        "allChoiceVertexAndLineChecks": [
+          {
+            "vertexLocus": false,
+            "line": false
+          },
+          {
+            "vertexLocus": true,
+            "line": true
+          },
+          {
+            "vertexLocus": false,
+            "line": false
+          },
+          {
+            "vertexLocus": false,
+            "line": false
+          },
+          {
+            "vertexLocus": false,
+            "line": false
+          }
+        ],
+        "allFiveActualChoiceValues": [
+          [
+            "-2",
+            "4"
+          ],
+          [
+            "2",
+            "4"
+          ],
+          [
+            "2",
+            "-4"
+          ],
+          [
+            "4",
+            "2"
+          ],
+          [
+            "2",
+            "8"
+          ]
+        ],
+        "choiceCorrectness": [
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "correctChoiceNumber": 2,
+        "semanticDuplicateChoices": [],
+        "oneCorrectChoice": true
+      },
+      "knownHolds": []
+    },
+    "mathAndNewSolution": "P=(t,3t−2),직선 대입→5t=10→(2,4).다섯 후보의 꼭짓점 궤적/직선 조건을 모두 검사.",
+    "coreAndSubstantiveDelta": "꼭짓점의 상수 구하기→두 관측 기록에서 실제 두 좌표 복구. 같은 꼭짓점 읽기와 직선 대입을 사용.",
+    "allowedWholeStudentMethod": "꼭짓점의 두 좌표를 t로 읽어 직선에 대입하고 일차방정식으로 좌표 복원.",
+    "sourceQuestionOnly": {
+      "sourceQuestionId": "2025-gyeongsan-3-2-mid-6",
+      "packetRawSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "sourceDigestProvided": "97c308d328df8b57c8935750b62056a0a89b34105fa84b9d4bc2ae170b6e82c8",
+      "images": [
+        {
+          "file": "images/q06-part1.png",
+          "rawSha256": "e35214918afca8a1b0ca09bc73ae1a4a902d2350a3c9706898ecfcb4b05d5c43",
+          "personallyViewed": true
+        }
+      ],
+      "sourceCropsNotNewAssets": true,
+      "originalKeyOrSolutionFilesRead": false
+    },
+    "visualReview": {
+      "questionNumber": 6,
+      "studentDigest": "ce3ffcbd3bc0e556dd9c4979dd01a3d3666d7bb4c664ab9811708f16c2ff3242",
+      "candidateDigest": "d2b118b5451d5a18a7687abcc5eb4590e40586de68db1dca328ebc1ad05f9a58",
+      "columnWidthMm": 70,
+      "png": "inspection/q06-expanded.png",
+      "pngSha256": "b11aaba520cae81cb08c7c85fc36410da7bca6d0d6ecc4324b172e51bac8b911",
+      "overflow": [],
+      "unclippedPng": null,
+      "figureCount": 0,
+      "figureWidthMm": 70,
+      "figureArrangement": "ordered roles",
+      "personallyViewed": true,
+      "imageRawSha256": "b11aaba520cae81cb08c7c85fc36410da7bca6d0d6ecc4324b172e51bac8b911",
+      "actualQuestionAndExpandedSolutionInspected": true,
+      "allSuppliedChoiceFiguresInspected": false,
+      "assets": [],
+      "strictRegenerationResults": [],
+      "nativeCompatibilityNotApproved": true
+    },
+    "naturalKorean": "조건·대상각·선분·기록값·단위가 자연스럽고 모호한 원본 조건을 명시했다. 허구 학교 표시 해솔누리중학교와 실제 학교 내부 보존을 구별;원학교로 학년 승인하지 않음.",
+    "scoreAndDifficulty": {
+      "score": 4,
+      "sourceScorePreserved": true,
+      "authorDifficultyProposal": "응용",
+      "reviewerDifficultyProposal": "응용",
+      "basis": "꼭짓점의 두 좌표를 t로 읽어 직선에 대입하고 일차방정식으로 좌표 복원. 4점은 원문과 동일하고 필요한 단계 수를 근거로 제안. 검토자는 심화하/기본과 응용 차이를 기록하며 실측 난도나 학교 자동 승인 주장 없음.",
+      "measuredDifficulty": false
+    },
+    "taxonomy": {
+      "unitUuidProposal": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+      "unit": {
+        "id": "a0a58e33-01fd-4f33-af01-6d85e8e28624",
+        "grade": "중3",
+        "chapter": "4. 이차함수",
+        "section": "이차함수와 그래프",
+        "semester": 1,
+        "orderIndex": 478,
+        "problemCodePrefix": "J30401"
+      },
+      "unitSeedExactMatch": true,
+      "candidateMetadataAssignmentUnedited": {
+        "status": "pending",
+        "unitId": null,
+        "familyKey": null,
+        "currentUnit": null,
+        "currentRegistryMatch": null,
+        "liveCount": null,
+        "checkedAt": "2026-10-08 04:53:45.769124+00",
+        "evidence": "꼭짓점과 직선이라는 두 기록의 미지 상수/좌표 복구는 기존 제목만으로 subtype을 확정할 수 없어 family를 보류한다.",
+        "candidates": []
+      },
+      "existingLiveFamilyProposal": null,
+      "semanticFamilyOnly": null,
+      "status": "held",
+      "basis": "g1-15 mode2는 축을 이미 주고 두 독립 상수 p,q의 합을 구한다. 본문 축이 미지이고 높이3t−2로 연결된 한 상수의 실제 좌표 목표까지 전체 규칙은 미확정.",
+      "formatComparison": "Complete new target/format/difficulty support is unconfirmed as described in basis; no nearest/title mapping.",
+      "bankCapturedAt": "2026-10-08 13:00:16.891043+00",
+      "snapshotScopeOnly": true,
+      "liveCountNotPermission": true
+    },
+    "q22RepairRead": false,
+    "q23SourceRoleMetadataBoundary": null
+  },
+  "holds": [
+    {
+      "code": "exact-unit-live-family-contract-pending",
+      "basis": "g1-15 mode2는 축을 이미 주고 두 독립 상수 p,q의 합을 구한다. 본문 축이 미지이고 높이3t−2로 연결된 한 상수의 실제 좌표 목표까지 전체 규칙은 미확정.",
+      "reopen": "실제 live 규칙의 전체 조건/요청 목표/핵심 절차/난도/형식을 지원하는 근거를 제시하거나 별도 새 메타데이터 계약을 검토. Unit·제목·live count만으로 확정하지 않음."
+    }
+  ],
+  "gates": {
+    "rights": "held",
+    "custody": "held",
+    "similarity": "pending",
+    "nativeCompatibility": "pending",
+    "directUseAllowed": false,
+    "loadable": false,
+    "dbWrites": 0,
+    "modelCalls": 0,
+    "finalPublicationApproval": false
+  }
+}
