@@ -1,0 +1,1023 @@
+{
+  "question_number": 1,
+  "original_label": "1",
+  "score": 4,
+  "normalized_question_file": "question-only/q01/normalized-question.json",
+  "normalized_question_sha256": "2fc0cb45fce477078be8456d97cb760b8a1fceb690e439b38d8b64ed29f68619",
+  "hwp_sources": [
+    {
+      "source_id": "s1",
+      "source_sha256": "3abb1a759dd96f6e9a76728a1ecae70013df605bb3e73745908a773897a6a43b",
+      "stream": "BodyText/Section0",
+      "question_record": {
+        "question_number": 1,
+        "records": [
+          {
+            "record_1based": 2,
+            "offset": 28,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "이차함수의 그래프에 대한 설명 중 옳은 것은? [ 점]",
+            "inline_template": [
+              "          이차함수의 그래프에 대한 설명 중 옳은 것은? [",
+              {
+                "equation_slot_at_utf16_index": 100
+              },
+              "점] "
+            ]
+          },
+          {
+            "record_1based": 338,
+            "offset": 12371,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "4"
+          },
+          {
+            "record_1based": 355,
+            "offset": 12976,
+            "tag": 67,
+            "level": 3,
+            "kind": "main_paragraph",
+            "text": "㉠          ㉡          ㉢",
+            "inline_template": [
+              "㉠ ",
+              {
+                "equation_slot_at_utf16_index": 2
+              },
+              "        ㉡ ",
+              {
+                "equation_slot_at_utf16_index": 20
+              },
+              "        ㉢ ",
+              {
+                "equation_slot_at_utf16_index": 38
+              },
+              " "
+            ]
+          },
+          {
+            "record_1based": 359,
+            "offset": 13188,
+            "tag": 88,
+            "level": 4,
+            "kind": "equation",
+            "script": "y=4x ^{2}"
+          },
+          {
+            "record_1based": 361,
+            "offset": 13346,
+            "tag": 88,
+            "level": 4,
+            "kind": "equation",
+            "script": "y=- {1} over {2} x ^{2}"
+          },
+          {
+            "record_1based": 363,
+            "offset": 13532,
+            "tag": 88,
+            "level": 4,
+            "kind": "equation",
+            "script": "y=- {1} over {4} x ^{2}"
+          },
+          {
+            "record_1based": 365,
+            "offset": 13684,
+            "tag": 67,
+            "level": 3,
+            "kind": "main_paragraph",
+            "text": "㉣         ㉤",
+            "inline_template": [
+              "㉣ ",
+              {
+                "equation_slot_at_utf16_index": 2
+              },
+              "       ㉤ ",
+              {
+                "equation_slot_at_utf16_index": 19
+              },
+              " "
+            ]
+          },
+          {
+            "record_1based": 369,
+            "offset": 13858,
+            "tag": 88,
+            "level": 4,
+            "kind": "equation",
+            "script": "y=-4x ^{2}"
+          },
+          {
+            "record_1based": 371,
+            "offset": 14018,
+            "tag": 88,
+            "level": 4,
+            "kind": "equation",
+            "script": "y= {1} over {3} x ^{2}"
+          },
+          {
+            "record_1based": 389,
+            "offset": 14733,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "① 위로 볼록인 것은 ㉠, ㉤이다.",
+            "inline_template": [
+              "① 위로 볼록인 것은 ㉠, ㉤이다. "
+            ]
+          },
+          {
+            "record_1based": 393,
+            "offset": 14857,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "② ㉠과  축에 서로 대칭인 것은 ㉣이다.",
+            "inline_template": [
+              "② ㉠과 ",
+              {
+                "equation_slot_at_utf16_index": 5
+              },
+              "축에 서로 대칭인 것은 ㉣이다. "
+            ]
+          },
+          {
+            "record_1based": 397,
+            "offset": 15037,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "y"
+          },
+          {
+            "record_1based": 399,
+            "offset": 15145,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "③ 그래프의 폭이 가장 넓은 것은 ㉡이다.",
+            "inline_template": [
+              "③ 그래프의 폭이 가장 넓은 것은 ㉡이다. "
+            ]
+          },
+          {
+            "record_1based": 403,
+            "offset": 15277,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "④  의 그래프와 만나는 것은 ㉠, ㉣이다.",
+            "inline_template": [
+              "④ ",
+              {
+                "equation_slot_at_utf16_index": 2
+              },
+              "의 그래프와 만나는 것은 ㉠, ㉣이다. "
+            ]
+          },
+          {
+            "record_1based": 407,
+            "offset": 15459,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "y=x"
+          },
+          {
+            "record_1based": 409,
+            "offset": 15571,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "⑤  일 때,  의 값이 증가하면  의 값이 감소하는 것은 ㉡, ㉢, ㉣이다.",
+            "inline_template": [
+              "⑤ ",
+              {
+                "equation_slot_at_utf16_index": 2
+              },
+              "일 때, ",
+              {
+                "equation_slot_at_utf16_index": 15
+              },
+              "의 값이 증가하면 ",
+              {
+                "equation_slot_at_utf16_index": 33
+              },
+              "의 값이 감소하는 것은 ㉡, ㉢, ㉣이다. "
+            ]
+          },
+          {
+            "record_1based": 413,
+            "offset": 15855,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "x>0"
+          },
+          {
+            "record_1based": 415,
+            "offset": 16001,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "x"
+          },
+          {
+            "record_1based": 417,
+            "offset": 16143,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "y"
+          }
+        ],
+        "pictures": [],
+        "boundary": {
+          "first_block_offset": 0,
+          "last_block_end_offset": 16719
+        },
+        "document_header_records": [
+          {
+            "record_1based": 303,
+            "offset": 9692,
+            "tag": 67,
+            "level": 6,
+            "kind": "main_paragraph",
+            "text": "학원로고",
+            "inline_template": [
+              "학원로고 "
+            ]
+          },
+          {
+            "record_1based": 310,
+            "offset": 10303,
+            "tag": 67,
+            "level": 6,
+            "kind": "main_paragraph",
+            "text": "2025년 2학기 중간고사",
+            "inline_template": [
+              "2025년 2학기 중간고사 "
+            ]
+          },
+          {
+            "record_1based": 317,
+            "offset": 10934,
+            "tag": 67,
+            "level": 6,
+            "kind": "main_paragraph",
+            "text": "이차함수 ~ 원과 직선",
+            "inline_template": [
+              "이차함수 ~ 원과 직선 "
+            ]
+          },
+          {
+            "record_1based": 324,
+            "offset": 11561,
+            "tag": 67,
+            "level": 6,
+            "kind": "main_paragraph",
+            "text": "범일중 3학년 수학",
+            "inline_template": [
+              "범일중 3학년 수학 "
+            ]
+          }
+        ],
+        "document_header_pictures": [
+          {
+            "record_1based": 298,
+            "offset": 8771,
+            "tag": 85,
+            "level": 4,
+            "stream": "BinData/BIN0001.bmp",
+            "file": "question-only/identity/hwp-banner.png",
+            "width": 3891,
+            "height": 394,
+            "decompressed_bmp_sha256": "bdda5765ec7d26bed2f089b7a343e2388d996cddcd3efa49ba4df7820b4b7fac",
+            "rgb_pixels_sha256": "4509fc7f02896c44eaeffb449c663587d2a28649c2901d6b21ff0cad74a269fa"
+          }
+        ],
+        "reconstructed_paragraphs": [
+          {
+            "record_1based": 2,
+            "offset": 28,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 12371,
+                "record_1based": 338,
+                "script": "4"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "이차함수의 그래프에 대한 설명 중 옳은 것은? [⟦4⟧점]"
+          },
+          {
+            "record_1based": 355,
+            "offset": 12976,
+            "level": 3,
+            "equations": [
+              {
+                "offset": 13188,
+                "record_1based": 359,
+                "script": "y=4x ^{2}"
+              },
+              {
+                "offset": 13346,
+                "record_1based": 361,
+                "script": "y=- {1} over {2} x ^{2}"
+              },
+              {
+                "offset": 13532,
+                "record_1based": 363,
+                "script": "y=- {1} over {4} x ^{2}"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "㉠ ⟦y=4x ^{2}⟧        ㉡ ⟦y=- {1} over {2} x ^{2}⟧        ㉢ ⟦y=- {1} over {4} x ^{2}⟧"
+          },
+          {
+            "record_1based": 365,
+            "offset": 13684,
+            "level": 3,
+            "equations": [
+              {
+                "offset": 13858,
+                "record_1based": 369,
+                "script": "y=-4x ^{2}"
+              },
+              {
+                "offset": 14018,
+                "record_1based": 371,
+                "script": "y= {1} over {3} x ^{2}"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "㉣ ⟦y=-4x ^{2}⟧       ㉤ ⟦y= {1} over {3} x ^{2}⟧"
+          },
+          {
+            "record_1based": 389,
+            "offset": 14733,
+            "level": 1,
+            "equations": [],
+            "reconstructed_main_question_paragraph": "① 위로 볼록인 것은 ㉠, ㉤이다."
+          },
+          {
+            "record_1based": 393,
+            "offset": 14857,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 15037,
+                "record_1based": 397,
+                "script": "y"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "② ㉠과 ⟦y⟧축에 서로 대칭인 것은 ㉣이다."
+          },
+          {
+            "record_1based": 399,
+            "offset": 15145,
+            "level": 1,
+            "equations": [],
+            "reconstructed_main_question_paragraph": "③ 그래프의 폭이 가장 넓은 것은 ㉡이다."
+          },
+          {
+            "record_1based": 403,
+            "offset": 15277,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 15459,
+                "record_1based": 407,
+                "script": "y=x"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "④ ⟦y=x⟧의 그래프와 만나는 것은 ㉠, ㉣이다."
+          },
+          {
+            "record_1based": 409,
+            "offset": 15571,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 15855,
+                "record_1based": 413,
+                "script": "x>0"
+              },
+              {
+                "offset": 16001,
+                "record_1based": 415,
+                "script": "x"
+              },
+              {
+                "offset": 16143,
+                "record_1based": 417,
+                "script": "y"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "⑤ ⟦x>0⟧일 때, ⟦x⟧의 값이 증가하면 ⟦y⟧의 값이 감소하는 것은 ㉡, ㉢, ㉣이다."
+          }
+        ],
+        "all_inline_equation_slots_resolved": true
+      },
+      "source_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[범일중][3][25-2-중간][비상] (완료).hwp"
+    },
+    {
+      "source_id": "s5",
+      "source_sha256": "3abb1a759dd96f6e9a76728a1ecae70013df605bb3e73745908a773897a6a43b",
+      "stream": "BodyText/Section0",
+      "question_record": {
+        "question_number": 1,
+        "records": [
+          {
+            "record_1based": 2,
+            "offset": 28,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "이차함수의 그래프에 대한 설명 중 옳은 것은? [ 점]",
+            "inline_template": [
+              "          이차함수의 그래프에 대한 설명 중 옳은 것은? [",
+              {
+                "equation_slot_at_utf16_index": 100
+              },
+              "점] "
+            ]
+          },
+          {
+            "record_1based": 338,
+            "offset": 12371,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "4"
+          },
+          {
+            "record_1based": 355,
+            "offset": 12976,
+            "tag": 67,
+            "level": 3,
+            "kind": "main_paragraph",
+            "text": "㉠          ㉡          ㉢",
+            "inline_template": [
+              "㉠ ",
+              {
+                "equation_slot_at_utf16_index": 2
+              },
+              "        ㉡ ",
+              {
+                "equation_slot_at_utf16_index": 20
+              },
+              "        ㉢ ",
+              {
+                "equation_slot_at_utf16_index": 38
+              },
+              " "
+            ]
+          },
+          {
+            "record_1based": 359,
+            "offset": 13188,
+            "tag": 88,
+            "level": 4,
+            "kind": "equation",
+            "script": "y=4x ^{2}"
+          },
+          {
+            "record_1based": 361,
+            "offset": 13346,
+            "tag": 88,
+            "level": 4,
+            "kind": "equation",
+            "script": "y=- {1} over {2} x ^{2}"
+          },
+          {
+            "record_1based": 363,
+            "offset": 13532,
+            "tag": 88,
+            "level": 4,
+            "kind": "equation",
+            "script": "y=- {1} over {4} x ^{2}"
+          },
+          {
+            "record_1based": 365,
+            "offset": 13684,
+            "tag": 67,
+            "level": 3,
+            "kind": "main_paragraph",
+            "text": "㉣         ㉤",
+            "inline_template": [
+              "㉣ ",
+              {
+                "equation_slot_at_utf16_index": 2
+              },
+              "       ㉤ ",
+              {
+                "equation_slot_at_utf16_index": 19
+              },
+              " "
+            ]
+          },
+          {
+            "record_1based": 369,
+            "offset": 13858,
+            "tag": 88,
+            "level": 4,
+            "kind": "equation",
+            "script": "y=-4x ^{2}"
+          },
+          {
+            "record_1based": 371,
+            "offset": 14018,
+            "tag": 88,
+            "level": 4,
+            "kind": "equation",
+            "script": "y= {1} over {3} x ^{2}"
+          },
+          {
+            "record_1based": 389,
+            "offset": 14733,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "① 위로 볼록인 것은 ㉠, ㉤이다.",
+            "inline_template": [
+              "① 위로 볼록인 것은 ㉠, ㉤이다. "
+            ]
+          },
+          {
+            "record_1based": 393,
+            "offset": 14857,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "② ㉠과  축에 서로 대칭인 것은 ㉣이다.",
+            "inline_template": [
+              "② ㉠과 ",
+              {
+                "equation_slot_at_utf16_index": 5
+              },
+              "축에 서로 대칭인 것은 ㉣이다. "
+            ]
+          },
+          {
+            "record_1based": 397,
+            "offset": 15037,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "y"
+          },
+          {
+            "record_1based": 399,
+            "offset": 15145,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "③ 그래프의 폭이 가장 넓은 것은 ㉡이다.",
+            "inline_template": [
+              "③ 그래프의 폭이 가장 넓은 것은 ㉡이다. "
+            ]
+          },
+          {
+            "record_1based": 403,
+            "offset": 15277,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "④  의 그래프와 만나는 것은 ㉠, ㉣이다.",
+            "inline_template": [
+              "④ ",
+              {
+                "equation_slot_at_utf16_index": 2
+              },
+              "의 그래프와 만나는 것은 ㉠, ㉣이다. "
+            ]
+          },
+          {
+            "record_1based": 407,
+            "offset": 15459,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "y=x"
+          },
+          {
+            "record_1based": 409,
+            "offset": 15571,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "⑤  일 때,  의 값이 증가하면  의 값이 감소하는 것은 ㉡, ㉢, ㉣이다.",
+            "inline_template": [
+              "⑤ ",
+              {
+                "equation_slot_at_utf16_index": 2
+              },
+              "일 때, ",
+              {
+                "equation_slot_at_utf16_index": 15
+              },
+              "의 값이 증가하면 ",
+              {
+                "equation_slot_at_utf16_index": 33
+              },
+              "의 값이 감소하는 것은 ㉡, ㉢, ㉣이다. "
+            ]
+          },
+          {
+            "record_1based": 413,
+            "offset": 15855,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "x>0"
+          },
+          {
+            "record_1based": 415,
+            "offset": 16001,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "x"
+          },
+          {
+            "record_1based": 417,
+            "offset": 16143,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "y"
+          }
+        ],
+        "pictures": [],
+        "boundary": {
+          "first_block_offset": 0,
+          "last_block_end_offset": 16719
+        },
+        "document_header_records": [
+          {
+            "record_1based": 303,
+            "offset": 9692,
+            "tag": 67,
+            "level": 6,
+            "kind": "main_paragraph",
+            "text": "학원로고",
+            "inline_template": [
+              "학원로고 "
+            ]
+          },
+          {
+            "record_1based": 310,
+            "offset": 10303,
+            "tag": 67,
+            "level": 6,
+            "kind": "main_paragraph",
+            "text": "2025년 2학기 중간고사",
+            "inline_template": [
+              "2025년 2학기 중간고사 "
+            ]
+          },
+          {
+            "record_1based": 317,
+            "offset": 10934,
+            "tag": 67,
+            "level": 6,
+            "kind": "main_paragraph",
+            "text": "이차함수 ~ 원과 직선",
+            "inline_template": [
+              "이차함수 ~ 원과 직선 "
+            ]
+          },
+          {
+            "record_1based": 324,
+            "offset": 11561,
+            "tag": 67,
+            "level": 6,
+            "kind": "main_paragraph",
+            "text": "범일중 3학년 수학",
+            "inline_template": [
+              "범일중 3학년 수학 "
+            ]
+          }
+        ],
+        "document_header_pictures": [
+          {
+            "record_1based": 298,
+            "offset": 8771,
+            "tag": 85,
+            "level": 4,
+            "stream": "BinData/BIN0001.bmp",
+            "file": "question-only/identity/hwp-banner.png",
+            "width": 3891,
+            "height": 394,
+            "decompressed_bmp_sha256": "bdda5765ec7d26bed2f089b7a343e2388d996cddcd3efa49ba4df7820b4b7fac",
+            "rgb_pixels_sha256": "4509fc7f02896c44eaeffb449c663587d2a28649c2901d6b21ff0cad74a269fa"
+          }
+        ],
+        "reconstructed_paragraphs": [
+          {
+            "record_1based": 2,
+            "offset": 28,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 12371,
+                "record_1based": 338,
+                "script": "4"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "이차함수의 그래프에 대한 설명 중 옳은 것은? [⟦4⟧점]"
+          },
+          {
+            "record_1based": 355,
+            "offset": 12976,
+            "level": 3,
+            "equations": [
+              {
+                "offset": 13188,
+                "record_1based": 359,
+                "script": "y=4x ^{2}"
+              },
+              {
+                "offset": 13346,
+                "record_1based": 361,
+                "script": "y=- {1} over {2} x ^{2}"
+              },
+              {
+                "offset": 13532,
+                "record_1based": 363,
+                "script": "y=- {1} over {4} x ^{2}"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "㉠ ⟦y=4x ^{2}⟧        ㉡ ⟦y=- {1} over {2} x ^{2}⟧        ㉢ ⟦y=- {1} over {4} x ^{2}⟧"
+          },
+          {
+            "record_1based": 365,
+            "offset": 13684,
+            "level": 3,
+            "equations": [
+              {
+                "offset": 13858,
+                "record_1based": 369,
+                "script": "y=-4x ^{2}"
+              },
+              {
+                "offset": 14018,
+                "record_1based": 371,
+                "script": "y= {1} over {3} x ^{2}"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "㉣ ⟦y=-4x ^{2}⟧       ㉤ ⟦y= {1} over {3} x ^{2}⟧"
+          },
+          {
+            "record_1based": 389,
+            "offset": 14733,
+            "level": 1,
+            "equations": [],
+            "reconstructed_main_question_paragraph": "① 위로 볼록인 것은 ㉠, ㉤이다."
+          },
+          {
+            "record_1based": 393,
+            "offset": 14857,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 15037,
+                "record_1based": 397,
+                "script": "y"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "② ㉠과 ⟦y⟧축에 서로 대칭인 것은 ㉣이다."
+          },
+          {
+            "record_1based": 399,
+            "offset": 15145,
+            "level": 1,
+            "equations": [],
+            "reconstructed_main_question_paragraph": "③ 그래프의 폭이 가장 넓은 것은 ㉡이다."
+          },
+          {
+            "record_1based": 403,
+            "offset": 15277,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 15459,
+                "record_1based": 407,
+                "script": "y=x"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "④ ⟦y=x⟧의 그래프와 만나는 것은 ㉠, ㉣이다."
+          },
+          {
+            "record_1based": 409,
+            "offset": 15571,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 15855,
+                "record_1based": 413,
+                "script": "x>0"
+              },
+              {
+                "offset": 16001,
+                "record_1based": 415,
+                "script": "x"
+              },
+              {
+                "offset": 16143,
+                "record_1based": 417,
+                "script": "y"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "⑤ ⟦x>0⟧일 때, ⟦x⟧의 값이 증가하면 ⟦y⟧의 값이 감소하는 것은 ㉡, ㉢, ㉣이다."
+          }
+        ],
+        "all_inline_equation_slots_resolved": true
+      },
+      "source_path": "N:\\개인\\기출\\기출작업\\이전차수\\196차\\[범일중][3][25-2-중간][비상] (완료).hwp"
+    }
+  ],
+  "completed_pdf_sources": [
+    {
+      "file": "question-only/q01/s4-printed-question.png",
+      "source_id": "s4",
+      "source_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[범일중][3][25-2-중간][비상] (완료).PDF",
+      "source_sha256": "318dcd0587e97e993e8c3536b01e7c978205990386e5ba7e9242b68dde4d0689",
+      "pdf_page_1based": 1,
+      "clip_points": [
+        51,
+        107.22857666015625,
+        359,
+        351.54388427734375
+      ],
+      "original_rotation": 0,
+      "render_rotation": 0,
+      "scale": 3,
+      "sha256": "69e7dc9bc8bc6433974ada8702705ca9834038b0f74598c891e9d3573755f09b",
+      "author_input_allowed": true,
+      "literal_pdf_text": "1. 이차함수의 그래프에 대한 설명 중 옳은 것은? [점]\n\n ㉠     ㉡          ㉢                                 \n ㉣     ㉤                       \n\n① 위로 볼록인 것은 ㉠, ㉤이다.\n\n② ㉠과 축에 서로 대칭인 것은 ㉣이다.\n\n③ 그래프의 폭이 가장 넓은 것은 ㉡이다.\n\n④ 의 그래프와 만나는 것은 ㉠, ㉣이다.\n\n⑤ 일 때, 의 값이 증가하면 의 값이 감소하는\n\n것은 ㉡, ㉢, ㉣이다.\n\n [중단원] 이차함수와 그래프\n\n [난이도] 하",
+      "normalized_complete_extracted_text": "1.이차함수의그래프에대한설명중옳은것은?[점]㉠㉡㉢㉣㉤①위로볼록인것은㉠,㉤이다.②㉠과축에서로대칭인것은㉣이다.③그래프의폭이가장넓은것은㉡이다.④의그래프와만나는것은㉠,㉣이다.⑤일때,의값이증가하면의값이감소하는것은㉡,㉢,㉣이다.[중단원]이차함수와그래프[난이도]하"
+    },
+    {
+      "file": "question-only/q01/s6-printed-question.png",
+      "source_id": "s6",
+      "source_path": "N:\\개인\\기출\\기출작업\\이전차수\\196차\\[범일중][3][25-2-중간][비상] (완료).pdf",
+      "source_sha256": "f755311a97514d66c9f927940db11cab03e0265be08c76b5cd8e71002eb4928f",
+      "pdf_page_1based": 1,
+      "clip_points": [
+        40,
+        86.81217193603516,
+        292,
+        287.8415222167969
+      ],
+      "original_rotation": 0,
+      "render_rotation": 0,
+      "scale": 3,
+      "sha256": "59d0e1f1452fab91f543e7c522bb0a0df219c466f1fed9b37f1e2a5cbe7f868a",
+      "author_input_allowed": true,
+      "literal_pdf_text": "1. 이차함수의 그래프에 대한 설명 중 옳은 것은? [점]\n\n ㉠     ㉡          ㉢                                 \n ㉣     ㉤                       \n\n① 위로 볼록인 것은 ㉠, ㉤이다.\n\n② ㉠과 축에 서로 대칭인 것은 ㉣이다.\n\n③ 그래프의 폭이 가장 넓은 것은 ㉡이다.\n\n④ 의 그래프와 만나는 것은 ㉠, ㉣이다.\n\n⑤ 일 때, 의 값이 증가하면 의 값이 감소하는\n\n것은 ㉡, ㉢, ㉣이다.\n\n [중단원] 이차함수와 그래프\n\n [난이도] 하",
+      "normalized_complete_extracted_text": "1.이차함수의그래프에대한설명중옳은것은?[점]㉠㉡㉢㉣㉤①위로볼록인것은㉠,㉤이다.②㉠과축에서로대칭인것은㉣이다.③그래프의폭이가장넓은것은㉡이다.④의그래프와만나는것은㉠,㉣이다.⑤일때,의값이증가하면의값이감소하는것은㉡,㉢,㉣이다.[중단원]이차함수와그래프[난이도]하"
+    }
+  ],
+  "original_scan": {
+    "source_id": "s3",
+    "source_sha256": "a66743b0d3efb668b1ac8a0884356bcc93f3868d6ed0270cbf4bc67976faf992",
+    "pdf_page_1based": 1,
+    "printed_physical_question_page": 1,
+    "render": {
+      "file": "reviewer-only/scans/s3-page-1.png",
+      "source_id": "s3",
+      "source_sha256": "a66743b0d3efb668b1ac8a0884356bcc93f3868d6ed0270cbf4bc67976faf992",
+      "physical_pdf_page_1based": 1,
+      "clip_points": [
+        0.0,
+        150.0,
+        728.0,
+        1031.0
+      ],
+      "original_rotation": 0,
+      "render_rotation": 90,
+      "scale": 1.5,
+      "sha256": "3d39f0fda14546b5cde100ca1f07c28ad7c121815414b5c5e610d6652f0be4f3",
+      "author_input_allowed": false,
+      "incidental_handwriting_possible": true
+    },
+    "original_printed_label": "1",
+    "author_input_allowed": false,
+    "source_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\중3\\[범일중][3][25-2-중간](원본)(루비루비).pdf"
+  },
+  "complete_pdf_extracted_text_comparison": {
+    "equal": true,
+    "comparison": "complete whitespace-normalized per-question text, not substring or token membership",
+    "decision_limit": "Extraction equality is auxiliary. Full rendered content, HWP equations and original scan must also be reviewed.",
+    "differences": []
+  },
+  "figure_linkage": null,
+  "visual_comparison_status": "confirmed",
+  "extraction_limit_resolved_by_visual_review": "Complete extracted question text equals after whitespace removal; direct figure/scan/HWP review is still required and was performed.",
+  "computed_hwp_vs_normalized_complete_content": {
+    "checks": {
+      "complete_stem_equal_after_bounded_presentation_conversion": true,
+      "complete_ordered_choices_equal": true,
+      "score_equal": true,
+      "all_hwp_inline_equations_placed": true,
+      "boxed_given_equations_equal": true,
+      "complete_table_cells_equal": true
+    },
+    "hwp_complete_stem": "이차함수의그래프에대한설명중옳은것은?",
+    "normalized_complete_stem": "이차함수의그래프에대한설명중옳은것은?",
+    "stem_differences": [],
+    "hwp_complete_ordered_choices": [
+      "위로볼록인것은㉠,㉤이다.",
+      "㉠과y축에서로대칭인것은㉣이다.",
+      "그래프의폭이가장넓은것은㉡이다.",
+      "y=x의그래프와만나는것은㉠,㉣이다.",
+      "x>0일때,x의값이증가하면y의값이감소하는것은㉡,㉢,㉣이다."
+    ],
+    "normalized_complete_ordered_choices": [
+      "위로볼록인것은㉠,㉤이다.",
+      "㉠과y축에서로대칭인것은㉣이다.",
+      "그래프의폭이가장넓은것은㉡이다.",
+      "y=x의그래프와만나는것은㉠,㉣이다.",
+      "x>0일때,x의값이증가하면y의값이감소하는것은㉡,㉢,㉣이다."
+    ],
+    "boxed_givens": {
+      "hwp_complete_ordered_equations": [
+        "y=4x²",
+        "y=-1/2x²",
+        "y=-1/4x²",
+        "y=-4x²",
+        "y=1/3x²"
+      ],
+      "normalized_complete_ordered_equations": [
+        "y=4x²",
+        "y=-1/2x²",
+        "y=-1/4x²",
+        "y=-4x²",
+        "y=1/3x²"
+      ],
+      "equal": true
+    },
+    "table_cells": null,
+    "method_limit": "Presentation conversion only; no numerical expression evaluation or original-answer solving. It does not alone prove pixels/scans equivalent."
+  },
+  "direct_visual_comparison": {
+    "question_placement_and_label": "passed",
+    "complete_printed_stem_and_all_givens": "passed",
+    "all_equations_signs_exponents_fractions_and_units": "passed",
+    "all_ordered_choices_or_printed_absence": "passed",
+    "native_tables_or_boxed_given_structure": "passed",
+    "all_printed_figure_labels_and_relations_or_printed_absence": "passed",
+    "score_and_partial_credit_label": "passed",
+    "sources_actually_compared": [
+      "s1 HWP main record content",
+      "s5 HWP main record content",
+      "s4 anonymous completed PDF",
+      "s6 named completed PDF",
+      "s3 original paper scan"
+    ],
+    "view_image_used": true,
+    "handwriting_not_printed_content": true,
+    "original_answer_or_solution_agreement_used": false,
+    "annotation_limit": "Handwritten student choices/work were incidentally visible and not transcribed or used. Scans are reviewer-only; clean printed sources and normalized question records are the author whitelist."
+  },
+  "source_identity": {
+    "status": "confirmed",
+    "school_full": "범일중학교",
+    "school_normalized": "범일중",
+    "grade": 3,
+    "subject": "수학",
+    "semester": 2,
+    "round": "중간",
+    "exam_year": 2025,
+    "administration_date": "2025-09-23",
+    "period": 3,
+    "subject_code": "05",
+    "basis": "Actual printed original title/date/footer, linked by complete question content and printed page/label. Neither filename nor byte hash alone is identity proof.",
+    "edited_BI_label_scope": "Only these compared files; no universal BI-to-school mapping.",
+    "footer_26_year_role": "Observed 대비 wording + linked explicit2025 exam administration support editorial/preparation label; creation date/intended2026 use remain unknown."
+  },
+  "held_components": [
+    {
+      "component": "export_acquisition_native_custody_chain",
+      "status": "held",
+      "reason": "No converter/exporter or custody records inspected; content equivalence does not prove a direct chain."
+    },
+    {
+      "component": "textbook_publisher",
+      "status": "held",
+      "reason": "비상 is a filename hint; no printed textbook/publisher attestation established."
+    },
+    {
+      "component": "copyright_reuse_authorization",
+      "status": "held",
+      "reason": "A school copyright line is not a reuse licence/permission."
+    },
+    {
+      "component": "curriculum_new_twin_approval",
+      "status": "outside this source audit",
+      "reason": "Original equivalence/identity does not approve curriculum, new answers/solutions or candidates."
+    }
+  ]
+}

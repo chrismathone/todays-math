@@ -1,0 +1,32 @@
+{
+  "schema": "bumil-normalized-question-only.v2",
+  "question_number": 5,
+  "original_label": "5",
+  "question_type": "객관식",
+  "partial_credit_printed": false,
+  "score": 5,
+  "stem": "그림과 같이 이차함수 y=-x²+2x+8의 그래프의 꼭짓점을 A, x축과의 교점을 각각 B, C라 할 때, △ABC의 넓이는?",
+  "givens": [
+    "y=-x²+2x+8",
+    "A는 꼭짓점",
+    "B,C는 x축과의 교점"
+  ],
+  "choices": [
+    "21",
+    "27",
+    "28",
+    "32",
+    "36"
+  ],
+  "figure_labels": [
+    "x",
+    "y",
+    "O",
+    "A",
+    "B",
+    "C"
+  ],
+  "diagram_observation": "아래로 열린 포물선, 꼭짓점 A와 x절편 B,C를 잇는 삼각형. B는 원점 왼쪽, C와 A는 오른쪽에 그려짐. 보기에는 길이/넓이 단위가 별도로 인쇄되지 않음.",
+  "transcription_method": "Human normalization of the complete printed question, not a solution or automatic scan OCR.",
+  "author_input_policy": "Only normalized printed content and clean HWP/completed-PDF question figures/crops; no scan handwriting, answers or solutions."
+}

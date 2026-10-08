@@ -1,0 +1,30 @@
+{
+  "schema": "bumil-normalized-question-only.v2",
+  "question_number": 4,
+  "original_label": "4",
+  "question_type": "객관식",
+  "partial_credit_printed": false,
+  "score": 4,
+  "stem": "이차함수 y=ax²-8x-b의 그래프가 그림과 같을 때, 일차함수 y=-ax+b의 그래프가 지나지 않는 사분면은? (단, a, b는 수)",
+  "givens": [
+    "y=ax²-8x-b",
+    "y=-ax+b",
+    "a,b는 수",
+    "이차함수의 주어진 그래프"
+  ],
+  "choices": [
+    "제1사분면",
+    "제2사분면",
+    "제3사분면",
+    "제4사분면",
+    "제1,3사분면"
+  ],
+  "figure_labels": [
+    "x",
+    "y",
+    "O"
+  ],
+  "diagram_observation": "위쪽으로 열린 포물선과 좌표축. 꼭짓점은 x축 아래, y축 오른쪽이며 두 x절편은 원점 오른쪽, y절편은 원점 위에 그려져 있다. 수치 눈금 없음.",
+  "transcription_method": "Human normalization of the complete printed question, not a solution or automatic scan OCR.",
+  "author_input_policy": "Only normalized printed content and clean HWP/completed-PDF question figures/crops; no scan handwriting, answers or solutions."
+}

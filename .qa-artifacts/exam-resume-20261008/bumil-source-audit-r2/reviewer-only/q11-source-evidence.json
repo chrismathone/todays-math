@@ -1,0 +1,877 @@
+{
+  "question_number": 11,
+  "original_label": "11",
+  "score": 4,
+  "normalized_question_file": "question-only/q11/normalized-question.json",
+  "normalized_question_sha256": "92eac07e4f22b30f56ffb46cfcc3967ee89926df79e4c9d9ecb2d1eaebab5a76",
+  "hwp_sources": [
+    {
+      "source_id": "s1",
+      "source_sha256": "3abb1a759dd96f6e9a76728a1ecae70013df605bb3e73745908a773897a6a43b",
+      "stream": "BodyText/Section0",
+      "question_record": {
+        "question_number": 11,
+        "records": [
+          {
+            "record_1based": 1148,
+            "offset": 50977,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "인 직각삼각형  에서  ,  ,  이다. 이때,  의 값은? [ 점]",
+            "inline_template": [
+              "  ",
+              {
+                "equation_slot_at_utf16_index": 9
+              },
+              "인 직각삼각형 ",
+              {
+                "equation_slot_at_utf16_index": 25
+              },
+              "에서 ",
+              {
+                "equation_slot_at_utf16_index": 36
+              },
+              ", ",
+              {
+                "equation_slot_at_utf16_index": 46
+              },
+              ", ",
+              {
+                "equation_slot_at_utf16_index": 56
+              },
+              "이다. 이때, ",
+              {
+                "equation_slot_at_utf16_index": 72
+              },
+              "의 값은? [",
+              {
+                "equation_slot_at_utf16_index": 87
+              },
+              "점] "
+            ]
+          },
+          {
+            "record_1based": 1159,
+            "offset": 51513,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "ANGLE  rm C=90°"
+          },
+          {
+            "record_1based": 1161,
+            "offset": 51683,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rmABC"
+          },
+          {
+            "record_1based": 1163,
+            "offset": 51833,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rm ANGLE ABD=15°"
+          },
+          {
+            "record_1based": 1165,
+            "offset": 52005,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rm ANGLE ADC=30°"
+          },
+          {
+            "record_1based": 1167,
+            "offset": 52177,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rm {bar{BD}} =4"
+          },
+          {
+            "record_1based": 1169,
+            "offset": 52347,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "tan15°"
+          },
+          {
+            "record_1based": 1171,
+            "offset": 52499,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "4"
+          },
+          {
+            "record_1based": 1180,
+            "offset": 53204,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "①   ②",
+            "inline_template": [
+              "① ",
+              {
+                "equation_slot_at_utf16_index": 2
+              },
+              " ② ",
+              {
+                "equation_slot_at_utf16_index": 20
+              },
+              " "
+            ]
+          },
+          {
+            "record_1based": 1184,
+            "offset": 53380,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "{sqrt {3}} over {3}"
+          },
+          {
+            "record_1based": 1186,
+            "offset": 53558,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "2- sqrt {3}"
+          },
+          {
+            "record_1based": 1188,
+            "offset": 53686,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "③   ④",
+            "inline_template": [
+              "③ ",
+              {
+                "equation_slot_at_utf16_index": 2
+              },
+              " ④ ",
+              {
+                "equation_slot_at_utf16_index": 20
+              },
+              " "
+            ]
+          },
+          {
+            "record_1based": 1192,
+            "offset": 53862,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "sqrt {3}"
+          },
+          {
+            "record_1based": 1194,
+            "offset": 54018,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "1+ sqrt {3}"
+          },
+          {
+            "record_1based": 1196,
+            "offset": 54146,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "⑤",
+            "inline_template": [
+              "⑤ ",
+              {
+                "equation_slot_at_utf16_index": 2
+              },
+              " "
+            ]
+          },
+          {
+            "record_1based": 1200,
+            "offset": 54286,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "2+ sqrt {3}"
+          }
+        ],
+        "pictures": [
+          {
+            "record_1based": 1178,
+            "offset": 53081,
+            "tag": 85,
+            "level": 3,
+            "stream": "BinData/BIN0008.bmp",
+            "file": "question-only/q11/hwp-figure-1.png",
+            "width": 252,
+            "height": 103,
+            "decompressed_bmp_sha256": "c95fcde874317fd78c5eca046b8707e24d80724286072c60f7afdb6dcd86386d",
+            "rgb_pixels_sha256": "480df48fa8bbd3281e73c8b5c6926ea4430ab23dc60fecaa0245a25c464e10a5"
+          }
+        ],
+        "boundary": {
+          "first_block_offset": 50949,
+          "last_block_end_offset": 54870
+        },
+        "document_header_records": [],
+        "document_header_pictures": [],
+        "reconstructed_paragraphs": [
+          {
+            "record_1based": 1148,
+            "offset": 50977,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 51513,
+                "record_1based": 1159,
+                "script": "ANGLE  rm C=90°"
+              },
+              {
+                "offset": 51683,
+                "record_1based": 1161,
+                "script": "rmABC"
+              },
+              {
+                "offset": 51833,
+                "record_1based": 1163,
+                "script": "rm ANGLE ABD=15°"
+              },
+              {
+                "offset": 52005,
+                "record_1based": 1165,
+                "script": "rm ANGLE ADC=30°"
+              },
+              {
+                "offset": 52177,
+                "record_1based": 1167,
+                "script": "rm {bar{BD}} =4"
+              },
+              {
+                "offset": 52347,
+                "record_1based": 1169,
+                "script": "tan15°"
+              },
+              {
+                "offset": 52499,
+                "record_1based": 1171,
+                "script": "4"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "⟦ANGLE  rm C=90°⟧인 직각삼각형 ⟦rmABC⟧에서 ⟦rm ANGLE ABD=15°⟧, ⟦rm ANGLE ADC=30°⟧, ⟦rm {bar{BD}} =4⟧이다. 이때, ⟦tan15°⟧의 값은? [⟦4⟧점]"
+          },
+          {
+            "record_1based": 1180,
+            "offset": 53204,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 53380,
+                "record_1based": 1184,
+                "script": "{sqrt {3}} over {3}"
+              },
+              {
+                "offset": 53558,
+                "record_1based": 1186,
+                "script": "2- sqrt {3}"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "① ⟦{sqrt {3}} over {3}⟧ ② ⟦2- sqrt {3}⟧"
+          },
+          {
+            "record_1based": 1188,
+            "offset": 53686,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 53862,
+                "record_1based": 1192,
+                "script": "sqrt {3}"
+              },
+              {
+                "offset": 54018,
+                "record_1based": 1194,
+                "script": "1+ sqrt {3}"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "③ ⟦sqrt {3}⟧ ④ ⟦1+ sqrt {3}⟧"
+          },
+          {
+            "record_1based": 1196,
+            "offset": 54146,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 54286,
+                "record_1based": 1200,
+                "script": "2+ sqrt {3}"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "⑤ ⟦2+ sqrt {3}⟧"
+          }
+        ],
+        "all_inline_equation_slots_resolved": true
+      },
+      "source_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[범일중][3][25-2-중간][비상] (완료).hwp"
+    },
+    {
+      "source_id": "s5",
+      "source_sha256": "3abb1a759dd96f6e9a76728a1ecae70013df605bb3e73745908a773897a6a43b",
+      "stream": "BodyText/Section0",
+      "question_record": {
+        "question_number": 11,
+        "records": [
+          {
+            "record_1based": 1148,
+            "offset": 50977,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "인 직각삼각형  에서  ,  ,  이다. 이때,  의 값은? [ 점]",
+            "inline_template": [
+              "  ",
+              {
+                "equation_slot_at_utf16_index": 9
+              },
+              "인 직각삼각형 ",
+              {
+                "equation_slot_at_utf16_index": 25
+              },
+              "에서 ",
+              {
+                "equation_slot_at_utf16_index": 36
+              },
+              ", ",
+              {
+                "equation_slot_at_utf16_index": 46
+              },
+              ", ",
+              {
+                "equation_slot_at_utf16_index": 56
+              },
+              "이다. 이때, ",
+              {
+                "equation_slot_at_utf16_index": 72
+              },
+              "의 값은? [",
+              {
+                "equation_slot_at_utf16_index": 87
+              },
+              "점] "
+            ]
+          },
+          {
+            "record_1based": 1159,
+            "offset": 51513,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "ANGLE  rm C=90°"
+          },
+          {
+            "record_1based": 1161,
+            "offset": 51683,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rmABC"
+          },
+          {
+            "record_1based": 1163,
+            "offset": 51833,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rm ANGLE ABD=15°"
+          },
+          {
+            "record_1based": 1165,
+            "offset": 52005,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rm ANGLE ADC=30°"
+          },
+          {
+            "record_1based": 1167,
+            "offset": 52177,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rm {bar{BD}} =4"
+          },
+          {
+            "record_1based": 1169,
+            "offset": 52347,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "tan15°"
+          },
+          {
+            "record_1based": 1171,
+            "offset": 52499,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "4"
+          },
+          {
+            "record_1based": 1180,
+            "offset": 53204,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "①   ②",
+            "inline_template": [
+              "① ",
+              {
+                "equation_slot_at_utf16_index": 2
+              },
+              " ② ",
+              {
+                "equation_slot_at_utf16_index": 20
+              },
+              " "
+            ]
+          },
+          {
+            "record_1based": 1184,
+            "offset": 53380,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "{sqrt {3}} over {3}"
+          },
+          {
+            "record_1based": 1186,
+            "offset": 53558,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "2- sqrt {3}"
+          },
+          {
+            "record_1based": 1188,
+            "offset": 53686,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "③   ④",
+            "inline_template": [
+              "③ ",
+              {
+                "equation_slot_at_utf16_index": 2
+              },
+              " ④ ",
+              {
+                "equation_slot_at_utf16_index": 20
+              },
+              " "
+            ]
+          },
+          {
+            "record_1based": 1192,
+            "offset": 53862,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "sqrt {3}"
+          },
+          {
+            "record_1based": 1194,
+            "offset": 54018,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "1+ sqrt {3}"
+          },
+          {
+            "record_1based": 1196,
+            "offset": 54146,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "⑤",
+            "inline_template": [
+              "⑤ ",
+              {
+                "equation_slot_at_utf16_index": 2
+              },
+              " "
+            ]
+          },
+          {
+            "record_1based": 1200,
+            "offset": 54286,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "2+ sqrt {3}"
+          }
+        ],
+        "pictures": [
+          {
+            "record_1based": 1178,
+            "offset": 53081,
+            "tag": 85,
+            "level": 3,
+            "stream": "BinData/BIN0008.bmp",
+            "file": "question-only/q11/hwp-figure-1.png",
+            "width": 252,
+            "height": 103,
+            "decompressed_bmp_sha256": "c95fcde874317fd78c5eca046b8707e24d80724286072c60f7afdb6dcd86386d",
+            "rgb_pixels_sha256": "480df48fa8bbd3281e73c8b5c6926ea4430ab23dc60fecaa0245a25c464e10a5"
+          }
+        ],
+        "boundary": {
+          "first_block_offset": 50949,
+          "last_block_end_offset": 54870
+        },
+        "document_header_records": [],
+        "document_header_pictures": [],
+        "reconstructed_paragraphs": [
+          {
+            "record_1based": 1148,
+            "offset": 50977,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 51513,
+                "record_1based": 1159,
+                "script": "ANGLE  rm C=90°"
+              },
+              {
+                "offset": 51683,
+                "record_1based": 1161,
+                "script": "rmABC"
+              },
+              {
+                "offset": 51833,
+                "record_1based": 1163,
+                "script": "rm ANGLE ABD=15°"
+              },
+              {
+                "offset": 52005,
+                "record_1based": 1165,
+                "script": "rm ANGLE ADC=30°"
+              },
+              {
+                "offset": 52177,
+                "record_1based": 1167,
+                "script": "rm {bar{BD}} =4"
+              },
+              {
+                "offset": 52347,
+                "record_1based": 1169,
+                "script": "tan15°"
+              },
+              {
+                "offset": 52499,
+                "record_1based": 1171,
+                "script": "4"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "⟦ANGLE  rm C=90°⟧인 직각삼각형 ⟦rmABC⟧에서 ⟦rm ANGLE ABD=15°⟧, ⟦rm ANGLE ADC=30°⟧, ⟦rm {bar{BD}} =4⟧이다. 이때, ⟦tan15°⟧의 값은? [⟦4⟧점]"
+          },
+          {
+            "record_1based": 1180,
+            "offset": 53204,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 53380,
+                "record_1based": 1184,
+                "script": "{sqrt {3}} over {3}"
+              },
+              {
+                "offset": 53558,
+                "record_1based": 1186,
+                "script": "2- sqrt {3}"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "① ⟦{sqrt {3}} over {3}⟧ ② ⟦2- sqrt {3}⟧"
+          },
+          {
+            "record_1based": 1188,
+            "offset": 53686,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 53862,
+                "record_1based": 1192,
+                "script": "sqrt {3}"
+              },
+              {
+                "offset": 54018,
+                "record_1based": 1194,
+                "script": "1+ sqrt {3}"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "③ ⟦sqrt {3}⟧ ④ ⟦1+ sqrt {3}⟧"
+          },
+          {
+            "record_1based": 1196,
+            "offset": 54146,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 54286,
+                "record_1based": 1200,
+                "script": "2+ sqrt {3}"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "⑤ ⟦2+ sqrt {3}⟧"
+          }
+        ],
+        "all_inline_equation_slots_resolved": true
+      },
+      "source_path": "N:\\개인\\기출\\기출작업\\이전차수\\196차\\[범일중][3][25-2-중간][비상] (완료).hwp"
+    }
+  ],
+  "completed_pdf_sources": [
+    {
+      "file": "question-only/q11/s4-printed-question.png",
+      "source_id": "s4",
+      "source_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[범일중][3][25-2-중간][비상] (완료).PDF",
+      "source_sha256": "318dcd0587e97e993e8c3536b01e7c978205990386e5ba7e9242b68dde4d0689",
+      "pdf_page_1based": 3,
+      "clip_points": [
+        51,
+        80.84793090820312,
+        359,
+        366.03717041015625
+      ],
+      "original_rotation": 0,
+      "render_rotation": 0,
+      "scale": 3,
+      "sha256": "b530a51d4d8159e1d867e2ae8fd17e49c23173670dad0c8c9ee3760e630f9e66",
+      "author_input_allowed": true,
+      "literal_pdf_text": "11. ∠C °인 직각삼각형 ABC에서 ∠ABD °,\n∠ADC °, BD이다.     이때, tan°의 값은? [점]\n\n\n\n\n\n   \n①              ②  \n③           ④ \n⑤ \n\n [중단원] 삼각비\n\n [난이도] 중",
+      "normalized_complete_extracted_text": "11.∠C°인직각삼각형ABC에서∠ABD°,∠ADC°,BD이다.이때,tan°의값은?[점]①②③④⑤[중단원]삼각비[난이도]중"
+    },
+    {
+      "file": "question-only/q11/s6-printed-question.png",
+      "source_id": "s6",
+      "source_path": "N:\\개인\\기출\\기출작업\\이전차수\\196차\\[범일중][3][25-2-중간][비상] (완료).pdf",
+      "source_sha256": "f755311a97514d66c9f927940db11cab03e0265be08c76b5cd8e71002eb4928f",
+      "pdf_page_1based": 3,
+      "clip_points": [
+        40,
+        65.23575592041016,
+        292,
+        297.69952392578125
+      ],
+      "original_rotation": 0,
+      "render_rotation": 0,
+      "scale": 3,
+      "sha256": "7f26140908506748fc9cc56e1078529250ddccda32f8ad347dc6a6451c6bb3d6",
+      "author_input_allowed": true,
+      "literal_pdf_text": "11. ∠C °인 직각삼각형 ABC에서 ∠ABD °,\n∠ADC °, BD이다. 이때, tan°의 값은? [점]\n\n\n\n\n\n   \n①              ②  \n③            ④ \n⑤ \n\n [중단원] 삼각비\n\n [난이도] 중",
+      "normalized_complete_extracted_text": "11.∠C°인직각삼각형ABC에서∠ABD°,∠ADC°,BD이다.이때,tan°의값은?[점]①②③④⑤[중단원]삼각비[난이도]중"
+    }
+  ],
+  "original_scan": {
+    "source_id": "s3",
+    "source_sha256": "a66743b0d3efb668b1ac8a0884356bcc93f3868d6ed0270cbf4bc67976faf992",
+    "pdf_page_1based": 2,
+    "printed_physical_question_page": 2,
+    "render": {
+      "file": "reviewer-only/scans/s3-page-2.png",
+      "source_id": "s3",
+      "source_sha256": "a66743b0d3efb668b1ac8a0884356bcc93f3868d6ed0270cbf4bc67976faf992",
+      "physical_pdf_page_1based": 2,
+      "clip_points": [
+        0.0,
+        0.0,
+        728.0,
+        1031.0
+      ],
+      "original_rotation": 0,
+      "render_rotation": 270,
+      "scale": 1.5,
+      "sha256": "e7d08aea63ef95178b826a8c4c2b254adc49c534efcc5f8499c681778f24e3b9",
+      "author_input_allowed": false,
+      "incidental_handwriting_possible": true
+    },
+    "original_printed_label": "11",
+    "author_input_allowed": false,
+    "source_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\중3\\[범일중][3][25-2-중간](원본)(루비루비).pdf"
+  },
+  "complete_pdf_extracted_text_comparison": {
+    "equal": false,
+    "comparison": "complete whitespace-normalized per-question text, not substring or token membership",
+    "decision_limit": "Extraction equality is auxiliary. Full rendered content, HWP equations and original scan must also be reviewed.",
+    "differences": [
+      {
+        "op": "insert",
+        "a_start": 38,
+        "a_end": 38,
+        "b_start": 38,
+        "b_end": 39,
+        "a": "",
+        "b": ""
+      },
+      {
+        "op": "delete",
+        "a_start": 45,
+        "a_end": 46,
+        "b_start": 46,
+        "b_end": 46,
+        "a": "",
+        "b": ""
+      }
+    ]
+  },
+  "figure_linkage": {
+    "hwp": {
+      "record_1based": 1178,
+      "offset": 53081,
+      "tag": 85,
+      "level": 3,
+      "stream": "BinData/BIN0008.bmp",
+      "file": "question-only/q11/hwp-figure-1.png",
+      "width": 252,
+      "height": 103,
+      "decompressed_bmp_sha256": "c95fcde874317fd78c5eca046b8707e24d80724286072c60f7afdb6dcd86386d",
+      "rgb_pixels_sha256": "480df48fa8bbd3281e73c8b5c6926ea4430ab23dc60fecaa0245a25c464e10a5"
+    },
+    "pdf_figures": [
+      {
+        "source_id": "s4",
+        "source_sha256": "318dcd0587e97e993e8c3536b01e7c978205990386e5ba7e9242b68dde4d0689",
+        "pdf_page_1based": 3,
+        "xref": 21,
+        "image_rect_points": [
+          110.20099639892578,
+          124.22798156738281,
+          299.0660095214844,
+          201.57098388671875
+        ],
+        "file": "question-only/q11/s4-embedded-figure.png",
+        "sha256": "99d4686089629b33be470df26f4563940f922a0a9574af879425f78786497949",
+        "width": 252,
+        "height": 103,
+        "hwp_dimensions_equal": true,
+        "hwp_rgb_pixels_equal": false,
+        "hwp_mean_absolute_rgb_channel_difference": 2.271601,
+        "hwp_maximum_rgb_channel_difference": 40
+      },
+      {
+        "source_id": "s6",
+        "source_sha256": "f755311a97514d66c9f927940db11cab03e0265be08c76b5cd8e71002eb4928f",
+        "pdf_page_1based": 3,
+        "xref": 43,
+        "image_rect_points": [
+          89.9520034790039,
+          101.28901672363281,
+          244.18899536132812,
+          164.46002197265625
+        ],
+        "file": "question-only/q11/s6-embedded-figure.png",
+        "sha256": "2c50ce3b041dac017f62fcaef5f704e7625ca0e0089b699ada035462fbd7ee58",
+        "width": 252,
+        "height": 103,
+        "hwp_dimensions_equal": true,
+        "hwp_rgb_pixels_equal": false,
+        "hwp_mean_absolute_rgb_channel_difference": 2.492988,
+        "hwp_maximum_rgb_channel_difference": 47
+      }
+    ]
+  },
+  "visual_comparison_status": "confirmed",
+  "extraction_limit_resolved_by_visual_review": "The full text diff moves U+E06D overline glyphs relative to their segment letters. Complete equations, letters, words and render meanings match; original strokes are retained in raw evidence.",
+  "computed_hwp_vs_normalized_complete_content": {
+    "checks": {
+      "complete_stem_equal_after_bounded_presentation_conversion": true,
+      "complete_ordered_choices_equal": true,
+      "score_equal": true,
+      "all_hwp_inline_equations_placed": true,
+      "boxed_given_equations_equal": true,
+      "complete_table_cells_equal": true
+    },
+    "hwp_complete_stem": "∠C=90°인직각삼각형ABC에서∠ABD=15°,∠ADC=30°,BD=4이다.이때,tan15°의값은?",
+    "normalized_complete_stem": "∠C=90°인직각삼각형ABC에서∠ABD=15°,∠ADC=30°,BD=4이다.이때,tan15°의값은?",
+    "stem_differences": [],
+    "hwp_complete_ordered_choices": [
+      "√3/3",
+      "2-√3",
+      "√3",
+      "1+√3",
+      "2+√3"
+    ],
+    "normalized_complete_ordered_choices": [
+      "√3/3",
+      "2-√3",
+      "√3",
+      "1+√3",
+      "2+√3"
+    ],
+    "boxed_givens": null,
+    "table_cells": null,
+    "method_limit": "Presentation conversion only; no numerical expression evaluation or original-answer solving. It does not alone prove pixels/scans equivalent."
+  },
+  "direct_visual_comparison": {
+    "question_placement_and_label": "passed",
+    "complete_printed_stem_and_all_givens": "passed",
+    "all_equations_signs_exponents_fractions_and_units": "passed",
+    "all_ordered_choices_or_printed_absence": "passed",
+    "native_tables_or_boxed_given_structure": "passed",
+    "all_printed_figure_labels_and_relations_or_printed_absence": "passed",
+    "score_and_partial_credit_label": "passed",
+    "sources_actually_compared": [
+      "s1 HWP main record content",
+      "s5 HWP main record content",
+      "s4 anonymous completed PDF",
+      "s6 named completed PDF",
+      "s3 original paper scan"
+    ],
+    "view_image_used": true,
+    "handwriting_not_printed_content": true,
+    "original_answer_or_solution_agreement_used": false,
+    "annotation_limit": "Handwritten student choices/work were incidentally visible and not transcribed or used. Scans are reviewer-only; clean printed sources and normalized question records are the author whitelist."
+  },
+  "source_identity": {
+    "status": "confirmed",
+    "school_full": "범일중학교",
+    "school_normalized": "범일중",
+    "grade": 3,
+    "subject": "수학",
+    "semester": 2,
+    "round": "중간",
+    "exam_year": 2025,
+    "administration_date": "2025-09-23",
+    "period": 3,
+    "subject_code": "05",
+    "basis": "Actual printed original title/date/footer, linked by complete question content and printed page/label. Neither filename nor byte hash alone is identity proof.",
+    "edited_BI_label_scope": "Only these compared files; no universal BI-to-school mapping.",
+    "footer_26_year_role": "Observed 대비 wording + linked explicit2025 exam administration support editorial/preparation label; creation date/intended2026 use remain unknown."
+  },
+  "held_components": [
+    {
+      "component": "export_acquisition_native_custody_chain",
+      "status": "held",
+      "reason": "No converter/exporter or custody records inspected; content equivalence does not prove a direct chain."
+    },
+    {
+      "component": "textbook_publisher",
+      "status": "held",
+      "reason": "비상 is a filename hint; no printed textbook/publisher attestation established."
+    },
+    {
+      "component": "copyright_reuse_authorization",
+      "status": "held",
+      "reason": "A school copyright line is not a reuse licence/permission."
+    },
+    {
+      "component": "curriculum_new_twin_approval",
+      "status": "outside this source audit",
+      "reason": "Original equivalence/identity does not approve curriculum, new answers/solutions or candidates."
+    }
+  ]
+}

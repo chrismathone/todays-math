@@ -1,0 +1,34 @@
+{
+  "schema": "bumil-normalized-question-only.v2",
+  "question_number": 16,
+  "original_label": "16",
+  "question_type": "객관식",
+  "partial_credit_printed": false,
+  "score": 4,
+  "stem": "원 O에서 OM⊥AB, ON⊥AC, OM=ON이다. ∠ABC=70°일 때, ∠BAC의 크기는?",
+  "givens": [
+    "OM⊥AB",
+    "ON⊥AC",
+    "OM=ON",
+    "∠ABC=70°"
+  ],
+  "choices": [
+    "40°",
+    "45°",
+    "50°",
+    "55°",
+    "60°"
+  ],
+  "figure_labels": [
+    "A",
+    "B",
+    "C",
+    "O",
+    "M",
+    "N",
+    "70°"
+  ],
+  "diagram_observation": "원에 내접한 ABC. M은 AB 위, N은 AC 위이고 OM/ON의 직각 표시와 같은 길이 표시가 있다. 70°는 ABC에, 구할 각은 BAC에 표시됨.",
+  "transcription_method": "Human normalization of the complete printed question, not a solution or automatic scan OCR.",
+  "author_input_policy": "Only normalized printed content and clean HWP/completed-PDF question figures/crops; no scan handwriting, answers or solutions."
+}

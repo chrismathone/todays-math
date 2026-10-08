@@ -1,0 +1,35 @@
+{
+  "schema": "bumil-normalized-question-only.v2",
+  "question_number": 12,
+  "original_label": "12",
+  "question_type": "객관식",
+  "partial_credit_printed": false,
+  "score": 4,
+  "stem": "□ABCD에서 ∠CAB=45°, ∠ACD=60°, BC=10 cm, DC=4 cm일 때, □ABCD의 넓이는?",
+  "givens": [
+    "∠CAB=45°",
+    "∠ACD=60°",
+    "BC=10 cm",
+    "DC=4 cm"
+  ],
+  "choices": [
+    "10√3 cm²",
+    "(40+10√3) cm²",
+    "(40+10√6) cm²",
+    "(50+10√3) cm²",
+    "(50+10√6) cm²"
+  ],
+  "figure_labels": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "45°",
+    "60°",
+    "10 cm",
+    "4 cm"
+  ],
+  "diagram_observation": "대각선 AC로 나뉜 사각형. A는 왼쪽 아래, B는 오른쪽 아래, C는 오른쪽 위, D는 왼쪽 위. B의 직각, CAB의45°, ACD의60°, BC의10 cm, DC의4 cm와 사각형 음영이 대응한다.",
+  "transcription_method": "Human normalization of the complete printed question, not a solution or automatic scan OCR.",
+  "author_input_policy": "Only normalized printed content and clean HWP/completed-PDF question figures/crops; no scan handwriting, answers or solutions."
+}

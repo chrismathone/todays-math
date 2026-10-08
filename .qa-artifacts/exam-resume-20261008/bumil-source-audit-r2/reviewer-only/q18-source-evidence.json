@@ -1,0 +1,515 @@
+{
+  "question_number": 18,
+  "original_label": "서술형 1",
+  "score": 7,
+  "normalized_question_file": "question-only/q18/normalized-question.json",
+  "normalized_question_sha256": "b131ef5413738f4f3df3c0fd3aefb1d9bc1722e757a20cf0a0ad80f2c05cb06d",
+  "hwp_sources": [
+    {
+      "source_id": "s1",
+      "source_sha256": "3abb1a759dd96f6e9a76728a1ecae70013df605bb3e73745908a773897a6a43b",
+      "stream": "BodyText/Section0",
+      "question_record": {
+        "question_number": 18,
+        "records": [
+          {
+            "record_1based": 1657,
+            "offset": 77832,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "[서술형  ] 이차함수   (단,  는 수,  )의 그래프가 점  을 지나고, 이 그래프의 꼭짓점이 일차함수  의 그래프 위의 점일 때,  의 값을 구하시오. [총  점, 부분 점수 있음]",
+            "inline_template": [
+              "  [서술형 ",
+              {
+                "equation_slot_at_utf16_index": 14
+              },
+              "] 이차함수 ",
+              {
+                "equation_slot_at_utf16_index": 29
+              },
+              " (단, ",
+              {
+                "equation_slot_at_utf16_index": 42
+              },
+              "는 수, ",
+              {
+                "equation_slot_at_utf16_index": 55
+              },
+              ")의 그래프가 점 ",
+              {
+                "equation_slot_at_utf16_index": 73
+              },
+              "을 지나고, 이 그래프의 꼭짓점이 일차함수 ",
+              {
+                "equation_slot_at_utf16_index": 105
+              },
+              "의 그래프 위의 점일 때, ",
+              {
+                "equation_slot_at_utf16_index": 128
+              },
+              "의 값을 구하시오. [총 ",
+              {
+                "equation_slot_at_utf16_index": 150
+              },
+              "점, 부분 점수 있음] "
+            ]
+          },
+          {
+            "record_1based": 1713,
+            "offset": 81234,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "1"
+          },
+          {
+            "record_1based": 1715,
+            "offset": 81376,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "y=ax ^{2} -2ax+b"
+          },
+          {
+            "record_1based": 1717,
+            "offset": 81548,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "a,~b"
+          },
+          {
+            "record_1based": 1719,
+            "offset": 81696,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "a!=0"
+          },
+          {
+            "record_1based": 1721,
+            "offset": 81844,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "LEFT ( -1,~13 RIGHT )"
+          },
+          {
+            "record_1based": 1723,
+            "offset": 82026,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "y=-2x+7"
+          },
+          {
+            "record_1based": 1725,
+            "offset": 82180,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "a+b"
+          },
+          {
+            "record_1based": 1727,
+            "offset": 82326,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "7"
+          }
+        ],
+        "pictures": [],
+        "boundary": {
+          "first_block_offset": 77804,
+          "last_block_end_offset": 82660
+        },
+        "document_header_records": [],
+        "document_header_pictures": [],
+        "reconstructed_paragraphs": [
+          {
+            "record_1based": 1657,
+            "offset": 77832,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 81234,
+                "record_1based": 1713,
+                "script": "1"
+              },
+              {
+                "offset": 81376,
+                "record_1based": 1715,
+                "script": "y=ax ^{2} -2ax+b"
+              },
+              {
+                "offset": 81548,
+                "record_1based": 1717,
+                "script": "a,~b"
+              },
+              {
+                "offset": 81696,
+                "record_1based": 1719,
+                "script": "a!=0"
+              },
+              {
+                "offset": 81844,
+                "record_1based": 1721,
+                "script": "LEFT ( -1,~13 RIGHT )"
+              },
+              {
+                "offset": 82026,
+                "record_1based": 1723,
+                "script": "y=-2x+7"
+              },
+              {
+                "offset": 82180,
+                "record_1based": 1725,
+                "script": "a+b"
+              },
+              {
+                "offset": 82326,
+                "record_1based": 1727,
+                "script": "7"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "[서술형 ⟦1⟧] 이차함수 ⟦y=ax ^{2} -2ax+b⟧ (단, ⟦a,~b⟧는 수, ⟦a!=0⟧)의 그래프가 점 ⟦LEFT ( -1,~13 RIGHT )⟧을 지나고, 이 그래프의 꼭짓점이 일차함수 ⟦y=-2x+7⟧의 그래프 위의 점일 때, ⟦a+b⟧의 값을 구하시오. [총 ⟦7⟧점, 부분 점수 있음]"
+          }
+        ],
+        "all_inline_equation_slots_resolved": true
+      },
+      "source_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[범일중][3][25-2-중간][비상] (완료).hwp"
+    },
+    {
+      "source_id": "s5",
+      "source_sha256": "3abb1a759dd96f6e9a76728a1ecae70013df605bb3e73745908a773897a6a43b",
+      "stream": "BodyText/Section0",
+      "question_record": {
+        "question_number": 18,
+        "records": [
+          {
+            "record_1based": 1657,
+            "offset": 77832,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "[서술형  ] 이차함수   (단,  는 수,  )의 그래프가 점  을 지나고, 이 그래프의 꼭짓점이 일차함수  의 그래프 위의 점일 때,  의 값을 구하시오. [총  점, 부분 점수 있음]",
+            "inline_template": [
+              "  [서술형 ",
+              {
+                "equation_slot_at_utf16_index": 14
+              },
+              "] 이차함수 ",
+              {
+                "equation_slot_at_utf16_index": 29
+              },
+              " (단, ",
+              {
+                "equation_slot_at_utf16_index": 42
+              },
+              "는 수, ",
+              {
+                "equation_slot_at_utf16_index": 55
+              },
+              ")의 그래프가 점 ",
+              {
+                "equation_slot_at_utf16_index": 73
+              },
+              "을 지나고, 이 그래프의 꼭짓점이 일차함수 ",
+              {
+                "equation_slot_at_utf16_index": 105
+              },
+              "의 그래프 위의 점일 때, ",
+              {
+                "equation_slot_at_utf16_index": 128
+              },
+              "의 값을 구하시오. [총 ",
+              {
+                "equation_slot_at_utf16_index": 150
+              },
+              "점, 부분 점수 있음] "
+            ]
+          },
+          {
+            "record_1based": 1713,
+            "offset": 81234,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "1"
+          },
+          {
+            "record_1based": 1715,
+            "offset": 81376,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "y=ax ^{2} -2ax+b"
+          },
+          {
+            "record_1based": 1717,
+            "offset": 81548,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "a,~b"
+          },
+          {
+            "record_1based": 1719,
+            "offset": 81696,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "a!=0"
+          },
+          {
+            "record_1based": 1721,
+            "offset": 81844,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "LEFT ( -1,~13 RIGHT )"
+          },
+          {
+            "record_1based": 1723,
+            "offset": 82026,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "y=-2x+7"
+          },
+          {
+            "record_1based": 1725,
+            "offset": 82180,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "a+b"
+          },
+          {
+            "record_1based": 1727,
+            "offset": 82326,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "7"
+          }
+        ],
+        "pictures": [],
+        "boundary": {
+          "first_block_offset": 77804,
+          "last_block_end_offset": 82660
+        },
+        "document_header_records": [],
+        "document_header_pictures": [],
+        "reconstructed_paragraphs": [
+          {
+            "record_1based": 1657,
+            "offset": 77832,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 81234,
+                "record_1based": 1713,
+                "script": "1"
+              },
+              {
+                "offset": 81376,
+                "record_1based": 1715,
+                "script": "y=ax ^{2} -2ax+b"
+              },
+              {
+                "offset": 81548,
+                "record_1based": 1717,
+                "script": "a,~b"
+              },
+              {
+                "offset": 81696,
+                "record_1based": 1719,
+                "script": "a!=0"
+              },
+              {
+                "offset": 81844,
+                "record_1based": 1721,
+                "script": "LEFT ( -1,~13 RIGHT )"
+              },
+              {
+                "offset": 82026,
+                "record_1based": 1723,
+                "script": "y=-2x+7"
+              },
+              {
+                "offset": 82180,
+                "record_1based": 1725,
+                "script": "a+b"
+              },
+              {
+                "offset": 82326,
+                "record_1based": 1727,
+                "script": "7"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "[서술형 ⟦1⟧] 이차함수 ⟦y=ax ^{2} -2ax+b⟧ (단, ⟦a,~b⟧는 수, ⟦a!=0⟧)의 그래프가 점 ⟦LEFT ( -1,~13 RIGHT )⟧을 지나고, 이 그래프의 꼭짓점이 일차함수 ⟦y=-2x+7⟧의 그래프 위의 점일 때, ⟦a+b⟧의 값을 구하시오. [총 ⟦7⟧점, 부분 점수 있음]"
+          }
+        ],
+        "all_inline_equation_slots_resolved": true
+      },
+      "source_path": "N:\\개인\\기출\\기출작업\\이전차수\\196차\\[범일중][3][25-2-중간][비상] (완료).hwp"
+    }
+  ],
+  "completed_pdf_sources": [
+    {
+      "file": "question-only/q18/s4-printed-question.png",
+      "source_id": "s4",
+      "source_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[범일중][3][25-2-중간][비상] (완료).PDF",
+      "source_sha256": "318dcd0587e97e993e8c3536b01e7c978205990386e5ba7e9242b68dde4d0689",
+      "pdf_page_1based": 4,
+      "clip_points": [
+        51,
+        739.7643432617188,
+        359,
+        849.8981323242188
+      ],
+      "original_rotation": 0,
+      "render_rotation": 0,
+      "scale": 3,
+      "sha256": "21428c17935a389049a09a1b5d26981410b0eab461d17c12d3fdc2bba1696dd9",
+      "author_input_allowed": true,
+      "literal_pdf_text": "18. [서술형 ] 이차함수  (단, 는 수,\n\n≠)의 그래프가 점 을 지나고, 이 그래프의\n\n꼭짓점이 일차함수 의 그래프 위의 점일 때,\n\n의 값을 구하시오. [총 점, 부분 점수 있음]\n\n [중단원] 이차함수의 활용\n\n [난이도] 하",
+      "normalized_complete_extracted_text": "18.[서술형]이차함수(단,는수,≠)의그래프가점을지나고,이그래프의꼭짓점이일차함수의그래프위의점일때,의값을구하시오.[총점,부분점수있음][중단원]이차함수의활용[난이도]하"
+    },
+    {
+      "file": "question-only/q18/s6-printed-question.png",
+      "source_id": "s6",
+      "source_path": "N:\\개인\\기출\\기출작업\\이전차수\\196차\\[범일중][3][25-2-중간][비상] (완료).pdf",
+      "source_sha256": "f755311a97514d66c9f927940db11cab03e0265be08c76b5cd8e71002eb4928f",
+      "pdf_page_1based": 4,
+      "clip_points": [
+        40,
+        603.2078247070312,
+        292,
+        694.6768798828125
+      ],
+      "original_rotation": 0,
+      "render_rotation": 0,
+      "scale": 3,
+      "sha256": "50ff9ab0314a4fe1f1e9e08ed3584decfa91966e45d07794dc25ee642ee706b1",
+      "author_input_allowed": true,
+      "literal_pdf_text": "18. [서술형 ] 이차함수  (단, 는 수,\n\n≠)의 그래프가 점 을 지나고, 이 그래프의\n\n꼭짓점이 일차함수 의 그래프 위의 점일 때,\n\n의 값을 구하시오. [총 점, 부분 점수 있음]\n\n [중단원] 이차함수의 활용\n\n [난이도] 하",
+      "normalized_complete_extracted_text": "18.[서술형]이차함수(단,는수,≠)의그래프가점을지나고,이그래프의꼭짓점이일차함수의그래프위의점일때,의값을구하시오.[총점,부분점수있음][중단원]이차함수의활용[난이도]하"
+    }
+  ],
+  "original_scan": {
+    "source_id": "s3",
+    "source_sha256": "a66743b0d3efb668b1ac8a0884356bcc93f3868d6ed0270cbf4bc67976faf992",
+    "pdf_page_1based": 4,
+    "printed_physical_question_page": 4,
+    "render": {
+      "file": "reviewer-only/scans/s3-page-4.png",
+      "source_id": "s3",
+      "source_sha256": "a66743b0d3efb668b1ac8a0884356bcc93f3868d6ed0270cbf4bc67976faf992",
+      "physical_pdf_page_1based": 4,
+      "clip_points": [
+        0.0,
+        0.0,
+        728.0,
+        1031.0
+      ],
+      "original_rotation": 0,
+      "render_rotation": 270,
+      "scale": 1.5,
+      "sha256": "967b64e269390d0c360b2b772c9ab37a2621a6e40c95112edff9415cc113358c",
+      "author_input_allowed": false,
+      "incidental_handwriting_possible": true
+    },
+    "original_printed_label": "서술형 1",
+    "author_input_allowed": false,
+    "source_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\중3\\[범일중][3][25-2-중간](원본)(루비루비).pdf"
+  },
+  "complete_pdf_extracted_text_comparison": {
+    "equal": true,
+    "comparison": "complete whitespace-normalized per-question text, not substring or token membership",
+    "decision_limit": "Extraction equality is auxiliary. Full rendered content, HWP equations and original scan must also be reviewed.",
+    "differences": []
+  },
+  "figure_linkage": null,
+  "visual_comparison_status": "confirmed",
+  "extraction_limit_resolved_by_visual_review": "Complete extracted question text equals after whitespace removal; direct figure/scan/HWP review is still required and was performed.",
+  "computed_hwp_vs_normalized_complete_content": {
+    "checks": {
+      "complete_stem_equal_after_bounded_presentation_conversion": true,
+      "complete_ordered_choices_equal": true,
+      "score_equal": true,
+      "all_hwp_inline_equations_placed": true,
+      "boxed_given_equations_equal": true,
+      "complete_table_cells_equal": true
+    },
+    "hwp_complete_stem": "[서술형1]이차함수y=ax²-2ax+b(단,a,b는수,a≠0)의그래프가점(-1,13)을지나고,이그래프의꼭짓점이일차함수y=-2x+7의그래프위의점일때,a+b의값을구하시오.",
+    "normalized_complete_stem": "[서술형1]이차함수y=ax²-2ax+b(단,a,b는수,a≠0)의그래프가점(-1,13)을지나고,이그래프의꼭짓점이일차함수y=-2x+7의그래프위의점일때,a+b의값을구하시오.",
+    "stem_differences": [],
+    "hwp_complete_ordered_choices": [],
+    "normalized_complete_ordered_choices": [],
+    "boxed_givens": null,
+    "table_cells": null,
+    "method_limit": "Presentation conversion only; no numerical expression evaluation or original-answer solving. It does not alone prove pixels/scans equivalent."
+  },
+  "direct_visual_comparison": {
+    "question_placement_and_label": "passed",
+    "complete_printed_stem_and_all_givens": "passed",
+    "all_equations_signs_exponents_fractions_and_units": "passed",
+    "all_ordered_choices_or_printed_absence": "passed",
+    "native_tables_or_boxed_given_structure": "passed",
+    "all_printed_figure_labels_and_relations_or_printed_absence": "passed",
+    "score_and_partial_credit_label": "passed",
+    "sources_actually_compared": [
+      "s1 HWP main record content",
+      "s5 HWP main record content",
+      "s4 anonymous completed PDF",
+      "s6 named completed PDF",
+      "s3 original paper scan"
+    ],
+    "view_image_used": true,
+    "handwriting_not_printed_content": true,
+    "original_answer_or_solution_agreement_used": false,
+    "annotation_limit": "Handwritten student choices/work were incidentally visible and not transcribed or used. Scans are reviewer-only; clean printed sources and normalized question records are the author whitelist."
+  },
+  "source_identity": {
+    "status": "confirmed",
+    "school_full": "범일중학교",
+    "school_normalized": "범일중",
+    "grade": 3,
+    "subject": "수학",
+    "semester": 2,
+    "round": "중간",
+    "exam_year": 2025,
+    "administration_date": "2025-09-23",
+    "period": 3,
+    "subject_code": "05",
+    "basis": "Actual printed original title/date/footer, linked by complete question content and printed page/label. Neither filename nor byte hash alone is identity proof.",
+    "edited_BI_label_scope": "Only these compared files; no universal BI-to-school mapping.",
+    "footer_26_year_role": "Observed 대비 wording + linked explicit2025 exam administration support editorial/preparation label; creation date/intended2026 use remain unknown."
+  },
+  "held_components": [
+    {
+      "component": "export_acquisition_native_custody_chain",
+      "status": "held",
+      "reason": "No converter/exporter or custody records inspected; content equivalence does not prove a direct chain."
+    },
+    {
+      "component": "textbook_publisher",
+      "status": "held",
+      "reason": "비상 is a filename hint; no printed textbook/publisher attestation established."
+    },
+    {
+      "component": "copyright_reuse_authorization",
+      "status": "held",
+      "reason": "A school copyright line is not a reuse licence/permission."
+    },
+    {
+      "component": "curriculum_new_twin_approval",
+      "status": "outside this source audit",
+      "reason": "Original equivalence/identity does not approve curriculum, new answers/solutions or candidates."
+    }
+  ]
+}

@@ -1,0 +1,749 @@
+{
+  "schema_version": "bumil-source-content-audit.v2",
+  "reviewed_at": "2026-10-08T05:00:38.032193+00:00",
+  "worker_id": "orca-codex-exam-twin-source-identity-20261008",
+  "exam_id": "personal-9967cfbb759aa6d369883bac4c986aaa",
+  "scope": [
+    1,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "previous_four_question_audit_edited": false,
+  "previous_confirmed_questions_retained": [
+    2,
+    3,
+    15,
+    21
+  ],
+  "counts": {
+    "new_questions_checked": 17,
+    "new_content_confirmed": 17,
+    "new_content_held": 0,
+    "new_identity_confirmed": 17,
+    "new_objective_questions": 14,
+    "new_descriptive_questions": 3,
+    "new_printed_choices": 70,
+    "new_question_figures": 13,
+    "hwp_main_paragraphs": 77,
+    "hwp_equation_slots_resolved": 172,
+    "retained_previous_confirmed_questions": 4
+  },
+  "question_reviews": [
+    {
+      "question_number": 1,
+      "original_label": 1,
+      "score": 4,
+      "completed_pdf_page": 1,
+      "original_scan_page": 1,
+      "status": "confirmed",
+      "source_identity_status": "confirmed",
+      "checks": {
+        "complete_stem_equal_after_bounded_presentation_conversion": true,
+        "complete_ordered_choices_equal": true,
+        "score_equal": true,
+        "all_hwp_inline_equations_placed": true,
+        "boxed_given_equations_equal": true,
+        "complete_table_cells_equal": true
+      },
+      "evidence_file": "reviewer-only/q01-source-evidence.json",
+      "evidence_sha256": "55fe5fe59acfa59df7610d4487de3286c81f880d3687e6497ae3092d30f6fd15",
+      "normalized_question_file": "question-only/q01/normalized-question.json",
+      "normalized_question_sha256": "2fc0cb45fce477078be8456d97cb760b8a1fceb690e439b38d8b64ed29f68619",
+      "unresolved_content_reasons": []
+    },
+    {
+      "question_number": 4,
+      "original_label": 4,
+      "score": 4,
+      "completed_pdf_page": 1,
+      "original_scan_page": 1,
+      "status": "confirmed",
+      "source_identity_status": "confirmed",
+      "checks": {
+        "complete_stem_equal_after_bounded_presentation_conversion": true,
+        "complete_ordered_choices_equal": true,
+        "score_equal": true,
+        "all_hwp_inline_equations_placed": true,
+        "boxed_given_equations_equal": true,
+        "complete_table_cells_equal": true
+      },
+      "evidence_file": "reviewer-only/q04-source-evidence.json",
+      "evidence_sha256": "984dad3ed781ad2625c8a31a3eeae81d50c7983ca54e7ccb6ebdeb1928b84071",
+      "normalized_question_file": "question-only/q04/normalized-question.json",
+      "normalized_question_sha256": "6edb12e3dd0d72ac0046349114e8f0e3d23d2d11ed4e07195c55ffbd788fbd7a",
+      "unresolved_content_reasons": []
+    },
+    {
+      "question_number": 5,
+      "original_label": 5,
+      "score": 5,
+      "completed_pdf_page": 1,
+      "original_scan_page": 1,
+      "status": "confirmed",
+      "source_identity_status": "confirmed",
+      "checks": {
+        "complete_stem_equal_after_bounded_presentation_conversion": true,
+        "complete_ordered_choices_equal": true,
+        "score_equal": true,
+        "all_hwp_inline_equations_placed": true,
+        "boxed_given_equations_equal": true,
+        "complete_table_cells_equal": true
+      },
+      "evidence_file": "reviewer-only/q05-source-evidence.json",
+      "evidence_sha256": "cb61f96a7b09afdbf59a62b8ed66329d44b6dc64d2353a5f674d9bfd2bc16ae9",
+      "normalized_question_file": "question-only/q05/normalized-question.json",
+      "normalized_question_sha256": "d29e941e5e30d1840615afa567b9cefbed8b992704e8df1dfc3c8e3695a5b9dd",
+      "unresolved_content_reasons": []
+    },
+    {
+      "question_number": 6,
+      "original_label": 6,
+      "score": 4,
+      "completed_pdf_page": 2,
+      "original_scan_page": 2,
+      "status": "confirmed",
+      "source_identity_status": "confirmed",
+      "checks": {
+        "complete_stem_equal_after_bounded_presentation_conversion": true,
+        "complete_ordered_choices_equal": true,
+        "score_equal": true,
+        "all_hwp_inline_equations_placed": true,
+        "boxed_given_equations_equal": true,
+        "complete_table_cells_equal": true
+      },
+      "evidence_file": "reviewer-only/q06-source-evidence.json",
+      "evidence_sha256": "d92be526cd5e2d1df2844021487fbc6e02bb1109b3b426ad515fdfd3e7d9c47b",
+      "normalized_question_file": "question-only/q06/normalized-question.json",
+      "normalized_question_sha256": "774966a388f9f040d99494dd51be7e09d95bbdb8ff8175517b3653d4a228abc8",
+      "unresolved_content_reasons": []
+    },
+    {
+      "question_number": 7,
+      "original_label": 7,
+      "score": 4,
+      "completed_pdf_page": 2,
+      "original_scan_page": 2,
+      "status": "confirmed",
+      "source_identity_status": "confirmed",
+      "checks": {
+        "complete_stem_equal_after_bounded_presentation_conversion": true,
+        "complete_ordered_choices_equal": true,
+        "score_equal": true,
+        "all_hwp_inline_equations_placed": true,
+        "boxed_given_equations_equal": true,
+        "complete_table_cells_equal": true
+      },
+      "evidence_file": "reviewer-only/q07-source-evidence.json",
+      "evidence_sha256": "78a25f08d76fd3254f0257f31e66e5d5c882afe1d4459d9c2d925dbba43db3d9",
+      "normalized_question_file": "question-only/q07/normalized-question.json",
+      "normalized_question_sha256": "992c1fa793f27afa1cd6fdf1d94e7486e7a2d32cc552a3f3581f5efbd4772607",
+      "unresolved_content_reasons": []
+    },
+    {
+      "question_number": 8,
+      "original_label": 8,
+      "score": 4,
+      "completed_pdf_page": 2,
+      "original_scan_page": 2,
+      "status": "confirmed",
+      "source_identity_status": "confirmed",
+      "checks": {
+        "complete_stem_equal_after_bounded_presentation_conversion": true,
+        "complete_ordered_choices_equal": true,
+        "score_equal": true,
+        "all_hwp_inline_equations_placed": true,
+        "boxed_given_equations_equal": true,
+        "complete_table_cells_equal": true
+      },
+      "evidence_file": "reviewer-only/q08-source-evidence.json",
+      "evidence_sha256": "a78b6523d11f2c7c0386fd9859dbd19b6d6b42664c38bca30098f9284c5bab12",
+      "normalized_question_file": "question-only/q08/normalized-question.json",
+      "normalized_question_sha256": "3f6cebddf01b5154020d56a89e8e095ec3d64c7741f010c47ca505efaa7388c4",
+      "unresolved_content_reasons": []
+    },
+    {
+      "question_number": 9,
+      "original_label": 9,
+      "score": 4,
+      "completed_pdf_page": 2,
+      "original_scan_page": 2,
+      "status": "confirmed",
+      "source_identity_status": "confirmed",
+      "checks": {
+        "complete_stem_equal_after_bounded_presentation_conversion": true,
+        "complete_ordered_choices_equal": true,
+        "score_equal": true,
+        "all_hwp_inline_equations_placed": true,
+        "boxed_given_equations_equal": true,
+        "complete_table_cells_equal": true
+      },
+      "evidence_file": "reviewer-only/q09-source-evidence.json",
+      "evidence_sha256": "5970aa514819b3666d8cdf6c35da93b0f2e41b1c963c607abe18532d059ffc6d",
+      "normalized_question_file": "question-only/q09/normalized-question.json",
+      "normalized_question_sha256": "73b2c0b7a10f31d06a1b063d4cb2671ce20c68ee701e3430ef6780a8439d0ce9",
+      "unresolved_content_reasons": []
+    },
+    {
+      "question_number": 10,
+      "original_label": 10,
+      "score": 4,
+      "completed_pdf_page": 2,
+      "original_scan_page": 2,
+      "status": "confirmed",
+      "source_identity_status": "confirmed",
+      "checks": {
+        "complete_stem_equal_after_bounded_presentation_conversion": true,
+        "complete_ordered_choices_equal": true,
+        "score_equal": true,
+        "all_hwp_inline_equations_placed": true,
+        "boxed_given_equations_equal": true,
+        "complete_table_cells_equal": true
+      },
+      "evidence_file": "reviewer-only/q10-source-evidence.json",
+      "evidence_sha256": "a1a52b7fff7076da0e26cd458573fc94f485dad1d381596e8254f66ca9e4019d",
+      "normalized_question_file": "question-only/q10/normalized-question.json",
+      "normalized_question_sha256": "a01b2dce96c63bdcb69274197b42c03ee219c15aa5ed5a56d6afd14340c8b8b8",
+      "unresolved_content_reasons": []
+    },
+    {
+      "question_number": 11,
+      "original_label": 11,
+      "score": 4,
+      "completed_pdf_page": 3,
+      "original_scan_page": 2,
+      "status": "confirmed",
+      "source_identity_status": "confirmed",
+      "checks": {
+        "complete_stem_equal_after_bounded_presentation_conversion": true,
+        "complete_ordered_choices_equal": true,
+        "score_equal": true,
+        "all_hwp_inline_equations_placed": true,
+        "boxed_given_equations_equal": true,
+        "complete_table_cells_equal": true
+      },
+      "evidence_file": "reviewer-only/q11-source-evidence.json",
+      "evidence_sha256": "61009153a0c9db31d67a35820431b1277be2dd037bca5b505823ee2c6eb7f9d3",
+      "normalized_question_file": "question-only/q11/normalized-question.json",
+      "normalized_question_sha256": "92eac07e4f22b30f56ffb46cfcc3967ee89926df79e4c9d9ecb2d1eaebab5a76",
+      "unresolved_content_reasons": []
+    },
+    {
+      "question_number": 12,
+      "original_label": 12,
+      "score": 4,
+      "completed_pdf_page": 3,
+      "original_scan_page": 3,
+      "status": "confirmed",
+      "source_identity_status": "confirmed",
+      "checks": {
+        "complete_stem_equal_after_bounded_presentation_conversion": true,
+        "complete_ordered_choices_equal": true,
+        "score_equal": true,
+        "all_hwp_inline_equations_placed": true,
+        "boxed_given_equations_equal": true,
+        "complete_table_cells_equal": true
+      },
+      "evidence_file": "reviewer-only/q12-source-evidence.json",
+      "evidence_sha256": "d1e9b5ff42d1cdcb0160740f2fd00345234d0a6ef44215a7f321a74ace1510cb",
+      "normalized_question_file": "question-only/q12/normalized-question.json",
+      "normalized_question_sha256": "73a67be3346a9551271840080155f6b0a5f209010db915dd6dce2aca975e32dd",
+      "unresolved_content_reasons": []
+    },
+    {
+      "question_number": 13,
+      "original_label": 13,
+      "score": 4,
+      "completed_pdf_page": 3,
+      "original_scan_page": 3,
+      "status": "confirmed",
+      "source_identity_status": "confirmed",
+      "checks": {
+        "complete_stem_equal_after_bounded_presentation_conversion": true,
+        "complete_ordered_choices_equal": true,
+        "score_equal": true,
+        "all_hwp_inline_equations_placed": true,
+        "boxed_given_equations_equal": true,
+        "complete_table_cells_equal": true
+      },
+      "evidence_file": "reviewer-only/q13-source-evidence.json",
+      "evidence_sha256": "98b221e41dfae87c3efe631ab2f31c5fe60e6eda71940b274132c3a0b298d99c",
+      "normalized_question_file": "question-only/q13/normalized-question.json",
+      "normalized_question_sha256": "b98d492e2e5f2800ab0239d11ed9a137b5673cd2ead8c53636fe02dab2f73e72",
+      "unresolved_content_reasons": []
+    },
+    {
+      "question_number": 14,
+      "original_label": 14,
+      "score": 5,
+      "completed_pdf_page": 3,
+      "original_scan_page": 3,
+      "status": "confirmed",
+      "source_identity_status": "confirmed",
+      "checks": {
+        "complete_stem_equal_after_bounded_presentation_conversion": true,
+        "complete_ordered_choices_equal": true,
+        "score_equal": true,
+        "all_hwp_inline_equations_placed": true,
+        "boxed_given_equations_equal": true,
+        "complete_table_cells_equal": true
+      },
+      "evidence_file": "reviewer-only/q14-source-evidence.json",
+      "evidence_sha256": "cc6e3f9e1f88f9853fec3f9bbfbeeceb4e3e4dc04d88f4feec732b3b7991f9d2",
+      "normalized_question_file": "question-only/q14/normalized-question.json",
+      "normalized_question_sha256": "e63cb075485612cbc9dcfb6b0ee217382ae11d8457a013a9c920dd227c4de7b2",
+      "unresolved_content_reasons": []
+    },
+    {
+      "question_number": 16,
+      "original_label": 16,
+      "score": 4,
+      "completed_pdf_page": 4,
+      "original_scan_page": 3,
+      "status": "confirmed",
+      "source_identity_status": "confirmed",
+      "checks": {
+        "complete_stem_equal_after_bounded_presentation_conversion": true,
+        "complete_ordered_choices_equal": true,
+        "score_equal": true,
+        "all_hwp_inline_equations_placed": true,
+        "boxed_given_equations_equal": true,
+        "complete_table_cells_equal": true
+      },
+      "evidence_file": "reviewer-only/q16-source-evidence.json",
+      "evidence_sha256": "f7ba24f34ff9b4ac30d5b84c3a3971fb2c70dcf3c0a6ef31dd34367ac33f2bf6",
+      "normalized_question_file": "question-only/q16/normalized-question.json",
+      "normalized_question_sha256": "12de9c06aefe5e3057f535bc47061613b7aa5d9f22c17a27e4ab2c8f3370c627",
+      "unresolved_content_reasons": []
+    },
+    {
+      "question_number": 17,
+      "original_label": 17,
+      "score": 5,
+      "completed_pdf_page": 4,
+      "original_scan_page": 3,
+      "status": "confirmed",
+      "source_identity_status": "confirmed",
+      "checks": {
+        "complete_stem_equal_after_bounded_presentation_conversion": true,
+        "complete_ordered_choices_equal": true,
+        "score_equal": true,
+        "all_hwp_inline_equations_placed": true,
+        "boxed_given_equations_equal": true,
+        "complete_table_cells_equal": true
+      },
+      "evidence_file": "reviewer-only/q17-source-evidence.json",
+      "evidence_sha256": "793539578cb63baa0800c5279468624e5088a4c761ab60ebd3f2e1f6dd3e6934",
+      "normalized_question_file": "question-only/q17/normalized-question.json",
+      "normalized_question_sha256": "3a06429313a0275c9e3b065f24b176bdbd1c69427c9fd10c9b55e1d107800815",
+      "unresolved_content_reasons": []
+    },
+    {
+      "question_number": 18,
+      "original_label": "서술형 1",
+      "score": 7,
+      "completed_pdf_page": 4,
+      "original_scan_page": 4,
+      "status": "confirmed",
+      "source_identity_status": "confirmed",
+      "checks": {
+        "complete_stem_equal_after_bounded_presentation_conversion": true,
+        "complete_ordered_choices_equal": true,
+        "score_equal": true,
+        "all_hwp_inline_equations_placed": true,
+        "boxed_given_equations_equal": true,
+        "complete_table_cells_equal": true
+      },
+      "evidence_file": "reviewer-only/q18-source-evidence.json",
+      "evidence_sha256": "ec61ea1d1b5d4c177a948374b9ecc2996fba3d5311391f4884247a2c9dd4cee0",
+      "normalized_question_file": "question-only/q18/normalized-question.json",
+      "normalized_question_sha256": "b131ef5413738f4f3df3c0fd3aefb1d9bc1722e757a20cf0a0ad80f2c05cb06d",
+      "unresolved_content_reasons": []
+    },
+    {
+      "question_number": 19,
+      "original_label": "서술형 2",
+      "score": 7,
+      "completed_pdf_page": 4,
+      "original_scan_page": 4,
+      "status": "confirmed",
+      "source_identity_status": "confirmed",
+      "checks": {
+        "complete_stem_equal_after_bounded_presentation_conversion": true,
+        "complete_ordered_choices_equal": true,
+        "score_equal": true,
+        "all_hwp_inline_equations_placed": true,
+        "boxed_given_equations_equal": true,
+        "complete_table_cells_equal": true
+      },
+      "evidence_file": "reviewer-only/q19-source-evidence.json",
+      "evidence_sha256": "7d79b0965cb0ddb0d023655c0a8822abbba7eabe8ff2d1e078f8329ad0dddc63",
+      "normalized_question_file": "question-only/q19/normalized-question.json",
+      "normalized_question_sha256": "468e031b27e696564c5caac35a24a1919c984b2c111072b4ea7907388be8cd32",
+      "unresolved_content_reasons": []
+    },
+    {
+      "question_number": 20,
+      "original_label": "서술형 3",
+      "score": 7,
+      "completed_pdf_page": 4,
+      "original_scan_page": 4,
+      "status": "confirmed",
+      "source_identity_status": "confirmed",
+      "checks": {
+        "complete_stem_equal_after_bounded_presentation_conversion": true,
+        "complete_ordered_choices_equal": true,
+        "score_equal": true,
+        "all_hwp_inline_equations_placed": true,
+        "boxed_given_equations_equal": true,
+        "complete_table_cells_equal": true
+      },
+      "evidence_file": "reviewer-only/q20-source-evidence.json",
+      "evidence_sha256": "12d23478fb51f2d5cfdbd284d662c9c2c513fed3bc42119baafcdb9f46290682",
+      "normalized_question_file": "question-only/q20/normalized-question.json",
+      "normalized_question_sha256": "3026e4eee0b1f0f38b283510a5d36e48919f4dc09eda938d4eed689135632883",
+      "unresolved_content_reasons": []
+    }
+  ],
+  "source_files": [
+    {
+      "id": "s1",
+      "manifest_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[범일중][3][25-2-중간][비상] (완료).hwp",
+      "manifest_path_exists": true,
+      "current_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[범일중][3][25-2-중간][비상] (완료).hwp",
+      "current_path_exists": true,
+      "manifest_role": "완료본",
+      "extension": "hwp",
+      "bytes": 594944,
+      "sha256": "3abb1a759dd96f6e9a76728a1ecae70013df605bb3e73745908a773897a6a43b"
+    },
+    {
+      "id": "s2",
+      "manifest_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\중3\\[범일중][3][25-2-중간] (원본)(윤이아빠).pdf",
+      "manifest_path_exists": true,
+      "current_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\중3\\[범일중][3][25-2-중간] (원본)(윤이아빠).pdf",
+      "current_path_exists": true,
+      "manifest_role": "원본",
+      "extension": "pdf",
+      "bytes": 2243942,
+      "sha256": "6409e7cb8e1ec5d82b178123b3f2708c194a8a799d54f435d745a49310ef2878",
+      "page_count": 4,
+      "page_sizes": [
+        [
+          0.0,
+          0.0,
+          595.0,
+          841.0
+        ],
+        [
+          0.0,
+          0.0,
+          595.0,
+          841.0
+        ],
+        [
+          0.0,
+          0.0,
+          595.0,
+          841.0
+        ],
+        [
+          0.0,
+          0.0,
+          595.0,
+          841.0
+        ]
+      ]
+    },
+    {
+      "id": "s3",
+      "manifest_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\중3\\[범일중][3][25-2-중간](원본)(루비루비).pdf",
+      "manifest_path_exists": true,
+      "current_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\중3\\[범일중][3][25-2-중간](원본)(루비루비).pdf",
+      "current_path_exists": true,
+      "manifest_role": "원본",
+      "extension": "pdf",
+      "bytes": 5744343,
+      "sha256": "a66743b0d3efb668b1ac8a0884356bcc93f3868d6ed0270cbf4bc67976faf992",
+      "page_count": 4,
+      "page_sizes": [
+        [
+          0.0,
+          0.0,
+          1031.0,
+          728.0
+        ],
+        [
+          0.0,
+          0.0,
+          1031.0,
+          728.0
+        ],
+        [
+          0.0,
+          0.0,
+          1031.0,
+          728.0
+        ],
+        [
+          0.0,
+          0.0,
+          1031.0,
+          728.0
+        ]
+      ]
+    },
+    {
+      "id": "s4",
+      "manifest_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[범일중][3][25-2-중간][비상] (완료).PDF",
+      "manifest_path_exists": true,
+      "current_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[범일중][3][25-2-중간][비상] (완료).PDF",
+      "current_path_exists": true,
+      "manifest_role": "완료본",
+      "extension": "pdf",
+      "bytes": 14731957,
+      "sha256": "318dcd0587e97e993e8c3536b01e7c978205990386e5ba7e9242b68dde4d0689",
+      "page_count": 5,
+      "page_sizes": [
+        [
+          0.0,
+          0.0,
+          728.0,
+          1031.0
+        ],
+        [
+          0.0,
+          0.0,
+          728.0,
+          1031.0
+        ],
+        [
+          0.0,
+          0.0,
+          728.0,
+          1031.0
+        ],
+        [
+          0.0,
+          0.0,
+          728.0,
+          1031.0
+        ],
+        [
+          0.0,
+          0.0,
+          728.0,
+          1031.0
+        ]
+      ]
+    },
+    {
+      "id": "s5",
+      "manifest_path": "N:\\개인\\기출\\기출작업\\196차\\[범일중][3][25-2-중간][비상] (완료).hwp",
+      "manifest_path_exists": false,
+      "current_path": "N:\\개인\\기출\\기출작업\\이전차수\\196차\\[범일중][3][25-2-중간][비상] (완료).hwp",
+      "current_path_exists": true,
+      "manifest_role": "완료본",
+      "extension": "hwp",
+      "bytes": 594944,
+      "sha256": "3abb1a759dd96f6e9a76728a1ecae70013df605bb3e73745908a773897a6a43b"
+    },
+    {
+      "id": "s6",
+      "manifest_path": "N:\\개인\\기출\\기출작업\\196차\\[범일중][3][25-2-중간][비상] (완료).pdf",
+      "manifest_path_exists": false,
+      "current_path": "N:\\개인\\기출\\기출작업\\이전차수\\196차\\[범일중][3][25-2-중간][비상] (완료).pdf",
+      "current_path_exists": true,
+      "manifest_role": "완료본",
+      "extension": "pdf",
+      "bytes": 176140,
+      "sha256": "f755311a97514d66c9f927940db11cab03e0265be08c76b5cd8e71002eb4928f",
+      "page_count": 5,
+      "page_sizes": [
+        [
+          0.0,
+          0.0,
+          595.0,
+          841.0
+        ],
+        [
+          0.0,
+          0.0,
+          595.0,
+          841.0
+        ],
+        [
+          0.0,
+          0.0,
+          595.0,
+          841.0
+        ],
+        [
+          0.0,
+          0.0,
+          595.0,
+          841.0
+        ],
+        [
+          0.0,
+          0.0,
+          595.0,
+          841.0
+        ]
+      ]
+    },
+    {
+      "id": "s7",
+      "manifest_path": "N:\\개인\\기출\\기출작업\\196차\\[범일중][3][25-2-중간][비상] (원본).pdf",
+      "manifest_path_exists": false,
+      "current_path": "N:\\개인\\기출\\기출작업\\이전차수\\196차\\[범일중][3][25-2-중간][비상] (원본).pdf",
+      "current_path_exists": true,
+      "manifest_role": "원본",
+      "extension": "pdf",
+      "bytes": 17662251,
+      "sha256": "32f9e510f5b095ff4756f37d332977a3bffa7d35fa001cac75670a3e8cf9df0d",
+      "page_count": 4,
+      "page_sizes": [
+        [
+          0.0,
+          0.0,
+          595.0,
+          842.0
+        ],
+        [
+          0.0,
+          0.0,
+          595.0,
+          842.0
+        ],
+        [
+          0.0,
+          0.0,
+          595.0,
+          842.0
+        ],
+        [
+          0.0,
+          0.0,
+          595.0,
+          842.0
+        ]
+      ]
+    }
+  ],
+  "observed_identity": {
+    "school_full_name": "범일중학교",
+    "school_normalized": "범일중",
+    "grade": 3,
+    "subject": "수학",
+    "year": 2025,
+    "semester": 2,
+    "round": "중간",
+    "administration_date": "2025-09-23",
+    "period": 3,
+    "subject_code": "05",
+    "printed_header": "2025학년도 3학년 2학기 중간고사 수학과",
+    "printed_administration": "시행일: 2025년 9월 23일 3교시 과목코드: 05",
+    "named_completed_label": "범일중 3학년 수학",
+    "edited_completed_label": "BI중 3학년 수학",
+    "named_footer": "범일중 26년 2학기 중간고사 대비 (수학)",
+    "edited_footer": "BI중 26년 2학기 중간고사 대비 (수학)"
+  },
+  "comparison_method": [
+    "Complete HWP inline equation reconstruction and ordered full stem/choice comparison",
+    "Complete per-question PDF text comparisons with exact diff locations",
+    "Direct full printed question/givens/choices/table/figure/score comparison using view_image",
+    "Original scan numbered-placement/printed-label mapping to completed layout",
+    "RGB/dimension differences are auxiliary, never identity/rights proof"
+  ],
+  "excluded_subtrees": "HWP endnote/footnote and header/footer controls skipped without text decoding; reader stops before q21 block offset93300.",
+  "pdf_question_pages_read": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "pdf_page5_answer_page_loaded": false,
+  "original_answer_exposure": {
+    "incidental_handwritten_choices_or_work_visible": true,
+    "affected_new_questions": [
+      1,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "prior_four_incidentally_visible_again": [
+      2,
+      3,
+      15,
+      21
+    ],
+    "separate_answer_solution_pages_or_stored_outputs_read": false,
+    "hwp_answer_note_text_decoded": false,
+    "original_work_transcribed_into_author_inputs": false,
+    "original_answer_approval_reused": false,
+    "scan_renders_reviewer_only": true,
+    "student_name_in_initial_view_incidentally_visible": true,
+    "student_name_omitted_from_retained_scan_page1_render": true,
+    "future_strict_original_answer_blindness_claimed": false
+  },
+  "rights_custody_publisher": {
+    "status": "held",
+    "affected_question_numbers": [
+      1,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "native_custody_or_direct_HWP_export_proven": false,
+    "publisher_from_filename_accepted": false,
+    "permission_granted": false
+  },
+  "parent_current_candidate_digest_aggregation_modified": false,
+  "duplicate_authoring_or_verification_performed": false,
+  "no_db_api_install_source_main_parent_changes": true,
+  "artifact_policy": {
+    "author_allowed_manifest": "author-input-manifest.json",
+    "reviewer_only": "reviewer-only/",
+    "whole_pages_and_identity_snippets": "review evidence only, not author inputs"
+  }
+}

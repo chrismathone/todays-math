@@ -1,0 +1,30 @@
+{
+  "schema": "bumil-normalized-question-only.v2",
+  "question_number": 13,
+  "original_label": "13",
+  "question_type": "객관식",
+  "partial_credit_printed": false,
+  "score": 4,
+  "stem": "그림은 모선의 길이가 6 cm인 원뿔이다. 모선과 밑면이 이루는 각의 크기가 30°일 때, 이 원뿔의 부피는?",
+  "givens": [
+    "모선의 길이 6 cm",
+    "모선과 밑면의 각 30°"
+  ],
+  "choices": [
+    "9√3π cm³",
+    "27π cm³",
+    "27√3π cm³",
+    "64π cm³",
+    "81π cm³"
+  ],
+  "figure_labels": [
+    "A",
+    "B",
+    "H",
+    "6 cm",
+    "30°"
+  ],
+  "diagram_observation": "원뿔 꼭짓점 A, 밑면 가장자리 B, 밑면 중심 H. AB의6 cm, AB와 BH의30°, AH와 BH의 직각 및 밑면의 점선/타원이 대응한다.",
+  "transcription_method": "Human normalization of the complete printed question, not a solution or automatic scan OCR.",
+  "author_input_policy": "Only normalized printed content and clean HWP/completed-PDF question figures/crops; no scan handwriting, answers or solutions."
+}
