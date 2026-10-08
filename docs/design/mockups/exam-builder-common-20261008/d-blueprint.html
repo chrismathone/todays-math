@@ -1728,6 +1728,7 @@
         target: 6,
         items: [],
         composed: false,
+        step: "scope",
         title: `${window.ExamScope.subject} 단원 확인 평가`,
         answers: false,
         space: false,
@@ -1749,6 +1750,7 @@
           state.counts = units().map((_, i) =>
             state.selected[i] ? (previous[i] ? state.counts[i] : 2) : 0,
           );
+          state.step = "scope";
           render();
           notify(
             "출제 범위를 변경했습니다. 현재 문항은 유지되며, 시험지 구성을 누르면 바뀝니다.",
@@ -1833,10 +1835,10 @@
         return `<label class="field title-field"><span>${esc(label)}</span><input aria-label="시험지 제목" id="exam-title" maxlength="80" value="${esc(state.title)}"></label>`;
       }
       function previewButton() {
-        return `<button class="primary" data-action="preview" ${!state.items.length ? "disabled" : ""}>양식 구성 · 출력 <span aria-hidden="true">↗</span></button>`;
+        return `<button class="primary" data-action="preview" aria-label="양식 구성·출력으로 이동" ${!state.items.length ? "disabled" : ""}>${VARIANT === "D" ? '<span class="builder-next-long">다음: 양식 구성·출력</span><span class="builder-next-short">다음 단계</span>' : "양식 구성 · 출력"} <span aria-hidden="true">→</span></button>`;
       }
       function commonNote() {
-        return `<div class="top-note"><span>시안 ${VARIANT} · 예시 문항 · 실제 저장 없음</span><a href="index.html${esc(location.search)}">← 시안 모아보기</a></div>`;
+        return `<div class="top-note"><span>${VARIANT === "D" ? esc(window.ExamScope.productName) + " · " : ""}시안 ${VARIANT} · 예시 문항 · 실제 저장 없음</span><a href="index.html${esc(location.search)}">← 시안 모아보기</a></div>`;
       }
       function countTypes() {
         const choice = state.items.filter(
@@ -1875,9 +1877,46 @@
         }
         return runs;
       }
+      function flowNavigation() {
+        return `<nav class="builder-steps" aria-label="시험지 만들기 단계">${[
+          ["scope", "범위 설정"],
+          ["review", "문항 검토"],
+          ["output", "양식 구성·출력"],
+        ]
+          .map(([step, label], index) => {
+            const current = state.step === step;
+            const disabled =
+              step === "review"
+                ? !state.composed
+                : step === "output"
+                  ? !state.items.length
+                  : false;
+            return `<button type="button" data-action="step" data-step="${step}" aria-pressed="${current}" ${current ? 'aria-current="step"' : ""} ${disabled ? "disabled" : ""}><span>${index + 1}</span> ${label}</button>`;
+          })
+          .join("")}</nav>`;
+      }
+      function focusStep(step) {
+        const target = step === "scope" ? $("#scope") : $("#composition-title");
+        target?.focus({ preventScroll: true });
+        if (window.matchMedia("(max-width: 860px)").matches) {
+          target?.scrollIntoView({ block: "start" });
+        } else {
+          window.scrollTo({ top: 0, behavior: "instant" });
+        }
+      }
+      function goToStep(step) {
+        if (step === "output") {
+          if (state.items.length) openOutput();
+          return;
+        }
+        if (step === "review" && !state.composed) return;
+        state.step = step;
+        render();
+        focusStep(step);
+      }
       function renderD() {
         const total = state.counts.reduce((a, b) => a + b, 0);
-        return `${commonNote()}<div class="shell"><aside class="rail"><div><div class="brand"><span class="mark" aria-hidden="true">T</span>${esc(window.ExamScope.productName)}</div></div><nav aria-label="현재 작업"><a class="rail-link selected" href="#scope"><small>01</small>출제 구성표</a><a class="rail-link" href="#composition"><small>02</small>문항 다듬기</a><a class="rail-link" href="#output"><small>03</small>출력 설정</a></nav><div class="rail-stat"><div class="eyebrow">현재 시험지</div><div class="rail-count">${state.items.length}<span style="font-size:14px;font-weight:500;margin-left:8px">문항</span></div><p class="caption" style="color:#b4c4da;margin-top:8px">${state.order.filter((i) => unitItems(i).length).length}개 단원 · ${esc(state.subject)}</p></div><p class="rail-note">단원별 수량을 먼저 정하고<br>문항을 한 묶음씩 검토합니다.</p></aside><main class="workspace"><header class="heading blueprint-header"><h1>시험지 만들기</h1><span class="badge">D · 확정안</span></header><aside class="settings-column" aria-label="시험지 설정과 출제 범위"><section class="panel output-panel" id="output" aria-label="제목 및 출력 설정"><div class="output-fields">${titleField("제목")}${previewButton()}</div></section><section class="panel setup" id="scope" aria-label="출제 구성표">${scopeHTML()}${allocationHTML()}<div class="compose-bar"><div><span class="total">합계 ${total}문항</span><p class="caption" id="scope-status" style="margin-top:4px"></p></div><button class="primary" data-action="compose" ${total ? "" : "disabled"}>시험지 구성 <span aria-hidden="true">→</span></button></div></section></aside><div class="review-column"><div class="initial-empty panel"><span class="eyebrow">다음 · 단원별 문항 검토</span><h2>구성표가 시험지의 뼈대가 됩니다.</h2><p class="muted">단원별 문항 수를 정한 뒤 시험지 구성을 눌러 주세요.</p></div><section id="composition" aria-labelledby="composition-title"><div class="spread results-heading"><h2 id="composition-title">구성한 문항 <span class="badge">${state.items.length}</span></h2><div class="row"><button class="text" data-action="undo" ${history.length ? "" : "disabled"}>↶ 되돌리기</button><button data-action="add">＋ 문항 추가</button></div></div>${
+        return `${commonNote()}<div class="shell builder-shell"><main class="workspace"><header class="heading blueprint-header"><h1>시험지 만들기</h1>${flowNavigation()}<div class="builder-next">${state.step === "scope" ? `<button class="primary" data-action="compose" ${total ? "" : "disabled"}>문항 구성 <span aria-hidden="true">→</span></button>` : previewButton()}</div></header><aside class="settings-column" aria-label="시험지 설정과 출제 범위"><section class="panel output-panel" id="output" aria-label="시험지 제목"><div class="output-fields">${titleField("제목")}</div></section><section class="panel setup" id="scope" tabindex="-1" aria-label="출제 구성표">${scopeHTML()}${allocationHTML()}<div class="compose-bar"><div><span class="total">합계 ${total}문항</span><p class="caption" id="scope-status" style="margin-top:4px"></p></div>${state.step === "review" ? `<button data-action="compose" ${total ? "" : "disabled"}>문항 다시 구성</button>` : ""}</div></section></aside><div class="review-column"><div class="initial-empty panel"><h2>범위를 정하고 문항을 구성하세요.</h2><p class="muted">구성한 문항을 교체·추가·삭제한 뒤 양식 구성·출력으로 이어집니다.</p></div><section id="composition" aria-labelledby="composition-title"><div class="spread results-heading"><h2 id="composition-title" tabindex="-1">구성한 문항 <span class="badge">${state.items.length}</span></h2><div class="row"><button class="text" data-action="undo" ${history.length ? "" : "disabled"}>↶ 되돌리기</button><button data-action="add">＋ 문항 추가</button></div></div>${
           state.items.length
             ? questionRuns()
                 .map(
@@ -1903,7 +1942,9 @@
         } else {
           const n = state.counts.reduce((a, b) => a + b, 0);
           $("#scope-status").textContent = n
-            ? "시험지 구성을 누르면 현재 문항이 구성표대로 바뀝니다."
+            ? state.composed
+              ? "다시 구성하면 현재 문항이 구성표대로 바뀝니다."
+              : "범위와 수량을 정한 뒤 문항 구성으로 이어가세요."
             : "연결된 예제 범위를 선택하고 문항 수를 1개 이상 정하세요.";
           $('[data-action="compose"]').disabled = !n;
         }
@@ -1923,6 +1964,7 @@
         if ($('[data-action="compose"]').disabled) return;
         if (!initial) remember();
         state.composed = true;
+        state.step = "review";
         state.items = [];
         if (VARIANT === "D") {
           state.order.forEach((u) =>
@@ -1948,6 +1990,7 @@
           state.items.sort((a, b) => getQ(a).unit - getQ(b).unit);
         }
         render();
+        if (VARIANT === "D" && !initial) focusStep("review");
         if (!initial)
           notify(`${state.items.length}문항으로 시험지를 구성했습니다.`);
       }
@@ -2011,6 +2054,7 @@
         ExamOutput.open(
           {
             subject: state.subject === "영어" ? "english" : "math",
+            ...(VARIANT === "D" ? { flow: "blueprint" } : {}),
             title: state.title,
             questions: ordered.map((id) => {
               const q = getQ(id);
@@ -2040,9 +2084,20 @@
                 ...state.order.filter((u) => !activeUnits.includes(u)),
               ];
             }
-            render();
-            $('[data-action="preview"]')?.focus({ preventScroll: true });
+            if (VARIANT !== "D") {
+              render();
+              $('[data-action="preview"]')?.focus({ preventScroll: true });
+            }
           },
+          VARIANT === "D"
+            ? {
+                onClose: (payload) => {
+                  state.step = payload?.step === "scope" ? "scope" : "review";
+                  render();
+                  focusStep(state.step);
+                },
+              }
+            : undefined,
         );
       }
       document.addEventListener("click", (e) => {
@@ -2055,6 +2110,10 @@
         const action = b.dataset.action,
           id = b.dataset.id,
           u = Number(b.dataset.unit);
+        if (action === "step") {
+          goToStep(b.dataset.step);
+          return;
+        }
         if (action === "allocation-prev" || action === "allocation-next") {
           allocationPage += action === "allocation-next" ? 1 : -1;
           render();
@@ -2108,6 +2167,7 @@
         }
         if (action === "more" || action === "less") {
           remember();
+          state.step = "scope";
           state.counts[u] = Math.max(
             0,
             Math.min(4, state.counts[u] + (action === "more" ? 1 : -1)),

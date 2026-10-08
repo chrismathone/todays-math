@@ -32,21 +32,22 @@ Implementation
   parent title/question order and clears the old bundle snapshot as before.
   Blueprint can reenter with zero items, and omitted flow resets the original UI.
 
-Verification
-- PASS: targeted tsc dependency graph using absolute root dependencies at
-  C:/Creative/testautocreator/node_modules via temporary paths/typeRoots config.
-  This is not a whole-repository typecheck.
-- PASS: bridge and page Vitest suites, 6 tests including optional-flow validation,
-  bounded text conversion, exact parent origin/source and dev-only page guard.
-- PASS: Prettier check for all changed TS/TSX/CSS and git diff --check.
-- UI suite added/expanded: all six real template renderers in legacy and blueprint,
+Verification after integration in main
+- PASS: targeted tsc dependency graph with tsconfig.check.json against root
+  dependencies. This is not a whole-repository typecheck.
+- PASS: dedicated Vitest config, 15 tests across bridge, page and UI suites.
+  Includes optional-flow validation, bounded text conversion, exact parent
+  origin/source and dev-only page guard.
+- PASS: ESLint for the output route, WorksheetEditor and StudioStepBar;
+  Prettier for changed TS/TSX/CSS and git diff --check.
+- UI suite covers all six real template renderers in legacy and blueprint,
   stage markers and scope/review/latest-edit return, Escape/close review fallback,
   saved template/form metadata across reentry, parent title/order, empty return,
   blueprint-to-default reset, plus unchanged extraction title/four-stage gates.
-- UI suite execution PENDING root integration: no local node_modules is installed;
-  the dedicated config cannot resolve Vitest/plugin-react, and a temporary absolute
-  resolver reaches a testing-library/Vitest CommonJS incompatibility before tests.
-  Coordinator explicitly requested no further dependency-harness work and will run
-  dedicated Vitest in merged main. Temporary verification files are outside Git.
-- Browser width/short-height/print visual QA PENDING coordinator's running server.
-  No pixel-layout or real browser checks were performed in this worker.
+- PASS: real D browser round trips for math/English at 1440/390/320px (six cases).
+  Scope/review/output markers, returned title/order/deletions, retained modern
+  template and one-column setting, return to either earlier stage, Escape,
+  print readiness and horizontal overflow were checked. The legacy A return UI
+  also passed. Browser errors and account API writes: zero.
+- Evidence: docs/design/mockups/exam-builder-common-20261008/flow-validation.json
+  and previews/d-output-{1440,390}.png. Real paper printing was not performed.

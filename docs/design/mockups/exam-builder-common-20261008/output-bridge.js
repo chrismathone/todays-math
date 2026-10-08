@@ -8,6 +8,7 @@
     ready = false,
     draft,
     onBack,
+    onClose,
     opener,
     timeout;
   let previousOverflow;
@@ -32,6 +33,7 @@
     document.documentElement.style.overflow = previousOverflow;
     if (returned) onBack?.(payload);
     if (opener?.isConnected) opener.focus({ preventScroll: true });
+    onClose?.(returned ? payload : undefined);
   }
   function requestClose() {
     if (ready) send("exam-concept:close");
@@ -74,10 +76,11 @@
     });
   }
   window.ExamOutput = {
-    open(payload, callback) {
+    open(payload, callback, options = {}) {
       if (!payload.questions.length) return;
       draft = payload;
       onBack = callback;
+      onClose = options.onClose;
       opener = document.activeElement;
       if (!dialog) create();
       previousOverflow = document.documentElement.style.overflow;

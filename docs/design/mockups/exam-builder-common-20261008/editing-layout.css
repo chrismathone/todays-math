@@ -130,6 +130,54 @@
     gap: 12px;
     min-height: 44px;
     margin-bottom: 12px;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    padding: 8px 0;
+    background: var(--learn-bg);
+  }
+  .blueprint-mode .builder-shell {
+    display: block;
+  }
+  .blueprint-header h1 {
+    margin-right: 4px;
+    white-space: nowrap;
+  }
+  .builder-steps {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+  .builder-steps button {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 44px;
+    padding: 8px 11px;
+    border-color: transparent;
+    color: var(--learn-muted);
+    background: var(--learn-surface);
+  }
+  .builder-steps button[aria-current="step"] {
+    border-color: var(--learn-control);
+    color: var(--learn-accent);
+    background: var(--learn-soft);
+  }
+  .builder-steps button > span {
+    font-variant-numeric: tabular-nums;
+  }
+  .builder-next {
+    margin-left: auto;
+  }
+  .builder-next-short {
+    display: none;
+  }
+  .blueprint-mode :is(#scope, #composition-title) {
+    scroll-margin-top: 96px;
+  }
+  .blueprint-mode #composition-title:focus,
+  .blueprint-mode #scope:focus {
+    outline: none;
   }
   .blueprint-mode .output-panel,
   .blueprint-mode .results-heading {
@@ -281,6 +329,40 @@
     }
   }
   @media (max-width: 860px) {
+    .blueprint-mode .blueprint-header {
+      gap: 8px;
+    }
+    .blueprint-mode .blueprint-header h1 {
+      font-size: 22px;
+    }
+    .blueprint-mode .builder-steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      width: 100%;
+      order: 2;
+    }
+    .blueprint-mode .builder-steps button {
+      min-width: 0;
+      padding: 8px 6px;
+      justify-content: center;
+      white-space: normal;
+    }
+    .blueprint-mode .builder-next {
+      flex: 0 1 auto;
+    }
+    .blueprint-mode .builder-next button {
+      max-width: 100%;
+      white-space: normal;
+    }
+    .blueprint-mode .builder-next-long {
+      display: none;
+    }
+    .blueprint-mode .builder-next-short {
+      display: inline;
+    }
+    .blueprint-mode :is(#scope, #composition-title) {
+      scroll-margin-top: 150px;
+    }
     .wrap,
     .main,
     .workspace {
