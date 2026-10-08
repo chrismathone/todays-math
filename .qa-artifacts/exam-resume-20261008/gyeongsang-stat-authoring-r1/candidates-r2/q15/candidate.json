@@ -1,0 +1,205 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 15,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r2-q15",
+  "authorId": "root-codex-exam-extraction-resume-20261008",
+  "content": "동아리의 다섯 연습 프로그램에서 각각 다섯 번씩 걸린 시간을 조사했다. 단위는 분이다. 프로그램 A의 기록이 다른 모든 프로그램보다 더 고를 때, 빈칸에 들어갈 수 있는 값은?\n\n|프로그램|A|B|C|D|E|\n|:---:|:---:|:---:|:---:|:---:|:---:|\n|평균(분)|$12$|$13$|$11$|$14$|$10$|\n|표준편차(분)|빈칸|$0.8$|$0.9$|$1.1$|$1.3$|",
+  "choices": [
+    "$0.7$",
+    "$0.8$",
+    "$0.9$",
+    "$1.0$",
+    "$1.1$"
+  ],
+  "answer": "①",
+  "solution": "같은 단위의 시간을 비교할 때 표준편차가 작을수록 기록이 고르다. A가 다른 모든 프로그램보다 더 고르려면 A의 표준편차가 $0.8$보다 작아야 한다. 보기 중 이를 만족하는 값은 $0.7$뿐이다. $0.8$이면 B와 같아 조건을 만족하지 않는다.",
+  "score": 4,
+  "questionType": "객관식",
+  "facts": {
+    "minimumCheck": {
+      "matchingOptionIndexes": [
+        0
+      ],
+      "unique": true,
+      "calculationOnly": true
+    },
+    "standardDeviationDataExistence": {
+      "construction": "For five observations at mean m, use m-s*sqrt(5/2),m,m,m,m+s*sqrt(5/2). Population variance s². Private existence certificate only; students only compare given standard deviations.",
+      "allTimesPositive": true,
+      "means": [
+        12,
+        13,
+        11,
+        14,
+        10
+      ],
+      "standardDeviations": [
+        0.7,
+        0.8,
+        0.9,
+        1.1,
+        1.3
+      ]
+    },
+    "unique": true,
+    "calculationOnly": true
+  },
+  "figureArtifacts": [],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "context",
+      "inverse-target"
+    ],
+    "before": "표는 명연이가 $5$번의 대회에서 받은 종목별 점수의 평균과 표준편차를 조사하여 나타낸 것이다. 성적이 가장 고른 종목은? [$4$점]\n종목별 점수의 평균과 표준편차 (단위:점)\n\n종목\n\n평균\n\n표준편차\n\n마루운동\n\n$12.550$\n\n$0.83$\n\n도마\n\n$12.283$\n\n$0.93$\n\n안마\n\n$14.050$\n\n$0.84$\n\n링\n\n$13.050$\n\n$0.97$\n\n평행봉\n\n$15.050$\n\n$0.79$",
+    "after": "다섯 종목 중 가장 고른 기록 선택→가장 고른 조건을 만족하는 미지의 표준편차 선택",
+    "sharedConcept": "표준편차로 자료의 고름 비교",
+    "sharedProcedure": "같은 단위의 기록에서는 표준편차가 작을수록 기록이 고른 것을 이용해 빈칸의 가능한 값을 고른다.",
+    "objectiveDifficulty": "원문 배점과 요구를 기준으로 한 저자 제안; 역추론/도수 읽기 추가 부담은 독립 검토",
+    "sourceTableReplaced": "new Markdown data organization; no original crop used",
+    "scoreDelta": {
+      "source": 4,
+      "authored": 4,
+      "changed": false
+    }
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수05-07"
+    ],
+    "status": "author-proposed",
+    "allowedProcedure": "같은 단위의 기록에서는 표준편차가 작을수록 기록이 고른 것을 이용해 빈칸의 가능한 값을 고른다.",
+    "gradeBasis": "2025 중3은 2015 적용. 공식 PDF physical40/printed36에 대푯값·편차·분산·표준편차 및 자료에 맞는 대표값 비교가 있다. 각 문항 전체는 별도 독립 심사 필요.",
+    "surfaces": {
+      "stem": {
+        "status": "author-proposed",
+        "evidence": "표준편차로 자료의 고름 비교: 같은 단위의 기록에서는 표준편차가 작을수록 기록이 고른 것을 이용해 빈칸의 가능한 값을 고른다.; stem에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+      },
+      "choices": {
+        "status": "author-proposed",
+        "evidence": "표준편차로 자료의 고름 비교: 같은 단위의 기록에서는 표준편차가 작을수록 기록이 고른 것을 이용해 빈칸의 가능한 값을 고른다.; choices에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+      },
+      "figuresAndTables": {
+        "status": "author-proposed",
+        "evidence": "표준편차로 자료의 고름 비교: 같은 단위의 기록에서는 표준편차가 작을수록 기록이 고른 것을 이용해 빈칸의 가능한 값을 고른다.; figuresAndTables에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+      },
+      "notation": {
+        "status": "author-proposed",
+        "evidence": "표준편차로 자료의 고름 비교: 같은 단위의 기록에서는 표준편차가 작을수록 기록이 고른 것을 이용해 빈칸의 가능한 값을 고른다.; notation에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+      },
+      "answer": {
+        "status": "author-proposed",
+        "evidence": "표준편차로 자료의 고름 비교: 같은 단위의 기록에서는 표준편차가 작을수록 기록이 고른 것을 이용해 빈칸의 가능한 값을 고른다.; answer에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+      },
+      "studentSolution": {
+        "status": "author-proposed",
+        "evidence": "표준편차로 자료의 고름 비교: 같은 단위의 기록에서는 표준편차가 작을수록 기록이 고른 것을 이용해 빈칸의 가능한 값을 고른다.; studentSolution에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+      },
+      "prerequisites": {
+        "status": "author-proposed",
+        "evidence": "표준편차로 자료의 고름 비교: 같은 단위의 기록에서는 표준편차가 작을수록 기록이 고른 것을 이용해 빈칸의 가능한 값을 고른다.; prerequisites에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+      }
+    },
+    "exactGradeApproval": false
+  },
+  "sourceReference": {
+    "externalId": "2025-gyeongsang-3-2-mid-15",
+    "examId": "personal-5ac2088d148a02d086d0ce69d38aa646",
+    "sourcePacketExamId": "2025-gyeongsang-3-2-mid",
+    "school": "경상중",
+    "questionNumber": 15,
+    "sourceContentSha256": "cfd8411fb4ee839b4585d91b0c7ab3ba60b97355013e57dc6ce7dc4e88ca9d5a",
+    "sourcePacketSha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+    "sourceQuestionScore": 4,
+    "sourceQuestionType": "객관식",
+    "originalAnswersOrSolutionsUsed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "score": 4,
+    "difficultyProposal": "응용",
+    "difficultyStatus": "pending-independent-review",
+    "problemTypeProposal": "표준편차로 자료의 고름 비교",
+    "problemTypeStatus": "pending-independent-review",
+    "hasFigure": false,
+    "hasRecreatedTable": true,
+    "assignment": {
+      "status": "pending",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "familyKey": null,
+      "evidence": "실제 중3 Unit UUID/차시는 읽기 전용 r2 관측에 있다. 역추론·도수 조직·답 목적과 생성규칙에 정확히 맞는 live family는 별도 심사; 가까운 키를 임의 배정하지 않음.",
+      "unitProposal": {
+        "id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+        "grade": "중3",
+        "chapter": "7. 통계",
+        "section": "대푯값과 산포도",
+        "semester": 2,
+        "orderIndex": 488,
+        "problemCodePrefix": "J30701"
+      },
+      "bankReadAt": "2026-10-08 04:53:45.769124+00",
+      "liveFamilyDecision": "held"
+    },
+    "achievementStandardRefs": [
+      {
+        "code": "9수05-07",
+        "officialStatement": "분산과 표준편차의 의미를 이해하고, 이를 구할 수 있다.",
+        "pdfPage": 40,
+        "printedPage": 36,
+        "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+        "notPerQuestionApproval": true
+      }
+    ],
+    "sourceIdentityReview": {
+      "status": "2025_original_header_school_footer_and_completed_question_identity_supported",
+      "custody": "held",
+      "rights": "held",
+      "fullPair": "held"
+    },
+    "answerFormat": "single circled choice",
+    "authorEvidence": {
+      "calculationPath": "author-calculations.json",
+      "scriptSha256": "a7d1b0baece43a45620f0dea4f9fac960a89810da8d6c6468114923ca248b5d8",
+      "statisticsKernelSha256": "72a4fe97bee46bc6eaa06d2ac9c0e1c9fb3df4b5cbd7b2372de4d72a65757bc3",
+      "calculationOnly": true,
+      "independentApproval": false
+    },
+    "bankEvidence": {
+      "path": ".qa-artifacts/exam-resume-20261008/bank-read-fresh-r2-20261008.json",
+      "sha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b"
+    }
+  },
+  "schoolNamePolicy": {
+    "actual": "경상중",
+    "display": "해솔누리중학교",
+    "actualSchoolRetainedInternally": true,
+    "visibleOriginalSchoolOccurrences": 0,
+    "review": "author-proposed"
+  },
+  "independentVerification": null,
+  "review": {
+    "status": "pending",
+    "mathematicalCorrectness": "pending-independent-blind-solve",
+    "gradeCurriculum": "pending-independent-review",
+    "equivalentConceptAndMethod": "pending-independent-review",
+    "distinctPresentation": "pending-independent-review",
+    "rights": "pending",
+    "similarity": "pending",
+    "nativeCompatibility": "pending",
+    "physicalPaper": "not-approved"
+  },
+  "directUseAllowed": false
+}

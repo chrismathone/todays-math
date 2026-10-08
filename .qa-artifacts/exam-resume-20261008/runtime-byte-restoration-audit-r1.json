@@ -1,0 +1,33 @@
+{
+  "kind": "runtime-byte-and-restoration-audit/v1",
+  "runtimeObservation": {
+    "path": ".qa-artifacts/exam-resume-20261008/runtime-ps-inspect-latest.json",
+    "rawSha256": "ce15001895b242fd7a903fbdae4fcd8371951923abedd5bc5291e86c79ea184f",
+    "prefixHex": "fffe7b00",
+    "actualEncoding": "UTF-16 LE with BOM produced by Windows PowerShell redirection; not UTF-8 BOM",
+    "originalBytesPreserved": true,
+    "parsesWithExplicitUtf16Decoder": true,
+    "isFrozenQuestionOrApprovalEvidence": false
+  },
+  "currentV7": {
+    "candidateCount": 58,
+    "rawSolvesCollectedBeforeNewReview": 20,
+    "independentMathAndFullGrade": 20,
+    "fullVerified": 0,
+    "loadable": 0,
+    "indexBoundReferencesChecked": 22,
+    "ledgerBoundReferencesChecked": 7,
+    "digestMismatches": 0,
+    "JSONEncoding": "UTF-8 no BOM"
+  },
+  "candidatePackReader": "Strict UTF-8; one leading UTF-8 BOM allowed for parsing only; original bytes and SHA never rewritten. UTF-16/double BOM/corrupt UTF-8 reject. New regression control passed.",
+  "testControlCount": 25,
+  "actualNewQuestionApprovalsFromTests": 0,
+  "childRuntime": "three original IDs restored and turns started; each requested own command/write/readback probe; not assumed ready before proof",
+  "frozenRawSolveCommit": "c02838323307f69648124f837285503a53e99bd3",
+  "newGyeongguRawSolvesBoundBeforeAuthorExposure": 22,
+  "copyBinding": "gyeonggu-blind-copy-binding-r1.json",
+  "knownSource7AndOld82Mutation": false,
+  "mainWritten": false,
+  "watchControlTouched": "only user-requested tool-ready.json; operating controller untouched"
+}

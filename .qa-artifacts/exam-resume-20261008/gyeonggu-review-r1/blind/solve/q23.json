@@ -1,0 +1,451 @@
+{
+  "schema": "independent-blind-solve.v1",
+  "questionNumber": 23,
+  "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q23",
+  "studentDigest": "5d537e833859e8b1f8a2bb082663654ec3cbbaed3ea0507c0d4d090bc3342bd6",
+  "solverId": "orca-codex-exam-twin-source-identity-20261008",
+  "status": "solved",
+  "answer": "⑴ ∠AOB=120°; ⑵ 반지름=2√3 cm; ⑶ OP=4√3 cm",
+  "answerParts": {
+    "⑴ 작은 호 중심각 ∠AOB": "120°",
+    "⑵ 반지름": "2√3 cm",
+    "⑶ OP": "4√3 cm"
+  },
+  "solution": "⑴ 접선과 반지름은 접점에서 수직이므로 사각형 OAPB의 A, B 각은 90°씩이다. 따라서 ∠AOB+∠APB=180°이다. 주어진 비 1:2를 쓰면 ∠APB=60°, 작은 호의 중심각 ∠AOB=120°이다. ⑵ 반지름을 r cm라 하자. 두 직각삼각형 OAP, OBP가 합동이므로 OP가 P의 각을 이등분하여 ∠APO=30°이다. 30° 직각삼각형에서 PA=√3r, OP=2r이다. 사각형 OAPB의 넓이는 두 직각삼각형의 합으로 2×(r×√3r)/2=√3r²이다. 중심각 120° 부채꼴 AOB의 넓이는 (120/360)πr²=πr²/3이다. 색칠한 원 바깥 부분은 이 사각형에서 부채꼴을 뺀 영역이므로 (√3−π/3)r²=12√3−4π=12(√3−π/3)이다. 계수는 양수인 실제 넓이의 계수이므로 r²=12이다. 반지름 r>0을 택하여 r=2√3 cm이다. ⑶ OP=2r=4√3 cm이다.",
+  "evidence": {
+    "method": "independent-student-input-solve-before-author-answer-exposure",
+    "studentMethod": "접선-반지름 수직, 사각형각합/비, 합동이등분,30° 삼각형과단순부채꼴넓이차",
+    "conditionAndDomainNotes": "작은호중심각0<θ<180, r>0. 색칠영역은두접선과작은호로둘러싸인원밖영역; 단순삼각형PAB−부채꼴로계산하지않는다. 넓이계수√3−π/3>0이고음의반지름제외.",
+    "exactValuesFromCode": [
+      "120",
+      "2*sqrt(3)",
+      "4*sqrt(3)"
+    ],
+    "code": {
+      "path": "solve_math.py",
+      "sha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50"
+    },
+    "proof": {
+      "path": "blind/proofs/q23.json",
+      "sha256": "36316caf2bc9357e0dcb7147b2cd567dddcd2565288773711b4349a67662f10c"
+    },
+    "studentSolutionSource": {
+      "path": "student_solutions.json",
+      "wholeFileSha256": "adbcd31c366b68051b20e460727edc017c8160cd0d80fb6ff6c4b079d88c947d",
+      "questionRecordSha256": "35d15c5d0878825def82b610b282b9aab0f1746e36ee43bfce240b657cc81ab5"
+    },
+    "wholeStudentInputSha256": "6e137d65894e6506710e6c980136cfd26a25d4fec141785f4ed521f8eb89e1ca",
+    "contentSha256Utf8": "243092fb4926aa6e52addcaaa9d47a8f0ac056d451806ece2df7f34bcbe829bb",
+    "studentObjectCanonicalSha256": "814a95b310e4a208bdd262f98e92be5c74510ebd3cb755d1d6298b9e3a0066ea",
+    "canonicalHashLimit": "This diagnostic canonical hash is not a claim about Root studentDigest algorithm; supplied studentDigest is retained unchanged.",
+    "choiceCheck": {
+      "notApplicable": true,
+      "multiPartCount": 3,
+      "eachPartExplicit": true
+    },
+    "existenceUniquenessPositivity": {
+      "actualCodeChecks": [
+        {
+          "condition": "angle ratio and full quadrilateral angle sum",
+          "passed": true,
+          "calculation": {
+            "angleAOB": "120",
+            "angleAPB": "60"
+          }
+        },
+        {
+          "condition": "nonzero positive area coefficient and unique positive radius",
+          "passed": true,
+          "calculation": {
+            "coefficientApprox": 0.6848532563722796,
+            "rSquared": "12"
+          }
+        },
+        {
+          "condition": "sector subtraction gives actual stated shaded area",
+          "passed": true,
+          "calculation": "-4*pi + 12*sqrt(3)"
+        }
+      ],
+      "supplementalExactCoordinateWitness": {
+        "points": {
+          "O": [
+            0,
+            0
+          ],
+          "P": [
+            "4*sqrt(3)",
+            0
+          ],
+          "A": [
+            "sqrt(3)",
+            3
+          ],
+          "B": [
+            "sqrt(3)",
+            -3
+          ]
+        },
+        "relations": [
+          {
+            "relation": "perpendicular",
+            "points": [
+              "O",
+              "A",
+              "P",
+              "A"
+            ],
+            "calculated": "0",
+            "required": 0,
+            "passed": true
+          },
+          {
+            "relation": "perpendicular",
+            "points": [
+              "O",
+              "B",
+              "P",
+              "B"
+            ],
+            "calculated": "0",
+            "required": 0,
+            "passed": true
+          },
+          {
+            "relation": "lengthSquared",
+            "points": [
+              "O",
+              "A"
+            ],
+            "calculated": "12",
+            "required": 12,
+            "passed": true
+          },
+          {
+            "relation": "lengthSquared",
+            "points": [
+              "O",
+              "B"
+            ],
+            "calculated": "12",
+            "required": 12,
+            "passed": true
+          },
+          {
+            "relation": "lengthSquared",
+            "points": [
+              "P",
+              "A"
+            ],
+            "calculated": "36",
+            "required": 36,
+            "passed": true
+          },
+          {
+            "relation": "lengthSquared",
+            "points": [
+              "P",
+              "B"
+            ],
+            "calculated": "36",
+            "required": 36,
+            "passed": true
+          }
+        ],
+        "method": "Independent exact coordinate witness; supplemental validation only"
+      },
+      "uniqueRequestedAnswer": true,
+      "wholeConfigurationMustBeUnique": false,
+      "limit": "q17 radii and q22 triangle placements can vary while requested answers are unique. No pixel lengths or model probability determine uniqueness."
+    },
+    "figures": [
+      {
+        "svgPath": "figures/q23-1.svg",
+        "sha256": "34bce92dab2708d4f50d2449084fbadacd3dea95bdc25325f6e194ee4e4416de",
+        "intendedWidthMm": 70
+      }
+    ],
+    "directFigureInspections": [
+      {
+        "questionNumber": 23,
+        "svg": "figures/q23-1.svg",
+        "svgSha256": "34bce92dab2708d4f50d2449084fbadacd3dea95bdc25325f6e194ee4e4416de",
+        "intendedWidthMm": 70,
+        "renderedPdfWidthMm": 70.00000161064996,
+        "renderedHeightMm": 52.296024197743336,
+        "viewBox": [
+          0.0,
+          0.0,
+          311.434,
+          232.668
+        ],
+        "png": "blind/rendered/q23-1-300dpi.png",
+        "pngSha256": "6b9cbb946c97f85f7776206f78ba9e43192bc34394202943079ee51a587020da",
+        "pdf": "blind/rendered/q23-1-300dpi.pdf",
+        "pdfSha256": "37bf2b9e6dab8523a4565ee424bce79a8743ac9325b21abdf96b4ba16ceb6b32",
+        "svgTextLabels": [],
+        "mathematicalOracle": false,
+        "renderer": "Existing PyMuPDF SVG->vector PDF at physical width->300dpi PNG; Cairo runtime absent; no installs",
+        "visualInspection": "direct view_image completed on 2026-10-08",
+        "observation": "Exterior shaded region between PA/PB and near small arcAB, excluding the circle; radii to tangent points perpendicular. Subtract120degree sector from OAPB quadrilateral, not just trianglePAB.",
+        "labelsReadableAtSpecifiedPhysicalWidth": true,
+        "pixelMeasurementsUsedToSolve": false,
+        "physicalPrintProductionApproval": false
+      }
+    ],
+    "sevenStudentSurfaces": [
+      {
+        "surface": "stem",
+        "observation": "작은호중심각0<θ<180, r>0. 색칠영역은두접선과작은호로둘러싸인원밖영역; 단순삼각형PAB−부채꼴로계산하지않는다. 넓이계수√3−π/3>0이고음의반지름제외.",
+        "inGradeForUsedStudentMethod": true,
+        "limit": "New student stem only; original-twin faithfulness and provenance are not reviewed."
+      },
+      {
+        "surface": "choices",
+        "observation": "No choices; every numbered subpart answered, including required relationship explanation.",
+        "detailedCodeResult": {
+          "notApplicable": true,
+          "multiPartCount": 3,
+          "eachPartExplicit": true
+        },
+        "inGradeForUsedStudentMethod": true
+      },
+      {
+        "surface": "figure_and_graph_semantics",
+        "observation": [
+          "Exterior shaded region between PA/PB and near small arcAB, excluding the circle; radii to tangent points perpendicular. Subtract120degree sector from OAPB quadrilateral, not just trianglePAB."
+        ],
+        "specifiedPhysicalWidthsViewed": [
+          70
+        ],
+        "inGradeForUsedStudentMethod": true,
+        "pixelOracle": false,
+        "limit": "Standalone SVG physical rendering only; no claim about a complete final paper/student UI layout."
+      },
+      {
+        "surface": "notation",
+        "observation": "세소문항각·길이·길이를명시하고배점3+4+3=10 확인. 120°의삼각비는구하지않고부채꼴분수120/360만사용한다.",
+        "inGradeForUsedStudentMethod": true,
+        "trigScope": "Only acute-angle trig definitions and30/45/60 values used; arbitrary-angle formula, ratio identity, vector or calculus notation is not necessary."
+      },
+      {
+        "surface": "answer_format",
+        "observation": "⑴ ∠AOB=120°; ⑵ 반지름=2√3 cm; ⑶ OP=4√3 cm",
+        "partsWithUnits": {
+          "⑴ 작은 호 중심각 ∠AOB": "120°",
+          "⑵ 반지름": "2√3 cm",
+          "⑶ OP": "4√3 cm"
+        },
+        "inGradeForUsedStudentMethod": true,
+        "limit": "Own raw exact answer; Root may normalize formatting only after binding hashes."
+      },
+      {
+        "surface": "student_solution",
+        "observation": "⑴ 접선과 반지름은 접점에서 수직이므로 사각형 OAPB의 A, B 각은 90°씩이다. 따라서 ∠AOB+∠APB=180°이다. 주어진 비 1:2를 쓰면 ∠APB=60°, 작은 호의 중심각 ∠AOB=120°이다. ⑵ 반지름을 r cm라 하자. 두 직각삼각형 OAP, OBP가 합동이므로 OP가 P의 각을 이등분하여 ∠APO=30°이다. 30° 직각삼각형에서 PA=√3r, OP=2r이다. 사각형 OAPB의 넓이는 두 직각삼각형의 합으로 2×(r×√3r)/2=√3r²이다. 중심각 120° 부채꼴 AOB의 넓이는 (120/360)πr²=πr²/3이다. 색칠한 원 바깥 부분은 이 사각형에서 부채꼴을 뺀 영역이므로 (√3−π/3)r²=12√3−4π=12(√3−π/3)이다. 계수는 양수인 실제 넓이의 계수이므로 r²=12이다. 반지름 r>0을 택하여 r=2√3 cm이다. ⑶ OP=2r=4√3 cm이다.",
+        "inGradeForUsedStudentMethod": true,
+        "basis": "Full fresh elementary student proof written before authored-solution exposure; calculation alone does not grant curricular permission."
+      },
+      {
+        "surface": "necessary_procedure",
+        "observation": "접선-반지름 수직, 사각형각합/비, 합동이등분,30° 삼각형과단순부채꼴넓이차",
+        "conditions": "작은호중심각0<θ<180, r>0. 색칠영역은두접선과작은호로둘러싸인원밖영역; 단순삼각형PAB−부채꼴로계산하지않는다. 넓이계수√3−π/3>0이고음의반지름제외.",
+        "primaryStandardReferences": [
+          {
+            "id": "9수04-19",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4353,
+              "paragraph1based": 894,
+              "offset": 219558,
+              "text": "[9수04-19]원의 현에 관한 성질과 접선에 관한 성질을 이해한다."
+            },
+            "pdfPhysicalPage1based": 38,
+            "pdfPrintedPage": 34,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수04-04",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4264,
+              "paragraph1based": 872,
+              "offset": 216294,
+              "text": "[9수04-04]삼각형의 합동 조건을 이해하고, 이를 이용하여 두 삼각형이 합동인지 판별할 수 있다."
+            },
+            "pdfPhysicalPage1based": 37,
+            "pdfPrintedPage": 33,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수04-05",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4272,
+              "paragraph1based": 874,
+              "offset": 216602,
+              "text": "[9수04-05]다각형의 성질을 이해한다."
+            },
+            "pdfPhysicalPage1based": 37,
+            "pdfPrintedPage": 33,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수04-17",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4341,
+              "paragraph1based": 891,
+              "offset": 219120,
+              "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다."
+            },
+            "pdfPhysicalPage1based": 38,
+            "pdfPrintedPage": 34,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "6수03-08",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 3445,
+              "paragraph1based": 693,
+              "offset": 177155,
+              "text": "[6수03-08]원주와 원의 넓이를 구하는 방법을 이해하고, 이를 구할 수 있다."
+            },
+            "pdfPhysicalPage1based": 29,
+            "pdfPrintedPage": 25,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수01-07",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 3776,
+              "paragraph1based": 768,
+              "offset": 192865,
+              "text": "[9수01-07]제곱근의 뜻을 알고, 그 성질을 이해한다."
+            },
+            "pdfPhysicalPage1based": 33,
+            "pdfPrintedPage": 29,
+            "wholeClausePdfMatch": true
+          }
+        ],
+        "inGradeForUsedStudentMethod": true,
+        "forbiddenStudentPrerequisiteUsed": false
+      }
+    ],
+    "curriculumMethod": {
+      "reference": "actual2025middle3 ->2015",
+      "legitimateStudentMethodFound": true,
+      "standards": [
+        {
+          "id": "9수04-19",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4353,
+            "paragraph1based": 894,
+            "offset": 219558,
+            "text": "[9수04-19]원의 현에 관한 성질과 접선에 관한 성질을 이해한다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-04",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4264,
+            "paragraph1based": 872,
+            "offset": 216294,
+            "text": "[9수04-04]삼각형의 합동 조건을 이해하고, 이를 이용하여 두 삼각형이 합동인지 판별할 수 있다."
+          },
+          "pdfPhysicalPage1based": 37,
+          "pdfPrintedPage": 33,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-05",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4272,
+            "paragraph1based": 874,
+            "offset": 216602,
+            "text": "[9수04-05]다각형의 성질을 이해한다."
+          },
+          "pdfPhysicalPage1based": 37,
+          "pdfPrintedPage": 33,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-17",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4341,
+            "paragraph1based": 891,
+            "offset": 219120,
+            "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "6수03-08",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 3445,
+            "paragraph1based": 693,
+            "offset": 177155,
+            "text": "[6수03-08]원주와 원의 넓이를 구하는 방법을 이해하고, 이를 구할 수 있다."
+          },
+          "pdfPhysicalPage1based": 29,
+          "pdfPrintedPage": 25,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수01-07",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 3776,
+            "paragraph1based": 768,
+            "offset": 192865,
+            "text": "[9수01-07]제곱근의 뜻을 알고, 그 성질을 이해한다."
+          },
+          "pdfPhysicalPage1based": 33,
+          "pdfPrintedPage": 29,
+          "wholeClausePdfMatch": true
+        }
+      ],
+      "restrictionsFile": "curriculum-method-evidence.json",
+      "restrictionsFileSha256": "20a90e8060b73d09eb8749f8b6636e0d960e3148c53111d8bc4db8da4c95af2d",
+      "approvalForRightsFamilyNativeOrLoading": false,
+      "fullCurrentFuturePublicationApproval": false
+    },
+    "annotationsAndSourceFamiliarityDisclosure": "Prior original exam source familiarity is possible and earlier Bumil scan annotations were incidentally seen. No Gyeonggu original/source/keys were reopened; these new candidate answers, authored solutions and other solver results were not read. Work proceeds solely from copied new student inputs.",
+    "newAuthorCandidateAnswersKnownBeforeThisSolve": false,
+    "originalKeyAgreementUsed": false,
+    "otherSolverRead": false,
+    "inferenceApiCalls": 0,
+    "limits": [
+      "Independent blind solve and bounded legitimate-method observations only. Exact Unit/live family, rights/native provenance, author-solution comparison and overall loading are outside this stage."
+    ]
+  },
+  "heldReasons": [],
+  "rejectedStudentMethods": [
+    "No arbitrary trig ratio identities or addition/half-angle formulas.",
+    "No upper-grade extrema/calculus, law of sines/cosines, vectors or circle power.",
+    "q09 uses congruence and Pythagoras instead of an unverified angle-bisector length theorem."
+  ]
+}

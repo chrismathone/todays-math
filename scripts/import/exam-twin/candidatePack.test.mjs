@@ -1,4 +1,7 @@
 import assert from "node:assert/strict";
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
 import test from "node:test";
 import {
   digest,
@@ -9,7 +12,43 @@ import {
   studentPayload,
   SURFACES,
   validateCandidate,
+  readJson,
+  sha256,
 } from "./candidatePack.mjs";
+
+test("UTF-8 BOM parsing keeps raw-byte evidence distinct and rejects UTF-16 or corrupt UTF-8", () => {
+  const dir = fs.mkdtempSync(path.join(os.tmpdir(), "twin-json-encoding-"));
+  try {
+    const file = path.join(dir, "input.json");
+    const raw = Buffer.from('{"status":"solved","value":3}', "utf8");
+    fs.writeFileSync(file, raw);
+    const plain = readJson(file);
+    const bom = Buffer.concat([Buffer.from([0xef, 0xbb, 0xbf]), raw]);
+    fs.writeFileSync(file, bom);
+    assert.deepEqual(readJson(file), plain);
+    assert.deepEqual(fs.readFileSync(file), bom);
+    assert.notEqual(sha256(raw), sha256(bom));
+    fs.writeFileSync(
+      file,
+      Buffer.concat([
+        Buffer.from([0xff, 0xfe]),
+        Buffer.from('{"value":3}', "utf16le"),
+      ]),
+    );
+    assert.throws(() => readJson(file), /UTF-16/);
+    fs.writeFileSync(file, Buffer.from([0x7b, 0x22, 0xff, 0x22, 0x7d]));
+    assert.throws(() => readJson(file));
+    fs.writeFileSync(
+      file,
+      Buffer.concat([Buffer.from([0xef, 0xbb, 0xbf, 0xef, 0xbb, 0xbf]), raw]),
+    );
+    assert.throws(() => readJson(file));
+  } finally {
+    if (fs.existsSync(path.join(dir, "input.json")))
+      fs.unlinkSync(path.join(dir, "input.json"));
+    fs.rmdirSync(dir);
+  }
+});
 
 test("middle3 rollout cannot reuse 2015 source mapping for 2027", () => {
   assert.equal(middle3CurriculumForExamYear(2025), "2015");
@@ -21,6 +60,29 @@ test("middle3 rollout cannot reuse 2015 source mapping for 2027", () => {
 });
 
 // Synthetic controls only. These are not verification reports for real twins.
+test("ordinary program wording is not a logarithm, while explicit logarithms remain forbidden", () => {
+  const ordinary = structuredClone(candidate);
+  ordinary.content =
+    "프로그램 A의 기록을 표로 나타냈다. 로그인과 블로그는 소재 이름이다.";
+  const result = validateCandidate(ordinary);
+  assert.deepEqual(result.surfaceKeywordViolations, []);
+  assert.equal(result.semanticGradeReviewStillRequired, true);
+  for (const text of [
+    "로그함수를 이용하시오.",
+    "로그의 성질",
+    "$\\log_2 8$",
+    "$log(8)$",
+    "프로그램의 값에 로그를 취한다.",
+  ]) {
+    const forbidden = structuredClone(ordinary);
+    forbidden.solution = text;
+    assert(
+      validateCandidate(forbidden).surfaceKeywordViolations.includes("로그"),
+      text,
+    );
+  }
+});
+
 const candidate = {
   schemaVersion: 1,
   questionNumber: 2,

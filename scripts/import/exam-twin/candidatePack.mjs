@@ -49,7 +49,20 @@ export function canonicalJson(value) {
   return JSON.stringify(value);
 }
 export const digest = (value) => sha256(canonicalJson(value));
-export const readJson = (file) => JSON.parse(fs.readFileSync(file, "utf8"));
+export const readJson = (file) => {
+  const raw = fs.readFileSync(file);
+  assert(
+    !(raw[0] === 0xff && raw[1] === 0xfe) &&
+      !(raw[0] === 0xfe && raw[1] === 0xff),
+    "JSON artifact is UTF-16; preserve its raw bytes and create an explicit UTF-8 copy",
+  );
+  const offset = raw[0] === 0xef && raw[1] === 0xbb && raw[2] === 0xbf ? 3 : 0;
+  const text = new TextDecoder("utf-8", {
+    fatal: true,
+    ignoreBOM: true,
+  }).decode(raw.subarray(offset));
+  return JSON.parse(text);
+};
 // MOE 2022 general-education phase-in (93458): middle3 starts in 2027.
 // This offline pilot supports middle3/2015. A 2022 candidate requires new
 // template/standards and seven-surface review, never a relabel.
@@ -230,8 +243,19 @@ export function validateCandidate(candidate) {
     candidate.answer,
     candidate.solution,
   ].join("\n");
+  // Ordinary nouns can contain the syllables 로그. This narrow lexical check
+  // is only a rejection aid; every candidate still needs semantic grade review.
+  const logarithmText = studentText.replace(
+    /프로그래밍|프로그램|로그인|블로그|카탈로그/g,
+    " ",
+  );
   const violations = [...rules.forbiddenMethods, ...rules.forbiddenShapes]
-    .filter((r) => new RegExp(r.pattern, "i").test(studentText))
+    .filter((r) =>
+      r.name === "로그"
+        ? new RegExp(r.pattern, "i").test(logarithmText) ||
+          /\\log\b|\blog(?=\s*(?:[_({0-9]|$))/i.test(logarithmText)
+        : new RegExp(r.pattern, "i").test(studentText),
+    )
     .map((r) => r.name);
   return {
     structurallyValid: true,

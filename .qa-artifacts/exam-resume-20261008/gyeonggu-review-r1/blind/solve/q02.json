@@ -1,0 +1,493 @@
+{
+  "schema": "independent-blind-solve.v1",
+  "questionNumber": 2,
+  "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q02",
+  "studentDigest": "43fa3d9dd26eb2ded45e2716442f7563142908dc61c27aa5c15682d1e8d4d645",
+  "solverId": "orca-codex-exam-twin-source-identity-20261008",
+  "status": "solved",
+  "answer": "②: ㉠ 6√2, ㉡ 8√2 (각 길이의 단위 cm)",
+  "answerParts": {
+    "㉠ BC": "6√2 cm",
+    "㉡ CA": "8√2 cm"
+  },
+  "solution": "sin A=BC/AB=3/5이므로 BC=(10√2)×3/5=6√2 cm이다. 피타고라스 정리에서 CA²=AB²−BC²=(10√2)²−(6√2)²=200−72=128이다. CA는 양의 길이이므로 CA=8√2 cm이다. 표는 BC, CA 순서이므로 (6√2,8√2), ②이다.",
+  "evidence": {
+    "method": "independent-student-input-solve-before-author-answer-exposure",
+    "studentMethod": "삼각비 정의로 실제 변 길이 계산 뒤 피타고라스로 남은 변 계산",
+    "conditionAndDomainNotes": "빗변10√2>0, 0<3/5<1, 두 직각변 양수. 알려진 sine는 실제 변의 길이를 구하는 데만 사용하며 다른 비를 목표로 묻지 않는다.",
+    "exactValuesFromCode": [
+      "6*sqrt(2)",
+      "8*sqrt(2)"
+    ],
+    "code": {
+      "path": "solve_math.py",
+      "sha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50"
+    },
+    "proof": {
+      "path": "blind/proofs/q02.json",
+      "sha256": "eade42c88723a49fe381ae11f9b5c272a3e8695088797bc1a39f4ae8bb113cd5"
+    },
+    "studentSolutionSource": {
+      "path": "student_solutions.json",
+      "wholeFileSha256": "adbcd31c366b68051b20e460727edc017c8160cd0d80fb6ff6c4b079d88c947d",
+      "questionRecordSha256": "fccba545babd0653c4d50703af15c43d126163f9038a4efd5eb5b6432a4c6531"
+    },
+    "wholeStudentInputSha256": "6e137d65894e6506710e6c980136cfd26a25d4fec141785f4ed521f8eb89e1ca",
+    "contentSha256Utf8": "3fb2b6ab6035d8db44477ea5c4da14c2e9ae0eb1dd4b481c52a650b686bc4adb",
+    "studentObjectCanonicalSha256": "0f8cde2766105b63dd011f4947dc0c75e8f6a7abeb3c4e0dd0d9f931dccd44b8",
+    "canonicalHashLimit": "This diagnostic canonical hash is not a claim about Root studentDigest algorithm; supplied studentDigest is retained unchanged.",
+    "choiceCheck": {
+      "allChoices": [
+        {
+          "index1based": 1,
+          "studentChoice": "$8\\sqrt{2}$, $6\\sqrt{2}$",
+          "parsedValues": [
+            "8*sqrt(2)",
+            "6*sqrt(2)"
+          ],
+          "matchesEachRequestedPart": [
+            false,
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "positiveLegs": true,
+            "hypotenuseSquared200": true,
+            "sineBC_AB_3over5": false
+          },
+          "differencesFromIndependentRequestedValues": [
+            "2*sqrt(2)",
+            "-2*sqrt(2)"
+          ]
+        },
+        {
+          "index1based": 2,
+          "studentChoice": "$6\\sqrt{2}$, $8\\sqrt{2}$",
+          "parsedValues": [
+            "6*sqrt(2)",
+            "8*sqrt(2)"
+          ],
+          "matchesEachRequestedPart": [
+            true,
+            true
+          ],
+          "matches": true,
+          "domainAndGivenConditionChecks": {
+            "positiveLegs": true,
+            "hypotenuseSquared200": true,
+            "sineBC_AB_3over5": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "0",
+            "0"
+          ]
+        },
+        {
+          "index1based": 3,
+          "studentChoice": "$6$, $8$",
+          "parsedValues": [
+            "6",
+            "8"
+          ],
+          "matchesEachRequestedPart": [
+            false,
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "positiveLegs": true,
+            "hypotenuseSquared200": false,
+            "sineBC_AB_3over5": false
+          },
+          "differencesFromIndependentRequestedValues": [
+            "6 - 6*sqrt(2)",
+            "8 - 8*sqrt(2)"
+          ]
+        },
+        {
+          "index1based": 4,
+          "studentChoice": "$6\\sqrt{2}$, $4\\sqrt{2}$",
+          "parsedValues": [
+            "6*sqrt(2)",
+            "4*sqrt(2)"
+          ],
+          "matchesEachRequestedPart": [
+            true,
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "positiveLegs": true,
+            "hypotenuseSquared200": false,
+            "sineBC_AB_3over5": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "0",
+            "-4*sqrt(2)"
+          ]
+        },
+        {
+          "index1based": 5,
+          "studentChoice": "$3\\sqrt{2}$, $8\\sqrt{2}$",
+          "parsedValues": [
+            "3*sqrt(2)",
+            "8*sqrt(2)"
+          ],
+          "matchesEachRequestedPart": [
+            false,
+            true
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "positiveLegs": true,
+            "hypotenuseSquared200": false,
+            "sineBC_AB_3over5": false
+          },
+          "differencesFromIndependentRequestedValues": [
+            "-3*sqrt(2)",
+            "0"
+          ]
+        }
+      ],
+      "matchingIndices1based": [
+        2
+      ],
+      "exactlyOneChoice": true,
+      "basis": "Parsed actual copied student choices; no author/original key"
+    },
+    "existenceUniquenessPositivity": {
+      "actualCodeChecks": [
+        {
+          "condition": "definition and Pythagoras",
+          "passed": true,
+          "calculation": {
+            "sidesSquared": "200"
+          }
+        },
+        {
+          "condition": "positive acute-angle triangle",
+          "passed": true,
+          "calculation": [
+            "6*sqrt(2)",
+            "8*sqrt(2)"
+          ]
+        }
+      ],
+      "supplementalExactCoordinateWitness": null,
+      "uniqueRequestedAnswer": true,
+      "wholeConfigurationMustBeUnique": false,
+      "limit": "q17 radii and q22 triangle placements can vary while requested answers are unique. No pixel lengths or model probability determine uniqueness."
+    },
+    "figures": [],
+    "directFigureInspections": [],
+    "sevenStudentSurfaces": [
+      {
+        "surface": "stem",
+        "observation": "빗변10√2>0, 0<3/5<1, 두 직각변 양수. 알려진 sine는 실제 변의 길이를 구하는 데만 사용하며 다른 비를 목표로 묻지 않는다.",
+        "inGradeForUsedStudentMethod": true,
+        "limit": "New student stem only; original-twin faithfulness and provenance are not reviewed."
+      },
+      {
+        "surface": "choices",
+        "observation": "All actual student choices parsed and every requested component/strict interval compared.",
+        "detailedCodeResult": {
+          "allChoices": [
+            {
+              "index1based": 1,
+              "studentChoice": "$8\\sqrt{2}$, $6\\sqrt{2}$",
+              "parsedValues": [
+                "8*sqrt(2)",
+                "6*sqrt(2)"
+              ],
+              "matchesEachRequestedPart": [
+                false,
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "positiveLegs": true,
+                "hypotenuseSquared200": true,
+                "sineBC_AB_3over5": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "2*sqrt(2)",
+                "-2*sqrt(2)"
+              ]
+            },
+            {
+              "index1based": 2,
+              "studentChoice": "$6\\sqrt{2}$, $8\\sqrt{2}$",
+              "parsedValues": [
+                "6*sqrt(2)",
+                "8*sqrt(2)"
+              ],
+              "matchesEachRequestedPart": [
+                true,
+                true
+              ],
+              "matches": true,
+              "domainAndGivenConditionChecks": {
+                "positiveLegs": true,
+                "hypotenuseSquared200": true,
+                "sineBC_AB_3over5": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "0",
+                "0"
+              ]
+            },
+            {
+              "index1based": 3,
+              "studentChoice": "$6$, $8$",
+              "parsedValues": [
+                "6",
+                "8"
+              ],
+              "matchesEachRequestedPart": [
+                false,
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "positiveLegs": true,
+                "hypotenuseSquared200": false,
+                "sineBC_AB_3over5": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "6 - 6*sqrt(2)",
+                "8 - 8*sqrt(2)"
+              ]
+            },
+            {
+              "index1based": 4,
+              "studentChoice": "$6\\sqrt{2}$, $4\\sqrt{2}$",
+              "parsedValues": [
+                "6*sqrt(2)",
+                "4*sqrt(2)"
+              ],
+              "matchesEachRequestedPart": [
+                true,
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "positiveLegs": true,
+                "hypotenuseSquared200": false,
+                "sineBC_AB_3over5": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "0",
+                "-4*sqrt(2)"
+              ]
+            },
+            {
+              "index1based": 5,
+              "studentChoice": "$3\\sqrt{2}$, $8\\sqrt{2}$",
+              "parsedValues": [
+                "3*sqrt(2)",
+                "8*sqrt(2)"
+              ],
+              "matchesEachRequestedPart": [
+                false,
+                true
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "positiveLegs": true,
+                "hypotenuseSquared200": false,
+                "sineBC_AB_3over5": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "-3*sqrt(2)",
+                "0"
+              ]
+            }
+          ],
+          "matchingIndices1based": [
+            2
+          ],
+          "exactlyOneChoice": true,
+          "basis": "Parsed actual copied student choices; no author/original key"
+        },
+        "inGradeForUsedStudentMethod": true
+      },
+      {
+        "surface": "figure_and_graph_semantics",
+        "observation": [
+          "No student figure provided; stem determines the calculation."
+        ],
+        "specifiedPhysicalWidthsViewed": [],
+        "inGradeForUsedStudentMethod": true,
+        "pixelOracle": false,
+        "limit": "Standalone SVG physical rendering only; no claim about a complete final paper/student UI layout."
+      },
+      {
+        "surface": "notation",
+        "observation": "표의 cm는 두 빈칸에 공통. 선택지의 순서를 바꾸거나 √2를 누락하면 두 성분 검산을 통과하지 못한다.",
+        "inGradeForUsedStudentMethod": true,
+        "trigScope": "Only acute-angle trig definitions and30/45/60 values used; arbitrary-angle formula, ratio identity, vector or calculus notation is not necessary."
+      },
+      {
+        "surface": "answer_format",
+        "observation": "②: ㉠ 6√2, ㉡ 8√2 (각 길이의 단위 cm)",
+        "partsWithUnits": {
+          "㉠ BC": "6√2 cm",
+          "㉡ CA": "8√2 cm"
+        },
+        "inGradeForUsedStudentMethod": true,
+        "limit": "Own raw exact answer; Root may normalize formatting only after binding hashes."
+      },
+      {
+        "surface": "student_solution",
+        "observation": "sin A=BC/AB=3/5이므로 BC=(10√2)×3/5=6√2 cm이다. 피타고라스 정리에서 CA²=AB²−BC²=(10√2)²−(6√2)²=200−72=128이다. CA는 양의 길이이므로 CA=8√2 cm이다. 표는 BC, CA 순서이므로 (6√2,8√2), ②이다.",
+        "inGradeForUsedStudentMethod": true,
+        "basis": "Full fresh elementary student proof written before authored-solution exposure; calculation alone does not grant curricular permission."
+      },
+      {
+        "surface": "necessary_procedure",
+        "observation": "삼각비 정의로 실제 변 길이 계산 뒤 피타고라스로 남은 변 계산",
+        "conditions": "빗변10√2>0, 0<3/5<1, 두 직각변 양수. 알려진 sine는 실제 변의 길이를 구하는 데만 사용하며 다른 비를 목표로 묻지 않는다.",
+        "primaryStandardReferences": [
+          {
+            "id": "9수04-16",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4333,
+              "paragraph1based": 889,
+              "offset": 218866,
+              "text": "[9수04-16]피타고라스 정리를 이해하고 설명할 수 있다."
+            },
+            "pdfPhysicalPage1based": 38,
+            "pdfPrintedPage": 34,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수04-17",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4341,
+              "paragraph1based": 891,
+              "offset": 219120,
+              "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다."
+            },
+            "pdfPhysicalPage1based": 38,
+            "pdfPrintedPage": 34,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수01-07",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 3776,
+              "paragraph1based": 768,
+              "offset": 192865,
+              "text": "[9수01-07]제곱근의 뜻을 알고, 그 성질을 이해한다."
+            },
+            "pdfPhysicalPage1based": 33,
+            "pdfPrintedPage": 29,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수01-10",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 3788,
+              "paragraph1based": 771,
+              "offset": 193301,
+              "text": "[9수01-10]근호를 포함한 식의 사칙계산을 할 수 있다."
+            },
+            "pdfPhysicalPage1based": 33,
+            "pdfPrintedPage": 29,
+            "wholeClausePdfMatch": true
+          }
+        ],
+        "inGradeForUsedStudentMethod": true,
+        "forbiddenStudentPrerequisiteUsed": false
+      }
+    ],
+    "curriculumMethod": {
+      "reference": "actual2025middle3 ->2015",
+      "legitimateStudentMethodFound": true,
+      "standards": [
+        {
+          "id": "9수04-16",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4333,
+            "paragraph1based": 889,
+            "offset": 218866,
+            "text": "[9수04-16]피타고라스 정리를 이해하고 설명할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-17",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4341,
+            "paragraph1based": 891,
+            "offset": 219120,
+            "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수01-07",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 3776,
+            "paragraph1based": 768,
+            "offset": 192865,
+            "text": "[9수01-07]제곱근의 뜻을 알고, 그 성질을 이해한다."
+          },
+          "pdfPhysicalPage1based": 33,
+          "pdfPrintedPage": 29,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수01-10",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 3788,
+            "paragraph1based": 771,
+            "offset": 193301,
+            "text": "[9수01-10]근호를 포함한 식의 사칙계산을 할 수 있다."
+          },
+          "pdfPhysicalPage1based": 33,
+          "pdfPrintedPage": 29,
+          "wholeClausePdfMatch": true
+        }
+      ],
+      "restrictionsFile": "curriculum-method-evidence.json",
+      "restrictionsFileSha256": "20a90e8060b73d09eb8749f8b6636e0d960e3148c53111d8bc4db8da4c95af2d",
+      "approvalForRightsFamilyNativeOrLoading": false,
+      "fullCurrentFuturePublicationApproval": false
+    },
+    "annotationsAndSourceFamiliarityDisclosure": "Prior original exam source familiarity is possible and earlier Bumil scan annotations were incidentally seen. No Gyeonggu original/source/keys were reopened; these new candidate answers, authored solutions and other solver results were not read. Work proceeds solely from copied new student inputs.",
+    "newAuthorCandidateAnswersKnownBeforeThisSolve": false,
+    "originalKeyAgreementUsed": false,
+    "otherSolverRead": false,
+    "inferenceApiCalls": 0,
+    "limits": [
+      "Independent blind solve and bounded legitimate-method observations only. Exact Unit/live family, rights/native provenance, author-solution comparison and overall loading are outside this stage."
+    ]
+  },
+  "heldReasons": [],
+  "rejectedStudentMethods": [
+    "No arbitrary trig ratio identities or addition/half-angle formulas.",
+    "No upper-grade extrema/calculus, law of sines/cosines, vectors or circle power.",
+    "q09 uses congruence and Pythagoras instead of an unverified angle-bisector length theorem."
+  ]
+}

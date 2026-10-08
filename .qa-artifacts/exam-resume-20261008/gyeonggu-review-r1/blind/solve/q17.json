@@ -1,0 +1,501 @@
+{
+  "schema": "independent-blind-solve.v1",
+  "questionNumber": 17,
+  "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q17",
+  "studentDigest": "b7a97db53d0f8ebab88a31174afd8395f5899416fed9b2e975e6bcc553de9f24",
+  "solverId": "orca-codex-exam-twin-source-identity-20261008",
+  "status": "solved",
+  "answer": "④: AB=14 cm",
+  "answerParts": {
+    "AB": "14 cm"
+  },
+  "solution": "큰 원의 반지름을R, 작은 원의 반지름을r이라 하면 고리 넓이는π(R²−r²)=49π이므로 R²−r²=49이다. AB가 작은 원에H에서 접하므로 OH⊥AB이고 OH=r이다. 큰 원의 중심에서 현에 내린 수선이므로 AH=HB이다. 직각삼각형 OHA에서 AH²=R²−r²=49이고 AH>0이므로 AH=7 cm이다. 따라서 AB=2AH=14 cm, ④이다.",
+  "evidence": {
+    "method": "independent-student-input-solve-before-author-answer-exposure",
+    "studentMethod": "두 원 넓이 차, 접선/현의 수선 성질, 피타고라스",
+    "conditionAndDomainNotes": "서로 다른 동심원이므로 R>r>0. 개별반지름은 정해지지 않아도 R²−r²와 현의 길이는 유일. 실제r=3,R=√58인 예도 존재.",
+    "exactValuesFromCode": [
+      "14"
+    ],
+    "code": {
+      "path": "solve_math.py",
+      "sha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50"
+    },
+    "proof": {
+      "path": "blind/proofs/q17.json",
+      "sha256": "a68a1033b9c7e3b6ab4aaf6ab5536981b73f96b789ceada264eb693d7eddca79"
+    },
+    "studentSolutionSource": {
+      "path": "student_solutions.json",
+      "wholeFileSha256": "adbcd31c366b68051b20e460727edc017c8160cd0d80fb6ff6c4b079d88c947d",
+      "questionRecordSha256": "07642925074738ea08161654f9423ffba94a4ea40b8de75856a4719b199a67de"
+    },
+    "wholeStudentInputSha256": "6e137d65894e6506710e6c980136cfd26a25d4fec141785f4ed521f8eb89e1ca",
+    "contentSha256Utf8": "efe51651df793b8e008f970d9faa0b47eb48e3caf6878f9b7902b816c290b481",
+    "studentObjectCanonicalSha256": "b830dfafdaf042853904f90e28bf241caae95d6716c47a6f23318fa85b4a7558",
+    "canonicalHashLimit": "This diagnostic canonical hash is not a claim about Root studentDigest algorithm; supplied studentDigest is retained unchanged.",
+    "choiceCheck": {
+      "allChoices": [
+        {
+          "index1based": 1,
+          "studentChoice": "$7\\,\\mathrm{cm}$",
+          "parsedValues": [
+            "7"
+          ],
+          "matchesEachRequestedPart": [
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "positiveFullChord": true,
+            "squaredHalfChord49": false
+          },
+          "differencesFromIndependentRequestedValues": [
+            "-7"
+          ]
+        },
+        {
+          "index1based": 2,
+          "studentChoice": "$10\\,\\mathrm{cm}$",
+          "parsedValues": [
+            "10"
+          ],
+          "matchesEachRequestedPart": [
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "positiveFullChord": true,
+            "squaredHalfChord49": false
+          },
+          "differencesFromIndependentRequestedValues": [
+            "-4"
+          ]
+        },
+        {
+          "index1based": 3,
+          "studentChoice": "$12\\,\\mathrm{cm}$",
+          "parsedValues": [
+            "12"
+          ],
+          "matchesEachRequestedPart": [
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "positiveFullChord": true,
+            "squaredHalfChord49": false
+          },
+          "differencesFromIndependentRequestedValues": [
+            "-2"
+          ]
+        },
+        {
+          "index1based": 4,
+          "studentChoice": "$14\\,\\mathrm{cm}$",
+          "parsedValues": [
+            "14"
+          ],
+          "matchesEachRequestedPart": [
+            true
+          ],
+          "matches": true,
+          "domainAndGivenConditionChecks": {
+            "positiveFullChord": true,
+            "squaredHalfChord49": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "0"
+          ]
+        },
+        {
+          "index1based": 5,
+          "studentChoice": "$28\\,\\mathrm{cm}$",
+          "parsedValues": [
+            "28"
+          ],
+          "matchesEachRequestedPart": [
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "positiveFullChord": true,
+            "squaredHalfChord49": false
+          },
+          "differencesFromIndependentRequestedValues": [
+            "14"
+          ]
+        }
+      ],
+      "matchingIndices1based": [
+        4
+      ],
+      "exactlyOneChoice": true,
+      "basis": "Parsed actual copied student choices; no author/original key"
+    },
+    "existenceUniquenessPositivity": {
+      "actualCodeChecks": [
+        {
+          "condition": "positive chord and distinct circles",
+          "passed": true,
+          "calculation": "14"
+        }
+      ],
+      "supplementalExactCoordinateWitness": {
+        "points": {
+          "O": [
+            0,
+            0
+          ],
+          "H": [
+            0,
+            3
+          ],
+          "A": [
+            -7,
+            3
+          ],
+          "B": [
+            7,
+            3
+          ]
+        },
+        "relations": [
+          {
+            "relation": "lengthSquared",
+            "points": [
+              "O",
+              "A"
+            ],
+            "calculated": "58",
+            "required": 58,
+            "passed": true
+          },
+          {
+            "relation": "lengthSquared",
+            "points": [
+              "O",
+              "H"
+            ],
+            "calculated": "9",
+            "required": 9,
+            "passed": true
+          },
+          {
+            "relation": "perpendicular",
+            "points": [
+              "O",
+              "H",
+              "A",
+              "B"
+            ],
+            "calculated": "0",
+            "required": 0,
+            "passed": true
+          }
+        ],
+        "method": "Independent exact coordinate witness; supplemental validation only"
+      },
+      "uniqueRequestedAnswer": true,
+      "wholeConfigurationMustBeUnique": false,
+      "limit": "q17 radii and q22 triangle placements can vary while requested answers are unique. No pixel lengths or model probability determine uniqueness."
+    },
+    "figures": [
+      {
+        "svgPath": "figures/q17-1.svg",
+        "sha256": "0634afd15ee79eace48bc124efe5329560864412d2d92df373bf179db0d2b2d1",
+        "intendedWidthMm": 70
+      }
+    ],
+    "directFigureInspections": [
+      {
+        "questionNumber": 17,
+        "svg": "figures/q17-1.svg",
+        "svgSha256": "0634afd15ee79eace48bc124efe5329560864412d2d92df373bf179db0d2b2d1",
+        "intendedWidthMm": 70,
+        "renderedPdfWidthMm": 70.00000161064996,
+        "renderedHeightMm": 67.19316212383804,
+        "viewBox": [
+          0.0,
+          0.0,
+          215.798,
+          207.145
+        ],
+        "png": "blind/rendered/q17-1-300dpi.png",
+        "pngSha256": "94e472ecf76d616fc3e2b88c6ad3324ae13922ac76c7fe2262efe04ee52fbb96",
+        "pdf": "blind/rendered/q17-1-300dpi.pdf",
+        "pdfSha256": "005f1daa55ec1a5dd9653ba41d1336be93f7c72304092211b5acf80694d99411",
+        "svgTextLabels": [],
+        "mathematicalOracle": false,
+        "renderer": "Existing PyMuPDF SVG->vector PDF at physical width->300dpi PNG; Cairo runtime absent; no installs",
+        "visualInspection": "direct view_image completed on 2026-10-08",
+        "observation": "Concentric circles, AB tangent to innercircle atH and OH perpendicularAB; annulus shaded. Drawn radius ratio is schematic and is not a given.",
+        "labelsReadableAtSpecifiedPhysicalWidth": true,
+        "pixelMeasurementsUsedToSolve": false,
+        "physicalPrintProductionApproval": false
+      }
+    ],
+    "sevenStudentSurfaces": [
+      {
+        "surface": "stem",
+        "observation": "서로 다른 동심원이므로 R>r>0. 개별반지름은 정해지지 않아도 R²−r²와 현의 길이는 유일. 실제r=3,R=√58인 예도 존재.",
+        "inGradeForUsedStudentMethod": true,
+        "limit": "New student stem only; original-twin faithfulness and provenance are not reviewed."
+      },
+      {
+        "surface": "choices",
+        "observation": "All actual student choices parsed and every requested component/strict interval compared.",
+        "detailedCodeResult": {
+          "allChoices": [
+            {
+              "index1based": 1,
+              "studentChoice": "$7\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "7"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "positiveFullChord": true,
+                "squaredHalfChord49": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "-7"
+              ]
+            },
+            {
+              "index1based": 2,
+              "studentChoice": "$10\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "10"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "positiveFullChord": true,
+                "squaredHalfChord49": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "-4"
+              ]
+            },
+            {
+              "index1based": 3,
+              "studentChoice": "$12\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "12"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "positiveFullChord": true,
+                "squaredHalfChord49": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "-2"
+              ]
+            },
+            {
+              "index1based": 4,
+              "studentChoice": "$14\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "14"
+              ],
+              "matchesEachRequestedPart": [
+                true
+              ],
+              "matches": true,
+              "domainAndGivenConditionChecks": {
+                "positiveFullChord": true,
+                "squaredHalfChord49": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "0"
+              ]
+            },
+            {
+              "index1based": 5,
+              "studentChoice": "$28\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "28"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "positiveFullChord": true,
+                "squaredHalfChord49": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "14"
+              ]
+            }
+          ],
+          "matchingIndices1based": [
+            4
+          ],
+          "exactlyOneChoice": true,
+          "basis": "Parsed actual copied student choices; no author/original key"
+        },
+        "inGradeForUsedStudentMethod": true
+      },
+      {
+        "surface": "figure_and_graph_semantics",
+        "observation": [
+          "Concentric circles, AB tangent to innercircle atH and OH perpendicularAB; annulus shaded. Drawn radius ratio is schematic and is not a given."
+        ],
+        "specifiedPhysicalWidthsViewed": [
+          70
+        ],
+        "inGradeForUsedStudentMethod": true,
+        "pixelOracle": false,
+        "limit": "Standalone SVG physical rendering only; no claim about a complete final paper/student UI layout."
+      },
+      {
+        "surface": "notation",
+        "observation": "그림에서 보이는 반지름 비를 입력으로 삼지 않는다. 고리 전체가 넓이 대상이며 반현과 전체현을 구별한다.",
+        "inGradeForUsedStudentMethod": true,
+        "trigScope": "Only acute-angle trig definitions and30/45/60 values used; arbitrary-angle formula, ratio identity, vector or calculus notation is not necessary."
+      },
+      {
+        "surface": "answer_format",
+        "observation": "④: AB=14 cm",
+        "partsWithUnits": {
+          "AB": "14 cm"
+        },
+        "inGradeForUsedStudentMethod": true,
+        "limit": "Own raw exact answer; Root may normalize formatting only after binding hashes."
+      },
+      {
+        "surface": "student_solution",
+        "observation": "큰 원의 반지름을R, 작은 원의 반지름을r이라 하면 고리 넓이는π(R²−r²)=49π이므로 R²−r²=49이다. AB가 작은 원에H에서 접하므로 OH⊥AB이고 OH=r이다. 큰 원의 중심에서 현에 내린 수선이므로 AH=HB이다. 직각삼각형 OHA에서 AH²=R²−r²=49이고 AH>0이므로 AH=7 cm이다. 따라서 AB=2AH=14 cm, ④이다.",
+        "inGradeForUsedStudentMethod": true,
+        "basis": "Full fresh elementary student proof written before authored-solution exposure; calculation alone does not grant curricular permission."
+      },
+      {
+        "surface": "necessary_procedure",
+        "observation": "두 원 넓이 차, 접선/현의 수선 성질, 피타고라스",
+        "conditions": "서로 다른 동심원이므로 R>r>0. 개별반지름은 정해지지 않아도 R²−r²와 현의 길이는 유일. 실제r=3,R=√58인 예도 존재.",
+        "primaryStandardReferences": [
+          {
+            "id": "6수03-08",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 3445,
+              "paragraph1based": 693,
+              "offset": 177155,
+              "text": "[6수03-08]원주와 원의 넓이를 구하는 방법을 이해하고, 이를 구할 수 있다."
+            },
+            "pdfPhysicalPage1based": 29,
+            "pdfPrintedPage": 25,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수04-19",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4353,
+              "paragraph1based": 894,
+              "offset": 219558,
+              "text": "[9수04-19]원의 현에 관한 성질과 접선에 관한 성질을 이해한다."
+            },
+            "pdfPhysicalPage1based": 38,
+            "pdfPrintedPage": 34,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수04-16",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4333,
+              "paragraph1based": 889,
+              "offset": 218866,
+              "text": "[9수04-16]피타고라스 정리를 이해하고 설명할 수 있다."
+            },
+            "pdfPhysicalPage1based": 38,
+            "pdfPrintedPage": 34,
+            "wholeClausePdfMatch": true
+          }
+        ],
+        "inGradeForUsedStudentMethod": true,
+        "forbiddenStudentPrerequisiteUsed": false
+      }
+    ],
+    "curriculumMethod": {
+      "reference": "actual2025middle3 ->2015",
+      "legitimateStudentMethodFound": true,
+      "standards": [
+        {
+          "id": "6수03-08",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 3445,
+            "paragraph1based": 693,
+            "offset": 177155,
+            "text": "[6수03-08]원주와 원의 넓이를 구하는 방법을 이해하고, 이를 구할 수 있다."
+          },
+          "pdfPhysicalPage1based": 29,
+          "pdfPrintedPage": 25,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-19",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4353,
+            "paragraph1based": 894,
+            "offset": 219558,
+            "text": "[9수04-19]원의 현에 관한 성질과 접선에 관한 성질을 이해한다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-16",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4333,
+            "paragraph1based": 889,
+            "offset": 218866,
+            "text": "[9수04-16]피타고라스 정리를 이해하고 설명할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        }
+      ],
+      "restrictionsFile": "curriculum-method-evidence.json",
+      "restrictionsFileSha256": "20a90e8060b73d09eb8749f8b6636e0d960e3148c53111d8bc4db8da4c95af2d",
+      "approvalForRightsFamilyNativeOrLoading": false,
+      "fullCurrentFuturePublicationApproval": false
+    },
+    "annotationsAndSourceFamiliarityDisclosure": "Prior original exam source familiarity is possible and earlier Bumil scan annotations were incidentally seen. No Gyeonggu original/source/keys were reopened; these new candidate answers, authored solutions and other solver results were not read. Work proceeds solely from copied new student inputs.",
+    "newAuthorCandidateAnswersKnownBeforeThisSolve": false,
+    "originalKeyAgreementUsed": false,
+    "otherSolverRead": false,
+    "inferenceApiCalls": 0,
+    "limits": [
+      "Independent blind solve and bounded legitimate-method observations only. Exact Unit/live family, rights/native provenance, author-solution comparison and overall loading are outside this stage."
+    ]
+  },
+  "heldReasons": [],
+  "rejectedStudentMethods": [
+    "No arbitrary trig ratio identities or addition/half-angle formulas.",
+    "No upper-grade extrema/calculus, law of sines/cosines, vectors or circle power.",
+    "q09 uses congruence and Pythagoras instead of an unverified angle-bisector length theorem."
+  ]
+}

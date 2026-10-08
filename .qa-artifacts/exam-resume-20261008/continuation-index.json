@@ -92687,7 +92687,7 @@
     "priority": "Grade and applied curriculum suitability is mandatory for stem/choices/figures/notation/answer/student solution/prerequisites; out of scope => reject; unknown => hold",
     "addendum": "docs/planning/tracks/brief-exam-extraction-resume-20261008-addendum-1.md"
   },
-  "version": 6,
+  "version": 7,
   "updatedAt": "2026-10-08T06:56:30.388Z",
   "historicalOwnerDirection": {
     "updatedAt": "2026-10-07T15:46:09.6785134Z",
@@ -92740,8 +92740,22 @@
     ]
   },
   "currentExecution": {
-    "path": ".qa-artifacts/exam-resume-20261008/continuation-index-v6.json",
-    "sha256": "e46d95be24a081aaa1ffe050e5732b4e34e002492639bd45c3e7fc791e3f4f7b",
-    "version": 6
+    "path": ".qa-artifacts/exam-resume-20261008/continuation-index-v7.json",
+    "sha256": "3c481a9b9bd57e997fa5cb5ca12230d0332d9d6c7cdd7170ad1eca1b33b866c4",
+    "version": 7
+  },
+  "currentExecutionCounts": {
+    "authoredCurrentCandidates": 58,
+    "currentFigureInstances": 50,
+    "recreatedStatTables": 5,
+    "builtinImagegenRasters": 2,
+    "independentMathReviewed": 20,
+    "independentFullGradeReviewed": 20,
+    "contentReviewPassed": 12,
+    "contentReviewHeld": 8,
+    "awaitingCollectedIndependentReview": 38,
+    "fullVerified": 0,
+    "loadable": 0,
+    "dbWrites": 0
   }
 }

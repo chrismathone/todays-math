@@ -1,0 +1,563 @@
+{
+  "schema": "independent-blind-solve.v1",
+  "questionNumber": 10,
+  "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q10",
+  "studentDigest": "c957094979a869ba5a4b4158d96e9517c67e45823153ad704130771bde179af7",
+  "solverId": "orca-codex-exam-twin-source-identity-20261008",
+  "status": "solved",
+  "answer": "③: ㉠ 15°, ㉡ (√6+√2)/4",
+  "answerParts": {
+    "㉠ ∠DAF": "15°",
+    "㉡ cos∠DAF": "(√6+√2)/4"
+  },
+  "solution": "직사각형의 A에서 ∠BAD=90°이다. 내부의 두 각이45°와30°이므로 ∠DAF=90°−45°−30°=15°이다. 삼각형 ABE는45° 직각삼각형이어서 BE=AB=2√3 cm, AE=AB√2=2√6 cm이다. 삼각형 AEF는 E에서 직각이고 A에서30°이므로 EF=AE×tan30°=2√2 cm, AF=AE÷cos30°=4√2 cm이다. AE가 BC와45°를 이루고 EF⊥AE이므로 ECF는45° 직각삼각형이다. 따라서 EC=CF=EF/√2=2 cm이다. AD=BC=BE+EC=2√3+2 cm이다. 직각삼각형 ADF에서 cos∠DAF=AD/AF=(2√3+2)/(4√2)=(√6+√2)/4이다. 두 값이 일치하는 선택지는 ③이다.",
+  "evidence": {
+    "method": "independent-student-input-solve-before-author-answer-exposure",
+    "studentMethod": "내부 각 합,45°/30° 직각삼각형의 변, 마지막 cosine 정의",
+    "conditionAndDomainNotes": "CF=2<CD=2√3, DF=2√3−2>0이고 E,F가 해당 변 내부에 있는 실제 도형이 존재. cos15의 덧셈/반각공식을 쓰지 않는다.",
+    "exactValuesFromCode": [
+      "15",
+      "sqrt(2)/4 + sqrt(6)/4"
+    ],
+    "code": {
+      "path": "solve_math.py",
+      "sha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50"
+    },
+    "proof": {
+      "path": "blind/proofs/q10.json",
+      "sha256": "9f3ad07b0ad74afd3dfc24ea0486ef9ab64340fb1e26b644f4912433232ae25c"
+    },
+    "studentSolutionSource": {
+      "path": "student_solutions.json",
+      "wholeFileSha256": "adbcd31c366b68051b20e460727edc017c8160cd0d80fb6ff6c4b079d88c947d",
+      "questionRecordSha256": "614624d96a848172147c377b95f225de8295f96cda795436340bec7e32f6e6a8"
+    },
+    "wholeStudentInputSha256": "6e137d65894e6506710e6c980136cfd26a25d4fec141785f4ed521f8eb89e1ca",
+    "contentSha256Utf8": "2e91d40bc3a86055653d1e9663d194819df35eb94a335026282418880d649308",
+    "studentObjectCanonicalSha256": "b0d2a5e8b76ae1838fa6d526b7845bd62adb9f5e883665a790fb190cb3f1a7c4",
+    "canonicalHashLimit": "This diagnostic canonical hash is not a claim about Root studentDigest algorithm; supplied studentDigest is retained unchanged.",
+    "choiceCheck": {
+      "allChoices": [
+        {
+          "index1based": 1,
+          "studentChoice": "$15^\\circ$, $\\frac{\\sqrt6-\\sqrt2}{4}$",
+          "parsedValues": [
+            "15",
+            "-sqrt(2)/4 + sqrt(6)/4"
+          ],
+          "matchesEachRequestedPart": [
+            true,
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "givenAngleSum90": true,
+            "acuteCosineRange": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "0",
+            "-sqrt(2)/2"
+          ]
+        },
+        {
+          "index1based": 2,
+          "studentChoice": "$30^\\circ$, $\\frac{\\sqrt3}{2}$",
+          "parsedValues": [
+            "30",
+            "sqrt(3)/2"
+          ],
+          "matchesEachRequestedPart": [
+            false,
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "givenAngleSum90": false,
+            "acuteCosineRange": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "15",
+            "-sqrt(6)/4 - sqrt(2)/4 + sqrt(3)/2"
+          ]
+        },
+        {
+          "index1based": 3,
+          "studentChoice": "$15^\\circ$, $\\frac{\\sqrt6+\\sqrt2}{4}$",
+          "parsedValues": [
+            "15",
+            "sqrt(2)/4 + sqrt(6)/4"
+          ],
+          "matchesEachRequestedPart": [
+            true,
+            true
+          ],
+          "matches": true,
+          "domainAndGivenConditionChecks": {
+            "givenAngleSum90": true,
+            "acuteCosineRange": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "0",
+            "0"
+          ]
+        },
+        {
+          "index1based": 4,
+          "studentChoice": "$45^\\circ$, $\\frac{\\sqrt2}{2}$",
+          "parsedValues": [
+            "45",
+            "sqrt(2)/2"
+          ],
+          "matchesEachRequestedPart": [
+            false,
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "givenAngleSum90": false,
+            "acuteCosineRange": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "30",
+            "-sqrt(6)/4 + sqrt(2)/4"
+          ]
+        },
+        {
+          "index1based": 5,
+          "studentChoice": "$15^\\circ$, $\\frac{\\sqrt3+1}{2}$",
+          "parsedValues": [
+            "15",
+            "1/2 + sqrt(3)/2"
+          ],
+          "matchesEachRequestedPart": [
+            true,
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "givenAngleSum90": true,
+            "acuteCosineRange": false
+          },
+          "differencesFromIndependentRequestedValues": [
+            "0",
+            "-sqrt(6)/4 - sqrt(2)/4 + 1/2 + sqrt(3)/2"
+          ]
+        }
+      ],
+      "matchingIndices1based": [
+        3
+      ],
+      "exactlyOneChoice": true,
+      "basis": "Parsed actual copied student choices; no author/original key"
+    },
+    "existenceUniquenessPositivity": {
+      "actualCodeChecks": [
+        {
+          "condition": "all actual lengths positive and F internal",
+          "passed": true,
+          "calculation": {
+            "CF": "2",
+            "CD": "2*sqrt(3)"
+          }
+        },
+        {
+          "condition": "AEF and ADF Pythagoras",
+          "passed": true,
+          "calculation": {
+            "AFSquared": "32"
+          }
+        }
+      ],
+      "supplementalExactCoordinateWitness": {
+        "points": {
+          "A": [
+            0,
+            "2*sqrt(3)"
+          ],
+          "B": [
+            0,
+            0
+          ],
+          "C": [
+            "2 + 2*sqrt(3)",
+            0
+          ],
+          "D": [
+            "2 + 2*sqrt(3)",
+            "2*sqrt(3)"
+          ],
+          "E": [
+            "2*sqrt(3)",
+            0
+          ],
+          "F": [
+            "2 + 2*sqrt(3)",
+            "2"
+          ]
+        },
+        "relations": [
+          {
+            "relation": "perpendicular",
+            "points": [
+              "A",
+              "E",
+              "E",
+              "F"
+            ],
+            "calculated": "0",
+            "required": 0,
+            "passed": true
+          },
+          {
+            "relation": "collinear",
+            "points": [
+              "C",
+              "F",
+              "D"
+            ],
+            "calculated": "0",
+            "required": 0,
+            "passed": true
+          },
+          {
+            "relation": "lengthSquared",
+            "points": [
+              "A",
+              "F"
+            ],
+            "calculated": "32",
+            "required": 32,
+            "passed": true
+          },
+          {
+            "relation": "lengthSquared",
+            "points": [
+              "E",
+              "F"
+            ],
+            "calculated": "8",
+            "required": 8,
+            "passed": true
+          }
+        ],
+        "method": "Independent exact coordinate witness; supplemental validation only"
+      },
+      "uniqueRequestedAnswer": true,
+      "wholeConfigurationMustBeUnique": false,
+      "limit": "q17 radii and q22 triangle placements can vary while requested answers are unique. No pixel lengths or model probability determine uniqueness."
+    },
+    "figures": [
+      {
+        "svgPath": "figures/q10-1.svg",
+        "sha256": "87cb8b976c4b4ff1bcc93ce5cf82cd90facef0ad74be233d5d62d62089ad393f",
+        "intendedWidthMm": 70
+      }
+    ],
+    "directFigureInspections": [
+      {
+        "questionNumber": 10,
+        "svg": "figures/q10-1.svg",
+        "svgSha256": "87cb8b976c4b4ff1bcc93ce5cf82cd90facef0ad74be233d5d62d62089ad393f",
+        "intendedWidthMm": 70,
+        "renderedPdfWidthMm": 70.00000161064996,
+        "renderedHeightMm": 53.34123976214928,
+        "viewBox": [
+          0.0,
+          0.0,
+          273.617,
+          208.501
+        ],
+        "png": "blind/rendered/q10-1-300dpi.png",
+        "pngSha256": "fbf2740374b4b91a708ea5405d486baff11af02e0d4578b98236fb2ca0313e45",
+        "pdf": "blind/rendered/q10-1-300dpi.pdf",
+        "pdfSha256": "bf4c80e888529ef8040444bb95cbaba960c5c732ada1723b68e6a5bc16d3c90c",
+        "svgTextLabels": [],
+        "mathematicalOracle": false,
+        "renderer": "Existing PyMuPDF SVG->vector PDF at physical width->300dpi PNG; Cairo runtime absent; no installs",
+        "visualInspection": "direct view_image completed on 2026-10-08",
+        "observation": "RectangleABCD, E onBC and F onCD; right mark atE for AE/EF;45 and30 labels have leaders and stem fixes their angles. All labels legible at70mm.",
+        "labelsReadableAtSpecifiedPhysicalWidth": true,
+        "pixelMeasurementsUsedToSolve": false,
+        "physicalPrintProductionApproval": false
+      }
+    ],
+    "sevenStudentSurfaces": [
+      {
+        "surface": "stem",
+        "observation": "CF=2<CD=2√3, DF=2√3−2>0이고 E,F가 해당 변 내부에 있는 실제 도형이 존재. cos15의 덧셈/반각공식을 쓰지 않는다.",
+        "inGradeForUsedStudentMethod": true,
+        "limit": "New student stem only; original-twin faithfulness and provenance are not reviewed."
+      },
+      {
+        "surface": "choices",
+        "observation": "All actual student choices parsed and every requested component/strict interval compared.",
+        "detailedCodeResult": {
+          "allChoices": [
+            {
+              "index1based": 1,
+              "studentChoice": "$15^\\circ$, $\\frac{\\sqrt6-\\sqrt2}{4}$",
+              "parsedValues": [
+                "15",
+                "-sqrt(2)/4 + sqrt(6)/4"
+              ],
+              "matchesEachRequestedPart": [
+                true,
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "givenAngleSum90": true,
+                "acuteCosineRange": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "0",
+                "-sqrt(2)/2"
+              ]
+            },
+            {
+              "index1based": 2,
+              "studentChoice": "$30^\\circ$, $\\frac{\\sqrt3}{2}$",
+              "parsedValues": [
+                "30",
+                "sqrt(3)/2"
+              ],
+              "matchesEachRequestedPart": [
+                false,
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "givenAngleSum90": false,
+                "acuteCosineRange": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "15",
+                "-sqrt(6)/4 - sqrt(2)/4 + sqrt(3)/2"
+              ]
+            },
+            {
+              "index1based": 3,
+              "studentChoice": "$15^\\circ$, $\\frac{\\sqrt6+\\sqrt2}{4}$",
+              "parsedValues": [
+                "15",
+                "sqrt(2)/4 + sqrt(6)/4"
+              ],
+              "matchesEachRequestedPart": [
+                true,
+                true
+              ],
+              "matches": true,
+              "domainAndGivenConditionChecks": {
+                "givenAngleSum90": true,
+                "acuteCosineRange": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "0",
+                "0"
+              ]
+            },
+            {
+              "index1based": 4,
+              "studentChoice": "$45^\\circ$, $\\frac{\\sqrt2}{2}$",
+              "parsedValues": [
+                "45",
+                "sqrt(2)/2"
+              ],
+              "matchesEachRequestedPart": [
+                false,
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "givenAngleSum90": false,
+                "acuteCosineRange": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "30",
+                "-sqrt(6)/4 + sqrt(2)/4"
+              ]
+            },
+            {
+              "index1based": 5,
+              "studentChoice": "$15^\\circ$, $\\frac{\\sqrt3+1}{2}$",
+              "parsedValues": [
+                "15",
+                "1/2 + sqrt(3)/2"
+              ],
+              "matchesEachRequestedPart": [
+                true,
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "givenAngleSum90": true,
+                "acuteCosineRange": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "0",
+                "-sqrt(6)/4 - sqrt(2)/4 + 1/2 + sqrt(3)/2"
+              ]
+            }
+          ],
+          "matchingIndices1based": [
+            3
+          ],
+          "exactlyOneChoice": true,
+          "basis": "Parsed actual copied student choices; no author/original key"
+        },
+        "inGradeForUsedStudentMethod": true
+      },
+      {
+        "surface": "figure_and_graph_semantics",
+        "observation": [
+          "RectangleABCD, E onBC and F onCD; right mark atE for AE/EF;45 and30 labels have leaders and stem fixes their angles. All labels legible at70mm."
+        ],
+        "specifiedPhysicalWidthsViewed": [
+          70
+        ],
+        "inGradeForUsedStudentMethod": true,
+        "pixelOracle": false,
+        "limit": "Standalone SVG physical rendering only; no claim about a complete final paper/student UI layout."
+      },
+      {
+        "surface": "notation",
+        "observation": "15° 표기는 급각 범위 안. 정확한 값을 이미 주어진 도형에서 구한다. 잘못된 선택지(√3+1)/2는1보다 크지만 나눗셈 표기 자체를 학년 밖으로 판단하지 않는다.",
+        "inGradeForUsedStudentMethod": true,
+        "trigScope": "Only acute-angle trig definitions and30/45/60 values used; arbitrary-angle formula, ratio identity, vector or calculus notation is not necessary."
+      },
+      {
+        "surface": "answer_format",
+        "observation": "③: ㉠ 15°, ㉡ (√6+√2)/4",
+        "partsWithUnits": {
+          "㉠ ∠DAF": "15°",
+          "㉡ cos∠DAF": "(√6+√2)/4"
+        },
+        "inGradeForUsedStudentMethod": true,
+        "limit": "Own raw exact answer; Root may normalize formatting only after binding hashes."
+      },
+      {
+        "surface": "student_solution",
+        "observation": "직사각형의 A에서 ∠BAD=90°이다. 내부의 두 각이45°와30°이므로 ∠DAF=90°−45°−30°=15°이다. 삼각형 ABE는45° 직각삼각형이어서 BE=AB=2√3 cm, AE=AB√2=2√6 cm이다. 삼각형 AEF는 E에서 직각이고 A에서30°이므로 EF=AE×tan30°=2√2 cm, AF=AE÷cos30°=4√2 cm이다. AE가 BC와45°를 이루고 EF⊥AE이므로 ECF는45° 직각삼각형이다. 따라서 EC=CF=EF/√2=2 cm이다. AD=BC=BE+EC=2√3+2 cm이다. 직각삼각형 ADF에서 cos∠DAF=AD/AF=(2√3+2)/(4√2)=(√6+√2)/4이다. 두 값이 일치하는 선택지는 ③이다.",
+        "inGradeForUsedStudentMethod": true,
+        "basis": "Full fresh elementary student proof written before authored-solution exposure; calculation alone does not grant curricular permission."
+      },
+      {
+        "surface": "necessary_procedure",
+        "observation": "내부 각 합,45°/30° 직각삼각형의 변, 마지막 cosine 정의",
+        "conditions": "CF=2<CD=2√3, DF=2√3−2>0이고 E,F가 해당 변 내부에 있는 실제 도형이 존재. cos15의 덧셈/반각공식을 쓰지 않는다.",
+        "primaryStandardReferences": [
+          {
+            "id": "9수04-12",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4308,
+              "paragraph1based": 883,
+              "offset": 217962,
+              "text": "[9수04-12]사각형의 성질을 이해하고 설명할 수 있다."
+            },
+            "pdfPhysicalPage1based": 38,
+            "pdfPrintedPage": 34,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수04-17",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4341,
+              "paragraph1based": 891,
+              "offset": 219120,
+              "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다."
+            },
+            "pdfPhysicalPage1based": 38,
+            "pdfPrintedPage": 34,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수01-10",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 3788,
+              "paragraph1based": 771,
+              "offset": 193301,
+              "text": "[9수01-10]근호를 포함한 식의 사칙계산을 할 수 있다."
+            },
+            "pdfPhysicalPage1based": 33,
+            "pdfPrintedPage": 29,
+            "wholeClausePdfMatch": true
+          }
+        ],
+        "inGradeForUsedStudentMethod": true,
+        "forbiddenStudentPrerequisiteUsed": false
+      }
+    ],
+    "curriculumMethod": {
+      "reference": "actual2025middle3 ->2015",
+      "legitimateStudentMethodFound": true,
+      "standards": [
+        {
+          "id": "9수04-12",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4308,
+            "paragraph1based": 883,
+            "offset": 217962,
+            "text": "[9수04-12]사각형의 성질을 이해하고 설명할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-17",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4341,
+            "paragraph1based": 891,
+            "offset": 219120,
+            "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수01-10",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 3788,
+            "paragraph1based": 771,
+            "offset": 193301,
+            "text": "[9수01-10]근호를 포함한 식의 사칙계산을 할 수 있다."
+          },
+          "pdfPhysicalPage1based": 33,
+          "pdfPrintedPage": 29,
+          "wholeClausePdfMatch": true
+        }
+      ],
+      "restrictionsFile": "curriculum-method-evidence.json",
+      "restrictionsFileSha256": "20a90e8060b73d09eb8749f8b6636e0d960e3148c53111d8bc4db8da4c95af2d",
+      "approvalForRightsFamilyNativeOrLoading": false,
+      "fullCurrentFuturePublicationApproval": false
+    },
+    "annotationsAndSourceFamiliarityDisclosure": "Prior original exam source familiarity is possible and earlier Bumil scan annotations were incidentally seen. No Gyeonggu original/source/keys were reopened; these new candidate answers, authored solutions and other solver results were not read. Work proceeds solely from copied new student inputs.",
+    "newAuthorCandidateAnswersKnownBeforeThisSolve": false,
+    "originalKeyAgreementUsed": false,
+    "otherSolverRead": false,
+    "inferenceApiCalls": 0,
+    "limits": [
+      "Independent blind solve and bounded legitimate-method observations only. Exact Unit/live family, rights/native provenance, author-solution comparison and overall loading are outside this stage."
+    ]
+  },
+  "heldReasons": [],
+  "rejectedStudentMethods": [
+    "No arbitrary trig ratio identities or addition/half-angle formulas.",
+    "No upper-grade extrema/calculus, law of sines/cosines, vectors or circle power.",
+    "q09 uses congruence and Pythagoras instead of an unverified angle-bisector length theorem."
+  ]
+}

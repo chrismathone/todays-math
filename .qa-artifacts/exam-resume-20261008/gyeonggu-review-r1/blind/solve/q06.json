@@ -1,0 +1,481 @@
+{
+  "schema": "independent-blind-solve.v1",
+  "questionNumber": 6,
+  "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q06",
+  "studentDigest": "0bf55c36df942a46769045279a42f7c97e4b00c173dd7e50f458b26268343bc5",
+  "solverId": "orca-codex-exam-twin-source-identity-20261008",
+  "status": "solved",
+  "answer": "⑤: 표의 근삿값으로 ㉠ 0.6428, ㉡ 0.7660",
+  "answerParts": {
+    "㉠ PH 기록": "0.6428 (표의 근삿값)",
+    "㉡ OH 기록": "0.7660 (표의 근삿값)"
+  },
+  "solution": "직각삼각형 OAD에서 OA=1이므로 tan θ=AD/OA=AD이다. 표의 tangent 열에서0.8391은40° 행에만 있으므로 θ=40°이다. OP는 사분원의 반지름으로1이다. 직각삼각형 OPH에서 sin θ=PH/OP=PH, cos θ=OH/OP=OH이다. 따라서 같은40° 행의 sine와 cosine 값을 PH,OH 순서로 읽으면0.6428,0.7660이고 ⑤이다. 이는 길이의 정확한 삼각비 값이 아니라 표가 요구한 소수 넷째 자리 근삿값 기록이다.",
+  "evidence": {
+    "method": "independent-student-input-solve-before-author-answer-exposure",
+    "studentMethod": "두 직각삼각형에서 비의 정의, 주어진 표의 열/행 대응",
+    "conditionAndDomainNotes": "θ는 주어진 네 급각 중 하나. tangent 기록0.8391과 일치하는 행 유일. PH/OH 양수, 단위는 반지름1의 길이 단위로서 임의 cm를 붙이지 않는다.",
+    "exactValuesFromCode": [
+      "1607/2500",
+      "383/500"
+    ],
+    "code": {
+      "path": "solve_math.py",
+      "sha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50"
+    },
+    "proof": {
+      "path": "blind/proofs/q06.json",
+      "sha256": "495e7586bd639974e098b3faac6a1185f5abdd7ee7f64496cd7f69795e643a81"
+    },
+    "studentSolutionSource": {
+      "path": "student_solutions.json",
+      "wholeFileSha256": "adbcd31c366b68051b20e460727edc017c8160cd0d80fb6ff6c4b079d88c947d",
+      "questionRecordSha256": "b562df7056861f3acda11123f5446a6cf1c805d76ef924255bef29484404386e"
+    },
+    "wholeStudentInputSha256": "6e137d65894e6506710e6c980136cfd26a25d4fec141785f4ed521f8eb89e1ca",
+    "contentSha256Utf8": "8191c829689524ff6f5cc46bb2d0326bfe26e2625cb8bac81e49151bf42c2859",
+    "studentObjectCanonicalSha256": "54dcc5bd1b53a815349be69dabb1c8a8963ec6862fa2ced03ffc1e87d0279d1e",
+    "canonicalHashLimit": "This diagnostic canonical hash is not a claim about Root studentDigest algorithm; supplied studentDigest is retained unchanged.",
+    "choiceCheck": {
+      "allChoices": [
+        {
+          "index1based": 1,
+          "studentChoice": "$0.7660$, $0.6428$",
+          "parsedValues": [
+            "383/500",
+            "1607/2500"
+          ],
+          "matchesEachRequestedPart": [
+            false,
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "twoUnitRadiusProjectionsRange": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "77/625",
+            "-77/625"
+          ]
+        },
+        {
+          "index1based": 2,
+          "studentChoice": "$0.5878$, $0.8090$",
+          "parsedValues": [
+            "2939/5000",
+            "809/1000"
+          ],
+          "matchesEachRequestedPart": [
+            false,
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "twoUnitRadiusProjectionsRange": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "-11/200",
+            "43/1000"
+          ]
+        },
+        {
+          "index1based": 3,
+          "studentChoice": "$0.6428$, $0.8391$",
+          "parsedValues": [
+            "1607/2500",
+            "8391/10000"
+          ],
+          "matchesEachRequestedPart": [
+            true,
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "twoUnitRadiusProjectionsRange": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "0",
+            "731/10000"
+          ]
+        },
+        {
+          "index1based": 4,
+          "studentChoice": "$0.8090$, $0.5878$",
+          "parsedValues": [
+            "809/1000",
+            "2939/5000"
+          ],
+          "matchesEachRequestedPart": [
+            false,
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "twoUnitRadiusProjectionsRange": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "831/5000",
+            "-891/5000"
+          ]
+        },
+        {
+          "index1based": 5,
+          "studentChoice": "$0.6428$, $0.7660$",
+          "parsedValues": [
+            "1607/2500",
+            "383/500"
+          ],
+          "matchesEachRequestedPart": [
+            true,
+            true
+          ],
+          "matches": true,
+          "domainAndGivenConditionChecks": {
+            "twoUnitRadiusProjectionsRange": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "0",
+            "0"
+          ]
+        }
+      ],
+      "matchingIndices1based": [
+        5
+      ],
+      "exactlyOneChoice": true,
+      "basis": "Parsed actual copied student choices; no author/original key"
+    },
+    "existenceUniquenessPositivity": {
+      "actualCodeChecks": [
+        {
+          "condition": "all table entries at 36 degrees rounded correctly",
+          "passed": true,
+          "calculation": {
+            "given": [
+              "0.5878",
+              "0.8090",
+              "0.7265"
+            ],
+            "computedTo4Decimals": [
+              "0.5878",
+              "0.8090",
+              "0.7265"
+            ]
+          }
+        },
+        {
+          "condition": "all table entries at 40 degrees rounded correctly",
+          "passed": true,
+          "calculation": {
+            "given": [
+              "0.6428",
+              "0.7660",
+              "0.8391"
+            ],
+            "computedTo4Decimals": [
+              "0.6428",
+              "0.7660",
+              "0.8391"
+            ]
+          }
+        },
+        {
+          "condition": "all table entries at 50 degrees rounded correctly",
+          "passed": true,
+          "calculation": {
+            "given": [
+              "0.7660",
+              "0.6428",
+              "1.1918"
+            ],
+            "computedTo4Decimals": [
+              "0.7660",
+              "0.6428",
+              "1.1918"
+            ]
+          }
+        },
+        {
+          "condition": "all table entries at 54 degrees rounded correctly",
+          "passed": true,
+          "calculation": {
+            "given": [
+              "0.8090",
+              "0.5878",
+              "1.3764"
+            ],
+            "computedTo4Decimals": [
+              "0.8090",
+              "0.5878",
+              "1.3764"
+            ]
+          }
+        },
+        {
+          "condition": "positive lengths and acute selected table row",
+          "passed": true,
+          "calculation": [
+            "1607/2500",
+            "383/500"
+          ]
+        }
+      ],
+      "supplementalExactCoordinateWitness": null,
+      "uniqueRequestedAnswer": true,
+      "wholeConfigurationMustBeUnique": false,
+      "limit": "q17 radii and q22 triangle placements can vary while requested answers are unique. No pixel lengths or model probability determine uniqueness."
+    },
+    "figures": [
+      {
+        "svgPath": "figures/q06-1.svg",
+        "sha256": "de5887d92121ba0ccb6d4d2d700592ca4c40730404dadc779db990e99c95221b",
+        "intendedWidthMm": 70
+      }
+    ],
+    "directFigureInspections": [
+      {
+        "questionNumber": 6,
+        "svg": "figures/q06-1.svg",
+        "svgSha256": "de5887d92121ba0ccb6d4d2d700592ca4c40730404dadc779db990e99c95221b",
+        "intendedWidthMm": 70,
+        "renderedPdfWidthMm": 70.00000161064996,
+        "renderedHeightMm": 69.59662646924134,
+        "viewBox": [
+          0.0,
+          0.0,
+          209.632,
+          208.424
+        ],
+        "png": "blind/rendered/q06-1-300dpi.png",
+        "pngSha256": "44387adb820ab3184838f5e73a3217136a101160a927a0e6c5df9b5312b30ad6",
+        "pdf": "blind/rendered/q06-1-300dpi.pdf",
+        "pdfSha256": "48058ebaa293a9b9f78804a493f68d5f9b476c9b1c5ddc49c2e004537f390577",
+        "svgTextLabels": [],
+        "mathematicalOracle": false,
+        "renderer": "Existing PyMuPDF SVG->vector PDF at physical width->300dpi PNG; Cairo runtime absent; no installs",
+        "visualInspection": "direct view_image completed on 2026-10-08",
+        "observation": "Quarter circle O-A-B, P onarc, H foot onOA, D on rayOP and verticalatA; both right angle markers visible; theta atO.",
+        "labelsReadableAtSpecifiedPhysicalWidth": true,
+        "pixelMeasurementsUsedToSolve": false,
+        "physicalPrintProductionApproval": false
+      }
+    ],
+    "sevenStudentSurfaces": [
+      {
+        "surface": "stem",
+        "observation": "θ는 주어진 네 급각 중 하나. tangent 기록0.8391과 일치하는 행 유일. PH/OH 양수, 단위는 반지름1의 길이 단위로서 임의 cm를 붙이지 않는다.",
+        "inGradeForUsedStudentMethod": true,
+        "limit": "New student stem only; original-twin faithfulness and provenance are not reviewed."
+      },
+      {
+        "surface": "choices",
+        "observation": "All actual student choices parsed and every requested component/strict interval compared.",
+        "detailedCodeResult": {
+          "allChoices": [
+            {
+              "index1based": 1,
+              "studentChoice": "$0.7660$, $0.6428$",
+              "parsedValues": [
+                "383/500",
+                "1607/2500"
+              ],
+              "matchesEachRequestedPart": [
+                false,
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "twoUnitRadiusProjectionsRange": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "77/625",
+                "-77/625"
+              ]
+            },
+            {
+              "index1based": 2,
+              "studentChoice": "$0.5878$, $0.8090$",
+              "parsedValues": [
+                "2939/5000",
+                "809/1000"
+              ],
+              "matchesEachRequestedPart": [
+                false,
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "twoUnitRadiusProjectionsRange": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "-11/200",
+                "43/1000"
+              ]
+            },
+            {
+              "index1based": 3,
+              "studentChoice": "$0.6428$, $0.8391$",
+              "parsedValues": [
+                "1607/2500",
+                "8391/10000"
+              ],
+              "matchesEachRequestedPart": [
+                true,
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "twoUnitRadiusProjectionsRange": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "0",
+                "731/10000"
+              ]
+            },
+            {
+              "index1based": 4,
+              "studentChoice": "$0.8090$, $0.5878$",
+              "parsedValues": [
+                "809/1000",
+                "2939/5000"
+              ],
+              "matchesEachRequestedPart": [
+                false,
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "twoUnitRadiusProjectionsRange": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "831/5000",
+                "-891/5000"
+              ]
+            },
+            {
+              "index1based": 5,
+              "studentChoice": "$0.6428$, $0.7660$",
+              "parsedValues": [
+                "1607/2500",
+                "383/500"
+              ],
+              "matchesEachRequestedPart": [
+                true,
+                true
+              ],
+              "matches": true,
+              "domainAndGivenConditionChecks": {
+                "twoUnitRadiusProjectionsRange": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "0",
+                "0"
+              ]
+            }
+          ],
+          "matchingIndices1based": [
+            5
+          ],
+          "exactlyOneChoice": true,
+          "basis": "Parsed actual copied student choices; no author/original key"
+        },
+        "inGradeForUsedStudentMethod": true
+      },
+      {
+        "surface": "figure_and_graph_semantics",
+        "observation": [
+          "Quarter circle O-A-B, P onarc, H foot onOA, D on rayOP and verticalatA; both right angle markers visible; theta atO."
+        ],
+        "specifiedPhysicalWidthsViewed": [
+          70
+        ],
+        "inGradeForUsedStudentMethod": true,
+        "pixelOracle": false,
+        "limit": "Standalone SVG physical rendering only; no claim about a complete final paper/student UI layout."
+      },
+      {
+        "surface": "notation",
+        "observation": "표의12개 삼각비 소수를 코드로 별도 반올림 검산. 반올림된 PH²+OH²를 정확히1로 강제하지 않는다.",
+        "inGradeForUsedStudentMethod": true,
+        "trigScope": "Only acute-angle trig definitions and30/45/60 values used; arbitrary-angle formula, ratio identity, vector or calculus notation is not necessary."
+      },
+      {
+        "surface": "answer_format",
+        "observation": "⑤: 표의 근삿값으로 ㉠ 0.6428, ㉡ 0.7660",
+        "partsWithUnits": {
+          "㉠ PH 기록": "0.6428 (표의 근삿값)",
+          "㉡ OH 기록": "0.7660 (표의 근삿값)"
+        },
+        "inGradeForUsedStudentMethod": true,
+        "limit": "q06 explicitly uses the given four-decimal approximations; exact lengths are not claimed for those table records."
+      },
+      {
+        "surface": "student_solution",
+        "observation": "직각삼각형 OAD에서 OA=1이므로 tan θ=AD/OA=AD이다. 표의 tangent 열에서0.8391은40° 행에만 있으므로 θ=40°이다. OP는 사분원의 반지름으로1이다. 직각삼각형 OPH에서 sin θ=PH/OP=PH, cos θ=OH/OP=OH이다. 따라서 같은40° 행의 sine와 cosine 값을 PH,OH 순서로 읽으면0.6428,0.7660이고 ⑤이다. 이는 길이의 정확한 삼각비 값이 아니라 표가 요구한 소수 넷째 자리 근삿값 기록이다.",
+        "inGradeForUsedStudentMethod": true,
+        "basis": "Full fresh elementary student proof written before authored-solution exposure; calculation alone does not grant curricular permission."
+      },
+      {
+        "surface": "necessary_procedure",
+        "observation": "두 직각삼각형에서 비의 정의, 주어진 표의 열/행 대응",
+        "conditions": "θ는 주어진 네 급각 중 하나. tangent 기록0.8391과 일치하는 행 유일. PH/OH 양수, 단위는 반지름1의 길이 단위로서 임의 cm를 붙이지 않는다.",
+        "primaryStandardReferences": [
+          {
+            "id": "9수04-17",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4341,
+              "paragraph1based": 891,
+              "offset": 219120,
+              "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다."
+            },
+            "pdfPhysicalPage1based": 38,
+            "pdfPrintedPage": 34,
+            "wholeClausePdfMatch": true
+          }
+        ],
+        "inGradeForUsedStudentMethod": true,
+        "forbiddenStudentPrerequisiteUsed": false
+      }
+    ],
+    "curriculumMethod": {
+      "reference": "actual2025middle3 ->2015",
+      "legitimateStudentMethodFound": true,
+      "standards": [
+        {
+          "id": "9수04-17",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4341,
+            "paragraph1based": 891,
+            "offset": 219120,
+            "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        }
+      ],
+      "restrictionsFile": "curriculum-method-evidence.json",
+      "restrictionsFileSha256": "20a90e8060b73d09eb8749f8b6636e0d960e3148c53111d8bc4db8da4c95af2d",
+      "approvalForRightsFamilyNativeOrLoading": false,
+      "fullCurrentFuturePublicationApproval": false
+    },
+    "annotationsAndSourceFamiliarityDisclosure": "Prior original exam source familiarity is possible and earlier Bumil scan annotations were incidentally seen. No Gyeonggu original/source/keys were reopened; these new candidate answers, authored solutions and other solver results were not read. Work proceeds solely from copied new student inputs.",
+    "newAuthorCandidateAnswersKnownBeforeThisSolve": false,
+    "originalKeyAgreementUsed": false,
+    "otherSolverRead": false,
+    "inferenceApiCalls": 0,
+    "limits": [
+      "Independent blind solve and bounded legitimate-method observations only. Exact Unit/live family, rights/native provenance, author-solution comparison and overall loading are outside this stage."
+    ]
+  },
+  "heldReasons": [],
+  "rejectedStudentMethods": [
+    "No arbitrary trig ratio identities or addition/half-angle formulas.",
+    "No upper-grade extrema/calculus, law of sines/cosines, vectors or circle power.",
+    "q09 uses congruence and Pythagoras instead of an unverified angle-bisector length theorem."
+  ]
+}

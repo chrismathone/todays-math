@@ -1,0 +1,77 @@
+{
+  "authorId": "root-codex-exam-extraction-resume-20261008",
+  "questionNumber": 22,
+  "authorSelfCheckOnly": true,
+  "independentApproval": false,
+  "calculations": {
+    "values": [
+      1,
+      2,
+      2,
+      3,
+      3,
+      3,
+      4,
+      4,
+      4,
+      4,
+      5,
+      5,
+      6,
+      6,
+      7,
+      8,
+      9,
+      11,
+      12,
+      60
+    ],
+    "stats": {
+      "count": 20,
+      "total": "159",
+      "squareTotal": "4281",
+      "mean": {
+        "numerator": "159",
+        "denominator": "20"
+      },
+      "median": {
+        "numerator": "9",
+        "denominator": "2"
+      },
+      "variance": {
+        "numerator": "60339",
+        "denominator": "400"
+      },
+      "standardDeviationSquared": {
+        "numerator": "60339",
+        "denominator": "400"
+      },
+      "middlePositions": [
+        10,
+        11
+      ],
+      "maxFrequency": 4,
+      "maximalFrequencyValues": [
+        4
+      ],
+      "uniqueModalValue": 4,
+      "modeConvention": "maximal frequencies exposed; a tied set is never a unique mode",
+      "approval": "calculation-only"
+    },
+    "writtenRubric": [
+      {
+        "score": 2,
+        "basis": "count20,total159,mean7.95분"
+      },
+      {
+        "score": 2,
+        "basis": "10th4,11th5,median4.5분"
+      },
+      {
+        "score": 2,
+        "basis": "B with explanation of single high observation and typical value, not simply “always median”"
+      }
+    ],
+    "uniqueRepresentativeChoiceWithinAskedTwo": "B with contextual justification; not a universal theorem"
+  }
+}

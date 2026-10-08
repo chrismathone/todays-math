@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import assert from 'node:assert/strict';
 import { sha256 } from '../../scripts/import/exam-twin/candidatePack.mjs';
 const root='.qa-artifacts/exam-resume-20261008/';
+assert(!fs.existsSync(root+'continuation-index-v7.json'),'v6 is historical; do not replace later continuation pointers');
 const read=p=>JSON.parse(fs.readFileSync(p,'utf8'));
 const save=(p,v)=>fs.writeFileSync(p,JSON.stringify(v,null,2)+'\n');
 const index=read(root+'continuation-index-v6.json');

@@ -1,0 +1,368 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 12,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q12",
+  "authorId": "root-codex-exam-extraction-resume-20261008",
+  "content": "수 카드 $15$장 중 $14$장에 적힌 수를 세어 다음 표에 기록했다. 남은 한 장의 수는 $20,25,30,35,40$ 중 하나이다. 모든 카드에 적힌 수의 최빈값이 $25$ 하나뿐이라면, 남은 카드에 적힌 수는?\n\n|수|$20$|$25$|$30$|$35$|$40$|\n|:---:|:---:|:---:|:---:|:---:|:---:|\n|카드 수(장)|$4$|$4$|$3$|$2$|$1$|",
+  "choices": [
+    "$20$",
+    "$25$",
+    "$30$",
+    "$35$",
+    "$40$"
+  ],
+  "answer": "②",
+  "solution": "현재 $20$과 $25$가 각각 $4$장으로 가장 많다. $25$를 한 장 더하면 $25$가 $5$장이 되어 유일한 최빈값이다. $20$을 더하면 최빈값은 $20$이고, 나머지 수를 더하면 $25$만 유일한 최빈값이 되지 않는다. 따라서 남은 카드의 수는 $25$이다.",
+  "score": 3,
+  "questionType": "객관식",
+  "facts": {
+    "knownCounts": [
+      4,
+      4,
+      3,
+      2,
+      1
+    ],
+    "cases": [
+      {
+        "added": 20,
+        "result": {
+          "count": 15,
+          "total": "400",
+          "squareTotal": "11250",
+          "mean": {
+            "numerator": "80",
+            "denominator": "3"
+          },
+          "median": {
+            "numerator": "25",
+            "denominator": "1"
+          },
+          "variance": {
+            "numerator": "350",
+            "denominator": "9"
+          },
+          "standardDeviationSquared": {
+            "numerator": "350",
+            "denominator": "9"
+          },
+          "middlePositions": [
+            8,
+            8
+          ],
+          "maxFrequency": 5,
+          "maximalFrequencyValues": [
+            20
+          ],
+          "uniqueModalValue": 20,
+          "modeConvention": "maximal frequencies exposed; a tied set is never a unique mode",
+          "approval": "calculation-only"
+        }
+      },
+      {
+        "added": 25,
+        "result": {
+          "count": 15,
+          "total": "405",
+          "squareTotal": "11475",
+          "mean": {
+            "numerator": "27",
+            "denominator": "1"
+          },
+          "median": {
+            "numerator": "25",
+            "denominator": "1"
+          },
+          "variance": {
+            "numerator": "36",
+            "denominator": "1"
+          },
+          "standardDeviationSquared": {
+            "numerator": "36",
+            "denominator": "1"
+          },
+          "middlePositions": [
+            8,
+            8
+          ],
+          "maxFrequency": 5,
+          "maximalFrequencyValues": [
+            25
+          ],
+          "uniqueModalValue": 25,
+          "modeConvention": "maximal frequencies exposed; a tied set is never a unique mode",
+          "approval": "calculation-only"
+        }
+      },
+      {
+        "added": 30,
+        "result": {
+          "count": 15,
+          "total": "410",
+          "squareTotal": "11750",
+          "mean": {
+            "numerator": "82",
+            "denominator": "3"
+          },
+          "median": {
+            "numerator": "25",
+            "denominator": "1"
+          },
+          "variance": {
+            "numerator": "326",
+            "denominator": "9"
+          },
+          "standardDeviationSquared": {
+            "numerator": "326",
+            "denominator": "9"
+          },
+          "middlePositions": [
+            8,
+            8
+          ],
+          "maxFrequency": 4,
+          "maximalFrequencyValues": [
+            20,
+            25,
+            30
+          ],
+          "uniqueModalValue": null,
+          "modeConvention": "maximal frequencies exposed; a tied set is never a unique mode",
+          "approval": "calculation-only"
+        }
+      },
+      {
+        "added": 35,
+        "result": {
+          "count": 15,
+          "total": "415",
+          "squareTotal": "12075",
+          "mean": {
+            "numerator": "83",
+            "denominator": "3"
+          },
+          "median": {
+            "numerator": "25",
+            "denominator": "1"
+          },
+          "variance": {
+            "numerator": "356",
+            "denominator": "9"
+          },
+          "standardDeviationSquared": {
+            "numerator": "356",
+            "denominator": "9"
+          },
+          "middlePositions": [
+            8,
+            8
+          ],
+          "maxFrequency": 4,
+          "maximalFrequencyValues": [
+            20,
+            25
+          ],
+          "uniqueModalValue": null,
+          "modeConvention": "maximal frequencies exposed; a tied set is never a unique mode",
+          "approval": "calculation-only"
+        }
+      },
+      {
+        "added": 40,
+        "result": {
+          "count": 15,
+          "total": "420",
+          "squareTotal": "12450",
+          "mean": {
+            "numerator": "28",
+            "denominator": "1"
+          },
+          "median": {
+            "numerator": "25",
+            "denominator": "1"
+          },
+          "variance": {
+            "numerator": "46",
+            "denominator": "1"
+          },
+          "standardDeviationSquared": {
+            "numerator": "46",
+            "denominator": "1"
+          },
+          "middlePositions": [
+            8,
+            8
+          ],
+          "maxFrequency": 4,
+          "maximalFrequencyValues": [
+            20,
+            25
+          ],
+          "uniqueModalValue": null,
+          "modeConvention": "maximal frequencies exposed; a tied set is never a unique mode",
+          "approval": "calculation-only"
+        }
+      }
+    ],
+    "unique": true,
+    "calculationOnly": true
+  },
+  "figureArtifacts": [],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "context",
+      "inverse-target"
+    ],
+    "before": "다음은 어느 신발 가게에서 하루 동안 판매된 $15$켤레 운동화의 치수를 조사하여 나타낸 것이다. 이 자료의 최빈값은? [$3$점]\n하루 동안 판매된 운동차의 치수 (단위:$\\mathrm{m}m$)\n\n$230$\n\n$230$\n\n$235$\n\n$235$\n\n$235$\n\n$240$\n\n$240$\n\n$240$\n\n$245$\n\n$245$\n\n$245$\n\n$245$\n\n$245$\n\n$250$\n\n$255$",
+    "after": "15개 관측값에서 최빈값 찾기→최빈값 조건으로 마지막 카드의 수 찾기",
+    "sharedConcept": "최빈값의 뜻과 유일성",
+    "sharedProcedure": "알려진 수의 횟수에 관측값 하나를 더했을 때 유일하게 가장 많은 값이 되는 경우를 확인한다.",
+    "objectiveDifficulty": "원문 배점과 요구를 기준으로 한 저자 제안; 역추론/도수 읽기 추가 부담은 독립 검토",
+    "sourceTableReplaced": "new Markdown data organization; no original crop used",
+    "scoreDelta": {
+      "source": 3,
+      "authored": 3,
+      "changed": false
+    }
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수05-06"
+    ],
+    "status": "author-proposed",
+    "allowedProcedure": "알려진 수의 횟수에 관측값 하나를 더했을 때 유일하게 가장 많은 값이 되는 경우를 확인한다.",
+    "gradeBasis": "2025 중3은 2015 적용. 공식 PDF physical40/printed36에 대푯값·편차·분산·표준편차 및 자료에 맞는 대표값 비교가 있다. 각 문항 전체는 별도 독립 심사 필요.",
+    "surfaces": {
+      "stem": {
+        "status": "author-proposed",
+        "evidence": "최빈값의 뜻과 유일성: 알려진 수의 횟수에 관측값 하나를 더했을 때 유일하게 가장 많은 값이 되는 경우를 확인한다.; stem에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+      },
+      "choices": {
+        "status": "author-proposed",
+        "evidence": "최빈값의 뜻과 유일성: 알려진 수의 횟수에 관측값 하나를 더했을 때 유일하게 가장 많은 값이 되는 경우를 확인한다.; choices에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+      },
+      "figuresAndTables": {
+        "status": "author-proposed",
+        "evidence": "최빈값의 뜻과 유일성: 알려진 수의 횟수에 관측값 하나를 더했을 때 유일하게 가장 많은 값이 되는 경우를 확인한다.; figuresAndTables에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+      },
+      "notation": {
+        "status": "author-proposed",
+        "evidence": "최빈값의 뜻과 유일성: 알려진 수의 횟수에 관측값 하나를 더했을 때 유일하게 가장 많은 값이 되는 경우를 확인한다.; notation에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+      },
+      "answer": {
+        "status": "author-proposed",
+        "evidence": "최빈값의 뜻과 유일성: 알려진 수의 횟수에 관측값 하나를 더했을 때 유일하게 가장 많은 값이 되는 경우를 확인한다.; answer에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+      },
+      "studentSolution": {
+        "status": "author-proposed",
+        "evidence": "최빈값의 뜻과 유일성: 알려진 수의 횟수에 관측값 하나를 더했을 때 유일하게 가장 많은 값이 되는 경우를 확인한다.; studentSolution에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+      },
+      "prerequisites": {
+        "status": "author-proposed",
+        "evidence": "최빈값의 뜻과 유일성: 알려진 수의 횟수에 관측값 하나를 더했을 때 유일하게 가장 많은 값이 되는 경우를 확인한다.; prerequisites에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+      }
+    },
+    "exactGradeApproval": false
+  },
+  "sourceReference": {
+    "externalId": "2025-gyeongsang-3-2-mid-12",
+    "examId": "personal-5ac2088d148a02d086d0ce69d38aa646",
+    "sourcePacketExamId": "2025-gyeongsang-3-2-mid",
+    "school": "경상중",
+    "questionNumber": 12,
+    "sourceContentSha256": "3fc1eda84a41908ab58dba7be0553c7c8f77f12627d86a51a9d4bcf5b7098950",
+    "sourcePacketSha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+    "sourceQuestionScore": 3,
+    "sourceQuestionType": "객관식",
+    "originalAnswersOrSolutionsUsed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "score": 3,
+    "difficultyProposal": "기본",
+    "difficultyStatus": "pending-independent-review",
+    "problemTypeProposal": "최빈값의 뜻과 유일성",
+    "problemTypeStatus": "pending-independent-review",
+    "hasFigure": false,
+    "hasRecreatedTable": true,
+    "assignment": {
+      "status": "pending",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "familyKey": null,
+      "evidence": "실제 중3 Unit UUID/차시는 읽기 전용 r2 관측에 있다. 역추론·도수 조직·답 목적과 생성규칙에 정확히 맞는 live family는 별도 심사; 가까운 키를 임의 배정하지 않음.",
+      "unitProposal": {
+        "id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+        "grade": "중3",
+        "chapter": "7. 통계",
+        "section": "대푯값과 산포도",
+        "semester": 2,
+        "orderIndex": 488,
+        "problemCodePrefix": "J30701"
+      },
+      "bankReadAt": "2026-10-08 04:53:45.769124+00",
+      "liveFamilyDecision": "held"
+    },
+    "achievementStandardRefs": [
+      {
+        "code": "9수05-06",
+        "officialStatement": "중앙값, 최빈값, 평균의 의미를 이해하고, 이를 구할 수 있다.",
+        "pdfPage": 40,
+        "printedPage": 36,
+        "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+        "notPerQuestionApproval": true
+      }
+    ],
+    "sourceIdentityReview": {
+      "status": "2025_original_header_school_footer_and_completed_question_identity_supported",
+      "custody": "held",
+      "rights": "held",
+      "fullPair": "held"
+    },
+    "answerFormat": "single circled choice",
+    "authorEvidence": {
+      "calculationPath": "author-calculations.json",
+      "scriptSha256": "88183fe6562f5c9c37671089df4871ae3226e42c748de655f727b43bd6ba7e53",
+      "statisticsKernelSha256": "36c4dcf877bcd842869335980a00555be3a7263278a5d33cb1e80922cfacf000",
+      "calculationOnly": true,
+      "independentApproval": false
+    },
+    "bankEvidence": {
+      "path": ".qa-artifacts/exam-resume-20261008/bank-read-fresh-r2-20261008.json",
+      "sha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b"
+    }
+  },
+  "schoolNamePolicy": {
+    "actual": "경상중",
+    "display": "해솔누리중학교",
+    "actualSchoolRetainedInternally": true,
+    "visibleOriginalSchoolOccurrences": 0,
+    "review": "author-proposed"
+  },
+  "independentVerification": null,
+  "review": {
+    "status": "pending",
+    "mathematicalCorrectness": "pending-independent-blind-solve",
+    "gradeCurriculum": "pending-independent-review",
+    "equivalentConceptAndMethod": "pending-independent-review",
+    "distinctPresentation": "pending-independent-review",
+    "rights": "pending",
+    "similarity": "pending",
+    "nativeCompatibility": "pending",
+    "physicalPaper": "not-approved"
+  },
+  "directUseAllowed": false
+}

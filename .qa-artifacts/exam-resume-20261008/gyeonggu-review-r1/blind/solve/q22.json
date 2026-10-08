@@ -1,0 +1,415 @@
+{
+  "schema": "independent-blind-solve.v1",
+  "questionNumber": 22,
+  "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q22",
+  "studentDigest": "cc29ffdc073ac83afa04d2bfcfca6ac0af6c45fec0c63aa5dd707bb5d6890aa9",
+  "solverId": "orca-codex-exam-twin-source-identity-20261008",
+  "status": "solved",
+  "answer": "⑴ 둘레=AP+AQ=2AP, AP=3√3 cm; ⑵ 반지름=3 cm; ⑶ AO=6 cm",
+  "answerParts": {
+    "⑴ 둘레 관계": "AB+BC+CA=AP+AQ=2AP",
+    "⑴ AP": "3√3 cm",
+    "⑵ 반지름": "3 cm",
+    "⑶ AO": "6 cm"
+  },
+  "solution": "⑴ 같은 점에서 그은 접선분은 같으므로 AP=AQ, BD=BQ, CD=CP이다. D가 BC 내부이므로 BC=BD+DC=BQ+CP이다. 또한 B가 AQ 내부, C가 AP 내부이므로 AB+BQ=AQ, AC+CP=AP이다. 따라서 삼각형의 둘레는 AB+AC+BC=(AB+BQ)+(AC+CP)=AQ+AP=2AP이다. 둘레가 6√3 cm이므로 AP=3√3 cm이다. ⑵ OP와 OQ는 반지름이고 각각 AP, AQ에 수직이다. 직각삼각형 AOP와 AOQ는 공통 빗변 AO와 같은 반지름으로 합동이므로 AO는 ∠PAQ를 이등분한다. 따라서 ∠PAO=30°이다. 직각삼각형 AOP에서 반지름 OP=AP×tan30°=(3√3)×(√3/3)=3 cm이다. ⑶ 30° 직각삼각형에서 AO는 30° 대변 OP의 2배이므로 AO=6 cm이다.",
+  "evidence": {
+    "method": "independent-student-input-solve-before-author-answer-exposure",
+    "studentMethod": "접선분 동길이와 내부점 길이의 합, 직각삼각형 합동/각이등분,30° 정의",
+    "conditionAndDomainNotes": "B,C는A와접점사이, D는BC 내부라길이를더한다. 원은삼각형ABC 바깥쪽에있을수있으며 내접원으로가정하지 않는다. B,C 위치가모두정해지지않아도 요청AP,r,AO는유일. AB=AC=BC=2√3인예가모든내부조건을만족한다.",
+    "exactValuesFromCode": [
+      "3*sqrt(3)",
+      "3",
+      "6"
+    ],
+    "code": {
+      "path": "solve_math.py",
+      "sha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50"
+    },
+    "proof": {
+      "path": "blind/proofs/q22.json",
+      "sha256": "194fc959b4902557fb5ee08d7ba9165676110a94c4cf6792598b711c59a0084f"
+    },
+    "studentSolutionSource": {
+      "path": "student_solutions.json",
+      "wholeFileSha256": "adbcd31c366b68051b20e460727edc017c8160cd0d80fb6ff6c4b079d88c947d",
+      "questionRecordSha256": "cfc8cc810d4f7021512ee7e096e00b094aaf006f01d371bb0d279e962d0c1f78"
+    },
+    "wholeStudentInputSha256": "6e137d65894e6506710e6c980136cfd26a25d4fec141785f4ed521f8eb89e1ca",
+    "contentSha256Utf8": "7ef1559749f7bfb4bd35391daaf58217dfefb6c95367d0ff64ad21bef103537b",
+    "studentObjectCanonicalSha256": "20abf8a1231dbb9fe0bf009d3813ac96020cae4b0c48a5a6ba7d370439ef24e0",
+    "canonicalHashLimit": "This diagnostic canonical hash is not a claim about Root studentDigest algorithm; supplied studentDigest is retained unchanged.",
+    "choiceCheck": {
+      "notApplicable": true,
+      "multiPartCount": 3,
+      "eachPartExplicit": true
+    },
+    "existenceUniquenessPositivity": {
+      "actualCodeChecks": [
+        {
+          "condition": "positive target lengths and right triangle",
+          "passed": true,
+          "calculation": [
+            "3*sqrt(3)",
+            "3",
+            "6"
+          ]
+        },
+        {
+          "condition": "explicit witness perimeter and positive internal placements",
+          "passed": true,
+          "calculation": {
+            "AB": "2*sqrt(3)",
+            "AC": "2*sqrt(3)",
+            "BC": "2*sqrt(3)",
+            "AP": "3*sqrt(3)",
+            "AO": "6"
+          }
+        }
+      ],
+      "supplementalExactCoordinateWitness": {
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "O": [
+            6,
+            0
+          ],
+          "P": [
+            "9/2",
+            "3*sqrt(3)/2"
+          ],
+          "Q": [
+            "9/2",
+            "-3*sqrt(3)/2"
+          ],
+          "C": [
+            3,
+            "sqrt(3)"
+          ],
+          "B": [
+            3,
+            "-sqrt(3)"
+          ],
+          "D": [
+            3,
+            0
+          ]
+        },
+        "relations": [
+          {
+            "relation": "perpendicular",
+            "points": [
+              "O",
+              "P",
+              "A",
+              "P"
+            ],
+            "calculated": "0",
+            "required": 0,
+            "passed": true
+          },
+          {
+            "relation": "perpendicular",
+            "points": [
+              "O",
+              "Q",
+              "A",
+              "Q"
+            ],
+            "calculated": "0",
+            "required": 0,
+            "passed": true
+          },
+          {
+            "relation": "perpendicular",
+            "points": [
+              "O",
+              "D",
+              "B",
+              "C"
+            ],
+            "calculated": "0",
+            "required": 0,
+            "passed": true
+          },
+          {
+            "relation": "lengthSquared",
+            "points": [
+              "O",
+              "P"
+            ],
+            "calculated": "9",
+            "required": 9,
+            "passed": true
+          },
+          {
+            "relation": "lengthSquared",
+            "points": [
+              "O",
+              "Q"
+            ],
+            "calculated": "9",
+            "required": 9,
+            "passed": true
+          },
+          {
+            "relation": "lengthSquared",
+            "points": [
+              "O",
+              "D"
+            ],
+            "calculated": "9",
+            "required": 9,
+            "passed": true
+          },
+          {
+            "relation": "collinear",
+            "points": [
+              "A",
+              "C",
+              "P"
+            ],
+            "calculated": "0",
+            "required": 0,
+            "passed": true
+          },
+          {
+            "relation": "collinear",
+            "points": [
+              "A",
+              "B",
+              "Q"
+            ],
+            "calculated": "0",
+            "required": 0,
+            "passed": true
+          },
+          {
+            "relation": "collinear",
+            "points": [
+              "B",
+              "D",
+              "C"
+            ],
+            "calculated": "0",
+            "required": 0,
+            "passed": true
+          }
+        ],
+        "method": "Independent exact coordinate witness; supplemental validation only"
+      },
+      "uniqueRequestedAnswer": true,
+      "wholeConfigurationMustBeUnique": false,
+      "limit": "q17 radii and q22 triangle placements can vary while requested answers are unique. No pixel lengths or model probability determine uniqueness."
+    },
+    "figures": [
+      {
+        "svgPath": "figures/q22-1.svg",
+        "sha256": "25c7c8585e15514d91f02484df88a87b3687e6d2c714345f63874624fb30be8d",
+        "intendedWidthMm": 70
+      }
+    ],
+    "directFigureInspections": [
+      {
+        "questionNumber": 22,
+        "svg": "figures/q22-1.svg",
+        "svgSha256": "25c7c8585e15514d91f02484df88a87b3687e6d2c714345f63874624fb30be8d",
+        "intendedWidthMm": 70,
+        "renderedPdfWidthMm": 70.00000161064996,
+        "renderedHeightMm": 48.53175507297971,
+        "viewBox": [
+          0.0,
+          0.0,
+          280.9,
+          194.751
+        ],
+        "png": "blind/rendered/q22-1-300dpi.png",
+        "pngSha256": "357b1b0c84741afe578e64a20a32cb6451723aeda321e371db3c884ad5a911c3",
+        "pdf": "blind/rendered/q22-1-300dpi.pdf",
+        "pdfSha256": "9bf48eb23da186f14ae266d124e07bc5081e5ef74e1b0388e58513ae70055491",
+        "svgTextLabels": [],
+        "mathematicalOracle": false,
+        "renderer": "Existing PyMuPDF SVG->vector PDF at physical width->300dpi PNG; Cairo runtime absent; no installs",
+        "visualInspection": "direct view_image completed on 2026-10-08",
+        "observation": "A at left, P/Q tangent points beyond C/B; BC tangent atD interior. O lies outside triangleABC as stated placement requires. No incircle-inside-triangle assumption used.",
+        "labelsReadableAtSpecifiedPhysicalWidth": true,
+        "pixelMeasurementsUsedToSolve": false,
+        "physicalPrintProductionApproval": false
+      }
+    ],
+    "sevenStudentSurfaces": [
+      {
+        "surface": "stem",
+        "observation": "B,C는A와접점사이, D는BC 내부라길이를더한다. 원은삼각형ABC 바깥쪽에있을수있으며 내접원으로가정하지 않는다. B,C 위치가모두정해지지않아도 요청AP,r,AO는유일. AB=AC=BC=2√3인예가모든내부조건을만족한다.",
+        "inGradeForUsedStudentMethod": true,
+        "limit": "New student stem only; original-twin faithfulness and provenance are not reviewed."
+      },
+      {
+        "surface": "choices",
+        "observation": "No choices; every numbered subpart answered, including required relationship explanation.",
+        "detailedCodeResult": {
+          "notApplicable": true,
+          "multiPartCount": 3,
+          "eachPartExplicit": true
+        },
+        "inGradeForUsedStudentMethod": true
+      },
+      {
+        "surface": "figure_and_graph_semantics",
+        "observation": [
+          "A at left, P/Q tangent points beyond C/B; BC tangent atD interior. O lies outside triangleABC as stated placement requires. No incircle-inside-triangle assumption used."
+        ],
+        "specifiedPhysicalWidthsViewed": [
+          70
+        ],
+        "inGradeForUsedStudentMethod": true,
+        "pixelOracle": false,
+        "limit": "Standalone SVG physical rendering only; no claim about a complete final paper/student UI layout."
+      },
+      {
+        "surface": "notation",
+        "observation": "⑴은길이뿐아니라둘레와AP의관계설명도답한다. 세배점4+2+2=8. 원과비례/접선-할선곱대신동길이와길이합을사용.",
+        "inGradeForUsedStudentMethod": true,
+        "trigScope": "Only acute-angle trig definitions and30/45/60 values used; arbitrary-angle formula, ratio identity, vector or calculus notation is not necessary."
+      },
+      {
+        "surface": "answer_format",
+        "observation": "⑴ 둘레=AP+AQ=2AP, AP=3√3 cm; ⑵ 반지름=3 cm; ⑶ AO=6 cm",
+        "partsWithUnits": {
+          "⑴ 둘레 관계": "AB+BC+CA=AP+AQ=2AP",
+          "⑴ AP": "3√3 cm",
+          "⑵ 반지름": "3 cm",
+          "⑶ AO": "6 cm"
+        },
+        "inGradeForUsedStudentMethod": true,
+        "limit": "Own raw exact answer; Root may normalize formatting only after binding hashes."
+      },
+      {
+        "surface": "student_solution",
+        "observation": "⑴ 같은 점에서 그은 접선분은 같으므로 AP=AQ, BD=BQ, CD=CP이다. D가 BC 내부이므로 BC=BD+DC=BQ+CP이다. 또한 B가 AQ 내부, C가 AP 내부이므로 AB+BQ=AQ, AC+CP=AP이다. 따라서 삼각형의 둘레는 AB+AC+BC=(AB+BQ)+(AC+CP)=AQ+AP=2AP이다. 둘레가 6√3 cm이므로 AP=3√3 cm이다. ⑵ OP와 OQ는 반지름이고 각각 AP, AQ에 수직이다. 직각삼각형 AOP와 AOQ는 공통 빗변 AO와 같은 반지름으로 합동이므로 AO는 ∠PAQ를 이등분한다. 따라서 ∠PAO=30°이다. 직각삼각형 AOP에서 반지름 OP=AP×tan30°=(3√3)×(√3/3)=3 cm이다. ⑶ 30° 직각삼각형에서 AO는 30° 대변 OP의 2배이므로 AO=6 cm이다.",
+        "inGradeForUsedStudentMethod": true,
+        "basis": "Full fresh elementary student proof written before authored-solution exposure; calculation alone does not grant curricular permission."
+      },
+      {
+        "surface": "necessary_procedure",
+        "observation": "접선분 동길이와 내부점 길이의 합, 직각삼각형 합동/각이등분,30° 정의",
+        "conditions": "B,C는A와접점사이, D는BC 내부라길이를더한다. 원은삼각형ABC 바깥쪽에있을수있으며 내접원으로가정하지 않는다. B,C 위치가모두정해지지않아도 요청AP,r,AO는유일. AB=AC=BC=2√3인예가모든내부조건을만족한다.",
+        "primaryStandardReferences": [
+          {
+            "id": "9수04-19",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4353,
+              "paragraph1based": 894,
+              "offset": 219558,
+              "text": "[9수04-19]원의 현에 관한 성질과 접선에 관한 성질을 이해한다."
+            },
+            "pdfPhysicalPage1based": 38,
+            "pdfPrintedPage": 34,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수04-04",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4264,
+              "paragraph1based": 872,
+              "offset": 216294,
+              "text": "[9수04-04]삼각형의 합동 조건을 이해하고, 이를 이용하여 두 삼각형이 합동인지 판별할 수 있다."
+            },
+            "pdfPhysicalPage1based": 37,
+            "pdfPrintedPage": 33,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수04-17",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4341,
+              "paragraph1based": 891,
+              "offset": 219120,
+              "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다."
+            },
+            "pdfPhysicalPage1based": 38,
+            "pdfPrintedPage": 34,
+            "wholeClausePdfMatch": true
+          }
+        ],
+        "inGradeForUsedStudentMethod": true,
+        "forbiddenStudentPrerequisiteUsed": false
+      }
+    ],
+    "curriculumMethod": {
+      "reference": "actual2025middle3 ->2015",
+      "legitimateStudentMethodFound": true,
+      "standards": [
+        {
+          "id": "9수04-19",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4353,
+            "paragraph1based": 894,
+            "offset": 219558,
+            "text": "[9수04-19]원의 현에 관한 성질과 접선에 관한 성질을 이해한다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-04",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4264,
+            "paragraph1based": 872,
+            "offset": 216294,
+            "text": "[9수04-04]삼각형의 합동 조건을 이해하고, 이를 이용하여 두 삼각형이 합동인지 판별할 수 있다."
+          },
+          "pdfPhysicalPage1based": 37,
+          "pdfPrintedPage": 33,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-17",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4341,
+            "paragraph1based": 891,
+            "offset": 219120,
+            "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        }
+      ],
+      "restrictionsFile": "curriculum-method-evidence.json",
+      "restrictionsFileSha256": "20a90e8060b73d09eb8749f8b6636e0d960e3148c53111d8bc4db8da4c95af2d",
+      "approvalForRightsFamilyNativeOrLoading": false,
+      "fullCurrentFuturePublicationApproval": false
+    },
+    "annotationsAndSourceFamiliarityDisclosure": "Prior original exam source familiarity is possible and earlier Bumil scan annotations were incidentally seen. No Gyeonggu original/source/keys were reopened; these new candidate answers, authored solutions and other solver results were not read. Work proceeds solely from copied new student inputs.",
+    "newAuthorCandidateAnswersKnownBeforeThisSolve": false,
+    "originalKeyAgreementUsed": false,
+    "otherSolverRead": false,
+    "inferenceApiCalls": 0,
+    "limits": [
+      "Independent blind solve and bounded legitimate-method observations only. Exact Unit/live family, rights/native provenance, author-solution comparison and overall loading are outside this stage."
+    ]
+  },
+  "heldReasons": [],
+  "rejectedStudentMethods": [
+    "No arbitrary trig ratio identities or addition/half-angle formulas.",
+    "No upper-grade extrema/calculus, law of sines/cosines, vectors or circle power.",
+    "q09 uses congruence and Pythagoras instead of an unverified angle-bisector length theorem."
+  ]
+}

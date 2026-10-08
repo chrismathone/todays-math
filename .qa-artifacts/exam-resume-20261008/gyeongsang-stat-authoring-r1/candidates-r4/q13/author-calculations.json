@@ -1,0 +1,54 @@
+{
+  "authorId": "root-codex-exam-extraction-resume-20261008",
+  "questionNumber": 13,
+  "authorSelfCheckOnly": true,
+  "independentApproval": false,
+  "calculations": {
+    "missingDeviation": {
+      "numerator": "-8",
+      "denominator": "1"
+    },
+    "scores": [
+      92,
+      81,
+      78,
+      93
+    ],
+    "stats": {
+      "count": 4,
+      "total": "344",
+      "squareTotal": "29758",
+      "mean": {
+        "numerator": "86",
+        "denominator": "1"
+      },
+      "median": {
+        "numerator": "173",
+        "denominator": "2"
+      },
+      "variance": {
+        "numerator": "87",
+        "denominator": "2"
+      },
+      "standardDeviationSquared": {
+        "numerator": "87",
+        "denominator": "2"
+      },
+      "middlePositions": [
+        2,
+        3
+      ],
+      "maxFrequency": 1,
+      "maximalFrequencyValues": [
+        78,
+        81,
+        92,
+        93
+      ],
+      "uniqueModalValue": null,
+      "modeConvention": "maximal frequencies exposed; a tied set is never a unique mode",
+      "approval": "calculation-only"
+    },
+    "unique": true
+  }
+}

@@ -1,0 +1,182 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 11,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r3-q11",
+  "authorId": "root-codex-exam-extraction-resume-20261008",
+  "content": "다음 일곱 수의 중앙값은 $7$이다. $x$가 $1$ 이상 $12$ 이하인 자연수일 때, $x$의 값은?\n\n$8, 3, 5, x, 12, 10, 2$",
+  "choices": [
+    "$5$",
+    "$6$",
+    "$7$",
+    "$8$",
+    "$9$"
+  ],
+  "answer": "③",
+  "solution": "$x$를 제외한 수를 작은 순서로 놓으면 $2,3,5,8,10,12$이다. 일곱 수의 중앙값은 네 번째 수이다. 네 번째 수가 $7$이 되려면 $5$와 $8$ 사이에 놓이는 $x$가 $7$이어야 한다. 따라서 $x=7$이다.",
+  "score": 4,
+  "questionType": "객관식",
+  "facts": {
+    "solutions": [
+      7
+    ],
+    "unique": true,
+    "calculationOnly": true
+  },
+  "figureArtifacts": [],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "inverse-target"
+    ],
+    "before": "다음 자료의 중앙값은? [$4$점]\n$2,~~3,~~9,~~6,~~7,~~6,~~4$",
+    "after": "주어진 자료의 중앙값 계산→중앙값을 만족시키는 하나의 관측값 결정",
+    "sharedConcept": "홀수 개 자료의 중앙값",
+    "sharedProcedure": "일곱 값의 중앙값은 작은 순서로 놓았을 때 네 번째임을 이용해 빠진 수를 정한다.",
+    "objectiveDifficulty": "원문 배점과 요구를 기준으로 한 저자 제안; 역추론/도수 읽기 추가 부담은 독립 검토",
+    "sourceTableReplaced": "new Markdown data organization; no original crop used",
+    "scoreDelta": {
+      "source": 4,
+      "authored": 4,
+      "changed": false
+    }
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수05-06"
+    ],
+    "status": "author-proposed",
+    "allowedProcedure": "일곱 값의 중앙값은 작은 순서로 놓았을 때 네 번째임을 이용해 빠진 수를 정한다.",
+    "gradeBasis": "2025 중3은 2015 적용. 공식 PDF physical40/printed36에 대푯값·편차·분산·표준편차 및 자료에 맞는 대표값 비교가 있다. 각 문항 전체는 별도 독립 심사 필요.",
+    "surfaces": {
+      "stem": {
+        "status": "author-proposed",
+        "evidence": "홀수 개 자료의 중앙값: 일곱 값의 중앙값은 작은 순서로 놓았을 때 네 번째임을 이용해 빠진 수를 정한다.; stem에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+      },
+      "choices": {
+        "status": "author-proposed",
+        "evidence": "홀수 개 자료의 중앙값: 일곱 값의 중앙값은 작은 순서로 놓았을 때 네 번째임을 이용해 빠진 수를 정한다.; choices에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+      },
+      "figuresAndTables": {
+        "status": "author-proposed",
+        "evidence": "홀수 개 자료의 중앙값: 일곱 값의 중앙값은 작은 순서로 놓았을 때 네 번째임을 이용해 빠진 수를 정한다.; figuresAndTables에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+      },
+      "notation": {
+        "status": "author-proposed",
+        "evidence": "홀수 개 자료의 중앙값: 일곱 값의 중앙값은 작은 순서로 놓았을 때 네 번째임을 이용해 빠진 수를 정한다.; notation에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+      },
+      "answer": {
+        "status": "author-proposed",
+        "evidence": "홀수 개 자료의 중앙값: 일곱 값의 중앙값은 작은 순서로 놓았을 때 네 번째임을 이용해 빠진 수를 정한다.; answer에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+      },
+      "studentSolution": {
+        "status": "author-proposed",
+        "evidence": "홀수 개 자료의 중앙값: 일곱 값의 중앙값은 작은 순서로 놓았을 때 네 번째임을 이용해 빠진 수를 정한다.; studentSolution에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+      },
+      "prerequisites": {
+        "status": "author-proposed",
+        "evidence": "홀수 개 자료의 중앙값: 일곱 값의 중앙값은 작은 순서로 놓았을 때 네 번째임을 이용해 빠진 수를 정한다.; prerequisites에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+      }
+    },
+    "exactGradeApproval": false
+  },
+  "sourceReference": {
+    "externalId": "2025-gyeongsang-3-2-mid-11",
+    "examId": "personal-5ac2088d148a02d086d0ce69d38aa646",
+    "sourcePacketExamId": "2025-gyeongsang-3-2-mid",
+    "school": "경상중",
+    "questionNumber": 11,
+    "sourceContentSha256": "004e84058bf5062d558d00efec38f297a11d863118847ed54656579f0620784e",
+    "sourcePacketSha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+    "sourceQuestionScore": 4,
+    "sourceQuestionType": "객관식",
+    "originalAnswersOrSolutionsUsed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "score": 4,
+    "difficultyProposal": "응용",
+    "difficultyStatus": "pending-independent-review",
+    "problemTypeProposal": "홀수 개 자료의 중앙값",
+    "problemTypeStatus": "pending-independent-review",
+    "hasFigure": false,
+    "hasRecreatedTable": false,
+    "assignment": {
+      "status": "pending",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "familyKey": null,
+      "evidence": "실제 중3 Unit UUID/차시는 읽기 전용 r2 관측에 있다. 역추론·도수 조직·답 목적과 생성규칙에 정확히 맞는 live family는 별도 심사; 가까운 키를 임의 배정하지 않음.",
+      "unitProposal": {
+        "id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+        "grade": "중3",
+        "chapter": "7. 통계",
+        "section": "대푯값과 산포도",
+        "semester": 2,
+        "orderIndex": 488,
+        "problemCodePrefix": "J30701"
+      },
+      "bankReadAt": "2026-10-08 04:53:45.769124+00",
+      "liveFamilyDecision": "held"
+    },
+    "achievementStandardRefs": [
+      {
+        "code": "9수05-06",
+        "officialStatement": "중앙값, 최빈값, 평균의 의미를 이해하고, 이를 구할 수 있다.",
+        "pdfPage": 40,
+        "printedPage": 36,
+        "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+        "notPerQuestionApproval": true
+      }
+    ],
+    "sourceIdentityReview": {
+      "status": "2025_original_header_school_footer_and_completed_question_identity_supported",
+      "custody": "held",
+      "rights": "held",
+      "fullPair": "held"
+    },
+    "answerFormat": "single circled choice",
+    "authorEvidence": {
+      "calculationPath": "author-calculations.json",
+      "scriptSha256": "9f81f1d5d0d1d7d3ec8fc7c5ee12d5e61b8fae7dc832fbe90fb44eb4252ab829",
+      "statisticsKernelSha256": "36c4dcf877bcd842869335980a00555be3a7263278a5d33cb1e80922cfacf000",
+      "calculationOnly": true,
+      "independentApproval": false
+    },
+    "bankEvidence": {
+      "path": ".qa-artifacts/exam-resume-20261008/bank-read-fresh-r2-20261008.json",
+      "sha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b"
+    }
+  },
+  "schoolNamePolicy": {
+    "actual": "경상중",
+    "display": "해솔누리중학교",
+    "actualSchoolRetainedInternally": true,
+    "visibleOriginalSchoolOccurrences": 0,
+    "review": "author-proposed"
+  },
+  "independentVerification": null,
+  "review": {
+    "status": "pending",
+    "mathematicalCorrectness": "pending-independent-blind-solve",
+    "gradeCurriculum": "pending-independent-review",
+    "equivalentConceptAndMethod": "pending-independent-review",
+    "distinctPresentation": "pending-independent-review",
+    "rights": "pending",
+    "similarity": "pending",
+    "nativeCompatibility": "pending",
+    "physicalPaper": "not-approved"
+  },
+  "directUseAllowed": false
+}

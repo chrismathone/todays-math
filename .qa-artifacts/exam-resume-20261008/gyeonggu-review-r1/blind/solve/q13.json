@@ -1,0 +1,631 @@
+{
+  "schema": "independent-blind-solve.v1",
+  "questionNumber": 13,
+  "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q13",
+  "studentDigest": "40dd6419c48a9e36d598953b0c1603c3ddfab826ae1875d1a3a570303b9927d6",
+  "solverId": "orca-codex-exam-twin-source-identity-20261008",
+  "status": "solved",
+  "answer": "④: BD=12 cm",
+  "answerParts": {
+    "BD": "12 cm"
+  },
+  "solution": "정삼각형에서 ∠CAD=60°이다. 삼각형 ADC의 각 합으로 ∠ACD=180°−60°−105°=15°이고, 전체 ∠ACB=60°이므로 ∠DCB=45°이다. DE⊥BC이므로 삼각형 CDE는45° 직각삼각형이고 CE=DE이다. BD=x cm라 하자. 삼각형 BDE는 B에서60°인 직각삼각형이므로 BE=x/2, DE=√3x/2이다. 따라서 BC=BE+CE=x(1+√3)/2이며 AB도 이 길이와 같다. AD=AB−BD=x(√3−1)/2이다. C에서 AB에 내린 높이는 CF=√3·AB/2=√3x(1+√3)/4이다. 그러므로 넓이ADC=AD×CF/2=√3x²/8이다. 이를18√3과 같게 두면 x²=144이다. 길이x>0이므로 x=12 cm, ④이다.",
+  "evidence": {
+    "method": "independent-student-input-solve-before-author-answer-exposure",
+    "studentMethod": "삼각형 각 합으로45° 소삼각형 찾기,30°/60°/45° 변 비와 밑변-높이 넓이",
+    "conditionAndDomainNotes": "BD12, 정삼각형 변6(1+√3)>12, AD6(√3−1)>0. 105°는 일반 기하각 조건이며105°의 삼각비나75° 덧셈공식을 계산하지 않는다. 음의 근−12는 길이에서 제외.",
+    "exactValuesFromCode": [
+      "12"
+    ],
+    "code": {
+      "path": "solve_math.py",
+      "sha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50"
+    },
+    "proof": {
+      "path": "blind/proofs/q13.json",
+      "sha256": "1012eef750d50ef8d6d21361c7ada49007354b9eddb825be2e8e3b5c048a1166"
+    },
+    "studentSolutionSource": {
+      "path": "student_solutions.json",
+      "wholeFileSha256": "adbcd31c366b68051b20e460727edc017c8160cd0d80fb6ff6c4b079d88c947d",
+      "questionRecordSha256": "5c97eac6c65db570775a7c1f862bed10c3c23fabf14106de55f987f065eae9d2"
+    },
+    "wholeStudentInputSha256": "6e137d65894e6506710e6c980136cfd26a25d4fec141785f4ed521f8eb89e1ca",
+    "contentSha256Utf8": "1ad6c65e79bc2d7059dbc0ecb26df98f547f6025a63d6a6f58bbc54cfef0ac40",
+    "studentObjectCanonicalSha256": "1b17b49b310a67e12b19c9170326d8854682da4457e45a642a6e5e6de7b2cd67",
+    "canonicalHashLimit": "This diagnostic canonical hash is not a claim about Root studentDigest algorithm; supplied studentDigest is retained unchanged.",
+    "choiceCheck": {
+      "allChoices": [
+        {
+          "index1based": 1,
+          "studentChoice": "$6\\,\\mathrm{cm}$",
+          "parsedValues": [
+            "6"
+          ],
+          "matchesEachRequestedPart": [
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "positiveLength": true,
+            "givenTriangleArea18sqrt3": false
+          },
+          "differencesFromIndependentRequestedValues": [
+            "-6"
+          ]
+        },
+        {
+          "index1based": 2,
+          "studentChoice": "$6\\sqrt2\\,\\mathrm{cm}$",
+          "parsedValues": [
+            "6*sqrt(2)"
+          ],
+          "matchesEachRequestedPart": [
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "positiveLength": true,
+            "givenTriangleArea18sqrt3": false
+          },
+          "differencesFromIndependentRequestedValues": [
+            "-12 + 6*sqrt(2)"
+          ]
+        },
+        {
+          "index1based": 3,
+          "studentChoice": "$9\\,\\mathrm{cm}$",
+          "parsedValues": [
+            "9"
+          ],
+          "matchesEachRequestedPart": [
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "positiveLength": true,
+            "givenTriangleArea18sqrt3": false
+          },
+          "differencesFromIndependentRequestedValues": [
+            "-3"
+          ]
+        },
+        {
+          "index1based": 4,
+          "studentChoice": "$12\\,\\mathrm{cm}$",
+          "parsedValues": [
+            "12"
+          ],
+          "matchesEachRequestedPart": [
+            true
+          ],
+          "matches": true,
+          "domainAndGivenConditionChecks": {
+            "positiveLength": true,
+            "givenTriangleArea18sqrt3": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "0"
+          ]
+        },
+        {
+          "index1based": 5,
+          "studentChoice": "$12\\sqrt2\\,\\mathrm{cm}$",
+          "parsedValues": [
+            "12*sqrt(2)"
+          ],
+          "matchesEachRequestedPart": [
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "positiveLength": true,
+            "givenTriangleArea18sqrt3": false
+          },
+          "differencesFromIndependentRequestedValues": [
+            "-12 + 12*sqrt(2)"
+          ]
+        }
+      ],
+      "matchingIndices1based": [
+        4
+      ],
+      "exactlyOneChoice": true,
+      "basis": "Parsed actual copied student choices; no author/original key"
+    },
+    "existenceUniquenessPositivity": {
+      "actualCodeChecks": [
+        {
+          "condition": "unique positive length and D internal",
+          "passed": true,
+          "calculation": {
+            "BE": "6",
+            "DE": "6*sqrt(3)",
+            "CE": "6*sqrt(3)",
+            "side": "6 + 6*sqrt(3)",
+            "AD": "-6 + 6*sqrt(3)",
+            "CF": "3*sqrt(3) + 9",
+            "area": "18*sqrt(3)"
+          }
+        },
+        {
+          "condition": "105 degree given reconstructed without using trig105 as student method",
+          "passed": true,
+          "calculation": 105.00000000000001
+        }
+      ],
+      "supplementalExactCoordinateWitness": {
+        "points": {
+          "A": [
+            0,
+            0
+          ],
+          "B": [
+            "6 + 6*sqrt(3)",
+            0
+          ],
+          "C": [
+            "3 + 3*sqrt(3)",
+            "3*sqrt(3) + 9"
+          ],
+          "D": [
+            "-6 + 6*sqrt(3)",
+            0
+          ],
+          "F": [
+            "3 + 3*sqrt(3)",
+            0
+          ],
+          "E": [
+            "3 + 6*sqrt(3)",
+            "3*sqrt(3)"
+          ]
+        },
+        "relations": [
+          {
+            "relation": "lengthSquared",
+            "points": [
+              "A",
+              "B"
+            ],
+            "calculated": "72*sqrt(3) + 144",
+            "required": "72*sqrt(3) + 144",
+            "passed": true
+          },
+          {
+            "relation": "lengthSquared",
+            "points": [
+              "B",
+              "C"
+            ],
+            "calculated": "72*sqrt(3) + 144",
+            "required": "72*sqrt(3) + 144",
+            "passed": true
+          },
+          {
+            "relation": "lengthSquared",
+            "points": [
+              "A",
+              "C"
+            ],
+            "calculated": "72*sqrt(3) + 144",
+            "required": "72*sqrt(3) + 144",
+            "passed": true
+          },
+          {
+            "relation": "perpendicular",
+            "points": [
+              "C",
+              "F",
+              "A",
+              "B"
+            ],
+            "calculated": "0",
+            "required": 0,
+            "passed": true
+          },
+          {
+            "relation": "perpendicular",
+            "points": [
+              "D",
+              "E",
+              "B",
+              "C"
+            ],
+            "calculated": "0",
+            "required": 0,
+            "passed": true
+          },
+          {
+            "relation": "collinear",
+            "points": [
+              "B",
+              "E",
+              "C"
+            ],
+            "calculated": "0",
+            "required": 0,
+            "passed": true
+          },
+          {
+            "relation": "lengthSquared",
+            "points": [
+              "D",
+              "E"
+            ],
+            "calculated": "108",
+            "required": "108",
+            "passed": true
+          },
+          {
+            "relation": "lengthSquared",
+            "points": [
+              "C",
+              "E"
+            ],
+            "calculated": "108",
+            "required": "108",
+            "passed": true
+          }
+        ],
+        "method": "Independent exact coordinate witness; supplemental validation only"
+      },
+      "uniqueRequestedAnswer": true,
+      "wholeConfigurationMustBeUnique": false,
+      "limit": "q17 radii and q22 triangle placements can vary while requested answers are unique. No pixel lengths or model probability determine uniqueness."
+    },
+    "figures": [
+      {
+        "svgPath": "figures/q13-1.svg",
+        "sha256": "9e9df471c7173c01a876a57280ca7bbb7e1d50da6ec020975320f75a8150b32f",
+        "intendedWidthMm": 70
+      }
+    ],
+    "directFigureInspections": [
+      {
+        "questionNumber": 13,
+        "svg": "figures/q13-1.svg",
+        "svgSha256": "9e9df471c7173c01a876a57280ca7bbb7e1d50da6ec020975320f75a8150b32f",
+        "intendedWidthMm": 70,
+        "renderedPdfWidthMm": 70.00000161064996,
+        "renderedHeightMm": 62.745958553279515,
+        "viewBox": [
+          0.0,
+          0.0,
+          242.673,
+          217.525
+        ],
+        "png": "blind/rendered/q13-1-300dpi.png",
+        "pngSha256": "bb6f61f920bc1dc519ffaeb551815f4fa0cdb9e1a9b38ad2afa9ec17653abb51",
+        "pdf": "blind/rendered/q13-1-300dpi.pdf",
+        "pdfSha256": "d38e717ed44cac0f8b14e9c1277ba0a1d056db52328b8fa55d36da8e6f63e317",
+        "svgTextLabels": [],
+        "mathematicalOracle": false,
+        "renderer": "Existing PyMuPDF SVG->vector PDF at physical width->300dpi PNG; Cairo runtime absent; no installs",
+        "visualInspection": "direct view_image completed on 2026-10-08",
+        "observation": "D internalAB, E foot onBC, F foot onAB;105degree marker atD; both feet labeled and right marks clear. Shaded ADC matches area mention but is not used to measure.",
+        "labelsReadableAtSpecifiedPhysicalWidth": true,
+        "pixelMeasurementsUsedToSolve": false,
+        "physicalPrintProductionApproval": false
+      }
+    ],
+    "sevenStudentSurfaces": [
+      {
+        "surface": "stem",
+        "observation": "BD12, 정삼각형 변6(1+√3)>12, AD6(√3−1)>0. 105°는 일반 기하각 조건이며105°의 삼각비나75° 덧셈공식을 계산하지 않는다. 음의 근−12는 길이에서 제외.",
+        "inGradeForUsedStudentMethod": true,
+        "limit": "New student stem only; original-twin faithfulness and provenance are not reviewed."
+      },
+      {
+        "surface": "choices",
+        "observation": "All actual student choices parsed and every requested component/strict interval compared.",
+        "detailedCodeResult": {
+          "allChoices": [
+            {
+              "index1based": 1,
+              "studentChoice": "$6\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "6"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "positiveLength": true,
+                "givenTriangleArea18sqrt3": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "-6"
+              ]
+            },
+            {
+              "index1based": 2,
+              "studentChoice": "$6\\sqrt2\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "6*sqrt(2)"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "positiveLength": true,
+                "givenTriangleArea18sqrt3": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "-12 + 6*sqrt(2)"
+              ]
+            },
+            {
+              "index1based": 3,
+              "studentChoice": "$9\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "9"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "positiveLength": true,
+                "givenTriangleArea18sqrt3": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "-3"
+              ]
+            },
+            {
+              "index1based": 4,
+              "studentChoice": "$12\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "12"
+              ],
+              "matchesEachRequestedPart": [
+                true
+              ],
+              "matches": true,
+              "domainAndGivenConditionChecks": {
+                "positiveLength": true,
+                "givenTriangleArea18sqrt3": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "0"
+              ]
+            },
+            {
+              "index1based": 5,
+              "studentChoice": "$12\\sqrt2\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "12*sqrt(2)"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "positiveLength": true,
+                "givenTriangleArea18sqrt3": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "-12 + 12*sqrt(2)"
+              ]
+            }
+          ],
+          "matchingIndices1based": [
+            4
+          ],
+          "exactlyOneChoice": true,
+          "basis": "Parsed actual copied student choices; no author/original key"
+        },
+        "inGradeForUsedStudentMethod": true
+      },
+      {
+        "surface": "figure_and_graph_semantics",
+        "observation": [
+          "D internalAB, E foot onBC, F foot onAB;105degree marker atD; both feet labeled and right marks clear. Shaded ADC matches area mention but is not used to measure."
+        ],
+        "specifiedPhysicalWidthsViewed": [
+          70
+        ],
+        "inGradeForUsedStudentMethod": true,
+        "pixelOracle": false,
+        "limit": "Standalone SVG physical rendering only; no claim about a complete final paper/student UI layout."
+      },
+      {
+        "surface": "notation",
+        "observation": "E와F 두 수선발이 서로 다름을 유지. 넓이cm²에서 길이cm를 복구하고 원문 기하의 존재를 코드 좌표로 별도 검산.",
+        "inGradeForUsedStudentMethod": true,
+        "trigScope": "Only acute-angle trig definitions and30/45/60 values used; arbitrary-angle formula, ratio identity, vector or calculus notation is not necessary."
+      },
+      {
+        "surface": "answer_format",
+        "observation": "④: BD=12 cm",
+        "partsWithUnits": {
+          "BD": "12 cm"
+        },
+        "inGradeForUsedStudentMethod": true,
+        "limit": "Own raw exact answer; Root may normalize formatting only after binding hashes."
+      },
+      {
+        "surface": "student_solution",
+        "observation": "정삼각형에서 ∠CAD=60°이다. 삼각형 ADC의 각 합으로 ∠ACD=180°−60°−105°=15°이고, 전체 ∠ACB=60°이므로 ∠DCB=45°이다. DE⊥BC이므로 삼각형 CDE는45° 직각삼각형이고 CE=DE이다. BD=x cm라 하자. 삼각형 BDE는 B에서60°인 직각삼각형이므로 BE=x/2, DE=√3x/2이다. 따라서 BC=BE+CE=x(1+√3)/2이며 AB도 이 길이와 같다. AD=AB−BD=x(√3−1)/2이다. C에서 AB에 내린 높이는 CF=√3·AB/2=√3x(1+√3)/4이다. 그러므로 넓이ADC=AD×CF/2=√3x²/8이다. 이를18√3과 같게 두면 x²=144이다. 길이x>0이므로 x=12 cm, ④이다.",
+        "inGradeForUsedStudentMethod": true,
+        "basis": "Full fresh elementary student proof written before authored-solution exposure; calculation alone does not grant curricular permission."
+      },
+      {
+        "surface": "necessary_procedure",
+        "observation": "삼각형 각 합으로45° 소삼각형 찾기,30°/60°/45° 변 비와 밑변-높이 넓이",
+        "conditions": "BD12, 정삼각형 변6(1+√3)>12, AD6(√3−1)>0. 105°는 일반 기하각 조건이며105°의 삼각비나75° 덧셈공식을 계산하지 않는다. 음의 근−12는 길이에서 제외.",
+        "primaryStandardReferences": [
+          {
+            "id": "9수04-05",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4272,
+              "paragraph1based": 874,
+              "offset": 216602,
+              "text": "[9수04-05]다각형의 성질을 이해한다."
+            },
+            "pdfPhysicalPage1based": 37,
+            "pdfPrintedPage": 33,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수04-10",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4300,
+              "paragraph1based": 881,
+              "offset": 217636,
+              "text": "[9수04-10]이등변삼각형의 성질을 이해하고 설명할 수 있다."
+            },
+            "pdfPhysicalPage1based": 37,
+            "pdfPrintedPage": 33,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수04-17",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4341,
+              "paragraph1based": 891,
+              "offset": 219120,
+              "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다."
+            },
+            "pdfPhysicalPage1based": 38,
+            "pdfPrintedPage": 34,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수01-07",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 3776,
+              "paragraph1based": 768,
+              "offset": 192865,
+              "text": "[9수01-07]제곱근의 뜻을 알고, 그 성질을 이해한다."
+            },
+            "pdfPhysicalPage1based": 33,
+            "pdfPrintedPage": 29,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수01-10",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 3788,
+              "paragraph1based": 771,
+              "offset": 193301,
+              "text": "[9수01-10]근호를 포함한 식의 사칙계산을 할 수 있다."
+            },
+            "pdfPhysicalPage1based": 33,
+            "pdfPrintedPage": 29,
+            "wholeClausePdfMatch": true
+          }
+        ],
+        "inGradeForUsedStudentMethod": true,
+        "forbiddenStudentPrerequisiteUsed": false
+      }
+    ],
+    "curriculumMethod": {
+      "reference": "actual2025middle3 ->2015",
+      "legitimateStudentMethodFound": true,
+      "standards": [
+        {
+          "id": "9수04-05",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4272,
+            "paragraph1based": 874,
+            "offset": 216602,
+            "text": "[9수04-05]다각형의 성질을 이해한다."
+          },
+          "pdfPhysicalPage1based": 37,
+          "pdfPrintedPage": 33,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-10",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4300,
+            "paragraph1based": 881,
+            "offset": 217636,
+            "text": "[9수04-10]이등변삼각형의 성질을 이해하고 설명할 수 있다."
+          },
+          "pdfPhysicalPage1based": 37,
+          "pdfPrintedPage": 33,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-17",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4341,
+            "paragraph1based": 891,
+            "offset": 219120,
+            "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수01-07",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 3776,
+            "paragraph1based": 768,
+            "offset": 192865,
+            "text": "[9수01-07]제곱근의 뜻을 알고, 그 성질을 이해한다."
+          },
+          "pdfPhysicalPage1based": 33,
+          "pdfPrintedPage": 29,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수01-10",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 3788,
+            "paragraph1based": 771,
+            "offset": 193301,
+            "text": "[9수01-10]근호를 포함한 식의 사칙계산을 할 수 있다."
+          },
+          "pdfPhysicalPage1based": 33,
+          "pdfPrintedPage": 29,
+          "wholeClausePdfMatch": true
+        }
+      ],
+      "restrictionsFile": "curriculum-method-evidence.json",
+      "restrictionsFileSha256": "20a90e8060b73d09eb8749f8b6636e0d960e3148c53111d8bc4db8da4c95af2d",
+      "approvalForRightsFamilyNativeOrLoading": false,
+      "fullCurrentFuturePublicationApproval": false
+    },
+    "annotationsAndSourceFamiliarityDisclosure": "Prior original exam source familiarity is possible and earlier Bumil scan annotations were incidentally seen. No Gyeonggu original/source/keys were reopened; these new candidate answers, authored solutions and other solver results were not read. Work proceeds solely from copied new student inputs.",
+    "newAuthorCandidateAnswersKnownBeforeThisSolve": false,
+    "originalKeyAgreementUsed": false,
+    "otherSolverRead": false,
+    "inferenceApiCalls": 0,
+    "limits": [
+      "Independent blind solve and bounded legitimate-method observations only. Exact Unit/live family, rights/native provenance, author-solution comparison and overall loading are outside this stage."
+    ]
+  },
+  "heldReasons": [],
+  "rejectedStudentMethods": [
+    "No arbitrary trig ratio identities or addition/half-angle formulas.",
+    "No upper-grade extrema/calculus, law of sines/cosines, vectors or circle power.",
+    "q09 uses congruence and Pythagoras instead of an unverified angle-bisector length theorem."
+  ]
+}

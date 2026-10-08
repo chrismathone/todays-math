@@ -1,0 +1,252 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 5,
+  "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q05",
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "content": "포물선의 세 관측 기록으로 다른 점의 좌표를 복구하려고 한다.\n\n| 항목 | 기록 |\n| --- | --- |\n| $x$축과의 만남 | 한 점에서만 만남 |\n| 대칭축 | $x=2$ |\n| $y$축과 만나는 점 | $(0,12)$ |\n\n이 그래프 위에서 $x=-1$인 점의 $y$좌표는?",
+  "choices": [
+    "$3$",
+    "$9$",
+    "$12$",
+    "$27$",
+    "$36$"
+  ],
+  "answer": "④",
+  "solution": "대칭축이 $x=2$이고 $x$축과 한 점에서만 만나므로 꼭짓점은 $(2,0)$이다. 이차함수의 식을 $y=a(x-2)^2$으로 놓는다.\n\n점 $(0,12)$를 대입하면 $12=4a$이므로 $a=3$이다. 따라서 $x=-1$일 때 $y=3(-1-2)^2=3\\times9=27$이므로 정답은 ④이다.",
+  "score": 4,
+  "questionType": "객관식",
+  "facts": {
+    "answerValue": 27,
+    "a": 3,
+    "vertex": [
+      2,
+      0
+    ],
+    "intercept": [
+      0,
+      12
+    ],
+    "point": [
+      -1,
+      27
+    ],
+    "singleXIntercept": 2
+  },
+  "figureArtifacts": [],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation",
+      "inverse-target"
+    ],
+    "before": "x축 접함·축 x=-1·y절편 1/2의 조건에서 함수 식을 고른다.",
+    "after": "식 선택을 관측 표의 다른 점 좌표 복구로 전환하여 꼭짓점/한 점으로 식을 정하고 새 좌표를 구한다.",
+    "sharedConcept": "꼭짓점과 한 점으로 이차함수 식을 결정한다.",
+    "sharedProcedure": "한 점의 x축 만남과 축으로 꼭짓점을 정하고 y절편을 대입해 a를 구한 뒤 새 x값을 대입한다.",
+    "objectiveDifficulty": "원문의 세 조건으로 식을 결정하는 핵심을 유지하며 최종 목표만 다른 점의 좌표로 바꿨다. 단순 대입 한 번을 더하는 4점 응용이다.",
+    "scoreDelta": {
+      "source": 4,
+      "authored": 4,
+      "changed": false
+    }
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수03-09",
+      "9수03-10"
+    ],
+    "allowedProcedure": "한 점의 x축 만남과 축으로 꼭짓점을 정하고 y절편을 대입해 a를 구한 뒤 새 x값을 대입한다.",
+    "forbiddenAvoided": [
+      "일반 이차함수 최적화",
+      "미분",
+      "근과 계수의 관계",
+      "일반 포물선/직선 교점 이론"
+    ],
+    "status": "author-proposed",
+    "surfaces": {
+      "stem": {
+        "status": "author-proposed",
+        "evidence": "x축의 한 점 만남·축·절편만으로 포물선을 정한다."
+      },
+      "choices": {
+        "status": "author-proposed",
+        "evidence": "다섯 좌표값을 함수 대입 결과와 각각 비교한다."
+      },
+      "figuresAndTables": {
+        "status": "author-proposed",
+        "evidence": "새 세 조건을 native 기록 표로 조직했다."
+      },
+      "notation": {
+        "status": "author-proposed",
+        "evidence": "선분·좌표·도 또는 식의 표기는 실제 학생 풀이에 쓰는 중학교 수학 표기만 사용한다."
+      },
+      "answer": {
+        "status": "author-proposed",
+        "evidence": "유일한 보기 하나를 고르는 객관식 답 형식이며, 값·부호·조건이 코드 계산과 맞는다."
+      },
+      "studentSolution": {
+        "status": "author-proposed",
+        "evidence": "a(x-2)² 형태에서 a=3과 y(-1)=27을 순서대로 구한다."
+      },
+      "prerequisites": {
+        "status": "author-proposed",
+        "evidence": "완전제곱, 일차방정식과 좌표 대입"
+      }
+    },
+    "gradeBasis": "x축과 꼭짓점의 한 점 만남은 완전제곱이 0인 경우로 확인한다. 판별식이나 일반 접선/교점 이론을 쓰지 않는다.",
+    "exactGradeApproval": false
+  },
+  "sourceReference": {
+    "externalId": "2025-gyeongsan-3-2-mid-5",
+    "examId": "personal-aa35a05fbaf41074c2ebcfcd6f16e876",
+    "sourcePacketExamId": "2025-gyeongsan-3-2-mid",
+    "school": "경산중",
+    "questionNumber": 5,
+    "sourceContentSha256": "c7696bfcfde5a6816f6e06f89eb3e807df007d2b63445172a75402919dcd7917",
+    "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+    "sourceQuestionOnlySnapshot": "source-snapshot/packet/questions.json",
+    "sourceQuestionScore": 4,
+    "sourceQuestionType": "객관식",
+    "sourceQuestionParts": [],
+    "sourceStatus": "source_reference_reviewed_all_final_approval_gates_held",
+    "sourceObservation": "x축 접함·축 x=-1·y절편 1/2의 조건에서 함수 식을 고른다.",
+    "originalAnswersOrSolutionsUsed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "score": 4,
+    "difficultyProposal": "응용",
+    "difficultyStatus": "pending-independent-review",
+    "problemTypeProposal": null,
+    "problemTypeStatus": "pending-independent-review",
+    "hasFigure": false,
+    "assignment": {
+      "status": "pending",
+      "unitId": null,
+      "familyKey": null,
+      "currentUnit": null,
+      "currentRegistryMatch": null,
+      "liveCount": null,
+      "checkedAt": "2026-10-08 04:53:45.769124+00",
+      "evidence": "꼭짓점/절편으로 식을 정한 뒤 다른 점을 복구하는 새 표현에 대한 정확 subtype은 분류 검토 전 null이다.",
+      "candidates": []
+    },
+    "achievementStandardRefs": [
+      {
+        "code": "9수03-09",
+        "verified_text": "이차함수의 의미를 이해하고, 그 그래프를 그릴 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4146,
+          "record_offset_in_uncompressed_stream": 210185,
+          "extracted_paragraph_1based": 849
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            36
+          ],
+          "printed_pages": [
+            32
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      },
+      {
+        "code": "9수03-10",
+        "verified_text": "이차함수의 그래프의 성질을 이해한다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4150,
+          "record_offset_in_uncompressed_stream": 210353,
+          "extracted_paragraph_1based": 850
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            36
+          ],
+          "printed_pages": [
+            32
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      }
+    ],
+    "achievementStandardStatus": "official-text-matched-candidate-author-proposed",
+    "sourceIdentityReview": {
+      "status": "source-packet-identity-supported-full-custody-held",
+      "sourceSchool": "경산중",
+      "sourceYear": 2025,
+      "sourcePacketDecision": "2025_original_header_school_footer_and_completed_question_identity_supported",
+      "fullPairCertification": "held",
+      "custody": "held",
+      "rights": "held"
+    },
+    "bankEvidence": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-fresh-r2-20261008.json",
+      "sha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b",
+      "capturedAt": "2026-10-08 04:53:45.769124+00",
+      "registrySha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "curriculumEvidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "databaseAccessByAuthor": false
+    },
+    "authorEvidence": {
+      "calculationsPath": "author-calculations.json",
+      "authoringScriptSha256": "a93435986c20fa222f4a9c9bdbc2b6fa6242f334fafcffed2f692f22e997f7b5",
+      "visualReview": "pending-local-view",
+      "mathematicalReview": "author-self-check-only"
+    }
+  },
+  "schoolNamePolicy": {
+    "actual": "경산중",
+    "display": "해솔누리중학교",
+    "role": "fictional-display-alias-only",
+    "originalOccurrencesInStem": 0,
+    "surfaces": [
+      "content",
+      "choices",
+      "tables",
+      "figureLabels",
+      "solution"
+    ],
+    "review": "author-proposed"
+  },
+  "independentVerification": null,
+  "review": {
+    "status": "pending",
+    "mathematicalCorrectness": "pending-independent-blind-solve",
+    "gradeCurriculum": "pending-independent-review",
+    "equivalentConceptAndMethod": "pending-independent-review",
+    "distinctPresentation": "pending-independent-review",
+    "naturalKorean": "pending-independent-review",
+    "figure": "pending-independent-review",
+    "rights": "pending",
+    "similarity": "pending",
+    "nativeCompatibility": "pending",
+    "physicalPaper": "not-approved"
+  },
+  "directUseAllowed": false
+}

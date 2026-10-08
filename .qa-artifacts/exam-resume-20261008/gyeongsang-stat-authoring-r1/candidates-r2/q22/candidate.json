@@ -1,0 +1,242 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 22,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r2-q22",
+  "authorId": "root-codex-exam-extraction-resume-20261008",
+  "content": "퍼즐 동아리에서 $20$명이 퍼즐을 완성하는 데 걸린 시간을 조사했다.\n\n|시간(분)|$1$|$2$|$3$|$4$|$5$|$6$|$7$|$8$|$9$|$11$|$12$|$60$|\n|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|\n|인원(명)|$1$|$2$|$3$|$4$|$2$|$2$|$1$|$1$|$1$|$1$|$1$|$1$|\n\n보고서 A는 평균으로, 보고서 B는 중앙값으로 동아리원의 보통 완료 시간을 소개하려 한다. 각 보고서에 적힐 시간을 구하고, 두 보고서 중 이 자료의 보통 완료 시간을 소개하기에 더 알맞은 것을 골라 이유를 서술하시오.",
+  "choices": [],
+  "answer": "$7.95\\,\\mathrm{분}$, $4.5\\,\\mathrm{분}$, B",
+  "solution": "인원 수는 $20$명이고 시간의 합은 $1+2\\times2+3\\times3+4\\times4+5\\times2+6\\times2+7+8+9+11+12+60=159$분이다. 따라서 평균은 $159\\div20=7.95$분이다. 작은 순서로 놓았을 때 열 번째는 $4$분, 열한 번째는 $5$분이므로 중앙값은 $(4+5)\\div2=4.5$분이다. 다른 기록은 모두 $12$분 이하인데 한 명의 $60$분 기록이 평균을 크게 높인다. 이 자료의 보통 완료 시간을 소개하려면 큰 한 값의 영향을 덜 받는 중앙값을 쓰는 보고서 B가 더 알맞다.",
+  "score": 6,
+  "questionType": "서술형",
+  "facts": {
+    "values": [
+      1,
+      2,
+      2,
+      3,
+      3,
+      3,
+      4,
+      4,
+      4,
+      4,
+      5,
+      5,
+      6,
+      6,
+      7,
+      8,
+      9,
+      11,
+      12,
+      60
+    ],
+    "stats": {
+      "count": 20,
+      "total": "159",
+      "squareTotal": "4281",
+      "mean": {
+        "numerator": "159",
+        "denominator": "20"
+      },
+      "median": {
+        "numerator": "9",
+        "denominator": "2"
+      },
+      "variance": {
+        "numerator": "60339",
+        "denominator": "400"
+      },
+      "standardDeviationSquared": {
+        "numerator": "60339",
+        "denominator": "400"
+      },
+      "middlePositions": [
+        10,
+        11
+      ],
+      "maxFrequency": 4,
+      "maximalFrequencyValues": [
+        4
+      ],
+      "uniqueModalValue": 4,
+      "modeConvention": "maximal frequencies exposed; a tied set is never a unique mode",
+      "approval": "calculation-only"
+    },
+    "writtenRubric": [
+      {
+        "score": 2,
+        "basis": "count20,total159,mean7.95분"
+      },
+      {
+        "score": 2,
+        "basis": "10th4,11th5,median4.5분"
+      },
+      {
+        "score": 2,
+        "basis": "B with explanation of single high observation and typical value, not simply “always median”"
+      }
+    ],
+    "uniqueRepresentativeChoiceWithinAskedTwo": "B with contextual justification; not a universal theorem",
+    "calculationOnly": true
+  },
+  "figureArtifacts": [],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "context",
+      "representation"
+    ],
+    "before": "[서술형 $4$] 다음은 어느 야구 팀에서 타율이 높은 $20$명 선수의 도루 개수를 조사하여 나타낸 줄기와 잎 그림이다. 이 자료의 평균과 중앙값을 각각 구하고, 어떤 값이 대푯값으로 더 적절한지 서술하시오.\n[$6$점, 부분점수 있음]\n도루개수\n\n줄기\n\n잎\n\n$0$\n\n$0$\n\n$0$\n\n$1$\n\n$1$\n\n$2$\n\n$2$\n\n$2$\n\n$4$\n\n$4$\n\n$4$\n\n$7$\n\n$8$\n\n$1$\n\n$0$\n\n$1$\n\n$2$\n\n$5$\n\n$7$\n\n$2$\n\n$0$\n\n$5$\n\n$4$\n\n$5$",
+    "after": "선수의 도루 줄기·잎 그림→퍼즐 완료 시간 도수 표와 서로 다른 두 대표값 보고 비교",
+    "sharedConcept": "평균·중앙값과 대표값의 맥락 선택",
+    "sharedProcedure": "도수로 20개 값의 합과 순서를 구하고, 큰 관측값 하나가 평균에 미치는 영향과 중앙값을 비교한다.",
+    "objectiveDifficulty": "원문 배점과 요구를 기준으로 한 저자 제안; 역추론/도수 읽기 추가 부담은 독립 검토",
+    "sourceTableReplaced": "new Markdown data organization; no original crop used",
+    "scoreDelta": {
+      "source": 6,
+      "authored": 6,
+      "changed": false
+    }
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수05-06"
+    ],
+    "status": "author-proposed",
+    "allowedProcedure": "도수로 20개 값의 합과 순서를 구하고, 큰 관측값 하나가 평균에 미치는 영향과 중앙값을 비교한다.",
+    "gradeBasis": "2025 중3은 2015 적용. 공식 PDF physical40/printed36에 대푯값·편차·분산·표준편차 및 자료에 맞는 대표값 비교가 있다. 각 문항 전체는 별도 독립 심사 필요.",
+    "surfaces": {
+      "stem": {
+        "status": "author-proposed",
+        "evidence": "평균·중앙값과 대표값의 맥락 선택: 도수로 20개 값의 합과 순서를 구하고, 큰 관측값 하나가 평균에 미치는 영향과 중앙값을 비교한다.; stem에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+      },
+      "choices": {
+        "status": "author-proposed",
+        "evidence": "평균·중앙값과 대표값의 맥락 선택: 도수로 20개 값의 합과 순서를 구하고, 큰 관측값 하나가 평균에 미치는 영향과 중앙값을 비교한다.; choices에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+      },
+      "figuresAndTables": {
+        "status": "author-proposed",
+        "evidence": "평균·중앙값과 대표값의 맥락 선택: 도수로 20개 값의 합과 순서를 구하고, 큰 관측값 하나가 평균에 미치는 영향과 중앙값을 비교한다.; figuresAndTables에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+      },
+      "notation": {
+        "status": "author-proposed",
+        "evidence": "평균·중앙값과 대표값의 맥락 선택: 도수로 20개 값의 합과 순서를 구하고, 큰 관측값 하나가 평균에 미치는 영향과 중앙값을 비교한다.; notation에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+      },
+      "answer": {
+        "status": "author-proposed",
+        "evidence": "평균·중앙값과 대표값의 맥락 선택: 도수로 20개 값의 합과 순서를 구하고, 큰 관측값 하나가 평균에 미치는 영향과 중앙값을 비교한다.; answer에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+      },
+      "studentSolution": {
+        "status": "author-proposed",
+        "evidence": "평균·중앙값과 대표값의 맥락 선택: 도수로 20개 값의 합과 순서를 구하고, 큰 관측값 하나가 평균에 미치는 영향과 중앙값을 비교한다.; studentSolution에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+      },
+      "prerequisites": {
+        "status": "author-proposed",
+        "evidence": "평균·중앙값과 대표값의 맥락 선택: 도수로 20개 값의 합과 순서를 구하고, 큰 관측값 하나가 평균에 미치는 영향과 중앙값을 비교한다.; prerequisites에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+      }
+    },
+    "exactGradeApproval": false
+  },
+  "sourceReference": {
+    "externalId": "2025-gyeongsang-3-2-mid-22",
+    "examId": "personal-5ac2088d148a02d086d0ce69d38aa646",
+    "sourcePacketExamId": "2025-gyeongsang-3-2-mid",
+    "school": "경상중",
+    "questionNumber": 22,
+    "sourceContentSha256": "1214f4c6c3b5a367725e066972f68635a542c1960fb4da1ffde36b8ebf3f81d1",
+    "sourcePacketSha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+    "sourceQuestionScore": 6,
+    "sourceQuestionType": "서술형",
+    "originalAnswersOrSolutionsUsed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "서술형",
+    "score": 6,
+    "difficultyProposal": "응용",
+    "difficultyStatus": "pending-independent-review",
+    "problemTypeProposal": "평균·중앙값과 대표값의 맥락 선택",
+    "problemTypeStatus": "pending-independent-review",
+    "hasFigure": false,
+    "hasRecreatedTable": true,
+    "assignment": {
+      "status": "pending",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "familyKey": null,
+      "evidence": "실제 중3 Unit UUID/차시는 읽기 전용 r2 관측에 있다. 역추론·도수 조직·답 목적과 생성규칙에 정확히 맞는 live family는 별도 심사; 가까운 키를 임의 배정하지 않음.",
+      "unitProposal": {
+        "id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+        "grade": "중3",
+        "chapter": "7. 통계",
+        "section": "대푯값과 산포도",
+        "semester": 2,
+        "orderIndex": 488,
+        "problemCodePrefix": "J30701"
+      },
+      "bankReadAt": "2026-10-08 04:53:45.769124+00",
+      "liveFamilyDecision": "held"
+    },
+    "achievementStandardRefs": [
+      {
+        "code": "9수05-06",
+        "officialStatement": "중앙값, 최빈값, 평균의 의미를 이해하고, 이를 구할 수 있다.",
+        "pdfPage": 40,
+        "printedPage": 36,
+        "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+        "notPerQuestionApproval": true
+      }
+    ],
+    "sourceIdentityReview": {
+      "status": "2025_original_header_school_footer_and_completed_question_identity_supported",
+      "custody": "held",
+      "rights": "held",
+      "fullPair": "held"
+    },
+    "answerFormat": "mean and median in minutes, A/B selection plus written reasoning",
+    "authorEvidence": {
+      "calculationPath": "author-calculations.json",
+      "scriptSha256": "a7d1b0baece43a45620f0dea4f9fac960a89810da8d6c6468114923ca248b5d8",
+      "statisticsKernelSha256": "72a4fe97bee46bc6eaa06d2ac9c0e1c9fb3df4b5cbd7b2372de4d72a65757bc3",
+      "calculationOnly": true,
+      "independentApproval": false
+    },
+    "bankEvidence": {
+      "path": ".qa-artifacts/exam-resume-20261008/bank-read-fresh-r2-20261008.json",
+      "sha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b"
+    }
+  },
+  "schoolNamePolicy": {
+    "actual": "경상중",
+    "display": "해솔누리중학교",
+    "actualSchoolRetainedInternally": true,
+    "visibleOriginalSchoolOccurrences": 0,
+    "review": "author-proposed"
+  },
+  "independentVerification": null,
+  "review": {
+    "status": "pending",
+    "mathematicalCorrectness": "pending-independent-blind-solve",
+    "gradeCurriculum": "pending-independent-review",
+    "equivalentConceptAndMethod": "pending-independent-review",
+    "distinctPresentation": "pending-independent-review",
+    "rights": "pending",
+    "similarity": "pending",
+    "nativeCompatibility": "pending",
+    "physicalPaper": "not-approved"
+  },
+  "directUseAllowed": false
+}

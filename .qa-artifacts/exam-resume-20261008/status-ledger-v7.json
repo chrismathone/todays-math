@@ -1,0 +1,192 @@
+{
+  "kind": "execution-status-ledger/v7",
+  "version": 7,
+  "createdAt": "2026-10-08T07:43:04.279Z",
+  "scope": "first current20 plus next-school authoring pipeline; whole extraction/engine goal incomplete",
+  "latestDirective": "docs/planning/tracks/brief-exam-extraction-resume-20261008-addendum-3.md",
+  "previousLedger": {
+    "path": ".qa-artifacts/exam-resume-20261008/status-ledger-v6.json",
+    "sha256": "43a1895218682cbcdcd2a911f0e0961f304fac4ef19fa9908f41d9c7acb6dad2"
+  },
+  "report": {
+    "path": "docs/planning/tracks/reports/exam-twin-authoring-progress-20261008.md",
+    "sha256": "52ae584618c7ddf7f96430c59131eaebbba2f03fc56b755022aa91be1569dc43"
+  },
+  "firstBumilBatchCounts": {
+    "historicalSourceVerifications": 21,
+    "plannedTwins": 21,
+    "authoredTwins": 20,
+    "figureInstancesRecreated": 25,
+    "imagegenImagesGenerated": 2,
+    "blindSolvesBound": 20,
+    "mathematicalReviewed": 20,
+    "gradeReviewed": 20,
+    "wholeQuestionReviewPassed": 12,
+    "verifiedTwins": 0,
+    "loadableTwins": 0,
+    "heldBeforeAuthoring": [],
+    "taxonomyInitiallyProposed": 16,
+    "taxonomyInitiallyHeld": [
+      10,
+      11,
+      14,
+      18,
+      20
+    ],
+    "newReviewedTaxonomyHold": [
+      5,
+      10,
+      11,
+      14,
+      15,
+      18,
+      20
+    ],
+    "remainingWholeReviews": 0,
+    "engineUpgradeCandidates": 28,
+    "engineUpgradesImplementedInProduction": 0,
+    "historicalCandidateVersions": 22,
+    "wholeQuestionReviewHeld": 8,
+    "reviewedDifficultyHold": [
+      17,
+      20
+    ],
+    "currentSourceQuestionIdentityConfirmed": 21,
+    "excludedBeforeAuthoring": [
+      7
+    ],
+    "originalPaperScore": 100,
+    "currentDraftScore": 92
+  },
+  "counts": {
+    "authoredCurrentCandidates": 58,
+    "currentFigureInstances": 50,
+    "recreatedStatTables": 5,
+    "builtinImagegenRasters": 2,
+    "independentMathReviewed": 20,
+    "independentFullGradeReviewed": 20,
+    "contentReviewPassed": 12,
+    "contentReviewHeld": 8,
+    "awaitingCollectedIndependentReview": 38,
+    "fullVerified": 0,
+    "loadable": 0,
+    "dbWrites": 0
+  },
+  "currentIndex": {
+    "path": ".qa-artifacts/exam-resume-20261008/current-authored-batches-v7.json",
+    "sha256": "c419219232a237e667a4365a862d40996dd94b441509edfc044e7273a9e46002"
+  },
+  "source": {
+    "Bumil": 21,
+    "nextFiveParents": 106,
+    "nextFiveLeafAssessmentItems": 116,
+    "nextFiveAllComponentPaired": 105,
+    "nextFiveScoreException": 1,
+    "wholeExamPairCertification": 0,
+    "rightsPermissionApprovals": 0
+  },
+  "authorExclusions": {
+    "Bumil": {
+      "numbers": [
+        7
+      ],
+      "status": "independently adjudicated2015-ineligible"
+    },
+    "Gyeonggu": {
+      "numbers": [
+        20
+      ],
+      "status": "author pre-exclusion; independent whole-original adjudication separate"
+    },
+    "Gyeongsan": {
+      "numbers": [
+        15
+      ],
+      "status": "author pre-exclusion recorded; latest final author ledger forthcoming"
+    }
+  },
+  "currentReviewSummary": {
+    "path": ".qa-artifacts/exam-resume-20261008/bumil-final-review-summary-r3-after-main-grade-lexical.json",
+    "sha256": "94d9e5a10ebdb8d1c62371ae6a814cf5c02c61ebe7f05e7ee0225ab5177b02f9"
+  },
+  "sourceJoin": {
+    "path": ".qa-artifacts/exam-resume-20261008/gyeonggu-source-author-join-r1.json",
+    "sha256": "2804f8aec7e2ca0300d68df0044874bcb38b80d76cd49038713dd1546ea873f0"
+  },
+  "statisticsCode": {
+    "path": "scripts/import/exam-twin/statisticsConditions.mjs",
+    "sha256": "36c4dcf877bcd842869335980a00555be3a7263278a5d33cb1e80922cfacf000",
+    "status": "implemented exact authoring support; used on actual7; production registry/load/template integration incomplete",
+    "tests": 4,
+    "expandedDistributionControls": 100
+  },
+  "relatedTests": {
+    "passed": 24,
+    "actualNewQuestionReviews": 0
+  },
+  "remoteIntegration": {
+    "ref": "origin/main",
+    "actualFetchedSha": "9ab1fc7fca970faab48b95554b4e52a174bc4a56",
+    "mergeCommit": "44f0e9430",
+    "mainWorktreeWritten": false,
+    "pushed": false
+  },
+  "activeWork": [
+    {
+      "worktree": "exam-twin-source-identity-20261008",
+      "scope": "Gyeonggu22 new blind solves; raw files being sealed before author answers",
+      "status": "working; not collected"
+    },
+    {
+      "worktree": "exam-twin-author-geometry-20261008",
+      "scope": "Gyeongam19 source parent authoring",
+      "status": "working"
+    },
+    {
+      "worktree": "exam-twin-author-algebra-20261008",
+      "scope": "Gyeongsan remaining25 after first9commit",
+      "status": "working"
+    },
+    {
+      "worktree": "exam-extraction-resume-20261008",
+      "scope": "Root new Gyeongsang7stat ready for fresh independent review; remaining15/newsource queue",
+      "status": "working"
+    }
+  ],
+  "continuationWatch": {
+    "config": ".qa-artifacts/exam-resume-20261008/continuation-watch/automation-config.json",
+    "automationId": "358474c8-24be-49ee-b3c9-55fbebf68de4",
+    "state": "active; primary working; no stop/complete/blocked marker",
+    "role": "read-only continuity monitor, not author",
+    "lastReadOnlyPrecheck": {
+      "resumeNeeded": false,
+      "reason": "work-in-progress",
+      "inspectOnly": true
+    }
+  },
+  "freshBankRead": {
+    "capturedAt": "2026-10-08 04:53:45.769124+00",
+    "readOnly": "on",
+    "isolation": "repeatable read",
+    "unitCount": 22,
+    "eligibleFamilyCount": 302,
+    "protectedRows": 82,
+    "unlocked": 0,
+    "identityMismatches": 0,
+    "correctionsMismatch": 0,
+    "globallyDeduplicated": false,
+    "path": ".qa-artifacts/exam-resume-20261008/bank-read-fresh-r2-20261008.json",
+    "sha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b",
+    "priorSnapshotPreserved": true,
+    "semanticClassificationNotInferred": true
+  },
+  "restrictions": [
+    "Protected82/threecorrectionledgers/permanentGyeongsanyeo19 unchanged",
+    "No DBapply/unlock/delete/reload/deploy; native/loadable0",
+    "N/oldoutput/sharednode_modules preserved",
+    "Current remote integration and relevant validation required; no forcepush",
+    "Rights/similarity separate; altered words/numbers never imply permission"
+  ],
+  "wholeGoalComplete": false,
+  "productionEngineUpgradesComplete": 0
+}
