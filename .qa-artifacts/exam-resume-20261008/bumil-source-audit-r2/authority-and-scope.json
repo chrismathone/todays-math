@@ -1,0 +1,62 @@
+{
+  "worker_id": "orca-codex-exam-twin-source-identity-20261008",
+  "remaining_question_numbers": [
+    1,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    16,
+    17,
+    18,
+    19,
+    20
+  ],
+  "prior_immutable_question_numbers": [
+    2,
+    3,
+    15,
+    21
+  ],
+  "parent_head_observed": "7e1e8080ad5741b53d9bb7ebf8e3a72ff5596db5",
+  "authority_paths": [
+    "D:/todays-math/AGENTS.md",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\docs\\planning\\tracks\\brief-exam-extraction-resume-20261008-addendum-1.md",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\docs\\planning\\tracks\\brief-exam-extraction-resume-20261008-addendum-2.md"
+  ],
+  "pdf_pages_allowed": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "pdf_page5_loaded": false,
+  "scan_author_inputs_allowed": false,
+  "rights_or_custody_approval": false,
+  "no_new_workers": true,
+  "no_candidate_or_answer_review_in_this_task": true,
+  "render_runtime": "installed PyMuPDF; Poppler command unavailable; no installation",
+  "authority_records": [
+    {
+      "path": "D:/todays-math/AGENTS.md",
+      "sha256": "5ae255a2bff8a0de1ceb26ee2b57b088733fd976184fbc5448aaa6895968b598"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\docs\\planning\\tracks\\brief-exam-extraction-resume-20261008-addendum-1.md",
+      "sha256": "b530f1367ededa6f40e56e58641e5d7a9a3afe927b5e72788dd7cbfc61033eaa"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\docs\\planning\\tracks\\brief-exam-extraction-resume-20261008-addendum-2.md",
+      "sha256": "fb911ce3f90d5e08f69b1fb86e957368c03ce28f47b53abbdaafba4a7d56cdb6"
+    }
+  ],
+  "own_branch": "chrismathone/exam-twin-source-identity-20261008",
+  "own_prior_head": "ac7dd280facb0319591cd32f8e71e41aea4b7982"
+}

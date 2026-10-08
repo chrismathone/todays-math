@@ -1,0 +1,824 @@
+{
+  "question_number": 5,
+  "original_label": "5",
+  "score": 5,
+  "normalized_question_file": "question-only/q05/normalized-question.json",
+  "normalized_question_sha256": "d29e941e5e30d1840615afa567b9cefbed8b992704e8df1dfc3c8e3695a5b9dd",
+  "hwp_sources": [
+    {
+      "source_id": "s1",
+      "source_sha256": "3abb1a759dd96f6e9a76728a1ecae70013df605bb3e73745908a773897a6a43b",
+      "stream": "BodyText/Section0",
+      "question_record": {
+        "question_number": 5,
+        "records": [
+          {
+            "record_1based": 689,
+            "offset": 28341,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "그림과 같이 이차함수  의 그래프의 꼭짓점을  ,  축과의 교점을 각각  라 할 때,  의 넓이는? [ 점]",
+            "inline_template": [
+              "  그림과 같이 이차함수 ",
+              {
+                "equation_slot_at_utf16_index": 21
+              },
+              "의 그래프의 꼭짓점을 ",
+              {
+                "equation_slot_at_utf16_index": 41
+              },
+              ", ",
+              {
+                "equation_slot_at_utf16_index": 51
+              },
+              "축과의 교점을 각각 ",
+              {
+                "equation_slot_at_utf16_index": 70
+              },
+              "라 할 때, ",
+              {
+                "equation_slot_at_utf16_index": 85
+              },
+              "의 넓이는? [",
+              {
+                "equation_slot_at_utf16_index": 101
+              },
+              "점] "
+            ]
+          },
+          {
+            "record_1based": 703,
+            "offset": 29021,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "y=-x ^{2} +2x+8"
+          },
+          {
+            "record_1based": 705,
+            "offset": 29191,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rmA"
+          },
+          {
+            "record_1based": 707,
+            "offset": 29337,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "x"
+          },
+          {
+            "record_1based": 709,
+            "offset": 29479,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rmB,~C"
+          },
+          {
+            "record_1based": 711,
+            "offset": 29631,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "TRIANGLE rmABC"
+          },
+          {
+            "record_1based": 713,
+            "offset": 29799,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "5"
+          },
+          {
+            "record_1based": 722,
+            "offset": 30504,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "①   ②",
+            "inline_template": [
+              "① ",
+              {
+                "equation_slot_at_utf16_index": 2
+              },
+              " ② ",
+              {
+                "equation_slot_at_utf16_index": 20
+              },
+              " "
+            ]
+          },
+          {
+            "record_1based": 726,
+            "offset": 30680,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "21"
+          },
+          {
+            "record_1based": 728,
+            "offset": 30824,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "27"
+          },
+          {
+            "record_1based": 730,
+            "offset": 30934,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "③   ④",
+            "inline_template": [
+              "③ ",
+              {
+                "equation_slot_at_utf16_index": 2
+              },
+              " ④ ",
+              {
+                "equation_slot_at_utf16_index": 20
+              },
+              " "
+            ]
+          },
+          {
+            "record_1based": 734,
+            "offset": 31110,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "28"
+          },
+          {
+            "record_1based": 736,
+            "offset": 31254,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "32"
+          },
+          {
+            "record_1based": 738,
+            "offset": 31364,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "⑤",
+            "inline_template": [
+              "⑤ ",
+              {
+                "equation_slot_at_utf16_index": 2
+              },
+              " "
+            ]
+          },
+          {
+            "record_1based": 742,
+            "offset": 31504,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "36"
+          }
+        ],
+        "pictures": [
+          {
+            "record_1based": 720,
+            "offset": 30381,
+            "tag": 85,
+            "level": 3,
+            "stream": "BinData/BIN0004.bmp",
+            "file": "question-only/q05/hwp-figure-1.png",
+            "width": 136,
+            "height": 167,
+            "decompressed_bmp_sha256": "888d4f6a3dc0fccaac3257109557fee27a28813b66f03aa83d6bc63ad7e1a78d",
+            "rgb_pixels_sha256": "df81075a67c10e03e33896fbeb17c74e0ee552a5e90c75d849d6d382fde4eb89"
+          }
+        ],
+        "boundary": {
+          "first_block_offset": 28313,
+          "last_block_end_offset": 31840
+        },
+        "document_header_records": [],
+        "document_header_pictures": [],
+        "reconstructed_paragraphs": [
+          {
+            "record_1based": 689,
+            "offset": 28341,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 29021,
+                "record_1based": 703,
+                "script": "y=-x ^{2} +2x+8"
+              },
+              {
+                "offset": 29191,
+                "record_1based": 705,
+                "script": "rmA"
+              },
+              {
+                "offset": 29337,
+                "record_1based": 707,
+                "script": "x"
+              },
+              {
+                "offset": 29479,
+                "record_1based": 709,
+                "script": "rmB,~C"
+              },
+              {
+                "offset": 29631,
+                "record_1based": 711,
+                "script": "TRIANGLE rmABC"
+              },
+              {
+                "offset": 29799,
+                "record_1based": 713,
+                "script": "5"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "그림과 같이 이차함수 ⟦y=-x ^{2} +2x+8⟧의 그래프의 꼭짓점을 ⟦rmA⟧, ⟦x⟧축과의 교점을 각각 ⟦rmB,~C⟧라 할 때, ⟦TRIANGLE rmABC⟧의 넓이는? [⟦5⟧점]"
+          },
+          {
+            "record_1based": 722,
+            "offset": 30504,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 30680,
+                "record_1based": 726,
+                "script": "21"
+              },
+              {
+                "offset": 30824,
+                "record_1based": 728,
+                "script": "27"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "① ⟦21⟧ ② ⟦27⟧"
+          },
+          {
+            "record_1based": 730,
+            "offset": 30934,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 31110,
+                "record_1based": 734,
+                "script": "28"
+              },
+              {
+                "offset": 31254,
+                "record_1based": 736,
+                "script": "32"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "③ ⟦28⟧ ④ ⟦32⟧"
+          },
+          {
+            "record_1based": 738,
+            "offset": 31364,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 31504,
+                "record_1based": 742,
+                "script": "36"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "⑤ ⟦36⟧"
+          }
+        ],
+        "all_inline_equation_slots_resolved": true
+      },
+      "source_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[범일중][3][25-2-중간][비상] (완료).hwp"
+    },
+    {
+      "source_id": "s5",
+      "source_sha256": "3abb1a759dd96f6e9a76728a1ecae70013df605bb3e73745908a773897a6a43b",
+      "stream": "BodyText/Section0",
+      "question_record": {
+        "question_number": 5,
+        "records": [
+          {
+            "record_1based": 689,
+            "offset": 28341,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "그림과 같이 이차함수  의 그래프의 꼭짓점을  ,  축과의 교점을 각각  라 할 때,  의 넓이는? [ 점]",
+            "inline_template": [
+              "  그림과 같이 이차함수 ",
+              {
+                "equation_slot_at_utf16_index": 21
+              },
+              "의 그래프의 꼭짓점을 ",
+              {
+                "equation_slot_at_utf16_index": 41
+              },
+              ", ",
+              {
+                "equation_slot_at_utf16_index": 51
+              },
+              "축과의 교점을 각각 ",
+              {
+                "equation_slot_at_utf16_index": 70
+              },
+              "라 할 때, ",
+              {
+                "equation_slot_at_utf16_index": 85
+              },
+              "의 넓이는? [",
+              {
+                "equation_slot_at_utf16_index": 101
+              },
+              "점] "
+            ]
+          },
+          {
+            "record_1based": 703,
+            "offset": 29021,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "y=-x ^{2} +2x+8"
+          },
+          {
+            "record_1based": 705,
+            "offset": 29191,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rmA"
+          },
+          {
+            "record_1based": 707,
+            "offset": 29337,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "x"
+          },
+          {
+            "record_1based": 709,
+            "offset": 29479,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rmB,~C"
+          },
+          {
+            "record_1based": 711,
+            "offset": 29631,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "TRIANGLE rmABC"
+          },
+          {
+            "record_1based": 713,
+            "offset": 29799,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "5"
+          },
+          {
+            "record_1based": 722,
+            "offset": 30504,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "①   ②",
+            "inline_template": [
+              "① ",
+              {
+                "equation_slot_at_utf16_index": 2
+              },
+              " ② ",
+              {
+                "equation_slot_at_utf16_index": 20
+              },
+              " "
+            ]
+          },
+          {
+            "record_1based": 726,
+            "offset": 30680,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "21"
+          },
+          {
+            "record_1based": 728,
+            "offset": 30824,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "27"
+          },
+          {
+            "record_1based": 730,
+            "offset": 30934,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "③   ④",
+            "inline_template": [
+              "③ ",
+              {
+                "equation_slot_at_utf16_index": 2
+              },
+              " ④ ",
+              {
+                "equation_slot_at_utf16_index": 20
+              },
+              " "
+            ]
+          },
+          {
+            "record_1based": 734,
+            "offset": 31110,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "28"
+          },
+          {
+            "record_1based": 736,
+            "offset": 31254,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "32"
+          },
+          {
+            "record_1based": 738,
+            "offset": 31364,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "⑤",
+            "inline_template": [
+              "⑤ ",
+              {
+                "equation_slot_at_utf16_index": 2
+              },
+              " "
+            ]
+          },
+          {
+            "record_1based": 742,
+            "offset": 31504,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "36"
+          }
+        ],
+        "pictures": [
+          {
+            "record_1based": 720,
+            "offset": 30381,
+            "tag": 85,
+            "level": 3,
+            "stream": "BinData/BIN0004.bmp",
+            "file": "question-only/q05/hwp-figure-1.png",
+            "width": 136,
+            "height": 167,
+            "decompressed_bmp_sha256": "888d4f6a3dc0fccaac3257109557fee27a28813b66f03aa83d6bc63ad7e1a78d",
+            "rgb_pixels_sha256": "df81075a67c10e03e33896fbeb17c74e0ee552a5e90c75d849d6d382fde4eb89"
+          }
+        ],
+        "boundary": {
+          "first_block_offset": 28313,
+          "last_block_end_offset": 31840
+        },
+        "document_header_records": [],
+        "document_header_pictures": [],
+        "reconstructed_paragraphs": [
+          {
+            "record_1based": 689,
+            "offset": 28341,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 29021,
+                "record_1based": 703,
+                "script": "y=-x ^{2} +2x+8"
+              },
+              {
+                "offset": 29191,
+                "record_1based": 705,
+                "script": "rmA"
+              },
+              {
+                "offset": 29337,
+                "record_1based": 707,
+                "script": "x"
+              },
+              {
+                "offset": 29479,
+                "record_1based": 709,
+                "script": "rmB,~C"
+              },
+              {
+                "offset": 29631,
+                "record_1based": 711,
+                "script": "TRIANGLE rmABC"
+              },
+              {
+                "offset": 29799,
+                "record_1based": 713,
+                "script": "5"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "그림과 같이 이차함수 ⟦y=-x ^{2} +2x+8⟧의 그래프의 꼭짓점을 ⟦rmA⟧, ⟦x⟧축과의 교점을 각각 ⟦rmB,~C⟧라 할 때, ⟦TRIANGLE rmABC⟧의 넓이는? [⟦5⟧점]"
+          },
+          {
+            "record_1based": 722,
+            "offset": 30504,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 30680,
+                "record_1based": 726,
+                "script": "21"
+              },
+              {
+                "offset": 30824,
+                "record_1based": 728,
+                "script": "27"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "① ⟦21⟧ ② ⟦27⟧"
+          },
+          {
+            "record_1based": 730,
+            "offset": 30934,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 31110,
+                "record_1based": 734,
+                "script": "28"
+              },
+              {
+                "offset": 31254,
+                "record_1based": 736,
+                "script": "32"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "③ ⟦28⟧ ④ ⟦32⟧"
+          },
+          {
+            "record_1based": 738,
+            "offset": 31364,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 31504,
+                "record_1based": 742,
+                "script": "36"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "⑤ ⟦36⟧"
+          }
+        ],
+        "all_inline_equation_slots_resolved": true
+      },
+      "source_path": "N:\\개인\\기출\\기출작업\\이전차수\\196차\\[범일중][3][25-2-중간][비상] (완료).hwp"
+    }
+  ],
+  "completed_pdf_sources": [
+    {
+      "file": "question-only/q05/s4-printed-question.png",
+      "source_id": "s4",
+      "source_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[범일중][3][25-2-중간][비상] (완료).PDF",
+      "source_sha256": "318dcd0587e97e993e8c3536b01e7c978205990386e5ba7e9242b68dde4d0689",
+      "pdf_page_1based": 1,
+      "clip_points": [
+        367,
+        498.1416931152344,
+        680,
+        775.7925415039062
+      ],
+      "original_rotation": 0,
+      "render_rotation": 0,
+      "scale": 3,
+      "sha256": "d42aa131ce5f95e7a55e8210329dc39bbec8029d157f39dea7c60a55fe3d3488",
+      "author_input_allowed": true,
+      "literal_pdf_text": "5. 그림과 같이 이차함수 의 그래프의\n\n꼭짓점을 A, 축과의 교점을 각각 BC라 할 때,\n\n∆ABC의 넓이는? [점]\n\n\n\n\n\n①            ② \n\n③            ④ \n\n⑤ \n\n [중단원] 이차함수의 활용\n\n [난이도] 하",
+      "normalized_complete_extracted_text": "5.그림과같이이차함수의그래프의꼭짓점을A,축과의교점을각각BC라할때,∆ABC의넓이는?[점]①②③④⑤[중단원]이차함수의활용[난이도]하"
+    },
+    {
+      "file": "question-only/q05/s6-printed-question.png",
+      "source_id": "s6",
+      "source_path": "N:\\개인\\기출\\기출작업\\이전차수\\196차\\[범일중][3][25-2-중간][비상] (완료).pdf",
+      "source_sha256": "f755311a97514d66c9f927940db11cab03e0265be08c76b5cd8e71002eb4928f",
+      "pdf_page_1based": 1,
+      "clip_points": [
+        302,
+        405.9034729003906,
+        554,
+        634.262939453125
+      ],
+      "original_rotation": 0,
+      "render_rotation": 0,
+      "scale": 3,
+      "sha256": "bede5fc8e9ab914c424204ad71eb2f1a7a1102206418885979e72fb918f033e5",
+      "author_input_allowed": true,
+      "literal_pdf_text": "5. 그림과 같이 이차함수 의 그래프의\n\n꼭짓점을 A, 축과의 교점을 각각 BC라 할 때,\n\n∆ABC의 넓이는? [점]\n\n\n\n\n\n①            ② \n\n③            ④ \n\n⑤ \n\n [중단원] 이차함수의 활용\n\n [난이도] 하",
+      "normalized_complete_extracted_text": "5.그림과같이이차함수의그래프의꼭짓점을A,축과의교점을각각BC라할때,∆ABC의넓이는?[점]①②③④⑤[중단원]이차함수의활용[난이도]하"
+    }
+  ],
+  "original_scan": {
+    "source_id": "s3",
+    "source_sha256": "a66743b0d3efb668b1ac8a0884356bcc93f3868d6ed0270cbf4bc67976faf992",
+    "pdf_page_1based": 1,
+    "printed_physical_question_page": 1,
+    "render": {
+      "file": "reviewer-only/scans/s3-page-1.png",
+      "source_id": "s3",
+      "source_sha256": "a66743b0d3efb668b1ac8a0884356bcc93f3868d6ed0270cbf4bc67976faf992",
+      "physical_pdf_page_1based": 1,
+      "clip_points": [
+        0.0,
+        150.0,
+        728.0,
+        1031.0
+      ],
+      "original_rotation": 0,
+      "render_rotation": 90,
+      "scale": 1.5,
+      "sha256": "3d39f0fda14546b5cde100ca1f07c28ad7c121815414b5c5e610d6652f0be4f3",
+      "author_input_allowed": false,
+      "incidental_handwriting_possible": true
+    },
+    "original_printed_label": "5",
+    "author_input_allowed": false,
+    "source_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\중3\\[범일중][3][25-2-중간](원본)(루비루비).pdf"
+  },
+  "complete_pdf_extracted_text_comparison": {
+    "equal": true,
+    "comparison": "complete whitespace-normalized per-question text, not substring or token membership",
+    "decision_limit": "Extraction equality is auxiliary. Full rendered content, HWP equations and original scan must also be reviewed.",
+    "differences": []
+  },
+  "figure_linkage": {
+    "hwp": {
+      "record_1based": 720,
+      "offset": 30381,
+      "tag": 85,
+      "level": 3,
+      "stream": "BinData/BIN0004.bmp",
+      "file": "question-only/q05/hwp-figure-1.png",
+      "width": 136,
+      "height": 167,
+      "decompressed_bmp_sha256": "888d4f6a3dc0fccaac3257109557fee27a28813b66f03aa83d6bc63ad7e1a78d",
+      "rgb_pixels_sha256": "df81075a67c10e03e33896fbeb17c74e0ee552a5e90c75d849d6d382fde4eb89"
+    },
+    "pdf_figures": [
+      {
+        "source_id": "s4",
+        "source_sha256": "318dcd0587e97e993e8c3536b01e7c978205990386e5ba7e9242b68dde4d0689",
+        "pdf_page_1based": 1,
+        "xref": 14,
+        "image_rect_points": [
+          472.3429870605469,
+          556.989013671875,
+          574.27001953125,
+          682.2969970703125
+        ],
+        "file": "question-only/q05/s4-embedded-figure.png",
+        "sha256": "84e622b0eda5b0a4cedb2f8c2e9e26934c8ab34f429d772c7b0f9500cfe8bf99",
+        "width": 136,
+        "height": 167,
+        "hwp_dimensions_equal": true,
+        "hwp_rgb_pixels_equal": false,
+        "hwp_mean_absolute_rgb_channel_difference": 3.855744,
+        "hwp_maximum_rgb_channel_difference": 43
+      },
+      {
+        "source_id": "s6",
+        "source_sha256": "f755311a97514d66c9f927940db11cab03e0265be08c76b5cd8e71002eb4928f",
+        "pdf_page_1based": 1,
+        "xref": 23,
+        "image_rect_points": [
+          385.7130126953125,
+          454.66302490234375,
+          468.947998046875,
+          556.9110107421875
+        ],
+        "file": "question-only/q05/s6-embedded-figure.png",
+        "sha256": "af7cade99733977bf6eea4b77cc2368b7ff3fc84c56176e4c5bac3db8d763b68",
+        "width": 136,
+        "height": 167,
+        "hwp_dimensions_equal": true,
+        "hwp_rgb_pixels_equal": false,
+        "hwp_mean_absolute_rgb_channel_difference": 4.010993,
+        "hwp_maximum_rgb_channel_difference": 64
+      }
+    ]
+  },
+  "visual_comparison_status": "confirmed",
+  "extraction_limit_resolved_by_visual_review": "Complete extracted question text equals after whitespace removal; direct figure/scan/HWP review is still required and was performed.",
+  "computed_hwp_vs_normalized_complete_content": {
+    "checks": {
+      "complete_stem_equal_after_bounded_presentation_conversion": true,
+      "complete_ordered_choices_equal": true,
+      "score_equal": true,
+      "all_hwp_inline_equations_placed": true,
+      "boxed_given_equations_equal": true,
+      "complete_table_cells_equal": true
+    },
+    "hwp_complete_stem": "그림과같이이차함수y=-x²+2x+8의그래프의꼭짓점을A,x축과의교점을각각B,C라할때,△ABC의넓이는?",
+    "normalized_complete_stem": "그림과같이이차함수y=-x²+2x+8의그래프의꼭짓점을A,x축과의교점을각각B,C라할때,△ABC의넓이는?",
+    "stem_differences": [],
+    "hwp_complete_ordered_choices": [
+      "21",
+      "27",
+      "28",
+      "32",
+      "36"
+    ],
+    "normalized_complete_ordered_choices": [
+      "21",
+      "27",
+      "28",
+      "32",
+      "36"
+    ],
+    "boxed_givens": null,
+    "table_cells": null,
+    "method_limit": "Presentation conversion only; no numerical expression evaluation or original-answer solving. It does not alone prove pixels/scans equivalent."
+  },
+  "direct_visual_comparison": {
+    "question_placement_and_label": "passed",
+    "complete_printed_stem_and_all_givens": "passed",
+    "all_equations_signs_exponents_fractions_and_units": "passed",
+    "all_ordered_choices_or_printed_absence": "passed",
+    "native_tables_or_boxed_given_structure": "passed",
+    "all_printed_figure_labels_and_relations_or_printed_absence": "passed",
+    "score_and_partial_credit_label": "passed",
+    "sources_actually_compared": [
+      "s1 HWP main record content",
+      "s5 HWP main record content",
+      "s4 anonymous completed PDF",
+      "s6 named completed PDF",
+      "s3 original paper scan"
+    ],
+    "view_image_used": true,
+    "handwriting_not_printed_content": true,
+    "original_answer_or_solution_agreement_used": false,
+    "annotation_limit": "Handwritten student choices/work were incidentally visible and not transcribed or used. Scans are reviewer-only; clean printed sources and normalized question records are the author whitelist."
+  },
+  "source_identity": {
+    "status": "confirmed",
+    "school_full": "범일중학교",
+    "school_normalized": "범일중",
+    "grade": 3,
+    "subject": "수학",
+    "semester": 2,
+    "round": "중간",
+    "exam_year": 2025,
+    "administration_date": "2025-09-23",
+    "period": 3,
+    "subject_code": "05",
+    "basis": "Actual printed original title/date/footer, linked by complete question content and printed page/label. Neither filename nor byte hash alone is identity proof.",
+    "edited_BI_label_scope": "Only these compared files; no universal BI-to-school mapping.",
+    "footer_26_year_role": "Observed 대비 wording + linked explicit2025 exam administration support editorial/preparation label; creation date/intended2026 use remain unknown."
+  },
+  "held_components": [
+    {
+      "component": "export_acquisition_native_custody_chain",
+      "status": "held",
+      "reason": "No converter/exporter or custody records inspected; content equivalence does not prove a direct chain."
+    },
+    {
+      "component": "textbook_publisher",
+      "status": "held",
+      "reason": "비상 is a filename hint; no printed textbook/publisher attestation established."
+    },
+    {
+      "component": "copyright_reuse_authorization",
+      "status": "held",
+      "reason": "A school copyright line is not a reuse licence/permission."
+    },
+    {
+      "component": "curriculum_new_twin_approval",
+      "status": "outside this source audit",
+      "reason": "Original equivalence/identity does not approve curriculum, new answers/solutions or candidates."
+    }
+  ]
+}

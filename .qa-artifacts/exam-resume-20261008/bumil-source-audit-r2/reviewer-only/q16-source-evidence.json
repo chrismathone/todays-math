@@ -1,0 +1,877 @@
+{
+  "question_number": 16,
+  "original_label": "16",
+  "score": 4,
+  "normalized_question_file": "question-only/q16/normalized-question.json",
+  "normalized_question_sha256": "12de9c06aefe5e3057f535bc47061613b7aa5d9f22c17a27e4ab2c8f3370c627",
+  "hwp_sources": [
+    {
+      "source_id": "s1",
+      "source_sha256": "3abb1a759dd96f6e9a76728a1ecae70013df605bb3e73745908a773897a6a43b",
+      "stream": "BodyText/Section0",
+      "question_record": {
+        "question_number": 16,
+        "records": [
+          {
+            "record_1based": 1503,
+            "offset": 69528,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "원  에서  ,  ,  이다.  일 때,  의 크기는? [ 점]",
+            "inline_template": [
+              "  원 ",
+              {
+                "equation_slot_at_utf16_index": 11
+              },
+              "에서 ",
+              {
+                "equation_slot_at_utf16_index": 22
+              },
+              ", ",
+              {
+                "equation_slot_at_utf16_index": 32
+              },
+              ", ",
+              {
+                "equation_slot_at_utf16_index": 42
+              },
+              "이다. ",
+              {
+                "equation_slot_at_utf16_index": 54
+              },
+              "일 때, ",
+              {
+                "equation_slot_at_utf16_index": 67
+              },
+              "의 크기는? [",
+              {
+                "equation_slot_at_utf16_index": 83
+              },
+              "점] "
+            ]
+          },
+          {
+            "record_1based": 1514,
+            "offset": 70056,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rmO"
+          },
+          {
+            "record_1based": 1516,
+            "offset": 70202,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rm {bar{OM}} BOT  {bar{AB}}"
+          },
+          {
+            "record_1based": 1518,
+            "offset": 70396,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rm {bar{ON}} BOT  {bar{AC}}"
+          },
+          {
+            "record_1based": 1520,
+            "offset": 70590,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rm {bar{OM}} = {bar{ON}}"
+          },
+          {
+            "record_1based": 1522,
+            "offset": 70778,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rm ANGLE ABC=70°"
+          },
+          {
+            "record_1based": 1524,
+            "offset": 70950,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rm ANGLE BAC"
+          },
+          {
+            "record_1based": 1526,
+            "offset": 71114,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "4"
+          },
+          {
+            "record_1based": 1535,
+            "offset": 71819,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "①   ②",
+            "inline_template": [
+              "① ",
+              {
+                "equation_slot_at_utf16_index": 2
+              },
+              " ② ",
+              {
+                "equation_slot_at_utf16_index": 20
+              },
+              " "
+            ]
+          },
+          {
+            "record_1based": 1539,
+            "offset": 71995,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "40°"
+          },
+          {
+            "record_1based": 1541,
+            "offset": 72141,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "45°"
+          },
+          {
+            "record_1based": 1543,
+            "offset": 72253,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "③   ④",
+            "inline_template": [
+              "③ ",
+              {
+                "equation_slot_at_utf16_index": 2
+              },
+              " ④ ",
+              {
+                "equation_slot_at_utf16_index": 20
+              },
+              " "
+            ]
+          },
+          {
+            "record_1based": 1547,
+            "offset": 72429,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "50°"
+          },
+          {
+            "record_1based": 1549,
+            "offset": 72575,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "55°"
+          },
+          {
+            "record_1based": 1551,
+            "offset": 72687,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "⑤",
+            "inline_template": [
+              "⑤ ",
+              {
+                "equation_slot_at_utf16_index": 2
+              },
+              " "
+            ]
+          },
+          {
+            "record_1based": 1555,
+            "offset": 72827,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "60°"
+          }
+        ],
+        "pictures": [
+          {
+            "record_1based": 1533,
+            "offset": 71696,
+            "tag": 85,
+            "level": 3,
+            "stream": "BinData/BIN000D.bmp",
+            "file": "question-only/q16/hwp-figure-1.png",
+            "width": 156,
+            "height": 152,
+            "decompressed_bmp_sha256": "4e069065b184a2e12d5e64f7f54ee4f1035687e1d4e9b030e254c272a401c0be",
+            "rgb_pixels_sha256": "713e84a63b1948984d626680d1a3a4d5322a1f5f7507d2b8105e29242aba92b3"
+          }
+        ],
+        "boundary": {
+          "first_block_offset": 69500,
+          "last_block_end_offset": 73399
+        },
+        "document_header_records": [],
+        "document_header_pictures": [],
+        "reconstructed_paragraphs": [
+          {
+            "record_1based": 1503,
+            "offset": 69528,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 70056,
+                "record_1based": 1514,
+                "script": "rmO"
+              },
+              {
+                "offset": 70202,
+                "record_1based": 1516,
+                "script": "rm {bar{OM}} BOT  {bar{AB}}"
+              },
+              {
+                "offset": 70396,
+                "record_1based": 1518,
+                "script": "rm {bar{ON}} BOT  {bar{AC}}"
+              },
+              {
+                "offset": 70590,
+                "record_1based": 1520,
+                "script": "rm {bar{OM}} = {bar{ON}}"
+              },
+              {
+                "offset": 70778,
+                "record_1based": 1522,
+                "script": "rm ANGLE ABC=70°"
+              },
+              {
+                "offset": 70950,
+                "record_1based": 1524,
+                "script": "rm ANGLE BAC"
+              },
+              {
+                "offset": 71114,
+                "record_1based": 1526,
+                "script": "4"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "원 ⟦rmO⟧에서 ⟦rm {bar{OM}} BOT  {bar{AB}}⟧, ⟦rm {bar{ON}} BOT  {bar{AC}}⟧, ⟦rm {bar{OM}} = {bar{ON}}⟧이다. ⟦rm ANGLE ABC=70°⟧일 때, ⟦rm ANGLE BAC⟧의 크기는? [⟦4⟧점]"
+          },
+          {
+            "record_1based": 1535,
+            "offset": 71819,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 71995,
+                "record_1based": 1539,
+                "script": "40°"
+              },
+              {
+                "offset": 72141,
+                "record_1based": 1541,
+                "script": "45°"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "① ⟦40°⟧ ② ⟦45°⟧"
+          },
+          {
+            "record_1based": 1543,
+            "offset": 72253,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 72429,
+                "record_1based": 1547,
+                "script": "50°"
+              },
+              {
+                "offset": 72575,
+                "record_1based": 1549,
+                "script": "55°"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "③ ⟦50°⟧ ④ ⟦55°⟧"
+          },
+          {
+            "record_1based": 1551,
+            "offset": 72687,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 72827,
+                "record_1based": 1555,
+                "script": "60°"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "⑤ ⟦60°⟧"
+          }
+        ],
+        "all_inline_equation_slots_resolved": true
+      },
+      "source_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[범일중][3][25-2-중간][비상] (완료).hwp"
+    },
+    {
+      "source_id": "s5",
+      "source_sha256": "3abb1a759dd96f6e9a76728a1ecae70013df605bb3e73745908a773897a6a43b",
+      "stream": "BodyText/Section0",
+      "question_record": {
+        "question_number": 16,
+        "records": [
+          {
+            "record_1based": 1503,
+            "offset": 69528,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "원  에서  ,  ,  이다.  일 때,  의 크기는? [ 점]",
+            "inline_template": [
+              "  원 ",
+              {
+                "equation_slot_at_utf16_index": 11
+              },
+              "에서 ",
+              {
+                "equation_slot_at_utf16_index": 22
+              },
+              ", ",
+              {
+                "equation_slot_at_utf16_index": 32
+              },
+              ", ",
+              {
+                "equation_slot_at_utf16_index": 42
+              },
+              "이다. ",
+              {
+                "equation_slot_at_utf16_index": 54
+              },
+              "일 때, ",
+              {
+                "equation_slot_at_utf16_index": 67
+              },
+              "의 크기는? [",
+              {
+                "equation_slot_at_utf16_index": 83
+              },
+              "점] "
+            ]
+          },
+          {
+            "record_1based": 1514,
+            "offset": 70056,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rmO"
+          },
+          {
+            "record_1based": 1516,
+            "offset": 70202,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rm {bar{OM}} BOT  {bar{AB}}"
+          },
+          {
+            "record_1based": 1518,
+            "offset": 70396,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rm {bar{ON}} BOT  {bar{AC}}"
+          },
+          {
+            "record_1based": 1520,
+            "offset": 70590,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rm {bar{OM}} = {bar{ON}}"
+          },
+          {
+            "record_1based": 1522,
+            "offset": 70778,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rm ANGLE ABC=70°"
+          },
+          {
+            "record_1based": 1524,
+            "offset": 70950,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rm ANGLE BAC"
+          },
+          {
+            "record_1based": 1526,
+            "offset": 71114,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "4"
+          },
+          {
+            "record_1based": 1535,
+            "offset": 71819,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "①   ②",
+            "inline_template": [
+              "① ",
+              {
+                "equation_slot_at_utf16_index": 2
+              },
+              " ② ",
+              {
+                "equation_slot_at_utf16_index": 20
+              },
+              " "
+            ]
+          },
+          {
+            "record_1based": 1539,
+            "offset": 71995,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "40°"
+          },
+          {
+            "record_1based": 1541,
+            "offset": 72141,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "45°"
+          },
+          {
+            "record_1based": 1543,
+            "offset": 72253,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "③   ④",
+            "inline_template": [
+              "③ ",
+              {
+                "equation_slot_at_utf16_index": 2
+              },
+              " ④ ",
+              {
+                "equation_slot_at_utf16_index": 20
+              },
+              " "
+            ]
+          },
+          {
+            "record_1based": 1547,
+            "offset": 72429,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "50°"
+          },
+          {
+            "record_1based": 1549,
+            "offset": 72575,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "55°"
+          },
+          {
+            "record_1based": 1551,
+            "offset": 72687,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "⑤",
+            "inline_template": [
+              "⑤ ",
+              {
+                "equation_slot_at_utf16_index": 2
+              },
+              " "
+            ]
+          },
+          {
+            "record_1based": 1555,
+            "offset": 72827,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "60°"
+          }
+        ],
+        "pictures": [
+          {
+            "record_1based": 1533,
+            "offset": 71696,
+            "tag": 85,
+            "level": 3,
+            "stream": "BinData/BIN000D.bmp",
+            "file": "question-only/q16/hwp-figure-1.png",
+            "width": 156,
+            "height": 152,
+            "decompressed_bmp_sha256": "4e069065b184a2e12d5e64f7f54ee4f1035687e1d4e9b030e254c272a401c0be",
+            "rgb_pixels_sha256": "713e84a63b1948984d626680d1a3a4d5322a1f5f7507d2b8105e29242aba92b3"
+          }
+        ],
+        "boundary": {
+          "first_block_offset": 69500,
+          "last_block_end_offset": 73399
+        },
+        "document_header_records": [],
+        "document_header_pictures": [],
+        "reconstructed_paragraphs": [
+          {
+            "record_1based": 1503,
+            "offset": 69528,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 70056,
+                "record_1based": 1514,
+                "script": "rmO"
+              },
+              {
+                "offset": 70202,
+                "record_1based": 1516,
+                "script": "rm {bar{OM}} BOT  {bar{AB}}"
+              },
+              {
+                "offset": 70396,
+                "record_1based": 1518,
+                "script": "rm {bar{ON}} BOT  {bar{AC}}"
+              },
+              {
+                "offset": 70590,
+                "record_1based": 1520,
+                "script": "rm {bar{OM}} = {bar{ON}}"
+              },
+              {
+                "offset": 70778,
+                "record_1based": 1522,
+                "script": "rm ANGLE ABC=70°"
+              },
+              {
+                "offset": 70950,
+                "record_1based": 1524,
+                "script": "rm ANGLE BAC"
+              },
+              {
+                "offset": 71114,
+                "record_1based": 1526,
+                "script": "4"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "원 ⟦rmO⟧에서 ⟦rm {bar{OM}} BOT  {bar{AB}}⟧, ⟦rm {bar{ON}} BOT  {bar{AC}}⟧, ⟦rm {bar{OM}} = {bar{ON}}⟧이다. ⟦rm ANGLE ABC=70°⟧일 때, ⟦rm ANGLE BAC⟧의 크기는? [⟦4⟧점]"
+          },
+          {
+            "record_1based": 1535,
+            "offset": 71819,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 71995,
+                "record_1based": 1539,
+                "script": "40°"
+              },
+              {
+                "offset": 72141,
+                "record_1based": 1541,
+                "script": "45°"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "① ⟦40°⟧ ② ⟦45°⟧"
+          },
+          {
+            "record_1based": 1543,
+            "offset": 72253,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 72429,
+                "record_1based": 1547,
+                "script": "50°"
+              },
+              {
+                "offset": 72575,
+                "record_1based": 1549,
+                "script": "55°"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "③ ⟦50°⟧ ④ ⟦55°⟧"
+          },
+          {
+            "record_1based": 1551,
+            "offset": 72687,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 72827,
+                "record_1based": 1555,
+                "script": "60°"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "⑤ ⟦60°⟧"
+          }
+        ],
+        "all_inline_equation_slots_resolved": true
+      },
+      "source_path": "N:\\개인\\기출\\기출작업\\이전차수\\196차\\[범일중][3][25-2-중간][비상] (완료).hwp"
+    }
+  ],
+  "completed_pdf_sources": [
+    {
+      "file": "question-only/q16/s4-printed-question.png",
+      "source_id": "s4",
+      "source_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[범일중][3][25-2-중간][비상] (완료).PDF",
+      "source_sha256": "318dcd0587e97e993e8c3536b01e7c978205990386e5ba7e9242b68dde4d0689",
+      "pdf_page_1based": 4,
+      "clip_points": [
+        51,
+        82.40679168701172,
+        359,
+        330.9190368652344
+      ],
+      "original_rotation": 0,
+      "render_rotation": 0,
+      "scale": 3,
+      "sha256": "e728486dc40379101366c7b425ca83f5d62a738288e3a2f608f1b788b67b3182",
+      "author_input_allowed": true,
+      "literal_pdf_text": "16. 원 O에서 OM⊥  AB, ON⊥AC, OM ON이다.\n\n∠ABC °일 때, ∠BAC의 크기는? [점]\n\n\n\n\n\n① °           ② °\n\n③ °           ④ °\n\n⑤ °\n\n [중단원] 원과 직선\n\n [난이도] 하",
+      "normalized_complete_extracted_text": "16.원O에서OM⊥AB,ON⊥AC,OMON이다.∠ABC°일때,∠BAC의크기는?[점]①°②°③°④°⑤°[중단원]원과직선[난이도]하"
+    },
+    {
+      "file": "question-only/q16/s6-printed-question.png",
+      "source_id": "s6",
+      "source_path": "N:\\개인\\기출\\기출작업\\이전차수\\196차\\[범일중][3][25-2-중간][비상] (완료).pdf",
+      "source_sha256": "f755311a97514d66c9f927940db11cab03e0265be08c76b5cd8e71002eb4928f",
+      "pdf_page_1based": 4,
+      "clip_points": [
+        40,
+        66.55431365966797,
+        292,
+        271.0598449707031
+      ],
+      "original_rotation": 0,
+      "render_rotation": 0,
+      "scale": 3,
+      "sha256": "e7c8a0ffcf5381d2e1fa5054718d7e1adf495ecdf662c3b3debf295662c67955",
+      "author_input_allowed": true,
+      "literal_pdf_text": "16. 원 O에서 OM⊥  AB, ON⊥AC, OMON이다.\n\n∠ABC °일 때, ∠BAC의 크기는? [점]\n\n\n\n\n\n① °           ② °\n\n③ °           ④ °\n\n⑤ °\n\n [중단원] 원과 직선\n\n [난이도] 하",
+      "normalized_complete_extracted_text": "16.원O에서OM⊥AB,ON⊥AC,OMON이다.∠ABC°일때,∠BAC의크기는?[점]①°②°③°④°⑤°[중단원]원과직선[난이도]하"
+    }
+  ],
+  "original_scan": {
+    "source_id": "s3",
+    "source_sha256": "a66743b0d3efb668b1ac8a0884356bcc93f3868d6ed0270cbf4bc67976faf992",
+    "pdf_page_1based": 3,
+    "printed_physical_question_page": 3,
+    "render": {
+      "file": "reviewer-only/scans/s3-page-3.png",
+      "source_id": "s3",
+      "source_sha256": "a66743b0d3efb668b1ac8a0884356bcc93f3868d6ed0270cbf4bc67976faf992",
+      "physical_pdf_page_1based": 3,
+      "clip_points": [
+        0.0,
+        0.0,
+        728.0,
+        1031.0
+      ],
+      "original_rotation": 0,
+      "render_rotation": 90,
+      "scale": 1.5,
+      "sha256": "5ef2247f181105eec2eb4f680a263348dc79249362bcf9063460fe3e8b42de5a",
+      "author_input_allowed": false,
+      "incidental_handwriting_possible": true
+    },
+    "original_printed_label": "16",
+    "author_input_allowed": false,
+    "source_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\중3\\[범일중][3][25-2-중간](원본)(루비루비).pdf"
+  },
+  "complete_pdf_extracted_text_comparison": {
+    "equal": false,
+    "comparison": "complete whitespace-normalized per-question text, not substring or token membership",
+    "decision_limit": "Extraction equality is auxiliary. Full rendered content, HWP equations and original scan must also be reviewed.",
+    "differences": [
+      {
+        "op": "insert",
+        "a_start": 23,
+        "a_end": 23,
+        "b_start": 23,
+        "b_end": 24,
+        "a": "",
+        "b": ""
+      },
+      {
+        "op": "delete",
+        "a_start": 26,
+        "a_end": 27,
+        "b_start": 27,
+        "b_end": 27,
+        "a": "",
+        "b": ""
+      }
+    ]
+  },
+  "figure_linkage": {
+    "hwp": {
+      "record_1based": 1533,
+      "offset": 71696,
+      "tag": 85,
+      "level": 3,
+      "stream": "BinData/BIN000D.bmp",
+      "file": "question-only/q16/hwp-figure-1.png",
+      "width": 156,
+      "height": 152,
+      "decompressed_bmp_sha256": "4e069065b184a2e12d5e64f7f54ee4f1035687e1d4e9b030e254c272a401c0be",
+      "rgb_pixels_sha256": "713e84a63b1948984d626680d1a3a4d5322a1f5f7507d2b8105e29242aba92b3"
+    },
+    "pdf_figures": [
+      {
+        "source_id": "s4",
+        "source_sha256": "318dcd0587e97e993e8c3536b01e7c978205990386e5ba7e9242b68dde4d0689",
+        "pdf_page_1based": 4,
+        "xref": 27,
+        "image_rect_points": [
+          146.17599487304688,
+          123.38899230957031,
+          263.09197998046875,
+          237.30499267578125
+        ],
+        "file": "question-only/q16/s4-embedded-figure.png",
+        "sha256": "235a49398e27bebb1ed0f52984ade2a2173d08307709738e10bcb90d723f6529",
+        "width": 156,
+        "height": 152,
+        "hwp_dimensions_equal": true,
+        "hwp_rgb_pixels_equal": false,
+        "hwp_mean_absolute_rgb_channel_difference": 3.555232,
+        "hwp_maximum_rgb_channel_difference": 45
+      },
+      {
+        "source_id": "s6",
+        "source_sha256": "f755311a97514d66c9f927940db11cab03e0265be08c76b5cd8e71002eb4928f",
+        "pdf_page_1based": 4,
+        "xref": 57,
+        "image_rect_points": [
+          119.33599853515625,
+          100.69001007080078,
+          214.80499267578125,
+          193.7080078125
+        ],
+        "file": "question-only/q16/s6-embedded-figure.png",
+        "sha256": "39e14842e114ac6f055359a34b6ade4a24888e481155b00acaf1b9ca5eef64d7",
+        "width": 156,
+        "height": 152,
+        "hwp_dimensions_equal": true,
+        "hwp_rgb_pixels_equal": false,
+        "hwp_mean_absolute_rgb_channel_difference": 3.822481,
+        "hwp_maximum_rgb_channel_difference": 47
+      }
+    ]
+  },
+  "visual_comparison_status": "confirmed",
+  "extraction_limit_resolved_by_visual_review": "The full text diff moves U+E06D overline glyphs relative to their segment letters. Complete equations, letters, words and render meanings match; original strokes are retained in raw evidence.",
+  "computed_hwp_vs_normalized_complete_content": {
+    "checks": {
+      "complete_stem_equal_after_bounded_presentation_conversion": true,
+      "complete_ordered_choices_equal": true,
+      "score_equal": true,
+      "all_hwp_inline_equations_placed": true,
+      "boxed_given_equations_equal": true,
+      "complete_table_cells_equal": true
+    },
+    "hwp_complete_stem": "원O에서OM⊥AB,ON⊥AC,OM=ON이다.∠ABC=70°일때,∠BAC의크기는?",
+    "normalized_complete_stem": "원O에서OM⊥AB,ON⊥AC,OM=ON이다.∠ABC=70°일때,∠BAC의크기는?",
+    "stem_differences": [],
+    "hwp_complete_ordered_choices": [
+      "40°",
+      "45°",
+      "50°",
+      "55°",
+      "60°"
+    ],
+    "normalized_complete_ordered_choices": [
+      "40°",
+      "45°",
+      "50°",
+      "55°",
+      "60°"
+    ],
+    "boxed_givens": null,
+    "table_cells": null,
+    "method_limit": "Presentation conversion only; no numerical expression evaluation or original-answer solving. It does not alone prove pixels/scans equivalent."
+  },
+  "direct_visual_comparison": {
+    "question_placement_and_label": "passed",
+    "complete_printed_stem_and_all_givens": "passed",
+    "all_equations_signs_exponents_fractions_and_units": "passed",
+    "all_ordered_choices_or_printed_absence": "passed",
+    "native_tables_or_boxed_given_structure": "passed",
+    "all_printed_figure_labels_and_relations_or_printed_absence": "passed",
+    "score_and_partial_credit_label": "passed",
+    "sources_actually_compared": [
+      "s1 HWP main record content",
+      "s5 HWP main record content",
+      "s4 anonymous completed PDF",
+      "s6 named completed PDF",
+      "s3 original paper scan"
+    ],
+    "view_image_used": true,
+    "handwriting_not_printed_content": true,
+    "original_answer_or_solution_agreement_used": false,
+    "annotation_limit": "Handwritten student choices/work were incidentally visible and not transcribed or used. Scans are reviewer-only; clean printed sources and normalized question records are the author whitelist."
+  },
+  "source_identity": {
+    "status": "confirmed",
+    "school_full": "범일중학교",
+    "school_normalized": "범일중",
+    "grade": 3,
+    "subject": "수학",
+    "semester": 2,
+    "round": "중간",
+    "exam_year": 2025,
+    "administration_date": "2025-09-23",
+    "period": 3,
+    "subject_code": "05",
+    "basis": "Actual printed original title/date/footer, linked by complete question content and printed page/label. Neither filename nor byte hash alone is identity proof.",
+    "edited_BI_label_scope": "Only these compared files; no universal BI-to-school mapping.",
+    "footer_26_year_role": "Observed 대비 wording + linked explicit2025 exam administration support editorial/preparation label; creation date/intended2026 use remain unknown."
+  },
+  "held_components": [
+    {
+      "component": "export_acquisition_native_custody_chain",
+      "status": "held",
+      "reason": "No converter/exporter or custody records inspected; content equivalence does not prove a direct chain."
+    },
+    {
+      "component": "textbook_publisher",
+      "status": "held",
+      "reason": "비상 is a filename hint; no printed textbook/publisher attestation established."
+    },
+    {
+      "component": "copyright_reuse_authorization",
+      "status": "held",
+      "reason": "A school copyright line is not a reuse licence/permission."
+    },
+    {
+      "component": "curriculum_new_twin_approval",
+      "status": "outside this source audit",
+      "reason": "Original equivalence/identity does not approve curriculum, new answers/solutions or candidates."
+    }
+  ]
+}

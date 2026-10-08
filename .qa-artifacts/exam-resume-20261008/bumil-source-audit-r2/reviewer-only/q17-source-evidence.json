@@ -1,0 +1,911 @@
+{
+  "question_number": 17,
+  "original_label": "17",
+  "score": 5,
+  "normalized_question_file": "question-only/q17/normalized-question.json",
+  "normalized_question_sha256": "3a06429313a0275c9e3b065f24b176bdbd1c69427c9fd10c9b55e1d107800815",
+  "hwp_sources": [
+    {
+      "source_id": "s1",
+      "source_sha256": "3abb1a759dd96f6e9a76728a1ecae70013df605bb3e73745908a773897a6a43b",
+      "stream": "BodyText/Section0",
+      "question_record": {
+        "question_number": 17,
+        "records": [
+          {
+            "record_1based": 1576,
+            "offset": 73427,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "그림과 같이 직사각형  의 세 변에 접하는 원  가 있다. 네 점  는 원  의 접점이고,  ,  일 때,  의 넓이는? [ 점]",
+            "inline_template": [
+              "  그림과 같이 직사각형 ",
+              {
+                "equation_slot_at_utf16_index": 21
+              },
+              "의 세 변에 접하는 원 ",
+              {
+                "equation_slot_at_utf16_index": 42
+              },
+              "가 있다. 네 점 ",
+              {
+                "equation_slot_at_utf16_index": 60
+              },
+              "는 원 ",
+              {
+                "equation_slot_at_utf16_index": 72
+              },
+              "의 접점이고, ",
+              {
+                "equation_slot_at_utf16_index": 88
+              },
+              ", ",
+              {
+                "equation_slot_at_utf16_index": 98
+              },
+              "일 때, ",
+              {
+                "equation_slot_at_utf16_index": 111
+              },
+              "의 넓이는? [",
+              {
+                "equation_slot_at_utf16_index": 127
+              },
+              "점] "
+            ]
+          },
+          {
+            "record_1based": 1590,
+            "offset": 74159,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rmABCD"
+          },
+          {
+            "record_1based": 1592,
+            "offset": 74311,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rmO"
+          },
+          {
+            "record_1based": 1594,
+            "offset": 74457,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rmE,~F,~G,~H"
+          },
+          {
+            "record_1based": 1596,
+            "offset": 74621,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rmO"
+          },
+          {
+            "record_1based": 1598,
+            "offset": 74767,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rm {bar{AB}} =6`cm"
+          },
+          {
+            "record_1based": 1600,
+            "offset": 74943,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rm {bar{BC}} =8`cm"
+          },
+          {
+            "record_1based": 1602,
+            "offset": 75119,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "TRIANGLE rmABM"
+          },
+          {
+            "record_1based": 1604,
+            "offset": 75287,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "5"
+          },
+          {
+            "record_1based": 1613,
+            "offset": 75992,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "①   ②",
+            "inline_template": [
+              "① ",
+              {
+                "equation_slot_at_utf16_index": 2
+              },
+              " ② ",
+              {
+                "equation_slot_at_utf16_index": 20
+              },
+              " "
+            ]
+          },
+          {
+            "record_1based": 1617,
+            "offset": 76168,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "{16} over {5} `rmcm ^{2}"
+          },
+          {
+            "record_1based": 1619,
+            "offset": 76356,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "9` rm cm ^{2}"
+          },
+          {
+            "record_1based": 1621,
+            "offset": 76488,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "③   ④",
+            "inline_template": [
+              "③ ",
+              {
+                "equation_slot_at_utf16_index": 2
+              },
+              " ④ ",
+              {
+                "equation_slot_at_utf16_index": 20
+              },
+              " "
+            ]
+          },
+          {
+            "record_1based": 1625,
+            "offset": 76664,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "{48} over {5} ` rm cm ^{2}"
+          },
+          {
+            "record_1based": 1627,
+            "offset": 76856,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "10` rm cm ^{2}"
+          },
+          {
+            "record_1based": 1629,
+            "offset": 76990,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "⑤",
+            "inline_template": [
+              "⑤ ",
+              {
+                "equation_slot_at_utf16_index": 2
+              },
+              " "
+            ]
+          },
+          {
+            "record_1based": 1633,
+            "offset": 77130,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "12` rm cm ^{2}"
+          }
+        ],
+        "pictures": [
+          {
+            "record_1based": 1611,
+            "offset": 75869,
+            "tag": 85,
+            "level": 3,
+            "stream": "BinData/BIN000E.bmp",
+            "file": "question-only/q17/hwp-figure-1.png",
+            "width": 193,
+            "height": 136,
+            "decompressed_bmp_sha256": "15dd474254d390b3f50f0c59dd92d0d52dd0fbfceff729736b6a1334c8eacc4f",
+            "rgb_pixels_sha256": "415362ecf432f00aeb21807423787d713c9db36cdd3d69097650ec1bad8c68f7"
+          }
+        ],
+        "boundary": {
+          "first_block_offset": 73399,
+          "last_block_end_offset": 77804
+        },
+        "document_header_records": [],
+        "document_header_pictures": [],
+        "reconstructed_paragraphs": [
+          {
+            "record_1based": 1576,
+            "offset": 73427,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 74159,
+                "record_1based": 1590,
+                "script": "rmABCD"
+              },
+              {
+                "offset": 74311,
+                "record_1based": 1592,
+                "script": "rmO"
+              },
+              {
+                "offset": 74457,
+                "record_1based": 1594,
+                "script": "rmE,~F,~G,~H"
+              },
+              {
+                "offset": 74621,
+                "record_1based": 1596,
+                "script": "rmO"
+              },
+              {
+                "offset": 74767,
+                "record_1based": 1598,
+                "script": "rm {bar{AB}} =6`cm"
+              },
+              {
+                "offset": 74943,
+                "record_1based": 1600,
+                "script": "rm {bar{BC}} =8`cm"
+              },
+              {
+                "offset": 75119,
+                "record_1based": 1602,
+                "script": "TRIANGLE rmABM"
+              },
+              {
+                "offset": 75287,
+                "record_1based": 1604,
+                "script": "5"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "그림과 같이 직사각형 ⟦rmABCD⟧의 세 변에 접하는 원 ⟦rmO⟧가 있다. 네 점 ⟦rmE,~F,~G,~H⟧는 원 ⟦rmO⟧의 접점이고, ⟦rm {bar{AB}} =6`cm⟧, ⟦rm {bar{BC}} =8`cm⟧일 때, ⟦TRIANGLE rmABM⟧의 넓이는? [⟦5⟧점]"
+          },
+          {
+            "record_1based": 1613,
+            "offset": 75992,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 76168,
+                "record_1based": 1617,
+                "script": "{16} over {5} `rmcm ^{2}"
+              },
+              {
+                "offset": 76356,
+                "record_1based": 1619,
+                "script": "9` rm cm ^{2}"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "① ⟦{16} over {5} `rmcm ^{2}⟧ ② ⟦9` rm cm ^{2}⟧"
+          },
+          {
+            "record_1based": 1621,
+            "offset": 76488,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 76664,
+                "record_1based": 1625,
+                "script": "{48} over {5} ` rm cm ^{2}"
+              },
+              {
+                "offset": 76856,
+                "record_1based": 1627,
+                "script": "10` rm cm ^{2}"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "③ ⟦{48} over {5} ` rm cm ^{2}⟧ ④ ⟦10` rm cm ^{2}⟧"
+          },
+          {
+            "record_1based": 1629,
+            "offset": 76990,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 77130,
+                "record_1based": 1633,
+                "script": "12` rm cm ^{2}"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "⑤ ⟦12` rm cm ^{2}⟧"
+          }
+        ],
+        "all_inline_equation_slots_resolved": true
+      },
+      "source_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[범일중][3][25-2-중간][비상] (완료).hwp"
+    },
+    {
+      "source_id": "s5",
+      "source_sha256": "3abb1a759dd96f6e9a76728a1ecae70013df605bb3e73745908a773897a6a43b",
+      "stream": "BodyText/Section0",
+      "question_record": {
+        "question_number": 17,
+        "records": [
+          {
+            "record_1based": 1576,
+            "offset": 73427,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "그림과 같이 직사각형  의 세 변에 접하는 원  가 있다. 네 점  는 원  의 접점이고,  ,  일 때,  의 넓이는? [ 점]",
+            "inline_template": [
+              "  그림과 같이 직사각형 ",
+              {
+                "equation_slot_at_utf16_index": 21
+              },
+              "의 세 변에 접하는 원 ",
+              {
+                "equation_slot_at_utf16_index": 42
+              },
+              "가 있다. 네 점 ",
+              {
+                "equation_slot_at_utf16_index": 60
+              },
+              "는 원 ",
+              {
+                "equation_slot_at_utf16_index": 72
+              },
+              "의 접점이고, ",
+              {
+                "equation_slot_at_utf16_index": 88
+              },
+              ", ",
+              {
+                "equation_slot_at_utf16_index": 98
+              },
+              "일 때, ",
+              {
+                "equation_slot_at_utf16_index": 111
+              },
+              "의 넓이는? [",
+              {
+                "equation_slot_at_utf16_index": 127
+              },
+              "점] "
+            ]
+          },
+          {
+            "record_1based": 1590,
+            "offset": 74159,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rmABCD"
+          },
+          {
+            "record_1based": 1592,
+            "offset": 74311,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rmO"
+          },
+          {
+            "record_1based": 1594,
+            "offset": 74457,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rmE,~F,~G,~H"
+          },
+          {
+            "record_1based": 1596,
+            "offset": 74621,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rmO"
+          },
+          {
+            "record_1based": 1598,
+            "offset": 74767,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rm {bar{AB}} =6`cm"
+          },
+          {
+            "record_1based": 1600,
+            "offset": 74943,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rm {bar{BC}} =8`cm"
+          },
+          {
+            "record_1based": 1602,
+            "offset": 75119,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "TRIANGLE rmABM"
+          },
+          {
+            "record_1based": 1604,
+            "offset": 75287,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "5"
+          },
+          {
+            "record_1based": 1613,
+            "offset": 75992,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "①   ②",
+            "inline_template": [
+              "① ",
+              {
+                "equation_slot_at_utf16_index": 2
+              },
+              " ② ",
+              {
+                "equation_slot_at_utf16_index": 20
+              },
+              " "
+            ]
+          },
+          {
+            "record_1based": 1617,
+            "offset": 76168,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "{16} over {5} `rmcm ^{2}"
+          },
+          {
+            "record_1based": 1619,
+            "offset": 76356,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "9` rm cm ^{2}"
+          },
+          {
+            "record_1based": 1621,
+            "offset": 76488,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "③   ④",
+            "inline_template": [
+              "③ ",
+              {
+                "equation_slot_at_utf16_index": 2
+              },
+              " ④ ",
+              {
+                "equation_slot_at_utf16_index": 20
+              },
+              " "
+            ]
+          },
+          {
+            "record_1based": 1625,
+            "offset": 76664,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "{48} over {5} ` rm cm ^{2}"
+          },
+          {
+            "record_1based": 1627,
+            "offset": 76856,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "10` rm cm ^{2}"
+          },
+          {
+            "record_1based": 1629,
+            "offset": 76990,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "⑤",
+            "inline_template": [
+              "⑤ ",
+              {
+                "equation_slot_at_utf16_index": 2
+              },
+              " "
+            ]
+          },
+          {
+            "record_1based": 1633,
+            "offset": 77130,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "12` rm cm ^{2}"
+          }
+        ],
+        "pictures": [
+          {
+            "record_1based": 1611,
+            "offset": 75869,
+            "tag": 85,
+            "level": 3,
+            "stream": "BinData/BIN000E.bmp",
+            "file": "question-only/q17/hwp-figure-1.png",
+            "width": 193,
+            "height": 136,
+            "decompressed_bmp_sha256": "15dd474254d390b3f50f0c59dd92d0d52dd0fbfceff729736b6a1334c8eacc4f",
+            "rgb_pixels_sha256": "415362ecf432f00aeb21807423787d713c9db36cdd3d69097650ec1bad8c68f7"
+          }
+        ],
+        "boundary": {
+          "first_block_offset": 73399,
+          "last_block_end_offset": 77804
+        },
+        "document_header_records": [],
+        "document_header_pictures": [],
+        "reconstructed_paragraphs": [
+          {
+            "record_1based": 1576,
+            "offset": 73427,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 74159,
+                "record_1based": 1590,
+                "script": "rmABCD"
+              },
+              {
+                "offset": 74311,
+                "record_1based": 1592,
+                "script": "rmO"
+              },
+              {
+                "offset": 74457,
+                "record_1based": 1594,
+                "script": "rmE,~F,~G,~H"
+              },
+              {
+                "offset": 74621,
+                "record_1based": 1596,
+                "script": "rmO"
+              },
+              {
+                "offset": 74767,
+                "record_1based": 1598,
+                "script": "rm {bar{AB}} =6`cm"
+              },
+              {
+                "offset": 74943,
+                "record_1based": 1600,
+                "script": "rm {bar{BC}} =8`cm"
+              },
+              {
+                "offset": 75119,
+                "record_1based": 1602,
+                "script": "TRIANGLE rmABM"
+              },
+              {
+                "offset": 75287,
+                "record_1based": 1604,
+                "script": "5"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "그림과 같이 직사각형 ⟦rmABCD⟧의 세 변에 접하는 원 ⟦rmO⟧가 있다. 네 점 ⟦rmE,~F,~G,~H⟧는 원 ⟦rmO⟧의 접점이고, ⟦rm {bar{AB}} =6`cm⟧, ⟦rm {bar{BC}} =8`cm⟧일 때, ⟦TRIANGLE rmABM⟧의 넓이는? [⟦5⟧점]"
+          },
+          {
+            "record_1based": 1613,
+            "offset": 75992,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 76168,
+                "record_1based": 1617,
+                "script": "{16} over {5} `rmcm ^{2}"
+              },
+              {
+                "offset": 76356,
+                "record_1based": 1619,
+                "script": "9` rm cm ^{2}"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "① ⟦{16} over {5} `rmcm ^{2}⟧ ② ⟦9` rm cm ^{2}⟧"
+          },
+          {
+            "record_1based": 1621,
+            "offset": 76488,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 76664,
+                "record_1based": 1625,
+                "script": "{48} over {5} ` rm cm ^{2}"
+              },
+              {
+                "offset": 76856,
+                "record_1based": 1627,
+                "script": "10` rm cm ^{2}"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "③ ⟦{48} over {5} ` rm cm ^{2}⟧ ④ ⟦10` rm cm ^{2}⟧"
+          },
+          {
+            "record_1based": 1629,
+            "offset": 76990,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 77130,
+                "record_1based": 1633,
+                "script": "12` rm cm ^{2}"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "⑤ ⟦12` rm cm ^{2}⟧"
+          }
+        ],
+        "all_inline_equation_slots_resolved": true
+      },
+      "source_path": "N:\\개인\\기출\\기출작업\\이전차수\\196차\\[범일중][3][25-2-중간][비상] (완료).hwp"
+    }
+  ],
+  "completed_pdf_sources": [
+    {
+      "file": "question-only/q17/s4-printed-question.png",
+      "source_id": "s4",
+      "source_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[범일중][3][25-2-중간][비상] (완료).PDF",
+      "source_sha256": "318dcd0587e97e993e8c3536b01e7c978205990386e5ba7e9242b68dde4d0689",
+      "pdf_page_1based": 4,
+      "clip_points": [
+        51,
+        381.347412109375,
+        359,
+        668.950927734375
+      ],
+      "original_rotation": 0,
+      "render_rotation": 0,
+      "scale": 3,
+      "sha256": "fdc22b30a68bdaeae5999834632df5a7a2b4b18813ccd7da590b0281d3a51c5b",
+      "author_input_allowed": true,
+      "literal_pdf_text": "17. 그림과 같이 직사각형 ABCD의 세 변에 접하는 원\n\nO가 있다. 네 점 EFGH는 원 O의 접점이고,\nABcm, BCcm일 때, ∆ABM의 넓이는? [점]\n\n\n\n\n\n① cm         ② cm \n③ cm         ④ cm \n\n⑤ cm\n\n [중단원] 원과 직선\n\n [난이도] 중",
+      "normalized_complete_extracted_text": "17.그림과같이직사각형ABCD의세변에접하는원O가있다.네점EFGH는원O의접점이고,ABcm,BCcm일때,∆ABM의넓이는?[점]①cm②cm③cm④cm⑤cm[중단원]원과직선[난이도]중"
+    },
+    {
+      "file": "question-only/q17/s6-printed-question.png",
+      "source_id": "s6",
+      "source_path": "N:\\개인\\기출\\기출작업\\이전차수\\196차\\[범일중][3][25-2-중간][비상] (완료).pdf",
+      "source_sha256": "f755311a97514d66c9f927940db11cab03e0265be08c76b5cd8e71002eb4928f",
+      "pdf_page_1based": 4,
+      "clip_points": [
+        40,
+        310.60760498046875,
+        292,
+        546.998291015625
+      ],
+      "original_rotation": 0,
+      "render_rotation": 0,
+      "scale": 3,
+      "sha256": "79fb9900a1b2ea2be4d0722c228f230cc6e5da9d40d37322078a6346f34c9305",
+      "author_input_allowed": true,
+      "literal_pdf_text": "17. 그림과 같이 직사각형 ABCD의 세 변에 접하는 원\n\nO가 있다. 네 점 EFGH는 원 O의 접점이고,\nABcm,   BCcm일 때, ∆ABM의 넓이는? [점]\n\n\n\n\n\n① cm         ② cm \n③ cm         ④ cm \n\n⑤ cm\n\n [중단원] 원과 직선\n\n [난이도] 중",
+      "normalized_complete_extracted_text": "17.그림과같이직사각형ABCD의세변에접하는원O가있다.네점EFGH는원O의접점이고,ABcm,BCcm일때,∆ABM의넓이는?[점]①cm②cm③cm④cm⑤cm[중단원]원과직선[난이도]중"
+    }
+  ],
+  "original_scan": {
+    "source_id": "s3",
+    "source_sha256": "a66743b0d3efb668b1ac8a0884356bcc93f3868d6ed0270cbf4bc67976faf992",
+    "pdf_page_1based": 3,
+    "printed_physical_question_page": 3,
+    "render": {
+      "file": "reviewer-only/scans/s3-page-3.png",
+      "source_id": "s3",
+      "source_sha256": "a66743b0d3efb668b1ac8a0884356bcc93f3868d6ed0270cbf4bc67976faf992",
+      "physical_pdf_page_1based": 3,
+      "clip_points": [
+        0.0,
+        0.0,
+        728.0,
+        1031.0
+      ],
+      "original_rotation": 0,
+      "render_rotation": 90,
+      "scale": 1.5,
+      "sha256": "5ef2247f181105eec2eb4f680a263348dc79249362bcf9063460fe3e8b42de5a",
+      "author_input_allowed": false,
+      "incidental_handwriting_possible": true
+    },
+    "original_printed_label": "17",
+    "author_input_allowed": false,
+    "source_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\중3\\[범일중][3][25-2-중간](원본)(루비루비).pdf"
+  },
+  "complete_pdf_extracted_text_comparison": {
+    "equal": false,
+    "comparison": "complete whitespace-normalized per-question text, not substring or token membership",
+    "decision_limit": "Extraction equality is auxiliary. Full rendered content, HWP equations and original scan must also be reviewed.",
+    "differences": [
+      {
+        "op": "delete",
+        "a_start": 47,
+        "a_end": 48,
+        "b_start": 47,
+        "b_end": 47,
+        "a": "",
+        "b": ""
+      },
+      {
+        "op": "insert",
+        "a_start": 55,
+        "a_end": 55,
+        "b_start": 54,
+        "b_end": 55,
+        "a": "",
+        "b": ""
+      }
+    ]
+  },
+  "figure_linkage": {
+    "hwp": {
+      "record_1based": 1611,
+      "offset": 75869,
+      "tag": 85,
+      "level": 3,
+      "stream": "BinData/BIN000E.bmp",
+      "file": "question-only/q17/hwp-figure-1.png",
+      "width": 193,
+      "height": 136,
+      "decompressed_bmp_sha256": "15dd474254d390b3f50f0c59dd92d0d52dd0fbfceff729736b6a1334c8eacc4f",
+      "rgb_pixels_sha256": "415362ecf432f00aeb21807423787d713c9db36cdd3d69097650ec1bad8c68f7"
+    },
+    "pdf_figures": [
+      {
+        "source_id": "s4",
+        "source_sha256": "318dcd0587e97e993e8c3536b01e7c978205990386e5ba7e9242b68dde4d0689",
+        "pdf_page_1based": 4,
+        "xref": 28,
+        "image_rect_points": [
+          132.38499450683594,
+          442.4739990234375,
+          276.8819885253906,
+          544.3989868164062
+        ],
+        "file": "question-only/q17/s4-embedded-figure.png",
+        "sha256": "824d376e4f8a7f80f5c2fdc095d9e920339ee659ce5c488286b7a0c943d7fb0c",
+        "width": 193,
+        "height": 136,
+        "hwp_dimensions_equal": true,
+        "hwp_rgb_pixels_equal": false,
+        "hwp_mean_absolute_rgb_channel_difference": 3.946167,
+        "hwp_maximum_rgb_channel_difference": 39
+      },
+      {
+        "source_id": "s6",
+        "source_sha256": "f755311a97514d66c9f927940db11cab03e0265be08c76b5cd8e71002eb4928f",
+        "pdf_page_1based": 4,
+        "xref": 58,
+        "image_rect_points": [
+          108.06199645996094,
+          361.1650085449219,
+          226.07899475097656,
+          444.35400390625
+        ],
+        "file": "question-only/q17/s6-embedded-figure.png",
+        "sha256": "a69ba65d79f10bc0855b99a5718c8d56b114da2b6f37217a341599522bf22a4b",
+        "width": 193,
+        "height": 136,
+        "hwp_dimensions_equal": true,
+        "hwp_rgb_pixels_equal": false,
+        "hwp_mean_absolute_rgb_channel_difference": 4.151719,
+        "hwp_maximum_rgb_channel_difference": 44
+      }
+    ]
+  },
+  "visual_comparison_status": "confirmed",
+  "extraction_limit_resolved_by_visual_review": "The full text diff moves U+E06D overline glyphs relative to their segment letters. Complete equations, letters, words and render meanings match; original strokes are retained in raw evidence.",
+  "computed_hwp_vs_normalized_complete_content": {
+    "checks": {
+      "complete_stem_equal_after_bounded_presentation_conversion": true,
+      "complete_ordered_choices_equal": true,
+      "score_equal": true,
+      "all_hwp_inline_equations_placed": true,
+      "boxed_given_equations_equal": true,
+      "complete_table_cells_equal": true
+    },
+    "hwp_complete_stem": "그림과같이직사각형ABCD의세변에접하는원O가있다.네점E,F,G,H는원O의접점이고,AB=6cm,BC=8cm일때,△ABM의넓이는?",
+    "normalized_complete_stem": "그림과같이직사각형ABCD의세변에접하는원O가있다.네점E,F,G,H는원O의접점이고,AB=6cm,BC=8cm일때,△ABM의넓이는?",
+    "stem_differences": [],
+    "hwp_complete_ordered_choices": [
+      "16/5cm²",
+      "9cm²",
+      "48/5cm²",
+      "10cm²",
+      "12cm²"
+    ],
+    "normalized_complete_ordered_choices": [
+      "16/5cm²",
+      "9cm²",
+      "48/5cm²",
+      "10cm²",
+      "12cm²"
+    ],
+    "boxed_givens": null,
+    "table_cells": null,
+    "method_limit": "Presentation conversion only; no numerical expression evaluation or original-answer solving. It does not alone prove pixels/scans equivalent."
+  },
+  "direct_visual_comparison": {
+    "question_placement_and_label": "passed",
+    "complete_printed_stem_and_all_givens": "passed",
+    "all_equations_signs_exponents_fractions_and_units": "passed",
+    "all_ordered_choices_or_printed_absence": "passed",
+    "native_tables_or_boxed_given_structure": "passed",
+    "all_printed_figure_labels_and_relations_or_printed_absence": "passed",
+    "score_and_partial_credit_label": "passed",
+    "sources_actually_compared": [
+      "s1 HWP main record content",
+      "s5 HWP main record content",
+      "s4 anonymous completed PDF",
+      "s6 named completed PDF",
+      "s3 original paper scan"
+    ],
+    "view_image_used": true,
+    "handwriting_not_printed_content": true,
+    "original_answer_or_solution_agreement_used": false,
+    "annotation_limit": "Handwritten student choices/work were incidentally visible and not transcribed or used. Scans are reviewer-only; clean printed sources and normalized question records are the author whitelist."
+  },
+  "source_identity": {
+    "status": "confirmed",
+    "school_full": "범일중학교",
+    "school_normalized": "범일중",
+    "grade": 3,
+    "subject": "수학",
+    "semester": 2,
+    "round": "중간",
+    "exam_year": 2025,
+    "administration_date": "2025-09-23",
+    "period": 3,
+    "subject_code": "05",
+    "basis": "Actual printed original title/date/footer, linked by complete question content and printed page/label. Neither filename nor byte hash alone is identity proof.",
+    "edited_BI_label_scope": "Only these compared files; no universal BI-to-school mapping.",
+    "footer_26_year_role": "Observed 대비 wording + linked explicit2025 exam administration support editorial/preparation label; creation date/intended2026 use remain unknown."
+  },
+  "held_components": [
+    {
+      "component": "export_acquisition_native_custody_chain",
+      "status": "held",
+      "reason": "No converter/exporter or custody records inspected; content equivalence does not prove a direct chain."
+    },
+    {
+      "component": "textbook_publisher",
+      "status": "held",
+      "reason": "비상 is a filename hint; no printed textbook/publisher attestation established."
+    },
+    {
+      "component": "copyright_reuse_authorization",
+      "status": "held",
+      "reason": "A school copyright line is not a reuse licence/permission."
+    },
+    {
+      "component": "curriculum_new_twin_approval",
+      "status": "outside this source audit",
+      "reason": "Original equivalence/identity does not approve curriculum, new answers/solutions or candidates."
+    }
+  ]
+}

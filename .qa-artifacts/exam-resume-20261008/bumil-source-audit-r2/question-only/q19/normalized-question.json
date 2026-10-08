@@ -1,0 +1,27 @@
+{
+  "schema": "bumil-normalized-question-only.v2",
+  "question_number": 19,
+  "original_label": "서술형 2",
+  "question_type": "서술형",
+  "partial_credit_printed": true,
+  "score": 7,
+  "stem": "[서술형 2] 그림과 같은 어느 캠핑장에서 두 텐트 A, B 사이의 거리는 70 m이다. ∠A=45°, ∠B=75°일 때, 텐트 B에서 공동 식수대 C까지의 거리를 구하시오. [총7점, 부분 점수 있음]",
+  "givens": [
+    "두 텐트 A,B 사이 70 m",
+    "∠A=45°",
+    "∠B=75°",
+    "구할 거리 B에서 식수대 C까지"
+  ],
+  "choices": [],
+  "figure_labels": [
+    "A",
+    "B",
+    "C",
+    "70 m",
+    "45°",
+    "75°"
+  ],
+  "diagram_observation": "캠핑장 삽화에서 A는 왼쪽 위 텐트, B는 아래 텐트, C는 오른쪽 위 식수대. 70 m 치수는 AB,45°는 A,75°는 B에 표시됨. 배경 장식은 수학 조건으로 새로 추론하지 않음.",
+  "transcription_method": "Human normalization of the complete printed question, not a solution or automatic scan OCR.",
+  "author_input_policy": "Only normalized printed content and clean HWP/completed-PDF question figures/crops; no scan handwriting, answers or solutions."
+}

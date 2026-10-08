@@ -1,0 +1,52 @@
+{
+  "schema": "bumil-normalized-question-only.v2",
+  "question_number": 10,
+  "original_label": "10",
+  "question_type": "객관식",
+  "partial_credit_printed": false,
+  "score": 4,
+  "stem": "그림과 같이 범일이가 석탑의 중심축과 5.5 m 떨어진 지점 A에서 석탑의 끝 지점 C를 올려본 각의 크기가 58°이다. 범일이의 눈높이가 1.7 m일 때, 삼각비의 표를 이용하여 석탑의 높이 CE를 구하면? (단, 소수점 아래 둘째 자리에서 반올림한다.)",
+  "givens": [
+    "석탑 중심축과 지점 A의 거리 5.5 m",
+    "올려본 각 58°",
+    "눈높이 1.7 m",
+    "구하는 높이 CE",
+    "소수점 아래 둘째 자리에서 반올림"
+  ],
+  "table": {
+    "columns": [
+      "각도",
+      "사인(sin)",
+      "코사인(cos)",
+      "탄젠트(tan)"
+    ],
+    "rows": [
+      [
+        "58°",
+        "0.8480",
+        "0.5299",
+        "1.6003"
+      ]
+    ]
+  },
+  "choices": [
+    "6.4 m",
+    "7.2 m",
+    "8.8 m",
+    "10.5 m",
+    "11.5 m"
+  ],
+  "figure_labels": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "1.7 m",
+    "5.5 m",
+    "58°"
+  ],
+  "diagram_observation": "사진형 석탑/사람 그림. A는 사람 발밑, B는 눈높이, C는 탑 위, D는 같은 눈높이의 중심축 위, E는 탑 밑. AE의 5.5 m, AB의 1.7 m, B의 58°와 BD 수평선, CE 수직선이 대응한다.",
+  "transcription_method": "Human normalization of the complete printed question, not a solution or automatic scan OCR.",
+  "author_input_policy": "Only normalized printed content and clean HWP/completed-PDF question figures/crops; no scan handwriting, answers or solutions."
+}

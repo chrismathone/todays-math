@@ -1,0 +1,760 @@
+{
+  "question_number": 13,
+  "original_label": "13",
+  "score": 4,
+  "normalized_question_file": "question-only/q13/normalized-question.json",
+  "normalized_question_sha256": "b98d492e2e5f2800ab0239d11ed9a137b5673cd2ead8c53636fe02dab2f73e72",
+  "hwp_sources": [
+    {
+      "source_id": "s1",
+      "source_sha256": "3abb1a759dd96f6e9a76728a1ecae70013df605bb3e73745908a773897a6a43b",
+      "stream": "BodyText/Section0",
+      "question_record": {
+        "question_number": 13,
+        "records": [
+          {
+            "record_1based": 1294,
+            "offset": 59091,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "그림은 모선의 길이가  인 원뿔이다. 모선과 밑면이 이루는 각의 크기가  일 때, 이 원뿔의 부피는?",
+            "inline_template": [
+              "  그림은 모선의 길이가 ",
+              {
+                "equation_slot_at_utf16_index": 21
+              },
+              "인 원뿔이다. 모선과 밑면이 이루는 각의 크기가 ",
+              {
+                "equation_slot_at_utf16_index": 56
+              },
+              "일 때, 이 원뿔의 부피는? "
+            ]
+          },
+          {
+            "record_1based": 1305,
+            "offset": 59591,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "6rm`cm"
+          },
+          {
+            "record_1based": 1307,
+            "offset": 59743,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "30°"
+          },
+          {
+            "record_1based": 1309,
+            "offset": 59855,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "[ 점]",
+            "inline_template": [
+              " [",
+              {
+                "equation_slot_at_utf16_index": 2
+              },
+              "점] "
+            ]
+          },
+          {
+            "record_1based": 1313,
+            "offset": 59999,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "4"
+          },
+          {
+            "record_1based": 1322,
+            "offset": 60704,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "①   ②",
+            "inline_template": [
+              "① ",
+              {
+                "equation_slot_at_utf16_index": 2
+              },
+              " ② ",
+              {
+                "equation_slot_at_utf16_index": 20
+              },
+              " "
+            ]
+          },
+          {
+            "record_1based": 1326,
+            "offset": 60880,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "9 sqrt {3} pi`rmcm ^{3}"
+          },
+          {
+            "record_1based": 1328,
+            "offset": 61066,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "27 pi ` rm cm ^{3}"
+          },
+          {
+            "record_1based": 1330,
+            "offset": 61208,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "③   ④",
+            "inline_template": [
+              "③ ",
+              {
+                "equation_slot_at_utf16_index": 2
+              },
+              " ④ ",
+              {
+                "equation_slot_at_utf16_index": 20
+              },
+              " "
+            ]
+          },
+          {
+            "record_1based": 1334,
+            "offset": 61384,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "27 sqrt {3}  pi ` rm cm ^{3}"
+          },
+          {
+            "record_1based": 1336,
+            "offset": 61580,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "64 pi ` rm cm ^{3}"
+          },
+          {
+            "record_1based": 1338,
+            "offset": 61722,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "⑤",
+            "inline_template": [
+              "⑤ ",
+              {
+                "equation_slot_at_utf16_index": 2
+              },
+              " "
+            ]
+          },
+          {
+            "record_1based": 1342,
+            "offset": 61862,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "81 pi ` rm cm ^{3}"
+          }
+        ],
+        "pictures": [
+          {
+            "record_1based": 1320,
+            "offset": 60581,
+            "tag": 85,
+            "level": 3,
+            "stream": "BinData/BIN000A.bmp",
+            "file": "question-only/q13/hwp-figure-1.png",
+            "width": 192,
+            "height": 121,
+            "decompressed_bmp_sha256": "bac9dd2923f5225d054bf1f65ac1ae3b5b29b293beaf8af4122b73ee7f58fa2d",
+            "rgb_pixels_sha256": "f1d51380d70726e2a24ada2385252df5ba6fa70760ddbf3e7545119765e80218"
+          }
+        ],
+        "boundary": {
+          "first_block_offset": 59063,
+          "last_block_end_offset": 62220
+        },
+        "document_header_records": [],
+        "document_header_pictures": [],
+        "reconstructed_paragraphs": [
+          {
+            "record_1based": 1294,
+            "offset": 59091,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 59591,
+                "record_1based": 1305,
+                "script": "6rm`cm"
+              },
+              {
+                "offset": 59743,
+                "record_1based": 1307,
+                "script": "30°"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "그림은 모선의 길이가 ⟦6rm`cm⟧인 원뿔이다. 모선과 밑면이 이루는 각의 크기가 ⟦30°⟧일 때, 이 원뿔의 부피는?"
+          },
+          {
+            "record_1based": 1309,
+            "offset": 59855,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 59999,
+                "record_1based": 1313,
+                "script": "4"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "[⟦4⟧점]"
+          },
+          {
+            "record_1based": 1322,
+            "offset": 60704,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 60880,
+                "record_1based": 1326,
+                "script": "9 sqrt {3} pi`rmcm ^{3}"
+              },
+              {
+                "offset": 61066,
+                "record_1based": 1328,
+                "script": "27 pi ` rm cm ^{3}"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "① ⟦9 sqrt {3} pi`rmcm ^{3}⟧ ② ⟦27 pi ` rm cm ^{3}⟧"
+          },
+          {
+            "record_1based": 1330,
+            "offset": 61208,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 61384,
+                "record_1based": 1334,
+                "script": "27 sqrt {3}  pi ` rm cm ^{3}"
+              },
+              {
+                "offset": 61580,
+                "record_1based": 1336,
+                "script": "64 pi ` rm cm ^{3}"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "③ ⟦27 sqrt {3}  pi ` rm cm ^{3}⟧ ④ ⟦64 pi ` rm cm ^{3}⟧"
+          },
+          {
+            "record_1based": 1338,
+            "offset": 61722,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 61862,
+                "record_1based": 1342,
+                "script": "81 pi ` rm cm ^{3}"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "⑤ ⟦81 pi ` rm cm ^{3}⟧"
+          }
+        ],
+        "all_inline_equation_slots_resolved": true
+      },
+      "source_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[범일중][3][25-2-중간][비상] (완료).hwp"
+    },
+    {
+      "source_id": "s5",
+      "source_sha256": "3abb1a759dd96f6e9a76728a1ecae70013df605bb3e73745908a773897a6a43b",
+      "stream": "BodyText/Section0",
+      "question_record": {
+        "question_number": 13,
+        "records": [
+          {
+            "record_1based": 1294,
+            "offset": 59091,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "그림은 모선의 길이가  인 원뿔이다. 모선과 밑면이 이루는 각의 크기가  일 때, 이 원뿔의 부피는?",
+            "inline_template": [
+              "  그림은 모선의 길이가 ",
+              {
+                "equation_slot_at_utf16_index": 21
+              },
+              "인 원뿔이다. 모선과 밑면이 이루는 각의 크기가 ",
+              {
+                "equation_slot_at_utf16_index": 56
+              },
+              "일 때, 이 원뿔의 부피는? "
+            ]
+          },
+          {
+            "record_1based": 1305,
+            "offset": 59591,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "6rm`cm"
+          },
+          {
+            "record_1based": 1307,
+            "offset": 59743,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "30°"
+          },
+          {
+            "record_1based": 1309,
+            "offset": 59855,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "[ 점]",
+            "inline_template": [
+              " [",
+              {
+                "equation_slot_at_utf16_index": 2
+              },
+              "점] "
+            ]
+          },
+          {
+            "record_1based": 1313,
+            "offset": 59999,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "4"
+          },
+          {
+            "record_1based": 1322,
+            "offset": 60704,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "①   ②",
+            "inline_template": [
+              "① ",
+              {
+                "equation_slot_at_utf16_index": 2
+              },
+              " ② ",
+              {
+                "equation_slot_at_utf16_index": 20
+              },
+              " "
+            ]
+          },
+          {
+            "record_1based": 1326,
+            "offset": 60880,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "9 sqrt {3} pi`rmcm ^{3}"
+          },
+          {
+            "record_1based": 1328,
+            "offset": 61066,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "27 pi ` rm cm ^{3}"
+          },
+          {
+            "record_1based": 1330,
+            "offset": 61208,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "③   ④",
+            "inline_template": [
+              "③ ",
+              {
+                "equation_slot_at_utf16_index": 2
+              },
+              " ④ ",
+              {
+                "equation_slot_at_utf16_index": 20
+              },
+              " "
+            ]
+          },
+          {
+            "record_1based": 1334,
+            "offset": 61384,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "27 sqrt {3}  pi ` rm cm ^{3}"
+          },
+          {
+            "record_1based": 1336,
+            "offset": 61580,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "64 pi ` rm cm ^{3}"
+          },
+          {
+            "record_1based": 1338,
+            "offset": 61722,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "⑤",
+            "inline_template": [
+              "⑤ ",
+              {
+                "equation_slot_at_utf16_index": 2
+              },
+              " "
+            ]
+          },
+          {
+            "record_1based": 1342,
+            "offset": 61862,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "81 pi ` rm cm ^{3}"
+          }
+        ],
+        "pictures": [
+          {
+            "record_1based": 1320,
+            "offset": 60581,
+            "tag": 85,
+            "level": 3,
+            "stream": "BinData/BIN000A.bmp",
+            "file": "question-only/q13/hwp-figure-1.png",
+            "width": 192,
+            "height": 121,
+            "decompressed_bmp_sha256": "bac9dd2923f5225d054bf1f65ac1ae3b5b29b293beaf8af4122b73ee7f58fa2d",
+            "rgb_pixels_sha256": "f1d51380d70726e2a24ada2385252df5ba6fa70760ddbf3e7545119765e80218"
+          }
+        ],
+        "boundary": {
+          "first_block_offset": 59063,
+          "last_block_end_offset": 62220
+        },
+        "document_header_records": [],
+        "document_header_pictures": [],
+        "reconstructed_paragraphs": [
+          {
+            "record_1based": 1294,
+            "offset": 59091,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 59591,
+                "record_1based": 1305,
+                "script": "6rm`cm"
+              },
+              {
+                "offset": 59743,
+                "record_1based": 1307,
+                "script": "30°"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "그림은 모선의 길이가 ⟦6rm`cm⟧인 원뿔이다. 모선과 밑면이 이루는 각의 크기가 ⟦30°⟧일 때, 이 원뿔의 부피는?"
+          },
+          {
+            "record_1based": 1309,
+            "offset": 59855,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 59999,
+                "record_1based": 1313,
+                "script": "4"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "[⟦4⟧점]"
+          },
+          {
+            "record_1based": 1322,
+            "offset": 60704,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 60880,
+                "record_1based": 1326,
+                "script": "9 sqrt {3} pi`rmcm ^{3}"
+              },
+              {
+                "offset": 61066,
+                "record_1based": 1328,
+                "script": "27 pi ` rm cm ^{3}"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "① ⟦9 sqrt {3} pi`rmcm ^{3}⟧ ② ⟦27 pi ` rm cm ^{3}⟧"
+          },
+          {
+            "record_1based": 1330,
+            "offset": 61208,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 61384,
+                "record_1based": 1334,
+                "script": "27 sqrt {3}  pi ` rm cm ^{3}"
+              },
+              {
+                "offset": 61580,
+                "record_1based": 1336,
+                "script": "64 pi ` rm cm ^{3}"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "③ ⟦27 sqrt {3}  pi ` rm cm ^{3}⟧ ④ ⟦64 pi ` rm cm ^{3}⟧"
+          },
+          {
+            "record_1based": 1338,
+            "offset": 61722,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 61862,
+                "record_1based": 1342,
+                "script": "81 pi ` rm cm ^{3}"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "⑤ ⟦81 pi ` rm cm ^{3}⟧"
+          }
+        ],
+        "all_inline_equation_slots_resolved": true
+      },
+      "source_path": "N:\\개인\\기출\\기출작업\\이전차수\\196차\\[범일중][3][25-2-중간][비상] (완료).hwp"
+    }
+  ],
+  "completed_pdf_sources": [
+    {
+      "file": "question-only/q13/s4-printed-question.png",
+      "source_id": "s4",
+      "source_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[범일중][3][25-2-중간][비상] (완료).PDF",
+      "source_sha256": "318dcd0587e97e993e8c3536b01e7c978205990386e5ba7e9242b68dde4d0689",
+      "pdf_page_1based": 3,
+      "clip_points": [
+        51,
+        655.7060546875,
+        359,
+        904.3381958007812
+      ],
+      "original_rotation": 0,
+      "render_rotation": 0,
+      "scale": 3,
+      "sha256": "89ebd26829bc0c01406ffdc1b960f73f236b5a1c266f2994d9cd45bf1495f0d1",
+      "author_input_allowed": true,
+      "literal_pdf_text": "13. 그림은 모선의 길이가 cm인 원뿔이다. 모선과\n\n밑면이 이루는 각의 크기가 °일 때, 이 원뿔의 부피는?\n\n                                      [점]\n\n\n\n\n\n① cm        ② cm\n③ cm       ④ cm\n\n⑤ cm\n\n [중단원] 삼각비\n\n [난이도] 하",
+      "normalized_complete_extracted_text": "13.그림은모선의길이가cm인원뿔이다.모선과밑면이이루는각의크기가°일때,이원뿔의부피는?[점]①cm②cm③cm④cm⑤cm[중단원]삼각비[난이도]하"
+    },
+    {
+      "file": "question-only/q13/s6-printed-question.png",
+      "source_id": "s6",
+      "source_path": "N:\\개인\\기출\\기출작업\\이전차수\\196차\\[범일중][3][25-2-중간][비상] (완료).pdf",
+      "source_sha256": "f755311a97514d66c9f927940db11cab03e0265be08c76b5cd8e71002eb4928f",
+      "pdf_page_1based": 3,
+      "clip_points": [
+        40,
+        534.5228881835938,
+        292,
+        739.1483154296875
+      ],
+      "original_rotation": 0,
+      "render_rotation": 0,
+      "scale": 3,
+      "sha256": "ba458c7ca6e0d6fdf274f477a556439acdd7e47c177dd84185d615342170c9a1",
+      "author_input_allowed": true,
+      "literal_pdf_text": "13. 그림은 모선의 길이가 cm인 원뿔이다. 모선과\n\n밑면이 이루는 각의 크기가 °일 때, 이 원뿔의 부피는?\n\n                                      [점]\n\n\n\n\n\n① cm        ② cm\n③ cm       ④ cm\n\n⑤ cm\n\n [중단원] 삼각비\n\n [난이도] 하",
+      "normalized_complete_extracted_text": "13.그림은모선의길이가cm인원뿔이다.모선과밑면이이루는각의크기가°일때,이원뿔의부피는?[점]①cm②cm③cm④cm⑤cm[중단원]삼각비[난이도]하"
+    }
+  ],
+  "original_scan": {
+    "source_id": "s3",
+    "source_sha256": "a66743b0d3efb668b1ac8a0884356bcc93f3868d6ed0270cbf4bc67976faf992",
+    "pdf_page_1based": 3,
+    "printed_physical_question_page": 3,
+    "render": {
+      "file": "reviewer-only/scans/s3-page-3.png",
+      "source_id": "s3",
+      "source_sha256": "a66743b0d3efb668b1ac8a0884356bcc93f3868d6ed0270cbf4bc67976faf992",
+      "physical_pdf_page_1based": 3,
+      "clip_points": [
+        0.0,
+        0.0,
+        728.0,
+        1031.0
+      ],
+      "original_rotation": 0,
+      "render_rotation": 90,
+      "scale": 1.5,
+      "sha256": "5ef2247f181105eec2eb4f680a263348dc79249362bcf9063460fe3e8b42de5a",
+      "author_input_allowed": false,
+      "incidental_handwriting_possible": true
+    },
+    "original_printed_label": "13",
+    "author_input_allowed": false,
+    "source_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\중3\\[범일중][3][25-2-중간](원본)(루비루비).pdf"
+  },
+  "complete_pdf_extracted_text_comparison": {
+    "equal": true,
+    "comparison": "complete whitespace-normalized per-question text, not substring or token membership",
+    "decision_limit": "Extraction equality is auxiliary. Full rendered content, HWP equations and original scan must also be reviewed.",
+    "differences": []
+  },
+  "figure_linkage": {
+    "hwp": {
+      "record_1based": 1320,
+      "offset": 60581,
+      "tag": 85,
+      "level": 3,
+      "stream": "BinData/BIN000A.bmp",
+      "file": "question-only/q13/hwp-figure-1.png",
+      "width": 192,
+      "height": 121,
+      "decompressed_bmp_sha256": "bac9dd2923f5225d054bf1f65ac1ae3b5b29b293beaf8af4122b73ee7f58fa2d",
+      "rgb_pixels_sha256": "f1d51380d70726e2a24ada2385252df5ba6fa70760ddbf3e7545119765e80218"
+    },
+    "pdf_figures": [
+      {
+        "source_id": "s4",
+        "source_sha256": "318dcd0587e97e993e8c3536b01e7c978205990386e5ba7e9242b68dde4d0689",
+        "pdf_page_1based": 3,
+        "xref": 23,
+        "image_rect_points": [
+          132.625,
+          714.5540161132812,
+          276.5220031738281,
+          805.0870361328125
+        ],
+        "file": "question-only/q13/s4-embedded-figure.png",
+        "sha256": "1aca97257a4317687a1094aa58eb7733f9abe2775526603ef48cd71cebb51ebc",
+        "width": 192,
+        "height": 121,
+        "hwp_dimensions_equal": true,
+        "hwp_rgb_pixels_equal": false,
+        "hwp_mean_absolute_rgb_channel_difference": 4.491061,
+        "hwp_maximum_rgb_channel_difference": 51
+      },
+      {
+        "source_id": "s6",
+        "source_sha256": "f755311a97514d66c9f927940db11cab03e0265be08c76b5cd8e71002eb4928f",
+        "pdf_page_1based": 3,
+        "xref": 45,
+        "image_rect_points": [
+          108.302001953125,
+          583.4019775390625,
+          225.83900451660156,
+          657.3609619140625
+        ],
+        "file": "question-only/q13/s6-embedded-figure.png",
+        "sha256": "f68adde28bd56d9feb17a0bc3b1bb219c0bcbd324e0a9a506820d8bb3a2cac87",
+        "width": 192,
+        "height": 121,
+        "hwp_dimensions_equal": true,
+        "hwp_rgb_pixels_equal": false,
+        "hwp_mean_absolute_rgb_channel_difference": 4.832731,
+        "hwp_maximum_rgb_channel_difference": 53
+      }
+    ]
+  },
+  "visual_comparison_status": "confirmed",
+  "extraction_limit_resolved_by_visual_review": "Complete extracted question text equals after whitespace removal; direct figure/scan/HWP review is still required and was performed.",
+  "computed_hwp_vs_normalized_complete_content": {
+    "checks": {
+      "complete_stem_equal_after_bounded_presentation_conversion": true,
+      "complete_ordered_choices_equal": true,
+      "score_equal": true,
+      "all_hwp_inline_equations_placed": true,
+      "boxed_given_equations_equal": true,
+      "complete_table_cells_equal": true
+    },
+    "hwp_complete_stem": "그림은모선의길이가6cm인원뿔이다.모선과밑면이이루는각의크기가30°일때,이원뿔의부피는?",
+    "normalized_complete_stem": "그림은모선의길이가6cm인원뿔이다.모선과밑면이이루는각의크기가30°일때,이원뿔의부피는?",
+    "stem_differences": [],
+    "hwp_complete_ordered_choices": [
+      "9√3πcm³",
+      "27πcm³",
+      "27√3πcm³",
+      "64πcm³",
+      "81πcm³"
+    ],
+    "normalized_complete_ordered_choices": [
+      "9√3πcm³",
+      "27πcm³",
+      "27√3πcm³",
+      "64πcm³",
+      "81πcm³"
+    ],
+    "boxed_givens": null,
+    "table_cells": null,
+    "method_limit": "Presentation conversion only; no numerical expression evaluation or original-answer solving. It does not alone prove pixels/scans equivalent."
+  },
+  "direct_visual_comparison": {
+    "question_placement_and_label": "passed",
+    "complete_printed_stem_and_all_givens": "passed",
+    "all_equations_signs_exponents_fractions_and_units": "passed",
+    "all_ordered_choices_or_printed_absence": "passed",
+    "native_tables_or_boxed_given_structure": "passed",
+    "all_printed_figure_labels_and_relations_or_printed_absence": "passed",
+    "score_and_partial_credit_label": "passed",
+    "sources_actually_compared": [
+      "s1 HWP main record content",
+      "s5 HWP main record content",
+      "s4 anonymous completed PDF",
+      "s6 named completed PDF",
+      "s3 original paper scan"
+    ],
+    "view_image_used": true,
+    "handwriting_not_printed_content": true,
+    "original_answer_or_solution_agreement_used": false,
+    "annotation_limit": "Handwritten student choices/work were incidentally visible and not transcribed or used. Scans are reviewer-only; clean printed sources and normalized question records are the author whitelist."
+  },
+  "source_identity": {
+    "status": "confirmed",
+    "school_full": "범일중학교",
+    "school_normalized": "범일중",
+    "grade": 3,
+    "subject": "수학",
+    "semester": 2,
+    "round": "중간",
+    "exam_year": 2025,
+    "administration_date": "2025-09-23",
+    "period": 3,
+    "subject_code": "05",
+    "basis": "Actual printed original title/date/footer, linked by complete question content and printed page/label. Neither filename nor byte hash alone is identity proof.",
+    "edited_BI_label_scope": "Only these compared files; no universal BI-to-school mapping.",
+    "footer_26_year_role": "Observed 대비 wording + linked explicit2025 exam administration support editorial/preparation label; creation date/intended2026 use remain unknown."
+  },
+  "held_components": [
+    {
+      "component": "export_acquisition_native_custody_chain",
+      "status": "held",
+      "reason": "No converter/exporter or custody records inspected; content equivalence does not prove a direct chain."
+    },
+    {
+      "component": "textbook_publisher",
+      "status": "held",
+      "reason": "비상 is a filename hint; no printed textbook/publisher attestation established."
+    },
+    {
+      "component": "copyright_reuse_authorization",
+      "status": "held",
+      "reason": "A school copyright line is not a reuse licence/permission."
+    },
+    {
+      "component": "curriculum_new_twin_approval",
+      "status": "outside this source audit",
+      "reason": "Original equivalence/identity does not approve curriculum, new answers/solutions or candidates."
+    }
+  ]
+}

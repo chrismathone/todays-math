@@ -1,0 +1,26 @@
+{
+  "schema": "bumil-normalized-question-only.v2",
+  "question_number": 20,
+  "original_label": "서술형 3",
+  "question_type": "서술형",
+  "partial_credit_printed": true,
+  "score": 7,
+  "stem": "[서술형 3] 그림과 같이 반지름의 길이가 8 cm인 반원 O에서 ∠ABC=30°일 때, 색칠한 부분의 넓이를 구하시오. [총7점, 부분 점수 있음]",
+  "givens": [
+    "반원 O의 반지름 8 cm",
+    "∠ABC=30°",
+    "구할 값은 색칠한 부분의 넓이"
+  ],
+  "choices": [],
+  "figure_labels": [
+    "A",
+    "B",
+    "C",
+    "O",
+    "8 cm",
+    "30°"
+  ],
+  "diagram_observation": "A-O-B는 수평 지름 위, C는 위쪽 원호 위. OB에8 cm, ABC에30°, CB 현과 CB 원호 사이의 활꼴이 색칠됨. 삼각형 전체나 반원 전체를 색칠한 것으로 바꾸지 않음.",
+  "transcription_method": "Human normalization of the complete printed question, not a solution or automatic scan OCR.",
+  "author_input_policy": "Only normalized printed content and clean HWP/completed-PDF question figures/crops; no scan handwriting, answers or solutions."
+}

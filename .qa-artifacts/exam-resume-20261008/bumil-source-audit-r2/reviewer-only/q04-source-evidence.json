@@ -1,0 +1,794 @@
+{
+  "question_number": 4,
+  "original_label": "4",
+  "score": 4,
+  "normalized_question_file": "question-only/q04/normalized-question.json",
+  "normalized_question_sha256": "6edb12e3dd0d72ac0046349114e8f0e3d23d2d11ed4e07195c55ffbd788fbd7a",
+  "hwp_sources": [
+    {
+      "source_id": "s1",
+      "source_sha256": "3abb1a759dd96f6e9a76728a1ecae70013df605bb3e73745908a773897a6a43b",
+      "stream": "BodyText/Section0",
+      "question_record": {
+        "question_number": 4,
+        "records": [
+          {
+            "record_1based": 603,
+            "offset": 24480,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "이차함수  의 그래프가 그림과 같을 때, 일차함수  의 그래프가 지나지 않는 사분면은?",
+            "inline_template": [
+              "  이차함수 ",
+              {
+                "equation_slot_at_utf16_index": 14
+              },
+              "의 그래프가 그림과 같을 때, 일차함수 ",
+              {
+                "equation_slot_at_utf16_index": 44
+              },
+              "의 그래프가 지나지 않는 사분면은? "
+            ]
+          },
+          {
+            "record_1based": 614,
+            "offset": 24980,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "y=ax ^{2} -8x-b"
+          },
+          {
+            "record_1based": 616,
+            "offset": 25150,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "y=-ax+b"
+          },
+          {
+            "record_1based": 618,
+            "offset": 25270,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "(단,  는 수) [ 점]",
+            "inline_template": [
+              " (단, ",
+              {
+                "equation_slot_at_utf16_index": 5
+              },
+              "는 수) [",
+              {
+                "equation_slot_at_utf16_index": 19
+              },
+              "점] "
+            ]
+          },
+          {
+            "record_1based": 622,
+            "offset": 25448,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "a,~b"
+          },
+          {
+            "record_1based": 624,
+            "offset": 25596,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "4"
+          },
+          {
+            "record_1based": 633,
+            "offset": 26301,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "① 제 사분면 ② 제 사분면",
+            "inline_template": [
+              "① 제",
+              {
+                "equation_slot_at_utf16_index": 3
+              },
+              "사분면 ② 제",
+              {
+                "equation_slot_at_utf16_index": 25
+              },
+              "사분면 "
+            ]
+          },
+          {
+            "record_1based": 637,
+            "offset": 26493,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "1"
+          },
+          {
+            "record_1based": 639,
+            "offset": 26635,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "2"
+          },
+          {
+            "record_1based": 641,
+            "offset": 26743,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "③ 제 사분면 ④ 제 사분면",
+            "inline_template": [
+              "③ 제",
+              {
+                "equation_slot_at_utf16_index": 3
+              },
+              "사분면 ④ 제",
+              {
+                "equation_slot_at_utf16_index": 25
+              },
+              "사분면 "
+            ]
+          },
+          {
+            "record_1based": 645,
+            "offset": 26935,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "3"
+          },
+          {
+            "record_1based": 647,
+            "offset": 27077,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "4"
+          },
+          {
+            "record_1based": 649,
+            "offset": 27185,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "⑤ 제 사분면",
+            "inline_template": [
+              "⑤ 제",
+              {
+                "equation_slot_at_utf16_index": 3
+              },
+              "사분면 "
+            ]
+          },
+          {
+            "record_1based": 653,
+            "offset": 27333,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "1,~3"
+          }
+        ],
+        "pictures": [
+          {
+            "record_1based": 631,
+            "offset": 26178,
+            "tag": 85,
+            "level": 3,
+            "stream": "BinData/BIN0003.bmp",
+            "file": "question-only/q04/hwp-figure-1.png",
+            "width": 129,
+            "height": 130,
+            "decompressed_bmp_sha256": "67c19c29ff9d32b5d18268d6e5d17c2583cd4fd0b94b35758c8b98a70bd5bbe3",
+            "rgb_pixels_sha256": "28d952cd8792b7e595240fc911864981c0073019cab6f5822120bd45609459b0"
+          }
+        ],
+        "boundary": {
+          "first_block_offset": 24452,
+          "last_block_end_offset": 28313
+        },
+        "document_header_records": [],
+        "document_header_pictures": [],
+        "reconstructed_paragraphs": [
+          {
+            "record_1based": 603,
+            "offset": 24480,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 24980,
+                "record_1based": 614,
+                "script": "y=ax ^{2} -8x-b"
+              },
+              {
+                "offset": 25150,
+                "record_1based": 616,
+                "script": "y=-ax+b"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "이차함수 ⟦y=ax ^{2} -8x-b⟧의 그래프가 그림과 같을 때, 일차함수 ⟦y=-ax+b⟧의 그래프가 지나지 않는 사분면은?"
+          },
+          {
+            "record_1based": 618,
+            "offset": 25270,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 25448,
+                "record_1based": 622,
+                "script": "a,~b"
+              },
+              {
+                "offset": 25596,
+                "record_1based": 624,
+                "script": "4"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "(단, ⟦a,~b⟧는 수) [⟦4⟧점]"
+          },
+          {
+            "record_1based": 633,
+            "offset": 26301,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 26493,
+                "record_1based": 637,
+                "script": "1"
+              },
+              {
+                "offset": 26635,
+                "record_1based": 639,
+                "script": "2"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "① 제⟦1⟧사분면 ② 제⟦2⟧사분면"
+          },
+          {
+            "record_1based": 641,
+            "offset": 26743,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 26935,
+                "record_1based": 645,
+                "script": "3"
+              },
+              {
+                "offset": 27077,
+                "record_1based": 647,
+                "script": "4"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "③ 제⟦3⟧사분면 ④ 제⟦4⟧사분면"
+          },
+          {
+            "record_1based": 649,
+            "offset": 27185,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 27333,
+                "record_1based": 653,
+                "script": "1,~3"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "⑤ 제⟦1,~3⟧사분면"
+          }
+        ],
+        "all_inline_equation_slots_resolved": true
+      },
+      "source_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[범일중][3][25-2-중간][비상] (완료).hwp"
+    },
+    {
+      "source_id": "s5",
+      "source_sha256": "3abb1a759dd96f6e9a76728a1ecae70013df605bb3e73745908a773897a6a43b",
+      "stream": "BodyText/Section0",
+      "question_record": {
+        "question_number": 4,
+        "records": [
+          {
+            "record_1based": 603,
+            "offset": 24480,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "이차함수  의 그래프가 그림과 같을 때, 일차함수  의 그래프가 지나지 않는 사분면은?",
+            "inline_template": [
+              "  이차함수 ",
+              {
+                "equation_slot_at_utf16_index": 14
+              },
+              "의 그래프가 그림과 같을 때, 일차함수 ",
+              {
+                "equation_slot_at_utf16_index": 44
+              },
+              "의 그래프가 지나지 않는 사분면은? "
+            ]
+          },
+          {
+            "record_1based": 614,
+            "offset": 24980,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "y=ax ^{2} -8x-b"
+          },
+          {
+            "record_1based": 616,
+            "offset": 25150,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "y=-ax+b"
+          },
+          {
+            "record_1based": 618,
+            "offset": 25270,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "(단,  는 수) [ 점]",
+            "inline_template": [
+              " (단, ",
+              {
+                "equation_slot_at_utf16_index": 5
+              },
+              "는 수) [",
+              {
+                "equation_slot_at_utf16_index": 19
+              },
+              "점] "
+            ]
+          },
+          {
+            "record_1based": 622,
+            "offset": 25448,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "a,~b"
+          },
+          {
+            "record_1based": 624,
+            "offset": 25596,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "4"
+          },
+          {
+            "record_1based": 633,
+            "offset": 26301,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "① 제 사분면 ② 제 사분면",
+            "inline_template": [
+              "① 제",
+              {
+                "equation_slot_at_utf16_index": 3
+              },
+              "사분면 ② 제",
+              {
+                "equation_slot_at_utf16_index": 25
+              },
+              "사분면 "
+            ]
+          },
+          {
+            "record_1based": 637,
+            "offset": 26493,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "1"
+          },
+          {
+            "record_1based": 639,
+            "offset": 26635,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "2"
+          },
+          {
+            "record_1based": 641,
+            "offset": 26743,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "③ 제 사분면 ④ 제 사분면",
+            "inline_template": [
+              "③ 제",
+              {
+                "equation_slot_at_utf16_index": 3
+              },
+              "사분면 ④ 제",
+              {
+                "equation_slot_at_utf16_index": 25
+              },
+              "사분면 "
+            ]
+          },
+          {
+            "record_1based": 645,
+            "offset": 26935,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "3"
+          },
+          {
+            "record_1based": 647,
+            "offset": 27077,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "4"
+          },
+          {
+            "record_1based": 649,
+            "offset": 27185,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "⑤ 제 사분면",
+            "inline_template": [
+              "⑤ 제",
+              {
+                "equation_slot_at_utf16_index": 3
+              },
+              "사분면 "
+            ]
+          },
+          {
+            "record_1based": 653,
+            "offset": 27333,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "1,~3"
+          }
+        ],
+        "pictures": [
+          {
+            "record_1based": 631,
+            "offset": 26178,
+            "tag": 85,
+            "level": 3,
+            "stream": "BinData/BIN0003.bmp",
+            "file": "question-only/q04/hwp-figure-1.png",
+            "width": 129,
+            "height": 130,
+            "decompressed_bmp_sha256": "67c19c29ff9d32b5d18268d6e5d17c2583cd4fd0b94b35758c8b98a70bd5bbe3",
+            "rgb_pixels_sha256": "28d952cd8792b7e595240fc911864981c0073019cab6f5822120bd45609459b0"
+          }
+        ],
+        "boundary": {
+          "first_block_offset": 24452,
+          "last_block_end_offset": 28313
+        },
+        "document_header_records": [],
+        "document_header_pictures": [],
+        "reconstructed_paragraphs": [
+          {
+            "record_1based": 603,
+            "offset": 24480,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 24980,
+                "record_1based": 614,
+                "script": "y=ax ^{2} -8x-b"
+              },
+              {
+                "offset": 25150,
+                "record_1based": 616,
+                "script": "y=-ax+b"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "이차함수 ⟦y=ax ^{2} -8x-b⟧의 그래프가 그림과 같을 때, 일차함수 ⟦y=-ax+b⟧의 그래프가 지나지 않는 사분면은?"
+          },
+          {
+            "record_1based": 618,
+            "offset": 25270,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 25448,
+                "record_1based": 622,
+                "script": "a,~b"
+              },
+              {
+                "offset": 25596,
+                "record_1based": 624,
+                "script": "4"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "(단, ⟦a,~b⟧는 수) [⟦4⟧점]"
+          },
+          {
+            "record_1based": 633,
+            "offset": 26301,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 26493,
+                "record_1based": 637,
+                "script": "1"
+              },
+              {
+                "offset": 26635,
+                "record_1based": 639,
+                "script": "2"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "① 제⟦1⟧사분면 ② 제⟦2⟧사분면"
+          },
+          {
+            "record_1based": 641,
+            "offset": 26743,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 26935,
+                "record_1based": 645,
+                "script": "3"
+              },
+              {
+                "offset": 27077,
+                "record_1based": 647,
+                "script": "4"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "③ 제⟦3⟧사분면 ④ 제⟦4⟧사분면"
+          },
+          {
+            "record_1based": 649,
+            "offset": 27185,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 27333,
+                "record_1based": 653,
+                "script": "1,~3"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "⑤ 제⟦1,~3⟧사분면"
+          }
+        ],
+        "all_inline_equation_slots_resolved": true
+      },
+      "source_path": "N:\\개인\\기출\\기출작업\\이전차수\\196차\\[범일중][3][25-2-중간][비상] (완료).hwp"
+    }
+  ],
+  "completed_pdf_sources": [
+    {
+      "file": "question-only/q04/s4-printed-question.png",
+      "source_id": "s4",
+      "source_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[범일중][3][25-2-중간][비상] (완료).PDF",
+      "source_sha256": "318dcd0587e97e993e8c3536b01e7c978205990386e5ba7e9242b68dde4d0689",
+      "pdf_page_1based": 1,
+      "clip_points": [
+        367,
+        108.42769622802734,
+        680,
+        358.6186828613281
+      ],
+      "original_rotation": 0,
+      "render_rotation": 0,
+      "scale": 3,
+      "sha256": "ac565c0bbee9af61e5d97fa969df0cdeaeec9c0f5866b7fe629abc80ca6a9021",
+      "author_input_allowed": true,
+      "literal_pdf_text": "4. 이차함수 의 그래프가 그림과 같을 때,\n\n일차함수 의 그래프가 지나지 않는 사분면은?\n\n                         (단, 는 수) [점]\n\n\n\n\n\n① 제사분면        ② 제사분면\n\n③ 제사분면        ④ 제사분면\n\n⑤ 제사분면\n\n [중단원] 이차함수의 활용\n\n [난이도] 하",
+      "normalized_complete_extracted_text": "4.이차함수의그래프가그림과같을때,일차함수의그래프가지나지않는사분면은?(단,는수)[점]①제사분면②제사분면③제사분면④제사분면⑤제사분면[중단원]이차함수의활용[난이도]하"
+    },
+    {
+      "file": "question-only/q04/s6-printed-question.png",
+      "source_id": "s6",
+      "source_path": "N:\\개인\\기출\\기출작업\\이전차수\\196차\\[범일중][3][25-2-중간][비상] (완료).pdf",
+      "source_sha256": "f755311a97514d66c9f927940db11cab03e0265be08c76b5cd8e71002eb4928f",
+      "pdf_page_1based": 1,
+      "clip_points": [
+        302,
+        87.77112579345703,
+        554,
+        293.59521484375
+      ],
+      "original_rotation": 0,
+      "render_rotation": 0,
+      "scale": 3,
+      "sha256": "4a7747cc95456ed3b28dd996045fe01e38bedaad8e2c3bf6e9b0d42563829358",
+      "author_input_allowed": true,
+      "literal_pdf_text": "4. 이차함수 의 그래프가 그림과 같을 때,\n\n일차함수 의 그래프가 지나지 않는 사분면은?\n\n                         (단, 는 수) [점]\n\n\n\n\n\n① 제사분면        ② 제사분면\n\n③ 제사분면        ④ 제사분면\n\n⑤ 제사분면\n\n [중단원] 이차함수의 활용\n\n [난이도] 하",
+      "normalized_complete_extracted_text": "4.이차함수의그래프가그림과같을때,일차함수의그래프가지나지않는사분면은?(단,는수)[점]①제사분면②제사분면③제사분면④제사분면⑤제사분면[중단원]이차함수의활용[난이도]하"
+    }
+  ],
+  "original_scan": {
+    "source_id": "s3",
+    "source_sha256": "a66743b0d3efb668b1ac8a0884356bcc93f3868d6ed0270cbf4bc67976faf992",
+    "pdf_page_1based": 1,
+    "printed_physical_question_page": 1,
+    "render": {
+      "file": "reviewer-only/scans/s3-page-1.png",
+      "source_id": "s3",
+      "source_sha256": "a66743b0d3efb668b1ac8a0884356bcc93f3868d6ed0270cbf4bc67976faf992",
+      "physical_pdf_page_1based": 1,
+      "clip_points": [
+        0.0,
+        150.0,
+        728.0,
+        1031.0
+      ],
+      "original_rotation": 0,
+      "render_rotation": 90,
+      "scale": 1.5,
+      "sha256": "3d39f0fda14546b5cde100ca1f07c28ad7c121815414b5c5e610d6652f0be4f3",
+      "author_input_allowed": false,
+      "incidental_handwriting_possible": true
+    },
+    "original_printed_label": "4",
+    "author_input_allowed": false,
+    "source_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\중3\\[범일중][3][25-2-중간](원본)(루비루비).pdf"
+  },
+  "complete_pdf_extracted_text_comparison": {
+    "equal": true,
+    "comparison": "complete whitespace-normalized per-question text, not substring or token membership",
+    "decision_limit": "Extraction equality is auxiliary. Full rendered content, HWP equations and original scan must also be reviewed.",
+    "differences": []
+  },
+  "figure_linkage": {
+    "hwp": {
+      "record_1based": 631,
+      "offset": 26178,
+      "tag": 85,
+      "level": 3,
+      "stream": "BinData/BIN0003.bmp",
+      "file": "question-only/q04/hwp-figure-1.png",
+      "width": 129,
+      "height": 130,
+      "decompressed_bmp_sha256": "67c19c29ff9d32b5d18268d6e5d17c2583cd4fd0b94b35758c8b98a70bd5bbe3",
+      "rgb_pixels_sha256": "28d952cd8792b7e595240fc911864981c0073019cab6f5822120bd45609459b0"
+    },
+    "pdf_figures": [
+      {
+        "source_id": "s4",
+        "source_sha256": "318dcd0587e97e993e8c3536b01e7c978205990386e5ba7e9242b68dde4d0689",
+        "pdf_page_1based": 1,
+        "xref": 13,
+        "image_rect_points": [
+          474.9809875488281,
+          167.27700805664062,
+          571.511962890625,
+          265.0050048828125
+        ],
+        "file": "question-only/q04/s4-embedded-figure.png",
+        "sha256": "e0fd8bc55a0ee980f9b28a4253941be1791641e550a6bb5ca4bb761a9c35b7b0",
+        "width": 129,
+        "height": 130,
+        "hwp_dimensions_equal": true,
+        "hwp_rgb_pixels_equal": false,
+        "hwp_mean_absolute_rgb_channel_difference": 3.58064,
+        "hwp_maximum_rgb_channel_difference": 35
+      },
+      {
+        "source_id": "s6",
+        "source_sha256": "f755311a97514d66c9f927940db11cab03e0265be08c76b5cd8e71002eb4928f",
+        "pdf_page_1based": 1,
+        "xref": 22,
+        "image_rect_points": [
+          387.8710021972656,
+          136.52996826171875,
+          466.66900634765625,
+          216.36297607421875
+        ],
+        "file": "question-only/q04/s6-embedded-figure.png",
+        "sha256": "1c69d436b52957e9431279eda8868f9f6fbed3c4288b664c28c684f717f412f3",
+        "width": 129,
+        "height": 130,
+        "hwp_dimensions_equal": true,
+        "hwp_rgb_pixels_equal": false,
+        "hwp_mean_absolute_rgb_channel_difference": 3.659491,
+        "hwp_maximum_rgb_channel_difference": 53
+      }
+    ]
+  },
+  "visual_comparison_status": "confirmed",
+  "extraction_limit_resolved_by_visual_review": "Complete extracted question text equals after whitespace removal; direct figure/scan/HWP review is still required and was performed.",
+  "computed_hwp_vs_normalized_complete_content": {
+    "checks": {
+      "complete_stem_equal_after_bounded_presentation_conversion": true,
+      "complete_ordered_choices_equal": true,
+      "score_equal": true,
+      "all_hwp_inline_equations_placed": true,
+      "boxed_given_equations_equal": true,
+      "complete_table_cells_equal": true
+    },
+    "hwp_complete_stem": "이차함수y=ax²-8x-b의그래프가그림과같을때,일차함수y=-ax+b의그래프가지나지않는사분면은?(단,a,b는수)",
+    "normalized_complete_stem": "이차함수y=ax²-8x-b의그래프가그림과같을때,일차함수y=-ax+b의그래프가지나지않는사분면은?(단,a,b는수)",
+    "stem_differences": [],
+    "hwp_complete_ordered_choices": [
+      "제1사분면",
+      "제2사분면",
+      "제3사분면",
+      "제4사분면",
+      "제1,3사분면"
+    ],
+    "normalized_complete_ordered_choices": [
+      "제1사분면",
+      "제2사분면",
+      "제3사분면",
+      "제4사분면",
+      "제1,3사분면"
+    ],
+    "boxed_givens": null,
+    "table_cells": null,
+    "method_limit": "Presentation conversion only; no numerical expression evaluation or original-answer solving. It does not alone prove pixels/scans equivalent."
+  },
+  "direct_visual_comparison": {
+    "question_placement_and_label": "passed",
+    "complete_printed_stem_and_all_givens": "passed",
+    "all_equations_signs_exponents_fractions_and_units": "passed",
+    "all_ordered_choices_or_printed_absence": "passed",
+    "native_tables_or_boxed_given_structure": "passed",
+    "all_printed_figure_labels_and_relations_or_printed_absence": "passed",
+    "score_and_partial_credit_label": "passed",
+    "sources_actually_compared": [
+      "s1 HWP main record content",
+      "s5 HWP main record content",
+      "s4 anonymous completed PDF",
+      "s6 named completed PDF",
+      "s3 original paper scan"
+    ],
+    "view_image_used": true,
+    "handwriting_not_printed_content": true,
+    "original_answer_or_solution_agreement_used": false,
+    "annotation_limit": "Handwritten student choices/work were incidentally visible and not transcribed or used. Scans are reviewer-only; clean printed sources and normalized question records are the author whitelist."
+  },
+  "source_identity": {
+    "status": "confirmed",
+    "school_full": "범일중학교",
+    "school_normalized": "범일중",
+    "grade": 3,
+    "subject": "수학",
+    "semester": 2,
+    "round": "중간",
+    "exam_year": 2025,
+    "administration_date": "2025-09-23",
+    "period": 3,
+    "subject_code": "05",
+    "basis": "Actual printed original title/date/footer, linked by complete question content and printed page/label. Neither filename nor byte hash alone is identity proof.",
+    "edited_BI_label_scope": "Only these compared files; no universal BI-to-school mapping.",
+    "footer_26_year_role": "Observed 대비 wording + linked explicit2025 exam administration support editorial/preparation label; creation date/intended2026 use remain unknown."
+  },
+  "held_components": [
+    {
+      "component": "export_acquisition_native_custody_chain",
+      "status": "held",
+      "reason": "No converter/exporter or custody records inspected; content equivalence does not prove a direct chain."
+    },
+    {
+      "component": "textbook_publisher",
+      "status": "held",
+      "reason": "비상 is a filename hint; no printed textbook/publisher attestation established."
+    },
+    {
+      "component": "copyright_reuse_authorization",
+      "status": "held",
+      "reason": "A school copyright line is not a reuse licence/permission."
+    },
+    {
+      "component": "curriculum_new_twin_approval",
+      "status": "outside this source audit",
+      "reason": "Original equivalence/identity does not approve curriculum, new answers/solutions or candidates."
+    }
+  ]
+}

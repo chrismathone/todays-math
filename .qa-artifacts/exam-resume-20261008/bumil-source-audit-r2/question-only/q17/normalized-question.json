@@ -1,0 +1,40 @@
+{
+  "schema": "bumil-normalized-question-only.v2",
+  "question_number": 17,
+  "original_label": "17",
+  "question_type": "객관식",
+  "partial_credit_printed": false,
+  "score": 5,
+  "stem": "그림과 같이 직사각형 ABCD의 세 변에 접하는 원 O가 있다. 네 점 E, F, G, H는 원 O의 접점이고, AB=6 cm, BC=8 cm일 때, △ABM의 넓이는?",
+  "givens": [
+    "직사각형 ABCD",
+    "원 O가 직사각형의 세 변에 접함",
+    "E,F,G,H는 원 O의 접점",
+    "AB=6 cm",
+    "BC=8 cm"
+  ],
+  "choices": [
+    "16/5 cm²",
+    "9 cm²",
+    "48/5 cm²",
+    "10 cm²",
+    "12 cm²"
+  ],
+  "figure_labels": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "M",
+    "O",
+    "6 cm",
+    "8 cm"
+  ],
+  "diagram_observation": "A/B는 왼쪽 위/아래, D/C는 오른쪽 위/아래. E는 AD, G는 BC, H는 CD의 접점. A에서 BC 위 M으로 그린 선분에 접점 F가 표시된다. M과 G를 서로 바꾸지 않고 AB와 BC 치수를 그대로 비교함.",
+  "transcription_method": "Human normalization of the complete printed question, not a solution or automatic scan OCR.",
+  "author_input_policy": "Only normalized printed content and clean HWP/completed-PDF question figures/crops; no scan handwriting, answers or solutions."
+}

@@ -1,0 +1,634 @@
+{
+  "question_number": 19,
+  "original_label": "서술형 2",
+  "score": 7,
+  "normalized_question_file": "question-only/q19/normalized-question.json",
+  "normalized_question_sha256": "468e031b27e696564c5caac35a24a1919c984b2c111072b4ea7907388be8cd32",
+  "hwp_sources": [
+    {
+      "source_id": "s1",
+      "source_sha256": "3abb1a759dd96f6e9a76728a1ecae70013df605bb3e73745908a773897a6a43b",
+      "stream": "BodyText/Section0",
+      "question_record": {
+        "question_number": 19,
+        "records": [
+          {
+            "record_1based": 1739,
+            "offset": 82688,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "[서술형  ] 그림과 같은 어느 캠핑장에서 두 텐트   사이의 거리는  이다.  ,  일 때, 텐트  에서 공동 식수대  까지의 거리를 구하시오.",
+            "inline_template": [
+              "  [서술형 ",
+              {
+                "equation_slot_at_utf16_index": 14
+              },
+              "] 그림과 같은 어느 캠핑장에서 두 텐트 ",
+              {
+                "equation_slot_at_utf16_index": 45
+              },
+              " 사이의 거리는 ",
+              {
+                "equation_slot_at_utf16_index": 62
+              },
+              "이다. ",
+              {
+                "equation_slot_at_utf16_index": 74
+              },
+              ", ",
+              {
+                "equation_slot_at_utf16_index": 84
+              },
+              "일 때, 텐트 ",
+              {
+                "equation_slot_at_utf16_index": 100
+              },
+              "에서 공동 식수대 ",
+              {
+                "equation_slot_at_utf16_index": 118
+              },
+              "까지의 거리를 구하시오. "
+            ]
+          },
+          {
+            "record_1based": 1791,
+            "offset": 86182,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "2"
+          },
+          {
+            "record_1based": 1793,
+            "offset": 86324,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rmA,~B"
+          },
+          {
+            "record_1based": 1795,
+            "offset": 86476,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "70` rm m"
+          },
+          {
+            "record_1based": 1797,
+            "offset": 86632,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rm ANGLE A=45°"
+          },
+          {
+            "record_1based": 1799,
+            "offset": 86800,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rm ANGLE B=75°"
+          },
+          {
+            "record_1based": 1801,
+            "offset": 86968,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rmB"
+          },
+          {
+            "record_1based": 1803,
+            "offset": 87114,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rmC"
+          },
+          {
+            "record_1based": 1805,
+            "offset": 87226,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "[총  점, 부분 점수 있음]",
+            "inline_template": [
+              " [총 ",
+              {
+                "equation_slot_at_utf16_index": 4
+              },
+              "점, 부분 점수 있음] "
+            ]
+          },
+          {
+            "record_1based": 1809,
+            "offset": 87394,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "7"
+          }
+        ],
+        "pictures": [
+          {
+            "record_1based": 1816,
+            "offset": 87976,
+            "tag": 85,
+            "level": 3,
+            "stream": "BinData/BIN000F.bmp",
+            "file": "question-only/q19/hwp-figure-1.png",
+            "width": 258,
+            "height": 161,
+            "decompressed_bmp_sha256": "b88b5210f4dd2ed00ad016d6df9a1a9fcbe5d7c004fe306a398d5afc89a67a21",
+            "rgb_pixels_sha256": "4eda9a1797e82fb75fd952e54fc51e7b5bb69a8e23129263e2c2d6cd3d2d39cc"
+          }
+        ],
+        "boundary": {
+          "first_block_offset": 82660,
+          "last_block_end_offset": 88635
+        },
+        "document_header_records": [],
+        "document_header_pictures": [],
+        "reconstructed_paragraphs": [
+          {
+            "record_1based": 1739,
+            "offset": 82688,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 86182,
+                "record_1based": 1791,
+                "script": "2"
+              },
+              {
+                "offset": 86324,
+                "record_1based": 1793,
+                "script": "rmA,~B"
+              },
+              {
+                "offset": 86476,
+                "record_1based": 1795,
+                "script": "70` rm m"
+              },
+              {
+                "offset": 86632,
+                "record_1based": 1797,
+                "script": "rm ANGLE A=45°"
+              },
+              {
+                "offset": 86800,
+                "record_1based": 1799,
+                "script": "rm ANGLE B=75°"
+              },
+              {
+                "offset": 86968,
+                "record_1based": 1801,
+                "script": "rmB"
+              },
+              {
+                "offset": 87114,
+                "record_1based": 1803,
+                "script": "rmC"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "[서술형 ⟦2⟧] 그림과 같은 어느 캠핑장에서 두 텐트 ⟦rmA,~B⟧ 사이의 거리는 ⟦70` rm m⟧이다. ⟦rm ANGLE A=45°⟧, ⟦rm ANGLE B=75°⟧일 때, 텐트 ⟦rmB⟧에서 공동 식수대 ⟦rmC⟧까지의 거리를 구하시오."
+          },
+          {
+            "record_1based": 1805,
+            "offset": 87226,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 87394,
+                "record_1based": 1809,
+                "script": "7"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "[총 ⟦7⟧점, 부분 점수 있음]"
+          }
+        ],
+        "all_inline_equation_slots_resolved": true
+      },
+      "source_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[범일중][3][25-2-중간][비상] (완료).hwp"
+    },
+    {
+      "source_id": "s5",
+      "source_sha256": "3abb1a759dd96f6e9a76728a1ecae70013df605bb3e73745908a773897a6a43b",
+      "stream": "BodyText/Section0",
+      "question_record": {
+        "question_number": 19,
+        "records": [
+          {
+            "record_1based": 1739,
+            "offset": 82688,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "[서술형  ] 그림과 같은 어느 캠핑장에서 두 텐트   사이의 거리는  이다.  ,  일 때, 텐트  에서 공동 식수대  까지의 거리를 구하시오.",
+            "inline_template": [
+              "  [서술형 ",
+              {
+                "equation_slot_at_utf16_index": 14
+              },
+              "] 그림과 같은 어느 캠핑장에서 두 텐트 ",
+              {
+                "equation_slot_at_utf16_index": 45
+              },
+              " 사이의 거리는 ",
+              {
+                "equation_slot_at_utf16_index": 62
+              },
+              "이다. ",
+              {
+                "equation_slot_at_utf16_index": 74
+              },
+              ", ",
+              {
+                "equation_slot_at_utf16_index": 84
+              },
+              "일 때, 텐트 ",
+              {
+                "equation_slot_at_utf16_index": 100
+              },
+              "에서 공동 식수대 ",
+              {
+                "equation_slot_at_utf16_index": 118
+              },
+              "까지의 거리를 구하시오. "
+            ]
+          },
+          {
+            "record_1based": 1791,
+            "offset": 86182,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "2"
+          },
+          {
+            "record_1based": 1793,
+            "offset": 86324,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rmA,~B"
+          },
+          {
+            "record_1based": 1795,
+            "offset": 86476,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "70` rm m"
+          },
+          {
+            "record_1based": 1797,
+            "offset": 86632,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rm ANGLE A=45°"
+          },
+          {
+            "record_1based": 1799,
+            "offset": 86800,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rm ANGLE B=75°"
+          },
+          {
+            "record_1based": 1801,
+            "offset": 86968,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rmB"
+          },
+          {
+            "record_1based": 1803,
+            "offset": 87114,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "rmC"
+          },
+          {
+            "record_1based": 1805,
+            "offset": 87226,
+            "tag": 67,
+            "level": 1,
+            "kind": "main_paragraph",
+            "text": "[총  점, 부분 점수 있음]",
+            "inline_template": [
+              " [총 ",
+              {
+                "equation_slot_at_utf16_index": 4
+              },
+              "점, 부분 점수 있음] "
+            ]
+          },
+          {
+            "record_1based": 1809,
+            "offset": 87394,
+            "tag": 88,
+            "level": 2,
+            "kind": "equation",
+            "script": "7"
+          }
+        ],
+        "pictures": [
+          {
+            "record_1based": 1816,
+            "offset": 87976,
+            "tag": 85,
+            "level": 3,
+            "stream": "BinData/BIN000F.bmp",
+            "file": "question-only/q19/hwp-figure-1.png",
+            "width": 258,
+            "height": 161,
+            "decompressed_bmp_sha256": "b88b5210f4dd2ed00ad016d6df9a1a9fcbe5d7c004fe306a398d5afc89a67a21",
+            "rgb_pixels_sha256": "4eda9a1797e82fb75fd952e54fc51e7b5bb69a8e23129263e2c2d6cd3d2d39cc"
+          }
+        ],
+        "boundary": {
+          "first_block_offset": 82660,
+          "last_block_end_offset": 88635
+        },
+        "document_header_records": [],
+        "document_header_pictures": [],
+        "reconstructed_paragraphs": [
+          {
+            "record_1based": 1739,
+            "offset": 82688,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 86182,
+                "record_1based": 1791,
+                "script": "2"
+              },
+              {
+                "offset": 86324,
+                "record_1based": 1793,
+                "script": "rmA,~B"
+              },
+              {
+                "offset": 86476,
+                "record_1based": 1795,
+                "script": "70` rm m"
+              },
+              {
+                "offset": 86632,
+                "record_1based": 1797,
+                "script": "rm ANGLE A=45°"
+              },
+              {
+                "offset": 86800,
+                "record_1based": 1799,
+                "script": "rm ANGLE B=75°"
+              },
+              {
+                "offset": 86968,
+                "record_1based": 1801,
+                "script": "rmB"
+              },
+              {
+                "offset": 87114,
+                "record_1based": 1803,
+                "script": "rmC"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "[서술형 ⟦2⟧] 그림과 같은 어느 캠핑장에서 두 텐트 ⟦rmA,~B⟧ 사이의 거리는 ⟦70` rm m⟧이다. ⟦rm ANGLE A=45°⟧, ⟦rm ANGLE B=75°⟧일 때, 텐트 ⟦rmB⟧에서 공동 식수대 ⟦rmC⟧까지의 거리를 구하시오."
+          },
+          {
+            "record_1based": 1805,
+            "offset": 87226,
+            "level": 1,
+            "equations": [
+              {
+                "offset": 87394,
+                "record_1based": 1809,
+                "script": "7"
+              }
+            ],
+            "reconstructed_main_question_paragraph": "[총 ⟦7⟧점, 부분 점수 있음]"
+          }
+        ],
+        "all_inline_equation_slots_resolved": true
+      },
+      "source_path": "N:\\개인\\기출\\기출작업\\이전차수\\196차\\[범일중][3][25-2-중간][비상] (완료).hwp"
+    }
+  ],
+  "completed_pdf_sources": [
+    {
+      "file": "question-only/q19/s4-printed-question.png",
+      "source_id": "s4",
+      "source_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[범일중][3][25-2-중간][비상] (완료).PDF",
+      "source_sha256": "318dcd0587e97e993e8c3536b01e7c978205990386e5ba7e9242b68dde4d0689",
+      "pdf_page_1based": 4,
+      "clip_points": [
+        367,
+        80.84793090820312,
+        680,
+        318.2083435058594
+      ],
+      "original_rotation": 0,
+      "render_rotation": 0,
+      "scale": 3,
+      "sha256": "f96eb2a20e0db4f0c726935725974dfad2e909b66b4c28c6d8de7ad76f892a1f",
+      "author_input_allowed": true,
+      "literal_pdf_text": "19. [서술형 ] 그림과 같은 어느 캠핑장에서 두 텐트\n\nAB 사이의 거리는 m이다. ∠A °, ∠B°일\n\n때, 텐트 B에서 공동 식수대 C까지의 거리를 구하시오.\n\n                    [총 점, 부분 점수 있음]\n\n\n\n\n\n [중단원] 삼각비\n\n [난이도] 중",
+      "normalized_complete_extracted_text": "19.[서술형]그림과같은어느캠핑장에서두텐트AB사이의거리는m이다.∠A°,∠B°일때,텐트B에서공동식수대C까지의거리를구하시오.[총점,부분점수있음][중단원]삼각비[난이도]중"
+    },
+    {
+      "file": "question-only/q19/s6-printed-question.png",
+      "source_id": "s6",
+      "source_path": "N:\\개인\\기출\\기출작업\\이전차수\\196차\\[범일중][3][25-2-중간][비상] (완료).pdf",
+      "source_sha256": "f755311a97514d66c9f927940db11cab03e0265be08c76b5cd8e71002eb4928f",
+      "pdf_page_1based": 4,
+      "clip_points": [
+        302,
+        65.23575592041016,
+        554,
+        260.63124084472656
+      ],
+      "original_rotation": 0,
+      "render_rotation": 0,
+      "scale": 3,
+      "sha256": "e33cae13217f15f7445beed70c8eb63caba1885990a4f2f7e8530ca23a5c3363",
+      "author_input_allowed": true,
+      "literal_pdf_text": "19. [서술형 ] 그림과 같은 어느 캠핑장에서 두 텐트\n\nAB 사이의 거리는 m이다. ∠A °, ∠B °일\n\n때, 텐트 B에서 공동 식수대 C까지의 거리를 구하시오.\n\n                    [총 점, 부분 점수 있음]\n\n\n\n\n\n [중단원] 삼각비\n\n [난이도] 중",
+      "normalized_complete_extracted_text": "19.[서술형]그림과같은어느캠핑장에서두텐트AB사이의거리는m이다.∠A°,∠B°일때,텐트B에서공동식수대C까지의거리를구하시오.[총점,부분점수있음][중단원]삼각비[난이도]중"
+    }
+  ],
+  "original_scan": {
+    "source_id": "s3",
+    "source_sha256": "a66743b0d3efb668b1ac8a0884356bcc93f3868d6ed0270cbf4bc67976faf992",
+    "pdf_page_1based": 4,
+    "printed_physical_question_page": 4,
+    "render": {
+      "file": "reviewer-only/scans/s3-page-4.png",
+      "source_id": "s3",
+      "source_sha256": "a66743b0d3efb668b1ac8a0884356bcc93f3868d6ed0270cbf4bc67976faf992",
+      "physical_pdf_page_1based": 4,
+      "clip_points": [
+        0.0,
+        0.0,
+        728.0,
+        1031.0
+      ],
+      "original_rotation": 0,
+      "render_rotation": 270,
+      "scale": 1.5,
+      "sha256": "967b64e269390d0c360b2b772c9ab37a2621a6e40c95112edff9415cc113358c",
+      "author_input_allowed": false,
+      "incidental_handwriting_possible": true
+    },
+    "original_printed_label": "서술형 2",
+    "author_input_allowed": false,
+    "source_path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\중3\\[범일중][3][25-2-중간](원본)(루비루비).pdf"
+  },
+  "complete_pdf_extracted_text_comparison": {
+    "equal": true,
+    "comparison": "complete whitespace-normalized per-question text, not substring or token membership",
+    "decision_limit": "Extraction equality is auxiliary. Full rendered content, HWP equations and original scan must also be reviewed.",
+    "differences": []
+  },
+  "figure_linkage": {
+    "hwp": {
+      "record_1based": 1816,
+      "offset": 87976,
+      "tag": 85,
+      "level": 3,
+      "stream": "BinData/BIN000F.bmp",
+      "file": "question-only/q19/hwp-figure-1.png",
+      "width": 258,
+      "height": 161,
+      "decompressed_bmp_sha256": "b88b5210f4dd2ed00ad016d6df9a1a9fcbe5d7c004fe306a398d5afc89a67a21",
+      "rgb_pixels_sha256": "4eda9a1797e82fb75fd952e54fc51e7b5bb69a8e23129263e2c2d6cd3d2d39cc"
+    },
+    "pdf_figures": [
+      {
+        "source_id": "s4",
+        "source_sha256": "318dcd0587e97e993e8c3536b01e7c978205990386e5ba7e9242b68dde4d0689",
+        "pdf_page_1based": 4,
+        "xref": 29,
+        "image_rect_points": [
+          426.4150085449219,
+          157.5640106201172,
+          620.0770263671875,
+          278.07501220703125
+        ],
+        "file": "question-only/q19/s4-embedded-figure.png",
+        "sha256": "3fef3eab25a18c4314c0a1c869d63b1a53acb290cc6458e0a19aebc3765a067d",
+        "width": 258,
+        "height": 161,
+        "hwp_dimensions_equal": true,
+        "hwp_rgb_pixels_equal": false,
+        "hwp_mean_absolute_rgb_channel_difference": 6.123333,
+        "hwp_maximum_rgb_channel_difference": 42
+      },
+      {
+        "source_id": "s6",
+        "source_sha256": "f755311a97514d66c9f927940db11cab03e0265be08c76b5cd8e71002eb4928f",
+        "pdf_page_1based": 4,
+        "xref": 59,
+        "image_rect_points": [
+          348.2929992675781,
+          128.61997985839844,
+          506.4880065917969,
+          227.031982421875
+        ],
+        "file": "question-only/q19/s6-embedded-figure.png",
+        "sha256": "da5af91b4019cf378a5f4f5d72fe5efeb413852c6539e6dbdb9dbe1ab4099119",
+        "width": 258,
+        "height": 161,
+        "hwp_dimensions_equal": true,
+        "hwp_rgb_pixels_equal": false,
+        "hwp_mean_absolute_rgb_channel_difference": 6.48513,
+        "hwp_maximum_rgb_channel_difference": 49
+      }
+    ]
+  },
+  "visual_comparison_status": "confirmed",
+  "extraction_limit_resolved_by_visual_review": "Complete extracted question text equals after whitespace removal; direct figure/scan/HWP review is still required and was performed.",
+  "computed_hwp_vs_normalized_complete_content": {
+    "checks": {
+      "complete_stem_equal_after_bounded_presentation_conversion": true,
+      "complete_ordered_choices_equal": true,
+      "score_equal": true,
+      "all_hwp_inline_equations_placed": true,
+      "boxed_given_equations_equal": true,
+      "complete_table_cells_equal": true
+    },
+    "hwp_complete_stem": "[서술형2]그림과같은어느캠핑장에서두텐트A,B사이의거리는70m이다.∠A=45°,∠B=75°일때,텐트B에서공동식수대C까지의거리를구하시오.",
+    "normalized_complete_stem": "[서술형2]그림과같은어느캠핑장에서두텐트A,B사이의거리는70m이다.∠A=45°,∠B=75°일때,텐트B에서공동식수대C까지의거리를구하시오.",
+    "stem_differences": [],
+    "hwp_complete_ordered_choices": [],
+    "normalized_complete_ordered_choices": [],
+    "boxed_givens": null,
+    "table_cells": null,
+    "method_limit": "Presentation conversion only; no numerical expression evaluation or original-answer solving. It does not alone prove pixels/scans equivalent."
+  },
+  "direct_visual_comparison": {
+    "question_placement_and_label": "passed",
+    "complete_printed_stem_and_all_givens": "passed",
+    "all_equations_signs_exponents_fractions_and_units": "passed",
+    "all_ordered_choices_or_printed_absence": "passed",
+    "native_tables_or_boxed_given_structure": "passed",
+    "all_printed_figure_labels_and_relations_or_printed_absence": "passed",
+    "score_and_partial_credit_label": "passed",
+    "sources_actually_compared": [
+      "s1 HWP main record content",
+      "s5 HWP main record content",
+      "s4 anonymous completed PDF",
+      "s6 named completed PDF",
+      "s3 original paper scan"
+    ],
+    "view_image_used": true,
+    "handwriting_not_printed_content": true,
+    "original_answer_or_solution_agreement_used": false,
+    "annotation_limit": "Handwritten student choices/work were incidentally visible and not transcribed or used. Scans are reviewer-only; clean printed sources and normalized question records are the author whitelist."
+  },
+  "source_identity": {
+    "status": "confirmed",
+    "school_full": "범일중학교",
+    "school_normalized": "범일중",
+    "grade": 3,
+    "subject": "수학",
+    "semester": 2,
+    "round": "중간",
+    "exam_year": 2025,
+    "administration_date": "2025-09-23",
+    "period": 3,
+    "subject_code": "05",
+    "basis": "Actual printed original title/date/footer, linked by complete question content and printed page/label. Neither filename nor byte hash alone is identity proof.",
+    "edited_BI_label_scope": "Only these compared files; no universal BI-to-school mapping.",
+    "footer_26_year_role": "Observed 대비 wording + linked explicit2025 exam administration support editorial/preparation label; creation date/intended2026 use remain unknown."
+  },
+  "held_components": [
+    {
+      "component": "export_acquisition_native_custody_chain",
+      "status": "held",
+      "reason": "No converter/exporter or custody records inspected; content equivalence does not prove a direct chain."
+    },
+    {
+      "component": "textbook_publisher",
+      "status": "held",
+      "reason": "비상 is a filename hint; no printed textbook/publisher attestation established."
+    },
+    {
+      "component": "copyright_reuse_authorization",
+      "status": "held",
+      "reason": "A school copyright line is not a reuse licence/permission."
+    },
+    {
+      "component": "curriculum_new_twin_approval",
+      "status": "outside this source audit",
+      "reason": "Original equivalence/identity does not approve curriculum, new answers/solutions or candidates."
+    }
+  ]
+}

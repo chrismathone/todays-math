@@ -1,0 +1,32 @@
+{
+  "schema": "bumil-normalized-question-only.v2",
+  "question_number": 6,
+  "original_label": "6",
+  "question_type": "객관식",
+  "partial_credit_printed": false,
+  "score": 4,
+  "stem": "그림과 같이 ∠A의 크기가 같은 직각삼각형 ABC, ADE, AFG에서 옳은 것은?",
+  "givens": [
+    "ABC, ADE, AFG는 직각삼각형",
+    "공통 ∠A"
+  ],
+  "choices": [
+    "ED/AE=AF/AG",
+    "AB/CA=AE/AD",
+    "sin A=AB/AC",
+    "cos A=AG/AF",
+    "tan A=DE/AD"
+  ],
+  "figure_labels": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G"
+  ],
+  "diagram_observation": "A-B-D-F가 수평으로, A-C-E-G가 비스듬한 한 직선으로 배치된다. BC, DE, FG에 직각 표시가 각각 B,D,F에 있다. 보기의 분자는 ED/DE 등 인쇄 순서대로 보존함.",
+  "transcription_method": "Human normalization of the complete printed question, not a solution or automatic scan OCR.",
+  "author_input_policy": "Only normalized printed content and clean HWP/completed-PDF question figures/crops; no scan handwriting, answers or solutions."
+}
