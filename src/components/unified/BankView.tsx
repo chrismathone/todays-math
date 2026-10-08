@@ -21,12 +21,26 @@ import {
 import { UnitRangePicker } from "@/components/progress/UnitRangePicker";
 import { describeRange } from "@/components/test/rangeSummary";
 import {
+  BANK_SOURCE_GROUP_LABEL,
   PROBLEM_FILTER_OPTIONS,
   REVIEW_STATUS_LABEL,
   SOURCE_LABEL,
-  SOURCE_OPTIONS,
   splitProblemFilterValue,
 } from "@/components/problem/labels";
+import {
+  BANK_SEMESTERS,
+  bankSourceCountsSchema,
+  type BankSourceCounts,
+  type BankSourceGroup,
+} from "@/contracts/bankSource.contract";
+import { BankSourceField, BankSourcePicker } from "./BankSourcePicker";
+import {
+  booksText,
+  kindsText,
+  leavesGrade,
+  sourceFieldText,
+  type SourcePick,
+} from "./bankSourcePick";
 import { provenanceBadges } from "@/lib/problem/provenance";
 import { solutionForDisplay } from "@/lib/solutionSteps";
 import { ProblemTransformPanel } from "@/components/problem/ProblemTransformPanelLazy";
@@ -64,13 +78,22 @@ const PROBLEM_GRID_STYLE = {
 type Filters = {
   q: string;
   grade: string;
+  /** 학기 — 차시의 `unit.semester`(D-161). `""` 는 전체 학기. */
+  semester: string;
   chapter: string;
   difficulty: string;
   unitFrom: string;
   unitTo: string;
   problemFilter: string;
   reviewStatus: string;
-  source: string;
+  /**
+   * 출처 — 고르기 창 맨 위 출처 줄의 갈래(H1 ⑴). 옛 «출처» 선택 칸(`source` 한 값)은 없어졌다 —
+   * 서버는 `source` 도 그대로 받지만 이 화면은 갈래만 보낸다.
+   */
+  sourceGroup: BankSourceGroup | "";
+  /** 교과서 책(`source_book.id`) · 자료 종류 — 여럿 고르기. 주소에는 쉼표로 이은 한 값으로 실린다. */
+  books: string[];
+  materialKinds: string[];
   hasFigure: boolean;
   hasSolution: boolean;
   hasAnswer: boolean;
@@ -80,18 +103,40 @@ type Filters = {
 const EMPTY_FILTERS: Filters = {
   q: "",
   grade: "",
+  semester: "",
   chapter: "",
   difficulty: "",
   unitFrom: "",
   unitTo: "",
   problemFilter: "",
   reviewStatus: "",
-  source: "",
+  sourceGroup: "",
+  books: [],
+  materialKinds: [],
   hasFigure: false,
   hasSolution: false,
   hasAnswer: false,
   page: 1,
 };
+
+const sameList = (a: string[], b: string[]) =>
+  a.length === b.length && a.every((item, index) => item === b[index]);
+
+type ChipKey =
+  | "q"
+  | "grade"
+  | "semester"
+  | "chapter"
+  | "difficulty"
+  | "unitFrom"
+  | "problemFilter"
+  | "reviewStatus"
+  | "sourceGroup"
+  | "books"
+  | "materialKinds"
+  | "hasFigure"
+  | "hasSolution"
+  | "hasAnswer";
 
 const ASSET_FILTERS = [
   { key: "hasFigure", label: "그림" },
@@ -106,7 +151,11 @@ function queryFor(filters: Filters, random = false) {
     ...query,
     ...splitProblemFilterValue(problemFilter),
   }).forEach(([key, value]) => {
-    if (value !== "" && value !== false && value !== undefined)
+    // 여럿 고르기는 쉼표로 이은 한 값 — 이웃 필터와 같은 «열쇠 하나 · 값 하나»(계약이 배열로 푼다).
+    // 빈 고르기는 아예 안 보낸다(= 전부).
+    if (Array.isArray(value)) {
+      if (value.length) params.set(key, value.join(","));
+    } else if (value !== "" && value !== false && value !== undefined)
       params.set(key, String(value));
   });
   if (random) {
@@ -666,6 +715,19 @@ export default function BankView({
   useEffect(() => () => randomController.current?.abort(), []);
   const [filtersOpen, setFiltersOpen] = useState(false);
   const [rangeEditing, setRangeEditing] = useState(false);
+  /**
+   * «출처 고르기» 창(H1) — 창의 수는 처음 열 때 한 번 받는다(다른 필터와 무관한 수라 필터를 바꿔도 다시 셀 일이
+   * 없다). 실패하면 창 안에서 말하고 다시 시도한다.
+   */
+  const [sourceOpen, setSourceOpen] = useState(false);
+  const [sourceCounts, setSourceCounts] = useState<BankSourceCounts | null>(
+    null,
+  );
+  const [sourceCountsError, setSourceCountsError] = useState<string | null>(
+    null,
+  );
+  const sourceCountsLoading = useRef(false);
+  const sourceOpener = useRef<HTMLButtonElement>(null);
   const searchInput = useRef<HTMLInputElement>(null);
   const resultsHeading = useRef<HTMLHeadingElement>(null);
   const [request, setRequest] = useState<{ filters: Filters; version: number }>(
@@ -710,10 +772,20 @@ export default function BankView({
   const firstRow = (data.page - 1) * data.pageSize + 1;
   const units = data.units ?? initialData.units ?? [];
   const rangeSummary = describeRange(units, filters.unitFrom, filters.unitTo);
+  const sourcePick: SourcePick = {
+    group: filters.sourceGroup,
+    books: filters.books,
+    kinds: filters.materialKinds,
+  };
   const activeFilters = (
     [
       { key: "q", label: "검색어", value: filters.q },
       { key: "grade", label: "학년", value: filters.grade },
+      {
+        key: "semester",
+        label: "학기",
+        value: filters.semester ? `${filters.semester}학기` : "",
+      },
       { key: "chapter", label: "단원", value: filters.chapter },
       { key: "difficulty", label: "난이도", value: filters.difficulty },
       {
@@ -737,17 +809,39 @@ export default function BankView({
             filters.reviewStatus as keyof typeof REVIEW_STATUS_LABEL
           ] || "",
       },
+      /*
+        출처 칩(H1) — «교과서 …» 하나 · «자료 …» 하나, 각각 × 로 그 차원만 푼다. 책을 고르면 «교과서 …» 칩이
+        출처까지 말하므로 «출처 교과서» 칩은 책이 없을 때만 선다(× 하면 출처 차원 전부 — 자료 종류까지 — 를 푼다).
+      */
       {
-        key: "source",
+        key: "sourceGroup",
         label: "출처",
-        value: SOURCE_LABEL[filters.source as keyof typeof SOURCE_LABEL] || "",
+        value:
+          filters.sourceGroup &&
+          !(filters.sourceGroup === "school_textbook" && filters.books.length)
+            ? BANK_SOURCE_GROUP_LABEL[filters.sourceGroup]
+            : "",
+      },
+      {
+        key: "books",
+        label: "교과서",
+        value: filters.books.length
+          ? booksText(sourceCounts, filters.books)
+          : "",
+      },
+      {
+        key: "materialKinds",
+        label: "자료",
+        value: filters.materialKinds.length
+          ? kindsText(filters.materialKinds)
+          : "",
       },
       ...ASSET_FILTERS.map(({ key, label }) => ({
         key,
         label: "자료",
         value: filters[key] ? `${label} 있음` : "",
       })),
-    ] as const
+    ] satisfies { key: ChipKey; label: string; value: string }[]
   ).filter(({ value }) => Boolean(value));
   const availableGrades = data.grades.length ? data.grades : initialData.grades;
   const eligibleOnPage = data.problems.filter(
@@ -949,7 +1043,7 @@ export default function BankView({
     updateFilters(EMPTY_FILTERS);
   }
 
-  function removeFilter(key: (typeof activeFilters)[number]["key"]) {
+  function removeFilter(key: ChipKey) {
     if (key === "q") setSearch("");
     // A unit belongs to its grade; removing the grade also removes that unit.
     if (key === "grade")
@@ -957,6 +1051,11 @@ export default function BankView({
     else if (key === "chapter")
       updateFilters({ chapter: "", unitFrom: "", unitTo: "" });
     else if (key === "unitFrom") updateFilters({ unitFrom: "", unitTo: "" });
+    // 책 · 자료 종류는 교과서 출처에만 붙는다 — 출처를 풀면 둘도 같이 푼다(서버가 섞인 조건을 400 으로 막는다).
+    else if (key === "sourceGroup")
+      updateFilters({ sourceGroup: "", books: [], materialKinds: [] });
+    else if (key === "books" || key === "materialKinds")
+      updateFilters({ [key]: [] });
     else if (
       key === "hasFigure" ||
       key === "hasSolution" ||
@@ -965,6 +1064,71 @@ export default function BankView({
       updateFilters({ [key]: false });
     else updateFilters({ [key]: "" });
     resultsHeading.current?.focus({ preventScroll: true });
+  }
+
+  /** 창의 수 — 한 번 받으면 다시 열어도 다시 세지 않는다. 받는 중에는 겹쳐 부르지 않는다. */
+  const loadSourceCounts = useCallback(async () => {
+    if (sourceCountsLoading.current) return;
+    sourceCountsLoading.current = true;
+    setSourceCountsError(null);
+    try {
+      const response = await fetch(`${getStudioEndpoints().problems}/sources`, {
+        cache: "no-store",
+      });
+      const payload = await response.json();
+      if (!response.ok)
+        throw new Error(
+          typeof payload?.error === "string"
+            ? payload.error
+            : "출처별 문항 수를 불러오지 못했습니다.",
+        );
+      const parsed = bankSourceCountsSchema.safeParse(payload);
+      if (!parsed.success)
+        throw new Error(
+          "출처별 문항 수를 확인할 수 없습니다. 다시 시도해 주세요.",
+        );
+      setSourceCounts(parsed.data);
+    } catch (cause) {
+      setSourceCountsError(
+        cause instanceof Error && !(cause instanceof SyntaxError)
+          ? cause.message
+          : "출처별 문항 수를 불러오지 못했습니다.",
+      );
+    } finally {
+      sourceCountsLoading.current = false;
+    }
+  }, []);
+
+  function openSourcePicker() {
+    setSourceOpen(true);
+    if (!sourceCounts) void loadSourceCounts();
+  }
+
+  /**
+   * [적용](H1 ⑷) — 창 안의 초안을 한 번에 건다. 바뀐 것이 없으면 요청을 안 보낸다.
+   * ⑶ 학년 칸과 다른 과목의 책이 끼면 학년을 «전체 학년»으로 돌린다(단원은 학년에 딸려 같이 푼다) —
+   * 그대로 두면 «중1 이면서 중2 책»이라 결과가 0 으로 빈다.
+   */
+  function applySource(next: SourcePick) {
+    setSourceOpen(false);
+    const textbook = next.group === "school_textbook";
+    const patch: Partial<Filters> = {
+      sourceGroup: next.group,
+      books: textbook ? next.books : [],
+      materialKinds: textbook ? next.kinds : [],
+    };
+    if (
+      textbook &&
+      sourceCounts &&
+      leavesGrade(sourceCounts, filters.grade, next.books)
+    )
+      Object.assign(patch, { grade: "", chapter: "" });
+    const unchanged =
+      patch.sourceGroup === filters.sourceGroup &&
+      sameList(patch.books!, filters.books) &&
+      sameList(patch.materialKinds!, filters.materialKinds) &&
+      !("grade" in patch);
+    if (!unchanged) updateFilters(patch);
   }
 
   function goToPage(page: number) {
@@ -1239,6 +1403,35 @@ export default function BankView({
                     </span>
                   </div>
                 </div>
+                {/* 학기 — 차시의 `unit.semester`(D-161). 모든 출처에 듣는다. 단원 목록이 학기를 따라
+                    좁아지므로 학기를 바꾸면 고른 단원은 푼다. */}
+                <div className={styles.filterField}>
+                  <label className="sr-only" htmlFor={`${headingId}-semester`}>
+                    학기
+                  </label>
+                  <div className={styles.selectWrap}>
+                    <select
+                      id={`${headingId}-semester`}
+                      value={filters.semester}
+                      onChange={(event) =>
+                        updateFilters({
+                          semester: event.target.value,
+                          chapter: "",
+                        })
+                      }
+                    >
+                      <option value="">전체 학기</option>
+                      {BANK_SEMESTERS.map((semester) => (
+                        <option key={semester} value={semester}>
+                          {semester}학기
+                        </option>
+                      ))}
+                    </select>
+                    <span className={styles.chevronDown}>
+                      <Icon name="chevron" />
+                    </span>
+                  </div>
+                </div>
                 <div className={styles.filterField}>
                   <label className="sr-only" htmlFor={`${headingId}-chapter`}>
                     단원
@@ -1379,15 +1572,6 @@ export default function BankView({
                       ([value, label]) => ({ value, label }),
                     ),
                   },
-                  {
-                    key: "source",
-                    label: "출처",
-                    empty: "전체 출처",
-                    options: SOURCE_OPTIONS.map((value) => ({
-                      value,
-                      label: SOURCE_LABEL[value],
-                    })),
-                  },
                 ] as const
               ).map(({ key, label, empty, options }) => (
                 <div key={key} className={styles.filterField}>
@@ -1415,6 +1599,12 @@ export default function BankView({
                   </div>
                 </div>
               ))}
+              {/* 출처 — 옛 선택 칸 자리에 넓은 칸 하나(H1 ⑴). 고르는 일은 공용 고르기 창에서(규칙 11). */}
+              <BankSourceField
+                text={sourceFieldText(sourceCounts, sourcePick)}
+                opener={sourceOpener}
+                onOpen={openSourcePicker}
+              />
               <fieldset className={styles.assetFilters}>
                 <legend className="sr-only">자료 있는 문제만</legend>
                 <div>
@@ -1433,6 +1623,18 @@ export default function BankView({
                 </div>
               </fieldset>
             </div>
+            {sourceOpen ? (
+              <BankSourcePicker
+                counts={sourceCounts}
+                error={sourceCountsError}
+                onRetry={() => void loadSourceCounts()}
+                value={sourcePick}
+                filterGrade={filters.grade}
+                returnFocus={sourceOpener}
+                onApply={applySource}
+                onCancel={() => setSourceOpen(false)}
+              />
+            ) : null}
             {rangeEditing ? (
               <div
                 id={`${headingId}-range-panel`}
@@ -1498,7 +1700,7 @@ export default function BankView({
                     key={key}
                     type="button"
                     className={styles.filterChip}
-                    aria-label={`${label} ${value} 조건 해제${key === "grade" && filters.chapter ? " (단원도 해제)" : ""}`}
+                    aria-label={`${label} ${value} 조건 해제${key === "grade" && filters.chapter ? " (단원도 해제)" : ""}${key === "sourceGroup" && filters.materialKinds.length ? " (자료 종류도 해제)" : ""}`}
                     onClick={() => removeFilter(key)}
                   >
                     <span className={styles.chipLabel}>{label}</span>

@@ -1,0 +1,24 @@
+{
+  "label": "중1-판정형-2단계-곱셈나눗셈-식의값-비교",
+  "seedBase": 20261008,
+  "targets": [
+    {
+      "engine": "judge",
+      "keys": [
+        "중1|유리수의 곱셈|calc-mul2",
+        "중1|유리수의 나눗셈|calc-div2",
+        "중1|유리수의 나눗셈|calc-muldiv",
+        "중1|문자의 사용과 식의 값|calc-value",
+        "중1|유리수의 덧셈과 뺄셈|odd-addsub2",
+        "중1|유리수의 덧셈과 뺄셈|max-addsub2",
+        "중1|유리수의 곱셈|odd-pow",
+        "중1|유리수의 곱셈|max-mul2",
+        "중1|유리수의 나눗셈|odd-div2",
+        "중1|유리수의 나눗셈|max-div2",
+        "중1|문자의 사용과 식의 값|odd-value",
+        "중1|문자의 사용과 식의 값|max-value"
+      ],
+      "variants": 12
+    }
+  ]
+}

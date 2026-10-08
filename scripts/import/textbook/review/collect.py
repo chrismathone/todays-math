@@ -25,7 +25,7 @@ import sys
 if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")
 
-FIELDS = ("ok", "why", "drop", "answer", "unit", "unit2", "type", "level", "format")
+FIELDS = ("ok", "why", "drop", "answer", "unit", "unit2", "type", "level", "format", "nofig")
 TYPES = {"계산", "개념", "활용"}
 LEVELS = {"연산", "기본", "응용", "심화하", "심화중", "심화상"}
 FORMATS = {"객관식", "단답형", "서술형"}
@@ -212,6 +212,8 @@ def main() -> None:
             for key, item in zip(keys, items):
                 mine = blocks.get(key["i"])
                 record = {"id": key["id"], "batch": name, "i": key["i"], "grade": batch["grade"], "keyAnswer": key["answer"], "answerFrom": key["answerFrom"]}
+                if "figureKeys" in key:
+                    record["figureKeys"] = key["figureKeys"]  # 검토자가 본 그림의 지문 — 적재기가 지금 그림과 견준다
                 if mine is None:
                     verdict = "missing"
                 else:
@@ -243,6 +245,8 @@ def main() -> None:
                         unitName=f"{units[unit - 1]['chapter']} > {units[unit - 1]['section']}" if unit else None,
                         type=mine["type"], level=mine["level"], format=mine["format"],
                         solution=mine["solution"] or None, needSolution=key["needSolution"], flaws=flaws,
+                        # 그림 문항 — 검토자가 «이 문항의 그림이 아니다»라고 한 그림의 번호(1부터)
+                        noFigure=[int(n) for n in re.findall(r"\d+", mine.get("nofig", ""))],
                     )
                     if flaws:
                         problems.append(f"{name} #{key['i']}: {', '.join(flaws)}")

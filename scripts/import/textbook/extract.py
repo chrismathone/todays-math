@@ -281,12 +281,38 @@ def main() -> None:
                     "solution": doc.solutions.get(problem.key),
                     "pictures": [[p.bin_id, p.width, p.height] for p in problem.pictures],
                     "shapes": problem.shapes,
+                    #: 도형 하나하나 — [종류, 가로, 세로](HWPUNIT). 번호 딱지 같은 작은 묶음을 가린다
+                    "shapeList": [list(item) for item in problem.shape_list],
                     #: 자료 표의 수 — 문제은행은 표를 글로 싣지 않는다. 0 이 아니면 글만으로는 못 싣는 문항이다
                     "tables": problem.tables,
                     #: 본문 안에 다른 문항의 머리로 보이는 줄이 있다(그 번호) — 두 문항이 붙었을 수 있다
                     "embeddedNumber": embedded_number(problem),
                     #: 본문이 그림 · 표 · 그래프를 가리킨다 — 그림 파일도 도형도 없으면 «그림 못 찾음»
                     "figureMention": bool(_FIGURE_WORD.search(text)),
+                    #: 그림과 그 자리(묶음 개체 안의 그림 · 번호가 있는 첫 문단의 그림 · 같이 쓰는 지시문의 그림까지).
+                    #: `pictures` 는 예전 그대로다 — 이쪽이 그림 문항을 싣는 데 쓰는 온전한 목록이다
+                    "figs": [
+                        {
+                            "bin": fig.picture.bin_id,
+                            "w": fig.picture.width,
+                            "h": fig.picture.height,
+                            "line": fig.line,
+                            "offset": fig.offset,
+                            "grouped": fig.picture.grouped,
+                            "group": fig.picture.group,
+                            #: 자료 표의 칸 안에 든 그림이면 그 표의 번호(표를 그린 그림에 들어 있다)
+                            "inTable": fig.in_table,
+                            "behind": fig.picture.behind,
+                            "clip": fig.picture.clip,
+                            "rot": fig.picture.rotation,
+                            "flip": list(fig.picture.flip),
+                        }
+                        for fig in problem.figs
+                    ],
+                    #: 본문에 그림의 자리를 `[[FIG:k]]` 로 · 자료 표의 자리를 `[[TBL:번호]]` 로 적은 글(k 는 `figs` 의 번호)
+                    "contentFig": problem.marked_text if problem.figs or problem.tables else None,
+                    #: 이 문항에 든 자료 표의 번호들(`hwpx_flow.data_tables` 의 번호)
+                    "tableIds": sorted({table for table in problem.line_tables if table}),
                 }, ensure_ascii=False) + "\n")
             summary.update(
                 problems=len(doc.problems),

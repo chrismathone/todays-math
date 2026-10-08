@@ -1,0 +1,482 @@
+/* 문제은행 `.bank button`(요소+클래스)을 이기려고 단추 규칙은 클래스를 두 번 쓴다. */
+/* 교과서 거르기 Hi-fi — 문제은행 토큰(--bank-*)만 쓴다. 창은 공용 PickerDialog 이고, 여기는 창 안의 짜임만 정한다. */
+
+.variant {
+  margin-bottom: 64px;
+}
+.variant > h2 {
+  margin: 0 0 4px;
+  font-size: 18px;
+  font-weight: 700;
+}
+.note {
+  margin: 0 0 2px;
+  font-size: 13px;
+}
+.cost {
+  margin: 0 0 12px;
+  font-size: 13px;
+  color: var(--bank-muted);
+}
+.count {
+  color: var(--bank-muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+.zero {
+  opacity: 0.45;
+}
+
+/* ── 필터 줄 안의 «출처» 칸 ── */
+.sourceField {
+  flex: 3 1 360px;
+  min-width: 0;
+}
+.sourceButton {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-width: 0;
+  padding: 0 12px;
+  border: 1px solid var(--bank-control);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--bank-ink);
+  text-align: left;
+}
+.sourceButton:hover {
+  border-color: var(--bank-primary);
+}
+.sourceLabel {
+  flex: none;
+  color: var(--bank-muted);
+  font-size: 12px;
+  font-weight: 500;
+}
+.sourceValue {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 500;
+}
+.sourceAction {
+  flex: none;
+  color: var(--bank-primary);
+  font-size: 13px;
+}
+
+/* ── H2 요약 카드 (개념 백지 «단원 고르기»와 같은 꼴) ── */
+.summaryCard.summaryCard {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 4px 16px;
+  width: 100%;
+  height: auto;
+  margin-top: 12px;
+  padding: 14px 16px;
+  border: 1px solid var(--bank-line);
+  border-radius: 12px;
+  background: #fff;
+  color: var(--bank-ink);
+  text-align: left;
+}
+.summaryCard:hover {
+  border-color: var(--bank-primary);
+}
+.summaryHead {
+  font-size: 15px;
+  font-weight: 700;
+}
+.summaryHead > span {
+  margin-left: 8px;
+  color: var(--bank-primary);
+  font-size: 12px;
+  font-weight: 600;
+}
+.summaryLines {
+  grid-column: 1;
+  color: var(--bank-muted);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1.6;
+}
+.summaryAction {
+  grid-column: 2;
+  grid-row: 1 / span 2;
+  color: var(--bank-primary);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* ── 창 안 ── */
+.pane {
+  display: grid;
+  grid-template-columns: 148px minmax(0, 1fr) 232px;
+  min-height: 100%;
+}
+.pane > * {
+  min-width: 0;
+  padding: 16px;
+}
+.pane > * + * {
+  border-left: 1px solid var(--bank-line);
+}
+.colTitle {
+  margin: 0 0 10px;
+  font-size: 13px;
+  font-weight: 700;
+}
+.colTitle .count {
+  margin-left: 6px;
+  font-weight: 500;
+}
+.gradeList {
+  display: grid;
+  gap: 4px;
+}
+.gradeButton.gradeButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  padding: 0 10px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--bank-ink);
+  text-align: left;
+  font-weight: 500;
+}
+.gradeButton:hover {
+  background: #f3f5f9;
+}
+.gradeButton[aria-pressed="true"] {
+  border-color: var(--bank-primary);
+  background: var(--bank-selected);
+  font-weight: 700;
+}
+.picked {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 10px;
+  background: var(--bank-primary);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+}
+.checkList {
+  display: grid;
+  gap: 2px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.checkRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 40px;
+  padding: 0 8px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+.checkRow:has(input:checked) {
+  background: var(--bank-selected);
+}
+.checkRow > span:first-of-type {
+  flex: 1;
+  min-width: 0;
+}
+.allRow {
+  margin-bottom: 6px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--bank-line);
+  color: var(--bank-muted);
+  font-size: 13px;
+}
+.sub {
+  display: block;
+  color: var(--bank-muted);
+  font-size: 12px;
+}
+
+/* 창 아래 — 걸리는 문항 수 · 모두 풀기 */
+.footer {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 20px;
+  border-top: 1px solid var(--bank-line);
+  background: #fff;
+  font-size: 14px;
+}
+.footer b {
+  font-variant-numeric: tabular-nums;
+}
+.wrap {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+.wrap > :first-child {
+  flex: 1;
+}
+
+/* H2 — 출처 고르기 줄 */
+.segments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 16px 20px 12px;
+  border-bottom: 1px solid var(--bank-line);
+}
+.segment.segment {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 14px;
+  border: 1px solid var(--bank-line);
+  border-radius: 22px;
+  background: #fff;
+  color: var(--bank-ink);
+  font-weight: 500;
+}
+.segment[aria-pressed="true"] {
+  border-color: var(--bank-primary);
+  background: var(--bank-selected);
+  color: #2548bc;
+  font-weight: 700;
+}
+.tabs {
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  padding: 0 20px;
+  border-bottom: 1px solid var(--bank-line);
+}
+.tab.tab {
+  flex: none;
+  padding: 0 14px;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  border-radius: 0;
+  background: transparent;
+  color: var(--bank-muted);
+  font-weight: 500;
+}
+.tab[aria-selected="true"] {
+  border-bottom-color: var(--bank-primary);
+  color: var(--bank-ink);
+  font-weight: 700;
+}
+.section {
+  padding: 16px 20px;
+}
+.section + .section {
+  border-top: 1px solid var(--bank-line);
+}
+.toggles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.toggle.toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 36px;
+  min-height: 36px;
+  padding: 0 12px;
+  border: 1px solid var(--bank-line);
+  background: #fff;
+  color: var(--bank-ink);
+  font-weight: 500;
+}
+.toggle[aria-pressed="true"] {
+  border-color: var(--bank-primary);
+  background: var(--bank-selected);
+  color: #2548bc;
+}
+.muted {
+  margin: 0;
+  color: var(--bank-muted);
+  font-size: 13px;
+}
+.bookGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+  gap: 6px;
+}
+
+/* H3 — 과목으로 묶은 한 목록 + 오른쪽 자료 종류 */
+.split {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 248px;
+  min-height: 100%;
+}
+.split > * {
+  min-width: 0;
+  padding: 0 16px 16px;
+}
+.split > * + * {
+  border-left: 1px solid var(--bank-line);
+}
+.stickyCol {
+  position: sticky;
+  top: 0;
+  align-self: start;
+  padding-top: 16px;
+}
+.groupHead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0 -16px;
+  padding: 12px 24px 8px;
+  background: #fff;
+  font-size: 13px;
+  font-weight: 700;
+}
+.groupHead .count {
+  margin-left: auto;
+  font-weight: 500;
+}
+
+/* H4 — 책 × 자료 종류 표 */
+.matrixWrap {
+  overflow: auto;
+  padding: 0 20px 16px;
+}
+.matrix {
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 13px;
+}
+.matrix th,
+.matrix td {
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--bank-line);
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+.matrix thead th {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: #fff;
+  vertical-align: bottom;
+  font-weight: 600;
+}
+.matrix thead th label {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+}
+.matrix th:first-child,
+.matrix td:first-child {
+  position: sticky;
+  left: 0;
+  z-index: 1;
+  background: #fff;
+  text-align: left;
+}
+.matrix thead th:first-child {
+  z-index: 2;
+}
+.matrix tbody th label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+}
+.cellOn {
+  background: var(--bank-selected);
+  color: #2548bc;
+  font-weight: 700;
+}
+.cellNone {
+  color: #c3ccd9;
+}
+
+/* H5 — 출판사 · 저자로 묶기(같은 저자의 중1 · 중2 를 한 번에) */
+.series {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 10px;
+}
+.seriesCard {
+  padding: 10px 12px;
+  border: 1px solid var(--bank-line);
+  border-radius: 10px;
+}
+.seriesCard:has(> label input:checked) {
+  border-color: var(--bank-primary);
+}
+.seriesHead {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 36px;
+  font-weight: 700;
+}
+.seriesHead > span:first-of-type {
+  flex: 1;
+}
+.seriesBooks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin-top: 4px;
+  padding-left: 30px;
+  font-size: 13px;
+}
+.seriesBooks label {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 32px;
+}
+
+/* 고른 하나하나가 칩 (H3) */
+.chipRow {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+/* 폰 폭 — 단을 쌓는다 */
+@media (max-width: 760px) {
+  .pane,
+  .split {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .pane > * + *,
+  .split > * + * {
+    border-left: 0;
+    border-top: 1px solid var(--bank-line);
+  }
+  .gradeList {
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
+    overflow-x: auto;
+  }
+  .stickyCol {
+    position: static;
+  }
+}
