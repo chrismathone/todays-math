@@ -10,10 +10,18 @@ import {
   type EnglishQuestionBankQuery,
   type EnglishQuestionBankResolveRequest,
 } from "@/contracts/englishQuestionBank.contract";
-import { englishDifficultySchema } from "@/contracts/english.contract";
+import {
+  ENGLISH_DIFFICULTIES,
+  englishDifficultySchema,
+  englishGradeSchema,
+} from "@/contracts/english.contract";
 import { ENGLISH_V2_ONLY_ITEM_KEYS } from "@/contracts/englishV2.contract";
 import { jsonError } from "@/lib/apiResponse";
 import { ownedRowsWhere, type ScopeViewer } from "@/lib/ownerScope";
+import type {
+  EnglishExamCandidates,
+  EnglishExamCompose,
+} from "@/contracts/englishExamBuilder.contract";
 
 type Reader = Pick<PrismaClient, "$queryRaw">;
 type BankFailure = "unavailable" | "revision" | "format" | "payload" | "query";
@@ -128,6 +136,121 @@ function project(row: ProjectedRow): EnglishBankQuestion {
   });
   if (!parsed.success) throw new EnglishQuestionBankError("format");
   return parsed.data;
+}
+
+/** Metadata only: no passages/question bodies leave the database in the scope explorer. */
+export async function listEnglishExamScopes(
+  db: Reader,
+  viewer: ScopeViewer,
+  page: number,
+) {
+  const rows = await db.$queryRaw<
+    {
+      id: string | null;
+      label: string;
+      group: string;
+      detail: string;
+      count: number;
+      total: bigint;
+    }[]
+  >(Prisma.sql`
+    WITH scopes AS MATERIALIZED (
+      SELECT s.id, s.title AS label, e.grade AS "group",
+        concat_ws(' · ', e.school, e.title) AS detail,
+        jsonb_array_length(${arrayQuestions}) AS count, s.updated_at
+      FROM english_question_set s JOIN english_exam e ON e.id = s.exam_id
+      WHERE ${ownerSql(viewer)} AND jsonb_array_length(${arrayQuestions}) > 0
+    ), page AS (SELECT * FROM scopes ORDER BY updated_at DESC, id ASC LIMIT 100 OFFSET ${(page - 1) * 100})
+    SELECT page.*, totals.total FROM (SELECT count(*) AS total FROM scopes) totals LEFT JOIN page ON TRUE
+    ORDER BY page.updated_at DESC, page.id ASC
+  `);
+  return {
+    items: rows
+      .filter((r) => r.id !== null)
+      .map(({ id, label, group, detail, count }) => ({
+        id: id!,
+        label,
+        group: englishGradeSchema.parse(group),
+        detail,
+        count,
+      })),
+    total: Number(rows[0]?.total ?? 0),
+  };
+}
+
+/** Scoped candidate search, with exact difficulty and exclusions applied before pagination. */
+export async function listEnglishExamCandidates(
+  db: Reader,
+  viewer: ScopeViewer,
+  input: EnglishExamCandidates,
+) {
+  const filters = [
+    ownerSql(viewer),
+    Prisma.sql`s.id IN (${Prisma.join(input.scopeIds.map((id) => Prisma.sql`${id}::uuid`))})`,
+  ];
+  if (input.difficulty === "미지정")
+    filters.push(
+      Prisma.sql`(s.meta ->> 'difficulty' IS NULL OR s.meta ->> 'difficulty' NOT IN (${Prisma.join([...ENGLISH_DIFFICULTIES])}))`,
+    );
+  else if (input.difficulty)
+    filters.push(Prisma.sql`s.meta ->> 'difficulty' = ${input.difficulty}`);
+  if (input.query)
+    filters.push(
+      Prisma.sql`strpos(lower(concat_ws(' ', s.title, s.passage, q.item ->> 'prompt', q.item ->> 'options')), lower(${input.query})) > 0`,
+    );
+  if (input.exclude.length)
+    filters.push(
+      Prisma.sql`NOT (${Prisma.join(
+        input.exclude.map(
+          (ref) =>
+            Prisma.sql`(s.id = ${ref.setId}::uuid AND (q.ordinality - 1) = ${ref.questionIndex})`,
+        ),
+        " OR ",
+      )})`,
+    );
+  const rows = await db.$queryRaw<
+    (ProjectedRow & { total: bigint })[]
+  >(Prisma.sql`
+    WITH matches AS MATERIALIZED (
+      SELECT s.id, s.updated_at, (q.ordinality - 1)::int AS "questionIndex"
+      FROM english_question_set s JOIN english_exam e ON e.id = s.exam_id
+      CROSS JOIN LATERAL jsonb_array_elements(${arrayQuestions}) WITH ORDINALITY AS q(item, ordinality)
+      WHERE ${Prisma.join(filters, " AND ")}
+    ), page AS (SELECT * FROM matches ORDER BY updated_at DESC, id ASC, "questionIndex" ASC LIMIT ${input.pageSize} OFFSET ${(input.page - 1) * input.pageSize})
+    SELECT totals.total, ${projection} FROM (SELECT count(*) AS total FROM matches) totals
+    LEFT JOIN page p ON TRUE LEFT JOIN english_question_set s ON s.id = p.id
+    LEFT JOIN english_exam e ON e.id = s.exam_id
+    ORDER BY p.updated_at DESC, p.id ASC, p."questionIndex" ASC
+  `);
+  return {
+    items: rows.filter((r) => r.setId !== null).map(project),
+    total: Number(rows[0]?.total ?? 0),
+  };
+}
+
+/** One snapshot, in requested scope/source order; a short or inaccessible scope fails the whole composition. */
+export async function composeEnglishExam(
+  db: Reader,
+  viewer: ScopeViewer,
+  input: EnglishExamCompose,
+) {
+  const values = input.allocations.map(
+    (a, order) =>
+      Prisma.sql`(${a.scopeId}::uuid, ${a.count}::int, ${order}::int)`,
+  );
+  const rows = await db.$queryRaw<ProjectedRow[]>(Prisma.sql`
+    WITH requested(id, amount, position) AS (VALUES ${Prisma.join(values)}), page AS (
+      SELECT s.id, (q.ordinality - 1)::int AS "questionIndex", requested.position
+      FROM requested JOIN english_question_set s ON s.id = requested.id JOIN english_exam e ON e.id = s.exam_id
+      CROSS JOIN LATERAL jsonb_array_elements(${arrayQuestions}) WITH ORDINALITY AS q(item, ordinality)
+      WHERE (${ownerSql(viewer)}) AND q.ordinality <= requested.amount
+    )
+    SELECT ${projection} FROM page p JOIN english_question_set s ON s.id = p.id JOIN english_exam e ON e.id = s.exam_id
+    ORDER BY p.position, p."questionIndex"
+  `);
+  if (rows.length !== input.allocations.reduce((n, a) => n + a.count, 0))
+    throw new EnglishQuestionBankError("unavailable");
+  return rows.map(project);
 }
 
 export function readQuestionBankQuery(

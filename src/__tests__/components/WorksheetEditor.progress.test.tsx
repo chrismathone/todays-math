@@ -57,6 +57,56 @@ const props = {
 };
 
 describe("worksheet print readiness feedback", () => {
+  it.each(["인쇄 / PDF 저장", "PDF 내려받기", "HWPX 내보내기"])(
+    "runs subject preflight before %s and blocks failures",
+    async (name) => {
+      const print = vi
+        .spyOn(window, "print")
+        .mockImplementation(() => undefined);
+      const beforeOutput = vi
+        .fn()
+        .mockRejectedValue(new Error("원본이 변경되었습니다"));
+      render(
+        <WorksheetEditor
+          {...props}
+          beforeOutput={beforeOutput}
+          outputNotice={<p>출력 확인</p>}
+        />,
+      );
+      fireEvent.click(screen.getByRole("button", { name: "페이지 구성 완료" }));
+      fireEvent.click(screen.getByRole("button", { name }));
+      await waitFor(() =>
+        expect(screen.getByRole("alert")).toHaveTextContent(
+          "원본이 변경되었습니다",
+        ),
+      );
+      expect(beforeOutput).toHaveBeenCalledTimes(1);
+      expect(print).not.toHaveBeenCalled();
+      print.mockRestore();
+    },
+  );
+  it("rejects a draft changed while revision verification is pending", async () => {
+    let resolve!: () => void;
+    const beforeOutput = () =>
+      new Promise<void>((done) => {
+        resolve = done;
+      });
+    const print = vi.spyOn(window, "print").mockImplementation(() => undefined);
+    const { rerender } = render(
+      <WorksheetEditor {...props} beforeOutput={beforeOutput} />,
+    );
+    fireEvent.click(screen.getByRole("button", { name: "페이지 구성 완료" }));
+    fireEvent.click(screen.getByRole("button", { name: "인쇄 / PDF 저장" }));
+    rerender(
+      <WorksheetEditor {...props} title="수정" beforeOutput={beforeOutput} />,
+    );
+    resolve();
+    await waitFor(() =>
+      expect(screen.getByRole("alert")).toHaveTextContent("구성이 변경"),
+    );
+    expect(print).not.toHaveBeenCalled();
+    print.mockRestore();
+  });
   it("announces export errors in a dismissible notification", async () => {
     render(<WorksheetEditor {...props} />);
     fireEvent.click(screen.getByRole("button", { name: "페이지 구성 완료" }));

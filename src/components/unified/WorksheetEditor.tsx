@@ -1,5 +1,11 @@
 "use client";
-import { useCallback, useLayoutEffect, useRef, useState } from "react";
+import {
+  useCallback,
+  useLayoutEffect,
+  useRef,
+  useState,
+  type ReactNode,
+} from "react";
 import StudioStepBar, { type StudioStepNavigation } from "./StudioStepBar";
 import WorkProgress from "./WorkProgress";
 import { PrintOptionsPanel } from "./print/PrintOptionsPanel";
@@ -23,6 +29,9 @@ import {
 } from "./worksheetOrder";
 import s from "./WorksheetEditor.module.css";
 interface Props {
+  /** Subject-specific acknowledgement/revision/content guard, for every output path. */
+  beforeOutput?: (kind: "print" | "pdf" | "hwpx") => Promise<void>;
+  outputNotice?: ReactNode;
   headerTitle?: string;
   stepNavigation?: StudioStepNavigation;
   libraryLabel?: string;
@@ -60,6 +69,8 @@ interface Props {
   onEditSource?: (problem: StudioProblem) => void;
 }
 export default function WorksheetEditor({
+  beforeOutput,
+  outputNotice,
   headerTitle,
   stepNavigation,
   selected,
@@ -94,6 +105,7 @@ export default function WorksheetEditor({
   const [exportProgress, setExportProgress] = useState("");
   const [exportError, setExportError] = useState("");
   const [exporting, setExporting] = useState(false);
+  const outputBusy = useRef(false);
   const orderListRef = useRef<HTMLOListElement>(null);
   const addFromBankRef = useRef<HTMLButtonElement>(null);
   const removedIndexRef = useRef<number | null>(null);
@@ -122,6 +134,58 @@ export default function WorksheetEditor({
     prepared.title === title &&
     prepared.options === options &&
     prepared.meta === meta;
+  const currentOutput = useRef({
+    selected,
+    title,
+    options,
+    meta,
+    printReady,
+    beforeOutput,
+  });
+  useLayoutEffect(() => {
+    currentOutput.current = {
+      selected,
+      title,
+      options,
+      meta,
+      printReady,
+      beforeOutput,
+    };
+  });
+  async function preflight(kind: "print" | "pdf" | "hwpx") {
+    const snapshot = currentOutput.current;
+    await beforeOutput?.(kind);
+    const current = currentOutput.current;
+    if (
+      !editorRef.current ||
+      !current.printReady ||
+      snapshot.selected !== current.selected ||
+      snapshot.title !== current.title ||
+      snapshot.options !== current.options ||
+      snapshot.beforeOutput !== current.beforeOutput ||
+      snapshot.meta !== current.meta
+    )
+      throw new Error(
+        "시험지 구성이 변경되었습니다. 미리보기가 준비되면 다시 출력해 주세요.",
+      );
+  }
+  async function printDocument() {
+    if (!printReady || outputBusy.current) return;
+    outputBusy.current = true;
+    setExporting(true);
+    setExportError("");
+    try {
+      await preflight("print");
+      window.print();
+    } catch (error) {
+      setExportError(
+        error instanceof Error ? error.message : "인쇄 전 확인에 실패했습니다.",
+      );
+    } finally {
+      outputBusy.current = false;
+      setExporting(false);
+    }
+  }
   const setPrintReady = useCallback(
     (ready: boolean) =>
       setPrepared(ready ? { selected, title, options, meta } : null),
@@ -162,11 +226,13 @@ export default function WorksheetEditor({
     const document = editorRef.current?.querySelector<HTMLElement>(
       "[data-mathgen-document]",
     );
-    if (!document || !printReady || exporting) return;
+    if (!document || !printReady || outputBusy.current) return;
+    outputBusy.current = true;
     setExporting(true);
     setExportError("");
     setExportProgress(`${kind.toUpperCase()} 문서를 준비하고 있습니다…`);
     try {
+      await preflight(kind);
       const { exportPreviewHwpx, downloadExport } =
         await import("@/lib/export/hwpxClient");
       const blob =
@@ -185,6 +251,7 @@ export default function WorksheetEditor({
         error instanceof Error ? error.message : "파일 생성에 실패했습니다.",
       );
     } finally {
+      outputBusy.current = false;
       setExporting(false);
     }
   }
@@ -225,7 +292,7 @@ export default function WorksheetEditor({
           className={s.primaryButton}
           disabled={!selected.length || !printReady || exporting}
           aria-busy={selected.length > 0 && !printReady}
-          onClick={() => window.print()}
+          onClick={() => void printDocument()}
         >
           {selected.length > 0 && !printReady ? (
             <WorkProgress variant="inline" label="인쇄 준비 중…" />
@@ -251,6 +318,7 @@ export default function WorksheetEditor({
           PDF 내려받기
         </button>
       </StudioStepBar>
+      {outputNotice}
       {(exportProgress || exportError) && (
         <div className={s.exportNotification} data-error={Boolean(exportError)}>
           {exportError ? (

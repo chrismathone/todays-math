@@ -19,7 +19,10 @@ export async function authorizeExport(
   const { getSessionUser } = await import("@/lib/session");
   const session = await getSessionUser();
   if (session)
-    return session.menus?.includes("export")
+    return session.menus?.includes("export") ||
+      (request.method === "POST" &&
+        ["/api/exports/pdf", "/api/exports/hwpx"].includes(url.pathname) &&
+        session.menus?.includes("english-library"))
       ? null
       : fail(403, "시험지 · 내보내기 메뉴를 사용할 권한이 없습니다.");
   if (process.env.NODE_ENV === "development") {

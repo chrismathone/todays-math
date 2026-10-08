@@ -1,10 +1,17 @@
 import type { UnitEntity } from "@/contracts/unit.contract";
 import type { MathgenProblemData } from "@/lib/mathgen/contracts";
 import type { StudioCrop } from "./studioHelpers";
+import type { EnglishBankQuestion } from "@/contracts/englishQuestionBank.contract";
 
 export type SchoolLevel = "elementary" | "secondary";
 
 export interface StudioProblem {
+  /** Lossless English output adapter. Never feed English prose through the math parser. */
+  english?: {
+    item: EnglishBankQuestion;
+    displayNumber: number;
+    includePassage: boolean;
+  };
   ocr?: MathgenProblemData;
   /** Full, nonrecursive source/edit snapshot; printable URLs remain derived output. */
   studioCrop?: StudioCrop;

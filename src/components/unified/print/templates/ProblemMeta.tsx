@@ -34,7 +34,11 @@ export function ProblemHeader({
       }}
     >
       <span style={{ flexShrink: 0, whiteSpace: "nowrap" }}>
-        <QuestionNumber template={options.template} num={num} accent={accent} />
+        <QuestionNumber
+          template={options.template}
+          num={problem.english?.displayNumber ?? num}
+          accent={accent}
+        />
       </span>
       {metadata && (
         <span
