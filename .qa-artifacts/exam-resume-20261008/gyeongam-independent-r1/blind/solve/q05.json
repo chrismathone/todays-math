@@ -1,0 +1,113 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 5,
+  "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q05",
+  "studentDigest": "9230c29fa2035a201ba81bfceded6d2915e2fc75142b29c82c64d9a1be070765",
+  "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+  "method": "independent-blind-student-input-only",
+  "answer": "③",
+  "solution": "각 변량에 $4$를 더한 자료의 평균이 $9$이므로 원래 평균은 $9-4=5$이다. 원래 변량 $a$의 편차는 $a-5$이고, 바꾼 자료에서의 편차는 $(a+4)-9=a-5$이다. 나머지 세 변량도 각각 편차가 그대로이므로 편차 제곱의 평균인 분산과 그 양의 제곱근인 표준편차도 그대로이다. 따라서 원래 표준편차는 $3$이다. 정답은 ③이다.",
+  "evidence": {
+    "inputStudentProblemsSha256": "4c3f68b8f29d1e31f2405458b31587dd09b81cad53e965900c211da695aa283d",
+    "inputManifestSha256": "fb0acc2d9d16d9d8e9b75f64f2426b731ad0cc168ddb47db939df026d573effa",
+    "inputBriefSha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5",
+    "givenPackageDigest": "99d5d21ca4c4bac631f2c873c60558821e80ad352fdc40ce238a9bfddcece60c",
+    "studentRecordSha256": "b9b37daf2298bb1c0264190d6ae069e2c875eaedc77b55b1e550e7d2b5956224",
+    "studentSurfaceCanonicalSha256": "9230c29fa2035a201ba81bfceded6d2915e2fc75142b29c82c64d9a1be070765",
+    "figureBindings": [],
+    "codePath": "solve-independent.cjs",
+    "codeSha256": "efcd215917f2add776ddbd9caf0db4c60bdd5529ac04b43b6211681daf8fbcdf",
+    "calculation": {
+      "facts": {
+        "mean": 5,
+        "standardDeviation": 3,
+        "existenceWitness": [
+          2,
+          2,
+          8,
+          8
+        ],
+        "changedWitness": [
+          6,
+          6,
+          12,
+          12
+        ]
+      },
+      "optionChecks": [
+        {
+          "index": 1,
+          "pair": [
+            5,
+            7
+          ],
+          "correct": false
+        },
+        {
+          "index": 2,
+          "pair": [
+            9,
+            3
+          ],
+          "correct": false
+        },
+        {
+          "index": 3,
+          "pair": [
+            5,
+            3
+          ],
+          "correct": true
+        },
+        {
+          "index": 4,
+          "pair": [
+            13,
+            3
+          ],
+          "correct": false
+        },
+        {
+          "index": 5,
+          "pair": [
+            5,
+            1.7320508075688772
+          ],
+          "correct": false
+        }
+      ],
+      "conditions": [
+        {
+          "claim": "실제 예시의 새 평균9/표준편차3 및 원래 평균5/표준편차3이 성립하며 편차가 각각 그대로다.",
+          "passed": true
+        }
+      ]
+    },
+    "allFiveChoicesChecked": true,
+    "choicesNotApplicable": false,
+    "questionScore": 4,
+    "parentScoreCountedOnce": true,
+    "scoreParts": [],
+    "finalGradeApproval": false,
+    "authorAnswerExposure": false,
+    "originalAnswerExposure": false,
+    "independentOfAuthor": true
+  },
+  "sevenSurfaceGradeNotes": {
+    "stem": "같은 수를 각 변량에 더한 평균/표준편차 기록이다.",
+    "choices": "두 숫자를 모두 평균·편차 정의와 비교한다.",
+    "figuresAndTables": "표준편차를 분산/범위와 혼동하지 않는다.",
+    "notation": "학생 입력에 있는 수·선분·각·분수·근호·도수 표기를 해당 실제 방법에서 사용한다.",
+    "answer": "학생 조건에서 독립 도출한 새 답. 저자 답과 비교하기 전 원시 기록이다.",
+    "studentSolution": "각 편차가 동일함을 네 변량에서 확인한다.",
+    "prerequisites": "중3 평균·분산·표준편차와 사칙",
+    "standardCodes": [
+      "9수05-06",
+      "9수05-07"
+    ],
+    "status": "blind-solver-preliminary-not-final-grade-approval"
+  },
+  "status": "solved",
+  "gradeReviewStatus": "preliminary-pending-final-review",
+  "directUseAllowed": false
+}

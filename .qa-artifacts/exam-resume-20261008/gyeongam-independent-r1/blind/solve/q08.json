@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 8,
+  "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q08",
+  "studentDigest": "13413d9efcc365a8c802d0da9974273a4c9f9502ce59740593b1e091120cae66",
+  "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+  "method": "independent-blind-student-input-only",
+  "answer": "②",
+  "solution": "평균이 $6$이므로 여덟 변량의 합은 $48$이다. 편차 제곱의 합은\n$$(x_1-6)^2+\\cdots+(x_8-6)^2=320-12\\times48+8\\times36=32.$$\n분산은 편차 제곱의 평균이므로 $\\dfrac{32}{8}=4$이고, 표준편차는 $\\sqrt4=2$이다. 정답은 ②이다.",
+  "evidence": {
+    "inputStudentProblemsSha256": "4c3f68b8f29d1e31f2405458b31587dd09b81cad53e965900c211da695aa283d",
+    "inputManifestSha256": "fb0acc2d9d16d9d8e9b75f64f2426b731ad0cc168ddb47db939df026d573effa",
+    "inputBriefSha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5",
+    "givenPackageDigest": "99d5d21ca4c4bac631f2c873c60558821e80ad352fdc40ce238a9bfddcece60c",
+    "studentRecordSha256": "06ce8a3878275fa4fe469cbdd7a4ae5002528e47b957466c57e36b9eb32e9e6f",
+    "studentSurfaceCanonicalSha256": "13413d9efcc365a8c802d0da9974273a4c9f9502ce59740593b1e091120cae66",
+    "figureBindings": [],
+    "codePath": "solve-independent.cjs",
+    "codeSha256": "efcd215917f2add776ddbd9caf0db4c60bdd5529ac04b43b6211681daf8fbcdf",
+    "calculation": {
+      "facts": {
+        "n": 8,
+        "sum": 48,
+        "squareSum": 320,
+        "deviationSquareSum": 32,
+        "variance": 4,
+        "standardDeviation": 2,
+        "existenceWitness": [
+          4,
+          4,
+          4,
+          4,
+          8,
+          8,
+          8,
+          8
+        ]
+      },
+      "optionChecks": [
+        {
+          "index": 1,
+          "variance": 2,
+          "standardDeviation": 1.4142135623730951,
+          "correct": false
+        },
+        {
+          "index": 2,
+          "variance": 4,
+          "standardDeviation": 2,
+          "correct": true
+        },
+        {
+          "index": 3,
+          "variance": 4,
+          "standardDeviation": 4,
+          "correct": false
+        },
+        {
+          "index": 4,
+          "variance": 8,
+          "standardDeviation": 2.8284271247461903,
+          "correct": false
+        },
+        {
+          "index": 5,
+          "variance": 16,
+          "standardDeviation": 4,
+          "correct": false
+        }
+      ],
+      "conditions": [
+        {
+          "claim": "분산은 양수이고 실제 예시 자료의 합48/제곱합320/평균6/분산4가 성립한다.",
+          "passed": true
+        }
+      ]
+    },
+    "allFiveChoicesChecked": true,
+    "choicesNotApplicable": false,
+    "questionScore": 5,
+    "parentScoreCountedOnce": true,
+    "scoreParts": [],
+    "finalGradeApproval": false,
+    "authorAnswerExposure": false,
+    "originalAnswerExposure": false,
+    "independentOfAuthor": true
+  },
+  "sevenSurfaceGradeNotes": {
+    "stem": "유한한 여덟 변량의 평균과 제곱의 합이다.",
+    "choices": "분산과 표준편차 두 항목을 모두 검사한다.",
+    "figuresAndTables": "학생 요약표와 여덟 변량의 합을 사용한다.",
+    "notation": "학생 입력에 있는 수·선분·각·분수·근호·도수 표기를 해당 실제 방법에서 사용한다.",
+    "answer": "학생 조건에서 독립 도출한 새 답. 저자 답과 비교하기 전 원시 기록이다.",
+    "studentSolution": "중3 다항식 전개로 실제 편차 제곱의 합을 구한다. 고교 확률변수 공식은 쓰지 않는다.",
+    "prerequisites": "중3 분산/표준편차와 다항식 전개",
+    "standardCodes": [
+      "9수05-07",
+      "9수02-12"
+    ],
+    "status": "blind-solver-preliminary-not-final-grade-approval"
+  },
+  "status": "solved",
+  "gradeReviewStatus": "preliminary-pending-final-review",
+  "directUseAllowed": false
+}

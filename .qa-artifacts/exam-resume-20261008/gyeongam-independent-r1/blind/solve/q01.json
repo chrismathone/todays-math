@@ -1,0 +1,109 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 1,
+  "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q01",
+  "studentDigest": "a76d26de5f7f893914813c7bdae027abb048a4560e065988b7c030523dc267f5",
+  "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+  "method": "independent-blind-student-input-only",
+  "answer": "④",
+  "solution": "그래프에 남은 네 종류의 도수 합은 $8+5+4+3=20$명이다. 전체가 $30$명이므로 만화의 도수는 $30-20=10$명이다. 다섯 도수 $8,5,4,10,3$ 중 가장 큰 것은 만화의 $10$명이므로 최빈값은 만화이다. 정답은 ④이다.",
+  "evidence": {
+    "inputStudentProblemsSha256": "4c3f68b8f29d1e31f2405458b31587dd09b81cad53e965900c211da695aa283d",
+    "inputManifestSha256": "fb0acc2d9d16d9d8e9b75f64f2426b731ad0cc168ddb47db939df026d573effa",
+    "inputBriefSha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5",
+    "givenPackageDigest": "99d5d21ca4c4bac631f2c873c60558821e80ad352fdc40ce238a9bfddcece60c",
+    "studentRecordSha256": "ccd79e3ff76be211eee1ad8aab7225445e8f9cc4152a197069f43225a68078b0",
+    "studentSurfaceCanonicalSha256": "a76d26de5f7f893914813c7bdae027abb048a4560e065988b7c030523dc267f5",
+    "figureBindings": [
+      {
+        "role": "stem",
+        "svgPath": "figures/q01-1.svg",
+        "sha256": "f653c394c4774058e7ee1a51fd4da37bb0d36ac0954a24d99a56451ef48a39ea",
+        "intendedWidthMm": 70,
+        "svgFileSha256": "f653c394c4774058e7ee1a51fd4da37bb0d36ac0954a24d99a56451ef48a39ea",
+        "viewedStudentPreview": "student-figure-preview/q01-1.png",
+        "viewedStudentPreviewSha256": "b32c2bfddd57d18a2800d9053042d6e27ce618050af861d25a0e5daa06abb65f",
+        "actualFigureViewed": true,
+        "mathReadFrom": "explicit student labels/ticks/conditions, not unstated raster measurements"
+      }
+    ],
+    "codePath": "solve-independent.cjs",
+    "codeSha256": "efcd215917f2add776ddbd9caf0db4c60bdd5529ac04b43b6211681daf8fbcdf",
+    "calculation": {
+      "facts": {
+        "graphReading": {
+          "소설": 8,
+          "과학": 5,
+          "역사": 4,
+          "예술": 3
+        },
+        "total": 30,
+        "frequencies": [
+          8,
+          5,
+          4,
+          10,
+          3
+        ]
+      },
+      "optionChecks": [
+        {
+          "index": 1,
+          "value": "소설",
+          "correct": false
+        },
+        {
+          "index": 2,
+          "value": "과학",
+          "correct": false
+        },
+        {
+          "index": 3,
+          "value": "역사",
+          "correct": false
+        },
+        {
+          "index": 4,
+          "value": "만화",
+          "correct": true
+        },
+        {
+          "index": 5,
+          "value": "예술",
+          "correct": false
+        }
+      ],
+      "conditions": [
+        {
+          "claim": "도수는 양의 정수이고 합30, 최대 도수는 만화 하나이다.",
+          "passed": true
+        }
+      ]
+    },
+    "allFiveChoicesChecked": true,
+    "choicesNotApplicable": false,
+    "questionScore": 3,
+    "parentScoreCountedOnce": true,
+    "scoreParts": [],
+    "finalGradeApproval": false,
+    "authorAnswerExposure": false,
+    "originalAnswerExposure": false,
+    "independentOfAuthor": true
+  },
+  "sevenSurfaceGradeNotes": {
+    "stem": "정해진 다섯 범주의 전체 도수와 네 도수에서 하나를 복원한다.",
+    "choices": "범주형 최빈값 다섯 후보를 도수로 비교한다.",
+    "figuresAndTables": "공급 그래프의 숫자8/5/4/3, 범주와 도수(명)를 직접 읽었다.",
+    "notation": "학생 입력에 있는 수·선분·각·분수·근호·도수 표기를 해당 실제 방법에서 사용한다.",
+    "answer": "학생 조건에서 독립 도출한 새 답. 저자 답과 비교하기 전 원시 기록이다.",
+    "studentSolution": "최빈값의 정의와 정수 덧셈/뺄셈으로 끝난다.",
+    "prerequisites": "초등 도수 그래프·덧셈, 중3 최빈값",
+    "standardCodes": [
+      "9수05-06"
+    ],
+    "status": "blind-solver-preliminary-not-final-grade-approval"
+  },
+  "status": "solved",
+  "gradeReviewStatus": "preliminary-pending-final-review",
+  "directUseAllowed": false
+}

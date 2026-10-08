@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 6,
+  "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q06",
+  "studentDigest": "f42af3cf9fa7a6df2b1af5ddbafb081912c3e17d5628e32b551ebac086d62498",
+  "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+  "method": "independent-blind-student-input-only",
+  "answer": "②",
+  "solution": "바꾸기 전 평균은 $5$이므로 바꾼 평균은 $5k-4$이다. 바꾼 변량 $ka-4$의 편차는 $(ka-4)-(5k-4)=k(a-5)$이고, 다른 두 편차도 각각 원래 편차의 $k$배이다. 따라서 새 분산은 원래 분산의 $k^2$배인 $4k^2$이다.\n\n표준편차가 $6$이므로 분산은 $36$이다. $4k^2=36$에서 $k^2=9$이고, $k$가 양수이므로 $k=3$이다. 바꾼 평균은 $5\\times3-4=11$이다. 정답은 ②이다.",
+  "evidence": {
+    "inputStudentProblemsSha256": "4c3f68b8f29d1e31f2405458b31587dd09b81cad53e965900c211da695aa283d",
+    "inputManifestSha256": "fb0acc2d9d16d9d8e9b75f64f2426b731ad0cc168ddb47db939df026d573effa",
+    "inputBriefSha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5",
+    "givenPackageDigest": "99d5d21ca4c4bac631f2c873c60558821e80ad352fdc40ce238a9bfddcece60c",
+    "studentRecordSha256": "03280cacd996c89b9f14d71dfb5d59c3b9fd3f2dc4bc1eb9936b3105d17fd00f",
+    "studentSurfaceCanonicalSha256": "f42af3cf9fa7a6df2b1af5ddbafb081912c3e17d5628e32b551ebac086d62498",
+    "figureBindings": [],
+    "codePath": "solve-independent.cjs",
+    "codeSha256": "efcd215917f2add776ddbd9caf0db4c60bdd5529ac04b43b6211681daf8fbcdf",
+    "calculation": {
+      "facts": {
+        "originalMean": 5,
+        "originalVariance": 4,
+        "k": 3,
+        "newMean": 11,
+        "newVariance": 36,
+        "existenceWitness": [
+          2.550510257216822,
+          5,
+          7.449489742783178
+        ]
+      },
+      "optionChecks": [
+        {
+          "index": 1,
+          "k": 2,
+          "m": 6,
+          "predictedMean": 6,
+          "predictedStandardDeviation": 4,
+          "correct": false
+        },
+        {
+          "index": 2,
+          "k": 3,
+          "m": 11,
+          "predictedMean": 11,
+          "predictedStandardDeviation": 6,
+          "correct": true
+        },
+        {
+          "index": 3,
+          "k": 3,
+          "m": 15,
+          "predictedMean": 11,
+          "predictedStandardDeviation": 6,
+          "correct": false
+        },
+        {
+          "index": 4,
+          "k": 6,
+          "m": 26,
+          "predictedMean": 26,
+          "predictedStandardDeviation": 12,
+          "correct": false
+        },
+        {
+          "index": 5,
+          "k": 1,
+          "m": 1,
+          "predictedMean": 1,
+          "predictedStandardDeviation": 2,
+          "correct": false
+        }
+      ],
+      "conditions": [
+        {
+          "claim": "원래 자료는 실제 존재하고 양수 k에서 표준편차6 조건의 해는3뿐이다.",
+          "passed": true
+        }
+      ]
+    },
+    "allFiveChoicesChecked": true,
+    "choicesNotApplicable": false,
+    "questionScore": 4,
+    "parentScoreCountedOnce": true,
+    "scoreParts": [],
+    "finalGradeApproval": false,
+    "authorAnswerExposure": false,
+    "originalAnswerExposure": false,
+    "independentOfAuthor": true
+  },
+  "sevenSurfaceGradeNotes": {
+    "stem": "평균·분산 및 양수 계수의 변경을 구한다.",
+    "choices": "모든 k/평균 쌍의 새 편차 제곱 평균을 검사한다.",
+    "figuresAndTables": "알려진 분산을 표준편차로 혼동하지 않는다.",
+    "notation": "학생 입력에 있는 수·선분·각·분수·근호·도수 표기를 해당 실제 방법에서 사용한다.",
+    "answer": "학생 조건에서 독립 도출한 새 답. 저자 답과 비교하기 전 원시 기록이다.",
+    "studentSolution": "편차의 실제 식에서 분산36과 양의 k를 도출한다.",
+    "prerequisites": "중3 분산/표준편차·근호, 중3 단순 이차방정식",
+    "standardCodes": [
+      "9수05-06",
+      "9수05-07",
+      "9수02-13"
+    ],
+    "status": "blind-solver-preliminary-not-final-grade-approval"
+  },
+  "status": "solved",
+  "gradeReviewStatus": "preliminary-pending-final-review",
+  "directUseAllowed": false
+}

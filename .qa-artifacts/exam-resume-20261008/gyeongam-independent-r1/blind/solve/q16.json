@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 16,
+  "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q16",
+  "studentDigest": "622fbe2eeac514d357a9e5d89740fcf74995e53cb7e7d380ca5c9db4c1196228",
+  "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+  "method": "independent-blind-student-input-only",
+  "answer": "지워진 시간 $m=75$분. 더 적절한 대표값은 중앙값 $6.5$분이며, 큰 값75분에 평균이 영향을 받기 때문이다.",
+  "solution": "전체 시간의 합은 $10\\times13=130$분이다. 표에 남은 아홉 명의 시간 합은 $4+5\\times2+6\\times2+7\\times3+8=55$분이다. 따라서 $m=130-55=75$분이다.\n\n크기순 자료는 $4,5,5,6,6,7,7,7,8,75$이고 가운데 다섯째·여섯째 값은 $6,7$이므로 중앙값은 $\\dfrac{6+7}{2}=6.5$분이다.\n\n나머지 아홉 명은 모두 $4$분에서 $8$분 사이인데 $75$분이라는 한 큰 값 때문에 평균 $13$분이 대부분의 시간보다 커졌다. 따라서 이 자료에서 전형적인 시간을 나타내려면 중앙값 $6.5$분이 평균보다 더 적절하다.",
+  "answerParts": [
+    {
+      "role": "missing-time",
+      "value": 75,
+      "unit": "분"
+    },
+    {
+      "role": "representative-value",
+      "value": 6.5,
+      "unit": "분"
+    }
+  ],
+  "evidence": {
+    "inputStudentProblemsSha256": "4c3f68b8f29d1e31f2405458b31587dd09b81cad53e965900c211da695aa283d",
+    "inputManifestSha256": "fb0acc2d9d16d9d8e9b75f64f2426b731ad0cc168ddb47db939df026d573effa",
+    "inputBriefSha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5",
+    "givenPackageDigest": "99d5d21ca4c4bac631f2c873c60558821e80ad352fdc40ce238a9bfddcece60c",
+    "studentRecordSha256": "343f200aba6adf8b700da3ebc72b82060ff4b987e536eed569a546e3fc84a9a2",
+    "studentSurfaceCanonicalSha256": "622fbe2eeac514d357a9e5d89740fcf74995e53cb7e7d380ca5c9db4c1196228",
+    "figureBindings": [],
+    "codePath": "solve-independent.cjs",
+    "codeSha256": "efcd215917f2add776ddbd9caf0db4c60bdd5529ac04b43b6211681daf8fbcdf",
+    "calculation": {
+      "facts": {
+        "knownCount": 9,
+        "knownSum": 55,
+        "total": 130,
+        "missing": 75,
+        "ordered": [
+          4,
+          5,
+          5,
+          6,
+          6,
+          7,
+          7,
+          7,
+          8,
+          75
+        ],
+        "mean": 13,
+        "median": 6.5,
+        "representative": "median",
+        "reason": "One75-minute time raises the mean above all other9 times; median6.5 stays among ordinary observations."
+      },
+      "optionChecks": [],
+      "conditions": [
+        {
+          "claim": "전체10명·합130·평균13이 성립하고 누락 시간75가 양수다. 중앙값6.5는 실제 중간 두 값이다.",
+          "passed": true
+        }
+      ]
+    },
+    "allFiveChoicesChecked": false,
+    "choicesNotApplicable": true,
+    "questionScore": 8,
+    "parentScoreCountedOnce": true,
+    "scoreParts": [],
+    "finalGradeApproval": false,
+    "authorAnswerExposure": false,
+    "originalAnswerExposure": false,
+    "independentOfAuthor": true
+  },
+  "sevenSurfaceGradeNotes": {
+    "stem": "도수표에서한누락시간과평균을사용해대표값을선택한다.",
+    "choices": "서술형으로선택지는없으며평균/중앙값선택의수치와맥락근거를분리한다.",
+    "figuresAndTables": "학생도수1/2/2/3/1이9명임을확인한다.",
+    "notation": "학생 입력에 있는 수·선분·각·분수·근호·도수 표기를 해당 실제 방법에서 사용한다.",
+    "answer": "학생 조건에서 독립 도출한 새 답. 저자 답과 비교하기 전 원시 기록이다.",
+    "studentSolution": "도수합·정렬·중간값과이상하게큰관측치가평균에주는영향을설명한다.",
+    "prerequisites": "중3대표값·평균·중앙값, 시간단위와도수",
+    "standardCodes": [
+      "9수05-06"
+    ],
+    "status": "blind-solver-preliminary-not-final-grade-approval"
+  },
+  "status": "solved",
+  "gradeReviewStatus": "preliminary-pending-final-review",
+  "directUseAllowed": false
+}

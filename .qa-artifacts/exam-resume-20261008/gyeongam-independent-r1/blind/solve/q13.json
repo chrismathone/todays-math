@@ -1,0 +1,124 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 13,
+  "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q13",
+  "studentDigest": "42979320a40728ebbe000264ff119aa26021320928eb788dd89bd862132b51b5",
+  "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+  "method": "independent-blind-student-input-only",
+  "answer": "①",
+  "solution": "사분원 안에서 $P$보다 각이 큰 $Q$는 호를 따라 더 위쪽·왼쪽에 있다. 따라서 수직 높이는 $QK>PH$로 증가하고, 중심에서 수선발까지 거리는 $OK<OH$로 감소한다.\n\n같은 점 $O$에서 각을 키운 반직선은 $A$를 지나는 같은 수직선을 더 높은 곳에서 만나므로 $AU>AT$이다. 따라서 세 기록은 증가, 감소, 증가이며 정답은 ①이다.",
+  "evidence": {
+    "inputStudentProblemsSha256": "4c3f68b8f29d1e31f2405458b31587dd09b81cad53e965900c211da695aa283d",
+    "inputManifestSha256": "fb0acc2d9d16d9d8e9b75f64f2426b731ad0cc168ddb47db939df026d573effa",
+    "inputBriefSha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5",
+    "givenPackageDigest": "99d5d21ca4c4bac631f2c873c60558821e80ad352fdc40ce238a9bfddcece60c",
+    "studentRecordSha256": "d128d4e88e9bf28e6e3b8db2f1349ca1be493840c2ac61c7548190ae85d029d3",
+    "studentSurfaceCanonicalSha256": "42979320a40728ebbe000264ff119aa26021320928eb788dd89bd862132b51b5",
+    "figureBindings": [
+      {
+        "role": "stem",
+        "svgPath": "figures/q13-1.svg",
+        "sha256": "22046aa9028d3fdad7a2e2daf268137352780de248ab3c6bad860bc5762fe1d3",
+        "intendedWidthMm": 70,
+        "svgFileSha256": "22046aa9028d3fdad7a2e2daf268137352780de248ab3c6bad860bc5762fe1d3",
+        "viewedStudentPreview": "student-figure-preview/q13-1.png",
+        "viewedStudentPreviewSha256": "0b90035c2d92bfcaa3a4bdf86b0b868e8ccfafb1f07f2c86344eedd3eb20fc8e",
+        "actualFigureViewed": true,
+        "mathReadFrom": "explicit student labels/ticks/conditions, not unstated raster measurements"
+      }
+    ],
+    "codePath": "solve-independent.cjs",
+    "codeSha256": "efcd215917f2add776ddbd9caf0db4c60bdd5529ac04b43b6211681daf8fbcdf",
+    "calculation": {
+      "facts": {
+        "radius": 1,
+        "angleDomain": "0<P angle<Q angle<90 degrees",
+        "geometricOrder": [
+          "QK>PH",
+          "OK<OH",
+          "AU>AT"
+        ],
+        "numericSupplementSamples": 3916,
+        "geometricProof": "A quarter-arc moves up/left as its central acute angle increases; higher rays hit the same vertical line higher."
+      },
+      "optionChecks": [
+        {
+          "index": 1,
+          "changes": [
+            "증가",
+            "감소",
+            "증가"
+          ],
+          "correct": true
+        },
+        {
+          "index": 2,
+          "changes": [
+            "증가",
+            "증가",
+            "감소"
+          ],
+          "correct": false
+        },
+        {
+          "index": 3,
+          "changes": [
+            "감소",
+            "증가",
+            "증가"
+          ],
+          "correct": false
+        },
+        {
+          "index": 4,
+          "changes": [
+            "감소",
+            "감소",
+            "증가"
+          ],
+          "correct": false
+        },
+        {
+          "index": 5,
+          "changes": [
+            "증가",
+            "감소",
+            "감소"
+          ],
+          "correct": false
+        }
+      ],
+      "conditions": [
+        {
+          "claim": "그림의 실제 점/수선/접선 높이 순서와 임의 예각의 기하 위치 관계가 일치한다. 수치 표본은 증명의 보조다.",
+          "passed": true
+        }
+      ]
+    },
+    "allFiveChoicesChecked": true,
+    "choicesNotApplicable": false,
+    "questionScore": 4,
+    "parentScoreCountedOnce": true,
+    "scoreParts": [],
+    "finalGradeApproval": false,
+    "authorAnswerExposure": false,
+    "originalAnswerExposure": false,
+    "independentOfAuthor": true
+  },
+  "sevenSurfaceGradeNotes": {
+    "stem": "0~90°의 실제 사분원 위치 변화만 평가한다.",
+    "choices": "증가/감소 세 기록을 호/동일 수직선의 순서로 검사한다.",
+    "figuresAndTables": "실제 Q가P보다 위/왼쪽, K가H보다 왼쪽, U가T보다 위에 있는 공급 그림을 보았다.",
+    "notation": "학생 입력에 있는 수·선분·각·분수·근호·도수 표기를 해당 실제 방법에서 사용한다.",
+    "answer": "학생 조건에서 독립 도출한 새 답. 저자 답과 비교하기 전 원시 기록이다.",
+    "studentSolution": "호와 반직선의 위치 순서를 설명한다. 미분이나 삼각비 덧셈/관계 항등식은 쓰지 않는다.",
+    "prerequisites": "중1 각·수선, 중3 0~90° 삼각비 그림과 값의 변화",
+    "standardCodes": [
+      "9수04-17"
+    ],
+    "status": "blind-solver-preliminary-not-final-grade-approval"
+  },
+  "status": "solved",
+  "gradeReviewStatus": "preliminary-pending-final-review",
+  "directUseAllowed": false
+}

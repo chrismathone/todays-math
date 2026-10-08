@@ -1,0 +1,123 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 17,
+  "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q17",
+  "studentDigest": "75422a301a173ecd7b8d6fe84e460dc4ec74c2aba11714aab46468d608b50bce",
+  "solverId": "orca-codex-gyeongam-independent-blind-r1-20261008",
+  "method": "independent-blind-student-input-only",
+  "answer": "⑴ 지우의 작품 개수 $8$개. ⑵ 표준편차 $\\sqrt{10}$개.",
+  "solution": "⑴ 지우의 작품 개수를 $j$라 하자. 실제 작품 개수는 $j-3,j-1,j,j+3,j+6$이다. 평균이 $9$이므로 $\\dfrac{5j+(-3-1+0+3+6)}5=9$, 즉 $j+1=9$에서 $j=8$이다.\n\n⑵ 실제 다섯 값은 $5,7,8,11,14$이고 평균은 $9$이다. 평균에 대한 편차는 $-4,-2,-1,2,5$이다. 따라서 분산은 $\\dfrac{(-4)^2+(-2)^2+(-1)^2+2^2+5^2}{5}=\\dfrac{50}{5}=10$이고 표준편차는 $\\sqrt{10}$개이다.",
+  "answerParts": [
+    {
+      "role": "part-1-jiu-count",
+      "value": 8,
+      "unit": "개"
+    },
+    {
+      "role": "part-2-standard-deviation",
+      "value": {
+        "kind": "exact-radical",
+        "coefficient": 1,
+        "radicand": 10
+      },
+      "unit": "개"
+    }
+  ],
+  "evidence": {
+    "inputStudentProblemsSha256": "4c3f68b8f29d1e31f2405458b31587dd09b81cad53e965900c211da695aa283d",
+    "inputManifestSha256": "fb0acc2d9d16d9d8e9b75f64f2426b731ad0cc168ddb47db939df026d573effa",
+    "inputBriefSha256": "36d5dd4896ab48fc3eca250864c93dad2380247dbd29fcc570d1a12eedb850e5",
+    "givenPackageDigest": "99d5d21ca4c4bac631f2c873c60558821e80ad352fdc40ce238a9bfddcece60c",
+    "studentRecordSha256": "e075d745a0e96d5c52566c64cc99d091c561c9b83ccbd5dc86d5248cd65faff7",
+    "studentSurfaceCanonicalSha256": "75422a301a173ecd7b8d6fe84e460dc4ec74c2aba11714aab46468d608b50bce",
+    "figureBindings": [],
+    "codePath": "solve-independent.cjs",
+    "codeSha256": "efcd215917f2add776ddbd9caf0db4c60bdd5529ac04b43b6211681daf8fbcdf",
+    "calculation": {
+      "facts": {
+        "differences": [
+          -3,
+          -1,
+          0,
+          3,
+          6
+        ],
+        "differenceMean": 1,
+        "jiu": 8,
+        "actual": [
+          5,
+          7,
+          8,
+          11,
+          14
+        ],
+        "deviations": [
+          -4,
+          -2,
+          -1,
+          2,
+          5
+        ],
+        "deviationSquareSum": 50,
+        "variance": 10,
+        "standardDeviation": 3.1622776601683795,
+        "parentScore": 10,
+        "parts": [
+          {
+            "role": "part-1",
+            "score": 5
+          },
+          {
+            "role": "part-2",
+            "score": 5
+          }
+        ],
+        "countedScore": 10
+      },
+      "optionChecks": [],
+      "conditions": [
+        {
+          "claim": "실제 작품 개수는 모두 양의 정수, 실제 평균9이고두5점부분은부모10점으로한번만계산한다.",
+          "passed": true
+        }
+      ]
+    },
+    "allFiveChoicesChecked": false,
+    "choicesNotApplicable": true,
+    "questionScore": 10,
+    "parentScoreCountedOnce": true,
+    "scoreParts": [
+      {
+        "role": "part-1",
+        "score": 5
+      },
+      {
+        "role": "part-2",
+        "score": 5
+      }
+    ],
+    "finalGradeApproval": false,
+    "authorAnswerExposure": false,
+    "originalAnswerExposure": false,
+    "independentOfAuthor": true
+  },
+  "sevenSurfaceGradeNotes": {
+    "stem": "작품수의차기록·실제평균에서기준수와표준편차를구한다.",
+    "choices": "서술형두부분으로정확수치와두단계의이유를별도로기록한다.",
+    "figuresAndTables": "음수차기록은음수작품수가아니다. 복구된실제수는5/7/8/11/14다.",
+    "notation": "학생 입력에 있는 수·선분·각·분수·근호·도수 표기를 해당 실제 방법에서 사용한다.",
+    "answer": "학생 조건에서 독립 도출한 새 답. 저자 답과 비교하기 전 원시 기록이다.",
+    "studentSolution": "실제다섯값을먼저복구하고평균9에대한편차제곱평균으로계산한다.",
+    "prerequisites": "중3평균·분산·표준편차·근호와중1일차방정식",
+    "standardCodes": [
+      "9수05-06",
+      "9수05-07",
+      "9수02-05",
+      "9수01-10"
+    ],
+    "status": "blind-solver-preliminary-not-final-grade-approval"
+  },
+  "status": "solved",
+  "gradeReviewStatus": "preliminary-pending-final-review",
+  "directUseAllowed": false
+}
