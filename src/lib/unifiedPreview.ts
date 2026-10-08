@@ -1,5 +1,7 @@
 import "server-only";
 import type { Prisma } from "@prisma/client";
+import { z } from "zod";
+import { uuidSchema } from "@/contracts/common.contract";
 import { problemFilterQuerySchema } from "@/contracts/problem.contract";
 import { PROBLEM_CODE_PATTERN } from "@/contracts/problemCode.contract";
 import { db } from "@/lib/db";
@@ -18,30 +20,46 @@ import type {
   StudioProblem,
 } from "@/components/unified/types";
 
-const querySchema = problemFilterQuerySchema.pick({
-  q: true,
-  grade: true,
-  chapter: true,
-  chapterPrefix: true,
-  unitFrom: true,
-  unitTo: true,
-  difficulty: true,
-  problemType: true,
-  format: true,
-  source: true,
-  reviewStatus: true,
-  hasFigure: true,
-  hasSolution: true,
-  hasAnswer: true,
-  page: true,
-});
+const idList = (max: number) =>
+  z
+    .string()
+    .transform((value) => value.split(","))
+    .pipe(z.array(uuidSchema).min(1).max(max));
+
+const querySchema = problemFilterQuerySchema
+  .pick({
+    q: true,
+    grade: true,
+    chapter: true,
+    chapterPrefix: true,
+    unitFrom: true,
+    unitTo: true,
+    difficulty: true,
+    problemType: true,
+    format: true,
+    source: true,
+    reviewStatus: true,
+    hasFigure: true,
+    hasSolution: true,
+    hasAnswer: true,
+    page: true,
+  })
+  .extend({
+    unitIds: idList(500).optional(),
+    excludeIds: idList(100).optional(),
+    ids: idList(100).optional(),
+    pageSize: z.coerce.number().int().min(1).max(100).default(12),
+  });
 export class UnifiedBankQueryError extends Error {}
 
 /** Shared filters keep manual browsing and random selection in the same pool. */
 export async function resolveUnifiedBankQuery(params = new URLSearchParams()) {
   const parsed = querySchema.safeParse(
     Object.fromEntries(
-      Array.from(params).filter(([, value]) => value.trim() !== ""),
+      Array.from(params).filter(
+        ([key, value]) =>
+          ["unitIds", "excludeIds", "ids"].includes(key) || value.trim() !== "",
+      ),
     ),
   );
   if (!parsed.success)
@@ -64,6 +82,10 @@ export async function resolveUnifiedBankQuery(params = new URLSearchParams()) {
     hasSolution,
     hasAnswer,
     page: requestedPage,
+    pageSize,
+    unitIds,
+    excludeIds,
+    ids,
   } = parsed.data;
   // Explicit status inspection may include rows that cannot be issued. Private
   // pools never become visible, and the returned eligibility controls adding.
@@ -71,6 +93,9 @@ export async function resolveUnifiedBankQuery(params = new URLSearchParams()) {
     ? { AND: [problemVisibleWhere(), { reviewStatus }] }
     : problemEligibleWhere();
   const clauses: Prisma.ProblemWhereInput[] = [visibility];
+  if (unitIds) clauses.push({ unitId: { in: unitIds } });
+  if (excludeIds) clauses.push({ NOT: { id: { in: excludeIds } } });
+  if (ids) clauses.push({ id: { in: ids } });
   if (grade || chapter || chapterPrefix)
     clauses.push({
       unit: {
@@ -145,11 +170,12 @@ export async function resolveUnifiedBankQuery(params = new URLSearchParams()) {
     );
   }
   const where: Prisma.ProblemWhereInput = { AND: clauses };
-  return { where, format, visibility, grade, requestedPage };
+  return { where, format, visibility, grade, requestedPage, pageSize };
 }
 
 export const UNIFIED_PROBLEM_SELECT = {
   id: true,
+  unitId: true,
   content: true,
   answer: true,
   solution: true,
@@ -227,9 +253,8 @@ export function toBankProblem({
 export async function loadUnifiedBank(
   params = new URLSearchParams(),
 ): Promise<BankData> {
-  const { where, format, visibility, grade, requestedPage } =
+  const { where, format, visibility, grade, requestedPage, pageSize } =
     await resolveUnifiedBankQuery(params);
-  const pageSize = 12;
   const orderBy = PROBLEM_BANK_ORDER_BY;
   const formatIds = await findProblemIdsByFormat(format, where, orderBy);
   const [total, units] = await Promise.all([
