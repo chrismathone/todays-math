@@ -1,6 +1,9 @@
 import "server-only";
 import type { Prisma } from "@prisma/client";
-import { problemFilterQuerySchema } from "@/contracts/problem.contract";
+import {
+  BANK_SOURCE_GROUP_SOURCES,
+  unifiedBankQuerySchema,
+} from "@/contracts/bankSource.contract";
 import { PROBLEM_CODE_PATTERN } from "@/contracts/problemCode.contract";
 import { db } from "@/lib/db";
 import {
@@ -18,28 +21,11 @@ import type {
   StudioProblem,
 } from "@/components/unified/types";
 
-const querySchema = problemFilterQuerySchema.pick({
-  q: true,
-  grade: true,
-  chapter: true,
-  chapterPrefix: true,
-  unitFrom: true,
-  unitTo: true,
-  difficulty: true,
-  problemType: true,
-  format: true,
-  source: true,
-  reviewStatus: true,
-  hasFigure: true,
-  hasSolution: true,
-  hasAnswer: true,
-  page: true,
-});
 export class UnifiedBankQueryError extends Error {}
 
 /** Shared filters keep manual browsing and random selection in the same pool. */
 export async function resolveUnifiedBankQuery(params = new URLSearchParams()) {
-  const parsed = querySchema.safeParse(
+  const parsed = unifiedBankQuerySchema.safeParse(
     Object.fromEntries(
       Array.from(params).filter(([, value]) => value.trim() !== ""),
     ),
@@ -64,6 +50,10 @@ export async function resolveUnifiedBankQuery(params = new URLSearchParams()) {
     hasSolution,
     hasAnswer,
     page: requestedPage,
+    semester,
+    sourceGroup,
+    books,
+    materialKinds,
   } = parsed.data;
   // Explicit status inspection may include rows that cannot be issued. Private
   // pools never become visible, and the returned eligibility controls adding.
@@ -85,6 +75,17 @@ export async function resolveUnifiedBankQuery(params = new URLSearchParams()) {
   if (difficulty) clauses.push({ difficulty });
   if (problemType) clauses.push({ problemType });
   if (source) clauses.push({ source });
+  // 학기는 차시의 값이다(D-161) — 학기가 없는 차시(고등 선택 과목)는 학기를 고르면 안 걸린다.
+  if (semester) clauses.push({ unit: { semester: Number(semester) } });
+  // 출처 줄(H1 ⑴) — 갈래 하나가 출처 값 여럿을 덮는다(엔진 = manual · 그 밖 = 변형 + AI 생성).
+  if (sourceGroup)
+    clauses.push({
+      source: { in: [...BANK_SOURCE_GROUP_SOURCES[sourceGroup]] },
+    });
+  // 교과서 책 · 자료 종류 — 여럿 고르기, 둘 사이는 «그리고». 자료가 없는 문항은 고르는 순간 빠진다.
+  if (books) clauses.push({ sourceMaterial: { bookId: { in: books } } });
+  if (materialKinds)
+    clauses.push({ sourceMaterial: { kind: { in: materialKinds } } });
   const rangeIds = [
     ...new Set([unitFrom, unitTo].filter((id): id is string => Boolean(id))),
   ];
@@ -145,7 +146,7 @@ export async function resolveUnifiedBankQuery(params = new URLSearchParams()) {
     );
   }
   const where: Prisma.ProblemWhereInput = { AND: clauses };
-  return { where, format, visibility, grade, requestedPage };
+  return { where, format, visibility, grade, semester, requestedPage };
 }
 
 export const UNIFIED_PROBLEM_SELECT = {
@@ -227,7 +228,7 @@ export function toBankProblem({
 export async function loadUnifiedBank(
   params = new URLSearchParams(),
 ): Promise<BankData> {
-  const { where, format, visibility, grade, requestedPage } =
+  const { where, format, visibility, grade, semester, requestedPage } =
     await resolveUnifiedBankQuery(params);
   const pageSize = 12;
   const orderBy = PROBLEM_BANK_ORDER_BY;
@@ -241,6 +242,7 @@ export async function loadUnifiedBank(
         chapter: true,
         section: true,
         orderIndex: true,
+        semester: true,
         _count: { select: { problems: { where: visibility } } },
       },
       orderBy: { orderIndex: "asc" },
@@ -280,7 +282,14 @@ export async function loadUnifiedBank(
     total,
     page,
     pageSize,
-    units: units.map(({ _count, ...unit }) => unit),
+    // 학기 칸은 단원 목록을 좁히는 데만 쓰고 싣지 않는다 — 범위 고르개가 받는 꼴은 `UnitEntity` 그대로다.
+    units: units.map(({ id, grade, chapter, section, orderIndex }) => ({
+      id,
+      grade,
+      chapter,
+      section,
+      orderIndex,
+    })),
     grades: Array.from(counts, ([grade, count]) => ({ grade, count })).filter(
       (item) => item.count > 0,
     ),
@@ -289,7 +298,9 @@ export async function loadUnifiedBank(
         units
           .filter(
             (unit) =>
-              (!grade || unit.grade === grade) && unit._count.problems > 0,
+              (!grade || unit.grade === grade) &&
+              (!semester || unit.semester === Number(semester)) &&
+              unit._count.problems > 0,
           )
           .map((unit) => unit.chapter),
       ),

@@ -13,6 +13,9 @@ vi.mock("@/lib/unifiedPreview", () => ({
 vi.mock("@/lib/unifiedBankSelection", () => ({
   randomBankResponse: vi.fn(),
 }));
+vi.mock("@/lib/bankSourceCounts", () => ({
+  loadBankSourceCounts: vi.fn(),
+}));
 vi.mock("@/lib/db", () => ({
   db: {
     class: { count: vi.fn(), findMany: vi.fn() },
@@ -27,6 +30,8 @@ import { loadUnifiedBank } from "@/lib/unifiedPreview";
 import { GET as bank } from "@/app/api/studio/problems/route";
 import { POST as randomBank } from "@/app/api/studio/problems/random/route";
 import { randomBankResponse } from "@/lib/unifiedBankSelection";
+import { GET as bankSources } from "@/app/api/studio/problems/sources/route";
+import { loadBankSourceCounts } from "@/lib/bankSourceCounts";
 import { GET as overview } from "@/app/api/studio/overview/route";
 import { GET as teaching } from "@/app/api/studio/teaching/route";
 import { GET as worker } from "@/app/api/studio/pdf-worker/route";
@@ -60,6 +65,34 @@ beforeEach(() => {
 });
 afterEach(() => vi.unstubAllEnvs());
 describe("production workspace resources", () => {
+  it("guards the source-picker counts with the same bank gate before counting", async () => {
+    vi.mocked(getSessionUser).mockResolvedValueOnce(null);
+    expect((await bankSources(request("problems/sources"))).status).toBe(401);
+    expect(loadBankSourceCounts).not.toHaveBeenCalled();
+    // 검수자도 문제은행 목록의 관문과 같은 답을 받는다(같은 `/api/studio/problems` 아래)
+    const asReviewer = async (get: typeof bank, path: string) => {
+      vi.mocked(auth as () => Promise<unknown>).mockResolvedValueOnce({
+        user: { id: "owner-17", role: "reviewer" },
+      });
+      return (await get(request(path))).status;
+    };
+    expect(await asReviewer(bankSources, "problems/sources")).toBe(
+      await asReviewer(bank, "problems"),
+    );
+    vi.mocked(loadBankSourceCounts).mockResolvedValueOnce({
+      sources: {
+        total: 0,
+        engine: 0,
+        school_textbook: 0,
+        past_exam: 0,
+        other: 0,
+      },
+      textbook: { total: 0, grades: [], kinds: [], books: [] },
+    });
+    const allowed = await bankSources(request("problems/sources"));
+    expect(allowed.status).toBe(200);
+    expect(allowed.headers.get("Cache-Control")).toContain("no-store");
+  });
   it("guards random selection by login and same-origin before loading the pool", async () => {
     vi.stubEnv("AUTH_URL", "https://math.example");
     const post = (origin: string) =>

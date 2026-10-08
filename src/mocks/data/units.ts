@@ -13,6 +13,7 @@
  */
 import { CURRICULUM_UNITS } from "../../../prisma/seed-data/units";
 import { buildUnitCodePrefixes } from "@/lib/problemCode";
+import { semesterOfUnit } from "@/lib/curriculum/unitSemester";
 import { unitId } from "./ids";
 
 const RANGE_START_ORDER_INDEX = 413; // 중2 "1. 수와 식" 첫 차시(유리수와 소수)
@@ -26,6 +27,8 @@ export interface MockUnit {
   orderIndex: number;
   /** 문항 코드(D-53)의 «뜻» 부분 — 시드 전량에서 계산해 발췌한다(따로 적지 않는다). */
   problemCodePrefix: string;
+  /** 차시의 학기(D-161 `unit.semester`) — DB 와 같은 원천(`semesterOfUnit`)으로 계산한다. 발췌 구간은 전부 1학기다. */
+  semester: 1 | 2 | null;
 }
 
 /** 시드 전량으로 계산한 단원 코드 — 발췌 구간만 골라 쓴다. DB `unit.problem_code_prefix` 대응. */
@@ -55,6 +58,7 @@ export const MOCK_UNITS: MockUnit[] = pickedSeeds.map((seed, idx) => ({
   section: seed.section,
   orderIndex: seed.orderIndex,
   problemCodePrefix: PREFIX_BY_ORDER_INDEX.get(seed.orderIndex)!,
+  semester: semesterOfUnit(seed.grade, seed.chapter),
 }));
 
 // ── 이름 있는 접근자 (테스트 가독성용) ──────────────────────────
