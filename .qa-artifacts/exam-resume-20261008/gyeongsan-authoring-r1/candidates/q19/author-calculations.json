@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "questionNumber": 19,
+  "sourceQuestionDigest": "f4462e8b8b08193b04420254fb7a0145443a7cfefee9d193a6130c8f6d927c37",
+  "variantDigest": "ee072134d7dd63e0ce18a480e73e54bc26dfdbde33a37fbeeada50a00e29d9df",
+  "mathInCode": true,
+  "authorSelfCheckOnly": true,
+  "independentApproval": false,
+  "answerIndex": 2,
+  "facts": {
+    "BC": 9.999999999999998,
+    "AB": 17.320508075688767,
+    "BE": 12.247448713915887,
+    "CF": 7.071067811865475,
+    "CD": 19.318516525781362,
+    "normalizedPoints": {
+      "A": [
+        0,
+        0
+      ],
+      "B": [
+        12.24744871391589,
+        12.24744871391589
+      ],
+      "C": [
+        5.176380902050414,
+        19.318516525781362
+      ],
+      "D": [
+        5.176380902050414,
+        0
+      ],
+      "E": [
+        12.24744871391589,
+        0
+      ],
+      "F": [
+        5.176380902050414,
+        12.24744871391589
+      ]
+    },
+    "rendererScalePxPerCm": 15,
+    "answerValue": 9.999999999999998
+  },
+  "optionChecks": [
+    {
+      "index": 1,
+      "value": 5,
+      "correct": false
+    },
+    {
+      "index": 2,
+      "value": 7.0710678118654755,
+      "correct": false
+    },
+    {
+      "index": 3,
+      "value": 10,
+      "correct": true
+    },
+    {
+      "index": 4,
+      "value": 17.32050807568877,
+      "correct": false
+    },
+    {
+      "index": 5,
+      "value": 15,
+      "correct": false
+    }
+  ],
+  "domainChecks": [
+    {
+      "condition": "길이는 양수이고 전체 높이의 계수가 양수여서 역산 길이는 유일하다.",
+      "passed": true
+    },
+    {
+      "condition": "새 좌표에서 ABC의 B는 직각이고 A는 30°, AE=BE이며 D/F가 내부 순서를 만족한다.",
+      "passed": true
+    }
+  ]
+}

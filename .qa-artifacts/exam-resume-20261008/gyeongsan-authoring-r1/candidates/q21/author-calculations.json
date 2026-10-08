@@ -1,0 +1,65 @@
+{
+  "schemaVersion": 1,
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "questionNumber": 21,
+  "sourceQuestionDigest": "4576aa18787502f1284182f0ee2338773f3d9e319f36b27bf42c90d08261d44a",
+  "variantDigest": "dc84095f4695d6be6072c5c70d57fbf8cc8e38df941bd69079856802731a2681",
+  "mathInCode": true,
+  "authorSelfCheckOnly": true,
+  "independentApproval": false,
+  "answerIndex": 2,
+  "facts": {
+    "radius": 1,
+    "angleDegrees": 40,
+    "exactSQ": 0.6427876096865393,
+    "exactUT": 0.8390996311772799,
+    "SQRecorded": 0.6428,
+    "UTRecorded": 0.8391,
+    "sumRecorded": 1.4819,
+    "integerDecimalCalculation": {
+      "sum": 14819,
+      "sin": 6428,
+      "tan": 8391,
+      "scale": 10000
+    },
+    "rendererRadiusPx": 180,
+    "answerValue": 0.8391
+  },
+  "optionChecks": [
+    {
+      "index": 1,
+      "value": 0.6428,
+      "correct": false
+    },
+    {
+      "index": 2,
+      "value": 0.766,
+      "correct": false
+    },
+    {
+      "index": 3,
+      "value": 0.8391,
+      "correct": true
+    },
+    {
+      "index": 4,
+      "value": 1.2856,
+      "correct": false
+    },
+    {
+      "index": 5,
+      "value": 1.4819,
+      "correct": false
+    }
+  ],
+  "domainChecks": [
+    {
+      "condition": "독립 수치 계산의 반올림 기록은 0.6428,0.8391이고 각 기록의 합은 1.4819이다.",
+      "passed": true
+    },
+    {
+      "condition": "40°는 예각이며 Q는 호 내부, S는 OU 내부, T는 Q 이후에 있고 모든 길이/분모가 양수이다.",
+      "passed": true
+    }
+  ]
+}

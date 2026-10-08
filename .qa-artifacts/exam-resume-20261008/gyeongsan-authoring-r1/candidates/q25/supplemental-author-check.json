@@ -1,0 +1,173 @@
+{
+  "schemaVersion": 1,
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "questionNumber": 25,
+  "method": "author-code-and-local-visual-self-check",
+  "status": "author-proposed-independent-review-pending",
+  "studentDigest": "54f88e20373f48e87f92b4525aff0abceabcd41cd381409752608de617f3df9d",
+  "candidateDigest": "291c492ee0e958b47cfef69a2e15b62c583568d5b9e13c70f8f5e26edd9bc8d4",
+  "assetDigest": "d1da28e0dff49eb6b5ae5c6c51bb95f3e41d952579e14240da612bdffec26d4a",
+  "sourceDigest": "e39eb1b0a237f729d2833d73fcfdb1a54f39798d69a1f689afa566fa5056c8fb",
+  "variantDigest": "83cff39228ef2dda7154baaac61b07ab653483bbf5ed1c7fe878249707704d04",
+  "calculationDigest": "caca7084821547960c61b50e51a9aaec62c340b04a139d4a15e55f4c6823f047",
+  "scriptSha256": "a8ca7aee1f29c5600d606b1732de29713c00491b4aff50114f19d67b21555497",
+  "optionChecks": [
+    {
+      "index": 1,
+      "record": [
+        4.618802153517006,
+        36.95041722813605
+      ],
+      "requiredRecord": [
+        9.237604307034012,
+        36.95041722813605
+      ],
+      "baseCorrect": false,
+      "areaCorrect": true,
+      "correct": false
+    },
+    {
+      "index": 2,
+      "record": [
+        9.237604307034012,
+        18.475208614068023
+      ],
+      "requiredRecord": [
+        9.237604307034012,
+        36.95041722813605
+      ],
+      "baseCorrect": true,
+      "areaCorrect": false,
+      "correct": false
+    },
+    {
+      "index": 3,
+      "record": [
+        9.237604307034012,
+        36.95041722813605
+      ],
+      "requiredRecord": [
+        9.237604307034012,
+        36.95041722813605
+      ],
+      "baseCorrect": true,
+      "areaCorrect": true,
+      "correct": true
+    },
+    {
+      "index": 4,
+      "record": [
+        13.856406460551018,
+        110.85125168440814
+      ],
+      "requiredRecord": [
+        9.237604307034012,
+        36.95041722813605
+      ],
+      "baseCorrect": false,
+      "areaCorrect": false,
+      "correct": false
+    },
+    {
+      "index": 5,
+      "record": [
+        9.237604307034012,
+        73.9008344562721
+      ],
+      "requiredRecord": [
+        9.237604307034012,
+        36.95041722813605
+      ],
+      "baseCorrect": true,
+      "areaCorrect": false,
+      "correct": false
+    }
+  ],
+  "renderReproduction": [
+    {
+      "role": "stem",
+      "specPath": "before.spec.json",
+      "specSha256": "9aeec552a0e39814991e17a01547bcfdd5616efaf422bc3d69e70a0605905097",
+      "svgPath": "before.svg",
+      "svgSha256": "d2cd7bd357403bcd8ef77d603b5134d14f60f42c84dcecc11922c5347a4eea95",
+      "reproducedSvgSha256": "d2cd7bd357403bcd8ef77d603b5134d14f60f42c84dcecc11922c5347a4eea95",
+      "strict": true,
+      "localVendor": true,
+      "byteIdentical": true,
+      "widthMm": 70
+    },
+    {
+      "role": "stem",
+      "specPath": "after.spec.json",
+      "specSha256": "3bb9c2127cbf4bb57a4c64e158ce2c2e6fbc35694b9fe57d3393303e9711ebe6",
+      "svgPath": "after.svg",
+      "svgSha256": "f7f11686c98a400462254b6e0198ee8f63cb87e042fe6b6236e7e3f2f3364820",
+      "reproducedSvgSha256": "f7f11686c98a400462254b6e0198ee8f63cb87e042fe6b6236e7e3f2f3364820",
+      "strict": true,
+      "localVendor": true,
+      "byteIdentical": true,
+      "widthMm": 70
+    }
+  ],
+  "rawSpecNumericScale": {
+    "scalePxPerCm": 12,
+    "actualCreasePixels": [
+      192,
+      192
+    ],
+    "expectedCreasePixels": 192,
+    "actualWidthPixels": 96,
+    "expectedWidthPixels": 96,
+    "passed": true
+  },
+  "visualProof": {
+    "questionPath": "preview-group3/q25.png",
+    "questionSha256": "c347cb53a01c2aaca0aaa3b79e8654050a0e9f4c838ca97a5674988cf503aea1",
+    "solutionPath": "preview-group3/q25.solution.png",
+    "solutionSha256": "c90ce45e39c8fdcf8f43cb92b23e7d028e2a282ccb2a16a213da1edc3364fd0a",
+    "questionAndSolutionViewed": true,
+    "allRaw70mmAssetsViewed": true,
+    "allChoiceMarksAndFigureRolesChecked": true,
+    "bankCapMm": 70,
+    "productionParity": false,
+    "physicalPaperApproval": false,
+    "nativePrintApproval": false
+  },
+  "sevenSurfaces": {
+    "stem": {
+      "status": "author-proposed",
+      "evidence": "폭·접는선·접는 방향·C의 위치·수선 F와 전후 순서를 명시했다."
+    },
+    "choices": {
+      "status": "author-proposed",
+      "evidence": "다섯 기록을 밑변과 넓이 두 항목 모두 검사한다."
+    },
+    "figuresAndTables": {
+      "status": "author-proposed",
+      "evidence": "새 접은 점 R/T는 실제 AB 반사이며 AB와 종이 폭을 보존한다. C는 반사된 위쪽 변과 아래쪽 변의 내부 교점이다."
+    },
+    "notation": {
+      "status": "author-proposed",
+      "evidence": "선분·삼각형·각·도·근호·좌표와 삼각비를 중학교 정의대로 사용한다."
+    },
+    "answer": {
+      "status": "author-proposed",
+      "evidence": "새 조건에서 계산한 유일한 객관식 답이다. 원본 답이나 해설을 읽지 않았다."
+    },
+    "studentSolution": {
+      "status": "author-proposed",
+      "evidence": "접기 같은 각·평행각·내각 합에서 실제 직각삼각형60°를 찾아 계산한다."
+    },
+    "prerequisites": {
+      "status": "author-proposed",
+      "evidence": "중1 각/평행·접기 등각, 중3 삼각비 활용과 근호·넓이"
+    }
+  },
+  "sourceScore": 4,
+  "authorScore": 4,
+  "grade": "중3",
+  "curriculum": "2015",
+  "familyStatus": "pending",
+  "independentVerification": null,
+  "directUseAllowed": false
+}

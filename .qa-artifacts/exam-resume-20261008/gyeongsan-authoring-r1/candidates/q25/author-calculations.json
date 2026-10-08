@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 1,
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "questionNumber": 25,
+  "sourceQuestionDigest": "e39eb1b0a237f729d2833d73fcfdb1a54f39798d69a1f689afa566fa5056c8fb",
+  "variantDigest": "83cff39228ef2dda7154baaac61b07ab653483bbf5ed1c7fe878249707704d04",
+  "mathInCode": true,
+  "authorSelfCheckOnly": true,
+  "independentApproval": false,
+  "answerIndex": 2,
+  "facts": {
+    "width": 8,
+    "crease": 16,
+    "BF": 13.856406460551018,
+    "CF": 4.618802153517007,
+    "BC": 9.237604307034012,
+    "area": 36.95041722813605,
+    "beforePoints": {
+      "L": [
+        -4,
+        0
+      ],
+      "A": [
+        0,
+        0
+      ],
+      "R": [
+        20,
+        0
+      ],
+      "U": [
+        -4,
+        -8
+      ],
+      "B": [
+        13.856406460551018,
+        -8
+      ],
+      "T": [
+        20,
+        -8
+      ]
+    },
+    "afterPoints": {
+      "L": [
+        -4,
+        0
+      ],
+      "A": [
+        0,
+        0
+      ],
+      "U": [
+        -4,
+        -8
+      ],
+      "B": [
+        13.856406460551018,
+        -8
+      ],
+      "R": [
+        10,
+        -17.32050807568877
+      ],
+      "T": [
+        16.928203230275507,
+        -13.320508075688771
+      ],
+      "C": [
+        4.618802153517007,
+        -8
+      ],
+      "F": [
+        0,
+        -8
+      ]
+    },
+    "rendererScalePxPerCm": 12,
+    "reflectionUsedOnlyForAuthorCoordinateCheck": true
+  },
+  "optionChecks": [
+    {
+      "index": 1,
+      "record": [
+        4.618802153517006,
+        36.95041722813605
+      ],
+      "correct": false
+    },
+    {
+      "index": 2,
+      "record": [
+        9.237604307034012,
+        18.475208614068023
+      ],
+      "correct": false
+    },
+    {
+      "index": 3,
+      "record": [
+        9.237604307034012,
+        36.95041722813605
+      ],
+      "correct": true
+    },
+    {
+      "index": 4,
+      "record": [
+        13.856406460551018,
+        110.85125168440814
+      ],
+      "correct": false
+    },
+    {
+      "index": 5,
+      "record": [
+        9.237604307034012,
+        73.9008344562721
+      ],
+      "correct": false
+    }
+  ],
+  "domainChecks": [
+    {
+      "condition": "폭/접는선=1/2이고 실제 직각삼각형 AFB에서 BF>CF>0이다. C는 F와 B 사이에 있고 넓이는 양수이다.",
+      "passed": true
+    },
+    {
+      "condition": "접기 좌표는 A/B를 고정하고 AR/RT/TB의 길이를 보존하며 C가 반사된 위쪽 변 위에 있다.",
+      "passed": true
+    }
+  ]
+}

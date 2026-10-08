@@ -1,0 +1,310 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 21,
+  "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q21",
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "content": "그림은 중심이 $O$, 반지름의 길이가 $1$인 사분원이다. $Q$는 호 위의 점이고 $O,Q,T$는 이 순서로 한 직선 위에 있다. $S$는 $Q$에서 $OU$에 내린 수선의 발이며, $UT$는 $OU$에 수직이다. $\\angle QOU=40^\\circ$이다. 삼각비와 길이를 소수점 아래 다섯째 자리에서 반올림하여 넷째 자리까지 기록했다.\n\n| 기록 항목 | 기록값 |\n| --- | --- |\n| $SQ$ | $0.6428$ |\n| $\\sin40^\\circ+\\tan40^\\circ$ (각각 기록한 값의 합) | $1.4819$ |\n\n이 기록값을 이용하여 복구한 $UT$의 기록값은?",
+  "choices": [
+    "$0.6428$",
+    "$0.7660$",
+    "$0.8391$",
+    "$1.2856$",
+    "$1.4819$"
+  ],
+  "answer": "③",
+  "solution": "직각삼각형 $OSQ$에서 빗변 $OQ=1$이므로 $\\sin40^\\circ=\\dfrac{SQ}{OQ}=SQ$이다. 따라서 $\\sin40^\\circ$의 기록값은 $0.6428$이다.\n\n직각삼각형 $OUT$에서는 $OU=1$이므로 $\\tan40^\\circ=\\dfrac{UT}{OU}=UT$이다. 합의 기록에서 $UT$의 기록값은 $1.4819-0.6428=0.8391$이다. 정답은 ③이다.",
+  "score": 3,
+  "questionType": "객관식",
+  "facts": {
+    "radius": 1,
+    "angleDegrees": 40,
+    "exactSQ": 0.6427876096865393,
+    "exactUT": 0.8390996311772799,
+    "SQRecorded": 0.6428,
+    "UTRecorded": 0.8391,
+    "sumRecorded": 1.4819,
+    "integerDecimalCalculation": {
+      "sum": 14819,
+      "sin": 6428,
+      "tan": 8391,
+      "scale": 10000
+    },
+    "rendererRadiusPx": 180,
+    "answerValue": 0.8391
+  },
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "stem.spec.json",
+      "svgPath": "stem.svg",
+      "intendedWidthMm": 70
+    }
+  ],
+  "variantDelta": {
+    "modes": [
+      "inverse-target",
+      "structure",
+      "representation"
+    ],
+    "before": "단위 사분원의 수선/접선 길이 기록을 읽어 sin35°+tan35°를 계산한다.",
+    "after": "새 단위 사분원과 일부 길이·합의 기록을 주고 누락된 접선 길이를 복원한다. 각각의 삼각비에 대응하는 실제 삼각형을 알아야 한다.",
+    "sharedConcept": "단위 사분원에서 수선·접선 길이를 삼각비 정의에 대응시키고 소수 기록을 계산한다.",
+    "sharedProcedure": "OSQ에서 SQ가 sin40임을, OUT에서 UT가 tan40임을 각각 정의로 확인한 뒤 합의 소수 기록에서 빼서 UT를 복원한다.",
+    "objectiveDifficulty": "원문 3점의 두 삼각비/길이 대응과 소수 계산을 유지한 기본 역산이다. 삼각비 표를 새로 외울 필요가 없다.",
+    "scoreDelta": {
+      "source": 3,
+      "authored": 3,
+      "changed": false
+    }
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수04-17",
+      "9수04-18",
+      "9수02-02",
+      "9수02-05"
+    ],
+    "allowedProcedure": "OSQ에서 SQ가 sin40임을, OUT에서 UT가 tan40임을 각각 정의로 확인한 뒤 합의 소수 기록에서 빼서 UT를 복원한다.",
+    "forbiddenAvoided": [
+      "삼각비 사이의 항등식",
+      "사인·코사인 법칙",
+      "각의 덧셈정리",
+      "미분·최적화",
+      "좌표 벡터·행렬"
+    ],
+    "status": "author-proposed",
+    "surfaces": {
+      "stem": {
+        "status": "author-proposed",
+        "evidence": "주어진 소수 기록의 반올림 자리와 각각 기록한 값의 합을 명확히 구분한다."
+      },
+      "choices": {
+        "status": "author-proposed",
+        "evidence": "다섯 소수 기록을 직접 합에 넣어 전부 확인한다."
+      },
+      "figuresAndTables": {
+        "status": "author-proposed",
+        "evidence": "정확 40° 사분원·수선·접선을 새로 그렸다. 반올림 수를 정확 좌표로 오인하지 않는다."
+      },
+      "notation": {
+        "status": "author-proposed",
+        "evidence": "선분·삼각형·각·도·근호·좌표와 삼각비를 중학교 정의대로 사용한다."
+      },
+      "answer": {
+        "status": "author-proposed",
+        "evidence": "새 조건에서 계산한 유일한 객관식 답이다. 원본 답이나 해설을 읽지 않았다."
+      },
+      "studentSolution": {
+        "status": "author-proposed",
+        "evidence": "서로 다른 두 직각삼각형에서 정의를 적용하고 기록 소수끼리 뺀다."
+      },
+      "prerequisites": {
+        "status": "author-proposed",
+        "evidence": "중3 삼각비 정의, 초등 소수·반올림과 중1 사분원/수선"
+      }
+    },
+    "gradeBasis": "40°는 0°~90° 범위이며 새 표를 이용한다. 삼각비 관계식 없이 서로 다른 두 실제 직각삼각형의 정의를 각각 적용한다.",
+    "exactGradeApproval": false
+  },
+  "sourceReference": {
+    "externalId": "2025-gyeongsan-3-2-mid-21",
+    "examId": "personal-aa35a05fbaf41074c2ebcfcd6f16e876",
+    "sourcePacketExamId": "2025-gyeongsan-3-2-mid",
+    "school": "경산중",
+    "questionNumber": 21,
+    "sourceContentSha256": "4576aa18787502f1284182f0ee2338773f3d9e319f36b27bf42c90d08261d44a",
+    "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+    "sourceQuestionOnlySnapshot": "source-snapshot/packet/questions.json",
+    "sourceQuestionScore": 3,
+    "sourceQuestionType": "객관식",
+    "sourceQuestionParts": [],
+    "sourceStatus": "source_reference_reviewed_all_final_approval_gates_held",
+    "sourceObservation": "단위 사분원의 수선/접선 길이 기록을 읽어 sin35°+tan35°를 계산한다.",
+    "originalAnswersOrSolutionsUsed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "score": 3,
+    "difficultyProposal": "기본",
+    "difficultyStatus": "pending-independent-review",
+    "problemTypeProposal": null,
+    "problemTypeStatus": "pending-independent-review",
+    "hasFigure": true,
+    "assignment": {
+      "status": "pending",
+      "unitId": null,
+      "familyKey": null,
+      "currentUnit": null,
+      "currentRegistryMatch": null,
+      "liveCount": null,
+      "checkedAt": "2026-10-08 04:53:45.769124+00",
+      "evidence": "현재 단위 사분원 삼각비 읽기 유형과 합 기록→접선 길이 복구 유형의 정확 규칙 대응은 별도 검토 전 null이다.",
+      "candidates": []
+    },
+    "achievementStandardRefs": [
+      {
+        "code": "9수02-02",
+        "verified_text": "식의 값을 구할 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3900,
+          "record_offset_in_uncompressed_stream": 199304,
+          "extracted_paragraph_1based": 793
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            34
+          ],
+          "printed_pages": [
+            30
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      },
+      {
+        "code": "9수02-05",
+        "verified_text": "일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3916,
+          "record_offset_in_uncompressed_stream": 199888,
+          "extracted_paragraph_1based": 797
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            34
+          ],
+          "printed_pages": [
+            30
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      },
+      {
+        "code": "9수04-17",
+        "verified_text": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4341,
+          "record_offset_in_uncompressed_stream": 219120,
+          "extracted_paragraph_1based": 891
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            38
+          ],
+          "printed_pages": [
+            34
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      },
+      {
+        "code": "9수04-18",
+        "verified_text": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4345,
+          "record_offset_in_uncompressed_stream": 219292,
+          "extracted_paragraph_1based": 892
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            38
+          ],
+          "printed_pages": [
+            34
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      }
+    ],
+    "achievementStandardStatus": "official-text-matched-candidate-author-proposed",
+    "sourceIdentityReview": {
+      "status": "source-packet-identity-supported-full-custody-held",
+      "sourceSchool": "경산중",
+      "sourceYear": 2025,
+      "sourcePacketDecision": "2025_original_header_school_footer_and_completed_question_identity_supported",
+      "fullPairCertification": "held",
+      "custody": "held",
+      "rights": "held"
+    },
+    "bankEvidence": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-fresh-r2-20261008.json",
+      "sha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b",
+      "capturedAt": "2026-10-08 04:53:45.769124+00",
+      "registrySha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "curriculumEvidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "databaseAccessByAuthor": false
+    },
+    "authorEvidence": {
+      "calculationsPath": "author-calculations.json",
+      "authoringScriptSha256": "52fa4de88bed4f45d2b40452d36d4296e228751d2844e363036e8f2f253637ca",
+      "visualReview": "pending-local-view",
+      "mathematicalReview": "author-self-check-only"
+    }
+  },
+  "schoolNamePolicy": {
+    "actual": "경산중",
+    "display": "해솔누리중학교",
+    "role": "fictional-display-alias-only",
+    "originalOccurrencesInStem": 0,
+    "surfaces": [
+      "content",
+      "choices",
+      "tables",
+      "figureLabels",
+      "solution"
+    ],
+    "review": "author-proposed"
+  },
+  "independentVerification": null,
+  "review": {
+    "status": "pending",
+    "mathematicalCorrectness": "pending-independent-blind-solve",
+    "gradeCurriculum": "pending-independent-review",
+    "equivalentConceptAndMethod": "pending-independent-review",
+    "distinctPresentation": "pending-independent-review",
+    "naturalKorean": "pending-independent-review",
+    "figure": "pending-independent-review",
+    "rights": "pending",
+    "similarity": "pending",
+    "nativeCompatibility": "pending",
+    "physicalPaper": "not-approved"
+  },
+  "directUseAllowed": false
+}

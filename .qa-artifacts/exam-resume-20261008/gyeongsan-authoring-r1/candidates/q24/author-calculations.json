@@ -1,0 +1,82 @@
+{
+  "schemaVersion": 1,
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "questionNumber": 24,
+  "sourceQuestionDigest": "f4c7757a1069051518ac5b7701563c8cf881da3d7117fde9add36645d2ee40db",
+  "variantDigest": "3c632723c0a63ed8ac9dfed8ebc7976b980692f2a389e009cdd0be3ba02b99ab",
+  "mathInCode": true,
+  "authorSelfCheckOnly": true,
+  "independentApproval": false,
+  "answerIndex": 1,
+  "facts": {
+    "CD": 10,
+    "BC": 17.32050807568877,
+    "EH": 6.339745962155613,
+    "area": 54.903810567665786,
+    "points": {
+      "B": [
+        0,
+        0
+      ],
+      "C": [
+        17.32050807568877,
+        0
+      ],
+      "D": [
+        17.32050807568877,
+        10
+      ],
+      "A": [
+        8.660254037844386,
+        8.660254037844386
+      ],
+      "E": [
+        10.980762113533157,
+        6.339745962155613
+      ],
+      "H": [
+        10.980762113533157,
+        0
+      ]
+    },
+    "rendererScalePxPerCm": 20,
+    "answerValue": 10
+  },
+  "optionChecks": [
+    {
+      "index": 1,
+      "value": 5,
+      "correct": false
+    },
+    {
+      "index": 2,
+      "value": 10,
+      "correct": true
+    },
+    {
+      "index": 3,
+      "value": 15,
+      "correct": false
+    },
+    {
+      "index": 4,
+      "value": 20,
+      "correct": false
+    },
+    {
+      "index": 5,
+      "value": 25,
+      "correct": false
+    }
+  ],
+  "domainChecks": [
+    {
+      "condition": "새 넓이는 양수이고 t²=100에서 길이의 양의 근은 유일하다.",
+      "passed": true
+    },
+    {
+      "condition": "새 도식의 A/C 직각과 C45°/D60°, E는 AC/BD 내부이고 H는 BC 내부이다.",
+      "passed": true
+    }
+  ]
+}

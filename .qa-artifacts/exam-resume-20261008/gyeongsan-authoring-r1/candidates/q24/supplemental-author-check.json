@@ -1,0 +1,131 @@
+{
+  "schemaVersion": 1,
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "questionNumber": 24,
+  "method": "author-code-and-local-visual-self-check",
+  "status": "author-proposed-independent-review-pending",
+  "studentDigest": "dcfe60a5eb37164dad2c1e53beed2e3f8cf503c4095f3d34642370ec5cd9a62b",
+  "candidateDigest": "90ac0c7cefe6bf3e418e28e9f51e894d7428e4133f3fd8456a834040a675cae5",
+  "assetDigest": "5a3425197b573f1a96205932325788b47343c7882fbcbddf82f940a268f62c9d",
+  "sourceDigest": "f4c7757a1069051518ac5b7701563c8cf881da3d7117fde9add36645d2ee40db",
+  "variantDigest": "3c632723c0a63ed8ac9dfed8ebc7976b980692f2a389e009cdd0be3ba02b99ab",
+  "calculationDigest": "803af0f8d913dfcd019340a1b435370b51ac1c1d61a4846754782dc94dcae70c",
+  "scriptSha256": "a8ca7aee1f29c5600d606b1732de29713c00491b4aff50114f19d67b21555497",
+  "optionChecks": [
+    {
+      "index": 1,
+      "CD": 5,
+      "BC": 8.660254037844386,
+      "height": 3.1698729810778064,
+      "predictedArea": 13.725952641916447,
+      "requiredArea": 54.903810567665786,
+      "correct": false
+    },
+    {
+      "index": 2,
+      "CD": 10,
+      "BC": 17.32050807568877,
+      "height": 6.339745962155613,
+      "predictedArea": 54.903810567665786,
+      "requiredArea": 54.903810567665786,
+      "correct": true
+    },
+    {
+      "index": 3,
+      "CD": 15,
+      "BC": 25.980762113533157,
+      "height": 9.50961894323342,
+      "predictedArea": 123.53357377724802,
+      "requiredArea": 54.903810567665786,
+      "correct": false
+    },
+    {
+      "index": 4,
+      "CD": 20,
+      "BC": 34.64101615137754,
+      "height": 12.679491924311225,
+      "predictedArea": 219.61524227066315,
+      "requiredArea": 54.903810567665786,
+      "correct": false
+    },
+    {
+      "index": 5,
+      "CD": 25,
+      "BC": 43.30127018922193,
+      "height": 15.849364905389034,
+      "predictedArea": 343.14881604791117,
+      "requiredArea": 54.903810567665786,
+      "correct": false
+    }
+  ],
+  "renderReproduction": [
+    {
+      "role": "stem",
+      "specPath": "stem.spec.json",
+      "specSha256": "779d4a86107d3a21ce6bd8d62a020477e96dab89f779ed3fcc4a6fe0228eff0c",
+      "svgPath": "stem.svg",
+      "svgSha256": "c2a463d9bd783bb10d9bf09d3455ef5333b3ec7b04d5aa13f75eb4c086d4de41",
+      "reproducedSvgSha256": "c2a463d9bd783bb10d9bf09d3455ef5333b3ec7b04d5aa13f75eb4c086d4de41",
+      "strict": true,
+      "localVendor": true,
+      "byteIdentical": true,
+      "widthMm": 70
+    }
+  ],
+  "rawSpecNumericScale": {
+    "scalePxPerCm": 20,
+    "actualCDPixels": 200,
+    "expectedCDPixels": 200,
+    "passed": true
+  },
+  "visualProof": {
+    "questionPath": "preview-group3/q24.png",
+    "questionSha256": "ddf38a35572d48f5f8afda63c8f7f8cdf204d7de32a58665e2e7b78028321d87",
+    "solutionPath": "preview-group3/q24.solution.png",
+    "solutionSha256": "02c89ac1074d79ee06bf3e6beec5e6e6cc5126879ee357d8ef252fe84e8d248e",
+    "questionAndSolutionViewed": true,
+    "allRaw70mmAssetsViewed": true,
+    "allChoiceMarksAndFigureRolesChecked": true,
+    "bankCapMm": 70,
+    "productionParity": false,
+    "physicalPaperApproval": false,
+    "nativePrintApproval": false
+  },
+  "sevenSurfaces": {
+    "stem": {
+      "status": "author-proposed",
+      "evidence": "직각 위치·점의 교차·수선과 새 넓이를 명확히 주었다."
+    },
+    "choices": {
+      "status": "author-proposed",
+      "evidence": "다섯 양의 cm 길이에 따른 넓이를 모두 계산한다."
+    },
+    "figuresAndTables": {
+      "status": "author-proposed",
+      "evidence": "새 정확 좌표는 A/C 직각, C45°/D60°, E의 두 선분 내부 교차와 H의 수선을 만족한다."
+    },
+    "notation": {
+      "status": "author-proposed",
+      "evidence": "선분·삼각형·각·도·근호·좌표와 삼각비를 중학교 정의대로 사용한다."
+    },
+    "answer": {
+      "status": "author-proposed",
+      "evidence": "새 조건에서 계산한 유일한 객관식 답이다. 원본 답이나 해설을 읽지 않았다."
+    },
+    "studentSolution": {
+      "status": "author-proposed",
+      "evidence": "실제 직각삼각형에서 각 비를 각각 써 밑변·높이를 연결하고 양의 근을 택한다."
+    },
+    "prerequisites": {
+      "status": "author-proposed",
+      "evidence": "중1 내각, 중3 삼각비 활용·근호·t² 양의 근과 삼각형 넓이"
+    }
+  },
+  "sourceScore": 5,
+  "authorScore": 5,
+  "grade": "중3",
+  "curriculum": "2015",
+  "familyStatus": "pending",
+  "independentVerification": null,
+  "directUseAllowed": false
+}
