@@ -1,0 +1,108 @@
+{
+  "version": 2,
+  "theme": "exam-thin",
+  "points": {
+    "G": [
+      30,
+      540
+    ],
+    "P": [
+      30,
+      360
+    ],
+    "E": [
+      210,
+      540
+    ],
+    "R": [
+      210,
+      360
+    ],
+    "Q": [
+      210,
+      48.23085463760208
+    ]
+  },
+  "segments": {
+    "GP": [
+      "G",
+      "P"
+    ],
+    "GE": [
+      "G",
+      "E"
+    ],
+    "ER": [
+      "E",
+      "R"
+    ],
+    "RQ": [
+      "R",
+      "Q"
+    ],
+    "PR": {
+      "points": [
+        "P",
+        "R"
+      ],
+      "dashed": "5 4"
+    },
+    "PE": [
+      "P",
+      "E"
+    ],
+    "PQ": [
+      "P",
+      "Q"
+    ]
+  },
+  "angles": {
+    "angUp": {
+      "vertex": "P",
+      "points": [
+        "R",
+        "Q"
+      ],
+      "label": "60°",
+      "radius": 33
+    },
+    "angDown": {
+      "vertex": "P",
+      "points": [
+        "R",
+        "E"
+      ],
+      "label": "45°",
+      "radius": 33
+    },
+    "rightR": {
+      "vertex": "R",
+      "points": [
+        "P",
+        "Q"
+      ],
+      "right": true,
+      "radius": 10
+    },
+    "rightG": {
+      "vertex": "G",
+      "points": [
+        "P",
+        "E"
+      ],
+      "right": true,
+      "radius": 10
+    }
+  },
+  "labels": {
+    "G": "G",
+    "P": "P",
+    "E": "E",
+    "R": "R",
+    "Q": "Q"
+  },
+  "style": {
+    "font_size": 20,
+    "angle_font_size": 18
+  }
+}

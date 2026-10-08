@@ -1,0 +1,105 @@
+{
+  "schemaVersion": 1,
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "questionNumber": 20,
+  "sourceQuestionDigest": "a464def1311cc3fdcf508e46b65fca7e6d23679f506facbf70fedeaf73197658",
+  "variantDigest": "17d900c56471293decf697222c8847c4a34d75f55308d14915a4170799a41ca4",
+  "mathInCode": true,
+  "authorSelfCheckOnly": true,
+  "independentApproval": false,
+  "answerIndex": 2,
+  "facts": {
+    "radius": 4,
+    "chordSlope": -1.7320508075688772,
+    "chordIntercept": 12,
+    "A": [
+      6.928203230275509,
+      0
+    ],
+    "B": [
+      3.4641016151377544,
+      6
+    ],
+    "center": [
+      6.928203230275509,
+      4
+    ],
+    "points": {
+      "O": [
+        0,
+        0
+      ],
+      "S": [
+        6.928203230275509,
+        4
+      ],
+      "A": [
+        6.928203230275509,
+        0
+      ],
+      "B": [
+        3.4641016151377544,
+        6
+      ],
+      "H": [
+        0,
+        12
+      ],
+      "X": [
+        13,
+        0
+      ],
+      "Y": [
+        0,
+        16
+      ],
+      "T": [
+        6.928203230275509,
+        12
+      ]
+    },
+    "rendererScalePxPerUnit": 20,
+    "answerValue": 4
+  },
+  "optionChecks": [
+    {
+      "index": 1,
+      "value": 2,
+      "correct": false
+    },
+    {
+      "index": 2,
+      "value": 3,
+      "correct": false
+    },
+    {
+      "index": 3,
+      "value": 4,
+      "correct": true
+    },
+    {
+      "index": 4,
+      "value": 6.928203230275509,
+      "correct": false
+    },
+    {
+      "index": 5,
+      "value": 6,
+      "correct": false
+    }
+  ],
+  "domainChecks": [
+    {
+      "condition": "양의 절편 b=3r이므로 양의 반지름이 유일하며 모든 좌표/분모가 유효하다.",
+      "passed": true
+    },
+    {
+      "condition": "새 원의 두 반지름 길이는 같고 접선과 수직이며 OB는 60°이다.",
+      "passed": true
+    },
+    {
+      "condition": "A와 B를 AB 기록에 넣으면 두 식이 모두 성립한다.",
+      "passed": true
+    }
+  ]
+}

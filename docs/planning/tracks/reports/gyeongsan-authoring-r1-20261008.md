@@ -31,3 +31,19 @@ q11은 개형·축의 오른쪽 증가 성질·y절편을 일차부등식으로 
 `author-index-group2.json`과 각 author-review에 새 student/asset/candidate/calculation/variant/metadata/review digest를 연결했다. preview와 현재 후보의 metadata-only 저작 코드 해시 갱신은 구분했고, 학생/자산 digest의 정확한 일치를 검사했다. 수학 조건 변경은 없다. q13/14의 실제 정의 입력과 현재 유형02/01의 same core 절차를 비교해 author-proposed 분류만 제안했고, 주 subtype 불명은 null로 유지한다. 모든 독립/grade/권리 승인 수는 0이다.
 
 현재 누계: 실제 작성 17, 저작 전 학년 제외 1(q15), 남은 저작 7(q19–q25), 새 SVG 10, 보존한 authored points 66. 나머지 일곱 문항을 이어서 실제 작성한다.
+
+## 재개 확인과 마지막 묶음
+
+같은 원래 작업 트리/브랜치에서 실제 `Get-Location`·`git status`를 실행하고 `runtime-probe-resume.json`, 이어 새 `runtime-probe-resume-r2.json`을 UTC와 명령/쓰기 성공으로 작성·재읽기했다. 최신 D:/todays-math/AGENTS.md와 부모 addendum4를 읽었다. 부모 watch/controller에는 손대지 않았다. 이미 동결된 Group2의 현재 코드/계산/학생/자산/metadata/review digest와 최종 q10/q17-r2, q12-r4 PNG를 검사하고 첫9 불변을 확인했다. Group2 현재 바이트와 기존 실패 이력을 `e516f622ea734540c31667a37e69bff54fdc4489`로 커밋했다.
+
+그 뒤 q19–q25의 실제 후보7(30점)을 작성했다. 전체 높이 기록에서 BC 복구, 접점 직선 절편에서 반지름 복구, 합의 소수 기록에서 접선 길이 복구, 반지름2의 실제 각/변 대응, 두 탑 높이 합에서 간격 복구, 교차 부분 넓이에서 기준 변 복구, 접기 전후의 밑변/넓이 검산쌍으로 바꿨다. 원문 핵심은 특수각의 실제 직각삼각형·부분 길이·삼각비 정의·넓이/직선 대입이며 미분/최적화·Vieta·삼각비 항등식·사인/코사인 법칙을 학생 방법에 넣지 않았다.
+
+새 strict 로컬 SVG8개를 만들었다(q25 전/후 두 자산). raw 70mm PNG8개와 문항7/해설7 PNG를 실제로 봤다. `check-group3.cjs`가 모든 선택지를 새 관계에 대입하고 원시 spec의 수치 척도/반지름/접기 길이와 새 미동결 SVG의 로컬 재현 바이트를 검사했다. 첫9와 봉인된 Group2는 재생성하지 않았다. `preview-group3`는 은행 수학 전처리/KaTeX 옵션을 읽은 own local 연속 PNG이고 생산/native/물리 인쇄 parity를 주장하지 않는다. q19/q23의 긴 도형은 부모 최종 페이지 배치 gate에서 따로 확인해야 한다.
+
+q23 새 관측점은 첫 탑 꼭대기 P이고 별도 눈높이가 없으며 양쪽 지면은 같은 수평면이다. 아래 삼각형의 높이 d는 PG와 QE에 각각 들어가고, 위 차이 d√3를 더한 합은 d(2+√3)이다. 새 합180+90√3에서 간격90m를 구했다. 원본 source semantics 코드와 새 수치 검산을 별도로 묶었다. 원본의 역사적 key/AI 답 충돌 해결이나 old key 일치 승인을 주장하지 않는다.
+
+`author-index-all25.json`은 25개 모두의 저작/제외 처리를 기록한다. 최종 실제 후보24, 저작 전 제외1(q15), 미처리0, 새 SVG18이다. 원문100점은 저작96점+제외4점이며 q13 실제3점을 유지했다. q15의 공식2015 제한 문단908과 정확 제외 이유는 기존 `holds/q15.json`을 그대로 유지했다.
+
+모든7 학생 표면의 중3/2015 적합성·선수범위·개념/절차 보존·객관 난이도는 author-proposed이며 독립 검토 전이다. q11의 전역 이차 범위/매개변수 부등식 경계, q20의 접선/합동/좌표 복합 선수범위, q22의 실제 각 정의와 삼각비 관계 제한은 구체적인 pending으로 최종 처리표에 기록했다. 학교 출제·Unit의 중3 이름·엔진 성공으로 허용하지 않는다. 분류 author-proposed5, 정확 subtype 미확정null19이며 bank-r2의 KST13:53 관측으로 한정했다.
+
+프로젝트 TypeSafe skill과 현재 live index/confidence/citation cookbook을 읽었다. 결정적 수학·규칙·해시는 코드로 검증하고 모르는 의미·유형·학년/권리 판단은 분리했다. 추론API0, DB접근0, paidAPI0이며 source/부모/main/shareddeps/82잠금/경산여19에 쓰지 않았다. 모든 independentVerification은 null, directUseAllowed는 false이다. 독립 수학/학년/권리/전체 승인0이며 source full pair/custody/rights/native/production 게이트는 닫혀 있다. 부모가 동결된 학생 digest로 blind 검산·독립 학년 검토를 수집한다.
