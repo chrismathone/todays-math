@@ -1,0 +1,297 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 18,
+  "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q18",
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "content": "삼각형의 세 내각의 크기의 비는 $2:3:4$이다. 세 각 중 두 번째로 큰 각을 $A$라 할 때, 다음 검산 기록이 맞도록 누락된 계수 $u$를 복구하려고 한다.\n\n| 계산식 | 결과 |\n| --- | --- |\n| $\\dfrac{\\cos A}{\\sin A}+u\\tan A$ | $\\dfrac{7\\sqrt3}{3}$ |\n\n$u$의 값은?",
+  "choices": [
+    "$\\frac13$",
+    "$1$",
+    "$2$",
+    "$3$",
+    "$\\frac73$"
+  ],
+  "answer": "③",
+  "solution": "세 내각의 합이 $180^\\circ$이므로 각의 크기는 $40^\\circ$, $60^\\circ$, $80^\\circ$이다. 따라서 두 번째로 큰 각은 $A=60^\\circ$이다.\n\n각 값을 따로 대입하면 $\\dfrac{\\cos60^\\circ}{\\sin60^\\circ}=\\dfrac{1/2}{\\sqrt3/2}=\\dfrac{\\sqrt3}{3}$이고 $\\tan60^\\circ=\\sqrt3$이다. 기록에 따라 $\\dfrac{\\sqrt3}{3}+u\\sqrt3=\\dfrac{7\\sqrt3}{3}$이다.\n\n양변을 양수 $\\sqrt3$으로 나누면 $\\dfrac13+u=\\dfrac73$이므로 $u=2$이다. 정답은 ③이다.",
+  "score": 4,
+  "questionType": "객관식",
+  "facts": {
+    "angles": [
+      40,
+      60,
+      80
+    ],
+    "A": 60,
+    "sinA": 0.8660254037844386,
+    "cosA": 0.5,
+    "tanA": 1.7320508075688772,
+    "output": 4.041451884327381,
+    "u": 2.0000000000000004
+  },
+  "figureArtifacts": [],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation",
+      "inverse-target"
+    ],
+    "before": "내각 비 1:2:3에서 가운데 각을 구하고 특수각 삼각비를 대입하여 식의 값을 계산한다.",
+    "after": "내각 기록과 계산 결과를 연결하여 식의 누락 계수를 복구하는 역산 기록으로 바꿨다. 원문과 다른 각도 기록이지만 가운데 각의 특수각 값 대입이라는 핵심을 유지한다.",
+    "sharedConcept": "내각의 비와 합, 특수각의 독립 값 대입 및 근호 계산",
+    "sharedProcedure": "각도 비를 내각 합으로 풀어 A를 정하고 특수각 값을 각각 대입한 뒤 계수의 일차방정식을 푼다.",
+    "objectiveDifficulty": "원문의 내각 비/특수각 대입/근호 정리에 단순 역산을 연결한 4점 문제이다. 미지 각의 삼각방정식을 풀지 않는다.",
+    "scoreDelta": {
+      "source": 4,
+      "authored": 4,
+      "changed": false
+    }
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수04-17",
+      "9수04-05",
+      "9수02-05",
+      "9수01-10"
+    ],
+    "allowedProcedure": "각도 비를 내각 합으로 풀어 A를 정하고 특수각 값을 각각 대입한 뒤 계수의 일차방정식을 푼다.",
+    "forbiddenAvoided": [
+      "삼각비 사이 항등식",
+      "각의 덧셈정리",
+      "일반 삼각함수 방정식"
+    ],
+    "status": "author-proposed",
+    "surfaces": {
+      "stem": {
+        "status": "author-proposed",
+        "evidence": "내각 합으로 가운데 각을 정하고 실제 알려진 특수각 값만 대입한다."
+      },
+      "choices": {
+        "status": "author-proposed",
+        "evidence": "다섯 계수를 새 기록식에 직접 대입해 전부 검사한다."
+      },
+      "figuresAndTables": {
+        "status": "author-proposed",
+        "evidence": "새 각도 비와 누락 계수 계산표이다."
+      },
+      "notation": {
+        "status": "author-proposed",
+        "evidence": "좌표·선분·각·근호·도·삼각비의 표기는 실제 중학교 해법에 쓰는 범위이다."
+      },
+      "answer": {
+        "status": "author-proposed",
+        "evidence": "새 조건을 계산한 유일한 객관식 답이며 원문 정답을 가져오지 않았다."
+      },
+      "studentSolution": {
+        "status": "author-proposed",
+        "evidence": "60°의 sin/cos/tan을 각각 대입한 뒤 일차방정식을 푼다."
+      },
+      "prerequisites": {
+        "status": "author-proposed",
+        "evidence": "삼각형 내각 합·비례, 근호 계산·일차방정식과 특수각 값"
+      }
+    },
+    "gradeBasis": "40°/80°의 삼각비는 구할 필요가 없으며 실제 계산은 60°에만 있다. cos/sin의 값을 각각 대입하는 숫자 나눗셈이지 삼각비 사이의 항등식을 배우는 문제가 아니다.",
+    "exactGradeApproval": false
+  },
+  "sourceReference": {
+    "externalId": "2025-gyeongsan-3-2-mid-18",
+    "examId": "personal-aa35a05fbaf41074c2ebcfcd6f16e876",
+    "sourcePacketExamId": "2025-gyeongsan-3-2-mid",
+    "school": "경산중",
+    "questionNumber": 18,
+    "sourceContentSha256": "2caf1ec80ca04794a94a4593dc0972648cfb808e13ce6f8c263a79c01cfd8dd9",
+    "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+    "sourceQuestionOnlySnapshot": "source-snapshot/packet/questions.json",
+    "sourceQuestionScore": 4,
+    "sourceQuestionType": "객관식",
+    "sourceQuestionParts": [],
+    "sourceStatus": "source_reference_reviewed_all_final_approval_gates_held",
+    "sourceObservation": "내각 비 1:2:3에서 가운데 각을 구하고 특수각 삼각비를 대입하여 식의 값을 계산한다.",
+    "originalAnswersOrSolutionsUsed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "score": 4,
+    "difficultyProposal": "응용",
+    "difficultyStatus": "pending-independent-review",
+    "problemTypeProposal": null,
+    "problemTypeStatus": "pending-independent-review",
+    "hasFigure": false,
+    "assignment": {
+      "status": "pending",
+      "unitId": null,
+      "familyKey": null,
+      "currentUnit": null,
+      "currentRegistryMatch": null,
+      "liveCount": null,
+      "checkedAt": "2026-10-08 04:53:45.769124+00",
+      "evidence": "내각 비의 가운데 각과 계수 역산을 연결한 정확 live subtype은 별도 검토 전 null이다. 삼각비 관계식 유형으로 자동 배정하지 않는다.",
+      "candidates": []
+    },
+    "achievementStandardRefs": [
+      {
+        "code": "9수01-10",
+        "verified_text": "근호를 포함한 식의 사칙계산을 할 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3788,
+          "record_offset_in_uncompressed_stream": 193301,
+          "extracted_paragraph_1based": 771
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            33
+          ],
+          "printed_pages": [
+            29
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      },
+      {
+        "code": "9수02-05",
+        "verified_text": "일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3916,
+          "record_offset_in_uncompressed_stream": 199888,
+          "extracted_paragraph_1based": 797
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            34
+          ],
+          "printed_pages": [
+            30
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      },
+      {
+        "code": "9수04-05",
+        "verified_text": "다각형의 성질을 이해한다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4272,
+          "record_offset_in_uncompressed_stream": 216602,
+          "extracted_paragraph_1based": 874
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            37
+          ],
+          "printed_pages": [
+            33
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      },
+      {
+        "code": "9수04-17",
+        "verified_text": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4341,
+          "record_offset_in_uncompressed_stream": 219120,
+          "extracted_paragraph_1based": 891
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            38
+          ],
+          "printed_pages": [
+            34
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      }
+    ],
+    "achievementStandardStatus": "official-text-matched-candidate-author-proposed",
+    "sourceIdentityReview": {
+      "status": "source-packet-identity-supported-full-custody-held",
+      "sourceSchool": "경산중",
+      "sourceYear": 2025,
+      "sourcePacketDecision": "2025_original_header_school_footer_and_completed_question_identity_supported",
+      "fullPairCertification": "held",
+      "custody": "held",
+      "rights": "held"
+    },
+    "bankEvidence": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-fresh-r2-20261008.json",
+      "sha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b",
+      "capturedAt": "2026-10-08 04:53:45.769124+00",
+      "registrySha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "curriculumEvidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "databaseAccessByAuthor": false
+    },
+    "authorEvidence": {
+      "calculationsPath": "author-calculations.json",
+      "authoringScriptSha256": "9850c1bd934bafac38f1eab43d6e99fd16cd08984eb96cdaac8a8b44532e5bda",
+      "visualReview": "pending-local-view",
+      "mathematicalReview": "author-self-check-only"
+    }
+  },
+  "schoolNamePolicy": {
+    "actual": "경산중",
+    "display": "해솔누리중학교",
+    "role": "fictional-display-alias-only",
+    "originalOccurrencesInStem": 0,
+    "surfaces": [
+      "content",
+      "choices",
+      "tables",
+      "figureLabels",
+      "solution"
+    ],
+    "review": "author-proposed"
+  },
+  "independentVerification": null,
+  "review": {
+    "status": "pending",
+    "mathematicalCorrectness": "pending-independent-blind-solve",
+    "gradeCurriculum": "pending-independent-review",
+    "equivalentConceptAndMethod": "pending-independent-review",
+    "distinctPresentation": "pending-independent-review",
+    "naturalKorean": "pending-independent-review",
+    "figure": "pending-independent-review",
+    "rights": "pending",
+    "similarity": "pending",
+    "nativeCompatibility": "pending",
+    "physicalPaper": "not-approved"
+  },
+  "directUseAllowed": false
+}

@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "questionNumber": 13,
+  "sourceQuestionDigest": "6bdb93fc858a191c0db0e4569df8515960db109a29cd9c74bced9d7b2ce3991e",
+  "variantDigest": "98e032f44dd2fb90d8f29701b4974267e4b5a2869109c73900c581c7b30e6631",
+  "mathInCode": true,
+  "authorSelfCheckOnly": true,
+  "independentApproval": false,
+  "answerIndex": 1,
+  "facts": {
+    "hypotenuse": 26,
+    "adjacent": 10,
+    "opposite": 24,
+    "cosA": 0.38461538461538464,
+    "answerValue": 10
+  },
+  "optionChecks": [
+    {
+      "index": 1,
+      "value": 5,
+      "correct": false
+    },
+    {
+      "index": 2,
+      "value": 10,
+      "correct": true
+    },
+    {
+      "index": 3,
+      "value": 12,
+      "correct": false
+    },
+    {
+      "index": 4,
+      "value": 13,
+      "correct": false
+    },
+    {
+      "index": 5,
+      "value": 24,
+      "correct": false
+    }
+  ],
+  "domainChecks": [
+    {
+      "condition": "새 답이 유한하고 다섯 보기 중 하나이다.",
+      "passed": true
+    },
+    {
+      "condition": "누락 길이는 빗변보다 작은 양수이고 다른 변도 양수이다.",
+      "passed": true
+    }
+  ]
+}

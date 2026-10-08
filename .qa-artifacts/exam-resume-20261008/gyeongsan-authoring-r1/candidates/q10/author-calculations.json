@@ -1,0 +1,83 @@
+{
+  "schemaVersion": 1,
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "questionNumber": 10,
+  "sourceQuestionDigest": "3d4b6858cfeae92d26a9ced5e3056d0ed1ae350ae73e1ef89643e8d43d8c7784",
+  "variantDigest": "5db4df9365d74ec23e405aba767713f59ab6d593a3635054185aacd507dfd64e",
+  "mathInCode": true,
+  "authorSelfCheckOnly": true,
+  "independentApproval": false,
+  "answerIndex": 1,
+  "facts": {
+    "a": 2,
+    "b": -8,
+    "c": 5,
+    "vertex": [
+      2,
+      -3
+    ],
+    "point": [
+      0,
+      5
+    ],
+    "valueAt1": -1
+  },
+  "optionChecks": [
+    {
+      "index": 1,
+      "record": [
+        2,
+        8,
+        5,
+        15
+      ],
+      "correct": false
+    },
+    {
+      "index": 2,
+      "record": [
+        2,
+        -8,
+        5,
+        -1
+      ],
+      "correct": true
+    },
+    {
+      "index": 3,
+      "record": [
+        -2,
+        8,
+        5,
+        11
+      ],
+      "correct": false
+    },
+    {
+      "index": 4,
+      "record": [
+        2,
+        -8,
+        -5,
+        -11
+      ],
+      "correct": false
+    },
+    {
+      "index": 5,
+      "record": [
+        2,
+        -4,
+        5,
+        3
+      ],
+      "correct": false
+    }
+  ],
+  "domainChecks": [
+    {
+      "condition": "다른 한 점의 x좌표가 꼭짓점 x좌표와 달라 a가 유일하고 a≠0이다.",
+      "passed": true
+    }
+  ]
+}

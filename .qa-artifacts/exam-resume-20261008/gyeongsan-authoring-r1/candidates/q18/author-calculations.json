@@ -1,0 +1,62 @@
+{
+  "schemaVersion": 1,
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "questionNumber": 18,
+  "sourceQuestionDigest": "2caf1ec80ca04794a94a4593dc0972648cfb808e13ce6f8c263a79c01cfd8dd9",
+  "variantDigest": "c13d3b703bf416a65d44ef7866ad8ec3b6abc2d3a6c5fd002af7069c882066cd",
+  "mathInCode": true,
+  "authorSelfCheckOnly": true,
+  "independentApproval": false,
+  "answerIndex": 2,
+  "facts": {
+    "angles": [
+      40,
+      60,
+      80
+    ],
+    "A": 60,
+    "sinA": 0.8660254037844386,
+    "cosA": 0.5,
+    "tanA": 1.7320508075688772,
+    "output": 4.041451884327381,
+    "u": 2.0000000000000004
+  },
+  "optionChecks": [
+    {
+      "index": 1,
+      "u": 0.3333333333333333,
+      "output": 1.1547005383792515,
+      "correct": false
+    },
+    {
+      "index": 2,
+      "u": 1,
+      "output": 2.309401076758503,
+      "correct": false
+    },
+    {
+      "index": 3,
+      "u": 2,
+      "output": 4.041451884327381,
+      "correct": true
+    },
+    {
+      "index": 4,
+      "u": 3,
+      "output": 5.773502691896258,
+      "correct": false
+    },
+    {
+      "index": 5,
+      "u": 2.3333333333333335,
+      "output": 4.618802153517007,
+      "correct": false
+    }
+  ],
+  "domainChecks": [
+    {
+      "condition": "각 합은 180이고 실제 삼각비 계산 대상 A=60은 예각이며 sinA와 tanA가 0이 아니므로 u는 유일하다.",
+      "passed": true
+    }
+  ]
+}

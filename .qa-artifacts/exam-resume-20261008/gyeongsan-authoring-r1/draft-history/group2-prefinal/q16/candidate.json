@@ -1,0 +1,267 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 16,
+  "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q16",
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "content": "특수각 계산 기록의 계수 한 칸이 지워졌다.\n\n| 계산식 | 결과 |\n| --- | --- |\n| $a\\sin60^\\circ\\times\\tan45^\\circ\\div\\cos30^\\circ-\\sin90^\\circ$ | $4$ |\n\n기록이 맞도록 하는 상수 $a$의 값은?",
+  "choices": [
+    "$2$",
+    "$3$",
+    "$4$",
+    "$5$",
+    "$6$"
+  ],
+  "answer": "④",
+  "solution": "$\\sin60^\\circ=\\dfrac{\\sqrt3}{2}$, $\\tan45^\\circ=1$, $\\cos30^\\circ=\\dfrac{\\sqrt3}{2}$, $\\sin90^\\circ=1$이다. 각각의 값을 계산식에 대입하면 $a\\times\\dfrac{\\sqrt3}{2}\\times1\\div\\dfrac{\\sqrt3}{2}-1=a-1$이다.\n\n결과가 $4$이므로 $a-1=4$에서 $a=5$이다. 직접 대입해도 $5-1=4$로 기록과 맞으므로 정답은 ④이다.",
+  "score": 3,
+  "questionType": "객관식",
+  "facts": {
+    "sin60": 0.8660254037844386,
+    "tan45": 1,
+    "cos30": 0.8660254037844386,
+    "sin90": 1,
+    "output": 4,
+    "a": 5
+  },
+  "figureArtifacts": [],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation",
+      "inverse-target"
+    ],
+    "before": "특수각 삼각비를 곱셈/나눗셈/뺄셈에 대입하여 식의 값을 구한다.",
+    "after": "계산 결과를 주는 검산 기록에서 누락된 입력 계수를 역산한다.",
+    "sharedConcept": "특수각 삼각비의 값 대입과 근호 포함 사칙 계산",
+    "sharedProcedure": "각 특수각의 값을 각각 대입해 연산 순서를 적용하고 남은 일차방정식으로 계수를 구한다.",
+    "objectiveDifficulty": "원문의 같은 특수각 값·연산 순서를 사용하고 결과→계수로 방향만 전환한 기본 3점이다.",
+    "scoreDelta": {
+      "source": 3,
+      "authored": 3,
+      "changed": false
+    }
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수04-17",
+      "9수02-05",
+      "9수01-10"
+    ],
+    "allowedProcedure": "각 특수각의 값을 각각 대입해 연산 순서를 적용하고 남은 일차방정식으로 계수를 구한다.",
+    "forbiddenAvoided": [
+      "삼각비 사이 관계식",
+      "각의 덧셈정리",
+      "고교 삼각함수"
+    ],
+    "status": "author-proposed",
+    "surfaces": {
+      "stem": {
+        "status": "author-proposed",
+        "evidence": "0°~90° 안의 특수각 값을 계산식에 대입한다."
+      },
+      "choices": {
+        "status": "author-proposed",
+        "evidence": "다섯 계수를 같은 기록식에 넣어 모두 검산한다."
+      },
+      "figuresAndTables": {
+        "status": "author-proposed",
+        "evidence": "새 계산 입력/결과 표의 조건이다."
+      },
+      "notation": {
+        "status": "author-proposed",
+        "evidence": "좌표·선분·각·근호·도·삼각비의 표기는 실제 중학교 해법에 쓰는 범위이다."
+      },
+      "answer": {
+        "status": "author-proposed",
+        "evidence": "새 조건을 계산한 유일한 객관식 답이며 원문 정답을 가져오지 않았다."
+      },
+      "studentSolution": {
+        "status": "author-proposed",
+        "evidence": "주어진 특수각 값을 대입해 a−1=4를 푼다."
+      },
+      "prerequisites": {
+        "status": "author-proposed",
+        "evidence": "근호 사칙계산·일차방정식과 특수각 값"
+      }
+    },
+    "gradeBasis": "각 값을 별도로 대입한다. 삼각비 사이 관계식 또는 항등식의 학습을 요구하지 않는다.",
+    "exactGradeApproval": false
+  },
+  "sourceReference": {
+    "externalId": "2025-gyeongsan-3-2-mid-16",
+    "examId": "personal-aa35a05fbaf41074c2ebcfcd6f16e876",
+    "sourcePacketExamId": "2025-gyeongsan-3-2-mid",
+    "school": "경산중",
+    "questionNumber": 16,
+    "sourceContentSha256": "722b9396285b9e4bde59bf83e1da173e92821bb6a531d0fc212b8174bf524f81",
+    "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+    "sourceQuestionOnlySnapshot": "source-snapshot/packet/questions.json",
+    "sourceQuestionScore": 3,
+    "sourceQuestionType": "객관식",
+    "sourceQuestionParts": [],
+    "sourceStatus": "source_reference_reviewed_all_final_approval_gates_held",
+    "sourceObservation": "특수각 삼각비를 곱셈/나눗셈/뺄셈에 대입하여 식의 값을 구한다.",
+    "originalAnswersOrSolutionsUsed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "score": 3,
+    "difficultyProposal": "응용",
+    "difficultyStatus": "pending-independent-review",
+    "problemTypeProposal": null,
+    "problemTypeStatus": "pending-independent-review",
+    "hasFigure": false,
+    "assignment": {
+      "status": "pending",
+      "unitId": null,
+      "familyKey": null,
+      "currentUnit": null,
+      "currentRegistryMatch": null,
+      "liveCount": null,
+      "checkedAt": "2026-10-08 04:53:45.769124+00",
+      "evidence": "특수각 값 계산의 범위는 정당하나 검산 결과에서 계수를 역산하는 현행 정확 subtype은 분류 검토 전 null이다.",
+      "candidates": []
+    },
+    "achievementStandardRefs": [
+      {
+        "code": "9수01-10",
+        "verified_text": "근호를 포함한 식의 사칙계산을 할 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3788,
+          "record_offset_in_uncompressed_stream": 193301,
+          "extracted_paragraph_1based": 771
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            33
+          ],
+          "printed_pages": [
+            29
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      },
+      {
+        "code": "9수02-05",
+        "verified_text": "일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3916,
+          "record_offset_in_uncompressed_stream": 199888,
+          "extracted_paragraph_1based": 797
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            34
+          ],
+          "printed_pages": [
+            30
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      },
+      {
+        "code": "9수04-17",
+        "verified_text": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4341,
+          "record_offset_in_uncompressed_stream": 219120,
+          "extracted_paragraph_1based": 891
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            38
+          ],
+          "printed_pages": [
+            34
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      }
+    ],
+    "achievementStandardStatus": "official-text-matched-candidate-author-proposed",
+    "sourceIdentityReview": {
+      "status": "source-packet-identity-supported-full-custody-held",
+      "sourceSchool": "경산중",
+      "sourceYear": 2025,
+      "sourcePacketDecision": "2025_original_header_school_footer_and_completed_question_identity_supported",
+      "fullPairCertification": "held",
+      "custody": "held",
+      "rights": "held"
+    },
+    "bankEvidence": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-fresh-r2-20261008.json",
+      "sha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b",
+      "capturedAt": "2026-10-08 04:53:45.769124+00",
+      "registrySha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "curriculumEvidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "databaseAccessByAuthor": false
+    },
+    "authorEvidence": {
+      "calculationsPath": "author-calculations.json",
+      "authoringScriptSha256": "9850c1bd934bafac38f1eab43d6e99fd16cd08984eb96cdaac8a8b44532e5bda",
+      "visualReview": "pending-local-view",
+      "mathematicalReview": "author-self-check-only"
+    }
+  },
+  "schoolNamePolicy": {
+    "actual": "경산중",
+    "display": "해솔누리중학교",
+    "role": "fictional-display-alias-only",
+    "originalOccurrencesInStem": 0,
+    "surfaces": [
+      "content",
+      "choices",
+      "tables",
+      "figureLabels",
+      "solution"
+    ],
+    "review": "author-proposed"
+  },
+  "independentVerification": null,
+  "review": {
+    "status": "pending",
+    "mathematicalCorrectness": "pending-independent-blind-solve",
+    "gradeCurriculum": "pending-independent-review",
+    "equivalentConceptAndMethod": "pending-independent-review",
+    "distinctPresentation": "pending-independent-review",
+    "naturalKorean": "pending-independent-review",
+    "figure": "pending-independent-review",
+    "rights": "pending",
+    "similarity": "pending",
+    "nativeCompatibility": "pending",
+    "physicalPaper": "not-approved"
+  },
+  "directUseAllowed": false
+}

@@ -1,0 +1,309 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 11,
+  "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q11",
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "content": "이차함수 $y=kx^2+4kx+4k-9$의 그래프를 조사해 다음 표를 얻었다.\n\n| 사분면 | 그래프가 지나는가 |\n| --- | --- |\n| 제$1$사분면 | 예 |\n| 제$2$사분면 | 예 |\n| 제$3$사분면 | 예 |\n| 제$4$사분면 | 아니오 |\n\n이 기록이 성립하는 $k$의 범위를 **빠짐없이 정확하게** 나타낸 것은? (단, $k\\ne0$이다.)",
+  "choices": [
+    "$k<0$",
+    "$0<k<\\frac94$",
+    "$0<k\\leq\\frac94$",
+    "$k>\\frac94$",
+    "$k\\geq\\frac94$"
+  ],
+  "answer": "⑤",
+  "solution": "식을 고치면 $y=k(x+2)^2-9$이므로 꼭짓점은 $(-2,-9)$이다. $k<0$이면 그래프 전체가 $x$축 아래에 있어 제$1$, 제$2$사분면을 지날 수 없으므로 $k>0$이어야 한다.\n\n$k>0$일 때 축은 $x=-2$이고, 그 오른쪽에서는 $x$가 증가하면 $y$도 증가한다. 따라서 $x>0$에서 음의 $y$값이 생기지 않으려면 $x=0$에서의 값 $4k-9$가 $0$ 이상이어야 한다. 즉 $4k-9\\geq0$에서 $k\\geq\\frac94$이다. 등호일 때도 양의 $x$에서는 $y>0$이고 제$4$사분면을 지나지 않는다.\n\n이 범위에서 꼭짓점은 제$3$사분면에 있고, 축의 왼쪽으로 충분히 가면 제$2$사분면을, 오른쪽 양의 $x$에서는 제$1$사분면을 지난다. 따라서 세 ‘예’ 기록도 성립한다. 정답은 ⑤이다.",
+  "score": 5,
+  "questionType": "객관식",
+  "facts": {
+    "p": -2,
+    "q": -9,
+    "intercept": "4*k-9",
+    "condition": "k>0 && 4*k-9>=0",
+    "lowerBound": 2.25,
+    "inclusive": true,
+    "boundaryWitness": {
+      "k": 2.25,
+      "I": [
+        1,
+        11.25
+      ],
+      "II": [
+        -5,
+        11.25
+      ],
+      "III": [
+        -2,
+        -9
+      ],
+      "IV": false
+    }
+  },
+  "figureArtifacts": [],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation",
+      "inverse-target"
+    ],
+    "before": "모든 사분면을 지나는 이차함수의 계수 k 범위를 구한다.",
+    "after": "모든 사분면 통과 문장을 세 사분면 통과/한 사분면 배제의 조사표로 바꾸고 경계 포함 여부까지 복구한다.",
+    "sharedConcept": "포물선의 열린 방향·축·y절편과 사분면 통과 관계",
+    "sharedProcedure": "완전제곱으로 축과 꼭짓점을 읽고 열린 방향과 축 오른쪽의 증가 성질로 y절편 조건을 일차부등식으로 구한다.",
+    "objectiveDifficulty": "원문의 k 범위 판별에 해당하는 개형·절편 부호 추론을 유지하고 새 경계 포함 여부를 판정하는 5점 문항이다.",
+    "scoreDelta": {
+      "source": 5,
+      "authored": 5,
+      "changed": false
+    }
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수03-09",
+      "9수03-10",
+      "9수02-09",
+      "9수02-10"
+    ],
+    "allowedProcedure": "완전제곱으로 축과 꼭짓점을 읽고 열린 방향과 축 오른쪽의 증가 성질로 y절편 조건을 일차부등식으로 구한다.",
+    "forbiddenAvoided": [
+      "일반 이차함수 최적화",
+      "미분",
+      "근과 계수의 관계",
+      "일반 포물선/직선 교점 이론"
+    ],
+    "status": "author-proposed",
+    "surfaces": {
+      "stem": {
+        "status": "author-proposed",
+        "evidence": "사분면 통과를 y절편과 개형으로 판정하는 문제이다."
+      },
+      "choices": {
+        "status": "author-proposed",
+        "evidence": "다섯 일차 범위의 정확한 경계와 포함 여부를 모두 판정한다."
+      },
+      "figuresAndTables": {
+        "status": "author-proposed",
+        "evidence": "새 사분면 조사표의 예/아니오를 함수의 실제 개형으로 검산한다."
+      },
+      "notation": {
+        "status": "author-proposed",
+        "evidence": "좌표·선분·각·근호·도·삼각비의 표기는 실제 중학교 해법에 쓰는 범위이다."
+      },
+      "answer": {
+        "status": "author-proposed",
+        "evidence": "새 조건을 계산한 유일한 객관식 답이며 원문 정답을 가져오지 않았다."
+      },
+      "studentSolution": {
+        "status": "author-proposed",
+        "evidence": "k>0와 4k-9≥0이라는 일차 조건만 유도한다."
+      },
+      "prerequisites": {
+        "status": "author-proposed",
+        "evidence": "완전제곱 전개, 사분면, 포물선의 증가 성질과 일차부등식"
+      }
+    },
+    "gradeBasis": "이차함수 그래프 성질과 일차부등식만 사용한다. 일반 이차부등식 해법, 제한구간의 최댓값/최솟값 또는 최적화를 요구하지 않는다.",
+    "exactGradeApproval": false
+  },
+  "sourceReference": {
+    "externalId": "2025-gyeongsan-3-2-mid-11",
+    "examId": "personal-aa35a05fbaf41074c2ebcfcd6f16e876",
+    "sourcePacketExamId": "2025-gyeongsan-3-2-mid",
+    "school": "경산중",
+    "questionNumber": 11,
+    "sourceContentSha256": "670a3f3f93d320be6bffc4fdc69002305be6a84c6a36ce369475e0da7e725ed4",
+    "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+    "sourceQuestionOnlySnapshot": "source-snapshot/packet/questions.json",
+    "sourceQuestionScore": 5,
+    "sourceQuestionType": "객관식",
+    "sourceQuestionParts": [],
+    "sourceStatus": "source_reference_reviewed_all_final_approval_gates_held",
+    "sourceObservation": "모든 사분면을 지나는 이차함수의 계수 k 범위를 구한다.",
+    "originalAnswersOrSolutionsUsed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "score": 5,
+    "difficultyProposal": "응용",
+    "difficultyStatus": "pending-independent-review",
+    "problemTypeProposal": null,
+    "problemTypeStatus": "pending-independent-review",
+    "hasFigure": false,
+    "assignment": {
+      "status": "pending",
+      "unitId": null,
+      "familyKey": null,
+      "currentUnit": null,
+      "currentRegistryMatch": null,
+      "liveCount": null,
+      "checkedAt": "2026-10-08 04:53:45.769124+00",
+      "evidence": "실제 해법은 중3 그래프/일차부등식이나 세 사분면 통과·한 사분면 배제의 매개변수 범위를 현행 subtype과 명시적으로 대조하기 전에는 family를 null로 둔다. 최댓값/최솟값 Unit에 배정하지 않는다.",
+      "candidates": []
+    },
+    "achievementStandardRefs": [
+      {
+        "code": "9수02-09",
+        "verified_text": "부등식과 그 해의 의미를 알고, 부등식의 성질을 이해한다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3940,
+          "record_offset_in_uncompressed_stream": 200866,
+          "extracted_paragraph_1based": 803
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            34
+          ],
+          "printed_pages": [
+            30
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      },
+      {
+        "code": "9수02-10",
+        "verified_text": "일차부등식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3944,
+          "record_offset_in_uncompressed_stream": 201036,
+          "extracted_paragraph_1based": 804
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            34
+          ],
+          "printed_pages": [
+            30
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      },
+      {
+        "code": "9수03-09",
+        "verified_text": "이차함수의 의미를 이해하고, 그 그래프를 그릴 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4146,
+          "record_offset_in_uncompressed_stream": 210185,
+          "extracted_paragraph_1based": 849
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            36
+          ],
+          "printed_pages": [
+            32
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      },
+      {
+        "code": "9수03-10",
+        "verified_text": "이차함수의 그래프의 성질을 이해한다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4150,
+          "record_offset_in_uncompressed_stream": 210353,
+          "extracted_paragraph_1based": 850
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            36
+          ],
+          "printed_pages": [
+            32
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      }
+    ],
+    "achievementStandardStatus": "official-text-matched-candidate-author-proposed",
+    "sourceIdentityReview": {
+      "status": "source-packet-identity-supported-full-custody-held",
+      "sourceSchool": "경산중",
+      "sourceYear": 2025,
+      "sourcePacketDecision": "2025_original_header_school_footer_and_completed_question_identity_supported",
+      "fullPairCertification": "held",
+      "custody": "held",
+      "rights": "held"
+    },
+    "bankEvidence": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-fresh-r2-20261008.json",
+      "sha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b",
+      "capturedAt": "2026-10-08 04:53:45.769124+00",
+      "registrySha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "curriculumEvidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "databaseAccessByAuthor": false
+    },
+    "authorEvidence": {
+      "calculationsPath": "author-calculations.json",
+      "authoringScriptSha256": "9850c1bd934bafac38f1eab43d6e99fd16cd08984eb96cdaac8a8b44532e5bda",
+      "visualReview": "pending-local-view",
+      "mathematicalReview": "author-self-check-only"
+    }
+  },
+  "schoolNamePolicy": {
+    "actual": "경산중",
+    "display": "해솔누리중학교",
+    "role": "fictional-display-alias-only",
+    "originalOccurrencesInStem": 0,
+    "surfaces": [
+      "content",
+      "choices",
+      "tables",
+      "figureLabels",
+      "solution"
+    ],
+    "review": "author-proposed"
+  },
+  "independentVerification": null,
+  "review": {
+    "status": "pending",
+    "mathematicalCorrectness": "pending-independent-blind-solve",
+    "gradeCurriculum": "pending-independent-review",
+    "equivalentConceptAndMethod": "pending-independent-review",
+    "distinctPresentation": "pending-independent-review",
+    "naturalKorean": "pending-independent-review",
+    "figure": "pending-independent-review",
+    "rights": "pending",
+    "similarity": "pending",
+    "nativeCompatibility": "pending",
+    "physicalPaper": "not-approved"
+  },
+  "directUseAllowed": false
+}

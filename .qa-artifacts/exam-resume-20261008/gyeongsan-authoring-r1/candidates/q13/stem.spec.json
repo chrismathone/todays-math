@@ -1,0 +1,70 @@
+{
+  "version": 2,
+  "theme": "exam-thin",
+  "points": {
+    "A": [
+      30,
+      170
+    ],
+    "C": [
+      110,
+      170
+    ],
+    "B": [
+      110,
+      -22
+    ]
+  },
+  "segments": {
+    "AC": [
+      "A",
+      "C"
+    ],
+    "CB": [
+      "C",
+      "B"
+    ],
+    "BA": [
+      "B",
+      "A"
+    ]
+  },
+  "angles": {
+    "angRightC": {
+      "vertex": "C",
+      "points": [
+        "A",
+        "B"
+      ],
+      "right": true,
+      "radius": 10
+    }
+  },
+  "labels": {
+    "A": "A",
+    "C": "C",
+    "B": "B"
+  },
+  "style": {
+    "font_size": 20,
+    "angle_font_size": 18
+  },
+  "dimensions": {
+    "dimAB": {
+      "points": [
+        "A",
+        "B"
+      ],
+      "label": "26\\,\\mathrm{cm}",
+      "side": "auto"
+    },
+    "dimAC": {
+      "points": [
+        "A",
+        "C"
+      ],
+      "label": "x",
+      "side": "auto"
+    }
+  }
+}

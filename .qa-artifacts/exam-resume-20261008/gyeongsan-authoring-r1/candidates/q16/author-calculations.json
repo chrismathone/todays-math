@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "questionNumber": 16,
+  "sourceQuestionDigest": "722b9396285b9e4bde59bf83e1da173e92821bb6a531d0fc212b8174bf524f81",
+  "variantDigest": "0c9bf0190e4edddb894fea5c2c5aa9a0e46ac6929768566bd48dff8ad704ed18",
+  "mathInCode": true,
+  "authorSelfCheckOnly": true,
+  "independentApproval": false,
+  "answerIndex": 3,
+  "facts": {
+    "sin60": 0.8660254037844386,
+    "tan45": 1,
+    "cos30": 0.8660254037844386,
+    "sin90": 1,
+    "output": 4,
+    "a": 5
+  },
+  "optionChecks": [
+    {
+      "index": 1,
+      "a": 2,
+      "output": 1,
+      "correct": false
+    },
+    {
+      "index": 2,
+      "a": 3,
+      "output": 2,
+      "correct": false
+    },
+    {
+      "index": 3,
+      "a": 4,
+      "output": 3,
+      "correct": false
+    },
+    {
+      "index": 4,
+      "a": 5,
+      "output": 4,
+      "correct": true
+    },
+    {
+      "index": 5,
+      "a": 6,
+      "output": 5,
+      "correct": false
+    }
+  ],
+  "domainChecks": [
+    {
+      "condition": "cos30은 0이 아니고 계수 a의 인수도 0이 아니므로 a는 유일하다. 각은 모두 0~90도이다.",
+      "passed": true
+    }
+  ]
+}
