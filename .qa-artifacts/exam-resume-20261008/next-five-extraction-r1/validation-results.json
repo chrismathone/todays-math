@@ -1,0 +1,77 @@
+{
+  "status": "pass",
+  "paperChecks": [
+    {
+      "examId": "2025-gyeonggu-3-2-mid",
+      "coverageAndHashes": "pass",
+      "allQuestionCharacterAndFigureCropBounds": "pass",
+      "noteIsolation": "pass",
+      "packetAnswersWithheld": "pass",
+      "scoreAccounting": "pass",
+      "questionCount": 23
+    },
+    {
+      "examId": "2025-gyeongsan-3-2-mid",
+      "coverageAndHashes": "pass",
+      "allQuestionCharacterAndFigureCropBounds": "pass",
+      "noteIsolation": "pass",
+      "packetAnswersWithheld": "pass",
+      "scoreAccounting": "pass",
+      "questionCount": 25
+    },
+    {
+      "examId": "2025-gyeongsang-3-2-mid",
+      "coverageAndHashes": "pass",
+      "allQuestionCharacterAndFigureCropBounds": "pass",
+      "noteIsolation": "pass",
+      "packetAnswersWithheld": "pass",
+      "scoreAccounting": "pass",
+      "questionCount": 22
+    },
+    {
+      "examId": "2025-gyeongsin-3-2-mid",
+      "coverageAndHashes": "pass",
+      "allQuestionCharacterAndFigureCropBounds": "pass",
+      "noteIsolation": "pass",
+      "packetAnswersWithheld": "pass",
+      "scoreAccounting": "pass",
+      "questionCount": 17
+    },
+    {
+      "examId": "2025-gyeongam-3-2-mid",
+      "coverageAndHashes": "pass",
+      "allQuestionCharacterAndFigureCropBounds": "pass",
+      "noteIsolation": "pass",
+      "packetAnswersWithheld": "pass",
+      "scoreAccounting": "pass",
+      "questionCount": 19
+    }
+  ],
+  "parentQuestions": 106,
+  "leafQuestions": 116,
+  "selectedPairAllQuestionComponentMatches": 105,
+  "noteSubtreesWithheld": 106,
+  "adversarialChecks": [
+    {
+      "case": "source_hash_changed",
+      "rejected": true
+    },
+    {
+      "case": "shared_table_removed",
+      "rejected": true
+    },
+    {
+      "case": "note_record_leak",
+      "rejected": true
+    }
+  ],
+  "notValidated": [
+    "new twin answers/solutions/figures",
+    "full grade approval",
+    "rights permission",
+    "current DB dedup",
+    "entire HWP/PDF exam equivalence"
+  ],
+  "preservation": "custody-preservation.json",
+  "testsUsed": "Offline Python/PyMuPDF/OLE/PIL checks; no node/install/paid calls."
+}
