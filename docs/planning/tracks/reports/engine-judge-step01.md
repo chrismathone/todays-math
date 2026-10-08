@@ -170,7 +170,11 @@ externalId  engine-mid-judge:중1|유리수의 덧셈과 뺄셈|calc-add2|r1|s20
 
 ## 8.1 병합 준비
 
-푸시 시점 origin/main 은 갈래 기준보다 27커밋 앞(교과서 이관 · 그림 저장소 · 합의 문서). 바꾼 파일이 겹치는 것 **0** · `git merge-tree` 충돌 **0**. 가지에 main 을 합치지 않았다 — 병합 · 적재는 리드.
+푸시 시점 origin/main 은 갈래 기준보다 27커밋 앞(교과서 이관 · 그림 저장소 · 합의 문서). 바꾼 파일이 겹치는 것 **0** · 충돌 **0**.
+
+- 처음 민 가지(`afdb83fa7`)의 Vercel 미리보기는 **빌드 첫 단계에서 실패**했다 — «Shared figure build preparation failed». origin/main 의 `9ab1fc7fc`(그림 저장소를 앱 Supabase 로 이전)가 Vercel 의 `SHARED_FIGURE_CDN_BASE_URL` 을 새 주소로 바꿨는데, 이 가지는 옛 영수증(`src/config/shared-figures.receipt.json`)을 들고 있었다. **그 커밋 이전에서 갈라진 가지는 모두 같은 실패가 난다**(제 코드와 무관).
+- 그래서 가지에 origin/main 을 합쳤다(`ef6db7597` — main 에는 안 밀었다). 합친 뒤 `type-check` 초록 · 관련 12파일 450건 초록 · **미리보기 배포 Ready**(`AzwY6wt1NC1xpz927gE5y1gWoUCQ`).
+- 리드는 이 가지를 그대로 main 에 병합하면 된다. 병합 뒤 main 푸시는 적재 전에는 pre-push(`checkUnloadedTypes`)가 막는다 — §7-1 의 적재가 먼저다.
 
 ## 9. 이번에 밟은 함정 (다음 사람에게)
 
