@@ -1,0 +1,856 @@
+{
+  "version": "source-only-next-five-extraction-r1",
+  "createdAt": "2026-10-08T05:38:24.609261+00:00",
+  "scope": [
+    "gyeonggu",
+    "gyeongsan",
+    "gyeongsang",
+    "gyeongsin",
+    "gyeongam"
+  ],
+  "workspace": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008",
+  "branch": "chrismathone/exam-twin-next-five-20261008",
+  "summary": {
+    "parentQuestions": 106,
+    "multipleChoiceParents": 87,
+    "writtenParents": 19,
+    "nestedSubquestions": 15,
+    "leafAssessmentItems": 116,
+    "verifiedQuestionContent": 106,
+    "selectedHwpPdfQuestionAllComponentsMatched": 105,
+    "selectedPairScoreExceptionQuestions": 1,
+    "entireExamPairCertified": 0,
+    "fullGradeApprovals": 0,
+    "rightsApprovals": 0,
+    "newTwinsAuthored": 0,
+    "verifiedTwins": 0,
+    "questionsWithUniversalGradeMappingRenderRightsHolds": 106,
+    "sourceIdentityHoldQuestions": 17,
+    "specificGradeMethodRiskQuestions": 33,
+    "independentSolvingConflictHoldQuestions": 1,
+    "sourceLiteralNumericalAccuracyHoldQuestions": 1,
+    "currentDbDedupCompleted": false,
+    "workerDbReads": 0,
+    "legacyDraftsReferenceOnly": 48,
+    "legacySolutionsReferenceOnly": 43,
+    "legacyCropsReferenceOnly": 71,
+    "selectedPairParentScoreSum": 495,
+    "originalReferenceParentScoreSum": 500
+  },
+  "papers": [
+    {
+      "slug": "gyeonggu",
+      "school": "경구중",
+      "examId": "2025-gyeonggu-3-2-mid",
+      "inventoryExamId": "personal-a8a023ad6060fb2937b8b09781b68857",
+      "manifest": "gyeonggu/source-manifest.json",
+      "manifestSha256": "87e05a69d85524fe20dc178e6da190414f36193984807f1673356f299fb53b4b",
+      "packet": "gyeonggu/packet/questions.json",
+      "packetSha256": "b6b40385cee9146ce74792ce2ca9675b7b562eb27aa65005cb4706f52347820f",
+      "identity": {
+        "status": "2025_header_and_filename_supported_preparation_footer_2026_not_source_year",
+        "yearConfirmed": true,
+        "hwpHeadersFooters": [
+          {
+            "kind": "head",
+            "text": "",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 253,
+              "inflatedByteOffset": 6965,
+              "tag": 71,
+              "level": 1,
+              "payloadSha256": "e70cf8bd4507447f5cb44e2fd8ca08b1be26517d5de36c03f2eeeb23bfe2aa7d"
+            }
+          },
+          {
+            "kind": "foot",
+            "text": "경구중 26년 2학기 중간고사 대비 (수학)\n\n\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 257,
+              "inflatedByteOffset": 7059,
+              "tag": 71,
+              "level": 1,
+              "payloadSha256": "dcce886fffbaf39c8be6ac1be67c4dbefe9a738c33e185d4e23e625bff861714"
+            }
+          },
+          {
+            "kind": "head",
+            "text": "2025년 2학기 중간고사\n\n경구중 3학년 수학\n\n학원 로고\n\n\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 271,
+              "inflatedByteOffset": 7492,
+              "tag": 71,
+              "level": 1,
+              "payloadSha256": "a6b0f971881b8312d4e2703a1c9e0cd1f6da4ad05e8ae7f8ab11bc56a74836e8"
+            }
+          },
+          {
+            "kind": "head",
+            "text": "2025년 2학기 중간고사\n\n경구중 3학년 수학\n\n학원 로고\n\n\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 3285,
+              "inflatedByteOffset": 141344,
+              "tag": 71,
+              "level": 1,
+              "payloadSha256": "4abc08b91c0e1a42482d6bb83a6a95d6a60b0dae1aa3deffe2f9453c2ac1faba"
+            }
+          },
+          {
+            "kind": "foot",
+            "text": "경구중 26년 2학기 중간고사 대비 (수학) (정답)\n\n\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 3308,
+              "inflatedByteOffset": 142047,
+              "tag": 71,
+              "level": 1,
+              "payloadSha256": "c81817c887e436cdc8e36f29f8382b9acc57852643fba96870627816af6b4093"
+            }
+          }
+        ],
+        "pdfHeadersFooters": [
+          {
+            "page": 1,
+            "text": "2025년 2학기 중간고사\n학원 로고\n2025년 2학기 중간고사\n삼각비 ~ 원과 직선\nKG중 3학년 수학\n",
+            "footer": "1\nKG중26년2학기중간\n사대비(수학)\n"
+          },
+          {
+            "page": 2,
+            "text": "2025년 2학기 중간고사\n5. <보기>의 삼각비의 값을 그 크기가 작은 것부터 \n차례대\n나열한것\n[ 점]\n7. <보기>에서 옳은 것만을 있는 대로 고른 것은? [3점]\nKG중 3학년 수학\n",
+            "footer": "2\nKG중26년2학기중간\n사대비(수학)\n"
+          },
+          {
+            "page": 3,
+            "text": "2025년 2학기 중간고사\n9.  직각삼각형 ABC에서 ∠A의 이등분선과 변 BC의 \n점이\n일때\n의값\n[ 점]\n11. 그림의 사각뿔은 밑면이 정사각형이고, 옆면은 모두 \n합동인이\n변삼각형이다\n짓점\n에서밑면에내린\nKG중 3학년 수학\n",
+            "footer": "3\nKG중26년2학기중간\n사대비(수학)\n"
+          },
+          {
+            "page": 4,
+            "text": "2025년 2학기 중간고사\n13. 정삼각형 ABC에서 삼각형 ADC의 넓이는? [5점]\n15. 원 O의 중심에서 두 현 AB,AC에 이르는 거리가 \n같다\n의\n기\n[ 점]\nKG중 3학년 수학\n",
+            "footer": "4\nKG중26년2학기중간\n사대비(수학)\n"
+          },
+          {
+            "page": 5,
+            "text": "2025년 2학기 중간고사\n17. 동심원에서 큰 원의 현 AB가 작은 원과 점 H에서 \n접할때색칠한부분의넓이\n[ 점]\n18. ⁄\nBC는 반원 O의 지름이고, ⁄\nAB,⁄\nAD,⁄\nCD는 반원 O의 \nKG중 3학년 수학\n",
+            "footer": "5\nKG중26년2학기중간\n사대비(수학)\n"
+          },
+          {
+            "page": 6,
+            "text": "2025년 2학기 중간고사\n19. ⁄\nBC는 반원 O의 지름이고, ⁄\nAB,⁄\nAE,⁄\nCE는 각각 점 \n20. [서술형 1] 그림과 같이 반지름의 길이가 1인 \n사분원\n에답하시\n[총\n점]\nKG중 3학년 수학\n",
+            "footer": "6\nKG중26년2학기중간\n사대비(수학)\n"
+          },
+          {
+            "page": 7,
+            "text": "2025년 2학기 중간고사\n21. [서술형 2] 그림을 보고, 물음에 답하시오. [총 10점]\n22. [서술형 3] ⁄\nAP,⁄\nAQ,⁄\nBC는 원 O의 접선이고 세 점 \nKG중 3학년 수학\n",
+            "footer": "7\nKG중26년2학기중간\n사대비(수학)\n"
+          },
+          {
+            "page": 8,
+            "text": "2025년 2학기 중간고사\n23. [서술형 4] 원 밖의 점 P에서 원 O에 그은 두 접선의 \n접점\n각각\n라하자\n일때\nKG중 3학년 수학\n",
+            "footer": "8\nKG중26년2학기중간\n사대비(수학)\n"
+          }
+        ],
+        "scanComparisonStatus": "actual_original_question_pages_rendered_and_viewed",
+        "originalScanYearObserved": 2025,
+        "originalScanIdentityEvidence": {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\중3\\[경구중][3][25-2-중간](원본)(준희T).pdf",
+          "sha256": "dfb546f163728fc59e84d5a6357e5a7a9385d0b68fe26b82ab639dea8ba182a4",
+          "page": 1,
+          "observedGrade": "중3",
+          "observedYear": 2025,
+          "observedSemester": 2,
+          "observedRound": "중간",
+          "schoolFooterOrNoticeObserved": "경구중"
+        },
+        "decision": "2025_original_header_school_footer_and_completed_question_identity_supported",
+        "preparationFooterYearIsNotExamYear": true,
+        "gyeongsinNote": null
+      },
+      "counts": {
+        "parentQuestions": 23,
+        "multipleChoiceParents": 19,
+        "writtenParents": 4,
+        "subquestionsInsideParents": 13,
+        "leafQuestions": 32,
+        "questionContentVerified": 23,
+        "hwpPdfAllQuestionComponentsMatched": 23,
+        "selectedPairParentScoreSum": 100.0,
+        "originalReferenceParentScoreSum": 100.0,
+        "legacyHwpAnswerExtractionScoreSum": 74.0,
+        "legacyPdfBodyExtractionScoreSum": 100.0,
+        "entireExamPairCertified": 0,
+        "fullGradeApproved": 0,
+        "rightsApproved": 0,
+        "verifiedTwins": 0,
+        "newTwinsAuthored": 0
+      },
+      "sourceFiles": [
+        {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[경구중][3][25-2-중간][신사고] (완료).hwp",
+          "sha256": "af607b1968659af53200e316ad523fd280eeb3300e9fba02319cd365821978b7",
+          "bytes": 2228224
+        },
+        {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[경구중][3][25-2-중간][신사고] (완료).PDF",
+          "sha256": "6ee96e82d07ff054292226199498629375eaca9a5d9236fa134f1d27d23ce821",
+          "bytes": 14947722
+        }
+      ],
+      "originalScanReference": {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\중3\\[경구중][3][25-2-중간](원본)(준희T).pdf",
+        "sha256": "dfb546f163728fc59e84d5a6357e5a7a9385d0b68fe26b82ab639dea8ba182a4"
+      }
+    },
+    {
+      "slug": "gyeongsan",
+      "school": "경산중",
+      "examId": "2025-gyeongsan-3-2-mid",
+      "inventoryExamId": "personal-aa35a05fbaf41074c2ebcfcd6f16e876",
+      "manifest": "gyeongsan/source-manifest.json",
+      "manifestSha256": "3429d54484b3676efe2a4ba3564e68f005ed431a899dab5fa979b91a57f66b6c",
+      "packet": "gyeongsan/packet/questions.json",
+      "packetSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+      "identity": {
+        "status": "2025_header_and_filename_supported_preparation_footer_2026_not_source_year",
+        "yearConfirmed": true,
+        "hwpHeadersFooters": [
+          {
+            "kind": "head",
+            "text": "",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 253,
+              "inflatedByteOffset": 6953,
+              "tag": 71,
+              "level": 1,
+              "payloadSha256": "e70cf8bd4507447f5cb44e2fd8ca08b1be26517d5de36c03f2eeeb23bfe2aa7d"
+            }
+          },
+          {
+            "kind": "foot",
+            "text": "경산중 26년 2학기 중간고사 대비 (수학)\n\n\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 257,
+              "inflatedByteOffset": 7047,
+              "tag": 71,
+              "level": 1,
+              "payloadSha256": "dcce886fffbaf39c8be6ac1be67c4dbefe9a738c33e185d4e23e625bff861714"
+            }
+          },
+          {
+            "kind": "head",
+            "text": "2025년 2학기 중간고사\n\n경산중 3학년 수학\n\n학원 로고\n\n\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 271,
+              "inflatedByteOffset": 7482,
+              "tag": 71,
+              "level": 1,
+              "payloadSha256": "a6b0f971881b8312d4e2703a1c9e0cd1f6da4ad05e8ae7f8ab11bc56a74836e8"
+            }
+          },
+          {
+            "kind": "head",
+            "text": "2025년 2학기 중간고사\n\n경산중 3학년 수학\n\n학원 로고\n\n\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 2547,
+              "inflatedByteOffset": 112316,
+              "tag": 71,
+              "level": 1,
+              "payloadSha256": "1ca039e1bcdf2f159a017806d49d8aa933a69c9d65458ea84cb58524ecae69f1"
+            }
+          },
+          {
+            "kind": "foot",
+            "text": "경산중 26년 2학기 중간고사 대비 (수학) (정답)\n\n\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 2570,
+              "inflatedByteOffset": 113021,
+              "tag": 71,
+              "level": 1,
+              "payloadSha256": "c63663b329a01c2297135407da43bdad466779bc7ed6a0c0d41f52e3479ec089"
+            }
+          }
+        ],
+        "pdfHeadersFooters": [
+          {
+            "page": 1,
+            "text": "2025년 2학기 중간고사\n학원 로고\n2025년 2학기 중간고사\n  이차함수 그래프~ 삼각비활용 \nKSAD중 3학년 수학\n",
+            "footer": "1\nKSAD중26년2학기중간\n사대비(수학)\n"
+          },
+          {
+            "page": 2,
+            "text": "2025년 2학기 중간고사\n5. 다음 조건을 모두 만족하는 이차함수 식은? [4점]\n7. 일차함수 y=ax+b의 그래프가 아래 그림과 같을 때, \nKSAD중 3학년 수학\n",
+            "footer": "2\nKSAD중26년2학기중간\n사대비(수학)\n"
+          },
+          {
+            "page": 3,
+            "text": "2025년 2학기 중간고사\n9. 이차함수 y=2(x-5)2+2의 그래프의 꼭짓점이 원점에 \n11. 이차함수 y=kx2-4kx+4k+10의 그래프가 모든 \nKSAD중 3학년 수학\n",
+            "footer": "3\nKSAD중26년2학기중간\n사대비(수학)\n"
+          },
+          {
+            "page": 4,
+            "text": "2025년 2학기 중간고사\n13. 아래 직각삼각형 ABC에서 cosA의 값은? [3점]\n15. 이차방정식 16x2-24x+9=0의 한 근을 tanA라 할 때, \nKSAD중 3학년 수학\n",
+            "footer": "4\nKSAD중26년2학기중간\n사대비(수학)\n"
+          },
+          {
+            "page": 5,
+            "text": "2025년 2학기 중간고사\n18. 삼각형의 세 내각의 크기의 비가 1:2:3이고 세 각 중 \n20. 그림과 같이 반지름의 길이가 1인 원 C는 x축과 점 \n에서접하\n원점\n지나면서\n축의양의방향과\nKSAD중 3학년 수학\n",
+            "footer": "5\nKSAD중26년2학기중간\n사대비(수학)\n"
+          },
+          {
+            "page": 6,
+            "text": "2025년 2학기 중간고사\n22. 반지름의 길이가 1인 사분원에서 옳은 것은? [4점]\n24. 직각삼각형 ABC와 DBC에서 ⁄\nCD=20, ∠ACB=45°, \nKSAD중 3학년 수학\n",
+            "footer": "6\nKSAD중26년2학기중간\n사대비(수학)\n"
+          }
+        ],
+        "scanComparisonStatus": "actual_original_question_pages_rendered_and_viewed",
+        "originalScanYearObserved": 2025,
+        "originalScanIdentityEvidence": {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\[경산중][3][25-2-중간] (원본) (밍코).pdf",
+          "sha256": "baf527452728fecc0a35ec591f71a7ec61028acd5bd79edbc28dd3b9884391a7",
+          "page": 1,
+          "observedGrade": "중3",
+          "observedYear": 2025,
+          "observedSemester": 2,
+          "observedRound": "중간",
+          "schoolFooterOrNoticeObserved": "경산중"
+        },
+        "decision": "2025_original_header_school_footer_and_completed_question_identity_supported",
+        "preparationFooterYearIsNotExamYear": true,
+        "gyeongsinNote": null
+      },
+      "counts": {
+        "parentQuestions": 25,
+        "multipleChoiceParents": 25,
+        "writtenParents": 0,
+        "subquestionsInsideParents": 0,
+        "leafQuestions": 25,
+        "questionContentVerified": 25,
+        "hwpPdfAllQuestionComponentsMatched": 25,
+        "selectedPairParentScoreSum": 100.0,
+        "originalReferenceParentScoreSum": 100.0,
+        "legacyHwpAnswerExtractionScoreSum": 100.0,
+        "legacyPdfBodyExtractionScoreSum": 97.0,
+        "entireExamPairCertified": 0,
+        "fullGradeApproved": 0,
+        "rightsApproved": 0,
+        "verifiedTwins": 0,
+        "newTwinsAuthored": 0
+      },
+      "sourceFiles": [
+        {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[경산중][3][25-2-중간][동아강] (완료).hwp",
+          "sha256": "87990ec925d1ef8f19e7364099a8285a6d525d22facbc6bd8fe3e7804c600a98",
+          "bytes": 1562624
+        },
+        {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[경산중][3][25-2-중간][동아강] (완료).PDF",
+          "sha256": "2db4e2abc14cc8f1f2f044110d4c7fe3d79a70475711770c52f0526be9337553",
+          "bytes": 14808591
+        }
+      ],
+      "originalScanReference": {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\[경산중][3][25-2-중간] (원본) (밍코).pdf",
+        "sha256": "baf527452728fecc0a35ec591f71a7ec61028acd5bd79edbc28dd3b9884391a7"
+      }
+    },
+    {
+      "slug": "gyeongsang",
+      "school": "경상중",
+      "examId": "2025-gyeongsang-3-2-mid",
+      "inventoryExamId": "personal-5ac2088d148a02d086d0ce69d38aa646",
+      "manifest": "gyeongsang/source-manifest.json",
+      "manifestSha256": "eff360204432f6b0c39aa2468cc59fbdf34ec1bc213a58c33de72d023f905e5d",
+      "packet": "gyeongsang/packet/questions.json",
+      "packetSha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+      "identity": {
+        "status": "2025_header_and_filename_supported_preparation_footer_2026_not_source_year",
+        "yearConfirmed": true,
+        "hwpHeadersFooters": [
+          {
+            "kind": "head",
+            "text": "",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 253,
+              "inflatedByteOffset": 6977,
+              "tag": 71,
+              "level": 1,
+              "payloadSha256": "e70cf8bd4507447f5cb44e2fd8ca08b1be26517d5de36c03f2eeeb23bfe2aa7d"
+            }
+          },
+          {
+            "kind": "foot",
+            "text": "경상중 26년 2학기 중간고사 대비 (수학)\n\n\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 257,
+              "inflatedByteOffset": 7071,
+              "tag": 71,
+              "level": 1,
+              "payloadSha256": "dcce886fffbaf39c8be6ac1be67c4dbefe9a738c33e185d4e23e625bff861714"
+            }
+          },
+          {
+            "kind": "head",
+            "text": "2025년 2학기 중간고사\n\n경상중 3학년 수학\n\n학원 로고\n\n\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 271,
+              "inflatedByteOffset": 7504,
+              "tag": 71,
+              "level": 1,
+              "payloadSha256": "a6b0f971881b8312d4e2703a1c9e0cd1f6da4ad05e8ae7f8ab11bc56a74836e8"
+            }
+          },
+          {
+            "kind": "head",
+            "text": "2025년 2학기 중간고사\n\n경상중 3학년 수학\n\n학원 로고\n\n\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 2800,
+              "inflatedByteOffset": 122435,
+              "tag": 71,
+              "level": 1,
+              "payloadSha256": "1ca039e1bcdf2f159a017806d49d8aa933a69c9d65458ea84cb58524ecae69f1"
+            }
+          },
+          {
+            "kind": "foot",
+            "text": "경상중 26년 2학기 중간고사 대비 (수학) (정답)\n\n\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 2823,
+              "inflatedByteOffset": 123138,
+              "tag": 71,
+              "level": 1,
+              "payloadSha256": "c63663b329a01c2297135407da43bdad466779bc7ed6a0c0d41f52e3479ec089"
+            }
+          }
+        ],
+        "pdfHeadersFooters": [
+          {
+            "page": 1,
+            "text": "2025년 2학기 중간고사\n학원 로고\n2025년 2학기 중간고사\n삼각비 ~ 대푯값과 산포도\nKSA중 3학년 수학\n",
+            "footer": "1\nKSA중26년2학기중간\n사대비(수학)\n"
+          },
+          {
+            "page": 2,
+            "text": "2025년 2학기 중간고사\n[5∼6] 다음은 삼각비 표의 일부이다. 물음에 답하시오.\n8. sin45≅×tan60≅를 계산한 값으로 옳은 것은? [4점]\n⁄\nKSA중 3학년 수학\n",
+            "footer": "2\nKSA중26년2학기중간\n사대비(수학)\n"
+          },
+          {
+            "page": 3,
+            "text": "2025년 2학기 중간고사\n11. 다음 자료의 중앙값은? [4점]\n13. 표는 화진이의 4회에 걸친 수학 성적의 편차를 \n사하여나타낸것이다\n회까지의수학성적의평\n이\nKSA중 3학년 수학\n",
+            "footer": "3\nKSA중26년2학기중간\n사대비(수학)\n"
+          },
+          {
+            "page": 4,
+            "text": "2025년 2학기 중간고사\n15. 표는 명연이가 5번의 대회에서 받은 종목별 점수의 \n평균과\n편차를\n사하여나타낸것이다\n성적이가장\n17. 그림과 같이 직각삼각형 모양의 미끄럼틀 \n놀이기\n에서지면위의\n지점\n사이의거리\nKSA중 3학년 수학\n",
+            "footer": "4\nKSA중26년2학기중간\n사대비(수학)\n"
+          },
+          {
+            "page": 5,
+            "text": "2025년 2학기 중간고사\n19. [서술형 1] 직각삼각형 ABC에서 ⁄\nAB=18cm이고 \n20. [서술형 2] 정삼각형 ABC를 이용하여 60≅의 \n삼각비를\n하\n과정을서술하시오\nKSA중 3학년 수학\n",
+            "footer": "5\nKSA중26년2학기중간\n사대비(수학)\n"
+          },
+          {
+            "page": 6,
+            "text": "2025년 2학기 중간고사\n21. [서술형 3] 연못의 두 지점 B,C 사이의 거리를 \n하기위해연\n의바깥\n에지점\n정하여\n22. [서술형 4] 다음은 어느 야구 팀에서 타율이 높은 \n명선수의\n개수\n사하여나타낸\n기와잎\nKSA중 3학년 수학\n",
+            "footer": "6\nKSA중26년2학기중간\n사대비(수학)\n"
+          }
+        ],
+        "scanComparisonStatus": "actual_original_question_pages_rendered_and_viewed",
+        "originalScanYearObserved": 2025,
+        "originalScanIdentityEvidence": {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\[경상중][3][25-2-중간](원본)(어수마러).pdf",
+          "sha256": "9be13943d8db86b682657b7a6976f4b2f7664500dfb37c1907be87a583d9c107",
+          "page": 1,
+          "observedGrade": "중3",
+          "observedYear": 2025,
+          "observedSemester": 2,
+          "observedRound": "중간",
+          "schoolFooterOrNoticeObserved": "경상중"
+        },
+        "decision": "2025_original_header_school_footer_and_completed_question_identity_supported",
+        "preparationFooterYearIsNotExamYear": true,
+        "gyeongsinNote": null
+      },
+      "counts": {
+        "parentQuestions": 22,
+        "multipleChoiceParents": 18,
+        "writtenParents": 4,
+        "subquestionsInsideParents": 0,
+        "leafQuestions": 22,
+        "questionContentVerified": 22,
+        "hwpPdfAllQuestionComponentsMatched": 22,
+        "selectedPairParentScoreSum": 100.0,
+        "originalReferenceParentScoreSum": 100.0,
+        "legacyHwpAnswerExtractionScoreSum": 70.0,
+        "legacyPdfBodyExtractionScoreSum": 100.0,
+        "entireExamPairCertified": 0,
+        "fullGradeApproved": 0,
+        "rightsApproved": 0,
+        "verifiedTwins": 0,
+        "newTwinsAuthored": 0
+      },
+      "sourceFiles": [
+        {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[경상중][3][25-2-중간][동아강] (완료).hwp",
+          "sha256": "bc0bb8c93f2e246b234c80c7fb89fcbdf8eda24536435e2fbe551ad916c1d4a1",
+          "bytes": 1635840
+        },
+        {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[경상중][3][25-2-중간][동아강] (완료).PDF",
+          "sha256": "08917520000308226e93d261861ee419d2cc0b3b61658271e78462da12da8af4",
+          "bytes": 14846744
+        }
+      ],
+      "originalScanReference": {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\[경상중][3][25-2-중간](원본)(어수마러).pdf",
+        "sha256": "9be13943d8db86b682657b7a6976f4b2f7664500dfb37c1907be87a583d9c107"
+      }
+    },
+    {
+      "slug": "gyeongsin",
+      "school": "경신중",
+      "examId": "2025-gyeongsin-3-2-mid",
+      "inventoryExamId": "personal-57fc57dc583e9f120f45ebc6abedfee4",
+      "manifest": "gyeongsin/source-manifest.json",
+      "manifestSha256": "17a9310e06a18916af8b27a39bed3b8406cbbdb376c0722b4fb0add9cdf4f249",
+      "packet": "gyeongsin/packet/questions.json",
+      "packetSha256": "fe0248c2eba5c7287873601e89edf151adf9857db0295ef49c3bf5d6f9301d6a",
+      "identity": {
+        "status": "hold_year_header_conflict",
+        "yearConfirmed": false,
+        "hwpHeadersFooters": [
+          {
+            "kind": "head",
+            "text": "",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 253,
+              "inflatedByteOffset": 7213,
+              "tag": 71,
+              "level": 1,
+              "payloadSha256": "e70cf8bd4507447f5cb44e2fd8ca08b1be26517d5de36c03f2eeeb23bfe2aa7d"
+            }
+          },
+          {
+            "kind": "foot",
+            "text": "경신중3 26년 2학기 중간고사 대비 (수학)\n\n\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 257,
+              "inflatedByteOffset": 7307,
+              "tag": 71,
+              "level": 1,
+              "payloadSha256": "dcce886fffbaf39c8be6ac1be67c4dbefe9a738c33e185d4e23e625bff861714"
+            }
+          },
+          {
+            "kind": "head",
+            "text": "2024년 2학기 중간고사\n\n경신중 3학년 수학\n\n\n\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 271,
+              "inflatedByteOffset": 7744,
+              "tag": 71,
+              "level": 1,
+              "payloadSha256": "a6b0f971881b8312d4e2703a1c9e0cd1f6da4ad05e8ae7f8ab11bc56a74836e8"
+            }
+          },
+          {
+            "kind": "head",
+            "text": "2024년 2학기 중간고사\n\n경신중 3학년 수학\n\n학원 로고\n\n\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 1667,
+              "inflatedByteOffset": 86576,
+              "tag": 71,
+              "level": 1,
+              "payloadSha256": "1ca039e1bcdf2f159a017806d49d8aa933a69c9d65458ea84cb58524ecae69f1"
+            }
+          },
+          {
+            "kind": "foot",
+            "text": "경신중3 26년 2학기 중간고사 대비 (수학) (정답)\n\n\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 1690,
+              "inflatedByteOffset": 87281,
+              "tag": 71,
+              "level": 1,
+              "payloadSha256": "c63663b329a01c2297135407da43bdad466779bc7ed6a0c0d41f52e3479ec089"
+            }
+          }
+        ],
+        "pdfHeadersFooters": [
+          {
+            "page": 1,
+            "text": "고사\n원과 직선 ~ 원주각\n2025년 2학기 중간고사\n원과 직선 ~ 원주각\nKSI중 3학년 수학\n",
+            "footer": "1\nKSI중3 26년2학기중간\n사대비(수학)\n"
+          },
+          {
+            "page": 2,
+            "text": "2024년 2학기 중간고사\n5. 그림에서 ⁄\nAD는 원 O의 지름이고, 원 위의 점 A에서 \n7. 그림에서 ∆ABC는 원 O에 내접하고 ⁄\nOB=⁄\nAB=4이다. \nKSI중 3학년 수학\n",
+            "footer": "2\nKSI중3 26년2학기중간\n사대비(수학)\n"
+          },
+          {
+            "page": 3,
+            "text": "2024년 2학기 중간고사\n9. 그림과 같이 ∠C=90°인 직각삼각형 ABC의 빗변 위에 \n원\n의\n심이있\n이원\n변\n에접한다\n11. [서술형 1] 그림에서 원 O 위의 서로 다른 네 점 \n\nKSI중 3학년 수학\n",
+            "footer": "3\nKSI중3 26년2학기중간\n사대비(수학)\n"
+          },
+          {
+            "page": 4,
+            "text": "2024년 2학기 중간고사\n13. [서술형 3] 그림과 같이 정삼각형 ABC의 내부에 \n반지\n의길이가\n인세개의원이내접하\n세원\n15. [서술형 5] 그림과 같이 원 O 위의 점 A를 지나는 \n접선\n와평행한현\n가있다\nKSI중 3학년 수학\n",
+            "footer": "4\nKSI중3 26년2학기중간\n사대비(수학)\n"
+          },
+          {
+            "page": 5,
+            "text": "2024년 2학기 중간고사\n17. [서술형 7] 그림에서 원 O는 사각형 ABCD의 네 변에 \n접하\n원이다\n변\n의연장선과변\n의\nKSI중 3학년 수학\n",
+            "footer": "5\nKSI중3 26년2학기중간\n사대비(수학)\n"
+          },
+          {
+            "page": 6,
+            "text": "2024년 2학기 중간고사\nKSI중 3학년 수학\n",
+            "footer": "6\nKSI중3 26년2학기중간\n사대비(수학)\n"
+          }
+        ],
+        "scanComparisonStatus": "actual_original_question_pages_rendered_and_viewed",
+        "originalScanYearObserved": 2025,
+        "originalScanIdentityEvidence": {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\[경신중][3][25-2-중간](원본+답안)(H).pdf",
+          "sha256": "20548b51ae6bfea33f580b4cf8934889d5be5bf48e5491aa84d58ce792b5f5c9",
+          "page": 1,
+          "observedGrade": "중3",
+          "observedYear": 2025,
+          "observedSemester": 2,
+          "observedRound": "중간",
+          "schoolFooterOrNoticeObserved": "경신중"
+        },
+        "decision": "hold_completed_header_2024_2025_conflict",
+        "preparationFooterYearIsNotExamYear": true,
+        "gyeongsinNote": "Original H p1 dated 2025-09-19. Completed PDF p1 2025, p2-6 2024. Samdong scan has cover+only four question pages; H p5 supplies q17. No silent year correction."
+      },
+      "counts": {
+        "parentQuestions": 17,
+        "multipleChoiceParents": 10,
+        "writtenParents": 7,
+        "subquestionsInsideParents": 0,
+        "leafQuestions": 17,
+        "questionContentVerified": 17,
+        "hwpPdfAllQuestionComponentsMatched": 16,
+        "selectedPairParentScoreSum": 95.0,
+        "originalReferenceParentScoreSum": 100.0,
+        "legacyHwpAnswerExtractionScoreSum": 45.0,
+        "legacyPdfBodyExtractionScoreSum": 95.0,
+        "entireExamPairCertified": 0,
+        "fullGradeApproved": 0,
+        "rightsApproved": 0,
+        "verifiedTwins": 0,
+        "newTwinsAuthored": 0
+      },
+      "sourceFiles": [
+        {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[경신중][3][25-2-중간][미래엔] (완료).hwp",
+          "sha256": "f1e37fcda20e7021fbf1d4ab331ea6d131e4ffe9e844a455c0bd1f9a3f825156",
+          "bytes": 820224
+        },
+        {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[경신중][3][25-2-중간][미래엔] (완료).PDF",
+          "sha256": "52672e8a1c386dd3d26180f6cd846a650bbc084ef6cbda99d7fdaabae279d12f",
+          "bytes": 22372459
+        }
+      ],
+      "originalScanReference": {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\[경신중][3][25-2-중간](원본+답안)(H).pdf",
+        "sha256": "20548b51ae6bfea33f580b4cf8934889d5be5bf48e5491aa84d58ce792b5f5c9"
+      }
+    },
+    {
+      "slug": "gyeongam",
+      "school": "경암중",
+      "examId": "2025-gyeongam-3-2-mid",
+      "inventoryExamId": "personal-5eb35ea19488aaf195e724ed05fe8806",
+      "manifest": "gyeongam/source-manifest.json",
+      "manifestSha256": "5a082d1c9da1eb72ff0f69e017ecc127fa90c65f54f0aca6a80c67272fb319ae",
+      "packet": "gyeongam/packet/questions.json",
+      "packetSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+      "identity": {
+        "status": "2025_header_and_filename_supported_preparation_footer_2026_not_source_year",
+        "yearConfirmed": true,
+        "hwpHeadersFooters": [
+          {
+            "kind": "head",
+            "text": "",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 253,
+              "inflatedByteOffset": 7039,
+              "tag": 71,
+              "level": 1,
+              "payloadSha256": "e70cf8bd4507447f5cb44e2fd8ca08b1be26517d5de36c03f2eeeb23bfe2aa7d"
+            }
+          },
+          {
+            "kind": "foot",
+            "text": "경암중 26년 2학기 중간고사 대비 (수학)\n\n\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 257,
+              "inflatedByteOffset": 7133,
+              "tag": 71,
+              "level": 1,
+              "payloadSha256": "dcce886fffbaf39c8be6ac1be67c4dbefe9a738c33e185d4e23e625bff861714"
+            }
+          },
+          {
+            "kind": "head",
+            "text": "2025년 2학기 중간고사\n\n경암중 3학년 수학\n\n학원 로고\n\n\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 271,
+              "inflatedByteOffset": 7568,
+              "tag": 71,
+              "level": 1,
+              "payloadSha256": "a6b0f971881b8312d4e2703a1c9e0cd1f6da4ad05e8ae7f8ab11bc56a74836e8"
+            }
+          },
+          {
+            "kind": "head",
+            "text": "2025년 2학기 중간고사\n\n경암중 3학년 수학\n\n학원 로고\n\n\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 2229,
+              "inflatedByteOffset": 102987,
+              "tag": 71,
+              "level": 1,
+              "payloadSha256": "1ca039e1bcdf2f159a017806d49d8aa933a69c9d65458ea84cb58524ecae69f1"
+            }
+          },
+          {
+            "kind": "foot",
+            "text": "경암중 26년 2학기 중간고사 대비 (수학) (정답)\n\n\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 2252,
+              "inflatedByteOffset": 103692,
+              "tag": 71,
+              "level": 1,
+              "payloadSha256": "c63663b329a01c2297135407da43bdad466779bc7ed6a0c0d41f52e3479ec089"
+            }
+          }
+        ],
+        "pdfHeadersFooters": [
+          {
+            "page": 1,
+            "text": "2025년 2학기 중간고사\n학원 로고\n2025년 2학기 중간고사\n대푯값과 산포도 ~ 삼각비의 활용\nKYA중 3학년 수학\n",
+            "footer": "1\nKYA중26년2학기중간\n사대비(수학)\n"
+          },
+          {
+            "page": 2,
+            "text": "2025년 2학기 중간고사\n5. 자료 a, b, c, d의 평균이 10이고 표준편차가 2일 때, \n자\n의평\n과\n편차\n7. 7개의 정수가 있다. 이들 중 4개의 수가 8,3,5,5일 \n때\n이\n개의정수의\n앙값이될수있\n가장\n수\nKYA중 3학년 수학\n",
+            "footer": "2\nKYA중26년2학기중간\n사대비(수학)\n"
+          },
+          {
+            "page": 3,
+            "text": "2025년 2학기 중간고사\n9. 다음 그림은 학생 15명에 대한 과학 성적과 수학 \n성적의산점\n이다\n과학성적과수학성적이\n점\n11. 다음 그림과 같이 한 모서리의 길이가 2인 \n정육면체에서\n라\n할때\n의값\nKYA중 3학년 수학\n",
+            "footer": "3\nKYA중26년2학기중간\n사대비(수학)\n"
+          },
+          {
+            "page": 4,
+            "text": "2025년 2학기 중간고사\n13. 다음 그림과 같이 반지름의 길이가 1인 사분원에서 \n일때\n옳지않\n것\n면\n[ 점]\n15. 0° <A <45°일 때, \n⁄\n⁄\nKYA중 3학년 수학\n",
+            "footer": "4\nKYA중26년2학기중간\n사대비(수학)\n"
+          },
+          {
+            "page": 5,
+            "text": "2025년 2학기 중간고사\n16. [서술형 1] 다음은 학생 10명이 제기차기를 한 횟수를 \n사하여나타낸자\n이다\n평균과중앙값중에서이\n17. [서술형 2] 다음은 현수네 모둠의 학생 5명이 1년 \n동안저축횟수에서현수가저축한횟수를각각뺀값을\nKYA중 3학년 수학\n",
+            "footer": "5\nKYA중26년2학기중간\n사대비(수학)\n"
+          },
+          {
+            "page": 6,
+            "text": "2025년 2학기 중간고사\n18. [서술형 3] 다음 그림과 같이 ∠B =90°인 직각삼각형 \n⁄⁄\n⁄\n19. [서술형 4] 다음 그림과 같이 점 O를 중심으로 하고 \n반지\n의길이가\n인사분원에서\n이다\nKYA중 3학년 수학\n",
+            "footer": "6\nKYA중26년2학기중간\n사대비(수학)\n"
+          }
+        ],
+        "scanComparisonStatus": "actual_original_question_pages_rendered_and_viewed",
+        "originalScanYearObserved": 2025,
+        "originalScanIdentityEvidence": {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\[경암중][3][25-2-중간] (원본) (쭌쭌).pdf",
+          "sha256": "28de3f9332a73998eff599dccd77871ce5951c77ba68bcb78ef00ce14a6bac85",
+          "page": 1,
+          "observedGrade": "중3",
+          "observedYear": 2025,
+          "observedSemester": 2,
+          "observedRound": "중간",
+          "schoolFooterOrNoticeObserved": "경암중"
+        },
+        "decision": "2025_original_header_school_footer_and_completed_question_identity_supported",
+        "preparationFooterYearIsNotExamYear": true,
+        "gyeongsinNote": null
+      },
+      "counts": {
+        "parentQuestions": 19,
+        "multipleChoiceParents": 15,
+        "writtenParents": 4,
+        "subquestionsInsideParents": 2,
+        "leafQuestions": 20,
+        "questionContentVerified": 19,
+        "hwpPdfAllQuestionComponentsMatched": 19,
+        "selectedPairParentScoreSum": 100.0,
+        "originalReferenceParentScoreSum": 100.0,
+        "legacyHwpAnswerExtractionScoreSum": 65.0,
+        "legacyPdfBodyExtractionScoreSum": 100.0,
+        "entireExamPairCertified": 0,
+        "fullGradeApproved": 0,
+        "rightsApproved": 0,
+        "verifiedTwins": 0,
+        "newTwinsAuthored": 0
+      },
+      "sourceFiles": [
+        {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[경암중][3][25-2-중간][신사고] (완료).hwp",
+          "sha256": "fd369f81b28459519d4d2d6dd9fafb54e0545d44b83260a906d498433b385dad",
+          "bytes": 1198080
+        },
+        {
+          "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[경암중][3][25-2-중간][신사고] (완료).PDF",
+          "sha256": "9b1de5d1d8fc0bcea9f2c6555da3720a4089289ab53f712929f9065563d0baca",
+          "bytes": 14895501
+        }
+      ],
+      "originalScanReference": {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\[경암중][3][25-2-중간] (원본) (쭌쭌).pdf",
+        "sha256": "28de3f9332a73998eff599dccd77871ce5951c77ba68bcb78ef00ce14a6bac85"
+      }
+    }
+  ],
+  "ownedOutputs": [
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1",
+    "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\docs\\planning\\tracks\\reports\\exam-twin-next-five-extraction-r1-20261008.md"
+  ],
+  "reportSha256": "c2ddf597b5b79fc7aced8004ec90b3a6bd80f91409e8a146d7831f104a361ba7",
+  "validationSha256": "50587a0b50411301d85bccb70d87eb8ef468175fd55ac1c1b808f48b648e054f",
+  "preservationSha256": "5f0e2ef1a6ecfc8a43cc421a7544b85c48943e978d694202f894de1c9d8193f7",
+  "distribution": "Only school packet/ directories. evidence/ scans are audit-only and may include annotations.",
+  "currentDbStatus": "No worker DB read. Parent owns fresh scoped bank join; scoped absence is not global dedup completion.",
+  "priorityHolds": [
+    "P0 Gyeongsin year/identity all17; selected pair q7 omitted score",
+    "P0 Gyeongsan23 independent-solving conflict",
+    "P0 Gyeonggu6 literal trig table accuracy",
+    "P1 specific legal grade methods/prerequisites; P2 all live Unit/family/generator mappings, rights and canonical render"
+  ],
+  "newTwinProduction": {
+    "status": "not_in_worker_scope",
+    "answersSolutionsFiguresMetadataVerification": "must regenerate in separate parent-distributed authoring; never reuse legacy approval"
+  }
+}

@@ -1,0 +1,5409 @@
+{
+  "version": "question-only-source-r1",
+  "examId": "2025-gyeongsang-3-2-mid",
+  "inventoryExamId": "personal-5ac2088d148a02d086d0ce69d38aa646",
+  "school": "경상중",
+  "identityDecision": "2025_original_header_school_footer_and_completed_question_identity_supported",
+  "counts": {
+    "parentQuestions": 22,
+    "multipleChoiceParents": 18,
+    "writtenParents": 4,
+    "subquestionsInsideParents": 0,
+    "leafQuestions": 22,
+    "questionContentVerified": 22,
+    "hwpPdfAllQuestionComponentsMatched": 22,
+    "selectedPairParentScoreSum": 100.0,
+    "originalReferenceParentScoreSum": 100.0,
+    "legacyHwpAnswerExtractionScoreSum": 70.0,
+    "legacyPdfBodyExtractionScoreSum": 100.0,
+    "entireExamPairCertified": 0,
+    "fullGradeApproved": 0,
+    "rightsApproved": 0,
+    "verifiedTwins": 0,
+    "newTwinsAuthored": 0
+  },
+  "sourceFiles": [
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[경상중][3][25-2-중간][동아강] (완료).hwp",
+      "sha256": "bc0bb8c93f2e246b234c80c7fb89fcbdf8eda24536435e2fbe551ad916c1d4a1",
+      "bytes": 1635840
+    },
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[경상중][3][25-2-중간][동아강] (완료).PDF",
+      "sha256": "08917520000308226e93d261861ee419d2cc0b3b61658271e78462da12da8af4",
+      "bytes": 14846744
+    }
+  ],
+  "sourceOnly": true,
+  "distributionBoundary": "Only this packet directory. Never distribute evidence scans, endnotes, old answers/solutions, old drafts or whole PDFs to authoring workers.",
+  "authoringRequirements": "Structural/context/expression/inverse target changes with same concept/core method; numeric-only insufficient. New figures/answers/solutions/metadata/independent verification must be created separately after holds. Highest gate: legal middle3/2015 method and prerequisites; unclear hold, no legal method reject.",
+  "originalCorrectChoiceAndSolutionWithheld": true,
+  "questions": [
+    {
+      "number": 1,
+      "stem": "직각삼각형 $\\mathrm{ABC}$에서 $\\sin \\mathrm{A}$의 값은? [$3$점]",
+      "choices": [
+        "$\\frac{8}{17}$",
+        "$\\frac{8}{15}$",
+        "$\\frac{15}{17}$",
+        "$\\frac{17}{15}$",
+        "$\\frac{17}{8}$"
+      ],
+      "hwpScriptStem": "직각삼각형 $RMABC$에서 $sin RMA$의 값은? [$3$점]",
+      "hwpScriptChoices": [
+        "${8} over {17}$",
+        "${8} over {15}$",
+        "${15} over {17}$",
+        "${17} over {15}$",
+        "${17} over {8}$"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 3.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 3.0,
+        "referenceParentScore": 3.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "C 직각; AB=17, BC=8, AC=15.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "삼각비의 정의·값·활용",
+        "coreMethodCandidate": "직각삼각형에서 sin의 대변/빗변을 읽는다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수04-17",
+            "officialStatement": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "pdfPage": 38,
+            "printedPage": 34,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": null,
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "f39d2b24ddf9f609ab64e94f61343cbef8f3a57bc729e55263f4f54f4fa12239",
+      "sourceQuestionId": "2025-gyeongsang-3-2-mid-1",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q01-part1.png",
+          "sha256": "580276b65358f9e8dc13c58dc3119e2c656135b80b8b7d56344a2ebfe48976d1",
+          "page": 1,
+          "column": 0,
+          "bbox": [
+            55,
+            99,
+            375,
+            524.3187866210938
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 329,
+        "inflatedByteOffset": 12145,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "3e15318e071f2ea979bea64185a63199568143375f9a3d51fc7ba843e59de7b8"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 1,
+          "column": 0,
+          "bbox": [
+            55,
+            99,
+            375,
+            524.3187866210938
+          ]
+        }
+      ]
+    },
+    {
+      "number": 2,
+      "stem": "직각삼각형 $\\mathrm{ABC}$에서 $\\cos \\mathrm{A}$의 값은? [$3$점]",
+      "choices": [
+        "$\\frac{20}{29}$",
+        "$\\frac{21}{29}$",
+        "$\\frac{20}{21}$",
+        "$\\frac{21}{20}$",
+        "$\\frac{29}{21}$"
+      ],
+      "hwpScriptStem": "직각삼각형 $RMABC$에서 $cos rm A$의 값은? [$3$점]",
+      "hwpScriptChoices": [
+        "${20} over {29}$",
+        "${21} over {29}$",
+        "${20} over {21}$",
+        "${21} over {20}$",
+        "${29} over {21}$"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 3.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 3.0,
+        "referenceParentScore": 3.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "C 직각; AB=29, BC=20, AC=21.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "삼각비의 정의·값·활용",
+        "coreMethodCandidate": "직각삼각형에서 cos의 인접변/빗변을 읽는다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수04-17",
+            "officialStatement": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "pdfPage": 38,
+            "printedPage": 34,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": null,
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "02ca25987d09d2497dcb005c5c6a7d3707bf831d96148d2c99f3a6be4f7a2e30",
+      "sourceQuestionId": "2025-gyeongsang-3-2-mid-2",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q02-part1.png",
+          "sha256": "4fc7396fde5ffab4fac25aad42890a7818b8c18e3eb81837e08f9ce6babfa4d1",
+          "page": 1,
+          "column": 0,
+          "bbox": [
+            55,
+            530.3187866210938,
+            375,
+            943.0
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 409,
+        "inflatedByteOffset": 15672,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "4968500df4d89ba9d8869f22c1321f6b9074f2bdf1fda811c346138c10a4c05c"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 1,
+          "column": 0,
+          "bbox": [
+            55,
+            530.3187866210938,
+            375,
+            943.0
+          ]
+        }
+      ]
+    },
+    {
+      "number": 3,
+      "stem": "직각삼각형 $\\mathrm{ABC}$에서 $\\tan \\mathrm{A}$의 값은? [$4$점]",
+      "choices": [
+        "$\\frac{5}{11}$",
+        "$\\frac{\\sqrt{11}}{5}$",
+        "$\\frac{5}{6}$",
+        "$\\frac{5}{\\sqrt{11}}$",
+        "$\\frac{11}{5}$"
+      ],
+      "hwpScriptStem": "직각삼각형 $RMABC$에서 $tan rm A$의 값은? [$4$점]",
+      "hwpScriptChoices": [
+        "${5} over {11}$",
+        "${sqrt {11}} over {5}$",
+        "${5} over {6}$",
+        "${5} over {sqrt {11}}$",
+        "${11} over {5}$"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 4.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 4.0,
+        "referenceParentScore": 4.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "C 직각; AC=5, BC=√11, AB=6.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "삼각비의 정의·값·활용",
+        "coreMethodCandidate": "직각삼각형에서 tan의 대변/인접변을 읽는다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수04-17",
+            "officialStatement": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "pdfPage": 38,
+            "printedPage": 34,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": null,
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "29969fbf225323e592306a32751aff0131bcf9e6acf8e3b1e6812c2892e6c549",
+      "sourceQuestionId": "2025-gyeongsang-3-2-mid-3",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q03-part1.png",
+          "sha256": "e789a00452faee0f04137927379107b8923ca8a61cd908c94b640120556ed4f4",
+          "page": 1,
+          "column": 1,
+          "bbox": [
+            370,
+            99,
+            688.0,
+            486.30670166015625
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 477,
+        "inflatedByteOffset": 18885,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "3eb5280d25b0a3df2d8458d01685f4ca2dd51745bfdd5a8cdeab2a228403d66a"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 1,
+          "column": 1,
+          "bbox": [
+            370,
+            99,
+            688.0,
+            486.30670166015625
+          ]
+        }
+      ]
+    },
+    {
+      "number": 4,
+      "stem": "그림은 좌표평면 위에 원점 $\\mathrm{O}$를 중심으로 하고, 반지름의 길이가 $1$인 사분원이다. $\\cos 35^\\circ$의 값으로 옳은 것은? [$4$점]",
+      "choices": [
+        "$0.3500$",
+        "$0.5736$",
+        "$0.7002$",
+        "$0.8192$",
+        "$1$"
+      ],
+      "hwpScriptStem": "그림은 좌표평면 위에 원점 $rmO$를 중심으로 하고, 반지름의 길이가 $1$인 사분원이다. $cos35 DEG$의 값으로 옳은 것은? [$4$점]",
+      "hwpScriptChoices": [
+        "$0.3500$",
+        "$0.5736$",
+        "$0.7002$",
+        "$0.8192$",
+        "$1$"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 4.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 4.0,
+        "referenceParentScore": 4.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "단위 사분원, 35°; 0.7002/0.5736/0.8192 길이.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "삼각비의 정의·값·활용",
+        "coreMethodCandidate": "단위 사분원의 좌표/수선 길이로 cos 값을 읽는다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수04-17",
+            "officialStatement": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "pdfPage": 38,
+            "printedPage": 34,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": null,
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "e2bf86df0ac8add6a17202e67c5eecea607e1abede3f48d043c09649157fe47e",
+      "sourceQuestionId": "2025-gyeongsang-3-2-mid-4",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q04-part1.png",
+          "sha256": "922d1199f5a783c0e141b036d5d3af374f43b846e181b040791ad1c2ef77398c",
+          "page": 1,
+          "column": 1,
+          "bbox": [
+            370,
+            492.30670166015625,
+            688.0,
+            943.0
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 551,
+        "inflatedByteOffset": 22448,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "5e30eb8d8b7e914adc940228c46bf572478f409b44328919a69d7be41e3e10c8"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 1,
+          "column": 1,
+          "bbox": [
+            370,
+            492.30670166015625,
+            688.0,
+            943.0
+          ]
+        }
+      ]
+    },
+    {
+      "number": 5,
+      "stem": "$\\sin 69^\\circ +\\cos 71^\\circ$을 계산한 값으로 옳은 것은? [$4$점]",
+      "choices": [
+        "$0.6840$",
+        "$1.2592$",
+        "$1.3039$",
+        "$1.8791$",
+        "$3.8378$"
+      ],
+      "hwpScriptStem": "$sin69 DEG  +cos71 DEG $을 계산한 값으로 옳은 것은? [$4$점]",
+      "hwpScriptChoices": [
+        "$0.6840$",
+        "$1.2592$",
+        "$1.3039$",
+        "$1.8791$",
+        "$3.8378$"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 4.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 4.0,
+        "referenceParentScore": 4.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {
+        "columns": [
+          "angleDegrees",
+          "sin",
+          "cos",
+          "tan"
+        ],
+        "rows": [
+          [
+            68,
+            "0.9272",
+            "0.3746",
+            "2.4751"
+          ],
+          [
+            69,
+            "0.9336",
+            "0.3584",
+            "2.6051"
+          ],
+          [
+            70,
+            "0.9397",
+            "0.3420",
+            "2.7475"
+          ],
+          [
+            71,
+            "0.9455",
+            "0.3256",
+            "2.9042"
+          ],
+          [
+            72,
+            "0.9511",
+            "0.3090",
+            "3.0777"
+          ]
+        ],
+        "sharedBy": [
+          5,
+          6
+        ]
+      },
+      "figureGivenObservation": "No bitmap figure; positioned HWP math/text and any table remain the source givens.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "삼각비의 정의·값·활용",
+        "coreMethodCandidate": "공통 삼각비 표의 서로 다른 두 행과 열을 읽어 더한다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수04-17",
+            "officialStatement": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "pdfPage": 38,
+            "printedPage": 34,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": null,
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "2478ab4c49e9571d99b504991faa461271166bb3c6ca545d4192f829e67c2e12",
+      "sourceQuestionId": "2025-gyeongsang-3-2-mid-5",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sharedContext": {
+        "firstQuestion": 5,
+        "lastQuestion": 6,
+        "sourceAnchorBeforePassage": 4,
+        "items": [
+          {
+            "kind": "text",
+            "text": "[",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 609,
+              "inflatedByteOffset": 25307,
+              "tag": 67,
+              "level": 1,
+              "payloadSha256": "be455daf79a25e1cb3db6530e09f09a953e6f8850385230acac8d3857b85e1b5",
+              "utf16Range": [
+                0,
+                1
+              ]
+            }
+          },
+          {
+            "kind": "math",
+            "script": "5 SIM  6",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 613,
+              "inflatedByteOffset": 25501,
+              "tag": 88,
+              "level": 2,
+              "payloadSha256": "1388581ba727e485b1ce985e074bb4fed6d8d6d21343950b635ceef8cff2b973"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 612,
+              "inflatedByteOffset": 25439,
+              "tag": 71,
+              "level": 1,
+              "payloadSha256": "590afcda66784800c052e1c605584db08f784f1f5ab34608f2ba18734a6da6a4"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "] 다음은 삼각비 표의 일부이다. 물음에 답하시오.",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 609,
+              "inflatedByteOffset": 25307,
+              "tag": 67,
+              "level": 1,
+              "payloadSha256": "be455daf79a25e1cb3db6530e09f09a953e6f8850385230acac8d3857b85e1b5",
+              "utf16Range": [
+                9,
+                37
+              ]
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 609,
+              "inflatedByteOffset": 25307,
+              "tag": 67,
+              "level": 1,
+              "payloadSha256": "be455daf79a25e1cb3db6530e09f09a953e6f8850385230acac8d3857b85e1b5"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "각도",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 622,
+              "inflatedByteOffset": 25864,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "52e8183e86f4cc35c807ec6a27b5d6716382c6982fd40c41ef334bc1c14ff6c9",
+              "utf16Range": [
+                0,
+                2
+              ]
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 622,
+              "inflatedByteOffset": 25864,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "52e8183e86f4cc35c807ec6a27b5d6716382c6982fd40c41ef334bc1c14ff6c9"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 621,
+              "inflatedByteOffset": 25836,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "f2babc1f70f8410c60c636643101bdc6c64248038eb30732f37e7220fa201f80"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "sin",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 631,
+              "inflatedByteOffset": 26141,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "24aec2ce94f4ae1be87b4101e5f57d371a3ba24861b7f9a4deba2ae182527c8e"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 630,
+              "inflatedByteOffset": 26079,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "406f6828a48d9c74e25960fdefaca5af3e314f1be74342354f7418af17dbb112"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 627,
+              "inflatedByteOffset": 26005,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 626,
+              "inflatedByteOffset": 25977,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "cos",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 638,
+              "inflatedByteOffset": 26440,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "248ce3cff18ad4e157437dcca5e8ae12639bf0311c7ba935446d02e643bedde7"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 637,
+              "inflatedByteOffset": 26378,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "04c089b5d69223afb133251e8bc212b820d0f861121c5106fdbebcb0fb7b0003"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 634,
+              "inflatedByteOffset": 26304,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 633,
+              "inflatedByteOffset": 26276,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "tan",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 645,
+              "inflatedByteOffset": 26739,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "a9bd2fe22cc0bd69110d041f6dbf10e6b46cf5ed6f20c7bd343c232488ffdbe8"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 644,
+              "inflatedByteOffset": 26677,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "6dd10c3caf1d29ef8a775e121a0eb6bc26169248ef470abb3203290dcb1a7196"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 641,
+              "inflatedByteOffset": 26603,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 640,
+              "inflatedByteOffset": 26575,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "68 DEG ",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 652,
+              "inflatedByteOffset": 27038,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "17c5ef493f8a59c24e52372b85ab0f7775c25e1f549913ce748d6328c1b7b71f"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 651,
+              "inflatedByteOffset": 26976,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "97f3f745da15c4d145c986775214120647932d109d7febeeb39f5e1ecbcbadf7"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 648,
+              "inflatedByteOffset": 26902,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 647,
+              "inflatedByteOffset": 26874,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "0.9272",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 659,
+              "inflatedByteOffset": 27345,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "5b2782b294d210edf85012831c6e096935b560f5d5db0c256f4b7b1cd3775c19"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 658,
+              "inflatedByteOffset": 27283,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "06e1d012e2c2b2693dd02f2ef127cb5aa8d05c1d1ee36ac15de3356ca20ac59b"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 655,
+              "inflatedByteOffset": 27209,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 654,
+              "inflatedByteOffset": 27181,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "0.3746",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 666,
+              "inflatedByteOffset": 27650,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "f28a3cae3f7db043f8f4e3d71458b5e23f8bc830340ae538fb13a070a00d7901"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 665,
+              "inflatedByteOffset": 27588,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "0abfe67274857420eee112291cad7fee919bca5eea21aeb78462c78ec31894d5"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 662,
+              "inflatedByteOffset": 27514,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 661,
+              "inflatedByteOffset": 27486,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "2.4751",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 673,
+              "inflatedByteOffset": 27955,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "07a3473a33c6495744703f246f4c828575ed00fab19d41c536964d079a6df42e"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 672,
+              "inflatedByteOffset": 27893,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "22be0f7162ee9cf97df36a952de79ad1442ea618570f4e10d569d54f2d28a055"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 669,
+              "inflatedByteOffset": 27819,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 668,
+              "inflatedByteOffset": 27791,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "69 DEG ",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 680,
+              "inflatedByteOffset": 28260,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "1fe3215c4bc68f206e6b5672f8a45fc6447c6641c7232f42de1b8d8c5685788b"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 679,
+              "inflatedByteOffset": 28198,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "d33172b32a7a84957fa7c3897607dca7cb74cc6b0eb759fde37910db7631efb5"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 676,
+              "inflatedByteOffset": 28124,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 675,
+              "inflatedByteOffset": 28096,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "0.9336",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 687,
+              "inflatedByteOffset": 28567,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "e0465f0e92139c5b6711294414782dbe98ee7b42bdbeaa36aa2edb7fda636abd"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 686,
+              "inflatedByteOffset": 28505,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "5cba2c0e90f8dd74233b6c08a2cc343397b26eabbea8b4ac30b7706249ecc5ec"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 683,
+              "inflatedByteOffset": 28431,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 682,
+              "inflatedByteOffset": 28403,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "0.3584",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 694,
+              "inflatedByteOffset": 28872,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "2b52e222dba8701f40f593afb4e5b5a2ac67e24eb46047a9c23c2aa3fe821a8f"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 693,
+              "inflatedByteOffset": 28810,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "26ab64527294bf903a651d47453d9608d37375c1dddb5aae6f74cd2ad83099b9"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 690,
+              "inflatedByteOffset": 28736,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 689,
+              "inflatedByteOffset": 28708,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "2.6051",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 701,
+              "inflatedByteOffset": 29177,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "72597020b749809f507c4656623497a71ed9f346a8ee95d31dc545186b4195b4"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 700,
+              "inflatedByteOffset": 29115,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "ad3b71e56f2c24ee7c67c426868f7e3960552bccfdac47feb11ed704cb5dffd5"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 697,
+              "inflatedByteOffset": 29041,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 696,
+              "inflatedByteOffset": 29013,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "70 DEG ",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 708,
+              "inflatedByteOffset": 29482,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "00655ee381bdc9058b1eff3df64a81be5910bcad09217987a95a72c005f22911"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 707,
+              "inflatedByteOffset": 29420,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "338c8b7553f27b3e4250141e79642bacc436d7004d6d3581ceb4dc4a839f693a"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 704,
+              "inflatedByteOffset": 29346,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 703,
+              "inflatedByteOffset": 29318,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "0.9397",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 715,
+              "inflatedByteOffset": 29789,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "3d05b2e315408328212ff8d8bd9d623c86a603b18dad3addb8cc90f35bea7f93"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 714,
+              "inflatedByteOffset": 29727,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "a62bc14da08b6366cd33c3beadb6369b62bccfd6451a84d9621c4908c57eba28"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 711,
+              "inflatedByteOffset": 29653,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 710,
+              "inflatedByteOffset": 29625,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "0.3420",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 722,
+              "inflatedByteOffset": 30094,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "e30eb2937fde2dfa78726a12a23c8076a55598764ac0a57bc75df0dbe17539a5"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 721,
+              "inflatedByteOffset": 30032,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "93557b570eee672efde14bc45d0ddee050d9dae9cf23d7aec8acd2afeda22b98"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 718,
+              "inflatedByteOffset": 29958,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 717,
+              "inflatedByteOffset": 29930,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "2.7475",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 729,
+              "inflatedByteOffset": 30399,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "5b2771d822386233522cc010f4b3f9f1acbfe13fe568f9536843d6fab5011265"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 728,
+              "inflatedByteOffset": 30337,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "b2095b06ce261343563bdd984cc36e2d7299ac309b3ab66f396eb1f7569bce42"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 725,
+              "inflatedByteOffset": 30263,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 724,
+              "inflatedByteOffset": 30235,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "71 DEG ",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 736,
+              "inflatedByteOffset": 30704,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "7e5a5abc6edc7ebe52ed96ca67e9fe6ff1d8a2c4758e8b609aec752043da2031"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 735,
+              "inflatedByteOffset": 30642,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "4abc6c5f032def5fca783e48299a9cf14ce1a29a2df62ff4dea48587398b62c7"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 732,
+              "inflatedByteOffset": 30568,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 731,
+              "inflatedByteOffset": 30540,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "0.9455",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 743,
+              "inflatedByteOffset": 31011,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "885786968eed37a7f1897da9975a78adcae94e7edd02ec793ed5af21ddcfdd8e"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 742,
+              "inflatedByteOffset": 30949,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "c26b27bcd5e081a503a0504a35d89f385d4c1ae9f8dde19cf884d2e4a7fb9871"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 739,
+              "inflatedByteOffset": 30875,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 738,
+              "inflatedByteOffset": 30847,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "0.3256",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 750,
+              "inflatedByteOffset": 31316,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "ca8f2e945de706d5915abc40a02d1f7b86b865a60b596aac4cba0f6e57b2bdcc"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 749,
+              "inflatedByteOffset": 31254,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "719cadbbb721e7a771f0366f451535a0656d3c93f98a6857387dcb711680461e"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 746,
+              "inflatedByteOffset": 31180,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 745,
+              "inflatedByteOffset": 31152,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "2.9042",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 757,
+              "inflatedByteOffset": 31621,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "2a681f359f891cc5bb0afc9e94775120600aff1e507de0a409165b5147d6755a"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 756,
+              "inflatedByteOffset": 31559,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "a427bc365418fa212f079a80bc612994d21db7be6d77726d7c50ddd3b6b6ca58"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 753,
+              "inflatedByteOffset": 31485,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 752,
+              "inflatedByteOffset": 31457,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "72 DEG ",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 764,
+              "inflatedByteOffset": 31926,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "cca9bb2eb6d68a3e3c6c613b116971763a142b1e4db40616d641e2aa47972d67"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 763,
+              "inflatedByteOffset": 31864,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "b9c69e1cb20b50ce2ad3d07af29a82a9ce54a80e34d6183cb15cf745d0caeb0f"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 760,
+              "inflatedByteOffset": 31790,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 759,
+              "inflatedByteOffset": 31762,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "0.9511",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 771,
+              "inflatedByteOffset": 32233,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "5f465811a9b035c17dfe897383156a956fdf48c584ffe629ca0e5292908d888e"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 770,
+              "inflatedByteOffset": 32171,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "17e374e1d8269fa8c09a805ceb4a3d79465c6493bd4a8d2c2acd259e4dae043b"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 767,
+              "inflatedByteOffset": 32097,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 766,
+              "inflatedByteOffset": 32069,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "0.3090",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 778,
+              "inflatedByteOffset": 32538,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "c8378bd5ae3831e0e0eb59b353f1660745a00150e36f9b4fc6e2e4ef6281ef6a"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 777,
+              "inflatedByteOffset": 32476,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "2e46b2c58c18d80355bd2c71b99100527bdb6d4ade5432727219c438be2a1f04"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 774,
+              "inflatedByteOffset": 32402,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 773,
+              "inflatedByteOffset": 32374,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "3.0777",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 785,
+              "inflatedByteOffset": 32843,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "c3e1bfe4143911012e0cd45d45bbe690a0c31e16267e2632c518be7ffe161bf3"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 784,
+              "inflatedByteOffset": 32781,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "4b2f15ecd23d44b10d2805fdef37a5658e788bedf700dd595278339cc8b4de92"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 781,
+              "inflatedByteOffset": 32707,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 780,
+              "inflatedByteOffset": 32679,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 615,
+              "inflatedByteOffset": 25623,
+              "tag": 67,
+              "level": 1,
+              "payloadSha256": "aa8bf35d65374795062e78e1db3d4068765fc585da8ad2baa1068e1d7cbc1b32"
+            }
+          }
+        ],
+        "hwpScript": "[$5 SIM  6$] 다음은 삼각비 표의 일부이다. 물음에 답하시오.\n각도\n\n$sin$\n\n$cos$\n\n$tan$\n\n$68 DEG $\n\n$0.9272$\n\n$0.3746$\n\n$2.4751$\n\n$69 DEG $\n\n$0.9336$\n\n$0.3584$\n\n$2.6051$\n\n$70 DEG $\n\n$0.9397$\n\n$0.3420$\n\n$2.7475$\n\n$71 DEG $\n\n$0.9455$\n\n$0.3256$\n\n$2.9042$\n\n$72 DEG $\n\n$0.9511$\n\n$0.3090$\n\n$3.0777$\n\n\n",
+        "text": "[5~6] 다음은 삼각비 표의 일부이다. 물음에 답하시오.\n각도\n\n$\\sin$\n\n$\\cos$\n\n$\\tan$\n\n$68^\\circ$\n\n$0.9272$\n\n$0.3746$\n\n$2.4751$\n\n$69^\\circ$\n\n$0.9336$\n\n$0.3584$\n\n$2.6051$\n\n$70^\\circ$\n\n$0.9397$\n\n$0.3420$\n\n$2.7475$\n\n$71^\\circ$\n\n$0.9455$\n\n$0.3256$\n\n$2.9042$\n\n$72^\\circ$\n\n$0.9511$\n\n$0.3090$\n\n$3.0777$\n\n\n",
+        "pdfContextRegions": [
+          {
+            "page": 2,
+            "column": 0,
+            "bbox": [
+              55,
+              83,
+              375,
+              190.24398803710938
+            ]
+          }
+        ]
+      },
+      "images": [
+        {
+          "file": "images/q05-part1.png",
+          "sha256": "945e7f2ce7e2add5f68f700674e9595ac8a1ae57820db194224e91af2d017c44",
+          "page": 2,
+          "column": 0,
+          "bbox": [
+            55,
+            83,
+            375,
+            334.977783203125
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 790,
+        "inflatedByteOffset": 33117,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "51e9330247e2b3a8cb7cabc53997ac27d84390ec2692be40eba90d3de1eae960"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 2,
+          "column": 0,
+          "bbox": [
+            55,
+            83,
+            375,
+            334.977783203125
+          ]
+        }
+      ]
+    },
+    {
+      "number": 6,
+      "stem": "$\\tan \\,x^\\circ =2.7475$를 만족시키는 $x$의 값으로 옳은 것은?\n[$3$점]",
+      "choices": [
+        "$68$",
+        "$69$",
+        "$70$",
+        "$71$",
+        "$72$"
+      ],
+      "hwpScriptStem": "$tan`x DEG  =2.7475$를 만족시키는 $x$의 값으로 옳은 것은?\n[$3$점]",
+      "hwpScriptChoices": [
+        "$68$",
+        "$69$",
+        "$70$",
+        "$71$",
+        "$72$"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 3.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 3.0,
+        "referenceParentScore": 3.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {
+        "columns": [
+          "angleDegrees",
+          "sin",
+          "cos",
+          "tan"
+        ],
+        "rows": [
+          [
+            68,
+            "0.9272",
+            "0.3746",
+            "2.4751"
+          ],
+          [
+            69,
+            "0.9336",
+            "0.3584",
+            "2.6051"
+          ],
+          [
+            70,
+            "0.9397",
+            "0.3420",
+            "2.7475"
+          ],
+          [
+            71,
+            "0.9455",
+            "0.3256",
+            "2.9042"
+          ],
+          [
+            72,
+            "0.9511",
+            "0.3090",
+            "3.0777"
+          ]
+        ],
+        "sharedBy": [
+          5,
+          6
+        ]
+      },
+      "figureGivenObservation": "No bitmap figure; positioned HWP math/text and any table remain the source givens.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "삼각비의 정의·값·활용",
+        "coreMethodCandidate": "공통 표의 tan 열에서 주어진 값을 만족하는 각을 역으로 읽는다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수04-17",
+            "officialStatement": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "pdfPage": 38,
+            "printedPage": 34,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": null,
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "a44fe870412df398071e49c54a11b62fc96b018a9ca343913a64bdd15b5790eb",
+      "sourceQuestionId": "2025-gyeongsang-3-2-mid-6",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sharedContext": {
+        "firstQuestion": 5,
+        "lastQuestion": 6,
+        "sourceAnchorBeforePassage": 4,
+        "items": [
+          {
+            "kind": "text",
+            "text": "[",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 609,
+              "inflatedByteOffset": 25307,
+              "tag": 67,
+              "level": 1,
+              "payloadSha256": "be455daf79a25e1cb3db6530e09f09a953e6f8850385230acac8d3857b85e1b5",
+              "utf16Range": [
+                0,
+                1
+              ]
+            }
+          },
+          {
+            "kind": "math",
+            "script": "5 SIM  6",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 613,
+              "inflatedByteOffset": 25501,
+              "tag": 88,
+              "level": 2,
+              "payloadSha256": "1388581ba727e485b1ce985e074bb4fed6d8d6d21343950b635ceef8cff2b973"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 612,
+              "inflatedByteOffset": 25439,
+              "tag": 71,
+              "level": 1,
+              "payloadSha256": "590afcda66784800c052e1c605584db08f784f1f5ab34608f2ba18734a6da6a4"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "] 다음은 삼각비 표의 일부이다. 물음에 답하시오.",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 609,
+              "inflatedByteOffset": 25307,
+              "tag": 67,
+              "level": 1,
+              "payloadSha256": "be455daf79a25e1cb3db6530e09f09a953e6f8850385230acac8d3857b85e1b5",
+              "utf16Range": [
+                9,
+                37
+              ]
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 609,
+              "inflatedByteOffset": 25307,
+              "tag": 67,
+              "level": 1,
+              "payloadSha256": "be455daf79a25e1cb3db6530e09f09a953e6f8850385230acac8d3857b85e1b5"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "각도",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 622,
+              "inflatedByteOffset": 25864,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "52e8183e86f4cc35c807ec6a27b5d6716382c6982fd40c41ef334bc1c14ff6c9",
+              "utf16Range": [
+                0,
+                2
+              ]
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 622,
+              "inflatedByteOffset": 25864,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "52e8183e86f4cc35c807ec6a27b5d6716382c6982fd40c41ef334bc1c14ff6c9"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 621,
+              "inflatedByteOffset": 25836,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "f2babc1f70f8410c60c636643101bdc6c64248038eb30732f37e7220fa201f80"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "sin",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 631,
+              "inflatedByteOffset": 26141,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "24aec2ce94f4ae1be87b4101e5f57d371a3ba24861b7f9a4deba2ae182527c8e"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 630,
+              "inflatedByteOffset": 26079,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "406f6828a48d9c74e25960fdefaca5af3e314f1be74342354f7418af17dbb112"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 627,
+              "inflatedByteOffset": 26005,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 626,
+              "inflatedByteOffset": 25977,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "cos",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 638,
+              "inflatedByteOffset": 26440,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "248ce3cff18ad4e157437dcca5e8ae12639bf0311c7ba935446d02e643bedde7"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 637,
+              "inflatedByteOffset": 26378,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "04c089b5d69223afb133251e8bc212b820d0f861121c5106fdbebcb0fb7b0003"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 634,
+              "inflatedByteOffset": 26304,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 633,
+              "inflatedByteOffset": 26276,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "tan",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 645,
+              "inflatedByteOffset": 26739,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "a9bd2fe22cc0bd69110d041f6dbf10e6b46cf5ed6f20c7bd343c232488ffdbe8"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 644,
+              "inflatedByteOffset": 26677,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "6dd10c3caf1d29ef8a775e121a0eb6bc26169248ef470abb3203290dcb1a7196"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 641,
+              "inflatedByteOffset": 26603,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 640,
+              "inflatedByteOffset": 26575,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "68 DEG ",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 652,
+              "inflatedByteOffset": 27038,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "17c5ef493f8a59c24e52372b85ab0f7775c25e1f549913ce748d6328c1b7b71f"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 651,
+              "inflatedByteOffset": 26976,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "97f3f745da15c4d145c986775214120647932d109d7febeeb39f5e1ecbcbadf7"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 648,
+              "inflatedByteOffset": 26902,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 647,
+              "inflatedByteOffset": 26874,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "0.9272",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 659,
+              "inflatedByteOffset": 27345,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "5b2782b294d210edf85012831c6e096935b560f5d5db0c256f4b7b1cd3775c19"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 658,
+              "inflatedByteOffset": 27283,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "06e1d012e2c2b2693dd02f2ef127cb5aa8d05c1d1ee36ac15de3356ca20ac59b"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 655,
+              "inflatedByteOffset": 27209,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 654,
+              "inflatedByteOffset": 27181,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "0.3746",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 666,
+              "inflatedByteOffset": 27650,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "f28a3cae3f7db043f8f4e3d71458b5e23f8bc830340ae538fb13a070a00d7901"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 665,
+              "inflatedByteOffset": 27588,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "0abfe67274857420eee112291cad7fee919bca5eea21aeb78462c78ec31894d5"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 662,
+              "inflatedByteOffset": 27514,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 661,
+              "inflatedByteOffset": 27486,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "2.4751",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 673,
+              "inflatedByteOffset": 27955,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "07a3473a33c6495744703f246f4c828575ed00fab19d41c536964d079a6df42e"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 672,
+              "inflatedByteOffset": 27893,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "22be0f7162ee9cf97df36a952de79ad1442ea618570f4e10d569d54f2d28a055"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 669,
+              "inflatedByteOffset": 27819,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 668,
+              "inflatedByteOffset": 27791,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "69 DEG ",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 680,
+              "inflatedByteOffset": 28260,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "1fe3215c4bc68f206e6b5672f8a45fc6447c6641c7232f42de1b8d8c5685788b"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 679,
+              "inflatedByteOffset": 28198,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "d33172b32a7a84957fa7c3897607dca7cb74cc6b0eb759fde37910db7631efb5"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 676,
+              "inflatedByteOffset": 28124,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 675,
+              "inflatedByteOffset": 28096,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "0.9336",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 687,
+              "inflatedByteOffset": 28567,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "e0465f0e92139c5b6711294414782dbe98ee7b42bdbeaa36aa2edb7fda636abd"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 686,
+              "inflatedByteOffset": 28505,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "5cba2c0e90f8dd74233b6c08a2cc343397b26eabbea8b4ac30b7706249ecc5ec"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 683,
+              "inflatedByteOffset": 28431,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 682,
+              "inflatedByteOffset": 28403,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "0.3584",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 694,
+              "inflatedByteOffset": 28872,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "2b52e222dba8701f40f593afb4e5b5a2ac67e24eb46047a9c23c2aa3fe821a8f"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 693,
+              "inflatedByteOffset": 28810,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "26ab64527294bf903a651d47453d9608d37375c1dddb5aae6f74cd2ad83099b9"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 690,
+              "inflatedByteOffset": 28736,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 689,
+              "inflatedByteOffset": 28708,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "2.6051",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 701,
+              "inflatedByteOffset": 29177,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "72597020b749809f507c4656623497a71ed9f346a8ee95d31dc545186b4195b4"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 700,
+              "inflatedByteOffset": 29115,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "ad3b71e56f2c24ee7c67c426868f7e3960552bccfdac47feb11ed704cb5dffd5"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 697,
+              "inflatedByteOffset": 29041,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 696,
+              "inflatedByteOffset": 29013,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "70 DEG ",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 708,
+              "inflatedByteOffset": 29482,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "00655ee381bdc9058b1eff3df64a81be5910bcad09217987a95a72c005f22911"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 707,
+              "inflatedByteOffset": 29420,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "338c8b7553f27b3e4250141e79642bacc436d7004d6d3581ceb4dc4a839f693a"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 704,
+              "inflatedByteOffset": 29346,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 703,
+              "inflatedByteOffset": 29318,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "0.9397",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 715,
+              "inflatedByteOffset": 29789,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "3d05b2e315408328212ff8d8bd9d623c86a603b18dad3addb8cc90f35bea7f93"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 714,
+              "inflatedByteOffset": 29727,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "a62bc14da08b6366cd33c3beadb6369b62bccfd6451a84d9621c4908c57eba28"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 711,
+              "inflatedByteOffset": 29653,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 710,
+              "inflatedByteOffset": 29625,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "0.3420",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 722,
+              "inflatedByteOffset": 30094,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "e30eb2937fde2dfa78726a12a23c8076a55598764ac0a57bc75df0dbe17539a5"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 721,
+              "inflatedByteOffset": 30032,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "93557b570eee672efde14bc45d0ddee050d9dae9cf23d7aec8acd2afeda22b98"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 718,
+              "inflatedByteOffset": 29958,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 717,
+              "inflatedByteOffset": 29930,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "2.7475",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 729,
+              "inflatedByteOffset": 30399,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "5b2771d822386233522cc010f4b3f9f1acbfe13fe568f9536843d6fab5011265"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 728,
+              "inflatedByteOffset": 30337,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "b2095b06ce261343563bdd984cc36e2d7299ac309b3ab66f396eb1f7569bce42"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 725,
+              "inflatedByteOffset": 30263,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 724,
+              "inflatedByteOffset": 30235,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "71 DEG ",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 736,
+              "inflatedByteOffset": 30704,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "7e5a5abc6edc7ebe52ed96ca67e9fe6ff1d8a2c4758e8b609aec752043da2031"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 735,
+              "inflatedByteOffset": 30642,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "4abc6c5f032def5fca783e48299a9cf14ce1a29a2df62ff4dea48587398b62c7"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 732,
+              "inflatedByteOffset": 30568,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 731,
+              "inflatedByteOffset": 30540,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "0.9455",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 743,
+              "inflatedByteOffset": 31011,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "885786968eed37a7f1897da9975a78adcae94e7edd02ec793ed5af21ddcfdd8e"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 742,
+              "inflatedByteOffset": 30949,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "c26b27bcd5e081a503a0504a35d89f385d4c1ae9f8dde19cf884d2e4a7fb9871"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 739,
+              "inflatedByteOffset": 30875,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 738,
+              "inflatedByteOffset": 30847,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "0.3256",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 750,
+              "inflatedByteOffset": 31316,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "ca8f2e945de706d5915abc40a02d1f7b86b865a60b596aac4cba0f6e57b2bdcc"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 749,
+              "inflatedByteOffset": 31254,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "719cadbbb721e7a771f0366f451535a0656d3c93f98a6857387dcb711680461e"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 746,
+              "inflatedByteOffset": 31180,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 745,
+              "inflatedByteOffset": 31152,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "2.9042",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 757,
+              "inflatedByteOffset": 31621,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "2a681f359f891cc5bb0afc9e94775120600aff1e507de0a409165b5147d6755a"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 756,
+              "inflatedByteOffset": 31559,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "a427bc365418fa212f079a80bc612994d21db7be6d77726d7c50ddd3b6b6ca58"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 753,
+              "inflatedByteOffset": 31485,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 752,
+              "inflatedByteOffset": 31457,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "72 DEG ",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 764,
+              "inflatedByteOffset": 31926,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "cca9bb2eb6d68a3e3c6c613b116971763a142b1e4db40616d641e2aa47972d67"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 763,
+              "inflatedByteOffset": 31864,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "b9c69e1cb20b50ce2ad3d07af29a82a9ce54a80e34d6183cb15cf745d0caeb0f"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 760,
+              "inflatedByteOffset": 31790,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 759,
+              "inflatedByteOffset": 31762,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "0.9511",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 771,
+              "inflatedByteOffset": 32233,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "5f465811a9b035c17dfe897383156a956fdf48c584ffe629ca0e5292908d888e"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 770,
+              "inflatedByteOffset": 32171,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "17e374e1d8269fa8c09a805ceb4a3d79465c6493bd4a8d2c2acd259e4dae043b"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 767,
+              "inflatedByteOffset": 32097,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 766,
+              "inflatedByteOffset": 32069,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "0.3090",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 778,
+              "inflatedByteOffset": 32538,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "c8378bd5ae3831e0e0eb59b353f1660745a00150e36f9b4fc6e2e4ef6281ef6a"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 777,
+              "inflatedByteOffset": 32476,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "2e46b2c58c18d80355bd2c71b99100527bdb6d4ade5432727219c438be2a1f04"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 774,
+              "inflatedByteOffset": 32402,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 773,
+              "inflatedByteOffset": 32374,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "math",
+            "script": "3.0777",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 785,
+              "inflatedByteOffset": 32843,
+              "tag": 88,
+              "level": 4,
+              "payloadSha256": "c3e1bfe4143911012e0cd45d45bbe690a0c31e16267e2632c518be7ffe161bf3"
+            },
+            "controlSource": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 784,
+              "inflatedByteOffset": 32781,
+              "tag": 71,
+              "level": 3,
+              "payloadSha256": "4b2f15ecd23d44b10d2805fdef37a5658e788bedf700dd595278339cc8b4de92"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 781,
+              "inflatedByteOffset": 32707,
+              "tag": 67,
+              "level": 3,
+              "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 780,
+              "inflatedByteOffset": 32679,
+              "tag": 66,
+              "level": 2,
+              "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+            }
+          },
+          {
+            "kind": "text",
+            "text": "\n",
+            "source": {
+              "stream": "BodyText/Section0",
+              "recordIndex": 615,
+              "inflatedByteOffset": 25623,
+              "tag": 67,
+              "level": 1,
+              "payloadSha256": "aa8bf35d65374795062e78e1db3d4068765fc585da8ad2baa1068e1d7cbc1b32"
+            }
+          }
+        ],
+        "hwpScript": "[$5 SIM  6$] 다음은 삼각비 표의 일부이다. 물음에 답하시오.\n각도\n\n$sin$\n\n$cos$\n\n$tan$\n\n$68 DEG $\n\n$0.9272$\n\n$0.3746$\n\n$2.4751$\n\n$69 DEG $\n\n$0.9336$\n\n$0.3584$\n\n$2.6051$\n\n$70 DEG $\n\n$0.9397$\n\n$0.3420$\n\n$2.7475$\n\n$71 DEG $\n\n$0.9455$\n\n$0.3256$\n\n$2.9042$\n\n$72 DEG $\n\n$0.9511$\n\n$0.3090$\n\n$3.0777$\n\n\n",
+        "text": "[5~6] 다음은 삼각비 표의 일부이다. 물음에 답하시오.\n각도\n\n$\\sin$\n\n$\\cos$\n\n$\\tan$\n\n$68^\\circ$\n\n$0.9272$\n\n$0.3746$\n\n$2.4751$\n\n$69^\\circ$\n\n$0.9336$\n\n$0.3584$\n\n$2.6051$\n\n$70^\\circ$\n\n$0.9397$\n\n$0.3420$\n\n$2.7475$\n\n$71^\\circ$\n\n$0.9455$\n\n$0.3256$\n\n$2.9042$\n\n$72^\\circ$\n\n$0.9511$\n\n$0.3090$\n\n$3.0777$\n\n\n",
+        "pdfContextRegions": [
+          {
+            "page": 2,
+            "column": 0,
+            "bbox": [
+              55,
+              83,
+              375,
+              190.24398803710938
+            ]
+          }
+        ]
+      },
+      "images": [
+        {
+          "file": "images/q05-part1.png",
+          "sha256": "945e7f2ce7e2add5f68f700674e9595ac8a1ae57820db194224e91af2d017c44",
+          "page": 2,
+          "column": 0,
+          "bbox": [
+            55,
+            83,
+            375,
+            334.977783203125
+          ],
+          "role": "shared_context_page_contains_question5_not_an_answer"
+        },
+        {
+          "file": "images/q06-part1.png",
+          "sha256": "afbf2fe6163d11429b5629e4e931905e70135b151b50d169e506d125e0c66e2e",
+          "page": 2,
+          "column": 0,
+          "bbox": [
+            55,
+            340.977783203125,
+            375,
+            495.77978515625
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 843,
+        "inflatedByteOffset": 35359,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "a8134043b9a32d5e5542b7793ea23fec020aeba5ed5a7790344ab0ac88d1abca"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 2,
+          "column": 0,
+          "bbox": [
+            55,
+            340.977783203125,
+            375,
+            495.77978515625
+          ]
+        }
+      ]
+    },
+    {
+      "number": 7,
+      "stem": "그림과 같은 직각삼각형에서 $x,~y$의 값을 옳게 짝지은 것은? [$4$점]\n\n$x$\n\n$y$",
+      "choices": [
+        "$3$                        $3\\sqrt{2}$",
+        "$3$                        $3\\sqrt{3}$",
+        "$5$                        $5\\sqrt{2}$",
+        "$5$                        $5\\sqrt{3}$",
+        "$5$                         $10$"
+      ],
+      "hwpScriptStem": "그림과 같은 직각삼각형에서 $x,~y$의 값을 옳게 짝지은 것은? [$4$점]\n\n$x$\n\n$y$",
+      "hwpScriptChoices": [
+        "$3$                        $3 sqrt {2}$",
+        "$3$                        $3 sqrt {3}$",
+        "$5$                        $5 sqrt {2}$",
+        "$5$                        $5 sqrt {3}$",
+        "$5$                         $10$"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 4.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 4.0,
+        "referenceParentScore": 4.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "윗 꼭짓점 직각; 왼쪽 직각변 5cm, 오른쪽 직각변 x cm; 아래 빗변 y cm; 왼쪽 아래 예각 45°.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "삼각비의 정의·값·활용",
+        "coreMethodCandidate": "특수각 직각삼각형의 빗변과 두 변을 대응시킨다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수04-17",
+            "officialStatement": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "pdfPage": 38,
+            "printedPage": 34,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": null,
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "479133a9e2a9a2513455c218289ba2c9f912b1d22bde1c105c5d8494d39c071e",
+      "sourceQuestionId": "2025-gyeongsang-3-2-mid-7",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q07-part1.png",
+          "sha256": "49beaae1ef091598a3470e45f9ae77aa9c416014382e753d703fbd5675d362dd",
+          "page": 2,
+          "column": 0,
+          "bbox": [
+            55,
+            501.77978515625,
+            375,
+            943.0
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 902,
+        "inflatedByteOffset": 37867,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "381c280a434b7dc992b569b67669229331dbbd0220466a5b481e1dd50132f574"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 2,
+          "column": 0,
+          "bbox": [
+            55,
+            501.77978515625,
+            375,
+            943.0
+          ]
+        }
+      ]
+    },
+    {
+      "number": 8,
+      "stem": "$\\sin 45^\\circ \\times \\mathrm{\\tan }60^\\circ$를 계산한 값으로 옳은 것은? [$4$점]",
+      "choices": [
+        "$\\frac{1}{2}$",
+        "$\\frac{\\sqrt{2}}{2}$",
+        "$\\frac{\\sqrt{3}}{2}$",
+        "$\\frac{\\sqrt{6}}{2}$",
+        "$\\frac{3}{2}$"
+      ],
+      "hwpScriptStem": "$sin45 DEG  TIMES  rm tan60 DEG $를 계산한 값으로 옳은 것은? [$4$점]",
+      "hwpScriptChoices": [
+        "${1} over {2}$",
+        "${sqrt {2}} over {2}$",
+        "${sqrt {3}} over {2}$",
+        "${sqrt {6}} over {2}$",
+        "${3} over {2}$"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 4.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 4.0,
+        "referenceParentScore": 4.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "No bitmap figure; positioned HWP math/text and any table remain the source givens.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "삼각비의 정의·값·활용",
+        "coreMethodCandidate": "45도/60도 직각삼각형의 삼각비를 대입한다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수04-17",
+            "officialStatement": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "pdfPage": 38,
+            "printedPage": 34,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": null,
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "d460995ea3f6cc926dac63729bc434bd328332feaccf7c7d5be59bec9125e335",
+      "sourceQuestionId": "2025-gyeongsang-3-2-mid-8",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q08-part1.png",
+          "sha256": "ed81ef7263d7a121f16f22bcbb63a964bb73c31f6c367319b4417f48d2fb7af1",
+          "page": 2,
+          "column": 1,
+          "bbox": [
+            370,
+            83,
+            688.0,
+            318.4299011230469
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 997,
+        "inflatedByteOffset": 42688,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "c067c890bf9754687fc3eeb95993577d57509191c939902d620d59ef8861e8b6"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 2,
+          "column": 1,
+          "bbox": [
+            370,
+            83,
+            688.0,
+            318.4299011230469
+          ]
+        }
+      ]
+    },
+    {
+      "number": 9,
+      "stem": "삼각형 세 내각의 크기의 비가 $1:2:3$이고, 세 내각 중 가장 작은 각의 크기를 $\\mathrm{A}$라 할 때, $\\sin \\mathrm{\\,}A\\times \\cos \\,A\\times \\tan \\,A$의 값으로 옳은 것은? [$4$점]",
+      "choices": [
+        "$\\frac{1}{4}$",
+        "$\\frac{1}{2}$",
+        "$\\frac{\\sqrt{6}}{4}$",
+        "$\\frac{3}{4}$",
+        "$1$"
+      ],
+      "hwpScriptStem": "삼각형 세 내각의 크기의 비가 $1:2:3$이고, 세 내각 중 가장 작은 각의 크기를 $RMA$라 할 때, $sin rm `A TIMES  cos`A TIMES  tan`A$의 값으로 옳은 것은? [$4$점]",
+      "hwpScriptChoices": [
+        "${1} over {4}$",
+        "${1} over {2}$",
+        "${sqrt {6}} over {4}$",
+        "${3} over {4}$",
+        "$1$"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 4.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 4.0,
+        "referenceParentScore": 4.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "No bitmap figure; positioned HWP math/text and any table remain the source givens.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "삼각비의 정의·값·활용",
+        "coreMethodCandidate": "삼각형의 내각 비에서 특수각을 식별하고 세 비를 각각 대입한다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수04-17",
+            "officialStatement": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "pdfPage": 38,
+            "printedPage": 34,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": null,
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "e4405e8a1ab62b14d7c24d7f9d514953458a780569ef700e4ffbe8a184736004",
+      "sourceQuestionId": "2025-gyeongsang-3-2-mid-9",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q09-part1.png",
+          "sha256": "275b646f7db7e8433346507dbaf0168e5288c193011af8c0f51e2f3f9a7f6ccd",
+          "page": 2,
+          "column": 1,
+          "bbox": [
+            370,
+            324.4299011230469,
+            688.0,
+            607.6576538085938
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1059,
+        "inflatedByteOffset": 45484,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "e833285134803b9bb99acf9e53e74c504559ce25ae957e3d1796cc242c8e6617"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 2,
+          "column": 1,
+          "bbox": [
+            370,
+            324.4299011230469,
+            688.0,
+            607.6576538085938
+          ]
+        }
+      ]
+    },
+    {
+      "number": 10,
+      "stem": "다음은 주사위를 $7$번 던져 나온 눈의 수를 나타낸 것이다. 이 자료의 평균은? [$3$점]\n$1,~~2,~~2,~~4,~~3,~~3,~~6$",
+      "choices": [
+        "$\\frac{17}{7}$",
+        "$\\frac{18}{7}$",
+        "$\\frac{19}{7}$",
+        "$\\frac{20}{7}$",
+        "$3$"
+      ],
+      "hwpScriptStem": "다음은 주사위를 $7$번 던져 나온 눈의 수를 나타낸 것이다. 이 자료의 평균은? [$3$점]\n$1,~~2,~~2,~~4,~~3,~~3,~~6$",
+      "hwpScriptChoices": [
+        "${17} over {7}$",
+        "${18} over {7}$",
+        "${19} over {7}$",
+        "${20} over {7}$",
+        "$3$"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 3.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 3.0,
+        "referenceParentScore": 3.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "No bitmap figure; positioned HWP math/text and any table remain the source givens.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "대푯값·산포도·산점도",
+        "coreMethodCandidate": "일곱 관측값의 합과 자료 수로 평균을 구성한다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수05-06",
+            "officialStatement": "중앙값, 최빈값, 평균의 의미를 이해하고, 이를 구할 수 있다.",
+            "pdfPage": 40,
+            "printedPage": 36,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "7. 통계",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": null,
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "e653748db554435ab47c34130aa2d9ccfe633426f4183698f2b5bf4e9694d2dd",
+      "sourceQuestionId": "2025-gyeongsang-3-2-mid-10",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q10-part1.png",
+          "sha256": "1231101d6df7d03bc775e01a8425e1cc14d2790046530fdecc70f7fb2b1f5bde",
+          "page": 2,
+          "column": 1,
+          "bbox": [
+            370,
+            613.6576538085938,
+            688.0,
+            943.0
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1128,
+        "inflatedByteOffset": 48508,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "0fa07ed4a1fb0c9e283d845ebbd2df649a28278087e7f264d22acf0f8e5cd221"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 2,
+          "column": 1,
+          "bbox": [
+            370,
+            613.6576538085938,
+            688.0,
+            943.0
+          ]
+        }
+      ]
+    },
+    {
+      "number": 11,
+      "stem": "다음 자료의 중앙값은? [$4$점]\n$2,~~3,~~9,~~6,~~7,~~6,~~4$",
+      "choices": [
+        "$2$",
+        "$3$",
+        "$4$",
+        "$5$",
+        "$6$"
+      ],
+      "hwpScriptStem": "다음 자료의 중앙값은? [$4$점]\n$2,~~3,~~9,~~6,~~7,~~6,~~4$",
+      "hwpScriptChoices": [
+        "$2$",
+        "$3$",
+        "$4$",
+        "$5$",
+        "$6$"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 4.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 4.0,
+        "referenceParentScore": 4.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "No bitmap figure; positioned HWP math/text and any table remain the source givens.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "대푯값·산포도·산점도",
+        "coreMethodCandidate": "일곱 원자료를 정렬하여 중앙 위치를 읽는다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수05-06",
+            "officialStatement": "중앙값, 최빈값, 평균의 의미를 이해하고, 이를 구할 수 있다.",
+            "pdfPage": 40,
+            "printedPage": 36,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "7. 통계",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": null,
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "004e84058bf5062d558d00efec38f297a11d863118847ed54656579f0620784e",
+      "sourceQuestionId": "2025-gyeongsang-3-2-mid-11",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q11-part1.png",
+          "sha256": "f8be5acf653a72d71f1c98489ebd3240a76128853daeac8a0324e48ad11c99d9",
+          "page": 3,
+          "column": 0,
+          "bbox": [
+            55,
+            83,
+            375,
+            467.6004333496094
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1194,
+        "inflatedByteOffset": 51263,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "c45b95823243109c339108cddfeeb0b6dfabeaa306aa259d3d48e3348d481976"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 3,
+          "column": 0,
+          "bbox": [
+            55,
+            83,
+            375,
+            467.6004333496094
+          ]
+        }
+      ]
+    },
+    {
+      "number": 12,
+      "stem": "다음은 어느 신발 가게에서 하루 동안 판매된 $15$켤레 운동화의 치수를 조사하여 나타낸 것이다. 이 자료의 최빈값은? [$3$점]\n하루 동안 판매된 운동차의 치수 (단위:$\\mathrm{m}m$)\n\n$230$\n\n$230$\n\n$235$\n\n$235$\n\n$235$\n\n$240$\n\n$240$\n\n$240$\n\n$245$\n\n$245$\n\n$245$\n\n$245$\n\n$245$\n\n$250$\n\n$255$",
+      "choices": [
+        "$230$",
+        "$235$",
+        "$240$",
+        "$245$",
+        "$250$"
+      ],
+      "hwpScriptStem": "다음은 어느 신발 가게에서 하루 동안 판매된 $15$켤레 운동화의 치수를 조사하여 나타낸 것이다. 이 자료의 최빈값은? [$3$점]\n하루 동안 판매된 운동차의 치수 (단위:$rmmm$)\n\n$230$\n\n$230$\n\n$235$\n\n$235$\n\n$235$\n\n$240$\n\n$240$\n\n$240$\n\n$245$\n\n$245$\n\n$245$\n\n$245$\n\n$245$\n\n$250$\n\n$255$",
+      "hwpScriptChoices": [
+        "$230$",
+        "$235$",
+        "$240$",
+        "$245$",
+        "$250$"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 3.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 3.0,
+        "referenceParentScore": 3.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {
+        "unit": "mm",
+        "values": [
+          230,
+          230,
+          235,
+          235,
+          235,
+          240,
+          240,
+          240,
+          245,
+          245,
+          245,
+          245,
+          245,
+          250,
+          255
+        ],
+        "count": 15,
+        "literalCaptionTypo": "운동차의 치수"
+      },
+      "figureGivenObservation": "No bitmap figure; positioned HWP math/text and any table remain the source givens.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "대푯값·산포도·산점도",
+        "coreMethodCandidate": "15개 신발 치수의 같은 값 빈도를 비교한다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수05-06",
+            "officialStatement": "중앙값, 최빈값, 평균의 의미를 이해하고, 이를 구할 수 있다.",
+            "pdfPage": 40,
+            "printedPage": 36,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "7. 통계",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": null,
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "3fc1eda84a41908ab58dba7be0553c7c8f77f12627d86a51a9d4bcf5b7098950",
+      "sourceQuestionId": "2025-gyeongsang-3-2-mid-12",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q12-part1.png",
+          "sha256": "7e5a9bd81868fd5a9086a20b3647b990aabc8d22a499a5bbfdec55208472bede",
+          "page": 3,
+          "column": 0,
+          "bbox": [
+            55,
+            473.6004333496094,
+            375,
+            943.0
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1291,
+        "inflatedByteOffset": 54848,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "84816351de0d6f245e4ced25c675f046e7dfad98afbce9b4e3d02b2e1b3b45a0"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 3,
+          "column": 0,
+          "bbox": [
+            55,
+            473.6004333496094,
+            375,
+            943.0
+          ]
+        }
+      ]
+    },
+    {
+      "number": 13,
+      "stem": "표는 화진이의 $4$회에 걸친 수학 성적의 편차를 조사하여 나타낸 것이다. $4$회까지의 수학 성적의 평균이 $92$점일 때, $3$회의 수학 성적은? [$4$점]\n\n수학 성적의 편차\n\n$1$회\n\n$2$회\n\n$3$회\n\n$4$회\n\n편차(점)\n\n$7$\n\n$-6$\n\n$8$",
+      "choices": [
+        "$79$점",
+        "$80$점",
+        "$81$점",
+        "$82$점",
+        "$83$점"
+      ],
+      "hwpScriptStem": "표는 화진이의 $4$회에 걸친 수학 성적의 편차를 조사하여 나타낸 것이다. $4$회까지의 수학 성적의 평균이 $92$점일 때, $3$회의 수학 성적은? [$4$점]\n\n수학 성적의 편차\n\n$1$회\n\n$2$회\n\n$3$회\n\n$4$회\n\n편차(점)\n\n$7$\n\n$-6$\n\n$8$",
+      "hwpScriptChoices": [
+        "$79$점",
+        "$80$점",
+        "$81$점",
+        "$82$점",
+        "$83$점"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 4.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 4.0,
+        "referenceParentScore": 4.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {
+        "columns": [
+          "1회",
+          "2회",
+          "3회",
+          "4회"
+        ],
+        "deviationPoints": [
+          7,
+          -6,
+          null,
+          8
+        ],
+        "givenMeanPoints": 92,
+        "blankIsUnknownNotZero": true
+      },
+      "figureGivenObservation": "No bitmap figure; positioned HWP math/text and any table remain the source givens.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "대푯값·산포도·산점도",
+        "coreMethodCandidate": "편차 합이 0임과 주어진 평균에서 빈 칸의 원점수를 구성한다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수05-07",
+            "officialStatement": "분산과 표준편차의 의미를 이해하고, 이를 구할 수 있다.",
+            "pdfPage": 40,
+            "printedPage": 36,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "7. 통계",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": "편차 합을 공식으로만 제시하지 않고 정의로 설명할 범위 검토.",
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "5648e84477a770c91bb4c74378ceb984af22bfa7342b6e3a2eb171802291d769",
+      "sourceQuestionId": "2025-gyeongsang-3-2-mid-13",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending",
+        "specific_grade_method_risk"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q13-part1.png",
+          "sha256": "9e479177d922d81a89467d4d0c3ddb76beb71c549b1eca96771a83bdc338a6f7",
+          "page": 3,
+          "column": 1,
+          "bbox": [
+            370,
+            83,
+            688.0,
+            465.4420166015625
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1468,
+        "inflatedByteOffset": 62438,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "85a06bdf3ef2780f4c4daf09f6d232b69b0383149829fc8349b8d4d2b16651ae"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 3,
+          "column": 1,
+          "bbox": [
+            370,
+            83,
+            688.0,
+            465.4420166015625
+          ]
+        }
+      ]
+    },
+    {
+      "number": 14,
+      "stem": "다음은 볼링 공을 $10$번 던졌을 때 넘어진 핀의 수이다. 이 자료의 분산과 표준편차를 옳게 짝지은 것은?\n[$5$점]\n$4,~~4,~~9,~~6,~~6,~~9,~~3,~~8,~~6,~~5$\n\n분산\n\n표준편차",
+      "choices": [
+        "$4$                         $2$",
+        "$4$                        $2\\sqrt{2}$",
+        "$6$                        $\\sqrt{6}$",
+        "$6$                        $2\\sqrt{6}$",
+        "$8$                        $2\\sqrt{2}$"
+      ],
+      "hwpScriptStem": "다음은 볼링 공을 $10$번 던졌을 때 넘어진 핀의 수이다. 이 자료의 분산과 표준편차를 옳게 짝지은 것은?\n[$5$점]\n$4,~~4,~~9,~~6,~~6,~~9,~~3,~~8,~~6,~~5$\n\n분산\n\n표준편차",
+      "hwpScriptChoices": [
+        "$4$                         $2$",
+        "$4$                        $2 sqrt {2}$",
+        "$6$                        $sqrt {6}$",
+        "$6$                        $2 sqrt {6}$",
+        "$8$                        $2 sqrt {2}$"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 5.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 5.0,
+        "referenceParentScore": 5.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {
+        "values": [
+          4,
+          4,
+          9,
+          6,
+          6,
+          9,
+          3,
+          8,
+          6,
+          5
+        ],
+        "count": 10,
+        "choiceColumnRoles": [
+          "variance",
+          "standardDeviation"
+        ]
+      },
+      "figureGivenObservation": "No bitmap figure; positioned HWP math/text and any table remain the source givens.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "대푯값·산포도·산점도",
+        "coreMethodCandidate": "10개 원자료의 평균, 편차 제곱 평균 및 양수 제곱근을 구성한다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수05-07",
+            "officialStatement": "분산과 표준편차의 의미를 이해하고, 이를 구할 수 있다.",
+            "pdfPage": 40,
+            "printedPage": 36,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "7. 통계",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": null,
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "0be676b98bbfac946e30d5f28b1377128484f3ea895a2c5aa78d760c09cde6a5",
+      "sourceQuestionId": "2025-gyeongsang-3-2-mid-14",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q14-part1.png",
+          "sha256": "551a03fcd5a0767e021186f851ab1db7819582fb980b9e88fb7912ba3bf2b528",
+          "page": 3,
+          "column": 1,
+          "bbox": [
+            370,
+            471.4420166015625,
+            688.0,
+            943.0
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1628,
+        "inflatedByteOffset": 68732,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "71786f50f765541c45a700291ea58bc34d93f23fe122fc9f4d8aae9eeec68e20"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 3,
+          "column": 1,
+          "bbox": [
+            370,
+            471.4420166015625,
+            688.0,
+            943.0
+          ]
+        }
+      ]
+    },
+    {
+      "number": 15,
+      "stem": "표는 명연이가 $5$번의 대회에서 받은 종목별 점수의 평균과 표준편차를 조사하여 나타낸 것이다. 성적이 가장 고른 종목은? [$4$점]\n종목별 점수의 평균과 표준편차 (단위:점)\n\n종목\n\n평균\n\n표준편차\n\n마루운동\n\n$12.550$\n\n$0.83$\n\n도마\n\n$12.283$\n\n$0.93$\n\n안마\n\n$14.050$\n\n$0.84$\n\n링\n\n$13.050$\n\n$0.97$\n\n평행봉\n\n$15.050$\n\n$0.79$",
+      "choices": [
+        "마루운동",
+        "도마",
+        "안마",
+        "링",
+        "평행봉"
+      ],
+      "hwpScriptStem": "표는 명연이가 $5$번의 대회에서 받은 종목별 점수의 평균과 표준편차를 조사하여 나타낸 것이다. 성적이 가장 고른 종목은? [$4$점]\n종목별 점수의 평균과 표준편차 (단위:점)\n\n종목\n\n평균\n\n표준편차\n\n마루운동\n\n$12.550$\n\n$0.83$\n\n도마\n\n$12.283$\n\n$0.93$\n\n안마\n\n$14.050$\n\n$0.84$\n\n링\n\n$13.050$\n\n$0.97$\n\n평행봉\n\n$15.050$\n\n$0.79$",
+      "hwpScriptChoices": [
+        "마루운동",
+        "도마",
+        "안마",
+        "링",
+        "평행봉"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 4.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 4.0,
+        "referenceParentScore": 4.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {
+        "columns": [
+          "종목",
+          "평균",
+          "표준편차"
+        ],
+        "unit": "점",
+        "rows": [
+          [
+            "마루운동",
+            "12.550",
+            "0.83"
+          ],
+          [
+            "도마",
+            "12.283",
+            "0.93"
+          ],
+          [
+            "안마",
+            "14.050",
+            "0.84"
+          ],
+          [
+            "링",
+            "13.050",
+            "0.97"
+          ],
+          [
+            "평행봉",
+            "15.050",
+            "0.79"
+          ]
+        ]
+      },
+      "figureGivenObservation": "No bitmap figure; positioned HWP math/text and any table remain the source givens.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "대푯값·산포도·산점도",
+        "coreMethodCandidate": "다섯 종목의 표준편차를 읽어 산포를 비교한다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수05-07",
+            "officialStatement": "분산과 표준편차의 의미를 이해하고, 이를 구할 수 있다.",
+            "pdfPage": 40,
+            "printedPage": 36,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "7. 통계",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": null,
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "cfd8411fb4ee839b4585d91b0c7ab3ba60b97355013e57dc6ce7dc4e88ca9d5a",
+      "sourceQuestionId": "2025-gyeongsang-3-2-mid-15",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q15-part1.png",
+          "sha256": "2ad56e1ea936ccd9cb6cdfcead0f5ddeffdbcc689e8c68a223093f56566d0c6f",
+          "page": 4,
+          "column": 0,
+          "bbox": [
+            55,
+            83,
+            375,
+            478.75225830078125
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1732,
+        "inflatedByteOffset": 73557,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "edeed85a3fad5e9f662e1abf384b818042896d9d024e031e80a4a2432e468185"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 4,
+          "column": 0,
+          "bbox": [
+            55,
+            83,
+            375,
+            478.75225830078125
+          ]
+        }
+      ]
+    },
+    {
+      "number": 16,
+      "stem": "$\\mathrm{\\overline{AB}}=4,~\\overline{BC}=5,~\\angle B=40^\\circ$인 $\\triangle \\mathrm{ABC}$의 넓이는?\n(단, $\\sin 40^\\circ =0.6428,~\\cos 40^\\circ =0.7660,~\\tan 40^\\circ =0.8391$)\n[$5$점]",
+      "choices": [
+        "$3.124$",
+        "$3.83$",
+        "$6.428$",
+        "$7.66$",
+        "$8.391$"
+      ],
+      "hwpScriptStem": "$rm{bar{rm AB}} =4,~ {bar{BC}} =5,~ ANGLE  B=40 DEG $인 $TRIANGLE  RMABC$의 넓이는?\n(단, $sin40 DEG=0.6428,~cos40 DEG=0.7660,~tan40 DEG=0.8391$)\n[$5$점]",
+      "hwpScriptChoices": [
+        "$3.124$",
+        "$3.83$",
+        "$6.428$",
+        "$7.66$",
+        "$8.391$"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 5.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 5.0,
+        "referenceParentScore": 5.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "AB=4, BC=5; ∠B=40°; 삼각비 표 값은 본문에 직접 제시.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "삼각비의 정의·값·활용",
+        "coreMethodCandidate": "주어진 각에 수선을 내려 삼각비로 높이를 구하고 넓이를 구성한다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수04-18",
+            "officialStatement": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+            "pdfPage": 38,
+            "printedPage": 34,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": null,
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "b51ea62f810afde0fe32d3b3f25c825e8d2ffd17ce97e17a99229d22e72bd743",
+      "sourceQuestionId": "2025-gyeongsang-3-2-mid-16",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q16-part1.png",
+          "sha256": "6e84f20a9d3c2a7f9e00a960b0cb3c069f5124041384a470658e15cc130c66f8",
+          "page": 4,
+          "column": 0,
+          "bbox": [
+            55,
+            476.47430419921875,
+            375,
+            943.0
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1914,
+        "inflatedByteOffset": 79988,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "893ae9c9ff0a0ab12aabb7bfa0823bf03bd72b7fe3ac5504e1f557416227818f"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 4,
+          "column": 0,
+          "bbox": [
+            55,
+            476.47430419921875,
+            375,
+            943.0
+          ]
+        }
+      ]
+    },
+    {
+      "number": 17,
+      "stem": "그림과 같이 직각삼각형 모양의 미끄럼틀 놀이기구에서 지면 위의 두 지점 $\\mathrm{A},~C$ 사이의 거리는 $50\\,\\mathrm{m}$이고 놀이기구의 경사각의 크기는 $15^\\circ$이다. 놀이 기구의 출발 지점 $\\mathrm{B}$의 지면으로부터의 높이는?\n(단, $\\sin 15^\\circ =0.2588,~\\cos 15^\\circ =0.9659,~\\tan 15^\\circ =0.2679$)\n[$4$점]",
+      "choices": [
+        "$12.94\\,\\mathrm{m}$",
+        "$13.395\\,\\mathrm{m}$",
+        "$25.88\\,\\mathrm{m}$",
+        "$26.79\\,\\mathrm{m}$",
+        "$48.295\\,\\mathrm{m}$"
+      ],
+      "hwpScriptStem": "그림과 같이 직각삼각형 모양의 미끄럼틀 놀이기구에서 지면 위의 두 지점 $RMA,~C$ 사이의 거리는 $50` rm m$이고 놀이기구의 경사각의 크기는 $15 DEG $이다. 놀이 기구의 출발 지점 $RMB$의 지면으로부터의 높이는?\n(단, $sin15 DEG  =0.2588,~cos15 DEG  =0.9659,~tan15 DEG  =0.2679$)\n[$4$점]",
+      "hwpScriptChoices": [
+        "$12.94` rm m$",
+        "$13.395` rm m$",
+        "$25.88` rm m$",
+        "$26.79` rm m$",
+        "$48.295` rm m$"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 4.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 4.0,
+        "referenceParentScore": 4.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "AC=50m 수평 거리; 경사각 15°; 제시된 삼각비로 높이를 묻는다.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "삼각비의 정의·값·활용",
+        "coreMethodCandidate": "수평 거리와 경사각의 tan으로 높이를 구성한다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수04-18",
+            "officialStatement": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+            "pdfPage": 38,
+            "printedPage": 34,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": null,
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "bf7dd69a41ba25960d2256de7f08c91c66aae6132ffea5860ea1681b130fe2ea",
+      "sourceQuestionId": "2025-gyeongsang-3-2-mid-17",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q17-part1.png",
+          "sha256": "c04807cf6397b93ae0106c3f742571c28b55798791c4d8bd438f71410954fcde",
+          "page": 4,
+          "column": 1,
+          "bbox": [
+            370,
+            83,
+            688.0,
+            503.09442138671875
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1986,
+        "inflatedByteOffset": 83809,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "11aec848681fd060c166c6b45825b48c0b12150990f184f53165d7b6120b5f18"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 4,
+          "column": 1,
+          "bbox": [
+            370,
+            83,
+            688.0,
+            503.09442138671875
+          ]
+        }
+      ]
+    },
+    {
+      "number": 18,
+      "stem": "그림과 같이 $\\triangle \\mathrm{ABC}$와 $\\triangle \\mathrm{DCF}$가 서로 겹쳐져 있고, $\\angle \\mathrm{B}=90^\\circ ,~\\angle \\mathrm{C}=90^\\circ ,~\\angle \\mathrm{BAC}=60^\\circ ,\\,\\angle \\mathrm{EFC}=45^\\circ$, $\\overline{CD}=6,~\\overline{BF}=3$이다. 사각형 $\\mathrm{ABFE}$의 넓이를 $S$라고 할 때, $S-9$의 값은? [$5$점]",
+      "choices": [
+        "$\\frac{9}{2}\\sqrt{3}$",
+        "$6\\sqrt{3}$",
+        "$\\frac{15}{2}\\sqrt{3}$",
+        "$9\\sqrt{3}$",
+        "$\\frac{21}{2}\\sqrt{3}$"
+      ],
+      "hwpScriptStem": "그림과 같이 $TRIANGLE  RMABC$와 $TRIANGLE  rm DCF$가 서로 겹쳐져 있고, $ANGLE  rm B=90 DEG  ,~ ANGLE  rm C=90 DEG  ,~ ANGLE  rm BAC=60 DEG  ,` ANGLE  rm EFC=45 DEG $, ${bar{rm CD}} =6,~ {bar{rm BF}} =3$이다. 사각형 $RMABFE$의 넓이를 $S\r\n$라고 할 때, $S-9$의 값은? [$5$점]",
+      "hwpScriptChoices": [
+        "${9} over {2} sqrt {3}$",
+        "$6 sqrt {3}$",
+        "${15} over {2} sqrt {3}$",
+        "$9 sqrt {3}$",
+        "${21} over {2} sqrt {3}$"
+      ],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 5.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 5.0,
+        "referenceParentScore": 5.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "∠B=∠C=90°, ∠BAC=60°, ∠EFC=45°; CD=6, BF=3; 음영 ABFE.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "삼각비의 정의·값·활용",
+        "coreMethodCandidate": "두 직각삼각형의 겹침과 높이/밑변으로 부분 넓이를 구성한다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수04-18",
+            "officialStatement": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+            "pdfPage": 38,
+            "printedPage": 34,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": "겹친 도형의 복잡성 및 각 대응 검토.",
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "40482454bcd6f131f6084e2c1bfbc756b61e6d65f6bedbfe4eee122cc6a8601e",
+      "sourceQuestionId": "2025-gyeongsang-3-2-mid-18",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending",
+        "specific_grade_method_risk"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q18-part1.png",
+          "sha256": "9d8ce5caec93eb3f97f866508fc154869fac96516173e157d064582826f05533",
+          "page": 4,
+          "column": 1,
+          "bbox": [
+            370,
+            509.09442138671875,
+            688.0,
+            943.0
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 2074,
+        "inflatedByteOffset": 88204,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "1c57177ab7e7453889ced5c58937a77d4b8fa3026370a45d351f7bfa5570648b"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 4,
+          "column": 1,
+          "bbox": [
+            370,
+            509.09442138671875,
+            688.0,
+            943.0
+          ]
+        }
+      ]
+    },
+    {
+      "number": 19,
+      "stem": "[서술형 $1$] 직각삼각형 $\\mathrm{ABC}$에서 $\\mathrm{\\overline{AB}}=18cm$이고 $\\cos \\mathrm{B}=\\frac{1}{3}$일 때, $\\triangle \\mathrm{ABC}$의 넓이를 구하고, 그 풀이과정을 서술하시오. [$8$점, 부분점수 있음]",
+      "choices": [],
+      "hwpScriptStem": "[서술형 $1$] 직각삼각형 $RMABC$에서 $rm{bar{rm AB}} =18cm$이고 $cos rm B= {1} over {3}$일 때, $TRIANGLE  RMABC$의 넓이를 구하고, 그 풀이과정을 서술하시오. [$8$점, 부분점수 있음]",
+      "hwpScriptChoices": [],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 8.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 8.0,
+        "referenceParentScore": 8.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "C 직각; AB=18cm; cos B=1/3.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "삼각비의 정의·값·활용",
+        "coreMethodCandidate": "cos의 정의와 피타고라스로 직각삼각형의 밑변/높이를 구성한다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수04-18",
+            "officialStatement": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+            "pdfPage": 38,
+            "printedPage": 34,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": null,
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "8643234df9460eb8b58f8e4bb3be9a02fe01c5222618c97871faa82f3cf97209",
+      "sourceQuestionId": "2025-gyeongsang-3-2-mid-19",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q19-part1.png",
+          "sha256": "8a7e07fcdb40612a8dd229c42ecb994cbadd3377783b87eed169f5e1fda4876f",
+          "page": 5,
+          "column": 0,
+          "bbox": [
+            55,
+            83,
+            375,
+            943.0
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 2143,
+        "inflatedByteOffset": 92433,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "7b5b7dfce4fac09739c10fa90aa0464b7e16e621c84f325b6a7620fb3f2fa0fd"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 5,
+          "column": 0,
+          "bbox": [
+            55,
+            83,
+            375,
+            943.0
+          ]
+        }
+      ]
+    },
+    {
+      "number": 20,
+      "stem": "[서술형 $2$] 정삼각형 $\\mathrm{ABC}$를 이용하여 $60^\\circ$의 삼각비를 구하고, 그 과정을 서술하시오.\n[$8$점, 부분점수 있음]",
+      "choices": [],
+      "hwpScriptStem": "[서술형 $2$] 정삼각형 $RMABC$를 이용하여 $60 DEG$의 삼각비를 구하고, 그 과정을 서술하시오.\n[$8$점, 부분점수 있음]",
+      "hwpScriptChoices": [],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 8.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 8.0,
+        "referenceParentScore": 8.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "정삼각형 ABC; 각 60°; 수선 구성은 풀이에서 새로 해야 한다.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "삼각비의 정의·값·활용",
+        "coreMethodCandidate": "정삼각형을 수선으로 나눈 30/60도 직각삼각형에서 정의를 읽는다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수04-17",
+            "officialStatement": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "pdfPage": 38,
+            "printedPage": 34,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": null,
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "2a9b36df0b941de4891c535a103d14cfd8dc0331a0b72f7d29079840083f9d21",
+      "sourceQuestionId": "2025-gyeongsang-3-2-mid-20",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q20-part1.png",
+          "sha256": "37f4d6b0396f6d74f8c40da9c1efe1ef9fc48a26dc969b883d844190bceb0e2d",
+          "page": 5,
+          "column": 1,
+          "bbox": [
+            370,
+            83,
+            688.0,
+            943.0
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 2239,
+        "inflatedByteOffset": 97066,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "9c12e935da21fa07633b8c5733f97ba41f9f0a095bc1ce3b3c0020adbb4c1c4c"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 5,
+          "column": 1,
+          "bbox": [
+            370,
+            83,
+            688.0,
+            943.0
+          ]
+        }
+      ]
+    },
+    {
+      "number": 21,
+      "stem": "[서술형 $3$] 연못의 두 지점 $\\mathrm{B},~C$ 사이의 거리를 구하기 위해 연못의 바깥쪽에 지점 $\\mathrm{A}$를 정하여 측정하였더니, $\\mathrm{\\overline{AB}}=30m,~\\overline{AC}=40m,~\\angle A=60^\\circ$일 때, 두 지점 $\\mathrm{B},~C$ 사이의 거리를 구하고, 그 풀이과정을 서술하시오. [$8$점, 부분점수 있음]",
+      "choices": [],
+      "hwpScriptStem": "[서술형 $3$] 연못의 두 지점 $RMB,~C$ 사이의 거리를 구하기 위해 연못의 바깥쪽에 지점 $RMA$를 정하여 측정하였더니, $rm{bar{rm AB}} =30m,~ {bar{rm AC}} =40m,~ ANGLE  A=60 DEG $일 때, 두 지점 $RMB,~C$ 사이의 거리를 구하고, 그 풀이과정을 서술하시오. [$8$점, 부분점수 있음]",
+      "hwpScriptChoices": [],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 8.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 8.0,
+        "referenceParentScore": 8.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {},
+      "figureGivenObservation": "AB=30m, AC=40m; ∠A=60°; 연못 양끝 B,C.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "삼각비의 정의·값·활용",
+        "coreMethodCandidate": "수선을 내려 60도 직각삼각형과 피타고라스로 관측 거리 조건을 구성한다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수04-18",
+            "officialStatement": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+            "pdfPage": 38,
+            "printedPage": 34,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": "코사인법칙 금지; 60도 수선/피타고라스 대체 풀이 검토.",
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "b3bd5e1e3aad29ca8767586c5b6a0356ac3469f1763cf0f3fa2846d4e5b3b016",
+      "sourceQuestionId": "2025-gyeongsang-3-2-mid-21",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending",
+        "specific_grade_method_risk"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q21-part1.png",
+          "sha256": "0c90e365ba51bf41ed328cb8050b249e100ccbb08760bfb0582c3b67b2a72a2b",
+          "page": 6,
+          "column": 0,
+          "bbox": [
+            55,
+            83,
+            375,
+            943.0
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 2336,
+        "inflatedByteOffset": 102649,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "e28a3cb864161d500578d45329b3d511115aeac26102deb216b644a7be6eea7d"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 6,
+          "column": 0,
+          "bbox": [
+            55,
+            83,
+            375,
+            943.0
+          ]
+        }
+      ]
+    },
+    {
+      "number": 22,
+      "stem": "[서술형 $4$] 다음은 어느 야구 팀에서 타율이 높은 $20$명 선수의 도루 개수를 조사하여 나타낸 줄기와 잎 그림이다. 이 자료의 평균과 중앙값을 각각 구하고, 어떤 값이 대푯값으로 더 적절한지 서술하시오.\n[$6$점, 부분점수 있음]\n도루개수\n\n줄기\n\n잎\n\n$0$\n\n$0$\n\n$0$\n\n$1$\n\n$1$\n\n$2$\n\n$2$\n\n$2$\n\n$4$\n\n$4$\n\n$4$\n\n$7$\n\n$8$\n\n$1$\n\n$0$\n\n$1$\n\n$2$\n\n$5$\n\n$7$\n\n$2$\n\n$0$\n\n$5$\n\n$4$\n\n$5$",
+      "choices": [],
+      "hwpScriptStem": "[서술형 $4$] 다음은 어느 야구 팀에서 타율이 높은 $20$명 선수의 도루 개수를 조사하여 나타낸 줄기와 잎 그림이다. 이 자료의 평균과 중앙값을 각각 구하고, 어떤 값이 대푯값으로 더 적절한지 서술하시오.\n[$6$점, 부분점수 있음]\n도루개수\n\n줄기\n\n잎\n\n$0$\n\n$0$\n\n$0$\n\n$1$\n\n$1$\n\n$2$\n\n$2$\n\n$2$\n\n$4$\n\n$4$\n\n$4$\n\n$7$\n\n$8$\n\n$1$\n\n$0$\n\n$1$\n\n$2$\n\n$5$\n\n$7$\n\n$2$\n\n$0$\n\n$5$\n\n$4$\n\n$5$",
+      "hwpScriptChoices": [],
+      "scoreEvidence": {
+        "selectedHwpPdfPrintedParentScore": 6.0,
+        "selectedPairScoreStatus": "literal_match",
+        "originalPrintedParentScore": 6.0,
+        "referenceParentScore": 6.0,
+        "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+        "parentCountedOnce": true,
+        "childScores": [],
+        "subquestionCount": 0,
+        "parentAndChildrenMustNotBeAddedTogether": false
+      },
+      "subQuestions": [],
+      "structuredGivenData": {
+        "unit": "개",
+        "stemLeafRows": [
+          {
+            "stem": 0,
+            "leaves": [
+              0,
+              0,
+              1,
+              1,
+              2,
+              2,
+              2,
+              4,
+              4,
+              4,
+              7,
+              8
+            ]
+          },
+          {
+            "stem": 1,
+            "leaves": [
+              0,
+              1,
+              2,
+              5,
+              7
+            ]
+          },
+          {
+            "stem": 2,
+            "leaves": [
+              0,
+              5
+            ]
+          },
+          {
+            "stem": 4,
+            "leaves": [
+              5
+            ]
+          }
+        ],
+        "count": 20
+      },
+      "figureGivenObservation": "No bitmap figure; positioned HWP math/text and any table remain the source givens.",
+      "curriculum": {
+        "sourceGrade": "중3",
+        "expectedAppliedCurriculum": "2015",
+        "status": "hold_full_item_review",
+        "fullApproval": false,
+        "conceptCandidate": "대푯값·산포도·산점도",
+        "coreMethodCandidate": "줄기/잎의 20개 값을 복원하고 대푯값 및 이상치의 영향을 비교한다.",
+        "officialStandardsCandidates": [
+          {
+            "code": "9수05-06",
+            "officialStatement": "중앙값, 최빈값, 평균의 의미를 이해하고, 이를 구할 수 있다.",
+            "pdfPage": 40,
+            "printedPage": 36,
+            "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+            "notPerQuestionApproval": true
+          }
+        ],
+        "localUnitCandidate": {
+          "grade": "중3",
+          "chapter": "7. 통계",
+          "seedFile": "prisma/seed-data/units.ts",
+          "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "liveUnitId": null
+        },
+        "liveFamilyId": null,
+        "generatorRuleId": null,
+        "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+        "specificRisk": "줄기/잎 읽기 선수학습 및 대푯값의 맥락 해석 근거 검토.",
+        "decisionIfNoLegalGradeMethod": "reject",
+        "decisionIfUnclear": "hold",
+        "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+        "requiredReview": [
+          "stem",
+          "all choices",
+          "figure meaning",
+          "notation",
+          "answer format",
+          "new answer",
+          "student solution",
+          "required steps",
+          "prerequisites"
+        ],
+        "signDomainUnitsGate": [
+          "signs and radicals",
+          "angle range 0-90 degrees",
+          "nonzero denominators",
+          "positive lengths/areas",
+          "units",
+          "existence",
+          "uniqueness"
+        ],
+        "sourceSchoolOrAIConfidenceCannotApprove": true
+      },
+      "sourceContentDigest": "1214f4c6c3b5a367725e066972f68635a542c1960fb4da1ffde36b8ebf3f81d1",
+      "sourceQuestionId": "2025-gyeongsang-3-2-mid-22",
+      "status": "source_reference_reviewed_all_final_approval_gates_held",
+      "sourceAmbiguityHolds": [
+        "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+        "source_custody_rights_permission_pending",
+        "canonical_text_product_render_review_pending",
+        "specific_grade_method_risk"
+      ],
+      "sharedContext": null,
+      "images": [
+        {
+          "file": "images/q22-part1.png",
+          "sha256": "f28e26c8ff8d368043a3e6a0bca76b6cd009a330c9c6c50c0e10e9575378c938",
+          "page": 6,
+          "column": 1,
+          "bbox": [
+            370,
+            83,
+            688.0,
+            943.0
+          ]
+        }
+      ],
+      "subquestionNumbers": [],
+      "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+      "selectedHwpAnchor": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 2435,
+        "inflatedByteOffset": 108638,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "66459af3a0740bc7b37ea4eaf7cfd56276e4e05a889dfd0e5c55aff9dfcb324d"
+      },
+      "selectedPdfRegions": [
+        {
+          "page": 6,
+          "column": 1,
+          "bbox": [
+            370,
+            83,
+            688.0,
+            943.0
+          ]
+        }
+      ]
+    }
+  ]
+}
