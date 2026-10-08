@@ -96,6 +96,13 @@ const CORPUS: readonly { content: string; answer: string }[] = [
       "다음 보기 중 옳은 것을 모두 고르면?\n> ㄱ. 가\n> ㄴ. 나\n> ㄷ. 다\n① ㄱ\n② ㄴ\n③ ㄱ, ㄴ\n④ ㄴ, ㄷ\n⑤ ㄱ, ㄴ, ㄷ",
     answer: "④",
   },
+  // 보기가 «ㄱ과 ㄴ» 꼴이라 이름표 조합으로 안 읽힌다 — «모두 고른 것» 구절 규칙**만** 가르는 자리.
+  // 위 둘은 보기 규칙에도 걸려 구절 규칙을 망가뜨려도 지문이 안 변했다(변이 [5] «판정 거부»).
+  {
+    content:
+      "보기에서 옳은 것을 모두 고른 것을 고르시오.\n> ㄱ. 가\n> ㄴ. 나\n> ㄷ. 다\n① ㄱ\n② ㄱ과 ㄴ\n③ ㄴ과 ㄷ\n④ ㄱ과 ㄷ\n⑤ ㄱ, ㄴ과 ㄷ",
+    answer: "②",
+  },
 ];
 
 const VERBOSE = process.argv.includes("--verbose");

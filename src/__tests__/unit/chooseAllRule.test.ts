@@ -126,6 +126,24 @@ describe("「모두 고르시오」 판정기", () => {
       expect(() =>
         assertChooseAllAnswerCount(content, "③", "시험"),
       ).not.toThrow();
+      // 🔴 보기가 «ㄱ과 ㄴ» 처럼 이름표 조합으로 **안 읽히는** 꼴이어도 구절만으로 가른다 —
+      //    위 예문은 보기 규칙(⑵)에도 걸려 구절 규칙을 못 잰다(2026-10-08 변이 [5] 가 «판정 거부»였다).
+      const joined = [
+        "① ㄱ",
+        "② ㄱ과 ㄴ",
+        "③ ㄴ과 ㄷ",
+        "④ ㄱ과 ㄷ",
+        "⑤ ㄱ, ㄴ과 ㄷ",
+      ].join("\n");
+      expect(
+        isChooseAll(
+          `보기에서 옳은 것을 모두 고른 것을 고르시오.\n${box}\n${joined}`,
+        ),
+      ).toBe(false);
+      // 음성 대조 — 같은 보기라도 구절이 없으면 «모두 고르시오»는 그대로 잡는다.
+      expect(
+        isChooseAll(`보기에서 옳은 것을 모두 고르시오.\n${box}\n${joined}`),
+      ).toBe(true);
       // «바르게» 가 사이에 끼어도 같다.
       expect(
         isChooseAll(
