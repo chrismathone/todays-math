@@ -55,6 +55,19 @@ class Picture:
     bin_id: str
     width: int
     height: int
+    #: 문단의 글 안에서 이 그림이 놓인 자리(글자 수) — 보기 번호 뒤의 그림인지 가릴 때 쓴다. 모르면 -1
+    offset: int = -1
+    #: 잘라 보이기 — (왼, 위, 오른, 아래), 단위는 그림의 1/75 픽셀. 없으면 None
+    clip: tuple[int, int, int, int] | None = None
+    #: 글 뒤에 깔렸거나 쪽에 매인 그림 — 쪽 배경 · 장식이다(문항의 그림이 아니다)
+    behind: bool = False
+    #: 돌린 각(도) · 뒤집힘(가로, 세로)
+    rotation: int = 0
+    flip: tuple[bool, bool] = (False, False)
+    #: 묶음 개체(`hp:container`) 안의 그림 — 글상자 · 선과 함께 묶여 있어 그림 파일만으로는 다 안 그려진다
+    grouped: bool = False
+    #: 묶음 안의 그림이면 그 묶음의 번호(문서 안에서 1부터) — 도형 목록의 `("container", 가로, 세로, 번호)` 와 같은 번호다
+    group: int = 0
 
     @property
     def is_glyph(self) -> bool:
@@ -77,6 +90,15 @@ class Para:
     #: 문제은행은 본문에 표를 글로 적지 않는다(표는 그림으로 붙인다) — 자료 표가 든 문항은 글만으로는 못 싣는다.
     #: 칸의 글은 지금처럼 한 줄씩 그대로 낸다: 정답 칸의 «빠른 정답» 표도 같은 꼴이라, 여기서 뭉치면 그쪽이 깨진다.
     table_id: int = 0
+    #: 묶음 개체 안의 그림 — `pictures` 와 따로 둔다(번호 그림 · 정답 칸을 가리는 규칙은 `pictures` 만 본다)
+    group_pictures: list[Picture] = dataclasses.field(default_factory=list)
+    #: `shapes` 로 센 도형 하나하나 — (종류, 가로, 세로) HWPUNIT. 번호 딱지 같은 작은 묶음과 진짜 그림을 가릴 때 쓴다
+    shape_list: list[tuple[str, int, int]] = dataclasses.field(default_factory=list)
+    #: 이 글을 낸 문단(`hp:p`)의 번호 — 문단 하나가 글상자 · 표에서 끊겨 여러 `Para` 로 나와도 번호는 같다.
+    #: 떠 있는 개체의 닻은 문단이다: 같은 문단에서 나온 그림과 번호는 **한 문항의 것**이다(문서 차례로는 그림이 먼저 나와도).
+    host: int = 0
+    #: 이 문단이 글상자 · 표 안에 있으면 그 상자가 매인 문단의 번호, 아니면 0
+    parent: int = 0
 
 
 def _size(node) -> tuple[int, int]:
@@ -91,6 +113,62 @@ def _size(node) -> tuple[int, int]:
             if width and height:
                 return width, height
     return 0, 0
+
+
+def _picture(el, *, grouped: bool = False, group: int = 0) -> Picture:
+    """`hp:pic` 하나 — 보이는 크기 · 잘림 · 놓인 꼴."""
+    img = el.find(HC + "img")
+    width, height = _size(el)
+    clip = None
+    node = el.find(HP + "imgClip")
+    if node is not None:
+        try:
+            left, top, right, bottom = (int(node.get(key, "0")) for key in ("left", "top", "right", "bottom"))
+            if right > left and bottom > top:
+                clip = (left, top, right, bottom)
+        except ValueError:
+            clip = None
+    pos = el.find(HP + "pos")
+    behind = el.get("textWrap") == "BEHIND_TEXT" or (
+        pos is not None and pos.get("vertRelTo") == "PAPER" and pos.get("treatAsChar") == "0"
+    )
+    info = el.find(HP + "rotationInfo")
+    try:
+        rotation = int(info.get("angle", "0")) if info is not None else 0
+    except ValueError:
+        rotation = 0
+    flip = el.find(HP + "flip")
+    flips = (flip.get("horizontal") == "1", flip.get("vertical") == "1") if flip is not None else (False, False)
+    return Picture(
+        img.get("binaryItemIDRef", "") if img is not None else "",
+        width,
+        height,
+        clip=clip,
+        behind=behind,
+        rotation=rotation,
+        flip=flips,
+        grouped=grouped,
+        group=group,
+    )
+
+
+#: 문단의 글에 그림의 자리를 적어 두는 글자 — 글을 다듬은 뒤 자리(글자 수)로 바꾸고 걷는다
+_PIC_MARK = chr(2)
+
+
+def _mark_offsets(text: str) -> tuple[str, list[int]]:
+    """자리 글자가 든 글 → (자리 글자를 걷은 글, 자리들). 걷은 자리 양옆의 빈칸이 겹치면 하나로 줄인다."""
+    parts = text.split(_PIC_MARK)
+    out = parts[0]
+    offsets: list[int] = []
+    for part in parts[1:]:
+        if out.endswith(" ") and part.startswith(" "):
+            part = part[1:]
+        offsets.append(len(out))
+        out += part
+    lead = len(out) - len(out.lstrip(" "))
+    clean = out.strip()
+    return clean, [min(max(0, offset - lead), len(clean)) for offset in offsets]
 
 
 def _note_text(node) -> str:
@@ -137,18 +215,33 @@ def _table_kind(cells: list[list[list["Para"]]]) -> str:
 
 
 class _Walker:
-    def __init__(self, counter: list[int] | None = None) -> None:
+    def __init__(
+        self,
+        counter: list[int] | None = None,
+        ids: list[int] | None = None,
+        parent: int = 0,
+        elements: dict | None = None,
+        groups: dict | None = None,
+    ) -> None:
         self.paras: list[Para] = []
         #: 자료 표의 번호를 세는 자리 — 칸을 읽는 안쪽 워커와 같이 쓴다
         self.counter = counter if counter is not None else [0]
+        #: 문단의 번호(`Para.host`) · 묶음 개체의 번호(`Picture.group`)를 세는 자리 — 안쪽 워커와 같이 쓴다
+        self.ids = ids if ids is not None else [0, 0]
+        #: 지금 읽는 글상자 · 표가 매인 문단의 번호(`Para.parent`)
+        self.parent = parent
+        #: 자료 표의 번호 → 그 표의 XML 요소 — `data_tables` 가 표를 그림으로 그릴 때 쓴다(안쪽 워커와 같이 쓴다)
+        self.elements = elements
+        #: 묶음 개체의 번호(`Picture.group`) → 그 묶음의 XML 요소 — 라벨이 얹힌 그림을 묶음째 그릴 때 쓴다
+        self.groups = groups
 
-    def table(self, tbl, depth: int) -> None:
+    def table(self, tbl, depth: int, host: int = 0) -> None:
         cells: list[list[list[Para]]] = []
         # 바로 아래 줄만 — 칸 안에 든 안쪽 표의 줄은 그 칸을 읽는 워커가 읽는다
         for tr in tbl.findall(HP + "tr"):
             row: list[list[Para]] = []
             for tc in tr.findall(HP + "tc"):
-                inner = _Walker(self.counter)
+                inner = _Walker(self.counter, self.ids, host, self.elements, self.groups)
                 inner.walk(tc, depth + 1)
                 row.append(inner.paras)
             if row:
@@ -156,6 +249,8 @@ class _Walker:
         flat = [para for row in cells for cell in row for para in cell]
         if _table_kind(cells) == "data":
             self.counter[0] += 1
+            if self.elements is not None:
+                self.elements[self.counter[0]] = tbl
             for para in flat:
                 para.table_id = self.counter[0]
         self.paras.extend(flat)
@@ -172,9 +267,15 @@ class _Walker:
     def paragraph(self, p, depth: int) -> None:
         buf: list[str] = []
         pictures: list[Picture] = []
+        group_pics: list[Picture] = []
+        shape_list: list[tuple[str, int, int]] = []
+        #: 자리 글자를 넣은 차례대로의 그림(묶음 안팎 모두)
+        marked: list[Picture] = []
         notes: list[str] = []
         lead: Picture | None = None
         shapes = 0
+        self.ids[0] += 1
+        host = self.ids[0]
 
         def emit_text(value: str) -> None:
             buf.append(value)
@@ -186,10 +287,23 @@ class _Walker:
             text = re.sub(r"[ \t 　]+", " ", "".join(buf)).strip()
             # 보기 번호를 한 계열로 — `➀`(U+2780) · `⓵`(U+24F5) 계열을 `①` 로(YBM 은 한 문항 안에 섞어 썼다)
             text = text.translate(_CIRCLED_FOLD)
-            if text or pictures or notes or shapes:
-                self.paras.append(Para(text, list(pictures), lead, depth, list(notes), shapes))
+            # 그림의 자리 — 글에 적어 둔 자리 글자를 걷고 글자 수로 바꾼다(글은 전과 한 글자도 다르지 않다)
+            text, offsets = _mark_offsets(text)
+            for picture, offset in zip(marked, offsets):
+                picture.offset = offset
+            if text or pictures or notes or shapes or group_pics:
+                self.paras.append(
+                    Para(
+                        text, list(pictures), lead, depth, list(notes), shapes,
+                        group_pictures=list(group_pics), shape_list=list(shape_list),
+                        host=host, parent=self.parent,
+                    )
+                )
             buf.clear()
             pictures.clear()
+            group_pics.clear()
+            marked.clear()
+            shape_list.clear()
             notes.clear()
             lead = None
             shapes = 0
@@ -215,12 +329,12 @@ class _Walker:
                     if value:
                         emit_text(f"${value}$")
                 elif tag == HP + "pic":
-                    img = el.find(HC + "img")
-                    width, height = _size(el)
-                    picture = Picture(img.get("binaryItemIDRef", "") if img is not None else "", width, height)
+                    picture = _picture(el)
                     pictures.append(picture)
-                    if lead is None and not "".join(buf).strip():
+                    marked.append(picture)
+                    if lead is None and not "".join(buf).replace(_PIC_MARK, "").strip():
                         lead = picture
+                    buf.append(_PIC_MARK)
                 elif tag in (HP + "endNote", HP + "footNote"):
                     notes.append(_note_text(el))
                 elif tag == HP + "tbl" or tag in _BOXES:
@@ -230,6 +344,7 @@ class _Walker:
                         container(el)
                 elif tag in (HP + "line", HP + "arc", HP + "curve", HP + "connectLine"):
                     shapes += 1
+                    shape_list.append((tag.replace(HP, ""), *_size(el)))
                 else:
                     visit(el)
 
@@ -239,15 +354,29 @@ class _Walker:
             tag = el.tag
             if tag == HP + "tbl":
                 flush()
-                self.table(el, depth)
+                self.table(el, depth, host)
                 return
             # 글상자 · 묶음 안의 문단. 글이 없는 도형(삼각형 · 원 …)은 그린 그림으로 센다
-            if tag in (HP + "ellipse", HP + "polygon", HP + "container") or (
-                tag == HP + "rect" and el.find(HP + "drawText") is None
-            ):
+            if tag == HP + "container":
+                self.ids[1] += 1
+                if self.groups is not None:
+                    self.groups[self.ids[1]] = el
                 shapes += 1
+                shape_list.append(("container", *_size(el), self.ids[1]))
+            elif tag in (HP + "ellipse", HP + "polygon") or (tag == HP + "rect" and el.find(HP + "drawText") is None):
+                shapes += 1
+                shape_list.append((tag.replace(HP, ""), *_size(el)))
+            if tag == HP + "container":
+                # 묶음 안의 그림 — 글상자 · 선과 함께 묶인 그림이다. 여기까지의 글 끝에 놓인 것으로 적는다
+                for pic in el.iter(HP + "pic"):
+                    picture = _picture(pic, grouped=True, group=self.ids[1])
+                    group_pics.append(picture)
+                    marked.append(picture)
+                    buf.append(_PIC_MARK)
             flush()
+            outer, self.parent = self.parent, host
             self.walk(el, depth)
+            self.parent = outer
 
         below: list = []
         visit(p)
@@ -268,6 +397,26 @@ def read_paras(hwpx: Path) -> list[Para]:
         for name in sections:
             walker.walk(ET.fromstring(z.read(name)), 0)
     return walker.paras
+
+
+def data_tables(hwpx: Path) -> dict[int, ET.Element]:
+    """자료 표의 번호(`Para.table_id` — `read_paras` 와 같은 번호) → 그 표의 XML 요소."""
+    return drawable_objects(hwpx)[0]
+
+
+def drawable_objects(hwpx: Path) -> tuple[dict[int, ET.Element], dict[int, ET.Element]]:
+    """(자료 표의 번호 → 표 요소, 묶음 개체의 번호 → 묶음 요소) — 번호는 `read_paras` 와 같다."""
+    elements: dict[int, ET.Element] = {}
+    groups: dict[int, ET.Element] = {}
+    with zipfile.ZipFile(hwpx) as z:
+        sections = sorted(
+            (n for n in z.namelist() if re.match(r"Contents/section\d+\.xml$", n)),
+            key=lambda n: int(re.search(r"(\d+)", n).group(1)),
+        )
+        walker = _Walker(elements=elements, groups=groups)
+        for name in sections:
+            walker.walk(ET.fromstring(z.read(name)), 0)
+    return elements, groups
 
 
 def binary_items(hwpx: Path) -> dict[str, str]:

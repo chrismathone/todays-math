@@ -59,6 +59,19 @@ describe("tidyHwpNotation — 수식 안의 표기만 고친다", () => {
       r`$12\,centigrade$ · $a\,fahrenheit$`,
       r`$12\,{}^{\circ}\mathrm{C}$ · $a\,{}^{\circ}\mathrm{F}$`,
     ],
+    // 직선 · 반직선 · 호 — 곧은 글자를 이은 뒤에 본다
+    [
+      r`$dyad\mathrm{A}C$ · $\mathrm{DYADAB}\perp DYADCD$ · $\mathrm{dyadAC}⫽DYADEG$`,
+      r`$\overleftrightarrow{\mathrm{AC}}$ · $\overleftrightarrow{\mathrm{AB}}\perp \overleftrightarrow{CD}$ · $\overleftrightarrow{\mathrm{AC}}⫽\overleftrightarrow{EG}$`,
+    ],
+    [
+      r`$\mathrm{ARCH}AB:\,ARCHBC=2:\,3$`,
+      r`$\overset{\frown}{\mathrm{AB}}:\,\overset{\frown}{BC}=2:\,3$`,
+    ],
+    [
+      r`$\mathrm{\vec{A}}B$ · $\vec{B}A$ · $\vec{AB}$`,
+      r`$\overrightarrow{\mathrm{AB}}$ · $\overrightarrow{BA}$ · $\overrightarrow{AB}$`,
+    ],
     // 직선 AB
     [r`$dyad\mathrm{AB}$`, r`$\overleftrightarrow{\mathrm{AB}}$`],
     // 밑줄 — 바로 뒤의 항 하나
@@ -157,6 +170,7 @@ describe("tidyHwpNotation — 수식 안의 표기만 고친다", () => {
     r`$f^{\prime}(x)$ · $\boldsymbol{x}$ · $\underline{3}$ · $\cdots$ · $\times$ · $\div$`,
     r`$\overline{GE}$ · $\triangle DEF$ · $AB=BA$ · $A^{2}=AA$`,
     r`$f(m)=\frac{1}{2}$ · $f(m+n)=f(m)f(n)$ · $2kl$ · $km+kn$`,
+    r`$\vec{a}+\vec{b}$ · $\overline{AB}$ · $\overset{\frown}{DE}$`, // 벡터 · 이미 옳은 호
     r`$3\,\mathrm{cm}$ · $\mathrm{P}(A)$ · $\mathrm{AB}$ · $_{4}\mathrm{P}_{2}$`,
     r`$\begin{pmatrix} 1 & ~~-4 \\ 4 & ~~~~4 \end{pmatrix}$`,
     "값은 +-1 이다 · 5cm 를 bold 로 — 수식 밖은 건드리지 않는다",

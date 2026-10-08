@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """준비된 문항 → 검토 묶음 (교과서 이관 · 2026-10-07).
 
-  python build_batches.py <prepared.jsonl> <units.json> <출력 폴더> [--size 40] [--changed-from <앞 판 prepared.jsonl>]
+  python build_batches.py <prepared.jsonl> <units.json> <출력 폴더> [--size 40] [--changed-from <앞 판 prepared.jsonl>] [--figures <그림 폴더>] [--only <문항 번호 목록.json>]
 
 `--changed-from` 을 주면 **본문이나 정답이 앞 판과 달라진 문항만** 묶는다 — 수식 변환을 고쳐 본문이 바뀌면,
 앞 판의 검토는 그 문항에 대해 낡았다(고친 본문으로 다시 풀어야 한다). 풀이만 바뀐 문항은 다시 검토하지 않는다.
@@ -9,6 +9,12 @@
 과목마다 `units/<과목>.json`(차시 목록)과 `batch/<과목>-NNN.json`(문항 묶음)을 쓴다.
 묶음에는 **정답을 넣지 않는다** — 검토자가 직접 풀고, 그 답을 `collect.py` 가 출판사 정답과 대조한다.
 정답 · 풀이는 `key/<과목>-NNN.json` 에 따로 둔다(검토자에게 주지 않는 파일).
+
+`--figures` 를 주면 그림 문항의 묶음이다 — 문항마다 `figures`(그림 파일의 경로들)를 싣는다. 본문의 `[그림]` 자리에
+차례대로 놓이는 그림이고, 검토자가 Read 로 열어 본다(`figures.py --export` 가 낸 `meta.jsonl` · `img/`). 지시서는 `BRIEF-FIG.md`.
+그 그림들의 지문(sha)은 `key/` 에 `figureKeys` 로 둔다 — 적재기가 «검토자가 본 그림이 지금 싣는 그림인가»를 견준다.
+
+`--only` 를 주면 그 목록(JSON 배열)에 든 문항만 묶는다 — 추출을 고쳐 그림이 바뀐 문항만 다시 검토할 때.
 
 묶음은 **자료(파일) 차례**로 자른다 — 같은 자료의 문항이 한 묶음에 모여야 단원을 고르기 쉽다.
 다시 돌려도 같은 묶음이 나온다(차례는 문항의 열쇠로 정한다).
@@ -55,6 +61,16 @@ def main() -> None:
             if not row["bad"]
         }
         rows = [row for row in rows if before.get(row["id"]) != (row["content"], row["answer"])]
+    if "--only" in sys.argv:
+        only = set(json.loads(pathlib.Path(sys.argv[sys.argv.index("--only") + 1]).read_text(encoding="utf-8")))
+        rows = [row for row in rows if row["id"] in only]
+    figures: dict[str, list[str]] = {}
+    figure_keys: dict[str, list[str]] = {}
+    if "--figures" in sys.argv:
+        figure_dir = pathlib.Path(sys.argv[sys.argv.index("--figures") + 1])
+        for meta in map(json.loads, (figure_dir / "meta.jsonl").open(encoding="utf-8")):
+            figures[meta["id"]] = [str(figure_dir / "img" / pathlib.PurePosixPath(item["file"])) for item in meta["figures"]]
+            figure_keys[meta["id"]] = [item["sha"] for item in meta["figures"]]
     units = json.loads(units_path.read_text(encoding="utf-8"))
     for name in ("units", "batch", "key", "out"):
         (out / name).mkdir(parents=True, exist_ok=True)
@@ -77,12 +93,14 @@ def main() -> None:
             chunk = items[start : start + size]
             name = f"{grade}-{start // size + 1:03d}"
             batch = [
-                {"i": i, "from": source_hint(row), "lines": row["content"].split("\n"), "needSolution": bool(needs_solution(row))}
+                {"i": i, "from": source_hint(row), "lines": row["content"].split("\n"), "needSolution": bool(needs_solution(row)),
+                 **({"figures": figures[row["id"]]} if row["id"] in figures else {})}
                 for i, row in enumerate(chunk, 1)
             ]
             key = [
                 {"i": i, "id": row["id"], "answer": row["answer"], "answerFrom": row["answerFrom"], "solution": row.get("solution"),
-                 "solutionFigure": row.get("solutionFigure", False), "needSolution": bool(needs_solution(row))}
+                 "solutionFigure": row.get("solutionFigure", False), "needSolution": bool(needs_solution(row)),
+                 **({"figureKeys": figure_keys[row["id"]]} if row["id"] in figure_keys else {})}
                 for i, row in enumerate(chunk, 1)
             ]
             (out / "batch" / f"{name}.json").write_text(json.dumps(batch, ensure_ascii=False, indent=1), encoding="utf-8")

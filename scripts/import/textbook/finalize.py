@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """검토를 지난 문항의 글을 지면에 낼 꼴로 마무리한다 (교과서 이관 · 2026-10-07).
 
-  python finalize.py <작업 폴더> --prepared prepared2 --review review --review review2 …
+  python finalize.py <작업 폴더> --prepared prepared2 --review review --review review2 … [--out final]
 
 `prepare.py` 뒤에 손보고 싶은 것이 생겨도 **`prepare.py` 를 다시 돌리지 않는다** — 검토자가 본 본문이 바뀌면 그 검토가
 낡는다(적재기가 «검토 뒤에 본문이 바뀌었다»로 뺀다). 뜻을 안 바꾸는 손질은 여기서, 검토가 끝난 글에 한다:
@@ -83,9 +83,11 @@ def main() -> None:
                 batches[review["batch"]] = json.loads((root / folder / "batch" / f"{review['batch']}.json").read_text(encoding="utf-8"))
             winner[review["id"]] = (review, batches[review["batch"]][review["i"] - 1]["lines"])
 
-    (root / "final").mkdir(exist_ok=True)
+    # 묶음마다 다른 폴더에 낸다(글 문항 `final` · 그림 문항 `final-fig`) — 적재기의 묶음 설정이 그 폴더를 가리킨다
+    out_dir = root / (option("--out") or ["final"])[0]
+    out_dir.mkdir(exist_ok=True)
     counts = {"rows": 0, "contentJoined": 0, "solutionChanged": 0, "mathTidied": 0}
-    with (root / "final" / "final.jsonl").open("w", encoding="utf-8") as out:
+    with (out_dir / "final.jsonl").open("w", encoding="utf-8") as out:
         for rid, (review, lines) in winner.items():
             source = prepared.get(rid)
             if source is None:

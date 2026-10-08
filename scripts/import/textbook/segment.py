@@ -57,6 +57,19 @@ _NOISE = re.compile(
 
 
 @dataclasses.dataclass
+class Fig:
+    """문항에 딸린 그림 하나와 그 자리."""
+
+    picture: Picture
+    #: 이 그림이 든 줄(`lines` 의 번호). 줄 밖에 홀로 선 그림이면 그 **앞 줄**의 번호(맨 앞이면 -1)
+    line: int
+    #: 줄 안의 자리(글자 수) — 홀로 선 그림은 -1
+    offset: int
+    #: 자료 표의 칸 안에 든 그림이면 그 표의 번호 — 표를 그린 그림에 들어 있으므로 따로 자리를 두지 않는다
+    in_table: int = 0
+
+
+@dataclasses.dataclass
 class Problem:
     #: 파일 안의 묶음 차례(0부터) — 번호가 다시 1로 돌아가면 하나 는다
     section: int
@@ -70,11 +83,18 @@ class Problem:
     #: `lines` 와 같은 길이 — 그 줄이 **자료 표**의 칸이면 그 표의 번호, 아니면 0.
     #: 문제은행은 표를 글로 싣지 않는다(그림으로 붙인다) — 표가 든 문항은 글만으로는 못 싣는다.
     line_tables: list[int] = dataclasses.field(default_factory=list)
+    #: 그림과 그 자리(묶음 개체 안의 그림도) — 그림 문항을 실을 때 «보기 번호 뒤의 그림»인지 가린다.
+    #: `pictures` 는 예전 그대로다(글만으로 된 문항을 가리는 규칙이 그것을 본다).
+    figs: list[Fig] = dataclasses.field(default_factory=list)
+    #: 도형 하나하나의 (종류, 가로, 세로) — `shapes` 와 같은 것을 센다
+    shape_list: list[tuple[str, int, int]] = dataclasses.field(default_factory=list)
 
     def add_line(self, text: str, table_id: int = 0, *, head: bool = False) -> None:
         if head:
             self.lines.insert(0, text)
             self.line_tables.insert(0, table_id)
+            for fig in self.figs:
+                fig.line += 1
         else:
             self.lines.append(text)
             self.line_tables.append(table_id)
@@ -82,6 +102,78 @@ class Problem:
     def drop_last_line(self) -> None:
         self.lines.pop()
         self.line_tables.pop()
+        for fig in self.figs:
+            if fig.line >= len(self.lines):
+                fig.line, fig.offset = len(self.lines) - 1, -1
+
+    def attach(self, para: Para, line_text: str | None, *, skip: Picture | None = None) -> None:
+        """이 문단의 그림을 단다 — `line_text` 는 이 문단에서 방금 넣은 줄(안 넣었으면 None).
+
+        번호 대신 쓴 작은 그림(`is_glyph`)은 그림이 아니다. 줄이 문단 글의 뒷부분이면(번호를 뗀 것) 자리를 그만큼 당긴다.
+        """
+        last = len(self.lines) - 1
+        for picture in (*para.pictures, *para.group_pictures):
+            if picture is skip or picture.is_glyph:
+                continue
+            if line_text and picture.offset >= 0:
+                if para.text.endswith(line_text):
+                    offset = max(0, picture.offset - (len(para.text) - len(line_text)))
+                else:
+                    offset = len(line_text)
+                self.figs.append(Fig(picture, last, offset, para.table_id))
+            else:
+                self.figs.append(Fig(picture, last, -1, para.table_id))
+
+    def take_objects(self, para: Para) -> None:
+        """번호가 있는 첫 문단의 그림 · 도형을 센다 — 전에는 이 문단의 것을 버려, 첫 문단에 그림이 든 문항이
+        «그림 없는 문항»으로 읽혔다(2026-10-08 그림 문항을 하면서 찾았다)."""
+        self.pictures.extend(p for p in para.pictures if not p.is_glyph)
+        self.shapes += para.shapes
+        self.shape_list.extend(para.shape_list)
+
+    def release(self, para: Para) -> None:
+        """이 문단에서 받은 그림 · 도형을 도로 내놓는다 — 닻이 다음 번호의 문단에 있었다(`segment` 의 `adopt`)."""
+        gone = {id(picture) for picture in (*para.pictures, *para.group_pictures)}
+        self.figs = [fig for fig in self.figs if id(fig.picture) not in gone]
+        self.pictures = [picture for picture in self.pictures if id(picture) not in gone]
+        self.shapes -= para.shapes
+        for shape in para.shape_list:
+            if shape in self.shape_list:
+                self.shape_list.remove(shape)
+
+    @property
+    def marked_text(self) -> str:
+        """본문에 그림의 자리를 `[[FIG:k]]`(k 는 `figs` 의 번호)로 적은 글 — 그림 문항을 싣는 쪽이 쓴다.
+
+        자료 표는 칸의 글 대신 표 하나의 자리 `[[TBL:번호]]` 로 적는다(표는 그림으로 그려 붙인다 — `render_objects.py`).
+        표 칸 안의 그림은 그 표의 그림에 들어 있으므로 자리를 따로 두지 않는다."""
+        by_line: dict[int, list[tuple[int, int]]] = {}
+        drawn = set(self.line_tables) - {0}
+        for k, fig in enumerate(self.figs):
+            # 이 문항에 칸 글이 든 표의 그림만 — 칸 글이 하나도 안 든 표(잡음만 든 머리 상자)는 표 자리가 안 선다
+            if fig.in_table in drawn:
+                continue
+            by_line.setdefault(fig.line, []).append((fig.offset, k))
+        out = [f"[[FIG:{k}]]" for _offset, k in by_line.get(-1, [])]
+        previous_table = 0
+        for index, line in enumerate(self.lines):
+            items = by_line.get(index, [])
+            table = self.line_tables[index] if index < len(self.line_tables) else 0
+            if table:
+                if table != previous_table:
+                    out.append(f"[[TBL:{table}]]")
+                previous_table = table
+                out.extend(f"[[FIG:{k}]]" for offset, k in items if offset < 0)
+                continue
+            previous_table = 0
+            text = line
+            for offset, k in sorted((item for item in items if item[0] >= 0), reverse=True):
+                text = f"{text[:offset]} [[FIG:{k}]] {text[offset:]}"
+            text = re.sub(r" {2,}", " ", text).strip()
+            if text:
+                out.append(text)
+            out.extend(f"[[FIG:{k}]]" for offset, k in items if offset < 0)
+        return chr(10).join(out).strip()
 
     @property
     def tables(self) -> int:
@@ -108,6 +200,8 @@ class Segmented:
     answer_is_picture: bool
     #: 정답 칸의 원문(보고서에 쓴다)
     answer_text: str
+    #: 정답 칸이 그림뿐일 때 그 그림들(문서 차례) — 구독 모델이 읽어 정답으로 쓴다(`answer_pictures.py`)
+    answer_pictures: list = dataclasses.field(default_factory=list)
 
 
 #: 기호 글꼴이 쓰는 사용자 영역 글자(화살표 · 손가락 그림 따위) — 군더더기를 알아볼 때만 걷는다
@@ -266,8 +360,46 @@ def segment(paras: list[Para]) -> Segmented:
                 break
         return False
 
+    #: 지금 문항이 시작된 문단의 번호(`paras` 의 자리) — 그 앞의 것은 이미 주인이 정해졌다
+    started_at = -1
+
+    def adopt(index: int, problem: Problem, previous: Problem | None) -> None:
+        """번호와 **같은 문단에 닻을 둔** 그림 · 도형을 이 문항으로 옮긴다.
+
+        떠 있는 개체의 닻은 문단의 맨 앞에 놓이기 쉽다. 번호가 글상자에 든 책은 그 그림이 번호 상자보다 먼저 흘러나오고
+        (문단이 상자에서 끊긴다), 묶음 개체는 만나는 자리에서 끊어 내므로 번호가 문단의 글에 있어도 먼저 나온다.
+        문서 차례대로만 달면 그 그림이 **앞 문항**에 붙는다 — 그림이 한 문항씩 밀리고 첫 문항의 그림은 사라진다.
+
+        옮기는 것은 번호 바로 앞에 이어진, 글 없는 개체 문단뿐이다: 이 번호와 같은 문단에서 나왔거나(`host`), 이 번호가 든
+        글상자 · 표가 매인 문단에서 나온 것(`parent`). 제 문단에 홀로 선 그림은 앞 문항의 것 그대로다.
+        """
+        para = paras[index]
+        homes = {para.host, para.parent} - {0}
+        moved: list[Para] = []
+        for j in range(index - 1, started_at, -1):
+            before = paras[j]
+            if para.host and before.parent == para.host:
+                continue  # 이 문단의 글상자 안 글(묶음 안의 라벨) — 건너뛴다
+            if before.host in homes and not before.text:
+                if before.pictures or before.group_pictures or before.shapes:
+                    moved.append(before)
+                continue
+            break
+        if not moved:
+            return
+        ahead = Problem(problem.section, problem.number, [], [])
+        for before in reversed(moved):  # 문서 차례로
+            if previous is not None:
+                previous.release(before)
+            ahead.attach(before, None)
+            ahead.take_objects(before)
+        problem.figs[:0] = ahead.figs
+        problem.pictures[:0] = ahead.pictures
+        problem.shapes += ahead.shapes
+        problem.shape_list[:0] = ahead.shape_list
+
     #: 여러 문항이 같이 쓰는 지시문 «[04~05] 다음 전개도로 만든 원기둥의 겉넓이를 구하시오.» — (묶음, 처음, 끝, 글)
-    groups: list[tuple[int, int, int, str]] = []
+    groups: list[tuple[int, int, int, str, Para]] = []
 
     #: 첫 문항 앞의 글(단원 · 자료 이름) — 정답 칸의 머리에 같은 글이 되풀이된다
     head_texts: set[str] = set()
@@ -288,7 +420,7 @@ def segment(paras: list[Para]) -> Segmented:
                 section = problems[-1].section if problems else 0
                 if problems and first == 1:
                     section += 1  # 새 묶음의 첫 지시문
-                groups.append((section, first, last, stem))
+                groups.append((section, first, last, stem, para))
             continue
         marker = lead_number(text)
         if marker is None:
@@ -315,6 +447,8 @@ def segment(paras: list[Para]) -> Segmented:
                 current = Problem(section, number, [], [])
                 if rest:
                     current.add_line(rest)
+                current.attach(para, rest or None)
+                current.take_objects(para)
                 problems.append(current)
                 glyph_mode, started = False, True
                 if number < 10 and padded is None:
@@ -327,6 +461,8 @@ def segment(paras: list[Para]) -> Segmented:
                     current = Problem(problems[-1].section + 1, 1, [], [])
                     if rest:
                         current.add_line(rest)
+                    current.attach(para, rest or None)
+                    current.take_objects(para)
                     problems.append(current)
                     started = True
                 else:
@@ -344,6 +480,8 @@ def segment(paras: list[Para]) -> Segmented:
                 current = Problem(problems[-1].section, number, [], [])
                 if rest:
                     current.add_line(rest)
+                current.attach(para, rest or None)
+                current.take_objects(para)
                 problems.append(current)
                 started = True
         if not started and glyph_mode is not False and para.lead_picture is not None and para.lead_picture.is_glyph:
@@ -354,20 +492,33 @@ def segment(paras: list[Para]) -> Segmented:
                 current = Problem(0, number, [], pictures, glyph_number=True)
                 if text:
                     current.add_line(text)
+                current.attach(para, text or None, skip=para.lead_picture)
+                current.shapes += para.shapes
+                current.shape_list.extend(para.shape_list)
                 problems.append(current)
                 glyph_mode, started = True, True
+        if started:
+            adopt(index, current, problems[-2] if len(problems) >= 2 else None)
+            started_at = index
         if started or current is None:
             continue
-        if text and not is_noise(text):
+        added = bool(text) and not is_noise(text)
+        if added:
             current.add_line(text, para.table_id)
+        current.attach(para, text if added else None)
         current.pictures.extend(p for p in para.pictures if not p.is_glyph)
         current.shapes += para.shapes
+        current.shape_list.extend(para.shape_list)
 
     # 같이 쓰는 지시문을 범위 안 문항의 머리에(그 묶음 안에서 — 지시문이 나온 뒤의 문항만)
-    for section, first, last, stem in groups:
+    for section, first, last, stem, stem_para in groups:
         for problem in problems:
             if problem.section == section and first <= problem.number <= last and stem not in problem.lines[:1]:
                 problem.add_line(stem, head=True)
+                # 지시문에 딸린 그림(«[04~05] 다음 전개도 …» + 그림)은 그 범위의 문항이 같이 쓴다
+                shared = Problem(section, problem.number, [stem], [])
+                shared.attach(stem_para, stem)
+                problem.figs[:0] = shared.figs
 
     # 마지막 문항의 끝에 붙은 머리글 — 정답 칸이 «단원 이름»으로 시작하는데 그 줄에는 «정답» 이라는 말이 없어
     # 정답 칸의 시작을 그 다음 줄에서야 안다. 첫 문항 앞에 나왔던 글이 그대로 되풀이된 것만 걷는다.
@@ -383,14 +534,17 @@ def segment(paras: list[Para]) -> Segmented:
     solutions: dict[tuple[int, int], str] = {}
     answer_text = ""
     answer_is_picture = False
+    answer_pictures: list = []
     if answer_start is not None:
         tail = paras[answer_start:]
         answer_text = "\n".join(p.text for p in tail if p.text)
         has_text = any(p.text and not is_answer_head(p.text) for p in tail)
         answer_is_picture = not has_text and any(not pic.is_glyph for p in tail for pic in p.pictures)
+        if answer_is_picture:
+            answer_pictures = [pic for p in tail for pic in (*p.pictures, *p.group_pictures) if not pic.is_glyph]
         runs = _answer_runs(tail, padded)
         _assign(runs, problems, keys, solutions)
-    return Segmented(problems, keys, solutions, answer_start is not None, answer_is_picture, answer_text)
+    return Segmented(problems, keys, solutions, answer_start is not None, answer_is_picture, answer_text, answer_pictures)
 
 
 def merge_answer_file(doc: Segmented, answer_paras: list[Para], padded: bool | None = None) -> int:

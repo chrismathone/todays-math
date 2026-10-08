@@ -76,3 +76,6 @@ def test_the_key_of_a_text_is_the_same_value_the_loader_computes():
     assert check_key("다음을 계산하시오.", "$3$", "$1+2=3$이다.\n따라서 답은 $3$이다.") == "fa5c672c3ea86ef3"
     # 빈칸 · 줄바꿈은 지문에 넣지 않는다
     assert check_key("두 점 사이의 거리는 $12$이다. ① $1$ ② $" + frac + "$", " ② ", "") == "03d5c45174dfe3f6"
+    # 그림이 딸린 문항 — 그림의 지문이 들어가면 다른 값이고, 없으면 전과 같다
+    assert check_key("다음을 계산하시오.", "$3$", None, []) == check_key("다음을 계산하시오.", "$3$", None)
+    assert check_key("오른쪽 그림에서 [그림]", "$3$", None, ["aaaa", "bbbb"]) == "33dc7ff9a0995456"

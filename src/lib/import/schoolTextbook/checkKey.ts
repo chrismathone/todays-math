@@ -13,15 +13,20 @@ import { createHash } from "node:crypto";
 /** 지문에서 빼는 것 — 반각 빈칸 · 탭 · 줄바꿈뿐이다(두 언어의 `\s` 는 범위가 다르다) */
 const squeeze = (text: string): string => text.replace(/[ \t\r\n]+/g, "");
 
+/**
+ * `figures` — 그 문항에 딸린 그림 파일들의 지문(차례대로). 그림이 바뀌면 다른 문항이다.
+ * 그림이 없는 문항의 지문은 이 칸이 생기기 전과 **같은 값**이다(실린 글 문항의 판정이 낡지 않는다).
+ */
 export function checkKeyOf(
   content: string,
   answer: string,
   candidateSolution: string | null,
+  figures: readonly string[] = [],
 ): string {
+  const parts = [content, answer, candidateSolution ?? ""].map(squeeze);
+  if (figures.length > 0) parts.push(figures.join(","));
   return createHash("sha1")
-    .update(
-      [content, answer, candidateSolution ?? ""].map(squeeze).join("\n::\n"),
-    )
+    .update(parts.join("\n::\n"))
     .digest("hex")
     .slice(0, 16);
 }

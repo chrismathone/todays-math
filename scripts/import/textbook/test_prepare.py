@@ -8,7 +8,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
 
-from prepare import balance_braces, brace_over, brace_roots, brace_scripts, close_set_brace, eligible, post_convert, pre_convert, roman_escapes  # noqa: E402
+from prepare import balance_braces, brace_over, brace_roots, brace_scripts, close_set_brace, converts_answer, eligible, points_to_figure, post_convert, pre_convert, roman_escapes  # noqa: E402
 
 
 def test_a_script_runs_until_the_space_as_the_hancom_editor_reads_it():
@@ -130,12 +130,74 @@ def test_only_self_contained_text_problems_with_an_answer_are_taken():
         ({"tables": 1}, "자료 표"),
         ({"pictures": [["image1", 9000, 9000]]}, "그림"),
         ({"shapes": 2}, "한글 도형"),
-        ({"figureMention": True}, "그림을 가리키는 말"),
+        ({"content": "오른쪽 그림에서 $x$의 값은?"}, "그림을 가리키는 말"),
         ({"embeddedNumber": 3}, "붙은 문항"),
         ({"answer": None}, "답이 없다"),
         ({"answerFrom": "rejected-mismatch"}, "답이 없다"),
+        ({"answerFrom": "picture-unread"}, "답이 없다"),
         ({"answer": "풀이 참조"}, "답이 «풀이 참조»"),
         ({"kind": "textbook"}, "평가 자료가 아니다"),
         ({"content": "가" * 1300}, "본문이 너무 길다"),
     ):
         assert eligible({**ROW, **change}) == reason
+
+
+def test_only_words_that_point_at_a_drawing_hold_a_problem_back():
+    """«그래프» · «도형» · «좌표평면» 이라는 낱말만으로는 미루지 않는다 — 그림 없이 풀리는 글이 대부분이다(771 가운데 630).
+    «여기 그려진 것»을 가리키는 말만 미룬다. 글만으로 못 푸는 나머지는 검토자가 가른다(`review/BRIEF.md` 1번)."""
+    for text in (
+        "이차함수 $y=x^2+ax-5$의 그래프와 $x$축이 만나는 두 점의 $x$좌표가 $1$, $b$일 때",
+        "곡선 $y=x^2-6x+8$과 $x$축으로 둘러싸인 도형의 넓이를 구하시오.",
+        "좌표평면 위의 점 $(a, 2a)$를 $x$축의 방향으로 $b$만큼 평행이동한 점",
+        "다음 중 일차함수 $y=2x-3$의 그래프에 대한 설명으로 옳지 않은 것은?",
+        "다음 일차함수의 그래프 중 $x$절편이 나머지 넷과 다른 하나는?",
+        "다음 입체도형 중 면의 개수가 나머지 넷과 다른 하나는?",
+        "다음 도형의 넓이를 구하시오.",
+        "다음 표를 완성하시오.",
+    ):
+        assert not points_to_figure(text), text
+    for text in (
+        "오른쪽 그림에서 $x$의 값은?",
+        "오른쪽 그림과 같은 전개도로 만들어지는 입체도형",
+        "다음 그래프는 어느 도시의 기온을 나타낸 것이다.",
+        "일차함수 $y=ax+b$의 그래프가 다음과 같을 때",
+        "오른쪽 표는 어느 반 학생들의 키를 조사한 것이다.",
+        "다음 표는 어느 반 학생들의 키를 조사한 것이다.",
+        "아래 수직선 위의 점 $A$가 나타내는 수",
+        "다음 수직선 위의 네 점 $A$, $B$, $C$, $D$의 좌표",
+        "다음 좌표평면 위에 세 점 $A$, $B$, $C$를 나타내시오.",
+        "다음은 어느 반 학생들의 통학 시간을 나타낸 히스토그램이다.",
+        "다음 줄기와 잎 그림에서",
+        "오른쪽 도형의 둘레의 길이",
+    ):
+        assert points_to_figure(text), text
+
+
+def test_decoration_only_pictures_do_not_hold_a_problem_back():
+    """그림이 장식뿐이라고 갈린 문항(`figures.py` 의 text 갈래)은 글 문항이다 — 그래도 본문이 그림을 가리키면 미룬다."""
+    row = {**ROW, "pictures": [["image1", 9000, 9000]], "shapes": 1}
+    assert eligible(row) == "그림"
+    assert eligible(row, decor=True) is None
+    assert eligible({**row, "content": "오른쪽 그림에서 $x$의 값은?"}, decor=True) == "그림을 가리키는 말"
+
+
+def test_an_answer_read_from_the_answer_picture_is_taken_like_any_other_key():
+    """정답 칸이 그림인 자료 — 구독 모델이 읽은 답(`picture`)도 다른 출처처럼 검토로 간다(검토가 정답을 안 보고 풀어 대조한다)."""
+    assert eligible({**ROW, "answerFrom": "picture"}) is None
+
+
+def test_an_upright_bar_is_written_with_the_bar_outside_and_a_leftover_italic_is_dropped():
+    """`rm {bar{PF prime}}` 은 `\\mathrm{\\overline{PF'}}` 로 나온다 — 그려지기는 하지만 기출 판정기가 «\\mathrm 이 삼킨 바»로 막는다
+    (2026-10-08 렌더 실패 85 가운데 60). 뜻이 같은 `\\overline{\\mathrm{PF'}}` 로 쓴다. 남은 `\\mathit{x}` 는 기울임이 기본이라 `x` 다."""
+    assert post_convert(r"$\mathrm{\overline{PF'}}<\overline{PF}$") == r"$\overline{\mathrm{PF'}}<\overline{PF}$"
+    assert post_convert(r"$\mathrm{\overline{A'B'}}=3$") == r"$\overline{\mathrm{A'B'}}=3$"
+    assert post_convert(r"$\mathit{x}+\mathit{}1$") == r"$x+1$"
+    # 수식 밖은 건드리지 않는다
+    assert post_convert(r"\mathit{x}") == r"\mathit{x}"
+
+
+def test_an_answer_read_from_a_picture_is_already_latex_and_is_not_converted_again():
+    """🔴 정답 그림에서 읽은 답은 이미 LaTeX 다 — 한글 수식 변환을 한 번 더 걸면 `\frac{5}{18}` 이 `\mathrm{frac}518` 로 깨진다
+    (2026-10-08 — 정답 그림 자료 816문항 가운데 326이 «답이 다르다»로 나와 찾았다)."""
+    assert converts_answer({**ROW, "answerFrom": "key"}) is True
+    assert converts_answer({**ROW, "answerFrom": "picture"}) is False

@@ -38,6 +38,19 @@ describe("checkKeyOf", () => {
     ).toBe("03d5c45174dfe3f6");
   });
 
+  it("그림이 딸린 문항은 그림의 지문도 넣는다 — 그림이 없으면 전과 같은 값이다", () => {
+    expect(checkKeyOf("다음을 계산하시오.", "$3$", null, [])).toBe(
+      checkKeyOf("다음을 계산하시오.", "$3$", null),
+    );
+    // 파이썬 쪽과 같은 값
+    expect(
+      checkKeyOf("오른쪽 그림에서 [그림]", "$3$", null, ["aaaa", "bbbb"]),
+    ).toBe("33dc7ff9a0995456");
+    expect(
+      checkKeyOf("오른쪽 그림에서 [그림]", "$3$", null, ["aaaa", "cccc"]),
+    ).not.toBe("33dc7ff9a0995456");
+  });
+
   it("글자가 바뀌면 다른 글이다", () => {
     const base = checkKeyOf("$x=1$일 때", "$2$", "풀이");
     expect(checkKeyOf("$x=2$일 때", "$2$", "풀이")).not.toBe(base);
