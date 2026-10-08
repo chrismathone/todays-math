@@ -1,0 +1,231 @@
+{
+  "questionNumber": 6,
+  "studentDigest": "0bf55c36df942a46769045279a42f7c97e4b00c173dd7e50f458b26268343bc5",
+  "inputContentSha256": "8191c829689524ff6f5cc46bb2d0326bfe26e2625cb8bac81e49151bf42c2859",
+  "exactRequestedValues": [
+    "1607/2500",
+    "383/500"
+  ],
+  "freshCalculations": {
+    "OA": 1,
+    "OP": 1,
+    "ADRecorded": "0.8391",
+    "selectedAngleDegrees": 40,
+    "table": [
+      {
+        "angle": 36,
+        "sin": "0.5878",
+        "cos": "0.8090",
+        "tan": "0.7265"
+      },
+      {
+        "angle": 40,
+        "sin": "0.6428",
+        "cos": "0.7660",
+        "tan": "0.8391"
+      },
+      {
+        "angle": 50,
+        "sin": "0.7660",
+        "cos": "0.6428",
+        "tan": "1.1918"
+      },
+      {
+        "angle": 54,
+        "sin": "0.8090",
+        "cos": "0.5878",
+        "tan": "1.3764"
+      }
+    ],
+    "PHRecorded": "0.6428",
+    "OHRecorded": "0.7660",
+    "limit": "Rounded table lengths need not satisfy an exact squared-sum identity; use exact trig for incidence and table values for requested records."
+  },
+  "conditionChecks": [
+    {
+      "condition": "all table entries at 36 degrees rounded correctly",
+      "passed": true,
+      "calculation": {
+        "given": [
+          "0.5878",
+          "0.8090",
+          "0.7265"
+        ],
+        "computedTo4Decimals": [
+          "0.5878",
+          "0.8090",
+          "0.7265"
+        ]
+      }
+    },
+    {
+      "condition": "all table entries at 40 degrees rounded correctly",
+      "passed": true,
+      "calculation": {
+        "given": [
+          "0.6428",
+          "0.7660",
+          "0.8391"
+        ],
+        "computedTo4Decimals": [
+          "0.6428",
+          "0.7660",
+          "0.8391"
+        ]
+      }
+    },
+    {
+      "condition": "all table entries at 50 degrees rounded correctly",
+      "passed": true,
+      "calculation": {
+        "given": [
+          "0.7660",
+          "0.6428",
+          "1.1918"
+        ],
+        "computedTo4Decimals": [
+          "0.7660",
+          "0.6428",
+          "1.1918"
+        ]
+      }
+    },
+    {
+      "condition": "all table entries at 54 degrees rounded correctly",
+      "passed": true,
+      "calculation": {
+        "given": [
+          "0.8090",
+          "0.5878",
+          "1.3764"
+        ],
+        "computedTo4Decimals": [
+          "0.8090",
+          "0.5878",
+          "1.3764"
+        ]
+      }
+    },
+    {
+      "condition": "positive lengths and acute selected table row",
+      "passed": true,
+      "calculation": [
+        "1607/2500",
+        "383/500"
+      ]
+    }
+  ],
+  "coordinateWitness": null,
+  "codeSha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50",
+  "calculationIsCurriculumPermission": false,
+  "authorOrOriginalAnswerUsed": false,
+  "choiceCheck": {
+    "allChoices": [
+      {
+        "index1based": 1,
+        "studentChoice": "$0.7660$, $0.6428$",
+        "parsedValues": [
+          "383/500",
+          "1607/2500"
+        ],
+        "matchesEachRequestedPart": [
+          false,
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "twoUnitRadiusProjectionsRange": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "77/625",
+          "-77/625"
+        ]
+      },
+      {
+        "index1based": 2,
+        "studentChoice": "$0.5878$, $0.8090$",
+        "parsedValues": [
+          "2939/5000",
+          "809/1000"
+        ],
+        "matchesEachRequestedPart": [
+          false,
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "twoUnitRadiusProjectionsRange": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "-11/200",
+          "43/1000"
+        ]
+      },
+      {
+        "index1based": 3,
+        "studentChoice": "$0.6428$, $0.8391$",
+        "parsedValues": [
+          "1607/2500",
+          "8391/10000"
+        ],
+        "matchesEachRequestedPart": [
+          true,
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "twoUnitRadiusProjectionsRange": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "0",
+          "731/10000"
+        ]
+      },
+      {
+        "index1based": 4,
+        "studentChoice": "$0.8090$, $0.5878$",
+        "parsedValues": [
+          "809/1000",
+          "2939/5000"
+        ],
+        "matchesEachRequestedPart": [
+          false,
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "twoUnitRadiusProjectionsRange": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "831/5000",
+          "-891/5000"
+        ]
+      },
+      {
+        "index1based": 5,
+        "studentChoice": "$0.6428$, $0.7660$",
+        "parsedValues": [
+          "1607/2500",
+          "383/500"
+        ],
+        "matchesEachRequestedPart": [
+          true,
+          true
+        ],
+        "matches": true,
+        "domainAndGivenConditionChecks": {
+          "twoUnitRadiusProjectionsRange": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "0",
+          "0"
+        ]
+      }
+    ],
+    "matchingIndices1based": [
+      5
+    ],
+    "exactlyOneChoice": true,
+    "basis": "Parsed actual copied student choices; no author/original key"
+  }
+}

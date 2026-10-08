@@ -1,0 +1,344 @@
+{
+  "schema": "independent-blind-solve.v1",
+  "questionNumber": 3,
+  "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q03",
+  "studentDigest": "411df1ff3c4ed5806b377b8798b025167153f1a785d77fc60e02abf45087702e",
+  "solverId": "orca-codex-exam-twin-source-identity-20261008",
+  "status": "solved",
+  "answer": "③: t=3/5, 따라서 1/2<t<2/3",
+  "answerParts": {
+    "t": "3/5",
+    "해당 구간": "1/2<t<2/3"
+  },
+  "solution": "PQ²=4²+3²=25이므로 PQ=5이다. P에서 tan P=QR/PR=3/4, Q에서 sin Q=PR/PQ=4/5이다. 주어진 식에 각각 대입하면 t=(3/4)×(4/5)=3/5이다. 3/5−1/2=1/10>0이고 2/3−3/5=1/15>0이므로 1/2<t<2/3이다. 다섯 열린 구간을 모두 확인하면 ③만 해당한다.",
+  "evidence": {
+    "method": "independent-student-input-solve-before-author-answer-exposure",
+    "studentMethod": "주어진 실제 두 변, 피타고라스, 각기 다른 각의 비를 정의로 계산, 분수 비교",
+    "conditionAndDomainNotes": "두 직각변3,4 양수. t는 모든 구간 끝점과 다르다. tanP×sinQ를 삼각비 관계 공식으로 치환하지 않는다.",
+    "exactValuesFromCode": [
+      "3/5"
+    ],
+    "code": {
+      "path": "solve_math.py",
+      "sha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50"
+    },
+    "proof": {
+      "path": "blind/proofs/q03.json",
+      "sha256": "b96ad759ef668b867ff3460bc934013637d8808b9364f913943a8d5c3a6a98b3"
+    },
+    "studentSolutionSource": {
+      "path": "student_solutions.json",
+      "wholeFileSha256": "adbcd31c366b68051b20e460727edc017c8160cd0d80fb6ff6c4b079d88c947d",
+      "questionRecordSha256": "a826cfb1d674ea1cc92e55de327a5051870e60e64a53163a7e4198cb55abe0f7"
+    },
+    "wholeStudentInputSha256": "6e137d65894e6506710e6c980136cfd26a25d4fec141785f4ed521f8eb89e1ca",
+    "contentSha256Utf8": "b8b535c271e83b75458ac91e5b8632ccd2147af87caf270137872fbea33afb0b",
+    "studentObjectCanonicalSha256": "bbd69846ce77162ddf018d3538a2ce676733051e0fbd9c1b2ba4642e8ca51401",
+    "canonicalHashLimit": "This diagnostic canonical hash is not a claim about Root studentDigest algorithm; supplied studentDigest is retained unchanged.",
+    "choiceCheck": {
+      "allChoices": [
+        {
+          "index1based": 1,
+          "studentChoice": "$0<t<\\frac14$",
+          "interval": [
+            "0",
+            "1/4"
+          ],
+          "containsValue": false,
+          "strictEndpointsChecked": true
+        },
+        {
+          "index1based": 2,
+          "studentChoice": "$\\frac14<t<\\frac12$",
+          "interval": [
+            "1/4",
+            "1/2"
+          ],
+          "containsValue": false,
+          "strictEndpointsChecked": true
+        },
+        {
+          "index1based": 3,
+          "studentChoice": "$\\frac12<t<\\frac23$",
+          "interval": [
+            "1/2",
+            "2/3"
+          ],
+          "containsValue": true,
+          "strictEndpointsChecked": true
+        },
+        {
+          "index1based": 4,
+          "studentChoice": "$\\frac23<t<\\frac34$",
+          "interval": [
+            "2/3",
+            "3/4"
+          ],
+          "containsValue": false,
+          "strictEndpointsChecked": true
+        },
+        {
+          "index1based": 5,
+          "studentChoice": "$\\frac34<t<1$",
+          "interval": [
+            "3/4",
+            "1"
+          ],
+          "containsValue": false,
+          "strictEndpointsChecked": true
+        }
+      ],
+      "matchingIndices1based": [
+        3
+      ],
+      "exactlyOneChoice": true,
+      "basis": "Parsed actual copied student choices; no author/original key"
+    },
+    "existenceUniquenessPositivity": {
+      "actualCodeChecks": [
+        {
+          "condition": "strict range, exact cross-multiplication",
+          "passed": true,
+          "calculation": {
+            "2*t-1": "1/5",
+            "2-3*t": "1/5"
+          }
+        }
+      ],
+      "supplementalExactCoordinateWitness": null,
+      "uniqueRequestedAnswer": true,
+      "wholeConfigurationMustBeUnique": false,
+      "limit": "q17 radii and q22 triangle placements can vary while requested answers are unique. No pixel lengths or model probability determine uniqueness."
+    },
+    "figures": [
+      {
+        "svgPath": "figures/q03-1.svg",
+        "sha256": "a25d811ce63ff6ad83e6b8906e9a1247be9a350bf830259d3372f7422a9f9f76",
+        "intendedWidthMm": 70
+      }
+    ],
+    "directFigureInspections": [
+      {
+        "questionNumber": 3,
+        "svg": "figures/q03-1.svg",
+        "svgSha256": "a25d811ce63ff6ad83e6b8906e9a1247be9a350bf830259d3372f7422a9f9f76",
+        "intendedWidthMm": 70,
+        "renderedPdfWidthMm": 70.00000161064996,
+        "renderedHeightMm": 55.2666797784415,
+        "viewBox": [
+          0.0,
+          0.0,
+          218.633,
+          172.616
+        ],
+        "png": "blind/rendered/q03-1-300dpi.png",
+        "pngSha256": "12f7aba0e6f6b1583997dcf5eab6fdf85593dd5ebcfa01a8c58360ff04d4ab4c",
+        "pdf": "blind/rendered/q03-1-300dpi.pdf",
+        "pdfSha256": "d51c7a7765e64c11b89ef28533a88d9c1cbf20ed58a0e56dd235e804c2652266",
+        "svgTextLabels": [],
+        "mathematicalOracle": false,
+        "renderer": "Existing PyMuPDF SVG->vector PDF at physical width->300dpi PNG; Cairo runtime absent; no installs",
+        "visualInspection": "direct view_image completed on 2026-10-08",
+        "observation": "P right, Q upper left, R lower left; right angle atR, labels clear; do not measure3/4 from pixels.",
+        "labelsReadableAtSpecifiedPhysicalWidth": true,
+        "pixelMeasurementsUsedToSolve": false,
+        "physicalPrintProductionApproval": false
+      }
+    ],
+    "sevenStudentSurfaces": [
+      {
+        "surface": "stem",
+        "observation": "두 직각변3,4 양수. t는 모든 구간 끝점과 다르다. tanP×sinQ를 삼각비 관계 공식으로 치환하지 않는다.",
+        "inGradeForUsedStudentMethod": true,
+        "limit": "New student stem only; original-twin faithfulness and provenance are not reviewed."
+      },
+      {
+        "surface": "choices",
+        "observation": "All actual student choices parsed and every requested component/strict interval compared.",
+        "detailedCodeResult": {
+          "allChoices": [
+            {
+              "index1based": 1,
+              "studentChoice": "$0<t<\\frac14$",
+              "interval": [
+                "0",
+                "1/4"
+              ],
+              "containsValue": false,
+              "strictEndpointsChecked": true
+            },
+            {
+              "index1based": 2,
+              "studentChoice": "$\\frac14<t<\\frac12$",
+              "interval": [
+                "1/4",
+                "1/2"
+              ],
+              "containsValue": false,
+              "strictEndpointsChecked": true
+            },
+            {
+              "index1based": 3,
+              "studentChoice": "$\\frac12<t<\\frac23$",
+              "interval": [
+                "1/2",
+                "2/3"
+              ],
+              "containsValue": true,
+              "strictEndpointsChecked": true
+            },
+            {
+              "index1based": 4,
+              "studentChoice": "$\\frac23<t<\\frac34$",
+              "interval": [
+                "2/3",
+                "3/4"
+              ],
+              "containsValue": false,
+              "strictEndpointsChecked": true
+            },
+            {
+              "index1based": 5,
+              "studentChoice": "$\\frac34<t<1$",
+              "interval": [
+                "3/4",
+                "1"
+              ],
+              "containsValue": false,
+              "strictEndpointsChecked": true
+            }
+          ],
+          "matchingIndices1based": [
+            3
+          ],
+          "exactlyOneChoice": true,
+          "basis": "Parsed actual copied student choices; no author/original key"
+        },
+        "inGradeForUsedStudentMethod": true
+      },
+      {
+        "surface": "figure_and_graph_semantics",
+        "observation": [
+          "P right, Q upper left, R lower left; right angle atR, labels clear; do not measure3/4 from pixels."
+        ],
+        "specifiedPhysicalWidthsViewed": [
+          70
+        ],
+        "inGradeForUsedStudentMethod": true,
+        "pixelOracle": false,
+        "limit": "Standalone SVG physical rendering only; no claim about a complete final paper/student UI layout."
+      },
+      {
+        "surface": "notation",
+        "observation": "열린 부등호와 분수 끝점의 엄격한 부등식을 직접 검산. 단위 없는 비의 곱이다.",
+        "inGradeForUsedStudentMethod": true,
+        "trigScope": "Only acute-angle trig definitions and30/45/60 values used; arbitrary-angle formula, ratio identity, vector or calculus notation is not necessary."
+      },
+      {
+        "surface": "answer_format",
+        "observation": "③: t=3/5, 따라서 1/2<t<2/3",
+        "partsWithUnits": {
+          "t": "3/5",
+          "해당 구간": "1/2<t<2/3"
+        },
+        "inGradeForUsedStudentMethod": true,
+        "limit": "Own raw exact answer; Root may normalize formatting only after binding hashes."
+      },
+      {
+        "surface": "student_solution",
+        "observation": "PQ²=4²+3²=25이므로 PQ=5이다. P에서 tan P=QR/PR=3/4, Q에서 sin Q=PR/PQ=4/5이다. 주어진 식에 각각 대입하면 t=(3/4)×(4/5)=3/5이다. 3/5−1/2=1/10>0이고 2/3−3/5=1/15>0이므로 1/2<t<2/3이다. 다섯 열린 구간을 모두 확인하면 ③만 해당한다.",
+        "inGradeForUsedStudentMethod": true,
+        "basis": "Full fresh elementary student proof written before authored-solution exposure; calculation alone does not grant curricular permission."
+      },
+      {
+        "surface": "necessary_procedure",
+        "observation": "주어진 실제 두 변, 피타고라스, 각기 다른 각의 비를 정의로 계산, 분수 비교",
+        "conditions": "두 직각변3,4 양수. t는 모든 구간 끝점과 다르다. tanP×sinQ를 삼각비 관계 공식으로 치환하지 않는다.",
+        "primaryStandardReferences": [
+          {
+            "id": "9수04-16",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4333,
+              "paragraph1based": 889,
+              "offset": 218866,
+              "text": "[9수04-16]피타고라스 정리를 이해하고 설명할 수 있다."
+            },
+            "pdfPhysicalPage1based": 38,
+            "pdfPrintedPage": 34,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수04-17",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4341,
+              "paragraph1based": 891,
+              "offset": 219120,
+              "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다."
+            },
+            "pdfPhysicalPage1based": 38,
+            "pdfPrintedPage": 34,
+            "wholeClausePdfMatch": true
+          }
+        ],
+        "inGradeForUsedStudentMethod": true,
+        "forbiddenStudentPrerequisiteUsed": false
+      }
+    ],
+    "curriculumMethod": {
+      "reference": "actual2025middle3 ->2015",
+      "legitimateStudentMethodFound": true,
+      "standards": [
+        {
+          "id": "9수04-16",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4333,
+            "paragraph1based": 889,
+            "offset": 218866,
+            "text": "[9수04-16]피타고라스 정리를 이해하고 설명할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-17",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4341,
+            "paragraph1based": 891,
+            "offset": 219120,
+            "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        }
+      ],
+      "restrictionsFile": "curriculum-method-evidence.json",
+      "restrictionsFileSha256": "20a90e8060b73d09eb8749f8b6636e0d960e3148c53111d8bc4db8da4c95af2d",
+      "approvalForRightsFamilyNativeOrLoading": false,
+      "fullCurrentFuturePublicationApproval": false
+    },
+    "annotationsAndSourceFamiliarityDisclosure": "Prior original exam source familiarity is possible and earlier Bumil scan annotations were incidentally seen. No Gyeonggu original/source/keys were reopened; these new candidate answers, authored solutions and other solver results were not read. Work proceeds solely from copied new student inputs.",
+    "newAuthorCandidateAnswersKnownBeforeThisSolve": false,
+    "originalKeyAgreementUsed": false,
+    "otherSolverRead": false,
+    "inferenceApiCalls": 0,
+    "limits": [
+      "Independent blind solve and bounded legitimate-method observations only. Exact Unit/live family, rights/native provenance, author-solution comparison and overall loading are outside this stage."
+    ]
+  },
+  "heldReasons": [],
+  "rejectedStudentMethods": [
+    "No arbitrary trig ratio identities or addition/half-angle formulas.",
+    "No upper-grade extrema/calculus, law of sines/cosines, vectors or circle power.",
+    "q09 uses congruence and Pythagoras instead of an unverified angle-bisector length theorem."
+  ]
+}

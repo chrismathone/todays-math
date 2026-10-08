@@ -1,0 +1,565 @@
+{
+  "schema": "independent-blind-solve.v1",
+  "questionNumber": 19,
+  "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q19",
+  "studentDigest": "5091e73711bc83b3582e682f1cd10c2f6156985759fcdc7cc2203e5bc4ca7b3a",
+  "solverId": "orca-codex-exam-twin-source-identity-20261008",
+  "status": "solved",
+  "answer": "③: DE=15/4 cm",
+  "answerParts": {
+    "DE": "15/4 cm"
+  },
+  "solution": "정사각형의 한 변은20/4=5 cm이다. AB는 B에서 반원에 접하고 AE는 F에서 접하므로 A에서의 접선분 AF=AB=5 cm이다. E에서의 접선분 EF=EC이다. DE=x cm라 하면 EC=5−x cm이고 F가AE 내부이므로 AE=AF+FE=5+(5−x)=10−x cm이다. D에서 직각인 삼각형 ADE에서 (10−x)²=AD²+DE²=25+x²이다. 전개하여100−20x=25, x=15/4이다. 이는0<x<5를 만족한다. 따라서 DE=15/4 cm, ③이다.",
+  "evidence": {
+    "method": "independent-student-input-solve-before-author-answer-exposure",
+    "studentMethod": "접선분 길이의 합, 정사각형/직각삼각형 피타고라스, 일차방정식",
+    "conditionAndDomainNotes": "E 내부조건0<x<5, EF=EC5/4>0, AF5>0, AE25/4>AF이므로 F 내부. x=5와25/4 선택지는 내부조건도 위반.",
+    "exactValuesFromCode": [
+      "15/4"
+    ],
+    "code": {
+      "path": "solve_math.py",
+      "sha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50"
+    },
+    "proof": {
+      "path": "blind/proofs/q19.json",
+      "sha256": "c21d893a104fec4f275237e0d2f2efadc95622dc276dfe7b974d7d6636c5b353"
+    },
+    "studentSolutionSource": {
+      "path": "student_solutions.json",
+      "wholeFileSha256": "adbcd31c366b68051b20e460727edc017c8160cd0d80fb6ff6c4b079d88c947d",
+      "questionRecordSha256": "ccd1b52d5c227aef36ddb76b884ac1370d8ae26253f6368a363bbf01ea64562a"
+    },
+    "wholeStudentInputSha256": "6e137d65894e6506710e6c980136cfd26a25d4fec141785f4ed521f8eb89e1ca",
+    "contentSha256Utf8": "87d440c028e63eb918187bccb082badc08667ea33ab1565e073b8518f9047a30",
+    "studentObjectCanonicalSha256": "3b3699714ad2d12d19802bbb644bfff9d966a04483d3ed6d506bf4c11cb88ef4",
+    "canonicalHashLimit": "This diagnostic canonical hash is not a claim about Root studentDigest algorithm; supplied studentDigest is retained unchanged.",
+    "choiceCheck": {
+      "allChoices": [
+        {
+          "index1based": 1,
+          "studentChoice": "$\\frac54\\,\\mathrm{cm}$",
+          "parsedValues": [
+            "5/4"
+          ],
+          "matchesEachRequestedPart": [
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "EInternalCD": true,
+            "tangentAndSquareEquation": false
+          },
+          "differencesFromIndependentRequestedValues": [
+            "-5/2"
+          ]
+        },
+        {
+          "index1based": 2,
+          "studentChoice": "$\\frac52\\,\\mathrm{cm}$",
+          "parsedValues": [
+            "5/2"
+          ],
+          "matchesEachRequestedPart": [
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "EInternalCD": true,
+            "tangentAndSquareEquation": false
+          },
+          "differencesFromIndependentRequestedValues": [
+            "-5/4"
+          ]
+        },
+        {
+          "index1based": 3,
+          "studentChoice": "$\\frac{15}{4}\\,\\mathrm{cm}$",
+          "parsedValues": [
+            "15/4"
+          ],
+          "matchesEachRequestedPart": [
+            true
+          ],
+          "matches": true,
+          "domainAndGivenConditionChecks": {
+            "EInternalCD": true,
+            "tangentAndSquareEquation": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "0"
+          ]
+        },
+        {
+          "index1based": 4,
+          "studentChoice": "$5\\,\\mathrm{cm}$",
+          "parsedValues": [
+            "5"
+          ],
+          "matchesEachRequestedPart": [
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "EInternalCD": false,
+            "tangentAndSquareEquation": false
+          },
+          "differencesFromIndependentRequestedValues": [
+            "5/4"
+          ]
+        },
+        {
+          "index1based": 5,
+          "studentChoice": "$\\frac{25}{4}\\,\\mathrm{cm}$",
+          "parsedValues": [
+            "25/4"
+          ],
+          "matchesEachRequestedPart": [
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "EInternalCD": false,
+            "tangentAndSquareEquation": false
+          },
+          "differencesFromIndependentRequestedValues": [
+            "5/2"
+          ]
+        }
+      ],
+      "matchingIndices1based": [
+        3
+      ],
+      "exactlyOneChoice": true,
+      "basis": "Parsed actual copied student choices; no author/original key"
+    },
+    "existenceUniquenessPositivity": {
+      "actualCodeChecks": [
+        {
+          "condition": "unique E and internal F with positive tangent segments",
+          "passed": true,
+          "calculation": {
+            "DE": "15/4",
+            "EF": "5/4"
+          }
+        }
+      ],
+      "supplementalExactCoordinateWitness": {
+        "points": {
+          "A": [
+            0,
+            5
+          ],
+          "B": [
+            0,
+            0
+          ],
+          "C": [
+            5,
+            0
+          ],
+          "D": [
+            5,
+            5
+          ],
+          "E": [
+            5,
+            "5/4"
+          ],
+          "O": [
+            "5/2",
+            0
+          ],
+          "F": [
+            4,
+            2
+          ]
+        },
+        "relations": [
+          {
+            "relation": "perpendicular",
+            "points": [
+              "O",
+              "F",
+              "A",
+              "E"
+            ],
+            "calculated": "0",
+            "required": 0,
+            "passed": true
+          },
+          {
+            "relation": "lengthSquared",
+            "points": [
+              "O",
+              "F"
+            ],
+            "calculated": "25/4",
+            "required": "25/4",
+            "passed": true
+          },
+          {
+            "relation": "lengthSquared",
+            "points": [
+              "A",
+              "F"
+            ],
+            "calculated": "25",
+            "required": 25,
+            "passed": true
+          },
+          {
+            "relation": "lengthSquared",
+            "points": [
+              "E",
+              "F"
+            ],
+            "calculated": "25/16",
+            "required": "25/16",
+            "passed": true
+          },
+          {
+            "relation": "collinear",
+            "points": [
+              "A",
+              "F",
+              "E"
+            ],
+            "calculated": "0",
+            "required": 0,
+            "passed": true
+          }
+        ],
+        "method": "Independent exact coordinate witness; supplemental validation only"
+      },
+      "uniqueRequestedAnswer": true,
+      "wholeConfigurationMustBeUnique": false,
+      "limit": "q17 radii and q22 triangle placements can vary while requested answers are unique. No pixel lengths or model probability determine uniqueness."
+    },
+    "figures": [
+      {
+        "svgPath": "figures/q19-1.svg",
+        "sha256": "0792bf34fd9213c6d946f3789a5b8baca8ddf8a30f01bee84e2b3f4e64ec8767",
+        "intendedWidthMm": 70
+      }
+    ],
+    "directFigureInspections": [
+      {
+        "questionNumber": 19,
+        "svg": "figures/q19-1.svg",
+        "svgSha256": "0792bf34fd9213c6d946f3789a5b8baca8ddf8a30f01bee84e2b3f4e64ec8767",
+        "intendedWidthMm": 70,
+        "renderedPdfWidthMm": 70.00000161064996,
+        "renderedHeightMm": 66.29871485474268,
+        "viewBox": [
+          0.0,
+          0.0,
+          239.506,
+          226.842
+        ],
+        "png": "blind/rendered/q19-1-300dpi.png",
+        "pngSha256": "b9705239aefa251c36bb8d031f8c1cf4437c25c03d2803c741bb44c10addb579",
+        "pdf": "blind/rendered/q19-1-300dpi.pdf",
+        "pdfSha256": "450c8db8042e3763fd950cfb356a9b2444928fdfcfaa507692b379eae33d3114",
+        "svgTextLabels": [],
+        "mathematicalOracle": false,
+        "renderer": "Existing PyMuPDF SVG->vector PDF at physical width->300dpi PNG; Cairo runtime absent; no installs",
+        "visualInspection": "direct view_image completed on 2026-10-08",
+        "observation": "Square with inner semicircle onBC; AE tangent atF, E onCD; radiusOF right mark present. All labels legible; F internalAE consistent with stem.",
+        "labelsReadableAtSpecifiedPhysicalWidth": true,
+        "pixelMeasurementsUsedToSolve": false,
+        "physicalPrintProductionApproval": false
+      }
+    ],
+    "sevenStudentSurfaces": [
+      {
+        "surface": "stem",
+        "observation": "E 내부조건0<x<5, EF=EC5/4>0, AF5>0, AE25/4>AF이므로 F 내부. x=5와25/4 선택지는 내부조건도 위반.",
+        "inGradeForUsedStudentMethod": true,
+        "limit": "New student stem only; original-twin faithfulness and provenance are not reviewed."
+      },
+      {
+        "surface": "choices",
+        "observation": "All actual student choices parsed and every requested component/strict interval compared.",
+        "detailedCodeResult": {
+          "allChoices": [
+            {
+              "index1based": 1,
+              "studentChoice": "$\\frac54\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "5/4"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "EInternalCD": true,
+                "tangentAndSquareEquation": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "-5/2"
+              ]
+            },
+            {
+              "index1based": 2,
+              "studentChoice": "$\\frac52\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "5/2"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "EInternalCD": true,
+                "tangentAndSquareEquation": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "-5/4"
+              ]
+            },
+            {
+              "index1based": 3,
+              "studentChoice": "$\\frac{15}{4}\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "15/4"
+              ],
+              "matchesEachRequestedPart": [
+                true
+              ],
+              "matches": true,
+              "domainAndGivenConditionChecks": {
+                "EInternalCD": true,
+                "tangentAndSquareEquation": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "0"
+              ]
+            },
+            {
+              "index1based": 4,
+              "studentChoice": "$5\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "5"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "EInternalCD": false,
+                "tangentAndSquareEquation": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "5/4"
+              ]
+            },
+            {
+              "index1based": 5,
+              "studentChoice": "$\\frac{25}{4}\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "25/4"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "EInternalCD": false,
+                "tangentAndSquareEquation": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "5/2"
+              ]
+            }
+          ],
+          "matchingIndices1based": [
+            3
+          ],
+          "exactlyOneChoice": true,
+          "basis": "Parsed actual copied student choices; no author/original key"
+        },
+        "inGradeForUsedStudentMethod": true
+      },
+      {
+        "surface": "figure_and_graph_semantics",
+        "observation": [
+          "Square with inner semicircle onBC; AE tangent atF, E onCD; radiusOF right mark present. All labels legible; F internalAE consistent with stem."
+        ],
+        "specifiedPhysicalWidthsViewed": [
+          70
+        ],
+        "inGradeForUsedStudentMethod": true,
+        "pixelOracle": false,
+        "limit": "Standalone SVG physical rendering only; no claim about a complete final paper/student UI layout."
+      },
+      {
+        "surface": "notation",
+        "observation": "요청은DE, 전체CD나EC가 아니다. tangent-secant/power 항등식을 사용하지 않는다.",
+        "inGradeForUsedStudentMethod": true,
+        "trigScope": "Only acute-angle trig definitions and30/45/60 values used; arbitrary-angle formula, ratio identity, vector or calculus notation is not necessary."
+      },
+      {
+        "surface": "answer_format",
+        "observation": "③: DE=15/4 cm",
+        "partsWithUnits": {
+          "DE": "15/4 cm"
+        },
+        "inGradeForUsedStudentMethod": true,
+        "limit": "Own raw exact answer; Root may normalize formatting only after binding hashes."
+      },
+      {
+        "surface": "student_solution",
+        "observation": "정사각형의 한 변은20/4=5 cm이다. AB는 B에서 반원에 접하고 AE는 F에서 접하므로 A에서의 접선분 AF=AB=5 cm이다. E에서의 접선분 EF=EC이다. DE=x cm라 하면 EC=5−x cm이고 F가AE 내부이므로 AE=AF+FE=5+(5−x)=10−x cm이다. D에서 직각인 삼각형 ADE에서 (10−x)²=AD²+DE²=25+x²이다. 전개하여100−20x=25, x=15/4이다. 이는0<x<5를 만족한다. 따라서 DE=15/4 cm, ③이다.",
+        "inGradeForUsedStudentMethod": true,
+        "basis": "Full fresh elementary student proof written before authored-solution exposure; calculation alone does not grant curricular permission."
+      },
+      {
+        "surface": "necessary_procedure",
+        "observation": "접선분 길이의 합, 정사각형/직각삼각형 피타고라스, 일차방정식",
+        "conditions": "E 내부조건0<x<5, EF=EC5/4>0, AF5>0, AE25/4>AF이므로 F 내부. x=5와25/4 선택지는 내부조건도 위반.",
+        "primaryStandardReferences": [
+          {
+            "id": "9수04-19",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4353,
+              "paragraph1based": 894,
+              "offset": 219558,
+              "text": "[9수04-19]원의 현에 관한 성질과 접선에 관한 성질을 이해한다."
+            },
+            "pdfPhysicalPage1based": 38,
+            "pdfPrintedPage": 34,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수04-12",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4308,
+              "paragraph1based": 883,
+              "offset": 217962,
+              "text": "[9수04-12]사각형의 성질을 이해하고 설명할 수 있다."
+            },
+            "pdfPhysicalPage1based": 38,
+            "pdfPrintedPage": 34,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수04-16",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4333,
+              "paragraph1based": 889,
+              "offset": 218866,
+              "text": "[9수04-16]피타고라스 정리를 이해하고 설명할 수 있다."
+            },
+            "pdfPhysicalPage1based": 38,
+            "pdfPrintedPage": 34,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수02-05",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 3916,
+              "paragraph1based": 797,
+              "offset": 199888,
+              "text": "[9수02-05]일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다."
+            },
+            "pdfPhysicalPage1based": 34,
+            "pdfPrintedPage": 30,
+            "wholeClausePdfMatch": true
+          }
+        ],
+        "inGradeForUsedStudentMethod": true,
+        "forbiddenStudentPrerequisiteUsed": false
+      }
+    ],
+    "curriculumMethod": {
+      "reference": "actual2025middle3 ->2015",
+      "legitimateStudentMethodFound": true,
+      "standards": [
+        {
+          "id": "9수04-19",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4353,
+            "paragraph1based": 894,
+            "offset": 219558,
+            "text": "[9수04-19]원의 현에 관한 성질과 접선에 관한 성질을 이해한다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-12",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4308,
+            "paragraph1based": 883,
+            "offset": 217962,
+            "text": "[9수04-12]사각형의 성질을 이해하고 설명할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-16",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4333,
+            "paragraph1based": 889,
+            "offset": 218866,
+            "text": "[9수04-16]피타고라스 정리를 이해하고 설명할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수02-05",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 3916,
+            "paragraph1based": 797,
+            "offset": 199888,
+            "text": "[9수02-05]일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다."
+          },
+          "pdfPhysicalPage1based": 34,
+          "pdfPrintedPage": 30,
+          "wholeClausePdfMatch": true
+        }
+      ],
+      "restrictionsFile": "curriculum-method-evidence.json",
+      "restrictionsFileSha256": "20a90e8060b73d09eb8749f8b6636e0d960e3148c53111d8bc4db8da4c95af2d",
+      "approvalForRightsFamilyNativeOrLoading": false,
+      "fullCurrentFuturePublicationApproval": false
+    },
+    "annotationsAndSourceFamiliarityDisclosure": "Prior original exam source familiarity is possible and earlier Bumil scan annotations were incidentally seen. No Gyeonggu original/source/keys were reopened; these new candidate answers, authored solutions and other solver results were not read. Work proceeds solely from copied new student inputs.",
+    "newAuthorCandidateAnswersKnownBeforeThisSolve": false,
+    "originalKeyAgreementUsed": false,
+    "otherSolverRead": false,
+    "inferenceApiCalls": 0,
+    "limits": [
+      "Independent blind solve and bounded legitimate-method observations only. Exact Unit/live family, rights/native provenance, author-solution comparison and overall loading are outside this stage."
+    ]
+  },
+  "heldReasons": [],
+  "rejectedStudentMethods": [
+    "No arbitrary trig ratio identities or addition/half-angle formulas.",
+    "No upper-grade extrema/calculus, law of sines/cosines, vectors or circle power.",
+    "q09 uses congruence and Pythagoras instead of an unverified angle-bisector length theorem."
+  ]
+}

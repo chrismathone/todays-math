@@ -1,0 +1,231 @@
+{
+  "questionNumber": 10,
+  "studentDigest": "c957094979a869ba5a4b4158d96e9517c67e45823153ad704130771bde179af7",
+  "inputContentSha256": "2e91d40bc3a86055653d1e9663d194819df35eb94a335026282418880d649308",
+  "exactRequestedValues": [
+    "15",
+    "sqrt(2)/4 + sqrt(6)/4"
+  ],
+  "freshCalculations": {
+    "AB": "2*sqrt(3)",
+    "BE": "2*sqrt(3)",
+    "AE": "2*sqrt(6)",
+    "EF": "2*sqrt(2)",
+    "AF": "4*sqrt(2)",
+    "EC": "2",
+    "CF": "2",
+    "AD": "2 + 2*sqrt(3)",
+    "DF": "-2 + 2*sqrt(3)",
+    "angleDAF": "90-45-30=15",
+    "cosDAF": "sqrt(2)/4 + sqrt(6)/4",
+    "studentRoute": "AEF30/60 right triangle and ECF45/45 right triangle; projection AD/AF; no addition or half-angle formula"
+  },
+  "conditionChecks": [
+    {
+      "condition": "all actual lengths positive and F internal",
+      "passed": true,
+      "calculation": {
+        "CF": "2",
+        "CD": "2*sqrt(3)"
+      }
+    },
+    {
+      "condition": "AEF and ADF Pythagoras",
+      "passed": true,
+      "calculation": {
+        "AFSquared": "32"
+      }
+    }
+  ],
+  "coordinateWitness": {
+    "points": {
+      "A": [
+        0,
+        "2*sqrt(3)"
+      ],
+      "B": [
+        0,
+        0
+      ],
+      "C": [
+        "2 + 2*sqrt(3)",
+        0
+      ],
+      "D": [
+        "2 + 2*sqrt(3)",
+        "2*sqrt(3)"
+      ],
+      "E": [
+        "2*sqrt(3)",
+        0
+      ],
+      "F": [
+        "2 + 2*sqrt(3)",
+        "2"
+      ]
+    },
+    "relations": [
+      {
+        "relation": "perpendicular",
+        "points": [
+          "A",
+          "E",
+          "E",
+          "F"
+        ],
+        "calculated": "0",
+        "required": 0,
+        "passed": true
+      },
+      {
+        "relation": "collinear",
+        "points": [
+          "C",
+          "F",
+          "D"
+        ],
+        "calculated": "0",
+        "required": 0,
+        "passed": true
+      },
+      {
+        "relation": "lengthSquared",
+        "points": [
+          "A",
+          "F"
+        ],
+        "calculated": "32",
+        "required": 32,
+        "passed": true
+      },
+      {
+        "relation": "lengthSquared",
+        "points": [
+          "E",
+          "F"
+        ],
+        "calculated": "8",
+        "required": 8,
+        "passed": true
+      }
+    ],
+    "method": "Independent exact coordinate witness; supplemental validation only"
+  },
+  "codeSha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50",
+  "calculationIsCurriculumPermission": false,
+  "authorOrOriginalAnswerUsed": false,
+  "choiceCheck": {
+    "allChoices": [
+      {
+        "index1based": 1,
+        "studentChoice": "$15^\\circ$, $\\frac{\\sqrt6-\\sqrt2}{4}$",
+        "parsedValues": [
+          "15",
+          "-sqrt(2)/4 + sqrt(6)/4"
+        ],
+        "matchesEachRequestedPart": [
+          true,
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "givenAngleSum90": true,
+          "acuteCosineRange": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "0",
+          "-sqrt(2)/2"
+        ]
+      },
+      {
+        "index1based": 2,
+        "studentChoice": "$30^\\circ$, $\\frac{\\sqrt3}{2}$",
+        "parsedValues": [
+          "30",
+          "sqrt(3)/2"
+        ],
+        "matchesEachRequestedPart": [
+          false,
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "givenAngleSum90": false,
+          "acuteCosineRange": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "15",
+          "-sqrt(6)/4 - sqrt(2)/4 + sqrt(3)/2"
+        ]
+      },
+      {
+        "index1based": 3,
+        "studentChoice": "$15^\\circ$, $\\frac{\\sqrt6+\\sqrt2}{4}$",
+        "parsedValues": [
+          "15",
+          "sqrt(2)/4 + sqrt(6)/4"
+        ],
+        "matchesEachRequestedPart": [
+          true,
+          true
+        ],
+        "matches": true,
+        "domainAndGivenConditionChecks": {
+          "givenAngleSum90": true,
+          "acuteCosineRange": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "0",
+          "0"
+        ]
+      },
+      {
+        "index1based": 4,
+        "studentChoice": "$45^\\circ$, $\\frac{\\sqrt2}{2}$",
+        "parsedValues": [
+          "45",
+          "sqrt(2)/2"
+        ],
+        "matchesEachRequestedPart": [
+          false,
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "givenAngleSum90": false,
+          "acuteCosineRange": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "30",
+          "-sqrt(6)/4 + sqrt(2)/4"
+        ]
+      },
+      {
+        "index1based": 5,
+        "studentChoice": "$15^\\circ$, $\\frac{\\sqrt3+1}{2}$",
+        "parsedValues": [
+          "15",
+          "1/2 + sqrt(3)/2"
+        ],
+        "matchesEachRequestedPart": [
+          true,
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "givenAngleSum90": true,
+          "acuteCosineRange": false
+        },
+        "differencesFromIndependentRequestedValues": [
+          "0",
+          "-sqrt(6)/4 - sqrt(2)/4 + 1/2 + sqrt(3)/2"
+        ]
+      }
+    ],
+    "matchingIndices1based": [
+      3
+    ],
+    "exactlyOneChoice": true,
+    "basis": "Parsed actual copied student choices; no author/original key"
+  }
+}

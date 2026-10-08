@@ -1,0 +1,155 @@
+{
+  "questionNumber": 2,
+  "studentDigest": "43fa3d9dd26eb2ded45e2716442f7563142908dc61c27aa5c15682d1e8d4d645",
+  "inputContentSha256": "3fb2b6ab6035d8db44477ea5c4da14c2e9ae0eb1dd4b481c52a650b686bc4adb",
+  "exactRequestedValues": [
+    "6*sqrt(2)",
+    "8*sqrt(2)"
+  ],
+  "freshCalculations": {
+    "AB": "10*sqrt(2)",
+    "sinA": "3/5",
+    "BC": "6*sqrt(2)",
+    "CA": "8*sqrt(2)"
+  },
+  "conditionChecks": [
+    {
+      "condition": "definition and Pythagoras",
+      "passed": true,
+      "calculation": {
+        "sidesSquared": "200"
+      }
+    },
+    {
+      "condition": "positive acute-angle triangle",
+      "passed": true,
+      "calculation": [
+        "6*sqrt(2)",
+        "8*sqrt(2)"
+      ]
+    }
+  ],
+  "coordinateWitness": null,
+  "codeSha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50",
+  "calculationIsCurriculumPermission": false,
+  "authorOrOriginalAnswerUsed": false,
+  "choiceCheck": {
+    "allChoices": [
+      {
+        "index1based": 1,
+        "studentChoice": "$8\\sqrt{2}$, $6\\sqrt{2}$",
+        "parsedValues": [
+          "8*sqrt(2)",
+          "6*sqrt(2)"
+        ],
+        "matchesEachRequestedPart": [
+          false,
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "positiveLegs": true,
+          "hypotenuseSquared200": true,
+          "sineBC_AB_3over5": false
+        },
+        "differencesFromIndependentRequestedValues": [
+          "2*sqrt(2)",
+          "-2*sqrt(2)"
+        ]
+      },
+      {
+        "index1based": 2,
+        "studentChoice": "$6\\sqrt{2}$, $8\\sqrt{2}$",
+        "parsedValues": [
+          "6*sqrt(2)",
+          "8*sqrt(2)"
+        ],
+        "matchesEachRequestedPart": [
+          true,
+          true
+        ],
+        "matches": true,
+        "domainAndGivenConditionChecks": {
+          "positiveLegs": true,
+          "hypotenuseSquared200": true,
+          "sineBC_AB_3over5": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "0",
+          "0"
+        ]
+      },
+      {
+        "index1based": 3,
+        "studentChoice": "$6$, $8$",
+        "parsedValues": [
+          "6",
+          "8"
+        ],
+        "matchesEachRequestedPart": [
+          false,
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "positiveLegs": true,
+          "hypotenuseSquared200": false,
+          "sineBC_AB_3over5": false
+        },
+        "differencesFromIndependentRequestedValues": [
+          "6 - 6*sqrt(2)",
+          "8 - 8*sqrt(2)"
+        ]
+      },
+      {
+        "index1based": 4,
+        "studentChoice": "$6\\sqrt{2}$, $4\\sqrt{2}$",
+        "parsedValues": [
+          "6*sqrt(2)",
+          "4*sqrt(2)"
+        ],
+        "matchesEachRequestedPart": [
+          true,
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "positiveLegs": true,
+          "hypotenuseSquared200": false,
+          "sineBC_AB_3over5": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "0",
+          "-4*sqrt(2)"
+        ]
+      },
+      {
+        "index1based": 5,
+        "studentChoice": "$3\\sqrt{2}$, $8\\sqrt{2}$",
+        "parsedValues": [
+          "3*sqrt(2)",
+          "8*sqrt(2)"
+        ],
+        "matchesEachRequestedPart": [
+          false,
+          true
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "positiveLegs": true,
+          "hypotenuseSquared200": false,
+          "sineBC_AB_3over5": false
+        },
+        "differencesFromIndependentRequestedValues": [
+          "-3*sqrt(2)",
+          "0"
+        ]
+      }
+    ],
+    "matchingIndices1based": [
+      2
+    ],
+    "exactlyOneChoice": true,
+    "basis": "Parsed actual copied student choices; no author/original key"
+  }
+}

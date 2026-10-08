@@ -1,0 +1,89 @@
+{
+  "questionNumber": 3,
+  "studentDigest": "411df1ff3c4ed5806b377b8798b025167153f1a785d77fc60e02abf45087702e",
+  "inputContentSha256": "b8b535c271e83b75458ac91e5b8632ccd2147af87caf270137872fbea33afb0b",
+  "exactRequestedValues": [
+    "3/5"
+  ],
+  "freshCalculations": {
+    "PR": "4",
+    "QR": "3",
+    "PQ": "5",
+    "tanP": "3/4",
+    "sinQ": "4/5",
+    "t": "3/5"
+  },
+  "conditionChecks": [
+    {
+      "condition": "strict range, exact cross-multiplication",
+      "passed": true,
+      "calculation": {
+        "2*t-1": "1/5",
+        "2-3*t": "1/5"
+      }
+    }
+  ],
+  "coordinateWitness": null,
+  "codeSha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50",
+  "calculationIsCurriculumPermission": false,
+  "authorOrOriginalAnswerUsed": false,
+  "choiceCheck": {
+    "allChoices": [
+      {
+        "index1based": 1,
+        "studentChoice": "$0<t<\\frac14$",
+        "interval": [
+          "0",
+          "1/4"
+        ],
+        "containsValue": false,
+        "strictEndpointsChecked": true
+      },
+      {
+        "index1based": 2,
+        "studentChoice": "$\\frac14<t<\\frac12$",
+        "interval": [
+          "1/4",
+          "1/2"
+        ],
+        "containsValue": false,
+        "strictEndpointsChecked": true
+      },
+      {
+        "index1based": 3,
+        "studentChoice": "$\\frac12<t<\\frac23$",
+        "interval": [
+          "1/2",
+          "2/3"
+        ],
+        "containsValue": true,
+        "strictEndpointsChecked": true
+      },
+      {
+        "index1based": 4,
+        "studentChoice": "$\\frac23<t<\\frac34$",
+        "interval": [
+          "2/3",
+          "3/4"
+        ],
+        "containsValue": false,
+        "strictEndpointsChecked": true
+      },
+      {
+        "index1based": 5,
+        "studentChoice": "$\\frac34<t<1$",
+        "interval": [
+          "3/4",
+          "1"
+        ],
+        "containsValue": false,
+        "strictEndpointsChecked": true
+      }
+    ],
+    "matchingIndices1based": [
+      3
+    ],
+    "exactlyOneChoice": true,
+    "basis": "Parsed actual copied student choices; no author/original key"
+  }
+}

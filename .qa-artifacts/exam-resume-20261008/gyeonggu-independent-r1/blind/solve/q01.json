@@ -1,0 +1,452 @@
+{
+  "schema": "independent-blind-solve.v1",
+  "questionNumber": 1,
+  "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q01",
+  "studentDigest": "2a5d89e15f071d3cb081c22c717bd8fbd7261670952bd572d31d5db7d8fe7606",
+  "solverId": "orca-codex-exam-twin-source-identity-20261008",
+  "status": "solved",
+  "answer": "③: ㉠ 5/13, ㉡ 5/12",
+  "answerParts": {
+    "㉠ cos Q": "5/13",
+    "㉡ tan P": "5/12"
+  },
+  "solution": "R이 직각이므로 PQ가 빗변이다. 피타고라스 정리에서 PR²=13²−5²=144, 길이는 양수이므로 PR=12 cm이다. Q의 이웃변은 QR이므로 cos Q=QR/PQ=5/13이다. P의 대변은 QR, 이웃변은 PR이므로 tan P=QR/PR=5/12이다. 순서를 유지한 두 값은 (5/13,5/12)이며 ③이다.",
+  "evidence": {
+    "method": "independent-student-input-solve-before-author-answer-exposure",
+    "studentMethod": "빗변/대변/이웃변 구별, 피타고라스, 두 삼각비 정의의 독립 적용",
+    "conditionAndDomainNotes": "13>5>0, 세 변5·12·13의 직각삼각형 존재. 두 요청은 무차원 비이며 순서가 cosQ 다음 tanP이다.",
+    "exactValuesFromCode": [
+      "5/13",
+      "5/12"
+    ],
+    "code": {
+      "path": "solve_math.py",
+      "sha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50"
+    },
+    "proof": {
+      "path": "blind/proofs/q01.json",
+      "sha256": "2e585bae173da71173001d6309de45a484c78fd9b096998e97da4698f7dbe46c"
+    },
+    "studentSolutionSource": {
+      "path": "student_solutions.json",
+      "wholeFileSha256": "adbcd31c366b68051b20e460727edc017c8160cd0d80fb6ff6c4b079d88c947d",
+      "questionRecordSha256": "911d93a366d2a134f3f6b5f2f96e2a7cddc75c29b0ff16039ebe13267257614b"
+    },
+    "wholeStudentInputSha256": "6e137d65894e6506710e6c980136cfd26a25d4fec141785f4ed521f8eb89e1ca",
+    "contentSha256Utf8": "c628f3cecabd8eeab1e2a8963b5e0db0706ade861e49512863f6b84978fe9a1f",
+    "studentObjectCanonicalSha256": "99f906434837a108e4e10295e7a7fbe1fb25c73a4528542eb91e73a13eeb276d",
+    "canonicalHashLimit": "This diagnostic canonical hash is not a claim about Root studentDigest algorithm; supplied studentDigest is retained unchanged.",
+    "choiceCheck": {
+      "allChoices": [
+        {
+          "index1based": 1,
+          "studentChoice": "$\\frac{12}{13}$, $\\frac{5}{12}$",
+          "parsedValues": [
+            "12/13",
+            "5/12"
+          ],
+          "matchesEachRequestedPart": [
+            false,
+            true
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "cosineAcuteRange": true,
+            "tangentPositive": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "7/13",
+            "0"
+          ]
+        },
+        {
+          "index1based": 2,
+          "studentChoice": "$\\frac{5}{13}$, $\\frac{12}{5}$",
+          "parsedValues": [
+            "5/13",
+            "12/5"
+          ],
+          "matchesEachRequestedPart": [
+            true,
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "cosineAcuteRange": true,
+            "tangentPositive": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "0",
+            "119/60"
+          ]
+        },
+        {
+          "index1based": 3,
+          "studentChoice": "$\\frac{5}{13}$, $\\frac{5}{12}$",
+          "parsedValues": [
+            "5/13",
+            "5/12"
+          ],
+          "matchesEachRequestedPart": [
+            true,
+            true
+          ],
+          "matches": true,
+          "domainAndGivenConditionChecks": {
+            "cosineAcuteRange": true,
+            "tangentPositive": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "0",
+            "0"
+          ]
+        },
+        {
+          "index1based": 4,
+          "studentChoice": "$\\frac{13}{5}$, $\\frac{5}{12}$",
+          "parsedValues": [
+            "13/5",
+            "5/12"
+          ],
+          "matchesEachRequestedPart": [
+            false,
+            true
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "cosineAcuteRange": false,
+            "tangentPositive": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "144/65",
+            "0"
+          ]
+        },
+        {
+          "index1based": 5,
+          "studentChoice": "$\\frac{5}{13}$, $\\frac{12}{13}$",
+          "parsedValues": [
+            "5/13",
+            "12/13"
+          ],
+          "matchesEachRequestedPart": [
+            true,
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "cosineAcuteRange": true,
+            "tangentPositive": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "0",
+            "79/156"
+          ]
+        }
+      ],
+      "matchingIndices1based": [
+        3
+      ],
+      "exactlyOneChoice": true,
+      "basis": "Parsed actual copied student choices; no author/original key"
+    },
+    "existenceUniquenessPositivity": {
+      "actualCodeChecks": [
+        {
+          "condition": "positive nondegenerate right triangle",
+          "passed": true,
+          "calculation": "169"
+        }
+      ],
+      "supplementalExactCoordinateWitness": null,
+      "uniqueRequestedAnswer": true,
+      "wholeConfigurationMustBeUnique": false,
+      "limit": "q17 radii and q22 triangle placements can vary while requested answers are unique. No pixel lengths or model probability determine uniqueness."
+    },
+    "figures": [
+      {
+        "svgPath": "figures/q01-1.svg",
+        "sha256": "7e2109d2ce1b75bb2268a845cb7afb6e2499a954075d5c59faa45fb328b4f579",
+        "intendedWidthMm": 70
+      }
+    ],
+    "directFigureInspections": [
+      {
+        "questionNumber": 1,
+        "svg": "figures/q01-1.svg",
+        "svgSha256": "7e2109d2ce1b75bb2268a845cb7afb6e2499a954075d5c59faa45fb328b4f579",
+        "intendedWidthMm": 70,
+        "renderedPdfWidthMm": 70.00000161064996,
+        "renderedHeightMm": 40.124869179322026,
+        "viewBox": [
+          0.0,
+          0.0,
+          222.633,
+          127.616
+        ],
+        "png": "blind/rendered/q01-1-300dpi.png",
+        "pngSha256": "4f9fdac7fe291943eacc58730650141b1f1e4ebd999b3f34fa26aa938bee728d",
+        "pdf": "blind/rendered/q01-1-300dpi.pdf",
+        "pdfSha256": "a28d92b6e7159701f6a8108827f8c07d00d16dec8d106321cd1b6b0887cdb5b1",
+        "svgTextLabels": [],
+        "mathematicalOracle": false,
+        "renderer": "Existing PyMuPDF SVG->vector PDF at physical width->300dpi PNG; Cairo runtime absent; no installs",
+        "visualInspection": "direct view_image completed on 2026-10-08",
+        "observation": "P right, Q upper left, R lower left; right angle atR. Point labels legible; side numbers come from student stem.",
+        "labelsReadableAtSpecifiedPhysicalWidth": true,
+        "pixelMeasurementsUsedToSolve": false,
+        "physicalPrintProductionApproval": false
+      }
+    ],
+    "sevenStudentSurfaces": [
+      {
+        "surface": "stem",
+        "observation": "13>5>0, 세 변5·12·13의 직각삼각형 존재. 두 요청은 무차원 비이며 순서가 cosQ 다음 tanP이다.",
+        "inGradeForUsedStudentMethod": true,
+        "limit": "New student stem only; original-twin faithfulness and provenance are not reviewed."
+      },
+      {
+        "surface": "choices",
+        "observation": "All actual student choices parsed and every requested component/strict interval compared.",
+        "detailedCodeResult": {
+          "allChoices": [
+            {
+              "index1based": 1,
+              "studentChoice": "$\\frac{12}{13}$, $\\frac{5}{12}$",
+              "parsedValues": [
+                "12/13",
+                "5/12"
+              ],
+              "matchesEachRequestedPart": [
+                false,
+                true
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "cosineAcuteRange": true,
+                "tangentPositive": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "7/13",
+                "0"
+              ]
+            },
+            {
+              "index1based": 2,
+              "studentChoice": "$\\frac{5}{13}$, $\\frac{12}{5}$",
+              "parsedValues": [
+                "5/13",
+                "12/5"
+              ],
+              "matchesEachRequestedPart": [
+                true,
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "cosineAcuteRange": true,
+                "tangentPositive": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "0",
+                "119/60"
+              ]
+            },
+            {
+              "index1based": 3,
+              "studentChoice": "$\\frac{5}{13}$, $\\frac{5}{12}$",
+              "parsedValues": [
+                "5/13",
+                "5/12"
+              ],
+              "matchesEachRequestedPart": [
+                true,
+                true
+              ],
+              "matches": true,
+              "domainAndGivenConditionChecks": {
+                "cosineAcuteRange": true,
+                "tangentPositive": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "0",
+                "0"
+              ]
+            },
+            {
+              "index1based": 4,
+              "studentChoice": "$\\frac{13}{5}$, $\\frac{5}{12}$",
+              "parsedValues": [
+                "13/5",
+                "5/12"
+              ],
+              "matchesEachRequestedPart": [
+                false,
+                true
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "cosineAcuteRange": false,
+                "tangentPositive": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "144/65",
+                "0"
+              ]
+            },
+            {
+              "index1based": 5,
+              "studentChoice": "$\\frac{5}{13}$, $\\frac{12}{13}$",
+              "parsedValues": [
+                "5/13",
+                "12/13"
+              ],
+              "matchesEachRequestedPart": [
+                true,
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "cosineAcuteRange": true,
+                "tangentPositive": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "0",
+                "79/156"
+              ]
+            }
+          ],
+          "matchingIndices1based": [
+            3
+          ],
+          "exactlyOneChoice": true,
+          "basis": "Parsed actual copied student choices; no author/original key"
+        },
+        "inGradeForUsedStudentMethod": true
+      },
+      {
+        "surface": "figure_and_graph_semantics",
+        "observation": [
+          "P right, Q upper left, R lower left; right angle atR. Point labels legible; side numbers come from student stem."
+        ],
+        "specifiedPhysicalWidthsViewed": [
+          70
+        ],
+        "inGradeForUsedStudentMethod": true,
+        "pixelOracle": false,
+        "limit": "Standalone SVG physical rendering only; no claim about a complete final paper/student UI layout."
+      },
+      {
+        "surface": "notation",
+        "observation": "기록표 두 칸과 선택지 두 성분을 모두 검토. 하나의 알려진 삼각비로 다른 삼각비를 바꾸는 관계식을 사용하지 않는다.",
+        "inGradeForUsedStudentMethod": true,
+        "trigScope": "Only acute-angle trig definitions and30/45/60 values used; arbitrary-angle formula, ratio identity, vector or calculus notation is not necessary."
+      },
+      {
+        "surface": "answer_format",
+        "observation": "③: ㉠ 5/13, ㉡ 5/12",
+        "partsWithUnits": {
+          "㉠ cos Q": "5/13",
+          "㉡ tan P": "5/12"
+        },
+        "inGradeForUsedStudentMethod": true,
+        "limit": "Own raw exact answer; Root may normalize formatting only after binding hashes."
+      },
+      {
+        "surface": "student_solution",
+        "observation": "R이 직각이므로 PQ가 빗변이다. 피타고라스 정리에서 PR²=13²−5²=144, 길이는 양수이므로 PR=12 cm이다. Q의 이웃변은 QR이므로 cos Q=QR/PQ=5/13이다. P의 대변은 QR, 이웃변은 PR이므로 tan P=QR/PR=5/12이다. 순서를 유지한 두 값은 (5/13,5/12)이며 ③이다.",
+        "inGradeForUsedStudentMethod": true,
+        "basis": "Full fresh elementary student proof written before authored-solution exposure; calculation alone does not grant curricular permission."
+      },
+      {
+        "surface": "necessary_procedure",
+        "observation": "빗변/대변/이웃변 구별, 피타고라스, 두 삼각비 정의의 독립 적용",
+        "conditions": "13>5>0, 세 변5·12·13의 직각삼각형 존재. 두 요청은 무차원 비이며 순서가 cosQ 다음 tanP이다.",
+        "primaryStandardReferences": [
+          {
+            "id": "9수04-16",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4333,
+              "paragraph1based": 889,
+              "offset": 218866,
+              "text": "[9수04-16]피타고라스 정리를 이해하고 설명할 수 있다."
+            },
+            "pdfPhysicalPage1based": 38,
+            "pdfPrintedPage": 34,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수04-17",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4341,
+              "paragraph1based": 891,
+              "offset": 219120,
+              "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다."
+            },
+            "pdfPhysicalPage1based": 38,
+            "pdfPrintedPage": 34,
+            "wholeClausePdfMatch": true
+          }
+        ],
+        "inGradeForUsedStudentMethod": true,
+        "forbiddenStudentPrerequisiteUsed": false
+      }
+    ],
+    "curriculumMethod": {
+      "reference": "actual2025middle3 ->2015",
+      "legitimateStudentMethodFound": true,
+      "standards": [
+        {
+          "id": "9수04-16",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4333,
+            "paragraph1based": 889,
+            "offset": 218866,
+            "text": "[9수04-16]피타고라스 정리를 이해하고 설명할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-17",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4341,
+            "paragraph1based": 891,
+            "offset": 219120,
+            "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        }
+      ],
+      "restrictionsFile": "curriculum-method-evidence.json",
+      "restrictionsFileSha256": "20a90e8060b73d09eb8749f8b6636e0d960e3148c53111d8bc4db8da4c95af2d",
+      "approvalForRightsFamilyNativeOrLoading": false,
+      "fullCurrentFuturePublicationApproval": false
+    },
+    "annotationsAndSourceFamiliarityDisclosure": "Prior original exam source familiarity is possible and earlier Bumil scan annotations were incidentally seen. No Gyeonggu original/source/keys were reopened; these new candidate answers, authored solutions and other solver results were not read. Work proceeds solely from copied new student inputs.",
+    "newAuthorCandidateAnswersKnownBeforeThisSolve": false,
+    "originalKeyAgreementUsed": false,
+    "otherSolverRead": false,
+    "inferenceApiCalls": 0,
+    "limits": [
+      "Independent blind solve and bounded legitimate-method observations only. Exact Unit/live family, rights/native provenance, author-solution comparison and overall loading are outside this stage."
+    ]
+  },
+  "heldReasons": [],
+  "rejectedStudentMethods": [
+    "No arbitrary trig ratio identities or addition/half-angle formulas.",
+    "No upper-grade extrema/calculus, law of sines/cosines, vectors or circle power.",
+    "q09 uses congruence and Pythagoras instead of an unverified angle-bisector length theorem."
+  ]
+}

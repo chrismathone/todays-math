@@ -1,0 +1,543 @@
+{
+  "schema": "independent-blind-solve.v1",
+  "questionNumber": 18,
+  "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q18",
+  "studentDigest": "bd5d03ea26191f246c2f704c4c8376716487d9ae0ab8e815266a6115dde372b7",
+  "solverId": "orca-codex-exam-twin-source-identity-20261008",
+  "status": "solved",
+  "answer": "⑤: 둘레=42 cm",
+  "answerParts": {
+    "사각형 ABCD 둘레": "42 cm"
+  },
+  "solution": "A에서 그은 두 접선분AB,AE의 길이는 같으므로 AE=3 cm이다. D에서 그은 접선분DC,DE도 같으므로 DE=12 cm이다. E는 AD 내부이므로 AD=3+12=15 cm이다. B,C에서의 접선AB,CD는 지름BC와 수직이라 서로 평행한다. A에서 CD에 내린 수선의 발F에 대해 AF=BC, CF=AB=3 cm, DF=12−3=9 cm이다. 직각삼각형 AFD에서 AF²=15²−9²=144이므로 BC=AF=12 cm이다. 네 변의 합은 AB+BC+CD+DA=3+12+12+15=42 cm, ⑤이다.",
+  "evidence": {
+    "method": "independent-student-input-solve-before-author-answer-exposure",
+    "studentMethod": "같은 점에서 그은 접선분 동길이, 평행한 지지대의 직각 분해, 피타고라스",
+    "conditionAndDomainNotes": "AE3,DE12로 E 내부. CF3<CD12로 F 내부. 실제 반지름6인 반원과 세 접선이 존재하며 모두 양의 길이.",
+    "exactValuesFromCode": [
+      "42"
+    ],
+    "code": {
+      "path": "solve_math.py",
+      "sha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50"
+    },
+    "proof": {
+      "path": "blind/proofs/q18.json",
+      "sha256": "143c1994281715fdce77082c76ec0a8ac05f7deda7caa4dc72e4f58aa1117523"
+    },
+    "studentSolutionSource": {
+      "path": "student_solutions.json",
+      "wholeFileSha256": "adbcd31c366b68051b20e460727edc017c8160cd0d80fb6ff6c4b079d88c947d",
+      "questionRecordSha256": "5f22206bef328d3b7760cbf211f94bf5d24e306447e0e59d6db8849d16aa710d"
+    },
+    "wholeStudentInputSha256": "6e137d65894e6506710e6c980136cfd26a25d4fec141785f4ed521f8eb89e1ca",
+    "contentSha256Utf8": "00846389d0f4c13ee77eec2f6c5296190be11109c3659e63f90649dc00270545",
+    "studentObjectCanonicalSha256": "665fe35465535637ec604a46a4b5bbb865f67067d1ac9ffaa899c2a617f21511",
+    "canonicalHashLimit": "This diagnostic canonical hash is not a claim about Root studentDigest algorithm; supplied studentDigest is retained unchanged.",
+    "choiceCheck": {
+      "allChoices": [
+        {
+          "index1based": 1,
+          "studentChoice": "$24\\,\\mathrm{cm}$",
+          "parsedValues": [
+            "24"
+          ],
+          "matchesEachRequestedPart": [
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "inferredBCPositive": false,
+            "AD15_DF9_Pythagoras": false
+          },
+          "differencesFromIndependentRequestedValues": [
+            "-18"
+          ]
+        },
+        {
+          "index1based": 2,
+          "studentChoice": "$27\\,\\mathrm{cm}$",
+          "parsedValues": [
+            "27"
+          ],
+          "matchesEachRequestedPart": [
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "inferredBCPositive": false,
+            "AD15_DF9_Pythagoras": false
+          },
+          "differencesFromIndependentRequestedValues": [
+            "-15"
+          ]
+        },
+        {
+          "index1based": 3,
+          "studentChoice": "$30\\,\\mathrm{cm}$",
+          "parsedValues": [
+            "30"
+          ],
+          "matchesEachRequestedPart": [
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "inferredBCPositive": false,
+            "AD15_DF9_Pythagoras": false
+          },
+          "differencesFromIndependentRequestedValues": [
+            "-12"
+          ]
+        },
+        {
+          "index1based": 4,
+          "studentChoice": "$39\\,\\mathrm{cm}$",
+          "parsedValues": [
+            "39"
+          ],
+          "matchesEachRequestedPart": [
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "inferredBCPositive": true,
+            "AD15_DF9_Pythagoras": false
+          },
+          "differencesFromIndependentRequestedValues": [
+            "-3"
+          ]
+        },
+        {
+          "index1based": 5,
+          "studentChoice": "$42\\,\\mathrm{cm}$",
+          "parsedValues": [
+            "42"
+          ],
+          "matchesEachRequestedPart": [
+            true
+          ],
+          "matches": true,
+          "domainAndGivenConditionChecks": {
+            "inferredBCPositive": true,
+            "AD15_DF9_Pythagoras": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "0"
+          ]
+        }
+      ],
+      "matchingIndices1based": [
+        5
+      ],
+      "exactlyOneChoice": true,
+      "basis": "Parsed actual copied student choices; no author/original key"
+    },
+    "existenceUniquenessPositivity": {
+      "actualCodeChecks": [
+        {
+          "condition": "positive perimeter, F and E internal",
+          "passed": true,
+          "calculation": {
+            "AE": "3",
+            "DE": "12",
+            "AD": "15",
+            "CF": "3",
+            "DF": "9",
+            "AF=BC": "12",
+            "perimeter": "42",
+            "radius": "6"
+          }
+        }
+      ],
+      "supplementalExactCoordinateWitness": {
+        "points": {
+          "A": [
+            0,
+            3
+          ],
+          "B": [
+            0,
+            0
+          ],
+          "C": [
+            12,
+            0
+          ],
+          "D": [
+            12,
+            12
+          ],
+          "F": [
+            12,
+            3
+          ],
+          "O": [
+            6,
+            0
+          ],
+          "E": [
+            "12/5",
+            "24/5"
+          ]
+        },
+        "relations": [
+          {
+            "relation": "perpendicular",
+            "points": [
+              "O",
+              "E",
+              "A",
+              "D"
+            ],
+            "calculated": "0",
+            "required": 0,
+            "passed": true
+          },
+          {
+            "relation": "lengthSquared",
+            "points": [
+              "O",
+              "E"
+            ],
+            "calculated": "36",
+            "required": 36,
+            "passed": true
+          },
+          {
+            "relation": "lengthSquared",
+            "points": [
+              "A",
+              "E"
+            ],
+            "calculated": "9",
+            "required": 9,
+            "passed": true
+          },
+          {
+            "relation": "lengthSquared",
+            "points": [
+              "D",
+              "E"
+            ],
+            "calculated": "144",
+            "required": 144,
+            "passed": true
+          },
+          {
+            "relation": "collinear",
+            "points": [
+              "A",
+              "E",
+              "D"
+            ],
+            "calculated": "0",
+            "required": 0,
+            "passed": true
+          }
+        ],
+        "method": "Independent exact coordinate witness; supplemental validation only"
+      },
+      "uniqueRequestedAnswer": true,
+      "wholeConfigurationMustBeUnique": false,
+      "limit": "q17 radii and q22 triangle placements can vary while requested answers are unique. No pixel lengths or model probability determine uniqueness."
+    },
+    "figures": [
+      {
+        "svgPath": "figures/q18-1.svg",
+        "sha256": "4e9b91d170a01bcf07c4d6818446082c4b081d7558076eec1eeb1204c81c56e2",
+        "intendedWidthMm": 70
+      }
+    ],
+    "directFigureInspections": [
+      {
+        "questionNumber": 18,
+        "svg": "figures/q18-1.svg",
+        "svgSha256": "4e9b91d170a01bcf07c4d6818446082c4b081d7558076eec1eeb1204c81c56e2",
+        "intendedWidthMm": 70,
+        "renderedPdfWidthMm": 70.00000161064996,
+        "renderedHeightMm": 66.45486713619816,
+        "viewBox": [
+          0.0,
+          0.0,
+          235.128,
+          223.22
+        ],
+        "png": "blind/rendered/q18-1-300dpi.png",
+        "pngSha256": "7e263ef14164ba69e9e409a436439dc006be11277034c1688bba8f544e323626",
+        "pdf": "blind/rendered/q18-1-300dpi.pdf",
+        "pdfSha256": "659bed8c53b05f1202f729fa756518c85f3ddb921b495c147f41e7d58f7750df",
+        "svgTextLabels": [],
+        "mathematicalOracle": false,
+        "renderer": "Existing PyMuPDF SVG->vector PDF at physical width->300dpi PNG; Cairo runtime absent; no installs",
+        "visualInspection": "direct view_image completed on 2026-10-08",
+        "observation": "B/C diameter endpoints, endpoint tangent supportsAB/CD, AD tangent atE, F foot fromA toCD; legible support/foot labels. AF is an auxiliary segment crossing the semicircle, not a perimeter edge.",
+        "labelsReadableAtSpecifiedPhysicalWidth": true,
+        "pixelMeasurementsUsedToSolve": false,
+        "physicalPrintProductionApproval": false
+      }
+    ],
+    "sevenStudentSurfaces": [
+      {
+        "surface": "stem",
+        "observation": "AE3,DE12로 E 내부. CF3<CD12로 F 내부. 실제 반지름6인 반원과 세 접선이 존재하며 모두 양의 길이.",
+        "inGradeForUsedStudentMethod": true,
+        "limit": "New student stem only; original-twin faithfulness and provenance are not reviewed."
+      },
+      {
+        "surface": "choices",
+        "observation": "All actual student choices parsed and every requested component/strict interval compared.",
+        "detailedCodeResult": {
+          "allChoices": [
+            {
+              "index1based": 1,
+              "studentChoice": "$24\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "24"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "inferredBCPositive": false,
+                "AD15_DF9_Pythagoras": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "-18"
+              ]
+            },
+            {
+              "index1based": 2,
+              "studentChoice": "$27\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "27"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "inferredBCPositive": false,
+                "AD15_DF9_Pythagoras": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "-15"
+              ]
+            },
+            {
+              "index1based": 3,
+              "studentChoice": "$30\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "30"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "inferredBCPositive": false,
+                "AD15_DF9_Pythagoras": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "-12"
+              ]
+            },
+            {
+              "index1based": 4,
+              "studentChoice": "$39\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "39"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "inferredBCPositive": true,
+                "AD15_DF9_Pythagoras": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "-3"
+              ]
+            },
+            {
+              "index1based": 5,
+              "studentChoice": "$42\\,\\mathrm{cm}$",
+              "parsedValues": [
+                "42"
+              ],
+              "matchesEachRequestedPart": [
+                true
+              ],
+              "matches": true,
+              "domainAndGivenConditionChecks": {
+                "inferredBCPositive": true,
+                "AD15_DF9_Pythagoras": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "0"
+              ]
+            }
+          ],
+          "matchingIndices1based": [
+            5
+          ],
+          "exactlyOneChoice": true,
+          "basis": "Parsed actual copied student choices; no author/original key"
+        },
+        "inGradeForUsedStudentMethod": true
+      },
+      {
+        "surface": "figure_and_graph_semantics",
+        "observation": [
+          "B/C diameter endpoints, endpoint tangent supportsAB/CD, AD tangent atE, F foot fromA toCD; legible support/foot labels. AF is an auxiliary segment crossing the semicircle, not a perimeter edge."
+        ],
+        "specifiedPhysicalWidthsViewed": [
+          70
+        ],
+        "inGradeForUsedStudentMethod": true,
+        "pixelOracle": false,
+        "limit": "Standalone SVG physical rendering only; no claim about a complete final paper/student UI layout."
+      },
+      {
+        "surface": "notation",
+        "observation": "둘레는네직선변만 합한다. AF는보조선, 반원호는사각형둘레가 아니다. 접선 성질로만 복구하며 원과 비례를 쓰지 않는다.",
+        "inGradeForUsedStudentMethod": true,
+        "trigScope": "Only acute-angle trig definitions and30/45/60 values used; arbitrary-angle formula, ratio identity, vector or calculus notation is not necessary."
+      },
+      {
+        "surface": "answer_format",
+        "observation": "⑤: 둘레=42 cm",
+        "partsWithUnits": {
+          "사각형 ABCD 둘레": "42 cm"
+        },
+        "inGradeForUsedStudentMethod": true,
+        "limit": "Own raw exact answer; Root may normalize formatting only after binding hashes."
+      },
+      {
+        "surface": "student_solution",
+        "observation": "A에서 그은 두 접선분AB,AE의 길이는 같으므로 AE=3 cm이다. D에서 그은 접선분DC,DE도 같으므로 DE=12 cm이다. E는 AD 내부이므로 AD=3+12=15 cm이다. B,C에서의 접선AB,CD는 지름BC와 수직이라 서로 평행한다. A에서 CD에 내린 수선의 발F에 대해 AF=BC, CF=AB=3 cm, DF=12−3=9 cm이다. 직각삼각형 AFD에서 AF²=15²−9²=144이므로 BC=AF=12 cm이다. 네 변의 합은 AB+BC+CD+DA=3+12+12+15=42 cm, ⑤이다.",
+        "inGradeForUsedStudentMethod": true,
+        "basis": "Full fresh elementary student proof written before authored-solution exposure; calculation alone does not grant curricular permission."
+      },
+      {
+        "surface": "necessary_procedure",
+        "observation": "같은 점에서 그은 접선분 동길이, 평행한 지지대의 직각 분해, 피타고라스",
+        "conditions": "AE3,DE12로 E 내부. CF3<CD12로 F 내부. 실제 반지름6인 반원과 세 접선이 존재하며 모두 양의 길이.",
+        "primaryStandardReferences": [
+          {
+            "id": "9수04-19",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4353,
+              "paragraph1based": 894,
+              "offset": 219558,
+              "text": "[9수04-19]원의 현에 관한 성질과 접선에 관한 성질을 이해한다."
+            },
+            "pdfPhysicalPage1based": 38,
+            "pdfPrintedPage": 34,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수04-12",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4308,
+              "paragraph1based": 883,
+              "offset": 217962,
+              "text": "[9수04-12]사각형의 성질을 이해하고 설명할 수 있다."
+            },
+            "pdfPhysicalPage1based": 38,
+            "pdfPrintedPage": 34,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수04-16",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4333,
+              "paragraph1based": 889,
+              "offset": 218866,
+              "text": "[9수04-16]피타고라스 정리를 이해하고 설명할 수 있다."
+            },
+            "pdfPhysicalPage1based": 38,
+            "pdfPrintedPage": 34,
+            "wholeClausePdfMatch": true
+          }
+        ],
+        "inGradeForUsedStudentMethod": true,
+        "forbiddenStudentPrerequisiteUsed": false
+      }
+    ],
+    "curriculumMethod": {
+      "reference": "actual2025middle3 ->2015",
+      "legitimateStudentMethodFound": true,
+      "standards": [
+        {
+          "id": "9수04-19",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4353,
+            "paragraph1based": 894,
+            "offset": 219558,
+            "text": "[9수04-19]원의 현에 관한 성질과 접선에 관한 성질을 이해한다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-12",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4308,
+            "paragraph1based": 883,
+            "offset": 217962,
+            "text": "[9수04-12]사각형의 성질을 이해하고 설명할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-16",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4333,
+            "paragraph1based": 889,
+            "offset": 218866,
+            "text": "[9수04-16]피타고라스 정리를 이해하고 설명할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        }
+      ],
+      "restrictionsFile": "curriculum-method-evidence.json",
+      "restrictionsFileSha256": "20a90e8060b73d09eb8749f8b6636e0d960e3148c53111d8bc4db8da4c95af2d",
+      "approvalForRightsFamilyNativeOrLoading": false,
+      "fullCurrentFuturePublicationApproval": false
+    },
+    "annotationsAndSourceFamiliarityDisclosure": "Prior original exam source familiarity is possible and earlier Bumil scan annotations were incidentally seen. No Gyeonggu original/source/keys were reopened; these new candidate answers, authored solutions and other solver results were not read. Work proceeds solely from copied new student inputs.",
+    "newAuthorCandidateAnswersKnownBeforeThisSolve": false,
+    "originalKeyAgreementUsed": false,
+    "otherSolverRead": false,
+    "inferenceApiCalls": 0,
+    "limits": [
+      "Independent blind solve and bounded legitimate-method observations only. Exact Unit/live family, rights/native provenance, author-solution comparison and overall loading are outside this stage."
+    ]
+  },
+  "heldReasons": [],
+  "rejectedStudentMethods": [
+    "No arbitrary trig ratio identities or addition/half-angle formulas.",
+    "No upper-grade extrema/calculus, law of sines/cosines, vectors or circle power.",
+    "q09 uses congruence and Pythagoras instead of an unverified angle-bisector length theorem."
+  ]
+}

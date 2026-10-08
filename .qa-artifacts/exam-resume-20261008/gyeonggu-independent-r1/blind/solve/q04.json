@@ -1,0 +1,422 @@
+{
+  "schema": "independent-blind-solve.v1",
+  "questionNumber": 4,
+  "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q04",
+  "studentDigest": "297db22d9b30a39d5722c0c910a92a726ec7a7a88fd7d7bd773979e5a19aad8c",
+  "solverId": "orca-codex-exam-twin-source-identity-20261008",
+  "status": "solved",
+  "answer": "④: 7/13",
+  "answerParts": {
+    "cos θ−cos φ": "7/13"
+  },
+  "solution": "큰 직각삼각형에서 QR=√(5²+12²)=13 cm이다. 넓이를 두 밑변으로 나타내면 (5×12)/2=(13×PM)/2이므로 PM=60/13 cm이다. 직각삼각형 PQM의 P에서 cos θ=PM/PQ=(60/13)/5=12/13이다. 직각삼각형 PMR의 P에서 cos φ=PM/PR=(60/13)/12=5/13이다. 따라서 cos θ−cos φ=7/13, ④이다.",
+  "evidence": {
+    "method": "independent-student-input-solve-before-author-answer-exposure",
+    "studentMethod": "한 삼각형의 두 넓이 표현으로 높이 계산, 각 소직각삼각형의 cosine 정의",
+    "conditionAndDomainNotes": "M은 QR 내부, PM>0. θ·φ는 각 소삼각형의 급각이다. cos 값은 둘 다0과1 사이이고 차는 양수.",
+    "exactValuesFromCode": [
+      "7/13"
+    ],
+    "code": {
+      "path": "solve_math.py",
+      "sha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50"
+    },
+    "proof": {
+      "path": "blind/proofs/q04.json",
+      "sha256": "4c82b6e8add2e9080443bbf87e0b3b6039b2b1364c6a09d8e7d48d5f861cb2c3"
+    },
+    "studentSolutionSource": {
+      "path": "student_solutions.json",
+      "wholeFileSha256": "adbcd31c366b68051b20e460727edc017c8160cd0d80fb6ff6c4b079d88c947d",
+      "questionRecordSha256": "ee242d9c1ebd54f23f8d164039ccecae0650199aa86b6d19cab7a72e5920ecf9"
+    },
+    "wholeStudentInputSha256": "6e137d65894e6506710e6c980136cfd26a25d4fec141785f4ed521f8eb89e1ca",
+    "contentSha256Utf8": "db1db82bec220e6b1ec518a98d8d7b9e4b3f4dbf91af23f81590dc0c30f4ebcd",
+    "studentObjectCanonicalSha256": "43768a2663c18a2bc9527d6eb14e49885b55e29566ca553a32c8584f4b343b71",
+    "canonicalHashLimit": "This diagnostic canonical hash is not a claim about Root studentDigest algorithm; supplied studentDigest is retained unchanged.",
+    "choiceCheck": {
+      "allChoices": [
+        {
+          "index1based": 1,
+          "studentChoice": "$\\frac5{13}$",
+          "parsedValues": [
+            "5/13"
+          ],
+          "matchesEachRequestedPart": [
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "differenceOfAcuteCosinesRange": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "-2/13"
+          ]
+        },
+        {
+          "index1based": 2,
+          "studentChoice": "$\\frac{12}{13}$",
+          "parsedValues": [
+            "12/13"
+          ],
+          "matchesEachRequestedPart": [
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "differenceOfAcuteCosinesRange": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "5/13"
+          ]
+        },
+        {
+          "index1based": 3,
+          "studentChoice": "$\\frac{17}{13}$",
+          "parsedValues": [
+            "17/13"
+          ],
+          "matchesEachRequestedPart": [
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "differenceOfAcuteCosinesRange": false
+          },
+          "differencesFromIndependentRequestedValues": [
+            "10/13"
+          ]
+        },
+        {
+          "index1based": 4,
+          "studentChoice": "$\\frac7{13}$",
+          "parsedValues": [
+            "7/13"
+          ],
+          "matchesEachRequestedPart": [
+            true
+          ],
+          "matches": true,
+          "domainAndGivenConditionChecks": {
+            "differenceOfAcuteCosinesRange": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "0"
+          ]
+        },
+        {
+          "index1based": 5,
+          "studentChoice": "$\\frac{13}{7}$",
+          "parsedValues": [
+            "13/7"
+          ],
+          "matchesEachRequestedPart": [
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "differenceOfAcuteCosinesRange": false
+          },
+          "differencesFromIndependentRequestedValues": [
+            "120/91"
+          ]
+        }
+      ],
+      "matchingIndices1based": [
+        4
+      ],
+      "exactlyOneChoice": true,
+      "basis": "Parsed actual copied student choices; no author/original key"
+    },
+    "existenceUniquenessPositivity": {
+      "actualCodeChecks": [
+        {
+          "condition": "same triangle area yields altitude",
+          "passed": true,
+          "calculation": "30"
+        },
+        {
+          "condition": "two acute cosines/positive difference",
+          "passed": true,
+          "calculation": "7/13"
+        },
+        {
+          "condition": "internal foot and right subtriangles",
+          "passed": true,
+          "calculation": {
+            "QM": "25/13",
+            "MR": "144/13"
+          }
+        }
+      ],
+      "supplementalExactCoordinateWitness": null,
+      "uniqueRequestedAnswer": true,
+      "wholeConfigurationMustBeUnique": false,
+      "limit": "q17 radii and q22 triangle placements can vary while requested answers are unique. No pixel lengths or model probability determine uniqueness."
+    },
+    "figures": [
+      {
+        "svgPath": "figures/q04-1.svg",
+        "sha256": "8204cc211b93e03757a4adda13cffd9f5896d0b81522954e31de3f09a802bf7a",
+        "intendedWidthMm": 70
+      }
+    ],
+    "directFigureInspections": [
+      {
+        "questionNumber": 4,
+        "svg": "figures/q04-1.svg",
+        "svgSha256": "8204cc211b93e03757a4adda13cffd9f5896d0b81522954e31de3f09a802bf7a",
+        "intendedWidthMm": 70,
+        "renderedPdfWidthMm": 70.00000161064996,
+        "renderedHeightMm": 39.152256544782915,
+        "viewBox": [
+          0.0,
+          0.0,
+          261.506,
+          146.265
+        ],
+        "png": "blind/rendered/q04-1-300dpi.png",
+        "pngSha256": "2468909230e5d04a2e8bd40a2ebabee54de7cc35b371867ccbb28d805ca27f73",
+        "pdf": "blind/rendered/q04-1-300dpi.pdf",
+        "pdfSha256": "c9a5e903e1d0cd60de1828345375f57cbf10cc9d69eb8c800df7bc235756952a",
+        "svgTextLabels": [],
+        "mathematicalOracle": false,
+        "renderer": "Existing PyMuPDF SVG->vector PDF at physical width->300dpi PNG; Cairo runtime absent; no installs",
+        "visualInspection": "direct view_image completed on 2026-10-08",
+        "observation": "M internal QR and PM perpendicular QR. Theta and phi labels use outward placement/leader arc nearP; stem explicitly fixes theta=QPM, phi=MPR. Definitions remove label association uncertainty.",
+        "labelsReadableAtSpecifiedPhysicalWidth": true,
+        "pixelMeasurementsUsedToSolve": false,
+        "physicalPrintProductionApproval": false
+      }
+    ],
+    "sevenStudentSurfaces": [
+      {
+        "surface": "stem",
+        "observation": "M은 QR 내부, PM>0. θ·φ는 각 소삼각형의 급각이다. cos 값은 둘 다0과1 사이이고 차는 양수.",
+        "inGradeForUsedStudentMethod": true,
+        "limit": "New student stem only; original-twin faithfulness and provenance are not reviewed."
+      },
+      {
+        "surface": "choices",
+        "observation": "All actual student choices parsed and every requested component/strict interval compared.",
+        "detailedCodeResult": {
+          "allChoices": [
+            {
+              "index1based": 1,
+              "studentChoice": "$\\frac5{13}$",
+              "parsedValues": [
+                "5/13"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "differenceOfAcuteCosinesRange": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "-2/13"
+              ]
+            },
+            {
+              "index1based": 2,
+              "studentChoice": "$\\frac{12}{13}$",
+              "parsedValues": [
+                "12/13"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "differenceOfAcuteCosinesRange": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "5/13"
+              ]
+            },
+            {
+              "index1based": 3,
+              "studentChoice": "$\\frac{17}{13}$",
+              "parsedValues": [
+                "17/13"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "differenceOfAcuteCosinesRange": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "10/13"
+              ]
+            },
+            {
+              "index1based": 4,
+              "studentChoice": "$\\frac7{13}$",
+              "parsedValues": [
+                "7/13"
+              ],
+              "matchesEachRequestedPart": [
+                true
+              ],
+              "matches": true,
+              "domainAndGivenConditionChecks": {
+                "differenceOfAcuteCosinesRange": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "0"
+              ]
+            },
+            {
+              "index1based": 5,
+              "studentChoice": "$\\frac{13}{7}$",
+              "parsedValues": [
+                "13/7"
+              ],
+              "matchesEachRequestedPart": [
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "differenceOfAcuteCosinesRange": false
+              },
+              "differencesFromIndependentRequestedValues": [
+                "120/91"
+              ]
+            }
+          ],
+          "matchingIndices1based": [
+            4
+          ],
+          "exactlyOneChoice": true,
+          "basis": "Parsed actual copied student choices; no author/original key"
+        },
+        "inGradeForUsedStudentMethod": true
+      },
+      {
+        "surface": "figure_and_graph_semantics",
+        "observation": [
+          "M internal QR and PM perpendicular QR. Theta and phi labels use outward placement/leader arc nearP; stem explicitly fixes theta=QPM, phi=MPR. Definitions remove label association uncertainty."
+        ],
+        "specifiedPhysicalWidthsViewed": [
+          70
+        ],
+        "inGradeForUsedStudentMethod": true,
+        "pixelOracle": false,
+        "limit": "Standalone SVG physical rendering only; no claim about a complete final paper/student UI layout."
+      },
+      {
+        "surface": "notation",
+        "observation": "그림의 θ·φ 외부 배치/지시선과 발문의 QPM/MPR 정의를 함께 확인. 여각 관계나 sine/cosine 항등식 없이 두 정의를 독립 적용한다.",
+        "inGradeForUsedStudentMethod": true,
+        "trigScope": "Only acute-angle trig definitions and30/45/60 values used; arbitrary-angle formula, ratio identity, vector or calculus notation is not necessary."
+      },
+      {
+        "surface": "answer_format",
+        "observation": "④: 7/13",
+        "partsWithUnits": {
+          "cos θ−cos φ": "7/13"
+        },
+        "inGradeForUsedStudentMethod": true,
+        "limit": "Own raw exact answer; Root may normalize formatting only after binding hashes."
+      },
+      {
+        "surface": "student_solution",
+        "observation": "큰 직각삼각형에서 QR=√(5²+12²)=13 cm이다. 넓이를 두 밑변으로 나타내면 (5×12)/2=(13×PM)/2이므로 PM=60/13 cm이다. 직각삼각형 PQM의 P에서 cos θ=PM/PQ=(60/13)/5=12/13이다. 직각삼각형 PMR의 P에서 cos φ=PM/PR=(60/13)/12=5/13이다. 따라서 cos θ−cos φ=7/13, ④이다.",
+        "inGradeForUsedStudentMethod": true,
+        "basis": "Full fresh elementary student proof written before authored-solution exposure; calculation alone does not grant curricular permission."
+      },
+      {
+        "surface": "necessary_procedure",
+        "observation": "한 삼각형의 두 넓이 표현으로 높이 계산, 각 소직각삼각형의 cosine 정의",
+        "conditions": "M은 QR 내부, PM>0. θ·φ는 각 소삼각형의 급각이다. cos 값은 둘 다0과1 사이이고 차는 양수.",
+        "primaryStandardReferences": [
+          {
+            "id": "9수04-16",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4333,
+              "paragraph1based": 889,
+              "offset": 218866,
+              "text": "[9수04-16]피타고라스 정리를 이해하고 설명할 수 있다."
+            },
+            "pdfPhysicalPage1based": 38,
+            "pdfPrintedPage": 34,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수04-17",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4341,
+              "paragraph1based": 891,
+              "offset": 219120,
+              "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다."
+            },
+            "pdfPhysicalPage1based": 38,
+            "pdfPrintedPage": 34,
+            "wholeClausePdfMatch": true
+          }
+        ],
+        "inGradeForUsedStudentMethod": true,
+        "forbiddenStudentPrerequisiteUsed": false
+      }
+    ],
+    "curriculumMethod": {
+      "reference": "actual2025middle3 ->2015",
+      "legitimateStudentMethodFound": true,
+      "standards": [
+        {
+          "id": "9수04-16",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4333,
+            "paragraph1based": 889,
+            "offset": 218866,
+            "text": "[9수04-16]피타고라스 정리를 이해하고 설명할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-17",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4341,
+            "paragraph1based": 891,
+            "offset": 219120,
+            "text": "[9수04-17]삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        }
+      ],
+      "restrictionsFile": "curriculum-method-evidence.json",
+      "restrictionsFileSha256": "20a90e8060b73d09eb8749f8b6636e0d960e3148c53111d8bc4db8da4c95af2d",
+      "approvalForRightsFamilyNativeOrLoading": false,
+      "fullCurrentFuturePublicationApproval": false
+    },
+    "annotationsAndSourceFamiliarityDisclosure": "Prior original exam source familiarity is possible and earlier Bumil scan annotations were incidentally seen. No Gyeonggu original/source/keys were reopened; these new candidate answers, authored solutions and other solver results were not read. Work proceeds solely from copied new student inputs.",
+    "newAuthorCandidateAnswersKnownBeforeThisSolve": false,
+    "originalKeyAgreementUsed": false,
+    "otherSolverRead": false,
+    "inferenceApiCalls": 0,
+    "limits": [
+      "Independent blind solve and bounded legitimate-method observations only. Exact Unit/live family, rights/native provenance, author-solution comparison and overall loading are outside this stage."
+    ]
+  },
+  "heldReasons": [],
+  "rejectedStudentMethods": [
+    "No arbitrary trig ratio identities or addition/half-angle formulas.",
+    "No upper-grade extrema/calculus, law of sines/cosines, vectors or circle power.",
+    "q09 uses congruence and Pythagoras instead of an unverified angle-bisector length theorem."
+  ]
+}

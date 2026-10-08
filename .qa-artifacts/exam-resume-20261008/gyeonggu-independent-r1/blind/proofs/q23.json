@@ -1,0 +1,140 @@
+{
+  "questionNumber": 23,
+  "studentDigest": "5d537e833859e8b1f8a2bb082663654ec3cbbaed3ea0507c0d4d090bc3342bd6",
+  "inputContentSha256": "243092fb4926aa6e52addcaaa9d47a8f0ac056d451806ece2df7f34bcbe829bb",
+  "exactRequestedValues": [
+    "120",
+    "2*sqrt(3)",
+    "4*sqrt(3)"
+  ],
+  "freshCalculations": {
+    "centralMinorAngle": "120",
+    "tangentAngle": "60",
+    "positiveAreaCoefficient": "-pi/3 + sqrt(3)",
+    "givenArea": "-4*pi + 12*sqrt(3)",
+    "rSquared": "12",
+    "radius": "2*sqrt(3)",
+    "OP": "4*sqrt(3)",
+    "PA=PB": "6",
+    "quadrilateralArea": "12*sqrt(3)",
+    "sector120Area": "4*pi"
+  },
+  "conditionChecks": [
+    {
+      "condition": "angle ratio and full quadrilateral angle sum",
+      "passed": true,
+      "calculation": {
+        "angleAOB": "120",
+        "angleAPB": "60"
+      }
+    },
+    {
+      "condition": "nonzero positive area coefficient and unique positive radius",
+      "passed": true,
+      "calculation": {
+        "coefficientApprox": 0.6848532563722796,
+        "rSquared": "12"
+      }
+    },
+    {
+      "condition": "sector subtraction gives actual stated shaded area",
+      "passed": true,
+      "calculation": "-4*pi + 12*sqrt(3)"
+    }
+  ],
+  "coordinateWitness": {
+    "points": {
+      "O": [
+        0,
+        0
+      ],
+      "P": [
+        "4*sqrt(3)",
+        0
+      ],
+      "A": [
+        "sqrt(3)",
+        3
+      ],
+      "B": [
+        "sqrt(3)",
+        -3
+      ]
+    },
+    "relations": [
+      {
+        "relation": "perpendicular",
+        "points": [
+          "O",
+          "A",
+          "P",
+          "A"
+        ],
+        "calculated": "0",
+        "required": 0,
+        "passed": true
+      },
+      {
+        "relation": "perpendicular",
+        "points": [
+          "O",
+          "B",
+          "P",
+          "B"
+        ],
+        "calculated": "0",
+        "required": 0,
+        "passed": true
+      },
+      {
+        "relation": "lengthSquared",
+        "points": [
+          "O",
+          "A"
+        ],
+        "calculated": "12",
+        "required": 12,
+        "passed": true
+      },
+      {
+        "relation": "lengthSquared",
+        "points": [
+          "O",
+          "B"
+        ],
+        "calculated": "12",
+        "required": 12,
+        "passed": true
+      },
+      {
+        "relation": "lengthSquared",
+        "points": [
+          "P",
+          "A"
+        ],
+        "calculated": "36",
+        "required": 36,
+        "passed": true
+      },
+      {
+        "relation": "lengthSquared",
+        "points": [
+          "P",
+          "B"
+        ],
+        "calculated": "36",
+        "required": 36,
+        "passed": true
+      }
+    ],
+    "method": "Independent exact coordinate witness; supplemental validation only"
+  },
+  "codeSha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50",
+  "calculationIsCurriculumPermission": false,
+  "authorOrOriginalAnswerUsed": false,
+  "choiceCheck": {
+    "notApplicable": true,
+    "multiPartCount": 3,
+    "eachPartExplicit": true
+  }
+}

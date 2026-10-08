@@ -1,0 +1,524 @@
+{
+  "schema": "independent-blind-solve.v1",
+  "questionNumber": 15,
+  "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q15",
+  "studentDigest": "7b61a50898da19a33394b5240e64cfca1f8bf0b226e351289d7cc4ad5b2f2df8",
+  "solverId": "orca-codex-exam-twin-source-identity-20261008",
+  "status": "solved",
+  "answer": "④: x=30, ∠BAC=64°",
+  "answerParts": {
+    "x": "30",
+    "∠BAC": "64°"
+  },
+  "solution": "원의 중심에서 같은 거리에 있는 현의 길이는 같으므로 AB=AC이다. 따라서 삼각형 ABC에서 두 밑각ABC,BCA가 같다. 표의 기록을 쓰면 x+28=2x−2이므로 x=30이다. 두 밑각은 각각58°이므로 ∠BAC=180°−58°−58°=64°이다. x와A의 각 순서로(30,64°), ④이다.",
+  "evidence": {
+    "method": "independent-student-input-solve-before-author-answer-exposure",
+    "studentMethod": "중심-현 거리 성질, 이등변삼각형 밑각, 일차방정식과 각 합",
+    "conditionAndDomainNotes": "일차식의 유일한 근30. 세 각58°,58°,64° 모두 양수이며 합180°. OM/ON 동거리로 같은 현을 판정한다.",
+    "exactValuesFromCode": [
+      "30",
+      "64"
+    ],
+    "code": {
+      "path": "solve_math.py",
+      "sha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50"
+    },
+    "proof": {
+      "path": "blind/proofs/q15.json",
+      "sha256": "d2f4e526380b4483603866695c18aec128ded91b49d76949bdbec39f9296ca15"
+    },
+    "studentSolutionSource": {
+      "path": "student_solutions.json",
+      "wholeFileSha256": "adbcd31c366b68051b20e460727edc017c8160cd0d80fb6ff6c4b079d88c947d",
+      "questionRecordSha256": "76f44c03dc71423e4d3849208083b7c3f550f078da0c11006e4fa44727e1e9f6"
+    },
+    "wholeStudentInputSha256": "6e137d65894e6506710e6c980136cfd26a25d4fec141785f4ed521f8eb89e1ca",
+    "contentSha256Utf8": "72c2899c82fb4cb4a384b29b6a8c38b3f5ad94a8f5aadd51afec6486e10be40f",
+    "studentObjectCanonicalSha256": "cbd26ad93bb7e81cf49fef3d61d2f51faf22f6194a224ee7e25581b991d0a8f2",
+    "canonicalHashLimit": "This diagnostic canonical hash is not a claim about Root studentDigest algorithm; supplied studentDigest is retained unchanged.",
+    "choiceCheck": {
+      "allChoices": [
+        {
+          "index1based": 1,
+          "studentChoice": "$30$, $58^\\circ$",
+          "parsedValues": [
+            "30",
+            "58"
+          ],
+          "matchesEachRequestedPart": [
+            true,
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "equalBaseAngleRecords": true,
+            "AEqualsAngleSumRemainder": false,
+            "allTriangleAnglesPositive": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "0",
+            "-6"
+          ]
+        },
+        {
+          "index1based": 2,
+          "studentChoice": "$32$, $60^\\circ$",
+          "parsedValues": [
+            "32",
+            "60"
+          ],
+          "matchesEachRequestedPart": [
+            false,
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "equalBaseAngleRecords": false,
+            "AEqualsAngleSumRemainder": false,
+            "allTriangleAnglesPositive": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "2",
+            "-4"
+          ]
+        },
+        {
+          "index1based": 3,
+          "studentChoice": "$28$, $68^\\circ$",
+          "parsedValues": [
+            "28",
+            "68"
+          ],
+          "matchesEachRequestedPart": [
+            false,
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "equalBaseAngleRecords": false,
+            "AEqualsAngleSumRemainder": false,
+            "allTriangleAnglesPositive": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "-2",
+            "4"
+          ]
+        },
+        {
+          "index1based": 4,
+          "studentChoice": "$30$, $64^\\circ$",
+          "parsedValues": [
+            "30",
+            "64"
+          ],
+          "matchesEachRequestedPart": [
+            true,
+            true
+          ],
+          "matches": true,
+          "domainAndGivenConditionChecks": {
+            "equalBaseAngleRecords": true,
+            "AEqualsAngleSumRemainder": true,
+            "allTriangleAnglesPositive": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "0",
+            "0"
+          ]
+        },
+        {
+          "index1based": 5,
+          "studentChoice": "$30$, $116^\\circ$",
+          "parsedValues": [
+            "30",
+            "116"
+          ],
+          "matchesEachRequestedPart": [
+            true,
+            false
+          ],
+          "matches": false,
+          "domainAndGivenConditionChecks": {
+            "equalBaseAngleRecords": true,
+            "AEqualsAngleSumRemainder": false,
+            "allTriangleAnglesPositive": true
+          },
+          "differencesFromIndependentRequestedValues": [
+            "0",
+            "52"
+          ]
+        }
+      ],
+      "matchingIndices1based": [
+        4
+      ],
+      "exactlyOneChoice": true,
+      "basis": "Parsed actual copied student choices; no author/original key"
+    },
+    "existenceUniquenessPositivity": {
+      "actualCodeChecks": [
+        {
+          "condition": "unique x and every triangle angle positive",
+          "passed": true,
+          "calculation": {
+            "angles": [
+              "64",
+              "58",
+              "58"
+            ]
+          }
+        }
+      ],
+      "supplementalExactCoordinateWitness": null,
+      "uniqueRequestedAnswer": true,
+      "wholeConfigurationMustBeUnique": false,
+      "limit": "q17 radii and q22 triangle placements can vary while requested answers are unique. No pixel lengths or model probability determine uniqueness."
+    },
+    "figures": [
+      {
+        "svgPath": "figures/q15-1.svg",
+        "sha256": "e43be1edbb198d4209f09f98fbb084c6102f499d2e857aa07052c48c3a599396",
+        "intendedWidthMm": 70
+      }
+    ],
+    "directFigureInspections": [
+      {
+        "questionNumber": 15,
+        "svg": "figures/q15-1.svg",
+        "svgSha256": "e43be1edbb198d4209f09f98fbb084c6102f499d2e857aa07052c48c3a599396",
+        "intendedWidthMm": 70,
+        "renderedPdfWidthMm": 70.00000161064996,
+        "renderedHeightMm": 67.48606989779097,
+        "viewBox": [
+          0.0,
+          0.0,
+          242.64,
+          233.926
+        ],
+        "png": "blind/rendered/q15-1-300dpi.png",
+        "pngSha256": "71f27b6c5b8b6eb2976285136b5d6b9182c1d183179484773527514eb0ce2542",
+        "pdf": "blind/rendered/q15-1-300dpi.pdf",
+        "pdfSha256": "9702dda551456d95361c86e8a39c0640b70f182f7bd37a5c83f00db70efa901f",
+        "svgTextLabels": [],
+        "mathematicalOracle": false,
+        "renderer": "Existing PyMuPDF SVG->vector PDF at physical width->300dpi PNG; Cairo runtime absent; no installs",
+        "visualInspection": "direct view_image completed on 2026-10-08",
+        "observation": "M/N feet onAB/AC with equal distance tick marksOM/ON; point labels clear. O need not be inside every triangle for the theorem; displayed positions cause no additional condition.",
+        "labelsReadableAtSpecifiedPhysicalWidth": true,
+        "pixelMeasurementsUsedToSolve": false,
+        "physicalPrintProductionApproval": false
+      }
+    ],
+    "sevenStudentSurfaces": [
+      {
+        "surface": "stem",
+        "observation": "일차식의 유일한 근30. 세 각58°,58°,64° 모두 양수이며 합180°. OM/ON 동거리로 같은 현을 판정한다.",
+        "inGradeForUsedStudentMethod": true,
+        "limit": "New student stem only; original-twin faithfulness and provenance are not reviewed."
+      },
+      {
+        "surface": "choices",
+        "observation": "All actual student choices parsed and every requested component/strict interval compared.",
+        "detailedCodeResult": {
+          "allChoices": [
+            {
+              "index1based": 1,
+              "studentChoice": "$30$, $58^\\circ$",
+              "parsedValues": [
+                "30",
+                "58"
+              ],
+              "matchesEachRequestedPart": [
+                true,
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "equalBaseAngleRecords": true,
+                "AEqualsAngleSumRemainder": false,
+                "allTriangleAnglesPositive": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "0",
+                "-6"
+              ]
+            },
+            {
+              "index1based": 2,
+              "studentChoice": "$32$, $60^\\circ$",
+              "parsedValues": [
+                "32",
+                "60"
+              ],
+              "matchesEachRequestedPart": [
+                false,
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "equalBaseAngleRecords": false,
+                "AEqualsAngleSumRemainder": false,
+                "allTriangleAnglesPositive": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "2",
+                "-4"
+              ]
+            },
+            {
+              "index1based": 3,
+              "studentChoice": "$28$, $68^\\circ$",
+              "parsedValues": [
+                "28",
+                "68"
+              ],
+              "matchesEachRequestedPart": [
+                false,
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "equalBaseAngleRecords": false,
+                "AEqualsAngleSumRemainder": false,
+                "allTriangleAnglesPositive": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "-2",
+                "4"
+              ]
+            },
+            {
+              "index1based": 4,
+              "studentChoice": "$30$, $64^\\circ$",
+              "parsedValues": [
+                "30",
+                "64"
+              ],
+              "matchesEachRequestedPart": [
+                true,
+                true
+              ],
+              "matches": true,
+              "domainAndGivenConditionChecks": {
+                "equalBaseAngleRecords": true,
+                "AEqualsAngleSumRemainder": true,
+                "allTriangleAnglesPositive": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "0",
+                "0"
+              ]
+            },
+            {
+              "index1based": 5,
+              "studentChoice": "$30$, $116^\\circ$",
+              "parsedValues": [
+                "30",
+                "116"
+              ],
+              "matchesEachRequestedPart": [
+                true,
+                false
+              ],
+              "matches": false,
+              "domainAndGivenConditionChecks": {
+                "equalBaseAngleRecords": true,
+                "AEqualsAngleSumRemainder": false,
+                "allTriangleAnglesPositive": true
+              },
+              "differencesFromIndependentRequestedValues": [
+                "0",
+                "52"
+              ]
+            }
+          ],
+          "matchingIndices1based": [
+            4
+          ],
+          "exactlyOneChoice": true,
+          "basis": "Parsed actual copied student choices; no author/original key"
+        },
+        "inGradeForUsedStudentMethod": true
+      },
+      {
+        "surface": "figure_and_graph_semantics",
+        "observation": [
+          "M/N feet onAB/AC with equal distance tick marksOM/ON; point labels clear. O need not be inside every triangle for the theorem; displayed positions cause no additional condition."
+        ],
+        "specifiedPhysicalWidthsViewed": [
+          70
+        ],
+        "inGradeForUsedStudentMethod": true,
+        "pixelOracle": false,
+        "limit": "Standalone SVG physical rendering only; no claim about a complete final paper/student UI layout."
+      },
+      {
+        "surface": "notation",
+        "observation": "표는 두 밑각의 식; 답은x와꼭짓각A의 두 성분이며58°를A의 각으로 옮기지 않는다.",
+        "inGradeForUsedStudentMethod": true,
+        "trigScope": "Only acute-angle trig definitions and30/45/60 values used; arbitrary-angle formula, ratio identity, vector or calculus notation is not necessary."
+      },
+      {
+        "surface": "answer_format",
+        "observation": "④: x=30, ∠BAC=64°",
+        "partsWithUnits": {
+          "x": "30",
+          "∠BAC": "64°"
+        },
+        "inGradeForUsedStudentMethod": true,
+        "limit": "Own raw exact answer; Root may normalize formatting only after binding hashes."
+      },
+      {
+        "surface": "student_solution",
+        "observation": "원의 중심에서 같은 거리에 있는 현의 길이는 같으므로 AB=AC이다. 따라서 삼각형 ABC에서 두 밑각ABC,BCA가 같다. 표의 기록을 쓰면 x+28=2x−2이므로 x=30이다. 두 밑각은 각각58°이므로 ∠BAC=180°−58°−58°=64°이다. x와A의 각 순서로(30,64°), ④이다.",
+        "inGradeForUsedStudentMethod": true,
+        "basis": "Full fresh elementary student proof written before authored-solution exposure; calculation alone does not grant curricular permission."
+      },
+      {
+        "surface": "necessary_procedure",
+        "observation": "중심-현 거리 성질, 이등변삼각형 밑각, 일차방정식과 각 합",
+        "conditions": "일차식의 유일한 근30. 세 각58°,58°,64° 모두 양수이며 합180°. OM/ON 동거리로 같은 현을 판정한다.",
+        "primaryStandardReferences": [
+          {
+            "id": "9수04-19",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4353,
+              "paragraph1based": 894,
+              "offset": 219558,
+              "text": "[9수04-19]원의 현에 관한 성질과 접선에 관한 성질을 이해한다."
+            },
+            "pdfPhysicalPage1based": 38,
+            "pdfPrintedPage": 34,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수04-10",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4300,
+              "paragraph1based": 881,
+              "offset": 217636,
+              "text": "[9수04-10]이등변삼각형의 성질을 이해하고 설명할 수 있다."
+            },
+            "pdfPhysicalPage1based": 37,
+            "pdfPrintedPage": 33,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수02-05",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 3916,
+              "paragraph1based": 797,
+              "offset": 199888,
+              "text": "[9수02-05]일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다."
+            },
+            "pdfPhysicalPage1based": 34,
+            "pdfPrintedPage": 30,
+            "wholeClausePdfMatch": true
+          },
+          {
+            "id": "9수04-05",
+            "hwp": {
+              "stream": "BodyText/Section0",
+              "tag": 67,
+              "record1based": 4272,
+              "paragraph1based": 874,
+              "offset": 216602,
+              "text": "[9수04-05]다각형의 성질을 이해한다."
+            },
+            "pdfPhysicalPage1based": 37,
+            "pdfPrintedPage": 33,
+            "wholeClausePdfMatch": true
+          }
+        ],
+        "inGradeForUsedStudentMethod": true,
+        "forbiddenStudentPrerequisiteUsed": false
+      }
+    ],
+    "curriculumMethod": {
+      "reference": "actual2025middle3 ->2015",
+      "legitimateStudentMethodFound": true,
+      "standards": [
+        {
+          "id": "9수04-19",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4353,
+            "paragraph1based": 894,
+            "offset": 219558,
+            "text": "[9수04-19]원의 현에 관한 성질과 접선에 관한 성질을 이해한다."
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-10",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4300,
+            "paragraph1based": 881,
+            "offset": 217636,
+            "text": "[9수04-10]이등변삼각형의 성질을 이해하고 설명할 수 있다."
+          },
+          "pdfPhysicalPage1based": 37,
+          "pdfPrintedPage": 33,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수02-05",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 3916,
+            "paragraph1based": 797,
+            "offset": 199888,
+            "text": "[9수02-05]일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다."
+          },
+          "pdfPhysicalPage1based": 34,
+          "pdfPrintedPage": 30,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-05",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4272,
+            "paragraph1based": 874,
+            "offset": 216602,
+            "text": "[9수04-05]다각형의 성질을 이해한다."
+          },
+          "pdfPhysicalPage1based": 37,
+          "pdfPrintedPage": 33,
+          "wholeClausePdfMatch": true
+        }
+      ],
+      "restrictionsFile": "curriculum-method-evidence.json",
+      "restrictionsFileSha256": "20a90e8060b73d09eb8749f8b6636e0d960e3148c53111d8bc4db8da4c95af2d",
+      "approvalForRightsFamilyNativeOrLoading": false,
+      "fullCurrentFuturePublicationApproval": false
+    },
+    "annotationsAndSourceFamiliarityDisclosure": "Prior original exam source familiarity is possible and earlier Bumil scan annotations were incidentally seen. No Gyeonggu original/source/keys were reopened; these new candidate answers, authored solutions and other solver results were not read. Work proceeds solely from copied new student inputs.",
+    "newAuthorCandidateAnswersKnownBeforeThisSolve": false,
+    "originalKeyAgreementUsed": false,
+    "otherSolverRead": false,
+    "inferenceApiCalls": 0,
+    "limits": [
+      "Independent blind solve and bounded legitimate-method observations only. Exact Unit/live family, rights/native provenance, author-solution comparison and overall loading are outside this stage."
+    ]
+  },
+  "heldReasons": [],
+  "rejectedStudentMethods": [
+    "No arbitrary trig ratio identities or addition/half-angle formulas.",
+    "No upper-grade extrema/calculus, law of sines/cosines, vectors or circle power.",
+    "q09 uses congruence and Pythagoras instead of an unverified angle-bisector length theorem."
+  ]
+}

@@ -1,0 +1,220 @@
+{
+  "questionNumber": 19,
+  "studentDigest": "5091e73711bc83b3582e682f1cd10c2f6156985759fcdc7cc2203e5bc4ca7b3a",
+  "inputContentSha256": "87d440c028e63eb918187bccb082badc08667ea33ab1565e073b8518f9047a30",
+  "exactRequestedValues": [
+    "15/4"
+  ],
+  "freshCalculations": {
+    "squareSide": "5",
+    "DEvariable": "x",
+    "AEexpression": "10 - x",
+    "allRealRoots": [
+      "15/4"
+    ],
+    "DE": "15/4",
+    "EC=EF": "5/4",
+    "AF=AB": "5",
+    "AE": "25/4"
+  },
+  "conditionChecks": [
+    {
+      "condition": "unique E and internal F with positive tangent segments",
+      "passed": true,
+      "calculation": {
+        "DE": "15/4",
+        "EF": "5/4"
+      }
+    }
+  ],
+  "coordinateWitness": {
+    "points": {
+      "A": [
+        0,
+        5
+      ],
+      "B": [
+        0,
+        0
+      ],
+      "C": [
+        5,
+        0
+      ],
+      "D": [
+        5,
+        5
+      ],
+      "E": [
+        5,
+        "5/4"
+      ],
+      "O": [
+        "5/2",
+        0
+      ],
+      "F": [
+        4,
+        2
+      ]
+    },
+    "relations": [
+      {
+        "relation": "perpendicular",
+        "points": [
+          "O",
+          "F",
+          "A",
+          "E"
+        ],
+        "calculated": "0",
+        "required": 0,
+        "passed": true
+      },
+      {
+        "relation": "lengthSquared",
+        "points": [
+          "O",
+          "F"
+        ],
+        "calculated": "25/4",
+        "required": "25/4",
+        "passed": true
+      },
+      {
+        "relation": "lengthSquared",
+        "points": [
+          "A",
+          "F"
+        ],
+        "calculated": "25",
+        "required": 25,
+        "passed": true
+      },
+      {
+        "relation": "lengthSquared",
+        "points": [
+          "E",
+          "F"
+        ],
+        "calculated": "25/16",
+        "required": "25/16",
+        "passed": true
+      },
+      {
+        "relation": "collinear",
+        "points": [
+          "A",
+          "F",
+          "E"
+        ],
+        "calculated": "0",
+        "required": 0,
+        "passed": true
+      }
+    ],
+    "method": "Independent exact coordinate witness; supplemental validation only"
+  },
+  "codeSha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50",
+  "calculationIsCurriculumPermission": false,
+  "authorOrOriginalAnswerUsed": false,
+  "choiceCheck": {
+    "allChoices": [
+      {
+        "index1based": 1,
+        "studentChoice": "$\\frac54\\,\\mathrm{cm}$",
+        "parsedValues": [
+          "5/4"
+        ],
+        "matchesEachRequestedPart": [
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "EInternalCD": true,
+          "tangentAndSquareEquation": false
+        },
+        "differencesFromIndependentRequestedValues": [
+          "-5/2"
+        ]
+      },
+      {
+        "index1based": 2,
+        "studentChoice": "$\\frac52\\,\\mathrm{cm}$",
+        "parsedValues": [
+          "5/2"
+        ],
+        "matchesEachRequestedPart": [
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "EInternalCD": true,
+          "tangentAndSquareEquation": false
+        },
+        "differencesFromIndependentRequestedValues": [
+          "-5/4"
+        ]
+      },
+      {
+        "index1based": 3,
+        "studentChoice": "$\\frac{15}{4}\\,\\mathrm{cm}$",
+        "parsedValues": [
+          "15/4"
+        ],
+        "matchesEachRequestedPart": [
+          true
+        ],
+        "matches": true,
+        "domainAndGivenConditionChecks": {
+          "EInternalCD": true,
+          "tangentAndSquareEquation": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "0"
+        ]
+      },
+      {
+        "index1based": 4,
+        "studentChoice": "$5\\,\\mathrm{cm}$",
+        "parsedValues": [
+          "5"
+        ],
+        "matchesEachRequestedPart": [
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "EInternalCD": false,
+          "tangentAndSquareEquation": false
+        },
+        "differencesFromIndependentRequestedValues": [
+          "5/4"
+        ]
+      },
+      {
+        "index1based": 5,
+        "studentChoice": "$\\frac{25}{4}\\,\\mathrm{cm}$",
+        "parsedValues": [
+          "25/4"
+        ],
+        "matchesEachRequestedPart": [
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "EInternalCD": false,
+          "tangentAndSquareEquation": false
+        },
+        "differencesFromIndependentRequestedValues": [
+          "5/2"
+        ]
+      }
+    ],
+    "matchingIndices1based": [
+      3
+    ],
+    "exactlyOneChoice": true,
+    "basis": "Parsed actual copied student choices; no author/original key"
+  }
+}

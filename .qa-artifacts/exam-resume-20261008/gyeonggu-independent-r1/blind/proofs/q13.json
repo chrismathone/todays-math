@@ -1,0 +1,262 @@
+{
+  "questionNumber": 13,
+  "studentDigest": "40dd6419c48a9e36d598953b0c1603c3ddfab826ae1875d1a3a570303b9927d6",
+  "inputContentSha256": "1ad6c65e79bc2d7059dbc0ecb26df98f547f6025a63d6a6f58bbc54cfef0ac40",
+  "exactRequestedValues": [
+    "12"
+  ],
+  "freshCalculations": {
+    "angleACD": "180-60-105=15",
+    "angleDCB": "60-15=45",
+    "BDvariable": "x",
+    "areaAsFunctionOfBD": "sqrt(3)*x**2/8",
+    "positiveRoots": [
+      "12"
+    ],
+    "BE": "6",
+    "DE": "6*sqrt(3)",
+    "CE": "6*sqrt(3)",
+    "side": "6 + 6*sqrt(3)",
+    "AD": "-6 + 6*sqrt(3)",
+    "CF": "3*sqrt(3) + 9",
+    "area": "18*sqrt(3)"
+  },
+  "conditionChecks": [
+    {
+      "condition": "unique positive length and D internal",
+      "passed": true,
+      "calculation": {
+        "BE": "6",
+        "DE": "6*sqrt(3)",
+        "CE": "6*sqrt(3)",
+        "side": "6 + 6*sqrt(3)",
+        "AD": "-6 + 6*sqrt(3)",
+        "CF": "3*sqrt(3) + 9",
+        "area": "18*sqrt(3)"
+      }
+    },
+    {
+      "condition": "105 degree given reconstructed without using trig105 as student method",
+      "passed": true,
+      "calculation": 105.00000000000001
+    }
+  ],
+  "coordinateWitness": {
+    "points": {
+      "A": [
+        0,
+        0
+      ],
+      "B": [
+        "6 + 6*sqrt(3)",
+        0
+      ],
+      "C": [
+        "3 + 3*sqrt(3)",
+        "3*sqrt(3) + 9"
+      ],
+      "D": [
+        "-6 + 6*sqrt(3)",
+        0
+      ],
+      "F": [
+        "3 + 3*sqrt(3)",
+        0
+      ],
+      "E": [
+        "3 + 6*sqrt(3)",
+        "3*sqrt(3)"
+      ]
+    },
+    "relations": [
+      {
+        "relation": "lengthSquared",
+        "points": [
+          "A",
+          "B"
+        ],
+        "calculated": "72*sqrt(3) + 144",
+        "required": "72*sqrt(3) + 144",
+        "passed": true
+      },
+      {
+        "relation": "lengthSquared",
+        "points": [
+          "B",
+          "C"
+        ],
+        "calculated": "72*sqrt(3) + 144",
+        "required": "72*sqrt(3) + 144",
+        "passed": true
+      },
+      {
+        "relation": "lengthSquared",
+        "points": [
+          "A",
+          "C"
+        ],
+        "calculated": "72*sqrt(3) + 144",
+        "required": "72*sqrt(3) + 144",
+        "passed": true
+      },
+      {
+        "relation": "perpendicular",
+        "points": [
+          "C",
+          "F",
+          "A",
+          "B"
+        ],
+        "calculated": "0",
+        "required": 0,
+        "passed": true
+      },
+      {
+        "relation": "perpendicular",
+        "points": [
+          "D",
+          "E",
+          "B",
+          "C"
+        ],
+        "calculated": "0",
+        "required": 0,
+        "passed": true
+      },
+      {
+        "relation": "collinear",
+        "points": [
+          "B",
+          "E",
+          "C"
+        ],
+        "calculated": "0",
+        "required": 0,
+        "passed": true
+      },
+      {
+        "relation": "lengthSquared",
+        "points": [
+          "D",
+          "E"
+        ],
+        "calculated": "108",
+        "required": "108",
+        "passed": true
+      },
+      {
+        "relation": "lengthSquared",
+        "points": [
+          "C",
+          "E"
+        ],
+        "calculated": "108",
+        "required": "108",
+        "passed": true
+      }
+    ],
+    "method": "Independent exact coordinate witness; supplemental validation only"
+  },
+  "codeSha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50",
+  "calculationIsCurriculumPermission": false,
+  "authorOrOriginalAnswerUsed": false,
+  "choiceCheck": {
+    "allChoices": [
+      {
+        "index1based": 1,
+        "studentChoice": "$6\\,\\mathrm{cm}$",
+        "parsedValues": [
+          "6"
+        ],
+        "matchesEachRequestedPart": [
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "positiveLength": true,
+          "givenTriangleArea18sqrt3": false
+        },
+        "differencesFromIndependentRequestedValues": [
+          "-6"
+        ]
+      },
+      {
+        "index1based": 2,
+        "studentChoice": "$6\\sqrt2\\,\\mathrm{cm}$",
+        "parsedValues": [
+          "6*sqrt(2)"
+        ],
+        "matchesEachRequestedPart": [
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "positiveLength": true,
+          "givenTriangleArea18sqrt3": false
+        },
+        "differencesFromIndependentRequestedValues": [
+          "-12 + 6*sqrt(2)"
+        ]
+      },
+      {
+        "index1based": 3,
+        "studentChoice": "$9\\,\\mathrm{cm}$",
+        "parsedValues": [
+          "9"
+        ],
+        "matchesEachRequestedPart": [
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "positiveLength": true,
+          "givenTriangleArea18sqrt3": false
+        },
+        "differencesFromIndependentRequestedValues": [
+          "-3"
+        ]
+      },
+      {
+        "index1based": 4,
+        "studentChoice": "$12\\,\\mathrm{cm}$",
+        "parsedValues": [
+          "12"
+        ],
+        "matchesEachRequestedPart": [
+          true
+        ],
+        "matches": true,
+        "domainAndGivenConditionChecks": {
+          "positiveLength": true,
+          "givenTriangleArea18sqrt3": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "0"
+        ]
+      },
+      {
+        "index1based": 5,
+        "studentChoice": "$12\\sqrt2\\,\\mathrm{cm}$",
+        "parsedValues": [
+          "12*sqrt(2)"
+        ],
+        "matchesEachRequestedPart": [
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "positiveLength": true,
+          "givenTriangleArea18sqrt3": false
+        },
+        "differencesFromIndependentRequestedValues": [
+          "-12 + 12*sqrt(2)"
+        ]
+      }
+    ],
+    "matchingIndices1based": [
+      4
+    ],
+    "exactlyOneChoice": true,
+    "basis": "Parsed actual copied student choices; no author/original key"
+  }
+}

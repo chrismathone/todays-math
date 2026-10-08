@@ -1,0 +1,128 @@
+{
+  "questionNumber": 8,
+  "studentDigest": "f05d647e2defce842751a47b7cfd06a2cdde812f6ba53d4232d10cbdefe50fe1",
+  "inputContentSha256": "5868667865d1849f52763a3a24ed499f6882298b06a8e8642fcb5e61a9a51c66",
+  "exactRequestedValues": [
+    "9*T35 + 9"
+  ],
+  "freshCalculations": {
+    "AH": "9",
+    "BH": "9",
+    "HC": "9*T35",
+    "BC": "9*T35 + 9",
+    "tan35NumericalDiagnostic": 0.7002075382097097
+  },
+  "conditionChecks": [
+    {
+      "condition": "internal foot, acute35 and positive sum",
+      "passed": true,
+      "calculation": {
+        "BH": "9",
+        "HC": "9*T35"
+      }
+    },
+    {
+      "condition": "symbolic tangent definition",
+      "passed": true,
+      "calculation": "T35"
+    }
+  ],
+  "coordinateWitness": null,
+  "codeSha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50",
+  "calculationIsCurriculumPermission": false,
+  "authorOrOriginalAnswerUsed": false,
+  "choiceCheck": {
+    "allChoices": [
+      {
+        "index1based": 1,
+        "studentChoice": "$9\\tan35^\\circ\\,\\mathrm{cm}$",
+        "parsedValues": [
+          "9*T35"
+        ],
+        "matchesEachRequestedPart": [
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "positiveLengthForPositiveTan35": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "-9"
+        ]
+      },
+      {
+        "index1based": 2,
+        "studentChoice": "$9(1+2\\tan35^\\circ)\\,\\mathrm{cm}$",
+        "parsedValues": [
+          "18*T35 + 9"
+        ],
+        "matchesEachRequestedPart": [
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "positiveLengthForPositiveTan35": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "9*T35"
+        ]
+      },
+      {
+        "index1based": 3,
+        "studentChoice": "$9(1+\\tan35^\\circ)\\,\\mathrm{cm}$",
+        "parsedValues": [
+          "9*T35 + 9"
+        ],
+        "matchesEachRequestedPart": [
+          true
+        ],
+        "matches": true,
+        "domainAndGivenConditionChecks": {
+          "positiveLengthForPositiveTan35": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "0"
+        ]
+      },
+      {
+        "index1based": 4,
+        "studentChoice": "$9(2+\\tan35^\\circ)\\,\\mathrm{cm}$",
+        "parsedValues": [
+          "9*T35 + 18"
+        ],
+        "matchesEachRequestedPart": [
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "positiveLengthForPositiveTan35": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "9"
+        ]
+      },
+      {
+        "index1based": 5,
+        "studentChoice": "$18(1+\\tan35^\\circ)\\,\\mathrm{cm}$",
+        "parsedValues": [
+          "18*T35 + 18"
+        ],
+        "matchesEachRequestedPart": [
+          false
+        ],
+        "matches": false,
+        "domainAndGivenConditionChecks": {
+          "positiveLengthForPositiveTan35": true
+        },
+        "differencesFromIndependentRequestedValues": [
+          "9*T35 + 9"
+        ]
+      }
+    ],
+    "matchingIndices1based": [
+      3
+    ],
+    "exactlyOneChoice": true,
+    "basis": "Parsed actual copied student choices; no author/original key"
+  }
+}
