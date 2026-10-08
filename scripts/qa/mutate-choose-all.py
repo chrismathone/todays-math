@@ -120,6 +120,18 @@ MUTATIONS: list[tuple[str, str, str, str]] = [
         "  if (all > pick + 10000) return false;",
     ),
     (
+        "판정기 — ㄱㄴㄷ 조합 보기를 가르지 않는다 (조합 하나를 고르는 «모두 고르면?» 이 정답 2개 규칙에 걸린다)",
+        RULE,
+        "  if (choicesAreLabelCombos(content)) return false;",
+        "  if (false) return false;",
+    ),
+    (
+        "판정기 — «모두 고른 것» 구절을 지우지 않는다 («…모두 고른 것을 고르시오» 가 걸린다)",
+        RULE,
+        '  const stem = stemOf(content).replace(COMBO_PICK_PHRASE, "▦");',
+        "  const stem = stemOf(content);",
+    ),
+    (
         "규칙 상수 — 정답 개수를 3으로 바꾼다 (기대값이 제품에서 오면 초록이다)",
         RULE,
         "export const CHOOSE_ALL_ANSWER_COUNT = 2;",

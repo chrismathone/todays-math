@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """뽑은 문항 → 문제은행에 실을 꼴의 글(LaTeX) (교과서 이관 · 2026-10-07).
 
-  python prepare.py <extract 폴더> <출력 폴더> [--all]
+  python prepare.py <extract 폴더> <출력 폴더> [--all] [--tidy] [--skip <준비 폴더>]… [--decor <figures/meta.jsonl>]
 
 하는 일(차례대로):
   ① 고른다 — 평가 자료 · 물음이 있는 문항 · 답이 붙은 것 · **글만으로 완결된 것**
@@ -29,7 +29,9 @@ if hasattr(sys.stdout, "reconfigure"):
     sys.stdout.reconfigure(encoding="utf-8")  # 윈도 콘솔(cp949)은 «» 를 못 찍는다
 
 REPO = Path(__file__).resolve().parents[3]
-ANSWER_SOURCES = {"key", "solution-short", "solution-choice", "solution-last"}
+#: 답의 출처 — `picture` 는 정답 칸의 그림을 구독 모델이 읽은 답(`answer_pictures.py`). 확인된 답이 아니다 —
+#: 검토자가 정답을 안 보고 푼 답과 대조해 같을 때만(다르면 둘째 검토) 싣는다. 다른 출처와 같은 길이다
+ANSWER_SOURCES = {"key", "solution-short", "solution-choice", "solution-last", "picture"}
 #: 본문이 이보다 길면 문항 하나가 아니다(붙은 문항 · 활동지)
 CONTENT_MAX = 1200
 _FIGURE_IN_SOLUTION = re.compile(r"그림|그래프는?\s*(?:다음|오른쪽|아래)|다음과\s*같(?:이|은)\s*(?:그래프|표)|수직선\s*위에\s*나타내면")
@@ -41,21 +43,57 @@ def external_id(row: dict) -> str:
     return f"tb-{row['key']}-{row['section']}-{row['number']}"
 
 
-def eligible(row: dict) -> str | None:
-    """실을 수 없는 까닭 — 실을 수 있으면 None."""
+#: «여기 그려진 것»을 가리키는 말 — 그림 · 표가 없으면 못 푸는 문항이다.
+#: 추출의 `figureMention` 은 «그래프» · «도형» · «좌표평면 위» 라는 낱말만 있어도 걸렸다. 그렇게 미룬 771문항 가운데 630이
+#: «이차함수 …의 그래프가 x축과 만나는»처럼 그림 없이 풀리는 글이었다(2026-10-08 실측). 낱말이 아니라 가리킴으로 가른다 —
+#: 글만으로 못 푸는 나머지는 검토자가 가른다(`review/BRIEF.md` 1번). «다음 도형의 넓이를 구하시오. ⑴ …» · «다음 표를
+#: 완성하시오» 는 가리킴이 아니다.
+_POINTS_AT = re.compile(
+    "|".join(
+        (
+            r"그림",
+            r"전개도",
+            r"히스토그램",
+            r"도수분포다각형",
+            r"줄기와 잎",
+            # «범위 표현» 의 «위 표» 에 걸리지 않게 — 가리키는 말은 낱말의 머리에서, «표» 는 조사 앞에서만
+            r"(?<![가-힣])(?:오른쪽|왼쪽|아래|위|위의|아래의)\s*(?:그래프|도형|수직선|좌표평면|도수분포표|표(?![가-힣])|표(?=[는은를을의에와과]))",
+            r"(?<![가-힣])다음\s*(?:그래프|수직선|도수분포표|표)(?:은|는|에서|와|과|의)",
+            # «다음 수직선 위의 점» · «다음 좌표평면 위에» — 수직선 · 좌표평면은 «다음»이 붙으면 늘 그려져 있다
+            r"(?<![가-힣])(?:다음|아래)\s*(?:수직선|좌표평면)",
+            r"(?:그래프|도형|수직선|(?<![가-힣])표)(?:가|는|은|를|을)?\s*(?:다음|아래|오른쪽)(?:과|와)\s*같",
+            r"(?:다음|아래|오른쪽)(?:과|와)\s*같은\s*(?:그래프|도형|수직선|표(?![가-힣]))",
+        )
+    )
+)
+
+
+def converts_answer(row: dict) -> bool:
+    """정답을 한글 수식에서 LaTeX 로 바꾸나 — 정답 그림에서 읽은 답(`picture`)은 이미 LaTeX 다. 한 번 더 바꾸면 깨진다."""
+    return row.get("answerFrom") != "picture"
+
+
+def points_to_figure(content: str) -> bool:
+    return bool(_POINTS_AT.search(content))
+
+
+def eligible(row: dict, decor: bool = False) -> str | None:
+    """실을 수 없는 까닭 — 실을 수 있으면 None.
+
+    `decor` — 이 문항의 그림 · 도형이 장식뿐이라고 갈렸다(`figures.py` 의 text 갈래). 그림 · 도형으로 미루지 않는다."""
     if row.get("kind") != "assessment":
         return "평가 자료가 아니다"
     if not row.get("isQuestion", True):
         return "물음이 없다"
     if not row.get("answer") or row.get("answerFrom") not in ANSWER_SOURCES:
         return "답이 없다"
-    if row["pictures"]:
+    if row["pictures"] and not decor:
         return "그림"
-    if row["shapes"]:
+    if row["shapes"] and not decor:
         return "한글 도형"
     if row.get("tables"):
         return "자료 표"
-    if row.get("figureMention"):
+    if points_to_figure(row["content"]):
         return "그림을 가리키는 말"
     if row.get("embeddedNumber") is not None:
         return "붙은 문항"
@@ -251,13 +289,25 @@ def unglue_operators(script: str) -> str:
     return _GLUED_OPERATOR.sub(lambda m: f" {m.group(1)} ", script)
 
 
+#: 글자에 붙은 기하 낱말 — `OVERLINEAD` · `overlineAB` · `DYADAB` · `ARCHAB`. 변환 정본은 띄어 쓴 소문자 낱말만 안다.
+#: 안 띄우면 `OVERLINEAD=OVERLINEAF` 의 `OVER` 가 분수의 «over»로 읽혀 `\frac{=}{LINEAF}` 가 된다(그림 문항에서 찾았다).
+_GLUED_GEOMETRY = re.compile(r"(?<![A-Za-z\\])(overline|OVERLINE|dyad|DYAD|arch|ARCH)([A-Z]{1,4})(?![A-Za-z])")
+_UPPER_GEOMETRY = re.compile(r"(?<![A-Za-z\\])(OVERLINE|DYAD|ARCH)(?![A-Za-z])")
+
+
+def unglue_geometry(script: str) -> str:
+    """`OVERLINEAD` → `overline{rm AD}` · 띄어 쓴 대문자 낱말은 소문자로(`ARCH AB` → `arch AB`)."""
+    script = _GLUED_GEOMETRY.sub(lambda m: f"{m.group(1).lower()}{{rm {m.group(2)}}}", script)
+    return _UPPER_GEOMETRY.sub(lambda m: m.group(1).lower(), script)
+
+
 def pre_convert(text: str) -> str:
     """변환 앞 — `$…$` 안의 한글 수식만 고친다.
 
     🔴 차례가 있다 — 몫을 묶는 셋(첨자 · 제곱근 · 분수)이 **먼저**, 붙은 낱말 띄우기가 **나중**이다.
     몫은 원문의 띄어쓰기로 정해진다: `1 over 3times5` 의 분모는 `3times5` 한 덩이다. 먼저 띄우면 분모가 `3` 이 된다
     (셋째 묶음의 검토자가 «분모 3×5 가 1/3 × 5 로 뽑혔다»로 짚었다 — 띄우기를 앞에 둔 지 한 시간 만이다)."""
-    return re.sub(r"\$([^$]*)\$", lambda m: "$" + unglue_operators(brace_over(brace_roots(brace_scripts(roman_escapes(m.group(1)))))) + "$", text)
+    return re.sub(r"\$([^$]*)\$", lambda m: "$" + unglue_operators(brace_over(brace_roots(brace_scripts(roman_escapes(unglue_geometry(m.group(1))))))) + "$", text)
 
 
 #: 줄 머리의 사용자 영역 글자 — 기호 글꼴의 «답» 표시 · 글머리표(뜻을 가진 글자가 아니다). 줄 가운데 것은 남긴다(뒤에서 걸린다)
@@ -275,6 +325,10 @@ def post_convert(text: str) -> str:
         # 줄 맞춤 `&` 가 환경 밖에 남은 것 — KaTeX 가 포기한다
         if "&" in body and "\\begin{" not in body:
             body = body.replace("&", "")
+        # `rm {bar{PF prime}}` → `\mathrm{\overline{PF'}}` — 뜻이 같은 `\overline{\mathrm{PF'}}` 로(판정기가 «삼킨 바»로 막는다)
+        body = re.sub(r"\\mathrm\{\\overline\{([^{}]*)\}\}", r"\\overline{\\mathrm{\1}}", body)
+        # 남은 기울임 `\mathit{x}` — 수식은 기울임이 기본이다
+        body = re.sub(r"\\mathit\{([^{}]*)\}", r"\1", body)
         return f"${body}$"
 
     return re.sub(r"\$([^$]*)\$", fix, text)
@@ -292,6 +346,17 @@ def main() -> None:
     out_dir = Path(sys.argv[2])
     take_all = "--all" in sys.argv
     out_dir.mkdir(parents=True, exist_ok=True)
+    # `--skip <준비 폴더>`(여럿) — 거기서 이미 준비한 문항은 다시 고르지 않는다(고르는 규칙을 넓힌 뒤 «새로 풀린 것만» 준비할 때)
+    already: set[str] = set()
+    for index, arg in enumerate(sys.argv):
+        if arg == "--skip":
+            with (Path(sys.argv[index + 1]) / "prepared.jsonl").open(encoding="utf-8") as lines:
+                already |= {json.loads(line)["id"] for line in lines}
+    # `--decor <figures/meta.jsonl>` — 그림 · 도형이 장식뿐이라고 갈린 문항(text 갈래)은 그림으로 미루지 않는다
+    decor: set[str] = set()
+    if "--decor" in sys.argv:
+        with Path(sys.argv[sys.argv.index("--decor") + 1]).open(encoding="utf-8") as lines:
+            decor = {meta["id"] for meta in map(json.loads, lines) if meta["route"] == "text"}
 
     rows = [json.loads(line) for line in (source / "problems.jsonl").open(encoding="utf-8")]
     corpus = Corpus()
@@ -304,9 +369,11 @@ def main() -> None:
     chosen: list[dict] = []
     seen: set[str] = set()
     for row in rows:
-        reason = None if take_all else eligible(row)
+        reason = None if take_all else eligible(row, decor=external_id(row) in decor)
         if reason is None and external_id(row) in seen:
             reason = "같은 열쇠가 두 번"
+        if reason is None and external_id(row) in already:
+            reason = "이미 준비한 문항"
         reasons[reason or "고름"] = reasons.get(reason or "고름", 0) + 1
         if reason is None:
             seen.add(external_id(row))
@@ -317,7 +384,8 @@ def main() -> None:
     for row in chosen:
         rid = external_id(row)
         pieces.append({"id": f"{rid}#c", "text": pre_convert(close_set_brace(normalize_content(row["content"], corpus)))})
-        pieces.append({"id": f"{rid}#a", "text": pre_convert(close_set_brace(row["answer"].strip()))})
+        if converts_answer(row):
+            pieces.append({"id": f"{rid}#a", "text": pre_convert(close_set_brace(row["answer"].strip()))})
         solution = (row.get("solution") or "").strip()
         if solution:
             pieces.append({"id": f"{rid}#s", "text": pre_convert(close_set_brace(normalize_solution(solution, corpus)))})
@@ -339,7 +407,15 @@ def main() -> None:
     )
     if not fixed.exists():
         raise SystemExit(f"잔재 고침이 결과를 못 냈다 — {out_dir / 'fix.log'}")
+    if "--tidy" in sys.argv:
+        # 표기 손질 — 검토자가 읽는 글이 실을 글이게(`tidy-pieces.ts` 머리)
+        tidied = out_dir / "pieces_tidy.json"
+        run(["npx", "tsx", "scripts/import/textbook/tidy-pieces.ts", str(fixed), str(tidied)], out_dir / "tidy.log")
+        fixed = tidied
     text_of = {piece["id"]: piece["text"] for piece in json.loads(fixed.read_text(encoding="utf-8"))}
+    for row in chosen:
+        if not converts_answer(row):
+            text_of[f"{external_id(row)}#a"] = row["answer"].strip()
     bad: dict[str, list[str]] = {}
     for line in (out_dir / "fix.log").read_text(encoding="utf-8").splitlines():
         match = re.match(r"^\[문(.+?)#([cas])\]\s*(.*)$", line)

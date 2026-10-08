@@ -1,0 +1,125 @@
+/**
+ * 교과서 이관 — 본문의 `[그림]` 표지와 그림 파일의 짝 (D-161).
+ *
+ * 그림 문항의 본문에는 그림이 놓이는 자리가 문제은행의 표지 `[그림]` 으로 적혀 있다(`figures.py` 가 추출의 자리를 옮겨 적는다).
+ * **표지의 차례가 곧 그림 파일의 차례**다(`Problem.figureUrls`). 보기 줄(`① [그림]`)에 선 표지가 그 보기의 그림이고,
+ * 그 밖의 표지는 발문의 그림이다(`Problem.choiceFigureIndex` — 0 은 발문 · 1 부터 보기 번호).
+ *
+ * 🔴 짝을 알 수 없으면 **모른다**(null)로 낸다 — 아무 그림이나 ① 에 붙이지 않는다(틀린 짝은 그럴듯해 보이면서 틀린다.
+ *    `prisma/schema.prisma` 의 `choiceFigureIndex` 주석과 같은 규칙). 적재기는 그런 문항을 잠근다.
+ */
+import { hasUnlinkedFigureChoices } from "../../problem/choiceFigureIndex";
+import { FIGURE_MARKER } from "../../problem/figureMarker";
+import { parseProblemContent } from "../../problem/parseProblemContent";
+
+const CIRCLED = "①②③④⑤⑥⑦⑧⑨⑩";
+
+export function countMarkers(content: string): number {
+  return content.split(FIGURE_MARKER).length - 1;
+}
+
+/** 본문에서 `drop` 에 든 차례(1부터)의 표지를 걷는다. 표지가 홀로 서 있던 줄은 줄째 걷는다. */
+export function dropFigureMarkers(
+  content: string,
+  drop: ReadonlySet<number>,
+): string {
+  if (drop.size === 0) return content;
+  let seen = 0;
+  const lines: string[] = [];
+  for (const line of content.split("\n")) {
+    if (!line.includes(FIGURE_MARKER)) {
+      lines.push(line);
+      continue;
+    }
+    const parts = line.split(FIGURE_MARKER);
+    let out = parts[0]!;
+    for (const part of parts.slice(1)) {
+      seen += 1;
+      out += (drop.has(seen) ? "" : FIGURE_MARKER) + part;
+    }
+    out = out.replace(/[ \t]{2,}/g, " ").trim();
+    // 표지 때문에 있던 줄만 버린다 — 원래 빈 줄은 문단을 가르는 구조다
+    if (out) lines.push(out);
+  }
+  return lines.join("\n");
+}
+
+/**
+ * 그림이 번호 **앞**에 선 보기 줄(`[그림] ①`)을 문제은행의 보기 줄 꼴(`① [그림]`)로 옮긴다.
+ *
+ * 한글 파일에서 보기 그림의 닻이 번호 글자보다 앞에 있으면 추출이 그 차례대로 적는다. 보기 줄은 번호로 시작해야 하고,
+ * 그대로 두면 그 그림이 발문의 그림(0)으로 읽혀 짝이 없다(2026-10-08 — 짝을 모르는 25문항 가운데 19).
+ * 🔴 줄이 «표지 하나 + 번호 하나»뿐일 때만 옮긴다 — 표지의 수와 차례는 그대로라 그림 파일의 짝이 안 바뀐다.
+ *    번호 뒤에 글이 있거나 표지가 둘이면 어느 그림이 그 보기인지 모른다(건드리지 않는다).
+ */
+export function liftChoiceMarkers(content: string): string {
+  return content
+    .split("\n")
+    .map((line) => {
+      const body = line.trim();
+      if (!body.startsWith(FIGURE_MARKER)) return line;
+      const rest = body.slice(FIGURE_MARKER.length).trim();
+      return rest.length === 1 && CIRCLED.includes(rest)
+        ? `${rest} ${FIGURE_MARKER}`
+        : line;
+    })
+    .join("\n");
+}
+
+/** 표지의 차례대로 «몇 번 보기의 그림인가». 짝을 알 수 없으면 null. */
+export function choiceIndexOf(content: string): number[] | null {
+  const index: number[] = [];
+  const used = new Set<number>();
+  for (const line of content.split("\n")) {
+    const count = countMarkers(line);
+    if (count === 0) continue;
+    const choice = CIRCLED.indexOf(line.trimStart().charAt(0)) + 1;
+    if (choice === 0) {
+      for (let n = 0; n < count; n += 1) index.push(0);
+      continue;
+    }
+    // 한 보기에 그림이 둘이거나 같은 번호의 보기가 또 나오면 어느 그림이 그 보기인지 모른다
+    if (count > 1 || used.has(choice)) return null;
+    used.add(choice);
+    index.push(choice);
+  }
+  return index;
+}
+
+/**
+ * 보기가 그림뿐인데 어느 그림이 몇 번인지 모르면 잠그는 까닭을 낸다(아니면 null).
+ *
+ * 🔴 판정은 푸시 관문 `check:figure-choices`(`scripts/qa/checkFigureChoiceLinks.ts`)와 **같은 함수**다 — 규칙을 옮겨 적지 않는다.
+ *    2026-10-08 그림 문항 3,911 을 실은 뒤 관문이 21문항을 막았다: «[그림] ①»(그림이 번호 앞) 줄은 발문 그림(0)으로 읽혔고,
+ *    다섯 보기를 그림 한 장에 담은 문항은 짝이 없다. 적재기가 관문을 어기는 행을 만들면 **누구의 main 푸시든** 막힌다.
+ */
+export function figureChoiceNote(
+  content: string,
+  figureCount: number,
+  index: readonly number[] | null,
+): string | null {
+  const choices = parseProblemContent(content).choices;
+  if (index === null)
+    return choices.length || countMarkers(content)
+      ? "보기 그림의 짝을 알 수 없다"
+      : null;
+  return hasUnlinkedFigureChoices(figureCount, index, choices)
+    ? "보기 그림의 짝을 알 수 없다"
+    : null;
+}
+
+/**
+ * 검토자가 본 그림(그 지문들)이 지금 싣는 그림인가.
+ *
+ * 추출을 고치면 같은 문항 번호에 다른 그림이 붙을 수 있다 — 본문이 한 글자도 같아도 그 검토는 다른 문항에 대한 것이다
+ * (2026-10-08 그림이 한 문항씩 밀렸던 것을 바로잡으면서). 차례까지 같아야 `same` 이다.
+ * 그림을 본 기록이 없는 검토(`seen` 이 없다)는 그림 문항에 쓰지 않는다 — `unseen`.
+ */
+export function figuresSeen(
+  seen: readonly string[] | undefined,
+  now: readonly string[],
+): "same" | "changed" | "unseen" {
+  if (seen === undefined) return now.length === 0 ? "same" : "unseen";
+  if (seen.length !== now.length) return "changed";
+  return seen.every((key, index) => key === now[index]) ? "same" : "changed";
+}
