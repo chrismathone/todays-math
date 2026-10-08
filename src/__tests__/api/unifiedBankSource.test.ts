@@ -123,6 +123,7 @@ async function book(
       author,
       title: `${grade} 수학`,
       grade,
+      curriculum: "2022",
     },
   });
 }
@@ -130,7 +131,13 @@ let materialSeq = 0;
 async function material(bookId: string, kind: string) {
   materialSeq += 1;
   return db.sourceMaterial.create({
-    data: { externalKey: `tb-${materialSeq}`, bookId, kind },
+    data: {
+      externalKey: `tb-${materialSeq}`,
+      bookId,
+      kind,
+      kindRaw: kind,
+      title: `${kind} ${materialSeq}`,
+    },
   });
 }
 const textbook = (sourceMaterialId?: string, patch = {}) =>
@@ -415,20 +422,12 @@ describe("고르기 창의 수 — loadBankSourceCounts · GET …/problems/sour
     curriculumOrder();
     await seed();
     vi.stubEnv("NODE_ENV", "development");
-    const response = await sourcesGET(
-      new Request("http://localhost/api/dev/unified/problems/sources"),
-    );
+    const response = await sourcesGET();
     expect(response.status).toBe(200);
     expect(
       bankSourceCountsSchema.safeParse(await response.json()).success,
     ).toBe(true);
     vi.stubEnv("NODE_ENV", "production");
-    expect(
-      (
-        await sourcesGET(
-          new Request("http://localhost/api/dev/unified/problems/sources"),
-        )
-      ).status,
-    ).toBe(404);
+    expect((await sourcesGET()).status).toBe(404);
   });
 });

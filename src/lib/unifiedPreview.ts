@@ -283,7 +283,13 @@ export async function loadUnifiedBank(
     page,
     pageSize,
     // 학기 칸은 단원 목록을 좁히는 데만 쓰고 싣지 않는다 — 범위 고르개가 받는 꼴은 `UnitEntity` 그대로다.
-    units: units.map(({ _count, semester: _semester, ...unit }) => unit),
+    units: units.map(({ id, grade, chapter, section, orderIndex }) => ({
+      id,
+      grade,
+      chapter,
+      section,
+      orderIndex,
+    })),
     grades: Array.from(counts, ([grade, count]) => ({ grade, count })).filter(
       (item) => item.count > 0,
     ),

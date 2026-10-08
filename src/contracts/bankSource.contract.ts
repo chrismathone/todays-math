@@ -55,35 +55,30 @@ export const BANK_BOOK_LIMIT = 100;
 /**
  * 쉼표로 이은 값 → 겹치지 않는 배열. 빈 조각은 버리고, 남은 것이 없으면 잘못된 값이다
  * (화면은 빈 고르기를 **아예 안 보낸다** — 보냈다면 무언가 어긋난 것이다).
+ * 항목 검사는 배열 쪽이 한다(책은 uuid · 자료 종류는 계약의 목록).
  */
-function commaList<T extends z.ZodType<string>>(item: T, max: number) {
-  return z
-    .string()
-    .transform((value) => [
-      ...new Set(
-        value
-          .split(",")
-          .map((piece) => piece.trim())
-          .filter(Boolean),
-      ),
-    ])
-    .pipe(
-      z
-        .array(item)
-        .min(1, { error: "고른 값이 비어 있습니다." })
-        .max(max, { error: `한 번에 ${max}개까지 고를 수 있습니다.` }),
-    );
-}
+const splitComma = z.string().transform((value) => [
+  ...new Set(
+    value
+      .split(",")
+      .map((piece) => piece.trim())
+      .filter(Boolean),
+  ),
+]);
+const EMPTY_PICK = { error: "고른 값이 비어 있습니다." };
 
 /** 책 열쇠 — `source_book.id`. 이름(출판사 · 저자)은 바뀔 수 있어 열쇠로 쓰지 않는다. */
-export const bankBookIdsParamSchema = commaList(
-  z.uuid({ error: "책 식별자 형식이 올바르지 않습니다." }),
-  BANK_BOOK_LIMIT,
+export const bankBookIdsParamSchema = splitComma.pipe(
+  z
+    .array(z.uuid({ error: "책 식별자 형식이 올바르지 않습니다." }))
+    .min(1, EMPTY_PICK)
+    .max(BANK_BOOK_LIMIT, {
+      error: `책은 한 번에 ${BANK_BOOK_LIMIT}권까지 고를 수 있습니다.`,
+    }),
 );
 /** 자료 종류 — 계약의 목록(`SOURCE_MATERIAL_KINDS`)만. 적재기도 목록 밖의 값을 거절한다. */
-export const bankMaterialKindsParamSchema = commaList(
-  sourceMaterialKindSchema,
-  sourceMaterialKindSchema.options.length,
+export const bankMaterialKindsParamSchema = splitComma.pipe(
+  z.array(sourceMaterialKindSchema).min(1, EMPTY_PICK),
 );
 
 /**
