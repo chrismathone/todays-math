@@ -57,6 +57,11 @@ export type Material = {
   mistakes: () => readonly Mistake[];
   /** 공용 후보의 분모가 나눠야 하는 수 — «나올 수 없는 분모»를 거른다 */
   denominatorBound: number;
+  /**
+   * 틀 이름(선택) — `CalcStyle.maxPerTemplate` 과 같이 쓴다. 식의 값 판정은 꼴이 하나라 한 문항에 같은 틀
+   * (일차식 다섯 …)이 몰릴 수 있다. 안 적으면 세지 않는다.
+   */
+  template?: string;
 };
 
 /** 재료 하나를 뽑는 함수 — 시험이 «늘 같은 재료»를 넣어 재시도 상한을 잰다. */
@@ -66,6 +71,8 @@ export type MaterialDraw = (rng: Rng) => Material;
 export type CalcStyle = {
   lead: (ask: TruthAsk) => string;
   briefLead: string;
+  /** 한 문항에 같은 틀(`Material.template`)을 몇 개까지 — 안 적으면 제한 없음 */
+  maxPerTemplate?: number;
 };
 
 /** 교차곱으로 같은 값인가 — 약분 여부에 기대지 않는다. */
@@ -195,6 +202,8 @@ export function buildTruthBody(
     facts: Record<string, number>;
     /** 부호 반대를 이미 썼나 — 한 문항에 하나까지 */
     signUsed: boolean;
+    /** 틀마다 몇 개 썼나 */
+    templates: Map<string, number>;
   };
   const builds = new Map<string, Build>();
   let draws = 0;
@@ -219,10 +228,14 @@ export function buildTruthBody(
         options: [],
         facts: {},
         signUsed: false,
+        templates: new Map(),
       };
       builds.set(shape, b);
     }
     if (b.lefts.has(m.left)) continue;
+    const used = m.template ? (b.templates.get(m.template) ?? 0) : 0;
+    if (style.maxPerTemplate !== undefined && used >= style.maxPerTemplate)
+      continue;
     // 첫째는 «다른 하나» — «옳지 않은 것» 물음이면 거짓, «옳은 것» 물음이면 참.
     const odd = b.options.length === 0;
     const wantTrue = ask === "옳지 않은 것" ? !odd : odd;
@@ -237,6 +250,7 @@ export function buildTruthBody(
     b.lefts.add(m.left);
     b.rights.add(right);
     if (mistake?.kind === "부호") b.signUsed = true;
+    if (m.template) b.templates.set(m.template, used + 1);
     const i = b.options.length;
     b.facts[`s${i}n`] = m.value.n;
     b.facts[`s${i}d`] = m.value.d;

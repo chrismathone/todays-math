@@ -338,7 +338,7 @@ export function assembleCompare(
     throw new Error(`${where}: 지면에서 보기를 ${printed.length}개 읽었다`);
   const ctx = printedContext(content);
   const values = printed.map((text, i) => {
-    const v = def.valueOf(text, ctx);
+    const v = def.readValue(text, ctx);
     if (v === null)
       throw new Error(
         `${where}: ${CHOICE_MARKS[i]} 보기를 다시 재지 못했다 — ${text}`,
@@ -348,7 +348,7 @@ export function assembleCompare(
         `${where}: ${CHOICE_MARKS[i]} 보기 — 생성기는 값이 ${fracText(order[i]!.claimed)} 이라는데 다시 재니 ${fracText(v)} 이다 · ${text}`,
       );
     // 해설 첫 줄에 서는 값도 같은 자로 읽는다 — 정답지가 보기와 다른 값을 싣지 않게.
-    const shown = def.valueOf(order[i]!.brief, ctx);
+    const shown = def.readValue(order[i]!.brief, ctx);
     if (shown === null || !sameFrac(shown, v))
       throw new Error(
         `${where}: ${CHOICE_MARKS[i]} 보기 — 해설에 적을 값(${order[i]!.brief})이 보기의 값 ${fracText(v)} 과 다르다`,

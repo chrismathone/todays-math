@@ -97,7 +97,7 @@ export type JudgeBody = {
 
 /**
  * 비교 문형의 보기 하나 — 글은 **식**이고(등호 · 값 없음), 생성기는 그 식의 값을 **주장**한다.
- * 등록부가 지면 글을 `valueOf` 로 다시 재서 주장과 견준다.
+ * 등록부가 지면 글을 `readValue` 로 다시 재서 주장과 견준다.
  */
 export type CompareOption = {
   /** 지면에 나갈 보기 글(번호 뗀 것) — `$식$` */
@@ -172,8 +172,11 @@ export type CompareJudgeDefinition = JudgeDefinitionBase & {
   /**
    * 🔴 **지면에 찍힌 보기 식의 값을 다시 재는 함수** — 못 읽으면 null. 생성기의 셈을 다시 부르지 않는다.
    * 해설 첫 줄의 값(`brief`)도 이것으로 읽는다.
+   *
+   * ⚠️ 이름을 `valueOf` 로 짓지 않는다 — 모든 객체가 `Object.prototype.valueOf` 를 물려받아, 이 칸을 빠뜨린
+   *    등록도 «함수가 있다»로 읽히고 `Partial<…>` 에 객체 리터럴을 넘기면 tsc 가 TS2345 로 문다.
    */
-  valueOf: (choiceText: string, ctx: JudgeReadContext) => JudgeValue | null;
+  readValue: (choiceText: string, ctx: JudgeReadContext) => JudgeValue | null;
 };
 
 /** 등록부가 받는 등록 — 문형 둘 가운데 하나. */
@@ -199,7 +202,7 @@ export type JudgeProblem = {
   facts: Record<string, number>;
   /** 지면 차례대로 — `truthOf` 가 **다시 잰** 참거짓(비교 문형은 빈 배열) */
   truths: readonly boolean[];
-  /** 지면 차례대로 — `valueOf` 가 **다시 잰** 값의 기약 글 `-3/2`(참거짓 문형은 빈 배열) */
+  /** 지면 차례대로 — `readValue` 가 **다시 잰** 값의 기약 글 `-3/2`(참거짓 문형은 빈 배열) */
   values: readonly string[];
 };
 

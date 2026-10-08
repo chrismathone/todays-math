@@ -23,6 +23,7 @@ import { createRng } from "@/lib/elementary/rng";
 import type {
   CompareAsk,
   CompareBody,
+  CompareJudgeDefinition,
   CompareOption,
   JudgeReadContext,
 } from "@/lib/middle/judge/contract";
@@ -322,18 +323,17 @@ describe("㉥ 보기 순열 — 정답 번호와 해설이 보기와 같이 움�
 });
 
 describe("㉦ 지면의 발문 줄이 다시 재는 함수에 넘어간다", () => {
-  it("비교 문형 — `valueOf` 가 받는 문맥은 지면 본문의 첫 줄이다", () => {
+  it("비교 문형 — `readValue` 가 받는 문맥은 지면 본문의 첫 줄이다", () => {
     const seen: JudgeReadContext[] = [];
     const def = compareFixtureDefinition({ asks: [ODD] });
-    const reg = createJudgeRegistry([
-      {
-        ...def,
-        valueOf: (text, ctx) => {
-          seen.push(ctx);
-          return def.valueOf(text, ctx);
-        },
+    const spied: CompareJudgeDefinition = {
+      ...def,
+      readValue: (text, ctx) => {
+        seen.push(ctx);
+        return def.readValue(text, ctx);
       },
-    ]);
+    };
+    const reg = createJudgeRegistry([spied]);
     const p = reg.generate(KEY, 5, 0);
     expect(seen.length).toBeGreaterThanOrEqual(5);
     for (const c of seen) expect(c.lead).toBe(p.content.split("\n")[0]);

@@ -163,7 +163,7 @@ export function compareFixtureDefinition(
         facts: {},
       };
     },
-    valueOf: (text) => {
+    readValue: (text) => {
       const v = compareFixtureValue(text);
       return v === null ? null : asValue(v);
     },

@@ -7,10 +7,21 @@
  * | 단계 | 판정형 | 날짜 |
  * |---|---|---|
  * | 1 | ① 중1 유리수의 덧셈과 뺄셈 — 계산 판정 셋(`addSub.ts`) | 2026-10-08 |
+ * | 2 | ① 중1 유리수의 곱셈 · 나눗셈 — 계산 판정 넷(`mulDiv.ts` — 곱셈 · 거듭제곱 · 나눗셈 · 혼합) | 2026-10-08 |
+ * | 2 | ① 중1 문자의 사용과 식의 값 — 식의 값 판정 하나(`valueJudge.ts`) | 2026-10-08 |
+ * | 2 | 비교형 여덟(`compare.ts`) — «나머지 넷과 다른 하나» 넷 · «가장 큰/작은 것» 넷 | 2026-10-08 |
+ *
+ * 🔴 차례를 바꾸지 않는다 — 앞의 것부터 실렸다. 새 등록은 **끝에** 붙인다.
  */
 import { ADD_SUB_JUDGES } from "./addSub";
+import { COMPARE_JUDGES } from "./compare";
 import type { AnyJudgeDefinition } from "./contract";
+import { MUL_DIV_JUDGES } from "./mulDiv";
+import { VALUE_JUDGES } from "./valueJudge";
 
 export const JUDGE_DEFINITIONS: readonly AnyJudgeDefinition[] = [
   ...ADD_SUB_JUDGES,
+  ...MUL_DIV_JUDGES,
+  ...VALUE_JUDGES,
+  ...COMPARE_JUDGES,
 ];

@@ -1,6 +1,6 @@
 /**
  * **지면에 찍힌 식을 다시 계산한다** — 2단계 판정형(곱셈 · 나눗셈 · 거듭제곱 · 식의 값 · 비교형)의
- * `truthOf` · `valueOf` 가 쓰는 작은 계산기 (2026-10-08 엔진 보강 2단계).
+ * `truthOf` · `readValue` 가 쓰는 작은 계산기 (2026-10-08 엔진 보강 2단계).
  *
  *   `-\left(\dfrac{2}{3}\right)^{2}\times\left(-3\right)^{3}`  →  12
  *   `-x^{2}` ($x=-3$)                                          →  -9
@@ -280,7 +280,7 @@ export function equationTruth(
   return sameFrac(left, right);
 }
 
-/** `$식$` 의 값 — 비교형(«나머지 넷과 다른 하나» · «가장 큰 것»)의 `valueOf`. 등호가 있으면 null. */
+/** `$식$` 의 값 — 비교형(«나머지 넷과 다른 하나» · «가장 큰 것»)의 `readValue`. 등호가 있으면 null. */
 export function expressionValue(
   choiceText: string,
   env: Env = {},
