@@ -47,22 +47,30 @@
 .exam-reorder-marker {
   position: fixed;
   z-index: 80;
-  height: 3px;
-  border-radius: 2px;
-  background: var(--learn-accent, #3159df);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  height: 40px;
+  padding: 8px 12px;
+  border: 1px solid var(--learn-accent, #3159df);
+  border-radius: 8px;
+  background: var(--learn-soft, #edf2ff);
+  color: var(--learn-accent, #3159df);
+  font-family: inherit;
+  font-size: var(--text-body, 14px);
+  font-weight: 600;
+  line-height: 1.5;
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
   transform: translateY(-50%);
   pointer-events: none;
+  user-select: none;
 }
 
-.exam-reorder-marker::before {
-  position: absolute;
-  top: -3px;
-  left: 0;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: inherit;
-  content: "";
+.exam-reorder-marker[hidden] {
+  display: none;
 }
 
 .exam-reorder-live {
