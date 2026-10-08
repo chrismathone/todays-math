@@ -28,9 +28,13 @@
   («[그림] ①» 처럼 그림이 번호 **앞**에 선 줄을 발문 그림 0 으로 읽음 · 다섯 보기를 그림 한 장에 담은 문항). 적재기가 관문과 같은 함수로 잠그게 고치고(`figureChoiceNote` · 시험 · 변이)
   `--refresh --apply`(25) → 관문 0. 그 21문항을 풀려면 «[그림] ①» 줄을 «① [그림]» 으로 옮기는 손질 + 지면 재검토가 필요하다(잔고). · `checkDeployedFigures` 그림을 쓰는 문항 3,851 빠진 그림 0. 보고서 `not-loaded.md` 다시 만듦.
 - **거르기 화면** — Wire Ⓑ → Hi-fi(`/dev/bank-source-hifi`) **H1 확정**(05 S-08 «교과서 문항 거르기 [확정 — 2026-10-08]» · 세부 넷). 실구현은 오르카 작업자가 가지
-  `chrismathone/bank-source-h1`(`a0c62c5c0`)에 했다 — 리드 검수(실 DB 로 창의 수가 시안과 같다) 끝 · **main 병합 대기**. 남은 것: 1440 폭에서 «단원 범위 선택» 칸이 «단원 범위 …»로 잘린다 · 자료 종류 차례가 계약 차례(형성 → 소단원 → 중단원 → 대단원)라 칸 글이 «형성 평가 외 1»(시안은 수 차례) · 옛 `/problems` 화면은 그대로.
+  `chrismathone/bank-source-h1`(`a0c62c5c0`)에 했다 — 리드 검수(실 DB 로 창의 수가 시안과 같다) 끝 · **main 에 병합 · 푸시(`2286b4066`) · 배포 Ready**. 남은 것: 1440 폭에서 «단원 범위 선택» 칸이 «단원 범위 …»로 잘린다 · 자료 종류 차례가 계약 차례(형성 → 소단원 → 중단원 → 대단원)라 칸 글이 «형성 평가 외 1»(시안은 수 차례) · 옛 `/problems` 화면은 그대로.
 - **엔진 보강** — 3자 합의(codex · Gemini Pro 2회전) [`tracks/engine-upgrade-consensus-20261008.md`](tracks/engine-upgrade-consensus-20261008.md). ○× 은행 재료는 원장님 «출처를 달고 같이 씀»(여섯 조건).
-  0단계(판정형 등록부 배선) + 1단계(① 중1 유리수 덧셈 · 뺄셈 계산 판정)는 오르카 작업자가 진행 중(지시서 `E:\todays-math-textbook-import\briefs\brief-engine-judge-step01.md` · 공유 DB 적재는 리드 몫).
+  0단계(판정형 등록부 배선) + 1단계(① 중1 유리수 덧셈 · 뺄셈 계산 판정)를 오르카 작업자가 가지 `chrismathone/engine-judge` 에 했고(보고서 `tracks/reports/engine-judge-step01.md` · 표본 20문항 PNG/PDF),
+  리드가 표본을 직접 풀어 확인한 뒤 **판정형 36문항을 공유 DB 에 싣고**(원장 `tracks/reports/engine-load-중1-계산판정-덧셈뺄셈.json`) **main `dec0badd7` 로 병합 · 푸시**했다(`checkUnloadedTypes` 0자리).
+  원장님 확인 대기: 표본(학생지 · 정답지) · `mix4` 난이도 «응용» · 해설 넉 줄 짜임. 🔴 **정답지에서 해설 줄의 큰 분수가 위아래 줄과 맞닿는다** — 판정형 20문항 전부 틈 0px 이고
+  기존 엔진(m1Calc 유리수 계산)도 20문항 중 11문항이 맞닿는다(작업자 실측) — 정답지 줄 간격(인쇄)의 문제라 따로 올린다. 후속 일감(겹침 검사 `e2e/answer-key-overlap/`)은 세션이 끊겨
+  미완 · 미커밋으로 그 작업트리(`C:\Users\user\orca\workspaces\todays-math\engine-judge`)에 남아 있다. 다음은 2단계(곱셈 · 나눗셈 · 식의 값 · 비교 4+1) → 3단계(② 설명 판정) → ③-0 고등 배선.
   🔴 실측: 고등 과목 문항은 교과서 3,250 뿐 · 엔진 `high:` 0 · `SUPPORTED_GRADES` 는 초3 ~ 중3 — 고등 교과서 문항은 출제 범위 고르개에 안 보인다(고등을 열지는 원장님 결정 대기).
 - 🔴 main 의 빨간 시험(H1 작업자가 origin/main 으로 되돌려도 빨갛다고 보고): `ProblemBank` 출처 기대값 · english/questions `withErrorLog` · 교재 백지 `questionMode` · 보기 그림 해시 — 4파일 5건. pre-push 는 전체 vitest 를 안 돌려 안 막힌다.
 
