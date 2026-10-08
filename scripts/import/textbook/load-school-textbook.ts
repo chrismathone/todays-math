@@ -90,6 +90,7 @@ import {
   countMarkers,
   dropFigureMarkers,
   figuresSeen,
+  liftChoiceMarkers,
 } from "../../../src/lib/import/schoolTextbook/figurePlacement";
 import {
   cleanContent,
@@ -712,6 +713,8 @@ function buildRowsOf(
           ),
         ),
       );
+      // 그림이 번호 앞에 선 보기 줄(«[그림] ①»)은 보기 줄 꼴(«① [그림]»)로 — 표지의 수 · 차례는 그대로다
+      content = liftChoiceMarkers(content);
       const kept = remaining.filter((item) => !notMine.has(item.ordinal));
       if (kept.some((item) => !item.figure.px)) {
         skip("그림을 꺼내지 않았다 — figures.py --export");

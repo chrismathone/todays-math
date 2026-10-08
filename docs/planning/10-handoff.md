@@ -23,10 +23,10 @@
   쓰기 키는 원장님이 `D:\todays-math\.env` 에 넣으셨다(`SUPABASE_URL` · `SUPABASE_SECRET_KEY` — Vercel 의 같은 이름은 Secret 이라 못 읽는다). 기록: `docs/qa/deployment-externalization.md` 끝.
   🔴 그림 문항을 더할 때의 길은 그대로다 — `public/figures` 에 더함 → `manifest --out` → `upload`(이 키) → 영수증 · 목록 커밋 → main. 버킷 이름은 옛것과 같은 `todays-math-shared-figures` 다(§0-ZS 와 `scripts/storage/README.md` 의 `shared-figures` 는 예시 이름) — 바뀐 것은 **프로젝트**뿐.
 - **교과서 문항 전부 실음** — 그림 문항 3,911 을 `load/sets.json --apply` 로 넣고, 이미 실린 44문항을 `--refresh --apply`(그림이 붙어 풀린 5 · 그림 글자가 본문에 섞여 잠긴 3) — 다시 드라이런 «고칠 문항 0».
-  DB: 교과서 **12,281**(출제 가능 11,787 · 잠금 494 · 그림이 붙은 3,783 — 보기 그림 짝을 모르는 21 을 뒤에 잠갔다, 아래)
+  DB: 교과서 **12,281**(출제 가능 11,806 · 잠금 475 · 그림이 붙은 3,783 — 보기 그림 짝을 모르는 21 을 잠갔다가 19 를 다시 풀었다, 아래)
   🔴 **실은 직후 약 25분 동안 main 푸시 관문 ⑶-2(`check:figure-choices`)가 빨강이었다** — 그림뿐인 보기의 짝이 온전하지 않은 21문항이 출제 가능으로 실렸다
   («[그림] ①» 처럼 그림이 번호 **앞**에 선 줄을 발문 그림 0 으로 읽음 · 다섯 보기를 그림 한 장에 담은 문항). 적재기가 관문과 같은 함수로 잠그게 고치고(`figureChoiceNote` · 시험 · 변이)
-  `--refresh --apply`(25) → 관문 0. 그 21문항을 풀려면 «[그림] ①» 줄을 «① [그림]» 으로 옮기는 손질 + 지면 재검토가 필요하다(잔고). · `checkDeployedFigures` 그림을 쓰는 문항 3,851 빠진 그림 0. 보고서 `not-loaded.md` 다시 만듦.
+  `--refresh --apply`(25) → 관문 0. 이어서 «[그림] ①» 줄을 «① [그림]» 으로 옮기는 손질(`liftChoiceMarkers`)을 넣고 그 19문항을 지면 재검토(`final-check-fig4` — 흠 0 · 해설 다시 쓴 것 3)에 올려 **다시 풀었다**(`--refresh --apply` 20 · 관문 셋 초록). 남은 짝 모름 6 = 보기 다섯이 그림 한 장인 5 + 찌꺼기 «4회»가 붙은 1. · `checkDeployedFigures` 그림을 쓰는 문항 3,851 빠진 그림 0. 보고서 `not-loaded.md` 다시 만듦.
 - **거르기 화면** — Wire Ⓑ → Hi-fi(`/dev/bank-source-hifi`) **H1 확정**(05 S-08 «교과서 문항 거르기 [확정 — 2026-10-08]» · 세부 넷). 실구현은 오르카 작업자가 가지
   `chrismathone/bank-source-h1`(`a0c62c5c0`)에 했다 — 리드 검수(실 DB 로 창의 수가 시안과 같다) 끝 · **main 에 병합 · 푸시(`2286b4066`) · 배포 Ready**. 남은 것: 1440 폭에서 «단원 범위 선택» 칸이 «단원 범위 …»로 잘린다 · 자료 종류 차례가 계약 차례(형성 → 소단원 → 중단원 → 대단원)라 칸 글이 «형성 평가 외 1»(시안은 수 차례) · 옛 `/problems` 화면은 그대로.
 - **엔진 보강** — 3자 합의(codex · Gemini Pro 2회전) [`tracks/engine-upgrade-consensus-20261008.md`](tracks/engine-upgrade-consensus-20261008.md). ○× 은행 재료는 원장님 «출처를 달고 같이 씀»(여섯 조건).

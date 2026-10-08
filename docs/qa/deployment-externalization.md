@@ -267,8 +267,9 @@ rather than copied from the lost project:
   before pushing main `9ab1fc7fc`; the production deployment became Ready and a
   12-object sample (old and textbook figures) returned 200 with manifest sizes.
 
-A separate anonymous `verify` run writes
-`E:\todays-math-textbook-import\storage\app-verify-receipt-20261008.json`
-(outside the repository). The secret key stays in the operator's local `.env`;
+A separate anonymous `verify` run (all 23,288 objects re-downloaded without
+credentials and byte-compared, 0 uploaded / 23,288 reused, at commit `ff3ca6a4e`)
+passed; its receipt is `app-verify-receipt-20261008c.json` under the operator
+working folder outside the repository. The secret key stays in the operator's local `.env`;
 no upload credential was added to Vercel beyond the pre-existing listening-storage
 secret.

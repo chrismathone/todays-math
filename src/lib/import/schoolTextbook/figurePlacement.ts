@@ -44,6 +44,28 @@ export function dropFigureMarkers(
   return lines.join("\n");
 }
 
+/**
+ * 그림이 번호 **앞**에 선 보기 줄(`[그림] ①`)을 문제은행의 보기 줄 꼴(`① [그림]`)로 옮긴다.
+ *
+ * 한글 파일에서 보기 그림의 닻이 번호 글자보다 앞에 있으면 추출이 그 차례대로 적는다. 보기 줄은 번호로 시작해야 하고,
+ * 그대로 두면 그 그림이 발문의 그림(0)으로 읽혀 짝이 없다(2026-10-08 — 짝을 모르는 25문항 가운데 19).
+ * 🔴 줄이 «표지 하나 + 번호 하나»뿐일 때만 옮긴다 — 표지의 수와 차례는 그대로라 그림 파일의 짝이 안 바뀐다.
+ *    번호 뒤에 글이 있거나 표지가 둘이면 어느 그림이 그 보기인지 모른다(건드리지 않는다).
+ */
+export function liftChoiceMarkers(content: string): string {
+  return content
+    .split("\n")
+    .map((line) => {
+      const body = line.trim();
+      if (!body.startsWith(FIGURE_MARKER)) return line;
+      const rest = body.slice(FIGURE_MARKER.length).trim();
+      return rest.length === 1 && CIRCLED.includes(rest)
+        ? `${rest} ${FIGURE_MARKER}`
+        : line;
+    })
+    .join("\n");
+}
+
 /** 표지의 차례대로 «몇 번 보기의 그림인가». 짝을 알 수 없으면 null. */
 export function choiceIndexOf(content: string): number[] | null {
   const index: number[] = [];

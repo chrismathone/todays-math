@@ -12,6 +12,7 @@ import {
   dropFigureMarkers,
   figureChoiceNote,
   figuresSeen,
+  liftChoiceMarkers,
 } from "@/lib/import/schoolTextbook/figurePlacement";
 
 describe("figuresSeen — 검토자가 본 그림이 지금 싣는 그림인가", () => {
@@ -87,6 +88,54 @@ describe("choiceIndexOf — 표지의 차례대로 «몇 번 보기의 그림인
 
   it("그림이 없으면 빈 배열이다", () => {
     expect(choiceIndexOf("다음을 계산하시오.\n① $1$")).toEqual([]);
+  });
+});
+
+describe("liftChoiceMarkers — 그림이 번호 앞에 선 보기 줄을 «번호 그림» 차례로 옮긴다", () => {
+  // 한글 파일에서 보기 그림의 닻이 번호 글자보다 앞에 있으면 추출이 «[그림] ①» 로 적는다. 문제은행의 보기 줄은 번호로 시작한다 —
+  // 그대로 두면 그림이 발문 그림(0)으로 읽혀 짝이 없다(2026-10-08 — 짝을 모르는 25문항 가운데 19).
+  const lines = (...rows: string[]) => rows.join("\n");
+
+  it("«[그림] ①» 줄을 «① [그림]» 으로 옮기고, 그러면 짝이 정해진다", () => {
+    const content = lines(
+      "[그림] 오른쪽 그림과 같은 그릇에 물을 넣을 때 알맞은 그래프는?",
+      "[그림] ①",
+      "[그림] ②",
+      "[그림] ③",
+      "[그림] ④",
+      "[그림] ⑤",
+    );
+    const lifted = liftChoiceMarkers(content);
+    expect(lifted).toBe(
+      lines(
+        "[그림] 오른쪽 그림과 같은 그릇에 물을 넣을 때 알맞은 그래프는?",
+        "① [그림]",
+        "② [그림]",
+        "③ [그림]",
+        "④ [그림]",
+        "⑤ [그림]",
+      ),
+    );
+    expect(choiceIndexOf(lifted)).toEqual([0, 1, 2, 3, 4, 5]);
+    expect(figureChoiceNote(lifted, 6, choiceIndexOf(lifted))).toBeNull();
+  });
+
+  it("표지의 수와 차례는 그대로다 — 그림 파일의 짝이 안 바뀐다", () => {
+    const content = lines("옳은 것은?", "[그림] ①", "② $y=x$", "[그림] ③");
+    const lifted = liftChoiceMarkers(content);
+    expect(countMarkers(lifted)).toBe(countMarkers(content));
+    expect(lifted).toBe(lines("옳은 것은?", "① [그림]", "② $y=x$", "③ [그림]"));
+  });
+
+  it("번호 뒤에 글이 더 있거나 그림이 둘이면 건드리지 않는다", () => {
+    // 발문의 그림 뒤에 우연히 번호가 오는 글 · 한 줄에 그림 둘 — 어느 쪽이 보기의 그림인지 모른다
+    for (const content of [
+      "[그림] ① 번 그림에서 $x$의 값은?",
+      "[그림] [그림] ①",
+      "① [그림]",
+      "[그림] 오른쪽 그림에서",
+    ])
+      expect(liftChoiceMarkers(content)).toBe(content);
   });
 });
 
