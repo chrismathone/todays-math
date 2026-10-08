@@ -1,0 +1,274 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 9,
+  "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q09",
+  "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+  "content": "직각삼각형 $\\mathrm{ABC}$에서 $\\angle\\mathrm{C}=90^\\circ$, $\\overline{\\mathrm{AB}}=25\\,\\mathrm{cm}$, $\\overline{\\mathrm{AC}}=15\\,\\mathrm{cm}$이다. $\\mathrm{AD}$는 $\\angle\\mathrm{BAC}$의 이등분선이고 $\\mathrm{D}$는 $\\mathrm{BC}$ 위에 있다.\n그림의 $\\mathrm{E}$는 $\\mathrm{D}$에서 $\\mathrm{AB}$에 내린 수선의 발이다. $\\theta=\\angle\\mathrm{ADC}$일 때 다음 기록표를 완성하려고 한다.\n\n| 기록 항목 | $\\overline{\\mathrm{DC}}$의 길이 | $\\tan\\theta$ |\n| --- | --- | --- |\n| 기록 | ㉠ $\\mathrm{cm}$ | ㉡ |\n\n㉠, ㉡에 들어갈 값을 차례로 바르게 짝지은 것은?",
+  "choices": [
+    "$\\frac{25}{2}$, $\\frac65$",
+    "$\\frac{15}{2}$, $2$",
+    "$10$, $\\frac32$",
+    "$\\frac{15}{2}$, $\\frac12$",
+    "$5$, $3$"
+  ],
+  "answer": "②",
+  "solution": "피타고라스 정리에서 $\\overline{\\mathrm{BC}}=\\sqrt{25^2-15^2}=20\\,\\mathrm{cm}$이다.\n직각삼각형 $\\mathrm{ADE}$와 $\\mathrm{ADC}$는 $\\mathrm{AD}$가 공통이고, $\\angle\\mathrm{EAD}=\\angle\\mathrm{DAC}$이다. 두 직각의 크기가 같으므로 남은 D각도 같다. 한 변 $\\mathrm{AD}$와 그 양 끝 각이 각각 같아 두 삼각형은 ASA 합동이다. 따라서 $\\overline{\\mathrm{DE}}=\\overline{\\mathrm{DC}}$이다.\n또 $\\triangle\\mathrm{BDE}\\sim\\triangle\\mathrm{BAC}$이다. 두 삼각형에서 B각이 같고 E각과 C각이 모두 직각이기 때문이다.\n$\\overline{\\mathrm{DC}}=t$라 하면 $\\overline{\\mathrm{BD}}=20-t$이고 닮음의 성질에서 $\\frac{20-t}{25}=\\frac{t}{15}$이다. 이를 풀면 $300-15t=25t$, $t=\\frac{15}{2}$이다.\n직각삼각형 $\\mathrm{ADC}$에서 $\\tan\\theta=\\frac{\\overline{\\mathrm{AC}}}{\\overline{\\mathrm{DC}}}=15\\div\\frac{15}{2}=2$이다. 두 기록은 $\\frac{15}{2}$, $2$이므로 정답은 ②이다.",
+  "score": 4.0,
+  "questionType": "객관식",
+  "facts": {
+    "givens": {
+      "AB": 25,
+      "AC": 15,
+      "rightAngle": "C",
+      "AD": "internal bisector BAC;D on BC",
+      "E": "perpendicular foot from D to AB",
+      "unit": "cm"
+    },
+    "domain": "모든 길이는 양수. 내부점/작은호 등은 본문 조건을 따른다.",
+    "authorCheckPath": "../../checks/q09.json",
+    "subpartScores": null
+  },
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "stem-1.spec.json",
+      "svgPath": "stem-1.svg",
+      "intendedWidthMm": 70
+    }
+  ],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation"
+    ],
+    "before": "각의 이등분선이 자른 길이로 작은 직각삼각형의 tan을 구한다.",
+    "after": "수선E를 명시하고 닮음으로 내부 길이를 복구한 후 DC와tan의 두 기록을 완성한다.",
+    "sharedConcept": "각 이등분선의 합동/닮음과 직각삼각비",
+    "sharedProcedure": "피타고라스→제시된 수선의 두 삼각형 합동→AA 닮음→길이 분할→tan 정의."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수04-16",
+      "9수04-13",
+      "9수04-14",
+      "9수04-17",
+      "9수04-04",
+      "9수02-05"
+    ],
+    "allowedProcedure": "피타고라스→제시된 수선의 두 삼각형 합동→AA 닮음→길이 분할→tan 정의.",
+    "forbiddenAvoided": [
+      "삼각비 사이 일반 관계식",
+      "원과 비례/원의 거듭제곱",
+      "사인법칙/코사인법칙",
+      "삼각비 넓이공식",
+      "삼각함수 덧셈정리",
+      "벡터 연산",
+      "일반각/호도법"
+    ],
+    "status": "author-proposed",
+    "wholeSurfaceNote": "E가 이미 제시되어 추가 작도 탐색이 없다. 각 이등분선의 비를 근거 없이 외우는 대신 합동과 AA 닮음으로 설명한다.",
+    "independentReviewStatus": "pending-other-worker",
+    "specificPendingReasons": [
+      "제시된E를 사용한 ASA+AA 두 단계의 적정 복잡도/4점 검수 필요."
+    ]
+  },
+  "studentSurfaceReview": {
+    "stem": {
+      "status": "author-proposed",
+      "evidence": "모든 조건/점 순서/단위는 새 본문에 명시했다."
+    },
+    "choices": {
+      "status": "author-proposed",
+      "evidence": "5개 선택지는 exact-checks.py의 서로 다른 값/기록과 1개 정답 확인 대상이다."
+    },
+    "figuresAndTables": {
+      "status": "author-proposed",
+      "evidence": "새 FigureSpec 1개. 도형은 로컬 strict 렌더/70mm이하 실검수를 별도 기록한다. 표는 본문에서 새로 작성했다."
+    },
+    "notation": {
+      "status": "author-proposed",
+      "evidence": "선분/직선/반직선,도단위 예각 삼각비,근호/π의 중등 표기. q22의 원벡터 변환 표기는 사용하지 않는다."
+    },
+    "answer": {
+      "status": "author-proposed",
+      "evidence": "정확한 수학/단위, 객관식은 동그라미 번호, 서술형은 소문항별 값이다."
+    },
+    "studentSolution": {
+      "status": "author-proposed",
+      "evidence": "피타고라스→제시된 수선의 두 삼각형 합동→AA 닮음→길이 분할→tan 정의.",
+      "risk": "E가 이미 제시되어 추가 작도 탐색이 없다. 각 이등분선의 비를 근거 없이 외우는 대신 합동과 AA 닮음으로 설명한다."
+    },
+    "prerequisites": {
+      "status": "author-proposed",
+      "evidence": [
+        {
+          "code": "9수04-16",
+          "text": "피타고라스 정리를 이해하고 설명할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수04-13",
+          "text": "도형의 닮음의 의미와 닮은 도형의 성질을 이해한다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수04-14",
+          "text": "삼각형의 닮음 조건을 이해하고, 이를 이용하여 두 삼각형이 닮음인지 판별할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수04-17",
+          "text": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수04-04",
+          "text": "삼각형의 합동 조건을 이해하고, 이를 이용하여 두 삼각형이 합동인지 판별할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              37
+            ],
+            "printed_pages": [
+              33
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수02-05",
+          "text": "일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              34
+            ],
+            "printed_pages": [
+              30
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        }
+      ]
+    }
+  },
+  "sourceReference": {
+    "externalId": null,
+    "sourceExamExternalId": "personal-a8a023ad6060fb2937b8b09781b68857",
+    "sourceLogicalExamId": "2025-gyeonggu-3-2-mid",
+    "questionNumber": 9,
+    "sourceContentSha256": "58303a1fe23135b29cd6308df70bcc98f0b91be67d8f8e5f3f5b70eb1d073bfb",
+    "sourceDigest": "a3dd9b222fae6c88c25abe96a919830f0a46360faa5f3a85ad17ac458e02a138",
+    "packetPath": "../../evidence/source-provisional/questions.json",
+    "packetSha256": "05c0542d0b54d719b51e83ec9daf21acb1b943d358e59c27f630786cf2e4b261",
+    "jsonPointer": "/questions/8",
+    "referenceFigures": [
+      {
+        "file": "../../evidence/source-provisional/images/q09-part1.png",
+        "sha256": "9cc7bd85ab9683fd184c4b0e758a670879acec60111885d1e0901667d177e23e",
+        "page": 3,
+        "column": 0
+      }
+    ],
+    "referenceOnly": true,
+    "schoolInternal": "경구중",
+    "schoolStudentAlias": "온빛누리중학교",
+    "sourceYearProposal": 2025,
+    "sourceIdentityStatus": "provisional-2025-header-supported-final-school-year-page-equivalence-pending",
+    "directUseAllowed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamYearStatus": "provisional-header-supported",
+    "schoolInternal": "경구중",
+    "schoolStudentAlias": "온빛누리중학교",
+    "questionType": "객관식",
+    "score": 4.0,
+    "difficultyProposal": "응용",
+    "difficultyStatus": "author-proposed-independent-review-pending",
+    "problemTypeProposal": "객관식",
+    "problemTypeStatus": "author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+      "unitSection": "삼각비의 뜻",
+      "familyKey": null,
+      "evidence": {
+        "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+        "timestampScope": "부모 readOnly RepeatableRead 시점의 스냅샷이다. 현재DB 단언이 아니다.",
+        "seedOrderIndex": 481,
+        "registryCapturedAt": "2026-10-07T16:08:32.171Z",
+        "comparedRegistryEntries": [
+          {
+            "key": "3-2|삼각비|05",
+            "grade": "중3",
+            "unitSection": "삼각비의 뜻",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비",
+            "rpmType": "05",
+            "rpmTitle": "직각삼각형의 닮음과 삼각비⑵"
+          }
+        ],
+        "fullRuleComparison": "05의 전체 생성 갈래에는 각의 이등분선과 제시된 접선 아닌 수선E를 합동/AA닮음으로 해석하여 DC와tan을 동시 복구하는 조건이 없다.",
+        "reopenCriteria": "새 givens/목표/핵심 순서/형식의 전체를 지지하는 기존 실제 규칙과 독립 분류 검토. 가까운 제목/신뢰도 자동배정 금지."
+      }
+    },
+    "scoreStatus": "author-proposed-source-total-preserved",
+    "rightsStatus": "pending",
+    "similarityStatus": "pending",
+    "sourceStatus": "pending-final-extraction-commit-and-equivalence",
+    "nativeProvenanceStatus": "pending",
+    "independentSolveStatus": "pending-other-worker",
+    "independentReviewStatus": "pending-other-worker",
+    "directUseAllowed": false
+  }
+}

@@ -1,0 +1,50 @@
+{
+  "questionNumber": 23,
+  "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+  "method": "deterministic-author-recomputation",
+  "independentVerification": false,
+  "status": "author-check-passed",
+  "candidateFileSha256": "acc89aa2c0a75427945778b1a28681a749142c6b018db936674d354c6df0dd38",
+  "targets": [
+    "120",
+    "2*sqrt(3)",
+    "4*sqrt(3)"
+  ],
+  "evidence": {
+    "centralAngle": 120,
+    "externalAngle": 60,
+    "positiveRadius": "2*sqrt(3)",
+    "areaFactor": "-pi/3 + sqrt(3)",
+    "area": "-4*pi + 12*sqrt(3)",
+    "partScores": [
+      3,
+      4,
+      3
+    ],
+    "subpartTotal": 10,
+    "uniqueness": "factor>0 using sqrt3>5/3,pi<22/7; only positive radius",
+    "method": "congruence,30-degree right triangle areas minus120/360 sector; no sin120/radians"
+  },
+  "choices": {
+    "choiceCount": 0,
+    "writtenAnswerMatchesExactTargets": true
+  },
+  "assetGeometry": [
+    {
+      "check": "right-angle",
+      "name": "angle_A",
+      "normalizedDot": -1.5193779250438038e-16
+    },
+    {
+      "check": "right-angle",
+      "name": "angle_B",
+      "normalizedDot": -1.5193779250438038e-16
+    },
+    {
+      "specSha256": "9b8f0f09d24c0d5fd81090b5e2de69a44a8bd714f899c13160e97fb164951d4e",
+      "figureGeometry": "actual new givens, angle labels, circle points, side conditions and applicable area/perimeter agree",
+      "floatingGeometryTolerance": "1e-8; q06 given rounding tolerance0.00005"
+    }
+  ],
+  "limitations": "저자 검사이다. 원문 정답/해설을 읽지 않았고 독립 풀이/교육과정/분류/권리 승인으로 사용할 수 없다."
+}

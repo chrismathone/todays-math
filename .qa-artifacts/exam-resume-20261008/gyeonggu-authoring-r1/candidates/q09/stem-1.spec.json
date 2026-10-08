@@ -1,0 +1,112 @@
+{
+  "version": 2,
+  "theme": "exam-thin",
+  "style": {
+    "font_size": 18,
+    "angle_font_size": 17,
+    "angle_radius": 16,
+    "angle_label_distance": 26,
+    "padding": 22,
+    "show_points": false
+  },
+  "points": {
+    "C": [
+      0.0,
+      0.0
+    ],
+    "A": [
+      0.0,
+      -135.0
+    ],
+    "B": [
+      -180.0,
+      0.0
+    ],
+    "D": [
+      -67.5,
+      0.0
+    ],
+    "E": [
+      -108.0,
+      -54.0
+    ]
+  },
+  "segments": {
+    "AB": [
+      "A",
+      "B"
+    ],
+    "BC": [
+      "B",
+      "C"
+    ],
+    "CA": [
+      "C",
+      "A"
+    ],
+    "AD": [
+      "A",
+      "D"
+    ],
+    "DE": {
+      "points": [
+        "D",
+        "E"
+      ],
+      "dash": "4 3"
+    }
+  },
+  "labels": {
+    "C": "C",
+    "A": "A",
+    "B": "B",
+    "D": "D",
+    "E": "E"
+  },
+  "angles": {
+    "angle_C": {
+      "vertex": "C",
+      "points": [
+        "A",
+        "B"
+      ],
+      "right": true,
+      "radius": 8
+    },
+    "angle_E": {
+      "vertex": "E",
+      "points": [
+        "A",
+        "D"
+      ],
+      "right": true,
+      "radius": 8
+    },
+    "angle_a1": {
+      "vertex": "A",
+      "points": [
+        "B",
+        "D"
+      ],
+      "arcs": 1,
+      "radius": 35
+    },
+    "angle_a2": {
+      "vertex": "A",
+      "points": [
+        "D",
+        "C"
+      ],
+      "arcs": 1,
+      "radius": 35
+    },
+    "angle_t": {
+      "vertex": "D",
+      "points": [
+        "A",
+        "C"
+      ],
+      "label": "$\\theta$"
+    }
+  }
+}

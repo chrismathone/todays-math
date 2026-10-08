@@ -1,0 +1,224 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 2,
+  "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q02",
+  "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+  "content": "직각삼각형 $\\mathrm{ABC}$에서 $\\angle\\mathrm{C}=90^\\circ$이고, 다음과 같은 기록이 남아 있다.\n\n| 항목 | 기록 |\n| --- | --- |\n| 빗변 $\\overline{\\mathrm{AB}}$ | $10\\sqrt{2}\\,\\mathrm{cm}$ |\n| $\\sin A$ | $\\frac{3}{5}$ |\n| 두 직각변 $\\overline{\\mathrm{BC}}$, $\\overline{\\mathrm{CA}}$ | ㉠ $\\mathrm{cm}$, ㉡ $\\mathrm{cm}$ |\n\n㉠, ㉡에 들어갈 수를 차례로 바르게 짝지은 것은?",
+  "choices": [
+    "$8\\sqrt{2}$, $6\\sqrt{2}$",
+    "$6\\sqrt{2}$, $8\\sqrt{2}$",
+    "$6$, $8$",
+    "$6\\sqrt{2}$, $4\\sqrt{2}$",
+    "$3\\sqrt{2}$, $8\\sqrt{2}$"
+  ],
+  "answer": "②",
+  "solution": "$\\sin A=\\frac{\\overline{\\mathrm{BC}}}{\\overline{\\mathrm{AB}}}=\\frac35$이므로 $\\overline{\\mathrm{BC}}=10\\sqrt2\\times\\frac35=6\\sqrt2\\,\\mathrm{cm}$이다.\n피타고라스 정리에 의하여 $\\overline{\\mathrm{CA}}^2=(10\\sqrt2)^2-(6\\sqrt2)^2=200-72=128$이다. 양의 길이를 택하면 $\\overline{\\mathrm{CA}}=8\\sqrt2\\,\\mathrm{cm}$이다.\n두 직각변의 기록은 $6\\sqrt2$, $8\\sqrt2$이므로 정답은 ②이다.",
+  "score": 3.0,
+  "questionType": "객관식",
+  "facts": {
+    "givens": {
+      "AB": "10sqrt(2)",
+      "sinA": "3/5",
+      "rightAngle": "C",
+      "unit": "cm"
+    },
+    "domain": "모든 길이는 양수. 내부점/작은호 등은 본문 조건을 따른다.",
+    "authorCheckPath": "../../checks/q02.json",
+    "subpartScores": null
+  },
+  "figureArtifacts": [],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation"
+    ],
+    "before": "sin값과 빗변으로 다른 한 직각변을 구한다.",
+    "after": "완성되지 않은 측정표에서 두 직각변의 순서 있는 기록을 복구한다.",
+    "sharedConcept": "삼각비 정의와 피타고라스 정리",
+    "sharedProcedure": "sin의 정의로 대변을 구한 다음 피타고라스로 나머지 양의 길이를 구한다."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수04-17",
+      "9수04-16",
+      "9수01-10"
+    ],
+    "allowedProcedure": "sin의 정의로 대변을 구한 다음 피타고라스로 나머지 양의 길이를 구한다.",
+    "forbiddenAvoided": [
+      "삼각비 사이 일반 관계식",
+      "원과 비례/원의 거듭제곱",
+      "사인법칙/코사인법칙",
+      "삼각비 넓이공식",
+      "삼각함수 덧셈정리",
+      "벡터 연산",
+      "일반각/호도법"
+    ],
+    "status": "author-proposed",
+    "wholeSurfaceNote": "제시된 기본 도형 성질과 초등/중등 선수 학습만 사용하는 저자 제안이다. 독립 전체 학생면 검수가 필요하다.",
+    "independentReviewStatus": "pending-other-worker",
+    "specificPendingReasons": []
+  },
+  "studentSurfaceReview": {
+    "stem": {
+      "status": "author-proposed",
+      "evidence": "모든 조건/점 순서/단위는 새 본문에 명시했다."
+    },
+    "choices": {
+      "status": "author-proposed",
+      "evidence": "5개 선택지는 exact-checks.py의 서로 다른 값/기록과 1개 정답 확인 대상이다."
+    },
+    "figuresAndTables": {
+      "status": "author-proposed",
+      "evidence": "새 FigureSpec 0개. 도형은 로컬 strict 렌더/70mm이하 실검수를 별도 기록한다. 표는 본문에서 새로 작성했다."
+    },
+    "notation": {
+      "status": "author-proposed",
+      "evidence": "선분/직선/반직선,도단위 예각 삼각비,근호/π의 중등 표기. q22의 원벡터 변환 표기는 사용하지 않는다."
+    },
+    "answer": {
+      "status": "author-proposed",
+      "evidence": "정확한 수학/단위, 객관식은 동그라미 번호, 서술형은 소문항별 값이다."
+    },
+    "studentSolution": {
+      "status": "author-proposed",
+      "evidence": "sin의 정의로 대변을 구한 다음 피타고라스로 나머지 양의 길이를 구한다.",
+      "risk": ""
+    },
+    "prerequisites": {
+      "status": "author-proposed",
+      "evidence": [
+        {
+          "code": "9수04-17",
+          "text": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수04-16",
+          "text": "피타고라스 정리를 이해하고 설명할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수01-10",
+          "text": "근호를 포함한 식의 사칙계산을 할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              33
+            ],
+            "printed_pages": [
+              29
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        }
+      ]
+    }
+  },
+  "sourceReference": {
+    "externalId": null,
+    "sourceExamExternalId": "personal-a8a023ad6060fb2937b8b09781b68857",
+    "sourceLogicalExamId": "2025-gyeonggu-3-2-mid",
+    "questionNumber": 2,
+    "sourceContentSha256": "6bde1960f4106fa278b6f10f48d7afee8bd838a9c4c78f52b2de6f94c8311d83",
+    "sourceDigest": "7ed714cc792f8d49028b8d7da4c62c38663989e6158a97ab8cc054a5fc495cfc",
+    "packetPath": "../../evidence/source-provisional/questions.json",
+    "packetSha256": "05c0542d0b54d719b51e83ec9daf21acb1b943d358e59c27f630786cf2e4b261",
+    "jsonPointer": "/questions/1",
+    "referenceFigures": [
+      {
+        "file": "../../evidence/source-provisional/images/q02-part1.png",
+        "sha256": "dc1b7b6cb76b1dac8ed6b8db603a01ac4b03b5e3af84ce7d0b75cb1f831d6e9a",
+        "page": 1,
+        "column": 0
+      }
+    ],
+    "referenceOnly": true,
+    "schoolInternal": "경구중",
+    "schoolStudentAlias": "온빛누리중학교",
+    "sourceYearProposal": 2025,
+    "sourceIdentityStatus": "provisional-2025-header-supported-final-school-year-page-equivalence-pending",
+    "directUseAllowed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamYearStatus": "provisional-header-supported",
+    "schoolInternal": "경구중",
+    "schoolStudentAlias": "온빛누리중학교",
+    "questionType": "객관식",
+    "score": 3.0,
+    "difficultyProposal": "기본",
+    "difficultyStatus": "author-proposed-independent-review-pending",
+    "problemTypeProposal": "객관식",
+    "problemTypeStatus": "author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+      "unitSection": "삼각비의 뜻",
+      "familyKey": null,
+      "evidence": {
+        "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+        "timestampScope": "부모 readOnly RepeatableRead 시점의 스냅샷이다. 현재DB 단언이 아니다.",
+        "seedOrderIndex": 481,
+        "registryCapturedAt": "2026-10-07T16:08:32.171Z",
+        "comparedRegistryEntries": [
+          {
+            "key": "3-2|삼각비|02",
+            "grade": "중3",
+            "unitSection": "삼각비의 뜻",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비",
+            "rpmType": "02",
+            "rpmTitle": "삼각비를 이용하여 삼각형의 변의 길이 구하기"
+          },
+          {
+            "key": "3-2|삼각비|03",
+            "grade": "중3",
+            "unitSection": "삼각비의 뜻",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비",
+            "rpmType": "03",
+            "rpmTitle": "한 삼각비의 값을 알 때 다른 삼각비의 값 구하기"
+          }
+        ],
+        "fullRuleComparison": "02는 비로 바로 구하는 한 변만 묻고 03은 길이 없이 다른 비를 묻는다. 두 실제 변을 구하고 피타고라스를 거치는 기록형은 둘 중 어느 규칙도 전부 지지하지 않는다.",
+        "reopenCriteria": "새 givens/목표/핵심 순서/형식의 전체를 지지하는 기존 실제 규칙과 독립 분류 검토. 가까운 제목/신뢰도 자동배정 금지."
+      }
+    },
+    "scoreStatus": "author-proposed-source-total-preserved",
+    "rightsStatus": "pending",
+    "similarityStatus": "pending",
+    "sourceStatus": "pending-final-extraction-commit-and-equivalence",
+    "nativeProvenanceStatus": "pending",
+    "independentSolveStatus": "pending-other-worker",
+    "independentReviewStatus": "pending-other-worker",
+    "directUseAllowed": false
+  }
+}

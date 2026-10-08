@@ -1,0 +1,276 @@
+{
+  "schemaVersion": 1,
+  "sourceRole": "provisional-question-only-draft-reference",
+  "sourceWorkerWrites": false,
+  "copiedBeforeAuthoring": true,
+  "sourceUnchangedDuringIndividualFileCopy": true,
+  "laterSourceDriftMustNotOverwriteSnapshot": true,
+  "sourceFinalCommitPending": true,
+  "schoolYearPageEquivalencePending": true,
+  "priorOwnCommit": "58f7adb2610543f4eb1bfebae915cc339c094ece",
+  "priorOwnedAuthorSolveReviewTaxonomyFilesUnchanged": 75,
+  "protectedPriorPaths": [
+    ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/AUTHOR-NOTES.md",
+    ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q11-q14.AUTHOR-NOTES.md",
+    ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q11.figure-spec.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q11.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q11.preview.png",
+    ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q11.solution-preview.png",
+    ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q11.svg",
+    ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q14.after.figure-spec.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q14.after.svg",
+    ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q14.before.figure-spec.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q14.before.svg",
+    ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q14.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q14.preview.png",
+    ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q14.solution-preview.png",
+    ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q15.figure-spec.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q15.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q15.preview.png",
+    ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q15.solution-preview.png",
+    ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q15.svg",
+    ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q16.figure-spec.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q16.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q16.preview.png",
+    ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q16.solution-preview.png",
+    ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q16.svg",
+    ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q17.figure-spec.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q17.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q17.preview.png",
+    ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q17.solution-preview.png",
+    ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q17.svg",
+    ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q20.figure-spec.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q20.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q20.preview.png",
+    ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q20.solution-preview.png",
+    ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q20.svg",
+    ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q21.figure-spec.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q21.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q21.preview.png",
+    ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q21.solution-preview.png",
+    ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/geometry/q21.svg",
+    ".qa-artifacts/exam-resume-20261008/bumil-review-r2/blind-results-geometry/BLIND-SOLVE.md",
+    ".qa-artifacts/exam-resume-20261008/bumil-review-r2/blind-results-geometry/solve/q01.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-review-r2/blind-results-geometry/solve/q04.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-review-r2/blind-results-geometry/solve/q05.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-review-r2/blind-results-geometry/solve/q18.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-review-r2/verification-results-geometry/VERIFICATION-NOTES.md",
+    ".qa-artifacts/exam-resume-20261008/bumil-review-r2/verification-results-geometry/reports/q01.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-review-r2/verification-results-geometry/reports/q04.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-review-r2/verification-results-geometry/reports/q05.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-review-r2/verification-results-geometry/reports/q18.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-review-r3/blind-results-geometry/BLIND-SOLVE.md",
+    ".qa-artifacts/exam-resume-20261008/bumil-review-r3/blind-results-geometry/solve/q06.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-review-r3/blind-results-geometry/solve/q08.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-review-r3/blind-results-geometry/solve/q09.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-review-r3/blind-results-geometry/solve/q12.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-review-r3/blind-results-geometry/solve/q13.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-review-r3/verification-results-geometry/VERIFICATION-NOTES.md",
+    ".qa-artifacts/exam-resume-20261008/bumil-review-r3/verification-results-geometry/reports/q06.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-review-r3/verification-results-geometry/reports/q08.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-review-r3/verification-results-geometry/reports/q09.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-review-r3/verification-results-geometry/reports/q12.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-review-r3/verification-results-geometry/reports/q13.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-taxonomy-audit-r1/geometry-peer/AUDIT-NOTES.md",
+    ".qa-artifacts/exam-resume-20261008/bumil-taxonomy-audit-r1/geometry-peer/audit-evidence.mts",
+    ".qa-artifacts/exam-resume-20261008/bumil-taxonomy-audit-r1/geometry-peer/exact-calculations.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-taxonomy-audit-r1/geometry-peer/fresh-bank-evidence.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-taxonomy-audit-r1/geometry-peer/input-bindings.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-taxonomy-audit-r1/geometry-peer/preservation-manifest.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-taxonomy-audit-r1/geometry-peer/q05.classification.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-taxonomy-audit-r1/geometry-peer/q10.classification.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-taxonomy-audit-r1/geometry-peer/q18.classification.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-taxonomy-audit-r1/geometry-peer/repository-evidence.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-taxonomy-audit-r1/geometry-peer/rule-evidence.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-taxonomy-audit-r1/geometry-peer/source-taxonomy-links.json",
+    ".qa-artifacts/exam-resume-20261008/bumil-taxonomy-audit-r1/geometry-peer/validate-evidence.mjs",
+    "docs/planning/tracks/reports/bumil-taxonomy-peer-r1-20261008.md"
+  ],
+  "mergePreservation": "own prior committed contents unchanged; restored sole Markdown checkout CRLF transformation to sealed LF bytes without Git diff",
+  "integratedParent": "7e1e8080ad5741b53d9bb7ebf8e3a72ff5596db5",
+  "integrationLocalCommit": "eed3c53835c4923dc5807ffe61629700206ec41c",
+  "entries": [
+    {
+      "source": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeonggu\\packet\\questions.json",
+      "copied": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\evidence\\source-provisional\\questions.json",
+      "sha256": "05c0542d0b54d719b51e83ec9daf21acb1b943d358e59c27f630786cf2e4b261",
+      "bytes": 42585,
+      "sourceStillMatchesAtReceipt": true
+    },
+    {
+      "source": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeonggu\\source-manifest.json",
+      "copied": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\evidence\\source-provisional\\source-manifest.json",
+      "sha256": "dddeb5f2dd3943eb1aee712b5009c0be441d6205a5957ffe2baa390226a5165e",
+      "bytes": 1801078,
+      "sourceStillMatchesAtReceipt": true
+    },
+    {
+      "source": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeonggu\\packet\\images\\q01-part1.png",
+      "copied": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\evidence\\source-provisional\\images\\q01-part1.png",
+      "sha256": "12f1929523c73cf5aea523ecc318ee618e0fe3097fdd18c05d00e83484189eed",
+      "bytes": 48815,
+      "sourceStillMatchesAtReceipt": true
+    },
+    {
+      "source": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeonggu\\packet\\images\\q02-part1.png",
+      "copied": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\evidence\\source-provisional\\images\\q02-part1.png",
+      "sha256": "dc1b7b6cb76b1dac8ed6b8db603a01ac4b03b5e3af84ce7d0b75cb1f831d6e9a",
+      "bytes": 20708,
+      "sourceStillMatchesAtReceipt": true
+    },
+    {
+      "source": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeonggu\\packet\\images\\q03-part1.png",
+      "copied": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\evidence\\source-provisional\\images\\q03-part1.png",
+      "sha256": "53eb1868eb71156ab2acbb41a3cd418321e60120192f3c73f7014ebe48578d2a",
+      "bytes": 46551,
+      "sourceStillMatchesAtReceipt": true
+    },
+    {
+      "source": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeonggu\\packet\\images\\q04-part1.png",
+      "copied": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\evidence\\source-provisional\\images\\q04-part1.png",
+      "sha256": "f7293864a07fa0f15a0f4ffce3c4dbc7c16a81ad26d32f5b127eff22c7587eb4",
+      "bytes": 61988,
+      "sourceStillMatchesAtReceipt": true
+    },
+    {
+      "source": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeonggu\\packet\\images\\q05-part1.png",
+      "copied": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\evidence\\source-provisional\\images\\q05-part1.png",
+      "sha256": "46f1cbf7536d8b199b4b7430180784fd86a21ca4928e7697cf7ed54676637235",
+      "bytes": 22281,
+      "sourceStillMatchesAtReceipt": true
+    },
+    {
+      "source": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeonggu\\packet\\images\\q06-part1.png",
+      "copied": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\evidence\\source-provisional\\images\\q06-part1.png",
+      "sha256": "924f55f30aa928945d401eb5fcb16700813cf15d4d51f15e7ff70dbd2a93d2d8",
+      "bytes": 87659,
+      "sourceStillMatchesAtReceipt": true
+    },
+    {
+      "source": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeonggu\\packet\\images\\q07-part1.png",
+      "copied": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\evidence\\source-provisional\\images\\q07-part1.png",
+      "sha256": "25177c74942dd227dcfb9872d07edd552491f33be52c8e896ad4aa850c455dce",
+      "bytes": 23104,
+      "sourceStillMatchesAtReceipt": true
+    },
+    {
+      "source": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeonggu\\packet\\images\\q08-part1.png",
+      "copied": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\evidence\\source-provisional\\images\\q08-part1.png",
+      "sha256": "7ab067d55381f8ecbf7ffda3190a2de7b1ff67442f68ebe4b4f81329d7a879dc",
+      "bytes": 58010,
+      "sourceStillMatchesAtReceipt": true
+    },
+    {
+      "source": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeonggu\\packet\\images\\q09-part1.png",
+      "copied": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\evidence\\source-provisional\\images\\q09-part1.png",
+      "sha256": "9cc7bd85ab9683fd184c4b0e758a670879acec60111885d1e0901667d177e23e",
+      "bytes": 68434,
+      "sourceStillMatchesAtReceipt": true
+    },
+    {
+      "source": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeonggu\\packet\\images\\q10-part1.png",
+      "copied": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\evidence\\source-provisional\\images\\q10-part1.png",
+      "sha256": "db0b2484e6ef0db67b0a082b91a67cb07a7dea8d6d57f38b648ec5a39b4cd019",
+      "bytes": 79644,
+      "sourceStillMatchesAtReceipt": true
+    },
+    {
+      "source": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeonggu\\packet\\images\\q11-part1.png",
+      "copied": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\evidence\\source-provisional\\images\\q11-part1.png",
+      "sha256": "71b9954c271c442d427d508740a0ce9ac46192f415e7a6d99ee21141c3ef9413",
+      "bytes": 140596,
+      "sourceStillMatchesAtReceipt": true
+    },
+    {
+      "source": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeonggu\\packet\\images\\q12-part1.png",
+      "copied": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\evidence\\source-provisional\\images\\q12-part1.png",
+      "sha256": "ff1506630016138dce1166b2eea1472cf2eff382ea37fd9980189ff34754a8b4",
+      "bytes": 95477,
+      "sourceStillMatchesAtReceipt": true
+    },
+    {
+      "source": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeonggu\\packet\\images\\q13-part1.png",
+      "copied": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\evidence\\source-provisional\\images\\q13-part1.png",
+      "sha256": "0fb005dad4537a3d646b063df299e39e5af788e6f1cb41302f22a6052fd66d7c",
+      "bytes": 91586,
+      "sourceStillMatchesAtReceipt": true
+    },
+    {
+      "source": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeonggu\\packet\\images\\q14-part1.png",
+      "copied": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\evidence\\source-provisional\\images\\q14-part1.png",
+      "sha256": "4511334cbef12453c49826ba004a4990bcae4b2c45da33ea5555729aae5d1b9e",
+      "bytes": 75744,
+      "sourceStillMatchesAtReceipt": true
+    },
+    {
+      "source": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeonggu\\packet\\images\\q15-part1.png",
+      "copied": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\evidence\\source-provisional\\images\\q15-part1.png",
+      "sha256": "92bca909dce33444ae24ef3ffd036209c0dd221b9e5c0875d92da8d09e627ea4",
+      "bytes": 79120,
+      "sourceStillMatchesAtReceipt": true
+    },
+    {
+      "source": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeonggu\\packet\\images\\q16-part1.png",
+      "copied": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\evidence\\source-provisional\\images\\q16-part1.png",
+      "sha256": "41f5d86afd8d81dd7e612334556ec3f852050f41a77beec3eac154fc6d878cff",
+      "bytes": 76951,
+      "sourceStillMatchesAtReceipt": true
+    },
+    {
+      "source": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeonggu\\packet\\images\\q17-part1.png",
+      "copied": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\evidence\\source-provisional\\images\\q17-part1.png",
+      "sha256": "4632e5a32555e807edd2f0c8a99141e7c505a06fbea8b0b8245d41de1dd32d72",
+      "bytes": 158447,
+      "sourceStillMatchesAtReceipt": true
+    },
+    {
+      "source": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeonggu\\packet\\images\\q18-part1.png",
+      "copied": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\evidence\\source-provisional\\images\\q18-part1.png",
+      "sha256": "9003f1abaf82428e164f8200154c324a66dba47a3e82214316f6438f6252a992",
+      "bytes": 75668,
+      "sourceStillMatchesAtReceipt": true
+    },
+    {
+      "source": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeonggu\\packet\\images\\q19-part1.png",
+      "copied": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\evidence\\source-provisional\\images\\q19-part1.png",
+      "sha256": "3a790f496210e36577a74028b48fd14011c1505bcdeb9f88ccc70fb72586f4d2",
+      "bytes": 72751,
+      "sourceStillMatchesAtReceipt": true
+    },
+    {
+      "source": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeonggu\\packet\\images\\q20-part1.png",
+      "copied": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\evidence\\source-provisional\\images\\q20-part1.png",
+      "sha256": "060735c873ba35a345a837157959a014352ea8bf605f8bb106cae4c76c5557cb",
+      "bytes": 101436,
+      "sourceStillMatchesAtReceipt": true
+    },
+    {
+      "source": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeonggu\\packet\\images\\q21-part1.png",
+      "copied": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\evidence\\source-provisional\\images\\q21-part1.png",
+      "sha256": "719ea0e35cb526cabc65a926032b3da029cb016df586f1a763f7b47bdcfb58ae",
+      "bytes": 88822,
+      "sourceStillMatchesAtReceipt": true
+    },
+    {
+      "source": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeonggu\\packet\\images\\q22-part1.png",
+      "copied": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\evidence\\source-provisional\\images\\q22-part1.png",
+      "sha256": "a7f9e73573627d7cd1148a4a498cc6be59e9ca7bc163577cb9f775f6493711ee",
+      "bytes": 91129,
+      "sourceStillMatchesAtReceipt": true
+    },
+    {
+      "source": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeonggu\\packet\\images\\q23-part1.png",
+      "copied": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\evidence\\source-provisional\\images\\q23-part1.png",
+      "sha256": "338077d76b629b4731190ae54fd45b9c7aea1e5b49923677915c8fd665fc8c77",
+      "bytes": 95295,
+      "sourceStillMatchesAtReceipt": true
+    },
+    {
+      "source": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\gyeonggu\\packet\\images\\q23-part2.png",
+      "copied": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\evidence\\source-provisional\\images\\q23-part2.png",
+      "sha256": "71810df2447fc1cdbc40658c646c2231699540afffb4a95698817795264ae8e7",
+      "bytes": 5296,
+      "sourceStillMatchesAtReceipt": true
+    }
+  ]
+}

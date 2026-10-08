@@ -1,0 +1,217 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 14,
+  "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q14",
+  "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+  "content": "반지름이 $10\\,\\mathrm{cm}$인 원형 안내판에 길이가 $12\\,\\mathrm{cm}$인 현 $\\mathrm{AB}$를 표시했다. 안내판의 중심 $\\mathrm{O}$에서 이 현에 내린 수선의 발을 $\\mathrm{M}$이라 한다.\n중심과 현 사이 거리 $\\overline{\\mathrm{OM}}$은?",
+  "choices": [
+    "$4\\,\\mathrm{cm}$",
+    "$5\\,\\mathrm{cm}$",
+    "$6\\,\\mathrm{cm}$",
+    "$8\\,\\mathrm{cm}$",
+    "$12\\,\\mathrm{cm}$"
+  ],
+  "answer": "④",
+  "solution": "원의 중심에서 현에 내린 수선은 현을 이등분하므로 $\\overline{\\mathrm{AM}}=6\\,\\mathrm{cm}$이다.\n직각삼각형 $\\mathrm{OMA}$에서 $\\overline{\\mathrm{OM}}^2=10^2-6^2=64$이다. 거리는 양수이므로 $\\overline{\\mathrm{OM}}=8\\,\\mathrm{cm}$이고 정답은 ④이다.",
+  "score": 3.0,
+  "questionType": "객관식",
+  "facts": {
+    "givens": {
+      "radius": 10,
+      "AB": 12,
+      "M": "foot O to AB",
+      "unit": "cm"
+    },
+    "domain": "모든 길이는 양수. 내부점/작은호 등은 본문 조건을 따른다.",
+    "authorCheckPath": "../../checks/q14.json",
+    "subpartScores": null
+  },
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "stem-1.spec.json",
+      "svgPath": "stem-1.svg",
+      "intendedWidthMm": 70
+    }
+  ],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation",
+      "context",
+      "inverse-target"
+    ],
+    "before": "반지름과중심거리로현의전체길이를구한다.",
+    "after": "안내판현의전체길이와반지름으로중심에서현까지의거리을복구한다.",
+    "sharedConcept": "현의수직이등분과피타고라스",
+    "sharedProcedure": "현을반으로나누고반지름·반현·거리의직각삼각형식에서양의길이를구한다."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수04-19",
+      "9수04-16"
+    ],
+    "allowedProcedure": "현을반으로나누고반지름·반현·거리의직각삼각형식에서양의길이를구한다.",
+    "forbiddenAvoided": [
+      "삼각비 사이 일반 관계식",
+      "원과 비례/원의 거듭제곱",
+      "사인법칙/코사인법칙",
+      "삼각비 넓이공식",
+      "삼각함수 덧셈정리",
+      "벡터 연산",
+      "일반각/호도법"
+    ],
+    "status": "author-proposed",
+    "wholeSurfaceNote": "제시된 기본 도형 성질과 초등/중등 선수 학습만 사용하는 저자 제안이다. 독립 전체 학생면 검수가 필요하다.",
+    "independentReviewStatus": "pending-other-worker",
+    "specificPendingReasons": []
+  },
+  "studentSurfaceReview": {
+    "stem": {
+      "status": "author-proposed",
+      "evidence": "모든 조건/점 순서/단위는 새 본문에 명시했다."
+    },
+    "choices": {
+      "status": "author-proposed",
+      "evidence": "5개 선택지는 exact-checks.py의 서로 다른 값/기록과 1개 정답 확인 대상이다."
+    },
+    "figuresAndTables": {
+      "status": "author-proposed",
+      "evidence": "새 FigureSpec 1개. 도형은 로컬 strict 렌더/70mm이하 실검수를 별도 기록한다. 표는 본문에서 새로 작성했다."
+    },
+    "notation": {
+      "status": "author-proposed",
+      "evidence": "선분/직선/반직선,도단위 예각 삼각비,근호/π의 중등 표기. q22의 원벡터 변환 표기는 사용하지 않는다."
+    },
+    "answer": {
+      "status": "author-proposed",
+      "evidence": "정확한 수학/단위, 객관식은 동그라미 번호, 서술형은 소문항별 값이다."
+    },
+    "studentSolution": {
+      "status": "author-proposed",
+      "evidence": "현을반으로나누고반지름·반현·거리의직각삼각형식에서양의길이를구한다.",
+      "risk": ""
+    },
+    "prerequisites": {
+      "status": "author-proposed",
+      "evidence": [
+        {
+          "code": "9수04-19",
+          "text": "원의 현에 관한 성질과 접선에 관한 성질을 이해한다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수04-16",
+          "text": "피타고라스 정리를 이해하고 설명할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        }
+      ]
+    }
+  },
+  "sourceReference": {
+    "externalId": null,
+    "sourceExamExternalId": "personal-a8a023ad6060fb2937b8b09781b68857",
+    "sourceLogicalExamId": "2025-gyeonggu-3-2-mid",
+    "questionNumber": 14,
+    "sourceContentSha256": "d418aaeae17843987566086f435792a5e1289c771d2b99cffc077d02d60dfbb1",
+    "sourceDigest": "07d6633a3bd6c4d7f6a2af0ca54e835933c18231264585ad73ac1d28ee463185",
+    "packetPath": "../../evidence/source-provisional/questions.json",
+    "packetSha256": "05c0542d0b54d719b51e83ec9daf21acb1b943d358e59c27f630786cf2e4b261",
+    "jsonPointer": "/questions/13",
+    "referenceFigures": [
+      {
+        "file": "../../evidence/source-provisional/images/q14-part1.png",
+        "sha256": "4511334cbef12453c49826ba004a4990bcae4b2c45da33ea5555729aae5d1b9e",
+        "page": 4,
+        "column": 0
+      }
+    ],
+    "referenceOnly": true,
+    "schoolInternal": "경구중",
+    "schoolStudentAlias": "온빛누리중학교",
+    "sourceYearProposal": 2025,
+    "sourceIdentityStatus": "provisional-2025-header-supported-final-school-year-page-equivalence-pending",
+    "directUseAllowed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamYearStatus": "provisional-header-supported",
+    "schoolInternal": "경구중",
+    "schoolStudentAlias": "온빛누리중학교",
+    "questionType": "객관식",
+    "score": 3.0,
+    "difficultyProposal": "기본",
+    "difficultyStatus": "author-proposed-independent-review-pending",
+    "problemTypeProposal": "객관식",
+    "problemTypeStatus": "author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+      "unitSection": "원과 현",
+      "familyKey": null,
+      "evidence": {
+        "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+        "timestampScope": "부모 readOnly RepeatableRead 시점의 스냅샷이다. 현재DB 단언이 아니다.",
+        "seedOrderIndex": 484,
+        "registryCapturedAt": "2026-10-07T16:08:32.171Z",
+        "comparedRegistryEntries": [
+          {
+            "key": "3-2|원과 직선|01",
+            "grade": "중3",
+            "unitSection": "원과 현",
+            "rpmBook": "3-2",
+            "rpmMinor": "원과 직선",
+            "rpmType": "01",
+            "rpmTitle": "현의 수직이등분선⑴"
+          },
+          {
+            "key": "3-2|원과 직선|02",
+            "grade": "중3",
+            "unitSection": "원과 현",
+            "rpmBook": "3-2",
+            "rpmMinor": "원과 직선",
+            "rpmType": "02",
+            "rpmTitle": "현의 수직이등분선⑵"
+          }
+        ],
+        "fullRuleComparison": "01은 반지름+중심거리로 현,02는 현+중심거리로 반지름이다. 새 반지름+현으로 중심거리라는 역목표 갈래가 없다.",
+        "reopenCriteria": "새 givens/목표/핵심 순서/형식의 전체를 지지하는 기존 실제 규칙과 독립 분류 검토. 가까운 제목/신뢰도 자동배정 금지."
+      }
+    },
+    "scoreStatus": "author-proposed-source-total-preserved",
+    "rightsStatus": "pending",
+    "similarityStatus": "pending",
+    "sourceStatus": "pending-final-extraction-commit-and-equivalence",
+    "nativeProvenanceStatus": "pending",
+    "independentSolveStatus": "pending-other-worker",
+    "independentReviewStatus": "pending-other-worker",
+    "directUseAllowed": false
+  }
+}

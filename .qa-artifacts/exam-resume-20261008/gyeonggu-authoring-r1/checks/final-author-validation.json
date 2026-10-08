@@ -1,0 +1,45 @@
+{
+  "method": "final deterministic author integrity/scope audit, no independent approvals",
+  "candidateCount": 22,
+  "sourceNumbersConsidered": 23,
+  "excludedBeforeAuthoring": [
+    20
+  ],
+  "strictFigures": 20,
+  "sevenSurfacesAuthorProposed": true,
+  "allFrozenCanonicalBindingsUnchanged": true,
+  "originalPrior75Unchanged": true,
+  "repositoryRuleArchiveBytesUnchanged": true,
+  "stagedOwnedBytesExact": true,
+  "stagedScopeOnlyOwned": true,
+  "stagedFilesChecked": 246,
+  "independentApprovals": 0,
+  "finalGradeApprovals": 0,
+  "directUseAllowed": false,
+  "lintStaged": "final execution: no matching active TypeScript tasks; raw rule snapshots are .ts.txt",
+  "mjsSyntaxChecks": [
+    "preview.mjs",
+    "freeze.mjs",
+    "verify-freeze.mjs"
+  ],
+  "gitDiffCheck": {
+    "status": "clean excluding three preserved engine-issued blank lines",
+    "exactGeneratedWhitespaceWhitelist": [
+      {
+        "path": "candidates/q11/stem-1.svg",
+        "sha256": "3835ef33ba9643db3b23c4cabfd1827827502681c75660eebdbd5d0b43110374",
+        "reason": "strict engine q11 empty g; preserved output and two exact copies; no manual SVG editing"
+      },
+      {
+        "path": "qa/q11-author.html",
+        "sha256": "1d7c54d3a68850350eb4f29aab4c0770e162a8731669f8710c9d640274e50618",
+        "reason": "strict engine q11 empty g; preserved output and two exact copies; no manual SVG editing"
+      },
+      {
+        "path": "review-ready/figures/q11-1.svg",
+        "sha256": "3835ef33ba9643db3b23c4cabfd1827827502681c75660eebdbd5d0b43110374",
+        "reason": "strict engine q11 empty g; preserved output and two exact copies; no manual SVG editing"
+      }
+    ]
+  }
+}

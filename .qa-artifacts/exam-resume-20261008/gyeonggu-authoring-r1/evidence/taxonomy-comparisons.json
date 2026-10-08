@@ -1,0 +1,393 @@
+{
+  "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+  "notCurrentDbAssertion": true,
+  "comparisons": [
+    {
+      "questionNumber": 1,
+      "unit": {
+        "id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 뜻",
+        "semester": 2,
+        "orderIndex": 481,
+        "problemCodePrefix": "J30501"
+      },
+      "nearestComparedNotAssigned": [
+        "삼각비|01"
+      ],
+      "actualFullRuleComparison": "01은 두 직각변을 주고 단일 각의 한 비를 묻는다. 새 문항은 빗변/한 직각변으로 복구한 뒤 서로 다른 두 각의 cos/tan 기록을 묻는다.",
+      "familyProposal": null
+    },
+    {
+      "questionNumber": 2,
+      "unit": {
+        "id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 뜻",
+        "semester": 2,
+        "orderIndex": 481,
+        "problemCodePrefix": "J30501"
+      },
+      "nearestComparedNotAssigned": [
+        "삼각비|02",
+        "삼각비|03"
+      ],
+      "actualFullRuleComparison": "02는 비로 바로 구하는 한 변만 묻고 03은 길이 없이 다른 비를 묻는다. 두 실제 변을 구하고 피타고라스를 거치는 기록형은 둘 중 어느 규칙도 전부 지지하지 않는다.",
+      "familyProposal": null
+    },
+    {
+      "questionNumber": 3,
+      "unit": {
+        "id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 뜻",
+        "semester": 2,
+        "orderIndex": 481,
+        "problemCodePrefix": "J30501"
+      },
+      "nearestComparedNotAssigned": [
+        "삼각비|01",
+        "삼각비|20"
+      ],
+      "actualFullRuleComparison": "01은 단일 비,20은 같은 각의 두 비를 입력으로 계산한다. 두 변에서 서로 다른 두 각의 비를 복구한 후 곱의 포함 구간을 묻는 전체 규칙이 없다.",
+      "familyProposal": null
+    },
+    {
+      "questionNumber": 4,
+      "unit": {
+        "id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 뜻",
+        "semester": 2,
+        "orderIndex": 481,
+        "problemCodePrefix": "J30501"
+      },
+      "nearestComparedNotAssigned": [
+        "삼각비|04",
+        "삼각비|05"
+      ],
+      "actualFullRuleComparison": "04/05의 닮음 규칙은 새 문항의 빗변 수선/두 넓이로 공통 높이/두 cos의 차라는 전체 기록을 지원하지 않는다.",
+      "familyProposal": null
+    },
+    {
+      "questionNumber": 5,
+      "unit": {
+        "id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 값",
+        "semester": 2,
+        "orderIndex": 482,
+        "problemCodePrefix": "J30502"
+      },
+      "nearestComparedNotAssigned": [
+        "삼각비|14",
+        "삼각비|15",
+        "삼각비|16"
+      ],
+      "actualFullRuleComparison": "14는 같은 각의 sin/cos/tan 중 하나의 극값,15는 일반각의 근호/부호 식,16은 표의 단일값 조회이다. 새 문항은 서로 다른 네 각의 값 비교→양 끝 카드 제거→남은30도 특수값의 정확한 차를 구한다. 어떤 규칙도 새 입력/목표/전체 순서를 모두 지지하지 않는다.",
+      "familyProposal": null
+    },
+    {
+      "questionNumber": 6,
+      "unit": {
+        "id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 값",
+        "semester": 2,
+        "orderIndex": 482,
+        "problemCodePrefix": "J30502"
+      },
+      "nearestComparedNotAssigned": [
+        "삼각비|12",
+        "삼각비|16"
+      ],
+      "actualFullRuleComparison": "12는 각과 PH/OH/AD의 길이를 모두 입력으로 주고 비의 값을 읽는다. 새 문항은 AD의 기록에서 각을 식별해 PH/OH를 복구한다.16 단일 표 조회와도 전체 순서가 다르다.",
+      "familyProposal": null
+    },
+    {
+      "questionNumber": 7,
+      "unit": {
+        "id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 값",
+        "semester": 2,
+        "orderIndex": 482,
+        "problemCodePrefix": "J30502"
+      },
+      "nearestComparedNotAssigned": [
+        "삼각비|08"
+      ],
+      "actualFullRuleComparison": "08은 두 특수값의 한 연산이다. 새 문항의 세 계산 기록, 특히 세 항의 나눗셈-뺄셈과 세 값 조합은 단일 규칙의 전체 범위를 넘는다.",
+      "familyProposal": null
+    },
+    {
+      "questionNumber": 8,
+      "unit": {
+        "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 활용",
+        "semester": 2,
+        "orderIndex": 483,
+        "problemCodePrefix": "J30503"
+      },
+      "nearestComparedNotAssigned": [
+        "삼각비의 활용|01",
+        "삼각비의 활용|06"
+      ],
+      "actualFullRuleComparison": "01/06은 다른 변/높이를 목표로 한다. 주어진 높이에서 45도 쪽 밑변과35도 쪽 밑변을 복구하여 합의 표현을 묻는 갈래 확인이 없다.",
+      "familyProposal": null
+    },
+    {
+      "questionNumber": 9,
+      "unit": {
+        "id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 뜻",
+        "semester": 2,
+        "orderIndex": 481,
+        "problemCodePrefix": "J30501"
+      },
+      "nearestComparedNotAssigned": [
+        "삼각비|05"
+      ],
+      "actualFullRuleComparison": "05의 전체 생성 갈래에는 각의 이등분선과 제시된 접선 아닌 수선E를 합동/AA닮음으로 해석하여 DC와tan을 동시 복구하는 조건이 없다.",
+      "familyProposal": null
+    },
+    {
+      "questionNumber": 10,
+      "unit": {
+        "id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 값",
+        "semester": 2,
+        "orderIndex": 482,
+        "problemCodePrefix": "J30502"
+      },
+      "nearestComparedNotAssigned": [
+        "삼각비|18"
+      ],
+      "actualFullRuleComparison": "18의 전체 갈래가 새 직사각형45/30/다른45도 길이합으로 cos15를 구하는 조직을 지원하지 않는다. 특수각 이름만으로 배정할 수 없다.",
+      "familyProposal": null
+    },
+    {
+      "questionNumber": 11,
+      "unit": {
+        "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 활용",
+        "semester": 2,
+        "orderIndex": 483,
+        "problemCodePrefix": "J30503"
+      },
+      "nearestComparedNotAssigned": [
+        "삼각비의 활용|02"
+      ],
+      "actualFullRuleComparison": "활용02의 사각뿔은 옆면-밑면 각과 반변으로 높이를 구한다. 새 문항은 꼭짓점-중심의 반대각선과OAH각, 높이·부피 두 기록이다.",
+      "familyProposal": null
+    },
+    {
+      "questionNumber": 12,
+      "unit": {
+        "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 활용",
+        "semester": 2,
+        "orderIndex": 483,
+        "problemCodePrefix": "J30503"
+      },
+      "nearestComparedNotAssigned": [
+        "삼각비의 활용|03",
+        "삼각비의 활용|06"
+      ],
+      "actualFullRuleComparison": "활용03은 한 관측점/나무·사다리·연의 단일 직각삼각형이다.06은 주어진 밑변에서 높이. 새 문항은 높이에서 양쪽60/45도 밑변합을 복구한다.",
+      "familyProposal": null
+    },
+    {
+      "questionNumber": 13,
+      "unit": {
+        "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 활용",
+        "semester": 2,
+        "orderIndex": 483,
+        "problemCodePrefix": "J30503"
+      },
+      "nearestComparedNotAssigned": [
+        "삼각비의 활용|05",
+        "삼각비의 활용|08"
+      ],
+      "actualFullRuleComparison": "05/08의 조건은 새 정삼각형 위D의105도와 주어진 부분넓이에서BD를 역산하는 전체 절차가 아니다. 수선 두 개/밑변 바깥 높이/양의 실근을 포함한 난도 검토가 필요하다.",
+      "familyProposal": null
+    },
+    {
+      "questionNumber": 14,
+      "unit": {
+        "id": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+        "grade": "중3",
+        "chapter": "6. 원의 성질",
+        "section": "원과 현",
+        "semester": 2,
+        "orderIndex": 484,
+        "problemCodePrefix": "J30601"
+      },
+      "nearestComparedNotAssigned": [
+        "원과 직선|01",
+        "원과 직선|02"
+      ],
+      "actualFullRuleComparison": "01은 반지름+중심거리로 현,02는 현+중심거리로 반지름이다. 새 반지름+현으로 중심거리라는 역목표 갈래가 없다.",
+      "familyProposal": null
+    },
+    {
+      "questionNumber": 15,
+      "unit": {
+        "id": "43b3be19-badc-47cf-8e0d-edf19766e62c",
+        "grade": "중3",
+        "chapter": "6. 원의 성질",
+        "section": "원과 현",
+        "semester": 2,
+        "orderIndex": 484,
+        "problemCodePrefix": "J30601"
+      },
+      "nearestComparedNotAssigned": [
+        "원과 직선|06"
+      ],
+      "actualFullRuleComparison": "06은 꼭짓점각을 수치로 주어 밑각을 구한다. 새 문항은 두 밑각의 일차식을 맞추어 x와꼭짓점각을 함께 구한다.",
+      "familyProposal": null
+    },
+    {
+      "questionNumber": 16,
+      "unit": {
+        "id": "635abab8-4a87-452b-ad6c-d59065822f29",
+        "grade": "중3",
+        "chapter": "6. 원의 성질",
+        "section": "원의 접선",
+        "semester": 2,
+        "orderIndex": 485,
+        "problemCodePrefix": "J30602"
+      },
+      "nearestComparedNotAssigned": [
+        "원과 직선|07"
+      ],
+      "actualFullRuleComparison": "07은 두 직각삼각형 길이나30도 조건으로 한 길이. 새 넓이로 접선 길이를 복구하고 원밖 구간을 구하는 전체 조건이 없다.",
+      "familyProposal": null
+    },
+    {
+      "questionNumber": 17,
+      "unit": {
+        "id": "635abab8-4a87-452b-ad6c-d59065822f29",
+        "grade": "중3",
+        "chapter": "6. 원의 성질",
+        "section": "원의 접선",
+        "semester": 2,
+        "orderIndex": 485,
+        "problemCodePrefix": "J30602"
+      },
+      "nearestComparedNotAssigned": [
+        "원과 직선|08"
+      ],
+      "actualFullRuleComparison": "08 mode3는 현→고리넓이, 다른 모드는 두 반지름/하나의 반지름과현→길이이다. 고리넓이→유일 현인 역목표 규칙이 없다. 접선이 핵심이므로 원의 접선 Unit을 제안한다.",
+      "familyProposal": null
+    },
+    {
+      "questionNumber": 18,
+      "unit": {
+        "id": "635abab8-4a87-452b-ad6c-d59065822f29",
+        "grade": "중3",
+        "chapter": "6. 원의 성질",
+        "section": "원의 접선",
+        "semester": 2,
+        "orderIndex": 485,
+        "problemCodePrefix": "J30602"
+      },
+      "nearestComparedNotAssigned": [
+        "원과 직선|11"
+      ],
+      "actualFullRuleComparison": "11 mode1은 두 평행 접선 높이→같은점 접선 합→피타고라스 지름→네변 둘레이다. 점 이름 회전만 대응하면 새 givens/목표/절차 모두 일치한다. 규칙 난도는 심화하이다.",
+      "familyProposal": "mid:3-2|원과 직선|11"
+    },
+    {
+      "questionNumber": 19,
+      "unit": {
+        "id": "635abab8-4a87-452b-ad6c-d59065822f29",
+        "grade": "중3",
+        "chapter": "6. 원의 성질",
+        "section": "원의 접선",
+        "semester": 2,
+        "orderIndex": 485,
+        "problemCodePrefix": "J30602"
+      },
+      "nearestComparedNotAssigned": [
+        "원과 직선|11",
+        "원과 직선|16"
+      ],
+      "actualFullRuleComparison": "11은 반원 양끝 높이/지름을 주는 사다리꼴,16은 전체원과 직사각형세변 접촉이다. 새 정사각형 둘레에서 내부접선점의 모서리거리 DE를 구하는 전체반원 규칙은 확인되지 않는다.",
+      "familyProposal": null
+    },
+    {
+      "questionNumber": 21,
+      "unit": {
+        "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 활용",
+        "semester": 2,
+        "orderIndex": 483,
+        "problemCodePrefix": "J30503"
+      },
+      "nearestComparedNotAssigned": [
+        "삼각비의 활용|05",
+        "삼각비의 활용|08"
+      ],
+      "actualFullRuleComparison": "05/08 단일삼각형 길이/넓이와 다르게 교차연결대, 네 서술 소문항과 미지수높이의 두 수평분할을 포함한다. 단일 family 배정 불가.",
+      "familyProposal": null
+    },
+    {
+      "questionNumber": 22,
+      "unit": {
+        "id": "635abab8-4a87-452b-ad6c-d59065822f29",
+        "grade": "중3",
+        "chapter": "6. 원의 성질",
+        "section": "원의 접선",
+        "semester": 2,
+        "orderIndex": 485,
+        "problemCodePrefix": "J30602"
+      },
+      "nearestComparedNotAssigned": [
+        "원과 직선|10"
+      ],
+      "actualFullRuleComparison": "10 mode4는 반지름/60도로 둘레를 구한다. 새 둘레→접선길이 증명→반지름→AO 역산과 서술형 세부분은 전체규칙에 없다.",
+      "familyProposal": null
+    },
+    {
+      "questionNumber": 23,
+      "unit": {
+        "id": "635abab8-4a87-452b-ad6c-d59065822f29",
+        "grade": "중3",
+        "chapter": "6. 원의 성질",
+        "section": "원의 접선",
+        "semester": 2,
+        "orderIndex": 485,
+        "problemCodePrefix": "J30602"
+      },
+      "nearestComparedNotAssigned": [
+        "원과 직선|09",
+        "원주각|03"
+      ],
+      "actualFullRuleComparison": "09는 두접선 길이/각/현 길이이고 원주각03은 중심각과 원주각. 새 접선 바깥영역 넓이→반지름/OP 역산과 세 소문항을 지원하지 않는다.",
+      "familyProposal": null
+    }
+  ]
+}

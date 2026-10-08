@@ -1,0 +1,138 @@
+{
+  "version": 2,
+  "theme": "exam-thin",
+  "style": {
+    "font_size": 18,
+    "angle_font_size": 17,
+    "angle_radius": 16,
+    "angle_label_distance": 26,
+    "padding": 22,
+    "show_points": false
+  },
+  "points": {
+    "O": [
+      0.0,
+      0.0
+    ],
+    "H": [
+      0.0,
+      -40.0
+    ],
+    "A": [
+      -70.0,
+      -40.0
+    ],
+    "B": [
+      70.0,
+      -40.0
+    ],
+    "_or": [
+      80.62257748298549,
+      0.0
+    ],
+    "_ol": [
+      -80.62257748298549,
+      0.0
+    ],
+    "_ir": [
+      40.0,
+      0.0
+    ],
+    "_il": [
+      -40.0,
+      0.0
+    ]
+  },
+  "segments": {
+    "AB": [
+      "A",
+      "B"
+    ],
+    "OH": [
+      "O",
+      "H"
+    ],
+    "OA": [
+      "O",
+      "A"
+    ]
+  },
+  "labels": {
+    "O": "O",
+    "H": "H",
+    "A": "A",
+    "B": "B"
+  },
+  "circles": {
+    "outer": {
+      "center": "O",
+      "radius": 80.62257748298549
+    },
+    "inner": {
+      "center": "O",
+      "radius": 40
+    }
+  },
+  "angles": {
+    "angle_H": {
+      "vertex": "H",
+      "points": [
+        "O",
+        "B"
+      ],
+      "right": true,
+      "radius": 8
+    }
+  },
+  "regions": {
+    "ring": {
+      "fill": "#eeeeee",
+      "boundary": [
+        {
+          "arc": {
+            "circle": "outer",
+            "from": "_or",
+            "to": "_ol",
+            "dir": "ccw"
+          }
+        },
+        {
+          "arc": {
+            "circle": "outer",
+            "from": "_ol",
+            "to": "_or",
+            "dir": "ccw"
+          }
+        },
+        {
+          "seg": [
+            "_or",
+            "_ir"
+          ]
+        },
+        {
+          "arc": {
+            "circle": "inner",
+            "from": "_ir",
+            "to": "_il",
+            "dir": "cw"
+          }
+        },
+        {
+          "arc": {
+            "circle": "inner",
+            "from": "_il",
+            "to": "_ir",
+            "dir": "cw"
+          }
+        },
+        {
+          "seg": [
+            "_ir",
+            "_or"
+          ]
+        }
+      ]
+    }
+  }
+}

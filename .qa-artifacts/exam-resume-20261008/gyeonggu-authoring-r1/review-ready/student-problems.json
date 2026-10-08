@@ -1,0 +1,530 @@
+{
+  "schemaVersion": 1,
+  "packetId": "gyeonggu-author-r1-student-22",
+  "grade": "중3",
+  "curriculum": "2015",
+  "sourceNumbersConsidered": 23,
+  "excludedBeforeAuthoring": [
+    20
+  ],
+  "instructions": "Student surfaces only. Other worker must independently solve before any author answer exposure.",
+  "questions": [
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q01",
+      "questionNumber": 1,
+      "grade": "중3",
+      "curriculum": "2015",
+      "questionType": "객관식",
+      "score": 3,
+      "content": "직각삼각형 $\\mathrm{PQR}$에서 $\\angle\\mathrm{R}=90^\\circ$, $\\overline{\\mathrm{PQ}}=13\\,\\mathrm{cm}$, $\\overline{\\mathrm{QR}}=5\\,\\mathrm{cm}$이다. 다음 두 측정 기록을 완성하려고 한다.\n\n| 기록 항목 | $\\cos Q$ | $\\tan P$ |\n| --- | --- | --- |\n| 기록할 값 | ㉠ | ㉡ |\n\n㉠, ㉡에 들어갈 값을 차례로 바르게 짝지은 것은?",
+      "choices": [
+        "$\\frac{12}{13}$, $\\frac{5}{12}$",
+        "$\\frac{5}{13}$, $\\frac{12}{5}$",
+        "$\\frac{5}{13}$, $\\frac{5}{12}$",
+        "$\\frac{13}{5}$, $\\frac{5}{12}$",
+        "$\\frac{5}{13}$, $\\frac{12}{13}$"
+      ],
+      "figures": [
+        {
+          "role": "stem",
+          "svgPath": "figures/q01-1.svg",
+          "sha256": "7e2109d2ce1b75bb2268a845cb7afb6e2499a954075d5c59faa45fb328b4f579",
+          "intendedWidthMm": 70
+        }
+      ],
+      "studentDigest": "2a5d89e15f071d3cb081c22c717bd8fbd7261670952bd572d31d5db7d8fe7606"
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q02",
+      "questionNumber": 2,
+      "grade": "중3",
+      "curriculum": "2015",
+      "questionType": "객관식",
+      "score": 3,
+      "content": "직각삼각형 $\\mathrm{ABC}$에서 $\\angle\\mathrm{C}=90^\\circ$이고, 다음과 같은 기록이 남아 있다.\n\n| 항목 | 기록 |\n| --- | --- |\n| 빗변 $\\overline{\\mathrm{AB}}$ | $10\\sqrt{2}\\,\\mathrm{cm}$ |\n| $\\sin A$ | $\\frac{3}{5}$ |\n| 두 직각변 $\\overline{\\mathrm{BC}}$, $\\overline{\\mathrm{CA}}$ | ㉠ $\\mathrm{cm}$, ㉡ $\\mathrm{cm}$ |\n\n㉠, ㉡에 들어갈 수를 차례로 바르게 짝지은 것은?",
+      "choices": [
+        "$8\\sqrt{2}$, $6\\sqrt{2}$",
+        "$6\\sqrt{2}$, $8\\sqrt{2}$",
+        "$6$, $8$",
+        "$6\\sqrt{2}$, $4\\sqrt{2}$",
+        "$3\\sqrt{2}$, $8\\sqrt{2}$"
+      ],
+      "figures": [],
+      "studentDigest": "43fa3d9dd26eb2ded45e2716442f7563142908dc61c27aa5c15682d1e8d4d645"
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q03",
+      "questionNumber": 3,
+      "grade": "중3",
+      "curriculum": "2015",
+      "questionType": "객관식",
+      "score": 3,
+      "content": "직각삼각형 $\\mathrm{PQR}$에서 $\\angle\\mathrm{R}=90^\\circ$, $\\overline{\\mathrm{PR}}=4$, $\\overline{\\mathrm{QR}}=3$이다. 이 삼각형으로 계산한 $t=\\tan P\\times\\sin Q$의 값을 수직선의 구간으로 기록하려고 한다.\n$t$가 들어가는 구간을 바르게 나타낸 것은?",
+      "choices": [
+        "$0<t<\\frac14$",
+        "$\\frac14<t<\\frac12$",
+        "$\\frac12<t<\\frac23$",
+        "$\\frac23<t<\\frac34$",
+        "$\\frac34<t<1$"
+      ],
+      "figures": [
+        {
+          "role": "stem",
+          "svgPath": "figures/q03-1.svg",
+          "sha256": "a25d811ce63ff6ad83e6b8906e9a1247be9a350bf830259d3372f7422a9f9f76",
+          "intendedWidthMm": 70
+        }
+      ],
+      "studentDigest": "411df1ff3c4ed5806b377b8798b025167153f1a785d77fc60e02abf45087702e"
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q04",
+      "questionNumber": 4,
+      "grade": "중3",
+      "curriculum": "2015",
+      "questionType": "객관식",
+      "score": 3,
+      "content": "직각삼각형 $\\mathrm{PQR}$에서 $\\angle\\mathrm{QPR}=90^\\circ$, $\\overline{\\mathrm{PQ}}=5\\,\\mathrm{cm}$, $\\overline{\\mathrm{PR}}=12\\,\\mathrm{cm}$이다. $\\mathrm{P}$에서 $\\mathrm{QR}$에 내린 수선의 발을 $\\mathrm{M}$이라 하자.\n$\\theta=\\angle\\mathrm{QPM}$, $\\phi=\\angle\\mathrm{MPR}$일 때, 두 계산 기록의 차 $\\cos\\theta-\\cos\\phi$의 값은?",
+      "choices": [
+        "$\\frac5{13}$",
+        "$\\frac{12}{13}$",
+        "$\\frac{17}{13}$",
+        "$\\frac7{13}$",
+        "$\\frac{13}{7}$"
+      ],
+      "figures": [
+        {
+          "role": "stem",
+          "svgPath": "figures/q04-1.svg",
+          "sha256": "8204cc211b93e03757a4adda13cffd9f5896d0b81522954e31de3f09a802bf7a",
+          "intendedWidthMm": 70
+        }
+      ],
+      "studentDigest": "297db22d9b30a39d5722c0c910a92a726ec7a7a88fd7d7bd773979e5a19aad8c"
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q05",
+      "questionNumber": 5,
+      "grade": "중3",
+      "curriculum": "2015",
+      "questionType": "객관식",
+      "score": 3,
+      "content": "다음 네 카드를 값의 크기에 따라 수직선 위에 놓았다. 양 끝에 놓인 카드 두 장을 치운 뒤, 남은 두 카드 중 큰 값에서 작은 값을 빼서 기록하려고 한다.\n\n| 카드 | 가 | 나 | 다 | 라 |\n| --- | --- | --- | --- | --- |\n| 삼각비 | $\\sin30^\\circ$ | $\\cos30^\\circ$ | $\\cos75^\\circ$ | $\\tan55^\\circ$ |\n\n남은 두 카드의 값의 차는?",
+      "choices": [
+        "$\\frac{\\sqrt3+1}{2}$",
+        "$\\sqrt3-1$",
+        "$\\frac{\\sqrt3-1}{2}$",
+        "$\\frac{\\sqrt3-\\sqrt2}{2}$",
+        "$\\frac{\\sqrt2-1}{2}$"
+      ],
+      "figures": [],
+      "studentDigest": "1b71f79d7da85aef72e90951e0cf45b5c4964e565709cf7525fadf48163add41"
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q06",
+      "questionNumber": 6,
+      "grade": "중3",
+      "curriculum": "2015",
+      "questionType": "객관식",
+      "score": 3,
+      "content": "중심이 $\\mathrm{O}$이고 반지름의 길이가 $1$인 사분원에서 $\\mathrm{A}$는 오른쪽 반지름의 끝점, $\\mathrm{B}$는 위쪽 반지름의 끝점, $\\mathrm{P}$는 호 위의 점이다. $\\mathrm{P}$에서 $\\mathrm{OA}$에 내린 수선의 발을 $\\mathrm{H}$라 하자. 반직선 $\\mathrm{OP}$와 점 $\\mathrm{A}$를 지나 $\\mathrm{OA}$에 수직인 직선의 교점을 $\\mathrm{D}$라 한다.\n$\\theta=\\angle\\mathrm{POA}$는 아래 표의 네 각 중 하나이다. $\\overline{\\mathrm{AD}}$를 표의 근삿값으로 기록한 결과가 $0.8391$이었다.\n\n| 각 | $\\sin$ | $\\cos$ | $\\tan$ |\n| --- | --- | --- | --- |\n| $36^\\circ$ | $0.5878$ | $0.8090$ | $0.7265$ |\n| $40^\\circ$ | $0.6428$ | $0.7660$ | $0.8391$ |\n| $50^\\circ$ | $0.7660$ | $0.6428$ | $1.1918$ |\n| $54^\\circ$ | $0.8090$ | $0.5878$ | $1.3764$ |\n\n같은 표로 $\\overline{\\mathrm{PH}}$, $\\overline{\\mathrm{OH}}$의 길이를 차례로 기록한 것은?",
+      "choices": [
+        "$0.7660$, $0.6428$",
+        "$0.5878$, $0.8090$",
+        "$0.6428$, $0.8391$",
+        "$0.8090$, $0.5878$",
+        "$0.6428$, $0.7660$"
+      ],
+      "figures": [
+        {
+          "role": "stem",
+          "svgPath": "figures/q06-1.svg",
+          "sha256": "de5887d92121ba0ccb6d4d2d700592ca4c40730404dadc779db990e99c95221b",
+          "intendedWidthMm": 70
+        }
+      ],
+      "studentDigest": "0bf55c36df942a46769045279a42f7c97e4b00c173dd7e50f458b26268343bc5"
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q07",
+      "questionNumber": 7,
+      "grade": "중3",
+      "curriculum": "2015",
+      "questionType": "객관식",
+      "score": 3,
+      "content": "세 계산식의 결과를 다음 기록표에 적으려고 한다.\n\n| 기록 | 계산식 | 계산 결과 |\n| --- | --- | --- |\n| 가 | $\\sin60^\\circ\\times\\cos30^\\circ$ | ㉠ |\n| 나 | $\\tan45^\\circ\\times\\sin30^\\circ$ | ㉡ |\n| 다 | $\\sin45^\\circ\\div\\cos60^\\circ-\\tan30^\\circ$ | ㉢ |\n\n㉠, ㉡, ㉢에 들어갈 값을 차례로 바르게 짝지은 것은?",
+      "choices": [
+        "$\\frac34$, $\\frac12$, $\\sqrt2-\\frac{\\sqrt3}{3}$",
+        "$\\frac{\\sqrt3}{2}$, $\\frac12$, $\\sqrt2-\\frac{\\sqrt3}{3}$",
+        "$\\frac34$, $1$, $\\sqrt2-\\frac{\\sqrt3}{3}$",
+        "$\\frac34$, $\\frac12$, $\\sqrt2-\\sqrt3$",
+        "$\\frac12$, $\\frac34$, $\\sqrt2-\\frac{\\sqrt3}{3}$"
+      ],
+      "figures": [],
+      "studentDigest": "4a6c9fde8d5b6bbd3d96233ad6b61ed6202c06fbc6cec638c5491eb6b19fec44"
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q08",
+      "questionNumber": 8,
+      "grade": "중3",
+      "curriculum": "2015",
+      "questionType": "객관식",
+      "score": 4,
+      "content": "삼각형 받침대 $\\mathrm{ABC}$에서 $\\mathrm{BC}$는 수평이고, $\\mathrm{A}$에서 $\\mathrm{BC}$에 내린 수선의 발 $\\mathrm{H}$는 선분 $\\mathrm{BC}$의 내부에 있다.\n$\\overline{\\mathrm{AH}}=9\\,\\mathrm{cm}$, $\\angle\\mathrm{ABH}=45^\\circ$, $\\angle\\mathrm{CAH}=35^\\circ$이다. 받침대의 수평 부분 $\\overline{\\mathrm{BC}}$의 길이를 삼각비로 나타낸 것은?",
+      "choices": [
+        "$9\\tan35^\\circ\\,\\mathrm{cm}$",
+        "$9(1+2\\tan35^\\circ)\\,\\mathrm{cm}$",
+        "$9(1+\\tan35^\\circ)\\,\\mathrm{cm}$",
+        "$9(2+\\tan35^\\circ)\\,\\mathrm{cm}$",
+        "$18(1+\\tan35^\\circ)\\,\\mathrm{cm}$"
+      ],
+      "figures": [
+        {
+          "role": "stem",
+          "svgPath": "figures/q08-1.svg",
+          "sha256": "0b7c69d510f68e1da6b15ea8da72ebf0ef4096bf0aa27d9aec55a7026bc08733",
+          "intendedWidthMm": 70
+        }
+      ],
+      "studentDigest": "f05d647e2defce842751a47b7cfd06a2cdde812f6ba53d4232d10cbdefe50fe1"
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q09",
+      "questionNumber": 9,
+      "grade": "중3",
+      "curriculum": "2015",
+      "questionType": "객관식",
+      "score": 4,
+      "content": "직각삼각형 $\\mathrm{ABC}$에서 $\\angle\\mathrm{C}=90^\\circ$, $\\overline{\\mathrm{AB}}=25\\,\\mathrm{cm}$, $\\overline{\\mathrm{AC}}=15\\,\\mathrm{cm}$이다. $\\mathrm{AD}$는 $\\angle\\mathrm{BAC}$의 이등분선이고 $\\mathrm{D}$는 $\\mathrm{BC}$ 위에 있다.\n그림의 $\\mathrm{E}$는 $\\mathrm{D}$에서 $\\mathrm{AB}$에 내린 수선의 발이다. $\\theta=\\angle\\mathrm{ADC}$일 때 다음 기록표를 완성하려고 한다.\n\n| 기록 항목 | $\\overline{\\mathrm{DC}}$의 길이 | $\\tan\\theta$ |\n| --- | --- | --- |\n| 기록 | ㉠ $\\mathrm{cm}$ | ㉡ |\n\n㉠, ㉡에 들어갈 값을 차례로 바르게 짝지은 것은?",
+      "choices": [
+        "$\\frac{25}{2}$, $\\frac65$",
+        "$\\frac{15}{2}$, $2$",
+        "$10$, $\\frac32$",
+        "$\\frac{15}{2}$, $\\frac12$",
+        "$5$, $3$"
+      ],
+      "figures": [
+        {
+          "role": "stem",
+          "svgPath": "figures/q09-1.svg",
+          "sha256": "daa5c4c7e4b484122a7fbf5e635b57691613d27189037576683a558080d44a7b",
+          "intendedWidthMm": 70
+        }
+      ],
+      "studentDigest": "ec923ff716c42c8337fd99a5fa5ab699afd9e5715b236d8f54f5d0bf777ba37c"
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q10",
+      "questionNumber": 10,
+      "grade": "중3",
+      "curriculum": "2015",
+      "questionType": "객관식",
+      "score": 4,
+      "content": "직사각형 $\\mathrm{ABCD}$에서 $\\mathrm{E}$는 $\\mathrm{BC}$ 위, $\\mathrm{F}$는 $\\mathrm{CD}$ 위의 점이다. $\\overline{\\mathrm{AB}}=2\\sqrt3\\,\\mathrm{cm}$, $\\angle\\mathrm{BAE}=45^\\circ$, $\\angle\\mathrm{EAF}=30^\\circ$이고 $\\mathrm{AE}\\perp\\mathrm{EF}$이다.\n다음 각도·삼각비 기록의 빈칸을 완성하려고 한다.\n\n| 기록 항목 | $\\angle\\mathrm{DAF}$의 크기 | $\\cos\\angle\\mathrm{DAF}$ |\n| --- | --- | --- |\n| 기록 | ㉠ | ㉡ |\n\n㉠, ㉡에 들어갈 값을 차례로 바르게 짝지은 것은?",
+      "choices": [
+        "$15^\\circ$, $\\frac{\\sqrt6-\\sqrt2}{4}$",
+        "$30^\\circ$, $\\frac{\\sqrt3}{2}$",
+        "$15^\\circ$, $\\frac{\\sqrt6+\\sqrt2}{4}$",
+        "$45^\\circ$, $\\frac{\\sqrt2}{2}$",
+        "$15^\\circ$, $\\frac{\\sqrt3+1}{2}$"
+      ],
+      "figures": [
+        {
+          "role": "stem",
+          "svgPath": "figures/q10-1.svg",
+          "sha256": "87cb8b976c4b4ff1bcc93ce5cf82cd90facef0ad74be233d5d62d62089ad393f",
+          "intendedWidthMm": 70
+        }
+      ],
+      "studentDigest": "c957094979a869ba5a4b4158d96e9517c67e45823153ad704130771bde179af7"
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q11",
+      "questionNumber": 11,
+      "grade": "중3",
+      "curriculum": "2015",
+      "questionType": "객관식",
+      "score": 4,
+      "content": "사각뿔의 밑면 $\\mathrm{ABCD}$는 한 변의 길이가 $6\\,\\mathrm{cm}$인 정사각형이다. $\\mathrm{H}$는 밑면의 두 대각선의 교점이고, 꼭짓점 $\\mathrm{O}$에서 밑면에 내린 수선의 발도 $\\mathrm{H}$이다.\n첫 번째 그림은 밑면, 두 번째 그림은 세 점 $\\mathrm{O,A,H}$가 이루는 직각삼각형이다. $\\angle\\mathrm{OAH}=30^\\circ$일 때 다음 기록표를 완성하려고 한다.\n\n| 기록 항목 | 사각뿔의 높이 | 사각뿔의 부피 |\n| --- | --- | --- |\n| 기록 | ㉠ $\\mathrm{cm}$ | ㉡ $\\mathrm{cm}^3$ |\n\n㉠, ㉡에 들어갈 값을 차례로 바르게 짝지은 것은?",
+      "choices": [
+        "$\\sqrt6$, $36\\sqrt6$",
+        "$3\\sqrt2$, $36\\sqrt2$",
+        "$2\\sqrt6$, $24\\sqrt6$",
+        "$\\sqrt6$, $12\\sqrt6$",
+        "$\\sqrt2$, $12\\sqrt2$"
+      ],
+      "figures": [
+        {
+          "role": "stem",
+          "svgPath": "figures/q11-1.svg",
+          "sha256": "3835ef33ba9643db3b23c4cabfd1827827502681c75660eebdbd5d0b43110374",
+          "intendedWidthMm": 55
+        },
+        {
+          "role": "stem",
+          "svgPath": "figures/q11-2.svg",
+          "sha256": "9005125d53af14796b39cc9650aad3f070adfde50e87be9816941f13cc418bb6",
+          "intendedWidthMm": 55
+        }
+      ],
+      "studentDigest": "522306fe1543b4bae6ad8b0fe2ba86084df12a5fc24a7e377333b58e157f4631"
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q12",
+      "questionNumber": 12,
+      "grade": "중3",
+      "curriculum": "2015",
+      "questionType": "객관식",
+      "score": 4,
+      "content": "수평 바닥의 두 점 $\\mathrm{B,C}$ 사이에 삼각형 지지틀을 설치한다. $\\mathrm{H}$는 선분 $\\mathrm{BC}$의 내부에 있고, 수직 막대 $\\mathrm{AH}$의 길이는 $6\\,\\mathrm{cm}$이다. 두 지지대 $\\mathrm{AB}$와 $\\mathrm{AC}$는 바닥과 각각 $60^\\circ$, $45^\\circ$를 이룬다.\n지지틀의 바닥 부분 $\\overline{\\mathrm{BC}}$의 길이는?",
+      "choices": [
+        "$6-2\\sqrt3\\,\\mathrm{cm}$",
+        "$6+2\\sqrt3\\,\\mathrm{cm}$",
+        "$6\\sqrt3\\,\\mathrm{cm}$",
+        "$12\\,\\mathrm{cm}$",
+        "$2+6\\sqrt3\\,\\mathrm{cm}$"
+      ],
+      "figures": [
+        {
+          "role": "stem",
+          "svgPath": "figures/q12-1.svg",
+          "sha256": "4d79d78db1c6022df5c2df68c5398ca694f946d3f814beebd7e88dfe61689329",
+          "intendedWidthMm": 70
+        }
+      ],
+      "studentDigest": "4e64d6f387b1ea07e4731e774660cabae47b267052b2538c275c9853f7bed203"
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q13",
+      "questionNumber": 13,
+      "grade": "중3",
+      "curriculum": "2015",
+      "questionType": "객관식",
+      "score": 5,
+      "content": "정삼각형 $\\mathrm{ABC}$에서 점 $\\mathrm{D}$는 선분 $\\mathrm{AB}$의 내부에 있다. $\\angle\\mathrm{ADC}=105^\\circ$이고 삼각형 $\\mathrm{ADC}$의 넓이는 $18\\sqrt3\\,\\mathrm{cm}^2$이다.\n그림의 $\\mathrm{E}$는 $\\mathrm{D}$에서 $\\mathrm{BC}$에 내린 수선의 발, $\\mathrm{F}$는 $\\mathrm{C}$에서 직선 $\\mathrm{AB}$에 내린 수선의 발이다.\n이 넓이 기록을 만족하는 $\\overline{\\mathrm{BD}}$의 길이는?",
+      "choices": [
+        "$6\\,\\mathrm{cm}$",
+        "$6\\sqrt2\\,\\mathrm{cm}$",
+        "$9\\,\\mathrm{cm}$",
+        "$12\\,\\mathrm{cm}$",
+        "$12\\sqrt2\\,\\mathrm{cm}$"
+      ],
+      "figures": [
+        {
+          "role": "stem",
+          "svgPath": "figures/q13-1.svg",
+          "sha256": "9e9df471c7173c01a876a57280ca7bbb7e1d50da6ec020975320f75a8150b32f",
+          "intendedWidthMm": 70
+        }
+      ],
+      "studentDigest": "40dd6419c48a9e36d598953b0c1603c3ddfab826ae1875d1a3a570303b9927d6"
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q14",
+      "questionNumber": 14,
+      "grade": "중3",
+      "curriculum": "2015",
+      "questionType": "객관식",
+      "score": 3,
+      "content": "반지름이 $10\\,\\mathrm{cm}$인 원형 안내판에 길이가 $12\\,\\mathrm{cm}$인 현 $\\mathrm{AB}$를 표시했다. 안내판의 중심 $\\mathrm{O}$에서 이 현에 내린 수선의 발을 $\\mathrm{M}$이라 한다.\n중심과 현 사이 거리 $\\overline{\\mathrm{OM}}$은?",
+      "choices": [
+        "$4\\,\\mathrm{cm}$",
+        "$5\\,\\mathrm{cm}$",
+        "$6\\,\\mathrm{cm}$",
+        "$8\\,\\mathrm{cm}$",
+        "$12\\,\\mathrm{cm}$"
+      ],
+      "figures": [
+        {
+          "role": "stem",
+          "svgPath": "figures/q14-1.svg",
+          "sha256": "737459562b14522af802c0440ded60d46470731810652edd859423f6204f2b16",
+          "intendedWidthMm": 70
+        }
+      ],
+      "studentDigest": "12a1eb7e685efcbe2d82058a84720701caed9fdf50365c0bce0bd0c65a790eac"
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q15",
+      "questionNumber": 15,
+      "grade": "중3",
+      "curriculum": "2015",
+      "questionType": "객관식",
+      "score": 3,
+      "content": "원 $\\mathrm{O}$의 두 현 $\\mathrm{AB}$, $\\mathrm{AC}$에 중심에서 내린 수선의 발은 각각 $\\mathrm{M,N}$이다. $\\overline{\\mathrm{OM}}=\\overline{\\mathrm{ON}}$이다.\n삼각형 $\\mathrm{ABC}$의 두 각을 다음과 같이 기록했다.\n\n| 각 | 기록 |\n| --- | --- |\n| $\\angle\\mathrm{ABC}$ | $(x+28)^\\circ$ |\n| $\\angle\\mathrm{BCA}$ | $(2x-2)^\\circ$ |\n\n이 기록을 만족하는 $x$와 $\\angle\\mathrm{BAC}$의 크기를 차례로 바르게 짝지은 것은?",
+      "choices": [
+        "$30$, $58^\\circ$",
+        "$32$, $60^\\circ$",
+        "$28$, $68^\\circ$",
+        "$30$, $64^\\circ$",
+        "$30$, $116^\\circ$"
+      ],
+      "figures": [
+        {
+          "role": "stem",
+          "svgPath": "figures/q15-1.svg",
+          "sha256": "e43be1edbb198d4209f09f98fbb084c6102f499d2e857aa07052c48c3a599396",
+          "intendedWidthMm": 70
+        }
+      ],
+      "studentDigest": "7b61a50898da19a33394b5240e64cfca1f8bf0b226e351289d7cc4ad5b2f2df8"
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q16",
+      "questionNumber": 16,
+      "grade": "중3",
+      "curriculum": "2015",
+      "questionType": "객관식",
+      "score": 3,
+      "content": "원 밖의 점 $\\mathrm{P}$에서 원 $\\mathrm{O}$에 그은 접선의 접점을 $\\mathrm{A}$라 하자. $\\mathrm{O,B,P}$는 한 직선 위에 이 순서로 놓이고 $\\mathrm{B}$는 원 위의 점이다.\n원의 반지름은 $8\\,\\mathrm{cm}$이고 삼각형 $\\mathrm{OAP}$의 넓이 기록은 $24\\,\\mathrm{cm}^2$이다. 이 기록으로 복구한 원 바깥의 길이 $\\overline{\\mathrm{BP}}$는?",
+      "choices": [
+        "$1\\,\\mathrm{cm}$",
+        "$2\\,\\mathrm{cm}$",
+        "$3\\,\\mathrm{cm}$",
+        "$4\\,\\mathrm{cm}$",
+        "$6\\,\\mathrm{cm}$"
+      ],
+      "figures": [
+        {
+          "role": "stem",
+          "svgPath": "figures/q16-1.svg",
+          "sha256": "debe11f60fd127c38991e13896a8aebcccf3815eeac0fd89c73f6c042a8b7d4e",
+          "intendedWidthMm": 70
+        }
+      ],
+      "studentDigest": "d72b1736d099a09c014f5b702c42a60a0f2173667e1c7300bd0226c8da3b9d9f"
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q17",
+      "questionNumber": 17,
+      "grade": "중3",
+      "curriculum": "2015",
+      "questionType": "객관식",
+      "score": 3,
+      "content": "중심이 $\\mathrm{O}$인 서로 다른 두 동심원 사이의 고리 부분 넓이는 $49\\pi\\,\\mathrm{cm}^2$이다. 큰 원의 현 $\\mathrm{AB}$가 작은 원에 점 $\\mathrm{H}$에서 접한다.\n이 넓이 기록을 만족하는 현 $\\overline{\\mathrm{AB}}$의 길이는?",
+      "choices": [
+        "$7\\,\\mathrm{cm}$",
+        "$10\\,\\mathrm{cm}$",
+        "$12\\,\\mathrm{cm}$",
+        "$14\\,\\mathrm{cm}$",
+        "$28\\,\\mathrm{cm}$"
+      ],
+      "figures": [
+        {
+          "role": "stem",
+          "svgPath": "figures/q17-1.svg",
+          "sha256": "0634afd15ee79eace48bc124efe5329560864412d2d92df373bf179db0d2b2d1",
+          "intendedWidthMm": 70
+        }
+      ],
+      "studentDigest": "b7a97db53d0f8ebab88a31174afd8395f5899416fed9b2e975e6bcc553de9f24"
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q18",
+      "questionNumber": 18,
+      "grade": "중3",
+      "curriculum": "2015",
+      "questionType": "객관식",
+      "score": 3,
+      "content": "반원형 창의 지지틀 $\\mathrm{ABCD}$에서 $\\mathrm{BC}$는 중심이 O인 반원의 지름이다. $\\mathrm{AB}$, $\\mathrm{CD}$는 각각 지름의 끝점 $\\mathrm{B,C}$에서 반원에 접하고, $\\mathrm{AD}$는 반원에 점 $\\mathrm{E}$에서 접한다. $\\mathrm{E}$는 선분 $\\mathrm{AD}$의 내부에 있다.\n$\\overline{\\mathrm{AB}}=3\\,\\mathrm{cm}$, $\\overline{\\mathrm{CD}}=12\\,\\mathrm{cm}$이다. 그림의 $\\mathrm{F}$는 $\\mathrm{A}$에서 $\\mathrm{CD}$에 내린 수선의 발이다.\n지지틀의 네 변을 따라 잰 둘레의 길이는?",
+      "choices": [
+        "$24\\,\\mathrm{cm}$",
+        "$27\\,\\mathrm{cm}$",
+        "$30\\,\\mathrm{cm}$",
+        "$39\\,\\mathrm{cm}$",
+        "$42\\,\\mathrm{cm}$"
+      ],
+      "figures": [
+        {
+          "role": "stem",
+          "svgPath": "figures/q18-1.svg",
+          "sha256": "4e9b91d170a01bcf07c4d6818446082c4b081d7558076eec1eeb1204c81c56e2",
+          "intendedWidthMm": 70
+        }
+      ],
+      "studentDigest": "bd5d03ea26191f246c2f704c4c8376716487d9ae0ab8e815266a6115dde372b7"
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q19",
+      "questionNumber": 19,
+      "grade": "중3",
+      "curriculum": "2015",
+      "questionType": "객관식",
+      "score": 4,
+      "content": "정사각형 $\\mathrm{ABCD}$의 둘레는 $20\\,\\mathrm{cm}$이다. $\\mathrm{BC}$를 지름으로 하는 반원은 정사각형 안쪽에 있고, 중심을 O라 한다. $\\mathrm{E}$는 선분 $\\mathrm{CD}$의 내부에 있고, $\\mathrm{AE}$는 반원에 점 $\\mathrm{F}$에서 접한다. F는 선분 AE의 내부에 있다.\n모서리 $\\mathrm{D}$에서 접선의 끝점 $\\mathrm{E}$까지의 길이 $\\overline{\\mathrm{DE}}$는?",
+      "choices": [
+        "$\\frac54\\,\\mathrm{cm}$",
+        "$\\frac52\\,\\mathrm{cm}$",
+        "$\\frac{15}{4}\\,\\mathrm{cm}$",
+        "$5\\,\\mathrm{cm}$",
+        "$\\frac{25}{4}\\,\\mathrm{cm}$"
+      ],
+      "figures": [
+        {
+          "role": "stem",
+          "svgPath": "figures/q19-1.svg",
+          "sha256": "0792bf34fd9213c6d946f3789a5b8baca8ddf8a30f01bee84e2b3f4e64ec8767",
+          "intendedWidthMm": 70
+        }
+      ],
+      "studentDigest": "5091e73711bc83b3582e682f1cd10c2f6156985759fcdc7cc2203e5bc4ca7b3a"
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q21",
+      "questionNumber": 21,
+      "grade": "중3",
+      "curriculum": "2015",
+      "questionType": "서술형",
+      "score": 10,
+      "content": "두 수직 지지대 $\\mathrm{AB}$, $\\mathrm{DC}$의 밑점 $\\mathrm{B,C}$는 같은 수평선 위에 있다. 두 연결대 $\\mathrm{AC}$, $\\mathrm{BD}$의 교점을 $\\mathrm{P}$라 하자.\n$\\angle\\mathrm{BAC}=45^\\circ$, $\\angle\\mathrm{BDC}=60^\\circ$, $\\overline{\\mathrm{AC}}=6\\sqrt2\\,\\mathrm{cm}$이다. $\\mathrm{H}$는 $\\mathrm{P}$에서 $\\mathrm{BC}$에 내린 수선의 발이다. 다음 지지틀 기록을 완성하고 풀이를 쓰시오.\n⑴ $\\angle\\mathrm{APB}$의 크기. [2점]\n⑵ 오른쪽 지지대 $\\overline{\\mathrm{DC}}$의 길이. [2점]\n⑶ 연결대 $\\overline{\\mathrm{BD}}$의 길이. [2점]\n⑷ 아래쪽 삼각형 $\\mathrm{BPC}$의 넓이. [4점]",
+      "choices": [],
+      "figures": [
+        {
+          "role": "stem",
+          "svgPath": "figures/q21-1.svg",
+          "sha256": "ea23ffe8b6b6ffb72f99717f0934d4c8418e690119c09d5bf4958847fb89c4c1",
+          "intendedWidthMm": 70
+        }
+      ],
+      "studentDigest": "5d198a08b208a6cb2f331632a436a1fb98befb7f1060e0e48c2e0da7a47291c6"
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q22",
+      "questionNumber": 22,
+      "grade": "중3",
+      "curriculum": "2015",
+      "questionType": "서술형",
+      "score": 8,
+      "content": "원 밖의 점 $\\mathrm{A}$를 지나는 두 직선은 원 $\\mathrm{O}$에 각각 점 $\\mathrm{P,Q}$에서 접한다. 점 $\\mathrm{C}$는 선분 $\\mathrm{AP}$의 내부에, 점 $\\mathrm{B}$는 선분 $\\mathrm{AQ}$의 내부에 있다. 선분 $\\mathrm{BC}$도 이 원에 점 $\\mathrm{D}$에서 접하며 D는 선분 BC의 내부에 있다.\n$\\angle\\mathrm{PAQ}=60^\\circ$이고 삼각형 $\\mathrm{ABC}$의 둘레는 $6\\sqrt3\\,\\mathrm{cm}$이다. 다음을 구하고 풀이를 쓰시오.\n⑴ 둘레와 $\\overline{\\mathrm{AP}}$의 관계를 설명하고 $\\overline{\\mathrm{AP}}$의 길이를 구하시오. [4점]\n⑵ 원의 반지름의 길이. [2점]\n⑶ $\\overline{\\mathrm{AO}}$의 길이. [2점]",
+      "choices": [],
+      "figures": [
+        {
+          "role": "stem",
+          "svgPath": "figures/q22-1.svg",
+          "sha256": "25c7c8585e15514d91f02484df88a87b3687e6d2c714345f63874624fb30be8d",
+          "intendedWidthMm": 70
+        }
+      ],
+      "studentDigest": "cc29ffdc073ac83afa04d2bfcfca6ac0af6c45fec0c63aa5dd707bb5d6890aa9"
+    },
+    {
+      "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q23",
+      "questionNumber": 23,
+      "grade": "중3",
+      "curriculum": "2015",
+      "questionType": "서술형",
+      "score": 10,
+      "content": "원 밖의 점 $\\mathrm{P}$에서 원 $\\mathrm{O}$에 그은 두 접선의 접점을 $\\mathrm{A,B}$라 하자. $\\angle\\mathrm{APB}:\\angle\\mathrm{AOB}=1:2$이다. 여기서 $\\angle\\mathrm{AOB}$는 두 접점을 잇는 작은 호에 대한 중심각이다.\n두 접선분 PA, PB와 작은 호 AB로 둘러싸인 원 바깥의 색칠한 부분 넓이는 $(12\\sqrt3-4\\pi)\\,\\mathrm{cm}^2$이다. 다음 기록을 복구하고 풀이를 쓰시오.\n⑴ $\\angle\\mathrm{AOB}$의 크기. [3점]\n⑵ 원의 반지름의 길이. [4점]\n⑶ $\\overline{\\mathrm{OP}}$의 길이. [3점]",
+      "choices": [],
+      "figures": [
+        {
+          "role": "stem",
+          "svgPath": "figures/q23-1.svg",
+          "sha256": "34bce92dab2708d4f50d2449084fbadacd3dea95bdc25325f6e194ee4e4416de",
+          "intendedWidthMm": 70
+        }
+      ],
+      "studentDigest": "5d537e833859e8b1f8a2bb082663654ec3cbbaed3ea0507c0d4d090bc3342bd6"
+    }
+  ]
+}

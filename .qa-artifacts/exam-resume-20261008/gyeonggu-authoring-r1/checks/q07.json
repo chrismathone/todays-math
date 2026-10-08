@@ -1,0 +1,30 @@
+{
+  "questionNumber": 7,
+  "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+  "method": "deterministic-author-recomputation",
+  "independentVerification": false,
+  "status": "author-check-passed",
+  "candidateFileSha256": "c2083ea8c80bdfb55a9296909378e4ef805da7177fe1b93e710fba90a72caa7c",
+  "targets": [
+    "3/4",
+    "1/2",
+    "-sqrt(3)/3 + sqrt(2)"
+  ],
+  "evidence": {
+    "specialAnglesOnly": [
+      30,
+      45,
+      60
+    ],
+    "divisor": "1/2"
+  },
+  "choices": {
+    "choiceCount": 5,
+    "distinctValuesOrRecords": true,
+    "exactlyOneCorrect": true,
+    "correctIndex": 1,
+    "actualDisplayedChoicesSha256": "37aff119e56a3a211a533998f373c51e4b1d69a4ea1381d422f73932fe8c959f"
+  },
+  "assetGeometry": [],
+  "limitations": "저자 검사이다. 원문 정답/해설을 읽지 않았고 독립 풀이/교육과정/분류/권리 승인으로 사용할 수 없다."
+}

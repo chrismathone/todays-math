@@ -1,0 +1,229 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 16,
+  "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q16",
+  "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+  "content": "원 밖의 점 $\\mathrm{P}$에서 원 $\\mathrm{O}$에 그은 접선의 접점을 $\\mathrm{A}$라 하자. $\\mathrm{O,B,P}$는 한 직선 위에 이 순서로 놓이고 $\\mathrm{B}$는 원 위의 점이다.\n원의 반지름은 $8\\,\\mathrm{cm}$이고 삼각형 $\\mathrm{OAP}$의 넓이 기록은 $24\\,\\mathrm{cm}^2$이다. 이 기록으로 복구한 원 바깥의 길이 $\\overline{\\mathrm{BP}}$는?",
+  "choices": [
+    "$1\\,\\mathrm{cm}$",
+    "$2\\,\\mathrm{cm}$",
+    "$3\\,\\mathrm{cm}$",
+    "$4\\,\\mathrm{cm}$",
+    "$6\\,\\mathrm{cm}$"
+  ],
+  "answer": "②",
+  "solution": "접점에 그은 반지름은 접선에 수직이므로 $\\angle\\mathrm{OAP}=90^\\circ$이다.\n삼각형의 넓이에서 $\\frac12\\times8\\times\\overline{\\mathrm{AP}}=24$이므로 $\\overline{\\mathrm{AP}}=6\\,\\mathrm{cm}$이다.\n피타고라스 정리에 의하여 $\\overline{\\mathrm{OP}}=\\sqrt{8^2+6^2}=10\\,\\mathrm{cm}$이다. $\\overline{\\mathrm{OB}}=8\\,\\mathrm{cm}$이므로 $\\overline{\\mathrm{BP}}=10-8=2\\,\\mathrm{cm}$이고 정답은 ②이다.",
+  "score": 3.0,
+  "questionType": "객관식",
+  "facts": {
+    "givens": {
+      "radius": 8,
+      "areaOAP": 24,
+      "tangency": "PA at A",
+      "pointOrder": [
+        "O",
+        "B",
+        "P"
+      ],
+      "BOnCircle": true,
+      "unit": "cm,cm^2"
+    },
+    "domain": "모든 길이는 양수. 내부점/작은호 등은 본문 조건을 따른다.",
+    "authorCheckPath": "../../checks/q16.json",
+    "subpartScores": null
+  },
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "stem-1.spec.json",
+      "svgPath": "stem-1.svg",
+      "intendedWidthMm": 70
+    }
+  ],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation",
+      "inverse-target"
+    ],
+    "before": "반지름과원바깥길이를합해OP를정하고접선삼각형의넓이를구한다.",
+    "after": "넓이를입력으로주어접선길이와OP를복구하고바깥구간BP를구한다.",
+    "sharedConcept": "접점반지름의직각과피타고라스",
+    "sharedProcedure": "삼각형넓이/양의접선길이→피타고라스→반지름과바깥구간의합또는차."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수04-19",
+      "9수04-16",
+      "6수03-06"
+    ],
+    "allowedProcedure": "삼각형넓이/양의접선길이→피타고라스→반지름과바깥구간의합또는차.",
+    "forbiddenAvoided": [
+      "삼각비 사이 일반 관계식",
+      "원과 비례/원의 거듭제곱",
+      "사인법칙/코사인법칙",
+      "삼각비 넓이공식",
+      "삼각함수 덧셈정리",
+      "벡터 연산",
+      "일반각/호도법"
+    ],
+    "status": "author-proposed",
+    "wholeSurfaceNote": "O,B,P순서로원밖조건을명시한다. 원의거듭제곱이나원과비례를쓰지않는다.",
+    "independentReviewStatus": "pending-other-worker",
+    "specificPendingReasons": []
+  },
+  "studentSurfaceReview": {
+    "stem": {
+      "status": "author-proposed",
+      "evidence": "모든 조건/점 순서/단위는 새 본문에 명시했다."
+    },
+    "choices": {
+      "status": "author-proposed",
+      "evidence": "5개 선택지는 exact-checks.py의 서로 다른 값/기록과 1개 정답 확인 대상이다."
+    },
+    "figuresAndTables": {
+      "status": "author-proposed",
+      "evidence": "새 FigureSpec 1개. 도형은 로컬 strict 렌더/70mm이하 실검수를 별도 기록한다. 표는 본문에서 새로 작성했다."
+    },
+    "notation": {
+      "status": "author-proposed",
+      "evidence": "선분/직선/반직선,도단위 예각 삼각비,근호/π의 중등 표기. q22의 원벡터 변환 표기는 사용하지 않는다."
+    },
+    "answer": {
+      "status": "author-proposed",
+      "evidence": "정확한 수학/단위, 객관식은 동그라미 번호, 서술형은 소문항별 값이다."
+    },
+    "studentSolution": {
+      "status": "author-proposed",
+      "evidence": "삼각형넓이/양의접선길이→피타고라스→반지름과바깥구간의합또는차.",
+      "risk": "O,B,P순서로원밖조건을명시한다. 원의거듭제곱이나원과비례를쓰지않는다."
+    },
+    "prerequisites": {
+      "status": "author-proposed",
+      "evidence": [
+        {
+          "code": "9수04-19",
+          "text": "원의 현에 관한 성질과 접선에 관한 성질을 이해한다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수04-16",
+          "text": "피타고라스 정리를 이해하고 설명할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "6수03-06",
+          "text": "평행사변형, 삼각형, 사다리꼴, 마름모의 넓이를 구하는 방법을 다양하게 추론하고, 이와 관련된 문제를 해결할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              29
+            ],
+            "printed_pages": [
+              25
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        }
+      ]
+    }
+  },
+  "sourceReference": {
+    "externalId": null,
+    "sourceExamExternalId": "personal-a8a023ad6060fb2937b8b09781b68857",
+    "sourceLogicalExamId": "2025-gyeonggu-3-2-mid",
+    "questionNumber": 16,
+    "sourceContentSha256": "0b0628084a4a4e8f91d21f73d270eb1a6a6dcad1e85401ae2b0597a967426db0",
+    "sourceDigest": "f20246d99f0c3e2d9a915ca6e1d29e19e4d7a6bd825f11058504b6e0c82ad7c3",
+    "packetPath": "../../evidence/source-provisional/questions.json",
+    "packetSha256": "05c0542d0b54d719b51e83ec9daf21acb1b943d358e59c27f630786cf2e4b261",
+    "jsonPointer": "/questions/15",
+    "referenceFigures": [
+      {
+        "file": "../../evidence/source-provisional/images/q16-part1.png",
+        "sha256": "41f5d86afd8d81dd7e612334556ec3f852050f41a77beec3eac154fc6d878cff",
+        "page": 4,
+        "column": 1
+      }
+    ],
+    "referenceOnly": true,
+    "schoolInternal": "경구중",
+    "schoolStudentAlias": "온빛누리중학교",
+    "sourceYearProposal": 2025,
+    "sourceIdentityStatus": "provisional-2025-header-supported-final-school-year-page-equivalence-pending",
+    "directUseAllowed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamYearStatus": "provisional-header-supported",
+    "schoolInternal": "경구중",
+    "schoolStudentAlias": "온빛누리중학교",
+    "questionType": "객관식",
+    "score": 3.0,
+    "difficultyProposal": "기본",
+    "difficultyStatus": "author-proposed-independent-review-pending",
+    "problemTypeProposal": "객관식",
+    "problemTypeStatus": "author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "635abab8-4a87-452b-ad6c-d59065822f29",
+      "unitSection": "원의 접선",
+      "familyKey": null,
+      "evidence": {
+        "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+        "timestampScope": "부모 readOnly RepeatableRead 시점의 스냅샷이다. 현재DB 단언이 아니다.",
+        "seedOrderIndex": 485,
+        "registryCapturedAt": "2026-10-07T16:08:32.171Z",
+        "comparedRegistryEntries": [
+          {
+            "key": "3-2|원과 직선|07",
+            "grade": "중3",
+            "unitSection": "원의 접선",
+            "rpmBook": "3-2",
+            "rpmMinor": "원과 직선",
+            "rpmType": "07",
+            "rpmTitle": "원의 접선과 반지름"
+          }
+        ],
+        "fullRuleComparison": "07은 두 직각삼각형 길이나30도 조건으로 한 길이. 새 넓이로 접선 길이를 복구하고 원밖 구간을 구하는 전체 조건이 없다.",
+        "reopenCriteria": "새 givens/목표/핵심 순서/형식의 전체를 지지하는 기존 실제 규칙과 독립 분류 검토. 가까운 제목/신뢰도 자동배정 금지."
+      }
+    },
+    "scoreStatus": "author-proposed-source-total-preserved",
+    "rightsStatus": "pending",
+    "similarityStatus": "pending",
+    "sourceStatus": "pending-final-extraction-commit-and-equivalence",
+    "nativeProvenanceStatus": "pending",
+    "independentSolveStatus": "pending-other-worker",
+    "independentReviewStatus": "pending-other-worker",
+    "directUseAllowed": false
+  }
+}
