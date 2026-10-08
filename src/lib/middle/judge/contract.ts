@@ -41,14 +41,27 @@ export type JudgeOption = {
   /** 지면에 나갈 보기 글(번호 뗀 것) — `$…$` */
   text: string;
   claimedTrue: boolean;
-  /** 해설 한 줄 — 이 보기가 왜 옳은가/어디가 틀렸는가. 보기와 함께 순서가 섞인다. */
-  explain: string;
+  /** 판단 근거를 짧게 — 해설 첫 줄에 보기 다섯이 나란히 선다(계산 판정이면 왼쪽을 계산한 값). */
+  brief: string;
+  /** 이 보기가 «다른 하나»(정답)일 때의 풀이 — 과정 전체와 «옳다/옳지 않다». */
+  detail: string;
+  /** 거짓 보기의 «어디가 틀렸나» — 참인 보기는 null. */
+  why: string | null;
 };
 
-/** 생성기 한 번의 산출 — 보기의 **차례는 아직 정하지 않는다**(등록부가 섞는다). */
+/**
+ * 생성기 한 번의 산출 — 보기의 **차례는 아직 정하지 않는다**(등록부가 섞는다).
+ *
+ * 해설은 등록부가 넉 줄로 짠다(`registry.ts` 의 `assembleJudge`) — 보기마다 한 줄씩 다섯 줄을 쓰면 정답지
+ * 한 쪽(8문항 · 2단)에 다 안 들어가 해설이 **통째로 사라진다**(2026-10-08 표본 실측 · `assessAnswerKeyRisk`).
+ *   ⑴ `briefLead` + 보기 다섯의 `brief`   ⑵ 정답 보기의 `detail`
+ *   ⑶ 정답이 아닌 거짓 보기의 `why`(없으면 «나머지는 모두 옳다»)   ⑷ «따라서 … ③이다»
+ */
 export type JudgeBody = {
   /** 발문 — `…것은?` 으로 끝난다(해설의 마지막 줄 «따라서 … 것은 ③이다»를 여기서 만든다). */
   lead: string;
+  /** 해설 첫 줄의 머리 — «보기의 왼쪽을 계산하면» */
+  briefLead: string;
   options: readonly JudgeOption[];
   /** 생성기가 쓴 원 수치 — 시험이 검산에 쓴다. DB 적재 대상이 아니다. */
   facts: Record<string, number>;

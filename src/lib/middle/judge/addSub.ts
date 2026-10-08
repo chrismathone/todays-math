@@ -87,25 +87,35 @@ function lhsTex(terms: readonly Term[]): string {
 }
 
 /**
- * 해설의 계산 과정 — 뺄셈을 덧셈으로 바꾸고, 통분해 모은 뒤, 기약으로 끝낸다.
+ * 정답 보기의 풀이 — **보기 식을 다시 적지 않는다**(지면 바로 위에 있다). 뺄셈은 부호를 바꾼 덧셈으로,
+ * 분수는 통분한 항으로 늘어놓고 모아 기약으로 끝낸다:
+ *   «빼는 수의 부호를 바꾸어 통분하면 $-\dfrac{8}{12}+\dfrac{3}{12}=-\dfrac{5}{12}$»
+ * 정답지 한 쪽(8문항 · 2단)에 들어가야 해서 짧게 쓴다(`JudgeBody` 머리말).
  * 앞 단계와 글자가 같은 단계는 빼고, 딱 떨어지는 모은 분수는 안 적는다(`=-8=-8` 이 찍힌 전례 — m1Calc `addSolution`).
  */
 function workTex(terms: readonly Term[], value: Q): string {
-  const steps: string[] = [lhsTex(terms)];
+  const flipped = terms.some((t) => t.op === "-");
   const added = terms.map((t) => (t.op === "-" ? negQ(t.v) : t.v));
-  if (terms.some((t) => t.op === "-"))
-    steps.push(
-      added
-        .map((v, i) => (i === 0 ? texSigned(v) : `+${texSigned(v)}`))
-        .join(""),
-    );
   const lcd = added.reduce((acc, v) => lcm(acc, v.d), 1);
-  if (lcd > 1) {
-    const num = added.reduce((acc, v) => acc + v.n * (lcd / v.d), 0);
-    if (num % lcd !== 0) steps.push(texRawFrac(num, lcd));
-  }
+  const scaled = added.map((v) => v.n * (lcd / v.d));
+  const signed = (n: number, i: number) => {
+    const body = texRawFrac(Math.abs(n), lcd);
+    return n < 0 ? `-${body}` : i === 0 ? body : `+${body}`;
+  };
+  const steps = [scaled.map(signed).join("")];
+  const num = scaled.reduce((acc, n) => acc + n, 0);
+  if (lcd > 1 && num % lcd !== 0) steps.push(texRawFrac(num, lcd));
   steps.push(texQ(value));
-  return steps.filter((s, i) => i === 0 || s !== steps[i - 1]).join("=");
+  const chain = steps.filter((s, i) => i === 0 || s !== steps[i - 1]).join("=");
+  const how =
+    lcd > 1
+      ? flipped
+        ? "빼는 수의 부호를 바꾸어 통분하면"
+        : "통분하면"
+      : flipped
+        ? "빼는 수의 부호를 바꾸어 계산하면"
+        : "계산하면";
+  return `${how} $${chain}$`;
 }
 
 // ── 틀린 값의 후보 ─────────────────────────────────────────────────────────
@@ -120,7 +130,7 @@ type MistakeKind = "실수" | "부호" | "공용";
 type Mistake = { value: Q; reason: string; kind: MistakeKind };
 
 /** 공용 후보에는 «어디서 틀렸나»를 지어내지 않는다 — 틀린 자리는 오른쪽 값이다. */
-const GENERIC_REASON = "오른쪽 값이 계산 결과와 다르다.";
+const GENERIC_REASON = "계산 결과와 다름";
 
 /**
  * 이 계산에서 학생이 실제로 하는 실수 — **그 실수로 계산한 값**이다(까닭 문장이 그 값에 대해 참이어야 한다).
@@ -135,7 +145,7 @@ function domainMistakes(e: Expr): Mistake[] {
     );
     out.push({
       value: evalTerms(wrong),
-      reason: "빼는 수의 부호를 바꾸지 않고 더한 값이 적혀 있다.",
+      reason: "빼는 수의 부호를 바꾸지 않고 더함",
       kind: "실수",
     });
   });
@@ -147,7 +157,7 @@ function domainMistakes(e: Expr): Mistake[] {
     if (den !== 0)
       out.push({
         value: q(plus ? a.v.n + b.v.n : a.v.n - b.v.n, den),
-        reason: `분자는 분자끼리, 분모는 분모끼리 ${plus ? "더한" : "뺀"} 값이 적혀 있다.`,
+        reason: `분자끼리 분모끼리 ${plus ? "더함" : "뺌"}`,
         kind: "실수",
       });
   }
@@ -160,7 +170,7 @@ function domainMistakes(e: Expr): Mistake[] {
         Math.abs(a.v.n) * b.v.d >= Math.abs(b.v.n) * a.v.d ? a.v : b.v;
       out.push({
         value: bigger.n < 0 ? negQ(absSum) : absSum,
-        reason: "부호가 다른 두 수의 절댓값을 빼지 않고 더한 값이 적혀 있다.",
+        reason: "절댓값의 차가 아니라 합을 구함",
         kind: "실수",
       });
     }
@@ -168,7 +178,7 @@ function domainMistakes(e: Expr): Mistake[] {
   // ⑷ 계산 결과의 부호를 반대로 적었다.
   out.push({
     value: negQ(e.value),
-    reason: "계산 결과의 부호를 반대로 적었다.",
+    reason: "결과의 부호를 반대로 씀",
     kind: "부호",
   });
   return out;
@@ -252,15 +262,21 @@ function chooseMistake(
 
 // ── 보기 다섯 ─────────────────────────────────────────────────────────────
 
+/**
+ * 보기 하나와 그 해설 조각 — 판단 근거(`brief` = 왼쪽을 계산한 값) · 정답일 때의 풀이(`detail` = 계산 과정 전체) ·
+ * 거짓이면 «어디가 틀렸나»(`why`). 해설을 짜는 것은 등록부다(`JudgeBody` 머리말 — 정답지 한 쪽에 8문항).
+ */
 function option(e: Expr, shown: Q, mistake: Mistake | null): JudgeOption {
   const work = workTex(e.terms, e.value);
   return {
     text: `$${lhsTex(e.terms)}=${texQ(shown)}$`,
     claimedTrue: mistake === null,
-    explain:
+    brief: `$${texQ(e.value)}$`,
+    detail:
       mistake === null
-        ? `$${work}$이므로 옳다.`
-        : `$${work}$이므로 옳지 않다. ${mistake.reason}`,
+        ? `${work}이므로 옳다.`
+        : `${work}이므로 옳지 않다(${mistake.reason}).`,
+    why: mistake === null ? null : mistake.reason,
   };
 }
 
@@ -350,6 +366,7 @@ function finish(
       ask === "옳지 않은 것"
         ? "다음 중 계산이 옳지 않은 것은?"
         : "다음 중 계산이 옳은 것은?",
+    briefLead: "계산하면",
     options,
     facts,
   };

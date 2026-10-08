@@ -117,6 +117,12 @@ export function assembleJudge(
   const texts = body.options.map((o) => norm(o.text));
   if (new Set(texts).size !== OPTION_COUNT)
     throw new Error(`${where}: 보기 글이 겹친다 — ${texts.join(" · ")}`);
+  // 거짓 보기에는 «어디가 틀렸나»가 있고 참인 보기에는 없다 — 해설 셋째 줄이 이것으로 선다.
+  const whyless = body.options.find((o) => (o.why === null) !== o.claimedTrue);
+  if (whyless)
+    throw new Error(
+      `${where}: 보기 «${whyless.text}» — ${whyless.claimedTrue ? "참인데 «틀린 까닭»이 있다" : "거짓인데 «틀린 까닭»이 없다"}`,
+    );
   const claimedOdd = body.options.filter((o) =>
     isOdd(ask, o.claimedTrue),
   ).length;
@@ -164,8 +170,23 @@ export function assembleJudge(
     .trim()
     .replace(/^다음 중\s*/, "")
     .replace(/\?$/, "");
+  // 해설 넉 줄(`JudgeBody` 머리말) — 보기 차례(`order`)를 그대로 따라간다. 정답지 한 쪽에 8문항이 들어가야 한다.
+  // 정답이 아닌 거짓 보기(«옳은 것» 물음의 넷)의 까닭 — **같은 까닭끼리 묶어** 한 줄에. 번호 차례는 보기 차례다.
+  const byWhy = new Map<string, string[]>();
+  order.forEach((o, i) => {
+    if (i === odd[0] || o.why === null) return;
+    const why = o.why.trim();
+    byWhy.set(why, [...(byWhy.get(why) ?? []), CHOICE_MARKS[i]!]);
+  });
   const solution = [
-    ...order.map((o, i) => `${CHOICE_MARKS[i]} ${o.explain.trim()}`),
+    `${body.briefLead.trim()} ${order.map((o, i) => `${CHOICE_MARKS[i]} ${o.brief.trim()}`).join(", ")}이다.`,
+    `${answer} ${order[odd[0]!]!.detail.trim()}`,
+    // 없으면 줄을 안 둔다(«옳지 않은 것» 물음) — 첫 줄의 값이 근거다.
+    ...(byWhy.size > 0
+      ? [
+          `옳지 않은 까닭: ${[...byWhy].map(([why, marks]) => `${marks.join("·")} ${why}`).join(", ")}.`,
+        ]
+      : []),
     `따라서 ${conclusion} ${answer}이다.`,
   ].join("\n");
 

@@ -23,6 +23,7 @@ import {
   judgeKeyOf,
   parseJudgeExternalId,
   type JudgeBody,
+  type JudgeOption,
 } from "@/lib/middle/judge/contract";
 import {
   assembleJudge,
@@ -171,14 +172,27 @@ describe("㉢ 관문 — 지면 글을 다시 잰다", () => {
     expect(reg.generate(KEY, 42, 1)).toEqual(reg.generate(KEY, 42, 1));
   });
 
+  /** 보기 조각 — 참이면 «틀린 까닭»이 없고 거짓이면 있다(계약). */
+  const opt = (
+    text: string,
+    claimedTrue: boolean,
+    tag: string,
+  ): JudgeOption => ({
+    text,
+    claimedTrue,
+    brief: tag,
+    detail: `${tag} 풀이`,
+    why: claimedTrue ? null : `${tag} 까닭`,
+  });
   const body = (over: Partial<JudgeBody> = {}): JudgeBody => ({
     lead: "다음 중 계산이 옳지 않은 것은?",
+    briefLead: "계산하면",
     options: [
-      { text: "$1+2=4$", claimedTrue: false, explain: "가" },
-      { text: "$1+3=4$", claimedTrue: true, explain: "나" },
-      { text: "$2+3=5$", claimedTrue: true, explain: "다" },
-      { text: "$4+4=8$", claimedTrue: true, explain: "라" },
-      { text: "$5+1=6$", claimedTrue: true, explain: "마" },
+      opt("$1+2=4$", false, "가"),
+      opt("$1+3=4$", true, "나"),
+      opt("$2+3=5$", true, "다"),
+      opt("$4+4=8$", true, "라"),
+      opt("$5+1=6$", true, "마"),
     ],
     facts: {},
     ...over,
@@ -209,12 +223,13 @@ describe("㉢ 관문 — 지면 글을 다시 잰다", () => {
   it("주장한 «다른 하나»가 둘이거나 없으면 멈춘다", () => {
     const b = body();
     const two = [...b.options];
-    two[1] = { text: "$1+3=9$", claimedTrue: false, explain: "나" };
+    two[1] = opt("$1+3=9$", false, "나");
     expect(() => run({ ...b, options: two })).toThrow(/정확히 하나/);
     const none = b.options.map((o) => ({
       ...o,
       text: o.text.replace("1+2=4", "1+2=3"),
       claimedTrue: true,
+      why: null,
     }));
     expect(() => run({ ...b, options: none })).toThrow(/정확히 하나/);
   });
@@ -237,11 +252,11 @@ describe("㉢ 관문 — 지면 글을 다시 잰다", () => {
     const b = body({
       lead: "다음 중 계산이 옳은 것은?",
       options: [
-        { text: "$1+2=3$", claimedTrue: true, explain: "가" },
-        { text: "$1+3=5$", claimedTrue: false, explain: "나" },
-        { text: "$2+3=6$", claimedTrue: false, explain: "다" },
-        { text: "$4+4=9$", claimedTrue: false, explain: "라" },
-        { text: "$5+1=7$", claimedTrue: false, explain: "마" },
+        opt("$1+2=3$", true, "가"),
+        opt("$1+3=5$", false, "나"),
+        opt("$2+3=6$", false, "다"),
+        opt("$4+4=9$", false, "라"),
+        opt("$5+1=7$", false, "마"),
       ],
     });
     const p = run(b, "옳은 것");
@@ -252,27 +267,68 @@ describe("㉢ 관문 — 지면 글을 다시 잰다", () => {
 });
 
 describe("㉣ 보기 순열 — 정답 번호와 해설이 보기와 같이 움직인다", () => {
-  it("정답 자리가 다섯 곳에 다 나오고, 해설 줄 k 는 보기 k 의 해설이다", () => {
+  /** 해설 넉 줄(`JudgeBody` 머리말) — 픽스처의 `brief` · `detail` 은 그 보기의 식을 다시 적는다. */
+  const pairs = (line: string) =>
+    [...line.matchAll(/([①②③④⑤]) \$(\d+)\+(\d+)=/g)].map(
+      (m) => `${m[1]} ${m[2]}+${m[3]}`,
+    );
+
+  it("정답 자리가 다섯 곳에 다 나오고, 해설 첫 줄의 k 번째는 보기 k · 둘째 줄은 정답 보기다", () => {
     const reg = createJudgeRegistry([fixtureDefinition()]);
     const seen = new Set<string>();
     for (let s = 0; s < 200; s += 1) {
-      const p = reg.generate(KEY, 1000 + s, 0);
+      const p = reg.generate(KEY, 1000 + s, s % 2);
       seen.add(p.answer);
       const choices = p.content.split("\n").slice(1);
       const sol = p.solution.split("\n");
-      expect(sol).toHaveLength(6);
-      choices.forEach((line, i) => {
-        // 픽스처의 해설은 그 보기의 식을 다시 적는다 — 보기와 해설이 같은 줄을 가리키는지 본다.
-        const [, a, b] = /^\S+ \$(\d+)\+(\d+)=/.exec(line)!;
-        expect(sol[i], `${line} ↔ ${sol[i]}`).toMatch(
-          new RegExp(`^${MARKS[i]} \\$${a}\\+${b}=`),
-        );
+      const want = choices.map((c) => {
+        const [, a, b] = /^\S+ \$(\d+)\+(\d+)=/.exec(c)!;
+        return `${c[0]} ${a}+${b}`;
       });
-      const ansLine = sol[MARKS.indexOf(p.answer)]!;
-      expect(ansLine).toContain("옳지 않다");
-      expect(sol[5]).toBe(`따라서 계산이 옳지 않은 것은 ${p.answer}이다.`);
+      expect(pairs(sol[0]!), p.solution).toEqual(want);
+      expect(pairs(sol[1]!), p.solution).toEqual([
+        want[MARKS.indexOf(p.answer)]!,
+      ]);
+      if (p.ask === "옳지 않은 것") {
+        expect(sol).toHaveLength(3);
+        expect(sol[1]).toContain("옳지 않다");
+      } else {
+        expect(sol).toHaveLength(4);
+        const others = MARKS.filter((m) => m !== p.answer).join("·");
+        expect(sol[2]).toBe(`옳지 않은 까닭: ${others} 하나 더함.`);
+      }
+      expect(sol.at(-1)).toBe(
+        `따라서 계산이 ${p.ask === "옳지 않은 것" ? "옳지 않은" : "옳은"} 것은 ${p.answer}이다.`,
+      );
     }
     expect([...seen].sort()).toEqual([...MARKS].sort());
+  });
+
+  it("거짓 보기에 «틀린 까닭»이 없거나 참인 보기에 있으면 멈춘다(계약)", () => {
+    const def = fixtureDefinition();
+    const b = def.generate(createRng(3), "옳지 않은 것");
+    const noWhy = b.options.map((o) =>
+      o.claimedTrue ? o : { ...o, why: null },
+    );
+    expect(() =>
+      assembleJudge(
+        def,
+        "옳지 않은 것",
+        { ...b, options: noWhy },
+        createRng(1),
+      ),
+    ).toThrow(/거짓인데/);
+    const extraWhy = b.options.map((o) =>
+      o.claimedTrue ? { ...o, why: "덤" } : o,
+    );
+    expect(() =>
+      assembleJudge(
+        def,
+        "옳지 않은 것",
+        { ...b, options: extraWhy },
+        createRng(1),
+      ),
+    ).toThrow(/참인데/);
   });
 });
 

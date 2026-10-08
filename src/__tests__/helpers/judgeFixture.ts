@@ -24,9 +24,12 @@ function option(a: number, b: number, shown: number): JudgeOption {
   return {
     text: `$${a}+${b}=${shown}$`,
     claimedTrue: ok,
-    explain: ok
+    // 해설 조각에 그 보기의 식을 다시 적는다 — 시험이 «해설이 보기 차례를 따라가나»를 이것으로 잰다.
+    brief: `$${a}+${b}=${a + b}$`,
+    detail: ok
       ? `$${a}+${b}=${a + b}$이므로 옳다.`
-      : `$${a}+${b}=${a + b}$이므로 옳지 않다.`,
+      : `$${a}+${b}=${a + b}$이므로 옳지 않다(하나 더함).`,
+    why: ok ? null : "하나 더함",
   };
 }
 
@@ -61,6 +64,7 @@ export function fixtureDefinition(
           ask === "옳지 않은 것"
             ? "다음 중 계산이 옳지 않은 것은?"
             : "다음 중 계산이 옳은 것은?",
+        briefLead: "계산하면",
         options,
         facts: {},
       };

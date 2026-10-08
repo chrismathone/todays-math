@@ -26,6 +26,9 @@ import {
   unloaded,
 } from "../../../scripts/qa/checkUnloadedTypes";
 import { deadBackslashHits } from "../../../scripts/qa/probe-middle-raw-latex";
+import type { TestPrintProblem } from "@/components/print/types";
+import { JASEUP_GEOMETRY, JASEUP_MEASURED_PX } from "@/lib/printGeometry";
+import { assessAnswerKeyRisk, estimateSolutionPx } from "@/lib/printOverflow";
 import { CURRICULUM_UNITS } from "../../../prisma/seed-data/units";
 import { createRng } from "@/lib/elementary/rng";
 import { generateMiddleProblem, registeredTypes } from "@/lib/middle/generate";
@@ -250,7 +253,77 @@ describe("㉣ 같은 유형 — 보기의 왼쪽 식이 원천 유형 발문의 
   }
 });
 
-describe("㉤ 해설 — 보기마다 한 줄, 순열을 따라간다, 까닭이 참이다", () => {
+/** 까닭 문장이 그 보기의 오른쪽 값에 대해 참인가 — 시험 쪽에서 그 실수를 다시 계산한다. 갈래도 돌려준다. */
+const REASON_KIND: Record<string, "실수" | "부호" | "공용"> = {
+  "빼는 수의 부호를 바꾸지 않고 더함": "실수",
+  "분자끼리 분모끼리 더함": "실수",
+  "분자끼리 분모끼리 뺌": "실수",
+  "절댓값의 차가 아니라 합을 구함": "실수",
+  "결과의 부호를 반대로 씀": "부호",
+  "계산 결과와 다름": "공용",
+};
+function checkReason(choice: string, reason: string): "실수" | "부호" | "공용" {
+  const kind = REASON_KIND[reason];
+  expect(kind, `모르는 까닭: ${reason}`).toBeDefined();
+  const side = parseSide(choice);
+  const v = sumOf(side.terms);
+  const w = side.right;
+  const same = (r: R) => r.n === w.n && r.d === w.d;
+  expect(same(v), `거짓이라는데 참: ${choice}`).toBe(false);
+  if (reason === "빼는 수의 부호를 바꾸지 않고 더함") {
+    const ok = side.terms.some(
+      (term, j) =>
+        term.sign === -1 &&
+        same(
+          sumOf(side.terms.map((u, k) => (k === j ? { ...u, sign: 1 } : u))),
+        ),
+    );
+    expect(ok, `${reason} ↔ ${choice}`).toBe(true);
+  }
+  if (reason === "결과의 부호를 반대로 씀")
+    expect(same(red(-v.n, v.d)), `${reason} ↔ ${choice}`).toBe(true);
+  if (reason === "절댓값의 차가 아니라 합을 구함") {
+    const [a, b] = side.terms.map((x) => red(x.sign * x.v.n, x.v.d));
+    const abs = red(Math.abs(a!.n) * b!.d + Math.abs(b!.n) * a!.d, a!.d * b!.d);
+    const big = Math.abs(a!.n) * b!.d >= Math.abs(b!.n) * a!.d ? a! : b!;
+    expect(
+      same(big.n < 0 ? red(-abs.n, abs.d) : abs),
+      `${reason} ↔ ${choice}`,
+    ).toBe(true);
+  }
+  if (reason.startsWith("분자끼리 분모끼리")) {
+    const [a, b] = side.terms;
+    const plus = b!.sign === 1;
+    expect(reason.endsWith(plus ? "더함" : "뺌"), `${reason} ↔ ${choice}`).toBe(
+      true,
+    );
+    const n = plus ? a!.v.n + b!.v.n : a!.v.n - b!.v.n;
+    const d = plus ? a!.v.d + b!.v.d : a!.v.d - b!.v.d;
+    expect(same(red(n, d)), `${reason} ↔ ${choice}`).toBe(true);
+  }
+  return kind!;
+}
+
+/** 해설을 넉 줄 짜임으로 읽는다(`JudgeBody` 머리말). */
+function readSolution(p: { solution: string; answer: string; ask: JudgeAsk }) {
+  const sol = p.solution.split("\n");
+  const values = [...sol[0]!.matchAll(/([①②③④⑤]) \$([^$]+)\$/g)];
+  const whyGroups =
+    sol.length === 4
+      ? [
+          ...sol[2]!
+            .replace(/^옳지 않은 까닭: /, "")
+            .replace(/\.$/, "")
+            .split(", "),
+        ].map((g) => {
+          const [marks, ...rest] = g.split(" ");
+          return { marks: marks!.split("·"), why: rest.join(" ") };
+        })
+      : [];
+  return { sol, values, whyGroups };
+}
+
+describe("㉤ 해설 — 넉 줄 짜임 · 보기 차례를 따라간다 · 까닭이 참이다", () => {
   for (const key of Object.values(KEYS)) {
     it(key, () => {
       const answerAt = new Set<string>();
@@ -258,62 +331,55 @@ describe("㉤ 해설 — 보기마다 한 줄, 순열을 따라간다, 까닭이
         const p = generateJudgeProblem(key, SEED0 + s * STEP, s % 2);
         answerAt.add(p.answer);
         const choices = choicesOf(p.content);
-        const sol = p.solution.split("\n");
-        expect(sol).toHaveLength(6);
-        choices.forEach((c, i) => {
-          const left = c.slice(1).split("=")[0]!; // `$` 를 뗀 왼쪽 식
-          expect(
-            sol[i]!.startsWith(`${MARKS[i]} $${left}=`),
-            `${c} ↔ ${sol[i]}`,
-          ).toBe(true);
-          const t = truthBy3rdPath(c);
-          expect(sol[i]).toContain(t ? "이므로 옳다." : "이므로 옳지 않다.");
-          // 해설의 계산 끝 값은 참값이다.
-          const side = parseSide(c);
-          const v = sumOf(side.terms);
-          const lastMath = /\$([^$]+)\$이므로/.exec(sol[i]!)![1]!;
-          const tail = plain(lastMath.split("=").at(-1)!);
-          expect(readRat(tail), sol[i]).toEqual(v);
-          // 까닭 문장이 그 값에 대해 참인가 — 시험 쪽에서 그 실수를 다시 계산한다.
-          if (!t) {
-            const w = side.right;
-            if (sol[i]!.includes("빼는 수의 부호를 바꾸지 않고")) {
-              const ok = side.terms.some(
-                (term, j) =>
-                  term.sign === -1 &&
-                  (() => {
-                    const flipped = side.terms.map((u, k2) =>
-                      k2 === j ? { ...u, sign: 1 } : u,
-                    );
-                    const r = sumOf(flipped);
-                    return r.n === w.n && r.d === w.d;
-                  })(),
-              );
-              expect(ok, sol[i]).toBe(true);
-            }
-            if (sol[i]!.includes("결과의 부호를 반대로")) {
-              expect(red(-v.n, v.d), sol[i]).toEqual(w);
-            }
-            if (sol[i]!.includes("절댓값을 빼지 않고 더한")) {
-              const [a, b] = side.terms.map((x) => red(x.sign * x.v.n, x.v.d));
-              const abs = red(
-                Math.abs(a!.n) * b!.d + Math.abs(b!.n) * a!.d,
-                a!.d * b!.d,
-              );
-              const big =
-                Math.abs(a!.n) * b!.d >= Math.abs(b!.n) * a!.d ? a! : b!;
-              expect(big.n < 0 ? red(-abs.n, abs.d) : abs, sol[i]).toEqual(w);
-            }
-            if (sol[i]!.includes("분모는 분모끼리")) {
-              const [a, b] = side.terms;
-              const plus = b!.sign === 1;
-              const n = plus ? a!.v.n + b!.v.n : a!.v.n - b!.v.n;
-              const d = plus ? a!.v.d + b!.v.d : a!.v.d - b!.v.d;
-              expect(red(n, d), sol[i]).toEqual(w);
-            }
-          }
-        });
-        expect(sol[5]).toBe(
+        const { sol, values, whyGroups } = readSolution(p);
+        const ai = MARKS.indexOf(p.answer);
+        expect(sol).toHaveLength(p.ask === "옳은 것" ? 4 : 3);
+        // ⑴ 첫 줄 — 보기 k 의 자리에 보기 k 의 왼쪽을 계산한 값(시험 쪽 셈).
+        expect(sol[0]!.startsWith("계산하면 ① "), sol[0]).toBe(true);
+        expect(values.map((m) => m[1])).toEqual(MARKS);
+        values.forEach((m, k) =>
+          expect(readRat(plain(m[2]!)), `${sol[0]} ↔ ${choices[k]}`).toEqual(
+            sumOf(parseSide(choices[k]!).terms),
+          ),
+        );
+        // ⑵ 둘째 줄 — 정답 보기의 풀이. 첫 단계(통분한 항)의 합과 끝 값이 그 보기의 참값이다.
+        const v = sumOf(parseSide(choices[ai]!).terms);
+        expect(sol[1]!.startsWith(`${p.answer} `), sol[1]).toBe(true);
+        const chain = /\$([^$]+)\$이므로/
+          .exec(sol[1]!)![1]!
+          .split("=")
+          .map(plain);
+        expect(readRat(chain.at(-1)!), sol[1]).toEqual(v);
+        const first = [
+          ...chain[0]!.matchAll(/([+-]?)(\d+)(?:\/(\d+))?/g),
+        ].reduce(
+          (acc, m) =>
+            red(
+              acc.n * Number(m[3] ?? 1) +
+                (m[1] === "-" ? -1 : 1) * Number(m[2]) * acc.d,
+              acc.d * Number(m[3] ?? 1),
+            ),
+          { n: 0, d: 1 } as R,
+        );
+        expect(first, sol[1]).toEqual(v);
+        const answerTrue = truthBy3rdPath(choices[ai]!);
+        if (answerTrue)
+          expect(sol[1]!.endsWith("이므로 옳다."), sol[1]).toBe(true);
+        else {
+          const why = /이므로 옳지 않다\((.+)\)\.$/.exec(sol[1]!)?.[1];
+          expect(why, sol[1]).toBeDefined();
+          checkReason(choices[ai]!, why!);
+        }
+        // ⑶ «옳은 것» 물음 — 나머지 넷이 전부 «옳지 않은 까닭»에 한 번씩, 까닭은 그 보기에 대해 참이다.
+        const listed = whyGroups.flatMap((g) => g.marks).sort();
+        const falses = MARKS.filter((_, k) => k !== ai).sort();
+        expect(listed, sol.join(" / ")).toEqual(
+          p.ask === "옳은 것" ? falses : [],
+        );
+        for (const g of whyGroups)
+          for (const mark of g.marks)
+            checkReason(choices[MARKS.indexOf(mark)]!, g.why);
+        expect(sol.at(-1)).toBe(
           `따라서 계산이 ${p.ask === "옳지 않은 것" ? "옳지 않은" : "옳은"} 것은 ${p.answer}이다.`,
         );
       }
@@ -322,37 +388,108 @@ describe("㉤ 해설 — 보기마다 한 줄, 순열을 따라간다, 까닭이
   }
 
   it("거짓 보기마다 «어디가 틀렸나»가 있고, 부호 반대는 한 문항에 하나까지 · 세 갈래가 다 쓰인다", () => {
-    const REASONS = {
-      실수: [
-        "빼는 수의 부호를 바꾸지 않고 더한 값이 적혀 있다.",
-        "분자는 분자끼리, 분모는 분모끼리 더한 값이 적혀 있다.",
-        "분자는 분자끼리, 분모는 분모끼리 뺀 값이 적혀 있다.",
-        "부호가 다른 두 수의 절댓값을 빼지 않고 더한 값이 적혀 있다.",
-      ],
-      부호: ["계산 결과의 부호를 반대로 적었다."],
-      공용: ["오른쪽 값이 계산 결과와 다르다."],
-    };
     const seen = new Set<string>();
     for (const key of Object.values(KEYS)) {
       for (let s = 0; s < 200; s += 1) {
         const p = generateJudgeProblem(key, SEED0 + s * STEP, s % 2);
-        const falseLines = p.solution
-          .split("\n")
-          .filter((l) => l.includes("이므로 옳지 않다."));
-        let signs = 0;
-        for (const line of falseLines) {
-          const reason = line.split("이므로 옳지 않다.")[1]!.trim();
-          const kind = (Object.keys(REASONS) as (keyof typeof REASONS)[]).find(
-            (k) => REASONS[k].includes(reason),
-          );
-          expect(kind, `까닭이 없거나 모르는 문장: ${line}`).toBeDefined();
-          seen.add(kind!);
-          if (kind === "부호") signs += 1;
-        }
-        expect(signs, p.solution).toBeLessThanOrEqual(1);
+        const choices = choicesOf(p.content);
+        const { sol, whyGroups } = readSolution(p);
+        const kinds: string[] = [];
+        const own = /이므로 옳지 않다\((.+)\)\.$/.exec(sol[1]!)?.[1];
+        if (own)
+          kinds.push(checkReason(choices[MARKS.indexOf(p.answer)]!, own));
+        for (const g of whyGroups)
+          for (const mark of g.marks)
+            kinds.push(checkReason(choices[MARKS.indexOf(mark)]!, g.why));
+        // 거짓 보기 수만큼 까닭이 있다 — «옳지 않은 것» 1 · «옳은 것» 4.
+        expect(kinds, p.solution).toHaveLength(
+          p.ask === "옳지 않은 것" ? 1 : 4,
+        );
+        kinds.forEach((k) => seen.add(k));
+        expect(
+          kinds.filter((k) => k === "부호").length,
+          p.solution,
+        ).toBeLessThanOrEqual(1);
       }
     }
     expect([...seen].sort()).toEqual(["공용", "부호", "실수"]);
+  });
+});
+
+describe("㉧ 정답지 — 제품의 정답지 자로 재서 해설이 통째로 빠지지 않는다", () => {
+  /**
+   * 정답지(`PrintAnswerKeyPage`)는 한 쪽에 8문항 · 2단이고, 두 단을 넘친 해설은 셋째 단으로 밀려
+   * **통째로 사라진다**(`assessAnswerKeyRisk` 머리말). 2026-10-08 표본 20문항을 떠 보니 보기마다 식 전체를
+   * 적은 해설로는 1쪽에 5문항만 들어가고 6~8번이 빠졌다. 그래서 해설을 넉 줄로 짰다(`JudgeBody` 머리말).
+   * 자를 옮겨 적지 않는다 — 제품 함수(`estimateSolutionPx` · `assessAnswerKeyRisk`)를 그대로 부른다.
+   */
+  const SHARE =
+    (JASEUP_MEASURED_PX.answerSolutionsFull *
+      JASEUP_MEASURED_PX.solutionColumns) /
+    JASEUP_GEOMETRY.answerEntriesPerPage;
+  const short = (i: number): TestPrintProblem => ({
+    id: `s${i}`,
+    orderIndex: i,
+    content: "다음을 계산하시오.",
+    answer: "$1$",
+    solution: "답은 $1$이다.",
+    questionType: "단답형",
+  });
+  const judgeRow = (
+    key: string,
+    seed: number,
+    v: number,
+    i: number,
+  ): TestPrintProblem => {
+    const p = generateJudgeProblem(key, seed, v);
+    return {
+      id: `j${i}`,
+      orderIndex: i,
+      content: p.content,
+      answer: p.answer,
+      solution: p.solution,
+      questionType: "객관식",
+    };
+  };
+
+  it(`해설 한 건이 정답지 한 칸의 평균 몫(2단 × 높이 ÷ 8)을 넘지 않는다 — 씨앗 300 × 셋`, () => {
+    expect(SHARE).toBeGreaterThan(200); // 몫이 무너지면(기하가 바뀌면) 여기부터 본다
+    for (const key of Object.values(KEYS))
+      for (let s = 0; s < 300; s += 1) {
+        const p = generateJudgeProblem(key, SEED0 + s * STEP, s % 2);
+        expect(estimateSolutionPx(p.solution), p.solution).toBeLessThanOrEqual(
+          SHARE,
+        );
+      }
+  });
+
+  it("판정형만 8문항이 둘째 쪽(빠른 정답 상자 없음)에 다 들어간다 × 40벌", () => {
+    const keys = Object.values(KEYS);
+    for (let set = 0; set < 40; set += 1) {
+      const rows = Array.from({ length: 8 }, (_, i) => short(i));
+      for (let i = 8; i < 16; i += 1)
+        rows.push(
+          judgeRow(
+            keys[(set + i) % 3]!,
+            SEED0 + set * 1009 + i * STEP,
+            i % 4,
+            i,
+          ),
+        );
+      expect(assessAnswerKeyRisk(rows), `벌 ${set}`).toEqual([]);
+    }
+  });
+
+  it("첫 쪽(빠른 정답 상자 있음)에 판정형 셋 — 한 시험지에 문항류 하나씩이면 셋이 최대다 × 40벌", () => {
+    const keys = Object.values(KEYS);
+    for (let set = 0; set < 40; set += 1) {
+      const rows = Array.from({ length: 20 }, (_, i) => short(i));
+      keys.forEach((k, j) => {
+        const at = (set + j * 3) % 8;
+        rows[at] = judgeRow(k, SEED0 + set * 7 + j, (set + j) % 2, at);
+      });
+      expect(assessAnswerKeyRisk(rows), `벌 ${set}`).toEqual([]);
+    }
   });
 });
 
