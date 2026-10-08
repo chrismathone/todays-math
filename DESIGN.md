@@ -37,7 +37,7 @@
 | 의미색·글자 토큰       | [globals.css](src/app/globals.css), [fonts.ts](src/app/fonts.ts)                                                                         |
 | 페이지 제목과 행동     | [WorkspacePageHeader.tsx](src/components/unified/WorkspacePageHeader.tsx), [CSS](src/components/unified/WorkspacePageHeader.module.css)  |
 | 수학 홈·최근 작업      | [WorkroomHome.tsx](src/components/unified/WorkroomHome.tsx), [CSS](src/components/unified/WorkroomHome.module.css)                       |
-| 검색·문항 선택·담기    | [BankView.tsx](src/components/unified/BankView.tsx), [BankBasket.tsx](src/components/unified/BankBasket.tsx)                             |
+| 시험지 범위·문항 구성  | [ExamBuilder.tsx](src/components/exam-builder/ExamBuilder.tsx), [CSS](src/components/exam-builder/ExamBuilder.module.css)                  |
 | 자료·세트 행 목록      | [PrivateLibrary.tsx](src/components/unified/PrivateLibrary.tsx), [EnglishLibraryView.tsx](src/components/english/EnglishLibraryView.tsx) |
 | 영어 메뉴별 기준       | [메뉴별 적용표](docs/design/workspace-ui-rules-20261008.md)                                                                              |
 
@@ -242,7 +242,13 @@
 담은 수·펼치기                                  다음 행동
 ```
 
-영어 문제은행은 목록 `minmax(260px,.75fr)` + 상세 `minmax(0,1.6fr)`, 자료은행은 `minmax(260px,.8fr)` + `minmax(0,1.5fr)`가 현재 기준이다. 유동 열로 화면 폭을 쓰되 긴 원문에는 읽을 줄 길이를 확보한다. 수학 문항 격자는 인쇄 폭과 연결된 별도 패턴이므로 영어 지문에 그 폭을 그대로 복사하지 않는다.
+자료은행은 목록 `minmax(260px,.8fr)` + 상세 `minmax(0,1.5fr)`가 현재 기준이다. 유동 열로 화면 폭을 쓰되 긴 원문에는 읽을 줄 길이를 확보한다. 이전 영어 문제은행의 목록/상세 패턴은 시험지 만들기의 현재 기준이 아니다.
+
+시험지 만들기는 확정 D안의 **범위 설정 → 문항 검토 → 양식 구성·출력**을 사용한다. 오늘의 수학·영어에서 정해진 과목을 다시 고르지 않는다. 설정과 구성표는 왼쪽, 문항은 오른쪽의 동일한 `minmax(0,1fr)` 두 열이며 상단 행을 맞춘다. 한 행에 한 문항을 표시하고 제목·범위·행동의 불필요한 행을 합친다. 가용 컨테이너 860px 이하에서는 한 열, 420px 이하에서는 문항 본문이 이동 손잡이 아래 전폭을 사용한다.
+
+범위는 학년·과정, 단원·자료 묶음, 검색으로 좁히고 20개씩 보여 준다. 선택한 구성표는 8개씩 표시한다. 난이도별 추가·교체, 삭제·되돌리기와 드래그/키보드 순서 변경을 제공한다. 이동 위치에는 높이 40px의 ‘여기로 문제 이동’을 표시한다. 교체 대화상자는 실제 문항 열 너비로 중앙에 열며 작은 화면에서는 화면 여백 안으로 제한한다. 문항 구성 전후 스크롤바가 생겨도 열 너비가 변하지 않게 한다.
+
+마지막 단계는 문제 추출과 동일한 `WorksheetEditor`의 여섯 양식과 세부 설정이다. 단계 왕복 시 제목·문항 순서·서식을 보존한다. 공통 UI가 과목별 원문·검토·권한 계약을 대체하지 않는다. 실제 연결과 검증 범위는 [적용 기록](docs/design/exam-builder-implementation-20261008.md)에 남긴다.
 
 ### 5.4 제작·편집: 조건과 결과
 
@@ -396,7 +402,7 @@ import s from "./Example.module.css";
 
 | 현재 컴포넌트 | 컨테이너 분기     | 변화                                               |
 | ------------- | ----------------- | -------------------------------------------------- |
-| 영어 문제은행 | 1000 / 680px      | 검색 전폭·필터 재배치 / 목록·상세 한 열            |
+| 시험지 만들기 | 860 / 420px       | 구성표·문항 한 열 / 문항 본문 전폭                |
 | AI 제작       | 860 / 480px       | 조건·결과 한 열 / 좁은 입력·행동 재배치            |
 | 내 문제 세트  | 600px             | 이름·메타·행동 행 재배치                           |
 | 세트 편집     | 480px             | 정답·해설 등 한 열                                 |

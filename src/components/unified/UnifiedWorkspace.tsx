@@ -13,7 +13,15 @@ import cloudStyles from "./PrivateLibrary.module.css";
 import { forgetPrivateExtraction } from "./privateStudioSessionStore";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type ComponentProps,
+} from "react";
+import type WorksheetEditorComponent from "./WorksheetEditor";
 import { useFormStatus } from "react-dom";
 import { signOutAction } from "@/app/actions/auth";
 import RouteLinkStatus from "@/components/ui/RouteLinkStatus";
@@ -49,7 +57,9 @@ import s from "./Workroom.module.css";
 import WorkspaceAccount, { type WorkspaceIdentity } from "./WorkspaceAccount";
 import type { FadingGate } from "@/lib/fading/enabled";
 import { SrsWorkspaceView } from "@/components/fading/teacher/SrsWorkspaceView";
-const BankView = dynamic(() => import("./BankView"), {
+const loadMathBuilder = () =>
+  import("@/components/exam-builder/MathExamBuilder");
+const MathExamBuilder = dynamic(loadMathBuilder, {
   loading: () => (
     <WorkProgress
       className={s.loading}
@@ -463,7 +473,8 @@ function UnifiedWorkspaceContent({
   } = useWorkspaceDrafts(
     storageScope,
     can("library") || can("studio") || can("export"),
-    navigationReady && worksheetView,
+    navigationReady &&
+      (worksheetView || (product === "math" && view === "home")),
     branchId,
   );
   /**
@@ -894,6 +905,8 @@ function UnifiedWorkspaceContent({
   ]);
   const openBank = (filters: { q?: string; grade?: string } = {}) => {
     if (!can("bank")) return;
+    void loadMathBuilder().catch(() => {});
+    void prepareDrafts();
     setBankEntry((current) => ({ ...filters, version: current.version + 1 }));
     navigate("bank");
   };
@@ -1110,6 +1123,61 @@ function UnifiedWorkspaceContent({
   const filteredDrafts = recent.filter((item) =>
     item.title.toLocaleLowerCase().includes(libraryQuery.toLocaleLowerCase()),
   );
+  const editorProps: ComponentProps<typeof WorksheetEditorComponent> = {
+    selected,
+    title,
+    columns,
+    answers,
+    printOptions,
+    printMeta,
+    setPrintOptions,
+    setPrintMeta,
+    savedAt,
+    setTitle,
+    setColumns,
+    setAnswers,
+    save,
+    libraryLabel,
+    restore,
+    download,
+    toggle,
+    move,
+    reorder,
+    navigate,
+    allowedMenus,
+    cloudSaveStatus: storageScope
+      ? saveStatus === "saved"
+        ? savedAt
+          ? "계정에 저장됨"
+          : "작업 준비 완료"
+        : saveStatus === "error"
+          ? "계정 저장 실패 · 다시 저장해 주세요"
+          : "계정에 저장 중…"
+      : undefined,
+    onImportFiles: can("studio") ? () => fileRef.current?.click() : undefined,
+    onEditSource: can("studio")
+      ? (problem) => {
+          if (!can("studio") || !problem.studioCrop) return;
+          const crop = problem.studioCrop;
+          setStudioRestoreRequest((current) => ({
+            id: (current?.id ?? 0) + 1,
+            crops: [crop],
+          }));
+          navigate("studio");
+        }
+      : undefined,
+    cropCount: studioCropCount,
+    onGoToStep: can("studio")
+      ? (step) => {
+          if (!can("studio")) return;
+          setStudioStepRequest((request) => ({
+            id: (request?.id ?? 0) + 1,
+            step,
+          }));
+          navigate("studio");
+        }
+      : undefined,
+  };
   return (
     <div
       className={s.workspace}
@@ -1325,6 +1393,22 @@ function UnifiedWorkspaceContent({
                 title={sidebarCollapsed ? item.label : undefined}
                 aria-current={view === item.id ? "page" : undefined}
                 className={view === item.id ? s.navActive : ""}
+                onPointerEnter={
+                  item.id === "bank"
+                    ? () => {
+                        void loadMathBuilder().catch(() => {});
+                        void prepareDrafts();
+                      }
+                    : undefined
+                }
+                onFocus={
+                  item.id === "bank"
+                    ? () => {
+                        void loadMathBuilder().catch(() => {});
+                        void prepareDrafts();
+                      }
+                    : undefined
+                }
                 onClick={() => navigate(item.id)}
               >
                 <Icon name={item.icon} />
@@ -1562,16 +1646,13 @@ function UnifiedWorkspaceContent({
             can("bank") &&
             (opened.has("bank") || view === "bank") && (
               <main hidden={view !== "bank"} className={s.viewContent}>
-                <BankView
+                <MathExamBuilder
                   key={`${draft.id}:${bankEntry.version}`}
                   initialData={initialData}
-                  initialFilters={bankEntry}
-                  selected={selected}
-                  onToggle={toggle}
-                  onSelectionChange={changeBankSelection}
-                  onExport={() => navigate("export")}
-                  canExport={can("export")}
-                  canUseAi={can("studio")}
+                  initialGroup={bankEntry.grade}
+                  editor={editorProps}
+                  onQuestionsChange={changeBankSelection}
+                  canOutput={can("export")}
                 />
               </main>
             )}
@@ -1728,69 +1809,7 @@ function UnifiedWorkspaceContent({
               </main>
             )}
           {view === "export" && hydrated && (
-            <WorksheetEditor
-              selected={selected}
-              title={title}
-              columns={columns}
-              answers={answers}
-              printOptions={printOptions}
-              printMeta={printMeta}
-              setPrintOptions={setPrintOptions}
-              setPrintMeta={setPrintMeta}
-              savedAt={savedAt}
-              cloudSaveStatus={
-                storageScope
-                  ? saveStatus === "saved"
-                    ? savedAt
-                      ? "계정에 저장됨"
-                      : "작업 준비 완료"
-                    : saveStatus === "error"
-                      ? "계정 저장 실패 · 다시 저장해 주세요"
-                      : "계정에 저장 중…"
-                  : undefined
-              }
-              setTitle={setTitle}
-              setColumns={setColumns}
-              setAnswers={setAnswers}
-              save={save}
-              libraryLabel={libraryLabel}
-              restore={restore}
-              download={download}
-              toggle={toggle}
-              move={move}
-              reorder={reorder}
-              navigate={navigate}
-              allowedMenus={allowedMenus}
-              onImportFiles={
-                can("studio") ? () => fileRef.current?.click() : undefined
-              }
-              onEditSource={
-                can("studio")
-                  ? (problem) => {
-                      if (!can("studio") || !problem.studioCrop) return;
-                      setStudioRestoreRequest({
-                        id: Date.now(),
-                        crops: [problem.studioCrop],
-                      });
-                      navigate("studio");
-                    }
-                  : undefined
-              }
-              cropCount={studioCropCount}
-              onGoToStep={
-                can("studio")
-                  ? (step) => {
-                      if (!can("studio")) return;
-                      // 시계가 아니라 셈으로 센다 — 같은 밀리초에 두 번 누르면 둘째가 묻힌다.
-                      setStudioStepRequest((request) => ({
-                        id: (request?.id ?? 0) + 1,
-                        step,
-                      }));
-                      navigate("studio");
-                    }
-                  : undefined
-              }
-            />
+            <WorksheetEditor {...editorProps} />
           )}
           {view === "library" && storageScope && (
             <PrivateLibrary

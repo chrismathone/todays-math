@@ -19,7 +19,8 @@ import { createEnglishExamSource } from "./englishExamSource";
 import type { EnglishExamWork } from "./EnglishExamOutput";
 import s from "./EnglishExamBuilder.module.css";
 
-const EnglishExamOutput = dynamic(() => import("./EnglishExamOutput"));
+const loadOutput = () => import("./EnglishExamOutput");
+const EnglishExamOutput = dynamic(loadOutput);
 const difficulties = [...ENGLISH_DIFFICULTIES, "미지정"];
 
 export default function EnglishExamBuilder({
@@ -56,6 +57,9 @@ export default function EnglishExamBuilder({
       onTitleChange={setTitle}
       difficulties={difficulties}
       maxQuestions={80}
+      onOutputIntent={() => {
+        void loadOutput();
+      }}
       initialGroup={exams[0]?.grade}
       status={
         <div className={s.actions}>

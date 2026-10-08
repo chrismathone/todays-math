@@ -102,23 +102,23 @@ export default function EnglishExamOutput({
     <WorksheetEditor
       headerTitle="시험지 만들기"
       stepNavigation={{
-        label: "시험지 만들기 단계",
+        label: "시험지 만들기 단계 이동",
         items: [
           {
             id: "scope",
-            label: "범위 설정",
+            label: "1 범위 설정",
             current: false,
             onSelect: () => onStep("scope"),
           },
           {
             id: "review",
-            label: "문항 검토",
+            label: "2 문항 검토",
             current: false,
             onSelect: () => onStep("review"),
           },
           {
             id: "output",
-            label: "양식 구성·출력",
+            label: "3 양식 구성·출력",
             current: true,
             onSelect: () => undefined,
           },

@@ -59,6 +59,7 @@ export interface ExamBuilderProps<T> {
   initialScopeIds?: string[];
   initialGroup?: string;
   canOutput?: boolean;
+  onOutputIntent?: () => void;
   disabled?: boolean;
   status?: ReactNode;
 }

@@ -92,7 +92,14 @@ export function createMathExamBuilderSource(
       if (input.query.trim()) params.set("q", input.query.trim());
       if (input.excludeIds.length)
         params.set("excludeIds", [...new Set(input.excludeIds)].join(","));
-      const data = await request<BankData>(`${endpoint()}?${params}`, signal);
+      const data =
+        params.toString().length > 3000
+          ? await request<BankData>(endpoint(), signal, {
+              method: "POST",
+              headers: { "content-type": "application/json" },
+              body: JSON.stringify(Object.fromEntries(params)),
+            })
+          : await request<BankData>(`${endpoint()}?${params}`, signal);
       return {
         items: data.page === input.page ? eligible(data.problems) : [],
         total: data.total,
@@ -136,7 +143,9 @@ export function createMathExamBuilderSource(
         throw new Error("한 번에 100문항까지 출력할 수 있습니다.");
       if (new Set(items.map((item) => item.id)).size !== items.length)
         throw new Error("중복 문항이 있습니다. 문항을 다시 선택해 주세요.");
-      const bankItems = eligible(items.filter((item) => !localCrop(item)));
+      // Old saved drafts predate the eligibility field; the fresh server rows,
+      // rather than a cached flag, decide whether they can still be printed.
+      const bankItems = items.filter((item) => !localCrop(item));
       if (!bankItems.length) return items;
       const params = new URLSearchParams({
         ids: bankItems.map((item) => item.id).join(","),

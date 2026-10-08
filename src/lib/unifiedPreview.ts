@@ -45,7 +45,7 @@ const querySchema = problemFilterQuerySchema
     page: true,
   })
   .extend({
-    unitIds: idList(500).optional(),
+    unitIds: idList(1000).optional(),
     excludeIds: idList(100).optional(),
     ids: idList(100).optional(),
     pageSize: z.coerce.number().int().min(1).max(100).default(12),

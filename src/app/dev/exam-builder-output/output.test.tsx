@@ -5,6 +5,7 @@ import {
   fireEvent,
   render,
   screen,
+  waitFor,
   within,
 } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
@@ -361,7 +362,7 @@ describe("actual shared output editor", () => {
     );
   });
 
-  it("guards API exports while keeping real browser print available", () => {
+  it("guards API exports while keeping real browser print available", async () => {
     const fetch = vi.spyOn(window, "fetch");
     const print = vi.spyOn(window, "print").mockImplementation(() => {});
     render(<ExamBuilderOutput />);
@@ -374,7 +375,7 @@ describe("actual shared output editor", () => {
       screen.getAllByText(/시안에서는 인쇄 \/ PDF 저장을 이용해 주세요/).length,
     ).toBeGreaterThan(0);
     fireEvent.click(screen.getByRole("button", { name: "인쇄 / PDF 저장" }));
-    expect(print).toHaveBeenCalledOnce();
+    await waitFor(() => expect(print).toHaveBeenCalledOnce());
   });
 });
 

@@ -91,6 +91,17 @@ describe("Math exam builder source", () => {
     },
   );
 
+  it("resolves old saved rows without an eligibility flag before output", async () => {
+    const fetcher = vi
+      .fn<typeof fetch>()
+      .mockResolvedValue(reply({ problems: [row()] }));
+    const source = createMathExamBuilderSource({ fetch: fetcher });
+    const old = { ...row(), eligible: undefined };
+    const result = await source.prepareOutput!([old], signal);
+    expect(fetcher).toHaveBeenCalledOnce();
+    expect(result[0].eligible).toBe(true);
+  });
+
   it("requests exact scopes and excluded IDs before pagination, passing native rows unchanged", async () => {
     const native = row();
     const fetcher = vi
@@ -153,6 +164,26 @@ describe("Math exam builder source", () => {
       ],
     });
     expect(result).toEqual([row()]);
+  });
+
+  it("posts a large scope selection without exceeding URL limits", async () => {
+    const fetcher = vi
+      .fn<typeof fetch>()
+      .mockResolvedValue(reply({ problems: [], total: 0, page: 1 }));
+    const source = createMathExamBuilderSource({
+      fetch: fetcher,
+      problemsUrl: "/api/studio/problems",
+    });
+    const scopeIds = Array.from(
+      { length: 735 },
+      (_, i) => `30000000-0000-4000-8000-${String(i).padStart(12, "0")}`,
+    );
+    await source.list({ ...listRequest, scopeIds }, signal);
+    expect(fetcher.mock.calls[0][0]).toBe("/api/studio/problems");
+    expect(fetcher.mock.calls[0][1]?.method).toBe("POST");
+    expect(JSON.parse(fetcher.mock.calls[0][1]?.body as string).unitIds).toBe(
+      scopeIds.join(","),
+    );
   });
 
   it("refreshes bank rows in one request while preserving selection order and local crop identity", async () => {

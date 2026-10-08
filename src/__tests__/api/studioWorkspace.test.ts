@@ -24,7 +24,10 @@ import { getSessionUser } from "@/lib/session";
 import { auth } from "@/lib/auth";
 import { db } from "@/lib/db";
 import { loadUnifiedBank } from "@/lib/unifiedPreview";
-import { GET as bank } from "@/app/api/studio/problems/route";
+import {
+  GET as bank,
+  POST as scopedBank,
+} from "@/app/api/studio/problems/route";
 import { POST as randomBank } from "@/app/api/studio/problems/random/route";
 import { randomBankResponse } from "@/lib/unifiedBankSelection";
 import { GET as overview } from "@/app/api/studio/overview/route";
@@ -60,6 +63,36 @@ beforeEach(() => {
 });
 afterEach(() => vi.unstubAllEnvs());
 describe("production workspace resources", () => {
+  it("uses the same login and origin gate for large scope reads and bounds the body", async () => {
+    vi.stubEnv("AUTH_URL", "https://math.example");
+    const post = (body: string, origin = "https://math.example") =>
+      new Request("https://math.example/api/studio/problems", {
+        method: "POST",
+        headers: { origin, "content-type": "application/json" },
+        body,
+      });
+    vi.mocked(getSessionUser).mockResolvedValueOnce(null);
+    expect((await scopedBank(post("{}"))).status).toBe(401);
+    expect(
+      (await scopedBank(post("{}", "https://elsewhere.example"))).status,
+    ).toBe(403);
+    expect(loadUnifiedBank).not.toHaveBeenCalled();
+    const unitIds = Array.from(
+      { length: 735 },
+      (_, i) => `30000000-0000-4000-8000-${String(i).padStart(12, "0")}`,
+    ).join(",");
+    expect(
+      (await scopedBank(post(JSON.stringify({ unitIds, pageSize: "10" }))))
+        .status,
+    ).toBe(200);
+    expect(
+      vi.mocked(loadUnifiedBank).mock.calls.at(-1)?.[0]?.get("unitIds"),
+    ).toBe(unitIds);
+    expect(
+      (await scopedBank(post(JSON.stringify({ unitIds: "x".repeat(66_000) }))))
+        .status,
+    ).toBe(400);
+  });
   it("guards random selection by login and same-origin before loading the pool", async () => {
     vi.stubEnv("AUTH_URL", "https://math.example");
     const post = (origin: string) =>

@@ -1,6 +1,6 @@
 # 작업실 UI 메뉴별 적용표
 
-2026-10-08, 소스 기준 `a4c0e005b`. **공통 규격은 루트 [DESIGN.md](../../DESIGN.md)**가 소유한다. 이 문서는 현재 메뉴·파일·데이터 경계와 남은 차이를 기록한다. 기존 `94051e780` 분석의 보라색 문제은행·38px 제작 버튼·3열 담기·상단 단계 배너는 이번 정렬 전의 상태이며 현재 구현으로 읽지 않는다. 이전 분석은 Git 이력에 남아 있다.
+2026-10-08, 기본 소스 기준 `a4c0e005b`, 시험지 만들기는 같은 날 D안 실제 연결까지 갱신했다. **공통 규격은 루트 [DESIGN.md](../../DESIGN.md)**가 소유한다. 이 문서는 현재 메뉴·파일·데이터 경계와 남은 차이를 기록한다. 기존 `94051e780` 분석의 보라색 문제은행·38px 제작 버튼·3열 담기·상단 단계 배너는 이번 정렬 전의 상태이며 현재 구현으로 읽지 않는다. 이전 분석은 Git 이력에 남아 있다.
 
 ## 1. 화면과 여백의 소유자
 
@@ -27,13 +27,13 @@
 
 ### 시험지 만들기 — `english-questions`
 
-구현: [EnglishQuestionBank](../../src/components/english/EnglishQuestionBank.tsx), [CSS](../../src/components/english/EnglishQuestionBank.module.css), [EnglishBankPrint](../../src/components/english/print/EnglishBankPrint.tsx).
+구현: [EnglishExamBuilder](../../src/components/english/EnglishExamBuilder.tsx), 공통 [ExamBuilder](../../src/components/exam-builder/ExamBuilder.tsx), [EnglishExamOutput](../../src/components/english/EnglishExamOutput.tsx).
 
-- 검색·조건 → 결과 수 → 목록/상세 → 접힌 담기 → 출력 순서다. 제목은 셸에서 한 번 그린다.
-- `.workspace`는 목록 `minmax(260px,.75fr)` + 상세 `minmax(0,1.6fr)`, gap 16px. 담기는 영구 세 번째 열이 아니다.
-- container `english-question-bank` 1000px에서 검색 전폭, 680px에서 목록/상세 한 열과 조건 2열. 좁은 목록은 최대 360px의 독립 스크롤이다.
-- native details/summary로 담기를 펼친다. 요약 최소 52px, 목록 최대 `min(320px,38dvh)`. 제거·순서·선택 수를 유지한다.
-- 본문 읽기 폭은 현재 최대 78ch다. 원본 개정 확인·resolve·출력 상한·지면 계약을 시각 수정으로 우회하지 않는다.
+- 확정 D안의 범위 → 문항 검토 → 공통 양식·출력이다. 저장된 세트를 범위로 사용하며 과목을 다시 선택하지 않는다.
+- 제목·구성표 왼쪽 / 문항 오른쪽 50:50, 한 행에 한 문항. 가용 폭 860px 이하에서 한 열로 전환한다. 범위·문항 후보는 페이지 단위로 표시한다.
+- 원본 난이도와 ‘미지정’을 구분한다. 추가·교체·삭제·되돌리기와 드래그/키보드 순서 변경을 지원한다.
+- 마지막 단계는 실제 `WorksheetEditor`다. 영어 원문·보기·밑줄·정답을 native 계약으로 유지하고 출력 직전 원본 개정을 다시 확인한다. 누출 분리 묶음과 미검토 확인을 유지한다.
+- 영어 작업 저장은 현재 화면의 임시 보관과 JSON 다운로드다. 수학의 계정별 클라우드 초안 기능으로 설명하지 않는다. 기존 `EnglishQuestionBank`/`EnglishBankPrint` 소스는 남아 있으나 이 메뉴의 기본 진입이 아니다.
 
 ### AI 문제 제작 — `english-maker`
 
@@ -57,13 +57,14 @@
 - 편집 카드 padding 24px, 좁은 viewport 16px, editor container 480px 이하에서 정답·해설을 쌓는다.
 - 수학 PrivateLibrary의 전 계정 자료·사본/소유자 기능을 영어에도 있는 것처럼 설명하지 않는다. 전체 시험 통합 보관함도 현재 기능이 아니다.
 
-### 시험지 만들기 개편 시안의 공통 마지막 단계 — 사용자 결정, 2026-10-08
+### 시험지 만들기 공통 마지막 단계 — D안 실제 적용, 2026-10-08
 
 - 범위 선택 → 문항 구성·검토 다음에는 문제 추출의 마지막 **시험지 구성** 화면을 함께 사용한다. 시안마다 간단한 출력 폼을 별도로 만들지 않는다.
 - 공통 구현 기준은 `UnifiedWorkspace`의 export 단계가 사용하는 `WorksheetEditor`와 그 안의 `PrintOptionsPanel`, `WorksheetPrint`다. 기존 여섯 양식과 세부 인쇄 설정을 재사용한다.
 - [5개 시안](mockups/exam-builder-common-20261008/README.txt)은 `/dev/exam-builder-output`에서 실제 컴포넌트를 재사용한다. 선택한 문항·제목·순서를 넘기고, 검토 화면으로 복귀할 때 변경을 반영한다.
 - 확정된 D안은 범위 설정 → 문항 검토 → 양식 구성·출력의 세 단계 메뉴를 공유한다. 문항 구성 후 검토 단계가 활성화되며, 출력에서도 범위/검토로 돌아갈 수 있다. 단계 이동과 양식 재진입에서 제목·문항 순서·서식을 유지한다. `StudioStepBar`의 선택적인 단계 메뉴를 사용하며 기존 문제 추출의 기본 네 단계는 유지한다.
-- 이는 개발용 시안 연결이다. 운영 영어 `EnglishBankPrint`나 수학 문제은행의 제작 진입 흐름을 전환한 상태는 아니며, 실제 저장·권한·문항 계약의 통합은 운영 구현 때 유지해야 한다.
+- 수학 `bank`는 `MathExamBuilder`, 영어 `english-questions`는 `EnglishExamBuilder`로 실제 진입을 전환했다. 수학 초안·저장·권한과 영어 native 원문·검토·resolve를 유지한다. 개발용 5개 시안은 비교 이력으로 남는다.
+- 시험지 로딩은 최근 작업 메타데이터와 현재 초안만 먼저 읽고 나머지는 열 때 읽는다. 저장 전 실제 복원 완료를 기다리며 실패를 준비 완료로 처리하지 않는다. [적용·검증 기록](exam-builder-implementation-20261008.md)을 참고한다. 소스 적용과 운영 배포는 구분한다.
 
 ### 영어듣기 — `english-listening`
 
