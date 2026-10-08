@@ -1,0 +1,149 @@
+{
+  "studentDigest": "7c7cbe4912743bd1dc87fb4e231162c91352fbc73fb9fe3254e246cfbb248b23",
+  "solverId": "orca-codex-exam-twin-author-geometry-20261008",
+  "status": "solved",
+  "answer": "④",
+  "solution": "포물선이 x축과 한 점에서만 만나므로 꼭짓점이 x축 위에 있다. 대칭축이x=2이므로 꼭짓점은(2,0)이고 식은y=a(x−2)²이다. (0,12)를 대입하면4a=12이므로a=3이다. x=−1에서 y=3(−1−2)²=27이다. 계수가0이 아니며 x축과의 유일한 만남은x=2이므로 모든 조건이 성립한다. 정답은 ④이다.",
+  "evidence": {
+    "method": "blind-student-only-independent-solve",
+    "questionNumber": 5,
+    "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q05",
+    "createdBeforeAuthorAnswerExposureAtUtc": "2026-10-08T12:48:10.354Z",
+    "authorAnswersSolutionsOpened": false,
+    "originalExamsOpened": false,
+    "authorCandidateChecksReportsOpened": false,
+    "inputRawSha256": "1297372bbfb577f88c861ff27bf4d5d0b272f3737e408b68c38df793c53ff79a",
+    "inputQuestionDigest": "7c7cbe4912743bd1dc87fb4e231162c91352fbc73fb9fe3254e246cfbb248b23",
+    "blindManifestRawSha256": "45c0cdc08485593a79a1d274acf79b8837bf9b4f1b989bc2a891817d55185849",
+    "opaquePackageDigestProvided": "e637863aa50b870c4dee7a15b9fbee080b992308e173c9b88bb3fc1546b92c0a",
+    "calculationCodePath": "calculation.py",
+    "calculationCodeSha256": "140182a95c30c4d42b4e9cdd6047ee9dadd24cf3a6790e03e8227274293a0050",
+    "calculationOutputPath": "calculation-output.json",
+    "calculationOutputSha256": "bc86a91bf98947442cf96b57aa001c9aca082a5689560c18d93f25e21755adfe",
+    "exactCalculation": {
+      "vertex": [
+        2,
+        0
+      ],
+      "coefficient": 3,
+      "interceptRecheck": "12",
+      "function": "3*(x - 2)**2",
+      "targetYAtMinus1": "27",
+      "uniqueZero": 2,
+      "method": "Single x-axis meeting is the vertex;4a=12;no discriminant formula.",
+      "allFiveActualChoiceValues": [
+        "3",
+        "9",
+        "12",
+        "27",
+        "36"
+      ],
+      "choiceCorrectness": [
+        false,
+        false,
+        false,
+        true,
+        false
+      ],
+      "correctChoiceNumber": 4,
+      "semanticDuplicateChoices": [],
+      "oneCorrectChoice": true
+    },
+    "knownHolds": [],
+    "mathematicalAnswerUnique": true,
+    "choicesReadyForFinalApproval": true,
+    "studentPreview": {
+      "path": "inspection/q05.png",
+      "sha256": "01fcc06ca4a0d669d8682d4de820fb0ed4a3117a801a645849d314bb8ce5eacb",
+      "columnWidthMm": 70,
+      "personallyViewed": true
+    },
+    "suppliedFigures": [],
+    "figureInspection": [],
+    "curriculumSurfaces": {
+      "stem": {
+        "status": "in-scope-student-input-proposed",
+        "basis": "아래 독립 학생 풀이의 실제 절차와 선택 공식2015 근거를 연결;저자/학교/분류로 승인하지 않음",
+        "standards": [
+          {
+            "code": "9수03-10",
+            "exactText": "이차함수의 그래프의 성질을 이해한다.",
+            "physicalPage1based": 36,
+            "printedPage": 32,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수02-05",
+            "exactText": "일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+            "physicalPage1based": 34,
+            "printedPage": 30,
+            "source": "2015-74 math booklet8 official PDF"
+          }
+        ]
+      },
+      "choices": {
+        "status": "independently-checked",
+        "basis": "실제 다섯 보기를 모두 확인;정답은 한 개. q22의②③은동치인오답으로별도보류",
+        "choiceCorrectness": [
+          false,
+          false,
+          false,
+          true,
+          false
+        ],
+        "semanticDuplicateChoices": []
+      },
+      "figuresAndTables": {
+        "status": "independently-inspected",
+        "basis": "제공 본문/표/실제 선택지 전체를70mm 학생 전용 화면에서 확인",
+        "previewPath": "inspection/q05.png",
+        "previewSha256": "01fcc06ca4a0d669d8682d4de820fb0ed4a3117a801a645849d314bb8ce5eacb",
+        "suppliedSvgBindings": []
+      },
+      "notation": {
+        "status": "in-scope-student-input-proposed",
+        "basis": "좌표/함수/실제삼각비/근호/도단위/반직선의점순서 등2015 중학교 표기;벡터/라디안/일반함수미적분 표기 없음"
+      },
+      "answer": {
+        "status": "independently-derived",
+        "basis": "새 독립 정답만 계산;저자답은노출전"
+      },
+      "studentSolution": {
+        "status": "independently-derived",
+        "basis": "아래완전한학생풀이,특정도형/특수각/그래프정의만사용;저자풀이미노출"
+      },
+      "prerequisites": {
+        "status": "in-scope-independent-method-proposed",
+        "basis": "기초이차함수그래프/일차식/근호/합동/직각삼각형/특수각/접선/밑변높이넓이",
+        "standards": [
+          {
+            "code": "9수03-10",
+            "exactText": "이차함수의 그래프의 성질을 이해한다.",
+            "physicalPage1based": 36,
+            "printedPage": 32,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수02-05",
+            "exactText": "일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+            "physicalPage1based": 34,
+            "printedPage": 30,
+            "source": "2015-74 math booklet8 official PDF"
+          }
+        ]
+      }
+    },
+    "curriculumEvidenceSha256": "8e48a48446bbcebb4cb9ae637a8dbb2fb2e8286574b24735a74ad4d2b2696a9d",
+    "curriculumGate": {
+      "grade": "중3",
+      "edition": "2015",
+      "independentStudentMethod": "in-scope-proposed",
+      "outOfGradeMethodRequired": false,
+      "unknownStudentMethodHold": false,
+      "authorAnswerSolutionReview": "not-yet-exposed",
+      "finalGradeApproval": false,
+      "complexityAndSourceEquivalenceReview": "separate-final-review"
+    },
+    "scopeLimits": "Raw independent solve only. Student math methods are distinguished from private symbolic/coordinate checks. No general trig identity,quadratic-inequality student algorithm,calculus,power-of-point,circle proportion,sine-area law or vector student method. Taxonomy/author/source/difficulty/rights/native/final reviews remain unexposed/pending."
+  }
+}

@@ -1,0 +1,239 @@
+{
+  "studentDigest": "54f88e20373f48e87f92b4525aff0abceabcd41cd381409752608de617f3df9d",
+  "solverId": "orca-codex-exam-twin-author-geometry-20261008",
+  "status": "solved",
+  "answer": "③",
+  "solution": "띠의 폭이8cm이므로AF=8cm이다. 직각삼각형AFB에서BF=√(16²−8²)=8√3cm이다. AF/AB=1/2이므로 AB가 아래쪽 수평변과 이루는 예각은30°이고, 평행한 접기 전 오른쪽 윗변과 이루는 각도30°이다. 접으면 접는 선AB와 이루는 각이 보존되므로∠CAB=30°이다. ∠FAB=60°이고 접힌C는 그림의F와B 사이이므로∠CAF=30°이다. AFC에서FC=AF×tan30°=8√3/3cm이다. 따라서BC=BF−FC=16√3/3cm이고 넓이는(1/2)BC×AF=64√3/3cm²이다. 두 기록이 모두 맞는 것은③이다. FC<BF여서C가B의 왼쪽이라는 조건도 확인된다.",
+  "evidence": {
+    "method": "blind-student-only-independent-solve",
+    "questionNumber": 25,
+    "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q25",
+    "createdBeforeAuthorAnswerExposureAtUtc": "2026-10-08T12:48:10.354Z",
+    "authorAnswersSolutionsOpened": false,
+    "originalExamsOpened": false,
+    "authorCandidateChecksReportsOpened": false,
+    "inputRawSha256": "1297372bbfb577f88c861ff27bf4d5d0b272f3737e408b68c38df793c53ff79a",
+    "inputQuestionDigest": "54f88e20373f48e87f92b4525aff0abceabcd41cd381409752608de617f3df9d",
+    "blindManifestRawSha256": "45c0cdc08485593a79a1d274acf79b8837bf9b4f1b989bc2a891817d55185849",
+    "opaquePackageDigestProvided": "e637863aa50b870c4dee7a15b9fbee080b992308e173c9b88bb3fc1546b92c0a",
+    "calculationCodePath": "calculation.py",
+    "calculationCodeSha256": "140182a95c30c4d42b4e9cdd6047ee9dadd24cf3a6790e03e8227274293a0050",
+    "calculationOutputPath": "calculation-output.json",
+    "calculationOutputSha256": "bc86a91bf98947442cf96b57aa001c9aca082a5689560c18d93f25e21755adfe",
+    "exactCalculation": {
+      "AF": "8",
+      "AB": "16",
+      "BF": "8*sqrt(3)",
+      "angleABWithOriginalRightTopRay": 30,
+      "foldEqualAngleCAB": 30,
+      "angleCAF": 30,
+      "FC": "8*sqrt(3)/3",
+      "BC": "16*sqrt(3)/3",
+      "areaABC": "64*sqrt(3)/3",
+      "CLeftOfB": true,
+      "nondegeneratePositiveArea": true,
+      "method": "Pythagoras/special30 fromAF/AB;fold preserves angle withcrease;tan30 inAFC;BC=BF−FC;base-height triangle area.",
+      "allFiveActualChoiceValues": [
+        [
+          "8*sqrt(3)/3",
+          "64*sqrt(3)/3"
+        ],
+        [
+          "16*sqrt(3)/3",
+          "32*sqrt(3)/3"
+        ],
+        [
+          "16*sqrt(3)/3",
+          "64*sqrt(3)/3"
+        ],
+        [
+          "8*sqrt(3)",
+          "64*sqrt(3)"
+        ],
+        [
+          "16*sqrt(3)/3",
+          "128*sqrt(3)/3"
+        ]
+      ],
+      "choiceCorrectness": [
+        false,
+        false,
+        true,
+        false,
+        false
+      ],
+      "correctChoiceNumber": 3,
+      "semanticDuplicateChoices": [],
+      "oneCorrectChoice": true
+    },
+    "knownHolds": [],
+    "mathematicalAnswerUnique": true,
+    "choicesReadyForFinalApproval": true,
+    "studentPreview": {
+      "path": "inspection/q25.png",
+      "sha256": "bbc59adb0563cb17d6b9d8b1bdffcc81601f0396f50b6331539114661e3f6b32",
+      "columnWidthMm": 70,
+      "personallyViewed": true
+    },
+    "suppliedFigures": [
+      {
+        "role": "stem",
+        "svgPath": "figures/q25-1.svg",
+        "sha256": "d2cd7bd357403bcd8ef77d603b5134d14f60f42c84dcecc11922c5347a4eea95",
+        "intendedWidthMm": 70
+      },
+      {
+        "role": "stem",
+        "svgPath": "figures/q25-2.svg",
+        "sha256": "f7f11686c98a400462254b6e0198ee8f63cb87e042fe6b6236e7e3f2f3364820",
+        "intendedWidthMm": 70
+      }
+    ],
+    "figureInspection": [
+      {
+        "role": "stem",
+        "svgPath": "figures/q25-1.svg",
+        "svgSha256": "d2cd7bd357403bcd8ef77d603b5134d14f60f42c84dcecc11922c5347a4eea95",
+        "widthMm": 70,
+        "png": "inspection/figures/q25-1.png",
+        "pngSha256": "e8876418f84563c0f0f25f1382762e652106ab8fd5a0a551a49a075684c6a855",
+        "personallyViewed": true
+      },
+      {
+        "role": "stem",
+        "svgPath": "figures/q25-2.svg",
+        "svgSha256": "f7f11686c98a400462254b6e0198ee8f63cb87e042fe6b6236e7e3f2f3364820",
+        "widthMm": 70,
+        "png": "inspection/figures/q25-2.png",
+        "pngSha256": "01b8d384cbb424a044ad6f63e416d947faf52cf5e22c5b4559297a08baacb6fe",
+        "personallyViewed": true
+      }
+    ],
+    "curriculumSurfaces": {
+      "stem": {
+        "status": "in-scope-student-input-proposed",
+        "basis": "아래 독립 학생 풀이의 실제 절차와 선택 공식2015 근거를 연결;저자/학교/분류로 승인하지 않음",
+        "standards": [
+          {
+            "code": "9수04-16",
+            "exactText": "피타고라스 정리를 이해하고 설명할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-04",
+            "exactText": "삼각형의 합동 조건을 이해하고, 이를 이용하여 두 삼각형이 합동인지 판별할 수 있다.",
+            "physicalPage1based": 37,
+            "printedPage": 33,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-17",
+            "exactText": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "6수03-06",
+            "exactText": "평행사변형, 삼각형, 사다리꼴, 마름모의 넓이를 구하는 방법을 다양하게 추론하고, 이와 관 련된 문제를 해결할 수 있다.",
+            "physicalPage1based": 29,
+            "printedPage": 25,
+            "source": "2015-74 math booklet8 official PDF"
+          }
+        ]
+      },
+      "choices": {
+        "status": "independently-checked",
+        "basis": "실제 다섯 보기를 모두 확인;정답은 한 개. q22의②③은동치인오답으로별도보류",
+        "choiceCorrectness": [
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "semanticDuplicateChoices": []
+      },
+      "figuresAndTables": {
+        "status": "independently-inspected",
+        "basis": "접기 전AB 점선과 접은 후A/B/C/F, 수선AF, C가B왼쪽인 배치와 음영ABC를 두 SVG에서 확인했다.",
+        "previewPath": "inspection/q25.png",
+        "previewSha256": "bbc59adb0563cb17d6b9d8b1bdffcc81601f0396f50b6331539114661e3f6b32",
+        "suppliedSvgBindings": [
+          {
+            "role": "stem",
+            "svgPath": "figures/q25-1.svg",
+            "sha256": "d2cd7bd357403bcd8ef77d603b5134d14f60f42c84dcecc11922c5347a4eea95",
+            "intendedWidthMm": 70
+          },
+          {
+            "role": "stem",
+            "svgPath": "figures/q25-2.svg",
+            "sha256": "f7f11686c98a400462254b6e0198ee8f63cb87e042fe6b6236e7e3f2f3364820",
+            "intendedWidthMm": 70
+          }
+        ]
+      },
+      "notation": {
+        "status": "in-scope-student-input-proposed",
+        "basis": "좌표/함수/실제삼각비/근호/도단위/반직선의점순서 등2015 중학교 표기;벡터/라디안/일반함수미적분 표기 없음"
+      },
+      "answer": {
+        "status": "independently-derived",
+        "basis": "새 독립 정답만 계산;저자답은노출전"
+      },
+      "studentSolution": {
+        "status": "independently-derived",
+        "basis": "아래완전한학생풀이,특정도형/특수각/그래프정의만사용;저자풀이미노출"
+      },
+      "prerequisites": {
+        "status": "in-scope-independent-method-proposed",
+        "basis": "기초이차함수그래프/일차식/근호/합동/직각삼각형/특수각/접선/밑변높이넓이",
+        "standards": [
+          {
+            "code": "9수04-16",
+            "exactText": "피타고라스 정리를 이해하고 설명할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-04",
+            "exactText": "삼각형의 합동 조건을 이해하고, 이를 이용하여 두 삼각형이 합동인지 판별할 수 있다.",
+            "physicalPage1based": 37,
+            "printedPage": 33,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-17",
+            "exactText": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "6수03-06",
+            "exactText": "평행사변형, 삼각형, 사다리꼴, 마름모의 넓이를 구하는 방법을 다양하게 추론하고, 이와 관 련된 문제를 해결할 수 있다.",
+            "physicalPage1based": 29,
+            "printedPage": 25,
+            "source": "2015-74 math booklet8 official PDF"
+          }
+        ]
+      }
+    },
+    "curriculumEvidenceSha256": "8e48a48446bbcebb4cb9ae637a8dbb2fb2e8286574b24735a74ad4d2b2696a9d",
+    "curriculumGate": {
+      "grade": "중3",
+      "edition": "2015",
+      "independentStudentMethod": "in-scope-proposed",
+      "outOfGradeMethodRequired": false,
+      "unknownStudentMethodHold": false,
+      "authorAnswerSolutionReview": "not-yet-exposed",
+      "finalGradeApproval": false,
+      "complexityAndSourceEquivalenceReview": "separate-final-review"
+    },
+    "scopeLimits": "Raw independent solve only. Student math methods are distinguished from private symbolic/coordinate checks. No general trig identity,quadratic-inequality student algorithm,calculus,power-of-point,circle proportion,sine-area law or vector student method. Taxonomy/author/source/difficulty/rights/native/final reviews remain unexposed/pending."
+  }
+}

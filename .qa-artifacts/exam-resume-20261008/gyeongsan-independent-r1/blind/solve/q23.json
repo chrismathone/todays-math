@@ -1,0 +1,185 @@
+{
+  "studentDigest": "5c1d7c4c23d9376db61796a5576915fda58bbd889ee56e800c29d47766670437",
+  "solverId": "orca-codex-exam-twin-author-geometry-20261008",
+  "status": "solved",
+  "answer": "②",
+  "solution": "두 탑의 수평 거리를d=GE=PR이라 놓자. 직각삼각형PRE에서tan45°=RE/PR=1이므로RE=d이다. 같은 수평 지면과 수평PR 때문에PG=RE=d이다. PQR에서tan60°=QR/PR=√3이므로QR=d√3이다. 둘째 탑 높이는QE=RE+RQ=d+d√3이고 두 높이의 합은d+(d+d√3)=(2+√3)d이다. 이것이180+90√3=90(2+√3)이므로d=90m이다. 정답은 ②이다. 두 높이와 수평 거리가 모두 양수이며 별도 눈높이를 더하지 않았다.",
+  "evidence": {
+    "method": "blind-student-only-independent-solve",
+    "questionNumber": 23,
+    "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q23",
+    "createdBeforeAuthorAnswerExposureAtUtc": "2026-10-08T12:48:10.354Z",
+    "authorAnswersSolutionsOpened": false,
+    "originalExamsOpened": false,
+    "authorCandidateChecksReportsOpened": false,
+    "inputRawSha256": "1297372bbfb577f88c861ff27bf4d5d0b272f3737e408b68c38df793c53ff79a",
+    "inputQuestionDigest": "5c1d7c4c23d9376db61796a5576915fda58bbd889ee56e800c29d47766670437",
+    "blindManifestRawSha256": "45c0cdc08485593a79a1d274acf79b8837bf9b4f1b989bc2a891817d55185849",
+    "opaquePackageDigestProvided": "e637863aa50b870c4dee7a15b9fbee080b992308e173c9b88bb3fc1546b92c0a",
+    "calculationCodePath": "calculation.py",
+    "calculationCodeSha256": "140182a95c30c4d42b4e9cdd6047ee9dadd24cf3a6790e03e8227274293a0050",
+    "calculationOutputPath": "calculation-output.json",
+    "calculationOutputSha256": "bc86a91bf98947442cf96b57aa001c9aca082a5689560c18d93f25e21755adfe",
+    "exactCalculation": {
+      "GEequalsPR": "90",
+      "PGequalsRE": "90",
+      "RQ": "90*sqrt(3)",
+      "QE": "90 + 90*sqrt(3)",
+      "heightSum": "90*sqrt(3) + 180",
+      "eyeHeightExtra": 0,
+      "positiveHeights": true,
+      "method": "tan45 andtan60 in two actual right triangles;same horizontal ground;one linear equation.",
+      "allFiveActualChoiceValues": [
+        "45",
+        "90",
+        "90*sqrt(3)",
+        "45 + 45*sqrt(3)",
+        "90*sqrt(3) + 180"
+      ],
+      "choiceCorrectness": [
+        false,
+        true,
+        false,
+        false,
+        false
+      ],
+      "correctChoiceNumber": 2,
+      "semanticDuplicateChoices": [],
+      "oneCorrectChoice": true
+    },
+    "knownHolds": [],
+    "mathematicalAnswerUnique": true,
+    "choicesReadyForFinalApproval": true,
+    "studentPreview": {
+      "path": "inspection/q23.png",
+      "sha256": "5a94e89780da5d2afcb3d046bdd4fbcea3d4fe5178dbe5e09066a33a2ce4451c",
+      "columnWidthMm": 70,
+      "personallyViewed": true
+    },
+    "suppliedFigures": [
+      {
+        "role": "stem",
+        "svgPath": "figures/q23-1.svg",
+        "sha256": "6dea7f9e53fba81da0d17218bb115d2e8a2992b562e00ba14c97f8e2cbdfde0c",
+        "intendedWidthMm": 70
+      }
+    ],
+    "figureInspection": [
+      {
+        "role": "stem",
+        "svgPath": "figures/q23-1.svg",
+        "svgSha256": "6dea7f9e53fba81da0d17218bb115d2e8a2992b562e00ba14c97f8e2cbdfde0c",
+        "widthMm": 70,
+        "png": "inspection/figures/q23-1.png",
+        "pngSha256": "f1cc64317ac595320de9ab5e740b3e31c7dba6be7a822475e0c9ebf3762c693c",
+        "personallyViewed": true
+      }
+    ],
+    "curriculumSurfaces": {
+      "stem": {
+        "status": "in-scope-student-input-proposed",
+        "basis": "아래 독립 학생 풀이의 실제 절차와 선택 공식2015 근거를 연결;저자/학교/분류로 승인하지 않음",
+        "standards": [
+          {
+            "code": "9수04-17",
+            "exactText": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-18",
+            "exactText": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수02-05",
+            "exactText": "일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+            "physicalPage1based": 34,
+            "printedPage": 30,
+            "source": "2015-74 math booklet8 official PDF"
+          }
+        ]
+      },
+      "choices": {
+        "status": "independently-checked",
+        "basis": "실제 다섯 보기를 모두 확인;정답은 한 개. q22의②③은동치인오답으로별도보류",
+        "choiceCorrectness": [
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "semanticDuplicateChoices": []
+      },
+      "figuresAndTables": {
+        "status": "independently-inspected",
+        "basis": "P/G와Q/E 두 수직탑, 수평PR, P의위쪽60도/아래쪽45도, E/G 같은 지면이 명확하다.",
+        "previewPath": "inspection/q23.png",
+        "previewSha256": "5a94e89780da5d2afcb3d046bdd4fbcea3d4fe5178dbe5e09066a33a2ce4451c",
+        "suppliedSvgBindings": [
+          {
+            "role": "stem",
+            "svgPath": "figures/q23-1.svg",
+            "sha256": "6dea7f9e53fba81da0d17218bb115d2e8a2992b562e00ba14c97f8e2cbdfde0c",
+            "intendedWidthMm": 70
+          }
+        ]
+      },
+      "notation": {
+        "status": "in-scope-student-input-proposed",
+        "basis": "좌표/함수/실제삼각비/근호/도단위/반직선의점순서 등2015 중학교 표기;벡터/라디안/일반함수미적분 표기 없음"
+      },
+      "answer": {
+        "status": "independently-derived",
+        "basis": "새 독립 정답만 계산;저자답은노출전"
+      },
+      "studentSolution": {
+        "status": "independently-derived",
+        "basis": "아래완전한학생풀이,특정도형/특수각/그래프정의만사용;저자풀이미노출"
+      },
+      "prerequisites": {
+        "status": "in-scope-independent-method-proposed",
+        "basis": "기초이차함수그래프/일차식/근호/합동/직각삼각형/특수각/접선/밑변높이넓이",
+        "standards": [
+          {
+            "code": "9수04-17",
+            "exactText": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수04-18",
+            "exactText": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+            "physicalPage1based": 38,
+            "printedPage": 34,
+            "source": "2015-74 math booklet8 official PDF"
+          },
+          {
+            "code": "9수02-05",
+            "exactText": "일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+            "physicalPage1based": 34,
+            "printedPage": 30,
+            "source": "2015-74 math booklet8 official PDF"
+          }
+        ]
+      }
+    },
+    "curriculumEvidenceSha256": "8e48a48446bbcebb4cb9ae637a8dbb2fb2e8286574b24735a74ad4d2b2696a9d",
+    "curriculumGate": {
+      "grade": "중3",
+      "edition": "2015",
+      "independentStudentMethod": "in-scope-proposed",
+      "outOfGradeMethodRequired": false,
+      "unknownStudentMethodHold": false,
+      "authorAnswerSolutionReview": "not-yet-exposed",
+      "finalGradeApproval": false,
+      "complexityAndSourceEquivalenceReview": "separate-final-review"
+    },
+    "scopeLimits": "Raw independent solve only. Student math methods are distinguished from private symbolic/coordinate checks. No general trig identity,quadratic-inequality student algorithm,calculus,power-of-point,circle proportion,sine-area law or vector student method. Taxonomy/author/source/difficulty/rights/native/final reviews remain unexposed/pending."
+  }
+}
