@@ -928,7 +928,7 @@
       <div>
         <div class="topbar">
           <span class="caption muted"
-            >수업 준비 &nbsp; / &nbsp;
+            ><span id="product-crumb"></span> &nbsp; / &nbsp;
             <b style="color: var(--learn-ink)">시험지 만들기</b></span
           >
           <div class="top-right">
@@ -1280,6 +1280,7 @@
       });
       $("product-brand").textContent = ExamScope.productName;
       $("product-context").textContent = ExamScope.productName;
+      $("product-crumb").textContent = ExamScope.productName;
       document
         .querySelectorAll('a[href$=".html"]')
         .forEach(
