@@ -148,6 +148,14 @@ type JudgeDefinitionBase = {
   difficultyBasis: string;
   /** 생성 규칙판 — 1부터. 같은 씨앗이 다른 문제를 내게 바뀌면 올린다(머리말). */
   ruleVersion: number;
+  /**
+   * **지면 관문을 면제하는 까닭** — 안 적으면(기본) 등록부가 보기 다섯이 제품의 보기 배치로 접히지 않고 칸에
+   * 들어가는지 본다(`paper.ts` · `registry.ts` 의 `assertFitsPaper`). 2단계부터의 등록은 적지 않는다.
+   *
+   * 적는 자리는 둘뿐이다. ⑴ 이미 실린 1단계 셋 — 관문을 걸면 같은 씨앗이 다른 문제를 낸다(신분 보존).
+   * ⑵ 보류한 문항류 — 등록부에 안 올리고 생성기 · 시험만 남긴 것(`definitions.ts` 의 보류 목록).
+   */
+  paperExempt?: string;
 };
 
 /** 참거짓 문형 하나의 등록 — 차시(`grade + unitSection`) 안의 문항류 하나. */

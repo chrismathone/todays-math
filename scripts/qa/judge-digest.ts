@@ -23,22 +23,59 @@ import type {
   CompareAsk,
   CompareOption,
 } from "../../src/lib/middle/judge/contract";
-import { MUL_DIV_JUDGES } from "../../src/lib/middle/judge/mulDiv";
+import {
+  HELD_JUDGE_DEFINITIONS,
+  JUDGE_DEFINITIONS,
+} from "../../src/lib/middle/judge/definitions";
+import {
+  buildTruthBody,
+  CALC_PAPER_STYLE,
+} from "../../src/lib/middle/judge/calcJudge";
+import {
+  mul2Material,
+  MUL_DIV_JUDGES,
+} from "../../src/lib/middle/judge/mulDiv";
+import { fitsPaper } from "../../src/lib/middle/judge/paper";
 import {
   assembleCompare,
   assembleJudge,
-  generateJudgeProblem,
-  judgementDefinitions,
+  createJudgeRegistry,
 } from "../../src/lib/middle/judge/registry";
+import { fracText } from "../../src/lib/middle/judge/texArith";
+import { m1Rational } from "../../src/lib/middle/m1Calc";
 
-const SEEDS = [20261008, 1, 7777, 424242, 99991, 31337, 5, 909090, 271828, 4];
+const { q } = m1Rational;
+
+const SEEDS = [
+  20261008,
+  1,
+  7777,
+  424242,
+  99991,
+  31337,
+  5,
+  909090,
+  271828,
+  4,
+  ...Array.from({ length: 50 }, (_, i) => 1000 + i * 7919),
+];
 
 const parts: string[] = [];
-for (const d of judgementDefinitions()) {
+// 등록 목록 자체도 산출물이다 — 보류한 것을 등록부에 올리는 변이가 지문을 바꾸게.
+// 문항은 등록한 것 + 보류한 것(`definitions.ts`)을 한 등록부로 지어 뽑는다 — 보류한 생성기도 변이의 대상이다.
+const LIVE = JUDGE_DEFINITIONS.map((d) => d.familyId).join(",");
+parts.push(`registered:${LIVE}`);
+const registry = createJudgeRegistry([
+  ...JUDGE_DEFINITIONS.filter(
+    (d) => !HELD_JUDGE_DEFINITIONS.some((h) => h.familyId === d.familyId),
+  ),
+  ...HELD_JUDGE_DEFINITIONS,
+]);
+for (const d of registry.definitions()) {
   for (const seed of SEEDS) {
     for (let v = 0; v < 4; v += 1) {
       try {
-        const p = generateJudgeProblem(d.key, seed, v);
+        const p = registry.generate(d.key, seed, v);
         parts.push([d.key, seed, v, p.content, p.answer, p.solution].join("␟"));
       } catch (err) {
         parts.push([d.key, seed, v, "THROW", (err as Error).message].join("␟"));
@@ -56,7 +93,7 @@ function outcome(run: () => unknown): string {
     return "PASS";
   } catch (err) {
     const m = (err as Error).message;
-    return `STOP:${/묶음이 [\d+]+|동점|다시 재니|다시 재지 못했다|해설에 적을 값/.exec(m)?.[0] ?? m.slice(0, 40)}`;
+    return `STOP:${/묶음이 [\d+]+|동점|다시 재니|다시 재지 못했다|해설에 적을 값|칸에서 접힌다|폭을 못 쟀다/.exec(m)?.[0] ?? m.slice(0, 40)}`;
   }
 }
 const math = (text: string) => text.trim().replace(/^\$|\$$/g, "");
@@ -183,6 +220,82 @@ for (const def of MUL_DIV_JUDGES) {
       }
     }
   }
+}
+
+// ── 지면 관문 탐침 — 제품이 2열로 보내는데 2열 칸보다 넓은 식 ─────────────────────────
+
+/** 두 분수의 곱 다섯 — 값이 서로 다르다. `wide` 면 다섯째의 분자 · 분모가 두 자리 수다(2열 칸보다 넓다). */
+const productTexts = (wide: boolean) =>
+  [
+    ["1}{2", "3}{4"],
+    ["2}{3", "5}{4"],
+    ["3}{5", "7}{2"],
+    ["5}{6", "9}{4"],
+    wide ? ["11}{4", "13}{12"] : ["7}{8", "3}{2"],
+  ].map(
+    ([a, b]) =>
+      `$\\left(-\\dfrac{${a}}\\right)\\times\\left(+\\dfrac{${b}}\\right)$`,
+  );
+const maxMul = COMPARE_JUDGES.find((d) => d.familyId === "max-mul2");
+if (maxMul)
+  for (const wide of [false, true]) {
+    const texts = productTexts(wide);
+    parts.push(
+      [
+        "probe",
+        "paper",
+        wide ? "2열 칸보다 넓은 식" : "2열 칸에 들어가는 식",
+        outcome(() => {
+          const options = texts.map((text) => {
+            const v = maxMul.readValue(text, { lead: "" });
+            if (v === null) throw new Error("탐침의 식을 못 읽었다");
+            const value = `$${fracText(v).replace(/^(-?)(\d+)\/(\d+)$/, "$1\\dfrac{$2}{$3}")}$`;
+            return { text, claimed: v, brief: value, work: value };
+          });
+          return assembleCompare(
+            maxMul,
+            "가장 큰 것",
+            {
+              lead: "다음 중 계산 결과가 가장 큰 것은?",
+              briefLead: "계산하면",
+              options,
+              facts: {},
+            },
+            createRng(1),
+          );
+        }),
+      ].join("␟"),
+    );
+  }
+
+/**
+ * 계산 판정의 «접히는 묶음은 버리고 다시 모은다» — 살아 있는 재료에서는 드물어(곱셈 · 나눗셈 1% 아래) 문항 지문만으로는
+ * 이 가드를 끈 변이가 안 보인다. 앞의 여덟은 제품이 2열로 보내는 좁은 수(다섯이 차면 접히는 묶음이다), 그 뒤는
+ * 1열로 가는 수다 — 가드가 살아 있으면 첫 묶음을 버리고 열 번째 재료에서 «들어가는 묶음»이 찬다.
+ */
+{
+  let i = 0;
+  const body = buildTruthBody(
+    createRng(1),
+    "옳지 않은 것",
+    () => {
+      const k = i;
+      i += 1;
+      return k < 8
+        ? mul2Material(q(-1, 2), q(-(10 * k + 3), 4))
+        : mul2Material(q(11, 2), q(-(2 * (k - 8) + 3), 4));
+    },
+    CALC_PAPER_STYLE,
+  );
+  parts.push(
+    [
+      "probe",
+      "paper",
+      "접히는 묶음을 버린다",
+      body.facts.draws,
+      fitsPaper(body.options.map((o) => o.text)) ? "FITS" : "FOLDS",
+    ].join("␟"),
+  );
 }
 
 if (process.argv.includes("--probes"))

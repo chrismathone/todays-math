@@ -24,6 +24,13 @@
  * 음수가 둘 이상이 되게 한다 — 양수가 하나뿐이면 부호만 보고 답이 나온다. 다섯 값의 분모는 한 문항 안에서
  * 같은 수의 약수로 맞춘다(크기 비교가 통분 다섯 번이 되지 않게).
  *
+ * ## 지면 — 식은 2열 칸에 들어가는 것만
+ *
+ * 비교형의 보기는 «식»뿐이라 짧고, 제품의 자동 배치는 늘 2열로 보낸다. 그런데 두 분수의 식은 분자 · 분모가
+ * 두 자리 수면 2열 칸(통합 시험지 2단 127.6px)보다 넓어 접힌다(2026-10-08 실측 43~65%). 그래서 보기를 고를 때
+ * 2열 칸에 들어가는 식만 받는다(`paper.ts` 의 `fitsTwoColumnRoom` — 두 분수면 한 자리 수끼리, 한쪽이 정수면
+ * 두 자리 수까지). 수가 원천 유형(01 · 03 · 12 · 19)보다 작아지지만 그 범위 안이다. 최종 확인은 등록부의 지면 관문이 한다.
+ *
  * ## 재시도 상한
  *
  * 목표값(또는 다섯 값)을 `MAX_ROUNDS` 번 다시 뽑아도 못 채우면 **사유를 달고 던진다** — 모자란 문항을 조용히
@@ -43,6 +50,7 @@ import type {
   CompareOption,
 } from "./contract";
 import { div2Material, mul2Material, MUL_DIV_SRC } from "./mulDiv";
+import { fitsTwoColumnRoom } from "./paper";
 import { expressionValue, readEnv } from "./texArith";
 import {
   drawValueForm,
@@ -127,6 +135,9 @@ class Tray {
   /** 넣을 수 있으면 넣고 true. */
   add(p: Piece): boolean {
     if (this.keys.has(p.key)) return false;
+    // 지면 — 비교형의 식은 짧아 제품이 늘 2열로 보낸다. 2열 칸보다 넓은 식은 접히므로 처음부터 안 받는다
+    // (두 분수의 식이면 분자 · 분모가 모두 한 자리 수여야 들어간다 — `paper.ts`).
+    if (!fitsTwoColumnRoom(p.tex)) return false;
     if (this.look !== null && p.look !== this.look) return false;
     const used = p.template ? (this.templates.get(p.template) ?? 0) : 0;
     if (this.maxPerTemplate !== undefined && used >= this.maxPerTemplate)
@@ -274,6 +285,16 @@ function randFrac(rng: Rng, dens: readonly number[], maxAbsN: number): Q {
   for (;;) {
     const v = randQ(rng, dens, maxAbsN);
     if (v.d !== 1) return v;
+  }
+}
+/**
+ * 극값 문항의 곱 · 몫 하나(분모 `m`) — $\pm1$ 은 뺀다. 곱이 $\pm1$ 이면 두 수가 역수이고 몫이 $\pm1$ 이면 같은
+ * 수로 나눈 것이라 계산 없이 값이 보인다(표본 — $\left(-\dfrac{5}{3}\right)\div\left(-\dfrac{5}{3}\right)$).
+ */
+function plainValue(rng: Rng, maxAbsN: number, m: number): Q {
+  for (;;) {
+    const v = q(nonzero(rng, -maxAbsN, maxAbsN), m);
+    if (Math.abs(v.n) !== v.d) return v;
   }
 }
 
@@ -575,7 +596,7 @@ export const COMPARE_JUDGES: readonly CompareJudgeDefinition[] = [
     generate: (rng, ask) =>
       buildExtremeBody(rng, ask, CALC[ask], (r0) => {
         const m = pick(r0, RESULT_DENS);
-        return (r) => mulFor(r, q(nonzero(r, -20, 20), m));
+        return (r) => mulFor(r, plainValue(r, 20, m));
       }),
     readValue,
   },
@@ -611,7 +632,7 @@ export const COMPARE_JUDGES: readonly CompareJudgeDefinition[] = [
     generate: (rng, ask) =>
       buildExtremeBody(rng, ask, CALC[ask], (r0) => {
         const m = pick(r0, RESULT_DENS);
-        return (r) => divFor(r, q(nonzero(r, -18, 18), m));
+        return (r) => divFor(r, plainValue(r, 18, m));
       }),
     readValue,
   },

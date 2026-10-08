@@ -1,12 +1,12 @@
 /**
- * **판정형 등록 전체** — 2단계까지의 열여섯(1단계 셋 + 2단계 열셋)이 지면 · 정답지 · 적재에서 같이 서는가
+ * **판정형 등록 전체** — 2단계까지의 열다섯(1단계 셋 + 2단계 열둘)이 지면 · 정답지 · 적재에서 같이 서는가
  * (2026-10-08 엔진 보강 2단계).
  *
  * 문형별 진위 · 꼴 · 해설은 문형마다의 시험이 잰다(`judgeAddSub` · `judgeMulDiv` · `judgeValue` · `judgeCompare`).
  * 여기는 등록부를 통째로 훑는 자리다.
  *
  * ```
- * ㉠ 등록 — 열여섯의 차례(앞의 것부터 실렸다 — 차례를 바꾸지 않는다) · 차시 이름이 단원 시드와 글자 그대로
+ * ㉠ 등록 — 열다섯의 차례(앞의 것부터 실렸다 — 차례를 바꾸지 않는다) · 차시 이름이 단원 시드와 글자 그대로
  *          · 원천이 같은 차시의 등록 유형 · 난이도 근거
  * ㉡ 지면 — KaTeX · 죽은 역슬래시 · 보기 다섯 · 객관식 틀 그대로
  * ㉢ 정답지 — 제품의 정답지 자로 재서 해설이 통째로 빠지지 않는다(한 쪽 8문항)
@@ -31,8 +31,10 @@ import { deadBackslashHits } from "../../../scripts/qa/probe-middle-raw-latex";
 import { CURRICULUM_UNITS } from "../../../prisma/seed-data/units";
 import type { TestPrintProblem } from "@/components/print/types";
 import { registeredTypes } from "@/lib/middle/generate";
-import { parseJudgeExternalId } from "@/lib/middle/judge/contract";
+import { judgeKeyOf, parseJudgeExternalId } from "@/lib/middle/judge/contract";
+import { HELD_JUDGE_DEFINITIONS } from "@/lib/middle/judge/definitions";
 import {
+  createJudgeRegistry,
   generateJudgeProblem,
   judgementDefinitions,
 } from "@/lib/middle/judge/registry";
@@ -52,7 +54,6 @@ const ORDER = [
   "중1|유리수의 덧셈과 뺄셈|calc-mix4",
   // 2단계 — 계산 판정
   "중1|유리수의 곱셈|calc-mul2",
-  "중1|유리수의 곱셈|calc-pow",
   "중1|유리수의 나눗셈|calc-div2",
   "중1|유리수의 나눗셈|calc-muldiv",
   "중1|문자의 사용과 식의 값|calc-value",
@@ -69,9 +70,25 @@ const ORDER = [
 const STEP2 = ORDER.slice(3);
 const PLAN = "scripts/import/plans/2026-10-08-중1-판정형-2단계.json";
 
-describe("㉠ 등록 — 열여섯", () => {
-  it("차례가 그대로다 — 1단계 셋이 맨 앞, 2단계 열셋이 그 뒤", () => {
+describe("㉠ 등록 — 열다섯", () => {
+  it("차례가 그대로다 — 1단계 셋이 맨 앞, 2단계 열둘이 그 뒤", () => {
     expect(judgementDefinitions().map((d) => d.key)).toEqual(ORDER);
+  });
+
+  it("보류 — 만들었지만 등록하지 않은 것은 calc-pow 하나다(등록부 · 적재 계획 · 미적재 빚 어디에도 없다)", () => {
+    // 🔴 «안 나가는 유형»이 조용히 생기지 않게 목록을 못 박는다. 보류를 풀면 이 줄과 ORDER 를 같이 고친다.
+    expect(HELD_JUDGE_DEFINITIONS.map(judgeKeyOf)).toEqual([
+      "중1|유리수의 곱셈|calc-pow",
+    ]);
+    for (const d of HELD_JUDGE_DEFINITIONS) {
+      expect(d.paperExempt, judgeKeyOf(d)).toMatch(/^보류 — /);
+      expect(ORDER).not.toContain(judgeKeyOf(d));
+      expect(judgementDefinitions().some((x) => x.key === judgeKeyOf(d))).toBe(
+        false,
+      );
+    }
+    // 보류한 것도 등록 검사(키 · 물음 · 난이도 근거)는 지난다 — 풀 때 그대로 옮길 수 있게.
+    expect(() => createJudgeRegistry(HELD_JUDGE_DEFINITIONS)).not.toThrow();
   });
 
   it("차시 이름이 단원 시드와 글자 그대로이고, 원천은 같은 차시에 등록된 RPM 유형이다", () => {
@@ -200,7 +217,7 @@ describe("㉢ 정답지 — 제품의 정답지 자로 재서 해설이 통째�
     bySection.set(section, [...(bySection.get(section) ?? []), key]);
   }
 
-  it("해설 한 건이 정답지 한 칸의 평균 몫(2단 × 높이 ÷ 8)을 넘지 않는다 — 씨앗 300 × 열셋", () => {
+  it("해설 한 건이 정답지 한 칸의 평균 몫(2단 × 높이 ÷ 8)을 넘지 않는다 — 씨앗 300 × 열둘", () => {
     expect(SHARE).toBeGreaterThan(200); // 몫이 무너지면(기하가 바뀌면) 여기부터 본다
     for (const key of STEP2)
       for (let s = 0; s < 300; s += 1) {
@@ -253,7 +270,7 @@ describe("㉣ 적재 — 2단계 계획 파일", () => {
   ) as { label: string; seedBase: number; targets: Target[] };
   const rows = plan.targets.flatMap((t) => buildTargetRows(t, plan.seedBase));
 
-  it("계획은 2단계 열셋만 싣는다 — 1단계 셋(이미 실린 36행)은 건드리지 않는다", () => {
+  it("계획은 2단계 열둘만 싣는다 — 1단계 셋(이미 실린 36행)은 건드리지 않는다", () => {
     expect(plan.targets).toHaveLength(1);
     const target = plan.targets[0] as { engine: string; keys: string[] };
     expect(target.engine).toBe("judge");
@@ -261,8 +278,8 @@ describe("㉣ 적재 — 2단계 계획 파일", () => {
     expect(plan.seedBase).toBe(SEED0);
   });
 
-  it("행 — 열셋 × 12벌 = 156, 전부 객관식 · 열쇠가 계약 그대로 · 본문이 서로 다르다", () => {
-    expect(rows).toHaveLength(156);
+  it("행 — 열둘 × 12벌 = 144, 전부 객관식 · 열쇠가 계약 그대로 · 본문이 서로 다르다", () => {
+    expect(rows).toHaveLength(144);
     const perKey = new Map<string, number>();
     for (const r of rows) {
       expect(r.questionType).toBe("객관식");
@@ -288,12 +305,12 @@ describe("㉣ 적재 — 2단계 계획 파일", () => {
         p.difficulty,
       ]);
     }
-    expect([...perKey.values()]).toEqual(Array(13).fill(12));
-    expect(new Set(rows.map((r) => r.externalId)).size).toBe(156);
-    expect(new Set(rows.map((r) => r.content)).size).toBe(156);
+    expect([...perKey.values()]).toEqual(Array(12).fill(12));
+    expect(new Set(rows.map((r) => r.externalId)).size).toBe(144);
+    expect(new Set(rows.map((r) => r.content)).size).toBe(144);
   });
 
-  it("미적재 빚 — 등록 열여섯이 적재 전에는 전부 «안 나감»이고, 1단계 셋만 실리면 열셋이 남는다", () => {
+  it("미적재 빚 — 등록 열다섯이 적재 전에는 전부 «안 나감»이고, 1단계 셋만 실리면 열둘이 남는다", () => {
     const debt = (ids: string[]) =>
       unloaded(loadedFragments(ids), [], [])
         .map((e) => e.key)

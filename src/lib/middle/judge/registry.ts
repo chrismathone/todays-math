@@ -40,6 +40,7 @@ import {
   type TruthAsk,
 } from "./contract";
 import { JUDGE_DEFINITIONS } from "./definitions";
+import { paperVerdict } from "./paper";
 import { compareFrac, fracText, sameFrac } from "./texArith";
 
 /** 등록부가 밖에 보이는 모양 — 생성기 함수는 빼고 메타만. */
@@ -57,6 +58,8 @@ export type JudgeEntry = {
   difficulty: JudgeDefinition["difficulty"];
   difficultyBasis: string;
   ruleVersion: number;
+  /** 지면 관문을 면제한 까닭 — 관문을 지나는 등록(기본)이면 null */
+  paperExempt: string | null;
 };
 
 export type JudgeRegistry = {
@@ -112,6 +115,25 @@ function conclusionOf(lead: string): string {
     .replace(/\?$/, "");
 }
 
+/**
+ * **지면 관문** — 지면에 찍힌 보기 다섯이 제품의 보기 배치(자동)로 접히지 않고 칸에 들어가는가.
+ *
+ * 열 수는 제품의 규칙이 정하고(`paper.ts` 가 `choiceColumnCount` 를 그대로 부른다), 식의 실제 폭은 KaTeX
+ * 글꼴 치수로 계산한다. 그 칸보다 넓으면 수식이 칸 안에서 접힌다 — «=값»이 다음 줄로 내려가 윗줄의 분수와
+ * 닿는다(2026-10-08 표본 실측). 폭을 못 잰 보기도 안 낸다(모르는 꼴을 «들어간다»로 읽지 않는다).
+ */
+function assertFitsPaper(printed: readonly string[], where: string): void {
+  const v = paperVerdict(printed);
+  if (v.worst === -1) return;
+  const mark = CHOICE_MARKS[v.worst];
+  const w = v.widthsEm[v.worst];
+  throw new Error(
+    w === null || w === undefined
+      ? `${where}: ${mark} 보기의 폭을 못 쟀다 — 지면에 들어가는지 모른다 · ${printed[v.worst]}`
+      : `${where}: ${mark} 보기가 ${v.columns}열 칸에서 접힌다 — 식 폭 ${w.toFixed(2)}em > 칸 ${v.roomEm.toFixed(2)}em · ${printed[v.worst]}`,
+  );
+}
+
 /** «옳지 않은 것» 물음에서 고를 보기는 거짓인 것 — 그 보기가 «다른 하나»다. */
 function isOdd(ask: TruthAsk, truth: boolean): boolean {
   return ask === "옳지 않은 것" ? !truth : truth;
@@ -125,6 +147,7 @@ function isOdd(ask: TruthAsk, truth: boolean): boolean {
  *   · 생성기가 주장한 «다른 하나»가 정확히 하나가 아니다
  *   · 지면 글을 다시 재니 못 읽었다 · 주장과 다르다 · «다른 하나»가 정확히 하나가 아니다
  *   · 발문이 «…것은?» 으로 끝나지 않는다(해설 끝줄을 못 만든다)
+ *   · 보기가 제품의 보기 배치로 칸에서 접힌다 · 폭을 못 쟀다(지면 관문 — 면제한 등록은 안 본다)
  */
 export function assembleJudge(
   def: JudgeDefinition,
@@ -215,6 +238,7 @@ export function assembleJudge(
   assertChoiceCount(content, where);
   assertChoiceMarks(content, where);
   assertChooseAllAnswerCount(content, answer, where);
+  if (def.paperExempt === undefined) assertFitsPaper(printed, where);
 
   return {
     grade: def.grade,
@@ -298,6 +322,7 @@ function answerIndex(
  *   · 생성기가 주장한 값의 묶음이 문형에 안 맞는다(3+2 · 5+0 · 동점)
  *   · 지면 글을 다시 재니 못 읽었다 · 주장한 값과 다르다 · 묶음이 문형에 안 맞는다
  *   · 해설 첫 줄에 서는 값(`brief`)이 그 보기의 값과 다르다
+ *   · 보기가 제품의 보기 배치로 칸에서 접힌다 · 폭을 못 쟀다(지면 관문 — 면제한 등록은 안 본다)
  */
 export function assembleCompare(
   def: CompareJudgeDefinition,
@@ -376,6 +401,7 @@ export function assembleCompare(
   assertChoiceCount(content, where);
   assertChoiceMarks(content, where);
   assertChooseAllAnswerCount(content, answer, where);
+  if (def.paperExempt === undefined) assertFitsPaper(printed, where);
 
   return {
     grade: def.grade,
@@ -435,6 +461,8 @@ export function createJudgeRegistry(
       );
     if (d.difficultyBasis.trim().length === 0)
       throw new Error(`판정형 난이도 근거가 비었다: ${key}`);
+    if (d.paperExempt !== undefined && d.paperExempt.trim().length === 0)
+      throw new Error(`판정형 지면 관문 면제의 까닭이 비었다: ${key}`);
     if (byKey.has(key)) throw new Error(`판정형 키가 겹친다: ${key}`);
     byKey.set(key, d);
   }
@@ -452,6 +480,7 @@ export function createJudgeRegistry(
     difficulty: d.difficulty,
     difficultyBasis: d.difficultyBasis,
     ruleVersion: d.ruleVersion,
+    paperExempt: d.paperExempt ?? null,
   }));
 
   return {

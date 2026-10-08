@@ -31,6 +31,7 @@ import type { Rng } from "../../elementary/types";
 import { m1Rational, type M1Q as Q } from "../m1Calc";
 
 import type { JudgeBody, JudgeOption, TruthAsk } from "./contract";
+import { fitsPaper } from "./paper";
 
 const { q, negQ, nice, texQ } = m1Rational;
 
@@ -73,6 +74,11 @@ export type CalcStyle = {
   briefLead: string;
   /** 한 문항에 같은 틀(`Material.template`)을 몇 개까지 — 안 적으면 제한 없음 */
   maxPerTemplate?: number;
+  /**
+   * 다섯이 찬 묶음이 지면에 들어가는지 보고(`paper.ts`), 접히면 그 꼴의 묶음을 버리고 다시 모은다.
+   * 안 적으면 보지 않는다 — 1단계의 짓기 그대로(난수 소비가 안 바뀐다).
+   */
+  paper?: boolean;
 };
 
 /** 교차곱으로 같은 값인가 — 약분 여부에 기대지 않는다. */
@@ -258,6 +264,11 @@ export function buildTruthBody(
     b.facts[`w${i}d`] = shown.d;
     b.options.push(option(m, shown, mistake));
     if (b.options.length === 5) {
+      // 지면 — 제품이 이 다섯을 2열로 보내는데 식이 그 칸보다 넓으면 접힌다. 그 묶음은 버린다(상한은 그대로 센다).
+      if (style.paper && !fitsPaper(b.options.map((o) => o.text))) {
+        builds.delete(shape);
+        continue;
+      }
       b.facts.draws = draws;
       return {
         lead: style.lead(ask),
@@ -277,3 +288,6 @@ export const CALC_STYLE: CalcStyle = {
       : "다음 중 계산이 옳은 것은?",
   briefLead: "계산하면",
 };
+
+/** 2단계부터의 계산 판정 — 같은 발문에, 지면에 들어가는 묶음만 낸다. */
+export const CALC_PAPER_STYLE: CalcStyle = { ...CALC_STYLE, paper: true };

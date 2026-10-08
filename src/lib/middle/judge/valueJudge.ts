@@ -60,6 +60,7 @@ const style = (s: Substitution): CalcStyle => ({
     `${whenText(s)}다음 중 식의 값이 ${ask === "옳지 않은 것" ? "옳지 않은" : "옳은"} 것은?`,
   briefLead: substituteText(s),
   maxPerTemplate: MAX_PER_TEMPLATE,
+  paper: true,
 });
 
 export const VALUE_JUDGES: readonly JudgeDefinition[] = [

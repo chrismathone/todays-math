@@ -38,6 +38,7 @@ import { m1Rational, type M1Q as Q } from "../m1Calc";
 
 import {
   buildTruthBody,
+  CALC_PAPER_STYLE,
   CALC_STYLE,
   sameValue,
   type Material,
@@ -285,7 +286,7 @@ const truthOf: JudgeDefinition["truthOf"] = (text) => equationTruth(text);
 const calc =
   (draw: MaterialDraw): JudgeDefinition["generate"] =>
   (rng, ask) =>
-    buildTruthBody(rng, ask, draw, CALC_STYLE);
+    buildTruthBody(rng, ask, draw, CALC_PAPER_STYLE);
 
 export const MUL_DIV_JUDGES: readonly JudgeDefinition[] = [
   {
@@ -301,22 +302,6 @@ export const MUL_DIV_JUDGES: readonly JudgeDefinition[] = [
       "계산은 원천 12 와 같은 크기이고 판단 단계가 하나뿐이라 기본(판정형 기본값). 원천의 칸을 옮긴 것이 아니다.",
     ruleVersion: 1,
     generate: calc(drawMul2),
-    truthOf,
-  },
-  {
-    grade: GRADE,
-    unitSection: SEC.곱,
-    familyId: "calc-pow",
-    title: "계산이 옳지 않은 것 · 옳은 것 — 거듭제곱이 든 곱셈",
-    asks: ASKS,
-    sources: [MUL_DIV_SRC.거듭제곱],
-    difficulty: "응용",
-    difficultyBasis:
-      "보기마다 분수의 거듭제곱과 정수의 거듭제곱을 따로 계산하고(음수의 거듭제곱 부호 · 괄호 밖의 부호를 가려) " +
-      "곱하는 두 단계 계산을 다섯 번 해야 한다. 한 단계 곱셈 판정보다 단계가 하나 많아 응용으로 정했다" +
-      "(원천 15 의 칸을 옮긴 것이 아니다 — 원장님 확인 대상).",
-    ruleVersion: 1,
-    generate: calc(drawPow),
     truthOf,
   },
   {
@@ -351,3 +336,37 @@ export const MUL_DIV_JUDGES: readonly JudgeDefinition[] = [
     truthOf,
   },
 ];
+
+/**
+ * 🔴 **보류** — `calc-pow`(거듭제곱이 든 곱셈의 계산 판정)는 등록부에 올리지 않는다(2026-10-08 리드 결정 «C»).
+ *
+ * 생성기 · 진위 · 까닭은 멀쩡하다(시험이 잰다). 막힌 곳은 **지면**이다 — 이 꼴의 보기
+ * `-\left(-\dfrac{5}{2}\right)^{2}\times\left(-4\right)^{2}=-100` 을 제품의 자동 배치가 표시폭 24 이하로 보아
+ * 2열로 보내는데(60문항 중 52), 식의 실제 폭은 2열 칸보다 넓어 «=값»이 다음 줄로 접힌다(통합 시험지 2단에서
+ * 2열로 간 문항 전부 · 일일테스트 지면 67%). 지면 관문을 걸면 «제품이 1열을 고르는 묶음»만 남는데, 그러면
+ * 문항마다 유난히 긴 보기가 하나씩 끼고 재시도 상한에 자주 걸린다 — 내용으로는 못 푼다.
+ *
+ * 인쇄 쪽 자(`src/lib/math/displayWidth.ts`)가 큰 괄호 · 분수를 품은 식의 폭을 제대로 보게 된 뒤에
+ * `MUL_DIV_JUDGES` 로 옮기고 `paperExempt` 를 뗀다(그때 관문을 지나는지 `scripts/qa/judge-paper/` 로 다시 잰다).
+ * 등록부에 없으므로 적재 대상이 아니고 미적재 빚도 아니다 — 보류 목록은 `definitions.ts` 에 있고 시험이 못 박는다.
+ */
+const HELD_POW_REASON =
+  "보류 — 제품의 자동 배치가 이 꼴을 2열로 보내 식이 칸에서 접힌다(인쇄 쪽 폭 계산이 고쳐진 뒤 등록)";
+
+export const HELD_CALC_POW: JudgeDefinition = {
+  grade: GRADE,
+  unitSection: SEC.곱,
+  familyId: "calc-pow",
+  title: "계산이 옳지 않은 것 · 옳은 것 — 거듭제곱이 든 곱셈",
+  asks: ASKS,
+  sources: [MUL_DIV_SRC.거듭제곱],
+  difficulty: "응용",
+  difficultyBasis:
+    "보기마다 분수의 거듭제곱과 정수의 거듭제곱을 따로 계산하고(음수의 거듭제곱 부호 · 괄호 밖의 부호를 가려) " +
+    "곱하는 두 단계 계산을 다섯 번 해야 한다. 한 단계 곱셈 판정보다 단계가 하나 많아 응용으로 정했다" +
+    "(원천 15 의 칸을 옮긴 것이 아니다 — 원장님 확인 대상).",
+  ruleVersion: 1,
+  paperExempt: HELD_POW_REASON,
+  generate: (rng, ask) => buildTruthBody(rng, ask, drawPow, CALC_STYLE),
+  truthOf,
+};

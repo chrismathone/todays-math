@@ -25,9 +25,11 @@ import {
   type Material,
 } from "@/lib/middle/judge/calcJudge";
 import type { JudgeAsk, JudgeDefinition } from "@/lib/middle/judge/contract";
+import { HELD_JUDGE_DEFINITIONS } from "@/lib/middle/judge/definitions";
 import {
   div2Material,
   drawMul2,
+  HELD_CALC_POW,
   MUL_DIV_JUDGES,
   mul2Material,
   mulDivMaterial,
@@ -276,18 +278,35 @@ const HOW: Record<Family, string> = {
   muldiv: "거듭제곱을 계산하고 역수의 곱셈으로 고치면",
 };
 
+/**
+ * 보류한 `calc-pow` 는 기본 등록부에 없다(`definitions.ts` — 지면 때문에 등록을 미뤘다). 생성기는 살아 있으므로
+ * 보류 목록으로 따로 지은 등록부에서 뽑아 **같은 시험**을 지나게 한다 — 보류가 풀릴 때 그대로 옮기면 된다.
+ */
+const HELD = createJudgeRegistry(HELD_JUDGE_DEFINITIONS);
+const generate = (key: string, seed: number, variant: number) =>
+  HELD.has(key)
+    ? HELD.generate(key, seed, variant)
+    : generateJudgeProblem(key, seed, variant);
+
 const each = (
   family: Family,
   n: number,
   fn: (p: ReturnType<typeof generateJudgeProblem>, s: number) => void,
 ) => {
   for (let s = 0; s < n; s += 1)
-    fn(generateJudgeProblem(KEYS[family], SEED0 + s * STEP, s % 2), s);
+    fn(generate(KEYS[family], SEED0 + s * STEP, s % 2), s);
 };
 
-describe("㉠ 등록 — 곱셈 · 나눗셈 계산 판정 넷", () => {
+describe("㉠ 등록 — 곱셈 · 나눗셈 계산 판정 셋 + 보류 하나", () => {
   it("판정키 · 원천 · 난이도 · 규칙판 (리터럴로 못 박는다)", () => {
-    const byKey = new Map(judgementDefinitions().map((d) => [d.key, d]));
+    const live = judgementDefinitions();
+    // 🔴 calc-pow 는 기본 등록부에 없다 — 적재 대상도, 미적재 빚도 아니다.
+    expect(live.some((d) => d.key === KEYS.pow)).toBe(false);
+    expect(HELD.definitions().map((d) => d.key)).toEqual([KEYS.pow]);
+    expect(HELD.definitions()[0]!.paperExempt).toMatch(/^보류 — /);
+    const byKey = new Map(
+      [...live, ...HELD.definitions()].map((d) => [d.key, d]),
+    );
     const want: Record<Family, string> = {
       mul2: "기본",
       pow: "응용",
@@ -302,7 +321,11 @@ describe("㉠ 등록 — 곱셈 · 나눗셈 계산 판정 넷", () => {
         ruleVersion: 1,
         sources: [SRC[f]],
       });
-    expect(MUL_DIV_JUDGES).toHaveLength(4);
+    expect(MUL_DIV_JUDGES.map((d) => d.familyId)).toEqual([
+      "calc-mul2",
+      "calc-div2",
+      "calc-muldiv",
+    ]);
   });
 });
 
@@ -339,9 +362,7 @@ describe(`㉡ 진위 — 씨앗 ${SEEDS} × 물음 둘 × 판정형 넷, 시험 
 
   it("같은 씨앗 · 같은 변형이면 글자까지 같다", () => {
     for (const f of FAMILIES)
-      expect(generateJudgeProblem(KEYS[f], 42, 1)).toEqual(
-        generateJudgeProblem(KEYS[f], 42, 1),
-      );
+      expect(generate(KEYS[f], 42, 1)).toEqual(generate(KEYS[f], 42, 1));
   });
 });
 
@@ -544,6 +565,93 @@ describe("㉤ 해설 — 넉 줄 짜임 · 보기 차례를 따라간다 · 까�
   });
 });
 
+describe("㉦ 그 연산의 실수 — 손으로 센 값", () => {
+  /**
+   * 씨앗 훑기는 «자주 나오는 꼴»만 지난다 — 정수 × 분수 같은 드문 꼴의 실수는 300씨앗에 한 번도 안 선다.
+   * 그래서 재료를 직접 지어 실수마다의 값을 손으로 센 값과 맞댄다(까닭 문장이 그 값에 대해 참인가).
+   */
+  const of = (m: Material) =>
+    m
+      .mistakes()
+      .map((x) => `${x.reason} → ${x.value.n}/${x.value.d} (${x.kind})`);
+
+  it("곱셈 — 약분 한쪽만 · 정수를 분자 · 분모에 모두 · 분자끼리만 · 부호", () => {
+    // (+2/3)×(+9/4) = 3/2. 2 와 4 의 공약수 2, 9 와 3 의 공약수 3 — 한쪽만 나누면 2배 · 1/2배 · 3배 · 1/3배.
+    expect(of(mul2Material(q(2, 3), q(9, 4)))).toEqual([
+      "약분할 때 분자와 분모 가운데 한쪽만 나눔 → 3/1 (실수)",
+      "약분할 때 분자와 분모 가운데 한쪽만 나눔 → 3/4 (실수)",
+      "약분할 때 분자와 분모 가운데 한쪽만 나눔 → 9/2 (실수)",
+      "약분할 때 분자와 분모 가운데 한쪽만 나눔 → 1/2 (실수)",
+      // 음수가 없는 식에는 부호 반대를 붙이지 않는다.
+    ]);
+    // (−3)×(+2/5) = −6/5. 정수 3 을 분자와 분모에 모두 곱하면 2/5 그대로 — 부호는 바르게 −.
+    expect(of(mul2Material(q(-3), q(2, 5)))).toEqual([
+      "정수를 분자와 분모에 모두 곱함 → -2/5 (실수)",
+      "결과의 부호를 반대로 씀 → 6/5 (부호)",
+    ]);
+    // (+3/4)×(−5/4) = −15/16. 분모는 두고 분자끼리만 곱하면 −15/4.
+    expect(of(mul2Material(q(3, 4), q(-5, 4)))).toEqual([
+      "분모는 곱하지 않고 분자끼리만 곱함 → -15/4 (실수)",
+      "결과의 부호를 반대로 씀 → 15/16 (부호)",
+    ]);
+  });
+
+  it("나눗셈 — 역수를 안 취함 · 나누어지는 수의 역수 · 부호", () => {
+    // (−3/4)÷(+9/8) = −2/3. 그대로 곱하면 −27/32, 나누어지는 수를 뒤집으면 −3/2.
+    expect(of(div2Material(q(-3, 4), q(9, 8)))).toEqual([
+      "나누는 수를 역수로 바꾸지 않고 곱함 → -27/32 (실수)",
+      "나누어지는 수의 역수를 곱함 → -3/2 (실수)",
+      "결과의 부호를 반대로 씀 → 2/3 (부호)",
+    ]);
+    expect(
+      of(div2Material(q(3, 4), q(9, 8))).some((x) => x.includes("부호")),
+    ).toBe(false);
+  });
+
+  it("거듭제곱 — 분자만 · 밑 × 지수 · 음수의 거듭제곱의 부호 · 앞의 부호", () => {
+    // −(−2/3)²×(−3)³ = −(4/9 × −27) = 12.
+    expect(val(powMaterial(q(-2, 3), 2, q(-3), 3, true).value)).toBe(12);
+    expect(of(powMaterial(q(-2, 3), 2, q(-3), 3, true))).toEqual([
+      // 분자만: (−2)²/3 = 4/3 → −(4/3 × −27) = 36
+      "분수의 분자만 거듭제곱함 → 36/1 (실수)",
+      // 밑 × 지수: (−3)×3 = −9 → −(4/9 × −9) = 4
+      "밑과 지수를 곱함 → 4/1 (실수)",
+      "음수의 거듭제곱의 부호를 반대로 정함 → -12/1 (부호)",
+    ]);
+    // 밑이 모두 양수이고 앞에 − 가 있으면 «앞의 부호를 빠뜨림».
+    expect(of(powMaterial(q(2, 3), 2, q(3), 2, true)).at(-1)).toBe(
+      "거듭제곱 앞의 부호를 빠뜨림 → 4/1 (부호)",
+    );
+    // 밑이 모두 양수이고 앞 부호도 없으면 부호를 틀릴 자리가 없다.
+    expect(of(powMaterial(q(2, 3), 2, q(3), 2, false))).toEqual([
+      "분수의 분자만 거듭제곱함 → 12/1 (실수)",
+      "밑과 지수를 곱함 → 8/3 (실수)",
+    ]);
+  });
+
+  it("혼합 — 역수를 안 취함 · 분자만 · 부호", () => {
+    // (2/3)²×(−6)÷(+4/3) = 4/9 × −6 × 3/4 = −2.
+    expect(val(mulDivMaterial(q(2, 3), 2, q(-6), q(4, 3)).value)).toBe(-2);
+    expect(of(mulDivMaterial(q(2, 3), 2, q(-6), q(4, 3)))).toEqual([
+      // 그대로 곱하면 4/9 × −6 × 4/3 = −32/9
+      "나누는 수를 역수로 바꾸지 않고 곱함 → -32/9 (실수)",
+      // 분자만: 4/3 × −6 × 3/4 = −6
+      "분수의 분자만 거듭제곱함 → -6/1 (실수)",
+      "결과의 부호를 반대로 씀 → 2/1 (부호)",
+    ]);
+    // 밑이 음수면 까닭을 좁혀 적는다.
+    expect(of(mulDivMaterial(q(-2, 3), 3, q(6), q(4, 3))).at(-1)).toMatch(
+      /^음수의 거듭제곱의 부호를 반대로 정함 → /,
+    );
+    // 음수가 하나도 없으면 부호 반대가 없다.
+    expect(
+      of(mulDivMaterial(q(2, 3), 2, q(6), q(4, 3))).some((x) =>
+        x.includes("부호"),
+      ),
+    ).toBe(false);
+  });
+});
+
 describe("㉥ 재시도 상한 · 변이", () => {
   it("재료가 늘 같으면 상한에서 사유를 달고 멈춘다", () => {
     const one = drawMul2(createRng(1));
@@ -570,7 +678,7 @@ describe("㉥ 재시도 상한 · 변이", () => {
   });
 
   it("🔴 변이 — 틀린 보기의 오른쪽을 참값으로 바꾸면 관문이 멈춘다(씨앗 60 × 판정형 넷)", () => {
-    for (const def of MUL_DIV_JUDGES) {
+    for (const def of [...MUL_DIV_JUDGES, HELD_CALC_POW]) {
       for (let s = 0; s < 60; s += 1) {
         const ask: JudgeAsk = s % 2 === 0 ? "옳지 않은 것" : "옳은 것";
         const body = def.generate(createRng(SEED0 + s), ask);

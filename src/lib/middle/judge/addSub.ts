@@ -245,6 +245,17 @@ export const drawMix4 = fromSource(SRC.혼합, (f) => [
 
 const ASKS = ["옳지 않은 것", "옳은 것"] as const;
 
+/**
+ * 1단계 셋은 지면 관문(`paper.ts` — 2단계에서 생겼다)을 지나지 않는다 — **이미 실린 36행의 신분 보존**.
+ * 관문을 걸면 접히는 묶음을 버리고 다시 뽑으므로 같은 씨앗이 다른 문제를 낸다(규칙판 `r1` 그대로인데).
+ *
+ * 🔴 그래서 이 셋에는 지면에서 접히는 문항이 있다(2026-10-08 실측 — 통합 시험지 2단: 네 항 혼합 85% ·
+ *    두 항 3~5%). 고치려면 규칙판을 올려 **새 열쇠**로 다시 내고 옛 행을 잠근다 — 보고서
+ *    `docs/planning/tracks/reports/engine-judge-step2.md` 의 «1단계 36행» 절.
+ */
+const STEP1_PAPER =
+  "1단계 — 이미 실린 36행의 신분 보존(관문을 걸면 같은 씨앗이 다른 문제를 낸다)";
+
 export const ADD_SUB_JUDGES: readonly JudgeDefinition[] = [
   {
     grade: GRADE,
@@ -258,6 +269,7 @@ export const ADD_SUB_JUDGES: readonly JudgeDefinition[] = [
       "보기마다 두 유리수의 덧셈 하나를 계산해 적힌 값과 견준다. 계산은 원천 01 과 같은 크기이고 " +
       "판단 단계는 «적힌 값이 맞는가» 하나뿐이라 기본(판정형 기본값). 원천의 칸을 옮긴 것이 아니다.",
     ruleVersion: 1,
+    paperExempt: STEP1_PAPER,
     generate: (rng, ask) => buildCalcJudgeBody(rng, ask, drawAdd2),
     truthOf: signedSumTruth,
   },
@@ -273,6 +285,7 @@ export const ADD_SUB_JUDGES: readonly JudgeDefinition[] = [
       "보기마다 두 유리수의 뺄셈 하나(빼는 수의 부호를 바꾸어 더하기)를 계산해 적힌 값과 견준다. " +
       "판단 단계가 하나뿐이라 기본(판정형 기본값).",
     ruleVersion: 1,
+    paperExempt: STEP1_PAPER,
     generate: (rng, ask) => buildCalcJudgeBody(rng, ask, drawSub2),
     truthOf: signedSumTruth,
   },
@@ -288,6 +301,7 @@ export const ADD_SUB_JUDGES: readonly JudgeDefinition[] = [
       "보기마다 뺄셈 둘을 덧셈으로 바꾸고 네 항을 통분해 모으는 혼합 계산을 다섯 번 해야 한다. " +
       "계산량이 두 항 판정의 두 배를 넘어 응용으로 정했다(원천 04 의 칸을 옮긴 것이 아니다 — 원장님 확인 대상).",
     ruleVersion: 1,
+    paperExempt: STEP1_PAPER,
     generate: (rng, ask) => buildCalcJudgeBody(rng, ask, drawMix4),
     truthOf: signedSumTruth,
   },
