@@ -1,0 +1,674 @@
+{
+  "uniqueIds": 80,
+  "currentNegativeCount": 80,
+  "historicalHashExcludedCount": 0,
+  "proposedRevisionCount": 34,
+  "reasonedRetainCount": 46,
+  "unwrittenCount": 0,
+  "contractErrorCount": 0,
+  "notationErrorCount": 0,
+  "preservationErrorCount": 0,
+  "editorialSynchronizationErrorCount": 0,
+  "blankClashCount": 0,
+  "currentHashNewIndependentPassCount": 48,
+  "passRowsWithSpecificRemainingDefect": [
+    "e4-2-2-1-xc4",
+    "e4-2-2-5-xc7",
+    "e4-2-3-6-xc18",
+    "e4-2-4-2-xc7",
+    "e4-2-4-3-xc7",
+    "e4-2-4-3-xc24",
+    "e4-2-4-7-xc23",
+    "e4-2-5-2-xc26"
+  ],
+  "sourceAuditAndLedgerUnchanged": true,
+  "isIndependentApproval": false,
+  "isReleaseApproval": false,
+  "contract": [],
+  "notation": [],
+  "preservation": [],
+  "editorial": [],
+  "clashes": [],
+  "identityAndOrder": [
+    {
+      "id": "e3-2-6-1-c1",
+      "sourceIndex": 187,
+      "role": "definition",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e3-1-2-4-xc19",
+      "sourceIndex": 534,
+      "role": "procedure",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e3-1-2-5-xc20",
+      "sourceIndex": 560,
+      "role": "procedure",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e3-1-6-1-xc2",
+      "sourceIndex": 820,
+      "role": "reason",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e3-2-4-4-xc3",
+      "sourceIndex": 1140,
+      "role": "reason",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-1-4-1-xc4",
+      "sourceIndex": 1794,
+      "role": "procedure",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-1-6-2-xc13",
+      "sourceIndex": 2008,
+      "role": "procedure",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-1-6-2-xc17",
+      "sourceIndex": 2012,
+      "role": "application",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-1-4-xc14",
+      "sourceIndex": 2155,
+      "role": "reason",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-1-4-xc21",
+      "sourceIndex": 2160,
+      "role": "reason",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-2-1-xc2",
+      "sourceIndex": 2165,
+      "role": "procedure",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-2-1-xc3",
+      "sourceIndex": 2166,
+      "role": "reason",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-2-1-xc4",
+      "sourceIndex": 2167,
+      "role": "definition",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-2-1-xc17",
+      "sourceIndex": 2180,
+      "role": "naming",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-2-1-xc20",
+      "sourceIndex": 2181,
+      "role": "reason",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-2-1-xc24",
+      "sourceIndex": 2184,
+      "role": "reason",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-2-2-xc3",
+      "sourceIndex": 2189,
+      "role": "application",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-2-2-xc7",
+      "sourceIndex": 2193,
+      "role": "definition",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-2-2-xc8",
+      "sourceIndex": 2194,
+      "role": "naming",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-2-2-xc16",
+      "sourceIndex": 2201,
+      "role": "application",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-2-3-xc17",
+      "sourceIndex": 2226,
+      "role": "definition",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-2-4-xc2",
+      "sourceIndex": 2238,
+      "role": "naming",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-2-4-xc4",
+      "sourceIndex": 2240,
+      "role": "application",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-2-4-xc5",
+      "sourceIndex": 2241,
+      "role": "application",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-2-4-xc12",
+      "sourceIndex": 2248,
+      "role": "reason",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-2-4-xc15",
+      "sourceIndex": 2251,
+      "role": "reason",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-2-4-xc16",
+      "sourceIndex": 2252,
+      "role": "application",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-2-4-xc23",
+      "sourceIndex": 2259,
+      "role": "application",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-2-4-xc25",
+      "sourceIndex": 2261,
+      "role": "application",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-2-5-xc7",
+      "sourceIndex": 2268,
+      "role": "procedure",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-2-5-xc8",
+      "sourceIndex": 2269,
+      "role": "definition",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-2-5-xc13",
+      "sourceIndex": 2274,
+      "role": "application",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-2-5-xc16",
+      "sourceIndex": 2277,
+      "role": "application",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-2-5-xc21",
+      "sourceIndex": 2281,
+      "role": "reason",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-2-5-xc22",
+      "sourceIndex": 2282,
+      "role": "application",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-2-5-xc24",
+      "sourceIndex": 2284,
+      "role": "reason",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-2-5-xc26",
+      "sourceIndex": 2286,
+      "role": "reason",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-2-5-xc27",
+      "sourceIndex": 2287,
+      "role": "reason",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-3-1-xc1",
+      "sourceIndex": 2289,
+      "role": "naming",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-3-1-xc2",
+      "sourceIndex": 2290,
+      "role": "naming",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-3-1-xc6",
+      "sourceIndex": 2294,
+      "role": "naming",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-3-3-xc26",
+      "sourceIndex": 2345,
+      "role": "reason",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-3-4-xc15",
+      "sourceIndex": 2355,
+      "role": "definition",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-3-4-xc16",
+      "sourceIndex": 2356,
+      "role": "reason",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-3-5-xc9",
+      "sourceIndex": 2371,
+      "role": "reason",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-3-6-xc7",
+      "sourceIndex": 2389,
+      "role": "reason",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-3-6-xc13",
+      "sourceIndex": 2393,
+      "role": "procedure",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-3-6-xc15",
+      "sourceIndex": 2395,
+      "role": "procedure",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-3-6-xc18",
+      "sourceIndex": 2397,
+      "role": "procedure",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-3-7-xc3",
+      "sourceIndex": 2403,
+      "role": "procedure",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-3-7-xc28",
+      "sourceIndex": 2421,
+      "role": "reason",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-4-1-xc27",
+      "sourceIndex": 2445,
+      "role": "procedure",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-4-2-xc7",
+      "sourceIndex": 2452,
+      "role": "definition",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-4-2-xc14",
+      "sourceIndex": 2459,
+      "role": "definition",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-4-2-xc22",
+      "sourceIndex": 2466,
+      "role": "reason",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-4-2-xc24",
+      "sourceIndex": 2468,
+      "role": "definition",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-4-2-xc25",
+      "sourceIndex": 2469,
+      "role": "procedure",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-4-3-xc4",
+      "sourceIndex": 2475,
+      "role": "application",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-4-3-xc5",
+      "sourceIndex": 2476,
+      "role": "application",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-4-3-xc7",
+      "sourceIndex": 2478,
+      "role": "definition",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-4-3-xc13",
+      "sourceIndex": 2484,
+      "role": "procedure",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-4-3-xc19",
+      "sourceIndex": 2490,
+      "role": "application",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-4-3-xc24",
+      "sourceIndex": 2493,
+      "role": "reason",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-4-4-xc12",
+      "sourceIndex": 2506,
+      "role": "definition",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-4-4-xc23",
+      "sourceIndex": 2514,
+      "role": "procedure",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-4-7-xc14",
+      "sourceIndex": 2575,
+      "role": "reason",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-4-7-xc23",
+      "sourceIndex": 2584,
+      "role": "reason",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-5-1-xc8",
+      "sourceIndex": 2595,
+      "role": "procedure",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-5-1-xc27",
+      "sourceIndex": 2614,
+      "role": "procedure",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-5-2-xc26",
+      "sourceIndex": 2641,
+      "role": "reason",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-5-3-xc1",
+      "sourceIndex": 2644,
+      "role": "reason",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-5-3-xc12",
+      "sourceIndex": 2655,
+      "role": "procedure",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-5-3-xc20",
+      "sourceIndex": 2663,
+      "role": "procedure",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-5-3-xc28",
+      "sourceIndex": 2671,
+      "role": "reason",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-6-1-xc13",
+      "sourceIndex": 2684,
+      "role": "application",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-6-1-xc16",
+      "sourceIndex": 2687,
+      "role": "reason",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-6-3-xc3",
+      "sourceIndex": 2726,
+      "role": "procedure",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-6-4-xc19",
+      "sourceIndex": 2769,
+      "role": "procedure",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-6-4-xc26",
+      "sourceIndex": 2776,
+      "role": "procedure",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    },
+    {
+      "id": "e4-2-6-4-xc28",
+      "sourceIndex": 2778,
+      "role": "reason",
+      "originalDefinitionPreserved": true,
+      "levelPreserved": true,
+      "questionExternalFieldsPreserved": true
+    }
+  ]
+}

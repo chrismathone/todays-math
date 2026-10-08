@@ -1,0 +1,335 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e6-1-3-2-xc11",
+      "bDecision": "revise",
+      "bPrompt": "$2.4\\div3$에서 일의 자리 몫은 $0$이다. $2.4$를 $0.1$의 개수로 바꾸어 나누는 방법을 쓰고, 계산 결과가 무엇을 뜻하는지 설명하시오.",
+      "bAnswer": "$2.4$를 $0.1$이 $24$개라고 보고 $24\\div3=8$로 나눈다. 결과 $8$은 한 몫에 든 $0.1$의 개수이므로 몫은 $0.8$이다.",
+      "bGoal": "일의 자리에서 나눌 수 없을 때 $0.1$의 개수로 바꾸어 나누는 방법과 결과의 뜻을 안다.",
+      "bReason": "단위를 바꾸는 절차와 결과의 뜻을 둘 다 묻고 구체적 식으로 답이 정해진다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2.4$를$0.1$이$24$개로바꾼다"
+          ]
+        },
+        {
+          "anyOf": [
+            "결과는 한 몫에 든 $0.1$의 개수이다",
+            "$8$은 한 몫에 든 $0.1$이 $8$개라는 뜻이다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "$2.4\\div3$에서 $2$가 $3$보다 작아 몫의 일의 자리는 $0$이다. $2.4$를 $0.1$이 {$24$}개로 보고 나누면 한 몫에는 $0.1$이 {$8$}개 들어 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$24$",
+            "$24$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8$",
+            "$8$"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸은 바로 뒤 문장에서 베낄 수 있어 실제 개수를 구하는 값으로 바꾼다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final-1850-1900.json",
+      "codexFinalAmendedFromFingerprint": "d97cb062258aef6a48a5266fb94a0b9ee811c3494f2c75246e37f037706f2e02",
+      "sourceIndex": 1850,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-2-xc11",
+        "section": "초6::1-3 소수의 나눗셈::1-3-2 몫이 1보다 작은 (소수)÷(자연수) 알아보기",
+        "term": "일의 자리에서 나누기 어려울 때의 단위",
+        "kind": "방법",
+        "level": "중",
+        "definition": "자연수 부분이 나누는 수보다 작으면 일의 몫은 $0$이다. 자연수 부분과 소수 첫째 자리의 양을 {$0.1$의 개수}로 바꾸어 나누면, 그 결과는 한 몫에 든 $0.1$의 개수이다.",
+        "studentC": "자연수 부분이 나누는 수보다 작으면 일의 몫은 $0$이다. 자연수 부분과 소수 첫째 자리의 양을 □로 바꾸어 나누면, 그 결과는 한 몫에 든 $0.1$의 개수이다.",
+        "answers": [
+          "$0.1$의 개수"
+        ]
+      },
+      "sourceFingerprint": "b8f3ae58629362ca71a731510efcdbe8d687b4e1e75d3107ae361e97871d26b4",
+      "draftEvidence": "evidence/section-065-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$24$",
+        "$8$"
+      ],
+      "cStudentAfter": "$2.4\\div3$에서 $2$가 $3$보다 작아 몫의 일의 자리는 $0$이다. $2.4$를 $0.1$이 □개로 보고 나누면 한 몫에는 $0.1$이 □개 들어 있다.",
+      "cMarkedSentence": "$2.4\\div3$에서 $2$가 $3$보다 작아 몫의 일의 자리는 $0$이다. $2.4$를 $0.1$이 {$24$}개로 보고 나누면 한 몫에는 $0.1$이 {$8$}개 들어 있다.",
+      "cStudentSentence": "$2.4\\div3$에서 $2$가 $3$보다 작아 몫의 일의 자리는 $0$이다. $2.4$를 $0.1$이 □개로 보고 나누면 한 몫에는 $0.1$이 □개 들어 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "$24$",
+          "equivalents": []
+        },
+        {
+          "key": "$8$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$2.4\\div3$에서 일의 자리 몫은 $0$이다. $2.4$를 $0.1$의 개수로 바꾸어 나누는 방법을 쓰고, 계산 결과가 무엇을 뜻하는지 설명하시오.",
+        "answer": "$2.4$를 $0.1$이 $24$개라고 보고 $24\\div3=8$로 나눈다. 결과 $8$은 한 몫에 든 $0.1$의 개수이므로 몫은 $0.8$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$2.4$를$0.1$이$24$개로바꾼다"
+            ]
+          },
+          {
+            "anyOf": [
+              "결과는 한 몫에 든 $0.1$의 개수이다",
+              "$8$은 한 몫에 든 $0.1$이 $8$개라는 뜻이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$2.4\\div3$에서 $2$가 $3$보다 작아 몫의 일의 자리는 $0$이다. $2.4$를 $0.1$이 {$24$}개로 보고 나누면 한 몫에는 $0.1$이 {$8$}개 들어 있다.",
+        "acceptedAnswers": [
+          [
+            "$24$",
+            "$24$"
+          ],
+          [
+            "$8$",
+            "$8$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e305da383fba399018d8c17f81c617f930739e88c6ca8557f1bb351b6689546f",
+      "questionRevision": "planning-e5e6-20261006-e305da383fba",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-3-3-xc11",
+      "bDecision": "revise",
+      "bPrompt": "소수 한 자리 수를 $2$나 $5$로 나누다가 나머지가 생겼다. 소수 끝에 $0$을 하나 붙여 계속 나누면 어떻게 되는지 쓰고, $1.3\\div5$의 몫을 구하시오.",
+      "bAnswer": "$0$을 한 번만 내려도 나누어떨어진다. $1.30\\div5=0.26$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$0$을 한 번 내리면 나누어떨어진다",
+            "한 번만 내려도 나머지가 $0$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.26$"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "$2$나 $5$로 나누면 곧 나누어떨어진다는 성질을 예로 확인한다.",
+      "bReason": "일반 성질과 예의 정확한 몫을 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "소수 한 자리 수를 $2$나 $5$로 나누다가 나머지가 생기면, 소수 끝에 $0$을 하나 붙여 계속 나누면 {나누어떨어진다}.",
+      "cReason": "조건이 분명한 짧은 성질 문장이다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final-1850-1900.json",
+      "codexFinalAmendedFromFingerprint": "da5a2e6b9d6de29e1d39b21610ac57cfaa3d4316d91c6316802ca3a8bd80fe7b",
+      "sourceIndex": 1864,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-3-3-xc11",
+        "section": "초6::1-3 소수의 나눗셈::1-3-3 소수점 아래 0을 내려 계산하는 (소수)÷(자연수) 알아보기",
+        "term": "$2$나 $5$로 나눌 때",
+        "kind": "성질",
+        "level": "중",
+        "definition": "소수 한 자리 수를 $2$나 $5$로 나누면 $0$을 한 번만 내려도 {나누어떨어진다}.",
+        "studentC": "소수 한 자리 수를 $2$나 $5$로 나누면 $0$을 한 번만 내려도 □.",
+        "answers": [
+          "나누어떨어진다"
+        ]
+      },
+      "sourceFingerprint": "63182ecc2ecbd4a0044402c717b0c5200c40df89a504ab9abe3493f1254984f7",
+      "draftEvidence": "evidence/section-066-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "나누어떨어진다"
+      ],
+      "cStudentAfter": "소수 한 자리 수를 $2$나 $5$로 나누다가 나머지가 생기면, 소수 끝에 $0$을 하나 붙여 계속 나누면 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "나누어떨어진다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "소수 한 자리 수를 $2$나 $5$로 나누다가 나머지가 생기면, 소수 끝에 $0$을 하나 붙여 계속 나누면 {나누어떨어진다}.",
+      "cStudentSentence": "소수 한 자리 수를 $2$나 $5$로 나누다가 나머지가 생기면, 소수 끝에 $0$을 하나 붙여 계속 나누면 □.",
+      "cSlotAnswers": [
+        {
+          "key": "나누어떨어진다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "소수 한 자리 수를 $2$나 $5$로 나누다가 나머지가 생겼다. 소수 끝에 $0$을 하나 붙여 계속 나누면 어떻게 되는지 쓰고, $1.3\\div5$의 몫을 구하시오.",
+        "answer": "$0$을 한 번만 내려도 나누어떨어진다. $1.30\\div5=0.26$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$0$을 한 번 내리면 나누어떨어진다",
+              "한 번만 내려도 나머지가 $0$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.26$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "소수 한 자리 수를 $2$나 $5$로 나누다가 나머지가 생기면, 소수 끝에 $0$을 하나 붙여 계속 나누면 {나누어떨어진다}.",
+        "acceptedAnswers": [
+          [
+            "나누어떨어진다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "98c18a5e805ae63872a4a04adeda26408d51ac9eb29ea91cd5ea6a86041b00b6",
+      "questionRevision": "planning-e5e6-20261006-98c18a5e805a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-4-1-xc12",
+      "bDecision": "revise",
+      "bPrompt": "$9$가 $6$의 자연수 배가 아닐 때에도 몇 배인지 나타낼 수 있는지 말하고, 나타낼 수 있다면 어떻게 나타내는지 설명하시오.",
+      "bAnswer": "나타낼 수 있다. $9\\div6$의 값을 소수나 분수로 쓰면 $1.5$배 또는 $\\frac{3}{2}$배이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나눈값을분수나소수로쓰면몇배인지나타낼수있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1.5$",
+            "$\\frac{3}{2}$",
+            "$1\\frac{1}{2}$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "자연수가 아닌 몇 배를 분수나 소수로 나타낸다.",
+      "bReason": "초6이 아는 소수·분수로 답하게 하며 예의 정확한 값도 포함했다.",
+      "cDecision": "revise",
+      "cAfter": "$9\\div6$의 몫은 자연수가 아니지만, $9$는 $6$의 분수로 {$\\frac{3}{2}$}배 또는 소수로 {$1.5$}배라고 나타낼 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{3}{2}$",
+            "$1\\frac{1}{2}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1.5$"
+          ]
+        }
+      ],
+      "cReason": "추상적 낱말 대신 실제 값을 쓰게 해 자연수 배가 아닌 경우를 확인한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final-1850-1900.json",
+      "codexFinalAmendedFromFingerprint": "7c55b2cff659b0bc52531e10f2ca69227b8a4c3dacae5ded9f192d782871e545",
+      "sourceIndex": 1899,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-4-1-xc12",
+        "section": "초6::1-4 비와 비율::1-4-1 두 수 비교하기",
+        "term": "자연수가 아닌 몇 배",
+        "kind": "성질",
+        "level": "중",
+        "definition": "나눗셈으로 비교한 값은 나누어떨어지지 않아도 {소수나 분수}로 나타낼 수 있다.",
+        "example": {
+          "prompt": "$9$가 $6$의 자연수 배가 아니어도 몇 배인지 나타낼 수 있는 까닭은?",
+          "answer": "나눈 값을 소수나 분수로 써서"
+        },
+        "studentC": "나눗셈으로 비교한 값은 나누어떨어지지 않아도 □로 나타낼 수 있다.",
+        "answers": [
+          "소수나 분수"
+        ]
+      },
+      "sourceFingerprint": "1c905a80f997ef9c0be02016d6b8d214ddf2d820cfa2f286cb5f25a5f7f759d1",
+      "draftEvidence": "evidence/section-069-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$\\frac{3}{2}$",
+        "$1.5$"
+      ],
+      "cStudentAfter": "$9\\div6$의 몫은 자연수가 아니지만, $9$는 $6$의 분수로 □배 또는 소수로 □배라고 나타낼 수 있다.",
+      "cMarkedSentence": "$9\\div6$의 몫은 자연수가 아니지만, $9$는 $6$의 분수로 {$\\frac{3}{2}$}배 또는 소수로 {$1.5$}배라고 나타낼 수 있다.",
+      "cStudentSentence": "$9\\div6$의 몫은 자연수가 아니지만, $9$는 $6$의 분수로 □배 또는 소수로 □배라고 나타낼 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{3}{2}$",
+          "equivalents": [
+            "$1\\frac{1}{2}$"
+          ]
+        },
+        {
+          "key": "$1.5$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$9$가 $6$의 자연수 배가 아닐 때에도 몇 배인지 나타낼 수 있는지 말하고, 나타낼 수 있다면 어떻게 나타내는지 설명하시오.",
+        "answer": "나타낼 수 있다. $9\\div6$의 값을 소수나 분수로 쓰면 $1.5$배 또는 $\\frac{3}{2}$배이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나눈값을분수나소수로쓰면몇배인지나타낼수있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1.5$",
+              "$\\frac{3}{2}$",
+              "$1\\frac{1}{2}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$9\\div6$의 몫은 자연수가 아니지만, $9$는 $6$의 분수로 {$\\frac{3}{2}$}배 또는 소수로 {$1.5$}배라고 나타낼 수 있다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{3}{2}$",
+            "$1\\frac{1}{2}$"
+          ],
+          [
+            "$1.5$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a7f7546af454ef9754d7c4516ef4108060dcd92730096c8d6b61c5df4be992f3",
+      "questionRevision": "planning-e5e6-20261006-a7f7546af454",
+      "requiresIndependentReview": true
+    }
+  ]
+}

@@ -1,0 +1,739 @@
+{
+  "rows": [
+    {
+      "id": "e6-2-3-6-c1",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무 $2$개로는 모양이 한 가지뿐입니다. 쌓기나무 개수를 그대로 두고 다른 모양을 만들 수 있으려면 쌓기나무가 적어도 몇 개 필요합니까? 또 다른 모양은 어떻게 만듭니까?",
+      "bAnswer": "쌓기나무가 $3$개 이상 필요하다. 개수는 그대로 두고 붙이는 위치를 바꾸어 만든다.",
+      "bGoal": "모양을 바꾸려면 개수가 아니라 붙이는 위치를 바꾼다는 것과 최소 개수 $3$개를 이해한다.",
+      "bReason": "원문 두 빈칸을 '몇 개 이상'과 '어떻게'로 나누어 물으면 암기 구절이 아닌 방법 이해를 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$3$개 이상"
+          ]
+        },
+        {
+          "anyOf": [
+            "붙이는 위치를 바꾼다",
+            "붙이는 자리를 바꾼다",
+            "붙이는 방법을 바꾼다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "쌓기나무 $2$개로는 모양이 한 가지뿐이지만, {$3$}개 이상이면 개수를 그대로 두고 붙이는 {위치}를 바꾸어 다른 모양을 만들 수 있다.",
+      "cReason": "'붙이는 위치를 바꾸어'는 긴 구절이라 핵심어 '위치'만 빈칸으로 하고 $2$개와 비교해 $3$의 의미를 살렸다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "위치",
+            "자리",
+            "붙이는 위치"
+          ]
+        }
+      ],
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-3-6-c2",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무끼리 겹치지 않게 두 덩어리를 붙였을 때 전체 쌓기나무 수는 어떻게 구합니까? 한 덩어리가 $3$개, 다른 덩어리가 $4$개일 때 전체 개수도 구하시오.",
+      "bAnswer": "두 덩어리의 쌓기나무 수를 더한다. $3+4=7$이므로 $7$개이다.",
+      "bGoal": "겹치지 않게 붙인 전체 개수는 두 덩어리 개수의 합임을 알고 적용한다.",
+      "bReason": "일반 방법을 묻고 작은 예의 답까지 확인하므로 계산값 하나만 묻는 문항이 아니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 덩어리의 개수를 더한다",
+            "두 덩어리 개수의 합"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7$개",
+            "$7$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "겹치지 않는다는 조건이 문장에 있고 '합'이라는 낱말 하나만 묻는 짧고 명확한 문장이다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-3-6-c3",
+      "bDecision": "revise",
+      "bPrompt": "놓인 방향이 다른 쌓기나무 덩어리 두 개가 같은 모양인지 알아보려면 어떻게 확인합니까?",
+      "bAnswer": "한 덩어리를 돌려서 다른 덩어리와 꼭 맞게 겹쳐지는지 본다. 겹쳐지면 같은 모양이다.",
+      "bGoal": "돌려서 겹쳐 보는 방법으로 같은 모양인지 판단한다.",
+      "bReason": "방향이 달라 보여도 같은 모양일 수 있다는 판단 기준을 방법으로 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 덩어리를 돌려 본다",
+            "돌려서 겹쳐 본다"
+          ]
+        },
+        {
+          "anyOf": [
+            "꼭 맞게 겹쳐지면 같은 모양이다",
+            "완전히 포개어지면 같다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "놓인 방향이 달라도 한 덩어리를 돌려 다른 덩어리와 {꼭 맞게} 겹쳐지면 같은 모양이다.",
+      "cReason": "'꼭 맞게 겹칠 수 있으면'은 긴 구절이므로 핵심 조건인 '꼭 맞게'만 빈칸으로 줄였다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "꼭 맞게",
+            "딱 맞게",
+            "완전히",
+            "똑같이"
+          ]
+        }
+      ],
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-3-6-xc1",
+      "bDecision": "revise",
+      "bPrompt": "크기가 같은 쌓기나무 $2$개를 면끼리 붙여 만들 수 있는 모양은 몇 가지입니까? 두 번째 쌓기나무를 첫 번째 쌓기나무의 어느 면에 붙여도 그렇게 되는 까닭을 쓰시오.",
+      "bAnswer": "한 가지($1$가지)이다. 어느 면에 붙여도 놓는 방향만 달라질 뿐 돌리면 꼭 겹쳐져 같은 모양이기 때문이다.",
+      "bGoal": "$2$개로 만든 모양이 한 가지뿐인 까닭을 돌려서 같아진다는 관계로 설명한다.",
+      "bReason": "단순히 가짓수만 묻지 않고 붙이는 면이 달라도 같은 모양인 까닭까지 요구한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1$가지",
+            "한 가지"
+          ]
+        },
+        {
+          "anyOf": [
+            "붙이는 면이 달라도 돌리면 같은 모양이다",
+            "방향만 다르고 겹쳐진다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "쌓기나무 $2$개를 면끼리 붙여 만들 수 있는 모양은 {$1$}가지뿐이다.",
+      "cReason": "'한 가지'는 표현이 다양할 수 있어 가짓수 숫자 하나를 묻는 짧은 문장으로 바꾸었다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$",
+            "한"
+          ]
+        }
+      ],
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-3-6-xc2",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무 $3$개를 면끼리 붙여 만들 수 있는 서로 다른 모양을 모두 말하시오.",
+      "bAnswer": "한 줄로 놓은 모양과 꺾어 놓은 모양, 두 가지이다.",
+      "bGoal": "$3$개로 만든 서로 다른 두 모양을 구별하여 말한다.",
+      "bReason": "모양 이름을 외우게 하지 않고 직접 만들 수 있는 모양을 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 줄 모양",
+            "일직선 모양",
+            "나란히 한 줄로 놓은 모양"
+          ]
+        },
+        {
+          "anyOf": [
+            "꺾어 놓은 모양",
+            "꺾인 모양",
+            "ㄱ자 모양"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "revise",
+      "cAfter": "쌓기나무 $3$개를 면끼리 붙여 만들 수 있는 서로 다른 모양은 한 줄 모양과 꺾은 모양, 모두 {$2$}가지이다.",
+      "cReason": "원문 빈칸 '꺾어 놓은'은 동의어가 많아 가짓수 숫자 빈칸으로 바꾸었다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$",
+            "두"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "synonymNotes": "꺾은, 꺾인, ㄱ자 모양 모두 인정한다."
+    },
+    {
+      "id": "e6-2-3-6-xc3",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "쌓기나무를 면끼리 붙인다는 기본 약속을 확인한다.",
+      "bReason": "모서리만 닿은 경우와 함께 묻는 e6-2-3-6-xc9가 같은 내용을 더 분명하게 다룬다.",
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "'□이 꼭 맞닿게'는 낱말만 답하는 문장이라 xc9의 대비 문장보다 가치가 낮다.",
+      "exclusionReason": "xc9와 중복되며 xc9가 맞닿은 면과 모서리를 구별하게 한다.",
+      "exampleNeeded": false,
+      "synonymNotes": "대체 ID: e6-2-3-6-xc9"
+    },
+    {
+      "id": "e6-2-3-6-xc4",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "방향만 바뀐 모양이 같은 모양임을 안다.",
+      "bReason": "c3의 '돌려서 겹치면 같은 모양'과 같은 내용이다.",
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "'놓는 방향만 바뀐 모양은 □이다'는 답이 거의 자명하고 c3와 겹친다.",
+      "exclusionReason": "c3 및 xc13과 중복된다.",
+      "exampleNeeded": false,
+      "synonymNotes": "대체 ID: e6-2-3-6-c3, e6-2-3-6-xc13"
+    },
+    {
+      "id": "e6-2-3-6-xc6",
+      "bDecision": "revise",
+      "bPrompt": "크기가 같은 쌓기나무 $4$개로 만든 서로 다른 두 모양이 있습니다. 두 모양이 차지하는 공간의 크기는 같습니까, 다릅니까? 그 까닭을 쓰시오.",
+      "bAnswer": "같다. 크기가 같은 쌓기나무를 같은 수만큼 썼으므로 모양이 달라도 차지하는 공간의 크기가 같다.",
+      "bGoal": "쌓기나무의 크기와 수가 같으면 모양이 달라도 부피가 같음을 설명한다.",
+      "bReason": "원문에 빠진 '크기가 같은 쌓기나무' 조건을 질문에 넣고 까닭을 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "쌓기나무의 크기와 수가 같기 때문이다",
+            "같은 크기의 쌓기나무를 같은 개수 썼기 때문이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "크기가 같은 쌓기나무를 같은 수만큼 쌓아 만든 두 모양은 모양이 달라도 {차지하는 공간의 크기}가 같다.",
+      "cReason": "같은 크기 조건을 추가하고 부피로도 답할 수 있게 하여 유사 표현을 허용한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "차지하는 공간의 크기",
+            "공간의 크기",
+            "부피"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "coreAfter": "크기가 같은 쌓기나무를 같은 수만큼 쓰면 모양이 달라도 차지하는 공간의 크기(부피)가 같다.",
+      "coreReason": "원문은 쌓기나무가 같은 크기라는 조건이 빠져 있다."
+    },
+    {
+      "id": "e6-2-3-6-xc7",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "복잡한 모양을 작은 덩어리로 나누어 보는 전략을 안다.",
+      "bReason": "'복잡한 모양'은 기준이 불분명하고 구체적인 행동을 묻기 어렵다.",
+      "bRequiredIdeas": [],
+      "learningRole": "procedure",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "□이 막연한 '복잡한 모양'이라 학생이 답을 정하기 어려운 추상 메타 말이다.",
+      "exclusionReason": "전략 조언 문장이고 구체 조건이 없다.",
+      "exampleNeeded": false,
+      "synonymNotes": "대체 ID: e6-2-3-6-c2, e6-2-3-6-xc24"
+    },
+    {
+      "id": "e6-2-3-6-xc8",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무로 만든 모양의 전체 개수를 층별로 세어 구하는 방법을 설명하시오. 1층이 $5$개, 2층이 $3$개, 3층이 $1$개이면 전체는 몇 개입니까?",
+      "bAnswer": "각 층의 쌓기나무 수를 모두 더한다. $5+3+1=9$이므로 $9$개이다.",
+      "bGoal": "층별 개수를 더해 전체 개수를 구하는 방법을 적용한다.",
+      "bReason": "구체적인 층별 개수를 주어 방법과 예의 답을 함께 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "각 층의 개수를 더한다",
+            "층별 개수의 합을 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$9$개",
+            "$9$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "각 층의 쌓기나무가 $5$개, $3$개, $1$개이면 전체 쌓기나무는 $5+3+1=${$9$}개이다.",
+      "cReason": "'더해'만 고르는 문장보다 층별 수를 실제로 합하는 짧은 계산이 더 유용하다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$9$"
+          ]
+        }
+      ],
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-3-6-xc9",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무 $2$개가 한 모서리만 닿아 있으면 붙은 것입니까? 쌓기나무를 붙였다고 하려면 어떻게 맞닿아야 합니까?",
+      "bAnswer": "붙은 것이 아니다. 면과 면이 꼭 맞닿게 붙여야 한다.",
+      "bGoal": "붙인 것의 기준이 모서리 접촉이 아니라 면끼리 맞닿는 것임을 안다.",
+      "bReason": "xc3의 붙이는 방법과 모서리만 닿은 경우를 함께 구별하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "붙은 것이 아니다",
+            "붙인 것이 아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "면과 면이 맞닿아야 한다",
+            "면끼리 꼭 맞닿게 붙인다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "revise",
+      "cAfter": "쌓기나무끼리 {면}이 꼭 맞닿게 붙여야 하고, 모서리만 닿아 있으면 붙인 것이 {아니다}.",
+      "cReason": "붙이기의 기준과 모서리 접촉이 붙인 것이 아님을 함께 확인하는 두 빈칸으로 바꾸었다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "면",
+            "면과 면",
+            "한 면"
+          ]
+        },
+        {
+          "anyOf": [
+            "아니다",
+            "아닌 것이다"
+          ]
+        }
+      ],
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-3-6-xc11",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무 $4$개를 면끼리 붙여 만들 수 있는 서로 다른 모양을 두 가지 말하시오.",
+      "bAnswer": "예: 한 줄로 놓은 모양과 $2\\times2$ 정사각형 모양. 꺾은 모양 등도 가능하다.",
+      "bGoal": "$4$개로 서로 다른 모양이 여러 가지 있음을 직접 만들어 확인한다.",
+      "bReason": "'여러 가지'라는 막연한 낱말 대신 실제 모양을 들게 하여 개념을 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 줄 모양",
+            "정사각형 모양",
+            "꺾은 모양",
+            "ㄱ자 모양",
+            "ㄴ자 모양"
+          ]
+        },
+        {
+          "anyOf": [
+            "앞의 모양과 돌려도 겹쳐지지 않는 다른 모양",
+            "서로 다른 두 번째 모양"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "revise",
+      "cAfter": "쌓기나무 $4$개로는 한 줄 모양과 $2\\times2$ 정사각형 모양처럼 서로 다른 모양을 {$2$}가지 이상 만들 수 있다.",
+      "cReason": "'여러 가지'는 정답이 막연하여 이미 제시된 두 모양에서 가짓수를 묻는 문장으로 바꾸었다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$",
+            "두"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "synonymNotes": "서로 다른 두 모양이면 다른 유효한 예도 인정한다."
+    },
+    {
+      "id": "e6-2-3-6-xc13",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무로 만든 모양 하나를 뒤집었더니 다른 모양과 꼭 맞게 겹쳐졌습니다. 이 두 모양은 같은 모양으로 봅니까, 다른 모양으로 봅니까?",
+      "bAnswer": "같은 모양으로 본다.",
+      "bGoal": "뒤집어서 겹쳐지는 모양도 같은 모양으로 본다는 약속을 안다.",
+      "bReason": "뒤집기를 같은 모양 판단에 쓸 수 있는지 구체적인 상황에서 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "같은 모양",
+            "똑같은 모양"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "revise",
+      "cAfter": "뒤집어서 꼭 맞게 겹쳐지는 두 모양은 서로 {같은} 모양으로 본다.",
+      "cReason": "원문 '□으로 본다'는 조사가 어색하여 형용사만 빈칸으로 하고 조건은 유지했다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같은",
+            "똑같은"
+          ]
+        }
+      ],
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-3-6-xc16",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "돌리거나 뒤집어 겹쳐 보는 방법을 안다.",
+      "bReason": "돌리기는 c3, 뒤집기는 xc13, 판단 방법은 xc27이 이미 다룬다.",
+      "bRequiredIdeas": [],
+      "learningRole": "procedure",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "□ 안에 '돌리거나 뒤집어'를 넣게 하는 것은 긴 구절 암기에 가깝고 중복이다.",
+      "exclusionReason": "c3, xc13, xc27과 중복된다.",
+      "exampleNeeded": false,
+      "synonymNotes": "대체 ID: e6-2-3-6-c3, e6-2-3-6-xc27"
+    },
+    {
+      "id": "e6-2-3-6-xc17",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무 $3$개로 만든 꺾은 모양을 돌려 놓으면 한 줄 모양과 같아질 수 있습니까? 그 까닭을 쓰시오.",
+      "bAnswer": "같아질 수 없다. 꺾은 모양은 꺾인 부분이 있고 한 줄 모양은 곧게 이어져 있어 돌려도 이 차이는 사라지지 않는다.",
+      "bGoal": "돌려도 꺾인 모양과 곧은 모양이 달라지지 않는 까닭을 설명한다.",
+      "bReason": "단순히 '돌려도'를 채우는 대신 꺾인 부분이 그대로라는 관계를 설명하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "같아질 수 없다",
+            "한 줄 모양이 되지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "꺾인 부분은 돌려도 그대로이다",
+            "한 줄은 곧게 이어져 있다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "쌓기나무 $3$개로 만든 꺾은 모양은 돌려 놓아도 한 줄 모양과 {다른} 모양이다.",
+      "cReason": "원문의 '돌려도' 빈칸은 문장 속 단서로 쉽게 답하므로 같음과 다름 판단을 묻게 바꾸었다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "다른",
+            "같지 않은",
+            "서로 다른"
+          ]
+        }
+      ],
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-3-6-xc19",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무 $2$개를 면끼리 붙여 놓은 것에 세 번째 쌓기나무를 붙일 때, $3$개로 만든 서로 다른 모양이 두 가지뿐인 까닭을 붙이는 방법으로 설명하시오.",
+      "bAnswer": "세 번째 쌓기나무를 한 줄로 잇거나 꺾어 잇는 두 방법밖에 없기 때문이다. 다른 위치에 붙여도 돌리면 이 두 모양 중 하나와 같다.",
+      "bGoal": "$3$개 모양이 두 가지뿐인 까닭을 붙이는 방법으로 설명한다.",
+      "bReason": "가짓수만 아는 것에서 나아가 왜 두 가지뿐인지 붙이는 경우를 나누어 설명하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 줄로 잇는 방법",
+            "곧게 이어 붙이는 경우"
+          ]
+        },
+        {
+          "anyOf": [
+            "꺾어 잇는 방법",
+            "꺾어 붙이는 경우"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "xc2 C가 같은 결론을 가짓수 빈칸으로 묻고 이 행의 빈칸은 B 답과 겹친다.",
+      "exclusionReason": "C는 xc2와 중복된다.",
+      "exampleNeeded": false,
+      "synonymNotes": "대체 ID: e6-2-3-6-xc2"
+    },
+    {
+      "id": "e6-2-3-6-xc20",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무를 빈틈없이 쌓아 직육면체를 만들었습니다. 이 직육면체를 층별로 나누면 각 층의 모양은 서로 같습니까, 다릅니까? 그 까닭을 쓰시오.",
+      "bAnswer": "서로 같다. 직육면체는 모든 층에서 가로와 세로로 놓인 쌓기나무 수가 같기 때문이다.",
+      "bGoal": "직육면체를 층으로 나누면 각 층이 같은 모양임을 가로·세로 수로 설명한다.",
+      "bReason": "빈틈없이 쌓았다는 조건을 넣어 직육면체 층 구조를 이해했는지 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "서로 같다",
+            "모두 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "각 층의 가로와 세로 쌓기나무 수가 같다",
+            "층마다 한 줄의 수와 줄 수가 같다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "빈틈없이 쌓은 직육면체를 층별로 나누면 각 층의 모양은 서로 {같다}.",
+      "cReason": "원문에 없던 '빈틈없이'를 추가하여 직육면체의 조건을 분명히 했다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다",
+            "똑같다"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "coreAfter": "빈틈없이 쌓은 직육면체를 층별로 나누면 각 층의 모양은 서로 같다.",
+      "coreReason": "원문은 쌓기나무를 빈틈없이 쌓았다는 조건이 빠져 있다."
+    },
+    {
+      "id": "e6-2-3-6-xc21",
+      "bDecision": "revise",
+      "bPrompt": "모양이 같은 두 덩어리로 나눌 수 있는 쌓기나무 모양의 전체 개수는 홀수와 짝수 중 어느 쪽이어야 합니까? 두 덩어리의 개수를 이용해 그 까닭을 설명하시오.",
+      "bAnswer": "짝수이다. 두 덩어리의 쌓기나무 수가 같으므로 전체는 같은 수를 두 번 더한 것이기 때문이다.",
+      "bGoal": "같은 두 덩어리로 나눌 수 있으면 전체 개수가 짝수인 까닭을 설명한다.",
+      "bReason": "결론을 외우는 대신 두 덩어리의 개수가 같다는 관계로 설명하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "짝수"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 덩어리의 개수가 같아 같은 수를 두 번 더한다",
+            "전체 개수는 한 덩어리 개수의 $2$배이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "쌓기나무 $9$개로 만든 모양은 모양이 같은 두 덩어리로 나눌 수 {없다}.",
+      "cReason": "'짝수' 낱말 맞히기 대신 홀수인 $9$개의 사례에 적용하게 했다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "없다",
+            "나눌 수 없다"
+          ]
+        }
+      ],
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-3-6-xc22",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "한 줄 덩어리를 같은 방향으로 이어 채울 때 한 줄의 수가 덩어리 수의 배수임을 안다.",
+      "bReason": "xc23이 같은 배수 관계를 더 일반적으로 묻고 방향 조건은 그림 없이 설명하기 길다.",
+      "bRequiredIdeas": [],
+      "learningRole": "procedure",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "긴 구절 '한 덩어리의 쌓기나무 수의 배수'가 빈칸이라 암기에 가깝고 xc23과 겹친다.",
+      "exclusionReason": "xc23과 중복되며 방향 조건이 길다.",
+      "exampleNeeded": false,
+      "synonymNotes": "대체 ID: e6-2-3-6-xc23"
+    },
+    {
+      "id": "e6-2-3-6-xc23",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무 $4$개로 이루어진 같은 덩어리만 여러 개 써서 모양을 만들려고 합니다. 만들 모양의 쌓기나무 수는 $4$와 어떤 관계여야 합니까? 쌓기나무가 $18$개인 모양은 만들 수 있습니까?",
+      "bAnswer": "$4$의 배수여야 한다. $18$은 $4$의 배수가 아니므로 만들 수 없다.",
+      "bGoal": "같은 덩어리만 쓸 때 전체 개수가 덩어리 개수의 배수여야 함을 적용한다.",
+      "bReason": "일반 관계와 구체적 판단 하나를 함께 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$4$의 배수",
+            "$4$로 나누어떨어져야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$18$개는 만들 수 없다",
+            "$18$은 $4$의 배수가 아니다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "revise",
+      "cAfter": "쌓기나무 $4$개짜리 같은 덩어리만 써서 만든 모양의 쌓기나무 수는 $4$의 {배수}이다.",
+      "cReason": "긴 구절 대신 $4$의 배수라는 관계 하나만 묻는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "배수",
+            "$4$의 배수"
+          ]
+        }
+      ],
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-3-6-xc24",
+      "bDecision": "revise",
+      "bPrompt": "주어진 덩어리들의 쌓기나무 수를 모두 더하면 만들려는 모양의 쌓기나무 수와 같습니다. 이것만으로 그 모양을 만들 수 있다고 말할 수 있습니까? 그 까닭을 쓰시오.",
+      "bAnswer": "말할 수 없다. 덩어리들의 모양이 만들려는 모양에 맞게 들어가야 하기 때문이다.",
+      "bGoal": "개수가 같다는 것은 필요조건일 뿐 덩어리 모양도 맞아야 함을 이해한다.",
+      "bReason": "개수만 맞으면 된다는 오개념을 막는 질문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "말할 수 없다",
+            "만들 수 없을 수도 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "덩어리의 모양이 맞아야 한다",
+            "덩어리의 모양에 따라 달라진다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "덩어리들의 개수의 합이 같아도 덩어리의 {모양}이 맞지 않으면 만들 수 없다.",
+      "cReason": "'덩어리의 모양에 따라' 구절 대신 핵심어 하나만 묻는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "모양",
+            "생김새"
+          ]
+        }
+      ],
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-3-6-xc25",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무 $3$개를 한 줄로 붙인 모양을 세워 놓은 것과 눕혀 놓은 것은 같은 모양입니까, 다른 모양입니까? 그 까닭을 쓰시오.",
+      "bAnswer": "같은 모양이다. 한 줄 모양은 돌리면 꼭 맞게 겹쳐지기 때문이다.",
+      "bGoal": "한 줄 모양은 놓는 방향이 달라도 돌리면 겹쳐지므로 같은 모양임을 적용한다.",
+      "bReason": "c3의 돌려 겹치기 기준을 한 줄 모양에 적용하는 문항이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "같은 모양"
+          ]
+        },
+        {
+          "anyOf": [
+            "돌리면 꼭 맞게 겹쳐진다",
+            "돌리면 포개어진다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "쌓기나무 $3$개를 한 줄로 붙인 모양은 세워 놓은 것과 눕혀 놓은 것이 {같은} 모양이다.",
+      "cReason": "'세워도 눕혀도'는 구절이므로 같음과 다름 판단만 묻는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같은",
+            "똑같은"
+          ]
+        }
+      ],
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-3-6-xc26",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "덩어리들의 쌓기나무 수의 합이 만들 모양의 개수와 같아야 한다는 조건을 안다.",
+      "bReason": "c2의 합 계산과 xc24의 개수 조건 및 모양 조건이 이미 이 내용을 다룬다.",
+      "bRequiredIdeas": [],
+      "learningRole": "procedure",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "'합'을 채우는 문장이 c2와 같아 중복이다.",
+      "exclusionReason": "c2, xc24와 중복된다.",
+      "exampleNeeded": false,
+      "synonymNotes": "대체 ID: e6-2-3-6-c2, e6-2-3-6-xc24"
+    },
+    {
+      "id": "e6-2-3-6-xc27",
+      "bDecision": "revise",
+      "bPrompt": "두 쌓기나무 모양이 서로 다른 모양이라고 판단하려면 어떤 확인을 해야 합니까?",
+      "bAnswer": "한 모양을 돌리고 뒤집어 보아도 다른 모양과 꼭 맞게 겹쳐지지 않는지 확인한다.",
+      "bGoal": "돌리고 뒤집어도 겹쳐지지 않으면 다른 모양이라고 판단한다.",
+      "bReason": "같은 모양 판단 기준을 뒤집어 다른 모양의 판단 방법으로 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "돌리고 뒤집어 본다",
+            "돌려 보고 뒤집어 본다"
+          ]
+        },
+        {
+          "anyOf": [
+            "겹쳐지지 않는다",
+            "꼭 맞게 겹쳐지지 않는다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "돌리고 뒤집어도 꼭 맞게 겹쳐지지 않는 두 모양은 {다른} 모양이다.",
+      "cReason": "원문 빈칸 '겹쳐지지 않는지'는 문장 단서가 어색하여 판단 결과를 묻게 바꾸었다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "다른",
+            "서로 다른",
+            "같지 않은"
+          ]
+        }
+      ],
+      "exampleNeeded": false
+    }
+  ],
+  "sectionNotes": [
+    "xc3·xc4·xc7·xc16·xc22·xc26은 중복이거나 추상적이어서 제외했다.",
+    "그림 없이도 설명 가능한 문항만 남겼고 모양 이름은 한 줄·꺾은 모양 등 글로 표현했다."
+  ]
+}

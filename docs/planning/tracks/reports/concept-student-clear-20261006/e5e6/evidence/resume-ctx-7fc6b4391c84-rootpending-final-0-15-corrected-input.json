@@ -1,0 +1,366 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e6-1-6-3-xc22",
+      "bDecision": "revise",
+      "bPrompt": "한 변이 $1$ $\\mathrm{m}$인 정사각형의 넓이는 몇 $\\mathrm{cm} ^2$이고, 한 모서리가 $1$ $\\mathrm{m}$인 정육면체의 부피는 몇 $\\mathrm{cm} ^3$인가요? $1$ $\\mathrm{m}$ $=100$ $\\mathrm{cm}$임을 이용해 각각의 계산식을 쓰고, 가로·세로·높이 중 어떤 길이를 곱하는지 비교하여 설명하시오.",
+      "bAnswer": "정사각형의 넓이는 가로와 세로를 곱한 $100\\times100=10000$ $\\mathrm{cm} ^2$이다. 정육면체의 부피는 가로, 세로, 높이를 곱한 $100\\times100\\times100=1000000$ $\\mathrm{cm} ^3$이다. 넓이는 두 길이, 부피는 세 길이를 곱한다.",
+      "bGoal": "넓이와 부피의 단위 환산 차이를 길이가 늘어나는 방향 수로 이해한다.",
+      "bReason": "두 방향과 세 방향이라는 핵심 차이를 짚는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "정사각형은가로와세로$100\\,\\mathrm{cm}$를곱하여$10000\\,\\mathrm{cm} ^2$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "정육면체는가로세로높이$100\\,\\mathrm{cm}$를곱하여$1000000\\,\\mathrm{cm} ^3$이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "한 변이 $1\\,\\mathrm{m}$인 정사각형의 넓이는 $100\\times100=${$10000$}$\\,\\mathrm{cm}^2$이고, 한 모서리가 $1\\,\\mathrm{m}$인 정육면체의 부피는 $100$을 {$3$}번 곱한 $1000000\\,\\mathrm{cm}^3$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$10000$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$",
+            "세"
+          ]
+        }
+      ],
+      "cReason": "'방향'이라는 추상어 대신 곱하는 횟수로 차이를 확인한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-rootpending-final-0-15.json",
+      "codexFinalAmendedFromFingerprint": "2a1cea2f19d2696375679420111cabc97b696ab8bbfc537e98b03bfe64bbfa88",
+      "sourceIndex": 2161,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-6-3-xc22",
+        "section": "초6::1-6 직육면체의 겉넓이와 부피::1-6-3 ㎥ 알아보기",
+        "term": "넓이 단위와 부피 단위의 차이",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$1\\,\\mathrm{m}^2$는 {두 방향}이 $100$배라 $10000\\,\\mathrm{cm}^2$이고, $1\\,\\mathrm{m}^3$는 {세 방향}이 모두 $100$배라 $1000000\\,\\mathrm{cm}^3$이다.",
+        "studentC": "$1\\,\\mathrm{m}^2$는 □이 $100$배라 $10000\\,\\mathrm{cm}^2$이고, $1\\,\\mathrm{m}^3$는 □이 모두 $100$배라 $1000000\\,\\mathrm{cm}^3$이다.",
+        "answers": [
+          "두 방향",
+          "세 방향"
+        ]
+      },
+      "sourceFingerprint": "24863134633e98a468c803c210807dfe929b43c2dc02e6b5424561f7961ff1af",
+      "draftEvidence": "evidence/section-082-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$10000$",
+        "$3$"
+      ],
+      "cStudentAfter": "한 변이 $1\\,\\mathrm{m}$인 정사각형의 넓이는 $100\\times100=$□$\\,\\mathrm{cm}^2$이고, 한 모서리가 $1\\,\\mathrm{m}$인 정육면체의 부피는 $100$을 □번 곱한 $1000000\\,\\mathrm{cm}^3$이다.",
+      "cMarkedSentence": "한 변이 $1\\,\\mathrm{m}$인 정사각형의 넓이는 $100\\times100=${$10000$}$\\,\\mathrm{cm}^2$이고, 한 모서리가 $1\\,\\mathrm{m}$인 정육면체의 부피는 $100$을 {$3$}번 곱한 $1000000\\,\\mathrm{cm}^3$이다.",
+      "cStudentSentence": "한 변이 $1\\,\\mathrm{m}$인 정사각형의 넓이는 $100\\times100=$□$\\,\\mathrm{cm}^2$이고, 한 모서리가 $1\\,\\mathrm{m}$인 정육면체의 부피는 $100$을 □번 곱한 $1000000\\,\\mathrm{cm}^3$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$10000$",
+          "equivalents": []
+        },
+        {
+          "key": "$3$",
+          "equivalents": [
+            "세"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "한 변이 $1$ $\\mathrm{m}$인 정사각형의 넓이는 몇 $\\mathrm{cm} ^2$이고, 한 모서리가 $1$ $\\mathrm{m}$인 정육면체의 부피는 몇 $\\mathrm{cm} ^3$인가요? $1$ $\\mathrm{m}$ $=100$ $\\mathrm{cm}$임을 이용해 각각의 계산식을 쓰고, 가로·세로·높이 중 어떤 길이를 곱하는지 비교하여 설명하시오.",
+        "answer": "정사각형의 넓이는 가로와 세로를 곱한 $100\\times100=10000$ $\\mathrm{cm} ^2$이다. 정육면체의 부피는 가로, 세로, 높이를 곱한 $100\\times100\\times100=1000000$ $\\mathrm{cm} ^3$이다. 넓이는 두 길이, 부피는 세 길이를 곱한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "정사각형은가로와세로$100\\,\\mathrm{cm}$를곱하여$10000\\,\\mathrm{cm} ^2$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "정육면체는가로세로높이$100\\,\\mathrm{cm}$를곱하여$1000000\\,\\mathrm{cm} ^3$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "한 변이 $1\\,\\mathrm{m}$인 정사각형의 넓이는 $100\\times100=${$10000$}$\\,\\mathrm{cm}^2$이고, 한 모서리가 $1\\,\\mathrm{m}$인 정육면체의 부피는 $100$을 {$3$}번 곱한 $1000000\\,\\mathrm{cm}^3$이다.",
+        "acceptedAnswers": [
+          [
+            "$10000$"
+          ],
+          [
+            "$3$",
+            "세"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "670c15fdbaeee16d9a4faf4174118c12b7cae99aea3d21aef21aa30718c09701",
+      "questionRevision": "planning-e5e6-20261006-670c15fdbaee",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-1-2-xc19",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{1}{3}\\div\\frac{1}{5}$의 몫을 통분하여 구하시오. 또 단위분수끼리의 나눗셈에서 원래 두 분모를 이용하여 몫을 어떤 분수로 바로 나타낼 수 있는지, 그 분자와 분모를 설명하시오.",
+      "bAnswer": "$\\frac{1}{3}\\div\\frac{1}{5}=\\frac{5}{15}\\div\\frac{3}{15}=\\frac{5}{3}$이다. 원래 두 분모로 몫을 나타내려면 나누는 단위분수의 분모를 분자로, 나누어지는 단위분수의 분모를 분모로 쓰면 된다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "몫은 $\\frac{5}{3}$이다",
+            "$\\frac{5}{3}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "분자는 나누는 단위분수의 분모",
+            "분자는 나누는 수의 분모"
+          ]
+        },
+        {
+          "anyOf": [
+            "분모는 나누어지는 단위분수의 분모",
+            "분모는 나누어지는 수의 분모"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{3}$과$\\frac{1}{5}$를$\\frac{5}{15}$와$\\frac{3}{15}$처럼같은분모로고친뒤분자끼리$5 \\div 3$을계산한다",
+            "$\\frac{1}{3}$과$\\frac{1}{5}$의다른유효한통분을실제로제시하고분자끼리나눈다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "단위분수끼리 나눈 몫의 분자·분모 규칙을 찾는다.",
+      "bReason": "예의 계산에서 일반 규칙을 이끌어 말하게 한다.",
+      "cDecision": "revise",
+      "cAfter": "단위분수끼리 나눈 몫을 원래 두 분모로 나타낼 때, {나누는} 단위분수의 분모를 분자로, {나누어지는} 단위분수의 분모를 분모로 쓰면 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "나누는",
+            "나누는 수",
+            "나누는 분수"
+          ]
+        },
+        {
+          "anyOf": [
+            "나누어지는",
+            "나누어지는 수",
+            "나누어지는 분수"
+          ]
+        }
+      ],
+      "cReason": "실제 식을 보여 주고 나누는 쪽과 나누어지는 쪽을 구분하게 해 맥락을 보완한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-rootpending-final-0-15.json",
+      "codexFinalAmendedFromFingerprint": "16d2d3ca1c55c7d45612bd1ae3eab27f7eab5389c3318801636f64e2a56ab881",
+      "sourceIndex": 2189,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-1-2-xc19",
+        "section": "초6::2-1 분수의 나눗셈::2-1-2 분모가 다른 (분수)÷(분수) 알아보기",
+        "term": "단위분수끼리 나눌 때의 규칙",
+        "kind": "성질",
+        "level": "상",
+        "definition": "단위분수끼리 나누면 몫은 {나누는 수}의 분모를 분자로, 나누어지는 수의 분모를 분모로 하는 분수이다.",
+        "studentC": "단위분수끼리 나누면 몫은 □의 분모를 분자로, 나누어지는 수의 분모를 분모로 하는 분수이다.",
+        "answers": [
+          "나누는 수"
+        ]
+      },
+      "sourceFingerprint": "1ffbf6a738a07d3f1faaf5b07927a076d8862c1cf32e56d50e34582da71d2979",
+      "draftEvidence": "evidence/section-084-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "나누는",
+        "나누어지는"
+      ],
+      "cStudentAfter": "단위분수끼리 나눈 몫을 원래 두 분모로 나타낼 때, □ 단위분수의 분모를 분자로, □ 단위분수의 분모를 분모로 쓰면 된다.",
+      "cMarkedSentence": "단위분수끼리 나눈 몫을 원래 두 분모로 나타낼 때, {나누는} 단위분수의 분모를 분자로, {나누어지는} 단위분수의 분모를 분모로 쓰면 된다.",
+      "cStudentSentence": "단위분수끼리 나눈 몫을 원래 두 분모로 나타낼 때, □ 단위분수의 분모를 분자로, □ 단위분수의 분모를 분모로 쓰면 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "나누는",
+          "equivalents": [
+            "나누는 수",
+            "나누는 분수"
+          ]
+        },
+        {
+          "key": "나누어지는",
+          "equivalents": [
+            "나누어지는 수",
+            "나누어지는 분수"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{1}{3}\\div\\frac{1}{5}$의 몫을 통분하여 구하시오. 또 단위분수끼리의 나눗셈에서 원래 두 분모를 이용하여 몫을 어떤 분수로 바로 나타낼 수 있는지, 그 분자와 분모를 설명하시오.",
+        "answer": "$\\frac{1}{3}\\div\\frac{1}{5}=\\frac{5}{15}\\div\\frac{3}{15}=\\frac{5}{3}$이다. 원래 두 분모로 몫을 나타내려면 나누는 단위분수의 분모를 분자로, 나누어지는 단위분수의 분모를 분모로 쓰면 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "몫은 $\\frac{5}{3}$이다",
+              "$\\frac{5}{3}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "분자는 나누는 단위분수의 분모",
+              "분자는 나누는 수의 분모"
+            ]
+          },
+          {
+            "anyOf": [
+              "분모는 나누어지는 단위분수의 분모",
+              "분모는 나누어지는 수의 분모"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{3}$과$\\frac{1}{5}$를$\\frac{5}{15}$와$\\frac{3}{15}$처럼같은분모로고친뒤분자끼리$5 \\div 3$을계산한다",
+              "$\\frac{1}{3}$과$\\frac{1}{5}$의다른유효한통분을실제로제시하고분자끼리나눈다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "단위분수끼리 나눈 몫을 원래 두 분모로 나타낼 때, {나누는} 단위분수의 분모를 분자로, {나누어지는} 단위분수의 분모를 분모로 쓰면 된다.",
+        "acceptedAnswers": [
+          [
+            "나누는",
+            "나누는 수",
+            "나누는 분수"
+          ],
+          [
+            "나누어지는",
+            "나누어지는 수",
+            "나누어지는 분수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "4b7cf61db0906a8c7b0bedfeb8391c7b4d9c92fb22062655abd4b817b6944f93",
+      "questionRevision": "planning-e5e6-20261006-4b7cf61db090",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-1-4-xc12",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{2}{3}\\div\\frac{4}{5}$에서 앞의 분수 $\\frac{2}{3}$만 뒤집어 $\\frac{3}{2}\\times\\frac{4}{5}$로 계산했습니다. 올바른 몫과 잘못 계산한 값을 각각 구해 비교하시오. $0$보다 큰 두 분수에서 이렇게 해도 올바른 몫과 같아지는 경우는 언제인지 쓰시오.",
+      "bAnswer": "같지 않습니다. 올바른 몫은 $\\frac{2}{3}\\times\\frac{5}{4}=\\frac{5}{6}$이고 잘못 계산하면 $\\frac{6}{5}$입니다. 두 분수의 크기가 같을 때만 같아집니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "예에서는 같지 않다. 올바른 몫은 $\\frac{5}{6}$이고 잘못한 값은 $\\frac{6}{5}$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 분수의 크기가 같을 때만 같다",
+            "두 수가 같을 때뿐이다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "앞의 분수를 뒤집는 오류를 확인하고 같아지는 경우를 안다.",
+      "bReason": "흔한 오류를 예로 보이고 일반 조건까지 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "진분수나 가분수로 나타낸 $0$보다 큰 두 수에서 앞의 분수만 뒤집어 곱한 결과가 올바른 몫과 같아지는 것은 두 분수의 크기가 {같을} 때뿐이다.",
+      "cReason": "조건이 분명하며 두 분수가 같을 때뿐이라는 짧은 낱말 빈칸이다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-rootpending-final-0-15.json",
+      "codexFinalAmendedFromFingerprint": "0415088adbe1d3ae970a0c679120c26ea0011e4c620c5908938dd29e1c551363",
+      "sourceIndex": 2210,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-1-4-xc12",
+        "section": "초6::2-1 분수의 나눗셈::2-1-4 (분수)÷(분수)를 (분수)×(분수)로 나타내기",
+        "term": "앞의 분수를 뒤집는 잘못",
+        "kind": "성질",
+        "level": "중",
+        "definition": "진분수나 가분수로 나타낸 $0$보다 큰 두 수에서 앞의 분수만 뒤집어 곱한 결과가 올바른 몫과 같아지는 것은 두 분수의 크기가 {같을} 때뿐이다.",
+        "studentC": "진분수나 가분수로 나타낸 $0$보다 큰 두 수에서 앞의 분수만 뒤집어 곱한 결과가 올바른 몫과 같아지는 것은 두 분수의 크기가 □ 때뿐이다.",
+        "answers": [
+          "같을"
+        ]
+      },
+      "sourceFingerprint": "1a3f057d95b0f0ee4daddeced74d25064d427fcd2408b8203d68845ccb7a8c4d",
+      "draftEvidence": "evidence/section-086-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "진분수나 가분수로 나타낸 $0$보다 큰 두 수에서 앞의 분수만 뒤집어 곱한 결과가 올바른 몫과 같아지는 것은 두 분수의 크기가 {같을} 때뿐이다.",
+      "cFrozenStudentSentence": "진분수나 가분수로 나타낸 $0$보다 큰 두 수에서 앞의 분수만 뒤집어 곱한 결과가 올바른 몫과 같아지는 것은 두 분수의 크기가 □ 때뿐이다.",
+      "cProposedAnswers": [
+        "같을"
+      ],
+      "cStudentAfter": "진분수나 가분수로 나타낸 $0$보다 큰 두 수에서 앞의 분수만 뒤집어 곱한 결과가 올바른 몫과 같아지는 것은 두 분수의 크기가 □ 때뿐이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같을"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "진분수나 가분수로 나타낸 $0$보다 큰 두 수에서 앞의 분수만 뒤집어 곱한 결과가 올바른 몫과 같아지는 것은 두 분수의 크기가 {같을} 때뿐이다.",
+      "cStudentSentence": "진분수나 가분수로 나타낸 $0$보다 큰 두 수에서 앞의 분수만 뒤집어 곱한 결과가 올바른 몫과 같아지는 것은 두 분수의 크기가 □ 때뿐이다.",
+      "cSlotAnswers": [
+        {
+          "key": "같을",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{2}{3}\\div\\frac{4}{5}$에서 앞의 분수 $\\frac{2}{3}$만 뒤집어 $\\frac{3}{2}\\times\\frac{4}{5}$로 계산했습니다. 올바른 몫과 잘못 계산한 값을 각각 구해 비교하시오. $0$보다 큰 두 분수에서 이렇게 해도 올바른 몫과 같아지는 경우는 언제인지 쓰시오.",
+        "answer": "같지 않습니다. 올바른 몫은 $\\frac{2}{3}\\times\\frac{5}{4}=\\frac{5}{6}$이고 잘못 계산하면 $\\frac{6}{5}$입니다. 두 분수의 크기가 같을 때만 같아집니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "예에서는 같지 않다. 올바른 몫은 $\\frac{5}{6}$이고 잘못한 값은 $\\frac{6}{5}$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 분수의 크기가 같을 때만 같다",
+              "두 수가 같을 때뿐이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "진분수나 가분수로 나타낸 $0$보다 큰 두 수에서 앞의 분수만 뒤집어 곱한 결과가 올바른 몫과 같아지는 것은 두 분수의 크기가 {같을} 때뿐이다.",
+        "acceptedAnswers": [
+          [
+            "같을"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "1c19fe9616cf899ec2820c4eb52f64fd74f19966a2212e13e7b0513bcaf92a3e",
+      "questionRevision": "planning-e5e6-20261006-1c19fe9616cf",
+      "requiresIndependentReview": true
+    }
+  ]
+}

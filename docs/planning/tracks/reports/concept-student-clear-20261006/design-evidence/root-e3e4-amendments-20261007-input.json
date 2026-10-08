@@ -1,0 +1,1610 @@
+{
+  "status": "Immutable questions before Root actual amendment; not approval",
+  "workerHandoffCommit": "55ddb218f4a2811e3f074ae719b15463ca24d927",
+  "auditBeforeSha256": "6a3c2ef77bb3bf9bde6947cddd4552e59bedeb12f6e113865ea2e94e09506f68",
+  "reviewPacket": "cohort-2026-10-07T08-38-09-383Z-0",
+  "rows": [
+    {
+      "id": "e3-2-6-1-c1",
+      "before": {
+        "sourceIndex": 187,
+        "grade": "e3",
+        "part": "e3",
+        "section": "초3::2-6 그림그래프::2-6-1 그림그래프 알아보기",
+        "sourceFingerprint": "aba11ac597c9f05b7858a2139a05f2cb0a3b42fd29014cc4cf59e9b11af9bbb7",
+        "proposalFingerprint": "707e90a7ddadcb3ef7efdbb2324443a49ea70b2956b24b6d8b8a146fb0ea1993",
+        "reviewStatus": "draft",
+        "id": "e3-2-6-1-c1",
+        "bDecision": "rewrite",
+        "bPrompt": "그림그래프는 조사한 수를 무엇으로 나타낸 그래프인지 쓰고, 그림그래프에서 어느 항목의 수가 더 많은지는 그림의 무엇을 보고 알 수 있는지 설명하시오.",
+        "bAnswer": "조사한 수를 그림으로 나타낸 그래프이다. 그림 하나가 몇 개를 나타내는지 확인하고, 각 항목의 그림 개수를 이용해 수를 구하여 비교한다.",
+        "bGoal": "그림그래프의 뜻과 읽는 기준 설명",
+        "bReason": "그림 개수만 세면 된다는 오해가 없도록 그림 하나의 값과 개수를 함께 읽는 기준을 명시한다.",
+        "studentLabel": "그림으로 수를 나타내기",
+        "cDecision": "rewrite",
+        "cAfter": "조사한 자료의 수를 그림의 크기와 개수로 나타낸 그래프를 {그림그래프}라고 한다.",
+        "cReason": "원문 불일치: 정의는 '그림의 개수'만, 예시 답은 '그림의 크기와 개수'라고 함. 교과 내용에 맞게 '크기와 개수'로 맞추고 용어를 답하게 바꿈.",
+        "answerNotes": "'그림그래프' 정답. '막대그래프', '표'는 오답.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "조사한 수를 그림으로 나타낸 그래프이다."
+            ]
+          },
+          {
+            "anyOf": [
+              "그림 하나가 나타내는 수와 그림의 개수를 함께 보고 항목의 수를 구해 비교한다."
+            ]
+          }
+        ],
+        "reviewerEdited": true,
+        "learningRole": "definition",
+        "roleEvidence": {
+          "sourceKind": "정의",
+          "sourceTerm": "그림그래프",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "조사한 자료의 수를 그림의 크기와 개수로 나타낸 그래프를 {그림그래프}라고 한다.",
+        "cStudentSentence": "조사한 자료의 수를 그림의 크기와 개수로 나타낸 그래프를 □라고 한다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "그림그래프",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "그림그래프는 조사한 수를 무엇으로 나타낸 그래프인지 쓰고, 그림그래프에서 어느 항목의 수가 더 많은지는 그림의 무엇을 보고 알 수 있는지 설명하시오.",
+          "answer": "조사한 수를 그림으로 나타낸 그래프이다. 그림 하나가 몇 개를 나타내는지 확인하고, 각 항목의 그림 개수를 이용해 수를 구하여 비교한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "조사한 수를 그림으로 나타낸 그래프이다."
+              ]
+            },
+            {
+              "anyOf": [
+                "그림 하나가 나타내는 수와 그림의 개수를 함께 보고 항목의 수를 구해 비교한다."
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "조사한 자료의 수를 그림의 크기와 개수로 나타낸 그래프를 {그림그래프}라고 한다.",
+          "acceptedAnswers": [
+            [
+              "그림그래프"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-2-6-1-c1",
+          "sourceIndex": 187,
+          "proposalFingerprint": "707e90a7ddadcb3ef7efdbb2324443a49ea70b2956b24b6d8b8a146fb0ea1993",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "definition",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "그림 하나가 나타내는 양과 개수로 자료를 비교하는 목표와 기준이 맞다.",
+          "cReason": "그림그래프라는 표준 이름의 정의 회상이다. 이름의 구성 낱말을 설명에 썼다는 이유만으로 용어 확인을 없애지 않는다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "normalizedBefore": {
+        "id": "e3-2-6-1-c1",
+        "grade": "초3",
+        "source": {
+          "id": "e3-2-6-1-c1",
+          "section": "초3::2-6 그림그래프::2-6-1 그림그래프 알아보기",
+          "level": "하",
+          "term": "그림그래프",
+          "kind": "정의",
+          "definition": "자료의 수를 정해 둔 {그림의 개수}로 보여 주는 그래프가 그림그래프이다.",
+          "example": {
+            "prompt": "그림그래프에서 항목의 수가 많고 적음은 그림의 무엇을 보고 아는가?",
+            "answer": "그림의 크기와 개수"
+          }
+        },
+        "B": {
+          "prompt": "그림그래프는 조사한 수를 무엇으로 나타낸 그래프인지 쓰고, 그림그래프에서 어느 항목의 수가 더 많은지는 그림의 무엇을 보고 알 수 있는지 설명하시오.",
+          "answer": "조사한 수를 그림으로 나타낸 그래프이다. 그림 하나가 몇 개를 나타내는지 확인하고, 각 항목의 그림 개수를 이용해 수를 구하여 비교한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "조사한 수를 그림으로 나타낸 그래프이다."
+              ]
+            },
+            {
+              "anyOf": [
+                "그림 하나가 나타내는 수와 그림의 개수를 함께 보고 항목의 수를 구해 비교한다."
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "조사한 자료의 수를 그림의 크기와 개수로 나타낸 그래프를 {그림그래프}라고 한다.",
+          "acceptedAnswers": [
+            [
+              "그림그래프"
+            ]
+          ]
+        },
+        "goal": "그림그래프의 뜻과 읽는 기준 설명",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "754e40eb93fbc10ad466ad259dd546479d00828044a852b1556e098417af66c6"
+      }
+    },
+    {
+      "id": "e4-1-4-3-c3",
+      "before": {
+        "sourceIndex": 243,
+        "grade": "e4",
+        "part": "e4",
+        "section": "초4::1-4 평면도형의 이동::1-4-3 평면도형 뒤집기",
+        "sourceFingerprint": "c0d68446fd92d8d47bb12c588b39596397c4829723005e2de0c2c17ba4d6ad8b",
+        "proposalFingerprint": "e33bccc8828bdf84f88a0236a16a43b4bae80c2b00dc117776befb60e00ebfce",
+        "reviewStatus": "draft",
+        "id": "e4-1-4-3-c3",
+        "bDecision": "rewrite",
+        "bPrompt": "도형을 오른쪽으로 뒤집었을 때와 위쪽으로 뒤집었을 때 도형의 어느 쪽과 어느 쪽이 서로 바뀌는지 각각 쓰세요. 또 같은 도형을 왼쪽으로 뒤집은 모양과 오른쪽으로 뒤집은 모양을 비교하여 쓰세요.",
+        "bAnswer": "오른쪽으로 뒤집으면 도형의 왼쪽과 오른쪽이 서로 바뀌고, 위쪽으로 뒤집으면 위쪽과 아래쪽이 서로 바뀐다. 왼쪽으로 뒤집은 모양과 오른쪽으로 뒤집은 모양은 서로 같다.",
+        "bGoal": "뒤집는 방향에 따라 바뀌는 부분 설명하기",
+        "bReason": "두 방향을 각각 답하게 하고 왼쪽·오른쪽 뒤집기 결과가 같다는 점까지 확인",
+        "studentLabel": "도형을 뒤집었을 때 바뀌는 것",
+        "cDecision": "rewrite",
+        "cAfter": "도형을 왼쪽이나 오른쪽으로 뒤집으면 도형의 왼쪽과 오른쪽이 서로 {바뀐다}.",
+        "cReason": "문장에 이미 나온 오른쪽·아래쪽을 복사하지 않고 뒤집기의 방향 변화 자체를 판단한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "오른쪽으로 뒤집으면 도형의 왼쪽과 오른쪽이 서로 바뀐다"
+            ]
+          },
+          {
+            "anyOf": [
+              "위쪽으로 뒤집으면 도형의 위쪽과 아래쪽이 서로 바뀐다"
+            ]
+          },
+          {
+            "anyOf": [
+              "왼쪽으로 뒤집은 모양과 오른쪽으로 뒤집은 모양은 서로 같다"
+            ]
+          }
+        ],
+        "cSlotEquivalents": [
+          [
+            "뒤바뀐다",
+            "서로 바뀐다",
+            "바뀌게 된다"
+          ]
+        ],
+        "reviewerEdited": true,
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "뒤집기의 성질",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "도형을 왼쪽이나 오른쪽으로 뒤집으면 도형의 왼쪽과 오른쪽이 서로 {바뀐다}.",
+        "cStudentSentence": "도형을 왼쪽이나 오른쪽으로 뒤집으면 도형의 왼쪽과 오른쪽이 서로 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "바뀐다",
+            "equivalents": [
+              "뒤바뀐다",
+              "서로 바뀐다",
+              "바뀌게 된다"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "도형을 오른쪽으로 뒤집었을 때와 위쪽으로 뒤집었을 때 도형의 어느 쪽과 어느 쪽이 서로 바뀌는지 각각 쓰세요. 또 같은 도형을 왼쪽으로 뒤집은 모양과 오른쪽으로 뒤집은 모양을 비교하여 쓰세요.",
+          "answer": "오른쪽으로 뒤집으면 도형의 왼쪽과 오른쪽이 서로 바뀌고, 위쪽으로 뒤집으면 위쪽과 아래쪽이 서로 바뀐다. 왼쪽으로 뒤집은 모양과 오른쪽으로 뒤집은 모양은 서로 같다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "오른쪽으로 뒤집으면 도형의 왼쪽과 오른쪽이 서로 바뀐다"
+              ]
+            },
+            {
+              "anyOf": [
+                "위쪽으로 뒤집으면 도형의 위쪽과 아래쪽이 서로 바뀐다"
+              ]
+            },
+            {
+              "anyOf": [
+                "왼쪽으로 뒤집은 모양과 오른쪽으로 뒤집은 모양은 서로 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "도형을 왼쪽이나 오른쪽으로 뒤집으면 도형의 왼쪽과 오른쪽이 서로 {바뀐다}.",
+          "acceptedAnswers": [
+            [
+              "바뀐다",
+              "뒤바뀐다",
+              "서로 바뀐다",
+              "바뀌게 된다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-4-3-c3",
+          "sourceIndex": 243,
+          "proposalFingerprint": "e33bccc8828bdf84f88a0236a16a43b4bae80c2b00dc117776befb60e00ebfce",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "뒤집는 방향에 따라 좌우와 위아래가 바뀌는 성질 및 좌우 뒤집기 결과 비교를 받는다.",
+          "cReason": "좌우가 바뀌는지 그대로인지 판단하는 유효한 짧은 상태 비교라 유지한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "normalizedBefore": {
+        "id": "e4-1-4-3-c3",
+        "grade": "초4",
+        "source": {
+          "id": "e4-1-4-3-c3",
+          "section": "초4::1-4 평면도형의 이동::1-4-3 평면도형 뒤집기",
+          "term": "뒤집기의 성질",
+          "kind": "성질",
+          "level": "중",
+          "definition": "도형을 왼쪽이나 오른쪽으로 뒤집으면 {왼쪽과 오른쪽}이, 위쪽이나 아래쪽으로 뒤집으면 {위쪽과 아래쪽}이 서로 바뀐다."
+        },
+        "B": {
+          "prompt": "도형을 오른쪽으로 뒤집었을 때와 위쪽으로 뒤집었을 때 도형의 어느 쪽과 어느 쪽이 서로 바뀌는지 각각 쓰세요. 또 같은 도형을 왼쪽으로 뒤집은 모양과 오른쪽으로 뒤집은 모양을 비교하여 쓰세요.",
+          "answer": "오른쪽으로 뒤집으면 도형의 왼쪽과 오른쪽이 서로 바뀌고, 위쪽으로 뒤집으면 위쪽과 아래쪽이 서로 바뀐다. 왼쪽으로 뒤집은 모양과 오른쪽으로 뒤집은 모양은 서로 같다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "오른쪽으로 뒤집으면 도형의 왼쪽과 오른쪽이 서로 바뀐다"
+              ]
+            },
+            {
+              "anyOf": [
+                "위쪽으로 뒤집으면 도형의 위쪽과 아래쪽이 서로 바뀐다"
+              ]
+            },
+            {
+              "anyOf": [
+                "왼쪽으로 뒤집은 모양과 오른쪽으로 뒤집은 모양은 서로 같다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "도형을 왼쪽이나 오른쪽으로 뒤집으면 도형의 왼쪽과 오른쪽이 서로 {바뀐다}.",
+          "acceptedAnswers": [
+            [
+              "바뀐다",
+              "뒤바뀐다",
+              "서로 바뀐다",
+              "바뀌게 된다"
+            ]
+          ]
+        },
+        "goal": "뒤집는 방향에 따라 바뀌는 부분 설명하기",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "473a6a1bfbc10416da008a2d33b54128222eb1d46f2cbcee6002c645640dec1a"
+      }
+    },
+    {
+      "id": "e4-1-1-4-xc6",
+      "before": {
+        "sourceIndex": 1401,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-1 큰 수::1-1-4 억 알아보기",
+        "sourceFingerprint": "911e068a5879a08f24c637c5ef238fdd0c8b97d948c082f8098fc861c5c597b9",
+        "proposalFingerprint": "3d930cebacfa0c7bdc6008953f2561de9f9ad6787dcf66338f0ed61b28d5bb5d",
+        "reviewStatus": "draft",
+        "id": "e4-1-1-4-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "$9999$만보다 $1$만 큰 수를 억을 써서 나타내고, 그 까닭을 만의 개수로 설명하세요.",
+        "bAnswer": "$1$억입니다. 만이 $10000$개가 되면 $1$억이기 때문입니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$1$억",
+              "일억",
+              "억"
+            ]
+          },
+          {
+            "anyOf": [
+              "만이 $10000$개이면 $1$억",
+              "만 $10000$개가 모여 $1$억"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "만 $10000$개가 $1$억임을 설명",
+        "bReason": "xc5의 천만 묶음과 달리 만의 개수로 억을 설명하게 함",
+        "cDecision": "keep",
+        "cReason": "$9999$만과 $1$만이 보여 더한 결과 하나만 쓰면 됨",
+        "cSlotEquivalents": [
+          [
+            "억",
+            "일억",
+            "$100000000$",
+            "$10000$만"
+          ]
+        ],
+        "answerNotes": "$10000$만은 값이 같아 인정하되 억으로도 쓸 수 있음을 알려 준다.",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "$9999$만보다 $1$만 큰 수",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$9999$만보다 $1$만 큰 수는 {$1$억}이다.",
+        "cStudentSentence": "$9999$만보다 $1$만 큰 수는 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$1$억",
+            "equivalents": [
+              "억",
+              "일억",
+              "$100000000$",
+              "$10000$만"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$9999$만보다 $1$만 큰 수는 □이다.",
+          "answers": [
+            "$1$억"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$9999$만보다 $1$만 큰 수를 억을 써서 나타내고, 그 까닭을 만의 개수로 설명하세요.",
+          "answer": "$1$억입니다. 만이 $10000$개가 되면 $1$억이기 때문입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$1$억",
+                "일억",
+                "억"
+              ]
+            },
+            {
+              "anyOf": [
+                "만이 $10000$개이면 $1$억",
+                "만 $10000$개가 모여 $1$억"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$9999$만보다 $1$만 큰 수는 {$1$억}이다.",
+          "acceptedAnswers": [
+            [
+              "$1$억",
+              "억",
+              "일억",
+              "$100000000$",
+              "$10000$만"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-1-4-xc6",
+          "sourceIndex": 1401,
+          "proposalFingerprint": "3d930cebacfa0c7bdc6008953f2561de9f9ad6787dcf66338f0ed61b28d5bb5d",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "억은 한국어 수 읽기에서 일억과 같은 값이다. 값 없는 임의 단위가 아니라 1억의 표준 읽기이므로 동일한 수 답을 유지한다.",
+          "cReason": "억 일억 100000000과 10000만은 모두 같은 수로 인정한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "normalizedBefore": {
+        "id": "e4-1-1-4-xc6",
+        "grade": "초4",
+        "source": {
+          "id": "e4-1-1-4-xc6",
+          "section": "초4::1-1 큰 수::1-1-4 억 알아보기",
+          "term": "$9999$만보다 $1$만 큰 수",
+          "kind": "성질",
+          "level": "하",
+          "definition": "$9999$만보다 $1$만 큰 수는 {$1$억}이다."
+        },
+        "B": {
+          "prompt": "$9999$만보다 $1$만 큰 수를 억을 써서 나타내고, 그 까닭을 만의 개수로 설명하세요.",
+          "answer": "$1$억입니다. 만이 $10000$개가 되면 $1$억이기 때문입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$1$억",
+                "일억",
+                "억"
+              ]
+            },
+            {
+              "anyOf": [
+                "만이 $10000$개이면 $1$억",
+                "만 $10000$개가 모여 $1$억"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "$9999$만보다 $1$만 큰 수는 {$1$억}이다.",
+          "acceptedAnswers": [
+            [
+              "$1$억",
+              "억",
+              "일억",
+              "$100000000$",
+              "$10000$만"
+            ]
+          ]
+        },
+        "goal": "만 $10000$개가 $1$억임을 설명",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "e9838d0e3a48500cee196fa846571a6ecdd62e6df8db6b908541d5cdb842e057"
+      }
+    },
+    {
+      "id": "e3-1-6-1-xc2",
+      "before": {
+        "sourceIndex": 820,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-6 분수와 소수::1-6-1 똑같이 나누기",
+        "sourceFingerprint": "f8cabdfd4fa275168ba59be4df1f0ced74e51176238730cbb1b73974b6f5bd81",
+        "proposalFingerprint": "abb69bd9f89667e44411fdc27e33fbdc5716c9e587d9a38c4bfbf57e9be496ae",
+        "reviewStatus": "draft",
+        "id": "e3-1-6-1-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "빵 한 개를 똑같이 나누려면 조각의 크기는 어떠해야 하나요? 조각의 모양도 모두 같아야 하는지 함께 쓰세요.",
+        "bAnswer": "나눈 조각들의 크기는 모두 같아야 한다. 모양은 반드시 모두 같을 필요는 없다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "조각들의 크기는 모두 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "조각들의 모양이 반드시 모두 같아야 하는 것은 아니다"
+            ]
+          }
+        ],
+        "bGoal": "같은 크기로 나누는 조건과 같은 모양의 조건을 구별한다",
+        "bReason": "원문이 두 조건을 같은 뜻으로 일반화하므로 크기 조건을 중심으로 두 조건을 구별하게 한다",
+        "cDecision": "rewrite",
+        "cReason": "원문의 모양까지 반드시 같다는 일반화를 제거하고 같은 크기 조건을 짧게 확인한다",
+        "answerNotes": "C의 크기는 나눈 대상의 양을 말한다. 평면 그림의 넓이를 말하는 답은 그 그림 문맥에서 검토하되 크기·넓이를 모든 대상에서 통하는 동의어로 등록하지 않는다",
+        "cAfter": "한 전체를 똑같이 나누려면 나눈 각 조각의 {크기}가 같아야 한다.",
+        "coreAfter": "한 전체를 똑같이 나누려면 나눈 각 부분의 {크기}가 같아야 한다. 모양과 크기가 같아 서로 꼭 겹치는 조각은 같은 크기임을 확인할 수 있지만, 같은 크기의 조각이 반드시 같은 모양일 필요는 없다.",
+        "coreReason": "크기라는 원래 표적을 보존한다. 같은크기로등분하면모양까지같아야한다는원문의 잘못된일반화를고치고 겹침은같은크기확인의한방법으로만남긴다.",
+        "exampleNeeded": "같은 크기의 9칸 전체를 3칸짜리 곧은 조각 하나와 3칸짜리 구부러진 조각 두 개로 나눈 그림; 칸의 크기와 각 조각의 칸 수를 학생이 확인할 수 있게 표시",
+        "reviewerEdited": true,
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "똑같이 나눈 조각의 모양",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "한 전체를 똑같이 나누려면 나눈 각 조각의 {크기}가 같아야 한다.",
+        "cStudentSentence": "한 전체를 똑같이 나누려면 나눈 각 조각의 □가 같아야 한다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "크기",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "빵 한 개를 똑같이 나누려면 조각의 크기는 어떠해야 하나요? 조각의 모양도 모두 같아야 하는지 함께 쓰세요.",
+          "answer": "나눈 조각들의 크기는 모두 같아야 한다. 모양은 반드시 모두 같을 필요는 없다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "조각들의 크기는 모두 같다"
+              ]
+            },
+            {
+              "anyOf": [
+                "조각들의 모양이 반드시 모두 같아야 하는 것은 아니다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "한 전체를 똑같이 나누려면 나눈 각 조각의 {크기}가 같아야 한다.",
+          "acceptedAnswers": [
+            [
+              "크기"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-6-1-xc2",
+          "sourceIndex": 820,
+          "proposalFingerprint": "abb69bd9f89667e44411fdc27e33fbdc5716c9e587d9a38c4bfbf57e9be496ae",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "같은 크기 조각에 같은 모양까지 필요하지 않다는 수학적 사실은 coordinator와 합의된 쟁점이다. 두 조건을 명시적으로 묻는 이 B는 유지한다.",
+          "cReason": "크기 빈칸과 모양 합동을 필요조건으로 강제하지 않는 일반 설명을 그대로 보존한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "normalizedBefore": {
+        "id": "e3-1-6-1-xc2",
+        "grade": "초3",
+        "source": {
+          "id": "e3-1-6-1-xc2",
+          "section": "초3::1-6 분수와 소수::1-6-1 똑같이 나누기",
+          "term": "똑같이 나눈 조각의 모양",
+          "kind": "성질",
+          "level": "하",
+          "definition": "똑같이 나눈 조각은 모양과 {크기}가 같아 서로 포개면 꼭 겹친다."
+        },
+        "B": {
+          "prompt": "빵 한 개를 똑같이 나누려면 조각의 크기는 어떠해야 하나요? 조각의 모양도 모두 같아야 하는지 함께 쓰세요.",
+          "answer": "나눈 조각들의 크기는 모두 같아야 한다. 모양은 반드시 모두 같을 필요는 없다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "조각들의 크기는 모두 같다"
+              ]
+            },
+            {
+              "anyOf": [
+                "조각들의 모양이 반드시 모두 같아야 하는 것은 아니다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "한 전체를 똑같이 나누려면 나눈 각 조각의 {크기}가 같아야 한다.",
+          "acceptedAnswers": [
+            [
+              "크기"
+            ]
+          ]
+        },
+        "goal": "같은 크기로 나누는 조건과 같은 모양의 조건을 구별한다",
+        "coreAfter": "한 전체를 똑같이 나누려면 나눈 각 부분의 {크기}가 같아야 한다. 모양과 크기가 같아 서로 꼭 겹치는 조각은 같은 크기임을 확인할 수 있지만, 같은 크기의 조각이 반드시 같은 모양일 필요는 없다.",
+        "coreReason": "크기라는 원래 표적을 보존한다. 같은크기로등분하면모양까지같아야한다는원문의 잘못된일반화를고치고 겹침은같은크기확인의한방법으로만남긴다.",
+        "hash": "9dfe075e10ca7b52beaf8464107f1d788b33c736d1233df05be5040f4c9f152c"
+      }
+    },
+    {
+      "id": "e3-2-1-1-xc7",
+      "before": {
+        "sourceIndex": 940,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-1 곱셈::2-1-1 (세 자리 수)×(한 자리 수) (1)",
+        "sourceFingerprint": "6619b9421113bc3b39dc2500aa1df21a52fd0b369aedacc948a675cc21219027",
+        "proposalFingerprint": "45f52656c37918cd005c47bdc019b3316a524152c8b459d0229a8d5608e94885",
+        "reviewStatus": "draft",
+        "id": "e3-2-1-1-xc7",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "bGoal": null,
+        "bReason": "곱셈식을 읽는 말 한 가지뿐임",
+        "cDecision": "keep",
+        "cReason": "읽는 문장의 앞부분이 다 주어져 있고 끝말만 쓰면 됨",
+        "exclusionReason": "식 읽기는 단순 읽기 규칙이라 설명할 뜻이나 이유가 없음",
+        "answerNotes": "'같다', '같아요'도 뜻이 같으면 정답.",
+        "learningRole": "naming",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "곱셈식 읽기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$112\\times4=448$은 $112$ 곱하기 $4$는 $448$과 {같습니다}라고 읽는다.",
+        "cStudentSentence": "$112\\times4=448$은 $112$ 곱하기 $4$는 $448$과 □라고 읽는다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "같습니다",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$112\\times4=448$은 $112$ 곱하기 $4$는 $448$과 □라고 읽는다.",
+          "answers": [
+            "같습니다"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "$112\\times4=448$은 $112$ 곱하기 $4$는 $448$과 {같습니다}라고 읽는다.",
+          "acceptedAnswers": [
+            [
+              "같습니다"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "곱셈식을 읽는 말 한 가지뿐임"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-2-1-1-xc7",
+          "sourceIndex": 940,
+          "proposalFingerprint": "45f52656c37918cd005c47bdc019b3316a524152c8b459d0229a8d5608e94885",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "naming",
+          "bDecision": "exclude",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "식 읽기 설명형 B 제외는 유지한다.",
+          "cReason": "등호가 같다는 뜻임을 읽는 표준 수학 기호의 의미 확인이다. 단순 일상 어미 복원과 달리 수학적 읽기 목표가 있어 유지한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "normalizedBefore": {
+        "id": "e3-2-1-1-xc7",
+        "grade": "초3",
+        "source": {
+          "id": "e3-2-1-1-xc7",
+          "section": "초3::2-1 곱셈::2-1-1 (세 자리 수)×(한 자리 수) (1)",
+          "term": "곱셈식 읽기",
+          "kind": "방법",
+          "level": "하",
+          "definition": "$112\\times4=448$은 $112$ 곱하기 $4$는 $448$과 {같습니다}라고 읽는다."
+        },
+        "B": {
+          "excluded": "곱셈식을 읽는 말 한 가지뿐임"
+        },
+        "C": {
+          "sentence": "$112\\times4=448$은 $112$ 곱하기 $4$는 $448$과 {같습니다}라고 읽는다.",
+          "acceptedAnswers": [
+            [
+              "같습니다"
+            ]
+          ]
+        },
+        "goal": "naming",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "ff21cb25889d839c8cf9b8d29084b4f847485b3d9475c919e3e78a0e98dbec38"
+      }
+    },
+    {
+      "id": "e4-1-3-2-xc14",
+      "before": {
+        "sourceIndex": 1678,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-3 곱셈과 나눗셈::1-3-2 (세 자리 수)×(두 자리 수)의 계산",
+        "sourceFingerprint": "8936a99b0734b4eb0a0fae1784c23e10faf898e9148957c4c9ac8190db7292f3",
+        "proposalFingerprint": "2b51567d47b52a61a2ff7486dcce63b12fb080a6db66ef6d901ae97fa1bae7d7",
+        "reviewStatus": "draft",
+        "id": "e4-1-3-2-xc14",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "definition",
+        "bGoal": "순서를 바꾼 곱 견주기",
+        "bReason": "순서를 바꿔도 곱이 같다는 설명이 앞 항목과 겹침",
+        "exclusionReason": "e4-1-3-1-xc7의 B가 같은 성질을 이미 묻고 있어 수만 바꾼 반복이 됨",
+        "cDecision": "keep",
+        "cReason": "두 식이 보이고 '같다' 비교만 쓰면 됨",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "곱하는 순서를 바꾼 곱",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$24\\times132$는 $132\\times24$와 곱이 {같다}.",
+        "cStudentSentence": "$24\\times132$는 $132\\times24$와 곱이 □.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "같다",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$24\\times132$는 $132\\times24$와 곱이 □.",
+          "answers": [
+            "같다"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "$24\\times132$는 $132\\times24$와 곱이 {같다}.",
+          "acceptedAnswers": [
+            [
+              "같다"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "순서를 바꿔도 곱이 같다는 설명이 앞 항목과 겹침"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-3-2-xc14",
+          "sourceIndex": 1678,
+          "proposalFingerprint": "2b51567d47b52a61a2ff7486dcce63b12fb080a6db66ef6d901ae97fa1bae7d7",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "definition",
+          "bDecision": "exclude",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "이미 exclusionReason에 e4-1-3-1-xc7이라는 구체 대체 ID가 있어 미명시 지적은 현재 필드와 다르다.",
+          "cReason": "순서를 바꾼 두 곱의 같음을 비교하는 C는 유지한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "normalizedBefore": {
+        "id": "e4-1-3-2-xc14",
+        "grade": "초4",
+        "source": {
+          "id": "e4-1-3-2-xc14",
+          "section": "초4::1-3 곱셈과 나눗셈::1-3-2 (세 자리 수)×(두 자리 수)의 계산",
+          "term": "곱하는 순서를 바꾼 곱",
+          "kind": "성질",
+          "level": "중",
+          "definition": "$24\\times132$는 $132\\times24$와 곱이 {같다}."
+        },
+        "B": {
+          "excluded": "순서를 바꿔도 곱이 같다는 설명이 앞 항목과 겹침"
+        },
+        "C": {
+          "sentence": "$24\\times132$는 $132\\times24$와 곱이 {같다}.",
+          "acceptedAnswers": [
+            [
+              "같다"
+            ]
+          ]
+        },
+        "goal": "순서를 바꾼 곱 견주기",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "de1191e84c3feea9fcfadd77eca2bfa80a67de3e0fe5f81af9abf94d520e0fc2"
+      }
+    },
+    {
+      "id": "e4-1-4-1-xc9",
+      "before": {
+        "sourceIndex": 1799,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-4 평면도형의 이동::1-4-1 점의 이동",
+        "sourceFingerprint": "72b088c509fc6044c88c2366db94618f26db170cfe0dfdba0ee96654f486ba1c",
+        "proposalFingerprint": "8e48a0f52fb7a891221b16565ce3266a4cdd9a2e1ee9a7e10ad5fe98122bd18d",
+        "reviewStatus": "draft",
+        "id": "e4-1-4-1-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "점이 아래쪽으로 옮겨 갔다. 이 이동을 화살표로 그릴 때 화살표는 어느 쪽으로 그려야 하고, 왜 그런지 쓰시오.",
+        "bAnswer": "아래쪽으로 그린다. 화살표가 점이 옮겨 간 방향을 나타내기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "아래쪽으로 그린다"
+            ]
+          },
+          {
+            "anyOf": [
+              "화살표가 옮겨 간 방향을 나타낸다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "화살표로 이동 방향 나타내기",
+        "bReason": "화살표 방향과 이동 방향의 대응 확인",
+        "cDecision": "rewrite",
+        "cAfter": "점의 이동을 화살표로 그리면, 화살표가 가리키는 쪽이 점이 옮겨 간 {방향}이다.",
+        "cReason": "무엇을 나타내는지 불분명한 빈칸을 분명히 함",
+        "cSlotEquivalents": [
+          [
+            "쪽",
+            "방향 쪽"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "화살표로 나타낸 이동",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "점의 이동을 화살표로 그리면, 화살표가 가리키는 쪽이 점이 옮겨 간 {방향}이다.",
+        "cStudentSentence": "점의 이동을 화살표로 그리면, 화살표가 가리키는 쪽이 점이 옮겨 간 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "방향",
+            "equivalents": [
+              "쪽",
+              "방향 쪽"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "점이 아래쪽으로 옮겨 갔다. 이 이동을 화살표로 그릴 때 화살표는 어느 쪽으로 그려야 하고, 왜 그런지 쓰시오.",
+          "answer": "아래쪽으로 그린다. 화살표가 점이 옮겨 간 방향을 나타내기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "아래쪽으로 그린다"
+              ]
+            },
+            {
+              "anyOf": [
+                "화살표가 옮겨 간 방향을 나타낸다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "점의 이동을 화살표로 그리면, 화살표가 가리키는 쪽이 점이 옮겨 간 {방향}이다.",
+          "acceptedAnswers": [
+            [
+              "방향",
+              "쪽",
+              "방향 쪽"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-4-1-xc9",
+          "sourceIndex": 1799,
+          "proposalFingerprint": "8e48a0f52fb7a891221b16565ce3266a4cdd9a2e1ee9a7e10ad5fe98122bd18d",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "아래쪽만 복사해서는 화살표가 이동 방향을 나타낸다는 필수 이유를 충족하지 못한다.",
+          "cReason": "방향을 나타내는 화살표의 뜻을 짧게 확인한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "normalizedBefore": {
+        "id": "e4-1-4-1-xc9",
+        "grade": "초4",
+        "source": {
+          "id": "e4-1-4-1-xc9",
+          "section": "초4::1-4 평면도형의 이동::1-4-1 점의 이동",
+          "term": "화살표로 나타낸 이동",
+          "kind": "방법",
+          "level": "하",
+          "definition": "점의 이동은 화살표로 그려 {방향}을 나타낼 수 있다."
+        },
+        "B": {
+          "prompt": "점이 아래쪽으로 옮겨 갔다. 이 이동을 화살표로 그릴 때 화살표는 어느 쪽으로 그려야 하고, 왜 그런지 쓰시오.",
+          "answer": "아래쪽으로 그린다. 화살표가 점이 옮겨 간 방향을 나타내기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "아래쪽으로 그린다"
+              ]
+            },
+            {
+              "anyOf": [
+                "화살표가 옮겨 간 방향을 나타낸다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "점의 이동을 화살표로 그리면, 화살표가 가리키는 쪽이 점이 옮겨 간 {방향}이다.",
+          "acceptedAnswers": [
+            [
+              "방향",
+              "쪽",
+              "방향 쪽"
+            ]
+          ]
+        },
+        "goal": "화살표로 이동 방향 나타내기",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "87f5c038046082e11892cae017d1ac8e3804a37f09d55fb0a7c4863a58490e39"
+      }
+    },
+    {
+      "id": "e3-2-5-4-xc12",
+      "before": {
+        "sourceIndex": 1245,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::2-5 들이와 무게::2-5-4 무게 비교하기",
+        "sourceFingerprint": "b16aabc24662d2a7c7e785cc8f0ca9939e98510c20a3e5b2b4db06587392fe50",
+        "proposalFingerprint": "0d5dbeb4c6173d54c5b644945a704ae2c3a411d8fc9c94e5ba869461ca430d66",
+        "reviewStatus": "draft",
+        "id": "e3-2-5-4-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "풀은 바둑돌 $5$개와 무게가 같고, 가위는 클립 $8$개와 무게가 같습니다. 개수가 더 많다고 해서 가위가 더 무겁다고 할 수 없는 까닭을 쓰세요.",
+        "bAnswer": "바둑돌 한 개와 클립 한 개의 무게가 서로 달라서 개수만으로는 비교할 수 없기 때문입니다. 같은 물건으로 재어야 비교할 수 있습니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "재는 물건 한 개의 무게가 서로 다르다"
+            ]
+          },
+          {
+            "anyOf": [
+              "개수만으로 비교할 수 없다"
+            ]
+          }
+        ],
+        "bGoal": "재는 물건이 다르면 개수로 무게를 견줄 수 없음을 설명",
+        "bReason": "'단위로 쓰는 물건'이라는 어려운 말 대신 바둑돌과 클립 상황으로 물음",
+        "cDecision": "rewrite",
+        "cAfter": "가는 바둑돌 $5$개, 나는 클립 $5$개와 무게가 같다. 바둑돌 한 개와 클립 한 개의 무게가 서로 다르므로 가와 나의 무게가 {같다}고 할 수 없다.",
+        "cReason": "원문의 '단위로 쓰는 물건'은 초3에게 어렵고 빈칸 '비교할 수 없다'는 문장 끝 복원임. 구체 상황의 '같다' 판단으로 바꿈",
+        "answerNotes": "'같다' 정답",
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "재는 물건의 무게가 다를 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "가는 바둑돌 $5$개, 나는 클립 $5$개와 무게가 같다. 바둑돌 한 개와 클립 한 개의 무게가 서로 다르므로 가와 나의 무게가 {같다}고 할 수 없다.",
+        "cStudentSentence": "가는 바둑돌 $5$개, 나는 클립 $5$개와 무게가 같다. 바둑돌 한 개와 클립 한 개의 무게가 서로 다르므로 가와 나의 무게가 □고 할 수 없다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "같다",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "풀은 바둑돌 $5$개와 무게가 같고, 가위는 클립 $8$개와 무게가 같습니다. 개수가 더 많다고 해서 가위가 더 무겁다고 할 수 없는 까닭을 쓰세요.",
+          "answer": "바둑돌 한 개와 클립 한 개의 무게가 서로 달라서 개수만으로는 비교할 수 없기 때문입니다. 같은 물건으로 재어야 비교할 수 있습니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "재는 물건 한 개의 무게가 서로 다르다"
+              ]
+            },
+            {
+              "anyOf": [
+                "개수만으로 비교할 수 없다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "가는 바둑돌 $5$개, 나는 클립 $5$개와 무게가 같다. 바둑돌 한 개와 클립 한 개의 무게가 서로 다르므로 가와 나의 무게가 {같다}고 할 수 없다.",
+          "acceptedAnswers": [
+            [
+              "같다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-2-5-4-xc12",
+          "sourceIndex": 1245,
+          "proposalFingerprint": "0d5dbeb4c6173d54c5b644945a704ae2c3a411d8fc9c94e5ba869461ca430d66",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "단위 물건 무게가 달라 개수만으로 비교 못하는 이유다.",
+          "cReason": "각 물건과 기준추의 같음은 가와 나가 같은지와 다른 비교이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "normalizedBefore": {
+        "id": "e3-2-5-4-xc12",
+        "grade": "초3",
+        "source": {
+          "id": "e3-2-5-4-xc12",
+          "section": "초3::2-5 들이와 무게::2-5-4 무게 비교하기",
+          "term": "재는 물건의 무게가 다를 때",
+          "kind": "성질",
+          "level": "중",
+          "definition": "단위로 쓰는 물건의 무게가 서로 다르면 그 개수로는 무게를 {비교할 수 없다}."
+        },
+        "B": {
+          "prompt": "풀은 바둑돌 $5$개와 무게가 같고, 가위는 클립 $8$개와 무게가 같습니다. 개수가 더 많다고 해서 가위가 더 무겁다고 할 수 없는 까닭을 쓰세요.",
+          "answer": "바둑돌 한 개와 클립 한 개의 무게가 서로 달라서 개수만으로는 비교할 수 없기 때문입니다. 같은 물건으로 재어야 비교할 수 있습니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "재는 물건 한 개의 무게가 서로 다르다"
+              ]
+            },
+            {
+              "anyOf": [
+                "개수만으로 비교할 수 없다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "가는 바둑돌 $5$개, 나는 클립 $5$개와 무게가 같다. 바둑돌 한 개와 클립 한 개의 무게가 서로 다르므로 가와 나의 무게가 {같다}고 할 수 없다.",
+          "acceptedAnswers": [
+            [
+              "같다"
+            ]
+          ]
+        },
+        "goal": "재는 물건이 다르면 개수로 무게를 견줄 수 없음을 설명",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "e82e28199ce5948c7511c6298f2e1759ae57cb8edb09d9498b12c8b4f12d5560"
+      }
+    },
+    {
+      "id": "e4-1-4-3-xc28",
+      "before": {
+        "sourceIndex": 1866,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-4 평면도형의 이동::1-4-3 평면도형 뒤집기",
+        "sourceFingerprint": "5335056f6c625ca6045b8daa8231c6c60e62c68dec7baa430f8e6834515e120a",
+        "proposalFingerprint": "abd30ae2199d475e08fc3fd3568c4f0be141d39b698d51d87855d61a9a63b74d",
+        "reviewStatus": "draft",
+        "id": "e4-1-4-3-xc28",
+        "bDecision": "rewrite",
+        "bPrompt": "한 모양과, 세로선을 접는 자리로 삼아 그 모양을 뒤집은 모양을 함께 놓으면 어떤 무늬가 되는가?",
+        "bAnswer": "세로선을 기준으로 왼쪽과 오른쪽이 서로 같은 무늬가 되어, 세로선을 접으면 꼭 맞게 포개진다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "왼쪽과 오른쪽이 같은 무늬",
+              "접으면 꼭 맞게 포개진다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "뒤집어 만든 무늬",
+        "bReason": "뒤집은 모양을 붙이면 좌우가 같은 무늬가 됨",
+        "exampleNeeded": "세로선 왼쪽에 간단한 모양(예: 나뭇잎)을 그린 그림",
+        "cDecision": "rewrite",
+        "cAfter": "한 모양과, 세로선을 접는 자리로 삼아 그 모양을 뒤집은 모양을 함께 놓으면 세로선을 접었을 때 양쪽이 {꼭 맞게} 포개지는 무늬가 된다.",
+        "cReason": "왼쪽과 오른쪽이 같은이 불명확해 접어 포개지는 말로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "완전히",
+            "똑같이"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "뒤집어서 만든 무늬",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "한 모양과, 세로선을 접는 자리로 삼아 그 모양을 뒤집은 모양을 함께 놓으면 세로선을 접었을 때 양쪽이 {꼭 맞게} 포개지는 무늬가 된다.",
+        "cStudentSentence": "한 모양과, 세로선을 접는 자리로 삼아 그 모양을 뒤집은 모양을 함께 놓으면 세로선을 접었을 때 양쪽이 □ 포개지는 무늬가 된다.",
+        "cSlotAnswers": [
+          {
+            "expected": "꼭 맞게",
+            "equivalents": [
+              "완전히",
+              "똑같이"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "한 모양과, 세로선을 접는 자리로 삼아 그 모양을 뒤집은 모양을 함께 놓으면 어떤 무늬가 되는가?",
+          "answer": "세로선을 기준으로 왼쪽과 오른쪽이 서로 같은 무늬가 되어, 세로선을 접으면 꼭 맞게 포개진다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "왼쪽과 오른쪽이 같은 무늬",
+                "접으면 꼭 맞게 포개진다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "한 모양과, 세로선을 접는 자리로 삼아 그 모양을 뒤집은 모양을 함께 놓으면 세로선을 접었을 때 양쪽이 {꼭 맞게} 포개지는 무늬가 된다.",
+          "acceptedAnswers": [
+            [
+              "꼭 맞게",
+              "완전히",
+              "똑같이"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-4-3-xc28",
+          "sourceIndex": 1866,
+          "proposalFingerprint": "abd30ae2199d475e08fc3fd3568c4f0be141d39b698d51d87855d61a9a63b74d",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "접었을 때 일치하는 무늬라는 결과를 설명한다.",
+          "cReason": "꼭 맞게는 단순 부사가 아니라 부분 겹침과 구별되는 완전 일치 조건이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "normalizedBefore": {
+        "id": "e4-1-4-3-xc28",
+        "grade": "초4",
+        "source": {
+          "id": "e4-1-4-3-xc28",
+          "section": "초4::1-4 평면도형의 이동::1-4-3 평면도형 뒤집기",
+          "term": "뒤집어서 만든 무늬",
+          "kind": "방법",
+          "level": "상",
+          "definition": "한 모양과, 세로선을 접는 자리로 삼아 그 모양을 뒤집은 모양을 함께 놓으면 {왼쪽과 오른쪽이 같은} 무늬가 된다."
+        },
+        "B": {
+          "prompt": "한 모양과, 세로선을 접는 자리로 삼아 그 모양을 뒤집은 모양을 함께 놓으면 어떤 무늬가 되는가?",
+          "answer": "세로선을 기준으로 왼쪽과 오른쪽이 서로 같은 무늬가 되어, 세로선을 접으면 꼭 맞게 포개진다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "왼쪽과 오른쪽이 같은 무늬",
+                "접으면 꼭 맞게 포개진다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "한 모양과, 세로선을 접는 자리로 삼아 그 모양을 뒤집은 모양을 함께 놓으면 세로선을 접었을 때 양쪽이 {꼭 맞게} 포개지는 무늬가 된다.",
+          "acceptedAnswers": [
+            [
+              "꼭 맞게",
+              "완전히",
+              "똑같이"
+            ]
+          ]
+        },
+        "goal": "뒤집어 만든 무늬",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "098b069015148cc7754a595d1fdb95a21468b9399e004d7fff6565f71cf62f2f"
+      }
+    },
+    {
+      "id": "e4-1-6-5-xc15",
+      "before": {
+        "sourceIndex": 2082,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+        "sourceFingerprint": "6dff2d485a1f66a875500ed7d60af1ae74b9b92449a68b548bc15a872c043295",
+        "proposalFingerprint": "ead3c386a927edc6e90a002dd7530e1649632d8323ed6ffac5ba934a3541df95",
+        "reviewStatus": "draft",
+        "id": "e4-1-6-5-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "$12\\div3=\\square\\div6$에서 $\\square$에 알맞은 수를 구하고, 어떻게 아는지 쓰시오.",
+        "bAnswer": "$24$. 나누는 수가 $3$에서 $6$으로 $2$배가 되었으므로 $12$도 $2$배 한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$24$"
+            ]
+          },
+          {
+            "anyOf": [
+              "나누는 수가 $2$배라 나누어지는 수도 $2$배"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "나눗셈식 빈칸 구하기",
+        "bReason": "몫을 지키려 같은 배로 맞추는지 확인",
+        "cDecision": "keep",
+        "cReason": "'같은 배'가 짧아 유지",
+        "cSlotEquivalents": [
+          [
+            "똑같은 배"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "계산하지 않고 빈칸 구하기 — 나눗셈식",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "나누어떨어지고 몫이 같은 두 나눗셈식에서 나누는 수가 몇 배가 되면 나누어지는 수도 {같은 배}가 되어야 한다.",
+        "cStudentSentence": "나누어떨어지고 몫이 같은 두 나눗셈식에서 나누는 수가 몇 배가 되면 나누어지는 수도 □가 되어야 한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같은 배",
+            "equivalents": [
+              "똑같은 배"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "나누어떨어지고 몫이 같은 두 나눗셈식에서 나누는 수가 몇 배가 되면 나누어지는 수도 □가 되어야 한다.",
+          "answers": [
+            "같은 배"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "$12\\div3=\\square\\div6$에서 $\\square$에 알맞은 수를 구하고, 어떻게 아는지 쓰시오.",
+          "answer": "$24$. 나누는 수가 $3$에서 $6$으로 $2$배가 되었으므로 $12$도 $2$배 한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$24$"
+              ]
+            },
+            {
+              "anyOf": [
+                "나누는 수가 $2$배라 나누어지는 수도 $2$배"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "나누어떨어지고 몫이 같은 두 나눗셈식에서 나누는 수가 몇 배가 되면 나누어지는 수도 {같은 배}가 되어야 한다.",
+          "acceptedAnswers": [
+            [
+              "같은 배",
+              "똑같은 배"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-1-6-5-xc15",
+          "sourceIndex": 2082,
+          "proposalFingerprint": "ead3c386a927edc6e90a002dd7530e1649632d8323ed6ffac5ba934a3541df95",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "keep",
+          "verdict": "retain-planning-proposal",
+          "bReason": "몫이 같으려 나누는 수와 나누어지는 수가 같은 배로 변한다.",
+          "cReason": "두 수의 서로 다른 역할 사이 같은 배 관계를 유지한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "normalizedBefore": {
+        "id": "e4-1-6-5-xc15",
+        "grade": "초4",
+        "source": {
+          "id": "e4-1-6-5-xc15",
+          "section": "초4::1-6 규칙 찾기::1-6-5 등호(=)를 사용하여 나타내기",
+          "term": "계산하지 않고 빈칸 구하기 — 나눗셈식",
+          "kind": "방법",
+          "level": "중",
+          "definition": "나누어떨어지고 몫이 같은 두 나눗셈식에서 나누는 수가 몇 배가 되면 나누어지는 수도 {같은 배}가 되어야 한다."
+        },
+        "B": {
+          "prompt": "$12\\div3=\\square\\div6$에서 $\\square$에 알맞은 수를 구하고, 어떻게 아는지 쓰시오.",
+          "answer": "$24$. 나누는 수가 $3$에서 $6$으로 $2$배가 되었으므로 $12$도 $2$배 한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$24$"
+              ]
+            },
+            {
+              "anyOf": [
+                "나누는 수가 $2$배라 나누어지는 수도 $2$배"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "나누어떨어지고 몫이 같은 두 나눗셈식에서 나누는 수가 몇 배가 되면 나누어지는 수도 {같은 배}가 되어야 한다.",
+          "acceptedAnswers": [
+            [
+              "같은 배",
+              "똑같은 배"
+            ]
+          ]
+        },
+        "goal": "나눗셈식 빈칸 구하기",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "1632f79ee0b7395c3f2b18349acbcc0409f50a91937ec919a07eb9a26a83e8d6"
+      }
+    },
+    {
+      "id": "e3-1-2-4-xc19",
+      "before": {
+        "sourceIndex": 534,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-2 평면도형::1-2-4 직사각형 알아보기",
+        "sourceFingerprint": "e4103c78cbaeb44030fb8bdbc67c7af1189c0a5867cd57393bac71c29ebbedc1",
+        "proposalFingerprint": "6d24559245e1e4f4b8b0aed3734a21de67667bc941a47c11b8178f68c32225a0",
+        "reviewStatus": "draft",
+        "id": "e3-1-2-4-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "직사각형 안에 세로선 하나를 그어 둘로 나누었습니다. 이 그림에서 찾을 수 있는 크고 작은 직사각형은 모두 몇 개인지 쓰고, $2$개가 아닌 까닭을 쓰세요.",
+        "bAnswer": "$3$개입니다. 작은 직사각형 $2$개 말고 둘을 합친 전체도 직사각형이기 때문입니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$3$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "전체도 직사각형"
+            ]
+          }
+        ],
+        "bGoal": "나누어진 직사각형을 셀 때 전체까지 세는 까닭 설명하기",
+        "bReason": "원문 예제 상황으로 자립시켜 개수와 까닭을 묻게 함",
+        "cDecision": "rewrite",
+        "cAfter": "직사각형을 세로선 하나로 나누면 작은 직사각형 $2$개와 전체 직사각형 $1$개가 있어서 직사각형은 모두 {$3$}개이다.",
+        "cReason": "원문은 문장이 길고 빈칸 '직각이 넷인 사각형'이 어려운 구절이라 예제 상황의 개수를 답하게 함",
+        "exampleNeeded": "세로선 하나로 둘로 나눈 직사각형 그림",
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "나누어진 직사각형 세기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직사각형을 세로선 하나로 나누면 작은 직사각형 $2$개와 전체 직사각형 $1$개가 있어서 직사각형은 모두 {$3$}개이다.",
+        "cStudentSentence": "직사각형을 세로선 하나로 나누면 작은 직사각형 $2$개와 전체 직사각형 $1$개가 있어서 직사각형은 모두 □개이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$3$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "직사각형 안에 세로선 하나를 그어 둘로 나누었습니다. 이 그림에서 찾을 수 있는 크고 작은 직사각형은 모두 몇 개인지 쓰고, $2$개가 아닌 까닭을 쓰세요.",
+          "answer": "$3$개입니다. 작은 직사각형 $2$개 말고 둘을 합친 전체도 직사각형이기 때문입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$3$개"
+              ]
+            },
+            {
+              "anyOf": [
+                "전체도 직사각형"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "직사각형을 세로선 하나로 나누면 작은 직사각형 $2$개와 전체 직사각형 $1$개가 있어서 직사각형은 모두 {$3$}개이다.",
+          "acceptedAnswers": [
+            [
+              "$3$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-2-4-xc19",
+          "sourceIndex": 534,
+          "proposalFingerprint": "6d24559245e1e4f4b8b0aed3734a21de67667bc941a47c11b8178f68c32225a0",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "작은 둘 외 전체도 세어 세 개라는 이유가 유용하다; 질문의 이 그림은 실제 분할 그림을 붙여야 한다.",
+          "cReason": "주어진 작은 둘과 전체 하나를 합친 수 3이다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "normalizedBefore": {
+        "id": "e3-1-2-4-xc19",
+        "grade": "초3",
+        "source": {
+          "id": "e3-1-2-4-xc19",
+          "section": "초3::1-2 평면도형::1-2-4 직사각형 알아보기",
+          "term": "나누어진 직사각형 세기",
+          "kind": "방법",
+          "level": "상",
+          "definition": "선을 그어 나눈 직사각형에서는 작은 조각뿐 아니라 여러 조각을 이은 것과 전체 가운데에서도 {직각이 넷인 사각형}이면 모두 센다.",
+          "example": {
+            "prompt": "직사각형을 세로선 하나로 나누면 직사각형이 $2$개가 아니라 $3$개인 까닭은?",
+            "answer": "전체도 직사각형이라서"
+          }
+        },
+        "B": {
+          "prompt": "직사각형 안에 세로선 하나를 그어 둘로 나누었습니다. 이 그림에서 찾을 수 있는 크고 작은 직사각형은 모두 몇 개인지 쓰고, $2$개가 아닌 까닭을 쓰세요.",
+          "answer": "$3$개입니다. 작은 직사각형 $2$개 말고 둘을 합친 전체도 직사각형이기 때문입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$3$개"
+              ]
+            },
+            {
+              "anyOf": [
+                "전체도 직사각형"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "직사각형을 세로선 하나로 나누면 작은 직사각형 $2$개와 전체 직사각형 $1$개가 있어서 직사각형은 모두 {$3$}개이다.",
+          "acceptedAnswers": [
+            [
+              "$3$"
+            ]
+          ]
+        },
+        "goal": "나누어진 직사각형을 셀 때 전체까지 세는 까닭 설명하기",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "4e8c08c46ad68a25dc70ccfb1897d71c63ad64db22dd7905f5f8bbd2c8613b8a"
+      }
+    },
+    {
+      "id": "e3-1-2-5-xc20",
+      "before": {
+        "sourceIndex": 560,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-2 평면도형::1-2-5 정사각형 알아보기",
+        "sourceFingerprint": "c0498159e10957f721d47798e062c6e0b038bc33011088cfd30143371a21d6cf",
+        "proposalFingerprint": "3ce636688e26b04d10a7fbfbd66b14d56253c63bec7baf12cb6ecfa676284899",
+        "reviewStatus": "draft",
+        "id": "e3-1-2-5-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "정사각형을 가로와 세로로 똑같이 둘씩 나누어 작은 칸 $4$개를 만들었습니다. 이 그림에서 찾을 수 있는 크고 작은 정사각형은 모두 몇 개인지 쓰고, $4$개가 아닌 까닭을 쓰세요.",
+        "bAnswer": "$5$개입니다. 작은 정사각형 $4$개 말고 전체도 정사각형이기 때문입니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$5$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "전체도 정사각형"
+            ]
+          }
+        ],
+        "bGoal": "나누어진 정사각형을 셀 때 전체까지 세는 까닭 설명하기",
+        "bReason": "원문 예제 상황으로 자립시켜 개수와 까닭을 묻게 함",
+        "cDecision": "rewrite",
+        "cAfter": "정사각형을 가로, 세로로 똑같이 둘씩 나누면 작은 정사각형 {$4$}개와 전체 정사각형 $1$개가 있어서 정사각형은 모두 {$5$}개이다.",
+        "cReason": "원문 빈칸 두 개가 모두 긴 구절이라 예제 상황의 개수를 답하게 바꿈",
+        "exampleNeeded": "가로, 세로로 둘씩 나눈(2칸×2칸) 정사각형 그림",
+        "learningRole": "procedure",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "나누어진 정사각형 세기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정사각형을 가로, 세로로 똑같이 둘씩 나누면 작은 정사각형 {$4$}개와 전체 정사각형 $1$개가 있어서 정사각형은 모두 {$5$}개이다.",
+        "cStudentSentence": "정사각형을 가로, 세로로 똑같이 둘씩 나누면 작은 정사각형 □개와 전체 정사각형 $1$개가 있어서 정사각형은 모두 □개이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$4$",
+            "equivalents": []
+          },
+          {
+            "expected": "$5$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "정사각형을 가로와 세로로 똑같이 둘씩 나누어 작은 칸 $4$개를 만들었습니다. 이 그림에서 찾을 수 있는 크고 작은 정사각형은 모두 몇 개인지 쓰고, $4$개가 아닌 까닭을 쓰세요.",
+          "answer": "$5$개입니다. 작은 정사각형 $4$개 말고 전체도 정사각형이기 때문입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$5$개"
+              ]
+            },
+            {
+              "anyOf": [
+                "전체도 정사각형"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "정사각형을 가로, 세로로 똑같이 둘씩 나누면 작은 정사각형 {$4$}개와 전체 정사각형 $1$개가 있어서 정사각형은 모두 {$5$}개이다.",
+          "acceptedAnswers": [
+            [
+              "$4$"
+            ],
+            [
+              "$5$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-2-5-xc20",
+          "sourceIndex": 560,
+          "proposalFingerprint": "3ce636688e26b04d10a7fbfbd66b14d56253c63bec7baf12cb6ecfa676284899",
+          "reader": "Codex direct final question/answer/criteria reading",
+          "learningRole": "procedure",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "작은 넷 외 전체 하나를 세는 이유와 5개를 묻는다; 이 그림을 실제 2×2 분할 그림으로 제공해야 한다.",
+          "cReason": "작은 칸 4와 전체 포함 5를 계산한다.",
+          "issues": [],
+          "isReleaseApproval": false
+        }
+      },
+      "normalizedBefore": {
+        "id": "e3-1-2-5-xc20",
+        "grade": "초3",
+        "source": {
+          "id": "e3-1-2-5-xc20",
+          "section": "초3::1-2 평면도형::1-2-5 정사각형 알아보기",
+          "term": "나누어진 정사각형 세기",
+          "kind": "방법",
+          "level": "상",
+          "definition": "칸으로 나눈 정사각형에서 크고 작은 정사각형을 셀 때에는 {작은 칸을 모은 정사각형}과 {전체 정사각형}까지 센다.",
+          "example": {
+            "prompt": "정사각형을 가로, 세로로 똑같이 둘씩 나누면 정사각형이 $4$개가 아니라 $5$개인 까닭은?",
+            "answer": "전체도 정사각형이라서"
+          }
+        },
+        "B": {
+          "prompt": "정사각형을 가로와 세로로 똑같이 둘씩 나누어 작은 칸 $4$개를 만들었습니다. 이 그림에서 찾을 수 있는 크고 작은 정사각형은 모두 몇 개인지 쓰고, $4$개가 아닌 까닭을 쓰세요.",
+          "answer": "$5$개입니다. 작은 정사각형 $4$개 말고 전체도 정사각형이기 때문입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$5$개"
+              ]
+            },
+            {
+              "anyOf": [
+                "전체도 정사각형"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "정사각형을 가로, 세로로 똑같이 둘씩 나누면 작은 정사각형 {$4$}개와 전체 정사각형 $1$개가 있어서 정사각형은 모두 {$5$}개이다.",
+          "acceptedAnswers": [
+            [
+              "$4$"
+            ],
+            [
+              "$5$"
+            ]
+          ]
+        },
+        "goal": "나누어진 정사각형을 셀 때 전체까지 세는 까닭 설명하기",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "df104c69c9572fc1a043e49921a5b7746e8d4418fc1ce231a424704b1d2bc421"
+      }
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "status": "Read-only committed Root baseline checks; preliminary evidence only",
+  "checks": [
+    {
+      "status": "fulfilled",
+      "value": {
+        "chunk_id": "4147a2",
+        "wall_time_seconds": 1.9032779,
+        "exit_code": 0,
+        "original_token_count": 7,
+        "output": "source-ledger.json: same\n"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "chunk_id": "82de97",
+        "wall_time_seconds": 1.4649129,
+        "exit_code": 0,
+        "original_token_count": 92,
+        "output": "초3: 56 sections, 194 concepts, 890 turns — same\n초4: 62 sections, 145 concepts, 872 turns — same\n초5: 56 sections, 197 concepts, 896 turns — same\n초6: 56 sections, 196 concepts, 900 turns — same\n중1: 52 sections, 362 concepts, 1533 turns — same\n중2: 56 sections, 386 concepts, 2086 turns — same\n중3: 22 sections, 177 concepts, 615 turns — same\n"
+      }
+    },
+    {
+      "status": "fulfilled",
+      "value": {
+        "chunk_id": "52a2ba",
+        "wall_time_seconds": 0.6823795,
+        "exit_code": 1,
+        "original_token_count": 206,
+        "output": "node:internal/modules/run_main:123\r\n    triggerUncaughtException(\r\n    ^\r\n\r\nAssertionError [ERR_ASSERTION]: Preliminary output cannot be checked as adopted production\r\n+ actual - expected\r\n\r\n+ 'preliminary'\r\n- 'final'\r\n\r\n    at file:///C:/Users/user/orca/workspaces/todays-math/student-clear-source-sync-20261007/docs/planning/tracks/reports/concept-student-clear-20261006/source-sync-assist-20261007/verify-adoption.mjs:12:8\r\n    at ModuleJob.run (node:internal/modules/esm/module_job:329:25)\r\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:644:26)\r\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {\r\n  generatedMessage: false,\r\n  code: 'ERR_ASSERTION',\r\n  actual: 'preliminary',\r\n  expected: 'final',\r\n  operator: 'strictEqual'\r\n}\r\n\r\nNode.js v22.17.1\r\n"
+      }
+    }
+  ]
+}

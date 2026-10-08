@@ -115,7 +115,7 @@
   align-items: center;
   gap: 8px;
   margin: 0;
-  font-size: 17px;
+  font-size: var(--text-section, 18px);
   font-weight: 700;
 }
 .num {
@@ -137,7 +137,7 @@
   border-radius: var(--control-radius, 8px);
   background: transparent;
   color: var(--e-muted);
-  font-size: 13px;
+  font-size: var(--text-body, 14px);
   font-weight: 600;
   white-space: nowrap;
 }
@@ -148,7 +148,7 @@
 .desc {
   margin: 6px 0 0;
   color: var(--e-meta);
-  font-size: 13px;
+  font-size: var(--text-body, 14px);
 }
 
 /* ── 이번 시험 준비 ────────────────────────────────────────── */
@@ -334,7 +334,7 @@
   margin: 14px 0 0;
   padding-top: 12px;
   border-top: 1px solid var(--e-line-soft);
-  font-size: 13px;
+  font-size: var(--text-body, 14px);
   color: var(--e-muted);
 }
 .gradeLine b {
@@ -351,7 +351,7 @@
   border-radius: var(--control-radius, 8px);
   background: transparent;
   color: var(--e-danger);
-  font-size: 13px;
+  font-size: var(--text-body, 14px);
   font-weight: 600;
 }
 .dangerButton:hover {
@@ -385,7 +385,7 @@
 }
 .setTitle {
   margin: 6px 0 2px;
-  font-size: 15px;
+  font-size: var(--text-body, 14px);
   font-weight: 650;
   overflow-wrap: anywhere;
 }
@@ -403,7 +403,7 @@
 }
 .count b {
   display: block;
-  font-size: 22px;
+  font-size: var(--text-section, 18px);
   font-weight: 700;
   color: #293c60;
   font-variant-numeric: tabular-nums;
@@ -583,7 +583,7 @@
 .metaLine {
   margin: 6px 0 14px;
   color: var(--e-muted);
-  font-size: 13px;
+  font-size: var(--text-body, 14px);
 }
 .titleInput {
   box-sizing: border-box;
@@ -706,7 +706,7 @@
   align-items: center;
   gap: 4px 10px;
   margin: 0;
-  font-size: 13px;
+  font-size: var(--text-body, 14px);
   line-height: 1.6;
   color: var(--e-ink);
 }
@@ -715,7 +715,7 @@
   border-radius: 4px;
   padding: 0 6px;
   color: var(--e-muted);
-  font-size: 11px;
+  font-size: var(--text-caption, 12px);
   font-weight: 700;
   white-space: nowrap;
 }
@@ -731,7 +731,7 @@
   border-radius: var(--control-radius, 8px);
   background: #fff;
   color: var(--e-accent-ink);
-  font-size: 13px;
+  font-size: var(--text-body, 14px);
   font-weight: 600;
   white-space: nowrap;
 }
@@ -842,7 +842,7 @@
 .examLine {
   margin: 0 0 8px;
   color: var(--e-muted);
-  font-size: 13px;
+  font-size: var(--text-body, 14px);
 }
 .libraryList {
   margin: 0;

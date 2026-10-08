@@ -134,15 +134,130 @@ def brace_scripts(script: str) -> str:
     return _SCRIPT_RUN.sub(fix, script)
 
 
+#: 홀로 선 `over`(분수) — `overline` · `overbrace` 같은 다른 낱말의 머리가 아닌 것
+_OVER = re.compile(r"(?<![A-Za-z\\])(?:over|OVER|Over)(?![A-Za-z])")
+#: 뒤 글자와 붙어 버린 `over` — `over2-i` · `overn+1`. 다른 낱말(`overline` …)은 건드리지 않는다
+_OVER_GLUED = re.compile(r"(?<![A-Za-z\\])(over|OVER|Over)(?=[A-Za-z0-9(\[-])(?!line|brace|arc|set|rightarrow|leftarrow|bar)")
+#: 몫을 끊는 글자 — 띄어쓰기와 한글 수식의 간격 기호
+_OPERAND_BREAK = " \t\n`~"
+#: 몫 안에서 식을 가르는 글자(괄호 밖에서) — 등호 · 부등호 · 쉼표 · 줄 맞춤
+_OPERAND_SPLIT = "=<>,&#"
+#: 묶지 않아도 되는 몫 — 글자 하나 · 수 하나
+_SIMPLE_OPERAND = re.compile(r"[A-Za-z]|\d+(?:\.\d+)?")
+
+
+def _left_operand(script: str, end: int) -> tuple[int, int] | None:
+    """`over` 앞의 몫 — [시작, 끝). 이미 중괄호로 묶였거나 묶을 것이 없으면 None."""
+    stop = end
+    while stop > 0 and script[stop - 1] in _OPERAND_BREAK:
+        stop -= 1
+    if stop == 0 or script[stop - 1] == "}":
+        return None
+    start, depth = stop, 0
+    while start > 0:
+        ch = script[start - 1]
+        if ch in _OPERAND_BREAK:
+            break
+        if ch in ")]":
+            depth += 1
+        elif ch in "([{":
+            if depth == 0:
+                break  # 짝 없는 여는 괄호 — 몫은 그 뒤부터다(`left(1+i over …`)
+            depth -= 1
+        elif ch == "}":
+            depth += 1
+        elif ch in _OPERAND_SPLIT and depth == 0:
+            break
+        start -= 1
+    return (start, stop) if start < stop else None
+
+
+def _right_operand(script: str, start: int) -> tuple[int, int] | None:
+    """`over` 뒤의 몫 — [시작, 끝)."""
+    begin = start
+    while begin < len(script) and script[begin] in _OPERAND_BREAK:
+        begin += 1
+    if begin >= len(script) or script[begin] == "{":
+        return None
+    stop, depth = begin, 0
+    while stop < len(script):
+        ch = script[stop]
+        if ch in _OPERAND_BREAK:
+            break
+        if ch in "([{":
+            depth += 1
+        elif ch in ")]}":
+            if depth == 0:
+                break  # 짝 없는 닫는 괄호 — 몫은 그 앞까지다
+            depth -= 1
+        elif ch in _OPERAND_SPLIT and depth == 0:
+            break
+        stop += 1
+    return (begin, stop) if begin < stop else None
+
+
+def brace_over(script: str) -> str:
+    """한글 수식의 분수도 **띄어쓰기까지**가 분자 · 분모다 — `a+3i over 2-i` 는 (a+3i)/(2−i),
+    `4+4i over 1+1 =2+2i` 는 (4+4i)/(1+1) = 2+2i.
+
+    변환 정본은 `over` 바로 옆의 한 토큰만 잡아 `a+3\\frac{i}{2}-i` 를 낸다 — 첨자(`brace_scripts`)와 같은 뿌리이고,
+    같이 KaTeX 는 초록인데 식이 틀린다. 둘째 검토자가 «본문의 분수가 깨졌다»로 짚었다(복소수 · 유리함수 · 귀납법).
+    교과서 자료에서 본문 500여 · 풀이 600여 자리 — 변환 앞에서 그 몫을 중괄호로 묶어 준다."""
+    script = _OVER_GLUED.sub(lambda m: m.group(1) + " ", script)
+    edits: list[tuple[int, int]] = []
+    for match in _OVER.finditer(script):
+        for span in (_left_operand(script, match.start()), _right_operand(script, match.end())):
+            if span and not _SIMPLE_OPERAND.fullmatch(script[span[0]:span[1]]):
+                edits.append(span)
+    for start, stop in sorted(set(edits), reverse=True):
+        script = f"{script[:start]}{{{script[start:stop]}}}{script[stop:]}"
+    return script
+
+
+#: 제곱근 — 뒤 글자와 붙어 있어도 된다(`sqrtab` · `rootx+1`). 세제곱근 `root 3 of 8` 은 건드리지 않는다
+_ROOT = re.compile(r"(?<![A-Za-z\\])(?:sqrt|SQRT|Sqrt|root|ROOT|Root)(?![A-Za-z]*\s*\{)")
+_ROOT_INDEX = re.compile(r"\s*\S+\s+(?:of|OF)(?![A-Za-z])")
+
+
+def brace_roots(script: str) -> str:
+    """제곱근의 몫도 **띄어쓰기까지**다 — `root-1` 은 √(−1), `root2x+1 - root1-x` 는 √(2x+1) − √(1−x),
+    `y= 2rootx = root4x` 는 2√x = √(4x). 변환 정본은 첫 토큰만 덮어 `\\sqrt{-}1` · `\\sqrt{2}x+1` 을 낸다.
+    교과서 자료에서 750여 자리(복소수의 `i=root-1` · 무리함수 · 산술평균과 기하평균)."""
+    edits: list[tuple[int, int]] = []
+    for match in _ROOT.finditer(script):
+        if _ROOT_INDEX.match(script, match.end()):
+            continue  # `root 3 of 8` — 앞의 것은 근의 차수다
+        span = _right_operand(script, match.end())
+        if span and not _SIMPLE_OPERAND.fullmatch(script[span[0]:span[1]]):
+            edits.append(span)
+    for start, stop in sorted(set(edits), reverse=True):
+        script = f"{script[:start]}{{{script[start:stop]}}}{script[stop:]}"
+    return script
+
+
 def roman_escapes(script: str) -> str:
     """`\\P` · `\\C` · `\\A` · `\\cm` — 한글 수식에서 역슬래시는 «곧은 글자로»다. 변환 정본은 그대로 흘려보내
     `\\C_{2}` 가 되고 KaTeX 는 모르는 명령이라 수식을 통째로 포기한다. 변환 앞에서 `{rm …}` 으로 바꾼다."""
     return re.sub(r"\\([A-Za-z]+)", lambda m: "{rm " + m.group(1) + "}", script)
 
 
+#: 앞뒤 글자에 붙어 버린 나눗셈 · 곱셈 낱말 — `(4a-6)div2` · `3times4`. 변환 정본은 띄어 쓴 낱말만 안다
+_GLUED_OPERATOR = re.compile(r"(?<=[0-9)\]}])(div|DIV|times|TIMES)(?=[0-9(\[{\\-])")
+
+
+def unglue_operators(script: str) -> str:
+    """`(4a-6)div2` 의 `div` 는 변환을 못 지나 날 글자로 남는다 — 문제은행의 «죽은 역슬래시» 문지기가 그 문항을 막는다.
+    숫자 · 괄호 사이에 낀 것만 띄운다(글자 사이의 `div` 는 다른 낱말일 수 있다)."""
+    return _GLUED_OPERATOR.sub(lambda m: f" {m.group(1)} ", script)
+
+
 def pre_convert(text: str) -> str:
-    """변환 앞 — `$…$` 안의 한글 수식만 고친다."""
-    return re.sub(r"\$([^$]*)\$", lambda m: "$" + brace_scripts(roman_escapes(m.group(1))) + "$", text)
+    """변환 앞 — `$…$` 안의 한글 수식만 고친다.
+
+    🔴 차례가 있다 — 몫을 묶는 셋(첨자 · 제곱근 · 분수)이 **먼저**, 붙은 낱말 띄우기가 **나중**이다.
+    몫은 원문의 띄어쓰기로 정해진다: `1 over 3times5` 의 분모는 `3times5` 한 덩이다. 먼저 띄우면 분모가 `3` 이 된다
+    (셋째 묶음의 검토자가 «분모 3×5 가 1/3 × 5 로 뽑혔다»로 짚었다 — 띄우기를 앞에 둔 지 한 시간 만이다)."""
+    return re.sub(r"\$([^$]*)\$", lambda m: "$" + unglue_operators(brace_over(brace_roots(brace_scripts(roman_escapes(m.group(1)))))) + "$", text)
 
 
 #: 줄 머리의 사용자 영역 글자 — 기호 글꼴의 «답» 표시 · 글머리표(뜻을 가진 글자가 아니다). 줄 가운데 것은 남긴다(뒤에서 걸린다)

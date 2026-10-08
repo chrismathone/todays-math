@@ -1,0 +1,1476 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T10:54:25.045Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-04-07-c2",
+        "section": "중2::4. 함수::일차함수의 활용(속력, 도형, 기타)",
+        "term": "물의 양",
+        "kind": "공식",
+        "level": "중",
+        "definition": "물을 일정하게 넣거나 뺄 때 $x$분 뒤의 물의 양은 {처음 양}에 {$1$분 동안의 변화량}의 $x$배를 더한 값이다.",
+        "studentC": "물을 일정하게 넣거나 뺄 때 $x$분 뒤의 물의 양은 □에 □의 $x$배를 더한 값이다.",
+        "answers": [
+          "처음 양",
+          "$1$분 동안의 변화량"
+        ]
+      },
+      "proposal": {
+        "id": "m2-04-07-c2",
+        "bDecision": "rewrite",
+        "bPrompt": "물통에 처음 $20\\,\\mathrm{L}$의 물이 있다. 물통이 넘치거나 비기 전까지 (가) $1$분에 $3\\,\\mathrm{L}$씩 일정하게 넣을 때와 (나) $1$분에 $3\\,\\mathrm{L}$씩 일정하게 뺄 때, $x$분 뒤 물의 양 $y\\,\\mathrm{L}$를 각각 $x$의 식으로 나타내시오.",
+        "bAnswer": "(가) $y=20+3x$ (나) $y=20-3x$이다. 처음 양 $20$에 $1$분 동안의 변화량($3$ 또는 $-3$)의 $x$배를 더한다.",
+        "bGoal": "처음 양과 $1$분 동안의 변화량으로 물의 양 식 세우기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$y=20+3x$",
+              "$y=3x+20$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$y=20-3x$",
+              "$y=-3x+20$"
+            ]
+          }
+        ],
+        "bReason": "물을 더하거나 빼는 모델이 성립하는 넘치거나 비기 전 범위를 명시한다.",
+        "cDecision": "rewrite",
+        "cReason": "물통과 계산이 성립하는 범위를 보여 처음 양과 부호를 포함한 분당 변화량의 역할을 묻는다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "처음 양 + 변화량 × 시간으로 식 세우기",
+        "authorBatch": 40,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "cAfter": "물통이 넘치거나 비기 전까지 물을 매분 일정하게 넣거나 빼면, $x$분 뒤 물의 양은 {처음 물의 양}에 {$1$분 동안의 물의 변화량}의 $x$배를 더한 값이다.",
+        "cAnswers": [
+          "처음 물의 양",
+          "$1$분 동안의 물의 변화량"
+        ],
+        "sourceIndex": 543,
+        "part": "m2",
+        "sourceFingerprint": "5212f5bd931809fac76d11ab22f383aa953db83c254ca7bccd063a88c799dc5f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 543
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m2-04-07-c2"
+        },
+        "cMarkedSentence": "물통이 넘치거나 비기 전까지 물을 매분 일정하게 넣거나 빼면, $x$분 뒤 물의 양은 {처음 물의 양}에 {$1$분 동안의 물의 변화량}의 $x$배를 더한 값이다.",
+        "cSlotAnswers": [
+          "처음 물의 양",
+          "$1$분 동안의 물의 변화량"
+        ],
+        "cStudentSentence": "물통이 넘치거나 비기 전까지 물을 매분 일정하게 넣거나 빼면, $x$분 뒤 물의 양은 □에 □의 $x$배를 더한 값이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "처음 물의 양",
+            "equivalentAnswers": [
+              "처음 물의 양"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$1$분 동안의 물의 변화량",
+            "equivalentAnswers": [
+              "$1$분 동안의 물의 변화량"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "처음 양",
+            "accept": [
+              "처음 물의 양",
+              "처음에 들어 있던 물의 양"
+            ]
+          }
+        ],
+        "equivalentExpressions": [
+          {
+            "answer": "$1$분 동안의 변화량",
+            "accept": [
+              "$1$분 동안의 물의 변화량",
+              "$1$분 동안 변하는 물의 양"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "처음 물의 양"
+          ],
+          [
+            "$1$분 동안의 물의 변화량"
+          ]
+        ],
+        "proposalFingerprint": "3cd2efcdcff02a6225ac3687fd86eb9260dc7396c4de7586b3164badd63cb955"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-02-04-xc24",
+        "section": "중1::2. 정수와 유리수::유리수의 곱셈",
+        "term": "곱과 합으로 두 정수 찾기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "곱이 $0$이 아니면 곱의 {부호}로 두 수의 부호가 같은지 다른지를 먼저 정하고, {절댓값의 곱}이 맞는 짝 가운데 합이 맞는 것을 고른다.",
+        "example": {
+          "prompt": "곱이 $-6$, 합이 $1$인 두 정수를 찾을 때 곱의 부호로 알 수 있는 것은?",
+          "answer": "두 수의 부호가 다르다"
+        },
+        "studentC": "곱이 $0$이 아니면 곱의 □로 두 수의 부호가 같은지 다른지를 먼저 정하고, □이 맞는 짝 가운데 합이 맞는 것을 고른다.",
+        "answers": [
+          "부호",
+          "절댓값의 곱"
+        ]
+      },
+      "proposal": {
+        "id": "m1-02-04-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "곱이 $-6$이고 합이 $1$인 두 정수를 찾으려고 한다. 곱의 부호에서 먼저 알 수 있는 것과 그다음에 살펴볼 것을 차례대로 쓰고, 두 정수를 구하시오.",
+        "bAnswer": "곱이 음수이므로 두 수의 부호가 다르다. 절댓값의 곱이 $6$인 짝은 $1$과 $6$, $2$와 $3$이다. 부호를 서로 다르게 붙여 합이 $1$이 되는 것은 $3$과 $-2$이다.",
+        "bGoal": "곱의 부호와 절댓값의 곱을 이용해 조건에 맞는 두 정수를 찾을 수 있다.",
+        "bReason": "곱과 합의 값이 주어져야 찾는 과정을 쓸 수 있다. 실제 값을 주고 '부호 먼저, 절댓값의 곱, 합 확인'의 차례를 설명하게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "곱과 합이 주어진 두 정수를 찾을 때, 곱이 $0$이 아니면 곱의 {부호}로 두 수의 부호가 같은지 다른지를 먼저 정하고, 절댓값의 곱이 맞는 짝 가운데 합이 맞는 것을 고른다.",
+        "cAnswers": [
+          "부호"
+        ],
+        "cReason": "원문은 두 정수를 찾는 상황이라는 말이 제목에만 있어 '합이 맞는 것'이 무슨 뜻인지 알 수 없다. 상황을 문장 앞에 넣고, 문장에 여러 번 나오는 말과 겹치는 둘째 빈칸은 없앴다.",
+        "exampleNeeded": true,
+        "authorBatch": 4,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "곱이 음수이므로 두 수의 부호가 다름"
+            ]
+          },
+          {
+            "anyOf": [
+              "절댓값의 곱이 $6$인 짝($1$과 $6$, $2$와 $3$) 가운데 합이 $1$이 되는 것을 찾음"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$과 $-2$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-002",
+        "learningRole": "procedure",
+        "roleReason": "곱의 부호, 절댓값 짝, 합 확인",
+        "enrichmentEvidence": "enrichment/enrich-004",
+        "sourceIndex": 1134,
+        "part": "m1plus",
+        "sourceFingerprint": "2cfd269f4a011331edb2b528e042815b3b0c84335866cc83b8b5f451ad2a9f11",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1134
+        },
+        "directReview": null,
+        "cMarkedSentence": "곱과 합이 주어진 두 정수를 찾을 때, 곱이 $0$이 아니면 곱의 {부호}로 두 수의 부호가 같은지 다른지를 먼저 정하고, 절댓값의 곱이 맞는 짝 가운데 합이 맞는 것을 고른다.",
+        "cSlotAnswers": [
+          "부호"
+        ],
+        "cStudentSentence": "곱과 합이 주어진 두 정수를 찾을 때, 곱이 $0$이 아니면 곱의 □로 두 수의 부호가 같은지 다른지를 먼저 정하고, 절댓값의 곱이 맞는 짝 가운데 합이 맞는 것을 고른다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "부호",
+            "equivalentAnswers": [
+              "부호"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "부호"
+          ]
+        ],
+        "proposalFingerprint": "5dea36213f5c69069f826ee4f07984bc4eda5116625aad6262b41b9cd575d336"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-05-01-xc16",
+        "section": "중3::5. 삼각비::삼각비의 뜻",
+        "term": "직선의 기울기와 탄젠트",
+        "kind": "성질",
+        "level": "상",
+        "definition": "기울기가 {양수}인 직선이 $x$축의 양의 방향과 이루는 예각을 $a$라 하면 $\\tan a$는 그 직선의 {기울기}와 같다.",
+        "studentC": "기울기가 □인 직선이 $x$축의 양의 방향과 이루는 예각을 $a$라 하면 $\\tan a$는 그 직선의 □와 같다.",
+        "answers": [
+          "양수",
+          "기울기"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-01-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "기울기가 양수인 직선이 $x$축의 양의 방향과 이루는 예각을 $a$라 할 때, $\\tan a$와 이 직선의 기울기는 어떤 관계인지 쓰시오. 또 직선 위의 두 점과 $x$축에 평행한 선분으로 만든 직각삼각형을 이용하여 그 까닭을 쓰시오.",
+        "bAnswer": "$\\tan a$는 기울기와 같다. 그 직각삼각형에서 밑변은 $x$의 값의 증가량, 높이는 $y$의 값의 증가량이므로 $\\tan a$는 ($y$의 값의 증가량)을 ($x$의 값의 증가량)으로 나눈 값, 곧 기울기이다.",
+        "bGoal": "탄젠트와 직선의 기울기 연결",
+        "bReason": "관계와 근거가 될 직각삼각형을 질문에서 정해 증가량의 비로 설명하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\tan a$는 기울기와 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이는 $y$의 값의 증가량, 밑변은 $x$의 값의 증가량",
+              "높이를 밑변으로 나눈 값이 기울기"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "기울기의 부호 조건과 결론 관계를 채우는 짧은 빈칸이다.",
+        "learningRole": "reason",
+        "roleReason": "높이/밑변이 곧 증가량의 비",
+        "authorBatch": 58,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3533,
+        "part": "m3plus",
+        "sourceFingerprint": "d02e38359a6be99afbd5d4d6b8e84739dbd0433b21ecb2a4916050f748506975",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3533
+        },
+        "directReview": null,
+        "cFrozenSentence": "기울기가 □인 직선이 $x$축의 양의 방향과 이루는 예각을 $a$라 하면 $\\tan a$는 그 직선의 □와 같다.",
+        "cFrozenDefinition": "기울기가 {양수}인 직선이 $x$축의 양의 방향과 이루는 예각을 $a$라 하면 $\\tan a$는 그 직선의 {기울기}와 같다.",
+        "cFrozenAnswers": [
+          "양수",
+          "기울기"
+        ],
+        "cMarkedSentence": "기울기가 {양수}인 직선이 $x$축의 양의 방향과 이루는 예각을 $a$라 하면 $\\tan a$는 그 직선의 {기울기}와 같다.",
+        "cSlotAnswers": [
+          "양수",
+          "기울기"
+        ],
+        "cStudentSentence": "기울기가 □인 직선이 $x$축의 양의 방향과 이루는 예각을 $a$라 하면 $\\tan a$는 그 직선의 □와 같다.",
+        "cAnswers": [
+          "양수",
+          "기울기"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "양수",
+            "equivalentAnswers": [
+              "양수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "기울기",
+            "equivalentAnswers": [
+              "기울기"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "양수"
+          ],
+          [
+            "기울기"
+          ]
+        ],
+        "proposalFingerprint": "c7d0cc4273ca969da79771c5f58520c61d07e67d40e0f3172d6e320f30743929"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-05-03-xc7",
+        "section": "중3::5. 삼각비::삼각비의 활용",
+        "term": "벽에 기댄 사다리의 높이",
+        "kind": "방법",
+        "level": "하",
+        "definition": "벽에 기댄 사다리의 길이가 $l$이고 땅과 이루는 각이 $x$이면 사다리 끝이 닿는 높이는 {$l\\sin x$}이다.",
+        "studentC": "벽에 기댄 사다리의 길이가 $l$이고 땅과 이루는 각이 $x$이면 사다리 끝이 닿는 높이는 □이다.",
+        "answers": [
+          "$l\\sin x$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-03-xc7",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "빗변과 각으로 높이를 $l\\sin x$로 구하는 내용이 xc6 비탈과 같다.",
+        "cDecision": "rewrite",
+        "cAfter": "수평인 땅에 수직으로 선 벽에 길이가 $l$인 사다리를 기대어 놓았다. 사다리가 땅과 이루는 각이 $x$이면 사다리 끝이 벽에 닿는 높이는 {$l\\sin x$}이다.",
+        "cAnswers": [
+          "$l\\sin x$"
+        ],
+        "cReason": "땅이 수평이고 벽이 수직이라는 조건이 없어 직각삼각형임이 보장되지 않았다.",
+        "exclusionReason": "xc6 비탈 높이 $l\\sin x$와 같은 구조의 반복 적용이라 별도 설명 목표가 없음",
+        "coreAfter": "수평인 땅에 수직으로 선 벽에 기댄 사다리의 길이가 $l$이고 땅과 이루는 각이 $x$이면 사다리 끝이 닿는 높이는 {$l\\sin x$}이다.",
+        "coreReason": "땅이 수평이고 벽이 땅에 수직이라는 조건이 빠져 있다.",
+        "authorBatch": 59,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "application",
+        "roleReason": "사다리 높이 l sin x",
+        "enrichmentEvidence": "enrichment/enrich-010",
+        "sourceIndex": 3564,
+        "part": "m3plus",
+        "sourceFingerprint": "75aa05b739df7b3b1ca97a3a4c7b8e32d19b6c3defa9e90e818f480ddad227bc",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3564
+        },
+        "directReview": null,
+        "coreBeforeRepair": "수평인 땅에 수직으로 선 벽에 기댄 사다리의 길이가 $l$이고 땅과 이루는 각이 $x$이면 사다리 끝이 닿는 높이는 {$l\\sin x$}이다.",
+        "coreRepairReason": "직각삼각형이 되는 조건만 더했고 원본 핵심어 {$l\\sin x$}가 있어 그대로 보존했다.",
+        "coreRepairEvidence": "core-repair/core-003",
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "수평인 땅에 수직으로 선 벽에 길이가 $l$인 사다리를 기대어 놓았다. 사다리가 땅과 이루는 각이 $x$이면 사다리 끝이 벽에 닿는 높이는 {$l\\sin x$}이다.",
+        "cSlotAnswers": [
+          "$l\\sin x$"
+        ],
+        "cStudentSentence": "수평인 땅에 수직으로 선 벽에 길이가 $l$인 사다리를 기대어 놓았다. 사다리가 땅과 이루는 각이 $x$이면 사다리 끝이 벽에 닿는 높이는 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$l\\sin x$",
+            "equivalentAnswers": [
+              "$l\\sin x$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$l\\sin x$"
+          ]
+        ],
+        "proposalFingerprint": "1b72a5dbc99fb5aeaf48a768f367e7b1c3fe879b8bd179ffc2ab03e11e1b1310"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-05-03-xc13",
+        "section": "중3::5. 삼각비::삼각비의 활용",
+        "term": "수선을 내리는 꼭짓점 고르기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "두 변과 그 사이의 {예각}을 알 때, 한 변의 다른 끝점에서 다른 변을 포함하는 직선에 수선을 내리면 주어진 각이 직각삼각형의 {한 예각}으로 남는다.",
+        "example": {
+          "prompt": "$\\overline{AB}=6$, $\\angle B=60^\\circ$, $\\overline{BC}=8$일 때 $A$에서 직선 $BC$에 수선을 내리는 이점은?",
+          "answer": "$60^\\circ$를 그대로 쓸 수 있어서"
+        },
+        "studentC": "두 변과 그 사이의 □을 알 때, 한 변의 다른 끝점에서 다른 변을 포함하는 직선에 수선을 내리면 주어진 각이 직각삼각형의 □으로 남는다.",
+        "answers": [
+          "예각",
+          "한 예각"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-03-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\overline{AB}=6$, $\\angle B=60^\\circ$, $\\overline{BC}=8$인 삼각형 $ABC$가 있다. $A$에서 직선 $BC$에 수선을 내리는 방법과 $B$에서 직선 $AC$에 수선을 내리는 방법 중, 주어진 각으로 삼각비를 계산하기 좋은 방법을 고르고 이유를 비교하여 설명하시오.",
+        "bAnswer": "$A$에서 수선을 내리면 $60^\\circ$가 나뉘지 않고 직각삼각형의 한 예각으로 남아 $6\\sin 60^\\circ$, $6\\cos 60^\\circ$를 바로 쓸 수 있다. $B$에서 내리면 $60^\\circ$가 크기를 모르는 두 각으로 나뉜다.",
+        "bGoal": "아는 각을 살리는 수선의 위치 고르기",
+        "bReason": "첫 방법이 좋다고 미리 알려 주지 않고 어느 수선이 유리한지 학생이 고른 뒤 각이 나뉘는 차이를 설명하게 한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$A$에서 $BC$에 수선을 내리는 방법이 좋다"
+            ]
+          },
+          {
+            "anyOf": [
+              "주어진 $60$도가 나뉘지 않고 새 직각삼각형의 한 예각으로 남는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$B$에서 $AC$에 수선을 내리면 주어진 $60$도가 크기를 모르는 두 각으로 나뉜다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "삼각형 $ABC$에서 $\\overline{AB}$, $\\overline{BC}$의 길이와 그 끼인각인 예각 $B$의 크기를 알 때, 꼭짓점 {$A$}에서 직선 $BC$에 수선을 내리면 $\\angle B$가 나뉘지 않고 직각삼각형의 한 {예각}으로 남는다.",
+        "cAnswers": [
+          "$A$",
+          "예각"
+        ],
+        "cReason": "'한 변의 다른 끝점', '다른 변' 같은 말이 추상적이고 두 빈칸의 답이 거의 같았다.",
+        "exampleNeeded": true,
+        "coreAfter": "삼각형에서 두 변의 길이와 그 끼인각인 {예각}의 크기를 알 때, 끼인각의 꼭짓점이 아닌 꼭짓점에서 맞은편 변을 포함하는 직선에 수선을 내리면 주어진 각이 나뉘지 않고 직각삼각형의 {한 예각}으로 남는다.",
+        "coreReason": "'한 변의 다른 끝점에서 다른 변'이라는 표현은 중3 학생이 어느 점인지 알기 어렵다.",
+        "authorBatch": 59,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "주어진 각을 나누지 않는 수선",
+        "enrichmentEvidence": "enrichment/enrich-010",
+        "sourceIndex": 3570,
+        "part": "m3plus",
+        "sourceFingerprint": "6d03b9e8af1cdad62fd98cf56911ab3d9d8ee0606a5faf7fb0cb650e3d804d51",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3570
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m3-05-03-xc13"
+        },
+        "coreBeforeRepair": "삼각형에서 두 변의 길이와 그 끼인각인 {예각}의 크기를 알 때, 끼인각의 꼭짓점이 아닌 꼭짓점에서 맞은편 변을 포함하는 직선에 수선을 내리면 주어진 각이 나뉘지 않고 직각삼각형의 {한 예각}으로 남는다.",
+        "coreRepairReason": "'끼인각의 꼭짓점이 아닌 꼭짓점'과 '맞은편 변'으로 원래 뜻을 정확히 옮겼다. 원본 핵심어 {예각}, {한 예각}이 있어 그대로 보존했다.",
+        "coreRepairEvidence": "core-repair/core-003",
+        "cMarkedSentence": "삼각형 $ABC$에서 $\\overline{AB}$, $\\overline{BC}$의 길이와 그 끼인각인 예각 $B$의 크기를 알 때, 꼭짓점 {$A$}에서 직선 $BC$에 수선을 내리면 $\\angle B$가 나뉘지 않고 직각삼각형의 한 {예각}으로 남는다.",
+        "cSlotAnswers": [
+          "$A$",
+          "예각"
+        ],
+        "cStudentSentence": "삼각형 $ABC$에서 $\\overline{AB}$, $\\overline{BC}$의 길이와 그 끼인각인 예각 $B$의 크기를 알 때, 꼭짓점 □에서 직선 $BC$에 수선을 내리면 $\\angle B$가 나뉘지 않고 직각삼각형의 한 □으로 남는다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$A$",
+            "equivalentAnswers": [
+              "$A$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "예각",
+            "equivalentAnswers": [
+              "예각"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$A$"
+          ],
+          [
+            "예각"
+          ]
+        ],
+        "proposalFingerprint": "2abe870e583a2f3a95213d95424045aafb6b2d74afb25f3bd4b96adac5e97756"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-05-02-c2",
+        "section": "중2::5. 도형의 성질::직각삼각형의 합동",
+        "term": "점과 직선 사이의 거리",
+        "kind": "정의",
+        "level": "하",
+        "definition": "점에서 직선으로 {수선}을 긋고, 그 점과 {수선의 발} 사이의 길이를 점과 직선 사이의 거리로 삼는다.",
+        "studentC": "점에서 직선으로 □을 긋고, 그 점과 □ 사이의 길이를 점과 직선 사이의 거리로 삼는다.",
+        "answers": [
+          "수선",
+          "수선의 발"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-02-c2",
+        "bDecision": "rewrite",
+        "bPrompt": "직선 $l$ 위에 있지 않은 점 $P$와 직선 $l$ 사이의 거리는 어떤 선분의 길이로 정하는지 쓰시오.",
+        "bAnswer": "점 $P$에서 직선 $l$에 그은 수선의 발을 $H$라 할 때, 선분 $PH$의 길이이다.",
+        "bGoal": "점과 직선 사이의 거리의 뜻 말하기",
+        "bReason": "수선과 수선의 발은 한 뜻이라 나누면 바른 답이 감점되고, 용어 없이 수직인 선분으로 답해도 맞음",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "점 $P$에서 직선 $l$에 그은 수선의 발까지의 선분의 길이",
+              "점 $P$에서 직선 $l$에 수직으로 그은 선분의 길이",
+              "점 $P$와 직선 $l$ 위의 점을 이은 선분 중 가장 짧은 것의 길이"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cReason": "수선을 긋는 실제 점이 직선 밖에 있다는 조건과 어느 두 점 사이 길이인지 명시한다.",
+        "authorBatch": 41,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "definition",
+        "roleReason": "수선의 발까지의 길이",
+        "enrichmentEvidence": "enrichment/enrich-001",
+        "cAfter": "직선 위에 있지 않은 점에서 그 직선에 {수선}을 긋고, 그 점과 {수선의 발} 사이의 길이를 점과 직선 사이의 거리로 삼는다.",
+        "cAnswers": [
+          "수선",
+          "수선의 발"
+        ],
+        "sourceIndex": 577,
+        "part": "m2",
+        "sourceFingerprint": "4f6a0603167f0d44c86c74b4187325f0421a6e867f16ce0e80fa385e9e81fe13",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 577
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m2-05-02-c2"
+        },
+        "cMarkedSentence": "직선 위에 있지 않은 점에서 그 직선에 {수선}을 긋고, 그 점과 {수선의 발} 사이의 길이를 점과 직선 사이의 거리로 삼는다.",
+        "cSlotAnswers": [
+          "수선",
+          "수선의 발"
+        ],
+        "cStudentSentence": "직선 위에 있지 않은 점에서 그 직선에 □을 긋고, 그 점과 □ 사이의 길이를 점과 직선 사이의 거리로 삼는다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "수선",
+            "equivalentAnswers": [
+              "수선"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "수선의 발",
+            "equivalentAnswers": [
+              "수선의 발"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "수선"
+          ],
+          [
+            "수선의 발"
+          ]
+        ],
+        "proposalFingerprint": "a2444d1b496ed1ff28f3d4c2c84bc5da0cba54aad8333207e83d018425dbc1ca"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-06-01-xc8",
+        "section": "중3::6. 원의 성질::원과 현",
+        "term": "현을 수직이등분하는 직선에 놓인 점",
+        "kind": "성질",
+        "level": "하",
+        "definition": "현 $AB$를 수직이등분하는 직선에 놓인 점은 두 끝 $A$, $B$에서 {같은} 거리에 있다 — 원의 중심도 그 {직선}에 놓인다.",
+        "studentC": "현 $AB$를 수직이등분하는 직선에 놓인 점은 두 끝 $A$, $B$에서 □ 거리에 있다 — 원의 중심도 그 □에 놓인다.",
+        "answers": [
+          "같은",
+          "직선"
+        ]
+      },
+      "proposal": {
+        "id": "m3-06-01-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "원의 중심 $O$가 현 $AB$의 수직이등분선 위에 있는 까닭을 $\\overline{OA}$, $\\overline{OB}$를 이용해 쓰시오.",
+        "bAnswer": "$\\overline{OA}=\\overline{OB}$(반지름)이므로 $O$는 $A$, $B$에서 같은 거리에 있다. 두 점 $A$, $B$에서 같은 거리에 있는 점은 선분 $AB$의 수직이등분선 위에 있다.",
+        "bGoal": "중심이 현의 수직이등분선 위에 있는 까닭",
+        "bReason": "중심이 수직이등분선 위에 놓이는 근거를 반지름으로 설명하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{OA}=\\overline{OB}$",
+              "$O$는 $A$, $B$에서 같은 거리"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 점에서 같은 거리에 있는 점은 수직이등분선 위에 있다",
+              "합동인 두 삼각형으로 수직이등분선 위임을 보임"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "현 $AB$를 수직이등분하는 직선 위의 점은 두 끝 $A$, $B$에서 {같은} 거리에 있다. 원의 중심 $O$도 $\\overline{OA}$, $\\overline{OB}$가 모두 {반지름}이므로 이 직선 위에 놓인다.",
+        "cAnswers": [
+          "같은",
+          "반지름"
+        ],
+        "cReason": "원문 둘째 빈칸 '직선'은 앞 문장에서 베낄 수 있어 '반지름'으로 바꿨다.",
+        "learningRole": "reason",
+        "roleReason": "중심이 현의 수직이등분선 위에 있는 근거",
+        "authorBatch": 60,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3587,
+        "part": "m3plus",
+        "sourceFingerprint": "c7eefb004b9ae2c3374298c486dca725b451993817b5ac3beac941afbcfefe0a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3587
+        },
+        "directReview": null,
+        "cMarkedSentence": "현 $AB$를 수직이등분하는 직선 위의 점은 두 끝 $A$, $B$에서 {같은} 거리에 있다. 원의 중심 $O$도 $\\overline{OA}$, $\\overline{OB}$가 모두 {반지름}이므로 이 직선 위에 놓인다.",
+        "cSlotAnswers": [
+          "같은",
+          "반지름"
+        ],
+        "cStudentSentence": "현 $AB$를 수직이등분하는 직선 위의 점은 두 끝 $A$, $B$에서 □ 거리에 있다. 원의 중심 $O$도 $\\overline{OA}$, $\\overline{OB}$가 모두 □이므로 이 직선 위에 놓인다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "같은",
+            "equivalentAnswers": [
+              "같은"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "반지름",
+            "equivalentAnswers": [
+              "반지름"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "같은"
+          ],
+          [
+            "반지름"
+          ]
+        ],
+        "proposalFingerprint": "8aa8aad99c479d9897345fa3485f09b804f06361963c34c4bdf403306e50d0d1"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-05-04-c9",
+        "section": "중2::5. 도형의 성질::삼각형의 내심",
+        "term": "삼각형의 내심의 성질 — 거리",
+        "kind": "성질",
+        "level": "중",
+        "definition": "내심에서 삼각형의 {세 변}까지의 거리는 모두 같고, 그 거리가 내접원의 {반지름}이다.",
+        "studentC": "내심에서 삼각형의 □까지의 거리는 모두 같고, 그 거리가 내접원의 □이다.",
+        "answers": [
+          "세 변",
+          "반지름"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-04-c9",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각형 $ABC$의 내심 $I$에서 $\\overline{BC}$, $\\overline{CA}$, $\\overline{AB}$에 내린 수선의 발을 각각 $D$, $E$, $F$라 할 때, $\\overline{ID}$, $\\overline{IE}$, $\\overline{IF}$의 길이 사이의 관계와 그 이유를 쓰시오.",
+        "bAnswer": "$\\overline{ID}=\\overline{IE}=\\overline{IF}$이다. $I$는 $\\angle B$의 이등분선 위에 있으므로 $\\triangle IBF\\equiv\\triangle IBD$($\\mathrm{RHA}$ 합동)이고 $\\overline{IF}=\\overline{ID}$이다. 같은 방법으로 $\\overline{ID}=\\overline{IE}$이며, 이 길이가 내접원의 반지름이다.",
+        "bGoal": "내심에서 세 변까지 거리가 같음을 설명하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$ID=IE=IF$",
+              "세 길이가 모두 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "각의 이등분선 위의 점은 두 변에서 같은 거리",
+              "세 선분이 모두 같은 내접원의 반지름이다",
+              "$IB$를 빗변으로 하는 두 직각삼각형의 같은 예각에서 $IF=ID$가 되고, $IC$를 빗변으로 하는 두 삼각형에도 같은 방법을 써 $ID=IE$이다"
+            ]
+          }
+        ],
+        "bReason": "RHA 이름만 적거나 한 쌍만 증명하는 것을 세 거리 같음의 이유로 삼지 않고 이등분선 성질·같은 반지름 또는 모든 쌍에 대한 합동 근거를 확인한다.",
+        "cDecision": "keep",
+        "cReason": "'세 변까지'와 '반지름'을 묻는 짧은 성질 빈칸으로 분명하다.",
+        "learningRole": "reason",
+        "roleReason": "세 변까지 거리가 같은 근거",
+        "authorBatch": 42,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 602,
+        "part": "m2",
+        "sourceFingerprint": "789d8d360398c284d75acdcc2f39d79d24ebf6c048bdeff39acf3e6190b27b74",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 602
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m2-05-04-c9"
+        },
+        "cFrozenSentence": "내심에서 삼각형의 □까지의 거리는 모두 같고, 그 거리가 내접원의 □이다.",
+        "cFrozenDefinition": "내심에서 삼각형의 {세 변}까지의 거리는 모두 같고, 그 거리가 내접원의 {반지름}이다.",
+        "cFrozenAnswers": [
+          "세 변",
+          "반지름"
+        ],
+        "cMarkedSentence": "내심에서 삼각형의 {세 변}까지의 거리는 모두 같고, 그 거리가 내접원의 {반지름}이다.",
+        "cSlotAnswers": [
+          "세 변",
+          "반지름"
+        ],
+        "cStudentSentence": "내심에서 삼각형의 □까지의 거리는 모두 같고, 그 거리가 내접원의 □이다.",
+        "cAnswers": [
+          "세 변",
+          "반지름"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "세 변",
+            "equivalentAnswers": [
+              "세 변",
+              "모든 변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "반지름",
+            "equivalentAnswers": [
+              "반지름"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "세 변",
+            "accept": [
+              "모든 변"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "세 변",
+            "모든 변"
+          ],
+          [
+            "반지름"
+          ]
+        ],
+        "proposalFingerprint": "8d246da48df9b24d4134d2e268126e8c1257ee87c776da13a0ce929d9cee7aae"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-05-06-c7",
+        "section": "중2::5. 도형의 성질::평행사변형이 되는 조건",
+        "term": "평행사변형이 되지 않는 경우",
+        "kind": "성질",
+        "level": "상",
+        "definition": "대변 한 쌍은 평행하고 {나머지 한 쌍}은 길이만 같은 사각형은 평행사변형이 {아닐 수 있다}.",
+        "studentC": "대변 한 쌍은 평행하고 □은 길이만 같은 사각형은 평행사변형이 □.",
+        "answers": [
+          "나머지 한 쌍",
+          "아닐 수 있다"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-06-c7",
+        "bDecision": "rewrite",
+        "bPrompt": "사각형에서 한 쌍의 대변은 평행하고, 나머지 한 쌍의 대변은 길이만 같다. 이 사각형은 항상 평행사변형인지 판단하고, 아니라면 그런 사각형의 예를 말로 설명하시오.",
+        "bAnswer": "항상 평행사변형인 것은 아니다. 예를 들어 윗변과 아랫변이 평행하고 평행하지 않은 두 변의 길이가 같은 사다리꼴(등변사다리꼴)은 평행사변형이 아니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "항상 평행사변형은 아니다",
+              "평행사변형이 아닐 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 밑변의 길이가 다른 등변사다리꼴",
+              "윗변과 아랫변만 평행하고 나머지 두 변의 길이가 같은 사다리꼴"
+            ]
+          }
+        ],
+        "bGoal": "한 쌍 조건을 잘못 섞은 경우 판단",
+        "bReason": "등변사다리꼴이라는 이름만 반복하는 대신 한 쌍만 평행한 실제 반례의 조건을 말로 설명하도록 한다.",
+        "cDecision": "rewrite",
+        "cReason": "같은 대변 쌍으로 바꾸면 참인 다른 조건을 만들 수 있던 빈칸을 닫고 서로 다른 쌍의 조건만으로는 충분하지 않다는 판단을 묻는다.",
+        "learningRole": "reason",
+        "roleReason": "반례로 조건의 범위 판단",
+        "authorBatch": 43,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "cAfter": "대변 한 쌍이 평행하고 나머지 한 쌍의 길이가 같다고 해서, 그 사각형이 반드시 평행사변형인 것은 {아니다}.",
+        "cAnswers": [
+          "아니다"
+        ],
+        "sourceIndex": 622,
+        "part": "m2",
+        "sourceFingerprint": "d55ca57b41bb176edcb39b4aaf3e13c693bd080502e811d4260bef2424addc27",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 622
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m2-05-06-c7"
+        },
+        "cMarkedSentence": "대변 한 쌍이 평행하고 나머지 한 쌍의 길이가 같다고 해서, 그 사각형이 반드시 평행사변형인 것은 {아니다}.",
+        "cSlotAnswers": [
+          "아니다"
+        ],
+        "cStudentSentence": "대변 한 쌍이 평행하고 나머지 한 쌍의 길이가 같다고 해서, 그 사각형이 반드시 평행사변형인 것은 □.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "아니다",
+            "equivalentAnswers": [
+              "아니다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "아니다"
+          ]
+        ],
+        "proposalFingerprint": "78c4da870b71c1f386e446167e766ac10dd724af38d6371921616ce1c2ef894c"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-06-02-xc5",
+        "section": "중3::6. 원의 성질::원의 접선",
+        "term": "한 원의 접선의 수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "원 위의 점마다 그 점을 접점으로 하는 접선을 {하나}씩 그을 수 있으므로, 한 원의 접선은 {셀 수 없이 많다}.",
+        "studentC": "원 위의 점마다 그 점을 접점으로 하는 접선을 □씩 그을 수 있으므로, 한 원의 접선은 □.",
+        "answers": [
+          "하나",
+          "셀 수 없이 많다"
+        ]
+      },
+      "proposal": {
+        "id": "m3-06-02-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "한 원에 그을 수 있는 접선은 몇 개인가? 원 위의 점과 접선의 관계를 이용해 까닭을 쓰시오.",
+        "bAnswer": "셀 수 없이 많다. 원 위의 각 점마다 그 점을 접점으로 하는 접선이 하나씩 있고, 원 위의 점은 셀 수 없이 많기 때문이다.",
+        "bGoal": "한 원의 접선의 수",
+        "bReason": "개수 답과 함께 점마다 하나라는 근거를 요구했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "셀 수 없이 많다",
+              "무수히 많다"
+            ]
+          },
+          {
+            "anyOf": [
+              "원 위의 점마다 접선이 하나",
+              "원 위의 점이 셀 수 없이 많다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "'하나'와 결론을 묻는 짧은 문장으로 근거가 함께 있다.",
+        "learningRole": "reason",
+        "roleReason": "점마다 접선이 하나라 접선이 무수히 많음",
+        "authorBatch": 60,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3605,
+        "part": "m3plus",
+        "sourceFingerprint": "77924b6286e944f8c7bcbabe2c6f98e79f5372b62c2a9bc8ec78c0bd2e0fcf99",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3605
+        },
+        "directReview": null,
+        "cFrozenSentence": "원 위의 점마다 그 점을 접점으로 하는 접선을 □씩 그을 수 있으므로, 한 원의 접선은 □.",
+        "cFrozenDefinition": "원 위의 점마다 그 점을 접점으로 하는 접선을 {하나}씩 그을 수 있으므로, 한 원의 접선은 {셀 수 없이 많다}.",
+        "cFrozenAnswers": [
+          "하나",
+          "셀 수 없이 많다"
+        ],
+        "cMarkedSentence": "원 위의 점마다 그 점을 접점으로 하는 접선을 {하나}씩 그을 수 있으므로, 한 원의 접선은 {셀 수 없이 많다}.",
+        "cSlotAnswers": [
+          "하나",
+          "셀 수 없이 많다"
+        ],
+        "cStudentSentence": "원 위의 점마다 그 점을 접점으로 하는 접선을 □씩 그을 수 있으므로, 한 원의 접선은 □.",
+        "cAnswers": [
+          "하나",
+          "셀 수 없이 많다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "하나",
+            "equivalentAnswers": [
+              "하나"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "셀 수 없이 많다",
+            "equivalentAnswers": [
+              "셀 수 없이 많다",
+              "무수히 많다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "셀 수 없이 많다",
+            "accept": [
+              "무수히 많다"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "하나"
+          ],
+          [
+            "셀 수 없이 많다",
+            "무수히 많다"
+          ]
+        ],
+        "proposalFingerprint": "7f6deefa2d039eda17bcbbe77b0002fa75b2984d5e5cad1328b7daaf6f4f59a8"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-06-02-xc9",
+        "section": "중3::6. 원의 성질::원의 접선",
+        "term": "접선의 길이 구하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "중심 $O$, 반지름 $r$인 원 밖의 점 $P$에서 그은 접선의 접점을 $A$라 하면 접선의 길이는 직각삼각형 $OAP$에서 {$\\sqrt{\\overline{OP}^2-r^2}$}이다.",
+        "studentC": "중심 $O$, 반지름 $r$인 원 밖의 점 $P$에서 그은 접선의 접점을 $A$라 하면 접선의 길이는 직각삼각형 $OAP$에서 □이다.",
+        "answers": [
+          "$\\sqrt{\\overline{OP}^2-r^2}$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-06-02-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "중심이 $O$, 반지름이 $r$인 원 밖의 점 $P$에서 그은 접선의 접점을 $A$라 할 때, 접선의 길이 $\\overline{PA}$를 $\\overline{OP}$와 $r$로 나타내고 그 까닭을 쓰시오.",
+        "bAnswer": "$\\sqrt{\\overline{OP}^2-r^2}$이다. 접선과 반지름이 수직이라 $\\triangle OAP$는 $\\angle OAP=90^\\circ$인 직각삼각형이고 빗변이 $\\overline{OP}$이므로 $\\overline{PA}^2=\\overline{OP}^2-r^2$이다.",
+        "bGoal": "피타고라스 정리로 접선의 길이 구하기",
+        "bReason": "공식만이 아니라 직각과 빗변을 근거로 쓰게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\sqrt{\\overline{OP}^2-r^2}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle OAP=90^\\circ$",
+              "접선과 반지름이 수직"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "기호가 모두 정의된 식 하나를 묻는 짧은 빈칸이다.",
+        "learningRole": "procedure",
+        "roleReason": "직각삼각형 $OAP$로 접선의 길이 구하기",
+        "authorBatch": 60,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3609,
+        "part": "m3plus",
+        "sourceFingerprint": "a72d501d243528de38b5f772cf90efa54364a83cd26b0d52d4920d3497763744",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3609
+        },
+        "directReview": null,
+        "cFrozenSentence": "중심 $O$, 반지름 $r$인 원 밖의 점 $P$에서 그은 접선의 접점을 $A$라 하면 접선의 길이는 직각삼각형 $OAP$에서 □이다.",
+        "cFrozenDefinition": "중심 $O$, 반지름 $r$인 원 밖의 점 $P$에서 그은 접선의 접점을 $A$라 하면 접선의 길이는 직각삼각형 $OAP$에서 {$\\sqrt{\\overline{OP}^2-r^2}$}이다.",
+        "cFrozenAnswers": [
+          "$\\sqrt{\\overline{OP}^2-r^2}$"
+        ],
+        "cMarkedSentence": "중심 $O$, 반지름 $r$인 원 밖의 점 $P$에서 그은 접선의 접점을 $A$라 하면 접선의 길이는 직각삼각형 $OAP$에서 {$\\sqrt{\\overline{OP}^2-r^2}$}이다.",
+        "cSlotAnswers": [
+          "$\\sqrt{\\overline{OP}^2-r^2}$"
+        ],
+        "cStudentSentence": "중심 $O$, 반지름 $r$인 원 밖의 점 $P$에서 그은 접선의 접점을 $A$라 하면 접선의 길이는 직각삼각형 $OAP$에서 □이다.",
+        "cAnswers": [
+          "$\\sqrt{\\overline{OP}^2-r^2}$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\sqrt{\\overline{OP}^2-r^2}$",
+            "equivalentAnswers": [
+              "$\\sqrt{\\overline{OP}^2-r^2}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\sqrt{\\overline{OP}^2-r^2}$"
+          ]
+        ],
+        "proposalFingerprint": "26988129aa2e7642f940bd703c04c7059117932756b579f1be2cc4fe3b20885e"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-03-xc23",
+        "section": "중2::1. 수와 식::순환소수의 분수 표현",
+        "term": "고친 기약분수의 분모의 소인수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "순환소수를 고친 기약분수의 분모에는 {$2$, $5$가 아닌} 소인수가 반드시 있다.",
+        "example": {
+          "prompt": "$0.1\\dot{6}$의 기약분수의 분모의 소인수",
+          "answer": "$2$, $3$"
+        },
+        "studentC": "순환소수를 고친 기약분수의 분모에는 □ 소인수가 반드시 있다.",
+        "answers": [
+          "$2$, $5$가 아닌"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-03-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.1\\dot{6}$을 기약분수로 고치고 분모의 소인수를 모두 구하시오. 순환마디가 $9$뿐인 경우처럼 유한소수와 값이 같은 경우를 제외하면, 순환소수를 고친 기약분수의 분모에는 어떤 소인수가 있어야 하는지 까닭과 함께 쓰시오.",
+        "bAnswer": "$0.1\\dot{6}=\\frac{15}{90}=\\frac{1}{6}$이고 분모 $6$의 소인수는 $2$, $3$이다. 유한소수와 값이 같은 경우를 제외하면 분모에 $2$와 $5$가 아닌 소인수가 있어야 한다. 분모의 소인수가 $2$나 $5$뿐이면 유한소수로 나타낼 수 있기 때문이다.",
+        "bGoal": "순환소수와 기약분수 분모의 소인수 관계 알기",
+        "bReason": "순환 9가 유한소수와 같은 값인 예외를 문제와 답에 반영해 분모 성질을 틀리게 일반화하지 않는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{1}{6}$, 소인수 $2$, $3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "분모에 $2$와 $5$가 아닌 소인수가 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$나 $5$뿐이면 유한소수가 된다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$0.1\\dot{6}=\\frac{1}{6}$이고 분모 $6$의 소인수는 $2$와 {$3$}이다. 분모에 $2$와 $5$가 아닌 소인수가 있으므로 이 수는 유한소수로 나타낼 수 {없다}.",
+        "cAnswers": [
+          "$3$",
+          "없다"
+        ],
+        "cReason": "2·5의 순서가 뒤바뀌는 빈칸과 6의 임의 소인수를 묻던 칸을 없애고 소인수 2를 보여 준다.",
+        "coreAfter": "순환소수를 고친 기약분수의 분모에는 {$2$, $5$가 아닌} 소인수가 반드시 있다. (단, $0.\\dot{9}=1$처럼 순환마디가 $9$뿐인 순환소수는 정수나 유한소수와 값이 같으므로 제외한다.)",
+        "coreReason": "$0.\\dot{9}=1$, $0.4\\dot{9}=\\frac{1}{2}$이 반례가 되므로 예외를 밝힘",
+        "exampleNeeded": true,
+        "studentLabel": "순환소수를 고친 기약분수의 분모의 소인수",
+        "authorBatch": 27,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "2·5뿐이면 유한소수가 됨",
+        "enrichmentEvidence": "enrichment/enrich-007",
+        "sourceIndex": 2189,
+        "part": "m2plus",
+        "sourceFingerprint": "fada62c819ea96e0682f8f05134ad16e0bb8845767fe1a52a97134b7d3b8297d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2189
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m2-01-03-xc23"
+        },
+        "coreBeforeRepair": "순환소수를 고친 기약분수의 분모에는 {$2$, $5$가 아닌} 소인수가 반드시 있다. (단, $0.\\dot{9}=1$처럼 순환마디가 $9$뿐인 순환소수는 정수나 유한소수와 값이 같으므로 제외한다.)",
+        "coreRepairReason": "이미 좋아 그대로 보존함. 원래 핵심어 {$2$, $5$가 아닌}을 유지했고, 반례를 막는 예외 조건만 둠.",
+        "coreRepairEvidence": "core-repair/core-002",
+        "cMarkedSentence": "$0.1\\dot{6}=\\frac{1}{6}$이고 분모 $6$의 소인수는 $2$와 {$3$}이다. 분모에 $2$와 $5$가 아닌 소인수가 있으므로 이 수는 유한소수로 나타낼 수 {없다}.",
+        "cSlotAnswers": [
+          "$3$",
+          "없다"
+        ],
+        "cStudentSentence": "$0.1\\dot{6}=\\frac{1}{6}$이고 분모 $6$의 소인수는 $2$와 □이다. 분모에 $2$와 $5$가 아닌 소인수가 있으므로 이 수는 유한소수로 나타낼 수 □.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$3$",
+            "equivalentAnswers": [
+              "$3$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "없다",
+            "equivalentAnswers": [
+              "없다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "없다"
+          ]
+        ],
+        "proposalFingerprint": "3368c91b2e330d8159bfcbbc32df6eeccebb496d29381791aba7dcb761118b38"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-06-02-xc12",
+        "section": "중3::6. 원의 성질::원의 접선",
+        "term": "내접원의 접점으로 나뉜 변",
+        "kind": "성질",
+        "level": "중",
+        "definition": "내접원의 접점으로 나뉜 삼각형의 각 변은 두 꼭짓점에서 나온 {접선의 길이}의 {합}이다.",
+        "studentC": "내접원의 접점으로 나뉜 삼각형의 각 변은 두 꼭짓점에서 나온 □의 □이다.",
+        "answers": [
+          "접선의 길이",
+          "합"
+        ]
+      },
+      "proposal": {
+        "id": "m3-06-02-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\triangle ABC$의 내접원이 변 $BC$와 점 $D$에서 접한다. 꼭짓점 $B$, $C$에서 내접원까지의 접선의 길이를 각각 $y$, $z$라 할 때, $\\overline{BC}$를 $y$, $z$로 나타내고 그 까닭을 쓰시오.",
+        "bAnswer": "$\\overline{BC}=y+z$이다. $\\overline{BD}$는 $B$에서 그은 접선의 길이 $y$이고, $\\overline{DC}$는 $C$에서 그은 접선의 길이 $z$이기 때문이다.",
+        "bGoal": "접점으로 나뉜 변을 접선의 길이로 나타내기",
+        "bReason": "접점과 접선 길이를 기호로 정해 변의 표현을 묻도록 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$y+z$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{BD}=y$, $\\overline{DC}=z$",
+              "변이 접점에서 두 접선의 길이로 나뉜다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "접선의 길이와 합을 묻는 짧고 분명한 문장이다.",
+        "learningRole": "application",
+        "roleReason": "변을 두 접선의 길이의 합으로 보기",
+        "authorBatch": 60,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3612,
+        "part": "m3plus",
+        "sourceFingerprint": "34f675c369ba330609ee2bb921dbfbabe79684ad85bb8d8add5c5a90b7f72c6a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3612
+        },
+        "directReview": null,
+        "cFrozenSentence": "내접원의 접점으로 나뉜 삼각형의 각 변은 두 꼭짓점에서 나온 □의 □이다.",
+        "cFrozenDefinition": "내접원의 접점으로 나뉜 삼각형의 각 변은 두 꼭짓점에서 나온 {접선의 길이}의 {합}이다.",
+        "cFrozenAnswers": [
+          "접선의 길이",
+          "합"
+        ],
+        "cMarkedSentence": "내접원의 접점으로 나뉜 삼각형의 각 변은 두 꼭짓점에서 나온 {접선의 길이}의 {합}이다.",
+        "cSlotAnswers": [
+          "접선의 길이",
+          "합"
+        ],
+        "cStudentSentence": "내접원의 접점으로 나뉜 삼각형의 각 변은 두 꼭짓점에서 나온 □의 □이다.",
+        "cAnswers": [
+          "접선의 길이",
+          "합"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "접선의 길이",
+            "equivalentAnswers": [
+              "접선의 길이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "합",
+            "equivalentAnswers": [
+              "합"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "접선의 길이"
+          ],
+          [
+            "합"
+          ]
+        ],
+        "proposalFingerprint": "a60aa3149707f3453263d1010a24977460468709396606816e57c1b179ea4a9a"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-06-02-xc18",
+        "section": "중3::6. 원의 성질::원의 접선",
+        "term": "두 접선 사이에 그은 접선",
+        "kind": "성질",
+        "level": "상",
+        "definition": "원 밖의 점 $P$에서 그은 두 접선의 접점을 $A$, $B$라 하자. 선분 $PA$, $PB$ 위에 있고 양 끝 점이 아닌 두 점 $C$, $D$를 이은 직선이 원에 접하면 $\\triangle PCD$의 둘레는 {$\\overline{PA}+\\overline{PB}$}와 {같다}.",
+        "studentC": "원 밖의 점 $P$에서 그은 두 접선의 접점을 $A$, $B$라 하자. 선분 $PA$, $PB$ 위에 있고 양 끝 점이 아닌 두 점 $C$, $D$를 이은 직선이 원에 접하면 $\\triangle PCD$의 둘레는 □와 □.",
+        "answers": [
+          "$\\overline{PA}+\\overline{PB}$",
+          "같다"
+        ]
+      },
+      "proposal": {
+        "id": "m3-06-02-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "원 밖의 점 $P$에서 그은 두 접선의 접점을 $A$, $B$라 하자. 선분 $PA$ 위의 점 $C$와 선분 $PB$ 위의 점 $D$(모두 양 끝 점이 아님)를 이은 선분 $CD$가 원과 점 $E$에서 접할 때, $\\triangle PCD$의 둘레를 $\\overline{PA}$, $\\overline{PB}$로 나타내고 그 까닭을 쓰시오.",
+        "bAnswer": "$\\overline{PA}+\\overline{PB}$이다. $\\overline{CE}=\\overline{CA}$, $\\overline{DE}=\\overline{DB}$이므로 둘레 $\\overline{PC}+\\overline{CE}+\\overline{ED}+\\overline{DP}=\\overline{PC}+\\overline{CA}+\\overline{DB}+\\overline{PD}=\\overline{PA}+\\overline{PB}$이다.",
+        "bGoal": "접선의 길이로 둘레 바꾸어 구하기",
+        "bReason": "점 $C$, $D$, $E$의 위치를 밝혀 둘레 식과 근거를 묻도록 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{PA}+\\overline{PB}$",
+              "$2\\overline{PA}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{CE}=\\overline{CA}$, $\\overline{DE}=\\overline{DB}$",
+              "$C$, $D$에서 그은 두 접선의 길이가 같다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "조건이 모두 주어진 상태에서 둘레를 묻는 분명한 문장이다.",
+        "learningRole": "reason",
+        "roleReason": "접선 길이를 바꿔 둘레가 $\\overline{PA}+\\overline{PB}$인 이유",
+        "authorBatch": 60,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3618,
+        "part": "m3plus",
+        "sourceFingerprint": "4c8e60ea552be12128195a44766ef2f223aadcb56899d12850890906bbde3a71",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3618
+        },
+        "directReview": null,
+        "cFrozenSentence": "원 밖의 점 $P$에서 그은 두 접선의 접점을 $A$, $B$라 하자. 선분 $PA$, $PB$ 위에 있고 양 끝 점이 아닌 두 점 $C$, $D$를 이은 직선이 원에 접하면 $\\triangle PCD$의 둘레는 □와 □.",
+        "cFrozenDefinition": "원 밖의 점 $P$에서 그은 두 접선의 접점을 $A$, $B$라 하자. 선분 $PA$, $PB$ 위에 있고 양 끝 점이 아닌 두 점 $C$, $D$를 이은 직선이 원에 접하면 $\\triangle PCD$의 둘레는 {$\\overline{PA}+\\overline{PB}$}와 {같다}.",
+        "cFrozenAnswers": [
+          "$\\overline{PA}+\\overline{PB}$",
+          "같다"
+        ],
+        "cMarkedSentence": "원 밖의 점 $P$에서 그은 두 접선의 접점을 $A$, $B$라 하자. 선분 $PA$, $PB$ 위에 있고 양 끝 점이 아닌 두 점 $C$, $D$를 이은 직선이 원에 접하면 $\\triangle PCD$의 둘레는 {$\\overline{PA}+\\overline{PB}$}와 {같다}.",
+        "cSlotAnswers": [
+          "$\\overline{PA}+\\overline{PB}$",
+          "같다"
+        ],
+        "cStudentSentence": "원 밖의 점 $P$에서 그은 두 접선의 접점을 $A$, $B$라 하자. 선분 $PA$, $PB$ 위에 있고 양 끝 점이 아닌 두 점 $C$, $D$를 이은 직선이 원에 접하면 $\\triangle PCD$의 둘레는 □와 □.",
+        "cAnswers": [
+          "$\\overline{PA}+\\overline{PB}$",
+          "같다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\overline{PA}+\\overline{PB}$",
+            "equivalentAnswers": [
+              "$\\overline{PA}+\\overline{PB}$",
+              "$\\overline{PB}+\\overline{PA}$",
+              "$2\\overline{PA}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "같다",
+            "equivalentAnswers": [
+              "같다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$\\overline{PA}+\\overline{PB}$",
+            "accept": [
+              "$\\overline{PB}+\\overline{PA}$",
+              "$2\\overline{PA}$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$\\overline{PA}+\\overline{PB}$",
+            "$\\overline{PB}+\\overline{PA}$",
+            "$2\\overline{PA}$"
+          ],
+          [
+            "같다"
+          ]
+        ],
+        "proposalFingerprint": "5293a91efa9d8f34e886520c386ec5bee21dc0c930b259ba1e61ec4600d00ee2"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-06-02-xc21",
+        "section": "중3::6. 원의 성질::원의 접선",
+        "term": "두 접점과 중심이 만드는 삼각형",
+        "kind": "성질",
+        "level": "상",
+        "definition": "원 $O$ 밖의 점 $P$에서 그은 두 접선의 접점 $A$, $B$와 중심이 만드는 $\\triangle OAB$는 두 변이 반지름이라 {이등변삼각형}이고, 그 밑각의 크기는 {$\\frac{1}{2}\\angle APB$}이다.",
+        "example": {
+          "prompt": "원 $O$ 밖의 점 $P$에서 그은 두 접선의 접점 $A$, $B$에 대하여 $\\angle APB=50^\\circ$, $\\angle AOB=130^\\circ$일 때 $\\angle OAB$가 $25^\\circ$인 까닭은?",
+          "answer": "남은 $50^\\circ$를 두 밑각이 나눠서"
+        },
+        "studentC": "원 $O$ 밖의 점 $P$에서 그은 두 접선의 접점 $A$, $B$와 중심이 만드는 $\\triangle OAB$는 두 변이 반지름이라 □이고, 그 밑각의 크기는 □이다.",
+        "answers": [
+          "이등변삼각형",
+          "$\\frac{1}{2}\\angle APB$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-06-02-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "원 $O$ 밖의 점 $P$에서 그은 두 접선의 접점을 $A$, $B$라 하자. $\\triangle OAB$의 밑각 $\\angle OAB$를 $\\angle APB$로 나타내고 그 까닭을 쓰시오.",
+        "bAnswer": "$\\angle OAB=\\frac{1}{2}\\angle APB$이다. $\\overline{OA}=\\overline{OB}$라 $\\triangle OAB$는 이등변삼각형이고, $\\angle AOB=180^\\circ-\\angle APB$이므로 $\\angle OAB=\\frac{1}{2}(180^\\circ-\\angle AOB)=\\frac{1}{2}\\angle APB$이다.",
+        "bGoal": "두 접점과 중심이 만드는 삼각형의 밑각",
+        "bReason": "밑각과 기준 각을 지정해 식과 각의 근거를 묻도록 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\angle OAB=\\frac{1}{2}\\angle APB$",
+              "$\\frac{\\angle APB}{2}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{OA}=\\overline{OB}$",
+              "이등변삼각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle AOB=180^\\circ-\\angle APB$",
+              "$\\angle OAB=90^\\circ-\\angle PAB$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "이등변삼각형과 밑각 식을 묻는 분명한 문장이다.",
+        "learningRole": "reason",
+        "roleReason": "밑각이 $\\frac{1}{2}\\angle APB$가 되는 이유",
+        "authorBatch": 60,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3620,
+        "part": "m3plus",
+        "sourceFingerprint": "121f1e3a3bf1d07afb47200b83747f7a01469d13226904ffa18471d94df1e693",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3620
+        },
+        "directReview": null,
+        "cFrozenSentence": "원 $O$ 밖의 점 $P$에서 그은 두 접선의 접점 $A$, $B$와 중심이 만드는 $\\triangle OAB$는 두 변이 반지름이라 □이고, 그 밑각의 크기는 □이다.",
+        "cFrozenDefinition": "원 $O$ 밖의 점 $P$에서 그은 두 접선의 접점 $A$, $B$와 중심이 만드는 $\\triangle OAB$는 두 변이 반지름이라 {이등변삼각형}이고, 그 밑각의 크기는 {$\\frac{1}{2}\\angle APB$}이다.",
+        "cFrozenAnswers": [
+          "이등변삼각형",
+          "$\\frac{1}{2}\\angle APB$"
+        ],
+        "cMarkedSentence": "원 $O$ 밖의 점 $P$에서 그은 두 접선의 접점 $A$, $B$와 중심이 만드는 $\\triangle OAB$는 두 변이 반지름이라 {이등변삼각형}이고, 그 밑각의 크기는 {$\\frac{1}{2}\\angle APB$}이다.",
+        "cSlotAnswers": [
+          "이등변삼각형",
+          "$\\frac{1}{2}\\angle APB$"
+        ],
+        "cStudentSentence": "원 $O$ 밖의 점 $P$에서 그은 두 접선의 접점 $A$, $B$와 중심이 만드는 $\\triangle OAB$는 두 변이 반지름이라 □이고, 그 밑각의 크기는 □이다.",
+        "cAnswers": [
+          "이등변삼각형",
+          "$\\frac{1}{2}\\angle APB$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "이등변삼각형",
+            "equivalentAnswers": [
+              "이등변삼각형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\frac{1}{2}\\angle APB$",
+            "equivalentAnswers": [
+              "$\\frac{1}{2}\\angle APB$",
+              "$\\frac{\\angle APB}{2}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$\\frac{1}{2}\\angle APB$",
+            "accept": [
+              "$\\frac{\\angle APB}{2}$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "이등변삼각형"
+          ],
+          [
+            "$\\frac{1}{2}\\angle APB$",
+            "$\\frac{\\angle APB}{2}$"
+          ]
+        ],
+        "proposalFingerprint": "f2ad517d186ba8a3d9092a79eeae5803f1f1487a5b38bc0846a889196120db2e"
+      }
+    }
+  ]
+}

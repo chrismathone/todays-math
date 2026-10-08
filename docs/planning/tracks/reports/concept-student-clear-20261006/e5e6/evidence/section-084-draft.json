@@ -1,0 +1,507 @@
+{
+  "rows": [
+    {
+      "id": "e6-2-1-2-c1",
+      "bDecision": "revise",
+      "bPrompt": "분모가 다른 두 분수를 통분할 때, 분수의 무엇을 바꾸고 무엇은 그대로 두는지 쓰시오.",
+      "bAnswer": "두 분수의 분모를 같게 바꾸고, 분수의 크기(값)는 그대로 둔다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분모를 같게 고친다",
+            "분모를 같은 수로 만든다"
+          ]
+        },
+        {
+          "anyOf": [
+            "분수의 크기(값)는 변하지 않는다",
+            "크기는 그대로 둔다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "통분이 크기는 두고 분모만 같게 바꾸는 일임을 설명한다.",
+      "bReason": "제목만 묻지 않고 바뀌는 것과 그대로인 것을 나누어 묻는다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "크기를 그대로 둔다는 조건과 분모를 같게 한다는 핵심이 한 문장에 있다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-1-2-c2",
+      "bDecision": "revise",
+      "bPrompt": "분모가 다른 두 분수의 나눗셈을 분자끼리 나누어 풀려면 먼저 무엇을 해야 하는지 쓰고, $\\frac{3}{4}\\div\\frac{5}{6}$의 몫을 구하시오.",
+      "bAnswer": "먼저 통분하여 분모를 같게 한다. $\\frac{3}{4}\\div\\frac{5}{6}=\\frac{9}{12}\\div\\frac{10}{12}=9\\div10=\\frac{9}{10}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "통분하여 분모를 같게 한다",
+            "분모를 같게 만든 뒤 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "몫은 $\\frac{9}{10}$이다",
+            "$\\frac{9}{10}$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "통분 후 분자끼리 나누는 계산 절차를 수행한다.",
+      "bReason": "방법과 구체적 계산을 함께 확인하되 일반 절차가 중심이다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "나누는 수가 $0$이 아니라는 조건이 있고 빈칸이 절차의 첫 단계로 분명하다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-1-2-c3",
+      "bDecision": "revise",
+      "bPrompt": "분모가 다른 두 분수를 분자끼리 바로 나누지 않고 먼저 통분해야 하는 까닭을, 분자가 나타내는 것과 조각의 크기를 이용해 설명하시오. (나누는 수는 $0$이 아니다.)",
+      "bAnswer": "분자는 같은 크기의 조각이 몇 개인지를 나타낸다. 조각의 크기가 같아야 조각의 개수끼리 나눈 것이 두 분수의 몫이 되므로 먼저 통분한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분자는 같은 크기 조각의 개수이다",
+            "분자는 조각이 몇 개인지를 나타낸다"
+          ]
+        },
+        {
+          "anyOf": [
+            "조각의 크기가 같아야 개수끼리 나눌 수 있다",
+            "조각 크기가 같아야 분자끼리 나눈 것이 몫이 된다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "통분이 필요한 까닭을 조각 크기를 맞추는 것으로 설명한다.",
+      "bReason": "왜 통분하는지 어떤 관계로 설명할지 지정해 막연한 '왜'를 피한다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "한 조각의 크기를 같게 맞추어야 한다는 조건이 단순하고 분명하다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-1-2-xc2",
+      "bDecision": "revise",
+      "bPrompt": "분모가 다른 두 분수를 통분할 때 공통분모로 쓸 수 있는 수는 어떤 수인지 말하고, 분모가 $4$와 $6$일 때 가능한 공통분모를 작은 것부터 세 개 쓰시오.",
+      "bAnswer": "두 분모의 공배수이면 무엇이든 쓸 수 있다. $4$와 $6$의 경우 $12$, $24$, $36$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 분모의 공배수",
+            "두 분모가 모두 약수가 되는 수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$, $24$, $36$"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "공통분모가 될 수 있는 수가 두 분모의 공배수임을 안다.",
+      "bReason": "일반 조건 뒤에 예를 붙여 공배수가 여러 개임을 확인한다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "공통분모 후보가 공배수라는 조건이 명확한 낱말 빈칸이다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-1-2-xc3",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "naming",
+      "bGoal": "통분 후 같아진 분모의 이름을 안다.",
+      "bReason": "용어 하나를 외우게 하는 B가 되어 학습 가치가 낮다.",
+      "exclusionReason": "이름만 묻는 문항이므로 B는 제외하고 낱말 빈칸 C로 충분하다. 개념 문항은 e6-2-1-2-xc2에서 다룬다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "통분하여 같아진 분모의 이름을 묻는 짧고 분명한 낱말 문장이다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-1-2-xc4",
+      "bDecision": "revise",
+      "bPrompt": "분모가 $4$와 $6$인 두 분수를 통분할 때 공통분모로 어떤 공배수를 고르면 계산하기 편한지 쓰고, 그 까닭도 말하시오. 그 수는 얼마인가요?",
+      "bAnswer": "공배수 중 가장 작은 수(최소공배수)를 고른다. 수가 작아 분자와 분모가 작아지므로 계산이 쉽다. 이 경우 $12$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "공배수 중 가장 작은 수",
+            "최소공배수"
+          ]
+        },
+        {
+          "anyOf": [
+            "분자와 분모가 작아 계산이 쉽다",
+            "수가 작아서 계산하기 편하다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "최소공배수를 공통분모로 쓰는 편리함을 설명한다.",
+      "bReason": "선택과 까닭을 함께 묻고 예의 정확한 값도 확인한다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "공배수 중 가장 작은 수라는 설명이 있어 답이 분명한 낱말 문장이다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-1-2-xc6",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{2}{3}$와 $\\frac{3}{4}$를 통분하면 각 분수를 같은 크기의 조각 몇 개로 나타낼 수 있는지 쓰시오.",
+      "bAnswer": "공통분모 $12$로 통분하면 $\\frac{2}{3}=\\frac{8}{12}$, $\\frac{3}{4}=\\frac{9}{12}$이므로 각각 $\\frac{1}{12}$ 조각 $8$개, $9$개이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{2}{3}$는 $\\frac{1}{12}$ 조각 $8$개",
+            "$\\frac{2}{3}=\\frac{8}{12}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{4}$는 $\\frac{1}{12}$ 조각 $9$개",
+            "$\\frac{3}{4}=\\frac{9}{12}$"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "통분 결과를 같은 크기 조각의 개수로 읽는다.",
+      "bReason": "예 안에서 일반 의미를 읽게 하며 정확한 개수를 확인한다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "통분의 결과를 같은 크기의 조각 개수로 바꾼다는 짧은 낱말 문장이다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-1-2-xc9",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{1}{3}\\div\\frac{1}{12}$을 계산하고, 그 몫이 $\\frac{1}{3}$ 조각과 $\\frac{1}{12}$ 조각 사이의 어떤 관계를 나타내는지 설명하시오.",
+      "bAnswer": "몫은 $4$이다. $\\frac{1}{3}$ 조각 하나 안에 $\\frac{1}{12}$ 조각이 $4$개 들어 있다는 뜻이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "몫은 $4$이다",
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{3}$ 하나에 $\\frac{1}{12}$이 $4$개 들어 있다",
+            "큰 조각 안의 작은 조각의 개수"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "단위분수끼리 나눈 몫을 작은 조각의 개수로 해석한다.",
+      "bReason": "계산에 그치지 않고 몫의 의미를 지정해 묻는다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "몫이 작은 조각의 개수라는 해석을 묻는 낱말 문장이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "개수와 몇 개를 같은 뜻으로 인정한다."
+    },
+    {
+      "id": "e6-2-1-2-xc11",
+      "bDecision": "revise",
+      "bPrompt": "분모가 다른 두 분수의 나눗셈에서 공통분모를 $6$으로 하든 $12$로 하든 몫이 같은 까닭을 설명하시오. $\\frac{1}{2}\\div\\frac{1}{3}$로 두 경우의 몫도 구하시오.",
+      "bAnswer": "통분은 분수의 크기와 두 분수의 배 관계를 바꾸지 않아서 몫이 같다. $6$으로 통분하면 $\\frac{3}{6}\\div\\frac{2}{6}=\\frac{3}{2}$, $12$로 통분하면 $\\frac{6}{12}\\div\\frac{4}{12}=\\frac{3}{2}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "통분해도 분수의 크기가 변하지 않는다",
+            "통분은 크기와 배 관계를 바꾸지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 경우 모두 몫이 $\\frac{3}{2}$이다",
+            "$\\frac{3}{2}$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "공통분모를 달리해도 몫이 변하지 않는 까닭을 설명한다.",
+      "bReason": "까닭의 방향을 지정하고 두 통분의 정확한 몫으로 확인한다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "사용자가 인정한 원문 그대로 유지한다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-1-2-xc12",
+      "bDecision": "revise",
+      "bPrompt": "$0$보다 큰 두 분수의 나눗셈에서 나누는 분수가 나누어지는 분수보다 클 때, 몫을 $1$과 비교하면 어떠한지 쓰고 그 까닭을 설명하시오. $\\frac{2}{5}\\div\\frac{3}{4}$로도 확인하시오.",
+      "bAnswer": "몫은 $1$보다 작다. 나누어지는 양이 나누는 양보다 작아 나누는 양을 한 번도 덜어 낼 수 없기 때문이다. $\\frac{2}{5}\\div\\frac{3}{4}=\\frac{8}{20}\\div\\frac{15}{20}=\\frac{8}{15}$로 $1$보다 작다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "몫이 $1$보다 작다",
+            "$1$보다 작다"
+          ]
+        },
+        {
+          "anyOf": [
+            "나누는 양을 한 번도 덜어 낼 수 없다",
+            "나누어지는 양이 나누는 양보다 작다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{8}{15}$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "나누는 분수가 클 때 몫이 $1$보다 작은 까닭을 설명한다.",
+      "bReason": "비교 결과와 이유를 묻고 예의 계산값도 확인한다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "양수 조건과 크기 비교가 분명하고 사용자가 인정한 원문 그대로 유지한다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-1-2-xc14",
+      "bDecision": "revise",
+      "bPrompt": "분모가 다른 두 분수를 통분했을 때 몫이 자연수가 되려면 두 분자 사이에 어떤 관계가 있어야 하는지 쓰고, $\\frac{3}{4}\\div\\frac{3}{8}$과 $\\frac{5}{6}\\div\\frac{1}{4}$ 중 몫이 자연수인 것을 고르시오.",
+      "bAnswer": "나누어지는 분수의 분자가 나누는 분수의 분자의 배수이면 몫이 자연수이다. $\\frac{3}{4}\\div\\frac{3}{8}=\\frac{6}{8}\\div\\frac{3}{8}=2$이므로 앞의 식이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나누어지는 분자가 나누는 분자의 배수",
+            "나누는 분자로 나누어떨어진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{4}\\div\\frac{3}{8}$",
+            "앞의 식, 몫은 $2$"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "통분 후 분자의 배수 관계로 자연수 몫을 판단한다.",
+      "bReason": "조건을 말하고 두 식에 적용해 구별하게 한다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "양수와 통분 뒤라는 조건이 있고 빈칸이 분자의 배수 관계로 명확하다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-1-2-xc15",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "reason",
+      "bGoal": "통분 없이 분자끼리만 나누면 틀리는 까닭을 안다.",
+      "bReason": "통분해야 하는 까닭 문항과 내용이 겹친다.",
+      "exclusionReason": "e6-2-1-2-c3과 같은 내용이다. 같은 질문을 반복하지 않도록 B는 c3으로 대체한다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "분모가 다르면 한 조각의 크기가 다르다는 조건이 분명한 낱말 문장이다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-1-2-xc17",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "procedure",
+      "bGoal": "통분 후 분자끼리 나누는 순서를 안다.",
+      "bReason": "앞의 계산 절차 문항과 같은 내용이다.",
+      "exclusionReason": "e6-2-1-2-c2의 B가 통분 후 분자끼리 나누는 절차와 계산을 이미 묻는다. 그 문항으로 대체한다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "통분 뒤 분자끼리 나눈다는 절차가 짧은 낱말 빈칸으로 충분하다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-1-2-xc19",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{1}{3}\\div\\frac{1}{5}$의 몫을 통분하여 구하고, 단위분수끼리 나눌 때 몫의 분자와 분모가 각각 어떤 수인지 설명하시오.",
+      "bAnswer": "$\\frac{1}{3}\\div\\frac{1}{5}=\\frac{5}{15}\\div\\frac{3}{15}=\\frac{5}{3}$이다. 몫의 분자는 나누는 단위분수의 분모이고, 몫의 분모는 나누어지는 단위분수의 분모이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "몫은 $\\frac{5}{3}$이다",
+            "$\\frac{5}{3}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "분자는 나누는 단위분수의 분모",
+            "분자는 나누는 수의 분모"
+          ]
+        },
+        {
+          "anyOf": [
+            "분모는 나누어지는 단위분수의 분모",
+            "분모는 나누어지는 수의 분모"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "단위분수끼리 나눈 몫의 분자·분모 규칙을 찾는다.",
+      "bReason": "예의 계산에서 일반 규칙을 이끌어 말하게 한다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{1}{3}\\div\\frac{1}{5}=\\frac{5}{3}$처럼 단위분수끼리 나누면 몫의 분자는 {나누는} 단위분수의 분모이고, 몫의 분모는 {나누어지는} 단위분수의 분모이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "나누는",
+            "나누는 수",
+            "나누는 분수"
+          ]
+        },
+        {
+          "anyOf": [
+            "나누어지는",
+            "나누어지는 수",
+            "나누어지는 분수"
+          ]
+        }
+      ],
+      "cReason": "실제 식을 보여 주고 나누는 쪽과 나누어지는 쪽을 구분하게 해 맥락을 보완한다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-1-2-xc22",
+      "bDecision": "revise",
+      "bPrompt": "$0$보다 큰 분수를 $0$보다 크고 $1$보다 작은 분수로 나누면 몫을 나누어지는 분수와 비교하여 어떠한지 쓰고 그 까닭을 설명하시오. $\\frac{3}{4}\\div\\frac{1}{2}$로도 확인하시오.",
+      "bAnswer": "몫이 나누어지는 분수보다 크다. 나누는 수가 $1$보다 작아 한 번에 덜어 내는 양이 $1$보다 적으므로 더 여러 번 덜어 낼 수 있다. $\\frac{3}{4}\\div\\frac{1}{2}=\\frac{3}{2}$이고 $\\frac{3}{2}$은 $\\frac{3}{4}$보다 크다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "몫이 나누어지는 분수보다 크다",
+            "몫이 더 커진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "나누는 수가 $1$보다 작아 더 여러 번 덜어 낼 수 있다",
+            "$1$보다 작은 수로 나누면 들어가는 횟수가 늘어난다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{2}$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "$1$보다 작은 분수로 나눌 때 몫이 커지는 까닭을 이해한다.",
+      "bReason": "나눗셈에서 몫이 줄어든다는 오해를 바로잡는 비교 문항이다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "양수와 $1$보다 작은 수라는 조건이 분명한 비교 문장이다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-1-2-xc24",
+      "bDecision": "revise",
+      "bPrompt": "분모가 $3$과 $12$인 $\\frac{2}{3}\\div\\frac{5}{12}$을 통분할 때 어느 분수만 어떻게 고치면 되는지 말하고, 그렇게 할 수 있는 분모 사이의 관계와 몫을 쓰시오.",
+      "bAnswer": "분모가 $3$인 분수만 분모 $12$로 고친다. $12$가 $3$의 배수이기 때문이다. $\\frac{2}{3}=\\frac{8}{12}$이므로 $\\frac{8}{12}\\div\\frac{5}{12}=\\frac{8}{5}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분모가 $3$인 분수만 분모 $12$로 고친다",
+            "$\\frac{2}{3}$만 $\\frac{8}{12}$로 고친다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$가 $3$의 배수이다",
+            "큰 분모가 작은 분모의 배수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{8}{5}$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "큰 분모가 작은 분모의 배수일 때 한쪽만 고치는 통분 방법을 쓴다.",
+      "bReason": "방법과 가능한 조건, 정확한 몫을 함께 묻는다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "큰 분모에 맞춘다는 방법이 한 낱말 구절로 분명하다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-1-2-xc25",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{3}{4}$를 $\\frac{1}{4}$로 나눈 몫과 $\\frac{1}{8}$로 나눈 몫을 각각 구하고, 어느 쪽이 더 큰지와 그 까닭을 설명하시오.",
+      "bAnswer": "$\\frac{3}{4}\\div\\frac{1}{4}=3$, $\\frac{3}{4}\\div\\frac{1}{8}=6$이다. $\\frac{1}{8}$로 나눈 몫이 더 크다. 나누는 수가 작을수록 한 번에 덜어 내는 양이 적어 더 여러 번 덜어 낼 수 있기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$3$과 $6$",
+            "$\\frac{1}{4}$로 나누면 $3$, $\\frac{1}{8}$로 나누면 $6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "나누는 수가 더 작은 쪽의 몫이 더 크다",
+            "$\\frac{1}{8}$로 나눈 몫이 더 크다"
+          ]
+        },
+        {
+          "anyOf": [
+            "덜어 내는 양이 적어 횟수가 늘어난다",
+            "한 번에 덜어 내는 양이 작아 더 여러 번 덜어 낼 수 있다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "나누어지는 수가 같을 때 나누는 수가 작을수록 몫이 큰 까닭을 설명한다.",
+      "bReason": "두 몫을 직접 비교하고 덜어 내는 횟수로 설명하게 한다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "나누어지는 수가 일정하다는 조건이 있고 작을수록 몫이 크다는 관계가 분명하다.",
+      "exampleNeeded": false,
+      "synonymNotes": "작을수록과 작으면을 같은 뜻으로 본다."
+    },
+    {
+      "id": "e6-2-1-2-xc26",
+      "bDecision": "revise",
+      "bPrompt": "직사각형의 넓이와 가로 길이를 알 때 세로 길이를 구하는 방법을 쓰시오. 넓이가 $\\frac{3}{4}\\text{ m}^2$이고 가로가 $\\frac{3}{8}\\text{ m}$이면 세로는 몇 $\\text{m}$인가요?",
+      "bAnswer": "넓이를 가로로 나누어 세로를 구한다. $\\frac{3}{4}\\div\\frac{3}{8}=\\frac{6}{8}\\div\\frac{3}{8}=2$이므로 세로는 $2\\text{ m}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "넓이를 가로로 나눈다",
+            "넓이÷가로"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\text{ m}$",
+            "$2$"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "넓이를 가로로 나누어 세로를 구하는 곱셈과 나눗셈의 관계를 안다.",
+      "bReason": "넓이 곱셈을 거꾸로 하는 나눗셈을 분수 길이에 적용한다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "넓이가 가로와 세로의 곱이라는 조건에서 세로를 고르는 짧은 낱말 빈칸이다.",
+      "exampleNeeded": false
+    }
+  ],
+  "sectionNotes": [
+    "통분 후 계산 절차(c2)와 통분의 까닭(c3)을 중심으로 B를 구성하고, 이름만 묻거나 겹치는 xc3, xc15, xc17의 B는 제외했다.",
+    "크기 비교와 단위분수 규칙 문항은 간단한 식으로 확인하며, xc19의 C만 식을 보여 주는 형태로 바꿨다."
+  ]
+}

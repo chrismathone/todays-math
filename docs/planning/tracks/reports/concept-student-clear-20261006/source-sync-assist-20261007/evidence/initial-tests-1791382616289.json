@@ -1,0 +1,105 @@
+{
+  "status": "Preliminary technical tests only; no final compile, independent semantic approval or activation",
+  "fixture": "D:\\tmp\\source-sync-assist-ctx_de9caad71bd4-preliminary-1",
+  "rootCommit": "c042550db9a8ad5cf44d84490882bb4c3f6b4fa9",
+  "passed": 18,
+  "failed": 1,
+  "results": [
+    {
+      "name": "Actual seven-grade replay reproduces all prepared before/after bytes",
+      "status": "passed",
+      "milliseconds": 2791
+    },
+    {
+      "name": "Every unrelated dialogue token, all metadata and all seven openings/examples retain exact original bytes",
+      "status": "passed",
+      "milliseconds": 1022
+    },
+    {
+      "name": "All expected changed base-bank source turns represented; plus-only changes explicitly reported",
+      "status": "failed",
+      "error": "AssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n\n98 !== 50\n\n    at file:///C:/Users/user/orca/workspaces/todays-math/student-clear-source-sync-20261007/docs/planning/tracks/reports/concept-student-clear-20261006/source-sync-assist-20261007/verify-and-test.mjs:73:10\n    at test (file:///C:/Users/user/orca/workspaces/todays-math/student-clear-source-sync-20261007/docs/planning/tracks/reports/concept-student-clear-20261006/source-sync-assist-20261007/verify-and-test.mjs:28:9)\n    at file:///C:/Users/user/orca/workspaces/todays-math/student-clear-source-sync-20261007/docs/planning/tracks/reports/concept-student-clear-20261006/source-sync-assist-20261007/verify-and-test.mjs:71:1",
+      "milliseconds": 2
+    },
+    {
+      "name": "All 147 earlier correction old/source/ID/position values and ledger metadata survive; original baseline reverts identically",
+      "status": "passed",
+      "milliseconds": 2
+    },
+    {
+      "name": "Pure preparation does not mutate any caller inputs or Root STATIC_CORRECTIONS",
+      "status": "passed",
+      "milliseconds": 3017
+    },
+    {
+      "name": "Stale candidate hash refused even when plan pin is refreshed",
+      "status": "passed",
+      "milliseconds": 640
+    },
+    {
+      "name": "Candidate content tampering is refused",
+      "status": "passed",
+      "milliseconds": 3081
+    },
+    {
+      "name": "Stale original baseline hash refused",
+      "status": "passed",
+      "milliseconds": 581
+    },
+    {
+      "name": "Stale manuscript or correction byte pins refused",
+      "status": "passed",
+      "milliseconds": 282
+    },
+    {
+      "name": "Stale correction new value rejected across entire ledger, including unrelated locations",
+      "status": "passed",
+      "milliseconds": 1117
+    },
+    {
+      "name": "Duplicate correction position, missing location and moved provenance refused",
+      "status": "passed",
+      "milliseconds": 3197
+    },
+    {
+      "name": "Unchanged bank-concept source with independently edited text is refused, not overwritten",
+      "status": "passed",
+      "milliseconds": 1128
+    },
+    {
+      "name": "Position/provenance drift on a changed bank turn is refused",
+      "status": "passed",
+      "milliseconds": 1266
+    },
+    {
+      "name": "Definition before, duplicate IDs and reviewed content fingerprint mismatches refused",
+      "status": "passed",
+      "milliseconds": 2297
+    },
+    {
+      "name": "Preliminary plans refused by final mode and by authoritative source-plan gate",
+      "status": "passed",
+      "milliseconds": 1
+    },
+    {
+      "name": "Status relabeling without fresh compiler captures is refused",
+      "status": "passed",
+      "milliseconds": 357
+    },
+    {
+      "name": "Fresh compiler source byte mismatch and unresolved independent packet coverage refused",
+      "status": "passed",
+      "milliseconds": 613
+    },
+    {
+      "name": "CRLF and arbitrary harmless formatting survive token replacement",
+      "status": "passed",
+      "milliseconds": 3161
+    },
+    {
+      "name": "CLI rejects existing helper output and production output paths before any writes",
+      "status": "passed",
+      "milliseconds": 233
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T10:34:45.160Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-01-01-xc7",
+        "section": "중3::1. 실수와 그 계산::제곱근의 뜻과 성질",
+        "term": "분수의 제곱근을 근호 없이 쓰기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "분자와 분모가 모두 {제곱인 수}인 분수의 양의 제곱근은 분자와 분모의 양의 제곱근을 {각각} 구한 분수이다.",
+        "example": {
+          "prompt": "$\\frac{9}{16}$의 양의 제곱근이 $\\frac{3}{4}$인 까닭은?",
+          "answer": "양수 $\\frac{3}{4}$의 제곱이 $\\frac{9}{16}$라서"
+        },
+        "studentC": "분자와 분모가 모두 □인 분수의 양의 제곱근은 분자와 분모의 양의 제곱근을 □ 구한 분수이다.",
+        "answers": [
+          "제곱인 수",
+          "각각"
+        ]
+      },
+      "proposal": {
+        "id": "m3-01-01-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{9}{16}$의 양의 제곱근을 근호 없이 구하고, 제곱하여 맞는지 확인하시오. 또 분자와 분모가 자연수인 분수에서 두 수의 양의 제곱근을 각각 근호 없이 자연수로 구할 수 있으려면 분자와 분모가 각각 어떤 수여야 하는지 쓰시오.",
+        "bAnswer": "$\\frac{3}{4}$. $\\left(\\frac{3}{4}\\right)^2=\\frac{9}{16}$이고 $\\frac{3}{4}$는 양수이므로 맞다. 분자와 분모가 모두 자연수의 제곱인 수일 때 쓸 수 있다.",
+        "bGoal": "분수의 양의 제곱근을 근호 없이 구하기",
+        "bReason": "3/4의 제곱 확인과 분자 분모 각각의 자연수 근 조건을 묻는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{9}{16}$의 양의 제곱근은 $\\frac{3}{4}$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\left(\\frac{3}{4}\\right)^2=\\frac{9}{16}$",
+              "$\\frac{3}{4}\\times\\frac{3}{4}=\\frac{9}{16}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "분자와 분모가 모두 자연수의 제곱인 수일 때",
+              "분자와 분모가 모두 제곱수일 때"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "분자와 분모가 양의 정수인 분수에서, 두 수의 양의 제곱근을 각각 근호 없이 자연수로 쓰려면 두 수가 모두 {자연수의 제곱}이어야 한다. $\\frac{9}{16}$의 양의 제곱근은 {$\\frac{3}{4}$}이다.",
+        "cAnswers": [
+          "자연수의 제곱",
+          "$\\frac{3}{4}$"
+        ],
+        "cReason": "각 수의 자연수 근이라는 범위로 제곱수 조건을 명시한다.",
+        "exampleNeeded": true,
+        "authorBatch": 52,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "분자·분모 각각 제곱근",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3275,
+        "part": "m3plus",
+        "sourceFingerprint": "ea21f78ca75c922e7cb885542629a2482f54935f895020b7e02a6c484ccf9a5f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3275
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m3-01-01-xc7"
+        },
+        "cMarkedSentence": "분자와 분모가 양의 정수인 분수에서, 두 수의 양의 제곱근을 각각 근호 없이 자연수로 쓰려면 두 수가 모두 {자연수의 제곱}이어야 한다. $\\frac{9}{16}$의 양의 제곱근은 {$\\frac{3}{4}$}이다.",
+        "cSlotAnswers": [
+          "자연수의 제곱",
+          "$\\frac{3}{4}$"
+        ],
+        "cStudentSentence": "분자와 분모가 양의 정수인 분수에서, 두 수의 양의 제곱근을 각각 근호 없이 자연수로 쓰려면 두 수가 모두 □이어야 한다. $\\frac{9}{16}$의 양의 제곱근은 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "자연수의 제곱",
+            "equivalentAnswers": [
+              "자연수의 제곱",
+              "제곱수",
+              "제곱인 수"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\frac{3}{4}$",
+            "equivalentAnswers": [
+              "$\\frac{3}{4}$"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "제곱인 수",
+            "accept": [
+              "제곱수",
+              "자연수의 제곱"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "자연수의 제곱",
+            "제곱수",
+            "제곱인 수"
+          ],
+          [
+            "$\\frac{3}{4}$"
+          ]
+        ],
+        "proposalFingerprint": "1c25a7c7856b9ad2e7c30a1f92e1a387a4e87e1fdd9afc873bfb435e05e6e4de",
+        "coreAfter": "분자와 분모가 모두 {자연수의 제곱}인 분수의 양의 제곱근은 분자와 분모의 양의 제곱근을 {각각} 구한 분수로, 근호 없이 나타낼 수 있다.",
+        "coreReason": "분자와 분모를 자연수의 제곱으로 한정해 각 양의 제곱근을 근호 없이 자연수로 구하는 절차의 범위를 명시한다."
+      }
+    }
+  ]
+}

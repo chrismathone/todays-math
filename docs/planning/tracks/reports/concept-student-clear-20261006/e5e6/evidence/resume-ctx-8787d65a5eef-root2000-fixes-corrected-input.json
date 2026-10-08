@@ -1,0 +1,195 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e6-1-5-1-xc2",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "application",
+      "bGoal": "조각에 적힌 백분율이 비율임을 안다.",
+      "bReason": "조각의 숫자를 읽으라는 사소한 행동이라 별도 B의 가치가 낮다.",
+      "exclusionReason": "사소한 읽기 행동이며 c1·xc12가 더 의미 있게 다룬다.",
+      "cDecision": "revise",
+      "cAfter": "띠그래프의 한 항목에 $25\\%$라고 적혀 있다. 이 항목이 전체에서 차지하는 비율은 {$\\frac{1}{4}$}이다.",
+      "cReason": "실제적힌값없는백분율낱말칸대신띠의25퍼센트표시에서부분비율을읽는다. 1/4·0.25·25퍼센트는같은비율값이며그입력대안을함께인정한다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'비율'도 문맥상 가능하나 원문 답은 백분율이다.",
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{1}{4}$",
+            "$0.25$",
+            "$25\\%$"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-root2000-fixes.json",
+      "codexFinalAmendedFromFingerprint": "c6a6e33a2a3329146ef2fa24e7c956c33b4705e4cb88c13595c4cd0403792819",
+      "sourceIndex": 2001,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-5-1-xc2",
+        "section": "초6::1-5 여러 가지 그래프::1-5-1 띠그래프",
+        "term": "띠그래프 읽기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "띠그래프에서 각 조각에 적힌 {백분율}을 보고 항목의 비율을 읽는다.",
+        "studentC": "띠그래프에서 각 조각에 적힌 □을 보고 항목의 비율을 읽는다.",
+        "answers": [
+          "백분율"
+        ]
+      },
+      "sourceFingerprint": "2d513a9458411ed289c24be40e7a16d2ab1b7daa785b214221936805541a5a97",
+      "draftEvidence": "evidence/section-075-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$\\frac{1}{4}$"
+      ],
+      "cStudentAfter": "띠그래프의 한 항목에 $25\\%$라고 적혀 있다. 이 항목이 전체에서 차지하는 비율은 □이다.",
+      "cMarkedSentence": "띠그래프의 한 항목에 $25\\%$라고 적혀 있다. 이 항목이 전체에서 차지하는 비율은 {$\\frac{1}{4}$}이다.",
+      "cStudentSentence": "띠그래프의 한 항목에 $25\\%$라고 적혀 있다. 이 항목이 전체에서 차지하는 비율은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{1}{4}$",
+          "equivalents": [
+            "$0.25$",
+            "$25\\%$"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "띠그래프의 한 항목에 $25\\%$라고 적혀 있다. 이 항목이 전체에서 차지하는 비율은 {$\\frac{1}{4}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{1}{4}$",
+            "$0.25$",
+            "$25\\%$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "사소한 읽기 행동이며 c1·xc12가 더 의미 있게 다룬다."
+      },
+      "proposalFingerprint": "fa9387d5aeb31990e60deb76fe260e61434cf2c7e66cef2865a19566cf2c8939",
+      "questionRevision": "planning-e5e6-20261006-fa9387d5aeb3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-5-1-xc23",
+      "bDecision": "revise",
+      "bPrompt": "해마다 그린 같은 길이의 띠그래프를 위아래로 나란히 놓으면 항목의 어떤 것을 비교하기 쉬운가? 그 까닭도 설명하시오.",
+      "bAnswer": "항목 비율의 변화(해마다 어떻게 달라졌는지)를 비교하기 쉽다. 같은 길이의 띠가 나란히 있어 조각 길이를 맞대어 볼 수 있기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "비율의 변화",
+            "해마다 비율이 달라진 정도"
+          ]
+        },
+        {
+          "anyOf": [
+            "띠의 조각을 맞대어 비교할 수 있다",
+            "같은 길이 띠를 나란히 보기 때문이다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "여러 띠그래프로 비율의 변화를 비교하는 이유를 안다.",
+      "bReason": "조각길이를직접견주는이유가성립하도록각해의띠가같은길이임을질문에명시한다. 항목비율의변화라는목적과조각비교이유는남긴다.",
+      "cDecision": "revise",
+      "cAfter": "해마다 그린 같은 길이의 띠그래프를 위아래로 나란히 놓으면 항목 비율의 {변화}를 비교하기 쉽다.",
+      "cReason": "같은길이의띠라는조건을C에도명시해조각길이의비교가각해비율변화를뜻하도록한다. 변화의같은설명들도자유입력으로인정한다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'변화' 외에 달라진 정도도 가능하다.",
+      "editorialOwner": "Codex",
+      "coreAfter": "해마다 그린 같은 길이의 띠그래프를 위아래로 나란히 놓으면 항목 비율의 {변화}를 비교하기 쉽다.",
+      "coreReason": "띠의 길이가 다르면 조각 길이 차이만으로 비율 변화의 크기를 직접 견줄 수 없다. 원래 목표인 해마다 바뀐 비율 비교를 보존하며 같은 길이의 띠라는 필요한 시각 비교 조건을 일반 설명에도 명시한다.",
+      "coreTargetReason": "원문의 변화 한 표적을 보존한다. 같은 전체길이에 맞춘 띠에서 항목조각의 길이로 해마다 비율 변화를 읽는 일반 목표를 유지한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "변화",
+            "바뀐 정도",
+            "달라진 정도"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-root2000-fixes.json",
+      "codexFinalAmendedFromFingerprint": "733962ee3ce91d7e3271ae678cc7efd192144f11c213702b1b07d8fca0347173",
+      "sourceIndex": 2019,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-5-1-xc23",
+        "section": "초6::1-5 여러 가지 그래프::1-5-1 띠그래프",
+        "term": "해마다 바뀐 비율 비교",
+        "kind": "방법",
+        "level": "상",
+        "definition": "해마다 그린 띠그래프를 위아래로 나란히 놓으면 항목 비율의 {변화}를 비교하기 쉽다.",
+        "studentC": "해마다 그린 띠그래프를 위아래로 나란히 놓으면 항목 비율의 □를 비교하기 쉽다.",
+        "answers": [
+          "변화"
+        ]
+      },
+      "sourceFingerprint": "290c55aeeaf31e2ca3bdf7a5c8f063d331c447798dba7ef922c4f0429875ee13",
+      "draftEvidence": "evidence/section-075-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "변화"
+      ],
+      "cStudentAfter": "해마다 그린 같은 길이의 띠그래프를 위아래로 나란히 놓으면 항목 비율의 □를 비교하기 쉽다.",
+      "cMarkedSentence": "해마다 그린 같은 길이의 띠그래프를 위아래로 나란히 놓으면 항목 비율의 {변화}를 비교하기 쉽다.",
+      "cStudentSentence": "해마다 그린 같은 길이의 띠그래프를 위아래로 나란히 놓으면 항목 비율의 □를 비교하기 쉽다.",
+      "cSlotAnswers": [
+        {
+          "key": "변화",
+          "equivalents": [
+            "바뀐 정도",
+            "달라진 정도"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "해마다 그린 같은 길이의 띠그래프를 위아래로 나란히 놓으면 항목의 어떤 것을 비교하기 쉬운가? 그 까닭도 설명하시오.",
+        "answer": "항목 비율의 변화(해마다 어떻게 달라졌는지)를 비교하기 쉽다. 같은 길이의 띠가 나란히 있어 조각 길이를 맞대어 볼 수 있기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "비율의 변화",
+              "해마다 비율이 달라진 정도"
+            ]
+          },
+          {
+            "anyOf": [
+              "띠의 조각을 맞대어 비교할 수 있다",
+              "같은 길이 띠를 나란히 보기 때문이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "해마다 그린 같은 길이의 띠그래프를 위아래로 나란히 놓으면 항목 비율의 {변화}를 비교하기 쉽다.",
+        "acceptedAnswers": [
+          [
+            "변화",
+            "바뀐 정도",
+            "달라진 정도"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "acc78d3c593811d9216819d03f50d4be58bef128148a61c18ce0348702bf2cc5",
+      "questionRevision": "planning-e5e6-20261006-acc78d3c5938",
+      "requiresIndependentReview": true
+    }
+  ]
+}

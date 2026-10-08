@@ -1,0 +1,3172 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "capturedAt": "2026-10-07T05:10:36.546239+00:00",
+  "rows": [
+    {
+      "id": "e6-2-1-3-c3",
+      "bDecision": "revise",
+      "bPrompt": "$2\\div\\frac{1}{2}$을 이용하여, $0$보다 큰 수를 $0$보다 크고 $1$보다 작은 분수로 나누면 몫이 나누어지는 수보다 커지는지 작아지는지 쓰고 그 까닭을 설명하시오.",
+      "bAnswer": "몫이 더 커진다. $1$ 안에 $\\frac{1}{2}$이 $2$번 들어가므로 $2$ 안에는 $4$번 들어가고 $2\\div\\frac{1}{2}=4$이다. $4$가 $2$보다 크다.",
+      "bGoal": "$1$보다 작은 분수로 나눌 때 몫이 커지는 까닭을 예로 설명한다.",
+      "bReason": "크기 비교의 결과만이 아니라 그 이유를 구체적 식으로 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "몫이 나누어지는 수보다 커진다",
+            "몫이 더 크다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$보다 작은 분수는 $1$ 안에 여러 번 들어간다",
+            "$1$ 안에 $\\frac{1}{2}$이 $2$번 들어가므로 $2$ 안에는 $4$번 들어간다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "keep",
+      "cAfter": "$0$보다 큰 수를 $0$보다 크고 $1$보다 작은 분수로 나누면, 몫은 나누어지는 수보다 {크다}.",
+      "cReason": "양수와 $1$보다 작은 분수라는 조건이 있는 명확한 크기 비교라 유용하다.",
+      "exampleNeeded": false,
+      "sourceIndex": 300,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-1-3-c3",
+        "section": "초6::2-1 분수의 나눗셈::2-1-3 (자연수)÷(분수) 알아보기",
+        "level": "상",
+        "kind": "성질",
+        "term": "분수로 나눈 몫의 크기",
+        "definition": "$0$보다 큰 수를 $0$보다 크고 $1$보다 작은 분수로 나누면, 몫은 나누어지는 수보다 {크다}.",
+        "studentC": "$0$보다 큰 수를 $0$보다 크고 $1$보다 작은 분수로 나누면, 몫은 나누어지는 수보다 □.",
+        "answers": [
+          "크다"
+        ]
+      },
+      "sourceFingerprint": "d486198ddf0345e821bbb6c9aef6a030f47199315fb9eb54ca389644bc33dbaf",
+      "draftEvidence": "evidence/section-085-draft.json",
+      "cFrozenDefinition": "$0$보다 큰 수를 $0$보다 크고 $1$보다 작은 분수로 나누면, 몫은 나누어지는 수보다 {크다}.",
+      "cFrozenStudentSentence": "$0$보다 큰 수를 $0$보다 크고 $1$보다 작은 분수로 나누면, 몫은 나누어지는 수보다 □.",
+      "cProposedAnswers": [
+        "크다"
+      ],
+      "cStudentAfter": "$0$보다 큰 수를 $0$보다 크고 $1$보다 작은 분수로 나누면, 몫은 나누어지는 수보다 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "크다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$0$보다 큰 수를 $0$보다 크고 $1$보다 작은 분수로 나누면, 몫은 나누어지는 수보다 {크다}.",
+      "cStudentSentence": "$0$보다 큰 수를 $0$보다 크고 $1$보다 작은 분수로 나누면, 몫은 나누어지는 수보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "크다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$2\\div\\frac{1}{2}$을 이용하여, $0$보다 큰 수를 $0$보다 크고 $1$보다 작은 분수로 나누면 몫이 나누어지는 수보다 커지는지 작아지는지 쓰고 그 까닭을 설명하시오.",
+        "answer": "몫이 더 커진다. $1$ 안에 $\\frac{1}{2}$이 $2$번 들어가므로 $2$ 안에는 $4$번 들어가고 $2\\div\\frac{1}{2}=4$이다. $4$가 $2$보다 크다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "몫이 나누어지는 수보다 커진다",
+              "몫이 더 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1$보다 작은 분수는 $1$ 안에 여러 번 들어간다",
+              "$1$ 안에 $\\frac{1}{2}$이 $2$번 들어가므로 $2$ 안에는 $4$번 들어간다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0$보다 큰 수를 $0$보다 크고 $1$보다 작은 분수로 나누면, 몫은 나누어지는 수보다 {크다}.",
+        "acceptedAnswers": [
+          [
+            "크다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9dc0b0ad9dab1884dd242336e7cf03ce1ae20b9f1045a058b41ac6d0e997a30a",
+      "questionRevision": "planning-e5e6-20261006-9dc0b0ad9dab",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-1-4-c1",
+      "bDecision": "revise",
+      "bPrompt": "$0$이 아닌 분수의 분자와 분모를 서로 맞바꾼 분수를 처음 분수에 곱하면 어떤 값이 됩니까? $\\frac{3}{4}$으로 확인해 보시오.",
+      "bAnswer": "항상 $1$이 됩니다. $\\frac{3}{4}\\times\\frac{4}{3}=\\frac{12}{12}=1$입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "뒤집은 분수와 처음 분수의 곱이 $1$임을 안다.",
+      "bReason": "뒤집기의 핵심 성질을 일반 관계와 $\\frac{3}{4}$ 예로 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "$0$이 아닌 진분수나 가분수의 분자와 분모를 맞바꾸면, 처음 분수와 곱한 값은 {$1$}이 된다.",
+      "cReason": "$0$ 제외 조건이 있고 짧은 빈칸 하나로 뒤집은 분수와의 곱을 확인한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 301,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-1-4-c1",
+        "section": "초6::2-1 분수의 나눗셈::2-1-4 (분수)÷(분수)를 (분수)×(분수)로 나타내기",
+        "level": "하",
+        "kind": "방법",
+        "term": "분수 뒤집기",
+        "definition": "$0$이 아닌 진분수나 가분수의 분자와 분모를 맞바꾸면, 처음 분수와 곱한 값은 {$1$}이 된다.",
+        "studentC": "$0$이 아닌 진분수나 가분수의 분자와 분모를 맞바꾸면, 처음 분수와 곱한 값은 □이 된다.",
+        "answers": [
+          "$1$"
+        ]
+      },
+      "sourceFingerprint": "2fa62f6ce0efd0fba7691bcb22fc23cb13ba6e2e7dbd508b2ded3a51ce8474e8",
+      "draftEvidence": "evidence/section-086-draft.json",
+      "cFrozenDefinition": "$0$이 아닌 진분수나 가분수의 분자와 분모를 맞바꾸면, 처음 분수와 곱한 값은 {$1$}이 된다.",
+      "cFrozenStudentSentence": "$0$이 아닌 진분수나 가분수의 분자와 분모를 맞바꾸면, 처음 분수와 곱한 값은 □이 된다.",
+      "cProposedAnswers": [
+        "$1$"
+      ],
+      "cStudentAfter": "$0$이 아닌 진분수나 가분수의 분자와 분모를 맞바꾸면, 처음 분수와 곱한 값은 □이 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$0$이 아닌 진분수나 가분수의 분자와 분모를 맞바꾸면, 처음 분수와 곱한 값은 {$1$}이 된다.",
+      "cStudentSentence": "$0$이 아닌 진분수나 가분수의 분자와 분모를 맞바꾸면, 처음 분수와 곱한 값은 □이 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$0$이 아닌 분수의 분자와 분모를 서로 맞바꾼 분수를 처음 분수에 곱하면 어떤 값이 됩니까? $\\frac{3}{4}$으로 확인해 보시오.",
+        "answer": "항상 $1$이 됩니다. $\\frac{3}{4}\\times\\frac{4}{3}=\\frac{12}{12}=1$입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$1$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0$이 아닌 진분수나 가분수의 분자와 분모를 맞바꾸면, 처음 분수와 곱한 값은 {$1$}이 된다.",
+        "acceptedAnswers": [
+          [
+            "$1$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9c5e2f20755175bdbd775f34466eba3bb845ea3c41d32d274fee6cebd8d4b202",
+      "questionRevision": "planning-e5e6-20261006-9c5e2f207551",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-1-4-c2",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{2}{3}\\div\\frac{5}{7}$를 곱셈으로 바꾸어 계산하는 방법을 쓰고 값을 구하시오.",
+      "bAnswer": "나누는 분수 $\\frac{5}{7}$의 분자와 분모를 바꾸어 곱셈으로 바꿉니다. $\\frac{2}{3}\\times\\frac{7}{5}=\\frac{14}{15}$입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나눗셈을 곱셈으로 바꾸고 나누는 분수 $\\frac{5}{7}$를 $\\frac{7}{5}$로 뒤집는다",
+            "나누는 분수만 뒤집어 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{14}{15}$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "나눗셈을 곱셈으로 바꿀 때 어느 분수를 뒤집는지 안다.",
+      "bReason": "방법과 값을 함께 물어 계산값 하나만 묻는 문제를 피한다.",
+      "cDecision": "keep",
+      "cAfter": "두 분수를 진분수나 가분수로 나타내고 나눗셈을 곱셈으로 고칠 때는, $0$이 아닌 {나누는 분수}의 분자와 분모만 맞바꾼다.",
+      "cReason": "어느 분수를 뒤집는지 묻는 짧은 문장이며 $0$이 아닌 조건이 있다.",
+      "exampleNeeded": false,
+      "sourceIndex": 302,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-1-4-c2",
+        "section": "초6::2-1 분수의 나눗셈::2-1-4 (분수)÷(분수)를 (분수)×(분수)로 나타내기",
+        "level": "중",
+        "kind": "방법",
+        "term": "분수 나눗셈을 곱셈으로",
+        "definition": "두 분수를 진분수나 가분수로 나타내고 나눗셈을 곱셈으로 고칠 때는, $0$이 아닌 {나누는 분수}의 분자와 분모만 맞바꾼다.",
+        "studentC": "두 분수를 진분수나 가분수로 나타내고 나눗셈을 곱셈으로 고칠 때는, $0$이 아닌 □의 분자와 분모만 맞바꾼다.",
+        "answers": [
+          "나누는 분수"
+        ]
+      },
+      "sourceFingerprint": "898a20e4f4e5dbe9e9f9f7dabf85dbce0bb3fc0463a8c7b65947e08bb30d1cc6",
+      "draftEvidence": "evidence/section-086-draft.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "bPrompt",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cFrozenDefinition": "두 분수를 진분수나 가분수로 나타내고 나눗셈을 곱셈으로 고칠 때는, $0$이 아닌 {나누는 분수}의 분자와 분모만 맞바꾼다.",
+      "cFrozenStudentSentence": "두 분수를 진분수나 가분수로 나타내고 나눗셈을 곱셈으로 고칠 때는, $0$이 아닌 □의 분자와 분모만 맞바꾼다.",
+      "cProposedAnswers": [
+        "나누는 분수"
+      ],
+      "cStudentAfter": "두 분수를 진분수나 가분수로 나타내고 나눗셈을 곱셈으로 고칠 때는, $0$이 아닌 □의 분자와 분모만 맞바꾼다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "나누는 분수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "두 분수를 진분수나 가분수로 나타내고 나눗셈을 곱셈으로 고칠 때는, $0$이 아닌 {나누는 분수}의 분자와 분모만 맞바꾼다.",
+      "cStudentSentence": "두 분수를 진분수나 가분수로 나타내고 나눗셈을 곱셈으로 고칠 때는, $0$이 아닌 □의 분자와 분모만 맞바꾼다.",
+      "cSlotAnswers": [
+        {
+          "key": "나누는 분수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{2}{3}\\div\\frac{5}{7}$를 곱셈으로 바꾸어 계산하는 방법을 쓰고 값을 구하시오.",
+        "answer": "나누는 분수 $\\frac{5}{7}$의 분자와 분모를 바꾸어 곱셈으로 바꿉니다. $\\frac{2}{3}\\times\\frac{7}{5}=\\frac{14}{15}$입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나눗셈을 곱셈으로 바꾸고 나누는 분수 $\\frac{5}{7}$를 $\\frac{7}{5}$로 뒤집는다",
+              "나누는 분수만 뒤집어 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{14}{15}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "두 분수를 진분수나 가분수로 나타내고 나눗셈을 곱셈으로 고칠 때는, $0$이 아닌 {나누는 분수}의 분자와 분모만 맞바꾼다.",
+        "acceptedAnswers": [
+          [
+            "나누는 분수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9560dcad056450714483604e3817bd63281c2e3f4a56a2253a2665ce99015269",
+      "questionRevision": "planning-e5e6-20261006-9560dcad0564",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-1-4-c3",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{2}{3}\\div\\frac{5}{7}$의 나누어지는 수와 나누는 수에 모두 $\\frac{7}{5}$을 곱하면 나누는 수는 어떻게 되는지 쓰시오. 이를 이용해 나눗셈을 곱셈으로 바꾸어도 되는 까닭을 설명하시오.",
+      "bAnswer": "나누는 수는 $\\frac{5}{7}\\times\\frac{7}{5}=1$이 됩니다. 두 수에 같은 수를 곱해도 몫은 변하지 않으므로 $\\frac{2}{3}\\div\\frac{5}{7}=\\left(\\frac{2}{3}\\times\\frac{7}{5}\\right)\\div1=\\frac{14}{15}$입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나누는 수가 $1$이 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "나누어지는 수와 나누는 수에 같은 수를 곱해도 몫은 변하지 않는다",
+            "몫은 처음과 같다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "같은 수를 곱해도 몫이 같음으로 뒤집어 곱하기의 까닭을 설명한다.",
+      "bReason": "까닭을 막연히 묻지 않고 어떤 곱셈을 이용할지 지정했다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{2}{3}\\div\\frac{5}{7}$의 나누어지는 수와 나누는 수에 모두 $\\frac{7}{5}$을 곱하면 나누는 수는 {$1$}이 되고, 몫은 처음과 {같다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "같다",
+            "변하지 않는다"
+          ]
+        }
+      ],
+      "cReason": "추상적 긴 문장을 실제 식으로 바꿔 두 빈칸의 의미를 분명히 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 303,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-1-4-c3",
+        "section": "초6::2-1 분수의 나눗셈::2-1-4 (분수)÷(분수)를 (분수)×(분수)로 나타내기",
+        "level": "상",
+        "kind": "성질",
+        "term": "뒤집어 곱하는 까닭",
+        "definition": "두 분수를 진분수나 가분수로 나타낸다. 나누는 수가 $0$이 아닐 때, 나누어지는 수와 나누는 수에 각각 나누는 분수의 분자와 분모를 바꾼 수를 곱하면 나누는 수는 {$1$}이 되고 몫은 처음과 {같다}.",
+        "studentC": "두 분수를 진분수나 가분수로 나타낸다. 나누는 수가 $0$이 아닐 때, 나누어지는 수와 나누는 수에 각각 나누는 분수의 분자와 분모를 바꾼 수를 곱하면 나누는 수는 □이 되고 몫은 처음과 □.",
+        "answers": [
+          "$1$",
+          "같다"
+        ]
+      },
+      "sourceFingerprint": "602efec6326f8dcb156f115277070b19f4057b8fe869ddf8d0a955d1e57dc7aa",
+      "draftEvidence": "evidence/section-086-draft.json",
+      "cProposedAnswers": [
+        "$1$",
+        "같다"
+      ],
+      "cStudentAfter": "$\\frac{2}{3}\\div\\frac{5}{7}$의 나누어지는 수와 나누는 수에 모두 $\\frac{7}{5}$을 곱하면 나누는 수는 □이 되고, 몫은 처음과 □.",
+      "cMarkedSentence": "$\\frac{2}{3}\\div\\frac{5}{7}$의 나누어지는 수와 나누는 수에 모두 $\\frac{7}{5}$을 곱하면 나누는 수는 {$1$}이 되고, 몫은 처음과 {같다}.",
+      "cStudentSentence": "$\\frac{2}{3}\\div\\frac{5}{7}$의 나누어지는 수와 나누는 수에 모두 $\\frac{7}{5}$을 곱하면 나누는 수는 □이 되고, 몫은 처음과 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": []
+        },
+        {
+          "key": "같다",
+          "equivalents": [
+            "변하지 않는다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{2}{3}\\div\\frac{5}{7}$의 나누어지는 수와 나누는 수에 모두 $\\frac{7}{5}$을 곱하면 나누는 수는 어떻게 되는지 쓰시오. 이를 이용해 나눗셈을 곱셈으로 바꾸어도 되는 까닭을 설명하시오.",
+        "answer": "나누는 수는 $\\frac{5}{7}\\times\\frac{7}{5}=1$이 됩니다. 두 수에 같은 수를 곱해도 몫은 변하지 않으므로 $\\frac{2}{3}\\div\\frac{5}{7}=\\left(\\frac{2}{3}\\times\\frac{7}{5}\\right)\\div1=\\frac{14}{15}$입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나누는 수가 $1$이 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나누어지는 수와 나누는 수에 같은 수를 곱해도 몫은 변하지 않는다",
+              "몫은 처음과 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{2}{3}\\div\\frac{5}{7}$의 나누어지는 수와 나누는 수에 모두 $\\frac{7}{5}$을 곱하면 나누는 수는 {$1$}이 되고, 몫은 처음과 {같다}.",
+        "acceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "같다",
+            "변하지 않는다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "46a0c4d64519a7b2e13270089b2f3120ae7acc939103f330f6861da28756f2d9",
+      "questionRevision": "planning-e5e6-20261006-46a0c4d64519",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-1-5-c1",
+      "bDecision": "revise",
+      "bPrompt": "대분수를 가분수로 고칠 때 분모와 분자는 각각 어떻게 정하는지 설명하시오. 또 $2\\frac{3}{5}$을 가분수로 나타내시오.",
+      "bAnswer": "분모는 그대로 둔다. 분자는 자연수 부분에 분모를 곱한 뒤 원래 분자를 더해 구한다. $2\\frac{3}{5}=\\frac{2\\times5+3}{5}=\\frac{13}{5}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분모는 그대로 둔다",
+            "분모는 $5$ 그대로이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "분자는 자연수 부분에 분모를 곱하고 원래 분자를 더한다",
+            "분자는 $2\\times5+3$으로 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{13}{5}$",
+            "$13$을 $5$로 나눈 분수 $\\frac{13}{5}$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "대분수를 가분수로 바꾸는 절차를 일반 규칙으로 말하고 한 예에 적용한다.",
+      "bReason": "분모 유지와 분자 계산 두 요소를 묻는 일반 절차 문항이라 예를 함께 두어도 가치가 있다.",
+      "cDecision": "revise",
+      "cAfter": "$2\\frac{3}{5}$을 가분수로 고칠 때 분모는 그대로 두고, 분자는 $2\\times5+3=$ {$13$}으로 구한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$13$"
+          ]
+        }
+      ],
+      "cReason": "'단위분수의 개수' 같은 추상 설명 대신 실제 식으로 분자 계산값을 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 304,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-1-5-c1",
+        "section": "초6::2-1 분수의 나눗셈::2-1-5 (가분수)÷(분수), (대분수)÷(분수) 알아보기",
+        "level": "하",
+        "kind": "방법",
+        "term": "대분수를 가분수로 고치기",
+        "definition": "대분수를 가분수로 고칠 때, 자연수 부분에 분모를 곱한 값과 원래 분자를 더한 수를 새 {분자}로 쓴다. 이는 대분수 전체에 들어 있는 단위분수의 개수이며, 분모는 그대로 둔다.",
+        "studentC": "대분수를 가분수로 고칠 때, 자연수 부분에 분모를 곱한 값과 원래 분자를 더한 수를 새 □로 쓴다. 이는 대분수 전체에 들어 있는 단위분수의 개수이며, 분모는 그대로 둔다.",
+        "answers": [
+          "분자"
+        ]
+      },
+      "sourceFingerprint": "db3ab9845ae090dabd303adbeab8c4da9210bec4c1fd127b673824bd776f50c9",
+      "draftEvidence": "evidence/section-087-draft.json",
+      "cProposedAnswers": [
+        "$13$"
+      ],
+      "cStudentAfter": "$2\\frac{3}{5}$을 가분수로 고칠 때 분모는 그대로 두고, 분자는 $2\\times5+3=$ □으로 구한다.",
+      "cMarkedSentence": "$2\\frac{3}{5}$을 가분수로 고칠 때 분모는 그대로 두고, 분자는 $2\\times5+3=$ {$13$}으로 구한다.",
+      "cStudentSentence": "$2\\frac{3}{5}$을 가분수로 고칠 때 분모는 그대로 두고, 분자는 $2\\times5+3=$ □으로 구한다.",
+      "cSlotAnswers": [
+        {
+          "key": "$13$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "대분수를 가분수로 고칠 때 분모와 분자는 각각 어떻게 정하는지 설명하시오. 또 $2\\frac{3}{5}$을 가분수로 나타내시오.",
+        "answer": "분모는 그대로 둔다. 분자는 자연수 부분에 분모를 곱한 뒤 원래 분자를 더해 구한다. $2\\frac{3}{5}=\\frac{2\\times5+3}{5}=\\frac{13}{5}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분모는 그대로 둔다",
+              "분모는 $5$ 그대로이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분자는 자연수 부분에 분모를 곱하고 원래 분자를 더한다",
+              "분자는 $2\\times5+3$으로 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{13}{5}$",
+              "$13$을 $5$로 나눈 분수 $\\frac{13}{5}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$2\\frac{3}{5}$을 가분수로 고칠 때 분모는 그대로 두고, 분자는 $2\\times5+3=$ {$13$}으로 구한다.",
+        "acceptedAnswers": [
+          [
+            "$13$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e39de4f6e6fd102e01238119e49291c57c96f0cde0f00328585f2b33fc15f58e",
+      "questionRevision": "planning-e5e6-20261006-e39de4f6e6fd",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-1-5-c2",
+      "bDecision": "revise",
+      "bPrompt": "$1\\frac{1}{2}\\div2\\frac{1}{4}$처럼 대분수가 있는 나눗셈은 어떤 순서로 계산하는가? 계산 순서를 말하고 몫을 구하시오.",
+      "bAnswer": "먼저 대분수를 가분수로 고쳐 $\\frac{3}{2}\\div\\frac{9}{4}$로 만든다. 나누는 분수의 분자와 분모를 바꾸어 곱하면 $\\frac{3}{2}\\times\\frac{4}{9}=\\frac{2}{3}$이다. 몫은 $\\frac{2}{3}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "대분수를 가분수로 고친다",
+            "$\\frac{3}{2}\\div\\frac{9}{4}$로 바꾼다"
+          ]
+        },
+        {
+          "anyOf": [
+            "나누는 분수의 분자와 분모를 바꾸어 곱한다",
+            "통분해 분자끼리 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{2}{3}$",
+            "$\\frac{6}{9}$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "대분수 나눗셈의 전체 계산 순서를 설명하고 직접 실행한다.",
+      "bReason": "첫 단계만 묻는 것보다 가분수 변환 뒤 나눗셈까지 이어 묻는 편이 학습 가치가 크다.",
+      "cDecision": "keep",
+      "cAfter": "나눗셈에 대분수가 있으면 먼저 {가분수}로 고치고 분수의 나눗셈을 한다.",
+      "cReason": "대분수가 있으면 가분수로 고친다는 짧고 명확한 방법 문장이라 그대로 유지한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 305,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-1-5-c2",
+        "section": "초6::2-1 분수의 나눗셈::2-1-5 (가분수)÷(분수), (대분수)÷(분수) 알아보기",
+        "level": "중",
+        "kind": "방법",
+        "term": "대분수끼리 나누기",
+        "definition": "나눗셈에 대분수가 있으면 먼저 {가분수}로 고치고 분수의 나눗셈을 한다.",
+        "studentC": "나눗셈에 대분수가 있으면 먼저 □로 고치고 분수의 나눗셈을 한다.",
+        "answers": [
+          "가분수"
+        ]
+      },
+      "sourceFingerprint": "d1adbbf7d35aa5de534c3db3f814d9ce1d23992ff71caced42928f454a7497aa",
+      "draftEvidence": "evidence/section-087-draft.json",
+      "cFrozenDefinition": "나눗셈에 대분수가 있으면 먼저 {가분수}로 고치고 분수의 나눗셈을 한다.",
+      "cFrozenStudentSentence": "나눗셈에 대분수가 있으면 먼저 □로 고치고 분수의 나눗셈을 한다.",
+      "cProposedAnswers": [
+        "가분수"
+      ],
+      "cStudentAfter": "나눗셈에 대분수가 있으면 먼저 □로 고치고 분수의 나눗셈을 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "가분수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "나눗셈에 대분수가 있으면 먼저 {가분수}로 고치고 분수의 나눗셈을 한다.",
+      "cStudentSentence": "나눗셈에 대분수가 있으면 먼저 □로 고치고 분수의 나눗셈을 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "가분수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$1\\frac{1}{2}\\div2\\frac{1}{4}$처럼 대분수가 있는 나눗셈은 어떤 순서로 계산하는가? 계산 순서를 말하고 몫을 구하시오.",
+        "answer": "먼저 대분수를 가분수로 고쳐 $\\frac{3}{2}\\div\\frac{9}{4}$로 만든다. 나누는 분수의 분자와 분모를 바꾸어 곱하면 $\\frac{3}{2}\\times\\frac{4}{9}=\\frac{2}{3}$이다. 몫은 $\\frac{2}{3}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "대분수를 가분수로 고친다",
+              "$\\frac{3}{2}\\div\\frac{9}{4}$로 바꾼다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나누는 분수의 분자와 분모를 바꾸어 곱한다",
+              "통분해 분자끼리 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{2}{3}$",
+              "$\\frac{6}{9}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "나눗셈에 대분수가 있으면 먼저 {가분수}로 고치고 분수의 나눗셈을 한다.",
+        "acceptedAnswers": [
+          [
+            "가분수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "c28297588c020afacd6c439fe29bf94bea7a5f66104dc68c8cf18dab13350967",
+      "questionRevision": "planning-e5e6-20261006-c28297588c02",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-1-5-c3",
+      "bDecision": "revise",
+      "bPrompt": "분수의 나눗셈 답이 맞는지 곱셈으로 확인하는 방법을 설명하시오. 이 방법으로 $\\frac{3}{2}\\div\\frac{3}{4}=2$가 맞는지 확인하시오.",
+      "bAnswer": "몫에 나누는 분수를 곱해서 나누어지는 수가 나오면 맞다. $2\\times\\frac{3}{4}=\\frac{3}{2}$이므로 맞다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "몫에 나누는 수를 곱한다",
+            "몫과 나누는 분수를 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "나누어지는 수가 나오면 맞다",
+            "나누어지는 수와 같으면 맞다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\times\\frac{3}{4}=\\frac{3}{2}$이므로 맞다",
+            "$\\frac{3}{2}$이 나오므로 맞다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "몫과 나누는 수의 곱으로 나눗셈을 검산하는 방법을 쓴다.",
+      "bReason": "검산 절차와 판정 기준을 일반 규칙으로 묻고 한 예로 확인하게 한다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{3}{2}\\div\\frac{3}{4}=2$가 맞는지 확인하려면 $2\\times\\frac{3}{4}$을 계산한다. 계산 결과는 {$\\frac{3}{2}$}이어야 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{3}{2}$",
+            "$1\\frac{1}{2}$",
+            "$\\frac{6}{4}$"
+          ]
+        }
+      ],
+      "cReason": "맥락 없는 '나누어지는 수' 빈칸 대신 실제 나눗셈식과 확인 곱셈식을 제시한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 306,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-1-5-c3",
+        "section": "초6::2-1 분수의 나눗셈::2-1-5 (가분수)÷(분수), (대분수)÷(분수) 알아보기",
+        "level": "상",
+        "kind": "방법",
+        "term": "나눗셈 검산",
+        "definition": "구한 몫과 나누는 분수를 곱해 {나누어지는 수}가 되는지 살펴 답을 확인한다. 단, 나누는 분수는 $0$이 아니다.",
+        "studentC": "구한 몫과 나누는 분수를 곱해 □가 되는지 살펴 답을 확인한다. 단, 나누는 분수는 $0$이 아니다.",
+        "answers": [
+          "나누어지는 수"
+        ]
+      },
+      "sourceFingerprint": "665e334dbba2887af44a092a2a76343a97e23d11804ecf2fecee2642e8aab8b2",
+      "draftEvidence": "evidence/section-087-draft.json",
+      "cProposedAnswers": [
+        "$\\frac{3}{2}$"
+      ],
+      "cStudentAfter": "$\\frac{3}{2}\\div\\frac{3}{4}=2$가 맞는지 확인하려면 $2\\times\\frac{3}{4}$을 계산한다. 계산 결과는 □이어야 한다.",
+      "cMarkedSentence": "$\\frac{3}{2}\\div\\frac{3}{4}=2$가 맞는지 확인하려면 $2\\times\\frac{3}{4}$을 계산한다. 계산 결과는 {$\\frac{3}{2}$}이어야 한다.",
+      "cStudentSentence": "$\\frac{3}{2}\\div\\frac{3}{4}=2$가 맞는지 확인하려면 $2\\times\\frac{3}{4}$을 계산한다. 계산 결과는 □이어야 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{3}{2}$",
+          "equivalents": [
+            "$1\\frac{1}{2}$",
+            "$\\frac{6}{4}$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "분수의 나눗셈 답이 맞는지 곱셈으로 확인하는 방법을 설명하시오. 이 방법으로 $\\frac{3}{2}\\div\\frac{3}{4}=2$가 맞는지 확인하시오.",
+        "answer": "몫에 나누는 분수를 곱해서 나누어지는 수가 나오면 맞다. $2\\times\\frac{3}{4}=\\frac{3}{2}$이므로 맞다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "몫에 나누는 수를 곱한다",
+              "몫과 나누는 분수를 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나누어지는 수가 나오면 맞다",
+              "나누어지는 수와 같으면 맞다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2\\times\\frac{3}{4}=\\frac{3}{2}$이므로 맞다",
+              "$\\frac{3}{2}$이 나오므로 맞다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{3}{2}\\div\\frac{3}{4}=2$가 맞는지 확인하려면 $2\\times\\frac{3}{4}$을 계산한다. 계산 결과는 {$\\frac{3}{2}$}이어야 한다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{3}{2}$",
+            "$1\\frac{1}{2}$",
+            "$\\frac{6}{4}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "55821be8ee15e6bfb353cb8e2314a306f6a1bc4351e42ebfd612394817b37d95",
+      "questionRevision": "planning-e5e6-20261006-55821be8ee15",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-2-1-c1",
+      "bDecision": "revise",
+      "bPrompt": "소수 한 자리 수끼리의 나눗셈을 자연수의 나눗셈처럼 계산하려면 두 수를 각각 어떤 단위의 몇 개로 나타내면 되나요? 소수 두 자리 수끼리는 어떤 단위로 나타내나요?",
+      "bAnswer": "소수 한 자리 수는 $0.1$이 몇 개인지로, 소수 두 자리 수는 $0.01$이 몇 개인지로 나타냅니다. 예를 들어 $0.8$은 $0.1$이 $8$개입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "소수 한 자리 수는 $0.1$의 개수로 나타낸다",
+            "$0.1$ 단위의 개수",
+            "$0.1$이 몇 개인지"
+          ]
+        },
+        {
+          "anyOf": [
+            "소수 두 자리 수는 $0.01$의 개수로 나타낸다",
+            "$0.01$ 단위의 개수",
+            "$0.01$이 몇 개인지"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "자릿수에 따라 같은 소수 단위를 골라 개수로 나타내는 방법을 안다.",
+      "bReason": "원문은 두 자리 수 쪽 답이 문장에 보이므로 한 자리와 두 자리 단위를 모두 묻도록 고쳤다.",
+      "cDecision": "revise",
+      "cAfter": "$0.9$는 $0.1$이 {$9$}개이고, $0.35$는 $0.01$이 {$35$}개이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$9$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$35$"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸은 바로 뒤 $0.01$의 개수를 베끼기 쉬워 실제 수를 개수로 바꾸는 계산 빈칸으로 바꿨다.",
+      "exampleNeeded": false,
+      "sourceIndex": 307,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-2-1-c1",
+        "section": "초6::2-2 소수의 나눗셈::2-2-1 자릿수가 같은 (소수)÷(소수) 알아보기",
+        "level": "하",
+        "kind": "성질",
+        "term": "같은 소수 단위",
+        "definition": "소수 한 자리 수끼리는 모두 {$0.1$의 개수}로, 소수 두 자리 수끼리는 모두 $0.01$의 개수로 나타내어 견줄 수 있다.",
+        "studentC": "소수 한 자리 수끼리는 모두 □로, 소수 두 자리 수끼리는 모두 $0.01$의 개수로 나타내어 견줄 수 있다.",
+        "answers": [
+          "$0.1$의 개수"
+        ]
+      },
+      "sourceFingerprint": "0925e03c058d0c751abb669ae1474cb23494669aa7f81b1320b12e541e2c450e",
+      "draftEvidence": "evidence/section-088-draft.json",
+      "cProposedAnswers": [
+        "$9$",
+        "$35$"
+      ],
+      "cStudentAfter": "$0.9$는 $0.1$이 □개이고, $0.35$는 $0.01$이 □개이다.",
+      "cMarkedSentence": "$0.9$는 $0.1$이 {$9$}개이고, $0.35$는 $0.01$이 {$35$}개이다.",
+      "cStudentSentence": "$0.9$는 $0.1$이 □개이고, $0.35$는 $0.01$이 □개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$9$",
+          "equivalents": []
+        },
+        {
+          "key": "$35$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "소수 한 자리 수끼리의 나눗셈을 자연수의 나눗셈처럼 계산하려면 두 수를 각각 어떤 단위의 몇 개로 나타내면 되나요? 소수 두 자리 수끼리는 어떤 단위로 나타내나요?",
+        "answer": "소수 한 자리 수는 $0.1$이 몇 개인지로, 소수 두 자리 수는 $0.01$이 몇 개인지로 나타냅니다. 예를 들어 $0.8$은 $0.1$이 $8$개입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "소수 한 자리 수는 $0.1$의 개수로 나타낸다",
+              "$0.1$ 단위의 개수",
+              "$0.1$이 몇 개인지"
+            ]
+          },
+          {
+            "anyOf": [
+              "소수 두 자리 수는 $0.01$의 개수로 나타낸다",
+              "$0.01$ 단위의 개수",
+              "$0.01$이 몇 개인지"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0.9$는 $0.1$이 {$9$}개이고, $0.35$는 $0.01$이 {$35$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$9$"
+          ],
+          [
+            "$35$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "908f85eeee242fe1313c3fe586e805a37a1d6c9a6da71cb7f178d7406f0d6cb7",
+      "questionRevision": "planning-e5e6-20261006-908f85eeee24",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-2-1-c2",
+      "bDecision": "revise",
+      "bPrompt": "$1.2\\div0.4$의 두 수에 같은 수를 곱해 자연수의 나눗셈으로 바꾸려고 합니다. 어떤 수를 곱하면 되고, 바뀐 나눗셈식과 몫은 무엇인가요?",
+      "bAnswer": "두 수에 $10$을 곱하면 $12\\div4$가 되고, 몫은 $3$입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$10$을 곱한다",
+            "$10$배 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12\\div4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "나누는 수가 자연수가 되도록 두 수를 같은 배로 키워 계산하는 절차를 안다.",
+      "bReason": "일반 방법을 구체 식에 적용해 곱하는 수와 바뀐 식, 몫까지 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$2.4\\div0.8$에서 두 수에 {$10$}을 곱하면 $24\\div${$8$}이 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$10$",
+            "$10$배"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8$"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸은 긴 구절이고 '자연수의 나눗셈' 같은 다른 답도 가능해 짧은 수 빈칸으로 바꿨다.",
+      "exampleNeeded": false,
+      "sourceIndex": 308,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-2-1-c2",
+        "section": "초6::2-2 소수의 나눗셈::2-2-1 자릿수가 같은 (소수)÷(소수) 알아보기",
+        "level": "중",
+        "kind": "방법",
+        "term": "(소수)$\\div$(소수)",
+        "definition": "소수끼리 나눌 때 두 수를 같은 배로 키워 {나누는 수를 자연수}로 만들면 계산이 편리하다.",
+        "studentC": "소수끼리 나눌 때 두 수를 같은 배로 키워 □로 만들면 계산이 편리하다.",
+        "answers": [
+          "나누는 수를 자연수"
+        ]
+      },
+      "sourceFingerprint": "489bd90aa4c3b5302dc2a5f77c23f4c8df8e2db6475a58f55a7b5762bf2dcb4f",
+      "draftEvidence": "evidence/section-088-draft.json",
+      "cProposedAnswers": [
+        "$10$",
+        "$8$"
+      ],
+      "cStudentAfter": "$2.4\\div0.8$에서 두 수에 □을 곱하면 $24\\div$□이 된다.",
+      "cMarkedSentence": "$2.4\\div0.8$에서 두 수에 {$10$}을 곱하면 $24\\div${$8$}이 된다.",
+      "cStudentSentence": "$2.4\\div0.8$에서 두 수에 □을 곱하면 $24\\div$□이 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$10$",
+          "equivalents": [
+            "$10$배"
+          ]
+        },
+        {
+          "key": "$8$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$1.2\\div0.4$의 두 수에 같은 수를 곱해 자연수의 나눗셈으로 바꾸려고 합니다. 어떤 수를 곱하면 되고, 바뀐 나눗셈식과 몫은 무엇인가요?",
+        "answer": "두 수에 $10$을 곱하면 $12\\div4$가 되고, 몫은 $3$입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$10$을 곱한다",
+              "$10$배 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12\\div4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$2.4\\div0.8$에서 두 수에 {$10$}을 곱하면 $24\\div${$8$}이 된다.",
+        "acceptedAnswers": [
+          [
+            "$10$",
+            "$10$배"
+          ],
+          [
+            "$8$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "1c226664118b7728e3d22069c320fbbbcb6158b1b88e04dd1cedd3c3ff8197f1",
+      "questionRevision": "planning-e5e6-20261006-1c226664118b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-2-1-c3",
+      "bDecision": "revise",
+      "bPrompt": "$0.6\\div0.2$의 두 수를 모두 $10$배 하면 $6\\div2$가 됩니다. 두 수를 같은 배로 키워도 몫이 변하지 않는 까닭을, 나누는 수가 나누어지는 수 안에 들어가는 횟수로 설명하고, 몫도 구하세요.",
+      "bAnswer": "두 수를 똑같이 $10$배 하면 $0.2$가 $0.6$ 안에 들어가는 횟수와 $2$가 $6$ 안에 들어가는 횟수가 같아서 몫이 변하지 않습니다. 몫은 $3$입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "들어가는 횟수가 같다",
+            "들어가는 횟수가 변하지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "두 수를 같은 배로 키워도 몫이 같은 까닭을 들어가는 횟수로 설명한다.",
+      "bReason": "원문은 몫 유지의 근거가 들어가는 횟수 비교라는 점을 짚으므로 구체 식으로 그 관계를 설명하게 한다.",
+      "cDecision": "revise",
+      "cAfter": "$0.6\\div0.2$의 두 수를 모두 $10$배 하면 $6\\div2$이다. 이 나눗셈의 몫은 {$3$}이고, $0.6\\div0.2$의 몫과 {같다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "같다",
+            "똑같다",
+            "변하지 않는다"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸은 긴 구절을 외우게 해 실제 식의 몫과 비교 결과를 묻는 빈칸으로 바꿨다.",
+      "exampleNeeded": false,
+      "sourceIndex": 309,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-2-1-c3",
+        "section": "초6::2-2 소수의 나눗셈::2-2-1 자릿수가 같은 (소수)÷(소수) 알아보기",
+        "level": "상",
+        "kind": "성질",
+        "term": "소수점 이동과 몫",
+        "definition": "두 수를 {같은 배로 키우면} 나누는 수가 나누어지는 수 안에 들어가는 횟수가 같아 몫이 유지된다.",
+        "studentC": "두 수를 □ 나누는 수가 나누어지는 수 안에 들어가는 횟수가 같아 몫이 유지된다.",
+        "answers": [
+          "같은 배로 키우면"
+        ]
+      },
+      "sourceFingerprint": "3233c55446207cb6aea1e8f1db7ad8543f4d8791dade69970259d07e8e1a5ebb",
+      "draftEvidence": "evidence/section-088-draft.json",
+      "cProposedAnswers": [
+        "$3$",
+        "같다"
+      ],
+      "cStudentAfter": "$0.6\\div0.2$의 두 수를 모두 $10$배 하면 $6\\div2$이다. 이 나눗셈의 몫은 □이고, $0.6\\div0.2$의 몫과 □.",
+      "cMarkedSentence": "$0.6\\div0.2$의 두 수를 모두 $10$배 하면 $6\\div2$이다. 이 나눗셈의 몫은 {$3$}이고, $0.6\\div0.2$의 몫과 {같다}.",
+      "cStudentSentence": "$0.6\\div0.2$의 두 수를 모두 $10$배 하면 $6\\div2$이다. 이 나눗셈의 몫은 □이고, $0.6\\div0.2$의 몫과 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "같다",
+          "equivalents": [
+            "똑같다",
+            "변하지 않는다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$0.6\\div0.2$의 두 수를 모두 $10$배 하면 $6\\div2$가 됩니다. 두 수를 같은 배로 키워도 몫이 변하지 않는 까닭을, 나누는 수가 나누어지는 수 안에 들어가는 횟수로 설명하고, 몫도 구하세요.",
+        "answer": "두 수를 똑같이 $10$배 하면 $0.2$가 $0.6$ 안에 들어가는 횟수와 $2$가 $6$ 안에 들어가는 횟수가 같아서 몫이 변하지 않습니다. 몫은 $3$입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "들어가는 횟수가 같다",
+              "들어가는 횟수가 변하지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0.6\\div0.2$의 두 수를 모두 $10$배 하면 $6\\div2$이다. 이 나눗셈의 몫은 {$3$}이고, $0.6\\div0.2$의 몫과 {같다}.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "같다",
+            "똑같다",
+            "변하지 않는다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "cbb6fe7f0e05c30da876346988c41cbb80afbc0c4c0bb9fc867d29bb77262223",
+      "questionRevision": "planning-e5e6-20261006-cbb6fe7f0e05",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-2-2-c1",
+      "bDecision": "revise",
+      "bPrompt": "소수 끝에 $0$을 붙인 $1.2$와 $1.20$은 크기가 같은지 다른지 말하고, 그 까닭을 설명하시오.",
+      "bAnswer": "크기가 같은 수이다. 예를 들어 $1.2=\\frac{12}{10}=\\frac{120}{100}=1.20$이므로, 소수 끝의 $0$은 크기를 바꾸지 않는다. 그래서 계산에 필요하면 소수 자리를 $0$으로 채울 수 있다.",
+      "bGoal": "소수 끝에 $0$을 붙여도 크기가 변하지 않는 이유를 분수나 자리값으로 설명한다.",
+      "bReason": "원문은 낱말 하나(같은 수)만 묻는 문장이라, 같다는 결론과 그 근거를 함께 묻도록 고쳤다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1.2$와 $1.20$은 크기가 같은 수이다",
+            "$1.2=1.20$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1.2=\\frac{12}{10}=\\frac{120}{100}$처럼 분수로 나타내면 같다",
+            "소수 끝의 $0$은 크기를 바꾸지 않는다",
+            "$0.1$이 $12$개인 수와 $0.01$이 $120$개인 수가 같다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "keep",
+      "cAfter": "$1.2$와 $1.20$은 {같은 수}이므로, 계산에 필요한 소수 자리를 $0$으로 채울 수 있다.",
+      "cReason": "$1.2$와 $1.20$을 비교하는 짧은 문장이고 빈칸 '같은 수'의 근거가 문장 안에 있으며 조건도 완전하다.",
+      "exampleNeeded": false,
+      "sourceIndex": 310,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-2-2-c1",
+        "section": "초6::2-2 소수의 나눗셈::2-2-2 자릿수가 다른 (소수)÷(소수) 알아보기",
+        "level": "하",
+        "kind": "성질",
+        "term": "소수 자릿수 맞추기",
+        "definition": "$1.2$와 $1.20$은 {같은 수}이므로, 계산에 필요한 소수 자리를 $0$으로 채울 수 있다.",
+        "studentC": "$1.2$와 $1.20$은 □이므로, 계산에 필요한 소수 자리를 $0$으로 채울 수 있다.",
+        "answers": [
+          "같은 수"
+        ]
+      },
+      "sourceFingerprint": "0a1962f2963dbb3d65e7a273d409dc6bd3eff8b5c8d1c49a48bc83cdbf84e22d",
+      "draftEvidence": "evidence/section-089-draft.json",
+      "cFrozenDefinition": "$1.2$와 $1.20$은 {같은 수}이므로, 계산에 필요한 소수 자리를 $0$으로 채울 수 있다.",
+      "cFrozenStudentSentence": "$1.2$와 $1.20$은 □이므로, 계산에 필요한 소수 자리를 $0$으로 채울 수 있다.",
+      "cProposedAnswers": [
+        "같은 수"
+      ],
+      "cStudentAfter": "$1.2$와 $1.20$은 □이므로, 계산에 필요한 소수 자리를 $0$으로 채울 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같은 수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$1.2$와 $1.20$은 {같은 수}이므로, 계산에 필요한 소수 자리를 $0$으로 채울 수 있다.",
+      "cStudentSentence": "$1.2$와 $1.20$은 □이므로, 계산에 필요한 소수 자리를 $0$으로 채울 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "같은 수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "소수 끝에 $0$을 붙인 $1.2$와 $1.20$은 크기가 같은지 다른지 말하고, 그 까닭을 설명하시오.",
+        "answer": "크기가 같은 수이다. 예를 들어 $1.2=\\frac{12}{10}=\\frac{120}{100}=1.20$이므로, 소수 끝의 $0$은 크기를 바꾸지 않는다. 그래서 계산에 필요하면 소수 자리를 $0$으로 채울 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$1.2$와 $1.20$은 크기가 같은 수이다",
+              "$1.2=1.20$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1.2=\\frac{12}{10}=\\frac{120}{100}$처럼 분수로 나타내면 같다",
+              "소수 끝의 $0$은 크기를 바꾸지 않는다",
+              "$0.1$이 $12$개인 수와 $0.01$이 $120$개인 수가 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1.2$와 $1.20$은 {같은 수}이므로, 계산에 필요한 소수 자리를 $0$으로 채울 수 있다.",
+        "acceptedAnswers": [
+          [
+            "같은 수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "858deab6a6e3e5724eac1327fc06d806fc9e566329323ba36d9b8f5da7f6b0db",
+      "questionRevision": "planning-e5e6-20261006-858deab6a6e3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-2-2-c2",
+      "bDecision": "revise",
+      "bPrompt": "$4.8\\div0.12$를 자연수끼리의 나눗셈으로 바꿔 계산하려고 한다. 나누는 수와 나누어지는 수를 각각 어떻게 해야 하는지 설명하고, 몫을 구하시오.",
+      "bAnswer": "나누는 수 $0.12$를 자연수 $12$로 만들려고 소수점을 오른쪽으로 $2$칸 옮긴다. 나누어지는 수 $4.8$도 똑같이 $2$칸 옮겨 $480$으로 만든다(두 수에 같은 $100$배). 그러면 $480\\div12=40$이므로 몫은 $40$이다.",
+      "bGoal": "나누는 소수를 자연수로 만드는 만큼 두 수의 소수점을 똑같이 옮겨 계산하는 방법을 쓴다.",
+      "bReason": "방법 문장을 그대로 외우게 하지 않고 구체적인 식에서 두 수를 각각 어떻게 바꾸는지와 몫까지 확인하게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나누는 수가 자연수가 되도록 소수점을 옮긴다",
+            "$0.12$를 $12$로 만든다"
+          ]
+        },
+        {
+          "anyOf": [
+            "나누어지는 수의 소수점도 같은 칸만큼 옮긴다",
+            "두 수에 같은 $100$배를 한다",
+            "$4.8$을 $480$으로 만든다"
+          ]
+        },
+        {
+          "anyOf": [
+            "몫은 $40$이다",
+            "$480\\div12=40$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "$3.6\\div0.12$에서 나누는 수 $0.12$를 자연수 $12$로 만들려면 두 수의 소수점을 오른쪽으로 각각 {$2$}칸 옮긴다. 그러면 계산은 {$360$}$\\div12$가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$",
+            "두"
+          ]
+        },
+        {
+          "anyOf": [
+            "$360$"
+          ]
+        }
+      ],
+      "cReason": "긴 구절을 외우는 빈칸을 실제 식의 이동 칸 수와 바뀐 나누어지는 수를 묻는 짧은 값으로 바꿨다.",
+      "exampleNeeded": false,
+      "sourceIndex": 311,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-2-2-c2",
+        "section": "초6::2-2 소수의 나눗셈::2-2-2 자릿수가 다른 (소수)÷(소수) 알아보기",
+        "level": "중",
+        "kind": "방법",
+        "term": "자릿수가 다른 (소수)$\\div$(소수)",
+        "definition": "나누는 소수를 자연수로 만드는 만큼 {양쪽 소수점을 똑같이 옮겨} 계산한다.",
+        "studentC": "나누는 소수를 자연수로 만드는 만큼 □ 계산한다.",
+        "answers": [
+          "양쪽 소수점을 똑같이 옮겨"
+        ]
+      },
+      "sourceFingerprint": "67898164e36cddae468c947376eac83f7569aa0ad37cf25700798b6ffabc0509",
+      "draftEvidence": "evidence/section-089-draft.json",
+      "cProposedAnswers": [
+        "$2$",
+        "$360$"
+      ],
+      "cStudentAfter": "$3.6\\div0.12$에서 나누는 수 $0.12$를 자연수 $12$로 만들려면 두 수의 소수점을 오른쪽으로 각각 □칸 옮긴다. 그러면 계산은 □$\\div12$가 된다.",
+      "cMarkedSentence": "$3.6\\div0.12$에서 나누는 수 $0.12$를 자연수 $12$로 만들려면 두 수의 소수점을 오른쪽으로 각각 {$2$}칸 옮긴다. 그러면 계산은 {$360$}$\\div12$가 된다.",
+      "cStudentSentence": "$3.6\\div0.12$에서 나누는 수 $0.12$를 자연수 $12$로 만들려면 두 수의 소수점을 오른쪽으로 각각 □칸 옮긴다. 그러면 계산은 □$\\div12$가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": [
+            "두"
+          ]
+        },
+        {
+          "key": "$360$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$4.8\\div0.12$를 자연수끼리의 나눗셈으로 바꿔 계산하려고 한다. 나누는 수와 나누어지는 수를 각각 어떻게 해야 하는지 설명하고, 몫을 구하시오.",
+        "answer": "나누는 수 $0.12$를 자연수 $12$로 만들려고 소수점을 오른쪽으로 $2$칸 옮긴다. 나누어지는 수 $4.8$도 똑같이 $2$칸 옮겨 $480$으로 만든다(두 수에 같은 $100$배). 그러면 $480\\div12=40$이므로 몫은 $40$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나누는 수가 자연수가 되도록 소수점을 옮긴다",
+              "$0.12$를 $12$로 만든다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나누어지는 수의 소수점도 같은 칸만큼 옮긴다",
+              "두 수에 같은 $100$배를 한다",
+              "$4.8$을 $480$으로 만든다"
+            ]
+          },
+          {
+            "anyOf": [
+              "몫은 $40$이다",
+              "$480\\div12=40$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$3.6\\div0.12$에서 나누는 수 $0.12$를 자연수 $12$로 만들려면 두 수의 소수점을 오른쪽으로 각각 {$2$}칸 옮긴다. 그러면 계산은 {$360$}$\\div12$가 된다.",
+        "acceptedAnswers": [
+          [
+            "$2$",
+            "두"
+          ],
+          [
+            "$360$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "00cc0121de3d24531f18b921d42d79e783835d653d269f120155f0fca86468a1",
+      "questionRevision": "planning-e5e6-20261006-00cc0121de3d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-2-2-c3",
+      "bDecision": "revise",
+      "bPrompt": "$0.5\\div0.025$처럼 두 소수의 소수 자릿수가 다를 때, 소수점을 몇 칸 옮길지는 무엇을 보고 정하는지 설명하고 이 식의 몫을 구하시오.",
+      "bAnswer": "나누는 수 $0.025$가 자연수 $25$가 될 때까지 필요한 칸 수로 정한다(나누어지는 수의 자릿수가 기준이 아니다). 그래서 오른쪽으로 $3$칸씩, 두 수 모두 옮겨 $500\\div25=20$이므로 몫은 $20$이다.",
+      "bGoal": "자릿수가 다른 두 소수에서 소수점 이동 칸 수의 기준이 나누는 수임을 안다.",
+      "bReason": "자릿수가 다를 때 어느 수를 기준으로 삼는지 헷갈리기 쉬워서 기준과 이동 방법을 묻고 몫으로 확인하게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나누는 수를 자연수로 만드는 데 필요한 칸 수를 기준으로 한다",
+            "$0.025$를 $25$로 만들려면 $3$칸 옮겨야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "나누어지는 수의 소수점도 같은 칸만큼 옮긴다",
+            "두 수 모두 옮긴다",
+            "두 수에 같은 $1000$배를 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "몫은 $20$이다",
+            "$500\\div25=20$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "$0.5\\div0.025$처럼 두 소수의 자릿수가 달라도, 소수점을 옮기는 칸 수는 {나누는 수}를 자연수로 만드는 데 필요한 칸 수로 정하고, {나누어지는 수}의 소수점도 같은 칸만큼 옮긴다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "나누는 수",
+            "나누는 소수"
+          ]
+        },
+        {
+          "anyOf": [
+            "나누어지는 수",
+            "나누어지는 소수"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 대신 기준이 되는 수와 같이 옮길 수를 묻는 두 빈칸으로 줄였다.",
+      "exampleNeeded": false,
+      "sourceIndex": 312,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-2-2-c3",
+        "section": "초6::2-2 소수의 나눗셈::2-2-2 자릿수가 다른 (소수)÷(소수) 알아보기",
+        "level": "상",
+        "kind": "성질",
+        "term": "이동 칸 수의 기준",
+        "definition": "두 소수의 자릿수가 달라도 {나누는 수를 자연수로} 만드는 데 필요한 만큼 {양쪽} 소수점을 옮긴다.",
+        "studentC": "두 소수의 자릿수가 달라도 □ 만드는 데 필요한 만큼 □ 소수점을 옮긴다.",
+        "answers": [
+          "나누는 수를 자연수로",
+          "양쪽"
+        ]
+      },
+      "sourceFingerprint": "7b4c8af2af066dda88e74a9987d080f4bbeb0d94ceea2ffda046157bb2aad0f0",
+      "draftEvidence": "evidence/section-089-draft.json",
+      "cProposedAnswers": [
+        "나누는 수",
+        "나누어지는 수"
+      ],
+      "cStudentAfter": "$0.5\\div0.025$처럼 두 소수의 자릿수가 달라도, 소수점을 옮기는 칸 수는 □를 자연수로 만드는 데 필요한 칸 수로 정하고, □의 소수점도 같은 칸만큼 옮긴다.",
+      "cMarkedSentence": "$0.5\\div0.025$처럼 두 소수의 자릿수가 달라도, 소수점을 옮기는 칸 수는 {나누는 수}를 자연수로 만드는 데 필요한 칸 수로 정하고, {나누어지는 수}의 소수점도 같은 칸만큼 옮긴다.",
+      "cStudentSentence": "$0.5\\div0.025$처럼 두 소수의 자릿수가 달라도, 소수점을 옮기는 칸 수는 □를 자연수로 만드는 데 필요한 칸 수로 정하고, □의 소수점도 같은 칸만큼 옮긴다.",
+      "cSlotAnswers": [
+        {
+          "key": "나누는 수",
+          "equivalents": [
+            "나누는 소수"
+          ]
+        },
+        {
+          "key": "나누어지는 수",
+          "equivalents": [
+            "나누어지는 소수"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$0.5\\div0.025$처럼 두 소수의 소수 자릿수가 다를 때, 소수점을 몇 칸 옮길지는 무엇을 보고 정하는지 설명하고 이 식의 몫을 구하시오.",
+        "answer": "나누는 수 $0.025$가 자연수 $25$가 될 때까지 필요한 칸 수로 정한다(나누어지는 수의 자릿수가 기준이 아니다). 그래서 오른쪽으로 $3$칸씩, 두 수 모두 옮겨 $500\\div25=20$이므로 몫은 $20$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나누는 수를 자연수로 만드는 데 필요한 칸 수를 기준으로 한다",
+              "$0.025$를 $25$로 만들려면 $3$칸 옮겨야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나누어지는 수의 소수점도 같은 칸만큼 옮긴다",
+              "두 수 모두 옮긴다",
+              "두 수에 같은 $1000$배를 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "몫은 $20$이다",
+              "$500\\div25=20$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0.5\\div0.025$처럼 두 소수의 자릿수가 달라도, 소수점을 옮기는 칸 수는 {나누는 수}를 자연수로 만드는 데 필요한 칸 수로 정하고, {나누어지는 수}의 소수점도 같은 칸만큼 옮긴다.",
+        "acceptedAnswers": [
+          [
+            "나누는 수",
+            "나누는 소수"
+          ],
+          [
+            "나누어지는 수",
+            "나누어지는 소수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "440ef03616b274f1aa252272a8ea8c1bd3e2df1945ac016395bd8486e76b128c",
+      "questionRevision": "planning-e5e6-20261006-440ef03616b2",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-2-3-c1",
+      "bDecision": "revise",
+      "bPrompt": "자연수 $4$를 소수점이 있는 수로 나타내는 방법을 쓰고, 이를 이용해 $4$를 $10$배 한 수를 소수점을 옮겨 구하는 과정을 설명하시오.",
+      "bAnswer": "$4=4.0$처럼 소수점 아래에 $0$을 붙여도 값이 같다. $4.0$의 소수점을 오른쪽으로 한 칸 옮기면 $40$이다.",
+      "bGoal": "자연수를 소수점 아래 $0$으로 소수처럼 쓸 수 있음을 알고 소수점 이동으로 $10$배를 구한다.",
+      "bReason": "원문은 빈칸 앞뒤가 어색해 방법과 이동을 함께 묻는 질문으로 바꿨다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "소수점 아래에 $0$을 붙여도 값이 같다",
+            "$4=4.0$으로 나타낼 수 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "소수점을 오른쪽으로 한 칸 옮겨 $40$이 된다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "자연수 $4$에 소수점을 찍고 아래에 {$0$}을 쓴 수는 $4$와 값이 {같다}. 그 수의 소수점을 오른쪽으로 한 칸 옮기면 $4$의 $10$배인 {$40$}이 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0$",
+            "영"
+          ]
+        },
+        {
+          "anyOf": [
+            "같다",
+            "똑같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$40$"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸은 '$0$을 붙여' 구절 전체를 외우게 해서 구체적 수와 낱말 빈칸으로 바꿨다.",
+      "exampleNeeded": false,
+      "sourceIndex": 313,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-2-3-c1",
+        "section": "초6::2-2 소수의 나눗셈::2-2-3 (자연수)÷(소수) 알아보기",
+        "level": "하",
+        "kind": "방법",
+        "term": "자연수의 소수 표현",
+        "definition": "자연수는 소수점 아래에 {$0$을 붙여} 소수처럼 나타내어도 값이 같다. 그래서 소수점을 옮겨 $10$배, $100$배 할 수 있다.",
+        "studentC": "자연수는 소수점 아래에 □ 소수처럼 나타내어도 값이 같다. 그래서 소수점을 옮겨 $10$배, $100$배 할 수 있다.",
+        "answers": [
+          "$0$을 붙여"
+        ]
+      },
+      "sourceFingerprint": "914c686ff6347eaad824fa9ec8a39002afde7cc80080412a95a7a093494a4345",
+      "draftEvidence": "evidence/section-090-draft.json",
+      "cProposedAnswers": [
+        "$0$",
+        "같다",
+        "$40$"
+      ],
+      "cStudentAfter": "자연수 $4$에 소수점을 찍고 아래에 □을 쓴 수는 $4$와 값이 □. 그 수의 소수점을 오른쪽으로 한 칸 옮기면 $4$의 $10$배인 □이 된다.",
+      "cMarkedSentence": "자연수 $4$에 소수점을 찍고 아래에 {$0$}을 쓴 수는 $4$와 값이 {같다}. 그 수의 소수점을 오른쪽으로 한 칸 옮기면 $4$의 $10$배인 {$40$}이 된다.",
+      "cStudentSentence": "자연수 $4$에 소수점을 찍고 아래에 □을 쓴 수는 $4$와 값이 □. 그 수의 소수점을 오른쪽으로 한 칸 옮기면 $4$의 $10$배인 □이 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0$",
+          "equivalents": [
+            "영"
+          ]
+        },
+        {
+          "key": "같다",
+          "equivalents": [
+            "똑같다"
+          ]
+        },
+        {
+          "key": "$40$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "자연수 $4$를 소수점이 있는 수로 나타내는 방법을 쓰고, 이를 이용해 $4$를 $10$배 한 수를 소수점을 옮겨 구하는 과정을 설명하시오.",
+        "answer": "$4=4.0$처럼 소수점 아래에 $0$을 붙여도 값이 같다. $4.0$의 소수점을 오른쪽으로 한 칸 옮기면 $40$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "소수점 아래에 $0$을 붙여도 값이 같다",
+              "$4=4.0$으로 나타낼 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "소수점을 오른쪽으로 한 칸 옮겨 $40$이 된다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "자연수 $4$에 소수점을 찍고 아래에 {$0$}을 쓴 수는 $4$와 값이 {같다}. 그 수의 소수점을 오른쪽으로 한 칸 옮기면 $4$의 $10$배인 {$40$}이 된다.",
+        "acceptedAnswers": [
+          [
+            "$0$",
+            "영"
+          ],
+          [
+            "같다",
+            "똑같다"
+          ],
+          [
+            "$40$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "1787aaf7c80ec562d20ab6936dac0ee5314a10b03f7dfa5b02a088a1cda34b39",
+      "questionRevision": "planning-e5e6-20261006-1787aaf7c80e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-2-3-c2",
+      "bDecision": "revise",
+      "bPrompt": "$6\\div0.3$을 나누는 수가 자연수가 되도록 바꾸어 계산하려고 한다. 두 수를 어떻게 바꾸어야 하는지, 그렇게 바꾸어도 몫이 같은 이유가 무엇인지 설명하고 몫을 구하시오.",
+      "bAnswer": "나누는 수와 나누어지는 수를 모두 $10$배 하여 $60\\div3$으로 바꾼다. 한 묶음의 크기와 전체 양이 같은 배로 늘어 묶음 수는 그대로이므로 몫은 $20$이다.",
+      "bGoal": "나누는 소수를 자연수로 만들 때 나누어지는 수도 같은 배 하는 이유와 방법을 이해한다.",
+      "bReason": "'같은 배'라는 말만 외우지 않고 이유까지 묻기 위해 구체적 식을 붙였다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 수에 같은 수 $10$을 곱한다",
+            "나누는 수와 나누어지는 수를 모두 $10$배 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 묶음과 전체가 같은 배로 변해 묶음 수가 같다",
+            "두 수를 같은 배 하면 몫이 변하지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "몫은 $20$이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "$6\\div0.3$에서 나누는 수 $0.3$을 $10$배 하여 $3$으로 만들면 나누어지는 수 $6$도 {$10$배} 하여 $60$으로 만들어야 한다. 그러면 $60\\div3$의 몫은 {$20$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$10$배",
+            "열 배",
+            "같은 배"
+          ]
+        },
+        {
+          "anyOf": [
+            "$20$"
+          ]
+        }
+      ],
+      "cReason": "'같은 배'를 맥락 없이 묻지 않고 실제 식에서 배수와 몫을 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 314,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-2-3-c2",
+        "section": "초6::2-2 소수의 나눗셈::2-2-3 (자연수)÷(소수) 알아보기",
+        "level": "중",
+        "kind": "방법",
+        "term": "자연수를 소수로 나누기",
+        "definition": "나누는 소수를 자연수로 만들 때 앞의 자연수도 {같은 배}로 늘려야 한다.",
+        "studentC": "나누는 소수를 자연수로 만들 때 앞의 자연수도 □로 늘려야 한다.",
+        "answers": [
+          "같은 배"
+        ]
+      },
+      "sourceFingerprint": "70de352cfd99d45539dd48c72d7700a47c871a3085eafed1bcf9c46d44ce4ee8",
+      "draftEvidence": "evidence/section-090-draft.json",
+      "cProposedAnswers": [
+        "$10$배",
+        "$20$"
+      ],
+      "cStudentAfter": "$6\\div0.3$에서 나누는 수 $0.3$을 $10$배 하여 $3$으로 만들면 나누어지는 수 $6$도 □ 하여 $60$으로 만들어야 한다. 그러면 $60\\div3$의 몫은 □이다.",
+      "cMarkedSentence": "$6\\div0.3$에서 나누는 수 $0.3$을 $10$배 하여 $3$으로 만들면 나누어지는 수 $6$도 {$10$배} 하여 $60$으로 만들어야 한다. 그러면 $60\\div3$의 몫은 {$20$}이다.",
+      "cStudentSentence": "$6\\div0.3$에서 나누는 수 $0.3$을 $10$배 하여 $3$으로 만들면 나누어지는 수 $6$도 □ 하여 $60$으로 만들어야 한다. 그러면 $60\\div3$의 몫은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$10$배",
+          "equivalents": [
+            "열 배",
+            "같은 배"
+          ]
+        },
+        {
+          "key": "$20$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$6\\div0.3$을 나누는 수가 자연수가 되도록 바꾸어 계산하려고 한다. 두 수를 어떻게 바꾸어야 하는지, 그렇게 바꾸어도 몫이 같은 이유가 무엇인지 설명하고 몫을 구하시오.",
+        "answer": "나누는 수와 나누어지는 수를 모두 $10$배 하여 $60\\div3$으로 바꾼다. 한 묶음의 크기와 전체 양이 같은 배로 늘어 묶음 수는 그대로이므로 몫은 $20$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 수에 같은 수 $10$을 곱한다",
+              "나누는 수와 나누어지는 수를 모두 $10$배 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 묶음과 전체가 같은 배로 변해 묶음 수가 같다",
+              "두 수를 같은 배 하면 몫이 변하지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "몫은 $20$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$6\\div0.3$에서 나누는 수 $0.3$을 $10$배 하여 $3$으로 만들면 나누어지는 수 $6$도 {$10$배} 하여 $60$으로 만들어야 한다. 그러면 $60\\div3$의 몫은 {$20$}이다.",
+        "acceptedAnswers": [
+          [
+            "$10$배",
+            "열 배",
+            "같은 배"
+          ],
+          [
+            "$20$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9a6ac37be44f7636a852583ae1fd154426c4924883c51611fb002157f0eaa7b7",
+      "questionRevision": "planning-e5e6-20261006-9a6ac37be44f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-2-3-c3",
+      "bDecision": "revise",
+      "bPrompt": "$0$보다 큰 자연수를 $0$과 $1$ 사이의 소수로 나누면 몫이 나누어지는 수보다 큰지 작은지 쓰고, 한 묶음의 크기와 묶음 수로 그 이유를 설명하시오. $4\\div0.5$의 몫도 구하시오.",
+      "bAnswer": "몫이 나누어지는 수보다 크다. 한 묶음이 $1$보다 작아 $1$씩 묶을 때보다 묶음 수가 많아지기 때문이다. $4\\div0.5=8$이다.",
+      "bGoal": "$1$보다 작은 소수로 나누면 몫이 커지는 이유를 이해한다.",
+      "bReason": "원문의 '원래보다 큰 몫'은 낱말 암기에 가까워 비교와 이유를 묻도록 고쳤다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "몫이 나누어지는 수보다 크다"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 묶음이 $1$보다 작아서 묶음 수가 더 많다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4\\div0.5=8$이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "$0$보다 큰 수를 $0$과 $1$ 사이의 소수로 나누면 몫은 나누어지는 수보다 {크다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "크다",
+            "더 크다",
+            "커진다"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 대신 나누어지는 수와 몫을 비교하는 짧은 빈칸으로 바꿨다.",
+      "exampleNeeded": false,
+      "sourceIndex": 315,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-2-3-c3",
+        "section": "초6::2-2 소수의 나눗셈::2-2-3 (자연수)÷(소수) 알아보기",
+        "level": "상",
+        "kind": "성질",
+        "term": "나누는 소수와 몫",
+        "definition": "$0$보다 큰 수를 $0$과 $1$ 사이의 소수로 나누면 {원래보다 큰 몫}이 나온다.",
+        "studentC": "$0$보다 큰 수를 $0$과 $1$ 사이의 소수로 나누면 □이 나온다.",
+        "answers": [
+          "원래보다 큰 몫"
+        ]
+      },
+      "sourceFingerprint": "5ecbb068830c82e0a1ef6f139998cbe80535d9291a6a992ea7093544860ec31f",
+      "draftEvidence": "evidence/section-090-draft.json",
+      "cProposedAnswers": [
+        "크다"
+      ],
+      "cStudentAfter": "$0$보다 큰 수를 $0$과 $1$ 사이의 소수로 나누면 몫은 나누어지는 수보다 □.",
+      "cMarkedSentence": "$0$보다 큰 수를 $0$과 $1$ 사이의 소수로 나누면 몫은 나누어지는 수보다 {크다}.",
+      "cStudentSentence": "$0$보다 큰 수를 $0$과 $1$ 사이의 소수로 나누면 몫은 나누어지는 수보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "크다",
+          "equivalents": [
+            "더 크다",
+            "커진다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$0$보다 큰 자연수를 $0$과 $1$ 사이의 소수로 나누면 몫이 나누어지는 수보다 큰지 작은지 쓰고, 한 묶음의 크기와 묶음 수로 그 이유를 설명하시오. $4\\div0.5$의 몫도 구하시오.",
+        "answer": "몫이 나누어지는 수보다 크다. 한 묶음이 $1$보다 작아 $1$씩 묶을 때보다 묶음 수가 많아지기 때문이다. $4\\div0.5=8$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "몫이 나누어지는 수보다 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 묶음이 $1$보다 작아서 묶음 수가 더 많다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4\\div0.5=8$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0$보다 큰 수를 $0$과 $1$ 사이의 소수로 나누면 몫은 나누어지는 수보다 {크다}.",
+        "acceptedAnswers": [
+          [
+            "크다",
+            "더 크다",
+            "커진다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ef36f6c790c03b4cf37914bd9d53e1e002ab21b746d6018ff02b35213e5f7391",
+      "questionRevision": "planning-e5e6-20261006-ef36f6c790c0",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-2-4-c1",
+      "bDecision": "revise",
+      "bPrompt": "소수를 어떤 자리까지 반올림할 때, 남길 자리 바로 아래 숫자가 $5$ 이상인 경우와 $4$ 이하인 경우에 각각 남길 자리의 수를 어떻게 하는지 쓰시오. 그 아래 자리는 어떻게 하는지도 쓰시오.",
+      "bAnswer": "바로 아래 숫자가 $5$ 이상이면 남길 자리의 수를 $1$ 크게 하고, $4$ 이하이면 그대로 둔다. 어느 쪽이든 그 아래 자리는 버린다.",
+      "bGoal": "반올림 규칙을 두 경우로 나누어 말할 수 있다.",
+      "bReason": "원문은 방법인데 제목만으로는 답할 수 없어 대상과 경우를 질문에 넣었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "바로 아래 숫자가 $5$ 이상이면 남길 자리 수를 $1$ 크게 한다",
+            "$5$ 이상이면 올린다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$ 이하이면 남길 자리 수를 그대로 둔다",
+            "$4$ 이하이면 버린다"
+          ]
+        },
+        {
+          "anyOf": [
+            "남길 자리 아래 자리는 버린다",
+            "아래 자리는 쓰지 않는다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "keep",
+      "cAfter": "남길 자리 바로 아래 숫자가 $5$ 이상이면 남길 자리의 수를 {$1$ 올리고}, $4$ 이하이면 그대로 둔다. 어느 쪽이든 그 아래 자리는 버린다.",
+      "cReason": "$5$ 이상일 때의 동작을 묻는 짧고 정확한 규칙 문장이라 그대로 둔다.",
+      "exampleNeeded": false,
+      "sourceIndex": 316,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-2-4-c1",
+        "section": "초6::2-2 소수의 나눗셈::2-2-4 몫을 반올림하여 나타내기",
+        "level": "하",
+        "kind": "방법",
+        "term": "반올림",
+        "definition": "남길 자리 바로 아래 숫자가 $5$ 이상이면 남길 자리의 수를 {$1$ 올리고}, $4$ 이하이면 그대로 둔다. 어느 쪽이든 그 아래 자리는 버린다.",
+        "studentC": "남길 자리 바로 아래 숫자가 $5$ 이상이면 남길 자리의 수를 □, $4$ 이하이면 그대로 둔다. 어느 쪽이든 그 아래 자리는 버린다.",
+        "answers": [
+          "$1$ 올리고"
+        ]
+      },
+      "sourceFingerprint": "807ddd1e6abf18c315546742af0b69d59265d5580300a2ce77c327acbc281db4",
+      "draftEvidence": "evidence/section-091-draft.json",
+      "cFrozenDefinition": "남길 자리 바로 아래 숫자가 $5$ 이상이면 남길 자리의 수를 {$1$ 올리고}, $4$ 이하이면 그대로 둔다. 어느 쪽이든 그 아래 자리는 버린다.",
+      "cFrozenStudentSentence": "남길 자리 바로 아래 숫자가 $5$ 이상이면 남길 자리의 수를 □, $4$ 이하이면 그대로 둔다. 어느 쪽이든 그 아래 자리는 버린다.",
+      "cProposedAnswers": [
+        "$1$ 올리고"
+      ],
+      "cStudentAfter": "남길 자리 바로 아래 숫자가 $5$ 이상이면 남길 자리의 수를 □, $4$ 이하이면 그대로 둔다. 어느 쪽이든 그 아래 자리는 버린다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$ 올리고"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "남길 자리 바로 아래 숫자가 $5$ 이상이면 남길 자리의 수를 {$1$ 올리고}, $4$ 이하이면 그대로 둔다. 어느 쪽이든 그 아래 자리는 버린다.",
+      "cStudentSentence": "남길 자리 바로 아래 숫자가 $5$ 이상이면 남길 자리의 수를 □, $4$ 이하이면 그대로 둔다. 어느 쪽이든 그 아래 자리는 버린다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$ 올리고",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "소수를 어떤 자리까지 반올림할 때, 남길 자리 바로 아래 숫자가 $5$ 이상인 경우와 $4$ 이하인 경우에 각각 남길 자리의 수를 어떻게 하는지 쓰시오. 그 아래 자리는 어떻게 하는지도 쓰시오.",
+        "answer": "바로 아래 숫자가 $5$ 이상이면 남길 자리의 수를 $1$ 크게 하고, $4$ 이하이면 그대로 둔다. 어느 쪽이든 그 아래 자리는 버린다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "바로 아래 숫자가 $5$ 이상이면 남길 자리 수를 $1$ 크게 한다",
+              "$5$ 이상이면 올린다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$ 이하이면 남길 자리 수를 그대로 둔다",
+              "$4$ 이하이면 버린다"
+            ]
+          },
+          {
+            "anyOf": [
+              "남길 자리 아래 자리는 버린다",
+              "아래 자리는 쓰지 않는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "남길 자리 바로 아래 숫자가 $5$ 이상이면 남길 자리의 수를 {$1$ 올리고}, $4$ 이하이면 그대로 둔다. 어느 쪽이든 그 아래 자리는 버린다.",
+        "acceptedAnswers": [
+          [
+            "$1$ 올리고"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "146b360274a90c6d10e740be0cebf9b7e072fa9f23b35057dafb634f107d235a",
+      "questionRevision": "planning-e5e6-20261006-146b360274a9",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-2-4-c2",
+      "bDecision": "revise",
+      "bPrompt": "나눗셈의 몫을 소수 둘째 자리까지 반올림하려면 소수 몇째 자리의 숫자를 알아야 하는가? 그 자리의 숫자가 왜 필요한지도 쓰시오.",
+      "bAnswer": "소수 셋째 자리의 숫자를 알아야 한다. 반올림은 남길 자리 바로 아래 숫자를 보고 올릴지 버릴지 정하기 때문이다.",
+      "bGoal": "남길 자리와 확인할 자리의 관계를 설명할 수 있다.",
+      "bReason": "자리 이름만 묻지 않고 이유까지 물어 규칙과 연결했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "소수 셋째 자리",
+            "소수 셋째 자리의 숫자"
+          ]
+        },
+        {
+          "anyOf": [
+            "남길 자리 바로 아래 숫자를 보고 올릴지 버릴지 정한다",
+            "바로 아래 숫자로 올림 여부를 정한다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "keep",
+      "cAfter": "소수 둘째 자리까지 몫을 반올림하려면 {소수 셋째 자리}의 숫자까지 알아야 한다.",
+      "cReason": "남길 자리 다음 자리를 찾는 짧은 낱말형 빈칸이라 유지한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 317,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-2-4-c2",
+        "section": "초6::2-2 소수의 나눗셈::2-2-4 몫을 반올림하여 나타내기",
+        "level": "중",
+        "kind": "방법",
+        "term": "몫을 반올림할 자리",
+        "definition": "소수 둘째 자리까지 몫을 반올림하려면 {소수 셋째 자리}의 숫자까지 알아야 한다.",
+        "studentC": "소수 둘째 자리까지 몫을 반올림하려면 □의 숫자까지 알아야 한다.",
+        "answers": [
+          "소수 셋째 자리"
+        ]
+      },
+      "sourceFingerprint": "8ee79b4a2eaa86b7e3b9f7f8474cb0ad704bb506efd42d4dc761c011d1cd4998",
+      "draftEvidence": "evidence/section-091-draft.json",
+      "cFrozenDefinition": "소수 둘째 자리까지 몫을 반올림하려면 {소수 셋째 자리}의 숫자까지 알아야 한다.",
+      "cFrozenStudentSentence": "소수 둘째 자리까지 몫을 반올림하려면 □의 숫자까지 알아야 한다.",
+      "cProposedAnswers": [
+        "소수 셋째 자리"
+      ],
+      "cStudentAfter": "소수 둘째 자리까지 몫을 반올림하려면 □의 숫자까지 알아야 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "소수 셋째 자리"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "소수 둘째 자리까지 몫을 반올림하려면 {소수 셋째 자리}의 숫자까지 알아야 한다.",
+      "cStudentSentence": "소수 둘째 자리까지 몫을 반올림하려면 □의 숫자까지 알아야 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "소수 셋째 자리",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "나눗셈의 몫을 소수 둘째 자리까지 반올림하려면 소수 몇째 자리의 숫자를 알아야 하는가? 그 자리의 숫자가 왜 필요한지도 쓰시오.",
+        "answer": "소수 셋째 자리의 숫자를 알아야 한다. 반올림은 남길 자리 바로 아래 숫자를 보고 올릴지 버릴지 정하기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "소수 셋째 자리",
+              "소수 셋째 자리의 숫자"
+            ]
+          },
+          {
+            "anyOf": [
+              "남길 자리 바로 아래 숫자를 보고 올릴지 버릴지 정한다",
+              "바로 아래 숫자로 올림 여부를 정한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "소수 둘째 자리까지 몫을 반올림하려면 {소수 셋째 자리}의 숫자까지 알아야 한다.",
+        "acceptedAnswers": [
+          [
+            "소수 셋째 자리"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7240ec95737ef8e56e1c231db82f7cbb01dad9c8db7eb801d4b20f6fb3bcaea0",
+      "questionRevision": "planning-e5e6-20261006-7240ec95737e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-2-4-c3",
+      "bDecision": "revise",
+      "bPrompt": "나눗셈의 몫을 반올림한 값에 나누는 수를 곱하면 나누어지는 수와 꼭 같지 않을 수 있다. 그 까닭을 반올림한 몫과 정확한 몫의 관계로 설명하시오.",
+      "bAnswer": "반올림한 몫은 정확한 몫과 다를 수 있기 때문이다. 정확한 몫이 아닌 값에 나누는 수를 곱하므로 나누어지는 수와 조금 다를 수 있다.",
+      "bGoal": "반올림한 몫이 어림값이어서 곱셈 확인 결과가 달라질 수 있음을 설명할 수 있다.",
+      "bReason": "까닭을 묻는 방향을 정확한 몫과의 차이로 지정했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "반올림한 몫은 정확한 몫과 다를 수 있다",
+            "반올림한 몫은 어림값이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "그래서 곱한 값이 나누어지는 수와 다를 수 있다",
+            "곱하면 나누어지는 수와 조금 차이가 난다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "$10\\div3$의 몫을 소수 첫째 자리까지 반올림하면 $3.3$이다. $3.3\\times3=${$9.9$}이므로 $10$과 {같지 않다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$9.9$"
+          ]
+        },
+        {
+          "anyOf": [
+            "같지 않다",
+            "다르다"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸은 긴 구절이라 실제 곱셈으로 차이를 확인하게 바꿨다.",
+      "exampleNeeded": false,
+      "sourceIndex": 318,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-2-4-c3",
+        "section": "초6::2-2 소수의 나눗셈::2-2-4 몫을 반올림하여 나타내기",
+        "level": "상",
+        "kind": "성질",
+        "term": "어림한 몫",
+        "definition": "반올림한 몫은 정확한 값과 {다를 수 있으므로}, 다시 곱해도 원래 수와 꼭 같지는 않을 수 있다.",
+        "studentC": "반올림한 몫은 정확한 값과 □, 다시 곱해도 원래 수와 꼭 같지는 않을 수 있다.",
+        "answers": [
+          "다를 수 있으므로"
+        ]
+      },
+      "sourceFingerprint": "b157042bf5ee45a2c8c7d65f6735c22dc07277877eb592d763a00f40bc356298",
+      "draftEvidence": "evidence/section-091-draft.json",
+      "cProposedAnswers": [
+        "$9.9$",
+        "같지 않다"
+      ],
+      "cStudentAfter": "$10\\div3$의 몫을 소수 첫째 자리까지 반올림하면 $3.3$이다. $3.3\\times3=$□이므로 $10$과 □.",
+      "cMarkedSentence": "$10\\div3$의 몫을 소수 첫째 자리까지 반올림하면 $3.3$이다. $3.3\\times3=${$9.9$}이므로 $10$과 {같지 않다}.",
+      "cStudentSentence": "$10\\div3$의 몫을 소수 첫째 자리까지 반올림하면 $3.3$이다. $3.3\\times3=$□이므로 $10$과 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$9.9$",
+          "equivalents": []
+        },
+        {
+          "key": "같지 않다",
+          "equivalents": [
+            "다르다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "나눗셈의 몫을 반올림한 값에 나누는 수를 곱하면 나누어지는 수와 꼭 같지 않을 수 있다. 그 까닭을 반올림한 몫과 정확한 몫의 관계로 설명하시오.",
+        "answer": "반올림한 몫은 정확한 몫과 다를 수 있기 때문이다. 정확한 몫이 아닌 값에 나누는 수를 곱하므로 나누어지는 수와 조금 다를 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "반올림한 몫은 정확한 몫과 다를 수 있다",
+              "반올림한 몫은 어림값이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "그래서 곱한 값이 나누어지는 수와 다를 수 있다",
+              "곱하면 나누어지는 수와 조금 차이가 난다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$10\\div3$의 몫을 소수 첫째 자리까지 반올림하면 $3.3$이다. $3.3\\times3=${$9.9$}이므로 $10$과 {같지 않다}.",
+        "acceptedAnswers": [
+          [
+            "$9.9$"
+          ],
+          [
+            "같지 않다",
+            "다르다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "0217656ea76917c7afea24971292a8a6f891adb4a7afaccdf9536ff6217d2aef",
+      "questionRevision": "planning-e5e6-20261006-0217656ea769",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-2-5-c1",
+      "bDecision": "revise",
+      "bPrompt": "전체 양을 정해진 양씩 나누어 줄 때 남는 양은 어떻게 구하나요? $7.5$ $\\mathrm{L}$를 $2$ $\\mathrm{L}$씩 $3$번 나누어 주었다면 남는 양은 얼마인가요?",
+      "bAnswer": "전체 양에서 실제로 나누어 준 양을 뺀다. $2\\times3=6$이므로 $7.5-6=1.5$ ($\\mathrm{L}$)이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "전체 양에서 나누어 준 양을 뺀다",
+            "전체 양 $-$ 실제로 나누어 준 양"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1.5$ $\\mathrm{L}$",
+            "$1.5$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "남는 양을 '전체에서 실제로 나누어 준 양을 뺀 값'으로 구하는 방법을 안다.",
+      "bReason": "원문은 '실제로 나누어 준 양'이 몫과 한 사람 몫의 곱임을 학생이 스스로 알아야 해서 예를 붙여 질문을 구체화했다.",
+      "cDecision": "revise",
+      "cAfter": "$7.5$ $\\mathrm{L}$을 $2$ $\\mathrm{L}$씩 가득 나누어 담으면 가득 찬 그릇은 $3$개이고, 남는 양은 $7.5-${$6$}$=1.5$ ($\\mathrm{L}$)이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$6$",
+            "$2\\times3$",
+            "$6$ $\\mathrm{L}$"
+          ]
+        }
+      ],
+      "cReason": "긴 낱말 빈칸 대신 실제 나눈 양 $2\\times3$을 값으로 구하게 해 개념의 뜻을 확인한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 319,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-2-5-c1",
+        "section": "초6::2-2 소수의 나눗셈::2-2-5 나누어 주고 남는 양 알아보기",
+        "level": "하",
+        "kind": "정의",
+        "term": "남는 양",
+        "definition": "정해진 양씩 나누고 남은 것은 전체에서 {실제로 나누어 준 양}을 뺀 값이다.",
+        "studentC": "정해진 양씩 나누고 남은 것은 전체에서 □을 뺀 값이다.",
+        "answers": [
+          "실제로 나누어 준 양"
+        ]
+      },
+      "sourceFingerprint": "1714df122e2cadf85e95e1c8c1c2b9bde9584819ea6d813fa4cb83631d3fb279",
+      "draftEvidence": "evidence/section-092-draft.json",
+      "cProposedAnswers": [
+        "$6$"
+      ],
+      "cStudentAfter": "$7.5$ $\\mathrm{L}$을 $2$ $\\mathrm{L}$씩 가득 나누어 담으면 가득 찬 그릇은 $3$개이고, 남는 양은 $7.5-$□$=1.5$ ($\\mathrm{L}$)이다.",
+      "cMarkedSentence": "$7.5$ $\\mathrm{L}$을 $2$ $\\mathrm{L}$씩 가득 나누어 담으면 가득 찬 그릇은 $3$개이고, 남는 양은 $7.5-${$6$}$=1.5$ ($\\mathrm{L}$)이다.",
+      "cStudentSentence": "$7.5$ $\\mathrm{L}$을 $2$ $\\mathrm{L}$씩 가득 나누어 담으면 가득 찬 그릇은 $3$개이고, 남는 양은 $7.5-$□$=1.5$ ($\\mathrm{L}$)이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$6$",
+          "equivalents": [
+            "$2\\times3$",
+            "$6$ $\\mathrm{L}$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "전체 양을 정해진 양씩 나누어 줄 때 남는 양은 어떻게 구하나요? $7.5$ $\\mathrm{L}$를 $2$ $\\mathrm{L}$씩 $3$번 나누어 주었다면 남는 양은 얼마인가요?",
+        "answer": "전체 양에서 실제로 나누어 준 양을 뺀다. $2\\times3=6$이므로 $7.5-6=1.5$ ($\\mathrm{L}$)이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "전체 양에서 나누어 준 양을 뺀다",
+              "전체 양 $-$ 실제로 나누어 준 양"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1.5$ $\\mathrm{L}$",
+              "$1.5$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$7.5$ $\\mathrm{L}$을 $2$ $\\mathrm{L}$씩 가득 나누어 담으면 가득 찬 그릇은 $3$개이고, 남는 양은 $7.5-${$6$}$=1.5$ ($\\mathrm{L}$)이다.",
+        "acceptedAnswers": [
+          [
+            "$6$",
+            "$2\\times3$",
+            "$6$ $\\mathrm{L}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "f9fc5d243a3a566ec575a69e2d38bb5124355088194d0cd3eeee2843c8261bdb",
+      "questionRevision": "planning-e5e6-20261006-f9fc5d243a3a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-2-5-c2",
+      "bDecision": "revise",
+      "bPrompt": "$7.5$ $\\mathrm{L}$를 $2$ $\\mathrm{L}$씩 가득 채워 나누어 담을 때, 몫 $7.5\\div2=3.75$에서 가득 채운 그릇의 수는 몫의 어느 부분으로 알 수 있나요? 가득 찬 그릇은 몇 개인가요?",
+      "bAnswer": "몫의 자연수 부분으로 알 수 있다. 몫 $3.75$의 자연수 부분이 $3$이므로 가득 찬 그릇은 $3$개이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "몫의 자연수 부분",
+            "몫에서 소수점 앞의 수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$개",
+            "$3$"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "몫이 소수일 때 쪼갤 수 없는 묶음의 수를 몫의 자연수 부분으로 읽는다.",
+      "bReason": "원문 '한 묶음을 쪼갤 수 없으면'이 추상적이어서 그릇 예와 함께 일반 관계를 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$7.5\\div2=3.75$이다. $2$ $\\mathrm{L}$씩 가득 채운 묶음은 {$3$}묶음이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$",
+            "$3$묶음"
+          ]
+        }
+      ],
+      "cReason": "'□만큼의 묶음'이 모호하므로 구체적 몫에서 묶음 수를 읽게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 320,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-2-5-c2",
+        "section": "초6::2-2 소수의 나눗셈::2-2-5 나누어 주고 남는 양 알아보기",
+        "level": "중",
+        "kind": "방법",
+        "term": "완전한 묶음 수",
+        "definition": "한 묶음을 쪼갤 수 없으면 나눗셈의 몫에서 {자연수 부분}만큼의 묶음을 만들 수 있다.",
+        "studentC": "한 묶음을 쪼갤 수 없으면 나눗셈의 몫에서 □만큼의 묶음을 만들 수 있다.",
+        "answers": [
+          "자연수 부분"
+        ]
+      },
+      "sourceFingerprint": "b8ace7ed84cf23c1823410bfbc3caa8299851fab3275c5a3436188cbc2ed65f5",
+      "draftEvidence": "evidence/section-092-draft.json",
+      "cProposedAnswers": [
+        "$3$"
+      ],
+      "cStudentAfter": "$7.5\\div2=3.75$이다. $2$ $\\mathrm{L}$씩 가득 채운 묶음은 □묶음이다.",
+      "cMarkedSentence": "$7.5\\div2=3.75$이다. $2$ $\\mathrm{L}$씩 가득 채운 묶음은 {$3$}묶음이다.",
+      "cStudentSentence": "$7.5\\div2=3.75$이다. $2$ $\\mathrm{L}$씩 가득 채운 묶음은 □묶음이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": [
+            "$3$묶음"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$7.5$ $\\mathrm{L}$를 $2$ $\\mathrm{L}$씩 가득 채워 나누어 담을 때, 몫 $7.5\\div2=3.75$에서 가득 채운 그릇의 수는 몫의 어느 부분으로 알 수 있나요? 가득 찬 그릇은 몇 개인가요?",
+        "answer": "몫의 자연수 부분으로 알 수 있다. 몫 $3.75$의 자연수 부분이 $3$이므로 가득 찬 그릇은 $3$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "몫의 자연수 부분",
+              "몫에서 소수점 앞의 수"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$개",
+              "$3$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$7.5\\div2=3.75$이다. $2$ $\\mathrm{L}$씩 가득 채운 묶음은 {$3$}묶음이다.",
+        "acceptedAnswers": [
+          [
+            "$3$",
+            "$3$묶음"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "1319df4d8bedcf0484b428f6ebb8f84c025300da1c08ff17799afd82d4daaa69",
+      "questionRevision": "planning-e5e6-20261006-1319df4d8bed",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-2-5-c3",
+      "bDecision": "revise",
+      "bPrompt": "나누어지는 수와 나누는 수에 같은 수를 곱해 소수점을 옮겨서 나눗셈을 했을 때, 구한 나머지를 원래 문제의 남는 양으로 쓰려면 어떻게 해야 하나요? $7.5\\div0.4$를 $75\\div4$로 바꾸어 몫 $18$, 나머지 $3$을 얻은 경우의 남는 양도 구하세요.",
+      "bAnswer": "곱했던 수로 나누어 원래 크기로 되돌린다. 이 경우 두 수에 $10$을 곱했으므로 $3\\div10=0.3$이 남는 양이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나머지를 곱했던 수로 나누어 되돌린다",
+            "나머지를 원래 크기로 되돌린다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0.3$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "소수점을 옮긴 나눗셈의 나머지를 원래 단위로 되돌리는 방법을 안다.",
+      "bReason": "'원래 단위'가 막연해 구체적인 식 $7.5\\div0.4$로 되돌림의 의미를 확인한다.",
+      "cDecision": "revise",
+      "cAfter": "$7.5\\div0.4$를 $75\\div4$로 계산하면 몫이 $18$, 나머지가 $3$이다. 원래 문제의 남는 양은 {$0.3$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0.3$",
+            "$0.3$ 남는다",
+            "$\\frac{3}{10}$"
+          ]
+        }
+      ],
+      "cReason": "단위 개념을 값으로 바꾸어 되돌린 결과를 짧게 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 321,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-2-5-c3",
+        "section": "초6::2-2 소수의 나눗셈::2-2-5 나누어 주고 남는 양 알아보기",
+        "level": "상",
+        "kind": "성질",
+        "term": "소수 나눗셈의 나머지 단위",
+        "definition": "소수점을 옮겨 계산했다면 남는 양은 {원래 단위}로 되돌려야 한다.",
+        "studentC": "소수점을 옮겨 계산했다면 남는 양은 □로 되돌려야 한다.",
+        "answers": [
+          "원래 단위"
+        ]
+      },
+      "sourceFingerprint": "7f7ceb0d687d075e684bd2765b9236541e9007758715b1fb83319c899c772f45",
+      "draftEvidence": "evidence/section-092-draft.json",
+      "cProposedAnswers": [
+        "$0.3$"
+      ],
+      "cStudentAfter": "$7.5\\div0.4$를 $75\\div4$로 계산하면 몫이 $18$, 나머지가 $3$이다. 원래 문제의 남는 양은 □이다.",
+      "cMarkedSentence": "$7.5\\div0.4$를 $75\\div4$로 계산하면 몫이 $18$, 나머지가 $3$이다. 원래 문제의 남는 양은 {$0.3$}이다.",
+      "cStudentSentence": "$7.5\\div0.4$를 $75\\div4$로 계산하면 몫이 $18$, 나머지가 $3$이다. 원래 문제의 남는 양은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0.3$",
+          "equivalents": [
+            "$0.3$ 남는다",
+            "$\\frac{3}{10}$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "나누어지는 수와 나누는 수에 같은 수를 곱해 소수점을 옮겨서 나눗셈을 했을 때, 구한 나머지를 원래 문제의 남는 양으로 쓰려면 어떻게 해야 하나요? $7.5\\div0.4$를 $75\\div4$로 바꾸어 몫 $18$, 나머지 $3$을 얻은 경우의 남는 양도 구하세요.",
+        "answer": "곱했던 수로 나누어 원래 크기로 되돌린다. 이 경우 두 수에 $10$을 곱했으므로 $3\\div10=0.3$이 남는 양이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나머지를 곱했던 수로 나누어 되돌린다",
+              "나머지를 원래 크기로 되돌린다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.3$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$7.5\\div0.4$를 $75\\div4$로 계산하면 몫이 $18$, 나머지가 $3$이다. 원래 문제의 남는 양은 {$0.3$}이다.",
+        "acceptedAnswers": [
+          [
+            "$0.3$",
+            "$0.3$ 남는다",
+            "$\\frac{3}{10}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ae0d2b0d9e3c06b38078da2f6b7947bd7dd71b01f12dfa7d1982815d8edc1451",
+      "questionRevision": "planning-e5e6-20261006-ae0d2b0d9e3c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-1-c1",
+      "bDecision": "revise",
+      "bPrompt": "같은 물체를 서로 다른 쪽에서 보면 눈에 들어오는 모양이 어떻게 될 수 있는지 쓰고, 그 까닭을 설명하시오.",
+      "bAnswer": "모양이 달라 보일 수 있다. 물체를 보는 쪽(방향)이 달라지기 때문이다.",
+      "bGoal": "물체의 모양이 달라 보이는 원인이 보는 방향임을 안다.",
+      "bReason": "제목만 설명하게 하지 않고 '달라 보인다'는 결과와 '보는 방향'이라는 원인을 함께 묻는다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "보는 쪽(방향, 위치)이 달라지면 모양이 달라 보일 수 있다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cAfter": "같은 물체도 {보는 쪽}이 달라지면 눈에 들어오는 모양이 달라질 수 있다.",
+      "cReason": "짧은 낱말 빈칸이고 '보는 쪽'이라는 핵심 원인을 묻는다. 정답이 뒤 문장에 나오지 않는다.",
+      "exampleNeeded": false,
+      "synonymNotes": "보는 쪽, 보는 방향, 보는 위치는 같은 뜻이다.",
+      "sourceIndex": 322,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-3-1-c1",
+        "section": "초6::2-3 공간과 입체::2-3-1 어느 방향에서 보았는지 알아보기",
+        "level": "하",
+        "kind": "정의",
+        "term": "보는 방향",
+        "definition": "같은 물체도 {보는 쪽}이 달라지면 눈에 들어오는 모양이 달라질 수 있다.",
+        "studentC": "같은 물체도 □이 달라지면 눈에 들어오는 모양이 달라질 수 있다.",
+        "answers": [
+          "보는 쪽"
+        ]
+      },
+      "sourceFingerprint": "a2638a8d161db8eb7f870167ce35b804ca6b0012c96e92fbb28654eccb7e3474",
+      "draftEvidence": "evidence/section-093-draft.json",
+      "cFrozenDefinition": "같은 물체도 {보는 쪽}이 달라지면 눈에 들어오는 모양이 달라질 수 있다.",
+      "cFrozenStudentSentence": "같은 물체도 □이 달라지면 눈에 들어오는 모양이 달라질 수 있다.",
+      "cProposedAnswers": [
+        "보는 쪽"
+      ],
+      "cStudentAfter": "같은 물체도 □이 달라지면 눈에 들어오는 모양이 달라질 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "보는 쪽"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "같은 물체도 {보는 쪽}이 달라지면 눈에 들어오는 모양이 달라질 수 있다.",
+      "cStudentSentence": "같은 물체도 □이 달라지면 눈에 들어오는 모양이 달라질 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "보는 쪽",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "같은 물체를 서로 다른 쪽에서 보면 눈에 들어오는 모양이 어떻게 될 수 있는지 쓰고, 그 까닭을 설명하시오.",
+        "answer": "모양이 달라 보일 수 있다. 물체를 보는 쪽(방향)이 달라지기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "보는 쪽(방향, 위치)이 달라지면 모양이 달라 보일 수 있다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "같은 물체도 {보는 쪽}이 달라지면 눈에 들어오는 모양이 달라질 수 있다.",
+        "acceptedAnswers": [
+          [
+            "보는 쪽"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "61299de7eec8263b177af11051c177f97a1913d502d2ed3c9582de73e9dbea03",
+      "questionRevision": "planning-e5e6-20261006-61299de7eec8",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-1-c2",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무 모양을 위·앞·옆에서 본 모양으로 기록할 때, 먼저 정해 두어야 하는 것이 무엇인지 쓰고 그것이 필요한 까닭을 설명하시오.",
+      "bAnswer": "앞쪽(어느 쪽이 앞인지)을 먼저 정해야 한다. 그래야 위·앞·옆에서 본 모양을 같은 기준으로 기록할 수 있어 방향이 헷갈리지 않는다.",
+      "bGoal": "여러 방향의 모양을 기록할 때 앞쪽을 기준으로 정해야 함을 안다.",
+      "bReason": "기준을 먼저 정하는 절차와 그 까닭을 함께 묻는다.",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "앞쪽(기준이 되는 방향)을 먼저 정한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은 기준으로 기록해야 방향이 헷갈리지 않는다",
+            "기준이 달라지면 같은 면이 다르게 기록되어 혼동된다"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "쌓기나무를 위·앞·옆에서 본 모양을 기록할 때는 먼저 {앞쪽}을 정하고, 모든 방향을 그 기준에 맞춰 기록한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "앞쪽",
+            "앞",
+            "앞면",
+            "기준 방향"
+          ]
+        }
+      ],
+      "cReason": "원문 '같은 기준'은 무엇의 기준인지 불분명하다. 정해야 할 대상인 앞쪽을 빈칸으로 바꾼다.",
+      "exampleNeeded": false,
+      "sourceIndex": 323,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-3-1-c2",
+        "section": "초6::2-3 공간과 입체::2-3-1 어느 방향에서 보았는지 알아보기",
+        "level": "중",
+        "kind": "방법",
+        "term": "위·앞·옆에서 보기",
+        "definition": "앞쪽을 먼저 정한 뒤, 위·앞·옆에서 보이는 모양을 {같은 기준}으로 기록한다.",
+        "studentC": "앞쪽을 먼저 정한 뒤, 위·앞·옆에서 보이는 모양을 □으로 기록한다.",
+        "answers": [
+          "같은 기준"
+        ]
+      },
+      "sourceFingerprint": "0e70d6bfd700584df483d1023b5c14b6c09105031ab95988737b575d1b742efe",
+      "draftEvidence": "evidence/section-093-draft.json",
+      "cProposedAnswers": [
+        "앞쪽"
+      ],
+      "cStudentAfter": "쌓기나무를 위·앞·옆에서 본 모양을 기록할 때는 먼저 □을 정하고, 모든 방향을 그 기준에 맞춰 기록한다.",
+      "cMarkedSentence": "쌓기나무를 위·앞·옆에서 본 모양을 기록할 때는 먼저 {앞쪽}을 정하고, 모든 방향을 그 기준에 맞춰 기록한다.",
+      "cStudentSentence": "쌓기나무를 위·앞·옆에서 본 모양을 기록할 때는 먼저 □을 정하고, 모든 방향을 그 기준에 맞춰 기록한다.",
+      "cSlotAnswers": [
+        {
+          "key": "앞쪽",
+          "equivalents": [
+            "앞",
+            "앞면",
+            "기준 방향"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "쌓기나무 모양을 위·앞·옆에서 본 모양으로 기록할 때, 먼저 정해 두어야 하는 것이 무엇인지 쓰고 그것이 필요한 까닭을 설명하시오.",
+        "answer": "앞쪽(어느 쪽이 앞인지)을 먼저 정해야 한다. 그래야 위·앞·옆에서 본 모양을 같은 기준으로 기록할 수 있어 방향이 헷갈리지 않는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "앞쪽(기준이 되는 방향)을 먼저 정한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 기준으로 기록해야 방향이 헷갈리지 않는다",
+              "기준이 달라지면 같은 면이 다르게 기록되어 혼동된다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "쌓기나무를 위·앞·옆에서 본 모양을 기록할 때는 먼저 {앞쪽}을 정하고, 모든 방향을 그 기준에 맞춰 기록한다.",
+        "acceptedAnswers": [
+          [
+            "앞쪽",
+            "앞",
+            "앞면",
+            "기준 방향"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "fae0432c0ef52e66d8271f716f609deac64e50e8e6974928e024fb77cf32430e",
+      "questionRevision": "planning-e5e6-20261006-fae0432c0ef5",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-1-c3",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무를 앞에서 볼 때 뒤에 있는 쌓기나무가 보이지 않을 수 있는 까닭을 설명하시오.",
+      "bAnswer": "앞에 있는 쌓기나무에 가려지기 때문이다.",
+      "bGoal": "앞뒤로 겹친 쌓기나무에서 뒤의 것이 가려져 안 보일 수 있음을 설명한다.",
+      "bReason": "'가려져'만 채우게 하지 않고 안 보이는 원인을 설명하게 한다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "앞의 쌓기나무에 가려진다",
+            "앞의 쌓기나무에 막혀 보이지 않는다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cAfter": "어느 방향에서는 뒤의 쌓기나무가 앞의 것에 {가려져} 보이지 않을 수 있다.",
+      "cReason": "앞뒤로 겹친 쌓기나무에서 뒤의 것이 가려진다는 핵심을 짧게 묻는 낱말 빈칸이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "가려져, 가려서, 막혀 등 같은 뜻을 인정한다.",
+      "sourceIndex": 324,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-3-1-c3",
+        "section": "초6::2-3 공간과 입체::2-3-1 어느 방향에서 보았는지 알아보기",
+        "level": "상",
+        "kind": "성질",
+        "term": "가려지는 부분",
+        "definition": "어느 방향에서는 뒤의 쌓기나무가 앞의 것에 {가려져} 보이지 않을 수 있다.",
+        "studentC": "어느 방향에서는 뒤의 쌓기나무가 앞의 것에 □ 보이지 않을 수 있다.",
+        "answers": [
+          "가려져"
+        ]
+      },
+      "sourceFingerprint": "4e2bb2ef6bc2e5e26b1228e06f6a6aad05852e2776f627437faaf9f512d61e5f",
+      "draftEvidence": "evidence/section-093-draft.json",
+      "cFrozenDefinition": "어느 방향에서는 뒤의 쌓기나무가 앞의 것에 {가려져} 보이지 않을 수 있다.",
+      "cFrozenStudentSentence": "어느 방향에서는 뒤의 쌓기나무가 앞의 것에 □ 보이지 않을 수 있다.",
+      "cProposedAnswers": [
+        "가려져"
+      ],
+      "cStudentAfter": "어느 방향에서는 뒤의 쌓기나무가 앞의 것에 □ 보이지 않을 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "가려져"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "어느 방향에서는 뒤의 쌓기나무가 앞의 것에 {가려져} 보이지 않을 수 있다.",
+      "cStudentSentence": "어느 방향에서는 뒤의 쌓기나무가 앞의 것에 □ 보이지 않을 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "가려져",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "쌓기나무를 앞에서 볼 때 뒤에 있는 쌓기나무가 보이지 않을 수 있는 까닭을 설명하시오.",
+        "answer": "앞에 있는 쌓기나무에 가려지기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "앞의 쌓기나무에 가려진다",
+              "앞의 쌓기나무에 막혀 보이지 않는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "어느 방향에서는 뒤의 쌓기나무가 앞의 것에 {가려져} 보이지 않을 수 있다.",
+        "acceptedAnswers": [
+          [
+            "가려져"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "1a36b3034a3ceb3fd42a9fbe818a4d10e6ad450100e916d39a45e461f87bdbcc",
+      "questionRevision": "planning-e5e6-20261006-1a36b3034a3c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-2-c1",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무는 어떤 블록인가? 쌓기나무 한 개의 모양과 모서리 길이의 특징을 말하시오.",
+      "bAnswer": "모양과 크기가 같은 정육면체 모양의 블록이다. 한 블록의 모서리는 모두 길이가 같다.",
+      "bGoal": "쌓기나무 한 개의 모양과 모서리 길이의 특징을 말한다.",
+      "bReason": "제목만 묻지 않고 모양과 모서리 특징으로 범위를 좁혔다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "정육면체 모양이다",
+            "모든 면이 정사각형인 입체이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "모서리 길이가 모두 같다",
+            "모든 모서리의 길이가 같다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "keep",
+      "cAfter": "쌓기나무는 모양과 크기가 같은 정육면체 모양의 블록이다. 한 블록의 모서리는 모두 길이가 {같다}. 이를 붙이거나 쌓아 입체를 만들 수 있다.",
+      "cReason": "정육면체의 모서리가 모두 같다는 조건을 짧게 확인하는 낱말 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 325,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-3-2-c1",
+        "section": "초6::2-3 공간과 입체::2-3-2 쌓은 모양과 쌓기나무의 개수 알아보기 (1)",
+        "level": "하",
+        "kind": "정의",
+        "term": "쌓기나무",
+        "definition": "쌓기나무는 모양과 크기가 같은 정육면체 모양의 블록이다. 한 블록의 모서리는 모두 길이가 {같다}. 이를 붙이거나 쌓아 입체를 만들 수 있다.",
+        "studentC": "쌓기나무는 모양과 크기가 같은 정육면체 모양의 블록이다. 한 블록의 모서리는 모두 길이가 □. 이를 붙이거나 쌓아 입체를 만들 수 있다.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "sourceFingerprint": "0a2d3f0515f768d72caf26411f30db63ce2ecf5fca11c2770cec80f7c81c55a8",
+      "draftEvidence": "evidence/section-094-draft.json",
+      "cFrozenDefinition": "쌓기나무는 모양과 크기가 같은 정육면체 모양의 블록이다. 한 블록의 모서리는 모두 길이가 {같다}. 이를 붙이거나 쌓아 입체를 만들 수 있다.",
+      "cFrozenStudentSentence": "쌓기나무는 모양과 크기가 같은 정육면체 모양의 블록이다. 한 블록의 모서리는 모두 길이가 □. 이를 붙이거나 쌓아 입체를 만들 수 있다.",
+      "cProposedAnswers": [
+        "같다"
+      ],
+      "cStudentAfter": "쌓기나무는 모양과 크기가 같은 정육면체 모양의 블록이다. 한 블록의 모서리는 모두 길이가 □. 이를 붙이거나 쌓아 입체를 만들 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "쌓기나무는 모양과 크기가 같은 정육면체 모양의 블록이다. 한 블록의 모서리는 모두 길이가 {같다}. 이를 붙이거나 쌓아 입체를 만들 수 있다.",
+      "cStudentSentence": "쌓기나무는 모양과 크기가 같은 정육면체 모양의 블록이다. 한 블록의 모서리는 모두 길이가 □. 이를 붙이거나 쌓아 입체를 만들 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "쌓기나무는 어떤 블록인가? 쌓기나무 한 개의 모양과 모서리 길이의 특징을 말하시오.",
+        "answer": "모양과 크기가 같은 정육면체 모양의 블록이다. 한 블록의 모서리는 모두 길이가 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "정육면체 모양이다",
+              "모든 면이 정사각형인 입체이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "모서리 길이가 모두 같다",
+              "모든 모서리의 길이가 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "쌓기나무는 모양과 크기가 같은 정육면체 모양의 블록이다. 한 블록의 모서리는 모두 길이가 {같다}. 이를 붙이거나 쌓아 입체를 만들 수 있다.",
+        "acceptedAnswers": [
+          [
+            "같다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b0763063534ef8c84142d15029d5f9be3ed6ccbd864ee67919a5de5458d923de",
+      "questionRevision": "planning-e5e6-20261006-b0763063534e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-2-c2",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무를 쌓은 모양을 그린 겨냥도에서 개수를 셀 때, 눈에 보이는 쌓기나무 말고 어떤 쌓기나무도 개수에 넣어야 하는가? 그 까닭도 쓰시오.",
+      "bAnswer": "위의 쌓기나무를 받치는 아래쪽(가려진) 쌓기나무도 넣는다. 아래에서 받쳐 주지 않으면 위의 쌓기나무가 공중에 떠 버리기 때문이다.",
+      "bGoal": "가려진 아래 쌓기나무를 세어야 하는 까닭을 받침 조건으로 설명한다.",
+      "bReason": "세는 대상과 이유를 함께 묻는 일반 관계라 예가 따로 필요 없다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "위의 블록을 받치는 아래 블록",
+            "가려져 안 보이는 아래쪽 블록"
+          ]
+        },
+        {
+          "anyOf": [
+            "받쳐 주지 않으면 위 블록이 뜬다",
+            "위 블록은 아래 블록 위에 놓여 있어야 한다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "겨냥도에서 보이지 않아도 위의 블록을 받치는 {아래} 블록은 개수에 넣는다.",
+      "cReason": "빈칸을 한 낱말로 줄여 아래 블록이라는 핵심 방향만 묻는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "아래",
+            "아래쪽",
+            "밑"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 326,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-3-2-c2",
+        "section": "초6::2-3 공간과 입체::2-3-2 쌓은 모양과 쌓기나무의 개수 알아보기 (1)",
+        "level": "중",
+        "kind": "방법",
+        "term": "가려진 쌓기나무 세기",
+        "definition": "겨냥도에서 보이는 것뿐 아니라 위의 블록을 받치는 {아래 블록}도 개수에 넣는다.",
+        "studentC": "겨냥도에서 보이는 것뿐 아니라 위의 블록을 받치는 □도 개수에 넣는다.",
+        "answers": [
+          "아래 블록"
+        ]
+      },
+      "sourceFingerprint": "bc8f4dbb26409e5938189c24f6a10a58c6bf38620e4348067d7f4d9b44d8cf30",
+      "draftEvidence": "evidence/section-094-draft.json",
+      "cProposedAnswers": [
+        "아래"
+      ],
+      "cStudentAfter": "겨냥도에서 보이지 않아도 위의 블록을 받치는 □ 블록은 개수에 넣는다.",
+      "cMarkedSentence": "겨냥도에서 보이지 않아도 위의 블록을 받치는 {아래} 블록은 개수에 넣는다.",
+      "cStudentSentence": "겨냥도에서 보이지 않아도 위의 블록을 받치는 □ 블록은 개수에 넣는다.",
+      "cSlotAnswers": [
+        {
+          "key": "아래",
+          "equivalents": [
+            "아래쪽",
+            "밑"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "쌓기나무를 쌓은 모양을 그린 겨냥도에서 개수를 셀 때, 눈에 보이는 쌓기나무 말고 어떤 쌓기나무도 개수에 넣어야 하는가? 그 까닭도 쓰시오.",
+        "answer": "위의 쌓기나무를 받치는 아래쪽(가려진) 쌓기나무도 넣는다. 아래에서 받쳐 주지 않으면 위의 쌓기나무가 공중에 떠 버리기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "위의 블록을 받치는 아래 블록",
+              "가려져 안 보이는 아래쪽 블록"
+            ]
+          },
+          {
+            "anyOf": [
+              "받쳐 주지 않으면 위 블록이 뜬다",
+              "위 블록은 아래 블록 위에 놓여 있어야 한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "겨냥도에서 보이지 않아도 위의 블록을 받치는 {아래} 블록은 개수에 넣는다.",
+        "acceptedAnswers": [
+          [
+            "아래",
+            "아래쪽",
+            "밑"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "c778e24de3986469b94bd0a41ec7495fa06dac74dec0d6b7816814aaa171a1f9",
+      "questionRevision": "planning-e5e6-20261006-c778e24de398",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-2-c3",
+      "bDecision": "revise",
+      "bPrompt": "앞에서 본 그림 한 장만 보고 쌓기나무 전체 개수를 항상 하나로 정할 수 있는가? 그렇게 생각한 까닭을 쓰시오.",
+      "bAnswer": "항상 정할 수는 없다. 뒤쪽 가려진 자리에 쌓기나무가 있는지 없는지 알 수 없어 전체 개수가 달라질 수 있기 때문이다.",
+      "bGoal": "한 방향 그림만으로 개수가 정해지지 않을 수 있음을 가려진 자리로 설명한다.",
+      "bReason": "가려진 자리 때문에 개수가 달라질 수 있다는 핵심을 묻는 가치 있는 문항이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "하나로 정할 수 없다",
+            "항상 정할 수는 없다",
+            "정해지지 않을 수 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "뒤쪽 가려진 자리에 쌓기나무가 있는지 알 수 없다",
+            "보이지 않는 자리 때문에 개수가 달라질 수 있다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "그림 뒤쪽에 빈자리가 있는지 알 수 없으면 전체 개수는 하나로 {정해지지} 않을 수 있다.",
+      "cReason": "긴 구절 대신 핵심 낱말 하나만 빈칸으로 두어 암기 부담을 줄였다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "정해지지",
+            "정해지지는"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 327,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-3-2-c3",
+        "section": "초6::2-3 공간과 입체::2-3-2 쌓은 모양과 쌓기나무의 개수 알아보기 (1)",
+        "level": "상",
+        "kind": "성질",
+        "term": "한 그림으로 알 수 없는 개수",
+        "definition": "그림 뒤쪽에 빈자리가 있는지 알 수 없으면 전체 개수는 {하나로 정해지지 않을 수 있다}.",
+        "studentC": "그림 뒤쪽에 빈자리가 있는지 알 수 없으면 전체 개수는 □.",
+        "answers": [
+          "하나로 정해지지 않을 수 있다"
+        ]
+      },
+      "sourceFingerprint": "39703441f5ca3fe16399f3e411acf21797b41043b64f5d919ae1ab6918f0fb39",
+      "draftEvidence": "evidence/section-094-draft.json",
+      "cProposedAnswers": [
+        "정해지지"
+      ],
+      "cStudentAfter": "그림 뒤쪽에 빈자리가 있는지 알 수 없으면 전체 개수는 하나로 □ 않을 수 있다.",
+      "cMarkedSentence": "그림 뒤쪽에 빈자리가 있는지 알 수 없으면 전체 개수는 하나로 {정해지지} 않을 수 있다.",
+      "cStudentSentence": "그림 뒤쪽에 빈자리가 있는지 알 수 없으면 전체 개수는 하나로 □ 않을 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "정해지지",
+          "equivalents": [
+            "정해지지는"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "앞에서 본 그림 한 장만 보고 쌓기나무 전체 개수를 항상 하나로 정할 수 있는가? 그렇게 생각한 까닭을 쓰시오.",
+        "answer": "항상 정할 수는 없다. 뒤쪽 가려진 자리에 쌓기나무가 있는지 없는지 알 수 없어 전체 개수가 달라질 수 있기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "하나로 정할 수 없다",
+              "항상 정할 수는 없다",
+              "정해지지 않을 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "뒤쪽 가려진 자리에 쌓기나무가 있는지 알 수 없다",
+              "보이지 않는 자리 때문에 개수가 달라질 수 있다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "그림 뒤쪽에 빈자리가 있는지 알 수 없으면 전체 개수는 하나로 {정해지지} 않을 수 있다.",
+        "acceptedAnswers": [
+          [
+            "정해지지",
+            "정해지지는"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "be700f1cb4e6670520447a70ba34f270061e5a55b7ff75ecd5b16e55680271ed",
+      "questionRevision": "planning-e5e6-20261006-be700f1cb4e6",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-3-c1",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무를 쌓은 모양을 위에서 내려다본 그림에서 한 칸은 무엇을 나타내는지 설명하시오. 한 자리에 쌓기나무를 $3$층으로 쌓았다면 그 자리는 위에서 본 그림에서 몇 칸으로 나타나는지도 쓰시오.",
+      "bAnswer": "쌓기나무가 놓인 바닥의 한 자리(기둥 하나)를 나타낸다. $3$층으로 쌓아도 $1$칸으로 나타난다.",
+      "bGoal": "위에서 본 그림의 한 칸이 층수와 상관없이 바닥 한 자리임을 이해한다.",
+      "bReason": "제목만 설명하게 하지 않고 층수가 달라도 한 칸이라는 구체적 관계를 묻는다.",
+      "learningRole": "definition",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "쌓기나무가 놓인 바닥의 한 자리",
+            "쌓기나무 기둥 하나",
+            "쌓기나무가 놓인 한 자리"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$칸",
+            "한 칸"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "위에서 본 그림에서 쌓기나무를 $3$층으로 쌓은 한 자리는 {$1$}칸으로 나타난다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$",
+            "$1$칸",
+            "한 칸"
+          ]
+        }
+      ],
+      "cReason": "원문의 '바닥 자리'는 학생이 쓸 낱말이 불분명해 층수와 칸 수의 관계를 묻는 짧은 값 빈칸으로 바꾼다.",
+      "exampleNeeded": false,
+      "sourceIndex": 328,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-3-3-c1",
+        "section": "초6::2-3 공간과 입체::2-3-3 쌓은 모양과 쌓기나무의 개수 알아보기 (2)",
+        "level": "하",
+        "kind": "정의",
+        "term": "위에서 본 모양",
+        "definition": "위에서 본 그림의 한 칸은 블록이 놓인 {바닥 자리} 하나를 뜻한다.",
+        "studentC": "위에서 본 그림의 한 칸은 블록이 놓인 □ 하나를 뜻한다.",
+        "answers": [
+          "바닥 자리"
+        ]
+      },
+      "sourceFingerprint": "b27c14a12f93361fe254fa509a2feed9034ed097d52c79fd8b2ec2d6ec9da8e7",
+      "draftEvidence": "evidence/section-095-draft.json",
+      "cProposedAnswers": [
+        "$1$"
+      ],
+      "cStudentAfter": "위에서 본 그림에서 쌓기나무를 $3$층으로 쌓은 한 자리는 □칸으로 나타난다.",
+      "cMarkedSentence": "위에서 본 그림에서 쌓기나무를 $3$층으로 쌓은 한 자리는 {$1$}칸으로 나타난다.",
+      "cStudentSentence": "위에서 본 그림에서 쌓기나무를 $3$층으로 쌓은 한 자리는 □칸으로 나타난다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": [
+            "$1$칸",
+            "한 칸"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "쌓기나무를 쌓은 모양을 위에서 내려다본 그림에서 한 칸은 무엇을 나타내는지 설명하시오. 한 자리에 쌓기나무를 $3$층으로 쌓았다면 그 자리는 위에서 본 그림에서 몇 칸으로 나타나는지도 쓰시오.",
+        "answer": "쌓기나무가 놓인 바닥의 한 자리(기둥 하나)를 나타낸다. $3$층으로 쌓아도 $1$칸으로 나타난다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "쌓기나무가 놓인 바닥의 한 자리",
+              "쌓기나무 기둥 하나",
+              "쌓기나무가 놓인 한 자리"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1$칸",
+              "한 칸"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "위에서 본 그림에서 쌓기나무를 $3$층으로 쌓은 한 자리는 {$1$}칸으로 나타난다.",
+        "acceptedAnswers": [
+          [
+            "$1$",
+            "$1$칸",
+            "한 칸"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "655fee61f9897a7f441c8f1eb8d6d80cb4edca2a126d2a41eeef7e81d2a43a7a",
+      "questionRevision": "planning-e5e6-20261006-655fee61f989",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-3-3-c2",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무 기둥이 앞뒤로 한 줄에 놓여 있고 높이가 앞에서부터 $1$층, $3$층, $2$층입니다. 앞에서 볼 때 이 줄은 몇 층으로 보이는지 쓰고, 높이가 어떻게 정해지는지 설명하시오.",
+      "bAnswer": "$3$층으로 보인다. 앞뒤로 겹친 기둥 중 가장 높은 기둥의 높이에 맞춰 보인다.",
+      "bGoal": "앞뒤로 겹친 기둥의 앞에서 본 높이가 가장 높은 기둥으로 정해짐을 안다.",
+      "bReason": "값만 묻지 않고 높이를 정하는 기준을 함께 설명하게 한다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가장 높은 기둥에 맞춰 보인다",
+            "가장 높은 기둥의 높이로 보인다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$층"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cAfter": "앞뒤로 놓인 기둥들이 겹쳐 보이면, 앞에서 보이는 높이는 그중 {가장 높은 기둥}에 맞는다.",
+      "cReason": "앞뒤로 겹친 기둥의 높이 기준을 묻는 짧고 조건이 분명한 문장이라 유지한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 329,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-2-3-3-c2",
+        "section": "초6::2-3 공간과 입체::2-3-3 쌓은 모양과 쌓기나무의 개수 알아보기 (2)",
+        "level": "중",
+        "kind": "성질",
+        "term": "앞에서 본 모양의 높이",
+        "definition": "앞뒤로 놓인 기둥들이 겹쳐 보이면, 앞에서 보이는 높이는 그중 {가장 높은 기둥}에 맞는다.",
+        "studentC": "앞뒤로 놓인 기둥들이 겹쳐 보이면, 앞에서 보이는 높이는 그중 □에 맞는다.",
+        "answers": [
+          "가장 높은 기둥"
+        ]
+      },
+      "sourceFingerprint": "e811755714fccbba4922c88f0e1b61b104d44ef5c7802693ea78dbda80eb53dd",
+      "draftEvidence": "evidence/section-095-draft.json",
+      "cFrozenDefinition": "앞뒤로 놓인 기둥들이 겹쳐 보이면, 앞에서 보이는 높이는 그중 {가장 높은 기둥}에 맞는다.",
+      "cFrozenStudentSentence": "앞뒤로 놓인 기둥들이 겹쳐 보이면, 앞에서 보이는 높이는 그중 □에 맞는다.",
+      "cProposedAnswers": [
+        "가장 높은 기둥"
+      ],
+      "cStudentAfter": "앞뒤로 놓인 기둥들이 겹쳐 보이면, 앞에서 보이는 높이는 그중 □에 맞는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "가장 높은 기둥"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "앞뒤로 놓인 기둥들이 겹쳐 보이면, 앞에서 보이는 높이는 그중 {가장 높은 기둥}에 맞는다.",
+      "cStudentSentence": "앞뒤로 놓인 기둥들이 겹쳐 보이면, 앞에서 보이는 높이는 그중 □에 맞는다.",
+      "cSlotAnswers": [
+        {
+          "key": "가장 높은 기둥",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "쌓기나무 기둥이 앞뒤로 한 줄에 놓여 있고 높이가 앞에서부터 $1$층, $3$층, $2$층입니다. 앞에서 볼 때 이 줄은 몇 층으로 보이는지 쓰고, 높이가 어떻게 정해지는지 설명하시오.",
+        "answer": "$3$층으로 보인다. 앞뒤로 겹친 기둥 중 가장 높은 기둥의 높이에 맞춰 보인다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "가장 높은 기둥에 맞춰 보인다",
+              "가장 높은 기둥의 높이로 보인다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$층"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "앞뒤로 놓인 기둥들이 겹쳐 보이면, 앞에서 보이는 높이는 그중 {가장 높은 기둥}에 맞는다.",
+        "acceptedAnswers": [
+          [
+            "가장 높은 기둥"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b5e9b896eedfe408cdd50a1644adbc8faf8412fe07e26aac4f5fffc85136c2b4",
+      "questionRevision": "planning-e5e6-20261006-b5e9b896eedf",
+      "requiresIndependentReview": true
+    }
+  ]
+}

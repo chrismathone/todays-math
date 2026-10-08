@@ -1,0 +1,979 @@
+{
+  "reader": "Root Codex direct final question reading",
+  "file": "root-e5e6-final-2080-2110-input.json",
+  "rows": [
+    {
+      "id": "e6-1-5-4-xc27",
+      "sourceIndex": 2080,
+      "proposalFingerprint": "24861e058374d5c20bbb07bf51e06a2a132565a47aaa44244c48a624a5276579",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "전체 수를 알 때 원그래프의 눈금 한 칸이 나타내는 수는 어떻게 구하나요? 전체가 $200$명이고 원이 $100$칸이면 한 칸은 몇 명인가요?",
+        "answer": "전체 수를 칸 수로 나눈다. $200\\div100=2$이므로 한 칸은 $2$명이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "전체 수를 칸 수로 나눈다",
+              "전체를 똑같은 칸 수로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$명",
+              "$2$"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "전체가 $200$명이고 원이 $50$칸이면 한 칸은 {$4$}명을 나타낸다.",
+        "acceptedAnswers": [
+          [
+            "$4$",
+            "$4$명"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "일반 방법과 예를 함께 묻는다.",
+      "cReason": "긴 빈칸을 구체 계산으로 바꿨다."
+    },
+    {
+      "id": "e6-1-5-5-xc1",
+      "sourceIndex": 2081,
+      "proposalFingerprint": "890aa61eaea11d00fde45cebe337c02f737fc360dca895c9dfd3cbde4fa6adf7",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "그림그래프에서 지역별 수량이 많은지 적은지는 무엇으로 한눈에 알 수 있는가?",
+        "answer": "그림의 크기와 개수(큰 그림과 작은 그림의 수)로 알 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "그림의 크기와 개수",
+              "큰 그림과 작은 그림의 수"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "그림그래프는 지역별 수량처럼 {그림의 크기와 개수}로 많고 적음을 한눈에 보여 준다.",
+        "acceptedAnswers": [
+          [
+            "그림의 크기와 개수"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "쓰임을 묻되 '무엇으로'로 답의 범위를 좁혀 준다.",
+      "cReason": "그림그래프가 수량을 나타내는 수단을 묻는 짧은 문장이다."
+    },
+    {
+      "id": "e6-1-5-5-xc2",
+      "sourceIndex": 2082,
+      "proposalFingerprint": "4008926686e285de2385b5f2a5208e1f7479910948f2d5bb1009d3b721ab686f",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": null,
+      "C": {
+        "sentence": "막대그래프는 항목별 {수량의 크기}를 비교하기 좋다.",
+        "acceptedAnswers": [
+          [
+            "수량의 크기"
+          ]
+        ]
+      },
+      "exclusions": {
+        "term": "B는 e6-1-5-5-c1과 중복이다."
+      },
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "c1에서 이미 막대그래프와 띠그래프의 쓰임을 비교해 묻는다.",
+      "cReason": "짧은 낱말 문장으로 유지해도 되며 수량 비교라는 목표가 분명하다."
+    },
+    {
+      "id": "e6-1-5-5-xc3",
+      "sourceIndex": 2083,
+      "proposalFingerprint": "4452bb16714777e58a88692459da856e25dbd10241cb0e38f1811215c44b63be",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "같은 꺾은선그래프에서 같은 길이의 두 기간을 비교할 때, 어느 기간에 값이 더 많이 늘었는지 선의 모양으로 어떻게 알 수 있는가?",
+        "answer": "선이 더 가파르게 올라간 기간에 값이 더 많이 늘었다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "선이 더 가파르게 올라간 기간",
+              "선이 더 급하게 올라간 기간",
+              "선이 더 많이 기울어 올라간 기간"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "같은 꺾은선그래프에서 같은 길이의 기간을 견줄 때 선이 {가파르게} 올라갈수록 많이 늘어난 것이다.",
+        "acceptedAnswers": [
+          [
+            "가파르게"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "같은 그래프, 같은 기간 길이라는 조건을 넣어 해석 규칙을 묻는다.",
+      "cReason": "같은 그래프와 같은 기간 길이라는 조건이 문장에 남아 있다."
+    },
+    {
+      "id": "e6-1-5-5-xc4",
+      "sourceIndex": 2084,
+      "proposalFingerprint": "98c67e4e4e5bba7dae64319dcd883db20d44ec14e1f855c100c383716095a95d",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": null,
+      "C": {
+        "sentence": "띠그래프는 전체에 대한 각 항목의 {비율}을 비교하기 좋다.",
+        "acceptedAnswers": [
+          [
+            "비율"
+          ]
+        ]
+      },
+      "exclusions": {
+        "term": "B는 e6-1-5-5-c1과 중복이다."
+      },
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "띠그래프의 쓰임은 c1 질문에 포함되어 있다.",
+      "cReason": "전체에 대한 각 항목의 비율이라는 쓰임을 묻는 짧은 문장이다."
+    },
+    {
+      "id": "e6-1-5-5-xc5",
+      "sourceIndex": 2085,
+      "proposalFingerprint": "4f197f7a1e4d92621da46d3954cf62ba5ad2cb58748f9bd3f8840369450c02ad",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "원그래프에서 원 전체와 나뉜 각 부분은 각각 무엇을 나타내는가?",
+        "answer": "원 전체는 자료의 전체($100\\%$)를 나타내고, 각 부분은 전체에서 그 항목이 차지하는 비율을 나타낸다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "원 전체는 자료의 전체",
+              "원 전체는 $100\\%$"
+            ]
+          },
+          {
+            "anyOf": [
+              "각 부분은 전체에서 그 항목이 차지하는 비율",
+              "각 부분은 그 항목의 백분율"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "원그래프는 전체를 원 하나로 보고 각 항목이 차지하는 {비율}을 한눈에 보여 준다.",
+        "acceptedAnswers": [
+          [
+            "비율",
+            "백분율"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": "원그래프는 전체를 원 하나로 보고, 각 항목이 전체에서 차지하는 {비율}을 원의 부분으로 나타낸 그래프이다.",
+      "coreReason": "원문 '몫'은 비율을 뜻하는 말로 쓰기에 학년 언어가 불명확하다.",
+      "bReason": "원문 '몫'은 나눗셈 몫과 헷갈려서 전체와 비율 관계로 바꿔 묻는다.",
+      "cReason": "'몫'은 학생에게 나눗셈의 몫으로 읽혀 비율로 고친다."
+    },
+    {
+      "id": "e6-1-5-5-xc6",
+      "sourceIndex": 2086,
+      "proposalFingerprint": "8cef4e3abb346fff58a1ef7c997c6fe72f33507f3ea305d8fb4f9715ce019760",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "cDecision": "exclude",
+      "B": null,
+      "C": null,
+      "exclusions": {
+        "term": "구체적인 그래프 선택은 e6-1-5-5-c1과 e6-1-5-5-c2에서 다룬다.",
+        "cloze": "구체적인 그래프 선택은 e6-1-5-5-c1과 e6-1-5-5-c2에서 다룬다."
+      },
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "'나타내려는 내용'은 추상적인 메타 말이라 구체적 판단을 요구하지 못한다.",
+      "cReason": "학생이 답을 추측하기 어려운 추상 빈칸이다."
+    },
+    {
+      "id": "e6-1-5-5-xc7",
+      "sourceIndex": 2087,
+      "proposalFingerprint": "33707f3d03a1a3baa04e7ae4e12430453b9e2dfebbbc62935355710c5de3bba8",
+      "learningRole": "naming",
+      "bDecision": "exclude",
+      "cDecision": "exclude",
+      "B": null,
+      "C": null,
+      "exclusions": {
+        "term": "교육과정에서 익숙한 용어가 아니고 수학적 이해를 확인하지 못한다.",
+        "cloze": "교육과정에서 익숙한 용어가 아니고 수학적 이해를 확인하지 못한다."
+      },
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "'비율그래프'는 편집용 이름이라 학생 질문에 쓰지 않는다.",
+      "cReason": "창작명 암기를 요구하는 문장이다."
+    },
+    {
+      "id": "e6-1-5-5-xc8",
+      "sourceIndex": 2088,
+      "proposalFingerprint": "a266f527485ae7cc6b5faeb5971d6fb0ee29a6278b447c6aa99d99cd88b5fcbd",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": null,
+      "C": {
+        "sentence": "같은 자료라도 항목끼리 견줄 때는 막대그래프, {변화}를 볼 때는 꺾은선그래프가 알맞다.",
+        "acceptedAnswers": [
+          [
+            "변화"
+          ]
+        ]
+      },
+      "exclusions": {
+        "term": "B는 e6-1-5-5-c2와 중복이다."
+      },
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "변화를 보는 그래프는 c2에서 이미 묻는다.",
+      "cReason": "항목 비교와 변화 관찰을 대비하는 짧은 문장이다."
+    },
+    {
+      "id": "e6-1-5-5-xc9",
+      "sourceIndex": 2089,
+      "proposalFingerprint": "deba08436be0a1f023f044733950f80efca934cf93d51a1ecc9cb643703cad13",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "cDecision": "exclude",
+      "B": null,
+      "C": null,
+      "exclusions": {
+        "term": "개념 이해를 확인하지 못하는 사소한 문항이다.",
+        "cloze": "개념 이해를 확인하지 못하는 사소한 문항이다."
+      },
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "제목 확인은 사소한 행동 규칙이다.",
+      "cReason": "수학적 판단이 아닌 절차 암기다."
+    },
+    {
+      "id": "e6-1-5-5-xc10",
+      "sourceIndex": 2090,
+      "proposalFingerprint": "7d146a9fdcd05389c65fc13350e822acb03b41c3be58fd33c1863b0d6a1847c5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "반마다 전체 인원이 다를 때, 좋아하는 운동의 비율을 반끼리 견주려면 어떤 그래프를 어떻게 그려 어떻게 놓고 비교하면 좋은지 쓰시오.",
+        "answer": "반마다 전체 길이가 같은 띠를 $100\\%$로 보고 백분율만큼 나눈 띠그래프를 그려 나란히 놓고, 같은 운동의 부분을 비교한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "띠그래프",
+              "원그래프"
+            ]
+          },
+          {
+            "anyOf": [
+              "전체 길이를 같게 하고 백분율만큼 나눈다",
+              "전체를 $100\\%$로 보고 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나란히 놓고 같은 운동의 부분을 비교한다",
+              "옆에 놓고 같은 항목의 크기를 견준다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "반마다 인원이 달라도 좋아하는 운동의 비율을 견주려면, 전체를 똑같이 $100\\%$로 보고 나눈 {띠그래프}를 반마다 그려 나란히 놓는다.",
+        "acceptedAnswers": [
+          [
+            "띠그래프",
+            "원그래프"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "전체 수가 다를 때 같은 전체 길이로 맞추는 이유가 핵심이다.",
+      "cReason": "원문에 '띠'가 들어 있어 답이 드러나므로 문장을 바꿔 준다."
+    },
+    {
+      "id": "e6-1-5-5-xc11",
+      "sourceIndex": 2091,
+      "proposalFingerprint": "a3e090d09e38445cc44b241f939218eec61e95e0b36f744e7d99c7710b927831",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": null,
+      "C": {
+        "sentence": "달마다 바뀌는 기온은 {꺾은선그래프}로 나타내는 것이 알맞다.",
+        "acceptedAnswers": [
+          [
+            "꺾은선그래프"
+          ]
+        ]
+      },
+      "exclusions": {
+        "term": "B는 e6-1-5-5-c2와 중복이다."
+      },
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "시간에 따른 변화 그래프는 c2와 같은 목표이다.",
+      "cReason": "달마다 바뀌는 기온이라는 상황에서 그래프를 고르는 짧은 문장이다."
+    },
+    {
+      "id": "e6-1-5-5-xc12",
+      "sourceIndex": 2092,
+      "proposalFingerprint": "fc2322d1df3cc6cb4fe0144233570fc50215dbde92e1c73358d672dd3118dedb",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": null,
+      "C": {
+        "sentence": "마을별 사과 생산량을 그림으로 한눈에 보이려면 {그림그래프}가 알맞다.",
+        "acceptedAnswers": [
+          [
+            "그림그래프"
+          ]
+        ]
+      },
+      "exclusions": {
+        "term": "B는 e6-1-5-5-xc1과 중복이다."
+      },
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "그림그래프의 쓰임은 xc1에서 묻는다.",
+      "cReason": "그림으로 한눈에 보이는 그래프라는 단서가 분명한 짧은 문장이다."
+    },
+    {
+      "id": "e6-1-5-5-xc13",
+      "sourceIndex": 2093,
+      "proposalFingerprint": "b34532e4169d02753d41fefa088b2e7126f9686959ce017003dadac2a8c27255",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "같은 자료를 막대그래프와 원그래프로 함께 보면 자료를 더 잘 이해할 수 있다. 각 그래프에서 알 수 있는 정보는 무엇이 다른가?",
+        "answer": "막대그래프에서는 항목별 수량의 크기를, 원그래프에서는 전체에서 각 항목이 차지하는 비율을 알 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "막대그래프는 항목별 수량의 크기",
+              "막대그래프는 실제 수나 양"
+            ]
+          },
+          {
+            "anyOf": [
+              "원그래프는 전체에서 각 항목의 비율",
+              "원그래프는 각 항목의 백분율"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "막대의 길이로 항목의 수량을 나타낸 {막대그래프}와 원을 항목의 비율만큼 나눈 {원그래프}를 함께 보면 자료를 더 잘 이해할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "막대그래프"
+          ],
+          [
+            "원그래프"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "두 그래프가 서로 보완하는 정보를 구분하게 한다.",
+      "cReason": "문장 속 설명이 그래프 종류를 구별해 주는 비교 문장이다."
+    },
+    {
+      "id": "e6-1-5-5-xc14",
+      "sourceIndex": 2094,
+      "proposalFingerprint": "7e36a0cbb5428a3c61023591c4d3b537b7b26ee1787eb1a4dfca07a44b5850ce",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": null,
+      "C": {
+        "sentence": "띠그래프나 원그래프에는 보통 각 항목의 {실제 수}가 직접 나타나지 않는다.",
+        "acceptedAnswers": [
+          [
+            "실제 수"
+          ]
+        ]
+      },
+      "exclusions": {
+        "term": "B는 e6-1-5-5-xc27과 중복이다."
+      },
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "xc27에서 실제 수와 전체 수의 관계를 더 구체적으로 묻는다.",
+      "cReason": "띠그래프나 원그래프에 실제 수가 직접 나타나지 않는다는 짧은 문장이다."
+    },
+    {
+      "id": "e6-1-5-5-xc15",
+      "sourceIndex": 2095,
+      "proposalFingerprint": "9e23924ef9d38e2ed4142e2c878d9cb0948016831ebd4692f97472302a95cf9a",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "막대그래프의 항목들이 하나의 전체를 이룰 때 한 항목의 비율을 구하는 방법을 쓰시오. 이때 기준량과 비교하는 양은 각각 무엇인가?",
+        "answer": "그 항목의 수량을 전체 수량으로 나누어 구한다. 기준량은 전체 수량이고 비교하는 양은 그 항목의 수량이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "항목의 수량을 전체 수량으로 나눈다",
+              "항목의 수량$\\div$전체 수량"
+            ]
+          },
+          {
+            "anyOf": [
+              "기준량은 전체 수량이고 비교하는 양은 그 항목의 수량",
+              "전체가 기준량, 그 항목이 비교하는 양"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "막대그래프의 항목들이 하나의 전체를 이룰 때, 각 항목의 비율은 그 항목의 수량을 전체 수량으로 {나눈} 값이다. 전체 수량은 기준량이고 그 항목의 수량은 비교하는 양이다.",
+        "acceptedAnswers": [
+          [
+            "나눈"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "비율 정의를 막대그래프 자료에 연결해 순서를 정확히 확인한다.",
+      "cReason": "비율을 구하는 연산이 나눗셈임을 묻고 하나의 전체라는 조건을 유지한다."
+    },
+    {
+      "id": "e6-1-5-5-xc16",
+      "sourceIndex": 2096,
+      "proposalFingerprint": "30cef9951d63753b1c55ea747a8a53ca7c8a522828970a92ec2e105e96ae4134",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "같은 자료를 띠그래프와 원그래프로 각각 나타낼 때, 달라지는 것과 달라지지 않는 것은 무엇인가?",
+        "answer": "그래프의 모양은 다르지만 각 항목의 백분율은 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "그래프의 모양이 다르다",
+              "띠와 원 모양이 다르다"
+            ]
+          },
+          {
+            "anyOf": [
+              "각 항목의 백분율은 같다",
+              "각 항목의 비율은 변하지 않는다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "{같은 자료}를 띠그래프와 원그래프로 나타내면 모양은 달라도 각 항목의 {백분율}은 {같다}.",
+        "acceptedAnswers": [
+          [
+            "같은 자료",
+            "똑같은 자료"
+          ],
+          [
+            "백분율",
+            "비율"
+          ],
+          [
+            "같다",
+            "똑같다",
+            "변하지 않는다"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "같은 자료라는 조건과 모양 대 백분율 구분을 묻는다.",
+      "cReason": "긴 구절 빈칸을 의미 있는 세 낱말 빈칸으로 나눈다."
+    },
+    {
+      "id": "e6-1-5-5-xc17",
+      "sourceIndex": 2097,
+      "proposalFingerprint": "d6721bba21917467e134d4643b66daf5e480d5bc26c65af8e0e0656d50a0cdd9",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "해마다 바뀌는 비율을 비교하려면 띠그래프를 어떻게 그려 어떻게 놓으면 좋은지 쓰시오.",
+        "answer": "해마다 같은 길이의 띠그래프를 하나씩 그려 나란히 놓고, 같은 항목의 길이를 비교한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "해마다 하나씩 그린다",
+              "각 해의 띠그래프를 따로 그린다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나란히 놓고 같은 항목의 길이를 비교한다",
+              "옆에 놓고 같은 항목을 견준다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "해마다 바뀌는 비율은 띠그래프를 해마다 하나씩 그려 {나란히} 놓고, 같은 항목의 {길이}를 비교할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "나란히",
+            "옆에",
+            "함께"
+          ],
+          [
+            "길이",
+            "크기",
+            "비율"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "나란히 놓는 방법과 같은 항목끼리 견주는 점을 확인한다.",
+      "cReason": "어색한 구절 빈칸 대신 나란히 놓기와 길이 비교로 나눈다."
+    },
+    {
+      "id": "e6-1-5-5-xc18",
+      "sourceIndex": 2098,
+      "proposalFingerprint": "d7a49f623e18cb427695a68920bcc77c524353b64aee588ce31a63f235e07e90",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "cDecision": "exclude",
+      "B": null,
+      "C": null,
+      "exclusions": {
+        "term": "B와 C는 e6-1-5-5-c1, e6-1-5-5-c2, e6-1-5-5-xc8과 중복이다.",
+        "cloze": "B와 C는 e6-1-5-5-c1, e6-1-5-5-c2, e6-1-5-5-xc8과 중복이다."
+      },
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "c1과 c2에서 같은 선택 기준을 구체적으로 묻는다.",
+      "cReason": "변화를 볼 때의 그래프는 xc8 C와 중복이다."
+    },
+    {
+      "id": "e6-1-5-5-xc19",
+      "sourceIndex": 2099,
+      "proposalFingerprint": "04c94be41a12e7a5dafd7c523b7420b16f7687f4c33fa74921628c803cffd277",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "작년에 $20$명 중 한 항목이 $50\\%$였고, 올해는 전체가 $100$명으로 늘어 같은 항목이 $30\\%$일 때, 비율은 줄었지만 그 항목의 실제 인원은 어떻게 변했는지 구하고 그 까닭을 설명하시오.",
+        "answer": "작년은 $10$명, 올해는 $30$명이므로 $20$명 늘었다. 전체 수가 크게 늘면 비율이 줄어도 실제 수는 늘 수 있기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$10$명에서 $30$명으로 늘었다",
+              "$20$명 늘었다"
+            ]
+          },
+          {
+            "anyOf": [
+              "전체 수가 크게 늘었기 때문이다",
+              "전체 수가 커져서 비율이 줄어도 실제 수는 늘 수 있다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "전체 수가 크게 늘면 한 항목의 비율이 줄어도 그 항목의 {실제 수}는 늘 수 있다.",
+        "acceptedAnswers": [
+          [
+            "실제 수"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "예와 일반 이유를 함께 묻고 정확한 값을 답에 포함한다.",
+      "cReason": "비율 감소와 실제 수 증가의 대비가 명확한 짧은 문장이다."
+    },
+    {
+      "id": "e6-1-5-5-xc20",
+      "sourceIndex": 2100,
+      "proposalFingerprint": "82afa5f18e0e6d52c03e3661b4c1ceee4ccb1e8f626629de58e6ca5243bdb09e",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "같은 집단을 나타낸 막대그래프와 띠그래프에서 막대그래프로 알아낸 전체 수는 띠그래프의 몇 퍼센트에 해당하는가? 또 전체가 $50$명일 때 띠그래프에서 $40\\%$인 항목은 몇 명인지 쓰시오.",
+        "answer": "전체 수는 띠그래프의 $100\\%$에 해당한다. $50\\times0.4=20$이므로 $20$명이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$100\\%$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$20$명"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "같은 집단을 나타낸 막대그래프와 띠그래프에서 막대그래프로 알아낸 {전체 수}는 띠그래프의 {$100\\%$}에 해당한다.",
+        "acceptedAnswers": [
+          [
+            "전체 수",
+            "전체 인원",
+            "모든 항목의 합"
+          ],
+          [
+            "$100\\%$",
+            "$100$퍼센트"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": "같은 집단을 나타낸 두 그래프에서 막대그래프로 알아낸 {전체 수}는 띠그래프나 원그래프의 {$100\\%$}에 해당한다. 각 항목의 비율은 그 전체를 기준으로 읽는다.",
+      "coreReason": "'비율그래프'는 학생 용어가 아니므로 띠그래프나 원그래프로 쓴다.",
+      "bReason": "막대그래프의 전체 수와 띠그래프의 $100\\%$를 연결해 실제 수로 바꾼다.",
+      "cReason": "편집용 '비율그래프' 용어를 없애고 빈칸을 둘로 줄인다."
+    },
+    {
+      "id": "e6-1-5-5-xc21",
+      "sourceIndex": 2101,
+      "proposalFingerprint": "0d87aca2726cab16fde57e5fea69f72b1a619c132921e24d6bf410b1fcf337c0",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "막대그래프의 세로 눈금이 $0$이 아닌 값에서 시작하면, 막대 길이만 보고 막대 사이의 차이를 읽을 때 어떤 오해가 생길 수 있는가?",
+        "answer": "막대 사이의 차이가 실제보다 크게 보일 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "차이가 실제보다 크게 보인다",
+              "막대 길이의 차이가 더 커 보인다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "막대그래프의 세로 눈금이 $0$에서 시작하지 않으면 막대 길이의 차이가 실제보다 {크게} 보일 수 있다.",
+        "acceptedAnswers": [
+          [
+            "크게",
+            "더 크게"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "그래프를 비판적으로 읽는 이유를 묻는다.",
+      "cReason": "긴 구절 대신 핵심 낱말 하나를 묻는다."
+    },
+    {
+      "id": "e6-1-5-5-xc22",
+      "sourceIndex": 2102,
+      "proposalFingerprint": "be60a439d6e44ba8cf5ea914619b2de8af1ee9fd4f148f377e622062e258dd2c",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "B": null,
+      "C": {
+        "sentence": "두 집단의 전체 수가 다를 때, 같은 항목의 비율이 달라도 그 항목의 실제 수가 항상 다른 것은 {아니다}. $20$명의 $50\\%$와 $40$명의 $25\\%$는 모두 $10$명이다.",
+        "acceptedAnswers": [
+          [
+            "아니다"
+          ]
+        ]
+      },
+      "exclusions": {
+        "term": "B는 e6-1-5-5-c3과 중복이다."
+      },
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "c3에서 같은 일반 관계를 더 직접 묻는다.",
+      "cReason": "$20$명의 $50\\%$와 $40$명의 $25\\%$ 예가 문장에 완전히 주어져 있다."
+    },
+    {
+      "id": "e6-1-5-5-xc23",
+      "sourceIndex": 2103,
+      "proposalFingerprint": "234d4a09882f6aec7f006a5fd275494ef422276a6d559e1c232e528d573623e5",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "하루 동안 시각별 기온을 나타내기에 원그래프가 알맞지 않은 이유를 쓰시오.",
+        "answer": "원그래프는 전체에서 차지하는 비율을 보이는 그래프라서 시간에 따라 기온이 오르내리는 변화를 읽기 어렵다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "시간에 따른 변화를 읽기 어렵다",
+              "오르내림을 한눈에 보기 어렵다",
+              "기온이 하나의 전체를 이루지 않는다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "하루 동안 시각별 기온을 원그래프로 그리면 시간에 따른 {오르내림}을 읽기 어려워 알맞지 않다.",
+        "acceptedAnswers": [
+          [
+            "오르내림",
+            "변화",
+            "변하는 모습"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "단순 낱말이 아니라 그래프의 쓰임에 근거한 이유를 쓰게 한다.",
+      "cReason": "원문은 '기온 변화' 바로 뒤에서 답이 보이므로 문장을 바꾼다."
+    },
+    {
+      "id": "e6-1-5-5-xc25",
+      "sourceIndex": 2104,
+      "proposalFingerprint": "89adc11f4074c0cc41e4d59fef1dfeb1d5691195a1c65d11ae857bf9f45a879e",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "여러 항목으로 나눈 자료 중 띠그래프나 원그래프로 나타내기에 알맞지 않은 자료는 어떤 자료인가? 항목들의 합과 전체의 관계로 설명하시오.",
+        "answer": "각 항목을 모두 합쳐도 하나의 전체가 되지 않는 자료이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "항목의 합이 하나의 전체가 되지 않는다",
+              "항목들을 합쳐도 전체가 되지 않는다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "각 항목의 합이 {하나의 전체}가 되지 않는 자료는 띠그래프나 원그래프로 나타낼 수 없다.",
+        "acceptedAnswers": [
+          [
+            "하나의 전체",
+            "전체"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": "띠그래프나 원그래프는 각 항목을 더하면 {전체 양}이 되는 자료에 쓴다. 같은 것을 여러 항목에서 중복으로 센 자료는 그 전체에 대한 비율로 바로 나타낼 수 없다.",
+      "coreReason": "'비율그래프'는 학생 용어가 아니다.",
+      "bReason": "비율을 나타내려면 항목이 하나의 전체를 이뤄야 한다는 조건을 묻는다.",
+      "cReason": "편집용 '비율그래프'를 없애고 문장을 더 자연스럽게 고친다."
+    },
+    {
+      "id": "e6-1-5-5-xc27",
+      "sourceIndex": 2105,
+      "proposalFingerprint": "35ce1ab9e4ba657c929c95ad4f7425938e50bd9c86b8258f6fe22473b823b592",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "띠그래프에서 어떤 항목이 $30\\%$라는 것만 알 때 그 항목의 실제 수를 알 수 있는가? 알 수 없다면 무엇이 더 필요한지 쓰고, 항목이 $0\\%$이면 실제 수는 얼마인지도 쓰시오.",
+        "answer": "알 수 없다. 전체 수가 더 필요하다. $0\\%$인 항목의 실제 수는 $0$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "알 수 없다",
+              "정할 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "전체 수가 필요하다",
+              "전체 인원이 필요하다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0$",
+              "$0$명",
+              "$0$개"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "띠그래프에서 어떤 항목이 $30\\%$라고만 알면 그 항목의 실제 수는 알 수 없고, {전체 수} 같은 수량 정보가 필요하다. 정확히 $0\\%$인 항목의 실제 수는 {$0$}이다.",
+        "acceptedAnswers": [
+          [
+            "전체 수",
+            "전체 인원",
+            "전체 합계"
+          ],
+          [
+            "$0$",
+            "영"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": "백분율이 $0\\%$보다 큰 항목의 실제 수는 비율만으로 {정할 수 없고} {전체 수}도 필요하다. 백분율이 정확히 $0\\%$인 항목의 실제 수는 $0$이다.",
+      "coreReason": "'실제 수를 정할 수 없으며'가 부자연스러워 문장을 나눈다.",
+      "bReason": "양수 비율과 $0\\%$ 경우를 구분해 읽게 한다.",
+      "cReason": "빈칸 두 개가 연달아 놓인 원문을 의미가 분명한 두 빈칸으로 고친다."
+    },
+    {
+      "id": "e6-1-6-1-xc1",
+      "sourceIndex": 2106,
+      "proposalFingerprint": "f02f8c188fdf3f13a585fa38d020fe3845bb2412d639922e1ca3076f72264d04",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "cDecision": "exclude",
+      "B": null,
+      "C": null,
+      "exclusions": {
+        "term": "e6-1-6-1-c1, e6-1-6-1-c2와 중복된다.",
+        "cloze": "e6-1-6-1-c1, e6-1-6-1-c2와 중복된다."
+      },
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "c1과 같은 내용이라 중복이다.",
+      "cReason": "빈칸이 '겉넓이'뿐이라 c1의 정의와 겹치고 변별력이 낮다."
+    },
+    {
+      "id": "e6-1-6-1-xc2",
+      "sourceIndex": 2107,
+      "proposalFingerprint": "1a34809ce6baee3f7a8bde644a2f3830e3efc3545851b7330b79bab854fe06c7",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "B": {
+        "prompt": "직육면체에서 마주 보는 두 면의 넓이는 서로 어떤 관계인가요? 그 이유도 설명하세요.",
+        "answer": "넓이가 같다. 마주 보는 두 면은 가로·세로 길이가 같은 합동인 직사각형이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "넓이가 같다",
+              "같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "마주 보는 면은 합동이다",
+              "두 면의 가로와 세로 길이가 각각 같다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "직육면체에서 마주 보는 두 면의 넓이는 서로 {같다}.",
+        "acceptedAnswers": [
+          [
+            "같다"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "겉넓이 지름길의 근거가 되는 핵심 성질이라 이유까지 묻는다.",
+      "cReason": "'같다'를 고르는 짧은 성질 문장이며 마주 보는 면이라는 조건이 분명하다."
+    },
+    {
+      "id": "e6-1-6-1-xc3",
+      "sourceIndex": 2108,
+      "proposalFingerprint": "2e0dbe88e99a81beab81ab577d09f70feed088f034d417fa2e670e567a84e6ae",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "직육면체의 전개도를 이용해 겉넓이를 구하는 방법을 설명하세요.",
+        "answer": "전개도를 이루는 여섯 직사각형의 넓이를 모두 더한다. 전개도 전체의 넓이가 겉넓이이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "전개도 전체의 넓이를 구한다",
+              "전개도의 여섯 면의 넓이를 모두 더한다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "직육면체의 전개도에서 여섯 면의 넓이를 모두 더하면 직육면체의 {겉넓이}가 된다.",
+        "acceptedAnswers": [
+          [
+            "겉넓이"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "전개도에 겉면이 한 번씩 모두 나타남을 연결하도록 방법을 묻는다.",
+      "cReason": "원문 빈칸은 '전개도'까지 긴 구절을 외우게 하므로 전개도 조건을 문장에 두고 낱말만 답하게 했다."
+    },
+    {
+      "id": "e6-1-6-1-xc4",
+      "sourceIndex": 2109,
+      "proposalFingerprint": "5c9deff948f1b54aa844865f58e50e25f1c0bf4f3611eea890c73f866e48ac97",
+      "learningRole": "naming",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "B": {
+        "prompt": "길이를 $\\mathrm{cm}$로 잰 직육면체의 겉넓이는 어떤 단위로 나타내야 하나요? 길이의 단위와 어떻게 다른지도 쓰세요.",
+        "answer": "$\\mathrm{cm}^2$처럼 넓이 단위로 나타낸다. 길이 단위 $\\mathrm{cm}$가 아니라 제곱 단위이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\mathrm{cm}^2$",
+              "제곱센티미터",
+              "넓이 단위"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "길이를 $\\mathrm{cm}$로 잰 직육면체의 겉넓이는 $\\mathrm{cm}$가 아니라 {$\\mathrm{cm}^2$}로 나타낸다.",
+        "acceptedAnswers": [
+          [
+            "$\\mathrm{cm}^2$",
+            "$\\mathrm{cm}^{2}$",
+            "제곱센티미터"
+          ]
+        ]
+      },
+      "exclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "단위 이름만 외우지 않고 길이 단위와 구별하게 한다.",
+      "cReason": "원문 빈칸은 $\\mathrm{cm}^2$ 외에 다른 넓이 단위도 가능해 모호하므로 길이 단위 $\\mathrm{cm}$ 조건을 주었다."
+    }
+  ]
+}

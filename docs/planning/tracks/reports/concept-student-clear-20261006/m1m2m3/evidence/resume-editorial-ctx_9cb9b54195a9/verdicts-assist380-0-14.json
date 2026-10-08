@@ -1,0 +1,631 @@
+{
+  "label": "assist380-0-14",
+  "input": "C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3/evidence/resume-editorial-ctx_9cb9b54195a9/input-assist380-0-14.json",
+  "changes": [
+    {
+      "id": "m2-05-07-xc8",
+      "cDecision": "rewrite",
+      "coreAfter": "직사각형 $ABCD$의 두 대각선의 교점을 $O$라 하면, $\\overline{OA}=\\overline{OB}$이므로 $\\triangle OAB$는 {이등변삼각형}이다.",
+      "coreReason": "꼭짓점 A와 B의 소속을 ABCD로 밝혀 숨은 그림 의존을 없앤다.",
+      "bDecision": "rewrite",
+      "bPrompt": "직사각형 $ABCD$의 두 대각선의 교점을 $O$라 하자. $\\angle OAB=35^\\circ$일 때 $\\angle AOB$의 크기를 구하고, $\\overline{OA}=\\overline{OB}$인 까닭을 직사각형의 대각선의 성질로 쓰시오.",
+      "bAnswer": "$110^\\circ$. 두 대각선은 길이가 같고 서로를 이등분하므로 $\\overline{OA}=\\overline{OB}$이고, $\\angle OBA=35^\\circ$이므로 $\\angle AOB=180^\\circ-70^\\circ=110^\\circ$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$110^\\circ$"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 대각선의 길이가 같고 서로를 이등분한다",
+            "$\\overline{OA}$, $\\overline{OB}$는 길이가 같은 두 대각선의 절반이다"
+          ]
+        }
+      ],
+      "cMarkedSentence": "직사각형 $ABCD$의 두 대각선의 교점을 $O$라 하면, $\\overline{OA}=\\overline{OB}$이므로 $\\triangle OAB$는 {이등변삼각형}이다.",
+      "cAfter": "직사각형 $ABCD$의 두 대각선의 교점을 $O$라 하면, $\\overline{OA}=\\overline{OB}$이므로 $\\triangle OAB$는 {이등변삼각형}이다.",
+      "cAcceptedAnswers": [
+        [
+          "이등변삼각형"
+        ]
+      ],
+      "cSlotAnswers": [
+        "이등변삼각형"
+      ],
+      "cStudentSentence": "직사각형 $ABCD$의 두 대각선의 교점을 $O$라 하면, $\\overline{OA}=\\overline{OB}$이므로 $\\triangle OAB$는 □이다.",
+      "cReason": "ABCD와 O를 정의해 이등변삼각형을 판단한다.",
+      "bReason": "대각선 등길이와 이등분으로 110도를 구한다."
+    },
+    {
+      "id": "m2-05-07-xc14",
+      "cDecision": "rewrite",
+      "bDecision": "rewrite",
+      "bPrompt": "사각형 $ABCD$의 두 대각선이 서로를 수직이등분할 때, 이 사각형은 어떤 사각형인지 쓰고 그 까닭을 쓰시오.",
+      "bAnswer": "마름모. 두 대각선이 서로를 이등분하므로 평행사변형이고, 두 대각선이 수직인 평행사변형은 마름모이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "마름모"
+          ]
+        },
+        {
+          "anyOf": [
+            "대각선이 서로 이등분하므로 평행사변형이고, 두 대각선이 수직인 평행사변형은 마름모이다.",
+            "수직이등분하는 두 대각선으로 나뉜 네 직각삼각형이 합동이므로 사각형의 네 변의 길이가 같다."
+          ]
+        }
+      ],
+      "cMarkedSentence": "네 변의 길이가 같고 네 각이 직각인 {정사각형}도 두 대각선이 서로를 수직이등분하므로 마름모의 한 종류이다.",
+      "cAfter": "네 변의 길이가 같고 네 각이 직각인 {정사각형}도 두 대각선이 서로를 수직이등분하므로 마름모의 한 종류이다.",
+      "cAcceptedAnswers": [
+        [
+          "정사각형"
+        ]
+      ],
+      "cSlotAnswers": [
+        "정사각형"
+      ],
+      "cStudentSentence": "네 변의 길이가 같고 네 각이 직각인 □도 두 대각선이 서로를 수직이등분하므로 마름모의 한 종류이다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "cReason": "네 직각과 네 같은 변으로 정사각형을 특정한다.",
+      "bReason": "수직이등분에서 마름모를 판단하며 평행사변형 성질과 네 합동삼각형의 근거를 모두 허용한다."
+    },
+    {
+      "id": "m2-05-07-xc16",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "bPrompt": "직사각형 $ABCD$의 두 대각선의 교점을 $O$라 할 때, 네 꼭짓점 $A$, $B$, $C$, $D$가 모두 $O$를 중심으로 하는 한 원 위에 있는 까닭을 쓰시오.",
+      "bAnswer": "두 대각선은 길이가 같고 서로를 이등분하므로 $\\overline{OA}=\\overline{OB}=\\overline{OC}=\\overline{OD}$이다. 즉 네 꼭짓점이 $O$에서 같은 거리에 있다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\overline{OA}=\\overline{OB}=\\overline{OC}=\\overline{OD}$",
+            "$O$에서 네 꼭짓점까지의 거리가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 대각선의 길이가 같고 서로를 이등분한다"
+          ]
+        }
+      ],
+      "cMarkedSentence": "직사각형의 네 꼭짓점은 대각선의 교점을 중심으로 하는 한 {원} 위에 있다. 교점에서 네 꼭짓점까지의 거리가 {같기} 때문이다.",
+      "cAfter": "직사각형의 네 꼭짓점은 대각선의 교점을 중심으로 하는 한 {원} 위에 있다. 교점에서 네 꼭짓점까지의 거리가 {같기} 때문이다.",
+      "cAcceptedAnswers": [
+        [
+          "원",
+          "원주"
+        ],
+        [
+          "같기",
+          "동일하기"
+        ]
+      ],
+      "cSlotAnswers": [
+        "원",
+        "같기"
+      ],
+      "cStudentSentence": "직사각형의 네 꼭짓점은 대각선의 교점을 중심으로 하는 한 □ 위에 있다. 교점에서 네 꼭짓점까지의 거리가 □ 때문이다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "cReason": "원과 원주는 이 문장에서 같은 위치를 나타낸다.",
+      "bReason": "네 반대각선 길이가 같다는 원 위의 근거를 묻는다."
+    },
+    {
+      "id": "m2-05-07-xc17",
+      "cDecision": "rewrite",
+      "bDecision": "rewrite",
+      "bPrompt": "두 대각선의 길이가 $6$, $8$이고 한 변의 길이가 $5$인 마름모에서, 한 변을 밑변으로 할 때의 높이 $h$를 구하시오. 넓이를 두 가지로 나타내어 세운 식도 쓰시오.",
+      "bAnswer": "$5\\times h=\\frac{6\\times 8}{2}=24$이므로 $h=\\frac{24}{5}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$5h=24$",
+            "$5\\times h=\\frac{6\\times 8}{2}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$h=\\frac{24}{5}$",
+            "$h=4.8$"
+          ]
+        }
+      ],
+      "cMarkedSentence": "마름모의 한 변 길이가 $s$, 높이가 $h$, 두 대각선 길이가 $a$, $b$이면 두 넓이 식 $sh$와 $\\frac{ab}{2}$를 {같게} 놓아 높이를 구한다.",
+      "cAfter": "마름모의 한 변 길이가 $s$, 높이가 $h$, 두 대각선 길이가 $a$, $b$이면 두 넓이 식 $sh$와 $\\frac{ab}{2}$를 {같게} 놓아 높이를 구한다.",
+      "cAcceptedAnswers": [
+        [
+          "같게",
+          "동일하게"
+        ]
+      ],
+      "cSlotAnswers": [
+        "같게"
+      ],
+      "cStudentSentence": "마름모의 한 변 길이가 $s$, 높이가 $h$, 두 대각선 길이가 $a$, $b$이면 두 넓이 식 $sh$와 $\\frac{ab}{2}$를 □ 놓아 높이를 구한다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "cReason": "두 넓이 식을 직접 주어 같게 놓는 관계를 묻는다.",
+      "bReason": "대각선 넓이24와 밑변5의 높이24/5가 일치한다."
+    },
+    {
+      "id": "m2-05-07-xc18",
+      "cDecision": "rewrite",
+      "bDecision": "rewrite",
+      "coreAfter": null,
+      "coreReason": null,
+      "bPrompt": "정사각형 $ABCD$의 대각선 $\\overline{AC}$ 위에 $A$와 다른 점 $P$가 있다. $\\overline{AB}$와 $\\overline{AD}$, 공통변 $\\overline{AP}$, $\\angle BAP$와 $\\angle DAP$를 이용해 $\\triangle ABP$와 $\\triangle ADP$의 합동을 보이시오. 각 관계와 사용하는 합동 조건을 쓰시오.",
+      "bAnswer": "$\\overline{AB}=\\overline{AD}$, $\\overline{AP}$는 공통, $\\angle BAP=\\angle DAP=45^\\circ$이므로 $\\mathrm{SAS}$ 합동이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\overline{AB}=\\overline{AD}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\overline{AP}$는 공통"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\angle BAP=\\angle DAP$",
+            "$\\angle BAP=\\angle DAP=45^\\circ$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\mathrm{SAS}$ 합동"
+          ]
+        }
+      ],
+      "cMarkedSentence": "정사각형 $ABCD$의 대각선 $\\overline{AC}$ 위에 $A$와 다른 점 $P$가 있다. $\\overline{AB}=\\overline{AD}$, 공통변 $\\overline{AP}$, $\\angle BAP=\\angle DAP$를 이용하는 합동 조건은 {$\\mathrm{SAS}$}이다.",
+      "cAfter": "정사각형 $ABCD$의 대각선 $\\overline{AC}$ 위에 $A$와 다른 점 $P$가 있다. $\\overline{AB}=\\overline{AD}$, 공통변 $\\overline{AP}$, $\\angle BAP=\\angle DAP$를 이용하는 합동 조건은 {$\\mathrm{SAS}$}이다.",
+      "cAcceptedAnswers": [
+        [
+          "$\\mathrm{SAS}$",
+          "두 변과 그 끼인각"
+        ]
+      ],
+      "cSlotAnswers": [
+        "$\\mathrm{SAS}$"
+      ],
+      "cStudentSentence": "정사각형 $ABCD$의 대각선 $\\overline{AC}$ 위에 $A$와 다른 점 $P$가 있다. $\\overline{AB}=\\overline{AD}$, 공통변 $\\overline{AP}$, $\\angle BAP=\\angle DAP$를 이용하는 합동 조건은 □이다.",
+      "bReason": "사용할 두 변과 끼인각을 정해 SAS 기준과 질문을 맞춘다.",
+      "cReason": "점 P의 위치와 SAS에 사용할 관계를 밝힌다."
+    },
+    {
+      "id": "m2-05-08-xc4",
+      "cDecision": "rewrite",
+      "bDecision": "rewrite",
+      "bPrompt": "$\\overline{AD}\\parallel\\overline{BC}$인 등변사다리꼴 $ABCD$에서 $\\angle A=110^\\circ$일 때 $\\angle D$의 크기를 구하고, 그 까닭을 쓰시오.",
+      "bAnswer": "$110^\\circ$. $\\angle B=\\angle C$이고 $\\angle A=180^\\circ-\\angle B$, $\\angle D=180^\\circ-\\angle C$이므로 $\\angle A=\\angle D$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$110^\\circ$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\angle B=\\angle C$이고 $\\angle A=180^\\circ-\\angle B$, $\\angle D=180^\\circ-\\angle C$",
+            "윗변의 양 끝 각도 크기가 같다"
+          ]
+        }
+      ],
+      "cMarkedSentence": "$\\overline{AD}\\parallel\\overline{BC}$인 등변사다리꼴 $ABCD$에서 $\\angle A=110^\\circ$이면 $\\angle D$의 크기는 {$110^\\circ$}이다.",
+      "cAfter": "$\\overline{AD}\\parallel\\overline{BC}$인 등변사다리꼴 $ABCD$에서 $\\angle A=110^\\circ$이면 $\\angle D$의 크기는 {$110^\\circ$}이다.",
+      "cAcceptedAnswers": [
+        [
+          "$110^\\circ$"
+        ]
+      ],
+      "cSlotAnswers": [
+        "$110^\\circ$"
+      ],
+      "cStudentSentence": "$\\overline{AD}\\parallel\\overline{BC}$인 등변사다리꼴 $ABCD$에서 $\\angle A=110^\\circ$이면 $\\angle D$의 크기는 □이다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "cReason": "윗변과 아랫변 모두 가능한 낱말 대신 실제 각을 구한다.",
+      "bReason": "평행한 두 밑변의 같은 쪽 각으로 110도를 구한다."
+    },
+    {
+      "id": "m2-05-08-xc7",
+      "cDecision": "rewrite",
+      "bDecision": "rewrite",
+      "bPrompt": "정사각형이 직사각형이기도 하고 마름모이기도 한 까닭을 정사각형의 각과 변을 이용하여 쓰시오.",
+      "bAnswer": "네 내각이 모두 직각이므로 직사각형이고, 네 변의 길이가 모두 같으므로 마름모이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "네 내각이 모두 직각이므로 직사각형이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "네 변의 길이가 모두 같으므로 마름모이다"
+          ]
+        }
+      ],
+      "cMarkedSentence": "네 각이 모두 직각인 사각형의 정식 이름은 {직사각형}이고, 네 변의 길이가 모두 같은 사각형의 정식 이름은 {마름모}이다. 정사각형은 두 조건을 모두 만족한다.",
+      "cAfter": "네 각이 모두 직각인 사각형의 정식 이름은 {직사각형}이고, 네 변의 길이가 모두 같은 사각형의 정식 이름은 {마름모}이다. 정사각형은 두 조건을 모두 만족한다.",
+      "cAcceptedAnswers": [
+        [
+          "직사각형"
+        ],
+        [
+          "마름모"
+        ]
+      ],
+      "cSlotAnswers": [
+        "직사각형",
+        "마름모"
+      ],
+      "cStudentSentence": "네 각이 모두 직각인 사각형의 정식 이름은 □이고, 네 변의 길이가 모두 같은 사각형의 정식 이름은 □이다. 정사각형은 두 조건을 모두 만족한다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "cReason": "각각의 정의에 해당하는 표준 도형 이름을 묻는다.",
+      "bReason": "네 직각과 네 같은 변으로 두 포함 관계를 설명한다."
+    },
+    {
+      "id": "m2-05-08-xc9",
+      "coreAfter": "$\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴 $ABCD$에서 $\\angle A+\\angle B=$ {$180^\\circ$}이다.",
+      "coreReason": "사다리꼴의 이름 ABCD를 밝혀 각과 변의 소속을 명시한다.",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "bPrompt": "$\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴 $ABCD$에서 $\\angle B=70^\\circ$일 때 $\\angle A$의 크기를 구하고, $\\angle A$와 $\\angle B$ 사이의 관계를 평행선의 성질로 설명하시오.",
+      "bAnswer": "$110^\\circ$. $\\overline{AD}\\parallel\\overline{BC}$이므로 변 $\\overline{AB}$를 사이에 둔 $\\angle A$와 $\\angle B$의 합은 $180^\\circ$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$110^\\circ$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\angle A+\\angle B=180^\\circ$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\overline{AD}\\parallel\\overline{BC}$이므로 동위각(엇각)이 같다",
+            "평행선에서 같은 쪽 안쪽 각의 합이 $180^\\circ$이다"
+          ]
+        }
+      ],
+      "cMarkedSentence": "$\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴 $ABCD$에서 $\\angle A+\\angle B=$ {$180^\\circ$}이다.",
+      "cAfter": "$\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴 $ABCD$에서 $\\angle A+\\angle B=$ {$180^\\circ$}이다.",
+      "cAcceptedAnswers": [
+        [
+          "$180^\\circ$"
+        ]
+      ],
+      "cSlotAnswers": [
+        "$180^\\circ$"
+      ],
+      "cStudentSentence": "$\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴 $ABCD$에서 $\\angle A+\\angle B=$ □이다.",
+      "cReason": "사다리꼴 이름을 밝혀 각 A와 B를 연결한다.",
+      "bReason": "110도와 두 각의 합180도 및 평행선 근거를 함께 요구한다."
+    },
+    {
+      "id": "m2-05-08-xc10",
+      "cDecision": "rewrite",
+      "bDecision": "exclude",
+      "cMarkedSentence": "$\\overline{AD}\\parallel\\overline{BC}$인 등변사다리꼴 $ABCD$에서 $\\overline{AB}=\\overline{DC}$, 공통변 $\\overline{BC}$, $\\angle ABC=\\angle DCB$를 이용하는 두 삼각형의 합동 조건은 {$\\mathrm{SAS}$}이다.",
+      "cAfter": "$\\overline{AD}\\parallel\\overline{BC}$인 등변사다리꼴 $ABCD$에서 $\\overline{AB}=\\overline{DC}$, 공통변 $\\overline{BC}$, $\\angle ABC=\\angle DCB$를 이용하는 두 삼각형의 합동 조건은 {$\\mathrm{SAS}$}이다.",
+      "cAcceptedAnswers": [
+        [
+          "$\\mathrm{SAS}$",
+          "두 변과 그 끼인각"
+        ]
+      ],
+      "cSlotAnswers": [
+        "$\\mathrm{SAS}$"
+      ],
+      "cStudentSentence": "$\\overline{AD}\\parallel\\overline{BC}$인 등변사다리꼴 $ABCD$에서 $\\overline{AB}=\\overline{DC}$, 공통변 $\\overline{BC}$, $\\angle ABC=\\angle DCB$를 이용하는 두 삼각형의 합동 조건은 □이다.",
+      "coreAfter": null,
+      "coreReason": null,
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "exclusionReason": "B 제외: $\\triangle ABC\\equiv\\triangle DCB$의 $\\mathrm{SAS}$ 합동을 묻는 목표가 m2-05-08-c4 B와 중복된다.",
+      "cReason": "두 변과 끼인각을 지정해 다른 합동 증명과 구별한다.",
+      "bReason": "등변사다리꼴 합동 증명의 B 중복 제외를 유지한다."
+    },
+    {
+      "id": "m2-05-08-xc21",
+      "coreAfter": "$\\overline{AD}\\parallel\\overline{BC}$이고 $\\overline{AB}=\\overline{AD}=\\overline{DC}$인 등변사다리꼴 $ABCD$에서 대각선 $\\overline{BD}$는 $\\angle B$를 {이등분}한다. $\\overline{AB}=\\overline{AD}$라 $\\angle ABD=\\angle ADB$이고, {엇각}이라 $\\angle ADB=\\angle DBC$이다.",
+      "coreReason": "사각형 이름을 명시해 꼭짓점 기호의 소속을 밝힌다.",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "bPrompt": "$\\overline{AD}\\parallel\\overline{BC}$, $\\overline{AB}=\\overline{AD}=\\overline{DC}$인 등변사다리꼴 $ABCD$에서 $\\angle C=80^\\circ$일 때 $\\angle DBC$의 크기를 구하고, 대각선 $\\overline{BD}$가 $\\angle B$를 이등분하는 까닭을 쓰시오.",
+      "bAnswer": "$40^\\circ$. $\\overline{AB}=\\overline{AD}$이므로 $\\angle ABD=\\angle ADB$이고, 엇각이므로 $\\angle ADB=\\angle DBC$이다. 따라서 $\\angle ABD=\\angle DBC$이고 $\\angle B=\\angle C=80^\\circ$이므로 $\\angle DBC=40^\\circ$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$40^\\circ$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\overline{AB}=\\overline{AD}$이므로 $\\angle ABD=\\angle ADB$"
+          ]
+        },
+        {
+          "anyOf": [
+            "엇각이므로 $\\angle ADB=\\angle DBC$"
+          ]
+        }
+      ],
+      "cMarkedSentence": "$\\overline{AD}\\parallel\\overline{BC}$이고 $\\overline{AB}=\\overline{AD}=\\overline{DC}$인 등변사다리꼴 $ABCD$에서 대각선 $\\overline{BD}$는 $\\angle B$를 {이등분}한다. $\\overline{AB}=\\overline{AD}$라 $\\angle ABD=\\angle ADB$이고, {엇각}이라 $\\angle ADB=\\angle DBC$이다.",
+      "cAfter": "$\\overline{AD}\\parallel\\overline{BC}$이고 $\\overline{AB}=\\overline{AD}=\\overline{DC}$인 등변사다리꼴 $ABCD$에서 대각선 $\\overline{BD}$는 $\\angle B$를 {이등분}한다. $\\overline{AB}=\\overline{AD}$라 $\\angle ABD=\\angle ADB$이고, {엇각}이라 $\\angle ADB=\\angle DBC$이다.",
+      "cAcceptedAnswers": [
+        [
+          "이등분"
+        ],
+        [
+          "엇각"
+        ]
+      ],
+      "cSlotAnswers": [
+        "이등분",
+        "엇각"
+      ],
+      "cStudentSentence": "$\\overline{AD}\\parallel\\overline{BC}$이고 $\\overline{AB}=\\overline{AD}=\\overline{DC}$인 등변사다리꼴 $ABCD$에서 대각선 $\\overline{BD}$는 $\\angle B$를 □한다. $\\overline{AB}=\\overline{AD}$라 $\\angle ABD=\\angle ADB$이고, □이라 $\\angle ADB=\\angle DBC$이다.",
+      "cReason": "ABCD 소속을 밝히고 이등분과 엇각을 묻는다.",
+      "bReason": "같은 변의 밑각과 엇각으로 40도를 얻는다."
+    },
+    {
+      "id": "m2-05-09-xc6",
+      "coreAfter": "삼각형의 밑변은 그대로 두고 높이를 절반으로 줄이면 넓이도 {절반}이 된다.",
+      "coreReason": "밑변과 높이를 갖는 삼각형의 넓이 비례임을 명시한다.",
+      "bDecision": "exclude",
+      "cDecision": "rewrite",
+      "cMarkedSentence": "삼각형의 밑변은 그대로 두고 높이를 절반으로 줄이면 넓이도 {절반}이 된다.",
+      "cAfter": "삼각형의 밑변은 그대로 두고 높이를 절반으로 줄이면 넓이도 {절반}이 된다.",
+      "cAcceptedAnswers": [
+        [
+          "절반",
+          "반",
+          "$\\frac{1}{2}$"
+        ]
+      ],
+      "cSlotAnswers": [
+        "절반"
+      ],
+      "cStudentSentence": "삼각형의 밑변은 그대로 두고 높이를 절반으로 줄이면 넓이도 □이 된다.",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "exclusionReason": "B 제외: 높이의 비=넓이의 비(xc15)의 단순 특수 경우라 목표가 중복된다.",
+      "cReason": "삼각형의 높이를 절반으로 줄인 상황을 명시한다.",
+      "bReason": "일반 높이 비에서 다룬 절반 사례는 B에서 제외한다."
+    },
+    {
+      "id": "m2-05-09-xc7",
+      "coreAfter": "삼각형의 높이는 그대로 두고 밑변을 $2$배로 늘리면 넓이도 {$2$}배가 된다.",
+      "coreReason": "삼각형의 넓이 비례 설명임을 명시한다.",
+      "bDecision": "exclude",
+      "cDecision": "rewrite",
+      "cMarkedSentence": "삼각형의 높이는 그대로 두고 밑변을 $2$배로 늘리면 넓이도 {$2$}배가 된다.",
+      "cAfter": "삼각형의 높이는 그대로 두고 밑변을 $2$배로 늘리면 넓이도 {$2$}배가 된다.",
+      "cAcceptedAnswers": [
+        [
+          "$2$",
+          "두"
+        ]
+      ],
+      "cSlotAnswers": [
+        "$2$"
+      ],
+      "cStudentSentence": "삼각형의 높이는 그대로 두고 밑변을 $2$배로 늘리면 넓이도 □배가 된다.",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "exclusionReason": "B 제외: 밑변의 비=넓이의 비(c4)의 단순 수치 특수 경우라 목표가 중복된다.",
+      "cReason": "삼각형 밑변을 두 배로 하는 상황을 명시한다.",
+      "bReason": "일반 밑변 비의 두 배 사례는 B에서 제외한다."
+    },
+    {
+      "id": "m2-05-09-xc10",
+      "coreAfter": "삼각형 $ABC$의 변 $\\overline{BC}$ 내부의 점 $D$에 대해 두 삼각형 $ABD$, $ADC$는 높이가 같으므로 삼각형 $ABC$의 넓이를 $\\overline{BD}:\\overline{DC}$의 {비}로 {나눈다}.",
+      "coreReason": "전체 도형과 내부점을 밝혀 퇴화 삼각형 및 도형비 표현을 피한다.",
+      "bDecision": "rewrite",
+      "cDecision": "rewrite",
+      "bPrompt": "$\\triangle ABC$의 변 $BC$ 위의 점 $D$에 대하여 $\\overline{BD}:\\overline{DC}=1:3$이고 $\\triangle ABC$의 넓이가 $24$이다. $\\triangle ADC$의 넓이를 구하고, 넓이를 나눌 때 어떤 비를 썼는지 쓰시오.",
+      "bAnswer": "$18$. $\\triangle ABD$와 $\\triangle ADC$는 높이가 같아 넓이의 비가 $\\overline{BD}:\\overline{DC}=1:3$이므로 $24\\times\\frac{3}{4}=18$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$18$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\overline{BD}:\\overline{DC}$",
+            "$1:3$",
+            "밑변의 길이의 비"
+          ]
+        }
+      ],
+      "cMarkedSentence": "삼각형 $ABC$의 변 $\\overline{BC}$ 내부의 점 $D$에 대해 두 삼각형 $ABD$, $ADC$의 넓이의 비는 {$\\overline{BD}:\\overline{DC}$}이다. 이 비가 $1:3$이면 삼각형 $ADC$의 넓이는 전체 넓이의 {$\\frac{3}{4}$}이다.",
+      "cAfter": "삼각형 $ABC$의 변 $\\overline{BC}$ 내부의 점 $D$에 대해 두 삼각형 $ABD$, $ADC$의 넓이의 비는 {$\\overline{BD}:\\overline{DC}$}이다. 이 비가 $1:3$이면 삼각형 $ADC$의 넓이는 전체 넓이의 {$\\frac{3}{4}$}이다.",
+      "cAcceptedAnswers": [
+        [
+          "$\\overline{BD}:\\overline{DC}$"
+        ],
+        [
+          "$\\frac{3}{4}$",
+          "$0.75$"
+        ]
+      ],
+      "cSlotAnswers": [
+        "$\\overline{BD}:\\overline{DC}$",
+        "$\\frac{3}{4}$"
+      ],
+      "cStudentSentence": "삼각형 $ABC$의 변 $\\overline{BC}$ 내부의 점 $D$에 대해 두 삼각형 $ABD$, $ADC$의 넓이의 비는 □이다. 이 비가 $1:3$이면 삼각형 $ADC$의 넓이는 전체 넓이의 □이다.",
+      "cReason": "삼각형 이름과 내부점 및 넓이의 비를 명시한다.",
+      "bReason": "1:3 분할에서 전체24의 3/4인18을 구한다."
+    },
+    {
+      "id": "m2-05-09-xc11",
+      "coreAfter": "$\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴 $ABCD$에서 $\\triangle ABC$와 $\\triangle DBC$는 밑변 $\\overline{BC}$를 같이 쓰고 높이가 같아 넓이가 {같다}.",
+      "coreReason": "사각형 이름 ABCD를 밝혀 숨은 그림 없이 읽도록 한다.",
+      "bDecision": "exclude",
+      "cDecision": "rewrite",
+      "cMarkedSentence": "$\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴 $ABCD$에서 $\\triangle ABC$와 $\\triangle DBC$는 밑변 $\\overline{BC}$를 같이 쓰고 높이가 같아 넓이가 {같다}.",
+      "cAfter": "$\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴 $ABCD$에서 $\\triangle ABC$와 $\\triangle DBC$는 밑변 $\\overline{BC}$를 같이 쓰고 높이가 같아 넓이가 {같다}.",
+      "cAcceptedAnswers": [
+        [
+          "같다"
+        ]
+      ],
+      "cSlotAnswers": [
+        "같다"
+      ],
+      "cStudentSentence": "$\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴 $ABCD$에서 $\\triangle ABC$와 $\\triangle DBC$는 밑변 $\\overline{BC}$를 같이 쓰고 높이가 같아 넓이가 □.",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "exclusionReason": "B 제외: $\\triangle ABC$, $\\triangle DBC$ 넓이 비교는 c3 질문과 같은 형식의 목표 중복이다.",
+      "cReason": "ABCD라는 사다리꼴을 밝혀 두 삼각형을 정의한다.",
+      "bReason": "공통 밑변과 높이가 같은 넓이 설명의 중복 제외다."
+    },
+    {
+      "id": "m2-05-09-xc12",
+      "bDecision": "rewrite",
+      "cDecision": "keep",
+      "bPrompt": "$\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴 $ABCD$의 두 대각선이 점 $O$에서 만난다. $\\triangle ABC$와 $\\triangle DBC$의 넓이가 같다는 것을 이용하여 $\\triangle ABO$와 $\\triangle DCO$의 넓이가 같은 이유를 쓰시오.",
+      "bAnswer": "넓이가 같은 두 삼각형 $ABC$, $DBC$에서 공통 부분인 삼각형 $OBC$의 넓이를 각각 빼면 삼각형 $ABO$, $DCO$의 넓이가 남으므로 두 넓이가 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "넓이가 같은 두 삼각형에서 공통인 삼각형 $OBC$의 넓이를 각각 뺀다",
+            "같은 넓이에서 같은 부분의 넓이를 뺀 나머지 넓이는 같다"
+          ]
+        }
+      ],
+      "cMarkedSentence": "넓이가 같은 두 도형이 겹쳐 있으면, 두 도형에서 공통인 부분을 각각 뺀 {나머지} 부분끼리도 넓이가 {같다}.",
+      "cAcceptedAnswers": [
+        [
+          "나머지"
+        ],
+        [
+          "같다"
+        ]
+      ],
+      "cSlotAnswers": [
+        "나머지",
+        "같다"
+      ],
+      "cStudentSentence": "넓이가 같은 두 도형이 겹쳐 있으면, 두 도형에서 공통인 부분을 각각 뺀 □ 부분끼리도 넓이가 □.",
+      "coreAfter": null,
+      "coreReason": null,
+      "bReason": "같은 두 넓이에서 공통 OBC의 넓이를 뺀다.",
+      "cReason": "공통 부분을 뺀 나머지 넓이의 같음은 명확하다."
+    }
+  ],
+  "notes": [
+    {
+      "id": "m2-05-07-xc8",
+      "b": "대각선 등길이와 이등분으로 110도를 구한다.",
+      "c": "ABCD와 O를 정의해 이등변삼각형을 판단한다.",
+      "core": "교점과 꼭짓점 소속을 함께 밝힌다."
+    },
+    {
+      "id": "m2-05-07-xc14",
+      "b": "수직이등분에서 마름모를 판단하며 평행사변형 성질과 네 합동삼각형의 근거를 모두 허용한다.",
+      "c": "네 직각과 네 같은 변으로 정사각형을 특정한다."
+    },
+    {
+      "id": "m2-05-07-xc16",
+      "b": "네 반대각선 길이가 같다는 원 위의 근거를 묻는다.",
+      "c": "원과 원주는 이 문장에서 같은 위치를 나타낸다."
+    },
+    {
+      "id": "m2-05-07-xc17",
+      "b": "대각선 넓이24와 밑변5의 높이24/5가 일치한다.",
+      "c": "두 넓이 식을 직접 주어 같게 놓는 관계를 묻는다."
+    },
+    {
+      "id": "m2-05-07-xc18",
+      "b": "사용할 두 변과 끼인각을 정해 SAS 기준과 질문을 맞춘다.",
+      "c": "점 P의 위치와 SAS에 사용할 관계를 밝힌다."
+    },
+    {
+      "id": "m2-05-08-xc4",
+      "b": "평행한 두 밑변의 같은 쪽 각으로 110도를 구한다.",
+      "c": "윗변과 아랫변 모두 가능한 낱말 대신 실제 각을 구한다."
+    },
+    {
+      "id": "m2-05-08-xc7",
+      "b": "네 직각과 네 같은 변으로 두 포함 관계를 설명한다.",
+      "c": "각각의 정의에 해당하는 표준 도형 이름을 묻는다."
+    },
+    {
+      "id": "m2-05-08-xc9",
+      "b": "110도와 두 각의 합180도 및 평행선 근거를 함께 요구한다.",
+      "c": "사다리꼴 이름을 밝혀 각 A와 B를 연결한다.",
+      "core": "ABCD 이름을 추가하고 합180도는 유지한다."
+    },
+    {
+      "id": "m2-05-08-xc10",
+      "b": "등변사다리꼴 합동 증명의 B 중복 제외를 유지한다.",
+      "c": "두 변과 끼인각을 지정해 다른 합동 증명과 구별한다."
+    },
+    {
+      "id": "m2-05-08-xc21",
+      "b": "같은 변의 밑각과 엇각으로 40도를 얻는다.",
+      "c": "ABCD 소속을 밝히고 이등분과 엇각을 묻는다.",
+      "core": "사각형 이름 외 일반 증명은 유지한다."
+    },
+    {
+      "id": "m2-05-09-xc6",
+      "b": "일반 높이 비에서 다룬 절반 사례는 B에서 제외한다.",
+      "c": "삼각형의 높이를 절반으로 줄인 상황을 명시한다.",
+      "core": "비례가 적용되는 도형이 삼각형임을 보충한다."
+    },
+    {
+      "id": "m2-05-09-xc7",
+      "b": "일반 밑변 비의 두 배 사례는 B에서 제외한다.",
+      "c": "삼각형 밑변을 두 배로 하는 상황을 명시한다.",
+      "core": "삼각형이라는 일반 적용 대상을 보충한다."
+    },
+    {
+      "id": "m2-05-09-xc10",
+      "b": "1:3 분할에서 전체24의 3/4인18을 구한다.",
+      "c": "삼각형 이름과 내부점 및 넓이의 비를 명시한다.",
+      "core": "도형 자체가 아니라 전체 넓이를 나눈다고 쓴다."
+    },
+    {
+      "id": "m2-05-09-xc11",
+      "b": "공통 밑변과 높이가 같은 넓이 설명의 중복 제외다.",
+      "c": "ABCD라는 사다리꼴을 밝혀 두 삼각형을 정의한다.",
+      "core": "일반 넓이 관계는 유지하고 도형 이름을 보충한다."
+    },
+    {
+      "id": "m2-05-09-xc12",
+      "b": "같은 두 넓이에서 공통 OBC의 넓이를 뺀다.",
+      "c": "공통 부분을 뺀 나머지 넓이의 같음은 명확하다."
+    }
+  ],
+  "rereadIds": [
+    "m2-05-07-xc8",
+    "m2-05-07-xc14",
+    "m2-05-07-xc16",
+    "m2-05-07-xc17",
+    "m2-05-07-xc18",
+    "m2-05-08-xc4",
+    "m2-05-08-xc7",
+    "m2-05-08-xc9",
+    "m2-05-08-xc10",
+    "m2-05-08-xc21",
+    "m2-05-09-xc6",
+    "m2-05-09-xc7",
+    "m2-05-09-xc10",
+    "m2-05-09-xc11",
+    "m2-05-09-xc12"
+  ]
+}

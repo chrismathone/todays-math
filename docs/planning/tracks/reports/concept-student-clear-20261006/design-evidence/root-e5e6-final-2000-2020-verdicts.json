@@ -1,0 +1,30 @@
+{
+  "reader": "Root Codex direct final question/answer/criteria reading",
+  "inputFile": "root-e5e6-final-2000-2020-input.json",
+  "inputSha256": "51eafe5a39f5d3dbcdd0eb9759df16c1a0b4ef85f9579553081f96c0128c8373",
+  "scope": "e5e6 sourceIndex 2000 through 2019",
+  "isIndependentClaudeReview": false,
+  "isProductionReleaseApproval": false,
+  "rows": [
+    {"id":"e6-1-5-1-xc1","bVerdict":"adopt","cVerdict":"adopt","reason":"전체100%를 같은 간격25칸으로 나누어 한 칸4%를 구하는 방법과 값을 요청한다. C도 같은 간격 조건과 실제 값을 갖춘다."},
+    {"id":"e6-1-5-1-xc2","bVerdict":"adopt","cVerdict":"revise","reason":"B의 단순 읽기 행동은c1·xc12로 대신한다. C는 실제 그래프나 적힌 수를 제시하지 않고 무엇이 적혔는지 추정하게 하며 숫자·비율·백분율처럼 다른 옳은 답도 가능하다. 실제25% 같은 자료를 주고 분수나 전체에서 차지하는 양을 해석하게 구체화해야 한다."},
+    {"id":"e6-1-5-1-xc3","bVerdict":"adopt","cVerdict":"adopt","reason":"같은 띠의 조각 길이가 전체에서 차지하는 비율에 대응한다는 이유와 최대 비율을 묻는다. C는 크다라는 쉬운 크기 비교를 유지한다."},
+    {"id":"e6-1-5-1-xc4","bVerdict":"adopt","cVerdict":"adopt","reason":"전체를 서로 겹치지 않고 빠짐없이 나누는 두 조건을 B가 명시적으로 요청한다. C도 겹치지 않음과 전체100%라는 두 조건을 분리한다."},
+    {"id":"e6-1-5-1-xc5","bVerdict":"adopt","cVerdict":"adopt","reason":"전체 수×비율로 실제 수를 구하는 방법과200의25%인50명을 요청한다. C도 곱하는 두 양을 구별한다."},
+    {"id":"e6-1-5-1-xc6","bVerdict":"adopt","cVerdict":"adopt","reason":"B의 전체100% 반복은c2·xc11로 대신한다. C는 반올림하지 않은 모든 항목이라는 조건에서100%를 정확히 묻는다."},
+    {"id":"e6-1-5-1-xc7","bVerdict":"adopt","cVerdict":"adopt","reason":"B의 단독 이름 암기는 활용하는xc25로 대신한다. C는 적은 항목을 합치는 그래프의 기타라는 표준 이름을 회상한다."},
+    {"id":"e6-1-5-1-xc8","bVerdict":"adopt","cVerdict":"adopt","reason":"B의 길이 방향은xc3으로 대신하고 C의 작은 방향은 별도로 유지한다. 같은 띠라는 조건에서 가장 짧은 항목의 비율이 작다는 답이 명확하다."},
+    {"id":"e6-1-5-1-xc9","bVerdict":"adopt","cVerdict":"adopt","reason":"같은 전체의 겹치지 않는 두 항목을 더할 수 있다는 방법·두 조건·30%+15%=45%를 모두 요청한다. C도 더하기와45%를 계산한다."},
+    {"id":"e6-1-5-1-xc10","bVerdict":"adopt","cVerdict":"adopt","reason":"같은 전체에서10%와30%를 비교한3배가 실제 수의 배와 같다는 방법을 확인한다. C는 추상적인 배 관계 표현을 실제3으로 구체화했다."},
+    {"id":"e6-1-5-1-xc11","bVerdict":"adopt","cVerdict":"adopt","reason":"항목이 세 개뿐인 전체에서40%·35%를 제외한25%를 구하는 방법·까닭·값을 묻는다. C도 다른 항목이 없다는 조건을 명시했다."},
+    {"id":"e6-1-5-1-xc12","bVerdict":"adopt","cVerdict":"adopt","reason":"전체20cm 중5cm의 길이 비율은1/4=0.25=25%이다. 방법과 값을 요청하는 B와 실제 값 C가 맞는다. 제시한 인정 답이 전부라는 문자 채점으로 쓰지 않으므로1/4·0.25도 타당한 같은 값으로 인정해야 한다."},
+    {"id":"e6-1-5-1-xc13","bVerdict":"adopt","cVerdict":"adopt","reason":"기본 막대그래프의 항목 수량과 띠그래프의 전체 대비 비율이라는 목적 차이를 두 기준으로 묻는다. C도 수량이라는 목표를 짧게 확인한다."},
+    {"id":"e6-1-5-1-xc16","bVerdict":"adopt","cVerdict":"adopt","reason":"전체 길이20cm에35%를 곱해7cm를 정하는 방법과 값을 요청한다. C도 실제 길이를 구한다."},
+    {"id":"e6-1-5-1-xc17","bVerdict":"adopt","cVerdict":"adopt","reason":"전체 수가 없을 때0%가 아닌 항목의 실제 수를 정할 수 없다는 결론과 이유를 요청한다.0%의 실제 수0 예외를 조건으로 구분한 점도 정확하다. C도 모르는 양을 전체 수로 특정한다."},
+    {"id":"e6-1-5-1-xc18","bVerdict":"adopt","cVerdict":"adopt","reason":"다른 작성 관습을 단 하나의 답으로 강제하지 않고xc25의 실제 활용으로 대신하는 형식별 제외다."},
+    {"id":"e6-1-5-1-xc19","bVerdict":"adopt","cVerdict":"adopt","reason":"B의 전체 수 필요는xc17로 대신한다. C는 전체100명·200명에서같은20%의 실제20명·40명을 구별한다."},
+    {"id":"e6-1-5-1-xc20","bVerdict":"adopt","cVerdict":"adopt","reason":"같은 전체25%인30명에서전체100%는4배인120명이라는 비율 확대 방법과 값을 요청한다. C도4배와120명을 계산한다."},
+    {"id":"e6-1-5-1-xc21","bVerdict":"adopt","cVerdict":"adopt","reason":"같은 전체200명에서40%−15%=25%인50명의 차를 구하는 방법·기준 동일 이유·값을 요청한다. 실제 수80−30으로 구하는 타당한 다른 방법도 허용한다."},
+    {"id":"e6-1-5-1-xc23","bVerdict":"revise","cVerdict":"revise","reason":"B의 이유는 같은 길이 띠를 나란히 놓는다는 전제를 필요로 하지만 질문은 해마다 그린 띠라고만 한다. 두 형식에 같은 길이로 나타낸 띠라는 조건을 명시해야 눈으로 조각 길이를 바로 맞대어 변화 비교가 쉬워지는 의미가 분명하다. 일반 설명에도 이 조건이 필요하면 따로core교정을 검토한다."}
+  ]
+}

@@ -1,0 +1,2082 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T10:21:03.763Z",
+  "supplementalVerdicts": "evidence/assist-remaining-380-20261007/reviews.json",
+  "rows": [
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-01-03-xc10",
+        "section": "중3::1. 실수와 그 계산::근호를 포함한 식의 계산",
+        "term": "근호 안의 소수 간단히 하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "근호 안이 {유한소수}이면 분모가 $100$, $10000$처럼 {자연수의 제곱}인 분수로 고쳐, 분모의 제곱근을 자연수로 꺼낼 수 있다.",
+        "example": {
+          "prompt": "$\\sqrt{0.2}$를 $\\sqrt{\\frac{20}{100}}$으로 고치면 분모를 다루기 쉬운 까닭은?",
+          "answer": "$100=10^2$이라서"
+        },
+        "studentC": "근호 안이 □이면 분모가 $100$, $10000$처럼 □인 분수로 고쳐, 분모의 제곱근을 자연수로 꺼낼 수 있다.",
+        "answers": [
+          "유한소수",
+          "자연수의 제곱"
+        ]
+      },
+      "proposal": {
+        "id": "m3-01-03-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "근호 안이 $0.07$처럼 유한소수일 때, 분모가 어떤 수인 분수로 고치면 분모를 근호 밖으로 꺼낼 수 있는지 쓰고, $\\sqrt{0.07}$을 이 방법으로 나타내시오.",
+        "bAnswer": "분모가 $100=10^2$처럼 자연수의 제곱인 분수로 고친다. $\\sqrt{0.07}=\\sqrt{\\frac{7}{100}}=\\frac{\\sqrt{7}}{10}$",
+        "bGoal": "근호 안 소수를 분수로 바꿔 간단히 하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "분모가 자연수의 제곱인 분수",
+              "분모가 $100$인 분수",
+              "$\\frac{7}{100}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{\\sqrt{7}}{10}$"
+            ]
+          }
+        ],
+        "bReason": "분모 선택 기준과 적용 결과를 $\\sqrt{0.07}$로 함께 확인하게 했다.",
+        "cDecision": "keep",
+        "cReason": "'유한소수'와 '자연수의 제곱' 두 칸이 방법의 조건을 묻는다.",
+        "learningRole": "procedure",
+        "roleReason": "소수를 제곱수 분모 분수로 고쳐 꺼내기",
+        "authorBatch": 53,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3318,
+        "part": "m3plus",
+        "sourceFingerprint": "3a1ce7306cc7a97f32362868b1d0995ae1693f2417568557e56b7384b5863684",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3318
+        },
+        "directReview": null,
+        "cFrozenSentence": "근호 안이 □이면 분모가 $100$, $10000$처럼 □인 분수로 고쳐, 분모의 제곱근을 자연수로 꺼낼 수 있다.",
+        "cFrozenDefinition": "근호 안이 {유한소수}이면 분모가 $100$, $10000$처럼 {자연수의 제곱}인 분수로 고쳐, 분모의 제곱근을 자연수로 꺼낼 수 있다.",
+        "cFrozenAnswers": [
+          "유한소수",
+          "자연수의 제곱"
+        ],
+        "cMarkedSentence": "근호 안이 {유한소수}이면 분모가 $100$, $10000$처럼 {자연수의 제곱}인 분수로 고쳐, 분모의 제곱근을 자연수로 꺼낼 수 있다.",
+        "cSlotAnswers": [
+          "유한소수",
+          "자연수의 제곱"
+        ],
+        "cStudentSentence": "근호 안이 □이면 분모가 $100$, $10000$처럼 □인 분수로 고쳐, 분모의 제곱근을 자연수로 꺼낼 수 있다.",
+        "cAnswers": [
+          "유한소수",
+          "자연수의 제곱"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "유한소수",
+            "equivalentAnswers": [
+              "유한소수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "자연수의 제곱",
+            "equivalentAnswers": [
+              "자연수의 제곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "유한소수"
+          ],
+          [
+            "자연수의 제곱"
+          ]
+        ],
+        "proposalFingerprint": "2be5d24915c68cbc028e2c2973c2f60d812dfc71a9670b58578ed3a31a9d4117"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-01-03-xc11",
+        "section": "중3::1. 실수와 그 계산::근호를 포함한 식의 계산",
+        "term": "나눗셈을 곱셈으로 바꾼 뒤의 묶기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "$0$이 아닌 수로 나누는 것은 그 수의 {역수}를 곱하는 것으로 바꿀 수 있다. 그러면 곱셈의 {교환법칙}과 {결합법칙}에 따라 순서와 묶음을 바꿀 수 있다.",
+        "studentC": "$0$이 아닌 수로 나누는 것은 그 수의 □를 곱하는 것으로 바꿀 수 있다. 그러면 곱셈의 □과 □에 따라 순서와 묶음을 바꿀 수 있다.",
+        "answers": [
+          "역수",
+          "교환법칙",
+          "결합법칙"
+        ]
+      },
+      "proposal": {
+        "id": "m3-01-03-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "곱셈과 나눗셈이 섞인 근호 식에서 나눗셈을 어떻게 바꾸면 곱셈의 교환법칙과 결합법칙을 쓸 수 있는지 쓰고, $\\sqrt{10}\\div\\sqrt{5}\\times\\sqrt{2}$를 계산하시오.",
+        "bAnswer": "나누는 수의 역수를 곱하는 것으로 바꾼다. $\\sqrt{10}\\times\\frac{1}{\\sqrt{5}}\\times\\sqrt{2}=\\sqrt{\\frac{10\\times 2}{5}}=\\sqrt{4}=2$",
+        "bGoal": "나눗셈을 역수의 곱셈으로 바꿔 계산하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "역수를 곱한다",
+              "$\\frac{1}{\\sqrt{5}}$를 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$"
+            ]
+          }
+        ],
+        "bReason": "역수 변환이라는 절차와 결과를 한 식으로 확인하게 했다.",
+        "cDecision": "keep",
+        "cReason": "역수와 두 법칙 이름 세 칸이 '순서와 묶음'과 짝지어 분명하다.",
+        "learningRole": "procedure",
+        "roleReason": "나눗셈을 역수 곱으로 바꿔 묶기",
+        "authorBatch": 53,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3319,
+        "part": "m3plus",
+        "sourceFingerprint": "1757e1fad6d465e280d633da0ccd967fae6c465972936c502a7e9e3157afea71",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3319
+        },
+        "directReview": null,
+        "cFrozenSentence": "$0$이 아닌 수로 나누는 것은 그 수의 □를 곱하는 것으로 바꿀 수 있다. 그러면 곱셈의 □과 □에 따라 순서와 묶음을 바꿀 수 있다.",
+        "cFrozenDefinition": "$0$이 아닌 수로 나누는 것은 그 수의 {역수}를 곱하는 것으로 바꿀 수 있다. 그러면 곱셈의 {교환법칙}과 {결합법칙}에 따라 순서와 묶음을 바꿀 수 있다.",
+        "cFrozenAnswers": [
+          "역수",
+          "교환법칙",
+          "결합법칙"
+        ],
+        "cMarkedSentence": "$0$이 아닌 수로 나누는 것은 그 수의 {역수}를 곱하는 것으로 바꿀 수 있다. 그러면 곱셈의 {교환법칙}과 {결합법칙}에 따라 순서와 묶음을 바꿀 수 있다.",
+        "cSlotAnswers": [
+          "역수",
+          "교환법칙",
+          "결합법칙"
+        ],
+        "cStudentSentence": "$0$이 아닌 수로 나누는 것은 그 수의 □를 곱하는 것으로 바꿀 수 있다. 그러면 곱셈의 □과 □에 따라 순서와 묶음을 바꿀 수 있다.",
+        "cAnswers": [
+          "역수",
+          "교환법칙",
+          "결합법칙"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "역수",
+            "equivalentAnswers": [
+              "역수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "교환법칙",
+            "equivalentAnswers": [
+              "교환법칙"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "결합법칙",
+            "equivalentAnswers": [
+              "결합법칙"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "역수"
+          ],
+          [
+            "교환법칙"
+          ],
+          [
+            "결합법칙"
+          ]
+        ],
+        "proposalFingerprint": "80e726427da679ff4f6c5577722f9aa7e4f81049fb3f754d96571bc41b043105"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-01-03-xc13",
+        "section": "중3::1. 실수와 그 계산::근호를 포함한 식의 계산",
+        "term": "분모에 수가 곱해진 제곱근의 유리화",
+        "kind": "방법",
+        "level": "중",
+        "definition": "$a$가 $0$이 아닌 유리수, $b$가 양의 유리수일 때 분모가 $a\\sqrt{b}$이면 분모와 분자에 {$\\sqrt{b}$}만 곱해도 분모가 유리수 {$ab$}가 된다.",
+        "example": {
+          "prompt": "$\\frac{3}{2\\sqrt{3}}$의 분모와 분자에 $\\sqrt{3}$만 곱해도 유리화되는 까닭은?",
+          "answer": "$\\sqrt{3}\\times\\sqrt{3}=3$이라서"
+        },
+        "studentC": "$a$가 $0$이 아닌 유리수, $b$가 양의 유리수일 때 분모가 $a\\sqrt{b}$이면 분모와 분자에 □만 곱해도 분모가 유리수 □가 된다.",
+        "answers": [
+          "$\\sqrt{b}$",
+          "$ab$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-01-03-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "$a$가 $0$이 아닌 유리수, $b$가 양의 유리수일 때 분모가 $a\\sqrt{b}$인 분수를 유리화하려면 분모와 분자에 무엇을 곱하면 충분한지와 그때의 분모를 쓰고, $\\frac{3}{2\\sqrt{3}}$의 분모를 유리화하시오.",
+        "bAnswer": "$\\sqrt{b}$만 곱하면 되고, 분모는 $ab$가 된다. $\\frac{3}{2\\sqrt{3}}=\\frac{3\\sqrt{3}}{6}=\\frac{\\sqrt{3}}{2}$",
+        "bGoal": "분모가 $a\\sqrt{b}$일 때 유리화하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\sqrt{b}$를 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분모가 $ab$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{\\sqrt{3}}{2}$",
+              "$\\frac{3\\sqrt{3}}{6}$"
+            ]
+          }
+        ],
+        "bReason": "앞의 수까지 곱할 필요가 없음을 일반식과 예로 확인하게 했다.",
+        "cDecision": "keep",
+        "cReason": "곱할 수와 결과 분모 두 칸이 조건과 함께 분명하다.",
+        "learningRole": "procedure",
+        "roleReason": "$\\sqrt{b}$만 곱해 분모를 $ab$로 만들기",
+        "authorBatch": 53,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3321,
+        "part": "m3plus",
+        "sourceFingerprint": "750b8337d1adb589cd68f95354d23213acd2432f2c1d5d6d490ed7f4fe2b12fe",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3321
+        },
+        "directReview": null,
+        "cFrozenSentence": "$a$가 $0$이 아닌 유리수, $b$가 양의 유리수일 때 분모가 $a\\sqrt{b}$이면 분모와 분자에 □만 곱해도 분모가 유리수 □가 된다.",
+        "cFrozenDefinition": "$a$가 $0$이 아닌 유리수, $b$가 양의 유리수일 때 분모가 $a\\sqrt{b}$이면 분모와 분자에 {$\\sqrt{b}$}만 곱해도 분모가 유리수 {$ab$}가 된다.",
+        "cFrozenAnswers": [
+          "$\\sqrt{b}$",
+          "$ab$"
+        ],
+        "cMarkedSentence": "$a$가 $0$이 아닌 유리수, $b$가 양의 유리수일 때 분모가 $a\\sqrt{b}$이면 분모와 분자에 {$\\sqrt{b}$}만 곱해도 분모가 유리수 {$ab$}가 된다.",
+        "cSlotAnswers": [
+          "$\\sqrt{b}$",
+          "$ab$"
+        ],
+        "cStudentSentence": "$a$가 $0$이 아닌 유리수, $b$가 양의 유리수일 때 분모가 $a\\sqrt{b}$이면 분모와 분자에 □만 곱해도 분모가 유리수 □가 된다.",
+        "cAnswers": [
+          "$\\sqrt{b}$",
+          "$ab$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\sqrt{b}$",
+            "equivalentAnswers": [
+              "$\\sqrt{b}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$ab$",
+            "equivalentAnswers": [
+              "$ab$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\sqrt{b}$"
+          ],
+          [
+            "$ab$"
+          ]
+        ],
+        "proposalFingerprint": "5d49ba89140bba7e2e9c5f87439b150b96f1f385ea64daf4494a696a0c8980a7"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-01-03-xc14",
+        "section": "중3::1. 실수와 그 계산::근호를 포함한 식의 계산",
+        "term": "유리화하기 전에 분모를 간단히 하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "분모의 근호 안에 제곱인 인수가 있으면 그 인수의 양의 제곱근을 {근호 밖}으로 꺼낸 뒤 유리화할 수 있다. 그러면 분모에 남은 근호 부분에 맞추어 곱할 수를 고른다.",
+        "studentC": "분모의 근호 안에 제곱인 인수가 있으면 그 인수의 양의 제곱근을 □으로 꺼낸 뒤 유리화할 수 있다. 그러면 분모에 남은 근호 부분에 맞추어 곱할 수를 고른다.",
+        "answers": [
+          "근호 밖"
+        ]
+      },
+      "proposal": {
+        "id": "m3-01-03-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{1}{\\sqrt{12}}$의 분모를 유리화하려고 한다. 분모를 먼저 간단히 하면 분자와 분모에 무엇을 곱하면 되는지 쓰고, 결과를 구하시오.",
+        "bAnswer": "$\\sqrt{12}=2\\sqrt{3}$이므로 분자와 분모에 $\\sqrt{3}$만 곱하면 된다. $\\frac{1}{2\\sqrt{3}}=\\frac{\\sqrt{3}}{6}$",
+        "bGoal": "분모를 간단히 한 뒤 유리화하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\sqrt{12}=2\\sqrt{3}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\sqrt{3}$을 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{\\sqrt{3}}{6}$"
+            ]
+          }
+        ],
+        "bReason": "간단히 하는 단계가 곱할 수를 바꾸는 예로 $\\sqrt{12}$를 골랐다.",
+        "cDecision": "keep",
+        "cReason": "'근호 밖' 한 칸으로 순서의 핵심을 묻는 짧은 문장이다.",
+        "learningRole": "procedure",
+        "roleReason": "제곱 인수를 꺼낸 뒤 남은 근호로 유리화",
+        "authorBatch": 53,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3322,
+        "part": "m3plus",
+        "sourceFingerprint": "fb598d57d641a1770e7521ea6d391fc868ddece24c883088106baadc2e129e8e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3322
+        },
+        "directReview": null,
+        "cFrozenSentence": "분모의 근호 안에 제곱인 인수가 있으면 그 인수의 양의 제곱근을 □으로 꺼낸 뒤 유리화할 수 있다. 그러면 분모에 남은 근호 부분에 맞추어 곱할 수를 고른다.",
+        "cFrozenDefinition": "분모의 근호 안에 제곱인 인수가 있으면 그 인수의 양의 제곱근을 {근호 밖}으로 꺼낸 뒤 유리화할 수 있다. 그러면 분모에 남은 근호 부분에 맞추어 곱할 수를 고른다.",
+        "cFrozenAnswers": [
+          "근호 밖"
+        ],
+        "cMarkedSentence": "분모의 근호 안에 제곱인 인수가 있으면 그 인수의 양의 제곱근을 {근호 밖}으로 꺼낸 뒤 유리화할 수 있다. 그러면 분모에 남은 근호 부분에 맞추어 곱할 수를 고른다.",
+        "cSlotAnswers": [
+          "근호 밖"
+        ],
+        "cStudentSentence": "분모의 근호 안에 제곱인 인수가 있으면 그 인수의 양의 제곱근을 □으로 꺼낸 뒤 유리화할 수 있다. 그러면 분모에 남은 근호 부분에 맞추어 곱할 수를 고른다.",
+        "cAnswers": [
+          "근호 밖"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "근호 밖",
+            "equivalentAnswers": [
+              "근호 밖"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "근호 밖"
+          ]
+        ],
+        "proposalFingerprint": "f8bba3f6093a0e2aad01682ef3a2b157e0e5d412973405535012f9223e724f5d"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-01-03-xc22",
+        "section": "중3::1. 실수와 그 계산::근호를 포함한 식의 계산",
+        "term": "한 어림값으로 구할 수 있는 제곱근",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$a>0$이고 $k=r^2$($r$은 양의 유리수)이면 $\\sqrt{ka}=r\\sqrt{a}$이므로, $\\sqrt{a}$의 어림값에 {유리수 $r$}을 {곱해} $\\sqrt{ka}$의 어림값을 구할 수 있다.",
+        "example": {
+          "prompt": "$\\sqrt{30}$을 $\\sqrt{3}$의 유리수 배로 나타낼 수 없는 까닭은?",
+          "answer": "$\\sqrt{10}$이 무리수라서"
+        },
+        "studentC": "$a>0$이고 $k=r^2$($r$은 양의 유리수)이면 $\\sqrt{ka}=r\\sqrt{a}$이므로, $\\sqrt{a}$의 어림값에 □을 □ $\\sqrt{ka}$의 어림값을 구할 수 있다.",
+        "answers": [
+          "유리수 $r$",
+          "곱해"
+        ]
+      },
+      "proposal": {
+        "id": "m3-01-03-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\sqrt{3}$의 어림값을 $1.732$라 할 때 $\\sqrt{300}$과 $\\sqrt{0.03}$의 어림값을 구하고, $\\sqrt{3}$의 어림값만으로 구할 수 있는 까닭을 쓰시오.",
+        "bAnswer": "$\\sqrt{300}=10\\sqrt{3}$이므로 $17.32$, $\\sqrt{0.03}=\\sqrt{\\frac{3}{100}}=\\frac{\\sqrt{3}}{10}$이므로 $0.1732$이다. 두 수 모두 근호 안이 $3$에 제곱인 수를 곱한 꼴이라 $\\sqrt{3}$의 유리수 배로 나타나기 때문이다.",
+        "bGoal": "한 어림값으로 여러 제곱근 어림하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$17.32$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.1732$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\sqrt{3}$의 유리수 배로 나타난다",
+              "$10\\sqrt{3}$과 $\\frac{\\sqrt{3}}{10}$"
+            ]
+          }
+        ],
+        "bReason": "xc15와 달리 커지는 경우와 작아지는 경우를 모두 넣어 일반 원리를 보게 했다.",
+        "cDecision": "keep",
+        "cReason": "'유리수 $r$'과 '곱해' 두 칸이 조건식과 함께 분명하다.",
+        "learningRole": "application",
+        "roleReason": "$\\sqrt{ka}=r\\sqrt{a}$로 어림값 구하기",
+        "authorBatch": 53,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3330,
+        "part": "m3plus",
+        "sourceFingerprint": "fb93d30c3e605106ad62adaea62512bdc00886404724338b4be00957d9d0e365",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3330
+        },
+        "directReview": null,
+        "cFrozenSentence": "$a>0$이고 $k=r^2$($r$은 양의 유리수)이면 $\\sqrt{ka}=r\\sqrt{a}$이므로, $\\sqrt{a}$의 어림값에 □을 □ $\\sqrt{ka}$의 어림값을 구할 수 있다.",
+        "cFrozenDefinition": "$a>0$이고 $k=r^2$($r$은 양의 유리수)이면 $\\sqrt{ka}=r\\sqrt{a}$이므로, $\\sqrt{a}$의 어림값에 {유리수 $r$}을 {곱해} $\\sqrt{ka}$의 어림값을 구할 수 있다.",
+        "cFrozenAnswers": [
+          "유리수 $r$",
+          "곱해"
+        ],
+        "cMarkedSentence": "$a>0$이고 $k=r^2$($r$은 양의 유리수)이면 $\\sqrt{ka}=r\\sqrt{a}$이므로, $\\sqrt{a}$의 어림값에 {유리수 $r$}을 {곱해} $\\sqrt{ka}$의 어림값을 구할 수 있다.",
+        "cSlotAnswers": [
+          "유리수 $r$",
+          "곱해"
+        ],
+        "cStudentSentence": "$a>0$이고 $k=r^2$($r$은 양의 유리수)이면 $\\sqrt{ka}=r\\sqrt{a}$이므로, $\\sqrt{a}$의 어림값에 □을 □ $\\sqrt{ka}$의 어림값을 구할 수 있다.",
+        "cAnswers": [
+          "유리수 $r$",
+          "곱해"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "유리수 $r$",
+            "equivalentAnswers": [
+              "유리수 $r$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "곱해",
+            "equivalentAnswers": [
+              "곱해"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "유리수 $r$"
+          ],
+          [
+            "곱해"
+          ]
+        ],
+        "proposalFingerprint": "7ad590bd35482581b462c28d4bd12a61c63ec2128af88bd1d0b558c8977ffd13"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-02-01-xc7",
+        "section": "중3::2. 다항식의 곱셈과 인수분해::다항식의 곱셈",
+        "term": "합의 제곱에 가운데 항이 생기는 까닭",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$(a+b)^2$은 $(a+b)(a+b)$이므로 전개하면 $ab$가 {두 번} 나온다 — 그래서 $a^2+b^2$에 {$2ab$}가 더 붙는다.",
+        "studentC": "$(a+b)^2$은 $(a+b)(a+b)$이므로 전개하면 $ab$가 □ 나온다 — 그래서 $a^2+b^2$에 □가 더 붙는다.",
+        "answers": [
+          "두 번",
+          "$2ab$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-02-01-xc7",
+        "learningRole": "reason",
+        "roleReason": "$ab$가 두 번 나와 $2ab$가 생김",
+        "bDecision": "rewrite",
+        "bPrompt": "$(a+b)^2$이 $a^2+b^2$과 같지 않은 까닭을, $(a+b)(a+b)$를 전개할 때 나오는 항들을 이용해 설명하시오.",
+        "bAnswer": "전개하면 $a^2$, $ab$, $ab$, $b^2$이 나와 $ab$가 두 번 생기므로 $a^2+b^2$에 $2ab$가 더 붙는다.",
+        "bGoal": "합의 제곱의 가운데 항이 생기는 까닭",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$ab$가 두 번 나온다",
+              "$ab+ba$가 생긴다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2ab$가 더 붙는다",
+              "$a^2+2ab+b^2$이 된다"
+            ]
+          }
+        ],
+        "bReason": "흔한 오개념 $a^2+b^2$을 질문에 넣어 까닭을 묻게 했다.",
+        "cDecision": "keep",
+        "cReason": "횟수와 덧붙는 항을 묻는 짧은 인과 빈칸이다.",
+        "authorBatch": 54,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3338,
+        "part": "m3plus",
+        "sourceFingerprint": "8dfe246520b411236615a1f2f50d1d5f72014653d08021817910a8144c691785",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3338
+        },
+        "directReview": null,
+        "cFrozenSentence": "$(a+b)^2$은 $(a+b)(a+b)$이므로 전개하면 $ab$가 □ 나온다 — 그래서 $a^2+b^2$에 □가 더 붙는다.",
+        "cFrozenDefinition": "$(a+b)^2$은 $(a+b)(a+b)$이므로 전개하면 $ab$가 {두 번} 나온다 — 그래서 $a^2+b^2$에 {$2ab$}가 더 붙는다.",
+        "cFrozenAnswers": [
+          "두 번",
+          "$2ab$"
+        ],
+        "cMarkedSentence": "$(a+b)^2$은 $(a+b)(a+b)$이므로 전개하면 $ab$가 {두 번} 나온다 — 그래서 $a^2+b^2$에 {$2ab$}가 더 붙는다.",
+        "cSlotAnswers": [
+          "두 번",
+          "$2ab$"
+        ],
+        "cStudentSentence": "$(a+b)^2$은 $(a+b)(a+b)$이므로 전개하면 $ab$가 □ 나온다 — 그래서 $a^2+b^2$에 □가 더 붙는다.",
+        "cAnswers": [
+          "두 번",
+          "$2ab$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "두 번",
+            "equivalentAnswers": [
+              "두 번",
+              "$2$번"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$2ab$",
+            "equivalentAnswers": [
+              "$2ab$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "두 번",
+            "accept": [
+              "$2$번"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "두 번",
+            "$2$번"
+          ],
+          [
+            "$2ab$"
+          ]
+        ],
+        "proposalFingerprint": "50b8f27f4b09a2117df3b4cf28d7009457524ab73909703a486d8020aae6c9e8"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-02-01-xc14",
+        "section": "중3::2. 다항식의 곱셈과 인수분해::다항식의 곱셈",
+        "term": "전개식에서 한 항의 계수만 구하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "두 일차식의 곱에서 $x$의 계수는 한 식의 {일차항의 계수}와 다른 식의 {상수항}을 엇갈려 곱한 두 값을 더해 구한다 — 상수항이 없으면 {$0$}으로 본다.",
+        "example": {
+          "prompt": "$(2x+3)(x-4)$에서 곱해서 $x$항이 되는 두 쌍은?",
+          "answer": "$2x$와 $-4$, 그리고 $3$과 $x$이다"
+        },
+        "studentC": "두 일차식의 곱에서 $x$의 계수는 한 식의 □와 다른 식의 □을 엇갈려 곱한 두 값을 더해 구한다 — 상수항이 없으면 □으로 본다.",
+        "answers": [
+          "일차항의 계수",
+          "상수항",
+          "$0$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-02-01-xc14",
+        "learningRole": "procedure",
+        "roleReason": "엇갈려 곱해 더한 $x$의 계수",
+        "bDecision": "rewrite",
+        "bPrompt": "두 일차식의 곱에서 $x$의 계수만 구하려면 어떤 수들을 곱해 더하는지 말하고, $(2x+3)(x-4)$에서 $x$의 계수를 구하시오.",
+        "bAnswer": "한 식의 일차항의 계수와 다른 식의 상수항을 엇갈려 곱한 두 값을 더한다(상수항이 없으면 $0$으로 본다). $2\\times(-4)+3\\times1=-5$",
+        "bGoal": "전개식의 한 계수만 구하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "일차항의 계수와 다른 식의 상수항을 엇갈려 곱해 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$-5$"
+            ]
+          }
+        ],
+        "bReason": "방법과 예를 함께 주어 필요한 항만 고르는지 확인하게 했다.",
+        "cDecision": "keep",
+        "cReason": "엇갈려 곱할 두 대상과 상수항 없을 때를 묻는 분명한 빈칸이다.",
+        "exampleNeeded": true,
+        "authorBatch": 54,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3345,
+        "part": "m3plus",
+        "sourceFingerprint": "b04f1a7c41fed8149c365c5a249dce794ad42e30a3dec5e63915ad980e1aa6b1",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3345
+        },
+        "directReview": null,
+        "cFrozenSentence": "두 일차식의 곱에서 $x$의 계수는 한 식의 □와 다른 식의 □을 엇갈려 곱한 두 값을 더해 구한다 — 상수항이 없으면 □으로 본다.",
+        "cFrozenDefinition": "두 일차식의 곱에서 $x$의 계수는 한 식의 {일차항의 계수}와 다른 식의 {상수항}을 엇갈려 곱한 두 값을 더해 구한다 — 상수항이 없으면 {$0$}으로 본다.",
+        "cFrozenAnswers": [
+          "일차항의 계수",
+          "상수항",
+          "$0$"
+        ],
+        "cMarkedSentence": "두 일차식의 곱에서 $x$의 계수는 한 식의 {일차항의 계수}와 다른 식의 {상수항}을 엇갈려 곱한 두 값을 더해 구한다 — 상수항이 없으면 {$0$}으로 본다.",
+        "cSlotAnswers": [
+          "일차항의 계수",
+          "상수항",
+          "$0$"
+        ],
+        "cStudentSentence": "두 일차식의 곱에서 $x$의 계수는 한 식의 □와 다른 식의 □을 엇갈려 곱한 두 값을 더해 구한다 — 상수항이 없으면 □으로 본다.",
+        "cAnswers": [
+          "일차항의 계수",
+          "상수항",
+          "$0$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "일차항의 계수",
+            "equivalentAnswers": [
+              "일차항의 계수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "상수항",
+            "equivalentAnswers": [
+              "상수항"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "$0$",
+            "equivalentAnswers": [
+              "$0$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "일차항의 계수"
+          ],
+          [
+            "상수항"
+          ],
+          [
+            "$0$"
+          ]
+        ],
+        "proposalFingerprint": "6a7c7607463b49431ae45423fa90bad80fdf07432f3cd46757beabc4f682fae8"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-02-01-xc19",
+        "section": "중3::2. 다항식의 곱셈과 인수분해::다항식의 곱셈",
+        "term": "$x+\\frac{1}{x}$로 제곱의 합 구하기",
+        "kind": "공식",
+        "level": "상",
+        "definition": "$x^2+\\frac{1}{x^2}$은 $\\left(x+\\frac{1}{x}\\right)^2-$ {$2$}로 구한다 — $x$와 $\\frac{1}{x}$의 곱이 {$1$}이기 때문이다.",
+        "studentC": "$x^2+\\frac{1}{x^2}$은 $\\left(x+\\frac{1}{x}\\right)^2-$ □로 구한다 — $x$와 $\\frac{1}{x}$의 곱이 □이기 때문이다.",
+        "answers": [
+          "$2$",
+          "$1$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-02-01-xc19",
+        "learningRole": "reason",
+        "roleReason": "$x\\times\\frac{1}{x}=1$이라 $2$를 뺌",
+        "bDecision": "rewrite",
+        "bPrompt": "$x\\ne 0$일 때 $x^2+\\frac{1}{x^2}$을 $x+\\frac{1}{x}$로 나타내는 식을 쓰고, 그 식에서 빼는 수가 나오는 까닭을 설명하시오.",
+        "bAnswer": "$x^2+\\frac{1}{x^2}=\\left(x+\\frac{1}{x}\\right)^2-2$이다. 합의 제곱의 가운데 항이 $2\\times x\\times\\frac{1}{x}=2$이기 때문이다.",
+        "bGoal": "$x+\\frac{1}{x}$로 제곱의 합 구하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\left(x+\\frac{1}{x}\\right)^2-2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x\\times\\frac{1}{x}=1$이어서 가운데 항이 $2$이다"
+            ]
+          }
+        ],
+        "bReason": "$x\\ne 0$ 조건을 넣고 식과 까닭을 함께 묻게 했다.",
+        "cDecision": "keep",
+        "cReason": "빼는 수와 그 근거인 곱을 묻는 짧은 빈칸이다.",
+        "authorBatch": 54,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3350,
+        "part": "m3plus",
+        "sourceFingerprint": "ca031578f90f7f8019c69a6fd8774cf6088c7008920598abf5fca017b7fd6557",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3350
+        },
+        "directReview": null,
+        "cFrozenSentence": "$x^2+\\frac{1}{x^2}$은 $\\left(x+\\frac{1}{x}\\right)^2-$ □로 구한다 — $x$와 $\\frac{1}{x}$의 곱이 □이기 때문이다.",
+        "cFrozenDefinition": "$x^2+\\frac{1}{x^2}$은 $\\left(x+\\frac{1}{x}\\right)^2-$ {$2$}로 구한다 — $x$와 $\\frac{1}{x}$의 곱이 {$1$}이기 때문이다.",
+        "cFrozenAnswers": [
+          "$2$",
+          "$1$"
+        ],
+        "cMarkedSentence": "$x^2+\\frac{1}{x^2}$은 $\\left(x+\\frac{1}{x}\\right)^2-$ {$2$}로 구한다 — $x$와 $\\frac{1}{x}$의 곱이 {$1$}이기 때문이다.",
+        "cSlotAnswers": [
+          "$2$",
+          "$1$"
+        ],
+        "cStudentSentence": "$x^2+\\frac{1}{x^2}$은 $\\left(x+\\frac{1}{x}\\right)^2-$ □로 구한다 — $x$와 $\\frac{1}{x}$의 곱이 □이기 때문이다.",
+        "cAnswers": [
+          "$2$",
+          "$1$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$2$",
+            "equivalentAnswers": [
+              "$2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$1$",
+            "equivalentAnswers": [
+              "$1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "$1$"
+          ]
+        ],
+        "proposalFingerprint": "df73a3fdb61b75cbef2fc4ad2203c6c4ebf14426f7f1b7d8b9b59ab054fcb871"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-02-02-xc1",
+        "section": "중3::2. 다항식의 곱셈과 인수분해::인수분해",
+        "term": "공통인 인수 최대한 찾기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "계수들의 {최대공약수}와, 모든 항에 공통인 각 문자를 {가장 작은 지수}만큼 곱하면 최대한 묶어 낼 공통인 인수를 얻는다.",
+        "example": {
+          "prompt": "$6x^2+9x$에서 $3$만이 아니라 $3x$를 묶어 내는 까닭은?",
+          "answer": "$3x$가 두 항에 공통이라서"
+        },
+        "studentC": "계수들의 □와, 모든 항에 공통인 각 문자를 □만큼 곱하면 최대한 묶어 낼 공통인 인수를 얻는다.",
+        "answers": [
+          "최대공약수",
+          "가장 작은 지수"
+        ]
+      },
+      "proposal": {
+        "id": "m3-02-02-xc1",
+        "learningRole": "procedure",
+        "roleReason": "최대공약수와 가장 작은 지수로 공통인 인수",
+        "bDecision": "rewrite",
+        "bPrompt": "계수가 정수인 다항식에서 공통인 인수를 최대한 묶어 내려면 계수와 문자에서 각각 무엇을 골라 곱하는지 설명하고, $6x^2+9x$를 인수분해하시오.",
+        "bAnswer": "계수들의 최대공약수와, 모든 항에 공통인 각 문자를 가장 작은 지수만큼 곱한다. $6x^2+9x=3x(2x+3)$",
+        "bGoal": "공통인 인수를 최대로 찾기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "계수들의 최대공약수"
+            ]
+          },
+          {
+            "anyOf": [
+              "공통인 문자를 가장 작은 지수만큼"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3x(2x+3)$"
+            ]
+          }
+        ],
+        "bReason": "계수와 문자를 나누어 묻고 덜 묶기 쉬운 예를 넣었다.",
+        "cDecision": "keep",
+        "cReason": "최대공약수와 가장 작은 지수를 묻는 핵심 빈칸이다.",
+        "exampleNeeded": true,
+        "authorBatch": 54,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3353,
+        "part": "m3plus",
+        "sourceFingerprint": "a015886227b306faaec2fc17a856bd98f5d349011401db3fe2d7a797561a6701",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3353
+        },
+        "directReview": null,
+        "cFrozenSentence": "계수들의 □와, 모든 항에 공통인 각 문자를 □만큼 곱하면 최대한 묶어 낼 공통인 인수를 얻는다.",
+        "cFrozenDefinition": "계수들의 {최대공약수}와, 모든 항에 공통인 각 문자를 {가장 작은 지수}만큼 곱하면 최대한 묶어 낼 공통인 인수를 얻는다.",
+        "cFrozenAnswers": [
+          "최대공약수",
+          "가장 작은 지수"
+        ],
+        "cMarkedSentence": "계수들의 {최대공약수}와, 모든 항에 공통인 각 문자를 {가장 작은 지수}만큼 곱하면 최대한 묶어 낼 공통인 인수를 얻는다.",
+        "cSlotAnswers": [
+          "최대공약수",
+          "가장 작은 지수"
+        ],
+        "cStudentSentence": "계수들의 □와, 모든 항에 공통인 각 문자를 □만큼 곱하면 최대한 묶어 낼 공통인 인수를 얻는다.",
+        "cAnswers": [
+          "최대공약수",
+          "가장 작은 지수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "최대공약수",
+            "equivalentAnswers": [
+              "최대공약수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "가장 작은 지수",
+            "equivalentAnswers": [
+              "가장 작은 지수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "최대공약수"
+          ],
+          [
+            "가장 작은 지수"
+          ]
+        ],
+        "proposalFingerprint": "2839161942e62ef123819574002858a9c122b271094f959814d92ee996e265f4"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-02-02-xc6",
+        "section": "중3::2. 다항식의 곱셈과 인수분해::인수분해",
+        "term": "완전제곱식인 것과 아닌 것",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$(x-2)^2$, $3(a+1)^2$은 완전제곱식이지만 $x^2+4$는 어떤 식의 {제곱}이 아니므로 완전제곱식이 {아니다}.",
+        "studentC": "$(x-2)^2$, $3(a+1)^2$은 완전제곱식이지만 $x^2+4$는 어떤 식의 □이 아니므로 완전제곱식이 □.",
+        "answers": [
+          "제곱",
+          "아니다"
+        ]
+      },
+      "proposal": {
+        "id": "m3-02-02-xc6",
+        "learningRole": "application",
+        "roleReason": "완전제곱식인 것과 아닌 것 구별",
+        "bDecision": "rewrite",
+        "bPrompt": "$(x-2)^2$, $3(a+1)^2$, $x^2+4$ 가운데 완전제곱식이 아닌 것을 고르고, 그 까닭을 설명하시오.",
+        "bAnswer": "$x^2+4$이다. 어떤 다항식의 제곱이나 그것에 상수를 곱한 꼴로 나타낼 수 없기 때문이다($(x+k)^2$이면 가운데 항이 $2kx$인데 가운데 항이 없으려면 $k=0$이고 그때 상수항이 $0$이다).",
+        "bGoal": "완전제곱식 판별",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x^2+4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "어떤 다항식의 제곱 꼴로 나타낼 수 없다"
+            ]
+          }
+        ],
+        "bReason": "세 식을 제시해 정의를 적용한 판별과 까닭을 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "$(x-2)^2$, $3(a+1)^2$은 완전제곱식이지만 $x^2+4$는 어떤 다항식의 {제곱}으로 나타낼 수 없으므로 완전제곱식이 아니다. 반면 $x^2+4x+4$는 {$(x+2)^2$}이므로 완전제곱식이다.",
+        "cAnswers": [
+          "제곱",
+          "$(x+2)^2$"
+        ],
+        "cReason": "'아니다' 빈칸은 앞의 '이지만'으로 바로 보여 대비 예의 인수분해로 바꾸었다.",
+        "authorBatch": 54,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3358,
+        "part": "m3plus",
+        "sourceFingerprint": "bc3729a3e6a6082fada56e15adb037074ed8b0f7360d558cbd722abb8bcebff2",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3358
+        },
+        "directReview": null,
+        "cMarkedSentence": "$(x-2)^2$, $3(a+1)^2$은 완전제곱식이지만 $x^2+4$는 어떤 다항식의 {제곱}으로 나타낼 수 없으므로 완전제곱식이 아니다. 반면 $x^2+4x+4$는 {$(x+2)^2$}이므로 완전제곱식이다.",
+        "cSlotAnswers": [
+          "제곱",
+          "$(x+2)^2$"
+        ],
+        "cStudentSentence": "$(x-2)^2$, $3(a+1)^2$은 완전제곱식이지만 $x^2+4$는 어떤 다항식의 □으로 나타낼 수 없으므로 완전제곱식이 아니다. 반면 $x^2+4x+4$는 □이므로 완전제곱식이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "제곱",
+            "equivalentAnswers": [
+              "제곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$(x+2)^2$",
+            "equivalentAnswers": [
+              "$(x+2)^2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "제곱"
+          ],
+          [
+            "$(x+2)^2$"
+          ]
+        ],
+        "proposalFingerprint": "95658c6d7daa0e95d6dd8473d233509ef800e44a7a102400ed0f3d1690d9e105"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-02-02-xc8",
+        "section": "중3::2. 다항식의 곱셈과 인수분해::인수분해",
+        "term": "인수에 들어가는 것들",
+        "kind": "성질",
+        "level": "중",
+        "definition": "다항식 $P$는 $1\\times P$로 나타낼 수 있으므로 {$1$}과 {$P$ 자신}도 $P$의 인수이다.",
+        "example": {
+          "prompt": "$1$과 $x(x+3)$도 $x(x+3)$의 인수인 까닭은?",
+          "answer": "$1\\times x(x+3)$으로 쓸 수 있어서"
+        },
+        "studentC": "다항식 $P$는 $1\\times P$로 나타낼 수 있으므로 □과 □도 $P$의 인수이다.",
+        "answers": [
+          "$1$",
+          "$P$ 자신"
+        ]
+      },
+      "proposal": {
+        "id": "m3-02-02-xc8",
+        "learningRole": "reason",
+        "roleReason": "$P=1\\times P$이므로 $1$, $P$도 인수",
+        "bDecision": "rewrite",
+        "bPrompt": "다항식 $P$에 대하여 $1$과 $P$ 자신도 $P$의 인수인지 말하고, 그 까닭을 곱의 꼴로 설명하시오.",
+        "bAnswer": "인수이다. $P=1\\times P$로 나타낼 수 있기 때문이다.",
+        "bGoal": "인수의 범위 이해",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "인수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$P=1\\times P$로 나타낼 수 있다"
+            ]
+          }
+        ],
+        "bReason": "판단과 곱의 꼴 근거를 함께 묻도록 정했다.",
+        "cDecision": "keep",
+        "cReason": "근거식이 있고 두 인수를 묻는 짧은 빈칸이다.",
+        "authorBatch": 54,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3360,
+        "part": "m3plus",
+        "sourceFingerprint": "1e196b4858eebb7877a19f3727635756f4bb969497faf02b57dfab509a099c3e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3360
+        },
+        "directReview": null,
+        "cFrozenSentence": "다항식 $P$는 $1\\times P$로 나타낼 수 있으므로 □과 □도 $P$의 인수이다.",
+        "cFrozenDefinition": "다항식 $P$는 $1\\times P$로 나타낼 수 있으므로 {$1$}과 {$P$ 자신}도 $P$의 인수이다.",
+        "cFrozenAnswers": [
+          "$1$",
+          "$P$ 자신"
+        ],
+        "cMarkedSentence": "다항식 $P$는 $1\\times P$로 나타낼 수 있으므로 {$1$}과 {$P$ 자신}도 $P$의 인수이다.",
+        "cSlotAnswers": [
+          "$1$",
+          "$P$ 자신"
+        ],
+        "cStudentSentence": "다항식 $P$는 $1\\times P$로 나타낼 수 있으므로 □과 □도 $P$의 인수이다.",
+        "cAnswers": [
+          "$1$",
+          "$P$ 자신"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$1$",
+            "equivalentAnswers": [
+              "$1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$P$ 자신",
+            "equivalentAnswers": [
+              "$P$ 자신",
+              "$P$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$P$ 자신",
+            "accept": [
+              "$P$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "$P$ 자신",
+            "$P$"
+          ]
+        ],
+        "proposalFingerprint": "df4404e597d42dba55b6c0b4c895c1ec526a9e64d9d9abf043c49332e9c2663f"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-02-02-xc9",
+        "section": "중3::2. 다항식의 곱셈과 인수분해::인수분해",
+        "term": "다항식이 공통인 인수일 때",
+        "kind": "방법",
+        "level": "중",
+        "definition": "공통인 인수는 문자 하나가 아니라 {다항식}일 수도 있다 — 같은 괄호 식이 모든 항에 곱해져 있으면 그 괄호를 {한 덩어리}로 묶어 낸다.",
+        "studentC": "공통인 인수는 문자 하나가 아니라 □일 수도 있다 — 같은 괄호 식이 모든 항에 곱해져 있으면 그 괄호를 □로 묶어 낸다.",
+        "answers": [
+          "다항식",
+          "한 덩어리"
+        ]
+      },
+      "proposal": {
+        "id": "m3-02-02-xc9",
+        "learningRole": "procedure",
+        "roleReason": "공통 괄호식을 한 덩어리로 묶음",
+        "bDecision": "rewrite",
+        "bPrompt": "모든 항에 같은 괄호 식이 곱해져 있을 때 어떻게 인수분해하는지 말하고, $a(x+1)+b(x+1)$을 인수분해하시오.",
+        "bAnswer": "그 괄호 식을 한 덩어리의 공통인 인수로 보고 묶어 낸다. $a(x+1)+b(x+1)=(x+1)(a+b)$",
+        "bGoal": "다항식인 공통인 인수 묶기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "괄호 식을 한 덩어리 공통인 인수로 묶는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$(x+1)(a+b)$",
+              "$(a+b)(x+1)$"
+            ]
+          }
+        ],
+        "bReason": "공통인 인수가 다항식인 예를 주어 묶는 법을 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "공통인 인수는 문자 하나가 아니라 {다항식}일 수도 있다. 예를 들어 $a(x+1)+b(x+1)$은 $x+1$을 한 덩어리로 묶어 내어 {$(x+1)(a+b)$}로 인수분해한다.",
+        "cAnswers": [
+          "다항식",
+          "$(x+1)(a+b)$"
+        ],
+        "cReason": "'한 덩어리' 빈칸만으로는 대상이 모호해 예와 결과를 묻게 바꾸었다.",
+        "exampleNeeded": true,
+        "authorBatch": 54,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3361,
+        "part": "m3plus",
+        "sourceFingerprint": "921198a17f6e1aa938d5a8f2c9a7725eb33fa2c3353df50c73914f98565c57a8",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3361
+        },
+        "directReview": null,
+        "cMarkedSentence": "공통인 인수는 문자 하나가 아니라 {다항식}일 수도 있다. 예를 들어 $a(x+1)+b(x+1)$은 $x+1$을 한 덩어리로 묶어 내어 {$(x+1)(a+b)$}로 인수분해한다.",
+        "cSlotAnswers": [
+          "다항식",
+          "$(x+1)(a+b)$"
+        ],
+        "cStudentSentence": "공통인 인수는 문자 하나가 아니라 □일 수도 있다. 예를 들어 $a(x+1)+b(x+1)$은 $x+1$을 한 덩어리로 묶어 내어 □로 인수분해한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "다항식",
+            "equivalentAnswers": [
+              "다항식"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$(x+1)(a+b)$",
+            "equivalentAnswers": [
+              "$(x+1)(a+b)$",
+              "$(a+b)(x+1)$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$(x+1)(a+b)$",
+            "accept": [
+              "$(a+b)(x+1)$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "다항식"
+          ],
+          [
+            "$(x+1)(a+b)$",
+            "$(a+b)(x+1)$"
+          ]
+        ],
+        "proposalFingerprint": "ffcb92e19101978b0bff771880caeff84fa5713720cb266ded925ff0ba57057f"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-02-02-xc19",
+        "section": "중3::2. 다항식의 곱셈과 인수분해::인수분해",
+        "term": "한 인수를 알 때 나머지 인수 정하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "알려진 일차인수의 상수항이 $0$이 아니면, 나머지 일차인수는 {$x^2$의 계수}와 {상수항}을 맞추어 정한다 — 첫 항끼리의 곱과 끝 항끼리의 곱이 각각 그것이다.",
+        "example": {
+          "prompt": "$x^2+ax-6$의 한 인수가 $x-2$일 때 나머지 인수 $x+b$의 $b$가 $3$인 까닭은?",
+          "answer": "끝 항의 곱이 $-6$이어서"
+        },
+        "studentC": "알려진 일차인수의 상수항이 $0$이 아니면, 나머지 일차인수는 □와 □을 맞추어 정한다 — 첫 항끼리의 곱과 끝 항끼리의 곱이 각각 그것이다.",
+        "answers": [
+          "$x^2$의 계수",
+          "상수항"
+        ]
+      },
+      "proposal": {
+        "id": "m3-02-02-xc19",
+        "learningRole": "procedure",
+        "roleReason": "첫 항·끝 항의 곱을 맞추어 나머지 인수",
+        "bDecision": "rewrite",
+        "bPrompt": "$x^2+ax-6$의 한 인수가 $x-2$일 때 나머지 인수 $x+b$를 어떻게 정하는지 설명하고, $b$와 $a$의 값을 구하시오.",
+        "bAnswer": "첫 항끼리의 곱이 $x^2$의 계수, 끝 항끼리의 곱이 상수항이 되도록 맞춘다. $(-2)\\times b=-6$이므로 $b=3$이고, $(x-2)(x+3)=x^2+x-6$이므로 $a=1$이다.",
+        "bGoal": "한 인수로 나머지 인수 정하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "끝 항끼리의 곱이 상수항이 되게 맞춘다",
+              "$(-2)\\times b=-6$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$b=3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$a=1$"
+            ]
+          }
+        ],
+        "bReason": "알려진 인수와 미지수를 밝혀 맞추는 원리를 적용하게 했다.",
+        "cDecision": "keep",
+        "cReason": "맞출 두 대상을 묻고 근거가 뒤에 있어 분명하다.",
+        "exampleNeeded": true,
+        "authorBatch": 54,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3371,
+        "part": "m3plus",
+        "sourceFingerprint": "c3f882472f2c7b9632f20dcb7e43e43c9bdc34f50d60abc0cb859da15bd5611a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3371
+        },
+        "directReview": null,
+        "cFrozenSentence": "알려진 일차인수의 상수항이 $0$이 아니면, 나머지 일차인수는 □와 □을 맞추어 정한다 — 첫 항끼리의 곱과 끝 항끼리의 곱이 각각 그것이다.",
+        "cFrozenDefinition": "알려진 일차인수의 상수항이 $0$이 아니면, 나머지 일차인수는 {$x^2$의 계수}와 {상수항}을 맞추어 정한다 — 첫 항끼리의 곱과 끝 항끼리의 곱이 각각 그것이다.",
+        "cFrozenAnswers": [
+          "$x^2$의 계수",
+          "상수항"
+        ],
+        "cMarkedSentence": "알려진 일차인수의 상수항이 $0$이 아니면, 나머지 일차인수는 {$x^2$의 계수}와 {상수항}을 맞추어 정한다 — 첫 항끼리의 곱과 끝 항끼리의 곱이 각각 그것이다.",
+        "cSlotAnswers": [
+          "$x^2$의 계수",
+          "상수항"
+        ],
+        "cStudentSentence": "알려진 일차인수의 상수항이 $0$이 아니면, 나머지 일차인수는 □와 □을 맞추어 정한다 — 첫 항끼리의 곱과 끝 항끼리의 곱이 각각 그것이다.",
+        "cAnswers": [
+          "$x^2$의 계수",
+          "상수항"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$x^2$의 계수",
+            "equivalentAnswers": [
+              "$x^2$의 계수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "상수항",
+            "equivalentAnswers": [
+              "상수항"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$x^2$의 계수"
+          ],
+          [
+            "상수항"
+          ]
+        ],
+        "proposalFingerprint": "3159fa2ada787e76c25b498bec1bbecceb32cd3c245f26e1194ed5adb8e5c6cb"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-02-03-xc1",
+        "section": "중3::2. 다항식의 곱셈과 인수분해::인수분해의 응용",
+        "term": "내림차순으로 정리해 두는 까닭",
+        "kind": "성질",
+        "level": "하",
+        "definition": "식을 한 문자에 대하여 {내림차순}으로 정리해 두면 차수가 같은 항끼리 모으기 쉽고 {인수분해}할 꼴이 잘 보인다.",
+        "studentC": "식을 한 문자에 대하여 □으로 정리해 두면 차수가 같은 항끼리 모으기 쉽고 □할 꼴이 잘 보인다.",
+        "answers": [
+          "내림차순",
+          "인수분해"
+        ]
+      },
+      "proposal": {
+        "id": "m3-02-03-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "인수분해하기 전에 식을 한 문자에 대하여 내림차순으로 정리해 두면 좋은 점 두 가지를 쓰시오.",
+        "bAnswer": "차수가 같은 항끼리 모으기 쉽고, 어떤 인수분해 꼴인지 잘 보인다.",
+        "bGoal": "내림차순 정리의 쓸모",
+        "bReason": "정리의 이점을 두 측면으로 물어 이유형 답임을 밝힘",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "차수가 같은 항끼리 모으기 쉽다"
+            ]
+          },
+          {
+            "anyOf": [
+              "인수분해할 꼴이 잘 보인다",
+              "어떤 공식을 쓸지 알기 쉽다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "정리 방법과 목적을 묻는 짧고 분명한 빈칸",
+        "learningRole": "reason",
+        "roleReason": "내림차순 정리가 인수분해를 돕는 까닭",
+        "authorBatch": 55,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3374,
+        "part": "m3plus",
+        "sourceFingerprint": "2fb8f1868cb5e4ad8e6dd8cefcc4d41bb35bc02dd56aa1911dda64e5423ce335",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3374
+        },
+        "directReview": null,
+        "cFrozenSentence": "식을 한 문자에 대하여 □으로 정리해 두면 차수가 같은 항끼리 모으기 쉽고 □할 꼴이 잘 보인다.",
+        "cFrozenDefinition": "식을 한 문자에 대하여 {내림차순}으로 정리해 두면 차수가 같은 항끼리 모으기 쉽고 {인수분해}할 꼴이 잘 보인다.",
+        "cFrozenAnswers": [
+          "내림차순",
+          "인수분해"
+        ],
+        "cMarkedSentence": "식을 한 문자에 대하여 {내림차순}으로 정리해 두면 차수가 같은 항끼리 모으기 쉽고 {인수분해}할 꼴이 잘 보인다.",
+        "cSlotAnswers": [
+          "내림차순",
+          "인수분해"
+        ],
+        "cStudentSentence": "식을 한 문자에 대하여 □으로 정리해 두면 차수가 같은 항끼리 모으기 쉽고 □할 꼴이 잘 보인다.",
+        "cAnswers": [
+          "내림차순",
+          "인수분해"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "내림차순",
+            "equivalentAnswers": [
+              "내림차순"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "인수분해",
+            "equivalentAnswers": [
+              "인수분해"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "내림차순"
+          ],
+          [
+            "인수분해"
+          ]
+        ],
+        "proposalFingerprint": "35c69746c947bcfd462482529568b4d701a70076d0ad8c90788a8f68abf560a4"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-02-03-xc9",
+        "section": "중3::2. 다항식의 곱셈과 인수분해::인수분해의 응용",
+        "term": "인수분해 공식 고르기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "항이 둘이고 두 제곱의 차이면 {합과 차의 곱}을, 항이 셋이고 첫 항과 끝 항이 제곱이면 {완전제곱식}을 먼저 떠올린다.",
+        "studentC": "항이 둘이고 두 제곱의 차이면 □을, 항이 셋이고 첫 항과 끝 항이 제곱이면 □을 먼저 떠올린다.",
+        "answers": [
+          "합과 차의 곱",
+          "완전제곱식"
+        ]
+      },
+      "proposal": {
+        "id": "m3-02-03-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "인수분해할 식이 ($1$) 두 항이고 두 제곱의 차인 경우, ($2$) 세 항이고 첫 항과 끝 항이 제곱인 경우에 각각 먼저 떠올릴 인수분해 꼴을 쓰시오.",
+        "bAnswer": "($1$) 합과 차의 곱 $a^2-b^2=(a+b)(a-b)$ ($2$) 완전제곱식 $a^2\\pm 2ab+b^2=(a\\pm b)^2$",
+        "bGoal": "식의 모양으로 공식 고르기",
+        "bReason": "항의 개수와 모양 두 경우를 나누어 공식 선택 기준을 특정함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "합과 차의 곱",
+              "$(a+b)(a-b)$"
+            ]
+          },
+          {
+            "anyOf": [
+              "완전제곱식",
+              "$(a\\pm b)^2$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "두 경우의 공식을 대비시키는 짧은 비교 빈칸",
+        "learningRole": "procedure",
+        "roleReason": "항 개수·모양에 따른 공식 선택",
+        "authorBatch": 55,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3382,
+        "part": "m3plus",
+        "sourceFingerprint": "4432741ec981522b32898d8f32077d7e864adb2efa923c09dfbfd1ac5d1b9eb1",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3382
+        },
+        "directReview": null,
+        "cFrozenSentence": "항이 둘이고 두 제곱의 차이면 □을, 항이 셋이고 첫 항과 끝 항이 제곱이면 □을 먼저 떠올린다.",
+        "cFrozenDefinition": "항이 둘이고 두 제곱의 차이면 {합과 차의 곱}을, 항이 셋이고 첫 항과 끝 항이 제곱이면 {완전제곱식}을 먼저 떠올린다.",
+        "cFrozenAnswers": [
+          "합과 차의 곱",
+          "완전제곱식"
+        ],
+        "cMarkedSentence": "항이 둘이고 두 제곱의 차이면 {합과 차의 곱}을, 항이 셋이고 첫 항과 끝 항이 제곱이면 {완전제곱식}을 먼저 떠올린다.",
+        "cSlotAnswers": [
+          "합과 차의 곱",
+          "완전제곱식"
+        ],
+        "cStudentSentence": "항이 둘이고 두 제곱의 차이면 □을, 항이 셋이고 첫 항과 끝 항이 제곱이면 □을 먼저 떠올린다.",
+        "cAnswers": [
+          "합과 차의 곱",
+          "완전제곱식"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "합과 차의 곱",
+            "equivalentAnswers": [
+              "합과 차의 곱",
+              "$(a+b)(a-b)$",
+              "제곱의 차 공식"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "완전제곱식",
+            "equivalentAnswers": [
+              "완전제곱식"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "합과 차의 곱",
+            "accept": [
+              "$(a+b)(a-b)$",
+              "제곱의 차 공식"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "합과 차의 곱",
+            "$(a+b)(a-b)$",
+            "제곱의 차 공식"
+          ],
+          [
+            "완전제곱식"
+          ]
+        ],
+        "proposalFingerprint": "e65dcdf9248cc4f87e7adc5c1e94a1e3f22c4d828898c2180bde81baac9b5964"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-02-03-xc18",
+        "section": "중3::2. 다항식의 곱셈과 인수분해::인수분해의 응용",
+        "term": "차수가 낮은 문자로 정리하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "한 문자에 대해서는 일차식이고 다른 문자에 대해서는 이차식인 식을 인수분해할 때, 차수가 더 {낮은} 문자에 대하여 정리하면 그 문자에 대한 일차식 꼴이 되어 공통인 인수를 찾기 쉬울 수 있다.",
+        "studentC": "한 문자에 대해서는 일차식이고 다른 문자에 대해서는 이차식인 식을 인수분해할 때, 차수가 더 □ 문자에 대하여 정리하면 그 문자에 대한 일차식 꼴이 되어 공통인 인수를 찾기 쉬울 수 있다.",
+        "answers": [
+          "낮은"
+        ]
+      },
+      "proposal": {
+        "id": "m3-02-03-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "$x^2+xy+x+y$는 $x$에 대해서는 이차식, $y$에 대해서는 일차식이다. 어느 문자에 대하여 정리하는 것이 인수분해하기 쉬운지 까닭과 함께 쓰고, 인수분해하시오.",
+        "bAnswer": "차수가 낮은 $y$에 대하여 정리하면 $(x+1)y+x(x+1)$로 공통인 인수 $x+1$이 보인다. $(x+1)(x+y)$",
+        "bGoal": "차수가 낮은 문자로 정리하기",
+        "bReason": "두 문자의 차수가 다른 식을 주어 정리 기준 선택을 묻게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$y$에 대하여 정리",
+              "차수가 낮은 문자에 대하여 정리"
+            ]
+          },
+          {
+            "anyOf": [
+              "공통인 인수 $x+1$이 생긴다",
+              "일차식이 되어 공통인 인수가 보인다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$(x+1)(x+y)$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "낮은/높은 비교로 핵심 판단을 묻는 짧은 빈칸",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "차수가 낮은 문자로 정리해 공통인수 찾기",
+        "authorBatch": 55,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3390,
+        "part": "m3plus",
+        "sourceFingerprint": "857aa628eb43aa2549d842cddbf5ee24329e0de61b4c966dfacfc2d49f2164dc",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3390
+        },
+        "directReview": null,
+        "cFrozenSentence": "한 문자에 대해서는 일차식이고 다른 문자에 대해서는 이차식인 식을 인수분해할 때, 차수가 더 □ 문자에 대하여 정리하면 그 문자에 대한 일차식 꼴이 되어 공통인 인수를 찾기 쉬울 수 있다.",
+        "cFrozenDefinition": "한 문자에 대해서는 일차식이고 다른 문자에 대해서는 이차식인 식을 인수분해할 때, 차수가 더 {낮은} 문자에 대하여 정리하면 그 문자에 대한 일차식 꼴이 되어 공통인 인수를 찾기 쉬울 수 있다.",
+        "cFrozenAnswers": [
+          "낮은"
+        ],
+        "cMarkedSentence": "한 문자에 대해서는 일차식이고 다른 문자에 대해서는 이차식인 식을 인수분해할 때, 차수가 더 {낮은} 문자에 대하여 정리하면 그 문자에 대한 일차식 꼴이 되어 공통인 인수를 찾기 쉬울 수 있다.",
+        "cSlotAnswers": [
+          "낮은"
+        ],
+        "cStudentSentence": "한 문자에 대해서는 일차식이고 다른 문자에 대해서는 이차식인 식을 인수분해할 때, 차수가 더 □ 문자에 대하여 정리하면 그 문자에 대한 일차식 꼴이 되어 공통인 인수를 찾기 쉬울 수 있다.",
+        "cAnswers": [
+          "낮은"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "낮은",
+            "equivalentAnswers": [
+              "낮은"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "낮은"
+          ]
+        ],
+        "proposalFingerprint": "f9c0687711b12f108dc7c0d606b57d607a1a54fd2d12de627b1f6dc51ade656f"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-02-03-xc23",
+        "section": "중3::2. 다항식의 곱셈과 인수분해::인수분해의 응용",
+        "term": "근호 안이 제곱의 차일 때",
+        "kind": "방법",
+        "level": "상",
+        "definition": "근호 안이 {제곱의 차}이면 합과 차의 곱으로 바꾼 뒤, 두 인수가 각각 {제곱인 수}가 되는지 본다.",
+        "example": {
+          "prompt": "$\\sqrt{26^2-10^2}$의 근호 안을 인수분해하면 좋은 점은?",
+          "answer": "$36\\times16$, 둘 다 제곱인 수라서"
+        },
+        "studentC": "근호 안이 □이면 합과 차의 곱으로 바꾼 뒤, 두 인수가 각각 □가 되는지 본다.",
+        "answers": [
+          "제곱의 차",
+          "제곱인 수"
+        ]
+      },
+      "proposal": {
+        "id": "m3-02-03-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\sqrt{26^2-10^2}$을 계산할 때 근호 안을 인수분해하면 좋은 점을 쓰고, 값을 구하시오.",
+        "bAnswer": "$26^2-10^2=(26+10)(26-10)=36\\times 16$이고 두 인수가 모두 제곱인 수이므로 $\\sqrt{6^2\\times 4^2}=24$이다.",
+        "bGoal": "근호 안 제곱의 차 인수분해",
+        "bReason": "두 인수가 모두 제곱인 수가 되는 예로 이점을 구체화함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$36\\times 16$",
+              "$(26+10)(26-10)$"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 인수가 모두 제곱인 수",
+              "$6^2\\times 4^2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$24$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "근호 안의 꼴과 확인할 점을 묻는 분명한 빈칸",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "근호 안을 곱으로 바꿔 제곱인 수 찾기",
+        "authorBatch": 55,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3394,
+        "part": "m3plus",
+        "sourceFingerprint": "fcaba6fbca02c9c9c0a8c586bd4b7d0a355dc76bf6e4255d5578dfa81ac744cf",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3394
+        },
+        "directReview": null,
+        "cFrozenSentence": "근호 안이 □이면 합과 차의 곱으로 바꾼 뒤, 두 인수가 각각 □가 되는지 본다.",
+        "cFrozenDefinition": "근호 안이 {제곱의 차}이면 합과 차의 곱으로 바꾼 뒤, 두 인수가 각각 {제곱인 수}가 되는지 본다.",
+        "cFrozenAnswers": [
+          "제곱의 차",
+          "제곱인 수"
+        ],
+        "cMarkedSentence": "근호 안이 {제곱의 차}이면 합과 차의 곱으로 바꾼 뒤, 두 인수가 각각 {제곱인 수}가 되는지 본다.",
+        "cSlotAnswers": [
+          "제곱의 차",
+          "제곱인 수"
+        ],
+        "cStudentSentence": "근호 안이 □이면 합과 차의 곱으로 바꾼 뒤, 두 인수가 각각 □가 되는지 본다.",
+        "cAnswers": [
+          "제곱의 차",
+          "제곱인 수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "제곱의 차",
+            "equivalentAnswers": [
+              "제곱의 차"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "제곱인 수",
+            "equivalentAnswers": [
+              "제곱인 수",
+              "제곱수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "제곱인 수",
+            "accept": [
+              "제곱수"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "제곱의 차"
+          ],
+          [
+            "제곱인 수",
+            "제곱수"
+          ]
+        ],
+        "proposalFingerprint": "5a16e8cec84620887fada5e63cc131626e02dbebeafe6395817122b04bbba7b8"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-02-03-xc25",
+        "section": "중3::2. 다항식의 곱셈과 인수분해::인수분해의 응용",
+        "term": "띠 모양의 넓이",
+        "kind": "방법",
+        "level": "상",
+        "definition": "띠 모양의 넓이는 {큰 도형의 넓이}에서 {작은 도형의 넓이}를 뺀 식으로 세우고, 그 식이 제곱의 차이면 {합과 차의 곱}으로 인수분해한다.",
+        "example": {
+          "prompt": "한 변이 $a$인 정사각형 둘레에 폭 $1$인 길을 두른 넓이 $(a+2)^2-a^2$을 합과 차의 곱으로 쓸 때 합과 차는?",
+          "answer": "합 $2a+2$, 차 $2$"
+        },
+        "studentC": "띠 모양의 넓이는 □에서 □를 뺀 식으로 세우고, 그 식이 제곱의 차이면 □으로 인수분해한다.",
+        "answers": [
+          "큰 도형의 넓이",
+          "작은 도형의 넓이",
+          "합과 차의 곱"
+        ]
+      },
+      "proposal": {
+        "id": "m3-02-03-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "한 변의 길이가 $a$인 정사각형 모양의 꽃밭 둘레에 폭이 $1$인 길을 둘렀다. 길의 넓이를 큰 정사각형과 꽃밭의 넓이로 식을 세우고, 합과 차의 곱으로 인수분해하시오.",
+        "bAnswer": "큰 정사각형의 한 변은 $a+2$이므로 길의 넓이는 $(a+2)^2-a^2=(a+2+a)(a+2-a)=(2a+2)\\times 2=4(a+1)$이다.",
+        "bGoal": "띠 모양 넓이를 제곱의 차로 인수분해",
+        "bReason": "그림 대신 변의 길이와 길의 폭을 밝혀 넓이 식을 세우게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$(a+2)^2-a^2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$(2a+2)\\times 2$",
+              "$4(a+1)$",
+              "$4a+4$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "큰·작은 넓이와 공식을 묻는 일반 절차로 지칭이 분명함",
+        "studentLabel": "띠 모양의 넓이와 인수분해",
+        "learningRole": "application",
+        "roleReason": "큰 넓이에서 작은 넓이를 빼고 인수분해",
+        "authorBatch": 55,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3395,
+        "part": "m3plus",
+        "sourceFingerprint": "2f6169833e98ad1b52c4ea281a797f489c2a63d8799da926be1e32678f6ee5f7",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3395
+        },
+        "directReview": null,
+        "cFrozenSentence": "띠 모양의 넓이는 □에서 □를 뺀 식으로 세우고, 그 식이 제곱의 차이면 □으로 인수분해한다.",
+        "cFrozenDefinition": "띠 모양의 넓이는 {큰 도형의 넓이}에서 {작은 도형의 넓이}를 뺀 식으로 세우고, 그 식이 제곱의 차이면 {합과 차의 곱}으로 인수분해한다.",
+        "cFrozenAnswers": [
+          "큰 도형의 넓이",
+          "작은 도형의 넓이",
+          "합과 차의 곱"
+        ],
+        "cMarkedSentence": "띠 모양의 넓이는 {큰 도형의 넓이}에서 {작은 도형의 넓이}를 뺀 식으로 세우고, 그 식이 제곱의 차이면 {합과 차의 곱}으로 인수분해한다.",
+        "cSlotAnswers": [
+          "큰 도형의 넓이",
+          "작은 도형의 넓이",
+          "합과 차의 곱"
+        ],
+        "cStudentSentence": "띠 모양의 넓이는 □에서 □를 뺀 식으로 세우고, 그 식이 제곱의 차이면 □으로 인수분해한다.",
+        "cAnswers": [
+          "큰 도형의 넓이",
+          "작은 도형의 넓이",
+          "합과 차의 곱"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "큰 도형의 넓이",
+            "equivalentAnswers": [
+              "큰 도형의 넓이",
+              "바깥 도형의 넓이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "작은 도형의 넓이",
+            "equivalentAnswers": [
+              "작은 도형의 넓이",
+              "안쪽 도형의 넓이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "합과 차의 곱",
+            "equivalentAnswers": [
+              "합과 차의 곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "큰 도형의 넓이",
+            "accept": [
+              "바깥 도형의 넓이"
+            ]
+          },
+          {
+            "answer": "작은 도형의 넓이",
+            "accept": [
+              "안쪽 도형의 넓이"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "큰 도형의 넓이",
+            "바깥 도형의 넓이"
+          ],
+          [
+            "작은 도형의 넓이",
+            "안쪽 도형의 넓이"
+          ],
+          [
+            "합과 차의 곱"
+          ]
+        ],
+        "proposalFingerprint": "b0ec6329529844aec2525103d3c1e965b4fe1cd2e3c07b49fe7b6d23e5435870"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-03-01-xc2",
+        "section": "중3::3. 이차방정식::이차방정식의 풀이",
+        "term": "항이 빠진 이차방정식",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$x^2-5=0$, $2x^2+x=0$처럼 {$x$의 항}이나 {상수항}이 없어도 $x^2$의 계수가 $0$이 아니면 이차방정식이다.",
+        "studentC": "$x^2-5=0$, $2x^2+x=0$처럼 □이나 □이 없어도 $x^2$의 계수가 $0$이 아니면 이차방정식이다.",
+        "answers": [
+          "$x$의 항",
+          "상수항"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-01-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "$x^2-5=0$과 $2x^2+x=0$이 각각 이차방정식인지 판단하고, 판단 기준을 쓰시오.",
+        "bAnswer": "둘 다 이차방정식이다. $x$의 항이나 상수항이 없어도 $x^2$의 계수가 $0$이 아니면 이차방정식이다.",
+        "bGoal": "항이 빠진 이차방정식 판별",
+        "bReason": "항이 빠진 두 예를 주어 판별 기준을 묻게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "둘 다 이차방정식이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x^2$의 계수가 $0$이 아니면 된다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "예와 빈칸이 짝지어진 짧은 비교 빈칸",
+        "exampleNeeded": true,
+        "learningRole": "definition",
+        "roleReason": "$x^2$ 계수만으로 이차방정식 판별",
+        "authorBatch": 55,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3397,
+        "part": "m3plus",
+        "sourceFingerprint": "4068a6429ea7f6682567c1c529ae0b731d79b98f1c446f617ecd3c136f45a62f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3397
+        },
+        "directReview": null,
+        "cFrozenSentence": "$x^2-5=0$, $2x^2+x=0$처럼 □이나 □이 없어도 $x^2$의 계수가 $0$이 아니면 이차방정식이다.",
+        "cFrozenDefinition": "$x^2-5=0$, $2x^2+x=0$처럼 {$x$의 항}이나 {상수항}이 없어도 $x^2$의 계수가 $0$이 아니면 이차방정식이다.",
+        "cFrozenAnswers": [
+          "$x$의 항",
+          "상수항"
+        ],
+        "cMarkedSentence": "$x^2-5=0$, $2x^2+x=0$처럼 {$x$의 항}이나 {상수항}이 없어도 $x^2$의 계수가 $0$이 아니면 이차방정식이다.",
+        "cSlotAnswers": [
+          "$x$의 항",
+          "상수항"
+        ],
+        "cStudentSentence": "$x^2-5=0$, $2x^2+x=0$처럼 □이나 □이 없어도 $x^2$의 계수가 $0$이 아니면 이차방정식이다.",
+        "cAnswers": [
+          "$x$의 항",
+          "상수항"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$x$의 항",
+            "equivalentAnswers": [
+              "$x$의 항",
+              "일차항"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "상수항",
+            "equivalentAnswers": [
+              "상수항"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$x$의 항",
+            "accept": [
+              "일차항"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$x$의 항",
+            "일차항"
+          ],
+          [
+            "상수항"
+          ]
+        ],
+        "proposalFingerprint": "9f7e4e4ecc666d47167b2cbc75c1c70ddda23d525a7b1b01ee8131487f2b7697"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-03-01-xc4",
+        "section": "중3::3. 이차방정식::이차방정식의 풀이",
+        "term": "곱의 꼴에서 해 읽기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "$(x-a)(x-b)=0$이면 해는 {$x=a$} 또는 {$x=b$}이다 — 괄호 안의 수와 부호가 {반대}인 수가 해이다.",
+        "studentC": "$(x-a)(x-b)=0$이면 해는 □ 또는 □이다 — 괄호 안의 수와 부호가 □인 수가 해이다.",
+        "answers": [
+          "$x=a$",
+          "$x=b$",
+          "반대"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-01-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "$(x-a)(x-b)=0$ 꼴의 이차방정식에서 해를 바로 읽는 방법을 쓰고, $(x+2)(x-5)=0$의 해를 구하시오.",
+        "bAnswer": "각 인수를 $0$으로 놓으면 $x=a$ 또는 $x=b$, 곧 괄호 안의 수와 부호가 반대인 수가 해이다. $(x+2)(x-5)=0$의 해는 $x=-2$ 또는 $x=5$이다.",
+        "bGoal": "곱의 꼴에서 해 읽기",
+        "bReason": "일반 꼴과 부호가 섞인 구체 예를 함께 물어 부호 규칙을 확인함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x=a$ 또는 $x=b$",
+              "각 인수를 $0$으로 놓는다",
+              "괄호 안의 수와 부호가 반대인 수"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=-2$ 또는 $x=5$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$(x+4)(x-1)=0$이면 각 인수를 $0$으로 놓아 해는 $x=${$-4$} 또는 $x=${$1$}이다.",
+        "cAnswers": [
+          "$-4$",
+          "$1$"
+        ],
+        "cReason": "원문의 $x=a$, $x=b$는 식에서 베끼면 되고 '괄호 안의 수'가 모호해 구체 예로 바꿈",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "각 인수를 $0$으로 놓아 해 읽기",
+        "authorBatch": 55,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3399,
+        "part": "m3plus",
+        "sourceFingerprint": "e1e4685c9c30e61a25990c7e5970cc6610d999746c3221ab6252d489e8da7acd",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3399
+        },
+        "directReview": null,
+        "cMarkedSentence": "$(x+4)(x-1)=0$이면 각 인수를 $0$으로 놓아 해는 $x=${$-4$} 또는 $x=${$1$}이다.",
+        "cSlotAnswers": [
+          "$-4$",
+          "$1$"
+        ],
+        "cStudentSentence": "$(x+4)(x-1)=0$이면 각 인수를 $0$으로 놓아 해는 $x=$□ 또는 $x=$□이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$-4$",
+            "equivalentAnswers": [
+              "$-4$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$1$",
+            "equivalentAnswers": [
+              "$1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$-4$"
+          ],
+          [
+            "$1$"
+          ]
+        ],
+        "proposalFingerprint": "b057879789ebeaa1a52b8e00cc6fd9941ac73cee3aa8d2ffad060b79484f35be"
+      }
+    }
+  ]
+}

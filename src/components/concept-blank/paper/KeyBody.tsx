@@ -1,5 +1,10 @@
 import type { ConceptBlankSheet } from "@/contracts/conceptBlank.contract";
 import { CONCEPT_BLANK_FORM_LABELS } from "@/contracts/conceptBlank.contract";
+import {
+  clozeAlternatives,
+  clozeSentence,
+  termCriteria,
+} from "@/lib/concept-blank/questions";
 
 import { FigureSvg } from "./FigureSvg";
 import { keyNotes, type KeyRow } from "./paginate";
@@ -75,7 +80,31 @@ function KeyCells({ row }: { row: KeyRow }) {
             ) : null}
           </td>
           <td className={styles.keyText}>
-            <KeySentence sentence={row.entry.definition} />
+            {row.questionForm === "term" && row.entry.bQuestion ? (
+              <>
+                <PaperText text={row.entry.bQuestion.answer} />
+                {termCriteria(row.entry).map((criterion, index) => (
+                  <span className={styles.keyEx} key={index}>
+                    확인할 내용 {index + 1}: <PaperText text={criterion} />
+                  </span>
+                ))}
+              </>
+            ) : (
+              <KeySentence
+                sentence={
+                  row.questionForm === "cloze"
+                    ? clozeSentence(row.entry)
+                    : row.entry.definition
+                }
+              />
+            )}
+            {row.questionForm === "cloze"
+              ? clozeAlternatives(row.entry).map((alternative, index) => (
+                  <span className={styles.keyEx} key={index}>
+                    <PaperText text={alternative} />
+                  </span>
+                ))
+              : null}
             {row.example && ex ? (
               <span className={styles.keyEx}>
                 {row.example === "reference" ? "예(참고) " : "예 "}

@@ -1,0 +1,2040 @@
+{
+  "status": "Actual source goal and definition readings; source-hash preparation only, no production write",
+  "inputFile": "root-opening-final-input-20261007.json",
+  "inputSha256": "ec24bd42d666d8e2b2a09a2984b44f98704270e9ccff306db3c57f070347af0f",
+  "readingInputHash": "4fad46a36658f6f9b2cad6c5a656c6b67e33eb066abfd3ef7aa6efefd98391d2",
+  "freshDeltaReadings": 7,
+  "unchangedReadingsBoundToPriorEvidence": 62,
+  "rows": [
+    {
+      "chapterId": "e4-2-4",
+      "sectionId": "e4-2-4-2",
+      "beforeHash": "337bd77ca468994b36ee7681b8cf92ef322599bd0b0afb14c8fcf0243d805c9e",
+      "afterHash": "93dd2b60d0376055568153b7c02fbac87689a405ebb27ebbdfdd697e76eb3d1e",
+      "changedIds": [
+        "e4-2-4-2-c3"
+      ],
+      "question": "사각형의 이름은 무엇을 보고 정할까요?",
+      "explanation": "수직과 평행을 알아보고 평행선 사이의 거리를 잽니다. 사다리꼴, 평행사변형, 마름모를 알아보고 여러 가지 사각형의 관계를 살펴봅니다.",
+      "keyPhrase": "수직과 평행",
+      "goal": "평행과 평행선을 알아볼 수 있어요.",
+      "definitions": [
+        {
+          "id": "e4-2-4-2-c3",
+          "before": "기준 직선에서 떨어진 곳을 달리 잡으면 평행한 선을 {끝없이} 만들 수 있다. 같은 평면에서 한 직선과 각각 수직인 서로 다른 두 직선은 서로 {평행}이다.",
+          "after": "한 직선과 평행한 직선은 떨어진 거리를 바꾸어 가며 {끝없이} 그을 수 있다. 같은 평면에서 한 직선에 수직인 서로 다른 두 직선은 서로 {평행}하다."
+        }
+      ],
+      "reason": "평행선의 거리와 수직인 두 직선의 관계를 명확히 한 교정이 평행과 평행선 알아보기 목표 및 수직·평행 도입과 맞는다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "e4-2-4-2",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "e4-2-4",
+      "sectionId": "e4-2-4-4",
+      "beforeHash": "0f968e1cd8c7e7b6e62991bdb824a87a9ea1dbbe7c5ebabbfc7d6a38c2c37d55",
+      "afterHash": "8f83179c88f8e90fa28a0e8b9f42b8e656ca3508e385badb3dd0dfbeabba60f9",
+      "changedIds": [
+        "e4-2-4-4-c1"
+      ],
+      "question": "사각형의 이름은 무엇을 보고 정할까요?",
+      "explanation": "수직과 평행을 알아보고 평행선 사이의 거리를 잽니다. 사다리꼴, 평행사변형, 마름모를 알아보고 여러 가지 사각형의 관계를 살펴봅니다.",
+      "keyPhrase": "수직과 평행",
+      "goal": "사다리꼴을 알아보고 확인할 수 있어요.",
+      "definitions": [
+        {
+          "id": "e4-2-4-4-c1",
+          "before": "사각형의 맞은편 변들을 살펴 평행한 짝이 {한 쌍 이상} 있으면 사다리꼴로 분류한다.",
+          "after": "마주 보는 변 중에서 평행한 변이 {한 쌍이라도} 있는 사각형을 사다리꼴이라 한다."
+        }
+      ],
+      "reason": "한 쌍이라도 평행이라는 포함 정의를 유지하며 사다리꼴 판별 목표와 여러 사각형 관계 도입이 맞는다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "e4-2-4-4",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "e4-2-5",
+      "sectionId": "e4-2-5-1",
+      "beforeHash": "9cead0063f5ebde04ee1ad1bb65fe263465a53a1b183d1654600e27cfdd695d7",
+      "afterHash": "adcd4d0d68709ffed3b2e07e02cfb5fd5739d2f166a8a37285cc0294bbec238e",
+      "changedIds": [
+        "e4-2-5-1-c2"
+      ],
+      "question": "꺾은선의 방향을 보면 무엇을 알 수 있을까요?",
+      "explanation": "꺾은선그래프를 알아보고 꺾은선의 방향과 변화량을 읽습니다. 물결선을 알아보고 자료를 꺾은선그래프로 그립니다.",
+      "keyPhrase": "꺾은선의 방향",
+      "goal": "꺾은선그래프를 알아보고 꺾은선의 방향을 읽을 수 있어요.",
+      "definitions": [
+        {
+          "id": "e4-2-5-1-c2",
+          "before": "가로축을 시간 순서대로 읽을 때 선이 오른쪽 위로 향하면 수량이 {늘고}, 아래로 향하면 {준다}.",
+          "after": "시간을 왼쪽부터 순서대로 나타낸 꺾은선그래프에서 선이 오른쪽 위로 올라가면 수량이 {늘고}, 오른쪽 아래로 내려가면 {준다}."
+        }
+      ],
+      "reason": "시간을 왼쪽부터 읽는 조건을 보강했으며 꺾은선 방향으로 변화 읽기 목표를 유지한다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "e4-2-5-1",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "e4-2-5",
+      "sectionId": "e4-2-5-3",
+      "beforeHash": "d2aeeade3ce4d35e23b1b2a3bb7f916538c48c16334e835b475e323f99f699a2",
+      "afterHash": "53271801dc4ab8be924b002edc20fc42dfae26da57628349bbb5436ef77f627c",
+      "changedIds": [
+        "e4-2-5-3-c1"
+      ],
+      "question": "꺾은선의 방향을 보면 무엇을 알 수 있을까요?",
+      "explanation": "꺾은선그래프를 알아보고 꺾은선의 방향과 변화량을 읽습니다. 물결선을 알아보고 자료를 꺾은선그래프로 그립니다.",
+      "keyPhrase": "꺾은선의 방향",
+      "goal": "꺾은선그래프를 그리고 활용할 수 있어요.",
+      "definitions": [
+        {
+          "id": "e4-2-5-3-c1",
+          "before": "가로축의 순서와 세로축의 수량이 {함께 맞는 위치}에 자료 하나의 점을 찍는다.",
+          "after": "꺾은선그래프를 그릴 때에는 가로 눈금(순서)과 세로 눈금(수량)이 {만나는 자리}에 점을 찍는다."
+        }
+      ],
+      "reason": "가로·세로 눈금의 만나는 자리에 점을 찍는 교정이 그래프 작성·활용 목표와 연결된다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "e4-2-5-3",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "e4-2-6",
+      "sectionId": "e4-2-6-1",
+      "beforeHash": "86b7e60b33c82f7d3f259c01bf76df70a03b7a0c64d979edbf25141863bf1c0c",
+      "afterHash": "ab331bc330d4c9b6b311dc0c1e720ddf00edb5ccddb5d743f795a84ab2907762",
+      "changedIds": [
+        "e4-2-6-1-c1"
+      ],
+      "question": "변의 수와 길이, 각의 크기로 도형을 어떻게 구별할까요?",
+      "explanation": "다각형과 정다각형, 대각선을 알아봅니다. 여러 가지 도형으로 모양을 만들고 채웁니다.",
+      "keyPhrase": "다각형과 대각선",
+      "goal": "다각형을 알아보고 변의 수에 따라 이름을 말할 수 있어요.",
+      "definitions": [
+        {
+          "id": "e4-2-6-1-c1",
+          "before": "선분들을 끝과 끝으로 이어 하나의 둘레를 닫아 만든 평면도형을 {다각형}이라 한다.",
+          "after": "선분으로만 둘러싸인 도형을 {다각형}이라 한다."
+        }
+      ],
+      "reason": "선분으로 둘러싸인 도형이라는 정의가 변의 수로 다각형 이름 구별하기 목표와 맞는다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "e4-2-6-1",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "e5-1-3",
+      "sectionId": "e5-1-3-2",
+      "beforeHash": "541f677d36924d604d68341e452283ab8afee0759c57a838e19a5a1b1cc1270f",
+      "afterHash": "1007e4e04caf93422fc95ac4956a781874fafe6137d92db9a59a019f13d3b88d",
+      "changedIds": [
+        "e5-1-3-2-c2"
+      ],
+      "question": "두 양 사이의 대응 관계는 어떻게 나타낼까요?",
+      "explanation": "두 양 사이의 대응 관계를 대응표로 알아보고 식으로 나타냅니다. 생활 속에서 대응 관계를 찾아 식으로 나타냅니다.",
+      "keyPhrase": "대응 관계와 대응표",
+      "goal": "대응 관계를 식으로 나타낼 수 있어요.",
+      "definitions": [
+        {
+          "id": "e5-1-3-2-c2",
+          "before": "대응식의 기호는 특정한 한 수만이 아니라 그 기호가 맡은 {양의 값}을 나타낸다.",
+          "after": "대응 관계를 나타낸 식에서 기호는 정해진 한 수만을 뜻하지 않고, 그 기호가 나타내는 양이 될 수 있는 {여러 수}를 나타낸다."
+        }
+      ],
+      "reason": "기호가 해당 양의 여러 값을 나타낸다는 설명은 대응표와 식으로 두 양 관계 표현하기 목표를 보완한다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "e5-1-3-2",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "e5-1-4",
+      "sectionId": "e5-1-4-5",
+      "beforeHash": "7827ea6b012413893196ed0f1b2aabcfabf66b1214d384ae819eb5af8b6e3598",
+      "afterHash": "9b575e12c0791334e31c25aa8947ce0557e59914ca1aaa87f8ff39004374d560",
+      "changedIds": [
+        "e5-1-4-5-c3"
+      ],
+      "question": "분모가 다른 분수의 크기는 어떻게 비교할까요?",
+      "explanation": "크기가 같은 분수를 알아보고 약분과 통분을 합니다. 분수의 크기를 비교하고, 분수와 소수의 크기도 비교합니다.",
+      "keyPhrase": "약분과 통분",
+      "goal": "분수와 소수의 크기를 비교할 수 있어요.",
+      "definitions": [
+        {
+          "id": "e5-1-4-5-c3",
+          "before": "분모를 {$10,\\ 100,\\ 1000$} 등으로 바꿀 수 있으면 그 분수는 끝나는 소수로 쓸 수 있다.",
+          "after": "분모와 분자에 같은 자연수를 곱해 분모를 {$10,\\ 100,\\ 1000$} 같은 수로 만들 수 있으면, 소수 자리값을 이용해 그 분수를 소수로 나타낼 수 있다."
+        }
+      ],
+      "reason": "분모를10의 거듭제곱으로 만드는 동치분수 방법은 분수와 소수의 크기 비교 목표 및 약분·통분 도입에 맞는다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "e5-1-4-5",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "e5-1-6",
+      "sectionId": "e5-1-6-2",
+      "beforeHash": "9f975936f0faa8b6c20ecfc5aac6966287484b4c59c947b8f115513750a9e4d2",
+      "afterHash": "5bf833f24a08043f594544afc00b9052c4a20df172930673c3cd50ecd3a9a7b6",
+      "changedIds": [
+        "e5-1-6-2-c4"
+      ],
+      "question": "도형의 둘레와 넓이는 어떻게 다르고, 어떻게 구할까요?",
+      "explanation": "정다각형과 사각형의 둘레를 구합니다. 넓이의 단위를 알아보고 직사각형, 평행사변형, 삼각형, 마름모, 사다리꼴의 넓이를 구합니다.",
+      "keyPhrase": "둘레와 넓이 구별",
+      "goal": "직사각형과 정사각형의 넓이를 구할 수 있어요.",
+      "definitions": [
+        {
+          "id": "e5-1-6-2-c4",
+          "before": "단위 정사각형의 {한 줄 개수}에 {줄 수}를 곱하면 안쪽을 채운 전체 개수가 된다.",
+          "after": "직사각형을 한 변이 $1\\,\\mathrm{cm}$인 정사각형으로 빈틈없이 채우면, {한 줄에 놓인 개수}에 {줄 수}를 곱한 값이 전체 정사각형의 개수이다."
+        }
+      ],
+      "reason": "빈틈없는1cm 단위 정사각형 배열의 행 개수와 줄 수는 직사각형·정사각형 넓이 목표를 설명한다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "e5-1-6-2",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "e5-1-6",
+      "sectionId": "e5-1-6-3",
+      "beforeHash": "573f486c00f414ddc878f1ceedb63dc5e18f497bf5aef441516bd22156a74889",
+      "afterHash": "4f46923d04b8b0f2409768f1fc17ecb95d8c081fac67dd952669332b491efcc3",
+      "changedIds": [
+        "e5-1-6-3-c5"
+      ],
+      "question": "도형의 둘레와 넓이는 어떻게 다르고, 어떻게 구할까요?",
+      "explanation": "정다각형과 사각형의 둘레를 구합니다. 넓이의 단위를 알아보고 직사각형, 평행사변형, 삼각형, 마름모, 사다리꼴의 넓이를 구합니다.",
+      "keyPhrase": "둘레와 넓이 구별",
+      "goal": "더 큰 넓이의 단위를 알고 단위 사이의 관계를 말할 수 있어요.",
+      "definitions": [
+        {
+          "id": "e5-1-6-3-c5",
+          "before": "한 변의 길이 단위를 $10$배로 키우면 {가로와 세로가 함께} $10$배씩 늘어, 넓이 단위는 $10$배가 아니라 $10$배의 $10$배인 $100$배가 된다.",
+          "after": "정사각형의 한 변의 길이를 $10$배로 하면 {가로와 세로가 함께} $10$배가 되어, 넓이는 $10$배의 $10$배인 $100$배가 된다."
+        }
+      ],
+      "reason": "한 변 열 배에서 가로·세로 모두 열 배 및 넓이 백 배는 넓이 단위 관계 목표와 맞는다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "e5-1-6-3",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "e5-1-6",
+      "sectionId": "e5-1-6-4",
+      "beforeHash": "73fdc6d47f337b90aedb571573131356bc9924b4fdd80b2c526f47cc3ddfac6d",
+      "afterHash": "769f66c9494417ddba71a0e24c45faecafad95de49a0a58ae0e6eae5edec475e",
+      "changedIds": [
+        "e5-1-6-4-c2"
+      ],
+      "question": "도형의 둘레와 넓이는 어떻게 다르고, 어떻게 구할까요?",
+      "explanation": "정다각형과 사각형의 둘레를 구합니다. 넓이의 단위를 알아보고 직사각형, 평행사변형, 삼각형, 마름모, 사다리꼴의 넓이를 구합니다.",
+      "keyPhrase": "둘레와 넓이 구별",
+      "goal": "평행사변형과 삼각형의 넓이를 구할 수 있어요.",
+      "definitions": [
+        {
+          "id": "e5-1-6-4-c2",
+          "before": "밑변에 대해 맞은편 변이나 꼭짓점에서 잰 {수직 거리}가 높이이다.",
+          "after": "높이는 밑변의 맞은편 변이나 꼭짓점에서 밑변에 {수직}으로 그은 선분의 길이이다. 필요한 경우 밑변을 늘인 선까지 잰다."
+        }
+      ],
+      "reason": "밑변 및 연장선까지 수직인 선분의 길이라는 높이 교정이 평행사변형·삼각형 넓이 목표와 맞는다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "e5-1-6-4",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "e5-1-6",
+      "sectionId": "e5-1-6-5",
+      "beforeHash": "0e3c4224981fb2f24f6ac0f482ff3dd0baa02ceb8dfc1af938a9aeb33654444c",
+      "afterHash": "a871a41430e9d072c58734c26a3c7dff7d6c5e20ffdb0eb32e0b6ce9014395dd",
+      "changedIds": [
+        "e5-1-6-5-c6",
+        "e5-1-6-5-c8"
+      ],
+      "question": "도형의 둘레와 넓이는 어떻게 다르고, 어떻게 구할까요?",
+      "explanation": "정다각형과 사각형의 둘레를 구합니다. 넓이의 단위를 알아보고 직사각형, 평행사변형, 삼각형, 마름모, 사다리꼴의 넓이를 구합니다.",
+      "keyPhrase": "둘레와 넓이 구별",
+      "goal": "마름모와 사다리꼴의 넓이를 구할 수 있어요.",
+      "definitions": [
+        {
+          "id": "e5-1-6-5-c6",
+          "before": "사다리꼴에서 두 평행한 밑변 사이를 {직각 방향}으로 잰 거리가 높이이다.",
+          "after": "사다리꼴에서 평행한 두 밑변 사이에 밑변과 {수직}인 선분을 그으면, 그 선분의 길이가 높이이다."
+        },
+        {
+          "id": "e5-1-6-5-c8",
+          "before": "모양과 크기가 같은 사다리꼴 하나를 반 바퀴 돌려 옆변끼리 붙여 만든 평행사변형의 밑변은 {윗변과 아랫변의 합}이다.",
+          "after": "모양과 크기가 같은 사다리꼴 $2$개 중 하나를 반 바퀴 돌려 평행하지 않은 한 변끼리 맞대면 평행사변형이 된다. 원래 두 밑변과 평행한 쪽을 새 밑변으로 정하면 그 길이는 사다리꼴의 {윗변과 아랫변의 합}이다."
+        }
+      ],
+      "reason": "사다리꼴 높이의 수직 조건과 두 합동 사다리꼴을 붙인 밑변 합은 사다리꼴 넓이 설명과 맞는다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "e5-1-6-5",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "e5-2-1",
+      "sectionId": "e5-2-1-2",
+      "beforeHash": "d0b58a63e9028afb9938e48f79d18d26f6f517ea6f24dd7566eac5545d68f8c9",
+      "afterHash": "0d668df9248f1c34ec3cd793fcf7fa156b44cd4c8540e38ca16815b5d27420c1",
+      "changedIds": [
+        "e5-2-1-2-c3"
+      ],
+      "question": "수의 범위는 어떻게 나타내고, 수는 어떻게 어림할까요?",
+      "explanation": "이상, 이하, 초과, 미만으로 수의 범위를 나타냅니다. 올림, 버림, 반올림을 알아보고 어림을 활용합니다.",
+      "keyPhrase": "이상, 이하, 초과, 미만",
+      "goal": "초과와 미만을 알고 수의 범위를 나타낼 수 있어요.",
+      "definitions": [
+        {
+          "id": "e5-2-1-2-c3",
+          "before": "이상·이하는 경계의 수를 받지만, 초과·미만은 그 수를 {제외한다}.",
+          "after": "이상과 이하는 기준이 되는 수를 범위에 포함하지만, 초과와 미만은 그 수를 {제외한다}."
+        }
+      ],
+      "reason": "기준 수의 포함·제외를 분명히 한 교정이 초과·미만으로 범위 표현하기 목표를 유지한다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "e5-2-1-2",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "e5-2-1",
+      "sectionId": "e5-2-1-6",
+      "beforeHash": "4425db19af31f6454945eb497aeca5bf8e641c83b23405bcf6be9554703b7b63",
+      "afterHash": "d8e35b350738e1a6e1c3e354cbf0cc5649f0042fb1c7bf56f84925fe19a90907",
+      "changedIds": [
+        "e5-2-1-6-c3"
+      ],
+      "question": "수의 범위는 어떻게 나타내고, 수는 어떻게 어림할까요?",
+      "explanation": "이상, 이하, 초과, 미만으로 수의 범위를 나타냅니다. 올림, 버림, 반올림을 알아보고 어림을 활용합니다.",
+      "keyPhrase": "이상, 이하, 초과, 미만",
+      "goal": "반올림을 알고 어림을 활용할 수 있어요.",
+      "definitions": [
+        {
+          "id": "e5-2-1-6-c3",
+          "before": "같은 자리까지 반올림하여 같은 값이 되는 수는 그 값에서 나타낸 자리의 {반 단위를 뺀 수} 이상, 반 단위를 더한 수 미만이다.",
+          "after": "같은 자리까지 반올림해 같은 값이 되는 수는, 그 값에서 나타낸 자리 단위의 {절반을 뺀 수} 이상이고 절반을 더한 수 미만이다. 십의 자리면 $5$, 백의 자리면 $50$을 빼고 더한다."
+        }
+      ],
+      "reason": "반올림 단위 절반을 빼고 더하는 범위를 십·백 자리 예로 설명하며 반올림과 어림 활용 목표와 맞는다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "e5-2-1-6",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "e5-2-3",
+      "sectionId": "e5-2-3-1",
+      "beforeHash": "f84c9dcbe390acd10f3dd828e43a26354d444b3a141156187a84420c065bd7cf",
+      "afterHash": "1989304dbf709a4257878e6acc704eb488144b0b19a60434a287ca2467bf1a29",
+      "changedIds": [
+        "e5-2-3-1-c3"
+      ],
+      "question": "합동인 도형과 대칭인 도형에서는 무엇이 서로 같을까요?",
+      "explanation": "도형의 합동을 알아보고 합동인 도형의 성질을 살펴봅니다. 선대칭도형과 점대칭도형을 알아보고 그 성질을 알아봅니다.",
+      "keyPhrase": "대응점, 대응변, 대응각",
+      "goal": "도형의 합동을 알아볼 수 있어요.",
+      "definitions": [
+        {
+          "id": "e5-2-3-1-c3",
+          "before": "넓이가 같은 두 도형도 변의 길이나 각의 크기가 다르면 {합동이 아닐 수 있다}.",
+          "after": "넓이가 같아도 포개었을 때 완전히 겹치지 않으면 {합동이 아니다}. 넓이가 같다는 것만으로 합동이라고 할 수 없다."
+        }
+      ],
+      "reason": "같은 넓이만으로 합동을 확정하지 못하고 완전히 포개지는지 본다는 설명이 합동 판별 목표에 맞는다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "e5-2-3-1",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "e5-2-4",
+      "sectionId": "e5-2-4-3",
+      "beforeHash": "781725a9a2a5be7b8289c50c5c9c30c9a6e68d61825aeec5ac276d0f71806051",
+      "afterHash": "e4e4d08b7ab2c33a7aef29780a6d2925b3725a4bad8d1296408c5b5212bbe141",
+      "changedIds": [
+        "e5-2-4-3-c2"
+      ],
+      "question": "소수를 곱하면 곱의 소수점은 어디에 찍을까요?",
+      "explanation": "소수와 자연수의 곱셈, 소수끼리의 곱셈을 합니다. 곱의 소수점의 위치를 알아봅니다.",
+      "keyPhrase": "곱의 소수점의 위치",
+      "goal": "자연수와 1보다 작은 소수의 곱셈을 할 수 있어요.",
+      "definitions": [
+        {
+          "id": "e5-2-4-3-c2",
+          "before": "작은 소수를 {분수}로 고쳐 자연수의 몇 분의 몇인지 구할 수 있다.",
+          "after": "자연수에 $1$보다 작은 소수를 곱할 때에는 그 소수를 {분수}로 고쳐 자연수의 몇 분의 몇인지 구할 수 있다."
+        }
+      ],
+      "reason": "자연수와1보다 작은 소수의 곱을 분수 표현으로 구하는 방법이 정확히 해당 목표와 맞는다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "e5-2-4-3",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "e5-2-4",
+      "sectionId": "e5-2-4-5",
+      "beforeHash": "ec0c5493c8cf722f219c2521df870564d70cda64e0c774db065cb199bd1cab6e",
+      "afterHash": "bd8597fd7014da89bd4e1f6d445ab3eded2acbc9ceb372cc992a5ffee3de0a0a",
+      "changedIds": [
+        "e5-2-4-5-c1"
+      ],
+      "question": "소수를 곱하면 곱의 소수점은 어디에 찍을까요?",
+      "explanation": "소수와 자연수의 곱셈, 소수끼리의 곱셈을 합니다. 곱의 소수점의 위치를 알아봅니다.",
+      "keyPhrase": "곱의 소수점의 위치",
+      "goal": "1보다 작은 소수끼리의 곱셈을 할 수 있어요.",
+      "definitions": [
+        {
+          "id": "e5-2-4-5-c1",
+          "before": "자연수처럼 곱한 값에서 두 수의 소수 자리 수를 {합한 만큼} 자리를 정한다.",
+          "after": "소수끼리 곱할 때는 자연수처럼 곱한 다음, 두 수의 소수점 아래 자리 수를 {합한 만큼} 오른쪽에서 세어 소수점을 찍는다."
+        }
+      ],
+      "reason": "오른쪽에서 소수 자리 수의 합만큼 세는 교정이1보다 작은 소수끼리 곱셈 및 곱의 소수점 도입과 맞는다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "e5-2-4-5",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "e5-2-5",
+      "sectionId": "e5-2-5-6",
+      "beforeHash": "751ae2a768dd93158f2b08ddd8b7757c4c92c907f4826418436c57ab2d9818fe",
+      "afterHash": "fdba4562851c0b0b32e72cbe80c7dc173164da3a221e35f0af49155aa0e43184",
+      "changedIds": [
+        "e5-2-5-6-c1"
+      ],
+      "question": "직육면체는 어떤 면, 모서리, 꼭짓점으로 이루어져 있을까요?",
+      "explanation": "직육면체와 정육면체를 알아보고 직육면체의 성질을 살펴봅니다. 겨냥도와 전개도를 알아봅니다.",
+      "keyPhrase": "면, 모서리, 꼭짓점",
+      "goal": "직육면체의 전개도를 알아보고 마주 보는 면의 크기를 말할 수 있어요.",
+      "definitions": [
+        {
+          "id": "e5-2-5-6-c1",
+          "before": "직육면체의 여섯 면을 연결을 남겨 평면에 펼친 그림이 {직육면체의 전개도}이다.",
+          "after": "직육면체의 일부 모서리를 잘라 여섯 면이 이어진 채로 평면 위에 펼친 그림이 {직육면체의 전개도}이다."
+        }
+      ],
+      "reason": "일부 모서리를 잘라 여섯 면을 이어 펼치는 설명이 직육면체 전개도 알아보기 목표와 맞는다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "e5-2-5-6",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "e6-1-1",
+      "sectionId": "e6-1-1-2",
+      "beforeHash": "68edfa3880047f584fa50592b001ca2294592d022c089339d5df3b237cddb3da",
+      "afterHash": "0c65f05e6a4ec33d7683bb875bc108ad630135c3d5ecbfd1a3a562cac89f2a76",
+      "changedIds": [
+        "e6-1-1-2-c1"
+      ],
+      "question": "나눗셈의 몫은 분수로 어떻게 나타낼까요?",
+      "explanation": "자연수의 나눗셈의 몫을 분수로 나타냅니다. 분수와 대분수를 자연수로 나누는 방법을 알아봅니다.",
+      "keyPhrase": "몫을 분수로 나타내기",
+      "goal": "분수를 자연수로 나눌 수 있어요.",
+      "definitions": [
+        {
+          "id": "e6-1-1-2-c1",
+          "before": "분수만큼의 양을 자연수로 똑같이 나눈 한 몫은 처음 양의 나누는 수를 {분모로 하는 단위분수}만큼이다. 셋으로 나누면 처음 양의 $\\frac{1}{3}$이다.",
+          "after": "어떤 양을 똑같이 나눌 때, 한 몫이 처음 양에서 차지하는 부분을 분수로 나타낼 수 있다. 이 분수의 분자는 {$1$}이고, 분모는 {똑같이 나눈 부분의 수}이다."
+        }
+      ],
+      "reason": "한 몫이 원래 양의1/n이라는 분할 설명은 분수를 자연수로 나누는 의미를 유지한다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "e6-1-1-2",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "e6-1-2",
+      "sectionId": "e6-1-2-1",
+      "beforeHash": "2e74b197b360305f0693592c873f10853ddf25d735ffbbd31328dee8478e758c",
+      "afterHash": "94a91358d6ad624b31f1d21ecd5e5646ce5eac88d0b2c1bf88ddb7a2cceba249",
+      "changedIds": [
+        "e6-1-2-1-c1"
+      ],
+      "question": "각기둥과 각뿔은 무엇이 같고 무엇이 다를까요?",
+      "explanation": "각기둥과 각뿔을 알아보고 밑면과 옆면을 찾습니다. 이름과 구성 요소를 알아보고 각기둥의 전개도를 살펴봅니다.",
+      "keyPhrase": "밑면과 옆면",
+      "goal": "각기둥을 알고 밑면과 옆면을 찾을 수 있어요.",
+      "definitions": [
+        {
+          "id": "e6-1-2-1-c1",
+          "before": "같은 다각형 두 장을 평행하게 놓고, 둘레의 짝인 변을 {직사각형}으로 이어 만든 입체가 각기둥이다.",
+          "after": "각기둥은 서로 평행하고 합동인 두 다각형 면이 있고, 나머지 면이 모두 {직사각형}인 입체도형이다."
+        }
+      ],
+      "reason": "평행·합동인 두 다각형 밑면과 직사각형 옆면의 구성은 초등 각기둥 알아보기 목표와 맞는다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "e6-1-2-1",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "e6-1-2",
+      "sectionId": "e6-1-2-4",
+      "beforeHash": "c0654c6a4cc016c21bdfba6082496bc6bb9e8d29c39e22999d09c095a628f42b",
+      "afterHash": "80b1fa575cf896758678482717f390dde1c2e80c5d8d9c6527a3e6ffd2d9eba9",
+      "changedIds": [
+        "e6-1-2-4-c2"
+      ],
+      "question": "각기둥과 각뿔은 무엇이 같고 무엇이 다를까요?",
+      "explanation": "각기둥과 각뿔을 알아보고 밑면과 옆면을 찾습니다. 이름과 구성 요소를 알아보고 각기둥의 전개도를 살펴봅니다.",
+      "keyPhrase": "밑면과 옆면",
+      "goal": "각뿔을 알고 밑면과 옆면을 찾을 수 있어요.",
+      "definitions": [
+        {
+          "id": "e6-1-2-4-c2",
+          "before": "각뿔을 만들 때 바탕으로 삼은 {다각형 한 면}을 밑면이라 한다.",
+          "after": "각뿔에서 꼭대기 점에 닿지 않는 다각형 모양의 면 $1$개를 {밑면}이라 한다."
+        }
+      ],
+      "reason": "꼭대기 점과 닿지 않는 다각형 면을 밑면으로 특정해 각뿔의 밑면·옆면 목표를 보완한다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "e6-1-2-4",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "e6-2-1",
+      "sectionId": "e6-2-1-1",
+      "beforeHash": "23b19f831e3cbc0625cc5b6e56096cb40c4df8b87629004a3db5b95aa75fdc5d",
+      "afterHash": "4757b6679fdbacd2414150321f038ff7b0c6fefc3b32bba308708338489acb65",
+      "changedIds": [
+        "e6-2-1-1-c1"
+      ],
+      "question": "분수를 분수로 나눌 때는 어떻게 계산할까요?",
+      "explanation": "분모가 같은 분수와 분모가 다른 분수의 나눗셈을 알아봅니다. 자연수를 분수로 나누고, 분수의 나눗셈을 곱셈으로 나타내어 계산합니다.",
+      "keyPhrase": "분수 나눗셈을 곱셈으로",
+      "goal": "분모가 같은 분수끼리 나눌 수 있어요.",
+      "definitions": [
+        {
+          "id": "e6-2-1-1-c1",
+          "before": "진분수나 가분수로 나타낸 두 수의 분모가 같고 나누는 수가 $0$이 아니면, 두 수의 배 관계는 조각의 개수인 {분자}끼리 나누어 구한다.",
+          "after": "진분수나 가분수로 나타낸 두 분수의 분모가 같고 나누는 분수가 $0$이 아니면, 두 분수의 {분자}끼리 나누어 몫을 구한다."
+        }
+      ],
+      "reason": "분모가 같고 나누는 분수가0이 아닌 조건에서 분자끼리 나눈다는 교정이 분모 같은 분수 나누기 목표와 맞는다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "e6-2-1-1",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "e6-2-3",
+      "sectionId": "e6-2-3-4",
+      "beforeHash": "b1a6e7d88352ba55ec76a65543c442de3d572300a3799da33115d34a97f1fbd5",
+      "afterHash": "c82047f4f77581be89fc0ed43a9d1194938b438185ca6699660180ef7b8cd0f9",
+      "changedIds": [
+        "e6-2-3-4-c1"
+      ],
+      "question": "쌓은 모양은 보는 방향에 따라 어떻게 달라 보일까요?",
+      "explanation": "쌓기나무로 쌓은 모양을 위, 앞, 옆에서 본 모양으로 알아봅니다. 쌓기나무의 개수를 여러 방법으로 구하고 여러 가지 모양을 만듭니다.",
+      "keyPhrase": "보는 방향과 쌓기나무",
+      "goal": "위에서 본 모양에 수를 써서 쌓기나무의 개수를 구할 수 있어요.",
+      "definitions": [
+        {
+          "id": "e6-2-3-4-c1",
+          "before": "위에서 본 칸에 적힌 수는 그 자리에서 {쌓아 올린 블록의 개수}이다.",
+          "after": "위에서 본 모양의 한 칸에 적힌 수는 그 자리에 쌓은 {쌓기나무의 개수}이다."
+        }
+      ],
+      "reason": "위에서 본 한 칸의 수를 해당 위치의 쌓기나무 개수로 밝혀 표시와 총개수 구하기 목표를 유지한다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "e6-2-3-4",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "e6-2-3",
+      "sectionId": "e6-2-3-5",
+      "beforeHash": "f8fa7d6ab18c9e000f5965d19ee1611d6fa42b20f0665cae592c30a71e373848",
+      "afterHash": "b0c49152352cc8190cf1a1ded68c95c3835819895b9288eea0f92ec8536cd54a",
+      "changedIds": [
+        "e6-2-3-5-c3"
+      ],
+      "question": "쌓은 모양은 보는 방향에 따라 어떻게 달라 보일까요?",
+      "explanation": "쌓기나무로 쌓은 모양을 위, 앞, 옆에서 본 모양으로 알아봅니다. 쌓기나무의 개수를 여러 방법으로 구하고 여러 가지 모양을 만듭니다.",
+      "keyPhrase": "보는 방향과 쌓기나무",
+      "goal": "쌓은 모양을 층별로 나타낼 수 있어요.",
+      "definitions": [
+        {
+          "id": "e6-2-3-5-c3",
+          "before": "공중에 뜬 블록 없이 쌓으면 위층의 모든 자리에는 {바로 아래층의 블록}이 있어야 한다.",
+          "after": "공중에 뜬 쌓기나무 없이 쌓으면, 위층에 쌓기나무가 놓인 모든 자리에는 {바로 아래층의 쌓기나무}가 있어야 한다."
+        }
+      ],
+      "reason": "공중에 뜨지 않는 각 위치의 바로 아래층 쌓기나무 조건은 층별 모양 표현 목표와 맞는다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "e6-2-3-5",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "e6-2-5",
+      "sectionId": "e6-2-5-4",
+      "beforeHash": "22ead2924c9b2b85b2a74ca857302c9052703705223060a987df6599dd59d6bc",
+      "afterHash": "240bbf9d6b6160b6ddf8ce0d36314ad3c605b2c5177a2a228c0a496d06a7f91e",
+      "changedIds": [
+        "e6-2-5-4-c1"
+      ],
+      "question": "원주와 지름 사이에는 어떤 관계가 있을까요?",
+      "explanation": "원주와 원주율을 알아보고 원주와 지름을 구합니다. 원의 넓이를 어림하고 원의 넓이를 구하는 방법을 알아봅니다.",
+      "keyPhrase": "원주와 원주율",
+      "goal": "원의 넓이를 구할 수 있어요.",
+      "definitions": [
+        {
+          "id": "e6-2-5-4-c1",
+          "before": "원을 잘게 나눈 조각을 빈틈없이 옮겨 붙여도 {넓이는 보존}된다.",
+          "after": "원을 잘게 나눈 조각을 겹치지 않고 빈틈없이 옮겨 붙여도 {넓이는 변하지 않는다}."
+        }
+      ],
+      "reason": "겹치지 않고 빈틈없이 옮기는 넓이 보존 조건은 조각 재배열로 원의 넓이 구하기를 설명한다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "e6-2-5-4",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m1-01",
+      "sectionId": "m1-01-01",
+      "beforeHash": "10512a2821849e645941c656e8620f76d2ab647b08df4ed254ccf215aea2387f",
+      "afterHash": "54703f424e01ed9e79c21d97560c40271c4db86c2471aa5325608098a0c918c3",
+      "changedIds": [
+        "m1-01-01-c4"
+      ],
+      "question": "자연수를 소인수의 곱으로 나타내면 무엇을 알 수 있을까?",
+      "explanation": "소수와 합성수, 거듭제곱을 알아보고 자연수를 소인수분해한다. 소인수분해를 이용하여 최대공약수와 최소공배수를 구하고 활용한다.",
+      "keyPhrase": "소인수의 곱으로 나타내기",
+      "goal": "소수와 합성수를 구별하고 거듭제곱의 밑과 지수를 말한다.",
+      "definitions": [
+        {
+          "id": "m1-01-01-c4",
+          "before": "$1$을 지운 뒤, 아직 살펴보지 않은 수 가운데 가장 작은 수는 남기고 그 수의 {배수}를 모두 지우기를 되풀이하여 {소수}만 남기는 방법이다.",
+          "after": "$1$부터 $N$까지의 자연수를 쓰고($N\\ge2$), $1$을 지운다. 지워지지 않은 수 가운데 아직 살펴보지 않은 가장 작은 수를 남기고, 그 수 자체를 제외한 {배수}를 지우는 일을 되풀이하면 {소수}만 남는다."
+        }
+      ],
+      "reason": "체 방법에서 남긴 소수 자체를 배수 지우기에서 제외하는 교정은 소수·합성수 판별 목표와 맞는다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "m1-01-01",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m1-01",
+      "sectionId": "m1-01-02",
+      "beforeHash": "b8818bc36d89f2d87e1c3e3dc5016402bcd7a45ecad18120bd6ec2dbccfe0977",
+      "afterHash": "a6644d85f56fd51f72812191b991498782e5b783be43232f5025849f6f2459ca",
+      "changedIds": [
+        "m1-01-02-c5"
+      ],
+      "question": "자연수를 소인수의 곱으로 나타내면 무엇을 알 수 있을까?",
+      "explanation": "소수와 합성수, 거듭제곱을 알아보고 자연수를 소인수분해한다. 소인수분해를 이용하여 최대공약수와 최소공배수를 구하고 활용한다.",
+      "keyPhrase": "소인수의 곱으로 나타내기",
+      "goal": "자연수를 소인수분해하고 약수를 구한다.",
+      "definitions": [
+        {
+          "id": "m1-01-02-c5",
+          "before": "$a^m\\times b^n$의 약수는 $a^m$의 약수와 $b^n$의 약수를 하나씩 골라 {곱해서} 빠짐없이 만든다.",
+          "after": "서로 다른 소수 $a$, $b$와 자연수 $m$, $n$에 대하여 $a^m\\times b^n$의 약수는 $a^m$의 약수와 $b^n$의 약수를 하나씩 골라 {곱해서} 빠짐없이 만든다."
+        }
+      ],
+      "reason": "서로 다른 두 소수라는 조건을 보완한 약수 만들기 설명은 소인수분해와 약수 구하기 목표에 맞는다. 일반 설명에 숫자 예제를 덮어쓰지 않았다.",
+      "reader": "Root Codex actual final chapter question/explanation/key phrase/section goal and changed definitions delta reading",
+      "readAt": "2026-10-07T14:07:44.326Z",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m1-01",
+      "sectionId": "m1-01-05",
+      "beforeHash": "d7fb8962c6c14a3f9b67e56c40f56674e509ad22ed0e8cc2a9f7d9cf2859ba5e",
+      "afterHash": "0a782647b62d672a62da836e5d0de8e71c7467d193629e6f05aa1dc3aa1f0f43",
+      "changedIds": [
+        "m1-01-05-c1"
+      ],
+      "question": "자연수를 소인수의 곱으로 나타내면 무엇을 알 수 있을까?",
+      "explanation": "소수와 합성수, 거듭제곱을 알아보고 자연수를 소인수분해한다. 소인수분해를 이용하여 최대공약수와 최소공배수를 구하고 활용한다.",
+      "keyPhrase": "소인수의 곱으로 나타내기",
+      "goal": "최대공약수와 최소공배수를 활용하여 문제를 해결한다.",
+      "definitions": [
+        {
+          "id": "m1-01-05-c1",
+          "before": "똑같이 나누거나 자르는 문제는 {약수}를, 되풀이되어 다시 만나거나 쌓는 문제는 {배수}를 떠올린다.",
+          "after": "자연수 개수의 물건을 자르지 않고 같은 개수씩 남김없이 나누어 받을 수 있는 사람 수는 전체 개수의 {약수}이다. 일정한 자연수 간격으로 되풀이되는 때까지의 시간은 그 간격의 {배수}이다."
+        }
+      ],
+      "reason": "물건을 자르지 않고 남김없이 같은 개수씩 나누기와 반복 간격을 구체화해 약수·배수 활용 목표를 유지한다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "m1-01-05",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m1-03",
+      "sectionId": "m1-03-02",
+      "beforeHash": "8343fe49eea0a787e346f746e3501f168c9dd62149a8ecbde5cc2fa354b37201",
+      "afterHash": "39c8724ee0d90d4a3703aa5d0b886e00706d260cc6e0e0eaaa73f7c344b53311",
+      "changedIds": [
+        "m1-03-02-c9"
+      ],
+      "question": "모르는 수를 문자로 놓으면 그 값을 어떻게 구할 수 있을까?",
+      "explanation": "문자를 사용한 식과 일차식의 계산을 익히고, 등식의 성질로 일차방정식을 푼다. 수, 나이, 가격, 속력, 농도 등 여러 상황을 일차방정식으로 해결한다.",
+      "keyPhrase": "등식의 성질과 이항",
+      "goal": "항, 계수, 차수를 알고 일차식을 판별한다.",
+      "definitions": [
+        {
+          "id": "m1-03-02-c9",
+          "before": "$\\frac{1}{x}$처럼 {분모}에 문자가 있는 식은 다항식이 아니다. 따라서 차수가 $1$인 다항식인 {일차식}도 아니다.",
+          "after": "식을 정리한 뒤에도 $\\frac{1}{x}$처럼 {분모}에 문자가 남아 있는 식은 다항식이 아니다. 따라서 차수가 $1$인 다항식인 {일차식}도 아니다."
+        }
+      ],
+      "reason": "정리 뒤에도 분모에 문자가 남는 조건을 밝혀 다항식·일차식 판별 목표와 맞는다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "m1-03-02",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m1-03",
+      "sectionId": "m1-03-06",
+      "beforeHash": "6a609cc072d6dd6b685d3d81d43d44a8019e3cf7b7236c758a6fe10321218ccb",
+      "afterHash": "4a2914e499bf004bc7ebf794786cfce61be74fe54623651d4cd2b99b0282ed23",
+      "changedIds": [
+        "m1-03-06-c6"
+      ],
+      "question": "모르는 수를 문자로 놓으면 그 값을 어떻게 구할 수 있을까?",
+      "explanation": "문자를 사용한 식과 일차식의 계산을 익히고, 등식의 성질로 일차방정식을 푼다. 수, 나이, 가격, 속력, 농도 등 여러 상황을 일차방정식으로 해결한다.",
+      "keyPhrase": "등식의 성질과 이항",
+      "goal": "이항을 이용하여 일차방정식을 푼다.",
+      "definitions": [
+        {
+          "id": "m1-03-06-c6",
+          "before": "계수가 소수이면 양변에 {$10$의 거듭제곱}을 곱해 계수를 {정수}로 바꾼 뒤 푼다.",
+          "after": "계수나 상수항이 $0.2$, $0.05$처럼 소수점이 있는 수인 일차방정식은 양변에 알맞은 {$10$의 거듭제곱}을 곱해 계수와 상수항을 모두 {정수}로 바꾼 뒤 풀 수 있다."
+        }
+      ],
+      "reason": "계수와 상수항 모두 정수가 되도록 알맞은10의 거듭제곱을 곱하는 교정은 일차방정식 풀이 목표에 맞는다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "m1-03-06",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m1-03",
+      "sectionId": "m1-03-13",
+      "beforeHash": "fb0b0a5b6db98d399383f0dbebf6047c158ff1fa1a14711100ba7c43cad3950e",
+      "afterHash": "5f8fbe36cc6964023d3869b1569098bd0a01efa03485539ebab4634d3be5467e",
+      "changedIds": [
+        "m1-03-13-c6"
+      ],
+      "question": "모르는 수를 문자로 놓으면 그 값을 어떻게 구할 수 있을까?",
+      "explanation": "문자를 사용한 식과 일차식의 계산을 익히고, 등식의 성질로 일차방정식을 푼다. 수, 나이, 가격, 속력, 농도 등 여러 상황을 일차방정식으로 해결한다.",
+      "keyPhrase": "등식의 성질과 이항",
+      "goal": "비율, 시계, 규칙에 대한 문제를 일차방정식으로 해결한다.",
+      "definitions": [
+        {
+          "id": "m1-03-13-c6",
+          "before": "$a$시 $x$분에 $12$시 방향에서 시침은 {$30a+0.5x$}도, 분침은 {$6x$}도 돌아간 곳에 있다. 그 두 각의 차가 $180^\\circ$ 이하이면 그 차가, $180^\\circ$보다 크면 $360^\\circ$에서 그 차를 뺀 값이 두 바늘이 이루는 각이다.",
+          "after": "$a$시 $x$분($12$시는 $a=0$)에 $12$시에서 시계 방향으로 시침은 {$30a+0.5x$}도, 분침은 {$6x$}도이다. 큰 각도에서 작은 각도를 뺀 값을 차라 하자. 두 바늘의 작은 각은 차가 $180^\\circ$ 이하이면 차, 넘으면 $360^\\circ$에서 차를 뺀 값이다."
+        }
+      ],
+      "reason": "12시를 a=0으로 정하고 시계 방향 각도의 큰 값과 작은 값의 차를 명시했다. 시계 문제를 일차방정식으로 해결하는 목표와 맞으며 작은 각의 180도 경계를 유지한다.",
+      "reader": "Root Codex actual final chapter question/explanation/key phrase/section goal and changed definitions delta reading",
+      "readAt": "2026-10-07T14:07:44.328Z",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m1-04",
+      "sectionId": "m1-04-03",
+      "beforeHash": "a2d9bdc7338395fc89464faaac8291fd3ffa25286f97cbf637a354a6a1816411",
+      "afterHash": "e158f36875f1efc03bd02678f8259e5981fb6a50bf8808b0268c148c041208b5",
+      "changedIds": [
+        "m1-04-03-c6"
+      ],
+      "question": "두 양 사이의 관계를 그래프로 나타내면 무엇을 읽을 수 있을까?",
+      "explanation": "순서쌍과 좌표평면을 알아보고 그래프를 해석한다. 정비례 관계와 반비례 관계를 식과 그래프로 나타내고 성질을 살핀다.",
+      "keyPhrase": "좌표평면과 그래프",
+      "goal": "그래프를 해석하여 두 양의 변화를 설명한다.",
+      "definitions": [
+        {
+          "id": "m1-04-03-c6",
+          "before": "같은 좌표평면에서 그래프가 가파를수록 값이 {빠르게} 변하고, 완만할수록 {천천히} 변한다.",
+          "after": "같은 좌표평면에서 $x$의 값이 같은 만큼 변할 때, 그래프가 가파를수록 $y$의 값이 {빠르게}(더 크게) 변하고, 완만할수록 {천천히}(더 작게) 변한다."
+        }
+      ],
+      "reason": "같은 좌표평면에서 같은x 변화량에 대한y 변화 크기를 밝혀 그래프 해석 목표를 유지한다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "m1-04-03",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m1-05",
+      "sectionId": "m1-05-07",
+      "beforeHash": "2d82b7e5a1f264de13ae9db3690cc0309159ed3354fa38bbc259e11cb2c59b70",
+      "afterHash": "27d0877d2776aaa20e5cf3dc6197825c6e13029f46a91ea7b36ad824adb43954",
+      "changedIds": [
+        "m1-05-07-c9"
+      ],
+      "question": "점, 선, 면은 서로 어떤 위치에 놓일 수 있을까?",
+      "explanation": "점, 선, 면과 각을 알아보고 평면과 공간에서의 위치 관계를 살핀다. 평행선의 성질을 알아보고, 작도와 삼각형의 합동을 다룬다.",
+      "keyPhrase": "위치 관계와 합동",
+      "goal": "삼각형의 합동 조건을 이용하여 합동을 판별한다.",
+      "definitions": [
+        {
+          "id": "m1-05-07-c9",
+          "before": "두 변과 끼인각이 {아닌} 각이 같거나, {세 각}만 같은 두 삼각형은 합동이라고 할 수 없다.",
+          "after": "두 쌍의 대응변의 길이와 {끼인각이 아닌} 한 각의 크기가 같은 경우나, {세 각}의 크기만 같은 경우에는 두 삼각형이 합동이라고 단정할 수 없다."
+        }
+      ],
+      "reason": "SSA·AAA만으로 합동을 단정하지 못한다는 범위 보강은 삼각형 합동 판별 목표와 맞는다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "m1-05-07",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m1-08",
+      "sectionId": "m1-08-02",
+      "beforeHash": "ba2e2bf90495977b9869f21cd7a2849d2091220555384c298a7632628ad01334",
+      "afterHash": "2b8989dd64060078f2527a566d5e72b736cf572ff761a5cfff7b7e55fdbdd5ea",
+      "changedIds": [
+        "m1-08-02-c1",
+        "m1-08-02-c2",
+        "m1-08-02-c5"
+      ],
+      "question": "많은 자료를 한눈에 알아보려면 어떻게 정리해야 할까?",
+      "explanation": "대푯값을 구하고, 자료를 줄기와 잎 그림, 도수분포표, 히스토그램, 도수분포다각형으로 정리한다. 상대도수로 자료를 비교한다.",
+      "keyPhrase": "대푯값과 도수",
+      "goal": "자료를 줄기와 잎 그림으로 나타낸다.",
+      "definitions": [
+        {
+          "id": "m1-08-02-c1",
+          "before": "변량을 {줄기}와 {잎}으로 나누어 나타낸 그림이 줄기와 잎 그림이다.",
+          "after": "자연수 자료의 일의 자리 숫자를 {잎}으로 정하면 그 앞에 남은 숫자 부분이 {줄기}이다. 한 자리 수의 줄기는 $0$으로 쓴다. 줄기를 세로선 왼쪽에, 같은 줄기의 잎들을 오른쪽에 써서 줄기와 잎 그림을 만든다."
+        },
+        {
+          "id": "m1-08-02-c2",
+          "before": "자연수 자료에서는 세로선의 왼쪽에 쓴 큰 자리 숫자가 {줄기}, 오른쪽에 쓴 {일의 자리} 숫자가 잎이다.",
+          "after": "자연수 자료의 {일의 자리} 숫자를 오른쪽에 쓰는 잎으로 정할 때, 그 앞에 남은 숫자 부분을 {줄기}로 하여 세로선 왼쪽에 쓴다. 한 자리 수의 줄기는 $0$으로 쓴다."
+        },
+        {
+          "id": "m1-08-02-c5",
+          "before": "자료가 많으면 {잎이 많아지고}, 같은 읽는 법에서 변량의 범위가 넓으면 {줄기가 많아져} 그림을 읽기 어려울 수 있다. 이때는 {도수분포표}로 정리하기도 한다.",
+          "after": "자료가 많으면 {잎이 많아지고}, 줄기와 잎을 나누는 자리가 같을 때 자료의 범위가 넓으면 {줄기가 많아질 수 있어} 그림을 읽기 어려울 수 있다. 이때는 {도수분포표}로 정리하기도 한다."
+        }
+      ],
+      "reason": "자연수 자료에서 일의 자리를 잎으로 정한 규칙과 한 자리 수 줄기 0을 명시했다. 범위가 넓을 때 줄기가 반드시 많다고 강제하지 않는 후속 설명이 줄기와 잎 표현 목표에 맞는다.",
+      "reader": "Root Codex actual final chapter question/explanation/key phrase/section goal and changed definitions delta reading",
+      "readAt": "2026-10-07T14:07:44.328Z",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m1-08",
+      "sectionId": "m1-08-06",
+      "beforeHash": "1bc75942087722f6003cdf1286810b26754a92c446d7ca8e89d89c9c1f0b43e5",
+      "afterHash": "333d3f58c4927e5c1a334c6169bbabdecff8a4949a5679e99a99bc78b0357a10",
+      "changedIds": [
+        "m1-08-06-c8"
+      ],
+      "question": "많은 자료를 한눈에 알아보려면 어떻게 정리해야 할까?",
+      "explanation": "대푯값을 구하고, 자료를 줄기와 잎 그림, 도수분포표, 히스토그램, 도수분포다각형으로 정리한다. 상대도수로 자료를 비교한다.",
+      "keyPhrase": "대푯값과 도수",
+      "goal": "상대도수를 구하고 자료를 비교한다.",
+      "definitions": [
+        {
+          "id": "m1-08-06-c8",
+          "before": "상대도수의 분포를 나타낸 꺾은선 그래프와 가로축으로 둘러싸인 부분의 넓이는 {계급의 크기}와 같다.",
+          "after": "계급의 크기가 모두 같을 때, 상대도수의 분포를 나타낸 도수분포다각형 모양의 그래프와 가로축으로 둘러싸인 부분의 넓이는 {계급의 크기}와 같다."
+        }
+      ],
+      "reason": "계급 크기가 같은 상대도수 다각형 그래프 넓이 조건은 상대도수 자료 비교 목표를 보완한다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "m1-08-06",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m2-01",
+      "sectionId": "m2-01-02",
+      "beforeHash": "52cec2daeaf4b0e13a9747a769af5c82336a42c29ca4404d60e9b11e224911ed",
+      "afterHash": "09cf8d49a5c2ec990d8cc1f59baa144a785a555cdc3b8d3e69fbe692f55990ef",
+      "changedIds": [
+        "m2-01-02-c5"
+      ],
+      "question": "유리수는 어떤 소수로 나타나고, 식은 지수법칙으로 어떻게 계산할까?",
+      "explanation": "유리수와 소수의 관계를 알아보고 순환소수를 분수로 나타낸다. 지수법칙을 익혀 단항식과 다항식의 계산을 한다.",
+      "keyPhrase": "순환소수와 지수법칙",
+      "goal": "순환소수를 순환마디를 이용하여 나타낸다.",
+      "definitions": [
+        {
+          "id": "m2-01-02-c5",
+          "before": "소수점 바로 아래부터 순환하고 순환마디의 숫자가 $k$개이면 소수점 아래 $n$번째 숫자는 $n$을 $k$로 나눈 {나머지}로 찾는다.",
+          "after": "소수점 아래 첫째 자리부터 순환하고 순환마디의 숫자가 $k$개이면, $n$번째 숫자는 $n$을 $k$로 나눈 {나머지}로 찾는다. 나머지가 $0$이면 순환마디의 {마지막} 숫자, 아니면 나머지 번째 숫자이다."
+        }
+      ],
+      "reason": "나머지0일 때 순환마디 마지막 숫자를 읽는 설명은 순환마디 이용 목표에 맞는다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "m2-01-02",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m2-01",
+      "sectionId": "m2-01-03",
+      "beforeHash": "86e7a7373e4ea74b1038e9fed4e313231630ca15968ecd5769d518f62764e967",
+      "afterHash": "a6cab00d146fbb496209d4824c63e267a7f46350d615fed34b35049a8248e4ec",
+      "changedIds": [
+        "m2-01-03-c3",
+        "m2-01-03-c4"
+      ],
+      "question": "유리수는 어떤 소수로 나타나고, 식은 지수법칙으로 어떻게 계산할까?",
+      "explanation": "유리수와 소수의 관계를 알아보고 순환소수를 분수로 나타낸다. 지수법칙을 익혀 단항식과 다항식의 계산을 한다.",
+      "keyPhrase": "순환소수와 지수법칙",
+      "goal": "순환소수를 분수로 나타낸다.",
+      "definitions": [
+        {
+          "id": "m2-01-03-c3",
+          "before": "분모에는 순환마디의 숫자 개수만큼 {$9$}를 쓰고, 그 뒤에 순환하지 않는 소수 부분의 숫자 개수만큼 {$0$}을 쓴다.",
+          "after": "순환소수를 분수로 나타낼 때 약분하기 전의 분모에는 순환마디의 숫자 개수만큼 {$9$}를 쓰고, 그 뒤에 소수점 아래에서 순환하지 않는 숫자 개수만큼 {$0$}을 쓴다."
+        },
+        {
+          "id": "m2-01-03-c4",
+          "before": "분자는 소수점을 떼고 순환마디 한 번의 끝까지 읽은 {전체의 수}에서 {되풀이되지 않는 앞부분}이 나타내는 수를 뺀 값이다.",
+          "after": "순환소수에 각각 $10$의 거듭제곱을 곱해 {소수 부분}이 같은 두 식을 만든다. 더 큰 수를 곱한 식에서 다른 식을 빼면, 분자는 두 식의 {정수 부분}끼리 뺀 값으로 구한다."
+        }
+      ],
+      "reason": "약분 전9·0 분모와 같은 소수 부분을 뺀 정수 부분의 차를 밝혀 순환소수 분수 변환 목표와 맞는다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "m2-01-03",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m2-01",
+      "sectionId": "m2-01-05",
+      "beforeHash": "9c995878776eaa7598248421ae7f4aab71302ace6d99de52bc059a0848599f17",
+      "afterHash": "935e417128d6252056a37a816f86e2555112aa4f2601898b63a5446975cf1fae",
+      "changedIds": [
+        "m2-01-05-c7"
+      ],
+      "question": "유리수는 어떤 소수로 나타나고, 식은 지수법칙으로 어떻게 계산할까?",
+      "explanation": "유리수와 소수의 관계를 알아보고 순환소수를 분수로 나타낸다. 지수법칙을 익혀 단항식과 다항식의 계산을 한다.",
+      "keyPhrase": "순환소수와 지수법칙",
+      "goal": "지수법칙을 이용하여 식을 간단히 한다.",
+      "definitions": [
+        {
+          "id": "m2-01-05-c7",
+          "before": "$0$이 아닌 같은 밑의 거듭제곱끼리 나누면 지수를 {뺀다}. 두 지수가 같으면 몫은 {$1$}, 나누는 쪽 지수가 크면 {분수} 꼴이다.",
+          "after": "$a\\ne0$이고 $m$, $n$이 자연수일 때 $a^m\\div a^n$은 큰 지수에서 작은 지수를 {뺀다}. $m>n$이면 $a^{m-n}$, $m=n$이면 {$1$}, $m<n$이면 {분수} 꼴인 $\\frac{1}{a^{n-m}}$이다."
+        }
+      ],
+      "reason": "0 아닌 밑과 자연수 지수 조건 및 세 대소 경우를 명시하여 지수법칙 계산 목표를 유지한다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "m2-01-05",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m2-01",
+      "sectionId": "m2-01-06",
+      "beforeHash": "617d5ff7af4c557dfe036034832d700567a65402206bbde3b627132f3bc5444a",
+      "afterHash": "e17ee160f2ae85cec56b5de6d4b64e2c3898a1c7751b9da12c6bcb88abe0ea90",
+      "changedIds": [
+        "m2-01-06-c5"
+      ],
+      "question": "유리수는 어떤 소수로 나타나고, 식은 지수법칙으로 어떻게 계산할까?",
+      "explanation": "유리수와 소수의 관계를 알아보고 순환소수를 분수로 나타낸다. 지수법칙을 익혀 단항식과 다항식의 계산을 한다.",
+      "keyPhrase": "순환소수와 지수법칙",
+      "goal": "단항식의 곱셈과 나눗셈을 한다.",
+      "definitions": [
+        {
+          "id": "m2-01-06-c5",
+          "before": "곱셈과 나눗셈이 섞인 식은 {거듭제곱}부터 풀고, 나누는 식을 {역수}로 뒤집어 곱셈만 남긴 뒤 계산한다.",
+          "after": "거듭제곱이 있는 단항식의 곱셈과 나눗셈에서는 {거듭제곱}을 풀어 계산할 수 있다. 나누는 단항식이 $0$이 아니면 그 {역수}를 곱하는 식으로 바꾸어 계수끼리, 문자끼리 계산한다."
+        }
+      ],
+      "reason": "거듭제곱과0 아닌 단항식의 역수 곱셈을 연결해 단항식 곱셈·나눗셈 목표와 맞는다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "m2-01-06",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m2-02",
+      "sectionId": "m2-02-03",
+      "beforeHash": "8c7af75b1896ec77b6f49613f7b2103df8d00a72344271060f6ae58a050a46b3",
+      "afterHash": "3712db0d6cc29752e8df26c7e0ddece24f205553c1946f11763ba7a945a56307",
+      "changedIds": [
+        "m2-02-03-c2"
+      ],
+      "question": "두 수나 두 식의 크기 관계는 식으로 어떻게 나타내고 풀까?",
+      "explanation": "부등식과 부등식의 성질을 알아보고 일차부등식을 푼다. 수, 가격, 속력, 농도 등 여러 상황을 일차부등식으로 해결한다.",
+      "keyPhrase": "부등식의 성질",
+      "goal": "일차부등식의 해에 대한 조건을 이용하여 문제를 해결한다.",
+      "definitions": [
+        {
+          "id": "m2-02-03-c2",
+          "before": "해가 주어지면 미지의 상수를 둔 채로 부등식을 풀어, 구한 해를 {주어진 해}와 {비교}한다.",
+          "after": "해가 주어지면 미지의 상수를 둔 채로 부등식을 풀고, 구한 해의 경계값과 부등호 방향을 {주어진 해}와 {비교}하여 둘이 같아지도록 상수를 정한다."
+        }
+      ],
+      "reason": "해의 경계값과 부등호 방향을 함께 비교하는 교정은 일차부등식 해 조건 문제 목표와 맞는다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "m2-02-03",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m2-03",
+      "sectionId": "m2-03-03",
+      "beforeHash": "25d3d7d7d1bec8640f046fe564a8da047bfa4f637edbb5ef8e18b28689260988",
+      "afterHash": "392e36ea4342e7a971ae2af931519bcd948b31f84f88473033d75df5b64e49e1",
+      "changedIds": [
+        "m2-03-03-c3"
+      ],
+      "question": "미지수가 두 개일 때 해는 어떻게 구할까?",
+      "explanation": "미지수가 두 개인 일차방정식과 연립방정식을 알아보고 대입법과 가감법으로 푼다. 여러 상황을 연립방정식으로 해결한다.",
+      "keyPhrase": "대입법과 가감법",
+      "goal": "괄호가 있거나 계수가 분수, 소수인 연립방정식을 푼다.",
+      "definitions": [
+        {
+          "id": "m2-03-03-c3",
+          "before": "계수가 소수이면 양변에 {$10$의 거듭제곱}을 곱해 계수를 {정수}로 고친다.",
+          "after": "방정식의 계수나 상수항이 {유한소수}이면 가장 긴 소수 자릿수에 맞춰 $10$, $100$, $1000$, … 중 알맞은 수를 양변에 곱해 계수와 상수항을 모두 {정수}로 고친다."
+        }
+      ],
+      "reason": "계수뿐 아니라 상수항도 유한소수일 때 자릿수에 맞는 10의 거듭제곱으로 정수화한다. 분수·소수 계수의 연립방정식 풀이 목표와 맞는다.",
+      "reader": "Root Codex actual final chapter question/explanation/key phrase/section goal and changed definitions delta reading",
+      "readAt": "2026-10-07T14:07:44.328Z",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m2-03",
+      "sectionId": "m2-03-09",
+      "beforeHash": "6a7ef9037ec1b438939c9e764b5622e187b027eb2ce65acbde54c0020165eaf3",
+      "afterHash": "81839d2be809749159604e6e61480b97ce56ea253e0208b0b848e4935afa2984",
+      "changedIds": [
+        "m2-03-09-c3"
+      ],
+      "question": "미지수가 두 개일 때 해는 어떻게 구할까?",
+      "explanation": "미지수가 두 개인 일차방정식과 연립방정식을 알아보고 대입법과 가감법으로 푼다. 여러 상황을 연립방정식으로 해결한다.",
+      "keyPhrase": "대입법과 가감법",
+      "goal": "농도, 비율, 합금에 대한 문제를 연립방정식으로 해결한다.",
+      "definitions": [
+        {
+          "id": "m2-03-09-c3",
+          "before": "전체의 $\\frac{1}{3}$과 같은 비율은 전체의 양에 그 {비율}을 {곱해서} 식으로 나타낸다.",
+          "after": "전체의 $\\frac{1}{3}$처럼 비율로 주어진 부분의 양은 전체의 양에 그 {비율}을 {곱해서} 식으로 나타낸다."
+        }
+      ],
+      "reason": "비율 자체와 부분 양을 구별해 전체에 비율을 곱한다는 교정은 농도·비율 연립방정식 목표와 맞는다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "m2-03-09",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m2-04",
+      "sectionId": "m2-04-08",
+      "beforeHash": "ff0787a6a38a43a49548af668237c2401e876dd75ac1e1a22a982fb9bd101c85",
+      "afterHash": "97ce65926ffd1594462cb8d54728c40c304cc30b1d1beb0cb5bbc9b43281d89a",
+      "changedIds": [
+        "m2-04-08-c8"
+      ],
+      "question": "일차함수의 그래프는 무엇을 알면 그릴 수 있을까?",
+      "explanation": "함수와 함숫값, 일차함수를 알아보고 일차함수의 그래프를 절편과 기울기로 그린다. 일차함수의 식을 구하여 활용하고, 일차함수와 일차방정식, 연립방정식의 해 사이의 관계를 살핀다.",
+      "keyPhrase": "기울기와 절편",
+      "goal": "일차함수와 일차방정식의 관계를 설명한다.",
+      "definitions": [
+        {
+          "id": "m2-04-08-c8",
+          "before": "$ax+by+c=0$($b\\ne0$)의 그래프의 기울기는 $-\\frac{a}{b}$, $y$절편은 $-\\frac{c}{b}$이므로 계수의 {부호}로 그래프의 {모양}을 알 수 있다.",
+          "after": "$ax+by+c=0$($b\\ne0$)의 {기울기}는 $-\\frac{a}{b}$, {$y$절편}은 $-\\frac{c}{b}$이다. $a$, $b$, $c$ 각각의 부호로 두 비의 부호를 구하면 그래프의 방향과 $y$축 교점의 위치를 판단할 수 있다."
+        }
+      ],
+      "reason": "b가 0이 아닌 일반식에서 기울기와 y절편의 비를 각각 명시하여 방향과 교점 위치를 판단한다. 일차함수와 일차방정식의 관계 목표와 맞는다.",
+      "reader": "Root Codex actual final chapter question/explanation/key phrase/section goal and changed definitions delta reading",
+      "readAt": "2026-10-07T14:07:44.328Z",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m2-04",
+      "sectionId": "m2-04-09",
+      "beforeHash": "460e63147f2159074c69a903b6485dcd4935e5af077c2d91b149c4a12834f799",
+      "afterHash": "3c6f1251942c7a1eabbb92c0c39fcdc25ee05fbd5a63cf9bbda3329199d37d3b",
+      "changedIds": [
+        "m2-04-09-c8"
+      ],
+      "question": "일차함수의 그래프는 무엇을 알면 그릴 수 있을까?",
+      "explanation": "함수와 함숫값, 일차함수를 알아보고 일차함수의 그래프를 절편과 기울기로 그린다. 일차함수의 식을 구하여 활용하고, 일차함수와 일차방정식, 연립방정식의 해 사이의 관계를 살핀다.",
+      "keyPhrase": "기울기와 절편",
+      "goal": "두 일차함수의 그래프로 연립방정식의 해를 구한다.",
+      "definitions": [
+        {
+          "id": "m2-04-09-c8",
+          "before": "직선들로 둘러싸인 도형의 넓이는 직선끼리의 {교점}과 축과 만나는 점을 구해 {꼭짓점}의 좌표부터 찾는다.",
+          "after": "직선들로 둘러싸인 도형의 넓이를 구하려면, 경계를 이루는 직선끼리의 {교점}을 구해 {꼭짓점}의 좌표부터 찾는다. 좌표축도 경계인 경우에는 그 축과의 교점도 구한다."
+        }
+      ],
+      "reason": "경계를 이루는 직선과 축이 실제 경계인 경우의 교점을 구별해 그래프 교점 활용 목표를 유지한다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "m2-04-09",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m2-05",
+      "sectionId": "m2-05-02",
+      "beforeHash": "eb6779c83ded0481bcafaad0e2b9432ba1ba843949c061cdaedc7cc34dca33d2",
+      "afterHash": "994fb949d181f77aaf25a63d683478e2e634ced571ed6d8a364d07b1bd2273d7",
+      "changedIds": [
+        "m2-05-02-c3"
+      ],
+      "question": "도형의 성질이 참이라는 것은 어떻게 밝힐 수 있을까?",
+      "explanation": "이등변삼각형의 성질과 직각삼각형의 합동 조건을 알아보고 삼각형의 외심과 내심을 살핀다. 평행사변형과 여러 가지 사각형의 성질과 조건을 다룬다.",
+      "keyPhrase": "증명과 조건",
+      "goal": "직각삼각형의 합동 조건을 이용한다.",
+      "definitions": [
+        {
+          "id": "m2-05-02-c3",
+          "before": "$\\mathrm{R}$는 {직각}, $\\mathrm{H}$는 {빗변}, $\\mathrm{A}$는 각, $\\mathrm{S}$는 {변}을 뜻하는 영어 낱말의 첫 글자이다.",
+          "after": "직각삼각형의 합동 조건 이름($\\mathrm{RHA}$ 합동, $\\mathrm{RHS}$ 합동)에서 $\\mathrm{R}$는 {직각}, $\\mathrm{H}$는 {빗변}, $\\mathrm{A}$는 각, $\\mathrm{S}$는 {변}을 뜻하는 영어 낱말의 첫 글자이다."
+        }
+      ],
+      "reason": "RHA·RHS 이름 안의 영어 첫 글자를 특정한 교정은 직각삼각형 합동 조건 목표와 맞는다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "m2-05-02",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m2-05",
+      "sectionId": "m2-05-05",
+      "beforeHash": "0ea5ed705d09361b4d4fcc8e3b150cdf218d7e29a44beb97cb16f053281691f2",
+      "afterHash": "2360c4c9e206e4ecacc1c4d752da456935d5135818355d2a1e3df4910cc5e836",
+      "changedIds": [
+        "m2-05-05-c8"
+      ],
+      "question": "도형의 성질이 참이라는 것은 어떻게 밝힐 수 있을까?",
+      "explanation": "이등변삼각형의 성질과 직각삼각형의 합동 조건을 알아보고 삼각형의 외심과 내심을 살핀다. 평행사변형과 여러 가지 사각형의 성질과 조건을 다룬다.",
+      "keyPhrase": "증명과 조건",
+      "goal": "평행사변형의 성질을 설명한다.",
+      "definitions": [
+        {
+          "id": "m2-05-05-c8",
+          "before": "평행사변형에서 이웃한 두 각을 더하면 {$180^\\circ$}가 된다. 한 각의 {동위각}이 이웃한 각과 붙어 $180^\\circ$인 평각을 이루기 때문이다.",
+          "after": "평행사변형에서 이웃한 두 각을 더하면 {$180^\\circ$}가 된다. 두 각이 함께 낀 변을 한쪽으로 늘이면 마주 보는 두 변이 평행하므로, 한 각의 {동위각}이 이웃한 각과 붙어 $180^\\circ$인 평각을 이루기 때문이다."
+        }
+      ],
+      "reason": "변을 늘인 동위각과 이웃한 각의180도 관계를 구체화하여 평행사변형 성질 설명 목표와 맞는다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "m2-05-05",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m2-05",
+      "sectionId": "m2-05-08",
+      "beforeHash": "484414ab3ab23eb66d67959bf4b024267b69c33bdff45d0afd507fe374dd474a",
+      "afterHash": "4546c53c7d895164c47b638c149530e6d35de03030054473266699dabbf3e7a0",
+      "changedIds": [
+        "m2-05-08-c1"
+      ],
+      "question": "도형의 성질이 참이라는 것은 어떻게 밝힐 수 있을까?",
+      "explanation": "이등변삼각형의 성질과 직각삼각형의 합동 조건을 알아보고 삼각형의 외심과 내심을 살핀다. 평행사변형과 여러 가지 사각형의 성질과 조건을 다룬다.",
+      "keyPhrase": "증명과 조건",
+      "goal": "등변사다리꼴의 성질과 여러 가지 사각형 사이의 관계를 설명한다.",
+      "definitions": [
+        {
+          "id": "m2-05-08-c1",
+          "before": "마주 보는 변 가운데 {한 쌍}이 서로 {평행}이면 그 사각형이 사다리꼴이다.",
+          "after": "마주 보는 변 가운데 적어도 한 쌍이 서로 {평행}인 사각형을 사다리꼴이라 한다. 평행한 변이 두 쌍인 평행사변형도 사다리꼴에 포함된다."
+        }
+      ],
+      "reason": "적어도 한 쌍 평행으로 정의하고 평행사변형 포함을 밝혀 사각형 분류 관계 목표와 맞는다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "m2-05-08",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m2-05",
+      "sectionId": "m2-05-09",
+      "beforeHash": "498f73f42be8cd2325d6ef375e2afe59a9969df6200529b60e17aadee89e9bbb",
+      "afterHash": "036c1d632e8baee00fb19ee515341489bc804c7664eeb4c30062e568a7747672",
+      "changedIds": [
+        "m2-05-09-c1",
+        "m2-05-09-c7"
+      ],
+      "question": "도형의 성질이 참이라는 것은 어떻게 밝힐 수 있을까?",
+      "explanation": "이등변삼각형의 성질과 직각삼각형의 합동 조건을 알아보고 삼각형의 외심과 내심을 살핀다. 평행사변형과 여러 가지 사각형의 성질과 조건을 다룬다.",
+      "keyPhrase": "증명과 조건",
+      "goal": "평행선을 이용하여 넓이가 같은 삼각형을 찾는다.",
+      "definitions": [
+        {
+          "id": "m2-05-09-c1",
+          "before": "평행한 두 직선 사이의 {거리}는 어디에서 재어도 {일정}하다.",
+          "after": "평행한 두 직선 사이에 수선을 그어 잰 거리는 위치와 관계없이 {일정}하다."
+        },
+        {
+          "id": "m2-05-09-c7",
+          "before": "사각형의 한 꼭짓점을 지나고 {대각선}에 평행한 직선을 그으면 사각형과 넓이가 같은 {삼각형}을 만들 수 있다.",
+          "after": "볼록한 사각형 $ABCD$에서 $D$를 지나고 대각선 $AC$에 평행한 직선을 그린다. 변 $BC$를 $C$ 쪽으로 늘인 직선과 만나는 점을 $E$라 하면 사각형과 넓이가 같은 도형은 {$\\triangle ABE$}이다. $\\triangle ACD$와 $\\triangle ACE$는 밑변 $AC$가 공통이고 높이가 같으며, 두 도형에 $\\triangle ABC$를 더하면 넓이가 같기 때문이다."
+        }
+      ],
+      "reason": "수선 거리 및 볼록사각형의 대각선 평행선으로 ABE를 만드는 구체 넓이 증명은 등적 변형 목표와 맞는다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "m2-05-09",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m2-07",
+      "sectionId": "m2-07-01",
+      "beforeHash": "f6d1137c6b44d7e7d635bc87492e53e045b5d72a626a2c6e09899a06c8a0bc6e",
+      "afterHash": "d8a6f6ba6b9dc6fc9874d56c44a93fe46b743f03de48faa3314c7434643a8abf",
+      "changedIds": [
+        "m2-07-01-c5",
+        "m2-07-01-c6"
+      ],
+      "question": "평행선과 닮음을 이용하면 어떤 길이와 넓이를 구할 수 있을까?",
+      "explanation": "삼각형과 평행선에서 선분의 길이의 비를 구하고, 삼각형의 중점을 연결한 선분과 무게중심의 성질을 알아본다. 닮은 도형의 넓이의 비와 부피의 비를 구한다.",
+      "keyPhrase": "평행선 사이의 선분의 길이의 비",
+      "goal": "삼각형에서 평행선 사이의 선분의 길이의 비를 구한다.",
+      "definitions": [
+        {
+          "id": "m2-07-01-c5",
+          "before": "두 변을 {같은 비}로 나누는 두 점을 이으면, 그 선분과 셋째 변은 {평행}이 된다.",
+          "after": "삼각형의 두 변의 내부를 같은 꼭짓점 쪽에서부터 {같은 비}로 나누는 두 점을 이으면, 그 선분과 셋째 변은 {평행}이 된다."
+        },
+        {
+          "id": "m2-07-01-c6",
+          "before": "위 · 아래로 잘린 조각끼리의 비는 평행한 두 선분의 길이의 비와 {같지 않다}. 평행한 선분의 비는 {꼭짓점}에서부터 잰 길이의 비와 같다.",
+          "after": "$\\triangle ABC$의 변 $AB$, $AC$의 내부에 각각 점 $D$, $E$가 있고 $DE\\parallel BC$이면, 평행한 두 선분의 길이의 비 $DE:BC$는 꼭짓점 $A$에서부터 잰 {$AD:AB$}와 같다. $AD:DB$는 변 전체 대신 남은 조각을 쓰므로 이 닮음비와 같지 않다."
+        }
+      ],
+      "reason": "같은 꼭짓점부터의 내부 분할비 및 부분대전체 AD:AB를 구별해 평행선의 선분비 목표와 맞는다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "m2-07-01",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m2-07",
+      "sectionId": "m2-07-04",
+      "beforeHash": "cdd465e66efcb495583778762b8a69a5da230db01bc4b4a537c0fcfedb846f9c",
+      "afterHash": "022efa7a8af9c444c3105fa09d97e80048c5bce9a57da5b81e5ce58b704ddc61",
+      "changedIds": [
+        "m2-07-04-c3",
+        "m2-07-04-c4"
+      ],
+      "question": "평행선과 닮음을 이용하면 어떤 길이와 넓이를 구할 수 있을까?",
+      "explanation": "삼각형과 평행선에서 선분의 길이의 비를 구하고, 삼각형의 중점을 연결한 선분과 무게중심의 성질을 알아본다. 닮은 도형의 넓이의 비와 부피의 비를 구한다.",
+      "keyPhrase": "평행선 사이의 선분의 길이의 비",
+      "goal": "삼각형의 두 변의 중점을 연결한 선분의 성질을 이용한다.",
+      "definitions": [
+        {
+          "id": "m2-07-04-c3",
+          "before": "한 변의 중점을 지나 다른 한 변에 {평행}하게 그은 직선은 나머지 변의 {중점}을 지난다.",
+          "after": "삼각형에서 한 변의 중점을 지나 다른 한 변에 {평행}하게 그은 직선은 나머지 한 변의 {중점}을 지난다."
+        },
+        {
+          "id": "m2-07-04-c4",
+          "before": "사다리꼴에서 평행하지 않은 두 변의 중점을 이은 선분은 두 밑변과 {평행}하고, 길이는 두 밑변의 길이의 {합의 절반}이다.",
+          "after": "사다리꼴에서 두 밑변을 제외한 나머지 두 변의 중점을 이은 선분은 두 밑변과 {평행}하고, 길이는 두 밑변의 길이의 {합의 절반}이다."
+        }
+      ],
+      "reason": "삼각형과 사다리꼴의 실제 중점 위치를 밝혀 중점 연결 선분의 평행·길이 관계 목표를 유지한다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "m2-07-04",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m2-07",
+      "sectionId": "m2-07-06",
+      "beforeHash": "db6ad7fb087f5ca423559958df0f8774b8b0697e65c51b5b290cc41d0e0e7ec1",
+      "afterHash": "60b5d4192eed1d77e84acc7514ee156b9dc1fed9d24b5f2dc0a3dd34681c5cc8",
+      "changedIds": [
+        "m2-07-06-c3",
+        "m2-07-06-c8"
+      ],
+      "question": "평행선과 닮음을 이용하면 어떤 길이와 넓이를 구할 수 있을까?",
+      "explanation": "삼각형과 평행선에서 선분의 길이의 비를 구하고, 삼각형의 중점을 연결한 선분과 무게중심의 성질을 알아본다. 닮은 도형의 넓이의 비와 부피의 비를 구한다.",
+      "keyPhrase": "평행선 사이의 선분의 길이의 비",
+      "goal": "닮은 도형의 넓이의 비와 부피의 비를 구한다.",
+      "definitions": [
+        {
+          "id": "m2-07-06-c3",
+          "before": "축도에서의 길이를 {실제 길이}로 나눈 비율이 {축척}이다.",
+          "after": "길이의 단위를 같게 맞춘 뒤, 축도에서의 길이를 {실제 길이}로 나눈 비율이 {축척}이다."
+        },
+        {
+          "id": "m2-07-06-c8",
+          "before": "닮은 두 평면도형에서는 서로 수직인 {두 방향}의 길이가 모두 같은 비율로 바뀌어, 길이가 $k$배가 되면 넓이는 {$k$의 제곱} 배가 된다.",
+          "after": "직사각형의 가로와 세로를 모두 $k$배 하면($k>0$), 넓이는 $(k\\times\\text{가로})\\times(k\\times\\text{세로})$이므로 처음 넓이의 {$k^2$}배가 된다. 닮은 다른 평면도형도 모든 길이가 $k$배일 때 넓이는 $k^2$배가 된다."
+        }
+      ],
+      "reason": "축척의 같은 단위와 가로·세로k배에서 넓이k제곱이라는 설명은 닮은 도형의 넓이·부피비 목표와 맞는다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "m2-07-06",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m2-08",
+      "sectionId": "m2-08-01",
+      "beforeHash": "5240304d36f19e9cb11601e372d1a643664928224160bf0752d14e8102c95366",
+      "afterHash": "7f4ef710f71893d05b93614531efd57771abbacd7ecfcf01a8daa559b4fe75ed",
+      "changedIds": [
+        "m2-08-01-c1",
+        "m2-08-01-c9"
+      ],
+      "question": "직각삼각형의 세 변의 길이 사이에는 어떤 관계가 있을까?",
+      "explanation": "피타고라스 정리를 알아보고 여러 가지 방법으로 설명한다. 피타고라스 정리를 활용하여 도형의 길이를 구한다.",
+      "keyPhrase": "직각삼각형과 피타고라스 정리",
+      "goal": "피타고라스 정리를 설명하고 직각삼각형의 변의 길이를 구한다.",
+      "definitions": [
+        {
+          "id": "m2-08-01-c1",
+          "before": "직각삼각형의 빗변이 아닌 두 변에서 길이의 제곱을 구해 더하면 {빗변}의 길이의 {제곱}이 된다. 식으로는 $a^2+b^2=c^2$이다.",
+          "after": "직각삼각형에서 직각을 낀 두 변의 길이를 각각 제곱하여 더하면 {빗변}의 길이의 {제곱}과 같다. 직각을 낀 두 변의 길이를 $a$, $b$, 빗변의 길이를 $c$라 하면 $a^2+b^2=c^2$이다."
+        },
+        {
+          "id": "m2-08-01-c9",
+          "before": "가장 긴 변의 길이가 $c$일 때 $c^2$이 $a^2+b^2$보다 작으면 {예각}삼각형, 같으면 {직각}삼각형, 크면 {둔각}삼각형이다.",
+          "after": "삼각형의 가장 긴 변의 길이가 $c$이고 나머지 두 변의 길이가 $a$, $b$일 때, $c^2$이 $a^2+b^2$보다 작으면 {예각}삼각형, 같으면 {직각}삼각형, 크면 {둔각}삼각형이다."
+        }
+      ],
+      "reason": "직각을 낀 두 변과 빗변의 이름 및 이미 삼각형인 세 변 조건을 밝혀 피타고라스 정리·판별 목표에 맞는다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "m2-08-01",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m2-08",
+      "sectionId": "m2-08-02",
+      "beforeHash": "e8a6f02e445305be392fcc9148b537476134fed2c2c203dfce739d5d28383055",
+      "afterHash": "f9d2e0da1aea7e2aa24538d35bf9813c3fc5d23e0c07cecf8536ad3e4609de36",
+      "changedIds": [
+        "m2-08-02-c2",
+        "m2-08-02-c6",
+        "m2-08-02-c7",
+        "m2-08-02-c9"
+      ],
+      "question": "직각삼각형의 세 변의 길이 사이에는 어떤 관계가 있을까?",
+      "explanation": "피타고라스 정리를 알아보고 여러 가지 방법으로 설명한다. 피타고라스 정리를 활용하여 도형의 길이를 구한다.",
+      "keyPhrase": "직각삼각형과 피타고라스 정리",
+      "goal": "피타고라스 정리를 활용하여 도형의 길이를 구한다.",
+      "definitions": [
+        {
+          "id": "m2-08-02-c2",
+          "before": "이등변삼각형의 높이는 꼭지각에서 밑변에 수선을 그어 생기는 {직각삼각형}으로 구한다. 이때 수선은 밑변을 {이등분}한다.",
+          "after": "이등변삼각형의 꼭지각의 꼭짓점에서 밑변에 수선을 그으면 {직각삼각형} 두 개가 생긴다. 이때 수선은 밑변을 {이등분}한다. 같은 두 변의 길이가 $a$, 밑변의 길이가 $b$, 높이가 $h$이면 $h^2=a^2-(b/2)^2$이다."
+        },
+        {
+          "id": "m2-08-02-c6",
+          "before": "직각삼각형의 직각을 낀 두 변 위에 점을 하나씩 잡으면, 두 점을 이은 선분과 {빗변}에서 길이의 제곱의 합은 각 점과 맞은편 꼭짓점을 {엇갈려 이은} 두 선분에서의 그 합과 같다.",
+          "after": "$\\angle A=90^\\circ$인 직각삼각형 $ABC$에서 변 $AB$, $AC$의 내부에 각각 점 $D$, $E$를 잡으면 $DE^2+BC^2=$ {$BE^2+CD^2$}이다. 네 직각삼각형에 피타고라스 정리를 쓰면 양쪽 모두 $AD^2+AE^2+AB^2+AC^2$이 된다."
+        },
+        {
+          "id": "m2-08-02-c7",
+          "before": "직사각형 안의 한 점에서 네 꼭짓점까지 선분을 그으면, {마주 보는} 두 꼭짓점까지의 길이의 {제곱의 합}이 서로 같다.",
+          "after": "직사각형 안의 한 점에서 마주 보는 두 꼭짓점까지의 거리의 {제곱을 더한 값}은 나머지 두 꼭짓점까지의 거리의 제곱을 더한 값과 같다."
+        },
+        {
+          "id": "m2-08-02-c9",
+          "before": "입체도형의 겉면을 따라 두 점을 잇는 가장 짧은 길은, 지나는 면들을 펼친 전개도에서 그 면들을 벗어나지 않고 두 점을 곧게 이은 {선분}이다. 지나는 면을 고르는 방법이 여럿이면 그 가운데 {가장 짧은 것}을 택한다.",
+          "after": "직육면체의 겉면을 따라 두 점을 잇는 가장 짧은 길은 지나는 면들을 펼친 전개도에서 두 점을 곧게 이은 {선분}으로 구한다. 이 선분이 펼친 면들을 벗어나지 않아야 한다. 지나는 면을 고르는 방법이 여럿이면 가능한 경로들의 길이를 비교하여 가장 짧은 것을 택한다."
+        }
+      ],
+      "reason": "이등변삼각형 수선의 중점, 직각삼각형 내부 두 점의 제곱합 관계, 직사각형 대각 꼭짓점 거리합, 직육면체의 가능한 펼친 면 경로를 각각 실제로 읽었다. 피타고라스로 길이를 구하는 목표와 맞고 점·면·경로 조건을 유지한다.",
+      "reader": "Root Codex actual final chapter question/explanation/key phrase/section goal and changed definitions delta reading",
+      "readAt": "2026-10-07T14:07:44.328Z",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m2-09",
+      "sectionId": "m2-09-02",
+      "beforeHash": "5549cdb70e21e46f32c86c3ff5383628c1652c7d4d05caa12e23236367945482",
+      "afterHash": "029bc27f727fcef7e4b4455a4645895bfcd9191e0d9409264eccbc37d651dc32",
+      "changedIds": [
+        "m2-09-02-c4"
+      ],
+      "question": "일어날 수 있는 경우는 어떻게 빠짐없이 셀까?",
+      "explanation": "사건과 경우의 수를 알아보고 여러 가지 경우의 수를 구한다. 확률의 뜻과 성질을 알아보고 확률을 계산한다.",
+      "keyPhrase": "경우의 수와 확률",
+      "goal": "한 줄로 세우거나 대표를 뽑는 경우의 수를 구한다.",
+      "definitions": [
+        {
+          "id": "m2-09-02-c4",
+          "before": "$n$명 중 자격이 {다른} 대표 $2$명을 뽑는 경우의 수는 $n\\times(n-1)$이다. 누가 어느 {자리}를 맡는지가 구별되기 때문이다.",
+          "after": "서로 다른 $n$명 중 회장과 부회장처럼 역할이 다른 두 대표를 뽑고 한 사람이 두 자리를 맡지 못하면($n\\ge2$), 경우의 수는 {$n(n-1)$}이다. 같은 두 사람이더라도 역할을 바꾸면 다른 결과로 센다."
+        }
+      ],
+      "reason": "서로 다른 역할과 겸임 불가 및n2 이상을 명시한 대표 뽑기 경우의 수가 목표와 맞는다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "m2-09-02",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m2-09",
+      "sectionId": "m2-09-03",
+      "beforeHash": "2d65e42a08ae10d44a49a6e84119a6513210b89a3f271a3e3a559ba27a188dc8",
+      "afterHash": "ff08fe008d13753c89c31dbab7153c19ebdb3e63cbe24eb1ccce349c45805bcf",
+      "changedIds": [
+        "m2-09-03-c1"
+      ],
+      "question": "일어날 수 있는 경우는 어떻게 빠짐없이 셀까?",
+      "explanation": "사건과 경우의 수를 알아보고 여러 가지 경우의 수를 구한다. 확률의 뜻과 성질을 알아보고 확률을 계산한다.",
+      "keyPhrase": "경우의 수와 확률",
+      "goal": "확률의 뜻과 성질을 설명한다.",
+      "definitions": [
+        {
+          "id": "m2-09-03-c1",
+          "before": "같은 실험을 아주 여러 번 되풀이하면 한 사건의 {상대도수}가 {일정한 값}에 가까워지는데, 그 값이 그 사건의 확률이다.",
+          "after": "같은 조건에서 같은 실험을 아주 여러 번 되풀이하면 한 사건이 일어난 {상대도수}가 {일정한 값}에 가까워지는데, 그 값이 그 사건의 확률이다."
+        }
+      ],
+      "reason": "같은 조건 반복의 상대도수를 명시해 확률 의미 설명 목표와 맞는다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "m2-09-03",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m2-09",
+      "sectionId": "m2-09-04",
+      "beforeHash": "5dbb1190448d71ec03e886990fe2f88e36ba45a89fef14f49979aa7d87a7b05f",
+      "afterHash": "84d224c902910d693ed3e3abfb61fcdd104c3276dd9c7b70a1fb4f1399824d9f",
+      "changedIds": [
+        "m2-09-04-c5",
+        "m2-09-04-c6"
+      ],
+      "question": "일어날 수 있는 경우는 어떻게 빠짐없이 셀까?",
+      "explanation": "사건과 경우의 수를 알아보고 여러 가지 경우의 수를 구한다. 확률의 뜻과 성질을 알아보고 확률을 계산한다.",
+      "keyPhrase": "경우의 수와 확률",
+      "goal": "확률의 덧셈과 곱셈을 가려 확률을 계산한다.",
+      "definitions": [
+        {
+          "id": "m2-09-04-c5",
+          "before": "서로 다른 색이 섞인 공을 매번 같은 가능성으로 뽑되 돌려놓지 않으면, 전체 개수가 {하나 줄어들므로} 방금 뽑힌 색이 또 나올 확률은 처음과 {달라진다}.",
+          "after": "서로 다른 색이 섞인 공을 매번 같은 가능성으로 뽑되 돌려놓지 않으면, 전체 공과 방금 뽑힌 색의 공이 각각 {하나씩 줄어들므로} 그 색이 다시 나올 확률은 처음과 {달라진다}. 이때 확률은 처음보다 작아진다."
+        },
+        {
+          "id": "m2-09-04-c6",
+          "before": "각 시행의 결과가 서로 영향을 주지 않을 때, 적어도 한 번 일어날 확률은 $1$에서 {매번 일어나지 않을} 확률의 {곱}을 뺀 값이다.",
+          "after": "여러 번 시도한 결과가 서로 영향을 주지 않을 때, 적어도 한 번 일어날 확률은 $1$에서 {매번 일어나지 않을} 확률, 곧 각 시도에서 일어나지 않을 확률을 모두 {곱}한 값을 뺀 값이다."
+        }
+      ],
+      "reason": "비복원 시 뽑힌 색의 공과 전체 공 감소 및 독립된 각 실패확률의 곱을 밝혀 확률 계산 목표와 맞는다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "m2-09-04",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m3-01",
+      "sectionId": "m3-01-03",
+      "beforeHash": "507a6617bfdf5f898267565e9981c2f112a9b26bd6704fbd304d205a4ec076e9",
+      "afterHash": "c658bba8014fa80b3faedb2b0fa5d13b91dcbb266eb8c249ad796a2070cd6d42",
+      "changedIds": [
+        "m3-01-03-c1",
+        "m3-01-03-c2",
+        "m3-01-03-c3"
+      ],
+      "question": "제곱하여 어떤 수가 되는 수는 어떻게 나타낼까?",
+      "explanation": "제곱근의 뜻과 성질을 알아보고 무리수와 실수를 살핀다. 근호를 포함한 식의 계산을 한다.",
+      "keyPhrase": "제곱근과 실수",
+      "goal": "근호를 포함한 식을 계산한다.",
+      "definitions": [
+        {
+          "id": "m3-01-03-c1",
+          "before": "근호끼리 곱할 때는 근호 안의 수끼리 {곱해서} 근호 하나로 쓴다: $\\sqrt{2}\\times\\sqrt{3}=\\sqrt{6}$.",
+          "after": "$a>0$, $b>0$일 때 근호끼리 곱하면 근호 안의 수끼리 {곱해서} 근호 하나로 쓴다: $\\sqrt{a}\\times\\sqrt{b}=\\sqrt{ab}$, 예를 들어 $\\sqrt{2}\\times\\sqrt{3}=\\sqrt{6}$."
+        },
+        {
+          "id": "m3-01-03-c2",
+          "before": "근호끼리 나눌 때는 근호 안의 수끼리 {나누어} 근호 하나로 쓴다: $\\sqrt{6}\\div\\sqrt{2}=\\sqrt{3}$.",
+          "after": "$a>0$, $b>0$일 때 근호끼리 나누면 근호 안의 수끼리 {나누어} 근호 하나로 쓴다: $\\sqrt{a}\\div\\sqrt{b}=\\sqrt{\\frac{a}{b}}$, 예를 들어 $\\sqrt{6}\\div\\sqrt{2}=\\sqrt{3}$."
+        },
+        {
+          "id": "m3-01-03-c3",
+          "before": "근호 안의 수에 {제곱}인 인수가 들어 있으면 그 인수를 근호 {밖}으로 빼낸다: $\\sqrt{8}=2\\sqrt{2}$.",
+          "after": "근호 안의 수에 $1$보다 큰 {제곱수}인 인수가 있으면 그 인수의 양의 제곱근을 근호 밖으로 꺼낸다. 예를 들어 $\\sqrt8=\\sqrt{2^2\\times2}=2\\sqrt2$이다. 일반적으로 $a>0$, $b>0$이면 $\\sqrt{a^2b}=a\\sqrt b$이다."
+        }
+      ],
+      "reason": "양수 근호 계산과 제곱수 인수의 양의 제곱근을 꺼내는 교정은 근호식 계산 목표를 유지한다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "m3-01-03",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m3-02",
+      "sectionId": "m3-02-02",
+      "beforeHash": "9d279ea375fe0dac19110b89861c203752bc94798314233c29e4b003fc759ab4",
+      "afterHash": "54661e2d005988dcd623dcd41a49ce526502121c37bb78e67919ba58438267a8",
+      "changedIds": [
+        "m3-02-02-c9"
+      ],
+      "question": "다항식의 곱을 전개한 식은 다시 곱으로 나타낼 수 있을까?",
+      "explanation": "곱셈 공식으로 다항식의 곱셈을 하고, 다항식을 인수분해한다. 인수분해를 수의 계산과 식의 값에 이용한다.",
+      "keyPhrase": "곱셈 공식과 인수분해",
+      "goal": "다항식을 인수분해한다.",
+      "definitions": [
+        {
+          "id": "m3-02-02-c9",
+          "before": "$acx^2+(ad+bc)x+bd$는 $x^2$의 계수와 상수항을 각각 두 수의 곱 $a\\times c$, $b\\times d$로 쪼갠 뒤, {대각선}으로 곱해 더한 $ad+bc$가 {$x$의 계수}가 되는 짝을 찾아 $(ax+b)(cx+d)$로 쓴다.",
+          "after": "$acx^2+(ad+bc)x+bd$를 인수분해할 때 $x^2$의 계수를 $ac$, 상수항을 $bd$인 두 수의 곱으로 나눈다. $ax\\times d$와 $b\\times cx$에서 나온 $x$항의 계수의 합 {$ad+bc$}가 주어진 $x$의 계수와 같아지는 짝을 고르면 {$(ax+b)(cx+d)$}로 쓸 수 있다."
+        }
+      ],
+      "reason": "대각선이라는 숨은 배열 대신 두 곱에서 나온x항의 계수 합을 밝혀 인수분해 목표와 맞는다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "m3-02-02",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m3-03",
+      "sectionId": "m3-03-01",
+      "beforeHash": "c044ace1a3df3653980a256e7ab7732078fa74f356497944427335aeb92f8e09",
+      "afterHash": "27d1c2b1eeab30e41660b159196f1d95b8022bd9ca612ff808981c637b6290b0",
+      "changedIds": [
+        "m3-03-01-c9"
+      ],
+      "question": "이차방정식의 해는 어떤 방법으로 구할까?",
+      "explanation": "이차방정식과 그 해를 알아보고 인수분해, 제곱근, 완전제곱식을 이용하여 푼다. 근의 공식을 익히고 이차방정식을 활용한다.",
+      "keyPhrase": "인수분해와 근의 공식",
+      "goal": "인수분해와 제곱근을 이용하여 이차방정식을 푼다.",
+      "definitions": [
+        {
+          "id": "m3-03-01-c9",
+          "before": "이차방정식을 $x^2+bx=c$ 꼴로 고친 뒤 양변에 {$\\left(\\frac{b}{2}\\right)^2$}을 더하면 좌변이 완전제곱식이 된다. 양변에 같은 수를 더해도 해는 바뀌지 않으며, 이어 제곱근의 뜻으로 해를 구한다.",
+          "after": "$x^2+bx=c$ 꼴의 이차방정식 양변에 {$(b/2)^2$}을 더하면 $(x+b/2)^2=c+(b/2)^2$이 된다. 양변에 같은 수를 더하므로 해는 바뀌지 않는다. 우변이 $0$ 이상이면 제곱근을 이용해 해를 구하고, 우변이 음수이면 실수의 제곱은 음수가 되지 않으므로 해가 없다."
+        }
+      ],
+      "reason": "완전제곱식 우변 부호에 따른 실수 해 존재를 추가해 인수분해·제곱근 풀이 목표를 보완한다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "m3-03-01",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m3-03",
+      "sectionId": "m3-03-02",
+      "beforeHash": "831e14c6d7604846dc0838f2d84084d960ac23d00f10d495ae4a224b2902ec67",
+      "afterHash": "5027360c68320f2bd8b38d7a20f7ebfb0c20a7eac94313e8b26c44a12726f11e",
+      "changedIds": [
+        "m3-03-02-c1",
+        "m3-03-02-c2",
+        "m3-03-02-c5",
+        "m3-03-02-c6"
+      ],
+      "question": "이차방정식의 해는 어떤 방법으로 구할까?",
+      "explanation": "이차방정식과 그 해를 알아보고 인수분해, 제곱근, 완전제곱식을 이용하여 푼다. 근의 공식을 익히고 이차방정식을 활용한다.",
+      "keyPhrase": "인수분해와 근의 공식",
+      "goal": "근의 공식을 이용하여 이차방정식을 푼다.",
+      "definitions": [
+        {
+          "id": "m3-03-02-c1",
+          "before": "$ax^2+bx+c=0$의 해를 계수만으로 구하는 식이 근의 공식이다 — 분자는 {$-b\\pm\\sqrt{b^2-4ac}$}, 분모는 {$2a$}.",
+          "after": "이차방정식 $ax^2+bx+c=0$에서 $a\\ne0$, $b^2-4ac\\ge0$일 때 해를 계수로 구하는 식이 근의 공식이다. 분자는 {$-b\\pm\\sqrt{b^2-4ac}$}, 분모는 {$2a$}이다. 근호 안의 값이 음수이면 실수인 해가 없다."
+        },
+        {
+          "id": "m3-03-02-c2",
+          "before": "$b^2-4ac$가 양수이면 서로 다른 근이 {$2$}개, $0$이면 {중근} $1$개, 음수이면 근이 {없다}.",
+          "after": "이차방정식 $ax^2+bx+c=0$($a\\ne0$)에서 $b^2-4ac$가 양수이면 서로 다른 실수인 근이 {$2$}개, $0$이면 {중근} 하나, 음수이면 실수인 근이 {없다}."
+        },
+        {
+          "id": "m3-03-02-c5",
+          "before": "근의 공식은 $ax^2+bx+c=0$의 양변을 {$a$}로 나눈 뒤 좌변을 {완전제곱식}으로 고쳐 제곱근을 구하면 나온다.",
+          "after": "이차방정식 $ax^2+bx+c=0$에서 $a\\ne0$, $b^2-4ac\\ge0$일 때 양변을 {$a$}로 나누고 좌변을 {완전제곱식}으로 고친 뒤 제곱근을 구해 정리하면 근의 공식이 나온다."
+        },
+        {
+          "id": "m3-03-02-c6",
+          "before": "$ax^2+2b'x+c=0$처럼 $x$의 계수가 짝수이면 분자는 {$-b'\\pm\\sqrt{b'^2-ac}$}, 분모는 {$a$}로 간단해진다.",
+          "after": "이차방정식 $ax^2+2b'x+c=0$에서 $a\\ne0$, $b'^2-ac\\ge0$일 때, $x$의 계수를 $2b'$로 나타내어 쓰는 간단한 근의 공식은 분자가 {$-b'\\pm\\sqrt{b'^2-ac}$}, 분모가 {$a$}인 식이다."
+        }
+      ],
+      "reason": "이차항 계수 0 제외와 근호 안이 음수일 때 실수인 해가 없음을 구별했다. 일반 및 짝수형 근의 공식, 완전제곱식 유도를 실제로 읽었으며 근의 공식 풀이 목표와 맞는다.",
+      "reader": "Root Codex actual final chapter question/explanation/key phrase/section goal and changed definitions delta reading",
+      "readAt": "2026-10-07T14:07:44.330Z",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m3-03",
+      "sectionId": "m3-03-03",
+      "beforeHash": "42b6a0b7008332815cd1541ff6d847626018a3ed8a0c82980c129ab0086b0606",
+      "afterHash": "d4c8ed7b67aa44d1057abd94e1d28a7da2b7b3925d3f9c77567ea5af3bbe7ea3",
+      "changedIds": [
+        "m3-03-03-c2",
+        "m3-03-03-c3"
+      ],
+      "question": "이차방정식의 해는 어떤 방법으로 구할까?",
+      "explanation": "이차방정식과 그 해를 알아보고 인수분해, 제곱근, 완전제곱식을 이용하여 푼다. 근의 공식을 익히고 이차방정식을 활용한다.",
+      "keyPhrase": "인수분해와 근의 공식",
+      "goal": "이차방정식을 활용하여 문제를 해결하고 문제의 뜻에 맞는 해를 고른다.",
+      "definitions": [
+        {
+          "id": "m3-03-03-c2",
+          "before": "이차방정식의 해가 둘이어도 길이 · 사람 수처럼 {양수}나 {자연수}여야 하는 조건에 맞는 것만 답이 된다.",
+          "after": "이차방정식의 해가 둘이어도 문제의 조건에 맞는 해만 답이 된다. 길이는 {양수}여야 한다. 사람이 적어도 한 명 있다는 조건이 주어졌다면 사람 수는 {자연수}여야 한다."
+        },
+        {
+          "id": "m3-03-03-c3",
+          "before": "연속하는 두 자연수는 $x$, {$x+1$}로, 연속하는 두 짝수(또는 두 홀수)는 $x$, {$x+2$}로 놓는다.",
+          "after": "연속하는 두 자연수의 작은 수를 $x$라 하면 큰 수는 {$x+1$}이다. 연속하는 두 짝수 또는 두 홀수의 작은 수를 $x$라 하면 큰 수는 {$x+2$}이다."
+        }
+      ],
+      "reason": "실생활 조건에 맞는 해와 연속 두 수의 작은 값 기준을 밝혀 방정식 활용 목표와 맞는다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "m3-03-03",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m3-04",
+      "sectionId": "m3-04-01",
+      "beforeHash": "1eda84ae9d0aae047ec5da92b7eaca9eedb918a82a5e5929729741c5d5144f3a",
+      "afterHash": "ca3416a45fcec0d88a1bfabb1d96795f0f3cf5f9a64ebd7ba3b6464c40face23",
+      "changedIds": [
+        "m3-04-01-c8",
+        "m3-04-01-c11",
+        "m3-04-01-c12",
+        "m3-04-01-c13",
+        "m3-04-01-c15"
+      ],
+      "question": "이차함수의 그래프는 어떤 모양이고 무엇으로 정해질까?",
+      "explanation": "이차함수와 포물선을 알아보고 그래프의 꼭짓점과 축을 구한다. 이차함수의 일반형의 그래프를 살피고 최댓값과 최솟값을 구한다.",
+      "keyPhrase": "꼭짓점과 축",
+      "goal": "이차함수의 그래프의 꼭짓점과 축을 구한다.",
+      "definitions": [
+        {
+          "id": "m3-04-01-c8",
+          "before": "$y=ax^2$의 그래프는 꼭짓점이 {원점}, 축이 {$y$축}인 포물선이고, $a$의 절댓값이 클수록 폭이 {좁다}.",
+          "after": "$a\\ne0$일 때 $y=ax^2$의 그래프는 꼭짓점이 {원점}, 축이 {$y$축}인 포물선이고, $a$의 절댓값이 클수록 폭이 {좁다}."
+        },
+        {
+          "id": "m3-04-01-c11",
+          "before": "$y=ax^2+q$의 그래프는 $y=ax^2$의 그래프를 {$y$축} 방향으로 $q$만큼 옮긴 것이고, 꼭짓점은 {$(0,\\ q)$}이다.",
+          "after": "$a\\ne0$일 때 $y=ax^2+q$는 $y=ax^2$의 각 점의 $y$좌표에 $q$를 더한 그래프이다. {$y$축} 방향으로 $q$만큼 옮긴 것이며, 꼭짓점은 {$(0,q)$}이다. $q>0$이면 위쪽, $q<0$이면 아래쪽으로 옮긴다."
+        },
+        {
+          "id": "m3-04-01-c12",
+          "before": "포물선의 축을 나타내는 직선의 식이 축의 방정식이다 — 꼭짓점의 $x$좌표가 $p$이면 {$x=p$}, 축이 $y$축이면 {$x=0$}.",
+          "after": "이차함수의 그래프인 포물선의 축을 나타내는 직선의 식이 축의 방정식이다. 축은 꼭짓점을 지나고 $y$축에 평행하므로 꼭짓점의 $x$좌표가 $p$이면 {$x=p$}이고, 축이 $y$축이면 {$x=0$}이다."
+        },
+        {
+          "id": "m3-04-01-c13",
+          "before": "$y=a(x-p)^2$의 그래프는 $y=ax^2$의 그래프를 {$x$축} 방향으로 $p$만큼 옮긴 것이고, 꼭짓점은 {$(p,\\ 0)$}이다.",
+          "after": "$a\\ne0$일 때 $y=a(x-p)^2$의 그래프는 $y=ax^2$의 그래프를 {$x$축} 방향으로 $p$만큼 옮긴 것이고, 꼭짓점은 {$(p,0)$}이다. $p>0$이면 오른쪽, $p<0$이면 왼쪽으로 옮긴다."
+        },
+        {
+          "id": "m3-04-01-c15",
+          "before": "$y=a(x-p)^2+q$의 그래프는 $y=ax^2$의 그래프를 $x$축 방향으로 {$p$}, $y$축 방향으로 {$q$}만큼 옮긴 것이고, 꼭짓점은 {$(p,\\ q)$}이다.",
+          "after": "$a\\ne0$일 때 $y=a(x-p)^2+q$의 그래프는 $y=ax^2$의 그래프를 $x$축 방향으로 {$p$}, $y$축 방향으로 {$q$}만큼 옮긴 것이고, 꼭짓점은 {$(p,q)$}이다."
+        }
+      ],
+      "reason": "a0이 아닌 포물선 조건과p·q 부호에 따른 이동을 밝혀 꼭짓점·축 목표를 유지한다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "m3-04-01",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m3-04",
+      "sectionId": "m3-04-02",
+      "beforeHash": "9251e6f26dfcbf96397820c3f56a6553ab9734e8b079b1b25d76dfc7bf5fbb1b",
+      "afterHash": "5c6c14e72dd3e567e2b575593095421fa9fe11a91034966a6291f5e5d4b26834",
+      "changedIds": [
+        "m3-04-02-c4",
+        "m3-04-02-c5",
+        "m3-04-02-c6"
+      ],
+      "question": "이차함수의 그래프는 어떤 모양이고 무엇으로 정해질까?",
+      "explanation": "이차함수와 포물선을 알아보고 그래프의 꼭짓점과 축을 구한다. 이차함수의 일반형의 그래프를 살피고 최댓값과 최솟값을 구한다.",
+      "keyPhrase": "꼭짓점과 축",
+      "goal": "이차함수의 일반형의 그래프가 좌표축과 만나는 점을 구한다.",
+      "definitions": [
+        {
+          "id": "m3-04-02-c4",
+          "before": "그래프가 $x$축과 만나는 점의 $x$좌표는 {$y=0$}을 넣은 이차방정식 $ax^2+bx+c=0$의 {해}이다.",
+          "after": "이차함수 $y=ax^2+bx+c$의 그래프가 $x$축과 만나는 점의 $y$좌표는 $0$이다. 따라서 그 점의 $x$좌표는 {$y=0$}을 대입한 이차방정식 $ax^2+bx+c=0$의 {해}이다."
+        },
+        {
+          "id": "m3-04-02-c5",
+          "before": "$(x+t)^2=x^2+2tx+t^2$에서 일차항의 계수는 {$2t$}이다 — 그래서 $x^2+dx$를 완전제곱식으로 묶으려면 $t$를 {$d$의 절반}으로 정한다.",
+          "after": "$(x+t)^2=x^2+2tx+t^2$에서 $x$항의 계수는 $2t$이다. $x^2+dx$와 $x$항의 계수를 같게 맞추려면 $t$를 {$\\frac d2$}로 정한다. 이때 $x^2+dx=(x+d/2)^2-(d/2)^2$이다."
+        },
+        {
+          "id": "m3-04-02-c6",
+          "before": "$a$는 볼록한 {방향}을, $c$는 {$y$축}과 만나는 점을 정하고, 축이 $y$축의 왼쪽에 있으면 $a$와 $b$의 부호가 {같다}.",
+          "after": "이차함수 $y=ax^2+bx+c$ ($a\\ne0$)의 그래프에서 $a$의 부호는 볼록한 {방향}을, $c$는 {$y$축}과 만나는 점을 정한다. 축이 $y$축의 왼쪽에 있으면 $a$와 $b$의 부호가 {같다}."
+        }
+      ],
+      "reason": "x축 교점의y0, 완전제곱식 보정항, 계수 부호와 축의 좌우를 명시해 일반형 그래프 해석 목표와 맞는다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "m3-04-02",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m3-04",
+      "sectionId": "m3-04-03",
+      "beforeHash": "474228dc1af37e8000bab504a32d6d0b4b2db9b78b54c91511ec1f4343565eca",
+      "afterHash": "c7ecce1223ca275ed116dcaf0f2ee0d2c8859c3dfb46c67f00e04e57e7086759",
+      "changedIds": [
+        "m3-04-03-c3",
+        "m3-04-03-c4",
+        "m3-04-03-c5"
+      ],
+      "question": "이차함수의 그래프는 어떤 모양이고 무엇으로 정해질까?",
+      "explanation": "이차함수와 포물선을 알아보고 그래프의 꼭짓점과 축을 구한다. 이차함수의 일반형의 그래프를 살피고 최댓값과 최솟값을 구한다.",
+      "keyPhrase": "꼭짓점과 축",
+      "goal": "이차함수의 최댓값과 최솟값을 구한다.",
+      "definitions": [
+        {
+          "id": "m3-04-03-c3",
+          "before": "$y=a(x-p)^2+q$는 $a>0$이면 $x=p$에서 {최솟값} $q$를, $a<0$이면 $x=p$에서 {최댓값} $q$를 갖는다.",
+          "after": "$x$의 범위가 실수 전체일 때, $y=a(x-p)^2+q$는 $a>0$이면 $x=p$에서 {최솟값} $q$를, $a<0$이면 $x=p$에서 {최댓값} $q$를 갖는다."
+        },
+        {
+          "id": "m3-04-03-c4",
+          "before": "아래로 볼록한 포물선은 위로 끝없이 올라가므로 {최댓값}이 없고, 위로 볼록한 포물선은 {최솟값}이 없다.",
+          "after": "$x$의 범위가 실수 전체일 때, 아래로 볼록한 이차함수의 그래프는 위로 끝없이 올라가므로 {최댓값}이 없고, 위로 볼록한 그래프는 아래로 끝없이 내려가므로 {최솟값}이 없다."
+        },
+        {
+          "id": "m3-04-03-c5",
+          "before": "일반형은 {표준형}으로 고친 뒤 {꼭짓점}의 $y$좌표를 읽는다 — 그 값이 최댓값 또는 최솟값이다.",
+          "after": "$x$의 범위가 실수 전체인 이차함수의 일반형은 {표준형}으로 고친 뒤 {꼭짓점}의 $y$좌표를 읽는다. 그 값이 이차항의 계수가 양수일 때 최솟값, 음수일 때 최댓값이다."
+        }
+      ],
+      "reason": "정의역 실수 전체라는 조건을 밝혀 꼭짓점의 최댓값·최솟값 목표를 명확히 한다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "m3-04-03",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m3-05",
+      "sectionId": "m3-05-01",
+      "beforeHash": "0145ccf3267e728e2560664517115cb42f4e92948b7cbded07f57b354750d8a1",
+      "afterHash": "f7cd922e4e1e82c9e0ff9a269ebfa6c4c26e7d1cd317a31c9d7d45fe1f91da3a",
+      "changedIds": [
+        "m3-05-01-c1",
+        "m3-05-01-c2",
+        "m3-05-01-c3"
+      ],
+      "question": "직각삼각형에서 한 예각의 크기가 같으면 변의 길이의 비는 어떻게 될까?",
+      "explanation": "삼각비의 뜻을 알아보고 특수한 각의 삼각비의 값을 구한다. 삼각비를 활용하여 변의 길이와 넓이를 구한다.",
+      "keyPhrase": "사인, 코사인, 탄젠트",
+      "goal": "삼각비의 뜻을 알고 사인, 코사인, 탄젠트를 구한다.",
+      "definitions": [
+        {
+          "id": "m3-05-01-c1",
+          "before": "직각삼각형에서 $\\angle A$의 사인은 {빗변}의 길이에 대한 {높이}의 비이고, $\\sin A$로 쓴다.",
+          "after": "$\\angle C=90^\\circ$인 직각삼각형 $ABC$에서 기준각 $A$의 맞은편 변은 $BC$, 빗변은 $AB$, 기준각에 붙은 변 가운데 빗변이 아닌 변은 $AC$이다. $\\sin A$는 $BC$의 길이를 $AB$의 길이로 나눈 비인 {$\\frac{BC}{AB}$}이다."
+        },
+        {
+          "id": "m3-05-01-c2",
+          "before": "직각삼각형에서 $\\angle A$의 코사인은 {빗변}의 길이에 대한 {밑변}의 길이의 비이고, $\\cos A$로 쓴다.",
+          "after": "$\\angle C=90^\\circ$인 직각삼각형 $ABC$에서 기준각 $A$의 맞은편 변은 $BC$, 빗변은 $AB$, 기준각에 붙은 변 가운데 빗변이 아닌 변은 $AC$이다. $\\cos A$는 $AC$의 길이를 $AB$의 길이로 나눈 비인 {$\\frac{AC}{AB}$}이다."
+        },
+        {
+          "id": "m3-05-01-c3",
+          "before": "직각삼각형에서 $\\angle A$의 탄젠트는 {밑변}의 길이에 대한 {높이}의 비이고, $\\tan A$로 쓴다.",
+          "after": "$\\angle C=90^\\circ$인 직각삼각형 $ABC$에서 기준각 $A$의 맞은편 변은 $BC$, 빗변은 $AB$, 기준각에 붙은 변 가운데 빗변이 아닌 변은 $AC$이다. $\\tan A$는 $BC$의 길이를 $AC$의 길이로 나눈 비인 {$\\frac{BC}{AC}$}이다."
+        }
+      ],
+      "reason": "직각 꼭짓점과 기준각을 지정하여 맞은편·붙은 변·빗변 및 세 삼각비를 실제 변 이름으로 설명한다. 삼각비 정의 목표와 맞는다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "m3-05-01",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m3-05",
+      "sectionId": "m3-05-02",
+      "beforeHash": "3059fba6b43dbd3a2195a79be9768466651b90d8c9beecf88c243ca8da8c6976",
+      "afterHash": "018f72677026ed87ee296ebb75c647f224b10e0d3b7a847957eac3f1392cfa23",
+      "changedIds": [
+        "m3-05-02-c7"
+      ],
+      "question": "직각삼각형에서 한 예각의 크기가 같으면 변의 길이의 비는 어떻게 될까?",
+      "explanation": "삼각비의 뜻을 알아보고 특수한 각의 삼각비의 값을 구한다. 삼각비를 활용하여 변의 길이와 넓이를 구한다.",
+      "keyPhrase": "사인, 코사인, 탄젠트",
+      "goal": "특수한 각의 삼각비의 값을 구하고 삼각비의 표를 읽는다.",
+      "definitions": [
+        {
+          "id": "m3-05-02-c7",
+          "before": "$45^\\circ$의 값은 {정사각형}을 대각선으로 자른 삼각형에서, $30^\\circ$ · $60^\\circ$의 값은 {정삼각형}을 반으로 자른 삼각형에서 얻는다.",
+          "after": "$45^\\circ$의 삼각비는 {정사각형}을 대각선으로 잘라 만든 직각이등변삼각형에서 구한다. $30^\\circ$, $60^\\circ$의 삼각비는 {정삼각형}의 한 꼭짓점에서 맞은편 변에 내린 수선으로 반으로 잘라 만든 직각삼각형에서 구한다."
+        }
+      ],
+      "reason": "정사각형 대각선과 정삼각형 수선으로 만드는 직각삼각형을 특정해 특수각 삼각비 목표와 맞는다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "m3-05-02",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m3-05",
+      "sectionId": "m3-05-03",
+      "beforeHash": "56f34ceb7ebaabac251a69b6b6596ba83583897f232daad10ed02d1819174c7f",
+      "afterHash": "8a19eb3c4f6d9a45aa66fa0acc48e9730f480415a9046b5137a75dc2d4c46656",
+      "changedIds": [
+        "m3-05-03-c7"
+      ],
+      "question": "직각삼각형에서 한 예각의 크기가 같으면 변의 길이의 비는 어떻게 될까?",
+      "explanation": "삼각비의 뜻을 알아보고 특수한 각의 삼각비의 값을 구한다. 삼각비를 활용하여 변의 길이와 넓이를 구한다.",
+      "keyPhrase": "사인, 코사인, 탄젠트",
+      "goal": "삼각비를 활용하여 변의 길이와 넓이를 구한다.",
+      "definitions": [
+        {
+          "id": "m3-05-03-c7",
+          "before": "끼인각 $B$가 둔각이면 $\\sin B$ 자리에 {$\\sin(180^\\circ-B)$}를 쓴다 — 높이가 삼각형 {밖}에 생기기 때문이다.",
+          "after": "삼각형의 두 변의 길이가 $a$, $c$이고 끼인각 $B$가 둔각일 때, 길이가 $a$인 변을 밑변으로 삼아 그 변을 늘리면 높이를 구할 직각삼각형이 생긴다. 이때 사용할 예각은 {$180^\\circ-B$}이므로 높이는 $c\\sin(180^\\circ-B)$, 넓이는 $\\frac12ac\\sin(180^\\circ-B)$이다."
+        }
+      ],
+      "reason": "둔각B의 보각 예각과 밑변 연장선에서의 높이 및 넓이 식을 밝혀 삼각비 활용 목표와 맞는다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "m3-05-03",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m3-06",
+      "sectionId": "m3-06-01",
+      "beforeHash": "c4e9f5a463f63dd14fdadfa59d508c5766f550cf812d93eeea485beb566d4b60",
+      "afterHash": "d15f3769b440d3ddee35f7413f1839a778ac39522d910593ff54af2a57b0406b",
+      "changedIds": [
+        "m3-06-01-c6"
+      ],
+      "question": "원에서 현, 접선, 원주각에는 어떤 성질이 있을까?",
+      "explanation": "원의 현과 접선의 성질을 알아본다. 원주각과 중심각의 관계를 살피고 원주각의 성질을 활용한다.",
+      "keyPhrase": "현, 접선, 원주각",
+      "goal": "현의 수직이등분선과 현의 길이의 성질을 설명한다.",
+      "definitions": [
+        {
+          "id": "m3-06-01-c6",
+          "before": "거꾸로, 한 원에서 {길이}가 같은 두 현은 원의 중심에서 같은 {거리}만큼 떨어져 있다.",
+          "after": "‘중심에서 거리가 같은 두 현은 길이가 같다’를 거꾸로 하면, 한 원에서 {길이}가 같은 두 현은 원의 중심에서 같은 {거리}만큼 떨어져 있다."
+        }
+      ],
+      "reason": "한 원의 같은 현과 중심 거리의 역 성질을 완전 문장으로 밝혀 현 길이 성질 설명 목표를 유지한다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "m3-06-01",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m3-07",
+      "sectionId": "m3-07-01",
+      "beforeHash": "b7efa3914cabae9cffb63e29c0f4e6e08aaaab3993c0a20b71b0433f5a9ee019",
+      "afterHash": "adf5e6723a829cb5ae315378d5fd99a4a7cbbdf7d017240fad8671b6c07de62c",
+      "changedIds": [
+        "m3-07-01-c8"
+      ],
+      "question": "자료가 퍼져 있는 정도와 두 변량 사이의 관계는 어떻게 알아볼까?",
+      "explanation": "편차, 분산, 표준편차를 구하여 자료를 분석한다. 산점도에서 상관관계를 알아보고 상자그림으로 자료의 분포를 살핀다.",
+      "keyPhrase": "산포도와 상관관계",
+      "goal": "분산과 표준편차를 구하여 자료를 분석한다.",
+      "definitions": [
+        {
+          "id": "m3-07-01-c8",
+          "before": "분산이나 표준편차가 {작을수록} 변량이 평균 가까이 모여 있어 자료가 {고르다}.",
+          "after": "분산이나 표준편차가 {작을수록} 변량이 평균 가까이에 모여 있어 자료가 덜 흩어져 있다."
+        }
+      ],
+      "reason": "고르다 대신 평균 주변에서 덜 흩어짐을 표현하여 분산·표준편차 분석 목표와 맞는다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "m3-07-01",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    },
+    {
+      "chapterId": "m3-07",
+      "sectionId": "m3-07-03",
+      "beforeHash": "de6bcf3ee79fa14636ccc5de57100f49cd3abff941d5c89bfc10614837464b88",
+      "afterHash": "95709b0c39816584137fc556263a8b1dfb4c0f93de15864a957a8f25984e9641",
+      "changedIds": [
+        "m3-07-03-c1"
+      ],
+      "question": "자료가 퍼져 있는 정도와 두 변량 사이의 관계는 어떻게 알아볼까?",
+      "explanation": "편차, 분산, 표준편차를 구하여 자료를 분석한다. 산점도에서 상관관계를 알아보고 상자그림으로 자료의 분포를 살핀다.",
+      "keyPhrase": "산포도와 상관관계",
+      "goal": "사분위수를 구하고 상자그림을 해석한다.",
+      "definitions": [
+        {
+          "id": "m3-07-03-c1",
+          "before": "변량을 작은 것부터 늘어놓고 {한가운데} 값을 읽은 것이 중앙값이다 — 개수가 짝수이면 가운데 두 값의 {평균}.",
+          "after": "변량을 작은 값부터 크기순으로 늘어놓는다. 홀수 개이면 {가운데} 값이 중앙값이고, 짝수 개이면 가운데 두 값의 {평균}이 중앙값이다."
+        }
+      ],
+      "reason": "홀수·짝수 자료의 중앙값 규칙을 완전하게 밝혀 사분위수와 상자그림 해석 목표를 유지한다.",
+      "reader": "Root Codex actual chapter question/explanation/key phrase/section goal and changed definitions reading",
+      "readingEvidence": "root-opening-goals-20261007-verdicts.json",
+      "readingEvidenceSection": "m3-07-03",
+      "verdict": "retain-authored-opening-text-for-captured-core-change",
+      "isIndependentClaudeApproval": false,
+      "isCurrentReleaseApproval": false
+    }
+  ]
+}

@@ -183,7 +183,12 @@ export default function ListeningBank({
         문항을 담아 시험지를 만드세요.
       </p>
       <div className={b.layout}>
-        <section className={s.card} aria-label="듣기 목록">
+        <section
+          className={b.catalog}
+          aria-label="듣기 목록"
+          aria-busy={result.status === "loading"}
+        >
+          <h2 className={b.listHeading}>듣기 목록</h2>
           {result.status === "loading" ? (
             <BankLoading />
           ) : result.status === "error" ? (
@@ -193,7 +198,10 @@ export default function ListeningBank({
             />
           ) : (
             <>
-              <ul className={b.list}>
+              <p role="status" className={b.resultCount}>
+                이 페이지 {result.data.data.length}개
+              </p>
+              <ul className={b.list} aria-label="듣기 검색 결과" tabIndex={0}>
                 {own.status === "ready" &&
                   own.data.data.map((item) => (
                     <li key={item.id}>
@@ -223,7 +231,16 @@ export default function ListeningBank({
                   ))}
               </ul>
               {!result.data.data.length && (
-                <p className={b.note}>조건에 맞는 듣기 자료가 없습니다.</p>
+                <p className={b.note}>
+                  {filter.q ||
+                  filter.level ||
+                  filter.year ||
+                  filter.round ||
+                  kind !== "own" ||
+                  cursors.length > 1
+                    ? "조건에 맞는 듣기 자료가 없습니다. 검색 조건을 바꿔 주세요."
+                    : "등록된 듣기 자료가 없습니다. 직접 제작한 듣기 자료를 등록하세요."}
+                </p>
               )}
               <BankPagination
                 page={cursors.length}

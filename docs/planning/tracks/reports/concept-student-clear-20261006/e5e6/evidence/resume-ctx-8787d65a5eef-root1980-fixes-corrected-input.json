@@ -1,0 +1,742 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e6-1-4-5-xc26",
+      "bDecision": "revise",
+      "bPrompt": "비율 $0.6$을 백분율로 바꾸면서 $100$ 대신 $10$을 곱해 $6\\%$라고 했다. 올바른 백분율을 쓰고, 틀린 값이 올바른 값의 얼마인지와 틀린 까닭을 설명하시오.",
+      "bAnswer": "올바른 값은 $60\\%$이다. $6\\%$는 올바른 값의 $\\frac{1}{10}$이다. 백분율은 기준량을 $100$으로 보므로 기준량을 $1$로 보았을 때의 비율도 $100$배 한 수로 나타내야 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$60\\%$"
+          ]
+        },
+        {
+          "anyOf": [
+            "올바른 값의 $\\frac{1}{10}$",
+            "$0.1$배",
+            "십분의 일"
+          ]
+        },
+        {
+          "anyOf": [
+            "백분율은 기준량을 $100$으로 보므로 기준량 $1$일 때의 비율을 $100$배 해야 한다",
+            "기준량을 $1$에서 $100$으로 보면 비교하는 양도 $100$배로 나타내기 때문이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "$10$만 곱하는 오류의 크기와 까닭을 설명한다.",
+      "bReason": "문제에주어진100을곱한다는말만반복해도이유를충족하던대안을고친다. 기준량1에서100의변화에따라비교양도100배로나타내는뜻으로설명한다.",
+      "cDecision": "revise",
+      "cAfter": "비율 $0.6$에 $10$을 곱해 $6\\%$라고 하면 올바른 백분율 $60\\%$의 {$\\frac{1}{10}$}인 값이 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{1}{10}$",
+            "$0.1$배",
+            "십분의 일"
+          ]
+        }
+      ],
+      "cReason": "원문 문장에 구체적 수를 넣어 오류의 크기를 묻는 짧은 빈칸이 된다.",
+      "exampleNeeded": false,
+      "codexFormatRepairEvidence": "evidence/section-073-format-repairs.json",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-root1980-fixes.json",
+      "codexFinalAmendedFromFingerprint": "8fe60262af95d19499da91964e3722c3d0045e46dfc3b1ee2a9b0b3e79a7e998",
+      "sourceIndex": 1981,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-4-5-xc26",
+        "section": "초6::1-4 비와 비율::1-4-5 백분율",
+        "term": "$10$만 곱하는 잘못",
+        "kind": "성질",
+        "level": "상",
+        "definition": "비율을 백분율로 바꿀 때 $100$이 아니라 $10$을 곱하면 {실제의 $\\frac{1}{10}$}인 백분율이 된다. 기준량 $1$은 $100\\%$이다.",
+        "studentC": "비율을 백분율로 바꿀 때 $100$이 아니라 $10$을 곱하면 □인 백분율이 된다. 기준량 $1$은 $100\\%$이다.",
+        "answers": [
+          "실제의 $\\frac{1}{10}$"
+        ]
+      },
+      "sourceFingerprint": "9d16b13ac242daee1bbaa2dd75669610cae8bf069bdb834866b261783296c1a0",
+      "draftEvidence": "evidence/section-073-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$\\frac{1}{10}$"
+      ],
+      "cStudentAfter": "비율 $0.6$에 $10$을 곱해 $6\\%$라고 하면 올바른 백분율 $60\\%$의 □인 값이 된다.",
+      "cMarkedSentence": "비율 $0.6$에 $10$을 곱해 $6\\%$라고 하면 올바른 백분율 $60\\%$의 {$\\frac{1}{10}$}인 값이 된다.",
+      "cStudentSentence": "비율 $0.6$에 $10$을 곱해 $6\\%$라고 하면 올바른 백분율 $60\\%$의 □인 값이 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{1}{10}$",
+          "equivalents": [
+            "$0.1$배",
+            "십분의 일"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "비율 $0.6$을 백분율로 바꾸면서 $100$ 대신 $10$을 곱해 $6\\%$라고 했다. 올바른 백분율을 쓰고, 틀린 값이 올바른 값의 얼마인지와 틀린 까닭을 설명하시오.",
+        "answer": "올바른 값은 $60\\%$이다. $6\\%$는 올바른 값의 $\\frac{1}{10}$이다. 백분율은 기준량을 $100$으로 보므로 기준량을 $1$로 보았을 때의 비율도 $100$배 한 수로 나타내야 한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$60\\%$"
+            ]
+          },
+          {
+            "anyOf": [
+              "올바른 값의 $\\frac{1}{10}$",
+              "$0.1$배",
+              "십분의 일"
+            ]
+          },
+          {
+            "anyOf": [
+              "백분율은 기준량을 $100$으로 보므로 기준량 $1$일 때의 비율을 $100$배 해야 한다",
+              "기준량을 $1$에서 $100$으로 보면 비교하는 양도 $100$배로 나타내기 때문이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "비율 $0.6$에 $10$을 곱해 $6\\%$라고 하면 올바른 백분율 $60\\%$의 {$\\frac{1}{10}$}인 값이 된다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{1}{10}$",
+            "$0.1$배",
+            "십분의 일"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "60322cf3262c6615f12cdbf4996d530e9e629ffa78669ce6edffbe2ea0c19726",
+      "questionRevision": "planning-e5e6-20261006-60322cf3262c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-4-6-xc11",
+      "bDecision": "revise",
+      "bPrompt": "원래 가격에서 $20\\%$ 할인받아 물건을 샀을 때 실제로 내는 돈이 $8000$원이다. 이 돈은 원래 가격의 몇 $\\%$에 해당하는지 쓰고, 원래 가격을 구하는 방법을 설명한 뒤 구하시오.",
+      "bAnswer": "할인 후 내는 돈은 원래 가격의 $100\\%-20\\%=80\\%$이다. $8000$원을 $\\frac{80}{100}=0.8$로 나누면 원래 가격을 구하므로 $8000\\div0.8=10000$원이다.",
+      "bGoal": "할인한 값이 원래 가격의 $100\\%$에서 할인율을 뺀 비율임을 이용해 원래 가격을 찾는다.",
+      "bReason": "할인한값의대상을할인후실제로내는돈으로명시한다.80퍼센트관계와원래가격을역으로나누는방법을별개로확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$80\\%$",
+            "$80$퍼센트"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8000$원을 $\\frac{80}{100}$으로 나눈다",
+            "할인 후 내는 돈 $8000$원을 $0.8$로 나눈다",
+            "할인 후 내는 돈을 남은 비율로 나누어 원래 가격을 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10000$원"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "할인율이 $20\\%$일 때, 할인 후 실제로 내는 돈은 원래 가격의 {$80$}$\\%$에 해당한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$80$",
+            "$80\\%$"
+          ]
+        }
+      ],
+      "cReason": "할인한값이깎아준금액20퍼센트인지내는돈80퍼센트인지모호하지않게실제내는돈을명시한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "coreAfter": "할인율이 $0\\%$ 이상 $100\\%$ 미만이면, 할인 후 실제로 내는 금액은 원래 가격의 {$100\\%$에서 할인율을 뺀 비율}에 해당한다. 이 백분율을 비율로 바꾼 뒤, 실제로 내는 금액을 그 비율로 나누면 원래 가격을 구한다.",
+      "coreReason": "할인한 값은 깎아 준 금액인지 할인 후 내는 금액인지 두 뜻으로 읽힌다. 실제로 내는 금액이라고 대상을 명시하고 남은 백분율을 비율로 고쳐 역으로 나누는 일반 방법을 직접 설명한다.",
+      "coreTargetReason": "원문의100퍼센트에서할인율을뺀비율 한 표적을 보존한다. 할인 후 내는 금액의 비율과 원래 가격을 거꾸로 구하는 절차를 같은 일반 개념으로 유지한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-root1980-fixes.json",
+      "codexFinalAmendedFromFingerprint": "88ff9744642cc26837b110b8a0d5f4346e3612442b1beaed41a1a47cfab308f3",
+      "sourceIndex": 1987,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-4-6-xc11",
+        "section": "초6::1-4 비와 비율::1-4-6 백분율이 사용되는 경우",
+        "term": "할인한 값으로 원래 가격 찾기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "할인율이 $100\\%$보다 작으면, 할인한 값은 원래 가격의 {$100\\%$에서 할인율을 뺀 비율}에 해당한다. 이 비율과 할인한 값으로 원래 가격을 찾는다.",
+        "studentC": "할인율이 $100\\%$보다 작으면, 할인한 값은 원래 가격의 □에 해당한다. 이 비율과 할인한 값으로 원래 가격을 찾는다.",
+        "answers": [
+          "$100\\%$에서 할인율을 뺀 비율"
+        ]
+      },
+      "sourceFingerprint": "3a1c8fc97c9d916775d19e93f4cc105985b0b229d16a57e8e0659edd5922657f",
+      "draftEvidence": "evidence/section-074-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$80$"
+      ],
+      "cStudentAfter": "할인율이 $20\\%$일 때, 할인 후 실제로 내는 돈은 원래 가격의 □$\\%$에 해당한다.",
+      "cMarkedSentence": "할인율이 $20\\%$일 때, 할인 후 실제로 내는 돈은 원래 가격의 {$80$}$\\%$에 해당한다.",
+      "cStudentSentence": "할인율이 $20\\%$일 때, 할인 후 실제로 내는 돈은 원래 가격의 □$\\%$에 해당한다.",
+      "cSlotAnswers": [
+        {
+          "key": "$80$",
+          "equivalents": [
+            "$80\\%$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원래 가격에서 $20\\%$ 할인받아 물건을 샀을 때 실제로 내는 돈이 $8000$원이다. 이 돈은 원래 가격의 몇 $\\%$에 해당하는지 쓰고, 원래 가격을 구하는 방법을 설명한 뒤 구하시오.",
+        "answer": "할인 후 내는 돈은 원래 가격의 $100\\%-20\\%=80\\%$이다. $8000$원을 $\\frac{80}{100}=0.8$로 나누면 원래 가격을 구하므로 $8000\\div0.8=10000$원이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$80\\%$",
+              "$80$퍼센트"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8000$원을 $\\frac{80}{100}$으로 나눈다",
+              "할인 후 내는 돈 $8000$원을 $0.8$로 나눈다",
+              "할인 후 내는 돈을 남은 비율로 나누어 원래 가격을 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$10000$원"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "할인율이 $20\\%$일 때, 할인 후 실제로 내는 돈은 원래 가격의 {$80$}$\\%$에 해당한다.",
+        "acceptedAnswers": [
+          [
+            "$80$",
+            "$80\\%$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "db8ae7487a6f102077b15722e67be6cd69e749f525e2fab0259187f3cd131f56",
+      "questionRevision": "planning-e5e6-20261006-db8ae7487a6f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-4-6-xc14",
+      "bDecision": "revise",
+      "bPrompt": "할인율이 모두 $10\\%$인 $10000$원짜리 물건과 $50000$원짜리 물건이 있다. 깎아 주는 금액은 각각 얼마인지 구하고, 할인율이 같은데 금액이 다른 까닭을 설명하시오.",
+      "bAnswer": "각각 $1000$원, $5000$원이다. 원래 가격(기준량)이 더 크면 같은 비율에 해당하는 금액도 더 크기 때문이다.",
+      "bGoal": "같은 할인율에서 기준량이 클수록 깎아 주는 금액이 커짐을 안다.",
+      "bReason": "문제의가격이더크다는말만반복하지않고같은비율을그가격에곱해할인금액도커진다는연결을설명한다.1000원·5000원의서로다른값은함께확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1000$원과 $5000$원"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은 비율 $0.1$을 곱하므로 원래 가격이 더 큰 물건의 할인 금액도 더 크다",
+            "같은 할인율에 해당하는 금액은 원래 가격에 그 비율을 곱해 구하므로 기준량이 더 크면 더 크다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "할인율이 같고 $0\\%$보다 클 때, 원래 가격이 더 비싼 물건은 깎아 주는 금액이 더 {크다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "크다",
+            "커진다",
+            "많다",
+            "더 크다"
+          ]
+        }
+      ],
+      "cReason": "뒤 문장에서 베끼지 않고 비교 방향만 짧게 묻는다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-root1980-fixes.json",
+      "codexFinalAmendedFromFingerprint": "3feb7b55dace61ca9770ddc9a856f966e097d2da6aa1274a44e649ee9df0d763",
+      "sourceIndex": 1988,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-4-6-xc14",
+        "section": "초6::1-4 비와 비율::1-4-6 백분율이 사용되는 경우",
+        "term": "같은 할인율, 다른 금액",
+        "kind": "성질",
+        "level": "중",
+        "definition": "할인율이 같고 $0\\%$보다 크면 원래 가격이 비쌀수록 {깎아 주는 금액}이 더 크다. 같은 비율을 적용하는 기준량이 더 크기 때문이다.",
+        "studentC": "할인율이 같고 $0\\%$보다 크면 원래 가격이 비쌀수록 □이 더 크다. 같은 비율을 적용하는 기준량이 더 크기 때문이다.",
+        "answers": [
+          "깎아 주는 금액"
+        ]
+      },
+      "sourceFingerprint": "e79e098c7d18742c5ce83ebd689c1f0ba33e17bd57e1bc1cb9eda929d48a0e2f",
+      "draftEvidence": "evidence/section-074-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "크다"
+      ],
+      "cStudentAfter": "할인율이 같고 $0\\%$보다 클 때, 원래 가격이 더 비싼 물건은 깎아 주는 금액이 더 □.",
+      "cMarkedSentence": "할인율이 같고 $0\\%$보다 클 때, 원래 가격이 더 비싼 물건은 깎아 주는 금액이 더 {크다}.",
+      "cStudentSentence": "할인율이 같고 $0\\%$보다 클 때, 원래 가격이 더 비싼 물건은 깎아 주는 금액이 더 □.",
+      "cSlotAnswers": [
+        {
+          "key": "크다",
+          "equivalents": [
+            "커진다",
+            "많다",
+            "더 크다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "할인율이 모두 $10\\%$인 $10000$원짜리 물건과 $50000$원짜리 물건이 있다. 깎아 주는 금액은 각각 얼마인지 구하고, 할인율이 같은데 금액이 다른 까닭을 설명하시오.",
+        "answer": "각각 $1000$원, $5000$원이다. 원래 가격(기준량)이 더 크면 같은 비율에 해당하는 금액도 더 크기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$1000$원과 $5000$원"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 비율 $0.1$을 곱하므로 원래 가격이 더 큰 물건의 할인 금액도 더 크다",
+              "같은 할인율에 해당하는 금액은 원래 가격에 그 비율을 곱해 구하므로 기준량이 더 크면 더 크다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "할인율이 같고 $0\\%$보다 클 때, 원래 가격이 더 비싼 물건은 깎아 주는 금액이 더 {크다}.",
+        "acceptedAnswers": [
+          [
+            "크다",
+            "커진다",
+            "많다",
+            "더 크다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "0a06e846b60ae2491630265e01bf22ff30d960964ff60efc361ad9eaa4711435",
+      "questionRevision": "planning-e5e6-20261006-0a06e846b60a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-4-6-xc16",
+      "bDecision": "revise",
+      "bPrompt": "어떤 양이 $30\\%$ 늘어났다. 늘어난 뒤의 양은 처음 양의 몇 $\\%$인지 구하는 방법을 설명하고, 처음 양이 $200$일 때 늘어난 뒤의 양을 구하시오.",
+      "bAnswer": "처음 양의 $100\\%$에 늘어난 $30\\%$를 더해 $130\\%$이다. $200\\times\\frac{130}{100}=260$이다.",
+      "bGoal": "늘어난 양은 처음의 $100\\%$에 늘어난 백분율을 더한 비율임을 안다.",
+      "bReason": "몇퍼센트인지구하는방법을설명하라는요청에서결과130퍼센트만쓰는대안을빼고처음100퍼센트에증가30퍼센트를더하는방법을확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "처음 양의 $100\\%$에 늘어난 $30\\%$를 더한다",
+            "처음 전체에 늘어난 $30\\%$를 더해 $130\\%$를 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$260$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "처음 양이 $200$인 어떤 양이 $30\\%$ 늘면, 늘어난 뒤의 양은 처음 양의 {$130$}$\\%$인 {$260$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$130$",
+            "$130\\%$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$260$"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 대신 실제 수로 늘어난 비율을 확인한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-root1980-fixes.json",
+      "codexFinalAmendedFromFingerprint": "46d60550c39854a8553948730869e55670c39ebceba490022a4aee36f9805456",
+      "sourceIndex": 1990,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-4-6-xc16",
+        "section": "초6::1-4 비와 비율::1-4-6 백분율이 사용되는 경우",
+        "term": "몇 $\\%$ 늘어난 양",
+        "kind": "방법",
+        "level": "중",
+        "definition": "어떤 양이 몇 $\\%$ 늘면 늘어난 뒤의 양은 처음 양의 {$100\\%$에 그 백분율을 더한 비율}이 된다.",
+        "studentC": "어떤 양이 몇 $\\%$ 늘면 늘어난 뒤의 양은 처음 양의 □이 된다.",
+        "answers": [
+          "$100\\%$에 그 백분율을 더한 비율"
+        ]
+      },
+      "sourceFingerprint": "89d85b86490bb5eb72c5a4bd91bb477208211b6856810c8870fd3bcf16f81bf8",
+      "draftEvidence": "evidence/section-074-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$130$",
+        "$260$"
+      ],
+      "cStudentAfter": "처음 양이 $200$인 어떤 양이 $30\\%$ 늘면, 늘어난 뒤의 양은 처음 양의 □$\\%$인 □이다.",
+      "cMarkedSentence": "처음 양이 $200$인 어떤 양이 $30\\%$ 늘면, 늘어난 뒤의 양은 처음 양의 {$130$}$\\%$인 {$260$}이다.",
+      "cStudentSentence": "처음 양이 $200$인 어떤 양이 $30\\%$ 늘면, 늘어난 뒤의 양은 처음 양의 □$\\%$인 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$130$",
+          "equivalents": [
+            "$130\\%$"
+          ]
+        },
+        {
+          "key": "$260$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 양이 $30\\%$ 늘어났다. 늘어난 뒤의 양은 처음 양의 몇 $\\%$인지 구하는 방법을 설명하고, 처음 양이 $200$일 때 늘어난 뒤의 양을 구하시오.",
+        "answer": "처음 양의 $100\\%$에 늘어난 $30\\%$를 더해 $130\\%$이다. $200\\times\\frac{130}{100}=260$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "처음 양의 $100\\%$에 늘어난 $30\\%$를 더한다",
+              "처음 전체에 늘어난 $30\\%$를 더해 $130\\%$를 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$260$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "처음 양이 $200$인 어떤 양이 $30\\%$ 늘면, 늘어난 뒤의 양은 처음 양의 {$130$}$\\%$인 {$260$}이다.",
+        "acceptedAnswers": [
+          [
+            "$130$",
+            "$130\\%$"
+          ],
+          [
+            "$260$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "2afe4c27d8bcf893de31d9547dfcd100c3cbf43534072c4443da2ae9a44def2e",
+      "questionRevision": "planning-e5e6-20261006-2afe4c27d8bc",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-4-6-xc20",
+      "bDecision": "revise",
+      "bPrompt": "소금 $20$ $\\mathrm{g}$이 녹은 소금물 $200$ $\\mathrm{g}$에 물 $100$ $\\mathrm{g}$을 더 부었다. 소금 양과 소금물 전체 양은 어떻게 되고, 진하기는 어떻게 변하는지 이유와 함께 설명하시오.",
+      "bAnswer": "소금은 $20\\,\\mathrm{g}$으로 그대로이고 소금물 전체 양은 $300\\,\\mathrm{g}$으로 늘어난다. 같은 소금 양을 더 커진 전체 양으로 나누므로 진하기는 처음 $10\\%$보다 낮아진다.",
+      "bGoal": "물을 붓는 상황에서 기준량이 커져 진하기가 낮아짐을 설명한다.",
+      "bReason": "질문이요청한소금불변·전체증가를각각확인하고같은분자의양과커진기준량때문에묽어진다는이유를연결한다. 기준량이증가한다는말하나로두변화와이유를대체하지않는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "소금 양은 그대로이다",
+            "소금은 $20\\,\\mathrm{g}$으로 변하지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "소금물 전체 양은 늘어난다",
+            "소금물 전체 양이 $300\\,\\mathrm{g}$이 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "진하기가 낮아진다",
+            "묽어진다"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은 소금 양을 더 커진 전체 양으로 나누므로 비율이 작아진다",
+            "소금은 그대로이고 기준인 소금물 전체만 늘어 소금 비율이 낮아진다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "소금 $20$ $\\mathrm{g}$이 녹은 소금물 $200$ $\\mathrm{g}$에 물 $100$ $\\mathrm{g}$을 더 부으면 소금물은 {$300$} $\\mathrm{g}$이 되고 진하기는 $10\\%$보다 {낮아진다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$300$",
+            "$300$ $\\mathrm{g}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "낮아진다",
+            "작아진다",
+            "줄어든다",
+            "묽어진다"
+          ]
+        }
+      ],
+      "cReason": "단순 낱말 빈칸 대신 전체 양 계산과 변화 방향을 확인한다.",
+      "exampleNeeded": false,
+      "synonymNotes": "낮아진다, 작아진다, 묽어진다는 같은 뜻이다.",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-root1980-fixes.json",
+      "codexFinalAmendedFromFingerprint": "ea9469cdfae23903a888ae5b0231d2398f0aa44a97a26513589bdfbfb2b7aa4e",
+      "sourceIndex": 1994,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-4-6-xc20",
+        "section": "초6::1-4 비와 비율::1-4-6 백분율이 사용되는 경우",
+        "term": "물을 부을 때의 진하기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "소금물에 물을 더 부으면 소금 양은 그대로이고 진하기는 {낮아진다}.",
+        "studentC": "소금물에 물을 더 부으면 소금 양은 그대로이고 진하기는 □.",
+        "answers": [
+          "낮아진다"
+        ]
+      },
+      "sourceFingerprint": "b701a7b9a2ffac29ac4512fc61c71c447f33aa650ce649b68d2c7351cf3d1646",
+      "draftEvidence": "evidence/section-074-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$300$",
+        "낮아진다"
+      ],
+      "cStudentAfter": "소금 $20$ $\\mathrm{g}$이 녹은 소금물 $200$ $\\mathrm{g}$에 물 $100$ $\\mathrm{g}$을 더 부으면 소금물은 □ $\\mathrm{g}$이 되고 진하기는 $10\\%$보다 □.",
+      "cMarkedSentence": "소금 $20$ $\\mathrm{g}$이 녹은 소금물 $200$ $\\mathrm{g}$에 물 $100$ $\\mathrm{g}$을 더 부으면 소금물은 {$300$} $\\mathrm{g}$이 되고 진하기는 $10\\%$보다 {낮아진다}.",
+      "cStudentSentence": "소금 $20$ $\\mathrm{g}$이 녹은 소금물 $200$ $\\mathrm{g}$에 물 $100$ $\\mathrm{g}$을 더 부으면 소금물은 □ $\\mathrm{g}$이 되고 진하기는 $10\\%$보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$300$",
+          "equivalents": [
+            "$300$ $\\mathrm{g}$"
+          ]
+        },
+        {
+          "key": "낮아진다",
+          "equivalents": [
+            "작아진다",
+            "줄어든다",
+            "묽어진다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "소금 $20$ $\\mathrm{g}$이 녹은 소금물 $200$ $\\mathrm{g}$에 물 $100$ $\\mathrm{g}$을 더 부었다. 소금 양과 소금물 전체 양은 어떻게 되고, 진하기는 어떻게 변하는지 이유와 함께 설명하시오.",
+        "answer": "소금은 $20\\,\\mathrm{g}$으로 그대로이고 소금물 전체 양은 $300\\,\\mathrm{g}$으로 늘어난다. 같은 소금 양을 더 커진 전체 양으로 나누므로 진하기는 처음 $10\\%$보다 낮아진다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "소금 양은 그대로이다",
+              "소금은 $20\\,\\mathrm{g}$으로 변하지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "소금물 전체 양은 늘어난다",
+              "소금물 전체 양이 $300\\,\\mathrm{g}$이 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "진하기가 낮아진다",
+              "묽어진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 소금 양을 더 커진 전체 양으로 나누므로 비율이 작아진다",
+              "소금은 그대로이고 기준인 소금물 전체만 늘어 소금 비율이 낮아진다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "소금 $20$ $\\mathrm{g}$이 녹은 소금물 $200$ $\\mathrm{g}$에 물 $100$ $\\mathrm{g}$을 더 부으면 소금물은 {$300$} $\\mathrm{g}$이 되고 진하기는 $10\\%$보다 {낮아진다}.",
+        "acceptedAnswers": [
+          [
+            "$300$",
+            "$300$ $\\mathrm{g}$"
+          ],
+          [
+            "낮아진다",
+            "작아진다",
+            "줄어든다",
+            "묽어진다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "78d89df64f5fc0ebbc8522217dcc01b479821789b28feae6465f1ede7f75757a",
+      "questionRevision": "planning-e5e6-20261006-78d89df64f5f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-4-6-xc21",
+      "bDecision": "revise",
+      "bPrompt": "진하기가 $10\\%$인 소금물 $100$ $\\mathrm{g}$과 $200$ $\\mathrm{g}$을 섞으면 진하기는 몇 $\\%$인지 구하고, 소금 양과 소금물 양으로 이유를 설명하시오.",
+      "bAnswer": "소금은 $10+20=30$ $\\mathrm{g}$, 소금물은 $300$ $\\mathrm{g}$이므로 진하기는 $\\frac{30}{300}\\times100=10\\%$이다.",
+      "bGoal": "섞은 뒤의 진하기를 소금 양의 합과 소금물 양의 합으로 구한다.",
+      "bReason": "서로다른대상인소금30g과소금물300g을동의대안으로묶지않고각요청량의독립기준으로분리한다. 진하기10퍼센트의계산근거가되는두양을보존한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$10\\%$",
+            "$10$퍼센트"
+          ]
+        },
+        {
+          "anyOf": [
+            "소금 합은 $30\\,\\mathrm{g}$이다",
+            "소금 양은 $10+20=30\\,\\mathrm{g}$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "소금물 합은 $300\\,\\mathrm{g}$이다",
+            "소금물 전체 양은 $100+200=300\\,\\mathrm{g}$이다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "revise",
+      "cAfter": "진하기가 $10\\%$인 소금물 $100$ $\\mathrm{g}$과 $200$ $\\mathrm{g}$을 섞은 소금물은 소금이 {$30$} $\\mathrm{g}$이므로 진하기가 {$10$}$\\%$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$30$",
+            "$30$ $\\mathrm{g}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10$",
+            "$10\\%$"
+          ]
+        }
+      ],
+      "cReason": "뒤 결론을 미리 주지 않고 소금 양과 진하기를 계산하게 한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-root1980-fixes.json",
+      "codexFinalAmendedFromFingerprint": "633512801fcf97de960acb5e5b2b9930e606dee1e7f7837f8bec222bd1bc4519",
+      "sourceIndex": 1995,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-4-6-xc21",
+        "section": "초6::1-4 비와 비율::1-4-6 백분율이 사용되는 경우",
+        "term": "진하기가 같은 소금물 섞기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "진하기가 $10\\%$인 소금물끼리 섞으면 섞은 소금물의 진하기도 {$10$}$\\%$이다.",
+        "studentC": "진하기가 $10\\%$인 소금물끼리 섞으면 섞은 소금물의 진하기도 □$\\%$이다.",
+        "answers": [
+          "$10$"
+        ]
+      },
+      "sourceFingerprint": "882586e7e03ce8fc02dab16e3523914e107f6663d76bac29ae6d05936231a8f7",
+      "draftEvidence": "evidence/section-074-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$30$",
+        "$10$"
+      ],
+      "cStudentAfter": "진하기가 $10\\%$인 소금물 $100$ $\\mathrm{g}$과 $200$ $\\mathrm{g}$을 섞은 소금물은 소금이 □ $\\mathrm{g}$이므로 진하기가 □$\\%$이다.",
+      "cMarkedSentence": "진하기가 $10\\%$인 소금물 $100$ $\\mathrm{g}$과 $200$ $\\mathrm{g}$을 섞은 소금물은 소금이 {$30$} $\\mathrm{g}$이므로 진하기가 {$10$}$\\%$이다.",
+      "cStudentSentence": "진하기가 $10\\%$인 소금물 $100$ $\\mathrm{g}$과 $200$ $\\mathrm{g}$을 섞은 소금물은 소금이 □ $\\mathrm{g}$이므로 진하기가 □$\\%$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$30$",
+          "equivalents": [
+            "$30$ $\\mathrm{g}$"
+          ]
+        },
+        {
+          "key": "$10$",
+          "equivalents": [
+            "$10\\%$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "진하기가 $10\\%$인 소금물 $100$ $\\mathrm{g}$과 $200$ $\\mathrm{g}$을 섞으면 진하기는 몇 $\\%$인지 구하고, 소금 양과 소금물 양으로 이유를 설명하시오.",
+        "answer": "소금은 $10+20=30$ $\\mathrm{g}$, 소금물은 $300$ $\\mathrm{g}$이므로 진하기는 $\\frac{30}{300}\\times100=10\\%$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$10\\%$",
+              "$10$퍼센트"
+            ]
+          },
+          {
+            "anyOf": [
+              "소금 합은 $30\\,\\mathrm{g}$이다",
+              "소금 양은 $10+20=30\\,\\mathrm{g}$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "소금물 합은 $300\\,\\mathrm{g}$이다",
+              "소금물 전체 양은 $100+200=300\\,\\mathrm{g}$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "진하기가 $10\\%$인 소금물 $100$ $\\mathrm{g}$과 $200$ $\\mathrm{g}$을 섞은 소금물은 소금이 {$30$} $\\mathrm{g}$이므로 진하기가 {$10$}$\\%$이다.",
+        "acceptedAnswers": [
+          [
+            "$30$",
+            "$30$ $\\mathrm{g}$"
+          ],
+          [
+            "$10$",
+            "$10\\%$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "1769cad949ed504ea466840188fe3edd9261955513fe3e2aaf458b2206c718fd",
+      "questionRevision": "planning-e5e6-20261006-1769cad949ed",
+      "requiresIndependentReview": true
+    }
+  ]
+}

@@ -1,0 +1,821 @@
+{
+  "rows": [
+    {
+      "id": "e6-2-3-1-c1",
+      "bDecision": "revise",
+      "bPrompt": "같은 물체를 서로 다른 쪽에서 보면 눈에 들어오는 모양이 어떻게 될 수 있는지 쓰고, 그 까닭을 설명하시오.",
+      "bAnswer": "모양이 달라 보일 수 있다. 물체를 보는 쪽(방향)이 달라지기 때문이다.",
+      "bGoal": "물체의 모양이 달라 보이는 원인이 보는 방향임을 안다.",
+      "bReason": "제목만 설명하게 하지 않고 '달라 보인다'는 결과와 '보는 방향'이라는 원인을 함께 묻는다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "보는 쪽(방향, 위치)이 달라지면 모양이 달라 보일 수 있다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "짧은 낱말 빈칸이고 '보는 쪽'이라는 핵심 원인을 묻는다. 정답이 뒤 문장에 나오지 않는다.",
+      "exampleNeeded": false,
+      "synonymNotes": "보는 쪽, 보는 방향, 보는 위치는 같은 뜻이다."
+    },
+    {
+      "id": "e6-2-3-1-c2",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무 모양을 위·앞·옆에서 본 모양으로 기록할 때, 먼저 정해 두어야 하는 것이 무엇인지 쓰고 그것이 필요한 까닭을 설명하시오.",
+      "bAnswer": "앞쪽(어느 쪽이 앞인지)을 먼저 정해야 한다. 그래야 위·앞·옆에서 본 모양을 같은 기준으로 기록할 수 있어 방향이 헷갈리지 않는다.",
+      "bGoal": "여러 방향의 모양을 기록할 때 앞쪽을 기준으로 정해야 함을 안다.",
+      "bReason": "기준을 먼저 정하는 절차와 그 까닭을 함께 묻는다.",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "앞쪽(기준이 되는 방향)을 먼저 정한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은 기준으로 기록해야 방향이 헷갈리지 않는다",
+            "기준이 달라지면 같은 면이 다르게 기록되어 혼동된다"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "쌓기나무를 위·앞·옆에서 본 모양을 기록할 때는 먼저 {앞쪽}을 정하고, 모든 방향을 그 기준에 맞춰 기록한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "앞쪽",
+            "앞",
+            "앞면",
+            "기준 방향"
+          ]
+        }
+      ],
+      "cReason": "원문 '같은 기준'은 무엇의 기준인지 불분명하다. 정해야 할 대상인 앞쪽을 빈칸으로 바꾼다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-3-1-c3",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무를 앞에서 볼 때 뒤에 있는 쌓기나무가 보이지 않을 수 있는 까닭을 설명하시오.",
+      "bAnswer": "앞에 있는 쌓기나무에 가려지기 때문이다.",
+      "bGoal": "앞뒤로 겹친 쌓기나무에서 뒤의 것이 가려져 안 보일 수 있음을 설명한다.",
+      "bReason": "'가려져'만 채우게 하지 않고 안 보이는 원인을 설명하게 한다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "앞의 쌓기나무에 가려진다",
+            "앞의 쌓기나무에 막혀 보이지 않는다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "앞뒤로 겹친 쌓기나무에서 뒤의 것이 가려진다는 핵심을 짧게 묻는 낱말 빈칸이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "가려져, 가려서, 막혀 등 같은 뜻을 인정한다."
+    },
+    {
+      "id": "e6-2-3-1-xc1",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "위에서 본 모양이 무엇인지 안다.",
+      "bReason": "정답이 문장에 나온 이름과 같아 용어 암기뿐이다.",
+      "learningRole": "naming",
+      "bRequiredIdeas": [],
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "빈칸 답이 '위에서 본 모양'으로 이름을 되풀이할 뿐 수학적 판단이 없다.",
+      "exclusionReason": "이름 정의만 되풀이하는 자명한 문장이다. 대체: e6-2-3-1-xc4, e6-2-3-1-xc12.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-3-1-xc2",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "앞에서 본 모양이 무엇인지 안다.",
+      "bReason": "이름과 정의를 서로 바꾸어 말하는 문항이다.",
+      "learningRole": "naming",
+      "bRequiredIdeas": [],
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "빈칸 답이 문장에 나온 이름 그대로여서 학습 가치가 낮다.",
+      "exclusionReason": "이름 정의만 되풀이하는 자명한 문장이다. 대체: e6-2-3-1-c2, e6-2-3-1-xc5.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-3-1-xc3",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "옆에서 본 모양이 무엇인지 안다.",
+      "bReason": "이름만 되풀이한다.",
+      "learningRole": "naming",
+      "bRequiredIdeas": [],
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "빈칸 답이 문장에 나온 이름 그대로다.",
+      "exclusionReason": "이름 정의만 되풀이하는 자명한 문장이다. 대체: e6-2-3-1-xc11, e6-2-3-1-xc15.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-3-1-xc4",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무로 쌓은 모양을 바로 위에서 내려다볼 때, 보이는 칸 하나하나는 쌓기나무에 대해 무엇을 나타내는지 설명하시오.",
+      "bAnswer": "쌓기나무가 놓여 있는 바닥 자리(위치)를 나타낸다.",
+      "bGoal": "위에서 본 모양의 칸이 쌓기나무가 놓인 바닥 자리임을 안다.",
+      "bReason": "위에서 본 모양의 칸이 무엇을 나타내는지를 묻는 의미 있는 질문이다.",
+      "learningRole": "definition",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "쌓기나무가 놓인 바닥 자리",
+            "쌓기나무가 놓인 위치(자리)",
+            "쌓기나무가 쌓인 자리"
+          ]
+        }
+      ],
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "xc12가 같은 내용을 더 분명한 비교(칸 수와 자리 수)로 다룬다.",
+      "exclusionReason": "C는 e6-2-3-1-xc12와 중복이다. 대체: e6-2-3-1-xc12.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-3-1-xc5",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무를 앞에서 볼 때, 앞뒤로 같은 줄에 놓인 쌓기나무들은 몇 층까지 보이는지 설명하시오.",
+      "bAnswer": "그 줄에서 가장 높게 쌓은 층까지 보인다.",
+      "bGoal": "앞에서 보면 같은 줄에서는 가장 높은 층까지 보인다는 것을 설명한다.",
+      "bReason": "'각 줄'이라는 모호한 말 대신 앞뒤로 같은 줄이라고 대상을 분명히 했다.",
+      "learningRole": "definition",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "그 줄에서 가장 높게 쌓은 층까지 보인다",
+            "그 줄에서 가장 높은 층의 높이로 보인다"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "쌓기나무를 앞에서 볼 때 앞뒤로 같은 줄에 놓인 쌓기나무는 그중 {가장 높게} 쌓은 층까지 보인다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "가장 높게",
+            "가장 높이",
+            "제일 높게",
+            "가장 높은 층으로"
+          ]
+        }
+      ],
+      "cReason": "원문 '각 줄'이 앞뒤 줄인지 좌우 줄인지 불분명하므로 앞뒤로 같은 줄이라고 분명히 한다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-3-1-xc6",
+      "bDecision": "revise",
+      "bPrompt": "여러 물체가 놓인 모습을 사진으로 찍었다. 물체가 실제로 놓인 자리를 알고 있을 때, 사진에서 어떤 점을 살펴보면 사진을 찍은 방향을 알아낼 수 있는지 한 가지 이상 쓰시오.",
+      "bAnswer": "물체들이 사진에서 놓인 좌우 순서, 어떤 물체가 다른 물체를 가리는지, 가까운 물체가 더 크게 보이는지 중 하나 이상을 놓인 자리와 비교한다.",
+      "bGoal": "사진 속 단서를 실제 놓인 자리와 비교해 찍은 방향을 추론한다.",
+      "bReason": "여러 단서 중 하나를 고르게 하여 한 낱말을 강요하지 않는다.",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "사진 속 물체의 좌우 순서",
+            "어떤 물체가 다른 물체를 가리는지",
+            "가까운 물체가 더 크게 보이는 정도"
+          ]
+        }
+      ],
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "빈칸 답이 '좌우 순서·가려진 부분' 두 의미를 함께 강요해 정답이 하나로 정해지지 않는다.",
+      "exclusionReason": "C는 여러 의미를 한 빈칸에 묻는다. 대체: e6-2-3-1-xc14, e6-2-3-1-xc23.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-3-1-xc7",
+      "bDecision": "revise",
+      "bPrompt": "정육면체의 한 면과 마주 보도록 정면에서 보면 그 면은 어떤 모양으로 보이는지 쓰고, 그 까닭을 설명하시오.",
+      "bAnswer": "정사각형으로 보인다. 정육면체의 면은 모두 정사각형이기 때문이다.",
+      "bGoal": "정육면체의 면이 정사각형임을 정면에서 보는 상황에 적용한다.",
+      "bReason": "모양 이름뿐 아니라 정육면체의 면의 성질이라는 까닭을 묻는다.",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "정사각형으로 보인다"
+          ]
+        },
+        {
+          "anyOf": [
+            "정육면체의 면은 모두 정사각형이다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "조건('한 면과 마주 보게 정면에서')이 분명하고 짧은 낱말 하나를 묻는다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-3-1-xc8",
+      "bDecision": "revise",
+      "bPrompt": "옆면이 직사각형인 삼각기둥을 위에서 내려다볼 때 삼각형으로 보이려면 어떻게 놓아야 하는지 쓰시오. 그렇게 놓았을 때 위에서 본 모양과 밑면은 어떤 관계인지도 설명하시오.",
+      "bAnswer": "밑면이 바닥에 닿게 놓는다. 그러면 위에서 본 모양은 밑면과 같은 모양(삼각형)이다.",
+      "bGoal": "각기둥을 어떻게 놓느냐에 따라 위에서 본 모양이 달라짐을 안다.",
+      "bReason": "놓는 방법과 밑면과의 관계를 모두 묻는다.",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "밑면이 바닥에 닿게 놓는다",
+            "밑면을 바닥에 두고 세운다"
+          ]
+        },
+        {
+          "anyOf": [
+            "위에서 본 모양이 밑면과 같다",
+            "위에서 본 모양이 삼각형이다"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "각기둥을 밑면이 바닥에 닿게 놓고 위에서 보면 {밑면}과 같은 모양으로 보인다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "밑면",
+            "아래 밑면",
+            "바닥에 닿은 면"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸은 긴 구절을 외우게 한다. 밑면이라는 한 낱말을 묻고 놓는 조건은 문장에 둔다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-3-1-xc9",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무 한 개를 위, 앞, 옆에서 각각 보면 어떤 모양으로 보이는지 쓰고, 그 까닭을 설명하시오.",
+      "bAnswer": "어느 쪽에서 보아도 정사각형 한 칸으로 보인다. 쌓기나무는 정육면체이고 그 면이 정사각형이기 때문이다.",
+      "bGoal": "정육면체 쌓기나무 한 개는 어느 방향에서도 같은 모양임을 설명한다.",
+      "bReason": "세 방향의 결과와 정육면체의 면이라는 까닭을 함께 묻는다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "정사각형 한 칸으로 보인다",
+            "정사각형으로 보인다"
+          ]
+        },
+        {
+          "anyOf": [
+            "쌓기나무는 정육면체라서 면이 정사각형이다"
+          ]
+        }
+      ],
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "xc7과 같은 사실(정육면체 면은 정사각형)을 묻는다.",
+      "exclusionReason": "C는 e6-2-3-1-xc7과 중복이다. 대체: e6-2-3-1-xc7.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-3-1-xc10",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무로 쌓은 모양을 앞에서 본 모양과 뒤에서 본 모양을 비교하면 어떤 관계가 있는지 쓰고, 그 까닭을 설명하시오.",
+      "bAnswer": "서로 좌우가 바뀐 모양이다. 앞과 뒤는 반대쪽이라 왼쪽과 오른쪽이 서로 바뀌어 보이기 때문이다.",
+      "bGoal": "앞과 뒤에서 본 모양은 좌우가 서로 바뀐다는 것을 이해한다.",
+      "bReason": "두 모양의 관계와 원인(반대쪽에서 봄)을 묻는다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "좌우가 서로 바뀐 모양이다",
+            "왼쪽과 오른쪽이 서로 바뀐다"
+          ]
+        },
+        {
+          "anyOf": [
+            "반대쪽에서 보기 때문이다",
+            "마주 보는 쪽에서 보기 때문에 왼쪽과 오른쪽이 반대가 된다"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "앞에서 본 모양과 뒤에서 본 모양은 {좌우}가 서로 바뀐 모양이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "좌우",
+            "왼쪽과 오른쪽",
+            "오른쪽과 왼쪽"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 '좌우가 바뀐'을 빈칸으로 두지 않고 핵심 낱말 '좌우'만 묻는다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-3-1-xc11",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "왼쪽 옆과 오른쪽 옆에서 본 모양의 관계를 안다.",
+      "bReason": "xc10의 반대쪽에서 본 모양 관계와 같은 사실이라 B를 따로 둘 필요가 낮다.",
+      "learningRole": "definition",
+      "bRequiredIdeas": [],
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "왼쪽과 오른쪽 옆을 비교하는 짧은 낱말 빈칸이고 xc10과 대상이 달라 유지한다.",
+      "exclusionReason": "B는 e6-2-3-1-xc10과 중복이다. 대체: e6-2-3-1-xc10.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-3-1-xc12",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무로 쌓은 모양을 위에서 본 모양의 칸을 세면 어떤 수를 알 수 있는지 설명하시오.",
+      "bAnswer": "쌓기나무가 놓인 바닥 자리의 수를 알 수 있다. 몇 층으로 쌓았는지와 상관없이 쌓기나무가 있는 자리마다 한 칸으로 보이기 때문이다.",
+      "bGoal": "위에서 본 칸 수가 바닥 자리의 수와 같음을 이해한다.",
+      "bReason": "칸 수가 무엇을 나타내는지를 묻는 일반 관계다.",
+      "learningRole": "definition",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "쌓기나무가 놓인 바닥 자리의 수",
+            "쌓기나무가 놓인 자리의 수"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "위에서 본 모양의 칸 수는 쌓기나무가 놓인 {바닥 자리}의 수와 같다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "바닥 자리",
+            "바닥 칸",
+            "놓인 자리",
+            "자리"
+          ]
+        }
+      ],
+      "cReason": "긴 답 '쌓기나무가 놓인 바닥 자리의 수' 대신 핵심 낱말만 빈칸으로 둔다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-3-1-xc13",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무로 쌓은 모양에서 앞에서 본 모양의 칸 수와 실제 쌓기나무 개수를 비교하면 어떤 관계가 있는지 쓰고, 두 수가 같아지는 경우와 다른 경우를 설명하시오.",
+      "bAnswer": "앞에서 본 칸 수는 실제 개수보다 적거나 같다. 가려진 쌓기나무가 없으면 같고, 가려진 쌓기나무가 있으면 적다.",
+      "bGoal": "앞에서 본 칸 수와 실제 개수의 크기 관계를 가려짐과 연결해 설명한다.",
+      "bReason": "단순 부등호 대신 같은 경우와 적은 경우의 까닭을 묻는다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "앞에서 본 칸 수가 실제 개수보다 적거나 같다",
+            "실제 개수가 앞에서 본 칸 수보다 많거나 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "가려진 것이 있으면 적고 없으면 같다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "앞에서 본 칸 수와 실제 개수를 비교하는 짧은 문장이고 '적거나 같다'라는 핵심 관계를 묻는다.",
+      "exampleNeeded": false,
+      "synonymNotes": "적거나 같다, 같거나 적다, 많지 않다는 같은 뜻으로 본다."
+    },
+    {
+      "id": "e6-2-3-1-xc14",
+      "bDecision": "revise",
+      "bPrompt": "물체 A와 물체 B가 일직선으로 놓여 있고, 사진에서 A가 B를 일부 가리고 있다. 이 사진은 A 쪽에서 찍은 것인지 B 쪽에서 찍은 것인지 쓰고, 그 까닭을 설명하시오.",
+      "bAnswer": "A 쪽에서 찍은 것이다. 찍은 곳에서 더 가까운 A가 더 먼 B를 가리기 때문이다.",
+      "bGoal": "겹쳐 보이는 사진에서 가리는 물체 쪽이 찍은 쪽임을 추론한다.",
+      "bReason": "A, B를 문제에 직접 제시해 그림 없이도 풀 수 있게 한다.",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "A 쪽에서 찍은 것이다",
+            "가리는 물체 쪽에서 찍은 것이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "가까운 물체가 먼 물체를 가리기 때문이다"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "물체 둘이 겹쳐 보이면 사진을 찍은 곳에서 {더 가까운} 물체가 다른 물체를 가린다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "더 가까운",
+            "가까운",
+            "더 가까이 있는"
+          ]
+        }
+      ],
+      "cReason": "가리는 쪽이라는 말을 가까운 쪽이라는 원인으로 바꾸어 이해를 돕는다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-3-1-xc15",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무로 쌓은 모양에서 위에서 본 모양만으로는 알 수 없지만 앞이나 옆에서 본 모양으로 알 수 있는 것은 무엇인지 쓰고, 그 까닭을 설명하시오.",
+      "bAnswer": "쌓은 높이(층수)이다. 위에서는 내려다보아 높이가 보이지 않고, 앞이나 옆에서는 높이가 보이기 때문이다.",
+      "bGoal": "어느 방향의 모양이 높이를 보여 주는지 안다.",
+      "bReason": "알 수 있는 것과 그 방향이 필요한 까닭을 함께 묻는다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "쌓은 높이",
+            "층수",
+            "몇 층인지"
+          ]
+        },
+        {
+          "anyOf": [
+            "위에서는 높이가 보이지 않고 앞이나 옆에서는 보인다"
+          ]
+        }
+      ],
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "xc16 C와 같은 사실을 반대로 묻는 문장이다.",
+      "exclusionReason": "C는 e6-2-3-1-xc16과 중복이다. 대체: e6-2-3-1-xc16.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-3-1-xc16",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "위에서 본 모양만으로 각 자리의 층수를 알 수 없음을 안다.",
+      "bReason": "xc15 B와 같은 사실을 반대로 묻는다.",
+      "learningRole": "definition",
+      "bRequiredIdeas": [],
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "위에서 본 모양으로는 각 자리에 몇 층인지 알 수 없다는 짧은 낱말 빈칸이다. 정답이 앞뒤 문장에 나오지 않는다.",
+      "exclusionReason": "B는 e6-2-3-1-xc15와 중복이다. 대체: e6-2-3-1-xc15.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-3-1-xc17",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무 $3$개를 한 층으로 앞뒤로 한 줄로 놓고 앞에서 보면 몇 칸이 보이는지 쓰고, 그 까닭을 설명하시오.",
+      "bAnswer": "$1$칸이 보인다. 뒤의 $2$개가 맨 앞의 쌓기나무에 가려져 보이지 않기 때문이다.",
+      "bGoal": "앞뒤로 한 줄로 놓은 쌓기나무가 앞에서 한 칸만 보이는 까닭을 설명한다.",
+      "bReason": "구체적 개수 예와 가려짐을 함께 물어 결과와 이유를 연결한다.",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1$칸",
+            "한 칸"
+          ]
+        },
+        {
+          "anyOf": [
+            "뒤의 쌓기나무가 앞의 것에 가려진다"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "한 층으로 앞뒤로 한 줄로 놓은 쌓기나무 $3$개를 앞에서 보면 {$1$}칸이 보인다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$",
+            "$1$칸",
+            "한",
+            "한 칸"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 답 대신 개수 예에서 보이는 칸 수를 묻는다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-3-1-xc18",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무 $3$개를 한 층으로 좌우로 한 줄로 놓고 앞에서 보면 몇 칸이 보이는지 쓰고, 그 까닭을 설명하시오.",
+      "bAnswer": "$3$칸이 보인다. 서로 가리지 않아 놓은 개수만큼 칸이 보이기 때문이다.",
+      "bGoal": "좌우로 한 줄 놓은 쌓기나무는 앞에서 가려지지 않음을 설명한다.",
+      "bReason": "xc17과 대비되는 배치로 가려짐 유무를 이해하게 한다.",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$3$칸",
+            "세 칸"
+          ]
+        },
+        {
+          "anyOf": [
+            "서로 가리지 않는다",
+            "가려지는 것이 없다"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "한 층으로 좌우로 한 줄로 놓은 쌓기나무 $4$개를 앞에서 보면 {$4$}칸이 보인다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$",
+            "$4$칸",
+            "네",
+            "네 칸"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 답 대신 가려지지 않아 놓은 개수만큼 보인다는 것을 숫자로 확인한다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-3-1-xc19",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무로 쌓은 모양에서 한 방향에서 본 모양만 알려 주면 그 모양을 정확히 알 수 없는 까닭을 설명하시오.",
+      "bAnswer": "가려져 보이지 않는 쌓기나무가 있어, 서로 다른 모양이 같은 모양으로 보일 수 있기 때문이다.",
+      "bGoal": "여러 방향의 모양을 함께 보아야 하는 까닭을 이해한다.",
+      "bReason": "'하나로 정할 수 없다'는 결론을 가려짐과 연결하게 한다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "보이지 않는(가려진) 부분이 있다",
+            "서로 다른 모양이 같게 보일 수 있다"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "한 방향에서 본 모양이 같아도 물체의 모양이 {다를} 수 있어서 여러 방향에서 본 모양을 함께 살펴본다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "다를",
+            "서로 다를",
+            "달라질"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 대신 '모양이 다를 수 있다'는 핵심을 묻는다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-3-1-xc20",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무로 만든 두 입체의 앞에서 본 모양과 옆에서 본 모양이 각각 같을 때, 사용한 쌓기나무의 개수도 반드시 같은지 쓰고 그 까닭을 설명하시오.",
+      "bAnswer": "반드시 같지는 않다. 앞이나 옆에서 보이지 않는 자리에 쌓은 개수가 다를 수 있기 때문이다.",
+      "bGoal": "보이는 모양이 같아도 숨은 쌓기나무 개수가 다를 수 있음을 이해한다.",
+      "bReason": "반례의 존재와 그 까닭을 함께 묻는다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "반드시 같지는 않다",
+            "다를 수 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "보이지 않는(가려진) 자리에 쌓은 개수가 다를 수 있다"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "앞에서 본 모양과 옆에서 본 모양이 각각 같아도 쌓기나무 개수가 다를 수 있는 까닭은 {보이지 않는} 자리에 쌓은 개수가 다를 수 있기 때문이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "보이지 않는",
+            "가려진",
+            "안 보이는"
+          ]
+        }
+      ],
+      "cReason": "정답 '아니다'가 뒤 문장에서 짐작되므로 보이지 않는 자리라는 까닭을 묻는다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-3-1-xc21",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무로 쌓은 모양을 위, 앞, 뒤, 옆 어느 쪽에서도 볼 수 없는 쌓기나무는 주변 쌓기나무와 어떤 위치 관계에 있는지 설명하시오.",
+      "bAnswer": "다른 쌓기나무에 둘러싸여 있다.",
+      "bGoal": "어느 방향에서도 보이지 않는 쌓기나무의 위치를 설명한다.",
+      "bReason": "'어느 방향'의 범위를 정하고 위치 관계를 묻는다.",
+      "learningRole": "definition",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "다른 쌓기나무에 둘러싸여 있다",
+            "주변이 다른 쌓기나무로 막혀 있다"
+          ]
+        }
+      ],
+      "coreAfter": "위, 앞, 뒤, 옆 어느 쪽에서도 보이지 않는 쌓기나무는 주변이 다른 쌓기나무로 막혀(둘러싸여) 있다.",
+      "coreReason": "'어느 방향'의 범위가 불분명하다. 아래쪽은 바닥이라 보이지 않으므로 방향을 위, 앞, 뒤, 옆으로 분명히 했다.",
+      "cDecision": "revise",
+      "cAfter": "위, 앞, 뒤, 옆 어느 쪽에서도 보이지 않는 쌓기나무는 다른 쌓기나무에 {둘러싸여} 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "둘러싸여",
+            "에워싸여",
+            "둘러싸인"
+          ]
+        }
+      ],
+      "cReason": "방향 범위를 분명히 하여 바닥 쪽 모호함을 없앤다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-3-1-xc22",
+      "bDecision": "revise",
+      "bPrompt": "한 모서리에 쌓기나무를 $3$개씩 쌓아 정육면체 모양을 만들었다. 위, 앞, 옆에서 본 모양은 각각 어떤 모양인지 쓰고, 그 까닭을 설명하시오.",
+      "bAnswer": "모두 가로 $3$칸, 세로 $3$칸으로 크기가 같은 정사각형이다. 가로, 세로, 높이로 쌓은 개수가 모두 $3$개로 같기 때문이다.",
+      "bGoal": "정육면체 모양으로 쌓으면 세 방향 모양이 같은 정사각형임을 이해한다.",
+      "bReason": "구체적인 예에서 일반 이유(세 방향 개수가 같음)를 묻는다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "모두 크기가 같은 정사각형이다",
+            "$3\\times3$ 칸 정사각형이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "가로, 세로, 높이로 쌓은 개수가 같다"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "정육면체 모양으로 쌓은 쌓기나무를 위, 앞, 옆에서 본 모양은 모두 {같은} 크기의 정사각형이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같은",
+            "똑같은",
+            "합동인"
+          ]
+        }
+      ],
+      "cReason": "원문은 긴 구절이라 같은 크기를 묻는 낱말 빈칸으로 바꾼다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-3-1-xc23",
+      "bDecision": "revise",
+      "bPrompt": "크기가 같은 두 물체를 사진으로 찍었더니 한 물체가 더 크게 보였다. 사진을 찍은 곳에서 더 가까이 있는 것은 어느 쪽 물체인지 쓰고, 그 까닭을 설명하시오.",
+      "bAnswer": "더 크게 보이는 물체가 더 가까이 있다. 같은 크기의 물체는 가까울수록 더 크게 보이기 때문이다.",
+      "bGoal": "사진 속 크기 차이로 찍은 위치를 짐작한다.",
+      "bReason": "크게 보이는 쪽이 가깝다는 추론과 그 까닭을 묻는다.",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "더 크게 보이는 물체가 더 가깝다"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은 크기의 물체는 가까울수록 크게 보인다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "같은 크기라는 조건이 있고 '더 크게'를 묻는 짧은 문장이다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-3-1-xc24",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무로 쌓은 모양을 위에서 보니 $6$칸이 보였다. 쌓기나무는 모두 적어도 몇 개인지 쓰고, 위에서 본 칸 수와 전체 쌓기나무 개수 사이의 관계를 설명하시오.",
+      "bAnswer": "적어도 $6$개이다. 위에서 본 칸마다 쌓기나무가 한 개 이상 있으므로 전체 개수는 칸 수와 같거나 더 많다.",
+      "bGoal": "위에서 본 칸 수가 쌓기나무 개수의 최솟값임을 이해한다.",
+      "bReason": "예의 답과 일반 관계를 함께 묻는다.",
+      "learningRole": "reason",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "적어도 $6$개",
+            "$6$개 이상"
+          ]
+        },
+        {
+          "anyOf": [
+            "전체 개수는 위에서 본 칸 수와 같거나 더 많다",
+            "각 칸마다 한 개 이상 있다"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "쌓기나무 전체 개수는 위에서 본 모양의 칸 수와 같거나 {많다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "많다",
+            "더 많다",
+            "크다"
+          ]
+        }
+      ],
+      "cReason": "빈칸을 '적어도 칸 수만큼'이라는 긴 구절 대신 크기 비교 낱말로 바꾼다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-3-1-xc25",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무로 쌓은 모양을 앞에서 보니 어느 줄이 $3$층으로 보였다. 이 줄에서 앞뒤로 놓인 자리에 대해 어떤 사실을 알 수 있는지 설명하시오.",
+      "bAnswer": "그 줄의 자리 중 적어도 한 곳은 $3$층으로 쌓여 있다.",
+      "bGoal": "앞에서 본 높이에서 뒤쪽 자리의 최대 높이를 추론한다.",
+      "bReason": "앞에서 본 모양의 높이가 뒤쪽의 가장 높은 기둥을 알려 준다는 점을 묻는다.",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "적어도 한 자리는 $3$층이다",
+            "한 곳 이상이 $3$층이다"
+          ]
+        }
+      ],
+      "cDecision": "revise",
+      "cAfter": "앞에서 본 모양에서 어느 줄이 $3$층으로 보이면, 그 줄의 앞뒤 자리 중 {적어도 한} 곳은 $3$층으로 쌓여 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "적어도 한",
+            "적어도 하나",
+            "한 곳 이상"
+          ]
+        }
+      ],
+      "cReason": "'그만큼 쌓은 자리'가 모호하여 층수와 자리를 분명히 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-3-1-xc26",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "앞에서 본 모양을 이용해 뒤에서 본 모양을 그린다.",
+      "bReason": "xc10과 같은 좌우 바뀜 관계를 방법으로 되풀이한다.",
+      "learningRole": "procedure",
+      "bRequiredIdeas": [],
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "'좌우로 뒤집어'가 긴 구절 답이고 xc10 C와 같은 내용이다.",
+      "exclusionReason": "B와 C 모두 e6-2-3-1-xc10과 중복이다. 대체: e6-2-3-1-xc10.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e6-2-3-1-xc27",
+      "bDecision": "revise",
+      "bPrompt": "물체의 위아래는 그대로 두고 오른쪽 옆면이 앞으로 오게 $90^\\circ$ 돌려 놓았다. 돌려 놓은 뒤 앞에서 본 모양은 처음에 어느 쪽에서 본 모양과 같은지 쓰고, 그 까닭을 설명하시오.",
+      "bAnswer": "처음에 오른쪽 옆에서 본 모양과 같다. 처음 오른쪽 옆면이 돌려 놓은 뒤 앞쪽에 오기 때문이다.",
+      "bGoal": "물체를 돌린 뒤 보이는 면을 처음 방향과 연결한다.",
+      "bReason": "돌림 조건을 질문에 넣고 방향 변화의 까닭을 묻는다.",
+      "learningRole": "application",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "처음 오른쪽 옆에서 본 모양과 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "처음 오른쪽 옆면이 앞으로 오기 때문이다"
+          ]
+        }
+      ],
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "앞 문장에 이미 '오른쪽 옆면'이 나와 정답을 베끼게 되므로 B에서만 묻는다.",
+      "exclusionReason": "C는 정답이 앞 문장에 노출된다. 대체: B로 대체.",
+      "exampleNeeded": false
+    }
+  ],
+  "sectionNotes": [
+    "이름만 되풀이하거나 중복인 문항(xc1~xc3, xc9 C, xc26)은 제외했다. xc11의 B는 xc10과 중복이라 제외했다.",
+    "그림이 필요한 문항은 문장 안에 조건을 모두 넣어 글로 풀 수 있게 했다."
+  ]
+}

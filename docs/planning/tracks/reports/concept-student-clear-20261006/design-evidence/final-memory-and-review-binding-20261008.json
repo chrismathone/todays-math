@@ -1,0 +1,26 @@
+{
+  "checkedAt": "2026-10-07T16:29:51.499Z",
+  "appliedBankHash": "7297754857be8beba247331fd46e27b70f3696c604d9792693d130122b6f8c72",
+  "definitionChanges": 607,
+  "affectedFadingGroups": 492,
+  "readOnlyPreflightBoundToCurrentDefinitions": true,
+  "affectedOpenSessions": 0,
+  "affectedLegacyRatingSessions": 0,
+  "recordsWritten": false,
+  "originalReportsPreservedWithoutRelabeling": true,
+  "rawBoundPackets": 138,
+  "files": [
+    {
+      "file": "fading-core-impact.json",
+      "sha256": "5da2e098174a0f674fe1f2bde449dc8ac15efc41c49be954a58cb1724e611d31"
+    },
+    {
+      "file": "fading-legacy-rating-preflight.json",
+      "sha256": "64fb4e73424c92fb982b929a9375cb36cc4cf904e23e8b8f2d12b665d95297b4"
+    },
+    {
+      "file": "raw-review-binding-report-20261007.json",
+      "sha256": "89a4b7f69e690c499b32785d4e709588c21303444da2f3c91f4e56e62bd6af55"
+    }
+  ]
+}

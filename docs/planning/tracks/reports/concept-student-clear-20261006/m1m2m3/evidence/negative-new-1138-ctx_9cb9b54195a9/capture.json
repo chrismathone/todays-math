@@ -1,0 +1,241 @@
+{
+  "capturedAt": "2026-10-07T12:04:11.768Z",
+  "sourceCommit": "13bf05dce",
+  "scope": "Only assigned middle-school finding; elementary findings remain root-owned.",
+  "files": [
+    {
+      "name": "cohort-2026-10-07T11-38-20-285Z-0-blind-input.md",
+      "sha256": "0bd991c607a29a9a2890945efe7a8a6d679c088746e4ca34491101d140b58684"
+    },
+    {
+      "name": "cohort-2026-10-07T11-38-20-285Z-0-blind-meta.json",
+      "sha256": "08bb5b8cf87a2a3774c6e6e503c62cf19c3d27e8753c8f0da947b3dad554be2c"
+    },
+    {
+      "name": "cohort-2026-10-07T11-38-20-285Z-0-blind-raw.md",
+      "sha256": "c55c7108029193e54fa763d5aa8a31360370da13e9f4e732d6ccd42deed838e6"
+    },
+    {
+      "name": "cohort-2026-10-07T11-38-20-285Z-0-blind.json",
+      "sha256": "8f3e3bfa947e7d54e5547c2233398b2362ff4c756f0f7353766b25acc8309268"
+    },
+    {
+      "name": "cohort-2026-10-07T11-38-20-285Z-0-key-input.md",
+      "sha256": "93f4981a55aa0ee5068902b3a82264030ff92d6421411cb701fb25ff6667d85e"
+    },
+    {
+      "name": "cohort-2026-10-07T11-38-20-285Z-0-key-meta.json",
+      "sha256": "2328352439b39d1254653dfc6f8418dd4fbbbbfdaeb1a72f024bec5a9b5e9da3"
+    },
+    {
+      "name": "cohort-2026-10-07T11-38-20-285Z-0-key-raw.md",
+      "sha256": "7c12c50db5aa2474431081eacc37175a63d79d5907ed1625d290a3e6cbf94fa3"
+    },
+    {
+      "name": "cohort-2026-10-07T11-38-20-285Z-0-result.json",
+      "sha256": "9a7525f147cc787c873104f4c018258f549616522f7e5760a9a1910531edeb5a"
+    },
+    {
+      "name": "cohort-2026-10-07T11-38-20-285Z-0-source.json",
+      "sha256": "662a439b9252afd22b8699b26efce41c44af7922ec6c83b7f261ff709d81199f"
+    }
+  ],
+  "records": [
+    {
+      "id": "m1-03-08-xc5",
+      "cohort": "cohort-2026-10-07T11-38-20-285Z-0",
+      "sourceIndex": 1325,
+      "readHash": "5ef5587b383ee2e1bab99aa2d08148569f9930b4782453ee3eaecd55299db6f1",
+      "currentHash": "5ef5587b383ee2e1bab99aa2d08148569f9930b4782453ee3eaecd55299db6f1",
+      "hashMatches": true,
+      "reviewed": {
+        "id": "m1-03-08-xc5",
+        "grade": "중1",
+        "source": {
+          "id": "m1-03-08-xc5",
+          "section": "중1::3. 방정식::일차방정식의 활용(수)",
+          "term": "답 확인하기",
+          "kind": "방법",
+          "level": "하",
+          "definition": "구한 값을 문제의 {문장}에 넣어 조건에 맞는지 {확인}한다.",
+          "example": {
+            "prompt": "어떤 수가 $13$일 때 '$7$을 더하면 $20$'이 맞는가?",
+            "answer": "맞다"
+          }
+        },
+        "B": {
+          "prompt": "'어떤 수에 $7$을 더하면 $20$이다.'라는 문제에서 어떤 수를 $13$이라고 구했다. 이 답이 맞는지 확인하려면 $13$을 어디에 넣어 보아야 하는지 쓰고, 실제로 확인하시오.",
+          "answer": "구한 값 $13$을 문제의 문장에 넣어 본다. $13$에 $7$을 더하면 $20$이 되어 문제의 조건에 맞으므로 답이 맞다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "구한 값 $13$을 처음 문제의 문장에 넣어 조건이 맞는지 확인한다",
+                "어떤 수에 $7$을 더하면 $20$이라는 원래 조건에 $13$을 넣어 본다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$13+7=20$으로 조건에 맞으므로 답이 맞다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "방정식을 풀어 구한 값은 처음 문제의 {문장}에 넣어 보아, 문제가 말한 조건에 맞는지 확인한다.",
+          "acceptedAnswers": [
+            [
+              "문장",
+              "조건",
+              "내용"
+            ]
+          ]
+        },
+        "goal": "구한 값을 문제의 문장에 넣어 조건에 맞는지 확인한다.",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "5ef5587b383ee2e1bab99aa2d08148569f9930b4782453ee3eaecd55299db6f1"
+      },
+      "currentRaw": {
+        "id": "m1-03-08-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "'어떤 수에 $7$을 더하면 $20$이다.'라는 문제에서 어떤 수를 $13$이라고 구했다. 이 답이 맞는지 확인하려면 $13$을 어디에 넣어 보아야 하는지 쓰고, 실제로 확인하시오.",
+        "bAnswer": "구한 값 $13$을 문제의 문장에 넣어 본다. $13$에 $7$을 더하면 $20$이 되어 문제의 조건에 맞으므로 답이 맞다.",
+        "bGoal": "구한 값을 문제의 문장에 넣어 조건에 맞는지 확인한다.",
+        "bReason": "방정식자체가문장조건을잘못옮겼을수있으므로원래문제조건에넣어확인한다는기준을분명하게한다. 이구체문제의정확한식을허용하는것이수학적으로틀리지는않지만교육목표를장부에명시한다.",
+        "cDecision": "rewrite",
+        "cAfter": "방정식을 풀어 구한 값은 처음 문제의 {문장}에 넣어 보아, 문제가 말한 조건에 맞는지 확인한다.",
+        "cAnswers": [
+          "문장"
+        ],
+        "cReason": "문제의조건·내용에넣어검산한다는같은뜻을문장과함께인정한다.",
+        "exampleNeeded": true,
+        "authorBatch": 8,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "구한 값 $13$을 처음 문제의 문장에 넣어 조건이 맞는지 확인한다",
+              "어떤 수에 $7$을 더하면 $20$이라는 원래 조건에 $13$을 넣어 본다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$13+7=20$으로 조건에 맞으므로 답이 맞다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-005",
+        "learningRole": "procedure",
+        "roleReason": "구한 값을 문장에 넣어 확인",
+        "enrichmentEvidence": "enrichment/enrich-006",
+        "sourceIndex": 1325,
+        "part": "m1plus",
+        "sourceFingerprint": "83e7e634161735b00be378d2c85d062da4a74ee8656f1336471d92333e9332d7",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1325
+        },
+        "directReview": null,
+        "cMarkedSentence": "방정식을 풀어 구한 값은 처음 문제의 {문장}에 넣어 보아, 문제가 말한 조건에 맞는지 확인한다.",
+        "cSlotAnswers": [
+          "문장"
+        ],
+        "cStudentSentence": "방정식을 풀어 구한 값은 처음 문제의 □에 넣어 보아, 문제가 말한 조건에 맞는지 확인한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "문장",
+            "equivalentAnswers": [
+              "문장",
+              "조건",
+              "내용"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "문장",
+            "조건",
+            "내용"
+          ]
+        ],
+        "proposalFingerprint": "1079e8423560fb1ded7d458cfe0aab9d493cec5a900b3b7f9eb638c1d0f93f1e"
+      },
+      "currentNormalized": {
+        "id": "m1-03-08-xc5",
+        "grade": "중1",
+        "source": {
+          "id": "m1-03-08-xc5",
+          "section": "중1::3. 방정식::일차방정식의 활용(수)",
+          "term": "답 확인하기",
+          "kind": "방법",
+          "level": "하",
+          "definition": "구한 값을 문제의 {문장}에 넣어 조건에 맞는지 {확인}한다.",
+          "example": {
+            "prompt": "어떤 수가 $13$일 때 '$7$을 더하면 $20$'이 맞는가?",
+            "answer": "맞다"
+          }
+        },
+        "B": {
+          "prompt": "'어떤 수에 $7$을 더하면 $20$이다.'라는 문제에서 어떤 수를 $13$이라고 구했다. 이 답이 맞는지 확인하려면 $13$을 어디에 넣어 보아야 하는지 쓰고, 실제로 확인하시오.",
+          "answer": "구한 값 $13$을 문제의 문장에 넣어 본다. $13$에 $7$을 더하면 $20$이 되어 문제의 조건에 맞으므로 답이 맞다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "구한 값 $13$을 처음 문제의 문장에 넣어 조건이 맞는지 확인한다",
+                "어떤 수에 $7$을 더하면 $20$이라는 원래 조건에 $13$을 넣어 본다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$13+7=20$으로 조건에 맞으므로 답이 맞다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "방정식을 풀어 구한 값은 처음 문제의 {문장}에 넣어 보아, 문제가 말한 조건에 맞는지 확인한다.",
+          "acceptedAnswers": [
+            [
+              "문장",
+              "조건",
+              "내용"
+            ]
+          ]
+        },
+        "goal": "구한 값을 문제의 문장에 넣어 조건에 맞는지 확인한다.",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "5ef5587b383ee2e1bab99aa2d08148569f9930b4782453ee3eaecd55299db6f1"
+      },
+      "blind": [
+        [
+          "m1-03-08-xc5",
+          "B",
+          "처음 문제의 조건에 넣어 본다. 13+7=20이므로 맞다.",
+          "pass",
+          ""
+        ],
+        [
+          "m1-03-08-xc5",
+          "C",
+          "조건(상황)",
+          "revise",
+          "빈칸에 조건·상황·내용·말 등 여러 표현이 가능하다. 바로 뒤의 '문제가 말한 조건'을 그대로 옮기면 되어 수학적 판단이 필요 없다. 식과 문제 상황의 구분처럼 검산 대상을 구체적으로 묻도록 고쳐야 한다."
+        ]
+      ],
+      "keyed": [
+        [
+          "m1-03-08-xc5",
+          "pass",
+          "revise",
+          "none",
+          "C: 빈칸 앞뒤의 '처음 문제의 {문장}에 넣어 보아, 문제가 말한 조건에 맞는지'에서 답을 문장 속 낱말로 채울 수 있고, 인정 답 '문장·조건·내용'도 서로 바꿔 쓸 수 있다. 수학적 판단이 필요 없다. 검산 대상이 풀이한 방정식인지 처음 문제의 조건인지 구분해 고르게 하는 문항으로 고쳐야 한다."
+        ]
+      ]
+    }
+  ]
+}

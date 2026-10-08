@@ -363,6 +363,10 @@
   min-height: calc(var(--cb-rule) * 2);
 }
 
+.termRuled {
+  min-height: calc(var(--cb-rule) * var(--cb-answer-lines));
+}
+
 .field {
   flex: 1;
   display: inline-flex;
@@ -765,6 +769,20 @@
 
 .nodeTitle > span:last-child {
   min-width: 0;
+}
+
+.nodeNumber {
+  flex: none;
+  color: var(--paper-gold);
+  font-family: var(--paper-font-sans);
+  font-size: 11px;
+}
+
+.nodeQuestion {
+  flex: none;
+  margin-top: 4px;
+  font-size: 13.5px;
+  line-height: 1.6;
 }
 
 .done {

@@ -1,0 +1,56 @@
+{
+  "status": "content-reviewed-plan; print-and-memory-activation-pending",
+  "revision": "student-clear-20261006-v1",
+  "baselineHash": "6bfdba783aa462998942be22126cc3ddd590293e17eb585641fe6a62f20be1c5",
+  "candidateBankHash": "f0fbfe76e5dbc9b83e7f7ecd4c92cba757211ae967c3dbcdee128ab6e01de479",
+  "count": 1,
+  "assessmentTables": {
+    "m2plus": {
+      "m2-01-01-xc20": {
+        "bQuestion": {
+          "prompt": "분모에 미지수가 있을 때 유한소수가 되는 조건을 설명하세요.",
+          "answer": "약분한 뒤의 분모에 남는 소인수가 조건에 맞아야 한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "약분한 뒤의 분모"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "분모에 미지수가 있으면 {약분}한 뒤의 분모가 {$2$와 $5$}만으로 이루어지게 하는 값을 모두 찾는다.",
+          "acceptedAnswers": [
+            [
+              "약분"
+            ],
+            [
+              "$2$와 $5$"
+            ]
+          ]
+        }
+      }
+    }
+  },
+  "definitionChanges": [],
+  "examplePromptChanges": [
+    {
+      "part": "m2plus",
+      "id": "m2-01-01-xc20",
+      "before": "$\\frac{3}{2\\times a}$가 유한소수인 한 자리 자연수 $a$",
+      "after": "$\\frac{3}{2\\times a}$이 유한소수인 한 자리 자연수 $a$",
+      "reason": "분수는 분모 다음 분자를 읽으므로 마지막 삼 뒤 조사 이가 맞다."
+    }
+  ],
+  "reviewedRows": [
+    {
+      "id": "m2-01-01-xc20",
+      "part": "m2plus",
+      "contentHash": "ac3208bfc0e0c017e9e350b2c9c8e6a043f7e98405315774beea61c5a166297f",
+      "independentPackets": [
+        "TEST-ONLY-SYNTHETIC-APPROVAL"
+      ]
+    }
+  ],
+  "testDataOnly": true
+}

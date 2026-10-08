@@ -1,0 +1,2004 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T08:54:58.291Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-05-02-xc13",
+        "section": "중3::5. 삼각비::삼각비의 값",
+        "term": "삼각비의 표를 거꾸로 읽기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "삼각비의 표에서 $\\sin$의 세로줄에 $0.4226$이 적힌 칸을 찾으면 그 칸이 놓인 {가로줄}의 각이 $\\sin x=0.4226$인 $x$의 어림값이다 — 표를 {거꾸로} 읽는다.",
+        "studentC": "삼각비의 표에서 $\\sin$의 세로줄에 $0.4226$이 적힌 칸을 찾으면 그 칸이 놓인 □의 각이 $\\sin x=0.4226$인 $x$의 어림값이다 — 표를 □ 읽는다.",
+        "answers": [
+          "가로줄",
+          "거꾸로"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-02-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각비의 표에서 $\\sin x=0.4226$인 예각 $x$의 어림값을 찾으려면 표의 어디에서 무엇을 찾고 어느 줄의 각을 읽어야 하는지 순서대로 설명해 보세요.",
+        "bAnswer": "$\\sin$의 세로줄에서 $0.4226$이 적힌 칸을 찾고, 그 칸이 놓인 가로줄의 각을 읽는다. 그 각이 $x$의 어림값이다.",
+        "bGoal": "삼각비의 값에서 각을 찾는 표 읽기",
+        "bReason": "'거꾸로 읽기'가 뜻하는 절차를 $\\sin x=0.4226$의 경우로 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\sin$의 세로줄에서 값을 찾음"
+            ]
+          },
+          {
+            "anyOf": [
+              "그 칸이 놓인 가로줄의 각을 읽음"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "삼각비의 표에서 $\\sin$의 세로줄에 $0.4226$이 적힌 칸을 찾으면 그 칸이 놓인 {가로줄}의 각이 $\\sin x=0.4226$인 $x$의 {어림값}이다 — 값에서 각으로 표를 거꾸로 읽는다.",
+        "cAnswers": [
+          "가로줄",
+          "어림값"
+        ],
+        "cReason": "빈칸 '거꾸로'는 수학 내용이 아닌 임의의 꾸밈말이라 뺐다.",
+        "exampleNeeded": true,
+        "authorBatch": 59,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "세로줄 값에서 가로줄 각 읽기",
+        "enrichmentEvidence": "enrichment/enrich-009",
+        "sourceIndex": 3550,
+        "part": "m3plus",
+        "sourceFingerprint": "0441234dd3d007e508fa2eb3be552986a29c86428e8f8b0def24597855f0929b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3550
+        },
+        "directReview": null,
+        "cMarkedSentence": "삼각비의 표에서 $\\sin$의 세로줄에 $0.4226$이 적힌 칸을 찾으면 그 칸이 놓인 {가로줄}의 각이 $\\sin x=0.4226$인 $x$의 {어림값}이다 — 값에서 각으로 표를 거꾸로 읽는다.",
+        "cSlotAnswers": [
+          "가로줄",
+          "어림값"
+        ],
+        "cStudentSentence": "삼각비의 표에서 $\\sin$의 세로줄에 $0.4226$이 적힌 칸을 찾으면 그 칸이 놓인 □의 각이 $\\sin x=0.4226$인 $x$의 □이다 — 값에서 각으로 표를 거꾸로 읽는다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "가로줄",
+            "equivalentAnswers": [
+              "가로줄"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "어림값",
+            "equivalentAnswers": [
+              "어림값",
+              "근삿값"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "어림값",
+            "accept": [
+              "근삿값"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "가로줄"
+          ],
+          [
+            "어림값",
+            "근삿값"
+          ]
+        ],
+        "proposalFingerprint": "c29802905d9b4fd4fe6597c4e687bf29271e6f1b142ccbfb0fdbf6ebd8a70f01"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-05-02-xc18",
+        "section": "중3::5. 삼각비::삼각비의 값",
+        "term": "사인과 코사인이 같아지는 각",
+        "kind": "성질",
+        "level": "상",
+        "definition": "예각에서 $\\sin x=\\cos x$가 되는 각은 {$45^\\circ$} 하나뿐이다 — 높이와 밑변이 {같을} 때이다.",
+        "studentC": "예각에서 $\\sin x=\\cos x$가 되는 각은 □ 하나뿐이다 — 높이와 밑변이 □ 때이다.",
+        "answers": [
+          "$45^\\circ$",
+          "같을"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-02-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "예각 $x$ 가운데 $\\sin x=\\cos x$가 되는 각의 크기를 말하고, 직각삼각형의 변의 길이로 그 까닭을 설명해 보세요.",
+        "bAnswer": "$x=45^\\circ$ 하나뿐이다. 사인은 높이를, 코사인은 밑변을 빗변으로 나눈 값이므로 둘이 같으려면 높이와 밑변의 길이가 같아야 하고, 그런 직각삼각형은 직각이등변삼각형이다.",
+        "bGoal": "사인과 코사인이 같아지는 예각 찾기",
+        "bReason": "답할 것이 각의 크기와 변의 길이로 댄 까닭임을 분명히 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x=45^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이와 밑변의 길이가 같을 때"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "각의 크기와 두 변의 비교 결과를 묻는 짧은 빈칸이다.",
+        "authorBatch": 59,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "높이=밑변일 때 45°",
+        "enrichmentEvidence": "enrichment/enrich-010",
+        "sourceIndex": 3554,
+        "part": "m3plus",
+        "sourceFingerprint": "64313785e5ab82804e0ed4c3e306df6258005a1ab8f675178c6ad3d8d7e05a5c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3554
+        },
+        "directReview": null,
+        "cFrozenSentence": "예각에서 $\\sin x=\\cos x$가 되는 각은 □ 하나뿐이다 — 높이와 밑변이 □ 때이다.",
+        "cFrozenDefinition": "예각에서 $\\sin x=\\cos x$가 되는 각은 {$45^\\circ$} 하나뿐이다 — 높이와 밑변이 {같을} 때이다.",
+        "cFrozenAnswers": [
+          "$45^\\circ$",
+          "같을"
+        ],
+        "cMarkedSentence": "예각에서 $\\sin x=\\cos x$가 되는 각은 {$45^\\circ$} 하나뿐이다 — 높이와 밑변이 {같을} 때이다.",
+        "cSlotAnswers": [
+          "$45^\\circ$",
+          "같을"
+        ],
+        "cStudentSentence": "예각에서 $\\sin x=\\cos x$가 되는 각은 □ 하나뿐이다 — 높이와 밑변이 □ 때이다.",
+        "cAnswers": [
+          "$45^\\circ$",
+          "같을"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$45^\\circ$",
+            "equivalentAnswers": [
+              "$45^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "같을",
+            "equivalentAnswers": [
+              "같을"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$45^\\circ$"
+          ],
+          [
+            "같을"
+          ]
+        ],
+        "proposalFingerprint": "1cb44614a90f4114d05853120c822a8d4237ca1121effbfbb1d8a571367e483c"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-05-02-xc19",
+        "section": "중3::5. 삼각비::삼각비의 값",
+        "term": "$45^\\circ$를 경계로 한 사인과 코사인",
+        "kind": "성질",
+        "level": "상",
+        "definition": "예각 $x$에서 $x>45^\\circ$이면 {$\\sin x>\\cos x$}이고 $x<45^\\circ$이면 $\\sin x<\\cos x$이다 — $45^\\circ$를 넘으면 높이가 {밑변}보다 길어진다.",
+        "studentC": "예각 $x$에서 $x>45^\\circ$이면 □이고 $x<45^\\circ$이면 $\\sin x<\\cos x$이다 — $45^\\circ$를 넘으면 높이가 □보다 길어진다.",
+        "answers": [
+          "$\\sin x>\\cos x$",
+          "밑변"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-02-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "예각 $x$에 대하여 $x<45^\\circ$일 때와 $x>45^\\circ$일 때 $\\sin x$와 $\\cos x$의 대소를 각각 말하고, 직각삼각형에서 $x$와 마주 보는 변(높이)과 밑변의 길이를 비교해 까닭을 설명해 보세요.",
+        "bAnswer": "$x<45^\\circ$이면 $\\sin x<\\cos x$, $x>45^\\circ$이면 $\\sin x>\\cos x$이다. $45^\\circ$보다 작으면 높이가 밑변보다 짧고 $45^\\circ$보다 크면 높이가 밑변보다 길며, 사인과 코사인은 이 둘을 같은 빗변으로 나눈 값이기 때문이다.",
+        "bGoal": "$45^\\circ$를 기준으로 사인과 코사인의 대소 알기",
+        "bReason": "두 경우를 나누어 대소와 변의 길이 비교를 함께 답하도록 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x<45^\\circ$이면 $\\sin x<\\cos x$",
+              "$x<45^\\circ$이면 $\\cos x>\\sin x$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x>45^\\circ$이면 $\\sin x>\\cos x$",
+              "$x>45^\\circ$이면 $\\cos x<\\sin x$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x>45^\\circ$이면 높이가 밑변보다 길다",
+              "$x<45^\\circ$이면 높이가 밑변보다 짧다",
+              "높이와 밑변을 같은 빗변으로 나누므로 더 긴 변의 삼각비가 더 크다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "반대 경우의 부등식이 단서로 있어 대소 비교 빈칸으로 분명하다.",
+        "authorBatch": 59,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "45° 기준 높이·밑변 대소",
+        "enrichmentEvidence": "enrichment/enrich-010",
+        "sourceIndex": 3555,
+        "part": "m3plus",
+        "sourceFingerprint": "c05f48ea6904aa09732dd10b450f6f88f3fb10e74754013df71876e639297e00",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3555
+        },
+        "directReview": null,
+        "cFrozenSentence": "예각 $x$에서 $x>45^\\circ$이면 □이고 $x<45^\\circ$이면 $\\sin x<\\cos x$이다 — $45^\\circ$를 넘으면 높이가 □보다 길어진다.",
+        "cFrozenDefinition": "예각 $x$에서 $x>45^\\circ$이면 {$\\sin x>\\cos x$}이고 $x<45^\\circ$이면 $\\sin x<\\cos x$이다 — $45^\\circ$를 넘으면 높이가 {밑변}보다 길어진다.",
+        "cFrozenAnswers": [
+          "$\\sin x>\\cos x$",
+          "밑변"
+        ],
+        "cMarkedSentence": "예각 $x$에서 $x>45^\\circ$이면 {$\\sin x>\\cos x$}이고 $x<45^\\circ$이면 $\\sin x<\\cos x$이다 — $45^\\circ$를 넘으면 높이가 {밑변}보다 길어진다.",
+        "cSlotAnswers": [
+          "$\\sin x>\\cos x$",
+          "밑변"
+        ],
+        "cStudentSentence": "예각 $x$에서 $x>45^\\circ$이면 □이고 $x<45^\\circ$이면 $\\sin x<\\cos x$이다 — $45^\\circ$를 넘으면 높이가 □보다 길어진다.",
+        "cAnswers": [
+          "$\\sin x>\\cos x$",
+          "밑변"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\sin x>\\cos x$",
+            "equivalentAnswers": [
+              "$\\sin x>\\cos x$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "밑변",
+            "equivalentAnswers": [
+              "밑변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\sin x>\\cos x$"
+          ],
+          [
+            "밑변"
+          ]
+        ],
+        "proposalFingerprint": "2308c9f6941c472d994724c9cb1617d6331e3716dd9d7d90df73d63ebd7684da"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-05-02-xc20",
+        "section": "중3::5. 삼각비::삼각비의 값",
+        "term": "직선의 기울기와 각의 크기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "직선의 기울기가 특수한 각의 {탄젠트}의 값과 같으면, 그 직선이 $x$축의 양의 방향과 이루는 {각의 크기}를 알 수 있다.",
+        "example": {
+          "prompt": "직선 $y=\\frac{\\sqrt{3}}{3}x$가 $x$축의 양의 방향과 $30^\\circ$를 이루는 까닭은?",
+          "answer": "기울기가 $\\tan 30^\\circ$와 같아서"
+        },
+        "studentC": "직선의 기울기가 특수한 각의 □의 값과 같으면, 그 직선이 $x$축의 양의 방향과 이루는 □를 알 수 있다.",
+        "answers": [
+          "탄젠트",
+          "각의 크기"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-02-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "직선 $y=\\frac{\\sqrt{3}}{3}x$가 $x$축의 양의 방향과 이루는 예각의 크기를 구하고, 직선의 기울기가 그 각의 어떤 삼각비와 같은지 밝혀 까닭을 설명해 보세요.",
+        "bAnswer": "$30^\\circ$이다. 기울기는 $x$의 값의 증가량에 대한 $y$의 값의 증가량의 비이므로 그 각의 탄젠트와 같고, $\\tan 30^\\circ=\\frac{\\sqrt{3}}{3}$이기 때문이다.",
+        "bGoal": "직선의 기울기와 탄젠트의 관계 알기",
+        "bReason": "관계만 묻기에는 추상적이라 직선의 식을 주고 각과 까닭을 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "기울기는 그 각의 탄젠트와 같음"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\tan 30^\\circ=\\frac{\\sqrt{3}}{3}$이므로 $30^\\circ$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "기울기가 양수인 직선이 $x$축의 양의 방향과 이루는 예각의 크기가 $a$이면 직선의 기울기는 {$\\tan a$}이다 — 기울기가 $\\frac{\\sqrt{3}}{3}$이면 $a=$ {$30^\\circ$}이다.",
+        "cAnswers": [
+          "$\\tan a$",
+          "$30^\\circ$"
+        ],
+        "cReason": "'특수한 각의 □의 값'은 지칭이 흐리고 둘째 빈칸은 각·각도·각의 크기로 갈렸다.",
+        "exampleNeeded": true,
+        "authorBatch": 59,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "application",
+        "roleReason": "기울기=탄젠트로 각 찾기",
+        "enrichmentEvidence": "enrichment/enrich-010",
+        "sourceIndex": 3556,
+        "part": "m3plus",
+        "sourceFingerprint": "0fdbf997c5f96c4653545f0c291eab779d254f103242bd8ed1befa2addb84c5c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3556
+        },
+        "directReview": null,
+        "cMarkedSentence": "기울기가 양수인 직선이 $x$축의 양의 방향과 이루는 예각의 크기가 $a$이면 직선의 기울기는 {$\\tan a$}이다 — 기울기가 $\\frac{\\sqrt{3}}{3}$이면 $a=$ {$30^\\circ$}이다.",
+        "cSlotAnswers": [
+          "$\\tan a$",
+          "$30^\\circ$"
+        ],
+        "cStudentSentence": "기울기가 양수인 직선이 $x$축의 양의 방향과 이루는 예각의 크기가 $a$이면 직선의 기울기는 □이다 — 기울기가 $\\frac{\\sqrt{3}}{3}$이면 $a=$ □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\tan a$",
+            "equivalentAnswers": [
+              "$\\tan a$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$30^\\circ$",
+            "equivalentAnswers": [
+              "$30^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\tan a$"
+          ],
+          [
+            "$30^\\circ$"
+          ]
+        ],
+        "proposalFingerprint": "3d8df9d61206066dac8e1cb0b963826928b7940c771aefb3ac58e1eb8eb47376"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-05-02-xc21",
+        "section": "중3::5. 삼각비::삼각비의 값",
+        "term": "$0^\\circ$에서 $90^\\circ$까지 사인과 코사인의 범위",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$0^\\circ\\le x\\le90^\\circ$에서 $\\sin x$와 $\\cos x$의 값은 늘 {$0$ 이상 $1$ 이하}이다 — 탄젠트는 $90^\\circ$에 가까울수록 {끝없이} 커진다.",
+        "studentC": "$0^\\circ\\le x\\le90^\\circ$에서 $\\sin x$와 $\\cos x$의 값은 늘 □이다 — 탄젠트는 $90^\\circ$에 가까울수록 □ 커진다.",
+        "answers": [
+          "$0$ 이상 $1$ 이하",
+          "끝없이"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-02-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "$0^\\circ\\le x\\le 90^\\circ$일 때 $\\sin x$와 $\\cos x$의 값의 범위를 말해 보세요. 또 같은 범위에서 $\\tan x$의 값은 $1$보다 커질 수 있는지, $x$가 $90^\\circ$에 가까워지면 어떻게 되는지 설명해 보세요.",
+        "bAnswer": "$\\sin x$와 $\\cos x$의 값은 늘 $0$ 이상 $1$ 이하이다. $\\tan x$는 $\\tan 60^\\circ=\\sqrt{3}$처럼 $1$보다 커질 수 있고, $x$가 $90^\\circ$에 가까워질수록 끝없이 커진다.",
+        "bGoal": "사인·코사인의 값의 범위와 탄젠트의 차이 알기",
+        "bReason": "c9의 변화와 구별되게 값의 범위와 탄젠트와의 차이를 묻도록 정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "사인과 코사인은 $0$ 이상 $1$ 이하"
+            ]
+          },
+          {
+            "anyOf": [
+              "탄젠트는 $1$보다 커질 수 있고 끝없이 커짐"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$0^\\circ\\le x\\le90^\\circ$에서 $\\sin x$와 $\\cos x$의 값은 늘 {$0$} 이상 {$1$} 이하이다 — 탄젠트의 값은 $x$가 $90^\\circ$에 가까울수록 끝없이 {커진다}.",
+        "cAnswers": [
+          "$0$",
+          "$1$",
+          "커진다"
+        ],
+        "cReason": "빈칸 '끝없이'는 임의의 부사라 맞히기 어렵고 범위 빈칸은 구 전체였다.",
+        "authorBatch": 59,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "사인·코사인 0~1, 탄젠트 무한",
+        "enrichmentEvidence": "enrichment/enrich-010",
+        "sourceIndex": 3557,
+        "part": "m3plus",
+        "sourceFingerprint": "8eff2db766e3445099af63d971a56893ec5da6010e6181c30e35116aa435f83c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3557
+        },
+        "directReview": null,
+        "cMarkedSentence": "$0^\\circ\\le x\\le90^\\circ$에서 $\\sin x$와 $\\cos x$의 값은 늘 {$0$} 이상 {$1$} 이하이다 — 탄젠트의 값은 $x$가 $90^\\circ$에 가까울수록 끝없이 {커진다}.",
+        "cSlotAnswers": [
+          "$0$",
+          "$1$",
+          "커진다"
+        ],
+        "cStudentSentence": "$0^\\circ\\le x\\le90^\\circ$에서 $\\sin x$와 $\\cos x$의 값은 늘 □ 이상 □ 이하이다 — 탄젠트의 값은 $x$가 $90^\\circ$에 가까울수록 끝없이 □.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$0$",
+            "equivalentAnswers": [
+              "$0$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$1$",
+            "equivalentAnswers": [
+              "$1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "커진다",
+            "equivalentAnswers": [
+              "커진다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$0$"
+          ],
+          [
+            "$1$"
+          ],
+          [
+            "커진다"
+          ]
+        ],
+        "proposalFingerprint": "bd77d77275cc7690406b7439d3a1ea218736b38ee206cd19757dd0d81f90b6ae"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-05-03-xc8",
+        "section": "중3::5. 삼각비::삼각비의 활용",
+        "term": "삼각비의 표로 구한 길이",
+        "kind": "방법",
+        "level": "하",
+        "definition": "삼각비의 값을 {삼각비의 표}에서 찾아 썼다면, 표의 값이 어림값이므로 그것으로 구한 길이도 {어림값}이다.",
+        "studentC": "삼각비의 값을 □에서 찾아 썼다면, 표의 값이 어림값이므로 그것으로 구한 길이도 □이다.",
+        "answers": [
+          "삼각비의 표",
+          "어림값"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-03-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각비의 표에서 $\\sin 35^\\circ=0.5736$을 찾아 $10\\sin 35^\\circ=5.736$으로 어떤 길이를 구했다. 이 길이는 참값인지 어림값인지 말하고 까닭을 설명해 보세요.",
+        "bAnswer": "어림값이다. 표의 $0.5736$이 반올림한 어림값이므로 그것으로 계산한 길이도 어림값이다.",
+        "bGoal": "표의 값으로 구한 길이가 어림값임을 알기",
+        "bReason": "제목만으로는 무엇을 묻는지 알 수 없어 표의 값으로 계산한 예를 넣었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "구한 길이는 어림값"
+            ]
+          },
+          {
+            "anyOf": [
+              "표의 값이 어림값이기 때문"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "삼각비의 표에 실린 값은 반올림한 {어림값}이므로, 그 값으로 구한 길이도 {참값}이 아니다.",
+        "cAnswers": [
+          "어림값",
+          "참값"
+        ],
+        "cReason": "두 빈칸의 답이 같은 문장의 '표의 값이 어림값이므로'에 그대로 나와 있었다.",
+        "exampleNeeded": true,
+        "authorBatch": 59,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "표의 값이 어림값이라",
+        "enrichmentEvidence": "enrichment/enrich-010",
+        "sourceIndex": 3565,
+        "part": "m3plus",
+        "sourceFingerprint": "1ce5e79483981e8ba70b7d5f46c419a4a04bbdbb077fc8047a7d4d0d2fecdc9f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3565
+        },
+        "directReview": null,
+        "cMarkedSentence": "삼각비의 표에 실린 값은 반올림한 {어림값}이므로, 그 값으로 구한 길이도 {참값}이 아니다.",
+        "cSlotAnswers": [
+          "어림값",
+          "참값"
+        ],
+        "cStudentSentence": "삼각비의 표에 실린 값은 반올림한 □이므로, 그 값으로 구한 길이도 □이 아니다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "어림값",
+            "equivalentAnswers": [
+              "어림값",
+              "근삿값"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "참값",
+            "equivalentAnswers": [
+              "참값"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "어림값",
+            "accept": [
+              "근삿값"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "어림값",
+            "근삿값"
+          ],
+          [
+            "참값"
+          ]
+        ],
+        "proposalFingerprint": "db46e02c2943e3200d28a74e33c44480fff805dd34b8fab3ce9eedab892b0e2b"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-05-03-xc9",
+        "section": "중3::5. 삼각비::삼각비의 활용",
+        "term": "그림자의 길이",
+        "kind": "방법",
+        "level": "중",
+        "definition": "높이 $h$인 막대의 그림자 길이는 햇빛이 땅과 이루는 각이 $x$일 때 {$\\frac{h}{\\tan x}$}이다 — 각이 클수록 그림자가 {짧다}.",
+        "studentC": "높이 $h$인 막대의 그림자 길이는 햇빛이 땅과 이루는 각이 $x$일 때 □이다 — 각이 클수록 그림자가 □.",
+        "answers": [
+          "$\\frac{h}{\\tan x}$",
+          "짧다"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-03-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "수평인 땅에 수직으로 세운 높이 $h$인 막대에 햇빛이 땅과 예각 $x$를 이루며 비친다. 그림자의 길이를 $h$와 $x$의 삼각비로 나타내고, $x$가 커지면 그림자의 길이가 어떻게 변하는지 까닭과 함께 설명해 보세요.",
+        "bAnswer": "$\\tan x=\\frac{h}{(\\text{그림자의 길이})}$이므로 그림자의 길이는 $\\frac{h}{\\tan x}$이다. $x$가 커지면 $\\tan x$가 커지므로 그림자는 짧아진다.",
+        "bGoal": "햇빛의 각과 막대 높이로 그림자 길이 구하기",
+        "bReason": "땅과 막대의 조건, 각 $x$의 뜻을 밝히고 각에 따른 변화까지 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "그림자의 길이 $\\frac{h}{\\tan x}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x$가 커지면 그림자가 짧아짐"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "수평인 땅에 수직으로 세운 높이 $h$인 막대의 그림자 길이는 햇빛이 땅과 이루는 각이 $x$일 때 {$\\frac{h}{\\tan x}$}이다 — 각 $x$가 클수록 그림자가 {짧다}.",
+        "cAnswers": [
+          "$\\frac{h}{\\tan x}$",
+          "짧다"
+        ],
+        "cReason": "막대가 수평인 땅에 수직으로 서 있다는 조건이 빠져 있었다.",
+        "coreAfter": "수평인 땅에 수직으로 세운 높이 $h$인 막대의 그림자 길이는 햇빛이 땅과 이루는 각이 $x$일 때 {$\\frac{h}{\\tan x}$}이다 — 각이 클수록 그림자가 {짧다}.",
+        "coreReason": "막대가 땅에 수직이고 땅이 수평이라는 조건이 빠져 있다.",
+        "authorBatch": 59,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "application",
+        "roleReason": "h/tan x, 각 클수록 짧음",
+        "enrichmentEvidence": "enrichment/enrich-010",
+        "sourceIndex": 3566,
+        "part": "m3plus",
+        "sourceFingerprint": "53ab83e04a68b7f9dd25e95492ece86c8ca07e59510af4c1a0882eee5ace4be4",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3566
+        },
+        "directReview": null,
+        "coreBeforeRepair": "수평인 땅에 수직으로 세운 높이 $h$인 막대의 그림자 길이는 햇빛이 땅과 이루는 각이 $x$일 때 {$\\frac{h}{\\tan x}$}이다 — 각이 클수록 그림자가 {짧다}.",
+        "coreRepairReason": "직각삼각형이 되는 조건만 더했고 원본 핵심어 {$\\frac{h}{\\tan x}$}, {짧다}가 있어 그대로 보존했다.",
+        "coreRepairEvidence": "core-repair/core-003",
+        "cMarkedSentence": "수평인 땅에 수직으로 세운 높이 $h$인 막대의 그림자 길이는 햇빛이 땅과 이루는 각이 $x$일 때 {$\\frac{h}{\\tan x}$}이다 — 각 $x$가 클수록 그림자가 {짧다}.",
+        "cSlotAnswers": [
+          "$\\frac{h}{\\tan x}$",
+          "짧다"
+        ],
+        "cStudentSentence": "수평인 땅에 수직으로 세운 높이 $h$인 막대의 그림자 길이는 햇빛이 땅과 이루는 각이 $x$일 때 □이다 — 각 $x$가 클수록 그림자가 □.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{h}{\\tan x}$",
+            "equivalentAnswers": [
+              "$\\frac{h}{\\tan x}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "짧다",
+            "equivalentAnswers": [
+              "짧다",
+              "짧아진다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "짧다",
+            "accept": [
+              "짧아진다"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{h}{\\tan x}$"
+          ],
+          [
+            "짧다",
+            "짧아진다"
+          ]
+        ],
+        "proposalFingerprint": "9ef2df8efa89d8bfcc3c62f1f523661a0e55a0e97b332eda0622cbc9c6165387"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-05-03-xc20",
+        "section": "중3::5. 삼각비::삼각비의 활용",
+        "term": "넓이가 가장 큰 끼인각",
+        "kind": "성질",
+        "level": "상",
+        "definition": "두 변의 길이가 정해진 삼각형의 넓이는 끼인각이 {$90^\\circ$}일 때 가장 크다 — 예각의 사인과 둔각의 이웃각의 사인은 {$1$보다 작고} $\\sin 90^\\circ=1$이기 때문이다.",
+        "studentC": "두 변의 길이가 정해진 삼각형의 넓이는 끼인각이 □일 때 가장 크다 — 예각의 사인과 둔각의 이웃각의 사인은 □ $\\sin 90^\\circ=1$이기 때문이다.",
+        "answers": [
+          "$90^\\circ$",
+          "$1$보다 작고"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-03-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "두 변의 길이가 $a$, $c$로 정해진 삼각형에서 끼인각의 크기만 바꿀 때, 넓이가 가장 커지는 끼인각의 크기를 말하고 그 까닭을 설명해 보세요.",
+        "bAnswer": "$90^\\circ$일 때 가장 크다. 넓이는 $\\frac{1}{2}ac$에 끼인각의 사인(둔각이면 $180^\\circ$에서 뺀 각의 사인)을 곱한 값인데, 이 사인의 값은 $1$보다 작고 $90^\\circ$일 때만 $1$이기 때문이다.",
+        "bGoal": "두 변이 정해진 삼각형의 넓이가 최대인 끼인각 알기",
+        "bReason": "무엇이 고정되고 무엇이 변하는지 밝혀 최대가 되는 조건을 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "끼인각이 $90^\\circ$일 때 최대"
+            ]
+          },
+          {
+            "anyOf": [
+              "곱해지는 사인의 값이 $90^\\circ$일 때 가장 큰 $1$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "두 변의 길이가 정해진 삼각형의 넓이는 끼인각이 {$90^\\circ$}일 때 가장 크다 — 끼인각이 예각이거나 둔각일 때 넓이 공식에 쓰는 사인의 값은 $\\sin 90^\\circ$의 값인 $1$보다 {작기} 때문이다.",
+        "cAnswers": [
+          "$90^\\circ$",
+          "작기"
+        ],
+        "cReason": "'둔각의 이웃각의 사인'이 어렵고 빈칸 '$1$보다 작고'는 구 전체였다.",
+        "authorBatch": 59,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "사인 최대 1이 90°",
+        "enrichmentEvidence": "enrichment/enrich-010",
+        "sourceIndex": 3577,
+        "part": "m3plus",
+        "sourceFingerprint": "1c002edd011b33e5b729d8925ea5f3ec3116ac4ef57ec82812ccec51fb22330e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3577
+        },
+        "directReview": null,
+        "cMarkedSentence": "두 변의 길이가 정해진 삼각형의 넓이는 끼인각이 {$90^\\circ$}일 때 가장 크다 — 끼인각이 예각이거나 둔각일 때 넓이 공식에 쓰는 사인의 값은 $\\sin 90^\\circ$의 값인 $1$보다 {작기} 때문이다.",
+        "cSlotAnswers": [
+          "$90^\\circ$",
+          "작기"
+        ],
+        "cStudentSentence": "두 변의 길이가 정해진 삼각형의 넓이는 끼인각이 □일 때 가장 크다 — 끼인각이 예각이거나 둔각일 때 넓이 공식에 쓰는 사인의 값은 $\\sin 90^\\circ$의 값인 $1$보다 □ 때문이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$90^\\circ$",
+            "equivalentAnswers": [
+              "$90^\\circ$",
+              "직각"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "작기",
+            "equivalentAnswers": [
+              "작기"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$90^\\circ$",
+            "accept": [
+              "직각"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$90^\\circ$",
+            "직각"
+          ],
+          [
+            "작기"
+          ]
+        ],
+        "proposalFingerprint": "06bd332762443de2401b89d209a732f9d02e8e98f419f37116d190d72c76c350"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-05-03-xc21",
+        "section": "중3::5. 삼각비::삼각비의 활용",
+        "term": "수선이 나눈 밑변의 두 조각",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$\\overline{AB}=c$, $\\overline{BC}=a$이고 $A$에서 내린 수선의 발 $H$가 변 $BC$의 {내부}에 있으면 $\\overline{BH}=c\\cos B$이고, 두 조각의 합이 $a$이므로 $\\overline{HC}=$ {$a-c\\cos B$}이다.",
+        "studentC": "$\\overline{AB}=c$, $\\overline{BC}=a$이고 $A$에서 내린 수선의 발 $H$가 변 $BC$의 □에 있으면 $\\overline{BH}=c\\cos B$이고, 두 조각의 합이 $a$이므로 $\\overline{HC}=$ □이다.",
+        "answers": [
+          "내부",
+          "$a-c\\cos B$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-03-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각형 $ABC$에서 $\\overline{AB}=c$, $\\overline{BC}=a$이고, $A$에서 변 $BC$에 내린 수선의 발 $H$가 변 $BC$의 내부에 있다. $\\overline{BH}$와 $\\overline{HC}$를 각각 $a$, $c$, $\\angle B$의 삼각비로 나타내고 까닭을 설명해 보세요.",
+        "bAnswer": "직각삼각형 $ABH$에서 $\\overline{BH}=c\\cos B$이다. $\\overline{BH}+\\overline{HC}=a$이므로 $\\overline{HC}=a-c\\cos B$이다.",
+        "bGoal": "수선의 발이 나눈 밑변의 두 선분 나타내기",
+        "bReason": "'두 조각'이 $\\overline{BH}$, $\\overline{HC}$임을 밝히고 수선의 발의 위치 조건을 넣었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{BH}=c\\cos B$"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 선분의 합이 $a$이므로 $\\overline{HC}=a-c\\cos B$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$\\overline{AB}=c$, $\\overline{BC}=a$인 삼각형 $ABC$에서 $A$에서 내린 수선의 발 $H$가 변 $BC$의 내부에 있으면 $\\overline{BH}=$ {$c\\cos B$}이고, 두 조각의 {합}이 $a$이므로 $\\overline{HC}=$ {$a-c\\cos B$}이다.",
+        "cAnswers": [
+          "$c\\cos B$",
+          "합",
+          "$a-c\\cos B$"
+        ],
+        "cReason": "조건인 '내부'와 결론인 식을 함께 숨겼고 삼각형 $ABC$라는 말도 없었다.",
+        "authorBatch": 59,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "BH=c cos B, HC=a−BH",
+        "enrichmentEvidence": "enrichment/enrich-010",
+        "sourceIndex": 3578,
+        "part": "m3plus",
+        "sourceFingerprint": "8d49fac126ad56e89e293f1ba1aa395c1d72337b350e7e6a3cb368a19086f7e9",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3578
+        },
+        "directReview": null,
+        "cMarkedSentence": "$\\overline{AB}=c$, $\\overline{BC}=a$인 삼각형 $ABC$에서 $A$에서 내린 수선의 발 $H$가 변 $BC$의 내부에 있으면 $\\overline{BH}=$ {$c\\cos B$}이고, 두 조각의 {합}이 $a$이므로 $\\overline{HC}=$ {$a-c\\cos B$}이다.",
+        "cSlotAnswers": [
+          "$c\\cos B$",
+          "합",
+          "$a-c\\cos B$"
+        ],
+        "cStudentSentence": "$\\overline{AB}=c$, $\\overline{BC}=a$인 삼각형 $ABC$에서 $A$에서 내린 수선의 발 $H$가 변 $BC$의 내부에 있으면 $\\overline{BH}=$ □이고, 두 조각의 □이 $a$이므로 $\\overline{HC}=$ □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$c\\cos B$",
+            "equivalentAnswers": [
+              "$c\\cos B$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "합",
+            "equivalentAnswers": [
+              "합"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "$a-c\\cos B$",
+            "equivalentAnswers": [
+              "$a-c\\cos B$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$c\\cos B$"
+          ],
+          [
+            "합"
+          ],
+          [
+            "$a-c\\cos B$"
+          ]
+        ],
+        "proposalFingerprint": "5dcca04f74d75bfe884befebf3f49811134aab29be9209cd98f18de68b7063f0"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-06-01-xc2",
+        "section": "중3::6. 원의 성질::원과 현",
+        "term": "가장 긴 현",
+        "kind": "성질",
+        "level": "하",
+        "definition": "한 원에서 가장 긴 현은 원의 중심을 지나는 {지름}이고, 그 길이는 반지름의 {$2$}배이다.",
+        "studentC": "한 원에서 가장 긴 현은 원의 중심을 지나는 □이고, 그 길이는 반지름의 □배이다.",
+        "answers": [
+          "지름",
+          "$2$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-06-01-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "반지름이 $r$인 원에서 가장 긴 현은 무엇이며 그 길이는 얼마인가? 그 현이 다른 현보다 긴 까닭도 쓰시오.",
+        "bAnswer": "지름이고 길이는 $2r$이다. 지름이 아닌 현 $AB$는 $\\triangle OAB$에서 $\\overline{AB}<\\overline{OA}+\\overline{OB}=2r$이므로 지름보다 짧다.",
+        "bGoal": "가장 긴 현이 지름인 까닭",
+        "bReason": "가장 긴 현의 이름·길이와 함께 근거를 요구해 암기만 묻지 않게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "지름"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2r$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{AB}<\\overline{OA}+\\overline{OB}=2r$",
+              "삼각형의 두 변의 길이의 합이 나머지 변보다 크다",
+              "$2\\sqrt{r^2-d^2}$에서 $d=0$일 때 가장 길다",
+              "중심까지의 거리가 $0$일 때 가장 길다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "지름과 $2$배를 묻는 짧은 비교 빈칸으로 유용하다.",
+        "learningRole": "reason",
+        "roleReason": "지름이 가장 긴 현인 근거",
+        "authorBatch": 60,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3581,
+        "part": "m3plus",
+        "sourceFingerprint": "11780bf5a26158d046761794b52305e4e074d1f8f76b564e51cc293388416c48",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3581
+        },
+        "directReview": null,
+        "cFrozenSentence": "한 원에서 가장 긴 현은 원의 중심을 지나는 □이고, 그 길이는 반지름의 □배이다.",
+        "cFrozenDefinition": "한 원에서 가장 긴 현은 원의 중심을 지나는 {지름}이고, 그 길이는 반지름의 {$2$}배이다.",
+        "cFrozenAnswers": [
+          "지름",
+          "$2$"
+        ],
+        "cMarkedSentence": "한 원에서 가장 긴 현은 원의 중심을 지나는 {지름}이고, 그 길이는 반지름의 {$2$}배이다.",
+        "cSlotAnswers": [
+          "지름",
+          "$2$"
+        ],
+        "cStudentSentence": "한 원에서 가장 긴 현은 원의 중심을 지나는 □이고, 그 길이는 반지름의 □배이다.",
+        "cAnswers": [
+          "지름",
+          "$2$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "지름",
+            "equivalentAnswers": [
+              "지름"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$2$",
+            "equivalentAnswers": [
+              "$2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "지름"
+          ],
+          [
+            "$2$"
+          ]
+        ],
+        "proposalFingerprint": "96163aab43c34e35be36d72db72376dc267b4444d6fea56fe10dc0694e597490"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-06-01-xc7",
+        "section": "중3::6. 원의 성질::원과 현",
+        "term": "중심과 현의 중점을 잇는 선분",
+        "kind": "성질",
+        "level": "하",
+        "definition": "원의 중심과 지름이 아닌 현의 {중점}을 이은 선분은 그 현에 {수직}이다.",
+        "studentC": "원의 중심과 지름이 아닌 현의 □을 이은 선분은 그 현에 □이다.",
+        "answers": [
+          "중점",
+          "수직"
+        ]
+      },
+      "proposal": {
+        "id": "m3-06-01-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "원의 중심 $O$와 지름이 아닌 현 $AB$의 중점 $M$을 이었다. $\\overline{OM}$과 $\\overline{AB}$는 어떤 위치 관계인가? 그 까닭도 쓰시오.",
+        "bAnswer": "서로 수직이다. $\\triangle OAM$과 $\\triangle OBM$은 $\\overline{OA}=\\overline{OB}$, $\\overline{AM}=\\overline{BM}$, $\\overline{OM}$ 공통이라 $\\mathrm{SSS}$ 합동이므로 $\\angle OMA=\\angle OMB$이고, 두 각의 합이 $180^\\circ$라 각각 $90^\\circ$이다.",
+        "bGoal": "중심과 현의 중점을 이은 선분이 현에 수직임",
+        "bReason": "중점 $M$을 주고 위치 관계와 합동 근거를 묻도록 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "수직",
+              "$\\overline{OM}\\perp\\overline{AB}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\mathrm{SSS}$ 합동",
+              "$\\triangle OAM\\equiv\\triangle OBM$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle OMA=\\angle OMB=90^\\circ$",
+              "같은 두 각의 합이 $180^\\circ$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "중점과 수직을 묻는 짧고 명확한 문장이다.",
+        "learningRole": "reason",
+        "roleReason": "중심과 현의 중점을 이은 선분이 수직인 이유",
+        "authorBatch": 60,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3586,
+        "part": "m3plus",
+        "sourceFingerprint": "92a42f5f042ae1f4519cd51e40a2ff36aadc91cd4518b02263fb156570293a45",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3586
+        },
+        "directReview": null,
+        "cFrozenSentence": "원의 중심과 지름이 아닌 현의 □을 이은 선분은 그 현에 □이다.",
+        "cFrozenDefinition": "원의 중심과 지름이 아닌 현의 {중점}을 이은 선분은 그 현에 {수직}이다.",
+        "cFrozenAnswers": [
+          "중점",
+          "수직"
+        ],
+        "cMarkedSentence": "원의 중심과 지름이 아닌 현의 {중점}을 이은 선분은 그 현에 {수직}이다.",
+        "cSlotAnswers": [
+          "중점",
+          "수직"
+        ],
+        "cStudentSentence": "원의 중심과 지름이 아닌 현의 □을 이은 선분은 그 현에 □이다.",
+        "cAnswers": [
+          "중점",
+          "수직"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "중점",
+            "equivalentAnswers": [
+              "중점"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "수직",
+            "equivalentAnswers": [
+              "수직"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "중점"
+          ],
+          [
+            "수직"
+          ]
+        ],
+        "proposalFingerprint": "392d01d5f73651661c21a2103b20c877cb0e422ea5aee05e66dc735585aba8dc"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-06-01-xc17",
+        "section": "중3::6. 원의 성질::원과 현",
+        "term": "활꼴의 높이로 반지름 구하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "원의 일부인 활꼴에서 현의 절반 $a$와 높이 $h$(현의 중점에서 호까지 현에 수직으로 잰 길이)를 알면, 반지름 $r$에 대하여 {$r^2=(r-h)^2+a^2$}을 세워 $r$을 구한다.",
+        "studentC": "원의 일부인 활꼴에서 현의 절반 $a$와 높이 $h$(현의 중점에서 호까지 현에 수직으로 잰 길이)를 알면, 반지름 $r$에 대하여 □을 세워 $r$을 구한다.",
+        "answers": [
+          "$r^2=(r-h)^2+a^2$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-06-01-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "원의 일부인 활꼴에서 현의 길이의 절반이 $a$, 높이(현의 중점에서 호까지 현에 수직으로 잰 길이)가 $h$이다. 원의 반지름을 $r$이라 할 때 $r$을 구하는 식을 세우고, 그렇게 세우는 까닭을 쓰시오.",
+        "bAnswer": "높이를 재는 선을 늘이면 원의 중심을 지나므로 중심에서 현까지의 거리는 $r-h$이다. 빗변 $r$, 직각을 낀 두 변 $a$, $r-h$인 직각삼각형에서 $r^2=(r-h)^2+a^2$을 세운다.",
+        "bGoal": "활꼴의 높이로 반지름 구하기",
+        "bReason": "$a$, $h$의 뜻을 질문에 밝혀 직각삼각형을 세우게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$r^2=(r-h)^2+a^2$",
+              "$r=\\frac{a^2+h^2}{2h}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "중심에서 현까지 거리가 $r-h$",
+              "빗변 $r$, 두 변 $a$와 $r-h$인 직각삼각형"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "$a$, $h$, $r$의 뜻이 모두 주어진 식 하나를 묻는 빈칸이다.",
+        "learningRole": "procedure",
+        "roleReason": "활꼴의 높이와 현의 절반으로 반지름 식 세우기",
+        "authorBatch": 60,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3595,
+        "part": "m3plus",
+        "sourceFingerprint": "6e800a27b5756b451fe162142abb7c2cd2403bf38f081d7e20c2673eb7c0d172",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3595
+        },
+        "directReview": null,
+        "cFrozenSentence": "원의 일부인 활꼴에서 현의 절반 $a$와 높이 $h$(현의 중점에서 호까지 현에 수직으로 잰 길이)를 알면, 반지름 $r$에 대하여 □을 세워 $r$을 구한다.",
+        "cFrozenDefinition": "원의 일부인 활꼴에서 현의 절반 $a$와 높이 $h$(현의 중점에서 호까지 현에 수직으로 잰 길이)를 알면, 반지름 $r$에 대하여 {$r^2=(r-h)^2+a^2$}을 세워 $r$을 구한다.",
+        "cFrozenAnswers": [
+          "$r^2=(r-h)^2+a^2$"
+        ],
+        "cMarkedSentence": "원의 일부인 활꼴에서 현의 절반 $a$와 높이 $h$(현의 중점에서 호까지 현에 수직으로 잰 길이)를 알면, 반지름 $r$에 대하여 {$r^2=(r-h)^2+a^2$}을 세워 $r$을 구한다.",
+        "cSlotAnswers": [
+          "$r^2=(r-h)^2+a^2$"
+        ],
+        "cStudentSentence": "원의 일부인 활꼴에서 현의 절반 $a$와 높이 $h$(현의 중점에서 호까지 현에 수직으로 잰 길이)를 알면, 반지름 $r$에 대하여 □을 세워 $r$을 구한다.",
+        "cAnswers": [
+          "$r^2=(r-h)^2+a^2$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$r^2=(r-h)^2+a^2$",
+            "equivalentAnswers": [
+              "$r^2=(r-h)^2+a^2$",
+              "$(r-h)^2+a^2=r^2$",
+              "$a^2+(r-h)^2=r^2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$r^2=(r-h)^2+a^2$",
+            "accept": [
+              "$(r-h)^2+a^2=r^2$",
+              "$a^2+(r-h)^2=r^2$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$r^2=(r-h)^2+a^2$",
+            "$(r-h)^2+a^2=r^2$",
+            "$a^2+(r-h)^2=r^2$"
+          ]
+        ],
+        "proposalFingerprint": "7085fe08020a02950444fffefa89cc869d9c8c1b259b78133feda3633f8c8367"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-06-01-xc22",
+        "section": "중3::6. 원의 성질::원과 현",
+        "term": "평행한 두 현 사이의 거리",
+        "kind": "방법",
+        "level": "상",
+        "definition": "한 원에서 평행한 두 현이 중심의 같은 쪽에 있으면 두 현 사이의 거리는 중심까지 거리의 {차}이고, 반대쪽에 있으면 {합}이다.",
+        "studentC": "한 원에서 평행한 두 현이 중심의 같은 쪽에 있으면 두 현 사이의 거리는 중심까지 거리의 □이고, 반대쪽에 있으면 □이다.",
+        "answers": [
+          "차",
+          "합"
+        ]
+      },
+      "proposal": {
+        "id": "m3-06-01-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "한 원에서 평행한 두 현이 중심에서 각각 $d_1$, $d_2$만큼 떨어져 있다. 두 현이 중심의 같은 쪽에 있을 때와 반대쪽에 있을 때, 두 현 사이의 거리를 각각 $d_1$, $d_2$로 나타내시오.",
+        "bAnswer": "같은 쪽에 있으면 $|d_1-d_2|$, 반대쪽에 있으면 $d_1+d_2$이다.",
+        "bGoal": "평행한 두 현 사이의 거리",
+        "bReason": "두 거리를 기호로 주고 두 경우를 나누어 묻도록 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "같은 쪽: $|d_1-d_2|$",
+              "같은 쪽: 거리의 차"
+            ]
+          },
+          {
+            "anyOf": [
+              "반대쪽: $d_1+d_2$",
+              "반대쪽: 거리의 합"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "차와 합을 대비하는 짧은 비교 빈칸으로 유용하다.",
+        "learningRole": "procedure",
+        "roleReason": "위치에 따라 거리의 차·합 쓰기",
+        "authorBatch": 60,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3599,
+        "part": "m3plus",
+        "sourceFingerprint": "51dfd6791f1a3c71babd74acb9d6fd2ed7de67daab0099e6e11aa5ebc715eb4d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3599
+        },
+        "directReview": null,
+        "cFrozenSentence": "한 원에서 평행한 두 현이 중심의 같은 쪽에 있으면 두 현 사이의 거리는 중심까지 거리의 □이고, 반대쪽에 있으면 □이다.",
+        "cFrozenDefinition": "한 원에서 평행한 두 현이 중심의 같은 쪽에 있으면 두 현 사이의 거리는 중심까지 거리의 {차}이고, 반대쪽에 있으면 {합}이다.",
+        "cFrozenAnswers": [
+          "차",
+          "합"
+        ],
+        "cMarkedSentence": "한 원에서 평행한 두 현이 중심의 같은 쪽에 있으면 두 현 사이의 거리는 중심까지 거리의 {차}이고, 반대쪽에 있으면 {합}이다.",
+        "cSlotAnswers": [
+          "차",
+          "합"
+        ],
+        "cStudentSentence": "한 원에서 평행한 두 현이 중심의 같은 쪽에 있으면 두 현 사이의 거리는 중심까지 거리의 □이고, 반대쪽에 있으면 □이다.",
+        "cAnswers": [
+          "차",
+          "합"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "차",
+            "equivalentAnswers": [
+              "차"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "합",
+            "equivalentAnswers": [
+              "합"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "차"
+          ],
+          [
+            "합"
+          ]
+        ],
+        "proposalFingerprint": "68be4fffcf875d9f4273f4bf6a0a68e952f76633a48b7a8f60029bac62c22f81"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-06-02-xc11",
+        "section": "중3::6. 원의 성질::원의 접선",
+        "term": "두 접선과 이등변삼각형",
+        "kind": "성질",
+        "level": "중",
+        "definition": "원 밖의 점 $P$에서 그은 두 접선의 접점이 $A$, $B$이면 {$\\overline{PA}=\\overline{PB}$}이므로 $\\triangle PAB$는 {이등변삼각형}이고 두 밑각의 크기가 같다.",
+        "studentC": "원 밖의 점 $P$에서 그은 두 접선의 접점이 $A$, $B$이면 □이므로 $\\triangle PAB$는 □이고 두 밑각의 크기가 같다.",
+        "answers": [
+          "$\\overline{PA}=\\overline{PB}$",
+          "이등변삼각형"
+        ]
+      },
+      "proposal": {
+        "id": "m3-06-02-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "원 밖의 점 $P$에서 그은 두 접선의 접점을 $A$, $B$라 하자. $\\triangle PAB$는 어떤 삼각형이며, 크기가 같은 두 각은 무엇인가?",
+        "bAnswer": "$\\overline{PA}=\\overline{PB}$이므로 이등변삼각형이고, $\\angle PAB=\\angle PBA$이다.",
+        "bGoal": "두 접선이 만드는 이등변삼각형",
+        "bReason": "$\\triangle PAB$를 지정해 종류와 같은 두 각을 묻도록 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "이등변삼각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{PA}=\\overline{PB}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle PAB=\\angle PBA$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "근거 식과 삼각형 이름을 묻는 분명한 문장이다.",
+        "learningRole": "application",
+        "roleReason": "접선의 길이가 같아 생기는 이등변삼각형",
+        "authorBatch": 60,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3611,
+        "part": "m3plus",
+        "sourceFingerprint": "b1f26b53ef2ac00403aaede8c2c8dd97f2cc687b85187f61d3ba26662c63990c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3611
+        },
+        "directReview": null,
+        "cFrozenSentence": "원 밖의 점 $P$에서 그은 두 접선의 접점이 $A$, $B$이면 □이므로 $\\triangle PAB$는 □이고 두 밑각의 크기가 같다.",
+        "cFrozenDefinition": "원 밖의 점 $P$에서 그은 두 접선의 접점이 $A$, $B$이면 {$\\overline{PA}=\\overline{PB}$}이므로 $\\triangle PAB$는 {이등변삼각형}이고 두 밑각의 크기가 같다.",
+        "cFrozenAnswers": [
+          "$\\overline{PA}=\\overline{PB}$",
+          "이등변삼각형"
+        ],
+        "cMarkedSentence": "원 밖의 점 $P$에서 그은 두 접선의 접점이 $A$, $B$이면 {$\\overline{PA}=\\overline{PB}$}이므로 $\\triangle PAB$는 {이등변삼각형}이고 두 밑각의 크기가 같다.",
+        "cSlotAnswers": [
+          "$\\overline{PA}=\\overline{PB}$",
+          "이등변삼각형"
+        ],
+        "cStudentSentence": "원 밖의 점 $P$에서 그은 두 접선의 접점이 $A$, $B$이면 □이므로 $\\triangle PAB$는 □이고 두 밑각의 크기가 같다.",
+        "cAnswers": [
+          "$\\overline{PA}=\\overline{PB}$",
+          "이등변삼각형"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\overline{PA}=\\overline{PB}$",
+            "equivalentAnswers": [
+              "$\\overline{PA}=\\overline{PB}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "이등변삼각형",
+            "equivalentAnswers": [
+              "이등변삼각형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\overline{PA}=\\overline{PB}$"
+          ],
+          [
+            "이등변삼각형"
+          ]
+        ],
+        "proposalFingerprint": "65d01f0dad4f42bfa3bc6756438bbf83fcc4ff27dd020fd0a5c94e57f89df303"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-06-02-xc14",
+        "section": "중3::6. 원의 성질::원의 접선",
+        "term": "직각삼각형의 내접원과 정사각형",
+        "kind": "성질",
+        "level": "중",
+        "definition": "직각삼각형의 직각인 꼭짓점, 직각을 낀 두 변 위의 접점, 내심이 만드는 사각형은 한 변의 길이가 {내접원의 반지름}인 {정사각형}이다.",
+        "studentC": "직각삼각형의 직각인 꼭짓점, 직각을 낀 두 변 위의 접점, 내심이 만드는 사각형은 한 변의 길이가 □인 □이다.",
+        "answers": [
+          "내접원의 반지름",
+          "정사각형"
+        ]
+      },
+      "proposal": {
+        "id": "m3-06-02-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\angle C=90^\\circ$인 직각삼각형 $ABC$의 내접원(중심 $I$, 반지름 $r$)이 변 $CA$, $CB$와 각각 점 $E$, $F$에서 접한다. 사각형 $CEIF$는 어떤 사각형이며 그 까닭은?",
+        "bAnswer": "한 변의 길이가 $r$인 정사각형이다. $\\angle C$, $\\angle CEI$, $\\angle CFI$가 모두 $90^\\circ$라 네 각이 직각인 직사각형이고, 이웃한 두 변 $\\overline{IE}=\\overline{IF}=r$이 같기 때문이다.",
+        "bGoal": "직각삼각형의 내접원이 만드는 정사각형",
+        "bReason": "점 순서와 직각 위치를 밝혀 사각형의 종류와 근거를 묻도록 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "정사각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 변이 $r$",
+              "변의 길이가 내접원의 반지름"
+            ]
+          },
+          {
+            "anyOf": [
+              "네 각이 직각",
+              "접점에서 반지름이 변에 수직"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{IE}=\\overline{IF}$",
+              "$\\overline{CE}=\\overline{CF}$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "반지름과 정사각형을 묻는 짧고 명확한 빈칸이다.",
+        "learningRole": "reason",
+        "roleReason": "직각과 같은 반지름으로 정사각형이 되는 이유",
+        "authorBatch": 60,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3614,
+        "part": "m3plus",
+        "sourceFingerprint": "5e8066c35313d6c8066589d99f0aaa60618c32c8dae401e7d66b30b8ce6e303b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3614
+        },
+        "directReview": null,
+        "cFrozenSentence": "직각삼각형의 직각인 꼭짓점, 직각을 낀 두 변 위의 접점, 내심이 만드는 사각형은 한 변의 길이가 □인 □이다.",
+        "cFrozenDefinition": "직각삼각형의 직각인 꼭짓점, 직각을 낀 두 변 위의 접점, 내심이 만드는 사각형은 한 변의 길이가 {내접원의 반지름}인 {정사각형}이다.",
+        "cFrozenAnswers": [
+          "내접원의 반지름",
+          "정사각형"
+        ],
+        "cMarkedSentence": "직각삼각형의 직각인 꼭짓점, 직각을 낀 두 변 위의 접점, 내심이 만드는 사각형은 한 변의 길이가 {내접원의 반지름}인 {정사각형}이다.",
+        "cSlotAnswers": [
+          "내접원의 반지름",
+          "정사각형"
+        ],
+        "cStudentSentence": "직각삼각형의 직각인 꼭짓점, 직각을 낀 두 변 위의 접점, 내심이 만드는 사각형은 한 변의 길이가 □인 □이다.",
+        "cAnswers": [
+          "내접원의 반지름",
+          "정사각형"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "내접원의 반지름",
+            "equivalentAnswers": [
+              "내접원의 반지름"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "정사각형",
+            "equivalentAnswers": [
+              "정사각형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "내접원의 반지름"
+          ],
+          [
+            "정사각형"
+          ]
+        ],
+        "proposalFingerprint": "2ace629ff77571339aa9a664d54c4e12f9fe53a86eec01f42248ca9a9f5a0c61"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-06-02-xc16",
+        "section": "중3::6. 원의 성질::원의 접선",
+        "term": "직각삼각형의 내접원의 반지름",
+        "kind": "공식",
+        "level": "상",
+        "definition": "세 변이 $a$, $b$, $c$($c$는 빗변)인 직각삼각형의 내접원의 반지름은 {$\\frac{a+b-c}{2}$}이다 — 직각 쪽 두 접선의 길이가 $r$이다.",
+        "studentC": "세 변이 $a$, $b$, $c$($c$는 빗변)인 직각삼각형의 내접원의 반지름은 □이다 — 직각 쪽 두 접선의 길이가 $r$이다.",
+        "answers": [
+          "$\\frac{a+b-c}{2}$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-06-02-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "세 변의 길이가 $a$, $b$, $c$($c$는 빗변)인 직각삼각형의 내접원의 반지름 $r$을 $a$, $b$, $c$로 나타내고, 접선의 길이를 이용해 까닭을 쓰시오.",
+        "bAnswer": "$r=\\frac{a+b-c}{2}$이다. 직각인 꼭짓점에서 그은 두 접선의 길이는 $r$이므로 나머지 두 꼭짓점의 접선의 길이는 $a-r$, $b-r$이고, 빗변은 그 합이라 $c=(a-r)+(b-r)$이다.",
+        "bGoal": "접선의 길이로 내접원의 반지름 구하기",
+        "bReason": "빗변을 지정하고 공식의 접선 길이 근거를 묻도록 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$r=\\frac{a+b-c}{2}$",
+              "$r=\\frac{1}{2}(a+b-c)$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$c=(a-r)+(b-r)$",
+              "직각인 꼭짓점의 접선의 길이가 $r$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "빗변이 지정된 식 하나를 묻고 근거 힌트가 있다.",
+        "learningRole": "procedure",
+        "roleReason": "$c=(a-r)+(b-r)$로 반지름 구하기",
+        "authorBatch": 60,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3616,
+        "part": "m3plus",
+        "sourceFingerprint": "d07d76d0456ea0ae77511c49455a07d61e25aa7f149ce0cb6e033d19414e3815",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3616
+        },
+        "directReview": null,
+        "cFrozenSentence": "세 변이 $a$, $b$, $c$($c$는 빗변)인 직각삼각형의 내접원의 반지름은 □이다 — 직각 쪽 두 접선의 길이가 $r$이다.",
+        "cFrozenDefinition": "세 변이 $a$, $b$, $c$($c$는 빗변)인 직각삼각형의 내접원의 반지름은 {$\\frac{a+b-c}{2}$}이다 — 직각 쪽 두 접선의 길이가 $r$이다.",
+        "cFrozenAnswers": [
+          "$\\frac{a+b-c}{2}$"
+        ],
+        "cMarkedSentence": "세 변이 $a$, $b$, $c$($c$는 빗변)인 직각삼각형의 내접원의 반지름은 {$\\frac{a+b-c}{2}$}이다 — 직각 쪽 두 접선의 길이가 $r$이다.",
+        "cSlotAnswers": [
+          "$\\frac{a+b-c}{2}$"
+        ],
+        "cStudentSentence": "세 변이 $a$, $b$, $c$($c$는 빗변)인 직각삼각형의 내접원의 반지름은 □이다 — 직각 쪽 두 접선의 길이가 $r$이다.",
+        "cAnswers": [
+          "$\\frac{a+b-c}{2}$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{a+b-c}{2}$",
+            "equivalentAnswers": [
+              "$\\frac{a+b-c}{2}$",
+              "$\\frac{1}{2}(a+b-c)$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$\\frac{a+b-c}{2}$",
+            "accept": [
+              "$\\frac{1}{2}(a+b-c)$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{a+b-c}{2}$",
+            "$\\frac{1}{2}(a+b-c)$"
+          ]
+        ],
+        "proposalFingerprint": "c100162e32d7cc00fd1a3c51fc4fa7f85c7d5751fcda6af030a9c1564e67bbd8"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-06-02-xc19",
+        "section": "중3::6. 원의 성질::원의 접선",
+        "term": "원에 외접하는 등변사다리꼴",
+        "kind": "성질",
+        "level": "상",
+        "definition": "원에 외접하는 등변사다리꼴은 두 밑변의 합이 두 {다리}의 합과 같아, 다리 하나는 두 밑변의 합의 {절반}이다.",
+        "studentC": "원에 외접하는 등변사다리꼴은 두 밑변의 합이 두 □의 합과 같아, 다리 하나는 두 밑변의 합의 □이다.",
+        "answers": [
+          "다리",
+          "절반"
+        ]
+      },
+      "proposal": {
+        "id": "m3-06-02-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "원에 외접하는 등변사다리꼴에서 평행한 두 밑변의 길이가 $a$, $b$이다. 평행하지 않은 변(다리) 하나의 길이를 구하고 그 까닭을 쓰시오.",
+        "bAnswer": "$\\frac{a+b}{2}$이다. 원에 외접하는 사각형은 마주 보는 두 변의 합이 같아 두 다리의 합이 $a+b$이고, 등변사다리꼴이라 두 다리의 길이가 같기 때문이다.",
+        "bGoal": "외접 사각형 성질을 등변사다리꼴에 적용",
+        "bReason": "밑변을 기호로 주고 다리 길이와 두 근거를 묻도록 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{a+b}{2}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 다리의 합이 $a+b$",
+              "마주 보는 두 변의 합이 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 다리의 길이가 같다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "다리와 절반을 묻는 짧은 적용 빈칸이다.",
+        "learningRole": "application",
+        "roleReason": "마주 보는 변의 합 성질로 다리 길이 구하기",
+        "authorBatch": 60,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3619,
+        "part": "m3plus",
+        "sourceFingerprint": "1a9d3e8ed38973122fe5194e17db7056ef196b6afd0b06e95c22c6ce5275ce4c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3619
+        },
+        "directReview": null,
+        "cFrozenSentence": "원에 외접하는 등변사다리꼴은 두 밑변의 합이 두 □의 합과 같아, 다리 하나는 두 밑변의 합의 □이다.",
+        "cFrozenDefinition": "원에 외접하는 등변사다리꼴은 두 밑변의 합이 두 {다리}의 합과 같아, 다리 하나는 두 밑변의 합의 {절반}이다.",
+        "cFrozenAnswers": [
+          "다리",
+          "절반"
+        ],
+        "cMarkedSentence": "원에 외접하는 등변사다리꼴은 두 밑변의 합이 두 {다리}의 합과 같아, 다리 하나는 두 밑변의 합의 {절반}이다.",
+        "cSlotAnswers": [
+          "다리",
+          "절반"
+        ],
+        "cStudentSentence": "원에 외접하는 등변사다리꼴은 두 밑변의 합이 두 □의 합과 같아, 다리 하나는 두 밑변의 합의 □이다.",
+        "cAnswers": [
+          "다리",
+          "절반"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "다리",
+            "equivalentAnswers": [
+              "다리"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "절반",
+            "equivalentAnswers": [
+              "절반"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "다리"
+          ],
+          [
+            "절반"
+          ]
+        ],
+        "proposalFingerprint": "706878b0d45612955f50470eef69fb656efe9b4fdfd8b5472e85f0b05601b682"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-06-03-xc4",
+        "section": "중3::6. 원의 성질::원주각",
+        "term": "원주각의 크기의 범위",
+        "kind": "성질",
+        "level": "하",
+        "definition": "한 호에 대한 중심각은 $360^\\circ$보다 작으므로, 그 절반인 원주각은 $0^\\circ$보다 크고 {$180^\\circ$}보다 {작다}.",
+        "studentC": "한 호에 대한 중심각은 $360^\\circ$보다 작으므로, 그 절반인 원주각은 $0^\\circ$보다 크고 □보다 □.",
+        "answers": [
+          "$180^\\circ$",
+          "작다"
+        ]
+      },
+      "proposal": {
+        "id": "m3-06-03-xc4",
+        "learningRole": "reason",
+        "roleReason": "원주각이 $180^\\circ$보다 작은 까닭",
+        "bDecision": "rewrite",
+        "bPrompt": "한 원에서 어떤 호에 대한 원주각의 크기는 어떤 범위에 있는가? 같은 호에 대한 중심각을 이용해 까닭과 함께 쓰시오.",
+        "bAnswer": "원주각은 $0^\\circ$보다 크고 $180^\\circ$보다 작다. 중심각은 $0^\\circ$보다 크고 $360^\\circ$보다 작은데, 원주각은 그 절반이기 때문이다.",
+        "bGoal": "원주각의 범위와 근거",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$180^\\circ$보다 작다",
+              "$0^\\circ<$(원주각)$<180^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "중심각이 $360^\\circ$보다 작고 원주각은 그 절반이다"
+            ]
+          }
+        ],
+        "bReason": "범위의 상한이 중심각에서 나오는 까닭까지 답하도록 특정했다.",
+        "cDecision": "keep",
+        "cReason": "$180^\\circ$와 작다라는 두 빈칸이 범위를 근거와 함께 묻는다.",
+        "authorBatch": 61,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3624,
+        "part": "m3plus",
+        "sourceFingerprint": "e2d9b89b398acade4673d745209eafb41c1c3e2a8363605194948c3a47860802",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3624
+        },
+        "directReview": null,
+        "cFrozenSentence": "한 호에 대한 중심각은 $360^\\circ$보다 작으므로, 그 절반인 원주각은 $0^\\circ$보다 크고 □보다 □.",
+        "cFrozenDefinition": "한 호에 대한 중심각은 $360^\\circ$보다 작으므로, 그 절반인 원주각은 $0^\\circ$보다 크고 {$180^\\circ$}보다 {작다}.",
+        "cFrozenAnswers": [
+          "$180^\\circ$",
+          "작다"
+        ],
+        "cMarkedSentence": "한 호에 대한 중심각은 $360^\\circ$보다 작으므로, 그 절반인 원주각은 $0^\\circ$보다 크고 {$180^\\circ$}보다 {작다}.",
+        "cSlotAnswers": [
+          "$180^\\circ$",
+          "작다"
+        ],
+        "cStudentSentence": "한 호에 대한 중심각은 $360^\\circ$보다 작으므로, 그 절반인 원주각은 $0^\\circ$보다 크고 □보다 □.",
+        "cAnswers": [
+          "$180^\\circ$",
+          "작다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$180^\\circ$",
+            "equivalentAnswers": [
+              "$180^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "작다",
+            "equivalentAnswers": [
+              "작다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$180^\\circ$"
+          ],
+          [
+            "작다"
+          ]
+        ],
+        "proposalFingerprint": "7755485b17fd6fbe9809643f6ece7a7e892958422d51f02809f17853cf7b1aef"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-06-04-xc2",
+        "section": "중3::6. 원의 성질::원주각의 활용",
+        "term": "원에 내접하지 않는 사각형",
+        "kind": "성질",
+        "level": "하",
+        "definition": "네 꼭짓점을 모두 지나는 원이 있는 사각형만 원에 {내접}하므로, 모든 사각형이 원에 내접하는 것은 {아니다}.",
+        "studentC": "네 꼭짓점을 모두 지나는 원이 있는 사각형만 원에 □하므로, 모든 사각형이 원에 내접하는 것은 □.",
+        "answers": [
+          "내접",
+          "아니다"
+        ]
+      },
+      "proposal": {
+        "id": "m3-06-04-xc2",
+        "learningRole": "reason",
+        "roleReason": "원에 내접하지 않는 사각형의 반례",
+        "bDecision": "rewrite",
+        "bPrompt": "모든 사각형이 원에 내접하는가? 판단하고, 원에 내접하지 않는 사각형의 예를 하나 들어 까닭을 쓰시오.",
+        "bAnswer": "아니다. 예를 들어 한 내각이 $60^\\circ$인 평행사변형(직사각형이 아닌 것)은 대각의 크기가 $60^\\circ$, $60^\\circ$로 그 합이 $180^\\circ$가 아니다. 따라서 원에 내접하지 않는다.",
+        "bGoal": "내접 여부 판단과 반례",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "아니다",
+              "모든 사각형이 내접하지는 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "대각의 합이 $180^\\circ$가 아닌 사각형의 예",
+              "네 꼭짓점을 모두 지나는 원이 없는 사각형의 예"
+            ]
+          }
+        ],
+        "bReason": "아니다라고만 답하지 않도록 반례와 대각에 의한 근거를 요구했다.",
+        "cDecision": "keep",
+        "cReason": "내접과 아니다라는 두 빈칸이 판단을 짧게 확인한다.",
+        "authorBatch": 61,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3644,
+        "part": "m3plus",
+        "sourceFingerprint": "7e02c38f04dcccc294c693ac303cc341d4fbdf2c4edb0e2ab48a7f23a88c6ddd",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3644
+        },
+        "directReview": null,
+        "cFrozenSentence": "네 꼭짓점을 모두 지나는 원이 있는 사각형만 원에 □하므로, 모든 사각형이 원에 내접하는 것은 □.",
+        "cFrozenDefinition": "네 꼭짓점을 모두 지나는 원이 있는 사각형만 원에 {내접}하므로, 모든 사각형이 원에 내접하는 것은 {아니다}.",
+        "cFrozenAnswers": [
+          "내접",
+          "아니다"
+        ],
+        "cMarkedSentence": "네 꼭짓점을 모두 지나는 원이 있는 사각형만 원에 {내접}하므로, 모든 사각형이 원에 내접하는 것은 {아니다}.",
+        "cSlotAnswers": [
+          "내접",
+          "아니다"
+        ],
+        "cStudentSentence": "네 꼭짓점을 모두 지나는 원이 있는 사각형만 원에 □하므로, 모든 사각형이 원에 내접하는 것은 □.",
+        "cAnswers": [
+          "내접",
+          "아니다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "내접",
+            "equivalentAnswers": [
+              "내접"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "아니다",
+            "equivalentAnswers": [
+              "아니다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "내접"
+          ],
+          [
+            "아니다"
+          ]
+        ],
+        "proposalFingerprint": "52bd02c92fb6e35d5f7a8c4782a1708898078ec0fc5ae7b5859b0e414614addf"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-06-04-xc8",
+        "section": "중3::6. 원의 성질::원주각의 활용",
+        "term": "접선과 현이 이루는 각과 중심각",
+        "kind": "성질",
+        "level": "하",
+        "definition": "접선과 현이 이루는 각이 $x$이면 그 각 안쪽의 호에 대한 {중심각}은 {$2x$}이다.",
+        "studentC": "접선과 현이 이루는 각이 $x$이면 그 각 안쪽의 호에 대한 □은 □이다.",
+        "answers": [
+          "중심각",
+          "$2x$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-06-04-xc8",
+        "learningRole": "reason",
+        "roleReason": "접선과 현의 각과 중심각의 $2$배 관계",
+        "bDecision": "rewrite",
+        "bPrompt": "원 $O$ 위의 점 $A$에서의 접선과 현 $AB$가 이루는 각의 크기가 $x$이다. 그 각의 안쪽에 놓인 호 $AB$에 대한 중심각 $\\angle AOB$를 $x$로 나타내고 까닭을 쓰시오.",
+        "bAnswer": "$\\angle AOB=2x$이다. 접선과 현이 이루는 각은 그 호에 대한 원주각과 같으므로 원주각이 $x$이고, 중심각은 원주각의 $2$배이기 때문이다.",
+        "bGoal": "접선과 현의 각과 중심각",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\angle AOB=2x$"
+            ]
+          },
+          {
+            "anyOf": [
+              "그 호에 대한 원주각이 $x$이고 중심각은 그 $2$배이다",
+              "$\\angle OAB=90^\\circ-x$이므로 $\\angle AOB=180^\\circ-2(90^\\circ-x)$이다"
+            ]
+          }
+        ],
+        "bReason": "접선과 현이 이루는 각을 $x$로 두고 중심각을 식과 근거로 묻게 했다.",
+        "cDecision": "keep",
+        "cReason": "중심각과 $2x$라는 두 빈칸이 관계를 짧게 묻는다.",
+        "authorBatch": 61,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3648,
+        "part": "m3plus",
+        "sourceFingerprint": "661b0b35ad5a1094ee8780c5b6309f32c83c621ba53b7df07597eb901df5c940",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3648
+        },
+        "directReview": null,
+        "cFrozenSentence": "접선과 현이 이루는 각이 $x$이면 그 각 안쪽의 호에 대한 □은 □이다.",
+        "cFrozenDefinition": "접선과 현이 이루는 각이 $x$이면 그 각 안쪽의 호에 대한 {중심각}은 {$2x$}이다.",
+        "cFrozenAnswers": [
+          "중심각",
+          "$2x$"
+        ],
+        "cMarkedSentence": "접선과 현이 이루는 각이 $x$이면 그 각 안쪽의 호에 대한 {중심각}은 {$2x$}이다.",
+        "cSlotAnswers": [
+          "중심각",
+          "$2x$"
+        ],
+        "cStudentSentence": "접선과 현이 이루는 각이 $x$이면 그 각 안쪽의 호에 대한 □은 □이다.",
+        "cAnswers": [
+          "중심각",
+          "$2x$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "중심각",
+            "equivalentAnswers": [
+              "중심각"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$2x$",
+            "equivalentAnswers": [
+              "$2x$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "중심각"
+          ],
+          [
+            "$2x$"
+          ]
+        ],
+        "proposalFingerprint": "3e5b66abad3de79fdda045c5d121f77862c0c36d66a96b306921abfc73acd431"
+      }
+    }
+  ]
+}

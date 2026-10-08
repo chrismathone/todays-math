@@ -1,0 +1,1113 @@
+{
+  "status": "Explicit proposals awaiting Root actual normalized after-reading; no source activation or independent approval",
+  "inputSha256": "c16c1cec0849c7be2f570633f17368bb4dae2162cc5ee74bbe4236b3051fed44",
+  "rows": [
+    {
+      "id": "e3-2-6-1-c1",
+      "sourceIndex": 187,
+      "beforeRaw": {
+        "sourceIndex": 187,
+        "grade": "e3",
+        "part": "e3",
+        "section": "초3::2-6 그림그래프::2-6-1 그림그래프 알아보기",
+        "sourceFingerprint": "aba11ac597c9f05b7858a2139a05f2cb0a3b42fd29014cc4cf59e9b11af9bbb7",
+        "proposalFingerprint": "fa438d6d24cfa3dfc63bf6b7b7c647c29666a2c73853bbd8c0753f29a9ad62d6",
+        "reviewStatus": "draft",
+        "id": "e3-2-6-1-c1",
+        "bDecision": "rewrite",
+        "bPrompt": "그림그래프는 조사한 수를 무엇으로 나타낸 그래프인지 쓰세요. 또 그림의 크기와 개수를 보고 각 그림이 나타내는 수를 알아내어, 어느 항목의 수가 더 많은지 비교하는 방법을 설명하세요.",
+        "bAnswer": "조사한 수를 그림으로 나타낸 그래프입니다. 그림의 크기에 따라 그림 하나가 나타내는 수를 확인하고, 각 크기의 그림이 몇 개 있는지 세어 항목의 수를 구한 뒤 비교합니다.",
+        "bGoal": "그림그래프의 뜻과 읽는 기준 설명",
+        "bReason": "물음에서 그림의 크기·개수와 수를 구해 비교하는 방법을 명시하여 필요한 설명의 범위를 기준과 맞췄다.",
+        "studentLabel": "그림으로 수를 나타내기",
+        "cDecision": "rewrite",
+        "cAfter": "조사한 자료의 수를 그림의 크기와 개수로 나타낸 그래프를 {그림그래프}라고 한다.",
+        "cReason": "크기와 개수로 자료의 수를 나타낸다는 정의에서 그림그래프의 이름을 확인하는 기존 C를 유지한다.",
+        "answerNotes": "'그림그래프' 정답. '막대그래프', '표'는 오답.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "조사한 수를 그림으로 나타낸다"
+            ]
+          },
+          {
+            "anyOf": [
+              "그림의 크기와 개수로 수를 구하여 비교한다",
+              "각 크기의 그림이 나타내는 수를 확인하고 개수를 세어 비교한다"
+            ]
+          }
+        ],
+        "reviewerEdited": true,
+        "learningRole": "definition",
+        "roleEvidence": {
+          "sourceKind": "정의",
+          "sourceTerm": "그림그래프",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "조사한 자료의 수를 그림의 크기와 개수로 나타낸 그래프를 {그림그래프}라고 한다.",
+        "cStudentSentence": "조사한 자료의 수를 그림의 크기와 개수로 나타낸 그래프를 □라고 한다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "그림그래프",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "그림그래프는 조사한 수를 무엇으로 나타낸 그래프인지 쓰세요. 또 그림의 크기와 개수를 보고 각 그림이 나타내는 수를 알아내어, 어느 항목의 수가 더 많은지 비교하는 방법을 설명하세요.",
+          "answer": "조사한 수를 그림으로 나타낸 그래프입니다. 그림의 크기에 따라 그림 하나가 나타내는 수를 확인하고, 각 크기의 그림이 몇 개 있는지 세어 항목의 수를 구한 뒤 비교합니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "조사한 수를 그림으로 나타낸다"
+              ]
+            },
+            {
+              "anyOf": [
+                "그림의 크기와 개수로 수를 구하여 비교한다",
+                "각 크기의 그림이 나타내는 수를 확인하고 개수를 세어 비교한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "조사한 자료의 수를 그림의 크기와 개수로 나타낸 그래프를 {그림그래프}라고 한다.",
+          "acceptedAnswers": [
+            [
+              "그림그래프"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-2-6-1-c1",
+          "sourceIndex": 187,
+          "proposalFingerprint": "fa438d6d24cfa3dfc63bf6b7b7c647c29666a2c73853bbd8c0753f29a9ad62d6",
+          "reader": "Codex direct e3e4 current-disputes assist; candidate reread",
+          "readAt": "2026-10-07T11:05:58.939Z",
+          "learningRole": "definition",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "그림 크기별 범례를 확인하고 개수를 세어 항목별 수를 구한다는 읽기 절차를 요구한다. 물음의 '알아내어 비교'는 수행 목표이며 범례 확인과 합산 방법까지 답한 것은 아니다. 용어에서 '그림'을 떠올릴 수 있어도 절차 기준이 함께 있어 복사만으로 충족되지 않는다.",
+          "cReason": "자료의 수를 그림 크기와 개수로 나타내는 표현에 정식 그래프 이름을 연결하는 명확한 이름 문항이다.",
+          "issues": [],
+          "isReleaseApproval": false,
+          "inputEvidence": "../e3e4-current-disputes-assist/reviews.json"
+        }
+      },
+      "beforeNormalizedHash": "79d45cce4b99de580c4c0f908a3a2f3cae4961a5c8a0d35841f9be54fc704e40",
+      "proposedRawRow": {
+        "sourceIndex": 187,
+        "grade": "e3",
+        "part": "e3",
+        "section": "초3::2-6 그림그래프::2-6-1 그림그래프 알아보기",
+        "sourceFingerprint": "aba11ac597c9f05b7858a2139a05f2cb0a3b42fd29014cc4cf59e9b11af9bbb7",
+        "proposalFingerprint": "25fb9e3ebcab0aa9248b5b4842f380e82996724ca49d414941c37be7bab31a74",
+        "reviewStatus": "draft",
+        "id": "e3-2-6-1-c1",
+        "bDecision": "rewrite",
+        "bPrompt": "그림그래프는 조사한 수를 어떻게 나타내는 그래프인지 설명하세요. 또 각 항목의 자료 수가 더 많은지 적은지 알아보는 방법을 쓰세요.",
+        "bAnswer": "조사한 수를 그림으로 나타낸 그래프입니다. 그림의 크기에 따라 그림 하나가 나타내는 수를 확인하고, 각 크기의 그림이 몇 개 있는지 세어 항목의 수를 구한 뒤 비교합니다.",
+        "bGoal": "그림그래프의 뜻과 읽는 기준 설명",
+        "bReason": "그림의크기와개수로비교하라는방법자체를물음에주지않고그래프뜻과항목별수비교방법을학생이설명하게한다.",
+        "studentLabel": "그림으로 수를 나타내기",
+        "cDecision": "rewrite",
+        "cAfter": "조사한 자료의 수를 그림의 크기와 개수로 나타낸 그래프를 {그림그래프}라고 한다.",
+        "cReason": "크기와 개수로 자료의 수를 나타낸다는 정의에서 그림그래프의 이름을 확인하는 기존 C를 유지한다.",
+        "answerNotes": "'그림그래프' 정답. '막대그래프', '표'는 오답.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "조사한 수를 그림으로 나타낸다"
+            ]
+          },
+          {
+            "anyOf": [
+              "그림의 크기와 개수로 수를 구하여 비교한다",
+              "각 크기의 그림이 나타내는 수를 확인하고 개수를 세어 비교한다"
+            ]
+          }
+        ],
+        "reviewerEdited": true,
+        "learningRole": "definition",
+        "roleEvidence": {
+          "sourceKind": "정의",
+          "sourceTerm": "그림그래프",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "조사한 자료의 수를 그림의 크기와 개수로 나타낸 그래프를 {그림그래프}라고 한다.",
+        "cStudentSentence": "조사한 자료의 수를 그림의 크기와 개수로 나타낸 그래프를 □라고 한다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "그림그래프",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "그림그래프는 조사한 수를 어떻게 나타내는 그래프인지 설명하세요. 또 각 항목의 자료 수가 더 많은지 적은지 알아보는 방법을 쓰세요.",
+          "answer": "조사한 수를 그림으로 나타낸 그래프입니다. 그림의 크기에 따라 그림 하나가 나타내는 수를 확인하고, 각 크기의 그림이 몇 개 있는지 세어 항목의 수를 구한 뒤 비교합니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "조사한 수를 그림으로 나타낸다"
+              ]
+            },
+            {
+              "anyOf": [
+                "그림의 크기와 개수로 수를 구하여 비교한다",
+                "각 크기의 그림이 나타내는 수를 확인하고 개수를 세어 비교한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "조사한 자료의 수를 그림의 크기와 개수로 나타낸 그래프를 {그림그래프}라고 한다.",
+          "acceptedAnswers": [
+            [
+              "그림그래프"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-2-6-1-c1",
+          "sourceIndex": 187,
+          "proposalFingerprint": "fa438d6d24cfa3dfc63bf6b7b7c647c29666a2c73853bbd8c0753f29a9ad62d6",
+          "reader": "Codex direct e3e4 current-disputes assist; candidate reread",
+          "readAt": "2026-10-07T11:05:58.939Z",
+          "learningRole": "definition",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "그림 크기별 범례를 확인하고 개수를 세어 항목별 수를 구한다는 읽기 절차를 요구한다. 물음의 '알아내어 비교'는 수행 목표이며 범례 확인과 합산 방법까지 답한 것은 아니다. 용어에서 '그림'을 떠올릴 수 있어도 절차 기준이 함께 있어 복사만으로 충족되지 않는다.",
+          "cReason": "자료의 수를 그림 크기와 개수로 나타내는 표현에 정식 그래프 이름을 연결하는 명확한 이름 문항이다.",
+          "issues": [],
+          "isReleaseApproval": false,
+          "inputEvidence": "../e3e4-current-disputes-assist/reviews.json"
+        }
+      },
+      "after": {
+        "id": "e3-2-6-1-c1",
+        "grade": "초3",
+        "source": {
+          "id": "e3-2-6-1-c1",
+          "section": "초3::2-6 그림그래프::2-6-1 그림그래프 알아보기",
+          "level": "하",
+          "term": "그림그래프",
+          "kind": "정의",
+          "definition": "자료의 수를 정해 둔 {그림의 개수}로 보여 주는 그래프가 그림그래프이다.",
+          "example": {
+            "prompt": "그림그래프에서 항목의 수가 많고 적음은 그림의 무엇을 보고 아는가?",
+            "answer": "그림의 크기와 개수"
+          }
+        },
+        "B": {
+          "prompt": "그림그래프는 조사한 수를 어떻게 나타내는 그래프인지 설명하세요. 또 각 항목의 자료 수가 더 많은지 적은지 알아보는 방법을 쓰세요.",
+          "answer": "조사한 수를 그림으로 나타낸 그래프입니다. 그림의 크기에 따라 그림 하나가 나타내는 수를 확인하고, 각 크기의 그림이 몇 개 있는지 세어 항목의 수를 구한 뒤 비교합니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "조사한 수를 그림으로 나타낸다"
+              ]
+            },
+            {
+              "anyOf": [
+                "그림의 크기와 개수로 수를 구하여 비교한다",
+                "각 크기의 그림이 나타내는 수를 확인하고 개수를 세어 비교한다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "조사한 자료의 수를 그림의 크기와 개수로 나타낸 그래프를 {그림그래프}라고 한다.",
+          "acceptedAnswers": [
+            [
+              "그림그래프"
+            ]
+          ]
+        },
+        "goal": "그림그래프의 뜻과 읽는 기준 설명",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "ed0192b912d3271ea7bc1629b9a13960ea4f53d8d7ed3dd2338b5c40abde485c"
+      },
+      "reason": "그림의크기와개수로비교하라는방법자체를물음에주지않고그래프뜻과항목별수비교방법을학생이설명하게한다.",
+      "changed": true
+    },
+    {
+      "id": "e4-2-2-1-xc17",
+      "sourceIndex": 2180,
+      "beforeRaw": {
+        "sourceIndex": 2180,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "sourceFingerprint": "9e2fbdabcc3f4dad18956879045fe540f40c33892b4e673dafe0debcd968c175",
+        "proposalFingerprint": "ca0cd3a36a186ceb53715bcb580071be7beec73eb31ba0f40d0bb381752fea1d",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-1-xc17",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "naming",
+        "bGoal": "같은 변 표시 약속",
+        "bReason": "표시 약속만 묻는 질문",
+        "exclusionReason": "그림 표시 약속을 알려 줄 뿐 설명할 의미나 이유가 없는 단순 기호 읽기",
+        "cDecision": "rewrite",
+        "cAfter": "그림에서 길이가 같은 변에는 {같은} 표시를 하여 나타내기도 한다.",
+        "cReason": "'같은 표시' 구절을 '같은' 한 낱말로 줄임",
+        "cSlotEquivalents": [
+          [
+            "똑같은"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "같은 길이의 변 표시",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "그림에서 길이가 같은 변에는 {같은} 표시를 하여 나타내기도 한다.",
+        "cStudentSentence": "그림에서 길이가 같은 변에는 □ 표시를 하여 나타내기도 한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같은",
+            "equivalents": [
+              "똑같은"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "그림에서 길이가 같은 변에는 {같은} 표시를 하여 나타내기도 한다.",
+          "acceptedAnswers": [
+            [
+              "같은",
+              "똑같은"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "표시 약속만 묻는 질문"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-1-xc17",
+          "sourceIndex": 2180,
+          "proposalFingerprint": "ca0cd3a36a186ceb53715bcb580071be7beec73eb31ba0f40d0bb381752fea1d",
+          "reader": "Codex direct e3e4 current-disputes assist; candidate reread",
+          "readAt": "2026-10-07T11:05:58.939Z",
+          "learningRole": "naming",
+          "bDecision": "exclude",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "이미 제외한 표시 약속 설명형을 그대로 둔다.",
+          "cReason": "그림에서라는 말은 특정 미제공 그림을 지칭하지 않는 일반 표시 약속이다. 어떤 표시의 구체적 모양을 묻지 않고 길이가 같으면 표시도 같은지 묻는다. 같은/똑같은 답이 모두 인정되므로 그림 없이 풀 수 있다.",
+          "issues": [],
+          "isReleaseApproval": false,
+          "inputEvidence": "../e3e4-current-disputes-assist/reviews.json"
+        }
+      },
+      "beforeNormalizedHash": "5394490464b00ee12f5579d040c91e4087b109615c8433254476a0cb00ffe6e9",
+      "proposedRawRow": {
+        "sourceIndex": 2180,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "sourceFingerprint": "9e2fbdabcc3f4dad18956879045fe540f40c33892b4e673dafe0debcd968c175",
+        "proposalFingerprint": "d38262770732bc96690118dabd435efb6a128ccc8169c63a2bd924b535ce31c5",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-1-xc17",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "naming",
+        "bGoal": "같은 변 표시 약속",
+        "bReason": "표시 약속만 묻는 질문",
+        "exclusionReason": "그림 표시 약속을 알려 줄 뿐 설명할 의미나 이유가 없는 단순 기호 읽기",
+        "cDecision": "rewrite",
+        "cAfter": "삼각형의 두 변에 각각 짧은 선 하나씩을 표시했습니다. 이때 두 변의 길이는 서로 {같다}.",
+        "cReason": "같은변같은표시라는말을반복하지않고두변에같은표시가있는상황을실제길이관계로해석하게한다.",
+        "cSlotEquivalents": [
+          [
+            "똑같다",
+            "같습니다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "같은 길이의 변 표시",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "삼각형의 두 변에 각각 짧은 선 하나씩을 표시했습니다. 이때 두 변의 길이는 서로 {같다}.",
+        "cStudentSentence": "삼각형의 두 변에 각각 짧은 선 하나씩을 표시했습니다. 이때 두 변의 길이는 서로 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "같다",
+            "equivalents": [
+              "똑같다",
+              "같습니다"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "삼각형의 두 변에 각각 짧은 선 하나씩을 표시했습니다. 이때 두 변의 길이는 서로 {같다}.",
+          "acceptedAnswers": [
+            [
+              "같다",
+              "똑같다",
+              "같습니다"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "표시 약속만 묻는 질문"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-1-xc17",
+          "sourceIndex": 2180,
+          "proposalFingerprint": "ca0cd3a36a186ceb53715bcb580071be7beec73eb31ba0f40d0bb381752fea1d",
+          "reader": "Codex direct e3e4 current-disputes assist; candidate reread",
+          "readAt": "2026-10-07T11:05:58.939Z",
+          "learningRole": "naming",
+          "bDecision": "exclude",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "이미 제외한 표시 약속 설명형을 그대로 둔다.",
+          "cReason": "그림에서라는 말은 특정 미제공 그림을 지칭하지 않는 일반 표시 약속이다. 어떤 표시의 구체적 모양을 묻지 않고 길이가 같으면 표시도 같은지 묻는다. 같은/똑같은 답이 모두 인정되므로 그림 없이 풀 수 있다.",
+          "issues": [],
+          "isReleaseApproval": false,
+          "inputEvidence": "../e3e4-current-disputes-assist/reviews.json"
+        },
+        "cAcceptedAnswers": [
+          [
+            "같다",
+            "똑같다",
+            "같습니다"
+          ]
+        ]
+      },
+      "after": {
+        "id": "e4-2-2-1-xc17",
+        "grade": "초4",
+        "source": {
+          "id": "e4-2-2-1-xc17",
+          "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+          "term": "같은 길이의 변 표시",
+          "kind": "방법",
+          "level": "중",
+          "definition": "그림에서 길이가 같은 변에는 {같은 표시}를 하여 나타내기도 한다."
+        },
+        "B": {
+          "excluded": "표시 약속만 묻는 질문"
+        },
+        "C": {
+          "sentence": "삼각형의 두 변에 각각 짧은 선 하나씩을 표시했습니다. 이때 두 변의 길이는 서로 {같다}.",
+          "acceptedAnswers": [
+            [
+              "같다",
+              "똑같다",
+              "같습니다"
+            ]
+          ]
+        },
+        "goal": "같은 변 표시 약속",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "2acf29e3cc340fd1806fb222f49c49ab4513ce44d09997708699877874de3603"
+      },
+      "reason": "같은변같은표시라는말을반복하지않고두변에같은표시가있는상황을실제길이관계로해석하게한다.",
+      "changed": true
+    },
+    {
+      "id": "e3-1-6-1-xc2",
+      "sourceIndex": 820,
+      "beforeRaw": {
+        "sourceIndex": 820,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-6 분수와 소수::1-6-1 똑같이 나누기",
+        "sourceFingerprint": "f8cabdfd4fa275168ba59be4df1f0ced74e51176238730cbb1b73974b6f5bd81",
+        "proposalFingerprint": "42947e346ce0dcc5b361e411083d7eca665e28d86d1540a7381e3a2a67f83290",
+        "reviewStatus": "draft",
+        "id": "e3-1-6-1-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "같은 크기의 칸 $9$개로 된 색종이 한 장을 세 부분으로 나누었습니다. 각 부분에 칸이 $3$개씩 있고 모양은 서로 다릅니다. 이 색종이를 똑같이 나누었다고 할 수 있는지 쓰고, 까닭을 설명하세요.",
+        "bAnswer": "똑같이 나누었다고 할 수 있습니다. 같은 크기의 칸이 각 부분에 $3$개씩 있어 각 부분의 크기가 같기 때문입니다. 모양은 서로 달라도 됩니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "똑같이 나누었다고 할 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 크기의 칸이 각 부분에 $3$개씩 있어 각 부분의 크기가 같다"
+            ]
+          }
+        ],
+        "bGoal": "같은 크기로 나누는 조건과 같은 모양의 조건을 구별한다",
+        "bReason": "추상적인 모양·크기 조건 대신 같은 칸이 각각 세 개라는 구체 조건으로 크기가 같고 모양은 달라도 된다는 사실을 판단하게 했다.",
+        "cDecision": "rewrite",
+        "cReason": "모양이 달라도 각 부분이 같은 수의 같은 크기 칸이라는 조건에서 크기의 같음을 판단한다. 문법 빈칸으로 크기나 모양과 크기를 추측할 필요가 없다.",
+        "answerNotes": "같은 크기의 칸을 각각 세 개 포함한다는 조건으로 부분 크기를 비교한다. 서로 다른 모양도 등분일 수 있다는 일반 설명은 보존한다.",
+        "cAfter": "같은 크기의 칸 $9$개로 된 색종이를 세 부분으로 나누어 각 부분에 칸이 $3$개씩 있습니다. 모양은 서로 달라도 세 부분의 크기는 {같습니다}.",
+        "coreAfter": "한 전체를 똑같이 나누려면 나눈 각 부분의 {크기}가 같아야 한다. 모양과 크기가 같아 서로 꼭 겹치는 조각은 같은 크기임을 확인할 수 있지만, 같은 크기의 조각이 반드시 같은 모양일 필요는 없다.",
+        "coreReason": "크기라는 원래 표적을 보존한다. 같은크기로등분하면모양까지같아야한다는원문의 잘못된일반화를고치고 겹침은같은크기확인의한방법으로만남긴다.",
+        "exampleNeeded": "같은 칸 아홉 개를 각각 세 칸인 서로 다른 세 모양으로 나눈 그림은 선택 설명 자료다. B/C는 칸의 크기와 개수를 문장으로 제시하므로 보이지 않는 그림을 가리키지 않는다.",
+        "reviewerEdited": true,
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "똑같이 나눈 조각의 모양",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "같은 크기의 칸 $9$개로 된 색종이를 세 부분으로 나누어 각 부분에 칸이 $3$개씩 있습니다. 모양은 서로 달라도 세 부분의 크기는 {같습니다}.",
+        "cStudentSentence": "같은 크기의 칸 $9$개로 된 색종이를 세 부분으로 나누어 각 부분에 칸이 $3$개씩 있습니다. 모양은 서로 달라도 세 부분의 크기는 □.",
+        "cSlotEquivalents": [
+          [
+            "같다",
+            "같아요"
+          ]
+        ],
+        "cSlotAnswers": [
+          {
+            "expected": "같습니다",
+            "equivalents": [
+              "같다",
+              "같아요"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "같은 크기의 칸 $9$개로 된 색종이 한 장을 세 부분으로 나누었습니다. 각 부분에 칸이 $3$개씩 있고 모양은 서로 다릅니다. 이 색종이를 똑같이 나누었다고 할 수 있는지 쓰고, 까닭을 설명하세요.",
+          "answer": "똑같이 나누었다고 할 수 있습니다. 같은 크기의 칸이 각 부분에 $3$개씩 있어 각 부분의 크기가 같기 때문입니다. 모양은 서로 달라도 됩니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "똑같이 나누었다고 할 수 있다"
+              ]
+            },
+            {
+              "anyOf": [
+                "같은 크기의 칸이 각 부분에 $3$개씩 있어 각 부분의 크기가 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "같은 크기의 칸 $9$개로 된 색종이를 세 부분으로 나누어 각 부분에 칸이 $3$개씩 있습니다. 모양은 서로 달라도 세 부분의 크기는 {같습니다}.",
+          "acceptedAnswers": [
+            [
+              "같습니다",
+              "같다",
+              "같아요"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-6-1-xc2",
+          "sourceIndex": 820,
+          "proposalFingerprint": "42947e346ce0dcc5b361e411083d7eca665e28d86d1540a7381e3a2a67f83290",
+          "reader": "Codex direct e3e4 current-disputes assist; candidate reread",
+          "readAt": "2026-10-07T11:05:58.939Z",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "분수에서 똑같이 나눔의 기준은 각 부분의 크기이며 반드시 합동일 필요는 없다. 같은 크기 칸 세 개씩이라는 조건으로 크기가 같은 이유를 설명할 수 있다. 모양까지 같아야 한다는 검토 전제가 잘못되어 원안 유지한다.",
+          "cReason": "모양이 다른 세 부분도 동일한 크기의 칸 세 개씩으로 넓이가 같음을 판단한다. '같습니다'는 관계 전체를 숨긴 답이며 문법어미만 숨긴 칸이 아니다.",
+          "issues": [],
+          "isReleaseApproval": false,
+          "inputEvidence": "../e3e4-current-disputes-assist/reviews.json"
+        }
+      },
+      "beforeNormalizedHash": "90bf5919dbf2be5a9681f5992cbaa8fa9171efe10572619265f93d2fcaaddc24",
+      "proposedRawRow": {
+        "sourceIndex": 820,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-6 분수와 소수::1-6-1 똑같이 나누기",
+        "sourceFingerprint": "f8cabdfd4fa275168ba59be4df1f0ced74e51176238730cbb1b73974b6f5bd81",
+        "proposalFingerprint": "a10dd860b0b482aaed3577a34b7456d090df102210080a07396a3cb7855bf852",
+        "reviewStatus": "draft",
+        "id": "e3-1-6-1-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "같은 크기의 칸 $9$개로 된 색종이 한 장을 세 부분으로 나누었습니다. 각 부분에 칸이 $3$개씩 있고 모양은 서로 다릅니다. 세 부분의 크기가 같은지 쓰고, 칸의 크기와 개수를 이용하여 까닭을 설명하세요.",
+        "bAnswer": "세 부분의 크기는 같습니다. 각 부분이 같은 크기의 칸 $3$개씩으로 이루어져 있어 차지하는 크기가 같기 때문입니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "세 부분의 크기가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 크기의 칸이 각 부분에 $3$개씩 있어 크기가 같다"
+            ]
+          }
+        ],
+        "bGoal": "같은 크기로 나누는 조건과 같은 모양의 조건을 구별한다",
+        "bReason": "모양까지같다는초기용어관례를일반적오류로단정하지않고원래일반설명을유지한다. B에서는똑같이나눴다는용어판정대신같은칸수로각부분의크기가같은지직접판정한다. C의크기비교는그대로유지한다.",
+        "cDecision": "rewrite",
+        "cReason": "모양이 달라도 각 부분이 같은 수의 같은 크기 칸이라는 조건에서 크기의 같음을 판단한다. 문법 빈칸으로 크기나 모양과 크기를 추측할 필요가 없다.",
+        "answerNotes": "같은 크기의 칸을 각각 세 개 포함한다는 조건으로 부분 크기를 비교한다. 서로 다른 모양도 등분일 수 있다는 일반 설명은 보존한다.",
+        "cAfter": "같은 크기의 칸 $9$개로 된 색종이를 세 부분으로 나누어 각 부분에 칸이 $3$개씩 있습니다. 모양은 서로 달라도 세 부분의 크기는 {같습니다}.",
+        "coreAfter": null,
+        "coreReason": null,
+        "exampleNeeded": "같은 칸 아홉 개를 각각 세 칸인 서로 다른 세 모양으로 나눈 그림은 선택 설명 자료다. B/C는 칸의 크기와 개수를 문장으로 제시하므로 보이지 않는 그림을 가리키지 않는다.",
+        "reviewerEdited": true,
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "똑같이 나눈 조각의 모양",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "같은 크기의 칸 $9$개로 된 색종이를 세 부분으로 나누어 각 부분에 칸이 $3$개씩 있습니다. 모양은 서로 달라도 세 부분의 크기는 {같습니다}.",
+        "cStudentSentence": "같은 크기의 칸 $9$개로 된 색종이를 세 부분으로 나누어 각 부분에 칸이 $3$개씩 있습니다. 모양은 서로 달라도 세 부분의 크기는 □.",
+        "cSlotEquivalents": [
+          [
+            "같다",
+            "같아요"
+          ]
+        ],
+        "cSlotAnswers": [
+          {
+            "expected": "같습니다",
+            "equivalents": [
+              "같다",
+              "같아요"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "같은 크기의 칸 $9$개로 된 색종이 한 장을 세 부분으로 나누었습니다. 각 부분에 칸이 $3$개씩 있고 모양은 서로 다릅니다. 세 부분의 크기가 같은지 쓰고, 칸의 크기와 개수를 이용하여 까닭을 설명하세요.",
+          "answer": "세 부분의 크기는 같습니다. 각 부분이 같은 크기의 칸 $3$개씩으로 이루어져 있어 차지하는 크기가 같기 때문입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "세 부분의 크기가 같다"
+              ]
+            },
+            {
+              "anyOf": [
+                "같은 크기의 칸이 각 부분에 $3$개씩 있어 크기가 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "같은 크기의 칸 $9$개로 된 색종이를 세 부분으로 나누어 각 부분에 칸이 $3$개씩 있습니다. 모양은 서로 달라도 세 부분의 크기는 {같습니다}.",
+          "acceptedAnswers": [
+            [
+              "같습니다",
+              "같다",
+              "같아요"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-6-1-xc2",
+          "sourceIndex": 820,
+          "proposalFingerprint": "42947e346ce0dcc5b361e411083d7eca665e28d86d1540a7381e3a2a67f83290",
+          "reader": "Codex direct e3e4 current-disputes assist; candidate reread",
+          "readAt": "2026-10-07T11:05:58.939Z",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "분수에서 똑같이 나눔의 기준은 각 부분의 크기이며 반드시 합동일 필요는 없다. 같은 크기 칸 세 개씩이라는 조건으로 크기가 같은 이유를 설명할 수 있다. 모양까지 같아야 한다는 검토 전제가 잘못되어 원안 유지한다.",
+          "cReason": "모양이 다른 세 부분도 동일한 크기의 칸 세 개씩으로 넓이가 같음을 판단한다. '같습니다'는 관계 전체를 숨긴 답이며 문법어미만 숨긴 칸이 아니다.",
+          "issues": [],
+          "isReleaseApproval": false,
+          "inputEvidence": "../e3e4-current-disputes-assist/reviews.json"
+        }
+      },
+      "after": {
+        "id": "e3-1-6-1-xc2",
+        "grade": "초3",
+        "source": {
+          "id": "e3-1-6-1-xc2",
+          "section": "초3::1-6 분수와 소수::1-6-1 똑같이 나누기",
+          "term": "똑같이 나눈 조각의 모양",
+          "kind": "성질",
+          "level": "하",
+          "definition": "똑같이 나눈 조각은 모양과 {크기}가 같아 서로 포개면 꼭 겹친다."
+        },
+        "B": {
+          "prompt": "같은 크기의 칸 $9$개로 된 색종이 한 장을 세 부분으로 나누었습니다. 각 부분에 칸이 $3$개씩 있고 모양은 서로 다릅니다. 세 부분의 크기가 같은지 쓰고, 칸의 크기와 개수를 이용하여 까닭을 설명하세요.",
+          "answer": "세 부분의 크기는 같습니다. 각 부분이 같은 크기의 칸 $3$개씩으로 이루어져 있어 차지하는 크기가 같기 때문입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "세 부분의 크기가 같다"
+              ]
+            },
+            {
+              "anyOf": [
+                "같은 크기의 칸이 각 부분에 $3$개씩 있어 크기가 같다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "같은 크기의 칸 $9$개로 된 색종이를 세 부분으로 나누어 각 부분에 칸이 $3$개씩 있습니다. 모양은 서로 달라도 세 부분의 크기는 {같습니다}.",
+          "acceptedAnswers": [
+            [
+              "같습니다",
+              "같다",
+              "같아요"
+            ]
+          ]
+        },
+        "goal": "같은 크기로 나누는 조건과 같은 모양의 조건을 구별한다",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "de80f993ee43c1f569d6658fa46e0070496c5954efdd3fabf266ef20b22c5fd4"
+      },
+      "reason": "모양까지같다는초기용어관례를일반적오류로단정하지않고원래일반설명을유지한다. B에서는똑같이나눴다는용어판정대신같은칸수로각부분의크기가같은지직접판정한다. C의크기비교는그대로유지한다.",
+      "changed": true
+    },
+    {
+      "id": "e4-2-2-2-xc8",
+      "sourceIndex": 2194,
+      "beforeRaw": {
+        "sourceIndex": 2194,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-2 이등변삼각형의 성질",
+        "sourceFingerprint": "5b47a4f4917f2b300cb156e2d395853e09ab5a96ab63d11b584c4b033592a203",
+        "proposalFingerprint": "4bc2f0573d458313fc9b457b589375de56364ee40c5083cd604b7fc858f87e3e",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-2-xc8",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "naming",
+        "bGoal": "같은 두 각 표시",
+        "bReason": "표시 약속만 묻는 질문",
+        "exclusionReason": "그림 표시 약속을 알려 줄 뿐 설명할 의미가 약한 단순 기호 약속",
+        "cDecision": "rewrite",
+        "cAfter": "그림에서 크기가 같은 두 각에는 {같은} 표시를 한다.",
+        "cReason": "'같은 표시' 구절을 '같은' 낱말로 줄임",
+        "cSlotEquivalents": [
+          [
+            "똑같은"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "같은 두 각의 표시",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "그림에서 크기가 같은 두 각에는 {같은} 표시를 한다.",
+        "cStudentSentence": "그림에서 크기가 같은 두 각에는 □ 표시를 한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같은",
+            "equivalents": [
+              "똑같은"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "그림에서 크기가 같은 두 각에는 {같은} 표시를 한다.",
+          "acceptedAnswers": [
+            [
+              "같은",
+              "똑같은"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "표시 약속만 묻는 질문"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-2-xc8",
+          "sourceIndex": 2194,
+          "proposalFingerprint": "4bc2f0573d458313fc9b457b589375de56364ee40c5083cd604b7fc858f87e3e",
+          "reader": "Codex direct e3e4 current-disputes assist; candidate reread",
+          "readAt": "2026-10-07T11:05:58.939Z",
+          "learningRole": "naming",
+          "bDecision": "exclude",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "현재 B의 표시 약속 제외 결정을 유지한다.",
+          "cReason": "'그림에서'는 일반 관례를 말하며 특정 그림의 호 모양을 묻지 않는다. 두 각의 크기가 같으면 표시도 같다는 관계에 같은/똑같은 인정답이 충분하다.",
+          "issues": [],
+          "isReleaseApproval": false,
+          "inputEvidence": "../e3e4-current-disputes-assist/reviews.json"
+        }
+      },
+      "beforeNormalizedHash": "22338348de61545f15fcafbabe7c6a2614a564d07914c566b4f2f332e92ce444",
+      "proposedRawRow": {
+        "sourceIndex": 2194,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-2 이등변삼각형의 성질",
+        "sourceFingerprint": "5b47a4f4917f2b300cb156e2d395853e09ab5a96ab63d11b584c4b033592a203",
+        "proposalFingerprint": "1a07d19ccccea946c9718acb6c7814dd08e259c3c9bb5bc2860126a67f307562",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-2-xc8",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "naming",
+        "bGoal": "같은 두 각 표시",
+        "bReason": "표시 약속만 묻는 질문",
+        "exclusionReason": "그림 표시 약속을 알려 줄 뿐 설명할 의미가 약한 단순 기호 약속",
+        "cDecision": "rewrite",
+        "cAfter": "두 각에 각각 작은 호 하나씩을 표시했습니다. 이때 두 각의 크기는 서로 {같다}.",
+        "cReason": "같은각같은표시문구대신두각에표시된작은호하나의뜻을각크기로해석한다.",
+        "cSlotEquivalents": [
+          [
+            "똑같다",
+            "같습니다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "같은 두 각의 표시",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "두 각에 각각 작은 호 하나씩을 표시했습니다. 이때 두 각의 크기는 서로 {같다}.",
+        "cStudentSentence": "두 각에 각각 작은 호 하나씩을 표시했습니다. 이때 두 각의 크기는 서로 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "같다",
+            "equivalents": [
+              "똑같다",
+              "같습니다"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "두 각에 각각 작은 호 하나씩을 표시했습니다. 이때 두 각의 크기는 서로 {같다}.",
+          "acceptedAnswers": [
+            [
+              "같다",
+              "똑같다",
+              "같습니다"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "표시 약속만 묻는 질문"
+        },
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-2-2-xc8",
+          "sourceIndex": 2194,
+          "proposalFingerprint": "4bc2f0573d458313fc9b457b589375de56364ee40c5083cd604b7fc858f87e3e",
+          "reader": "Codex direct e3e4 current-disputes assist; candidate reread",
+          "readAt": "2026-10-07T11:05:58.939Z",
+          "learningRole": "naming",
+          "bDecision": "exclude",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "현재 B의 표시 약속 제외 결정을 유지한다.",
+          "cReason": "'그림에서'는 일반 관례를 말하며 특정 그림의 호 모양을 묻지 않는다. 두 각의 크기가 같으면 표시도 같다는 관계에 같은/똑같은 인정답이 충분하다.",
+          "issues": [],
+          "isReleaseApproval": false,
+          "inputEvidence": "../e3e4-current-disputes-assist/reviews.json"
+        },
+        "cAcceptedAnswers": [
+          [
+            "같다",
+            "똑같다",
+            "같습니다"
+          ]
+        ]
+      },
+      "after": {
+        "id": "e4-2-2-2-xc8",
+        "grade": "초4",
+        "source": {
+          "id": "e4-2-2-2-xc8",
+          "section": "초4::2-2 삼각형::2-2-2 이등변삼각형의 성질",
+          "term": "같은 두 각의 표시",
+          "kind": "방법",
+          "level": "하",
+          "definition": "그림에서 크기가 같은 두 각에는 {같은 표시}를 한다."
+        },
+        "B": {
+          "excluded": "표시 약속만 묻는 질문"
+        },
+        "C": {
+          "sentence": "두 각에 각각 작은 호 하나씩을 표시했습니다. 이때 두 각의 크기는 서로 {같다}.",
+          "acceptedAnswers": [
+            [
+              "같다",
+              "똑같다",
+              "같습니다"
+            ]
+          ]
+        },
+        "goal": "같은 두 각 표시",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "5d5a5c78950b3589ba52988a4bd40371bd6583ebeae4b922432505765e9a8061"
+      },
+      "reason": "같은각같은표시문구대신두각에표시된작은호하나의뜻을각크기로해석한다.",
+      "changed": true
+    },
+    {
+      "id": "e4-2-6-1-xc13",
+      "sourceIndex": 2684,
+      "beforeRaw": {
+        "sourceIndex": 2684,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "sourceFingerprint": "fc327743761878b43b5d190f20225fd75e9530eb1b001b9d132e5d13f8e32540",
+        "proposalFingerprint": "f10d7fd796915f4f3cd4965e19141265c0671f80a408a761596e978aed0cde9f",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-1-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "사각형의 마주 보는 꼭짓점을 선분으로 이어 두 조각으로 나누었다. 바깥 모양의 이름은 무엇이며 안쪽 선분은 변의 개수에 포함되는지 쓰시오.",
+        "bAnswer": "사각형이며 안쪽 선분은 포함되지 않는다. 바깥 테두리의 변만 센다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "사각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "포함되지 않는다",
+              "바깥 테두리의 변만 센다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "안쪽 선과 테두리 구별",
+        "bReason": "바깥 테두리 변으로 이름을 정함",
+        "exampleNeeded": "사각형 안에 선분 하나를 그은 그림",
+        "cDecision": "rewrite",
+        "cAfter": "다각형 안에 선을 더 그어도 이름은 {바깥} 테두리를 이루는 변의 개수로 정한다.",
+        "cReason": "긴 구절 빈칸을 한 낱말로 줄임",
+        "cSlotEquivalents": [
+          [
+            "겉",
+            "바깥쪽"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "안쪽 선과 테두리 구별",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "다각형 안에 선을 더 그어도 이름은 {바깥} 테두리를 이루는 변의 개수로 정한다.",
+        "cStudentSentence": "다각형 안에 선을 더 그어도 이름은 □ 테두리를 이루는 변의 개수로 정한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "바깥",
+            "equivalents": [
+              "겉",
+              "바깥쪽"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "사각형의 마주 보는 꼭짓점을 선분으로 이어 두 조각으로 나누었다. 바깥 모양의 이름은 무엇이며 안쪽 선분은 변의 개수에 포함되는지 쓰시오.",
+          "answer": "사각형이며 안쪽 선분은 포함되지 않는다. 바깥 테두리의 변만 센다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "사각형"
+              ]
+            },
+            {
+              "anyOf": [
+                "포함되지 않는다",
+                "바깥 테두리의 변만 센다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "다각형 안에 선을 더 그어도 이름은 {바깥} 테두리를 이루는 변의 개수로 정한다.",
+          "acceptedAnswers": [
+            [
+              "바깥",
+              "겉",
+              "바깥쪽"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-6-1-xc13",
+          "sourceIndex": 2684,
+          "proposalFingerprint": "f10d7fd796915f4f3cd4965e19141265c0671f80a408a761596e978aed0cde9f",
+          "reader": "Codex direct e3e4 current-disputes assist; candidate reread",
+          "readAt": "2026-10-07T11:05:58.939Z",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "안쪽선을추가해도바깥도형이사각형으로유지되는지와안쪽선포함여부를함께묻는다. 입력의사각형이름은변형전조건이며바깥테두리만센다는다른필수판단이있어복사만으로충족되지않는다.",
+          "cReason": "안쪽선과바깥테두리를구분하는명확한관계단답이다.",
+          "issues": [],
+          "isReleaseApproval": false,
+          "inputEvidence": "../e3e4-current-disputes-assist/reviews.json"
+        }
+      },
+      "beforeNormalizedHash": "01244d522c4d9f1bdd85de373dea9b0207fae3e8a63cab4ddfe3d2dc68a4556b",
+      "proposedRawRow": {
+        "sourceIndex": 2684,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "sourceFingerprint": "fc327743761878b43b5d190f20225fd75e9530eb1b001b9d132e5d13f8e32540",
+        "proposalFingerprint": "ce018ca0835ed8881988b931dfec26e2cce4579bc8513bf1581ebeeacf92b3ae",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-1-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "평면도형의 바깥 테두리는 직선인 변 $4$개로 이루어져 있습니다. 안쪽에 마주 보는 두 꼭짓점을 잇는 선분 하나를 더 그었습니다. 이 도형의 이름을 쓰고, 안쪽 선분도 변의 개수에 포함되는지 설명하세요.",
+        "bAnswer": "사각형입니다. 이름을 정할 때 바깥 테두리의 변 $4$개만 세므로 안쪽 선분은 포함되지 않습니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "사각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "바깥 테두리의 변만 세므로 안쪽 선분은 포함하지 않는다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "안쪽 선과 테두리 구별",
+        "bReason": "사각형이라는답이문제에나오지않게바깥변의개수와안쪽선분조건으로이름을정하고내부선은세지않는관계를확인한다.",
+        "exampleNeeded": "사각형 안에 선분 하나를 그은 그림",
+        "cDecision": "rewrite",
+        "cAfter": "바깥 테두리의 변이 $4$개인 다각형 안에 선분을 하나 더 그었습니다. 바깥 변의 수는 변하지 않았으므로 이 도형은 여전히 {사각형}입니다.",
+        "cReason": "사각형이라는답이문제에나오지않게바깥변의개수와안쪽선분조건으로이름을정하고내부선은세지않는관계를확인한다.",
+        "cSlotEquivalents": [
+          []
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "안쪽 선과 테두리 구별",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "바깥 테두리의 변이 $4$개인 다각형 안에 선분을 하나 더 그었습니다. 바깥 변의 수는 변하지 않았으므로 이 도형은 여전히 {사각형}입니다.",
+        "cStudentSentence": "바깥 테두리의 변이 $4$개인 다각형 안에 선분을 하나 더 그었습니다. 바깥 변의 수는 변하지 않았으므로 이 도형은 여전히 □입니다.",
+        "cSlotAnswers": [
+          {
+            "expected": "사각형",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "평면도형의 바깥 테두리는 직선인 변 $4$개로 이루어져 있습니다. 안쪽에 마주 보는 두 꼭짓점을 잇는 선분 하나를 더 그었습니다. 이 도형의 이름을 쓰고, 안쪽 선분도 변의 개수에 포함되는지 설명하세요.",
+          "answer": "사각형입니다. 이름을 정할 때 바깥 테두리의 변 $4$개만 세므로 안쪽 선분은 포함되지 않습니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "사각형"
+              ]
+            },
+            {
+              "anyOf": [
+                "바깥 테두리의 변만 세므로 안쪽 선분은 포함하지 않는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "바깥 테두리의 변이 $4$개인 다각형 안에 선분을 하나 더 그었습니다. 바깥 변의 수는 변하지 않았으므로 이 도형은 여전히 {사각형}입니다.",
+          "acceptedAnswers": [
+            [
+              "사각형"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e4-2-6-1-xc13",
+          "sourceIndex": 2684,
+          "proposalFingerprint": "f10d7fd796915f4f3cd4965e19141265c0671f80a408a761596e978aed0cde9f",
+          "reader": "Codex direct e3e4 current-disputes assist; candidate reread",
+          "readAt": "2026-10-07T11:05:58.939Z",
+          "learningRole": "application",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "안쪽선을추가해도바깥도형이사각형으로유지되는지와안쪽선포함여부를함께묻는다. 입력의사각형이름은변형전조건이며바깥테두리만센다는다른필수판단이있어복사만으로충족되지않는다.",
+          "cReason": "안쪽선과바깥테두리를구분하는명확한관계단답이다.",
+          "issues": [],
+          "isReleaseApproval": false,
+          "inputEvidence": "../e3e4-current-disputes-assist/reviews.json"
+        },
+        "cAcceptedAnswers": [
+          [
+            "사각형"
+          ]
+        ]
+      },
+      "after": {
+        "id": "e4-2-6-1-xc13",
+        "grade": "초4",
+        "source": {
+          "id": "e4-2-6-1-xc13",
+          "section": "초4::2-6 다각형::2-6-1 다각형",
+          "term": "안쪽 선과 테두리 구별",
+          "kind": "방법",
+          "level": "중",
+          "definition": "다각형 안에 선을 더 그어도 이름은 {바깥 테두리를 이루는 변}으로 정한다."
+        },
+        "B": {
+          "prompt": "평면도형의 바깥 테두리는 직선인 변 $4$개로 이루어져 있습니다. 안쪽에 마주 보는 두 꼭짓점을 잇는 선분 하나를 더 그었습니다. 이 도형의 이름을 쓰고, 안쪽 선분도 변의 개수에 포함되는지 설명하세요.",
+          "answer": "사각형입니다. 이름을 정할 때 바깥 테두리의 변 $4$개만 세므로 안쪽 선분은 포함되지 않습니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "사각형"
+              ]
+            },
+            {
+              "anyOf": [
+                "바깥 테두리의 변만 세므로 안쪽 선분은 포함하지 않는다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "바깥 테두리의 변이 $4$개인 다각형 안에 선분을 하나 더 그었습니다. 바깥 변의 수는 변하지 않았으므로 이 도형은 여전히 {사각형}입니다.",
+          "acceptedAnswers": [
+            [
+              "사각형"
+            ]
+          ]
+        },
+        "goal": "안쪽 선과 테두리 구별",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "af57f4852d06aa852c8f0b759a54a46c13ca119fb9d77c7030e994d088d671f3"
+      },
+      "reason": "사각형이라는답이문제에나오지않게바깥변의개수와안쪽선분조건으로이름을정하고내부선은세지않는관계를확인한다.",
+      "changed": true
+    }
+  ]
+}

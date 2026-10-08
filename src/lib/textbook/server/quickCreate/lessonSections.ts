@@ -20,10 +20,13 @@ export function splitLargeAutomaticLesson(
               (concept) => concept.conceptKey === block.conceptKey,
             )?.frozen?.entries.length ?? 1)
           : block.kind === "concept-recall" &&
-              (block.semantic?.node?.kind === "rows" ||
-                block.semantic?.node?.kind === "concept")
-            ? block.semantic.node.rows.length
-            : 1),
+              block.semantic?.node?.kind === "conceptQuestions"
+            ? block.semantic.node.questions.length
+            : block.kind === "concept-recall" &&
+                (block.semantic?.node?.kind === "rows" ||
+                  block.semantic?.node?.kind === "concept")
+              ? block.semantic.node.rows.length
+              : 1),
     0,
   );
   if (atomicCount <= 48) return;

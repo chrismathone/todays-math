@@ -1,0 +1,2066 @@
+{
+  "input": "C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3/evidence/resume-editorial-20261007/input-1017-1041.json",
+  "changes": [
+    {
+      "id": "m1-01-05-xc2",
+      "cAfter": "직사각형의 가로와 세로 길이를 같은 단위로 나타낸 값이 자연수이다. 이 종이를 남김없이 크기가 같은 가장 큰 정사각형으로 자를 때, 정사각형 한 변의 길이는 가로와 세로 길이의 {최대공약수}이다.",
+      "coreAfter": "직사각형의 가로와 세로 길이를 같은 단위로 나타낸 값이 자연수이다. 이 종이를 남김없이 크기가 같은 가장 큰 정사각형으로 자를 때, 정사각형 한 변의 길이는 가로와 세로 길이의 {최대공약수}이다.",
+      "coreReason": "길이의최대공약수는같은단위의자연수값으로계산함을명시하여서로다른단위값을그대로쓰지않게한다."
+    },
+    {
+      "id": "m1-01-05-xc3",
+      "cAfter": "직사각형의 가로와 세로 길이를 같은 단위로 나타낸 값이 자연수이다. 크기가 같은 직사각형들을 같은 방향으로 빈틈없이 늘어놓아 가장 작은 정사각형을 만들 때, 한 변의 길이는 직사각형의 가로와 세로 길이의 {최소공배수}이다.",
+      "coreAfter": "직사각형의 가로와 세로 길이를 같은 단위로 나타낸 값이 자연수이다. 크기가 같은 직사각형들을 같은 방향으로 빈틈없이 늘어놓아 가장 작은 정사각형을 만들 때, 한 변의 길이는 직사각형의 가로와 세로 길이의 {최소공배수}이다.",
+      "coreReason": "카드를돌려혼합배치하는경우에는최소공배수결론이보장되지않으므로같은방향조건과같은단위자연수범위를명시한다."
+    },
+    {
+      "id": "m1-01-05-xc9",
+      "coreAfter": "직육면체의 가로, 세로, 높이를 같은 단위로 나타낸 값이 자연수이다. 크기가 같은 직육면체들을 같은 방향으로 빈틈없이 쌓아 가장 작은 정육면체를 만들 때, 한 모서리의 길이는 세 길이의 {최소공배수}이다.",
+      "coreReason": "소인수분해문제의길이는같은단위자연수이며상자를같은방향으로쌓는조건이필요함을일반설명에도넣는다."
+    },
+    {
+      "id": "m1-01-05-xc12",
+      "cAcceptedAnswers": [
+        [
+          "최소공배수"
+        ],
+        [
+          "더하여",
+          "더해",
+          "더해서"
+        ]
+      ],
+      "cReason": "시각은출발시각에경과시간을더한다는같은행위의자연스러운활용형만인정한다."
+    },
+    {
+      "id": "m1-01-05-xc13",
+      "cAcceptedAnswers": [
+        [
+          "최소공배수"
+        ],
+        [
+          "나누어",
+          "나눠",
+          "나누어서"
+        ]
+      ],
+      "cReason": "돌아간톱니수를자기톱니수로나누는같은행위의활용형만인정한다."
+    },
+    {
+      "id": "m1-01-05-xc16",
+      "cAfter": "물건이 세 가지일 때, 세 물건의 개수의 {최대공약수}를 구하면 남김없이 똑같이 나누어 줄 수 있는 가장 많은 사람 수를 알 수 있다.",
+      "coreAfter": "물건이 세 가지일 때, 세 물건의 개수의 {최대공약수}를 구하면 남김없이 똑같이 나누어 줄 수 있는 가장 많은 사람 수를 알 수 있다.",
+      "coreReason": "세개수는세물건각각의개수이며모두남김없이나눈다는조건을실제문장에명시한다."
+    },
+    {
+      "id": "m1-01-05-xc18",
+      "cAfter": "두 자연수를 같은 자연수로 나누어, 각 수보다 작은 정해진 나머지가 남아야 한다. 각 수에서 그 나머지를 {뺀} 두 수의 최대공약수가 두 나머지 모두보다 {크면}, 그 최대공약수가 조건을 만족하는 가장 큰 나누는 수이다.",
+      "coreAfter": "두 자연수를 같은 자연수로 나누어, 각 수보다 작은 정해진 나머지가 남아야 한다. 각 수에서 그 나머지를 뺀 두 수의 {최대공약수}를 구한다. 이 수가 두 나머지 모두보다 {크면} 조건을 만족하는 가장 큰 나누는 수이고, 그렇지 않으면 조건을 만족하는 수가 없다.",
+      "coreReason": "순서없는두차의빈칸과불명확한A·a대신각수·그나머지의관계를밝히고,최대공약수가나머지이하이면해가없다는조건검사를명시한다. 나누어질수보다작은나머지조건으로차둘이자연수인범위를정한다."
+    },
+    {
+      "id": "m1-01-05-xc19",
+      "bAnswer": "$4$와 $6$의 최소공배수가 $12$이므로 $12$일 후이다. 요일은 $7$일마다 되풀이되므로 $12$를 $7$로 나눈 나머지인 $5$일 후의 요일을 찾는다. 월요일의 $5$일 후는 토요일이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$4$와 $6$의 최소공배수가 $12$이므로 $12$일 후"
+          ]
+        },
+        {
+          "anyOf": [
+            "요일은 $7$일마다 되풀이되므로 $12$를 $7$로 나눈 나머지인 $5$일 후의 요일을 찾는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "토요일"
+          ]
+        }
+      ],
+      "cAfter": "각각 며칠마다 되풀이하는 두 일을 같은 날 함께 한 뒤 처음으로 다시 함께 하는 날은 두 간격의 {최소공배수}만큼 지난 날이다. 요일은 지난 날수를 {$7$}로 나눈 나머지의 날수만큼 지난 후의 요일로 구한다.",
+      "cReason": "뒤로옮겨세기는달력에서과거인지미래인지혼동할수있어나머지날수만큼지난후의요일이라고밝힌다."
+    },
+    {
+      "id": "m1-01-05-xc20",
+      "cAfter": "최대공약수가 $G$, 최소공배수가 $L$인 두 자연수를 $G\\times a$, $G\\times b$로 나타내려면, 자연수 $a$, $b$의 곱은 {$L\\div G$}이고 두 수는 {서로소}여야 한다.",
+      "cAcceptedAnswers": [
+        [
+          "$L\\div G$",
+          "$\\frac{L}{G}$",
+          "$L/G$"
+        ],
+        [
+          "서로소"
+        ]
+      ],
+      "cReason": "값의조건과a·b의서로소관계라는서로다른대상을두절로나누어명시하고L을G로나눈같은식만인정한다."
+    },
+    {
+      "id": "m1-01-05-xc21",
+      "cAfter": "어떤 범위의 자연수 가운데 두 자연수 $a$, $b$ 중 $a$로만 나누어떨어지는 수의 개수는, $a$의 배수의 개수에서 $a$와 $b$의 {공배수}의 개수를 {빼어} 구한다.",
+      "cAcceptedAnswers": [
+        [
+          "공배수"
+        ],
+        [
+          "빼어",
+          "빼서",
+          "빼고"
+        ]
+      ],
+      "cReason": "두나누는수도자연수임을밝히고공통인경우를빼는같은행위의활용형만인정한다."
+    },
+    {
+      "id": "m1-01-05-xc22",
+      "cAfter": "직사각형을 남김없이 {잘라} 크기가 같은 가장 큰 정사각형들을 만들면 가로와 세로 길이의 최대공약수를 쓴다. 크기가 같은 직사각형들을 같은 방향으로 빈틈없이 {붙여} 가장 작은 정사각형을 만들면 두 길이의 최소공배수를 쓴다.",
+      "cAcceptedAnswers": [
+        [
+          "잘라",
+          "나누어"
+        ],
+        [
+          "붙여",
+          "이어 붙여"
+        ]
+      ],
+      "coreAfter": "가로와 세로 길이를 같은 단위의 자연수로 나타낸 직사각형을 다룬다. 한 장을 남김없이 {잘라} 크기가 같은 가장 큰 정사각형들을 만들면 두 길이의 최대공약수를 쓴다. 같은 직사각형들을 같은 방향으로 빈틈없이 {붙여} 가장 작은 정사각형을 만들면 두 길이의 최소공배수를 쓴다.",
+      "coreReason": "자르기는같은크기의조각,붙이기는같은방향의배치라는필요조건과공약수·공배수계산에쓰는길이단위를밝힌다."
+    }
+  ],
+  "rows": [
+    {
+      "id": "m1-01-04-xc23",
+      "bDecision": "rewrite",
+      "bPrompt": "세 자연수의 최소공배수를 한꺼번에 구하지 않고 두 수씩 차례로 구하는 방법을 설명하고, 그 방법으로 $6$, $10$, $15$의 최소공배수를 구하시오.",
+      "bAnswer": "먼저 두 수의 최소공배수를 구하고, 그 수와 나머지 한 수의 최소공배수를 구한다. $6$과 $10$의 최소공배수는 $30$이고, $30$과 $15$의 최소공배수는 $30$이므로 세 수의 최소공배수는 $30$이다.",
+      "bGoal": "세 수의 최소공배수를 두 단계로 나누어 구할 수 있다.",
+      "bReason": "제목 '차례로 구하기'는 무엇을 어떤 차례로 하는지 알려 주지 않는다. 세 수의 경우임과 두 수씩 구한다는 틀을 질문에 밝혔다.",
+      "cDecision": "keep",
+      "cReason": "절차의 앞 단계가 문장에 있고 다음 단계의 대상만 비어 있다. 같은 뜻의 표현만 인정한다.",
+      "authorBatch": 1,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 수의 최소공배수를 먼저 구하고, 그 수와 나머지 한 수의 최소공배수를 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "세 수의 최소공배수 $30$ (어느 두 수부터 묶어도 됨. 예: $6$과 $10$ → $30$, $30$과 $15$ → $30$)"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-001",
+      "learningRole": "procedure",
+      "roleReason": "두 수씩 차례로 최소공배수",
+      "enrichmentEvidence": "enrichment/enrich-003",
+      "sourceIndex": 1017,
+      "part": "m1plus",
+      "sourceFingerprint": "2a7394fc85bf293150e89ebf92aefc55ff7845878ba144ae767d0424f36a3efd",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1017
+      },
+      "directReview": null,
+      "cFrozenSentence": "세 수의 최소공배수는 두 수의 최소공배수를 먼저 구한 뒤, 그 수와 □의 최소공배수를 구해도 된다.",
+      "cFrozenDefinition": "세 수의 최소공배수는 두 수의 최소공배수를 먼저 구한 뒤, 그 수와 {나머지 수}의 최소공배수를 구해도 된다.",
+      "cFrozenAnswers": [
+        "나머지 수"
+      ],
+      "cMarkedSentence": "세 수의 최소공배수는 두 수의 최소공배수를 먼저 구한 뒤, 그 수와 {나머지 수}의 최소공배수를 구해도 된다.",
+      "cSlotAnswers": [
+        "나머지 수"
+      ],
+      "cStudentSentence": "세 수의 최소공배수는 두 수의 최소공배수를 먼저 구한 뒤, 그 수와 □의 최소공배수를 구해도 된다.",
+      "cAnswers": [
+        "나머지 수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "나머지 수",
+          "equivalentAnswers": [
+            "나머지 수",
+            "나머지 한 수",
+            "남은 수",
+            "남은 한 수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "나머지 수",
+          "accept": [
+            "나머지 한 수",
+            "남은 수",
+            "남은 한 수"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "나머지 수",
+          "나머지 한 수",
+          "남은 수",
+          "남은 한 수"
+        ]
+      ],
+      "proposalFingerprint": "46ce5ccc1f45405e236af0db2855ab4b3b5da55c405e39e6de8c00bb26fbd90f"
+    },
+    {
+      "id": "m1-01-04-xc24",
+      "bDecision": "rewrite",
+      "bPrompt": "두 자연수에 공통인 소인수가 있을 때, 두 수의 최소공배수와 두 수의 곱 가운데 어느 쪽이 더 작은지 쓰시오. 그 까닭을 $6=2\\times3$과 $10=2\\times5$를 예로 들어 설명하시오.",
+      "bAnswer": "최소공배수가 더 작다. 두 수의 곱 $60=2\\times3\\times2\\times5$에는 공통인 소인수 $2$가 두 번 곱해진다. 최소공배수 $30=2\\times3\\times5$에는 공통인 소인수를 지수가 큰 쪽만 택해 한 번만 곱하기 때문이다.",
+      "bGoal": "서로소가 아닌 두 수의 최소공배수가 두 수의 곱보다 작은 까닭을 설명할 수 있다.",
+      "bReason": "원제목이 결론(곱보다 작다)을 먼저 말하고 조건(공통인 소인수가 있을 때)은 빠뜨렸다. 이름을 바꾸고 조건을 질문에 넣어 크기 비교와 까닭을 쓰게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "두 자연수에 공통인 소인수가 있으면, 최소공배수를 구할 때 그 소인수는 지수가 큰 쪽만 곱하므로 최소공배수는 두 수의 곱보다 {작다}.",
+      "cAnswers": [
+        "작다"
+      ],
+      "cReason": "원문은 견주는 대상('곱')과 결과('작다')를 연달아 숨겨 '두 수의 □보다 □'에 들어갈 말이 열려 있다. 견주는 대상은 보이게 두고 결과만 묻게 했다.",
+      "studentLabel": "최소공배수와 두 수의 곱 비교",
+      "exampleNeeded": true,
+      "authorBatch": 1,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "최소공배수가 두 수의 곱보다 작다"
+          ]
+        },
+        {
+          "anyOf": [
+            "곱 $60=2\\times3\\times2\\times5$에는 공통인 소인수 $2$가 두 번 곱해지지만 최소공배수 $30=2\\times3\\times5$에는 한 번만 곱해진다(같은 뜻의 설명 허용)"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-001",
+      "learningRole": "reason",
+      "roleReason": "공통 소인수를 한 번만 곱함",
+      "enrichmentEvidence": "enrichment/enrich-003",
+      "sourceIndex": 1018,
+      "part": "m1plus",
+      "sourceFingerprint": "99237dabcacfcca422a405588ed0318b8966739295317b9f3b7ee8d7c254e6b9",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1018
+      },
+      "directReview": null,
+      "cMarkedSentence": "두 자연수에 공통인 소인수가 있으면, 최소공배수를 구할 때 그 소인수는 지수가 큰 쪽만 곱하므로 최소공배수는 두 수의 곱보다 {작다}.",
+      "cSlotAnswers": [
+        "작다"
+      ],
+      "cStudentSentence": "두 자연수에 공통인 소인수가 있으면, 최소공배수를 구할 때 그 소인수는 지수가 큰 쪽만 곱하므로 최소공배수는 두 수의 곱보다 □.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "작다",
+          "equivalentAnswers": [
+            "작다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "작다"
+        ]
+      ],
+      "proposalFingerprint": "db02f67e4bcac426a6809168ee778c2f470dacb554631bd084f1fb06e93dba27"
+    },
+    {
+      "id": "m1-01-04-xc25",
+      "bDecision": "rewrite",
+      "bPrompt": "자연수 $a$와 $6$의 최소공배수가 $18=2\\times3^2$이다. ($1$) $a$는 $18$의 약수와 배수 가운데 무엇이어야 하는지 쓰시오. ($2$) $a$가 반드시 $9$의 배수여야 하는 까닭을 $6=2\\times3$에서 소인수 $3$의 지수와 관련지어 설명하시오. ($3$) $a$가 될 수 있는 수를 모두 구하시오.",
+      "bAnswer": "($1$) 최소공배수 $18$은 $a$의 배수이므로 $a$는 $18$의 약수이다. ($2$) 최소공배수에서 $3$의 지수 $2$는 $a$와 $6$의 지수 가운데 큰 쪽인데, $6$에는 $3$이 한 번만 곱해져 있으므로 $a$가 $3^2$을 가져야 한다. ($3$) $18$의 약수 가운데 $9$의 배수인 $9$, $18$이다.",
+      "bGoal": "최소공배수와 한 수가 주어질 때 다른 수가 만족해야 할 조건을 지수로 따져 찾을 수 있다.",
+      "bReason": "제목과 정의는 $a$, $b$, $L$과 '지수가 모자라는' 같은 말뿐이라 예 없이는 무슨 뜻인지 알기 어렵다. 구체적인 수를 주고 조건 두 가지와 가능한 값을 단계로 묻게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "자연수 $a$와 $b$의 최소공배수가 $L$이면 $a$는 $L$의 {약수}이다. 또 $L$의 소인수 가운데 $b$에서의 지수가 $L$에서의 지수보다 작은 것은, $a$에서의 지수가 $L$에서의 지수와 {같아야} 한다. (예: $a$와 $6=2\\times3$의 최소공배수가 $18=2\\times3^2$이면 $a$는 $3^2$을 가져야 한다.)",
+      "cAnswers": [
+        "약수",
+        "같아야"
+      ],
+      "cReason": "원문의 '지수가 모자라는 것', '$L$과 □로 가져야 한다'는 중1이 읽기 어려운 표현이고 빈칸 '같은 지수'도 구절이다. 무엇의 지수를 견주는지 풀어 쓰고 예를 붙였다.",
+      "exampleNeeded": true,
+      "authorBatch": 1,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "($1$) $a$는 $18$의 약수"
+          ]
+        },
+        {
+          "anyOf": [
+            "($2$) 최소공배수의 $3$의 지수가 $2$인데 $6$에는 $3$이 한 번뿐이므로 $a$가 $3^2$을 가져야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "($3$) $9$, $18$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-001",
+      "learningRole": "application",
+      "roleReason": "L의 약수이며 모자란 지수 채움",
+      "enrichmentEvidence": "enrichment/enrich-003",
+      "sourceIndex": 1019,
+      "part": "m1plus",
+      "sourceFingerprint": "7bcfe19fb7eacf3f1ce2a7e257d7eecf9a475df46b57c3231e5f90ec1e98a62c",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1019
+      },
+      "directReview": null,
+      "cMarkedSentence": "자연수 $a$와 $b$의 최소공배수가 $L$이면 $a$는 $L$의 {약수}이다. 또 $L$의 소인수 가운데 $b$에서의 지수가 $L$에서의 지수보다 작은 것은, $a$에서의 지수가 $L$에서의 지수와 {같아야} 한다. (예: $a$와 $6=2\\times3$의 최소공배수가 $18=2\\times3^2$이면 $a$는 $3^2$을 가져야 한다.)",
+      "cSlotAnswers": [
+        "약수",
+        "같아야"
+      ],
+      "cStudentSentence": "자연수 $a$와 $b$의 최소공배수가 $L$이면 $a$는 $L$의 □이다. 또 $L$의 소인수 가운데 $b$에서의 지수가 $L$에서의 지수보다 작은 것은, $a$에서의 지수가 $L$에서의 지수와 □ 한다. (예: $a$와 $6=2\\times3$의 최소공배수가 $18=2\\times3^2$이면 $a$는 $3^2$을 가져야 한다.)",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "약수",
+          "equivalentAnswers": [
+            "약수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "같아야",
+          "equivalentAnswers": [
+            "같아야"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "약수"
+        ],
+        [
+          "같아야"
+        ]
+      ],
+      "proposalFingerprint": "1dd07c63792bbccc2f496626c2566390b4853d27dad8428791cfc7b4121793d1"
+    },
+    {
+      "id": "m1-01-05-xc1",
+      "bDecision": "rewrite",
+      "bPrompt": "연필 $12$자루와 지우개 $8$개를 남김없이 똑같이 나누어 주려고 한다. 한 명에게 모두 주는 경우까지 넣어 나누어 줄 수 있는 사람 수를 모두 구하고, 그 수들이 $12$, $8$과 어떤 관계에 있는 수인지 쓰시오.",
+      "bAnswer": "$1$명, $2$명, $4$명이다. 사람 수는 $12$와 $8$을 모두 나누어떨어지게 해야 하므로 $12$와 $8$의 공약수이다.",
+      "bGoal": "여러 물건을 남김없이 똑같이 나누어 줄 수 있는 사람 수가 개수들의 공약수임을 설명한다.",
+      "bReason": "'여러 사람에게'라고 하면 모범답의 $1$명을 넣을지 판단이 갈리므로 $1$명도 포함함을 밝힘.",
+      "cDecision": "rewrite",
+      "cAfter": "여러 가지 물건을 남김없이 똑같이 나누어 줄 수 있는 사람 수는 물건 개수들의 {공약수}이다.",
+      "cAnswers": [
+        "공약수"
+      ],
+      "cReason": "원문은 조건인 '똑같이'와 결론인 '공약수'를 함께 가려, 조건이 빠진 채 결론을 맞혀야 한다. 조건은 드러내고 결론만 빈칸으로 남겼다.",
+      "exampleNeeded": true,
+      "authorBatch": 2,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "사람 수 $1$명, $2$명, $4$명"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$와 $8$의 공약수($12$와 $8$을 모두 나누어떨어지게 하는 수)"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-001",
+      "learningRole": "application",
+      "roleReason": "나눌 사람 수는 개수의 공약수",
+      "enrichmentEvidence": "enrichment/enrich-003",
+      "sourceIndex": 1020,
+      "part": "m1plus",
+      "sourceFingerprint": "e112a67a6aeed7fa714a9845711b4f5fcc254babda41a9fceacdb819e5c3f36c",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1020
+      },
+      "directReview": null,
+      "cMarkedSentence": "여러 가지 물건을 남김없이 똑같이 나누어 줄 수 있는 사람 수는 물건 개수들의 {공약수}이다.",
+      "cSlotAnswers": [
+        "공약수"
+      ],
+      "cStudentSentence": "여러 가지 물건을 남김없이 똑같이 나누어 줄 수 있는 사람 수는 물건 개수들의 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "공약수",
+          "equivalentAnswers": [
+            "공약수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "공약수"
+        ]
+      ],
+      "proposalFingerprint": "06f021b422fe7c5d2e5af35e144bf4e3bddf3efce8ac38d7a28507f194355184"
+    },
+    {
+      "id": "m1-01-05-xc2",
+      "bDecision": "rewrite",
+      "bPrompt": "가로 $20$ $\\mathrm{cm}$, 세로 $12$ $\\mathrm{cm}$인 직사각형 종이를 남는 부분 없이 잘라 크기가 같은 정사각형 여러 개를 만들려고 한다. 정사각형을 가장 크게 하려면 한 변의 길이를 $20$과 $12$의 무엇으로 정해야 하는지 쓰고, 그 길이와 까닭을 쓰시오.",
+      "bAnswer": "$20$과 $12$의 최대공약수인 $4$ $\\mathrm{cm}$이다. 남는 부분이 없으려면 한 변의 길이가 $20$과 $12$를 모두 나누어떨어지게 해야 하므로 공약수이고, 그중 가장 큰 것을 골라야 하기 때문이다.",
+      "bGoal": "직사각형을 가장 큰 정사각형으로 자를 때 한 변이 가로와 세로의 최대공약수임을 설명한다.",
+      "bReason": "제목만으로는 무엇을 구하는지, 직사각형의 크기가 얼마인지 알 수 없다. 가로·세로를 주고 길이와 까닭을 함께 묻게 했다.",
+      "cDecision": "rewrite",
+      "cReason": "자르는 상황과 구하는 대상(한 변의 길이)이 문장에 다 있고 빈칸이 핵심 용어 하나라 분명하다.",
+      "exampleNeeded": true,
+      "authorBatch": 2,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$20$과 $12$의 최대공약수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$ $\\mathrm{cm}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 변의 길이가 $20$과 $12$를 모두 나누어떨어지게 해야 하고(공약수) 그 가운데 가장 커야 한다"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-001",
+      "learningRole": "application",
+      "roleReason": "자른 정사각형 한 변은 최대공약수",
+      "enrichmentEvidence": "enrichment/enrich-003",
+      "sourceIndex": 1021,
+      "part": "m1plus",
+      "sourceFingerprint": "cf2b8e3e88ae68edd9f4f6a62809932e34e7970ab25af745cb0958fb4f80e42d",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1021
+      },
+      "directReview": null,
+      "cMarkedSentence": "직사각형의 가로와 세로 길이를 같은 단위로 나타낸 값이 자연수이다. 이 종이를 남김없이 크기가 같은 가장 큰 정사각형으로 자를 때, 정사각형 한 변의 길이는 가로와 세로 길이의 {최대공약수}이다.",
+      "cSlotAnswers": [
+        "최대공약수"
+      ],
+      "cStudentSentence": "직사각형의 가로와 세로 길이를 같은 단위로 나타낸 값이 자연수이다. 이 종이를 남김없이 크기가 같은 가장 큰 정사각형으로 자를 때, 정사각형 한 변의 길이는 가로와 세로 길이의 □이다.",
+      "cAnswers": [
+        "최대공약수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "최대공약수",
+          "equivalentAnswers": [
+            "최대공약수"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "최대공약수"
+        ]
+      ],
+      "proposalFingerprint": "03b4cab125dad1e353d141c5c8dc1394d265f21a5d378e58d971c8a9ed384c68",
+      "cAfter": "직사각형의 가로와 세로 길이를 같은 단위로 나타낸 값이 자연수이다. 이 종이를 남김없이 크기가 같은 가장 큰 정사각형으로 자를 때, 정사각형 한 변의 길이는 가로와 세로 길이의 {최대공약수}이다.",
+      "coreAfter": "직사각형의 가로와 세로 길이를 같은 단위로 나타낸 값이 자연수이다. 이 종이를 남김없이 크기가 같은 가장 큰 정사각형으로 자를 때, 정사각형 한 변의 길이는 가로와 세로 길이의 {최대공약수}이다.",
+      "coreReason": "길이의최대공약수는같은단위의자연수값으로계산함을명시하여서로다른단위값을그대로쓰지않게한다."
+    },
+    {
+      "id": "m1-01-05-xc3",
+      "bDecision": "rewrite",
+      "bPrompt": "가로 $6$ $\\mathrm{cm}$, 세로 $4$ $\\mathrm{cm}$인 직사각형 카드 여러 장을 같은 방향으로 빈틈없이 늘어놓아 정사각형을 만들려고 한다. 가장 작은 정사각형의 한 변의 길이는 $6$과 $4$의 무엇인지 쓰고, 그 길이와 까닭을 쓰시오.",
+      "bAnswer": "$6$과 $4$의 최소공배수인 $12$ $\\mathrm{cm}$이다. 정사각형의 한 변의 길이는 카드의 가로 $6$의 배수이면서 세로 $4$의 배수여야 하므로 공배수이고, 그중 가장 작은 것을 골라야 하기 때문이다.",
+      "bGoal": "직사각형을 늘어놓아 가장 작은 정사각형을 만들 때 한 변이 가로와 세로의 최소공배수임을 설명한다.",
+      "bReason": "제목만으로는 무엇으로 정사각형을 만드는지 알 수 없다. 카드의 크기와 늘어놓는 방법을 밝히고 길이와 까닭을 묻게 했다.",
+      "cDecision": "rewrite",
+      "cReason": "늘어놓는 상황과 구하는 대상이 문장에 있고 빈칸이 핵심 용어 하나라 그대로 쓸 수 있다.",
+      "exampleNeeded": true,
+      "authorBatch": 2,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$6$과 $4$의 최소공배수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$ $\\mathrm{cm}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 변의 길이가 $6$의 배수이면서 $4$의 배수여야 하고(공배수) 그 가운데 가장 작아야 한다"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-001",
+      "learningRole": "application",
+      "roleReason": "붙인 정사각형 한 변은 최소공배수",
+      "enrichmentEvidence": "enrichment/enrich-003",
+      "sourceIndex": 1022,
+      "part": "m1plus",
+      "sourceFingerprint": "01d00074cc07af131848bba80953ae58a3020eb93b3e14baf6b55afac39ed790",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1022
+      },
+      "directReview": null,
+      "cMarkedSentence": "직사각형의 가로와 세로 길이를 같은 단위로 나타낸 값이 자연수이다. 크기가 같은 직사각형들을 같은 방향으로 빈틈없이 늘어놓아 가장 작은 정사각형을 만들 때, 한 변의 길이는 직사각형의 가로와 세로 길이의 {최소공배수}이다.",
+      "cSlotAnswers": [
+        "최소공배수"
+      ],
+      "cStudentSentence": "직사각형의 가로와 세로 길이를 같은 단위로 나타낸 값이 자연수이다. 크기가 같은 직사각형들을 같은 방향으로 빈틈없이 늘어놓아 가장 작은 정사각형을 만들 때, 한 변의 길이는 직사각형의 가로와 세로 길이의 □이다.",
+      "cAnswers": [
+        "최소공배수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "최소공배수",
+          "equivalentAnswers": [
+            "최소공배수"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "최소공배수"
+        ]
+      ],
+      "proposalFingerprint": "6e96e3c38d4ed5a658c126bbe2164f2994c20cf14bd2de68a32635f53a988cd5",
+      "cAfter": "직사각형의 가로와 세로 길이를 같은 단위로 나타낸 값이 자연수이다. 크기가 같은 직사각형들을 같은 방향으로 빈틈없이 늘어놓아 가장 작은 정사각형을 만들 때, 한 변의 길이는 직사각형의 가로와 세로 길이의 {최소공배수}이다.",
+      "coreAfter": "직사각형의 가로와 세로 길이를 같은 단위로 나타낸 값이 자연수이다. 크기가 같은 직사각형들을 같은 방향으로 빈틈없이 늘어놓아 가장 작은 정사각형을 만들 때, 한 변의 길이는 직사각형의 가로와 세로 길이의 {최소공배수}이다.",
+      "coreReason": "카드를돌려혼합배치하는경우에는최소공배수결론이보장되지않으므로같은방향조건과같은단위자연수범위를명시한다."
+    },
+    {
+      "id": "m1-01-05-xc4",
+      "bDecision": "rewrite",
+      "bPrompt": "$10$분 간격으로 출발하는 버스와 $15$분 간격으로 출발하는 버스가 오전 $9$시에 함께 출발했다. 두 버스가 처음으로 다시 함께 출발하는 것은 몇 분 뒤인지 구하고, 이 시간이 $10$과 $15$의 무엇인지 까닭과 함께 쓰시오.",
+      "bAnswer": "$30$분 뒤이다. 한 버스는 $10$, $20$, $30$, …분 뒤에, 다른 버스는 $15$, $30$, …분 뒤에 출발하므로 함께 출발하는 시간은 $10$과 $15$의 공배수이고, 처음이므로 그중 가장 작은 최소공배수이다.",
+      "bGoal": "두 간격으로 되풀이되는 일이 처음으로 다시 겹칠 때까지의 시간이 최소공배수임을 설명한다.",
+      "bReason": "제목 '동시에 다시 출발하기'에는 누가, 어떤 간격으로 출발하는지가 없다. 간격과 처음 함께 출발한 시각을 주고 시간과 까닭을 묻게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "각각 일정한 간격으로 출발하는 두 버스가 함께 출발한 뒤 처음으로 다시 함께 출발할 때까지 걸리는 시간은 두 간격의 {최소공배수}이다.",
+      "cAnswers": [
+        "최소공배수"
+      ],
+      "cReason": "원문 첫 빈칸 '함께 출발한 때'는 길고 임의로 정한 구절이라 학생이 그대로 맞히기 어렵다. 그 부분은 문장에 드러내고 핵심 용어만 빈칸으로 했다.",
+      "exampleNeeded": true,
+      "authorBatch": 2,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$30$분 뒤"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10$과 $15$의 최소공배수"
+          ]
+        },
+        {
+          "anyOf": [
+            "함께 출발하는 시간은 $10$의 배수이면서 $15$의 배수(공배수)이고 처음이므로 가장 작은 것"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-001",
+      "learningRole": "application",
+      "roleReason": "다시 함께 출발은 간격의 최소공배수",
+      "enrichmentEvidence": "enrichment/enrich-003",
+      "sourceIndex": 1023,
+      "part": "m1plus",
+      "sourceFingerprint": "c068ae1ade86e15bc784573057459e5a32881db52add170a3e36eb8766fadabe",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1023
+      },
+      "directReview": null,
+      "cMarkedSentence": "각각 일정한 간격으로 출발하는 두 버스가 함께 출발한 뒤 처음으로 다시 함께 출발할 때까지 걸리는 시간은 두 간격의 {최소공배수}이다.",
+      "cSlotAnswers": [
+        "최소공배수"
+      ],
+      "cStudentSentence": "각각 일정한 간격으로 출발하는 두 버스가 함께 출발한 뒤 처음으로 다시 함께 출발할 때까지 걸리는 시간은 두 간격의 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "최소공배수",
+          "equivalentAnswers": [
+            "최소공배수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "최소공배수"
+        ]
+      ],
+      "proposalFingerprint": "5b6279cbb7b2ecd9393dfaa089500e38696a6708df7e3e0afa44925190baa5e6"
+    },
+    {
+      "id": "m1-01-05-xc5",
+      "bDecision": "rewrite",
+      "bPrompt": "톱니가 $12$개인 톱니바퀴 $A$와 톱니가 $18$개인 톱니바퀴 $B$가 서로 맞물려 돌고 있다. 처음에 맞물렸던 $A$의 톱니와 $B$의 톱니가 처음으로 다시 맞물릴 때까지 $A$에서 맞물려 지나간 톱니는 몇 개인지 구하고, 이 수가 $12$와 $18$의 무엇인지 까닭과 함께 쓰시오.",
+      "bAnswer": "$36$개이다. 같은 톱니끼리 다시 만나려면 지나간 톱니 수가 $A$에서는 $12$의 배수, $B$에서는 $18$의 배수여야 하므로 공배수이고, 처음이므로 최소공배수 $36$이다.",
+      "bGoal": "맞물린 두 톱니가 처음 다시 만날 때까지 돌아간 톱니 수가 최소공배수임을 설명한다.",
+      "bReason": "제목만으로는 톱니 수와 구하는 것이 무엇인지 알 수 없다. 두 톱니 수와 '지나간 톱니의 수'를 밝혀 묻게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "맞물려 도는 두 톱니바퀴에서 처음 맞물린 두 톱니가 처음으로 다시 맞물릴 때까지 각 톱니바퀴에서 돌아간 톱니의 수는 두 톱니 수의 {최소공배수}이다.",
+      "cAnswers": [
+        "최소공배수"
+      ],
+      "cReason": "원문 첫 빈칸 '처음으로 다시'는 수학 용어가 아닌 구절이고, 조건과 결론을 함께 가린다. 조건은 드러내고 최소공배수만 묻게 했다.",
+      "exampleNeeded": true,
+      "authorBatch": 2,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$36$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$와 $18$의 최소공배수"
+          ]
+        },
+        {
+          "anyOf": [
+            "지나간 톱니 수가 $12$의 배수이면서 $18$의 배수(공배수)여야 하고 처음이므로 가장 작은 것"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-001",
+      "learningRole": "application",
+      "roleReason": "다시 맞물림은 톱니 수 최소공배수",
+      "enrichmentEvidence": "enrichment/enrich-003",
+      "sourceIndex": 1024,
+      "part": "m1plus",
+      "sourceFingerprint": "95ca4045d316492eb1481af041682fd0f48c387f0497fedcd5b22f8f6136a434",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1024
+      },
+      "directReview": null,
+      "cMarkedSentence": "맞물려 도는 두 톱니바퀴에서 처음 맞물린 두 톱니가 처음으로 다시 맞물릴 때까지 각 톱니바퀴에서 돌아간 톱니의 수는 두 톱니 수의 {최소공배수}이다.",
+      "cSlotAnswers": [
+        "최소공배수"
+      ],
+      "cStudentSentence": "맞물려 도는 두 톱니바퀴에서 처음 맞물린 두 톱니가 처음으로 다시 맞물릴 때까지 각 톱니바퀴에서 돌아간 톱니의 수는 두 톱니 수의 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "최소공배수",
+          "equivalentAnswers": [
+            "최소공배수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "최소공배수"
+        ]
+      ],
+      "proposalFingerprint": "f9be5e58ebe813221649369e1b022a3c30844fca9e7bf0608c718f29de2fb2b9"
+    },
+    {
+      "id": "m1-01-05-xc6",
+      "bDecision": "rewrite",
+      "bPrompt": "가로 $24$ $\\mathrm{m}$, 세로 $18$ $\\mathrm{m}$인 직사각형 모양 땅의 둘레에 나무를 같은 간격으로 심으려고 한다. 네 모퉁이에는 반드시 나무를 심고 나무의 수는 가장 적게 하려면, 나무 사이의 간격을 $24$와 $18$의 무엇으로 정해야 하는지 쓰고, 그 간격과 까닭을 쓰시오.",
+      "bAnswer": "$24$와 $18$의 최대공약수인 $6$ $\\mathrm{m}$이다. 네 모퉁이에 모두 나무가 오려면 간격이 가로와 세로를 모두 나누어떨어지게 해야 하므로 공약수이고, 나무 수가 가장 적으려면 간격이 가장 커야 하기 때문이다.",
+      "bGoal": "모퉁이를 포함해 같은 간격으로 가장 적게 심는 간격이 가로와 세로의 최대공약수임을 설명한다.",
+      "bReason": "제목만으로는 어디에, 어떤 조건으로 심는지 알 수 없다. 땅의 크기, 모퉁이 조건, '가장 적게'를 질문에 넣었다.",
+      "cDecision": "rewrite",
+      "cAfter": "직사각형 모양 땅의 둘레에 네 모퉁이를 포함해 같은 간격으로 나무를 가장 적게 심으려면 나무 사이의 간격을 가로와 세로 길이의 {최대공약수}로 한다.",
+      "cAnswers": [
+        "최대공약수"
+      ],
+      "cReason": "원문에는 무엇을 심는지(나무)가 없어 숨은 제목 없이는 '가장 적게 심는다'의 대상을 알 수 없다. 대상만 보충했다.",
+      "exampleNeeded": true,
+      "authorBatch": 2,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$24$와 $18$의 최대공약수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$ $\\mathrm{m}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "네 모퉁이에 나무가 오려면 간격이 $24$와 $18$을 모두 나누어떨어지게 해야 하고(공약수), 나무를 가장 적게 하려면 간격이 가장 커야 한다"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-001",
+      "learningRole": "application",
+      "roleReason": "모퉁이 포함 간격은 최대공약수",
+      "enrichmentEvidence": "enrichment/enrich-003",
+      "sourceIndex": 1025,
+      "part": "m1plus",
+      "sourceFingerprint": "9b6970e8a46c9645627a3d0011734e9d869f321e9281a519338d909244a67fa1",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1025
+      },
+      "directReview": null,
+      "cMarkedSentence": "직사각형 모양 땅의 둘레에 네 모퉁이를 포함해 같은 간격으로 나무를 가장 적게 심으려면 나무 사이의 간격을 가로와 세로 길이의 {최대공약수}로 한다.",
+      "cSlotAnswers": [
+        "최대공약수"
+      ],
+      "cStudentSentence": "직사각형 모양 땅의 둘레에 네 모퉁이를 포함해 같은 간격으로 나무를 가장 적게 심으려면 나무 사이의 간격을 가로와 세로 길이의 □로 한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "최대공약수",
+          "equivalentAnswers": [
+            "최대공약수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "최대공약수"
+        ]
+      ],
+      "proposalFingerprint": "c775cc95e8d5f2cfaf11e84049e87d3ff8ec5d6e678f5b65308fbecd3168838f"
+    },
+    {
+      "id": "m1-01-05-xc7",
+      "bDecision": "rewrite",
+      "bPrompt": "사과 $24$개와 귤 $36$개를 될 수 있는 대로 많은 사람에게 남김없이 똑같이 나누어 주려고 한다. 먼저 사람 수를 구하고, 이어서 한 사람이 받는 사과와 귤의 개수를 어떻게 구하는지 설명하여 구하시오.",
+      "bAnswer": "사람 수는 $24$와 $36$의 최대공약수인 $12$명이다. 한 사람이 받는 개수는 각 물건의 개수를 사람 수로 나눈 몫이므로 사과는 $24\\div 12=2$(개), 귤은 $36\\div 12=3$(개)이다.",
+      "bGoal": "사람 수를 구한 뒤 한 사람이 받는 개수를 나눗셈의 몫으로 구한다.",
+      "bReason": "제목 '한 사람이 받는 몫'만으로는 물건과 사람 수가 없어 답할 수 없다. 단순한 나눗셈 하나로 줄이지 않도록 사람 수를 구하는 단계와 이어서 묻게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "여러 사람에게 물건을 남김없이 똑같이 나누어 줄 때, 한 사람이 받는 개수는 물건의 개수를 {사람 수}로 나눈 {몫}이다.",
+      "cAnswers": [
+        "사람 수",
+        "몫"
+      ],
+      "cReason": "원문은 '나누어 줄 사람 수를 구한 뒤'로 시작해 앞 상황을 모르면 읽기 어렵고, 붙어 있는 두 빈칸 '나눈 몫'은 서로 답을 알려 준다. 상황을 넣고 빈칸을 나누는 수와 결과로 바꾸었다.",
+      "exampleNeeded": true,
+      "authorBatch": 2,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "사람 수는 $24$와 $36$의 최대공약수 $12$명"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 사람이 받는 개수는 각 개수를 사람 수로 나눈 몫"
+          ]
+        },
+        {
+          "anyOf": [
+            "사과 $2$개, 귤 $3$개"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-001",
+      "learningRole": "procedure",
+      "roleReason": "개수를 사람 수로 나눈 몫",
+      "enrichmentEvidence": "enrichment/enrich-003",
+      "sourceIndex": 1026,
+      "part": "m1plus",
+      "sourceFingerprint": "75d24c5772db1feaa98fd82fc0e4fa49b8c951233dbb1d465abffd6cb6ab24bc",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1026
+      },
+      "directReview": null,
+      "cMarkedSentence": "여러 사람에게 물건을 남김없이 똑같이 나누어 줄 때, 한 사람이 받는 개수는 물건의 개수를 {사람 수}로 나눈 {몫}이다.",
+      "cSlotAnswers": [
+        "사람 수",
+        "몫"
+      ],
+      "cStudentSentence": "여러 사람에게 물건을 남김없이 똑같이 나누어 줄 때, 한 사람이 받는 개수는 물건의 개수를 □로 나눈 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "사람 수",
+          "equivalentAnswers": [
+            "사람 수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "몫",
+          "equivalentAnswers": [
+            "몫"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "사람 수"
+        ],
+        [
+          "몫"
+        ]
+      ],
+      "proposalFingerprint": "19d38a422ce2933b70bab37027a3125fa2f9df895855c8fecf3bbad19b9517f0"
+    },
+    {
+      "id": "m1-01-05-xc8",
+      "bDecision": "rewrite",
+      "bPrompt": "길이가 $36$ $\\mathrm{cm}$, $48$ $\\mathrm{cm}$인 두 끈을 남는 부분 없이 모두 같은 길이의 도막으로 자르려고 한다. 한 도막을 가장 길게 하려면 그 길이를 $36$과 $48$의 무엇으로 정해야 하는지 쓰고, 그 길이와 이때 생기는 도막의 수를 구하시오.",
+      "bAnswer": "$36$과 $48$의 최대공약수인 $12$ $\\mathrm{cm}$이다. 도막은 $36\\div 12=3$(개), $48\\div 12=4$(개)이므로 모두 $7$개이다.",
+      "bGoal": "여러 끈을 남김없이 같은 길이로 가장 길게 자를 때 그 길이가 최대공약수임을 알고 구한다.",
+      "bReason": "제목만으로는 끈의 길이와 조건(남김없이, 가장 길게)이 없다. 길이를 주고 최대공약수와 도막 수까지 묻게 했다.",
+      "cDecision": "keep",
+      "cReason": "자르는 대상, 조건, 구하는 것이 문장에 모두 있고 빈칸이 핵심 용어 하나이다.",
+      "exampleNeeded": true,
+      "authorBatch": 2,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$36$과 $48$의 최대공약수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$ $\\mathrm{cm}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "도막 수 $3+4=7$(개)"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-001",
+      "learningRole": "application",
+      "roleReason": "가장 긴 도막은 최대공약수",
+      "enrichmentEvidence": "enrichment/enrich-003",
+      "sourceIndex": 1027,
+      "part": "m1plus",
+      "sourceFingerprint": "0641cacaf09a29cf9fa32c3d8b3fff3a8f1dc87940b16a77b706df980bb50def",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1027
+      },
+      "directReview": null,
+      "cFrozenSentence": "길이가 다른 끈 여러 개를 남김없이 같은 길이로 가장 길게 자르면 그 길이는 끈 길이들의 □이다.",
+      "cFrozenDefinition": "길이가 다른 끈 여러 개를 남김없이 같은 길이로 가장 길게 자르면 그 길이는 끈 길이들의 {최대공약수}이다.",
+      "cFrozenAnswers": [
+        "최대공약수"
+      ],
+      "cMarkedSentence": "길이가 다른 끈 여러 개를 남김없이 같은 길이로 가장 길게 자르면 그 길이는 끈 길이들의 {최대공약수}이다.",
+      "cSlotAnswers": [
+        "최대공약수"
+      ],
+      "cStudentSentence": "길이가 다른 끈 여러 개를 남김없이 같은 길이로 가장 길게 자르면 그 길이는 끈 길이들의 □이다.",
+      "cAnswers": [
+        "최대공약수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "최대공약수",
+          "equivalentAnswers": [
+            "최대공약수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "최대공약수"
+        ]
+      ],
+      "proposalFingerprint": "cf9c77ed316e8009c3d08f08ffdee9a5bc9dbe63aadc51546ba2bd85132b20b7"
+    },
+    {
+      "id": "m1-01-05-xc9",
+      "bDecision": "rewrite",
+      "bPrompt": "가로, 세로, 높이가 각각 $2$ $\\mathrm{cm}$, $3$ $\\mathrm{cm}$, $4$ $\\mathrm{cm}$인 직육면체 모양 상자 여러 개를 같은 방향으로 빈틈없이 쌓아 정육면체를 만들려고 한다. 가장 작은 정육면체의 한 모서리의 길이는 $2$, $3$, $4$의 무엇인지 쓰고, 그 길이와 까닭을 쓰시오.",
+      "bAnswer": "$2$, $3$, $4$의 최소공배수인 $12$ $\\mathrm{cm}$이다. 정육면체의 한 모서리의 길이는 상자의 가로, 세로, 높이 각각의 배수여야 하므로 세 수의 공배수이고, 그중 가장 작은 것을 골라야 하기 때문이다.",
+      "bGoal": "직육면체를 쌓아 가장 작은 정육면체를 만들 때 한 모서리가 세 길이의 최소공배수임을 설명한다.",
+      "bReason": "제목 '정육면체 쌓기'에는 무엇을 쌓고 무엇을 구하는지가 없다. 상자의 세 길이와 쌓는 방법을 밝혀 길이와 까닭을 묻게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "크기가 같은 직육면체를 같은 방향으로 빈틈없이 쌓아 가장 작은 정육면체를 만들 때, 정육면체의 한 모서리의 길이는 직육면체의 가로, 세로, 높이의 {최소공배수}이다.",
+      "cAnswers": [
+        "최소공배수"
+      ],
+      "cReason": "원문의 '한 모서리'와 '세 모서리'가 각각 정육면체의 것인지 직육면체의 것인지 밝혀져 있지 않아 지칭이 모호하다. 어느 도형의 길이인지 적어 주었다.",
+      "exampleNeeded": true,
+      "authorBatch": 2,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2$, $3$, $4$의 최소공배수"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$ $\\mathrm{cm}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 모서리의 길이가 $2$, $3$, $4$ 각각의 배수여야 하고(공배수) 그 가운데 가장 작아야 한다"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-001",
+      "learningRole": "application",
+      "roleReason": "쌓은 정육면체 모서리는 최소공배수",
+      "enrichmentEvidence": "enrichment/enrich-003",
+      "sourceIndex": 1028,
+      "part": "m1plus",
+      "sourceFingerprint": "e8246bde62719816a99654f498a616a94fb8ab91f4dad7a84e1aad3e7df03e3f",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1028
+      },
+      "directReview": null,
+      "cMarkedSentence": "크기가 같은 직육면체를 같은 방향으로 빈틈없이 쌓아 가장 작은 정육면체를 만들 때, 정육면체의 한 모서리의 길이는 직육면체의 가로, 세로, 높이의 {최소공배수}이다.",
+      "cSlotAnswers": [
+        "최소공배수"
+      ],
+      "cStudentSentence": "크기가 같은 직육면체를 같은 방향으로 빈틈없이 쌓아 가장 작은 정육면체를 만들 때, 정육면체의 한 모서리의 길이는 직육면체의 가로, 세로, 높이의 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "최소공배수",
+          "equivalentAnswers": [
+            "최소공배수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "최소공배수"
+        ]
+      ],
+      "proposalFingerprint": "0b00d92f5d8c3c7217360f79c58ff7771ea09d0f8489db2a65d64200db0c4011",
+      "coreAfter": "직육면체의 가로, 세로, 높이를 같은 단위로 나타낸 값이 자연수이다. 크기가 같은 직육면체들을 같은 방향으로 빈틈없이 쌓아 가장 작은 정육면체를 만들 때, 한 모서리의 길이는 세 길이의 {최소공배수}이다.",
+      "coreReason": "소인수분해문제의길이는같은단위자연수이며상자를같은방향으로쌓는조건이필요함을일반설명에도넣는다."
+    },
+    {
+      "id": "m1-01-05-xc10",
+      "bDecision": "rewrite",
+      "bPrompt": "가로 $20$ $\\mathrm{cm}$, 세로 $12$ $\\mathrm{cm}$인 직사각형 종이를 남는 부분 없이 잘라 크기가 같은 가장 큰 정사각형 조각들을 만들었다. 정사각형의 한 변의 길이를 구한 다음, 조각이 모두 몇 개인지 구하는 방법을 설명하여 구하시오.",
+      "bAnswer": "한 변의 길이는 $20$과 $12$의 최대공약수인 $4$ $\\mathrm{cm}$이다. 가로로 $20\\div 4=5$(개), 세로로 $12\\div 4=3$(개)씩 놓이므로 조각은 모두 $5\\times 3=15$(개)이다.",
+      "bGoal": "가장 큰 정사각형으로 자른 조각의 수를 가로·세로 방향 몫의 곱으로 구한다.",
+      "bReason": "제목만으로는 어떤 도형을 어떻게 자른 조각인지 알 수 없다. 직사각형의 크기를 주고 두 단계의 구하는 방법을 묻게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "직사각형을 남김없이 같은 크기의 정사각형으로 자를 때, 정사각형 조각의 개수는 직사각형의 가로와 세로를 각각 정사각형의 한 변의 길이로 나눈 두 몫의 {곱}이다.",
+      "cAnswers": [
+        "곱"
+      ],
+      "cReason": "원문은 '최대공약수로 한 변의 길이를 구한 뒤'로 시작해 무엇을 자르는 상황인지 숨은 제목 없이는 모른다. 상황을 넣고 빈칸은 '몫의 곱' 대신 연산 하나로 줄였다.",
+      "exampleNeeded": true,
+      "authorBatch": 2,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 변의 길이는 $20$과 $12$의 최대공약수 $4$ $\\mathrm{cm}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "가로 $20\\div4=5$(개), 세로 $12\\div4=3$(개)의 곱으로 센다(넓이 $240\\div16$으로 구해도 됨)"
+          ]
+        },
+        {
+          "anyOf": [
+            "$15$개"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-001",
+      "learningRole": "procedure",
+      "roleReason": "가로·세로 몫을 곱해 조각 수",
+      "enrichmentEvidence": "enrichment/enrich-003",
+      "sourceIndex": 1029,
+      "part": "m1plus",
+      "sourceFingerprint": "86fa8b0664ed4a02e16edd184954426cc59b93af5fb4f12ba2acdd2b9640ad21",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1029
+      },
+      "directReview": null,
+      "cMarkedSentence": "직사각형을 남김없이 같은 크기의 정사각형으로 자를 때, 정사각형 조각의 개수는 직사각형의 가로와 세로를 각각 정사각형의 한 변의 길이로 나눈 두 몫의 {곱}이다.",
+      "cSlotAnswers": [
+        "곱"
+      ],
+      "cStudentSentence": "직사각형을 남김없이 같은 크기의 정사각형으로 자를 때, 정사각형 조각의 개수는 직사각형의 가로와 세로를 각각 정사각형의 한 변의 길이로 나눈 두 몫의 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "곱",
+          "equivalentAnswers": [
+            "곱"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "곱"
+        ]
+      ],
+      "proposalFingerprint": "1e0c86e91dd5e4ae07037ef6986f0af1ae60181375ef18b32ef892382565ee7b"
+    },
+    {
+      "id": "m1-01-05-xc11",
+      "bDecision": "rewrite",
+      "bPrompt": "가로 $6$ $\\mathrm{cm}$, 세로 $4$ $\\mathrm{cm}$인 직사각형 카드 여러 장을 같은 방향으로 빈틈없이 늘어놓아 가장 작은 정사각형을 만들었다. 정사각형의 한 변의 길이를 구한 다음, 필요한 카드가 모두 몇 장인지 구하는 방법을 설명하여 구하시오.",
+      "bAnswer": "한 변의 길이는 $6$과 $4$의 최소공배수인 $12$ $\\mathrm{cm}$이다. 가로 방향으로 $12\\div 6=2$(장), 세로 방향으로 $12\\div 4=3$(장)씩 놓이므로 카드는 모두 $2\\times 3=6$(장)이다.",
+      "bGoal": "가장 작은 정사각형을 만드는 데 필요한 카드 수를 두 방향 몫의 곱으로 구한다.",
+      "bReason": "제목 '필요한 카드의 수'에는 카드의 크기와 만드는 도형이 없다. 카드 크기와 만드는 방법을 넣어 과정을 묻게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "크기가 같은 직사각형 카드를 같은 방향으로 빈틈없이 늘어놓아 정사각형을 만들 때, 필요한 카드의 수는 정사각형의 한 변의 길이를 카드의 가로와 세로로 각각 나눈 두 몫의 {곱}이다.",
+      "cAnswers": [
+        "곱"
+      ],
+      "cReason": "원문은 무엇으로 정사각형을 만드는지, '한 변'이 어느 도형의 것인지 말하지 않는다. '나눈'과 '몫'이 서로 답을 알려 주므로 빈칸을 하나로 줄였다.",
+      "exampleNeeded": true,
+      "authorBatch": 2,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 변의 길이는 $6$과 $4$의 최소공배수 $12$ $\\mathrm{cm}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "가로 방향 $12\\div6=2$(장), 세로 방향 $12\\div4=3$(장)의 곱으로 센다(넓이 $144\\div24$로 구해도 됨)"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$장"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-001",
+      "learningRole": "procedure",
+      "roleReason": "한 변을 가로·세로로 나눈 몫의 곱",
+      "enrichmentEvidence": "enrichment/enrich-003",
+      "sourceIndex": 1030,
+      "part": "m1plus",
+      "sourceFingerprint": "375c92aa5f2f0443288e0318f412fa7a16110c31ade8ff43a355b06aedcf4d96",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1030
+      },
+      "directReview": null,
+      "cMarkedSentence": "크기가 같은 직사각형 카드를 같은 방향으로 빈틈없이 늘어놓아 정사각형을 만들 때, 필요한 카드의 수는 정사각형의 한 변의 길이를 카드의 가로와 세로로 각각 나눈 두 몫의 {곱}이다.",
+      "cSlotAnswers": [
+        "곱"
+      ],
+      "cStudentSentence": "크기가 같은 직사각형 카드를 같은 방향으로 빈틈없이 늘어놓아 정사각형을 만들 때, 필요한 카드의 수는 정사각형의 한 변의 길이를 카드의 가로와 세로로 각각 나눈 두 몫의 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "곱",
+          "equivalentAnswers": [
+            "곱"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "곱"
+        ]
+      ],
+      "proposalFingerprint": "a9a4faba5ad171e464b4964cf513edefe423cf3261d237ebd862b7b58e963303"
+    },
+    {
+      "id": "m1-01-05-xc12",
+      "bDecision": "rewrite",
+      "bPrompt": "운동장을 한 바퀴 도는 데 $4$분 걸리는 사람과 $6$분 걸리는 사람이 $3$시에 출발점에서 동시에 출발하여 각자 일정한 빠르기로 계속 돈다. 두 사람이 출발점에서 처음으로 다시 만나는 시각을 구하는 과정을 두 단계로 설명하고, 그 시각을 쓰시오.",
+      "bAnswer": "첫째, 두 사람이 출발점에 함께 돌아올 때까지 걸리는 시간은 $4$와 $6$의 최소공배수인 $12$분이다. 둘째, 출발한 시각에 이 시간을 더하면 $3$시 $12$분이다.",
+      "bGoal": "처음 다시 만날 때까지 걸리는 시간을 최소공배수로 구하고 출발 시각에 더해 시각을 구한다.",
+      "bReason": "제목만으로는 누가 어디서 어떤 간격으로 만나는지 없다. 한 바퀴 시간, 출발 시각, 만나는 장소(출발점)를 넣었다.",
+      "cDecision": "rewrite",
+      "cAfter": "동시에 출발해 각각 일정한 시간마다 출발점에 돌아오는 두 사람이 출발점에서 처음으로 다시 만날 때까지 걸리는 시간은 두 사람이 한 번 돌아오는 데 걸리는 시간의 {최소공배수}이고, 만나는 시각은 출발한 시각에 그 시간을 {더하여} 구한다.",
+      "cAnswers": [
+        "최소공배수",
+        "더하여"
+      ],
+      "cReason": "시각은출발시각에경과시간을더한다는같은행위의자연스러운활용형만인정한다.",
+      "exampleNeeded": true,
+      "authorBatch": 2,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "걸리는 시간은 $4$와 $6$의 최소공배수 $12$분"
+          ]
+        },
+        {
+          "anyOf": [
+            "출발한 시각 $3$시에 그 시간을 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$시 $12$분"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-001",
+      "learningRole": "procedure",
+      "roleReason": "최소공배수를 출발 시각에 더함",
+      "enrichmentEvidence": "enrichment/enrich-003",
+      "sourceIndex": 1031,
+      "part": "m1plus",
+      "sourceFingerprint": "68951a2294e653749f8c3e065dbf9a7cdd53d51373338a1194561368ab871d87",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1031
+      },
+      "directReview": null,
+      "cMarkedSentence": "동시에 출발해 각각 일정한 시간마다 출발점에 돌아오는 두 사람이 출발점에서 처음으로 다시 만날 때까지 걸리는 시간은 두 사람이 한 번 돌아오는 데 걸리는 시간의 {최소공배수}이고, 만나는 시각은 출발한 시각에 그 시간을 {더하여} 구한다.",
+      "cSlotAnswers": [
+        "최소공배수",
+        "더하여"
+      ],
+      "cStudentSentence": "동시에 출발해 각각 일정한 시간마다 출발점에 돌아오는 두 사람이 출발점에서 처음으로 다시 만날 때까지 걸리는 시간은 두 사람이 한 번 돌아오는 데 걸리는 시간의 □이고, 만나는 시각은 출발한 시각에 그 시간을 □ 구한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "최소공배수",
+          "equivalentAnswers": [
+            "최소공배수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "더하여",
+          "equivalentAnswers": [
+            "더하여"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "최소공배수"
+        ],
+        [
+          "더하여",
+          "더해",
+          "더해서"
+        ]
+      ],
+      "proposalFingerprint": "2d39410252f8cbc6d364ea84d71f32c28df31208c7b3eada8f6c70a1077da2f3"
+    },
+    {
+      "id": "m1-01-05-xc13",
+      "bDecision": "rewrite",
+      "bPrompt": "톱니가 $12$개인 톱니바퀴 $A$와 톱니가 $18$개인 톱니바퀴 $B$가 맞물려 돌고 있다. 처음 맞물렸던 두 톱니가 처음으로 다시 맞물릴 때까지 $A$와 $B$는 각각 몇 바퀴 도는지 구하는 방법을 설명하여 구하시오.",
+      "bAnswer": "다시 맞물릴 때까지 돌아간 톱니의 수는 $12$와 $18$의 최소공배수인 $36$개이다. 이것을 각 톱니바퀴의 톱니 수로 나누면 $A$는 $36\\div 12=3$(바퀴), $B$는 $36\\div 18=2$(바퀴) 돈다.",
+      "bGoal": "최소공배수를 각 톱니바퀴의 톱니 수로 나누어 회전 수를 구한다.",
+      "bReason": "제목만으로는 톱니 수와 '언제까지'의 회전 수인지 알 수 없다. 두 톱니 수와 기준 시점을 넣어 방법과 답을 묻게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "맞물려 도는 두 톱니바퀴에서 처음 맞물린 두 톱니가 처음으로 다시 맞물릴 때까지 각 톱니바퀴가 도는 바퀴 수는 두 톱니 수의 {최소공배수}를 그 톱니바퀴의 톱니 수로 {나누어} 구한다.",
+      "cAnswers": [
+        "최소공배수",
+        "나누어"
+      ],
+      "cReason": "돌아간톱니수를자기톱니수로나누는같은행위의활용형만인정한다.",
+      "exampleNeeded": true,
+      "authorBatch": 2,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "돌아간 톱니 수는 $12$와 $18$의 최소공배수 $36$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "$36$을 각 톱니바퀴의 톱니 수로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$A$는 $3$바퀴, $B$는 $2$바퀴"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-001",
+      "learningRole": "procedure",
+      "roleReason": "최소공배수를 톱니 수로 나눔",
+      "enrichmentEvidence": "enrichment/enrich-003",
+      "sourceIndex": 1032,
+      "part": "m1plus",
+      "sourceFingerprint": "994270d1efd20a52d63551db735d21b2c6aa3dd66db4e559b39b34b9c739824d",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1032
+      },
+      "directReview": null,
+      "cMarkedSentence": "맞물려 도는 두 톱니바퀴에서 처음 맞물린 두 톱니가 처음으로 다시 맞물릴 때까지 각 톱니바퀴가 도는 바퀴 수는 두 톱니 수의 {최소공배수}를 그 톱니바퀴의 톱니 수로 {나누어} 구한다.",
+      "cSlotAnswers": [
+        "최소공배수",
+        "나누어"
+      ],
+      "cStudentSentence": "맞물려 도는 두 톱니바퀴에서 처음 맞물린 두 톱니가 처음으로 다시 맞물릴 때까지 각 톱니바퀴가 도는 바퀴 수는 두 톱니 수의 □를 그 톱니바퀴의 톱니 수로 □ 구한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "최소공배수",
+          "equivalentAnswers": [
+            "최소공배수"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "나누어",
+          "equivalentAnswers": [
+            "나누어"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "최소공배수"
+        ],
+        [
+          "나누어",
+          "나눠",
+          "나누어서"
+        ]
+      ],
+      "proposalFingerprint": "a2327728907b865dcb85b127314a1820b7c33e32300c2d5b7a4cdaeaf3f31ab1"
+    },
+    {
+      "id": "m1-01-05-xc14",
+      "bDecision": "rewrite",
+      "bPrompt": "가로 $24$ $\\mathrm{m}$, 세로 $18$ $\\mathrm{m}$인 직사각형 모양 땅의 둘레에 네 모퉁이를 포함하여 $6$ $\\mathrm{m}$ 간격으로 나무를 심는다. 필요한 나무의 수를 구하는 식을 써서 구하고, 곧은 길의 양 끝에 심을 때와 달리 $1$을 더하지 않는 까닭을 쓰시오.",
+      "bAnswer": "둘레의 길이는 $(24+18)\\times 2=84$($\\mathrm{m}$)이므로 나무의 수는 $84\\div 6=14$(그루)이다. 둘레는 한 바퀴 이어져 있어 처음 심은 나무가 마지막 간격의 끝과 같으므로 간격의 수와 나무의 수가 같다.",
+      "bGoal": "한 바퀴 이어진 둘레에 같은 간격으로 심는 나무 수를 둘레 ÷ 간격으로 구한다.",
+      "bReason": "제목 '심는 나무의 수'에는 땅의 모양, 크기, 간격이 없다. 값을 주고 식과 '간격 수 = 나무 수'인 까닭을 묻게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "직사각형 땅의 가장자리처럼 끊어진 곳 없이 한 바퀴 이어진 곳에 같은 간격으로 나무를 심을 때, 나무의 수는 한 바퀴의 길이인 {둘레}를 간격으로 나눈 몫과 같다.",
+      "cAnswers": [
+        "둘레"
+      ],
+      "cReason": "원문의 '닫힌 둘레'는 학생에게 낯선 말이고, 첫 빈칸의 답 '둘레'가 문장 앞에 그대로 나온다. '나눈 몫'도 서로 답을 알려 준다.",
+      "exampleNeeded": true,
+      "authorBatch": 2,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "둘레 $(24+18)\\times2=84$ ($\\mathrm{m}$)"
+          ]
+        },
+        {
+          "anyOf": [
+            "$84\\div6=14$ (그루)"
+          ]
+        },
+        {
+          "anyOf": [
+            "둘레는 한 바퀴 이어져 있어 간격의 수와 나무의 수가 같다(처음 나무와 마지막 나무가 겹친다)는 까닭"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-001",
+      "learningRole": "procedure",
+      "roleReason": "둘레를 간격으로 나눈 몫",
+      "enrichmentEvidence": "enrichment/enrich-003",
+      "sourceIndex": 1033,
+      "part": "m1plus",
+      "sourceFingerprint": "2f9246ff4a6c0ba70cf006dad7a67be012fa54273f0ee9bab72ad479de5c69e7",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1033
+      },
+      "directReview": null,
+      "cMarkedSentence": "직사각형 땅의 가장자리처럼 끊어진 곳 없이 한 바퀴 이어진 곳에 같은 간격으로 나무를 심을 때, 나무의 수는 한 바퀴의 길이인 {둘레}를 간격으로 나눈 몫과 같다.",
+      "cSlotAnswers": [
+        "둘레"
+      ],
+      "cStudentSentence": "직사각형 땅의 가장자리처럼 끊어진 곳 없이 한 바퀴 이어진 곳에 같은 간격으로 나무를 심을 때, 나무의 수는 한 바퀴의 길이인 □를 간격으로 나눈 몫과 같다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "둘레",
+          "equivalentAnswers": [
+            "둘레",
+            "둘레의 길이"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "둘레",
+          "accept": [
+            "둘레의 길이"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "둘레",
+          "둘레의 길이"
+        ]
+      ],
+      "proposalFingerprint": "b8a630d42d6095fa2645a4c6172109aae56dfec1362f71b5f6c2cf4f215b7394"
+    },
+    {
+      "id": "m1-01-05-xc15",
+      "bDecision": "rewrite",
+      "bPrompt": "사탕 $26$개와 초콜릿 $34$개를 학생들에게 똑같이 나누어 주려고 했더니 사탕은 $2$개가 남고 초콜릿은 $2$개가 모자랐다. 학생 수를 구하려면 $26$과 $34$를 각각 어떤 수로 바꾸어 생각해야 하는지 까닭과 함께 쓰고, 학생 수가 바꾼 두 수와 어떤 관계인지 쓰시오.",
+      "bAnswer": "사탕은 남은 $2$개를 뺀 $26-2=24$(개)가 똑같이 나누어지고, 초콜릿은 모자란 $2$개를 더한 $34+2=36$(개)가 있어야 똑같이 나누어진다. 따라서 학생 수는 $24$와 $36$의 공약수이다. (사탕이 $2$개 남았으므로 학생 수는 $2$보다 크다.)",
+      "bGoal": "남거나 모자라는 조건을 빼거나 더해 나누어떨어지는 공약수 문제로 바꾼다.",
+      "bReason": "제목 '고쳐 세우기'는 뜻이 불분명하다. 남고 모자라는 구체 상황을 주어 어떤 수로 바꾸는지와 까닭을 묻게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "물건을 똑같이 나누어 줄 때 몇 개가 남으면 처음 개수에서 남은 개수를 {뺀} 수로, 몇 개가 모자라면 처음 개수에 모자란 개수를 {더한} 수로 바꾸어 남김없이 나누어지는 문제로 만든다.",
+      "cAnswers": [
+        "뺀",
+        "더한"
+      ],
+      "cReason": "원문은 무엇에서 무엇을 빼고 더하는지('그만큼'의 대상)가 없어 상황을 모르면 읽기 어렵다. 처음 개수와 남은·모자란 개수를 밝혔다.",
+      "studentLabel": "남거나 모자랄 때 수 바꾸기",
+      "exampleNeeded": true,
+      "authorBatch": 2,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "사탕은 남은 $2$개를 빼서 $26-2=24$"
+          ]
+        },
+        {
+          "anyOf": [
+            "초콜릿은 모자란 $2$개를 더해서 $34+2=36$"
+          ]
+        },
+        {
+          "anyOf": [
+            "학생 수는 $24$와 $36$의 공약수"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-001",
+      "learningRole": "procedure",
+      "roleReason": "남으면 빼고 모자라면 더함",
+      "enrichmentEvidence": "enrichment/enrich-003",
+      "sourceIndex": 1034,
+      "part": "m1plus",
+      "sourceFingerprint": "ee003103a0395b2835c6b393414c648c1230636c76360ae973a10a9edc4fdd39",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1034
+      },
+      "directReview": null,
+      "cMarkedSentence": "물건을 똑같이 나누어 줄 때 몇 개가 남으면 처음 개수에서 남은 개수를 {뺀} 수로, 몇 개가 모자라면 처음 개수에 모자란 개수를 {더한} 수로 바꾸어 남김없이 나누어지는 문제로 만든다.",
+      "cSlotAnswers": [
+        "뺀",
+        "더한"
+      ],
+      "cStudentSentence": "물건을 똑같이 나누어 줄 때 몇 개가 남으면 처음 개수에서 남은 개수를 □ 수로, 몇 개가 모자라면 처음 개수에 모자란 개수를 □ 수로 바꾸어 남김없이 나누어지는 문제로 만든다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "뺀",
+          "equivalentAnswers": [
+            "뺀"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "더한",
+          "equivalentAnswers": [
+            "더한"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "뺀"
+        ],
+        [
+          "더한"
+        ]
+      ],
+      "proposalFingerprint": "b338913d34b5cae0b042ec27e2bd4329b87b6825947d7d22087452a7baa3357f"
+    },
+    {
+      "id": "m1-01-05-xc16",
+      "bDecision": "rewrite",
+      "bPrompt": "공책 $24$권, 연필 $36$자루, 지우개 $30$개를 될 수 있는 대로 많은 사람에게 남김없이 똑같이 나누어 주려고 한다. 가장 많은 사람 수를 구하고, $24$와 $36$의 최대공약수인 $12$명으로 하면 안 되는 까닭을 쓰시오.",
+      "bAnswer": "세 수 $24$, $36$, $30$의 최대공약수인 $6$명이다. $12$명이면 지우개 $30$개는 $12$로 나누어떨어지지 않아 남는 것이 생기므로, 세 개수를 모두 나누어떨어지게 하는 수 가운데 가장 큰 수를 구해야 한다.",
+      "bGoal": "물건이 세 가지일 때 세 수 모두의 최대공약수를 구해야 함을 설명한다.",
+      "bReason": "제목 '물건이 세 가지일 때'는 무엇을 묻는지 없다. 두 수만의 최대공약수와 답이 달라지는 수를 골라 세 수 모두를 봐야 하는 까닭을 묻게 했다.",
+      "cDecision": "rewrite",
+      "cReason": "세 가지 물건, 세 개수, 가장 많은 사람 수가 문장에 모두 있어 빈칸의 뜻이 분명하다.",
+      "exampleNeeded": true,
+      "authorBatch": 2,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$24$, $36$, $30$ 세 수의 최대공약수 $6$명"
+          ]
+        },
+        {
+          "anyOf": [
+            "$12$명이면 지우개 $30$개가 $12$로 나누어떨어지지 않아 남는다"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-001",
+      "learningRole": "application",
+      "roleReason": "세 개수 모두의 최대공약수",
+      "enrichmentEvidence": "enrichment/enrich-003",
+      "sourceIndex": 1035,
+      "part": "m1plus",
+      "sourceFingerprint": "e2e0afbc8d522267fa1d05d3face003d62421d2902d9a429cee1f2ff834ed4c8",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1035
+      },
+      "directReview": null,
+      "cMarkedSentence": "물건이 세 가지일 때, 세 물건의 개수의 {최대공약수}를 구하면 남김없이 똑같이 나누어 줄 수 있는 가장 많은 사람 수를 알 수 있다.",
+      "cSlotAnswers": [
+        "최대공약수"
+      ],
+      "cStudentSentence": "물건이 세 가지일 때, 세 물건의 개수의 □를 구하면 남김없이 똑같이 나누어 줄 수 있는 가장 많은 사람 수를 알 수 있다.",
+      "cAnswers": [
+        "최대공약수"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "최대공약수",
+          "equivalentAnswers": [
+            "최대공약수"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "최대공약수"
+        ]
+      ],
+      "proposalFingerprint": "d0f5e0d24dbac374cc6c8f6b503f7f91e67baed8bae236292ab64bfdd278d417",
+      "cAfter": "물건이 세 가지일 때, 세 물건의 개수의 {최대공약수}를 구하면 남김없이 똑같이 나누어 줄 수 있는 가장 많은 사람 수를 알 수 있다.",
+      "coreAfter": "물건이 세 가지일 때, 세 물건의 개수의 {최대공약수}를 구하면 남김없이 똑같이 나누어 줄 수 있는 가장 많은 사람 수를 알 수 있다.",
+      "coreReason": "세개수는세물건각각의개수이며모두남김없이나눈다는조건을실제문장에명시한다."
+    },
+    {
+      "id": "m1-01-05-xc17",
+      "bDecision": "rewrite",
+      "bPrompt": "$18$과 $24$가 주어진 두 문제가 있다. (가) 가로 $24$ $\\mathrm{cm}$, 세로 $18$ $\\mathrm{cm}$인 종이를 남김없이 잘라 만드는 가장 큰 정사각형의 한 변의 길이 (나) $18$분, $24$분 간격으로 출발하는 두 버스가 함께 출발한 뒤 처음으로 다시 함께 출발할 때까지 걸리는 시간. 계산하기 전에, (가)와 (나)의 답이 $18$, $24$와 비교하여 각각 어떤 크기여야 하는지 쓰고 그 까닭을 쓰시오.",
+      "bAnswer": "(가)의 답은 $18$과 $24$의 공약수이다. 약수는 그 수보다 클 수 없으므로 답은 $18$보다 작거나 같다. (나)의 답은 $18$과 $24$의 공배수이다. 배수는 그 수보다 작을 수 없으므로 답은 $24$보다 크거나 같다. (실제 답은 $6$ $\\mathrm{cm}$, $72$분이다.)",
+      "bGoal": "공약수 문제와 공배수 문제의 답의 크기 범위를 알고 검산에 쓴다.",
+      "bReason": "제목만으로는 무엇과 비교한 크기인지 알 수 없다. 같은 두 수로 만든 공약수 문제와 공배수 문제를 나란히 주어 크기 범위와 까닭을 묻게 했다.",
+      "cDecision": "keep",
+      "cReason": "공약수 문제와 공배수 문제의 답의 크기를 대비시키는 짧은 문장이고 비교 대상(주어진 수들)이 문장에 있다.",
+      "exampleNeeded": true,
+      "authorBatch": 2,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "(가) 답은 $18$과 $24$의 공약수이므로 $18$보다 작거나 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "약수는 그 수보다 클 수 없다는 까닭"
+          ]
+        },
+        {
+          "anyOf": [
+            "(나) 답은 $18$과 $24$의 공배수이므로 $24$보다 크거나 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "배수는 그 수보다 작을 수 없다는 까닭"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-001",
+      "learningRole": "reason",
+      "roleReason": "약수는 작고 배수는 크다는 검산",
+      "enrichmentEvidence": "enrichment/enrich-003",
+      "sourceIndex": 1036,
+      "part": "m1plus",
+      "sourceFingerprint": "61b9246ba1440fa6c5ae57feb4a7e57044928d88c7ade3b09a2d1070abe5d8b9",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1036
+      },
+      "directReview": null,
+      "cFrozenSentence": "공약수를 구하는 문제의 답은 주어진 수들보다 □, 공배수를 구하는 문제의 답은 주어진 수들보다 □.",
+      "cFrozenDefinition": "공약수를 구하는 문제의 답은 주어진 수들보다 {작거나 같고}, 공배수를 구하는 문제의 답은 주어진 수들보다 {크거나 같다}.",
+      "cFrozenAnswers": [
+        "작거나 같고",
+        "크거나 같다"
+      ],
+      "cMarkedSentence": "공약수를 구하는 문제의 답은 주어진 수들보다 {작거나 같고}, 공배수를 구하는 문제의 답은 주어진 수들보다 {크거나 같다}.",
+      "cSlotAnswers": [
+        "작거나 같고",
+        "크거나 같다"
+      ],
+      "cStudentSentence": "공약수를 구하는 문제의 답은 주어진 수들보다 □, 공배수를 구하는 문제의 답은 주어진 수들보다 □.",
+      "cAnswers": [
+        "작거나 같고",
+        "크거나 같다"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "작거나 같고",
+          "equivalentAnswers": [
+            "작거나 같고",
+            "같거나 작고"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "크거나 같다",
+          "equivalentAnswers": [
+            "크거나 같다",
+            "같거나 크다"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "작거나 같고",
+          "accept": [
+            "같거나 작고"
+          ]
+        },
+        {
+          "answer": "크거나 같다",
+          "accept": [
+            "같거나 크다"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "작거나 같고",
+          "같거나 작고"
+        ],
+        [
+          "크거나 같다",
+          "같거나 크다"
+        ]
+      ],
+      "proposalFingerprint": "d3ac615faaf791177b7cd861d45a78bf3e6ddbbc08bf2718bd08b43dedaab52f"
+    },
+    {
+      "id": "m1-01-05-xc18",
+      "bDecision": "rewrite",
+      "bPrompt": "$50$을 나누면 $2$가 남고 $70$을 나누면 $6$이 남는 자연수 가운데 가장 큰 수를 구하려고 한다. 어떤 두 수의 최대공약수를 구해야 하는지 까닭과 함께 쓰고, 구한 수가 답이 되려면 어떤 크기 조건을 만족해야 하는지 확인하여 답을 쓰시오.",
+      "bAnswer": "구하는 수는 $50-2=48$과 $70-6=64$를 모두 나누어떨어지게 하므로 $48$과 $64$의 최대공약수인 $16$을 구한다. 나누는 수는 나머지보다 커야 하므로 $2$와 $6$보다 커야 하는데, $16$은 $6$보다 크므로 답은 $16$이다.",
+      "bGoal": "나머지가 다른 두 나눗셈을 나머지를 뺀 두 수의 최대공약수 문제로 바꾸고 나머지 조건을 확인한다.",
+      "bReason": "제목에는 어떤 수를 무엇으로 나누는지와 구하는 대상이 없다. 구체 수를 주고 '나머지를 뺀 수', '나머지보다 커야 함'을 답하게 했다.",
+      "cDecision": "rewrite",
+      "cReason": "$A$, $a$, $B$, $b$의 뜻이 문장 안에 있고 빈칸이 두 식이라 무엇을 써야 하는지 분명하다.",
+      "exampleNeeded": true,
+      "authorBatch": 2,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$50-2=48$과 $70-6=64$의 최대공약수를 구한다(구하는 수가 두 수를 모두 나누어떨어지게 하므로)"
+          ]
+        },
+        {
+          "anyOf": [
+            "나누는 수는 나머지보다 커야 하므로 $6$보다 커야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$16$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-001",
+      "learningRole": "procedure",
+      "roleReason": "나머지 뺀 두 수의 최대공약수",
+      "enrichmentEvidence": "enrichment/enrich-003",
+      "sourceIndex": 1037,
+      "part": "m1plus",
+      "sourceFingerprint": "f4073e91ebef97ea1b5008d725474ff96c8df5964279d380f78ca070bb1800f0",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1037
+      },
+      "directReview": null,
+      "cMarkedSentence": "두 자연수를 같은 자연수로 나누어, 각 수보다 작은 정해진 나머지가 남아야 한다. 각 수에서 그 나머지를 {뺀} 두 수의 최대공약수가 두 나머지 모두보다 {크면}, 그 최대공약수가 조건을 만족하는 가장 큰 나누는 수이다.",
+      "cSlotAnswers": [
+        "뺀",
+        "크면"
+      ],
+      "cStudentSentence": "두 자연수를 같은 자연수로 나누어, 각 수보다 작은 정해진 나머지가 남아야 한다. 각 수에서 그 나머지를 □ 두 수의 최대공약수가 두 나머지 모두보다 □, 그 최대공약수가 조건을 만족하는 가장 큰 나누는 수이다.",
+      "cAnswers": [
+        "뺀",
+        "크면"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "뺀",
+          "equivalentAnswers": [
+            "뺀"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "크면",
+          "equivalentAnswers": [
+            "크면"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "뺀"
+        ],
+        [
+          "크면"
+        ]
+      ],
+      "proposalFingerprint": "46962a5bbd4540707af079605e76dc3c9a971da2ebbcf744fbc757a7ae6b283e",
+      "cAfter": "두 자연수를 같은 자연수로 나누어, 각 수보다 작은 정해진 나머지가 남아야 한다. 각 수에서 그 나머지를 {뺀} 두 수의 최대공약수가 두 나머지 모두보다 {크면}, 그 최대공약수가 조건을 만족하는 가장 큰 나누는 수이다.",
+      "coreAfter": "두 자연수를 같은 자연수로 나누어, 각 수보다 작은 정해진 나머지가 남아야 한다. 각 수에서 그 나머지를 뺀 두 수의 {최대공약수}를 구한다. 이 수가 두 나머지 모두보다 {크면} 조건을 만족하는 가장 큰 나누는 수이고, 그렇지 않으면 조건을 만족하는 수가 없다.",
+      "coreReason": "순서없는두차의빈칸과불명확한A·a대신각수·그나머지의관계를밝히고,최대공약수가나머지이하이면해가없다는조건검사를명시한다. 나누어질수보다작은나머지조건으로차둘이자연수인범위를정한다."
+    },
+    {
+      "id": "m1-01-05-xc19",
+      "bDecision": "rewrite",
+      "bPrompt": "$4$일마다 하는 일과 $6$일마다 하는 일을 어느 월요일에 함께 했다. 두 일을 처음으로 다시 함께 하는 날은 며칠 뒤이며 무슨 요일인지, 구하는 과정을 설명하여 쓰시오.",
+      "bAnswer": "$4$와 $6$의 최소공배수가 $12$이므로 $12$일 후이다. 요일은 $7$일마다 되풀이되므로 $12$를 $7$로 나눈 나머지인 $5$일 후의 요일을 찾는다. 월요일의 $5$일 후는 토요일이다.",
+      "bGoal": "다시 겹치는 날을 최소공배수로 구하고 $7$로 나눈 나머지로 요일을 구한다.",
+      "bReason": "제목만으로는 무엇이 겹치는지, 시작 요일이 무엇인지 없다. 두 간격과 시작 요일을 주어 날수와 요일을 구하는 과정을 묻게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "각각 며칠마다 되풀이하는 두 일을 같은 날 함께 한 뒤 처음으로 다시 함께 하는 날은 두 간격의 {최소공배수}만큼 지난 날이다. 요일은 지난 날수를 {$7$}로 나눈 나머지의 날수만큼 지난 후의 요일로 구한다.",
+      "cAnswers": [
+        "최소공배수",
+        "$7$"
+      ],
+      "cReason": "뒤로옮겨세기는달력에서과거인지미래인지혼동할수있어나머지날수만큼지난후의요일이라고밝힌다.",
+      "exampleNeeded": true,
+      "authorBatch": 2,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$4$와 $6$의 최소공배수가 $12$이므로 $12$일 후"
+          ]
+        },
+        {
+          "anyOf": [
+            "요일은 $7$일마다 되풀이되므로 $12$를 $7$로 나눈 나머지인 $5$일 후의 요일을 찾는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "토요일"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-001",
+      "learningRole": "procedure",
+      "roleReason": "최소공배수를 7로 나눈 나머지",
+      "enrichmentEvidence": "enrichment/enrich-003",
+      "sourceIndex": 1038,
+      "part": "m1plus",
+      "sourceFingerprint": "5a6a725763676d99322da18b68a06a5f947a7911f44321a5c648ab7fe6ecfcf0",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1038
+      },
+      "directReview": null,
+      "cMarkedSentence": "각각 며칠마다 되풀이하는 두 일을 같은 날 함께 한 뒤 처음으로 다시 함께 하는 날은 두 간격의 {최소공배수}만큼 지난 날이다. 요일은 지난 날수를 {$7$}로 나눈 나머지의 날수만큼 지난 후의 요일로 구한다.",
+      "cSlotAnswers": [
+        "최소공배수",
+        "$7$"
+      ],
+      "cStudentSentence": "각각 며칠마다 되풀이하는 두 일을 같은 날 함께 한 뒤 처음으로 다시 함께 하는 날은 두 간격의 □만큼 지난 날이다. 요일은 지난 날수를 □로 나눈 나머지의 날수만큼 지난 후의 요일로 구한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "최소공배수",
+          "equivalentAnswers": [
+            "최소공배수"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$7$",
+          "equivalentAnswers": [
+            "$7$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "최소공배수"
+        ],
+        [
+          "$7$"
+        ]
+      ],
+      "proposalFingerprint": "553f7ee0026855656d261dc7d3489afb006ecfc333eea0ba7400926b31d732b3"
+    },
+    {
+      "id": "m1-01-05-xc20",
+      "bDecision": "rewrite",
+      "bPrompt": "최대공약수가 $6$, 최소공배수가 $36$인 두 자리 자연수 두 개를 구하려고 한다. 두 수를 $6\\times a$, $6\\times b$ ($a$, $b$는 자연수)로 놓을 때 $a$, $b$가 만족해야 하는 조건 두 가지를 쓰고, 두 수를 구하시오.",
+      "bAnswer": "조건은 $a\\times b=36\\div 6=6$이고 $a$, $b$가 서로소인 것이다. 이를 만족하는 $a$, $b$는 $1$과 $6$, $2$와 $3$이므로 두 수는 $6$과 $36$ 또는 $12$와 $18$이다. 두 자리 수는 $12$, $18$이다.",
+      "bGoal": "최대공약수와 최소공배수가 주어질 때 서로소인 두 수의 곱 조건으로 두 수를 찾는다.",
+      "bReason": "제목 '두 값으로 두 수 찾기'는 두 값이 무엇인지 말하지 않는다. 최대공약수와 최소공배수의 값을 주고 조건과 답을 묻게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "최대공약수가 $G$, 최소공배수가 $L$인 두 자연수를 $G\\times a$, $G\\times b$로 나타내려면, 자연수 $a$, $b$의 곱은 {$L\\div G$}이고 두 수는 {서로소}여야 한다.",
+      "cAnswers": [
+        "$L\\div G$",
+        "서로소"
+      ],
+      "cReason": "값의조건과a·b의서로소관계라는서로다른대상을두절로나누어명시하고L을G로나눈같은식만인정한다.",
+      "studentLabel": "최대공약수와 최소공배수로 두 수 찾기",
+      "exampleNeeded": true,
+      "authorBatch": 2,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$a\\times b=36\\div6=6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$a$와 $b$는 서로소"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 수는 $12$와 $18$"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-001",
+      "learningRole": "procedure",
+      "roleReason": "G×a, G×b와 서로소 조건",
+      "enrichmentEvidence": "enrichment/enrich-003",
+      "sourceIndex": 1039,
+      "part": "m1plus",
+      "sourceFingerprint": "8c78c5eadacca188aa3d93c3a78818e7c00df22baca6abbe2eb97e5256d16b62",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1039
+      },
+      "directReview": null,
+      "cMarkedSentence": "최대공약수가 $G$, 최소공배수가 $L$인 두 자연수를 $G\\times a$, $G\\times b$로 나타내려면, 자연수 $a$, $b$의 곱은 {$L\\div G$}이고 두 수는 {서로소}여야 한다.",
+      "cSlotAnswers": [
+        "$L\\div G$",
+        "서로소"
+      ],
+      "cStudentSentence": "최대공약수가 $G$, 최소공배수가 $L$인 두 자연수를 $G\\times a$, $G\\times b$로 나타내려면, 자연수 $a$, $b$의 곱은 □이고 두 수는 □여야 한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$L\\div G$",
+          "equivalentAnswers": [
+            "$L\\div G$",
+            "$\\frac{L}{G}$",
+            "$L/G$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "서로소",
+          "equivalentAnswers": [
+            "서로소"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$L\\div G$",
+          "$\\frac{L}{G}$",
+          "$L/G$"
+        ],
+        [
+          "서로소"
+        ]
+      ],
+      "proposalFingerprint": "f1598b36293bada2457476032337680fb0d06e3a2b6a16eb548fed993c9bc925"
+    },
+    {
+      "id": "m1-01-05-xc21",
+      "bDecision": "rewrite",
+      "bPrompt": "$1$부터 $60$까지의 자연수 가운데 $4$로는 나누어떨어지지만 $6$으로는 나누어떨어지지 않는 수의 개수를 구하려고 한다. 어떤 수의 개수에서 어떤 수의 개수를 빼야 하는지 설명하고, 답을 구하시오.",
+      "bAnswer": "$4$의 배수의 개수에서 $4$와 $6$의 공배수, 곧 $12$의 배수의 개수를 뺀다. $4$의 배수는 $60\\div 4=15$(개), $12$의 배수는 $60\\div 12=5$(개)이므로 $15-5=10$(개)이다.",
+      "bGoal": "한 수로만 나누어떨어지는 수의 개수를 배수의 개수에서 공배수의 개수를 빼어 구한다.",
+      "bReason": "제목의 '한 수로만'은 두 수 중 하나라는 전제가 숨어 있다. 범위와 두 수를 주고 무엇에서 무엇을 빼는지 묻게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "어떤 범위의 자연수 가운데 두 자연수 $a$, $b$ 중 $a$로만 나누어떨어지는 수의 개수는, $a$의 배수의 개수에서 $a$와 $b$의 {공배수}의 개수를 {빼어} 구한다.",
+      "cAnswers": [
+        "공배수",
+        "빼어"
+      ],
+      "cReason": "두나누는수도자연수임을밝히고공통인경우를빼는같은행위의활용형만인정한다.",
+      "exampleNeeded": true,
+      "authorBatch": 2,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$4$의 배수의 개수에서 $4$와 $6$의 공배수($12$의 배수)의 개수를 뺀다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$15-5=10$(개)"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-001",
+      "learningRole": "procedure",
+      "roleReason": "배수 개수에서 공배수 개수 뺌",
+      "enrichmentEvidence": "enrichment/enrich-003",
+      "sourceIndex": 1040,
+      "part": "m1plus",
+      "sourceFingerprint": "ea4e5992031fa5b754a431dbb4d13d4d1c76050f4f229720a833d85db4cb7828",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1040
+      },
+      "directReview": null,
+      "cMarkedSentence": "어떤 범위의 자연수 가운데 두 자연수 $a$, $b$ 중 $a$로만 나누어떨어지는 수의 개수는, $a$의 배수의 개수에서 $a$와 $b$의 {공배수}의 개수를 {빼어} 구한다.",
+      "cSlotAnswers": [
+        "공배수",
+        "빼어"
+      ],
+      "cStudentSentence": "어떤 범위의 자연수 가운데 두 자연수 $a$, $b$ 중 $a$로만 나누어떨어지는 수의 개수는, $a$의 배수의 개수에서 $a$와 $b$의 □의 개수를 □ 구한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "공배수",
+          "equivalentAnswers": [
+            "공배수"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "빼어",
+          "equivalentAnswers": [
+            "빼어",
+            "빼서",
+            "빼고"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "공배수"
+        ],
+        [
+          "빼어",
+          "빼서",
+          "빼고"
+        ]
+      ],
+      "proposalFingerprint": "c67755f2ee2566baf5433f07a958bbc803a04d3587ecde1ee2cb1f69694bd515"
+    },
+    {
+      "id": "m1-01-05-xc22",
+      "bDecision": "rewrite",
+      "bPrompt": "가로 $8$ $\\mathrm{cm}$, 세로 $12$ $\\mathrm{cm}$인 직사각형 종이가 있다. (가) 이 종이 한 장을 남김없이 잘라 크기가 같은 가장 큰 정사각형들을 만들 때 (나) 이 종이 여러 장을 같은 방향으로 빈틈없이 붙여 가장 작은 정사각형을 만들 때, 정사각형의 한 변의 길이를 각각 구하시오. 또 한쪽은 왜 최대공약수를, 다른 쪽은 왜 최소공배수를 쓰는지 비교하여 쓰시오.",
+      "bAnswer": "(가) $4$ $\\mathrm{cm}$: 한 변이 $8$과 $12$를 모두 나누어떨어지게 해야 하므로 공약수이고, 가장 커야 하므로 최대공약수이다. (나) $24$ $\\mathrm{cm}$: 한 변이 $8$의 배수이면서 $12$의 배수여야 하므로 공배수이고, 가장 작아야 하므로 최소공배수이다.",
+      "bGoal": "같은 직사각형에서 자르는 문제와 붙이는 문제를 구별하여 최대공약수와 최소공배수를 가려 쓴다.",
+      "bReason": "제목 '가르기'는 무엇을 구별하라는 것인지 드러나지 않는다. 같은 직사각형으로 자르기와 붙이기를 나란히 놓아 값과 까닭을 비교하게 했다.",
+      "cDecision": "rewrite",
+      "cReason": "자르기와 붙이기를 한 문장에서 대비시키는 짧은 비교이고, 상황이 문장에 다 있어 빈칸의 동작이 분명하다.",
+      "studentLabel": "자르기와 붙이기 구별하기",
+      "exampleNeeded": true,
+      "authorBatch": 2,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "(가) $4$ $\\mathrm{cm}$, (나) $24$ $\\mathrm{cm}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "(가) 한 변이 $8$과 $12$를 모두 나누어떨어지게 해야 하고 가장 커야 하므로 최대공약수"
+          ]
+        },
+        {
+          "anyOf": [
+            "(나) 한 변이 $8$과 $12$ 모두의 배수여야 하고 가장 작아야 하므로 최소공배수"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-001",
+      "learningRole": "application",
+      "roleReason": "자르면 최대공약수, 붙이면 최소공배수",
+      "enrichmentEvidence": "enrichment/enrich-003",
+      "sourceIndex": 1041,
+      "part": "m1plus",
+      "sourceFingerprint": "dbb2723343f5d29127ef9d1a513706cf64483d19d39562690c5f02064a52b255",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1041
+      },
+      "directReview": null,
+      "cMarkedSentence": "직사각형을 남김없이 {잘라} 크기가 같은 가장 큰 정사각형들을 만들면 가로와 세로 길이의 최대공약수를 쓴다. 크기가 같은 직사각형들을 같은 방향으로 빈틈없이 {붙여} 가장 작은 정사각형을 만들면 두 길이의 최소공배수를 쓴다.",
+      "cSlotAnswers": [
+        "잘라",
+        "붙여"
+      ],
+      "cStudentSentence": "직사각형을 남김없이 □ 크기가 같은 가장 큰 정사각형들을 만들면 가로와 세로 길이의 최대공약수를 쓴다. 크기가 같은 직사각형들을 같은 방향으로 빈틈없이 □ 가장 작은 정사각형을 만들면 두 길이의 최소공배수를 쓴다.",
+      "cAnswers": [
+        "잘라",
+        "붙여"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "잘라",
+          "equivalentAnswers": [
+            "잘라",
+            "나누어"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "붙여",
+          "equivalentAnswers": [
+            "붙여",
+            "이어 붙여"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "잘라",
+          "나누어"
+        ],
+        [
+          "붙여",
+          "이어 붙여"
+        ]
+      ],
+      "proposalFingerprint": "59f6f81e42600c06081956888550449a8e47d7a647dbcfd68e7e882e9c5a1f0c",
+      "cAfter": "직사각형을 남김없이 {잘라} 크기가 같은 가장 큰 정사각형들을 만들면 가로와 세로 길이의 최대공약수를 쓴다. 크기가 같은 직사각형들을 같은 방향으로 빈틈없이 {붙여} 가장 작은 정사각형을 만들면 두 길이의 최소공배수를 쓴다.",
+      "coreAfter": "가로와 세로 길이를 같은 단위의 자연수로 나타낸 직사각형을 다룬다. 한 장을 남김없이 {잘라} 크기가 같은 가장 큰 정사각형들을 만들면 두 길이의 최대공약수를 쓴다. 같은 직사각형들을 같은 방향으로 빈틈없이 {붙여} 가장 작은 정사각형을 만들면 두 길이의 최소공배수를 쓴다.",
+      "coreReason": "자르기는같은크기의조각,붙이기는같은방향의배치라는필요조건과공약수·공배수계산에쓰는길이단위를밝힌다."
+    }
+  ]
+}

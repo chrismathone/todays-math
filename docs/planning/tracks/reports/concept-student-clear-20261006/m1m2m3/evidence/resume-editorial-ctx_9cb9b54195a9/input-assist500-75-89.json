@@ -1,0 +1,1370 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T09:45:32.764Z",
+  "supplementalVerdicts": "evidence/assist-2400-2899-20261007/reviews.json",
+  "rows": [
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-05-02-xc12",
+        "section": "중2::5. 도형의 성질::직각삼각형의 합동",
+        "term": "합동인 직각삼각형의 대응",
+        "kind": "성질",
+        "level": "중",
+        "definition": "합동인 두 직각삼각형에서는 서로 대응하는 {변}끼리, 대응하는 {각}끼리 모두 같다.",
+        "studentC": "합동인 두 직각삼각형에서는 서로 대응하는 □끼리, 대응하는 □끼리 모두 같다.",
+        "answers": [
+          "변",
+          "각"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-02-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "합동인 두 삼각형에서 대응변의 길이끼리, 대응각의 크기끼리는 각각 어떤 관계인지 쓰시오. 또 $\\angle C=\\angle F=90^\\circ$인 $\\triangle ABC\\equiv\\triangle DEF$에서 $\\overline{AB}=10$ $\\mathrm{cm}$, $\\angle A=30^\\circ$일 때 $\\overline{DE}$의 길이와 $\\angle E$의 크기를 구하시오.",
+        "bAnswer": "대응변의 길이는 서로 같고 대응각의 크기도 서로 같다. $\\overline{DE}=\\overline{AB}=10$ $\\mathrm{cm}$이고, $\\angle D=\\angle A=30^\\circ$이므로 $\\angle E=90^\\circ-30^\\circ=60^\\circ$이다.",
+        "bGoal": "합동인 직각삼각형에서 대응변과 대응각 구하기",
+        "bReason": "xc5의 용어 뜻과 겹치지 않게 '같다'는 성질과 그 쓰임을 묻게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "대응변의 길이가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "대응각의 크기가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "변 $DE$는 $10$ $\\mathrm{cm}$, 각 $E$는 $60$도"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "짧은 낱말 빈칸이며 두 답은 순서와 관계없이 인정한다.",
+        "exampleNeeded": true,
+        "authorBatch": 41,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "application",
+        "roleReason": "대응변·대응각이 각각 같음",
+        "enrichmentEvidence": "enrichment/enrich-008",
+        "sourceIndex": 2812,
+        "part": "m2plus",
+        "sourceFingerprint": "bd49195594afd567289f56d445eb4ef1e346c2c03bedcd0f68abb170770a7ea5",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2812
+        },
+        "directReview": null,
+        "cFrozenSentence": "합동인 두 직각삼각형에서는 서로 대응하는 □끼리, 대응하는 □끼리 모두 같다.",
+        "cFrozenDefinition": "합동인 두 직각삼각형에서는 서로 대응하는 {변}끼리, 대응하는 {각}끼리 모두 같다.",
+        "cFrozenAnswers": [
+          "변",
+          "각"
+        ],
+        "cMarkedSentence": "합동인 두 직각삼각형에서는 서로 대응하는 {변}끼리, 대응하는 {각}끼리 모두 같다.",
+        "cSlotAnswers": [
+          "변",
+          "각"
+        ],
+        "cStudentSentence": "합동인 두 직각삼각형에서는 서로 대응하는 □끼리, 대응하는 □끼리 모두 같다.",
+        "cAnswers": [
+          "변",
+          "각"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "변",
+            "equivalentAnswers": [
+              "변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "각",
+            "equivalentAnswers": [
+              "각"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "변"
+          ],
+          [
+            "각"
+          ]
+        ],
+        "proposalFingerprint": "a54cc34c461234236c00e3c8a6306402e947f252cb4faf3401a71b95eca3a3d3"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-05-02-xc14",
+        "section": "중2::5. 도형의 성질::직각삼각형의 합동",
+        "term": "$\\mathrm{RHS}$ 합동의 증명",
+        "kind": "성질",
+        "level": "상",
+        "definition": "빗변과 다른 한 변이 같은 두 직각삼각형을, 같은 한 변을 겹치고 직각 꼭짓점을 맞추어 양쪽에 놓으면 {이등변삼각형}이 생긴다. 이것을 써서 $\\mathrm{RHS}$ 합동을 {증명}한다.",
+        "studentC": "빗변과 다른 한 변이 같은 두 직각삼각형을, 같은 한 변을 겹치고 직각 꼭짓점을 맞추어 양쪽에 놓으면 □이 생긴다. 이것을 써서 $\\mathrm{RHS}$ 합동을 □한다.",
+        "answers": [
+          "이등변삼각형",
+          "증명"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-02-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\angle C=\\angle F=90^\\circ$, $\\overline{AB}=\\overline{DE}$, $\\overline{AC}=\\overline{DF}$인 두 직각삼각형 $ABC$, $DEF$가 있다. 점 $A$와 $D$, 점 $C$와 $F$가 겹치도록 변 $AC$와 변 $DF$를 맞붙이고 점 $B$와 $E$가 서로 반대쪽에 오게 놓았다. 이때 생기는 삼각형 $ABE$가 어떤 삼각형인지 쓰고, 이를 이용하여 처음 두 직각삼각형이 합동인 이유를 설명하시오.",
+        "bAnswer": "$\\angle ACB+\\angle ACE=180^\\circ$이므로 $B$, $C$, $E$는 한 직선 위에 있고, $\\overline{AB}=\\overline{AE}$이므로 $\\triangle ABE$는 이등변삼각형이다. 따라서 $\\angle B=\\angle E$이고, 두 직각삼각형은 빗변의 길이와 한 예각의 크기가 각각 같으므로 $\\mathrm{RHA}$ 합동이다.",
+        "bGoal": "이등변삼각형을 만들어 RHS 합동 설명하기",
+        "bReason": "그림 없이 따라올 수 있게 어느 점끼리 겹치고 어느 쪽에 놓는지 정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "맞붙이면 두 빗변을 두 변으로 하는 이등변삼각형이 생긴다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 밑각이 같으므로 한 예각이 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "빗변과 한 예각이 같아 합동이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "빗변의 길이와 다른 한 변의 길이가 각각 같은 두 직각삼각형을, 길이가 같은 그 한 변끼리 맞붙여 놓으면 두 빗변을 두 변으로 하는 {이등변삼각형}이 생긴다. 이 삼각형의 두 {밑각}의 크기가 같음을 이용하면 두 직각삼각형은 $\\mathrm{RHA}$ 합동이다.",
+        "cAnswers": [
+          "이등변삼각형",
+          "밑각"
+        ],
+        "cReason": "'증명' 빈칸은 내용을 묻지 않아, 이등변삼각형의 어떤 성질을 쓰는지로 바꿨다.",
+        "studentLabel": "RHS 합동인 이유",
+        "authorBatch": 41,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "맞붙여 이등변삼각형 만듦",
+        "enrichmentEvidence": "enrichment/enrich-008",
+        "sourceIndex": 2814,
+        "part": "m2plus",
+        "sourceFingerprint": "c6a48f45f09e398d7dc5084a1dc2fa5bc167c24da0797534a077e261307c5ca8",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2814
+        },
+        "directReview": null,
+        "cMarkedSentence": "빗변의 길이와 다른 한 변의 길이가 각각 같은 두 직각삼각형을, 길이가 같은 그 한 변끼리 맞붙여 놓으면 두 빗변을 두 변으로 하는 {이등변삼각형}이 생긴다. 이 삼각형의 두 {밑각}의 크기가 같음을 이용하면 두 직각삼각형은 $\\mathrm{RHA}$ 합동이다.",
+        "cSlotAnswers": [
+          "이등변삼각형",
+          "밑각"
+        ],
+        "cStudentSentence": "빗변의 길이와 다른 한 변의 길이가 각각 같은 두 직각삼각형을, 길이가 같은 그 한 변끼리 맞붙여 놓으면 두 빗변을 두 변으로 하는 □이 생긴다. 이 삼각형의 두 □의 크기가 같음을 이용하면 두 직각삼각형은 $\\mathrm{RHA}$ 합동이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "이등변삼각형",
+            "equivalentAnswers": [
+              "이등변삼각형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "밑각",
+            "equivalentAnswers": [
+              "밑각"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "이등변삼각형"
+          ],
+          [
+            "밑각"
+          ]
+        ],
+        "proposalFingerprint": "6c5e3423a016b1af212514982d21840a41ed4bffd3e8c04d355b200e3bd2529f"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-05-02-xc15",
+        "section": "중2::5. 도형의 성질::직각삼각형의 합동",
+        "term": "같은 거리를 높이로 쓰기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "각의 이등분선 위의 점을 꼭짓점으로 하고 각의 두 변 위에 밑변을 잡은 두 삼각형은 {높이}가 {같다}. 그 점에서 두 변까지의 거리가 같기 때문이다.",
+        "studentC": "각의 이등분선 위의 점을 꼭짓점으로 하고 각의 두 변 위에 밑변을 잡은 두 삼각형은 □가 □. 그 점에서 두 변까지의 거리가 같기 때문이다.",
+        "answers": [
+          "높이",
+          "같다"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-02-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\triangle ABC$에서 $\\angle A$의 이등분선이 변 $BC$와 만나는 점을 $D$라 하자. $\\triangle ABD$와 $\\triangle ACD$에서 밑변을 각각 $\\overline{AB}$, $\\overline{AC}$로 볼 때 두 삼각형의 높이는 어떤 관계인지 쓰고 그 이유를 설명하시오. 또 점 $D$에서 변 $AB$까지의 거리가 $3$ $\\mathrm{cm}$이고 $\\overline{AC}=4$ $\\mathrm{cm}$일 때 $\\triangle ACD$의 넓이를 구하시오.",
+        "bAnswer": "두 높이는 같다. 점 $D$가 $\\angle A$의 이등분선 위에 있어 $D$에서 두 변을 포함하는 직선까지의 거리가 같고, 이 거리가 각 삼각형의 높이이기 때문이다. $\\triangle ACD$의 넓이는 $\\frac12\\times4\\times3=6\\,\\mathrm{cm}^2$이다.",
+        "bGoal": "이등분선 위의 점에서의 거리를 높이로 쓰기",
+        "bReason": "꼭짓점과 밑변이 추상적으로만 적혀 있어 흔히 쓰이는 삼각형 상황으로 특정했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 삼각형의 높이가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "이등분선 위의 점에서 두 변을 포함하는 직선까지의 거리가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "넓이는 $6\\,\\mathrm{cm}^2$이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$\\triangle ABC$에서 $\\angle A$의 이등분선이 $\\overline{BC}$와 만나는 점을 $D$라 하면, 점 $D$에서 두 변 $AB$, $AC$까지의 {거리}가 같으므로 $\\triangle ABD$와 $\\triangle ACD$는 밑변을 각각 $\\overline{AB}$, $\\overline{AC}$로 볼 때 {높이}가 같다.",
+        "cAnswers": [
+          "거리",
+          "높이"
+        ],
+        "cReason": "'점을 꼭짓점으로 하고 두 변 위에 밑변을 잡은 두 삼각형'은 그림 없이 떠올리기 어려웠다.",
+        "studentLabel": "각의 이등분선과 삼각형의 높이",
+        "exampleNeeded": true,
+        "authorBatch": 41,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "application",
+        "roleReason": "두 변까지 거리가 높이",
+        "enrichmentEvidence": "enrichment/enrich-008",
+        "notationReason": "수식 밖 ²와 갈라진 cm²를 하나의 표준 단위 수식으로 쓰고 높이는 밑변 포함 직선까지의 거리라고 명시한다.",
+        "sourceIndex": 2815,
+        "part": "m2plus",
+        "sourceFingerprint": "d264aed259b9aad169feedfa0738bc989d4a6c9dd1276e0c82ecf8025830bf06",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2815
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m2-05-02-xc15"
+        },
+        "cMarkedSentence": "$\\triangle ABC$에서 $\\angle A$의 이등분선이 $\\overline{BC}$와 만나는 점을 $D$라 하면, 점 $D$에서 두 변 $AB$, $AC$까지의 {거리}가 같으므로 $\\triangle ABD$와 $\\triangle ACD$는 밑변을 각각 $\\overline{AB}$, $\\overline{AC}$로 볼 때 {높이}가 같다.",
+        "cSlotAnswers": [
+          "거리",
+          "높이"
+        ],
+        "cStudentSentence": "$\\triangle ABC$에서 $\\angle A$의 이등분선이 $\\overline{BC}$와 만나는 점을 $D$라 하면, 점 $D$에서 두 변 $AB$, $AC$까지의 □가 같으므로 $\\triangle ABD$와 $\\triangle ACD$는 밑변을 각각 $\\overline{AB}$, $\\overline{AC}$로 볼 때 □가 같다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "거리",
+            "equivalentAnswers": [
+              "거리"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "높이",
+            "equivalentAnswers": [
+              "높이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "거리"
+          ],
+          [
+            "높이"
+          ]
+        ],
+        "proposalFingerprint": "916275fd78f6a39d919d0813c06bc2c44d91349270489ef00cb47a729f57240f"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-05-02-xc16",
+        "section": "중2::5. 도형의 성질::직각삼각형의 합동",
+        "term": "빗변이 같아야 쓰는 조건",
+        "kind": "성질",
+        "level": "상",
+        "definition": "직각삼각형의 합동 조건인 $\\mathrm{RHA}$와 $\\mathrm{RHS}$는 모두 {빗변}의 길이가 같아야 쓸 수 있다. 이 길이가 다르면 두 조건을 쓸 수 없다.",
+        "studentC": "직각삼각형의 합동 조건인 $\\mathrm{RHA}$와 $\\mathrm{RHS}$는 모두 □의 길이가 같아야 쓸 수 있다. 이 길이가 다르면 두 조건을 쓸 수 없다.",
+        "answers": [
+          "빗변"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-02-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "직각삼각형의 합동 조건 $\\mathrm{RHA}$와 $\\mathrm{RHS}$를 쓰려면 두 조건 모두에서 반드시 같아야 하는 것은 무엇인지 쓰시오. 또 $\\angle C=\\angle F=90^\\circ$인 $\\triangle ABC$와 $\\triangle DEF$에서 $\\angle A=\\angle D$, $\\overline{AC}=\\overline{DF}$일 때 이것을 $\\mathrm{RHA}$ 합동이라고 할 수 있는지 판단하시오.",
+        "bAnswer": "빗변의 길이가 같아야 한다. $\\overline{AC}$와 $\\overline{DF}$는 빗변이 아니므로 $\\mathrm{RHA}$ 합동이라고 할 수 없다. (이 두 삼각형은 한 변과 그 양 끝 각이 각각 같아 $\\mathrm{ASA}$ 합동이다.)",
+        "bGoal": "RHA·RHS에 빗변 조건이 꼭 필요함을 알기",
+        "bReason": "빗변이 아닌 변이 주어진 예를 넣어 조건 이름을 잘못 붙이는 오류를 가리게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "빗변의 길이가 같아야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 변이 빗변이 아니면 $\\mathrm{RHA}$라고 할 수 없다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "두 조건의 공통 조건 하나를 묻는 분명한 빈칸이다.",
+        "exampleNeeded": true,
+        "authorBatch": 41,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "빗변 같아야 RHA·RHS",
+        "enrichmentEvidence": "enrichment/enrich-008",
+        "sourceIndex": 2816,
+        "part": "m2plus",
+        "sourceFingerprint": "853d328ac290dff7de6651a49a220db927decac35b61e960dd04b187e66a3ad1",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2816
+        },
+        "directReview": null,
+        "cFrozenSentence": "직각삼각형의 합동 조건인 $\\mathrm{RHA}$와 $\\mathrm{RHS}$는 모두 □의 길이가 같아야 쓸 수 있다. 이 길이가 다르면 두 조건을 쓸 수 없다.",
+        "cFrozenDefinition": "직각삼각형의 합동 조건인 $\\mathrm{RHA}$와 $\\mathrm{RHS}$는 모두 {빗변}의 길이가 같아야 쓸 수 있다. 이 길이가 다르면 두 조건을 쓸 수 없다.",
+        "cFrozenAnswers": [
+          "빗변"
+        ],
+        "cMarkedSentence": "직각삼각형의 합동 조건인 $\\mathrm{RHA}$와 $\\mathrm{RHS}$는 모두 {빗변}의 길이가 같아야 쓸 수 있다. 이 길이가 다르면 두 조건을 쓸 수 없다.",
+        "cSlotAnswers": [
+          "빗변"
+        ],
+        "cStudentSentence": "직각삼각형의 합동 조건인 $\\mathrm{RHA}$와 $\\mathrm{RHS}$는 모두 □의 길이가 같아야 쓸 수 있다. 이 길이가 다르면 두 조건을 쓸 수 없다.",
+        "cAnswers": [
+          "빗변"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "빗변",
+            "equivalentAnswers": [
+              "빗변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "빗변"
+          ]
+        ],
+        "proposalFingerprint": "2fbe1758bd7e25b3bb6a6d2a434f14116950568c2af70b2d26d8c6cfc0933cd8"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-05-03-xc10",
+        "section": "중2::5. 도형의 성질::삼각형의 외심",
+        "term": "외심에서 본 변의 각",
+        "kind": "성질",
+        "level": "중",
+        "definition": "예각삼각형의 외심 $O$에 대해 $\\angle BOC$는 $\\angle A$의 {$2$배}이다.",
+        "example": {
+          "prompt": "예각삼각형 $ABC$의 외심 $O$에서 $\\angle A=50^\\circ$일 때 $\\angle BOC$",
+          "answer": "$100^\\circ$"
+        },
+        "studentC": "예각삼각형의 외심 $O$에 대해 $\\angle BOC$는 $\\angle A$의 □이다.",
+        "answers": [
+          "$2$배"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-03-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "예각삼각형 $ABC$의 외심을 $O$라 할 때, $\\angle BOC$의 크기와 $\\angle A$의 크기 사이의 관계를 식으로 쓰시오.",
+        "bAnswer": "$\\angle BOC=2\\angle A$",
+        "bGoal": "$\\angle BOC$와 $\\angle A$의 관계 알기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\angle BOC=2\\angle A$",
+              "$\\angle A=\\frac{1}{2}\\angle BOC$"
+            ]
+          }
+        ],
+        "bReason": "그 관계가 왜 성립하는지는 xc15에서 묻고, 여기서는 관계식만 답하게 해 역할을 나누었다.",
+        "cDecision": "keep",
+        "cReason": "두 각이 기호로 정해져 있어 배수 관계 하나를 묻는 짧은 비교 빈칸이다.",
+        "learningRole": "definition",
+        "roleReason": "중심각과 $\\angle A$의 관계",
+        "authorBatch": 42,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2831,
+        "part": "m2plus",
+        "sourceFingerprint": "99d9253723e2c64459adf3a1c67012e37fa09c40e84ae446d553fd587905165f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2831
+        },
+        "directReview": null,
+        "cFrozenSentence": "예각삼각형의 외심 $O$에 대해 $\\angle BOC$는 $\\angle A$의 □이다.",
+        "cFrozenDefinition": "예각삼각형의 외심 $O$에 대해 $\\angle BOC$는 $\\angle A$의 {$2$배}이다.",
+        "cFrozenAnswers": [
+          "$2$배"
+        ],
+        "cMarkedSentence": "예각삼각형의 외심 $O$에 대해 $\\angle BOC$는 $\\angle A$의 {$2$배}이다.",
+        "cSlotAnswers": [
+          "$2$배"
+        ],
+        "cStudentSentence": "예각삼각형의 외심 $O$에 대해 $\\angle BOC$는 $\\angle A$의 □이다.",
+        "cAnswers": [
+          "$2$배"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$2$배",
+            "equivalentAnswers": [
+              "$2$배",
+              "두 배"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$2$배",
+            "accept": [
+              "두 배"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$2$배",
+            "두 배"
+          ]
+        ],
+        "proposalFingerprint": "324476ea00f780533bc8d79ce3b48c34f68b87db94e00178693de71d7fb007a5"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-05-03-xc16",
+        "section": "중2::5. 도형의 성질::삼각형의 외심",
+        "term": "둔각삼각형에서 외심의 각",
+        "kind": "성질",
+        "level": "상",
+        "definition": "둔각삼각형은 외심이 바깥에 있으므로 각을 구하기 전에 그림을 그려 외심의 {위치}를 먼저 {확인}한다.",
+        "studentC": "둔각삼각형은 외심이 바깥에 있으므로 각을 구하기 전에 그림을 그려 외심의 □를 먼저 □한다.",
+        "answers": [
+          "위치",
+          "확인"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-03-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "둔각삼각형에서 외심을 이용해 각의 크기를 구하려고 한다. 예각삼각형처럼 '외심과 세 꼭짓점을 이으면 각 내각이 둘로 나뉜다'고 그대로 생각하면 안 되는 이유와, 각을 구하기 전에 먼저 해야 할 일을 쓰시오.",
+        "bAnswer": "둔각삼각형의 외심은 삼각형의 외부에 있으므로, 외심과 꼭짓점을 이은 선분이 내각을 나누지 않고 각의 관계가 합이 아닌 차로 바뀌는 경우가 있다. 그래서 그림을 그려 외심의 위치를 먼저 확인해야 한다.",
+        "bGoal": "둔각삼각형에서 외심의 위치를 먼저 확인하는 이유 알기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "외심이 삼각형의 외부에 있다",
+              "외심이 바깥에 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "내각이 나뉘지 않는다",
+              "각의 관계가 합이 아닌 차가 된다",
+              "예각삼각형의 관계가 그대로 성립하지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "그림을 그려 외심의 위치를 확인한다"
+            ]
+          }
+        ],
+        "bReason": "'위치를 확인한다'는 절차만으로는 배울 점이 약해서, 예각삼각형과의 차이와 이유를 묻도록 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "둔각삼각형의 외심은 삼각형의 {외부}에 있으므로, 외심을 이용해 각의 크기를 구하기 전에 그림을 그려 외심의 {위치}를 먼저 확인한다.",
+        "cAnswers": [
+          "외부",
+          "위치"
+        ],
+        "cReason": "메타 동사 빈칸 '확인'을 빼고 외심이 바깥에 있다는 수학적 사실을 빈칸으로 바꾸었다.",
+        "learningRole": "reason",
+        "roleReason": "외심이 밖일 때 주의할 이유",
+        "authorBatch": 42,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2837,
+        "part": "m2plus",
+        "sourceFingerprint": "2943834e7295c535c09a668856c745f70d960317cff4439de15c172bbb507b59",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2837
+        },
+        "directReview": null,
+        "cMarkedSentence": "둔각삼각형의 외심은 삼각형의 {외부}에 있으므로, 외심을 이용해 각의 크기를 구하기 전에 그림을 그려 외심의 {위치}를 먼저 확인한다.",
+        "cSlotAnswers": [
+          "외부",
+          "위치"
+        ],
+        "cStudentSentence": "둔각삼각형의 외심은 삼각형의 □에 있으므로, 외심을 이용해 각의 크기를 구하기 전에 그림을 그려 외심의 □를 먼저 확인한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "외부",
+            "equivalentAnswers": [
+              "외부",
+              "밖",
+              "바깥"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "위치",
+            "equivalentAnswers": [
+              "위치"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "외부",
+            "accept": [
+              "밖",
+              "바깥"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "외부",
+            "밖",
+            "바깥"
+          ],
+          [
+            "위치"
+          ]
+        ],
+        "proposalFingerprint": "419eceb86e8c580e837acbbbd68b493fea81ab95c754a8620e5d7e4365a2ea83"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-05-05-xc4",
+        "section": "중2::5. 도형의 성질::평행사변형의 성질",
+        "term": "마주 보는 변 찾기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "사각형에서 한 변과 마주 보는 변은 그 변과 {만나지 않는} 변이다. 한 변과 꼭짓점을 같이 쓰는 두 변은 {이웃한} 변이다.",
+        "example": {
+          "prompt": "$\\square ABCD$에서 $\\overline{AD}$와 마주 보는 변은?",
+          "answer": "$\\overline{BC}$"
+        },
+        "studentC": "사각형에서 한 변과 마주 보는 변은 그 변과 □ 변이다. 한 변과 꼭짓점을 같이 쓰는 두 변은 □ 변이다.",
+        "answers": [
+          "만나지 않는",
+          "이웃한"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-05-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\square ABCD$에서 변 $AD$와 마주 보는 변, 변 $AD$와 이웃한 변을 각각 모두 쓰고, 두 종류를 무엇으로 구별하는지 쓰시오.",
+        "bAnswer": "마주 보는 변은 $\\overline{BC}$, 이웃한 변은 $\\overline{AB}$, $\\overline{DC}$이다. 변 $AD$와 만나지 않으면 마주 보는 변, 꼭짓점을 같이 쓰면 이웃한 변이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "마주 보는 변은 $\\overline{BC}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "이웃한 변은 $\\overline{AB}$, $\\overline{DC}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "만나지 않으면 마주 보는 변, 꼭짓점을 같이 쓰면 이웃한 변"
+            ]
+          }
+        ],
+        "bGoal": "마주 보는 변과 이웃한 변 구별",
+        "bReason": "한 변을 정해 두 종류의 변을 모두 찾고 구별 기준까지 쓰게 했다.",
+        "cDecision": "keep",
+        "cReason": "만나지 않음과 꼭짓점 공유라는 구별 기준을 짧게 대비하는 분명한 빈칸이다.",
+        "learningRole": "procedure",
+        "roleReason": "마주 보는 변과 이웃한 변 찾는 기준",
+        "authorBatch": 43,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2862,
+        "part": "m2plus",
+        "sourceFingerprint": "edc7719565d4563407c48ab5acdc61196b7265e68f5d7806ca7792ac07c2a5be",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2862
+        },
+        "directReview": null,
+        "cFrozenSentence": "사각형에서 한 변과 마주 보는 변은 그 변과 □ 변이다. 한 변과 꼭짓점을 같이 쓰는 두 변은 □ 변이다.",
+        "cFrozenDefinition": "사각형에서 한 변과 마주 보는 변은 그 변과 {만나지 않는} 변이다. 한 변과 꼭짓점을 같이 쓰는 두 변은 {이웃한} 변이다.",
+        "cFrozenAnswers": [
+          "만나지 않는",
+          "이웃한"
+        ],
+        "cMarkedSentence": "사각형에서 한 변과 마주 보는 변은 그 변과 {만나지 않는} 변이다. 한 변과 꼭짓점을 같이 쓰는 두 변은 {이웃한} 변이다.",
+        "cSlotAnswers": [
+          "만나지 않는",
+          "이웃한"
+        ],
+        "cStudentSentence": "사각형에서 한 변과 마주 보는 변은 그 변과 □ 변이다. 한 변과 꼭짓점을 같이 쓰는 두 변은 □ 변이다.",
+        "cAnswers": [
+          "만나지 않는",
+          "이웃한"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "만나지 않는",
+            "equivalentAnswers": [
+              "만나지 않는"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "이웃한",
+            "equivalentAnswers": [
+              "이웃한"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "만나지 않는"
+          ],
+          [
+            "이웃한"
+          ]
+        ],
+        "proposalFingerprint": "7944174b775f67a49f31f78bf5298016ac35e759de11a74c79af0718849e515f"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-05-05-xc12",
+        "section": "중2::5. 도형의 성질::평행사변형의 성질",
+        "term": "대각선이 만드는 네 삼각형",
+        "kind": "성질",
+        "level": "중",
+        "definition": "평행사변형의 두 대각선은 넓이가 모두 {같은} {네} 삼각형을 만든다.",
+        "studentC": "평행사변형의 두 대각선은 넓이가 모두 □ □ 삼각형을 만든다.",
+        "answers": [
+          "같은",
+          "네"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-05-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "평행사변형 $ABCD$의 두 대각선이 점 $O$에서 만날 때, $\\triangle OAB$와 $\\triangle OBC$의 넓이가 같은 까닭을 쓰시오.",
+        "bAnswer": "$\\overline{OA}=\\overline{OC}$이고, 두 삼각형은 밑변 $\\overline{OA}$, $\\overline{OC}$에 대한 높이(점 $B$에서 $\\overline{AC}$까지의 거리)가 같으므로 넓이가 같다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{OA}=\\overline{OC}$",
+              "$O$가 $\\overline{AC}$의 중점"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이가 같다",
+              "점 $B$에서 $\\overline{AC}$까지의 거리가 같다"
+            ]
+          }
+        ],
+        "bGoal": "네 삼각형의 넓이가 같은 까닭",
+        "bReason": "'네', '같은' 암기 대신 이웃한 두 삼각형의 넓이가 같은 근거를 묻게 했다.",
+        "cDecision": "exclude",
+        "cReason": "네 삼각형 넓이 빈칸은 m2-05-06-c8 C와 겹친다.",
+        "exclusionReason": "C 제외: '같은', '네' 빈칸이 m2-05-06-c8 C의 네 삼각형 넓이 내용과 중복이고, '네'는 대각선 두 개면 보이는 개수 암기다.",
+        "learningRole": "reason",
+        "roleReason": "밑변과 높이로 넓이가 같음 설명",
+        "authorBatch": 43,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2866,
+        "part": "m2plus",
+        "sourceFingerprint": "141515466d1834dbdbfd98c9a0b3fa033d3a6221fc74f660153d8c45d4cce7fd",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2866
+        },
+        "directReview": null,
+        "proposalFingerprint": "6336f64c14cc2ed6336ee8158beff76a3583a887da41b39bc4200fa8ae35c3bc"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-05-05-xc16",
+        "section": "중2::5. 도형의 성질::평행사변형의 성질",
+        "term": "평행사변형에서 각의 이등분선이 자르는 길이",
+        "kind": "방법",
+        "level": "상",
+        "definition": "평행사변형에서 한 내각의 이등분선이 변을 두 조각으로 나누면, 한 조각은 그 변과 이웃한 변과 길이가 {같고}, 남은 조각은 이웃한 두 변의 길이의 {차}이다.",
+        "example": {
+          "prompt": "평행사변형 $ABCD$에서 $\\angle A$의 이등분선이 $\\overline{BC}$와 $E$에서 만난다. $\\overline{AB}=5$, $\\overline{BC}=8$일 때 $\\overline{EC}$",
+          "answer": "$3$"
+        },
+        "studentC": "평행사변형에서 한 내각의 이등분선이 변을 두 조각으로 나누면, 한 조각은 그 변과 이웃한 변과 길이가 □, 남은 조각은 이웃한 두 변의 길이의 □이다.",
+        "answers": [
+          "같고",
+          "차"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-05-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "평행사변형 $ABCD$에서 $\\angle A$의 이등분선이 $\\overline{BC}$와 점 $E$에서 만난다. $\\overline{AB}=5$, $\\overline{BC}=8$일 때 $\\overline{EC}$의 길이를 구하고, $\\overline{BE}$의 길이를 어떻게 알았는지 쓰시오.",
+        "bAnswer": "$\\triangle ABE$는 $\\overline{BA}=\\overline{BE}$인 이등변삼각형이므로 $\\overline{BE}=5$이고, $\\overline{EC}=8-5=3$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{EC}=3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{BE}=\\overline{AB}=5$",
+              "$\\triangle ABE$가 이등변삼각형"
+            ]
+          }
+        ],
+        "bGoal": "이등분선이 자르는 선분 길이 구하기",
+        "bReason": "이웃한 변·조각의 지칭이 모호해 점 위치와 길이를 주고 근거를 함께 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "평행사변형 $ABCD$에서 $\\angle A$의 이등분선이 $\\overline{BC}$와 점 $E$에서 만나면 $\\overline{BE}=$ {$\\overline{AB}$}이므로, $\\overline{EC}$는 두 변 $\\overline{BC}$와 $\\overline{AB}$의 길이의 {차}이다.",
+        "cAnswers": [
+          "$\\overline{AB}$",
+          "차"
+        ],
+        "cReason": "'한 조각', '그 변과 이웃한 변'이 어느 선분인지 모호해 점과 선분 이름으로 밝혔다.",
+        "coreAfter": "평행사변형 $ABCD$에서 $\\angle A$의 이등분선이 $\\overline{BC}$와 점 $E$에서 만나면 $\\overline{BE}$는 $\\overline{AB}$와 길이가 {같고}, $\\overline{EC}$는 이웃한 두 변 $\\overline{BC}$, $\\overline{AB}$의 길이의 {차}이다.",
+        "coreReason": "'그 변과 이웃한 변'이 어느 조각과 어느 변인지 모호해 점과 선분 이름으로 범위를 밝혔다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "이등변삼각형 성질로 선분 길이 구하기",
+        "authorBatch": 43,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2870,
+        "part": "m2plus",
+        "sourceFingerprint": "bfcf9a31e817c6cc897a72d4434271ea4f80ebb0f7e14c9b457fccc62716a087",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2870
+        },
+        "directReview": null,
+        "coreBeforeRepair": "평행사변형 $ABCD$에서 $\\angle A$의 이등분선이 $\\overline{BC}$와 점 $E$에서 만나면 $\\overline{BE}$는 $\\overline{AB}$와 길이가 {같고}, $\\overline{EC}$는 이웃한 두 변 $\\overline{BC}$, $\\overline{AB}$의 길이의 {차}이다.",
+        "coreRepairReason": "숫자 없이 점 이름으로 조각과 변의 대응을 밝혀 일반 방법을 유지했다. 원본 핵심어 {같고}, {차}는 그대로 두었다. 이미 좋은 형식이라 보존한다.",
+        "coreRepairEvidence": "core-repair/core-005",
+        "cMarkedSentence": "평행사변형 $ABCD$에서 $\\angle A$의 이등분선이 $\\overline{BC}$와 점 $E$에서 만나면 $\\overline{BE}=$ {$\\overline{AB}$}이므로, $\\overline{EC}$는 두 변 $\\overline{BC}$와 $\\overline{AB}$의 길이의 {차}이다.",
+        "cSlotAnswers": [
+          "$\\overline{AB}$",
+          "차"
+        ],
+        "cStudentSentence": "평행사변형 $ABCD$에서 $\\angle A$의 이등분선이 $\\overline{BC}$와 점 $E$에서 만나면 $\\overline{BE}=$ □이므로, $\\overline{EC}$는 두 변 $\\overline{BC}$와 $\\overline{AB}$의 길이의 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\overline{AB}$",
+            "equivalentAnswers": [
+              "$\\overline{AB}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "차",
+            "equivalentAnswers": [
+              "차"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\overline{AB}$"
+          ],
+          [
+            "차"
+          ]
+        ],
+        "proposalFingerprint": "60182759a465d50ba101145951a423d636a8da1b2d7bead5b9f8fbb58ca86462"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-05-05-xc21",
+        "section": "중2::5. 도형의 성질::평행사변형의 성질",
+        "term": "엇각으로 각 구하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$\\overline{AD}\\parallel\\overline{BC}$이므로 $\\angle DAC$와 $\\angle ACB$는 {엇각}이라 크기가 {같다}.",
+        "studentC": "$\\overline{AD}\\parallel\\overline{BC}$이므로 $\\angle DAC$와 $\\angle ACB$는 □이라 크기가 □.",
+        "answers": [
+          "엇각",
+          "같다"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-05-xc21",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "이 엇각 쌍은 xc5 B에서 찾는 두 쌍 가운데 하나라 목표가 겹친다.",
+        "cDecision": "keep",
+        "cReason": "평행 조건이 보이고 각의 관계 이름과 결론만 묻는 짧은 빈칸이다.",
+        "exclusionReason": "B 제외: $\\angle DAC$와 $\\angle ACB$의 엇각 관계는 m2-05-05-xc5 B의 엇각 두 쌍 찾기에 포함되는 목표 중복.",
+        "learningRole": "application",
+        "roleReason": "평행한 두 변의 엇각으로 같은 각 찾기",
+        "authorBatch": 43,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2873,
+        "part": "m2plus",
+        "sourceFingerprint": "94ac51f18d686dc877627fd4957b6466753dd2562680d1b0b22d6017b5126598",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2873
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "$\\overline{AD}\\parallel\\overline{BC}$이므로 $\\angle DAC$와 $\\angle ACB$는 □이라 크기가 □.",
+        "cFrozenDefinition": "$\\overline{AD}\\parallel\\overline{BC}$이므로 $\\angle DAC$와 $\\angle ACB$는 {엇각}이라 크기가 {같다}.",
+        "cFrozenAnswers": [
+          "엇각",
+          "같다"
+        ],
+        "cMarkedSentence": "$\\overline{AD}\\parallel\\overline{BC}$이므로 $\\angle DAC$와 $\\angle ACB$는 {엇각}이라 크기가 {같다}.",
+        "cSlotAnswers": [
+          "엇각",
+          "같다"
+        ],
+        "cStudentSentence": "$\\overline{AD}\\parallel\\overline{BC}$이므로 $\\angle DAC$와 $\\angle ACB$는 □이라 크기가 □.",
+        "cAnswers": [
+          "엇각",
+          "같다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "엇각",
+            "equivalentAnswers": [
+              "엇각"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "같다",
+            "equivalentAnswers": [
+              "같다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "엇각"
+          ],
+          [
+            "같다"
+          ]
+        ],
+        "proposalFingerprint": "1216b74beac18e16d933dd7c6d57f007c5269f181a62a54cf3d0b007dd3477c7"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-05-06-xc2",
+        "section": "중2::5. 도형의 성질::평행사변형이 되는 조건",
+        "term": "$\\square ABCD$의 대변의 길이 조건을 기호로",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$\\square ABCD$에서 대변의 길이 조건은 $\\overline{AB}=$ {$\\overline{DC}$}, $\\overline{AD}=$ {$\\overline{BC}$}이다. 두 식이 모두 성립하면 $\\square ABCD$는 평행사변형이다.",
+        "studentC": "$\\square ABCD$에서 대변의 길이 조건은 $\\overline{AB}=$ □, $\\overline{AD}=$ □이다. 두 식이 모두 성립하면 $\\square ABCD$는 평행사변형이다.",
+        "answers": [
+          "$\\overline{DC}$",
+          "$\\overline{BC}$"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-06-xc2",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "대변 길이 조건은 c3 B에서 판별 조건으로 묻는다.",
+        "cDecision": "keep",
+        "cReason": "꼭짓점 이름에서 대변을 기호로 찾는 짧은 빈칸으로 c3 C와 형태가 다르다.",
+        "exclusionReason": "B 제외: 대변의 길이 조건을 기호로 쓰는 목표가 m2-05-06-c3 B 및 m2-05-05-c5 B와 중복.",
+        "learningRole": "naming",
+        "roleReason": "대변 길이 조건을 기호로 쓰기",
+        "authorBatch": 43,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2875,
+        "part": "m2plus",
+        "sourceFingerprint": "6c5bb42f7c37453b210f765458b1e2a9930b070243b994d197a720ae29c3f112",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2875
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "$\\square ABCD$에서 대변의 길이 조건은 $\\overline{AB}=$ □, $\\overline{AD}=$ □이다. 두 식이 모두 성립하면 $\\square ABCD$는 평행사변형이다.",
+        "cFrozenDefinition": "$\\square ABCD$에서 대변의 길이 조건은 $\\overline{AB}=$ {$\\overline{DC}$}, $\\overline{AD}=$ {$\\overline{BC}$}이다. 두 식이 모두 성립하면 $\\square ABCD$는 평행사변형이다.",
+        "cFrozenAnswers": [
+          "$\\overline{DC}$",
+          "$\\overline{BC}$"
+        ],
+        "cMarkedSentence": "$\\square ABCD$에서 대변의 길이 조건은 $\\overline{AB}=$ {$\\overline{DC}$}, $\\overline{AD}=$ {$\\overline{BC}$}이다. 두 식이 모두 성립하면 $\\square ABCD$는 평행사변형이다.",
+        "cSlotAnswers": [
+          "$\\overline{DC}$",
+          "$\\overline{BC}$"
+        ],
+        "cStudentSentence": "$\\square ABCD$에서 대변의 길이 조건은 $\\overline{AB}=$ □, $\\overline{AD}=$ □이다. 두 식이 모두 성립하면 $\\square ABCD$는 평행사변형이다.",
+        "cAnswers": [
+          "$\\overline{DC}$",
+          "$\\overline{BC}$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\overline{DC}$",
+            "equivalentAnswers": [
+              "$\\overline{DC}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\overline{BC}$",
+            "equivalentAnswers": [
+              "$\\overline{BC}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\overline{DC}$"
+          ],
+          [
+            "$\\overline{BC}$"
+          ]
+        ],
+        "proposalFingerprint": "392731c11be19fc33dc8086f0b8095b0c6565bdddc915a4154e6aa49a806e862"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-05-06-xc8",
+        "section": "중2::5. 도형의 성질::평행사변형이 되는 조건",
+        "term": "뜻과 조건",
+        "kind": "성질",
+        "level": "하",
+        "definition": "평행사변형의 {뜻}은 두 쌍의 대변이 평행한 것이고, 나머지 조건들은 그 뜻에서 {이끌어 낸} 것이다.",
+        "studentC": "평행사변형의 □은 두 쌍의 대변이 평행한 것이고, 나머지 조건들은 그 뜻에서 □ 것이다.",
+        "answers": [
+          "뜻",
+          "이끌어 낸"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-06-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "평행사변형의 뜻을 쓰고, '두 쌍의 대변의 길이가 각각 같다'와 같은 다른 평행사변형 조건은 그 뜻과 어떤 관계인지 쓰시오.",
+        "bAnswer": "뜻은 두 쌍의 대변이 각각 평행한 사각형이다. 다른 조건들은 그 조건을 만족하면 두 쌍의 대변이 평행해짐을 삼각형의 합동 등으로 증명하여 이끌어 낸 것이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 쌍의 대변이 각각 평행"
+            ]
+          },
+          {
+            "anyOf": [
+              "뜻에서 증명하여 이끌어 낸 것",
+              "조건을 만족하면 두 쌍의 대변이 평행함을 보일 수 있다"
+            ]
+          }
+        ],
+        "bGoal": "뜻과 판별 조건의 관계",
+        "bReason": "뜻과 조건의 차이를 구체 조건 하나를 예로 들어 관계로 답하게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "평행사변형의 {뜻}은 두 쌍의 대변이 각각 평행한 것이고, 나머지 평행사변형이 되는 조건들은 이것에서 증명하여 이끌어 낸 것이다.",
+        "cAnswers": [
+          "뜻"
+        ],
+        "cReason": "첫 빈칸 답 '뜻'이 뒤의 '그 뜻에서'에 보여 베낄 수 있어 지칭을 바꾸고 빈칸을 줄였다.",
+        "studentLabel": "평행사변형의 뜻과 조건",
+        "learningRole": "reason",
+        "roleReason": "정의와 증명한 조건의 관계",
+        "authorBatch": 43,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2881,
+        "part": "m2plus",
+        "sourceFingerprint": "cd3486fae48107b6bad78335b1c889905c9e5d7980292b5693277beb038e2957",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2881
+        },
+        "directReview": null,
+        "cMarkedSentence": "평행사변형의 {뜻}은 두 쌍의 대변이 각각 평행한 것이고, 나머지 평행사변형이 되는 조건들은 이것에서 증명하여 이끌어 낸 것이다.",
+        "cSlotAnswers": [
+          "뜻"
+        ],
+        "cStudentSentence": "평행사변형의 □은 두 쌍의 대변이 각각 평행한 것이고, 나머지 평행사변형이 되는 조건들은 이것에서 증명하여 이끌어 낸 것이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "뜻",
+            "equivalentAnswers": [
+              "뜻",
+              "정의"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "뜻",
+            "accept": [
+              "정의"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "뜻",
+            "정의"
+          ]
+        ],
+        "proposalFingerprint": "5996380ad43469d61f07e86bd3a24916ffebb2e28868938432e0d0fe3f5edb29"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-05-06-xc13",
+        "section": "중2::5. 도형의 성질::평행사변형이 되는 조건",
+        "term": "같은 길이를 잘라 만든 평행사변형",
+        "kind": "성질",
+        "level": "중",
+        "definition": "평행사변형 $ABCD$의 $\\overline{AD}$, $\\overline{BC}$의 내부에 $\\overline{AE}=\\overline{CF}$인 점 $E$, $F$를 잡으면 $\\square AFCE$도 {평행사변형}이다.",
+        "studentC": "평행사변형 $ABCD$의 $\\overline{AD}$, $\\overline{BC}$의 내부에 $\\overline{AE}=\\overline{CF}$인 점 $E$, $F$를 잡으면 $\\square AFCE$도 □이다.",
+        "answers": [
+          "평행사변형"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-06-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "평행사변형 $ABCD$의 $\\overline{AD}$ 위에 점 $E$, $\\overline{BC}$ 위에 점 $F$를 $\\overline{AE}=\\overline{CF}$가 되도록 잡았다. $\\square AFCE$가 평행사변형인 까닭을 평행사변형이 되는 조건을 밝혀 쓰시오.",
+        "bAnswer": "$\\overline{AD}\\parallel\\overline{BC}$이므로 $\\overline{AE}\\parallel\\overline{FC}$이고 $\\overline{AE}=\\overline{FC}$이다. 한 쌍의 대변이 평행하고 그 길이가 같으므로 평행사변형이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{AE}\\parallel\\overline{FC}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 쌍의 대변이 평행하고 그 길이가 같다"
+            ]
+          }
+        ],
+        "bGoal": "한 쌍 조건으로 새 평행사변형 찾기",
+        "bReason": "점의 위치와 같은 길이를 주고 어떤 판별 조건을 쓰는지 밝히게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "평행사변형 $ABCD$의 $\\overline{AD}$, $\\overline{BC}$ 내부에 $\\overline{AE}=\\overline{CF}$인 점 $E$, $F$를 잡으면 $\\overline{AE}\\parallel\\overline{FC}$이므로, $\\square AFCE$는 {한 쌍}의 대변이 평행하고 그 길이가 같아 평행사변형이다.",
+        "cAnswers": [
+          "한 쌍"
+        ],
+        "cReason": "결론 '평행사변형'만 비우면 같은 답이 반복되어 근거가 된 조건을 묻게 했다.",
+        "learningRole": "application",
+        "roleReason": "한 쌍 조건을 새 사각형에 적용",
+        "authorBatch": 43,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2886,
+        "part": "m2plus",
+        "sourceFingerprint": "1a8d777550b5ff7835090b4d9b76eb9db0a9ad9fae8b4ef381db0c26454c860d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2886
+        },
+        "directReview": null,
+        "cMarkedSentence": "평행사변형 $ABCD$의 $\\overline{AD}$, $\\overline{BC}$ 내부에 $\\overline{AE}=\\overline{CF}$인 점 $E$, $F$를 잡으면 $\\overline{AE}\\parallel\\overline{FC}$이므로, $\\square AFCE$는 {한 쌍}의 대변이 평행하고 그 길이가 같아 평행사변형이다.",
+        "cSlotAnswers": [
+          "한 쌍"
+        ],
+        "cStudentSentence": "평행사변형 $ABCD$의 $\\overline{AD}$, $\\overline{BC}$ 내부에 $\\overline{AE}=\\overline{CF}$인 점 $E$, $F$를 잡으면 $\\overline{AE}\\parallel\\overline{FC}$이므로, $\\square AFCE$는 □의 대변이 평행하고 그 길이가 같아 평행사변형이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "한 쌍",
+            "equivalentAnswers": [
+              "한 쌍"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "한 쌍"
+          ]
+        ],
+        "proposalFingerprint": "7260404c708c3e9efb3af35d061483fd3fea6bca0ca537d575780218724f271a"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-05-06-xc15",
+        "section": "중2::5. 도형의 성질::평행사변형이 되는 조건",
+        "term": "대각선 위의 두 점",
+        "kind": "성질",
+        "level": "중",
+        "definition": "평행사변형 $ABCD$의 대각선 $\\overline{BD}$ 내부에 서로 다른 점 $E$, $F$를 잡고 $\\overline{BE}=\\overline{DF}$가 되게 하면 $\\square AECF$는 {평행사변형}이다.",
+        "studentC": "평행사변형 $ABCD$의 대각선 $\\overline{BD}$ 내부에 서로 다른 점 $E$, $F$를 잡고 $\\overline{BE}=\\overline{DF}$가 되게 하면 $\\square AECF$는 □이다.",
+        "answers": [
+          "평행사변형"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-06-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "평행사변형 $ABCD$의 대각선 $\\overline{BD}$ 위에 서로 다른 점 $E$, $F$를 $\\overline{BE}=\\overline{DF}$가 되게 잡았다. 두 대각선의 교점을 $O$라 할 때, $\\square AECF$가 평행사변형인 까닭을 대각선을 이용해 쓰시오.",
+        "bAnswer": "$\\overline{OA}=\\overline{OC}$, $\\overline{OB}=\\overline{OD}$이므로 $\\overline{OE}=\\overline{OB}-\\overline{BE}=\\overline{OD}-\\overline{DF}=\\overline{OF}$이다. 따라서 $\\square AECF$의 두 대각선 $\\overline{AC}$, $\\overline{EF}$가 서로를 이등분하므로 평행사변형이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{OA}=\\overline{OC}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{OE}=\\overline{OF}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 대각선 $\\overline{AC}$, $\\overline{EF}$가 서로를 이등분"
+            ]
+          }
+        ],
+        "bGoal": "대각선 조건으로 새 평행사변형 찾기",
+        "bReason": "교점 $O$를 정해 두 대각선의 이등분을 보이는 근거를 쓰게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "평행사변형 $ABCD$의 대각선 $\\overline{BD}$ 내부에 서로 다른 점 $E$, $F$를 $\\overline{BE}=\\overline{DF}$가 되게 잡고 두 대각선의 교점을 $O$라 하면, $\\overline{OA}=\\overline{OC}$이고 $\\overline{OE}=$ {$\\overline{OF}$}이므로 $\\square AECF$는 두 {대각선}이 서로를 이등분하여 평행사변형이다.",
+        "cAnswers": [
+          "$\\overline{OF}$",
+          "대각선"
+        ],
+        "cReason": "결론만 비우면 답이 반복되어 쓰인 판별 조건과 같은 길이를 묻게 했다.",
+        "learningRole": "application",
+        "roleReason": "대각선 이등분 조건을 새 사각형에 적용",
+        "authorBatch": 43,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2888,
+        "part": "m2plus",
+        "sourceFingerprint": "9a8e19bded4d0dba8219fa09965522ac429a8229c4963a65a2c027634cdd3840",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2888
+        },
+        "directReview": null,
+        "cMarkedSentence": "평행사변형 $ABCD$의 대각선 $\\overline{BD}$ 내부에 서로 다른 점 $E$, $F$를 $\\overline{BE}=\\overline{DF}$가 되게 잡고 두 대각선의 교점을 $O$라 하면, $\\overline{OA}=\\overline{OC}$이고 $\\overline{OE}=$ {$\\overline{OF}$}이므로 $\\square AECF$는 두 {대각선}이 서로를 이등분하여 평행사변형이다.",
+        "cSlotAnswers": [
+          "$\\overline{OF}$",
+          "대각선"
+        ],
+        "cStudentSentence": "평행사변형 $ABCD$의 대각선 $\\overline{BD}$ 내부에 서로 다른 점 $E$, $F$를 $\\overline{BE}=\\overline{DF}$가 되게 잡고 두 대각선의 교점을 $O$라 하면, $\\overline{OA}=\\overline{OC}$이고 $\\overline{OE}=$ □이므로 $\\square AECF$는 두 □이 서로를 이등분하여 평행사변형이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\overline{OF}$",
+            "equivalentAnswers": [
+              "$\\overline{OF}$",
+              "$\\overline{FO}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "대각선",
+            "equivalentAnswers": [
+              "대각선"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$\\overline{OF}$",
+            "accept": [
+              "$\\overline{FO}$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$\\overline{OF}$",
+            "$\\overline{FO}$"
+          ],
+          [
+            "대각선"
+          ]
+        ],
+        "proposalFingerprint": "937061abb9cb431b927779b57248f54d07a336bd95d6406190ee8561e0c3fd6e"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-05-06-xc17",
+        "section": "중2::5. 도형의 성질::평행사변형이 되는 조건",
+        "term": "한 쌍 조건의 증명",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$\\overline{AD}\\parallel\\overline{BC}$, $\\overline{AD}=\\overline{BC}$이면 대각선 $\\overline{AC}$로 나눈 두 삼각형이 {$\\mathrm{SAS}$} 합동이 되어 $\\overline{AB}\\parallel\\overline{DC}$이다.",
+        "studentC": "$\\overline{AD}\\parallel\\overline{BC}$, $\\overline{AD}=\\overline{BC}$이면 대각선 $\\overline{AC}$로 나눈 두 삼각형이 □ 합동이 되어 $\\overline{AB}\\parallel\\overline{DC}$이다.",
+        "answers": [
+          "$\\mathrm{SAS}$"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-06-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\square ABCD$에서 $\\overline{AD}\\parallel\\overline{BC}$, $\\overline{AD}=\\overline{BC}$이다. 대각선 $\\overline{AC}$를 그어 $\\overline{AB}\\parallel\\overline{DC}$임을 보이는 과정을 합동 조건을 밝혀 쓰시오.",
+        "bAnswer": "$\\triangle ABC$와 $\\triangle CDA$에서 $\\overline{BC}=\\overline{DA}$, $\\overline{AD}\\parallel\\overline{BC}$이므로 $\\angle BCA=\\angle DAC$(엇각), $\\overline{AC}$는 공통이므로 $\\mathrm{SAS}$ 합동이다. 따라서 $\\angle BAC=\\angle DCA$이고 이 두 각은 엇각이므로 $\\overline{AB}\\parallel\\overline{DC}$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\angle BCA=\\angle DAC$ (엇각)"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\mathrm{SAS}$ 합동"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle BAC=\\angle DCA$이므로 엇각이 같아 $\\overline{AB}\\parallel\\overline{DC}$"
+            ]
+          }
+        ],
+        "bGoal": "한 쌍 조건의 증명",
+        "bReason": "한 쌍 조건과 보일 평행을 밝혀 엇각·SAS·평행의 흐름을 쓰게 했다.",
+        "cDecision": "keep",
+        "cReason": "조건과 결론이 기호로 보이고 합동 조건 하나만 묻는 분명한 빈칸이다.",
+        "learningRole": "reason",
+        "roleReason": "SAS 합동으로 남은 한 쌍의 평행 증명",
+        "authorBatch": 43,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2890,
+        "part": "m2plus",
+        "sourceFingerprint": "8c6b623546a0a4e67582b9116dbaa3d5d0d6dbaad4d806d6ebe651655dd0bb2c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2890
+        },
+        "directReview": null,
+        "cFrozenSentence": "$\\overline{AD}\\parallel\\overline{BC}$, $\\overline{AD}=\\overline{BC}$이면 대각선 $\\overline{AC}$로 나눈 두 삼각형이 □ 합동이 되어 $\\overline{AB}\\parallel\\overline{DC}$이다.",
+        "cFrozenDefinition": "$\\overline{AD}\\parallel\\overline{BC}$, $\\overline{AD}=\\overline{BC}$이면 대각선 $\\overline{AC}$로 나눈 두 삼각형이 {$\\mathrm{SAS}$} 합동이 되어 $\\overline{AB}\\parallel\\overline{DC}$이다.",
+        "cFrozenAnswers": [
+          "$\\mathrm{SAS}$"
+        ],
+        "cMarkedSentence": "$\\overline{AD}\\parallel\\overline{BC}$, $\\overline{AD}=\\overline{BC}$이면 대각선 $\\overline{AC}$로 나눈 두 삼각형이 {$\\mathrm{SAS}$} 합동이 되어 $\\overline{AB}\\parallel\\overline{DC}$이다.",
+        "cSlotAnswers": [
+          "$\\mathrm{SAS}$"
+        ],
+        "cStudentSentence": "$\\overline{AD}\\parallel\\overline{BC}$, $\\overline{AD}=\\overline{BC}$이면 대각선 $\\overline{AC}$로 나눈 두 삼각형이 □ 합동이 되어 $\\overline{AB}\\parallel\\overline{DC}$이다.",
+        "cAnswers": [
+          "$\\mathrm{SAS}$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\mathrm{SAS}$",
+            "equivalentAnswers": [
+              "$\\mathrm{SAS}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\mathrm{SAS}$"
+          ]
+        ],
+        "proposalFingerprint": "c185692dac0fa9caec7361fd0e4e1d03547d52c113a90e61fca8453f7b3b4069"
+      }
+    }
+  ]
+}

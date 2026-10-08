@@ -1,0 +1,3092 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "capturedAt": "2026-10-07T06:54:56.094139+00:00",
+  "rows": [
+    {
+      "id": "e5-1-5-1-xc24",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "분모가 다른 세 분수를 더하는 방법을 한 가지 설명하고, 그 방법으로 $\\frac{1}{2}+\\frac{1}{3}+\\frac{1}{6}$을 계산하시오.",
+      "bAnswer": "세 분모를 한꺼번에 통분하여 더한다: $\\frac{3}{6}+\\frac{2}{6}+\\frac{1}{6}=\\frac{6}{6}=1$. (또는 앞의 두 분수를 먼저 더해 $\\frac{5}{6}$를 구하고 여기에 $\\frac{1}{6}$을 더해 $1$)",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "세 분수를 한꺼번에 통분하여 더한다",
+            "두 분수를 먼저 더한 뒤 그 합에 나머지 분수를 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$",
+            "$\\frac{6}{6}$"
+          ]
+        }
+      ],
+      "bGoal": "세 분수의 덧셈 방법을 설명하고 계산한다.",
+      "bReason": "두 방법 모두 옳으므로 한 가지만 설명해도 인정하도록 범위를 정했다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{1}{2}+\\frac{1}{3}+\\frac{1}{6}$을 세 분모의 최소공배수 {$6$}으로 한꺼번에 통분하여 계산하면 합은 {$1$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        }
+      ],
+      "cReason": "첫 초안은 공통분모의 답 $6$을 뒤 식에 반복해서 드러냈다. 통분한 식을 제거하여 실제 공통분모와 합을 구하게 한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexReview": "실제 원문 및 첫 제안 학생 지면을 직접 읽은 뒤 정답 복사와 구체적 조건을 개별 교정함.",
+      "sourceIndex": 850,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-1-xc24",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-1 진분수의 덧셈",
+        "term": "세 진분수의 덧셈",
+        "kind": "방법",
+        "level": "상",
+        "definition": "세 분수는 앞의 두 분수를 먼저 더한 뒤 {그 합에 나머지}를 더하거나 한꺼번에 통분한다.",
+        "example": {
+          "prompt": "$\\frac{1}{2}+\\frac{1}{3}+\\frac{1}{6}$을 계산하시오.",
+          "answer": "$1$"
+        },
+        "studentC": "세 분수는 앞의 두 분수를 먼저 더한 뒤 □를 더하거나 한꺼번에 통분한다.",
+        "answers": [
+          "그 합에 나머지"
+        ]
+      },
+      "sourceFingerprint": "2c3b1396507b982795dfb9bd82801cf9ea750da910bdd2dd92c7d8e23ceaac72",
+      "draftEvidence": "evidence/section-017-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "bAnswer",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cProposedAnswers": [
+        "$6$",
+        "$1$"
+      ],
+      "cStudentAfter": "$\\frac{1}{2}+\\frac{1}{3}+\\frac{1}{6}$을 세 분모의 최소공배수 □으로 한꺼번에 통분하여 계산하면 합은 □이다.",
+      "cMarkedSentence": "$\\frac{1}{2}+\\frac{1}{3}+\\frac{1}{6}$을 세 분모의 최소공배수 {$6$}으로 한꺼번에 통분하여 계산하면 합은 {$1$}이다.",
+      "cStudentSentence": "$\\frac{1}{2}+\\frac{1}{3}+\\frac{1}{6}$을 세 분모의 최소공배수 □으로 한꺼번에 통분하여 계산하면 합은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$6$",
+          "equivalents": []
+        },
+        {
+          "key": "$1$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "분모가 다른 세 분수를 더하는 방법을 한 가지 설명하고, 그 방법으로 $\\frac{1}{2}+\\frac{1}{3}+\\frac{1}{6}$을 계산하시오.",
+        "answer": "세 분모를 한꺼번에 통분하여 더한다: $\\frac{3}{6}+\\frac{2}{6}+\\frac{1}{6}=\\frac{6}{6}=1$. (또는 앞의 두 분수를 먼저 더해 $\\frac{5}{6}$를 구하고 여기에 $\\frac{1}{6}$을 더해 $1$)",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "세 분수를 한꺼번에 통분하여 더한다",
+              "두 분수를 먼저 더한 뒤 그 합에 나머지 분수를 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1$",
+              "$\\frac{6}{6}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{1}{2}+\\frac{1}{3}+\\frac{1}{6}$을 세 분모의 최소공배수 {$6$}으로 한꺼번에 통분하여 계산하면 합은 {$1$}이다.",
+        "acceptedAnswers": [
+          [
+            "$6$"
+          ],
+          [
+            "$1$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "661d931d2c47c7c923df78ad51b29e6f590c202c087b08783cf5065c07443647",
+      "questionRevision": "planning-e5e6-20261006-661d931d2c47",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-1-xc25",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "분모가 다른 두 분수를 통분할 때 공통분모는 두 분모 중 큰 수보다 작을 수 없습니다. 공통분모가 두 분모와 어떤 관계인 수인지를 이용하여 그 까닭을 설명하시오.",
+      "bAnswer": "공통분모는 두 분모의 공배수이다. 어떤 수의 배수는 그 수와 같거나 그보다 크므로 공통분모는 큰 분모보다 작을 수 없다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "공통분모는 두 분모의 공배수이다",
+            "공통분모는 큰 분모의 배수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "배수는 그 수와 같거나 그보다 크다",
+            "배수는 그 수보다 작을 수 없다"
+          ]
+        }
+      ],
+      "bGoal": "공통분모가 공배수라는 점에서 그 크기의 범위를 설명한다.",
+      "bReason": "성질을 전제로 주고 공배수 관계로 이유를 말하도록 설명 범위를 지정했다.",
+      "cDecision": "revise",
+      "cAfter": "통분할 때 공통분모는 두 분모의 {공배수}이므로 두 분모 중 큰 수와 같거나 그보다 {크다}.",
+      "cReason": "'약분하기 전 공통분모', '작아지지 않는다'는 표현이 모호해 공배수 관계와 크기 비교로 풀어 썼다.",
+      "coreAfter": "두 분수를 통분할 때 공통분모는 두 분모의 공배수이므로, 두 분모 중 큰 수보다 {작을 수 없다}.",
+      "coreReason": "'약분하기 전 공통분모'는 통분 단계의 분모를 뜻하는지 불분명하므로 까닭(공배수)과 함께 분명히 쓴다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "coreTargetReason": "작아지지 않는다는 원문 비교를 같은 뜻의 작을 수 없다로 표지한다. 통분 단계의 공통분모와 공배수라는 근거를 명시한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 851,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-1-xc25",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-1 진분수의 덧셈",
+        "term": "공통분모의 크기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "약분하기 전 공통분모는 두 분모 중 큰 수보다 {작아지지 않는다}.",
+        "studentC": "약분하기 전 공통분모는 두 분모 중 큰 수보다 □.",
+        "answers": [
+          "작아지지 않는다"
+        ]
+      },
+      "sourceFingerprint": "3d046aed8e9a49bddb76e3d5216cf9c35ddc717dff606fc42a3ac223ded16ca1",
+      "draftEvidence": "evidence/section-017-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "공배수",
+        "크다"
+      ],
+      "cStudentAfter": "통분할 때 공통분모는 두 분모의 □이므로 두 분모 중 큰 수와 같거나 그보다 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "공배수"
+          ]
+        },
+        {
+          "anyOf": [
+            "크다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "통분할 때 공통분모는 두 분모의 {공배수}이므로 두 분모 중 큰 수와 같거나 그보다 {크다}.",
+      "cStudentSentence": "통분할 때 공통분모는 두 분모의 □이므로 두 분모 중 큰 수와 같거나 그보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "공배수",
+          "equivalents": []
+        },
+        {
+          "key": "크다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "분모가 다른 두 분수를 통분할 때 공통분모는 두 분모 중 큰 수보다 작을 수 없습니다. 공통분모가 두 분모와 어떤 관계인 수인지를 이용하여 그 까닭을 설명하시오.",
+        "answer": "공통분모는 두 분모의 공배수이다. 어떤 수의 배수는 그 수와 같거나 그보다 크므로 공통분모는 큰 분모보다 작을 수 없다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "공통분모는 두 분모의 공배수이다",
+              "공통분모는 큰 분모의 배수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "배수는 그 수와 같거나 그보다 크다",
+              "배수는 그 수보다 작을 수 없다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "통분할 때 공통분모는 두 분모의 {공배수}이므로 두 분모 중 큰 수와 같거나 그보다 {크다}.",
+        "acceptedAnswers": [
+          [
+            "공배수"
+          ],
+          [
+            "크다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "22bbe1c25e1f378eaead3eb9e4634ba2dafc5ad9b61a26881e8e488e68a5e0a6",
+      "questionRevision": "planning-e5e6-20261006-22bbe1c25e1f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-1-xc26",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "두 분수의 합을 기약분수로 나타내면 그 분모가 처음 두 분모보다 모두 작아지는 경우가 있습니다. $\\frac{1}{6}+\\frac{1}{3}$을 계산하면서 그렇게 되는 과정을 설명하시오.",
+      "bAnswer": "$\\frac{1}{6}+\\frac{2}{6}=\\frac{3}{6}$이고, 분자와 분모를 공약수 $3$으로 나누어 약분하면 $\\frac{1}{2}$이다. 약분하면서 분모가 $2$가 되어 $6$과 $3$보다 작아진다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{3}{6}$을 약분하여 $\\frac{1}{2}$이 된다",
+            "합이 $\\frac{1}{2}$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "약분하면 분모가 작아진다",
+            "분자와 분모를 공약수로 나누어 분모가 $2$가 된다"
+          ]
+        }
+      ],
+      "bGoal": "합을 약분하면 분모가 처음 분모들보다 작아질 수 있음을 과정으로 보인다.",
+      "bReason": "xc25와 헷갈리지 않도록 통분 단계가 아니라 약분 단계에서 분모가 줄어든다는 점을 계산으로 설명하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{1}{6}+\\frac{1}{3}=\\frac{3}{6}$을 약분하면 {$\\frac{1}{2}$}이 되어, 합의 분모가 처음 두 분모 $6$과 $3$보다 {작다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{1}{2}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "작다",
+            "작아진다"
+          ]
+        }
+      ],
+      "cReason": "원문은 식에 이미 답이 보이고 빈칸이 긴 구절이어서 약분한 값과 비교 결과를 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 852,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-1-xc26",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-1 진분수의 덧셈",
+        "term": "약분해서 작아지는 분모",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$\\frac{1}{6}+\\frac{1}{3}=\\frac{1}{2}$처럼 약분하면 합의 분모가 {처음 분모들보다 작아질} 수 있다.",
+        "studentC": "$\\frac{1}{6}+\\frac{1}{3}=\\frac{1}{2}$처럼 약분하면 합의 분모가 □ 수 있다.",
+        "answers": [
+          "처음 분모들보다 작아질"
+        ]
+      },
+      "sourceFingerprint": "107778a307379c4da9f675eb42fd4d468e5cda3f59add9ef0d8e5cda06138887",
+      "draftEvidence": "evidence/section-017-draft.json",
+      "cProposedAnswers": [
+        "$\\frac{1}{2}$",
+        "작다"
+      ],
+      "cStudentAfter": "$\\frac{1}{6}+\\frac{1}{3}=\\frac{3}{6}$을 약분하면 □이 되어, 합의 분모가 처음 두 분모 $6$과 $3$보다 □.",
+      "cMarkedSentence": "$\\frac{1}{6}+\\frac{1}{3}=\\frac{3}{6}$을 약분하면 {$\\frac{1}{2}$}이 되어, 합의 분모가 처음 두 분모 $6$과 $3$보다 {작다}.",
+      "cStudentSentence": "$\\frac{1}{6}+\\frac{1}{3}=\\frac{3}{6}$을 약분하면 □이 되어, 합의 분모가 처음 두 분모 $6$과 $3$보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{1}{2}$",
+          "equivalents": []
+        },
+        {
+          "key": "작다",
+          "equivalents": [
+            "작아진다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 분수의 합을 기약분수로 나타내면 그 분모가 처음 두 분모보다 모두 작아지는 경우가 있습니다. $\\frac{1}{6}+\\frac{1}{3}$을 계산하면서 그렇게 되는 과정을 설명하시오.",
+        "answer": "$\\frac{1}{6}+\\frac{2}{6}=\\frac{3}{6}$이고, 분자와 분모를 공약수 $3$으로 나누어 약분하면 $\\frac{1}{2}$이다. 약분하면서 분모가 $2$가 되어 $6$과 $3$보다 작아진다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{3}{6}$을 약분하여 $\\frac{1}{2}$이 된다",
+              "합이 $\\frac{1}{2}$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "약분하면 분모가 작아진다",
+              "분자와 분모를 공약수로 나누어 분모가 $2$가 된다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{1}{6}+\\frac{1}{3}=\\frac{3}{6}$을 약분하면 {$\\frac{1}{2}$}이 되어, 합의 분모가 처음 두 분모 $6$과 $3$보다 {작다}.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{1}{2}$"
+          ],
+          [
+            "작다",
+            "작아진다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "bc2dd798bbc6cc8d3581f7343dfff0a5b9f6fa57974b3235d9d0ab310cde84a1",
+      "questionRevision": "planning-e5e6-20261006-bc2dd798bbc6",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-1-xc27",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{1}{2}+\\frac{1}{3}=\\frac{5}{6}$가 맞는지 뺄셈으로 확인하는 방법을 설명하고, 실제로 확인하시오.",
+      "bAnswer": "합에서 더한 수 하나를 빼어 나머지 수가 나오는지 본다. $\\frac{5}{6}-\\frac{1}{2}=\\frac{5}{6}-\\frac{3}{6}=\\frac{2}{6}=\\frac{1}{3}$이므로 맞다. ($\\frac{5}{6}-\\frac{1}{3}=\\frac{1}{2}$로 확인해도 된다.)",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "합에서 더한 한 수를 빼면 다른 수가 나오는지 본다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{5}{6}-\\frac{1}{2}=\\frac{1}{3}$",
+            "$\\frac{5}{6}-\\frac{1}{3}=\\frac{1}{2}$"
+          ]
+        }
+      ],
+      "bGoal": "덧셈 결과를 뺄셈으로 검산하는 방법을 설명하고 실행한다.",
+      "bReason": "확인할 실제 식을 주어 추상적인 '확인하기'를 구체적인 행동으로 만들었다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{1}{2}+\\frac{1}{3}$의 합을 $\\frac{2}{3}$이라고 잘못 썼다. 뺄셈으로 확인하면 $\\frac{2}{3}-\\frac{1}{2}=${$\\frac{1}{6}$}이 되어 더한 수 $\\frac{1}{3}$과 다르다.",
+      "cReason": "첫 초안의 확인 결과는 앞의 덧셈식에 그대로 있었다. 잘못 구한 합에서 실제로 뺄셈하여 새로운 값을 구하고, 확인하려는 수와 다름을 살핀다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{1}{6}$"
+          ]
+        }
+      ],
+      "codexReview": "실제 원문 및 첫 제안 학생 지면을 직접 읽은 뒤 정답 복사와 구체적 조건을 개별 교정함.",
+      "sourceIndex": 853,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-1-xc27",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-1 진분수의 덧셈",
+        "term": "덧셈을 뺄셈으로 확인하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "합에서 더한 한 수를 빼면 {다른 한 수}가 나오는지 보아 계산을 확인한다.",
+        "example": {
+          "prompt": "$\\frac{1}{2}+\\frac{1}{3}=\\frac{5}{6}$를 확인하려고 $\\frac{5}{6}-\\frac{1}{2}$을 계산하면?",
+          "answer": "$\\frac{1}{3}$"
+        },
+        "studentC": "합에서 더한 한 수를 빼면 □가 나오는지 보아 계산을 확인한다.",
+        "answers": [
+          "다른 한 수"
+        ]
+      },
+      "sourceFingerprint": "a8170cdfab3e96320d365da96ae27942aef5ca17b41b219c643993b9cbd69f04",
+      "draftEvidence": "evidence/section-017-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "bPrompt",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cProposedAnswers": [
+        "$\\frac{1}{6}$"
+      ],
+      "cStudentAfter": "$\\frac{1}{2}+\\frac{1}{3}$의 합을 $\\frac{2}{3}$이라고 잘못 썼다. 뺄셈으로 확인하면 $\\frac{2}{3}-\\frac{1}{2}=$□이 되어 더한 수 $\\frac{1}{3}$과 다르다.",
+      "cMarkedSentence": "$\\frac{1}{2}+\\frac{1}{3}$의 합을 $\\frac{2}{3}$이라고 잘못 썼다. 뺄셈으로 확인하면 $\\frac{2}{3}-\\frac{1}{2}=${$\\frac{1}{6}$}이 되어 더한 수 $\\frac{1}{3}$과 다르다.",
+      "cStudentSentence": "$\\frac{1}{2}+\\frac{1}{3}$의 합을 $\\frac{2}{3}$이라고 잘못 썼다. 뺄셈으로 확인하면 $\\frac{2}{3}-\\frac{1}{2}=$□이 되어 더한 수 $\\frac{1}{3}$과 다르다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{1}{6}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{1}{2}+\\frac{1}{3}=\\frac{5}{6}$가 맞는지 뺄셈으로 확인하는 방법을 설명하고, 실제로 확인하시오.",
+        "answer": "합에서 더한 수 하나를 빼어 나머지 수가 나오는지 본다. $\\frac{5}{6}-\\frac{1}{2}=\\frac{5}{6}-\\frac{3}{6}=\\frac{2}{6}=\\frac{1}{3}$이므로 맞다. ($\\frac{5}{6}-\\frac{1}{3}=\\frac{1}{2}$로 확인해도 된다.)",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "합에서 더한 한 수를 빼면 다른 수가 나오는지 본다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{5}{6}-\\frac{1}{2}=\\frac{1}{3}$",
+              "$\\frac{5}{6}-\\frac{1}{3}=\\frac{1}{2}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{1}{2}+\\frac{1}{3}$의 합을 $\\frac{2}{3}$이라고 잘못 썼다. 뺄셈으로 확인하면 $\\frac{2}{3}-\\frac{1}{2}=${$\\frac{1}{6}$}이 되어 더한 수 $\\frac{1}{3}$과 다르다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{1}{6}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5ee0a41152a305b9f5422c644fa0fbafdfd35eab3f4d74abffde40304c75c7e0",
+      "questionRevision": "planning-e5e6-20261006-5ee0a41152a3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-1-xc28",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{1}{3}$에 어떤 분수를 더한 합이 $1$보다 작으려면 더하는 분수가 얼마보다 작아야 하는지 구하고, 그 수를 어떻게 정했는지 설명하시오.",
+      "bAnswer": "$\\frac{2}{3}$보다 작아야 한다. $\\frac{1}{3}$에 $\\frac{2}{3}$를 더하면 정확히 $1$이 되므로, 그보다 작은 수를 더해야 합이 $1$보다 작다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{2}{3}$보다 작아야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{3}$에 $\\frac{2}{3}$를 더하면 $1$이 된다",
+            "$1-\\frac{1}{3}=\\frac{2}{3}$이다"
+          ]
+        }
+      ],
+      "bGoal": "합이 1보다 작을 조건을 1을 만드는 짝 분수와 연결해 설명한다.",
+      "bReason": "일반 조건문은 초5에게 추상적이어서 구체적인 수로 기준을 찾고 근거를 말하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{1}{3}$과 더해 $1$이 되는 수는 {$\\frac{2}{3}$}이므로, $\\frac{1}{3}$에 더한 합이 $1$보다 작으려면 더하는 수는 그 수보다 {작아야} 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{2}{3}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "작아야",
+            "더 작아야"
+          ]
+        }
+      ],
+      "cReason": "'그 분수가 1에 모자라는 만큼'은 이중으로 얽힌 표현이어서 구체적인 수로 기준값과 대소를 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 854,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-1-xc28",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-1 진분수의 덧셈",
+        "term": "합이 $1$보다 작을 조건",
+        "kind": "방법",
+        "level": "상",
+        "definition": "한 진분수에 더한 합이 $1$보다 작으려면 더하는 수가 그 분수가 {$1$에 모자라는 만큼}보다 작아야 한다.",
+        "example": {
+          "prompt": "$\\frac{1}{3}$에 더해 합이 $1$보다 작으려면 더하는 수는 무엇보다 작아야 하는가?",
+          "answer": "$1$에 모자라는 $\\frac{2}{3}$"
+        },
+        "studentC": "한 진분수에 더한 합이 $1$보다 작으려면 더하는 수가 그 분수가 □보다 작아야 한다.",
+        "answers": [
+          "$1$에 모자라는 만큼"
+        ]
+      },
+      "sourceFingerprint": "ce775627b83f65ed225e380136b27d125aeffb76a0c14fd369488b8fc31ca9e2",
+      "draftEvidence": "evidence/section-017-draft.json",
+      "cProposedAnswers": [
+        "$\\frac{2}{3}$",
+        "작아야"
+      ],
+      "cStudentAfter": "$\\frac{1}{3}$과 더해 $1$이 되는 수는 □이므로, $\\frac{1}{3}$에 더한 합이 $1$보다 작으려면 더하는 수는 그 수보다 □ 한다.",
+      "cMarkedSentence": "$\\frac{1}{3}$과 더해 $1$이 되는 수는 {$\\frac{2}{3}$}이므로, $\\frac{1}{3}$에 더한 합이 $1$보다 작으려면 더하는 수는 그 수보다 {작아야} 한다.",
+      "cStudentSentence": "$\\frac{1}{3}$과 더해 $1$이 되는 수는 □이므로, $\\frac{1}{3}$에 더한 합이 $1$보다 작으려면 더하는 수는 그 수보다 □ 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{2}{3}$",
+          "equivalents": []
+        },
+        {
+          "key": "작아야",
+          "equivalents": [
+            "더 작아야"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{1}{3}$에 어떤 분수를 더한 합이 $1$보다 작으려면 더하는 분수가 얼마보다 작아야 하는지 구하고, 그 수를 어떻게 정했는지 설명하시오.",
+        "answer": "$\\frac{2}{3}$보다 작아야 한다. $\\frac{1}{3}$에 $\\frac{2}{3}$를 더하면 정확히 $1$이 되므로, 그보다 작은 수를 더해야 합이 $1$보다 작다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{2}{3}$보다 작아야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{3}$에 $\\frac{2}{3}$를 더하면 $1$이 된다",
+              "$1-\\frac{1}{3}=\\frac{2}{3}$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{1}{3}$과 더해 $1$이 되는 수는 {$\\frac{2}{3}$}이므로, $\\frac{1}{3}$에 더한 합이 $1$보다 작으려면 더하는 수는 그 수보다 {작아야} 한다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{2}{3}$"
+          ],
+          [
+            "작아야",
+            "더 작아야"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9ca16579534d5ab0ec87de26d90994b1a5e85385aa62c410d4f412b96267c2a1",
+      "questionRevision": "planning-e5e6-20261006-9ca16579534d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-2-xc1",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "대분수 $3\\frac{2}{5}$는 $3$과 $\\frac{2}{5}$가 어떤 관계로 이루어진 수인지 식으로 나타내어 설명하시오.",
+      "bAnswer": "$3$과 $\\frac{2}{5}$를 더한 수이다. $3\\frac{2}{5}=3+\\frac{2}{5}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$3+\\frac{2}{5}$",
+            "$3$과 $\\frac{2}{5}$의 합",
+            "$3$과 $\\frac{2}{5}$를 더한 수"
+          ]
+        }
+      ],
+      "bGoal": "대분수가 자연수와 진분수의 합임을 식으로 나타낸다.",
+      "bReason": "곱으로 잘못 읽는 것을 막는 원문 예의 목적을 살려 두 수의 관계를 직접 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "대분수는 자연수와 진분수의 {합}을 덧셈 기호 없이 붙여 쓴 수이다.",
+      "cReason": "자연수와 진분수의 관계를 한 낱말로 묻고 '덧셈 기호 없이'가 답을 그대로 주지는 않는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 855,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-2-xc1",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-2 대분수의 덧셈",
+        "term": "대분수의 두 부분",
+        "kind": "정의",
+        "level": "하",
+        "definition": "대분수는 자연수와 진분수의 {합}을 덧셈 기호 없이 붙여 쓴 수이다.",
+        "example": {
+          "prompt": "$3\\frac{2}{5}$를 $3\\times\\frac{2}{5}$로 읽으면 안 되는 까닭은?",
+          "answer": "곱이 아니라 합이라서"
+        },
+        "studentC": "대분수는 자연수와 진분수의 □을 덧셈 기호 없이 붙여 쓴 수이다.",
+        "answers": [
+          "합"
+        ]
+      },
+      "sourceFingerprint": "b04893851162d04cb0ad803290e35bd5c66594e8e8a70a662017254ad0b996c8",
+      "draftEvidence": "evidence/section-018-draft.json",
+      "cFrozenDefinition": "대분수는 자연수와 진분수의 {합}을 덧셈 기호 없이 붙여 쓴 수이다.",
+      "cFrozenStudentSentence": "대분수는 자연수와 진분수의 □을 덧셈 기호 없이 붙여 쓴 수이다.",
+      "cProposedAnswers": [
+        "합"
+      ],
+      "cStudentAfter": "대분수는 자연수와 진분수의 □을 덧셈 기호 없이 붙여 쓴 수이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "합"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "대분수는 자연수와 진분수의 {합}을 덧셈 기호 없이 붙여 쓴 수이다.",
+      "cStudentSentence": "대분수는 자연수와 진분수의 □을 덧셈 기호 없이 붙여 쓴 수이다.",
+      "cSlotAnswers": [
+        {
+          "key": "합",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "대분수 $3\\frac{2}{5}$는 $3$과 $\\frac{2}{5}$가 어떤 관계로 이루어진 수인지 식으로 나타내어 설명하시오.",
+        "answer": "$3$과 $\\frac{2}{5}$를 더한 수이다. $3\\frac{2}{5}=3+\\frac{2}{5}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$3+\\frac{2}{5}$",
+              "$3$과 $\\frac{2}{5}$의 합",
+              "$3$과 $\\frac{2}{5}$를 더한 수"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "대분수는 자연수와 진분수의 {합}을 덧셈 기호 없이 붙여 쓴 수이다.",
+        "acceptedAnswers": [
+          [
+            "합"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "d42dfbf0243428f5ea6ab77f57f82fca4698b738ac5fa45a8e5f0f7c5b791e9e",
+      "questionRevision": "planning-e5e6-20261006-d42dfbf02434",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-2-xc2",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "분모가 같은 대분수를 부분끼리 더한다.",
+      "bReason": "c1의 B가 분모가 같은 예로 같은 방법을 이미 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$1\\frac{1}{5}+2\\frac{2}{5}$에서 자연수 부분끼리 더하면 {$3$}, 분수 부분끼리 더하면 {$\\frac{3}{5}$}이므로 합은 {$3\\frac{3}{5}$}이다.",
+      "cReason": "'각각'은 수학 내용이 없는 낱말 빈칸이라 부분별 합을 실제로 구하게 바꾸었다.",
+      "exclusionReason": "B는 e5-1-5-2-c1과 중복된다.",
+      "exampleNeeded": false,
+      "sourceIndex": 856,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-2-xc2",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-2 대분수의 덧셈",
+        "term": "분모가 같은 대분수의 덧셈",
+        "kind": "방법",
+        "level": "하",
+        "definition": "분모가 같은 대분수를 더할 때는 통분하지 않고 자연수 부분끼리, 분수 부분끼리 {각각} 더한다.",
+        "example": {
+          "prompt": "$1\\frac{1}{5}+2\\frac{2}{5}$를 계산하시오.",
+          "answer": "$3\\frac{3}{5}$"
+        },
+        "studentC": "분모가 같은 대분수를 더할 때는 통분하지 않고 자연수 부분끼리, 분수 부분끼리 □ 더한다.",
+        "answers": [
+          "각각"
+        ]
+      },
+      "sourceFingerprint": "de0d80278c44b9c6f3c1e927b542d456910a31e593535aa7918714ccebe892df",
+      "draftEvidence": "evidence/section-018-draft.json",
+      "cProposedAnswers": [
+        "$3$",
+        "$\\frac{3}{5}$",
+        "$3\\frac{3}{5}$"
+      ],
+      "cStudentAfter": "$1\\frac{1}{5}+2\\frac{2}{5}$에서 자연수 부분끼리 더하면 □, 분수 부분끼리 더하면 □이므로 합은 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{5}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3\\frac{3}{5}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$1\\frac{1}{5}+2\\frac{2}{5}$에서 자연수 부분끼리 더하면 {$3$}, 분수 부분끼리 더하면 {$\\frac{3}{5}$}이므로 합은 {$3\\frac{3}{5}$}이다.",
+      "cStudentSentence": "$1\\frac{1}{5}+2\\frac{2}{5}$에서 자연수 부분끼리 더하면 □, 분수 부분끼리 더하면 □이므로 합은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{3}{5}$",
+          "equivalents": []
+        },
+        {
+          "key": "$3\\frac{3}{5}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$1\\frac{1}{5}+2\\frac{2}{5}$에서 자연수 부분끼리 더하면 {$3$}, 분수 부분끼리 더하면 {$\\frac{3}{5}$}이므로 합은 {$3\\frac{3}{5}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "$\\frac{3}{5}$"
+          ],
+          [
+            "$3\\frac{3}{5}$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e5-1-5-2-c1과 중복된다."
+      },
+      "proposalFingerprint": "665b30161bc547eb817d3777022ff8d5c861f2a3a5b25758631f44de59826d43",
+      "questionRevision": "planning-e5e6-20261006-665b30161bc5",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-2-xc3",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "분모가 다른 대분수는 분수 부분을 먼저 통분한다.",
+      "bReason": "xc10의 B가 통분부터 받아올림까지 전체 차례로 이 내용을 포함해 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "분모가 다른 대분수는 분수 부분을 먼저 {통분}한다.",
+      "cReason": "분모가 다를 때 먼저 할 일을 익숙한 정식 용어 하나로 묻는 문장이다.",
+      "exclusionReason": "B는 e5-1-5-2-xc10에 포함된다.",
+      "exampleNeeded": false,
+      "sourceIndex": 857,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-2-xc3",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-2 대분수의 덧셈",
+        "term": "분모가 다른 대분수의 덧셈",
+        "kind": "방법",
+        "level": "하",
+        "definition": "분모가 다른 대분수는 분수 부분을 먼저 {통분}한다.",
+        "example": {
+          "prompt": "$1\\frac{1}{2}+1\\frac{1}{3}$을 계산하시오.",
+          "answer": "$2\\frac{5}{6}$"
+        },
+        "studentC": "분모가 다른 대분수는 분수 부분을 먼저 □한다.",
+        "answers": [
+          "통분"
+        ]
+      },
+      "sourceFingerprint": "0e12b474bd32641c4d7bc22f1cd5076264fe0a5912ffe52e1fede286354117aa",
+      "draftEvidence": "evidence/section-018-draft.json",
+      "cFrozenDefinition": "분모가 다른 대분수는 분수 부분을 먼저 {통분}한다.",
+      "cFrozenStudentSentence": "분모가 다른 대분수는 분수 부분을 먼저 □한다.",
+      "cProposedAnswers": [
+        "통분"
+      ],
+      "cStudentAfter": "분모가 다른 대분수는 분수 부분을 먼저 □한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "통분"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "분모가 다른 대분수는 분수 부분을 먼저 {통분}한다.",
+      "cStudentSentence": "분모가 다른 대분수는 분수 부분을 먼저 □한다.",
+      "cSlotAnswers": [
+        {
+          "key": "통분",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "분모가 다른 대분수는 분수 부분을 먼저 {통분}한다.",
+        "acceptedAnswers": [
+          [
+            "통분"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e5-1-5-2-xc10에 포함된다."
+      },
+      "proposalFingerprint": "cc363adfd097346cf077f09014ced2eba8e91fc2d56ca8b24de6c69dfa739d87",
+      "questionRevision": "planning-e5e6-20261006-cc363adfd097",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-2-xc4",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "대분수를 가분수로 바꾸어 더하는 방법을 차례대로 설명하고, 그 방법으로 $2\\frac{1}{4}+1\\frac{2}{3}$를 계산하여 대분수로 나타내시오.",
+      "bAnswer": "두 대분수를 가분수로 고치고, 분모가 다르면 통분하여 분자끼리 더한 뒤 대분수로 고친다. $\\frac{9}{4}+\\frac{5}{3}=\\frac{27}{12}+\\frac{20}{12}=\\frac{47}{12}=3\\frac{11}{12}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "통분하여 분자끼리 더한다",
+            "분모를 같게 한 뒤 분자끼리 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3\\frac{11}{12}$"
+          ]
+        }
+      ],
+      "bGoal": "가분수로 바꾸어 더하는 전체 과정을 설명하고 수행한다.",
+      "bReason": "원문 예는 가분수로 고치기만 물어 덧셈 방법 자체를 확인하지 못한다.",
+      "cDecision": "revise",
+      "cAfter": "$1\\frac{1}{2}+1\\frac{1}{3}$을 가분수로 바꾸어 더하면 {$\\frac{3}{2}$}$+${$\\frac{4}{3}$}$=\\frac{9}{6}+\\frac{8}{6}=${$\\frac{17}{6}$}이고, 대분수로 고치면 {$2\\frac{5}{6}$}이다.",
+      "cReason": "'통분하여'는 분모가 같으면 맞지 않는 구절 빈칸이라 실제 계산 단계의 값을 쓰게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 858,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-2-xc4",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-2 대분수의 덧셈",
+        "term": "가분수로 바꾸어 더하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "대분수를 가분수로 고친 뒤 {통분하여} 더할 수도 있다.",
+        "example": {
+          "prompt": "$1\\frac{1}{2}$을 가분수로 바꾸면?",
+          "answer": "$\\frac{3}{2}$"
+        },
+        "studentC": "대분수를 가분수로 고친 뒤 □ 더할 수도 있다.",
+        "answers": [
+          "통분하여"
+        ]
+      },
+      "sourceFingerprint": "7a2e5a5bd12a5cf2c2b1dab9087f43c712f93e66be1643e5294f0e77471df9a5",
+      "draftEvidence": "evidence/section-018-draft.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "bPrompt",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cProposedAnswers": [
+        "$\\frac{3}{2}$",
+        "$\\frac{4}{3}$",
+        "$\\frac{17}{6}$",
+        "$2\\frac{5}{6}$"
+      ],
+      "cStudentAfter": "$1\\frac{1}{2}+1\\frac{1}{3}$을 가분수로 바꾸어 더하면 □$+$□$=\\frac{9}{6}+\\frac{8}{6}=$□이고, 대분수로 고치면 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{3}{2}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{4}{3}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{17}{6}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\frac{5}{6}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$1\\frac{1}{2}+1\\frac{1}{3}$을 가분수로 바꾸어 더하면 {$\\frac{3}{2}$}$+${$\\frac{4}{3}$}$=\\frac{9}{6}+\\frac{8}{6}=${$\\frac{17}{6}$}이고, 대분수로 고치면 {$2\\frac{5}{6}$}이다.",
+      "cStudentSentence": "$1\\frac{1}{2}+1\\frac{1}{3}$을 가분수로 바꾸어 더하면 □$+$□$=\\frac{9}{6}+\\frac{8}{6}=$□이고, 대분수로 고치면 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{3}{2}$",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{4}{3}$",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{17}{6}$",
+          "equivalents": []
+        },
+        {
+          "key": "$2\\frac{5}{6}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "대분수를 가분수로 바꾸어 더하는 방법을 차례대로 설명하고, 그 방법으로 $2\\frac{1}{4}+1\\frac{2}{3}$를 계산하여 대분수로 나타내시오.",
+        "answer": "두 대분수를 가분수로 고치고, 분모가 다르면 통분하여 분자끼리 더한 뒤 대분수로 고친다. $\\frac{9}{4}+\\frac{5}{3}=\\frac{27}{12}+\\frac{20}{12}=\\frac{47}{12}=3\\frac{11}{12}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "통분하여 분자끼리 더한다",
+              "분모를 같게 한 뒤 분자끼리 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3\\frac{11}{12}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1\\frac{1}{2}+1\\frac{1}{3}$을 가분수로 바꾸어 더하면 {$\\frac{3}{2}$}$+${$\\frac{4}{3}$}$=\\frac{9}{6}+\\frac{8}{6}=${$\\frac{17}{6}$}이고, 대분수로 고치면 {$2\\frac{5}{6}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{3}{2}$"
+          ],
+          [
+            "$\\frac{4}{3}$"
+          ],
+          [
+            "$\\frac{17}{6}$"
+          ],
+          [
+            "$2\\frac{5}{6}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "af3b7887c3befd51bd53013109f455b2ebce67239aac81900bf2a8e6d39d4a96",
+      "questionRevision": "planning-e5e6-20261006-af3b7887c3be",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-2-xc5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "대분수를 가분수로 고칠 때 자연수 부분을 어떤 분수로 바꾸어야 하는지 설명하고, $3\\frac{2}{5}$를 가분수로 고치시오.",
+      "bAnswer": "분수 부분과 분모가 같은 분수로 바꾼다. $3=\\frac{15}{5}$이므로 $\\frac{15}{5}+\\frac{2}{5}=\\frac{17}{5}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분수 부분과 분모가 같은 분수로 바꾼다",
+            "$1$을 분모와 분자가 같은 분수로 보고 자연수를 바꾼다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{17}{5}$"
+          ]
+        }
+      ],
+      "bGoal": "자연수 부분을 같은 분모의 분수로 바꾸어 가분수를 만드는 원리를 안다.",
+      "bReason": "원문 예의 '까닭'을 일반 방법 질문으로 넓히고 다른 수로 적용하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$2\\frac{1}{3}$을 가분수로 고칠 때 $1=\\frac{3}{3}$이므로 $2=${$\\frac{6}{3}$}이고, $2\\frac{1}{3}=${$\\frac{7}{3}$}이다.",
+      "cReason": "'분모가 같은 분수'라는 긴 구절 대신 실제로 바꾼 분수와 결과를 쓰게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 859,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-2-xc5",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-2 대분수의 덧셈",
+        "term": "대분수를 가분수로 고치기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "대분수를 가분수로 고칠 때는 자연수 부분을 {분모가 같은 분수}로 바꾸어 분수 부분과 더한다.",
+        "example": {
+          "prompt": "$2\\frac{1}{3}$을 가분수로 고칠 때 $2$를 $\\frac{6}{3}$으로 바꾸는 까닭은?",
+          "answer": "$1$이 $\\frac{3}{3}$이라서"
+        },
+        "studentC": "대분수를 가분수로 고칠 때는 자연수 부분을 □로 바꾸어 분수 부분과 더한다.",
+        "answers": [
+          "분모가 같은 분수"
+        ]
+      },
+      "sourceFingerprint": "c1145dfe3188e46d6da5b4e70cb0b0df5f2596098c923a64dbecbf2666234d60",
+      "draftEvidence": "evidence/section-018-draft.json",
+      "cProposedAnswers": [
+        "$\\frac{6}{3}$",
+        "$\\frac{7}{3}$"
+      ],
+      "cStudentAfter": "$2\\frac{1}{3}$을 가분수로 고칠 때 $1=\\frac{3}{3}$이므로 $2=$□이고, $2\\frac{1}{3}=$□이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{6}{3}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{7}{3}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$2\\frac{1}{3}$을 가분수로 고칠 때 $1=\\frac{3}{3}$이므로 $2=${$\\frac{6}{3}$}이고, $2\\frac{1}{3}=${$\\frac{7}{3}$}이다.",
+      "cStudentSentence": "$2\\frac{1}{3}$을 가분수로 고칠 때 $1=\\frac{3}{3}$이므로 $2=$□이고, $2\\frac{1}{3}=$□이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{6}{3}$",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{7}{3}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "대분수를 가분수로 고칠 때 자연수 부분을 어떤 분수로 바꾸어야 하는지 설명하고, $3\\frac{2}{5}$를 가분수로 고치시오.",
+        "answer": "분수 부분과 분모가 같은 분수로 바꾼다. $3=\\frac{15}{5}$이므로 $\\frac{15}{5}+\\frac{2}{5}=\\frac{17}{5}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분수 부분과 분모가 같은 분수로 바꾼다",
+              "$1$을 분모와 분자가 같은 분수로 보고 자연수를 바꾼다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{17}{5}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$2\\frac{1}{3}$을 가분수로 고칠 때 $1=\\frac{3}{3}$이므로 $2=${$\\frac{6}{3}$}이고, $2\\frac{1}{3}=${$\\frac{7}{3}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{6}{3}$"
+          ],
+          [
+            "$\\frac{7}{3}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "960360f36d442e1cd55670dacddfe7c5a861e47f92c0693dd65951b63cb2dd7b",
+      "questionRevision": "planning-e5e6-20261006-960360f36d44",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-2-xc6",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "가분수를 대분수로 나타낼 때 자연수 부분과 분수 부분의 분자를 각각 어떻게 정하는지 설명하고, $\\frac{13}{5}$을 대분수로 나타내시오.",
+      "bAnswer": "분자를 분모만큼씩 묶으면 한 묶음이 $1$이므로 묶음 수가 자연수 부분이고, 남은 수가 분수 부분의 분자이다. $13$은 $5$씩 $2$묶음에 $3$이 남으므로 $2\\frac{3}{5}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분자를 분모만큼씩 묶은 묶음 수가 자연수 부분이다",
+            "분자를 분모로 나눈 몫이 자연수 부분이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "묶고 남은 수가 분수 부분의 분자이다",
+            "나머지가 분수 부분의 분자이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\frac{3}{5}$"
+          ]
+        }
+      ],
+      "bGoal": "분모만큼씩 묶어 1을 만드는 방법으로 가분수를 대분수로 고친다.",
+      "bReason": "원문 예의 '세 번 묶어 낼 수 없는 까닭'은 표현이 어색해 묶음 수와 나머지의 역할을 직접 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{11}{4}$에서 $\\frac{4}{4}=1$을 {$2$}번 묶어 내면 $\\frac{3}{4}$이 남으므로 $\\frac{11}{4}=${$2\\frac{3}{4}$}이다. $\\frac{12}{4}$는 남는 것이 없으므로 자연수 {$3$}이다.",
+      "cReason": "원문 빈칸은 외워 쓰기 어려운 긴 구절이라 묶음 수와 결과를 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 860,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-2-xc6",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-2 대분수의 덧셈",
+        "term": "가분수를 대분수나 자연수로",
+        "kind": "방법",
+        "level": "하",
+        "definition": "가분수의 분자에서 {분모만큼씩을 $1$로 묶어 내고}, 남는 것이 있으면 분수 부분으로 써서 대분수로, 없으면 자연수로 나타낸다.",
+        "example": {
+          "prompt": "$\\frac{11}{4}$에서 $1$을 세 번 묶어 낼 수 없는 까닭은?",
+          "answer": "네 조각씩 세 묶음이 안 되어서"
+        },
+        "studentC": "가분수의 분자에서 □, 남는 것이 있으면 분수 부분으로 써서 대분수로, 없으면 자연수로 나타낸다.",
+        "answers": [
+          "분모만큼씩을 $1$로 묶어 내고"
+        ]
+      },
+      "sourceFingerprint": "84863f93565f44baf231a84babaa8ab5f7d664e6084652b57a3ce5c606885b8b",
+      "draftEvidence": "evidence/section-018-draft.json",
+      "cProposedAnswers": [
+        "$2$",
+        "$2\\frac{3}{4}$",
+        "$3$"
+      ],
+      "cStudentAfter": "$\\frac{11}{4}$에서 $\\frac{4}{4}=1$을 □번 묶어 내면 $\\frac{3}{4}$이 남으므로 $\\frac{11}{4}=$□이다. $\\frac{12}{4}$는 남는 것이 없으므로 자연수 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\frac{3}{4}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$\\frac{11}{4}$에서 $\\frac{4}{4}=1$을 {$2$}번 묶어 내면 $\\frac{3}{4}$이 남으므로 $\\frac{11}{4}=${$2\\frac{3}{4}$}이다. $\\frac{12}{4}$는 남는 것이 없으므로 자연수 {$3$}이다.",
+      "cStudentSentence": "$\\frac{11}{4}$에서 $\\frac{4}{4}=1$을 □번 묶어 내면 $\\frac{3}{4}$이 남으므로 $\\frac{11}{4}=$□이다. $\\frac{12}{4}$는 남는 것이 없으므로 자연수 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "$2\\frac{3}{4}$",
+          "equivalents": []
+        },
+        {
+          "key": "$3$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "가분수를 대분수로 나타낼 때 자연수 부분과 분수 부분의 분자를 각각 어떻게 정하는지 설명하고, $\\frac{13}{5}$을 대분수로 나타내시오.",
+        "answer": "분자를 분모만큼씩 묶으면 한 묶음이 $1$이므로 묶음 수가 자연수 부분이고, 남은 수가 분수 부분의 분자이다. $13$은 $5$씩 $2$묶음에 $3$이 남으므로 $2\\frac{3}{5}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분자를 분모만큼씩 묶은 묶음 수가 자연수 부분이다",
+              "분자를 분모로 나눈 몫이 자연수 부분이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "묶고 남은 수가 분수 부분의 분자이다",
+              "나머지가 분수 부분의 분자이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2\\frac{3}{5}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{11}{4}$에서 $\\frac{4}{4}=1$을 {$2$}번 묶어 내면 $\\frac{3}{4}$이 남으므로 $\\frac{11}{4}=${$2\\frac{3}{4}$}이다. $\\frac{12}{4}$는 남는 것이 없으므로 자연수 {$3$}이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "$2\\frac{3}{4}$"
+          ],
+          [
+            "$3$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "55f0251d8b9aa9c70fee5427c70b189a6bd05c24336d6e1d92ed517decb2535f",
+      "questionRevision": "planning-e5e6-20261006-55f0251d8b9a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-2-xc8",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "합의 분수 부분을 약분하여 간단히 나타낸다.",
+      "bReason": "약분은 앞 단원 개념이라 B로 만들면 계산값 하나만 묻게 된다.",
+      "cDecision": "keep",
+      "cAfter": "대분수의 합도 분수 부분을 {약분}하여 간단히 나타낸다.",
+      "cReason": "합의 분수 부분을 간단히 하는 방법을 익숙한 용어 하나로 묻는 짧은 문장이다.",
+      "exclusionReason": "B는 단순 계산이 되므로 C만 남긴다.",
+      "exampleNeeded": false,
+      "sourceIndex": 861,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-2-xc8",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-2 대분수의 덧셈",
+        "term": "대분수의 합을 간단히",
+        "kind": "방법",
+        "level": "하",
+        "definition": "대분수의 합도 분수 부분을 {약분}하여 간단히 나타낸다.",
+        "example": {
+          "prompt": "$1\\frac{1}{6}+1\\frac{1}{3}$을 계산하시오.",
+          "answer": "$2\\frac{1}{2}$"
+        },
+        "studentC": "대분수의 합도 분수 부분을 □하여 간단히 나타낸다.",
+        "answers": [
+          "약분"
+        ]
+      },
+      "sourceFingerprint": "0c28bcbaaaf325305b5de8891a4d35fc432db9b615b994616ae9be4f4c457aa6",
+      "draftEvidence": "evidence/section-018-draft.json",
+      "cFrozenDefinition": "대분수의 합도 분수 부분을 {약분}하여 간단히 나타낸다.",
+      "cFrozenStudentSentence": "대분수의 합도 분수 부분을 □하여 간단히 나타낸다.",
+      "cProposedAnswers": [
+        "약분"
+      ],
+      "cStudentAfter": "대분수의 합도 분수 부분을 □하여 간단히 나타낸다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "약분"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "대분수의 합도 분수 부분을 {약분}하여 간단히 나타낸다.",
+      "cStudentSentence": "대분수의 합도 분수 부분을 □하여 간단히 나타낸다.",
+      "cSlotAnswers": [
+        {
+          "key": "약분",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "대분수의 합도 분수 부분을 {약분}하여 간단히 나타낸다.",
+        "acceptedAnswers": [
+          [
+            "약분"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 단순 계산이 되므로 C만 남긴다."
+      },
+      "proposalFingerprint": "f7d0e798c765af10db64b74f60f9d019ca9cb48e4c06e5837a1d8da28bf96033",
+      "questionRevision": "planning-e5e6-20261006-f7d0e798c765",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-2-xc9",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "자연수 부분의 합으로 합의 아래쪽 어림을 한다.",
+      "bReason": "xc18의 B가 자연수 부분의 합보다 크다는 내용까지 범위로 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$2\\frac{1}{3}+3\\frac{1}{4}$은 자연수 부분만 더한 {$5$}보다 {크다}.",
+      "cReason": "'적어도 얼마인지'는 임의의 구절이라 실제 수로 어림한 값과 크기 비교를 답하게 했다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "크다",
+            "큼"
+          ]
+        }
+      ],
+      "exclusionReason": "B는 e5-1-5-2-xc18과 중복된다.",
+      "exampleNeeded": false,
+      "sourceIndex": 862,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-2-xc9",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-2 대분수의 덧셈",
+        "term": "자연수 부분으로 합 어림하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "두 대분수의 자연수 부분을 더하면 합이 {적어도 얼마인지} 알 수 있다.",
+        "example": {
+          "prompt": "$2\\frac{1}{3}+3\\frac{1}{4}$은 적어도 얼마보다 큰가?",
+          "answer": "$5$"
+        },
+        "studentC": "두 대분수의 자연수 부분을 더하면 합이 □ 알 수 있다.",
+        "answers": [
+          "적어도 얼마인지"
+        ]
+      },
+      "sourceFingerprint": "987d75d13e17416cd323c5742cc2520e213a6dca9f9f68f9bde1a4dff6da93e3",
+      "draftEvidence": "evidence/section-018-draft.json",
+      "cProposedAnswers": [
+        "$5$",
+        "크다"
+      ],
+      "cStudentAfter": "$2\\frac{1}{3}+3\\frac{1}{4}$은 자연수 부분만 더한 □보다 □.",
+      "cMarkedSentence": "$2\\frac{1}{3}+3\\frac{1}{4}$은 자연수 부분만 더한 {$5$}보다 {크다}.",
+      "cStudentSentence": "$2\\frac{1}{3}+3\\frac{1}{4}$은 자연수 부분만 더한 □보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$5$",
+          "equivalents": []
+        },
+        {
+          "key": "크다",
+          "equivalents": [
+            "큼"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$2\\frac{1}{3}+3\\frac{1}{4}$은 자연수 부분만 더한 {$5$}보다 {크다}.",
+        "acceptedAnswers": [
+          [
+            "$5$"
+          ],
+          [
+            "크다",
+            "큼"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e5-1-5-2-xc18과 중복된다."
+      },
+      "proposalFingerprint": "e015f3b5f1fd621baf6967a46deaa83278415c0533521db809c2aaea33dc2971",
+      "questionRevision": "planning-e5e6-20261006-e015f3b5f1fd",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-2-xc10",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "분모가 다른 두 대분수를 자연수 부분과 분수 부분으로 나누어 더할 때의 계산 차례를 쓰고, 그 차례대로 $1\\frac{5}{6}+2\\frac{3}{4}$을 계산하시오.",
+      "bAnswer": "분수 부분을 통분하고, 자연수 부분끼리·분수 부분끼리 더한 뒤, 분수 부분의 합이 $1$ 이상이면 $1$을 자연수 부분으로 올리고 약분할 수 있으면 약분한다. $1\\frac{10}{12}+2\\frac{9}{12}=3\\frac{19}{12}=4\\frac{7}{12}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "먼저 분수 부분을 통분한다",
+            "먼저 분모를 같게 만든다"
+          ]
+        },
+        {
+          "anyOf": [
+            "분수 부분의 합이 $1$ 이상이면 $1$을 자연수 부분으로 올린다",
+            "분수 부분의 합이 가분수이면 대분수로 고쳐 자연수 부분에 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4\\frac{7}{12}$"
+          ]
+        }
+      ],
+      "bGoal": "통분, 부분끼리 더하기, 받아올림의 전체 차례를 한 번에 정리한다.",
+      "bReason": "차례를 나열한 원문을 받아올림이 있는 예로 직접 수행하게 하여 xc3의 내용까지 묶었다.",
+      "cDecision": "revise",
+      "cAfter": "$1\\frac{5}{6}+2\\frac{3}{4}$을 통분하면 $1\\frac{10}{12}+2\\frac{9}{12}$이다. 자연수 부분끼리 더하면 {$3$}, 분수 부분끼리 더하면 {$\\frac{19}{12}$}이므로 합은 {$4\\frac{7}{12}$}이다.",
+      "cReason": "첫 초안은 분수 부분의 합 $19/12$를 바로 뒤 식에 드러냈다. 그 변환 예를 제거하고 각 부분의 합과 전체 합을 계산하게 한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{19}{12}$",
+            "$1\\frac{7}{12}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4\\frac{7}{12}$"
+          ]
+        }
+      ],
+      "codexReview": "미리 읽은 실제 제안 지면에서 발견한 답 복사·서로 다른 유효 답·중복을 개별 수정했다. 전체 최종 질문/답/기준 판정은 별도 진행한다.",
+      "sourceIndex": 863,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-2-xc10",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-2 대분수의 덧셈",
+        "term": "대분수 덧셈의 차례",
+        "kind": "방법",
+        "level": "하",
+        "definition": "분수 부분 통분, {부분끼리 더하기}, 약분과 받아올림의 차례로 계산한다.",
+        "studentC": "분수 부분 통분, □, 약분과 받아올림의 차례로 계산한다.",
+        "answers": [
+          "부분끼리 더하기"
+        ]
+      },
+      "sourceFingerprint": "e18d06526284413897c87f50c2b5d67f68720538f719abc47465f098bcc9edb6",
+      "draftEvidence": "evidence/section-018-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$3$",
+        "$\\frac{19}{12}$",
+        "$4\\frac{7}{12}$"
+      ],
+      "cStudentAfter": "$1\\frac{5}{6}+2\\frac{3}{4}$을 통분하면 $1\\frac{10}{12}+2\\frac{9}{12}$이다. 자연수 부분끼리 더하면 □, 분수 부분끼리 더하면 □이므로 합은 □이다.",
+      "cMarkedSentence": "$1\\frac{5}{6}+2\\frac{3}{4}$을 통분하면 $1\\frac{10}{12}+2\\frac{9}{12}$이다. 자연수 부분끼리 더하면 {$3$}, 분수 부분끼리 더하면 {$\\frac{19}{12}$}이므로 합은 {$4\\frac{7}{12}$}이다.",
+      "cStudentSentence": "$1\\frac{5}{6}+2\\frac{3}{4}$을 통분하면 $1\\frac{10}{12}+2\\frac{9}{12}$이다. 자연수 부분끼리 더하면 □, 분수 부분끼리 더하면 □이므로 합은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{19}{12}$",
+          "equivalents": [
+            "$1\\frac{7}{12}$"
+          ]
+        },
+        {
+          "key": "$4\\frac{7}{12}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "분모가 다른 두 대분수를 자연수 부분과 분수 부분으로 나누어 더할 때의 계산 차례를 쓰고, 그 차례대로 $1\\frac{5}{6}+2\\frac{3}{4}$을 계산하시오.",
+        "answer": "분수 부분을 통분하고, 자연수 부분끼리·분수 부분끼리 더한 뒤, 분수 부분의 합이 $1$ 이상이면 $1$을 자연수 부분으로 올리고 약분할 수 있으면 약분한다. $1\\frac{10}{12}+2\\frac{9}{12}=3\\frac{19}{12}=4\\frac{7}{12}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "먼저 분수 부분을 통분한다",
+              "먼저 분모를 같게 만든다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분수 부분의 합이 $1$ 이상이면 $1$을 자연수 부분으로 올린다",
+              "분수 부분의 합이 가분수이면 대분수로 고쳐 자연수 부분에 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4\\frac{7}{12}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1\\frac{5}{6}+2\\frac{3}{4}$을 통분하면 $1\\frac{10}{12}+2\\frac{9}{12}$이다. 자연수 부분끼리 더하면 {$3$}, 분수 부분끼리 더하면 {$\\frac{19}{12}$}이므로 합은 {$4\\frac{7}{12}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "$\\frac{19}{12}$",
+            "$1\\frac{7}{12}$"
+          ],
+          [
+            "$4\\frac{7}{12}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a63c0b45bace79974e01870e0aca91de40cff528e20cd62a6684bec103413645",
+      "questionRevision": "planning-e5e6-20261006-a63c0b45bace",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-2-xc11",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$2+\\frac{7}{6}$과 $3\\frac{1}{6}$의 크기가 같은 까닭을 $\\frac{7}{6}$을 자연수와 진분수로 나누어 설명하시오.",
+      "bAnswer": "$\\frac{7}{6}=\\frac{6}{6}+\\frac{1}{6}=1+\\frac{1}{6}$이므로 $2+\\frac{7}{6}=2+1+\\frac{1}{6}=3\\frac{1}{6}$이다. $1$을 자리만 옮겨 쓴 것이라 크기는 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{7}{6}$은 $1$과 $\\frac{1}{6}$의 합이다",
+            "$\\frac{7}{6}=1\\frac{1}{6}$",
+            "$\\frac{6}{6}$이 $1$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "그 $1$을 $2$에 더하면 $3$이 된다",
+            "$2+1+\\frac{1}{6}$로 쓸 수 있다"
+          ]
+        }
+      ],
+      "bGoal": "받아올림이 수의 크기를 바꾸지 않는 까닭을 설명한다.",
+      "bReason": "원문 예는 계산만 시켜 '크기가 그대로'라는 핵심을 확인하지 못한다.",
+      "cDecision": "revise",
+      "cAfter": "$1\\frac{2}{3}+1\\frac{1}{2}$에서 자연수 부분의 합은 $2$, 분수 부분의 합은 $\\frac{7}{6}$이다. $\\frac{7}{6}=${$1\\frac{1}{6}$}이므로 합은 {$3\\frac{1}{6}$}이다.",
+      "cReason": "'자연수 부분의 1'은 학생이 떠올리기 어려운 구절이라 받아올림 과정의 값을 쓰게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 864,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-2-xc11",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-2 대분수의 덧셈",
+        "term": "받아올림과 수의 크기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "받아올림은 분수 부분에 든 $1$을 {자연수 부분의 $1$}로 옮겨 쓰는 것이므로 합의 크기는 바뀌지 않는다.",
+        "example": {
+          "prompt": "$1\\frac{2}{3}+1\\frac{1}{2}$을 계산하시오.",
+          "answer": "$3\\frac{1}{6}$"
+        },
+        "studentC": "받아올림은 분수 부분에 든 $1$을 □로 옮겨 쓰는 것이므로 합의 크기는 바뀌지 않는다.",
+        "answers": [
+          "자연수 부분의 $1$"
+        ]
+      },
+      "sourceFingerprint": "9c9f51cdedc9d6a1ed52e53d25bbc6d2055988f74a87bb7b68c36d9565c91ade",
+      "draftEvidence": "evidence/section-018-draft.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "bRequiredIdeas[1].anyOf[1]",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cProposedAnswers": [
+        "$1\\frac{1}{6}$",
+        "$3\\frac{1}{6}$"
+      ],
+      "cStudentAfter": "$1\\frac{2}{3}+1\\frac{1}{2}$에서 자연수 부분의 합은 $2$, 분수 부분의 합은 $\\frac{7}{6}$이다. $\\frac{7}{6}=$□이므로 합은 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1\\frac{1}{6}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3\\frac{1}{6}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$1\\frac{2}{3}+1\\frac{1}{2}$에서 자연수 부분의 합은 $2$, 분수 부분의 합은 $\\frac{7}{6}$이다. $\\frac{7}{6}=${$1\\frac{1}{6}$}이므로 합은 {$3\\frac{1}{6}$}이다.",
+      "cStudentSentence": "$1\\frac{2}{3}+1\\frac{1}{2}$에서 자연수 부분의 합은 $2$, 분수 부분의 합은 $\\frac{7}{6}$이다. $\\frac{7}{6}=$□이므로 합은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1\\frac{1}{6}$",
+          "equivalents": []
+        },
+        {
+          "key": "$3\\frac{1}{6}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$2+\\frac{7}{6}$과 $3\\frac{1}{6}$의 크기가 같은 까닭을 $\\frac{7}{6}$을 자연수와 진분수로 나누어 설명하시오.",
+        "answer": "$\\frac{7}{6}=\\frac{6}{6}+\\frac{1}{6}=1+\\frac{1}{6}$이므로 $2+\\frac{7}{6}=2+1+\\frac{1}{6}=3\\frac{1}{6}$이다. $1$을 자리만 옮겨 쓴 것이라 크기는 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{7}{6}$은 $1$과 $\\frac{1}{6}$의 합이다",
+              "$\\frac{7}{6}=1\\frac{1}{6}$",
+              "$\\frac{6}{6}$이 $1$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "그 $1$을 $2$에 더하면 $3$이 된다",
+              "$2+1+\\frac{1}{6}$로 쓸 수 있다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1\\frac{2}{3}+1\\frac{1}{2}$에서 자연수 부분의 합은 $2$, 분수 부분의 합은 $\\frac{7}{6}$이다. $\\frac{7}{6}=${$1\\frac{1}{6}$}이므로 합은 {$3\\frac{1}{6}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$1\\frac{1}{6}$"
+          ],
+          [
+            "$3\\frac{1}{6}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "19dc05925551cf0809de4d84b1e0d4d3c6688bd433f5f99df74633ca2ef5ad1b",
+      "questionRevision": "planning-e5e6-20261006-19dc05925551",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-2-xc12",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "두 계산 방법의 결과가 같음을 확인한다.",
+      "bReason": "결과가 같다는 사실은 자명하고, 서술로 물으면 같은 계산을 두 번 시키는 것에 그친다.",
+      "cDecision": "revise",
+      "cAfter": "$1\\frac{3}{4}+2\\frac{1}{2}$을 부분끼리 더하면 $3\\frac{5}{4}=${$4\\frac{1}{4}$}이고, 가분수로 바꾸어 더하면 $\\frac{7}{4}+\\frac{10}{4}=${$\\frac{17}{4}$}이다. 두 결과의 크기는 서로 {같다}.",
+      "cReason": "'결과는 같다'를 통째로 채우는 대신 두 방법의 값을 구해 직접 비교하게 했다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4\\frac{1}{4}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{17}{4}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "같다",
+            "같음"
+          ]
+        }
+      ],
+      "exclusionReason": "B는 자명한 사실이라 C의 계산 확인으로 대체한다. 가분수로 더하는 방법은 e5-1-5-2-xc4가 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 865,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-2-xc12",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-2 대분수의 덧셈",
+        "term": "두 방법의 같은 결과",
+        "kind": "성질",
+        "level": "중",
+        "definition": "부분끼리 더해도, 가분수로 바꾸어 더해도 {결과는 같다}.",
+        "studentC": "부분끼리 더해도, 가분수로 바꾸어 더해도 □.",
+        "answers": [
+          "결과는 같다"
+        ]
+      },
+      "sourceFingerprint": "7aaec587eebc6cb2e3123efdb83d156384f4d986aaf39672efaf548a0c6a28e9",
+      "draftEvidence": "evidence/section-018-draft.json",
+      "cProposedAnswers": [
+        "$4\\frac{1}{4}$",
+        "$\\frac{17}{4}$",
+        "같다"
+      ],
+      "cStudentAfter": "$1\\frac{3}{4}+2\\frac{1}{2}$을 부분끼리 더하면 $3\\frac{5}{4}=$□이고, 가분수로 바꾸어 더하면 $\\frac{7}{4}+\\frac{10}{4}=$□이다. 두 결과의 크기는 서로 □.",
+      "cMarkedSentence": "$1\\frac{3}{4}+2\\frac{1}{2}$을 부분끼리 더하면 $3\\frac{5}{4}=${$4\\frac{1}{4}$}이고, 가분수로 바꾸어 더하면 $\\frac{7}{4}+\\frac{10}{4}=${$\\frac{17}{4}$}이다. 두 결과의 크기는 서로 {같다}.",
+      "cStudentSentence": "$1\\frac{3}{4}+2\\frac{1}{2}$을 부분끼리 더하면 $3\\frac{5}{4}=$□이고, 가분수로 바꾸어 더하면 $\\frac{7}{4}+\\frac{10}{4}=$□이다. 두 결과의 크기는 서로 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$4\\frac{1}{4}$",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{17}{4}$",
+          "equivalents": []
+        },
+        {
+          "key": "같다",
+          "equivalents": [
+            "같음"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$1\\frac{3}{4}+2\\frac{1}{2}$을 부분끼리 더하면 $3\\frac{5}{4}=${$4\\frac{1}{4}$}이고, 가분수로 바꾸어 더하면 $\\frac{7}{4}+\\frac{10}{4}=${$\\frac{17}{4}$}이다. 두 결과의 크기는 서로 {같다}.",
+        "acceptedAnswers": [
+          [
+            "$4\\frac{1}{4}$"
+          ],
+          [
+            "$\\frac{17}{4}$"
+          ],
+          [
+            "같다",
+            "같음"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 자명한 사실이라 C의 계산 확인으로 대체한다. 가분수로 더하는 방법은 e5-1-5-2-xc4가 묻는다."
+      },
+      "proposalFingerprint": "94ab51a10858e738d527ecdb49fa4cf75762216454d02e45c19b9ada7ec6050c",
+      "questionRevision": "planning-e5e6-20261006-94ab51a10858",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-2-xc13",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "대분수를 가분수로 바꾸어 더하는 방법은 부분끼리 더하는 방법과 견주어 편한 점이 무엇이고 불편한 점이 무엇인지 하나씩 쓰시오.",
+      "bAnswer": "편한 점은 받아올림을 따로 생각하지 않아도 된다는 것이다. 불편한 점은 분자가 커져 계산이 번거로울 수 있다는 것이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "받아올림을 따로 하지 않아도 된다",
+            "하나의 분수로 한 번에 더할 수 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "분자가 커져 계산이 번거롭다",
+            "큰 수의 곱셈과 덧셈을 해야 한다"
+          ]
+        }
+      ],
+      "bGoal": "가분수 방법의 장단점을 받아올림과 분자의 크기로 설명한다.",
+      "bReason": "원문 내용이 장단점 비교 그 자체라 두 가지를 각각 쓰도록 범위를 정했다.",
+      "cDecision": "revise",
+      "cAfter": "가분수로 바꾸어 더하면 받아올림을 따로 생각하지 않아도 되지만, 자연수 부분이 클수록 가분수의 {분자}가 커져 계산이 번거로울 수 있다.",
+      "cReason": "'분자가 커져' 구절을 한 낱말 빈칸으로 줄이고 커지는 조건을 덧붙였다.",
+      "exampleNeeded": false,
+      "sourceIndex": 866,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-2-xc13",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-2 대분수의 덧셈",
+        "term": "가분수로 더할 때의 좋은 점과 어려운 점",
+        "kind": "성질",
+        "level": "중",
+        "definition": "가분수로 바꾸면 받아올림을 따로 생각하지 않아도 되지만 {분자가 커져} 계산이 번거로울 수 있다.",
+        "studentC": "가분수로 바꾸면 받아올림을 따로 생각하지 않아도 되지만 □ 계산이 번거로울 수 있다.",
+        "answers": [
+          "분자가 커져"
+        ]
+      },
+      "sourceFingerprint": "13fb535c5669680357296429d318dbbc961db844ed104b21670ddcacf2dfd9d8",
+      "draftEvidence": "evidence/section-018-draft.json",
+      "cProposedAnswers": [
+        "분자"
+      ],
+      "cStudentAfter": "가분수로 바꾸어 더하면 받아올림을 따로 생각하지 않아도 되지만, 자연수 부분이 클수록 가분수의 □가 커져 계산이 번거로울 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "분자"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "가분수로 바꾸어 더하면 받아올림을 따로 생각하지 않아도 되지만, 자연수 부분이 클수록 가분수의 {분자}가 커져 계산이 번거로울 수 있다.",
+      "cStudentSentence": "가분수로 바꾸어 더하면 받아올림을 따로 생각하지 않아도 되지만, 자연수 부분이 클수록 가분수의 □가 커져 계산이 번거로울 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "분자",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "대분수를 가분수로 바꾸어 더하는 방법은 부분끼리 더하는 방법과 견주어 편한 점이 무엇이고 불편한 점이 무엇인지 하나씩 쓰시오.",
+        "answer": "편한 점은 받아올림을 따로 생각하지 않아도 된다는 것이다. 불편한 점은 분자가 커져 계산이 번거로울 수 있다는 것이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "받아올림을 따로 하지 않아도 된다",
+              "하나의 분수로 한 번에 더할 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분자가 커져 계산이 번거롭다",
+              "큰 수의 곱셈과 덧셈을 해야 한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "가분수로 바꾸어 더하면 받아올림을 따로 생각하지 않아도 되지만, 자연수 부분이 클수록 가분수의 {분자}가 커져 계산이 번거로울 수 있다.",
+        "acceptedAnswers": [
+          [
+            "분자"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "dbb18c8ffeca35fa99e801571fe47c709e4ef6ac79b434e1fc2c4db596191f73",
+      "questionRevision": "planning-e5e6-20261006-dbb18c8ffeca",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-2-xc15",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "자연수 부분을 빠뜨리면 합이 얼마나 작아지는지 안다.",
+      "bReason": "특정 실수를 묘사한 문장이라 서술로 묻기에는 사소하고, c1의 방법을 알면 충분하다.",
+      "cDecision": "revise",
+      "cAfter": "$2\\frac{1}{5}+3\\frac{2}{5}$를 계산하면서 분수 부분만 더해 $\\frac{3}{5}$이라고 답하면, 바른 합 {$5\\frac{3}{5}$}보다 {$5$}만큼 작다.",
+      "cReason": "긴 구절 빈칸을 실제 예의 바른 합과 차이 값으로 바꾸었다.",
+      "exclusionReason": "B는 사소한 오류 서술이며 기본 방법은 e5-1-5-2-c1이 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 867,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-2-xc15",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-2 대분수의 덧셈",
+        "term": "자연수 부분을 빠뜨리는 잘못",
+        "kind": "성질",
+        "level": "중",
+        "definition": "두 대분수를 더할 때 분수 부분만 더하면 바른 합보다 {자연수 부분의 합만큼 작아진다}.",
+        "studentC": "두 대분수를 더할 때 분수 부분만 더하면 바른 합보다 □.",
+        "answers": [
+          "자연수 부분의 합만큼 작아진다"
+        ]
+      },
+      "sourceFingerprint": "86dc07cffb41b2de7171afe2a3fcb4003400a4c9f52c060364f3dbc9a79ef27f",
+      "draftEvidence": "evidence/section-018-draft.json",
+      "cProposedAnswers": [
+        "$5\\frac{3}{5}$",
+        "$5$"
+      ],
+      "cStudentAfter": "$2\\frac{1}{5}+3\\frac{2}{5}$를 계산하면서 분수 부분만 더해 $\\frac{3}{5}$이라고 답하면, 바른 합 □보다 □만큼 작다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5\\frac{3}{5}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$2\\frac{1}{5}+3\\frac{2}{5}$를 계산하면서 분수 부분만 더해 $\\frac{3}{5}$이라고 답하면, 바른 합 {$5\\frac{3}{5}$}보다 {$5$}만큼 작다.",
+      "cStudentSentence": "$2\\frac{1}{5}+3\\frac{2}{5}$를 계산하면서 분수 부분만 더해 $\\frac{3}{5}$이라고 답하면, 바른 합 □보다 □만큼 작다.",
+      "cSlotAnswers": [
+        {
+          "key": "$5\\frac{3}{5}$",
+          "equivalents": []
+        },
+        {
+          "key": "$5$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$2\\frac{1}{5}+3\\frac{2}{5}$를 계산하면서 분수 부분만 더해 $\\frac{3}{5}$이라고 답하면, 바른 합 {$5\\frac{3}{5}$}보다 {$5$}만큼 작다.",
+        "acceptedAnswers": [
+          [
+            "$5\\frac{3}{5}$"
+          ],
+          [
+            "$5$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 사소한 오류 서술이며 기본 방법은 e5-1-5-2-c1이 묻는다."
+      },
+      "proposalFingerprint": "9befcd82441efe737ffea2055613447d1c27777fb6e9e38cb28629a7544bfa5c",
+      "questionRevision": "planning-e5e6-20261006-9befcd82441e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-2-xc16",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "대분수에 진분수를 더할 때 자연수 부분이 그대로인 경우를 안다.",
+      "bReason": "부분끼리 더하기의 특수한 경우라 B로 물으면 계산 한 번에 그친다.",
+      "cDecision": "revise",
+      "cAfter": "$2\\frac{1}{4}+\\frac{1}{2}$에서 $\\frac{1}{4}+\\frac{1}{2}=${$\\frac{3}{4}$}이고 이것은 $1$보다 작으므로, 자연수 부분은 {$2$} 그대로여서 합은 {$2\\frac{3}{4}$}이다.",
+      "cReason": "진분수에는 '분수 부분끼리'라는 말이 어색해 예의 계산값을 쓰게 했다.",
+      "exclusionReason": "B는 e5-1-5-2-c1, c2의 특수한 경우이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 868,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-2-xc16",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-2 대분수의 덧셈",
+        "term": "대분수와 진분수의 덧셈",
+        "kind": "방법",
+        "level": "중",
+        "definition": "대분수에 진분수를 더할 때는 {분수 부분끼리} 더하고, 그 합이 $1$보다 작으면 자연수 부분은 그대로 둔다.",
+        "example": {
+          "prompt": "$2\\frac{1}{4}+\\frac{1}{2}$을 계산하시오.",
+          "answer": "$2\\frac{3}{4}$"
+        },
+        "studentC": "대분수에 진분수를 더할 때는 □ 더하고, 그 합이 $1$보다 작으면 자연수 부분은 그대로 둔다.",
+        "answers": [
+          "분수 부분끼리"
+        ]
+      },
+      "sourceFingerprint": "7e123ba24f295dcdf5f2844445d1eccb0736d32835881cca313286af22b3c8e5",
+      "draftEvidence": "evidence/section-018-draft.json",
+      "cProposedAnswers": [
+        "$\\frac{3}{4}$",
+        "$2$",
+        "$2\\frac{3}{4}$"
+      ],
+      "cStudentAfter": "$2\\frac{1}{4}+\\frac{1}{2}$에서 $\\frac{1}{4}+\\frac{1}{2}=$□이고 이것은 $1$보다 작으므로, 자연수 부분은 □ 그대로여서 합은 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{3}{4}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\frac{3}{4}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$2\\frac{1}{4}+\\frac{1}{2}$에서 $\\frac{1}{4}+\\frac{1}{2}=${$\\frac{3}{4}$}이고 이것은 $1$보다 작으므로, 자연수 부분은 {$2$} 그대로여서 합은 {$2\\frac{3}{4}$}이다.",
+      "cStudentSentence": "$2\\frac{1}{4}+\\frac{1}{2}$에서 $\\frac{1}{4}+\\frac{1}{2}=$□이고 이것은 $1$보다 작으므로, 자연수 부분은 □ 그대로여서 합은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{3}{4}$",
+          "equivalents": []
+        },
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "$2\\frac{3}{4}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$2\\frac{1}{4}+\\frac{1}{2}$에서 $\\frac{1}{4}+\\frac{1}{2}=${$\\frac{3}{4}$}이고 이것은 $1$보다 작으므로, 자연수 부분은 {$2$} 그대로여서 합은 {$2\\frac{3}{4}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{3}{4}$"
+          ],
+          [
+            "$2$"
+          ],
+          [
+            "$2\\frac{3}{4}$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e5-1-5-2-c1, c2의 특수한 경우이다."
+      },
+      "proposalFingerprint": "1b9ea58786072e14d4ff68563d155fc21c5f2e7498c9eb0a6bdf7c5387079477",
+      "questionRevision": "planning-e5e6-20261006-1b9ea5878607",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-2-xc17",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "대분수에 자연수를 더하면 대분수의 자연수 부분과 분수 부분이 각각 어떻게 되는지 설명하고, $3\\frac{2}{7}+4$를 계산하시오.",
+      "bAnswer": "자연수 부분만 더한 수만큼 커지고 분수 부분은 그대로이다. $3+4=7$이므로 $7\\frac{2}{7}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "자연수 부분만 더한 수만큼 커진다",
+            "자연수 부분에 그 자연수를 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "분수 부분은 그대로이다",
+            "분수 부분은 변하지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7\\frac{2}{7}$"
+          ]
+        }
+      ],
+      "bGoal": "자연수를 더할 때 변하는 부분과 변하지 않는 부분을 구별한다.",
+      "bReason": "원문 예는 계산만 하므로 두 부분의 변화를 각각 말하게 했다.",
+      "cDecision": "keep",
+      "cAfter": "대분수에 자연수를 더하면 {자연수 부분}만 커진다.",
+      "cReason": "커지는 부분의 이름을 묻는 짧은 문장이고 답이 하나로 정해진다.",
+      "exampleNeeded": false,
+      "sourceIndex": 869,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-2-xc17",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-2 대분수의 덧셈",
+        "term": "대분수와 자연수의 덧셈",
+        "kind": "방법",
+        "level": "중",
+        "definition": "대분수에 자연수를 더하면 {자연수 부분}만 커진다.",
+        "example": {
+          "prompt": "$3\\frac{2}{7}+4$를 계산하시오.",
+          "answer": "$7\\frac{2}{7}$"
+        },
+        "studentC": "대분수에 자연수를 더하면 □만 커진다.",
+        "answers": [
+          "자연수 부분"
+        ]
+      },
+      "sourceFingerprint": "fce371948dbea75097dee736a08611eb7e412601eed28e3654c287efe762ecb1",
+      "draftEvidence": "evidence/section-018-draft.json",
+      "cFrozenDefinition": "대분수에 자연수를 더하면 {자연수 부분}만 커진다.",
+      "cFrozenStudentSentence": "대분수에 자연수를 더하면 □만 커진다.",
+      "cProposedAnswers": [
+        "자연수 부분"
+      ],
+      "cStudentAfter": "대분수에 자연수를 더하면 □만 커진다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "자연수 부분"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "대분수에 자연수를 더하면 {자연수 부분}만 커진다.",
+      "cStudentSentence": "대분수에 자연수를 더하면 □만 커진다.",
+      "cSlotAnswers": [
+        {
+          "key": "자연수 부분",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "대분수에 자연수를 더하면 대분수의 자연수 부분과 분수 부분이 각각 어떻게 되는지 설명하고, $3\\frac{2}{7}+4$를 계산하시오.",
+        "answer": "자연수 부분만 더한 수만큼 커지고 분수 부분은 그대로이다. $3+4=7$이므로 $7\\frac{2}{7}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "자연수 부분만 더한 수만큼 커진다",
+              "자연수 부분에 그 자연수를 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분수 부분은 그대로이다",
+              "분수 부분은 변하지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$7\\frac{2}{7}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "대분수에 자연수를 더하면 {자연수 부분}만 커진다.",
+        "acceptedAnswers": [
+          [
+            "자연수 부분"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "bc5735d5ba0c05ffd0b7898a859ddc93e3894c3d5b94c95c62c277b0a28f287e",
+      "questionRevision": "planning-e5e6-20261006-bc5735d5ba0c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-2-xc18",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "두 대분수의 분수 부분의 합이 $1$보다 작을 때, 두 대분수의 합이 어떤 두 자연수 사이에 있는지 자연수 부분의 합을 이용하여 설명하고, $2\\frac{1}{3}+3\\frac{1}{4}$은 어떤 두 자연수 사이에 있는지 쓰시오.",
+      "bAnswer": "합은 자연수 부분의 합에 $1$보다 작은 수를 더한 것이므로, 자연수 부분의 합보다 크고 그보다 $1$ 큰 수보다 작다. $2\\frac{1}{3}+3\\frac{1}{4}$은 $5$와 $6$ 사이에 있다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "자연수 부분의 합보다 크고 그보다 $1$ 큰 수보다 작다",
+            "자연수 부분의 합과 그다음 자연수 사이에 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$와 $6$ 사이",
+            "$5$보다 크고 $6$보다 작다"
+          ]
+        }
+      ],
+      "bGoal": "분수 부분의 합이 1보다 작을 때 합의 범위를 어림한다.",
+      "bReason": "조건과 범위의 관계를 일반으로 묻고 원문 예의 수로 확인하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$2\\frac{1}{3}+3\\frac{1}{4}$에서 분수 부분의 합 $\\frac{1}{3}+\\frac{1}{4}$은 $1$보다 {작다}. 그래서 합은 {$5$}보다 크고 {$6$}보다 작다.",
+      "cReason": "'그보다 1 큰 수보다 작다'는 긴 구절 빈칸이라 실제 범위의 수를 쓰게 했다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작다",
+            "작음"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 870,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-2-xc18",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-2 대분수의 덧셈",
+        "term": "합의 범위 어림하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "두 대분수의 분수 부분의 합이 $1$보다 작으면, 합은 자연수 부분의 합보다 크고 {그보다 $1$ 큰 수보다 작다}.",
+        "example": {
+          "prompt": "$2\\frac{1}{3}+3\\frac{1}{4}$이 $6$보다 작은 까닭은?",
+          "answer": "분수 부분의 합이 $1$보다 작아서"
+        },
+        "studentC": "두 대분수의 분수 부분의 합이 $1$보다 작으면, 합은 자연수 부분의 합보다 크고 □.",
+        "answers": [
+          "그보다 $1$ 큰 수보다 작다"
+        ]
+      },
+      "sourceFingerprint": "16ae5cf7107c7b1597e6561d13b3068f0da663b03f251dd722e0769def6ad076",
+      "draftEvidence": "evidence/section-018-draft.json",
+      "cProposedAnswers": [
+        "작다",
+        "$5$",
+        "$6$"
+      ],
+      "cStudentAfter": "$2\\frac{1}{3}+3\\frac{1}{4}$에서 분수 부분의 합 $\\frac{1}{3}+\\frac{1}{4}$은 $1$보다 □. 그래서 합은 □보다 크고 □보다 작다.",
+      "cMarkedSentence": "$2\\frac{1}{3}+3\\frac{1}{4}$에서 분수 부분의 합 $\\frac{1}{3}+\\frac{1}{4}$은 $1$보다 {작다}. 그래서 합은 {$5$}보다 크고 {$6$}보다 작다.",
+      "cStudentSentence": "$2\\frac{1}{3}+3\\frac{1}{4}$에서 분수 부분의 합 $\\frac{1}{3}+\\frac{1}{4}$은 $1$보다 □. 그래서 합은 □보다 크고 □보다 작다.",
+      "cSlotAnswers": [
+        {
+          "key": "작다",
+          "equivalents": [
+            "작음"
+          ]
+        },
+        {
+          "key": "$5$",
+          "equivalents": []
+        },
+        {
+          "key": "$6$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 대분수의 분수 부분의 합이 $1$보다 작을 때, 두 대분수의 합이 어떤 두 자연수 사이에 있는지 자연수 부분의 합을 이용하여 설명하고, $2\\frac{1}{3}+3\\frac{1}{4}$은 어떤 두 자연수 사이에 있는지 쓰시오.",
+        "answer": "합은 자연수 부분의 합에 $1$보다 작은 수를 더한 것이므로, 자연수 부분의 합보다 크고 그보다 $1$ 큰 수보다 작다. $2\\frac{1}{3}+3\\frac{1}{4}$은 $5$와 $6$ 사이에 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "자연수 부분의 합보다 크고 그보다 $1$ 큰 수보다 작다",
+              "자연수 부분의 합과 그다음 자연수 사이에 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5$와 $6$ 사이",
+              "$5$보다 크고 $6$보다 작다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$2\\frac{1}{3}+3\\frac{1}{4}$에서 분수 부분의 합 $\\frac{1}{3}+\\frac{1}{4}$은 $1$보다 {작다}. 그래서 합은 {$5$}보다 크고 {$6$}보다 작다.",
+        "acceptedAnswers": [
+          [
+            "작다",
+            "작음"
+          ],
+          [
+            "$5$"
+          ],
+          [
+            "$6$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b6ccad36c84ca2543a3d880f386fd005515dd0b5a2bb25ee9792aadc2da538c4",
+      "questionRevision": "planning-e5e6-20261006-b6ccad36c84c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-2-xc19",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "분수 부분의 합이 1일 때 합을 자연수로 나타낸다.",
+      "bReason": "xc21의 B가 분수 부분의 합이 1이면 합이 자연수가 되는 관계를 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "$1\\frac{1}{4}+2\\frac{3}{4}$에서 분수 부분의 합은 $\\frac{4}{4}=${$1$}이므로, 합은 $3+1=${$4$}이다.",
+      "cReason": "'자연수 1'이라는 표현을 강요하지 않도록 예에서 값 1과 최종 합을 쓰게 했다.",
+      "exclusionReason": "B는 e5-1-5-2-xc21과 중복된다.",
+      "exampleNeeded": false,
+      "sourceIndex": 871,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-2-xc19",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-2 대분수의 덧셈",
+        "term": "분수 부분의 합이 $1$일 때",
+        "kind": "방법",
+        "level": "중",
+        "definition": "통분한 분수 부분의 분자의 합이 분모와 같으면 분수 부분의 합은 {자연수 $1$}이므로 자연수 부분에 더한다.",
+        "example": {
+          "prompt": "$1\\frac{1}{4}+2\\frac{3}{4}$을 계산하시오.",
+          "answer": "$4$"
+        },
+        "studentC": "통분한 분수 부분의 분자의 합이 분모와 같으면 분수 부분의 합은 □이므로 자연수 부분에 더한다.",
+        "answers": [
+          "자연수 $1$"
+        ]
+      },
+      "sourceFingerprint": "99adb3c1285a4e6ec8c2d3112596931ee579f7416b26ca52f5ff693aa553571e",
+      "draftEvidence": "evidence/section-018-draft.json",
+      "cProposedAnswers": [
+        "$1$",
+        "$4$"
+      ],
+      "cStudentAfter": "$1\\frac{1}{4}+2\\frac{3}{4}$에서 분수 부분의 합은 $\\frac{4}{4}=$□이므로, 합은 $3+1=$□이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$1\\frac{1}{4}+2\\frac{3}{4}$에서 분수 부분의 합은 $\\frac{4}{4}=${$1$}이므로, 합은 $3+1=${$4$}이다.",
+      "cStudentSentence": "$1\\frac{1}{4}+2\\frac{3}{4}$에서 분수 부분의 합은 $\\frac{4}{4}=$□이므로, 합은 $3+1=$□이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": []
+        },
+        {
+          "key": "$4$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$1\\frac{1}{4}+2\\frac{3}{4}$에서 분수 부분의 합은 $\\frac{4}{4}=${$1$}이므로, 합은 $3+1=${$4$}이다.",
+        "acceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "$4$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e5-1-5-2-xc21과 중복된다."
+      },
+      "proposalFingerprint": "1269ec03c1453e8b9fae4f8d88fe51c60bdbc71afcf988c68dc5a788fe9a9321",
+      "questionRevision": "planning-e5e6-20261006-1269ec03c145",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-2-xc20",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "가분수로 고치면 하나의 분수로 더할 수 있음을 안다.",
+      "bReason": "가분수로 더하는 방법은 xc4가, 그 좋은 점은 xc13이 이미 묻는다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "'진분수의 덧셈처럼'은 외워 쓸 수밖에 없는 비유 구절이고, 내용은 xc4의 C 계산에 들어 있다.",
+      "exclusionReason": "B와 C 모두 e5-1-5-2-xc4, e5-1-5-2-xc13과 중복된다.",
+      "exampleNeeded": false,
+      "sourceIndex": 872,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-2-xc20",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-2 대분수의 덧셈",
+        "term": "가분수로 더하는 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "대분수를 가분수로 고치면 하나의 분수가 되어 {진분수의 덧셈처럼} 계산할 수 있다.",
+        "studentC": "대분수를 가분수로 고치면 하나의 분수가 되어 □ 계산할 수 있다.",
+        "answers": [
+          "진분수의 덧셈처럼"
+        ]
+      },
+      "sourceFingerprint": "8a2003e1c89fd0ece02c2e8308100d2e30ddfece6913203166bf00ddf1d3dafc",
+      "draftEvidence": "evidence/section-018-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "B와 C 모두 e5-1-5-2-xc4, e5-1-5-2-xc13과 중복된다.",
+        "cloze": "B와 C 모두 e5-1-5-2-xc4, e5-1-5-2-xc13과 중복된다."
+      },
+      "proposalFingerprint": "53e3937d142a195d92ca50018c335272cf43056e24138c998db9d9901ff2b039",
+      "questionRevision": "planning-e5e6-20261006-53e3937d142a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-2-xc21",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "두 대분수의 합이 자연수가 되려면 두 분수 부분 사이에 어떤 관계가 있어야 하는지 설명하고, $2\\frac{3}{8}$에 더하여 합이 자연수가 되는 대분수의 분수 부분을 구하시오.",
+      "bAnswer": "두 분수 부분의 합이 $1$이 되어야 한다. $\\frac{3}{8}+\\frac{5}{8}=1$이므로 분수 부분은 $\\frac{5}{8}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 분수 부분의 합이 $1$이어야 한다",
+            "분수 부분끼리 더하면 $1$이 되어야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{5}{8}$"
+          ]
+        }
+      ],
+      "bGoal": "합이 자연수가 되는 조건을 분수 부분의 합으로 설명한다.",
+      "bReason": "원문 예는 값만 물어 조건 자체를 함께 묻도록 했다.",
+      "cDecision": "revise",
+      "cAfter": "두 대분수의 분수 부분의 합이 {$1$}이면 두 대분수의 합은 자연수이다. $2\\frac{3}{8}$에 분수 부분이 {$\\frac{5}{8}$}인 대분수를 더하면 합이 자연수가 된다.",
+      "cReason": "'1이 되면'이라는 구절 빈칸을 값 1로 줄이고 짝이 되는 분수를 찾게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 873,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-2-xc21",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-2 대분수의 덧셈",
+        "term": "합이 자연수가 되는 짝",
+        "kind": "방법",
+        "level": "상",
+        "definition": "두 대분수의 분수 부분의 합이 {$1$이 되면} 합은 자연수이다.",
+        "example": {
+          "prompt": "$2\\frac{3}{8}$과 더해 자연수가 되는 대분수의 분수 부분은?",
+          "answer": "$\\frac{5}{8}$"
+        },
+        "studentC": "두 대분수의 분수 부분의 합이 □ 합은 자연수이다.",
+        "answers": [
+          "$1$이 되면"
+        ]
+      },
+      "sourceFingerprint": "4e5a11a1a29135cc725098e4179926b4beda8ece59818c007be0b61e08a81909",
+      "draftEvidence": "evidence/section-018-draft.json",
+      "cProposedAnswers": [
+        "$1$",
+        "$\\frac{5}{8}$"
+      ],
+      "cStudentAfter": "두 대분수의 분수 부분의 합이 □이면 두 대분수의 합은 자연수이다. $2\\frac{3}{8}$에 분수 부분이 □인 대분수를 더하면 합이 자연수가 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{5}{8}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "두 대분수의 분수 부분의 합이 {$1$}이면 두 대분수의 합은 자연수이다. $2\\frac{3}{8}$에 분수 부분이 {$\\frac{5}{8}$}인 대분수를 더하면 합이 자연수가 된다.",
+      "cStudentSentence": "두 대분수의 분수 부분의 합이 □이면 두 대분수의 합은 자연수이다. $2\\frac{3}{8}$에 분수 부분이 □인 대분수를 더하면 합이 자연수가 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{5}{8}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 대분수의 합이 자연수가 되려면 두 분수 부분 사이에 어떤 관계가 있어야 하는지 설명하고, $2\\frac{3}{8}$에 더하여 합이 자연수가 되는 대분수의 분수 부분을 구하시오.",
+        "answer": "두 분수 부분의 합이 $1$이 되어야 한다. $\\frac{3}{8}+\\frac{5}{8}=1$이므로 분수 부분은 $\\frac{5}{8}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 분수 부분의 합이 $1$이어야 한다",
+              "분수 부분끼리 더하면 $1$이 되어야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{5}{8}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "두 대분수의 분수 부분의 합이 {$1$}이면 두 대분수의 합은 자연수이다. $2\\frac{3}{8}$에 분수 부분이 {$\\frac{5}{8}$}인 대분수를 더하면 합이 자연수가 된다.",
+        "acceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "$\\frac{5}{8}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "eede4041453a10ceca707d3f56b5b1e2c05230a3597cb4231b9533e066cd4f70",
+      "questionRevision": "planning-e5e6-20261006-eede4041453a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-2-xc23",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "합치는 상황을 대분수의 덧셈으로 푼다.",
+      "bReason": "문장제 계산 한 번이 되어 서술로 물을 개념이 따로 없다.",
+      "cDecision": "revise",
+      "cAfter": "$1\\frac{1}{2}\\,\\mathrm{kg}$과 $2\\frac{2}{5}\\,\\mathrm{kg}$을 합친 무게는 $1\\frac{1}{2}+2\\frac{2}{5}=1\\frac{5}{10}+2\\frac{4}{10}=${$3\\frac{9}{10}$}$\\,\\mathrm{kg}$이다.",
+      "cReason": "'통분하여 더한다'는 분모가 같으면 맞지 않는 구절이라 실제 상황의 합을 구하게 했다.",
+      "exclusionReason": "B는 단순 문장제 계산이며 방법은 e5-1-5-2-xc10이 묻는다.",
+      "exampleNeeded": false,
+      "coreAfter": "두 양을 합한 길이나 무게를 구할 때 그 양이 대분수이면 대분수의 덧셈으로 구하고, 분모가 다르면 {통분하여 더한다}.",
+      "coreReason": "원문은 분모가 같은 경우에도 통분해야 하는 것처럼 읽힌다.",
+      "editorialOwner": "Codex",
+      "coreTargetReason": "통분하여 더한다라는 원문 표적을 보존한다. 모두라는 단어만으로 연산을 정하지 않게 실제 두 양의 합을 조건으로 쓰고 분모가 다른 경우를 밝힌다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 874,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-2-xc23",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-2 대분수의 덧셈",
+        "term": "생활 속 대분수의 덧셈",
+        "kind": "방법",
+        "level": "상",
+        "definition": "‘모두’, ‘합쳐서’를 묻는 길이나 무게가 대분수이면 {통분하여 더한다}.",
+        "example": {
+          "prompt": "$1\\frac{1}{2}\\,\\mathrm{kg}$과 $2\\frac{2}{5}\\,\\mathrm{kg}$을 합치면?",
+          "answer": "$3\\frac{9}{10}\\,\\mathrm{kg}$"
+        },
+        "studentC": "‘모두’, ‘합쳐서’를 묻는 길이나 무게가 대분수이면 □.",
+        "answers": [
+          "통분하여 더한다"
+        ]
+      },
+      "sourceFingerprint": "c82c7fe532cb5bd34d41496c7bac8e4b25394cd12e1fb2b77fe86ed89ae3ec24",
+      "draftEvidence": "evidence/section-018-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$3\\frac{9}{10}$"
+      ],
+      "cStudentAfter": "$1\\frac{1}{2}\\,\\mathrm{kg}$과 $2\\frac{2}{5}\\,\\mathrm{kg}$을 합친 무게는 $1\\frac{1}{2}+2\\frac{2}{5}=1\\frac{5}{10}+2\\frac{4}{10}=$□$\\,\\mathrm{kg}$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3\\frac{9}{10}$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$1\\frac{1}{2}\\,\\mathrm{kg}$과 $2\\frac{2}{5}\\,\\mathrm{kg}$을 합친 무게는 $1\\frac{1}{2}+2\\frac{2}{5}=1\\frac{5}{10}+2\\frac{4}{10}=${$3\\frac{9}{10}$}$\\,\\mathrm{kg}$이다.",
+      "cStudentSentence": "$1\\frac{1}{2}\\,\\mathrm{kg}$과 $2\\frac{2}{5}\\,\\mathrm{kg}$을 합친 무게는 $1\\frac{1}{2}+2\\frac{2}{5}=1\\frac{5}{10}+2\\frac{4}{10}=$□$\\,\\mathrm{kg}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3\\frac{9}{10}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$1\\frac{1}{2}\\,\\mathrm{kg}$과 $2\\frac{2}{5}\\,\\mathrm{kg}$을 합친 무게는 $1\\frac{1}{2}+2\\frac{2}{5}=1\\frac{5}{10}+2\\frac{4}{10}=${$3\\frac{9}{10}$}$\\,\\mathrm{kg}$이다.",
+        "acceptedAnswers": [
+          [
+            "$3\\frac{9}{10}$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 단순 문장제 계산이며 방법은 e5-1-5-2-xc10이 묻는다."
+      },
+      "proposalFingerprint": "9ba393c18bd147ce65af5cd4e9655bae05f6fbe65b3f0f84e4aef7679d266b2e",
+      "questionRevision": "planning-e5e6-20261006-9ba393c18bd1",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-2-xc24",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "세 대분수도 부분끼리 모아 더한다.",
+      "bReason": "두 대분수의 방법을 수만 늘린 것이라 B로는 계산값 하나를 묻게 된다.",
+      "cDecision": "revise",
+      "cAfter": "$1\\frac{1}{3}+1\\frac{1}{3}+1\\frac{1}{3}$에서 자연수 부분끼리 더하면 {$3$}, 분수 부분끼리 더하면 $\\frac{3}{3}=${$1$}이므로 합은 {$4$}이다.",
+      "cReason": "'한꺼번에'는 수학 내용이 없는 낱말 빈칸이라 세 수의 부분별 합을 쓰게 했다.",
+      "exclusionReason": "B는 e5-1-5-2-c1의 단순 확장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 875,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-2-xc24",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-2 대분수의 덧셈",
+        "term": "세 대분수의 덧셈",
+        "kind": "방법",
+        "level": "상",
+        "definition": "세 대분수는 자연수 부분끼리, 분수 부분끼리 {한꺼번에} 더해도 된다.",
+        "example": {
+          "prompt": "$1\\frac{1}{3}+1\\frac{1}{3}+1\\frac{1}{3}$은?",
+          "answer": "$4$"
+        },
+        "studentC": "세 대분수는 자연수 부분끼리, 분수 부분끼리 □ 더해도 된다.",
+        "answers": [
+          "한꺼번에"
+        ]
+      },
+      "sourceFingerprint": "ff86c88fe5545248375182ee09aacbc8bdf833ffa445d308d761ee8e1fbefd04",
+      "draftEvidence": "evidence/section-018-draft.json",
+      "cProposedAnswers": [
+        "$3$",
+        "$1$",
+        "$4$"
+      ],
+      "cStudentAfter": "$1\\frac{1}{3}+1\\frac{1}{3}+1\\frac{1}{3}$에서 자연수 부분끼리 더하면 □, 분수 부분끼리 더하면 $\\frac{3}{3}=$□이므로 합은 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$1\\frac{1}{3}+1\\frac{1}{3}+1\\frac{1}{3}$에서 자연수 부분끼리 더하면 {$3$}, 분수 부분끼리 더하면 $\\frac{3}{3}=${$1$}이므로 합은 {$4$}이다.",
+      "cStudentSentence": "$1\\frac{1}{3}+1\\frac{1}{3}+1\\frac{1}{3}$에서 자연수 부분끼리 더하면 □, 분수 부분끼리 더하면 $\\frac{3}{3}=$□이므로 합은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$1$",
+          "equivalents": []
+        },
+        {
+          "key": "$4$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$1\\frac{1}{3}+1\\frac{1}{3}+1\\frac{1}{3}$에서 자연수 부분끼리 더하면 {$3$}, 분수 부분끼리 더하면 $\\frac{3}{3}=${$1$}이므로 합은 {$4$}이다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "$1$"
+          ],
+          [
+            "$4$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e5-1-5-2-c1의 단순 확장이다."
+      },
+      "proposalFingerprint": "e357b50bc0dfb3ea3d80eca77007277c0f5aa9fac5a9d48b67cbee44ab3f6584",
+      "questionRevision": "planning-e5e6-20261006-e357b50bc0df",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-2-xc25",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "대분수의 분수 부분은 항상 $1$보다 작다. 이를 이용하여 두 대분수의 분수 부분의 합이 얼마보다 작은지 설명하고, $4\\frac{5}{6}+3\\frac{7}{8}$은 계산하지 않아도 어떤 자연수보다 작다고 할 수 있는지 쓰시오.",
+      "bAnswer": "분수 부분이 각각 $1$보다 작으므로 두 분수 부분의 합은 $2$보다 작다. 자연수 부분의 합이 $7$이므로 합은 $7+2=9$보다 작다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 분수 부분의 합은 $2$보다 작다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$9$보다 작다",
+            "$9$"
+          ]
+        }
+      ],
+      "bGoal": "분수 부분이 1보다 작다는 사실로 합의 위쪽 한계를 설명한다.",
+      "bReason": "원문 예의 '이웃한 두 자연수'는 계산해야 답할 수 있어 일반 범위의 근거를 묻도록 바꾸었다.",
+      "cDecision": "revise",
+      "cAfter": "두 대분수의 분수 부분은 각각 $1$보다 작으므로 분수 부분의 합은 {$2$}보다 작다. 그래서 $4\\frac{5}{6}+3\\frac{7}{8}$은 $7$보다 크고 {$9$}보다 작다.",
+      "cReason": "'2 큰 수'라는 구절 대신 한계가 되는 수를 근거와 함께 쓰게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 876,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-2-xc25",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-2 대분수의 덧셈",
+        "term": "두 대분수의 합이 있는 범위",
+        "kind": "방법",
+        "level": "상",
+        "definition": "두 대분수의 합은 자연수 부분의 합과 그보다 {$2$ 큰 수} 사이에 있다.",
+        "example": {
+          "prompt": "$4\\frac{5}{6}+3\\frac{7}{8}$은 어느 이웃한 두 자연수 사이에 있는가?",
+          "answer": "$8$과 $9$"
+        },
+        "studentC": "두 대분수의 합은 자연수 부분의 합과 그보다 □ 사이에 있다.",
+        "answers": [
+          "$2$ 큰 수"
+        ]
+      },
+      "sourceFingerprint": "52eff6b1b80de717984437c59ec490a3aeb8e7e302e3b0419f6772b51d1b466d",
+      "draftEvidence": "evidence/section-018-draft.json",
+      "cProposedAnswers": [
+        "$2$",
+        "$9$"
+      ],
+      "cStudentAfter": "두 대분수의 분수 부분은 각각 $1$보다 작으므로 분수 부분의 합은 □보다 작다. 그래서 $4\\frac{5}{6}+3\\frac{7}{8}$은 $7$보다 크고 □보다 작다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$9$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "두 대분수의 분수 부분은 각각 $1$보다 작으므로 분수 부분의 합은 {$2$}보다 작다. 그래서 $4\\frac{5}{6}+3\\frac{7}{8}$은 $7$보다 크고 {$9$}보다 작다.",
+      "cStudentSentence": "두 대분수의 분수 부분은 각각 $1$보다 작으므로 분수 부분의 합은 □보다 작다. 그래서 $4\\frac{5}{6}+3\\frac{7}{8}$은 $7$보다 크고 □보다 작다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "$9$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "대분수의 분수 부분은 항상 $1$보다 작다. 이를 이용하여 두 대분수의 분수 부분의 합이 얼마보다 작은지 설명하고, $4\\frac{5}{6}+3\\frac{7}{8}$은 계산하지 않아도 어떤 자연수보다 작다고 할 수 있는지 쓰시오.",
+        "answer": "분수 부분이 각각 $1$보다 작으므로 두 분수 부분의 합은 $2$보다 작다. 자연수 부분의 합이 $7$이므로 합은 $7+2=9$보다 작다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 분수 부분의 합은 $2$보다 작다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$9$보다 작다",
+              "$9$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "두 대분수의 분수 부분은 각각 $1$보다 작으므로 분수 부분의 합은 {$2$}보다 작다. 그래서 $4\\frac{5}{6}+3\\frac{7}{8}$은 $7$보다 크고 {$9$}보다 작다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "$9$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "60e3ca745320df299e9eb30b262be97221a25733025e908102c96509c6a7ef16",
+      "questionRevision": "planning-e5e6-20261006-60e3ca745320",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-2-xc27",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "두 대분수의 분수 부분이 모두 $\\frac{1}{2}$보다 클 때, 분수 부분끼리 더한 합을 $1$과 비교하면 어떠한지 까닭과 함께 쓰고, 이때 계산에서 어떤 일이 생기는지 설명하시오.",
+      "bAnswer": "$\\frac{1}{2}+\\frac{1}{2}=1$인데 두 분수가 모두 $\\frac{1}{2}$보다 크므로 합은 $1$보다 크다. 그래서 반드시 받아올림이 생긴다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분수 부분의 합이 $1$보다 크다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{2}$ 두 개의 합이 $1$이기 때문이다",
+            "$\\frac{1}{2}+\\frac{1}{2}=1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "받아올림이 생긴다",
+            "$1$을 자연수 부분으로 올려야 한다",
+            "자연수 부분이 $1$ 더 커진다"
+          ]
+        }
+      ],
+      "bGoal": "분수 부분이 모두 절반보다 크면 받아올림이 생기는 까닭을 설명한다.",
+      "bReason": "원문은 결과만 말하므로 절반 두 개가 1이라는 근거를 설명하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "두 대분수의 분수 부분이 모두 {$\\frac{1}{2}$}보다 크면 분수 부분의 합이 {$1$}보다 커서 반드시 받아올림이 생긴다.",
+      "cReason": "조건 구절 전체 대신 기준 분수와 합의 기준값을 짧게 쓰게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 877,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-2-xc27",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-2 대분수의 덧셈",
+        "term": "반드시 생기는 받아올림",
+        "kind": "성질",
+        "level": "상",
+        "definition": "분수 부분이 모두 {$\\frac{1}{2}$보다 크면} 분수 부분을 더할 때 반드시 받아올림이 생긴다.",
+        "studentC": "분수 부분이 모두 □ 분수 부분을 더할 때 반드시 받아올림이 생긴다.",
+        "answers": [
+          "$\\frac{1}{2}$보다 크면"
+        ]
+      },
+      "sourceFingerprint": "b0db264ebd68720d03c3dd40ed808e274ca869cfe599adf3dcef3db623e46b9c",
+      "draftEvidence": "evidence/section-018-draft.json",
+      "cProposedAnswers": [
+        "$\\frac{1}{2}$",
+        "$1$"
+      ],
+      "cStudentAfter": "두 대분수의 분수 부분이 모두 □보다 크면 분수 부분의 합이 □보다 커서 반드시 받아올림이 생긴다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{1}{2}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "두 대분수의 분수 부분이 모두 {$\\frac{1}{2}$}보다 크면 분수 부분의 합이 {$1$}보다 커서 반드시 받아올림이 생긴다.",
+      "cStudentSentence": "두 대분수의 분수 부분이 모두 □보다 크면 분수 부분의 합이 □보다 커서 반드시 받아올림이 생긴다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{1}{2}$",
+          "equivalents": []
+        },
+        {
+          "key": "$1$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 대분수의 분수 부분이 모두 $\\frac{1}{2}$보다 클 때, 분수 부분끼리 더한 합을 $1$과 비교하면 어떠한지 까닭과 함께 쓰고, 이때 계산에서 어떤 일이 생기는지 설명하시오.",
+        "answer": "$\\frac{1}{2}+\\frac{1}{2}=1$인데 두 분수가 모두 $\\frac{1}{2}$보다 크므로 합은 $1$보다 크다. 그래서 반드시 받아올림이 생긴다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분수 부분의 합이 $1$보다 크다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{2}$ 두 개의 합이 $1$이기 때문이다",
+              "$\\frac{1}{2}+\\frac{1}{2}=1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "받아올림이 생긴다",
+              "$1$을 자연수 부분으로 올려야 한다",
+              "자연수 부분이 $1$ 더 커진다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "두 대분수의 분수 부분이 모두 {$\\frac{1}{2}$}보다 크면 분수 부분의 합이 {$1$}보다 커서 반드시 받아올림이 생긴다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{1}{2}$"
+          ],
+          [
+            "$1$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7c8fe868c701b4ceb723638f36beb9bba15135bd7acaf622f1fa7b2249aebd1a",
+      "questionRevision": "planning-e5e6-20261006-7c8fe868c701",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-2-xc28",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "두 대분수를 더한 결과가 맞는지 뺄셈으로 확인하는 방법을 설명하고, $1\\frac{1}{5}+2\\frac{2}{5}=3\\frac{3}{5}$을 확인하는 뺄셈식과 그 계산 결과를 쓰시오.",
+      "bAnswer": "합에서 더한 두 수 중 하나를 빼어 나머지 수가 나오는지 본다. $3\\frac{3}{5}-1\\frac{1}{5}=2\\frac{2}{5}$이므로 맞다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "합에서 더한 수 하나를 빼면 다른 수가 나와야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3\\frac{3}{5}-1\\frac{1}{5}=2\\frac{2}{5}$",
+            "$3\\frac{3}{5}-2\\frac{2}{5}=1\\frac{1}{5}$"
+          ]
+        }
+      ],
+      "bGoal": "덧셈과 뺄셈의 관계로 대분수의 합을 검산한다.",
+      "bReason": "원문에 예가 없어 받아내림이 없는 쉬운 식으로 확인 과정을 쓰게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$1\\frac{1}{5}+2\\frac{2}{5}$의 합을 $3\\frac{2}{5}$이라고 잘못 썼다. 뺄셈으로 확인하면 $3\\frac{2}{5}-1\\frac{1}{5}=${$2\\frac{1}{5}$}이 되어 더한 수 $2\\frac{2}{5}$와 다르다.",
+      "cReason": "처음 식에서 확인 결과를 그대로 복사하지 않도록 잘못 구한 합과 실제 뺄셈을 주어 새 값을 계산하게 한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2\\frac{1}{5}$"
+          ]
+        }
+      ],
+      "codexReview": "미리 읽은 실제 제안 지면에서 발견한 답 복사·서로 다른 유효 답·중복을 개별 수정했다. 전체 최종 질문/답/기준 판정은 별도 진행한다.",
+      "sourceIndex": 878,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-2-xc28",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-2 대분수의 덧셈",
+        "term": "합을 뺄셈으로 확인하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "합에서 한 대분수를 빼어 {다른 대분수}가 나오면 맞게 더한 것이다.",
+        "studentC": "합에서 한 대분수를 빼어 □가 나오면 맞게 더한 것이다.",
+        "answers": [
+          "다른 대분수"
+        ]
+      },
+      "sourceFingerprint": "b9841dbf6c84e1c7e27c538a8db6cf27538f1df58d83a8f03eec319e7cc86369",
+      "draftEvidence": "evidence/section-018-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$2\\frac{1}{5}$"
+      ],
+      "cStudentAfter": "$1\\frac{1}{5}+2\\frac{2}{5}$의 합을 $3\\frac{2}{5}$이라고 잘못 썼다. 뺄셈으로 확인하면 $3\\frac{2}{5}-1\\frac{1}{5}=$□이 되어 더한 수 $2\\frac{2}{5}$와 다르다.",
+      "cMarkedSentence": "$1\\frac{1}{5}+2\\frac{2}{5}$의 합을 $3\\frac{2}{5}$이라고 잘못 썼다. 뺄셈으로 확인하면 $3\\frac{2}{5}-1\\frac{1}{5}=${$2\\frac{1}{5}$}이 되어 더한 수 $2\\frac{2}{5}$와 다르다.",
+      "cStudentSentence": "$1\\frac{1}{5}+2\\frac{2}{5}$의 합을 $3\\frac{2}{5}$이라고 잘못 썼다. 뺄셈으로 확인하면 $3\\frac{2}{5}-1\\frac{1}{5}=$□이 되어 더한 수 $2\\frac{2}{5}$와 다르다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2\\frac{1}{5}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 대분수를 더한 결과가 맞는지 뺄셈으로 확인하는 방법을 설명하고, $1\\frac{1}{5}+2\\frac{2}{5}=3\\frac{3}{5}$을 확인하는 뺄셈식과 그 계산 결과를 쓰시오.",
+        "answer": "합에서 더한 두 수 중 하나를 빼어 나머지 수가 나오는지 본다. $3\\frac{3}{5}-1\\frac{1}{5}=2\\frac{2}{5}$이므로 맞다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "합에서 더한 수 하나를 빼면 다른 수가 나와야 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3\\frac{3}{5}-1\\frac{1}{5}=2\\frac{2}{5}$",
+              "$3\\frac{3}{5}-2\\frac{2}{5}=1\\frac{1}{5}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1\\frac{1}{5}+2\\frac{2}{5}$의 합을 $3\\frac{2}{5}$이라고 잘못 썼다. 뺄셈으로 확인하면 $3\\frac{2}{5}-1\\frac{1}{5}=${$2\\frac{1}{5}$}이 되어 더한 수 $2\\frac{2}{5}$와 다르다.",
+        "acceptedAnswers": [
+          [
+            "$2\\frac{1}{5}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "28692fd34245dee671001f9e07f03d605535edfa0b98e92b742aa794e71cd0c9",
+      "questionRevision": "planning-e5e6-20261006-28692fd34245",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-1-5-3-xc1",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "분모가 같은 두 진분수의 뺄셈은 어떻게 계산하는지 설명하고, $\\frac{7}{9}-\\frac{2}{9}$를 계산하시오.",
+      "bAnswer": "분모는 그대로 두고 분자끼리 뺀다. $\\frac{7}{9}-\\frac{2}{9}=\\frac{5}{9}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분자끼리 빼고 분모는 그대로 둔다",
+            "분모는 그대로 두고 분자만 뺀다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{5}{9}$"
+          ]
+        }
+      ],
+      "bGoal": "분모가 같을 때는 같은 크기 조각의 수만 빼면 된다는 방법을 확인한다.",
+      "bReason": "이전 학년 내용이지만 이 단원의 바탕이어서 방법과 약분이 필요 없는 예를 함께 물음.",
+      "cDecision": "keep",
+      "cAfter": "분모가 같으면 {분자끼리} 빼고 분모는 그대로 둔다.",
+      "cReason": "분모가 같은 경우 무엇끼리 빼는지 한 낱말로 답하는 짧고 분명한 문장이라 유지.",
+      "exampleNeeded": false,
+      "synonymNotes": "'분자끼리', '분자만' 인정.",
+      "sourceIndex": 879,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-1-5-3-xc1",
+        "section": "초5::1-5 분수의 덧셈과 뺄셈::1-5-3 진분수의 뺄셈",
+        "term": "분모가 같은 진분수의 뺄셈",
+        "kind": "방법",
+        "level": "하",
+        "definition": "분모가 같으면 {분자끼리} 빼고 분모는 그대로 둔다.",
+        "example": {
+          "prompt": "$\\frac{5}{9}-\\frac{2}{9}$를 계산하시오.",
+          "answer": "$\\frac{1}{3}$"
+        },
+        "studentC": "분모가 같으면 □ 빼고 분모는 그대로 둔다.",
+        "answers": [
+          "분자끼리"
+        ]
+      },
+      "sourceFingerprint": "ee0a527356bee1bb0ea1c5becfeaf1e69ca39af2c40075e31ec2b41b9923922c",
+      "draftEvidence": "evidence/section-019-draft.json",
+      "cFrozenDefinition": "분모가 같으면 {분자끼리} 빼고 분모는 그대로 둔다.",
+      "cFrozenStudentSentence": "분모가 같으면 □ 빼고 분모는 그대로 둔다.",
+      "cProposedAnswers": [
+        "분자끼리"
+      ],
+      "cStudentAfter": "분모가 같으면 □ 빼고 분모는 그대로 둔다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "분자끼리"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "분모가 같으면 {분자끼리} 빼고 분모는 그대로 둔다.",
+      "cStudentSentence": "분모가 같으면 □ 빼고 분모는 그대로 둔다.",
+      "cSlotAnswers": [
+        {
+          "key": "분자끼리",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "분모가 같은 두 진분수의 뺄셈은 어떻게 계산하는지 설명하고, $\\frac{7}{9}-\\frac{2}{9}$를 계산하시오.",
+        "answer": "분모는 그대로 두고 분자끼리 뺀다. $\\frac{7}{9}-\\frac{2}{9}=\\frac{5}{9}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분자끼리 빼고 분모는 그대로 둔다",
+              "분모는 그대로 두고 분자만 뺀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{5}{9}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "분모가 같으면 {분자끼리} 빼고 분모는 그대로 둔다.",
+        "acceptedAnswers": [
+          [
+            "분자끼리"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "2aaf679b45f516b820229060413678dd90b1f2686f0a7e3872932d443295eed3",
+      "questionRevision": "planning-e5e6-20261006-2aaf679b45f5",
+      "requiresIndependentReview": true
+    }
+  ]
+}

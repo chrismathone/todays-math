@@ -1,0 +1,175 @@
+{
+  "reader": "Codex direct actual normalized B/C/all answers/all criteria/generalDefinition rereading in tool output, no independent approval",
+  "readAt": "2026-10-07T11:41:22.970Z",
+  "candidateArtifact": {
+    "path": "candidates-200-220.json",
+    "byteSha256": "71a8483da1a745e790bd7c924a784c143e5a01c637f50b31d489c880c5db19c1"
+  },
+  "actualOutput": {
+    "path": "after-200-220.txt",
+    "byteSha256": "ab8a6cb6c96cdff5175bba645cb35d613f3a7373db4195dbcdc826f4f1ddf20c",
+    "truncated": false
+  },
+  "rows": [
+    {
+      "originalDisputeIndex": 200,
+      "id": "m2-05-07-xc2",
+      "candidateFingerprint": "e329e5a2538b8c1dad084663b3c76c86a37a91df330dc272bace554c4dd35983",
+      "candidateNormalizedHash": "b264f564c7ee216239809afedeb8f88e77578257a2c58ff41fedb29e9533f6a1",
+      "verdict": "candidate-text-reread",
+      "reason": "평행사변형의 정의인 대변 평행만 선언하는 답은 주어진 네 변 길이로부터의 근거가 생략된다. 네 변 길이가 같아 두 쌍 대변 길이가 각각 같다는 충분조건을 기준으로 명시한다. C와 일반 설명은 유지한다."
+    },
+    {
+      "originalDisputeIndex": 201,
+      "id": "m1-06-01-xc20",
+      "candidateFingerprint": "eb1b0d854a4dd87d202f78c972859c891903451e18ecb9136ffad626d205bf9a",
+      "candidateNormalizedHash": "95fb08aed3a6409cd39abcd587ce8d135f541bffc68b0e358bd8a1f830d0389a",
+      "verdict": "candidate-text-reread",
+      "reason": "C의 n 칸은 앞에 준 변 개수를 그대로 복원한다. 대각선 수에서 변 수를 빼는 차 전체를 하나의 식으로 묻는다. B와 일반 설명은 보존한다."
+    },
+    {
+      "originalDisputeIndex": 202,
+      "id": "m2-05-07-xc13",
+      "candidateFingerprint": "3ce5a87e6cb26b9e73f96afe9bdf9540353c8ef7ffa1c0ea0fe875cc8d4bade1",
+      "candidateNormalizedHash": "10f887b678f11270416452716171ca903ed2a7e61a7604977d0402d9f69daa00",
+      "verdict": "candidate-text-reread",
+      "reason": "snapshot에 보존된 현재 key는 B·C pass이며 blind 지적도 없다. 실제 B는 대각선의 상호 이등분으로 평행사변형, 같은 대각선 길이로 직사각형이라는 두 단계를 각각 필수로 하여 타당하다. C는 동일 문항 중복으로 제외되어 있고 일반 설명도 정확해 추가 수정할 이유가 없다."
+    },
+    {
+      "originalDisputeIndex": 203,
+      "id": "m2-05-08-xc16",
+      "candidateFingerprint": "a4279bb988b83b8c0cd9bec1baabf94bbef00037392b30476902b74eef8dc525",
+      "candidateNormalizedHash": "b22c7542ef1ea7a0dcf17684561940e781055e0276353e195007886da0429559",
+      "verdict": "candidate-text-reread",
+      "reason": "현재 C는 출력할 이름이 시작 문장에 그대로 인쇄되어 있다. 출발 도형을 네 변·네 각의 성질로 지정하여 결과 이름의 직접 노출만 제거한다. 정사각형 중점 사각형의 naming 역할과 B 제외·일반 설명은 유지한다."
+    },
+    {
+      "originalDisputeIndex": 204,
+      "id": "m2-06-01-xc6",
+      "candidateFingerprint": "89de1a058738d3f9b44e50f4867f4f3f5ec952ffcb4690e643da9cf289b9a575",
+      "candidateNormalizedHash": "38bc93b0d815a8e11eec9461c2bc394bf6d884ba738517586629d5b57d4252b0",
+      "verdict": "candidate-text-reread",
+      "reason": "'그대로 유지된다'의 부사 복원을 없애고 이동·회전·뒤집은 도형과 원래 도형의 관계를 묻는다. 합동이므로 닮음이라는 실질 이유를 C에도 담는다. B와 일반 설명은 유지한다."
+    },
+    {
+      "originalDisputeIndex": 205,
+      "id": "m2-06-01-xc10",
+      "candidateFingerprint": "bc5d35709344a84ebd13398788aa7a53764dcfd58618b0349a748d5823b8c0a0",
+      "candidateNormalizedHash": "aa0251790a53956763a6a14a82abba9452226bb4182bb31eae22be506fb4f41d",
+      "verdict": "candidate-text-reread",
+      "reason": "C의 닮음비가 앞 문장에 반복되어 있고 모서리 길이의 비도 들어갈 수 있다. 입체의 닮음비를 수치로 주어 대응면의 닮음비를 구체적으로 묻는다. B 제외와 일반 설명은 유지한다."
+    },
+    {
+      "originalDisputeIndex": 206,
+      "id": "m2-06-02-xc16",
+      "candidateFingerprint": "dfdab2e2f3355c07d4e0d894676acec0972823479ec3261a0396ccfce0b2f2de",
+      "candidateNormalizedHash": "2b6bf0134277003ed4b03512cadab6ef15c5fab1559e5a51142bf9e7e4547346",
+      "verdict": "candidate-text-reread",
+      "reason": "C의 앞 문장에 빗변이라는 키가 반복된다. 구체 직각삼각형에서 넓이의 두 식으로 수선 길이를 구하도록 바꾼다. B와 일반 공식은 유지한다."
+    },
+    {
+      "originalDisputeIndex": 207,
+      "id": "m2-07-01-xc2",
+      "candidateFingerprint": "5be44a7130dffc84b17860478ccab38ad5e358874e96bc04824b0c39fe26e3eb",
+      "candidateNormalizedHash": "f25d700b0c7cf2d44ca01797aa0a8e6be883229e36ee974803243b2ef542aa55",
+      "verdict": "candidate-text-reread",
+      "reason": "C의 일반 '어떤 길이의 비' 틀에서는 전체·나머지 모두 참일 수 있다. D,E의 위치와 DE∥BC를 제시하고 AD:AB의 대응비를 완성하게 하여 AC로 고정한다. B 제외와 일반 설명은 유지한다."
+    },
+    {
+      "originalDisputeIndex": 208,
+      "id": "m2-07-01-xc6",
+      "candidateFingerprint": "b762dfbbc4a76c7122f5a7744647ccf2c53772aa640b55ce54679c27ea177118",
+      "candidateNormalizedHash": "b146cfe7a49234ea4722a0f5a8f3e952541ee8d4216e27188c0a562fa5a70a2c",
+      "verdict": "candidate-text-reread",
+      "reason": "C의 동격 자리 '닮음비'를 제거하고 대응변의 길이 배율만 묻는다. B의 닮음 근거와 곱할 비율을 분명히 한 일반 설명은 유지한다."
+    },
+    {
+      "originalDisputeIndex": 209,
+      "id": "m2-07-01-xc10",
+      "candidateFingerprint": "d15efead8709ae00ce6b4fdd91d8b7f64d29790caa0d29a1a69b2421a1355c23",
+      "candidateNormalizedHash": "0919d0a1df2ec56a3fc68d578c3bddf7aec95cf8485fd764b68532b15ccee8d2",
+      "verdict": "candidate-text-reread",
+      "reason": "B의 대응변 이름만 반복하는 대안을 실제 같은 직선 위 대응 관계로 명시한다. C는 분모가 꼭짓점 A에서 원래 밑변의 끝점까지 잰 길이임을 지정해 DB·EC 대안이 들어갈 여지를 없앤다. 일반 설명은 유지한다."
+    },
+    {
+      "originalDisputeIndex": 210,
+      "id": "m2-07-02-xc2",
+      "candidateFingerprint": "efbc1124ca839504c1c8d1e89297599a28cf3200185ab534afe26b54237e37d0",
+      "candidateNormalizedHash": "587aca65ad90d135cbe85b1145a69fe8c8d68e1817c50ec3c3731f35f40cb048",
+      "verdict": "candidate-text-reread",
+      "reason": "C에서 대응할 변을 ∠A를 낀 두 변으로 제한하여 BC를 같은 끝점을 가진 변으로 읽을 수 없게 한다. B와 일반 설명은 유지한다."
+    },
+    {
+      "originalDisputeIndex": 211,
+      "id": "m1-07-01-xc21",
+      "candidateFingerprint": "ecb60e0a174a2e06df66211de42346eb98f084937341752388ab5b8c586a8033",
+      "candidateNormalizedHash": "4f9479ce732c60314d2f646e80ed5101bc83b6780315ab77b886b3a99b75be81",
+      "verdict": "candidate-text-reread",
+      "reason": "C의 '곧 □와 □'라는 열린 서술 틀을 오각기둥의 면을 실제로 세는 문항으로 바꾼다. 전개도에서 각 면이 한 번씩 나옴은 조건으로 주고 그 수의 해석을 요구한다. B와 일반 설명은 유지한다."
+    },
+    {
+      "originalDisputeIndex": 212,
+      "id": "m2-07-03-xc3",
+      "candidateFingerprint": "182c05c6517472d00f25accc68798dc7b32632f9180d3475780005ed66864bf7",
+      "candidateNormalizedHash": "9d3a9942b74642e02e87c61e0ef2e9fb25812e2a04acbaf9ea8b1c2c0f835a7e",
+      "verdict": "candidate-text-reread",
+      "reason": "시작 위치를 가리키는 표현이 열려 있으므로 세 평행선에 대응하는 교점 순서를 명시하고 비례식의 실제 대응 선분을 묻는다. B 제외와 일반 설명은 유지한다."
+    },
+    {
+      "originalDisputeIndex": 213,
+      "id": "m2-07-03-xc16",
+      "candidateFingerprint": "8c290b4738d656e338534400097aacfff5bbc10cca9fec97237e0ed573cfdee1",
+      "candidateNormalizedHash": "434e13f38fff4d3689e69bd8fa73041b5bcf213e527ceef47a3163e6389ca738",
+      "verdict": "candidate-text-reread",
+      "reason": "'함께'라는 부사를 비례식 순서 뒤집기의 실제 결과로 바꾼다. 변별력이 낮다는 이유로 제외하지 않고 대응 관계를 명확히 한다. B 제외와 일반 설명은 유지한다."
+    },
+    {
+      "originalDisputeIndex": 214,
+      "id": "m2-07-04-xc8",
+      "candidateFingerprint": "e60f082212e3e29fdc680059c029d71cd878d2783e510b9bdac083ca98c09058",
+      "candidateNormalizedHash": "21eb854d48b199013ed13d11867d35583751b995da2be4c4f8e3868bec4b4311",
+      "verdict": "candidate-text-reread",
+      "reason": "세 점이라는 조건과 답 세 선분은 서로 다른 대상이므로 단순 답 노출이라는 기존 C 제외는 부당하다. 중점 L,M,N을 두 개씩 골라 연결한 서로 다른 선분의 개수를 C로 복구한다. B 제외와 일반 설명은 유지한다."
+    },
+    {
+      "originalDisputeIndex": 215,
+      "id": "m2-07-04-xc9",
+      "candidateFingerprint": "c816106b8d377f98533ea29a2de602799e67e8f33996e008db1552c8fbf3336b",
+      "candidateNormalizedHash": "a7c5fdeacb631bb629f6832946c072b6eda26ef9725fb82760e3adea3f0ef050",
+      "verdict": "candidate-text-reread",
+      "reason": "현재 key는 C pass지만 blind의 두 변이 한 끝점에 모이는 듯한 오독을 '각각'으로 해소한다. 첫 칸은 평행한이라는 동치 표현도 명시한다. C의 의미는 유지하며 B와 일반 설명은 그대로 둔다."
+    },
+    {
+      "originalDisputeIndex": 216,
+      "id": "m2-07-04-xc11",
+      "candidateFingerprint": "5a44feb0d246dfefc960bd55cf1cb701fa0fcda4439ac1c6143c3a55cebd747b",
+      "candidateNormalizedHash": "d3c8e92828a1a28fcfc0b3745d3d7b320af07e9a5681cc5eadbd22b67cdeee8b",
+      "verdict": "candidate-text-reread",
+      "reason": "B 물음은 실제 두 비와 각을 쓰라고 이미 요구한다. 기준의 추상 '두 변의 비', '끼인각'만 반복하는 대안을 실제 1:2 비와 ∠A로 고정하여 물음 복사가 답이 되지 않게 한다. C와 일반 설명은 유지한다."
+    },
+    {
+      "originalDisputeIndex": 217,
+      "id": "m3-04-03-xc19",
+      "candidateFingerprint": "57a839b984743b1684acba757c5b26ef2cbe6041155a7acf0d519ef4538e530c",
+      "candidateNormalizedHash": "6ee12ed025f24c8af5c1f3c08ddc557a9e7325301344de8c6ad0f48e85eed707",
+      "verdict": "candidate-text-reread",
+      "reason": "제한된 정의역에서는 꼭짓점의 y좌표가 최솟값이 아닐 수 있다. B에 이미 있는 x가 모든 실수라는 조건을 일반 설명과 C에도 추가한다. 계수 양수와 고정된 꼭짓점 높이에 대한 기존 일반 성질을 보존한다."
+    },
+    {
+      "originalDisputeIndex": 218,
+      "id": "m1-07-04-xc15",
+      "candidateFingerprint": "f77d44912b325347bc096cd6551380408a922792aca76993aafeed2c4a3b918f",
+      "candidateNormalizedHash": "10d053343f3e149de0e3e6110671496a5a58eb4057d69523ccc83d8a0a0f660d",
+      "verdict": "candidate-text-reread",
+      "reason": "바꿀 단위를 세제곱센티미터로 지정하여 다른 참인 단위 표현이 칸에 들어오는 문제를 해소한다. B 제외와 단위 환산 일반 설명은 유지한다."
+    },
+    {
+      "originalDisputeIndex": 219,
+      "id": "m2-01-02-xc2",
+      "candidateFingerprint": "c907f5af35e2588e72d5d3f9c68c109a148065098408f0148cbbeadd99c60be3",
+      "candidateNormalizedHash": "3f6ef6528d80d590ff638fe06448c41bed3219a2be76c21f95a57f36d930563a",
+      "verdict": "candidate-text-reread",
+      "reason": "C에서 첫 숫자·끝 숫자라는 규칙을 미리 제시하지 않고 순환소수 자체로 필요한 점 개수를 묻는다. 측정·개수 해석은 쉬워도 정상 평가이므로 유지한다. B 제외와 일반 설명은 보존한다."
+    }
+  ]
+}

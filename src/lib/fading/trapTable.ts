@@ -23,7 +23,7 @@ export const FADING_TRAPS: Readonly<
     {
       text: "크기가 다르다",
       ox: "e3-1-2-3-xo26",
-      digest: "622d2eff",
+      digest: "bfa7ee4f",
     },
   ],
   "e3-1-2-4-c1": [
@@ -44,7 +44,7 @@ export const FADING_TRAPS: Readonly<
     {
       text: "시간",
       ox: "e3-1-5-5-xo4",
-      digest: "5917258e",
+      digest: "ad2078ab",
     },
   ],
   "e3-1-6-2-c4": [
@@ -79,7 +79,7 @@ export const FADING_TRAPS: Readonly<
     {
       text: "커진다",
       ox: "e3-1-1-3-xo25",
-      digest: "9fb9b25e",
+      digest: "a534d8e6",
     },
   ],
   "e3-1-5-2-xc4": [
@@ -93,7 +93,7 @@ export const FADING_TRAPS: Readonly<
     {
       text: "$100$분",
       ox: "e3-1-5-5-xo7",
-      digest: "69ed9fca",
+      digest: "b06809d5",
     },
   ],
   "e3-1-6-1-xc5": [
@@ -187,25 +187,11 @@ export const FADING_TRAPS: Readonly<
       digest: "1aecbc28",
     },
   ],
-  "e5-2-1-6-c3": [
-    {
-      text: "한 단위보다 클 수 있다",
-      ox: "e5-2-1-6-xo27",
-      digest: "710dbe18",
-    },
-  ],
   "e5-2-4-3-c2": [
     {
       text: "$\\frac{1}{25}$",
       ox: "e5-2-4-3-xo12",
-      digest: "133c49d3",
-    },
-  ],
-  "e5-2-4-4-c2": [
-    {
-      text: "작아진다",
-      ox: "e5-2-4-4-xo18",
-      digest: "ff7f2320",
+      digest: "41b79599",
     },
   ],
   "e5-2-5-1-c5": [
@@ -282,7 +268,7 @@ export const FADING_TRAPS: Readonly<
     {
       text: "$0$을 적어 칸으로 그린다",
       ox: "e6-2-3-4-xo19",
-      digest: "569b0cc7",
+      digest: "addc8394",
     },
   ],
   "e6-2-6-1-c1": [
@@ -317,7 +303,7 @@ export const FADING_TRAPS: Readonly<
     {
       text: "$4$배",
       ox: "e6-2-5-4-xo25",
-      digest: "9298fb1f",
+      digest: "254bfe31",
     },
   ],
   "m1-03-01-xc2": [

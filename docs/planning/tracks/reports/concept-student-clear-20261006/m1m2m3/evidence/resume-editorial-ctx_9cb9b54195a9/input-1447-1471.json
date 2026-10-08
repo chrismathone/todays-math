@@ -1,0 +1,2410 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T07:06:30.227Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-13-xc5",
+        "section": "중1::3. 방정식::일차방정식의 활용(비율, 시계, 규칙)",
+        "term": "부분과 비율로 전체 구하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "$0$이 아닌 비율 $\\frac{a}{b}$에 대하여 전체의 $\\frac{a}{b}$에 해당하는 양을 알면, 전체를 $x$로 놓고 $\\frac{a}{b}x$가 그 양과 {같다}는 방정식으로 {전체}를 구한다.",
+        "example": {
+          "prompt": "전체의 $\\frac{3}{7}$이 $12$명일 때 전체를 $x$명으로 놓아 세우는 방정식은?",
+          "answer": "$\\frac{3}{7}x=12$"
+        },
+        "studentC": "$0$이 아닌 비율 $\\frac{a}{b}$에 대하여 전체의 $\\frac{a}{b}$에 해당하는 양을 알면, 전체를 $x$로 놓고 $\\frac{a}{b}x$가 그 양과 □는 방정식으로 □를 구한다.",
+        "answers": [
+          "같다",
+          "전체"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-13-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "어느 모임에서 전체 인원의 $\\frac{3}{7}$이 $12$명이다. 전체 인원을 $x$명으로 놓고 방정식을 세운 뒤, 그렇게 세운 까닭을 쓰고 $x$의 값을 구하시오.",
+        "bAnswer": "전체의 $\\frac{3}{7}$은 $\\frac{3}{7}x$명이고 이것이 $12$명과 같으므로 $\\frac{3}{7}x=12$이다. 풀면 $x=28$이다.",
+        "bGoal": "부분의 양과 비율로 전체를 구하는 방정식 세우기",
+        "bReason": "문자 $a$, $b$만으로는 막연해 구체 수로 식과 근거를 묻도록 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{3}{7}x=12$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=28$",
+              "$28$명"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$0$이 아닌 비율 $\\frac{a}{b}$에 대하여 전체의 $\\frac{a}{b}$에 해당하는 양이 $p$일 때, 전체를 $x$로 놓고 방정식 {$\\frac{a}{b}x=p$}를 풀어 $x$를 구한다.",
+        "cAnswers": [
+          "$\\frac{a}{b}x=p$"
+        ],
+        "cReason": "'같다', '전체'는 문장에서 바로 보이는 답이라 방정식 자체를 묻도록 바꿈.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "$\\frac{a}{b}x$가 주어진 양과 같다는 방정식 세우기",
+        "authorBatch": 11,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1447,
+        "part": "m1plus",
+        "sourceFingerprint": "5f82bfa8a3feb15dda5c5e22623a620ee0dc26f1e848a748d41505414203529f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1447
+        },
+        "directReview": null,
+        "cMarkedSentence": "$0$이 아닌 비율 $\\frac{a}{b}$에 대하여 전체의 $\\frac{a}{b}$에 해당하는 양이 $p$일 때, 전체를 $x$로 놓고 방정식 {$\\frac{a}{b}x=p$}를 풀어 $x$를 구한다.",
+        "cSlotAnswers": [
+          "$\\frac{a}{b}x=p$"
+        ],
+        "cStudentSentence": "$0$이 아닌 비율 $\\frac{a}{b}$에 대하여 전체의 $\\frac{a}{b}$에 해당하는 양이 $p$일 때, 전체를 $x$로 놓고 방정식 □를 풀어 $x$를 구한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{a}{b}x=p$",
+            "equivalentAnswers": [
+              "$\\frac{a}{b}x=p$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{a}{b}x=p$"
+          ]
+        ],
+        "proposalFingerprint": "3a6d192c28062fdbd9ff3e411397c98aadc8bc49e6d23f3484049abe03a61688"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-13-xc6",
+        "section": "중1::3. 방정식::일차방정식의 활용(비율, 시계, 규칙)",
+        "term": "규칙을 찾을 때 먼저 볼 것",
+        "kind": "방법",
+        "level": "하",
+        "definition": "일정하게 늘어나는 규칙은 {첫째 값}과 한 번에 {늘어나는 양}을 먼저 찾는다.",
+        "example": {
+          "prompt": "$5$, $9$, $13$, $17$, …에서 한 번에 늘어나는 양은?",
+          "answer": "$4$"
+        },
+        "studentC": "일정하게 늘어나는 규칙은 □과 한 번에 □을 먼저 찾는다.",
+        "answers": [
+          "첫째 값",
+          "늘어나는 양"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-13-xc6",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "첫 값과 늘어나는 양 찾기는 식 세우기의 앞 단계 조각임.",
+        "cDecision": "rewrite",
+        "cAfter": "일정하게 늘어나는 규칙을 식으로 나타내려면 {첫째} 값과, 이웃한 두 값의 {차}인 한 번에 늘어나는 양을 먼저 찾는다.",
+        "cAnswers": [
+          "첫째",
+          "차"
+        ],
+        "cReason": "'늘어나는 양'은 문장 앞 낱말의 반복이라 그 양이 두 값의 차임을 묻게 함.",
+        "exclusionReason": "B 제외: c5의 $n$번째 식 세우기 질문에 첫 값과 늘어나는 양 찾기가 포함된 목표 중복.",
+        "learningRole": "procedure",
+        "roleReason": "첫 값과 이웃한 값의 차부터 찾는 순서",
+        "authorBatch": 11,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1448,
+        "part": "m1plus",
+        "sourceFingerprint": "e995c7084d4bdd48cb259ef77d074b51e893cf6ec547865f96fd3b5d077a6efb",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1448
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "일정하게 늘어나는 규칙을 식으로 나타내려면 {첫째} 값과, 이웃한 두 값의 {차}인 한 번에 늘어나는 양을 먼저 찾는다.",
+        "cSlotAnswers": [
+          "첫째",
+          "차"
+        ],
+        "cStudentSentence": "일정하게 늘어나는 규칙을 식으로 나타내려면 □ 값과, 이웃한 두 값의 □인 한 번에 늘어나는 양을 먼저 찾는다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "첫째",
+            "equivalentAnswers": [
+              "첫째",
+              "첫 번째",
+              "처음"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "차",
+            "equivalentAnswers": [
+              "차"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "첫째",
+            "accept": [
+              "첫 번째",
+              "처음"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "첫째",
+            "첫 번째",
+            "처음"
+          ],
+          [
+            "차"
+          ]
+        ],
+        "proposalFingerprint": "b8f3d4c88a3a0361a1c0dd5246735d0064505685584e9b9d80d81b17cff51730"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-13-xc7",
+        "section": "중1::3. 방정식::일차방정식의 활용(비율, 시계, 규칙)",
+        "term": "이어 붙이는 성냥개비",
+        "kind": "방법",
+        "level": "하",
+        "definition": "도형을 이어 붙일 때는 처음 도형에 쓴 개수에, 하나 붙일 때마다 {더 드는} 개수를 붙인 횟수만큼 {더한다}.",
+        "example": {
+          "prompt": "삼각형 $1$개에 $3$개, $1$개 더 붙일 때마다 $2$개씩 들면 삼각형 $5$개에는?",
+          "answer": "$11$개"
+        },
+        "studentC": "도형을 이어 붙일 때는 처음 도형에 쓴 개수에, 하나 붙일 때마다 □ 개수를 붙인 횟수만큼 □.",
+        "answers": [
+          "더 드는",
+          "더한다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-13-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "성냥개비로 정사각형을 한 줄로 이어 붙인다. 정사각형 $1$개에는 성냥개비 $4$개가 들지만, 하나를 더 붙일 때마다 $3$개만 더 든다. $3$개만 더 드는 까닭을 설명하고, 정사각형 $n$개를 만드는 데 필요한 성냥개비의 개수를 $n$의 식으로 나타내시오.",
+        "bAnswer": "새 정사각형은 이웃한 정사각형과 한 변을 함께 쓰므로 $3$개만 더 든다. 처음 $4$개에 $3$개를 $(n-1)$번 더하므로 $4+3(n-1)=3n+1$개이다.",
+        "bGoal": "이어 붙인 도형에서 더 드는 개수의 이유와 식",
+        "bReason": "c5와 겹치지 않게 변을 함께 쓰는 이유와 붙인 횟수를 묻도록 특정함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한 변을 함께 쓴다",
+              "이웃한 정사각형과 변이 겹친다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3n+1$",
+              "$4+3(n-1)$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "성냥개비로 도형을 이어 붙일 때 처음 도형에 $a$개가 들고 하나 붙일 때마다 $d$개씩 더 들면, $k$번 붙인 뒤의 개수는 {$a+dk$}개이다.",
+        "cAnswers": [
+          "$a+dk$"
+        ],
+        "cReason": "'더 드는', '더한다'는 임의로 자른 낱말이라 붙인 횟수로 쓴 식을 묻게 함.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "변을 함께 써서 덜 드는 개수를 붙인 횟수만큼 더하기",
+        "authorBatch": 11,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1449,
+        "part": "m1plus",
+        "sourceFingerprint": "52ee76cce4f3e63e69fdb60da09c4b0cde5f83e8dbda5f3f1e8a4950b905784d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1449
+        },
+        "directReview": null,
+        "cMarkedSentence": "성냥개비로 도형을 이어 붙일 때 처음 도형에 $a$개가 들고 하나 붙일 때마다 $d$개씩 더 들면, $k$번 붙인 뒤의 개수는 {$a+dk$}개이다.",
+        "cSlotAnswers": [
+          "$a+dk$"
+        ],
+        "cStudentSentence": "성냥개비로 도형을 이어 붙일 때 처음 도형에 $a$개가 들고 하나 붙일 때마다 $d$개씩 더 들면, $k$번 붙인 뒤의 개수는 □개이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$a+dk$",
+            "equivalentAnswers": [
+              "$a+dk$",
+              "$a+kd$",
+              "$a+d\\times k$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$a+dk$",
+            "accept": [
+              "$a+kd$",
+              "$a+d\\times k$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$a+dk$",
+            "$a+kd$",
+            "$a+d\\times k$"
+          ]
+        ],
+        "proposalFingerprint": "a9a2b75daa27d1817f6fb88771dbaf51e1ea2cd23a06e8fa4804cb426480b1c7"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-13-xc8",
+        "section": "중1::3. 방정식::일차방정식의 활용(비율, 시계, 규칙)",
+        "term": "시계 바늘의 기준",
+        "kind": "성질",
+        "level": "하",
+        "definition": "시계 문제에서 각은 보통 {$12$시 방향}을 기준으로 시계 방향으로 {돈 각}을 잰다.",
+        "example": {
+          "prompt": "$3$시 정각에 분침이 $12$시 방향에서 돈 각은?",
+          "answer": "$0^\\circ$"
+        },
+        "studentC": "시계 문제에서 각은 보통 □을 기준으로 시계 방향으로 □을 잰다.",
+        "answers": [
+          "$12$시 방향",
+          "돈 각"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-13-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "시계 문제에서 바늘의 위치를 각으로 나타낼 때 보통 어느 방향을 기준으로 어느 쪽으로 돈 각을 재는지 쓰고, 이 방법으로 $3$시 정각의 분침과 시침의 각을 각각 구하시오.",
+        "bAnswer": "$12$시 방향을 기준으로 시계 방향으로 돈 각을 잰다. $3$시 정각에 분침은 $0^\\circ$, 시침은 $90^\\circ$이다.",
+        "bGoal": "시계 문제에서 각을 재는 기준",
+        "bReason": "'기준'이 무엇의 기준인지 밝히고 정각 예로 확인하게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$12$시 방향을 기준으로 한다",
+              "숫자 $12$가 있는 방향에서 잰다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분침 $0^\\circ$, 시침 $90^\\circ$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "시계 문제에서 바늘의 위치는 보통 {$12$시} 방향을 기준으로 시계 방향으로 돈 각으로 나타내므로, $3$시 정각에 시침의 각은 {$90^\\circ$}이다.",
+        "cAnswers": [
+          "$12$시",
+          "$90^\\circ$"
+        ],
+        "cReason": "'돈 각'은 임의로 자른 낱말이라 기준 방향과 그 적용을 묻도록 바꿈.",
+        "studentLabel": "시계에서 각을 재는 기준",
+        "exampleNeeded": true,
+        "learningRole": "definition",
+        "roleReason": "$12$시 방향에서 시계 방향으로 잰다는 약속",
+        "authorBatch": 11,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1450,
+        "part": "m1plus",
+        "sourceFingerprint": "80f8d9dc9757be9bb5e5ee5b566df838677792bb5ce9bdf95a2c2e088f9fa2ba",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1450
+        },
+        "directReview": null,
+        "cMarkedSentence": "시계 문제에서 바늘의 위치는 보통 {$12$시} 방향을 기준으로 시계 방향으로 돈 각으로 나타내므로, $3$시 정각에 시침의 각은 {$90^\\circ$}이다.",
+        "cSlotAnswers": [
+          "$12$시",
+          "$90^\\circ$"
+        ],
+        "cStudentSentence": "시계 문제에서 바늘의 위치는 보통 □ 방향을 기준으로 시계 방향으로 돈 각으로 나타내므로, $3$시 정각에 시침의 각은 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$12$시",
+            "equivalentAnswers": [
+              "$12$시"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$90^\\circ$",
+            "equivalentAnswers": [
+              "$90^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$12$시"
+          ],
+          [
+            "$90^\\circ$"
+          ]
+        ],
+        "proposalFingerprint": "2e222d1dd7c75786c236799a0757290d57a1ae926b31d0efe8e96114edddeb33"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-13-xc9",
+        "section": "중1::3. 방정식::일차방정식의 활용(비율, 시계, 규칙)",
+        "term": "시침이 $x$분 동안 도는 각",
+        "kind": "방법",
+        "level": "중",
+        "definition": "시침은 $1$시간에 $30^\\circ$를 돌므로 $x$분 동안 {$0.5x^\\circ$}만큼 돈다.",
+        "example": {
+          "prompt": "시침이 $40$분 동안 도는 각은?",
+          "answer": "$20^\\circ$"
+        },
+        "studentC": "시침은 $1$시간에 $30^\\circ$를 돌므로 $x$분 동안 □만큼 돈다.",
+        "answers": [
+          "$0.5x^\\circ$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-13-xc9",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "$1$분 $0.5^\\circ$에 $x$만 곱하는 식이라 독립된 서술 질문이 되지 않음.",
+        "cDecision": "keep",
+        "cReason": "$30^\\circ$ 조건에서 $x$분 동안의 각을 식으로 쓰는 분명한 빈칸이라 유지.",
+        "exclusionReason": "B 제외: c3의 $1$분 $0.5^\\circ$ 유도와 c6의 시침 식 쓰기에 이미 들어 있는 목표 중복.",
+        "learningRole": "procedure",
+        "roleReason": "시침이 $x$분에 도는 각을 $0.5x^\\circ$로 나타내기",
+        "authorBatch": 11,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1451,
+        "part": "m1plus",
+        "sourceFingerprint": "0680b4ac0fc062be33d5e45171f4abd06f44664acdea50b1da72976bc93e00f1",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1451
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "시침은 $1$시간에 $30^\\circ$를 돌므로 $x$분 동안 □만큼 돈다.",
+        "cFrozenDefinition": "시침은 $1$시간에 $30^\\circ$를 돌므로 $x$분 동안 {$0.5x^\\circ$}만큼 돈다.",
+        "cFrozenAnswers": [
+          "$0.5x^\\circ$"
+        ],
+        "cMarkedSentence": "시침은 $1$시간에 $30^\\circ$를 돌므로 $x$분 동안 {$0.5x^\\circ$}만큼 돈다.",
+        "cSlotAnswers": [
+          "$0.5x^\\circ$"
+        ],
+        "cStudentSentence": "시침은 $1$시간에 $30^\\circ$를 돌므로 $x$분 동안 □만큼 돈다.",
+        "cAnswers": [
+          "$0.5x^\\circ$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$0.5x^\\circ$",
+            "equivalentAnswers": [
+              "$0.5x^\\circ$",
+              "$\\frac{1}{2}x^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$0.5x^\\circ$",
+            "accept": [
+              "$\\frac{1}{2}x^\\circ$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$0.5x^\\circ$",
+            "$\\frac{1}{2}x^\\circ$"
+          ]
+        ],
+        "proposalFingerprint": "736aa2ac8f0b1772ad6026f269ce925facc14305b1cac66d1130cb4c09288fc4"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-13-xc10",
+        "section": "중1::3. 방정식::일차방정식의 활용(비율, 시계, 규칙)",
+        "term": "달력의 $2\\times2$ 칸 네 날짜(왼쪽 위가 $x$)",
+        "kind": "방법",
+        "level": "중",
+        "definition": "같은 달의 날짜만 있는 달력의 $2\\times2$ 칸에서 네 날짜는 왼쪽 위를 $x$로 놓으면 {$x$}, $x+1$, $x+7$, {$x+8$}이다.",
+        "example": {
+          "prompt": "$2\\times2$ 칸 네 날짜의 합이 $64$일 때 왼쪽 위 날짜는?",
+          "answer": "$12$일"
+        },
+        "studentC": "같은 달의 날짜만 있는 달력의 $2\\times2$ 칸에서 네 날짜는 왼쪽 위를 $x$로 놓으면 □, $x+1$, $x+7$, □이다.",
+        "answers": [
+          "$x$",
+          "$x+8$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-13-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "같은 달의 날짜만 들어 있는 달력에서 가로 $2$칸, 세로 $2$칸으로 네 날짜를 묶었다. 왼쪽 위 날짜를 $x$일이라 할 때 나머지 세 날짜를 $x$의 식으로 쓰고, 네 날짜의 합이 $64$일 때 $x$의 값을 구하시오.",
+        "bAnswer": "오른쪽 위는 $x+1$, 왼쪽 아래는 $x+7$, 오른쪽 아래는 $x+8$이다. $x+(x+1)+(x+7)+(x+8)=64$에서 $4x+16=64$이므로 $x=12$이다.",
+        "bGoal": "달력의 네 날짜를 한 문자로 나타내 방정식 풀기",
+        "bReason": "그림이 없어 칸의 배치와 기준 칸을 밝히고 식과 활용을 함께 물음.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x+1$, $x+7$, $x+8$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=12$",
+              "$12$일"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "같은 달의 날짜만 있는 달력의 $2\\times2$ 칸에서 왼쪽 위를 $x$로 놓으면 오른쪽 위는 $x+1$, 왼쪽 아래는 {$x+7$}, 오른쪽 아래는 {$x+8$}이다.",
+        "cAnswers": [
+          "$x+7$",
+          "$x+8$"
+        ],
+        "cReason": "첫 빈칸 $x$는 바로 앞에서 준 값이라 아래 줄 두 날짜를 묻도록 바꿈.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "$2\\times2$ 칸의 날짜를 $x$로 나타내 합의 방정식 풀기",
+        "authorBatch": 11,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1452,
+        "part": "m1plus",
+        "sourceFingerprint": "47ddc992050e70250102eb484210f0ee5db2008a0c326d579afec4e741a9b99b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1452
+        },
+        "directReview": null,
+        "cMarkedSentence": "같은 달의 날짜만 있는 달력의 $2\\times2$ 칸에서 왼쪽 위를 $x$로 놓으면 오른쪽 위는 $x+1$, 왼쪽 아래는 {$x+7$}, 오른쪽 아래는 {$x+8$}이다.",
+        "cSlotAnswers": [
+          "$x+7$",
+          "$x+8$"
+        ],
+        "cStudentSentence": "같은 달의 날짜만 있는 달력의 $2\\times2$ 칸에서 왼쪽 위를 $x$로 놓으면 오른쪽 위는 $x+1$, 왼쪽 아래는 □, 오른쪽 아래는 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$x+7$",
+            "equivalentAnswers": [
+              "$x+7$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$x+8$",
+            "equivalentAnswers": [
+              "$x+8$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$x+7$"
+          ],
+          [
+            "$x+8$"
+          ]
+        ],
+        "proposalFingerprint": "f6f0e19dab52c17f821879597e1c1e1cec4f48a908df07f442082c16ef0e3f8a"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-13-xc11",
+        "section": "중1::3. 방정식::일차방정식의 활용(비율, 시계, 규칙)",
+        "term": "전체의 $\\frac{a}{b}$를 쓰고 남은 양으로 전체 구하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "전체의 $\\frac{a}{b}$를 쓰고 남은 양이 주어지면, 남은 양이 전체의 {$1-\\frac{a}{b}$}임을 이용해 {전체}를 구한다.",
+        "example": {
+          "prompt": "용돈의 $\\frac{3}{8}$을 쓰고 $5000$원이 남았다. 용돈은?",
+          "answer": "$8000$원"
+        },
+        "studentC": "전체의 $\\frac{a}{b}$를 쓰고 남은 양이 주어지면, 남은 양이 전체의 □임을 이용해 □를 구한다.",
+        "answers": [
+          "$1-\\frac{a}{b}$",
+          "전체"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-13-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "용돈의 $\\frac{3}{8}$을 쓰고 $5000$원이 남았다. 용돈을 $x$원으로 놓을 때, 남은 돈이 용돈 전체의 몇 분의 몇인지 밝혀 방정식을 세우고 용돈을 구하시오.",
+        "bAnswer": "남은 돈은 전체의 $1-\\frac{3}{8}=\\frac{5}{8}$이므로 $\\frac{5}{8}x=5000$이다. 풀면 $x=8000$, 곧 용돈은 $8000$원이다.",
+        "bGoal": "쓰고 남은 비율로 전체 구하기",
+        "bReason": "문자 제목을 구체 상황으로 바꾸어 남은 비율을 먼저 구하게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "남은 돈은 전체의 $\\frac{5}{8}$",
+              "$1-\\frac{3}{8}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8000$원",
+              "$x=8000$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "전체의 $\\frac{a}{b}$를 쓰고 남은 양은 전체의 {$1-\\frac{a}{b}$}이므로, 전체를 $x$로 놓으면 남은 양은 {$\\left(1-\\frac{a}{b}\\right)x$}이다.",
+        "cAnswers": [
+          "$1-\\frac{a}{b}$",
+          "$\\left(1-\\frac{a}{b}\\right)x$"
+        ],
+        "cReason": "둘째 답 '전체'가 문장 처음에 있어 남은 양의 식을 묻도록 바꿈.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "남은 양을 전체의 $1-\\frac{a}{b}$로 보고 방정식 세우기",
+        "authorBatch": 11,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1453,
+        "part": "m1plus",
+        "sourceFingerprint": "1a9e82c5c1f0a298d11d8fdad62da80b60f9166a2ea3336f017965ef87e697ac",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1453
+        },
+        "directReview": null,
+        "cMarkedSentence": "전체의 $\\frac{a}{b}$를 쓰고 남은 양은 전체의 {$1-\\frac{a}{b}$}이므로, 전체를 $x$로 놓으면 남은 양은 {$\\left(1-\\frac{a}{b}\\right)x$}이다.",
+        "cSlotAnswers": [
+          "$1-\\frac{a}{b}$",
+          "$\\left(1-\\frac{a}{b}\\right)x$"
+        ],
+        "cStudentSentence": "전체의 $\\frac{a}{b}$를 쓰고 남은 양은 전체의 □이므로, 전체를 $x$로 놓으면 남은 양은 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$1-\\frac{a}{b}$",
+            "equivalentAnswers": [
+              "$1-\\frac{a}{b}$",
+              "$\\frac{b-a}{b}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\left(1-\\frac{a}{b}\\right)x$",
+            "equivalentAnswers": [
+              "$\\left(1-\\frac{a}{b}\\right)x$",
+              "$\\frac{b-a}{b}x$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$1-\\frac{a}{b}$",
+            "accept": [
+              "$\\frac{b-a}{b}$"
+            ]
+          },
+          {
+            "answer": "$\\left(1-\\frac{a}{b}\\right)x$",
+            "accept": [
+              "$\\frac{b-a}{b}x$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$1-\\frac{a}{b}$",
+            "$\\frac{b-a}{b}$"
+          ],
+          [
+            "$\\left(1-\\frac{a}{b}\\right)x$",
+            "$\\frac{b-a}{b}x$"
+          ]
+        ],
+        "proposalFingerprint": "0ae6277cfb529afa25f7eb6e82da3a0a9e1247147ce249fb9905351d3362bda4"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-13-xc12",
+        "section": "중1::3. 방정식::일차방정식의 활용(비율, 시계, 규칙)",
+        "term": "남은 것의 몇 분의 몇",
+        "kind": "방법",
+        "level": "중",
+        "definition": "전체 양이 $x$이고 처음에 전체의 $a$배를 쓰고, 다음에 남은 양의 $b$배를 썼다면 두 번째로 쓴 양은 {$b(1-a)x$}이다. 이때 $x\\ge0$, $0\\le a,b\\le1$이며 둘째 비율의 기준은 처음에 쓰고 남은 양이다.",
+        "example": {
+          "prompt": "$x$원의 $\\frac{1}{2}$을 쓰고 남은 돈의 $\\frac{1}{3}$을 썼다. 남은 돈은?",
+          "answer": "$\\frac{1}{3}x$원"
+        },
+        "studentC": "전체 양이 $x$이고 처음에 전체의 $a$배를 쓰고, 다음에 남은 양의 $b$배를 썼다면 두 번째로 쓴 양은 □이다. 이때 $x\\ge0$, $0\\le a,b\\le1$이며 둘째 비율의 기준은 처음에 쓰고 남은 양이다.",
+        "answers": [
+          "$b(1-a)x$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-13-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "$x$원을 가지고 있다. 처음에 전체의 $\\frac{1}{2}$을 쓰고, 다음에 남은 돈의 $\\frac{1}{3}$을 썼다. 두 번째로 쓴 돈과 마지막에 남은 돈을 각각 $x$의 식으로 나타내시오.",
+        "bAnswer": "처음 쓰고 남은 돈은 $\\frac{1}{2}x$원이다. 두 번째로 쓴 돈은 $\\frac{1}{3}\\times\\frac{1}{2}x=\\frac{1}{6}x$원이고, 마지막에 남은 돈은 $\\frac{1}{2}x-\\frac{1}{6}x=\\frac{1}{3}x$원이다.",
+        "bGoal": "남은 양을 기준으로 한 비율을 식으로 나타내기",
+        "bReason": "무엇의 몇 분의 몇인지 제목에 없어 두 단계의 기준을 문제에 밝힘.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 번째로 쓴 돈은 $\\frac{1}{6}x$원",
+              "$\\frac{1}{3}\\times\\frac{1}{2}x$"
+            ]
+          },
+          {
+            "anyOf": [
+              "마지막에 남은 돈은 $\\frac{1}{3}x$원"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "기준과 범위가 문장에 있고 식 하나만 묻는 빈칸이라 유지.",
+        "studentLabel": "남은 양의 일부를 또 썼을 때",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "둘째 비율을 남은 양 $(1-a)x$에 곱하기",
+        "authorBatch": 11,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1454,
+        "part": "m1plus",
+        "sourceFingerprint": "cbcbc51adf38fe98eba80adea41ae9d4ce8b8ef730ca2217013bc2150612ab87",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1454
+        },
+        "directReview": null,
+        "cFrozenSentence": "전체 양이 $x$이고 처음에 전체의 $a$배를 쓰고, 다음에 남은 양의 $b$배를 썼다면 두 번째로 쓴 양은 □이다. 이때 $x\\ge0$, $0\\le a,b\\le1$이며 둘째 비율의 기준은 처음에 쓰고 남은 양이다.",
+        "cFrozenDefinition": "전체 양이 $x$이고 처음에 전체의 $a$배를 쓰고, 다음에 남은 양의 $b$배를 썼다면 두 번째로 쓴 양은 {$b(1-a)x$}이다. 이때 $x\\ge0$, $0\\le a,b\\le1$이며 둘째 비율의 기준은 처음에 쓰고 남은 양이다.",
+        "cFrozenAnswers": [
+          "$b(1-a)x$"
+        ],
+        "cMarkedSentence": "전체 양이 $x$이고 처음에 전체의 $a$배를 쓰고, 다음에 남은 양의 $b$배를 썼다면 두 번째로 쓴 양은 {$b(1-a)x$}이다. 이때 $x\\ge0$, $0\\le a,b\\le1$이며 둘째 비율의 기준은 처음에 쓰고 남은 양이다.",
+        "cSlotAnswers": [
+          "$b(1-a)x$"
+        ],
+        "cStudentSentence": "전체 양이 $x$이고 처음에 전체의 $a$배를 쓰고, 다음에 남은 양의 $b$배를 썼다면 두 번째로 쓴 양은 □이다. 이때 $x\\ge0$, $0\\le a,b\\le1$이며 둘째 비율의 기준은 처음에 쓰고 남은 양이다.",
+        "cAnswers": [
+          "$b(1-a)x$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$b(1-a)x$",
+            "equivalentAnswers": [
+              "$b(1-a)x$",
+              "$(1-a)bx$",
+              "$bx(1-a)$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$b(1-a)x$",
+            "accept": [
+              "$(1-a)bx$",
+              "$bx(1-a)$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$b(1-a)x$",
+            "$(1-a)bx$",
+            "$bx(1-a)$"
+          ]
+        ],
+        "proposalFingerprint": "3c69868814b63d6e7287c5b55f1d7d609c82242167a1da57422dd60d44e7c15c"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-13-xc13",
+        "section": "중1::3. 방정식::일차방정식의 활용(비율, 시계, 규칙)",
+        "term": "값으로 몇 번째인지 찾기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "$n$번째 값을 식으로 나타낸 뒤 그 값이 주어지면 {방정식}을 풀어 {$n$}을 구한다.",
+        "example": {
+          "prompt": "$n$번째 개수가 $2n+1$일 때 $41$개가 되는 것은 몇 번째?",
+          "answer": "$20$번째"
+        },
+        "studentC": "$n$번째 값을 식으로 나타낸 뒤 그 값이 주어지면 □을 풀어 □을 구한다.",
+        "answers": [
+          "방정식",
+          "$n$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-13-xc13",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "방정식을 풀어 $n$을 구하는 절차만 있어 xc22의 일부임.",
+        "cDecision": "rewrite",
+        "cAfter": "$n$번째 값을 나타낸 식이 있고 실제 값이 주어지면, 그 식과 값이 같다고 놓은 {방정식}을 풀어 $n$의 값, 곧 몇 번째인지를 구한다.",
+        "cAnswers": [
+          "방정식"
+        ],
+        "cReason": "'그 값'이 무엇인지 흐리고 $n$ 빈칸은 문장에서 보여 한 빈칸으로 다듬음.",
+        "exclusionReason": "B 제외: xc22가 같은 방정식 풀이에 자연수 확인까지 묻는 목표 중복.",
+        "learningRole": "procedure",
+        "roleReason": "식과 값을 같다고 놓아 $n$ 구하기",
+        "authorBatch": 11,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1455,
+        "part": "m1plus",
+        "sourceFingerprint": "a0e8aa766f1a46b3d6226b6e6fc0fabbd3c94191bdaf85ac9e027dd58346c535",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1455
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "$n$번째 값을 나타낸 식이 있고 실제 값이 주어지면, 그 식과 값이 같다고 놓은 {방정식}을 풀어 $n$의 값, 곧 몇 번째인지를 구한다.",
+        "cSlotAnswers": [
+          "방정식"
+        ],
+        "cStudentSentence": "$n$번째 값을 나타낸 식이 있고 실제 값이 주어지면, 그 식과 값이 같다고 놓은 □을 풀어 $n$의 값, 곧 몇 번째인지를 구한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "방정식",
+            "equivalentAnswers": [
+              "방정식"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "방정식"
+          ]
+        ],
+        "proposalFingerprint": "d40c4e28a914cae0930ba3680873700103d1afb860dc3ea693b4591d443d7c0e"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-13-xc14",
+        "section": "중1::3. 방정식::일차방정식의 활용(비율, 시계, 규칙)",
+        "term": "두 바늘이 겹칠 때",
+        "kind": "성질",
+        "level": "중",
+        "definition": "시침과 분침이 겹치면 두 바늘이 $12$시 방향에서 돈 각이 {같다}.",
+        "example": {
+          "prompt": "$3$시와 $4$시 사이 두 바늘이 겹칠 때 $x$분에 대한 방정식은?",
+          "answer": "$6x=90+0.5x$"
+        },
+        "studentC": "시침과 분침이 겹치면 두 바늘이 $12$시 방향에서 돈 각이 □.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-13-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "$3$시와 $4$시 사이에 시침과 분침이 겹치는 시각을 $3$시 $x$분이라 하자. 두 바늘이 겹칠 때 $12$시 방향에서 잰 두 바늘의 각 사이에 어떤 관계가 있는지 쓰고, $x$에 대한 방정식을 세우시오. (풀지 않아도 된다.)",
+        "bAnswer": "두 바늘이 $12$시 방향에서 돈 각이 같다. 분침은 $6x^\\circ$, 시침은 $(90+0.5x)^\\circ$이므로 $6x=90+0.5x$이다.",
+        "bGoal": "겹침 조건을 각이 같다는 방정식으로 바꾸기",
+        "bReason": "겹친다는 말을 어떤 식의 관계로 옮기는지 구체 시각으로 묻게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 각이 같다",
+              "시침과 분침이 돈 각이 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6x=90+0.5x$",
+              "$6x-(90+0.5x)=0$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "겹침 조건과 기준 방향이 문장에 있는 짧은 관계 빈칸이라 유지.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "겹칠 때 두 각이 같다는 조건으로 방정식 세우기",
+        "authorBatch": 11,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1456,
+        "part": "m1plus",
+        "sourceFingerprint": "142da1f720712e5d3de6b7ca04a09bd35673e0fc625fa57812ca24ad09a477e0",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1456
+        },
+        "directReview": null,
+        "cFrozenSentence": "시침과 분침이 겹치면 두 바늘이 $12$시 방향에서 돈 각이 □.",
+        "cFrozenDefinition": "시침과 분침이 겹치면 두 바늘이 $12$시 방향에서 돈 각이 {같다}.",
+        "cFrozenAnswers": [
+          "같다"
+        ],
+        "cMarkedSentence": "시침과 분침이 겹치면 두 바늘이 $12$시 방향에서 돈 각이 {같다}.",
+        "cSlotAnswers": [
+          "같다"
+        ],
+        "cStudentSentence": "시침과 분침이 겹치면 두 바늘이 $12$시 방향에서 돈 각이 □.",
+        "cAnswers": [
+          "같다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "같다",
+            "equivalentAnswers": [
+              "같다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "같다"
+          ]
+        ],
+        "proposalFingerprint": "cde99f9fe504d491045cd73ddda8c15c3c85855b1a70966061e35be3bfb01776"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-13-xc15",
+        "section": "중1::3. 방정식::일차방정식의 활용(비율, 시계, 규칙)",
+        "term": "두 바늘이 일직선일 때",
+        "kind": "성질",
+        "level": "중",
+        "definition": "시침과 분침이 반대 방향을 가리키며 일직선을 이루면 두 바늘이 이루는 각은 {$180^\\circ$}이다.",
+        "example": {
+          "prompt": "$6$시 정각에 두 바늘이 이루는 각은?",
+          "answer": "$180^\\circ$"
+        },
+        "studentC": "시침과 분침이 반대 방향을 가리키며 일직선을 이루면 두 바늘이 이루는 각은 □이다.",
+        "answers": [
+          "$180^\\circ$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-13-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "시침과 분침이 서로 반대 방향을 가리키며 일직선이 될 때 두 바늘이 이루는 각은 몇 도인가? 또 $2$시와 $3$시 사이에 이렇게 되는 시각을 $2$시 $x$분이라 할 때 $x$에 대한 방정식을 세우시오. (풀지 않아도 된다.)",
+        "bAnswer": "$180^\\circ$이다. 분침은 $6x^\\circ$, 시침은 $(60+0.5x)^\\circ$이므로 $6x-(60+0.5x)=180$이다.",
+        "bGoal": "일직선 조건을 $180^\\circ$ 차의 방정식으로 바꾸기",
+        "bReason": "겹쳐서 일직선인 경우와 구별되게 반대 방향을 밝히고 식 세우기를 물음.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$180^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6x-(60+0.5x)=180$",
+              "$5.5x-60=180$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "반대 방향 조건이 분명하고 각 하나만 묻는 빈칸이라 유지.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "반대 방향 일직선이면 두 각의 차가 $180^\\circ$",
+        "authorBatch": 11,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1457,
+        "part": "m1plus",
+        "sourceFingerprint": "ac75d0f11cae4710ea37d297b19bd827c724f607af86c24f2aaafcc3b5e57536",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1457
+        },
+        "directReview": null,
+        "cFrozenSentence": "시침과 분침이 반대 방향을 가리키며 일직선을 이루면 두 바늘이 이루는 각은 □이다.",
+        "cFrozenDefinition": "시침과 분침이 반대 방향을 가리키며 일직선을 이루면 두 바늘이 이루는 각은 {$180^\\circ$}이다.",
+        "cFrozenAnswers": [
+          "$180^\\circ$"
+        ],
+        "cMarkedSentence": "시침과 분침이 반대 방향을 가리키며 일직선을 이루면 두 바늘이 이루는 각은 {$180^\\circ$}이다.",
+        "cSlotAnswers": [
+          "$180^\\circ$"
+        ],
+        "cStudentSentence": "시침과 분침이 반대 방향을 가리키며 일직선을 이루면 두 바늘이 이루는 각은 □이다.",
+        "cAnswers": [
+          "$180^\\circ$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$180^\\circ$",
+            "equivalentAnswers": [
+              "$180^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$180^\\circ$"
+          ]
+        ],
+        "proposalFingerprint": "128ea9c733366502785ca20f12889823a491932a6a4e5f6b625ebb1a5b9d445d"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-13-xc16",
+        "section": "중1::3. 방정식::일차방정식의 활용(비율, 시계, 규칙)",
+        "term": "직각을 이루는 시각",
+        "kind": "방법",
+        "level": "상",
+        "definition": "두 바늘이 직각을 이루면 (분침이 돈 각)$-$(시침이 돈 각)이 {$90^\\circ$} 또는 $-90^\\circ$(차가 $180^\\circ$를 넘으면 $\\pm270^\\circ$)이므로 경우를 {나누어} 푼다.",
+        "example": {
+          "prompt": "$3$시 정각 뒤 두 바늘이 다음에 직각을 이루는 시각은?",
+          "answer": "$3$시 $\\frac{360}{11}$분"
+        },
+        "studentC": "두 바늘이 직각을 이루면 (분침이 돈 각)$-$(시침이 돈 각)이 □ 또는 $-90^\\circ$(차가 $180^\\circ$를 넘으면 $\\pm270^\\circ$)이므로 경우를 □ 푼다.",
+        "answers": [
+          "$90^\\circ$",
+          "나누어"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-13-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "시침과 분침이 직각을 이루고 $12$시 방향에서 잰 두 바늘의 각의 차가 $180^\\circ$를 넘지 않을 때, (분침이 돈 각)$-$(시침이 돈 각)이 될 수 있는 두 값을 쓰시오. 또 $3$시 정각 뒤 처음으로 다시 직각을 이루는 시각을 $3$시 $x$분이라 할 때 방정식을 세워 $x$를 구하시오.",
+        "bAnswer": "$90^\\circ$ 또는 $-90^\\circ$이다. $3$시 정각에는 $-90^\\circ$이므로 다음은 $90^\\circ$인 경우이고, $6x-(90+0.5x)=90$에서 $x=\\frac{360}{11}$이다.",
+        "bGoal": "직각 조건의 두 경우와 방정식",
+        "bReason": "분침이 앞서는 경우와 뒤처지는 경우를 나누어야 함을 구체 시각으로 묻게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$90^\\circ$ 또는 $-90^\\circ$",
+              "분침이 시침보다 $90^\\circ$ 앞서거나 뒤처진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6x-(90+0.5x)=90$",
+              "$5.5x-90=90$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=\\frac{360}{11}$",
+              "$3$시 $\\frac{360}{11}$분"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "두 바늘이 직각을 이루면 $12$시 방향에서 잰 (분침이 돈 각)$-$(시침이 돈 각)은 {$90^\\circ$} 또는 {$-90^\\circ$}이다. 단, 차가 $180^\\circ$를 넘는 경우에는 $\\pm270^\\circ$이다.",
+        "cAnswers": [
+          "$90^\\circ$",
+          "$-90^\\circ$"
+        ],
+        "cReason": "'나누어'는 임의로 자른 낱말이라 두 경우의 값을 모두 쓰게 바꿈.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "직각일 때 각의 차를 $\\pm90^\\circ$ 두 경우로 나누기",
+        "authorBatch": 11,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1458,
+        "part": "m1plus",
+        "sourceFingerprint": "2843c0dea5a32ca56e34714d1006fbf64ec633762f45d6565f62410b232a98ab",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1458
+        },
+        "directReview": null,
+        "cMarkedSentence": "두 바늘이 직각을 이루면 $12$시 방향에서 잰 (분침이 돈 각)$-$(시침이 돈 각)은 {$90^\\circ$} 또는 {$-90^\\circ$}이다. 단, 차가 $180^\\circ$를 넘는 경우에는 $\\pm270^\\circ$이다.",
+        "cSlotAnswers": [
+          "$90^\\circ$",
+          "$-90^\\circ$"
+        ],
+        "cStudentSentence": "두 바늘이 직각을 이루면 $12$시 방향에서 잰 (분침이 돈 각)$-$(시침이 돈 각)은 □ 또는 □이다. 단, 차가 $180^\\circ$를 넘는 경우에는 $\\pm270^\\circ$이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$90^\\circ$",
+            "equivalentAnswers": [
+              "$90^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$-90^\\circ$",
+            "equivalentAnswers": [
+              "$-90^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$90^\\circ$"
+          ],
+          [
+            "$-90^\\circ$"
+          ]
+        ],
+        "proposalFingerprint": "197e6079446df6a6f1532dc865b2fdff9ed27ef0072cc879a91c13e6a42e3962"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-13-xc17",
+        "section": "중1::3. 방정식::일차방정식의 활용(비율, 시계, 규칙)",
+        "term": "다시 겹치기까지의 시간",
+        "kind": "성질",
+        "level": "상",
+        "definition": "분침은 시침보다 $1$분에 $5.5^\\circ$씩 더 돌므로, 겹친 두 바늘은 분침이 {$360^\\circ$} 더 돌았을 때, 곧 {$\\frac{720}{11}$분}마다 다시 겹친다.",
+        "example": {
+          "prompt": "두 바늘이 겹친 뒤 다시 겹칠 때까지 분침이 시침보다 더 도는 각은?",
+          "answer": "$360^\\circ$"
+        },
+        "studentC": "분침은 시침보다 $1$분에 $5.5^\\circ$씩 더 돌므로, 겹친 두 바늘은 분침이 □ 더 돌았을 때, 곧 □마다 다시 겹친다.",
+        "answers": [
+          "$360^\\circ$",
+          "$\\frac{720}{11}$분"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-13-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "분침은 $1$분에 $6^\\circ$, 시침은 $1$분에 $0.5^\\circ$씩 돈다. 두 바늘이 겹친 뒤 다시 겹칠 때까지 분침은 시침보다 몇 도 더 돌아야 하는지 쓰고, 그때까지 걸리는 시간을 구하시오.",
+        "bAnswer": "분침이 시침보다 한 바퀴, 곧 $360^\\circ$ 더 돌아야 한다. 분침은 $1$분에 $5.5^\\circ$씩 더 돌므로 $360\\div5.5=\\frac{720}{11}$분이 걸린다.",
+        "bGoal": "다시 겹치는 조건과 걸리는 시간",
+        "bReason": "두 바늘의 빠르기를 조건으로 주고 $360^\\circ$ 조건과 시간을 묻게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$360^\\circ$ 더 돈다",
+              "한 바퀴 더 돈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{720}{11}$분",
+              "$65\\frac{5}{11}$분"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "$5.5^\\circ$ 조건에서 더 도는 각과 시간을 묻는 두 빈칸이 분명해 유지.",
+        "learningRole": "reason",
+        "roleReason": "한 바퀴 더 돌아야 겹치므로 $360\\div5.5$",
+        "authorBatch": 11,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1459,
+        "part": "m1plus",
+        "sourceFingerprint": "5edb6836d5c95b48490aacb72fb5e5bb122cafaefb5725be10751a84164cfaef",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1459
+        },
+        "directReview": null,
+        "cFrozenSentence": "분침은 시침보다 $1$분에 $5.5^\\circ$씩 더 돌므로, 겹친 두 바늘은 분침이 □ 더 돌았을 때, 곧 □마다 다시 겹친다.",
+        "cFrozenDefinition": "분침은 시침보다 $1$분에 $5.5^\\circ$씩 더 돌므로, 겹친 두 바늘은 분침이 {$360^\\circ$} 더 돌았을 때, 곧 {$\\frac{720}{11}$분}마다 다시 겹친다.",
+        "cFrozenAnswers": [
+          "$360^\\circ$",
+          "$\\frac{720}{11}$분"
+        ],
+        "cMarkedSentence": "분침은 시침보다 $1$분에 $5.5^\\circ$씩 더 돌므로, 겹친 두 바늘은 분침이 {$360^\\circ$} 더 돌았을 때, 곧 {$\\frac{720}{11}$분}마다 다시 겹친다.",
+        "cSlotAnswers": [
+          "$360^\\circ$",
+          "$\\frac{720}{11}$분"
+        ],
+        "cStudentSentence": "분침은 시침보다 $1$분에 $5.5^\\circ$씩 더 돌므로, 겹친 두 바늘은 분침이 □ 더 돌았을 때, 곧 □마다 다시 겹친다.",
+        "cAnswers": [
+          "$360^\\circ$",
+          "$\\frac{720}{11}$분"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$360^\\circ$",
+            "equivalentAnswers": [
+              "$360^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\frac{720}{11}$분",
+            "equivalentAnswers": [
+              "$\\frac{720}{11}$분",
+              "$65\\frac{5}{11}$분"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$\\frac{720}{11}$분",
+            "accept": [
+              "$65\\frac{5}{11}$분"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$360^\\circ$"
+          ],
+          [
+            "$\\frac{720}{11}$분",
+            "$65\\frac{5}{11}$분"
+          ]
+        ],
+        "proposalFingerprint": "67842956f9daebac6852c9263956b7471379fdbc69c93619a669a5ab3a1b522f"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-13-xc18",
+        "section": "중1::3. 방정식::일차방정식의 활용(비율, 시계, 규칙)",
+        "term": "세로로 이웃한 세 날짜(가운데가 $x$)",
+        "kind": "방법",
+        "level": "상",
+        "definition": "같은 달의 달력에서 세로로 이웃한 세 날짜는 가운데를 $x$로 놓으면 {$x-7$}, $x$, {$x+7$}이고 합은 $3x$이다.",
+        "example": {
+          "prompt": "세로로 이웃한 세 날짜의 합이 $48$이면 가장 늦은 날짜는?",
+          "answer": "$23$일"
+        },
+        "studentC": "같은 달의 달력에서 세로로 이웃한 세 날짜는 가운데를 $x$로 놓으면 □, $x$, □이고 합은 $3x$이다.",
+        "answers": [
+          "$x-7$",
+          "$x+7$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-13-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "같은 달의 달력에서 세로로 이웃한 세 날짜 가운데 가운데 날짜를 $x$일이라 하자. 위와 아래의 날짜를 $x$의 식으로 쓰고, 세 날짜의 합이 $48$일 때 가장 늦은 날짜를 구하시오.",
+        "bAnswer": "위는 $x-7$, 아래는 $x+7$이다. 합은 $(x-7)+x+(x+7)=3x=48$이므로 $x=16$이고, 가장 늦은 날짜는 $23$일이다.",
+        "bGoal": "세로 세 날짜를 가운데 기준으로 나타내 방정식 풀기",
+        "bReason": "기준 칸이 가운데임을 밝히고 식과 합의 활용을 함께 물음.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x-7$과 $x+7$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$23$일"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "가운데 기준과 합이 문장에 있고 위아래 식만 묻는 빈칸이라 유지.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "가운데를 $x$로 놓아 합이 $3x$가 되게 하기",
+        "authorBatch": 11,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1460,
+        "part": "m1plus",
+        "sourceFingerprint": "1a00669371ac8850520b417cce1c8bc104328548dc882fb1d4521a5b06ead49f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1460
+        },
+        "directReview": null,
+        "cFrozenSentence": "같은 달의 달력에서 세로로 이웃한 세 날짜는 가운데를 $x$로 놓으면 □, $x$, □이고 합은 $3x$이다.",
+        "cFrozenDefinition": "같은 달의 달력에서 세로로 이웃한 세 날짜는 가운데를 $x$로 놓으면 {$x-7$}, $x$, {$x+7$}이고 합은 $3x$이다.",
+        "cFrozenAnswers": [
+          "$x-7$",
+          "$x+7$"
+        ],
+        "cMarkedSentence": "같은 달의 달력에서 세로로 이웃한 세 날짜는 가운데를 $x$로 놓으면 {$x-7$}, $x$, {$x+7$}이고 합은 $3x$이다.",
+        "cSlotAnswers": [
+          "$x-7$",
+          "$x+7$"
+        ],
+        "cStudentSentence": "같은 달의 달력에서 세로로 이웃한 세 날짜는 가운데를 $x$로 놓으면 □, $x$, □이고 합은 $3x$이다.",
+        "cAnswers": [
+          "$x-7$",
+          "$x+7$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$x-7$",
+            "equivalentAnswers": [
+              "$x-7$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$x+7$",
+            "equivalentAnswers": [
+              "$x+7$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$x-7$"
+          ],
+          [
+            "$x+7$"
+          ]
+        ],
+        "proposalFingerprint": "c42332e0bbebea85f8002f376ff1f4a2813c20bd566ced82715135e66ff02068"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-13-xc19",
+        "section": "중1::3. 방정식::일차방정식의 활용(비율, 시계, 규칙)",
+        "term": "남은 것의 비율을 전체의 비율로 고치기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "전체의 $\\frac{a}{b}$를 빼고 남은 것의 $\\frac{c}{d}$는 전체의 {$\\left(1-\\frac{a}{b}\\right)\\times\\frac{c}{d}$}이다. 둘째 비율은 {남은 비율}에 곱해야 한다.",
+        "example": {
+          "prompt": "전체의 $\\frac{1}{3}$을 빼고 남은 것의 $\\frac{1}{4}$이 전체의 $\\frac{1}{4}$이 아닌 까닭은?",
+          "answer": "남은 $\\frac{2}{3}$의 $\\frac{1}{4}$이어서"
+        },
+        "studentC": "전체의 $\\frac{a}{b}$를 빼고 남은 것의 $\\frac{c}{d}$는 전체의 □이다. 둘째 비율은 □에 곱해야 한다.",
+        "answers": [
+          "$\\left(1-\\frac{a}{b}\\right)\\times\\frac{c}{d}$",
+          "남은 비율"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-13-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "전체의 $\\frac{1}{3}$을 빼고 남은 것의 $\\frac{1}{4}$은 전체의 $\\frac{1}{4}$이 아니다. 그 까닭을 설명하고, 전체의 몇 분의 몇인지 구하시오.",
+        "bAnswer": "$\\frac{1}{4}$의 기준이 전체가 아니라 남은 것, 곧 전체의 $\\frac{2}{3}$이기 때문이다. 따라서 전체의 $\\frac{2}{3}\\times\\frac{1}{4}=\\frac{1}{6}$이다.",
+        "bGoal": "남은 것 기준의 비율을 전체 기준으로 고치기",
+        "bReason": "xc12와 겹치지 않게 기준이 달라지는 이유를 묻도록 특정함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "기준이 남은 것이다",
+              "남은 것은 전체의 $\\frac{2}{3}$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{6}$",
+              "$\\frac{2}{3}\\times\\frac{1}{4}$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "전체의 $\\frac{a}{b}$를 빼고 남은 것은 전체의 {$1-\\frac{a}{b}$}이므로, 남은 것의 $\\frac{c}{d}$는 전체의 {$\\left(1-\\frac{a}{b}\\right)\\times\\frac{c}{d}$}이다.",
+        "cAnswers": [
+          "$1-\\frac{a}{b}$",
+          "$\\left(1-\\frac{a}{b}\\right)\\times\\frac{c}{d}$"
+        ],
+        "cReason": "'남은 비율'은 학생이 떠올리기 어려운 임의 표현이라 식 두 단계로 바꿈.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "둘째 비율의 기준이 전체가 아니라 남은 것",
+        "authorBatch": 11,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1461,
+        "part": "m1plus",
+        "sourceFingerprint": "bda19c2fce3c51b37507ef1815056d572ae2fb11e674d75f39f7c7ab89f552b3",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1461
+        },
+        "directReview": null,
+        "cMarkedSentence": "전체의 $\\frac{a}{b}$를 빼고 남은 것은 전체의 {$1-\\frac{a}{b}$}이므로, 남은 것의 $\\frac{c}{d}$는 전체의 {$\\left(1-\\frac{a}{b}\\right)\\times\\frac{c}{d}$}이다.",
+        "cSlotAnswers": [
+          "$1-\\frac{a}{b}$",
+          "$\\left(1-\\frac{a}{b}\\right)\\times\\frac{c}{d}$"
+        ],
+        "cStudentSentence": "전체의 $\\frac{a}{b}$를 빼고 남은 것은 전체의 □이므로, 남은 것의 $\\frac{c}{d}$는 전체의 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$1-\\frac{a}{b}$",
+            "equivalentAnswers": [
+              "$1-\\frac{a}{b}$",
+              "$\\frac{b-a}{b}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\left(1-\\frac{a}{b}\\right)\\times\\frac{c}{d}$",
+            "equivalentAnswers": [
+              "$\\left(1-\\frac{a}{b}\\right)\\times\\frac{c}{d}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$1-\\frac{a}{b}$",
+            "accept": [
+              "$\\frac{b-a}{b}$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$1-\\frac{a}{b}$",
+            "$\\frac{b-a}{b}$"
+          ],
+          [
+            "$\\left(1-\\frac{a}{b}\\right)\\times\\frac{c}{d}$"
+          ]
+        ],
+        "proposalFingerprint": "25c2e78ce96b4613d8b7b346fd6cbd25e709700294b4b56badeac3e87bd327e7"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-13-xc20",
+        "section": "중1::3. 방정식::일차방정식의 활용(비율, 시계, 규칙)",
+        "term": "한 변에 $n$개씩 놓은 정사각형 테두리의 바둑돌",
+        "kind": "방법",
+        "level": "상",
+        "definition": "네 꼭짓점에 돌을 놓고 한 변에 $n$개씩($n\\ge2$) 정사각형 테두리에 바둑돌을 놓으면 꼭짓점을 두 번 세지 않도록 {$4n-4$}개가 된다.",
+        "example": {
+          "prompt": "한 변에 $8$개씩 놓은 정사각형 테두리의 바둑돌은?",
+          "answer": "$28$개"
+        },
+        "studentC": "네 꼭짓점에 돌을 놓고 한 변에 $n$개씩($n\\ge2$) 정사각형 테두리에 바둑돌을 놓으면 꼭짓점을 두 번 세지 않도록 □개가 된다.",
+        "answers": [
+          "$4n-4$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-13-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "바둑돌을 정사각형의 테두리 모양으로 놓는다. 네 꼭짓점에 돌을 놓고 한 변에 $n$개씩($n\\ge2$) 놓을 때 필요한 바둑돌의 수를 $n$의 식으로 나타내고, $4n$개가 아닌 까닭을 설명하시오.",
+        "bAnswer": "$4n-4$개이다. 꼭짓점의 돌 $4$개는 두 변에 모두 들어 있어 $4n$으로 세면 두 번씩 세어지므로 $4$를 뺀다.",
+        "bGoal": "겹쳐 세는 꼭짓점을 빼서 개수의 식 세우기",
+        "bReason": "제목의 배치 조건에 꼭짓점 포함 여부를 밝히고 $4$를 빼는 이유를 물음.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$4n-4$",
+              "$4(n-1)$"
+            ]
+          },
+          {
+            "anyOf": [
+              "꼭짓점의 돌이 두 번 세어진다",
+              "꼭짓점의 돌 $4$개가 두 변에 겹친다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "배치 조건과 이유가 문장에 있고 식 하나만 묻는 빈칸이라 유지.",
+        "learningRole": "reason",
+        "roleReason": "꼭짓점 돌을 두 번 세지 않도록 $4$를 빼는 까닭",
+        "authorBatch": 11,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1462,
+        "part": "m1plus",
+        "sourceFingerprint": "9dbd6978f5fde1ea226d7085247dc6a7f2d013cfada74b7da073d3ae7565b313",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1462
+        },
+        "directReview": null,
+        "cFrozenSentence": "네 꼭짓점에 돌을 놓고 한 변에 $n$개씩($n\\ge2$) 정사각형 테두리에 바둑돌을 놓으면 꼭짓점을 두 번 세지 않도록 □개가 된다.",
+        "cFrozenDefinition": "네 꼭짓점에 돌을 놓고 한 변에 $n$개씩($n\\ge2$) 정사각형 테두리에 바둑돌을 놓으면 꼭짓점을 두 번 세지 않도록 {$4n-4$}개가 된다.",
+        "cFrozenAnswers": [
+          "$4n-4$"
+        ],
+        "cMarkedSentence": "네 꼭짓점에 돌을 놓고 한 변에 $n$개씩($n\\ge2$) 정사각형 테두리에 바둑돌을 놓으면 꼭짓점을 두 번 세지 않도록 {$4n-4$}개가 된다.",
+        "cSlotAnswers": [
+          "$4n-4$"
+        ],
+        "cStudentSentence": "네 꼭짓점에 돌을 놓고 한 변에 $n$개씩($n\\ge2$) 정사각형 테두리에 바둑돌을 놓으면 꼭짓점을 두 번 세지 않도록 □개가 된다.",
+        "cAnswers": [
+          "$4n-4$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$4n-4$",
+            "equivalentAnswers": [
+              "$4n-4$",
+              "$4(n-1)$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$4n-4$",
+            "accept": [
+              "$4(n-1)$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$4n-4$",
+            "$4(n-1)$"
+          ]
+        ],
+        "proposalFingerprint": "dd244731b12db121f890244c6d53bed9f85d70c6feff30201c54d16440e2208c"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-13-xc21",
+        "section": "중1::3. 방정식::일차방정식의 활용(비율, 시계, 규칙)",
+        "term": "비율과 개수 차가 함께",
+        "kind": "방법",
+        "level": "상",
+        "definition": "두 부분의 비율과 개수 차가 주어지면 전체를 $x$로 놓고 두 부분을 각각 식으로 나타내 {차}로 {방정식}을 세운다.",
+        "example": {
+          "prompt": "남학생이 전체의 $\\frac{3}{5}$이고 여학생보다 $8$명 많다. 전체 학생은?",
+          "answer": "$40$명"
+        },
+        "studentC": "두 부분의 비율과 개수 차가 주어지면 전체를 $x$로 놓고 두 부분을 각각 식으로 나타내 □로 □을 세운다.",
+        "answers": [
+          "차",
+          "방정식"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-13-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "어느 반에서 남학생은 전체의 $\\frac{3}{5}$이고 여학생보다 $8$명 많다. 전체 학생 수를 $x$명으로 놓고 남학생 수와 여학생 수를 각각 $x$의 식으로 나타낸 뒤, 방정식을 세워 전체 학생 수를 구하시오.",
+        "bAnswer": "남학생은 $\\frac{3}{5}x$명, 여학생은 $\\frac{2}{5}x$명이다. $\\frac{3}{5}x-\\frac{2}{5}x=8$에서 $x=40$이므로 전체는 $40$명이다.",
+        "bGoal": "두 부분의 비율과 차로 전체를 구하는 방정식 세우기",
+        "bReason": "미완성 제목이라 구체 상황으로 두 부분의 식과 차의 방정식을 묻게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{3}{5}x$와 $\\frac{2}{5}x$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{3}{5}x-\\frac{2}{5}x=8$",
+              "$\\frac{1}{5}x=8$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$40$명",
+              "$x=40$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "전체를 $x$로 놓을 때 두 부분이 각각 전체의 $p$, $q$($p>q$)이고 그 차가 $k$이면 방정식 {$px-qx=k$}를 세워 $x$를 구한다.",
+        "cAnswers": [
+          "$px-qx=k$"
+        ],
+        "cReason": "답 '차'가 문장 앞에 그대로 있어 세우는 방정식을 묻도록 바꿈.",
+        "studentLabel": "비율과 개수 차로 전체 구하기",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "두 부분의 식의 차를 주어진 차와 같다고 놓기",
+        "authorBatch": 11,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1463,
+        "part": "m1plus",
+        "sourceFingerprint": "02796220df65be7bfd538d15c0456f8eb874020be0afa26fe242799df4c3d3d7",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1463
+        },
+        "directReview": null,
+        "cMarkedSentence": "전체를 $x$로 놓을 때 두 부분이 각각 전체의 $p$, $q$($p>q$)이고 그 차가 $k$이면 방정식 {$px-qx=k$}를 세워 $x$를 구한다.",
+        "cSlotAnswers": [
+          "$px-qx=k$"
+        ],
+        "cStudentSentence": "전체를 $x$로 놓을 때 두 부분이 각각 전체의 $p$, $q$($p>q$)이고 그 차가 $k$이면 방정식 □를 세워 $x$를 구한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$px-qx=k$",
+            "equivalentAnswers": [
+              "$px-qx=k$",
+              "$(p-q)x=k$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$px-qx=k$",
+            "accept": [
+              "$(p-q)x=k$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$px-qx=k$",
+            "$(p-q)x=k$"
+          ]
+        ],
+        "proposalFingerprint": "a5b97fbf78f47fb2de1970779882e66b11782bda852a7afecf77d9134a9a390d"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-13-xc22",
+        "section": "중1::3. 방정식::일차방정식의 활용(비율, 시계, 규칙)",
+        "term": "규칙에서 몇 번째인지 거꾸로",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$n$번째 값이 $an+b$이면, 값이 $k$인 것은 {$an+b=k$}를 풀어 찾고 $n$이 {자연수}인지 확인한다.",
+        "example": {
+          "prompt": "$n$번째 값이 $3n+2$인 규칙에서 $50$은 몇 번째인가?",
+          "answer": "$16$번째"
+        },
+        "studentC": "$n$번째 값이 $an+b$이면, 값이 $k$인 것은 □를 풀어 찾고 $n$이 □인지 확인한다.",
+        "answers": [
+          "$an+b=k$",
+          "자연수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-13-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "$n$번째 값이 $3n+2$인 규칙이 있다($n$은 자연수). $50$이 몇 번째 값인지 구하는 방법을 쓰고 답을 구하시오. 또 $60$이 이 규칙에 나오는 값인지 판단하고 까닭을 쓰시오.",
+        "bAnswer": "$3n+2=50$을 풀면 $n=16$이므로 $16$번째이다. $3n+2=60$의 해는 $n=\\frac{58}{3}$이고 자연수가 아니므로 $60$은 나오지 않는다.",
+        "bGoal": "값에서 순서를 거꾸로 구하고 자연수인지 확인하기",
+        "bReason": "방정식 풀이와 자연수 확인이 모두 드러나도록 되는 예와 안 되는 예를 넣음.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$3n+2=50$을 푼다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$16$번째",
+              "$n=16$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$60$은 나오지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "해 $n$이 자연수가 아니기 때문이다",
+              "$n=\\frac{58}{3}$은 자연수가 아니다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "세우는 방정식과 확인할 조건을 묻는 두 빈칸이 분명해 유지.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "$an+b=k$를 풀고 $n$이 자연수인지 확인",
+        "authorBatch": 11,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "notationReason": "팔로 끝나는 해 뒤 조사 대신 해라는 명시적 명사를 쓰며, 질문이 요구한 구하는 방법도 별도 의미로 보강한다.",
+        "sourceIndex": 1464,
+        "part": "m1plus",
+        "sourceFingerprint": "af294ca3a13eab7aef3befec529f1b5b37477e67844a58a0e05f03df720f2c77",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1464
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m1-03-13-xc22"
+        },
+        "cFrozenSentence": "$n$번째 값이 $an+b$이면, 값이 $k$인 것은 □를 풀어 찾고 $n$이 □인지 확인한다.",
+        "cFrozenDefinition": "$n$번째 값이 $an+b$이면, 값이 $k$인 것은 {$an+b=k$}를 풀어 찾고 $n$이 {자연수}인지 확인한다.",
+        "cFrozenAnswers": [
+          "$an+b=k$",
+          "자연수"
+        ],
+        "cMarkedSentence": "$n$번째 값이 $an+b$이면, 값이 $k$인 것은 {$an+b=k$}를 풀어 찾고 $n$이 {자연수}인지 확인한다.",
+        "cSlotAnswers": [
+          "$an+b=k$",
+          "자연수"
+        ],
+        "cStudentSentence": "$n$번째 값이 $an+b$이면, 값이 $k$인 것은 □를 풀어 찾고 $n$이 □인지 확인한다.",
+        "cAnswers": [
+          "$an+b=k$",
+          "자연수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$an+b=k$",
+            "equivalentAnswers": [
+              "$an+b=k$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "자연수",
+            "equivalentAnswers": [
+              "자연수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$an+b=k$"
+          ],
+          [
+            "자연수"
+          ]
+        ],
+        "proposalFingerprint": "bacc1b1c74650a6411c6c73ddac6ea37c05ad045e13b1eb4e1a1355c669bb18c"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-13-xc23",
+        "section": "중1::3. 방정식::일차방정식의 활용(비율, 시계, 규칙)",
+        "term": "비례배분",
+        "kind": "방법",
+        "level": "상",
+        "definition": "전체를 $a:b:c$로 나누면 첫째 몫은 전체의 {$\\frac{a}{a+b+c}$}이고, 나머지도 {같은 방법}으로 구한다.",
+        "example": {
+          "prompt": "$12000$원을 $1:2:3$으로 나누면 가장 많은 몫은?",
+          "answer": "$6000$원"
+        },
+        "studentC": "전체를 $a:b:c$로 나누면 첫째 몫은 전체의 □이고, 나머지도 □으로 구한다.",
+        "answers": [
+          "$\\frac{a}{a+b+c}$",
+          "같은 방법"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-13-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "전체를 $a:b:c$의 비로 셋으로 나눌 때 첫째 몫은 전체의 몇 분의 몇인지 $a$, $b$, $c$로 나타내시오. 또 이를 이용해 $12000$원을 $1:2:3$으로 나눌 때 가장 많은 몫을 구하시오.",
+        "bAnswer": "첫째 몫은 전체의 $\\frac{a}{a+b+c}$이다. 가장 많은 몫은 $12000\\times\\frac{3}{1+2+3}=6000$원이다.",
+        "bGoal": "비로 나눈 몫을 전체에 대한 분수로 나타내기",
+        "bReason": "용어만 있어 무엇을 구하는지 몰라 몫의 분수 표현과 적용을 묻게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{a}{a+b+c}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6000$원"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "전체를 $a:b:c$로 나누면 첫째 몫은 전체의 {$\\frac{a}{a+b+c}$}이고, 둘째 몫은 전체의 {$\\frac{b}{a+b+c}$}이다.",
+        "cAnswers": [
+          "$\\frac{a}{a+b+c}$",
+          "$\\frac{b}{a+b+c}$"
+        ],
+        "cReason": "'같은 방법'은 내용 없는 빈칸이라 둘째 몫의 분수를 쓰게 바꿈.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "각 몫을 전체의 $\\frac{a}{a+b+c}$ 꼴로 구하기",
+        "authorBatch": 11,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1465,
+        "part": "m1plus",
+        "sourceFingerprint": "94bb701788d935ed1cb2064e62b82c3973e32b40e43ef3410ad36e563bab46d8",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1465
+        },
+        "directReview": null,
+        "cMarkedSentence": "전체를 $a:b:c$로 나누면 첫째 몫은 전체의 {$\\frac{a}{a+b+c}$}이고, 둘째 몫은 전체의 {$\\frac{b}{a+b+c}$}이다.",
+        "cSlotAnswers": [
+          "$\\frac{a}{a+b+c}$",
+          "$\\frac{b}{a+b+c}$"
+        ],
+        "cStudentSentence": "전체를 $a:b:c$로 나누면 첫째 몫은 전체의 □이고, 둘째 몫은 전체의 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{a}{a+b+c}$",
+            "equivalentAnswers": [
+              "$\\frac{a}{a+b+c}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\frac{b}{a+b+c}$",
+            "equivalentAnswers": [
+              "$\\frac{b}{a+b+c}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{a}{a+b+c}$"
+          ],
+          [
+            "$\\frac{b}{a+b+c}$"
+          ]
+        ],
+        "proposalFingerprint": "3d3dc48e1e89540d0c3fbcc2b1c33c7b1379b4aa39ff33726cc70f32ce2588d0"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-13-xc24",
+        "section": "중1::3. 방정식::일차방정식의 활용(비율, 시계, 규칙)",
+        "term": "분침과 시침의 속력 차",
+        "kind": "성질",
+        "level": "상",
+        "definition": "분침은 $1$분에 $6^\\circ$, 시침은 {$0.5^\\circ$} 돌아 분침이 $1$분에 {$5.5^\\circ$}씩 더 돈다.",
+        "example": {
+          "prompt": "분침이 시침보다 $55^\\circ$ 더 돌려면 몇 분이 걸리는가?",
+          "answer": "$10$분"
+        },
+        "studentC": "분침은 $1$분에 $6^\\circ$, 시침은 □ 돌아 분침이 $1$분에 □씩 더 돈다.",
+        "answers": [
+          "$0.5^\\circ$",
+          "$5.5^\\circ$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-13-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "분침은 $1$분에 $6^\\circ$, 시침은 $1$분에 $0.5^\\circ$씩 돈다. 분침이 시침보다 $1$분에 몇 도씩 더 도는지 구하고, 분침이 시침보다 $55^\\circ$ 더 돌려면 몇 분이 걸리는지 구하시오.",
+        "bAnswer": "$6^\\circ-0.5^\\circ=5.5^\\circ$씩 더 돈다. $55\\div5.5=10$이므로 $10$분이 걸린다.",
+        "bGoal": "두 바늘의 $1$분당 각의 차와 그 활용",
+        "bReason": "'속력 차'가 $1$분당 각의 차임을 밝히고 활용 계산까지 묻게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$5.5^\\circ$",
+              "$6-0.5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$10$분"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "시침의 각과 두 바늘의 차를 차례로 묻는 짧은 빈칸이라 유지.",
+        "studentLabel": "분침이 시침보다 $1$분에 더 도는 각",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "$1$분에 $5.5^\\circ$씩 벌어짐을 이용해 시간 구하기",
+        "authorBatch": 11,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1466,
+        "part": "m1plus",
+        "sourceFingerprint": "c3a8bc4ea9bdc38fd165681c5ddaf182e4d121dce6acb3f8889bba4beffeba27",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1466
+        },
+        "directReview": null,
+        "cFrozenSentence": "분침은 $1$분에 $6^\\circ$, 시침은 □ 돌아 분침이 $1$분에 □씩 더 돈다.",
+        "cFrozenDefinition": "분침은 $1$분에 $6^\\circ$, 시침은 {$0.5^\\circ$} 돌아 분침이 $1$분에 {$5.5^\\circ$}씩 더 돈다.",
+        "cFrozenAnswers": [
+          "$0.5^\\circ$",
+          "$5.5^\\circ$"
+        ],
+        "cMarkedSentence": "분침은 $1$분에 $6^\\circ$, 시침은 {$0.5^\\circ$} 돌아 분침이 $1$분에 {$5.5^\\circ$}씩 더 돈다.",
+        "cSlotAnswers": [
+          "$0.5^\\circ$",
+          "$5.5^\\circ$"
+        ],
+        "cStudentSentence": "분침은 $1$분에 $6^\\circ$, 시침은 □ 돌아 분침이 $1$분에 □씩 더 돈다.",
+        "cAnswers": [
+          "$0.5^\\circ$",
+          "$5.5^\\circ$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$0.5^\\circ$",
+            "equivalentAnswers": [
+              "$0.5^\\circ$",
+              "$\\frac{1}{2}^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$5.5^\\circ$",
+            "equivalentAnswers": [
+              "$5.5^\\circ$",
+              "$\\frac{11}{2}^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$0.5^\\circ$",
+            "accept": [
+              "$\\frac{1}{2}^\\circ$"
+            ]
+          },
+          {
+            "answer": "$5.5^\\circ$",
+            "accept": [
+              "$\\frac{11}{2}^\\circ$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$0.5^\\circ$",
+            "$\\frac{1}{2}^\\circ$"
+          ],
+          [
+            "$5.5^\\circ$",
+            "$\\frac{11}{2}^\\circ$"
+          ]
+        ],
+        "proposalFingerprint": "5a0042ac2060cd5158bf711215721a40853d6b32402139dc212076208db66a21"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-01-xc1",
+        "section": "중1::4. 그래프와 비례::순서쌍과 좌표평면(기본)",
+        "term": "수직선 위에 점 나타내기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "좌표가 $a$인 점은 수직선에서 $a$에 해당하는 {눈금} 위에 점을 찍고 {이름}을 붙인다.",
+        "example": {
+          "prompt": "한 칸이 $1$인 수직선에서 점 $A(-3)$은 원점에서 어느 쪽으로 몇 칸인가?",
+          "answer": "왼쪽으로 $3$칸"
+        },
+        "studentC": "좌표가 $a$인 점은 수직선에서 $a$에 해당하는 □ 위에 점을 찍고 □을 붙인다.",
+        "answers": [
+          "눈금",
+          "이름"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-01-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "한 칸의 길이가 $1$인 수직선에 점 $A(-3)$을 나타내려고 한다. 원점에서 어느 쪽으로 몇 칸 간 곳에 점을 찍어야 하는지 쓰고 그 까닭을 쓰시오.",
+        "bAnswer": "원점에서 왼쪽으로 $3$칸 간 곳에 찍는다. 좌표 $-3$은 음수이므로 $0$의 왼쪽에 있고 $0$에서 $3$만큼 떨어져 있기 때문이다.",
+        "bGoal": "좌표를 보고 수직선에 점 찍기",
+        "bReason": "구체 점과 눈금 간격을 주어 방향과 칸 수를 답하게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "왼쪽으로 $3$칸"
+            ]
+          },
+          {
+            "anyOf": [
+              "음수이므로 원점의 왼쪽이다",
+              "$-3$은 $0$보다 $3$만큼 작다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "좌표가 $a$인 점은 수직선에서 $a$를 나타내는 눈금 위에 찍으며, $a$가 양수이면 원점의 {오른쪽}, 음수이면 원점의 {왼쪽}에 있다.",
+        "cAnswers": [
+          "오른쪽",
+          "왼쪽"
+        ],
+        "cReason": "'눈금', '이름'은 임의로 자른 낱말이라 부호에 따른 위치를 묻게 바꿈.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "좌표의 부호와 크기로 찍을 위치 정하기",
+        "authorBatch": 11,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1467,
+        "part": "m1plus",
+        "sourceFingerprint": "c01d3eb02f2b59ca2db83c3e444a02809a4e994c54744cb8011c49f2d96b97fe",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1467
+        },
+        "directReview": null,
+        "cMarkedSentence": "좌표가 $a$인 점은 수직선에서 $a$를 나타내는 눈금 위에 찍으며, $a$가 양수이면 원점의 {오른쪽}, 음수이면 원점의 {왼쪽}에 있다.",
+        "cSlotAnswers": [
+          "오른쪽",
+          "왼쪽"
+        ],
+        "cStudentSentence": "좌표가 $a$인 점은 수직선에서 $a$를 나타내는 눈금 위에 찍으며, $a$가 양수이면 원점의 □, 음수이면 원점의 □에 있다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "오른쪽",
+            "equivalentAnswers": [
+              "오른쪽"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "왼쪽",
+            "equivalentAnswers": [
+              "왼쪽"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "오른쪽"
+          ],
+          [
+            "왼쪽"
+          ]
+        ],
+        "proposalFingerprint": "bbdcb798eca3315b0640ce679768b31d6c12517f86f226e9c8abf0d8346b75b2"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-01-xc2",
+        "section": "중1::4. 그래프와 비례::순서쌍과 좌표평면(기본)",
+        "term": "순서쌍 쓰는 법",
+        "kind": "방법",
+        "level": "하",
+        "definition": "순서쌍은 두 수를 {쉼표}로 나누어 {괄호} 안에 쓴다.",
+        "example": {
+          "prompt": "$x$좌표 $4$, $y$좌표 $-1$인 점의 좌표는?",
+          "answer": "$(4, -1)$"
+        },
+        "studentC": "순서쌍은 두 수를 □로 나누어 □ 안에 쓴다.",
+        "answers": [
+          "쉼표",
+          "괄호"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-01-xc2",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "쉼표와 괄호라는 표기 방법뿐이라 서술할 관계나 이유가 없음.",
+        "cDecision": "keep",
+        "cReason": "표기 약속을 낱말 두 개로 확인하는 짧은 빈칸이라 유지.",
+        "exclusionReason": "B 제외: 표기만 묻는 조각으로 c2의 순서쌍 정의 질문과 목표 중복.",
+        "learningRole": "naming",
+        "roleReason": "쉼표와 괄호로 쓰는 표기 약속",
+        "authorBatch": 11,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1468,
+        "part": "m1plus",
+        "sourceFingerprint": "6e31720a0b83fa5c17248d9348cb94e39950bc8bff67234c9d5c46e5c1da4e96",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1468
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "순서쌍은 두 수를 □로 나누어 □ 안에 쓴다.",
+        "cFrozenDefinition": "순서쌍은 두 수를 {쉼표}로 나누어 {괄호} 안에 쓴다.",
+        "cFrozenAnswers": [
+          "쉼표",
+          "괄호"
+        ],
+        "cMarkedSentence": "순서쌍은 두 수를 {쉼표}로 나누어 {괄호} 안에 쓴다.",
+        "cSlotAnswers": [
+          "쉼표",
+          "괄호"
+        ],
+        "cStudentSentence": "순서쌍은 두 수를 □로 나누어 □ 안에 쓴다.",
+        "cAnswers": [
+          "쉼표",
+          "괄호"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "쉼표",
+            "equivalentAnswers": [
+              "쉼표"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "괄호",
+            "equivalentAnswers": [
+              "괄호"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "쉼표"
+          ],
+          [
+            "괄호"
+          ]
+        ],
+        "proposalFingerprint": "b9f361e4300e9a915aa51dfd6a7204e8f44c666df25fe39ac4232839150887fd"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-01-xc3",
+        "section": "중1::4. 그래프와 비례::순서쌍과 좌표평면(기본)",
+        "term": "점의 이름과 좌표",
+        "kind": "방법",
+        "level": "하",
+        "definition": "좌표가 $(a, b)$인 점 $P$는 이름 뒤에 좌표를 붙여 {$P(a, b)$}로 쓴다.",
+        "example": {
+          "prompt": "$x$좌표가 $2$, $y$좌표가 $5$인 점 $Q$를 기호로 쓰면?",
+          "answer": "$Q(2, 5)$"
+        },
+        "studentC": "좌표가 $(a, b)$인 점 $P$는 이름 뒤에 좌표를 붙여 □로 쓴다.",
+        "answers": [
+          "$P(a, b)$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-01-xc3",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "$P(a, b)$라는 표기 하나만 있어 서술 질문으로 넓힐 내용이 없음.",
+        "cDecision": "keep",
+        "cReason": "이름과 좌표를 붙여 쓰는 표기를 묻는 분명한 한 빈칸이라 유지.",
+        "exclusionReason": "B 제외: 기호 표기 하나만 묻는 조각으로 c6의 점의 좌표 질문과 목표 중복.",
+        "learningRole": "naming",
+        "roleReason": "점 이름 뒤에 좌표를 붙이는 $P(a, b)$ 표기",
+        "authorBatch": 11,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1469,
+        "part": "m1plus",
+        "sourceFingerprint": "913a1f41e413abaabdb4fb19aa957825932d1d353df007497e5b19737fb0fb0c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1469
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "좌표가 $(a, b)$인 점 $P$는 이름 뒤에 좌표를 붙여 □로 쓴다.",
+        "cFrozenDefinition": "좌표가 $(a, b)$인 점 $P$는 이름 뒤에 좌표를 붙여 {$P(a, b)$}로 쓴다.",
+        "cFrozenAnswers": [
+          "$P(a, b)$"
+        ],
+        "cMarkedSentence": "좌표가 $(a, b)$인 점 $P$는 이름 뒤에 좌표를 붙여 {$P(a, b)$}로 쓴다.",
+        "cSlotAnswers": [
+          "$P(a, b)$"
+        ],
+        "cStudentSentence": "좌표가 $(a, b)$인 점 $P$는 이름 뒤에 좌표를 붙여 □로 쓴다.",
+        "cAnswers": [
+          "$P(a, b)$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$P(a, b)$",
+            "equivalentAnswers": [
+              "$P(a, b)$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$P(a, b)$"
+          ]
+        ],
+        "proposalFingerprint": "7f9a4ae79ccf1b50700d7c731a02ff37b71304df7f0d49d7399661429bd7f58c"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-01-xc4",
+        "section": "중1::4. 그래프와 비례::순서쌍과 좌표평면(기본)",
+        "term": "좌표평면에 점 찍기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "점 $(a, b)$는 원점에서 $x$축 방향으로 {$a$}만큼, $y$축 방향으로 {$b$}만큼 간 자리에 찍는다.",
+        "example": {
+          "prompt": "점 $(-2, 3)$은 원점에서 어떻게 가는가?",
+          "answer": "왼쪽으로 $2$, 위로 $3$"
+        },
+        "studentC": "점 $(a, b)$는 원점에서 $x$축 방향으로 □만큼, $y$축 방향으로 □만큼 간 자리에 찍는다.",
+        "answers": [
+          "$a$",
+          "$b$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-01-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "좌표평면에 점 $(-2, 3)$을 찍으려고 한다. 원점에서 출발하여 어느 방향으로 얼마만큼씩 가야 하는지 차례로 쓰고, 첫 이동의 방향을 그렇게 정한 까닭을 쓰시오.",
+        "bAnswer": "왼쪽으로 $2$만큼, 위로 $3$만큼 간다. $x$좌표가 음수 $-2$이므로 $x$축 방향으로는 왼쪽으로 간다.",
+        "bGoal": "순서쌍을 보고 좌표평면에 점 찍기",
+        "bReason": "음수 좌표가 있는 구체 점으로 방향과 거리를 답하게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "왼쪽으로 $2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "위로 $3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x$좌표가 음수이므로 왼쪽이다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "두 좌표가 각각 어느 방향의 이동인지 묻는 분명한 빈칸이라 유지.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "$x$좌표만큼 가로로, $y$좌표만큼 세로로 이동",
+        "authorBatch": 11,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1470,
+        "part": "m1plus",
+        "sourceFingerprint": "bb5986568f74f479f0f4d0330e436ae31d1184a6be21022e3179846c873693ff",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1470
+        },
+        "directReview": null,
+        "cFrozenSentence": "점 $(a, b)$는 원점에서 $x$축 방향으로 □만큼, $y$축 방향으로 □만큼 간 자리에 찍는다.",
+        "cFrozenDefinition": "점 $(a, b)$는 원점에서 $x$축 방향으로 {$a$}만큼, $y$축 방향으로 {$b$}만큼 간 자리에 찍는다.",
+        "cFrozenAnswers": [
+          "$a$",
+          "$b$"
+        ],
+        "cMarkedSentence": "점 $(a, b)$는 원점에서 $x$축 방향으로 {$a$}만큼, $y$축 방향으로 {$b$}만큼 간 자리에 찍는다.",
+        "cSlotAnswers": [
+          "$a$",
+          "$b$"
+        ],
+        "cStudentSentence": "점 $(a, b)$는 원점에서 $x$축 방향으로 □만큼, $y$축 방향으로 □만큼 간 자리에 찍는다.",
+        "cAnswers": [
+          "$a$",
+          "$b$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$a$",
+            "equivalentAnswers": [
+              "$a$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$b$",
+            "equivalentAnswers": [
+              "$b$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$a$"
+          ],
+          [
+            "$b$"
+          ]
+        ],
+        "proposalFingerprint": "a61f63990dcd2c97f967693ee564029ead88898a9a49bb5a4ef388a77d4ce4ba"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-04-01-xc5",
+        "section": "중1::4. 그래프와 비례::순서쌍과 좌표평면(기본)",
+        "term": "$x$좌표와 $y$좌표 읽기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "점에서 {$x$축}에 수직인 선을 그어 만나는 수가 $x$좌표, {$y$축}에 수직인 선을 그어 만나는 수가 $y$좌표이다.",
+        "example": {
+          "prompt": "점 $(7, -3)$의 $y$좌표는?",
+          "answer": "$-3$"
+        },
+        "studentC": "점에서 □에 수직인 선을 그어 만나는 수가 $x$좌표, □에 수직인 선을 그어 만나는 수가 $y$좌표이다.",
+        "answers": [
+          "$x$축",
+          "$y$축"
+        ]
+      },
+      "proposal": {
+        "id": "m1-04-01-xc5",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "수선으로 $x$좌표와 $y$좌표를 읽는 내용이 c6과 같음.",
+        "cDecision": "keep",
+        "cReason": "어느 축에 수선을 그어 어느 좌표를 읽는지 묻는 분명한 빈칸이라 유지.",
+        "exclusionReason": "B 제외: c6이 수선으로 $x$좌표·$y$좌표를 정하는 같은 내용을 서술로 묻는 목표 중복.",
+        "learningRole": "procedure",
+        "roleReason": "축에 수선을 그어 좌표 읽기",
+        "authorBatch": 11,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1471,
+        "part": "m1plus",
+        "sourceFingerprint": "adf1c9e29e1f7cd9af237eea919483c96c7fd6655170316e1c44f048094fdb32",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1471
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "점에서 □에 수직인 선을 그어 만나는 수가 $x$좌표, □에 수직인 선을 그어 만나는 수가 $y$좌표이다.",
+        "cFrozenDefinition": "점에서 {$x$축}에 수직인 선을 그어 만나는 수가 $x$좌표, {$y$축}에 수직인 선을 그어 만나는 수가 $y$좌표이다.",
+        "cFrozenAnswers": [
+          "$x$축",
+          "$y$축"
+        ],
+        "cMarkedSentence": "점에서 {$x$축}에 수직인 선을 그어 만나는 수가 $x$좌표, {$y$축}에 수직인 선을 그어 만나는 수가 $y$좌표이다.",
+        "cSlotAnswers": [
+          "$x$축",
+          "$y$축"
+        ],
+        "cStudentSentence": "점에서 □에 수직인 선을 그어 만나는 수가 $x$좌표, □에 수직인 선을 그어 만나는 수가 $y$좌표이다.",
+        "cAnswers": [
+          "$x$축",
+          "$y$축"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$x$축",
+            "equivalentAnswers": [
+              "$x$축"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$y$축",
+            "equivalentAnswers": [
+              "$y$축"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$x$축"
+          ],
+          [
+            "$y$축"
+          ]
+        ],
+        "proposalFingerprint": "0110b53dcfcefad7acfd7e3b513e57a364eb90ae2f2ae82585a2d2d9f7e4a4a3"
+      }
+    }
+  ]
+}

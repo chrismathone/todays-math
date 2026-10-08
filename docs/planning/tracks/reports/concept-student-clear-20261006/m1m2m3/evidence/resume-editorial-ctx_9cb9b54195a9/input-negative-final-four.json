@@ -1,0 +1,298 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T11:04:20.191Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-01-02-c7",
+        "section": "중3::1. 실수와 그 계산::무리수와 실수",
+        "term": "실수의 분류",
+        "kind": "성질",
+        "level": "중",
+        "definition": "실수는 유리수와 무리수로 나뉘고, 유리수는 다시 {정수}와 {정수가 아닌 유리수}로 나뉜다.",
+        "studentC": "실수는 유리수와 무리수로 나뉘고, 유리수는 다시 □와 □로 나뉜다.",
+        "answers": [
+          "정수",
+          "정수가 아닌 유리수"
+        ]
+      },
+      "proposal": {
+        "id": "m3-01-02-c7",
+        "bDecision": "rewrite",
+        "bPrompt": "실수 $-2$, $\\frac{1}{3}$, $\\sqrt{2}$를 정수, 정수가 아닌 유리수, 무리수로 나누고 각 수를 그렇게 나눈 까닭을 쓰시오.",
+        "bAnswer": "$-2$는 자연수에 음의 부호를 붙인 수이므로 정수이다. $\\frac{1}{3}$은 정수끼리의 분수로 나타나지만 정수는 아니므로 정수가 아닌 유리수이다. $\\sqrt{2}$는 정수끼리의 분수로 나타낼 수 없으므로 무리수이다.",
+        "bGoal": "실수를 정수·정수가 아닌 유리수·무리수로 분류하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "음의 정수 -2는 자연수에 음의 부호를 붙인 수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{3}$은 분수로 나타낼 수 있지만 정수는 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\sqrt{2}$는 정수끼리의 분수로 나타낼 수 없는 무리수이다"
+            ]
+          }
+        ],
+        "bReason": "분류 기준을 주고 실제 수를 분류하게 하여 여러 가능한 분류 방식을 임의로 오답 처리하지 않는다.",
+        "cDecision": "rewrite",
+        "cReason": "정수가 아닌 유리수라는 긴 표현을 새 이름처럼 복원하게 하지 않고 두 단계 분류에서 표준 이름 하나를 확인한다.",
+        "learningRole": "definition",
+        "roleReason": "실수 분류표에서 유리수의 하위 분류",
+        "authorBatch": 53,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 764,
+        "part": "m3",
+        "sourceFingerprint": "e64b710981e7b5b3c3220220c7213b0d1acb32710390393d8373632a38edc4b3",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 764
+        },
+        "directReview": null,
+        "cMarkedSentence": "실수는 유리수와 {무리수}로 나뉘며, 유리수에는 정수와 정수가 아닌 유리수가 있다.",
+        "cSlotAnswers": [
+          "무리수"
+        ],
+        "cStudentSentence": "실수는 유리수와 □로 나뉘며, 유리수에는 정수와 정수가 아닌 유리수가 있다.",
+        "cAnswers": [
+          "무리수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "무리수",
+            "equivalentAnswers": [
+              "무리수"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "무리수"
+          ]
+        ],
+        "proposalFingerprint": "520cce01878b922e5dc7d522e0474596db532fa48b8b85fe56569936c4c8708d",
+        "cAfter": "실수는 유리수와 {무리수}로 나뉘며, 유리수에는 정수와 정수가 아닌 유리수가 있다."
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-02-02-c9",
+        "section": "중3::2. 다항식의 곱셈과 인수분해::인수분해",
+        "term": "$acx^2+(ad+bc)x+bd$의 인수분해",
+        "kind": "공식",
+        "level": "상",
+        "definition": "$acx^2+(ad+bc)x+bd$는 $x^2$의 계수와 상수항을 각각 두 수의 곱 $a\\times c$, $b\\times d$로 쪼갠 뒤, {대각선}으로 곱해 더한 $ad+bc$가 {$x$의 계수}가 되는 짝을 찾아 $(ax+b)(cx+d)$로 쓴다.",
+        "studentC": "$acx^2+(ad+bc)x+bd$는 $x^2$의 계수와 상수항을 각각 두 수의 곱 $a\\times c$, $b\\times d$로 쪼갠 뒤, □으로 곱해 더한 $ad+bc$가 □가 되는 짝을 찾아 $(ax+b)(cx+d)$로 쓴다.",
+        "answers": [
+          "대각선",
+          "$x$의 계수"
+        ]
+      },
+      "proposal": {
+        "id": "m3-02-02-c9",
+        "learningRole": "procedure",
+        "roleReason": "계수를 쪼개 대각선 곱의 합 맞추기",
+        "bDecision": "rewrite",
+        "bPrompt": "$2x^2+7x+3$을 인수분해하시오. $x^2$의 계수와 상수항을 각각 어떤 두 정수의 곱으로 나누었는지 쓰고, 선택한 짝이 $x$의 계수에도 맞는지 확인하는 과정을 쓰시오.",
+        "bAnswer": "$2=2\\times1$, $3=1\\times3$으로 나누고 $(2x+1)(x+3)$을 고른다. 두 $x$항의 계수의 합이 $2\\times3+1\\times1=7$이므로 $2x^2+7x+3=(2x+1)(x+3)$이다.",
+        "bGoal": "$x^2$의 계수가 $1$이 아닌 이차식 인수분해",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "계수 2를 2와 1의 곱으로, 상수항 3을 1과 3의 곱으로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2\\times3+1\\times1=7$로 $x$의 계수를 확인한다",
+              "$6x+x=7x$로 확인한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$(2x+1)(x+3)$",
+              "$(x+3)(2x+1)$"
+            ]
+          }
+        ],
+        "bReason": "완성된 일반식에서 계수를 읽어 옮기는 대신 실제 계수의 짝을 고르고 중간항을 검증하게 한다.",
+        "cDecision": "exclude",
+        "cReason": "대각선이라는 답은 보이지 않는 표를 전제로 하고, ad+bc가 x의 계수라는 답은 이미 지문에 보인다. 같은 전개의 계수 확인은 m3-02-01-c7 C에서 수행하므로 이 절차는 B에서 설명하게 한다.",
+        "studentLabel": "대각선으로 곱해 인수분해하기",
+        "authorBatch": 54,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 792,
+        "part": "m3",
+        "sourceFingerprint": "db29d7f8b5f831268f0d22ac6e3efc57982f85b37d4498913d954f80eb42c66b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 792
+        },
+        "directReview": null,
+        "cFrozenSentence": "$acx^2+(ad+bc)x+bd$는 $x^2$의 계수와 상수항을 각각 두 수의 곱 $a\\times c$, $b\\times d$로 쪼갠 뒤, □으로 곱해 더한 $ad+bc$가 □가 되는 짝을 찾아 $(ax+b)(cx+d)$로 쓴다.",
+        "cFrozenDefinition": "$acx^2+(ad+bc)x+bd$는 $x^2$의 계수와 상수항을 각각 두 수의 곱 $a\\times c$, $b\\times d$로 쪼갠 뒤, {대각선}으로 곱해 더한 $ad+bc$가 {$x$의 계수}가 되는 짝을 찾아 $(ax+b)(cx+d)$로 쓴다.",
+        "cFrozenAnswers": [
+          "대각선",
+          "$x$의 계수"
+        ],
+        "cMarkedSentence": null,
+        "cSlotAnswers": null,
+        "cStudentSentence": null,
+        "cAnswers": null,
+        "cSlots": null,
+        "lexicalSynonyms": [
+          {
+            "answer": "대각선",
+            "accept": [
+              "엇갈려",
+              "X자 모양"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": null,
+        "proposalFingerprint": "31136195c45a02e3a6d9ace819a9951b67f6e0820b79b3c002536665fe13c5f8",
+        "exclusionReason": "C 제외: 숨은 배열의 대각선 이름 암기와 지문에 주어진 x계수 복사에 머무르며 전개 계수 확인은 m3-02-01-c7 C에 있다. B와 일반 설명은 유지한다.",
+        "coreAfter": "$acx^2+(ad+bc)x+bd$를 인수분해할 때 $x^2$의 계수를 $ac$, 상수항을 $bd$인 두 수의 곱으로 나눈다. $ax\\times d$와 $b\\times cx$에서 나온 $x$항의 계수의 합 {$ad+bc$}가 주어진 $x$의 계수와 같아지는 짝을 고르면 {$(ax+b)(cx+d)$}로 쓸 수 있다.",
+        "coreReason": "실제 표가 없는데 대각선으로 곱한다는 지시를 네 항의 어떤 곱에서 x항이 나오는지로 풀어 설명한다.",
+        "cAfter": null
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-07-02-xc11",
+        "section": "중3::7. 통계::산점도와 상관관계",
+        "term": "직선 $y=x$ 위의 점",
+        "kind": "성질",
+        "level": "중",
+        "definition": "두 변량의 단위가 같을 때 직선 $y=x$ {위}에 놓인 점은 두 값이 {같은} 자료이다.",
+        "studentC": "두 변량의 단위가 같을 때 직선 $y=x$ □에 놓인 점은 두 값이 □ 자료이다.",
+        "answers": [
+          "위",
+          "같은"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-02-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "가로축에 $1$학기 독서량 $x$권, 세로축에 $2$학기 독서량 $y$권을 놓은 산점도에서 직선 $y=x$ 위에 있는 점은 어떤 학생을 나타내는지 쓰시오.",
+        "bAnswer": "$1$학기와 $2$학기의 독서량이 같은 학생이다.",
+        "bGoal": "직선 $y=x$ 위의 점 해석",
+        "bReason": "y=x를다시적는것이아닌두학기독서량의관계를뜻으로설명해야한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "1학기와 2학기의 독서량이 같은 학생",
+              "두 학기에 읽은 책의 권수가 같다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "두 변량의 단위가 같을 때 직선 $y=x$ 위에 놓인 점은 두 값이 {같은} 자료이다.",
+        "cAnswers": [
+          "같은"
+        ],
+        "cReason": "원문 첫 빈칸 '위'는 '위쪽'과 혼동되어 뜻이 모호하므로 고정함",
+        "learningRole": "application",
+        "roleReason": "$y=x$ 위는 두 값이 같음",
+        "authorBatch": 62,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3689,
+        "part": "m3plus",
+        "sourceFingerprint": "2418afb45c6465ff8a4fae6feb9ccbe527a7f51a40d37f6ca157c872c656d3c3",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3689
+        },
+        "directReview": null,
+        "cMarkedSentence": "두 변량의 단위가 같을 때 직선 $y=x$ 위에 놓인 점은 두 값이 {같은} 자료이다.",
+        "cSlotAnswers": [
+          "같은"
+        ],
+        "cStudentSentence": "두 변량의 단위가 같을 때 직선 $y=x$ 위에 놓인 점은 두 값이 □ 자료이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "같은",
+            "equivalentAnswers": [
+              "같은"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "같은"
+          ]
+        ],
+        "proposalFingerprint": "4df4412f11873649e512f7856c6e8f5e5ee46f764491d0428e8371ea32dc5812"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-05-07-c11",
+        "section": "중2::5. 도형의 성질::직사각형, 마름모, 정사각형",
+        "term": "정사각형이 가진 두 가지 성질",
+        "kind": "성질",
+        "level": "상",
+        "definition": "정사각형은 {직사각형}의 성질과 {마름모}의 성질을 모두 가진다.",
+        "studentC": "정사각형은 □의 성질과 □의 성질을 모두 가진다.",
+        "answers": [
+          "직사각형",
+          "마름모"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-07-c11",
+        "learningRole": "naming",
+        "roleReason": "정사각형이 성질을 물려받는 두 사각형",
+        "bDecision": "rewrite",
+        "bPrompt": "정사각형은 네 각이 모두 직각이고 네 변의 길이가 모두 같다. 이 두 성질로 정사각형이 속함을 알 수 있는 다른 두 사각형의 이름을 각 성질에 맞추어 쓰시오.",
+        "bAnswer": "직사각형, 마름모",
+        "bGoal": "정사각형이 속하는 두 사각형 말하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직사각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "마름모"
+            ]
+          }
+        ],
+        "bReason": "평행사변형의 종류라는 넓은 후보 범위 대신 각과 변의 정의에 맞는 두 이름을 묻는다.",
+        "cDecision": "exclude",
+        "cReason": "m2-05-08-xc7 C가 네 직각과 네 같은 변으로 직사각형·마름모를 각각 묻고 정사각형이 두 조건을 모두 만족함을 연결한다. 이 항목 C의 두 이름만 묻는 반복은 제외한다.",
+        "exclusionReason": "C 제외: m2-05-08-xc7 C와 정사각형의 직사각형·마름모 포함이라는 목표가 겹친다. 그 문항은 이름과 각·변 조건을 함께 연결하므로 유지하고, 이 항목의 일반 설명과 B는 보존한다.",
+        "authorBatch": 44,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 634,
+        "part": "m2",
+        "sourceFingerprint": "14080a5e648dd1a4cb574d42f7978b62f62a45377c5931fbd1f56fd8c83c332f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 634
+        },
+        "directReview": null,
+        "proposalFingerprint": "974dc75ec001a27cf9c135c362a864ccec68e6f58241f28db4f11927e9abb737"
+      }
+    }
+  ]
+}

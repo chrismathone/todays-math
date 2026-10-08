@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "prisma generate && node scripts/deploy/prepare-shared-figures.mjs && next build",
+    "build": "prisma generate && node scripts/deploy/prepare-shared-figures.mjs && node scripts/deploy/build-next.mjs",
     "start": "next start",
     "lint": "eslint",
     "lint:affordance": "node src/lint/check-affordance.mjs",

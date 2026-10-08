@@ -1,0 +1,1973 @@
+[
+  {
+    "id": "e4-2-3-6-xc18",
+    "sourceIndex": 2397,
+    "proposedRawRow": {
+      "sourceIndex": 2397,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+      "sourceFingerprint": "bb5f6206f50eb9d1931ba7644698c19fa8af02bf700ae8f26593523e74d57c15",
+      "proposalFingerprint": "9351504caeb5fea1f35357f6e180c8d22e514c8530da7f2cb02dca4919add53c",
+      "reviewStatus": "draft",
+      "id": "e4-2-3-6-xc18",
+      "bDecision": "rewrite",
+      "bPrompt": "$2.96$과 $1.03$을 각각 가장 가까운 자연수로 어림하여 합을 어림하시오. 어떤 수로 바꾸었는지와 어림한 합을 쓰시오.",
+      "bAnswer": "$2.96$은 $3$, $1.03$은 $1$에 가까우므로 $3+1=4$쯤이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$4$쯤"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2.96$을 $3$으로, $1.03$을 $1$로 어림한다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "소수 두 자리 합 어림",
+      "bReason": "가까운 자연수로 어림하는 방법 확인",
+      "cDecision": "rewrite",
+      "cReason": "현재 일반빈칸은어림자리가정해져있지않다. 후보에2.96·1.03과가장가까운자연수라는방법을주고어림합4를묻는다.",
+      "cSlotEquivalents": [
+        [
+          "넷"
+        ]
+      ],
+      "reviewerEdited": true,
+      "roleEvidence": {
+        "sourceKind": "방법",
+        "sourceTerm": "합 어림하기",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "$2.96$과 $1.03$을 각각 가장 가까운 자연수로 어림하여 더하면 합은 {$4$}쯤이다.",
+      "cStudentSentence": "$2.96$과 $1.03$을 각각 가장 가까운 자연수로 어림하여 더하면 합은 □쯤이다.",
+      "cSlotAnswers": [
+        {
+          "expected": "$4$",
+          "equivalents": [
+            "넷"
+          ]
+        }
+      ],
+      "cFrozenSource": {
+        "sentence": "소수 두 자리 수의 합은 각 수를 □로 어림해 대략의 크기를 알 수 있다.",
+        "answers": [
+          "가까운 자연수"
+        ]
+      },
+      "bQuestion": {
+        "prompt": "$2.96$과 $1.03$을 각각 가장 가까운 자연수로 어림하여 합을 어림하시오. 어떤 수로 바꾸었는지와 어림한 합을 쓰시오.",
+        "answer": "$2.96$은 $3$, $1.03$은 $1$에 가까우므로 $3+1=4$쯤이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$4$쯤"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2.96$을 $3$으로, $1.03$을 $1$로 어림한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$2.96$과 $1.03$을 각각 가장 가까운 자연수로 어림하여 더하면 합은 {$4$}쯤이다.",
+        "acceptedAnswers": [
+          [
+            "$4$",
+            "넷"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-3-6-xc18",
+        "sourceIndex": 2397,
+        "proposalFingerprint": "1835aae4c210bc8ca428e6b38fbedfaa8776524e7b5e2d35c97aa5800327ebe6",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "rewrite",
+        "cDecision": "keep",
+        "verdict": "retain-planning-proposal",
+        "bReason": "이점구육과의 조사로 고쳤고 3과 1로 어림한 합 4라는 질문과 기준은 맞는다.",
+        "cReason": "가까운 자연수로 합을 어림하는 빈칸은 유지한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "cAfter": "$2.96$과 $1.03$을 각각 가장 가까운 자연수로 어림하여 더하면 합은 {$4$}쯤이다."
+    },
+    "normalized": {
+      "id": "e4-2-3-6-xc18",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-3-6-xc18",
+        "section": "초4::2-3 소수의 덧셈과 뺄셈::2-3-6 소수 두 자리 수의 덧셈",
+        "term": "합 어림하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "소수 두 자리 수의 합은 각 수를 {가까운 자연수}로 어림해 대략의 크기를 알 수 있다.",
+        "example": {
+          "prompt": "$2.96+1.03$을 $3+1$로 어림하는 까닭은?",
+          "answer": "두 수가 $3$과 $1$에 가까워서"
+        }
+      },
+      "B": {
+        "prompt": "$2.96$과 $1.03$을 각각 가장 가까운 자연수로 어림하여 합을 어림하시오. 어떤 수로 바꾸었는지와 어림한 합을 쓰시오.",
+        "answer": "$2.96$은 $3$, $1.03$은 $1$에 가까우므로 $3+1=4$쯤이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$4$쯤"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2.96$을 $3$으로, $1.03$을 $1$로 어림한다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "$2.96$과 $1.03$을 각각 가장 가까운 자연수로 어림하여 더하면 합은 {$4$}쯤이다.",
+        "acceptedAnswers": [
+          [
+            "$4$",
+            "넷"
+          ]
+        ]
+      },
+      "goal": "소수 두 자리 합 어림",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "3f313d4d669bab960665b519ec93ddabffdfdc3c2ff64c6d836a3192ea5dfe6d"
+    },
+    "candidateNormalizedHash": "3f313d4d669bab960665b519ec93ddabffdfdc3c2ff64c6d836a3192ea5dfe6d",
+    "currentCandidateFingerprint": "9351504caeb5fea1f35357f6e180c8d22e514c8530da7f2cb02dca4919add53c",
+    "bReason": "각수를가장가까운자연수로라는 어림 방법이 지정되고3·1과 합4가 모두 기준에 들어 있다.",
+    "cReason": "현재 일반빈칸은어림자리가정해져있지않다. 후보에2.96·1.03과가장가까운자연수라는방법을주고어림합4를묻는다.",
+    "coreReason": "가까운 자연수로 어림할 수 있다는 원문의 한 방법 설명은 유지한다."
+  },
+  {
+    "id": "e4-2-4-1-xc27",
+    "sourceIndex": 2445,
+    "proposedRawRow": {
+      "sourceIndex": 2445,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+      "sourceFingerprint": "c2b191e1130b7a9f5a3d352f95ddeef3bd019a8e584a79ac3c9b56796cff9094",
+      "proposalFingerprint": "1ce4805805d6d650d94545d69003117e4a8cfd8204fc4cda9d77c4e10ad62006",
+      "reviewStatus": "draft",
+      "id": "e4-2-4-1-xc27",
+      "bDecision": "rewrite",
+      "bPrompt": "직선 밖의 한 점을 지나는 그 직선의 수선을 삼각자로 긋는 방법을 쓰시오.",
+      "bAnswer": "삼각자의 직각을 낀 한 변을 직선에 맞추고, 다른 한 변이 그 점을 지나도록 삼각자를 옮겨 그 변을 따라 긋는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "직각을 낀 한 변을 직선에 맞춘다"
+          ]
+        },
+        {
+          "anyOf": [
+            "다른 한 변이 점을 지나도록 옮겨 긋는다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "직선 밖 점에서 수선 긋기",
+      "bReason": "점이 직선 밖일 때 작도 순서를 묻는다",
+      "cDecision": "rewrite",
+      "cAfter": "직선 밖의 한 점에서 그 직선의 수선을 그으려면, 삼각자의 {직각}을 낀 한 변을 직선에 맞추고 다른 한 변이 그 점을 지나도록 옮겨 긋는다.",
+      "cReason": "점이라는동일목적어복원대신삼각자의어떤각을사용할지묻는다. 직각을낀변두개를이용하는수선절차의핵심이다.",
+      "cSlotEquivalents": [
+        [
+          "$90^\\circ$인 각"
+        ]
+      ],
+      "roleEvidence": {
+        "sourceKind": "방법",
+        "sourceTerm": "직선 밖의 점에서 수선 긋기",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "직선 밖의 한 점에서 그 직선의 수선을 그으려면, 삼각자의 {직각}을 낀 한 변을 직선에 맞추고 다른 한 변이 그 점을 지나도록 옮겨 긋는다.",
+      "cStudentSentence": "직선 밖의 한 점에서 그 직선의 수선을 그으려면, 삼각자의 □을 낀 한 변을 직선에 맞추고 다른 한 변이 그 점을 지나도록 옮겨 긋는다.",
+      "cSlotAnswers": [
+        {
+          "expected": "직각",
+          "equivalents": [
+            "$90^\\circ$인 각"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직선 밖의 한 점을 지나는 그 직선의 수선을 삼각자로 긋는 방법을 쓰시오.",
+        "answer": "삼각자의 직각을 낀 한 변을 직선에 맞추고, 다른 한 변이 그 점을 지나도록 삼각자를 옮겨 그 변을 따라 긋는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "직각을 낀 한 변을 직선에 맞춘다"
+            ]
+          },
+          {
+            "anyOf": [
+              "다른 한 변이 점을 지나도록 옮겨 긋는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직선 밖의 한 점에서 그 직선의 수선을 그으려면, 삼각자의 {직각}을 낀 한 변을 직선에 맞추고 다른 한 변이 그 점을 지나도록 옮겨 긋는다.",
+        "acceptedAnswers": [
+          [
+            "직각",
+            "$90^\\circ$인 각"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-4-1-xc27",
+        "sourceIndex": 2445,
+        "proposalFingerprint": "e1fd386ddda7b651dc792787c8e0c3814debeea41569e325e817b383512f7a43",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "한변맞춤과다른변이지정점을지나도록평행이동하는수선작도이다.",
+        "cReason": "밖의지정점을지나는조건을확인한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "normalized": {
+      "id": "e4-2-4-1-xc27",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-4-1-xc27",
+        "section": "초4::2-4 사각형::2-4-1 수직과 수선",
+        "term": "직선 밖의 점에서 수선 긋기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "직선 밖의 한 점을 지나는 수선은 삼각자의 직각을 낀 한 변을 직선에 맞추고 다른 한 변이 {그 점을 지나도록} 옮겨 긋는다."
+      },
+      "B": {
+        "prompt": "직선 밖의 한 점을 지나는 그 직선의 수선을 삼각자로 긋는 방법을 쓰시오.",
+        "answer": "삼각자의 직각을 낀 한 변을 직선에 맞추고, 다른 한 변이 그 점을 지나도록 삼각자를 옮겨 그 변을 따라 긋는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "직각을 낀 한 변을 직선에 맞춘다"
+            ]
+          },
+          {
+            "anyOf": [
+              "다른 한 변이 점을 지나도록 옮겨 긋는다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "직선 밖의 한 점에서 그 직선의 수선을 그으려면, 삼각자의 {직각}을 낀 한 변을 직선에 맞추고 다른 한 변이 그 점을 지나도록 옮겨 긋는다.",
+        "acceptedAnswers": [
+          [
+            "직각",
+            "$90^\\circ$인 각"
+          ]
+        ]
+      },
+      "goal": "직선 밖 점에서 수선 긋기",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "9070dbd135b00608190987be5b29c71bb8c93fb9e97666e88a8f231fe81566db"
+    },
+    "candidateNormalizedHash": "9070dbd135b00608190987be5b29c71bb8c93fb9e97666e88a8f231fe81566db",
+    "currentCandidateFingerprint": "1ce4805805d6d650d94545d69003117e4a8cfd8204fc4cda9d77c4e10ad62006",
+    "bReason": "삼각자의직각을낀한변을직선에맞추고다른변을점에맞추는두절차가명확하다. 특정그림없이일반방법을설명할수있다.",
+    "cReason": "점이라는동일목적어복원대신삼각자의어떤각을사용할지묻는다. 직각을낀변두개를이용하는수선절차의핵심이다.",
+    "coreReason": "Root 원문의 일반 작도 절차를 유지한다."
+  },
+  {
+    "id": "e4-2-4-2-xc7",
+    "sourceIndex": 2452,
+    "proposedRawRow": {
+      "sourceIndex": 2452,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+      "sourceFingerprint": "2dcc6936bb7f9ca658abbfaba4a756800e905bb04fa0a088deb5d07655befe9e",
+      "proposalFingerprint": "fd9f155df013e4ca93765ecf9bb690de33dc1c2ac3e2ad1d982bd1273070bfb3",
+      "reviewStatus": "draft",
+      "id": "e4-2-4-2-xc7",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "bGoal": "만나면 평행 아님",
+      "bReason": "xc3과 같은 목표",
+      "exclusionReason": "평행선의 반대 표현으로 xc3 평행선 정의 B와 같다",
+      "cDecision": "rewrite",
+      "cReason": "평행하지□의않다는문법적부정호응뿐이다. 후보는평행여부를묻고평행하지않다는관계전체를숨겨판단하게한다.",
+      "roleEvidence": {
+        "sourceKind": "성질",
+        "sourceTerm": "평행하지 않은 두 직선",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "늘였을 때 어딘가에서 만나는 두 직선의 평행 여부를 판단하면, 두 직선은 서로 {평행하지 않다}.",
+      "cStudentSentence": "늘였을 때 어딘가에서 만나는 두 직선의 평행 여부를 판단하면, 두 직선은 서로 □.",
+      "cSlotEquivalents": [
+        [
+          "평행이 아니다"
+        ]
+      ],
+      "cSlotAnswers": [
+        {
+          "expected": "평행하지 않다",
+          "equivalents": [
+            "평행이 아니다"
+          ]
+        }
+      ],
+      "cFrozenSource": {
+        "sentence": "늘였을 때 어딘가에서 만나게 되는 두 직선은 평행하지 □.",
+        "answers": [
+          "않다"
+        ]
+      },
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "늘였을 때 어딘가에서 만나는 두 직선의 평행 여부를 판단하면, 두 직선은 서로 {평행하지 않다}.",
+        "acceptedAnswers": [
+          [
+            "평행하지 않다",
+            "평행이 아니다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "xc3과 같은 목표"
+      },
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-4-2-xc7",
+        "sourceIndex": 2452,
+        "proposalFingerprint": "a9ff6ad3291124b782b27946669323cda8c398d42c2683576e9c480fc4bfab5d",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "definition",
+        "bDecision": "exclude",
+        "cDecision": "keep",
+        "verdict": "retain-planning-proposal",
+        "bReason": "평행정의의반대표현B는중복이다.",
+        "cReason": "늘이면만나는두직선평행아님이다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "cAfter": "늘였을 때 어딘가에서 만나는 두 직선의 평행 여부를 판단하면, 두 직선은 서로 {평행하지 않다}."
+    },
+    "normalized": {
+      "id": "e4-2-4-2-xc7",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-4-2-xc7",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "term": "평행하지 않은 두 직선",
+        "kind": "성질",
+        "level": "하",
+        "definition": "늘였을 때 어딘가에서 만나게 되는 두 직선은 평행하지 {않다}."
+      },
+      "B": {
+        "excluded": "xc3과 같은 목표"
+      },
+      "C": {
+        "sentence": "늘였을 때 어딘가에서 만나는 두 직선의 평행 여부를 판단하면, 두 직선은 서로 {평행하지 않다}.",
+        "acceptedAnswers": [
+          [
+            "평행하지 않다",
+            "평행이 아니다"
+          ]
+        ]
+      },
+      "goal": "만나면 평행 아님",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "adbaae93937d4dd66c4623af62535a3daa5526627fdcfe82d502c50e5cff1f14"
+    },
+    "candidateNormalizedHash": "adbaae93937d4dd66c4623af62535a3daa5526627fdcfe82d502c50e5cff1f14",
+    "currentCandidateFingerprint": "fd9f155df013e4ca93765ecf9bb690de33dc1c2ac3e2ad1d982bd1273070bfb3",
+    "bReason": "현재 중복 목표로 제외한 B 결정을 유지한다.",
+    "cReason": "평행하지□의않다는문법적부정호응뿐이다. 후보는평행여부를묻고평행하지않다는관계전체를숨겨판단하게한다.",
+    "coreReason": "만나는 두 직선은 평행하지 않다는 일반 원문 유지."
+  },
+  {
+    "id": "e4-2-4-2-xc14",
+    "sourceIndex": 2459,
+    "proposedRawRow": {
+      "sourceIndex": 2459,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+      "sourceFingerprint": "89e93cf642225e543a14e9fdddd1fedc378503c10992d25c267d03b1c974fd22",
+      "proposalFingerprint": "751e89bbd50bf9dc89188bf58f4d60d65ce4d1233cfde67eeceb7e3fcbed3387",
+      "reviewStatus": "draft",
+      "id": "e4-2-4-2-xc14",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "bGoal": "선분을 늘인 직선도 평행",
+      "bReason": "독립된 이유가 없는 정의 반복",
+      "exclusionReason": "평행한 선분의 뜻이 곧 늘인 직선의 평행이라 설명할 별도 이유가 없다",
+      "cDecision": "rewrite",
+      "cAfter": "평행한 두 선분을 양쪽으로 길게 늘여 만든 두 직선도 서로 {평행하다}.",
+      "cReason": "늘인이라는활용동작칸대신늘여만든두직선의평행관계전체를묻도록바꾼다.",
+      "cSlotEquivalents": [
+        [
+          "평행이다"
+        ]
+      ],
+      "roleEvidence": {
+        "sourceKind": "성질",
+        "sourceTerm": "평행한 선분을 늘인 직선",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "평행한 두 선분을 양쪽으로 길게 늘여 만든 두 직선도 서로 {평행하다}.",
+      "cStudentSentence": "평행한 두 선분을 양쪽으로 길게 늘여 만든 두 직선도 서로 □.",
+      "cSlotAnswers": [
+        {
+          "expected": "평행하다",
+          "equivalents": [
+            "평행이다"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "평행한 두 선분을 양쪽으로 길게 늘여 만든 두 직선도 서로 {평행하다}.",
+        "acceptedAnswers": [
+          [
+            "평행하다",
+            "평행이다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "독립된 이유가 없는 정의 반복"
+      },
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-4-2-xc14",
+        "sourceIndex": 2459,
+        "proposalFingerprint": "0519119ade41e9356b4891f265152623459c8b47a026bfa30b66c83e7cb7e001",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "definition",
+        "bDecision": "exclude",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "평행선분정의의반복B는제외한다.",
+        "cReason": "평행선분을늘인직선의관계를확인한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "normalized": {
+      "id": "e4-2-4-2-xc14",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-4-2-xc14",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "term": "평행한 선분을 늘인 직선",
+        "kind": "성질",
+        "level": "중",
+        "definition": "평행한 두 선분을 {길게 늘인 두 직선}도 서로 평행하다."
+      },
+      "B": {
+        "excluded": "독립된 이유가 없는 정의 반복"
+      },
+      "C": {
+        "sentence": "평행한 두 선분을 양쪽으로 길게 늘여 만든 두 직선도 서로 {평행하다}.",
+        "acceptedAnswers": [
+          [
+            "평행하다",
+            "평행이다"
+          ]
+        ]
+      },
+      "goal": "선분을 늘인 직선도 평행",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "39df0b9f1986c1c1d1ae45b5dccfdd649b8987cc7968c6171b79b74d8fb172e2"
+    },
+    "candidateNormalizedHash": "39df0b9f1986c1c1d1ae45b5dccfdd649b8987cc7968c6171b79b74d8fb172e2",
+    "currentCandidateFingerprint": "751e89bbd50bf9dc89188bf58f4d60d65ce4d1233cfde67eeceb7e3fcbed3387",
+    "bReason": "현재 독립 이유 설명 없는 정의 반복이라는 제외 판단을 보존한다.",
+    "cReason": "늘인이라는활용동작칸대신늘여만든두직선의평행관계전체를묻도록바꾼다.",
+    "coreReason": "평행 선분 연장에 관한 일반 설명을 보존한다."
+  },
+  {
+    "id": "e4-2-4-2-xc22",
+    "sourceIndex": 2466,
+    "proposedRawRow": {
+      "sourceIndex": 2466,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+      "sourceFingerprint": "ea5cd0b474f540910b0eecf085bceacf3eec683d74e85f4d75666acb2f5458cf",
+      "proposalFingerprint": "debbb942224b9ebd137564970903a82f9e765c933cdd7b38ccfb786ffaf3884c",
+      "reviewStatus": "draft",
+      "id": "e4-2-4-2-xc22",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "reason",
+      "bGoal": "평행선과 만나는 직선",
+      "bReason": "학년에 맞는 이유 설명이 억지",
+      "exclusionReason": "까닭이 평행의 유일성 논증이라 초4 눈높이에 억지 이유 질문이 된다",
+      "cDecision": "rewrite",
+      "cReason": "평면조건누락지적은명제의범위를바로잡는실제문제다. 후보는같은평면위서로다른세직선이라고한정한다.",
+      "roleEvidence": {
+        "sourceKind": "성질",
+        "sourceTerm": "평행선과 만나는 직선",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "같은 평면 위의 서로 다른 세 직선에서, 두 직선이 평행하고 나머지 직선이 그중 한 직선과 만나면 다른 직선과도 {만난다}.",
+      "cStudentSentence": "같은 평면 위의 서로 다른 세 직선에서, 두 직선이 평행하고 나머지 직선이 그중 한 직선과 만나면 다른 직선과도 □.",
+      "cSlotEquivalents": [
+        [
+          "교차한다"
+        ]
+      ],
+      "cSlotAnswers": [
+        {
+          "expected": "만난다",
+          "equivalents": [
+            "교차한다"
+          ]
+        }
+      ],
+      "cFrozenSource": {
+        "sentence": "평행선 가운데 한 직선과 만나는 직선은 다른 직선과도 □.",
+        "answers": [
+          "만난다"
+        ]
+      },
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "같은 평면 위의 서로 다른 세 직선에서, 두 직선이 평행하고 나머지 직선이 그중 한 직선과 만나면 다른 직선과도 {만난다}.",
+        "acceptedAnswers": [
+          [
+            "만난다",
+            "교차한다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "학년에 맞는 이유 설명이 억지"
+      },
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-4-2-xc22",
+        "sourceIndex": 2466,
+        "proposalFingerprint": "cc7a9b47eefdcff8f4b27109bec20cfee76378647d608cafea307b8306c4b6df",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "exclude",
+        "cDecision": "keep",
+        "verdict": "retain-planning-proposal",
+        "bReason": "유일성논증의억지B설명은제외한다.",
+        "cReason": "한평행선과만나는직선이다른평행선과도만남이다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "cAfter": "같은 평면 위의 서로 다른 세 직선에서, 두 직선이 평행하고 나머지 직선이 그중 한 직선과 만나면 다른 직선과도 {만난다}.",
+      "coreAfter": "같은 평면 위의 서로 다른 세 직선에서, 두 직선이 평행하고 나머지 직선이 그중 한 직선과 만나면 다른 직선과도 {만난다}.",
+      "coreReason": "공간의꼬인직선반례를막도록원문의일반명제에같은평면과서로다른세직선을명시한다. 숫자예로일반설명을대체하지않는다."
+    },
+    "normalized": {
+      "id": "e4-2-4-2-xc22",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-4-2-xc22",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "term": "평행선과 만나는 직선",
+        "kind": "성질",
+        "level": "상",
+        "definition": "평행선 가운데 한 직선과 만나는 직선은 다른 직선과도 {만난다}."
+      },
+      "B": {
+        "excluded": "학년에 맞는 이유 설명이 억지"
+      },
+      "C": {
+        "sentence": "같은 평면 위의 서로 다른 세 직선에서, 두 직선이 평행하고 나머지 직선이 그중 한 직선과 만나면 다른 직선과도 {만난다}.",
+        "acceptedAnswers": [
+          [
+            "만난다",
+            "교차한다"
+          ]
+        ]
+      },
+      "goal": "평행선과 만나는 직선",
+      "coreAfter": "같은 평면 위의 서로 다른 세 직선에서, 두 직선이 평행하고 나머지 직선이 그중 한 직선과 만나면 다른 직선과도 {만난다}.",
+      "coreReason": "공간의꼬인직선반례를막도록원문의일반명제에같은평면과서로다른세직선을명시한다. 숫자예로일반설명을대체하지않는다.",
+      "hash": "dabb42d24e8a34a511dd4b6c057db7e3f5309ed8fb935bdafbb1713138a18fb6"
+    },
+    "candidateNormalizedHash": "dabb42d24e8a34a511dd4b6c057db7e3f5309ed8fb935bdafbb1713138a18fb6",
+    "currentCandidateFingerprint": "debbb942224b9ebd137564970903a82f9e765c933cdd7b38ccfb786ffaf3884c",
+    "bReason": "현재 학년에 맞는 별도 이유 설명형 제외 결정을 유지한다.",
+    "cReason": "평면조건누락지적은명제의범위를바로잡는실제문제다. 후보는같은평면위서로다른세직선이라고한정한다.",
+    "coreReason": "공간의꼬인직선반례를막도록원문의일반명제에같은평면과서로다른세직선을명시한다. 숫자예로일반설명을대체하지않는다."
+  },
+  {
+    "id": "e4-2-4-2-xc24",
+    "sourceIndex": 2468,
+    "proposedRawRow": {
+      "sourceIndex": 2468,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+      "sourceFingerprint": "56f643ec27f25f473e34f4ee4ba034e9572ad14453c8ba3cb2202a1550f69736",
+      "proposalFingerprint": "6eb7bff6c61035f6e95854d9988a688a3e0d725a7937ace29c8482547912fcd6",
+      "reviewStatus": "draft",
+      "id": "e4-2-4-2-xc24",
+      "bDecision": "exclude",
+      "bPrompt": "",
+      "bAnswer": "",
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "bGoal": "평행한 변이 없는 사각형",
+      "bReason": "평행한 변이 없는 사각형의 구체적인 반례 그림이 없으면 같은 주장을 반복하는 답이 된다. 현재 글만 있는 B에서는 제외한다.",
+      "cDecision": "rewrite",
+      "cReason": "한쌍도□는없는이라는부정호응을이미정한다. 후보는사각형의평행한변쌍의최소개수를묻고0을답하게하여수학적가능성을판단한다.",
+      "exclusionReason": "B: 평행한 변이 없는 사각형 그림이나 직접 그리기 응답을 지원한 뒤 반례를 확인하는 문제로 다시 검토한다. C와 원래 일반 설명은 유지한다.",
+      "exampleNeeded": "평행한 변이 한 쌍도 없는 사각형을 그리고 마주 보는 두 쌍의 변을 각각 늘인 보조선을 보여 줄 것. 예시는 두 쌍 모두 만나도록 검증해야 한다.",
+      "reviewerEdited": true,
+      "roleEvidence": {
+        "sourceKind": "성질",
+        "sourceTerm": "평행한 변이 없는 사각형",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "사각형에서 평행한 변의 쌍을 세면 가장 적을 때 {$0$}쌍이다.",
+      "cStudentSentence": "사각형에서 평행한 변의 쌍을 세면 가장 적을 때 □쌍이다.",
+      "cSlotEquivalents": [
+        [
+          "영"
+        ]
+      ],
+      "cSlotAnswers": [
+        {
+          "expected": "$0$",
+          "equivalents": [
+            "영"
+          ]
+        }
+      ],
+      "cFrozenSource": {
+        "sentence": "사각형 가운데에는 평행한 변이 한 쌍도 □ 것도 있다.",
+        "answers": [
+          "없는"
+        ]
+      },
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "사각형에서 평행한 변의 쌍을 세면 가장 적을 때 {$0$}쌍이다.",
+        "acceptedAnswers": [
+          [
+            "$0$",
+            "영"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "평행한 변이 없는 사각형의 구체적인 반례 그림이 없으면 같은 주장을 반복하는 답이 된다. 현재 글만 있는 B에서는 제외한다."
+      },
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-4-2-xc24",
+        "sourceIndex": 2468,
+        "proposalFingerprint": "9d7469b842b6217d4b21ffa692191c53f485a62aec26df0b41e76cec1d9e958a",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "definition",
+        "bDecision": "exclude",
+        "cDecision": "keep",
+        "verdict": "retain-planning-proposal",
+        "bReason": "실제 반례를 확인할 그림이 없는 B는 제외하고 다시 쓸 때 필요한 구체 그림을 기록했다.",
+        "cReason": "평행한 변이 한 쌍도 없는 사각형의 존재를 나타내는 원문은 유지한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "cAfter": "사각형에서 평행한 변의 쌍을 세면 가장 적을 때 {$0$}쌍이다."
+    },
+    "normalized": {
+      "id": "e4-2-4-2-xc24",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-4-2-xc24",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "term": "평행한 변이 없는 사각형",
+        "kind": "성질",
+        "level": "상",
+        "definition": "사각형 가운데에는 평행한 변이 한 쌍도 {없는} 것도 있다."
+      },
+      "B": {
+        "excluded": "평행한 변이 없는 사각형의 구체적인 반례 그림이 없으면 같은 주장을 반복하는 답이 된다. 현재 글만 있는 B에서는 제외한다."
+      },
+      "C": {
+        "sentence": "사각형에서 평행한 변의 쌍을 세면 가장 적을 때 {$0$}쌍이다.",
+        "acceptedAnswers": [
+          [
+            "$0$",
+            "영"
+          ]
+        ]
+      },
+      "goal": "평행한 변이 없는 사각형",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "ef528b33b7cb5cad7e6e5067fc3d81febe409a50cbcb26e41cfa338c8672b102"
+    },
+    "candidateNormalizedHash": "ef528b33b7cb5cad7e6e5067fc3d81febe409a50cbcb26e41cfa338c8672b102",
+    "currentCandidateFingerprint": "6eb7bff6c61035f6e95854d9988a688a3e0d725a7937ace29c8482547912fcd6",
+    "bReason": "구체적반례그림없이동일주장을반복하는B는현재제외사유를보존한다.",
+    "cReason": "한쌍도□는없는이라는부정호응을이미정한다. 후보는사각형의평행한변쌍의최소개수를묻고0을답하게하여수학적가능성을판단한다.",
+    "coreReason": "평행한 변이 없는 사각형이 존재한다는 원문 보존."
+  },
+  {
+    "id": "e4-2-4-2-xc25",
+    "sourceIndex": 2469,
+    "proposedRawRow": {
+      "sourceIndex": 2469,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+      "sourceFingerprint": "823705269062a08756a84f390fd94041503b6dfc188ca46d7c26427b9a2f307b",
+      "proposalFingerprint": "03afa3dca2f0054fe8832ef4d5b77bbd4cc9530a7d0076f936188704e616c959",
+      "reviewStatus": "draft",
+      "id": "e4-2-4-2-xc25",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "procedure",
+      "bGoal": "밖의 점 지나는 평행선 긋기",
+      "bReason": "xc4와 같은 목표",
+      "exclusionReason": "삼각자 두 개를 밀어 평행선을 긋는 방법이 xc4 B와 같다",
+      "cDecision": "rewrite",
+      "cAfter": "직선 밖의 한 점을 지나는 평행선을 그을 때에는 한 삼각자를 직선에 맞추고 다른 삼각자로 받친 뒤, 처음 삼각자의 {방향}을 유지하며 점까지 밀어 옮겨 긋는다.",
+      "cReason": "점이라는목적어복원대신삼각자를밀때유지할방향을묻는다. 두번째삼각자로받친채옮기는절차와평행을유지하는방향관계를명시한다.",
+      "cSlotEquivalents": [
+        [
+          "기울기",
+          "각도",
+          "직선과 이루는 각"
+        ]
+      ],
+      "roleEvidence": {
+        "sourceKind": "방법",
+        "sourceTerm": "직선 밖의 점을 지나는 평행선 긋기",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "직선 밖의 한 점을 지나는 평행선을 그을 때에는 한 삼각자를 직선에 맞추고 다른 삼각자로 받친 뒤, 처음 삼각자의 {방향}을 유지하며 점까지 밀어 옮겨 긋는다.",
+      "cStudentSentence": "직선 밖의 한 점을 지나는 평행선을 그을 때에는 한 삼각자를 직선에 맞추고 다른 삼각자로 받친 뒤, 처음 삼각자의 □을 유지하며 점까지 밀어 옮겨 긋는다.",
+      "cSlotAnswers": [
+        {
+          "expected": "방향",
+          "equivalents": [
+            "기울기",
+            "각도",
+            "직선과 이루는 각"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "직선 밖의 한 점을 지나는 평행선을 그을 때에는 한 삼각자를 직선에 맞추고 다른 삼각자로 받친 뒤, 처음 삼각자의 {방향}을 유지하며 점까지 밀어 옮겨 긋는다.",
+        "acceptedAnswers": [
+          [
+            "방향",
+            "기울기",
+            "각도",
+            "직선과 이루는 각"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "xc4와 같은 목표"
+      },
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-4-2-xc25",
+        "sourceIndex": 2469,
+        "proposalFingerprint": "7af6bf4651b002ad6e1b3e9b384aad1f377db1483d1c3ff0f4ca7c31d7c6278e",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "exclude",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "삼각자로평행선긋는기존B와중복이다.",
+        "cReason": "밖의지정점을지나도록삼각자를미는조건이다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "normalized": {
+      "id": "e4-2-4-2-xc25",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-4-2-xc25",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "term": "직선 밖의 점을 지나는 평행선 긋기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "직선 밖의 한 점을 지나는 평행선은 한 삼각자를 직선에 맞추고 다른 삼각자를 대어 {그 점까지} 밀어 옮긴 뒤 긋는다."
+      },
+      "B": {
+        "excluded": "xc4와 같은 목표"
+      },
+      "C": {
+        "sentence": "직선 밖의 한 점을 지나는 평행선을 그을 때에는 한 삼각자를 직선에 맞추고 다른 삼각자로 받친 뒤, 처음 삼각자의 {방향}을 유지하며 점까지 밀어 옮겨 긋는다.",
+        "acceptedAnswers": [
+          [
+            "방향",
+            "기울기",
+            "각도",
+            "직선과 이루는 각"
+          ]
+        ]
+      },
+      "goal": "밖의 점 지나는 평행선 긋기",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "0a59d272ec1a04a2b96a50ef6336fc740cd1c0e99b03c6458fe7231ccbf1496d"
+    },
+    "candidateNormalizedHash": "0a59d272ec1a04a2b96a50ef6336fc740cd1c0e99b03c6458fe7231ccbf1496d",
+    "currentCandidateFingerprint": "03afa3dca2f0054fe8832ef4d5b77bbd4cc9530a7d0076f936188704e616c959",
+    "bReason": "현재 다른항목과같은목표라는B제외를유지한다.",
+    "cReason": "점이라는목적어복원대신삼각자를밀때유지할방향을묻는다. 두번째삼각자로받친채옮기는절차와평행을유지하는방향관계를명시한다.",
+    "coreReason": "일반 평행선 작도 설명은 보존한다."
+  },
+  {
+    "id": "e4-2-4-3-xc7",
+    "sourceIndex": 2478,
+    "proposedRawRow": {
+      "sourceIndex": 2478,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+      "sourceFingerprint": "d01a0aaeb4a5cb9ed3e0f60e629dad18708679a4c7b4ad467198a78fc4adb541",
+      "proposalFingerprint": "2bd440bfd0c905951f58c4843dcfaffc2e669e203a3bd29ed3e32ac2f325d4ce",
+      "reviewStatus": "draft",
+      "id": "e4-2-4-3-xc7",
+      "bDecision": "rewrite",
+      "bPrompt": "평행한 두 직선 사이의 거리는 어떤 선분의 길이입니까? 어떤 선분인지 쓰시오.",
+      "bAnswer": "두 직선에 수직인 선분이 두 직선과 만나는 두 점 사이의 길이이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 직선에 수직인 선분",
+            "수선"
+          ]
+        },
+        {
+          "anyOf": [
+            "수선이 두 직선과 만나는 두 점 사이 선분의 길이"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "평행선 사이 거리의 뜻",
+      "bReason": "수직조건은유효하나수선의길이라는대안에는끝점범위가흐릿하다. 두직선과만나는두점사이선분길이라는범위를필수의미에명시한다.",
+      "cDecision": "rewrite",
+      "cAfter": "평행선 사이의 거리는 두 직선에 수직으로 그은 선분의 {길이}이다.",
+      "cReason": "긴 구절 빈칸을 길이 한 낱말로 줄임",
+      "roleEvidence": {
+        "sourceKind": "방법",
+        "sourceTerm": "거리를 재는 두 점",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "평행선 사이의 거리는 두 직선에 수직으로 그은 선분의 {길이}이다.",
+      "cStudentSentence": "평행선 사이의 거리는 두 직선에 수직으로 그은 선분의 □이다.",
+      "cSlotEquivalents": [],
+      "cSlotAnswers": [
+        {
+          "expected": "길이",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "평행한 두 직선 사이의 거리는 어떤 선분의 길이입니까? 어떤 선분인지 쓰시오.",
+        "answer": "두 직선에 수직인 선분이 두 직선과 만나는 두 점 사이의 길이이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 직선에 수직인 선분",
+              "수선"
+            ]
+          },
+          {
+            "anyOf": [
+              "수선이 두 직선과 만나는 두 점 사이 선분의 길이"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "평행선 사이의 거리는 두 직선에 수직으로 그은 선분의 {길이}이다.",
+        "acceptedAnswers": [
+          [
+            "길이"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-4-3-xc7",
+        "sourceIndex": 2478,
+        "proposalFingerprint": "ec1afdb3ebf7a823f3b2feb0955e7082ca1926a4f320e79bf5f9e219c4bf48ba",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "definition",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "수직으로만나는두점을끝점으로한선분의길이로거리를정의한다.",
+        "cReason": "평행선거리의길이값대상을확인한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "normalized": {
+      "id": "e4-2-4-3-xc7",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-4-3-xc7",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "term": "거리를 재는 두 점",
+        "kind": "방법",
+        "level": "하",
+        "definition": "평행선 사이의 거리는 수선이 두 직선과 {만나는 두 점} 사이를 잰 것이다."
+      },
+      "B": {
+        "prompt": "평행한 두 직선 사이의 거리는 어떤 선분의 길이입니까? 어떤 선분인지 쓰시오.",
+        "answer": "두 직선에 수직인 선분이 두 직선과 만나는 두 점 사이의 길이이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 직선에 수직인 선분",
+              "수선"
+            ]
+          },
+          {
+            "anyOf": [
+              "수선이 두 직선과 만나는 두 점 사이 선분의 길이"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "평행선 사이의 거리는 두 직선에 수직으로 그은 선분의 {길이}이다.",
+        "acceptedAnswers": [
+          [
+            "길이"
+          ]
+        ]
+      },
+      "goal": "평행선 사이 거리의 뜻",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "bb011531d855f6a9be517cc27171bd0d2f51ef2f9ce573f81f368439c98d8577"
+    },
+    "candidateNormalizedHash": "bb011531d855f6a9be517cc27171bd0d2f51ef2f9ce573f81f368439c98d8577",
+    "currentCandidateFingerprint": "2bd440bfd0c905951f58c4843dcfaffc2e669e203a3bd29ed3e32ac2f325d4ce",
+    "bReason": "수직조건은유효하나수선의길이라는대안에는끝점범위가흐릿하다. 두직선과만나는두점사이선분길이라는범위를필수의미에명시한다.",
+    "cReason": "두직선에수직으로그은선분의측정량을길이로명명하는명확한정의이다. 새현재pass와실제뜻을확인하여C는유지한다. 다만 B의수선길이대안에두직선사이끝점범위를명시하는개별보완은후보로남긴다.",
+    "coreReason": "수선이만나는두점사이라는원문거리정의는유지한다."
+  },
+  {
+    "id": "e4-2-4-3-xc24",
+    "sourceIndex": 2493,
+    "proposedRawRow": {
+      "sourceIndex": 2493,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+      "sourceFingerprint": "fe963751f39946cca3ba6c079bf59ceb4c3706911d4283115078a56ec98c96fc",
+      "proposalFingerprint": "087d961e9f05685c3850882478c60aa97e61d02e203f991f42df6d4deb99e753",
+      "reviewStatus": "draft",
+      "id": "e4-2-4-3-xc24",
+      "bDecision": "rewrite",
+      "bPrompt": "한 직선 위의 서로 다른 두 점에서 다른 직선까지 수선을 긋고 길이를 재었더니 서로 달랐습니다. 두 직선은 평행합니까? 그 까닭을 쓰시오.",
+      "bAnswer": "평행하지 않다. 평행선은 어디서 재어도 거리가 같아야 하는데 길이가 다르기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "평행하지 않다"
+          ]
+        },
+        {
+          "anyOf": [
+            "평행선은 거리가 어디서나 같다",
+            "수선의 길이가 같아야 한다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "수선 길이로 평행 판단",
+      "bReason": "평행선 거리가 일정함으로 판단하게 한다",
+      "cDecision": "rewrite",
+      "cReason": "평행하지□에서문법적않다만숨겨져있다. 후보는평행여부의관계전체를숨겨수선길이차이에따라판단하게한다.",
+      "roleEvidence": {
+        "sourceKind": "방법",
+        "sourceTerm": "수선의 길이로 평행 판단하기",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "한 직선 위의 서로 다른 두 점에서 다른 직선까지 그은 수선의 길이가 다르면, 두 직선은 서로 {평행하지 않다}.",
+      "cStudentSentence": "한 직선 위의 서로 다른 두 점에서 다른 직선까지 그은 수선의 길이가 다르면, 두 직선은 서로 □.",
+      "cSlotEquivalents": [
+        [
+          "평행이 아니다"
+        ]
+      ],
+      "cSlotAnswers": [
+        {
+          "expected": "평행하지 않다",
+          "equivalents": [
+            "평행이 아니다"
+          ]
+        }
+      ],
+      "cFrozenSource": {
+        "sentence": "한 직선 위의 두 점에서 다른 직선까지 그은 수선의 길이가 다르면 두 직선은 평행하지 □.",
+        "answers": [
+          "않다"
+        ]
+      },
+      "bQuestion": {
+        "prompt": "한 직선 위의 서로 다른 두 점에서 다른 직선까지 수선을 긋고 길이를 재었더니 서로 달랐습니다. 두 직선은 평행합니까? 그 까닭을 쓰시오.",
+        "answer": "평행하지 않다. 평행선은 어디서 재어도 거리가 같아야 하는데 길이가 다르기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "평행하지 않다"
+            ]
+          },
+          {
+            "anyOf": [
+              "평행선은 거리가 어디서나 같다",
+              "수선의 길이가 같아야 한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "한 직선 위의 서로 다른 두 점에서 다른 직선까지 그은 수선의 길이가 다르면, 두 직선은 서로 {평행하지 않다}.",
+        "acceptedAnswers": [
+          [
+            "평행하지 않다",
+            "평행이 아니다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-4-3-xc24",
+        "sourceIndex": 2493,
+        "proposalFingerprint": "f5e75c6545c0be037a7de855677188a658267f88494ef2ab176d62489e5d2bd1",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "keep",
+        "verdict": "retain-planning-proposal",
+        "bReason": "수선길이서로다름은평행거리일정과모순이라는한방향판정이다.",
+        "cReason": "다른길이이면평행아님만말하며같을때의부당한역을추가하지않는다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "cAfter": "한 직선 위의 서로 다른 두 점에서 다른 직선까지 그은 수선의 길이가 다르면, 두 직선은 서로 {평행하지 않다}."
+    },
+    "normalized": {
+      "id": "e4-2-4-3-xc24",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-4-3-xc24",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "term": "수선의 길이로 평행 판단하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "한 직선 위의 두 점에서 다른 직선까지 그은 수선의 길이가 다르면 두 직선은 평행하지 {않다}."
+      },
+      "B": {
+        "prompt": "한 직선 위의 서로 다른 두 점에서 다른 직선까지 수선을 긋고 길이를 재었더니 서로 달랐습니다. 두 직선은 평행합니까? 그 까닭을 쓰시오.",
+        "answer": "평행하지 않다. 평행선은 어디서 재어도 거리가 같아야 하는데 길이가 다르기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "평행하지 않다"
+            ]
+          },
+          {
+            "anyOf": [
+              "평행선은 거리가 어디서나 같다",
+              "수선의 길이가 같아야 한다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "한 직선 위의 서로 다른 두 점에서 다른 직선까지 그은 수선의 길이가 다르면, 두 직선은 서로 {평행하지 않다}.",
+        "acceptedAnswers": [
+          [
+            "평행하지 않다",
+            "평행이 아니다"
+          ]
+        ]
+      },
+      "goal": "수선 길이로 평행 판단",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "dec97e4f14cc70a9b1b70ee3ff5e7e2c68ec49ff439282f69d79f38506525591"
+    },
+    "candidateNormalizedHash": "dec97e4f14cc70a9b1b70ee3ff5e7e2c68ec49ff439282f69d79f38506525591",
+    "currentCandidateFingerprint": "087d961e9f05685c3850882478c60aa97e61d02e203f991f42df6d4deb99e753",
+    "bReason": "수선길이가다르면거리일정인평행조건을어긴다는결론과이유를모두확인한다.",
+    "cReason": "평행하지□에서문법적않다만숨겨져있다. 후보는평행여부의관계전체를숨겨수선길이차이에따라판단하게한다.",
+    "coreReason": "수선길이가다르면평행이아니라는일반원문은유지한다."
+  },
+  {
+    "id": "e4-2-4-7-xc23",
+    "sourceIndex": 2584,
+    "proposedRawRow": {
+      "sourceIndex": 2584,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+      "sourceFingerprint": "ac1e8ed418405a527282c50f1da3c121c530ffd2790e20ad3ab0a34b96fba64c",
+      "proposalFingerprint": "a89820c8d310a8066f9d6b5663b9b47d4dc266a21f078476d4caf01ec6c59ef6",
+      "reviewStatus": "draft",
+      "id": "e4-2-4-7-xc23",
+      "bDecision": "rewrite",
+      "bPrompt": "모든 직사각형이 마름모라는 말이 맞는지 틀리는지 쓰고 까닭을 쓰시오.",
+      "bAnswer": "틀리다. 이웃한 변의 길이가 다른 직사각형이 있기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "틀리다",
+            "맞지 않다"
+          ]
+        },
+        {
+          "anyOf": [
+            "이웃한 변의 길이가 다른 직사각형이 있다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "반례로 판단하기",
+      "bReason": "반례 하나로 틀림을 설명하게 함",
+      "cDecision": "rewrite",
+      "cAfter": "이웃한 변의 길이가 다른 직사각형이 있으므로, 모든 직사각형이 마름모라는 말은 {거짓}이다.",
+      "cReason": "맞지□의않다는문법적으로고정이다. 후보는참/거짓판단전체를숨기고원문반례조건을유지한다.",
+      "roleEvidence": {
+        "sourceKind": "방법",
+        "sourceTerm": "모든 직사각형이 마름모인지 확인하기",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "이웃한 변의 길이가 다른 직사각형이 있으므로, 모든 직사각형이 마름모라는 말은 {거짓}이다.",
+      "cStudentSentence": "이웃한 변의 길이가 다른 직사각형이 있으므로, 모든 직사각형이 마름모라는 말은 □이다.",
+      "cSlotEquivalents": [
+        [
+          "틀린 말",
+          "맞지 않는 말"
+        ]
+      ],
+      "cSlotAnswers": [
+        {
+          "expected": "거짓",
+          "equivalents": [
+            "틀린 말",
+            "맞지 않는 말"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "모든 직사각형이 마름모라는 말이 맞는지 틀리는지 쓰고 까닭을 쓰시오.",
+        "answer": "틀리다. 이웃한 변의 길이가 다른 직사각형이 있기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "틀리다",
+              "맞지 않다"
+            ]
+          },
+          {
+            "anyOf": [
+              "이웃한 변의 길이가 다른 직사각형이 있다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "이웃한 변의 길이가 다른 직사각형이 있으므로, 모든 직사각형이 마름모라는 말은 {거짓}이다.",
+        "acceptedAnswers": [
+          [
+            "거짓",
+            "틀린 말",
+            "맞지 않는 말"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-4-7-xc23",
+        "sourceIndex": 2584,
+        "proposalFingerprint": "f6d73bd263b48ed51eb9521bf43e5a940c7fc926ed3ddd8d33d5c3db1385b3c4",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "이웃길이다른직사각형반례로모든직사각형마름모말이틀림을설명한다.",
+        "cReason": "한반례가모든이라는일반화를반박하는조건이다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "normalized": {
+      "id": "e4-2-4-7-xc23",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-4-7-xc23",
+        "section": "초4::2-4 사각형::2-4-7 여러 가지 사각형",
+        "term": "모든 직사각형이 마름모인지 확인하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "직사각형 하나에서 이웃한 변 길이가 다르면 모든 직사각형이 마름모라는 말은 {거짓}이다."
+      },
+      "B": {
+        "prompt": "모든 직사각형이 마름모라는 말이 맞는지 틀리는지 쓰고 까닭을 쓰시오.",
+        "answer": "틀리다. 이웃한 변의 길이가 다른 직사각형이 있기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "틀리다",
+              "맞지 않다"
+            ]
+          },
+          {
+            "anyOf": [
+              "이웃한 변의 길이가 다른 직사각형이 있다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "이웃한 변의 길이가 다른 직사각형이 있으므로, 모든 직사각형이 마름모라는 말은 {거짓}이다.",
+        "acceptedAnswers": [
+          [
+            "거짓",
+            "틀린 말",
+            "맞지 않는 말"
+          ]
+        ]
+      },
+      "goal": "반례로 판단하기",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "85fbd153190ccfd111056473f186c50bb9a1b8ff8f464b3c2b117b18b9340747"
+    },
+    "candidateNormalizedHash": "85fbd153190ccfd111056473f186c50bb9a1b8ff8f464b3c2b117b18b9340747",
+    "currentCandidateFingerprint": "a89820c8d310a8066f9d6b5663b9b47d4dc266a21f078476d4caf01ec6c59ef6",
+    "bReason": "모든직사각형에대한반례로이웃한변길이가다른직사각형을말하게하여결론과근거가대응한다.",
+    "cReason": "맞지□의않다는문법적으로고정이다. 후보는참/거짓판단전체를숨기고원문반례조건을유지한다.",
+    "coreReason": "원문전체명제의거짓판정은정확하므로보존한다."
+  },
+  {
+    "id": "e4-2-5-1-xc8",
+    "sourceIndex": 2595,
+    "proposedRawRow": {
+      "sourceIndex": 2595,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-5 꺾은선그래프::2-5-1 꺾은선그래프 알아보기",
+      "sourceFingerprint": "947ef496b5d953e6334166e1efb86bbe5c65018d7edd507262b9ecc63edb9dea",
+      "proposalFingerprint": "e1fa929de2e8e30cc56712eed37e32b625792678458c7864c6941ee4f2169d26",
+      "reviewStatus": "draft",
+      "id": "e4-2-5-1-xc8",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "procedure",
+      "bGoal": "왼쪽부터 점 읽기",
+      "bReason": "단순 읽는 순서",
+      "exclusionReason": "가로축에 시간이 차례로 놓인다는 xc3과 같은 목표이고 방향만 묻는 단순 사실",
+      "cDecision": "rewrite",
+      "cReason": "현재큰빈칸은시간순서대로/차례로등도가능하다. 후보는시간순서와가로축시작위치의관계를물어왼쪽으로범위를정한다.",
+      "cSlotEquivalents": [
+        [
+          "좌측"
+        ]
+      ],
+      "roleEvidence": {
+        "sourceKind": "방법",
+        "sourceTerm": "점들을 읽는 차례",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "시간이 오른쪽으로 흐르도록 그린 그래프에서 시간 순서대로 점을 읽을 때에는 가로축의 {왼쪽} 끝부터 읽는다.",
+      "cStudentSentence": "시간이 오른쪽으로 흐르도록 그린 그래프에서 시간 순서대로 점을 읽을 때에는 가로축의 □ 끝부터 읽는다.",
+      "cSlotAnswers": [
+        {
+          "expected": "왼쪽",
+          "equivalents": [
+            "좌측"
+          ]
+        }
+      ],
+      "cFrozenSource": {
+        "sentence": "시간이 오른쪽으로 흐르도록 그린 그래프는 □ 점을 읽는다.",
+        "answers": [
+          "왼쪽부터"
+        ]
+      },
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "시간이 오른쪽으로 흐르도록 그린 그래프에서 시간 순서대로 점을 읽을 때에는 가로축의 {왼쪽} 끝부터 읽는다.",
+        "acceptedAnswers": [
+          [
+            "왼쪽",
+            "좌측"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "단순 읽는 순서"
+      },
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-5-1-xc8",
+        "sourceIndex": 2595,
+        "proposalFingerprint": "1bc4461da98a12304a21be8eaf5a4369a452d51f47b6d6f37990f527d424d541",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "exclude",
+        "cDecision": "keep",
+        "verdict": "retain-planning-proposal",
+        "bReason": "가로축시간순의방향B는중복이다.",
+        "cReason": "시간오른쪽진행을명시한왼쪽부터읽는방법이다.",
+        "issues": [],
+        "isReleaseApproval": false
+      },
+      "cAfter": "시간이 오른쪽으로 흐르도록 그린 그래프에서 시간 순서대로 점을 읽을 때에는 가로축의 {왼쪽} 끝부터 읽는다."
+    },
+    "normalized": {
+      "id": "e4-2-5-1-xc8",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-5-1-xc8",
+        "section": "초4::2-5 꺾은선그래프::2-5-1 꺾은선그래프 알아보기",
+        "term": "점들을 읽는 차례",
+        "kind": "방법",
+        "level": "하",
+        "definition": "시간이 오른쪽으로 흐르도록 그린 그래프는 {왼쪽부터} 점을 읽는다."
+      },
+      "B": {
+        "excluded": "단순 읽는 순서"
+      },
+      "C": {
+        "sentence": "시간이 오른쪽으로 흐르도록 그린 그래프에서 시간 순서대로 점을 읽을 때에는 가로축의 {왼쪽} 끝부터 읽는다.",
+        "acceptedAnswers": [
+          [
+            "왼쪽",
+            "좌측"
+          ]
+        ]
+      },
+      "goal": "왼쪽부터 점 읽기",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "2b0bef8b715d25f3d86451c14ca91fda8b24181775ac2c07dd3e29bbe66354ba"
+    },
+    "candidateNormalizedHash": "2b0bef8b715d25f3d86451c14ca91fda8b24181775ac2c07dd3e29bbe66354ba",
+    "currentCandidateFingerprint": "e1fa929de2e8e30cc56712eed37e32b625792678458c7864c6941ee4f2169d26",
+    "bReason": "단순읽는순서의설명형을제외한현재판단유지.",
+    "cReason": "현재큰빈칸은시간순서대로/차례로등도가능하다. 후보는시간순서와가로축시작위치의관계를물어왼쪽으로범위를정한다.",
+    "coreReason": "시간이오른쪽으로흐르는그래프의일반읽기원문유지."
+  },
+  {
+    "id": "e4-2-5-1-xc27",
+    "sourceIndex": 2614,
+    "proposedRawRow": {
+      "sourceIndex": 2614,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-5 꺾은선그래프::2-5-1 꺾은선그래프 알아보기",
+      "sourceFingerprint": "3f82c4b0c906de638aec60be84a377ef21e006d3f7794df9ee0734773d3cd917",
+      "proposalFingerprint": "96934d1c78a8b10d647463d92f1966e26416307b9d6d5789057fb1d8e8cf40be",
+      "reviewStatus": "draft",
+      "id": "e4-2-5-1-xc27",
+      "bDecision": "rewrite",
+      "bPrompt": "한 그래프에 두 자료의 꺾은선이 함께 그려져 있다. 값을 읽기 전에 선들에 대해 가장 먼저 확인해야 할 것은 무엇인지 쓰시오.",
+      "bAnswer": "색이나 선 모양이 각각 어떤 자료를 나타내는지 설명을 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "각 선이 어떤 자료인지",
+            "색과 선 모양의 설명",
+            "선이 나타내는 자료"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "두 자료 그래프의 선 구별",
+      "bReason": "선마다 자료가 다름을 먼저 확인하게 함",
+      "cDecision": "rewrite",
+      "cAfter": "두 자료의 꺾은선이 함께 있는 그래프에서는 색이나 선 모양과 자료 이름을 짝지어 설명한 {범례}를 먼저 확인한다.",
+      "cReason": "자료/것이라는일반목적어복원대신색·선모양과자료이름의연결을설명하는범례를확인하게한다. 범례·설명표를인정하여정식이름과기능을연결한다.",
+      "cSlotEquivalents": [
+        [
+          "설명표",
+          "선의 설명"
+        ]
+      ],
+      "roleEvidence": {
+        "sourceKind": "방법",
+        "sourceTerm": "선이 서로 다른 두 자료",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "두 자료의 꺾은선이 함께 있는 그래프에서는 색이나 선 모양과 자료 이름을 짝지어 설명한 {범례}를 먼저 확인한다.",
+      "cStudentSentence": "두 자료의 꺾은선이 함께 있는 그래프에서는 색이나 선 모양과 자료 이름을 짝지어 설명한 □를 먼저 확인한다.",
+      "cSlotAnswers": [
+        {
+          "expected": "범례",
+          "equivalents": [
+            "설명표",
+            "선의 설명"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "한 그래프에 두 자료의 꺾은선이 함께 그려져 있다. 값을 읽기 전에 선들에 대해 가장 먼저 확인해야 할 것은 무엇인지 쓰시오.",
+        "answer": "색이나 선 모양이 각각 어떤 자료를 나타내는지 설명을 확인한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "각 선이 어떤 자료인지",
+              "색과 선 모양의 설명",
+              "선이 나타내는 자료"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "두 자료의 꺾은선이 함께 있는 그래프에서는 색이나 선 모양과 자료 이름을 짝지어 설명한 {범례}를 먼저 확인한다.",
+        "acceptedAnswers": [
+          [
+            "범례",
+            "설명표",
+            "선의 설명"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-5-1-xc27",
+        "sourceIndex": 2614,
+        "proposalFingerprint": "966c13f9b813690e9d032cb82c6f52e999718beb464c0d23a97e03ac86c472f7",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "한그래프두선의색·모양이무엇을나타내는지먼저확인한다.",
+        "cReason": "각선이나타내는조사자료대상을확인한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "normalized": {
+      "id": "e4-2-5-1-xc27",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-5-1-xc27",
+        "section": "초4::2-5 꺾은선그래프::2-5-1 꺾은선그래프 알아보기",
+        "term": "선이 서로 다른 두 자료",
+        "kind": "방법",
+        "level": "상",
+        "definition": "두 자료의 꺾은선이 함께 있으면 색이나 선 모양의 {설명}부터 확인한다."
+      },
+      "B": {
+        "prompt": "한 그래프에 두 자료의 꺾은선이 함께 그려져 있다. 값을 읽기 전에 선들에 대해 가장 먼저 확인해야 할 것은 무엇인지 쓰시오.",
+        "answer": "색이나 선 모양이 각각 어떤 자료를 나타내는지 설명을 확인한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "각 선이 어떤 자료인지",
+              "색과 선 모양의 설명",
+              "선이 나타내는 자료"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "두 자료의 꺾은선이 함께 있는 그래프에서는 색이나 선 모양과 자료 이름을 짝지어 설명한 {범례}를 먼저 확인한다.",
+        "acceptedAnswers": [
+          [
+            "범례",
+            "설명표",
+            "선의 설명"
+          ]
+        ]
+      },
+      "goal": "두 자료 그래프의 선 구별",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "affbc46ac830ee7b11aeb08c45b4cf0cd5ce2e413b3d391d9e679e825f7d561f"
+    },
+    "candidateNormalizedHash": "affbc46ac830ee7b11aeb08c45b4cf0cd5ce2e413b3d391d9e679e825f7d561f",
+    "currentCandidateFingerprint": "96934d1c78a8b10d647463d92f1966e26416307b9d6d5789057fb1d8e8cf40be",
+    "bReason": "두선이각각어떤자료를나타내는지범례설명을확인하는절차가명확하다.",
+    "cReason": "자료/것이라는일반목적어복원대신색·선모양과자료이름의연결을설명하는범례를확인하게한다. 범례·설명표를인정하여정식이름과기능을연결한다.",
+    "coreReason": "선의설명을먼저확인하는일반절차유지."
+  },
+  {
+    "id": "e4-2-5-2-xc26",
+    "sourceIndex": 2641,
+    "proposedRawRow": {
+      "sourceIndex": 2641,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-5 꺾은선그래프::2-5-2 꺾은선그래프 내용 알아보기",
+      "sourceFingerprint": "b43c9b010f1a709301305eff2132421c820ee26e041f3b84b85a7b52b9a21de8",
+      "proposalFingerprint": "b952a5c46fb4465222419d861ad9aec9e8f1b5b890871077936b009657391472",
+      "reviewStatus": "draft",
+      "id": "e4-2-5-2-xc26",
+      "bDecision": "rewrite",
+      "bPrompt": "하루 중 세 번만 기온을 재어 점을 찍은 그래프가 있다. 점 가운데 가장 높은 값이 그날 가장 높았던 기온이라고 확신할 수 있는지 쓰고 이유를 설명하시오.",
+      "bAnswer": "확신할 수 없다. 재지 않은 때에 더 높은 기온이 있었을 수 있다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "확신할 수 없다",
+            "할 수 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "재지 않은 때에 더 높았을 수 있다",
+            "조사하지 않은 때의 값을 모른다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "조사한 점만으로 판단하는 한계",
+      "bReason": "관측하지 않은 때의 값을 단정 못 함",
+      "cDecision": "rewrite",
+      "cAfter": "하루 중 세 번만 기온을 재어 그래프에 점을 찍었다. 점 중 가장 높은 값을 그날의 실제 최고 기온이라고 {확신할 수 없다}.",
+      "cReason": "있었을이라는활용만숨겨져확신가능성판단을하지않는다. 후보는세번관측의최고값을실제하루최고값으로확신할수있는지의관계전체를숨긴다.",
+      "cSlotEquivalents": [
+        [
+          "단정할 수 없다"
+        ]
+      ],
+      "roleEvidence": {
+        "sourceKind": "성질",
+        "sourceTerm": "관측한 때만 판단하기",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "하루 중 세 번만 기온을 재어 그래프에 점을 찍었다. 점 중 가장 높은 값을 그날의 실제 최고 기온이라고 {확신할 수 없다}.",
+      "cStudentSentence": "하루 중 세 번만 기온을 재어 그래프에 점을 찍었다. 점 중 가장 높은 값을 그날의 실제 최고 기온이라고 □.",
+      "cSlotAnswers": [
+        {
+          "expected": "확신할 수 없다",
+          "equivalents": [
+            "단정할 수 없다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "하루 중 세 번만 기온을 재어 점을 찍은 그래프가 있다. 점 가운데 가장 높은 값이 그날 가장 높았던 기온이라고 확신할 수 있는지 쓰고 이유를 설명하시오.",
+        "answer": "확신할 수 없다. 재지 않은 때에 더 높은 기온이 있었을 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "확신할 수 없다",
+              "할 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "재지 않은 때에 더 높았을 수 있다",
+              "조사하지 않은 때의 값을 모른다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "하루 중 세 번만 기온을 재어 그래프에 점을 찍었다. 점 중 가장 높은 값을 그날의 실제 최고 기온이라고 {확신할 수 없다}.",
+        "acceptedAnswers": [
+          [
+            "확신할 수 없다",
+            "단정할 수 없다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-5-2-xc26",
+        "sourceIndex": 2641,
+        "proposalFingerprint": "f6a8e974294d095b08d9492f8ddfe0024b6aef672f413f9e205a995c1cac73c1",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "측정하지않은때더높았을가능성때문에관측최대가하루최대를보장하지않음을설명한다.",
+        "cReason": "비관측시간의더큰값가능이다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "normalized": {
+      "id": "e4-2-5-2-xc26",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-5-2-xc26",
+        "section": "초4::2-5 꺾은선그래프::2-5-2 꺾은선그래프 내용 알아보기",
+        "term": "관측한 때만 판단하기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "표시된 점에서 최고값을 찾아도 관측하지 않은 때의 값까지 최고라고 {단정할 수 없다}."
+      },
+      "B": {
+        "prompt": "하루 중 세 번만 기온을 재어 점을 찍은 그래프가 있다. 점 가운데 가장 높은 값이 그날 가장 높았던 기온이라고 확신할 수 있는지 쓰고 이유를 설명하시오.",
+        "answer": "확신할 수 없다. 재지 않은 때에 더 높은 기온이 있었을 수 있다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "확신할 수 없다",
+              "할 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "재지 않은 때에 더 높았을 수 있다",
+              "조사하지 않은 때의 값을 모른다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "하루 중 세 번만 기온을 재어 그래프에 점을 찍었다. 점 중 가장 높은 값을 그날의 실제 최고 기온이라고 {확신할 수 없다}.",
+        "acceptedAnswers": [
+          [
+            "확신할 수 없다",
+            "단정할 수 없다"
+          ]
+        ]
+      },
+      "goal": "조사한 점만으로 판단하는 한계",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "aea50c703e6965acb0c3bb8bad606551ad588f6b600c4f087f87b86a520d6e43"
+    },
+    "candidateNormalizedHash": "aea50c703e6965acb0c3bb8bad606551ad588f6b600c4f087f87b86a520d6e43",
+    "currentCandidateFingerprint": "b952a5c46fb4465222419d861ad9aec9e8f1b5b890871077936b009657391472",
+    "bReason": "하루세번관측으로미관측시간의실제최고값을확신할수없다는표본한계를확인한다. 특정그림이필요없는일반조건이다.",
+    "cReason": "있었을이라는활용만숨겨져확신가능성판단을하지않는다. 후보는세번관측의최고값을실제하루최고값으로확신할수있는지의관계전체를숨긴다.",
+    "coreReason": "관측하지않은때까지단정불가라는일반원문유지."
+  },
+  {
+    "id": "e4-2-5-3-xc1",
+    "sourceIndex": 2644,
+    "proposedRawRow": {
+      "sourceIndex": 2644,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+      "sourceFingerprint": "2359ed4581129252f15262d689de6ddaaad630fd8fff7da9f7adc2fb4758b3dc",
+      "proposalFingerprint": "b436a32323cd7392eab910175e626c8a83017dadefd4e1e73c9058db49821fe4",
+      "reviewStatus": "draft",
+      "id": "e4-2-5-3-xc1",
+      "bDecision": "rewrite",
+      "bPrompt": "꺾은선그래프를 그리기 전에 조사한 때와 값을 표로 정리하면, 빠뜨린 자료가 있는지 확인하기 쉬운 까닭을 쓰시오.",
+      "bAnswer": "때와 값을 나란히 정리하여 각 때의 기록이 있는지 비교할 수 있으므로 빠뜨린 때나 값을 찾기 쉽습니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "때별 기록을 나란히 비교하여 빠뜨린 때나 값을 찾기 쉽다",
+            "각 때의 값이 기록되어 있는지 확인할 수 있어 빠진 자료를 찾기 쉽다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "표로 정리하는 좋은 점",
+      "bReason": "어떤점이좋은지에대한서로다른장점을한anyOf에묶은기준은동치가아니다. 후보는자료누락확인이쉬운까닭을묻고때별기록여부를확인할수있다는한내용만인정한다.",
+      "cDecision": "keep",
+      "cReason": "익숙한 낱말 빈칸이며 답이 표로 분명함",
+      "cSlotEquivalents": [
+        [
+          "표로"
+        ]
+      ],
+      "roleEvidence": {
+        "sourceKind": "방법",
+        "sourceTerm": "그래프를 그리기 전 자료 정리",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "조사한 때와 값을 {표}에 정리하면 빠뜨린 자료를 확인하기 쉽다.",
+      "cStudentSentence": "조사한 때와 값을 □에 정리하면 빠뜨린 자료를 확인하기 쉽다.",
+      "cSlotAnswers": [
+        {
+          "expected": "표",
+          "equivalents": [
+            "표로"
+          ]
+        }
+      ],
+      "cFrozenSource": {
+        "sentence": "조사한 때와 값을 □에 정리하면 빠뜨린 자료를 확인하기 쉽다.",
+        "answers": [
+          "표"
+        ]
+      },
+      "bQuestion": {
+        "prompt": "꺾은선그래프를 그리기 전에 조사한 때와 값을 표로 정리하면, 빠뜨린 자료가 있는지 확인하기 쉬운 까닭을 쓰시오.",
+        "answer": "때와 값을 나란히 정리하여 각 때의 기록이 있는지 비교할 수 있으므로 빠뜨린 때나 값을 찾기 쉽습니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "때별 기록을 나란히 비교하여 빠뜨린 때나 값을 찾기 쉽다",
+              "각 때의 값이 기록되어 있는지 확인할 수 있어 빠진 자료를 찾기 쉽다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "조사한 때와 값을 {표}에 정리하면 빠뜨린 자료를 확인하기 쉽다.",
+        "acceptedAnswers": [
+          [
+            "표",
+            "표로"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-5-3-xc1",
+        "sourceIndex": 2644,
+        "proposalFingerprint": "f3525cf3df2a32aef4953b37cd4b9c77af1ee0d9adc59d3b24b2b62e93bdac87",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "keep",
+        "verdict": "retain-planning-proposal",
+        "bReason": "표정리의누락확인·읽기·옮기기의타당한편익을다양하게받는다.",
+        "cReason": "조사때와값을정리하는표라는확립된자료형태이다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "normalized": {
+      "id": "e4-2-5-3-xc1",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-5-3-xc1",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "term": "그래프를 그리기 전 자료 정리",
+        "kind": "방법",
+        "level": "하",
+        "definition": "조사한 때와 값을 {표}에 정리하면 빠뜨린 자료를 확인하기 쉽다."
+      },
+      "B": {
+        "prompt": "꺾은선그래프를 그리기 전에 조사한 때와 값을 표로 정리하면, 빠뜨린 자료가 있는지 확인하기 쉬운 까닭을 쓰시오.",
+        "answer": "때와 값을 나란히 정리하여 각 때의 기록이 있는지 비교할 수 있으므로 빠뜨린 때나 값을 찾기 쉽습니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "때별 기록을 나란히 비교하여 빠뜨린 때나 값을 찾기 쉽다",
+              "각 때의 값이 기록되어 있는지 확인할 수 있어 빠진 자료를 찾기 쉽다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "조사한 때와 값을 {표}에 정리하면 빠뜨린 자료를 확인하기 쉽다.",
+        "acceptedAnswers": [
+          [
+            "표",
+            "표로"
+          ]
+        ]
+      },
+      "goal": "표로 정리하는 좋은 점",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "897ffa06bd16081a044ead8b9d719cdad8e01a38e8b12d987135a3abbb2c623e"
+    },
+    "candidateNormalizedHash": "897ffa06bd16081a044ead8b9d719cdad8e01a38e8b12d987135a3abbb2c623e",
+    "currentCandidateFingerprint": "b436a32323cd7392eab910175e626c8a83017dadefd4e1e73c9058db49821fe4",
+    "bReason": "어떤점이좋은지에대한서로다른장점을한anyOf에묶은기준은동치가아니다. 후보는자료누락확인이쉬운까닭을묻고때별기록여부를확인할수있다는한내용만인정한다.",
+    "cReason": "자료의때와값을정리하는표의정식이름을묻는명확한단답으로유지한다.",
+    "coreReason": "누락확인이쉽다는일반원문유지."
+  },
+  {
+    "id": "e4-2-5-3-xc12",
+    "sourceIndex": 2655,
+    "proposedRawRow": {
+      "sourceIndex": 2655,
+      "grade": "e4",
+      "part": "e4plus",
+      "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+      "sourceFingerprint": "bbc5d1567c57f5d2f230c18ef1aa51e52e74459cb6cebacc27bbba3c6f06e146",
+      "proposalFingerprint": "8df01d7b9b8157e80b590b0c60630a314fed36b74c360597bee3aade1d922a0f",
+      "reviewStatus": "draft",
+      "id": "e4-2-5-3-xc12",
+      "bDecision": "rewrite",
+      "bPrompt": "물결선으로 아래쪽 눈금을 생략해도 조사한 값들을 빠뜨리지 않으려면, 세로축의 눈금 범위를 가장 작은 값과 가장 큰 값을 기준으로 어떻게 정해야 하는지 쓰시오.",
+      "bAnswer": "가장 작은 값부터 가장 큰 값까지 모든 조사한 값이 들어가도록 눈금 범위를 정해야 합니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가장 작은 값과 가장 큰 값 사이의 모든 조사한 값이 들어가도록 한다",
+            "최솟값부터 최댓값까지 모두 표시할 수 있는 범위로 정한다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "생략해도 모든 자료 표시",
+      "bReason": "반드시나타낼것은눈금단위/물결선등으로범위가열려있다. 후보는조사한값을빠뜨리지않기위한세로축범위를최소·최대값으로어떻게정할지묻는다.",
+      "cDecision": "keep",
+      "cReason": "모든 자료 빈칸이 앞 범위와 잘 연결됨",
+      "cSlotEquivalents": [
+        [
+          "모든 값",
+          "모든 점",
+          "자료 모두",
+          "자료 전부"
+        ]
+      ],
+      "roleEvidence": {
+        "sourceKind": "방법",
+        "sourceTerm": "세로축 범위 정하기",
+        "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+      },
+      "cMarkedSentence": "눈금을 일부 줄여도 가장 작은 값부터 가장 큰 값까지 {모든 자료}를 표시해야 한다.",
+      "cStudentSentence": "눈금을 일부 줄여도 가장 작은 값부터 가장 큰 값까지 □를 표시해야 한다.",
+      "cSlotAnswers": [
+        {
+          "expected": "모든 자료",
+          "equivalents": [
+            "모든 값",
+            "모든 점",
+            "자료 모두",
+            "자료 전부"
+          ]
+        }
+      ],
+      "cFrozenSource": {
+        "sentence": "눈금을 일부 줄여도 가장 작은 값부터 가장 큰 값까지 □를 표시해야 한다.",
+        "answers": [
+          "모든 자료"
+        ]
+      },
+      "bQuestion": {
+        "prompt": "물결선으로 아래쪽 눈금을 생략해도 조사한 값들을 빠뜨리지 않으려면, 세로축의 눈금 범위를 가장 작은 값과 가장 큰 값을 기준으로 어떻게 정해야 하는지 쓰시오.",
+        "answer": "가장 작은 값부터 가장 큰 값까지 모든 조사한 값이 들어가도록 눈금 범위를 정해야 합니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "가장 작은 값과 가장 큰 값 사이의 모든 조사한 값이 들어가도록 한다",
+              "최솟값부터 최댓값까지 모두 표시할 수 있는 범위로 정한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "눈금을 일부 줄여도 가장 작은 값부터 가장 큰 값까지 {모든 자료}를 표시해야 한다.",
+        "acceptedAnswers": [
+          [
+            "모든 자료",
+            "모든 값",
+            "모든 점",
+            "자료 모두",
+            "자료 전부"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "questionRevision": "student-clear-20261006-v1",
+      "editorialReview": {
+        "id": "e4-2-5-3-xc12",
+        "sourceIndex": 2655,
+        "proposalFingerprint": "16c507a3e6476eb37b8c2bc20e20a9448b66f27f86db8d913c587724b8e8ff74",
+        "reader": "Codex direct final question/answer/criteria reading",
+        "learningRole": "procedure",
+        "bDecision": "rewrite",
+        "cDecision": "keep",
+        "verdict": "retain-planning-proposal",
+        "bReason": "물결선생략후에도최소부터최대까지모든자료표시조건이다.",
+        "cReason": "눈금생략이자료누락을뜻하지않음을확인한다.",
+        "issues": [],
+        "isReleaseApproval": false
+      }
+    },
+    "normalized": {
+      "id": "e4-2-5-3-xc12",
+      "grade": "초4",
+      "source": {
+        "id": "e4-2-5-3-xc12",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "term": "세로축 범위 정하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "눈금을 일부 줄여도 가장 작은 값부터 가장 큰 값까지 {모든 자료}를 표시해야 한다."
+      },
+      "B": {
+        "prompt": "물결선으로 아래쪽 눈금을 생략해도 조사한 값들을 빠뜨리지 않으려면, 세로축의 눈금 범위를 가장 작은 값과 가장 큰 값을 기준으로 어떻게 정해야 하는지 쓰시오.",
+        "answer": "가장 작은 값부터 가장 큰 값까지 모든 조사한 값이 들어가도록 눈금 범위를 정해야 합니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "가장 작은 값과 가장 큰 값 사이의 모든 조사한 값이 들어가도록 한다",
+              "최솟값부터 최댓값까지 모두 표시할 수 있는 범위로 정한다"
+            ]
+          }
+        ]
+      },
+      "C": {
+        "sentence": "눈금을 일부 줄여도 가장 작은 값부터 가장 큰 값까지 {모든 자료}를 표시해야 한다.",
+        "acceptedAnswers": [
+          [
+            "모든 자료",
+            "모든 값",
+            "모든 점",
+            "자료 모두",
+            "자료 전부"
+          ]
+        ]
+      },
+      "goal": "생략해도 모든 자료 표시",
+      "coreAfter": null,
+      "coreReason": null,
+      "hash": "b498d7607ec069404aa7310af5583db67a5606ea49d88d023c5576c0a8232698"
+    },
+    "candidateNormalizedHash": "b498d7607ec069404aa7310af5583db67a5606ea49d88d023c5576c0a8232698",
+    "currentCandidateFingerprint": "8df01d7b9b8157e80b590b0c60630a314fed36b74c360597bee3aade1d922a0f",
+    "bReason": "반드시나타낼것은눈금단위/물결선등으로범위가열려있다. 후보는조사한값을빠뜨리지않기위한세로축범위를최소·최대값으로어떻게정할지묻는다.",
+    "cReason": "모든자료를표시해야한다는일반범위조건은명확하며현재유지한다.",
+    "coreReason": "최소부터최대까지모든자료포함이라는원문유지."
+  }
+]

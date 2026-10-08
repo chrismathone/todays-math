@@ -1,0 +1,870 @@
+{
+  "purpose": "Root Codex directly reads final actual B/C questions, model answers, criteria, role and general-definition corrections; not independent release approval.",
+  "capturedAt": "2026-10-06T16:10:32.829Z",
+  "sourceCommit": "13bf05dce",
+  "rows": [
+    {
+      "id": "e6-2-1-1-c1",
+      "sourceIndex": 292,
+      "proposalFingerprint": "969eb41493f356afa73e26b4e48b3b7f7ca836be6a159af02b0701f58dea75ac",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "bQuestion": {
+        "prompt": "분모가 같은 두 분수의 나눗셈은 어떤 수끼리 나누어 몫을 구하나요? $\\frac{6}{7}\\div\\frac{2}{7}$를 예로 들어 몫까지 쓰세요.",
+        "answer": "두 분수의 분자끼리 나눕니다. $6\\div2=3$이므로 몫은 $3$입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분자끼리 나눈다",
+              "분자를 서로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "몫은 $3$",
+              "$6\\div2=3$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "진분수나 가분수로 나타낸 두 수의 분모가 같고 나누는 수가 $0$이 아니면, 두 수의 배 관계는 조각의 개수인 {분자}끼리 나누어 구한다.",
+        "acceptedAnswers": [
+          [
+            "분자"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "original": {
+        "id": "e6-2-1-1-c1",
+        "section": "초6::2-1 분수의 나눗셈::2-1-1 분모가 같은 (분수)÷(분수) 알아보기",
+        "level": "하",
+        "kind": "방법",
+        "term": "분모가 같은 (분수)$\\div$(분수)",
+        "definition": "진분수나 가분수로 나타낸 두 수의 분모가 같고 나누는 수가 $0$이 아니면, 두 수의 배 관계는 조각의 개수인 {분자}끼리 나누어 구한다."
+      }
+    },
+    {
+      "id": "e6-2-1-1-c2",
+      "sourceIndex": 293,
+      "proposalFingerprint": "06c358f5e9b1f4013d37ad1581afe285869892c8996fe737ded5a31838a0553d",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "bQuestion": {
+        "prompt": "분모가 같은 두 분수에서 분자끼리 나눈 값이 자연수가 아닐 때, 몫을 분수로 어떻게 나타내나요? $\\frac{5}{9}\\div\\frac{2}{9}$를 예로 들어 몫을 쓰세요.",
+        "answer": "나누어지는 분수의 분자를 분자로, 나누는 분수의 분자를 분모로 씁니다. $\\frac{5}{9}\\div\\frac{2}{9}=\\frac{5}{2}\\left(=2\\frac{1}{2}\\right)$입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나누어지는 분수의 분자가 몫의 분자",
+              "나누어지는 분수의 분자를 분자로 쓴다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나누는 분수의 분자가 몫의 분모",
+              "나누는 분수의 분자를 분모로 쓴다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{5}{2}$",
+              "$2\\frac{1}{2}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "분모가 같은 $\\frac{7}{11}\\div\\frac{3}{11}$은 분자끼리 $7\\div3$을 하므로 몫은 {$\\frac{7}{3}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{7}{3}$",
+            "$2\\frac{1}{3}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "original": {
+        "id": "e6-2-1-1-c2",
+        "section": "초6::2-1 분수의 나눗셈::2-1-1 분모가 같은 (분수)÷(분수) 알아보기",
+        "level": "중",
+        "kind": "방법",
+        "term": "분자끼리 나누어떨어지지 않는 경우",
+        "definition": "진분수나 가분수로 나타낸 $0$보다 큰 두 수의 분모가 같다고 하자. 분자끼리 나눈 값이 자연수가 아니면, 몫은 나누어지는 분수의 분자를 분자로, {나누는 분수}의 분자를 분모로 써서 나타낸다."
+      }
+    },
+    {
+      "id": "e6-2-1-1-c3",
+      "sourceIndex": 294,
+      "proposalFingerprint": "f41861d7e61fe343a5d6310b9ccb9c305e9256c24ed3e88959f547d45f2a569c",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "bQuestion": {
+        "prompt": "$\\frac{3}{5}\\div\\frac{2}{5}$와 $\\frac{3}{7}\\div\\frac{2}{7}$의 몫을 비교하시오. 분자는 그대로 두고 두 분수의 같은 분모를 함께 바꾸었을 때, 몫이 어떻게 되는지와 그 까닭을 쓰시오.",
+        "answer": "두 식의 몫은 모두 $\\frac{3}{2}$으로 같다. 첫 식은 $\\frac{1}{5}$이 $3$개인 양을 $2$개인 양으로 나누고, 둘째 식은 $\\frac{1}{7}$이 $3$개인 양을 $2$개인 양으로 나눈다. 각 식에서는 두 분수의 한 조각 크기가 같고 개수의 관계가 $3$ 대 $2$로 같아, 같은 분모를 함께 바꾸어도 몫은 변하지 않는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 식의 몫은 같다",
+              "공통분모만 함께 바꾸어도 몫은 변하지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "각 식에서 한 조각의 크기가 같고 개수의 관계가 $3$ 대 $2$로 같다",
+              "두 수를 같은 배로 바꾸므로 두 수 사이의 배 관계가 변하지 않는다",
+              "두 식 모두 $3$ $\\div$ $2$로 계산할 수 있기 때문이다",
+              "두 식 모두 분자 $3$을 분자 $2$로 나누어 계산하기 때문이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{3}{5}\\div\\frac{2}{5}$의 몫은 {$\\frac{3}{2}$}이고, $\\frac{3}{7}\\div\\frac{2}{7}$의 몫은 {$\\frac{3}{2}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{3}{2}$",
+            "$1\\frac{1}{2}$",
+            "$1.5$"
+          ],
+          [
+            "$\\frac{3}{2}$",
+            "$1\\frac{1}{2}$",
+            "$1.5$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "original": {
+        "id": "e6-2-1-1-c3",
+        "section": "초6::2-1 분수의 나눗셈::2-1-1 분모가 같은 (분수)÷(분수) 알아보기",
+        "level": "상",
+        "kind": "성질",
+        "term": "분모와 몫",
+        "definition": "진분수나 가분수로 나타낸 $0$보다 큰 두 수의 분모가 같을 때, 두 분자는 그대로 두고 공통분모만 다른 자연수로 바꾸어도 몫은 {같다}. 같은 크기의 조각끼리 개수를 견주기 때문이다."
+      }
+    },
+    {
+      "id": "e6-2-1-1-xc2",
+      "sourceIndex": 2163,
+      "proposalFingerprint": "1015474479eafd0901f866870c075d0526084bc7497de9a2fb85e423a49f9bf4",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "bQuestion": {
+        "prompt": "$\\frac{6}{7}$에서 $\\frac{2}{7}$를 계속 덜어 내면 몇 번 덜어 내야 남는 것이 없나요? 이 횟수가 $\\frac{6}{7}\\div\\frac{2}{7}$의 몫과 어떤 관계인지도 쓰세요.",
+        "answer": "$3$번 덜어 내면 남는 것이 없습니다. 덜어 낸 횟수 $3$이 몫입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$3$번",
+              "$3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "덜어 낸 횟수가 몫이다",
+              "횟수와 몫이 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0$보다 큰 나누는 분수를 나누어지는 분수에서 여러 번 덜어 내어 남는 양이 없으면, 몫은 덜어 낸 {횟수}이다.",
+        "acceptedAnswers": [
+          [
+            "횟수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "original": {
+        "id": "e6-2-1-1-xc2",
+        "section": "초6::2-1 분수의 나눗셈::2-1-1 분모가 같은 (분수)÷(분수) 알아보기",
+        "term": "덜어 내는 횟수와 몫",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$0$보다 큰 나누는 분수를 나누어지는 분수에서 여러 번 덜어 내어 남는 양이 없으면, 몫은 덜어 낸 {횟수}이다."
+      }
+    },
+    {
+      "id": "e6-2-1-1-xc3",
+      "sourceIndex": 2164,
+      "proposalFingerprint": "c4d2f1015093f975a4761666da778f8e7448375216b431ae5eef7a4651e8ffc6",
+      "learningRole": "naming",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "진분수나 가분수로 나타낸 $0$보다 큰 두 수의 분모가 같을 때, 분자끼리의 나눗셈이 나누어떨어지면 몫은 {자연수}이다.",
+        "acceptedAnswers": [
+          [
+            "자연수"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "c1의 분자끼리 나누는 방법에 포함되는 중복 내용이라 별도 B로 묻지 않는다. 대체는 e6-2-1-1-c1, e6-2-1-1-c2이다."
+      },
+      "coreAfter": null,
+      "coreReason": null,
+      "original": {
+        "id": "e6-2-1-1-xc3",
+        "section": "초6::2-1 분수의 나눗셈::2-1-1 분모가 같은 (분수)÷(분수) 알아보기",
+        "term": "몫이 자연수인 경우",
+        "kind": "성질",
+        "level": "하",
+        "definition": "진분수나 가분수로 나타낸 $0$보다 큰 두 수의 분모가 같을 때, 분자끼리의 나눗셈이 나누어떨어지면 몫은 {자연수}이다."
+      }
+    },
+    {
+      "id": "e6-2-1-1-xc6",
+      "sourceIndex": 2165,
+      "proposalFingerprint": "2bbf50f2fea05064bfa9e7f3c4ad347065ca14a3f873d637ae6bb171f9356f7a",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "bQuestion": {
+        "prompt": "$0$이 아닌 분수를 같은 분수로 나누면 몫은 얼마인가요? 덜어 내는 생각으로 까닭을 설명하세요.",
+        "answer": "몫은 $1$입니다. 나누는 분수가 나누어지는 분수와 같아서 한 번 덜어 내면 남는 것이 없기 때문입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "몫은 $1$",
+              "$1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 번 덜어 내면 남지 않는다",
+              "한 번만 들어간다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "나누는 분수가 $0$이 아닐 때 $\\frac{5}{8}\\div\\frac{5}{8}$의 몫은 {$1$}이다.",
+        "acceptedAnswers": [
+          [
+            "$1$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "original": {
+        "id": "e6-2-1-1-xc6",
+        "section": "초6::2-1 분수의 나눗셈::2-1-1 분모가 같은 (분수)÷(분수) 알아보기",
+        "term": "같은 분수로 나누기",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$0$이 아닌 같은 분수끼리 나누면, 나누는 분수가 나누어지는 분수 안에 꼭 한 번 들어가므로 몫은 {$1$}이다."
+      }
+    },
+    {
+      "id": "e6-2-1-1-xc8",
+      "sourceIndex": 2166,
+      "proposalFingerprint": "d608e94aab98bb07098056bdc5d78b94ca151e1d5f9f29fdb2e9340f2d6575c5",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "bQuestion": {
+        "prompt": "$\\frac{5}{9}\\div\\frac{1}{9}$의 몫은 얼마인가요? 분모가 같은 단위분수로 나눌 때 몫이 나누어지는 분수의 무엇과 같은지 쓰고, 그 까닭도 설명하세요.",
+        "answer": "몫은 $5$입니다. 나누어지는 분수의 분자와 같고, $\\frac{5}{9}$ 안에 $\\frac{1}{9}$이 $5$개 들어 있기 때문입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "몫은 $5$",
+              "$5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "분자와 같다",
+              "분자"
+            ]
+          },
+          {
+            "anyOf": [
+              "단위분수가 분자만큼 들어 있다",
+              "$\\frac{1}{9}$이 $5$개 있다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "진분수나 가분수를 분모가 같은 단위분수로 나누면 몫은 나누어지는 분수의 {분자}와 같다. 단위분수가 그 수만큼 들어 있기 때문이다.",
+        "acceptedAnswers": [
+          [
+            "분자"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "original": {
+        "id": "e6-2-1-1-xc8",
+        "section": "초6::2-1 분수의 나눗셈::2-1-1 분모가 같은 (분수)÷(분수) 알아보기",
+        "term": "단위분수로 나누기",
+        "kind": "성질",
+        "level": "하",
+        "definition": "진분수나 가분수를 분모가 같은 단위분수로 나누면 몫은 나누어지는 분수의 {분자}와 같다. 단위분수가 그 수만큼 들어 있기 때문이다."
+      }
+    },
+    {
+      "id": "e6-2-1-1-xc10",
+      "sourceIndex": 2167,
+      "proposalFingerprint": "7d45c55ac7cb4e4b119dd5e733e1a6f0d3a4cea70e164f496db04d67a690e886",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "cDecision": "exclude",
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "e6-2-1-1-c1과 완전히 중복된다. 대체는 e6-2-1-1-c1, e6-2-1-1-xc26이다.",
+        "cloze": "e6-2-1-1-c1과 완전히 중복된다. 대체는 e6-2-1-1-c1, e6-2-1-1-xc26이다."
+      },
+      "coreAfter": null,
+      "coreReason": null,
+      "original": {
+        "id": "e6-2-1-1-xc10",
+        "section": "초6::2-1 분수의 나눗셈::2-1-1 분모가 같은 (분수)÷(분수) 알아보기",
+        "term": "분자끼리의 나눗셈과 같은 몫",
+        "kind": "성질",
+        "level": "중",
+        "definition": "분모가 같은 $0$보다 큰 두 진분수나 가분수의 나눗셈은 분자끼리의 나눗셈과 {몫}이 같다."
+      }
+    },
+    {
+      "id": "e6-2-1-1-xc11",
+      "sourceIndex": 2168,
+      "proposalFingerprint": "2706045098e36d48f2f6d6696251cff102217ef069df64bdd90ed450dbe87293",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "bQuestion": {
+        "prompt": "$0$보다 큰 두 분수를 나눌 때, 몫이 $1$보다 작은 경우와 $1$보다 큰 경우는 각각 두 분수의 크기가 어떠할 때인가요? $\\frac{2}{9}\\div\\frac{5}{9}$의 몫도 구하세요.",
+        "answer": "나누어지는 분수가 나누는 분수보다 작으면 몫이 $1$보다 작고, 크면 $1$보다 큽니다. $\\frac{2}{9}\\div\\frac{5}{9}=\\frac{2}{5}$입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나누어지는 분수가 더 작으면 몫이 $1$보다 작다",
+              "나누어지는 분수 < 나누는 분수일 때 몫 < $1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "나누어지는 분수가 더 크면 몫이 $1$보다 크다",
+              "나누어지는 분수 > 나누는 분수일 때 몫 > $1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{2}{5}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0$보다 큰 두 분수에서 나누어지는 분수가 나누는 분수보다 {작으면} 몫은 $1$보다 작다.",
+        "acceptedAnswers": [
+          [
+            "작으면",
+            "더 작으면",
+            "작을 때"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "original": {
+        "id": "e6-2-1-1-xc11",
+        "section": "초6::2-1 분수의 나눗셈::2-1-1 분모가 같은 (분수)÷(분수) 알아보기",
+        "term": "몫이 $1$보다 작을 때",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$0$보다 큰 두 분수에서 나누어지는 분수가 나누는 분수보다 {작으면} 몫은 $1$보다 작다.",
+        "example": {
+          "prompt": "$\\frac{2}{9}\\div\\frac{5}{9}$의 몫은?",
+          "answer": "$\\frac{2}{5}$"
+        }
+      }
+    },
+    {
+      "id": "e6-2-1-1-xc12",
+      "sourceIndex": 2169,
+      "proposalFingerprint": "646afb53916a386ea284016a755e6967d4fe4d34871624ef592634b0bc95a7ee",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "cDecision": "keep",
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$0$보다 큰 두 분수에서 나누어지는 분수가 나누는 분수보다 {크면} 몫은 $1$보다 크다.",
+        "acceptedAnswers": [
+          [
+            "크면",
+            "더 크면",
+            "클 때"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "xc11 B에 대칭 내용이 이미 있어 B가 중복된다. 대체는 e6-2-1-1-xc11이다."
+      },
+      "coreAfter": null,
+      "coreReason": null,
+      "original": {
+        "id": "e6-2-1-1-xc12",
+        "section": "초6::2-1 분수의 나눗셈::2-1-1 분모가 같은 (분수)÷(분수) 알아보기",
+        "term": "몫이 $1$보다 클 때",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$0$보다 큰 두 분수에서 나누어지는 분수가 나누는 분수보다 {크면} 몫은 $1$보다 크다."
+      }
+    },
+    {
+      "id": "e6-2-1-1-xc13",
+      "sourceIndex": 2170,
+      "proposalFingerprint": "3fbe18856547b87362046e4c308ddf32c7181764fa7e89f751e4c5e10576ee8f",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "bQuestion": {
+        "prompt": "$\\frac{9}{4}\\div\\frac{3}{4}$처럼 분모가 같은 가분수끼리의 나눗셈도 진분수와 같은 방법으로 계산할 수 있나요? 몫을 구하고 이유를 쓰세요.",
+        "answer": "네, 분자끼리 $9\\div3=3$으로 나누면 몫은 $3$입니다. 두 분수 모두 $\\frac{1}{4}$이 몇 개인지로 나타내므로 개수끼리 나누면 됩니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "진분수와 같은 방법",
+              "분자끼리 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "몫은 $3$",
+              "$9\\div3=3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 단위분수의 개수끼리 나눈다",
+              "$\\frac{1}{4}$이 몇 개인지 비교한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{9}{4}\\div\\frac{3}{4}$은 분자끼리 $9\\div3$을 하는 것과 같으므로 몫은 {$3$}이다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "original": {
+        "id": "e6-2-1-1-xc13",
+        "section": "초6::2-1 분수의 나눗셈::2-1-1 분모가 같은 (분수)÷(분수) 알아보기",
+        "term": "가분수끼리의 나눗셈",
+        "kind": "방법",
+        "level": "중",
+        "definition": "가분수끼리도 분모가 같으면 같은 단위분수의 개수인 {분자}끼리 나누어 몫을 구한다."
+      }
+    },
+    {
+      "id": "e6-2-1-1-xc14",
+      "sourceIndex": 2171,
+      "proposalFingerprint": "86774a4d2b5665f1dbf4fe052df015c9144e1cafc9e3609be0a15e763cb5f4db",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "bQuestion": {
+        "prompt": "$\\frac{3}{4}\\div\\frac{1}{4}=3$이 맞는지 곱셈으로 확인하려고 합니다. 확인할 곱셈식을 쓰고, 왜 그 곱셈으로 확인할 수 있는지 설명하시오.",
+        "answer": "$3\\times\\frac{1}{4}=\\frac{3}{4}$이다. $\\frac{1}{4}$만큼씩 $3$번 모으면 처음 양 $\\frac{3}{4}$이 되어, $\\frac{1}{4}$이 처음 양에 $3$번 들어간다는 것을 확인할 수 있다. 나누는 수에 몫을 곱하면 처음 나누어지는 양이 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$3$ $\\times$ $\\frac{1}{4}$ $=$ $\\frac{3}{4}$",
+              "$\\frac{1}{4}$ $\\times$ $3$ $=$ $\\frac{3}{4}$",
+              "$\\frac{3}{4}$ $=$ $3$ $\\times$ $\\frac{1}{4}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{4}$씩 $3$번 모으면 처음 양 $\\frac{3}{4}$이 된다",
+              "나누는 양에 몫을 곱하면 처음 나누어지는 양이 된다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{3}{5}\\div\\frac{1}{5}$의 몫을 $2$라고 쓴 답을 확인하면 $2\\times\\frac{1}{5}=$ {$\\frac{2}{5}$}이다. 곱한 결과가 나눗셈식의 맨 앞 수 $\\frac{3}{5}$보다 작으므로 몫 $2$는 틀렸다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{2}{5}$",
+            "$\\frac{4}{10}$",
+            "$0.4$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "original": {
+        "id": "e6-2-1-1-xc14",
+        "section": "초6::2-1 분수의 나눗셈::2-1-1 분모가 같은 (분수)÷(분수) 알아보기",
+        "term": "곱셈으로 몫 확인하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "구한 몫에 나누는 분수를 곱하면 {나누어지는 분수}가 되어야 한다."
+      }
+    },
+    {
+      "id": "e6-2-1-1-xc15",
+      "sourceIndex": 2172,
+      "proposalFingerprint": "0d69d2f7773487f603df84955f562e40146aa14f0a3999d0a05a9898c525975c",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "bQuestion": {
+        "prompt": "$\\frac{4}{7}\\div\\frac{2}{7}$에서 몫을 분자끼리 나누어 구할 수 있는 까닭을, 두 분수가 각각 $\\frac{1}{7}$이 몇 개인지로 설명하시오.",
+        "answer": "$\\frac{4}{7}$는 $\\frac{1}{7}$이 $4$개, $\\frac{2}{7}$는 $\\frac{1}{7}$이 $2$개이다. 한 조각의 크기가 같아서 $4$개인 양 안에 $2$개인 양이 몇 번 들어가는지 $4\\div2$로 비교할 수 있다. 몫은 $2$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{4}{7}$는 $\\frac{1}{7}$이 $4$개이고 $\\frac{2}{7}$는 $\\frac{1}{7}$이 $2$개이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 양을 같은 크기의 조각으로 센 개수이므로 $4$ $\\div$ $2$로 두 양의 관계를 구할 수 있다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{4}{7}$는 $\\frac{1}{7}$이 $4$개, $\\frac{2}{7}$는 $\\frac{1}{7}$이 $2$개이다. 두 분수는 한 조각의 크기가 {같아서} 조각의 개수끼리 나누어 몫을 구할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "같아서",
+            "같으므로",
+            "똑같아서",
+            "같기 때문에"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "original": {
+        "id": "e6-2-1-1-xc15",
+        "section": "초6::2-1 분수의 나눗셈::2-1-1 분모가 같은 (분수)÷(분수) 알아보기",
+        "term": "조각의 개수만 견주기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "분모가 같은 두 분수는 단위분수 한 조각의 크기가 {같다}. 따라서 조각의 개수만 비교하면 된다."
+      }
+    },
+    {
+      "id": "e6-2-1-1-xc16",
+      "sourceIndex": 2173,
+      "proposalFingerprint": "ecc275855b239bf0556d07769181587fd6fbdf0f719cef881a974e0d6f088350",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "cDecision": "revise",
+      "bQuestion": {
+        "prompt": "$\\frac{7}{9}$에서 $\\frac{2}{9}$를 $3$번 덜어 내면 $\\frac{1}{9}$이 남습니다. 이 결과로 $\\frac{7}{9}\\div\\frac{2}{9}$의 몫을 어떻게 구하는지 설명하고 몫을 쓰세요.",
+        "answer": "남은 $\\frac{1}{9}$을 $\\frac{2}{9}$로 나눈 값 $\\frac{1}{2}$을 덜어 낸 횟수 $3$에 더합니다. 몫은 $3\\frac{1}{2}\\left(=\\frac{7}{2}\\right)$입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "남은 양을 나누는 분수로 나눈다",
+              "$\\frac{1}{9}\\div\\frac{2}{9}=\\frac{1}{2}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "덜어 낸 횟수에 더한다",
+              "$3+\\frac{1}{2}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3\\frac{1}{2}$",
+              "$\\frac{7}{2}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{7}{9}$에서 $\\frac{2}{9}$를 $3$번 덜어 내고 남은 $\\frac{1}{9}$을 $\\frac{2}{9}$로 나눈 값은 {$\\frac{1}{2}$}이므로, 몫은 $3$과 $\\frac{1}{2}$을 더한 {$3\\frac{1}{2}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{1}{2}$"
+          ],
+          [
+            "$3\\frac{1}{2}$",
+            "$\\frac{7}{2}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "original": {
+        "id": "e6-2-1-1-xc16",
+        "section": "초6::2-1 분수의 나눗셈::2-1-1 분모가 같은 (분수)÷(분수) 알아보기",
+        "term": "덜고 남은 양과 몫",
+        "kind": "성질",
+        "level": "중",
+        "definition": "나누어지는 분수에서 $0$보다 큰 나누는 분수를 여러 번 덜어 내어 남은 양이 나누는 분수보다 작아졌다. 이때 남은 양을 나누는 분수로 나눈 값을 덜어 낸 횟수에 {더하면} 몫이 된다."
+      }
+    },
+    {
+      "id": "e6-2-1-1-xc17",
+      "sourceIndex": 2174,
+      "proposalFingerprint": "2f94c32f6211e010b243f78d3877cdc4022cb06fd6dbe79286915cb9694c350e",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "bQuestion": {
+        "prompt": "$\\frac{8}{11}\\div\\frac{2}{11}$ 계산에서 통분을 하지 않아도 되는 까닭을 쓰고, 몫을 구하세요.",
+        "answer": "이미 분모가 같아 조각의 크기가 같기 때문입니다. 분자끼리 $8\\div2=4$이므로 몫은 $4$입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분모가 이미 같다",
+              "조각의 크기가 이미 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "몫은 $4$",
+              "$8\\div2=4$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "분모가 같고 나누는 분수가 $0$이 아닌 분수의 나눗셈에서는, 이미 조각의 크기가 같으므로 {통분} 과정을 생략할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "통분"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "original": {
+        "id": "e6-2-1-1-xc17",
+        "section": "초6::2-1 분수의 나눗셈::2-1-1 분모가 같은 (분수)÷(분수) 알아보기",
+        "term": "통분이 필요 없는 나눗셈",
+        "kind": "방법",
+        "level": "중",
+        "definition": "분모가 같고 나누는 분수가 $0$이 아닌 분수의 나눗셈에서는, 이미 조각의 크기가 같으므로 {통분} 과정을 생략할 수 있다."
+      }
+    },
+    {
+      "id": "e6-2-1-1-xc18",
+      "sourceIndex": 2175,
+      "proposalFingerprint": "14103fbf2cdb6f27e1fe4f53b3b39e07fb9638ebf65f0098d74c139172024372",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "bQuestion": {
+        "prompt": "나누어지는 분수가 $\\frac{6}{7}$으로 일정할 때, 나누는 분수가 $\\frac{1}{7}$, $\\frac{2}{7}$, $\\frac{3}{7}$으로 커지면 몫은 각각 얼마이고 어떻게 변하나요?",
+        "answer": "몫은 $6$, $3$, $2$입니다. 나누는 분수가 클수록 몫은 작아집니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$6$, $3$, $2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "몫이 작아진다",
+              "몫이 줄어든다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$0$보다 큰 나누어지는 분수가 일정할 때, $0$보다 큰 나누는 분수가 클수록 몫은 {작아진다}.",
+        "acceptedAnswers": [
+          [
+            "작아진다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "original": {
+        "id": "e6-2-1-1-xc18",
+        "section": "초6::2-1 분수의 나눗셈::2-1-1 분모가 같은 (분수)÷(분수) 알아보기",
+        "term": "나누는 분수가 클수록",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$0$보다 큰 나누어지는 분수가 일정할 때, $0$보다 큰 나누는 분수가 클수록 몫은 {작아진다}."
+      }
+    },
+    {
+      "id": "e6-2-1-1-xc19",
+      "sourceIndex": 2176,
+      "proposalFingerprint": "6693a259fb5b73dbc6afb534954abc57702f597b52eb66661afe73e7beb8d067",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "bQuestion": {
+        "prompt": "$\\frac{1}{2}\\div\\frac{1}{4}$에서 $\\frac{1}{2}$을 크기가 같은 $\\frac{2}{4}$로 바꾸어 계산해도 몫이 같을까요? 두 분수를 각각 크기가 같은 분수로 바꾸어 써도 몫이 같은지 쓰고, 그 까닭을 말하세요.",
+        "answer": "몫이 같습니다. 바꾼 분수는 크기가 같은 수이고, 몫은 두 수의 크기만으로 정해지는 몇 배인지이기 때문입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "몫이 같다",
+              "변하지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분수의 크기가 같다",
+              "같은 수이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "나누는 분수가 $0$이 아닐 때, 두 분수를 각각 원래 분수와 크기가 같은 분수로 바꾸어 써도 몫은 {같다}.",
+        "acceptedAnswers": [
+          [
+            "같다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "original": {
+        "id": "e6-2-1-1-xc19",
+        "section": "초6::2-1 분수의 나눗셈::2-1-1 분모가 같은 (분수)÷(분수) 알아보기",
+        "term": "분수를 바꾸어 써도 같은 몫",
+        "kind": "성질",
+        "level": "상",
+        "definition": "나누는 분수가 $0$이 아닐 때, 두 분수를 각각 원래 분수와 크기가 같은 분수로 바꾸어 써도 몫은 {같다}."
+      }
+    },
+    {
+      "id": "e6-2-1-1-xc22",
+      "sourceIndex": 2177,
+      "proposalFingerprint": "6c678ec609ded554f4f29ab81643e4b08e81af7f8cb9de43fa7bb5247a6b2d8b",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "bQuestion": {
+        "prompt": "나누는 분수가 $0$이 아닐 때, 분수의 나눗셈 몫은 두 분수 사이의 어떤 관계를 나타내나요? $\\frac{6}{7}\\div\\frac{2}{7}=3$이라면 이 $3$의 뜻도 말하세요.",
+        "answer": "나누어지는 분수가 나누는 분수의 몇 배인지를 나타냅니다. $\\frac{6}{7}$은 $\\frac{2}{7}$의 $3$배입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나누어지는 분수가 나누는 분수의 몇 배",
+              "나누는 분수의 몇 배인지"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{6}{7}$은 $\\frac{2}{7}$의 $3$배",
+              "$3$배"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "나누는 분수가 $0$이 아닐 때, 몫은 나누어지는 분수가 나누는 분수의 몇 {배}인지를 나타낸다.",
+        "acceptedAnswers": [
+          [
+            "배"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "original": {
+        "id": "e6-2-1-1-xc22",
+        "section": "초6::2-1 분수의 나눗셈::2-1-1 분모가 같은 (분수)÷(분수) 알아보기",
+        "term": "몫과 두 분수의 관계",
+        "kind": "성질",
+        "level": "상",
+        "definition": "나누는 분수가 $0$이 아닐 때, 몫은 나누어지는 분수가 나누는 분수의 몇 {배}인지를 나타낸다."
+      }
+    },
+    {
+      "id": "e6-2-1-1-xc26",
+      "sourceIndex": 2178,
+      "proposalFingerprint": "2c6796fe9ec8a99ec740498f84e07c3a821387d410b5ace1dd6d290b67425884",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "cDecision": "keep",
+      "bQuestion": {
+        "prompt": "$\\frac{6}{7}\\div\\frac{2}{7}$에서 분자끼리 $6\\div2$로 몫을 구할 수 있는 까닭을, 두 분수를 각각 $\\frac{1}{7}$이 몇 개인 수로 보고 설명하세요.",
+        "answer": "$\\frac{6}{7}$은 $\\frac{1}{7}$이 $6$개이고 $\\frac{2}{7}$는 $\\frac{1}{7}$이 $2$개입니다. 같은 단위분수의 개수인 자연수끼리 나누면 되므로 $6\\div2=3$입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{6}{7}$은 $\\frac{1}{7}$이 $6$개이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{2}{7}$는 $\\frac{1}{7}$이 $2$개이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "개수끼리 나눈다",
+              "$6\\div2$",
+              "몫은 $3$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "분모가 같은 $0$보다 큰 두 진분수나 가분수는 같은 단위분수의 개수로 나타낼 수 있다. 이 개수는 모두 {자연수}이므로, 분자끼리 나누어 몫을 구할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "자연수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "coreAfter": null,
+      "coreReason": null,
+      "original": {
+        "id": "e6-2-1-1-xc26",
+        "section": "초6::2-1 분수의 나눗셈::2-1-1 분모가 같은 (분수)÷(분수) 알아보기",
+        "term": "자연수의 나눗셈으로 바뀌는 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "분모가 같은 $0$보다 큰 두 진분수나 가분수는 같은 단위분수의 개수로 나타낼 수 있다. 이 개수는 모두 {자연수}이므로, 분자끼리 나누어 몫을 구할 수 있다."
+      }
+    }
+  ]
+}

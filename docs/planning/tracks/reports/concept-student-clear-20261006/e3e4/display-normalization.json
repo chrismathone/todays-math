@@ -1,0 +1,4468 @@
+[
+  {
+    "id": "e3-1-1-3-c3",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "십 1개를 일의 자리로 내려 주어 십의 자리 숫자가 4에서 3으로 줄었기 때문이다.",
+    "after": "십 $1$개를 일의 자리로 내려 주어 십의 자리 숫자가 $4$에서 $3$으로 줄었기 때문이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-1-4-c2",
+    "field": "studentLabel",
+    "before": "십의 자리가 0일 때 받아내림",
+    "after": "십의 자리가 $0$일 때 받아내림",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-3-1-c7",
+    "field": "bAnswer",
+    "before": "(1) 사탕 $12$개를 $3$명에게 똑같이 나누어 주면 한 명이 $4$개씩 받는다. 여기서 $4$는 한 명이 받는 수이다. (2) 사탕 $12$개를 $3$개씩 묶으면 $4$묶음이 된다. 여기서 $4$는 묶음의 수이다.",
+    "after": "($1$) 사탕 $12$개를 $3$명에게 똑같이 나누어 주면 한 명이 $4$개씩 받는다. 여기서 $4$는 한 명이 받는 수이다. ($2$) 사탕 $12$개를 $3$개씩 묶으면 $4$묶음이 된다. 여기서 $4$는 묶음의 수이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-3-1-c7",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "12개를 3명에게 똑같이 나눠 한 명이 4개 받는 상황",
+    "after": "$12$개를 $3$명에게 똑같이 나눠 한 명이 $4$개 받는 상황",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-3-1-c7",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "12개를 3개씩 묶어 4묶음이 되는 상황",
+    "after": "$12$개를 $3$개씩 묶어 $4$묶음이 되는 상황",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-3-1-c7",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "4가 한 사람의 개수인지 묶음 수인지 각각 구별한다",
+    "after": "$4$가 한 사람의 개수인지 묶음 수인지 각각 구별한다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-3-1-c8",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "2명이면 한 명당 6개, 6명이면 한 명당 2개",
+    "after": "$2$명이면 한 명당 $6$개, $6$명이면 한 명당 $2$개",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-3-2-c1",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "몫은 9이다",
+    "after": "몫은 $9$이다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-3-2-c1",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "5개씩 9묶음이 45개이므로 45개를 5개씩 묶으면 9묶음이다",
+    "after": "$5$개씩 $9$묶음이 $45$개이므로 $45$개를 $5$개씩 묶으면 $9$묶음이다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-1-c2",
+    "field": "studentLabel",
+    "before": "(몇십)×(몇) 계산하기",
+    "after": "(몇십)$\\times$(몇) 계산하기",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-1-c3",
+    "field": "studentLabel",
+    "before": "3×4=12의 12가 뜻하는 것",
+    "after": "$3\\times 4=12$의 $12$가 뜻하는 것",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-1-c1",
+    "field": "studentLabel",
+    "before": "1 cm보다 작은 길이",
+    "after": "$1$ cm보다 작은 길이",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-1-c3",
+    "field": "studentLabel",
+    "before": "눈금 0에 맞추지 않고 재기",
+    "after": "눈금 $0$에 맞추지 않고 재기",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-2-c1",
+    "field": "studentLabel",
+    "before": "1 km의 길이",
+    "after": "$1$ km의 길이",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-5-c3",
+    "field": "studentLabel",
+    "before": "분자가 1인 분수의 크기 비교",
+    "after": "분자가 $1$인 분수의 크기 비교",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-6-c2",
+    "field": "studentLabel",
+    "before": "소수 2.4를 쓰는 방법",
+    "after": "소수 $2.4$를 쓰는 방법",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-6-c3",
+    "field": "studentLabel",
+    "before": "0.6과 0.1",
+    "after": "$0.6$과 $0.1$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-6-c4",
+    "field": "studentLabel",
+    "before": "1.3과 0.1",
+    "after": "$1.3$과 $0.1$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-7-c3",
+    "field": "studentLabel",
+    "before": "0.1의 개수로 소수 비교",
+    "after": "$0.1$의 개수로 소수 비교",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-1-c2",
+    "field": "studentLabel",
+    "before": "213 × 2 나누어 곱하기",
+    "after": "$213 \\times  2$ 나누어 곱하기",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-1-c3",
+    "field": "studentLabel",
+    "before": "201 × 4의 곱 쓰기",
+    "after": "$201 \\times  4$의 곱 쓰기",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-3-c3",
+    "field": "studentLabel",
+    "before": "20 × 30 계산의 뜻",
+    "after": "$20 \\times  30$ 계산의 뜻",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-4-c3",
+    "field": "studentLabel",
+    "before": "23 × 14 나누어 계산하기",
+    "after": "$23 \\times  14$ 나누어 계산하기",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-4-c2",
+    "field": "studentLabel",
+    "before": "618 ÷ 3의 몫 쓰기",
+    "after": "$618 \\div  3$의 몫 쓰기",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-2-c1",
+    "field": "studentLabel",
+    "before": "전체의 4분의 1",
+    "after": "전체의 $4$분의 $1$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-2-c2",
+    "field": "studentLabel",
+    "before": "전체의 5분의 1 구하기",
+    "after": "전체의 $5$분의 $1$ 구하기",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-2-c3",
+    "field": "studentLabel",
+    "before": "같은 전체의 3분의 1과 6분의 1",
+    "after": "같은 전체의 $3$분의 $1$과 $6$분의 $1$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-3-c1",
+    "field": "studentLabel",
+    "before": "20의 4분의 3의 뜻",
+    "after": "$20$의 $4$분의 $3$의 뜻",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-5-c2",
+    "field": "studentLabel",
+    "before": "2와 3분의 1을 가분수로 바꾸기",
+    "after": "$2$와 $3$분의 $1$을 가분수로 바꾸기",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-5-c3",
+    "field": "studentLabel",
+    "before": "3분의 7을 대분수로 바꾸기",
+    "after": "$3$분의 $7$을 대분수로 바꾸기",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-5-2-c3",
+    "field": "studentLabel",
+    "before": "1 L와 mL",
+    "after": "$1$ L와 mL",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-5-5-c4",
+    "field": "studentLabel",
+    "before": "1 kg과 g",
+    "after": "$1$ kg과 g",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e4-1-1-1-c1",
+    "field": "studentLabel",
+    "before": "1000이 10개인 수",
+    "after": "$1000$이 $10$개인 수",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e4-1-1-1-c2",
+    "field": "studentLabel",
+    "before": "10000과 1000",
+    "after": "$10000$과 $1000$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e4-1-1-1-c2",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "10배이다",
+    "after": "$10$배이다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e4-1-1-1-c2",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "차는 9000이다",
+    "after": "차는 $9000$이다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e4-1-1-3-c1",
+    "field": "studentLabel",
+    "before": "10000이 10개인 수",
+    "after": "$10000$이 $10$개인 수",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e4-1-1-3-c2",
+    "field": "studentLabel",
+    "before": "10000이 100개인 수",
+    "after": "$10000$이 $100$개인 수",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e4-1-2-3-c3",
+    "field": "studentLabel",
+    "before": "90°와 180°인 각의 분류",
+    "after": "$90^\\circ$와 $180^\\circ$인 각의 분류",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e4-1-3-1-c1",
+    "field": "studentLabel",
+    "before": "몇십은 10이 몇 개인 수",
+    "after": "몇십은 $10$이 몇 개인 수",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e4-1-3-4-c2",
+    "field": "studentLabel",
+    "before": "10의 개수로 바꾸어 나누기",
+    "after": "$10$의 개수로 바꾸어 나누기",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e4-2-1-4-c1",
+    "field": "studentLabel",
+    "before": "1을 분수로 나타내기",
+    "after": "$1$을 분수로 나타내기",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e4-2-2-3-c3",
+    "field": "studentLabel",
+    "before": "정삼각형의 한 각이 60°인 까닭",
+    "after": "정삼각형의 한 각이 $60^\\circ$인 까닭",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e4-2-3-1-c1",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "나타내는 값은 0.7이다",
+    "after": "나타내는 값은 $0.7$이다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e4-2-3-1-c1",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "0.1이 7개 모인 값이다",
+    "after": "$0.1$이 $7$개 모인 값이다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e4-2-3-1-c3",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "5는 소수 셋째 자리이고 나타내는 값은 0.005이다",
+    "after": "$5$는 소수 셋째 자리이고 나타내는 값은 $0.005$이다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e4-2-3-2-c2",
+    "field": "studentLabel",
+    "before": "소수 오른쪽 끝의 0",
+    "after": "소수 오른쪽 끝의 $0$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e4-2-3-3-c1",
+    "field": "studentLabel",
+    "before": "1을 1000으로 나눈 것 중 하나",
+    "after": "$1$을 $1000$으로 나눈 것 중 하나",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e4-2-3-3-c2",
+    "field": "studentLabel",
+    "before": "0.001, 0.01, 0.1 사이의 관계",
+    "after": "$0.001$, $0.01$, $0.1$ 사이의 관계",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e4-2-3-3-c3",
+    "field": "studentLabel",
+    "before": "소수를 10배 하기",
+    "after": "소수를 $10$배 하기",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-1-3-xc10",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "백의 자리에서 1을 받아내림",
+    "after": "백의 자리에서 $1$을 받아내림",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-1-3-xc10",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "십의 자리가 10 커져 13-5로 계산",
+    "after": "십의 자리가 $10$ 커져 $13-5$로 계산",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-1-3-xc13",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "482는 500, 217은 200으로 바꿈",
+    "after": "$482$는 $500$, $217$은 $200$으로 바꿈",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-1-3-xc13",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "어림한 차 약 300",
+    "after": "어림한 차 약 $300$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-1-3-xc14",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "위의 숫자 2가 아래 숫자 6보다 작음",
+    "after": "위의 숫자 $2$가 아래 숫자 $6$보다 작음",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-1-3-xc18",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "백 모형 1개를 십 모형 10개로 풂",
+    "after": "백 모형 $1$개를 십 모형 $10$개로 풂",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-1-3-xc18",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "십 모형 12개에서 6개를 덜어 냄",
+    "after": "십 모형 $12$개에서 $6$개를 덜어 냄",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-1-3-xc20",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "받아내려 12-8로 계산",
+    "after": "받아내려 $12-8$로 계산",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-1-3-xc21",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "두 수에 똑같이 2를 더함",
+    "after": "두 수에 똑같이 $2$를 더함",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-1-3-xc22",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "받아올림: 아랫자리 10개를 윗자리 1개로 묶음",
+    "after": "받아올림: 아랫자리 $10$개를 윗자리 $1$개로 묶음",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-1-3-xc22",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "받아내림: 윗자리 1개를 아랫자리 10개로 풂",
+    "after": "받아내림: 윗자리 $1$개를 아랫자리 $10$개로 풂",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-1-3-xc23",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "752-257",
+    "after": "$752-257$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-1-3-xc24",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "600-400으로 어림한 차 약 200",
+    "after": "$600-400$으로 어림한 차 약 $200$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-1-3-xc24",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "325는 어림과 크게 달라 다시 계산",
+    "after": "$325$는 어림과 크게 달라 다시 계산",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-1-3-xc26",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "148에 얼마를 더하면 352가 되는지 생각",
+    "after": "$148$에 얼마를 더하면 $352$가 되는지 생각",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-1-3-xc27",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "500-340의 차가 더 작음",
+    "after": "$500-340$의 차가 더 작음",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-1-4-xc1",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "십 1개를 낱개 10개로 바꿈",
+    "after": "십 $1$개를 낱개 $10$개로 바꿈",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-1-4-xc1",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "백 1개를 십 10개로 바꿈",
+    "after": "백 $1$개를 십 $10$개로 바꿈",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-1-4-xc6",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "백의 자리 1은 100",
+    "after": "백의 자리 $1$은 $100$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-1-4-xc6",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "100은 십 10개",
+    "after": "$100$은 십 $10$개",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-1-4-xc9",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "0에서 6을 뺄 수 없음",
+    "after": "$0$에서 $6$을 뺄 수 없음",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-1-4-xc9",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "십의 자리에서 받아내려 10-6",
+    "after": "십의 자리에서 받아내려 $10-6$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-1-4-xc10",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "일의 자리에 1을 내려 주어 2",
+    "after": "일의 자리에 $1$을 내려 주어 $2$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-1-4-xc10",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "백의 자리에서 10을 받아 12",
+    "after": "백의 자리에서 $10$을 받아 $12$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-1-4-xc11",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "백 1개를 십 10개로 풂",
+    "after": "백 $1$개를 십 $10$개로 풂",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-1-4-xc11",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "십 1개를 낱개 10개로 풂",
+    "after": "십 $1$개를 낱개 $10$개로 풂",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-1-4-xc11",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "십의 자리 9, 일의 자리 10",
+    "after": "십의 자리 $9$, 일의 자리 $10$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-1-4-xc14",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "내려 주고 남은 2에서 6을 뺄 수 없음",
+    "after": "내려 주고 남은 $2$에서 $6$을 뺄 수 없음",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-1-4-xc16",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "십의 자리도 0이라 받아내릴 수 없음",
+    "after": "십의 자리도 $0$이라 받아내릴 수 없음",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-1-4-xc16",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "백 1개를 풀어야 함",
+    "after": "백 $1$개를 풀어야 함",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-1-4-xc17",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "700-356",
+    "after": "$700-356$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-1-4-xc18",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "0에서 5를 뺄 수 없음",
+    "after": "$0$에서 $5$를 뺄 수 없음",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-1-4-xc18",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "백의 자리에서 받아내려 10-5",
+    "after": "백의 자리에서 받아내려 $10-5$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-1-4-xc19",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "백의 자리가 1을 내려 주어 3",
+    "after": "백의 자리가 $1$을 내려 주어 $3$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-1-4-xc19",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "백의 자리 3-3=0",
+    "after": "백의 자리 $3-3=0$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-1-4-xc20",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "두 수에서 똑같이 1씩 빼면 차가 같음",
+    "after": "두 수에서 똑같이 $1$씩 빼면 차가 같음",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-1-4-xc20",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "십·일의 자리가 9가 되어 받아내림이 없음",
+    "after": "십·일의 자리가 $9$가 되어 받아내림이 없음",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-1-4-xc24",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "604-278",
+    "after": "$604-278$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-1-4-xc27",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "276에서 300까지 24",
+    "after": "$276$에서 $300$까지 $24$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-1-4-xc27",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "300에서 500까지 200",
+    "after": "$300$에서 $500$까지 $200$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-1-4-xc27",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "올라간 수의 합 224가 차",
+    "after": "올라간 수의 합 $224$가 차",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-2-1-xc9",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "직선은 1개뿐",
+    "after": "직선은 $1$개뿐",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-2-1-xc14",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "선분 2개",
+    "after": "선분 $2$개",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-2-1-xc14",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "반직선 1개",
+    "after": "반직선 $1$개",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-2-1-xc14",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "직선 0개",
+    "after": "직선 $0$개",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-2-2-xc6",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "꼭짓점 1개, 변 2개",
+    "after": "꼭짓점 $1$개, 변 $2$개",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-2-2-xc14",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "4개",
+    "after": "$4$개",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-2-2-xc22",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "4개",
+    "after": "$4$개",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-2-3-xc1",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "3개로 둘러싸임",
+    "after": "$3$개로 둘러싸임",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-2-3-xc2",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "변은 둘러싼 곧은 선, 3개",
+    "after": "변은 둘러싼 곧은 선, $3$개",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-2-3-xc2",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "꼭짓점은 두 변이 만나는 점, 3개",
+    "after": "꼭짓점은 두 변이 만나는 점, $3$개",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-2-3-xc6",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "각은 3개",
+    "after": "각은 $3$개",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-2-3-xc6",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "직각은 1개",
+    "after": "직각은 $1$개",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-2-3-xc9",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "변이 3개인 삼각형",
+    "after": "변이 $3$개인 삼각형",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-2-3-xc10",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "곧은 선(변) 3개로 둘러싸인 도형",
+    "after": "곧은 선(변) $3$개로 둘러싸인 도형",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-2-3-xc18",
+    "field": "bAnswer",
+    "before": "둘 다 곧은 선 3개로만 둘러싸여 있습니다.",
+    "after": "둘 다 곧은 선 $3$개로만 둘러싸여 있습니다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-2-3-xc18",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "3개",
+    "after": "$3$개",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-2-3-xc19",
+    "field": "bPrompt",
+    "before": "직각삼각형 하나를 곧은 선 하나로 잘라 작은 직각삼각형 2개로 만들려고 합니다. 어느 꼭짓점에서 어느 변으로, 어떻게 선을 그어야 하는지 쓰세요.",
+    "after": "직각삼각형 하나를 곧은 선 하나로 잘라 작은 직각삼각형 $2$개로 만들려고 합니다. 어느 꼭짓점에서 어느 변으로, 어떻게 선을 그어야 하는지 쓰세요.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-2-3-xc20",
+    "field": "bPrompt",
+    "before": "점 3개를 곧은 선으로 이어도 삼각형이 만들어지지 않을 때가 있습니다. 세 점이 어떻게 놓여 있을 때인지 쓰고, 그때 삼각형이 되지 않는 까닭을 쓰세요.",
+    "after": "점 $3$개를 곧은 선으로 이어도 삼각형이 만들어지지 않을 때가 있습니다. 세 점이 어떻게 놓여 있을 때인지 쓰고, 그때 삼각형이 되지 않는 까닭을 쓰세요.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-2-4-xc1",
+    "field": "bAnswer",
+    "before": "곧은 선 4개로 둘러싸인 도형입니다.",
+    "after": "곧은 선 $4$개로 둘러싸인 도형입니다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-2-4-xc10",
+    "field": "bAnswer",
+    "before": "가로와 세로를 각각 2번씩 더합니다. 직사각형에는 길이가 같은 가로가 2개, 세로가 2개 있기 때문입니다.",
+    "after": "가로와 세로를 각각 $2$번씩 더합니다. 직사각형에는 길이가 같은 가로가 $2$개, 세로가 $2$개 있기 때문입니다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-2-4-xc10",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "가로와 세로를 2번씩",
+    "after": "가로와 세로를 $2$번씩",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-2-4-xc10",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "가로 2개, 세로 2개(마주 보는 변의 길이가 같음)",
+    "after": "가로 $2$개, 세로 $2$개(마주 보는 변의 길이가 같음)",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-2-4-xc13",
+    "field": "bPrompt",
+    "before": "직각이 1개만 있는 사각형은 직사각형인가요, 아닌가요? 답과 그 까닭을 쓰세요.",
+    "after": "직각이 $1$개만 있는 사각형은 직사각형인가요, 아닌가요? 답과 그 까닭을 쓰세요.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-2-4-xc14",
+    "field": "bAnswer",
+    "before": "직사각형도 곧은 선 4개로 둘러싸인 도형이기 때문입니다.",
+    "after": "직사각형도 곧은 선 $4$개로 둘러싸인 도형이기 때문입니다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-2-4-xc14",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "곧은 선 4개로 둘러싸임",
+    "after": "곧은 선 $4$개로 둘러싸임",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-2-4-xc17",
+    "field": "bPrompt",
+    "before": "직사각형 종이를 곧은 선 하나로 잘라 크기가 같은 작은 직사각형 2개를 만들려고 합니다. 어디와 어디를 잇는 선으로 잘라야 하는지 쓰세요.",
+    "after": "직사각형 종이를 곧은 선 하나로 잘라 크기가 같은 작은 직사각형 $2$개를 만들려고 합니다. 어디와 어디를 잇는 선으로 잘라야 하는지 쓰세요.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-2-4-xc19",
+    "field": "bPrompt",
+    "before": "직사각형 안에 세로선 하나를 그어 둘로 나누었습니다. 이 그림에서 찾을 수 있는 크고 작은 직사각형은 모두 몇 개인지 쓰고, 2개가 아닌 까닭을 쓰세요.",
+    "after": "직사각형 안에 세로선 하나를 그어 둘로 나누었습니다. 이 그림에서 찾을 수 있는 크고 작은 직사각형은 모두 몇 개인지 쓰고, $2$개가 아닌 까닭을 쓰세요.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-2-4-xc19",
+    "field": "bAnswer",
+    "before": "3개입니다. 작은 직사각형 2개 말고 둘을 합친 전체도 직사각형이기 때문입니다.",
+    "after": "$3$개입니다. 작은 직사각형 $2$개 말고 둘을 합친 전체도 직사각형이기 때문입니다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-2-4-xc19",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "3개",
+    "after": "$3$개",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-2-5-xc6",
+    "field": "bAnswer",
+    "before": "$5$를 4번 더하면 됩니다. 정사각형은 네 변의 길이가 모두 같기 때문입니다.",
+    "after": "$5$를 $4$번 더하면 됩니다. 정사각형은 네 변의 길이가 모두 같기 때문입니다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-2-5-xc6",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "한 변을 4번 더함",
+    "after": "한 변을 $4$번 더함",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-2-5-xc10",
+    "field": "bAnswer",
+    "before": "정사각형도 곧은 선 4개로 둘러싸인 도형이기 때문입니다.",
+    "after": "정사각형도 곧은 선 $4$개로 둘러싸인 도형이기 때문입니다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-2-5-xc10",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "곧은 선 4개로 둘러싸임",
+    "after": "곧은 선 $4$개로 둘러싸임",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-2-5-xc14",
+    "field": "bAnswer",
+    "before": "정사각형은 네 변의 길이가 모두 같아서, 네 변의 길이의 합은 한 변의 길이를 4번 더한 것이기 때문입니다.",
+    "after": "정사각형은 네 변의 길이가 모두 같아서, 네 변의 길이의 합은 한 변의 길이를 $4$번 더한 것이기 때문입니다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-2-5-xc15",
+    "field": "bPrompt",
+    "before": "정사각형 종이를 곧은 선 2개로 잘라 크기가 같은 작은 정사각형 4개를 만들려고 합니다. 어떤 선 2개로 잘라야 하는지 쓰세요.",
+    "after": "정사각형 종이를 곧은 선 $2$개로 잘라 크기가 같은 작은 정사각형 $4$개를 만들려고 합니다. 어떤 선 $2$개로 잘라야 하는지 쓰세요.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-2-5-xc20",
+    "field": "bPrompt",
+    "before": "정사각형을 가로와 세로로 똑같이 둘씩 나누어 작은 칸 4개를 만들었습니다. 이 그림에서 찾을 수 있는 크고 작은 정사각형은 모두 몇 개인지 쓰고, 4개가 아닌 까닭을 쓰세요.",
+    "after": "정사각형을 가로와 세로로 똑같이 둘씩 나누어 작은 칸 $4$개를 만들었습니다. 이 그림에서 찾을 수 있는 크고 작은 정사각형은 모두 몇 개인지 쓰고, $4$개가 아닌 까닭을 쓰세요.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-2-5-xc20",
+    "field": "bAnswer",
+    "before": "5개입니다. 작은 정사각형 4개 말고 전체도 정사각형이기 때문입니다.",
+    "after": "$5$개입니다. 작은 정사각형 $4$개 말고 전체도 정사각형이기 때문입니다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-2-5-xc20",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "5개",
+    "after": "$5$개",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-2-5-xc25",
+    "field": "bAnswer",
+    "before": "가로와 세로가 모두 작은 정사각형 한 변의 2배가 되어 길이가 서로 같기 때문입니다.",
+    "after": "가로와 세로가 모두 작은 정사각형 한 변의 $2$배가 되어 길이가 서로 같기 때문입니다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-2-5-xc25",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "가로와 세로가 모두 한 변의 2배",
+    "after": "가로와 세로가 모두 한 변의 $2$배",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-2-5-xc26",
+    "field": "bAnswer",
+    "before": "긴 변이 짧은 변의 2배가 되어 네 변의 길이가 모두 같지 않기 때문입니다.",
+    "after": "긴 변이 짧은 변의 $2$배가 되어 네 변의 길이가 모두 같지 않기 때문입니다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-2-5-xc26",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "긴 변이 짧은 변의 2배",
+    "after": "긴 변이 짧은 변의 $2$배",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-3-1-xc13",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "묶음마다 개수가 같다(6개씩)",
+    "after": "묶음마다 개수가 같다($6$개씩)",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-3-1-xc15",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "6묶음과 2묶음",
+    "after": "$6$묶음과 $2$묶음",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-3-1-xc17",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "0이 될 때까지 뺌",
+    "after": "$0$이 될 때까지 뺌",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-3-1-xc20",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "4개씩 묶으면 남는 것이 있음(2개)",
+    "after": "$4$개씩 묶으면 남는 것이 있음($2$개)",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-3-1-xc21",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "4개씩 6묶음을 모으면 전체",
+    "after": "$4$개씩 $6$묶음을 모으면 전체",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-3-2-xc3",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "$12\\div3$은 3에 무엇을 곱하면 12가 되는지 찾는 것",
+    "after": "$12\\div3$은 $3$에 무엇을 곱하면 $12$가 되는지 찾는 것",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-3-2-xc3",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "몫 4",
+    "after": "몫 $4$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-3-2-xc6",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "7에 4를 곱해 28이 됨",
+    "after": "$7$에 $4$를 곱해 $28$이 됨",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-3-2-xc13",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "곱이 24(나누어지는 수)와 같은지 확인",
+    "after": "곱이 $24$(나누어지는 수)와 같은지 확인",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-3-2-xc15",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "한 번 뛸 때마다 6씩 한 묶음",
+    "after": "한 번 뛸 때마다 $6$씩 한 묶음",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-3-2-xc17",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "24는 6과 4를 곱한 수라 둘보다 작을 수 없음",
+    "after": "$24$는 $6$과 $4$를 곱한 수라 둘보다 작을 수 없음",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-3-2-xc18",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "6단에서 42 찾기",
+    "after": "$6$단에서 $42$ 찾기",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-3-2-xc18",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "$6\\times7=42$이므로 몫 7",
+    "after": "$6\\times7=42$이므로 몫 $7$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-3-2-xc19",
+    "field": "cAfter",
+    "before": "$3\\times5=15$를 알면 나눗셈식 $15\\div3=${5}와 $15\\div5=${3}을 만들 수 있다.",
+    "after": "$3\\times5=15$를 알면 나눗셈식 $15\\div3=${$5$}와 $15\\div5=${$3$}을 만들 수 있다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-3-2-xc20",
+    "field": "cAfter",
+    "before": "$35=5\\times7$이라는 식을 보면 $35$는 $5$로도, {7}로도 남김없이 나누어짐을 알 수 있다.",
+    "after": "$35=5\\times7$이라는 식을 보면 $35$는 $5$로도, {$7$}로도 남김없이 나누어짐을 알 수 있다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-3-2-xc21",
+    "field": "cAfter",
+    "before": "어떤 수에 $6$을 곱하면 $48$이다. 어떤 수는 $48\\div${6}$=${8}로 구한다.",
+    "after": "어떤 수에 $6$을 곱하면 $48$이다. 어떤 수는 $48\\div${$6$}$=${$8$}로 구한다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-3-2-xc23",
+    "field": "cAfter",
+    "before": "$36$을 어떤 수로 나누었더니 몫이 $4$였다. 어떤 수는 $36\\div${4}$=${9}이다.",
+    "after": "$36$을 어떤 수로 나누었더니 몫이 $4$였다. 어떤 수는 $36\\div${$4$}$=${$9$}이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-3-2-xc24",
+    "field": "cAfter",
+    "before": "$4\\times3=12$, $4\\times4=16$이므로 $12\\div3$과 $16\\div4$의 몫은 모두 {4}이다.",
+    "after": "$4\\times3=12$, $4\\times4=16$이므로 $12\\div3$과 $16\\div4$의 몫은 모두 {$4$}이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-3-3-xc3",
+    "field": "cAfter",
+    "before": "$24\\div6$의 몫을 찾으려고 $6\\times1=6$, $6\\times2=12$, $6\\times3=18$, $6\\times4=${24}까지 차례로 곱해 본다. 나누어지는 수가 나왔으므로 몫은 {4}이다.",
+    "after": "$24\\div6$의 몫을 찾으려고 $6\\times1=6$, $6\\times2=12$, $6\\times3=18$, $6\\times4=${$24$}까지 차례로 곱해 본다. 나누어지는 수가 나왔으므로 몫은 {$4$}이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-3-3-xc4",
+    "field": "cAfter",
+    "before": "$15\\div3$의 몫은 $3\\times${5}$=15$가 되게 하는 수이다.",
+    "after": "$15\\div3$의 몫은 $3\\times${$5$}$=15$가 되게 하는 수이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-3-3-xc9",
+    "field": "cAfter",
+    "before": "$8\\times5=40$을 나눗셈식으로 바꾸면 {40}$\\div8=5$이다.",
+    "after": "$8\\times5=40$을 나눗셈식으로 바꾸면 {$40$}$\\div8=5$이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-3-3-xc11",
+    "field": "bPrompt",
+    "before": "$20\\div4$의 몫을 '4에 곱해서 20이 되는 수'로 찾아도 되는 까닭을, $20$개를 $4$개씩 묶는 상황으로 설명해 보세요.",
+    "after": "$20\\div4$의 몫을 '$4$에 곱해서 $20$이 되는 수'로 찾아도 되는 까닭을, $20$개를 $4$개씩 묶는 상황으로 설명해 보세요.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-3-3-xc11",
+    "field": "cAfter",
+    "before": "$20\\div4$의 몫은 $4$와 곱해서 {20}이 되는 수이므로 {5}이다.",
+    "after": "$20\\div4$의 몫은 $4$와 곱해서 {$20$}이 되는 수이므로 {$5$}이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-3-3-xc18",
+    "field": "cAfter",
+    "before": "$42$를 어떤 수로 나누었더니 몫이 $6$이다. 어떤 수는 $6$을 곱해서 {42}가 되는 수이므로 {7}이다.",
+    "after": "$42$를 어떤 수로 나누었더니 몫이 $6$이다. 어떤 수는 $6$을 곱해서 {$42$}가 되는 수이므로 {$7$}이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-3-3-xc21",
+    "field": "cAfter",
+    "before": "$42\\div7$의 몫을 $7\\times6=42$에서 찾을 때, 몫은 $42$가 아니라 {6}이다.",
+    "after": "$42\\div7$의 몫을 $7\\times6=42$에서 찾을 때, 몫은 $42$가 아니라 {$6$}이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-3-3-xc26",
+    "field": "cAfter",
+    "before": "$12=2\\times6$이고 $12=3\\times4$이다. 그래서 $12\\div2=${6}, $12\\div3=${4}처럼 $12$를 나누는 나눗셈식도 여러 개이다.",
+    "after": "$12=2\\times6$이고 $12=3\\times4$이다. 그래서 $12\\div2=${$6$}, $12\\div3=${$4$}처럼 $12$를 나누는 나눗셈식도 여러 개이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-3-4-xc3",
+    "field": "cAfter",
+    "before": "$35\\div5$의 몫을 구하려면 {5}단 곱셈구구에서 곱이 {35}인 식을 찾는다.",
+    "after": "$35\\div5$의 몫을 구하려면 {$5$}단 곱셈구구에서 곱이 {$35$}인 식을 찾는다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-3-4-xc6",
+    "field": "cAfter",
+    "before": "$7\\div1=${7}처럼 어떤 수를 $1$로 나누면 몫은 처음 수와 {같다}.",
+    "after": "$7\\div1=${$7$}처럼 어떤 수를 $1$로 나누면 몫은 처음 수와 {같다}.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-3-4-xc14",
+    "field": "cAfter",
+    "before": "$7\\times7=49$이므로 $49\\div7=${7}이다. 이처럼 같은 수를 두 번 곱한 수를 그 수로 나누면 몫은 나누는 수와 {같다}.",
+    "after": "$7\\times7=49$이므로 $49\\div7=${$7$}이다. 이처럼 같은 수를 두 번 곱한 수를 그 수로 나누면 몫은 나누는 수와 {같다}.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-3-4-xc17",
+    "field": "cAfter",
+    "before": "곱셈구구로 구하는 나눗셈의 몫은 $1$부터 {9}까지의 수이다.",
+    "after": "곱셈구구로 구하는 나눗셈의 몫은 $1$부터 {$9$}까지의 수이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-3-4-xc18",
+    "field": "cAfter",
+    "before": "$56\\div8=7$이 맞는지 확인하려면 $8\\times7$을 계산해 {56}이 나오는지 본다.",
+    "after": "$56\\div8=7$이 맞는지 확인하려면 $8\\times7$을 계산해 {$56$}이 나오는지 본다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-3-4-xc26",
+    "field": "cAfter",
+    "before": "몫과 나누는 수가 같은 나눗셈은 $4\\div2=2$, $9\\div3=3$, {16}$\\div4=4$처럼 나누어지는 수가 같은 수를 두 번 곱한 수이다.",
+    "after": "몫과 나누는 수가 같은 나눗셈은 $4\\div2=2$, $9\\div3=3$, {$16$}$\\div4=4$처럼 나누어지는 수가 같은 수를 두 번 곱한 수이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-1-xc2",
+    "field": "cAfter",
+    "before": "$40\\times3$은 $40$을 {3}번 더한 것과 같다.",
+    "after": "$40\\times3$은 $40$을 {$3$}번 더한 것과 같다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-1-xc3",
+    "field": "studentLabel",
+    "before": "십 모형으로 (몇십)×(몇) 알아보기",
+    "after": "십 모형으로 (몇십)$\\times$(몇) 알아보기",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-1-xc3",
+    "field": "cAfter",
+    "before": "$30\\times2$를 십 모형으로 놓으면 십 모형이 $3$개씩 {2}묶음으로 모두 {6}개이다.",
+    "after": "$30\\times2$를 십 모형으로 놓으면 십 모형이 $3$개씩 {$2$}묶음으로 모두 {$6$}개이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-1-xc4",
+    "field": "cAfter",
+    "before": "$2\\times3=6$이면 $20\\times3$은 $6$의 {10}배인 $60$이다.",
+    "after": "$2\\times3=6$이면 $20\\times3$은 $6$의 {$10$}배인 $60$이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-1-xc5",
+    "field": "cAfter",
+    "before": "$70\\times4$는 $7\\times4=${28}을 계산한 뒤 끝에 $0$을 하나 붙여 {280}이다.",
+    "after": "$70\\times4$는 $7\\times4=${$28$}을 계산한 뒤 끝에 $0$을 하나 붙여 {$280$}이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-1-xc10",
+    "field": "cAfter",
+    "before": "$60\\times4$는 십의 묶음이 $6\\times4=${24}개이다. 십의 묶음이 $10$개보다 많으므로 곱은 {세} 자리 수이다.",
+    "after": "$60\\times4$는 십의 묶음이 $6\\times4=${$24$}개이다. 십의 묶음이 $10$개보다 많으므로 곱은 {세} 자리 수이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-1-xc19",
+    "field": "cAfter",
+    "before": "$5\\times6=30$처럼 곱셈구구의 곱이 몇십이면, $50\\times6=${300}처럼 (몇십)$\\times$(몇)의 곱은 몇백이 된다.",
+    "after": "$5\\times6=30$처럼 곱셈구구의 곱이 몇십이면, $50\\times6=${$300$}처럼 (몇십)$\\times$(몇)의 곱은 몇백이 된다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-1-xc22",
+    "field": "cAfter",
+    "before": "$80\\times3$을 $24$라고 쓰면 틀린다. $8\\times3=24$는 {십}의 묶음이 $24$개라는 뜻이므로 곱은 {240}이다.",
+    "after": "$80\\times3$을 $24$라고 쓰면 틀린다. $8\\times3=24$는 {십}의 묶음이 $24$개라는 뜻이므로 곱은 {$240$}이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-1-xc25",
+    "field": "cAfter",
+    "before": "$40\\times5$는 $40\\times4$보다 {40}만큼 크다.",
+    "after": "$40\\times5$는 $40\\times4$보다 {$40$}만큼 크다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-1-xc27",
+    "field": "cAfter",
+    "before": "$20\\times5$와 $50\\times2$는 $2\\times5$와 $5\\times2$가 모두 {10}으로 같으므로 곱도 {100}으로 같다.",
+    "after": "$20\\times5$와 $50\\times2$는 $2\\times5$와 $5\\times2$가 모두 {$10$}으로 같으므로 곱도 {$100$}으로 같다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-2-xc1",
+    "field": "cAfter",
+    "before": "$23$은 몇십인 {20}과 몇인 {3}을 합한 수이다.",
+    "after": "$23$은 몇십인 {$20$}과 몇인 {$3$}을 합한 수이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-2-xc3",
+    "field": "cAfter",
+    "before": "$42\\times2$에서 $4\\times2=8$은 {십}의 묶음이 $8$개라는 뜻이므로 {80}을 나타낸다.",
+    "after": "$42\\times2$에서 $4\\times2=8$은 {십}의 묶음이 $8$개라는 뜻이므로 {$80$}을 나타낸다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-2-xc6",
+    "field": "cAfter",
+    "before": "$13\\times2$를 수 모형으로 놓으면 $13$이 $2$묶음이므로 십 모형은 모두 {2}개, 일 모형은 모두 {6}개이다.",
+    "after": "$13\\times2$를 수 모형으로 놓으면 $13$이 $2$묶음이므로 십 모형은 모두 {$2$}개, 일 모형은 모두 {$6$}개이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-2-xc13",
+    "field": "cAfter",
+    "before": "$23+23+23$처럼 같은 수를 여러 번 더하는 것은 곱셈 $23\\times${3}으로 간단히 나타낼 수 있다.",
+    "after": "$23+23+23$처럼 같은 수를 여러 번 더하는 것은 곱셈 $23\\times${$3$}으로 간단히 나타낼 수 있다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-2-xc15",
+    "field": "cAfter",
+    "before": "$31\\times3$을 $30\\times3$으로 계산하면 실제 곱보다 $1\\times3=${3}만큼 작다.",
+    "after": "$31\\times3$을 $30\\times3$으로 계산하면 실제 곱보다 $1\\times3=${$3$}만큼 작다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-2-xc18",
+    "field": "cAfter",
+    "before": "어떤 두 자리 수에 $3$을 곱했더니 올림 없이 $69$가 되었다. 어떤 수의 십의 자리 숫자는 $6\\div3=${2}, 일의 자리 숫자는 $9\\div3=${3}이다.",
+    "after": "어떤 두 자리 수에 $3$을 곱했더니 올림 없이 $69$가 되었다. 어떤 수의 십의 자리 숫자는 $6\\div3=${$2$}, 일의 자리 숫자는 $9\\div3=${$3$}이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-2-xc19",
+    "field": "cAfter",
+    "before": "$23\\times3$의 일의 자리 곱은 $9$라서 올림이 없고, $24\\times3$의 일의 자리 곱은 {12}라서 올림이 {있다}.",
+    "after": "$23\\times3$의 일의 자리 곱은 $9$라서 올림이 없고, $24\\times3$의 일의 자리 곱은 {$12$}라서 올림이 {있다}.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-2-xc25",
+    "field": "cAfter",
+    "before": "$32\\times3$은 $32\\times2$보다 {32}만큼 크다.",
+    "after": "$32\\times3$은 $32\\times2$보다 {$32$}만큼 크다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-2-xc26",
+    "field": "cAfter",
+    "before": "$11\\times7=${77}처럼 $11$에 $0$이 아닌 한 자리 수를 곱하면 곱의 십의 자리 숫자와 일의 자리 숫자가 {같다}.",
+    "after": "$11\\times7=${$77$}처럼 $11$에 $0$이 아닌 한 자리 수를 곱하면 곱의 십의 자리 숫자와 일의 자리 숫자가 {같다}.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-3-xc1",
+    "field": "cAfter",
+    "before": "$62\\times4$에서 $6\\times4=24$는 십의 묶음 $24$개이다. 이 중 $20$개는 백의 묶음 {2}개로 바꾸고, 남은 십의 묶음 {4}개를 십의 자리에 쓴다.",
+    "after": "$62\\times4$에서 $6\\times4=24$는 십의 묶음 $24$개이다. 이 중 $20$개는 백의 묶음 {$2$}개로 바꾸고, 남은 십의 묶음 {$4$}개를 십의 자리에 쓴다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-3-xc2",
+    "field": "cAfter",
+    "before": "$52\\times3$에서 일의 자리 곱 $2\\times3=${6}은 $10$보다 작으므로 올림 없이 {일}의 자리에 그대로 쓴다.",
+    "after": "$52\\times3$에서 일의 자리 곱 $2\\times3=${$6$}은 $10$보다 작으므로 올림 없이 {일}의 자리에 그대로 쓴다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-3-xc3",
+    "field": "cAfter",
+    "before": "십의 묶음 $10$개는 백의 묶음 {1}개와 같고, 수로는 {100}이다.",
+    "after": "십의 묶음 $10$개는 백의 묶음 {$1$}개와 같고, 수로는 {$100$}이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-3-xc4",
+    "field": "cAfter",
+    "before": "$63\\times2$의 곱은 $63$을 {2}번 더한 $63+63=${126}과 같다.",
+    "after": "$63\\times2$의 곱은 $63$을 {$2$}번 더한 $63+63=${$126$}과 같다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-3-xc6",
+    "field": "cAfter",
+    "before": "$73\\times3$은 $70\\times3=${210}과 $3\\times3=${9}를 더해 {219}로 구한다.",
+    "after": "$73\\times3$은 $70\\times3=${$210$}과 $3\\times3=${$9$}를 더해 {$219$}로 구한다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-3-xc7",
+    "field": "cAfter",
+    "before": "$41\\times5$를 수 모형으로 놓으면 십 모형이 $4\\times5=${20}개이다. 십 모형 $10$개는 백 모형 $1$개로 바꾸므로 백 모형 {2}개가 된다.",
+    "after": "$41\\times5$를 수 모형으로 놓으면 십 모형이 $4\\times5=${$20$}개이다. 십 모형 $10$개는 백 모형 $1$개로 바꾸므로 백 모형 {$2$}개가 된다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-3-xc8",
+    "field": "cAfter",
+    "before": "$93\\times3$에서 십의 자리 곱은 $9\\times3=${27}이다. $10$보다 크므로 십의 자리에서 올림이 {있다}.",
+    "after": "$93\\times3$에서 십의 자리 곱은 $9\\times3=${$27$}이다. $10$보다 크므로 십의 자리에서 올림이 {있다}.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-3-xc9",
+    "field": "cAfter",
+    "before": "$42\\times3$에서 $4\\times3=12$는 낱개 $12$개가 아니라 {십}의 묶음 $12$개이므로 {120}을 나타낸다.",
+    "after": "$42\\times3$에서 $4\\times3=12$는 낱개 $12$개가 아니라 {십}의 묶음 $12$개이므로 {$120$}을 나타낸다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-3-xc13",
+    "field": "cAfter",
+    "before": "$42\\times3$은 일의 자리 곱이 $2\\times3=6$, 십의 자리 곱이 $4\\times3=${12}이다. 그래서 올림은 {십}의 자리에서만 있다.",
+    "after": "$42\\times3$은 일의 자리 곱이 $2\\times3=6$, 십의 자리 곱이 $4\\times3=${$12$}이다. 그래서 올림은 {십}의 자리에서만 있다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-3-xc16",
+    "field": "cAfter",
+    "before": "$23+23+23$에는 $20$이 $3$번, $3$이 {3}번 들어 있으므로 $23\\times3$은 $20\\times3$과 $3\\times3$의 {합}과 같다.",
+    "after": "$23+23+23$에는 $20$이 $3$번, $3$이 {$3$}번 들어 있으므로 $23\\times3$은 $20\\times3$과 $3\\times3$의 {합}과 같다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-3-xc19",
+    "field": "cAfter",
+    "before": "$32\\times3$은 십의 자리 곱이 $9$라서 올림이 없지만, $32\\times4$는 십의 자리 곱이 {12}라서 올림이 {있다}.",
+    "after": "$32\\times3$은 십의 자리 곱이 $9$라서 올림이 없지만, $32\\times4$는 십의 자리 곱이 {$12$}라서 올림이 {있다}.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-3-xc21",
+    "field": "cAfter",
+    "before": "$62\\times5$는 $62\\times4$보다 {62}만큼 크다.",
+    "after": "$62\\times5$는 $62\\times4$보다 {$62$}만큼 크다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-3-xc22",
+    "field": "cAfter",
+    "before": "$42\\times3$의 곱 $126$에서 백의 자리 $1$을 빠뜨려 $26$이라고 쓰면 바른 곱보다 {100}만큼 작다.",
+    "after": "$42\\times3$의 곱 $126$에서 백의 자리 $1$을 빠뜨려 $26$이라고 쓰면 바른 곱보다 {$100$}만큼 작다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-3-xc23",
+    "field": "cAfter",
+    "before": "$81\\times6=486$이고, 십의 자리 숫자 $8$과 곱하는 수 $6$을 맞바꾼 $61\\times8=${488}이다. 두 곱은 서로 {다르다}.",
+    "after": "$81\\times6=486$이고, 십의 자리 숫자 $8$과 곱하는 수 $6$을 맞바꾼 $61\\times8=${$488$}이다. 두 곱은 서로 {다르다}.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-3-xc24",
+    "field": "cAfter",
+    "before": "$71\\times7$을 $70\\times7$로 계산하면 실제 곱보다 $1\\times7=${7}만큼 작다.",
+    "after": "$71\\times7$을 $70\\times7$로 계산하면 실제 곱보다 $1\\times7=${$7$}만큼 작다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-3-xc25",
+    "field": "cAfter",
+    "before": "$72\\times4$는 일의 자리에서 올림이 없고 $7\\times4=28$이므로, 곱의 백의 자리 숫자는 {2}이다.",
+    "after": "$72\\times4$는 일의 자리에서 올림이 없고 $7\\times4=28$이므로, 곱의 백의 자리 숫자는 {$2$}이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-4-xc6",
+    "field": "cAfter",
+    "before": "$27\\times3$은 $20\\times3=60$과 $7\\times3=${21}을 더한 {81}이다.",
+    "after": "$27\\times3$은 $20\\times3=60$과 $7\\times3=${$21$}을 더한 {$81$}이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-4-xc7",
+    "field": "cAfter",
+    "before": "일의 자리 곱이 $18$이면 십의 묶음 $1$개를 올리고, 남은 낱개 {8}개만 일의 자리에 쓴다.",
+    "after": "일의 자리 곱이 $18$이면 십의 묶음 $1$개를 올리고, 남은 낱개 {$8$}개만 일의 자리에 쓴다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-4-xc8",
+    "field": "cAfter",
+    "before": "$16\\times3$을 수 모형으로 놓으면 일 모형이 $6\\times3=18$개이다. 이 중 $10$개를 십 모형 {1}개로 바꾸면 일 모형은 {8}개가 남는다.",
+    "after": "$16\\times3$을 수 모형으로 놓으면 일 모형이 $6\\times3=18$개이다. 이 중 $10$개를 십 모형 {$1$}개로 바꾸면 일 모형은 {$8$}개가 남는다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-4-xc11",
+    "field": "cAfter",
+    "before": "$17\\times5$에서 일의 자리 곱은 $7\\times5=${35}이므로 십의 자리로 올리는 수는 {3}이다.",
+    "after": "$17\\times5$에서 일의 자리 곱은 $7\\times5=${$35$}이므로 십의 자리로 올리는 수는 {$3$}이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-4-xc13",
+    "field": "cAfter",
+    "before": "$28\\times3$에서 올린 수 $2$를 더하지 않아 $64$라고 쓰면 바른 곱 $84$보다 {20}만큼 작다.",
+    "after": "$28\\times3$에서 올린 수 $2$를 더하지 않아 $64$라고 쓰면 바른 곱 $84$보다 {$20$}만큼 작다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-4-xc17",
+    "field": "cAfter",
+    "before": "$18\\times4$는 일의 자리 곱이 $32$라서 $3$을 올린다. 십의 자리는 $1\\times4+3=${7}이고, $7$은 $10$보다 {작다}. 그래서 올림은 일의 자리에서만 있다.",
+    "after": "$18\\times4$는 일의 자리 곱이 $32$라서 $3$을 올린다. 십의 자리는 $1\\times4+3=${$7$}이고, $7$은 $10$보다 {작다}. 그래서 올림은 일의 자리에서만 있다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-4-xc18",
+    "field": "cAfter",
+    "before": "$29\\times3$은 $30\\times3=${90}에서 $1\\times3=3$을 뺀 {87}이다.",
+    "after": "$29\\times3$은 $30\\times3=${$90$}에서 $1\\times3=3$을 뺀 {$87$}이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-4-xc22",
+    "field": "cAfter",
+    "before": "$37\\times2$는 일의 자리 숫자와 곱하는 수의 곱이 $7\\times2=${14}로 $10$보다 크므로 일의 자리에서 올림이 {있다}.",
+    "after": "$37\\times2$는 일의 자리 숫자와 곱하는 수의 곱이 $7\\times2=${$14$}로 $10$보다 크므로 일의 자리에서 올림이 {있다}.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-5-xc4",
+    "field": "cAfter",
+    "before": "$47\\times3$에서 일의 자리 곱 $21$의 $2$를 올린다. 십의 자리는 먼저 $4\\times3=${12}를 구한 뒤 올린 수 $2$를 더해 {14}가 된다.",
+    "after": "$47\\times3$에서 일의 자리 곱 $21$의 $2$를 올린다. 십의 자리는 먼저 $4\\times3=${$12$}를 구한 뒤 올린 수 $2$를 더해 {$14$}가 된다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-5-xc6",
+    "field": "cAfter",
+    "before": "$58\\times6$을 $50\\times6=${300}과 $8\\times6=${48}로 나누어 보면, 십의 자리로 올린 수 {4}는 일의 자리 곱에서 온 것임을 알 수 있다.",
+    "after": "$58\\times6$을 $50\\times6=${$300$}과 $8\\times6=${$48$}로 나누어 보면, 십의 자리로 올린 수 {$4$}는 일의 자리 곱에서 온 것임을 알 수 있다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-5-xc8",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "올린 2는 십 2개를 뜻한다",
+    "after": "올린 $2$는 십 $2$개를 뜻한다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-5-xc9",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "일의 자리 곱 40이라 0을 쓰고 4를 올림",
+    "after": "일의 자리 곱 $40$이라 $0$을 쓰고 $4$를 올림",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-5-xc9",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "16+4=20이라 십의 자리 0, 백의 자리 2",
+    "after": "$16+4=20$이라 십의 자리 $0$, 백의 자리 $2$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-5-xc11",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "십이 28개",
+    "after": "십이 $28$개",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-5-xc11",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "백의 자리 2, 십의 자리 8",
+    "after": "백의 자리 $2$, 십의 자리 $8$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-5-xc14",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "일의 자리 곱 32에서 올림",
+    "after": "일의 자리 곱 $32$에서 올림",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-5-xc14",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "12+3=15에서 백의 자리로 올림",
+    "after": "$12+3=15$에서 백의 자리로 올림",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-5-xc14",
+    "field": "cAfter",
+    "before": "$47\\times6$에서 일의 자리 곱은 $42$이고, 십의 자리 곱 $24$에 올린 수 $4$를 더하면 $28$이다. 두 값이 모두 $10$보다 크므로 올림은 모두 {2}번 한다.",
+    "after": "$47\\times6$에서 일의 자리 곱은 $42$이고, 십의 자리 곱 $24$에 올린 수 $4$를 더하면 $28$이다. 두 값이 모두 $10$보다 크므로 올림은 모두 {$2$}번 한다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-5-xc15",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "일의 자리에 0을 써야 한다",
+    "after": "일의 자리에 $0$을 써야 한다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-5-xc15",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "17은 십 17개",
+    "after": "$17$은 십 $17$개",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-5-xc15",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "170",
+    "after": "$170$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-5-xc17",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "99×9",
+    "after": "$99\\times 9$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-5-xc19",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "일의 자리에서 4를 올림",
+    "after": "일의 자리에서 $4$를 올림",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-5-xc19",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "7+4=11이라 백의 자리로 올림",
+    "after": "$7+4=11$이라 백의 자리로 올림",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-5-xc19",
+    "field": "cAfter",
+    "before": "$16\\times7$에서 십의 자리 곱은 $1\\times7=7$이지만, 일의 자리 곱 $42$에서 올린 {4}를 더하면 $11$이 되어 백의 자리로 올린다.",
+    "after": "$16\\times7$에서 십의 자리 곱은 $1\\times7=7$이지만, 일의 자리 곱 $42$에서 올린 {$4$}를 더하면 $11$이 되어 백의 자리로 올린다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-5-xc20",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "30만큼 작다",
+    "after": "$30$만큼 작다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-5-xc20",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "올린 3은 십 3개",
+    "after": "올린 $3$은 십 $3$개",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-5-xc20",
+    "field": "cAfter",
+    "before": "$68\\times4$에서 일의 자리에서 올린 $3$을 십의 자리 곱에 더하지 않으면 답이 바른 답보다 {30}만큼 작게 나온다.",
+    "after": "$68\\times4$에서 일의 자리에서 올린 $3$을 십의 자리 곱에 더하지 않으면 답이 바른 답보다 {$30$}만큼 작게 나온다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-5-xc23",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "67보다 큰 70으로 바꾸어 곱함",
+    "after": "$67$보다 큰 $70$으로 바꾸어 곱함",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-5-xc24",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "63×8이 더 크다",
+    "after": "$63\\times 8$이 더 크다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-5-xc24",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "몇십 부분의 곱은 480으로 같다",
+    "after": "몇십 부분의 곱은 $480$으로 같다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-5-xc24",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "3×8이 3×6보다 크다",
+    "after": "$3\\times 8$이 $3\\times 6$보다 크다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-5-xc24",
+    "field": "cAfter",
+    "before": "숫자 카드 $3$, $6$, $8$을 한 번씩 써서 (몇십몇)$\\times$(몇)을 만들 때, 곱이 가장 크려면 곱하는 한 자리 수에 {8}을, 몇십몇의 십의 자리에 {6}을 놓는다.",
+    "after": "숫자 카드 $3$, $6$, $8$을 한 번씩 써서 (몇십몇)$\\times$(몇)을 만들 때, 곱이 가장 크려면 곱하는 한 자리 수에 {$8$}을, 몇십몇의 십의 자리에 {$6$}을 놓는다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-5-xc25",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "99×9=891은 1000보다 작다",
+    "after": "$99\\times 9=891$은 $1000$보다 작다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-5-xc26",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "일의 자리 곱은 가장 커도 9×9=81",
+    "after": "일의 자리 곱은 가장 커도 $9\\times 9=81$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-5-xc26",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "올리는 수는 가장 커도 8",
+    "after": "올리는 수는 가장 커도 $8$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-4-5-xc26",
+    "field": "cAfter",
+    "before": "(몇십몇)$\\times$(몇)에서 일의 자리끼리의 곱은 가장 클 때 $9\\times9=81$이다. 그래서 일의 자리에서 올리는 수는 가장 클 때 {8}이다.",
+    "after": "(몇십몇)$\\times$(몇)에서 일의 자리끼리의 곱은 가장 클 때 $9\\times9=81$이다. 그래서 일의 자리에서 올리는 수는 가장 클 때 {$8$}이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-1-xc2",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "1cm를 똑같이 10칸으로 나눔",
+    "after": "$1$cm를 똑같이 $10$칸으로 나눔",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-1-xc5",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "30mm",
+    "after": "$30$mm",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-1-xc5",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "1cm는 10mm",
+    "after": "$1$cm는 $10$mm",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-1-xc5",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "10mm가 3번",
+    "after": "$10$mm가 $3$번",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-1-xc5",
+    "field": "cAfter",
+    "before": "$1\\,\\mathrm{cm}$는 $10\\,\\mathrm{mm}$이므로 $2\\,\\mathrm{cm}$는 $10\\,\\mathrm{mm}$가 $2$번인 {20}$\\,\\mathrm{mm}$이다.",
+    "after": "$1\\,\\mathrm{cm}$는 $10\\,\\mathrm{mm}$이므로 $2\\,\\mathrm{cm}$는 $10\\,\\mathrm{mm}$가 $2$번인 {$20$}$\\,\\mathrm{mm}$이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-1-xc8",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "눈금 0에 맞춘다",
+    "after": "눈금 $0$에 맞춘다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-1-xc8",
+    "field": "cAfter",
+    "before": "자로 길이를 잴 때는 물건의 한쪽 끝을 자의 눈금 {0}에 맞춘다.",
+    "after": "자로 길이를 잴 때는 물건의 한쪽 끝을 자의 눈금 {$0$}에 맞춘다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-1-xc10",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "8cm를 80mm로 바꿈",
+    "after": "$8$cm를 $80$mm로 바꿈",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-1-xc10",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "5mm를 더함",
+    "after": "$5$mm를 더함",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-1-xc10",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "85mm",
+    "after": "$85$mm",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-1-xc10",
+    "field": "cAfter",
+    "before": "$8\\,\\mathrm{cm}\\ 5\\,\\mathrm{mm}$에서 $8\\,\\mathrm{cm}$는 {80}$\\,\\mathrm{mm}$이므로, $8\\,\\mathrm{cm}\\ 5\\,\\mathrm{mm}$는 모두 {85}$\\,\\mathrm{mm}$이다.",
+    "after": "$8\\,\\mathrm{cm}\\ 5\\,\\mathrm{mm}$에서 $8\\,\\mathrm{cm}$는 {$80$}$\\,\\mathrm{mm}$이므로, $8\\,\\mathrm{cm}\\ 5\\,\\mathrm{mm}$는 모두 {$85$}$\\,\\mathrm{mm}$이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-1-xc11",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "10mm가 1cm",
+    "after": "$10$mm가 $1$cm",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-1-xc11",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "6묶음과 3mm",
+    "after": "$6$묶음과 $3$mm",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-1-xc11",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "6cm 3mm",
+    "after": "$6$cm $3$mm",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-1-xc12",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "34mm와 36mm 비교",
+    "after": "$34$mm와 $36$mm 비교",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-1-xc12",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "36mm가 더 길다",
+    "after": "$36$mm가 더 길다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-1-xc14",
+    "field": "cAfter",
+    "before": "$1\\,\\mathrm{cm}$는 $1\\,\\mathrm{mm}$의 {10}배이다.",
+    "after": "$1\\,\\mathrm{cm}$는 $1\\,\\mathrm{mm}$의 {$10$}배이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-1-xc15",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "3cm 8mm",
+    "after": "$3$cm $8$mm",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-1-xc15",
+    "field": "cAfter",
+    "before": "$2\\,\\mathrm{cm}\\ 5\\,\\mathrm{mm}$와 $1\\,\\mathrm{cm}\\ 3\\,\\mathrm{mm}$를 더할 때는 같은 단위끼리 더하므로 합은 {3}$\\,\\mathrm{cm}$ {8}$\\,\\mathrm{mm}$이다.",
+    "after": "$2\\,\\mathrm{cm}\\ 5\\,\\mathrm{mm}$와 $1\\,\\mathrm{cm}\\ 3\\,\\mathrm{mm}$를 더할 때는 같은 단위끼리 더하므로 합은 {$3$}$\\,\\mathrm{cm}$ {$8$}$\\,\\mathrm{mm}$이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-1-xc17",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "10mm를 1cm로 바꿈",
+    "after": "$10$mm를 $1$cm로 바꿈",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-1-xc17",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "4cm 2mm",
+    "after": "$4$cm $2$mm",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-1-xc18",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "출발한 선을 세면 1mm 더 길게 읽는다",
+    "after": "출발한 선을 세면 $1$mm 더 길게 읽는다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-1-xc22",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "1cm를 10mm로 바꿈",
+    "after": "$1$cm를 $10$mm로 바꿈",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-1-xc22",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "4cm 12mm로 보고 뺌",
+    "after": "$4$cm $12$mm로 보고 뺌",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-1-xc22",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "3cm 6mm",
+    "after": "$3$cm $6$mm",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-1-xc24",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "1cm보다 긴지 짧은지로 판단",
+    "after": "$1$cm보다 긴지 짧은지로 판단",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-2-xc2",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "2km보다 300m 더 먼 거리",
+    "after": "$2$km보다 $300$m 더 먼 거리",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-2-xc2",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "300은 2km를 넘은 m의 수",
+    "after": "$300$은 $2$km를 넘은 m의 수",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-2-xc4",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "4000m",
+    "after": "$4000$m",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-2-xc4",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "1km는 1000m",
+    "after": "$1$km는 $1000$m",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-2-xc4",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "1000m가 4번",
+    "after": "$1000$m가 $4$번",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-2-xc4",
+    "field": "cAfter",
+    "before": "$1\\,\\mathrm{km}$는 $1000\\,\\mathrm{m}$이므로 $3\\,\\mathrm{km}$는 $1000\\,\\mathrm{m}$가 $3$번인 {3000}$\\,\\mathrm{m}$이다.",
+    "after": "$1\\,\\mathrm{km}$는 $1000\\,\\mathrm{m}$이므로 $3\\,\\mathrm{km}$는 $1000\\,\\mathrm{m}$가 $3$번인 {$3000$}$\\,\\mathrm{m}$이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-2-xc6",
+    "field": "cAfter",
+    "before": "$1\\,\\mathrm{m}$는 {100}$\\,\\mathrm{cm}$이다.",
+    "after": "$1\\,\\mathrm{m}$는 {$100$}$\\,\\mathrm{cm}$이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-2-xc8",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "10번",
+    "after": "$10$번",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-2-xc8",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "1km는 1000m",
+    "after": "$1$km는 $1000$m",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-2-xc8",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "100m가 10번이면 1000m",
+    "after": "$100$m가 $10$번이면 $1000$m",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-2-xc11",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "1000m씩 묶음",
+    "after": "$1000$m씩 묶음",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-2-xc11",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "2묶음과 700m",
+    "after": "$2$묶음과 $700$m",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-2-xc11",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "2km 700m",
+    "after": "$2$km $700$m",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-2-xc12",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "5km는 5000m",
+    "after": "$5$km는 $5000$m",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-2-xc12",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "5040m",
+    "after": "$5040$m",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-2-xc12",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "백의 자리에 0을 써야 함",
+    "after": "백의 자리에 $0$을 써야 함",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-2-xc12",
+    "field": "cAfter",
+    "before": "$5\\,\\mathrm{km}\\ 40\\,\\mathrm{m}$를 $\\mathrm{m}$로만 나타내면 {5040}$\\,\\mathrm{m}$이다.",
+    "after": "$5\\,\\mathrm{km}\\ 40\\,\\mathrm{m}$를 $\\mathrm{m}$로만 나타내면 {$5040$}$\\,\\mathrm{m}$이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-2-xc14",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "3km 800m",
+    "after": "$3$km $800$m",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-2-xc14",
+    "field": "cAfter",
+    "before": "$1\\,\\mathrm{km}\\ 300\\,\\mathrm{m}$와 $2\\,\\mathrm{km}\\ 500\\,\\mathrm{m}$를 더할 때는 같은 단위끼리 더하므로 합은 {3}$\\,\\mathrm{km}$ {800}$\\,\\mathrm{m}$이다.",
+    "after": "$1\\,\\mathrm{km}\\ 300\\,\\mathrm{m}$와 $2\\,\\mathrm{km}\\ 500\\,\\mathrm{m}$를 더할 때는 같은 단위끼리 더하므로 합은 {$3$}$\\,\\mathrm{km}$ {$800$}$\\,\\mathrm{m}$이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-2-xc16",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "1000m를 1km로 바꿈",
+    "after": "$1000$m를 $1$km로 바꿈",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-2-xc16",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "4km 300m",
+    "after": "$4$km $300$m",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-2-xc16",
+    "field": "cAfter",
+    "before": "$\\mathrm{m}$끼리 더해 $1300\\,\\mathrm{m}$가 되면 그중 $1000\\,\\mathrm{m}$를 {1}$\\,\\mathrm{km}$로 바꾸고 $300\\,\\mathrm{m}$를 남긴다.",
+    "after": "$\\mathrm{m}$끼리 더해 $1300\\,\\mathrm{m}$가 되면 그중 $1000\\,\\mathrm{m}$를 {$1$}$\\,\\mathrm{km}$로 바꾸고 $300\\,\\mathrm{m}$를 남긴다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-2-xc17",
+    "field": "cAfter",
+    "before": "$1\\,\\mathrm{km}$는 $1\\,\\mathrm{m}$의 {1000}배이다.",
+    "after": "$1\\,\\mathrm{km}$는 $1\\,\\mathrm{m}$의 {$1000$}배이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-2-xc18",
+    "field": "cAfter",
+    "before": "$500\\,\\mathrm{m}$를 두 번 가면 모두 {1}$\\,\\mathrm{km}$이다.",
+    "after": "$500\\,\\mathrm{m}$를 두 번 가면 모두 {$1$}$\\,\\mathrm{km}$이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-2-xc20",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "1km를 1000m로 바꿈",
+    "after": "$1$km를 $1000$m로 바꿈",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-2-xc20",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "3km 1200m로 보고 뺌",
+    "after": "$3$km $1200$m로 보고 뺌",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-2-xc20",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "2km 700m",
+    "after": "$2$km $700$m",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-2-xc20",
+    "field": "cAfter",
+    "before": "$4\\,\\mathrm{km}\\ 200\\,\\mathrm{m}$에서 $500\\,\\mathrm{m}$를 뺄 때 $200\\,\\mathrm{m}$에서 $500\\,\\mathrm{m}$를 뺄 수 없으므로 $1\\,\\mathrm{km}$를 {1000}$\\,\\mathrm{m}$로 바꾸어 뺀다.",
+    "after": "$4\\,\\mathrm{km}\\ 200\\,\\mathrm{m}$에서 $500\\,\\mathrm{m}$를 뺄 때 $200\\,\\mathrm{m}$에서 $500\\,\\mathrm{m}$를 뺄 수 없으므로 $1\\,\\mathrm{km}$를 {$1000$}$\\,\\mathrm{m}$로 바꾸어 뺀다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-2-xc21",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "200m가 5번이면 1000m",
+    "after": "$200$m가 $5$번이면 $1000$m",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-2-xc21",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "운동장 5바퀴가 약 1km",
+    "after": "운동장 $5$바퀴가 약 $1$km",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-2-xc21",
+    "field": "cAfter",
+    "before": "한 바퀴가 약 $200\\,\\mathrm{m}$인 운동장을 {5}바퀴 돌면 약 $1\\,\\mathrm{km}$이다.",
+    "after": "한 바퀴가 약 $200\\,\\mathrm{m}$인 운동장을 {$5$}바퀴 돌면 약 $1\\,\\mathrm{km}$이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-2-xc22",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "3000m는 3km",
+    "after": "$3000$m는 $3$km",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-2-xc23",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "2300m와 2500m 비교",
+    "after": "$2300$m와 $2500$m 비교",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-2-xc23",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "2500m가 더 멀다",
+    "after": "$2500$m가 더 멀다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-2-xc23",
+    "field": "cAfter",
+    "before": "$2\\,\\mathrm{km}\\ 300\\,\\mathrm{m}$와 $2500\\,\\mathrm{m}$를 비교할 때 $2\\,\\mathrm{km}\\ 300\\,\\mathrm{m}$를 {2300}$\\,\\mathrm{m}$로 바꾸면 $2500\\,\\mathrm{m}$가 더 멀다는 것을 쉽게 알 수 있다.",
+    "after": "$2\\,\\mathrm{km}\\ 300\\,\\mathrm{m}$와 $2500\\,\\mathrm{m}$를 비교할 때 $2\\,\\mathrm{km}\\ 300\\,\\mathrm{m}$를 {$2300$}$\\,\\mathrm{m}$로 바꾸면 $2500\\,\\mathrm{m}$가 더 멀다는 것을 쉽게 알 수 있다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-2-xc24",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "천의 자리 4는 1000이 4개",
+    "after": "천의 자리 $4$는 $1000$이 $4$개",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-2-xc24",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "1000m가 1km",
+    "after": "$1000$m가 $1$km",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-3-xc5",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "1m보다 긴지 짧은지로 판단",
+    "after": "$1$m보다 긴지 짧은지로 판단",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-3-xc7",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "약 4cm",
+    "after": "약 $4$cm",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-3-xc7",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "약 1cm가 4번",
+    "after": "약 $1$cm가 $4$번",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-3-xc8",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "약 50cm가 10번",
+    "after": "약 $50$cm가 $10$번",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-3-xc8",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "약 500cm, 곧 약 5m",
+    "after": "약 $500$cm, 곧 약 $5$m",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-3-xc8",
+    "field": "cAfter",
+    "before": "한 걸음이 약 $50\\,\\mathrm{cm}$일 때 $10$걸음인 거리는 약 {5}$\\,\\mathrm{m}$이다.",
+    "after": "한 걸음이 약 $50\\,\\mathrm{cm}$일 때 $10$걸음인 거리는 약 {$5$}$\\,\\mathrm{m}$이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-3-xc10",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "차가 5cm와 3cm",
+    "after": "차가 $5$cm와 $3$cm",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-3-xc13",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "아는 1km의 몇 배쯤인지 견줌",
+    "after": "아는 $1$km의 몇 배쯤인지 견줌",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-3-xc13",
+    "field": "cAfter",
+    "before": "집에서 학교까지가 약 $1\\,\\mathrm{km}$일 때, 그 거리의 $3$배쯤인 공원까지의 거리는 약 {3}$\\,\\mathrm{km}$라고 어림할 수 있다.",
+    "after": "집에서 학교까지가 약 $1\\,\\mathrm{km}$일 때, 그 거리의 $3$배쯤인 공원까지의 거리는 약 {$3$}$\\,\\mathrm{km}$라고 어림할 수 있다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-3-xc14",
+    "field": "cAfter",
+    "before": "잰 길이 $1\\,\\mathrm{m}\\ 98\\,\\mathrm{cm}$를 가까운 길이로 간단히 나타내면 약 {2}$\\,\\mathrm{m}$이다.",
+    "after": "잰 길이 $1\\,\\mathrm{m}\\ 98\\,\\mathrm{cm}$를 가까운 길이로 간단히 나타내면 약 {$2$}$\\,\\mathrm{m}$이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-3-xc23",
+    "field": "cAfter",
+    "before": "약 $2000\\,\\mathrm{m}$처럼 수가 큰 거리는 더 큰 단위로 바꾸어 약 {2}$\\,\\mathrm{km}$라고 말하면 알기 쉽다.",
+    "after": "약 $2000\\,\\mathrm{m}$처럼 수가 큰 거리는 더 큰 단위로 바꾸어 약 {$2$}$\\,\\mathrm{km}$라고 말하면 알기 쉽다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-3-xc26",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "차가 둘 다 2cm",
+    "after": "차가 둘 다 $2$cm",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-3-xc26",
+    "field": "cAfter",
+    "before": "잰 길이가 $50\\,\\mathrm{cm}$일 때 약 $48\\,\\mathrm{cm}$와 약 $52\\,\\mathrm{cm}$라고 한 두 어림은 잰 길이와의 차가 모두 {2}$\\,\\mathrm{cm}$로 같아서 똑같이 잘한 어림이다.",
+    "after": "잰 길이가 $50\\,\\mathrm{cm}$일 때 약 $48\\,\\mathrm{cm}$와 약 $52\\,\\mathrm{cm}$라고 한 두 어림은 잰 길이와의 차가 모두 {$2$}$\\,\\mathrm{cm}$로 같아서 똑같이 잘한 어림이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc2",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "작은 눈금 60칸, 한 칸에 1초",
+    "after": "작은 눈금 $60$칸, 한 칸에 $1$초",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc2",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "60초",
+    "after": "$60$초",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc2",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "1분",
+    "after": "$1$분",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc2",
+    "field": "cAfter",
+    "before": "초침이 시계를 한 바퀴 돌면 $60$초, 곧 {1}분이 지난다.",
+    "after": "초침이 시계를 한 바퀴 돌면 $60$초, 곧 {$1$}분이 지난다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc4",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "35초",
+    "after": "$35$초",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc4",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "숫자 한 칸이 5초",
+    "after": "숫자 한 칸이 $5$초",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc4",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "7×5",
+    "after": "$7\\times 5$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc4",
+    "field": "cAfter",
+    "before": "초침이 시계의 숫자 $5$를 가리키면 {25}초를 나타낸다.",
+    "after": "초침이 시계의 숫자 $5$를 가리키면 {$25$}초를 나타낸다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc6",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "180초",
+    "after": "$180$초",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc6",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "1분은 60초",
+    "after": "$1$분은 $60$초",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc6",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "60초가 3번",
+    "after": "$60$초가 $3$번",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc6",
+    "field": "cAfter",
+    "before": "$1$분은 $60$초이므로 $2$분은 $60$초가 $2$번인 {120}초이다.",
+    "after": "$1$분은 $60$초이므로 $2$분은 $60$초가 $2$번인 {$120$}초이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc7",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "1분보다 30초 더 긴 시간",
+    "after": "$1$분보다 $30$초 더 긴 시간",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc7",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "30은 1분을 넘은 초의 수",
+    "after": "$30$은 $1$분을 넘은 초의 수",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc9",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "숫자 3은 15초",
+    "after": "숫자 $3$은 $15$초",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc9",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "작은 눈금 한 칸은 1초",
+    "after": "작은 눈금 한 칸은 $1$초",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc9",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "17초",
+    "after": "$17$초",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc9",
+    "field": "cAfter",
+    "before": "초침이 숫자 $3$을 지나 작은 눈금 $2$칸을 더 가면 $15$초에 {2}초를 더해 {17}초이다.",
+    "after": "초침이 숫자 $3$을 지나 작은 눈금 $2$칸을 더 가면 $15$초에 {$2$}초를 더해 {$17$}초이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc10",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "2분을 120초로 바꿈",
+    "after": "$2$분을 $120$초로 바꿈",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc10",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "15초를 더함",
+    "after": "$15$초를 더함",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc10",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "135초",
+    "after": "$135$초",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc10",
+    "field": "cAfter",
+    "before": "$2$분 $15$초에서 $2$분은 {120}초이므로, $2$분 $15$초는 모두 {135}초이다.",
+    "after": "$2$분 $15$초에서 $2$분은 {$120$}초이므로, $2$분 $15$초는 모두 {$135$}초이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc12",
+    "field": "cAfter",
+    "before": "$1$분은 $1$초의 {60}배이다.",
+    "after": "$1$분은 $1$초의 {$60$}배이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc13",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "초침 한 바퀴는 1분",
+    "after": "초침 한 바퀴는 $1$분",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc13",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "분침은 1분에 작은 눈금 한 칸",
+    "after": "분침은 $1$분에 작은 눈금 한 칸",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc15",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "60초가 1분",
+    "after": "$60$초가 $1$분",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc15",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "90초는 60초와 30초",
+    "after": "$90$초는 $60$초와 $30$초",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc15",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "1분 30초",
+    "after": "$1$분 $30$초",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc16",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "30초",
+    "after": "$30$초",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc16",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "한 바퀴 60초의 절반",
+    "after": "한 바퀴 $60$초의 절반",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc18",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "줄넘기 10번은 초",
+    "after": "줄넘기 $10$번은 초",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc18",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "1분보다 짧은지 긴지로 판단",
+    "after": "$1$분보다 짧은지 긴지로 판단",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc20",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "1분 5초는 65초",
+    "after": "$1$분 $5$초는 $65$초",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc20",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "100초가 더 길다",
+    "after": "$100$초가 더 길다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc20",
+    "field": "cAfter",
+    "before": "$1$분 $5$초와 $100$초를 비교할 때 $1$분 $5$초를 {65}초로 바꾸면 $100$초가 더 길다는 것을 알 수 있다.",
+    "after": "$1$분 $5$초와 $100$초를 비교할 때 $1$분 $5$초를 {$65$}초로 바꾸면 $100$초가 더 길다는 것을 알 수 있다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc22",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "60초를 1분으로 올림",
+    "after": "$60$초를 $1$분으로 올림",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc22",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "60분을 1시간으로 올림",
+    "after": "$60$분을 $1$시간으로 올림",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc22",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "5시",
+    "after": "$5$시",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc22",
+    "field": "cAfter",
+    "before": "$4$시 $59$분 $50$초에서 $10$초가 지나면 초가 $60$초가 되어 $1$분을 올리고, 분도 $60$분이 되어 $1$시간을 올리므로 {5}시가 된다.",
+    "after": "$4$시 $59$분 $50$초에서 $10$초가 지나면 초가 $60$초가 되어 $1$분을 올리고, 분도 $60$분이 되어 $1$시간을 올리므로 {$5$}시가 된다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc26",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "1시간은 60분",
+    "after": "$1$시간은 $60$분",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc26",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "1분은 60초",
+    "after": "$1$분은 $60$초",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc26",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "60초가 60번",
+    "after": "$60$초가 $60$번",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-4-xc26",
+    "field": "bRequiredIdeas[3].anyOf[0]",
+    "before": "3600초",
+    "after": "$3600$초",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-5-xc1",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "3시는 시각, 2시간은 시간",
+    "after": "$3$시는 시각, $2$시간은 시간",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-5-xc4",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "같은 단위끼리 더해 3시간 40분",
+    "after": "같은 단위끼리 더해 $3$시간 $40$분",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-5-xc4",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "40분은 60분보다 작다",
+    "after": "$40$분은 $60$분보다 작다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-5-xc6",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "30분이 지난 뒤의 어느 한 때",
+    "after": "$30$분이 지난 뒤의 어느 한 때",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-5-xc9",
+    "field": "cAfter",
+    "before": "$1$시간은 {60}분이다.",
+    "after": "$1$시간은 {$60$}분이다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-5-xc11",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "60분을 1시간으로 바꿈",
+    "after": "$60$분을 $1$시간으로 바꿈",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-5-xc11",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "4시간 10분",
+    "after": "$4$시간 $10$분",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-5-xc14",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "70초에서 1분을 받아올림",
+    "after": "$70$초에서 $1$분을 받아올림",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-5-xc14",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "받아올린 1분을 분의 합에 더함",
+    "after": "받아올린 $1$분을 분의 합에 더함",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-5-xc14",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "6분 10초",
+    "after": "$6$분 $10$초",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-5-xc14",
+    "field": "cAfter",
+    "before": "$2$분 $40$초와 $3$분 $30$초를 더하면 초의 합 $70$초에서 $1$분을 받아올린다. 그래서 분은 $2+3$에 받아올린 $1$을 더해 {6}분이 된다.",
+    "after": "$2$분 $40$초와 $3$분 $30$초를 더하면 초의 합 $70$초에서 $1$분을 받아올린다. 그래서 분은 $2+3$에 받아올린 $1$을 더해 {$6$}분이 된다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-5-xc15",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "8시 10분",
+    "after": "$8$시 $10$분",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-5-xc15",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "70분 중 60분이 1시간",
+    "after": "$70$분 중 $60$분이 $1$시간",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-5-xc15",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "시가 1 커지고 10분 남음",
+    "after": "시가 $1$ 커지고 $10$분 남음",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-5-xc15",
+    "field": "cAfter",
+    "before": "$7$시 $50$분에서 $20$분이 지나면 분이 $70$분이 되므로, $60$분을 $1$시간으로 바꾸어 {8}시 {10}분이 된다.",
+    "after": "$7$시 $50$분에서 $20$분이 지나면 분이 $70$분이 되므로, $60$분을 $1$시간으로 바꾸어 {$8$}시 {$10$}분이 된다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-5-xc16",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "3시 40분",
+    "after": "$3$시 $40$분",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-5-xc18",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "30분",
+    "after": "$30$분",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-5-5-xc18",
+    "field": "cAfter",
+    "before": "한 칸이 $10$분을 나타내는 시간 띠에서 $3$칸을 색칠하면 {30}분을 나타낸다.",
+    "after": "한 칸이 $10$분을 나타내는 시간 띠에서 $3$칸을 색칠하면 {$30$}분을 나타낸다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-5-xc15",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "1/8을 고름",
+    "after": "$\\frac{1}{8}$을 고름",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-5-xc20",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "5가 3과 7 사이의 수",
+    "after": "$5$가 $3$과 $7$ 사이의 수",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-5-xc21",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "1/5을 먹은 사람",
+    "after": "$\\frac{1}{5}$을 먹은 사람",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-5-xc21",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "1/5이 1/3보다 작아 덜 먹었다",
+    "after": "$\\frac{1}{5}$이 $\\frac{1}{3}$보다 작아 덜 먹었다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-5-xc22",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "1/8이 1/4보다 작다",
+    "after": "$\\frac{1}{8}$이 $\\frac{1}{4}$보다 작다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-5-xc23",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "1/3 두 개가 더 큼",
+    "after": "$\\frac{1}{3}$ 두 개가 더 큼",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-5-xc23",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "개수가 같고 한 조각은 1/3이 더 큼",
+    "after": "개수가 같고 한 조각은 $\\frac{1}{3}$이 더 큼",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-5-xc26",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "1/4에서 1/5로(분모가 1 커짐)",
+    "after": "$\\frac{1}{4}$에서 $\\frac{1}{5}$로(분모가 $1$ 커짐)",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-6-xc1",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "똑같이 10으로 나눈 것 중의 1",
+    "after": "똑같이 $10$으로 나눈 것 중의 $1$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-6-xc1",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "1/10과 같다",
+    "after": "$\\frac{1}{10}$과 같다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-6-xc6",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "1 cm를 똑같이 10으로 나눈 하나가 1 mm",
+    "after": "$1$ cm를 똑같이 $10$으로 나눈 하나가 $1$ mm",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-6-xc6",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "1/10 cm = 0.1 cm",
+    "after": "$\\frac{1}{10}$ cm = $0.1$ cm",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-6-xc11",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "0.1이 10개이면 1",
+    "after": "$0.1$이 $10$개이면 $1$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-6-xc11",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "20개는 10개씩 두 번",
+    "after": "$20$개는 $10$개씩 두 번",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-6-xc12",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "4.3 cm",
+    "after": "$4.3$ cm",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-6-xc12",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "3 mm는 0.1 cm가 3개인 0.3 cm",
+    "after": "$3$ mm는 $0.1$ cm가 $3$개인 $0.3$ cm",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-6-xc14",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "6/10은 1/10이 6개",
+    "after": "$\\frac{6}{10}$은 $\\frac{1}{10}$이 $6$개",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-6-xc14",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "0.6은 0.1이 6개",
+    "after": "$0.6$은 $0.1$이 $6$개",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-6-xc14",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "1/10 = 0.1",
+    "after": "$\\frac{1}{10} = 0.1$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-6-xc15",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "0.3",
+    "after": "$0.3$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-6-xc15",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "한 칸이 0.1",
+    "after": "한 칸이 $0.1$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-6-xc15",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "3칸은 0.1이 3개",
+    "after": "$3$칸은 $0.1$이 $3$개",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-6-xc22",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "0.1이 10개이면 1",
+    "after": "$0.1$이 $10$개이면 $1$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-6-xc22",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "남은 5개는 0.5",
+    "after": "남은 $5$개는 $0.5$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-6-xc22",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "1.5",
+    "after": "$1.5$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-6-xc25",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "왼쪽 2는 1이 2개",
+    "after": "왼쪽 $2$는 $1$이 $2$개",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-6-xc25",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "오른쪽 7은 0.1이 7개",
+    "after": "오른쪽 $7$은 $0.1$이 $7$개",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-7-xc3",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "0.7이 더 오른쪽",
+    "after": "$0.7$이 더 오른쪽",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-7-xc4",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "1은 0.1이 10개",
+    "after": "$1$은 $0.1$이 $10$개",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-7-xc4",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "0.9는 0.1이 9개",
+    "after": "$0.9$는 $0.1$이 $9$개",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-7-xc5",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "2.1이 더 큼",
+    "after": "$2.1$이 더 큼",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-7-xc8",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "0.4",
+    "after": "$0.4$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-7-xc8",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "0.1이 하나 늘어남",
+    "after": "$0.1$이 하나 늘어남",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-7-xc9",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "3.5 cm가 더 김",
+    "after": "$3.5$ cm가 더 김",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-7-xc11",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "0.1이 15개, 8개, 12개",
+    "after": "$0.1$이 $15$개, $8$개, $12$개",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-7-xc11",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "0.8, 1.2, 1.5 순서",
+    "after": "$0.8$, $1.2$, $1.5$ 순서",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-7-xc15",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "3.8 cm가 더 김",
+    "after": "$3.8$ cm가 더 김",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-7-xc16",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "3",
+    "after": "$3$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-7-xc16",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "0.1이 10개가 되어 1이 된다",
+    "after": "$0.1$이 $10$개가 되어 $1$이 된다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-7-xc17",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "0.9가 1.1보다 작다",
+    "after": "$0.9$가 $1.1$보다 작다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-7-xc18",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "2에서 2.5까지 0.1이 5칸",
+    "after": "$2$에서 $2.5$까지 $0.1$이 $5$칸",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-7-xc18",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "2.5에서 3까지도 0.1이 5칸",
+    "after": "$2.5$에서 $3$까지도 $0.1$이 $5$칸",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-7-xc19",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "7을 소수점 왼쪽에",
+    "after": "$7$을 소수점 왼쪽에",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-7-xc21",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "3.1, 3.2, 3.3",
+    "after": "$3.1$, $3.2$, $3.3$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-7-xc21",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "왼쪽 수는 3으로 같다",
+    "after": "왼쪽 수는 $3$으로 같다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-7-xc21",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "오른쪽 숫자가 0과 4 사이",
+    "after": "오른쪽 숫자가 $0$과 $4$ 사이",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-7-xc24",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "1.5를 고름",
+    "after": "$1.5$를 고름",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-1-6-7-xc24",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "2.5는 왼쪽이 같고 오른쪽 5가 3보다 큼",
+    "after": "$2.5$는 왼쪽이 같고 오른쪽 $5$가 $3$보다 큼",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-1-xc2",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "각 자리 숫자와 3의 곱 3, 9, 6",
+    "after": "각 자리 숫자와 $3$의 곱 $3$, $9$, $6$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-1-xc4",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "600(백이 6개)",
+    "after": "$600$(백이 $6$개)",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-1-xc4",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "3은 300을 나타낸다",
+    "after": "$3$은 $300$을 나타낸다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-1-xc5",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "400은 백이 4개",
+    "after": "$400$은 백이 $4$개",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-1-xc5",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "백이 8개이므로 800",
+    "after": "백이 $8$개이므로 $800$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-1-xc8",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "각 자리의 곱이 10보다 작은지 본다",
+    "after": "각 자리의 곱이 $10$보다 작은지 본다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-1-xc8",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "4×3=12라서 올림이 있다",
+    "after": "$4\\times 3=12$라서 올림이 있다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-1-xc9",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "백의 자리 곱이 10보다 작다",
+    "after": "백의 자리 곱이 $10$보다 작다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-1-xc12",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "231×3으로 바꾼다",
+    "after": "$231\\times 3$으로 바꾼다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-1-xc13",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "230은 십이 23개",
+    "after": "$230$은 십이 $23$개",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-1-xc13",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "십이 69개이므로 690",
+    "after": "십이 $69$개이므로 $690$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-1-xc17",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "444",
+    "after": "$444$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-1-xc17",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "각 자리의 곱이 모두 1×4로 같다",
+    "after": "각 자리의 곱이 모두 $1\\times 4$로 같다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-1-xc19",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "가장 큰 숫자 4",
+    "after": "가장 큰 숫자 $4$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-1-xc19",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "그 곱이 10보다 작으면 다른 자리의 곱도 10보다 작다",
+    "after": "그 곱이 $10$보다 작으면 다른 자리의 곱도 $10$보다 작다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-1-xc21",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "200 작다",
+    "after": "$200$ 작다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-1-xc21",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "100×2를 빠뜨렸다",
+    "after": "$100\\times 2$를 빠뜨렸다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-1-xc24",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "412는 400과 12의 합",
+    "after": "$412$는 $400$과 $12$의 합",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-1-xc24",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "각각 2배 해서 더하면 같다",
+    "after": "각각 $2$배 해서 더하면 같다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-1-xc25",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "4는 2의 2배",
+    "after": "$4$는 $2$의 $2$배",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-1-xc25",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "곱도 2배(224의 2배)",
+    "after": "곱도 $2$배($224$의 $2$배)",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-1-xc27",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "432×2가 더 큼",
+    "after": "$432\\times 2$가 더 큼",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-2-xc1",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "24는 십 2개와 일 4개",
+    "after": "$24$는 십 $2$개와 일 $4$개",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-2-xc1",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "2는 십이므로 십의 자리로",
+    "after": "$2$는 십이므로 십의 자리로",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-2-xc2",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "16은 160(십이 16개)",
+    "after": "$16$은 $160$(십이 $16$개)",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-2-xc2",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "백 1개와 십 6개",
+    "after": "백 $1$개와 십 $6$개",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-2-xc4",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "백의 자리 곱 12에 올린 수 1을 더해 13",
+    "after": "백의 자리 곱 $12$에 올린 수 $1$을 더해 $13$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-2-xc4",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "10을 넘어 천의 자리가 생긴다",
+    "after": "$10$을 넘어 천의 자리가 생긴다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-2-xc6",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "600, 150, 12",
+    "after": "$600$, $150$, $12$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-2-xc10",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "일의 자리에서 올린 1을 더한다",
+    "after": "일의 자리에서 올린 $1$을 더한다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-2-xc10",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "25가 되어 2를 올린다",
+    "after": "$25$가 되어 $2$를 올린다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-2-xc12",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "십의 자리 곱은 0",
+    "after": "십의 자리 곱은 $0$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-2-xc12",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "일의 자리에서 올린 2를 쓴다",
+    "after": "일의 자리에서 올린 $2$를 쓴다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-2-xc14",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "5×4=20",
+    "after": "$5\\times 4=20$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-2-xc14",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "일의 자리에 0이 남고 2는 올린다",
+    "after": "일의 자리에 $0$이 남고 $2$는 올린다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-2-xc19",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "올린 1을 더하지 않았다",
+    "after": "올린 $1$을 더하지 않았다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-2-xc19",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "10 작다",
+    "after": "$10$ 작다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-2-xc20",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "999×9",
+    "after": "$999\\times 9$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-2-xc24",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "5×2=10",
+    "after": "$5\\times 2=10$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-2-xc24",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "500×2=1000이라 천의 자리가 생긴다",
+    "after": "$500\\times 2=1000$이라 천의 자리가 생긴다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-2-xc26",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "643×8이 더 큼",
+    "after": "$643\\times 8$이 더 큼",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-2-xc26",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "43×8이 43×6보다 크다",
+    "after": "$43\\times 8$이 $43\\times 6$보다 크다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-3-xc1",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "십×십은 백",
+    "after": "십$\\times$십은 백",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-3-xc1",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "백이 12개(12의 100배)",
+    "after": "백이 $12$개($12$의 $100$배)",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-3-xc7",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "230",
+    "after": "$230$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-3-xc7",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "십이 23개인 수",
+    "after": "십이 $23$개인 수",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-3-xc8",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "60은 십이 6개",
+    "after": "$60$은 십이 $6$개",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-3-xc8",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "십이 24개이므로 240",
+    "after": "십이 $24$개이므로 $240$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-3-xc10",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "5×6=30에 0이 하나 있다",
+    "after": "$5\\times 6=30$에 $0$이 하나 있다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-3-xc10",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "0을 두 개 더 붙인다",
+    "after": "$0$을 두 개 더 붙인다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-3-xc12",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "20은 2의 10배",
+    "after": "$20$은 $2$의 $10$배",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-3-xc12",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "70의 10배인 700",
+    "after": "$70$의 $10$배인 $700$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-3-xc13",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "19가 20보다 작아 40 한 묶음이 모자란다",
+    "after": "$19$가 $20$보다 작아 $40$ 한 묶음이 모자란다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-3-xc14",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "2×6과 3×4가 모두 12",
+    "after": "$2\\times 6$과 $3\\times 4$가 모두 $12$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-3-xc14",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "둘 다 12에 0을 두 개 붙인 수",
+    "after": "둘 다 $12$에 $0$을 두 개 붙인 수",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-4-xc4",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "23×4와 23×10",
+    "after": "$23\\times 4$와 $23\\times 10$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-4-xc7",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "가장 작은 곱이 10×10=100",
+    "after": "가장 작은 곱이 $10\\times 10=100$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-4-xc8",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "11은 10과 1의 합",
+    "after": "$11$은 $10$과 $1$의 합",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-4-xc8",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "12의 10배와 12를 더한다",
+    "after": "$12$의 $10$배와 $12$를 더한다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-4-xc18",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "30은 3의 10배라서 둘째 줄이 10배",
+    "after": "$30$은 $3$의 $10$배라서 둘째 줄이 $10$배",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-4-xc18",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "31에서는 30이 1의 10배가 아니다",
+    "after": "$31$에서는 $30$이 $1$의 $10$배가 아니다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-4-xc19",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "25는 5의 5배",
+    "after": "$25$는 $5$의 $5$배",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-1-4-xc19",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "60의 5배",
+    "after": "$60$의 $5$배",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-1-xc2",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "60은 십이 6개",
+    "after": "$60$은 십이 $6$개",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-1-xc2",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "십이 2개씩이므로 20",
+    "after": "십이 $2$개씩이므로 $20$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-1-xc8",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "80÷8=10, 8÷8=1",
+    "after": "$80\\div 8=10$, $8\\div 8=1$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-1-xc8",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "두 자리 숫자가 같아 늘 10과 1이 나온다",
+    "after": "두 자리 숫자가 같아 늘 $10$과 $1$이 나온다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-1-xc9",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "20",
+    "after": "$20$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-1-xc9",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "십 8개를 4로 나누면 십이 2개씩",
+    "after": "십 $8$개를 $4$로 나누면 십이 $2$개씩",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-1-xc15",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "몫이 2배가 됨",
+    "after": "몫이 $2$배가 됨",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-1-xc17",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "64÷2를 고름",
+    "after": "$64\\div 2$를 고름",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-1-xc17",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "십의 자리 숫자가 2로 남김없이 나누어짐",
+    "after": "십의 자리 숫자가 $2$로 남김없이 나누어짐",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-1-xc20",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "7이 3보다 커서 두 자리 수",
+    "after": "$7$이 $3$보다 커서 두 자리 수",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-1-xc21",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "십을 나눈 몫 4는 십의 자리에 씀",
+    "after": "십을 나눈 몫 $4$는 십의 자리에 씀",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-1-xc21",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "바른 몫 42",
+    "after": "바른 몫 $42$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-1-xc22",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "6으로 나눌 때 몫이 더 작음",
+    "after": "$6$으로 나눌 때 몫이 더 작음",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-1-xc24",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "몫에 나누는 수를 곱해 96과 비교",
+    "after": "몫에 나누는 수를 곱해 $96$과 비교",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-1-xc24",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "93이라 틀림",
+    "after": "$93$이라 틀림",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-1-xc26",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "낱개 3을 3으로 나눈 몫",
+    "after": "낱개 $3$을 $3$으로 나눈 몫",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-2-xc4",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "십 1개가 남음",
+    "after": "십 $1$개가 남음",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-2-xc4",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "낱개 10개로 바꾸어 나누면 5",
+    "after": "낱개 $10$개로 바꾸어 나누면 $5$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-2-xc8",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "일의 자리 숫자 2를 내려 씀",
+    "after": "일의 자리 숫자 $2$를 내려 씀",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-2-xc8",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "12를 4로 나눔",
+    "after": "$12$를 $4$로 나눔",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-2-xc9",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "60과 30을 각각 6으로 나눔",
+    "after": "$60$과 $30$을 각각 $6$으로 나눔",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-2-xc9",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "두 몫을 더해 15",
+    "after": "두 몫을 더해 $15$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-2-xc11",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "5의 10배 50과 20배 100을 구함",
+    "after": "$5$의 $10$배 $50$과 $20$배 $100$을 구함",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-2-xc11",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "75가 그 사이에 있음",
+    "after": "$75$가 그 사이에 있음",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-2-xc19",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "남은 십 3개를 낱개 30개로 바꿔 함께 나눠야 함",
+    "after": "남은 십 $3$개를 낱개 $30$개로 바꿔 함께 나눠야 함",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-2-xc19",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "바른 몫 17",
+    "after": "바른 몫 $17$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-2-xc20",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "98÷2=49",
+    "after": "$98\\div 2=49$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-3-xc3",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "4개씩 3명에게 주고 1개가 남음",
+    "after": "$4$개씩 $3$명에게 주고 $1$개가 남음",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-3-xc4",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "나머지가 0",
+    "after": "나머지가 $0$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-3-xc4",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "24÷4를 고름",
+    "after": "$24\\div 4$를 고름",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-3-xc7",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "5개씩 3묶음까지 만들 수 있음",
+    "after": "$5$개씩 $3$묶음까지 만들 수 있음",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-3-xc7",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "4묶음은 만들 수 없음",
+    "after": "$4$묶음은 만들 수 없음",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-3-xc8",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "4×7=28을 29에서 뺌",
+    "after": "$4\\times 7=28$을 $29$에서 뺌",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-3-xc8",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "나머지 1",
+    "after": "나머지 $1$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-3-xc9",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "0부터 5까지",
+    "after": "$0$부터 $5$까지",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-3-xc9",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "6이 남으면 한 번 더 나눌 수 있음",
+    "after": "$6$이 남으면 한 번 더 나눌 수 있음",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-3-xc17",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "의자 8개",
+    "after": "의자 $8$개",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-3-xc17",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "남은 2명도 앉아야 함",
+    "after": "남은 $2$명도 앉아야 함",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-3-xc20",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "나머지가 가장 큰 5일 때",
+    "after": "나머지가 가장 큰 $5$일 때",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-3-xc20",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "6×3+5=23",
+    "after": "$6\\times 3+5=23$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-3-xc24",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "3개가 모이면 한 묶음이 더 됨",
+    "after": "$3$개가 모이면 한 묶음이 더 됨",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-3-xc24",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "남는 것이 없어 나머지 0",
+    "after": "남는 것이 없어 나머지 $0$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-4-xc1",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "백 3개를 나눈 몫",
+    "after": "백 $3$개를 나눈 몫",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-4-xc1",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "1이 100을 나타냄",
+    "after": "$1$이 $100$을 나타냄",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-4-xc4",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "백 1개를 십 10개로 바꿈",
+    "after": "백 $1$개를 십 $10$개로 바꿈",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-4-xc4",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "십 13개를 3으로 나눔",
+    "after": "십 $13$개를 $3$으로 나눔",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-4-xc5",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "14는 십 14개",
+    "after": "$14$는 십 $14$개",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-4-xc5",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "몫 2는 20을 나타냄",
+    "after": "몫 $2$는 $20$을 나타냄",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-4-xc8",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "800은 백 8개",
+    "after": "$800$은 백 $8$개",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-4-xc8",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "백 2개씩이라 200",
+    "after": "백 $2$개씩이라 $200$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-4-xc15",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "나머지 11이 나누는 수 6보다 큼",
+    "after": "나머지 $11$이 나누는 수 $6$보다 큼",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-4-xc15",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "몫 62, 나머지 5",
+    "after": "몫 $62$, 나머지 $5$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-4-xc18",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "630은 63의 10배",
+    "after": "$630$은 $63$의 $10$배",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-2-4-xc18",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "몫도 10배인 70",
+    "after": "몫도 $10$배인 $70$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-3-1-xc16",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "0 눈금을 중심에 맞춤",
+    "after": "$0$ 눈금을 중심에 맞춤",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-3-1-xc22",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "3 cm는 안쪽, 5 cm는 원 위, 7 cm는 바깥",
+    "after": "$3$ cm는 안쪽, $5$ cm는 원 위, $7$ cm는 바깥",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-3-2-xc2",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "지름은 반지름 2개",
+    "after": "지름은 반지름 $2$개",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-3-2-xc13",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "지름을 2로 나누어 반지름 7 cm",
+    "after": "지름을 $2$로 나누어 반지름 $7$ cm",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-3-2-xc13",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "반지름에 2를 곱해 지름 18 cm",
+    "after": "반지름에 $2$를 곱해 지름 $18$ cm",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-3-2-xc15",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "원 한 개의 지름 4 cm",
+    "after": "원 한 개의 지름 $4$ cm",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-3-2-xc15",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "지름 3개를 이은 길이 12 cm",
+    "after": "지름 $3$개를 이은 길이 $12$ cm",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-3-2-xc20",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "작은 원의 지름 2개가 큰 원의 지름",
+    "after": "작은 원의 지름 $2$개가 큰 원의 지름",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-3-2-xc20",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "작은 원의 지름 10 cm, 반지름 5 cm",
+    "after": "작은 원의 지름 $10$ cm, 반지름 $5$ cm",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-3-2-xc21",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "원의 지름이 정사각형의 한 변과 같은 10 cm",
+    "after": "원의 지름이 정사각형의 한 변과 같은 $10$ cm",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-3-2-xc21",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "반지름 5 cm",
+    "after": "반지름 $5$ cm",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-3-2-xc22",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "중심을 지나면 지름이라 10 cm여야 함",
+    "after": "중심을 지나면 지름이라 $10$ cm여야 함",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-3-2-xc25",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "반지름 4 cm",
+    "after": "반지름 $4$ cm",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-3-2-xc26",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "반지름 2개를 이은 길이",
+    "after": "반지름 $2$개를 이은 길이",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-3-2-xc26",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "8 cm",
+    "after": "$8$ cm",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-3-3-xc2",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "컴퍼스를 3 cm만큼 벌림",
+    "after": "컴퍼스를 $3$ cm만큼 벌림",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-3-3-xc13",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "14 cm씩 옮김",
+    "after": "$14$ cm씩 옮김",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-3-3-xc13",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "중심 사이의 거리가 반지름 2개(지름)",
+    "after": "중심 사이의 거리가 반지름 $2$개(지름)",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-3-3-xc24",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "3cm 벌려야 한다",
+    "after": "$3$cm 벌려야 한다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-3-3-xc26",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "3cm 구멍",
+    "after": "$3$cm 구멍",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-1-xc10",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "둘 다 같은 구슬 6개를 나타낸다",
+    "after": "둘 다 같은 구슬 $6$개를 나타낸다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-1-xc18",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "둘 다 3묶음",
+    "after": "둘 다 $3$묶음",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-1-xc18",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "그중 1묶음",
+    "after": "그중 $1$묶음",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-1-xc26",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "10개는 2묶음",
+    "after": "$10$개는 $2$묶음",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-1-xc26",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "2/3",
+    "after": "$\\frac{2}{3}$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-2-xc3",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "4묶음으로 똑같이 나눈다",
+    "after": "$4$묶음으로 똑같이 나눈다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-2-xc3",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "3",
+    "after": "$3$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-2-xc9",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "분자 1은 그중 한 묶음",
+    "after": "분자 $1$은 그중 한 묶음",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-2-xc9",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "4",
+    "after": "$4$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-2-xc11",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "12의 1/6이 더 작다",
+    "after": "$12$의 $\\frac{1}{6}$이 더 작다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-2-xc12",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "20의 1/4이 더 크다",
+    "after": "$20$의 $\\frac{1}{4}$이 더 크다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-2-xc13",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "한 묶음이 6",
+    "after": "한 묶음이 $6$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-2-xc13",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "3묶음을 모은다",
+    "after": "$3$묶음을 모은다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-2-xc13",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "18",
+    "after": "$18$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-2-xc25",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "1/2은 2묶음 중 한 묶음",
+    "after": "$\\frac{1}{2}$은 $2$묶음 중 한 묶음",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-2-xc25",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "두 묶음을 모으면 전체 8",
+    "after": "두 묶음을 모으면 전체 $8$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-2-xc27",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "12개는 4묶음으로 남김없이 나누어진다",
+    "after": "$12$개는 $4$묶음으로 남김없이 나누어진다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-2-xc27",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "10개는 남는 것이 생긴다",
+    "after": "$10$개는 남는 것이 생긴다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-3-xc11",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "분모 5로 나눈다",
+    "after": "분모 $5$로 나눈다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-3-xc11",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "분자 3을 곱한다",
+    "after": "분자 $3$을 곱한다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-3-xc12",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "12를 3으로 나누어 1/4만큼(4)을 구한다",
+    "after": "$12$를 $3$으로 나누어 $\\frac{1}{4}$만큼($4$)을 구한다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-3-xc12",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "4묶음을 모은다",
+    "after": "$4$묶음을 모은다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-3-xc12",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "16",
+    "after": "$16$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-3-xc14",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "12의 3/4이 더 크다",
+    "after": "$12$의 $\\frac{3}{4}$이 더 크다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-3-xc15",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "100cm로 바꾼다",
+    "after": "$100$cm로 바꾼다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-3-xc15",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "1/4만큼은 25cm",
+    "after": "$\\frac{1}{4}$만큼은 $25$cm",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-3-xc15",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "75cm",
+    "after": "$75$cm",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-3-xc19",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "남은 15개가 새 전체",
+    "after": "남은 $15$개가 새 전체",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-3-xc21",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "9",
+    "after": "$9$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-4-xc2",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "4/4는 가분수",
+    "after": "$\\frac{4}{4}$는 가분수",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-4-xc6",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "5/4는 1(4/4)보다 크다",
+    "after": "$\\frac{5}{4}$는 $1$($\\frac{4}{4}$)보다 크다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-4-xc7",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "1은 1/4이 4개",
+    "after": "$1$은 $\\frac{1}{4}$이 $4$개",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-4-xc7",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "3/4은 1/4이 3개뿐",
+    "after": "$\\frac{3}{4}$은 $\\frac{1}{4}$이 $3$개뿐",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-4-xc10",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "진분수 5/8",
+    "after": "진분수 $\\frac{5}{8}$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-4-xc10",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "가분수 8/8, 9/8",
+    "after": "가분수 $\\frac{8}{8}$, $\\frac{9}{8}$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-4-xc15",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "2는 6/3, 3은 9/3",
+    "after": "$2$는 $\\frac{6}{3}$, $3$은 $\\frac{9}{3}$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-4-xc15",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "7/3은 그 사이",
+    "after": "$\\frac{7}{3}$은 그 사이",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-4-xc16",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "3/3이 1",
+    "after": "$\\frac{3}{3}$이 $1$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-4-xc16",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "6/3은 3/3이 2번",
+    "after": "$\\frac{6}{3}$은 $\\frac{3}{3}$이 $2$번",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-4-xc18",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "분모 1, 2, 3, 4",
+    "after": "분모 $1$, $2$, $3$, $4$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-4-xc18",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "4/5는 분자가 분모보다 작아 진분수",
+    "after": "$\\frac{4}{5}$는 분자가 분모보다 작아 진분수",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-4-xc21",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "9/4가 더 크다",
+    "after": "$\\frac{9}{4}$가 더 크다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-4-xc21",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "같은 1/4이 더 많이 모였다",
+    "after": "같은 $\\frac{1}{4}$이 더 많이 모였다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-4-xc23",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "6/6",
+    "after": "$\\frac{6}{6}$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-4-xc24",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "3/3",
+    "after": "$\\frac{3}{3}$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-4-xc24",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "1/3이 3개여야 1",
+    "after": "$\\frac{1}{3}$이 $3$개여야 $1$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-4-xc24",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "2/3는 1보다 작고 4/3는 1보다 크다",
+    "after": "$\\frac{2}{3}$는 $1$보다 작고 $\\frac{4}{3}$는 $1$보다 크다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-5-xc5",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "자연수 1에 진분수가 더해진다",
+    "after": "자연수 $1$에 진분수가 더해진다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-5-xc9",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "5/4는 가분수",
+    "after": "$\\frac{5}{4}$는 가분수",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-5-xc10",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "11/6",
+    "after": "$\\frac{11}{6}$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-5-xc10",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "1은 6/6",
+    "after": "$1$은 $\\frac{6}{6}$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-5-xc10",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "6/6과 5/6를 합한다",
+    "after": "$\\frac{6}{6}$과 $\\frac{5}{6}$를 합한다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-5-xc11",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "2와 1/4",
+    "after": "$2$와 $\\frac{1}{4}$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-5-xc11",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "8/4은 2",
+    "after": "$\\frac{8}{4}$은 $2$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-5-xc11",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "1/4이 남는다",
+    "after": "$\\frac{1}{4}$이 남는다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-5-xc15",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "조각의 크기(1/4)는 그대로",
+    "after": "조각의 크기($\\frac{1}{4}$)는 그대로",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-5-xc18",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "2에 진분수를 더해 2보다 크다",
+    "after": "$2$에 진분수를 더해 $2$보다 크다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-5-xc18",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "진분수는 1보다 작아 3보다 작다",
+    "after": "진분수는 $1$보다 작아 $3$보다 작다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-5-xc21",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "5와 2/3",
+    "after": "$5$와 $\\frac{2}{3}$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-5-xc21",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "진분수 부분은 1보다 작다",
+    "after": "진분수 부분은 $1$보다 작다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-6-xc1",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "4/5가 더 크다",
+    "after": "$\\frac{4}{5}$가 더 크다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-6-xc3",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "2와 3/5 쪽이 더 크다",
+    "after": "$2$와 $\\frac{3}{5}$ 쪽이 더 크다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-6-xc5",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "7/4이 더 크다",
+    "after": "$\\frac{7}{4}$이 더 크다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-6-xc10",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "11/3은 3과 2/3",
+    "after": "$\\frac{11}{3}$은 $3$과 $\\frac{2}{3}$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-6-xc10",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "11/3이 더 크다",
+    "after": "$\\frac{11}{3}$이 더 크다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-6-xc13",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "2와 4/5는 3보다 작다",
+    "after": "$2$와 $\\frac{4}{5}$는 $3$보다 작다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-6-xc13",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "3과 1/5은 3보다 크다",
+    "after": "$3$과 $\\frac{1}{5}$은 $3$보다 크다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-6-xc17",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "7/3은 2와 1/3",
+    "after": "$\\frac{7}{3}$은 $2$와 $\\frac{1}{3}$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-6-xc17",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "2보다 1/3만큼 크다",
+    "after": "$2$보다 $\\frac{1}{3}$만큼 크다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-6-xc19",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "10/4, 11/4",
+    "after": "$\\frac{10}{4}$, $\\frac{11}{4}$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-6-xc19",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "분자가 9보다 크고 12보다 작다",
+    "after": "분자가 $9$보다 크고 $12$보다 작다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-6-xc21",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "3과 2/3는 11/3",
+    "after": "$3$과 $\\frac{2}{3}$는 $\\frac{11}{3}$",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-4-6-xc21",
+    "field": "bRequiredIdeas[2].anyOf[0]",
+    "before": "3과 2/3가 더 크다",
+    "after": "$3$과 $\\frac{2}{3}$가 더 크다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e3-2-5-1-xc10",
+    "field": "bRequiredIdeas[0].anyOf[0]",
+    "before": "컵 3개만큼",
+    "after": "컵 $3$개만큼",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e4-1-4-4-xc10",
+    "field": "bAnswer",
+    "before": "아래쪽을 가리킨다. 시계 방향으로는 위쪽, 오른쪽, 아래쪽, 왼쪽 차례로 바뀌므로 오른쪽 바로 다음인 아래쪽이다. 시계의 3에서 6으로 도는 것으로 생각해도 된다.",
+    "after": "아래쪽을 가리킨다. 시계 방향으로는 위쪽, 오른쪽, 아래쪽, 왼쪽 차례로 바뀌므로 오른쪽 바로 다음인 아래쪽이다. 시계의 $3$에서 $6$으로 도는 것으로 생각해도 된다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e4-1-4-4-xc10",
+    "field": "bRequiredIdeas[1].anyOf[2]",
+    "before": "시계의 3에서 시계 방향으로 직각만큼 돌면 6이 된다",
+    "after": "시계의 $3$에서 시계 방향으로 직각만큼 돌면 $6$이 된다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e4-1-5-3-xc11",
+    "field": "bAnswer",
+    "before": "합계가 조사한 25명과 다르므로 막대를 잘못 읽었거나, 조사 결과를 잘못 세거나 그렸을 수 있다. 그래프를 다시 읽고 조사 기록과 비교해 확인한다.",
+    "after": "합계가 조사한 $25$명과 다르므로 막대를 잘못 읽었거나, 조사 결과를 잘못 세거나 그렸을 수 있다. 그래프를 다시 읽고 조사 기록과 비교해 확인한다.",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e4-2-3-1-xc4",
+    "field": "bRequiredIdeas[1].anyOf[0]",
+    "before": "0도 영으로 읽는다",
+    "after": "$0$도 영으로 읽는다",
+    "reversibleDisplayMatch": true
+  },
+  {
+    "id": "e4-2-3-1-xc4",
+    "field": "bRequiredIdeas[1].anyOf[1]",
+    "before": "0을 빠뜨리지 않는다",
+    "after": "$0$을 빠뜨리지 않는다",
+    "reversibleDisplayMatch": true
+  }
+]

@@ -1,0 +1,31 @@
+All-subject exam builder prototypes A/B — 2026-10-08
+
+Files
+- a-guided.html: scope/count, composed-question review, and output preview are three separate wizard screens.
+- b-workbench.html: compact scope controls remain beside composed questions; changed conditions apply only after an explicit compose action. The controls stick on sufficiently tall desktop screens and stack above the review on mobile. Mobile composition moves to the result heading.
+
+Both formats use the workspace navy/cobalt/white tokens, local Pretendard, 24/18/14/12 typography, 44px controls, visible keyboard focus, native checkbox/pressed-button semantics, and a native dialog with explicit Tab/Shift+Tab containment, Escape, and trigger-focus restoration.
+
+Data and behavior
+- Math, English, Korean, Science, and Social Studies each have 3 scopes containing 4 authored sample questions each: 12 unique examples per subject.
+- Scope selection controls the actual candidate pool. Initial selection is 2 scopes / 8 available questions, with 6 questions requested. The requested count can be 4, 6, or 8; insufficient scope disables composition with a reason.
+- Review supports numbered full question bodies, answer/explanation disclosure, replacement using unused candidates, addition, deletion, up/down ordering, and snapshot undo including Ctrl/Cmd+Z outside text fields.
+- English and Korean display the appropriate shared passage for each consecutive question group, including after editing and reordering.
+- Output has an editable title, actual question count, student name field, and student-only question content; answer/explanation controls are omitted. The print action opens browser printing.
+- In-memory state only. No API, remote request, storage, production integration, server, or deployment. Reload resets the prototype. Samples do not claim official curriculum alignment.
+- index.html is the coordinator-owned gallery link. No gallery or sibling variant was edited here.
+
+Verification
+- Headless Chromium via installed Playwright, using file URLs without a server.
+- 18 scenario groups passed: five subjects on each format, three responsive widths on each format, and empty/full-pool recovery on each format.
+- For every subject: selection of all scopes, 8-question composition, correct subject content, candidate count, replacement/undo, reorder both directions, delete/undo, add to 9, editable title, matching preview count, absence of preview answers, print invocation, and return to review.
+- B also verified that changing scope does not mutate composed questions until confirmation, and cancellation preserves the current composition.
+- At 1440, 390, and 320px: initial scope, composed review, replacement dialog, and preview had no document horizontal overflow; dialog content had no horizontal overflow; local font availability and modal keyboard containment were checked.
+- Empty selection prevents compose; full selected pool prevents duplicate additions; deleting every question disables preview; candidate addition recovers; keyboard undo and reload reset work.
+- No page errors or HTTP(S) requests occurred.
+- Screenshots were captured for both variants at all three widths and all four states. Desktop A scope/preview, mobile A scope/dialog, desktop B scope/review, and mobile B scope were visually inspected. B's condition panel was shortened after inspection and the full checks rerun.
+- Local evidence (not committed): C:/Users/user/AppData/Local/Temp/exam-ab-evidence/
+- Reproducible local check script (not committed): C:/Users/user/AppData/Local/Temp/exam-ab-check.cjs
+
+Integration boundary
+Only the two assigned standalone HTML files and this note are part of the change. The coordinator owns gallery integration, final cross-variant review, merging, and any later publishing decision.

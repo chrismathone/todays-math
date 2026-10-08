@@ -1,0 +1,1555 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T10:53:18.059Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-02-03-xc7",
+        "section": "중3::2. 다항식의 곱셈과 인수분해::인수분해의 응용",
+        "term": "넓이 식을 인수분해로 읽기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "직사각형의 넓이는 {가로와 세로의 곱}이다 — $x>-2$이면 $x^2+5x+6=(x+2)(x+3)$의 두 인수가 모두 {양수}라 가로와 세로로 볼 수 있다.",
+        "studentC": "직사각형의 넓이는 □이다 — $x>-2$이면 $x^2+5x+6=(x+2)(x+3)$의 두 인수가 모두 □라 가로와 세로로 볼 수 있다.",
+        "answers": [
+          "가로와 세로의 곱",
+          "양수"
+        ]
+      },
+      "proposal": {
+        "id": "m3-02-03-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "넓이가 $x^2+5x+6$인 직사각형이 있다. 넓이 식을 인수분해하여 가로와 세로로 볼 수 있는 두 식을 구하고, $x>-2$일 때 그렇게 볼 수 있는 까닭을 쓰시오.",
+        "bAnswer": "$x^2+5x+6=(x+2)(x+3)$이다. $x>-2$이면 $x+2>0$, $x+3>0$으로 두 인수가 모두 양수이므로 가로와 세로의 길이로 볼 수 있다.",
+        "bGoal": "넓이 식의 인수를 변의 길이로 해석",
+        "bReason": "넓이 식과 조건 $x>-2$를 주어 양수 조건의 역할을 묻게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$(x+2)(x+3)$",
+              "$x+2$와 $x+3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 인수가 모두 양수",
+              "$x+2>0$, $x+3>0$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "넓이 공식과 양수 조건을 묻는 구체적 빈칸",
+        "learningRole": "application",
+        "roleReason": "인수를 양수인 가로·세로로 읽기",
+        "authorBatch": 55,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3380,
+        "part": "m3plus",
+        "sourceFingerprint": "4bd2bfcfef98d4f526a1444e9187a8b5107e74e9f36b50e3fcb61e8e698a00f5",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3380
+        },
+        "directReview": null,
+        "cFrozenSentence": "직사각형의 넓이는 □이다 — $x>-2$이면 $x^2+5x+6=(x+2)(x+3)$의 두 인수가 모두 □라 가로와 세로로 볼 수 있다.",
+        "cFrozenDefinition": "직사각형의 넓이는 {가로와 세로의 곱}이다 — $x>-2$이면 $x^2+5x+6=(x+2)(x+3)$의 두 인수가 모두 {양수}라 가로와 세로로 볼 수 있다.",
+        "cFrozenAnswers": [
+          "가로와 세로의 곱",
+          "양수"
+        ],
+        "cMarkedSentence": "직사각형의 넓이는 {가로와 세로의 곱}이다 — $x>-2$이면 $x^2+5x+6=(x+2)(x+3)$의 두 인수가 모두 {양수}라 가로와 세로로 볼 수 있다.",
+        "cSlotAnswers": [
+          "가로와 세로의 곱",
+          "양수"
+        ],
+        "cStudentSentence": "직사각형의 넓이는 □이다 — $x>-2$이면 $x^2+5x+6=(x+2)(x+3)$의 두 인수가 모두 □라 가로와 세로로 볼 수 있다.",
+        "cAnswers": [
+          "가로와 세로의 곱",
+          "양수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "가로와 세로의 곱",
+            "equivalentAnswers": [
+              "가로와 세로의 곱",
+              "가로 $\\times$ 세로"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "양수",
+            "equivalentAnswers": [
+              "양수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "가로와 세로의 곱",
+            "accept": [
+              "가로 $\\times$ 세로"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "가로와 세로의 곱",
+            "가로 $\\times$ 세로"
+          ],
+          [
+            "양수"
+          ]
+        ],
+        "proposalFingerprint": "e64ea2050434a315253062402de72f61cc3f5bdb019065ff4e9d84e617a42ee5"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-01-xc22",
+        "section": "중2::1. 수와 식::유리수와 소수",
+        "term": "유리수와 유한소수의 포함 관계",
+        "kind": "성질",
+        "level": "상",
+        "definition": "유한소수는 모두 {유리수}이지만, 유리수가 모두 {유한소수}인 것은 아니다.",
+        "example": {
+          "prompt": "유리수이지만 유한소수가 아닌 수의 예",
+          "answer": "$\\frac{1}{3}$"
+        },
+        "studentC": "유한소수는 모두 □이지만, 유리수가 모두 □인 것은 아니다.",
+        "answers": [
+          "유리수",
+          "유한소수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-01-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "'유한소수는 모두 유리수이다'와 '유리수는 모두 유한소수이다' 중 옳은 것을 고르고, 옳지 않은 쪽은 예를 하나 들어 설명하시오.",
+        "bAnswer": "'유한소수는 모두 유리수이다'가 옳다. $\\frac{1}{3}=0.333\\cdots$은 유리수이지만 유한소수가 아니므로 '유리수는 모두 유한소수이다'는 옳지 않다.",
+        "bGoal": "유한소수와 유리수의 포함 관계를 예로 설명하기",
+        "bReason": "포함 관계를 두 문장의 참·거짓과 반례로 묻도록 특정함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "'유한소수는 모두 유리수이다'가 옳다",
+              "유한소수는 모두 유리수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{3}$은 유리수이지만 유한소수가 아니다",
+              "$0.333\\cdots$처럼 유한소수가 아닌 유리수가 있다",
+              "$\\frac{1}{6}$, $\\frac{2}{7}$처럼 유한소수가 아닌 유리수의 예를 든다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "두 용어의 포함 방향을 대비하는 짧은 비교 빈칸임.",
+        "learningRole": "reason",
+        "roleReason": "포함 관계와 반례",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2142,
+        "part": "m2plus",
+        "sourceFingerprint": "e240f19eb0a4cac9d19e8344f0737fd6bd327588105bbe7580751655077ffcd8",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2142
+        },
+        "directReview": null,
+        "cFrozenSentence": "유한소수는 모두 □이지만, 유리수가 모두 □인 것은 아니다.",
+        "cFrozenDefinition": "유한소수는 모두 {유리수}이지만, 유리수가 모두 {유한소수}인 것은 아니다.",
+        "cFrozenAnswers": [
+          "유리수",
+          "유한소수"
+        ],
+        "cMarkedSentence": "유한소수는 모두 {유리수}이지만, 유리수가 모두 {유한소수}인 것은 아니다.",
+        "cSlotAnswers": [
+          "유리수",
+          "유한소수"
+        ],
+        "cStudentSentence": "유한소수는 모두 □이지만, 유리수가 모두 □인 것은 아니다.",
+        "cAnswers": [
+          "유리수",
+          "유한소수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "유리수",
+            "equivalentAnswers": [
+              "유리수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "유한소수",
+            "equivalentAnswers": [
+              "유한소수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "유리수"
+          ],
+          [
+            "유한소수"
+          ]
+        ],
+        "proposalFingerprint": "24b03f7c92f99d9d4c2b3e751bbf4f5ad3034ecc46a8fb0a280a8c34ae9d8410"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-01-xc23",
+        "section": "중2::1. 수와 식::유리수와 소수",
+        "term": "나눗셈이 끝나는 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "분모의 소인수가 $2$와 $5$뿐이면 분자에 $10$을 몇 번 곱한 수가 분모로 {나누어떨어지므로} 나눗셈이 {끝난다}.",
+        "example": {
+          "prompt": "$1\\div8$은 소수점 아래 몇째 자리에서 끝나는가?",
+          "answer": "셋째 자리"
+        },
+        "studentC": "분모의 소인수가 $2$와 $5$뿐이면 분자에 $10$을 몇 번 곱한 수가 분모로 □ 나눗셈이 □.",
+        "answers": [
+          "나누어떨어지므로",
+          "끝난다"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-01-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "$1\\div8$을 계산하면 $0.125$에서 나눗셈이 끝난다. $8=2^3$이고 $1000=2^3\\times5^3$임을 이용하여, 나눗셈이 소수점 아래 셋째 자리에서 끝나는 까닭을 설명하시오.",
+        "bAnswer": "$1$에 $10$을 세 번 곱한 $1000$은 $8$로 나누어떨어진다($1000\\div8=125$). 그래서 셋째 자리에서 나머지가 $0$이 되어 나눗셈이 끝난다.",
+        "bGoal": "분모의 소인수가 $2$와 $5$뿐일 때 나눗셈이 끝나는 까닭 설명하기",
+        "bReason": "어떤 나눗셈이 왜 끝나는지를 구체적인 계산과 근거로 제시함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$1000$이 $8$로 나누어떨어진다",
+              "$1000\\div8=125$",
+              "$10$을 세 번 곱하면 $8$의 배수가 된다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "분모의 소인수가 $2$와 $5$뿐이면 분자에 {$10$}을 알맞은 횟수만큼 곱한 수가 분모로 {나누어떨어지므로}, 분자를 분모로 나누는 나눗셈은 나머지가 {$0$}이 되어 끝난다.",
+        "cAnswers": [
+          "$10$",
+          "나누어떨어지므로",
+          "$0$"
+        ],
+        "cReason": "'끝난다' 같은 서술어 빈칸 대신 핵심 수와 관계를 묻게 함.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "나눗셈이 끝나는 까닭",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2143,
+        "part": "m2plus",
+        "sourceFingerprint": "616f8e27387d593c1849b0da1f52b41689c8f68c1b36b47686c6b4ed7770a3f9",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2143
+        },
+        "directReview": null,
+        "cMarkedSentence": "분모의 소인수가 $2$와 $5$뿐이면 분자에 {$10$}을 알맞은 횟수만큼 곱한 수가 분모로 {나누어떨어지므로}, 분자를 분모로 나누는 나눗셈은 나머지가 {$0$}이 되어 끝난다.",
+        "cSlotAnswers": [
+          "$10$",
+          "나누어떨어지므로",
+          "$0$"
+        ],
+        "cStudentSentence": "분모의 소인수가 $2$와 $5$뿐이면 분자에 □을 알맞은 횟수만큼 곱한 수가 분모로 □, 분자를 분모로 나누는 나눗셈은 나머지가 □이 되어 끝난다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$10$",
+            "equivalentAnswers": [
+              "$10$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "나누어떨어지므로",
+            "equivalentAnswers": [
+              "나누어떨어지므로",
+              "나누어떨어져서"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "$0$",
+            "equivalentAnswers": [
+              "$0$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "나누어떨어지므로",
+            "accept": [
+              "나누어떨어져서"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$10$"
+          ],
+          [
+            "나누어떨어지므로",
+            "나누어떨어져서"
+          ],
+          [
+            "$0$"
+          ]
+        ],
+        "proposalFingerprint": "d0e6aa9fc1e14643ebe01581d37d3da765db437f28ec828f591081b608029be8"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-03-01-xc9",
+        "section": "중3::3. 이차방정식::이차방정식의 풀이",
+        "term": "$(x+p)^2=q$ 꼴의 풀이",
+        "kind": "방법",
+        "level": "중",
+        "definition": "$q\\ge 0$일 때 $(x+p)^2=q$는 $x+p$를 {한 덩어리}로 보면 $q$의 제곱근이므로 $x+p=\\pm\\sqrt{q}$, 곧 {$x=-p\\pm\\sqrt{q}$}이다.",
+        "example": {
+          "prompt": "$(x-1)^2=5$를 전개하지 않고 풀 수 있는 까닭은?",
+          "answer": "$x-1$이 $5$의 제곱근이라서"
+        },
+        "studentC": "$q\\ge 0$일 때 $(x+p)^2=q$는 $x+p$를 □로 보면 $q$의 제곱근이므로 $x+p=\\pm\\sqrt{q}$, 곧 □이다.",
+        "answers": [
+          "한 덩어리",
+          "$x=-p\\pm\\sqrt{q}$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-01-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "$(x-1)^2=5$를 전개하지 않고 푸는 방법을 설명하고 해를 구하시오. 또 $q\\ge 0$일 때 $(x+p)^2=q$의 해를 $p$, $q$로 나타내시오.",
+        "bAnswer": "$x-1$을 한 덩어리로 보면 $5$의 제곱근이므로 $x-1=\\pm\\sqrt{5}$, $x=1\\pm\\sqrt{5}$이다. 일반적으로 $x=-p\\pm\\sqrt{q}$이다.",
+        "bGoal": "$(x+p)^2=q$ 꼴의 풀이",
+        "bReason": "구체 예와 일반 꼴을 함께 물어 산수 하나로 축소되지 않게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x-1$을 한 덩어리로 본다",
+              "$x-1$은 $5$의 제곱근",
+              "$x-1=\\pm\\sqrt{5}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=1\\pm\\sqrt{5}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=-p\\pm\\sqrt{q}$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "덩어리 보기와 일반해를 묻는 분명한 빈칸",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "$x+p$를 덩어리로 보고 제곱근 적용",
+        "authorBatch": 55,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3404,
+        "part": "m3plus",
+        "sourceFingerprint": "ee916904a1306664385a985c822915ea76fbf9c9ce2beb1bf38255159f392893",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3404
+        },
+        "directReview": null,
+        "cFrozenSentence": "$q\\ge 0$일 때 $(x+p)^2=q$는 $x+p$를 □로 보면 $q$의 제곱근이므로 $x+p=\\pm\\sqrt{q}$, 곧 □이다.",
+        "cFrozenDefinition": "$q\\ge 0$일 때 $(x+p)^2=q$는 $x+p$를 {한 덩어리}로 보면 $q$의 제곱근이므로 $x+p=\\pm\\sqrt{q}$, 곧 {$x=-p\\pm\\sqrt{q}$}이다.",
+        "cFrozenAnswers": [
+          "한 덩어리",
+          "$x=-p\\pm\\sqrt{q}$"
+        ],
+        "cMarkedSentence": "$q\\ge 0$일 때 $(x+p)^2=q$는 $x+p$를 {한 덩어리}로 보면 $q$의 제곱근이므로 $x+p=\\pm\\sqrt{q}$, 곧 {$x=-p\\pm\\sqrt{q}$}이다.",
+        "cSlotAnswers": [
+          "한 덩어리",
+          "$x=-p\\pm\\sqrt{q}$"
+        ],
+        "cStudentSentence": "$q\\ge 0$일 때 $(x+p)^2=q$는 $x+p$를 □로 보면 $q$의 제곱근이므로 $x+p=\\pm\\sqrt{q}$, 곧 □이다.",
+        "cAnswers": [
+          "한 덩어리",
+          "$x=-p\\pm\\sqrt{q}$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "한 덩어리",
+            "equivalentAnswers": [
+              "한 덩어리",
+              "한 문자"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$x=-p\\pm\\sqrt{q}$",
+            "equivalentAnswers": [
+              "$x=-p\\pm\\sqrt{q}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "한 덩어리",
+            "accept": [
+              "한 문자"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "한 덩어리",
+            "한 문자"
+          ],
+          [
+            "$x=-p\\pm\\sqrt{q}$"
+          ]
+        ],
+        "proposalFingerprint": "71a02fecebb0b7cd9f4dd143bc2864218761112388504fb96dc6647bfc1f3c51"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-02-xc14",
+        "section": "중2::1. 수와 식::순환소수",
+        "term": "순환마디의 되풀이 간격",
+        "kind": "성질",
+        "level": "중",
+        "definition": "소수점 바로 아래부터 순환하고 순환마디가 $k$자리이면, 같은 숫자는 {$k$자리마다} 다시 나온다.",
+        "example": {
+          "prompt": "$0.\\dot{1}2\\dot{3}$의 소수점 아래 $4$번째 숫자",
+          "answer": "$1$"
+        },
+        "studentC": "소수점 바로 아래부터 순환하고 순환마디가 $k$자리이면, 같은 숫자는 □ 다시 나온다.",
+        "answers": [
+          "$k$자리마다"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-02-xc14",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "$k$자리마다 되풀이된다는 사실은 c5의 나머지 방법의 전제임.",
+        "exclusionReason": "B 제외: 설명형에서 m2-01-02-c5(소수점 아래 $n$번째 자리의 숫자)의 방법 질문에 포함되어 목표가 중복됨.",
+        "cDecision": "keep",
+        "cReason": "순환 조건과 $k$의 뜻이 문장에 있어 간격을 묻는 빈칸으로 분명함.",
+        "learningRole": "definition",
+        "roleReason": "되풀이 간격",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2158,
+        "part": "m2plus",
+        "sourceFingerprint": "fcb2803cbc2e7958b411470d97bad94cc0a6bea29f6ad477d840868dde9bb2f1",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2158
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "소수점 바로 아래부터 순환하고 순환마디가 $k$자리이면, 같은 숫자는 □ 다시 나온다.",
+        "cFrozenDefinition": "소수점 바로 아래부터 순환하고 순환마디가 $k$자리이면, 같은 숫자는 {$k$자리마다} 다시 나온다.",
+        "cFrozenAnswers": [
+          "$k$자리마다"
+        ],
+        "cMarkedSentence": "소수점 바로 아래부터 순환하고 순환마디가 $k$자리이면, 같은 숫자는 {$k$자리마다} 다시 나온다.",
+        "cSlotAnswers": [
+          "$k$자리마다"
+        ],
+        "cStudentSentence": "소수점 바로 아래부터 순환하고 순환마디가 $k$자리이면, 같은 숫자는 □ 다시 나온다.",
+        "cAnswers": [
+          "$k$자리마다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$k$자리마다",
+            "equivalentAnswers": [
+              "$k$자리마다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$k$자리마다"
+          ]
+        ],
+        "proposalFingerprint": "ce2e4255e773104d8d1f0188ac27da740b419dcee9eddbc04fc757d2e13eb6e1"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-01-xc7",
+        "section": "중3::4. 이차함수::이차함수와 그래프",
+        "term": "축을 경계로 바뀌는 증가와 감소",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$y=a(x-p)^2+q$에서 $a>0$이면 $x<p$일 때 $x$가 커질수록 $y$는 {작아지고}, $x>p$일 때 {커진다} — 축 $x=p$가 {경계}이다.",
+        "studentC": "$y=a(x-p)^2+q$에서 $a>0$이면 $x<p$일 때 $x$가 커질수록 $y$는 □, $x>p$일 때 □ — 축 $x=p$가 □이다.",
+        "answers": [
+          "작아지고",
+          "커진다",
+          "경계"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-01-xc7",
+        "learningRole": "definition",
+        "roleReason": "축 $x=p$를 경계로 한 증감 성질",
+        "bDecision": "rewrite",
+        "bPrompt": "$a>0$인 이차함수 $y=a(x-p)^2+q$에서 $x<p$일 때와 $x>p$일 때 각각 $x$가 커지면 $y$는 어떻게 변하는가? 이 변화가 바뀌는 경계가 되는 직선의 방정식도 쓰시오.",
+        "bAnswer": "$x<p$에서는 $y$가 작아지고, $x>p$에서는 $y$가 커진다. 경계는 축 $x=p$이다.",
+        "bGoal": "축을 경계로 한 증가와 감소",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x<p$이면 작아진다",
+              "$x<p$이면 감소"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x>p$이면 커진다",
+              "$x>p$이면 증가"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=p$"
+            ]
+          }
+        ],
+        "bReason": "$a>0$ 조건과 두 범위, 경계 직선을 질문에 명시했다.",
+        "cDecision": "keep",
+        "cReason": "두 범위의 증감과 경계를 묻는 짧은 비교 빈칸이다.",
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3468,
+        "part": "m3plus",
+        "sourceFingerprint": "685407c49ae8765c557d1052418bbafaf515849c4db01ca576529f3f4effbaa8",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3468
+        },
+        "directReview": null,
+        "cFrozenSentence": "$y=a(x-p)^2+q$에서 $a>0$이면 $x<p$일 때 $x$가 커질수록 $y$는 □, $x>p$일 때 □ — 축 $x=p$가 □이다.",
+        "cFrozenDefinition": "$y=a(x-p)^2+q$에서 $a>0$이면 $x<p$일 때 $x$가 커질수록 $y$는 {작아지고}, $x>p$일 때 {커진다} — 축 $x=p$가 {경계}이다.",
+        "cFrozenAnswers": [
+          "작아지고",
+          "커진다",
+          "경계"
+        ],
+        "cMarkedSentence": "$y=a(x-p)^2+q$에서 $a>0$이면 $x<p$일 때 $x$가 커질수록 $y$는 {작아지고}, $x>p$일 때 {커진다} — 축 $x=p$가 {경계}이다.",
+        "cSlotAnswers": [
+          "작아지고",
+          "커진다",
+          "경계"
+        ],
+        "cStudentSentence": "$y=a(x-p)^2+q$에서 $a>0$이면 $x<p$일 때 $x$가 커질수록 $y$는 □, $x>p$일 때 □ — 축 $x=p$가 □이다.",
+        "cAnswers": [
+          "작아지고",
+          "커진다",
+          "경계"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "작아지고",
+            "equivalentAnswers": [
+              "작아지고"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "커진다",
+            "equivalentAnswers": [
+              "커진다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "경계",
+            "equivalentAnswers": [
+              "경계",
+              "기준"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "경계",
+            "accept": [
+              "기준"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "작아지고"
+          ],
+          [
+            "커진다"
+          ],
+          [
+            "경계",
+            "기준"
+          ]
+        ],
+        "proposalFingerprint": "06aba4b4d4f95e50d9ee7436e57998b3717a160861901eb279061db0e6838f86"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-02-02-c5",
+        "section": "중2::2. 부등식::일차부등식의 풀이",
+        "term": "괄호가 있는 일차부등식",
+        "kind": "방법",
+        "level": "중",
+        "definition": "괄호가 있으면 {분배법칙}으로 괄호를 먼저 푼 다음 항을 정리한다.",
+        "studentC": "괄호가 있으면 □으로 괄호를 먼저 푼 다음 항을 정리한다.",
+        "answers": [
+          "분배법칙"
+        ]
+      },
+      "proposal": {
+        "id": "m2-02-02-c5",
+        "bDecision": "rewrite",
+        "bPrompt": "일차부등식 $2(x-1)>x+3$을 풀 때 가장 먼저 할 일과 그때 쓰는 계산 법칙을 쓰고, 해를 구하세요.",
+        "bAnswer": "먼저 분배법칙으로 괄호를 풀어 $2x-2>x+3$으로 만든다. 그다음 이항하여 정리하면 $x>5$이다.",
+        "bGoal": "괄호가 있는 일차부등식을 분배법칙으로 풀기",
+        "bReason": "가장 먼저 쓰는 법칙을 묻는 질문에 실제 전개식만 적는 답을 법칙 이름의 대체 기준으로 넣지 않는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "분배법칙으로 괄호를 푼다",
+              "분배법칙"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x>5$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "괄호를 푸는 데 쓰는 법칙 이름 하나만 묻는 분명한 빈칸이다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "괄호가 있는 부등식의 풀이 순서",
+        "authorBatch": 30,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 422,
+        "part": "m2",
+        "sourceFingerprint": "b88784b0945c6353e610799b3495f0b22ecc42b4ea9d44b68e44c440a3f3a65e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 422
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m2-02-02-c5"
+        },
+        "cFrozenSentence": "괄호가 있으면 □으로 괄호를 먼저 푼 다음 항을 정리한다.",
+        "cFrozenDefinition": "괄호가 있으면 {분배법칙}으로 괄호를 먼저 푼 다음 항을 정리한다.",
+        "cFrozenAnswers": [
+          "분배법칙"
+        ],
+        "cMarkedSentence": "괄호가 있으면 {분배법칙}으로 괄호를 먼저 푼 다음 항을 정리한다.",
+        "cSlotAnswers": [
+          "분배법칙"
+        ],
+        "cStudentSentence": "괄호가 있으면 □으로 괄호를 먼저 푼 다음 항을 정리한다.",
+        "cAnswers": [
+          "분배법칙"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "분배법칙",
+            "equivalentAnswers": [
+              "분배법칙"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "분배법칙"
+          ]
+        ],
+        "proposalFingerprint": "3689ab61e727c3cc7356bab42d97a7d5f778936011132bd122581afe0c4c6374"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-02-02-xc15",
+        "section": "중1::2. 정수와 유리수::수의 대소관계",
+        "term": "가장 큰 수와 가장 작은 수",
+        "kind": "방법",
+        "level": "중",
+        "definition": "양수와 음수가 섞여 있으면 가장 큰 수는 양수 가운데 절댓값이 가장 {큰} 수, 가장 작은 수는 음수 가운데 절댓값이 가장 {큰} 수이다.",
+        "example": {
+          "prompt": "$-4$, $3$, $-\\frac{9}{2}$, $0$ 가운데 가장 작은 수는?",
+          "answer": "$-\\frac{9}{2}$"
+        },
+        "studentC": "양수와 음수가 섞여 있으면 가장 큰 수는 양수 가운데 절댓값이 가장 □ 수, 가장 작은 수는 음수 가운데 절댓값이 가장 □ 수이다.",
+        "answers": [
+          "큰",
+          "큰"
+        ]
+      },
+      "proposal": {
+        "id": "m1-02-02-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "$-4$, $3$, $-\\frac{9}{2}$, $0$ 중에서 가장 큰 수와 가장 작은 수를 각각 구하시오. 또 양수와 음수가 섞인 여러 수에서 가장 큰 수와 가장 작은 수를 절댓값을 이용해 찾는 방법을 쓰시오.",
+        "bAnswer": "가장 큰 수는 $3$, 가장 작은 수는 $-\\frac{9}{2}$이다. 가장 큰 수는 양수 가운데 절댓값이 가장 큰 수이고, 가장 작은 수는 음수 가운데 절댓값이 가장 큰 수이다.",
+        "bGoal": "여러 수에서 가장 큰 수와 가장 작은 수를 부호와 절댓값으로 찾을 수 있다.",
+        "bReason": "제목은 어떤 수들 가운데인지 밝히지 않는다. 양수·음수·$0$이 섞인 네 수를 주고 값과 일반 방법을 함께 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "양수와 음수가 섞여 있는 여러 수 중에서 가장 큰 수는 {양수} 가운데 절댓값이 가장 큰 수이고, 가장 작은 수는 음수 가운데 절댓값이 가장 {큰} 수이다.",
+        "cAnswers": [
+          "양수",
+          "큰"
+        ],
+        "cReason": "두 빈칸의 답이 모두 '큰'이라 첫 답을 되풀이하게 되고, 무엇이 섞여 있는지 주어도 없다. 주어를 넣고 부호 선택과 음수 쪽 판단을 하나씩 묻게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 3,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "가장 큰 수 $3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "가장 작은 수 $-\\frac{9}{2}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "가장 큰 수는 양수 가운데 절댓값이 가장 큰 수"
+            ]
+          },
+          {
+            "anyOf": [
+              "가장 작은 수는 음수 가운데 절댓값이 가장 큰 수"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-002",
+        "learningRole": "procedure",
+        "roleReason": "부호 나눠 절댓값으로 최대·최소",
+        "enrichmentEvidence": "enrichment/enrich-004",
+        "sourceIndex": 1079,
+        "part": "m1plus",
+        "sourceFingerprint": "b48f19fc7adb1487325195e9289de6493a21e30e5c182ec65a4cf8ecb03e8755",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1079
+        },
+        "directReview": null,
+        "cMarkedSentence": "양수와 음수가 섞여 있는 여러 수 중에서 가장 큰 수는 {양수} 가운데 절댓값이 가장 큰 수이고, 가장 작은 수는 음수 가운데 절댓값이 가장 {큰} 수이다.",
+        "cSlotAnswers": [
+          "양수",
+          "큰"
+        ],
+        "cStudentSentence": "양수와 음수가 섞여 있는 여러 수 중에서 가장 큰 수는 □ 가운데 절댓값이 가장 큰 수이고, 가장 작은 수는 음수 가운데 절댓값이 가장 □ 수이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "양수",
+            "equivalentAnswers": [
+              "양수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "큰",
+            "equivalentAnswers": [
+              "큰"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "양수"
+          ],
+          [
+            "큰"
+          ]
+        ],
+        "proposalFingerprint": "79d8a34e4566b50cdc961679c7a71f125f3b5e5a97ed1776455f28dfae2a4031"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-01-xc14",
+        "section": "중3::4. 이차함수::이차함수와 그래프",
+        "term": "표준형 그래프와 $y$축의 교점",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$y=a(x-p)^2+q$의 그래프가 $y$축과 만나는 점은 $x=0$을 넣은 {$(0,\\ ap^2+q)$}이다.",
+        "studentC": "$y=a(x-p)^2+q$의 그래프가 $y$축과 만나는 점은 $x=0$을 넣은 □이다.",
+        "answers": [
+          "$(0,\\ ap^2+q)$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-01-xc14",
+        "learningRole": "procedure",
+        "roleReason": "$x=0$ 대입으로 $y$축 교점 구하기",
+        "bDecision": "rewrite",
+        "bPrompt": "이차함수 $y=a(x-p)^2+q$의 그래프가 $y$축과 만나는 점의 좌표를 구하는 방법을 쓰고, 그 좌표를 $a$, $p$, $q$로 나타내시오.",
+        "bAnswer": "$y$축 위의 점은 $x$좌표가 $0$이므로 $x=0$을 대입하면 $y=a(0-p)^2+q=ap^2+q$이다. 따라서 $(0,\\ ap^2+q)$이다.",
+        "bGoal": "표준형에서 $y$축 교점 구하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x=0$을 대입",
+              "$y$축 위의 점은 $x$좌표가 $0$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$(0,\\ ap^2+q)$"
+            ]
+          }
+        ],
+        "bReason": "구하는 방법과 문자식 결과를 함께 쓰도록 범위를 정했다.",
+        "cDecision": "keep",
+        "cReason": "$x=0$ 대입 결과를 계산하게 하는 의미 있는 계산 빈칸이다.",
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3475,
+        "part": "m3plus",
+        "sourceFingerprint": "2d71046a5e62a1c7e38fa1290fa7f62d0d8f48322fcd353c4dc11b0b09817408",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3475
+        },
+        "directReview": null,
+        "cFrozenSentence": "$y=a(x-p)^2+q$의 그래프가 $y$축과 만나는 점은 $x=0$을 넣은 □이다.",
+        "cFrozenDefinition": "$y=a(x-p)^2+q$의 그래프가 $y$축과 만나는 점은 $x=0$을 넣은 {$(0,\\ ap^2+q)$}이다.",
+        "cFrozenAnswers": [
+          "$(0,\\ ap^2+q)$"
+        ],
+        "cMarkedSentence": "$y=a(x-p)^2+q$의 그래프가 $y$축과 만나는 점은 $x=0$을 넣은 {$(0,\\ ap^2+q)$}이다.",
+        "cSlotAnswers": [
+          "$(0,\\ ap^2+q)$"
+        ],
+        "cStudentSentence": "$y=a(x-p)^2+q$의 그래프가 $y$축과 만나는 점은 $x=0$을 넣은 □이다.",
+        "cAnswers": [
+          "$(0,\\ ap^2+q)$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$(0,\\ ap^2+q)$",
+            "equivalentAnswers": [
+              "$(0,\\ ap^2+q)$",
+              "$(0,ap^2+q)$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$(0,\\ ap^2+q)$",
+            "accept": [
+              "$(0,ap^2+q)$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$(0,\\ ap^2+q)$",
+            "$(0,ap^2+q)$"
+          ]
+        ],
+        "proposalFingerprint": "0e0235b54c4b0abecd44a858c7b93b8a6f0a39b95b3324be2b734cad73cd4492"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-02-05-c2",
+        "section": "중2::2. 부등식::일차부등식의 활용(개수, 예금액, 유리한 방법)",
+        "term": "예금액에 관한 문제",
+        "kind": "공식",
+        "level": "중",
+        "definition": "$x$개월 뒤의 예금액은 {현재 예금액}에 {매달 넣는 금액}의 $x$배를 더한 값이다.",
+        "example": {
+          "prompt": "지금 $3000$원, 매달 $500$원씩 넣을 때 $x$개월 뒤",
+          "answer": "$(3000+500x)$원"
+        },
+        "studentC": "$x$개월 뒤의 예금액은 □에 □의 $x$배를 더한 값이다.",
+        "answers": [
+          "현재 예금액",
+          "매달 넣는 금액"
+        ]
+      },
+      "proposal": {
+        "id": "m2-02-05-c2",
+        "learningRole": "procedure",
+        "roleReason": "현재 금액에 매달 넣는 금액의 $x$배를 더하기",
+        "bDecision": "rewrite",
+        "bPrompt": "지금 통장에 $a$원이 있고 앞으로 매달 $b$원씩 저금한다. 이자나 출금은 없을 때 $x$개월 뒤의 예금액을 식으로 나타내고, 식에서 $x$가 곱해진 부분이 무엇을 뜻하는지 쓰시오.",
+        "bAnswer": "$(a+bx)$원. $bx$는 $x$개월 동안 매달 $b$원씩 넣은 돈의 합이다.",
+        "bGoal": "예금액을 일차식으로 나타내기",
+        "bReason": "현재 예금과 매달 저축액을 합하는 대상은 유지하며 다른 변화가 없는 조건을 보인다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$a+bx$",
+              "$bx+a$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$bx$는 $x$개월 동안 넣은 돈",
+              "매달 $b$원씩 $x$번 넣은 금액"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "현재 예금이 있고 앞으로 달마다 똑같이 저금한다. 이자나 출금이 없으면 $x$개월 뒤 예금액은 {현재 예금액}에 {매달 넣는 금액}의 $x$배를 더한 값이다.",
+        "cAnswers": [
+          "현재 예금액",
+          "매달 넣는 금액"
+        ],
+        "cReason": "이자나 출금 없이 현재 예금과 매달 저금의 누적을 더한다는 조건과 두 구체적 대상을 보인다.",
+        "authorBatch": 32,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 436,
+        "part": "m2",
+        "sourceFingerprint": "b954c2920fec227b197e45474363b1003c8d15b54aee9dd84fdd8557473d71be",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 436
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m2-02-05-c2"
+        },
+        "cMarkedSentence": "현재 예금이 있고 앞으로 달마다 똑같이 저금한다. 이자나 출금이 없으면 $x$개월 뒤 예금액은 {현재 예금액}에 {매달 넣는 금액}의 $x$배를 더한 값이다.",
+        "cSlotAnswers": [
+          "현재 예금액",
+          "매달 넣는 금액"
+        ],
+        "cStudentSentence": "현재 예금이 있고 앞으로 달마다 똑같이 저금한다. 이자나 출금이 없으면 $x$개월 뒤 예금액은 □에 □의 $x$배를 더한 값이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "현재 예금액",
+            "equivalentAnswers": [
+              "현재 예금액",
+              "지금 예금액",
+              "처음 예금액"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "매달 넣는 금액",
+            "equivalentAnswers": [
+              "매달 넣는 금액",
+              "매달 저금하는 금액"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "현재 예금액",
+            "accept": [
+              "지금 예금액",
+              "처음 예금액"
+            ]
+          },
+          {
+            "answer": "매달 넣는 금액",
+            "accept": [
+              "매달 저금하는 금액"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "현재 예금액",
+            "지금 예금액",
+            "처음 예금액"
+          ],
+          [
+            "매달 넣는 금액",
+            "매달 저금하는 금액"
+          ]
+        ],
+        "proposalFingerprint": "82a341aeb5c5729ff371090eacd163abd2f5d223dcebdf310c1a981b7ee8ecbf"
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-04-02-xc11",
+        "section": "중3::4. 이차함수::이차함수 y=ax^2+bx+c의 그래프",
+        "term": "괄호 안에서 뺀 수를 밖으로 꺼낼 때",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$x^2$의 계수 $a$로 묶은 괄호 안에서 더하고 뺀 수는 괄호 밖으로 나올 때 {$a$배}가 된다 — 괄호 앞의 $a$가 {곱해지기} 때문이다.",
+        "example": {
+          "prompt": "$y=2(x^2-4x+4-4)+5$에서 $-4$가 괄호 밖으로 나오면 $-8$이 되는 까닭은?",
+          "answer": "괄호 앞의 $2$가 곱해지기 때문이다"
+        },
+        "studentC": "$x^2$의 계수 $a$로 묶은 괄호 안에서 더하고 뺀 수는 괄호 밖으로 나올 때 □가 된다 — 괄호 앞의 $a$가 □ 때문이다.",
+        "answers": [
+          "$a$배",
+          "곱해지기"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-02-xc11",
+        "learningRole": "reason",
+        "roleReason": "괄호 앞 $a$가 곱해져 $a$배가 됨",
+        "bDecision": "rewrite",
+        "bPrompt": "$y=2(x^2-4x+4-4)+5$를 표준형으로 고칠 때, 괄호 안의 $-4$를 괄호 밖으로 꺼내면 얼마가 되는가? 그 까닭과 고친 식을 쓰시오.",
+        "bAnswer": "$-8$이 된다. 괄호 앞의 $2$가 곱해지기 때문이다. 따라서 $y=2(x-2)^2-8+5=2(x-2)^2-3$이다.",
+        "bGoal": "괄호 밖으로 꺼낼 때 계수 곱하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$-8$"
+            ]
+          },
+          {
+            "anyOf": [
+              "괄호 앞의 $2$가 곱해진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$y=2(x-2)^2-3$"
+            ]
+          }
+        ],
+        "bReason": "질문에서 $-8$을 먼저 말하지 않고 값과 까닭을 함께 쓰게 했다.",
+        "cDecision": "keep",
+        "cReason": "$a$배와 곱해짐이라는 규칙과 까닭을 묻는 분명한 빈칸이다.",
+        "exampleNeeded": true,
+        "authorBatch": 57,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3485,
+        "part": "m3plus",
+        "sourceFingerprint": "74945c1858c531b7930ac8f76a37f17c82a4366ba358938c41c0d5a20dc9f572",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3485
+        },
+        "directReview": null,
+        "cFrozenSentence": "$x^2$의 계수 $a$로 묶은 괄호 안에서 더하고 뺀 수는 괄호 밖으로 나올 때 □가 된다 — 괄호 앞의 $a$가 □ 때문이다.",
+        "cFrozenDefinition": "$x^2$의 계수 $a$로 묶은 괄호 안에서 더하고 뺀 수는 괄호 밖으로 나올 때 {$a$배}가 된다 — 괄호 앞의 $a$가 {곱해지기} 때문이다.",
+        "cFrozenAnswers": [
+          "$a$배",
+          "곱해지기"
+        ],
+        "cMarkedSentence": "$x^2$의 계수 $a$로 묶은 괄호 안에서 더하고 뺀 수는 괄호 밖으로 나올 때 {$a$배}가 된다 — 괄호 앞의 $a$가 {곱해지기} 때문이다.",
+        "cSlotAnswers": [
+          "$a$배",
+          "곱해지기"
+        ],
+        "cStudentSentence": "$x^2$의 계수 $a$로 묶은 괄호 안에서 더하고 뺀 수는 괄호 밖으로 나올 때 □가 된다 — 괄호 앞의 $a$가 □ 때문이다.",
+        "cAnswers": [
+          "$a$배",
+          "곱해지기"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$a$배",
+            "equivalentAnswers": [
+              "$a$배"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "곱해지기",
+            "equivalentAnswers": [
+              "곱해지기"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$a$배"
+          ],
+          [
+            "곱해지기"
+          ]
+        ],
+        "proposalFingerprint": "9c13d19cf64a5e166357b8b672381ce13142206c58ccd22f99561b15e137dfaa"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-03-03-c3",
+        "section": "중2::3. 방정식::여러 가지 연립방정식의 풀이",
+        "term": "계수가 소수인 연립방정식",
+        "kind": "방법",
+        "level": "중",
+        "definition": "계수가 소수이면 양변에 {$10$의 거듭제곱}을 곱해 계수를 {정수}로 고친다.",
+        "example": {
+          "prompt": "$0.3x-0.2y=0.4$의 양변에 $10$을 곱한 식",
+          "answer": "$3x-2y=4$"
+        },
+        "studentC": "계수가 소수이면 양변에 □을 곱해 계수를 □로 고친다.",
+        "answers": [
+          "$10$의 거듭제곱",
+          "정수"
+        ]
+      },
+      "proposal": {
+        "id": "m2-03-03-c3",
+        "bDecision": "rewrite",
+        "bPrompt": "$0.3x-0.2y=0.4$의 계수와 상수항을 모두 정수로 고치려 한다. 양변에 곱할 수 있는 가장 작은 양의 자연수를 그 수를 고른 까닭과 함께 쓰고, 고친 식을 쓰시오.",
+        "bAnswer": "모든 계수와 상수항이 소수 첫째 자리까지이므로 $10$을 곱한다. 고친 식은 $3x-2y=4$이다.",
+        "bGoal": "소수 계수를 정수로 바꾸기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "소수 첫째 자리까지라서 $10$을 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3x-2y=4$"
+            ]
+          }
+        ],
+        "bReason": "10 외에 20 등도 정수가 되는 열린 질문을 최소 자연수로 한정하여 실제 기준과 맞춘다.",
+        "cDecision": "keep",
+        "cReason": "'$10$의 거듭제곱–정수' 빈칸이 일반 규칙을 짧게 확인해 유지",
+        "learningRole": "procedure",
+        "roleReason": "$10$의 거듭제곱을 곱해 소수 없애기",
+        "exampleNeeded": true,
+        "authorBatch": 34,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 468,
+        "part": "m2",
+        "sourceFingerprint": "723ec5fedf5b6d187ac299a82159ba2f8ce2a7cef6afbe1144fd889e7a4b872d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 468
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m2-03-03-c3"
+        },
+        "cFrozenSentence": "계수가 소수이면 양변에 □을 곱해 계수를 □로 고친다.",
+        "cFrozenDefinition": "계수가 소수이면 양변에 {$10$의 거듭제곱}을 곱해 계수를 {정수}로 고친다.",
+        "cFrozenAnswers": [
+          "$10$의 거듭제곱",
+          "정수"
+        ],
+        "cMarkedSentence": "계수가 소수이면 양변에 {$10$의 거듭제곱}을 곱해 계수를 {정수}로 고친다.",
+        "cSlotAnswers": [
+          "$10$의 거듭제곱",
+          "정수"
+        ],
+        "cStudentSentence": "계수가 소수이면 양변에 □을 곱해 계수를 □로 고친다.",
+        "cAnswers": [
+          "$10$의 거듭제곱",
+          "정수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$10$의 거듭제곱",
+            "equivalentAnswers": [
+              "$10$의 거듭제곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "정수",
+            "equivalentAnswers": [
+              "정수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$10$의 거듭제곱"
+          ],
+          [
+            "정수"
+          ]
+        ],
+        "proposalFingerprint": "bde737141aed49c7e175f1e2699930f262b893f0db432e8e69b82e51cf0101ad"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-03-07-c4",
+        "section": "중2::3. 방정식::연립방정식의 활용(가격, 개수, 증감, 도형)",
+        "term": "증가와 감소에 관한 문제",
+        "kind": "방법",
+        "level": "상",
+        "definition": "증가 · 감소 문제는 {변하기 전}의 양을 $x,\\ y$로 놓고, 전체의 합에 대한 식과 {변화량}의 합에 대한 식을 세운다.",
+        "studentC": "증가 · 감소 문제는 □의 양을 $x,\\ y$로 놓고, 전체의 합에 대한 식과 □의 합에 대한 식을 세운다.",
+        "answers": [
+          "변하기 전",
+          "변화량"
+        ]
+      },
+      "proposal": {
+        "id": "m2-03-07-c4",
+        "bDecision": "rewrite",
+        "bPrompt": "작년 전체 학생은 $100$명이었다. 올해 남학생은 $10\\%$ 늘고 여학생은 $10\\%$ 줄어 전체 학생이 $102$명이 되었다. 작년 남학생 수와 여학생 수를 각각 $x$, $y$로 놓고, 작년 전체 학생 수에 대한 식과 늘거나 준 학생 수의 합에 대한 식을 각각 세우시오.",
+        "bAnswer": "$x+y=100$이고, 남학생은 $0.1x$명 늘고 여학생은 $0.1y$명 줄어 전체가 $2$명 늘었으므로 $0.1x-0.1y=2$이다.",
+        "bGoal": "증감 문제의 미지수와 두 식",
+        "bReason": "작년 남·여 학생 수가 이미 주어졌다는 모순된 설정을 전체만 아는 실제 상황으로 바꾸고 처음 총수와 변화량 식 두 개를 요청한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x+y=100$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0.1x-0.1y=2$",
+              "$\\frac{x}{10}-\\frac{y}{10}=2$",
+              "$x-y=20$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cReason": "변하기 전 양과 변화량이라는 숨은 대상 대신 실제 남·여 학생 수와 증가·감소율을 보여 전체 변화량 식을 묻는다.",
+        "learningRole": "procedure",
+        "roleReason": "변하기 전 양으로 두 식 세우기",
+        "authorBatch": 36,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "cAfter": "작년 남학생이 $x$명, 여학생이 $y$명일 때 올해 남학생은 $10\\%$ 늘고 여학생은 $10\\%$ 줄었다. 전체 학생 수의 변화량은 {$0.1x-0.1y$}명이다.",
+        "cAnswers": [
+          "$0.1x-0.1y$"
+        ],
+        "sourceIndex": 489,
+        "part": "m2",
+        "sourceFingerprint": "bdd00e275a707156f0fdb1ca80a46791510a091365dcc492723aae0696982e4c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 489
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m2-03-07-c4"
+        },
+        "cMarkedSentence": "작년 남학생이 $x$명, 여학생이 $y$명일 때 올해 남학생은 $10\\%$ 늘고 여학생은 $10\\%$ 줄었다. 전체 학생 수의 변화량은 {$0.1x-0.1y$}명이다.",
+        "cSlotAnswers": [
+          "$0.1x-0.1y$"
+        ],
+        "cStudentSentence": "작년 남학생이 $x$명, 여학생이 $y$명일 때 올해 남학생은 $10\\%$ 늘고 여학생은 $10\\%$ 줄었다. 전체 학생 수의 변화량은 □명이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$0.1x-0.1y$",
+            "equivalentAnswers": [
+              "$0.1x-0.1y$",
+              "$\\frac{x-y}{10}$",
+              "$\\frac{x}{10}-\\frac{y}{10}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$0.1x-0.1y$",
+            "accept": [
+              "$\\frac{x-y}{10}$",
+              "$\\frac{x}{10}-\\frac{y}{10}$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$0.1x-0.1y$",
+            "$\\frac{x-y}{10}$",
+            "$\\frac{x}{10}-\\frac{y}{10}$"
+          ]
+        ],
+        "proposalFingerprint": "5ed82e97651c927ddf078b63b491d15e19b1a8e7e68e358addd54954668251e4"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-04-01-c7",
+        "section": "중2::4. 함수::함수와 함숫값",
+        "term": "함수가 아닌 경우",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$x$의 값 하나에 $y$의 값이 {둘 이상} 정해지거나 {하나도} 정해지지 않으면 함수가 아니다.",
+        "example": {
+          "prompt": "절댓값이 $x$인 수 $y$는 $x$의 함수인가?",
+          "answer": "아니다"
+        },
+        "studentC": "$x$의 값 하나에 $y$의 값이 □ 정해지거나 □ 정해지지 않으면 함수가 아니다.",
+        "answers": [
+          "둘 이상",
+          "하나도"
+        ]
+      },
+      "proposal": {
+        "id": "m2-04-01-c7",
+        "bDecision": "rewrite",
+        "bPrompt": "허용된 $x$의 값 하나에 $y$의 값이 어떻게 정해질 때 $y$는 $x$의 함수가 아닌가? 두 가지 경우를 쓰고, '절댓값이 $x$인 수 $y$'가 함수가 아닌 까닭을 $x=2$로 설명하시오.",
+        "bAnswer": "$y$의 값이 둘 이상 정해지거나 하나도 정해지지 않는 경우이다. $x=2$이면 $y=2,\\ -2$로 두 개가 정해지므로 함수가 아니다.",
+        "bGoal": "함수가 아닌 경우 가려내기",
+        "bReason": "허용된 x의 값이라는 범위를 명시하여 정의역 밖에서 대응이 없는 것까지 함수 실패로 보지 않는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$y$가 둘 이상 정해지는 경우"
+            ]
+          },
+          {
+            "anyOf": [
+              "$y$가 하나도 정해지지 않는 경우"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=2$일 때 $y=2,\\ -2$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cReason": "x가 허용된 값이라는 조건을 보여 여러 y 또는 대응 없는 y가 함수 조건을 위반하는 의미를 확인한다.",
+        "exampleNeeded": true,
+        "authorBatch": 38,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "reason",
+        "roleReason": "y가 둘 이상이거나 없으면 아님",
+        "enrichmentEvidence": "enrichment/enrich-001",
+        "cAfter": "허용된 $x$의 값 하나에 $y$의 값이 {둘 이상} 정해지거나 {하나도} 정해지지 않으면 $y$는 $x$의 함수가 아니다.",
+        "cAnswers": [
+          "둘 이상",
+          "하나도"
+        ],
+        "sourceIndex": 506,
+        "part": "m2",
+        "sourceFingerprint": "03c90713aaf0aa20a5c1fc28237f302d8614c27cf16ffc5a610734ab40feb4a3",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 506
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m2-04-01-c7"
+        },
+        "cMarkedSentence": "허용된 $x$의 값 하나에 $y$의 값이 {둘 이상} 정해지거나 {하나도} 정해지지 않으면 $y$는 $x$의 함수가 아니다.",
+        "cSlotAnswers": [
+          "둘 이상",
+          "하나도"
+        ],
+        "cStudentSentence": "허용된 $x$의 값 하나에 $y$의 값이 □ 정해지거나 □ 정해지지 않으면 $y$는 $x$의 함수가 아니다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "둘 이상",
+            "equivalentAnswers": [
+              "둘 이상",
+              "두 개 이상",
+              "$2$개 이상",
+              "여러 개"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "하나도",
+            "equivalentAnswers": [
+              "하나도"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "둘 이상",
+            "accept": [
+              "두 개 이상",
+              "2개 이상",
+              "여러 개"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "둘 이상",
+            "두 개 이상",
+            "$2$개 이상",
+            "여러 개"
+          ],
+          [
+            "하나도"
+          ]
+        ],
+        "proposalFingerprint": "28929e95e4b73bfd9eba0a71904d33d7abed689ad47f537d72320d21f77ae697"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-02-04-xc18",
+        "section": "중1::2. 정수와 유리수::유리수의 곱셈",
+        "term": "분배법칙으로 쉽게 곱하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "곱하기 어려운 수를 {계산하기 쉬운 두 수의 합이나 차}로 바꾸면 {분배법칙}으로 나누어 곱할 수 있다.",
+        "example": {
+          "prompt": "$99\\times(-12)$에서 $99$를 $100-1$로 바꾸면 어떤 두 곱의 차가 되는가?",
+          "answer": "$100\\times(-12)$와 $1\\times(-12)$"
+        },
+        "studentC": "곱하기 어려운 수를 □로 바꾸면 □으로 나누어 곱할 수 있다.",
+        "answers": [
+          "계산하기 쉬운 두 수의 합이나 차",
+          "분배법칙"
+        ]
+      },
+      "proposal": {
+        "id": "m1-02-04-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "$99\\times(-12)$를 쉽게 계산하려고 $99$를 $100-1$로 바꾸었다. 이때 어떤 계산 법칙을 써서 식을 어떻게 풀어 쓰는지 보이고, 값을 구하시오.",
+        "bAnswer": "분배법칙을 쓴다. $(100-1)\\times(-12)=100\\times(-12)-1\\times(-12)=-1200+12=-1188$",
+        "bGoal": "곱하기 어려운 수를 쉬운 두 수의 합이나 차로 바꾸어 분배법칙으로 계산할 수 있다.",
+        "bReason": "'쉽게 곱하기'는 어떤 수를 어떻게 바꾸는지 예가 없으면 알 수 없다. 바꾼 꼴 $100-1$까지 질문에 주고 법칙의 이름과 풀어 쓴 식을 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "$99$를 $100-1$로 바꾸는 것처럼 곱하기 어려운 수를 계산하기 쉬운 두 수의 합이나 차로 바꾸면 {분배법칙}으로 나누어 곱할 수 있다.",
+        "cAnswers": [
+          "분배법칙"
+        ],
+        "cReason": "원문의 첫 빈칸 '계산하기 쉬운 두 수의 합이나 차'는 너무 길고 학생이 같은 표현으로 쓸 수 없다. 그 부분은 예와 함께 보여 주고 법칙 이름만 묻게 했다.",
+        "exampleNeeded": true,
+        "authorBatch": 4,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "분배법칙"
+            ]
+          },
+          {
+            "anyOf": [
+              "$(100-1)\\times(-12)=100\\times(-12)-1\\times(-12)$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$-1200+12=-1188$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-002",
+        "learningRole": "procedure",
+        "roleReason": "합·차로 바꿔 분배법칙 적용",
+        "enrichmentEvidence": "enrichment/enrich-004",
+        "sourceIndex": 1128,
+        "part": "m1plus",
+        "sourceFingerprint": "0c004c587a50da5117e9d09dafc6e8d783bd671eda52b9ea1f8a40de02af527c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1128
+        },
+        "directReview": null,
+        "cMarkedSentence": "$99$를 $100-1$로 바꾸는 것처럼 곱하기 어려운 수를 계산하기 쉬운 두 수의 합이나 차로 바꾸면 {분배법칙}으로 나누어 곱할 수 있다.",
+        "cSlotAnswers": [
+          "분배법칙"
+        ],
+        "cStudentSentence": "$99$를 $100-1$로 바꾸는 것처럼 곱하기 어려운 수를 계산하기 쉬운 두 수의 합이나 차로 바꾸면 □으로 나누어 곱할 수 있다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "분배법칙",
+            "equivalentAnswers": [
+              "분배법칙"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "분배법칙"
+          ]
+        ],
+        "proposalFingerprint": "043fb0794bad981e86c2c703dd15ae6e4872a23525f63e726f8c6503e271b065"
+      }
+    }
+  ]
+}

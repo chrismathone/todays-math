@@ -1,0 +1,126 @@
+{
+  "algorithm": "sha256",
+  "selfExcluded": true,
+  "files": [
+    {
+      "file": ".gitattributes",
+      "bytes": 200,
+      "sha256": "59594e16d7ef691aeedd707c62506f54319802383d5a01d35749c68b63a756c7"
+    },
+    {
+      "file": "actual-output.json",
+      "bytes": 1887,
+      "sha256": "af0d2047149ca1d6d486c17de1915ba1ab239d81d0335b1f0f25b4530470c84c"
+    },
+    {
+      "file": "delivery-map.json",
+      "bytes": 2734,
+      "sha256": "19984579312e29f0bb644e8ed66050073388914abf631a12ab8bc82b870be7f5"
+    },
+    {
+      "file": "example-corrections.json",
+      "bytes": 333,
+      "sha256": "26bf7a85d2c2aa0271442a7e6f91399b0c77fc1172196322cfca17f0fb1be944"
+    },
+    {
+      "file": "fixture-plan.json",
+      "bytes": 1813,
+      "sha256": "b9764076a60fdbadb78cba134bc462761e187a53f9e36407e7de468f7b28ea97"
+    },
+    {
+      "file": "focused-results.json",
+      "bytes": 19131,
+      "sha256": "3c8ad7f7b561cc6242e4f7d5217fe75f000843e0256a9ab012dcefd55e67d1c0"
+    },
+    {
+      "file": "initial-results-fixed.json",
+      "bytes": 12466,
+      "sha256": "4bfdb857d665b143a41167ff44598e8e15535974b167cbe297ada58c6fdb4fcd"
+    },
+    {
+      "file": "initial-results.json",
+      "bytes": 3008,
+      "sha256": "7887ac67f7215820b4eb75f85be0a9ea4d1d8b49a6bc399e9643482f0de377d6"
+    },
+    {
+      "file": "patch-check-result.json",
+      "bytes": 1499,
+      "sha256": "2f28841a791973e849a228e50650a6bcf55c1dc58e957c4dc309ee443d87c79e"
+    },
+    {
+      "file": "proposed.patch",
+      "bytes": 38198,
+      "sha256": "01085bb27174ad7344e39face0ce14f40888b8d47032f229af5e93ef2e5450e2"
+    },
+    {
+      "file": "proposed/scripts/qa/concept-blank/student-clear/application.ts.txt",
+      "bytes": 7742,
+      "sha256": "d10b6f2fe9dc00010e564bbff0cf2226d457bee8b6d34a7e51737817337b61cc"
+    },
+    {
+      "file": "proposed/scripts/qa/concept-blank/student-clear/compile.ts.txt",
+      "bytes": 3583,
+      "sha256": "8ca30d40f35d852f86f69b710cae23d480fa63d3fc74bb0caef2881e590107f9"
+    },
+    {
+      "file": "proposed/scripts/qa/concept-blank/student-clear/example-corrections.ts.txt",
+      "bytes": 4013,
+      "sha256": "6c5ed5225afe13079a31e88d8805eae4af3ccfcd9881b47c50b402f748b4c977"
+    },
+    {
+      "file": "proposed/scripts/qa/concept-blank/student-clear/example-source.ts.txt",
+      "bytes": 5407,
+      "sha256": "cf2535b72de9005160e7aaaff74d740a10ed56e7b532fbce8336f5152997fd4c"
+    },
+    {
+      "file": "proposed/scripts/qa/concept-blank/student-clear/README.md",
+      "bytes": 7819,
+      "sha256": "dc3aabc0c2a3d29d9ad95320bb061c1e75ff71aa023c689a44cd810004cacde4"
+    },
+    {
+      "file": "proposed/scripts/qa/concept-blank/student-clear/source-plan.ts.txt",
+      "bytes": 5385,
+      "sha256": "8830d348cb3207c7c0246dc1e60b5c9611c026e08bbba38cf6d0111b6dbdf7d3"
+    },
+    {
+      "file": "proposed/src/__tests__/unit/conceptStudentClearExampleCorrections.test.ts.txt",
+      "bytes": 16199,
+      "sha256": "0f7a9088c1e31a3f919ce0350155e99ca26431e11e51a6cab1a57ddbd84ab66b"
+    },
+    {
+      "file": "REPORT.md",
+      "bytes": 9716,
+      "sha256": "5b137e6ae28840544d3f370b20323a358a8eaa58472f2321ccffeb18a36acfb0"
+    },
+    {
+      "file": "root-drift-check.json",
+      "bytes": 199,
+      "sha256": "e71272de0323124f03a09aa82e0a2b7b58cb483f1f9f63ae48d27c1a91326805"
+    },
+    {
+      "file": "root-source-manifest.json",
+      "bytes": 4709,
+      "sha256": "a3fa9a9b609e64ce1a1ea87957b06f0428f9cbbaf53c1d975e1925da36569807"
+    },
+    {
+      "file": "typecheck-result.json",
+      "bytes": 463,
+      "sha256": "7e1d43ed9d7a4c855d04f91fa70b3e7ef63ef78ba54a8d1f980926723c28616b"
+    },
+    {
+      "file": "upstream-correction-report.json",
+      "bytes": 882,
+      "sha256": "e20590fdabbd5cd4f75eb8ce307a50e88997b8ffa34b5d97c257a94d1844d06c"
+    },
+    {
+      "file": "upstream-input.json",
+      "bytes": 381,
+      "sha256": "3f6ad65db147381d45bf26fab061a6a90412a8d6ec5293521efb6c0607113ef3"
+    },
+    {
+      "file": "verify-and-test.mjs",
+      "bytes": 5014,
+      "sha256": "9a8b554caca7b0158ae9cb28655cd047bd047e9287bb6813337639aac20d605f"
+    }
+  ]
+}

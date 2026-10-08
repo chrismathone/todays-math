@@ -1,0 +1,2248 @@
+{
+  "dispatchId": "ctx_ba984d44fab9",
+  "capturedAt": "2026-10-07T05:01:49.233Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-05-07-c9",
+        "section": "중2::5. 도형의 성질::직사각형, 마름모, 정사각형",
+        "term": "직사각형이 정사각형이 되는 조건",
+        "kind": "성질",
+        "level": "상",
+        "definition": "직사각형은 {이웃하는 두 변}의 길이가 같거나 두 대각선이 {수직}일 때 정사각형이 된다.",
+        "studentC": "직사각형은 □의 길이가 같거나 두 대각선이 □일 때 정사각형이 된다.",
+        "answers": [
+          "이웃하는 두 변",
+          "수직"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-07-c9",
+        "learningRole": "definition",
+        "roleReason": "직사각형이 정사각형이 되는 조건",
+        "bDecision": "rewrite",
+        "bPrompt": "직사각형이 정사각형이 되려면 조건을 하나 더 만족하면 된다. 이런 조건을 변에 대한 것 하나와 대각선에 대한 것 하나로 쓰시오.",
+        "bAnswer": "이웃하는 두 변의 길이가 같다. 또는 두 대각선이 수직이다.",
+        "bGoal": "직사각형에서 정사각형이 되는 조건 말하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "이웃하는 두 변의 길이가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 대각선이 수직이다",
+              "두 대각선이 $90^\\circ$로 만난다"
+            ]
+          }
+        ],
+        "bReason": "출발 도형이 직사각형임과 변·대각선 기준을 밝혔다.",
+        "cDecision": "keep",
+        "cReason": "마름모 조건을 더한다는 점을 확인하는 짧은 빈칸이다.",
+        "authorBatch": 44,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 632,
+        "part": "m2",
+        "sourceFingerprint": "c6055e0c08b5e2a1d07f4b3f3ef649c2f6a21604b8e3a09e1903eb889cf88a70",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 632
+        },
+        "directReview": null,
+        "cFrozenSentence": "직사각형은 □의 길이가 같거나 두 대각선이 □일 때 정사각형이 된다.",
+        "cFrozenDefinition": "직사각형은 {이웃하는 두 변}의 길이가 같거나 두 대각선이 {수직}일 때 정사각형이 된다.",
+        "cFrozenAnswers": [
+          "이웃하는 두 변",
+          "수직"
+        ],
+        "cMarkedSentence": "직사각형은 {이웃하는 두 변}의 길이가 같거나 두 대각선이 {수직}일 때 정사각형이 된다.",
+        "cSlotAnswers": [
+          "이웃하는 두 변",
+          "수직"
+        ],
+        "cStudentSentence": "직사각형은 □의 길이가 같거나 두 대각선이 □일 때 정사각형이 된다.",
+        "cAnswers": [
+          "이웃하는 두 변",
+          "수직"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "이웃하는 두 변",
+            "equivalentAnswers": [
+              "이웃하는 두 변",
+              "이웃한 두 변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "수직",
+            "equivalentAnswers": [
+              "수직"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "이웃하는 두 변",
+            "accept": [
+              "이웃한 두 변"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "이웃하는 두 변",
+            "이웃한 두 변"
+          ],
+          [
+            "수직"
+          ]
+        ],
+        "proposalFingerprint": "47b3411fcd04ec2acf5fdcc925c132fada59f0d6c1e2d7223c4db0bd4f3641f7"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-05-07-c10",
+        "section": "중2::5. 도형의 성질::직사각형, 마름모, 정사각형",
+        "term": "마름모가 정사각형이 되는 조건",
+        "kind": "성질",
+        "level": "상",
+        "definition": "마름모에서 {한 내각}이 직각이거나 두 대각선의 {길이}가 같으면 정사각형이 된다.",
+        "studentC": "마름모에서 □이 직각이거나 두 대각선의 □가 같으면 정사각형이 된다.",
+        "answers": [
+          "한 내각",
+          "길이"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-07-c10",
+        "learningRole": "definition",
+        "roleReason": "마름모가 정사각형이 되는 조건",
+        "bDecision": "rewrite",
+        "bPrompt": "마름모가 정사각형이 되려면 조건을 하나 더 만족하면 된다. 이런 조건을 내각에 대한 것 하나와 대각선에 대한 것 하나로 쓰시오.",
+        "bAnswer": "한 내각이 직각($90^\\circ$)이다. 또는 두 대각선의 길이가 같다.",
+        "bGoal": "마름모에서 정사각형이 되는 조건 말하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한 내각이 직각이다",
+              "한 내각이 $90^\\circ$이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 대각선의 길이가 같다"
+            ]
+          }
+        ],
+        "bReason": "출발 도형이 마름모임과 내각·대각선 기준을 밝혔다.",
+        "cDecision": "keep",
+        "cReason": "직사각형 조건을 더한다는 점을 확인하는 짧은 빈칸이다.",
+        "authorBatch": 44,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 633,
+        "part": "m2",
+        "sourceFingerprint": "8190d15217406f77575196fb8b3a43dd26e459edeb7ace1b293f61d457959013",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 633
+        },
+        "directReview": null,
+        "cFrozenSentence": "마름모에서 □이 직각이거나 두 대각선의 □가 같으면 정사각형이 된다.",
+        "cFrozenDefinition": "마름모에서 {한 내각}이 직각이거나 두 대각선의 {길이}가 같으면 정사각형이 된다.",
+        "cFrozenAnswers": [
+          "한 내각",
+          "길이"
+        ],
+        "cMarkedSentence": "마름모에서 {한 내각}이 직각이거나 두 대각선의 {길이}가 같으면 정사각형이 된다.",
+        "cSlotAnswers": [
+          "한 내각",
+          "길이"
+        ],
+        "cStudentSentence": "마름모에서 □이 직각이거나 두 대각선의 □가 같으면 정사각형이 된다.",
+        "cAnswers": [
+          "한 내각",
+          "길이"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "한 내각",
+            "equivalentAnswers": [
+              "한 내각",
+              "한 각"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "길이",
+            "equivalentAnswers": [
+              "길이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "한 내각",
+            "accept": [
+              "한 각"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "한 내각",
+            "한 각"
+          ],
+          [
+            "길이"
+          ]
+        ],
+        "proposalFingerprint": "3fcfc771a06794f3b9991062c7081667c1c8ee5a5b6ae186f8dce2e615de7a6f"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-05-07-c11",
+        "section": "중2::5. 도형의 성질::직사각형, 마름모, 정사각형",
+        "term": "정사각형이 가진 두 가지 성질",
+        "kind": "성질",
+        "level": "상",
+        "definition": "정사각형은 {직사각형}의 성질과 {마름모}의 성질을 모두 가진다.",
+        "studentC": "정사각형은 □의 성질과 □의 성질을 모두 가진다.",
+        "answers": [
+          "직사각형",
+          "마름모"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-07-c11",
+        "learningRole": "naming",
+        "roleReason": "정사각형이 성질을 물려받는 두 사각형",
+        "bDecision": "rewrite",
+        "bPrompt": "평행사변형의 한 종류인 사각형 가운데, 정사각형이 그 성질을 모두 가지는 두 사각형의 이름을 쓰시오.",
+        "bAnswer": "직사각형, 마름모",
+        "bGoal": "정사각형이 속하는 두 사각형 말하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직사각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "마름모"
+            ]
+          }
+        ],
+        "bReason": "평행사변형도 답이 될 수 있어 그 아래 종류로 범위를 좁혔다.",
+        "cDecision": "exclude",
+        "cReason": "같은 두 답을 까닭과 함께 묻는 08-xc7 C가 더 유용하다.",
+        "exclusionReason": "C 제외: '직사각형', '마름모' 빈칸이 m2-05-08-xc7 C와 그대로 중복된다.",
+        "authorBatch": 44,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 634,
+        "part": "m2",
+        "sourceFingerprint": "14080a5e648dd1a4cb574d42f7978b62f62a45377c5931fbd1f56fd8c83c332f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 634
+        },
+        "directReview": null,
+        "proposalFingerprint": "123356dae452ab93709b5ec7675ca717390fb35f7fd6767f2eac628814fb7779"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-05-08-c1",
+        "section": "중2::5. 도형의 성질::등변사다리꼴, 여러 가지 사각형",
+        "term": "사다리꼴",
+        "kind": "정의",
+        "level": "하",
+        "definition": "마주 보는 변 가운데 {한 쌍}이 서로 {평행}이면 그 사각형이 사다리꼴이다.",
+        "studentC": "마주 보는 변 가운데 □이 서로 □이면 그 사각형이 사다리꼴이다.",
+        "answers": [
+          "한 쌍",
+          "평행"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-08-c1",
+        "learningRole": "definition",
+        "roleReason": "대변의 평행으로 사다리꼴 정의",
+        "bDecision": "rewrite",
+        "bPrompt": "사다리꼴은 어떤 사각형인지 마주 보는 변 사이의 관계를 이용하여 정의하시오.",
+        "bAnswer": "마주 보는 한 쌍의 변이 서로 평행한 사각형이다.",
+        "bGoal": "사다리꼴 정의하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한 쌍의 대변이 평행하다",
+              "마주 보는 변 중 한 쌍이 평행하다",
+              "적어도 한 쌍의 대변이 평행하다"
+            ]
+          }
+        ],
+        "bReason": "대변의 평행 관계로 정의함을 밝혀 답 범위를 정했다.",
+        "cDecision": "keep",
+        "cReason": "'한 쌍'과 '평행'을 묻는 분명한 정의 빈칸이다.",
+        "authorBatch": 44,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 635,
+        "part": "m2",
+        "sourceFingerprint": "f8e187324961e5f6aad17c75eb15fe29c4d73b07b05b106ea1e5160b31472a07",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 635
+        },
+        "directReview": null,
+        "cFrozenSentence": "마주 보는 변 가운데 □이 서로 □이면 그 사각형이 사다리꼴이다.",
+        "cFrozenDefinition": "마주 보는 변 가운데 {한 쌍}이 서로 {평행}이면 그 사각형이 사다리꼴이다.",
+        "cFrozenAnswers": [
+          "한 쌍",
+          "평행"
+        ],
+        "cMarkedSentence": "마주 보는 변 가운데 {한 쌍}이 서로 {평행}이면 그 사각형이 사다리꼴이다.",
+        "cSlotAnswers": [
+          "한 쌍",
+          "평행"
+        ],
+        "cStudentSentence": "마주 보는 변 가운데 □이 서로 □이면 그 사각형이 사다리꼴이다.",
+        "cAnswers": [
+          "한 쌍",
+          "평행"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "한 쌍",
+            "equivalentAnswers": [
+              "한 쌍"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "평행",
+            "equivalentAnswers": [
+              "평행"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "한 쌍"
+          ],
+          [
+            "평행"
+          ]
+        ],
+        "proposalFingerprint": "a9a5ce71b5de93cba95981275a420fa30d6ab2034894935e8b59e2e0d86e58b5"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-05-08-c2",
+        "section": "중2::5. 도형의 성질::등변사다리꼴, 여러 가지 사각형",
+        "term": "등변사다리꼴",
+        "kind": "정의",
+        "level": "하",
+        "definition": "사다리꼴 가운데 {아랫변}의 양 끝에 있는 두 각이 {같은 크기}인 것이 등변사다리꼴이다.",
+        "studentC": "사다리꼴 가운데 □의 양 끝에 있는 두 각이 □인 것이 등변사다리꼴이다.",
+        "answers": [
+          "아랫변",
+          "같은 크기"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-08-c2",
+        "learningRole": "definition",
+        "roleReason": "아랫변 양 끝 각으로 등변사다리꼴 정의",
+        "bDecision": "rewrite",
+        "bPrompt": "등변사다리꼴은 사다리꼴 가운데 어떤 것인지, 아랫변의 양 끝에 있는 두 각을 이용하여 정의하시오.",
+        "bAnswer": "아랫변의 양 끝 각의 크기가 같은 사다리꼴이다.",
+        "bGoal": "등변사다리꼴 정의하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "아랫변의 양 끝 각의 크기가 같다"
+            ]
+          }
+        ],
+        "bReason": "변이 아니라 각으로 정의함을 질문에 밝혔다.",
+        "cDecision": "keep",
+        "cReason": "'아랫변'과 '같은 크기'를 묻는 짧은 정의 빈칸이다.",
+        "authorBatch": 44,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 636,
+        "part": "m2",
+        "sourceFingerprint": "f151ddcdb5b2fd1c5d8b9b35cfe1f513a6ff4fff8b9c1e7713de7264f2e5768e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 636
+        },
+        "directReview": null,
+        "cFrozenSentence": "사다리꼴 가운데 □의 양 끝에 있는 두 각이 □인 것이 등변사다리꼴이다.",
+        "cFrozenDefinition": "사다리꼴 가운데 {아랫변}의 양 끝에 있는 두 각이 {같은 크기}인 것이 등변사다리꼴이다.",
+        "cFrozenAnswers": [
+          "아랫변",
+          "같은 크기"
+        ],
+        "cMarkedSentence": "사다리꼴 가운데 {아랫변}의 양 끝에 있는 두 각이 {같은 크기}인 것이 등변사다리꼴이다.",
+        "cSlotAnswers": [
+          "아랫변",
+          "같은 크기"
+        ],
+        "cStudentSentence": "사다리꼴 가운데 □의 양 끝에 있는 두 각이 □인 것이 등변사다리꼴이다.",
+        "cAnswers": [
+          "아랫변",
+          "같은 크기"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "아랫변",
+            "equivalentAnswers": [
+              "아랫변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "같은 크기",
+            "equivalentAnswers": [
+              "같은 크기"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "아랫변"
+          ],
+          [
+            "같은 크기"
+          ]
+        ],
+        "proposalFingerprint": "a640af33ac7064eb9d8404a990706b80473f508d3eab854f85cef24b7f63da4e"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-05-08-c3",
+        "section": "중2::5. 도형의 성질::등변사다리꼴, 여러 가지 사각형",
+        "term": "등변사다리꼴의 성질 — 변",
+        "kind": "성질",
+        "level": "중",
+        "definition": "등변사다리꼴에서는 윗변과 아랫변이 아닌 {나머지} 두 변의 길이가 서로 {같다}.",
+        "studentC": "등변사다리꼴에서는 윗변과 아랫변이 아닌 □ 두 변의 길이가 서로 □.",
+        "answers": [
+          "나머지",
+          "같다"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-08-c3",
+        "learningRole": "definition",
+        "roleReason": "평행하지 않은 두 변의 길이 관계",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\overline{AD}\\parallel\\overline{BC}$인 등변사다리꼴 $ABCD$에서 평행하지 않은 두 변 $\\overline{AB}$, $\\overline{DC}$의 길이 사이의 관계를 쓰시오.",
+        "bAnswer": "$\\overline{AB}=\\overline{DC}$",
+        "bGoal": "등변사다리꼴의 변 성질 말하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{AB}=\\overline{DC}$",
+              "두 변의 길이가 같다"
+            ]
+          }
+        ],
+        "bReason": "그림이 없어 평행한 변과 비교할 두 변을 점 이름으로 밝혔다.",
+        "cDecision": "rewrite",
+        "cAfter": "등변사다리꼴에서 평행하지 않은 두 변의 길이는 서로 {같다}.",
+        "cAnswers": [
+          "같다"
+        ],
+        "cReason": "'나머지' 빈칸은 지칭이 모호하고 뜻이 약해 길이 관계만 묻는다.",
+        "authorBatch": 44,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 637,
+        "part": "m2",
+        "sourceFingerprint": "effeccffaf92b30c029311a37b77d6edc98f9b40b01dee892be8ca95428ba29d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 637
+        },
+        "directReview": null,
+        "cMarkedSentence": "등변사다리꼴에서 평행하지 않은 두 변의 길이는 서로 {같다}.",
+        "cSlotAnswers": [
+          "같다"
+        ],
+        "cStudentSentence": "등변사다리꼴에서 평행하지 않은 두 변의 길이는 서로 □.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "같다",
+            "equivalentAnswers": [
+              "같다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "같다"
+          ]
+        ],
+        "proposalFingerprint": "d5b253d93f97da25546be77340d7133f1f61fcaf300a69f3cd9938f5f76e433c"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-05-08-c4",
+        "section": "중2::5. 도형의 성질::등변사다리꼴, 여러 가지 사각형",
+        "term": "등변사다리꼴의 성질 — 대각선",
+        "kind": "성질",
+        "level": "중",
+        "definition": "등변사다리꼴의 두 {대각선}은 길이가 서로 {같다}.",
+        "studentC": "등변사다리꼴의 두 □은 길이가 서로 □.",
+        "answers": [
+          "대각선",
+          "같다"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-08-c4",
+        "learningRole": "reason",
+        "roleReason": "합동으로 대각선 길이가 같음 설명",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\overline{AD}\\parallel\\overline{BC}$인 등변사다리꼴 $ABCD$에서 두 대각선 $\\overline{AC}$, $\\overline{DB}$의 길이 사이의 관계를 쓰고, 그 까닭을 $\\triangle ABC$와 $\\triangle DCB$를 비교하여 설명하시오.",
+        "bAnswer": "$\\overline{AC}=\\overline{DB}$. $\\overline{AB}=\\overline{DC}$, $\\angle ABC=\\angle DCB$, $\\overline{BC}$는 공통이므로 $\\triangle ABC\\equiv\\triangle DCB$($\\mathrm{SAS}$ 합동)이다.",
+        "bGoal": "등변사다리꼴 대각선 성질 설명하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{AC}=\\overline{DB}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\triangle ABC\\equiv\\triangle DCB$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\overline{AB}=\\overline{DC}$, $\\angle ABC=\\angle DCB$, $\\overline{BC}$ 공통",
+              "$\\mathrm{SAS}$ 합동"
+            ]
+          }
+        ],
+        "bReason": "비교할 두 삼각형을 지정해 합동 근거를 쓰게 했다.",
+        "cDecision": "keep",
+        "cReason": "'대각선'과 '같다'를 묻는 짧은 성질 빈칸이다.",
+        "authorBatch": 44,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 638,
+        "part": "m2",
+        "sourceFingerprint": "16c3c492de660f8826de924632ee9641d41f4d88115fb1e808158f841c4ee34f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 638
+        },
+        "directReview": null,
+        "cFrozenSentence": "등변사다리꼴의 두 □은 길이가 서로 □.",
+        "cFrozenDefinition": "등변사다리꼴의 두 {대각선}은 길이가 서로 {같다}.",
+        "cFrozenAnswers": [
+          "대각선",
+          "같다"
+        ],
+        "cMarkedSentence": "등변사다리꼴의 두 {대각선}은 길이가 서로 {같다}.",
+        "cSlotAnswers": [
+          "대각선",
+          "같다"
+        ],
+        "cStudentSentence": "등변사다리꼴의 두 □은 길이가 서로 □.",
+        "cAnswers": [
+          "대각선",
+          "같다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "대각선",
+            "equivalentAnswers": [
+              "대각선"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "같다",
+            "equivalentAnswers": [
+              "같다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "대각선"
+          ],
+          [
+            "같다"
+          ]
+        ],
+        "proposalFingerprint": "4d79957a3027ed0b42744f510fe13ab0d1d92a45f737ca4d86239469c1d3ab85"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-05-08-c5",
+        "section": "중2::5. 도형의 성질::등변사다리꼴, 여러 가지 사각형",
+        "term": "여러 가지 사각형 사이의 관계",
+        "kind": "성질",
+        "level": "중",
+        "definition": "직사각형과 마름모는 모두 {평행사변형}에 들고, 정사각형은 직사각형에도 {마름모}에도 든다.",
+        "studentC": "직사각형과 마름모는 모두 □에 들고, 정사각형은 직사각형에도 □에도 든다.",
+        "answers": [
+          "평행사변형",
+          "마름모"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-08-c5",
+        "learningRole": "naming",
+        "roleReason": "평행사변형·정사각형 포함 관계",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "같은 포함 관계를 다른 문항들이 근거와 함께 묻는다.",
+        "cDecision": "exclude",
+        "cReason": "두 빈칸 모두 다른 문항 C에서 같은 답으로 나온다.",
+        "exclusionReason": "B 제외: 직사각형·마름모의 평행사변형 포함은 07-xc1·07-xc2 B, 정사각형의 포함은 07-c11·08-xc7 B와 목표가 중복된다. C 제외: '평행사변형' 빈칸은 07-xc1·07-xc2·08-c7 C, '마름모' 빈칸은 08-xc7 C와 중복된다.",
+        "authorBatch": 44,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 639,
+        "part": "m2",
+        "sourceFingerprint": "f81e3d3e6f8d3ee2a277b280ac1020e21be32cd3b8d8a42f21d2a39b7eb517c4",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 639
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "proposalFingerprint": "df5390cdf24a33ede141a8693c171e5ef9013b4296a5709cf4a748240a3921f0"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-05-08-c6",
+        "section": "중2::5. 도형의 성질::등변사다리꼴, 여러 가지 사각형",
+        "term": "대각선이 서로를 이등분하는 사각형",
+        "kind": "성질",
+        "level": "중",
+        "definition": "두 대각선이 서로를 이등분하는 사각형은 {평행사변형}, 직사각형, {마름모}, 정사각형이다.",
+        "studentC": "두 대각선이 서로를 이등분하는 사각형은 □, 직사각형, □, 정사각형이다.",
+        "answers": [
+          "평행사변형",
+          "마름모"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-08-c6",
+        "learningRole": "naming",
+        "roleReason": "대각선이 서로 이등분하는 사각형 고르기",
+        "bDecision": "rewrite",
+        "bPrompt": "평행사변형, 직사각형, 마름모, 정사각형, 사다리꼴 가운데 두 대각선이 항상 서로를 이등분하는 사각형을 모두 고르고, 고른 사각형들의 공통점을 쓰시오.",
+        "bAnswer": "평행사변형, 직사각형, 마름모, 정사각형. 모두 평행사변형(의 한 종류)이다.",
+        "bGoal": "대각선 성질로 사각형 분류하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "평행사변형, 직사각형, 마름모, 정사각형을 고르고 사다리꼴은 고르지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "모두 평행사변형이다",
+              "모두 평행사변형의 한 종류이다"
+            ]
+          }
+        ],
+        "bReason": "후보를 제시하고 '항상'으로 판단 범위를 분명히 했다.",
+        "cDecision": "keep",
+        "cReason": "이등분하는 사각형 목록을 확인하는 짧은 빈칸이다.",
+        "authorBatch": 44,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 640,
+        "part": "m2",
+        "sourceFingerprint": "5e37d66b49c09038f4bbbf13b09ede844e3a680547da54975801ac37063ec808",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 640
+        },
+        "directReview": null,
+        "cFrozenSentence": "두 대각선이 서로를 이등분하는 사각형은 □, 직사각형, □, 정사각형이다.",
+        "cFrozenDefinition": "두 대각선이 서로를 이등분하는 사각형은 {평행사변형}, 직사각형, {마름모}, 정사각형이다.",
+        "cFrozenAnswers": [
+          "평행사변형",
+          "마름모"
+        ],
+        "cMarkedSentence": "두 대각선이 서로를 이등분하는 사각형은 {평행사변형}, 직사각형, {마름모}, 정사각형이다.",
+        "cSlotAnswers": [
+          "평행사변형",
+          "마름모"
+        ],
+        "cStudentSentence": "두 대각선이 서로를 이등분하는 사각형은 □, 직사각형, □, 정사각형이다.",
+        "cAnswers": [
+          "평행사변형",
+          "마름모"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "평행사변형",
+            "equivalentAnswers": [
+              "평행사변형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "마름모",
+            "equivalentAnswers": [
+              "마름모"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "평행사변형"
+          ],
+          [
+            "마름모"
+          ]
+        ],
+        "proposalFingerprint": "bb40f90468939f89326ed6503079eeda5aa226effc0004bb82a12c24007c9f21"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-05-08-c7",
+        "section": "중2::5. 도형의 성질::등변사다리꼴, 여러 가지 사각형",
+        "term": "사각형의 포함 관계",
+        "kind": "성질",
+        "level": "상",
+        "definition": "평행사변형도 {사다리꼴}의 한 종류이고, 직사각형과 마름모는 {평행사변형}의 한 종류이다.",
+        "studentC": "평행사변형도 □의 한 종류이고, 직사각형과 마름모는 □의 한 종류이다.",
+        "answers": [
+          "사다리꼴",
+          "평행사변형"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-08-c7",
+        "learningRole": "reason",
+        "roleReason": "평행사변형이 사다리꼴인 근거",
+        "bDecision": "rewrite",
+        "bPrompt": "사다리꼴의 뜻을 이용하여 평행사변형이 사다리꼴의 한 종류라고 할 수 있는 까닭을 쓰시오.",
+        "bAnswer": "사다리꼴은 마주 보는 한 쌍의 변이 평행한 사각형인데, 평행사변형은 마주 보는 두 쌍의 변이 모두 평행하므로 이 조건을 만족한다.",
+        "bGoal": "사각형의 포함 관계 설명하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "평행사변형은 두 쌍의 대변이 평행하므로 한 쌍의 대변이 평행하다는 조건을 만족한다",
+              "평행사변형에도 평행한 대변이 한 쌍 있다"
+            ]
+          }
+        ],
+        "bReason": "직관과 어긋나기 쉬운 포함 관계의 근거를 묻도록 특정했다.",
+        "cDecision": "keep",
+        "cReason": "두 포함 관계를 묻는 짧고 분명한 빈칸이다.",
+        "authorBatch": 44,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 641,
+        "part": "m2",
+        "sourceFingerprint": "8242dc9272ecf8fa53c8c4ed30f3b8c421d095f0cdd75f8504d9dbfb3979ba29",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 641
+        },
+        "directReview": null,
+        "cFrozenSentence": "평행사변형도 □의 한 종류이고, 직사각형과 마름모는 □의 한 종류이다.",
+        "cFrozenDefinition": "평행사변형도 {사다리꼴}의 한 종류이고, 직사각형과 마름모는 {평행사변형}의 한 종류이다.",
+        "cFrozenAnswers": [
+          "사다리꼴",
+          "평행사변형"
+        ],
+        "cMarkedSentence": "평행사변형도 {사다리꼴}의 한 종류이고, 직사각형과 마름모는 {평행사변형}의 한 종류이다.",
+        "cSlotAnswers": [
+          "사다리꼴",
+          "평행사변형"
+        ],
+        "cStudentSentence": "평행사변형도 □의 한 종류이고, 직사각형과 마름모는 □의 한 종류이다.",
+        "cAnswers": [
+          "사다리꼴",
+          "평행사변형"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "사다리꼴",
+            "equivalentAnswers": [
+              "사다리꼴"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "평행사변형",
+            "equivalentAnswers": [
+              "평행사변형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "사다리꼴"
+          ],
+          [
+            "평행사변형"
+          ]
+        ],
+        "proposalFingerprint": "0d509e3068e1d822bf3dd5a4f9dc0c94a8a7f59e3dc6d8c510172a3b6d8f55e5"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-05-08-c8",
+        "section": "중2::5. 도형의 성질::등변사다리꼴, 여러 가지 사각형",
+        "term": "여러 가지 사각형의 대각선의 성질",
+        "kind": "성질",
+        "level": "상",
+        "definition": "직사각형, 정사각형, {등변사다리꼴}은 두 대각선의 길이가 같고, 마름모와 {정사각형}은 두 대각선이 수직이다.",
+        "studentC": "직사각형, 정사각형, □은 두 대각선의 길이가 같고, 마름모와 □은 두 대각선이 수직이다.",
+        "answers": [
+          "등변사다리꼴",
+          "정사각형"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-08-c8",
+        "learningRole": "naming",
+        "roleReason": "대각선 성질별 사각형 분류",
+        "bDecision": "rewrite",
+        "bPrompt": "직사각형, 마름모, 정사각형, 등변사다리꼴 가운데 ($1$) 두 대각선의 길이가 항상 같은 것과 ($2$) 두 대각선이 항상 수직인 것을 각각 모두 고르시오.",
+        "bAnswer": "($1$) 직사각형, 정사각형, 등변사다리꼴 ($2$) 마름모, 정사각형",
+        "bGoal": "대각선 성질로 사각형 비교하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "($1$) 직사각형, 정사각형, 등변사다리꼴"
+            ]
+          },
+          {
+            "anyOf": [
+              "($2$) 마름모, 정사각형"
+            ]
+          }
+        ],
+        "bReason": "후보와 두 성질을 나누어 제시해 비교 범위를 정했다.",
+        "cDecision": "keep",
+        "cReason": "두 성질에서 빠진 도형을 채우는 짧은 비교 빈칸이다.",
+        "authorBatch": 44,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 642,
+        "part": "m2",
+        "sourceFingerprint": "d3130a47a5256761a0dfd5d40dd930e2407632e153e589fcacf7a653f05a5054",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 642
+        },
+        "directReview": null,
+        "cFrozenSentence": "직사각형, 정사각형, □은 두 대각선의 길이가 같고, 마름모와 □은 두 대각선이 수직이다.",
+        "cFrozenDefinition": "직사각형, 정사각형, {등변사다리꼴}은 두 대각선의 길이가 같고, 마름모와 {정사각형}은 두 대각선이 수직이다.",
+        "cFrozenAnswers": [
+          "등변사다리꼴",
+          "정사각형"
+        ],
+        "cMarkedSentence": "직사각형, 정사각형, {등변사다리꼴}은 두 대각선의 길이가 같고, 마름모와 {정사각형}은 두 대각선이 수직이다.",
+        "cSlotAnswers": [
+          "등변사다리꼴",
+          "정사각형"
+        ],
+        "cStudentSentence": "직사각형, 정사각형, □은 두 대각선의 길이가 같고, 마름모와 □은 두 대각선이 수직이다.",
+        "cAnswers": [
+          "등변사다리꼴",
+          "정사각형"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "등변사다리꼴",
+            "equivalentAnswers": [
+              "등변사다리꼴"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "정사각형",
+            "equivalentAnswers": [
+              "정사각형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "등변사다리꼴"
+          ],
+          [
+            "정사각형"
+          ]
+        ],
+        "proposalFingerprint": "6934cb9b66d97444cc18f0413a6d95aa558e684d6a1341c8048518ccb5e8b669"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-05-08-c9",
+        "section": "중2::5. 도형의 성질::등변사다리꼴, 여러 가지 사각형",
+        "term": "각 변의 중점을 이어 만든 사각형",
+        "kind": "성질",
+        "level": "상",
+        "definition": "사각형의 네 변의 중점을 차례로 이으면 언제나 {평행사변형}이 되고, 직사각형의 중점을 이으면 {마름모}가 된다.",
+        "studentC": "사각형의 네 변의 중점을 차례로 이으면 언제나 □이 되고, 직사각형의 중점을 이으면 □가 된다.",
+        "answers": [
+          "평행사변형",
+          "마름모"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-08-c9",
+        "learningRole": "naming",
+        "roleReason": "변의 중점을 이은 사각형의 종류",
+        "bDecision": "rewrite",
+        "bPrompt": "어떤 사각형이든 네 변의 중점을 차례로 이은 사각형은 항상 어떤 사각형이 되는지 쓰고, 직사각형의 네 변의 중점을 차례로 이으면 어떤 사각형이 되는지 쓰시오.",
+        "bAnswer": "항상 평행사변형이 되고, 직사각형의 경우 마름모가 된다.",
+        "bGoal": "중점을 이은 사각형 알기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "평행사변형"
+            ]
+          },
+          {
+            "anyOf": [
+              "마름모"
+            ]
+          }
+        ],
+        "bReason": "일반 사각형과 직사각형 두 경우를 나누어 물었다.",
+        "cDecision": "keep",
+        "cReason": "일반 경우와 직사각형 경우를 대비한 짧은 빈칸이다.",
+        "authorBatch": 44,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 643,
+        "part": "m2",
+        "sourceFingerprint": "30f758a87cee9576c060c9c6ed2316a718e45041a00b536d630e0e7f74aaf532",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 643
+        },
+        "directReview": null,
+        "cFrozenSentence": "사각형의 네 변의 중점을 차례로 이으면 언제나 □이 되고, 직사각형의 중점을 이으면 □가 된다.",
+        "cFrozenDefinition": "사각형의 네 변의 중점을 차례로 이으면 언제나 {평행사변형}이 되고, 직사각형의 중점을 이으면 {마름모}가 된다.",
+        "cFrozenAnswers": [
+          "평행사변형",
+          "마름모"
+        ],
+        "cMarkedSentence": "사각형의 네 변의 중점을 차례로 이으면 언제나 {평행사변형}이 되고, 직사각형의 중점을 이으면 {마름모}가 된다.",
+        "cSlotAnswers": [
+          "평행사변형",
+          "마름모"
+        ],
+        "cStudentSentence": "사각형의 네 변의 중점을 차례로 이으면 언제나 □이 되고, 직사각형의 중점을 이으면 □가 된다.",
+        "cAnswers": [
+          "평행사변형",
+          "마름모"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "평행사변형",
+            "equivalentAnswers": [
+              "평행사변형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "마름모",
+            "equivalentAnswers": [
+              "마름모"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "평행사변형"
+          ],
+          [
+            "마름모"
+          ]
+        ],
+        "proposalFingerprint": "460e02d3f986871ccb29124bd07f003f78171ecf620435468ddf62628334bcac"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-05-09-c1",
+        "section": "중2::5. 도형의 성질::평행선과 삼각형의 넓이",
+        "term": "평행선 사이의 거리",
+        "kind": "성질",
+        "level": "하",
+        "definition": "평행한 두 직선 사이의 {거리}는 어디에서 재어도 {일정}하다.",
+        "studentC": "평행한 두 직선 사이의 □는 어디에서 재어도 □하다.",
+        "answers": [
+          "거리",
+          "일정"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-09-c1",
+        "learningRole": "definition",
+        "roleReason": "평행선 사이의 거리가 위치와 관계없이 일정함",
+        "bDecision": "rewrite",
+        "bPrompt": "두 직선 $l$, $m$이 평행할 때, $l$ 위의 여러 점에서 $m$까지 잰 거리는 점의 위치에 따라 어떻게 되는지 쓰시오.",
+        "bAnswer": "점의 위치와 관계없이 거리가 항상 같다(일정하다).",
+        "bGoal": "평행선 사이 거리의 일정함 알기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "위치와 관계없이 같다",
+              "항상 일정하다",
+              "어디서 재어도 같다"
+            ]
+          }
+        ],
+        "bReason": "제목만으로는 답할 내용이 없어 '위치에 따라 어떻게 되는지'로 특정했다.",
+        "cDecision": "keep",
+        "cReason": "거리와 일정함이 핵심인 짧고 분명한 성질 빈칸이다.",
+        "authorBatch": 45,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 644,
+        "part": "m2",
+        "sourceFingerprint": "578aefb82f6d61a2f9ade5b2a53b627f1d146f11aed10cd0ebeac02125d7024c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 644
+        },
+        "directReview": null,
+        "cFrozenSentence": "평행한 두 직선 사이의 □는 어디에서 재어도 □하다.",
+        "cFrozenDefinition": "평행한 두 직선 사이의 {거리}는 어디에서 재어도 {일정}하다.",
+        "cFrozenAnswers": [
+          "거리",
+          "일정"
+        ],
+        "cMarkedSentence": "평행한 두 직선 사이의 {거리}는 어디에서 재어도 {일정}하다.",
+        "cSlotAnswers": [
+          "거리",
+          "일정"
+        ],
+        "cStudentSentence": "평행한 두 직선 사이의 □는 어디에서 재어도 □하다.",
+        "cAnswers": [
+          "거리",
+          "일정"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "거리",
+            "equivalentAnswers": [
+              "거리"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "일정",
+            "equivalentAnswers": [
+              "일정"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "거리"
+          ],
+          [
+            "일정"
+          ]
+        ],
+        "proposalFingerprint": "af4973437d04cd1ee5068245c72630fa1498c2f280e9017040027d1de59c1b8a"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-05-09-c2",
+        "section": "중2::5. 도형의 성질::평행선과 삼각형의 넓이",
+        "term": "삼각형의 넓이",
+        "kind": "공식",
+        "level": "하",
+        "definition": "삼각형의 넓이는 {밑변}의 길이와 {높이}를 곱한 값의 절반이다.",
+        "example": {
+          "prompt": "밑변 $6$, 높이 $4$인 삼각형의 넓이",
+          "answer": "$12$"
+        },
+        "studentC": "삼각형의 넓이는 □의 길이와 □를 곱한 값의 절반이다.",
+        "answers": [
+          "밑변",
+          "높이"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-09-c2",
+        "learningRole": "procedure",
+        "roleReason": "밑변과 높이로 삼각형 넓이 구하기",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각형의 넓이를 구하는 방법을 말로 쓰고, 밑변이 $6$, 높이가 $4$인 삼각형의 넓이를 구하시오.",
+        "bAnswer": "(밑변)$\\times$(높이)$\\div 2$로 구한다. 넓이는 $12$이다.",
+        "bGoal": "삼각형 넓이 공식 쓰기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "(밑변)$\\times$(높이)$\\div 2$",
+              "$\\frac{1}{2}\\times$(밑변)$\\times$(높이)",
+              "밑변과 높이를 곱한 값의 절반"
+            ]
+          },
+          {
+            "anyOf": [
+              "$12$"
+            ]
+          }
+        ],
+        "bReason": "질문에서 공식 재료를 먼저 말하지 않도록 방법과 적용을 함께 물었다.",
+        "cDecision": "keep",
+        "cReason": "밑변과 높이를 채우는 짧은 공식 빈칸으로 분명하다.",
+        "authorBatch": 45,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 645,
+        "part": "m2",
+        "sourceFingerprint": "b42baca02c7bac3709b99d5652ad9078cdf4f226e3c4d5bcc89c3418f56c493f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 645
+        },
+        "directReview": null,
+        "cFrozenSentence": "삼각형의 넓이는 □의 길이와 □를 곱한 값의 절반이다.",
+        "cFrozenDefinition": "삼각형의 넓이는 {밑변}의 길이와 {높이}를 곱한 값의 절반이다.",
+        "cFrozenAnswers": [
+          "밑변",
+          "높이"
+        ],
+        "cMarkedSentence": "삼각형의 넓이는 {밑변}의 길이와 {높이}를 곱한 값의 절반이다.",
+        "cSlotAnswers": [
+          "밑변",
+          "높이"
+        ],
+        "cStudentSentence": "삼각형의 넓이는 □의 길이와 □를 곱한 값의 절반이다.",
+        "cAnswers": [
+          "밑변",
+          "높이"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "밑변",
+            "equivalentAnswers": [
+              "밑변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "높이",
+            "equivalentAnswers": [
+              "높이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "밑변"
+          ],
+          [
+            "높이"
+          ]
+        ],
+        "proposalFingerprint": "f2c829bdfe1f22e2da9d391d48ff87cc91e26d4c2341c0aa84e328a4caee98c7"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-05-09-c3",
+        "section": "중2::5. 도형의 성질::평행선과 삼각형의 넓이",
+        "term": "평행선과 삼각형의 넓이",
+        "kind": "성질",
+        "level": "중",
+        "definition": "평행한 두 직선 사이에서 {밑변}이 공통인 두 삼각형은 {높이}가 같으므로 넓이가 같다.",
+        "studentC": "평행한 두 직선 사이에서 □이 공통인 두 삼각형은 □가 같으므로 넓이가 같다.",
+        "answers": [
+          "밑변",
+          "높이"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-09-c3",
+        "learningRole": "reason",
+        "roleReason": "밑변 공통·높이 같음으로 넓이가 같은 까닭",
+        "bDecision": "rewrite",
+        "bPrompt": "두 직선 $l$, $m$이 평행하고, $m$ 위에 두 점 $B$, $C$가, $l$ 위에 서로 다른 두 점 $A$, $D$가 있다. $\\triangle ABC$와 $\\triangle DBC$의 넓이를 비교하고 그 이유를 쓰시오.",
+        "bAnswer": "넓이가 같다. 밑변 $\\overline{BC}$가 공통이고, 두 삼각형의 높이가 모두 평행선 $l$, $m$ 사이의 거리로 같기 때문이다.",
+        "bGoal": "평행선 사이 두 삼각형의 넓이 비교",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "넓이가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "밑변 $\\overline{BC}$가 공통",
+              "밑변이 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이가 평행선 사이의 거리로 같다",
+              "높이가 같다"
+            ]
+          }
+        ],
+        "bReason": "그림 없이 알 수 있도록 두 평행선과 네 점의 위치를 밝혀 비교할 삼각형을 정했다.",
+        "cDecision": "keep",
+        "cReason": "조건과 이유 빈칸이 분명한 짧은 성질 문장이다.",
+        "authorBatch": 45,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 646,
+        "part": "m2",
+        "sourceFingerprint": "23b8b2b16f5c29762d0a65deb6b0a7987bda5e5f2281537cec4913a5a4405157",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 646
+        },
+        "directReview": null,
+        "cFrozenSentence": "평행한 두 직선 사이에서 □이 공통인 두 삼각형은 □가 같으므로 넓이가 같다.",
+        "cFrozenDefinition": "평행한 두 직선 사이에서 {밑변}이 공통인 두 삼각형은 {높이}가 같으므로 넓이가 같다.",
+        "cFrozenAnswers": [
+          "밑변",
+          "높이"
+        ],
+        "cMarkedSentence": "평행한 두 직선 사이에서 {밑변}이 공통인 두 삼각형은 {높이}가 같으므로 넓이가 같다.",
+        "cSlotAnswers": [
+          "밑변",
+          "높이"
+        ],
+        "cStudentSentence": "평행한 두 직선 사이에서 □이 공통인 두 삼각형은 □가 같으므로 넓이가 같다.",
+        "cAnswers": [
+          "밑변",
+          "높이"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "밑변",
+            "equivalentAnswers": [
+              "밑변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "높이",
+            "equivalentAnswers": [
+              "높이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "밑변"
+          ],
+          [
+            "높이"
+          ]
+        ],
+        "proposalFingerprint": "296480dd8909d33eb75b38735d05c9f405f59c444165ffae272ad4c43ff98ec3"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-05-09-c4",
+        "section": "중2::5. 도형의 성질::평행선과 삼각형의 넓이",
+        "term": "높이가 같은 두 삼각형의 넓이의 비",
+        "kind": "성질",
+        "level": "중",
+        "definition": "두 삼각형의 높이가 같다면, 넓이를 견준 비는 {밑변}의 길이를 견준 {비} 그대로이다.",
+        "example": {
+          "prompt": "높이가 같고 밑변이 $2$, $5$인 두 삼각형의 넓이의 비",
+          "answer": "$2:5$"
+        },
+        "studentC": "두 삼각형의 높이가 같다면, 넓이를 견준 비는 □의 길이를 견준 □ 그대로이다.",
+        "answers": [
+          "밑변",
+          "비"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-09-c4",
+        "learningRole": "reason",
+        "roleReason": "높이가 같으면 넓이의 비가 밑변의 비",
+        "bDecision": "rewrite",
+        "bPrompt": "높이가 같은 두 삼각형에서 넓이의 비는 어떤 길이의 비와 같은지 쓰고, 그 이유를 넓이 공식으로 설명하시오.",
+        "bAnswer": "밑변의 길이의 비와 같다. 넓이는 (밑변)$\\times$(높이)$\\div 2$인데 높이가 같으므로 넓이는 밑변의 길이에 비례하기 때문이다.",
+        "bGoal": "넓이의 비와 밑변의 비의 관계 설명",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "밑변의 길이의 비"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이가 같아 넓이가 밑변의 길이에 비례한다",
+              "넓이 공식에서 높이가 같으므로 밑변만 다르다"
+            ]
+          }
+        ],
+        "bReason": "어떤 비와 같은지와 그 까닭을 함께 물어 관계를 특정했다.",
+        "cDecision": "rewrite",
+        "cAfter": "두 삼각형의 높이가 같으면 두 삼각형의 넓이의 비는 {밑변}의 길이의 비와 같다.",
+        "cAnswers": [
+          "밑변"
+        ],
+        "cReason": "둘째 빈칸 '비'는 앞의 '견준 비'에서 베낄 수 있어 핵심 빈칸 하나로 줄였다.",
+        "authorBatch": 45,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 647,
+        "part": "m2",
+        "sourceFingerprint": "751a60cf66c3523e843db42d49034d70bc1fd489b7dcd2bbe7cce35ff304dfd3",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 647
+        },
+        "directReview": null,
+        "cMarkedSentence": "두 삼각형의 높이가 같으면 두 삼각형의 넓이의 비는 {밑변}의 길이의 비와 같다.",
+        "cSlotAnswers": [
+          "밑변"
+        ],
+        "cStudentSentence": "두 삼각형의 높이가 같으면 두 삼각형의 넓이의 비는 □의 길이의 비와 같다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "밑변",
+            "equivalentAnswers": [
+              "밑변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "밑변"
+          ]
+        ],
+        "proposalFingerprint": "40436cbe76233c9cba8b53bf1a656af3e2a115fae2873bf54f3d9790138fb810"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-05-09-c5",
+        "section": "중2::5. 도형의 성질::평행선과 삼각형의 넓이",
+        "term": "사다리꼴에서 넓이가 같은 삼각형",
+        "kind": "성질",
+        "level": "중",
+        "definition": "사다리꼴의 두 대각선이 만드는 네 삼각형 가운데, 평행하지 않은 두 변에 붙은 {양옆}의 두 삼각형은 넓이가 {같다}.",
+        "studentC": "사다리꼴의 두 대각선이 만드는 네 삼각형 가운데, 평행하지 않은 두 변에 붙은 □의 두 삼각형은 넓이가 □.",
+        "answers": [
+          "양옆",
+          "같다"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-09-c5",
+        "learningRole": "application",
+        "roleReason": "사다리꼴 대각선이 만든 넓이가 같은 두 삼각형 찾기",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴 $ABCD$의 두 대각선이 점 $O$에서 만난다. $\\triangle OAD$, $\\triangle OBC$, $\\triangle OAB$, $\\triangle OCD$ 가운데 사다리꼴의 모양과 관계없이 넓이가 항상 같은 두 삼각형을 쓰시오.",
+        "bAnswer": "$\\triangle OAB$와 $\\triangle OCD$",
+        "bGoal": "사다리꼴에서 넓이가 같은 삼각형 찾기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\triangle OAB$와 $\\triangle OCD$"
+            ]
+          }
+        ],
+        "bReason": "'양옆'은 그림 없이 알 수 없어 점 이름과 네 삼각형 후보를 제시했다.",
+        "cDecision": "rewrite",
+        "cAfter": "$\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴 $ABCD$의 두 대각선이 점 $O$에서 만날 때, 평행하지 않은 변 $\\overline{AB}$에 붙은 $\\triangle OAB$와 넓이가 같은 삼각형은 {$\\triangle OCD$}이다.",
+        "cAnswers": [
+          "$\\triangle OCD$"
+        ],
+        "cReason": "'양옆'은 지칭 대상이 불분명해 점 이름으로 삼각형을 특정했다.",
+        "authorBatch": 45,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 648,
+        "part": "m2",
+        "sourceFingerprint": "1cc3a8541fd85c6e99ed72d788716438cebbe612aa23f3641db5e198bd068f63",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 648
+        },
+        "directReview": null,
+        "cMarkedSentence": "$\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴 $ABCD$의 두 대각선이 점 $O$에서 만날 때, 평행하지 않은 변 $\\overline{AB}$에 붙은 $\\triangle OAB$와 넓이가 같은 삼각형은 {$\\triangle OCD$}이다.",
+        "cSlotAnswers": [
+          "$\\triangle OCD$"
+        ],
+        "cStudentSentence": "$\\overline{AD}\\parallel\\overline{BC}$인 사다리꼴 $ABCD$의 두 대각선이 점 $O$에서 만날 때, 평행하지 않은 변 $\\overline{AB}$에 붙은 $\\triangle OAB$와 넓이가 같은 삼각형은 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\triangle OCD$",
+            "equivalentAnswers": [
+              "$\\triangle OCD$",
+              "$\\triangle ODC$",
+              "$\\triangle COD$",
+              "$\\triangle CDO$",
+              "$\\triangle DOC$",
+              "$\\triangle DCO$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$\\triangle OCD$",
+            "accept": [
+              "$\\triangle ODC$",
+              "$\\triangle COD$",
+              "$\\triangle CDO$",
+              "$\\triangle DOC$",
+              "$\\triangle DCO$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$\\triangle OCD$",
+            "$\\triangle ODC$",
+            "$\\triangle COD$",
+            "$\\triangle CDO$",
+            "$\\triangle DOC$",
+            "$\\triangle DCO$"
+          ]
+        ],
+        "proposalFingerprint": "cf8875acf0e51a06178ab3720d7ef0d4007c35ee8c91833eac321d238f30b2a6"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-05-09-c6",
+        "section": "중2::5. 도형의 성질::평행선과 삼각형의 넓이",
+        "term": "넓이가 같은 삼각형 만들기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "밑변은 그대로 두고 꼭짓점을 밑변과 {평행}한 직선 위에서 옮기면 삼각형의 {넓이}는 변하지 않는다.",
+        "studentC": "밑변은 그대로 두고 꼭짓점을 밑변과 □한 직선 위에서 옮기면 삼각형의 □는 변하지 않는다.",
+        "answers": [
+          "평행",
+          "넓이"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-09-c6",
+        "learningRole": "procedure",
+        "roleReason": "꼭짓점을 밑변의 평행선 위에서 옮기기",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\triangle ABC$에서 밑변 $\\overline{BC}$는 그대로 두고 꼭짓점 $A$만 옮겨 넓이가 같은 삼각형을 만들려고 한다. $A$를 어떤 직선 위에서 옮겨야 하는지 쓰고 그 이유를 설명하시오.",
+        "bAnswer": "점 $A$를 지나고 $\\overline{BC}$에 평행한 직선 위에서 옮긴다. 그 직선 위의 점은 어디서나 $\\overline{BC}$까지의 거리가 같아 높이가 변하지 않기 때문이다.",
+        "bGoal": "넓이를 유지하며 꼭짓점 옮기기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$A$를 지나고 $\\overline{BC}$에 평행한 직선"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이가 변하지 않는다",
+              "높이가 일정하다"
+            ]
+          }
+        ],
+        "bReason": "고정할 밑변과 옮길 꼭짓점을 정해 어느 직선인지와 이유를 물었다.",
+        "cDecision": "keep",
+        "cReason": "평행과 넓이를 채우는 짧은 방법 문장으로 분명하다.",
+        "authorBatch": 45,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 649,
+        "part": "m2",
+        "sourceFingerprint": "241e5b05e36e629434656db2d209ba4e3cdef17f67cbe35399b06fb7551d1d8b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 649
+        },
+        "directReview": null,
+        "cFrozenSentence": "밑변은 그대로 두고 꼭짓점을 밑변과 □한 직선 위에서 옮기면 삼각형의 □는 변하지 않는다.",
+        "cFrozenDefinition": "밑변은 그대로 두고 꼭짓점을 밑변과 {평행}한 직선 위에서 옮기면 삼각형의 {넓이}는 변하지 않는다.",
+        "cFrozenAnswers": [
+          "평행",
+          "넓이"
+        ],
+        "cMarkedSentence": "밑변은 그대로 두고 꼭짓점을 밑변과 {평행}한 직선 위에서 옮기면 삼각형의 {넓이}는 변하지 않는다.",
+        "cSlotAnswers": [
+          "평행",
+          "넓이"
+        ],
+        "cStudentSentence": "밑변은 그대로 두고 꼭짓점을 밑변과 □한 직선 위에서 옮기면 삼각형의 □는 변하지 않는다.",
+        "cAnswers": [
+          "평행",
+          "넓이"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "평행",
+            "equivalentAnswers": [
+              "평행"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "넓이",
+            "equivalentAnswers": [
+              "넓이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "평행"
+          ],
+          [
+            "넓이"
+          ]
+        ],
+        "proposalFingerprint": "e46f15633de6d1075c753cff2ec1cfc02baa99891f52255bca23407e0b18577b"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-05-09-c7",
+        "section": "중2::5. 도형의 성질::평행선과 삼각형의 넓이",
+        "term": "사각형과 넓이가 같은 삼각형",
+        "kind": "방법",
+        "level": "상",
+        "definition": "사각형의 한 꼭짓점을 지나고 {대각선}에 평행한 직선을 그으면 사각형과 넓이가 같은 {삼각형}을 만들 수 있다.",
+        "studentC": "사각형의 한 꼭짓점을 지나고 □에 평행한 직선을 그으면 사각형과 넓이가 같은 □을 만들 수 있다.",
+        "answers": [
+          "대각선",
+          "삼각형"
+        ]
+      },
+      "proposal": {
+        "id": "m2-05-09-c7",
+        "learningRole": "procedure",
+        "roleReason": "대각선의 평행선으로 사각형을 삼각형으로 바꾸기",
+        "bDecision": "rewrite",
+        "bPrompt": "볼록한 사각형 $ABCD$에서 꼭짓점 $D$를 지나고 대각선 $\\overline{AC}$에 평행한 직선이, 변 $BC$를 $C$ 쪽으로 늘인 직선과 만나는 점을 $E$라 하자. 사각형 $ABCD$와 넓이가 같은 삼각형을 쓰시오.",
+        "bAnswer": "$\\triangle ABE$",
+        "bGoal": "사각형과 넓이가 같은 삼각형 만들기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\triangle ABE$"
+            ]
+          }
+        ],
+        "bReason": "어느 꼭짓점·대각선·연장선을 쓰는지 점 위치로 밝혀 만든 삼각형을 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "사각형의 한 꼭짓점을 지나고 그 꼭짓점을 지나지 않는 {대각선}에 평행한 직선을 그으면 사각형과 넓이가 같은 {삼각형}을 만들 수 있다.",
+        "cAnswers": [
+          "대각선",
+          "삼각형"
+        ],
+        "cReason": "어느 대각선인지 모호해 그 꼭짓점을 지나지 않는 대각선임을 밝혔다.",
+        "exampleNeeded": true,
+        "coreAfter": "사각형의 한 꼭짓점을 지나고 그 꼭짓점을 지나지 않는 {대각선}에 평행한 직선을 그으면 사각형과 넓이가 같은 {삼각형}을 만들 수 있다.",
+        "coreReason": "평행선을 그을 대각선이 특정되지 않아 학습 설명에 조건을 보탰다.",
+        "authorBatch": 45,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 650,
+        "part": "m2",
+        "sourceFingerprint": "eb1508feaa8a1c86b7a75b3df949c23081be00af8e5d6236757342a5d5b875cc",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 650
+        },
+        "directReview": null,
+        "coreBeforeRepair": "사각형의 한 꼭짓점을 지나고 그 꼭짓점을 지나지 않는 {대각선}에 평행한 직선을 그으면 사각형과 넓이가 같은 {삼각형}을 만들 수 있다.",
+        "coreRepairReason": "'그 꼭짓점을 지나지 않는 대각선'이라는 조건으로 어느 대각선인지 밝혀 원본 방법과 일치한다. 원본 핵심어 {대각선}, {삼각형}이 유효하므로 그대로 보존했다.",
+        "coreRepairEvidence": "core-repair/core-005",
+        "cMarkedSentence": "사각형의 한 꼭짓점을 지나고 그 꼭짓점을 지나지 않는 {대각선}에 평행한 직선을 그으면 사각형과 넓이가 같은 {삼각형}을 만들 수 있다.",
+        "cSlotAnswers": [
+          "대각선",
+          "삼각형"
+        ],
+        "cStudentSentence": "사각형의 한 꼭짓점을 지나고 그 꼭짓점을 지나지 않는 □에 평행한 직선을 그으면 사각형과 넓이가 같은 □을 만들 수 있다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "대각선",
+            "equivalentAnswers": [
+              "대각선"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "삼각형",
+            "equivalentAnswers": [
+              "삼각형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "대각선"
+          ],
+          [
+            "삼각형"
+          ]
+        ],
+        "proposalFingerprint": "bbcaeada9ad706d01ea7e8c49954e49b8bd2357be63b9de5d1197c06903165ca"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-06-01-c1",
+        "section": "중2::6. 도형의 닮음::닮은 도형",
+        "term": "닮음",
+        "kind": "정의",
+        "level": "하",
+        "definition": "어떤 도형을 {같은 비율}로 늘이거나 줄인 것이 다른 도형과 {합동}이 될 때, 두 도형 사이의 관계를 닮음이라 한다.",
+        "studentC": "어떤 도형을 □로 늘이거나 줄인 것이 다른 도형과 □이 될 때, 두 도형 사이의 관계를 닮음이라 한다.",
+        "answers": [
+          "같은 비율",
+          "합동"
+        ]
+      },
+      "proposal": {
+        "id": "m2-06-01-c1",
+        "learningRole": "definition",
+        "roleReason": "확대·축소한 것이 합동이 되는 관계",
+        "bDecision": "rewrite",
+        "bPrompt": "두 도형이 서로 '닮음'이라는 것은 한 도형을 어떻게 했을 때 다른 도형과 어떤 관계가 되는 것인지 쓰시오.",
+        "bAnswer": "한 도형을 일정한 비율로 확대 또는 축소한 것이 다른 도형과 합동이 되는 것이다.",
+        "bGoal": "닮음의 정의",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "일정한 비율로 확대 또는 축소",
+              "같은 비율로 늘이거나 줄인다"
+            ]
+          },
+          {
+            "anyOf": [
+              "합동"
+            ]
+          }
+        ],
+        "bReason": "조작과 결과 관계를 나누어 물어 닮음의 정의를 특정했다.",
+        "cDecision": "keep",
+        "cReason": "같은 비율과 합동을 채우는 핵심 정의 빈칸이다.",
+        "authorBatch": 45,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 651,
+        "part": "m2",
+        "sourceFingerprint": "40894cde32ae3afc71106352b0657aa895f8e6ac2fe6707d5cd9f88aa33805d0",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 651
+        },
+        "directReview": null,
+        "cFrozenSentence": "어떤 도형을 □로 늘이거나 줄인 것이 다른 도형과 □이 될 때, 두 도형 사이의 관계를 닮음이라 한다.",
+        "cFrozenDefinition": "어떤 도형을 {같은 비율}로 늘이거나 줄인 것이 다른 도형과 {합동}이 될 때, 두 도형 사이의 관계를 닮음이라 한다.",
+        "cFrozenAnswers": [
+          "같은 비율",
+          "합동"
+        ],
+        "cMarkedSentence": "어떤 도형을 {같은 비율}로 늘이거나 줄인 것이 다른 도형과 {합동}이 될 때, 두 도형 사이의 관계를 닮음이라 한다.",
+        "cSlotAnswers": [
+          "같은 비율",
+          "합동"
+        ],
+        "cStudentSentence": "어떤 도형을 □로 늘이거나 줄인 것이 다른 도형과 □이 될 때, 두 도형 사이의 관계를 닮음이라 한다.",
+        "cAnswers": [
+          "같은 비율",
+          "합동"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "같은 비율",
+            "equivalentAnswers": [
+              "같은 비율"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "합동",
+            "equivalentAnswers": [
+              "합동"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "같은 비율"
+          ],
+          [
+            "합동"
+          ]
+        ],
+        "proposalFingerprint": "78e0b38732b4008668f66a48d45e9d157ece0575348cf58a274b9b2bf2e5e18d"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-06-01-c2",
+        "section": "중2::6. 도형의 닮음::닮은 도형",
+        "term": "닮은 도형",
+        "kind": "정의",
+        "level": "하",
+        "definition": "모양은 같고 크기만 다를 수 있는, 닮음 관계인 도형 한 쌍을 {닮은 도형}이라 부른다.",
+        "studentC": "모양은 같고 크기만 다를 수 있는, 닮음 관계인 도형 한 쌍을 □이라 부른다.",
+        "answers": [
+          "닮은 도형"
+        ]
+      },
+      "proposal": {
+        "id": "m2-06-01-c2",
+        "learningRole": "naming",
+        "roleReason": "닮음 관계인 두 도형의 이름",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "이름 붙이기일 뿐이라 c1 닮음 정의 질문으로 충분하다.",
+        "cDecision": "rewrite",
+        "cAfter": "한 도형을 일정한 비율로 확대하거나 축소한 것이 다른 도형과 합동일 때, 이 두 도형을 서로 {닮은 도형}이라 한다.",
+        "cAnswers": [
+          "닮은 도형"
+        ],
+        "cReason": "답이 '닮음 관계인 도형'에서 그대로 베껴져 확대·축소 조건으로 바꿨다.",
+        "exclusionReason": "B 제외: '닮은 도형' 이름 묻기는 c1 닮음 정의 질문과 목표가 중복된다.",
+        "authorBatch": 45,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 652,
+        "part": "m2",
+        "sourceFingerprint": "ff898d4b49ddc80fbfb94b2e0b89ea48bc65ae2e80fd69deac551542fc4c3fff",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 652
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "한 도형을 일정한 비율로 확대하거나 축소한 것이 다른 도형과 합동일 때, 이 두 도형을 서로 {닮은 도형}이라 한다.",
+        "cSlotAnswers": [
+          "닮은 도형"
+        ],
+        "cStudentSentence": "한 도형을 일정한 비율로 확대하거나 축소한 것이 다른 도형과 합동일 때, 이 두 도형을 서로 □이라 한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "닮은 도형",
+            "equivalentAnswers": [
+              "닮은 도형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "닮은 도형"
+          ]
+        ],
+        "proposalFingerprint": "97bc175f358104d331a9d488163bb08daec812b6b069c4d9948dc34c1b11eaf9"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-06-01-c3",
+        "section": "중2::6. 도형의 닮음::닮은 도형",
+        "term": "대응점 · 대응변 · 대응각",
+        "kind": "정의",
+        "level": "하",
+        "definition": "닮은 두 도형에서 서로 짝이 되는 점, 변, 각을 각각 {대응점}, {대응변}, {대응각}이라 한다.",
+        "studentC": "닮은 두 도형에서 서로 짝이 되는 점, 변, 각을 각각 □, □, □이라 한다.",
+        "answers": [
+          "대응점",
+          "대응변",
+          "대응각"
+        ]
+      },
+      "proposal": {
+        "id": "m2-06-01-c3",
+        "learningRole": "naming",
+        "roleReason": "짝이 되는 점·변·각의 이름",
+        "bDecision": "rewrite",
+        "bPrompt": "닮은 두 사각형 $ABCD$와 $EFGH$에서 $A$와 $E$, $B$와 $F$, $C$와 $G$, $D$와 $H$가 서로 짝을 이룬다. 이때 점 $A$와 점 $E$, $\\overline{AB}$와 $\\overline{EF}$, $\\angle B$와 $\\angle F$를 각각 무엇이라 부르는지 쓰시오.",
+        "bAnswer": "대응점, 대응변, 대응각",
+        "bGoal": "대응점·대응변·대응각 구별",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "대응점"
+            ]
+          },
+          {
+            "anyOf": [
+              "대응변"
+            ]
+          },
+          {
+            "anyOf": [
+              "대응각"
+            ]
+          }
+        ],
+        "bReason": "C와 같은 문장을 피하려고 짝이 정해진 사각형에서 실제 점·변·각을 부르게 했다.",
+        "cDecision": "keep",
+        "cReason": "세 이름을 순서대로 채우는 분명한 명칭 빈칸이다.",
+        "authorBatch": 45,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 653,
+        "part": "m2",
+        "sourceFingerprint": "924d28c9ba0a7b0fc3a9e1a355883d1b101f3a8c4d98c3976df6aacadb15df33",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 653
+        },
+        "directReview": null,
+        "cFrozenSentence": "닮은 두 도형에서 서로 짝이 되는 점, 변, 각을 각각 □, □, □이라 한다.",
+        "cFrozenDefinition": "닮은 두 도형에서 서로 짝이 되는 점, 변, 각을 각각 {대응점}, {대응변}, {대응각}이라 한다.",
+        "cFrozenAnswers": [
+          "대응점",
+          "대응변",
+          "대응각"
+        ],
+        "cMarkedSentence": "닮은 두 도형에서 서로 짝이 되는 점, 변, 각을 각각 {대응점}, {대응변}, {대응각}이라 한다.",
+        "cSlotAnswers": [
+          "대응점",
+          "대응변",
+          "대응각"
+        ],
+        "cStudentSentence": "닮은 두 도형에서 서로 짝이 되는 점, 변, 각을 각각 □, □, □이라 한다.",
+        "cAnswers": [
+          "대응점",
+          "대응변",
+          "대응각"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "대응점",
+            "equivalentAnswers": [
+              "대응점"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "대응변",
+            "equivalentAnswers": [
+              "대응변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "대응각",
+            "equivalentAnswers": [
+              "대응각"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "대응점"
+          ],
+          [
+            "대응변"
+          ],
+          [
+            "대응각"
+          ]
+        ],
+        "proposalFingerprint": "fcf915c92d4f06fca5fc7d9f131b074fef755958517bb4263cd645ef9643d2c0"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-06-01-c4",
+        "section": "중2::6. 도형의 닮음::닮은 도형",
+        "term": "닮음 기호 $\\backsim$",
+        "kind": "정의",
+        "level": "중",
+        "definition": "$\\triangle ABC$와 $\\triangle DEF$가 닮은 도형임을 $\\triangle ABC\\backsim\\triangle DEF$로 쓰고, 꼭짓점은 {대응하는 순서}로 적는다.",
+        "studentC": "$\\triangle ABC$와 $\\triangle DEF$가 닮은 도형임을 $\\triangle ABC\\backsim\\triangle DEF$로 쓰고, 꼭짓점은 □로 적는다.",
+        "answers": [
+          "대응하는 순서"
+        ]
+      },
+      "proposal": {
+        "id": "m2-06-01-c4",
+        "learningRole": "naming",
+        "roleReason": "닮음 기호와 꼭짓점 쓰는 순서",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\triangle ABC$와 $\\triangle DEF$가 닮았고 점 $A$와 $D$, $B$와 $E$, $C$와 $F$가 서로 대응한다. 이 관계를 닮음 기호로 쓰고, 꼭짓점을 적는 순서에 대한 약속을 쓰시오.",
+        "bAnswer": "$\\triangle ABC\\backsim\\triangle DEF$. 대응하는 꼭짓점을 같은 순서(같은 자리)에 맞추어 적는다.",
+        "bGoal": "닮음 기호 바르게 쓰기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\triangle ABC\\backsim\\triangle DEF$",
+              "대응하는 꼭짓점을 같은 순서로 쓴 닮음 기호 식"
+            ]
+          },
+          {
+            "anyOf": [
+              "대응하는 순서로 쓴다",
+              "대응점끼리 같은 자리에 쓴다"
+            ]
+          }
+        ],
+        "bReason": "대응 관계를 주고 기호 표기와 순서 약속을 함께 쓰게 했다.",
+        "cDecision": "keep",
+        "cReason": "'대응하는 순서'라는 핵심 약속을 묻는 짧은 빈칸이다.",
+        "authorBatch": 45,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 654,
+        "part": "m2",
+        "sourceFingerprint": "00fe1bc27f8bc6deeb9419b7c77d11c23dc5797e1ca2f2ce2a1efe5efcb8a0a6",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 654
+        },
+        "directReview": null,
+        "cFrozenSentence": "$\\triangle ABC$와 $\\triangle DEF$가 닮은 도형임을 $\\triangle ABC\\backsim\\triangle DEF$로 쓰고, 꼭짓점은 □로 적는다.",
+        "cFrozenDefinition": "$\\triangle ABC$와 $\\triangle DEF$가 닮은 도형임을 $\\triangle ABC\\backsim\\triangle DEF$로 쓰고, 꼭짓점은 {대응하는 순서}로 적는다.",
+        "cFrozenAnswers": [
+          "대응하는 순서"
+        ],
+        "cMarkedSentence": "$\\triangle ABC$와 $\\triangle DEF$가 닮은 도형임을 $\\triangle ABC\\backsim\\triangle DEF$로 쓰고, 꼭짓점은 {대응하는 순서}로 적는다.",
+        "cSlotAnswers": [
+          "대응하는 순서"
+        ],
+        "cStudentSentence": "$\\triangle ABC$와 $\\triangle DEF$가 닮은 도형임을 $\\triangle ABC\\backsim\\triangle DEF$로 쓰고, 꼭짓점은 □로 적는다.",
+        "cAnswers": [
+          "대응하는 순서"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "대응하는 순서",
+            "equivalentAnswers": [
+              "대응하는 순서"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "대응하는 순서"
+          ]
+        ],
+        "proposalFingerprint": "8837c1c7e080d12137f3c3885fdb038baa2941fd13755f37366a9347c7eaa026"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-06-01-c5",
+        "section": "중2::6. 도형의 닮음::닮은 도형",
+        "term": "평면도형에서 닮음의 성질",
+        "kind": "성질",
+        "level": "중",
+        "definition": "닮은 두 평면도형에서는 대응변끼리 잰 {길이의 비}가 어디서나 같고, 대응각끼리는 {크기}가 같다.",
+        "studentC": "닮은 두 평면도형에서는 대응변끼리 잰 □가 어디서나 같고, 대응각끼리는 □가 같다.",
+        "answers": [
+          "길이의 비",
+          "크기"
+        ]
+      },
+      "proposal": {
+        "id": "m2-06-01-c5",
+        "learningRole": "definition",
+        "roleReason": "대응변의 비 일정·대응각 크기 같음",
+        "bDecision": "rewrite",
+        "bPrompt": "닮은 두 평면도형에서 대응변의 길이와 대응각의 크기에는 각각 어떤 성질이 있는지 쓰시오.",
+        "bAnswer": "대응변의 길이의 비는 모두 일정하고, 대응각의 크기는 서로 같다.",
+        "bGoal": "평면도형 닮음의 성질",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "대응변의 길이의 비가 일정하다"
+            ]
+          },
+          {
+            "anyOf": [
+              "대응각의 크기가 같다"
+            ]
+          }
+        ],
+        "bReason": "변과 각 각각의 성질을 나누어 묻도록 범위를 정했다.",
+        "cDecision": "keep",
+        "cReason": "길이의 비와 크기를 구별해 채우는 분명한 빈칸이다.",
+        "authorBatch": 45,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 655,
+        "part": "m2",
+        "sourceFingerprint": "d5f8aa91c8a3b7650b6e926c168713fc465c5ecfbfbeac81996a908023aebca6",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 655
+        },
+        "directReview": null,
+        "cFrozenSentence": "닮은 두 평면도형에서는 대응변끼리 잰 □가 어디서나 같고, 대응각끼리는 □가 같다.",
+        "cFrozenDefinition": "닮은 두 평면도형에서는 대응변끼리 잰 {길이의 비}가 어디서나 같고, 대응각끼리는 {크기}가 같다.",
+        "cFrozenAnswers": [
+          "길이의 비",
+          "크기"
+        ],
+        "cMarkedSentence": "닮은 두 평면도형에서는 대응변끼리 잰 {길이의 비}가 어디서나 같고, 대응각끼리는 {크기}가 같다.",
+        "cSlotAnswers": [
+          "길이의 비",
+          "크기"
+        ],
+        "cStudentSentence": "닮은 두 평면도형에서는 대응변끼리 잰 □가 어디서나 같고, 대응각끼리는 □가 같다.",
+        "cAnswers": [
+          "길이의 비",
+          "크기"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "길이의 비",
+            "equivalentAnswers": [
+              "길이의 비"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "크기",
+            "equivalentAnswers": [
+              "크기"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "길이의 비"
+          ],
+          [
+            "크기"
+          ]
+        ],
+        "proposalFingerprint": "13b3bf1690efccc46f33c9e1075730fbf4f2c01ff2074488da5533b9f63d4918"
+      }
+    },
+    {
+      "source": {
+        "part": "m2",
+        "id": "m2-06-01-c6",
+        "section": "중2::6. 도형의 닮음::닮은 도형",
+        "term": "닮음비 — 평면도형",
+        "kind": "정의",
+        "level": "중",
+        "definition": "닮은 평면도형 둘에서 {대응변}끼리 길이를 견준 비에 {닮음비}라는 이름을 붙인다.",
+        "example": {
+          "prompt": "대응변의 길이가 $4$와 $6$일 때 닮음비",
+          "answer": "$2:3$"
+        },
+        "studentC": "닮은 평면도형 둘에서 □끼리 길이를 견준 비에 □라는 이름을 붙인다.",
+        "answers": [
+          "대응변",
+          "닮음비"
+        ]
+      },
+      "proposal": {
+        "id": "m2-06-01-c6",
+        "learningRole": "definition",
+        "roleReason": "닮음비는 대응변 길이의 비",
+        "bDecision": "rewrite",
+        "bPrompt": "닮은 두 평면도형에서 '닮음비'는 무엇과 무엇의 길이를 견준 비를 말하는지 쓰시오.",
+        "bAnswer": "서로 대응하는 변(대응변)의 길이의 비이다.",
+        "bGoal": "평면도형 닮음비의 정의",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "대응변의 길이의 비",
+              "짝이 되는 변의 길이의 비"
+            ]
+          }
+        ],
+        "bReason": "수치 예가 답을 노출하지 않도록 견주는 대상만 묻게 했다.",
+        "cDecision": "keep",
+        "cReason": "대응변과 닮음비를 채우는 짧은 정의 빈칸이다.",
+        "authorBatch": 45,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 656,
+        "part": "m2",
+        "sourceFingerprint": "0a382f290c8b1dd34e5bf9e562f29abce22ed51169372e6c8e7274f25f568ea3",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 656
+        },
+        "directReview": null,
+        "cFrozenSentence": "닮은 평면도형 둘에서 □끼리 길이를 견준 비에 □라는 이름을 붙인다.",
+        "cFrozenDefinition": "닮은 평면도형 둘에서 {대응변}끼리 길이를 견준 비에 {닮음비}라는 이름을 붙인다.",
+        "cFrozenAnswers": [
+          "대응변",
+          "닮음비"
+        ],
+        "cMarkedSentence": "닮은 평면도형 둘에서 {대응변}끼리 길이를 견준 비에 {닮음비}라는 이름을 붙인다.",
+        "cSlotAnswers": [
+          "대응변",
+          "닮음비"
+        ],
+        "cStudentSentence": "닮은 평면도형 둘에서 □끼리 길이를 견준 비에 □라는 이름을 붙인다.",
+        "cAnswers": [
+          "대응변",
+          "닮음비"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "대응변",
+            "equivalentAnswers": [
+              "대응변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "닮음비",
+            "equivalentAnswers": [
+              "닮음비"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "대응변"
+          ],
+          [
+            "닮음비"
+          ]
+        ],
+        "proposalFingerprint": "95dda8f6c748592e2dacf6999f79fe56f865e23b872e40e65dc3a11f75fef22e"
+      }
+    }
+  ]
+}

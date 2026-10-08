@@ -1,0 +1,2604 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T08:20:15.186Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-06-xc18",
+        "section": "중1::7. 입체도형::구의 겉넓이와 부피",
+        "term": "녹여서 원기둥 만들기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "원기둥의 밑면의 반지름을 알 때, 구를 녹여 만든 원기둥은 구와 {부피}가 같다는 {등식}을 세워 {높이}를 구한다.",
+        "example": {
+          "prompt": "반지름 $3$인 구를 녹여 밑면의 반지름이 $3$인 원기둥을 만들면 높이는?",
+          "answer": "$4$"
+        },
+        "studentC": "원기둥의 밑면의 반지름을 알 때, 구를 녹여 만든 원기둥은 구와 □가 같다는 □을 세워 □를 구한다.",
+        "answers": [
+          "부피",
+          "등식",
+          "높이"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-06-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "반지름의 길이가 $3$인 구를 녹여 밑면의 반지름의 길이가 $3$인 원기둥을 남김없이 만들었다. 원기둥의 높이를 구하는 과정을 식을 세워 설명하시오.",
+        "bAnswer": "구와 원기둥의 부피가 같으므로 원기둥의 높이를 $h$라 하면 $\\pi\\times3^2\\times h=\\frac{4}{3}\\pi\\times3^3$이다. $9\\pi h=36\\pi$이므로 $h=4$이다.",
+        "bGoal": "부피가 같다는 식으로 원기둥의 높이 구하기",
+        "bReason": "구와 원기둥의 크기를 주고 부피가 같다는 식을 세우게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "구와 원기둥의 부피가 같다",
+              "$\\pi\\times3^2\\times h=\\frac{4}{3}\\pi\\times3^3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$h=4$",
+              "높이는 $4$이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "구를 녹여 남김없이 원기둥을 만들면 구와 원기둥은 {부피}가 서로 같다. 원기둥의 밑면의 반지름을 알면 이 관계를 식으로 세워 원기둥의 {높이}를 구할 수 있다.",
+        "cAnswers": [
+          "부피",
+          "높이"
+        ],
+        "cReason": "'등식'은 학생에게 어려운 형식 이름이라 빼고 같은 양과 구할 길이만 묻게 함.",
+        "studentLabel": "구를 녹여 원기둥 만들기",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "부피가 같다는 식으로 높이 구하기",
+        "authorBatch": 22,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1972,
+        "part": "m1plus",
+        "sourceFingerprint": "4a27321baeb4f5f51c00f1079ba23cde84c0eb2cdce79ada9e21c08e8dcc0e02",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1972
+        },
+        "directReview": null,
+        "cMarkedSentence": "구를 녹여 남김없이 원기둥을 만들면 구와 원기둥은 {부피}가 서로 같다. 원기둥의 밑면의 반지름을 알면 이 관계를 식으로 세워 원기둥의 {높이}를 구할 수 있다.",
+        "cSlotAnswers": [
+          "부피",
+          "높이"
+        ],
+        "cStudentSentence": "구를 녹여 남김없이 원기둥을 만들면 구와 원기둥은 □가 서로 같다. 원기둥의 밑면의 반지름을 알면 이 관계를 식으로 세워 원기둥의 □를 구할 수 있다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "부피",
+            "equivalentAnswers": [
+              "부피"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "높이",
+            "equivalentAnswers": [
+              "높이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "부피"
+          ],
+          [
+            "높이"
+          ]
+        ],
+        "proposalFingerprint": "e98b679c5fe5948d6235b7bebb40079a4bda2db00ae6025f02f982ce8a16cea9"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-06-xc19",
+        "section": "중1::7. 입체도형::구의 겉넓이와 부피",
+        "term": "원뿔과 반구를 밑면끼리 붙인 입체의 부피",
+        "kind": "방법",
+        "level": "상",
+        "definition": "밑면의 반지름이 $r$, 높이가 $h$인 원뿔과 반지름이 $r$인 반구를 밑면끼리 붙인 입체의 부피는 {$\\frac{1}{3}\\pi r^2h$}와 {$\\frac{2}{3}\\pi r^3$}의 합이다.",
+        "example": {
+          "prompt": "반지름 $3$인 반구와 밑면의 반지름 $3$, 높이 $5$인 원뿔을 밑면끼리 붙인 입체의 부피는?",
+          "answer": "$33\\pi$"
+        },
+        "studentC": "밑면의 반지름이 $r$, 높이가 $h$인 원뿔과 반지름이 $r$인 반구를 밑면끼리 붙인 입체의 부피는 □와 □의 합이다.",
+        "answers": [
+          "$\\frac{1}{3}\\pi r^2h$",
+          "$\\frac{2}{3}\\pi r^3$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-06-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "밑면의 반지름의 길이가 $r$, 높이가 $h$인 원뿔과 반지름의 길이가 $r$인 반구를 원 모양의 평평한 면끼리 꼭 맞게 붙였다. 이 입체도형의 부피를 구하는 방법을 설명하고 식으로 쓰시오.",
+        "bAnswer": "원뿔의 부피 $\\frac{1}{3}\\pi r^2h$와 반구의 부피 $\\frac{2}{3}\\pi r^3$을 더한다. 따라서 부피는 $\\frac{1}{3}\\pi r^2h+\\frac{2}{3}\\pi r^3$이다.",
+        "bGoal": "붙인 입체의 부피를 두 부피의 합으로 구하기",
+        "bReason": "문자의 뜻과 붙이는 면을 밝히고 두 부피를 식으로 쓰게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "원뿔의 부피 $\\frac{1}{3}\\pi r^2h$"
+            ]
+          },
+          {
+            "anyOf": [
+              "반구의 부피 $\\frac{2}{3}\\pi r^3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 부피를 더한다",
+              "$\\frac{1}{3}\\pi r^2h+\\frac{2}{3}\\pi r^3$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "문자의 뜻이 모두 주어져 있고 두 도형의 부피 식을 묻는 빈칸이 분명함.",
+        "learningRole": "procedure",
+        "roleReason": "원뿔과 반구의 부피를 더하기",
+        "authorBatch": 22,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1973,
+        "part": "m1plus",
+        "sourceFingerprint": "303bac4a8fcfad0432a333d95a5de4c6f68713283ce8d1e62e81d743bcbc0211",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1973
+        },
+        "directReview": null,
+        "cFrozenSentence": "밑면의 반지름이 $r$, 높이가 $h$인 원뿔과 반지름이 $r$인 반구를 밑면끼리 붙인 입체의 부피는 □와 □의 합이다.",
+        "cFrozenDefinition": "밑면의 반지름이 $r$, 높이가 $h$인 원뿔과 반지름이 $r$인 반구를 밑면끼리 붙인 입체의 부피는 {$\\frac{1}{3}\\pi r^2h$}와 {$\\frac{2}{3}\\pi r^3$}의 합이다.",
+        "cFrozenAnswers": [
+          "$\\frac{1}{3}\\pi r^2h$",
+          "$\\frac{2}{3}\\pi r^3$"
+        ],
+        "cMarkedSentence": "밑면의 반지름이 $r$, 높이가 $h$인 원뿔과 반지름이 $r$인 반구를 밑면끼리 붙인 입체의 부피는 {$\\frac{1}{3}\\pi r^2h$}와 {$\\frac{2}{3}\\pi r^3$}의 합이다.",
+        "cSlotAnswers": [
+          "$\\frac{1}{3}\\pi r^2h$",
+          "$\\frac{2}{3}\\pi r^3$"
+        ],
+        "cStudentSentence": "밑면의 반지름이 $r$, 높이가 $h$인 원뿔과 반지름이 $r$인 반구를 밑면끼리 붙인 입체의 부피는 □와 □의 합이다.",
+        "cAnswers": [
+          "$\\frac{1}{3}\\pi r^2h$",
+          "$\\frac{2}{3}\\pi r^3$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{1}{3}\\pi r^2h$",
+            "equivalentAnswers": [
+              "$\\frac{1}{3}\\pi r^2h$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\frac{2}{3}\\pi r^3$",
+            "equivalentAnswers": [
+              "$\\frac{2}{3}\\pi r^3$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{1}{3}\\pi r^2h$"
+          ],
+          [
+            "$\\frac{2}{3}\\pi r^3$"
+          ]
+        ],
+        "proposalFingerprint": "afab5a0ec1150df73db56f0081b7fc7a83122f9b2455d1bdcf4c7b037c39c5c4"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-06-xc20",
+        "section": "중1::7. 입체도형::구의 겉넓이와 부피",
+        "term": "원뿔과 반구를 밑면끼리 붙인 입체의 겉넓이",
+        "kind": "방법",
+        "level": "상",
+        "definition": "밑면의 반지름이 같은 원뿔과 반구를 밑면끼리 꼭 맞게 붙인 입체의 겉넓이는 원뿔의 {옆넓이}와 반구의 {둥근 면}의 넓이를 더하고, 맞닿은 원은 넣지 않는다.",
+        "example": {
+          "prompt": "반지름 $4$인 반구와 밑면의 반지름 $4$, 모선 $6$인 원뿔을 밑면끼리 붙인 입체의 겉넓이는?",
+          "answer": "$56\\pi$"
+        },
+        "studentC": "밑면의 반지름이 같은 원뿔과 반구를 밑면끼리 꼭 맞게 붙인 입체의 겉넓이는 원뿔의 □와 반구의 □의 넓이를 더하고, 맞닿은 원은 넣지 않는다.",
+        "answers": [
+          "옆넓이",
+          "둥근 면"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-06-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "밑면의 반지름의 길이가 $r$, 모선의 길이가 $l$인 원뿔과 반지름의 길이가 $r$인 반구를 원 모양의 평평한 면끼리 꼭 맞게 붙였다. 이 입체도형의 겉넓이를 구할 때 더하는 넓이와 더하지 않는 넓이를 까닭과 함께 설명하고 식으로 쓰시오.",
+        "bAnswer": "원뿔의 옆넓이 $\\pi rl$과 반구의 둥근 면의 넓이 $2\\pi r^2$을 더해 $\\pi rl+2\\pi r^2$이다. 맞닿은 원은 입체도형의 안쪽에 있어 겉으로 드러나지 않으므로 더하지 않는다.",
+        "bGoal": "붙인 입체의 겉넓이에서 맞닿은 면 제외",
+        "bReason": "문자의 뜻을 주고 더하는 면과 빼는 면을 까닭과 함께 묻게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "원뿔의 옆넓이 $\\pi rl$을 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "반구의 둥근 면의 넓이 $2\\pi r^2$을 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "맞닿은 원은 겉으로 드러나지 않아 더하지 않는다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "더하는 두 면의 이름을 묻고 제외하는 면은 문장에 밝혀져 있어 분명함.",
+        "learningRole": "procedure",
+        "roleReason": "겉으로 드러난 면만 더해 겉넓이 구하기",
+        "authorBatch": 22,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1974,
+        "part": "m1plus",
+        "sourceFingerprint": "c5ce9e2d803f649273955aa39fea920374314e1d35dbd9eb02dc98baaefa5ad0",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1974
+        },
+        "directReview": null,
+        "cFrozenSentence": "밑면의 반지름이 같은 원뿔과 반구를 밑면끼리 꼭 맞게 붙인 입체의 겉넓이는 원뿔의 □와 반구의 □의 넓이를 더하고, 맞닿은 원은 넣지 않는다.",
+        "cFrozenDefinition": "밑면의 반지름이 같은 원뿔과 반구를 밑면끼리 꼭 맞게 붙인 입체의 겉넓이는 원뿔의 {옆넓이}와 반구의 {둥근 면}의 넓이를 더하고, 맞닿은 원은 넣지 않는다.",
+        "cFrozenAnswers": [
+          "옆넓이",
+          "둥근 면"
+        ],
+        "cMarkedSentence": "밑면의 반지름이 같은 원뿔과 반구를 밑면끼리 꼭 맞게 붙인 입체의 겉넓이는 원뿔의 {옆넓이}와 반구의 {둥근 면}의 넓이를 더하고, 맞닿은 원은 넣지 않는다.",
+        "cSlotAnswers": [
+          "옆넓이",
+          "둥근 면"
+        ],
+        "cStudentSentence": "밑면의 반지름이 같은 원뿔과 반구를 밑면끼리 꼭 맞게 붙인 입체의 겉넓이는 원뿔의 □와 반구의 □의 넓이를 더하고, 맞닿은 원은 넣지 않는다.",
+        "cAnswers": [
+          "옆넓이",
+          "둥근 면"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "옆넓이",
+            "equivalentAnswers": [
+              "옆넓이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "둥근 면",
+            "equivalentAnswers": [
+              "둥근 면"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "옆넓이"
+          ],
+          [
+            "둥근 면"
+          ]
+        ],
+        "proposalFingerprint": "6bd150c604d2c21b8a78c3dd713fa378e7615265e2c61dfe652baf976dcd51b0"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-06-xc21",
+        "section": "중1::7. 입체도형::구의 겉넓이와 부피",
+        "term": "구가 꼭 맞게 든 원기둥에서 구를 뺀 부피",
+        "kind": "방법",
+        "level": "상",
+        "definition": "구가 꼭 맞게 들어 있는 원기둥에서 구를 뺀 부피는 원기둥 부피의 {$\\frac{1}{3}$}이다. 구가 원기둥의 {$\\frac{2}{3}$}이기 때문이다.",
+        "example": {
+          "prompt": "구가 꼭 맞게 든 원기둥의 부피가 $54\\pi$이면 구를 뺀 빈 곳의 부피는?",
+          "answer": "$18\\pi$"
+        },
+        "studentC": "구가 꼭 맞게 들어 있는 원기둥에서 구를 뺀 부피는 원기둥 부피의 □이다. 구가 원기둥의 □이기 때문이다.",
+        "answers": [
+          "$\\frac{1}{3}$",
+          "$\\frac{2}{3}$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-06-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "반지름의 길이가 $r$인 구가 꼭 맞게 들어 있는 원기둥은 밑면의 반지름의 길이가 $r$, 높이가 $2r$이다. 이 원기둥에서 구가 차지하지 않는 부분의 부피는 원기둥의 부피의 몇 배인지 쓰고 까닭을 설명하시오.",
+        "bAnswer": "$\\frac{1}{3}$배이다. 구의 부피 $\\frac{4}{3}\\pi r^3$은 원기둥의 부피 $2\\pi r^3$의 $\\frac{2}{3}$이므로 나머지는 $1-\\frac{2}{3}=\\frac{1}{3}$이다.",
+        "bGoal": "원기둥에서 구를 뺀 부분의 부피의 비율",
+        "bReason": "원기둥의 크기를 밝히고 빈 부분의 비율과 까닭을 묻게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{1}{3}$배",
+              "$\\frac{1}{3}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "구의 부피가 원기둥의 부피의 $\\frac{2}{3}$이다",
+              "$2\\pi r^3-\\frac{4}{3}\\pi r^3=\\frac{2}{3}\\pi r^3$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "반지름의 길이가 $r$인 구가 꼭 맞게 들어 있는 원기둥(밑면의 반지름 $r$, 높이 $2r$)에서 구의 부피는 원기둥의 부피의 {$\\frac{2}{3}$}이므로, 구가 차지하지 않는 부분의 부피는 원기둥의 부피의 {$\\frac{1}{3}$}이다.",
+        "cAnswers": [
+          "$\\frac{2}{3}$",
+          "$\\frac{1}{3}$"
+        ],
+        "cReason": "'구가 원기둥의 □'가 부피의 비교임을 밝히고 원기둥의 크기를 덧붙임.",
+        "learningRole": "reason",
+        "roleReason": "구가 $\\frac{2}{3}$이므로 나머지가 $\\frac{1}{3}$인 까닭",
+        "authorBatch": 22,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1975,
+        "part": "m1plus",
+        "sourceFingerprint": "9d4a31d76a4e4e06739f0f9e47ff0776418a6eaa9466a905b00ced1ee92b26b3",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1975
+        },
+        "directReview": null,
+        "cMarkedSentence": "반지름의 길이가 $r$인 구가 꼭 맞게 들어 있는 원기둥(밑면의 반지름 $r$, 높이 $2r$)에서 구의 부피는 원기둥의 부피의 {$\\frac{2}{3}$}이므로, 구가 차지하지 않는 부분의 부피는 원기둥의 부피의 {$\\frac{1}{3}$}이다.",
+        "cSlotAnswers": [
+          "$\\frac{2}{3}$",
+          "$\\frac{1}{3}$"
+        ],
+        "cStudentSentence": "반지름의 길이가 $r$인 구가 꼭 맞게 들어 있는 원기둥(밑면의 반지름 $r$, 높이 $2r$)에서 구의 부피는 원기둥의 부피의 □이므로, 구가 차지하지 않는 부분의 부피는 원기둥의 부피의 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{2}{3}$",
+            "equivalentAnswers": [
+              "$\\frac{2}{3}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\frac{1}{3}$",
+            "equivalentAnswers": [
+              "$\\frac{1}{3}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{2}{3}$"
+          ],
+          [
+            "$\\frac{1}{3}$"
+          ]
+        ],
+        "proposalFingerprint": "171528b063a4b6dd4ee291cb5284320ac1d03727809e20c544ff1d2d0a588118"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-06-xc22",
+        "section": "중1::7. 입체도형::구의 겉넓이와 부피",
+        "term": "반지름 $r$인 구 $n$개가 일렬로 꼭 맞는 원기둥",
+        "kind": "방법",
+        "level": "상",
+        "definition": "반지름이 $r$인 구 $n$개가 일렬로 꼭 맞게 들어가는 원기둥의 높이는 {$2rn$}이고 밑면의 반지름은 {$r$}이다.",
+        "example": {
+          "prompt": "반지름 $2$인 구 $3$개가 꼭 맞게 들어간 원기둥의 높이는?",
+          "answer": "$12$"
+        },
+        "studentC": "반지름이 $r$인 구 $n$개가 일렬로 꼭 맞게 들어가는 원기둥의 높이는 □이고 밑면의 반지름은 □이다.",
+        "answers": [
+          "$2rn$",
+          "$r$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-06-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "반지름의 길이가 $r$인 구 $n$개를 한 줄로 쌓아 원기둥 안에 꼭 맞게 넣었다. 구는 모두 옆면에 닿고, 맨 위와 맨 아래의 구는 각각 밑면에 닿는다. 이 원기둥의 밑면의 반지름의 길이와 높이를 $r$, $n$으로 나타내고 까닭을 설명하시오.",
+        "bAnswer": "밑면의 반지름의 길이는 구의 반지름과 같은 $r$이다. 높이는 지름의 길이가 $2r$인 구가 $n$개 쌓인 것이므로 $2r\\times n=2rn$이다.",
+        "bGoal": "구 여러 개가 꼭 맞는 원기둥의 크기",
+        "bReason": "그림이 없어 구가 닿는 면을 밝히고 두 길이와 까닭을 묻게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "밑면의 반지름의 길이는 $r$"
+            ]
+          },
+          {
+            "anyOf": [
+              "높이는 $2rn$",
+              "지름 $2r$가 $n$개 쌓인 높이이다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "구의 반지름과 개수가 문자로 주어져 있고 원기둥의 두 길이를 묻는 빈칸이 분명함.",
+        "learningRole": "application",
+        "roleReason": "구 $n$개가 쌓인 원기둥의 높이 구하기",
+        "authorBatch": 22,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1976,
+        "part": "m1plus",
+        "sourceFingerprint": "f0d7dfe7d30d4ac5399b8cc76b5fba63a4c4c425f036024f511d8eef6a6e7f3c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1976
+        },
+        "directReview": null,
+        "cFrozenSentence": "반지름이 $r$인 구 $n$개가 일렬로 꼭 맞게 들어가는 원기둥의 높이는 □이고 밑면의 반지름은 □이다.",
+        "cFrozenDefinition": "반지름이 $r$인 구 $n$개가 일렬로 꼭 맞게 들어가는 원기둥의 높이는 {$2rn$}이고 밑면의 반지름은 {$r$}이다.",
+        "cFrozenAnswers": [
+          "$2rn$",
+          "$r$"
+        ],
+        "cMarkedSentence": "반지름이 $r$인 구 $n$개가 일렬로 꼭 맞게 들어가는 원기둥의 높이는 {$2rn$}이고 밑면의 반지름은 {$r$}이다.",
+        "cSlotAnswers": [
+          "$2rn$",
+          "$r$"
+        ],
+        "cStudentSentence": "반지름이 $r$인 구 $n$개가 일렬로 꼭 맞게 들어가는 원기둥의 높이는 □이고 밑면의 반지름은 □이다.",
+        "cAnswers": [
+          "$2rn$",
+          "$r$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$2rn$",
+            "equivalentAnswers": [
+              "$2rn$",
+              "$2nr$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$r$",
+            "equivalentAnswers": [
+              "$r$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$2rn$",
+            "accept": [
+              "$2nr$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$2rn$",
+            "$2nr$"
+          ],
+          [
+            "$r$"
+          ]
+        ],
+        "proposalFingerprint": "19fb30f6864ab9e49587b62afbca885c770ee6a2da13e6642239dbc9602ab918"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-06-xc23",
+        "section": "중1::7. 입체도형::구의 겉넓이와 부피",
+        "term": "반구 그릇의 물",
+        "kind": "방법",
+        "level": "상",
+        "definition": "반구 모양 그릇에 가득 찬 물의 부피는 그릇과 반지름이 같은 {구}의 부피의 {절반}이다.",
+        "example": {
+          "prompt": "반지름 $9$인 반구 그릇에 가득 담긴 물의 부피는?",
+          "answer": "$486\\pi$"
+        },
+        "studentC": "반구 모양 그릇에 가득 찬 물의 부피는 그릇과 반지름이 같은 □의 부피의 □이다.",
+        "answers": [
+          "구",
+          "절반"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-06-xc23",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "가득 찬 물의 부피는 반구의 부피를 상황만 바꿔 다시 묻는 것임.",
+        "cDecision": "keep",
+        "cReason": "어떤 구의 절반인지 밝혀 쓰게 하는 짧은 빈칸으로 상황이 분명함.",
+        "exclusionReason": "B 제외: m1-07-06-c4(반구의 겉넓이와 부피)와 목표가 같은 서술형 중복.",
+        "learningRole": "application",
+        "roleReason": "반구의 부피를 그릇의 물에 적용",
+        "authorBatch": 22,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1977,
+        "part": "m1plus",
+        "sourceFingerprint": "79aaf57613becedf1f78e2cf0419f3d22dddfbe9da5604fda3658f5268709575",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1977
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "반구 모양 그릇에 가득 찬 물의 부피는 그릇과 반지름이 같은 □의 부피의 □이다.",
+        "cFrozenDefinition": "반구 모양 그릇에 가득 찬 물의 부피는 그릇과 반지름이 같은 {구}의 부피의 {절반}이다.",
+        "cFrozenAnswers": [
+          "구",
+          "절반"
+        ],
+        "cMarkedSentence": "반구 모양 그릇에 가득 찬 물의 부피는 그릇과 반지름이 같은 {구}의 부피의 {절반}이다.",
+        "cSlotAnswers": [
+          "구",
+          "절반"
+        ],
+        "cStudentSentence": "반구 모양 그릇에 가득 찬 물의 부피는 그릇과 반지름이 같은 □의 부피의 □이다.",
+        "cAnswers": [
+          "구",
+          "절반"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "구",
+            "equivalentAnswers": [
+              "구"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "절반",
+            "equivalentAnswers": [
+              "절반",
+              "$\\frac{1}{2}$",
+              "반"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "절반",
+            "accept": [
+              "$\\frac{1}{2}$",
+              "반"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "구"
+          ],
+          [
+            "절반",
+            "$\\frac{1}{2}$",
+            "반"
+          ]
+        ],
+        "proposalFingerprint": "28150a43cb353165e504a6193190363927d3934aef1aba81ceb0c1759d3acacd"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-07-06-xc24",
+        "section": "중1::7. 입체도형::구의 겉넓이와 부피",
+        "term": "겉넓이의 배율로 부피의 배율 알기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "구의 겉넓이가 $k^2$배($k>0$)가 되었다면 반지름이 {$k$배}가 된 것이므로, 부피는 {$k^3$배}가 된다. 겉넓이의 배율을 부피에 그대로 쓰지 않는다.",
+        "example": {
+          "prompt": "구의 겉넓이가 $k^2$배가 될 때 부피의 배율을 알려면 먼저 구할 것은?",
+          "answer": "반지름의 배율"
+        },
+        "studentC": "구의 겉넓이가 $k^2$배($k>0$)가 되었다면 반지름이 □가 된 것이므로, 부피는 □가 된다. 겉넓이의 배율을 부피에 그대로 쓰지 않는다.",
+        "answers": [
+          "$k$배",
+          "$k^3$배"
+        ]
+      },
+      "proposal": {
+        "id": "m1-07-06-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "구의 겉넓이가 $k^2$배($k>0$)가 되었을 때 부피는 몇 배가 되는지 구하는 과정을 설명하시오. 겉넓이의 배율을 부피에 그대로 쓰면 안 되는 까닭도 쓰시오.",
+        "bAnswer": "겉넓이에는 반지름의 길이가 두 번 곱해져 있으므로 겉넓이가 $k^2$배이면 반지름의 길이는 $k$배가 된 것이다. 부피에는 반지름의 길이가 세 번 곱해져 있으므로 부피는 $k^3$배가 된다. 곱해진 횟수가 달라 겉넓이와 부피의 배율은 서로 다르다.",
+        "bGoal": "겉넓이의 배율에서 반지름을 거쳐 부피의 배율 구하기",
+        "bReason": "반지름의 배율을 먼저 구하는 순서와 그 까닭을 답하게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "반지름의 길이는 $k$배가 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "부피는 $k^3$배가 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "겉넓이에는 반지름의 길이가 두 번, 부피에는 세 번 곱해져 있다",
+              "겉넓이와 부피는 반지름이 곱해진 횟수가 다르다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "반지름의 배율을 거쳐 부피의 배율로 가는 두 단계를 차례로 묻는 빈칸임.",
+        "learningRole": "reason",
+        "roleReason": "반지름의 배율을 거쳐 부피의 배율을 구하는 까닭",
+        "authorBatch": 22,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1978,
+        "part": "m1plus",
+        "sourceFingerprint": "9e793817e242c1f5db149069b0b018e7ff0f5271d8588fe60133a04c8f25102f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1978
+        },
+        "directReview": null,
+        "cFrozenSentence": "구의 겉넓이가 $k^2$배($k>0$)가 되었다면 반지름이 □가 된 것이므로, 부피는 □가 된다. 겉넓이의 배율을 부피에 그대로 쓰지 않는다.",
+        "cFrozenDefinition": "구의 겉넓이가 $k^2$배($k>0$)가 되었다면 반지름이 {$k$배}가 된 것이므로, 부피는 {$k^3$배}가 된다. 겉넓이의 배율을 부피에 그대로 쓰지 않는다.",
+        "cFrozenAnswers": [
+          "$k$배",
+          "$k^3$배"
+        ],
+        "cMarkedSentence": "구의 겉넓이가 $k^2$배($k>0$)가 되었다면 반지름이 {$k$배}가 된 것이므로, 부피는 {$k^3$배}가 된다. 겉넓이의 배율을 부피에 그대로 쓰지 않는다.",
+        "cSlotAnswers": [
+          "$k$배",
+          "$k^3$배"
+        ],
+        "cStudentSentence": "구의 겉넓이가 $k^2$배($k>0$)가 되었다면 반지름이 □가 된 것이므로, 부피는 □가 된다. 겉넓이의 배율을 부피에 그대로 쓰지 않는다.",
+        "cAnswers": [
+          "$k$배",
+          "$k^3$배"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$k$배",
+            "equivalentAnswers": [
+              "$k$배"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$k^3$배",
+            "equivalentAnswers": [
+              "$k^3$배"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$k$배"
+          ],
+          [
+            "$k^3$배"
+          ]
+        ],
+        "proposalFingerprint": "e923f999ab7c34fa28cb0b3fb8a2bdfb9f7a60f26dd893a97390e2857f92a707"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-01-xc1",
+        "section": "중1::8. 통계::대푯값",
+        "term": "먼저 세고 늘어놓기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "대푯값을 구하기 전에 변량의 {개수}를 세고, 중앙값을 구하려면 먼저 {크기순}으로 늘어놓는다.",
+        "example": {
+          "prompt": "$8$, $2$, $5$를 크기순으로 늘어놓으면?",
+          "answer": "$2$, $5$, $8$"
+        },
+        "studentC": "대푯값을 구하기 전에 변량의 □를 세고, 중앙값을 구하려면 먼저 □으로 늘어놓는다.",
+        "answers": [
+          "개수",
+          "크기순"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-01-xc1",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "중앙값을 구하는 절차의 앞 단계 조각이라 독립 질문으로 쓰기 어려움",
+        "cDecision": "keep",
+        "cReason": "개수 세기와 크기순 나열이라는 준비 단계를 짧게 확인함",
+        "exclusionReason": "B 제외: '먼저 세고 늘어놓기'는 절차 조각 제목이며, 크기순으로 늘어놓기는 m1-08-01-c4·c6의 B와 목표가 겹침",
+        "learningRole": "procedure",
+        "roleReason": "대푯값을 구하기 전의 준비 단계",
+        "authorBatch": 23,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1979,
+        "part": "m1plus",
+        "sourceFingerprint": "9b7773a4df33d5bf926e8864f5c60cfdc6899645e81a04c39deff2361d5f8d88",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1979
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "대푯값을 구하기 전에 변량의 □를 세고, 중앙값을 구하려면 먼저 □으로 늘어놓는다.",
+        "cFrozenDefinition": "대푯값을 구하기 전에 변량의 {개수}를 세고, 중앙값을 구하려면 먼저 {크기순}으로 늘어놓는다.",
+        "cFrozenAnswers": [
+          "개수",
+          "크기순"
+        ],
+        "cMarkedSentence": "대푯값을 구하기 전에 변량의 {개수}를 세고, 중앙값을 구하려면 먼저 {크기순}으로 늘어놓는다.",
+        "cSlotAnswers": [
+          "개수",
+          "크기순"
+        ],
+        "cStudentSentence": "대푯값을 구하기 전에 변량의 □를 세고, 중앙값을 구하려면 먼저 □으로 늘어놓는다.",
+        "cAnswers": [
+          "개수",
+          "크기순"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "개수",
+            "equivalentAnswers": [
+              "개수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "크기순",
+            "equivalentAnswers": [
+              "크기순",
+              "작은 값부터 크기순",
+              "크기 순서"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "크기순",
+            "accept": [
+              "작은 값부터 크기순",
+              "크기 순서"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "개수"
+          ],
+          [
+            "크기순",
+            "작은 값부터 크기순",
+            "크기 순서"
+          ]
+        ],
+        "proposalFingerprint": "4e9050fe8fa3700f92cdecb2ec9473b09addb729f2fa123a89aecc05fef1b80a"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-01-xc2",
+        "section": "중1::8. 통계::대푯값",
+        "term": "변량이 $n$개(홀수)일 때 중앙값의 자리",
+        "kind": "방법",
+        "level": "하",
+        "definition": "변량이 $n$개이고 $n$이 홀수이면 중앙값은 작은 쪽부터 {$\\frac{n+1}{2}$}번째 값이다.",
+        "example": {
+          "prompt": "변량이 $9$개이면 중앙값은 몇 번째 값?",
+          "answer": "$5$번째"
+        },
+        "studentC": "변량이 $n$개이고 $n$이 홀수이면 중앙값은 작은 쪽부터 □번째 값이다.",
+        "answers": [
+          "$\\frac{n+1}{2}$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-01-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "변량이 $n$개이고 $n$이 홀수일 때, 크기순으로 늘어놓은 자료에서 중앙값은 작은 쪽부터 몇 번째 값인지 $n$을 사용한 식으로 쓰고, $n=9$일 때 몇 번째인지 구하시오.",
+        "bAnswer": "$\\frac{n+1}{2}$번째 값이다. $n=9$이면 $\\frac{9+1}{2}=5$번째 값이다.",
+        "bGoal": "홀수 개 자료에서 중앙값의 자리 찾기",
+        "bReason": "$n$의 뜻과 홀수 조건, 답을 식으로 쓰라는 범위를 질문에 넣음",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{n+1}{2}$번째"
+            ]
+          },
+          {
+            "anyOf": [
+              "$n=9$일 때 $5$번째"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "조건($n$이 홀수)이 문장에 있고 식 하나만 묻는 분명한 빈칸",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "중앙값이 놓이는 순서를 식으로 구하기",
+        "authorBatch": 23,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1980,
+        "part": "m1plus",
+        "sourceFingerprint": "d1fffbec0059084c82c3ff61f170ef80daf116a9fecd58be5171745eed7d7a6b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1980
+        },
+        "directReview": null,
+        "cFrozenSentence": "변량이 $n$개이고 $n$이 홀수이면 중앙값은 작은 쪽부터 □번째 값이다.",
+        "cFrozenDefinition": "변량이 $n$개이고 $n$이 홀수이면 중앙값은 작은 쪽부터 {$\\frac{n+1}{2}$}번째 값이다.",
+        "cFrozenAnswers": [
+          "$\\frac{n+1}{2}$"
+        ],
+        "cMarkedSentence": "변량이 $n$개이고 $n$이 홀수이면 중앙값은 작은 쪽부터 {$\\frac{n+1}{2}$}번째 값이다.",
+        "cSlotAnswers": [
+          "$\\frac{n+1}{2}$"
+        ],
+        "cStudentSentence": "변량이 $n$개이고 $n$이 홀수이면 중앙값은 작은 쪽부터 □번째 값이다.",
+        "cAnswers": [
+          "$\\frac{n+1}{2}$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{n+1}{2}$",
+            "equivalentAnswers": [
+              "$\\frac{n+1}{2}$",
+              "$(n+1)\\div 2$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$\\frac{n+1}{2}$",
+            "accept": [
+              "$(n+1)\\div 2$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{n+1}{2}$",
+            "$(n+1)\\div 2$"
+          ]
+        ],
+        "proposalFingerprint": "0f6750e628f96e5bc099816ae405dda8b328f0845f47dc388f6b57e3dc0740b5"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-01-xc3",
+        "section": "중1::8. 통계::대푯값",
+        "term": "자료에 없는 평균",
+        "kind": "성질",
+        "level": "하",
+        "definition": "평균은 변량과 같은 {단위}를 쓰고, 자료에 없는 값이 나올 수도 {있다}.",
+        "example": {
+          "prompt": "$1$, $2$, $4$의 평균은?",
+          "answer": "$\\frac{7}{3}$"
+        },
+        "studentC": "평균은 변량과 같은 □를 쓰고, 자료에 없는 값이 나올 수도 □.",
+        "answers": [
+          "단위",
+          "있다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-01-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "평균은 반드시 자료에 있는 값 중 하나인가? $1$, $2$, $4$의 평균을 구하여 답하시오.",
+        "bAnswer": "아니다. 평균은 $\\frac{1+2+4}{3}=\\frac{7}{3}$인데, 이 값은 자료에 없다.",
+        "bGoal": "평균이 자료에 없는 값일 수 있음을 알기",
+        "bReason": "제목 '자료에 없는 평균'이 묻는 바를 예 하나로 판단하게 구체화함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "평균은 자료에 없는 값일 수도 있다",
+              "반드시 자료에 있는 값은 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "평균은 $\\frac{7}{3}$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "단위와 '자료에 없는 값' 두 성질을 짧게 확인함",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "평균이 자료 밖의 값일 수 있음을 예로 확인",
+        "authorBatch": 23,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1981,
+        "part": "m1plus",
+        "sourceFingerprint": "f87a5e098ba507bf93e35b3982e334d51c2e0bd692010e4652971cdfc79ea749",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1981
+        },
+        "directReview": null,
+        "cFrozenSentence": "평균은 변량과 같은 □를 쓰고, 자료에 없는 값이 나올 수도 □.",
+        "cFrozenDefinition": "평균은 변량과 같은 {단위}를 쓰고, 자료에 없는 값이 나올 수도 {있다}.",
+        "cFrozenAnswers": [
+          "단위",
+          "있다"
+        ],
+        "cMarkedSentence": "평균은 변량과 같은 {단위}를 쓰고, 자료에 없는 값이 나올 수도 {있다}.",
+        "cSlotAnswers": [
+          "단위",
+          "있다"
+        ],
+        "cStudentSentence": "평균은 변량과 같은 □를 쓰고, 자료에 없는 값이 나올 수도 □.",
+        "cAnswers": [
+          "단위",
+          "있다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "단위",
+            "equivalentAnswers": [
+              "단위"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "있다",
+            "equivalentAnswers": [
+              "있다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "단위"
+          ],
+          [
+            "있다"
+          ]
+        ],
+        "proposalFingerprint": "a5ac7a7641ea4315726641a28eb16dfb5bb87038118a6b41163a41168d4eb50b"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-01-xc4",
+        "section": "중1::8. 통계::대푯값",
+        "term": "최빈값 찾기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "최빈값은 각 값이 나온 {횟수}를 세어 가장 {많은} 값을 고른다.",
+        "example": {
+          "prompt": "$4$, $6$, $6$, $6$, $8$의 최빈값은?",
+          "answer": "$6$"
+        },
+        "studentC": "최빈값은 각 값이 나온 □를 세어 가장 □ 값을 고른다.",
+        "answers": [
+          "횟수",
+          "많은"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-01-xc4",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "횟수를 세어 최빈값을 찾는 내용이 c5의 질문에 이미 들어 있음",
+        "cDecision": "keep",
+        "cReason": "횟수를 세어 고른다는 찾는 방법이 분명한 짧은 빈칸",
+        "exclusionReason": "B 제외: 최빈값을 횟수로 찾는 질문은 m1-08-01-c5의 B(뜻과 구하기)와 목표가 중복됨",
+        "learningRole": "procedure",
+        "roleReason": "나온 횟수를 세어 최빈값 찾기",
+        "authorBatch": 23,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1982,
+        "part": "m1plus",
+        "sourceFingerprint": "ecbc67e6a9ee42baf9119cfaa157dcbfce377e190b497b952330ec0a9794393f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1982
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "최빈값은 각 값이 나온 □를 세어 가장 □ 값을 고른다.",
+        "cFrozenDefinition": "최빈값은 각 값이 나온 {횟수}를 세어 가장 {많은} 값을 고른다.",
+        "cFrozenAnswers": [
+          "횟수",
+          "많은"
+        ],
+        "cMarkedSentence": "최빈값은 각 값이 나온 {횟수}를 세어 가장 {많은} 값을 고른다.",
+        "cSlotAnswers": [
+          "횟수",
+          "많은"
+        ],
+        "cStudentSentence": "최빈값은 각 값이 나온 □를 세어 가장 □ 값을 고른다.",
+        "cAnswers": [
+          "횟수",
+          "많은"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "횟수",
+            "equivalentAnswers": [
+              "횟수",
+              "개수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "많은",
+            "equivalentAnswers": [
+              "많은"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "횟수",
+            "accept": [
+              "개수"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "횟수",
+            "개수"
+          ],
+          [
+            "많은"
+          ]
+        ],
+        "proposalFingerprint": "54f3b6fbe0549804a41b2a979169aef46ffbf7b337b9a7fdcfbc38c276d24ad8"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-01-xc5",
+        "section": "중1::8. 통계::대푯값",
+        "term": "평균으로 계산 확인하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "평균은 {가장 작은 변량 이상}, {가장 큰 변량 이하}이다. 이 범위를 벗어나면 계산이 틀린 것이지만, 범위 안에 있다고 반드시 맞는 것은 아니다.",
+        "example": {
+          "prompt": "$3$, $8$, $10$의 평균이 $12$로 나왔다면 맞는가?",
+          "answer": "틀렸다"
+        },
+        "studentC": "평균은 □, □이다. 이 범위를 벗어나면 계산이 틀린 것이지만, 범위 안에 있다고 반드시 맞는 것은 아니다.",
+        "answers": [
+          "가장 작은 변량 이상",
+          "가장 큰 변량 이하"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-01-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "$3$, $8$, $10$의 평균을 $12$라고 계산했다. 다시 계산하지 않고도 이 답이 틀렸음을 알 수 있는 이유를 쓰시오.",
+        "bAnswer": "평균은 가장 큰 변량보다 클 수 없는데, $12$는 가장 큰 변량 $10$보다 크기 때문이다.",
+        "bGoal": "평균의 범위로 계산 실수 찾아내기",
+        "bReason": "'계산 확인'이 무엇을 보는 것인지 틀린 계산 예로 특정함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "평균은 가장 큰 변량 이하이다",
+              "평균은 가장 작은 변량과 가장 큰 변량 사이에 있다",
+              "$12$는 가장 큰 변량 $10$보다 크다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "평균은 가장 {작은} 변량 이상, 가장 {큰} 변량 이하이다. 이 범위를 벗어나면 계산이 틀린 것이지만, 범위 안에 있다고 반드시 맞는 것은 아니다.",
+        "cAnswers": [
+          "작은",
+          "큰"
+        ],
+        "cReason": "긴 구절 빈칸 두 개를 핵심 낱말 '작은/큰'으로 줄임",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "평균이 최솟값과 최댓값 사이에 있다는 성질",
+        "authorBatch": 23,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1983,
+        "part": "m1plus",
+        "sourceFingerprint": "4d3c009eb3cec95758407faeee67369463fdb79e7738c1ae0168b7982c505302",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1983
+        },
+        "directReview": null,
+        "cMarkedSentence": "평균은 가장 {작은} 변량 이상, 가장 {큰} 변량 이하이다. 이 범위를 벗어나면 계산이 틀린 것이지만, 범위 안에 있다고 반드시 맞는 것은 아니다.",
+        "cSlotAnswers": [
+          "작은",
+          "큰"
+        ],
+        "cStudentSentence": "평균은 가장 □ 변량 이상, 가장 □ 변량 이하이다. 이 범위를 벗어나면 계산이 틀린 것이지만, 범위 안에 있다고 반드시 맞는 것은 아니다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "작은",
+            "equivalentAnswers": [
+              "작은"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "큰",
+            "equivalentAnswers": [
+              "큰"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "작은"
+          ],
+          [
+            "큰"
+          ]
+        ],
+        "proposalFingerprint": "cdc67a0104efe8a4834e19ca5ed07bf5cbd6a9f29c6c78148839241e0856d9f3"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-01-xc6",
+        "section": "중1::8. 통계::대푯값",
+        "term": "평균으로 모르는 변량 구하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "모르는 변량이 {하나}이면, {평균}과 전체 개수의 곱인 총합에서 아는 변량을 모두 {빼서} 그 값을 구한다.",
+        "example": {
+          "prompt": "$3$, $5$, $x$의 평균이 $6$이면 $x$는?",
+          "answer": "$10$"
+        },
+        "studentC": "모르는 변량이 □이면, □과 전체 개수의 곱인 총합에서 아는 변량을 모두 □ 그 값을 구한다.",
+        "answers": [
+          "하나",
+          "평균",
+          "빼서"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-01-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "$3$, $5$, $x$의 평균이 $6$일 때, $x$의 값을 구하는 과정을 쓰시오.",
+        "bAnswer": "총합은 $6\\times 3=18$이므로 $x=18-3-5=10$",
+        "bGoal": "평균과 총합으로 모르는 변량 구하기",
+        "bReason": "모르는 변량이 하나인 자료와 평균을 주어 풀이 과정을 답하게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "총합은 $6\\times 3=18$",
+              "$\\frac{3+5+x}{3}=6$",
+              "$3+5+x=18$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=10$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "모르는 변량이 하나일 때는 {평균}과 전체 개수의 곱으로 변량의 총합을 구한 뒤, 그 총합에서 아는 변량을 모두 {빼서} 모르는 변량을 구한다.",
+        "cAnswers": [
+          "평균",
+          "빼서"
+        ],
+        "cReason": "'모르는 변량이 □이면'의 '하나'는 문맥으로 정하기 어려워 조건으로 드러냄",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "총합에서 아는 값을 빼는 풀이 순서",
+        "authorBatch": 23,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1984,
+        "part": "m1plus",
+        "sourceFingerprint": "3850705d13acf1e511f72ae713e6855ff7e9b5b30ec0a9641cf76df2f2ea2ef1",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1984
+        },
+        "directReview": null,
+        "cMarkedSentence": "모르는 변량이 하나일 때는 {평균}과 전체 개수의 곱으로 변량의 총합을 구한 뒤, 그 총합에서 아는 변량을 모두 {빼서} 모르는 변량을 구한다.",
+        "cSlotAnswers": [
+          "평균",
+          "빼서"
+        ],
+        "cStudentSentence": "모르는 변량이 하나일 때는 □과 전체 개수의 곱으로 변량의 총합을 구한 뒤, 그 총합에서 아는 변량을 모두 □ 모르는 변량을 구한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "평균",
+            "equivalentAnswers": [
+              "평균"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "빼서",
+            "equivalentAnswers": [
+              "빼서",
+              "빼어",
+              "빼고"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "빼서",
+            "accept": [
+              "빼어",
+              "빼고"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "평균"
+          ],
+          [
+            "빼서",
+            "빼어",
+            "빼고"
+          ]
+        ],
+        "proposalFingerprint": "e0b4693654ed822962d428c049b9aadf359b6f6df5c65e8041a5d99b3fe07ed4"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-01-xc7",
+        "section": "중1::8. 통계::대푯값",
+        "term": "변량이 $n$개(짝수)일 때 중앙값의 자리",
+        "kind": "방법",
+        "level": "중",
+        "definition": "변량 $n$개를 크기순으로 늘어놓았을 때 $n$이 짝수이면 {$\\frac{n}{2}$}번째와 {$\\frac{n}{2}+1$}번째 값의 평균이 중앙값이다.",
+        "example": {
+          "prompt": "변량 $8$개를 크기순으로 늘어놓으면 중앙값은 몇 번째 두 값의 평균인가?",
+          "answer": "$4$번째, $5$번째"
+        },
+        "studentC": "변량 $n$개를 크기순으로 늘어놓았을 때 $n$이 짝수이면 □번째와 □번째 값의 평균이 중앙값이다.",
+        "answers": [
+          "$\\frac{n}{2}$",
+          "$\\frac{n}{2}+1$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-01-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "변량 $n$개를 크기순으로 늘어놓았고 $n$이 짝수일 때, 중앙값은 작은 쪽부터 몇 번째 값과 몇 번째 값의 평균인지 $n$을 사용한 식으로 쓰고, $n=8$인 경우를 구하시오.",
+        "bAnswer": "$\\frac{n}{2}$번째 값과 $\\frac{n}{2}+1$번째 값의 평균이다. $n=8$이면 $4$번째와 $5$번째 값의 평균이다.",
+        "bGoal": "짝수 개 자료에서 중앙값의 자리 찾기",
+        "bReason": "$n$이 짝수라는 조건과 두 자리를 식으로 답하라는 범위를 밝힘",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{n}{2}$번째와 $\\frac{n}{2}+1$번째"
+            ]
+          },
+          {
+            "anyOf": [
+              "$n=8$일 때 $4$번째와 $5$번째"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "조건이 문장에 모두 있고 두 자리의 식만 묻는 분명한 빈칸",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "가운데 두 값의 순서를 식으로 구하기",
+        "authorBatch": 23,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1985,
+        "part": "m1plus",
+        "sourceFingerprint": "8c01f75c8b13770bcbe836bae912c9d1eb58835b93b62844fc7f8cb11bfd896f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1985
+        },
+        "directReview": null,
+        "cFrozenSentence": "변량 $n$개를 크기순으로 늘어놓았을 때 $n$이 짝수이면 □번째와 □번째 값의 평균이 중앙값이다.",
+        "cFrozenDefinition": "변량 $n$개를 크기순으로 늘어놓았을 때 $n$이 짝수이면 {$\\frac{n}{2}$}번째와 {$\\frac{n}{2}+1$}번째 값의 평균이 중앙값이다.",
+        "cFrozenAnswers": [
+          "$\\frac{n}{2}$",
+          "$\\frac{n}{2}+1$"
+        ],
+        "cMarkedSentence": "변량 $n$개를 크기순으로 늘어놓았을 때 $n$이 짝수이면 {$\\frac{n}{2}$}번째와 {$\\frac{n}{2}+1$}번째 값의 평균이 중앙값이다.",
+        "cSlotAnswers": [
+          "$\\frac{n}{2}$",
+          "$\\frac{n}{2}+1$"
+        ],
+        "cStudentSentence": "변량 $n$개를 크기순으로 늘어놓았을 때 $n$이 짝수이면 □번째와 □번째 값의 평균이 중앙값이다.",
+        "cAnswers": [
+          "$\\frac{n}{2}$",
+          "$\\frac{n}{2}+1$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{n}{2}$",
+            "equivalentAnswers": [
+              "$\\frac{n}{2}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\frac{n}{2}+1$",
+            "equivalentAnswers": [
+              "$\\frac{n}{2}+1$",
+              "$\\frac{n+2}{2}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$\\frac{n}{2}+1$",
+            "accept": [
+              "$\\frac{n+2}{2}$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{n}{2}$"
+          ],
+          [
+            "$\\frac{n}{2}+1$",
+            "$\\frac{n+2}{2}$"
+          ]
+        ],
+        "proposalFingerprint": "0087b94c2ad83617e8347932d820c56d7f1a58196a9df23951595a55c0a9a644"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-01-xc8",
+        "section": "중1::8. 통계::대푯값",
+        "term": "수가 아닌 자료의 대푯값",
+        "kind": "성질",
+        "level": "중",
+        "definition": "좋아하는 색처럼 {수}가 아닌 자료에서도 {최빈값}은 구할 수 있다.",
+        "example": {
+          "prompt": "좋아하는 과일 조사에서 쓸 수 있는 대푯값은?",
+          "answer": "최빈값"
+        },
+        "studentC": "좋아하는 색처럼 □가 아닌 자료에서도 □은 구할 수 있다.",
+        "answers": [
+          "수",
+          "최빈값"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-01-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "좋아하는 과일을 조사한 자료에서 평균, 중앙값, 최빈값 중 구할 수 있는 대푯값을 쓰고, 나머지를 구할 수 없는 이유를 쓰시오.",
+        "bAnswer": "최빈값. 과일 이름은 수가 아니어서 더하거나 크기순으로 늘어놓을 수 없으므로 평균과 중앙값은 구할 수 없다.",
+        "bGoal": "수가 아닌 자료에 쓸 수 있는 대푯값과 이유 알기",
+        "bReason": "수가 아닌 자료의 예를 넣고 평균·중앙값이 안 되는 이유까지 묻게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "구할 수 있는 것은 최빈값"
+            ]
+          },
+          {
+            "anyOf": [
+              "수가 아니어서 더할 수 없다",
+              "수가 아니어서 크기순으로 늘어놓을 수 없다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "예(좋아하는 색)가 문장에 있어 상황이 분명한 짧은 빈칸",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "수가 아닌 자료에서 최빈값만 가능한 까닭",
+        "authorBatch": 23,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1986,
+        "part": "m1plus",
+        "sourceFingerprint": "5974f4c14ca83920147f99fa8fde271e2fc0ff93b06caa07d606909e8eb75a7f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1986
+        },
+        "directReview": null,
+        "cFrozenSentence": "좋아하는 색처럼 □가 아닌 자료에서도 □은 구할 수 있다.",
+        "cFrozenDefinition": "좋아하는 색처럼 {수}가 아닌 자료에서도 {최빈값}은 구할 수 있다.",
+        "cFrozenAnswers": [
+          "수",
+          "최빈값"
+        ],
+        "cMarkedSentence": "좋아하는 색처럼 {수}가 아닌 자료에서도 {최빈값}은 구할 수 있다.",
+        "cSlotAnswers": [
+          "수",
+          "최빈값"
+        ],
+        "cStudentSentence": "좋아하는 색처럼 □가 아닌 자료에서도 □은 구할 수 있다.",
+        "cAnswers": [
+          "수",
+          "최빈값"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "수",
+            "equivalentAnswers": [
+              "수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "최빈값",
+            "equivalentAnswers": [
+              "최빈값"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "수"
+          ],
+          [
+            "최빈값"
+          ]
+        ],
+        "proposalFingerprint": "50a69851c35475e6ddd5dc122eeaaee443443a118db4ecab5d18f6eccb8b02c1"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-01-xc9",
+        "section": "중1::8. 통계::대푯값",
+        "term": "큰 값이 더 커질 때",
+        "kind": "성질",
+        "level": "중",
+        "definition": "자료가 $3$개 이상일 때 가장 큰 값 하나를 더 크게 바꾸면 {중앙값}은 그대로이고 {평균}은 커진다.",
+        "example": {
+          "prompt": "$1$, $2$, $3$, $4$, $100$의 중앙값은?",
+          "answer": "$3$"
+        },
+        "studentC": "자료가 $3$개 이상일 때 가장 큰 값 하나를 더 크게 바꾸면 □은 그대로이고 □은 커진다.",
+        "answers": [
+          "중앙값",
+          "평균"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-01-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "자료 $1$, $2$, $3$, $4$, $5$에서 가장 큰 값 $5$를 $100$으로 바꾸었다. 평균과 중앙값이 각각 어떻게 달라지는지 쓰고, 중앙값이 그렇게 되는 이유를 쓰시오.",
+        "bAnswer": "평균은 $3$에서 $22$로 커지고, 중앙값은 $3$으로 그대로이다. 가장 큰 값만 바뀌어 한가운데 놓인 값은 달라지지 않기 때문이다.",
+        "bGoal": "큰 값의 변화가 평균과 중앙값에 주는 영향 비교하기",
+        "bReason": "'큰 값이 더 커질 때' 무엇이 변하는지를 구체 자료와 이유로 특정함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "평균은 커진다",
+              "평균은 $3$에서 $22$가 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "중앙값은 $3$으로 그대로이다",
+              "중앙값은 변하지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한가운데 값은 바뀌지 않았다",
+              "가장 큰 값만 바뀌어 가운데 자리의 값은 그대로이다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "조건(자료 $3$개 이상)이 있고 두 대푯값의 변화를 대비해 묻는 좋은 빈칸",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "극단값에 평균은 민감하고 중앙값은 그대로인 성질",
+        "authorBatch": 23,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1987,
+        "part": "m1plus",
+        "sourceFingerprint": "e699763678b9143027f591bf65455c13c75df4ea1096146671a0752ef9973b42",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1987
+        },
+        "directReview": null,
+        "cFrozenSentence": "자료가 $3$개 이상일 때 가장 큰 값 하나를 더 크게 바꾸면 □은 그대로이고 □은 커진다.",
+        "cFrozenDefinition": "자료가 $3$개 이상일 때 가장 큰 값 하나를 더 크게 바꾸면 {중앙값}은 그대로이고 {평균}은 커진다.",
+        "cFrozenAnswers": [
+          "중앙값",
+          "평균"
+        ],
+        "cMarkedSentence": "자료가 $3$개 이상일 때 가장 큰 값 하나를 더 크게 바꾸면 {중앙값}은 그대로이고 {평균}은 커진다.",
+        "cSlotAnswers": [
+          "중앙값",
+          "평균"
+        ],
+        "cStudentSentence": "자료가 $3$개 이상일 때 가장 큰 값 하나를 더 크게 바꾸면 □은 그대로이고 □은 커진다.",
+        "cAnswers": [
+          "중앙값",
+          "평균"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "중앙값",
+            "equivalentAnswers": [
+              "중앙값"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "평균",
+            "equivalentAnswers": [
+              "평균"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "중앙값"
+          ],
+          [
+            "평균"
+          ]
+        ],
+        "proposalFingerprint": "a3498707e38e088d1b473b7a6ccb7d0872a364c6b5a84bd8addfb777638777fc"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-01-xc10",
+        "section": "중1::8. 통계::대푯값",
+        "term": "모든 변량에 같은 수 더하기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "각 변량에 같은 수 $a$를 더한 자료의 평균은 원래 평균에 {$a$}를 {더한 값}이다.",
+        "example": {
+          "prompt": "평균이 $7$인 자료의 각 변량에 $3$씩 더하면 평균은?",
+          "answer": "$10$"
+        },
+        "studentC": "각 변량에 같은 수 $a$를 더한 자료의 평균은 원래 평균에 □를 □이다.",
+        "answers": [
+          "$a$",
+          "더한 값"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-01-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "평균이 $7$인 자료의 모든 변량에 $3$씩 더하면 평균은 얼마가 되는지 쓰고, 그 이유를 변량의 총합을 이용하여 설명하시오.",
+        "bAnswer": "$10$. 변량이 $n$개이면 총합이 $3n$만큼 늘어나므로, 개수 $n$으로 나눈 평균은 $3$만큼 커진다.",
+        "bGoal": "같은 수를 더할 때 평균의 변화와 이유 알기",
+        "bReason": "결과만이 아니라 총합의 변화로 이유를 답하도록 범위를 정함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "새 평균은 $10$"
+            ]
+          },
+          {
+            "anyOf": [
+              "총합이 $3\\times(개수)$만큼 늘어난다",
+              "모든 변량이 $3$씩 커져 총합을 개수로 나누면 $3$이 더해진다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "평균이 $m$인 자료의 각 변량에 같은 수 $a$를 더하면 새 자료의 평균은 {$m+a$}이다.",
+        "cAnswers": [
+          "$m+a$"
+        ],
+        "cReason": "원래 빈칸은 문장의 $a$를 그대로 베끼면 되어 결과 식 하나를 쓰게 바꿈",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "모든 변량에 같은 수를 더할 때 평균의 성질",
+        "authorBatch": 23,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1988,
+        "part": "m1plus",
+        "sourceFingerprint": "45dab0d1914c0e1c9f44a103a1c1432ce336999319918dd46f26379ebd047c7d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1988
+        },
+        "directReview": null,
+        "cMarkedSentence": "평균이 $m$인 자료의 각 변량에 같은 수 $a$를 더하면 새 자료의 평균은 {$m+a$}이다.",
+        "cSlotAnswers": [
+          "$m+a$"
+        ],
+        "cStudentSentence": "평균이 $m$인 자료의 각 변량에 같은 수 $a$를 더하면 새 자료의 평균은 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$m+a$",
+            "equivalentAnswers": [
+              "$m+a$",
+              "$a+m$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$m+a$",
+            "accept": [
+              "$a+m$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$m+a$",
+            "$a+m$"
+          ]
+        ],
+        "proposalFingerprint": "2d2e798c84b53a3d1642ecee292ac6160953453b695f0660013b595f9254cbe9"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-01-xc11",
+        "section": "중1::8. 통계::대푯값",
+        "term": "모든 변량을 몇 배 하기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "모든 변량을 $k$배 하면 평균과 중앙값도 {$k$배}가 된다.",
+        "example": {
+          "prompt": "평균이 $4$인 자료를 모두 $3$배 하면 평균은?",
+          "answer": "$12$"
+        },
+        "studentC": "모든 변량을 $k$배 하면 평균과 중앙값도 □가 된다.",
+        "answers": [
+          "$k$배"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-01-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "모든 변량을 $3$배 하면 평균과 중앙값은 각각 어떻게 달라지는지 쓰고, 평균이 $4$, 중앙값이 $5$인 자료에 적용하여 새 평균과 새 중앙값을 구하시오.",
+        "bAnswer": "평균과 중앙값 모두 $3$배가 된다. 새 평균은 $12$, 새 중앙값은 $15$이다.",
+        "bGoal": "모든 변량을 몇 배 할 때 대푯값의 변화 알기",
+        "bReason": "평균만이 아니라 중앙값까지 묻도록 원문의 범위를 살림",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "평균과 중앙값 모두 $3$배가 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "새 평균은 $12$"
+            ]
+          },
+          {
+            "anyOf": [
+              "새 중앙값은 $15$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "평균이 $m$, 중앙값이 $c$인 자료의 모든 변량을 $k$배 하면 새 자료의 평균은 {$km$}, 중앙값은 {$kc$}이다.",
+        "cAnswers": [
+          "$km$",
+          "$kc$"
+        ],
+        "cReason": "원래 답 '$k$배'가 문장에 그대로 있어 결과 식을 쓰게 바꿈",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "변량을 몇 배 할 때 평균·중앙값의 성질",
+        "authorBatch": 23,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1989,
+        "part": "m1plus",
+        "sourceFingerprint": "f0a1523672b713a9e221f7413dc0cfa9aafb119876813a78178b73f69dbfba4d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1989
+        },
+        "directReview": null,
+        "cMarkedSentence": "평균이 $m$, 중앙값이 $c$인 자료의 모든 변량을 $k$배 하면 새 자료의 평균은 {$km$}, 중앙값은 {$kc$}이다.",
+        "cSlotAnswers": [
+          "$km$",
+          "$kc$"
+        ],
+        "cStudentSentence": "평균이 $m$, 중앙값이 $c$인 자료의 모든 변량을 $k$배 하면 새 자료의 평균은 □, 중앙값은 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$km$",
+            "equivalentAnswers": [
+              "$km$",
+              "$mk$",
+              "$k\\times m$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$kc$",
+            "equivalentAnswers": [
+              "$kc$",
+              "$ck$",
+              "$k\\times c$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$km$",
+            "accept": [
+              "$mk$",
+              "$k\\times m$"
+            ]
+          },
+          {
+            "answer": "$kc$",
+            "accept": [
+              "$ck$",
+              "$k\\times c$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$km$",
+            "$mk$",
+            "$k\\times m$"
+          ],
+          [
+            "$kc$",
+            "$ck$",
+            "$k\\times c$"
+          ]
+        ],
+        "proposalFingerprint": "29aacef576202f600d5d1e171e80d41073e7bd8a34a65b0b97e1f7a72ae9126e"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-01-xc12",
+        "section": "중1::8. 통계::대푯값",
+        "term": "두 모둠을 합친 평균",
+        "kind": "방법",
+        "level": "중",
+        "definition": "두 모둠을 합칠 때 평균은 각 모둠의 {총합}을 더한 뒤 전체 {개수}로 나누어 구한다.",
+        "example": {
+          "prompt": "평균 $70$인 $2$명과 평균 $85$인 $3$명을 합친 평균은?",
+          "answer": "$79$"
+        },
+        "studentC": "두 모둠을 합칠 때 평균은 각 모둠의 □을 더한 뒤 전체 □로 나누어 구한다.",
+        "answers": [
+          "총합",
+          "개수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-01-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "평균이 $70$점인 $2$명과 평균이 $85$점인 $3$명을 합쳤다. 전체 평균을 구하는 과정을 쓰고, $70$과 $85$의 평균인 $77.5$점이 답이 아닌 이유를 쓰시오.",
+        "bAnswer": "총합은 $70\\times 2+85\\times 3=395$(점)이고 전체는 $5$명이므로 평균은 $395\\div 5=79$(점)이다. 두 모둠의 인원수가 달라서 평균끼리의 평균은 전체 평균이 되지 않는다.",
+        "bGoal": "두 모둠을 합친 평균을 총합으로 구하기",
+        "bReason": "인원이 다른 두 모둠을 주어 평균끼리 평균 내는 오류까지 짚게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 모둠의 총합을 더한다",
+              "$70\\times 2+85\\times 3=395$"
+            ]
+          },
+          {
+            "anyOf": [
+              "전체 평균은 $79$점"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 모둠의 인원수가 다르기 때문이다",
+              "인원이 많은 모둠 쪽으로 평균이 치우친다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "총합을 더해 전체 개수로 나눈다는 절차가 분명한 짧은 빈칸",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "총합을 더해 전체 개수로 나누는 절차",
+        "authorBatch": 23,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1990,
+        "part": "m1plus",
+        "sourceFingerprint": "df8597fcf6113c47684d88a4c5315444c7eeebb37b728071121552d41267052f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1990
+        },
+        "directReview": null,
+        "cFrozenSentence": "두 모둠을 합칠 때 평균은 각 모둠의 □을 더한 뒤 전체 □로 나누어 구한다.",
+        "cFrozenDefinition": "두 모둠을 합칠 때 평균은 각 모둠의 {총합}을 더한 뒤 전체 {개수}로 나누어 구한다.",
+        "cFrozenAnswers": [
+          "총합",
+          "개수"
+        ],
+        "cMarkedSentence": "두 모둠을 합칠 때 평균은 각 모둠의 {총합}을 더한 뒤 전체 {개수}로 나누어 구한다.",
+        "cSlotAnswers": [
+          "총합",
+          "개수"
+        ],
+        "cStudentSentence": "두 모둠을 합칠 때 평균은 각 모둠의 □을 더한 뒤 전체 □로 나누어 구한다.",
+        "cAnswers": [
+          "총합",
+          "개수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "총합",
+            "equivalentAnswers": [
+              "총합",
+              "변량의 총합",
+              "합"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "개수",
+            "equivalentAnswers": [
+              "개수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "총합",
+            "accept": [
+              "변량의 총합",
+              "합"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "총합",
+            "변량의 총합",
+            "합"
+          ],
+          [
+            "개수"
+          ]
+        ],
+        "proposalFingerprint": "d76116a1417fcd9afd5ee60645b08de59e39c2a9e5604241e9cd9982a38b3186"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-01-xc13",
+        "section": "중1::8. 통계::대푯값",
+        "term": "변량을 하나 더 넣을 때의 중앙값",
+        "kind": "방법",
+        "level": "중",
+        "definition": "변량을 하나 더 넣으면 개수가 바뀌므로 {다시} 크기순으로 늘어놓고 {가운데}를 찾는다.",
+        "example": {
+          "prompt": "자료 $2$, $4$, $6$에 변량 $10$ 하나를 더 넣으면 중앙값은?",
+          "answer": "$5$"
+        },
+        "studentC": "변량을 하나 더 넣으면 개수가 바뀌므로 □ 크기순으로 늘어놓고 □를 찾는다.",
+        "answers": [
+          "다시",
+          "가운데"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-01-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "자료 $2$, $4$, $6$에 변량 $10$ 하나를 더 넣었다. 중앙값이 얼마에서 얼마로 바뀌는지 쓰고, 새 중앙값을 구한 방법을 쓰시오.",
+        "bAnswer": "$4$에서 $5$로 바뀐다. 변량이 $4$개(짝수)가 되어 가운데 두 값 $4$와 $6$의 평균을 구했다.",
+        "bGoal": "변량이 늘어난 자료의 중앙값 다시 구하기",
+        "bReason": "개수가 홀수에서 짝수로 바뀌는 자료를 주어 다시 구하는 과정을 묻게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "처음 중앙값은 $4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "새 중앙값은 $5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "가운데 두 값 $4$와 $6$의 평균",
+              "변량이 짝수 개가 되어 가운데 두 값의 평균을 구한다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "변량을 하나 더 넣으면 변량의 {개수}가 바뀌므로, 다시 {크기순}으로 늘어놓고 가운데를 찾아 중앙값을 구한다.",
+        "cAnswers": [
+          "개수",
+          "크기순"
+        ],
+        "cReason": "'다시' 같은 부사 빈칸 대신 바뀌는 것과 할 일을 묻게 함",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "변량 추가 뒤 중앙값을 다시 찾는 순서",
+        "authorBatch": 23,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1991,
+        "part": "m1plus",
+        "sourceFingerprint": "742918330ca4831260847f825ab90b1f047085325e8862c0046193e8204db2a0",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1991
+        },
+        "directReview": null,
+        "cMarkedSentence": "변량을 하나 더 넣으면 변량의 {개수}가 바뀌므로, 다시 {크기순}으로 늘어놓고 가운데를 찾아 중앙값을 구한다.",
+        "cSlotAnswers": [
+          "개수",
+          "크기순"
+        ],
+        "cStudentSentence": "변량을 하나 더 넣으면 변량의 □가 바뀌므로, 다시 □으로 늘어놓고 가운데를 찾아 중앙값을 구한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "개수",
+            "equivalentAnswers": [
+              "개수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "크기순",
+            "equivalentAnswers": [
+              "크기순",
+              "작은 값부터 크기순",
+              "크기 순서"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "크기순",
+            "accept": [
+              "작은 값부터 크기순",
+              "크기 순서"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "개수"
+          ],
+          [
+            "크기순",
+            "작은 값부터 크기순",
+            "크기 순서"
+          ]
+        ],
+        "proposalFingerprint": "7bf1e9a5974cfd9cb91fe64541988cd6306ef66658697eea9d0ef0351b1b19a7"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-01-xc14",
+        "section": "중1::8. 통계::대푯값",
+        "term": "중앙값으로 문자 구하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "중앙값이 주어지면 모르는 변량이 {가운데} 자리에 오는지 따져 {경우}를 나눈다.",
+        "example": {
+          "prompt": "$2$, $5$, $x$, $9$의 중앙값이 $6$이고 $5\\le x\\le9$일 때 $x$는?",
+          "answer": "$7$"
+        },
+        "studentC": "중앙값이 주어지면 모르는 변량이 □ 자리에 오는지 따져 □를 나눈다.",
+        "answers": [
+          "가운데",
+          "경우"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-01-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "$2$, $5$, $x$, $9$의 중앙값이 $6$이고 $5\\le x\\le 9$일 때, $x$의 값을 구하는 과정을 쓰시오.",
+        "bAnswer": "크기순으로 $2$, $5$, $x$, $9$이므로 가운데 두 값은 $5$와 $x$이다. $\\frac{5+x}{2}=6$에서 $x=7$",
+        "bGoal": "중앙값 조건으로 모르는 변량 구하기",
+        "bReason": "$x$의 범위를 주어 $x$가 가운데 자리에 오는 경우로 특정함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "가운데 두 값은 $5$와 $x$",
+              "$\\frac{5+x}{2}=6$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=7$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "모르는 변량 $x$가 있는 자료의 중앙값이 주어지면, 크기순으로 늘어놓았을 때 $x$가 {가운데} 자리에 오는 경우와 오지 않는 경우로 나누어 생각한다.",
+        "cAnswers": [
+          "가운데"
+        ],
+        "cReason": "'경우를 나눈다'는 풀이 말투 빈칸을 없애고 따질 자리만 묻게 함",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "중앙값 조건을 식으로 바꿔 미지수 구하기",
+        "authorBatch": 23,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1992,
+        "part": "m1plus",
+        "sourceFingerprint": "cd1427aec5b4c6b53f3dff7646ca28203270c842c560a68170343f2e2fd0a814",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1992
+        },
+        "directReview": null,
+        "cMarkedSentence": "모르는 변량 $x$가 있는 자료의 중앙값이 주어지면, 크기순으로 늘어놓았을 때 $x$가 {가운데} 자리에 오는 경우와 오지 않는 경우로 나누어 생각한다.",
+        "cSlotAnswers": [
+          "가운데"
+        ],
+        "cStudentSentence": "모르는 변량 $x$가 있는 자료의 중앙값이 주어지면, 크기순으로 늘어놓았을 때 $x$가 □ 자리에 오는 경우와 오지 않는 경우로 나누어 생각한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "가운데",
+            "equivalentAnswers": [
+              "가운데",
+              "한가운데",
+              "중앙"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "가운데",
+            "accept": [
+              "한가운데",
+              "중앙"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "가운데",
+            "한가운데",
+            "중앙"
+          ]
+        ],
+        "proposalFingerprint": "26b11f01592a3b23dc8dc99bb79ce5f7b1bcfed11119b8121b3427a681269600"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-01-xc15",
+        "section": "중1::8. 통계::대푯값",
+        "term": "평균과 중앙값이 같을 때",
+        "kind": "방법",
+        "level": "상",
+        "definition": "평균과 중앙값이 같다는 조건이 있으면 두 값을 각각 식으로 나타내 {등식}을 {세운다}.",
+        "example": {
+          "prompt": "$1$, $4$, $x$의 평균과 중앙값이 같고 $x>4$일 때 $x$는?",
+          "answer": "$7$"
+        },
+        "studentC": "평균과 중앙값이 같다는 조건이 있으면 두 값을 각각 식으로 나타내 □을 □.",
+        "answers": [
+          "등식",
+          "세운다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-01-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "$1$, $4$, $x$의 평균과 중앙값이 같고 $x>4$일 때, $x$의 값을 구하는 과정을 쓰시오.",
+        "bAnswer": "$x>4$이므로 크기순으로 $1$, $4$, $x$이고 중앙값은 $4$이다. 평균 $\\frac{1+4+x}{3}=4$에서 $1+4+x=12$, $x=7$",
+        "bGoal": "평균과 중앙값이 같다는 조건으로 식 세우기",
+        "bReason": "중앙값이 정해지도록 $x>4$ 조건을 넣고 풀이 과정을 답하게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "중앙값은 $4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1+4+x}{3}=4$",
+              "$1+4+x=12$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=7$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "평균과 중앙값이 같다는 조건이 있으면 평균과 중앙값을 각각 식으로 나타내고, 두 식을 '$=$'로 이은 {등식}을 세워 모르는 값을 구한다.",
+        "cAnswers": [
+          "등식"
+        ],
+        "cReason": "'세운다'까지 빈칸인 문장을 핵심 낱말 하나만 묻게 줄임",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "두 대푯값을 식으로 놓고 등식 세우기",
+        "authorBatch": 23,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1993,
+        "part": "m1plus",
+        "sourceFingerprint": "e40c61b47559700a8b02dca2c7921e5319cfdf61068bc4d72028106ca127efcb",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1993
+        },
+        "directReview": null,
+        "cMarkedSentence": "평균과 중앙값이 같다는 조건이 있으면 평균과 중앙값을 각각 식으로 나타내고, 두 식을 '$=$'로 이은 {등식}을 세워 모르는 값을 구한다.",
+        "cSlotAnswers": [
+          "등식"
+        ],
+        "cStudentSentence": "평균과 중앙값이 같다는 조건이 있으면 평균과 중앙값을 각각 식으로 나타내고, 두 식을 '$=$'로 이은 □을 세워 모르는 값을 구한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "등식",
+            "equivalentAnswers": [
+              "등식"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "등식"
+          ]
+        ],
+        "proposalFingerprint": "f7d2cd7b145febb3014441aadfd28f6b33cb14ac04d46fc07b208c48f1067ae2"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-01-xc16",
+        "section": "중1::8. 통계::대푯값",
+        "term": "최빈값이 주어질 때",
+        "kind": "방법",
+        "level": "상",
+        "definition": "최빈값이 주어지면 모르는 변량이 그 {최빈값}과 같아야 하는지 값마다 나온 {횟수}를 세어 판단한다.",
+        "example": {
+          "prompt": "$2$, $4$, $7$, $7$, $x$의 최빈값이 $4$와 $7$일 때 $x$는?",
+          "answer": "$4$"
+        },
+        "studentC": "최빈값이 주어지면 모르는 변량이 그 □과 같아야 하는지 값마다 나온 □를 세어 판단한다.",
+        "answers": [
+          "최빈값",
+          "횟수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-01-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "$2$, $4$, $7$, $7$, $x$의 최빈값이 $4$와 $7$일 때, $x$의 값을 구하고 그 이유를 쓰시오.",
+        "bAnswer": "$x=4$. $7$이 $2$번 나오므로 $4$도 $2$번 나와야 $4$와 $7$이 함께 최빈값이 된다.",
+        "bGoal": "최빈값 조건으로 모르는 변량 정하기",
+        "bReason": "최빈값이 둘인 조건을 주어 횟수를 세는 판단을 이유로 답하게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x=4$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$도 $7$처럼 $2$번 나와야 한다",
+              "$4$와 $7$이 나온 횟수가 같아야 한다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "최빈값이 주어지면 값마다 나온 {횟수}를 세어, 모르는 변량이 주어진 최빈값과 같아야 하는지 판단한다.",
+        "cAnswers": [
+          "횟수"
+        ],
+        "cReason": "첫 빈칸 '최빈값'은 문장 첫머리에서 베낄 수 있어 횟수만 묻게 함",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "나온 횟수를 따져 미지수 정하기",
+        "authorBatch": 23,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1994,
+        "part": "m1plus",
+        "sourceFingerprint": "86a33858312a0341831edc4374e5dabe44a1360a214b45aaad2e17b3727f2024",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1994
+        },
+        "directReview": null,
+        "cMarkedSentence": "최빈값이 주어지면 값마다 나온 {횟수}를 세어, 모르는 변량이 주어진 최빈값과 같아야 하는지 판단한다.",
+        "cSlotAnswers": [
+          "횟수"
+        ],
+        "cStudentSentence": "최빈값이 주어지면 값마다 나온 □를 세어, 모르는 변량이 주어진 최빈값과 같아야 하는지 판단한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "횟수",
+            "equivalentAnswers": [
+              "횟수",
+              "개수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "횟수",
+            "accept": [
+              "개수"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "횟수",
+            "개수"
+          ]
+        ],
+        "proposalFingerprint": "33d664c95d88208251f2a58269a8ef7ee7b87a19aee05571fb09a3b4f0b2038e"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-01-xc17",
+        "section": "중1::8. 통계::대푯값",
+        "term": "잘못 쓴 변량 고치기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "변량 하나를 잘못 썼을 때는 총합에서 틀린 값을 {빼고} 바른 값을 {더해} 평균을 다시 구한다.",
+        "example": {
+          "prompt": "변량 $5$개 가운데 $3$을 $13$으로 잘못 써서 구한 평균이 $8$이면 바른 평균은?",
+          "answer": "$6$"
+        },
+        "studentC": "변량 하나를 잘못 썼을 때는 총합에서 틀린 값을 □ 바른 값을 □ 평균을 다시 구한다.",
+        "answers": [
+          "빼고",
+          "더해"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-01-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "변량 $5$개 가운데 $3$을 $13$으로 잘못 써서 구한 평균이 $8$이었다. 바른 평균을 구하는 과정을 쓰시오.",
+        "bAnswer": "잘못 구한 총합은 $8\\times 5=40$이다. 바른 총합은 $40-13+3=30$이므로 바른 평균은 $30\\div 5=6$이다.",
+        "bGoal": "잘못 쓴 변량을 고쳐 평균 다시 구하기",
+        "bReason": "틀린 값과 바른 값, 잘못 구한 평균을 모두 주어 과정을 답하게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "바른 총합은 $40-13+3=30$",
+              "총합이 $10$만큼 줄어든다",
+              "평균이 $10\\div 5=2$만큼 줄어든다"
+            ]
+          },
+          {
+            "anyOf": [
+              "바른 평균은 $6$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "틀린 값은 빼고 바른 값은 더한다는 방향을 묻는 짧은 빈칸",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "총합을 고쳐 평균을 다시 구하는 순서",
+        "authorBatch": 23,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1995,
+        "part": "m1plus",
+        "sourceFingerprint": "903d29b7f557d35d3603965cca3ac2086d51866de554a6eb357604aa4391edf5",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1995
+        },
+        "directReview": null,
+        "cFrozenSentence": "변량 하나를 잘못 썼을 때는 총합에서 틀린 값을 □ 바른 값을 □ 평균을 다시 구한다.",
+        "cFrozenDefinition": "변량 하나를 잘못 썼을 때는 총합에서 틀린 값을 {빼고} 바른 값을 {더해} 평균을 다시 구한다.",
+        "cFrozenAnswers": [
+          "빼고",
+          "더해"
+        ],
+        "cMarkedSentence": "변량 하나를 잘못 썼을 때는 총합에서 틀린 값을 {빼고} 바른 값을 {더해} 평균을 다시 구한다.",
+        "cSlotAnswers": [
+          "빼고",
+          "더해"
+        ],
+        "cStudentSentence": "변량 하나를 잘못 썼을 때는 총합에서 틀린 값을 □ 바른 값을 □ 평균을 다시 구한다.",
+        "cAnswers": [
+          "빼고",
+          "더해"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "빼고",
+            "equivalentAnswers": [
+              "빼고",
+              "뺀 뒤",
+              "빼서"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "더해",
+            "equivalentAnswers": [
+              "더해",
+              "더하여",
+              "더해서"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "빼고",
+            "accept": [
+              "뺀 뒤",
+              "빼서"
+            ]
+          },
+          {
+            "answer": "더해",
+            "accept": [
+              "더하여",
+              "더해서"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "빼고",
+            "뺀 뒤",
+            "빼서"
+          ],
+          [
+            "더해",
+            "더하여",
+            "더해서"
+          ]
+        ],
+        "proposalFingerprint": "9c83e1504621ed2cf522351622be8498933079d6895f8cb104a71e3f7a0bc39f"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-08-01-xc18",
+        "section": "중1::8. 통계::대푯값",
+        "term": "변량 하나를 더 넣은 평균",
+        "kind": "방법",
+        "level": "상",
+        "definition": "변량 하나를 더 넣으면 처음 {총합}에 새 변량을 더해 늘어난 {개수}로 나눈다.",
+        "example": {
+          "prompt": "평균 $6$인 변량 $4$개에 변량 $11$ 하나를 더 넣으면 평균은?",
+          "answer": "$7$"
+        },
+        "studentC": "변량 하나를 더 넣으면 처음 □에 새 변량을 더해 늘어난 □로 나눈다.",
+        "answers": [
+          "총합",
+          "개수"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-01-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "평균이 $6$인 변량 $4$개에 변량 $11$ 하나를 더 넣었을 때의 평균을 구하는 과정을 쓰시오.",
+        "bAnswer": "처음 총합은 $6\\times 4=24$이다. 새 총합은 $24+11=35$이고 변량은 $5$개이므로 평균은 $35\\div 5=7$이다.",
+        "bGoal": "변량이 하나 늘어난 자료의 평균 구하기",
+        "bReason": "처음 평균과 개수, 넣는 값을 주어 총합을 거치는 과정을 답하게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "새 총합은 $24+11=35$",
+              "$6\\times 4+11=35$"
+            ]
+          },
+          {
+            "anyOf": [
+              "늘어난 개수 $5$로 나눈다",
+              "$35\\div 5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "새 평균은 $7$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "처음 총합과 늘어난 개수라는 두 요소를 짧게 묻는 문장",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "총합에 새 변량을 더해 늘어난 개수로 나누기",
+        "authorBatch": 23,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1996,
+        "part": "m1plus",
+        "sourceFingerprint": "1dabd43ef66127742d68712e1667577d6dd9f5574731df854a9bd0c4bceb6be2",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1996
+        },
+        "directReview": null,
+        "cFrozenSentence": "변량 하나를 더 넣으면 처음 □에 새 변량을 더해 늘어난 □로 나눈다.",
+        "cFrozenDefinition": "변량 하나를 더 넣으면 처음 {총합}에 새 변량을 더해 늘어난 {개수}로 나눈다.",
+        "cFrozenAnswers": [
+          "총합",
+          "개수"
+        ],
+        "cMarkedSentence": "변량 하나를 더 넣으면 처음 {총합}에 새 변량을 더해 늘어난 {개수}로 나눈다.",
+        "cSlotAnswers": [
+          "총합",
+          "개수"
+        ],
+        "cStudentSentence": "변량 하나를 더 넣으면 처음 □에 새 변량을 더해 늘어난 □로 나눈다.",
+        "cAnswers": [
+          "총합",
+          "개수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "총합",
+            "equivalentAnswers": [
+              "총합",
+              "변량의 총합",
+              "합"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "개수",
+            "equivalentAnswers": [
+              "개수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "총합",
+            "accept": [
+              "변량의 총합",
+              "합"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "총합",
+            "변량의 총합",
+            "합"
+          ],
+          [
+            "개수"
+          ]
+        ],
+        "proposalFingerprint": "f794cad73922730a7f160427e167e8e0afb031f92adb115be8aa39329472f455"
+      }
+    }
+  ]
+}

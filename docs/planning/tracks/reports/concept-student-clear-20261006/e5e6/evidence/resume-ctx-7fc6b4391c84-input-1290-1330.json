@@ -1,0 +1,3526 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "capturedAt": "2026-10-07T07:31:16.654138+00:00",
+  "rows": [
+    {
+      "id": "e5-2-3-3-xc2",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "정사각형의 대칭축은 모두 몇 개인지 쓰고, 각각 어떤 직선인지 설명하세요.",
+      "bAnswer": "$4$개이다. 두 대각선과, 마주 보는 변의 한가운데끼리 이은 두 직선이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$4$개",
+            "네 개"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 대각선",
+            "대각선 $2$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "마주 보는 변의 한가운데끼리 이은 두 직선",
+            "가로와 세로로 반을 나누는 두 직선"
+          ]
+        }
+      ],
+      "bGoal": "정사각형의 대칭축 네 개가 어떤 직선인지 구별해 말한다.",
+      "bReason": "개수만 물으면 값 하나로 끝나므로 어떤 직선인지까지 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "정사각형에는 대칭축이 {네 개} 있다.",
+      "cReason": "정사각형이라는 조건이 분명하고 답이 짧은 개수 확인 문장이다.",
+      "synonymNotes": "C 답은 '네 개', '4개' 모두 인정.",
+      "exampleNeeded": false,
+      "sourceIndex": 1290,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-3-xc2",
+        "section": "초5::2-3 합동과 대칭::2-3-3 선대칭도형과 그 성질 알아보기",
+        "term": "정사각형의 대칭축 수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "정사각형에는 대칭축이 {네 개} 있다.",
+        "studentC": "정사각형에는 대칭축이 □ 있다.",
+        "answers": [
+          "네 개"
+        ]
+      },
+      "sourceFingerprint": "af5525dc6aaca00f11cff8fdaab7bceb9cdefdace86018105ec2bc6c63cda29a",
+      "draftEvidence": "evidence/section-038-draft.json",
+      "cFrozenDefinition": "정사각형에는 대칭축이 {네 개} 있다.",
+      "cFrozenStudentSentence": "정사각형에는 대칭축이 □ 있다.",
+      "cProposedAnswers": [
+        "네 개"
+      ],
+      "cStudentAfter": "정사각형에는 대칭축이 □ 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "네 개"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "정사각형에는 대칭축이 {네 개} 있다.",
+      "cStudentSentence": "정사각형에는 대칭축이 □ 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "네 개",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "정사각형의 대칭축은 모두 몇 개인지 쓰고, 각각 어떤 직선인지 설명하세요.",
+        "answer": "$4$개이다. 두 대각선과, 마주 보는 변의 한가운데끼리 이은 두 직선이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$4$개",
+              "네 개"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 대각선",
+              "대각선 $2$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "마주 보는 변의 한가운데끼리 이은 두 직선",
+              "가로와 세로로 반을 나누는 두 직선"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "정사각형에는 대칭축이 {네 개} 있다.",
+        "acceptedAnswers": [
+          [
+            "네 개"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "608612e191fe20c588fdd2699a84308cd50c04cf03a2e0502ed6b84069cd6990",
+      "questionRevision": "planning-e5e6-20261006-608612e191fe",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-3-xc3",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "정삼각형의 대칭축은 모두 몇 개인지 쓰고, 각 대칭축이 정삼각형의 어디와 어디를 지나는지 설명하세요.",
+      "bAnswer": "$3$개이다. 각 대칭축은 한 꼭짓점과 그 꼭짓점이 마주 보는 변의 한가운데를 지난다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$3$개",
+            "세 개"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 꼭짓점과 마주 보는 변의 한가운데를 지난다",
+            "꼭짓점에서 맞은편 변의 가운데로 가는 직선이다"
+          ]
+        }
+      ],
+      "bGoal": "정삼각형의 대칭축 수와 위치를 함께 말한다.",
+      "bReason": "개수 암기에 그치지 않도록 대칭축이 지나는 곳을 함께 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "정삼각형에는 대칭축이 {세 개} 있다.",
+      "cReason": "정삼각형의 대칭축 수를 묻는 짧은 문장으로 조건이 빠진 것이 없다.",
+      "synonymNotes": "C 답은 '세 개', '3개' 모두 인정.",
+      "exampleNeeded": false,
+      "sourceIndex": 1291,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-3-xc3",
+        "section": "초5::2-3 합동과 대칭::2-3-3 선대칭도형과 그 성질 알아보기",
+        "term": "정삼각형의 대칭축 수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "정삼각형에는 대칭축이 {세 개} 있다.",
+        "studentC": "정삼각형에는 대칭축이 □ 있다.",
+        "answers": [
+          "세 개"
+        ]
+      },
+      "sourceFingerprint": "af4a1ebafbdbc770d6c0d67055e5c04f8e68bd9303af39dd11bd4dcdd2e5380e",
+      "draftEvidence": "evidence/section-038-draft.json",
+      "cFrozenDefinition": "정삼각형에는 대칭축이 {세 개} 있다.",
+      "cFrozenStudentSentence": "정삼각형에는 대칭축이 □ 있다.",
+      "cProposedAnswers": [
+        "세 개"
+      ],
+      "cStudentAfter": "정삼각형에는 대칭축이 □ 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "세 개"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "정삼각형에는 대칭축이 {세 개} 있다.",
+      "cStudentSentence": "정삼각형에는 대칭축이 □ 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "세 개",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "정삼각형의 대칭축은 모두 몇 개인지 쓰고, 각 대칭축이 정삼각형의 어디와 어디를 지나는지 설명하세요.",
+        "answer": "$3$개이다. 각 대칭축은 한 꼭짓점과 그 꼭짓점이 마주 보는 변의 한가운데를 지난다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$3$개",
+              "세 개"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 꼭짓점과 마주 보는 변의 한가운데를 지난다",
+              "꼭짓점에서 맞은편 변의 가운데로 가는 직선이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "정삼각형에는 대칭축이 {세 개} 있다.",
+        "acceptedAnswers": [
+          [
+            "세 개"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "995a1b4a86b39e700112b016ea55f85430a049751fa9c9ba375e0f9951b2eefe",
+      "questionRevision": "planning-e5e6-20261006-995a1b4a86b3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-3-xc4",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "원의 대칭축은 어떤 직선이고, 모두 몇 개인지 설명하세요.",
+      "bAnswer": "원의 중심을 지나는 직선은 모두 대칭축이고, 그런 직선은 셀 수 없이 많다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "원의 중심을 지나는 직선이다",
+            "지름을 포함하는 직선이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "셀 수 없이 많다",
+            "무수히 많다",
+            "끝없이 그릴 수 있다"
+          ]
+        }
+      ],
+      "bGoal": "원의 대칭축의 조건과 개수를 한 번에 설명한다.",
+      "bReason": "원의 대칭축 수 행(xc17)과 합쳐 조건과 개수를 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "원의 {중심}을 지나는 직선은 어느 것이나 원의 대칭축이 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "중심"
+          ]
+        }
+      ],
+      "cReason": "빈칸 '중심을 지나는'을 핵심 낱말 '중심' 하나로 줄였다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1292,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-3-xc4",
+        "section": "초5::2-3 합동과 대칭::2-3-3 선대칭도형과 그 성질 알아보기",
+        "term": "원의 대칭축",
+        "kind": "성질",
+        "level": "하",
+        "definition": "원은 {중심을 지나는} 직선이면 어느 것이나 대칭축이 된다.",
+        "studentC": "원은 □ 직선이면 어느 것이나 대칭축이 된다.",
+        "answers": [
+          "중심을 지나는"
+        ]
+      },
+      "sourceFingerprint": "4f0d0dead5dfc87256f58782553ec03090aa7dd2add0e982fb759b034ad6c8f4",
+      "draftEvidence": "evidence/section-038-draft.json",
+      "cProposedAnswers": [
+        "중심"
+      ],
+      "cStudentAfter": "원의 □을 지나는 직선은 어느 것이나 원의 대칭축이 된다.",
+      "cMarkedSentence": "원의 {중심}을 지나는 직선은 어느 것이나 원의 대칭축이 된다.",
+      "cStudentSentence": "원의 □을 지나는 직선은 어느 것이나 원의 대칭축이 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "중심",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원의 대칭축은 어떤 직선이고, 모두 몇 개인지 설명하세요.",
+        "answer": "원의 중심을 지나는 직선은 모두 대칭축이고, 그런 직선은 셀 수 없이 많다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "원의 중심을 지나는 직선이다",
+              "지름을 포함하는 직선이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "셀 수 없이 많다",
+              "무수히 많다",
+              "끝없이 그릴 수 있다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "원의 {중심}을 지나는 직선은 어느 것이나 원의 대칭축이 된다.",
+        "acceptedAnswers": [
+          [
+            "중심"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5fc9b561138829c6d1c98ced18165f641983dc1fa8f310d35de44af8607aace6",
+      "questionRevision": "planning-e5e6-20261006-5fc9b5611388",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-3-xc5",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "가로와 세로의 길이가 다른 직사각형의 대칭축은 모두 몇 개인지 쓰세요. 또 이 직사각형의 대각선이 대칭축이 되는지를 접는 것과 관련지어 설명하세요.",
+      "bAnswer": "$2$개이다(마주 보는 변의 한가운데끼리 이은 두 직선). 대각선을 따라 접으면 양쪽이 완전히 겹치지 않으므로 대각선은 대칭축이 아니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2$개",
+            "두 개"
+          ]
+        },
+        {
+          "anyOf": [
+            "대각선은 대칭축이 아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "대각선으로 접으면 완전히 겹치지 않는다",
+            "대각선으로 접으면 어긋난다"
+          ]
+        }
+      ],
+      "bGoal": "직사각형의 대각선은 대칭축이 아님을 접어 보는 생각으로 판단한다.",
+      "bReason": "대각선도 대칭축이라는 흔한 오해를 직접 확인하도록 물었다.",
+      "cDecision": "keep",
+      "cAfter": "가로와 세로가 다른 직사각형에는 대칭축이 {두 개} 있다.",
+      "cReason": "'가로와 세로가 다른'이라는 조건으로 정사각형을 제외한 정확한 개수 문장이다.",
+      "synonymNotes": "C 답은 '두 개', '2개' 모두 인정.",
+      "exampleNeeded": false,
+      "sourceIndex": 1293,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-3-xc5",
+        "section": "초5::2-3 합동과 대칭::2-3-3 선대칭도형과 그 성질 알아보기",
+        "term": "직사각형의 대칭축 수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "가로와 세로가 다른 직사각형에는 대칭축이 {두 개} 있다.",
+        "studentC": "가로와 세로가 다른 직사각형에는 대칭축이 □ 있다.",
+        "answers": [
+          "두 개"
+        ]
+      },
+      "sourceFingerprint": "aa8edc133551290f38316f6eaa2d0d3b2c07f477109c958ad5d99280aee09aab",
+      "draftEvidence": "evidence/section-038-draft.json",
+      "cFrozenDefinition": "가로와 세로가 다른 직사각형에는 대칭축이 {두 개} 있다.",
+      "cFrozenStudentSentence": "가로와 세로가 다른 직사각형에는 대칭축이 □ 있다.",
+      "cProposedAnswers": [
+        "두 개"
+      ],
+      "cStudentAfter": "가로와 세로가 다른 직사각형에는 대칭축이 □ 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "두 개"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "가로와 세로가 다른 직사각형에는 대칭축이 {두 개} 있다.",
+      "cStudentSentence": "가로와 세로가 다른 직사각형에는 대칭축이 □ 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "두 개",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "가로와 세로의 길이가 다른 직사각형의 대칭축은 모두 몇 개인지 쓰세요. 또 이 직사각형의 대각선이 대칭축이 되는지를 접는 것과 관련지어 설명하세요.",
+        "answer": "$2$개이다(마주 보는 변의 한가운데끼리 이은 두 직선). 대각선을 따라 접으면 양쪽이 완전히 겹치지 않으므로 대각선은 대칭축이 아니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$2$개",
+              "두 개"
+            ]
+          },
+          {
+            "anyOf": [
+              "대각선은 대칭축이 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "대각선으로 접으면 완전히 겹치지 않는다",
+              "대각선으로 접으면 어긋난다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "가로와 세로가 다른 직사각형에는 대칭축이 {두 개} 있다.",
+        "acceptedAnswers": [
+          [
+            "두 개"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "c0d66daa675917a9db025da3efe8f601b918a43fcf2584cefc735a89ec519068",
+      "questionRevision": "planning-e5e6-20261006-c0d66daa6759",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-3-xc6",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "선대칭도형에서 대칭축 위에 있는 점의 대응점은 어느 점인가요? 도형을 접는 것과 관련지어 설명하세요.",
+      "bAnswer": "자기 자신이다. 대칭축을 따라 접을 때 접는 선 위의 점은 다른 점과 겹치지 않고 제자리에 있기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "자기 자신이 대응점이다",
+            "그 점 그대로이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "접는 선 위의 점은 접어도 제자리에 있다",
+            "접어도 다른 점과 겹치지 않는다"
+          ]
+        }
+      ],
+      "bGoal": "대칭축 위의 점은 접어도 움직이지 않아 자신과 대응함을 설명한다.",
+      "bReason": "학생이 놓치기 쉬운 특수한 경우라 답과 근거를 함께 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "대칭축 위에 있는 점은 {자기 자신}이 대응점이다.",
+      "cReason": "대칭축 위라는 조건과 '자기 자신'이라는 짧은 답이 분명하다.",
+      "synonymNotes": "C 답은 '자기 자신', '그 점 자신' 모두 인정.",
+      "exampleNeeded": false,
+      "sourceIndex": 1294,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-3-xc6",
+        "section": "초5::2-3 합동과 대칭::2-3-3 선대칭도형과 그 성질 알아보기",
+        "term": "대칭축 위의 점",
+        "kind": "성질",
+        "level": "중",
+        "definition": "대칭축 위에 있는 점은 {자기 자신}이 대응점이다.",
+        "studentC": "대칭축 위에 있는 점은 □이 대응점이다.",
+        "answers": [
+          "자기 자신"
+        ]
+      },
+      "sourceFingerprint": "e17c2d0a6b41a2e734026e45dab72a1d6a51266235f5d3797ff0ec8cc2bdeba3",
+      "draftEvidence": "evidence/section-038-draft.json",
+      "cFrozenDefinition": "대칭축 위에 있는 점은 {자기 자신}이 대응점이다.",
+      "cFrozenStudentSentence": "대칭축 위에 있는 점은 □이 대응점이다.",
+      "cProposedAnswers": [
+        "자기 자신"
+      ],
+      "cStudentAfter": "대칭축 위에 있는 점은 □이 대응점이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "자기 자신"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "대칭축 위에 있는 점은 {자기 자신}이 대응점이다.",
+      "cStudentSentence": "대칭축 위에 있는 점은 □이 대응점이다.",
+      "cSlotAnswers": [
+        {
+          "key": "자기 자신",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "선대칭도형에서 대칭축 위에 있는 점의 대응점은 어느 점인가요? 도형을 접는 것과 관련지어 설명하세요.",
+        "answer": "자기 자신이다. 대칭축을 따라 접을 때 접는 선 위의 점은 다른 점과 겹치지 않고 제자리에 있기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "자기 자신이 대응점이다",
+              "그 점 그대로이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "접는 선 위의 점은 접어도 제자리에 있다",
+              "접어도 다른 점과 겹치지 않는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "대칭축 위에 있는 점은 {자기 자신}이 대응점이다.",
+        "acceptedAnswers": [
+          [
+            "자기 자신"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "8e70fd96f7314093379d710134b38bffb46ce9660f577a55afd7bdbfd60fa393",
+      "questionRevision": "planning-e5e6-20261006-8e70fd96f731",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-3-xc7",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "대칭축에서 대응점까지의 거리가 같음을 수로 확인한다.",
+      "bReason": "대칭축이 대응점을 이은 선분을 똑같이 나눈다는 c6과 같은 내용이다.",
+      "exclusionReason": "B는 e5-2-3-3-c6과 중복이다. 대체: e5-2-3-3-c6(B), 이 행의 C.",
+      "cDecision": "revise",
+      "cAfter": "선대칭도형에서 한 점이 대칭축에서 $3\\,\\mathrm{cm}$ 떨어져 있으면, 그 대응점은 대칭축에서 {$3$} $\\mathrm{cm}$ 떨어져 있고 두 점 사이의 거리는 {$6$} $\\mathrm{cm}$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        }
+      ],
+      "cReason": "'같은 거리만큼'이라는 구절 대신 실제 거리로 관계를 쓰게 했다.",
+      "coreAfter": "선대칭도형에서 대응점인 두 점은 대칭축에서 {같은 거리만큼} 떨어져 있다.",
+      "coreReason": "'짝이 되는 두 점'은 무엇의 짝인지 불분명해 교과 용어 '대응점'으로 밝혔다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "coreTargetReason": "같은 거리만큼이라는 원문 표적을 보존한다. 짝이 되는 두 점이 선대칭도형의 대응점임을 밝혀 다른 임의 점을 전제하지 않는다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 1295,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-3-xc7",
+        "section": "초5::2-3 합동과 대칭::2-3-3 선대칭도형과 그 성질 알아보기",
+        "term": "대응점과 대칭축 사이",
+        "kind": "성질",
+        "level": "중",
+        "definition": "짝이 되는 두 점은 대칭축에서 {같은 거리만큼} 떨어져 있다.",
+        "studentC": "짝이 되는 두 점은 대칭축에서 □ 떨어져 있다.",
+        "answers": [
+          "같은 거리만큼"
+        ]
+      },
+      "sourceFingerprint": "a80c1fcbf3e13da1ba449c4483c6701d9a9176309414d17e8a3b97fe684a748e",
+      "draftEvidence": "evidence/section-038-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$3$",
+        "$6$"
+      ],
+      "cStudentAfter": "선대칭도형에서 한 점이 대칭축에서 $3\\,\\mathrm{cm}$ 떨어져 있으면, 그 대응점은 대칭축에서 □ $\\mathrm{cm}$ 떨어져 있고 두 점 사이의 거리는 □ $\\mathrm{cm}$이다.",
+      "cMarkedSentence": "선대칭도형에서 한 점이 대칭축에서 $3\\,\\mathrm{cm}$ 떨어져 있으면, 그 대응점은 대칭축에서 {$3$} $\\mathrm{cm}$ 떨어져 있고 두 점 사이의 거리는 {$6$} $\\mathrm{cm}$이다.",
+      "cStudentSentence": "선대칭도형에서 한 점이 대칭축에서 $3\\,\\mathrm{cm}$ 떨어져 있으면, 그 대응점은 대칭축에서 □ $\\mathrm{cm}$ 떨어져 있고 두 점 사이의 거리는 □ $\\mathrm{cm}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$6$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "선대칭도형에서 한 점이 대칭축에서 $3\\,\\mathrm{cm}$ 떨어져 있으면, 그 대응점은 대칭축에서 {$3$} $\\mathrm{cm}$ 떨어져 있고 두 점 사이의 거리는 {$6$} $\\mathrm{cm}$이다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "$6$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e5-2-3-3-c6과 중복이다. 대체: e5-2-3-3-c6(B), 이 행의 C."
+      },
+      "proposalFingerprint": "526f3ef398535d62ca16619ecc6fa3ca5f3097bbf193af9eeb75bc4c8315b246",
+      "questionRevision": "planning-e5e6-20261006-526f3ef39853",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-3-xc8",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "정삼각형이 아닌 이등변삼각형의 대칭축은 몇 개인지 쓰고, 그 대칭축이 삼각형의 어디와 어디를 지나는지 설명하세요.",
+      "bAnswer": "$1$개이다. 길이가 같은 두 변이 만나는 꼭짓점과 나머지 한 변의 한가운데를 지난다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1$개",
+            "한 개"
+          ]
+        },
+        {
+          "anyOf": [
+            "길이가 같은 두 변이 만나는 꼭짓점과 나머지 변의 한가운데를 지난다",
+            "길이가 같은 두 변 사이의 꼭짓점에서 맞은편 변의 가운데로 가는 직선이다"
+          ]
+        }
+      ],
+      "bGoal": "이등변삼각형의 대칭축 하나가 어디에 있는지 말한다.",
+      "bReason": "개수만이 아니라 같은 두 변과 대칭축의 위치를 연결하도록 물었다.",
+      "cDecision": "keep",
+      "cAfter": "세 변이 다 같지는 않은 이등변삼각형에는 대칭축이 {한 개} 있다.",
+      "cReason": "'세 변이 다 같지는 않은'으로 정삼각형을 제외한 조건이 분명하고 답이 짧다.",
+      "synonymNotes": "C 답은 '한 개', '1개' 모두 인정.",
+      "exampleNeeded": false,
+      "sourceIndex": 1296,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-3-xc8",
+        "section": "초5::2-3 합동과 대칭::2-3-3 선대칭도형과 그 성질 알아보기",
+        "term": "이등변삼각형의 대칭축",
+        "kind": "성질",
+        "level": "중",
+        "definition": "세 변이 다 같지는 않은 이등변삼각형에는 대칭축이 {한 개} 있다.",
+        "studentC": "세 변이 다 같지는 않은 이등변삼각형에는 대칭축이 □ 있다.",
+        "answers": [
+          "한 개"
+        ]
+      },
+      "sourceFingerprint": "62747029e6b4f4c74bc0613f1f122cf535009af7f20cda87a8793dc07d05210f",
+      "draftEvidence": "evidence/section-038-draft.json",
+      "cFrozenDefinition": "세 변이 다 같지는 않은 이등변삼각형에는 대칭축이 {한 개} 있다.",
+      "cFrozenStudentSentence": "세 변이 다 같지는 않은 이등변삼각형에는 대칭축이 □ 있다.",
+      "cProposedAnswers": [
+        "한 개"
+      ],
+      "cStudentAfter": "세 변이 다 같지는 않은 이등변삼각형에는 대칭축이 □ 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "한 개"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "세 변이 다 같지는 않은 이등변삼각형에는 대칭축이 {한 개} 있다.",
+      "cStudentSentence": "세 변이 다 같지는 않은 이등변삼각형에는 대칭축이 □ 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "한 개",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "정삼각형이 아닌 이등변삼각형의 대칭축은 몇 개인지 쓰고, 그 대칭축이 삼각형의 어디와 어디를 지나는지 설명하세요.",
+        "answer": "$1$개이다. 길이가 같은 두 변이 만나는 꼭짓점과 나머지 한 변의 한가운데를 지난다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$1$개",
+              "한 개"
+            ]
+          },
+          {
+            "anyOf": [
+              "길이가 같은 두 변이 만나는 꼭짓점과 나머지 변의 한가운데를 지난다",
+              "길이가 같은 두 변 사이의 꼭짓점에서 맞은편 변의 가운데로 가는 직선이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "세 변이 다 같지는 않은 이등변삼각형에는 대칭축이 {한 개} 있다.",
+        "acceptedAnswers": [
+          [
+            "한 개"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "0287eb5db1b58e380de07995a10f95c2205fa0c257e5579e56d161436ed6c17e",
+      "questionRevision": "planning-e5e6-20261006-0287eb5db1b5",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-3-xc9",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "정사각형이 아닌 마름모의 대칭축은 몇 개이고 어떤 직선인가요? 또 마주 보는 변의 한가운데끼리 이은 직선은 이 마름모의 대칭축이 되는지 쓰세요.",
+      "bAnswer": "$2$개이고 두 대각선이다. 마주 보는 변의 한가운데끼리 이은 직선은 접어도 완전히 겹치지 않으므로 대칭축이 아니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$2$개",
+            "두 개"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 대각선이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "변의 한가운데끼리 이은 직선은 대칭축이 아니다"
+          ]
+        }
+      ],
+      "bGoal": "마름모의 대칭축이 대각선임을 직사각형과 구별해 안다.",
+      "bReason": "직사각형과 대칭축 위치가 반대라는 점을 대비해 확인한다.",
+      "cDecision": "keep",
+      "cAfter": "정사각형이 아닌 마름모의 대칭축은 {두 대각선}이다.",
+      "cReason": "정사각형 제외 조건이 있고 '두 대각선'이라는 짧은 답으로 핵심을 확인한다.",
+      "synonymNotes": "C 답은 '두 대각선', '대각선 2개', '대각선' 모두 인정.",
+      "exampleNeeded": false,
+      "sourceIndex": 1297,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-3-xc9",
+        "section": "초5::2-3 합동과 대칭::2-3-3 선대칭도형과 그 성질 알아보기",
+        "term": "마름모의 대칭축",
+        "kind": "성질",
+        "level": "중",
+        "definition": "정사각형이 아닌 마름모의 대칭축은 {두 대각선}이다.",
+        "studentC": "정사각형이 아닌 마름모의 대칭축은 □이다.",
+        "answers": [
+          "두 대각선"
+        ]
+      },
+      "sourceFingerprint": "875a0f661913e1e57fe73eaa33773526882cda15742f402b4e76e5800dcbbcd9",
+      "draftEvidence": "evidence/section-038-draft.json",
+      "cFrozenDefinition": "정사각형이 아닌 마름모의 대칭축은 {두 대각선}이다.",
+      "cFrozenStudentSentence": "정사각형이 아닌 마름모의 대칭축은 □이다.",
+      "cProposedAnswers": [
+        "두 대각선"
+      ],
+      "cStudentAfter": "정사각형이 아닌 마름모의 대칭축은 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "두 대각선"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "정사각형이 아닌 마름모의 대칭축은 {두 대각선}이다.",
+      "cStudentSentence": "정사각형이 아닌 마름모의 대칭축은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "두 대각선",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "정사각형이 아닌 마름모의 대칭축은 몇 개이고 어떤 직선인가요? 또 마주 보는 변의 한가운데끼리 이은 직선은 이 마름모의 대칭축이 되는지 쓰세요.",
+        "answer": "$2$개이고 두 대각선이다. 마주 보는 변의 한가운데끼리 이은 직선은 접어도 완전히 겹치지 않으므로 대칭축이 아니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$2$개",
+              "두 개"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 대각선이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "변의 한가운데끼리 이은 직선은 대칭축이 아니다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "정사각형이 아닌 마름모의 대칭축은 {두 대각선}이다.",
+        "acceptedAnswers": [
+          [
+            "두 대각선"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b1a010e86e41bbe7cec22b57f25e6ec38c4cdfc78af2c24c95948b674282d172",
+      "questionRevision": "planning-e5e6-20261006-b1a010e86e41",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-3-xc10",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "직사각형도 마름모도 아닌 평행사변형은 선대칭도형인지 아닌지 쓰고, 그렇게 판단한 까닭을 도형을 접는 것과 관련지어 설명하세요.",
+      "bAnswer": "선대칭도형이 아니다. 대각선을 포함해 어떤 직선을 따라 접어도 양쪽이 완전히 겹치지 않기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "선대칭도형이 아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "어떤 직선으로 접어도 완전히 겹치지 않는다",
+            "완전히 겹치게 접는 직선이 없다"
+          ]
+        }
+      ],
+      "bGoal": "평행사변형이 선대칭이 아님을 접어 겹침 기준으로 판단한다.",
+      "bReason": "대각선으로 나눈 두 삼각형이 합동이라 선대칭으로 오해하기 쉬워 근거를 함께 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "직사각형도 마름모도 아닌 평행사변형은 선대칭도형이 {아니다}.",
+      "cReason": "직사각형·마름모를 제외한 조건이 정확하고 판단 결과만 짧게 답한다.",
+      "synonymNotes": "C 답은 '아니다', '아닙니다' 모두 인정.",
+      "exampleNeeded": false,
+      "sourceIndex": 1298,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-3-xc10",
+        "section": "초5::2-3 합동과 대칭::2-3-3 선대칭도형과 그 성질 알아보기",
+        "term": "평행사변형과 선대칭",
+        "kind": "성질",
+        "level": "중",
+        "definition": "직사각형도 마름모도 아닌 평행사변형은 선대칭도형이 {아니다}.",
+        "studentC": "직사각형도 마름모도 아닌 평행사변형은 선대칭도형이 □.",
+        "answers": [
+          "아니다"
+        ]
+      },
+      "sourceFingerprint": "5e62da459e92a541eb01454343c9dd44796aebf2e42cd54f5de5cd5a782a2489",
+      "draftEvidence": "evidence/section-038-draft.json",
+      "cFrozenDefinition": "직사각형도 마름모도 아닌 평행사변형은 선대칭도형이 {아니다}.",
+      "cFrozenStudentSentence": "직사각형도 마름모도 아닌 평행사변형은 선대칭도형이 □.",
+      "cProposedAnswers": [
+        "아니다"
+      ],
+      "cStudentAfter": "직사각형도 마름모도 아닌 평행사변형은 선대칭도형이 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "아니다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "직사각형도 마름모도 아닌 평행사변형은 선대칭도형이 {아니다}.",
+      "cStudentSentence": "직사각형도 마름모도 아닌 평행사변형은 선대칭도형이 □.",
+      "cSlotAnswers": [
+        {
+          "key": "아니다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직사각형도 마름모도 아닌 평행사변형은 선대칭도형인지 아닌지 쓰고, 그렇게 판단한 까닭을 도형을 접는 것과 관련지어 설명하세요.",
+        "answer": "선대칭도형이 아니다. 대각선을 포함해 어떤 직선을 따라 접어도 양쪽이 완전히 겹치지 않기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "선대칭도형이 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "어떤 직선으로 접어도 완전히 겹치지 않는다",
+              "완전히 겹치게 접는 직선이 없다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직사각형도 마름모도 아닌 평행사변형은 선대칭도형이 {아니다}.",
+        "acceptedAnswers": [
+          [
+            "아니다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a14c2e5249faf02f8ec3ffbd9dd55494d56afb4e800f41a7be57f84561004c34",
+      "questionRevision": "planning-e5e6-20261006-a14c2e5249fa",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-3-xc11",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "정다각형의 대칭축의 수는 그 도형의 무엇의 수와 같은가요? 이를 이용해 정팔각형의 대칭축은 몇 개인지도 쓰세요.",
+      "bAnswer": "변의 수와 같다. 정팔각형은 변이 $8$개이므로 대칭축도 $8$개이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "변의 수와 같다",
+            "꼭짓점의 수와 같다",
+            "각의 수와 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8$개",
+            "여덟 개"
+          ]
+        }
+      ],
+      "bGoal": "정다각형의 대칭축 수 규칙을 말하고 정팔각형에 적용한다.",
+      "bReason": "일반 관계를 먼저 묻고 원문의 정팔각형 예를 붙였다.",
+      "cDecision": "keep",
+      "cAfter": "정다각형의 대칭축 수는 {변의 수}와 같다.",
+      "cReason": "정다각형이라는 조건과 '변의 수'라는 짧은 답으로 규칙을 확인한다.",
+      "synonymNotes": "C 답은 '변의 수' 외에 '꼭짓점의 수', '각의 수'도 수학적으로 옳으므로 인정.",
+      "exampleNeeded": false,
+      "sourceIndex": 1299,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-3-xc11",
+        "section": "초5::2-3 합동과 대칭::2-3-3 선대칭도형과 그 성질 알아보기",
+        "term": "정다각형의 대칭축 수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "정다각형의 대칭축 수는 {변의 수}와 같다.",
+        "example": {
+          "prompt": "정팔각형의 대칭축은 몇 개인가?",
+          "answer": "$8$개"
+        },
+        "studentC": "정다각형의 대칭축 수는 □와 같다.",
+        "answers": [
+          "변의 수"
+        ]
+      },
+      "sourceFingerprint": "8ce37b048986aee40ee33c468f12acf673436c0aa0d1074feebcb864a3a05d84",
+      "draftEvidence": "evidence/section-038-draft.json",
+      "cFrozenDefinition": "정다각형의 대칭축 수는 {변의 수}와 같다.",
+      "cFrozenStudentSentence": "정다각형의 대칭축 수는 □와 같다.",
+      "cProposedAnswers": [
+        "변의 수"
+      ],
+      "cStudentAfter": "정다각형의 대칭축 수는 □와 같다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "변의 수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "정다각형의 대칭축 수는 {변의 수}와 같다.",
+      "cStudentSentence": "정다각형의 대칭축 수는 □와 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "변의 수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "정다각형의 대칭축의 수는 그 도형의 무엇의 수와 같은가요? 이를 이용해 정팔각형의 대칭축은 몇 개인지도 쓰세요.",
+        "answer": "변의 수와 같다. 정팔각형은 변이 $8$개이므로 대칭축도 $8$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "변의 수와 같다",
+              "꼭짓점의 수와 같다",
+              "각의 수와 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8$개",
+              "여덟 개"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "정다각형의 대칭축 수는 {변의 수}와 같다.",
+        "acceptedAnswers": [
+          [
+            "변의 수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "3b1e5775acfe8f308e72632ddb7ead57cf1c522da8d472a0a9555d7f2cb7c679",
+      "questionRevision": "planning-e5e6-20261006-3b1e5775acfe",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-3-xc12",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "선대칭인 다각형의 반쪽과 대칭축이 그려져 있습니다. 나머지 반쪽을 그려 도형을 완성하는 방법을 순서대로 설명하세요.",
+      "bAnswer": "반쪽에 있는 각 꼭짓점의 대응점을 대칭축 건너편에 찍고, 찍은 점들을 차례로 선분으로 잇는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "각 꼭짓점의 대응점을 찍는다",
+            "꼭짓점마다 대칭축 건너편에 같은 거리로 점을 찍는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "찍은 점들을 차례로 잇는다",
+            "점들을 순서대로 선으로 연결한다"
+          ]
+        }
+      ],
+      "bGoal": "선대칭도형의 나머지 반쪽을 그리는 두 단계를 말한다.",
+      "bReason": "주어진 것과 설명할 방법의 범위를 질문 안에 밝혔다.",
+      "cDecision": "keep",
+      "cAfter": "선대칭인 다각형의 반쪽과 대칭축이 주어지면, 꼭짓점의 {대응점}을 찍고 차례로 이어 나머지 반쪽을 그린다.",
+      "cReason": "반쪽과 대칭축이 주어진 상황에서 '대응점'이라는 핵심 용어 하나를 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1300,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-3-xc12",
+        "section": "초5::2-3 합동과 대칭::2-3-3 선대칭도형과 그 성질 알아보기",
+        "term": "선대칭도형 완성하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "선대칭인 다각형의 반쪽과 대칭축이 주어지면, 꼭짓점의 {대응점}을 찍고 차례로 이어 나머지 반쪽을 그린다.",
+        "studentC": "선대칭인 다각형의 반쪽과 대칭축이 주어지면, 꼭짓점의 □을 찍고 차례로 이어 나머지 반쪽을 그린다.",
+        "answers": [
+          "대응점"
+        ]
+      },
+      "sourceFingerprint": "164c4b4fa1515d9b101de582c6311f837e6a2e05481c26154048d4066b2a545c",
+      "draftEvidence": "evidence/section-038-draft.json",
+      "cFrozenDefinition": "선대칭인 다각형의 반쪽과 대칭축이 주어지면, 꼭짓점의 {대응점}을 찍고 차례로 이어 나머지 반쪽을 그린다.",
+      "cFrozenStudentSentence": "선대칭인 다각형의 반쪽과 대칭축이 주어지면, 꼭짓점의 □을 찍고 차례로 이어 나머지 반쪽을 그린다.",
+      "cProposedAnswers": [
+        "대응점"
+      ],
+      "cStudentAfter": "선대칭인 다각형의 반쪽과 대칭축이 주어지면, 꼭짓점의 □을 찍고 차례로 이어 나머지 반쪽을 그린다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "대응점"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "선대칭인 다각형의 반쪽과 대칭축이 주어지면, 꼭짓점의 {대응점}을 찍고 차례로 이어 나머지 반쪽을 그린다.",
+      "cStudentSentence": "선대칭인 다각형의 반쪽과 대칭축이 주어지면, 꼭짓점의 □을 찍고 차례로 이어 나머지 반쪽을 그린다.",
+      "cSlotAnswers": [
+        {
+          "key": "대응점",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "선대칭인 다각형의 반쪽과 대칭축이 그려져 있습니다. 나머지 반쪽을 그려 도형을 완성하는 방법을 순서대로 설명하세요.",
+        "answer": "반쪽에 있는 각 꼭짓점의 대응점을 대칭축 건너편에 찍고, 찍은 점들을 차례로 선분으로 잇는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "각 꼭짓점의 대응점을 찍는다",
+              "꼭짓점마다 대칭축 건너편에 같은 거리로 점을 찍는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "찍은 점들을 차례로 잇는다",
+              "점들을 순서대로 선으로 연결한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "선대칭인 다각형의 반쪽과 대칭축이 주어지면, 꼭짓점의 {대응점}을 찍고 차례로 이어 나머지 반쪽을 그린다.",
+        "acceptedAnswers": [
+          [
+            "대응점"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "eab8ed877ef63b5527e12e6df1fa5f12cc4c1c19a324554d4f2414cca652e38d",
+      "questionRevision": "planning-e5e6-20261006-eab8ed877ef6",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-3-xc13",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "선대칭도형을 대칭축으로 나누면 두 부분이 생깁니다. 이 두 부분은 서로 어떤 관계인지 쓰고, 그렇게 말할 수 있는 까닭을 설명하세요.",
+      "bAnswer": "서로 합동이다. 대칭축을 따라 접으면 두 부분이 완전히 겹치기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "서로 합동이다",
+            "모양과 크기가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "대칭축을 따라 접으면 완전히 겹치기 때문이다",
+            "꼭 맞게 포개지기 때문이다"
+          ]
+        }
+      ],
+      "bGoal": "선대칭과 앞에서 배운 합동을 연결해 설명한다.",
+      "bReason": "앞 단원의 합동 개념과 이어지는 관계라 근거까지 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "대칭축으로 나뉜 두 부분은 서로 {합동}이다.",
+      "cReason": "대칭축으로 나뉜 두 부분의 관계를 '합동' 한 낱말로 확인한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1301,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-3-xc13",
+        "section": "초5::2-3 합동과 대칭::2-3-3 선대칭도형과 그 성질 알아보기",
+        "term": "대칭축으로 나뉜 두 부분",
+        "kind": "성질",
+        "level": "중",
+        "definition": "대칭축으로 나뉜 두 부분은 서로 {합동}이다.",
+        "studentC": "대칭축으로 나뉜 두 부분은 서로 □이다.",
+        "answers": [
+          "합동"
+        ]
+      },
+      "sourceFingerprint": "7cbcb4e34b3d9f2c90d93d66f097147e967f0d42c806de9f6a0ce5b31c2334fd",
+      "draftEvidence": "evidence/section-038-draft.json",
+      "cFrozenDefinition": "대칭축으로 나뉜 두 부분은 서로 {합동}이다.",
+      "cFrozenStudentSentence": "대칭축으로 나뉜 두 부분은 서로 □이다.",
+      "cProposedAnswers": [
+        "합동"
+      ],
+      "cStudentAfter": "대칭축으로 나뉜 두 부분은 서로 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "합동"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "대칭축으로 나뉜 두 부분은 서로 {합동}이다.",
+      "cStudentSentence": "대칭축으로 나뉜 두 부분은 서로 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "합동",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "선대칭도형을 대칭축으로 나누면 두 부분이 생깁니다. 이 두 부분은 서로 어떤 관계인지 쓰고, 그렇게 말할 수 있는 까닭을 설명하세요.",
+        "answer": "서로 합동이다. 대칭축을 따라 접으면 두 부분이 완전히 겹치기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "서로 합동이다",
+              "모양과 크기가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "대칭축을 따라 접으면 완전히 겹치기 때문이다",
+              "꼭 맞게 포개지기 때문이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "대칭축으로 나뉜 두 부분은 서로 {합동}이다.",
+        "acceptedAnswers": [
+          [
+            "합동"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "bc14797bf29624cf55cc2b78c4003f4e8ceec73264c95d23b1f5fa953b72059e",
+      "questionRevision": "planning-e5e6-20261006-bc14797bf296",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-3-xc14",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "대응각의 크기가 같음을 실제 각도에 적용한다.",
+      "bReason": "대응각의 크기가 같다는 c7의 성질을 그대로 되풀이한 문장이다.",
+      "exclusionReason": "B는 e5-2-3-3-c7과 중복이다. 대체: e5-2-3-3-c7(B), 이 행의 C.",
+      "cDecision": "revise",
+      "cAfter": "선대칭도형에서 한 각의 크기가 $70 ^\\circ$이면, 그 각의 대응각의 크기는 {$70$}$^\\circ$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$70$"
+          ]
+        }
+      ],
+      "cReason": "'크기가 같음'을 구절로 외우는 대신 실제 각도로 성질을 쓰게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1302,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-3-xc14",
+        "section": "초5::2-3 합동과 대칭::2-3-3 선대칭도형과 그 성질 알아보기",
+        "term": "대칭축 건너편의 대응각",
+        "kind": "방법",
+        "level": "중",
+        "definition": "선대칭도형에서 대응각의 크기를 알면, 대응각끼리 {크기가 같음}을 이용해 모르는 각의 크기를 구한다.",
+        "studentC": "선대칭도형에서 대응각의 크기를 알면, 대응각끼리 □을 이용해 모르는 각의 크기를 구한다.",
+        "answers": [
+          "크기가 같음"
+        ]
+      },
+      "sourceFingerprint": "96711b2e1db53567c2541db20b6cb92e63521286e717be48ebaff7d5d9f77579",
+      "draftEvidence": "evidence/section-038-draft.json",
+      "cProposedAnswers": [
+        "$70$"
+      ],
+      "cStudentAfter": "선대칭도형에서 한 각의 크기가 $70 ^\\circ$이면, 그 각의 대응각의 크기는 □$^\\circ$이다.",
+      "cMarkedSentence": "선대칭도형에서 한 각의 크기가 $70 ^\\circ$이면, 그 각의 대응각의 크기는 {$70$}$^\\circ$이다.",
+      "cStudentSentence": "선대칭도형에서 한 각의 크기가 $70 ^\\circ$이면, 그 각의 대응각의 크기는 □$^\\circ$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$70$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "선대칭도형에서 한 각의 크기가 $70 ^\\circ$이면, 그 각의 대응각의 크기는 {$70$}$^\\circ$이다.",
+        "acceptedAnswers": [
+          [
+            "$70$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e5-2-3-3-c7과 중복이다. 대체: e5-2-3-3-c7(B), 이 행의 C."
+      },
+      "proposalFingerprint": "bdf0c0e7a1b25845c9e12141dfcf503c1fb6a60db874abe454327e5f93fa7ee6",
+      "questionRevision": "planning-e5e6-20261006-bdf0c0e7a1b2",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-3-xc15",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "대칭축과 대칭축 밖의 한 점이 그려져 있습니다. 이 점의 대응점을 찍으려면 어떻게 해야 하는지 설명하세요.",
+      "bAnswer": "그 점에서 대칭축에 수직인 선을 긋고, 대칭축 건너편으로 그 점에서 대칭축까지의 거리와 같은 거리만큼 떨어진 곳에 점을 찍는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "점에서 대칭축에 수직인 선을 긋는다",
+            "대칭축과 직각으로 만나는 선을 긋는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "대칭축 건너편에 같은 거리만큼 떨어진 곳에 찍는다",
+            "대칭축까지의 거리만큼 반대쪽으로 더 가서 찍는다"
+          ]
+        }
+      ],
+      "bGoal": "수직과 같은 거리 두 조건으로 대응점을 찍는 방법을 말한다.",
+      "bReason": "주어진 대상을 밝히고 방법만 설명하도록 범위를 정했다.",
+      "cDecision": "revise",
+      "cAfter": "한 점의 대응점은 그 점에서 대칭축에 {수직}인 선을 긋고, 대칭축 건너편으로 {같은} 거리만큼 떨어진 곳에 찍는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "수직",
+            "직각"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은",
+            "똑같은"
+          ]
+        }
+      ],
+      "cReason": "'수직인 선' 한 덩어리 대신 방법의 두 조건인 수직과 같은 거리를 빈칸으로 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1303,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-3-xc15",
+        "section": "초5::2-3 합동과 대칭::2-3-3 선대칭도형과 그 성질 알아보기",
+        "term": "대응점 찍는 법",
+        "kind": "방법",
+        "level": "상",
+        "definition": "한 점의 대응점은 대칭축에 {수직인 선}을 긋고 건너편으로 같은 거리만큼 재어 찍는다.",
+        "studentC": "한 점의 대응점은 대칭축에 □을 긋고 건너편으로 같은 거리만큼 재어 찍는다.",
+        "answers": [
+          "수직인 선"
+        ]
+      },
+      "sourceFingerprint": "c46c75220a1936346aa8dfa228b58388ea0d7bde365c1254d1c5a830ac99adfb",
+      "draftEvidence": "evidence/section-038-draft.json",
+      "cProposedAnswers": [
+        "수직",
+        "같은"
+      ],
+      "cStudentAfter": "한 점의 대응점은 그 점에서 대칭축에 □인 선을 긋고, 대칭축 건너편으로 □ 거리만큼 떨어진 곳에 찍는다.",
+      "cMarkedSentence": "한 점의 대응점은 그 점에서 대칭축에 {수직}인 선을 긋고, 대칭축 건너편으로 {같은} 거리만큼 떨어진 곳에 찍는다.",
+      "cStudentSentence": "한 점의 대응점은 그 점에서 대칭축에 □인 선을 긋고, 대칭축 건너편으로 □ 거리만큼 떨어진 곳에 찍는다.",
+      "cSlotAnswers": [
+        {
+          "key": "수직",
+          "equivalents": [
+            "직각"
+          ]
+        },
+        {
+          "key": "같은",
+          "equivalents": [
+            "똑같은"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "대칭축과 대칭축 밖의 한 점이 그려져 있습니다. 이 점의 대응점을 찍으려면 어떻게 해야 하는지 설명하세요.",
+        "answer": "그 점에서 대칭축에 수직인 선을 긋고, 대칭축 건너편으로 그 점에서 대칭축까지의 거리와 같은 거리만큼 떨어진 곳에 점을 찍는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "점에서 대칭축에 수직인 선을 긋는다",
+              "대칭축과 직각으로 만나는 선을 긋는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "대칭축 건너편에 같은 거리만큼 떨어진 곳에 찍는다",
+              "대칭축까지의 거리만큼 반대쪽으로 더 가서 찍는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "한 점의 대응점은 그 점에서 대칭축에 {수직}인 선을 긋고, 대칭축 건너편으로 {같은} 거리만큼 떨어진 곳에 찍는다.",
+        "acceptedAnswers": [
+          [
+            "수직",
+            "직각"
+          ],
+          [
+            "같은",
+            "똑같은"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "182d96d22c95bb248bbf2060bd979a08c478ce5910d74f21c76ec71b72150625",
+      "questionRevision": "planning-e5e6-20261006-182d96d22c95",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-3-xc16",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "선대칭도형에서 대칭축으로 나뉜 한쪽 부분의 넓이만 알 때, 전체 넓이를 어떻게 구할 수 있는지 까닭과 함께 설명하세요. 한쪽 부분의 넓이가 $12\\,\\mathrm{cm} ^2$이면 전체 넓이는 얼마인가요?",
+      "bAnswer": "두 부분은 합동이라 넓이가 같으므로 한쪽 넓이를 $2$배 하면 된다. $12 \\times 2 = 24$이므로 $24\\,\\mathrm{cm} ^2$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 부분의 넓이가 같다",
+            "두 부분이 합동이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "한쪽 넓이를 $2$배 한다",
+            "한쪽 넓이를 두 번 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$24\\,\\mathrm{cm} ^2$",
+            "$24$"
+          ]
+        }
+      ],
+      "bGoal": "대칭축으로 나뉜 두 부분의 넓이가 같음을 이용해 전체 넓이를 구한다.",
+      "bReason": "일반 방법과 까닭을 먼저 묻고 수 예로 확인한다.",
+      "cDecision": "revise",
+      "cAfter": "선대칭도형에서 대칭축으로 나뉜 한쪽 부분의 넓이가 $15\\,\\mathrm{cm} ^2$이면, 전체 넓이는 {$30$} $\\mathrm{cm} ^2$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$30$"
+          ]
+        }
+      ],
+      "cReason": "'한쪽 넓이의 두 배'라는 긴 구절 대신 짧은 계산값을 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1304,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-3-xc16",
+        "section": "초5::2-3 합동과 대칭::2-3-3 선대칭도형과 그 성질 알아보기",
+        "term": "선대칭도형의 넓이",
+        "kind": "성질",
+        "level": "상",
+        "definition": "대칭축으로 나뉜 두 부분은 넓이가 같으므로 전체 넓이는 {한쪽 넓이의 두 배}이다.",
+        "studentC": "대칭축으로 나뉜 두 부분은 넓이가 같으므로 전체 넓이는 □이다.",
+        "answers": [
+          "한쪽 넓이의 두 배"
+        ]
+      },
+      "sourceFingerprint": "73ffb123c06f16fb973dfd1a732bc6680e160c3637ecb1429be29533f797fcb0",
+      "draftEvidence": "evidence/section-038-draft.json",
+      "cProposedAnswers": [
+        "$30$"
+      ],
+      "cStudentAfter": "선대칭도형에서 대칭축으로 나뉜 한쪽 부분의 넓이가 $15\\,\\mathrm{cm} ^2$이면, 전체 넓이는 □ $\\mathrm{cm} ^2$이다.",
+      "cMarkedSentence": "선대칭도형에서 대칭축으로 나뉜 한쪽 부분의 넓이가 $15\\,\\mathrm{cm} ^2$이면, 전체 넓이는 {$30$} $\\mathrm{cm} ^2$이다.",
+      "cStudentSentence": "선대칭도형에서 대칭축으로 나뉜 한쪽 부분의 넓이가 $15\\,\\mathrm{cm} ^2$이면, 전체 넓이는 □ $\\mathrm{cm} ^2$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$30$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "선대칭도형에서 대칭축으로 나뉜 한쪽 부분의 넓이만 알 때, 전체 넓이를 어떻게 구할 수 있는지 까닭과 함께 설명하세요. 한쪽 부분의 넓이가 $12\\,\\mathrm{cm} ^2$이면 전체 넓이는 얼마인가요?",
+        "answer": "두 부분은 합동이라 넓이가 같으므로 한쪽 넓이를 $2$배 하면 된다. $12 \\times 2 = 24$이므로 $24\\,\\mathrm{cm} ^2$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 부분의 넓이가 같다",
+              "두 부분이 합동이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한쪽 넓이를 $2$배 한다",
+              "한쪽 넓이를 두 번 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$24\\,\\mathrm{cm} ^2$",
+              "$24$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "선대칭도형에서 대칭축으로 나뉜 한쪽 부분의 넓이가 $15\\,\\mathrm{cm} ^2$이면, 전체 넓이는 {$30$} $\\mathrm{cm} ^2$이다.",
+        "acceptedAnswers": [
+          [
+            "$30$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "4485d3173e637bd8f4c2ac769dfdab93bc9bab87616963ce017aead831707ada",
+      "questionRevision": "planning-e5e6-20261006-4485d3173e63",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-3-xc17",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "원의 대칭축이 셀 수 없이 많음을 C에서 확인한다.",
+      "bReason": "원의 대칭축 조건과 개수는 xc4의 B에서 함께 묻는다.",
+      "exclusionReason": "B는 e5-2-3-3-xc4에 합쳤다. 대체: e5-2-3-3-xc4(B), 이 행의 C.",
+      "cDecision": "keep",
+      "cAfter": "원의 대칭축의 개수는 {셀 수 없이 많다}.",
+      "cReason": "원의 대칭축 개수만 묻는 짧은 문장으로, 정사각형·정삼각형의 개수 문장과 대비된다.",
+      "synonymNotes": "C 답은 '셀 수 없이 많다', '무수히 많다', '수없이 많다' 모두 인정.",
+      "exampleNeeded": false,
+      "sourceIndex": 1305,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-3-xc17",
+        "section": "초5::2-3 합동과 대칭::2-3-3 선대칭도형과 그 성질 알아보기",
+        "term": "원의 대칭축 수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "원의 대칭축의 개수는 {셀 수 없이 많다}.",
+        "studentC": "원의 대칭축의 개수는 □.",
+        "answers": [
+          "셀 수 없이 많다"
+        ]
+      },
+      "sourceFingerprint": "e9a3ec01be69501af45083e9f8350010cdcc3c9af837e63d331d3d850958c6f6",
+      "draftEvidence": "evidence/section-038-draft.json",
+      "cFrozenDefinition": "원의 대칭축의 개수는 {셀 수 없이 많다}.",
+      "cFrozenStudentSentence": "원의 대칭축의 개수는 □.",
+      "cProposedAnswers": [
+        "셀 수 없이 많다"
+      ],
+      "cStudentAfter": "원의 대칭축의 개수는 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "셀 수 없이 많다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "원의 대칭축의 개수는 {셀 수 없이 많다}.",
+      "cStudentSentence": "원의 대칭축의 개수는 □.",
+      "cSlotAnswers": [
+        {
+          "key": "셀 수 없이 많다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "원의 대칭축의 개수는 {셀 수 없이 많다}.",
+        "acceptedAnswers": [
+          [
+            "셀 수 없이 많다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e5-2-3-3-xc4에 합쳤다. 대체: e5-2-3-3-xc4(B), 이 행의 C."
+      },
+      "proposalFingerprint": "512463c9b6e19c648197739451dce42eeb35b501e9abc798cc2a3225e62536eb",
+      "questionRevision": "planning-e5e6-20261006-512463c9b6e1",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-3-xc18",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "정오각형의 대칭축 수와 위치를 C에서 확인한다.",
+      "bReason": "꼭짓점과 마주 보는 변의 한가운데를 지난다는 설명이 정삼각형 B와 같은 구조이다.",
+      "exclusionReason": "B는 e5-2-3-3-xc3(위치)과 e5-2-3-3-xc11(개수 규칙)로 대신한다.",
+      "cDecision": "revise",
+      "cAfter": "정오각형의 대칭축은 {$5$}개이고, 각각 한 꼭짓점과 그 꼭짓점이 마주 보는 변의 {한가운데}를 지난다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5$",
+            "다섯"
+          ]
+        },
+        {
+          "anyOf": [
+            "한가운데",
+            "가운데",
+            "중점"
+          ]
+        }
+      ],
+      "cReason": "'마주 보는 변의 한가운데'라는 긴 빈칸을 개수와 위치 낱말 두 개로 나누었다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1306,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-3-xc18",
+        "section": "초5::2-3 합동과 대칭::2-3-3 선대칭도형과 그 성질 알아보기",
+        "term": "정오각형의 대칭축",
+        "kind": "성질",
+        "level": "상",
+        "definition": "정오각형의 대칭축은 다섯 개이고, 각각 한 꼭짓점과 {마주 보는 변의 한가운데}를 지난다.",
+        "studentC": "정오각형의 대칭축은 다섯 개이고, 각각 한 꼭짓점과 □를 지난다.",
+        "answers": [
+          "마주 보는 변의 한가운데"
+        ]
+      },
+      "sourceFingerprint": "d78ce7c15f1cd6407a234b9a52be2f7a0880eb069ab5b03b572445d19ec95eee",
+      "draftEvidence": "evidence/section-038-draft.json",
+      "cProposedAnswers": [
+        "$5$",
+        "한가운데"
+      ],
+      "cStudentAfter": "정오각형의 대칭축은 □개이고, 각각 한 꼭짓점과 그 꼭짓점이 마주 보는 변의 □를 지난다.",
+      "cMarkedSentence": "정오각형의 대칭축은 {$5$}개이고, 각각 한 꼭짓점과 그 꼭짓점이 마주 보는 변의 {한가운데}를 지난다.",
+      "cStudentSentence": "정오각형의 대칭축은 □개이고, 각각 한 꼭짓점과 그 꼭짓점이 마주 보는 변의 □를 지난다.",
+      "cSlotAnswers": [
+        {
+          "key": "$5$",
+          "equivalents": [
+            "다섯"
+          ]
+        },
+        {
+          "key": "한가운데",
+          "equivalents": [
+            "가운데",
+            "중점"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "정오각형의 대칭축은 {$5$}개이고, 각각 한 꼭짓점과 그 꼭짓점이 마주 보는 변의 {한가운데}를 지난다.",
+        "acceptedAnswers": [
+          [
+            "$5$",
+            "다섯"
+          ],
+          [
+            "한가운데",
+            "가운데",
+            "중점"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e5-2-3-3-xc3(위치)과 e5-2-3-3-xc11(개수 규칙)로 대신한다."
+      },
+      "proposalFingerprint": "99270e564b94eddb4ef1f2c16ee999105cc83d3631e989533a1c29a5c964297a",
+      "questionRevision": "planning-e5e6-20261006-99270e564b94",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-3-xc19",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "정육각형의 대칭축은 모두 몇 개인지 쓰고, 그 대칭축들이 어떤 두 종류의 직선으로 이루어져 있는지 설명하세요.",
+      "bAnswer": "$6$개이다. 마주 보는 꼭짓점끼리 이은 직선 $3$개와 마주 보는 변의 한가운데끼리 이은 직선 $3$개이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$6$개",
+            "여섯 개"
+          ]
+        },
+        {
+          "anyOf": [
+            "마주 보는 꼭짓점끼리 이은 직선"
+          ]
+        },
+        {
+          "anyOf": [
+            "마주 보는 변의 한가운데끼리 이은 직선"
+          ]
+        }
+      ],
+      "bGoal": "변의 수가 짝수인 정다각형의 대칭축 두 종류를 구별한다.",
+      "bReason": "정삼각형·정오각형과 달리 대칭축이 두 종류라는 점이 이 행만의 내용이다.",
+      "cDecision": "keep",
+      "cAfter": "정육각형의 대칭축 여섯 개 중 세 개는 {마주 보는 꼭짓점}끼리, 세 개는 마주 보는 변의 한가운데끼리 잇는다.",
+      "cReason": "두 종류 가운데 한쪽을 문장에서 주고 다른 쪽을 답하게 해 대비가 분명하다.",
+      "synonymNotes": "C 답은 '마주 보는 꼭짓점', '마주 보는 두 꼭짓점' 모두 인정.",
+      "exampleNeeded": false,
+      "sourceIndex": 1307,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-3-xc19",
+        "section": "초5::2-3 합동과 대칭::2-3-3 선대칭도형과 그 성질 알아보기",
+        "term": "정육각형의 대칭축",
+        "kind": "성질",
+        "level": "상",
+        "definition": "정육각형의 대칭축 여섯 개 중 세 개는 {마주 보는 꼭짓점}끼리, 세 개는 마주 보는 변의 한가운데끼리 잇는다.",
+        "studentC": "정육각형의 대칭축 여섯 개 중 세 개는 □끼리, 세 개는 마주 보는 변의 한가운데끼리 잇는다.",
+        "answers": [
+          "마주 보는 꼭짓점"
+        ]
+      },
+      "sourceFingerprint": "e75d4de0547f39be43a8fef82f3eb197110786ed8f64c025023b275123d76a17",
+      "draftEvidence": "evidence/section-038-draft.json",
+      "cFrozenDefinition": "정육각형의 대칭축 여섯 개 중 세 개는 {마주 보는 꼭짓점}끼리, 세 개는 마주 보는 변의 한가운데끼리 잇는다.",
+      "cFrozenStudentSentence": "정육각형의 대칭축 여섯 개 중 세 개는 □끼리, 세 개는 마주 보는 변의 한가운데끼리 잇는다.",
+      "cProposedAnswers": [
+        "마주 보는 꼭짓점"
+      ],
+      "cStudentAfter": "정육각형의 대칭축 여섯 개 중 세 개는 □끼리, 세 개는 마주 보는 변의 한가운데끼리 잇는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "마주 보는 꼭짓점"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "정육각형의 대칭축 여섯 개 중 세 개는 {마주 보는 꼭짓점}끼리, 세 개는 마주 보는 변의 한가운데끼리 잇는다.",
+      "cStudentSentence": "정육각형의 대칭축 여섯 개 중 세 개는 □끼리, 세 개는 마주 보는 변의 한가운데끼리 잇는다.",
+      "cSlotAnswers": [
+        {
+          "key": "마주 보는 꼭짓점",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "정육각형의 대칭축은 모두 몇 개인지 쓰고, 그 대칭축들이 어떤 두 종류의 직선으로 이루어져 있는지 설명하세요.",
+        "answer": "$6$개이다. 마주 보는 꼭짓점끼리 이은 직선 $3$개와 마주 보는 변의 한가운데끼리 이은 직선 $3$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$6$개",
+              "여섯 개"
+            ]
+          },
+          {
+            "anyOf": [
+              "마주 보는 꼭짓점끼리 이은 직선"
+            ]
+          },
+          {
+            "anyOf": [
+              "마주 보는 변의 한가운데끼리 이은 직선"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "정육각형의 대칭축 여섯 개 중 세 개는 {마주 보는 꼭짓점}끼리, 세 개는 마주 보는 변의 한가운데끼리 잇는다.",
+        "acceptedAnswers": [
+          [
+            "마주 보는 꼭짓점"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "4b2fdc93dffaf826af3758b2cd3a25d5e4620d0fb7a25fb9864365941d62a506",
+      "questionRevision": "planning-e5e6-20261006-4b2fdc93dffa",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-3-xc20",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "선대칭도형에서 대칭축 밖에 있는 대응점끼리 이은 선분을 여러 개 그렸습니다. 서로 겹치지 않는 이 선분들은 서로 어떤 관계인지, 각 선분과 대칭축의 관계를 이용해 설명하세요.",
+      "bAnswer": "선분들은 모두 대칭축에 수직이다. 한 직선에 수직인 선분들이므로 서로 평행하다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "선분들은 서로 평행하다"
+          ]
+        },
+        {
+          "anyOf": [
+            "모두 대칭축에 수직이기 때문이다",
+            "모두 대칭축과 직각으로 만나기 때문이다"
+          ]
+        }
+      ],
+      "bGoal": "대응점을 이은 선분들이 평행한 까닭을 수직 관계로 설명한다.",
+      "bReason": "4학년의 수직·평행 관계와 연결되는 추론이라 근거를 지정해 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "대칭축 밖의 대응점끼리 이은 선분들은 모두 대칭축에 {수직}이므로, 겹치지 않으면 서로 {평행}하다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "수직"
+          ]
+        },
+        {
+          "anyOf": [
+            "평행"
+          ]
+        }
+      ],
+      "cReason": "수직만 빈칸이면 결론인 평행이 그대로 보이므로 두 관계를 모두 빈칸으로 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1308,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-3-xc20",
+        "section": "초5::2-3 합동과 대칭::2-3-3 선대칭도형과 그 성질 알아보기",
+        "term": "대응점을 이은 선분들",
+        "kind": "성질",
+        "level": "상",
+        "definition": "대칭축 밖의 대응점끼리 이은 선분들은 모두 대칭축에 {수직}이고, 겹치지 않으면 서로 평행하다.",
+        "studentC": "대칭축 밖의 대응점끼리 이은 선분들은 모두 대칭축에 □이고, 겹치지 않으면 서로 평행하다.",
+        "answers": [
+          "수직"
+        ]
+      },
+      "sourceFingerprint": "c521ef88656d17efb91e871a03c069c9ee7d24e19c8b9ae0d61005d05f277318",
+      "draftEvidence": "evidence/section-038-draft.json",
+      "cProposedAnswers": [
+        "수직",
+        "평행"
+      ],
+      "cStudentAfter": "대칭축 밖의 대응점끼리 이은 선분들은 모두 대칭축에 □이므로, 겹치지 않으면 서로 □하다.",
+      "cMarkedSentence": "대칭축 밖의 대응점끼리 이은 선분들은 모두 대칭축에 {수직}이므로, 겹치지 않으면 서로 {평행}하다.",
+      "cStudentSentence": "대칭축 밖의 대응점끼리 이은 선분들은 모두 대칭축에 □이므로, 겹치지 않으면 서로 □하다.",
+      "cSlotAnswers": [
+        {
+          "key": "수직",
+          "equivalents": []
+        },
+        {
+          "key": "평행",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "선대칭도형에서 대칭축 밖에 있는 대응점끼리 이은 선분을 여러 개 그렸습니다. 서로 겹치지 않는 이 선분들은 서로 어떤 관계인지, 각 선분과 대칭축의 관계를 이용해 설명하세요.",
+        "answer": "선분들은 모두 대칭축에 수직이다. 한 직선에 수직인 선분들이므로 서로 평행하다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "선분들은 서로 평행하다"
+            ]
+          },
+          {
+            "anyOf": [
+              "모두 대칭축에 수직이기 때문이다",
+              "모두 대칭축과 직각으로 만나기 때문이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "대칭축 밖의 대응점끼리 이은 선분들은 모두 대칭축에 {수직}이므로, 겹치지 않으면 서로 {평행}하다.",
+        "acceptedAnswers": [
+          [
+            "수직"
+          ],
+          [
+            "평행"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "72dc25755e52095d81784dd834986f907f965d03568a34b5e107a45eede4daf4",
+      "questionRevision": "planning-e5e6-20261006-72dc25755e52",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-3-xc21",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "선대칭도형에서 대칭축이 한 꼭짓점을 지납니다. 대칭축은 그 꼭짓점의 각을 어떻게 나누는지 쓰고, 그 까닭을 도형을 접는 것과 관련지어 설명하세요.",
+      "bAnswer": "크기가 같은 두 각으로 나눈다. 대칭축을 따라 접으면 나뉜 두 각이 완전히 겹치기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "크기가 같은 두 각으로 나눈다",
+            "각을 똑같이 반으로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "접으면 두 각이 완전히 겹치기 때문이다",
+            "접으면 두 각이 꼭 맞게 포개지기 때문이다"
+          ]
+        }
+      ],
+      "bGoal": "대칭축이 지나는 꼭짓점의 각이 똑같이 나뉨을 접어 겹침으로 설명한다.",
+      "bReason": "편집용 제목 대신 상황을 질문에 풀어 쓰고 결과와 까닭을 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "선대칭도형에서 대칭축이 지나는 꼭짓점의 각이 $80 ^\\circ$이면, 대칭축은 이 각을 {$40$}$^\\circ$인 두 각으로 나눈다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$40$"
+          ]
+        }
+      ],
+      "cReason": "'크기가 같은 두 각'이라는 긴 구절 대신 실제 각도로 똑같이 나뉨을 확인한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1309,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-3-xc21",
+        "section": "초5::2-3 합동과 대칭::2-3-3 선대칭도형과 그 성질 알아보기",
+        "term": "대칭축이 지나는 꼭짓점의 각",
+        "kind": "성질",
+        "level": "상",
+        "definition": "대칭축이 지나는 꼭짓점의 각은 대칭축에 의해 {크기가 같은 두 각}으로 나뉜다.",
+        "studentC": "대칭축이 지나는 꼭짓점의 각은 대칭축에 의해 □으로 나뉜다.",
+        "answers": [
+          "크기가 같은 두 각"
+        ]
+      },
+      "sourceFingerprint": "34a2b17edfc8a3c08cbf8ea9374351f7219a1b8a4013d4d1d78be03dcb6fa79c",
+      "draftEvidence": "evidence/section-038-draft.json",
+      "cProposedAnswers": [
+        "$40$"
+      ],
+      "cStudentAfter": "선대칭도형에서 대칭축이 지나는 꼭짓점의 각이 $80 ^\\circ$이면, 대칭축은 이 각을 □$^\\circ$인 두 각으로 나눈다.",
+      "cMarkedSentence": "선대칭도형에서 대칭축이 지나는 꼭짓점의 각이 $80 ^\\circ$이면, 대칭축은 이 각을 {$40$}$^\\circ$인 두 각으로 나눈다.",
+      "cStudentSentence": "선대칭도형에서 대칭축이 지나는 꼭짓점의 각이 $80 ^\\circ$이면, 대칭축은 이 각을 □$^\\circ$인 두 각으로 나눈다.",
+      "cSlotAnswers": [
+        {
+          "key": "$40$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "선대칭도형에서 대칭축이 한 꼭짓점을 지납니다. 대칭축은 그 꼭짓점의 각을 어떻게 나누는지 쓰고, 그 까닭을 도형을 접는 것과 관련지어 설명하세요.",
+        "answer": "크기가 같은 두 각으로 나눈다. 대칭축을 따라 접으면 나뉜 두 각이 완전히 겹치기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "크기가 같은 두 각으로 나눈다",
+              "각을 똑같이 반으로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "접으면 두 각이 완전히 겹치기 때문이다",
+              "접으면 두 각이 꼭 맞게 포개지기 때문이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "선대칭도형에서 대칭축이 지나는 꼭짓점의 각이 $80 ^\\circ$이면, 대칭축은 이 각을 {$40$}$^\\circ$인 두 각으로 나눈다.",
+        "acceptedAnswers": [
+          [
+            "$40$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "7546c6eddab9a5774ebb32dc6a06bbac0b981df53f34f1a4d8d50a6fadaf7f6b",
+      "questionRevision": "planning-e5e6-20261006-7546c6eddab9",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-3-xc22",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "완전히 겹치게 접는 직선이 있는지 없는지로 선대칭도형을 가른다.",
+      "bReason": "선대칭도형 뜻의 반대 경우일 뿐이고 실제 판단은 평행사변형 B에서 다룬다.",
+      "exclusionReason": "B는 e5-2-3-3-c1(뜻)과 e5-2-3-3-xc10(아닌 예의 판단)과 겹친다.",
+      "cDecision": "revise",
+      "cAfter": "접었을 때 양쪽이 완전히 겹치는 직선이 {하나}라도 있으면 선대칭도형이고, 그런 직선이 {없으면} 선대칭도형이 아니다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "하나",
+            "한 개",
+            "$1$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "없으면",
+            "하나도 없으면"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸은 앞 조건만 보고 결론을 베끼게 되므로 직선이 하나라도 있는지로 가르게 바꾸었다.",
+      "coreAfter": "어느 직선을 따라 접어도 양쪽이 완전히 겹치지 않는 도형은 {선대칭도형이 아니다}.",
+      "coreReason": "접으면 일부는 항상 겹치므로 '겹치지 않으면'은 부정확하며 '완전히'가 있어야 한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "coreTargetReason": "선대칭도형이 아니다라는 원문 표적을 보존하고 일부 겹침과 완전히 겹침의 차이를 명시한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 1310,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-3-xc22",
+        "section": "초5::2-3 합동과 대칭::2-3-3 선대칭도형과 그 성질 알아보기",
+        "term": "선대칭도형이 아닌 것 가려내기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "어느 직선으로 접어도 양쪽이 겹치지 않으면 {선대칭도형이 아니다}.",
+        "studentC": "어느 직선으로 접어도 양쪽이 겹치지 않으면 □.",
+        "answers": [
+          "선대칭도형이 아니다"
+        ]
+      },
+      "sourceFingerprint": "fd98296ce695ac80c2c62e8d7d15f1debed0af3e8d56dc654cbe5ff547aae21a",
+      "draftEvidence": "evidence/section-038-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "하나",
+        "없으면"
+      ],
+      "cStudentAfter": "접었을 때 양쪽이 완전히 겹치는 직선이 □라도 있으면 선대칭도형이고, 그런 직선이 □ 선대칭도형이 아니다.",
+      "cMarkedSentence": "접었을 때 양쪽이 완전히 겹치는 직선이 {하나}라도 있으면 선대칭도형이고, 그런 직선이 {없으면} 선대칭도형이 아니다.",
+      "cStudentSentence": "접었을 때 양쪽이 완전히 겹치는 직선이 □라도 있으면 선대칭도형이고, 그런 직선이 □ 선대칭도형이 아니다.",
+      "cSlotAnswers": [
+        {
+          "key": "하나",
+          "equivalents": [
+            "한 개",
+            "$1$개"
+          ]
+        },
+        {
+          "key": "없으면",
+          "equivalents": [
+            "하나도 없으면"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "접었을 때 양쪽이 완전히 겹치는 직선이 {하나}라도 있으면 선대칭도형이고, 그런 직선이 {없으면} 선대칭도형이 아니다.",
+        "acceptedAnswers": [
+          [
+            "하나",
+            "한 개",
+            "$1$개"
+          ],
+          [
+            "없으면",
+            "하나도 없으면"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e5-2-3-3-c1(뜻)과 e5-2-3-3-xc10(아닌 예의 판단)과 겹친다."
+      },
+      "proposalFingerprint": "e77c4151a8bcdc87406c53f2332d9d3ca67fc2d35ad03a9e8605f60b0c152daf",
+      "questionRevision": "planning-e5e6-20261006-e77c4151a8bc",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-3-xc23",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "두 변이 같은 직각삼각형도 이등변삼각형이라 대칭축이 한 개임을 확인한다.",
+      "bReason": "이등변삼각형의 대칭축 B의 특수한 경우라 설명 내용이 같다.",
+      "exclusionReason": "B는 e5-2-3-3-xc8과 중복이다. 대체: e5-2-3-3-xc8(B), 이 행의 C.",
+      "cDecision": "keep",
+      "cAfter": "두 변의 길이가 같은 직각삼각형은 대칭축이 {한 개}인 선대칭도형이다.",
+      "cReason": "직각삼각형 가운데 두 변이 같은 경우라는 조건이 분명하고 답이 짧다.",
+      "synonymNotes": "C 답은 '한 개', '1개' 모두 인정.",
+      "exampleNeeded": false,
+      "sourceIndex": 1311,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-3-xc23",
+        "section": "초5::2-3 합동과 대칭::2-3-3 선대칭도형과 그 성질 알아보기",
+        "term": "두 변이 같은 직각삼각형",
+        "kind": "성질",
+        "level": "상",
+        "definition": "두 변의 길이가 같은 직각삼각형은 대칭축이 {한 개}인 선대칭도형이다.",
+        "studentC": "두 변의 길이가 같은 직각삼각형은 대칭축이 □인 선대칭도형이다.",
+        "answers": [
+          "한 개"
+        ]
+      },
+      "sourceFingerprint": "d754d080202479345acb8dad25369a5c5e9d3020b5eec51d5f56ba347913df78",
+      "draftEvidence": "evidence/section-038-draft.json",
+      "cFrozenDefinition": "두 변의 길이가 같은 직각삼각형은 대칭축이 {한 개}인 선대칭도형이다.",
+      "cFrozenStudentSentence": "두 변의 길이가 같은 직각삼각형은 대칭축이 □인 선대칭도형이다.",
+      "cProposedAnswers": [
+        "한 개"
+      ],
+      "cStudentAfter": "두 변의 길이가 같은 직각삼각형은 대칭축이 □인 선대칭도형이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "한 개"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "두 변의 길이가 같은 직각삼각형은 대칭축이 {한 개}인 선대칭도형이다.",
+      "cStudentSentence": "두 변의 길이가 같은 직각삼각형은 대칭축이 □인 선대칭도형이다.",
+      "cSlotAnswers": [
+        {
+          "key": "한 개",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "두 변의 길이가 같은 직각삼각형은 대칭축이 {한 개}인 선대칭도형이다.",
+        "acceptedAnswers": [
+          [
+            "한 개"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e5-2-3-3-xc8과 중복이다. 대체: e5-2-3-3-xc8(B), 이 행의 C."
+      },
+      "proposalFingerprint": "b007f879d4c70b9328f203129f2f88a49640203d60c012955271ac45cc581e08",
+      "questionRevision": "planning-e5e6-20261006-b007f879d4c7",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-4-xc1",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "점대칭도형인지 확인하는 방법은 c1의 정의와 같다.",
+      "bReason": "c1의 정의를 방법으로 다시 쓴 것이라 답이 같다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "긴 구절을 통째로 비웠고, 줄여도 c1 수정 C와 같은 빈칸이 된다.",
+      "exclusionReason": "c1과 중복. 대체: e5-2-3-4-c1 (B, C)",
+      "exampleNeeded": false,
+      "sourceIndex": 1312,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-4-xc1",
+        "section": "초5::2-3 합동과 대칭::2-3-4 점대칭도형과 그 성질 알아보기",
+        "term": "반 바퀴 돌려 알아보기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "도형을 한 점 둘레로 반 바퀴 돌려 {처음 모양과 꼭 맞게 겹치는지} 보면 점대칭도형인지 알 수 있다.",
+        "studentC": "도형을 한 점 둘레로 반 바퀴 돌려 □ 보면 점대칭도형인지 알 수 있다.",
+        "answers": [
+          "처음 모양과 꼭 맞게 겹치는지"
+        ]
+      },
+      "sourceFingerprint": "2a63af8aa3d6779d5b8c02b20d20c13a7946488c05d65c454c3a235bcd9a560a",
+      "draftEvidence": "evidence/section-039-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "c1과 중복. 대체: e5-2-3-4-c1 (B, C)",
+        "cloze": "c1과 중복. 대체: e5-2-3-4-c1 (B, C)"
+      },
+      "proposalFingerprint": "a86bfb67e7aba6c860ceef2b9d6bd6034b1eaf1e201752066bbf75196923c5c9",
+      "questionRevision": "planning-e5e6-20261006-a86bfb67e7ab",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-4-xc2",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "반 바퀴가 180°임은 빈칸으로 확인하면 충분하다.",
+      "bReason": "값 하나만 답하는 사실이라 서술형 가치가 없다.",
+      "cDecision": "keep",
+      "cAfter": "반 바퀴는 {$180^\\circ$}만큼 돌리는 것이다.",
+      "cReason": "반 바퀴를 각도로 바꾸는 짧은 문장으로 답이 하나로 정해진다.",
+      "exclusionReason": "B만 제외: 단순 값 하나. C는 유지.",
+      "exampleNeeded": false,
+      "synonymNotes": "'180°'와 함께 '180도'도 인정.",
+      "sourceIndex": 1313,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-4-xc2",
+        "section": "초5::2-3 합동과 대칭::2-3-4 점대칭도형과 그 성질 알아보기",
+        "term": "반 바퀴의 각도",
+        "kind": "성질",
+        "level": "하",
+        "definition": "반 바퀴는 {$180^\\circ$}만큼 돌리는 것이다.",
+        "studentC": "반 바퀴는 □만큼 돌리는 것이다.",
+        "answers": [
+          "$180^\\circ$"
+        ]
+      },
+      "sourceFingerprint": "052da8a2169c9396c05c78e70f1ebc6e1b993615122169dc2952e35d501769a2",
+      "draftEvidence": "evidence/section-039-draft.json",
+      "cFrozenDefinition": "반 바퀴는 {$180^\\circ$}만큼 돌리는 것이다.",
+      "cFrozenStudentSentence": "반 바퀴는 □만큼 돌리는 것이다.",
+      "cProposedAnswers": [
+        "$180^\\circ$"
+      ],
+      "cStudentAfter": "반 바퀴는 □만큼 돌리는 것이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$180^\\circ$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "반 바퀴는 {$180^\\circ$}만큼 돌리는 것이다.",
+      "cStudentSentence": "반 바퀴는 □만큼 돌리는 것이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$180^\\circ$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "반 바퀴는 {$180^\\circ$}만큼 돌리는 것이다.",
+        "acceptedAnswers": [
+          [
+            "$180^\\circ$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B만 제외: 단순 값 하나. C는 유지."
+      },
+      "proposalFingerprint": "18ad572490dd2af479b07433de3635f912bef3232200c3dbd4ecc133992e0ae1",
+      "questionRevision": "planning-e5e6-20261006-18ad572490dd",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-4-xc3",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "정사각형과 직사각형은 점대칭도형입니다. 이 도형들에서 대칭의 중심은 어디에 있는지 설명하시오.",
+      "bAnswer": "두 대각선이 만나는 점이 대칭의 중심이다. (마주 보는 꼭짓점이 대응점이라, 대응점끼리 이은 두 선분이 만나는 점이다.)",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 대각선이 만나는 점",
+            "마주 보는 꼭짓점끼리 이은 두 선분이 만나는 점"
+          ]
+        }
+      ],
+      "bGoal": "정사각형·직사각형의 대칭의 중심 위치를 말한다.",
+      "bReason": "xc3과 xc6의 답이 같아 한 질문으로 합쳤다.",
+      "cDecision": "revise",
+      "cAfter": "정사각형과 직사각형의 대칭의 중심은 두 {대각선}이 만나는 점이다.",
+      "cReason": "긴 구절 대신 핵심 낱말만 비우고 직사각형(xc6)도 함께 담았다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1314,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-4-xc3",
+        "section": "초5::2-3 합동과 대칭::2-3-4 점대칭도형과 그 성질 알아보기",
+        "term": "정사각형의 대칭의 중심",
+        "kind": "성질",
+        "level": "하",
+        "definition": "정사각형은 {두 대각선이 만나는 점}을 대칭의 중심으로 하는 점대칭도형이다.",
+        "studentC": "정사각형은 □을 대칭의 중심으로 하는 점대칭도형이다.",
+        "answers": [
+          "두 대각선이 만나는 점"
+        ]
+      },
+      "sourceFingerprint": "8573627058e42c1cf9c9fff54106ffa71bc757e73f7b19d7c00aa445160dd22a",
+      "draftEvidence": "evidence/section-039-draft.json",
+      "cProposedAnswers": [
+        "대각선"
+      ],
+      "cStudentAfter": "정사각형과 직사각형의 대칭의 중심은 두 □이 만나는 점이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "대각선"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "정사각형과 직사각형의 대칭의 중심은 두 {대각선}이 만나는 점이다.",
+      "cStudentSentence": "정사각형과 직사각형의 대칭의 중심은 두 □이 만나는 점이다.",
+      "cSlotAnswers": [
+        {
+          "key": "대각선",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "정사각형과 직사각형은 점대칭도형입니다. 이 도형들에서 대칭의 중심은 어디에 있는지 설명하시오.",
+        "answer": "두 대각선이 만나는 점이 대칭의 중심이다. (마주 보는 꼭짓점이 대응점이라, 대응점끼리 이은 두 선분이 만나는 점이다.)",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 대각선이 만나는 점",
+              "마주 보는 꼭짓점끼리 이은 두 선분이 만나는 점"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "정사각형과 직사각형의 대칭의 중심은 두 {대각선}이 만나는 점이다.",
+        "acceptedAnswers": [
+          [
+            "대각선"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ff244dbcadca2f239924e51dfd9c4a4510e34e635f5a4a2812a12bca9302eb84",
+      "questionRevision": "planning-e5e6-20261006-ff244dbcadca",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-4-xc4",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "원의 대칭의 중심은 빈칸으로 확인하면 충분하다.",
+      "bReason": "답이 '원의 중심' 한 낱말뿐이라 설명할 관계가 없다.",
+      "cDecision": "keep",
+      "cAfter": "원은 {원의 중심}을 대칭의 중심으로 하는 점대칭도형이다.",
+      "cReason": "원의 대칭의 중심 위치를 묻는 짧은 문장으로 초3에서 배운 '원의 중심'으로 답할 수 있다.",
+      "exclusionReason": "B만 제외: 한 낱말 사실. C는 유지.",
+      "exampleNeeded": false,
+      "synonymNotes": "'원의 중심'과 함께 '중심'도 인정.",
+      "sourceIndex": 1315,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-4-xc4",
+        "section": "초5::2-3 합동과 대칭::2-3-4 점대칭도형과 그 성질 알아보기",
+        "term": "원의 대칭의 중심",
+        "kind": "성질",
+        "level": "하",
+        "definition": "원은 {원의 중심}을 대칭의 중심으로 하는 점대칭도형이다.",
+        "studentC": "원은 □을 대칭의 중심으로 하는 점대칭도형이다.",
+        "answers": [
+          "원의 중심"
+        ]
+      },
+      "sourceFingerprint": "d7ed0e4c447c8385203af71836d66b42fc5c9c1c9b344039e3fef88177193272",
+      "draftEvidence": "evidence/section-039-draft.json",
+      "cFrozenDefinition": "원은 {원의 중심}을 대칭의 중심으로 하는 점대칭도형이다.",
+      "cFrozenStudentSentence": "원은 □을 대칭의 중심으로 하는 점대칭도형이다.",
+      "cProposedAnswers": [
+        "원의 중심"
+      ],
+      "cStudentAfter": "원은 □을 대칭의 중심으로 하는 점대칭도형이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "원의 중심"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "원은 {원의 중심}을 대칭의 중심으로 하는 점대칭도형이다.",
+      "cStudentSentence": "원은 □을 대칭의 중심으로 하는 점대칭도형이다.",
+      "cSlotAnswers": [
+        {
+          "key": "원의 중심",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "원은 {원의 중심}을 대칭의 중심으로 하는 점대칭도형이다.",
+        "acceptedAnswers": [
+          [
+            "원의 중심"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B만 제외: 한 낱말 사실. C는 유지."
+      },
+      "proposalFingerprint": "1ad5b397cf254878811013d065a2f6172e257f2d4cbe0849b1f850f45cd4d9c5",
+      "questionRevision": "planning-e5e6-20261006-1ad5b397cf25",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-4-xc5",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "정삼각형은 점대칭도형입니까? 반 바퀴 돌렸을 때 처음 도형과 어떻게 되는지를 들어 설명하시오.",
+      "bAnswer": "점대칭도형이 아니다. 어느 점을 중심으로 $180 ^\\circ$ 돌려도 꼭짓점의 방향이 반대로 되어 처음 도형과 완전히 겹치지 않는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "점대칭도형이 아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "반 바퀴($180 ^\\circ$) 돌리면 처음 도형과 완전히 겹치지 않는다",
+            "반 바퀴 돌리면 뒤집힌 방향의 모양이 되어 포개어지지 않는다"
+          ]
+        }
+      ],
+      "bGoal": "정삼각형이 점대칭도형이 아닌 까닭을 정의로 판단한다.",
+      "bReason": "선대칭도형이라 점대칭으로도 착각하기 쉬운 대표 반례다.",
+      "cDecision": "revise",
+      "cAfter": "정삼각형은 어느 점을 중심으로 반 바퀴 돌려도 처음 도형과 완전히 겹치지 않으므로 점대칭도형이 {아니다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "아니다",
+            "아닙니다"
+          ]
+        }
+      ],
+      "cReason": "문장 끝 전체를 비운 서술형 빈칸을 판단 낱말 하나로 줄였다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1316,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-4-xc5",
+        "section": "초5::2-3 합동과 대칭::2-3-4 점대칭도형과 그 성질 알아보기",
+        "term": "정삼각형과 점대칭",
+        "kind": "성질",
+        "level": "하",
+        "definition": "정삼각형은 어느 점 둘레로 반 바퀴 돌려도 꼭 맞게 겹치지 않으므로 {점대칭도형이 아니다}.",
+        "studentC": "정삼각형은 어느 점 둘레로 반 바퀴 돌려도 꼭 맞게 겹치지 않으므로 □.",
+        "answers": [
+          "점대칭도형이 아니다"
+        ]
+      },
+      "sourceFingerprint": "4aac99535d374ee6db3726e6d7c71999309740f5622e2b7efbe5af6eb63163e6",
+      "draftEvidence": "evidence/section-039-draft.json",
+      "cProposedAnswers": [
+        "아니다"
+      ],
+      "cStudentAfter": "정삼각형은 어느 점을 중심으로 반 바퀴 돌려도 처음 도형과 완전히 겹치지 않으므로 점대칭도형이 □.",
+      "cMarkedSentence": "정삼각형은 어느 점을 중심으로 반 바퀴 돌려도 처음 도형과 완전히 겹치지 않으므로 점대칭도형이 {아니다}.",
+      "cStudentSentence": "정삼각형은 어느 점을 중심으로 반 바퀴 돌려도 처음 도형과 완전히 겹치지 않으므로 점대칭도형이 □.",
+      "cSlotAnswers": [
+        {
+          "key": "아니다",
+          "equivalents": [
+            "아닙니다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "정삼각형은 점대칭도형입니까? 반 바퀴 돌렸을 때 처음 도형과 어떻게 되는지를 들어 설명하시오.",
+        "answer": "점대칭도형이 아니다. 어느 점을 중심으로 $180 ^\\circ$ 돌려도 꼭짓점의 방향이 반대로 되어 처음 도형과 완전히 겹치지 않는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "점대칭도형이 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "반 바퀴($180 ^\\circ$) 돌리면 처음 도형과 완전히 겹치지 않는다",
+              "반 바퀴 돌리면 뒤집힌 방향의 모양이 되어 포개어지지 않는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "정삼각형은 어느 점을 중심으로 반 바퀴 돌려도 처음 도형과 완전히 겹치지 않으므로 점대칭도형이 {아니다}.",
+        "acceptedAnswers": [
+          [
+            "아니다",
+            "아닙니다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e4e2613de1cfc22b0839205e299888f3e4934e849238b05bc9919bcfbcc06204",
+      "questionRevision": "planning-e5e6-20261006-e4e2613de1cf",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-4-xc6",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "직사각형의 대칭의 중심은 xc3에서 함께 확인한다.",
+      "bReason": "xc3의 정사각형과 답이 같다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "xc3 수정 C가 직사각형을 포함해 같은 빈칸이 반복된다.",
+      "exclusionReason": "xc3과 중복. 대체: e5-2-3-4-xc3 (B, C)",
+      "exampleNeeded": false,
+      "sourceIndex": 1317,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-4-xc6",
+        "section": "초5::2-3 합동과 대칭::2-3-4 점대칭도형과 그 성질 알아보기",
+        "term": "직사각형의 대칭의 중심",
+        "kind": "성질",
+        "level": "중",
+        "definition": "직사각형의 대칭의 중심은 {대각선 두 개가 만나는 점}이다.",
+        "studentC": "직사각형의 대칭의 중심은 □이다.",
+        "answers": [
+          "대각선 두 개가 만나는 점"
+        ]
+      },
+      "sourceFingerprint": "f25f74af07a711bff5599db5ffc2fab576541614df97b208d5af9d1f4222eab9",
+      "draftEvidence": "evidence/section-039-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "xc3과 중복. 대체: e5-2-3-4-xc3 (B, C)",
+        "cloze": "xc3과 중복. 대체: e5-2-3-4-xc3 (B, C)"
+      },
+      "proposalFingerprint": "5839743ec417ec41f1d32bfd3cbafe767dc8cf73ffdec39b3570641c6bcf22f2",
+      "questionRevision": "planning-e5e6-20261006-5839743ec417",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-4-xc7",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "직사각형도 마름모도 아닌 평행사변형은 선대칭도형인지, 점대칭도형인지 각각 답하시오. 점대칭도형이라면 대칭의 중심이 어디인지도 쓰시오.",
+      "bAnswer": "선대칭도형은 아니고 점대칭도형이다. 대칭의 중심은 두 대각선이 만나는 점이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "선대칭도형이 아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "점대칭도형이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "대칭의 중심은 두 대각선이 만나는 점이다"
+          ]
+        }
+      ],
+      "bGoal": "평행사변형으로 선대칭과 점대칭이 서로 다른 성질임을 구별한다.",
+      "bReason": "두 대칭을 혼동하지 않는지 확인하는 대표 도형이라 판단과 중심 위치를 함께 물었다.",
+      "cDecision": "keep",
+      "cAfter": "직사각형도 마름모도 아닌 평행사변형은 선대칭도형이 아니지만 {점대칭도형}이다.",
+      "cReason": "조건(직사각형도 마름모도 아님)이 정확하고 선대칭과 대비되는 답이 한 용어로 정해진다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1318,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-4-xc7",
+        "section": "초5::2-3 합동과 대칭::2-3-4 점대칭도형과 그 성질 알아보기",
+        "term": "평행사변형과 점대칭",
+        "kind": "성질",
+        "level": "중",
+        "definition": "직사각형도 마름모도 아닌 평행사변형은 선대칭도형이 아니지만 {점대칭도형}이다.",
+        "studentC": "직사각형도 마름모도 아닌 평행사변형은 선대칭도형이 아니지만 □이다.",
+        "answers": [
+          "점대칭도형"
+        ]
+      },
+      "sourceFingerprint": "20888afca81c747babe2a784e54cbf727b3fda928e4ad1b0725dea00616eebb4",
+      "draftEvidence": "evidence/section-039-draft.json",
+      "cFrozenDefinition": "직사각형도 마름모도 아닌 평행사변형은 선대칭도형이 아니지만 {점대칭도형}이다.",
+      "cFrozenStudentSentence": "직사각형도 마름모도 아닌 평행사변형은 선대칭도형이 아니지만 □이다.",
+      "cProposedAnswers": [
+        "점대칭도형"
+      ],
+      "cStudentAfter": "직사각형도 마름모도 아닌 평행사변형은 선대칭도형이 아니지만 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "점대칭도형"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "직사각형도 마름모도 아닌 평행사변형은 선대칭도형이 아니지만 {점대칭도형}이다.",
+      "cStudentSentence": "직사각형도 마름모도 아닌 평행사변형은 선대칭도형이 아니지만 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "점대칭도형",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직사각형도 마름모도 아닌 평행사변형은 선대칭도형인지, 점대칭도형인지 각각 답하시오. 점대칭도형이라면 대칭의 중심이 어디인지도 쓰시오.",
+        "answer": "선대칭도형은 아니고 점대칭도형이다. 대칭의 중심은 두 대각선이 만나는 점이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "선대칭도형이 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "점대칭도형이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "대칭의 중심은 두 대각선이 만나는 점이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직사각형도 마름모도 아닌 평행사변형은 선대칭도형이 아니지만 {점대칭도형}이다.",
+        "acceptedAnswers": [
+          [
+            "점대칭도형"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "d03612e9a912c101f1b231c1718c0f632204bd13f68420d0d3490f5bad8168c4",
+      "questionRevision": "planning-e5e6-20261006-d03612e9a912",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-4-xc8",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "마름모가 두 대칭을 모두 가짐은 xc18에서 함께 확인한다.",
+      "bReason": "xc18의 도형 목록에 마름모가 들어 있다.",
+      "cDecision": "keep",
+      "cAfter": "마름모는 선대칭도형이면서 {점대칭도형}이다.",
+      "cReason": "마름모가 선대칭이면서 점대칭임을 한 용어로 확인하는 짧은 문장이다.",
+      "exclusionReason": "B만 제외: xc18과 중복. 대체: e5-2-3-4-xc18 (B)",
+      "exampleNeeded": false,
+      "sourceIndex": 1319,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-4-xc8",
+        "section": "초5::2-3 합동과 대칭::2-3-4 점대칭도형과 그 성질 알아보기",
+        "term": "마름모와 점대칭",
+        "kind": "성질",
+        "level": "중",
+        "definition": "마름모는 선대칭도형이면서 {점대칭도형}이다.",
+        "studentC": "마름모는 선대칭도형이면서 □이다.",
+        "answers": [
+          "점대칭도형"
+        ]
+      },
+      "sourceFingerprint": "645567145fff47a3d1a18b1b960d4c8f7fe92619b2243b4f48f5b8a5cae2dcce",
+      "draftEvidence": "evidence/section-039-draft.json",
+      "cFrozenDefinition": "마름모는 선대칭도형이면서 {점대칭도형}이다.",
+      "cFrozenStudentSentence": "마름모는 선대칭도형이면서 □이다.",
+      "cProposedAnswers": [
+        "점대칭도형"
+      ],
+      "cStudentAfter": "마름모는 선대칭도형이면서 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "점대칭도형"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "마름모는 선대칭도형이면서 {점대칭도형}이다.",
+      "cStudentSentence": "마름모는 선대칭도형이면서 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "점대칭도형",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "마름모는 선대칭도형이면서 {점대칭도형}이다.",
+        "acceptedAnswers": [
+          [
+            "점대칭도형"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B만 제외: xc18과 중복. 대체: e5-2-3-4-xc18 (B)"
+      },
+      "proposalFingerprint": "73a3677968aa9df87a6b48734351414425d53727416fd75b1ee41e1db7b386dc",
+      "questionRevision": "planning-e5e6-20261006-73a3677968aa",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-4-xc9",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "대칭의 중심이 1개임은 빈칸으로 확인하면 충분하다.",
+      "bReason": "개수 하나만 답하는 사실이고 까닭은 초5 범위를 넘는다.",
+      "cDecision": "revise",
+      "cAfter": "점대칭도형인 다각형이나 원에서 대칭의 중심은 {$1$}개이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$",
+            "한",
+            "하나"
+          ]
+        }
+      ],
+      "cReason": "'한없이 뻗지 않는'은 초5에게 낯선 말이라 빼고 다각형·원 조건만 남겼다.",
+      "exclusionReason": "B만 제외: 단순 개수. C는 수정 유지.",
+      "exampleNeeded": false,
+      "sourceIndex": 1320,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-4-xc9",
+        "section": "초5::2-3 합동과 대칭::2-3-4 점대칭도형과 그 성질 알아보기",
+        "term": "대칭의 중심의 개수",
+        "kind": "성질",
+        "level": "중",
+        "definition": "다각형이나 원처럼 한없이 뻗지 않는 점대칭도형의 대칭의 중심은 {하나뿐}이다.",
+        "studentC": "다각형이나 원처럼 한없이 뻗지 않는 점대칭도형의 대칭의 중심은 □이다.",
+        "answers": [
+          "하나뿐"
+        ]
+      },
+      "sourceFingerprint": "ddef1723d9e9b15bd9a91189630cc29f235d5019b4f26d9b36faf5e34337aa22",
+      "draftEvidence": "evidence/section-039-draft.json",
+      "cProposedAnswers": [
+        "$1$"
+      ],
+      "cStudentAfter": "점대칭도형인 다각형이나 원에서 대칭의 중심은 □개이다.",
+      "cMarkedSentence": "점대칭도형인 다각형이나 원에서 대칭의 중심은 {$1$}개이다.",
+      "cStudentSentence": "점대칭도형인 다각형이나 원에서 대칭의 중심은 □개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": [
+            "한",
+            "하나"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "점대칭도형인 다각형이나 원에서 대칭의 중심은 {$1$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$1$",
+            "한",
+            "하나"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B만 제외: 단순 개수. C는 수정 유지."
+      },
+      "proposalFingerprint": "ea717cf63fb4824855aefee4ddd7bde66629e14bf729ef7c99b30e6edc8b0208",
+      "questionRevision": "planning-e5e6-20261006-ea717cf63fb4",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-4-xc10",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "두 대응점에서 대칭의 중심까지의 거리가 같음은 c6에서 확인한다.",
+      "bReason": "c6의 성질을 거리로 바꿔 말한 것이고 c6 B가 거리까지 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "대응점 두 개는 대칭의 중심에서 {같은 거리}에 있다.",
+      "cReason": "c6과 달리 거리 표현으로 묻는 짧은 문장이라 빈칸으로는 쓸 만하다.",
+      "exclusionReason": "B만 제외: c6과 중복. 대체: e5-2-3-4-c6 (B)",
+      "exampleNeeded": false,
+      "synonymNotes": "'같은 거리'와 함께 '똑같은 거리'도 인정.",
+      "sourceIndex": 1321,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-4-xc10",
+        "section": "초5::2-3 합동과 대칭::2-3-4 점대칭도형과 그 성질 알아보기",
+        "term": "대응점과 대칭의 중심 사이",
+        "kind": "성질",
+        "level": "중",
+        "definition": "대응점 두 개는 대칭의 중심에서 {같은 거리}에 있다.",
+        "studentC": "대응점 두 개는 대칭의 중심에서 □에 있다.",
+        "answers": [
+          "같은 거리"
+        ]
+      },
+      "sourceFingerprint": "daad4d77fe645c74d1da66e9a9af320452552bba19297b128994b9ecf72dab81",
+      "draftEvidence": "evidence/section-039-draft.json",
+      "cFrozenDefinition": "대응점 두 개는 대칭의 중심에서 {같은 거리}에 있다.",
+      "cFrozenStudentSentence": "대응점 두 개는 대칭의 중심에서 □에 있다.",
+      "cProposedAnswers": [
+        "같은 거리"
+      ],
+      "cStudentAfter": "대응점 두 개는 대칭의 중심에서 □에 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같은 거리"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "대응점 두 개는 대칭의 중심에서 {같은 거리}에 있다.",
+      "cStudentSentence": "대응점 두 개는 대칭의 중심에서 □에 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "같은 거리",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "대응점 두 개는 대칭의 중심에서 {같은 거리}에 있다.",
+        "acceptedAnswers": [
+          [
+            "같은 거리"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B만 제외: c6과 중복. 대체: e5-2-3-4-c6 (B)"
+      },
+      "proposalFingerprint": "f974582e35c7ecfb6bc9c41ed6d1124074702eb11c3a724c4ec8d189c11e9424",
+      "questionRevision": "planning-e5e6-20261006-f974582e35c7",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-4-xc11",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "점대칭도형에서 대칭의 중심 ㅇ과 도형 위의 한 점 ㄱ이 주어졌을 때, 점 ㄱ의 대응점의 위치를 어떻게 찾는지 설명하시오.",
+      "bAnswer": "점 ㄱ에서 점 ㅇ을 지나는 직선을 긋고, 그 직선 위에서 점 ㅇ의 반대쪽으로 선분 ㄱㅇ과 같은 길이만큼 떨어진 곳이 대응점이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "점 ㄱ과 대칭의 중심 ㅇ을 지나는 직선 위에서 찾는다",
+            "점 ㄱ에서 ㅇ을 지나도록 선을 긋는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "ㅇ에서 반대쪽으로 선분 ㄱㅇ과 같은 거리만큼 떨어진 곳이다",
+            "ㅇ이 한가운데가 되도록 반대쪽에 점을 찍는다"
+          ]
+        }
+      ],
+      "bGoal": "대칭의 중심을 지나는 직선과 같은 거리로 대응점을 찾는 순서를 말한다.",
+      "bReason": "점 이름을 주어 '어디서 어디까지 같은 거리인지'를 분명히 답하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "점 ㄱ의 대응점은 점 ㄱ에서 {대칭의 중심}을 지나는 직선을 긋고, 대칭의 중심에서 점 ㄱ까지의 거리와 {같은} 거리만큼 더 간 곳에 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "대칭의 중심"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은",
+            "똑같은"
+          ]
+        }
+      ],
+      "cReason": "원문은 구절 전체를 비웠고 '같은 거리'의 기준이 없어 기준을 밝히고 낱말만 비웠다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1322,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-4-xc11",
+        "section": "초5::2-3 합동과 대칭::2-3-4 점대칭도형과 그 성질 알아보기",
+        "term": "대응점 찾는 법",
+        "kind": "방법",
+        "level": "중",
+        "definition": "한 점에서 {대칭의 중심을 지나는} 직선을 긋고 같은 거리만큼 더 가면 대응점이 있다.",
+        "studentC": "한 점에서 □ 직선을 긋고 같은 거리만큼 더 가면 대응점이 있다.",
+        "answers": [
+          "대칭의 중심을 지나는"
+        ]
+      },
+      "sourceFingerprint": "ea4114eca4a5d9f4af5487097ebe005cb8945f5ceccf594f5b5488563f90015d",
+      "draftEvidence": "evidence/section-039-draft.json",
+      "cProposedAnswers": [
+        "대칭의 중심",
+        "같은"
+      ],
+      "cStudentAfter": "점 ㄱ의 대응점은 점 ㄱ에서 □을 지나는 직선을 긋고, 대칭의 중심에서 점 ㄱ까지의 거리와 □ 거리만큼 더 간 곳에 있다.",
+      "cMarkedSentence": "점 ㄱ의 대응점은 점 ㄱ에서 {대칭의 중심}을 지나는 직선을 긋고, 대칭의 중심에서 점 ㄱ까지의 거리와 {같은} 거리만큼 더 간 곳에 있다.",
+      "cStudentSentence": "점 ㄱ의 대응점은 점 ㄱ에서 □을 지나는 직선을 긋고, 대칭의 중심에서 점 ㄱ까지의 거리와 □ 거리만큼 더 간 곳에 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "대칭의 중심",
+          "equivalents": []
+        },
+        {
+          "key": "같은",
+          "equivalents": [
+            "똑같은"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "점대칭도형에서 대칭의 중심 ㅇ과 도형 위의 한 점 ㄱ이 주어졌을 때, 점 ㄱ의 대응점의 위치를 어떻게 찾는지 설명하시오.",
+        "answer": "점 ㄱ에서 점 ㅇ을 지나는 직선을 긋고, 그 직선 위에서 점 ㅇ의 반대쪽으로 선분 ㄱㅇ과 같은 길이만큼 떨어진 곳이 대응점이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "점 ㄱ과 대칭의 중심 ㅇ을 지나는 직선 위에서 찾는다",
+              "점 ㄱ에서 ㅇ을 지나도록 선을 긋는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "ㅇ에서 반대쪽으로 선분 ㄱㅇ과 같은 거리만큼 떨어진 곳이다",
+              "ㅇ이 한가운데가 되도록 반대쪽에 점을 찍는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "점 ㄱ의 대응점은 점 ㄱ에서 {대칭의 중심}을 지나는 직선을 긋고, 대칭의 중심에서 점 ㄱ까지의 거리와 {같은} 거리만큼 더 간 곳에 있다.",
+        "acceptedAnswers": [
+          [
+            "대칭의 중심"
+          ],
+          [
+            "같은",
+            "똑같은"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "0b0cbbe1fe53ffc88f49cdaaec3d41ad151c899cf88a411d8ebcc8f43279062b",
+      "questionRevision": "planning-e5e6-20261006-0b0cbbe1fe53",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-4-xc12",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "정육각형의 판단은 xc15의 일반 규칙에서 예로 확인한다.",
+      "bReason": "xc15 B가 정육각형을 예로 포함한다.",
+      "cDecision": "keep",
+      "cAfter": "정육각형은 반 바퀴 돌리면 꼭 맞게 겹치는 {점대칭도형}이다.",
+      "cReason": "정육각형이라는 구체 도형의 판단을 한 용어로 확인하는 짧은 문장이다.",
+      "exclusionReason": "B만 제외: xc15와 중복. 대체: e5-2-3-4-xc15 (B)",
+      "exampleNeeded": false,
+      "sourceIndex": 1323,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-4-xc12",
+        "section": "초5::2-3 합동과 대칭::2-3-4 점대칭도형과 그 성질 알아보기",
+        "term": "정육각형과 점대칭",
+        "kind": "성질",
+        "level": "중",
+        "definition": "정육각형은 반 바퀴 돌리면 꼭 맞게 겹치는 {점대칭도형}이다.",
+        "studentC": "정육각형은 반 바퀴 돌리면 꼭 맞게 겹치는 □이다.",
+        "answers": [
+          "점대칭도형"
+        ]
+      },
+      "sourceFingerprint": "b6f40d4e0d814a4878b709e7a0b6a8aad69bcdedb553eef06c9393ff40074265",
+      "draftEvidence": "evidence/section-039-draft.json",
+      "cFrozenDefinition": "정육각형은 반 바퀴 돌리면 꼭 맞게 겹치는 {점대칭도형}이다.",
+      "cFrozenStudentSentence": "정육각형은 반 바퀴 돌리면 꼭 맞게 겹치는 □이다.",
+      "cProposedAnswers": [
+        "점대칭도형"
+      ],
+      "cStudentAfter": "정육각형은 반 바퀴 돌리면 꼭 맞게 겹치는 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "점대칭도형"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "정육각형은 반 바퀴 돌리면 꼭 맞게 겹치는 {점대칭도형}이다.",
+      "cStudentSentence": "정육각형은 반 바퀴 돌리면 꼭 맞게 겹치는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "점대칭도형",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "정육각형은 반 바퀴 돌리면 꼭 맞게 겹치는 {점대칭도형}이다.",
+        "acceptedAnswers": [
+          [
+            "점대칭도형"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B만 제외: xc15와 중복. 대체: e5-2-3-4-xc15 (B)"
+      },
+      "proposalFingerprint": "620690aa54d17bd4f69debbd47d3e884c4a3adad7a29edce97000e268b74731a",
+      "questionRevision": "planning-e5e6-20261006-620690aa54d1",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-4-xc13",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "정오각형의 판단은 xc15 B와 xc16 C에서 확인한다.",
+      "bReason": "xc15 B가 정오각형을 예로 묻고 까닭은 xc5와 같다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "xc5와 도형 이름만 다른 문장이고 xc16 수정 C에 정오각형이 들어 있다.",
+      "exclusionReason": "중복. 대체: e5-2-3-4-xc15 (B), e5-2-3-4-xc16 (C)",
+      "exampleNeeded": false,
+      "sourceIndex": 1324,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-4-xc13",
+        "section": "초5::2-3 합동과 대칭::2-3-4 점대칭도형과 그 성질 알아보기",
+        "term": "정오각형과 점대칭",
+        "kind": "성질",
+        "level": "중",
+        "definition": "정오각형은 어느 점 둘레로 반 바퀴 돌려도 겹치지 않아 {점대칭도형이 아니다}.",
+        "studentC": "정오각형은 어느 점 둘레로 반 바퀴 돌려도 겹치지 않아 □.",
+        "answers": [
+          "점대칭도형이 아니다"
+        ]
+      },
+      "sourceFingerprint": "01e05ac9304c518de5bf554cd73619f2e0eb19755c04bb33fb19eae37bea1e33",
+      "draftEvidence": "evidence/section-039-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "중복. 대체: e5-2-3-4-xc15 (B), e5-2-3-4-xc16 (C)",
+        "cloze": "중복. 대체: e5-2-3-4-xc15 (B), e5-2-3-4-xc16 (C)"
+      },
+      "proposalFingerprint": "12a3abdac51e1ee4fdfe2d40ef44dcf221d6693a7bd6c5c0de3324d9c32352d6",
+      "questionRevision": "planning-e5e6-20261006-12a3abdac51e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-4-xc14",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "대응각의 크기가 같음은 c7에서 확인한다.",
+      "bReason": "c7의 성질을 그대로 적용하는 값 하나짜리 물음이다.",
+      "cDecision": "revise",
+      "cAfter": "점대칭도형에서 각 ㄱㄴㄷ의 대응각이 각 ㄹㅁㅂ이고 각 ㄹㅁㅂ의 크기가 $70 ^\\circ$이면, 각 ㄱㄴㄷ의 크기는 {$70 ^\\circ$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$70 ^\\circ$",
+            "$70$도",
+            "$70$"
+          ]
+        }
+      ],
+      "cReason": "'그 대응각과 같다'는 앞말을 되풀이하는 답이라 실제 각도로 적용하게 바꿨다.",
+      "exclusionReason": "B만 제외: c7과 중복. 대체: e5-2-3-4-c7 (B)",
+      "exampleNeeded": false,
+      "sourceIndex": 1325,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-4-xc14",
+        "section": "초5::2-3 합동과 대칭::2-3-4 점대칭도형과 그 성질 알아보기",
+        "term": "중심 건너편의 대응각",
+        "kind": "방법",
+        "level": "중",
+        "definition": "점대칭도형에서 대칭의 중심 건너편에 있는 대응각의 크기를 알면, 모르는 각의 크기는 {그 대응각과 같다}.",
+        "studentC": "점대칭도형에서 대칭의 중심 건너편에 있는 대응각의 크기를 알면, 모르는 각의 크기는 □.",
+        "answers": [
+          "그 대응각과 같다"
+        ]
+      },
+      "sourceFingerprint": "7be8dc595f04a24d318741bc1f0e297c6f29b48fc5c2aca5c387512295925bf3",
+      "draftEvidence": "evidence/section-039-draft.json",
+      "cProposedAnswers": [
+        "$70 ^\\circ$"
+      ],
+      "cStudentAfter": "점대칭도형에서 각 ㄱㄴㄷ의 대응각이 각 ㄹㅁㅂ이고 각 ㄹㅁㅂ의 크기가 $70 ^\\circ$이면, 각 ㄱㄴㄷ의 크기는 □이다.",
+      "cMarkedSentence": "점대칭도형에서 각 ㄱㄴㄷ의 대응각이 각 ㄹㅁㅂ이고 각 ㄹㅁㅂ의 크기가 $70 ^\\circ$이면, 각 ㄱㄴㄷ의 크기는 {$70 ^\\circ$}이다.",
+      "cStudentSentence": "점대칭도형에서 각 ㄱㄴㄷ의 대응각이 각 ㄹㅁㅂ이고 각 ㄹㅁㅂ의 크기가 $70 ^\\circ$이면, 각 ㄱㄴㄷ의 크기는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$70 ^\\circ$",
+          "equivalents": [
+            "$70$도",
+            "$70$"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "점대칭도형에서 각 ㄱㄴㄷ의 대응각이 각 ㄹㅁㅂ이고 각 ㄹㅁㅂ의 크기가 $70 ^\\circ$이면, 각 ㄱㄴㄷ의 크기는 {$70 ^\\circ$}이다.",
+        "acceptedAnswers": [
+          [
+            "$70 ^\\circ$",
+            "$70$도",
+            "$70$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B만 제외: c7과 중복. 대체: e5-2-3-4-c7 (B)"
+      },
+      "proposalFingerprint": "9c24b27ddb54275a1f3c3fe736a4ba0faecc37933d3d6a67577b23adbe734ad6",
+      "questionRevision": "planning-e5e6-20261006-9c24b27ddb54",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-4-xc15",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "정다각형이 점대칭도형인지 아닌지는 변의 수에 따라 어떻게 달라집니까? 정오각형과 정육각형이 각각 점대칭도형인지도 쓰시오.",
+      "bAnswer": "변의 수가 짝수인 정다각형은 점대칭도형이고, 홀수인 정다각형은 점대칭도형이 아니다. 정오각형은 점대칭도형이 아니고 정육각형은 점대칭도형이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "변의 수가 짝수이면 점대칭도형이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "변의 수가 홀수이면 점대칭도형이 아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "정오각형은 점대칭도형이 아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "정육각형은 점대칭도형이다"
+          ]
+        }
+      ],
+      "bGoal": "정다각형의 변의 수(짝수·홀수)와 점대칭 여부의 규칙을 말하고 예에 적용한다.",
+      "bReason": "xc12·xc13·xc15·xc16을 하나의 일반 규칙과 두 예로 묶었다.",
+      "cDecision": "revise",
+      "cAfter": "변의 수가 {짝수}인 정다각형은 중심을 기준으로 반 바퀴 돌리면 처음 도형과 완전히 겹치므로 점대칭도형이다.",
+      "cReason": "'겹치므로'는 이음말 빈칸이라 규칙의 핵심 조건인 '짝수'를 비웠다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1326,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-4-xc15",
+        "section": "초5::2-3 합동과 대칭::2-3-4 점대칭도형과 그 성질 알아보기",
+        "term": "변의 수가 짝수인 정다각형",
+        "kind": "성질",
+        "level": "상",
+        "definition": "변의 수가 짝수인 정다각형은 중심을 기준으로 반 바퀴 돌리면 처음 도형과 완전히 {겹치므로} 점대칭도형이다.",
+        "studentC": "변의 수가 짝수인 정다각형은 중심을 기준으로 반 바퀴 돌리면 처음 도형과 완전히 □ 점대칭도형이다.",
+        "answers": [
+          "겹치므로"
+        ]
+      },
+      "sourceFingerprint": "9205624a62c455f8ce1aad7e0f6b653ed7b66e7341a022748d2536c2402a546a",
+      "draftEvidence": "evidence/section-039-draft.json",
+      "cProposedAnswers": [
+        "짝수"
+      ],
+      "cStudentAfter": "변의 수가 □인 정다각형은 중심을 기준으로 반 바퀴 돌리면 처음 도형과 완전히 겹치므로 점대칭도형이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "짝수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "변의 수가 {짝수}인 정다각형은 중심을 기준으로 반 바퀴 돌리면 처음 도형과 완전히 겹치므로 점대칭도형이다.",
+      "cStudentSentence": "변의 수가 □인 정다각형은 중심을 기준으로 반 바퀴 돌리면 처음 도형과 완전히 겹치므로 점대칭도형이다.",
+      "cSlotAnswers": [
+        {
+          "key": "짝수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "정다각형이 점대칭도형인지 아닌지는 변의 수에 따라 어떻게 달라집니까? 정오각형과 정육각형이 각각 점대칭도형인지도 쓰시오.",
+        "answer": "변의 수가 짝수인 정다각형은 점대칭도형이고, 홀수인 정다각형은 점대칭도형이 아니다. 정오각형은 점대칭도형이 아니고 정육각형은 점대칭도형이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "변의 수가 짝수이면 점대칭도형이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "변의 수가 홀수이면 점대칭도형이 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "정오각형은 점대칭도형이 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "정육각형은 점대칭도형이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "변의 수가 {짝수}인 정다각형은 중심을 기준으로 반 바퀴 돌리면 처음 도형과 완전히 겹치므로 점대칭도형이다.",
+        "acceptedAnswers": [
+          [
+            "짝수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "08a1fd403e7bb05edc8d2223859d682a337d11310a3054c4d8f2b08a99325a52",
+      "questionRevision": "planning-e5e6-20261006-08a1fd403e7b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-4-xc16",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "홀수 정다각형의 판단은 xc15에서 짝수와 함께 확인한다.",
+      "bReason": "xc15 B가 홀수인 경우까지 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "정삼각형, 정오각형처럼 변의 수가 {홀수}인 정다각형은 점대칭도형이 아니다.",
+      "cReason": "'되지 않는다'는 어미 빈칸이라 조건인 '홀수'를 비우고 익숙한 예를 붙였다.",
+      "exclusionReason": "B만 제외: xc15와 중복. 대체: e5-2-3-4-xc15 (B)",
+      "exampleNeeded": false,
+      "sourceIndex": 1327,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-4-xc16",
+        "section": "초5::2-3 합동과 대칭::2-3-4 점대칭도형과 그 성질 알아보기",
+        "term": "변의 수가 홀수인 정다각형",
+        "kind": "성질",
+        "level": "상",
+        "definition": "변의 수가 홀수인 정다각형은 점대칭도형이 {되지 않는다}.",
+        "studentC": "변의 수가 홀수인 정다각형은 점대칭도형이 □.",
+        "answers": [
+          "되지 않는다"
+        ]
+      },
+      "sourceFingerprint": "a04d71733b727cdf917e3fddf1d3564e9d523fda5c4a3a4d8649895e4ad24201",
+      "draftEvidence": "evidence/section-039-draft.json",
+      "cProposedAnswers": [
+        "홀수"
+      ],
+      "cStudentAfter": "정삼각형, 정오각형처럼 변의 수가 □인 정다각형은 점대칭도형이 아니다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "홀수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "정삼각형, 정오각형처럼 변의 수가 {홀수}인 정다각형은 점대칭도형이 아니다.",
+      "cStudentSentence": "정삼각형, 정오각형처럼 변의 수가 □인 정다각형은 점대칭도형이 아니다.",
+      "cSlotAnswers": [
+        {
+          "key": "홀수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "정삼각형, 정오각형처럼 변의 수가 {홀수}인 정다각형은 점대칭도형이 아니다.",
+        "acceptedAnswers": [
+          [
+            "홀수"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B만 제외: xc15와 중복. 대체: e5-2-3-4-xc15 (B)"
+      },
+      "proposalFingerprint": "6e83e7261eb53c4f9a192d37d504a8fd74a13abf15e9f4117745e39d8e62769f",
+      "questionRevision": "planning-e5e6-20261006-6e83e7261eb5",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-4-xc17",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "다각형인 점대칭도형의 절반과 대칭의 중심이 그려져 있을 때, 나머지 절반을 그려 도형을 완성하는 순서를 설명하시오.",
+      "bAnswer": "주어진 각 꼭짓점의 대응점을 찾아 찍고(대칭의 중심을 지나 반대쪽으로 같은 거리), 찍은 대응점들을 차례로 선분으로 이어 완성한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "각 꼭짓점의 대응점을 찾아 표시한다",
+            "각 꼭짓점에서 대칭의 중심을 지나 반대쪽 같은 거리에 점을 찍는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "찍은 점들을 차례로 이어 도형을 완성한다"
+          ]
+        }
+      ],
+      "bGoal": "대응점을 찍고 잇는 점대칭도형 완성 순서를 말한다.",
+      "bReason": "그림 없이도 일반 순서를 말할 수 있어 조건(절반과 중심이 주어짐)을 질문에 넣었다.",
+      "cDecision": "keep",
+      "cAfter": "다각형인 점대칭도형의 반쪽과 대칭의 중심이 주어지면, 각 꼭짓점의 {대응점}을 중심 건너편 같은 거리에 찍고 차례로 잇는다.",
+      "cReason": "완성 순서에서 찍어야 할 점의 이름을 묻고 '중심 건너편 같은 거리'라는 조건이 문장에 있다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1328,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-4-xc17",
+        "section": "초5::2-3 합동과 대칭::2-3-4 점대칭도형과 그 성질 알아보기",
+        "term": "점대칭도형 완성하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "다각형인 점대칭도형의 반쪽과 대칭의 중심이 주어지면, 각 꼭짓점의 {대응점}을 중심 건너편 같은 거리에 찍고 차례로 잇는다.",
+        "studentC": "다각형인 점대칭도형의 반쪽과 대칭의 중심이 주어지면, 각 꼭짓점의 □을 중심 건너편 같은 거리에 찍고 차례로 잇는다.",
+        "answers": [
+          "대응점"
+        ]
+      },
+      "sourceFingerprint": "a6aa46c2b1591fd2fd485cbebddf623c608f38cca68b77e7262f3e072d95925e",
+      "draftEvidence": "evidence/section-039-draft.json",
+      "cFrozenDefinition": "다각형인 점대칭도형의 반쪽과 대칭의 중심이 주어지면, 각 꼭짓점의 {대응점}을 중심 건너편 같은 거리에 찍고 차례로 잇는다.",
+      "cFrozenStudentSentence": "다각형인 점대칭도형의 반쪽과 대칭의 중심이 주어지면, 각 꼭짓점의 □을 중심 건너편 같은 거리에 찍고 차례로 잇는다.",
+      "cProposedAnswers": [
+        "대응점"
+      ],
+      "cStudentAfter": "다각형인 점대칭도형의 반쪽과 대칭의 중심이 주어지면, 각 꼭짓점의 □을 중심 건너편 같은 거리에 찍고 차례로 잇는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "대응점"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "다각형인 점대칭도형의 반쪽과 대칭의 중심이 주어지면, 각 꼭짓점의 {대응점}을 중심 건너편 같은 거리에 찍고 차례로 잇는다.",
+      "cStudentSentence": "다각형인 점대칭도형의 반쪽과 대칭의 중심이 주어지면, 각 꼭짓점의 □을 중심 건너편 같은 거리에 찍고 차례로 잇는다.",
+      "cSlotAnswers": [
+        {
+          "key": "대응점",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "다각형인 점대칭도형의 절반과 대칭의 중심이 그려져 있을 때, 나머지 절반을 그려 도형을 완성하는 순서를 설명하시오.",
+        "answer": "주어진 각 꼭짓점의 대응점을 찾아 찍고(대칭의 중심을 지나 반대쪽으로 같은 거리), 찍은 대응점들을 차례로 선분으로 이어 완성한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "각 꼭짓점의 대응점을 찾아 표시한다",
+              "각 꼭짓점에서 대칭의 중심을 지나 반대쪽 같은 거리에 점을 찍는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "찍은 점들을 차례로 이어 도형을 완성한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "다각형인 점대칭도형의 반쪽과 대칭의 중심이 주어지면, 각 꼭짓점의 {대응점}을 중심 건너편 같은 거리에 찍고 차례로 잇는다.",
+        "acceptedAnswers": [
+          [
+            "대응점"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b61d888c43a09d776e03f37ac398e465425c222ec19826f8c04c5b7e708b1502",
+      "questionRevision": "planning-e5e6-20261006-b61d888c43a0",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-4-xc18",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "정사각형, 직사각형, 마름모, 원, 정삼각형 중에서 선대칭도형이면서 점대칭도형인 것을 모두 고르시오. 고르지 않은 도형은 두 대칭 중 어느 쪽이 아닌지 쓰시오.",
+      "bAnswer": "정사각형, 직사각형, 마름모, 원이다. 정삼각형은 선대칭도형이지만 점대칭도형이 아니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "정사각형, 직사각형, 마름모, 원을 고른다"
+          ]
+        },
+        {
+          "anyOf": [
+            "정삼각형은 점대칭도형이 아니다"
+          ]
+        }
+      ],
+      "bGoal": "익숙한 도형을 두 대칭 기준으로 분류한다.",
+      "bReason": "목록을 외우게 하지 않고 반례를 섞어 판단하게 했다.",
+      "cDecision": "keep",
+      "cAfter": "정사각형, 직사각형, 마름모, 원은 모두 선대칭도형이며, 한 점을 중심으로 반 바퀴 돌려 처음 도형과 겹쳐지는 {점대칭도형}이기도 하다.",
+      "cReason": "네 도형이 선대칭이면서 점대칭임을 반 바퀴 조건과 함께 한 용어로 확인한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1329,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-4-xc18",
+        "section": "초5::2-3 합동과 대칭::2-3-4 점대칭도형과 그 성질 알아보기",
+        "term": "두 가지 대칭을 모두 가진 도형",
+        "kind": "성질",
+        "level": "상",
+        "definition": "정사각형, 직사각형, 마름모, 원은 모두 선대칭도형이며, 한 점을 중심으로 반 바퀴 돌려 처음 도형과 겹쳐지는 {점대칭도형}이기도 하다.",
+        "studentC": "정사각형, 직사각형, 마름모, 원은 모두 선대칭도형이며, 한 점을 중심으로 반 바퀴 돌려 처음 도형과 겹쳐지는 □이기도 하다.",
+        "answers": [
+          "점대칭도형"
+        ]
+      },
+      "sourceFingerprint": "3aab48f3a6b7b737fdb57f365a075bc0ad18f7fd3586fad9c35703254925f348",
+      "draftEvidence": "evidence/section-039-draft.json",
+      "cFrozenDefinition": "정사각형, 직사각형, 마름모, 원은 모두 선대칭도형이며, 한 점을 중심으로 반 바퀴 돌려 처음 도형과 겹쳐지는 {점대칭도형}이기도 하다.",
+      "cFrozenStudentSentence": "정사각형, 직사각형, 마름모, 원은 모두 선대칭도형이며, 한 점을 중심으로 반 바퀴 돌려 처음 도형과 겹쳐지는 □이기도 하다.",
+      "cProposedAnswers": [
+        "점대칭도형"
+      ],
+      "cStudentAfter": "정사각형, 직사각형, 마름모, 원은 모두 선대칭도형이며, 한 점을 중심으로 반 바퀴 돌려 처음 도형과 겹쳐지는 □이기도 하다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "점대칭도형"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "정사각형, 직사각형, 마름모, 원은 모두 선대칭도형이며, 한 점을 중심으로 반 바퀴 돌려 처음 도형과 겹쳐지는 {점대칭도형}이기도 하다.",
+      "cStudentSentence": "정사각형, 직사각형, 마름모, 원은 모두 선대칭도형이며, 한 점을 중심으로 반 바퀴 돌려 처음 도형과 겹쳐지는 □이기도 하다.",
+      "cSlotAnswers": [
+        {
+          "key": "점대칭도형",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "정사각형, 직사각형, 마름모, 원, 정삼각형 중에서 선대칭도형이면서 점대칭도형인 것을 모두 고르시오. 고르지 않은 도형은 두 대칭 중 어느 쪽이 아닌지 쓰시오.",
+        "answer": "정사각형, 직사각형, 마름모, 원이다. 정삼각형은 선대칭도형이지만 점대칭도형이 아니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "정사각형, 직사각형, 마름모, 원을 고른다"
+            ]
+          },
+          {
+            "anyOf": [
+              "정삼각형은 점대칭도형이 아니다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "정사각형, 직사각형, 마름모, 원은 모두 선대칭도형이며, 한 점을 중심으로 반 바퀴 돌려 처음 도형과 겹쳐지는 {점대칭도형}이기도 하다.",
+        "acceptedAnswers": [
+          [
+            "점대칭도형"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "55940510282691a0bf9dcd756cd436272ebbab58df4414dbe856da09890702a8",
+      "questionRevision": "planning-e5e6-20261006-559405102826",
+      "requiresIndependentReview": true
+    }
+  ]
+}

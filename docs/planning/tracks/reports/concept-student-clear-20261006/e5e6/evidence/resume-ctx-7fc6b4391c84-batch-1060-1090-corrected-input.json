@@ -1,0 +1,435 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e5-2-1-1-xc20",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "수직선에서 $4$와 $9$에 색칠한 점(●)이 있고, 두 점 사이만 선으로 이어져 있다. 이 그림이 나타내는 수의 범위를 ‘이상’, ‘이하’를 써서 말하고, $4$와 $9$의 점이 색칠되어 있는 것이 무엇을 뜻하는지 쓰시오.",
+      "bAnswer": "$4$ 이상 $9$ 이하인 수이다. 점이 색칠된 것은 $4$와 $9$가 범위에 들어간다는 뜻이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$4$ 이상 $9$ 이하"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$와 $9$가 범위에 들어간다",
+            "두 끝 수를 포함한다"
+          ]
+        }
+      ],
+      "bGoal": "수직선 그림을 읽어 이상·이하로 범위를 말한다.",
+      "bReason": "그림 없이도 풀 수 있도록 점의 위치와 선의 모양을 글로 적어 주었다.",
+      "cDecision": "revise",
+      "cAfter": "수직선에서 $4$와 $9$에 색칠한 점을 찍고 두 점 사이만 선으로 이었다. 이 수의 범위는 $4$ {이상} $9$ {이하}이다.",
+      "cReason": "‘그 사이만’은 외울 낱말이 아니어서 그림 설명을 읽고 범위를 말로 옮기게 했다.",
+      "exampleNeeded": false,
+      "exampleReason": "글로 풀 수 있으나, 4와 9에 ●를 찍고 그 사이를 이은 수직선 그림을 붙이면 더 좋다.",
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "이상"
+          ]
+        },
+        {
+          "anyOf": [
+            "이하"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1060-1090.json",
+      "codexFinalAmendedFromFingerprint": "916d69b70a6f4c188ecc82511341c187cbb79ba88b78737bfa70b269ae014fec",
+      "sourceIndex": 1061,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-1-xc20",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-1 이상과 이하 알아보기",
+        "term": "두 점이 색칠되고 사이가 이어진 수직선",
+        "kind": "방법",
+        "level": "상",
+        "definition": "수직선에서 두 점이 모두 색칠되어 있고 {그 사이만} 이어져 있으면 작은 수 이상 큰 수 이하인 범위이다.",
+        "studentC": "수직선에서 두 점이 모두 색칠되어 있고 □ 이어져 있으면 작은 수 이상 큰 수 이하인 범위이다.",
+        "answers": [
+          "그 사이만"
+        ]
+      },
+      "sourceFingerprint": "50b266922deb0f4ea191a9bc0b0cd86f55a844d6a1fdb31dab90e5ba5c81760a",
+      "draftEvidence": "evidence/section-026-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "이상",
+        "이하"
+      ],
+      "cStudentAfter": "수직선에서 $4$와 $9$에 색칠한 점을 찍고 두 점 사이만 선으로 이었다. 이 수의 범위는 $4$ □ $9$ □이다.",
+      "cMarkedSentence": "수직선에서 $4$와 $9$에 색칠한 점을 찍고 두 점 사이만 선으로 이었다. 이 수의 범위는 $4$ {이상} $9$ {이하}이다.",
+      "cStudentSentence": "수직선에서 $4$와 $9$에 색칠한 점을 찍고 두 점 사이만 선으로 이었다. 이 수의 범위는 $4$ □ $9$ □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "이상",
+          "equivalents": []
+        },
+        {
+          "key": "이하",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "수직선에서 $4$와 $9$에 색칠한 점(●)이 있고, 두 점 사이만 선으로 이어져 있다. 이 그림이 나타내는 수의 범위를 ‘이상’, ‘이하’를 써서 말하고, $4$와 $9$의 점이 색칠되어 있는 것이 무엇을 뜻하는지 쓰시오.",
+        "answer": "$4$ 이상 $9$ 이하인 수이다. 점이 색칠된 것은 $4$와 $9$가 범위에 들어간다는 뜻이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$4$ 이상 $9$ 이하"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$와 $9$가 범위에 들어간다",
+              "두 끝 수를 포함한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "수직선에서 $4$와 $9$에 색칠한 점을 찍고 두 점 사이만 선으로 이었다. 이 수의 범위는 $4$ {이상} $9$ {이하}이다.",
+        "acceptedAnswers": [
+          [
+            "이상"
+          ],
+          [
+            "이하"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "8c766f787fa07338a5cc422be5df0b481d945cfb51ebda32c3ec2df7dd08cc04",
+      "questionRevision": "planning-e5e6-20261006-8c766f787fa0",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-2-xc8",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "한 친구가 ‘$3$ 미만인 수는 $1$과 $2$뿐이다.’라고 말했다. 이 말이 맞는지 판단하고, 미만의 뜻을 써서 까닭을 예와 함께 설명하시오.",
+      "bAnswer": "맞지 않다. $3$ 미만인 수는 $3$보다 작은 모든 수이므로 $2.9$나 $0.5$ 같은 소수(분수)도 들어간다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "옳지않다",
+            "틀리다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$0$도$3$보다작지만$1$과$2$는아니다",
+            "$2.9$도$3$보다작다",
+            "$0.5$도$3$보다작다",
+            "그밖에$1$과$2$가아닌$3$미만의수를실제로하나들어설명한다"
+          ]
+        }
+      ],
+      "bGoal": "범위에 자연수뿐 아니라 소수·분수도 들어감을 안다.",
+      "bReason": "자연수만 떠올리는 흔한 오해를 판단하게 하여 원문 성질을 드러냈다.",
+      "cDecision": "revise",
+      "cAfter": "$3$ 미만인 자연수는 $1$과 $2$뿐이지만, $2.5$나 $2.9$ 같은 소수도 $3$보다 {작은} 수이므로 $3$ 미만인 수이다.",
+      "cReason": "원문은 $2.9$를 보고 ‘소수’라고 이름만 붙이면 되어 범위 판단이 필요 없었다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "작은"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1060-1090.json",
+      "codexFinalAmendedFromFingerprint": "b64d22d493ab8549e4c603c56f6f62eb4c0e0388b37cb606d93b0d7d02d96218",
+      "sourceIndex": 1069,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-2-xc8",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-2 초과와 미만 알아보기",
+        "term": "미만인 수와 소수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "$3$ 미만인 수에는 $2.9$ 같은 {소수}도 들어간다.",
+        "studentC": "$3$ 미만인 수에는 $2.9$ 같은 □도 들어간다.",
+        "answers": [
+          "소수"
+        ]
+      },
+      "sourceFingerprint": "985d4feba141e8cde885b59ead3bc9a4a68d5f02cf7197e70fd2c53487cc3411",
+      "draftEvidence": "evidence/section-027-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "작은"
+      ],
+      "cStudentAfter": "$3$ 미만인 자연수는 $1$과 $2$뿐이지만, $2.5$나 $2.9$ 같은 소수도 $3$보다 □ 수이므로 $3$ 미만인 수이다.",
+      "cMarkedSentence": "$3$ 미만인 자연수는 $1$과 $2$뿐이지만, $2.5$나 $2.9$ 같은 소수도 $3$보다 {작은} 수이므로 $3$ 미만인 수이다.",
+      "cStudentSentence": "$3$ 미만인 자연수는 $1$과 $2$뿐이지만, $2.5$나 $2.9$ 같은 소수도 $3$보다 □ 수이므로 $3$ 미만인 수이다.",
+      "cSlotAnswers": [
+        {
+          "key": "작은",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "한 친구가 ‘$3$ 미만인 수는 $1$과 $2$뿐이다.’라고 말했다. 이 말이 맞는지 판단하고, 미만의 뜻을 써서 까닭을 예와 함께 설명하시오.",
+        "answer": "맞지 않다. $3$ 미만인 수는 $3$보다 작은 모든 수이므로 $2.9$나 $0.5$ 같은 소수(분수)도 들어간다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "옳지않다",
+              "틀리다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$0$도$3$보다작지만$1$과$2$는아니다",
+              "$2.9$도$3$보다작다",
+              "$0.5$도$3$보다작다",
+              "그밖에$1$과$2$가아닌$3$미만의수를실제로하나들어설명한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$3$ 미만인 자연수는 $1$과 $2$뿐이지만, $2.5$나 $2.9$ 같은 소수도 $3$보다 {작은} 수이므로 $3$ 미만인 수이다.",
+        "acceptedAnswers": [
+          [
+            "작은"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "3b3e97aeb073472b9b926934f75bef81df23222ea8dc769a073b51742a377f2d",
+      "questionRevision": "planning-e5e6-20261006-3b3e97aeb073",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-2-xc20",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "몸무게에 따라 ‘$30$ 이상 $35$ 이하’와 ‘$35$ 이상 $40$ 미만’으로 모둠을 나누었더니 $35$인 사람이 두 모둠에 모두 들어갑니다. 첫 번째 모둠의 범위를 ‘미만’을 써서 고쳐, 빠지거나 겹치는 사람 없이 나누세요. $35$인 사람은 어느 모둠에 들어가는지도 쓰세요.",
+      "bAnswer": "첫 번째 모둠을 $30$ 이상 $35$ 미만으로 고치고 두 번째 모둠은 $35$ 이상 $40$ 미만으로 둡니다. $35$인 사람은 두 번째 모둠에 들어갑니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "첫번째모둠은$30$이상$35$미만"
+          ]
+        },
+        {
+          "anyOf": [
+            "$35$는두번째모둠에들어간다"
+          ]
+        }
+      ],
+      "bGoal": "구간을 이상·미만으로 나누면 경계의 수가 한 구간에만 속함을 이해한다.",
+      "bReason": "겹치는 잘못된 나눔과 비교하게 하여 이상·미만으로 나누는 까닭이 드러나게 했다.",
+      "cDecision": "revise",
+      "cAfter": "‘$30$ 이상 $35$ 미만’과 ‘$35$ 이상 $40$ 미만’으로 나누면 $35$는 ‘{$35$} 이상 {$40$} 미만’인 구간에만 들어간다.",
+      "cReason": "‘한 구간에만’은 어느 구간인지 판단하지 않아도 채울 수 있어 속하는 구간을 고르게 했다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$35$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$40$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1060-1090.json",
+      "codexFinalAmendedFromFingerprint": "1c05bcb4d7234ba576c3b077d4309cd30149f51b35b6c6e9090c17c37557c352",
+      "sourceIndex": 1078,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-2-xc20",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-2 초과와 미만 알아보기",
+        "term": "겹치지 않게 구간 나누기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "‘$30$ 이상 $35$ 미만’, ‘$35$ 이상 $40$ 미만’처럼 나누면 경계의 수가 {한 구간에만} 들어간다.",
+        "studentC": "‘$30$ 이상 $35$ 미만’, ‘$35$ 이상 $40$ 미만’처럼 나누면 경계의 수가 □ 들어간다.",
+        "answers": [
+          "한 구간에만"
+        ]
+      },
+      "sourceFingerprint": "e32eb8a02b2d6030541477f915e8779cb62930e126dc677997c71a50c135cf50",
+      "draftEvidence": "evidence/section-027-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$35$",
+        "$40$"
+      ],
+      "cStudentAfter": "‘$30$ 이상 $35$ 미만’과 ‘$35$ 이상 $40$ 미만’으로 나누면 $35$는 ‘□ 이상 □ 미만’인 구간에만 들어간다.",
+      "cMarkedSentence": "‘$30$ 이상 $35$ 미만’과 ‘$35$ 이상 $40$ 미만’으로 나누면 $35$는 ‘{$35$} 이상 {$40$} 미만’인 구간에만 들어간다.",
+      "cStudentSentence": "‘$30$ 이상 $35$ 미만’과 ‘$35$ 이상 $40$ 미만’으로 나누면 $35$는 ‘□ 이상 □ 미만’인 구간에만 들어간다.",
+      "cSlotAnswers": [
+        {
+          "key": "$35$",
+          "equivalents": []
+        },
+        {
+          "key": "$40$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "몸무게에 따라 ‘$30$ 이상 $35$ 이하’와 ‘$35$ 이상 $40$ 미만’으로 모둠을 나누었더니 $35$인 사람이 두 모둠에 모두 들어갑니다. 첫 번째 모둠의 범위를 ‘미만’을 써서 고쳐, 빠지거나 겹치는 사람 없이 나누세요. $35$인 사람은 어느 모둠에 들어가는지도 쓰세요.",
+        "answer": "첫 번째 모둠을 $30$ 이상 $35$ 미만으로 고치고 두 번째 모둠은 $35$ 이상 $40$ 미만으로 둡니다. $35$인 사람은 두 번째 모둠에 들어갑니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "첫번째모둠은$30$이상$35$미만"
+            ]
+          },
+          {
+            "anyOf": [
+              "$35$는두번째모둠에들어간다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "‘$30$ 이상 $35$ 미만’과 ‘$35$ 이상 $40$ 미만’으로 나누면 $35$는 ‘{$35$} 이상 {$40$} 미만’인 구간에만 들어간다.",
+        "acceptedAnswers": [
+          [
+            "$35$"
+          ],
+          [
+            "$40$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e2fe2dfedb03a0f26812f49304f2720e14d41b944f0d5444f89572102f3579e3",
+      "questionRevision": "planning-e5e6-20261006-e2fe2dfedb03",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-1-2-xc23",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "한 학생이 ‘$4$ 초과 $8$ 미만인 자연수’를 $4, 5, 6, 7, 8$이라고 썼다. 무엇이 잘못되었는지 초과와 미만의 뜻을 써서 설명하고 바르게 고치시오.",
+      "bAnswer": "초과와 미만은 기준 수를 포함하지 않으므로 $4$와 $8$은 빼야 한다. 바른 답은 $5, 6, 7$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$4$와 $8$은 범위에 들어가지 않는다",
+            "기준 수 $4$와 $8$을 넣은 것이 잘못이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$, $6$, $7$"
+          ]
+        }
+      ],
+      "bGoal": "기준 수를 범위에 넣는 흔한 실수를 찾아 고친다.",
+      "bReason": "‘잘못’이라는 이름을 묻지 않고 실제 틀린 답을 주어 진단하고 고치게 했다.",
+      "cDecision": "revise",
+      "cAfter": "‘$4$ 초과 $8$ 미만인 자연수’를 $4$, $5$, $6$, $7$, $8$이라고 썼다면 양 끝에서 잘못 넣은 수를 빼야 한다. 뺄 수 중 작은 수는 {$4$}, 큰 수는 {$8$}이다.",
+      "cReason": "원문 빈칸 ‘기준 수를 넣은’은 문장 앞부분을 되풀이하는 말이라 배우는 것이 없다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "synonymNotes": "C의 두 빈칸은 순서가 바뀌어도 정답이다.",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1060-1090.json",
+      "codexFinalAmendedFromFingerprint": "8f5df64edf0a11ad973ba1ff1e8d87452cadec172a6d79cf5bb659acaf7fb504",
+      "sourceIndex": 1081,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-1-2-xc23",
+        "section": "초5::2-1 수의 범위와 어림하기::2-1-2 초과와 미만 알아보기",
+        "term": "기준 수를 넣는 잘못",
+        "kind": "성질",
+        "level": "상",
+        "definition": "$4$ 초과 $8$ 미만인 자연수에 $4$나 $8$을 넣으면 {기준 수를 넣은} 잘못이다.",
+        "studentC": "$4$ 초과 $8$ 미만인 자연수에 $4$나 $8$을 넣으면 □ 잘못이다.",
+        "answers": [
+          "기준 수를 넣은"
+        ]
+      },
+      "sourceFingerprint": "0c2c5c4231db72444e701153771ef613ec8eb9174d721c7006f4d8d237cf4643",
+      "draftEvidence": "evidence/section-027-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$4$",
+        "$8$"
+      ],
+      "cStudentAfter": "‘$4$ 초과 $8$ 미만인 자연수’를 $4$, $5$, $6$, $7$, $8$이라고 썼다면 양 끝에서 잘못 넣은 수를 빼야 한다. 뺄 수 중 작은 수는 □, 큰 수는 □이다.",
+      "cMarkedSentence": "‘$4$ 초과 $8$ 미만인 자연수’를 $4$, $5$, $6$, $7$, $8$이라고 썼다면 양 끝에서 잘못 넣은 수를 빼야 한다. 뺄 수 중 작은 수는 {$4$}, 큰 수는 {$8$}이다.",
+      "cStudentSentence": "‘$4$ 초과 $8$ 미만인 자연수’를 $4$, $5$, $6$, $7$, $8$이라고 썼다면 양 끝에서 잘못 넣은 수를 빼야 한다. 뺄 수 중 작은 수는 □, 큰 수는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": []
+        },
+        {
+          "key": "$8$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "한 학생이 ‘$4$ 초과 $8$ 미만인 자연수’를 $4, 5, 6, 7, 8$이라고 썼다. 무엇이 잘못되었는지 초과와 미만의 뜻을 써서 설명하고 바르게 고치시오.",
+        "answer": "초과와 미만은 기준 수를 포함하지 않으므로 $4$와 $8$은 빼야 한다. 바른 답은 $5, 6, 7$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$4$와 $8$은 범위에 들어가지 않는다",
+              "기준 수 $4$와 $8$을 넣은 것이 잘못이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5$, $6$, $7$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "‘$4$ 초과 $8$ 미만인 자연수’를 $4$, $5$, $6$, $7$, $8$이라고 썼다면 양 끝에서 잘못 넣은 수를 빼야 한다. 뺄 수 중 작은 수는 {$4$}, 큰 수는 {$8$}이다.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ],
+          [
+            "$8$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "3409a517c758f38b6f1ff8617e90a99fba75a23cb7304e52a0a22fd602c18e22",
+      "questionRevision": "planning-e5e6-20261006-3409a517c758",
+      "requiresIndependentReview": true
+    }
+  ]
+}

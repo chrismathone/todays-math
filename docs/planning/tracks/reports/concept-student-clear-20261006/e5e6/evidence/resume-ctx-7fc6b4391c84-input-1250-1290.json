@@ -1,0 +1,3332 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "capturedAt": "2026-10-07T07:28:53.054924+00:00",
+  "rows": [
+    {
+      "id": "e5-2-3-1-xc14",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "정삼각형은 한 변의 길이가 같으면 합동임을 안다.",
+      "bReason": "xc5(정사각형)와 xc21(정다각형 일반)이 같은 생각을 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "두 정삼각형은 세 각의 크기가 모두 $60 ^\\circ$로 같으므로 한 {변}의 길이만 같으면 합동이다.",
+      "cReason": "문장 맨 앞의 긴 구절 빈칸은 답의 범위가 넓어 낱말 하나로 좁혔다.",
+      "exclusionReason": "B 중복: e5-2-3-1-xc5, e5-2-3-1-xc21로 대체.",
+      "exampleNeeded": false,
+      "sourceIndex": 1250,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-1-xc14",
+        "section": "초5::2-3 합동과 대칭::2-3-1 도형의 합동 알아보기",
+        "term": "정삼각형끼리의 합동",
+        "kind": "성질",
+        "level": "중",
+        "definition": "{한 변의 길이가 같은} 두 정삼각형은 합동이다.",
+        "studentC": "□ 두 정삼각형은 합동이다.",
+        "answers": [
+          "한 변의 길이가 같은"
+        ]
+      },
+      "sourceFingerprint": "7576927808814af66c87d88154044cb2a20f007748df51366016ed62c0b82a07",
+      "draftEvidence": "evidence/section-036-draft.json",
+      "cProposedAnswers": [
+        "변"
+      ],
+      "cStudentAfter": "두 정삼각형은 세 각의 크기가 모두 $60 ^\\circ$로 같으므로 한 □의 길이만 같으면 합동이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "변"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "두 정삼각형은 세 각의 크기가 모두 $60 ^\\circ$로 같으므로 한 {변}의 길이만 같으면 합동이다.",
+      "cStudentSentence": "두 정삼각형은 세 각의 크기가 모두 $60 ^\\circ$로 같으므로 한 □의 길이만 같으면 합동이다.",
+      "cSlotAnswers": [
+        {
+          "key": "변",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "두 정삼각형은 세 각의 크기가 모두 $60 ^\\circ$로 같으므로 한 {변}의 길이만 같으면 합동이다.",
+        "acceptedAnswers": [
+          [
+            "변"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 중복: e5-2-3-1-xc5, e5-2-3-1-xc21로 대체."
+      },
+      "proposalFingerprint": "4f2152a33cae3db67f0dcdd882a642a081b4570cd8a55fa3bb2900d70ec43538",
+      "questionRevision": "planning-e5e6-20261006-4f2152a33cae",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-1-xc15",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "직사각형을 대각선 하나를 따라 자르면 어떤 도형이 몇 개 생기는지 쓰고, 그 도형들이 서로 합동인지 어떻게 확인할 수 있는지 설명하시오.",
+      "bAnswer": "삼각형(직각삼각형)이 $2$개 생긴다. 한 조각을 돌려서 다른 조각 위에 포개면 완전히 겹치므로 두 삼각형은 합동이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "삼각형이 $2$개 생긴다",
+            "직각삼각형이 $2$개 생긴다"
+          ]
+        },
+        {
+          "anyOf": [
+            "포개어 보면 완전히 겹친다",
+            "돌려서 포개면 완전히 겹쳐 합동이다"
+          ]
+        }
+      ],
+      "bGoal": "대각선으로 자른 두 삼각형이 합동임을 포개어 확인한다.",
+      "bReason": "생기는 도형과 확인 방법을 나누어 물어 암기가 아닌 설명이 되게 했다.",
+      "cDecision": "revise",
+      "cAfter": "직사각형을 대각선 하나를 따라 자르면 삼각형이 {$2$}개 생기고, 이 두 삼각형은 서로 {합동}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$",
+            "두"
+          ]
+        },
+        {
+          "anyOf": [
+            "합동"
+          ]
+        }
+      ],
+      "cReason": "'삼각형 두 개' 한 덩어리 빈칸을 개수와 관계 두 빈칸으로 나누었다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1251,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-1-xc15",
+        "section": "초5::2-3 합동과 대칭::2-3-1 도형의 합동 알아보기",
+        "term": "대각선으로 자른 직사각형",
+        "kind": "성질",
+        "level": "중",
+        "definition": "직사각형을 대각선 하나로 자르면 서로 합동인 {삼각형 두 개}가 생긴다.",
+        "studentC": "직사각형을 대각선 하나로 자르면 서로 합동인 □가 생긴다.",
+        "answers": [
+          "삼각형 두 개"
+        ]
+      },
+      "sourceFingerprint": "7cecfd596b0079728c85d6999b3b16d7f7ed7718ea7627e6a3ac147df7bf3b9b",
+      "draftEvidence": "evidence/section-036-draft.json",
+      "cProposedAnswers": [
+        "$2$",
+        "합동"
+      ],
+      "cStudentAfter": "직사각형을 대각선 하나를 따라 자르면 삼각형이 □개 생기고, 이 두 삼각형은 서로 □이다.",
+      "cMarkedSentence": "직사각형을 대각선 하나를 따라 자르면 삼각형이 {$2$}개 생기고, 이 두 삼각형은 서로 {합동}이다.",
+      "cStudentSentence": "직사각형을 대각선 하나를 따라 자르면 삼각형이 □개 생기고, 이 두 삼각형은 서로 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": [
+            "두"
+          ]
+        },
+        {
+          "key": "합동",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직사각형을 대각선 하나를 따라 자르면 어떤 도형이 몇 개 생기는지 쓰고, 그 도형들이 서로 합동인지 어떻게 확인할 수 있는지 설명하시오.",
+        "answer": "삼각형(직각삼각형)이 $2$개 생긴다. 한 조각을 돌려서 다른 조각 위에 포개면 완전히 겹치므로 두 삼각형은 합동이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "삼각형이 $2$개 생긴다",
+              "직각삼각형이 $2$개 생긴다"
+            ]
+          },
+          {
+            "anyOf": [
+              "포개어 보면 완전히 겹친다",
+              "돌려서 포개면 완전히 겹쳐 합동이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직사각형을 대각선 하나를 따라 자르면 삼각형이 {$2$}개 생기고, 이 두 삼각형은 서로 {합동}이다.",
+        "acceptedAnswers": [
+          [
+            "$2$",
+            "두"
+          ],
+          [
+            "합동"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "12b445f877130fed71f96bace49731f32273394f6eda2308bdee6a4f0c9cfe0a",
+      "questionRevision": "planning-e5e6-20261006-12b445f87713",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-1-xc16",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "정사각형을 두 대각선으로 자르면 합동인 삼각형 4개가 됨을 안다.",
+      "bReason": "조각의 개수 하나만 답하게 되고 까닭은 xc15와 같다.",
+      "cDecision": "keep",
+      "cAfter": "정사각형을 두 대각선으로 자르면 합동인 삼각형이 {네 개} 생긴다.",
+      "cReason": "자르는 조건이 분명하고 개수만 답하는 짧은 문장이다.",
+      "exclusionReason": "B는 단순 개수 확인: e5-2-3-1-xc15로 대체.",
+      "exampleNeeded": false,
+      "synonymNotes": "'네 개', '4개', '4'는 같은 답이다.",
+      "sourceIndex": 1252,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-1-xc16",
+        "section": "초5::2-3 합동과 대칭::2-3-1 도형의 합동 알아보기",
+        "term": "두 대각선으로 자른 정사각형",
+        "kind": "성질",
+        "level": "중",
+        "definition": "정사각형을 두 대각선으로 자르면 합동인 삼각형이 {네 개} 생긴다.",
+        "studentC": "정사각형을 두 대각선으로 자르면 합동인 삼각형이 □ 생긴다.",
+        "answers": [
+          "네 개"
+        ]
+      },
+      "sourceFingerprint": "27b9414d571bd1d21c66ea46c75c34c3259b9a296b3db8ec00adb6de0b98791e",
+      "draftEvidence": "evidence/section-036-draft.json",
+      "cFrozenDefinition": "정사각형을 두 대각선으로 자르면 합동인 삼각형이 {네 개} 생긴다.",
+      "cFrozenStudentSentence": "정사각형을 두 대각선으로 자르면 합동인 삼각형이 □ 생긴다.",
+      "cProposedAnswers": [
+        "네 개"
+      ],
+      "cStudentAfter": "정사각형을 두 대각선으로 자르면 합동인 삼각형이 □ 생긴다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "네 개"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "정사각형을 두 대각선으로 자르면 합동인 삼각형이 {네 개} 생긴다.",
+      "cStudentSentence": "정사각형을 두 대각선으로 자르면 합동인 삼각형이 □ 생긴다.",
+      "cSlotAnswers": [
+        {
+          "key": "네 개",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "정사각형을 두 대각선으로 자르면 합동인 삼각형이 {네 개} 생긴다.",
+        "acceptedAnswers": [
+          [
+            "네 개"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 단순 개수 확인: e5-2-3-1-xc15로 대체."
+      },
+      "proposalFingerprint": "6a3baf35987ba48ae575c2498f68371a02bdfded80bfcc8e6499398ecfa3b25d",
+      "questionRevision": "planning-e5e6-20261006-6a3baf35987b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-1-xc17",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "평행사변형을 대각선으로 자른 두 삼각형이 합동임을 안다.",
+      "bReason": "직사각형을 자르는 xc15와 확인 방법이 같다.",
+      "cDecision": "keep",
+      "cAfter": "평행사변형을 대각선 하나로 자른 두 삼각형은 서로 {합동}이다.",
+      "cReason": "평행사변형과 대각선 하나라는 조건이 분명하고 답이 '합동' 한 낱말이다.",
+      "exclusionReason": "B 중복: e5-2-3-1-xc15로 대체.",
+      "exampleNeeded": false,
+      "sourceIndex": 1253,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-1-xc17",
+        "section": "초5::2-3 합동과 대칭::2-3-1 도형의 합동 알아보기",
+        "term": "대각선으로 자른 평행사변형",
+        "kind": "성질",
+        "level": "중",
+        "definition": "평행사변형을 대각선 하나로 자른 두 삼각형은 서로 {합동}이다.",
+        "studentC": "평행사변형을 대각선 하나로 자른 두 삼각형은 서로 □이다.",
+        "answers": [
+          "합동"
+        ]
+      },
+      "sourceFingerprint": "68bc03e81bf191ece42285a8eb03a51e1093308a1ce8fd48d87ea1e49193144e",
+      "draftEvidence": "evidence/section-036-draft.json",
+      "cFrozenDefinition": "평행사변형을 대각선 하나로 자른 두 삼각형은 서로 {합동}이다.",
+      "cFrozenStudentSentence": "평행사변형을 대각선 하나로 자른 두 삼각형은 서로 □이다.",
+      "cProposedAnswers": [
+        "합동"
+      ],
+      "cStudentAfter": "평행사변형을 대각선 하나로 자른 두 삼각형은 서로 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "합동"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "평행사변형을 대각선 하나로 자른 두 삼각형은 서로 {합동}이다.",
+      "cStudentSentence": "평행사변형을 대각선 하나로 자른 두 삼각형은 서로 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "합동",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "평행사변형을 대각선 하나로 자른 두 삼각형은 서로 {합동}이다.",
+        "acceptedAnswers": [
+          [
+            "합동"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 중복: e5-2-3-1-xc15로 대체."
+      },
+      "proposalFingerprint": "f2f1f08651b85e28cb63e7d28dea8220e4f6fd13e70a83617874a436d2662b52",
+      "questionRevision": "planning-e5e6-20261006-f2f1f08651b8",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-1-xc18",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "두 도형이 합동이 아니라는 것을 보이려면 무엇을 찾으면 되는지 쓰고, 세 변이 $3\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$, $5\\,\\mathrm{cm}$인 삼각형과 세 변이 $3\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$, $6\\,\\mathrm{cm}$인 삼각형이 합동인지 판단하시오.",
+      "bAnswer": "어떻게 포개어도 겹치지 않는 부분, 곧 길이가 맞지 않는 변이나 크기가 맞지 않는 각을 찾으면 된다. 두 삼각형은 $5\\,\\mathrm{cm}$인 변과 $6\\,\\mathrm{cm}$인 변의 길이가 달라서 합동이 아니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "길이가 다른 변이나 크기가 다른 각을 찾는다",
+            "어떻게 포개어도 겹치지 않는 부분을 찾는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 삼각형은 합동이 아니다"
+          ]
+        }
+      ],
+      "bGoal": "맞지 않는 변이나 각을 찾아 합동이 아님을 보인다.",
+      "bReason": "'대응하는'이라는 말 없이 묻고, 한 변만 다른 두 삼각형으로 적용하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "두 도형을 어떻게 포개어도 길이가 맞지 않는 변이나 크기가 맞지 않는 각이 있으면 두 도형은 합동이 {아니다}.",
+      "cReason": "원문 빈칸은 '대응하는'이 든 긴 구절이라 이 소단원 학생이 쓰기 어렵다.",
+      "coreAfter": "두 도형을 어떻게 옮기거나 돌리거나 뒤집어도 포개었을 때 완전히 겹치지 않으면 {합동이 아니다}.",
+      "coreReason": "'대응하는 변이나 각이 다른 곳'은 대응을 배우기 전의 학생에게 뜻이 불분명한 표현이다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "coreTargetReason": "대응하는 변이나 각이 다른 곳이라는 학습 전의 긴 표적을 실제 합동 부정 조건으로 고친다. 비교할 변을 임의로 짝지어도 된다는 잘못된 두 번째 초안 문장은 제거한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 1254,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-1-xc18",
+        "section": "초5::2-3 합동과 대칭::2-3-1 도형의 합동 알아보기",
+        "term": "합동이 아님을 보이기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "두 도형이 합동이 아님을 보이려면 어떻게 포개어도 {대응하는 변이나 각이 다른 곳}이 있음을 찾으면 된다.",
+        "studentC": "두 도형이 합동이 아님을 보이려면 어떻게 포개어도 □이 있음을 찾으면 된다.",
+        "answers": [
+          "대응하는 변이나 각이 다른 곳"
+        ]
+      },
+      "sourceFingerprint": "3c22e0b8cdddc0f74c4de1ed6c4679d2f06103a750f171f3eb8a26c11eee30db",
+      "draftEvidence": "evidence/section-036-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "아니다"
+      ],
+      "cStudentAfter": "두 도형을 어떻게 포개어도 길이가 맞지 않는 변이나 크기가 맞지 않는 각이 있으면 두 도형은 합동이 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "아니다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "두 도형을 어떻게 포개어도 길이가 맞지 않는 변이나 크기가 맞지 않는 각이 있으면 두 도형은 합동이 {아니다}.",
+      "cStudentSentence": "두 도형을 어떻게 포개어도 길이가 맞지 않는 변이나 크기가 맞지 않는 각이 있으면 두 도형은 합동이 □.",
+      "cSlotAnswers": [
+        {
+          "key": "아니다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "두 도형이 합동이 아니라는 것을 보이려면 무엇을 찾으면 되는지 쓰고, 세 변이 $3\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$, $5\\,\\mathrm{cm}$인 삼각형과 세 변이 $3\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$, $6\\,\\mathrm{cm}$인 삼각형이 합동인지 판단하시오.",
+        "answer": "어떻게 포개어도 겹치지 않는 부분, 곧 길이가 맞지 않는 변이나 크기가 맞지 않는 각을 찾으면 된다. 두 삼각형은 $5\\,\\mathrm{cm}$인 변과 $6\\,\\mathrm{cm}$인 변의 길이가 달라서 합동이 아니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "길이가 다른 변이나 크기가 다른 각을 찾는다",
+              "어떻게 포개어도 겹치지 않는 부분을 찾는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 삼각형은 합동이 아니다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "두 도형을 어떻게 포개어도 길이가 맞지 않는 변이나 크기가 맞지 않는 각이 있으면 두 도형은 합동이 {아니다}.",
+        "acceptedAnswers": [
+          [
+            "아니다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5c8f29753cede4e3c8433e4d02b99f374e323cf16587b3585f72160c0ffd8903",
+      "questionRevision": "planning-e5e6-20261006-5c8f29753ced",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-1-xc19",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "넓이가 같은 직사각형과 정사각형이 합동이 아님을 안다.",
+      "bReason": "c3 B가 넓이만 같은 두 도형의 반례를 이미 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "가로 $9\\,\\mathrm{cm}$, 세로 $4\\,\\mathrm{cm}$인 직사각형과 한 변이 $6\\,\\mathrm{cm}$인 정사각형은 넓이가 모두 {$36$} $\\mathrm{cm} ^2$이지만, 변의 길이가 달라서 합동이 {아니다}.",
+      "cReason": "'변의 길이가 다르면' 구절 대신 넓이를 계산하고 합동 여부를 판단하게 했다.",
+      "exclusionReason": "B 중복: e5-2-3-1-c3으로 대체.",
+      "exampleNeeded": false,
+      "sourceIndex": 1255,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-1-xc19",
+        "section": "초5::2-3 합동과 대칭::2-3-1 도형의 합동 알아보기",
+        "term": "넓이만 같은 직사각형과 정사각형",
+        "kind": "성질",
+        "level": "상",
+        "definition": "넓이가 같은 직사각형과 정사각형도 {변의 길이가 다르면} 합동이 아니다.",
+        "studentC": "넓이가 같은 직사각형과 정사각형도 □ 합동이 아니다.",
+        "answers": [
+          "변의 길이가 다르면"
+        ]
+      },
+      "sourceFingerprint": "99cc492394ba5316e4621e6f2848ea27a7a74ee139a1a97a4c714962552d08ca",
+      "draftEvidence": "evidence/section-036-draft.json",
+      "cProposedAnswers": [
+        "$36$",
+        "아니다"
+      ],
+      "cStudentAfter": "가로 $9\\,\\mathrm{cm}$, 세로 $4\\,\\mathrm{cm}$인 직사각형과 한 변이 $6\\,\\mathrm{cm}$인 정사각형은 넓이가 모두 □ $\\mathrm{cm} ^2$이지만, 변의 길이가 달라서 합동이 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$36$"
+          ]
+        },
+        {
+          "anyOf": [
+            "아니다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "가로 $9\\,\\mathrm{cm}$, 세로 $4\\,\\mathrm{cm}$인 직사각형과 한 변이 $6\\,\\mathrm{cm}$인 정사각형은 넓이가 모두 {$36$} $\\mathrm{cm} ^2$이지만, 변의 길이가 달라서 합동이 {아니다}.",
+      "cStudentSentence": "가로 $9\\,\\mathrm{cm}$, 세로 $4\\,\\mathrm{cm}$인 직사각형과 한 변이 $6\\,\\mathrm{cm}$인 정사각형은 넓이가 모두 □ $\\mathrm{cm} ^2$이지만, 변의 길이가 달라서 합동이 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$36$",
+          "equivalents": []
+        },
+        {
+          "key": "아니다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "가로 $9\\,\\mathrm{cm}$, 세로 $4\\,\\mathrm{cm}$인 직사각형과 한 변이 $6\\,\\mathrm{cm}$인 정사각형은 넓이가 모두 {$36$} $\\mathrm{cm} ^2$이지만, 변의 길이가 달라서 합동이 {아니다}.",
+        "acceptedAnswers": [
+          [
+            "$36$"
+          ],
+          [
+            "아니다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 중복: e5-2-3-1-c3으로 대체."
+      },
+      "proposalFingerprint": "f9763ad84ea07da69fda52c7022ab80ba59356edfdbd22db5fb8e82ed1b46a43",
+      "questionRevision": "planning-e5e6-20261006-f9763ad84ea0",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-1-xc20",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "둘레가 같은 직사각형도 변의 길이가 다르면 합동이 아님을 안다.",
+      "bReason": "xc12 B가 둘레만 같은 도형을, c3 B가 변이 다른 두 직사각형을 이미 다룬다.",
+      "cDecision": "revise",
+      "cAfter": "가로 $5\\,\\mathrm{cm}$, 세로 $1\\,\\mathrm{cm}$인 직사각형과 가로 $4\\,\\mathrm{cm}$, 세로 $2\\,\\mathrm{cm}$인 직사각형은 둘레가 모두 {$12$} $\\mathrm{cm}$이지만, 가로와 세로의 길이가 서로 달라서 합동이 {아니다}.",
+      "cReason": "'가로와 세로의 짝'은 학생이 떠올리기 어려운 임의 표현이라 실제 길이로 바꾸었다.",
+      "coreAfter": "둘레가 같은 두 직사각형이라도 {긴 변끼리의 길이}가 다르면 서로 합동이 아니다.",
+      "coreReason": "'가로와 세로의 짝'은 뜻이 불분명하고, 가로·세로가 바뀐 합동인 경우와 구별되지 않는다.",
+      "exclusionReason": "B 중복: e5-2-3-1-xc12, e5-2-3-1-c3으로 대체.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "coreTargetReason": "가로와 세로의 짝이라는 표적은 회전해서 가로·세로가 바뀐 경우를 구별하지 못한다. 같은 둘레에서 긴 변을 서로 비교하면 길이 조합의 차이를 정확히 판별할 수 있다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 1256,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-1-xc20",
+        "section": "초5::2-3 합동과 대칭::2-3-1 도형의 합동 알아보기",
+        "term": "둘레가 같은 직사각형들",
+        "kind": "성질",
+        "level": "상",
+        "definition": "둘레가 같은 직사각형이라도 {가로와 세로의 짝}이 다르면 서로 합동이 아니다.",
+        "studentC": "둘레가 같은 직사각형이라도 □이 다르면 서로 합동이 아니다.",
+        "answers": [
+          "가로와 세로의 짝"
+        ]
+      },
+      "sourceFingerprint": "ea1947bd084eba9c674a05c82861c4ff3707f0802989adcd2eaa3750dc8b01bb",
+      "draftEvidence": "evidence/section-036-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$12$",
+        "아니다"
+      ],
+      "cStudentAfter": "가로 $5\\,\\mathrm{cm}$, 세로 $1\\,\\mathrm{cm}$인 직사각형과 가로 $4\\,\\mathrm{cm}$, 세로 $2\\,\\mathrm{cm}$인 직사각형은 둘레가 모두 □ $\\mathrm{cm}$이지만, 가로와 세로의 길이가 서로 달라서 합동이 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "아니다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "가로 $5\\,\\mathrm{cm}$, 세로 $1\\,\\mathrm{cm}$인 직사각형과 가로 $4\\,\\mathrm{cm}$, 세로 $2\\,\\mathrm{cm}$인 직사각형은 둘레가 모두 {$12$} $\\mathrm{cm}$이지만, 가로와 세로의 길이가 서로 달라서 합동이 {아니다}.",
+      "cStudentSentence": "가로 $5\\,\\mathrm{cm}$, 세로 $1\\,\\mathrm{cm}$인 직사각형과 가로 $4\\,\\mathrm{cm}$, 세로 $2\\,\\mathrm{cm}$인 직사각형은 둘레가 모두 □ $\\mathrm{cm}$이지만, 가로와 세로의 길이가 서로 달라서 합동이 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$12$",
+          "equivalents": []
+        },
+        {
+          "key": "아니다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "가로 $5\\,\\mathrm{cm}$, 세로 $1\\,\\mathrm{cm}$인 직사각형과 가로 $4\\,\\mathrm{cm}$, 세로 $2\\,\\mathrm{cm}$인 직사각형은 둘레가 모두 {$12$} $\\mathrm{cm}$이지만, 가로와 세로의 길이가 서로 달라서 합동이 {아니다}.",
+        "acceptedAnswers": [
+          [
+            "$12$"
+          ],
+          [
+            "아니다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 중복: e5-2-3-1-xc12, e5-2-3-1-c3으로 대체."
+      },
+      "proposalFingerprint": "f67c833f11ab2b12165b7f9580ad81188c564238f9b3bcd7a99dba72e33db7ff",
+      "questionRevision": "planning-e5e6-20261006-f67c833f11ab",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-1-xc21",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "변의 수가 같은 두 정다각형이 합동인지 알아보려면 무엇을 비교하면 되는지 쓰고, 한 변이 $3\\,\\mathrm{cm}$인 정육각형과 한 변이 $5\\,\\mathrm{cm}$인 정육각형이 합동인지 판단하시오.",
+      "bAnswer": "한 변의 길이를 비교한다. 두 정육각형은 한 변의 길이가 달라 크기가 다르므로 합동이 아니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "한 변의 길이를 비교한다",
+            "변의 길이를 비교한다",
+            "둘레를 비교한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 정육각형은 합동이 아니다"
+          ]
+        }
+      ],
+      "bGoal": "변의 수가 같은 정다각형은 한 변의 길이로 합동을 판단한다.",
+      "bReason": "정사각형·정삼각형 행의 일반화이므로 비교 대상을 쓰게 하고 정육각형에 적용하게 했다.",
+      "cDecision": "keep",
+      "cAfter": "변의 수가 같은 두 정다각형은 {한 변의 길이}가 같으면 합동이다.",
+      "cReason": "변의 수가 같다는 조건이 있고 빈칸이 판단 기준인 짧은 말이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "C 답은 '변의 길이'도 같은 뜻으로 인정할 만하다.",
+      "sourceIndex": 1257,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-1-xc21",
+        "section": "초5::2-3 합동과 대칭::2-3-1 도형의 합동 알아보기",
+        "term": "정다각형끼리의 합동",
+        "kind": "성질",
+        "level": "상",
+        "definition": "변의 수가 같은 두 정다각형은 {한 변의 길이}가 같으면 합동이다.",
+        "studentC": "변의 수가 같은 두 정다각형은 □가 같으면 합동이다.",
+        "answers": [
+          "한 변의 길이"
+        ]
+      },
+      "sourceFingerprint": "a92d1f55bc7058a76342634eea6b6cf652c36f74a8840e68fc461568efc307d9",
+      "draftEvidence": "evidence/section-036-draft.json",
+      "cFrozenDefinition": "변의 수가 같은 두 정다각형은 {한 변의 길이}가 같으면 합동이다.",
+      "cFrozenStudentSentence": "변의 수가 같은 두 정다각형은 □가 같으면 합동이다.",
+      "cProposedAnswers": [
+        "한 변의 길이"
+      ],
+      "cStudentAfter": "변의 수가 같은 두 정다각형은 □가 같으면 합동이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "한 변의 길이"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "변의 수가 같은 두 정다각형은 {한 변의 길이}가 같으면 합동이다.",
+      "cStudentSentence": "변의 수가 같은 두 정다각형은 □가 같으면 합동이다.",
+      "cSlotAnswers": [
+        {
+          "key": "한 변의 길이",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "변의 수가 같은 두 정다각형이 합동인지 알아보려면 무엇을 비교하면 되는지 쓰고, 한 변이 $3\\,\\mathrm{cm}$인 정육각형과 한 변이 $5\\,\\mathrm{cm}$인 정육각형이 합동인지 판단하시오.",
+        "answer": "한 변의 길이를 비교한다. 두 정육각형은 한 변의 길이가 달라 크기가 다르므로 합동이 아니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "한 변의 길이를 비교한다",
+              "변의 길이를 비교한다",
+              "둘레를 비교한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 정육각형은 합동이 아니다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "변의 수가 같은 두 정다각형은 {한 변의 길이}가 같으면 합동이다.",
+        "acceptedAnswers": [
+          [
+            "한 변의 길이"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "24c9a0bff9fd20cd8488b367b92847b09049f5295f72a671d4defe3ecc708595",
+      "questionRevision": "planning-e5e6-20261006-24c9a0bff9fd",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-1-xc22",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "변의 수가 다른 정다각형은 합동이 될 수 없음을 안다.",
+      "bReason": "모양이 다르면 합동이 아니라는 자명한 내용이라 설명할 것이 거의 없다.",
+      "cDecision": "keep",
+      "cAfter": "변의 수가 다른 두 정다각형은 한 변의 길이가 같아도 {합동이 아니다}.",
+      "cReason": "'한 변의 길이가 같아도'라는 조건 뒤의 판단을 짧게 답하는 문장이다.",
+      "exclusionReason": "B는 자명한 판단이며, 모양이 다른 경우는 e5-2-3-1-xc12에서 다룬다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'합동이 아니다'와 '합동이 될 수 없다'는 같은 답이다.",
+      "sourceIndex": 1258,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-1-xc22",
+        "section": "초5::2-3 합동과 대칭::2-3-1 도형의 합동 알아보기",
+        "term": "변의 수가 다른 정다각형",
+        "kind": "성질",
+        "level": "상",
+        "definition": "변의 수가 다른 두 정다각형은 한 변의 길이가 같아도 {합동이 아니다}.",
+        "studentC": "변의 수가 다른 두 정다각형은 한 변의 길이가 같아도 □.",
+        "answers": [
+          "합동이 아니다"
+        ]
+      },
+      "sourceFingerprint": "661022df19f11068c449643d0ea3c8606e59294eb30f0f526141dc8e22ed952e",
+      "draftEvidence": "evidence/section-036-draft.json",
+      "cFrozenDefinition": "변의 수가 다른 두 정다각형은 한 변의 길이가 같아도 {합동이 아니다}.",
+      "cFrozenStudentSentence": "변의 수가 다른 두 정다각형은 한 변의 길이가 같아도 □.",
+      "cProposedAnswers": [
+        "합동이 아니다"
+      ],
+      "cStudentAfter": "변의 수가 다른 두 정다각형은 한 변의 길이가 같아도 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "합동이 아니다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "변의 수가 다른 두 정다각형은 한 변의 길이가 같아도 {합동이 아니다}.",
+      "cStudentSentence": "변의 수가 다른 두 정다각형은 한 변의 길이가 같아도 □.",
+      "cSlotAnswers": [
+        {
+          "key": "합동이 아니다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "변의 수가 다른 두 정다각형은 한 변의 길이가 같아도 {합동이 아니다}.",
+        "acceptedAnswers": [
+          [
+            "합동이 아니다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 자명한 판단이며, 모양이 다른 경우는 e5-2-3-1-xc12에서 다룬다."
+      },
+      "proposalFingerprint": "a29648d5f8af0bed1430b48d241b34a619a858b58bceb3c8d1a59154cdceef70",
+      "questionRevision": "planning-e5e6-20261006-a29648d5f8af",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-1-xc23",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "한 변의 길이가 같은 두 마름모는 항상 합동인지 쓰고, 그렇게 판단한 까닭을 마름모의 각과 관련지어 설명하시오.",
+      "bAnswer": "항상 합동인 것은 아니다. 마름모는 변의 길이가 같아도 각의 크기가 다를 수 있고, 각의 크기가 다르면 포개어도 완전히 겹치지 않는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "항상 합동인 것은 아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "변의 길이가 같아도 각의 크기가 다를 수 있다",
+            "각의 크기가 다르면 완전히 겹치지 않는다"
+          ]
+        }
+      ],
+      "bGoal": "마름모는 변의 길이만으로 합동이 정해지지 않음을 각으로 설명한다.",
+      "bReason": "정사각형(xc5)과 달리 각이 정해져 있지 않다는 차이를 설명하게 했다.",
+      "cDecision": "keep",
+      "cAfter": "한 변의 길이가 같은 두 마름모도 {각의 크기}가 다르면 합동이 아니다.",
+      "cReason": "변이 같아도 무엇이 다르면 합동이 아닌지를 짧은 낱말로 답한다.",
+      "exampleNeeded": false,
+      "synonymNotes": "C 답은 '각', '각도'도 같은 뜻이다.",
+      "sourceIndex": 1259,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-1-xc23",
+        "section": "초5::2-3 합동과 대칭::2-3-1 도형의 합동 알아보기",
+        "term": "마름모끼리의 합동",
+        "kind": "성질",
+        "level": "상",
+        "definition": "한 변의 길이가 같은 두 마름모도 {각의 크기}가 다르면 합동이 아니다.",
+        "studentC": "한 변의 길이가 같은 두 마름모도 □가 다르면 합동이 아니다.",
+        "answers": [
+          "각의 크기"
+        ]
+      },
+      "sourceFingerprint": "b507313eab96368107a55d71beddbe87b34bca8c7a4e2b2bc7719342cc0e6632",
+      "draftEvidence": "evidence/section-036-draft.json",
+      "cFrozenDefinition": "한 변의 길이가 같은 두 마름모도 {각의 크기}가 다르면 합동이 아니다.",
+      "cFrozenStudentSentence": "한 변의 길이가 같은 두 마름모도 □가 다르면 합동이 아니다.",
+      "cProposedAnswers": [
+        "각의 크기"
+      ],
+      "cStudentAfter": "한 변의 길이가 같은 두 마름모도 □가 다르면 합동이 아니다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "각의 크기"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "한 변의 길이가 같은 두 마름모도 {각의 크기}가 다르면 합동이 아니다.",
+      "cStudentSentence": "한 변의 길이가 같은 두 마름모도 □가 다르면 합동이 아니다.",
+      "cSlotAnswers": [
+        {
+          "key": "각의 크기",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "한 변의 길이가 같은 두 마름모는 항상 합동인지 쓰고, 그렇게 판단한 까닭을 마름모의 각과 관련지어 설명하시오.",
+        "answer": "항상 합동인 것은 아니다. 마름모는 변의 길이가 같아도 각의 크기가 다를 수 있고, 각의 크기가 다르면 포개어도 완전히 겹치지 않는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "항상 합동인 것은 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "변의 길이가 같아도 각의 크기가 다를 수 있다",
+              "각의 크기가 다르면 완전히 겹치지 않는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "한 변의 길이가 같은 두 마름모도 {각의 크기}가 다르면 합동이 아니다.",
+        "acceptedAnswers": [
+          [
+            "각의 크기"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "16d27cdf4818836e908c961b4ee02744c3816cfc20a632c3026d1df8394318f9",
+      "questionRevision": "planning-e5e6-20261006-16d27cdf4818",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-1-xc24",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "원을 지름으로 자른 두 조각이 합동임을 안다.",
+      "bReason": "잘라서 포개어 확인하는 방법은 xc15 B와 같다.",
+      "cDecision": "keep",
+      "cAfter": "원을 지름으로 자른 두 조각은 서로 {합동}이다.",
+      "cReason": "지름으로 자른다는 조건이 분명하고 답이 '합동' 한 낱말이다.",
+      "exclusionReason": "B 중복: e5-2-3-1-xc15로 대체.",
+      "exampleNeeded": false,
+      "sourceIndex": 1260,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-1-xc24",
+        "section": "초5::2-3 합동과 대칭::2-3-1 도형의 합동 알아보기",
+        "term": "지름으로 자른 원",
+        "kind": "성질",
+        "level": "상",
+        "definition": "원을 지름으로 자른 두 조각은 서로 {합동}이다.",
+        "studentC": "원을 지름으로 자른 두 조각은 서로 □이다.",
+        "answers": [
+          "합동"
+        ]
+      },
+      "sourceFingerprint": "eb470f6e889a8b5a7b31b5ef6a8db2c81ba5a1fda8256e86fe46ff1df4e45e6d",
+      "draftEvidence": "evidence/section-036-draft.json",
+      "cFrozenDefinition": "원을 지름으로 자른 두 조각은 서로 {합동}이다.",
+      "cFrozenStudentSentence": "원을 지름으로 자른 두 조각은 서로 □이다.",
+      "cProposedAnswers": [
+        "합동"
+      ],
+      "cStudentAfter": "원을 지름으로 자른 두 조각은 서로 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "합동"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "원을 지름으로 자른 두 조각은 서로 {합동}이다.",
+      "cStudentSentence": "원을 지름으로 자른 두 조각은 서로 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "합동",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "원을 지름으로 자른 두 조각은 서로 {합동}이다.",
+        "acceptedAnswers": [
+          [
+            "합동"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 중복: e5-2-3-1-xc15로 대체."
+      },
+      "proposalFingerprint": "54308535973d0a51338a634ac0e317cc514c1be3bb63e8959240509ae4b5aaa7",
+      "questionRevision": "planning-e5e6-20261006-54308535973d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-1-xc25",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "직사각형 모양의 종이를 서로 합동인 직사각형 $4$개로 나누는 방법을 한 가지 설명하시오.",
+      "bAnswer": "마주 보는 변의 한가운데끼리 이은 두 선을 따라 자른다. 또는 한 변을 똑같이 $4$칸으로 나누고 이웃한 변과 평행한 선으로 잘라도 된다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "마주 보는 변의 한가운데끼리 이은 두 선으로 자른다",
+            "가로와 세로를 각각 반으로 나누는 선으로 자른다",
+            "한 변을 똑같이 $4$등분하여 이웃한 변과 평행한 선으로 자른다"
+          ]
+        }
+      ],
+      "bGoal": "직사각형을 합동인 직사각형 4개로 나누는 방법을 말한다.",
+      "bReason": "바른 방법이 여럿이므로 한 가지만 쓰게 하고 동치 답을 모두 인정한다.",
+      "cDecision": "revise",
+      "cAfter": "직사각형을 마주 보는 변의 한가운데끼리 이은 두 선으로 자르면 서로 합동인 직사각형이 {$4$}개 생긴다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$",
+            "네"
+          ]
+        }
+      ],
+      "cReason": "'마주 보는 변의 한가운데'는 긴 구절 암기라 결과의 개수를 묻게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1261,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-1-xc25",
+        "section": "초5::2-3 합동과 대칭::2-3-1 도형의 합동 알아보기",
+        "term": "합동인 네 조각으로 나누기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "직사각형을 {마주 보는 변의 한가운데}끼리 이은 두 선으로 자르면 합동인 직사각형 네 개가 생긴다.",
+        "studentC": "직사각형을 □끼리 이은 두 선으로 자르면 합동인 직사각형 네 개가 생긴다.",
+        "answers": [
+          "마주 보는 변의 한가운데"
+        ]
+      },
+      "sourceFingerprint": "4a6e34b77538ad51cc9da81ac5ffec8924e534da5e613bb0b5cee5994daa2792",
+      "draftEvidence": "evidence/section-036-draft.json",
+      "cProposedAnswers": [
+        "$4$"
+      ],
+      "cStudentAfter": "직사각형을 마주 보는 변의 한가운데끼리 이은 두 선으로 자르면 서로 합동인 직사각형이 □개 생긴다.",
+      "cMarkedSentence": "직사각형을 마주 보는 변의 한가운데끼리 이은 두 선으로 자르면 서로 합동인 직사각형이 {$4$}개 생긴다.",
+      "cStudentSentence": "직사각형을 마주 보는 변의 한가운데끼리 이은 두 선으로 자르면 서로 합동인 직사각형이 □개 생긴다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": [
+            "네"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직사각형 모양의 종이를 서로 합동인 직사각형 $4$개로 나누는 방법을 한 가지 설명하시오.",
+        "answer": "마주 보는 변의 한가운데끼리 이은 두 선을 따라 자른다. 또는 한 변을 똑같이 $4$칸으로 나누고 이웃한 변과 평행한 선으로 잘라도 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "마주 보는 변의 한가운데끼리 이은 두 선으로 자른다",
+              "가로와 세로를 각각 반으로 나누는 선으로 자른다",
+              "한 변을 똑같이 $4$등분하여 이웃한 변과 평행한 선으로 자른다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직사각형을 마주 보는 변의 한가운데끼리 이은 두 선으로 자르면 서로 합동인 직사각형이 {$4$}개 생긴다.",
+        "acceptedAnswers": [
+          [
+            "$4$",
+            "네"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "4cf3387642e76e19f849d2cea7181f3d6373ca9449f07018c93c48e8013a519b",
+      "questionRevision": "planning-e5e6-20261006-4cf3387642e7",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-1-xc26",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "어떤 도형을 다른 자리로 옮기고 방향을 돌려 놓았습니다. 옮긴 도형이 처음 도형과 합동인지 쓰고, 도형의 무엇이 변하지 않았기 때문인지 설명하시오.",
+      "bAnswer": "합동이다. 놓인 자리와 방향은 달라졌지만 도형의 모양과 크기는 변하지 않아서 다시 포개면 완전히 겹친다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "처음 도형과 합동이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "모양과 크기가 변하지 않았다",
+            "다시 포개면 완전히 겹친다"
+          ]
+        }
+      ],
+      "bGoal": "합동은 놓인 자리나 방향과 관계없이 모양과 크기로 정해짐을 설명한다.",
+      "bReason": "xc3·xc4의 뒤집기·돌리기 까닭을 이 문항 하나로 모아 묻는다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "빈칸 '놓인 자리나 방향'은 임의 구절이고 같은 내용을 xc3·xc4의 C가 더 짧게 묻는다.",
+      "exclusionReason": "C 중복: e5-2-3-1-xc3, e5-2-3-1-xc4로 대체.",
+      "exampleNeeded": false,
+      "sourceIndex": 1262,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-1-xc26",
+        "section": "초5::2-3 합동과 대칭::2-3-1 도형의 합동 알아보기",
+        "term": "합동과 놓인 방향",
+        "kind": "성질",
+        "level": "상",
+        "definition": "합동인지는 도형이 {놓인 자리나 방향}과 관계없이 정해진다.",
+        "studentC": "합동인지는 도형이 □과 관계없이 정해진다.",
+        "answers": [
+          "놓인 자리나 방향"
+        ]
+      },
+      "sourceFingerprint": "5b03244a331b8c741e6aafabe47b55d0f6a966ada688f68e68cf310e4b2c35ba",
+      "draftEvidence": "evidence/section-036-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": {
+        "prompt": "어떤 도형을 다른 자리로 옮기고 방향을 돌려 놓았습니다. 옮긴 도형이 처음 도형과 합동인지 쓰고, 도형의 무엇이 변하지 않았기 때문인지 설명하시오.",
+        "answer": "합동이다. 놓인 자리와 방향은 달라졌지만 도형의 모양과 크기는 변하지 않아서 다시 포개면 완전히 겹친다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "처음 도형과 합동이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "모양과 크기가 변하지 않았다",
+              "다시 포개면 완전히 겹친다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "cloze": "C 중복: e5-2-3-1-xc3, e5-2-3-1-xc4로 대체."
+      },
+      "proposalFingerprint": "3f8520c627d30ece9301e750c429d00073047cc229b3b7ee6bc0d4e2d372c4df",
+      "questionRevision": "planning-e5e6-20261006-3f8520c627d3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-1-xc27",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "세 각의 크기가 각각 같은 두 삼각형은 항상 합동인지 쓰고, 한 변이 $2\\,\\mathrm{cm}$인 정삼각형과 한 변이 $4\\,\\mathrm{cm}$인 정삼각형을 예로 들어 그 까닭을 설명하시오.",
+      "bAnswer": "항상 합동인 것은 아니다. 두 정삼각형은 세 각이 모두 $60 ^\\circ$로 같지만 변의 길이가 달라 크기가 다르므로 포개어도 완전히 겹치지 않는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "항상 합동인 것은 아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "변의 길이가 다르다",
+            "크기가 다르다",
+            "포개어도 완전히 겹치지 않는다"
+          ]
+        }
+      ],
+      "bGoal": "각이 모두 같아도 변의 길이가 다르면 합동이 아님을 설명한다.",
+      "bReason": "각만 같으면 합동이라는 오개념을 크기가 다른 두 정삼각형으로 확인한다.",
+      "cDecision": "revise",
+      "cAfter": "세 각의 크기가 각각 같은 두 삼각형이라도 변의 {길이}가 다르면 합동이 아니다.",
+      "cReason": "'크기가 다르면'은 무엇의 크기인지 불분명해 변의 길이로 풀어 썼다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1263,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-1-xc27",
+        "section": "초5::2-3 합동과 대칭::2-3-1 도형의 합동 알아보기",
+        "term": "세 각만 같은 삼각형",
+        "kind": "성질",
+        "level": "상",
+        "definition": "세 각의 크기가 같은 두 삼각형도 {크기가 다르면} 합동이 아니다.",
+        "studentC": "세 각의 크기가 같은 두 삼각형도 □ 합동이 아니다.",
+        "answers": [
+          "크기가 다르면"
+        ]
+      },
+      "sourceFingerprint": "a18c42fa49cdfeaf7492e7d029bbff1cb15c50cfc9f1a52c048ffd4fa2f611c6",
+      "draftEvidence": "evidence/section-036-draft.json",
+      "cProposedAnswers": [
+        "길이"
+      ],
+      "cStudentAfter": "세 각의 크기가 각각 같은 두 삼각형이라도 변의 □가 다르면 합동이 아니다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "길이"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "세 각의 크기가 각각 같은 두 삼각형이라도 변의 {길이}가 다르면 합동이 아니다.",
+      "cStudentSentence": "세 각의 크기가 각각 같은 두 삼각형이라도 변의 □가 다르면 합동이 아니다.",
+      "cSlotAnswers": [
+        {
+          "key": "길이",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "세 각의 크기가 각각 같은 두 삼각형은 항상 합동인지 쓰고, 한 변이 $2\\,\\mathrm{cm}$인 정삼각형과 한 변이 $4\\,\\mathrm{cm}$인 정삼각형을 예로 들어 그 까닭을 설명하시오.",
+        "answer": "항상 합동인 것은 아니다. 두 정삼각형은 세 각이 모두 $60 ^\\circ$로 같지만 변의 길이가 달라 크기가 다르므로 포개어도 완전히 겹치지 않는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "항상 합동인 것은 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "변의 길이가 다르다",
+              "크기가 다르다",
+              "포개어도 완전히 겹치지 않는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "세 각의 크기가 각각 같은 두 삼각형이라도 변의 {길이}가 다르면 합동이 아니다.",
+        "acceptedAnswers": [
+          [
+            "길이"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "42dbc16f07da0dc4f47cdf26fead6a3c8dd3a3b0e12cc676e9e148da13bdf38e",
+      "questionRevision": "planning-e5e6-20261006-42dbc16f07da",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-2-xc1",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "서로 합동인 두 다각형에서 대응점, 대응변, 대응각이 각각 몇 쌍인지는 도형의 무엇을 세면 알 수 있는지 쓰고, 서로 합동인 두 사각형에서는 각각 몇 쌍인지 쓰시오.",
+      "bAnswer": "한 도형의 꼭짓점(변, 각)의 수를 세면 된다. 사각형에서는 대응점, 대응변, 대응각이 각각 $4$쌍이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "꼭짓점의 수",
+            "변의 수",
+            "각의 수"
+          ]
+        },
+        {
+          "anyOf": [
+            "각각 $4$쌍",
+            "모두 네 쌍씩"
+          ]
+        }
+      ],
+      "bGoal": "대응하는 부분의 쌍 수가 꼭짓점·변·각의 수와 같음을 안다.",
+      "bReason": "삼각형 3쌍 값만 묻는 대신 xc1~xc3을 묶어 일반 관계를 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "합동인 두 삼각형에는 대응점이 {세 쌍} 있다.",
+      "cReason": "삼각형의 꼭짓점 수만큼 대응점이 있음을 바로 확인하는 짧은 문장이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'세 쌍'과 '3쌍'은 같은 답이다.",
+      "sourceIndex": 1264,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-2-xc1",
+        "section": "초5::2-3 합동과 대칭::2-3-2 합동인 도형의 성질 알아보기",
+        "term": "삼각형의 대응점 수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "합동인 두 삼각형에는 대응점이 {세 쌍} 있다.",
+        "studentC": "합동인 두 삼각형에는 대응점이 □ 있다.",
+        "answers": [
+          "세 쌍"
+        ]
+      },
+      "sourceFingerprint": "e3455c9893d11dc1b661ac8819c2542047d6891e8a391aac0f3081a3cb113d86",
+      "draftEvidence": "evidence/section-037-draft.json",
+      "cFrozenDefinition": "합동인 두 삼각형에는 대응점이 {세 쌍} 있다.",
+      "cFrozenStudentSentence": "합동인 두 삼각형에는 대응점이 □ 있다.",
+      "cProposedAnswers": [
+        "세 쌍"
+      ],
+      "cStudentAfter": "합동인 두 삼각형에는 대응점이 □ 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "세 쌍"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "합동인 두 삼각형에는 대응점이 {세 쌍} 있다.",
+      "cStudentSentence": "합동인 두 삼각형에는 대응점이 □ 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "세 쌍",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "서로 합동인 두 다각형에서 대응점, 대응변, 대응각이 각각 몇 쌍인지는 도형의 무엇을 세면 알 수 있는지 쓰고, 서로 합동인 두 사각형에서는 각각 몇 쌍인지 쓰시오.",
+        "answer": "한 도형의 꼭짓점(변, 각)의 수를 세면 된다. 사각형에서는 대응점, 대응변, 대응각이 각각 $4$쌍이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "꼭짓점의 수",
+              "변의 수",
+              "각의 수"
+            ]
+          },
+          {
+            "anyOf": [
+              "각각 $4$쌍",
+              "모두 네 쌍씩"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "합동인 두 삼각형에는 대응점이 {세 쌍} 있다.",
+        "acceptedAnswers": [
+          [
+            "세 쌍"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "74b7c63e60bc2988e993aef2806ef163a27ea42ea950dddcc63e6691b0d315fc",
+      "questionRevision": "planning-e5e6-20261006-74b7c63e60bc",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-2-xc2",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "사각형의 대응변 쌍 수를 안다.",
+      "bReason": "쌍의 수 하나만 답하는 문항이고 xc1의 B가 사각형 예까지 다룬다.",
+      "cDecision": "keep",
+      "cAfter": "합동인 두 사각형에는 대응변이 {네 쌍} 있다.",
+      "cReason": "사각형의 변 수와 대응변 쌍 수를 잇는 짧은 확인 문장이다.",
+      "exclusionReason": "B는 xc1과 중복되어 제외(대체: e5-2-3-2-xc1).",
+      "exampleNeeded": false,
+      "synonymNotes": "'네 쌍'과 '4쌍'은 같은 답이다.",
+      "sourceIndex": 1265,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-2-xc2",
+        "section": "초5::2-3 합동과 대칭::2-3-2 합동인 도형의 성질 알아보기",
+        "term": "사각형의 대응변 수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "합동인 두 사각형에는 대응변이 {네 쌍} 있다.",
+        "studentC": "합동인 두 사각형에는 대응변이 □ 있다.",
+        "answers": [
+          "네 쌍"
+        ]
+      },
+      "sourceFingerprint": "23e81bd1c695d76c5bfebe95e055cc38cc92603a8e3f89b70d69d73c98aecd7a",
+      "draftEvidence": "evidence/section-037-draft.json",
+      "cFrozenDefinition": "합동인 두 사각형에는 대응변이 {네 쌍} 있다.",
+      "cFrozenStudentSentence": "합동인 두 사각형에는 대응변이 □ 있다.",
+      "cProposedAnswers": [
+        "네 쌍"
+      ],
+      "cStudentAfter": "합동인 두 사각형에는 대응변이 □ 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "네 쌍"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "합동인 두 사각형에는 대응변이 {네 쌍} 있다.",
+      "cStudentSentence": "합동인 두 사각형에는 대응변이 □ 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "네 쌍",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "합동인 두 사각형에는 대응변이 {네 쌍} 있다.",
+        "acceptedAnswers": [
+          [
+            "네 쌍"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 xc1과 중복되어 제외(대체: e5-2-3-2-xc1)."
+      },
+      "proposalFingerprint": "0d34145f98efa4e16f19bf5f9b6f7265badb4d203d22cb28b666a25733e6fcd7",
+      "questionRevision": "planning-e5e6-20261006-0d34145f98ef",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-2-xc3",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "오각형의 대응각 쌍 수를 안다.",
+      "bReason": "수 하나만 답하는 문항이고 일반 관계는 xc1의 B에서 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "합동인 두 오각형에는 대응각이 {다섯 쌍} 있다.",
+      "cReason": "오각형의 각 수와 대응각 쌍 수를 잇는 짧은 확인 문장이다.",
+      "exclusionReason": "B는 xc1과 중복되어 제외(대체: e5-2-3-2-xc1).",
+      "exampleNeeded": false,
+      "synonymNotes": "'다섯 쌍'과 '5쌍'은 같은 답이다.",
+      "sourceIndex": 1266,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-2-xc3",
+        "section": "초5::2-3 합동과 대칭::2-3-2 합동인 도형의 성질 알아보기",
+        "term": "오각형의 대응각 수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "합동인 두 오각형에는 대응각이 {다섯 쌍} 있다.",
+        "studentC": "합동인 두 오각형에는 대응각이 □ 있다.",
+        "answers": [
+          "다섯 쌍"
+        ]
+      },
+      "sourceFingerprint": "db1bbc01bdebcc8340ccaa49da1df3ad70ffc6ed81807bb855fc9f18be7fe1c2",
+      "draftEvidence": "evidence/section-037-draft.json",
+      "cFrozenDefinition": "합동인 두 오각형에는 대응각이 {다섯 쌍} 있다.",
+      "cFrozenStudentSentence": "합동인 두 오각형에는 대응각이 □ 있다.",
+      "cProposedAnswers": [
+        "다섯 쌍"
+      ],
+      "cStudentAfter": "합동인 두 오각형에는 대응각이 □ 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "다섯 쌍"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "합동인 두 오각형에는 대응각이 {다섯 쌍} 있다.",
+      "cStudentSentence": "합동인 두 오각형에는 대응각이 □ 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "다섯 쌍",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "합동인 두 오각형에는 대응각이 {다섯 쌍} 있다.",
+        "acceptedAnswers": [
+          [
+            "다섯 쌍"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 xc1과 중복되어 제외(대체: e5-2-3-2-xc1)."
+      },
+      "proposalFingerprint": "6cc85a0e79db46e40d9146fce836e829ba28ec370254f9bd4b737ef250985b1d",
+      "questionRevision": "planning-e5e6-20261006-6cc85a0e79db",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-2-xc4",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "대응변의 길이가 같음을 안다.",
+      "bReason": "c4의 B가 대응변의 길이 관계를 이미 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "합동인 두 도형에서 대응변끼리는 길이가 {같다}.",
+      "cReason": "c4와 달리 '같다'라는 관계 자체를 답하게 하는 짧은 문장이라 쓸모가 있다.",
+      "exclusionReason": "B는 c4와 중복되어 제외(대체: e5-2-3-2-c4).",
+      "exampleNeeded": false,
+      "synonymNotes": "'같다'와 '같습니다'는 같은 답이다.",
+      "sourceIndex": 1267,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-2-xc4",
+        "section": "초5::2-3 합동과 대칭::2-3-2 합동인 도형의 성질 알아보기",
+        "term": "대응변끼리의 길이",
+        "kind": "성질",
+        "level": "하",
+        "definition": "합동인 두 도형에서 대응변끼리는 길이가 {같다}.",
+        "studentC": "합동인 두 도형에서 대응변끼리는 길이가 □.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "sourceFingerprint": "d68d73454eb3f578ba23e787cce96354db19a5dc2886fde2ba607239439bbfaa",
+      "draftEvidence": "evidence/section-037-draft.json",
+      "cFrozenDefinition": "합동인 두 도형에서 대응변끼리는 길이가 {같다}.",
+      "cFrozenStudentSentence": "합동인 두 도형에서 대응변끼리는 길이가 □.",
+      "cProposedAnswers": [
+        "같다"
+      ],
+      "cStudentAfter": "합동인 두 도형에서 대응변끼리는 길이가 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "합동인 두 도형에서 대응변끼리는 길이가 {같다}.",
+      "cStudentSentence": "합동인 두 도형에서 대응변끼리는 길이가 □.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "합동인 두 도형에서 대응변끼리는 길이가 {같다}.",
+        "acceptedAnswers": [
+          [
+            "같다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 c4와 중복되어 제외(대체: e5-2-3-2-c4)."
+      },
+      "proposalFingerprint": "8623d826f3ba376ff7fa95942d6e00b4fcf4c5a8e9d6641d9351128b095792c2",
+      "questionRevision": "planning-e5e6-20261006-8623d826f3ba",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-2-xc5",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "대응각의 크기가 같음을 안다.",
+      "bReason": "c4의 B가 대응각의 크기 관계를 이미 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "합동인 두 도형에서 대응각끼리는 크기가 {같다}.",
+      "cReason": "대응각의 크기가 '같다'는 관계를 답하는 짧고 분명한 문장이다.",
+      "exclusionReason": "B는 c4와 중복되어 제외(대체: e5-2-3-2-c4).",
+      "exampleNeeded": false,
+      "synonymNotes": "'같다'와 '같습니다'는 같은 답이다.",
+      "sourceIndex": 1268,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-2-xc5",
+        "section": "초5::2-3 합동과 대칭::2-3-2 합동인 도형의 성질 알아보기",
+        "term": "대응각끼리의 크기",
+        "kind": "성질",
+        "level": "하",
+        "definition": "합동인 두 도형에서 대응각끼리는 크기가 {같다}.",
+        "studentC": "합동인 두 도형에서 대응각끼리는 크기가 □.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "sourceFingerprint": "d3909c598a965ca63fa44e701aa6b8dcef58b212517717fde323ef58c692c4d9",
+      "draftEvidence": "evidence/section-037-draft.json",
+      "cFrozenDefinition": "합동인 두 도형에서 대응각끼리는 크기가 {같다}.",
+      "cFrozenStudentSentence": "합동인 두 도형에서 대응각끼리는 크기가 □.",
+      "cProposedAnswers": [
+        "같다"
+      ],
+      "cStudentAfter": "합동인 두 도형에서 대응각끼리는 크기가 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "합동인 두 도형에서 대응각끼리는 크기가 {같다}.",
+      "cStudentSentence": "합동인 두 도형에서 대응각끼리는 크기가 □.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "합동인 두 도형에서 대응각끼리는 크기가 {같다}.",
+        "acceptedAnswers": [
+          [
+            "같다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 c4와 중복되어 제외(대체: e5-2-3-2-c4)."
+      },
+      "proposalFingerprint": "1124ec8bf6c9dab605befc78844377f9c064c2d3143b56d29ca87ccc9c5eda8a",
+      "questionRevision": "planning-e5e6-20261006-1124ec8bf6c9",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-2-xc6",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "포개어 겹치는 꼭짓점으로 대응점을 찾는다.",
+      "bReason": "대응점의 뜻을 그대로 되풀이하는 내용이라 c1의 B와 답이 같다.",
+      "cDecision": "revise",
+      "cAfter": "서로 합동인 두 도형을 완전히 포개었을 때 겹치는 {꼭짓점}끼리 짝지으면 대응점을 찾을 수 있다.",
+      "cReason": "c1의 C가 용어 이름을 물으므로 여기서는 무엇이 겹치는지를 한 낱말로 묻는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "꼭짓점",
+            "점"
+          ]
+        }
+      ],
+      "exclusionReason": "B는 c1과 중복되어 제외(대체: e5-2-3-2-c1).",
+      "exampleNeeded": false,
+      "sourceIndex": 1269,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-2-xc6",
+        "section": "초5::2-3 합동과 대칭::2-3-2 합동인 도형의 성질 알아보기",
+        "term": "포개어 대응점 찾기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "합동인 두 도형을 완전히 포개었을 때 {겹치는 꼭짓점}끼리 짝지으면 대응점을 찾을 수 있다.",
+        "studentC": "합동인 두 도형을 완전히 포개었을 때 □끼리 짝지으면 대응점을 찾을 수 있다.",
+        "answers": [
+          "겹치는 꼭짓점"
+        ]
+      },
+      "sourceFingerprint": "04b6c19e4ea6ba90ffd625d207dc5fdd350250f5f425df86b3744379f07e32d3",
+      "draftEvidence": "evidence/section-037-draft.json",
+      "cProposedAnswers": [
+        "꼭짓점"
+      ],
+      "cStudentAfter": "서로 합동인 두 도형을 완전히 포개었을 때 겹치는 □끼리 짝지으면 대응점을 찾을 수 있다.",
+      "cMarkedSentence": "서로 합동인 두 도형을 완전히 포개었을 때 겹치는 {꼭짓점}끼리 짝지으면 대응점을 찾을 수 있다.",
+      "cStudentSentence": "서로 합동인 두 도형을 완전히 포개었을 때 겹치는 □끼리 짝지으면 대응점을 찾을 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "꼭짓점",
+          "equivalents": [
+            "점"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "서로 합동인 두 도형을 완전히 포개었을 때 겹치는 {꼭짓점}끼리 짝지으면 대응점을 찾을 수 있다.",
+        "acceptedAnswers": [
+          [
+            "꼭짓점",
+            "점"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 c1과 중복되어 제외(대체: e5-2-3-2-c1)."
+      },
+      "proposalFingerprint": "ee42f0eb3d0c499e4cce02233adc14be3e5d358a0e78a690ad1fe633cb4c17b2",
+      "questionRevision": "planning-e5e6-20261006-ee42f0eb3d0c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-2-xc7",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "서로 합동인 두 도형에서 한 도형의 어떤 변의 길이를 모를 때, 다른 도형의 무엇을 보면 그 길이를 알 수 있는지와 그 까닭을 설명하시오. 또 삼각형 ㄱㄴㄷ과 삼각형 ㄹㅁㅂ이 합동이고 변 ㄱㄴ의 대응변이 변 ㄹㅁ이며 변 ㄱㄴ이 $6\\,\\mathrm{cm}$일 때, 변 ㄹㅁ의 길이를 쓰시오.",
+      "bAnswer": "그 변의 대응변의 길이를 보면 된다. 합동인 도형에서 대응변의 길이는 서로 같기 때문이다. 변 ㄹㅁ은 $6\\,\\mathrm{cm}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "대응변의 길이를 본다",
+            "포개면 겹치는 변을 찾는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "대응변의 길이는 서로 같다",
+            "포개면 겹치므로 길이가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6\\,\\mathrm{cm}$"
+          ]
+        }
+      ],
+      "bGoal": "대응변의 성질로 모르는 변의 길이를 구한다.",
+      "bReason": "원문 예를 조건이 다 들어간 문장으로 고치고 방법과 까닭을 함께 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "서로 합동인 두 도형에서 모르는 변의 길이는 그 {대응변}의 길이와 같으므로 알 수 있다.",
+      "cReason": "모르는 변의 길이를 어느 변에서 가져오는지 한 낱말(대응변)로 답하는 분명한 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1270,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-2-xc7",
+        "section": "초5::2-3 합동과 대칭::2-3-2 합동인 도형의 성질 알아보기",
+        "term": "대응변으로 길이 알기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "서로 합동인 두 도형에서 모르는 변의 길이는 그 {대응변}의 길이와 같으므로 알 수 있다.",
+        "example": {
+          "prompt": "합동인 두 도형에서 변 ㄹㅁ의 대응변 ㄱㄴ이 $6\\,\\mathrm{cm}$이면 ㄹㅁ은?",
+          "answer": "$6\\,\\mathrm{cm}$"
+        },
+        "studentC": "서로 합동인 두 도형에서 모르는 변의 길이는 그 □의 길이와 같으므로 알 수 있다.",
+        "answers": [
+          "대응변"
+        ]
+      },
+      "sourceFingerprint": "8ff0818973ecaf01861e18aab671ae9bbf23209a3f1a35f781242d08a0e8fe6b",
+      "draftEvidence": "evidence/section-037-draft.json",
+      "cFrozenDefinition": "서로 합동인 두 도형에서 모르는 변의 길이는 그 {대응변}의 길이와 같으므로 알 수 있다.",
+      "cFrozenStudentSentence": "서로 합동인 두 도형에서 모르는 변의 길이는 그 □의 길이와 같으므로 알 수 있다.",
+      "cProposedAnswers": [
+        "대응변"
+      ],
+      "cStudentAfter": "서로 합동인 두 도형에서 모르는 변의 길이는 그 □의 길이와 같으므로 알 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "대응변"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "서로 합동인 두 도형에서 모르는 변의 길이는 그 {대응변}의 길이와 같으므로 알 수 있다.",
+      "cStudentSentence": "서로 합동인 두 도형에서 모르는 변의 길이는 그 □의 길이와 같으므로 알 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "대응변",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "서로 합동인 두 도형에서 한 도형의 어떤 변의 길이를 모를 때, 다른 도형의 무엇을 보면 그 길이를 알 수 있는지와 그 까닭을 설명하시오. 또 삼각형 ㄱㄴㄷ과 삼각형 ㄹㅁㅂ이 합동이고 변 ㄱㄴ의 대응변이 변 ㄹㅁ이며 변 ㄱㄴ이 $6\\,\\mathrm{cm}$일 때, 변 ㄹㅁ의 길이를 쓰시오.",
+        "answer": "그 변의 대응변의 길이를 보면 된다. 합동인 도형에서 대응변의 길이는 서로 같기 때문이다. 변 ㄹㅁ은 $6\\,\\mathrm{cm}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "대응변의 길이를 본다",
+              "포개면 겹치는 변을 찾는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "대응변의 길이는 서로 같다",
+              "포개면 겹치므로 길이가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6\\,\\mathrm{cm}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "서로 합동인 두 도형에서 모르는 변의 길이는 그 {대응변}의 길이와 같으므로 알 수 있다.",
+        "acceptedAnswers": [
+          [
+            "대응변"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ad49c08e34544d9af31d1bc73f99e1b2a2b8fdc6214a4b9706ded8becc2aa2e4",
+      "questionRevision": "planning-e5e6-20261006-ad49c08e3454",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-2-xc8",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "대응각의 성질로 모르는 각의 크기를 안다.",
+      "bReason": "xc7과 방법이 같고, 대응각으로 각도를 구하는 것은 xc9의 B 예에서 다룬다.",
+      "cDecision": "keep",
+      "cAfter": "서로 합동인 두 도형에서 모르는 각의 크기는 그 {대응각}의 크기와 같으므로 알 수 있다.",
+      "cReason": "모르는 각의 크기를 어느 각에서 가져오는지 '대응각'으로 답하는 분명한 문장이다.",
+      "exclusionReason": "B는 xc7·xc9와 겹쳐 제외(대체: e5-2-3-2-xc9).",
+      "exampleNeeded": false,
+      "sourceIndex": 1271,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-2-xc8",
+        "section": "초5::2-3 합동과 대칭::2-3-2 합동인 도형의 성질 알아보기",
+        "term": "대응각으로 각도 알기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "서로 합동인 두 도형에서 모르는 각의 크기는 그 {대응각}의 크기와 같으므로 알 수 있다.",
+        "studentC": "서로 합동인 두 도형에서 모르는 각의 크기는 그 □의 크기와 같으므로 알 수 있다.",
+        "answers": [
+          "대응각"
+        ]
+      },
+      "sourceFingerprint": "4eaff340feac615f090cd086997eae5a62df3a625effaec4567fe25f2b2432c7",
+      "draftEvidence": "evidence/section-037-draft.json",
+      "cFrozenDefinition": "서로 합동인 두 도형에서 모르는 각의 크기는 그 {대응각}의 크기와 같으므로 알 수 있다.",
+      "cFrozenStudentSentence": "서로 합동인 두 도형에서 모르는 각의 크기는 그 □의 크기와 같으므로 알 수 있다.",
+      "cProposedAnswers": [
+        "대응각"
+      ],
+      "cStudentAfter": "서로 합동인 두 도형에서 모르는 각의 크기는 그 □의 크기와 같으므로 알 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "대응각"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "서로 합동인 두 도형에서 모르는 각의 크기는 그 {대응각}의 크기와 같으므로 알 수 있다.",
+      "cStudentSentence": "서로 합동인 두 도형에서 모르는 각의 크기는 그 □의 크기와 같으므로 알 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "대응각",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "서로 합동인 두 도형에서 모르는 각의 크기는 그 {대응각}의 크기와 같으므로 알 수 있다.",
+        "acceptedAnswers": [
+          [
+            "대응각"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 xc7·xc9와 겹쳐 제외(대체: e5-2-3-2-xc9)."
+      },
+      "proposalFingerprint": "14d80df91385891dcb105ec58e5dfa75f6194dd9208b562abe26ab5c983d75c8",
+      "questionRevision": "planning-e5e6-20261006-14d80df91385",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-2-xc9",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "삼각형 ㄱㄴㄷ과 삼각형 ㄹㅁㅂ은 서로 합동이고, 각 ㄱ의 대응각은 각 ㄹ, 각 ㄴ의 대응각은 각 ㅁ이다. 각 ㄱ이 $50 ^\\circ$, 각 ㄴ이 $60 ^\\circ$일 때 각 ㅂ의 크기를 구하는 방법을 설명하고 답을 쓰시오.",
+      "bAnswer": "대응각의 크기는 같으므로 각 ㄹ은 $50 ^\\circ$, 각 ㅁ은 $60 ^\\circ$이다. 삼각형의 세 각의 크기의 합은 $180 ^\\circ$이므로 각 ㅂ은 $180 ^\\circ - 50 ^\\circ - 60 ^\\circ = 70 ^\\circ$이다. (각 ㄷ을 $70 ^\\circ$로 먼저 구하고 그 대응각인 각 ㅂ도 $70 ^\\circ$라고 해도 된다.)",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "대응각의 크기는 서로 같다",
+            "각 ㄹ은 $50 ^\\circ$이고 각 ㅁ은 $60 ^\\circ$이다",
+            "각 ㅂ은 각 ㄷ과 크기가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "삼각형의 세 각의 크기의 합은 $180 ^\\circ$이다",
+            "$180 ^\\circ$에서 두 각을 뺀다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$70 ^\\circ$"
+          ]
+        }
+      ],
+      "bGoal": "대응각의 성질과 삼각형의 세 각의 합을 함께 써서 각을 구한다.",
+      "bReason": "원문은 대응각을 쓰는 단계가 빠져 있어 두 단계를 모두 설명하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "서로 합동인 두 삼각형 중 한 삼각형의 두 각이 $50 ^\\circ$, $60 ^\\circ$이다. 삼각형의 세 각의 크기의 합은 {$180$}$^\\circ$이므로 다른 삼각형의 나머지 한 각은 {$70$}$^\\circ$이다.",
+      "cReason": "원문 답 '세 각의 합 180°'는 구절 전체를 외워야 해서 수 두 개를 답하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1272,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-2-xc9",
+        "section": "초5::2-3 합동과 대칭::2-3-2 합동인 도형의 성질 알아보기",
+        "term": "합동인 삼각형의 나머지 각",
+        "kind": "방법",
+        "level": "중",
+        "definition": "합동인 삼각형에서 두 각을 알면 {세 각의 합 $180^\\circ$}로 나머지 각을 구한다.",
+        "studentC": "합동인 삼각형에서 두 각을 알면 □로 나머지 각을 구한다.",
+        "answers": [
+          "세 각의 합 $180^\\circ$"
+        ]
+      },
+      "sourceFingerprint": "1eeaf58c17df6675be5625586006787138df82599cb35ca60cd7b297c0573a9c",
+      "draftEvidence": "evidence/section-037-draft.json",
+      "cProposedAnswers": [
+        "$180$",
+        "$70$"
+      ],
+      "cStudentAfter": "서로 합동인 두 삼각형 중 한 삼각형의 두 각이 $50 ^\\circ$, $60 ^\\circ$이다. 삼각형의 세 각의 크기의 합은 □$^\\circ$이므로 다른 삼각형의 나머지 한 각은 □$^\\circ$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$180$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$70$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "서로 합동인 두 삼각형 중 한 삼각형의 두 각이 $50 ^\\circ$, $60 ^\\circ$이다. 삼각형의 세 각의 크기의 합은 {$180$}$^\\circ$이므로 다른 삼각형의 나머지 한 각은 {$70$}$^\\circ$이다.",
+      "cStudentSentence": "서로 합동인 두 삼각형 중 한 삼각형의 두 각이 $50 ^\\circ$, $60 ^\\circ$이다. 삼각형의 세 각의 크기의 합은 □$^\\circ$이므로 다른 삼각형의 나머지 한 각은 □$^\\circ$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$180$",
+          "equivalents": []
+        },
+        {
+          "key": "$70$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "삼각형 ㄱㄴㄷ과 삼각형 ㄹㅁㅂ은 서로 합동이고, 각 ㄱ의 대응각은 각 ㄹ, 각 ㄴ의 대응각은 각 ㅁ이다. 각 ㄱ이 $50 ^\\circ$, 각 ㄴ이 $60 ^\\circ$일 때 각 ㅂ의 크기를 구하는 방법을 설명하고 답을 쓰시오.",
+        "answer": "대응각의 크기는 같으므로 각 ㄹ은 $50 ^\\circ$, 각 ㅁ은 $60 ^\\circ$이다. 삼각형의 세 각의 크기의 합은 $180 ^\\circ$이므로 각 ㅂ은 $180 ^\\circ - 50 ^\\circ - 60 ^\\circ = 70 ^\\circ$이다. (각 ㄷ을 $70 ^\\circ$로 먼저 구하고 그 대응각인 각 ㅂ도 $70 ^\\circ$라고 해도 된다.)",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "대응각의 크기는 서로 같다",
+              "각 ㄹ은 $50 ^\\circ$이고 각 ㅁ은 $60 ^\\circ$이다",
+              "각 ㅂ은 각 ㄷ과 크기가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "삼각형의 세 각의 크기의 합은 $180 ^\\circ$이다",
+              "$180 ^\\circ$에서 두 각을 뺀다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$70 ^\\circ$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "서로 합동인 두 삼각형 중 한 삼각형의 두 각이 $50 ^\\circ$, $60 ^\\circ$이다. 삼각형의 세 각의 크기의 합은 {$180$}$^\\circ$이므로 다른 삼각형의 나머지 한 각은 {$70$}$^\\circ$이다.",
+        "acceptedAnswers": [
+          [
+            "$180$"
+          ],
+          [
+            "$70$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "41de0bf2029155fb244b9e499358e89d03c6fd6e12818bc59510b31809002afd",
+      "questionRevision": "planning-e5e6-20261006-41de0bf20291",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-2-xc10",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "대응변의 길이로 합동인 도형의 둘레를 구한다.",
+      "bReason": "둘레와 대응변 길이의 관계는 xc24의 B가 까닭까지 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "서로 합동인 두 삼각형 중 한 삼각형의 세 변이 $5\\,\\mathrm{cm}$, $7\\,\\mathrm{cm}$, $9\\,\\mathrm{cm}$이면, 대응변의 길이가 서로 {같으므로} 다른 삼각형의 둘레는 {$21$} $\\mathrm{cm}$이다.",
+      "cReason": "'옮겨 적어'는 행동 묘사이고 답도 긴 구절이라 실제 길이로 둘레를 구하게 했다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같으므로",
+            "같아서",
+            "같기 때문에"
+          ]
+        },
+        {
+          "anyOf": [
+            "$21$"
+          ]
+        }
+      ],
+      "exclusionReason": "B는 xc24와 중복되어 제외(대체: e5-2-3-2-xc24).",
+      "exampleNeeded": false,
+      "sourceIndex": 1273,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-2-xc10",
+        "section": "초5::2-3 합동과 대칭::2-3-2 합동인 도형의 성질 알아보기",
+        "term": "합동인 도형의 둘레 구하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "합동인 도형의 둘레는 {대응변의 길이}를 옮겨 적어 모두 더해 구한다.",
+        "studentC": "합동인 도형의 둘레는 □를 옮겨 적어 모두 더해 구한다.",
+        "answers": [
+          "대응변의 길이"
+        ]
+      },
+      "sourceFingerprint": "12996f0f8ff0ed6598032efd055a190af8b7c6e57da5167c5b702be6e2e3aef7",
+      "draftEvidence": "evidence/section-037-draft.json",
+      "cProposedAnswers": [
+        "같으므로",
+        "$21$"
+      ],
+      "cStudentAfter": "서로 합동인 두 삼각형 중 한 삼각형의 세 변이 $5\\,\\mathrm{cm}$, $7\\,\\mathrm{cm}$, $9\\,\\mathrm{cm}$이면, 대응변의 길이가 서로 □ 다른 삼각형의 둘레는 □ $\\mathrm{cm}$이다.",
+      "cMarkedSentence": "서로 합동인 두 삼각형 중 한 삼각형의 세 변이 $5\\,\\mathrm{cm}$, $7\\,\\mathrm{cm}$, $9\\,\\mathrm{cm}$이면, 대응변의 길이가 서로 {같으므로} 다른 삼각형의 둘레는 {$21$} $\\mathrm{cm}$이다.",
+      "cStudentSentence": "서로 합동인 두 삼각형 중 한 삼각형의 세 변이 $5\\,\\mathrm{cm}$, $7\\,\\mathrm{cm}$, $9\\,\\mathrm{cm}$이면, 대응변의 길이가 서로 □ 다른 삼각형의 둘레는 □ $\\mathrm{cm}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "같으므로",
+          "equivalents": [
+            "같아서",
+            "같기 때문에"
+          ]
+        },
+        {
+          "key": "$21$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "서로 합동인 두 삼각형 중 한 삼각형의 세 변이 $5\\,\\mathrm{cm}$, $7\\,\\mathrm{cm}$, $9\\,\\mathrm{cm}$이면, 대응변의 길이가 서로 {같으므로} 다른 삼각형의 둘레는 {$21$} $\\mathrm{cm}$이다.",
+        "acceptedAnswers": [
+          [
+            "같으므로",
+            "같아서",
+            "같기 때문에"
+          ],
+          [
+            "$21$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 xc24와 중복되어 제외(대체: e5-2-3-2-xc24)."
+      },
+      "proposalFingerprint": "5d56b6fdd661ac9d99258bf2e5d80204a7f0ab708cbce9d1361f24dbe3aded6f",
+      "questionRevision": "planning-e5e6-20261006-5d56b6fdd661",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-2-xc11",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "서로 합동인 두 도형에서 대응점을 모두 알고 있을 때, 한 변의 대응변을 어떻게 찾을 수 있는지 설명하시오. 또 삼각형 ㄱㄴㄷ과 삼각형 ㄹㅁㅂ이 합동이고 점 ㄱ, ㄴ, ㄷ의 대응점이 차례로 점 ㅁ, ㅂ, ㄹ일 때, 변 ㄴㄷ의 대응변을 쓰시오.",
+      "bAnswer": "그 변의 양 끝 점의 대응점을 각각 찾아 이은 변이 대응변이다. 변 ㄴㄷ의 대응변은 변 ㅂㄹ이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "변의 양 끝 점의 대응점을 이은 변",
+            "두 끝 점과 짝인 점을 찾아 잇는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "변 ㅂㄹ",
+            "변 ㄹㅂ"
+          ]
+        }
+      ],
+      "bGoal": "대응점에서 대응변을 찾는 방법을 설명하고 적용한다.",
+      "bReason": "원문 문장이 추상적이라 일반 방법과 이름 순서가 엇갈린 예를 함께 물었다.",
+      "cDecision": "revise",
+      "cAfter": "삼각형 ㄱㄴㄷ과 삼각형 ㄹㅁㅂ이 합동이고 점 ㄱ의 대응점이 점 ㄹ, 점 ㄴ의 대응점이 점 ㅁ이면, 변 ㄱㄴ의 대응변은 변 {ㄹㅁ}이다.",
+      "cReason": "'대응점 두 쌍을 각각 이은 변'은 맥락 없이 읽기 어려워 실제 점 이름으로 바꿨다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "ㄹㅁ",
+            "ㅁㄹ"
+          ]
+        }
+      ],
+      "coreAfter": "합동인 두 도형에서 한 변의 양 끝 점의 대응점을 이은 변이 그 변의 {대응변}이다.",
+      "coreReason": "'대응점 두 쌍을 각각 이은 변끼리'는 어떤 점을 잇는지 초5 학생에게 분명하지 않다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "coreTargetReason": "대응변이라는 원문 표적을 보존하고 어느 두 대응점을 이어야 하는지 양 끝 점으로 명시한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 1274,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-2-xc11",
+        "section": "초5::2-3 합동과 대칭::2-3-2 합동인 도형의 성질 알아보기",
+        "term": "대응점 두 쌍과 대응변",
+        "kind": "성질",
+        "level": "중",
+        "definition": "대응점 두 쌍을 각각 이은 변끼리는 서로 {대응변}이다.",
+        "studentC": "대응점 두 쌍을 각각 이은 변끼리는 서로 □이다.",
+        "answers": [
+          "대응변"
+        ]
+      },
+      "sourceFingerprint": "093101a6c93dd710d8f009cbd23ef361b3318e4f4b867f7d8f8e1785f408c051",
+      "draftEvidence": "evidence/section-037-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "ㄹㅁ"
+      ],
+      "cStudentAfter": "삼각형 ㄱㄴㄷ과 삼각형 ㄹㅁㅂ이 합동이고 점 ㄱ의 대응점이 점 ㄹ, 점 ㄴ의 대응점이 점 ㅁ이면, 변 ㄱㄴ의 대응변은 변 □이다.",
+      "cMarkedSentence": "삼각형 ㄱㄴㄷ과 삼각형 ㄹㅁㅂ이 합동이고 점 ㄱ의 대응점이 점 ㄹ, 점 ㄴ의 대응점이 점 ㅁ이면, 변 ㄱㄴ의 대응변은 변 {ㄹㅁ}이다.",
+      "cStudentSentence": "삼각형 ㄱㄴㄷ과 삼각형 ㄹㅁㅂ이 합동이고 점 ㄱ의 대응점이 점 ㄹ, 점 ㄴ의 대응점이 점 ㅁ이면, 변 ㄱㄴ의 대응변은 변 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "ㄹㅁ",
+          "equivalents": [
+            "ㅁㄹ"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "서로 합동인 두 도형에서 대응점을 모두 알고 있을 때, 한 변의 대응변을 어떻게 찾을 수 있는지 설명하시오. 또 삼각형 ㄱㄴㄷ과 삼각형 ㄹㅁㅂ이 합동이고 점 ㄱ, ㄴ, ㄷ의 대응점이 차례로 점 ㅁ, ㅂ, ㄹ일 때, 변 ㄴㄷ의 대응변을 쓰시오.",
+        "answer": "그 변의 양 끝 점의 대응점을 각각 찾아 이은 변이 대응변이다. 변 ㄴㄷ의 대응변은 변 ㅂㄹ이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "변의 양 끝 점의 대응점을 이은 변",
+              "두 끝 점과 짝인 점을 찾아 잇는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "변 ㅂㄹ",
+              "변 ㄹㅂ"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "삼각형 ㄱㄴㄷ과 삼각형 ㄹㅁㅂ이 합동이고 점 ㄱ의 대응점이 점 ㄹ, 점 ㄴ의 대응점이 점 ㅁ이면, 변 ㄱㄴ의 대응변은 변 {ㄹㅁ}이다.",
+        "acceptedAnswers": [
+          [
+            "ㄹㅁ",
+            "ㅁㄹ"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "32ffd0c1ccc2d6988a830b199b237aceb8957acb8173dcd2ad26003554ea32d4",
+      "questionRevision": "planning-e5e6-20261006-32ffd0c1ccc2",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-2-xc12",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "대응점에서 대응각을 찾는다.",
+      "bReason": "대응점을 먼저 찾아 짝짓는 방법은 xc11의 B와 같은 생각이다.",
+      "cDecision": "revise",
+      "cAfter": "삼각형 ㄱㄴㄷ과 삼각형 ㄹㅁㅂ이 합동이고 점 ㄴ의 대응점이 점 ㅁ이면, 각 ㄱㄴㄷ의 대응각은 점 {ㅁ}을 꼭짓점으로 하는 각이다.",
+      "cReason": "'대응점을 꼭짓점으로 하는 각끼리'는 추상적이라 삼각형의 실제 점 이름으로 확인하게 했다.",
+      "exclusionReason": "B는 xc11과 방법이 겹쳐 제외(대체: e5-2-3-2-xc11).",
+      "exampleNeeded": false,
+      "sourceIndex": 1275,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-2-xc12",
+        "section": "초5::2-3 합동과 대칭::2-3-2 합동인 도형의 성질 알아보기",
+        "term": "대응점과 대응각",
+        "kind": "성질",
+        "level": "중",
+        "definition": "대응점을 꼭짓점으로 하는 각끼리는 서로 {대응각}이다.",
+        "studentC": "대응점을 꼭짓점으로 하는 각끼리는 서로 □이다.",
+        "answers": [
+          "대응각"
+        ]
+      },
+      "sourceFingerprint": "7edf6262e1fb635736792f6483ff8ec9f8a1a5a7d85c4fa3eb3f87dafc7a4b01",
+      "draftEvidence": "evidence/section-037-draft.json",
+      "cProposedAnswers": [
+        "ㅁ"
+      ],
+      "cStudentAfter": "삼각형 ㄱㄴㄷ과 삼각형 ㄹㅁㅂ이 합동이고 점 ㄴ의 대응점이 점 ㅁ이면, 각 ㄱㄴㄷ의 대응각은 점 □을 꼭짓점으로 하는 각이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "ㅁ"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "삼각형 ㄱㄴㄷ과 삼각형 ㄹㅁㅂ이 합동이고 점 ㄴ의 대응점이 점 ㅁ이면, 각 ㄱㄴㄷ의 대응각은 점 {ㅁ}을 꼭짓점으로 하는 각이다.",
+      "cStudentSentence": "삼각형 ㄱㄴㄷ과 삼각형 ㄹㅁㅂ이 합동이고 점 ㄴ의 대응점이 점 ㅁ이면, 각 ㄱㄴㄷ의 대응각은 점 □을 꼭짓점으로 하는 각이다.",
+      "cSlotAnswers": [
+        {
+          "key": "ㅁ",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "삼각형 ㄱㄴㄷ과 삼각형 ㄹㅁㅂ이 합동이고 점 ㄴ의 대응점이 점 ㅁ이면, 각 ㄱㄴㄷ의 대응각은 점 {ㅁ}을 꼭짓점으로 하는 각이다.",
+        "acceptedAnswers": [
+          [
+            "ㅁ"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 xc11과 방법이 겹쳐 제외(대체: e5-2-3-2-xc11)."
+      },
+      "proposalFingerprint": "fe004cae498291e8c0ef066d62ec4de015fce98ab1dab2ee4ded3ebd3f4de08e",
+      "questionRevision": "planning-e5e6-20261006-fe004cae4982",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-2-xc13",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "돌아간 도형을 같은 방향으로 놓고 대응을 찾는다.",
+      "bReason": "돌아간 도형에서 대응을 찾는 방법은 c5의 B가 묻고 이 방법도 정답으로 받는다.",
+      "cDecision": "revise",
+      "cAfter": "서로 합동인 두 도형 중 하나가 돌아가 있으면, 두 도형이 같은 {방향}이 되도록 돌려 놓고 비교하면 대응하는 부분을 찾기 쉽다.",
+      "cReason": "원문 답 '같은 방향으로 돌려 놓고'는 구절 전체를 맞혀야 해서 한 낱말로 줄였다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "방향",
+            "쪽"
+          ]
+        }
+      ],
+      "exclusionReason": "B는 c5와 중복되어 제외(대체: e5-2-3-2-c5).",
+      "exampleNeeded": false,
+      "sourceIndex": 1276,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-2-xc13",
+        "section": "초5::2-3 합동과 대칭::2-3-2 합동인 도형의 성질 알아보기",
+        "term": "돌아간 도형의 대응 찾기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "돌아가 있는 도형은 {같은 방향으로 돌려 놓고} 견주면 대응하는 부분을 찾기 쉽다.",
+        "studentC": "돌아가 있는 도형은 □ 견주면 대응하는 부분을 찾기 쉽다.",
+        "answers": [
+          "같은 방향으로 돌려 놓고"
+        ]
+      },
+      "sourceFingerprint": "25bde34993cc6c2490cabf48e66814aeb0b9a23524cc3b657e72c98065649edd",
+      "draftEvidence": "evidence/section-037-draft.json",
+      "cProposedAnswers": [
+        "방향"
+      ],
+      "cStudentAfter": "서로 합동인 두 도형 중 하나가 돌아가 있으면, 두 도형이 같은 □이 되도록 돌려 놓고 비교하면 대응하는 부분을 찾기 쉽다.",
+      "cMarkedSentence": "서로 합동인 두 도형 중 하나가 돌아가 있으면, 두 도형이 같은 {방향}이 되도록 돌려 놓고 비교하면 대응하는 부분을 찾기 쉽다.",
+      "cStudentSentence": "서로 합동인 두 도형 중 하나가 돌아가 있으면, 두 도형이 같은 □이 되도록 돌려 놓고 비교하면 대응하는 부분을 찾기 쉽다.",
+      "cSlotAnswers": [
+        {
+          "key": "방향",
+          "equivalents": [
+            "쪽"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "서로 합동인 두 도형 중 하나가 돌아가 있으면, 두 도형이 같은 {방향}이 되도록 돌려 놓고 비교하면 대응하는 부분을 찾기 쉽다.",
+        "acceptedAnswers": [
+          [
+            "방향",
+            "쪽"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 c5와 중복되어 제외(대체: e5-2-3-2-c5)."
+      },
+      "proposalFingerprint": "6b980b1cf276710c4953213fd68e85bd14c9e02db35fbb0d3d58499ed9365acf",
+      "questionRevision": "planning-e5e6-20261006-6b980b1cf276",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-2-xc14",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "뒤집힌 도형을 다시 뒤집어 대응점을 찾는다.",
+      "bReason": "'뒤집혔으면 뒤집는다'는 행동 요령이라 설명할 관계가 없고, 그림 없이는 뒤집힌 상황을 판단할 수 없다.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "답 '한 번 뒤집어 놓고'가 문장 앞 '뒤집힌'을 되풀이할 뿐이라 빈칸으로 확인할 내용이 없다.",
+      "exclusionReason": "사소한 행동 요령이고 그림이 있어야 해서 B·C 모두 제외(가까운 문항: e5-2-3-2-c5, e5-2-3-2-xc13).",
+      "exampleNeeded": false,
+      "sourceIndex": 1277,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-2-xc14",
+        "section": "초5::2-3 합동과 대칭::2-3-2 합동인 도형의 성질 알아보기",
+        "term": "뒤집힌 도형의 대응 찾기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "뒤집힌 도형은 {한 번 뒤집어 놓고} 견주면 대응점을 찾기 쉽다.",
+        "studentC": "뒤집힌 도형은 □ 견주면 대응점을 찾기 쉽다.",
+        "answers": [
+          "한 번 뒤집어 놓고"
+        ]
+      },
+      "sourceFingerprint": "16953e1428a9e7b2df4f0c70a3a9fbc679bbcdcb973429a0577473977ae0c804",
+      "draftEvidence": "evidence/section-037-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "사소한 행동 요령이고 그림이 있어야 해서 B·C 모두 제외(가까운 문항: e5-2-3-2-c5, e5-2-3-2-xc13).",
+        "cloze": "사소한 행동 요령이고 그림이 있어야 해서 B·C 모두 제외(가까운 문항: e5-2-3-2-c5, e5-2-3-2-xc13)."
+      },
+      "proposalFingerprint": "a689287a3f9602699c32f7467300a4e583549a301d574d9f6d5299a3e12c5cfe",
+      "questionRevision": "planning-e5e6-20261006-a689287a3f96",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-2-xc15",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "세 변의 길이가 모두 다른 두 삼각형이 서로 합동일 때, 한 삼각형의 가장 긴 변의 대응변은 다른 삼각형의 어느 변인지 쓰고, 그 까닭을 대응변의 길이와 관련지어 설명하시오.",
+      "bAnswer": "다른 삼각형의 가장 긴 변이다. 대응변은 길이가 같아야 하는데, 세 변의 길이가 모두 다르므로 길이가 같은 변은 가장 긴 변 하나뿐이기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "다른 삼각형의 가장 긴 변"
+          ]
+        },
+        {
+          "anyOf": [
+            "대응변은 길이가 서로 같다",
+            "길이가 같은 변은 가장 긴 변뿐이다"
+          ]
+        }
+      ],
+      "bGoal": "길이 비교로 대응변을 정할 수 있는 까닭을 설명한다.",
+      "bReason": "'세 변의 길이가 모두 다른'이라는 조건을 질문에 넣고 까닭의 범위를 정해 주었다.",
+      "cDecision": "keep",
+      "cAfter": "세 변의 길이가 모두 다른 합동인 두 삼각형에서 가장 긴 변끼리는 {대응변}이다.",
+      "cReason": "세 변의 길이가 모두 다르다는 조건이 문장에 있어 가장 긴 변끼리 대응변임을 정확히 확인한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1278,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-2-xc15",
+        "section": "초5::2-3 합동과 대칭::2-3-2 합동인 도형의 성질 알아보기",
+        "term": "가장 긴 변끼리",
+        "kind": "성질",
+        "level": "중",
+        "definition": "세 변의 길이가 모두 다른 합동인 두 삼각형에서 가장 긴 변끼리는 {대응변}이다.",
+        "studentC": "세 변의 길이가 모두 다른 합동인 두 삼각형에서 가장 긴 변끼리는 □이다.",
+        "answers": [
+          "대응변"
+        ]
+      },
+      "sourceFingerprint": "f4a170f14a1edef2526c4fbba10f8322cfefdaae884923676bd108395a31f7df",
+      "draftEvidence": "evidence/section-037-draft.json",
+      "cFrozenDefinition": "세 변의 길이가 모두 다른 합동인 두 삼각형에서 가장 긴 변끼리는 {대응변}이다.",
+      "cFrozenStudentSentence": "세 변의 길이가 모두 다른 합동인 두 삼각형에서 가장 긴 변끼리는 □이다.",
+      "cProposedAnswers": [
+        "대응변"
+      ],
+      "cStudentAfter": "세 변의 길이가 모두 다른 합동인 두 삼각형에서 가장 긴 변끼리는 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "대응변"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "세 변의 길이가 모두 다른 합동인 두 삼각형에서 가장 긴 변끼리는 {대응변}이다.",
+      "cStudentSentence": "세 변의 길이가 모두 다른 합동인 두 삼각형에서 가장 긴 변끼리는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "대응변",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "세 변의 길이가 모두 다른 두 삼각형이 서로 합동일 때, 한 삼각형의 가장 긴 변의 대응변은 다른 삼각형의 어느 변인지 쓰고, 그 까닭을 대응변의 길이와 관련지어 설명하시오.",
+        "answer": "다른 삼각형의 가장 긴 변이다. 대응변은 길이가 같아야 하는데, 세 변의 길이가 모두 다르므로 길이가 같은 변은 가장 긴 변 하나뿐이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "다른 삼각형의 가장 긴 변"
+            ]
+          },
+          {
+            "anyOf": [
+              "대응변은 길이가 서로 같다",
+              "길이가 같은 변은 가장 긴 변뿐이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "세 변의 길이가 모두 다른 합동인 두 삼각형에서 가장 긴 변끼리는 {대응변}이다.",
+        "acceptedAnswers": [
+          [
+            "대응변"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "433494dc6afebb236d53f4249541309a5f0bbf67600dd32ce1b199b65222d912",
+      "questionRevision": "planning-e5e6-20261006-433494dc6afe",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-2-xc16",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "각의 크기 비교로 대응각을 정한다.",
+      "bReason": "xc15에서 변을 각으로만 바꾼 같은 논리라 B를 따로 둘 필요가 없다.",
+      "cDecision": "keep",
+      "cAfter": "세 각의 크기가 모두 다른 합동인 두 삼각형에서 가장 큰 각끼리는 {대응각}이다.",
+      "cReason": "세 각의 크기가 모두 다르다는 조건이 있어 가장 큰 각끼리 대응각임을 정확히 확인한다.",
+      "exclusionReason": "B는 xc15와 같은 추론이라 제외(대체: e5-2-3-2-xc15).",
+      "exampleNeeded": false,
+      "sourceIndex": 1279,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-2-xc16",
+        "section": "초5::2-3 합동과 대칭::2-3-2 합동인 도형의 성질 알아보기",
+        "term": "가장 큰 각끼리",
+        "kind": "성질",
+        "level": "중",
+        "definition": "세 각의 크기가 모두 다른 합동인 두 삼각형에서 가장 큰 각끼리는 {대응각}이다.",
+        "studentC": "세 각의 크기가 모두 다른 합동인 두 삼각형에서 가장 큰 각끼리는 □이다.",
+        "answers": [
+          "대응각"
+        ]
+      },
+      "sourceFingerprint": "8a0679cb805e5c632d6649af2d1a086b072f33b0e28b7a408642414708c224ae",
+      "draftEvidence": "evidence/section-037-draft.json",
+      "cFrozenDefinition": "세 각의 크기가 모두 다른 합동인 두 삼각형에서 가장 큰 각끼리는 {대응각}이다.",
+      "cFrozenStudentSentence": "세 각의 크기가 모두 다른 합동인 두 삼각형에서 가장 큰 각끼리는 □이다.",
+      "cProposedAnswers": [
+        "대응각"
+      ],
+      "cStudentAfter": "세 각의 크기가 모두 다른 합동인 두 삼각형에서 가장 큰 각끼리는 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "대응각"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "세 각의 크기가 모두 다른 합동인 두 삼각형에서 가장 큰 각끼리는 {대응각}이다.",
+      "cStudentSentence": "세 각의 크기가 모두 다른 합동인 두 삼각형에서 가장 큰 각끼리는 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "대응각",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "세 각의 크기가 모두 다른 합동인 두 삼각형에서 가장 큰 각끼리는 {대응각}이다.",
+        "acceptedAnswers": [
+          [
+            "대응각"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 xc15와 같은 추론이라 제외(대체: e5-2-3-2-xc15)."
+      },
+      "proposalFingerprint": "97d8402b4394df1e5c8339f4ec51d913cb27bc869c76b99906eee3bb6960f83f",
+      "questionRevision": "planning-e5e6-20261006-97d8402b4394",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-2-xc17",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "서로 합동인 두 삼각형에서 한 쌍의 대응각을 알 때, 두 삼각형에서 그 각과 마주 보는 변끼리는 어떤 관계인지 쓰시오. 또 삼각형 ㄱㄴㄷ과 삼각형 ㄹㅁㅂ이 합동이고 각 ㄴ의 대응각이 각 ㅂ일 때, 변 ㄱㄷ의 대응변을 쓰시오.",
+      "bAnswer": "서로 대응변이다(길이가 같다). 변 ㄱㄷ의 대응변은 각 ㅂ과 마주 보는 변 ㄹㅁ이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "서로 대응변이다",
+            "길이가 서로 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "변 ㄹㅁ",
+            "변 ㅁㄹ"
+          ]
+        }
+      ],
+      "bGoal": "대응각과 마주 보는 변끼리 대응변임을 알고 적용한다.",
+      "bReason": "각과 변의 위치 관계를 말로 묻고 점 이름으로 확인하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "삼각형 ㄱㄴㄷ과 삼각형 ㄹㅁㅂ이 합동이고 각 ㄱ의 대응각이 각 ㄹ이면, 각 ㄱ과 마주 보는 변 ㄴㄷ의 대응변은 변 {ㅁㅂ}이다.",
+      "cReason": "원문 답 '맞은편에 있는 변'은 긴 구절이라 실제 삼각형에서 변 이름을 답하게 했다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "ㅁㅂ",
+            "ㅂㅁ"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "sourceIndex": 1280,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-2-xc17",
+        "section": "초5::2-3 합동과 대칭::2-3-2 합동인 도형의 성질 알아보기",
+        "term": "대응각 맞은편의 변",
+        "kind": "성질",
+        "level": "상",
+        "definition": "합동인 두 삼각형에서 대응각의 {맞은편에 있는 변}끼리는 대응변이다.",
+        "studentC": "합동인 두 삼각형에서 대응각의 □끼리는 대응변이다.",
+        "answers": [
+          "맞은편에 있는 변"
+        ]
+      },
+      "sourceFingerprint": "3c0bdc39067a6bc45b4618e57f03f90d9cf03950d3c938423bff4c0da7a8a8cf",
+      "draftEvidence": "evidence/section-037-draft.json",
+      "cProposedAnswers": [
+        "ㅁㅂ"
+      ],
+      "cStudentAfter": "삼각형 ㄱㄴㄷ과 삼각형 ㄹㅁㅂ이 합동이고 각 ㄱ의 대응각이 각 ㄹ이면, 각 ㄱ과 마주 보는 변 ㄴㄷ의 대응변은 변 □이다.",
+      "cMarkedSentence": "삼각형 ㄱㄴㄷ과 삼각형 ㄹㅁㅂ이 합동이고 각 ㄱ의 대응각이 각 ㄹ이면, 각 ㄱ과 마주 보는 변 ㄴㄷ의 대응변은 변 {ㅁㅂ}이다.",
+      "cStudentSentence": "삼각형 ㄱㄴㄷ과 삼각형 ㄹㅁㅂ이 합동이고 각 ㄱ의 대응각이 각 ㄹ이면, 각 ㄱ과 마주 보는 변 ㄴㄷ의 대응변은 변 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "ㅁㅂ",
+          "equivalents": [
+            "ㅂㅁ"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "서로 합동인 두 삼각형에서 한 쌍의 대응각을 알 때, 두 삼각형에서 그 각과 마주 보는 변끼리는 어떤 관계인지 쓰시오. 또 삼각형 ㄱㄴㄷ과 삼각형 ㄹㅁㅂ이 합동이고 각 ㄴ의 대응각이 각 ㅂ일 때, 변 ㄱㄷ의 대응변을 쓰시오.",
+        "answer": "서로 대응변이다(길이가 같다). 변 ㄱㄷ의 대응변은 각 ㅂ과 마주 보는 변 ㄹㅁ이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "서로 대응변이다",
+              "길이가 서로 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "변 ㄹㅁ",
+              "변 ㅁㄹ"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "삼각형 ㄱㄴㄷ과 삼각형 ㄹㅁㅂ이 합동이고 각 ㄱ의 대응각이 각 ㄹ이면, 각 ㄱ과 마주 보는 변 ㄴㄷ의 대응변은 변 {ㅁㅂ}이다.",
+        "acceptedAnswers": [
+          [
+            "ㅁㅂ",
+            "ㅂㅁ"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "fcff277f47631d62996f469ea3ffac9f7b148ad692f6a10f1208cdfb8b945633",
+      "questionRevision": "planning-e5e6-20261006-fcff277f4763",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-2-xc18",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "사각형의 네 각의 합으로 나머지 각을 구한다.",
+      "bReason": "xc9의 B와 같은 방법에서 각의 합만 360°로 바뀐 것이라 C의 계산 확인으로 충분하다.",
+      "cDecision": "revise",
+      "cAfter": "서로 합동인 두 사각형 중 한 사각형의 세 각이 $70 ^\\circ$, $80 ^\\circ$, $100 ^\\circ$이다. 사각형의 네 각의 크기의 합은 {$360$}$^\\circ$이므로 이 사각형의 나머지 한 각은 {$110$}$^\\circ$이고, 그 대응각의 크기도 이와 같다.",
+      "cReason": "원문 답 '네 각의 합 360°'는 구절 전체를 외워야 해서 수 두 개를 답하게 했다.",
+      "exclusionReason": "B는 xc9와 방법이 겹쳐 제외(대체: e5-2-3-2-xc9).",
+      "exampleNeeded": false,
+      "sourceIndex": 1281,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-2-xc18",
+        "section": "초5::2-3 합동과 대칭::2-3-2 합동인 도형의 성질 알아보기",
+        "term": "합동인 사각형의 나머지 각",
+        "kind": "방법",
+        "level": "상",
+        "definition": "합동인 사각형에서 세 각을 알면 {네 각의 합 $360^\\circ$}로 나머지 각을 구한다.",
+        "studentC": "합동인 사각형에서 세 각을 알면 □로 나머지 각을 구한다.",
+        "answers": [
+          "네 각의 합 $360^\\circ$"
+        ]
+      },
+      "sourceFingerprint": "e1fd3c58cac319c16f6788d8aa63d94cce194dc4dce9fb753e71906934d9c5ff",
+      "draftEvidence": "evidence/section-037-draft.json",
+      "cProposedAnswers": [
+        "$360$",
+        "$110$"
+      ],
+      "cStudentAfter": "서로 합동인 두 사각형 중 한 사각형의 세 각이 $70 ^\\circ$, $80 ^\\circ$, $100 ^\\circ$이다. 사각형의 네 각의 크기의 합은 □$^\\circ$이므로 이 사각형의 나머지 한 각은 □$^\\circ$이고, 그 대응각의 크기도 이와 같다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$360$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$110$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "서로 합동인 두 사각형 중 한 사각형의 세 각이 $70 ^\\circ$, $80 ^\\circ$, $100 ^\\circ$이다. 사각형의 네 각의 크기의 합은 {$360$}$^\\circ$이므로 이 사각형의 나머지 한 각은 {$110$}$^\\circ$이고, 그 대응각의 크기도 이와 같다.",
+      "cStudentSentence": "서로 합동인 두 사각형 중 한 사각형의 세 각이 $70 ^\\circ$, $80 ^\\circ$, $100 ^\\circ$이다. 사각형의 네 각의 크기의 합은 □$^\\circ$이므로 이 사각형의 나머지 한 각은 □$^\\circ$이고, 그 대응각의 크기도 이와 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "$360$",
+          "equivalents": []
+        },
+        {
+          "key": "$110$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "서로 합동인 두 사각형 중 한 사각형의 세 각이 $70 ^\\circ$, $80 ^\\circ$, $100 ^\\circ$이다. 사각형의 네 각의 크기의 합은 {$360$}$^\\circ$이므로 이 사각형의 나머지 한 각은 {$110$}$^\\circ$이고, 그 대응각의 크기도 이와 같다.",
+        "acceptedAnswers": [
+          [
+            "$360$"
+          ],
+          [
+            "$110$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 xc9와 방법이 겹쳐 제외(대체: e5-2-3-2-xc9)."
+      },
+      "proposalFingerprint": "bd59e88e672d9bfd51ea938e1eb91209e70bb1fe2f1ece3a80bb6da6806c36b7",
+      "questionRevision": "planning-e5e6-20261006-bd59e88e672d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-2-xc19",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "이등변삼각형과 합동인 삼각형은 어떤 삼각형인지 쓰고, 그 까닭을 대응변의 길이와 관련지어 설명하시오.",
+      "bAnswer": "이등변삼각형이다. 이등변삼각형의 길이가 같은 두 변의 대응변도 각각 길이가 같아서, 합동인 삼각형에도 길이가 같은 두 변이 있기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "이등변삼각형이다",
+            "두 변의 길이가 같은 삼각형이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "대응변의 길이가 같으므로 길이가 같은 두 변이 그대로 있다",
+            "길이가 같은 두 변의 대응변끼리도 길이가 같다"
+          ]
+        }
+      ],
+      "bGoal": "합동이면 변의 길이 관계가 그대로 옮겨짐을 설명한다.",
+      "bReason": "결론을 질문에 적지 않고 삼각형의 종류와 까닭을 함께 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "이등변삼각형과 합동인 삼각형도 두 변의 길이가 서로 {같다}.",
+      "cReason": "이등변삼각형의 성질이 합동인 삼각형에도 이어짐을 '같다'로 답하는 짧은 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1282,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-2-xc19",
+        "section": "초5::2-3 합동과 대칭::2-3-2 합동인 도형의 성질 알아보기",
+        "term": "이등변삼각형과 합동인 삼각형",
+        "kind": "성질",
+        "level": "상",
+        "definition": "이등변삼각형과 합동인 삼각형도 두 변의 길이가 서로 {같다}.",
+        "studentC": "이등변삼각형과 합동인 삼각형도 두 변의 길이가 서로 □.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "sourceFingerprint": "deea11d9dd4973a159cb2dbedb555a07780bc91a7ac6de702093ad29d8e53cb6",
+      "draftEvidence": "evidence/section-037-draft.json",
+      "cFrozenDefinition": "이등변삼각형과 합동인 삼각형도 두 변의 길이가 서로 {같다}.",
+      "cFrozenStudentSentence": "이등변삼각형과 합동인 삼각형도 두 변의 길이가 서로 □.",
+      "cProposedAnswers": [
+        "같다"
+      ],
+      "cStudentAfter": "이등변삼각형과 합동인 삼각형도 두 변의 길이가 서로 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "이등변삼각형과 합동인 삼각형도 두 변의 길이가 서로 {같다}.",
+      "cStudentSentence": "이등변삼각형과 합동인 삼각형도 두 변의 길이가 서로 □.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "이등변삼각형과 합동인 삼각형은 어떤 삼각형인지 쓰고, 그 까닭을 대응변의 길이와 관련지어 설명하시오.",
+        "answer": "이등변삼각형이다. 이등변삼각형의 길이가 같은 두 변의 대응변도 각각 길이가 같아서, 합동인 삼각형에도 길이가 같은 두 변이 있기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "이등변삼각형이다",
+              "두 변의 길이가 같은 삼각형이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "대응변의 길이가 같으므로 길이가 같은 두 변이 그대로 있다",
+              "길이가 같은 두 변의 대응변끼리도 길이가 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "이등변삼각형과 합동인 삼각형도 두 변의 길이가 서로 {같다}.",
+        "acceptedAnswers": [
+          [
+            "같다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "891ec54f39ceff3ce18cce2b96204c964082c644a64fae4e5acbe1bec59ba437",
+      "questionRevision": "planning-e5e6-20261006-891ec54f39ce",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-2-xc20",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "서로 합동인 두 직사각형의 넓이는 서로 어떤 관계인지 쓰고, 그 까닭을 가로와 세로의 길이로 설명하시오.",
+      "bAnswer": "넓이가 서로 같다. 대응변의 길이가 같아 두 직사각형의 가로끼리, 세로끼리 길이가 같으므로 가로와 세로를 곱한 넓이도 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "넓이가 서로 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "가로끼리, 세로끼리 길이가 같다",
+            "대응변의 길이가 같아 가로와 세로가 같다"
+          ]
+        }
+      ],
+      "bGoal": "합동인 직사각형의 넓이가 같은 까닭을 대응변으로 설명한다.",
+      "bReason": "'옮겨 와 곱해'라는 절차 대신 넓이의 관계와 까닭을 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "가로가 $6\\,\\mathrm{cm}$, 세로가 $4\\,\\mathrm{cm}$인 직사각형과 합동인 직사각형은 대응변의 길이가 서로 같으므로 넓이가 {$24$} $\\mathrm{cm} ^2$이다.",
+      "cReason": "원문 답 '대응변인 가로와 세로'는 긴 구절이라 실제 길이로 넓이를 구하게 했다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1283,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-2-xc20",
+        "section": "초5::2-3 합동과 대칭::2-3-2 합동인 도형의 성질 알아보기",
+        "term": "합동인 직사각형의 넓이",
+        "kind": "방법",
+        "level": "상",
+        "definition": "합동인 직사각형의 넓이는 {대응변인 가로와 세로}를 옮겨 와 곱해 구한다.",
+        "studentC": "합동인 직사각형의 넓이는 □를 옮겨 와 곱해 구한다.",
+        "answers": [
+          "대응변인 가로와 세로"
+        ]
+      },
+      "sourceFingerprint": "5a4c78dc64e609d3eee451f5debe6ad5336c0877711b8f57fd1049942c036042",
+      "draftEvidence": "evidence/section-037-draft.json",
+      "cProposedAnswers": [
+        "$24$"
+      ],
+      "cStudentAfter": "가로가 $6\\,\\mathrm{cm}$, 세로가 $4\\,\\mathrm{cm}$인 직사각형과 합동인 직사각형은 대응변의 길이가 서로 같으므로 넓이가 □ $\\mathrm{cm} ^2$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$24$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "가로가 $6\\,\\mathrm{cm}$, 세로가 $4\\,\\mathrm{cm}$인 직사각형과 합동인 직사각형은 대응변의 길이가 서로 같으므로 넓이가 {$24$} $\\mathrm{cm} ^2$이다.",
+      "cStudentSentence": "가로가 $6\\,\\mathrm{cm}$, 세로가 $4\\,\\mathrm{cm}$인 직사각형과 합동인 직사각형은 대응변의 길이가 서로 같으므로 넓이가 □ $\\mathrm{cm} ^2$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$24$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "서로 합동인 두 직사각형의 넓이는 서로 어떤 관계인지 쓰고, 그 까닭을 가로와 세로의 길이로 설명하시오.",
+        "answer": "넓이가 서로 같다. 대응변의 길이가 같아 두 직사각형의 가로끼리, 세로끼리 길이가 같으므로 가로와 세로를 곱한 넓이도 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "넓이가 서로 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "가로끼리, 세로끼리 길이가 같다",
+              "대응변의 길이가 같아 가로와 세로가 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "가로가 $6\\,\\mathrm{cm}$, 세로가 $4\\,\\mathrm{cm}$인 직사각형과 합동인 직사각형은 대응변의 길이가 서로 같으므로 넓이가 {$24$} $\\mathrm{cm} ^2$이다.",
+        "acceptedAnswers": [
+          [
+            "$24$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a77743cfa1a9030cb784e703a9a8eb198b381b66a16bc4b9bdd6634426410315",
+      "questionRevision": "planning-e5e6-20261006-a77743cfa1a9",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-2-xc21",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "대응점을 먼저 정한 뒤 대응변을 찾는다.",
+      "bReason": "'섣불리 짝짓지 말라'는 조언 문장이고, 대응점에서 대응변을 찾는 방법은 xc11의 B가 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "서로 합동인 두 도형에서 대응변을 찾기 어려울 때는 먼저 포개었을 때 겹치는 꼭짓점인 {대응점}을 찾고, 그 점들을 이은 변끼리 짝짓는다.",
+      "cReason": "원문 답 '꼭짓점의 짝'은 임의 구절이고 '모양이 비슷한 변'도 모호해 순서의 핵심 용어만 묻는다.",
+      "exclusionReason": "B는 xc11과 중복되어 제외(대체: e5-2-3-2-xc11).",
+      "exampleNeeded": false,
+      "sourceIndex": 1284,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-2-xc21",
+        "section": "초5::2-3 합동과 대칭::2-3-2 합동인 도형의 성질 알아보기",
+        "term": "꼭짓점의 짝부터 정하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "모양이 비슷한 변을 섣불리 짝짓지 말고 {꼭짓점의 짝}부터 정한 뒤 대응변을 찾는다.",
+        "studentC": "모양이 비슷한 변을 섣불리 짝짓지 말고 □부터 정한 뒤 대응변을 찾는다.",
+        "answers": [
+          "꼭짓점의 짝"
+        ]
+      },
+      "sourceFingerprint": "e2e0a8a1227c206394c54976dfa39ce534be24ed38034184d5daaa5c783a84df",
+      "draftEvidence": "evidence/section-037-draft.json",
+      "cProposedAnswers": [
+        "대응점"
+      ],
+      "cStudentAfter": "서로 합동인 두 도형에서 대응변을 찾기 어려울 때는 먼저 포개었을 때 겹치는 꼭짓점인 □을 찾고, 그 점들을 이은 변끼리 짝짓는다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "대응점"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "서로 합동인 두 도형에서 대응변을 찾기 어려울 때는 먼저 포개었을 때 겹치는 꼭짓점인 {대응점}을 찾고, 그 점들을 이은 변끼리 짝짓는다.",
+      "cStudentSentence": "서로 합동인 두 도형에서 대응변을 찾기 어려울 때는 먼저 포개었을 때 겹치는 꼭짓점인 □을 찾고, 그 점들을 이은 변끼리 짝짓는다.",
+      "cSlotAnswers": [
+        {
+          "key": "대응점",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "서로 합동인 두 도형에서 대응변을 찾기 어려울 때는 먼저 포개었을 때 겹치는 꼭짓점인 {대응점}을 찾고, 그 점들을 이은 변끼리 짝짓는다.",
+        "acceptedAnswers": [
+          [
+            "대응점"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 xc11과 중복되어 제외(대체: e5-2-3-2-xc11)."
+      },
+      "proposalFingerprint": "4dc9b2e2768c87354c96bd4dc30c07e1ddba592da4c53b742557305856b75afe",
+      "questionRevision": "planning-e5e6-20261006-4dc9b2e2768c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-2-xc22",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "한 변의 양 끝 점의 대응점도 한 변의 양 끝임을 안다.",
+      "bReason": "xc11의 B(양 끝 점의 대응점을 이으면 대응변)와 같은 내용을 뒤집어 말한 것이다.",
+      "cDecision": "revise",
+      "cAfter": "서로 합동인 두 도형에서 한 변의 양 끝에 있는 두 꼭짓점의 대응점은 다른 도형에서도 한 {변}의 양 끝에 있다.",
+      "cReason": "'이웃한 꼭짓점', '이웃한다'는 말이 추상적이라 '한 변의 양 끝'으로 풀어 썼다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "변",
+            "대응변"
+          ]
+        }
+      ],
+      "exclusionReason": "B는 xc11과 중복되어 제외(대체: e5-2-3-2-xc11).",
+      "exampleNeeded": false,
+      "sourceIndex": 1285,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-2-xc22",
+        "section": "초5::2-3 합동과 대칭::2-3-2 합동인 도형의 성질 알아보기",
+        "term": "이웃한 꼭짓점의 대응",
+        "kind": "성질",
+        "level": "상",
+        "definition": "한 도형에서 이웃한 두 꼭짓점의 대응점끼리도 다른 도형에서 {이웃한다}.",
+        "studentC": "한 도형에서 이웃한 두 꼭짓점의 대응점끼리도 다른 도형에서 □.",
+        "answers": [
+          "이웃한다"
+        ]
+      },
+      "sourceFingerprint": "c92f9c21eec3c3d1156302ff0321ed015c81def653d8e636cd38606b7faf425e",
+      "draftEvidence": "evidence/section-037-draft.json",
+      "cProposedAnswers": [
+        "변"
+      ],
+      "cStudentAfter": "서로 합동인 두 도형에서 한 변의 양 끝에 있는 두 꼭짓점의 대응점은 다른 도형에서도 한 □의 양 끝에 있다.",
+      "cMarkedSentence": "서로 합동인 두 도형에서 한 변의 양 끝에 있는 두 꼭짓점의 대응점은 다른 도형에서도 한 {변}의 양 끝에 있다.",
+      "cStudentSentence": "서로 합동인 두 도형에서 한 변의 양 끝에 있는 두 꼭짓점의 대응점은 다른 도형에서도 한 □의 양 끝에 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "변",
+          "equivalents": [
+            "대응변"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "서로 합동인 두 도형에서 한 변의 양 끝에 있는 두 꼭짓점의 대응점은 다른 도형에서도 한 {변}의 양 끝에 있다.",
+        "acceptedAnswers": [
+          [
+            "변",
+            "대응변"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 xc11과 중복되어 제외(대체: e5-2-3-2-xc11)."
+      },
+      "proposalFingerprint": "672cfd14effc3667acbe6df5194953b532653a3e7454c3d73e5b43cce7a6d31f",
+      "questionRevision": "planning-e5e6-20261006-672cfd14effc",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-2-xc23",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "변 ㄱㄴ이 $5\\,\\mathrm{cm}$, 변 ㄴㄷ이 $8\\,\\mathrm{cm}$인 직사각형 ㄱㄴㄷㄹ을 대각선 ㄱㄷ으로 자르면 서로 합동인 삼각형 ㄱㄴㄷ과 삼각형 ㄷㄹㄱ이 생긴다. 삼각형 ㄱㄴㄷ의 변 ㄱㄴ의 대응변은 삼각형 ㄷㄹㄱ의 어느 변인지 쓰고, 그 까닭을 변의 길이로 설명하시오.",
+      "bAnswer": "변 ㄷㄹ이다. 대응변은 길이가 같아야 하는데, 직사각형에서 마주 보는 변 ㄱㄴ과 변 ㄷㄹ의 길이가 $5\\,\\mathrm{cm}$로 같기 때문이다. (변 ㄹㄱ은 $8\\,\\mathrm{cm}$이고 대각선은 그보다 길다.)",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "변 ㄷㄹ",
+            "변 ㄹㄷ"
+          ]
+        },
+        {
+          "anyOf": [
+            "변 ㄷㄹ의 길이가 변 ㄱㄴ과 같은 $5\\,\\mathrm{cm}$이다",
+            "직사각형의 마주 보는 변은 길이가 같다"
+          ]
+        }
+      ],
+      "bGoal": "대각선으로 자른 직사각형에서 마주 보는 변끼리 대응변임을 길이로 설명한다.",
+      "bReason": "그림 없이도 풀 수 있도록 점 이름과 길이를 모두 글로 적었다.",
+      "cDecision": "keep",
+      "cAfter": "가로와 세로의 길이가 다른 직사각형을 대각선으로 잘라 생긴 두 삼각형에서는 직사각형의 {마주 보는 변}끼리 대응변이 된다.",
+      "cReason": "가로와 세로의 길이가 다르다는 조건이 있고 답 '마주 보는 변'은 4학년에서 배운 익숙한 말이다.",
+      "exampleNeeded": false,
+      "exampleReason": "글로 풀 수 있으나, 대각선을 그은 직사각형 ㄱㄴㄷㄹ 그림을 함께 주면 더 좋다.",
+      "synonymNotes": "'마주 보는 변'과 '서로 평행한 변'은 같은 답이다.",
+      "sourceIndex": 1286,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-2-xc23",
+        "section": "초5::2-3 합동과 대칭::2-3-2 합동인 도형의 성질 알아보기",
+        "term": "대각선으로 나눈 직사각형의 대응변",
+        "kind": "성질",
+        "level": "상",
+        "definition": "가로와 세로의 길이가 다른 직사각형을 대각선으로 잘라 생긴 두 삼각형에서는 직사각형의 {마주 보는 변}끼리 대응변이 된다.",
+        "studentC": "가로와 세로의 길이가 다른 직사각형을 대각선으로 잘라 생긴 두 삼각형에서는 직사각형의 □끼리 대응변이 된다.",
+        "answers": [
+          "마주 보는 변"
+        ]
+      },
+      "sourceFingerprint": "d6e4697f00fb1f8d621ae204d7b36baa11f70bc44e452025095d4664de2be71f",
+      "draftEvidence": "evidence/section-037-draft.json",
+      "cFrozenDefinition": "가로와 세로의 길이가 다른 직사각형을 대각선으로 잘라 생긴 두 삼각형에서는 직사각형의 {마주 보는 변}끼리 대응변이 된다.",
+      "cFrozenStudentSentence": "가로와 세로의 길이가 다른 직사각형을 대각선으로 잘라 생긴 두 삼각형에서는 직사각형의 □끼리 대응변이 된다.",
+      "cProposedAnswers": [
+        "마주 보는 변"
+      ],
+      "cStudentAfter": "가로와 세로의 길이가 다른 직사각형을 대각선으로 잘라 생긴 두 삼각형에서는 직사각형의 □끼리 대응변이 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "마주 보는 변"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "가로와 세로의 길이가 다른 직사각형을 대각선으로 잘라 생긴 두 삼각형에서는 직사각형의 {마주 보는 변}끼리 대응변이 된다.",
+      "cStudentSentence": "가로와 세로의 길이가 다른 직사각형을 대각선으로 잘라 생긴 두 삼각형에서는 직사각형의 □끼리 대응변이 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "마주 보는 변",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "변 ㄱㄴ이 $5\\,\\mathrm{cm}$, 변 ㄴㄷ이 $8\\,\\mathrm{cm}$인 직사각형 ㄱㄴㄷㄹ을 대각선 ㄱㄷ으로 자르면 서로 합동인 삼각형 ㄱㄴㄷ과 삼각형 ㄷㄹㄱ이 생긴다. 삼각형 ㄱㄴㄷ의 변 ㄱㄴ의 대응변은 삼각형 ㄷㄹㄱ의 어느 변인지 쓰고, 그 까닭을 변의 길이로 설명하시오.",
+        "answer": "변 ㄷㄹ이다. 대응변은 길이가 같아야 하는데, 직사각형에서 마주 보는 변 ㄱㄴ과 변 ㄷㄹ의 길이가 $5\\,\\mathrm{cm}$로 같기 때문이다. (변 ㄹㄱ은 $8\\,\\mathrm{cm}$이고 대각선은 그보다 길다.)",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "변 ㄷㄹ",
+              "변 ㄹㄷ"
+            ]
+          },
+          {
+            "anyOf": [
+              "변 ㄷㄹ의 길이가 변 ㄱㄴ과 같은 $5\\,\\mathrm{cm}$이다",
+              "직사각형의 마주 보는 변은 길이가 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "가로와 세로의 길이가 다른 직사각형을 대각선으로 잘라 생긴 두 삼각형에서는 직사각형의 {마주 보는 변}끼리 대응변이 된다.",
+        "acceptedAnswers": [
+          [
+            "마주 보는 변"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "556916d7f030a33c95f0e90f3805468c08977aee271c89312479cd5ae235b787",
+      "questionRevision": "planning-e5e6-20261006-556916d7f030",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-2-xc24",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "서로 합동인 두 도형의 둘레는 서로 어떤 관계인지 쓰고, 그 까닭을 변의 길이와 관련지어 설명하시오.",
+      "bAnswer": "둘레가 서로 같다. 대응변끼리 길이가 각각 같으므로 변의 길이를 모두 더한 값도 같기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "둘레가 서로 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "대응변의 길이가 각각 같다",
+            "두 도형의 변의 길이가 하나하나 서로 같다"
+          ]
+        }
+      ],
+      "bGoal": "합동인 도형의 둘레가 같은 까닭을 대응변의 길이로 설명한다.",
+      "bReason": "결론을 질문에 미리 주지 않고 관계와 까닭을 함께 답하게 했다.",
+      "cDecision": "keep",
+      "cAfter": "합동인 두 도형의 둘레가 같은 것은 대응변의 길이가 {모두 같기} 때문이다.",
+      "cReason": "둘레가 같은 근거가 대응변의 길이가 같다는 것임을 짧게 확인한다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'모두 같기', '서로 같기', '같기'는 같은 답이다.",
+      "sourceIndex": 1287,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-2-xc24",
+        "section": "초5::2-3 합동과 대칭::2-3-2 합동인 도형의 성질 알아보기",
+        "term": "둘레가 같은 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "합동인 두 도형의 둘레가 같은 것은 대응변의 길이가 {모두 같기} 때문이다.",
+        "studentC": "합동인 두 도형의 둘레가 같은 것은 대응변의 길이가 □ 때문이다.",
+        "answers": [
+          "모두 같기"
+        ]
+      },
+      "sourceFingerprint": "b783bfd02b0888905905e50ca225c13ee2d2512805d984b6f94ee1c535746436",
+      "draftEvidence": "evidence/section-037-draft.json",
+      "cFrozenDefinition": "합동인 두 도형의 둘레가 같은 것은 대응변의 길이가 {모두 같기} 때문이다.",
+      "cFrozenStudentSentence": "합동인 두 도형의 둘레가 같은 것은 대응변의 길이가 □ 때문이다.",
+      "cProposedAnswers": [
+        "모두 같기"
+      ],
+      "cStudentAfter": "합동인 두 도형의 둘레가 같은 것은 대응변의 길이가 □ 때문이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "모두 같기"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "합동인 두 도형의 둘레가 같은 것은 대응변의 길이가 {모두 같기} 때문이다.",
+      "cStudentSentence": "합동인 두 도형의 둘레가 같은 것은 대응변의 길이가 □ 때문이다.",
+      "cSlotAnswers": [
+        {
+          "key": "모두 같기",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "서로 합동인 두 도형의 둘레는 서로 어떤 관계인지 쓰고, 그 까닭을 변의 길이와 관련지어 설명하시오.",
+        "answer": "둘레가 서로 같다. 대응변끼리 길이가 각각 같으므로 변의 길이를 모두 더한 값도 같기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "둘레가 서로 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "대응변의 길이가 각각 같다",
+              "두 도형의 변의 길이가 하나하나 서로 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "합동인 두 도형의 둘레가 같은 것은 대응변의 길이가 {모두 같기} 때문이다.",
+        "acceptedAnswers": [
+          [
+            "모두 같기"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "85174aaf2cf31669bc8e36c11f108f3b24ebcb05653fd7e6a696177ac892a7e9",
+      "questionRevision": "planning-e5e6-20261006-85174aaf2cf3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-2-xc25",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "서로 합동인 두 도형에 크기가 같은 각이 여러 개 있을 때, 각의 크기만 보고 대응각을 정하면 안 되는 까닭과 대응각을 바르게 정하는 방법을 설명하시오.",
+      "bAnswer": "크기가 같은 각이 여럿이면 크기만으로는 어느 각이 짝인지 하나로 정할 수 없기 때문이다. 두 도형을 완전히 포개어 겹치는 각끼리 대응각으로 정한다(대응점을 먼저 찾아도 된다).",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "크기만으로는 어느 각이 짝인지 정할 수 없다",
+            "크기가 같아도 대응각이 아닐 수 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "완전히 포개어 겹치는 각끼리 짝짓는다",
+            "대응점을 찾아 그 점을 꼭짓점으로 하는 각끼리 짝짓는다"
+          ]
+        }
+      ],
+      "bGoal": "각의 크기가 같아도 대응각이 아닐 수 있음을 알고 바른 방법을 말한다.",
+      "bReason": "왜 틀릴 수 있는지와 어떻게 정하는지 두 가지로 범위를 정했다.",
+      "cDecision": "keep",
+      "cAfter": "크기가 같은 각이 여럿이면 각의 크기만으로 짝을 정하지 말고, 두 도형을 완전히 포개어 {겹치는 각}끼리 대응각으로 정한다.",
+      "cReason": "크기가 같은 각이 여럿이라는 조건과 포갠다는 방법이 문장에 있고 답도 짧다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'겹치는 각'과 '포개어지는 각'은 같은 답이다.",
+      "sourceIndex": 1288,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-2-xc25",
+        "section": "초5::2-3 합동과 대칭::2-3-2 합동인 도형의 성질 알아보기",
+        "term": "크기가 같은 각이 여럿일 때",
+        "kind": "방법",
+        "level": "상",
+        "definition": "크기가 같은 각이 여럿이면 각의 크기만으로 짝을 정하지 말고, 두 도형을 완전히 포개어 {겹치는 각}끼리 대응각으로 정한다.",
+        "studentC": "크기가 같은 각이 여럿이면 각의 크기만으로 짝을 정하지 말고, 두 도형을 완전히 포개어 □끼리 대응각으로 정한다.",
+        "answers": [
+          "겹치는 각"
+        ]
+      },
+      "sourceFingerprint": "648d9b67516e2642ce76c6f8332ebf7f2cd675973eae3593cd2f38a2efa48c95",
+      "draftEvidence": "evidence/section-037-draft.json",
+      "cFrozenDefinition": "크기가 같은 각이 여럿이면 각의 크기만으로 짝을 정하지 말고, 두 도형을 완전히 포개어 {겹치는 각}끼리 대응각으로 정한다.",
+      "cFrozenStudentSentence": "크기가 같은 각이 여럿이면 각의 크기만으로 짝을 정하지 말고, 두 도형을 완전히 포개어 □끼리 대응각으로 정한다.",
+      "cProposedAnswers": [
+        "겹치는 각"
+      ],
+      "cStudentAfter": "크기가 같은 각이 여럿이면 각의 크기만으로 짝을 정하지 말고, 두 도형을 완전히 포개어 □끼리 대응각으로 정한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "겹치는 각"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "크기가 같은 각이 여럿이면 각의 크기만으로 짝을 정하지 말고, 두 도형을 완전히 포개어 {겹치는 각}끼리 대응각으로 정한다.",
+      "cStudentSentence": "크기가 같은 각이 여럿이면 각의 크기만으로 짝을 정하지 말고, 두 도형을 완전히 포개어 □끼리 대응각으로 정한다.",
+      "cSlotAnswers": [
+        {
+          "key": "겹치는 각",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "서로 합동인 두 도형에 크기가 같은 각이 여러 개 있을 때, 각의 크기만 보고 대응각을 정하면 안 되는 까닭과 대응각을 바르게 정하는 방법을 설명하시오.",
+        "answer": "크기가 같은 각이 여럿이면 크기만으로는 어느 각이 짝인지 하나로 정할 수 없기 때문이다. 두 도형을 완전히 포개어 겹치는 각끼리 대응각으로 정한다(대응점을 먼저 찾아도 된다).",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "크기만으로는 어느 각이 짝인지 정할 수 없다",
+              "크기가 같아도 대응각이 아닐 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "완전히 포개어 겹치는 각끼리 짝짓는다",
+              "대응점을 찾아 그 점을 꼭짓점으로 하는 각끼리 짝짓는다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "크기가 같은 각이 여럿이면 각의 크기만으로 짝을 정하지 말고, 두 도형을 완전히 포개어 {겹치는 각}끼리 대응각으로 정한다.",
+        "acceptedAnswers": [
+          [
+            "겹치는 각"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "702742701a1f5b3774f28ca93ac3a760fcc6a78aa942942e776b27c13f38485b",
+      "questionRevision": "planning-e5e6-20261006-702742701a1f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-3-3-xc1",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "접어서 겹치는지 확인하는 내용은 선대칭도형의 뜻 문항에서 다룬다.",
+      "bReason": "선대칭도형의 뜻을 '알아보는 방법'으로 말만 바꾼 문장이라 새 학습 목표가 없다.",
+      "exclusionReason": "B와 C 모두 e5-2-3-3-c1과 같은 내용이다. 대체: e5-2-3-3-c1.",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "빈칸 '꼭 맞게 겹치는지'는 c1의 빈칸과 사실상 같은 답이라 중복이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1289,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-3-3-xc1",
+        "section": "초5::2-3 합동과 대칭::2-3-3 선대칭도형과 그 성질 알아보기",
+        "term": "접어서 알아보기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "도형을 한 직선을 따라 접어 양쪽이 {꼭 맞게 겹치는지} 보면 선대칭도형인지 알 수 있다.",
+        "studentC": "도형을 한 직선을 따라 접어 양쪽이 □ 보면 선대칭도형인지 알 수 있다.",
+        "answers": [
+          "꼭 맞게 겹치는지"
+        ]
+      },
+      "sourceFingerprint": "4c50ef0193cb57cdc596fe5434a8eda4472a3d3edb31a12bcc2164465fd52423",
+      "draftEvidence": "evidence/section-038-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "B와 C 모두 e5-2-3-3-c1과 같은 내용이다. 대체: e5-2-3-3-c1.",
+        "cloze": "B와 C 모두 e5-2-3-3-c1과 같은 내용이다. 대체: e5-2-3-3-c1."
+      },
+      "proposalFingerprint": "04e00c06280e47403eb4edfd376fe999e82df68dc5fcfdf3b33d7bfd731184af",
+      "questionRevision": "planning-e5e6-20261006-04e00c06280e",
+      "requiresIndependentReview": true
+    }
+  ]
+}

@@ -1,0 +1,653 @@
+{
+  "status": "Actual before and authored normalized after awaiting direct reread and application; not independent approval",
+  "rows": [
+    {
+      "id": "m1-01-01-xc10",
+      "scope": "middle",
+      "reason": "수학 내용은 그대로 두고 분수의 분자 2를 읽는 끝소리에 맞춰 '을'을 '를'로 교정한다.",
+      "beforeRaw": {
+        "id": "m1-01-01-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac23\\times\\frac23\\times\\frac23$를 같은 분수가 밑인 하나의 거듭제곱으로 나타내시오. 분수 전체가 밑임을 알아볼 수 있게 쓰는 방법도 설명하시오.",
+        "bAnswer": "$\\left(\\frac{2}{3}\\right)^3$이다. 분수 전체를 괄호로 묶어 밑으로 쓰고, 지수는 괄호 밖 오른쪽 위에 쓴다.",
+        "bGoal": "같은 분수를 거듭 곱한 식을 괄호를 써서 거듭제곱으로 나타낸다.",
+        "bReason": "분자·분모 각각의 거듭제곱도 같은 값이지만, 이 문항은 분수 전체를 밑으로 쓰는 표기 목표임을 실제 질문에 밝힌다.",
+        "cDecision": "rewrite",
+        "cReason": "분수를 묶는 도구 이름 대신 분수 전체에 지수가 붙은 식과 분모에만 지수가 붙은 식의 계산 결과를 비교한다. 일반 거듭제곱 설명은 유지한다.",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\left(\\frac{2}{3}\\right)^3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "분수 전체를 괄호로 묶어 밑으로 쓴다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "naming",
+        "roleReason": "분수 전체를 괄호로 밑 표기",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 934,
+        "part": "m1plus",
+        "sourceFingerprint": "9444e5697a2e46743f0f76d77ed3776897eb0c7fa8ff5c7c8fe57c43e1ce8f95",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 934
+        },
+        "directReview": null,
+        "cFrozenSentence": "같은 분수를 거듭 곱하면 분수 전체를 □로 묶어 밑으로 쓴다.",
+        "cFrozenDefinition": "같은 분수를 거듭 곱하면 분수 전체를 {괄호}로 묶어 밑으로 쓴다.",
+        "cFrozenAnswers": [
+          "괄호"
+        ],
+        "cMarkedSentence": "$\\left(\\frac{2}{3}\\right)^3$을 계산하면 {$\\frac{8}{27}$}, $\\frac{2}{3^3}$을 계산하면 {$\\frac{2}{27}$}이다.",
+        "cSlotAnswers": [
+          "$\\frac{8}{27}$",
+          "$\\frac{2}{27}$"
+        ],
+        "cStudentSentence": "$\\left(\\frac{2}{3}\\right)^3$을 계산하면 □, $\\frac{2}{3^3}$을 계산하면 □이다.",
+        "cAnswers": [
+          "$\\frac{8}{27}$",
+          "$\\frac{2}{27}$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{8}{27}$",
+            "equivalentAnswers": [
+              "$\\frac{8}{27}$"
+            ]
+          },
+          {
+            "index": 1,
+            "answer": "$\\frac{2}{27}$",
+            "equivalentAnswers": [
+              "$\\frac{2}{27}$"
+            ]
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{8}{27}$"
+          ],
+          [
+            "$\\frac{2}{27}$"
+          ]
+        ],
+        "proposalFingerprint": "21173e42d40dd71abb39398f22cadff30b6a98e485fa0f875e8714ccb2404335",
+        "bQuestion": {
+          "prompt": "$\\frac23\\times\\frac23\\times\\frac23$를 같은 분수가 밑인 하나의 거듭제곱으로 나타내시오. 분수 전체가 밑임을 알아볼 수 있게 쓰는 방법도 설명하시오.",
+          "answer": "$\\left(\\frac{2}{3}\\right)^3$이다. 분수 전체를 괄호로 묶어 밑으로 쓰고, 지수는 괄호 밖 오른쪽 위에 쓴다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$\\left(\\frac{2}{3}\\right)^3$"
+              ]
+            },
+            {
+              "anyOf": [
+                "분수 전체를 괄호로 묶어 밑으로 쓴다"
+              ]
+            }
+          ]
+        },
+        "cAfter": "$\\left(\\frac{2}{3}\\right)^3$을 계산하면 {$\\frac{8}{27}$}, $\\frac{2}{3^3}$을 계산하면 {$\\frac{2}{27}$}이다.",
+        "clozeQuestion": {
+          "sentence": "$\\left(\\frac{2}{3}\\right)^3$을 계산하면 {$\\frac{8}{27}$}, $\\frac{2}{3^3}$을 계산하면 {$\\frac{2}{27}$}이다.",
+          "acceptedAnswers": [
+            [
+              "$\\frac{8}{27}$"
+            ],
+            [
+              "$\\frac{2}{27}$"
+            ]
+          ]
+        },
+        "editorialReview": {
+          "id": "m1-01-01-xc10",
+          "sourceIndex": 934,
+          "proposalFingerprint": "21173e42d40dd71abb39398f22cadff30b6a98e485fa0f875e8714ccb2404335",
+          "learningRole": "naming",
+          "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+          "readAt": "2026-10-07T14:05:39.882Z",
+          "bReason": "분수를 묶는 도구 이름 대신 분수 전체에 지수가 붙은 식과 분모에만 지수가 붙은 식의 계산 결과를 비교한다. 일반 거듭제곱 설명은 유지한다.",
+          "cReason": "분수를 묶는 도구 이름 대신 분수 전체에 지수가 붙은 식과 분모에만 지수가 붙은 식의 계산 결과를 비교한다. 일반 거듭제곱 설명은 유지한다.",
+          "issues": [],
+          "inputEvidence": "../design-evidence/root-final-four-proposals-20261007.json",
+          "isIndependentApproval": false,
+          "bVerdict": "keep",
+          "cVerdict": "keep"
+        }
+      },
+      "before": {
+        "id": "m1-01-01-xc10",
+        "grade": "중1",
+        "source": {
+          "id": "m1-01-01-xc10",
+          "section": "중1::1. 소인수분해::소수와 거듭제곱",
+          "term": "밑이 분수인 거듭제곱",
+          "kind": "방법",
+          "level": "중",
+          "definition": "같은 분수를 거듭 곱하면 분수 전체를 {괄호}로 묶어 밑으로 쓴다.",
+          "example": {
+            "prompt": "$\\frac{2}{3}\\times\\frac{2}{3}\\times\\frac{2}{3}$를 거듭제곱으로 쓰면?",
+            "answer": "$\\left(\\frac{2}{3}\\right)^3$"
+          }
+        },
+        "B": {
+          "prompt": "$\\frac23\\times\\frac23\\times\\frac23$를 같은 분수가 밑인 하나의 거듭제곱으로 나타내시오. 분수 전체가 밑임을 알아볼 수 있게 쓰는 방법도 설명하시오.",
+          "answer": "$\\left(\\frac{2}{3}\\right)^3$이다. 분수 전체를 괄호로 묶어 밑으로 쓰고, 지수는 괄호 밖 오른쪽 위에 쓴다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$\\left(\\frac{2}{3}\\right)^3$"
+              ]
+            },
+            {
+              "anyOf": [
+                "분수 전체를 괄호로 묶어 밑으로 쓴다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "$\\left(\\frac{2}{3}\\right)^3$을 계산하면 {$\\frac{8}{27}$}, $\\frac{2}{3^3}$을 계산하면 {$\\frac{2}{27}$}이다.",
+          "acceptedAnswers": [
+            [
+              "$\\frac{8}{27}$"
+            ],
+            [
+              "$\\frac{2}{27}$"
+            ]
+          ]
+        },
+        "goal": "같은 분수를 거듭 곱한 식을 괄호를 써서 거듭제곱으로 나타낸다.",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "404ba406fdd56088e8182e0e358ff4ed40c972b1497d834024acbdec2ecdb047"
+      },
+      "proposedRaw": {
+        "id": "m1-01-01-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac23\\times\\frac23\\times\\frac23$를 같은 분수가 밑인 하나의 거듭제곱으로 나타내시오. 분수 전체가 밑임을 알아볼 수 있게 쓰는 방법도 설명하시오.",
+        "bAnswer": "$\\left(\\frac{2}{3}\\right)^3$이다. 분수 전체를 괄호로 묶어 밑으로 쓰고, 지수는 괄호 밖 오른쪽 위에 쓴다.",
+        "bGoal": "같은 분수를 거듭 곱한 식을 괄호를 써서 거듭제곱으로 나타낸다.",
+        "bReason": "분자·분모 각각의 거듭제곱도 같은 값이지만, 이 문항은 분수 전체를 밑으로 쓰는 표기 목표임을 실제 질문에 밝힌다.",
+        "cDecision": "rewrite",
+        "cReason": "수학 내용은 그대로 두고 분수의 분자 2를 읽는 끝소리에 맞춰 '을'을 '를'로 교정한다.",
+        "exampleNeeded": true,
+        "authorBatch": 0,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\left(\\frac{2}{3}\\right)^3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "분수 전체를 괄호로 묶어 밑으로 쓴다"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-000",
+        "learningRole": "naming",
+        "roleReason": "분수 전체를 괄호로 밑 표기",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 934,
+        "part": "m1plus",
+        "sourceFingerprint": "9444e5697a2e46743f0f76d77ed3776897eb0c7fa8ff5c7c8fe57c43e1ce8f95",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 934
+        },
+        "directReview": null,
+        "cFrozenSentence": "같은 분수를 거듭 곱하면 분수 전체를 □로 묶어 밑으로 쓴다.",
+        "cFrozenDefinition": "같은 분수를 거듭 곱하면 분수 전체를 {괄호}로 묶어 밑으로 쓴다.",
+        "cFrozenAnswers": [
+          "괄호"
+        ],
+        "cMarkedSentence": "$\\left(\\frac{2}{3}\\right)^3$을 계산하면 {$\\frac{8}{27}$}, $\\frac{2}{3^3}$를 계산하면 {$\\frac{2}{27}$}이다.",
+        "cSlotAnswers": [
+          "$\\frac{8}{27}$",
+          "$\\frac{2}{27}$"
+        ],
+        "cStudentSentence": "$\\left(\\frac{2}{3}\\right)^3$을 계산하면 □, $\\frac{2}{3^3}$를 계산하면 □이다.",
+        "cAnswers": [
+          "$\\frac{8}{27}$",
+          "$\\frac{2}{27}$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{8}{27}$",
+            "equivalentAnswers": [
+              "$\\frac{8}{27}$"
+            ]
+          },
+          {
+            "index": 1,
+            "answer": "$\\frac{2}{27}$",
+            "equivalentAnswers": [
+              "$\\frac{2}{27}$"
+            ]
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{8}{27}$"
+          ],
+          [
+            "$\\frac{2}{27}$"
+          ]
+        ],
+        "proposalFingerprint": "6d9605d4a8120383380915156e33465d71ba3533a4bed7ea1cbd306dc7a34f6e",
+        "bQuestion": {
+          "prompt": "$\\frac23\\times\\frac23\\times\\frac23$를 같은 분수가 밑인 하나의 거듭제곱으로 나타내시오. 분수 전체가 밑임을 알아볼 수 있게 쓰는 방법도 설명하시오.",
+          "answer": "$\\left(\\frac{2}{3}\\right)^3$이다. 분수 전체를 괄호로 묶어 밑으로 쓰고, 지수는 괄호 밖 오른쪽 위에 쓴다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$\\left(\\frac{2}{3}\\right)^3$"
+              ]
+            },
+            {
+              "anyOf": [
+                "분수 전체를 괄호로 묶어 밑으로 쓴다"
+              ]
+            }
+          ]
+        },
+        "cAfter": "$\\left(\\frac{2}{3}\\right)^3$을 계산하면 {$\\frac{8}{27}$}, $\\frac{2}{3^3}$를 계산하면 {$\\frac{2}{27}$}이다.",
+        "clozeQuestion": {
+          "sentence": "$\\left(\\frac{2}{3}\\right)^3$을 계산하면 {$\\frac{8}{27}$}, $\\frac{2}{3^3}$를 계산하면 {$\\frac{2}{27}$}이다.",
+          "acceptedAnswers": [
+            [
+              "$\\frac{8}{27}$"
+            ],
+            [
+              "$\\frac{2}{27}$"
+            ]
+          ]
+        },
+        "editorialReview": {
+          "id": "m1-01-01-xc10",
+          "sourceIndex": 934,
+          "proposalFingerprint": "21173e42d40dd71abb39398f22cadff30b6a98e485fa0f875e8714ccb2404335",
+          "learningRole": "naming",
+          "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+          "readAt": "2026-10-07T14:05:39.882Z",
+          "bReason": "분수를 묶는 도구 이름 대신 분수 전체에 지수가 붙은 식과 분모에만 지수가 붙은 식의 계산 결과를 비교한다. 일반 거듭제곱 설명은 유지한다.",
+          "cReason": "분수를 묶는 도구 이름 대신 분수 전체에 지수가 붙은 식과 분모에만 지수가 붙은 식의 계산 결과를 비교한다. 일반 거듭제곱 설명은 유지한다.",
+          "issues": [],
+          "inputEvidence": "../design-evidence/root-final-four-proposals-20261007.json",
+          "isIndependentApproval": false,
+          "bVerdict": "keep",
+          "cVerdict": "keep"
+        }
+      },
+      "after": {
+        "id": "m1-01-01-xc10",
+        "grade": "중1",
+        "source": {
+          "id": "m1-01-01-xc10",
+          "section": "중1::1. 소인수분해::소수와 거듭제곱",
+          "term": "밑이 분수인 거듭제곱",
+          "kind": "방법",
+          "level": "중",
+          "definition": "같은 분수를 거듭 곱하면 분수 전체를 {괄호}로 묶어 밑으로 쓴다.",
+          "example": {
+            "prompt": "$\\frac{2}{3}\\times\\frac{2}{3}\\times\\frac{2}{3}$를 거듭제곱으로 쓰면?",
+            "answer": "$\\left(\\frac{2}{3}\\right)^3$"
+          }
+        },
+        "B": {
+          "prompt": "$\\frac23\\times\\frac23\\times\\frac23$를 같은 분수가 밑인 하나의 거듭제곱으로 나타내시오. 분수 전체가 밑임을 알아볼 수 있게 쓰는 방법도 설명하시오.",
+          "answer": "$\\left(\\frac{2}{3}\\right)^3$이다. 분수 전체를 괄호로 묶어 밑으로 쓰고, 지수는 괄호 밖 오른쪽 위에 쓴다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$\\left(\\frac{2}{3}\\right)^3$"
+              ]
+            },
+            {
+              "anyOf": [
+                "분수 전체를 괄호로 묶어 밑으로 쓴다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "$\\left(\\frac{2}{3}\\right)^3$을 계산하면 {$\\frac{8}{27}$}, $\\frac{2}{3^3}$를 계산하면 {$\\frac{2}{27}$}이다.",
+          "acceptedAnswers": [
+            [
+              "$\\frac{8}{27}$"
+            ],
+            [
+              "$\\frac{2}{27}$"
+            ]
+          ]
+        },
+        "goal": "같은 분수를 거듭 곱한 식을 괄호를 써서 거듭제곱으로 나타낸다.",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "51a152c4efdc00de6247d14cc661d97e2c060c5aa44b1f6b973f06a85f4d5a6a"
+      }
+    },
+    {
+      "id": "m2-01-01-xc24",
+      "scope": "middle",
+      "reason": "곱의 끝 분자 9와 약분 결과의 분자 3을 읽는 끝소리에 맞춰 각각 '를', '으로'를 쓴다. 계산과 판정 이유는 직전 실제 읽기의 내용 그대로다.",
+      "beforeRaw": {
+        "id": "m2-01-01-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{5}{6}$는 유한소수가 아니다. 그런데 $\\frac{5}{6}\\times\\frac{9}{10}$는 유한소수인지 판정하고, 그렇게 되는 까닭이 드러나게 과정을 쓰시오.",
+        "bAnswer": "$\\frac{5}{6}\\times\\frac{9}{10}=\\frac{45}{60}=\\frac{3}{4}$이다. 곱한 뒤 약분하면 분모의 $3$이 사라지고 $4=2^2$의 소인수가 $2$뿐이므로 유한소수이다.",
+        "bGoal": "두 분수의 곱을 약분한 뒤 판정하기",
+        "bReason": "과정을 요구했으므로0.75라는 답만으로 이유 기준을 통과하지 않도록 한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "유한소수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{5}{6}\\times\\frac{9}{10}=\\frac{3}{4}$로 약분되며 분모의 소인수는 $2$뿐이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cReason": "B의 유한소수 판정 이유를 포함하지 않은 계산 결과 대안을 제거하고, C는 '약분·기약분수'의 문장 복원에서 실제 곱의 기약분수 계산으로 바꾼다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "곱을 약분해 판정하기",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2144,
+        "part": "m2plus",
+        "sourceFingerprint": "2038aaa8400b3e2f45a36796f31507a39b854267833c2e7d381e3a25f4348a32",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2144
+        },
+        "directReview": null,
+        "cFrozenSentence": "두 분수의 곱이 유한소수인지는 곱한 뒤 □하여 얻은 □의 분모로 판정한다.",
+        "cFrozenDefinition": "두 분수의 곱이 유한소수인지는 곱한 뒤 {약분}하여 얻은 {기약분수}의 분모로 판정한다.",
+        "cFrozenAnswers": [
+          "약분",
+          "기약분수"
+        ],
+        "cMarkedSentence": "$\\frac{5}{6}\\times\\frac{9}{10}$을 계산하여 기약분수로 나타내면 {$\\frac{3}{4}$}이다.",
+        "cSlotAnswers": [
+          "$\\frac{3}{4}$"
+        ],
+        "cStudentSentence": "$\\frac{5}{6}\\times\\frac{9}{10}$을 계산하여 기약분수로 나타내면 □이다.",
+        "cAnswers": [
+          "$\\frac{3}{4}$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{3}{4}$",
+            "equivalentAnswers": [
+              "$\\frac{3}{4}$"
+            ]
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{3}{4}$"
+          ]
+        ],
+        "proposalFingerprint": "c9139dba2ea8b25091c4f1317bb2d0279923a9df95b44ca18518eef31026ca8f",
+        "bQuestion": {
+          "prompt": "$\\frac{5}{6}$는 유한소수가 아니다. 그런데 $\\frac{5}{6}\\times\\frac{9}{10}$는 유한소수인지 판정하고, 그렇게 되는 까닭이 드러나게 과정을 쓰시오.",
+          "answer": "$\\frac{5}{6}\\times\\frac{9}{10}=\\frac{45}{60}=\\frac{3}{4}$이다. 곱한 뒤 약분하면 분모의 $3$이 사라지고 $4=2^2$의 소인수가 $2$뿐이므로 유한소수이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "유한소수이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$\\frac{5}{6}\\times\\frac{9}{10}=\\frac{3}{4}$로 약분되며 분모의 소인수는 $2$뿐이다"
+              ]
+            }
+          ]
+        },
+        "cAfter": "$\\frac{5}{6}\\times\\frac{9}{10}$을 계산하여 기약분수로 나타내면 {$\\frac{3}{4}$}이다.",
+        "clozeQuestion": {
+          "sentence": "$\\frac{5}{6}\\times\\frac{9}{10}$을 계산하여 기약분수로 나타내면 {$\\frac{3}{4}$}이다.",
+          "acceptedAnswers": [
+            [
+              "$\\frac{3}{4}$"
+            ]
+          ]
+        },
+        "editorialReview": {
+          "id": "m2-01-01-xc24",
+          "sourceIndex": 2144,
+          "proposalFingerprint": "c9139dba2ea8b25091c4f1317bb2d0279923a9df95b44ca18518eef31026ca8f",
+          "learningRole": "application",
+          "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+          "readAt": "2026-10-07T14:05:39.895Z",
+          "bReason": "B의 유한소수 판정 이유를 포함하지 않은 계산 결과 대안을 제거하고, C는 '약분·기약분수'의 문장 복원에서 실제 곱의 기약분수 계산으로 바꾼다.",
+          "cReason": "B의 유한소수 판정 이유를 포함하지 않은 계산 결과 대안을 제거하고, C는 '약분·기약분수'의 문장 복원에서 실제 곱의 기약분수 계산으로 바꾼다.",
+          "issues": [],
+          "inputEvidence": "../design-evidence/root-final-four-proposals-20261007.json",
+          "isIndependentApproval": false,
+          "bVerdict": "keep",
+          "cVerdict": "keep"
+        }
+      },
+      "before": {
+        "id": "m2-01-01-xc24",
+        "grade": "중2",
+        "source": {
+          "id": "m2-01-01-xc24",
+          "section": "중2::1. 수와 식::유리수와 소수",
+          "term": "두 분수의 곱의 판정",
+          "kind": "방법",
+          "level": "상",
+          "definition": "두 분수의 곱이 유한소수인지는 곱한 뒤 {약분}하여 얻은 {기약분수}의 분모로 판정한다.",
+          "example": {
+            "prompt": "$\\frac{5}{6}\\times\\frac{9}{10}$는 유한소수인가?",
+            "answer": "된다 ($\\frac{3}{4}$)"
+          }
+        },
+        "B": {
+          "prompt": "$\\frac{5}{6}$는 유한소수가 아니다. 그런데 $\\frac{5}{6}\\times\\frac{9}{10}$는 유한소수인지 판정하고, 그렇게 되는 까닭이 드러나게 과정을 쓰시오.",
+          "answer": "$\\frac{5}{6}\\times\\frac{9}{10}=\\frac{45}{60}=\\frac{3}{4}$이다. 곱한 뒤 약분하면 분모의 $3$이 사라지고 $4=2^2$의 소인수가 $2$뿐이므로 유한소수이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "유한소수이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$\\frac{5}{6}\\times\\frac{9}{10}=\\frac{3}{4}$로 약분되며 분모의 소인수는 $2$뿐이다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "$\\frac{5}{6}\\times\\frac{9}{10}$을 계산하여 기약분수로 나타내면 {$\\frac{3}{4}$}이다.",
+          "acceptedAnswers": [
+            [
+              "$\\frac{3}{4}$"
+            ]
+          ]
+        },
+        "goal": "두 분수의 곱을 약분한 뒤 판정하기",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "67461a8395f9a80b95ddb9c9958b23930ccd9a898a37a422c7ab533fb2296ab9"
+      },
+      "proposedRaw": {
+        "id": "m2-01-01-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{5}{6}$는 유한소수가 아니다. 그런데 $\\frac{5}{6}\\times\\frac{9}{10}$는 유한소수인지 판정하고, 그렇게 되는 까닭이 드러나게 과정을 쓰시오.",
+        "bAnswer": "$\\frac{5}{6}\\times\\frac{9}{10}=\\frac{45}{60}=\\frac{3}{4}$이다. 곱한 뒤 약분하면 분모의 $3$이 사라지고 $4=2^2$의 소인수가 $2$뿐이므로 유한소수이다.",
+        "bGoal": "두 분수의 곱을 약분한 뒤 판정하기",
+        "bReason": "과정을 요구했으므로0.75라는 답만으로 이유 기준을 통과하지 않도록 한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "유한소수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{5}{6}\\times\\frac{9}{10}=\\frac{3}{4}$으로 약분되며 분모의 소인수는 $2$뿐이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cReason": "곱의 끝 분자 9와 약분 결과의 분자 3을 읽는 끝소리에 맞춰 각각 '를', '으로'를 쓴다. 계산과 판정 이유는 직전 실제 읽기의 내용 그대로다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "곱을 약분해 판정하기",
+        "authorBatch": 26,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2144,
+        "part": "m2plus",
+        "sourceFingerprint": "2038aaa8400b3e2f45a36796f31507a39b854267833c2e7d381e3a25f4348a32",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2144
+        },
+        "directReview": null,
+        "cFrozenSentence": "두 분수의 곱이 유한소수인지는 곱한 뒤 □하여 얻은 □의 분모로 판정한다.",
+        "cFrozenDefinition": "두 분수의 곱이 유한소수인지는 곱한 뒤 {약분}하여 얻은 {기약분수}의 분모로 판정한다.",
+        "cFrozenAnswers": [
+          "약분",
+          "기약분수"
+        ],
+        "cMarkedSentence": "$\\frac{5}{6}\\times\\frac{9}{10}$를 계산하여 기약분수로 나타내면 {$\\frac{3}{4}$}이다.",
+        "cSlotAnswers": [
+          "$\\frac{3}{4}$"
+        ],
+        "cStudentSentence": "$\\frac{5}{6}\\times\\frac{9}{10}$를 계산하여 기약분수로 나타내면 □이다.",
+        "cAnswers": [
+          "$\\frac{3}{4}$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{3}{4}$",
+            "equivalentAnswers": [
+              "$\\frac{3}{4}$"
+            ]
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{3}{4}$"
+          ]
+        ],
+        "proposalFingerprint": "b57f54fc584743771028da15e9436afefa28d372c445e10d8aaf99df683c2e9d",
+        "bQuestion": {
+          "prompt": "$\\frac{5}{6}$는 유한소수가 아니다. 그런데 $\\frac{5}{6}\\times\\frac{9}{10}$는 유한소수인지 판정하고, 그렇게 되는 까닭이 드러나게 과정을 쓰시오.",
+          "answer": "$\\frac{5}{6}\\times\\frac{9}{10}=\\frac{45}{60}=\\frac{3}{4}$이다. 곱한 뒤 약분하면 분모의 $3$이 사라지고 $4=2^2$의 소인수가 $2$뿐이므로 유한소수이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "유한소수이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$\\frac{5}{6}\\times\\frac{9}{10}=\\frac{3}{4}$으로 약분되며 분모의 소인수는 $2$뿐이다"
+              ]
+            }
+          ]
+        },
+        "cAfter": "$\\frac{5}{6}\\times\\frac{9}{10}$를 계산하여 기약분수로 나타내면 {$\\frac{3}{4}$}이다.",
+        "clozeQuestion": {
+          "sentence": "$\\frac{5}{6}\\times\\frac{9}{10}$를 계산하여 기약분수로 나타내면 {$\\frac{3}{4}$}이다.",
+          "acceptedAnswers": [
+            [
+              "$\\frac{3}{4}$"
+            ]
+          ]
+        },
+        "editorialReview": {
+          "id": "m2-01-01-xc24",
+          "sourceIndex": 2144,
+          "proposalFingerprint": "c9139dba2ea8b25091c4f1317bb2d0279923a9df95b44ca18518eef31026ca8f",
+          "learningRole": "application",
+          "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+          "readAt": "2026-10-07T14:05:39.895Z",
+          "bReason": "B의 유한소수 판정 이유를 포함하지 않은 계산 결과 대안을 제거하고, C는 '약분·기약분수'의 문장 복원에서 실제 곱의 기약분수 계산으로 바꾼다.",
+          "cReason": "B의 유한소수 판정 이유를 포함하지 않은 계산 결과 대안을 제거하고, C는 '약분·기약분수'의 문장 복원에서 실제 곱의 기약분수 계산으로 바꾼다.",
+          "issues": [],
+          "inputEvidence": "../design-evidence/root-final-four-proposals-20261007.json",
+          "isIndependentApproval": false,
+          "bVerdict": "keep",
+          "cVerdict": "keep"
+        }
+      },
+      "after": {
+        "id": "m2-01-01-xc24",
+        "grade": "중2",
+        "source": {
+          "id": "m2-01-01-xc24",
+          "section": "중2::1. 수와 식::유리수와 소수",
+          "term": "두 분수의 곱의 판정",
+          "kind": "방법",
+          "level": "상",
+          "definition": "두 분수의 곱이 유한소수인지는 곱한 뒤 {약분}하여 얻은 {기약분수}의 분모로 판정한다.",
+          "example": {
+            "prompt": "$\\frac{5}{6}\\times\\frac{9}{10}$는 유한소수인가?",
+            "answer": "된다 ($\\frac{3}{4}$)"
+          }
+        },
+        "B": {
+          "prompt": "$\\frac{5}{6}$는 유한소수가 아니다. 그런데 $\\frac{5}{6}\\times\\frac{9}{10}$는 유한소수인지 판정하고, 그렇게 되는 까닭이 드러나게 과정을 쓰시오.",
+          "answer": "$\\frac{5}{6}\\times\\frac{9}{10}=\\frac{45}{60}=\\frac{3}{4}$이다. 곱한 뒤 약분하면 분모의 $3$이 사라지고 $4=2^2$의 소인수가 $2$뿐이므로 유한소수이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "유한소수이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$\\frac{5}{6}\\times\\frac{9}{10}=\\frac{3}{4}$으로 약분되며 분모의 소인수는 $2$뿐이다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "$\\frac{5}{6}\\times\\frac{9}{10}$를 계산하여 기약분수로 나타내면 {$\\frac{3}{4}$}이다.",
+          "acceptedAnswers": [
+            [
+              "$\\frac{3}{4}$"
+            ]
+          ]
+        },
+        "goal": "두 분수의 곱을 약분한 뒤 판정하기",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "75bca6633e3db856de627c956983413f25712f3e28cf4e929b3c4a43524b96cf"
+      }
+    }
+  ]
+}

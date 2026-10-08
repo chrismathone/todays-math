@@ -1,0 +1,103 @@
+{
+  "input": "C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3/evidence/resume-editorial-ctx_9cb9b54195a9/input-clock-bound.json",
+  "changes": [
+    {
+      "id": "m1-03-13-c6",
+      "coreAfter": "$a$시 $x$분($12$시는 $a=0$)에 $12$시에서 시계 방향으로 시침은 {$30a+0.5x$}도, 분침은 {$6x$}도이다. 큰 각도에서 작은 각도를 뺀 값을 차라 하자. 두 바늘의 작은 각은 차가 $180^\\circ$ 이하이면 차, 넘으면 $360^\\circ$에서 차를 뺀 값이다.",
+      "coreReason": "12시 표기와 두 위치식, 음수가 아닌 차, 180도 경계를 유지하며 중복 표현을 줄여 보이는160자 한도에 맞춘다."
+    }
+  ],
+  "rows": [
+    {
+      "id": "m1-03-13-c6",
+      "bDecision": "rewrite",
+      "bPrompt": "$a$시 $x$분($a$는 $1$부터 $11$까지의 자연수, $0\\le x<60$)일 때, $12$시 방향에서 시계 방향으로 시침과 분침이 돌아간 각을 각각 $a$, $x$의 식으로 쓰시오. 두 각 중 큰 각도에서 작은 각도를 뺀 값이 $180^\\circ$보다 클 때, 두 바늘이 이루는 작은 각을 어떻게 구하는지도 쓰시오.",
+      "bAnswer": "시침은 $(30a+0.5x)^\\circ$, 분침은 $6x^\\circ$이다. 큰 각도에서 작은 각도를 뺀 값이 $180^\\circ$ 이하이면 그 값이 두 바늘의 작은 각이고, $180^\\circ$보다 크면 $360^\\circ$에서 그 값을 뺀다.",
+      "bGoal": "$a$시 $x$분의 두 바늘 위치 식과 이루는 각 구하기",
+      "bReason": "차의 계산 순서를 큰 각도에서 작은 각도를 빼는 것으로 명시한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$30a+0.5x$",
+            "$30a+\\frac{1}{2}x$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6x$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$360^\\circ$에서 차를 뺀다"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "시각의 범위와 음수가 아닌 차의 계산 순서를 명시하며 0.5x와 1/2x를 동치로 인정한다.",
+      "learningRole": "procedure",
+      "roleReason": "두 바늘의 각을 식으로 쓰고 차로 사잇각 구하기",
+      "coreAfter": "$a$시 $x$분($12$시는 $a=0$)에 $12$시에서 시계 방향으로 시침은 {$30a+0.5x$}도, 분침은 {$6x$}도이다. 큰 각도에서 작은 각도를 뺀 값을 차라 하자. 두 바늘의 작은 각은 차가 $180^\\circ$ 이하이면 차, 넘으면 $360^\\circ$에서 차를 뺀 값이다.",
+      "coreReason": "12시 표기와 두 위치식, 음수가 아닌 차, 180도 경계를 유지하며 중복 표현을 줄여 보이는160자 한도에 맞춘다.",
+      "authorBatch": 11,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "cAfter": "$a$시 $x$분($a$는 $0$부터 $11$까지의 정수, $0\\le x<60$, $12$시대는 $a=0$)에 $12$시 방향에서 시계 방향으로 시침은 {$30a+0.5x$}도, 분침은 {$6x$}도 돌아간 곳에 있다. 두 각 중 큰 각도에서 작은 각도를 뺀 값이 $180^\\circ$보다 크면 $360^\\circ$에서 그 값을 뺀 값이 두 바늘의 작은 각이다.",
+      "cAnswers": [
+        "$30a+0.5x$",
+        "$6x$"
+      ],
+      "coreRepairDecision": "reject",
+      "coreRepairDecisionReason": "a=12의 경우에도 각의 차 규칙이 맞는다는 보조 지적은 타당하다. 다만 학생이 시침 위치를 12시 기준 한 바퀴 이내로 나타내도록 a=0 표기를 남기고 이유를 수학 오류 주장 대신 기준 명시로 고쳤다.",
+      "sourceIndex": 145,
+      "part": "m1",
+      "sourceFingerprint": "d366090df9628b3b5ebf13051c660a295ebc24ca6cef73a64b004c4ea24b9562",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 145
+      },
+      "directReview": {
+        "path": "amendments.json",
+        "id": "m1-03-13-c6"
+      },
+      "coreRepairRejectedProposal": "$a$시 $x$분에 $12$시 방향에서 시계 방향으로 시침은 {$30a+0.5x$}도, 분침은 {$6x$}도 돌아간 곳에 있다. 그 두 각의 차가 $180^\\circ$ 이하이면 그 차가, $180^\\circ$보다 크면 $360^\\circ$에서 그 차를 뺀 값이 두 바늘이 이루는 각이다.",
+      "coreRepairEvidence": "core-repair/core-000",
+      "cMarkedSentence": "$a$시 $x$분($a$는 $0$부터 $11$까지의 정수, $0\\le x<60$, $12$시대는 $a=0$)에 $12$시 방향에서 시계 방향으로 시침은 {$30a+0.5x$}도, 분침은 {$6x$}도 돌아간 곳에 있다. 두 각 중 큰 각도에서 작은 각도를 뺀 값이 $180^\\circ$보다 크면 $360^\\circ$에서 그 값을 뺀 값이 두 바늘의 작은 각이다.",
+      "cSlotAnswers": [
+        "$30a+0.5x$",
+        "$6x$"
+      ],
+      "cStudentSentence": "$a$시 $x$분($a$는 $0$부터 $11$까지의 정수, $0\\le x<60$, $12$시대는 $a=0$)에 $12$시 방향에서 시계 방향으로 시침은 □도, 분침은 □도 돌아간 곳에 있다. 두 각 중 큰 각도에서 작은 각도를 뺀 값이 $180^\\circ$보다 크면 $360^\\circ$에서 그 값을 뺀 값이 두 바늘의 작은 각이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$30a+0.5x$",
+          "equivalentAnswers": [
+            "$30a+0.5x$",
+            "$30a+\\frac{1}{2}x$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$6x$",
+          "equivalentAnswers": [
+            "$6x$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$30a+0.5x$",
+          "$30a+\\frac{1}{2}x$"
+        ],
+        [
+          "$6x$"
+        ]
+      ],
+      "proposalFingerprint": "b1dcc44e8b7e87889023278474aa6572f79ff1ef017f1df4aaed20f8c5501271"
+    }
+  ]
+}

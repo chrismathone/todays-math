@@ -1,0 +1,2682 @@
+{
+  "sourceCommit": "13bf05dce",
+  "purpose": "Actual fields captured before direct Codex reading; capture is not a verdict",
+  "start": 2463,
+  "end": 2493,
+  "rows": [
+    {
+      "source": {
+        "sourceIndex": 2463,
+        "sourceFingerprint": "116350021ad8b8bfe6ad5d2506aa5bcc3c4430ef649264b5daf602d6310df545",
+        "part": "e4plus",
+        "id": "e4-2-4-2-xc18",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "term": "직사각형의 평행과 수직",
+        "kind": "성질",
+        "level": "상",
+        "definition": "직사각형에서 평행한 변은 {두 쌍}, 수직인 변은 {네 쌍}이다.",
+        "studentC": "직사각형에서 평행한 변은 □, 수직인 변은 □이다.",
+        "answers": [
+          "두 쌍",
+          "네 쌍"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2463,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "sourceFingerprint": "116350021ad8b8bfe6ad5d2506aa5bcc3c4430ef649264b5daf602d6310df545",
+        "proposalFingerprint": "7a0fe8dbfa41b9f7f9900096ea7ee3b5c2d59ba96e53e5002a943a73e2e2248e",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-2-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "직사각형에서 서로 평행한 변은 몇 쌍이고 서로 수직인 변은 몇 쌍입니까? 어떤 변끼리 짝인지 함께 쓰시오.",
+        "bAnswer": "평행한 변은 마주 보는 변 $2$쌍, 수직인 변은 이웃한 변 $4$쌍이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "평행한 변은 마주 보는 변 $2$쌍"
+            ]
+          },
+          {
+            "anyOf": [
+              "수직인 변은 이웃한 변 $4$쌍"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "직사각형 평행·수직 변의 쌍",
+        "bReason": "쌍 수와 짝 지은 변을 함께 묻는다",
+        "cDecision": "rewrite",
+        "cAfter": "직사각형에서 평행한 변은 {$2$}쌍, 수직인 변은 {$4$}쌍이다.",
+        "cReason": "두 빈칸을 숫자로 바꿔 답 형태 명확",
+        "cSlotEquivalents": [
+          [
+            "두"
+          ],
+          [
+            "네"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "직사각형의 평행과 수직",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직사각형에서 평행한 변은 {$2$}쌍, 수직인 변은 {$4$}쌍이다.",
+        "cStudentSentence": "직사각형에서 평행한 변은 □쌍, 수직인 변은 □쌍이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$2$",
+            "equivalents": [
+              "두"
+            ]
+          },
+          {
+            "expected": "$4$",
+            "equivalents": [
+              "네"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "직사각형에서 서로 평행한 변은 몇 쌍이고 서로 수직인 변은 몇 쌍입니까? 어떤 변끼리 짝인지 함께 쓰시오.",
+          "answer": "평행한 변은 마주 보는 변 $2$쌍, 수직인 변은 이웃한 변 $4$쌍이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "평행한 변은 마주 보는 변 $2$쌍"
+              ]
+            },
+            {
+              "anyOf": [
+                "수직인 변은 이웃한 변 $4$쌍"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "직사각형에서 평행한 변은 {$2$}쌍, 수직인 변은 {$4$}쌍이다.",
+          "acceptedAnswers": [
+            [
+              "$2$",
+              "두"
+            ],
+            [
+              "$4$",
+              "네"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2464,
+        "sourceFingerprint": "d3faff81808b909aa56ae0cf66f4e2ce1e49dda8e3cb1cbd74af6d66c6b21e41",
+        "part": "e4plus",
+        "id": "e4-2-4-2-xc19",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "term": "평행한 네 직선의 평행선 쌍",
+        "kind": "성질",
+        "level": "상",
+        "definition": "서로 평행한 직선 네 개에서 두 개씩 짝 지은 평행선은 {여섯 쌍}이다.",
+        "studentC": "서로 평행한 직선 네 개에서 두 개씩 짝 지은 평행선은 □이다.",
+        "answers": [
+          "여섯 쌍"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2464,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "sourceFingerprint": "d3faff81808b909aa56ae0cf66f4e2ce1e49dda8e3cb1cbd74af6d66c6b21e41",
+        "proposalFingerprint": "6b4797e31474b82f491aba8819501103e74e9973dee82e86a54197327c4bd612",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-2-xc19",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "네 평행선의 짝 세기",
+        "bReason": "xc12와 같은 목표",
+        "exclusionReason": "평행선 짝을 빠짐없이 세는 목표가 xc12 B와 같다",
+        "cDecision": "rewrite",
+        "cAfter": "서로 평행한 직선 네 개에서 두 개씩 짝 지은 평행선은 {$6$}쌍이다.",
+        "cReason": "숫자 빈칸으로 답 형태를 명확히 함",
+        "cSlotEquivalents": [
+          [
+            "여섯"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "평행한 네 직선의 평행선 쌍",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "서로 평행한 직선 네 개에서 두 개씩 짝 지은 평행선은 {$6$}쌍이다.",
+        "cStudentSentence": "서로 평행한 직선 네 개에서 두 개씩 짝 지은 평행선은 □쌍이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$6$",
+            "equivalents": [
+              "여섯"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "서로 평행한 직선 네 개에서 두 개씩 짝 지은 평행선은 {$6$}쌍이다.",
+          "acceptedAnswers": [
+            [
+              "$6$",
+              "여섯"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc12와 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2465,
+        "sourceFingerprint": "10637b9cb9948275cdcbbc09e12471dfc9608976822c7f3a3afceff7ef987aa4",
+        "part": "e4plus",
+        "id": "e4-2-4-2-xc20",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "term": "평행선 두 쌍이 수직으로 만날 때",
+        "kind": "성질",
+        "level": "상",
+        "definition": "평행선 두 쌍을 직각으로 겹쳐 그리면 네 직선이 둘러싼 곳에 {직사각형}이 생긴다.",
+        "studentC": "평행선 두 쌍을 직각으로 겹쳐 그리면 네 직선이 둘러싼 곳에 □이 생긴다.",
+        "answers": [
+          "직사각형"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2465,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "sourceFingerprint": "10637b9cb9948275cdcbbc09e12471dfc9608976822c7f3a3afceff7ef987aa4",
+        "proposalFingerprint": "3f711688e45b75aef1b57ea2da2a6a68a40ef4253a3f503bb6ac282dbf8ee5be",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-2-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "직선 가와 나는 평행하고, 직선 다와 라도 평행합니다. 가는 다에 수직입니다. 네 직선으로 둘러싸인 도형은 무엇이며, 그 까닭은 무엇입니까?",
+        "bAnswer": "직사각형이다. 마주 보는 변이 평행하고 네 각이 모두 직각이기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직사각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "네 각이 모두 직각이다",
+              "수직으로 만난다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "평행선 두 쌍이 만드는 도형",
+        "bReason": "직선 이름으로 상황을 자립시킨다",
+        "cDecision": "rewrite",
+        "cAfter": "평행선 두 쌍을 직각으로 겹쳐 그리면 네 직선이 둘러싼 곳에 네 각이 모두 직각인 {직사각형}이 생긴다.",
+        "cReason": "'사각형'으로 답할 모호함을 직각 조건으로 해소",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "평행선 두 쌍이 수직으로 만날 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행선 두 쌍을 직각으로 겹쳐 그리면 네 직선이 둘러싼 곳에 네 각이 모두 직각인 {직사각형}이 생긴다.",
+        "cStudentSentence": "평행선 두 쌍을 직각으로 겹쳐 그리면 네 직선이 둘러싼 곳에 네 각이 모두 직각인 □이 생긴다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "직사각형",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "직선 가와 나는 평행하고, 직선 다와 라도 평행합니다. 가는 다에 수직입니다. 네 직선으로 둘러싸인 도형은 무엇이며, 그 까닭은 무엇입니까?",
+          "answer": "직사각형이다. 마주 보는 변이 평행하고 네 각이 모두 직각이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "직사각형"
+              ]
+            },
+            {
+              "anyOf": [
+                "네 각이 모두 직각이다",
+                "수직으로 만난다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "평행선 두 쌍을 직각으로 겹쳐 그리면 네 직선이 둘러싼 곳에 네 각이 모두 직각인 {직사각형}이 생긴다.",
+          "acceptedAnswers": [
+            [
+              "직사각형"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2466,
+        "sourceFingerprint": "ea5cd0b474f540910b0eecf085bceacf3eec683d74e85f4d75666acb2f5458cf",
+        "part": "e4plus",
+        "id": "e4-2-4-2-xc22",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "term": "평행선과 만나는 직선",
+        "kind": "성질",
+        "level": "상",
+        "definition": "평행선 가운데 한 직선과 만나는 직선은 다른 직선과도 {만난다}.",
+        "studentC": "평행선 가운데 한 직선과 만나는 직선은 다른 직선과도 □.",
+        "answers": [
+          "만난다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2466,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "sourceFingerprint": "ea5cd0b474f540910b0eecf085bceacf3eec683d74e85f4d75666acb2f5458cf",
+        "proposalFingerprint": "cc7a9b47eefdcff8f4b27109bec20cfee76378647d608cafea307b8306c4b6df",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-2-xc22",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "reason",
+        "bGoal": "평행선과 만나는 직선",
+        "bReason": "학년에 맞는 이유 설명이 억지",
+        "exclusionReason": "까닭이 평행의 유일성 논증이라 초4 눈높이에 억지 이유 질문이 된다",
+        "cDecision": "keep",
+        "cReason": "만난다 빈칸이 짧아 유지",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "평행선과 만나는 직선",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행선 가운데 한 직선과 만나는 직선은 다른 직선과도 {만난다}.",
+        "cStudentSentence": "평행선 가운데 한 직선과 만나는 직선은 다른 직선과도 □.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "만난다",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "평행선 가운데 한 직선과 만나는 직선은 다른 직선과도 □.",
+          "answers": [
+            "만난다"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "평행선 가운데 한 직선과 만나는 직선은 다른 직선과도 {만난다}.",
+          "acceptedAnswers": [
+            [
+              "만난다"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "학년에 맞는 이유 설명이 억지"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2467,
+        "sourceFingerprint": "8c9bfa36066d5e19dcb9d2fc8ea09abb8a407b33aacd5de053153a3d81f91b65",
+        "part": "e4plus",
+        "id": "e4-2-4-2-xc23",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "term": "모눈에서 평행한 비스듬한 선분의 칸 수",
+        "kind": "방법",
+        "level": "상",
+        "definition": "모눈종이에서 비스듬한 선분과 평행한 선분을 그을 때 가로 칸 수를 몇 배 하면 세로 칸 수도 {같은 배}로 해야 한다.",
+        "example": {
+          "prompt": "오른쪽 $3$칸, 위 $1$칸인 선분과 평행하게 오른쪽 $6$칸을 가면 위로 $2$칸 가는 까닭은?",
+          "answer": "가로가 $2$배라 세로도 $2$배라서"
+        },
+        "studentC": "모눈종이에서 비스듬한 선분과 평행한 선분을 그을 때 가로 칸 수를 몇 배 하면 세로 칸 수도 □로 해야 한다.",
+        "answers": [
+          "같은 배"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2467,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "sourceFingerprint": "8c9bfa36066d5e19dcb9d2fc8ea09abb8a407b33aacd5de053153a3d81f91b65",
+        "proposalFingerprint": "0eeaa3f9659b80bca1bf788d3922c1bd27a0d470e14bcfc91d8fb2ca7f4fe7ab",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-2-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "오른쪽 $3$칸, 위 $1$칸인 선분과 평행하게 오른쪽 $6$칸을 가면 위로 몇 칸 가야 하는지 쓰고, 그 까닭을 쓰시오.",
+        "bAnswer": "위로 $2$칸이다. 가로가 $3$칸에서 $6$칸으로 $2$배가 되었으므로 세로도 $1$칸의 $2$배이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2$칸",
+              "두 칸"
+            ]
+          },
+          {
+            "anyOf": [
+              "가로가 $2$배면 세로도 $2$배",
+              "같은 배로 늘린다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "가로 배수만큼 세로도 배",
+        "bReason": "원문 예제를 완성 질문으로 만든다",
+        "cDecision": "rewrite",
+        "cAfter": "오른쪽 $3$칸, 위 $1$칸인 선분과 평행하게 오른쪽 $6$칸을 가면 위로는 {$2$}칸 가야 한다.",
+        "cReason": "'같은 배' 대신 구체 계산 빈칸",
+        "cSlotEquivalents": [
+          [
+            "두"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "모눈에서 평행한 비스듬한 선분의 칸 수",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "오른쪽 $3$칸, 위 $1$칸인 선분과 평행하게 오른쪽 $6$칸을 가면 위로는 {$2$}칸 가야 한다.",
+        "cStudentSentence": "오른쪽 $3$칸, 위 $1$칸인 선분과 평행하게 오른쪽 $6$칸을 가면 위로는 □칸 가야 한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$2$",
+            "equivalents": [
+              "두"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "오른쪽 $3$칸, 위 $1$칸인 선분과 평행하게 오른쪽 $6$칸을 가면 위로 몇 칸 가야 하는지 쓰고, 그 까닭을 쓰시오.",
+          "answer": "위로 $2$칸이다. 가로가 $3$칸에서 $6$칸으로 $2$배가 되었으므로 세로도 $1$칸의 $2$배이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$2$칸",
+                "두 칸"
+              ]
+            },
+            {
+              "anyOf": [
+                "가로가 $2$배면 세로도 $2$배",
+                "같은 배로 늘린다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "오른쪽 $3$칸, 위 $1$칸인 선분과 평행하게 오른쪽 $6$칸을 가면 위로는 {$2$}칸 가야 한다.",
+          "acceptedAnswers": [
+            [
+              "$2$",
+              "두"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2468,
+        "sourceFingerprint": "56f643ec27f25f473e34f4ee4ba034e9572ad14453c8ba3cb2202a1550f69736",
+        "part": "e4plus",
+        "id": "e4-2-4-2-xc24",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "term": "평행한 변이 없는 사각형",
+        "kind": "성질",
+        "level": "상",
+        "definition": "사각형 가운데에는 평행한 변이 한 쌍도 {없는} 것도 있다.",
+        "studentC": "사각형 가운데에는 평행한 변이 한 쌍도 □ 것도 있다.",
+        "answers": [
+          "없는"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2468,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "sourceFingerprint": "56f643ec27f25f473e34f4ee4ba034e9572ad14453c8ba3cb2202a1550f69736",
+        "proposalFingerprint": "e32e934e1945b65070930d5ff41ea7179d1137cef381decaf141487d6c1aa371",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-2-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "모든 사각형에는 서로 평행한 변이 한 쌍 이상 있습니까? 아니라면 어떤 사각형인지 설명하시오.",
+        "bAnswer": "아니다. 어느 두 변도 평행하지 않아 늘이면 서로 만나는 사각형도 있다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "평행한 변이 없는 사각형도 있다",
+              "모든 사각형에 있는 것은 아니다"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "평행한 변이 없는 사각형",
+        "bReason": "반례 개념을 말로 확인한다",
+        "cDecision": "keep",
+        "cReason": "짧은 낱말 빈칸이라 유지",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "평행한 변이 없는 사각형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "사각형 가운데에는 평행한 변이 한 쌍도 {없는} 것도 있다.",
+        "cStudentSentence": "사각형 가운데에는 평행한 변이 한 쌍도 □ 것도 있다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "없는",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "사각형 가운데에는 평행한 변이 한 쌍도 □ 것도 있다.",
+          "answers": [
+            "없는"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "모든 사각형에는 서로 평행한 변이 한 쌍 이상 있습니까? 아니라면 어떤 사각형인지 설명하시오.",
+          "answer": "아니다. 어느 두 변도 평행하지 않아 늘이면 서로 만나는 사각형도 있다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "평행한 변이 없는 사각형도 있다",
+                "모든 사각형에 있는 것은 아니다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "사각형 가운데에는 평행한 변이 한 쌍도 {없는} 것도 있다.",
+          "acceptedAnswers": [
+            [
+              "없는"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2469,
+        "sourceFingerprint": "823705269062a08756a84f390fd94041503b6dfc188ca46d7c26427b9a2f307b",
+        "part": "e4plus",
+        "id": "e4-2-4-2-xc25",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "term": "직선 밖의 점을 지나는 평행선 긋기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "직선 밖의 한 점을 지나는 평행선은 한 삼각자를 직선에 맞추고 다른 삼각자를 대어 {그 점까지} 밀어 옮긴 뒤 긋는다.",
+        "studentC": "직선 밖의 한 점을 지나는 평행선은 한 삼각자를 직선에 맞추고 다른 삼각자를 대어 □ 밀어 옮긴 뒤 긋는다.",
+        "answers": [
+          "그 점까지"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2469,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "sourceFingerprint": "823705269062a08756a84f390fd94041503b6dfc188ca46d7c26427b9a2f307b",
+        "proposalFingerprint": "7af6bf4651b002ad6e1b3e9b384aad1f377db1483d1c3ff0f4ca7c31d7c6278e",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-2-xc25",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "밖의 점 지나는 평행선 긋기",
+        "bReason": "xc4와 같은 목표",
+        "exclusionReason": "삼각자 두 개를 밀어 평행선을 긋는 방법이 xc4 B와 같다",
+        "cDecision": "rewrite",
+        "cAfter": "직선 밖의 한 점을 지나는 평행선은 한 삼각자를 직선에 맞추고 다른 삼각자를 대어 직선 밖의 {점}을 지나도록 밀어 옮긴 뒤 긋는다.",
+        "cReason": "긴 구절 빈칸을 낱말 하나로 줄임",
+        "cSlotEquivalents": [
+          [
+            "한 점"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "직선 밖의 점을 지나는 평행선 긋기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직선 밖의 한 점을 지나는 평행선은 한 삼각자를 직선에 맞추고 다른 삼각자를 대어 직선 밖의 {점}을 지나도록 밀어 옮긴 뒤 긋는다.",
+        "cStudentSentence": "직선 밖의 한 점을 지나는 평행선은 한 삼각자를 직선에 맞추고 다른 삼각자를 대어 직선 밖의 □을 지나도록 밀어 옮긴 뒤 긋는다.",
+        "cSlotAnswers": [
+          {
+            "expected": "점",
+            "equivalents": [
+              "한 점"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "직선 밖의 한 점을 지나는 평행선은 한 삼각자를 직선에 맞추고 다른 삼각자를 대어 직선 밖의 {점}을 지나도록 밀어 옮긴 뒤 긋는다.",
+          "acceptedAnswers": [
+            [
+              "점",
+              "한 점"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc4와 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2470,
+        "sourceFingerprint": "a29b5fff466715e99f94c9a28972a849813b04283c143ee8a92d34ba51b8783a",
+        "part": "e4plus",
+        "id": "e4-2-4-2-xc26",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "term": "접어서 만든 두 수선",
+        "kind": "성질",
+        "level": "상",
+        "definition": "종이에 그은 직선 위의 서로 다른 두 점에서 각각 수선을 접어 만들면 두 접힌 선은 서로 {평행}하다.",
+        "studentC": "종이에 그은 직선 위의 서로 다른 두 점에서 각각 수선을 접어 만들면 두 접힌 선은 서로 □하다.",
+        "answers": [
+          "평행"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2470,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "sourceFingerprint": "a29b5fff466715e99f94c9a28972a849813b04283c143ee8a92d34ba51b8783a",
+        "proposalFingerprint": "4f69e7e67b3afc05bae481f465f1071f572b419c6799f63b8c9af23142ef9aad",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-2-xc26",
+        "bDecision": "rewrite",
+        "bPrompt": "종이에 그은 직선 위의 서로 다른 두 점에서 각각 수선을 접어 만들었습니다. 두 접힌 선은 서로 어떤 관계이며, 그 까닭은 무엇입니까?",
+        "bAnswer": "서로 평행하다. 두 선이 모두 처음 직선에 수직이기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "평행하다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 선 모두 처음 직선에 수직이다",
+              "한 직선에 수직인 두 직선"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "한 직선에 수직인 두 선은 평행",
+        "bReason": "접기 활동의 관계와 까닭을 묻는다",
+        "cDecision": "keep",
+        "cReason": "평행 낱말 빈칸이라 유지",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "접어서 만든 두 수선",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "종이에 그은 직선 위의 서로 다른 두 점에서 각각 수선을 접어 만들면 두 접힌 선은 서로 {평행}하다.",
+        "cStudentSentence": "종이에 그은 직선 위의 서로 다른 두 점에서 각각 수선을 접어 만들면 두 접힌 선은 서로 □하다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "평행",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "종이에 그은 직선 위의 서로 다른 두 점에서 각각 수선을 접어 만들면 두 접힌 선은 서로 □하다.",
+          "answers": [
+            "평행"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "종이에 그은 직선 위의 서로 다른 두 점에서 각각 수선을 접어 만들었습니다. 두 접힌 선은 서로 어떤 관계이며, 그 까닭은 무엇입니까?",
+          "answer": "서로 평행하다. 두 선이 모두 처음 직선에 수직이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "평행하다"
+              ]
+            },
+            {
+              "anyOf": [
+                "두 선 모두 처음 직선에 수직이다",
+                "한 직선에 수직인 두 직선"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "종이에 그은 직선 위의 서로 다른 두 점에서 각각 수선을 접어 만들면 두 접힌 선은 서로 {평행}하다.",
+          "acceptedAnswers": [
+            [
+              "평행"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2471,
+        "sourceFingerprint": "4fd3edde56c330383aa4e8966044c4f600071e175314ad2a1d8102941863f0c9",
+        "part": "e4plus",
+        "id": "e4-2-4-2-xc27",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "term": "같은 평면 위의 두 직선",
+        "kind": "성질",
+        "level": "상",
+        "definition": "같은 평면 위의 서로 다른 두 직선은 한 점에서 만나거나 서로 {평행}하다.",
+        "studentC": "같은 평면 위의 서로 다른 두 직선은 한 점에서 만나거나 서로 □하다.",
+        "answers": [
+          "평행"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2471,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-2 평행과 평행선",
+        "sourceFingerprint": "4fd3edde56c330383aa4e8966044c4f600071e175314ad2a1d8102941863f0c9",
+        "proposalFingerprint": "05f953ba7615b6b281fd8e92989a51c757bbe5419986f53b666d472b2ed127d1",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-2-xc27",
+        "bDecision": "rewrite",
+        "bPrompt": "같은 평면 위의 서로 다른 두 직선은 서로 어떤 관계가 될 수 있는지 두 가지를 쓰시오.",
+        "bAnswer": "한 점에서 만나거나 서로 평행하다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한 점에서 만난다"
+            ]
+          },
+          {
+            "anyOf": [
+              "평행하다",
+              "만나지 않는다"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "두 직선의 가능한 관계",
+        "bReason": "가능한 두 경우를 묻는다",
+        "cDecision": "keep",
+        "cReason": "평행 낱말 빈칸이라 유지",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "같은 평면 위의 두 직선",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "같은 평면 위의 서로 다른 두 직선은 한 점에서 만나거나 서로 {평행}하다.",
+        "cStudentSentence": "같은 평면 위의 서로 다른 두 직선은 한 점에서 만나거나 서로 □하다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "평행",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "같은 평면 위의 서로 다른 두 직선은 한 점에서 만나거나 서로 □하다.",
+          "answers": [
+            "평행"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "같은 평면 위의 서로 다른 두 직선은 서로 어떤 관계가 될 수 있는지 두 가지를 쓰시오.",
+          "answer": "한 점에서 만나거나 서로 평행하다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "한 점에서 만난다"
+              ]
+            },
+            {
+              "anyOf": [
+                "평행하다",
+                "만나지 않는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "같은 평면 위의 서로 다른 두 직선은 한 점에서 만나거나 서로 {평행}하다.",
+          "acceptedAnswers": [
+            [
+              "평행"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2472,
+        "sourceFingerprint": "e6f1e7c864a3b5fbb9da4ca828576f081a11c007526547be74c7b2acb83d48b7",
+        "part": "e4plus",
+        "id": "e4-2-4-3-xc1",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "term": "삼각자로 거리 재기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "평행선 사이의 거리를 잴 때는 삼각자의 직각을 이용해 {수선}을 긋고 그 길이를 잰다.",
+        "studentC": "평행선 사이의 거리를 잴 때는 삼각자의 직각을 이용해 □을 긋고 그 길이를 잰다.",
+        "answers": [
+          "수선"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2472,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "sourceFingerprint": "e6f1e7c864a3b5fbb9da4ca828576f081a11c007526547be74c7b2acb83d48b7",
+        "proposalFingerprint": "bc5b749fc445119226fdff4d3289532c2759bbcd8249b1ece979e76a7671dbb4",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-3-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각자로 평행선 사이의 거리를 재는 방법을 쓰시오.",
+        "bAnswer": "삼각자의 직각을 이용해 한 평행선에서 다른 평행선까지 수선을 긋고 그 선분의 길이를 잰다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "직각을 이용해 수선을 긋는다",
+              "두 직선에 수직인 선분을 긋는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "그 길이를 잰다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "삼각자로 거리 재기",
+        "bReason": "거리 측정 순서를 묻는다",
+        "cDecision": "keep",
+        "cReason": "수선 빈칸이 짧아 유지",
+        "cSlotEquivalents": [
+          [
+            "수직선",
+            "수직인 선"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "삼각자로 거리 재기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행선 사이의 거리를 잴 때는 삼각자의 직각을 이용해 {수선}을 긋고 그 길이를 잰다.",
+        "cStudentSentence": "평행선 사이의 거리를 잴 때는 삼각자의 직각을 이용해 □을 긋고 그 길이를 잰다.",
+        "cSlotAnswers": [
+          {
+            "expected": "수선",
+            "equivalents": [
+              "수직선",
+              "수직인 선"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "평행선 사이의 거리를 잴 때는 삼각자의 직각을 이용해 □을 긋고 그 길이를 잰다.",
+          "answers": [
+            "수선"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "삼각자로 평행선 사이의 거리를 재는 방법을 쓰시오.",
+          "answer": "삼각자의 직각을 이용해 한 평행선에서 다른 평행선까지 수선을 긋고 그 선분의 길이를 잰다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "직각을 이용해 수선을 긋는다",
+                "두 직선에 수직인 선분을 긋는다"
+              ]
+            },
+            {
+              "anyOf": [
+                "그 길이를 잰다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "평행선 사이의 거리를 잴 때는 삼각자의 직각을 이용해 {수선}을 긋고 그 길이를 잰다.",
+          "acceptedAnswers": [
+            [
+              "수선",
+              "수직선",
+              "수직인 선"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2473,
+        "sourceFingerprint": "9296058191e895359005ad245ead8732e66984973312dee87bd5ec857359a599",
+        "part": "e4plus",
+        "id": "e4-2-4-3-xc2",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "term": "가장 짧은 선분",
+        "kind": "성질",
+        "level": "하",
+        "definition": "평행선 사이를 잇는 선분 가운데 두 직선에 수직인 선분이 {가장 짧다}.",
+        "studentC": "평행선 사이를 잇는 선분 가운데 두 직선에 수직인 선분이 □.",
+        "answers": [
+          "가장 짧다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2473,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "sourceFingerprint": "9296058191e895359005ad245ead8732e66984973312dee87bd5ec857359a599",
+        "proposalFingerprint": "052869c44cf684368a374a1a17a8f4b3ec317ba77cbc37d55b29e1cedad12b75",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-3-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "평행선 사이를 잇는 여러 선분 가운데 길이가 가장 짧은 선분은 어떤 선분입니까?",
+        "bAnswer": "두 평행선에 수직인 선분이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 직선에 수직인 선분",
+              "수선"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "가장 짧은 선분은 수선",
+        "bReason": "선분 비교 결과를 짧게 묻는다",
+        "cDecision": "keep",
+        "cReason": "가장 짧다는 비교 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "제일 짧다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "가장 짧은 선분",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행선 사이를 잇는 선분 가운데 두 직선에 수직인 선분이 {가장 짧다}.",
+        "cStudentSentence": "평행선 사이를 잇는 선분 가운데 두 직선에 수직인 선분이 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "가장 짧다",
+            "equivalents": [
+              "제일 짧다"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "평행선 사이를 잇는 선분 가운데 두 직선에 수직인 선분이 □.",
+          "answers": [
+            "가장 짧다"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "평행선 사이를 잇는 여러 선분 가운데 길이가 가장 짧은 선분은 어떤 선분입니까?",
+          "answer": "두 평행선에 수직인 선분이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "두 직선에 수직인 선분",
+                "수선"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "평행선 사이를 잇는 선분 가운데 두 직선에 수직인 선분이 {가장 짧다}.",
+          "acceptedAnswers": [
+            [
+              "가장 짧다",
+              "제일 짧다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2474,
+        "sourceFingerprint": "544627f569400491ba3a3c8000824ee320727b77b880ec06b115a7b610e82d43",
+        "part": "e4plus",
+        "id": "e4-2-4-3-xc3",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "term": "모눈에서 평행선 사이의 거리",
+        "kind": "방법",
+        "level": "하",
+        "definition": "모눈의 두 가로줄 사이의 거리는 {한 칸의 길이}에 {떨어진 칸 수}를 곱한 길이이다.",
+        "example": {
+          "prompt": "한 칸이 $1\\,\\mathrm{cm}$인 모눈에서 $3$칸 떨어진 두 가로줄 사이를 세로로 재는 까닭은?",
+          "answer": "세로선이 두 줄에 수직이라서"
+        },
+        "studentC": "모눈의 두 가로줄 사이의 거리는 □에 □를 곱한 길이이다.",
+        "answers": [
+          "한 칸의 길이",
+          "떨어진 칸 수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2474,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "sourceFingerprint": "544627f569400491ba3a3c8000824ee320727b77b880ec06b115a7b610e82d43",
+        "proposalFingerprint": "176f1e6c3bef7037793c9498f0c4082e4f32f4a3db8b10921a841e2afe67f905",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-3-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "한 칸이 $2\\,\\mathrm{cm}$인 모눈종이에서 두 가로줄이 $3$칸 떨어져 있습니다. 두 줄 사이의 거리를 구하는 방법과 답을 쓰시오.",
+        "bAnswer": "한 칸의 길이에 떨어진 칸 수를 곱한다. $2\\times3=6$이므로 $6\\,\\mathrm{cm}$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한 칸의 길이에 칸 수를 곱한다",
+              "$2\\times3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6\\,\\mathrm{cm}$"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "모눈에서 평행선 사이 거리",
+        "bReason": "새 수로 곱셈 방법을 묻는다",
+        "cDecision": "rewrite",
+        "cAfter": "한 칸이 $2\\,\\mathrm{cm}$인 모눈에서 두 가로줄이 $3$칸 떨어져 있으면 두 줄 사이의 거리는 {$6$}$\\,\\mathrm{cm}$이다.",
+        "cReason": "숨은 두 구절 대신 선명한 계산 빈칸",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "모눈에서 평행선 사이의 거리",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "한 칸이 $2\\,\\mathrm{cm}$인 모눈에서 두 가로줄이 $3$칸 떨어져 있으면 두 줄 사이의 거리는 {$6$}$\\,\\mathrm{cm}$이다.",
+        "cStudentSentence": "한 칸이 $2\\,\\mathrm{cm}$인 모눈에서 두 가로줄이 $3$칸 떨어져 있으면 두 줄 사이의 거리는 □$\\,\\mathrm{cm}$이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$6$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "한 칸이 $2\\,\\mathrm{cm}$인 모눈종이에서 두 가로줄이 $3$칸 떨어져 있습니다. 두 줄 사이의 거리를 구하는 방법과 답을 쓰시오.",
+          "answer": "한 칸의 길이에 떨어진 칸 수를 곱한다. $2\\times3=6$이므로 $6\\,\\mathrm{cm}$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "한 칸의 길이에 칸 수를 곱한다",
+                "$2\\times3$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$6\\,\\mathrm{cm}$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "한 칸이 $2\\,\\mathrm{cm}$인 모눈에서 두 가로줄이 $3$칸 떨어져 있으면 두 줄 사이의 거리는 {$6$}$\\,\\mathrm{cm}$이다.",
+          "acceptedAnswers": [
+            [
+              "$6$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2475,
+        "sourceFingerprint": "1475779ce3f1915144f7cdbe4f845dbeb96ec3942ddd43d07dfd55b2d20138b7",
+        "part": "e4plus",
+        "id": "e4-2-4-3-xc4",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "term": "직사각형의 마주 보는 변 사이의 거리",
+        "kind": "성질",
+        "level": "하",
+        "definition": "직사각형에서 마주 보는 두 변 사이의 거리는 나머지 한 변의 {길이}와 같다.",
+        "studentC": "직사각형에서 마주 보는 두 변 사이의 거리는 나머지 한 변의 □와 같다.",
+        "answers": [
+          "길이"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2475,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "sourceFingerprint": "1475779ce3f1915144f7cdbe4f845dbeb96ec3942ddd43d07dfd55b2d20138b7",
+        "proposalFingerprint": "7479ec69072f7561971079827a45075da4f47625472715d0f53c7348698a73cd",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-3-xc4",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "직사각형 변 사이 거리",
+        "bReason": "xc14와 같은 목표",
+        "exclusionReason": "직사각형 변 사이 거리는 xc14 B에서 가로·세로 값으로 다룬다",
+        "coreAfter": "직사각형에서 마주 보는 두 변 사이의 거리는 그 두 변에 수직인 변의 {길이}와 같다.",
+        "coreReason": "길이라는 원래표적을보존하며나머지한변을선택할기준을수직인변으로명시한다.",
+        "cDecision": "rewrite",
+        "cAfter": "직사각형에서 마주 보는 두 변 사이의 거리는 그 두 변에 수직인 변의 {길이}와 같다.",
+        "cReason": "'나머지 한 변' 모호함을 수직인 변으로 고침",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "직사각형의 마주 보는 변 사이의 거리",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직사각형에서 마주 보는 두 변 사이의 거리는 그 두 변에 수직인 변의 {길이}와 같다.",
+        "cStudentSentence": "직사각형에서 마주 보는 두 변 사이의 거리는 그 두 변에 수직인 변의 □와 같다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "길이",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "직사각형에서 마주 보는 두 변 사이의 거리는 그 두 변에 수직인 변의 {길이}와 같다.",
+          "acceptedAnswers": [
+            [
+              "길이"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc14와 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2476,
+        "sourceFingerprint": "ea4ae37c2deafb5d94069ecff4936cbb0d45dcb01d92582237b23dc255867d3e",
+        "part": "e4plus",
+        "id": "e4-2-4-3-xc5",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "term": "정사각형의 마주 보는 변 사이의 거리",
+        "kind": "성질",
+        "level": "하",
+        "definition": "한 변이 $5\\,\\mathrm{cm}$인 정사각형에서 마주 보는 두 변 사이의 거리는 한 변의 길이와 같은 {$5\\,\\mathrm{cm}$}이다.",
+        "studentC": "한 변이 $5\\,\\mathrm{cm}$인 정사각형에서 마주 보는 두 변 사이의 거리는 한 변의 길이와 같은 □이다.",
+        "answers": [
+          "$5\\,\\mathrm{cm}$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2476,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "sourceFingerprint": "ea4ae37c2deafb5d94069ecff4936cbb0d45dcb01d92582237b23dc255867d3e",
+        "proposalFingerprint": "9316853e10c9cc124a472fb76f606b4c15b6f1e6398bbb34e55e92c000c8c2c8",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-3-xc5",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "정사각형 변 사이 거리",
+        "bReason": "xc14와 같은 목표",
+        "exclusionReason": "정사각형 변 사이 거리는 xc14 직사각형 B와 같은 목표다",
+        "cDecision": "keep",
+        "cReason": "선명한 값 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "$5$"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "정사각형의 마주 보는 변 사이의 거리",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "한 변이 $5\\,\\mathrm{cm}$인 정사각형에서 마주 보는 두 변 사이의 거리는 한 변의 길이와 같은 {$5\\,\\mathrm{cm}$}이다.",
+        "cStudentSentence": "한 변이 $5\\,\\mathrm{cm}$인 정사각형에서 마주 보는 두 변 사이의 거리는 한 변의 길이와 같은 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$5\\,\\mathrm{cm}$",
+            "equivalents": [
+              "$5$"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "한 변이 $5\\,\\mathrm{cm}$인 정사각형에서 마주 보는 두 변 사이의 거리는 한 변의 길이와 같은 □이다.",
+          "answers": [
+            "$5\\,\\mathrm{cm}$"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "한 변이 $5\\,\\mathrm{cm}$인 정사각형에서 마주 보는 두 변 사이의 거리는 한 변의 길이와 같은 {$5\\,\\mathrm{cm}$}이다.",
+          "acceptedAnswers": [
+            [
+              "$5\\,\\mathrm{cm}$",
+              "$5$"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc14와 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2477,
+        "sourceFingerprint": "9c5b316b735b7ecdcb7b0ed6a43c406ca427b893ad2853ada6066687372c672b",
+        "part": "e4plus",
+        "id": "e4-2-4-3-xc6",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "term": "철길의 폭",
+        "kind": "성질",
+        "level": "하",
+        "definition": "곧게 뻗은 철길의 두 레일 사이의 거리는 어디서 재어도 {같다}.",
+        "studentC": "곧게 뻗은 철길의 두 레일 사이의 거리는 어디서 재어도 □.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2477,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "sourceFingerprint": "9c5b316b735b7ecdcb7b0ed6a43c406ca427b893ad2853ada6066687372c672b",
+        "proposalFingerprint": "656e2cc76eb32315e18863c19a16bfb355c6154ba6af902204a75ddf2a3b98f7",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-3-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "곧게 뻗은 철길의 평행한 두 레일 사이의 거리를 여러 곳에서 재면 어떻게 나옵니까?",
+        "bAnswer": "어디서 재어도 같다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "같다",
+              "어디서 재어도 같다"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "평행선 거리는 일정함",
+        "bReason": "평행선 거리의 핵심 성질 확인",
+        "cDecision": "keep",
+        "cReason": "같다는 짧은 빈칸이라 유지",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "철길의 폭",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "곧게 뻗은 철길의 두 레일 사이의 거리는 어디서 재어도 {같다}.",
+        "cStudentSentence": "곧게 뻗은 철길의 두 레일 사이의 거리는 어디서 재어도 □.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "같다",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "곧게 뻗은 철길의 두 레일 사이의 거리는 어디서 재어도 □.",
+          "answers": [
+            "같다"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "곧게 뻗은 철길의 평행한 두 레일 사이의 거리를 여러 곳에서 재면 어떻게 나옵니까?",
+          "answer": "어디서 재어도 같다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "같다",
+                "어디서 재어도 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "곧게 뻗은 철길의 두 레일 사이의 거리는 어디서 재어도 {같다}.",
+          "acceptedAnswers": [
+            [
+              "같다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2478,
+        "sourceFingerprint": "d01a0aaeb4a5cb9ed3e0f60e629dad18708679a4c7b4ad467198a78fc4adb541",
+        "part": "e4plus",
+        "id": "e4-2-4-3-xc7",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "term": "거리를 재는 두 점",
+        "kind": "방법",
+        "level": "하",
+        "definition": "평행선 사이의 거리는 수선이 두 직선과 {만나는 두 점} 사이를 잰 것이다.",
+        "studentC": "평행선 사이의 거리는 수선이 두 직선과 □ 사이를 잰 것이다.",
+        "answers": [
+          "만나는 두 점"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2478,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "sourceFingerprint": "d01a0aaeb4a5cb9ed3e0f60e629dad18708679a4c7b4ad467198a78fc4adb541",
+        "proposalFingerprint": "ec1afdb3ebf7a823f3b2feb0955e7082ca1926a4f320e79bf5f9e219c4bf48ba",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-3-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "평행한 두 직선 사이의 거리는 어떤 선분의 길이입니까? 어떤 선분인지 쓰시오.",
+        "bAnswer": "두 직선에 수직인 선분이 두 직선과 만나는 두 점 사이의 길이이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 직선에 수직인 선분",
+              "수선"
+            ]
+          },
+          {
+            "anyOf": [
+              "만나는 두 점 사이의 길이",
+              "수선의 길이"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "평행선 사이 거리의 뜻",
+        "bReason": "거리를 어떤 선분으로 재는지 묻는다",
+        "cDecision": "rewrite",
+        "cAfter": "평행선 사이의 거리는 두 직선에 수직으로 그은 선분의 {길이}이다.",
+        "cReason": "긴 구절 빈칸을 길이 한 낱말로 줄임",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "거리를 재는 두 점",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행선 사이의 거리는 두 직선에 수직으로 그은 선분의 {길이}이다.",
+        "cStudentSentence": "평행선 사이의 거리는 두 직선에 수직으로 그은 선분의 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "길이",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "평행한 두 직선 사이의 거리는 어떤 선분의 길이입니까? 어떤 선분인지 쓰시오.",
+          "answer": "두 직선에 수직인 선분이 두 직선과 만나는 두 점 사이의 길이이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "두 직선에 수직인 선분",
+                "수선"
+              ]
+            },
+            {
+              "anyOf": [
+                "만나는 두 점 사이의 길이",
+                "수선의 길이"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "평행선 사이의 거리는 두 직선에 수직으로 그은 선분의 {길이}이다.",
+          "acceptedAnswers": [
+            [
+              "길이"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2479,
+        "sourceFingerprint": "bfde7c3ccff62952860f6d63fde3c96304e796910576d644ac7c9ccdea08fc4c",
+        "part": "e4plus",
+        "id": "e4-2-4-3-xc8",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "term": "공책 줄 사이의 거리",
+        "kind": "성질",
+        "level": "하",
+        "definition": "공책의 이웃한 두 가로줄이 서로 평행하고 그 사이 거리가 $8\\,\\mathrm{mm}$이면, 두 줄에 수직으로 잰 거리는 재는 곳이 달라도 {$8\\,\\mathrm{mm}$}로 같다.",
+        "studentC": "공책의 이웃한 두 가로줄이 서로 평행하고 그 사이 거리가 $8\\,\\mathrm{mm}$이면, 두 줄에 수직으로 잰 거리는 재는 곳이 달라도 □로 같다.",
+        "answers": [
+          "$8\\,\\mathrm{mm}$"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2479,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "sourceFingerprint": "bfde7c3ccff62952860f6d63fde3c96304e796910576d644ac7c9ccdea08fc4c",
+        "proposalFingerprint": "eac345cdfb4f064a9c9b07ad9298031c2ecb4fab651d8695a24edf7a24198d35",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-3-xc8",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "공책 줄 거리 일정",
+        "bReason": "xc6과 같은 목표",
+        "exclusionReason": "어디서 재어도 거리가 같다는 목표가 xc6 B와 같다",
+        "cDecision": "keep",
+        "cReason": "선명한 값 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "$8$"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "공책 줄 사이의 거리",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "공책의 이웃한 두 가로줄이 서로 평행하고 그 사이 거리가 $8\\,\\mathrm{mm}$이면, 두 줄에 수직으로 잰 거리는 재는 곳이 달라도 {$8\\,\\mathrm{mm}$}로 같다.",
+        "cStudentSentence": "공책의 이웃한 두 가로줄이 서로 평행하고 그 사이 거리가 $8\\,\\mathrm{mm}$이면, 두 줄에 수직으로 잰 거리는 재는 곳이 달라도 □로 같다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$8\\,\\mathrm{mm}$",
+            "equivalents": [
+              "$8$"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "공책의 이웃한 두 가로줄이 서로 평행하고 그 사이 거리가 $8\\,\\mathrm{mm}$이면, 두 줄에 수직으로 잰 거리는 재는 곳이 달라도 □로 같다.",
+          "answers": [
+            "$8\\,\\mathrm{mm}$"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "공책의 이웃한 두 가로줄이 서로 평행하고 그 사이 거리가 $8\\,\\mathrm{mm}$이면, 두 줄에 수직으로 잰 거리는 재는 곳이 달라도 {$8\\,\\mathrm{mm}$}로 같다.",
+          "acceptedAnswers": [
+            [
+              "$8\\,\\mathrm{mm}$",
+              "$8$"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc6과 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2480,
+        "sourceFingerprint": "270b8d854e07adf90e8399851a943bbfa3dff666cf0348eaa64b967b1dd09a2c",
+        "part": "e4plus",
+        "id": "e4-2-4-3-xc9",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "term": "비스듬히 잰 길이",
+        "kind": "성질",
+        "level": "하",
+        "definition": "평행선 사이를 비스듬히 이은 선분을 재면 거리보다 {길게} 나온다.",
+        "studentC": "평행선 사이를 비스듬히 이은 선분을 재면 거리보다 □ 나온다.",
+        "answers": [
+          "길게"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2480,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "sourceFingerprint": "270b8d854e07adf90e8399851a943bbfa3dff666cf0348eaa64b967b1dd09a2c",
+        "proposalFingerprint": "650673623edf3d921014524cfd36b3ed3d55c676c76085460f4f32795d195ffd",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-3-xc9",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "reason",
+        "bGoal": "비스듬히 재면 길다",
+        "bReason": "xc2와 같은 목표",
+        "exclusionReason": "수선이 가장 짧다는 목표와 같은 내용이다",
+        "cDecision": "keep",
+        "cReason": "길게 빈칸이 짧아 유지",
+        "cSlotEquivalents": [
+          [
+            "더 길게"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "비스듬히 잰 길이",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행선 사이를 비스듬히 이은 선분을 재면 거리보다 {길게} 나온다.",
+        "cStudentSentence": "평행선 사이를 비스듬히 이은 선분을 재면 거리보다 □ 나온다.",
+        "cSlotAnswers": [
+          {
+            "expected": "길게",
+            "equivalents": [
+              "더 길게"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "평행선 사이를 비스듬히 이은 선분을 재면 거리보다 □ 나온다.",
+          "answers": [
+            "길게"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "평행선 사이를 비스듬히 이은 선분을 재면 거리보다 {길게} 나온다.",
+          "acceptedAnswers": [
+            [
+              "길게",
+              "더 길게"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc2와 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2481,
+        "sourceFingerprint": "c066ca80ff7fdacd6d290e1a87d425706dbbb9f03879380ed4f8f93942c9ccd4",
+        "part": "e4plus",
+        "id": "e4-2-4-3-xc10",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "term": "평행하지 않은 두 직선의 간격",
+        "kind": "성질",
+        "level": "중",
+        "definition": "평행하지 않은 두 직선 사이의 간격은 곳에 따라 {달라진다}.",
+        "studentC": "평행하지 않은 두 직선 사이의 간격은 곳에 따라 □.",
+        "answers": [
+          "달라진다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2481,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "sourceFingerprint": "c066ca80ff7fdacd6d290e1a87d425706dbbb9f03879380ed4f8f93942c9ccd4",
+        "proposalFingerprint": "b638e2d43f1c9f666e85e949acb55ea65eff9c3140ca610fc1321ac814a2eb30",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-3-xc10",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "definition",
+        "bGoal": "평행하지 않은 간격",
+        "bReason": "xc6의 대비 내용",
+        "exclusionReason": "평행선 거리가 일정한 xc6과 대비일 뿐 별도 설명 목표가 없다",
+        "cDecision": "keep",
+        "cReason": "달라진다 빈칸이 짧아 유지",
+        "cSlotEquivalents": [
+          [
+            "다르다",
+            "변한다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "평행하지 않은 두 직선의 간격",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행하지 않은 두 직선 사이의 간격은 곳에 따라 {달라진다}.",
+        "cStudentSentence": "평행하지 않은 두 직선 사이의 간격은 곳에 따라 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "달라진다",
+            "equivalents": [
+              "다르다",
+              "변한다"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "평행하지 않은 두 직선 사이의 간격은 곳에 따라 □.",
+          "answers": [
+            "달라진다"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "평행하지 않은 두 직선 사이의 간격은 곳에 따라 {달라진다}.",
+          "acceptedAnswers": [
+            [
+              "달라진다",
+              "다르다",
+              "변한다"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc6의 대비 내용"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2482,
+        "sourceFingerprint": "1a551a3fb0683b2efd9c7649fd83dd40c3a0b10451e90249fc52c75dadc5fa4b",
+        "part": "e4plus",
+        "id": "e4-2-4-3-xc11",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "term": "세 평행선의 거리",
+        "kind": "성질",
+        "level": "중",
+        "definition": "평행선 가, 나, 다가 차례로 놓여 있으면 가와 다 사이의 거리는 가와 나, 나와 다 사이 거리의 {합}이다.",
+        "studentC": "평행선 가, 나, 다가 차례로 놓여 있으면 가와 다 사이의 거리는 가와 나, 나와 다 사이 거리의 □이다.",
+        "answers": [
+          "합"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2482,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "sourceFingerprint": "1a551a3fb0683b2efd9c7649fd83dd40c3a0b10451e90249fc52c75dadc5fa4b",
+        "proposalFingerprint": "0b8add71f12f1ff2a630eab475a29df22bc5f3c468ee1c71f92cd08227c8d15e",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-3-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "평행선 가, 나, 다가 차례로 놓여 있고 가와 나 사이가 $2\\,\\mathrm{cm}$, 나와 다 사이가 $3\\,\\mathrm{cm}$입니다. 가와 다 사이의 거리를 구하는 방법과 답을 쓰시오.",
+        "bAnswer": "나가 가와 다 사이에 있으므로 두 거리를 더한다. $2+3=5$, $5\\,\\mathrm{cm}$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 거리를 더한다",
+              "$2+3$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5\\,\\mathrm{cm}$"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "차례로 놓인 평행선 거리",
+        "bReason": "구체 수로 합을 구하게 한다",
+        "cDecision": "keep",
+        "cReason": "합이라는 짧은 낱말 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "더한 값",
+            "합한 것"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "세 평행선의 거리",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행선 가, 나, 다가 차례로 놓여 있으면 가와 다 사이의 거리는 가와 나, 나와 다 사이 거리의 {합}이다.",
+        "cStudentSentence": "평행선 가, 나, 다가 차례로 놓여 있으면 가와 다 사이의 거리는 가와 나, 나와 다 사이 거리의 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "합",
+            "equivalents": [
+              "더한 값",
+              "합한 것"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "평행선 가, 나, 다가 차례로 놓여 있으면 가와 다 사이의 거리는 가와 나, 나와 다 사이 거리의 □이다.",
+          "answers": [
+            "합"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "평행선 가, 나, 다가 차례로 놓여 있고 가와 나 사이가 $2\\,\\mathrm{cm}$, 나와 다 사이가 $3\\,\\mathrm{cm}$입니다. 가와 다 사이의 거리를 구하는 방법과 답을 쓰시오.",
+          "answer": "나가 가와 다 사이에 있으므로 두 거리를 더한다. $2+3=5$, $5\\,\\mathrm{cm}$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "두 거리를 더한다",
+                "$2+3$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$5\\,\\mathrm{cm}$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "평행선 가, 나, 다가 차례로 놓여 있으면 가와 다 사이의 거리는 가와 나, 나와 다 사이 거리의 {합}이다.",
+          "acceptedAnswers": [
+            [
+              "합",
+              "더한 값",
+              "합한 것"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2483,
+        "sourceFingerprint": "2eae3488c0aaa3dd1fc7d26ee6926c20072b771d7d12b606ac74eb49b811cbb8",
+        "part": "e4plus",
+        "id": "e4-2-4-3-xc12",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "term": "한가운데 평행선",
+        "kind": "성질",
+        "level": "중",
+        "definition": "두 평행선의 한가운데에 그은 평행선은 양쪽 직선과의 {거리가 같다}.",
+        "example": {
+          "prompt": "거리가 $6\\,\\mathrm{cm}$인 평행선의 한가운데 평행선과 한쪽 직선 사이가 $3\\,\\mathrm{cm}$인 까닭은?",
+          "answer": "$6\\,\\mathrm{cm}$를 똑같이 둘로 나눠서"
+        },
+        "studentC": "두 평행선의 한가운데에 그은 평행선은 양쪽 직선과의 □.",
+        "answers": [
+          "거리가 같다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2483,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "sourceFingerprint": "2eae3488c0aaa3dd1fc7d26ee6926c20072b771d7d12b606ac74eb49b811cbb8",
+        "proposalFingerprint": "afc3b9002643770f7902708dfc1d66ae079fcc9d498a58e4cff0dfa29ea79d82",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-3-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "거리가 $6\\,\\mathrm{cm}$인 두 평행선의 한가운데에 평행선을 그었습니다. 한쪽 직선과 이 평행선 사이의 거리는 얼마이며, 그 까닭은 무엇입니까?",
+        "bAnswer": "$3\\,\\mathrm{cm}$이다. 한가운데이므로 $6\\,\\mathrm{cm}$를 똑같이 둘로 나누기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$3\\,\\mathrm{cm}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6\\,\\mathrm{cm}$를 똑같이 둘로 나눈다",
+              "양쪽 거리가 같다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "한가운데 평행선의 거리",
+        "bReason": "원문 예제를 완성 질문으로 만든다",
+        "cDecision": "rewrite",
+        "cAfter": "두 평행선의 한가운데에 그은 평행선은 양쪽 직선과의 {거리}가 같다.",
+        "cReason": "끝 구절 대신 거리 낱말 빈칸",
+        "cSlotEquivalents": [
+          [
+            "간격"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "한가운데 평행선",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "두 평행선의 한가운데에 그은 평행선은 양쪽 직선과의 {거리}가 같다.",
+        "cStudentSentence": "두 평행선의 한가운데에 그은 평행선은 양쪽 직선과의 □가 같다.",
+        "cSlotAnswers": [
+          {
+            "expected": "거리",
+            "equivalents": [
+              "간격"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "거리가 $6\\,\\mathrm{cm}$인 두 평행선의 한가운데에 평행선을 그었습니다. 한쪽 직선과 이 평행선 사이의 거리는 얼마이며, 그 까닭은 무엇입니까?",
+          "answer": "$3\\,\\mathrm{cm}$이다. 한가운데이므로 $6\\,\\mathrm{cm}$를 똑같이 둘로 나누기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$3\\,\\mathrm{cm}$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$6\\,\\mathrm{cm}$를 똑같이 둘로 나눈다",
+                "양쪽 거리가 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "두 평행선의 한가운데에 그은 평행선은 양쪽 직선과의 {거리}가 같다.",
+          "acceptedAnswers": [
+            [
+              "거리",
+              "간격"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2484,
+        "sourceFingerprint": "2660294d94fa1f60d416414babd153096564aa66d663ef610ab37c8fbb381545",
+        "part": "e4plus",
+        "id": "e4-2-4-3-xc13",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "term": "거리를 정해 평행선 긋기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "직선 가와 거리가 $2\\,\\mathrm{cm}$인 평행선은 직선 가 위의 두 점에서 수선을 긋고 {같은 쪽으로} $2\\,\\mathrm{cm}$씩 잰 두 점을 이어 긋는다.",
+        "studentC": "직선 가와 거리가 $2\\,\\mathrm{cm}$인 평행선은 직선 가 위의 두 점에서 수선을 긋고 □ $2\\,\\mathrm{cm}$씩 잰 두 점을 이어 긋는다.",
+        "answers": [
+          "같은 쪽으로"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2484,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "sourceFingerprint": "2660294d94fa1f60d416414babd153096564aa66d663ef610ab37c8fbb381545",
+        "proposalFingerprint": "8e28d1001c05f748f1b87ed78a7b7a76887c3018e8ef27e4c650f62bd4350261",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-3-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "직선 가와 거리가 $2\\,\\mathrm{cm}$인 평행선을 그리는 방법을 쓰시오.",
+        "bAnswer": "가 위의 두 점에서 수선을 긋고 같은 쪽으로 $2\\,\\mathrm{cm}$씩 잰 두 점을 찍어 두 점을 잇는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 점에서 수선을 긋는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 쪽으로 $2\\,\\mathrm{cm}$씩 잰다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 점을 잇는다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "거리를 정해 평행선 긋기",
+        "bReason": "작도 순서를 묻는다",
+        "cDecision": "rewrite",
+        "cAfter": "직선 가와 거리가 $2\\,\\mathrm{cm}$인 평행선은 직선 가 위의 두 점에서 수선을 긋고 두 수선 위에 직선 가에서 {같은} 쪽으로 $2\\,\\mathrm{cm}$씩 잰 두 점을 이어 긋는다.",
+        "cReason": "빈칸 위치를 분명히 해 답 범위를 좁힘",
+        "cSlotEquivalents": [
+          [
+            "한"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "거리를 정해 평행선 긋기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직선 가와 거리가 $2\\,\\mathrm{cm}$인 평행선은 직선 가 위의 두 점에서 수선을 긋고 두 수선 위에 직선 가에서 {같은} 쪽으로 $2\\,\\mathrm{cm}$씩 잰 두 점을 이어 긋는다.",
+        "cStudentSentence": "직선 가와 거리가 $2\\,\\mathrm{cm}$인 평행선은 직선 가 위의 두 점에서 수선을 긋고 두 수선 위에 직선 가에서 □ 쪽으로 $2\\,\\mathrm{cm}$씩 잰 두 점을 이어 긋는다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같은",
+            "equivalents": [
+              "한"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "직선 가와 거리가 $2\\,\\mathrm{cm}$인 평행선을 그리는 방법을 쓰시오.",
+          "answer": "가 위의 두 점에서 수선을 긋고 같은 쪽으로 $2\\,\\mathrm{cm}$씩 잰 두 점을 찍어 두 점을 잇는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "두 점에서 수선을 긋는다"
+              ]
+            },
+            {
+              "anyOf": [
+                "같은 쪽으로 $2\\,\\mathrm{cm}$씩 잰다"
+              ]
+            },
+            {
+              "anyOf": [
+                "두 점을 잇는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "직선 가와 거리가 $2\\,\\mathrm{cm}$인 평행선은 직선 가 위의 두 점에서 수선을 긋고 두 수선 위에 직선 가에서 {같은} 쪽으로 $2\\,\\mathrm{cm}$씩 잰 두 점을 이어 긋는다.",
+          "acceptedAnswers": [
+            [
+              "같은",
+              "한"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2485,
+        "sourceFingerprint": "aec3c5138cf07361de0e52a6911beebdb920b30572211a0d8f505236f6d67cdf",
+        "part": "e4plus",
+        "id": "e4-2-4-3-xc14",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "term": "직사각형의 가로 변 사이의 거리",
+        "kind": "성질",
+        "level": "중",
+        "definition": "가로 $8\\,\\mathrm{cm}$, 세로 $5\\,\\mathrm{cm}$인 직사각형에서 두 가로 변 사이의 거리는 {세로의 길이}인 $5\\,\\mathrm{cm}$이다.",
+        "example": {
+          "prompt": "가로 $8\\,\\mathrm{cm}$, 세로 $5\\,\\mathrm{cm}$인 직사각형에서 두 세로 변 사이의 거리는?",
+          "answer": "$8\\,\\mathrm{cm}$"
+        },
+        "studentC": "가로 $8\\,\\mathrm{cm}$, 세로 $5\\,\\mathrm{cm}$인 직사각형에서 두 가로 변 사이의 거리는 □인 $5\\,\\mathrm{cm}$이다.",
+        "answers": [
+          "세로의 길이"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2485,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "sourceFingerprint": "aec3c5138cf07361de0e52a6911beebdb920b30572211a0d8f505236f6d67cdf",
+        "proposalFingerprint": "6d1d683d83f24b94cededdce37de28a49e483415734df78f71abc785f5f7f9ae",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-3-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "가로 $8\\,\\mathrm{cm}$, 세로 $5\\,\\mathrm{cm}$인 직사각형에서 두 가로 변 사이의 거리와 두 세로 변 사이의 거리를 각각 구하고, 그 까닭을 쓰시오.",
+        "bAnswer": "가로 변 사이는 $5\\,\\mathrm{cm}$, 세로 변 사이는 $8\\,\\mathrm{cm}$이다. 두 변에 수직인 이웃한 변의 길이가 거리이기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$5\\,\\mathrm{cm}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8\\,\\mathrm{cm}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 변에 수직인 변의 길이가 거리다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "직사각형 변 사이의 거리",
+        "bReason": "원문 예제를 둘로 묻고 까닭을 포함",
+        "cDecision": "rewrite",
+        "cAfter": "가로 $8\\,\\mathrm{cm}$, 세로 $5\\,\\mathrm{cm}$인 직사각형에서 두 가로 변 사이의 거리는 {세로}의 길이인 $5\\,\\mathrm{cm}$이다.",
+        "cReason": "긴 구절 대신 세로 한 낱말만 빈칸",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "직사각형의 가로 변 사이의 거리",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "가로 $8\\,\\mathrm{cm}$, 세로 $5\\,\\mathrm{cm}$인 직사각형에서 두 가로 변 사이의 거리는 {세로}의 길이인 $5\\,\\mathrm{cm}$이다.",
+        "cStudentSentence": "가로 $8\\,\\mathrm{cm}$, 세로 $5\\,\\mathrm{cm}$인 직사각형에서 두 가로 변 사이의 거리는 □의 길이인 $5\\,\\mathrm{cm}$이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "세로",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "가로 $8\\,\\mathrm{cm}$, 세로 $5\\,\\mathrm{cm}$인 직사각형에서 두 가로 변 사이의 거리와 두 세로 변 사이의 거리를 각각 구하고, 그 까닭을 쓰시오.",
+          "answer": "가로 변 사이는 $5\\,\\mathrm{cm}$, 세로 변 사이는 $8\\,\\mathrm{cm}$이다. 두 변에 수직인 이웃한 변의 길이가 거리이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$5\\,\\mathrm{cm}$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$8\\,\\mathrm{cm}$"
+              ]
+            },
+            {
+              "anyOf": [
+                "두 변에 수직인 변의 길이가 거리다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "가로 $8\\,\\mathrm{cm}$, 세로 $5\\,\\mathrm{cm}$인 직사각형에서 두 가로 변 사이의 거리는 {세로}의 길이인 $5\\,\\mathrm{cm}$이다.",
+          "acceptedAnswers": [
+            [
+              "세로"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2486,
+        "sourceFingerprint": "c2c67ec7e6703a007032ac0b64287106b5468f0d6ecf0d4211be6815b7949ccf",
+        "part": "e4plus",
+        "id": "e4-2-4-3-xc15",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "term": "거리가 없어지지 않는 까닭",
+        "kind": "성질",
+        "level": "중",
+        "definition": "평행선은 만나지 않으므로 두 직선 사이의 거리는 {$0$보다 크다}.",
+        "studentC": "평행선은 만나지 않으므로 두 직선 사이의 거리는 □.",
+        "answers": [
+          "$0$보다 크다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2486,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "sourceFingerprint": "c2c67ec7e6703a007032ac0b64287106b5468f0d6ecf0d4211be6815b7949ccf",
+        "proposalFingerprint": "2d187f658d13c72d1a6f6d63f575530ee0606042ed8c1c06b869fd23ab45fbd5",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-3-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "평행한 두 직선 사이의 거리가 $0$이 될 수 있습니까? 그 까닭을 쓰시오.",
+        "bAnswer": "없다. 거리가 $0$이면 두 직선이 만나는데 평행선은 만나지 않기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$0$이 될 수 없다",
+              "없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "평행선은 만나지 않는다",
+              "거리가 $0$이면 만난다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "평행선 거리는 $0$보다 큼",
+        "bReason": "만나지 않음과 거리의 관계를 묻는다",
+        "cDecision": "rewrite",
+        "cAfter": "평행선은 만나지 않으므로 두 직선 사이의 거리는 $0$보다 {크다}.",
+        "cReason": "끝 구절 대신 크다/작다 비교 빈칸",
+        "cSlotEquivalents": [
+          [
+            "커진다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "거리가 없어지지 않는 까닭",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행선은 만나지 않으므로 두 직선 사이의 거리는 $0$보다 {크다}.",
+        "cStudentSentence": "평행선은 만나지 않으므로 두 직선 사이의 거리는 $0$보다 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "크다",
+            "equivalents": [
+              "커진다"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "평행한 두 직선 사이의 거리가 $0$이 될 수 있습니까? 그 까닭을 쓰시오.",
+          "answer": "없다. 거리가 $0$이면 두 직선이 만나는데 평행선은 만나지 않기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$0$이 될 수 없다",
+                "없다"
+              ]
+            },
+            {
+              "anyOf": [
+                "평행선은 만나지 않는다",
+                "거리가 $0$이면 만난다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "평행선은 만나지 않으므로 두 직선 사이의 거리는 $0$보다 {크다}.",
+          "acceptedAnswers": [
+            [
+              "크다",
+              "커진다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2487,
+        "sourceFingerprint": "558a4180f16183ddb27f3837c5a8e114ca48484a41581ec85b44f960e46c4eca",
+        "part": "e4plus",
+        "id": "e4-2-4-3-xc16",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "term": "거리를 잰 수선과 직각",
+        "kind": "성질",
+        "level": "중",
+        "definition": "평행선 사이의 거리를 잰 수선은 {두 직선 모두와} 직각으로 만난다.",
+        "studentC": "평행선 사이의 거리를 잰 수선은 □ 직각으로 만난다.",
+        "answers": [
+          "두 직선 모두와"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2487,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "sourceFingerprint": "558a4180f16183ddb27f3837c5a8e114ca48484a41581ec85b44f960e46c4eca",
+        "proposalFingerprint": "17bbd5dec396408baa6cd76aca4d6e1375a96f6a94ed738d28f3516ae8d0c22c",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-3-xc16",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "definition",
+        "bGoal": "거리 수선은 양쪽과 직각",
+        "bReason": "xc1·xc7과 같은 목표",
+        "exclusionReason": "거리를 재는 수선이 두 직선에 수직이라는 목표가 xc1, xc7 B와 같다",
+        "cDecision": "rewrite",
+        "cAfter": "평행선 사이의 거리를 잰 수선은 평행한 두 직선 {모두}와 직각으로 만난다.",
+        "cReason": "'□ 직각으로' 구절 대신 낱말 빈칸",
+        "cSlotEquivalents": [
+          [
+            "둘 다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "거리를 잰 수선과 직각",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행선 사이의 거리를 잰 수선은 평행한 두 직선 {모두}와 직각으로 만난다.",
+        "cStudentSentence": "평행선 사이의 거리를 잰 수선은 평행한 두 직선 □와 직각으로 만난다.",
+        "cSlotAnswers": [
+          {
+            "expected": "모두",
+            "equivalents": [
+              "둘 다"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "평행선 사이의 거리를 잰 수선은 평행한 두 직선 {모두}와 직각으로 만난다.",
+          "acceptedAnswers": [
+            [
+              "모두",
+              "둘 다"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc1·xc7과 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2488,
+        "sourceFingerprint": "e5127f9c391479d36a024f5eb3d9c6f74b4fca51dcfce23ce347ff92481ea0b1",
+        "part": "e4plus",
+        "id": "e4-2-4-3-xc17",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "term": "비스듬한 선분과 거리 비교",
+        "kind": "성질",
+        "level": "중",
+        "definition": "평행선 사이를 잇는 비스듬한 선분이 $5\\,\\mathrm{cm}$이면 두 직선 사이의 거리는 $5\\,\\mathrm{cm}$보다 {짧다}.",
+        "studentC": "평행선 사이를 잇는 비스듬한 선분이 $5\\,\\mathrm{cm}$이면 두 직선 사이의 거리는 $5\\,\\mathrm{cm}$보다 □.",
+        "answers": [
+          "짧다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2488,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "sourceFingerprint": "e5127f9c391479d36a024f5eb3d9c6f74b4fca51dcfce23ce347ff92481ea0b1",
+        "proposalFingerprint": "41e1fe06a621be60cb9bb992387f26621986cfc10a96166cd07f8fb7eb36238d",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-3-xc17",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "비스듬한 선분과 거리",
+        "bReason": "xc2와 같은 목표",
+        "exclusionReason": "비스듬한 선분이 거리보다 길다는 목표가 xc2 B와 같다",
+        "cDecision": "keep",
+        "cReason": "짧다는 비교 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "더 짧다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "비스듬한 선분과 거리 비교",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "평행선 사이를 잇는 비스듬한 선분이 $5\\,\\mathrm{cm}$이면 두 직선 사이의 거리는 $5\\,\\mathrm{cm}$보다 {짧다}.",
+        "cStudentSentence": "평행선 사이를 잇는 비스듬한 선분이 $5\\,\\mathrm{cm}$이면 두 직선 사이의 거리는 $5\\,\\mathrm{cm}$보다 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "짧다",
+            "equivalents": [
+              "더 짧다"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "평행선 사이를 잇는 비스듬한 선분이 $5\\,\\mathrm{cm}$이면 두 직선 사이의 거리는 $5\\,\\mathrm{cm}$보다 □.",
+          "answers": [
+            "짧다"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "평행선 사이를 잇는 비스듬한 선분이 $5\\,\\mathrm{cm}$이면 두 직선 사이의 거리는 $5\\,\\mathrm{cm}$보다 {짧다}.",
+          "acceptedAnswers": [
+            [
+              "짧다",
+              "더 짧다"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc2와 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2489,
+        "sourceFingerprint": "5f61243495d6ebdd762b1e73ea23712f69e417dda1c957aec637def5708c8174",
+        "part": "e4plus",
+        "id": "e4-2-4-3-xc18",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "term": "길의 폭",
+        "kind": "정의",
+        "level": "중",
+        "definition": "길 양쪽 가장자리가 평행할 때 길의 폭은 두 가장자리 사이의 {거리}이다.",
+        "studentC": "길 양쪽 가장자리가 평행할 때 길의 폭은 두 가장자리 사이의 □이다.",
+        "answers": [
+          "거리"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2489,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "sourceFingerprint": "5f61243495d6ebdd762b1e73ea23712f69e417dda1c957aec637def5708c8174",
+        "proposalFingerprint": "21a7ce748973ce8a8e74340d670961c1abaea2ddf3185830cb16aa6d1f4a3d7d",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-3-xc18",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "naming",
+        "bGoal": "길의 폭은 거리",
+        "bReason": "이름 대응뿐",
+        "exclusionReason": "길의 폭이 거리라는 이름 대응뿐이며 거리 개념은 xc1, xc7이 다룬다",
+        "cDecision": "keep",
+        "cReason": "거리라는 짧은 낱말 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "간격"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "정의",
+          "sourceTerm": "길의 폭",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "길 양쪽 가장자리가 평행할 때 길의 폭은 두 가장자리 사이의 {거리}이다.",
+        "cStudentSentence": "길 양쪽 가장자리가 평행할 때 길의 폭은 두 가장자리 사이의 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "거리",
+            "equivalents": [
+              "간격"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "길 양쪽 가장자리가 평행할 때 길의 폭은 두 가장자리 사이의 □이다.",
+          "answers": [
+            "거리"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "길 양쪽 가장자리가 평행할 때 길의 폭은 두 가장자리 사이의 {거리}이다.",
+          "acceptedAnswers": [
+            [
+              "거리",
+              "간격"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "이름 대응뿐"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2490,
+        "sourceFingerprint": "90aa79c4b4ed96b41304cc476b7f349092694fb61c53b334746760bbd25ad6cc",
+        "part": "e4plus",
+        "id": "e4-2-4-3-xc19",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "term": "거리가 같은 평행선의 개수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "한 직선과 거리가 $3\\,\\mathrm{cm}$인 평행선은 그 직선의 양쪽에 하나씩 {두 개} 그을 수 있다.",
+        "studentC": "한 직선과 거리가 $3\\,\\mathrm{cm}$인 평행선은 그 직선의 양쪽에 하나씩 □ 그을 수 있다.",
+        "answers": [
+          "두 개"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2490,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "sourceFingerprint": "90aa79c4b4ed96b41304cc476b7f349092694fb61c53b334746760bbd25ad6cc",
+        "proposalFingerprint": "855839c742cbc27d054c4385d49e8e371cd35a5073ea65bcbc8e784b52326f36",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-3-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "한 직선과 거리가 $3\\,\\mathrm{cm}$인 평행선은 모두 몇 개 그을 수 있습니까? 어느 위치에 그을 수 있는지 설명하시오.",
+        "bAnswer": "$2$개이다. 직선의 한쪽과 반대쪽에 $3\\,\\mathrm{cm}$ 떨어진 평행선을 하나씩 그을 수 있다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2$개",
+              "두 개"
+            ]
+          },
+          {
+            "anyOf": [
+              "직선의 양쪽에 하나씩"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "같은 거리 평행선의 개수",
+        "bReason": "개수와 위치를 함께 묻는다",
+        "cDecision": "rewrite",
+        "cAfter": "한 직선과 거리가 $3\\,\\mathrm{cm}$인 평행선은 그 직선의 위쪽과 아래쪽에 하나씩, 모두 {$2$}개 그을 수 있다.",
+        "cReason": "정답이 보이는 구절을 숫자 빈칸으로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "두"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "거리가 같은 평행선의 개수",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "한 직선과 거리가 $3\\,\\mathrm{cm}$인 평행선은 그 직선의 위쪽과 아래쪽에 하나씩, 모두 {$2$}개 그을 수 있다.",
+        "cStudentSentence": "한 직선과 거리가 $3\\,\\mathrm{cm}$인 평행선은 그 직선의 위쪽과 아래쪽에 하나씩, 모두 □개 그을 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$2$",
+            "equivalents": [
+              "두"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "한 직선과 거리가 $3\\,\\mathrm{cm}$인 평행선은 모두 몇 개 그을 수 있습니까? 어느 위치에 그을 수 있는지 설명하시오.",
+          "answer": "$2$개이다. 직선의 한쪽과 반대쪽에 $3\\,\\mathrm{cm}$ 떨어진 평행선을 하나씩 그을 수 있다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$2$개",
+                "두 개"
+              ]
+            },
+            {
+              "anyOf": [
+                "직선의 양쪽에 하나씩"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "한 직선과 거리가 $3\\,\\mathrm{cm}$인 평행선은 그 직선의 위쪽과 아래쪽에 하나씩, 모두 {$2$}개 그을 수 있다.",
+          "acceptedAnswers": [
+            [
+              "$2$",
+              "두"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2491,
+        "sourceFingerprint": "011bc3723441ae645d5abb54c44502130a47873b84f6f5eb9133595ed418c1f4",
+        "part": "e4plus",
+        "id": "e4-2-4-3-xc20",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "term": "두 평행선 사이에 놓인 직선과의 거리",
+        "kind": "방법",
+        "level": "상",
+        "definition": "가와 나 사이가 $4\\,\\mathrm{cm}$, 나와 다 사이가 $7\\,\\mathrm{cm}$이고 가가 나와 다 사이에 있으면 가와 다 사이의 거리는 {두 거리의 차}인 $3\\,\\mathrm{cm}$이다.",
+        "studentC": "가와 나 사이가 $4\\,\\mathrm{cm}$, 나와 다 사이가 $7\\,\\mathrm{cm}$이고 가가 나와 다 사이에 있으면 가와 다 사이의 거리는 □인 $3\\,\\mathrm{cm}$이다.",
+        "answers": [
+          "두 거리의 차"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2491,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "sourceFingerprint": "011bc3723441ae645d5abb54c44502130a47873b84f6f5eb9133595ed418c1f4",
+        "proposalFingerprint": "025b3e2be8ea55d07e6e12c5a1ea0aedc4859c9a185705e7a1051796c243f3d5",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-3-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "평행선 나와 다 사이의 거리가 $7\\,\\mathrm{cm}$이고, 평행선 가가 나와 다 사이에 있으며 가와 나 사이의 거리가 $4\\,\\mathrm{cm}$입니다. 가와 다 사이의 거리를 구하는 방법과 답을 쓰시오.",
+        "bAnswer": "큰 거리에서 한쪽 거리를 뺀다. $7-4=3$이므로 $3\\,\\mathrm{cm}$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$7-4$",
+              "두 거리의 차를 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3\\,\\mathrm{cm}$"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "사이에 있는 직선과의 거리",
+        "bReason": "위치 관계를 글로 자립시켜 차를 묻는다",
+        "cDecision": "rewrite",
+        "cAfter": "가와 나 사이가 $4\\,\\mathrm{cm}$, 나와 다 사이가 $7\\,\\mathrm{cm}$이고 가가 나와 다 사이에 있으면 가와 다 사이의 거리는 $7\\,\\mathrm{cm}$와 $4\\,\\mathrm{cm}$의 {차}인 $3\\,\\mathrm{cm}$이다.",
+        "cReason": "숨은 구절 대신 합/차 선택 빈칸",
+        "cSlotEquivalents": [
+          [
+            "뺀 값"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "두 평행선 사이에 놓인 직선과의 거리",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "가와 나 사이가 $4\\,\\mathrm{cm}$, 나와 다 사이가 $7\\,\\mathrm{cm}$이고 가가 나와 다 사이에 있으면 가와 다 사이의 거리는 $7\\,\\mathrm{cm}$와 $4\\,\\mathrm{cm}$의 {차}인 $3\\,\\mathrm{cm}$이다.",
+        "cStudentSentence": "가와 나 사이가 $4\\,\\mathrm{cm}$, 나와 다 사이가 $7\\,\\mathrm{cm}$이고 가가 나와 다 사이에 있으면 가와 다 사이의 거리는 $7\\,\\mathrm{cm}$와 $4\\,\\mathrm{cm}$의 □인 $3\\,\\mathrm{cm}$이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "차",
+            "equivalents": [
+              "뺀 값"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "평행선 나와 다 사이의 거리가 $7\\,\\mathrm{cm}$이고, 평행선 가가 나와 다 사이에 있으며 가와 나 사이의 거리가 $4\\,\\mathrm{cm}$입니다. 가와 다 사이의 거리를 구하는 방법과 답을 쓰시오.",
+          "answer": "큰 거리에서 한쪽 거리를 뺀다. $7-4=3$이므로 $3\\,\\mathrm{cm}$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$7-4$",
+                "두 거리의 차를 구한다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$3\\,\\mathrm{cm}$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "가와 나 사이가 $4\\,\\mathrm{cm}$, 나와 다 사이가 $7\\,\\mathrm{cm}$이고 가가 나와 다 사이에 있으면 가와 다 사이의 거리는 $7\\,\\mathrm{cm}$와 $4\\,\\mathrm{cm}$의 {차}인 $3\\,\\mathrm{cm}$이다.",
+          "acceptedAnswers": [
+            [
+              "차",
+              "뺀 값"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2492,
+        "sourceFingerprint": "b9ff13a6ae23e65d5647ad1a57de5cb9bb7df38bab0cf51ede54104f248c6433",
+        "part": "e4plus",
+        "id": "e4-2-4-3-xc21",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "term": "같은 간격으로 그은 평행선의 바깥 거리",
+        "kind": "방법",
+        "level": "상",
+        "definition": "같은 간격으로 그은 평행선의 맨 바깥 두 직선 사이의 거리는 간격에 {직선 수보다 하나 적은 수}를 곱한 것이다.",
+        "example": {
+          "prompt": "$2\\,\\mathrm{cm}$ 간격으로 평행선 $5$개를 그으면 맨 바깥 사이가 $10\\,\\mathrm{cm}$가 아닌 까닭은?",
+          "answer": "간격은 $4$개뿐이라서"
+        },
+        "studentC": "같은 간격으로 그은 평행선의 맨 바깥 두 직선 사이의 거리는 간격에 □를 곱한 것이다.",
+        "answers": [
+          "직선 수보다 하나 적은 수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2492,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-4 사각형::2-4-3 평행선 사이의 거리",
+        "sourceFingerprint": "b9ff13a6ae23e65d5647ad1a57de5cb9bb7df38bab0cf51ede54104f248c6433",
+        "proposalFingerprint": "cb25956bf3ccd460e5ff16a472161a8e581e021f77dc868a0ebeb9007752caae",
+        "reviewStatus": "draft",
+        "id": "e4-2-4-3-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "$2\\,\\mathrm{cm}$ 간격으로 평행선 $5$개를 그었습니다. 맨 바깥 두 직선 사이의 거리는 얼마이며 어떻게 구합니까?",
+        "bAnswer": "간격이 $5-1=4$개이므로 $2\\times4=8$, $8\\,\\mathrm{cm}$이다. $10\\,\\mathrm{cm}$가 아니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "간격이 $4$개",
+              "직선 수보다 하나 적다",
+              "$5-1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8\\,\\mathrm{cm}$"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "맨 바깥 두 직선의 거리",
+        "bReason": "원문 예제를 값과 방법으로 묻는다",
+        "cDecision": "rewrite",
+        "cAfter": "$2\\,\\mathrm{cm}$ 간격으로 평행선 $5$개를 그으면 맨 바깥 두 직선 사이의 거리는 $2\\,\\mathrm{cm}$ 간격이 {$4$}개이므로 $8\\,\\mathrm{cm}$이다.",
+        "cReason": "숨은 규칙 구절 대신 구체 개수 빈칸",
+        "cSlotEquivalents": [
+          [
+            "넷"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "같은 간격으로 그은 평행선의 바깥 거리",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$2\\,\\mathrm{cm}$ 간격으로 평행선 $5$개를 그으면 맨 바깥 두 직선 사이의 거리는 $2\\,\\mathrm{cm}$ 간격이 {$4$}개이므로 $8\\,\\mathrm{cm}$이다.",
+        "cStudentSentence": "$2\\,\\mathrm{cm}$ 간격으로 평행선 $5$개를 그으면 맨 바깥 두 직선 사이의 거리는 $2\\,\\mathrm{cm}$ 간격이 □개이므로 $8\\,\\mathrm{cm}$이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$4$",
+            "equivalents": [
+              "넷"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$2\\,\\mathrm{cm}$ 간격으로 평행선 $5$개를 그었습니다. 맨 바깥 두 직선 사이의 거리는 얼마이며 어떻게 구합니까?",
+          "answer": "간격이 $5-1=4$개이므로 $2\\times4=8$, $8\\,\\mathrm{cm}$이다. $10\\,\\mathrm{cm}$가 아니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "간격이 $4$개",
+                "직선 수보다 하나 적다",
+                "$5-1$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$8\\,\\mathrm{cm}$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$2\\,\\mathrm{cm}$ 간격으로 평행선 $5$개를 그으면 맨 바깥 두 직선 사이의 거리는 $2\\,\\mathrm{cm}$ 간격이 {$4$}개이므로 $8\\,\\mathrm{cm}$이다.",
+          "acceptedAnswers": [
+            [
+              "$4$",
+              "넷"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    }
+  ]
+}

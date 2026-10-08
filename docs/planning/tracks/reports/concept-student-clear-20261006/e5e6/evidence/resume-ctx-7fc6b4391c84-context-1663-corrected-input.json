@@ -1,0 +1,105 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e6-1-1-2-xc12",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{4}{5}\\div6$을 $\\frac{4}{5}\\times\\frac{1}{6}$로 바꾼 뒤 계산 도중 약분해도 몫이 같은 까닭을 설명하고 몫을 구하시오.",
+      "bAnswer": "분자와 분모를 같은 공약수 $2$로 나누어도 분수의 크기가 같기 때문이다. 몫은 $\\frac{4}{30}=\\frac{2}{15}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분자와 분모를 같은 수로 나누면 크기가 같다",
+            "약분해도 분수의 크기가 변하지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{2}{15}$",
+            "$15$분의 $2$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "곱셈식에서 약분이 허용되는 까닭을 크기 같음으로 설명한다.",
+      "bReason": "까닭과 구체적 몫을 함께 묻는다.",
+      "cDecision": "revise",
+      "cAfter": "분수의 나눗셈을 곱셈으로 바꾸어 계산할 때, 분자와 분모를 같은 {공약수}로 나누는 약분을 해도 분수의 크기는 변하지 않는다. 그래서 약분한 뒤 계산해도 몫은 같다.",
+      "cReason": "사용자 인정 문장이므로 원문 그대로 유지한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "공약수"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-context-1663.json",
+      "codexFinalAmendedFromFingerprint": "5483c225b3f0bd5f51a7daa689662b687e4cc5da9e7644b237dd7f3b9d2f80df",
+      "sourceIndex": 1663,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-2-xc12",
+        "section": "초6::1-1 분수의 나눗셈::1-1-2 (분수)÷(자연수) 알아보기",
+        "term": "곱셈으로 바꾼 뒤 약분해도 되는 까닭",
+        "kind": "방법",
+        "level": "중",
+        "definition": "곱셈으로 바꾼 식에서 약분할 수 있으면, 분자와 분모를 {같은 공약수}로 나누어도 {분수의 크기가 같으므로} 약분한 뒤 계산해도 몫은 같다.",
+        "studentC": "곱셈으로 바꾼 식에서 약분할 수 있으면, 분자와 분모를 □로 나누어도 □ 약분한 뒤 계산해도 몫은 같다.",
+        "answers": [
+          "같은 공약수",
+          "분수의 크기가 같으므로"
+        ]
+      },
+      "sourceFingerprint": "89105ea2a9295c5f989c67e09351e63b11fedd68c523d9b6a59b1070574f4d94",
+      "draftEvidence": "evidence/section-057-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "공약수"
+      ],
+      "cStudentAfter": "분수의 나눗셈을 곱셈으로 바꾸어 계산할 때, 분자와 분모를 같은 □로 나누는 약분을 해도 분수의 크기는 변하지 않는다. 그래서 약분한 뒤 계산해도 몫은 같다.",
+      "cMarkedSentence": "분수의 나눗셈을 곱셈으로 바꾸어 계산할 때, 분자와 분모를 같은 {공약수}로 나누는 약분을 해도 분수의 크기는 변하지 않는다. 그래서 약분한 뒤 계산해도 몫은 같다.",
+      "cStudentSentence": "분수의 나눗셈을 곱셈으로 바꾸어 계산할 때, 분자와 분모를 같은 □로 나누는 약분을 해도 분수의 크기는 변하지 않는다. 그래서 약분한 뒤 계산해도 몫은 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "공약수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{4}{5}\\div6$을 $\\frac{4}{5}\\times\\frac{1}{6}$로 바꾼 뒤 계산 도중 약분해도 몫이 같은 까닭을 설명하고 몫을 구하시오.",
+        "answer": "분자와 분모를 같은 공약수 $2$로 나누어도 분수의 크기가 같기 때문이다. 몫은 $\\frac{4}{30}=\\frac{2}{15}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분자와 분모를 같은 수로 나누면 크기가 같다",
+              "약분해도 분수의 크기가 변하지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{2}{15}$",
+              "$15$분의 $2$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "분수의 나눗셈을 곱셈으로 바꾸어 계산할 때, 분자와 분모를 같은 {공약수}로 나누는 약분을 해도 분수의 크기는 변하지 않는다. 그래서 약분한 뒤 계산해도 몫은 같다.",
+        "acceptedAnswers": [
+          [
+            "공약수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "cfed8ebbb503b6a238b9490a0f44548b32409e3efd5d01345359ea4be3ff8dfe",
+      "questionRevision": "planning-e5e6-20261006-cfed8ebbb503",
+      "requiresIndependentReview": true
+    }
+  ]
+}

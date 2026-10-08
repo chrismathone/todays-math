@@ -1,0 +1,592 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e5-2-5-5-xc14",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "정사각형 네 개가 한 꼭짓점에 모여 큰 정사각형 모양을 이루는 부분이 있는 그림은 정육면체의 전개도가 될 수 있는지 쓰고, 그 꼭짓점에 모인 각의 크기의 합을 이용하여 까닭을 설명하시오.",
+      "bAnswer": "될 수 없다. 그 꼭짓점에 모인 각의 합이 $90^\\circ\\times 4=360^\\circ$로 평면을 빈틈없이 채워서 접어 세울 수 없다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "전개도가 될 수 없다",
+            "접을 수 없다"
+          ]
+        },
+        {
+          "anyOf": [
+            "네 각의 합이 $360^\\circ$라 평평하게 꽉 찬다",
+            "$90^\\circ\\times 4=360^\\circ$이므로 접어 세울 틈이 없다"
+          ]
+        }
+      ],
+      "bGoal": "한 꼭짓점에 네 면이 모이면 접을 수 없는 까닭을 각으로 설명한다.",
+      "bReason": "배치를 글로 적고 각의 합이라는 설명 방법을 정해 주었다.",
+      "cDecision": "revise",
+      "cAfter": "정사각형 {네 개}가 한 꼭짓점에 모여 큰 정사각형을 이루는 부분이 있는 그림은 정육면체의 전개도가 될 수 없다.",
+      "cReason": "한 꼭짓점에 모인 정사각형의 개수라는 조건이 분명하고 답이 짧다.",
+      "synonymNotes": "C에서 '$4$개'도 같은 답으로 인정할 수 있다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1530-1570.json",
+      "codexFinalAmendedFromFingerprint": "be0c09f7e1ccc6c76e1a3541713b5d3e3cf56257f3e1c8e767d4f9c16e7a798f",
+      "sourceIndex": 1533,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-5-xc14",
+        "section": "초5::2-5 직육면체::2-5-5 정육면체의 전개도",
+        "term": "한 꼭짓점에 모인 네 면",
+        "kind": "성질",
+        "level": "중",
+        "definition": "전개도에서 한 꼭짓점에 정사각형 {네 개}가 모이면 접을 수 없다.",
+        "studentC": "전개도에서 한 꼭짓점에 정사각형 □가 모이면 접을 수 없다.",
+        "answers": [
+          "네 개"
+        ]
+      },
+      "sourceFingerprint": "417d8daafade93048164ddd14c2cdd9daf48168b0ae3fff9d94c535f36ce45e7",
+      "draftEvidence": "evidence/section-051-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "네 개"
+      ],
+      "cStudentAfter": "정사각형 □가 한 꼭짓점에 모여 큰 정사각형을 이루는 부분이 있는 그림은 정육면체의 전개도가 될 수 없다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "네 개"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "정사각형 {네 개}가 한 꼭짓점에 모여 큰 정사각형을 이루는 부분이 있는 그림은 정육면체의 전개도가 될 수 없다.",
+      "cStudentSentence": "정사각형 □가 한 꼭짓점에 모여 큰 정사각형을 이루는 부분이 있는 그림은 정육면체의 전개도가 될 수 없다.",
+      "cSlotAnswers": [
+        {
+          "key": "네 개",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "정사각형 네 개가 한 꼭짓점에 모여 큰 정사각형 모양을 이루는 부분이 있는 그림은 정육면체의 전개도가 될 수 있는지 쓰고, 그 꼭짓점에 모인 각의 크기의 합을 이용하여 까닭을 설명하시오.",
+        "answer": "될 수 없다. 그 꼭짓점에 모인 각의 합이 $90^\\circ\\times 4=360^\\circ$로 평면을 빈틈없이 채워서 접어 세울 수 없다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "전개도가 될 수 없다",
+              "접을 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "네 각의 합이 $360^\\circ$라 평평하게 꽉 찬다",
+              "$90^\\circ\\times 4=360^\\circ$이므로 접어 세울 틈이 없다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "정사각형 {네 개}가 한 꼭짓점에 모여 큰 정사각형을 이루는 부분이 있는 그림은 정육면체의 전개도가 될 수 없다.",
+        "acceptedAnswers": [
+          [
+            "네 개"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "caec47def368ac1e902e6830465a4dfbb8e6a39dccb7bc2a82d92125c45dc20b",
+      "questionRevision": "planning-e5e6-20261006-caec47def368",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-5-xc20",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "정육면체의 전개도에서 면 $6$개가 모두 이어져 있으려면 접는 선이 몇 개 있어야 하는지, 면을 하나씩 이어 붙여 가는 방법으로 설명하시오.",
+      "bAnswer": "첫 면에 나머지 $5$개의 면을 하나씩 이어 붙일 때마다 접는 선이 $1$개씩 생기므로 접는 선은 $5$개이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$5$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "면을 하나 붙일 때마다 접는 선이 $1$개씩 늘어난다",
+            "첫 면에 나머지 $5$개의 면을 붙이면 접는 선이 $5$개 생긴다"
+          ]
+        }
+      ],
+      "bGoal": "접는 선이 $5$개인 까닭을 면을 이어 붙이는 과정으로 설명한다.",
+      "bReason": "'이음선'은 학생이 배우지 않은 말이라 '접는 선'으로 바꾸고 설명 방법을 정했다.",
+      "cDecision": "revise",
+      "cAfter": "정육면체의 전개도에서 첫 면에 나머지 면을 하나씩 이어 붙일 때마다 접는 선이 하나씩 늘어난다. 면 $6$개를 모두 이으려면 접는 선은 {$5$}개이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5$",
+            "다섯"
+          ]
+        }
+      ],
+      "cReason": "'이음선'을 '접는 선'으로 풀고 답을 숫자 하나로 받게 했다.",
+      "coreAfter": "정육면체의 전개도에서 첫 면에 나머지 면을 하나씩 이어 붙이면 접는 선이 하나씩 늘어난다. 면 $6$개를 모두 이으면 접는 선은 {$5$개}이다.",
+      "coreReason": "'이음선'은 교과서에 없는 말이므로 학생이 아는 '접는 선'으로 통일한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "coreTargetReason": "현재 유효한5개 표적을 유지한다. 이음선이라는 표현만 학생이 쓰는 접는 선으로 고쳐 일반 전개도 연결 개수를 설명한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1530-1570.json",
+      "codexFinalAmendedFromFingerprint": "1d5ac4c369a39e989c85c0349b8bcf600e6f4f569247ead866e6c2073b1123a5",
+      "sourceIndex": 1538,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-5-xc20",
+        "section": "초5::2-5 직육면체::2-5-5 정육면체의 전개도",
+        "term": "이음선이 다섯인 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "전개도에서 면을 하나 붙일 때마다 이음선이 하나씩 늘어나므로 면 $6$개를 이으려면 이음선이 {$5$개} 있어야 한다.",
+        "studentC": "전개도에서 면을 하나 붙일 때마다 이음선이 하나씩 늘어나므로 면 $6$개를 이으려면 이음선이 □ 있어야 한다.",
+        "answers": [
+          "$5$개"
+        ]
+      },
+      "sourceFingerprint": "18b35da12846524f91b748f7ae73f42b023b2a96465e21e68ceaafb660f8349d",
+      "draftEvidence": "evidence/section-051-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$5$"
+      ],
+      "cStudentAfter": "정육면체의 전개도에서 첫 면에 나머지 면을 하나씩 이어 붙일 때마다 접는 선이 하나씩 늘어난다. 면 $6$개를 모두 이으려면 접는 선은 □개이다.",
+      "cMarkedSentence": "정육면체의 전개도에서 첫 면에 나머지 면을 하나씩 이어 붙일 때마다 접는 선이 하나씩 늘어난다. 면 $6$개를 모두 이으려면 접는 선은 {$5$}개이다.",
+      "cStudentSentence": "정육면체의 전개도에서 첫 면에 나머지 면을 하나씩 이어 붙일 때마다 접는 선이 하나씩 늘어난다. 면 $6$개를 모두 이으려면 접는 선은 □개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$5$",
+          "equivalents": [
+            "다섯"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "정육면체의 전개도에서 면 $6$개가 모두 이어져 있으려면 접는 선이 몇 개 있어야 하는지, 면을 하나씩 이어 붙여 가는 방법으로 설명하시오.",
+        "answer": "첫 면에 나머지 $5$개의 면을 하나씩 이어 붙일 때마다 접는 선이 $1$개씩 생기므로 접는 선은 $5$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$5$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "면을 하나 붙일 때마다 접는 선이 $1$개씩 늘어난다",
+              "첫 면에 나머지 $5$개의 면을 붙이면 접는 선이 $5$개 생긴다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "정육면체의 전개도에서 첫 면에 나머지 면을 하나씩 이어 붙일 때마다 접는 선이 하나씩 늘어난다. 면 $6$개를 모두 이으려면 접는 선은 {$5$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$5$",
+            "다섯"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5520d561c5a2bc975a75c7157877101059df66e6340778785164a0ffd1e50aec",
+      "questionRevision": "planning-e5e6-20261006-5520d561c5a2",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-5-xc21",
+      "learningRole": "application",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "마주 보는 면이 세 쌍임을 색칠 상황에 써 본다.",
+      "bReason": "마주 보는 면이 $3$쌍이라는 e5-2-5-5-xc3의 B와 묻는 내용이 같다.",
+      "cDecision": "revise",
+      "cAfter": "정육면체의 전개도에서 접었을 때 마주 보는 면끼리는 같은 색, 마주 보지 않는 면에는 다른 색을 칠하면 {세 가지} 색이 든다.",
+      "cReason": "색칠 조건이 문장에 다 있어 세 쌍을 색의 수로 옮기는 짧은 적용 문항이 된다.",
+      "exclusionReason": "B는 e5-2-5-5-xc3과 중복이다.",
+      "synonymNotes": "C에서 '$3$가지'도 같은 답으로 인정할 수 있다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1530-1570.json",
+      "codexFinalAmendedFromFingerprint": "1e696e932190312fcf2e1a16fcd9cf667aa5807697dff7aecd7a13133c218e7e",
+      "sourceIndex": 1539,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-5-xc21",
+        "section": "초5::2-5 직육면체::2-5-5 정육면체의 전개도",
+        "term": "마주 보는 면에 색칠하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "전개도에서 마주 보는 면끼리는 같은 색, 마주 보지 않는 면에는 다른 색을 칠하면 {세 가지} 색이 든다.",
+        "studentC": "전개도에서 마주 보는 면끼리는 같은 색, 마주 보지 않는 면에는 다른 색을 칠하면 □ 색이 든다.",
+        "answers": [
+          "세 가지"
+        ]
+      },
+      "sourceFingerprint": "3c081eebc611b3852e8133e47c2cb8fd74330f6ca184f7a705b7cd0ef4c08a63",
+      "draftEvidence": "evidence/section-051-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "세 가지"
+      ],
+      "cStudentAfter": "정육면체의 전개도에서 접었을 때 마주 보는 면끼리는 같은 색, 마주 보지 않는 면에는 다른 색을 칠하면 □ 색이 든다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "세 가지"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "정육면체의 전개도에서 접었을 때 마주 보는 면끼리는 같은 색, 마주 보지 않는 면에는 다른 색을 칠하면 {세 가지} 색이 든다.",
+      "cStudentSentence": "정육면체의 전개도에서 접었을 때 마주 보는 면끼리는 같은 색, 마주 보지 않는 면에는 다른 색을 칠하면 □ 색이 든다.",
+      "cSlotAnswers": [
+        {
+          "key": "세 가지",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "정육면체의 전개도에서 접었을 때 마주 보는 면끼리는 같은 색, 마주 보지 않는 면에는 다른 색을 칠하면 {세 가지} 색이 든다.",
+        "acceptedAnswers": [
+          [
+            "세 가지"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e5-2-5-5-xc3과 중복이다."
+      },
+      "proposalFingerprint": "f84ffabdeb187b68e3ef0c13acd2e76e2d7d3d6e050e1a3851064d55a9f035ea",
+      "questionRevision": "planning-e5e6-20261006-f84ffabdeb18",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-6-xc7",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "직육면체의 전개도에서 한 변을 사이에 두고 붙어 있는 두 면은 접어서 직육면체를 만들면 서로 어떻게 만나는지 쓰시오.",
+      "bAnswer": "서로 수직으로 만난다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "수직으로 만난다",
+            "직각을 이루며 만난다"
+          ]
+        }
+      ],
+      "bGoal": "전개도에서 이웃한 두 면이 접으면 수직으로 만남을 안다.",
+      "bReason": "'바로 붙은'을 '한 변을 사이에 두고 붙어 있는'으로 분명히 했다.",
+      "cDecision": "revise",
+      "cAfter": "직육면체의 전개도에서 한 변을 사이에 두고 붙어 있는 두 면은 접으면 {수직}으로 만난다.",
+      "cReason": "이웃한 두 면이 만나는 관계를 낱말 하나로 답하는 분명한 문장이다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1530-1570.json",
+      "codexFinalAmendedFromFingerprint": "46b2b174609f07e44dc3398fae00d0696a2f9fa81fe565efb552871ee66a9293",
+      "sourceIndex": 1551,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-6-xc7",
+        "section": "초5::2-5 직육면체::2-5-6 직육면체의 전개도",
+        "term": "바로 붙은 두 면",
+        "kind": "성질",
+        "level": "하",
+        "definition": "전개도에서 바로 붙어 있는 두 면은 접으면 {수직}으로 만난다.",
+        "studentC": "전개도에서 바로 붙어 있는 두 면은 접으면 □으로 만난다.",
+        "answers": [
+          "수직"
+        ]
+      },
+      "sourceFingerprint": "578c02fd9713fddc5d986e8e0c4341e292dd7c44dd6a52d3dd86be3f905b536a",
+      "draftEvidence": "evidence/section-052-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "수직"
+      ],
+      "cStudentAfter": "직육면체의 전개도에서 한 변을 사이에 두고 붙어 있는 두 면은 접으면 □으로 만난다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "수직"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "직육면체의 전개도에서 한 변을 사이에 두고 붙어 있는 두 면은 접으면 {수직}으로 만난다.",
+      "cStudentSentence": "직육면체의 전개도에서 한 변을 사이에 두고 붙어 있는 두 면은 접으면 □으로 만난다.",
+      "cSlotAnswers": [
+        {
+          "key": "수직",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직육면체의 전개도에서 한 변을 사이에 두고 붙어 있는 두 면은 접어서 직육면체를 만들면 서로 어떻게 만나는지 쓰시오.",
+        "answer": "서로 수직으로 만난다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "수직으로 만난다",
+              "직각을 이루며 만난다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직육면체의 전개도에서 한 변을 사이에 두고 붙어 있는 두 면은 접으면 {수직}으로 만난다.",
+        "acceptedAnswers": [
+          [
+            "수직"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "79e6391ba01d1b9381372f93b449343ff36d7f2f40a183016f82df8d9914894d",
+      "questionRevision": "planning-e5e6-20261006-79e6391ba01d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-6-xc13",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "직육면체에서 한 면과 모서리에서 만나는 면은 몇 개인지 쓰고, 만나지 않는 나머지 한 면은 그 면과 어떤 관계인지 쓰시오.",
+      "bAnswer": "모서리에서 만나는 면은 $4$개이고, 나머지 한 면은 그 면과 마주 보는(평행한) 면이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$4$개",
+            "네 개"
+          ]
+        },
+        {
+          "anyOf": [
+            "마주 보는 면이다",
+            "평행한 면이다"
+          ]
+        }
+      ],
+      "bGoal": "한 면과 만나는 면 $4$개와 마주 보는 면 $1$개를 구분한다.",
+      "bReason": "개수에 나머지 한 면과의 관계를 더해 면 사이의 관계를 묻게 했다.",
+      "cDecision": "revise",
+      "cAfter": "직육면체의 전개도를 접으면 한 면은 다른 면 {네 개}와 모서리를 맞댄다.",
+      "cReason": "한 면과 모서리를 맞대는 면의 수를 묻는 짧은 문장으로 답이 분명하다.",
+      "exampleNeeded": false,
+      "synonymNotes": "'네 개'와 '$4$개'는 같은 답이다.",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1530-1570.json",
+      "codexFinalAmendedFromFingerprint": "4ca06f04b84c1a9d174b5f33215305ea2c5e7d7c695ab5b6b199530958a617b4",
+      "sourceIndex": 1556,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-6-xc13",
+        "section": "초5::2-5 직육면체::2-5-6 직육면체의 전개도",
+        "term": "한 면과 맞대는 면",
+        "kind": "성질",
+        "level": "중",
+        "definition": "전개도를 접으면 한 면은 다른 면 {네 개}와 모서리를 맞댄다.",
+        "studentC": "전개도를 접으면 한 면은 다른 면 □와 모서리를 맞댄다.",
+        "answers": [
+          "네 개"
+        ]
+      },
+      "sourceFingerprint": "d851d50c38cb9557048a90e684d7fd8a77abf905c77ec853424a4f9234e67f2d",
+      "draftEvidence": "evidence/section-052-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "네 개"
+      ],
+      "cStudentAfter": "직육면체의 전개도를 접으면 한 면은 다른 면 □와 모서리를 맞댄다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "네 개"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "직육면체의 전개도를 접으면 한 면은 다른 면 {네 개}와 모서리를 맞댄다.",
+      "cStudentSentence": "직육면체의 전개도를 접으면 한 면은 다른 면 □와 모서리를 맞댄다.",
+      "cSlotAnswers": [
+        {
+          "key": "네 개",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직육면체에서 한 면과 모서리에서 만나는 면은 몇 개인지 쓰고, 만나지 않는 나머지 한 면은 그 면과 어떤 관계인지 쓰시오.",
+        "answer": "모서리에서 만나는 면은 $4$개이고, 나머지 한 면은 그 면과 마주 보는(평행한) 면이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$4$개",
+              "네 개"
+            ]
+          },
+          {
+            "anyOf": [
+              "마주 보는 면이다",
+              "평행한 면이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직육면체의 전개도를 접으면 한 면은 다른 면 {네 개}와 모서리를 맞댄다.",
+        "acceptedAnswers": [
+          [
+            "네 개"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "38cd5a70683843efa9b3c08cfb0ee73ef0edb335b6551d590a82cdbce160519c",
+      "questionRevision": "planning-e5e6-20261006-38cd5a706838",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-1-xc2",
+      "bDecision": "revise",
+      "bPrompt": "나눗셈식을 쓰지 않고 물건을 옮겨서 평균을 찾는 방법을 설명하고, 구슬이 $2$개, $5$개, $8$개 든 세 통에서 이 방법으로 평균을 구하시오.",
+      "bAnswer": "많은 쪽에서 적은 쪽으로 옮겨 모두 같게 만든다. $8$개 든 통에서 $3$개를 $2$개 든 통으로 옮기면 모두 $5$개가 되므로 평균은 $5$개이다.",
+      "bGoal": "많은 쪽에서 적은 쪽으로 옮겨 고르게 만드는 방법으로 평균을 구한다.",
+      "bReason": "'고르게 하기'는 편집용 제목이라 옮기는 방법과 구체적 수량으로 물었다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "많은 쪽에서 적은 쪽으로 옮겨 모두 같게 만든다",
+            "수가 모두 같아지도록 고르게 옮긴다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$개",
+            "$5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8$개통에서$2$개통으로$3$개옮겨모두$5$개로만든다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "구슬이 $2$개, $5$개, $8$개 든 세 통에서 $8$개 든 통의 구슬 {$3$}개를 $2$개 든 통으로 옮기면 세 통이 모두 {$5$}개가 되고, 이 수가 평균이다.",
+      "cReason": "'모두 같게 만든 값'이라는 구절 대신 옮기는 수와 같아진 수를 답하게 했다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1530-1570.json",
+      "codexFinalAmendedFromFingerprint": "5e21438aeea948681f789d0939278246dc73723446442a02ebdf149fd660b961",
+      "sourceIndex": 1567,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-6-1-xc2",
+        "section": "초5::2-6 평균과 가능성::2-6-1 평균 알아보기",
+        "term": "고르게 하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "많은 쪽에서 적은 쪽으로 옮겨 {모두 같게 만든 값}이 평균이다.",
+        "studentC": "많은 쪽에서 적은 쪽으로 옮겨 □이 평균이다.",
+        "answers": [
+          "모두 같게 만든 값"
+        ]
+      },
+      "sourceFingerprint": "d9c5f50ce498f539ca9e814e361ef2aa0c21bac0e6a861f6e0ab4a4d6366312d",
+      "draftEvidence": "evidence/section-053-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$3$",
+        "$5$"
+      ],
+      "cStudentAfter": "구슬이 $2$개, $5$개, $8$개 든 세 통에서 $8$개 든 통의 구슬 □개를 $2$개 든 통으로 옮기면 세 통이 모두 □개가 되고, 이 수가 평균이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "구슬이 $2$개, $5$개, $8$개 든 세 통에서 $8$개 든 통의 구슬 {$3$}개를 $2$개 든 통으로 옮기면 세 통이 모두 {$5$}개가 되고, 이 수가 평균이다.",
+      "cStudentSentence": "구슬이 $2$개, $5$개, $8$개 든 세 통에서 $8$개 든 통의 구슬 □개를 $2$개 든 통으로 옮기면 세 통이 모두 □개가 되고, 이 수가 평균이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$5$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "나눗셈식을 쓰지 않고 물건을 옮겨서 평균을 찾는 방법을 설명하고, 구슬이 $2$개, $5$개, $8$개 든 세 통에서 이 방법으로 평균을 구하시오.",
+        "answer": "많은 쪽에서 적은 쪽으로 옮겨 모두 같게 만든다. $8$개 든 통에서 $3$개를 $2$개 든 통으로 옮기면 모두 $5$개가 되므로 평균은 $5$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "많은 쪽에서 적은 쪽으로 옮겨 모두 같게 만든다",
+              "수가 모두 같아지도록 고르게 옮긴다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5$개",
+              "$5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8$개통에서$2$개통으로$3$개옮겨모두$5$개로만든다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "구슬이 $2$개, $5$개, $8$개 든 세 통에서 $8$개 든 통의 구슬 {$3$}개를 $2$개 든 통으로 옮기면 세 통이 모두 {$5$}개가 되고, 이 수가 평균이다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "$5$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "68161a87d9e35af131af73f83e6efd2234eb2411e1b3b1bce5c3418a6b7c7bca",
+      "questionRevision": "planning-e5e6-20261006-68161a87d9e3",
+      "requiresIndependentReview": true
+    }
+  ]
+}

@@ -1,0 +1,2893 @@
+{
+  "sourceCommit": "13bf05dce",
+  "purpose": "Actual fields captured before direct Codex reading; capture is not a verdict",
+  "start": 2673,
+  "end": 2703,
+  "rows": [
+    {
+      "source": {
+        "sourceIndex": 2673,
+        "sourceFingerprint": "cb9f565392d2268ceeac12d1eb12e8069694bf9e97821976d913dec3f18b7c6a",
+        "part": "e4plus",
+        "id": "e4-2-6-1-xc2",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "term": "다각형의 모서리 점",
+        "kind": "정의",
+        "level": "하",
+        "definition": "다각형의 둘레에서 이웃한 변 두 개가 만나는 자리가 {꼭짓점}이다.",
+        "studentC": "다각형의 둘레에서 이웃한 변 두 개가 만나는 자리가 □이다.",
+        "answers": [
+          "꼭짓점"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2673,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "sourceFingerprint": "cb9f565392d2268ceeac12d1eb12e8069694bf9e97821976d913dec3f18b7c6a",
+        "proposalFingerprint": "41d1d809f49b574e1b363172af0aba7896bf9d45d5218f76fcabf7261dd68d5d",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-1-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "다각형에서 이웃한 두 변이 만나는 점을 무엇이라고 부르는지, 사각형에는 모두 몇 개 있는지 쓰시오.",
+        "bAnswer": "꼭짓점이라고 부르며 사각형에는 $4$개 있다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "꼭짓점"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$개",
+              "네 개"
+            ]
+          }
+        ],
+        "learningRole": "naming",
+        "bGoal": "꼭짓점의 이름과 개수",
+        "bReason": "이름과 개수를 함께 묻는 구체 질문",
+        "cDecision": "keep",
+        "cReason": "익숙한 낱말 빈칸이고 정의 그대로임",
+        "roleEvidence": {
+          "sourceKind": "정의",
+          "sourceTerm": "다각형의 모서리 점",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "다각형의 둘레에서 이웃한 변 두 개가 만나는 자리가 {꼭짓점}이다.",
+        "cStudentSentence": "다각형의 둘레에서 이웃한 변 두 개가 만나는 자리가 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "꼭짓점",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "다각형의 둘레에서 이웃한 변 두 개가 만나는 자리가 □이다.",
+          "answers": [
+            "꼭짓점"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "다각형에서 이웃한 두 변이 만나는 점을 무엇이라고 부르는지, 사각형에는 모두 몇 개 있는지 쓰시오.",
+          "answer": "꼭짓점이라고 부르며 사각형에는 $4$개 있다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "꼭짓점"
+              ]
+            },
+            {
+              "anyOf": [
+                "$4$개",
+                "네 개"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "다각형의 둘레에서 이웃한 변 두 개가 만나는 자리가 {꼭짓점}이다.",
+          "acceptedAnswers": [
+            [
+              "꼭짓점"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2674,
+        "sourceFingerprint": "7f950fa2a8f46d3120f42d96f8d3d639120dcbce8b804aac80718e738077ef4d",
+        "part": "e4plus",
+        "id": "e4-2-6-1-xc3",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "term": "닫히지 않은 선의 모양",
+        "kind": "성질",
+        "level": "하",
+        "definition": "선분만 이었어도 끝이 벌어져 있으면 {다각형이 아니다}.",
+        "studentC": "선분만 이었어도 끝이 벌어져 있으면 □.",
+        "answers": [
+          "다각형이 아니다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2674,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "sourceFingerprint": "7f950fa2a8f46d3120f42d96f8d3d639120dcbce8b804aac80718e738077ef4d",
+        "proposalFingerprint": "04fbd345b97c990f4942506b44116ac7d8371b366ae38a17293760c2bb73ba06",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-1-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "곧은 선분 $4$개를 이어 만든 그림인데 한 곳은 끝이 서로 만나지 않고 벌어져 있다. 이 그림은 다각형인지 쓰고 이유를 설명하시오.",
+        "bAnswer": "다각형이 아니다. 둘레가 완전히 닫혀 있지 않기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "다각형이 아니다",
+              "아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "닫혀 있지 않다",
+              "끝이 벌어져 있다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "열린 선은 다각형 아님",
+        "bReason": "닫힌 도형 조건을 이유로 말하게 함",
+        "exampleNeeded": "선분 4개를 이었으나 한 곳이 벌어진 그림",
+        "cDecision": "rewrite",
+        "cAfter": "선분으로 이은 도형이 다각형이 되려면 끝이 벌어지지 않고 {닫혀} 있어야 한다.",
+        "cReason": "'다각형이 아니다' 구절 대신 낱말 빈칸",
+        "cSlotEquivalents": [
+          [
+            "이어져",
+            "막혀",
+            "붙어",
+            "연결되어"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "닫히지 않은 선의 모양",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "선분으로 이은 도형이 다각형이 되려면 끝이 벌어지지 않고 {닫혀} 있어야 한다.",
+        "cStudentSentence": "선분으로 이은 도형이 다각형이 되려면 끝이 벌어지지 않고 □ 있어야 한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "닫혀",
+            "equivalents": [
+              "이어져",
+              "막혀",
+              "붙어",
+              "연결되어"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "곧은 선분 $4$개를 이어 만든 그림인데 한 곳은 끝이 서로 만나지 않고 벌어져 있다. 이 그림은 다각형인지 쓰고 이유를 설명하시오.",
+          "answer": "다각형이 아니다. 둘레가 완전히 닫혀 있지 않기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "다각형이 아니다",
+                "아니다"
+              ]
+            },
+            {
+              "anyOf": [
+                "닫혀 있지 않다",
+                "끝이 벌어져 있다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "선분으로 이은 도형이 다각형이 되려면 끝이 벌어지지 않고 {닫혀} 있어야 한다.",
+          "acceptedAnswers": [
+            [
+              "닫혀",
+              "이어져",
+              "막혀",
+              "붙어",
+              "연결되어"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2675,
+        "sourceFingerprint": "e7e83c21126ce29586937bea6b70bed3adaf3debd8c681a348ddb1f719fb97f4",
+        "part": "e4plus",
+        "id": "e4-2-6-1-xc4",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "term": "다각형 이름 붙이기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "다각형의 이름은 둘레를 이루는 {변의 개수}를 세어 정한다.",
+        "studentC": "다각형의 이름은 둘레를 이루는 □를 세어 정한다.",
+        "answers": [
+          "변의 개수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2675,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "sourceFingerprint": "e7e83c21126ce29586937bea6b70bed3adaf3debd8c681a348ddb1f719fb97f4",
+        "proposalFingerprint": "1465739d71863d82fa43a96e326b12a96137064302b78075edd4cc7523ff8120",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-1-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "변이 $7$개인 다각형의 이름은 무엇이며, 다각형의 이름은 무엇을 세어 정하는지 쓰시오.",
+        "bAnswer": "칠각형이며 둘레를 이루는 변의 개수를 세어 정한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "칠각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "변의 개수",
+              "변의 수"
+            ]
+          }
+        ],
+        "learningRole": "naming",
+        "bGoal": "변의 수로 다각형 이름 정하기",
+        "bReason": "변의 수와 이름을 짝지어 확인",
+        "cDecision": "rewrite",
+        "cAfter": "다각형의 이름은 둘레를 이루는 {변}의 개수를 세어 정한다.",
+        "cReason": "'변의 개수' 구절을 낱말 빈칸으로 줄임",
+        "cSlotEquivalents": [
+          [
+            "선분"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "다각형 이름 붙이기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "다각형의 이름은 둘레를 이루는 {변}의 개수를 세어 정한다.",
+        "cStudentSentence": "다각형의 이름은 둘레를 이루는 □의 개수를 세어 정한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "변",
+            "equivalents": [
+              "선분"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "변이 $7$개인 다각형의 이름은 무엇이며, 다각형의 이름은 무엇을 세어 정하는지 쓰시오.",
+          "answer": "칠각형이며 둘레를 이루는 변의 개수를 세어 정한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "칠각형"
+              ]
+            },
+            {
+              "anyOf": [
+                "변의 개수",
+                "변의 수"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "다각형의 이름은 둘레를 이루는 {변}의 개수를 세어 정한다.",
+          "acceptedAnswers": [
+            [
+              "변",
+              "선분"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2676,
+        "sourceFingerprint": "9dc0ba29e92117c24378578852a830ffbd7c43e4c1e476f27c9c4efefb48315b",
+        "part": "e4plus",
+        "id": "e4-2-6-1-xc5",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "term": "다각형에 필요한 가장 적은 변",
+        "kind": "성질",
+        "level": "하",
+        "definition": "다각형을 만들려면 변이 적어도 {세 개} 있어야 한다.",
+        "studentC": "다각형을 만들려면 변이 적어도 □ 있어야 한다.",
+        "answers": [
+          "세 개"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2676,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "sourceFingerprint": "9dc0ba29e92117c24378578852a830ffbd7c43e4c1e476f27c9c4efefb48315b",
+        "proposalFingerprint": "c2e04ad9e2fe97322381a22f02de427c583ecf79322255d58c37ca1929fc40d9",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-1-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "변이 $2$개인 다각형을 만들 수 있는지 쓰고, 다각형이 되려면 변이 적어도 몇 개 있어야 하는지 이유와 함께 쓰시오.",
+        "bAnswer": "만들 수 없다. 선분 $2$개로는 닫힌 도형이 되지 않고 적어도 세 개 있어야 한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "만들 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "적어도 세 개",
+              "$3$개 이상"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "다각형 최소 변의 수",
+        "bReason": "두 선분으로 안 닫힘을 이유로 설명",
+        "cDecision": "keep",
+        "cReason": "세 개 빈칸이 짧고 조건이 분명함",
+        "cSlotEquivalents": [
+          [
+            "$3$개",
+            "$3$",
+            "세"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "다각형에 필요한 가장 적은 변",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "다각형을 만들려면 변이 적어도 {세 개} 있어야 한다.",
+        "cStudentSentence": "다각형을 만들려면 변이 적어도 □ 있어야 한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "세 개",
+            "equivalents": [
+              "$3$개",
+              "$3$",
+              "세"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "다각형을 만들려면 변이 적어도 □ 있어야 한다.",
+          "answers": [
+            "세 개"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "변이 $2$개인 다각형을 만들 수 있는지 쓰고, 다각형이 되려면 변이 적어도 몇 개 있어야 하는지 이유와 함께 쓰시오.",
+          "answer": "만들 수 없다. 선분 $2$개로는 닫힌 도형이 되지 않고 적어도 세 개 있어야 한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "만들 수 없다"
+              ]
+            },
+            {
+              "anyOf": [
+                "적어도 세 개",
+                "$3$개 이상"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "다각형을 만들려면 변이 적어도 {세 개} 있어야 한다.",
+          "acceptedAnswers": [
+            [
+              "세 개",
+              "$3$개",
+              "$3$",
+              "세"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2677,
+        "sourceFingerprint": "31a645c87849ce7b05dc0e658ed55b837a7e9d1904ff46f76b248e140c2b6a71",
+        "part": "e4plus",
+        "id": "e4-2-6-1-xc6",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "term": "각의 개수 세기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "다각형은 꼭짓점마다 각이 {하나}씩 있다. 꼭짓점을 차례로 이은 선분이 변이므로 각·꼭짓점·변의 수가 모두 같다.",
+        "studentC": "다각형은 꼭짓점마다 각이 □씩 있다. 꼭짓점을 차례로 이은 선분이 변이므로 각·꼭짓점·변의 수가 모두 같다.",
+        "answers": [
+          "하나"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2677,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "sourceFingerprint": "31a645c87849ce7b05dc0e658ed55b837a7e9d1904ff46f76b248e140c2b6a71",
+        "proposalFingerprint": "f0b47a7653041ad802b4dee4ed604aef32fc1c0746602ee2f73c0897d8f46266",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-1-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "육각형에는 각이 몇 개 있는지 쓰고 그렇게 생각한 이유를 설명하시오.",
+        "bAnswer": "$6$개이다. 꼭짓점마다 각이 하나씩 있고 꼭짓점이 $6$개이기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$6$개",
+              "여섯 개"
+            ]
+          },
+          {
+            "anyOf": [
+              "꼭짓점마다 각이 하나씩",
+              "변의 수와 같다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "각·꼭짓점·변 수 관계",
+        "bReason": "꼭짓점마다 각이 하나임을 이유로 확인",
+        "cDecision": "keep",
+        "cReason": "하나 빈칸이 짧고 뒤 문장이 맥락을 줌",
+        "cSlotEquivalents": [
+          [
+            "한 개",
+            "$1$개",
+            "$1$"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "각의 개수 세기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "다각형은 꼭짓점마다 각이 {하나}씩 있다. 꼭짓점을 차례로 이은 선분이 변이므로 각·꼭짓점·변의 수가 모두 같다.",
+        "cStudentSentence": "다각형은 꼭짓점마다 각이 □씩 있다. 꼭짓점을 차례로 이은 선분이 변이므로 각·꼭짓점·변의 수가 모두 같다.",
+        "cSlotAnswers": [
+          {
+            "expected": "하나",
+            "equivalents": [
+              "한 개",
+              "$1$개",
+              "$1$"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "다각형은 꼭짓점마다 각이 □씩 있다. 꼭짓점을 차례로 이은 선분이 변이므로 각·꼭짓점·변의 수가 모두 같다.",
+          "answers": [
+            "하나"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "육각형에는 각이 몇 개 있는지 쓰고 그렇게 생각한 이유를 설명하시오.",
+          "answer": "$6$개이다. 꼭짓점마다 각이 하나씩 있고 꼭짓점이 $6$개이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$6$개",
+                "여섯 개"
+              ]
+            },
+            {
+              "anyOf": [
+                "꼭짓점마다 각이 하나씩",
+                "변의 수와 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "다각형은 꼭짓점마다 각이 {하나}씩 있다. 꼭짓점을 차례로 이은 선분이 변이므로 각·꼭짓점·변의 수가 모두 같다.",
+          "acceptedAnswers": [
+            [
+              "하나",
+              "한 개",
+              "$1$개",
+              "$1$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2678,
+        "sourceFingerprint": "79395b8a52027a5324854163c18ba3accbfd867ec5ed225f4a3abd61910e4496",
+        "part": "e4plus",
+        "id": "e4-2-6-1-xc7",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "term": "회전과 다각형의 이름",
+        "kind": "성질",
+        "level": "중",
+        "definition": "오각형을 거꾸로 돌려 놓아도 변이 늘거나 줄지 않아 {오각형}이다.",
+        "studentC": "오각형을 거꾸로 돌려 놓아도 변이 늘거나 줄지 않아 □이다.",
+        "answers": [
+          "오각형"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2678,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "sourceFingerprint": "79395b8a52027a5324854163c18ba3accbfd867ec5ed225f4a3abd61910e4496",
+        "proposalFingerprint": "5f49867eda87d0af2905d31941b5c93a4b33104385b5be217da4542031f5cff0",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-1-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "오각형을 거꾸로 돌려 놓았다. 변의 개수와 이름이 바뀌는지 쓰고 이유를 설명하시오.",
+        "bAnswer": "바뀌지 않는다. 돌려도 변은 $5$개 그대로여서 오각형이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "바뀌지 않는다",
+              "그대로이다",
+              "오각형이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "돌려도 변의 개수는 그대로이다",
+              "변은 $5$개 그대로이다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "돌려도 변의 수는 같음",
+        "bReason": "방향이 바뀌어도 이름이 같은 이유 확인",
+        "cDecision": "rewrite",
+        "cAfter": "오각형을 거꾸로 돌려 놓아도 변은 {$5$}개 그대로이다.",
+        "cReason": "문장에서 답이 드러나 변의 수 빈칸으로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "다섯"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "회전과 다각형의 이름",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "오각형을 거꾸로 돌려 놓아도 변은 {$5$}개 그대로이다.",
+        "cStudentSentence": "오각형을 거꾸로 돌려 놓아도 변은 □개 그대로이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$5$",
+            "equivalents": [
+              "다섯"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "오각형을 거꾸로 돌려 놓았다. 변의 개수와 이름이 바뀌는지 쓰고 이유를 설명하시오.",
+          "answer": "바뀌지 않는다. 돌려도 변은 $5$개 그대로여서 오각형이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "바뀌지 않는다",
+                "그대로이다",
+                "오각형이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "돌려도 변의 개수는 그대로이다",
+                "변은 $5$개 그대로이다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "오각형을 거꾸로 돌려 놓아도 변은 {$5$}개 그대로이다.",
+          "acceptedAnswers": [
+            [
+              "$5$",
+              "다섯"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2679,
+        "sourceFingerprint": "405371e2d1b1cbdbaa02f19605cd177031e56d587352225257159bee4ace9548",
+        "part": "e4plus",
+        "id": "e4-2-6-1-xc8",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "term": "변 길이가 다른 다각형",
+        "kind": "성질",
+        "level": "중",
+        "definition": "다각형의 이름을 정할 때 변 길이가 같을 필요는 {없다}.",
+        "studentC": "다각형의 이름을 정할 때 변 길이가 같을 필요는 □.",
+        "answers": [
+          "없다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2679,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "sourceFingerprint": "405371e2d1b1cbdbaa02f19605cd177031e56d587352225257159bee4ace9548",
+        "proposalFingerprint": "8af5a6dc1424e6f2ee684f81430afc4d435f0b95ac3cdf52fbcf19f1c54811f8",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-1-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "변이 $4$개이고 네 변의 길이가 모두 다른 다각형의 이름은 무엇인지 쓰고, 변 길이가 다른 것이 이름에 영향을 주는지 설명하시오.",
+        "bAnswer": "사각형이다. 이름은 변의 개수로 정하므로 변 길이가 달라도 같다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "사각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "변의 개수로 정하므로 길이는 상관없다",
+              "길이가 달라도 이름은 같다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "변 길이와 다각형 이름",
+        "bReason": "이름은 변의 수로 정함을 구체 예로 확인",
+        "cDecision": "rewrite",
+        "cAfter": "변의 길이가 서로 달라도 변이 $4$개인 다각형은 {사각형}이다.",
+        "cReason": "'없다' 빈칸을 구체 이름으로 바꿈",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "변 길이가 다른 다각형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "변의 길이가 서로 달라도 변이 $4$개인 다각형은 {사각형}이다.",
+        "cStudentSentence": "변의 길이가 서로 달라도 변이 $4$개인 다각형은 □이다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "사각형",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "변이 $4$개이고 네 변의 길이가 모두 다른 다각형의 이름은 무엇인지 쓰고, 변 길이가 다른 것이 이름에 영향을 주는지 설명하시오.",
+          "answer": "사각형이다. 이름은 변의 개수로 정하므로 변 길이가 달라도 같다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "사각형"
+              ]
+            },
+            {
+              "anyOf": [
+                "변의 개수로 정하므로 길이는 상관없다",
+                "길이가 달라도 이름은 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "변의 길이가 서로 달라도 변이 $4$개인 다각형은 {사각형}이다.",
+          "acceptedAnswers": [
+            [
+              "사각형"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2680,
+        "sourceFingerprint": "a93298f2ad0b5ff8e43814fe55a0b37ed9a0d4b47deabc7693259f27655998c3",
+        "part": "e4plus",
+        "id": "e4-2-6-1-xc9",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "term": "오목한 곳이 있는 다각형",
+        "kind": "성질",
+        "level": "중",
+        "definition": "{둘레가 선분으로 닫혀 있으면} 안쪽으로 움푹 들어간 곳이 있어도 다각형일 수 있다.",
+        "studentC": "□ 안쪽으로 움푹 들어간 곳이 있어도 다각형일 수 있다.",
+        "answers": [
+          "둘레가 선분으로 닫혀 있으면"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2680,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "sourceFingerprint": "a93298f2ad0b5ff8e43814fe55a0b37ed9a0d4b47deabc7693259f27655998c3",
+        "proposalFingerprint": "c494f719bcd824f26491ab13eb93042ab40bd2066b535501852327195b8dae1d",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-1-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "안쪽으로 움푹 들어간 곳이 있는 도형이 있다. 둘레가 곧은 선분으로만 되어 있고 끝이 모두 이어져 있다면 다각형인지 쓰고 이유를 설명하시오.",
+        "bAnswer": "다각형이다. 둘레가 선분으로 닫혀 있으면 움푹 들어간 곳은 상관없다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "다각형이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "선분으로 닫혀 있다",
+              "들어간 곳은 상관없다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "오목한 도형도 다각형",
+        "bReason": "닫힌 선분 조건이 핵심임을 설명",
+        "exampleNeeded": "안쪽으로 움푹 들어간 오각형 모양 그림",
+        "cDecision": "rewrite",
+        "cAfter": "둘레가 곧은 선분으로 {닫혀} 있으면 안쪽으로 움푹 들어간 곳이 있어도 다각형이 될 수 있다.",
+        "cReason": "문장 앞쪽 긴 빈칸을 한 낱말로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "이어져",
+            "막혀",
+            "연결되어"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "오목한 곳이 있는 다각형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "둘레가 곧은 선분으로 {닫혀} 있으면 안쪽으로 움푹 들어간 곳이 있어도 다각형이 될 수 있다.",
+        "cStudentSentence": "둘레가 곧은 선분으로 □ 있으면 안쪽으로 움푹 들어간 곳이 있어도 다각형이 될 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "닫혀",
+            "equivalents": [
+              "이어져",
+              "막혀",
+              "연결되어"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "안쪽으로 움푹 들어간 곳이 있는 도형이 있다. 둘레가 곧은 선분으로만 되어 있고 끝이 모두 이어져 있다면 다각형인지 쓰고 이유를 설명하시오.",
+          "answer": "다각형이다. 둘레가 선분으로 닫혀 있으면 움푹 들어간 곳은 상관없다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "다각형이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "선분으로 닫혀 있다",
+                "들어간 곳은 상관없다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "둘레가 곧은 선분으로 {닫혀} 있으면 안쪽으로 움푹 들어간 곳이 있어도 다각형이 될 수 있다.",
+          "acceptedAnswers": [
+            [
+              "닫혀",
+              "이어져",
+              "막혀",
+              "연결되어"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2681,
+        "sourceFingerprint": "0303ecdfece57ddd713f27f877ee4fd728c434521b44f12608b3fcf665a612bb",
+        "part": "e4plus",
+        "id": "e4-2-6-1-xc10",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "term": "다각형이 아닌 둥근 도형",
+        "kind": "성질",
+        "level": "중",
+        "definition": "원처럼 {둘레가 곡선인} 도형은 다각형으로 분류하지 않는다.",
+        "studentC": "원처럼 □ 도형은 다각형으로 분류하지 않는다.",
+        "answers": [
+          "둘레가 곡선인"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2681,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "sourceFingerprint": "0303ecdfece57ddd713f27f877ee4fd728c434521b44f12608b3fcf665a612bb",
+        "proposalFingerprint": "63ad63e61896d2acf5e2a8946df607120b9322d97f846b1cf0fe613765cff550",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-1-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "원이 다각형이 아닌 까닭을 도형의 둘레와 관련지어 쓰시오.",
+        "bAnswer": "원의 둘레는 곧은 선분이 아니라 곡선이기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "둘레가 곡선이다",
+              "곧은 선분으로 이루어지지 않았다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "원이 다각형이 아닌 이유",
+        "bReason": "선분 둘레와 곡선 둘레를 구별",
+        "cDecision": "rewrite",
+        "cAfter": "원처럼 둘레가 {곡선}인 도형은 다각형이 아니다.",
+        "cReason": "긴 구절 빈칸을 한 낱말로 줄임",
+        "cSlotEquivalents": [
+          [
+            "굽은 선",
+            "둥근 선"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "다각형이 아닌 둥근 도형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "원처럼 둘레가 {곡선}인 도형은 다각형이 아니다.",
+        "cStudentSentence": "원처럼 둘레가 □인 도형은 다각형이 아니다.",
+        "cSlotAnswers": [
+          {
+            "expected": "곡선",
+            "equivalents": [
+              "굽은 선",
+              "둥근 선"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "원이 다각형이 아닌 까닭을 도형의 둘레와 관련지어 쓰시오.",
+          "answer": "원의 둘레는 곧은 선분이 아니라 곡선이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "둘레가 곡선이다",
+                "곧은 선분으로 이루어지지 않았다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "원처럼 둘레가 {곡선}인 도형은 다각형이 아니다.",
+          "acceptedAnswers": [
+            [
+              "곡선",
+              "굽은 선",
+              "둥근 선"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2682,
+        "sourceFingerprint": "e27eeef52a6aa8e9f2bd2428c907a8292f481c90a904dca7aef080a59052b7a5",
+        "part": "e4plus",
+        "id": "e4-2-6-1-xc11",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "term": "변 한가운데 표시한 점",
+        "kind": "성질",
+        "level": "중",
+        "definition": "변 한가운데에 점만 찍었다고 그 점이 새 {꼭짓점}이 되는 것은 아니다.",
+        "studentC": "변 한가운데에 점만 찍었다고 그 점이 새 □이 되는 것은 아니다.",
+        "answers": [
+          "꼭짓점"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2682,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "sourceFingerprint": "e27eeef52a6aa8e9f2bd2428c907a8292f481c90a904dca7aef080a59052b7a5",
+        "proposalFingerprint": "4e4a72da343281aa87e443f7046aca11775af7b4b0610466383765d09592b2d2",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-1-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각형의 한 변 한가운데에 점을 하나 찍었다. 이 점이 꼭짓점이 되는지 쓰고 이유를 설명하시오.",
+        "bAnswer": "꼭짓점이 되지 않는다. 그 점에서 두 변이 만나지 않고 변이 꺾이지 않기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "꼭짓점이 아니다",
+              "되지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 변이 만나는 곳이 아니다",
+              "변이 꺾이지 않는다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "변 위의 점은 꼭짓점 아님",
+        "bReason": "꼭짓점의 뜻으로 변 위 점을 판단",
+        "cDecision": "keep",
+        "cReason": "꼭짓점 빈칸이 익숙하고 앞뒤가 분명함",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "변 한가운데 표시한 점",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "변 한가운데에 점만 찍었다고 그 점이 새 {꼭짓점}이 되는 것은 아니다.",
+        "cStudentSentence": "변 한가운데에 점만 찍었다고 그 점이 새 □이 되는 것은 아니다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "꼭짓점",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "변 한가운데에 점만 찍었다고 그 점이 새 □이 되는 것은 아니다.",
+          "answers": [
+            "꼭짓점"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "삼각형의 한 변 한가운데에 점을 하나 찍었다. 이 점이 꼭짓점이 되는지 쓰고 이유를 설명하시오.",
+          "answer": "꼭짓점이 되지 않는다. 그 점에서 두 변이 만나지 않고 변이 꺾이지 않기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "꼭짓점이 아니다",
+                "되지 않는다"
+              ]
+            },
+            {
+              "anyOf": [
+                "두 변이 만나는 곳이 아니다",
+                "변이 꺾이지 않는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "변 한가운데에 점만 찍었다고 그 점이 새 {꼭짓점}이 되는 것은 아니다.",
+          "acceptedAnswers": [
+            [
+              "꼭짓점"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2683,
+        "sourceFingerprint": "152bda1da308c24be3750d4db384d0ffdb630c88625f91d29fb1ba45aa6cb880",
+        "part": "e4plus",
+        "id": "e4-2-6-1-xc12",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "term": "둘레를 한 번만 따라 세기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "다각형의 변을 셀 때 시작한 변을 표시하면 같은 변을 {두 번} 세는 일을 줄일 수 있다.",
+        "studentC": "다각형의 변을 셀 때 시작한 변을 표시하면 같은 변을 □ 세는 일을 줄일 수 있다.",
+        "answers": [
+          "두 번"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2683,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "sourceFingerprint": "152bda1da308c24be3750d4db384d0ffdb630c88625f91d29fb1ba45aa6cb880",
+        "proposalFingerprint": "efe296dade2208671c30e81869dad14d270bdc6f8521167af67b584678723c96",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-1-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "다각형의 변의 개수를 셀 때 같은 변을 두 번 세지 않으려면 어떻게 하면 좋은지 쓰시오.",
+        "bAnswer": "시작한 변에 표시를 하고 차례대로 한 바퀴 돌며 센다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "시작한 변에 표시한다",
+              "센 변마다 표시한다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "변을 빠짐없이 한 번씩 세기",
+        "bReason": "표시해서 중복을 줄이는 방법 확인",
+        "cDecision": "keep",
+        "cReason": "두 번 빈칸이 짧고 문맥이 분명함",
+        "cSlotEquivalents": [
+          [
+            "$2$번",
+            "두"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "둘레를 한 번만 따라 세기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "다각형의 변을 셀 때 시작한 변을 표시하면 같은 변을 {두 번} 세는 일을 줄일 수 있다.",
+        "cStudentSentence": "다각형의 변을 셀 때 시작한 변을 표시하면 같은 변을 □ 세는 일을 줄일 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "두 번",
+            "equivalents": [
+              "$2$번",
+              "두"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "다각형의 변을 셀 때 시작한 변을 표시하면 같은 변을 □ 세는 일을 줄일 수 있다.",
+          "answers": [
+            "두 번"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "다각형의 변의 개수를 셀 때 같은 변을 두 번 세지 않으려면 어떻게 하면 좋은지 쓰시오.",
+          "answer": "시작한 변에 표시를 하고 차례대로 한 바퀴 돌며 센다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "시작한 변에 표시한다",
+                "센 변마다 표시한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "다각형의 변을 셀 때 시작한 변을 표시하면 같은 변을 {두 번} 세는 일을 줄일 수 있다.",
+          "acceptedAnswers": [
+            [
+              "두 번",
+              "$2$번",
+              "두"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2684,
+        "sourceFingerprint": "fc327743761878b43b5d190f20225fd75e9530eb1b001b9d132e5d13f8e32540",
+        "part": "e4plus",
+        "id": "e4-2-6-1-xc13",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "term": "안쪽 선과 테두리 구별",
+        "kind": "방법",
+        "level": "중",
+        "definition": "다각형 안에 선을 더 그어도 이름은 {바깥 테두리를 이루는 변}으로 정한다.",
+        "studentC": "다각형 안에 선을 더 그어도 이름은 □으로 정한다.",
+        "answers": [
+          "바깥 테두리를 이루는 변"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2684,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "sourceFingerprint": "fc327743761878b43b5d190f20225fd75e9530eb1b001b9d132e5d13f8e32540",
+        "proposalFingerprint": "f10d7fd796915f4f3cd4965e19141265c0671f80a408a761596e978aed0cde9f",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-1-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "사각형의 마주 보는 꼭짓점을 선분으로 이어 두 조각으로 나누었다. 바깥 모양의 이름은 무엇이며 안쪽 선분은 변의 개수에 포함되는지 쓰시오.",
+        "bAnswer": "사각형이며 안쪽 선분은 포함되지 않는다. 바깥 테두리의 변만 센다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "사각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "포함되지 않는다",
+              "바깥 테두리의 변만 센다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "안쪽 선과 테두리 구별",
+        "bReason": "바깥 테두리 변으로 이름을 정함",
+        "exampleNeeded": "사각형 안에 선분 하나를 그은 그림",
+        "cDecision": "rewrite",
+        "cAfter": "다각형 안에 선을 더 그어도 이름은 {바깥} 테두리를 이루는 변의 개수로 정한다.",
+        "cReason": "긴 구절 빈칸을 한 낱말로 줄임",
+        "cSlotEquivalents": [
+          [
+            "겉",
+            "바깥쪽"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "안쪽 선과 테두리 구별",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "다각형 안에 선을 더 그어도 이름은 {바깥} 테두리를 이루는 변의 개수로 정한다.",
+        "cStudentSentence": "다각형 안에 선을 더 그어도 이름은 □ 테두리를 이루는 변의 개수로 정한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "바깥",
+            "equivalents": [
+              "겉",
+              "바깥쪽"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "사각형의 마주 보는 꼭짓점을 선분으로 이어 두 조각으로 나누었다. 바깥 모양의 이름은 무엇이며 안쪽 선분은 변의 개수에 포함되는지 쓰시오.",
+          "answer": "사각형이며 안쪽 선분은 포함되지 않는다. 바깥 테두리의 변만 센다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "사각형"
+              ]
+            },
+            {
+              "anyOf": [
+                "포함되지 않는다",
+                "바깥 테두리의 변만 센다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "다각형 안에 선을 더 그어도 이름은 {바깥} 테두리를 이루는 변의 개수로 정한다.",
+          "acceptedAnswers": [
+            [
+              "바깥",
+              "겉",
+              "바깥쪽"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2685,
+        "sourceFingerprint": "005f71a22a72d29847f2af9004bfb2a5698a708c1141b12d6a7db5359c5da261",
+        "part": "e4plus",
+        "id": "e4-2-6-1-xc14",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "term": "둘레 길이 구하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "다각형의 둘레 길이는 각 변의 길이를 {모두 더해} 구한다.",
+        "studentC": "다각형의 둘레 길이는 각 변의 길이를 □ 구한다.",
+        "answers": [
+          "모두 더해"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2685,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "sourceFingerprint": "005f71a22a72d29847f2af9004bfb2a5698a708c1141b12d6a7db5359c5da261",
+        "proposalFingerprint": "f4d2c9bd123ba3e0e1e2f79d453961104beb548bc2b844be08c29f6575d8dc04",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-1-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "세 변의 길이가 $3$ cm, $4$ cm, $5$ cm인 삼각형의 둘레는 몇 cm인지 구하고 방법을 쓰시오.",
+        "bAnswer": "$12$ cm이다. 세 변의 길이를 모두 더해 $3+4+5=12$로 구한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$12$ cm",
+              "$12$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3+4+5$",
+              "변의 길이를 모두 더한다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "둘레는 변의 합",
+        "bReason": "둘레를 구하는 방법을 구체 수로 확인",
+        "cDecision": "keep",
+        "cReason": "모두 더해 빈칸이 짧고 방법이 분명함",
+        "cSlotEquivalents": [
+          [
+            "더해",
+            "다 더해",
+            "합해",
+            "모두 더하여"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "둘레 길이 구하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "다각형의 둘레 길이는 각 변의 길이를 {모두 더해} 구한다.",
+        "cStudentSentence": "다각형의 둘레 길이는 각 변의 길이를 □ 구한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "모두 더해",
+            "equivalents": [
+              "더해",
+              "다 더해",
+              "합해",
+              "모두 더하여"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "다각형의 둘레 길이는 각 변의 길이를 □ 구한다.",
+          "answers": [
+            "모두 더해"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "세 변의 길이가 $3$ cm, $4$ cm, $5$ cm인 삼각형의 둘레는 몇 cm인지 구하고 방법을 쓰시오.",
+          "answer": "$12$ cm이다. 세 변의 길이를 모두 더해 $3+4+5=12$로 구한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$12$ cm",
+                "$12$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$3+4+5$",
+                "변의 길이를 모두 더한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "다각형의 둘레 길이는 각 변의 길이를 {모두 더해} 구한다.",
+          "acceptedAnswers": [
+            [
+              "모두 더해",
+              "더해",
+              "다 더해",
+              "합해",
+              "모두 더하여"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2686,
+        "sourceFingerprint": "07a79bf8092c104d0b1a84472da112705c99caa1b2f00d10ac8313cdaf93066a",
+        "part": "e4plus",
+        "id": "e4-2-6-1-xc15",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "term": "꼭짓점 한 곳을 잘라 낸 뒤",
+        "kind": "성질",
+        "level": "상",
+        "definition": "안으로 들어간 곳이 없는 다각형에서 한 꼭짓점에 모인 두 변의 중간 점을 곧게 이어 그 꼭짓점 쪽 삼각형을 잘라 내면 남은 도형의 변은 {하나 늘어난다}.",
+        "studentC": "안으로 들어간 곳이 없는 다각형에서 한 꼭짓점에 모인 두 변의 중간 점을 곧게 이어 그 꼭짓점 쪽 삼각형을 잘라 내면 남은 도형의 변은 □.",
+        "answers": [
+          "하나 늘어난다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2686,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "sourceFingerprint": "07a79bf8092c104d0b1a84472da112705c99caa1b2f00d10ac8313cdaf93066a",
+        "proposalFingerprint": "57a95b4084a363954b45449da3692cb8c774fa159db7ee5cb345d9c5f16694b6",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-1-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "직사각형의 한 모서리를 이웃한 두 변의 가운데 점끼리 곧게 이어 삼각형 모양으로 잘라 냈다. 남은 도형의 이름과 변의 개수를 쓰고 이유를 설명하시오.",
+        "bAnswer": "오각형이고 변은 $5$개이다. 자른 선분이 새 변으로 생겨 원래 $4$개보다 하나 늘었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "오각형",
+              "$5$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "자른 선분이 새 변이 된다",
+              "변이 하나 늘었다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "모서리를 자르면 변이 늘어남",
+        "bReason": "새 변이 생기는 이유를 설명",
+        "exampleNeeded": "직사각형의 한 모서리를 곧게 잘라 낸 그림",
+        "cDecision": "rewrite",
+        "cAfter": "사각형의 한 모서리를 이웃한 두 변 위의 점끼리 곧게 이어 잘라 내면 남은 도형의 변은 {$5$}개이다.",
+        "cReason": "긴 조건 문장을 쉬운 예와 수 빈칸으로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "다섯"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "꼭짓점 한 곳을 잘라 낸 뒤",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "사각형의 한 모서리를 이웃한 두 변 위의 점끼리 곧게 이어 잘라 내면 남은 도형의 변은 {$5$}개이다.",
+        "cStudentSentence": "사각형의 한 모서리를 이웃한 두 변 위의 점끼리 곧게 이어 잘라 내면 남은 도형의 변은 □개이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$5$",
+            "equivalents": [
+              "다섯"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "직사각형의 한 모서리를 이웃한 두 변의 가운데 점끼리 곧게 이어 삼각형 모양으로 잘라 냈다. 남은 도형의 이름과 변의 개수를 쓰고 이유를 설명하시오.",
+          "answer": "오각형이고 변은 $5$개이다. 자른 선분이 새 변으로 생겨 원래 $4$개보다 하나 늘었다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "오각형",
+                "$5$개"
+              ]
+            },
+            {
+              "anyOf": [
+                "자른 선분이 새 변이 된다",
+                "변이 하나 늘었다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "사각형의 한 모서리를 이웃한 두 변 위의 점끼리 곧게 이어 잘라 내면 남은 도형의 변은 {$5$}개이다.",
+          "acceptedAnswers": [
+            [
+              "$5$",
+              "다섯"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2687,
+        "sourceFingerprint": "3fa43ae9185800e9109e0bc7e040d0f989a6bdf20c2174f4b521abb9ba32b55e",
+        "part": "e4plus",
+        "id": "e4-2-6-1-xc16",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "term": "직사각형의 두 모서리 자르기",
+        "kind": "성질",
+        "level": "상",
+        "definition": "직사각형의 서로 마주 보는 두 모서리를 각각 선분을 따라 짧게 잘라 내면 남은 테두리의 변은 {여섯 개}가 된다.",
+        "studentC": "직사각형의 서로 마주 보는 두 모서리를 각각 선분을 따라 짧게 잘라 내면 남은 테두리의 변은 □가 된다.",
+        "answers": [
+          "여섯 개"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2687,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "sourceFingerprint": "3fa43ae9185800e9109e0bc7e040d0f989a6bdf20c2174f4b521abb9ba32b55e",
+        "proposalFingerprint": "f283c311876008c0ec1df4e3a17d364b68a6026454ee26afc74bf4cdaa565141",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-1-xc16",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "reason",
+        "bGoal": "두 모서리를 잘라 낸 변의 수",
+        "bReason": "xc15 모서리 자르기와 중복",
+        "exclusionReason": "모서리를 자르면 새 변이 생기는 xc15와 같은 목표",
+        "cDecision": "keep",
+        "cReason": "여섯 개 빈칸이 짧고 선명하며 사실이 맞음",
+        "cSlotEquivalents": [
+          [
+            "$6$개",
+            "여섯",
+            "$6$"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "직사각형의 두 모서리 자르기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직사각형의 서로 마주 보는 두 모서리를 각각 선분을 따라 짧게 잘라 내면 남은 테두리의 변은 {여섯 개}가 된다.",
+        "cStudentSentence": "직사각형의 서로 마주 보는 두 모서리를 각각 선분을 따라 짧게 잘라 내면 남은 테두리의 변은 □가 된다.",
+        "cSlotAnswers": [
+          {
+            "expected": "여섯 개",
+            "equivalents": [
+              "$6$개",
+              "여섯",
+              "$6$"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "직사각형의 서로 마주 보는 두 모서리를 각각 선분을 따라 짧게 잘라 내면 남은 테두리의 변은 □가 된다.",
+          "answers": [
+            "여섯 개"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "직사각형의 서로 마주 보는 두 모서리를 각각 선분을 따라 짧게 잘라 내면 남은 테두리의 변은 {여섯 개}가 된다.",
+          "acceptedAnswers": [
+            [
+              "여섯 개",
+              "$6$개",
+              "여섯",
+              "$6$"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc15 모서리 자르기와 중복"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2688,
+        "sourceFingerprint": "87f11e355e8567ed5bb63cc1ae56863e181875e8afac0d5451e0cf9df8ebde94",
+        "part": "e4plus",
+        "id": "e4-2-6-1-xc17",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "term": "그림 안의 조각 수와 변 수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "안쪽을 여러 조각으로 나눈 수와 바깥 다각형의 변 수는 {따로 세어야} 한다.",
+        "studentC": "안쪽을 여러 조각으로 나눈 수와 바깥 다각형의 변 수는 □ 한다.",
+        "answers": [
+          "따로 세어야"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2688,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "sourceFingerprint": "87f11e355e8567ed5bb63cc1ae56863e181875e8afac0d5451e0cf9df8ebde94",
+        "proposalFingerprint": "f9db8b72d49451ce754b6c156b690cc36b9688299f489f630f831173a6b5dd95",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-1-xc17",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "조각 수와 변 수 구별",
+        "bReason": "xc13 바깥 변 세기와 중복",
+        "exclusionReason": "안쪽 선과 바깥 테두리를 구별하는 xc13과 같은 목표",
+        "cDecision": "exclude",
+        "cReason": "'따로 세어야' 빈칸이 모호하고 xc13과 중복",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "그림 안의 조각 수와 변 수",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "bQuestion": null,
+        "clozeQuestion": null,
+        "questionExclusions": {
+          "term": "xc13 바깥 변 세기와 중복",
+          "cloze": "'따로 세어야' 빈칸이 모호하고 xc13과 중복"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2689,
+        "sourceFingerprint": "fe63ace44fecd933da1c03f09242b23b1dcdb4dde0aa2a483292a01413a06d20",
+        "part": "e4plus",
+        "id": "e4-2-6-1-xc18",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "term": "같은 이름의 다른 모양",
+        "kind": "성질",
+        "level": "상",
+        "definition": "같은 육각형이라도 {변 길이와 각 크기가 다르면} 다른 모양이 될 수 있다.",
+        "studentC": "같은 육각형이라도 □ 다른 모양이 될 수 있다.",
+        "answers": [
+          "변 길이와 각 크기가 다르면"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2689,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "sourceFingerprint": "fe63ace44fecd933da1c03f09242b23b1dcdb4dde0aa2a483292a01413a06d20",
+        "proposalFingerprint": "017df2b78151745852785056b3b09e71ea7fa396fa59a084782d25ca56c9a9c4",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-1-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "변이 $6$개인 육각형 두 개가 서로 다른 모양일 수 있는 까닭을 변과 각에 관련지어 쓰시오.",
+        "bAnswer": "변의 길이나 각의 크기가 다르면 같은 육각형이라도 모양이 달라진다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "변의 길이가 다를 수 있다",
+              "각의 크기가 다를 수 있다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "같은 이름의 다른 모양",
+        "bReason": "이름이 같아도 모양은 다를 수 있음",
+        "exampleNeeded": "모양이 다른 육각형 두 개 그림",
+        "cDecision": "rewrite",
+        "cAfter": "같은 육각형이라도 변의 {길이}와 각의 {크기}가 다르면 다른 모양이 될 수 있다.",
+        "cReason": "긴 구절 빈칸을 낱말 두 개로 나눔",
+        "cSlotEquivalents": [
+          [
+            "긴 정도"
+          ],
+          [
+            "벌어진 정도"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "같은 이름의 다른 모양",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "같은 육각형이라도 변의 {길이}와 각의 {크기}가 다르면 다른 모양이 될 수 있다.",
+        "cStudentSentence": "같은 육각형이라도 변의 □와 각의 □가 다르면 다른 모양이 될 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "길이",
+            "equivalents": [
+              "긴 정도"
+            ]
+          },
+          {
+            "expected": "크기",
+            "equivalents": [
+              "벌어진 정도"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "변이 $6$개인 육각형 두 개가 서로 다른 모양일 수 있는 까닭을 변과 각에 관련지어 쓰시오.",
+          "answer": "변의 길이나 각의 크기가 다르면 같은 육각형이라도 모양이 달라진다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "변의 길이가 다를 수 있다",
+                "각의 크기가 다를 수 있다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "같은 육각형이라도 변의 {길이}와 각의 {크기}가 다르면 다른 모양이 될 수 있다.",
+          "acceptedAnswers": [
+            [
+              "길이",
+              "긴 정도"
+            ],
+            [
+              "크기",
+              "벌어진 정도"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2690,
+        "sourceFingerprint": "5fb9bc505f7521bcd9ba98adab7aee362ec037e1157db1462a7feeb9eb6321d4",
+        "part": "e4plus",
+        "id": "e4-2-6-1-xc19",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "term": "합친 도형의 변 세기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "도형끼리 붙여 새 모양을 만들 때 안에 가려진 선은 바깥 도형의 {변으로 세지 않는다}.",
+        "studentC": "도형끼리 붙여 새 모양을 만들 때 안에 가려진 선은 바깥 도형의 □.",
+        "answers": [
+          "변으로 세지 않는다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2690,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "sourceFingerprint": "5fb9bc505f7521bcd9ba98adab7aee362ec037e1157db1462a7feeb9eb6321d4",
+        "proposalFingerprint": "d98f6e0b55bcde4a14a9fbdf76727c92404a2b719b8b34a0fc9e138672567b52",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-1-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "정삼각형 두 개를 한 변끼리 맞붙여 새 도형을 만들었다. 새 도형의 변은 몇 개인지 쓰고, 맞붙인 변은 어떻게 하는지 설명하시오.",
+        "bAnswer": "$4$개이다. 변 $6$개 중 맞붙은 두 변은 안에 있어 바깥 변으로 세지 않는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$4$개",
+              "네 개"
+            ]
+          },
+          {
+            "anyOf": [
+              "맞붙은 변은 세지 않는다",
+              "안에 가려진 선은 변이 아니다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "합친 도형의 바깥 변 세기",
+        "bReason": "안에 가려진 변을 빼고 세는 방법 확인",
+        "exampleNeeded": "정삼각형 두 개를 한 변끼리 붙인 그림",
+        "cDecision": "rewrite",
+        "cAfter": "도형끼리 붙여 새 모양을 만들 때 안에 가려진 선은 바깥 도형의 변의 개수에 {포함하지} 않는다.",
+        "cReason": "긴 구절 빈칸을 낱말로 줄임",
+        "cSlotEquivalents": [
+          [
+            "세지",
+            "넣지",
+            "더하지"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "합친 도형의 변 세기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "도형끼리 붙여 새 모양을 만들 때 안에 가려진 선은 바깥 도형의 변의 개수에 {포함하지} 않는다.",
+        "cStudentSentence": "도형끼리 붙여 새 모양을 만들 때 안에 가려진 선은 바깥 도형의 변의 개수에 □ 않는다.",
+        "cSlotAnswers": [
+          {
+            "expected": "포함하지",
+            "equivalents": [
+              "세지",
+              "넣지",
+              "더하지"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "정삼각형 두 개를 한 변끼리 맞붙여 새 도형을 만들었다. 새 도형의 변은 몇 개인지 쓰고, 맞붙인 변은 어떻게 하는지 설명하시오.",
+          "answer": "$4$개이다. 변 $6$개 중 맞붙은 두 변은 안에 있어 바깥 변으로 세지 않는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$4$개",
+                "네 개"
+              ]
+            },
+            {
+              "anyOf": [
+                "맞붙은 변은 세지 않는다",
+                "안에 가려진 선은 변이 아니다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "도형끼리 붙여 새 모양을 만들 때 안에 가려진 선은 바깥 도형의 변의 개수에 {포함하지} 않는다.",
+          "acceptedAnswers": [
+            [
+              "포함하지",
+              "세지",
+              "넣지",
+              "더하지"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2691,
+        "sourceFingerprint": "7f43f1ba2c7ff00bb8ef275370430fe83bf2f5948a1421a85ae955611b1a53c6",
+        "part": "e4plus",
+        "id": "e4-2-6-1-xc20",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "term": "곧게 이어진 테두리 조각",
+        "kind": "방법",
+        "level": "상",
+        "definition": "여러 조각의 변이 바깥에서 일직선으로 이어지면 전체 도형에서는 {한 변}으로 센다.",
+        "studentC": "여러 조각의 변이 바깥에서 일직선으로 이어지면 전체 도형에서는 □으로 센다.",
+        "answers": [
+          "한 변"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2691,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "sourceFingerprint": "7f43f1ba2c7ff00bb8ef275370430fe83bf2f5948a1421a85ae955611b1a53c6",
+        "proposalFingerprint": "64e7f2a786093487fb2eed29eafc3763da85064b9ebc5540cca028e89b5b4a7a",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-1-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "작은 정사각형 두 개를 한 변끼리 맞붙여 직사각형 모양을 만들었다. 바깥 테두리의 변은 몇 개인지 쓰고, 위쪽의 두 조각 변은 어떻게 세는지 설명하시오.",
+        "bAnswer": "$4$개이다. 위쪽의 두 조각이 한 줄로 이어져 한 변으로 센다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$4$개",
+              "네 개"
+            ]
+          },
+          {
+            "anyOf": [
+              "일직선으로 이어지면 한 변으로 센다",
+              "한 줄이므로 한 변"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "일직선 조각은 한 변으로 세기",
+        "bReason": "조각 변과 전체 변의 차이를 확인",
+        "exampleNeeded": "정사각형 두 개를 붙인 직사각형 그림",
+        "cDecision": "keep",
+        "cReason": "한 변 빈칸이 짧고 조건이 문장에 있음",
+        "cSlotEquivalents": [
+          [
+            "하나의 변",
+            "한 개의 변",
+            "$1$개의 변"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "곧게 이어진 테두리 조각",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "여러 조각의 변이 바깥에서 일직선으로 이어지면 전체 도형에서는 {한 변}으로 센다.",
+        "cStudentSentence": "여러 조각의 변이 바깥에서 일직선으로 이어지면 전체 도형에서는 □으로 센다.",
+        "cSlotAnswers": [
+          {
+            "expected": "한 변",
+            "equivalents": [
+              "하나의 변",
+              "한 개의 변",
+              "$1$개의 변"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "여러 조각의 변이 바깥에서 일직선으로 이어지면 전체 도형에서는 □으로 센다.",
+          "answers": [
+            "한 변"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "작은 정사각형 두 개를 한 변끼리 맞붙여 직사각형 모양을 만들었다. 바깥 테두리의 변은 몇 개인지 쓰고, 위쪽의 두 조각 변은 어떻게 세는지 설명하시오.",
+          "answer": "$4$개이다. 위쪽의 두 조각이 한 줄로 이어져 한 변으로 센다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$4$개",
+                "네 개"
+              ]
+            },
+            {
+              "anyOf": [
+                "일직선으로 이어지면 한 변으로 센다",
+                "한 줄이므로 한 변"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "여러 조각의 변이 바깥에서 일직선으로 이어지면 전체 도형에서는 {한 변}으로 센다.",
+          "acceptedAnswers": [
+            [
+              "한 변",
+              "하나의 변",
+              "한 개의 변",
+              "$1$개의 변"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2692,
+        "sourceFingerprint": "02a1419b6781ab268e59a7dcc3843f71703dd86afe5504e0b8ff70d302b0636a",
+        "part": "e4plus",
+        "id": "e4-2-6-1-xc21",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "term": "변 수와 둘레 길이 비교",
+        "kind": "성질",
+        "level": "상",
+        "definition": "변의 수가 더 많다는 사실만으로 둘레가 {더 길다}고 정할 수 없다.",
+        "studentC": "변의 수가 더 많다는 사실만으로 둘레가 □고 정할 수 없다.",
+        "answers": [
+          "더 길다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2692,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "sourceFingerprint": "02a1419b6781ab268e59a7dcc3843f71703dd86afe5504e0b8ff70d302b0636a",
+        "proposalFingerprint": "ef4512752d1690cf35a0386571de86b698c4d0df32904b17f5c3c9edcbda9d6f",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-1-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각형 가는 세 변이 각각 $10$ cm이고, 육각형 나는 여섯 변이 각각 $1$ cm이다. 변이 더 많은 쪽의 둘레가 더 긴지 쓰고 이유를 설명하시오.",
+        "bAnswer": "아니다. 가의 둘레는 $30$ cm, 나의 둘레는 $6$ cm이다. 변의 수보다 길이를 모두 더해 비교한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "아니다",
+              "더 짧다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$30$ cm와 $6$ cm",
+              "변의 길이를 모두 더해 비교한다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "변 수와 둘레 길이 구별",
+        "bReason": "변이 많아도 둘레가 짧을 수 있음",
+        "cDecision": "rewrite",
+        "cAfter": "변이 더 많은 다각형이라도 변의 길이가 짧으면 둘레가 더 {짧을} 수 있다.",
+        "cReason": "'정할 수 없다' 구절을 구체 낱말로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "작을"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "변 수와 둘레 길이 비교",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "변이 더 많은 다각형이라도 변의 길이가 짧으면 둘레가 더 {짧을} 수 있다.",
+        "cStudentSentence": "변이 더 많은 다각형이라도 변의 길이가 짧으면 둘레가 더 □ 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "짧을",
+            "equivalents": [
+              "작을"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "삼각형 가는 세 변이 각각 $10$ cm이고, 육각형 나는 여섯 변이 각각 $1$ cm이다. 변이 더 많은 쪽의 둘레가 더 긴지 쓰고 이유를 설명하시오.",
+          "answer": "아니다. 가의 둘레는 $30$ cm, 나의 둘레는 $6$ cm이다. 변의 수보다 길이를 모두 더해 비교한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "아니다",
+                "더 짧다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$30$ cm와 $6$ cm",
+                "변의 길이를 모두 더해 비교한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "변이 더 많은 다각형이라도 변의 길이가 짧으면 둘레가 더 {짧을} 수 있다.",
+          "acceptedAnswers": [
+            [
+              "짧을",
+              "작을"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2693,
+        "sourceFingerprint": "1af9e2a413119f127673da96802a056e022d647303887d6584441ee6578cc66c",
+        "part": "e4plus",
+        "id": "e4-2-6-1-xc22",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "term": "꼭짓점 수로 이름 거꾸로 찾기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "다각형은 꼭짓점의 수와 변의 수가 같으므로 꼭짓점 수로 {다각형의 이름}을 찾을 수 있다.",
+        "example": {
+          "prompt": "삼각형보다 꼭짓점이 두 개 더 많은 다각형이 오각형인 까닭은?",
+          "answer": "변도 다섯 개라서"
+        },
+        "studentC": "다각형은 꼭짓점의 수와 변의 수가 같으므로 꼭짓점 수로 □을 찾을 수 있다.",
+        "answers": [
+          "다각형의 이름"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2693,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "sourceFingerprint": "1af9e2a413119f127673da96802a056e022d647303887d6584441ee6578cc66c",
+        "proposalFingerprint": "79ee11fc6e86b9d757044b2b57587f5d040f509ce3996e5df1842d4fea8fa54b",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-1-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "꼭짓점이 $6$개인 다각형의 이름은 무엇이며, 꼭짓점 수로 이름을 알 수 있는 이유를 쓰시오.",
+        "bAnswer": "육각형이다. 다각형은 꼭짓점의 수와 변의 수가 같아 변도 $6$개이기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "육각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "꼭짓점 수와 변의 수가 같다",
+              "변도 $6$개이다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "꼭짓점 수로 이름 찾기",
+        "bReason": "꼭짓점 수와 변의 수가 같음을 이유로 확인",
+        "cDecision": "keep",
+        "cReason": "다각형의 이름 빈칸이 앞 문맥과 잘 맞음",
+        "cSlotEquivalents": [
+          [
+            "이름"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "꼭짓점 수로 이름 거꾸로 찾기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "다각형은 꼭짓점의 수와 변의 수가 같으므로 꼭짓점 수로 {다각형의 이름}을 찾을 수 있다.",
+        "cStudentSentence": "다각형은 꼭짓점의 수와 변의 수가 같으므로 꼭짓점 수로 □을 찾을 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "다각형의 이름",
+            "equivalents": [
+              "이름"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "다각형은 꼭짓점의 수와 변의 수가 같으므로 꼭짓점 수로 □을 찾을 수 있다.",
+          "answers": [
+            "다각형의 이름"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "꼭짓점이 $6$개인 다각형의 이름은 무엇이며, 꼭짓점 수로 이름을 알 수 있는 이유를 쓰시오.",
+          "answer": "육각형이다. 다각형은 꼭짓점의 수와 변의 수가 같아 변도 $6$개이기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "육각형"
+              ]
+            },
+            {
+              "anyOf": [
+                "꼭짓점 수와 변의 수가 같다",
+                "변도 $6$개이다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "다각형은 꼭짓점의 수와 변의 수가 같으므로 꼭짓점 수로 {다각형의 이름}을 찾을 수 있다.",
+          "acceptedAnswers": [
+            [
+              "다각형의 이름",
+              "이름"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2694,
+        "sourceFingerprint": "b1b3679153391b0f205e1a471a4e0eee4f0555333a16867ba8d7ebafe8d03d49",
+        "part": "e4plus",
+        "id": "e4-2-6-1-xc23",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "term": "잘린 조각과 남은 모양",
+        "kind": "방법",
+        "level": "상",
+        "definition": "모서리를 잘라 생긴 삼각형 조각과 남은 다각형의 이름은, 각각 바깥을 이루는 {변}의 개수를 세어 정한다.",
+        "studentC": "모서리를 잘라 생긴 삼각형 조각과 남은 다각형의 이름은, 각각 바깥을 이루는 □의 개수를 세어 정한다.",
+        "answers": [
+          "변"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2694,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "sourceFingerprint": "b1b3679153391b0f205e1a471a4e0eee4f0555333a16867ba8d7ebafe8d03d49",
+        "proposalFingerprint": "b4cd0d62e71eade76ecf48760ba25277bfd515e6a3c6e4a8eece02da592432da",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-1-xc23",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "잘린 조각과 남은 모양 이름",
+        "bReason": "xc4·xc15와 같은 변 세기",
+        "exclusionReason": "변의 개수로 이름을 정하는 xc4와 모서리 자르기 xc15의 같은 목표",
+        "cDecision": "keep",
+        "cReason": "변 빈칸이 짧고 문장 안 단서가 분명함",
+        "cSlotEquivalents": [
+          [
+            "선분"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "잘린 조각과 남은 모양",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "모서리를 잘라 생긴 삼각형 조각과 남은 다각형의 이름은, 각각 바깥을 이루는 {변}의 개수를 세어 정한다.",
+        "cStudentSentence": "모서리를 잘라 생긴 삼각형 조각과 남은 다각형의 이름은, 각각 바깥을 이루는 □의 개수를 세어 정한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "변",
+            "equivalents": [
+              "선분"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "모서리를 잘라 생긴 삼각형 조각과 남은 다각형의 이름은, 각각 바깥을 이루는 □의 개수를 세어 정한다.",
+          "answers": [
+            "변"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "모서리를 잘라 생긴 삼각형 조각과 남은 다각형의 이름은, 각각 바깥을 이루는 {변}의 개수를 세어 정한다.",
+          "acceptedAnswers": [
+            [
+              "변",
+              "선분"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc4·xc15와 같은 변 세기"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2695,
+        "sourceFingerprint": "1f4d33346b9b2bae9e3bf56fae6522f31f75e54b0b7b14d972522848f1379f18",
+        "part": "e4plus",
+        "id": "e4-2-6-1-xc24",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "term": "선분이 서로 가로지르는 그림",
+        "kind": "방법",
+        "level": "상",
+        "definition": "다각형을 그릴 때에는 둘레의 선분들이 중간에서 서로 {가로지르지 않게} 잇는다.",
+        "studentC": "다각형을 그릴 때에는 둘레의 선분들이 중간에서 서로 □ 잇는다.",
+        "answers": [
+          "가로지르지 않게"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2695,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "sourceFingerprint": "1f4d33346b9b2bae9e3bf56fae6522f31f75e54b0b7b14d972522848f1379f18",
+        "proposalFingerprint": "8f9226051035fbce2ee02cd4706e8648bc5ce6cdd6c1cebcc27c5b1d9291730d",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-1-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "선분 $4$개를 이어 다각형을 그리려고 한다. 둘레의 선분들을 이을 때 지켜야 할 점은 무엇인지 쓰시오.",
+        "bAnswer": "선분들이 중간에서 서로 가로지르지 않게 이어 한 바퀴 닫는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "서로 가로지르지 않는다",
+              "중간에서 만나지 않는다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "다각형 둘레를 그리는 조건",
+        "bReason": "선분이 엇갈리지 않아야 함을 확인",
+        "cDecision": "rewrite",
+        "cAfter": "다각형을 그릴 때에는 둘레의 선분들이 중간에서 서로 {가로지르지} 않게 잇는다.",
+        "cReason": "구절 빈칸을 한 낱말로 줄임",
+        "cSlotEquivalents": [
+          [
+            "만나지",
+            "겹치지",
+            "교차하지"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "선분이 서로 가로지르는 그림",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "다각형을 그릴 때에는 둘레의 선분들이 중간에서 서로 {가로지르지} 않게 잇는다.",
+        "cStudentSentence": "다각형을 그릴 때에는 둘레의 선분들이 중간에서 서로 □ 않게 잇는다.",
+        "cSlotAnswers": [
+          {
+            "expected": "가로지르지",
+            "equivalents": [
+              "만나지",
+              "겹치지",
+              "교차하지"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "선분 $4$개를 이어 다각형을 그리려고 한다. 둘레의 선분들을 이을 때 지켜야 할 점은 무엇인지 쓰시오.",
+          "answer": "선분들이 중간에서 서로 가로지르지 않게 이어 한 바퀴 닫는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "서로 가로지르지 않는다",
+                "중간에서 만나지 않는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "다각형을 그릴 때에는 둘레의 선분들이 중간에서 서로 {가로지르지} 않게 잇는다.",
+          "acceptedAnswers": [
+            [
+              "가로지르지",
+              "만나지",
+              "겹치지",
+              "교차하지"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2696,
+        "sourceFingerprint": "9904127ab93cbd0fabd7c0317bf3c98eee3ea80b6edbd6fd75e6809779ced256",
+        "part": "e4plus",
+        "id": "e4-2-6-2-xc1",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "term": "정삼각형과 정다각형",
+        "kind": "성질",
+        "level": "하",
+        "definition": "정삼각형은 {변과 각이 각각 같은 조건}을 갖추어 정다각형에 속한다.",
+        "studentC": "정삼각형은 □을 갖추어 정다각형에 속한다.",
+        "answers": [
+          "변과 각이 각각 같은 조건"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2696,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "sourceFingerprint": "9904127ab93cbd0fabd7c0317bf3c98eee3ea80b6edbd6fd75e6809779ced256",
+        "proposalFingerprint": "5e18bb21056d95b61babe5862cebef252a1eb87bf34b14d9c0523fb56e16716d",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-2-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "정삼각형이 정다각형인 까닭을 변과 각에 관련지어 쓰시오.",
+        "bAnswer": "세 변의 길이가 모두 같고 세 각의 크기도 모두 같기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "변의 길이가 모두 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "각의 크기가 모두 같다"
+            ]
+          }
+        ],
+        "learningRole": "definition",
+        "bGoal": "정다각형의 두 조건",
+        "bReason": "변과 각이 모두 같다는 조건 확인",
+        "cDecision": "rewrite",
+        "cAfter": "정삼각형은 세 변의 길이가 모두 같고 세 각의 크기도 모두 같아서 {정다각형}에 속한다.",
+        "cReason": "긴 조건 구절 빈칸 대신 이름 빈칸으로 바꿈",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "정삼각형과 정다각형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정삼각형은 세 변의 길이가 모두 같고 세 각의 크기도 모두 같아서 {정다각형}에 속한다.",
+        "cStudentSentence": "정삼각형은 세 변의 길이가 모두 같고 세 각의 크기도 모두 같아서 □에 속한다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "정다각형",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "정삼각형이 정다각형인 까닭을 변과 각에 관련지어 쓰시오.",
+          "answer": "세 변의 길이가 모두 같고 세 각의 크기도 모두 같기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "변의 길이가 모두 같다"
+              ]
+            },
+            {
+              "anyOf": [
+                "각의 크기가 모두 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "정삼각형은 세 변의 길이가 모두 같고 세 각의 크기도 모두 같아서 {정다각형}에 속한다.",
+          "acceptedAnswers": [
+            [
+              "정다각형"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2697,
+        "sourceFingerprint": "f89c3072c7580a1cf0872df439b01de03f79233583053b103648a46822a4e3ea",
+        "part": "e4plus",
+        "id": "e4-2-6-2-xc2",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "term": "정사각형과 정다각형",
+        "kind": "성질",
+        "level": "하",
+        "definition": "사각형 가운데 {변 길이도 같고 각도 같은} 것은 정사각형이다.",
+        "studentC": "사각형 가운데 □ 것은 정사각형이다.",
+        "answers": [
+          "변 길이도 같고 각도 같은"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2697,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "sourceFingerprint": "f89c3072c7580a1cf0872df439b01de03f79233583053b103648a46822a4e3ea",
+        "proposalFingerprint": "cc9cc5b120e7774c9f82c1d56abb1953c08915c00f6f9acb438a5a91019f1b1c",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-2-xc2",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "definition",
+        "bGoal": "정사각형의 조건",
+        "bReason": "xc1과 같은 변·각 조건",
+        "exclusionReason": "변과 각이 모두 같은 정다각형 조건은 xc1에서 이미 묻는 같은 목표",
+        "cDecision": "rewrite",
+        "cAfter": "사각형 가운데 변의 길이가 모두 같고 각의 크기도 모두 같은 것을 {정사각형}이라고 한다.",
+        "cReason": "긴 조건 구절 빈칸을 이름 빈칸으로 바꿈",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "정사각형과 정다각형",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "사각형 가운데 변의 길이가 모두 같고 각의 크기도 모두 같은 것을 {정사각형}이라고 한다.",
+        "cStudentSentence": "사각형 가운데 변의 길이가 모두 같고 각의 크기도 모두 같은 것을 □이라고 한다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "정사각형",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "사각형 가운데 변의 길이가 모두 같고 각의 크기도 모두 같은 것을 {정사각형}이라고 한다.",
+          "acceptedAnswers": [
+            [
+              "정사각형"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc1과 같은 변·각 조건"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2698,
+        "sourceFingerprint": "1f94afab9163d4c301e6918177545231b70d4bcc67cec73b74cdba960b9845b0",
+        "part": "e4plus",
+        "id": "e4-2-6-2-xc3",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "term": "정오각형의 변 개수",
+        "kind": "정의",
+        "level": "하",
+        "definition": "변과 각이 각각 같은 다각형 중 변이 {다섯 개}인 것은 정오각형이다.",
+        "studentC": "변과 각이 각각 같은 다각형 중 변이 □인 것은 정오각형이다.",
+        "answers": [
+          "다섯 개"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2698,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "sourceFingerprint": "1f94afab9163d4c301e6918177545231b70d4bcc67cec73b74cdba960b9845b0",
+        "proposalFingerprint": "6a68062f60418dc701e58c8a0ca0ecb915caa4f22571fecff4c00d8f041c2bc7",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-2-xc3",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "naming",
+        "bGoal": "정오각형 이름 붙이기",
+        "bReason": "xc1 조건과 중복인 단순 이름",
+        "exclusionReason": "변·각 조건은 xc1에서 묻고 변 개수로 이름 붙이기는 단순 이름 읽기",
+        "cDecision": "keep",
+        "cReason": "다섯 개 빈칸이 짧고 선명함",
+        "cSlotEquivalents": [
+          [
+            "$5$개",
+            "$5$",
+            "다섯"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "정의",
+          "sourceTerm": "정오각형의 변 개수",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "변과 각이 각각 같은 다각형 중 변이 {다섯 개}인 것은 정오각형이다.",
+        "cStudentSentence": "변과 각이 각각 같은 다각형 중 변이 □인 것은 정오각형이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "다섯 개",
+            "equivalents": [
+              "$5$개",
+              "$5$",
+              "다섯"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "변과 각이 각각 같은 다각형 중 변이 □인 것은 정오각형이다.",
+          "answers": [
+            "다섯 개"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "변과 각이 각각 같은 다각형 중 변이 {다섯 개}인 것은 정오각형이다.",
+          "acceptedAnswers": [
+            [
+              "다섯 개",
+              "$5$개",
+              "$5$",
+              "다섯"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc1 조건과 중복인 단순 이름"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2699,
+        "sourceFingerprint": "a69ef48bfcd7e018539f8a42b288ffd8ca8ec2e5418d1675c426ec0c34ea8e11",
+        "part": "e4plus",
+        "id": "e4-2-6-2-xc4",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "term": "정육각형의 꼭짓점",
+        "kind": "성질",
+        "level": "하",
+        "definition": "정육각형은 변이 여섯 개이고 꼭짓점도 {여섯 개}이다.",
+        "studentC": "정육각형은 변이 여섯 개이고 꼭짓점도 □이다.",
+        "answers": [
+          "여섯 개"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2699,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "sourceFingerprint": "a69ef48bfcd7e018539f8a42b288ffd8ca8ec2e5418d1675c426ec0c34ea8e11",
+        "proposalFingerprint": "29450b5a1792d5514d64cc33975f70077d0969d6bea38886a9bc8f37111190c3",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-2-xc4",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "definition",
+        "bGoal": "정육각형의 꼭짓점 수",
+        "bReason": "2-6-1 xc6과 같은 목표",
+        "exclusionReason": "각·꼭짓점·변의 수가 같다는 2-6-1 xc6과 같은 목표",
+        "cDecision": "keep",
+        "cReason": "여섯 개 빈칸이 짧고 변의 수와 대응됨",
+        "cSlotEquivalents": [
+          [
+            "$6$개",
+            "$6$",
+            "여섯"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "정육각형의 꼭짓점",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정육각형은 변이 여섯 개이고 꼭짓점도 {여섯 개}이다.",
+        "cStudentSentence": "정육각형은 변이 여섯 개이고 꼭짓점도 □이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "여섯 개",
+            "equivalents": [
+              "$6$개",
+              "$6$",
+              "여섯"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "정육각형은 변이 여섯 개이고 꼭짓점도 □이다.",
+          "answers": [
+            "여섯 개"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "정육각형은 변이 여섯 개이고 꼭짓점도 {여섯 개}이다.",
+          "acceptedAnswers": [
+            [
+              "여섯 개",
+              "$6$개",
+              "$6$",
+              "여섯"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "2-6-1 xc6과 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2700,
+        "sourceFingerprint": "07f2e7a98c124448818ebb8619421cdd2f1052412016e2ee2ee7a895570a9fee",
+        "part": "e4plus",
+        "id": "e4-2-6-2-xc5",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "term": "정팔각형에서 확인할 두 가지",
+        "kind": "방법",
+        "level": "하",
+        "definition": "팔각형이 정다각형인지 보려면 {변 길이}와 {각 크기}를 각각 비교한다.",
+        "studentC": "팔각형이 정다각형인지 보려면 □와 □를 각각 비교한다.",
+        "answers": [
+          "변 길이",
+          "각 크기"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2700,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "sourceFingerprint": "07f2e7a98c124448818ebb8619421cdd2f1052412016e2ee2ee7a895570a9fee",
+        "proposalFingerprint": "5ac4e3485aa928371e0ac8ccbc6d83d2989187d17cfb90de65af3b33531b5782",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-2-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "어떤 팔각형이 정다각형인지 알아보려고 한다. 변과 각에 대해 각각 무엇을 확인해야 하는지 쓰시오.",
+        "bAnswer": "모든 변의 길이가 같은지, 모든 각의 크기가 같은지 확인한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "모든 변의 길이가 같은지 확인",
+              "변의 길이를 모두 비교"
+            ]
+          },
+          {
+            "anyOf": [
+              "모든 각의 크기가 같은지 확인",
+              "각의 크기를 모두 비교"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "정다각형 판별 두 조건",
+        "bReason": "변과 각 두 기준을 모두 말해야 판별 방법이 됨",
+        "cDecision": "rewrite",
+        "cAfter": "팔각형이 정다각형인지 보려면 자로 잰 {변의 길이}와 각도기로 잰 {각의 크기}를 각각 비교한다.",
+        "cReason": "두 빈칸 순서가 바뀌는 문제를 도구 단서로 고정",
+        "cSlotEquivalents": [
+          [
+            "변 길이",
+            "길이"
+          ],
+          [
+            "각 크기",
+            "크기",
+            "각도"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "정팔각형에서 확인할 두 가지",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "팔각형이 정다각형인지 보려면 자로 잰 {변의 길이}와 각도기로 잰 {각의 크기}를 각각 비교한다.",
+        "cStudentSentence": "팔각형이 정다각형인지 보려면 자로 잰 □와 각도기로 잰 □를 각각 비교한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "변의 길이",
+            "equivalents": [
+              "변 길이",
+              "길이"
+            ]
+          },
+          {
+            "expected": "각의 크기",
+            "equivalents": [
+              "각 크기",
+              "크기",
+              "각도"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "어떤 팔각형이 정다각형인지 알아보려고 한다. 변과 각에 대해 각각 무엇을 확인해야 하는지 쓰시오.",
+          "answer": "모든 변의 길이가 같은지, 모든 각의 크기가 같은지 확인한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "모든 변의 길이가 같은지 확인",
+                "변의 길이를 모두 비교"
+              ]
+            },
+            {
+              "anyOf": [
+                "모든 각의 크기가 같은지 확인",
+                "각의 크기를 모두 비교"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "팔각형이 정다각형인지 보려면 자로 잰 {변의 길이}와 각도기로 잰 {각의 크기}를 각각 비교한다.",
+          "acceptedAnswers": [
+            [
+              "변의 길이",
+              "변 길이",
+              "길이"
+            ],
+            [
+              "각의 크기",
+              "각 크기",
+              "크기",
+              "각도"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2701,
+        "sourceFingerprint": "dbc1f9760da8d1ae8459a6e7d7be28c9cabdb619ce6445cee2617316a80b33ad",
+        "part": "e4plus",
+        "id": "e4-2-6-2-xc6",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "term": "정다각형의 변 재기",
+        "kind": "성질",
+        "level": "하",
+        "definition": "정다각형의 한 변을 재면 나머지 변들의 {길이}도 알 수 있다.",
+        "studentC": "정다각형의 한 변을 재면 나머지 변들의 □도 알 수 있다.",
+        "answers": [
+          "길이"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2701,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "sourceFingerprint": "dbc1f9760da8d1ae8459a6e7d7be28c9cabdb619ce6445cee2617316a80b33ad",
+        "proposalFingerprint": "f068b4d7b66a3ee32a559e12b0dcd0d294518600838f67140fb39aeb664ab540",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-2-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "정다각형의 한 변의 길이를 재었더니 $5$ cm였다. 나머지 변의 길이는 각각 얼마이고, 그렇게 말할 수 있는 까닭은 무엇인지 쓰시오.",
+        "bAnswer": "나머지 변도 모두 $5$ cm이다. 정다각형은 모든 변의 길이가 같기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "모두 $5$ cm",
+              "각각 $5$ cm"
+            ]
+          },
+          {
+            "anyOf": [
+              "정다각형은 모든 변의 길이가 같다",
+              "변의 길이가 모두 같기 때문"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "한 변으로 나머지 변 알기",
+        "bReason": "모든 변이 같다는 성질을 수치에 적용해 설명",
+        "cDecision": "keep",
+        "cReason": "'변들의 □' 길이로 바로 떠오르는 짧은 낱말 빈칸",
+        "cSlotEquivalents": [
+          [
+            "변의 길이",
+            "변 길이"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "정다각형의 변 재기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정다각형의 한 변을 재면 나머지 변들의 {길이}도 알 수 있다.",
+        "cStudentSentence": "정다각형의 한 변을 재면 나머지 변들의 □도 알 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "길이",
+            "equivalents": [
+              "변의 길이",
+              "변 길이"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "정다각형의 한 변을 재면 나머지 변들의 □도 알 수 있다.",
+          "answers": [
+            "길이"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "정다각형의 한 변의 길이를 재었더니 $5$ cm였다. 나머지 변의 길이는 각각 얼마이고, 그렇게 말할 수 있는 까닭은 무엇인지 쓰시오.",
+          "answer": "나머지 변도 모두 $5$ cm이다. 정다각형은 모든 변의 길이가 같기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "모두 $5$ cm",
+                "각각 $5$ cm"
+              ]
+            },
+            {
+              "anyOf": [
+                "정다각형은 모든 변의 길이가 같다",
+                "변의 길이가 모두 같기 때문"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "정다각형의 한 변을 재면 나머지 변들의 {길이}도 알 수 있다.",
+          "acceptedAnswers": [
+            [
+              "길이",
+              "변의 길이",
+              "변 길이"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2702,
+        "sourceFingerprint": "faa04fdd2b723a4ab1d9fd2d3ca8334df5528e157a78e98c9b6b6d675a44f6cb",
+        "part": "e4plus",
+        "id": "e4-2-6-2-xc7",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "term": "정다각형 이름의 뜻",
+        "kind": "정의",
+        "level": "하",
+        "definition": "다각형 이름 앞에 정을 붙인 것은 변과 각에 각각 {같다}는 조건을 더한 것이다.",
+        "studentC": "다각형 이름 앞에 정을 붙인 것은 변과 각에 각각 □는 조건을 더한 것이다.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2702,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-2 정다각형",
+        "sourceFingerprint": "faa04fdd2b723a4ab1d9fd2d3ca8334df5528e157a78e98c9b6b6d675a44f6cb",
+        "proposalFingerprint": "50c04e44fe21e102ead8a09db8b8a5ba4f4fc9c39c19da108f2ee2c332e50a93",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-2-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "정오각형처럼 다각형 이름 앞에 '정'이 붙으면 변과 각에 대해 어떤 뜻인지 쓰시오.",
+        "bAnswer": "모든 변의 길이가 같고 모든 각의 크기도 같다는 뜻이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "모든 변의 길이가 같다",
+              "변이 모두 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "모든 각의 크기가 같다",
+              "각이 모두 같다"
+            ]
+          }
+        ],
+        "learningRole": "naming",
+        "bGoal": "'정' 이름의 뜻 설명",
+        "bReason": "변 조건과 각 조건 둘 다 말해야 뜻을 이해한 것",
+        "cDecision": "rewrite",
+        "cAfter": "정육각형처럼 이름 앞에 정이 붙으면 모든 변의 길이와 모든 각의 크기가 각각 {같다}.",
+        "cReason": "'같다는' 어형 복원 없이 짧은 비교 낱말로 고침",
+        "cSlotEquivalents": [
+          [
+            "모두 같다",
+            "똑같다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "정의",
+          "sourceTerm": "정다각형 이름의 뜻",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정육각형처럼 이름 앞에 정이 붙으면 모든 변의 길이와 모든 각의 크기가 각각 {같다}.",
+        "cStudentSentence": "정육각형처럼 이름 앞에 정이 붙으면 모든 변의 길이와 모든 각의 크기가 각각 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "같다",
+            "equivalents": [
+              "모두 같다",
+              "똑같다"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "정오각형처럼 다각형 이름 앞에 '정'이 붙으면 변과 각에 대해 어떤 뜻인지 쓰시오.",
+          "answer": "모든 변의 길이가 같고 모든 각의 크기도 같다는 뜻이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "모든 변의 길이가 같다",
+                "변이 모두 같다"
+              ]
+            },
+            {
+              "anyOf": [
+                "모든 각의 크기가 같다",
+                "각이 모두 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "정육각형처럼 이름 앞에 정이 붙으면 모든 변의 길이와 모든 각의 크기가 각각 {같다}.",
+          "acceptedAnswers": [
+            [
+              "같다",
+              "모두 같다",
+              "똑같다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    }
+  ]
+}

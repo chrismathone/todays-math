@@ -1,0 +1,3666 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "capturedAt": "2026-10-07T08:10:05.280577+00:00",
+  "rows": [
+    {
+      "id": "e6-1-1-3-xc14",
+      "bDecision": "revise",
+      "bPrompt": "$1\\frac{1}{2}\\div3=\\frac{1}{2}$이 맞는지 곱셈으로 확인하는 방법을 쓰고, 그렇게 확인할 수 있는 까닭을 설명하세요.",
+      "bAnswer": "몫에 나누는 수를 곱한다. $\\frac{1}{2}\\times3=\\frac{3}{2}=1\\frac{1}{2}$로 처음 양과 같다. 한 몫을 $3$번 모으면 처음 양이 되기 때문이다.",
+      "bGoal": "몫에 나누는 수를 곱해 처음 양이 되는지 확인하는 검산을 안다.",
+      "bReason": "검산의 방법과 까닭을 구체적 식으로 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "몫에 나누는 수를 곱한다",
+            "$\\frac{1}{2}\\times3$을 계산한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "처음 대분수와 같다",
+            "$1\\frac{1}{2}$이 된다",
+            "$\\frac{3}{2}$이 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 몫을 나누는 수만큼 모으면 처음 양이다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "$1\\frac{1}{2}\\div3=\\frac{1}{2}$이면 검산식은 $\\frac{1}{2}\\times$ {$3$}$={}$ {$1\\frac{1}{2}$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1\\frac{1}{2}$",
+            "$\\frac{3}{2}$"
+          ]
+        }
+      ],
+      "cReason": "맥락 없는 '처음 양' 대신 나눗셈 식과 확인 곱셈식을 제시한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1690,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-3-xc14",
+        "section": "초6::1-1 분수의 나눗셈::1-1-3 (대분수)÷(자연수) 알아보기",
+        "term": "곱셈으로 하는 검산",
+        "kind": "방법",
+        "level": "중",
+        "definition": "한 몫을 나누는 수만큼 모으면 {처음 양}이 되므로, 몫에 나누는 수를 곱해 계산을 확인한다.",
+        "example": {
+          "prompt": "대분수를 $2$로 나눈 몫에 $2$를 곱하여 검산하는 까닭은?",
+          "answer": "두 몫을 모으면 처음 양이라서"
+        },
+        "studentC": "한 몫을 나누는 수만큼 모으면 □이 되므로, 몫에 나누는 수를 곱해 계산을 확인한다.",
+        "answers": [
+          "처음 양"
+        ]
+      },
+      "sourceFingerprint": "769ab4c5a665ee7d75a53658b9c563f499f664860ba7db489998087e43b38863",
+      "draftEvidence": "evidence/section-058-draft.json",
+      "cProposedAnswers": [
+        "$3$",
+        "$1\\frac{1}{2}$"
+      ],
+      "cStudentAfter": "$1\\frac{1}{2}\\div3=\\frac{1}{2}$이면 검산식은 $\\frac{1}{2}\\times$ □$={}$ □이다.",
+      "cMarkedSentence": "$1\\frac{1}{2}\\div3=\\frac{1}{2}$이면 검산식은 $\\frac{1}{2}\\times$ {$3$}$={}$ {$1\\frac{1}{2}$}이다.",
+      "cStudentSentence": "$1\\frac{1}{2}\\div3=\\frac{1}{2}$이면 검산식은 $\\frac{1}{2}\\times$ □$={}$ □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$1\\frac{1}{2}$",
+          "equivalents": [
+            "$\\frac{3}{2}$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$1\\frac{1}{2}\\div3=\\frac{1}{2}$이 맞는지 곱셈으로 확인하는 방법을 쓰고, 그렇게 확인할 수 있는 까닭을 설명하세요.",
+        "answer": "몫에 나누는 수를 곱한다. $\\frac{1}{2}\\times3=\\frac{3}{2}=1\\frac{1}{2}$로 처음 양과 같다. 한 몫을 $3$번 모으면 처음 양이 되기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "몫에 나누는 수를 곱한다",
+              "$\\frac{1}{2}\\times3$을 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "처음 대분수와 같다",
+              "$1\\frac{1}{2}$이 된다",
+              "$\\frac{3}{2}$이 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 몫을 나누는 수만큼 모으면 처음 양이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1\\frac{1}{2}\\div3=\\frac{1}{2}$이면 검산식은 $\\frac{1}{2}\\times$ {$3$}$={}$ {$1\\frac{1}{2}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "$1\\frac{1}{2}$",
+            "$\\frac{3}{2}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "03e810d5dea5853401fbfc1f161f1200a55fd1e583fcc9aad528ddb50efb2d89",
+      "questionRevision": "planning-e5e6-20261006-03e810d5dea5",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-3-xc15",
+      "bDecision": "revise",
+      "bPrompt": "$2\\frac{2}{5}\\div4$를 $\\frac{12}{5}\\times\\frac{1}{4}$로 쓴 뒤 약분하여 계산하세요. 약분해도 값이 변하지 않는 까닭도 설명하세요.",
+      "bAnswer": "분자 $12$와 분모 $4$를 공약수 $4$로 나누어 약분하면 $\\frac{3}{5}$이다. 분자와 분모를 같은 수로 나누므로 크기가 변하지 않는다.",
+      "bGoal": "곱셈식에서 약분하는 방법과 약분해도 값이 같은 까닭을 안다.",
+      "bReason": "약분을 구체적 곱셈식에서 실행하고 까닭을 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1$보다 큰 공약수로 나눈다",
+            "$4$로 약분한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "분자와 분모를 같은 수로 나누므로 값이 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{5}$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{12}{5}\\times\\frac{1}{4}$에서 분자 $12$와 분모 $4$를 {$4$}로 나누어 약분하면 {$\\frac{3}{5}$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{5}$"
+          ]
+        }
+      ],
+      "cReason": "공약수와 값 불변을 식 하나에서 직접 계산하게 한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1691,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-3-xc15",
+        "section": "초6::1-1 분수의 나눗셈::1-1-3 (대분수)÷(자연수) 알아보기",
+        "term": "곱셈으로 바꾸어 약분하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "가분수의 분자와 나누는 수에 {$1$보다 큰 공약수}가 있으면 약분할 수 있다. 곱의 분자와 분모를 같은 수로 나누므로 {값은 같다}.",
+        "studentC": "가분수의 분자와 나누는 수에 □가 있으면 약분할 수 있다. 곱의 분자와 분모를 같은 수로 나누므로 □.",
+        "answers": [
+          "$1$보다 큰 공약수",
+          "값은 같다"
+        ]
+      },
+      "sourceFingerprint": "c29bc0832e9a1b41d2ceb59f2ad5c606426b1398e2c8bc8be7ec459f914ce55f",
+      "draftEvidence": "evidence/section-058-draft.json",
+      "cProposedAnswers": [
+        "$4$",
+        "$\\frac{3}{5}$"
+      ],
+      "cStudentAfter": "$\\frac{12}{5}\\times\\frac{1}{4}$에서 분자 $12$와 분모 $4$를 □로 나누어 약분하면 □이다.",
+      "cMarkedSentence": "$\\frac{12}{5}\\times\\frac{1}{4}$에서 분자 $12$와 분모 $4$를 {$4$}로 나누어 약분하면 {$\\frac{3}{5}$}이다.",
+      "cStudentSentence": "$\\frac{12}{5}\\times\\frac{1}{4}$에서 분자 $12$와 분모 $4$를 □로 나누어 약분하면 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{3}{5}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$2\\frac{2}{5}\\div4$를 $\\frac{12}{5}\\times\\frac{1}{4}$로 쓴 뒤 약분하여 계산하세요. 약분해도 값이 변하지 않는 까닭도 설명하세요.",
+        "answer": "분자 $12$와 분모 $4$를 공약수 $4$로 나누어 약분하면 $\\frac{3}{5}$이다. 분자와 분모를 같은 수로 나누므로 크기가 변하지 않는다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$1$보다 큰 공약수로 나눈다",
+              "$4$로 약분한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분자와 분모를 같은 수로 나누므로 값이 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{3}{5}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{12}{5}\\times\\frac{1}{4}$에서 분자 $12$와 분모 $4$를 {$4$}로 나누어 약분하면 {$\\frac{3}{5}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ],
+          [
+            "$\\frac{3}{5}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "95bc71dba23aef63efcd354be794b3a992567c2368f9c0b135d4a1934ac02e56",
+      "questionRevision": "planning-e5e6-20261006-95bc71dba23a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-3-xc16",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{6}{5}\\div3$을 '분자를 $3$으로 나누기'와 '분모에 $3$ 곱하기'로 계산할 때, 두 방법에서 조각의 크기와 개수가 각각 어떻게 다른지 설명하고 몫을 쓰세요.",
+      "bAnswer": "분자를 나누면 $\\frac{1}{5}$ 조각의 크기는 그대로이고 개수 $6$을 $3$으로 나눈다. 분모에 곱하면 각 조각을 더 작게 나누어 한 몫씩 모은다. 두 방법의 몫은 $\\frac{2}{5}$로 같다($\\frac{6}{15}$).",
+      "bGoal": "두 방법을 조각 크기와 개수의 관점에서 구별한다.",
+      "bReason": "구체 예에서 두 방법의 의미 차이를 비교하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분자를 나누면 조각 크기는 그대로이고 개수를 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "분모에 곱하면 각 조각을 더 작게 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{2}{5}$",
+            "$\\frac{6}{15}$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{6}{5}\\div3$을 분모에 $3$을 곱하면 $\\frac{6}{5\\times3}=$ {$\\frac{6}{15}$}이고, 약분하면 {$\\frac{2}{5}$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{6}{15}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{2}{5}$"
+          ]
+        }
+      ],
+      "cReason": "긴 설명 구절 암기 대신 분모에 곱한 값과 약분한 값을 구하게 한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1692,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-3-xc16",
+        "section": "초6::1-1 분수의 나눗셈::1-1-3 (대분수)÷(자연수) 알아보기",
+        "term": "분자를 나눌 때와 분모에 곱할 때",
+        "kind": "성질",
+        "level": "중",
+        "definition": "분자를 나누는 방법은 조각의 {크기를 유지하며 개수를} 나누는 것이고, 분모에 곱하는 방법은 {각 조각을 더 작게} 나누어 한 몫씩 모으는 것이다.",
+        "studentC": "분자를 나누는 방법은 조각의 □ 나누는 것이고, 분모에 곱하는 방법은 □ 나누어 한 몫씩 모으는 것이다.",
+        "answers": [
+          "크기를 유지하며 개수를",
+          "각 조각을 더 작게"
+        ]
+      },
+      "sourceFingerprint": "fd213000897a2c04617d34408f405302c5a484b37a22a205e6f305c8615bf8df",
+      "draftEvidence": "evidence/section-058-draft.json",
+      "cProposedAnswers": [
+        "$\\frac{6}{15}$",
+        "$\\frac{2}{5}$"
+      ],
+      "cStudentAfter": "$\\frac{6}{5}\\div3$을 분모에 $3$을 곱하면 $\\frac{6}{5\\times3}=$ □이고, 약분하면 □이다.",
+      "cMarkedSentence": "$\\frac{6}{5}\\div3$을 분모에 $3$을 곱하면 $\\frac{6}{5\\times3}=$ {$\\frac{6}{15}$}이고, 약분하면 {$\\frac{2}{5}$}이다.",
+      "cStudentSentence": "$\\frac{6}{5}\\div3$을 분모에 $3$을 곱하면 $\\frac{6}{5\\times3}=$ □이고, 약분하면 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{6}{15}$",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{2}{5}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{6}{5}\\div3$을 '분자를 $3$으로 나누기'와 '분모에 $3$ 곱하기'로 계산할 때, 두 방법에서 조각의 크기와 개수가 각각 어떻게 다른지 설명하고 몫을 쓰세요.",
+        "answer": "분자를 나누면 $\\frac{1}{5}$ 조각의 크기는 그대로이고 개수 $6$을 $3$으로 나눈다. 분모에 곱하면 각 조각을 더 작게 나누어 한 몫씩 모은다. 두 방법의 몫은 $\\frac{2}{5}$로 같다($\\frac{6}{15}$).",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분자를 나누면 조각 크기는 그대로이고 개수를 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분모에 곱하면 각 조각을 더 작게 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{2}{5}$",
+              "$\\frac{6}{15}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{6}{5}\\div3$을 분모에 $3$을 곱하면 $\\frac{6}{5\\times3}=$ {$\\frac{6}{15}$}이고, 약분하면 {$\\frac{2}{5}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{6}{15}$"
+          ],
+          [
+            "$\\frac{2}{5}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "91fe42a296f4790e68c1210854227344dcd6623c920a013aed72eafae23a098f",
+      "questionRevision": "planning-e5e6-20261006-91fe42a296f4",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-3-xc17",
+      "bDecision": "revise",
+      "bPrompt": "$3\\frac{1}{2}$을 자연수 부분과 같은 수 $3$으로 나눈 몫은 어느 두 자연수 사이에 있나요? 두 부분을 나눈 몫을 이용해 까닭을 설명하세요.",
+      "bAnswer": "$1$과 $2$ 사이이다. 자연수 부분의 몫은 $3\\div3=1$이고, $1$보다 작은 $\\frac{1}{2}$을 나눈 몫 $\\frac{1}{6}$이 더해져 $1\\frac{1}{6}$이 된다.",
+      "bGoal": "자연수 부분의 몫 $1$에 $1$보다 작은 몫이 더해져 범위가 정해짐을 안다.",
+      "bReason": "두 부분 나누기를 이용해 몫의 범위를 설명하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1$보다 크고 $2$보다 작다",
+            "$1$과 $2$ 사이"
+          ]
+        },
+        {
+          "anyOf": [
+            "자연수 부분의 몫이 $1$이다",
+            "$3\\div3=1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "분수 부분의 몫은 $1$보다 작다",
+            "$\\frac{1}{6}$이 더해진다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "$3\\frac{1}{2}\\div3=1+\\frac{1}{6}$이므로 몫은 $1$보다 {크고} $2$보다 {작다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "크고",
+            "더 크고"
+          ]
+        },
+        {
+          "anyOf": [
+            "작다",
+            "더 작다"
+          ]
+        }
+      ],
+      "cReason": "'$1$보다 크고 $2$보다 작다'를 통째로 외우지 않고 크기 비교 두 낱말로 확인한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1693,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-3-xc17",
+        "section": "초6::1-1 분수의 나눗셈::1-1-3 (대분수)÷(자연수) 알아보기",
+        "term": "자연수 부분과 같은 수로 나눌 때",
+        "kind": "성질",
+        "level": "중",
+        "definition": "대분수를 그 자연수 부분과 같은 수로 나누면 몫은 {$1$보다 크고 $2$보다 작다}. 자연수 부분의 몫 $1$에 $1$보다 작은 분수 부분의 몫이 더해지기 때문이다.",
+        "studentC": "대분수를 그 자연수 부분과 같은 수로 나누면 몫은 □. 자연수 부분의 몫 $1$에 $1$보다 작은 분수 부분의 몫이 더해지기 때문이다.",
+        "answers": [
+          "$1$보다 크고 $2$보다 작다"
+        ]
+      },
+      "sourceFingerprint": "dbd23e7f54ae00706c1481b5687aef98c448f5f6eb21fc2f7c41ed6fd43adb18",
+      "draftEvidence": "evidence/section-058-draft.json",
+      "cProposedAnswers": [
+        "크고",
+        "작다"
+      ],
+      "cStudentAfter": "$3\\frac{1}{2}\\div3=1+\\frac{1}{6}$이므로 몫은 $1$보다 □ $2$보다 □.",
+      "cMarkedSentence": "$3\\frac{1}{2}\\div3=1+\\frac{1}{6}$이므로 몫은 $1$보다 {크고} $2$보다 {작다}.",
+      "cStudentSentence": "$3\\frac{1}{2}\\div3=1+\\frac{1}{6}$이므로 몫은 $1$보다 □ $2$보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "크고",
+          "equivalents": [
+            "더 크고"
+          ]
+        },
+        {
+          "key": "작다",
+          "equivalents": [
+            "더 작다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$3\\frac{1}{2}$을 자연수 부분과 같은 수 $3$으로 나눈 몫은 어느 두 자연수 사이에 있나요? 두 부분을 나눈 몫을 이용해 까닭을 설명하세요.",
+        "answer": "$1$과 $2$ 사이이다. 자연수 부분의 몫은 $3\\div3=1$이고, $1$보다 작은 $\\frac{1}{2}$을 나눈 몫 $\\frac{1}{6}$이 더해져 $1\\frac{1}{6}$이 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$1$보다 크고 $2$보다 작다",
+              "$1$과 $2$ 사이"
+            ]
+          },
+          {
+            "anyOf": [
+              "자연수 부분의 몫이 $1$이다",
+              "$3\\div3=1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "분수 부분의 몫은 $1$보다 작다",
+              "$\\frac{1}{6}$이 더해진다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$3\\frac{1}{2}\\div3=1+\\frac{1}{6}$이므로 몫은 $1$보다 {크고} $2$보다 {작다}.",
+        "acceptedAnswers": [
+          [
+            "크고",
+            "더 크고"
+          ],
+          [
+            "작다",
+            "더 작다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "86693566c10cafe7327eb69278d71c255c8a2cf458fe664d92398427c0589a5b",
+      "questionRevision": "planning-e5e6-20261006-86693566c10c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-3-xc18",
+      "bDecision": "revise",
+      "bPrompt": "대분수를 자연수로 나눈 몫이 진분수가 될 때와 대분수가 될 때는 나누는 수와 대분수의 크기가 각각 어떻게 다른가요? $2\\frac{1}{2}\\div3$과 $2\\frac{1}{2}\\div2$의 몫도 쓰세요.",
+      "bAnswer": "나누는 수가 대분수보다 크면 몫이 진분수이고, 작으면 대분수이다. $2\\frac{1}{2}\\div3=\\frac{5}{6}$, $2\\frac{1}{2}\\div2=1\\frac{1}{4}$이다.",
+      "bGoal": "나누는 수와 대분수의 크기 비교로 몫의 종류를 예측한다.",
+      "bReason": "비교 조건과 두 예의 정확한 몫을 함께 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "나누는 수가 대분수보다 크면 진분수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "나누는 수가 대분수보다 작으면 대분수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{5}{6}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1\\frac{1}{4}$",
+            "$\\frac{5}{4}$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "keep",
+      "cAfter": "(대분수)$\\div$(자연수)의 몫은 나누는 수가 그 대분수보다 {크면} 진분수이고, 작으면 대분수이다.",
+      "cReason": "나누는 수와 대분수를 비교하는 명확한 한 단어 빈칸이라 원문 그대로 유지한다.",
+      "exampleNeeded": false,
+      "synonymNotes": "크면, 더 크면 모두 가능",
+      "sourceIndex": 1694,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-3-xc18",
+        "section": "초6::1-1 분수의 나눗셈::1-1-3 (대분수)÷(자연수) 알아보기",
+        "term": "진분수 몫과 대분수 몫",
+        "kind": "성질",
+        "level": "중",
+        "definition": "(대분수)$\\div$(자연수)의 몫은 나누는 수가 그 대분수보다 {크면} 진분수이고, 작으면 대분수이다.",
+        "studentC": "(대분수)$\\div$(자연수)의 몫은 나누는 수가 그 대분수보다 □ 진분수이고, 작으면 대분수이다.",
+        "answers": [
+          "크면"
+        ]
+      },
+      "sourceFingerprint": "5356b00a1beca187e96ac0e9302950c393c7b175fbc0aa38f246feaed4fdb35d",
+      "draftEvidence": "evidence/section-058-draft.json",
+      "cFrozenDefinition": "(대분수)$\\div$(자연수)의 몫은 나누는 수가 그 대분수보다 {크면} 진분수이고, 작으면 대분수이다.",
+      "cFrozenStudentSentence": "(대분수)$\\div$(자연수)의 몫은 나누는 수가 그 대분수보다 □ 진분수이고, 작으면 대분수이다.",
+      "cProposedAnswers": [
+        "크면"
+      ],
+      "cStudentAfter": "(대분수)$\\div$(자연수)의 몫은 나누는 수가 그 대분수보다 □ 진분수이고, 작으면 대분수이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "크면"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "(대분수)$\\div$(자연수)의 몫은 나누는 수가 그 대분수보다 {크면} 진분수이고, 작으면 대분수이다.",
+      "cStudentSentence": "(대분수)$\\div$(자연수)의 몫은 나누는 수가 그 대분수보다 □ 진분수이고, 작으면 대분수이다.",
+      "cSlotAnswers": [
+        {
+          "key": "크면",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "대분수를 자연수로 나눈 몫이 진분수가 될 때와 대분수가 될 때는 나누는 수와 대분수의 크기가 각각 어떻게 다른가요? $2\\frac{1}{2}\\div3$과 $2\\frac{1}{2}\\div2$의 몫도 쓰세요.",
+        "answer": "나누는 수가 대분수보다 크면 몫이 진분수이고, 작으면 대분수이다. $2\\frac{1}{2}\\div3=\\frac{5}{6}$, $2\\frac{1}{2}\\div2=1\\frac{1}{4}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "나누는 수가 대분수보다 크면 진분수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나누는 수가 대분수보다 작으면 대분수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{5}{6}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1\\frac{1}{4}$",
+              "$\\frac{5}{4}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "(대분수)$\\div$(자연수)의 몫은 나누는 수가 그 대분수보다 {크면} 진분수이고, 작으면 대분수이다.",
+        "acceptedAnswers": [
+          [
+            "크면"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "992ad7b69443c4fbf28f159e1e6bbea8c470ca3027ef0bfbbfa2b08e3396251d",
+      "questionRevision": "planning-e5e6-20261006-992ad7b69443",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-3-xc19",
+      "bDecision": "revise",
+      "bPrompt": "$1\\frac{1}{2}\\div3$을 계산할 때 대분수를 가분수로 고치면 나누기 쉬워지는 까닭을 $\\frac{1}{2}$ 조각의 개수로 설명하고 몫을 구하세요.",
+      "bAnswer": "$1\\frac{1}{2}=\\frac{3}{2}$으로 자연수 부분과 분수 부분을 모두 $\\frac{1}{2}$ 조각의 개수($3$개)로 나타낼 수 있다. $3$개를 $3$으로 나누면 한 몫은 $1$개이므로 몫은 $\\frac{1}{2}$이다.",
+      "bGoal": "가분수가 전체를 같은 단위분수의 개수로 나타내 한꺼번에 나눌 수 있게 함을 안다.",
+      "bReason": "가분수로 고치는 이유를 개수 관점으로 설명하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "전체를 같은 단위분수의 개수로 나타낼 수 있다",
+            "$\\frac{1}{2}$이 $3$개이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "개수를 나누는 수로 나눈다",
+            "$3\\div3=1$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{2}$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "$1\\frac{1}{2}$은 $\\frac{1}{2}$이 {$3$}개이므로 $3$으로 나누면 한 몫은 $\\frac{1}{2}$이 {$1$}개이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        }
+      ],
+      "cReason": "추상적인 '같은 단위분수의 개수' 대신 실제 개수를 구하게 한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1695,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-3-xc19",
+        "section": "초6::1-1 분수의 나눗셈::1-1-3 (대분수)÷(자연수) 알아보기",
+        "term": "가분수로 고치면 편한 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "대분수를 가분수로 고치면 자연수 부분과 분수 부분을 {같은 단위분수의 개수}로 함께 나타내어 나눌 수 있다.",
+        "studentC": "대분수를 가분수로 고치면 자연수 부분과 분수 부분을 □로 함께 나타내어 나눌 수 있다.",
+        "answers": [
+          "같은 단위분수의 개수"
+        ]
+      },
+      "sourceFingerprint": "b09139a9abda00ce975e666b08b6cc8d681b46b8dc0bc25be9759908150f4975",
+      "draftEvidence": "evidence/section-058-draft.json",
+      "cProposedAnswers": [
+        "$3$",
+        "$1$"
+      ],
+      "cStudentAfter": "$1\\frac{1}{2}$은 $\\frac{1}{2}$이 □개이므로 $3$으로 나누면 한 몫은 $\\frac{1}{2}$이 □개이다.",
+      "cMarkedSentence": "$1\\frac{1}{2}$은 $\\frac{1}{2}$이 {$3$}개이므로 $3$으로 나누면 한 몫은 $\\frac{1}{2}$이 {$1$}개이다.",
+      "cStudentSentence": "$1\\frac{1}{2}$은 $\\frac{1}{2}$이 □개이므로 $3$으로 나누면 한 몫은 $\\frac{1}{2}$이 □개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "$1$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$1\\frac{1}{2}\\div3$을 계산할 때 대분수를 가분수로 고치면 나누기 쉬워지는 까닭을 $\\frac{1}{2}$ 조각의 개수로 설명하고 몫을 구하세요.",
+        "answer": "$1\\frac{1}{2}=\\frac{3}{2}$으로 자연수 부분과 분수 부분을 모두 $\\frac{1}{2}$ 조각의 개수($3$개)로 나타낼 수 있다. $3$개를 $3$으로 나누면 한 몫은 $1$개이므로 몫은 $\\frac{1}{2}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "전체를 같은 단위분수의 개수로 나타낼 수 있다",
+              "$\\frac{1}{2}$이 $3$개이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "개수를 나누는 수로 나눈다",
+              "$3\\div3=1$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{2}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1\\frac{1}{2}$은 $\\frac{1}{2}$이 {$3$}개이므로 $3$으로 나누면 한 몫은 $\\frac{1}{2}$이 {$1$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "$1$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "bf32532b966ec722c4f87714d812df6f8722ea0bcc75ca2325fd28e76e68c852",
+      "questionRevision": "planning-e5e6-20261006-bf32532b966e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-3-xc20",
+      "bDecision": "revise",
+      "bPrompt": "$6\\frac{3}{5}\\div3$을 자연수 부분과 분수 부분으로 갈라 나누기 편한 까닭을 설명하고, 몫을 구하세요.",
+      "bAnswer": "자연수 부분 $6$과 분수 부분의 분자 $3$이 모두 $3$의 배수라서 각각 나누어 떨어진다. $6\\div3=2$, $\\frac{3}{5}\\div3=\\frac{1}{5}$이므로 몫은 $2\\frac{1}{5}$이다.",
+      "bGoal": "두 부분이 모두 나누는 수의 배수일 때 따로 나누기 편함을 안다.",
+      "bReason": "원문 예가 완결되어 있어 조건과 몫을 함께 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$6$과 $3$이 모두 $3$의 배수이다",
+            "자연수 부분과 분자가 모두 나누는 수의 배수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2\\frac{1}{5}$",
+            "$\\frac{11}{5}$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "$6\\frac{3}{5}\\div3$에서 $6\\div3={}$ {$2$}, $\\frac{3}{5}\\div3={}$ {$\\frac{1}{5}$}이므로 두 부분을 각각 나누어도 계산이 쉽다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{5}$",
+            "$\\frac{3}{15}$"
+          ]
+        }
+      ],
+      "cReason": "'배수' 한 단어 대신 두 부분이 나누어떨어지는 계산을 직접 확인한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1696,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-3-xc20",
+        "section": "초6::1-1 분수의 나눗셈::1-1-3 (대분수)÷(자연수) 알아보기",
+        "term": "두 부분 나누기가 편한 경우",
+        "kind": "성질",
+        "level": "상",
+        "definition": "자연수 부분과 분수 부분의 분자가 모두 나누는 수의 {배수}이면 두 부분을 각각 나누는 것이 편하다.",
+        "example": {
+          "prompt": "$6\\frac{3}{5}\\div3$을 두 부분으로 갈라 나누기 편한 까닭은?",
+          "answer": "$6$과 $3$이 모두 $3$의 배수라서"
+        },
+        "studentC": "자연수 부분과 분수 부분의 분자가 모두 나누는 수의 □이면 두 부분을 각각 나누는 것이 편하다.",
+        "answers": [
+          "배수"
+        ]
+      },
+      "sourceFingerprint": "cd8b741a397570a42e46667349eaef64e36c9776e18d6df4838be44a41ce3017",
+      "draftEvidence": "evidence/section-058-draft.json",
+      "cProposedAnswers": [
+        "$2$",
+        "$\\frac{1}{5}$"
+      ],
+      "cStudentAfter": "$6\\frac{3}{5}\\div3$에서 $6\\div3={}$ □, $\\frac{3}{5}\\div3={}$ □이므로 두 부분을 각각 나누어도 계산이 쉽다.",
+      "cMarkedSentence": "$6\\frac{3}{5}\\div3$에서 $6\\div3={}$ {$2$}, $\\frac{3}{5}\\div3={}$ {$\\frac{1}{5}$}이므로 두 부분을 각각 나누어도 계산이 쉽다.",
+      "cStudentSentence": "$6\\frac{3}{5}\\div3$에서 $6\\div3={}$ □, $\\frac{3}{5}\\div3={}$ □이므로 두 부분을 각각 나누어도 계산이 쉽다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{1}{5}$",
+          "equivalents": [
+            "$\\frac{3}{15}$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$6\\frac{3}{5}\\div3$을 자연수 부분과 분수 부분으로 갈라 나누기 편한 까닭을 설명하고, 몫을 구하세요.",
+        "answer": "자연수 부분 $6$과 분수 부분의 분자 $3$이 모두 $3$의 배수라서 각각 나누어 떨어진다. $6\\div3=2$, $\\frac{3}{5}\\div3=\\frac{1}{5}$이므로 몫은 $2\\frac{1}{5}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$6$과 $3$이 모두 $3$의 배수이다",
+              "자연수 부분과 분자가 모두 나누는 수의 배수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2\\frac{1}{5}$",
+              "$\\frac{11}{5}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$6\\frac{3}{5}\\div3$에서 $6\\div3={}$ {$2$}, $\\frac{3}{5}\\div3={}$ {$\\frac{1}{5}$}이므로 두 부분을 각각 나누어도 계산이 쉽다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ],
+          [
+            "$\\frac{1}{5}$",
+            "$\\frac{3}{15}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "1ef234bce5f5b292baddc8c5b5472ee6d4723e8363ec7420eabca766c9030029",
+      "questionRevision": "planning-e5e6-20261006-1ef234bce5f5",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-3-xc21",
+      "bDecision": "revise",
+      "bPrompt": "$3\\frac{1}{2}\\div2$에서 자연수 부분 $3$을 $2$로 나누면 몫 $1$이 되고 $1$이 남습니다. 남은 $1$은 어떻게 해야 하나요? 몫도 구하세요.",
+      "bAnswer": "남은 $1$은 아직 나누지 않은 양이므로 분수 부분 $\\frac{1}{2}$과 합한 $1\\frac{1}{2}$을 $2$로 나눈다. 그 몫은 $\\frac{3}{4}$이므로 전체 몫은 $1\\frac{3}{4}$이다.",
+      "bGoal": "남은 양을 버리지 않고 분수 부분과 합쳐 나누는 방법을 안다.",
+      "bReason": "남는 양을 처리하는 구체 절차를 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "남은 $1$은 아직 나누지 않은 양이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "분수 부분과 합쳐서 나눈다",
+            "$1\\frac{1}{2}$을 $2$로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1\\frac{3}{4}$",
+            "$\\frac{7}{4}$"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "$3\\frac{1}{2}\\div2$에서 남은 $1$과 $\\frac{1}{2}$을 합한 {$1\\frac{1}{2}$}을 $2$로 나누면 {$\\frac{3}{4}$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1\\frac{1}{2}$",
+            "$\\frac{3}{2}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{4}$"
+          ]
+        }
+      ],
+      "cReason": "추상 문장 대신 남은 양을 합쳐 나누는 실제 계산을 묻는다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1697,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-3-xc21",
+        "section": "초6::1-1 분수의 나눗셈::1-1-3 (대분수)÷(자연수) 알아보기",
+        "term": "자연수 부분을 나누고 남은 양",
+        "kind": "방법",
+        "level": "상",
+        "definition": "자연수 부분을 나누고 남은 수는 {아직 나누지 않은 양}이다. 따라서 분수 부분과 함께 나누어야 전체를 빠짐없이 똑같이 나눌 수 있다.",
+        "studentC": "자연수 부분을 나누고 남은 수는 □이다. 따라서 분수 부분과 함께 나누어야 전체를 빠짐없이 똑같이 나눌 수 있다.",
+        "answers": [
+          "아직 나누지 않은 양"
+        ]
+      },
+      "sourceFingerprint": "941b6831b116014ce19ba04d1ac2678590a4ce0dbb81be6b29fe694d3ecca2e1",
+      "draftEvidence": "evidence/section-058-draft.json",
+      "cProposedAnswers": [
+        "$1\\frac{1}{2}$",
+        "$\\frac{3}{4}$"
+      ],
+      "cStudentAfter": "$3\\frac{1}{2}\\div2$에서 남은 $1$과 $\\frac{1}{2}$을 합한 □을 $2$로 나누면 □이다.",
+      "cMarkedSentence": "$3\\frac{1}{2}\\div2$에서 남은 $1$과 $\\frac{1}{2}$을 합한 {$1\\frac{1}{2}$}을 $2$로 나누면 {$\\frac{3}{4}$}이다.",
+      "cStudentSentence": "$3\\frac{1}{2}\\div2$에서 남은 $1$과 $\\frac{1}{2}$을 합한 □을 $2$로 나누면 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1\\frac{1}{2}$",
+          "equivalents": [
+            "$\\frac{3}{2}$"
+          ]
+        },
+        {
+          "key": "$\\frac{3}{4}$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$3\\frac{1}{2}\\div2$에서 자연수 부분 $3$을 $2$로 나누면 몫 $1$이 되고 $1$이 남습니다. 남은 $1$은 어떻게 해야 하나요? 몫도 구하세요.",
+        "answer": "남은 $1$은 아직 나누지 않은 양이므로 분수 부분 $\\frac{1}{2}$과 합한 $1\\frac{1}{2}$을 $2$로 나눈다. 그 몫은 $\\frac{3}{4}$이므로 전체 몫은 $1\\frac{3}{4}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "남은 $1$은 아직 나누지 않은 양이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분수 부분과 합쳐서 나눈다",
+              "$1\\frac{1}{2}$을 $2$로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1\\frac{3}{4}$",
+              "$\\frac{7}{4}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$3\\frac{1}{2}\\div2$에서 남은 $1$과 $\\frac{1}{2}$을 합한 {$1\\frac{1}{2}$}을 $2$로 나누면 {$\\frac{3}{4}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$1\\frac{1}{2}$",
+            "$\\frac{3}{2}$"
+          ],
+          [
+            "$\\frac{3}{4}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9cfa7b89b4569a91396379e35d0cf45c9fb68c32c26fe143d72f009837142df1",
+      "questionRevision": "planning-e5e6-20261006-9cfa7b89b456",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-3-xc23",
+      "bDecision": "revise",
+      "bPrompt": "같은 대분수 $2\\frac{1}{2}$을 $5$로 나눈 몫과 $10$으로 나눈 몫을 구하고, 나누는 수가 $2$배가 되면 몫이 어떻게 되는지 쓰세요.",
+      "bAnswer": "$2\\frac{1}{2}\\div5=\\frac{1}{2}$, $2\\frac{1}{2}\\div10=\\frac{1}{4}$이다. 나누는 수가 $2$배가 되면 몫은 반이 된다.",
+      "bGoal": "나누는 수가 커질 때 몫이 반비례하여 줄어듦을 안다.",
+      "bReason": "두 몫을 실제로 비교해 관계를 찾게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{1}{2}$",
+            "$\\frac{5}{10}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{4}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "몫이 반이 된다",
+            "몫이 $\\frac{1}{2}$배가 된다",
+            "몫이 절반이 된다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "$2\\frac{1}{2}\\div5=\\frac{1}{2}$, $2\\frac{1}{2}\\div10={}$ {$\\frac{1}{4}$}이므로 나누는 수가 $2$배가 되면 몫은 {반}이 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{1}{4}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "반",
+            "절반",
+            "$\\frac{1}{2}$배"
+          ]
+        }
+      ],
+      "cReason": "실제 두 식을 비교해 반이라는 관계를 알게 한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1698,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-3-xc23",
+        "section": "초6::1-1 분수의 나눗셈::1-1-3 (대분수)÷(자연수) 알아보기",
+        "term": "나누는 수가 $2$배일 때",
+        "kind": "성질",
+        "level": "상",
+        "definition": "같은 대분수를 나눌 때 나누는 수가 $2$배이면 몫은 {반}이 된다.",
+        "studentC": "같은 대분수를 나눌 때 나누는 수가 $2$배이면 몫은 □이 된다.",
+        "answers": [
+          "반"
+        ]
+      },
+      "sourceFingerprint": "319d5dcc3bf76badd96677568266b48d1d721c525bf6a922c21a3a616a80d80c",
+      "draftEvidence": "evidence/section-058-draft.json",
+      "cProposedAnswers": [
+        "$\\frac{1}{4}$",
+        "반"
+      ],
+      "cStudentAfter": "$2\\frac{1}{2}\\div5=\\frac{1}{2}$, $2\\frac{1}{2}\\div10={}$ □이므로 나누는 수가 $2$배가 되면 몫은 □이 된다.",
+      "cMarkedSentence": "$2\\frac{1}{2}\\div5=\\frac{1}{2}$, $2\\frac{1}{2}\\div10={}$ {$\\frac{1}{4}$}이므로 나누는 수가 $2$배가 되면 몫은 {반}이 된다.",
+      "cStudentSentence": "$2\\frac{1}{2}\\div5=\\frac{1}{2}$, $2\\frac{1}{2}\\div10={}$ □이므로 나누는 수가 $2$배가 되면 몫은 □이 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{1}{4}$",
+          "equivalents": []
+        },
+        {
+          "key": "반",
+          "equivalents": [
+            "절반",
+            "$\\frac{1}{2}$배"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "같은 대분수 $2\\frac{1}{2}$을 $5$로 나눈 몫과 $10$으로 나눈 몫을 구하고, 나누는 수가 $2$배가 되면 몫이 어떻게 되는지 쓰세요.",
+        "answer": "$2\\frac{1}{2}\\div5=\\frac{1}{2}$, $2\\frac{1}{2}\\div10=\\frac{1}{4}$이다. 나누는 수가 $2$배가 되면 몫은 반이 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{1}{2}$",
+              "$\\frac{5}{10}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{4}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "몫이 반이 된다",
+              "몫이 $\\frac{1}{2}$배가 된다",
+              "몫이 절반이 된다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$2\\frac{1}{2}\\div5=\\frac{1}{2}$, $2\\frac{1}{2}\\div10={}$ {$\\frac{1}{4}$}이므로 나누는 수가 $2$배가 되면 몫은 {반}이 된다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{1}{4}$"
+          ],
+          [
+            "반",
+            "절반",
+            "$\\frac{1}{2}$배"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "12d2d9e23f652331296ce481b6771698c6641de8d10ca7dcc8aef7396984764d",
+      "questionRevision": "planning-e5e6-20261006-12d2d9e23f65",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-3-xc25",
+      "bDecision": "revise",
+      "bPrompt": "$5\\frac{1}{3}\\div4$의 몫이 어떤 두 자연수 사이에 있는지 어림하고, 그렇게 어림하는 방법을 설명하세요.",
+      "bAnswer": "$5\\frac{1}{3}$은 $4$와 $8$ 사이이다. $4\\div4=1$, $8\\div4=2$이므로 몫은 $1$과 $2$ 사이이다. $4$로 나누어떨어지는 두 수를 고르면 쉽다.",
+      "bGoal": "나누어떨어지는 두 자연수 사이에 넣어 몫의 범위를 어림하는 방법을 안다.",
+      "bReason": "어림 방법과 구체 범위를 함께 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$5\\frac{1}{3}$이 $4$와 $8$ 사이이다",
+            "나누어떨어지는 두 수 사이에 넣는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$과 $2$ 사이",
+            "$1$보다 크고 $2$보다 작다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "cDecision": "revise",
+      "cAfter": "$5\\frac{1}{3}$은 $4$와 $8$ 사이이므로 $5\\frac{1}{3}\\div4$의 몫은 $4\\div4={}$ {$1$}과 $8\\div4={}$ {$2$} 사이이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        }
+      ],
+      "cReason": "긴 구절 대신 어림에 쓰는 두 몫을 계산하게 한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1699,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-3-xc25",
+        "section": "초6::1-1 분수의 나눗셈::1-1-3 (대분수)÷(자연수) 알아보기",
+        "term": "몫의 범위 어림하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "대분수가 두 자연수 사이에 있으면, 그것을 자연수로 나눈 몫도 {그 두 자연수를 각각 나눈 몫 사이}에 있다. 나누어떨어지는 두 수를 고르면 어림하기 쉽다.",
+        "studentC": "대분수가 두 자연수 사이에 있으면, 그것을 자연수로 나눈 몫도 □에 있다. 나누어떨어지는 두 수를 고르면 어림하기 쉽다.",
+        "answers": [
+          "그 두 자연수를 각각 나눈 몫 사이"
+        ]
+      },
+      "sourceFingerprint": "644f28e0c95b31c2173280a22bac3677ad19e1c352c4a19a4394cc8ef84d089e",
+      "draftEvidence": "evidence/section-058-draft.json",
+      "cProposedAnswers": [
+        "$1$",
+        "$2$"
+      ],
+      "cStudentAfter": "$5\\frac{1}{3}$은 $4$와 $8$ 사이이므로 $5\\frac{1}{3}\\div4$의 몫은 $4\\div4={}$ □과 $8\\div4={}$ □ 사이이다.",
+      "cMarkedSentence": "$5\\frac{1}{3}$은 $4$와 $8$ 사이이므로 $5\\frac{1}{3}\\div4$의 몫은 $4\\div4={}$ {$1$}과 $8\\div4={}$ {$2$} 사이이다.",
+      "cStudentSentence": "$5\\frac{1}{3}$은 $4$와 $8$ 사이이므로 $5\\frac{1}{3}\\div4$의 몫은 $4\\div4={}$ □과 $8\\div4={}$ □ 사이이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$1$",
+          "equivalents": []
+        },
+        {
+          "key": "$2$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$5\\frac{1}{3}\\div4$의 몫이 어떤 두 자연수 사이에 있는지 어림하고, 그렇게 어림하는 방법을 설명하세요.",
+        "answer": "$5\\frac{1}{3}$은 $4$와 $8$ 사이이다. $4\\div4=1$, $8\\div4=2$이므로 몫은 $1$과 $2$ 사이이다. $4$로 나누어떨어지는 두 수를 고르면 쉽다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$5\\frac{1}{3}$이 $4$와 $8$ 사이이다",
+              "나누어떨어지는 두 수 사이에 넣는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1$과 $2$ 사이",
+              "$1$보다 크고 $2$보다 작다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$5\\frac{1}{3}$은 $4$와 $8$ 사이이므로 $5\\frac{1}{3}\\div4$의 몫은 $4\\div4={}$ {$1$}과 $8\\div4={}$ {$2$} 사이이다.",
+        "acceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "$2$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "cd2055233a451181c5d9b7ee596c2b9fb27e028a66b6c7698994b03349b1900a",
+      "questionRevision": "planning-e5e6-20261006-cd2055233a45",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-3-xc27",
+      "bDecision": "revise",
+      "bPrompt": "대분수를 자연수로 나눈 몫이 자연수가 될 수 없는 까닭을, 몫에 나누는 수를 곱하는 검산을 이용해 설명하세요.",
+      "bAnswer": "몫이 자연수라면 몫에 나누는 수를 곱한 값도 자연수여야 한다. 그런데 그 곱은 처음 대분수이고 대분수는 자연수가 아니므로 모순이다. 그래서 몫은 자연수가 될 수 없다.",
+      "bGoal": "검산 곱셈을 이용해 몫이 자연수일 수 없음을 설명한다.",
+      "bReason": "검산과 자연수의 곱셈 닫힘을 연결해 까닭을 묻는다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "몫이 자연수이면 몫에 나누는 수를 곱한 값도 자연수이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "그 곱은 처음 대분수이고 자연수가 아니므로 모순이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "cDecision": "revise",
+      "cAfter": "$3\\frac{1}{2}\\div2$의 몫 {$\\frac{7}{4}$}에 $2$를 곱하면 {$3\\frac{1}{2}$}이다. 이 값은 자연수가 아니다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{7}{4}$",
+            "$1\\frac{3}{4}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3\\frac{1}{2}$",
+            "$\\frac{7}{2}$"
+          ]
+        }
+      ],
+      "cReason": "추상적인 결론 빈칸 대신 실제 나눗셈과 확인 곱셈을 제시한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1700,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-1-3-xc27",
+        "section": "초6::1-1 분수의 나눗셈::1-1-3 (대분수)÷(자연수) 알아보기",
+        "term": "몫이 자연수가 될 수 없는 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "대분수는 자연수가 아니므로 자연수로 나눈 몫에 그 수를 다시 곱해도 자연수가 안 된다. 그래서 몫은 {자연수가 될 수 없다}.",
+        "studentC": "대분수는 자연수가 아니므로 자연수로 나눈 몫에 그 수를 다시 곱해도 자연수가 안 된다. 그래서 몫은 □.",
+        "answers": [
+          "자연수가 될 수 없다"
+        ]
+      },
+      "sourceFingerprint": "2556b0cb4423645c5f48542b5d5a0d27fd3104cd066171be3942d03eaf520ea4",
+      "draftEvidence": "evidence/section-058-draft.json",
+      "cProposedAnswers": [
+        "$\\frac{7}{4}$",
+        "$3\\frac{1}{2}$"
+      ],
+      "cStudentAfter": "$3\\frac{1}{2}\\div2$의 몫 □에 $2$를 곱하면 □이다. 이 값은 자연수가 아니다.",
+      "cMarkedSentence": "$3\\frac{1}{2}\\div2$의 몫 {$\\frac{7}{4}$}에 $2$를 곱하면 {$3\\frac{1}{2}$}이다. 이 값은 자연수가 아니다.",
+      "cStudentSentence": "$3\\frac{1}{2}\\div2$의 몫 □에 $2$를 곱하면 □이다. 이 값은 자연수가 아니다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{7}{4}$",
+          "equivalents": [
+            "$1\\frac{3}{4}$"
+          ]
+        },
+        {
+          "key": "$3\\frac{1}{2}$",
+          "equivalents": [
+            "$\\frac{7}{2}$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "대분수를 자연수로 나눈 몫이 자연수가 될 수 없는 까닭을, 몫에 나누는 수를 곱하는 검산을 이용해 설명하세요.",
+        "answer": "몫이 자연수라면 몫에 나누는 수를 곱한 값도 자연수여야 한다. 그런데 그 곱은 처음 대분수이고 대분수는 자연수가 아니므로 모순이다. 그래서 몫은 자연수가 될 수 없다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "몫이 자연수이면 몫에 나누는 수를 곱한 값도 자연수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "그 곱은 처음 대분수이고 자연수가 아니므로 모순이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$3\\frac{1}{2}\\div2$의 몫 {$\\frac{7}{4}$}에 $2$를 곱하면 {$3\\frac{1}{2}$}이다. 이 값은 자연수가 아니다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{7}{4}$",
+            "$1\\frac{3}{4}$"
+          ],
+          [
+            "$3\\frac{1}{2}$",
+            "$\\frac{7}{2}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "d28c123be81632bb67ec06ec5e0b3e771eb27773c3858bf1d9c5a7a8a17d2f6d",
+      "questionRevision": "planning-e5e6-20261006-d28c123be816",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-1-xc1",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "naming",
+      "bGoal": "입체도형이라는 용어의 뜻을 확인한다.",
+      "bReason": "'한 평면 위에 놓이지 않고'는 학생이 이해하기 어려워 B 질문으로 쓰기 불명확하다.",
+      "cDecision": "revise",
+      "cAfter": "각기둥처럼 높이가 있어 공간을 차지하는 도형을 {입체도형}이라 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "입체도형"
+          ]
+        }
+      ],
+      "cReason": "학생이 아는 말(높이, 공간)로 바꿔 용어를 묻는다.",
+      "exclusionReason": "설명이 불명확하고 평면도형 대비는 xc8 C가 다룬다.",
+      "exampleNeeded": false,
+      "coreAfter": "입체도형은 길이, 너비, {높이}가 있어 공간을 차지하는 도형이다.",
+      "coreReason": "'모든 부분이 한 평면 위에 놓이지 않고'는 학년 언어로 불명확하다.",
+      "editorialOwner": "Codex",
+      "coreTargetReason": "한 평면 위에 놓이지 않는다는 긴 부정 표현 대신 세 번째 크기인 높이를 표지한다. 길이·너비·높이로 공간을 차지하는 일반 입체 설명을 유지한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "sourceIndex": 1701,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-1-xc1",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-1 각기둥 알아보기와 각기둥의 밑면과 옆면",
+        "term": "입체도형",
+        "kind": "정의",
+        "level": "하",
+        "definition": "도형의 모든 부분이 {한 평면 위에 놓이지 않고}, 공간을 차지하는 도형을 입체도형이라 한다.",
+        "studentC": "도형의 모든 부분이 □, 공간을 차지하는 도형을 입체도형이라 한다.",
+        "answers": [
+          "한 평면 위에 놓이지 않고"
+        ]
+      },
+      "sourceFingerprint": "3a98c4bab37f0860549ddc072cc5122e09fd86613169b07a2f6c1f7da38f91b5",
+      "draftEvidence": "evidence/section-059-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "입체도형"
+      ],
+      "cStudentAfter": "각기둥처럼 높이가 있어 공간을 차지하는 도형을 □이라 한다.",
+      "cMarkedSentence": "각기둥처럼 높이가 있어 공간을 차지하는 도형을 {입체도형}이라 한다.",
+      "cStudentSentence": "각기둥처럼 높이가 있어 공간을 차지하는 도형을 □이라 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "입체도형",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "각기둥처럼 높이가 있어 공간을 차지하는 도형을 {입체도형}이라 한다.",
+        "acceptedAnswers": [
+          [
+            "입체도형"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "설명이 불명확하고 평면도형 대비는 xc8 C가 다룬다."
+      },
+      "proposalFingerprint": "aab06136b511df91f1ac99cf2abb3a4d1fa380d85238782dc893c7c7459bc5ca",
+      "questionRevision": "planning-e5e6-20261006-aab06136b511",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-1-xc2",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "bGoal": "두 밑면의 평행·합동 관계를 확인한다.",
+      "bReason": "c2 B와 같은 내용이다.",
+      "cDecision": "keep",
+      "cAfter": "각기둥의 두 밑면은 서로 {평행}하고 모양과 크기가 같다.",
+      "cReason": "'평행'을 묻는 짧은 낱말 C로 유용하다.",
+      "exclusionReason": "c2 B가 같은 관계를 묻는다. 대체: e6-1-2-1-c2",
+      "exampleNeeded": false,
+      "sourceIndex": 1702,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-1-xc2",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-1 각기둥 알아보기와 각기둥의 밑면과 옆면",
+        "term": "두 밑면의 관계",
+        "kind": "성질",
+        "level": "하",
+        "definition": "각기둥의 두 밑면은 서로 {평행}하고 모양과 크기가 같다.",
+        "studentC": "각기둥의 두 밑면은 서로 □하고 모양과 크기가 같다.",
+        "answers": [
+          "평행"
+        ]
+      },
+      "sourceFingerprint": "8a157b611e726bab929892a1d9d287094937c9d764939046a2e31a4b6db74351",
+      "draftEvidence": "evidence/section-059-draft.json",
+      "cFrozenDefinition": "각기둥의 두 밑면은 서로 {평행}하고 모양과 크기가 같다.",
+      "cFrozenStudentSentence": "각기둥의 두 밑면은 서로 □하고 모양과 크기가 같다.",
+      "cProposedAnswers": [
+        "평행"
+      ],
+      "cStudentAfter": "각기둥의 두 밑면은 서로 □하고 모양과 크기가 같다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "평행"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "각기둥의 두 밑면은 서로 {평행}하고 모양과 크기가 같다.",
+      "cStudentSentence": "각기둥의 두 밑면은 서로 □하고 모양과 크기가 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "평행",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "각기둥의 두 밑면은 서로 {평행}하고 모양과 크기가 같다.",
+        "acceptedAnswers": [
+          [
+            "평행"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "c2 B가 같은 관계를 묻는다. 대체: e6-1-2-1-c2"
+      },
+      "proposalFingerprint": "dcfb67deb13e3b7851d4b08dae4cf7f1690c80d7411eb816f6a1dcf2402577ac",
+      "questionRevision": "planning-e5e6-20261006-dcfb67deb13e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-1-xc3",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "bGoal": "옆면의 모양을 확인한다.",
+      "bReason": "c3 B와 같은 내용이다.",
+      "cDecision": "keep",
+      "cAfter": "각기둥의 옆면은 모두 {직사각형}이다.",
+      "cReason": "옆면 모양을 묻는 짧은 낱말 C이다.",
+      "exclusionReason": "c3 B에 포함. 대체: e6-1-2-1-c3",
+      "exampleNeeded": false,
+      "sourceIndex": 1703,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-1-xc3",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-1 각기둥 알아보기와 각기둥의 밑면과 옆면",
+        "term": "옆면의 모양",
+        "kind": "성질",
+        "level": "하",
+        "definition": "각기둥의 옆면은 모두 {직사각형}이다.",
+        "studentC": "각기둥의 옆면은 모두 □이다.",
+        "answers": [
+          "직사각형"
+        ]
+      },
+      "sourceFingerprint": "88d6765ad6965e1365be977a8dd9626c91667ac2efaf57aa5c8219f9c87f3d99",
+      "draftEvidence": "evidence/section-059-draft.json",
+      "cFrozenDefinition": "각기둥의 옆면은 모두 {직사각형}이다.",
+      "cFrozenStudentSentence": "각기둥의 옆면은 모두 □이다.",
+      "cProposedAnswers": [
+        "직사각형"
+      ],
+      "cStudentAfter": "각기둥의 옆면은 모두 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "직사각형"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "각기둥의 옆면은 모두 {직사각형}이다.",
+      "cStudentSentence": "각기둥의 옆면은 모두 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "직사각형",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "각기둥의 옆면은 모두 {직사각형}이다.",
+        "acceptedAnswers": [
+          [
+            "직사각형"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "c3 B에 포함. 대체: e6-1-2-1-c3"
+      },
+      "proposalFingerprint": "1ed622c123e01f12776b1d6546a53727856e26632b990a81e10de4fec9b5df96",
+      "questionRevision": "planning-e5e6-20261006-1ed622c123e0",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-1-xc4",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "bGoal": "밑면의 개수를 확인한다.",
+      "bReason": "숫자 하나만 묻는 사소한 문항이다.",
+      "cDecision": "keep",
+      "cAfter": "각기둥의 밑면은 언제나 {$2$}개이다.",
+      "cReason": "밑면 개수 $2$를 확인하는 짧은 수 빈칸이다.",
+      "exclusionReason": "단순 수 확인이라 B 가치가 낮다. 대체: e6-1-2-1-c2",
+      "exampleNeeded": false,
+      "sourceIndex": 1704,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-1-xc4",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-1 각기둥 알아보기와 각기둥의 밑면과 옆면",
+        "term": "밑면의 개수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "각기둥의 밑면은 언제나 {$2$}개이다.",
+        "studentC": "각기둥의 밑면은 언제나 □개이다.",
+        "answers": [
+          "$2$"
+        ]
+      },
+      "sourceFingerprint": "992b3e90f02beeabf8b4858c0c03fb457e86865e08b9d40837d18b74efafb930",
+      "draftEvidence": "evidence/section-059-draft.json",
+      "cFrozenDefinition": "각기둥의 밑면은 언제나 {$2$}개이다.",
+      "cFrozenStudentSentence": "각기둥의 밑면은 언제나 □개이다.",
+      "cProposedAnswers": [
+        "$2$"
+      ],
+      "cStudentAfter": "각기둥의 밑면은 언제나 □개이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "각기둥의 밑면은 언제나 {$2$}개이다.",
+      "cStudentSentence": "각기둥의 밑면은 언제나 □개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "각기둥의 밑면은 언제나 {$2$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$2$"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "단순 수 확인이라 B 가치가 낮다. 대체: e6-1-2-1-c2"
+      },
+      "proposalFingerprint": "0fd64cacddf3a9b9b082b4a6cec335ed8ce2f5ef73018c40b22725b25d44b766",
+      "questionRevision": "planning-e5e6-20261006-0fd64cacddf3",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-1-xc5",
+      "bDecision": "revise",
+      "bPrompt": "각기둥의 옆면의 수와 밑면의 변의 수는 어떤 관계인가? 밑면이 육각형인 각기둥의 옆면은 몇 개이며 그 까닭은 무엇인지 설명하시오.",
+      "bAnswer": "옆면의 수는 밑면의 변의 수와 같다. 밑면이 육각형이면 옆면은 $6$개이고, 밑면의 변마다 옆면이 하나씩 이어지기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "옆면의 수와 밑면의 변의 수가 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$개",
+            "$6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "밑면의 변마다 옆면이 하나씩 있다",
+            "변 하나에 옆면 하나가 이어진다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "옆면 수와 밑면 변 수의 대응 관계를 까닭과 함께 설명한다.",
+      "bReason": "원문 예의 결론을 질문에 주지 않고 관계와 까닭을 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "각기둥의 옆면의 수는 밑면의 {변의 수}와 같다.",
+      "cReason": "옆면 수가 밑면의 무엇과 같은지 묻는 핵심 관계 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1705,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-1-xc5",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-1 각기둥 알아보기와 각기둥의 밑면과 옆면",
+        "term": "옆면의 개수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "각기둥의 옆면의 수는 밑면의 {변의 수}와 같다.",
+        "example": {
+          "prompt": "밑면이 육각형인 각기둥의 옆면이 $6$개인 까닭은?",
+          "answer": "밑면의 변마다 하나씩 있어서"
+        },
+        "studentC": "각기둥의 옆면의 수는 밑면의 □와 같다.",
+        "answers": [
+          "변의 수"
+        ]
+      },
+      "sourceFingerprint": "2bbb490583317e478a560fd25296585e5b415dc0a2eb39221cd9c0f4292e5a58",
+      "draftEvidence": "evidence/section-059-draft.json",
+      "cFrozenDefinition": "각기둥의 옆면의 수는 밑면의 {변의 수}와 같다.",
+      "cFrozenStudentSentence": "각기둥의 옆면의 수는 밑면의 □와 같다.",
+      "cProposedAnswers": [
+        "변의 수"
+      ],
+      "cStudentAfter": "각기둥의 옆면의 수는 밑면의 □와 같다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "변의 수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "각기둥의 옆면의 수는 밑면의 {변의 수}와 같다.",
+      "cStudentSentence": "각기둥의 옆면의 수는 밑면의 □와 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "변의 수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각기둥의 옆면의 수와 밑면의 변의 수는 어떤 관계인가? 밑면이 육각형인 각기둥의 옆면은 몇 개이며 그 까닭은 무엇인지 설명하시오.",
+        "answer": "옆면의 수는 밑면의 변의 수와 같다. 밑면이 육각형이면 옆면은 $6$개이고, 밑면의 변마다 옆면이 하나씩 이어지기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "옆면의 수와 밑면의 변의 수가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$개",
+              "$6$"
+            ]
+          },
+          {
+            "anyOf": [
+              "밑면의 변마다 옆면이 하나씩 있다",
+              "변 하나에 옆면 하나가 이어진다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각기둥의 옆면의 수는 밑면의 {변의 수}와 같다.",
+        "acceptedAnswers": [
+          [
+            "변의 수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a79279c26444b55570bd0c441af1bbd49f03be0b5d4b4cc3c10adbdd5a999a0c",
+      "questionRevision": "planning-e5e6-20261006-a79279c26444",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-1-xc6",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "naming",
+      "bGoal": "밑면과 옆면이 만나는 방식을 확인한다.",
+      "bReason": "낱말 하나 암기 수준이다.",
+      "cDecision": "keep",
+      "cAfter": "각기둥에서 밑면과 옆면은 서로 {수직}으로 만난다.",
+      "cReason": "수직이라는 알려진 낱말을 묻는 짧은 문장이다.",
+      "exclusionReason": "B로 만들면 수직이라는 낱말 확인에 그친다. 대체: e6-1-2-1-xc23",
+      "exampleNeeded": false,
+      "sourceIndex": 1706,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-1-xc6",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-1 각기둥 알아보기와 각기둥의 밑면과 옆면",
+        "term": "밑면과 옆면이 만나는 모양",
+        "kind": "성질",
+        "level": "하",
+        "definition": "각기둥에서 밑면과 옆면은 서로 {수직}으로 만난다.",
+        "studentC": "각기둥에서 밑면과 옆면은 서로 □으로 만난다.",
+        "answers": [
+          "수직"
+        ]
+      },
+      "sourceFingerprint": "d33501ba4b570f1c444dee69884bdeb6d5dd314bdb4502c1e3bd738e698bbe16",
+      "draftEvidence": "evidence/section-059-draft.json",
+      "cFrozenDefinition": "각기둥에서 밑면과 옆면은 서로 {수직}으로 만난다.",
+      "cFrozenStudentSentence": "각기둥에서 밑면과 옆면은 서로 □으로 만난다.",
+      "cProposedAnswers": [
+        "수직"
+      ],
+      "cStudentAfter": "각기둥에서 밑면과 옆면은 서로 □으로 만난다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "수직"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "각기둥에서 밑면과 옆면은 서로 {수직}으로 만난다.",
+      "cStudentSentence": "각기둥에서 밑면과 옆면은 서로 □으로 만난다.",
+      "cSlotAnswers": [
+        {
+          "key": "수직",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "각기둥에서 밑면과 옆면은 서로 {수직}으로 만난다.",
+        "acceptedAnswers": [
+          [
+            "수직"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B로 만들면 수직이라는 낱말 확인에 그친다. 대체: e6-1-2-1-xc23"
+      },
+      "proposalFingerprint": "03328bfc38b894bf885f79d3a69ca43c2932bf8249ce46295fe43548bcdf527b",
+      "questionRevision": "planning-e5e6-20261006-03328bfc38b8",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-1-xc7",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "naming",
+      "bGoal": "면의 뜻을 확인한다.",
+      "bReason": "용어 암기 위주이고 다각형이라는 낱말만 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "각기둥을 둘러싸고 있는 평평한 {다각형} 하나하나를 면이라 한다.",
+      "cReason": "각기둥을 둘러싼 평평한 면이 다각형임을 묻는 짧은 문장이다.",
+      "exclusionReason": "단순 용어 뜻 확인. 대체: e6-1-2-1-c1",
+      "exampleNeeded": false,
+      "sourceIndex": 1707,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-1-xc7",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-1 각기둥 알아보기와 각기둥의 밑면과 옆면",
+        "term": "면",
+        "kind": "정의",
+        "level": "하",
+        "definition": "각기둥을 둘러싸고 있는 평평한 {다각형} 하나하나를 면이라 한다.",
+        "studentC": "각기둥을 둘러싸고 있는 평평한 □ 하나하나를 면이라 한다.",
+        "answers": [
+          "다각형"
+        ]
+      },
+      "sourceFingerprint": "b5c14d990524d5059916dbafa2a65f4a43b1b3482598281c6d369c2eeb82a5da",
+      "draftEvidence": "evidence/section-059-draft.json",
+      "cFrozenDefinition": "각기둥을 둘러싸고 있는 평평한 {다각형} 하나하나를 면이라 한다.",
+      "cFrozenStudentSentence": "각기둥을 둘러싸고 있는 평평한 □ 하나하나를 면이라 한다.",
+      "cProposedAnswers": [
+        "다각형"
+      ],
+      "cStudentAfter": "각기둥을 둘러싸고 있는 평평한 □ 하나하나를 면이라 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "다각형"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "각기둥을 둘러싸고 있는 평평한 {다각형} 하나하나를 면이라 한다.",
+      "cStudentSentence": "각기둥을 둘러싸고 있는 평평한 □ 하나하나를 면이라 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "다각형",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "각기둥을 둘러싸고 있는 평평한 {다각형} 하나하나를 면이라 한다.",
+        "acceptedAnswers": [
+          [
+            "다각형"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "단순 용어 뜻 확인. 대체: e6-1-2-1-c1"
+      },
+      "proposalFingerprint": "dff8e4b5799bc0fe26f0752d18b7c0a6b29977f19c2a43b9c3d6da4cebeddb1e",
+      "questionRevision": "planning-e5e6-20261006-dff8e4b5799b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-1-xc8",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "naming",
+      "bGoal": "평면도형과 입체도형을 구별한다.",
+      "bReason": "분류 이름 암기로 B 가치가 낮다.",
+      "cDecision": "keep",
+      "cAfter": "삼각형, 사각형은 {평면도형}이고, 각기둥은 입체도형이다.",
+      "cReason": "삼각형·사각형을 평면도형이라 부르는 짧은 낱말 빈칸이다.",
+      "exclusionReason": "용어 확인만 하는 사소한 문항. 대체: e6-1-2-1-xc1 C",
+      "exampleNeeded": false,
+      "sourceIndex": 1708,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-1-xc8",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-1 각기둥 알아보기와 각기둥의 밑면과 옆면",
+        "term": "평면도형과 입체도형",
+        "kind": "정의",
+        "level": "하",
+        "definition": "삼각형, 사각형은 {평면도형}이고, 각기둥은 입체도형이다.",
+        "studentC": "삼각형, 사각형은 □이고, 각기둥은 입체도형이다.",
+        "answers": [
+          "평면도형"
+        ]
+      },
+      "sourceFingerprint": "efb66dc0bdf668218125f31c840e09bd817d9fbc28a5c1cffa23518c165afbde",
+      "draftEvidence": "evidence/section-059-draft.json",
+      "cFrozenDefinition": "삼각형, 사각형은 {평면도형}이고, 각기둥은 입체도형이다.",
+      "cFrozenStudentSentence": "삼각형, 사각형은 □이고, 각기둥은 입체도형이다.",
+      "cProposedAnswers": [
+        "평면도형"
+      ],
+      "cStudentAfter": "삼각형, 사각형은 □이고, 각기둥은 입체도형이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "평면도형"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "삼각형, 사각형은 {평면도형}이고, 각기둥은 입체도형이다.",
+      "cStudentSentence": "삼각형, 사각형은 □이고, 각기둥은 입체도형이다.",
+      "cSlotAnswers": [
+        {
+          "key": "평면도형",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "삼각형, 사각형은 {평면도형}이고, 각기둥은 입체도형이다.",
+        "acceptedAnswers": [
+          [
+            "평면도형"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "용어 확인만 하는 사소한 문항. 대체: e6-1-2-1-xc1 C"
+      },
+      "proposalFingerprint": "009a4166f219884ac6c5c095c049385e689857715448ba3d0beaa58faace08d4",
+      "questionRevision": "planning-e5e6-20261006-009a4166f219",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-1-xc9",
+      "bDecision": "revise",
+      "bPrompt": "어떤 입체도형에서 두 다각형 면을 각기둥의 밑면으로 정하려면 이 두 면 사이와 나머지 면들이 각각 어떤 조건을 만족해야 하는지 말하시오.",
+      "bAnswer": "두 면이 서로 평행하고 합동이어야 하며, 나머지 면들이 두 면의 대응하는 변을 잇는 직사각형이어야 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 면이 평행하고 합동이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "나머지 면이 직사각형이다",
+            "나머지 면이 대응하는 변을 잇는 직사각형이다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "밑면 후보를 확인하는 판단 절차를 설명한다.",
+      "bReason": "방법 행으로 두 조건을 구분해 말하게 한다.",
+      "cDecision": "keep",
+      "cAfter": "두 다각형 면이 서로 {평행하고 합동}이고, 나머지 면들이 두 면의 대응하는 변을 잇는 {직사각형}이면 그 두 면을 밑면으로 정할 수 있다.",
+      "cReason": "밑면 판단의 두 조건을 짧은 두 빈칸으로 묻는 적절한 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1709,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-1-xc9",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-1 각기둥 알아보기와 각기둥의 밑면과 옆면",
+        "term": "밑면 찾기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "두 다각형 면이 서로 {평행하고 합동}이고, 나머지 면들이 두 면의 대응하는 변을 잇는 {직사각형}이면 그 두 면을 밑면으로 정할 수 있다.",
+        "studentC": "두 다각형 면이 서로 □이고, 나머지 면들이 두 면의 대응하는 변을 잇는 □이면 그 두 면을 밑면으로 정할 수 있다.",
+        "answers": [
+          "평행하고 합동",
+          "직사각형"
+        ]
+      },
+      "sourceFingerprint": "a60e166e9108cfecb02b720d2c18eec1f02b518eb2c9856b8fbf7e36d5483a73",
+      "draftEvidence": "evidence/section-059-draft.json",
+      "cFrozenDefinition": "두 다각형 면이 서로 {평행하고 합동}이고, 나머지 면들이 두 면의 대응하는 변을 잇는 {직사각형}이면 그 두 면을 밑면으로 정할 수 있다.",
+      "cFrozenStudentSentence": "두 다각형 면이 서로 □이고, 나머지 면들이 두 면의 대응하는 변을 잇는 □이면 그 두 면을 밑면으로 정할 수 있다.",
+      "cProposedAnswers": [
+        "평행하고 합동",
+        "직사각형"
+      ],
+      "cStudentAfter": "두 다각형 면이 서로 □이고, 나머지 면들이 두 면의 대응하는 변을 잇는 □이면 그 두 면을 밑면으로 정할 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "평행하고 합동"
+          ]
+        },
+        {
+          "anyOf": [
+            "직사각형"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "두 다각형 면이 서로 {평행하고 합동}이고, 나머지 면들이 두 면의 대응하는 변을 잇는 {직사각형}이면 그 두 면을 밑면으로 정할 수 있다.",
+      "cStudentSentence": "두 다각형 면이 서로 □이고, 나머지 면들이 두 면의 대응하는 변을 잇는 □이면 그 두 면을 밑면으로 정할 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "평행하고 합동",
+          "equivalents": []
+        },
+        {
+          "key": "직사각형",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "어떤 입체도형에서 두 다각형 면을 각기둥의 밑면으로 정하려면 이 두 면 사이와 나머지 면들이 각각 어떤 조건을 만족해야 하는지 말하시오.",
+        "answer": "두 면이 서로 평행하고 합동이어야 하며, 나머지 면들이 두 면의 대응하는 변을 잇는 직사각형이어야 한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 면이 평행하고 합동이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "나머지 면이 직사각형이다",
+              "나머지 면이 대응하는 변을 잇는 직사각형이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "두 다각형 면이 서로 {평행하고 합동}이고, 나머지 면들이 두 면의 대응하는 변을 잇는 {직사각형}이면 그 두 면을 밑면으로 정할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "평행하고 합동"
+          ],
+          [
+            "직사각형"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "8b47905687af9a2acc28299ec04a28e5d5c354f82f8f88e2beadb53656504485",
+      "questionRevision": "planning-e5e6-20261006-8b47905687af",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-1-xc10",
+      "bDecision": "revise",
+      "bPrompt": "직육면체를 밑면의 모양에 따라 각기둥으로 부른다면 무엇이라 부르는가? 그렇게 볼 수 있는 까닭을 설명하시오.",
+      "bAnswer": "사각기둥이다. 마주 보는 두 면이 평행하고 합동인 사각형이고 나머지 면이 직사각형이기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "사각기둥"
+          ]
+        },
+        {
+          "anyOf": [
+            "마주 보는 두 면이 평행하고 합동이다",
+            "두 밑면이 사각형이고 옆면이 직사각형이다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "직육면체를 각기둥 정의에 적용해 이름 붙인다.",
+      "bReason": "각기둥과 직육면체를 연결하는 핵심 적용이다.",
+      "cDecision": "keep",
+      "cAfter": "직육면체는 두 밑면이 사각형인 각기둥, 곧 {사각기둥}이다.",
+      "cReason": "직육면체의 각기둥 이름을 묻는 짧은 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1710,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-1-xc10",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-1 각기둥 알아보기와 각기둥의 밑면과 옆면",
+        "term": "직육면체도 각기둥",
+        "kind": "성질",
+        "level": "중",
+        "definition": "직육면체는 두 밑면이 사각형인 각기둥, 곧 {사각기둥}이다.",
+        "studentC": "직육면체는 두 밑면이 사각형인 각기둥, 곧 □이다.",
+        "answers": [
+          "사각기둥"
+        ]
+      },
+      "sourceFingerprint": "cfc3a6e0e10d55ea8437daf5c853234af21c1ecf5be301ae7a90cf771979ddea",
+      "draftEvidence": "evidence/section-059-draft.json",
+      "cFrozenDefinition": "직육면체는 두 밑면이 사각형인 각기둥, 곧 {사각기둥}이다.",
+      "cFrozenStudentSentence": "직육면체는 두 밑면이 사각형인 각기둥, 곧 □이다.",
+      "cProposedAnswers": [
+        "사각기둥"
+      ],
+      "cStudentAfter": "직육면체는 두 밑면이 사각형인 각기둥, 곧 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "사각기둥"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "직육면체는 두 밑면이 사각형인 각기둥, 곧 {사각기둥}이다.",
+      "cStudentSentence": "직육면체는 두 밑면이 사각형인 각기둥, 곧 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "사각기둥",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직육면체를 밑면의 모양에 따라 각기둥으로 부른다면 무엇이라 부르는가? 그렇게 볼 수 있는 까닭을 설명하시오.",
+        "answer": "사각기둥이다. 마주 보는 두 면이 평행하고 합동인 사각형이고 나머지 면이 직사각형이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "사각기둥"
+            ]
+          },
+          {
+            "anyOf": [
+              "마주 보는 두 면이 평행하고 합동이다",
+              "두 밑면이 사각형이고 옆면이 직사각형이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직육면체는 두 밑면이 사각형인 각기둥, 곧 {사각기둥}이다.",
+        "acceptedAnswers": [
+          [
+            "사각기둥"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "f6ad63df71536b603b576972b78d3fa72ccd5693d1689d1dc403ebc675745e35",
+      "questionRevision": "planning-e5e6-20261006-f6ad63df7153",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-1-xc11",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "application",
+      "bGoal": "정육면체의 밑면 선택을 확인한다.",
+      "bReason": "직육면체 밑면 성질(xc18)과 같은 내용이다.",
+      "cDecision": "keep",
+      "cAfter": "정육면체는 {어느 마주 보는 두 면}을 골라도 밑면으로 삼을 수 있다.",
+      "cReason": "어느 마주 보는 두 면이든 밑면이 됨을 묻는 문장으로 목표와 조건이 명확하다.",
+      "exclusionReason": "xc18 B에 포함. 대체: e6-1-2-1-xc18",
+      "exampleNeeded": false,
+      "sourceIndex": 1711,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-1-xc11",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-1 각기둥 알아보기와 각기둥의 밑면과 옆면",
+        "term": "정육면체의 밑면",
+        "kind": "성질",
+        "level": "중",
+        "definition": "정육면체는 {어느 마주 보는 두 면}을 골라도 밑면으로 삼을 수 있다.",
+        "studentC": "정육면체는 □을 골라도 밑면으로 삼을 수 있다.",
+        "answers": [
+          "어느 마주 보는 두 면"
+        ]
+      },
+      "sourceFingerprint": "bffa7f6e49ac907b66c6215d2a4b65519fbbade68b03f02a19c9b870149fbd2a",
+      "draftEvidence": "evidence/section-059-draft.json",
+      "cFrozenDefinition": "정육면체는 {어느 마주 보는 두 면}을 골라도 밑면으로 삼을 수 있다.",
+      "cFrozenStudentSentence": "정육면체는 □을 골라도 밑면으로 삼을 수 있다.",
+      "cProposedAnswers": [
+        "어느 마주 보는 두 면"
+      ],
+      "cStudentAfter": "정육면체는 □을 골라도 밑면으로 삼을 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "어느 마주 보는 두 면"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "정육면체는 {어느 마주 보는 두 면}을 골라도 밑면으로 삼을 수 있다.",
+      "cStudentSentence": "정육면체는 □을 골라도 밑면으로 삼을 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "어느 마주 보는 두 면",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "정육면체는 {어느 마주 보는 두 면}을 골라도 밑면으로 삼을 수 있다.",
+        "acceptedAnswers": [
+          [
+            "어느 마주 보는 두 면"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "xc18 B에 포함. 대체: e6-1-2-1-xc18"
+      },
+      "proposalFingerprint": "7103f9c1926e8429a2ee5415c386237205aaf6c84461756d95fcae1f99bd05db",
+      "questionRevision": "planning-e5e6-20261006-7103f9c1926e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-1-xc12",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "bGoal": "이웃한 옆면이 모서리를 공유함을 확인한다.",
+      "bReason": "그림 없이는 의미가 약하고 사소한 사실이다.",
+      "cDecision": "keep",
+      "cAfter": "각기둥의 이웃한 두 옆면은 {모서리 하나}를 함께 가진다.",
+      "cReason": "이웃한 두 옆면이 공유하는 것이 모서리 하나임을 묻는 짧은 문장이다.",
+      "exclusionReason": "사소하고 그림 의존이 크다. 대체: e6-1-2-1-c3",
+      "exampleNeeded": false,
+      "sourceIndex": 1712,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-1-xc12",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-1 각기둥 알아보기와 각기둥의 밑면과 옆면",
+        "term": "이웃한 두 옆면",
+        "kind": "성질",
+        "level": "중",
+        "definition": "각기둥의 이웃한 두 옆면은 {모서리 하나}를 함께 가진다.",
+        "studentC": "각기둥의 이웃한 두 옆면은 □를 함께 가진다.",
+        "answers": [
+          "모서리 하나"
+        ]
+      },
+      "sourceFingerprint": "918db104d72b55e67a0af6b4200c07bdbbb3c059ca566dbc42dd9cb3a5838c7c",
+      "draftEvidence": "evidence/section-059-draft.json",
+      "cFrozenDefinition": "각기둥의 이웃한 두 옆면은 {모서리 하나}를 함께 가진다.",
+      "cFrozenStudentSentence": "각기둥의 이웃한 두 옆면은 □를 함께 가진다.",
+      "cProposedAnswers": [
+        "모서리 하나"
+      ],
+      "cStudentAfter": "각기둥의 이웃한 두 옆면은 □를 함께 가진다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "모서리 하나"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "각기둥의 이웃한 두 옆면은 {모서리 하나}를 함께 가진다.",
+      "cStudentSentence": "각기둥의 이웃한 두 옆면은 □를 함께 가진다.",
+      "cSlotAnswers": [
+        {
+          "key": "모서리 하나",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "각기둥의 이웃한 두 옆면은 {모서리 하나}를 함께 가진다.",
+        "acceptedAnswers": [
+          [
+            "모서리 하나"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "사소하고 그림 의존이 크다. 대체: e6-1-2-1-c3"
+      },
+      "proposalFingerprint": "aaeef6cd31592480db614354088bc434babe45652280710da999e5b33b1983ce",
+      "questionRevision": "planning-e5e6-20261006-aaeef6cd3159",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-1-xc13",
+      "bDecision": "revise",
+      "bPrompt": "서로 평행한 두 면이 있어도 그 두 면을 각기둥의 밑면으로 정할 수 없는 경우는 언제인가?",
+      "bAnswer": "두 면이 합동이 아닐 때, 즉 모양이나 크기가 다를 때이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 면이 합동이 아닐 때",
+            "모양이나 크기가 다를 때"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "평행만으로는 밑면이 되지 않고 합동도 필요함을 안다.",
+      "bReason": "조건 하나만 보고 판단하는 오개념을 정조건으로 바로잡는다.",
+      "cDecision": "revise",
+      "cAfter": "서로 평행한 두 면이라도 {합동이 아니면}, 그 두 면을 각기둥의 한 쌍의 밑면으로 정할 수 없다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "합동이 아니면",
+            "모양이나 크기가 다르면"
+          ]
+        }
+      ],
+      "cReason": "같은 뜻의 표현을 모두 인정하도록 한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1713,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-1-xc13",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-1 각기둥 알아보기와 각기둥의 밑면과 옆면",
+        "term": "밑면이 될 수 없는 두 면",
+        "kind": "성질",
+        "level": "중",
+        "definition": "서로 평행한 두 면이라도 {모양이나 크기가 다르면}, 그 두 면을 각기둥의 한 쌍의 밑면으로 정할 수 없다.",
+        "studentC": "서로 평행한 두 면이라도 □, 그 두 면을 각기둥의 한 쌍의 밑면으로 정할 수 없다.",
+        "answers": [
+          "모양이나 크기가 다르면"
+        ]
+      },
+      "sourceFingerprint": "1b180e89c65d9cbc521fb2a5c50ec5b64c03d111a65bf93ca095b24726f2f35d",
+      "draftEvidence": "evidence/section-059-draft.json",
+      "cProposedAnswers": [
+        "합동이 아니면"
+      ],
+      "cStudentAfter": "서로 평행한 두 면이라도 □, 그 두 면을 각기둥의 한 쌍의 밑면으로 정할 수 없다.",
+      "cMarkedSentence": "서로 평행한 두 면이라도 {합동이 아니면}, 그 두 면을 각기둥의 한 쌍의 밑면으로 정할 수 없다.",
+      "cStudentSentence": "서로 평행한 두 면이라도 □, 그 두 면을 각기둥의 한 쌍의 밑면으로 정할 수 없다.",
+      "cSlotAnswers": [
+        {
+          "key": "합동이 아니면",
+          "equivalents": [
+            "모양이나 크기가 다르면"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "서로 평행한 두 면이 있어도 그 두 면을 각기둥의 밑면으로 정할 수 없는 경우는 언제인가?",
+        "answer": "두 면이 합동이 아닐 때, 즉 모양이나 크기가 다를 때이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 면이 합동이 아닐 때",
+              "모양이나 크기가 다를 때"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "서로 평행한 두 면이라도 {합동이 아니면}, 그 두 면을 각기둥의 한 쌍의 밑면으로 정할 수 없다.",
+        "acceptedAnswers": [
+          [
+            "합동이 아니면",
+            "모양이나 크기가 다르면"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "600f6dfe38d842bddf457fadfad71cba45ab6dca26128d9bfc5479f84e81dd16",
+      "questionRevision": "planning-e5e6-20261006-600f6dfe38d8",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-1-xc14",
+      "bDecision": "revise",
+      "bPrompt": "원기둥처럼 굽은 면이 있는 입체도형은 각기둥인가? 그 까닭을 각기둥의 면의 모양으로 설명하시오.",
+      "bAnswer": "각기둥이 아니다. 각기둥의 면은 모두 평평한 다각형인데 굽은 면은 다각형이 아니기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "각기둥이 아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "각기둥의 면은 모두 평평한 다각형이다",
+            "굽은 면은 다각형이 아니다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "굽은 면이 있으면 각기둥이 될 수 없는 까닭을 면의 모양으로 설명한다.",
+      "bReason": "각기둥의 면 조건을 반례에 적용하게 한다.",
+      "cDecision": "keep",
+      "cAfter": "각기둥을 둘러싼 면은 모두 평평한 다각형이므로, 굽은 면이 있는 입체는 각기둥이 {아니다}.",
+      "cReason": "까닭 뒤 결론을 묻는 짧은 빈칸이며 조건이 명확하다.",
+      "exampleNeeded": false,
+      "synonymNotes": "각기둥이 아니다/될 수 없다는 같은 답이다.",
+      "sourceIndex": 1714,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-1-xc14",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-1 각기둥 알아보기와 각기둥의 밑면과 옆면",
+        "term": "굽은 면이 있는 입체",
+        "kind": "성질",
+        "level": "중",
+        "definition": "각기둥을 둘러싼 면은 모두 평평한 다각형이므로, 굽은 면이 있는 입체는 각기둥이 {아니다}.",
+        "studentC": "각기둥을 둘러싼 면은 모두 평평한 다각형이므로, 굽은 면이 있는 입체는 각기둥이 □.",
+        "answers": [
+          "아니다"
+        ]
+      },
+      "sourceFingerprint": "05bb8432a33fe57399a3eb23732716502dfd7640ec849c2f4c34f77608260026",
+      "draftEvidence": "evidence/section-059-draft.json",
+      "cFrozenDefinition": "각기둥을 둘러싼 면은 모두 평평한 다각형이므로, 굽은 면이 있는 입체는 각기둥이 {아니다}.",
+      "cFrozenStudentSentence": "각기둥을 둘러싼 면은 모두 평평한 다각형이므로, 굽은 면이 있는 입체는 각기둥이 □.",
+      "cProposedAnswers": [
+        "아니다"
+      ],
+      "cStudentAfter": "각기둥을 둘러싼 면은 모두 평평한 다각형이므로, 굽은 면이 있는 입체는 각기둥이 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "아니다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "각기둥을 둘러싼 면은 모두 평평한 다각형이므로, 굽은 면이 있는 입체는 각기둥이 {아니다}.",
+      "cStudentSentence": "각기둥을 둘러싼 면은 모두 평평한 다각형이므로, 굽은 면이 있는 입체는 각기둥이 □.",
+      "cSlotAnswers": [
+        {
+          "key": "아니다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "원기둥처럼 굽은 면이 있는 입체도형은 각기둥인가? 그 까닭을 각기둥의 면의 모양으로 설명하시오.",
+        "answer": "각기둥이 아니다. 각기둥의 면은 모두 평평한 다각형인데 굽은 면은 다각형이 아니기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "각기둥이 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "각기둥의 면은 모두 평평한 다각형이다",
+              "굽은 면은 다각형이 아니다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각기둥을 둘러싼 면은 모두 평평한 다각형이므로, 굽은 면이 있는 입체는 각기둥이 {아니다}.",
+        "acceptedAnswers": [
+          [
+            "아니다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "8b984c2a2cc5277c52234b16f57d1cdf4c3a831a27014b373991c37d1a0dbb77",
+      "questionRevision": "planning-e5e6-20261006-8b984c2a2cc5",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-1-xc15",
+      "bDecision": "revise",
+      "bPrompt": "각기둥의 옆면은 모두 크기가 같아야 하는가? 밑면이 가로 $3$$\\mathrm{cm}$, 세로 $2$$\\mathrm{cm}$인 직사각형이고 높이가 $5$$\\mathrm{cm}$인 사각기둥의 옆면 네 개의 가로·세로를 써서 설명하시오.",
+      "bAnswer": "같을 필요 없다. 옆면은 가로 $3$$\\mathrm{cm}$, 세로 $5$$\\mathrm{cm}$인 직사각형 $2$개와 가로 $2$$\\mathrm{cm}$, 세로 $5$$\\mathrm{cm}$인 직사각형 $2$개이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "크기가 서로 다를 수 있다",
+            "모두 같아야 하는 것은 아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$$\\mathrm{cm}$와 $5$$\\mathrm{cm}$인 직사각형 $2$개",
+            "가로 $3$$\\mathrm{cm}$ 세로 $5$$\\mathrm{cm}$ 두 개"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$$\\mathrm{cm}$와 $5$$\\mathrm{cm}$인 직사각형 $2$개",
+            "가로 $2$$\\mathrm{cm}$ 세로 $5$$\\mathrm{cm}$ 두 개"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "bGoal": "밑면의 변 길이에 따라 옆면 크기가 달라짐을 구체적 수로 확인한다.",
+      "bReason": "모두 직사각형이어도 크기는 다를 수 있다는 점을 예로 정확히 확인한다.",
+      "cDecision": "keep",
+      "cAfter": "각기둥의 옆면은 모두 직사각형이지만 {크기는 서로 다를} 수 있다.",
+      "cReason": "옆면이 직사각형이어도 크기는 다를 수 있다는 조건이 명확하다.",
+      "exampleNeeded": false,
+      "exampleReason": "bPrompt에 완전한 수치 예가 들어 있다.",
+      "sourceIndex": 1715,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-1-xc15",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-1 각기둥 알아보기와 각기둥의 밑면과 옆면",
+        "term": "옆면의 크기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "각기둥의 옆면은 모두 직사각형이지만 {크기는 서로 다를} 수 있다.",
+        "studentC": "각기둥의 옆면은 모두 직사각형이지만 □ 수 있다.",
+        "answers": [
+          "크기는 서로 다를"
+        ]
+      },
+      "sourceFingerprint": "990185e4d744ab919791b10639a9fcd08fc422a58a9c156bfff81e5a6b692986",
+      "draftEvidence": "evidence/section-059-draft.json",
+      "cFrozenDefinition": "각기둥의 옆면은 모두 직사각형이지만 {크기는 서로 다를} 수 있다.",
+      "cFrozenStudentSentence": "각기둥의 옆면은 모두 직사각형이지만 □ 수 있다.",
+      "cProposedAnswers": [
+        "크기는 서로 다를"
+      ],
+      "cStudentAfter": "각기둥의 옆면은 모두 직사각형이지만 □ 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "크기는 서로 다를"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "각기둥의 옆면은 모두 직사각형이지만 {크기는 서로 다를} 수 있다.",
+      "cStudentSentence": "각기둥의 옆면은 모두 직사각형이지만 □ 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "크기는 서로 다를",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각기둥의 옆면은 모두 크기가 같아야 하는가? 밑면이 가로 $3$$\\mathrm{cm}$, 세로 $2$$\\mathrm{cm}$인 직사각형이고 높이가 $5$$\\mathrm{cm}$인 사각기둥의 옆면 네 개의 가로·세로를 써서 설명하시오.",
+        "answer": "같을 필요 없다. 옆면은 가로 $3$$\\mathrm{cm}$, 세로 $5$$\\mathrm{cm}$인 직사각형 $2$개와 가로 $2$$\\mathrm{cm}$, 세로 $5$$\\mathrm{cm}$인 직사각형 $2$개이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "크기가 서로 다를 수 있다",
+              "모두 같아야 하는 것은 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$$\\mathrm{cm}$와 $5$$\\mathrm{cm}$인 직사각형 $2$개",
+              "가로 $3$$\\mathrm{cm}$ 세로 $5$$\\mathrm{cm}$ 두 개"
+            ]
+          },
+          {
+            "anyOf": [
+              "$2$$\\mathrm{cm}$와 $5$$\\mathrm{cm}$인 직사각형 $2$개",
+              "가로 $2$$\\mathrm{cm}$ 세로 $5$$\\mathrm{cm}$ 두 개"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각기둥의 옆면은 모두 직사각형이지만 {크기는 서로 다를} 수 있다.",
+        "acceptedAnswers": [
+          [
+            "크기는 서로 다를"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e0a30d3d942ca9b46d4d1d04f31dbf3bb9b27de6d59c599e0501a976055d5262",
+      "questionRevision": "planning-e5e6-20261006-e0a30d3d942c",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-1-xc16",
+      "bDecision": "revise",
+      "bPrompt": "각기둥의 옆면인 직사각형들에서 모두 길이가 같은 변이 있다. 그 길이는 무엇과 같은가?",
+      "bAnswer": "두 밑면 사이의 거리(높이)와 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 밑면 사이의 거리",
+            "각기둥의 높이"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "옆면의 공통 변이 두 밑면 사이의 거리임을 안다.",
+      "bReason": "옆면 직사각형들의 공통 길이를 높이와 연결한다.",
+      "cDecision": "keep",
+      "cAfter": "각기둥의 옆면인 직사각형들은 {두 밑면 사이의 거리}만큼 같은 길이의 변을 가진다.",
+      "cReason": "공통 변의 길이가 무엇인지 묻는 핵심 빈칸이다.",
+      "exampleNeeded": false,
+      "synonymNotes": "높이도 두 밑면 사이의 거리의 같은 뜻으로 인정.",
+      "sourceIndex": 1716,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-1-xc16",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-1 각기둥 알아보기와 각기둥의 밑면과 옆면",
+        "term": "옆면이 가진 같은 길이",
+        "kind": "성질",
+        "level": "중",
+        "definition": "각기둥의 옆면인 직사각형들은 {두 밑면 사이의 거리}만큼 같은 길이의 변을 가진다.",
+        "studentC": "각기둥의 옆면인 직사각형들은 □만큼 같은 길이의 변을 가진다.",
+        "answers": [
+          "두 밑면 사이의 거리"
+        ]
+      },
+      "sourceFingerprint": "35614533fd9fdc2cb37b3f831e13e5804765967bb537f8dcddb5ca109e3cd60a",
+      "draftEvidence": "evidence/section-059-draft.json",
+      "cFrozenDefinition": "각기둥의 옆면인 직사각형들은 {두 밑면 사이의 거리}만큼 같은 길이의 변을 가진다.",
+      "cFrozenStudentSentence": "각기둥의 옆면인 직사각형들은 □만큼 같은 길이의 변을 가진다.",
+      "cProposedAnswers": [
+        "두 밑면 사이의 거리"
+      ],
+      "cStudentAfter": "각기둥의 옆면인 직사각형들은 □만큼 같은 길이의 변을 가진다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "두 밑면 사이의 거리"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "각기둥의 옆면인 직사각형들은 {두 밑면 사이의 거리}만큼 같은 길이의 변을 가진다.",
+      "cStudentSentence": "각기둥의 옆면인 직사각형들은 □만큼 같은 길이의 변을 가진다.",
+      "cSlotAnswers": [
+        {
+          "key": "두 밑면 사이의 거리",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각기둥의 옆면인 직사각형들에서 모두 길이가 같은 변이 있다. 그 길이는 무엇과 같은가?",
+        "answer": "두 밑면 사이의 거리(높이)와 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 밑면 사이의 거리",
+              "각기둥의 높이"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각기둥의 옆면인 직사각형들은 {두 밑면 사이의 거리}만큼 같은 길이의 변을 가진다.",
+        "acceptedAnswers": [
+          [
+            "두 밑면 사이의 거리"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "9bc4bc156f97aa220dc5c85c97d4edf805b7eccca3849a785d43693c2c91e31e",
+      "questionRevision": "planning-e5e6-20261006-9bc4bc156f97",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-1-xc17",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "bGoal": "한 밑면과 평행한 면이 다른 밑면뿐임을 확인한다.",
+      "bReason": "도형 그림 없이는 판단하기 어렵고 xc2와 중복된다.",
+      "cDecision": "keep",
+      "cAfter": "각기둥에서 한 밑면과 평행한 면은 {다른 밑면} 하나뿐이다.",
+      "cReason": "'다른 밑면'을 묻는 짧은 문장으로 목표가 명확하다.",
+      "exclusionReason": "그림 의존이 크고 평행한 두 밑면 개념과 중복. 대체: e6-1-2-1-c2",
+      "exampleNeeded": false,
+      "sourceIndex": 1717,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-1-xc17",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-1 각기둥 알아보기와 각기둥의 밑면과 옆면",
+        "term": "밑면과 평행한 면",
+        "kind": "성질",
+        "level": "중",
+        "definition": "각기둥에서 한 밑면과 평행한 면은 {다른 밑면} 하나뿐이다.",
+        "studentC": "각기둥에서 한 밑면과 평행한 면은 □ 하나뿐이다.",
+        "answers": [
+          "다른 밑면"
+        ]
+      },
+      "sourceFingerprint": "56ea992161bc4efebf479a2e17b22683974274ad0fc43005615ed5888f74c3b2",
+      "draftEvidence": "evidence/section-059-draft.json",
+      "cFrozenDefinition": "각기둥에서 한 밑면과 평행한 면은 {다른 밑면} 하나뿐이다.",
+      "cFrozenStudentSentence": "각기둥에서 한 밑면과 평행한 면은 □ 하나뿐이다.",
+      "cProposedAnswers": [
+        "다른 밑면"
+      ],
+      "cStudentAfter": "각기둥에서 한 밑면과 평행한 면은 □ 하나뿐이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "다른 밑면"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "각기둥에서 한 밑면과 평행한 면은 {다른 밑면} 하나뿐이다.",
+      "cStudentSentence": "각기둥에서 한 밑면과 평행한 면은 □ 하나뿐이다.",
+      "cSlotAnswers": [
+        {
+          "key": "다른 밑면",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "각기둥에서 한 밑면과 평행한 면은 {다른 밑면} 하나뿐이다.",
+        "acceptedAnswers": [
+          [
+            "다른 밑면"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "그림 의존이 크고 평행한 두 밑면 개념과 중복. 대체: e6-1-2-1-c2"
+      },
+      "proposalFingerprint": "985dcaf5fe294e4719f5bc105b6088fae7f4e2e750d2b3b859d1d99461c4f19c",
+      "questionRevision": "planning-e5e6-20261006-985dcaf5fe29",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-1-xc18",
+      "bDecision": "revise",
+      "bPrompt": "직육면체에서 마주 보는 면의 어느 쌍을 밑면으로 삼을 수 있는가? 그렇게 볼 수 있는 까닭도 말하시오.",
+      "bAnswer": "세 쌍 어느 것이든 밑면이 될 수 있다. 마주 보는 면이 세 쌍 모두 평행하고 합동이기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "어느 쌍이든 밑면이 될 수 있다",
+            "세 쌍 모두 가능하다"
+          ]
+        },
+        {
+          "anyOf": [
+            "마주 보는 면이 평행하고 합동이다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "밑면의 판단 기준을 직육면체의 세 쌍에 적용한다.",
+      "bReason": "xc11과 합쳐 직육면체·정육면체 밑면 선택을 한 문항으로 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "직육면체는 마주 보는 면이 세 쌍 모두 평행하고 합동이라 {어느 쌍이든} 밑면이 될 수 있다.",
+      "cReason": "어느 쌍이든 밑면이 됨을 묻는 짧은 빈칸이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1718,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-1-xc18",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-1 각기둥 알아보기와 각기둥의 밑면과 옆면",
+        "term": "직육면체의 밑면이 될 수 있는 쌍",
+        "kind": "성질",
+        "level": "상",
+        "definition": "직육면체는 마주 보는 면이 세 쌍 모두 평행하고 합동이라 {어느 쌍이든} 밑면이 될 수 있다.",
+        "studentC": "직육면체는 마주 보는 면이 세 쌍 모두 평행하고 합동이라 □ 밑면이 될 수 있다.",
+        "answers": [
+          "어느 쌍이든"
+        ]
+      },
+      "sourceFingerprint": "b55f443777d5653ef6b5100fa859385945f9bb6db5b436093e2c828b3738deca",
+      "draftEvidence": "evidence/section-059-draft.json",
+      "cFrozenDefinition": "직육면체는 마주 보는 면이 세 쌍 모두 평행하고 합동이라 {어느 쌍이든} 밑면이 될 수 있다.",
+      "cFrozenStudentSentence": "직육면체는 마주 보는 면이 세 쌍 모두 평행하고 합동이라 □ 밑면이 될 수 있다.",
+      "cProposedAnswers": [
+        "어느 쌍이든"
+      ],
+      "cStudentAfter": "직육면체는 마주 보는 면이 세 쌍 모두 평행하고 합동이라 □ 밑면이 될 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "어느 쌍이든"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "직육면체는 마주 보는 면이 세 쌍 모두 평행하고 합동이라 {어느 쌍이든} 밑면이 될 수 있다.",
+      "cStudentSentence": "직육면체는 마주 보는 면이 세 쌍 모두 평행하고 합동이라 □ 밑면이 될 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "어느 쌍이든",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직육면체에서 마주 보는 면의 어느 쌍을 밑면으로 삼을 수 있는가? 그렇게 볼 수 있는 까닭도 말하시오.",
+        "answer": "세 쌍 어느 것이든 밑면이 될 수 있다. 마주 보는 면이 세 쌍 모두 평행하고 합동이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "어느 쌍이든 밑면이 될 수 있다",
+              "세 쌍 모두 가능하다"
+            ]
+          },
+          {
+            "anyOf": [
+              "마주 보는 면이 평행하고 합동이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직육면체는 마주 보는 면이 세 쌍 모두 평행하고 합동이라 {어느 쌍이든} 밑면이 될 수 있다.",
+        "acceptedAnswers": [
+          [
+            "어느 쌍이든"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "770c5cbbbe20281e95da61d0ca40fb2310877c380d02b0edec7e26ede6fe73fb",
+      "questionRevision": "planning-e5e6-20261006-770c5cbbbe20",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-1-xc19",
+      "bDecision": "revise",
+      "bPrompt": "밑면이 삼각형인 각기둥에서 평행하고 합동인 두 면은 어느 면인가? 직사각형 면 두 개를 밑면으로 정할 수 없는 까닭도 설명하시오.",
+      "bAnswer": "삼각형 두 면이다. 직사각형 면들은 서로 이웃해 만나고 평행한 쌍이 없어서 밑면이 될 수 없다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "삼각형 두 면"
+          ]
+        },
+        {
+          "anyOf": [
+            "직사각형 면은 서로 평행하지 않다",
+            "직사각형 면들은 서로 만난다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "삼각기둥에서 밑면을 평행·합동 기준으로 고르고 직사각형 면을 제외한다.",
+      "bReason": "밑면 선택에서 옆면을 고르는 오류를 짚는다.",
+      "cDecision": "keep",
+      "cAfter": "밑면이 삼각형인 각기둥에서 평행하고 합동인 두 면은 {삼각형 두 면}뿐이므로 직사각형 면은 밑면이 될 수 없다.",
+      "cReason": "삼각기둥에서 평행하고 합동인 두 면이 삼각형임을 묻는 조건이 명확한 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1719,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-1-xc19",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-1 각기둥 알아보기와 각기둥의 밑면과 옆면",
+        "term": "삼각형 밑면 각기둥의 밑면",
+        "kind": "성질",
+        "level": "상",
+        "definition": "밑면이 삼각형인 각기둥에서 평행하고 합동인 두 면은 {삼각형 두 면}뿐이므로 직사각형 면은 밑면이 될 수 없다.",
+        "studentC": "밑면이 삼각형인 각기둥에서 평행하고 합동인 두 면은 □뿐이므로 직사각형 면은 밑면이 될 수 없다.",
+        "answers": [
+          "삼각형 두 면"
+        ]
+      },
+      "sourceFingerprint": "24343465c31ef0b1b4b51debf3e1ec98c96baf7da1abe9a04d8d3b8074c06f5d",
+      "draftEvidence": "evidence/section-059-draft.json",
+      "cFrozenDefinition": "밑면이 삼각형인 각기둥에서 평행하고 합동인 두 면은 {삼각형 두 면}뿐이므로 직사각형 면은 밑면이 될 수 없다.",
+      "cFrozenStudentSentence": "밑면이 삼각형인 각기둥에서 평행하고 합동인 두 면은 □뿐이므로 직사각형 면은 밑면이 될 수 없다.",
+      "cProposedAnswers": [
+        "삼각형 두 면"
+      ],
+      "cStudentAfter": "밑면이 삼각형인 각기둥에서 평행하고 합동인 두 면은 □뿐이므로 직사각형 면은 밑면이 될 수 없다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "삼각형 두 면"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "밑면이 삼각형인 각기둥에서 평행하고 합동인 두 면은 {삼각형 두 면}뿐이므로 직사각형 면은 밑면이 될 수 없다.",
+      "cStudentSentence": "밑면이 삼각형인 각기둥에서 평행하고 합동인 두 면은 □뿐이므로 직사각형 면은 밑면이 될 수 없다.",
+      "cSlotAnswers": [
+        {
+          "key": "삼각형 두 면",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "밑면이 삼각형인 각기둥에서 평행하고 합동인 두 면은 어느 면인가? 직사각형 면 두 개를 밑면으로 정할 수 없는 까닭도 설명하시오.",
+        "answer": "삼각형 두 면이다. 직사각형 면들은 서로 이웃해 만나고 평행한 쌍이 없어서 밑면이 될 수 없다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "삼각형 두 면"
+            ]
+          },
+          {
+            "anyOf": [
+              "직사각형 면은 서로 평행하지 않다",
+              "직사각형 면들은 서로 만난다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "밑면이 삼각형인 각기둥에서 평행하고 합동인 두 면은 {삼각형 두 면}뿐이므로 직사각형 면은 밑면이 될 수 없다.",
+        "acceptedAnswers": [
+          [
+            "삼각형 두 면"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "03f18766aa489001fc5fdd0470381eebf797b2b2de1e01fa4bc9e0b7b37d51a4",
+      "questionRevision": "planning-e5e6-20261006-03f18766aa48",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-1-xc20",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "application",
+      "bGoal": "옆면 수와 밑면 꼭짓점 수의 관계를 확인한다.",
+      "bReason": "xc5 옆면 수=변 수 설명과 같은 맥락이다.",
+      "cDecision": "revise",
+      "cAfter": "밑면이 오각형인 각기둥에서 밑면의 꼭짓점은 {$5$}개이고, 옆면도 {$5$}개이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$5$",
+            "$5$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$",
+            "$5$개"
+          ]
+        }
+      ],
+      "cReason": "'같다' 한 단어보다 수치 확인이 의미 있다.",
+      "exclusionReason": "xc5에 포함. 대체: e6-1-2-1-xc5",
+      "exampleNeeded": false,
+      "sourceIndex": 1720,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-1-xc20",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-1 각기둥 알아보기와 각기둥의 밑면과 옆면",
+        "term": "밑면의 꼭짓점 수와 옆면 수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "각기둥의 옆면의 수는 밑면의 꼭짓점 수와도 {같다}.",
+        "studentC": "각기둥의 옆면의 수는 밑면의 꼭짓점 수와도 □.",
+        "answers": [
+          "같다"
+        ]
+      },
+      "sourceFingerprint": "02913e2928ff2e0731647dbb21e5a4347334279b0ec3486085f82debe002902a",
+      "draftEvidence": "evidence/section-059-draft.json",
+      "cProposedAnswers": [
+        "$5$",
+        "$5$"
+      ],
+      "cStudentAfter": "밑면이 오각형인 각기둥에서 밑면의 꼭짓점은 □개이고, 옆면도 □개이다.",
+      "cMarkedSentence": "밑면이 오각형인 각기둥에서 밑면의 꼭짓점은 {$5$}개이고, 옆면도 {$5$}개이다.",
+      "cStudentSentence": "밑면이 오각형인 각기둥에서 밑면의 꼭짓점은 □개이고, 옆면도 □개이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$5$",
+          "equivalents": [
+            "$5$개"
+          ]
+        },
+        {
+          "key": "$5$",
+          "equivalents": [
+            "$5$개"
+          ]
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "밑면이 오각형인 각기둥에서 밑면의 꼭짓점은 {$5$}개이고, 옆면도 {$5$}개이다.",
+        "acceptedAnswers": [
+          [
+            "$5$",
+            "$5$개"
+          ],
+          [
+            "$5$",
+            "$5$개"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "xc5에 포함. 대체: e6-1-2-1-xc5"
+      },
+      "proposalFingerprint": "8b385d6a33232d30003ebb4e61a376ca67347b722e826c1f308e86bb19199390",
+      "questionRevision": "planning-e5e6-20261006-8b385d6a3323",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-1-xc21",
+      "bDecision": "revise",
+      "bPrompt": "면이 $8$개인 각기둥의 밑면은 어떤 도형인가? 면의 수에서 밑면의 모양을 알아내는 방법과 함께 쓰시오.",
+      "bAnswer": "밑면 $2$개를 빼면 옆면이 $6$개이고, 옆면 수가 밑면의 변의 수와 같으므로 밑면은 육각형이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "면의 수에서 밑면 $2$개를 뺀다",
+            "$8-2=6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "옆면 수가 밑면의 변의 수와 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "육각형"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "면의 수에서 밑면의 모양을 거꾸로 알아내는 절차를 설명한다.",
+      "bReason": "옆면 수=변 수 관계를 수치 문제에 적용하는 대표 방법이다.",
+      "cDecision": "keep",
+      "cAfter": "각기둥의 면의 수에서 밑면 {$2$개}를 빼면 옆면의 수이고, 옆면의 수는 밑면의 {변의 수}와 같다.",
+      "cReason": "면의 수 계산 단계의 두 빈칸으로 묻는 짧고 유용한 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1721,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-1-xc21",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-1 각기둥 알아보기와 각기둥의 밑면과 옆면",
+        "term": "면의 수로 밑면 모양 알기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "각기둥의 면의 수에서 밑면 {$2$개}를 빼면 옆면의 수이고, 옆면의 수는 밑면의 {변의 수}와 같다.",
+        "studentC": "각기둥의 면의 수에서 밑면 □를 빼면 옆면의 수이고, 옆면의 수는 밑면의 □와 같다.",
+        "answers": [
+          "$2$개",
+          "변의 수"
+        ]
+      },
+      "sourceFingerprint": "db4ab3ae2f48c6bb15765054e35b81d2ea4278ec1c6377835846ab1a2c59f4eb",
+      "draftEvidence": "evidence/section-059-draft.json",
+      "cFrozenDefinition": "각기둥의 면의 수에서 밑면 {$2$개}를 빼면 옆면의 수이고, 옆면의 수는 밑면의 {변의 수}와 같다.",
+      "cFrozenStudentSentence": "각기둥의 면의 수에서 밑면 □를 빼면 옆면의 수이고, 옆면의 수는 밑면의 □와 같다.",
+      "cProposedAnswers": [
+        "$2$개",
+        "변의 수"
+      ],
+      "cStudentAfter": "각기둥의 면의 수에서 밑면 □를 빼면 옆면의 수이고, 옆면의 수는 밑면의 □와 같다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "변의 수"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "각기둥의 면의 수에서 밑면 {$2$개}를 빼면 옆면의 수이고, 옆면의 수는 밑면의 {변의 수}와 같다.",
+      "cStudentSentence": "각기둥의 면의 수에서 밑면 □를 빼면 옆면의 수이고, 옆면의 수는 밑면의 □와 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "$2$개",
+          "equivalents": []
+        },
+        {
+          "key": "변의 수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "면이 $8$개인 각기둥의 밑면은 어떤 도형인가? 면의 수에서 밑면의 모양을 알아내는 방법과 함께 쓰시오.",
+        "answer": "밑면 $2$개를 빼면 옆면이 $6$개이고, 옆면 수가 밑면의 변의 수와 같으므로 밑면은 육각형이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "면의 수에서 밑면 $2$개를 뺀다",
+              "$8-2=6$"
+            ]
+          },
+          {
+            "anyOf": [
+              "옆면 수가 밑면의 변의 수와 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "육각형"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각기둥의 면의 수에서 밑면 {$2$개}를 빼면 옆면의 수이고, 옆면의 수는 밑면의 {변의 수}와 같다.",
+        "acceptedAnswers": [
+          [
+            "$2$개"
+          ],
+          [
+            "변의 수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "82ac3b2718724a2a0ddb860620d795a7029c1499e775e90487e6b8634a758791",
+      "questionRevision": "planning-e5e6-20261006-82ac3b271872",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-1-xc22",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "definition",
+      "bGoal": "옆면이 밑면 둘레를 둘러쌈을 확인한다.",
+      "bReason": "c3·xc5와 같은 의미다.",
+      "cDecision": "keep",
+      "cAfter": "옆면을 이루는 {직사각형}들을 이으면 밑면의 둘레를 한 바퀴 둘러싼다.",
+      "cReason": "옆면 모양을 묻는 짧은 문장이다.",
+      "exclusionReason": "c3 B에 포함. 대체: e6-1-2-1-c3",
+      "exampleNeeded": false,
+      "sourceIndex": 1722,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-1-xc22",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-1 각기둥 알아보기와 각기둥의 밑면과 옆면",
+        "term": "밑면 둘레를 감싸는 옆면",
+        "kind": "성질",
+        "level": "상",
+        "definition": "옆면을 이루는 {직사각형}들을 이으면 밑면의 둘레를 한 바퀴 둘러싼다.",
+        "studentC": "옆면을 이루는 □들을 이으면 밑면의 둘레를 한 바퀴 둘러싼다.",
+        "answers": [
+          "직사각형"
+        ]
+      },
+      "sourceFingerprint": "8af35f89b0799196c45ca39f3cc114d093bee6de730d181c47b1809284525a6e",
+      "draftEvidence": "evidence/section-059-draft.json",
+      "cFrozenDefinition": "옆면을 이루는 {직사각형}들을 이으면 밑면의 둘레를 한 바퀴 둘러싼다.",
+      "cFrozenStudentSentence": "옆면을 이루는 □들을 이으면 밑면의 둘레를 한 바퀴 둘러싼다.",
+      "cProposedAnswers": [
+        "직사각형"
+      ],
+      "cStudentAfter": "옆면을 이루는 □들을 이으면 밑면의 둘레를 한 바퀴 둘러싼다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "직사각형"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "옆면을 이루는 {직사각형}들을 이으면 밑면의 둘레를 한 바퀴 둘러싼다.",
+      "cStudentSentence": "옆면을 이루는 □들을 이으면 밑면의 둘레를 한 바퀴 둘러싼다.",
+      "cSlotAnswers": [
+        {
+          "key": "직사각형",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "옆면을 이루는 {직사각형}들을 이으면 밑면의 둘레를 한 바퀴 둘러싼다.",
+        "acceptedAnswers": [
+          [
+            "직사각형"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "c3 B에 포함. 대체: e6-1-2-1-c3"
+      },
+      "proposalFingerprint": "965163e7a39b93ae77668ccc57aac0699380bae1b1c3d729b627a93595dc0bcd",
+      "questionRevision": "planning-e5e6-20261006-965163e7a39b",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-1-xc23",
+      "bDecision": "revise",
+      "bPrompt": "밑면이 직사각형인 각기둥에서 이웃한 두 옆면은 서로 어떻게 만나는가? 그 까닭을 밑면과 연결해 설명하시오.",
+      "bAnswer": "서로 수직으로 만난다. 밑면의 이웃한 두 변이 직각을 이루고 옆면이 밑면에 수직이기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "수직으로 만난다"
+          ]
+        },
+        {
+          "anyOf": [
+            "밑면의 이웃한 변이 직각이다",
+            "밑면이 직사각형이라 직각이 있다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "밑면의 직각 성질이 옆면 사이의 수직으로 이어짐을 설명한다.",
+      "bReason": "그림 없이도 직사각형 밑면 조건으로 추론 가능하다.",
+      "cDecision": "keep",
+      "cAfter": "밑면이 {직사각형}인 각기둥은 이웃한 옆면끼리도 수직으로 만난다.",
+      "cReason": "밑면이 어떤 도형일 때 옆면끼리 수직인지 묻는 명확한 조건 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1723,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-1-xc23",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-1 각기둥 알아보기와 각기둥의 밑면과 옆면",
+        "term": "옆면끼리 수직인 각기둥",
+        "kind": "성질",
+        "level": "상",
+        "definition": "밑면이 {직사각형}인 각기둥은 이웃한 옆면끼리도 수직으로 만난다.",
+        "studentC": "밑면이 □인 각기둥은 이웃한 옆면끼리도 수직으로 만난다.",
+        "answers": [
+          "직사각형"
+        ]
+      },
+      "sourceFingerprint": "57af0006acd952a0c0e4545c9b0774ecfff5ff35952145015edcf506694b5215",
+      "draftEvidence": "evidence/section-059-draft.json",
+      "cFrozenDefinition": "밑면이 {직사각형}인 각기둥은 이웃한 옆면끼리도 수직으로 만난다.",
+      "cFrozenStudentSentence": "밑면이 □인 각기둥은 이웃한 옆면끼리도 수직으로 만난다.",
+      "cProposedAnswers": [
+        "직사각형"
+      ],
+      "cStudentAfter": "밑면이 □인 각기둥은 이웃한 옆면끼리도 수직으로 만난다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "직사각형"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "밑면이 {직사각형}인 각기둥은 이웃한 옆면끼리도 수직으로 만난다.",
+      "cStudentSentence": "밑면이 □인 각기둥은 이웃한 옆면끼리도 수직으로 만난다.",
+      "cSlotAnswers": [
+        {
+          "key": "직사각형",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "밑면이 직사각형인 각기둥에서 이웃한 두 옆면은 서로 어떻게 만나는가? 그 까닭을 밑면과 연결해 설명하시오.",
+        "answer": "서로 수직으로 만난다. 밑면의 이웃한 두 변이 직각을 이루고 옆면이 밑면에 수직이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "수직으로 만난다"
+            ]
+          },
+          {
+            "anyOf": [
+              "밑면의 이웃한 변이 직각이다",
+              "밑면이 직사각형이라 직각이 있다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "밑면이 {직사각형}인 각기둥은 이웃한 옆면끼리도 수직으로 만난다.",
+        "acceptedAnswers": [
+          [
+            "직사각형"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "b9f5e51d51f61b8ec325c078923ddafe281b2f49a4cf9294a27143d4ba5fc68c",
+      "questionRevision": "planning-e5e6-20261006-b9f5e51d51f6",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-1-xc24",
+      "bDecision": "revise",
+      "bPrompt": "'모든 직육면체는 각기둥이다'와 '모든 각기둥은 직육면체이다'는 각각 맞는가? 까닭을 설명하시오.",
+      "bAnswer": "앞 문장은 맞다. 직육면체는 사각기둥이기 때문이다. 뒤 문장은 틀리다. 예를 들어 삼각기둥은 각기둥이지만 직육면체가 아니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "직육면체는 사각기둥이라 각기둥이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "모든 각기둥이 직육면체인 것은 아니다",
+            "삼각기둥은 직육면체가 아니다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "포함 관계와 반례를 구분한다.",
+      "bReason": "방향이 있는 포함 관계를 반례로 확인하는 가치 있는 문항이다.",
+      "cDecision": "keep",
+      "cAfter": "모든 직육면체는 각기둥이지만, 모든 각기둥이 {직육면체인 것은 아니다}.",
+      "cReason": "포함 관계의 역이 성립하지 않음을 묻는 짧은 문장이다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1724,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-1-xc24",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-1 각기둥 알아보기와 각기둥의 밑면과 옆면",
+        "term": "각기둥과 직육면체의 관계",
+        "kind": "성질",
+        "level": "상",
+        "definition": "모든 직육면체는 각기둥이지만, 모든 각기둥이 {직육면체인 것은 아니다}.",
+        "studentC": "모든 직육면체는 각기둥이지만, 모든 각기둥이 □.",
+        "answers": [
+          "직육면체인 것은 아니다"
+        ]
+      },
+      "sourceFingerprint": "78e7034dbfe389f837593550efc8ed1234ee79d5f508caead8d4289e01e79db8",
+      "draftEvidence": "evidence/section-059-draft.json",
+      "cFrozenDefinition": "모든 직육면체는 각기둥이지만, 모든 각기둥이 {직육면체인 것은 아니다}.",
+      "cFrozenStudentSentence": "모든 직육면체는 각기둥이지만, 모든 각기둥이 □.",
+      "cProposedAnswers": [
+        "직육면체인 것은 아니다"
+      ],
+      "cStudentAfter": "모든 직육면체는 각기둥이지만, 모든 각기둥이 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "직육면체인 것은 아니다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "모든 직육면체는 각기둥이지만, 모든 각기둥이 {직육면체인 것은 아니다}.",
+      "cStudentSentence": "모든 직육면체는 각기둥이지만, 모든 각기둥이 □.",
+      "cSlotAnswers": [
+        {
+          "key": "직육면체인 것은 아니다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "'모든 직육면체는 각기둥이다'와 '모든 각기둥은 직육면체이다'는 각각 맞는가? 까닭을 설명하시오.",
+        "answer": "앞 문장은 맞다. 직육면체는 사각기둥이기 때문이다. 뒤 문장은 틀리다. 예를 들어 삼각기둥은 각기둥이지만 직육면체가 아니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "직육면체는 사각기둥이라 각기둥이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "모든 각기둥이 직육면체인 것은 아니다",
+              "삼각기둥은 직육면체가 아니다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "모든 직육면체는 각기둥이지만, 모든 각기둥이 {직육면체인 것은 아니다}.",
+        "acceptedAnswers": [
+          [
+            "직육면체인 것은 아니다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "13aa1e8219a9fa6cb69d6d06f76239b2c04dbb6274f51087537befef61eef637",
+      "questionRevision": "planning-e5e6-20261006-13aa1e8219a9",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-1-xc25",
+      "bDecision": "revise",
+      "bPrompt": "각기둥의 밑면은 반드시 정다각형이어야 하는가? 밑면이 되기 위한 두 밑면 사이의 조건을 말하시오.",
+      "bAnswer": "아니다. 정다각형이 아니어도 두 밑면이 서로 합동이고 평행하면 된다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "정다각형이 아니어도 된다",
+            "반드시 정다각형은 아니다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 밑면이 합동이고 평행하다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "밑면 조건이 정다각형이 아니라 평행·합동임을 구분한다.",
+      "bReason": "밑면 모양에 대한 지나친 일반화를 막는다.",
+      "cDecision": "revise",
+      "cAfter": "각기둥의 밑면은 {정다각형이 아니어도} 두 밑면이 합동이고 평행하면 된다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "정다각형이 아니어도",
+            "정다각형이 아니라도"
+          ]
+        }
+      ],
+      "cReason": "같은 뜻의 표현을 허용하는 형태로 정리한다.",
+      "exampleNeeded": false,
+      "sourceIndex": 1725,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-1-xc25",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-1 각기둥 알아보기와 각기둥의 밑면과 옆면",
+        "term": "정다각형이 아닌 밑면",
+        "kind": "성질",
+        "level": "상",
+        "definition": "각기둥의 밑면은 {정다각형이 아니어도} 두 밑면이 합동이고 평행하면 된다.",
+        "studentC": "각기둥의 밑면은 □ 두 밑면이 합동이고 평행하면 된다.",
+        "answers": [
+          "정다각형이 아니어도"
+        ]
+      },
+      "sourceFingerprint": "f21cc53321d423c031889ce35efc74042e2d09590529e340253787430dc0dc95",
+      "draftEvidence": "evidence/section-059-draft.json",
+      "cProposedAnswers": [
+        "정다각형이 아니어도"
+      ],
+      "cStudentAfter": "각기둥의 밑면은 □ 두 밑면이 합동이고 평행하면 된다.",
+      "cMarkedSentence": "각기둥의 밑면은 {정다각형이 아니어도} 두 밑면이 합동이고 평행하면 된다.",
+      "cStudentSentence": "각기둥의 밑면은 □ 두 밑면이 합동이고 평행하면 된다.",
+      "cSlotAnswers": [
+        {
+          "key": "정다각형이 아니어도",
+          "equivalents": [
+            "정다각형이 아니라도"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각기둥의 밑면은 반드시 정다각형이어야 하는가? 밑면이 되기 위한 두 밑면 사이의 조건을 말하시오.",
+        "answer": "아니다. 정다각형이 아니어도 두 밑면이 서로 합동이고 평행하면 된다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "정다각형이 아니어도 된다",
+              "반드시 정다각형은 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 밑면이 합동이고 평행하다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각기둥의 밑면은 {정다각형이 아니어도} 두 밑면이 합동이고 평행하면 된다.",
+        "acceptedAnswers": [
+          [
+            "정다각형이 아니어도",
+            "정다각형이 아니라도"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "031e918deffbc4fb569ad66656e9a70f38910b4ec11a3a78c0a2e7c4fb158ce8",
+      "questionRevision": "planning-e5e6-20261006-031e918deffb",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-1-xc26",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "learningRole": "naming",
+      "bGoal": "모든 면이 직사각형인 각기둥의 이름을 확인한다.",
+      "bReason": "xc10과 같은 이름 확인이다.",
+      "cDecision": "keep",
+      "cAfter": "면이 모두 직사각형인 각기둥은 밑면이 사각형이므로, 밑면의 모양에 따라 이름 붙이면 {사각기둥}이다.",
+      "cReason": "밑면 모양에 따라 사각기둥이라 부르는 이름을 묻는 문장이다.",
+      "exclusionReason": "xc10 B에 포함. 대체: e6-1-2-1-xc10",
+      "exampleNeeded": false,
+      "sourceIndex": 1726,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-1-xc26",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-1 각기둥 알아보기와 각기둥의 밑면과 옆면",
+        "term": "면이 모두 직사각형인 각기둥",
+        "kind": "성질",
+        "level": "상",
+        "definition": "면이 모두 직사각형인 각기둥은 밑면이 사각형이므로, 밑면의 모양에 따라 이름 붙이면 {사각기둥}이다.",
+        "studentC": "면이 모두 직사각형인 각기둥은 밑면이 사각형이므로, 밑면의 모양에 따라 이름 붙이면 □이다.",
+        "answers": [
+          "사각기둥"
+        ]
+      },
+      "sourceFingerprint": "623aef99a79e9fa47cd8ffe847503bb3d2b32ff6d42ee9f8ecd14d028f9f4ad8",
+      "draftEvidence": "evidence/section-059-draft.json",
+      "cFrozenDefinition": "면이 모두 직사각형인 각기둥은 밑면이 사각형이므로, 밑면의 모양에 따라 이름 붙이면 {사각기둥}이다.",
+      "cFrozenStudentSentence": "면이 모두 직사각형인 각기둥은 밑면이 사각형이므로, 밑면의 모양에 따라 이름 붙이면 □이다.",
+      "cProposedAnswers": [
+        "사각기둥"
+      ],
+      "cStudentAfter": "면이 모두 직사각형인 각기둥은 밑면이 사각형이므로, 밑면의 모양에 따라 이름 붙이면 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "사각기둥"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "면이 모두 직사각형인 각기둥은 밑면이 사각형이므로, 밑면의 모양에 따라 이름 붙이면 {사각기둥}이다.",
+      "cStudentSentence": "면이 모두 직사각형인 각기둥은 밑면이 사각형이므로, 밑면의 모양에 따라 이름 붙이면 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "사각기둥",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "면이 모두 직사각형인 각기둥은 밑면이 사각형이므로, 밑면의 모양에 따라 이름 붙이면 {사각기둥}이다.",
+        "acceptedAnswers": [
+          [
+            "사각기둥"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "xc10 B에 포함. 대체: e6-1-2-1-xc10"
+      },
+      "proposalFingerprint": "7093ca8e808474644835b8da492801e82319a06b674cf5bd5b8dd32b635e1ba2",
+      "questionRevision": "planning-e5e6-20261006-7093ca8e8084",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-2-xc1",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "삼각기둥이 밑면이 삼각형인 각기둥임을 안다.",
+      "bReason": "이름 짓는 규칙의 한 예일 뿐이라 c1과 겹친다.",
+      "bRequiredIdeas": [],
+      "learningRole": "naming",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "빈칸 답이 긴 구절이고 c1과 중복된다.",
+      "exclusionReason": "각기둥 이름 규칙의 단일 사례로 c1과 중복이다. 대체: e6-1-2-2-c1.",
+      "exampleNeeded": false,
+      "sourceIndex": 1727,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-2-xc1",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-2 각기둥의 이름과 구성 요소",
+        "term": "삼각기둥",
+        "kind": "정의",
+        "level": "하",
+        "definition": "{밑면이 삼각형인 각기둥}을 삼각기둥이라 한다.",
+        "studentC": "□을 삼각기둥이라 한다.",
+        "answers": [
+          "밑면이 삼각형인 각기둥"
+        ]
+      },
+      "sourceFingerprint": "8737c5426b43b539d6236d461ba8337ccaf72b8d606b4a5fca992b35b6c96b6b",
+      "draftEvidence": "evidence/section-060-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "각기둥 이름 규칙의 단일 사례로 c1과 중복이다. 대체: e6-1-2-2-c1.",
+        "cloze": "각기둥 이름 규칙의 단일 사례로 c1과 중복이다. 대체: e6-1-2-2-c1."
+      },
+      "proposalFingerprint": "b5f302eac22948d310f495de067b3ba1b1d8de51342727046ef3edb0f00e8dea",
+      "questionRevision": "planning-e5e6-20261006-b5f302eac229",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-2-xc2",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "사각기둥이 밑면이 사각형인 각기둥임을 안다.",
+      "bReason": "c1의 이름 규칙에 이미 포함된다.",
+      "bRequiredIdeas": [],
+      "learningRole": "naming",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "긴 구절을 외우게 하는 중복 정의이다.",
+      "exclusionReason": "이름 규칙의 단일 사례로 c1과 중복이다. 대체: e6-1-2-2-c1.",
+      "exampleNeeded": false,
+      "sourceIndex": 1728,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-2-xc2",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-2 각기둥의 이름과 구성 요소",
+        "term": "사각기둥",
+        "kind": "정의",
+        "level": "하",
+        "definition": "{밑면이 사각형인 각기둥}을 사각기둥이라 한다.",
+        "studentC": "□을 사각기둥이라 한다.",
+        "answers": [
+          "밑면이 사각형인 각기둥"
+        ]
+      },
+      "sourceFingerprint": "ea6a1266a4582f4808e656b7ec335279d129093bdb5c900944bd61441b2e5366",
+      "draftEvidence": "evidence/section-060-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "이름 규칙의 단일 사례로 c1과 중복이다. 대체: e6-1-2-2-c1.",
+        "cloze": "이름 규칙의 단일 사례로 c1과 중복이다. 대체: e6-1-2-2-c1."
+      },
+      "proposalFingerprint": "bd1e9f9fbacc64795734c42bbd7c3b1238755372c019dab5d0b64316956d5ff4",
+      "questionRevision": "planning-e5e6-20261006-bd1e9f9fbacc",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-2-xc3",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": "육각기둥의 밑면이 육각형임을 안다.",
+      "bReason": "이름만 보아도 답이 나오는 자명한 문장이다.",
+      "bRequiredIdeas": [],
+      "learningRole": "naming",
+      "cDecision": "exclude",
+      "cAfter": null,
+      "cReason": "'육각기둥'에서 '육각형'을 그대로 옮기는 문항이다.",
+      "exclusionReason": "이름에서 답이 드러나고 c1과 중복이다. 대체: e6-1-2-2-c1.",
+      "exampleNeeded": false,
+      "sourceIndex": 1729,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-1-2-2-xc3",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-2 각기둥의 이름과 구성 요소",
+        "term": "육각기둥",
+        "kind": "정의",
+        "level": "하",
+        "definition": "밑면이 {육각형}인 각기둥을 육각기둥이라 한다.",
+        "studentC": "밑면이 □인 각기둥을 육각기둥이라 한다.",
+        "answers": [
+          "육각형"
+        ]
+      },
+      "sourceFingerprint": "d1641d50a1499723b52d22ff03855a9476a704ca695367d17ae027cb0b5c7295",
+      "draftEvidence": "evidence/section-060-draft.json",
+      "cProposedAnswers": [],
+      "cStudentAfter": null,
+      "cMarkedSentence": null,
+      "cStudentSentence": null,
+      "cSlotAnswers": [],
+      "bQuestion": null,
+      "clozeQuestion": null,
+      "questionExclusions": {
+        "term": "이름에서 답이 드러나고 c1과 중복이다. 대체: e6-1-2-2-c1.",
+        "cloze": "이름에서 답이 드러나고 c1과 중복이다. 대체: e6-1-2-2-c1."
+      },
+      "proposalFingerprint": "ce33548a92962c821a128a89afb0a0d87721b7372145c179ed5c807f74d17d08",
+      "questionRevision": "planning-e5e6-20261006-ce33548a9296",
+      "requiresIndependentReview": true
+    }
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e5-2-2-1-xc10",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{5}{6}\\times4$를 계산하여 분수 부분을 기약분수로 한 대분수로 나타내려고 합니다. 계산 과정을 차례대로 쓰세요.",
+      "bAnswer": "분자에 곱하면 $\\frac{20}{6}$, 약분하면 $\\frac{10}{3}$, 대분수로 바꾸면 $3\\frac{1}{3}$ (먼저 $6$과 $4$를 $2$로 약분해도 된다.)",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{20}{6}$을 $\\frac{10}{3}$으로 약분한다",
+            "분모 $6$과 곱하는 수 $4$를 $2$로 미리 약분한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$ $\\frac{1}{3}$"
+          ]
+        }
+      ],
+      "bGoal": "곱하기, 약분, 대분수로 바꾸기를 한 계산에서 차례로 수행한다.",
+      "bReason": "차례를 말로 외우게 하지 않고 실제 계산 과정을 쓰게 했으며 미리 약분하는 풀이도 인정한다.",
+      "cDecision": "revise",
+      "cAfter": "분수와 자연수의 곱을 구한 뒤, 분모와 분자에 $1$보다 큰 공약수가 있으면 {약분하고}, 가분수는 필요에 따라 대분수로 바꾼다.",
+      "cReason": "곱한 뒤 약분하고 대분수로 바꾸는 흐름에서 빠진 단계를 짧은 낱말로 묻는다.",
+      "synonymNotes": "'약분하고'와 '약분'은 같은 답으로 인정한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-second-1130.json",
+      "codexFinalAmendedFromFingerprint": "a8953dfb756fab5865d2ccd6b573ffcac29393ae47c394aec721d849bc04288e",
+      "sourceIndex": 1169,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-2-1-xc10",
+        "section": "초5::2-2 분수의 곱셈::2-2-1 (분수)×(자연수)의 계산",
+        "term": "분수와 자연수 곱셈의 차례",
+        "kind": "방법",
+        "level": "하",
+        "definition": "분수와 자연수의 곱셈은 곱하고, {약분하고}, 필요하면 대분수로 바꾸는 차례로 한다.",
+        "studentC": "분수와 자연수의 곱셈은 곱하고, □, 필요하면 대분수로 바꾸는 차례로 한다.",
+        "answers": [
+          "약분하고"
+        ]
+      },
+      "sourceFingerprint": "7a4fc95a60d3e94da78ed1f7a6455bcbab4288ebe74ea45c0349a183e17a375a",
+      "draftEvidence": "evidence/section-032-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "약분하고"
+      ],
+      "cStudentAfter": "분수와 자연수의 곱을 구한 뒤, 분모와 분자에 $1$보다 큰 공약수가 있으면 □, 가분수는 필요에 따라 대분수로 바꾼다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "약분하고"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "분수와 자연수의 곱을 구한 뒤, 분모와 분자에 $1$보다 큰 공약수가 있으면 {약분하고}, 가분수는 필요에 따라 대분수로 바꾼다.",
+      "cStudentSentence": "분수와 자연수의 곱을 구한 뒤, 분모와 분자에 $1$보다 큰 공약수가 있으면 □, 가분수는 필요에 따라 대분수로 바꾼다.",
+      "cSlotAnswers": [
+        {
+          "key": "약분하고",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{5}{6}\\times4$를 계산하여 분수 부분을 기약분수로 한 대분수로 나타내려고 합니다. 계산 과정을 차례대로 쓰세요.",
+        "answer": "분자에 곱하면 $\\frac{20}{6}$, 약분하면 $\\frac{10}{3}$, 대분수로 바꾸면 $3\\frac{1}{3}$ (먼저 $6$과 $4$를 $2$로 약분해도 된다.)",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{20}{6}$을 $\\frac{10}{3}$으로 약분한다",
+              "분모 $6$과 곱하는 수 $4$를 $2$로 미리 약분한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$ $\\frac{1}{3}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "분수와 자연수의 곱을 구한 뒤, 분모와 분자에 $1$보다 큰 공약수가 있으면 {약분하고}, 가분수는 필요에 따라 대분수로 바꾼다.",
+        "acceptedAnswers": [
+          [
+            "약분하고"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ad1f2ca00ccc56c2f759d14884d56729aca24bd576e86465b68c2eb7213ade46",
+      "questionRevision": "planning-e5e6-20261006-ad1f2ca00ccc",
+      "requiresIndependentReview": true
+    }
+  ]
+}

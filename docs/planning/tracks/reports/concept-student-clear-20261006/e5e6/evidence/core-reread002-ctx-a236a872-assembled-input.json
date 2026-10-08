@@ -1,0 +1,383 @@
+{
+  "sourceCommit": "13bf05dce",
+  "scope": "Actual assembled learning definitions read by Codex; capture alone is not adoption.",
+  "rows": [
+    {
+      "id": "e5-2-3-1-xc18",
+      "sourceIndex": 1254,
+      "sourceFingerprint": "3c22e0b8cdddc0f74c4de1ed6c4679d2f06103a750f171f3eb8a26c11eee30db",
+      "proposalFingerprint": "5c8f29753cede4e3c8433e4d02b99f374e323cf16587b3585f72160c0ffd8903",
+      "proposed": true,
+      "definition": "두 도형을 어떻게 옮기거나 돌리거나 뒤집어도 포개었을 때 완전히 겹치지 않으면 {합동이 아니다}.",
+      "definitionFingerprint": "8311063a9e9a3aba7b3f7c2f9df977934be7354ec407115e0883c476daef8c15",
+      "visibleLength": 52,
+      "targets": [
+        "합동이 아니다"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-3-1-xc20",
+      "sourceIndex": 1256,
+      "sourceFingerprint": "ea1947bd084eba9c674a05c82861c4ff3707f0802989adcd2eaa3750dc8b01bb",
+      "proposalFingerprint": "f67c833f11ab2b12165b7f9580ad81188c564238f9b3bcd7a99dba72e33db7ff",
+      "proposed": true,
+      "definition": "둘레가 같은 두 직사각형이라도 {긴 변끼리의 길이}가 다르면 서로 합동이 아니다.",
+      "definitionFingerprint": "aef0c6908cda7f74a4eeeac2492b2dbd286af384354106b52d5ed2cc3844f328",
+      "visibleLength": 43,
+      "targets": [
+        "긴 변끼리의 길이"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-3-2-xc11",
+      "sourceIndex": 1274,
+      "sourceFingerprint": "093101a6c93dd710d8f009cbd23ef361b3318e4f4b867f7d8f8e1785f408c051",
+      "proposalFingerprint": "32ffd0c1ccc2d6988a830b199b237aceb8957acb8173dcd2ad26003554ea32d4",
+      "proposed": true,
+      "definition": "합동인 두 도형에서 한 변의 양 끝 점의 대응점을 이은 변이 그 변의 {대응변}이다.",
+      "definitionFingerprint": "06a581f2a0b6ede849f4040a6ccd24f54e06720bb88e6ae101e8d06e8acd1a25",
+      "visibleLength": 45,
+      "targets": [
+        "대응변"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-3-3-xc7",
+      "sourceIndex": 1295,
+      "sourceFingerprint": "a80c1fcbf3e13da1ba449c4483c6701d9a9176309414d17e8a3b97fe684a748e",
+      "proposalFingerprint": "526f3ef398535d62ca16619ecc6fa3ca5f3097bbf193af9eeb75bc4c8315b246",
+      "proposed": true,
+      "definition": "선대칭도형에서 대응점인 두 점은 대칭축에서 {같은 거리만큼} 떨어져 있다.",
+      "definitionFingerprint": "ff769d3b3d3443f3be78bcff66cc53b56583616dbc4ff01445e043a6601f4516",
+      "visibleLength": 39,
+      "targets": [
+        "같은 거리만큼"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-3-3-xc22",
+      "sourceIndex": 1310,
+      "sourceFingerprint": "fd98296ce695ac80c2c62e8d7d15f1debed0af3e8d56dc654cbe5ff547aae21a",
+      "proposalFingerprint": "e77c4151a8bcdc87406c53f2332d9d3ca67fc2d35ad03a9e8605f60b0c152daf",
+      "proposed": true,
+      "definition": "어느 직선을 따라 접어도 양쪽이 완전히 겹치지 않는 도형은 {선대칭도형이 아니다}.",
+      "definitionFingerprint": "9bec2ea2dce73de0de5a98f4b99ffee8facee8a52d68001287170f3a36327ede",
+      "visibleLength": 44,
+      "targets": [
+        "선대칭도형이 아니다"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-4-1-xc18",
+      "sourceIndex": 1343,
+      "sourceFingerprint": "93c2bed30bc9fda140b771e1d265424c2fa795da3bb7dccd666e32fba2adb859",
+      "proposalFingerprint": "311c3ea52f081360efcc299215970564dbadd32c1af8bb7554bd9490dd707b8a",
+      "proposed": true,
+      "definition": "소수와 자연수를 곱할 때, 소수점을 떼고 자연수처럼 곱한 값은 그 소수의 마지막 자리 단위($0.1$, $0.01$ 등)의 {개수}를 나타낸다. 그 단위에 맞게 소수점을 찍는다.",
+      "definitionFingerprint": "b896243483b8f9f36d5409451885cec8d2e194780180d8e743240729f7450997",
+      "visibleLength": 93,
+      "targets": [
+        "개수"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-4-2-xc23",
+      "sourceIndex": 1359,
+      "sourceFingerprint": "f70e21d4e4a403ef6bfae0335b183b931b7851a90ca1135c1389e1dad03a2b22",
+      "proposalFingerprint": "9ec825f65ee289cc05fccd807d829707d1283c2dbf00215580ddf6737b6b4536",
+      "proposed": true,
+      "definition": "소수와 자연수를 곱할 때 소수를 큰 자연수로 바꿔 계산했다면, 바꾼 수와 원래 소수의 {차}에도 소수에 곱하던 자연수를 곱한다. 그 값을 바꿔 계산한 곱에서 빼면 원래 곱이다.",
+      "definitionFingerprint": "52af3aab49f5f4523f792770e815a65d92ec4a75cd13747788f4ec1f185b571b",
+      "visibleLength": 96,
+      "targets": [
+        "차"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-4-4-xc5",
+      "sourceIndex": 1376,
+      "sourceFingerprint": "4dfb79c9807bb3dfafd395f489a803699030fedf2c48968237a53ded6c997680",
+      "proposalFingerprint": "51347e768fc1dce34a442fb726f2fcc8ff525317095cb2ed68f6fd49381eb1bd",
+      "proposed": true,
+      "definition": "$0$보다 큰 자연수에 $1$보다 큰 소수를 곱하면, 원래 수에 $\\text{원래 수}\\times(\\text{곱하는 소수}-1)$을 {더 보태는} 것이므로 곱이 원래 수보다 커진다.",
+      "definitionFingerprint": "1594766217249de0631c72735bc676b1504874e3f9186bcb485128311c741c7c",
+      "visibleLength": 72,
+      "targets": [
+        "더 보태는"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-4-4-xc15",
+      "sourceIndex": 1380,
+      "sourceFingerprint": "ef56674c2ccd74e49480584516622805d5049c5a03736582d43d039193ddf7d3",
+      "proposalFingerprint": "a38c0373627e0092e0179f2666dedb48fe703d058a3b9fa56db3251bdd3c1604",
+      "proposed": true,
+      "definition": "$0$보다 큰 같은 자연수에 곱하는 소수가 클수록 곱도 {더 커진다}.",
+      "definitionFingerprint": "bb6a2534c05f8e46d6ba8cd38b4dc8ea002af12604125f0f8f17b3991b6565f0",
+      "visibleLength": 35,
+      "targets": [
+        "더 커진다"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-4-5-xc4",
+      "sourceIndex": 1387,
+      "sourceFingerprint": "1c664a6705d2c09d289180f4be80832e962701492e73f1af9b13925e75276995",
+      "proposalFingerprint": "0e7a852f6c5989edbbeb5d7ea07fd4883963505592bba8ceabcecd99348a1f82",
+      "proposed": true,
+      "definition": "소수 한 자리 수끼리 곱할 때는 자연수처럼 곱하고 자릿수가 모자라면 앞에 $0$을 쓴다. 그런 뒤 오른쪽에서 {두 자리}를 세어 소수점을 찍는다.",
+      "definitionFingerprint": "dcfb8a0cd2fd8748a418098dd59c8985b4e3a3c2b5854f8ce4a5cc81df9fe6d7",
+      "visibleLength": 77,
+      "targets": [
+        "두 자리"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-4-6-xc14",
+      "sourceIndex": 1410,
+      "sourceFingerprint": "75dc6577d713f6e29b2314de08ee5492c06211cf77c569f03e7fb767b6c816a2",
+      "proposalFingerprint": "a634d7814d1e7b715ca9bd94db3aa751f035d0949ca5a617259cc2af2e95dbd3",
+      "proposed": true,
+      "definition": "어느 부분이든 같은 길이의 무게가 같은 물체에서는, $1\\,\\mathrm{m}$의 무게에 길이를 $\\mathrm{m}$로 나타낸 수를 곱하면 {전체 무게}가 된다.",
+      "definitionFingerprint": "122d4560bbab64db775aeb1f3daada81a9515e35946bdaeb35344b9c547c749e",
+      "visibleLength": 65,
+      "targets": [
+        "전체 무게"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-4-7-xc22",
+      "sourceIndex": 1422,
+      "sourceFingerprint": "dedb2676e462857a434e1cd73fcf59080f4785257cd22fe172e667fddc985021",
+      "proposalFingerprint": "6bc1b2649e5a7435c606be02214efbe5ec3106302d81ea2ed710c179248566f3",
+      "proposed": true,
+      "definition": "$0$보다 큰 두 수의 숫자 순서는 같고 소수점 위치만 다르면, 소수점이 몇 자리 옮겨졌는지 보아 한 수가 다른 수의 {몇 배}인지 알 수 있다.",
+      "definitionFingerprint": "84cdc23a4771860c19193852ccc806cacee4e5bb74cfe9a949cad407eebc88a8",
+      "visibleLength": 77,
+      "targets": [
+        "몇 배"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-4-7-xc26",
+      "sourceIndex": 1425,
+      "sourceFingerprint": "ad011703c0401157949b78bd47aeb6c1d51bc0b136cb0a0e9669d3d8b4211f15",
+      "proposalFingerprint": "a10c8700199b0370f7a331d53897d6900679059d2f69e05dd18e2aa9cbe73c6f",
+      "proposed": true,
+      "definition": "$10$, $100$, $1000$과 $0.1$, $0.01$, $0.001$을 이어 곱하면, 소수점은 오른쪽·왼쪽으로 옮긴 {자리 수의 차}만큼 더 많이 옮긴 쪽으로 간다. 자리 수가 같으면 제자리이다.",
+      "definitionFingerprint": "4c02813c7be9aad74e7c180f85f2b73a5fe32c582bcdb31f03d377e216c3f713",
+      "visibleLength": 100,
+      "targets": [
+        "자리 수의 차"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-5-1-xc12",
+      "sourceIndex": 1437,
+      "sourceFingerprint": "19824c6f80e537198588e24f8f7adfa989116c30290d206535f20150ba0a9f3a",
+      "proposalFingerprint": "970859cac63b439e036a65fb738f4de7b22ff692830627bea439a35ca095d6a0",
+      "proposed": true,
+      "definition": "직육면체의 위 면 모서리 $4$개, 아래 면 모서리 $4$개, 두 면을 잇는 모서리 $4$개를 더하면 모서리는 {$12$개}이다.",
+      "definitionFingerprint": "53af8b74e48f38cf59ee79a1128450b64612fb01057abf4e8966b0cebe045c37",
+      "visibleLength": 62,
+      "targets": [
+        "$12$개"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-5-1-xc22",
+      "sourceIndex": 1445,
+      "sourceFingerprint": "f1769e40f24f2f729aa58078fdffb899d4684c165c9c854898290198cc7358e3",
+      "proposalFingerprint": "e26dd86b86e02b2197934614a165b39f5baf96c98160d0c6964f3db0b17e57c4",
+      "proposed": true,
+      "definition": "직육면체의 한 꼭짓점에서 모서리만 따라 그 꼭짓점과 같은 면에 있지 않은 꼭짓점까지 가려면 모서리를 적어도 {$3$}개 지나야 한다.",
+      "definitionFingerprint": "7b6f002dc21c4ce15b1214c8f78afd9e8fa49e428f7cc611b7252eb18c122a7b",
+      "visibleLength": 70,
+      "targets": [
+        "$3$"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-5-2-xc9",
+      "sourceIndex": 1455,
+      "sourceFingerprint": "33f9ed95787f242c05ebd9b298aee102dc89e2e48c5b352a0e189c1f67654d8e",
+      "proposalFingerprint": "215bdaa4a989bd71825bee4a8cce6f9b22f62054a8eb0ca5b276342a21812d27",
+      "proposed": true,
+      "definition": "정육면체의 한 면은 {정사각형}이므로, 한 면의 넓이는 (한 모서리의 길이)$\\times$(한 모서리의 길이)이다.",
+      "definitionFingerprint": "64bc7757e4a975ee9313f6fdcc5dae8bdb891817e9def7de4804d19054a18f1c",
+      "visibleLength": 55,
+      "targets": [
+        "정사각형"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-5-2-xc10",
+      "sourceIndex": 1456,
+      "sourceFingerprint": "f4ebde2e9fc0f24a8e40707b58cff0aa0737eda002128d0359309c707fcbe904",
+      "proposalFingerprint": "53a339d84b2073ec7afca7803c86ad0cd4d10f39469bd76ea4e4feace02672b1",
+      "proposed": true,
+      "definition": "가로, 세로, 높이 중 길이가 다른 것이 하나라도 있는 직육면체는 {정육면체가 아니다}.",
+      "definitionFingerprint": "4c781461928f4c2f9d817226ed650a5201d0bf64dddbbdc7304a40ea189d1419",
+      "visibleLength": 47,
+      "targets": [
+        "정육면체가 아니다"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-5-2-xc27",
+      "sourceIndex": 1468,
+      "sourceFingerprint": "a60eb87b1e2f953ec0e37927e382d8d6e86e812aacbf93fcbb159d6dabfff76f",
+      "proposalFingerprint": "70843146602afe8a227ad8defc7521194c1d520ef3cbc9e92d77a58cf48edd27",
+      "proposed": true,
+      "definition": "모든 모서리 길이의 합이 같은 두 정육면체는 한 모서리의 길이가 같으므로 {모양과 크기가 같다}.",
+      "definitionFingerprint": "0693db8d80d9eea086a72b9c0bc842ebd7876f09e1abb6df0f0a565d11c4b5ac",
+      "visibleLength": 52,
+      "targets": [
+        "모양과 크기가 같다"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-5-3-xc18",
+      "sourceIndex": 1486,
+      "sourceFingerprint": "eebfad3da41af1fee17da588bd403b0c547287624a54de9d024cdda4f9474bc9",
+      "proposalFingerprint": "5d8fc0d10610841c7fca81b252dbbe9a6016369f100e029b77714c8aa86a026f",
+      "proposed": true,
+      "definition": "직육면체의 밑면을 정하면 옆면은 {밑면의 가로와 높이}를 두 변으로 하는 직사각형 $2$개와 {밑면의 세로와 높이}를 두 변으로 하는 직사각형 $2$개이다.",
+      "definitionFingerprint": "06302a8e8e39f51731ff21e4f9acf39290faba64426de3772f0782b843d9cd56",
+      "visibleLength": 79,
+      "targets": [
+        "밑면의 가로와 높이",
+        "밑면의 세로와 높이"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-5-3-xc21",
+      "sourceIndex": 1489,
+      "sourceFingerprint": "cba304d424f8e184cebc7c1005784b2c15f611163a74bccb1338728d74264f23",
+      "proposalFingerprint": "448d8cc76d5174f010802707268e533f3297f18c8004edf71df822c9cd1ca816",
+      "proposed": true,
+      "definition": "각 면에 $1$부터 $6$까지 한 번씩 적고 마주 보는 면의 눈의 수 합이 일정한 주사위에서는, 평행한 두 면의 눈의 수 합이 {$7$}이다.",
+      "definitionFingerprint": "ce79dc41c830110eb319e424cff7bb336e3cb5f1ecf77c7ae7259079a10a4de9",
+      "visibleLength": 71,
+      "targets": [
+        "$7$"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-5-5-xc20",
+      "sourceIndex": 1538,
+      "sourceFingerprint": "18b35da12846524f91b748f7ae73f42b023b2a96465e21e68ceaafb660f8349d",
+      "proposalFingerprint": "1d5ac4c369a39e989c85c0349b8bcf600e6f4f569247ead866e6c2073b1123a5",
+      "proposed": true,
+      "definition": "전개도에서 면을 하나 이어 붙일 때마다 접는 선이 하나씩 늘어나므로 면 $6$개를 이으려면 접는 선이 {$5$개} 있어야 한다.",
+      "definitionFingerprint": "60fdafa1c9dc0dc6d5c5b8465763f72208f74233b05f15bd60442cef5d0fbbba",
+      "visibleLength": 65,
+      "targets": [
+        "$5$개"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-6-2-xc26",
+      "sourceIndex": 1600,
+      "sourceFingerprint": "641c429aae19dc6cbd6d7871db4bb0400ee1be2edfe14b02144fba94a927c122",
+      "proposalFingerprint": "6a92f83c0b8736fc2498d86105dc904e7edb77d0de6c3a225b053a5883b6edf4",
+      "proposed": true,
+      "definition": "평균이 서로 다른 두 모둠을 합친 평균은 두 평균 {사이}의 값이다.",
+      "definitionFingerprint": "75a4544d42e6107c2b63290e973101037b713e210610cc96098af0d3b23d6837",
+      "visibleLength": 36,
+      "targets": [
+        "사이"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e5-2-6-3-xc4",
+      "sourceIndex": 1605,
+      "sourceFingerprint": "5f8a6d38fa5f7523b6c8ac2ce5faae0bd07e586a13145e77b5dbf55e73a5ac2c",
+      "proposalFingerprint": "934a9c34ad397f6eb2047cc2d076cd264e18f05668268b81094e4cfdc6c64905",
+      "proposed": true,
+      "definition": "주사위를 굴릴 때 어떤 눈이 나와도 해당하는 일이 일어날 가능성은 {확실하다}.",
+      "definitionFingerprint": "33e9ed0b0f9aebf335a784184d86e613522d2844f64233c7e088a626d17430bc",
+      "visibleLength": 42,
+      "targets": [
+        "확실하다"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e6-1-1-1-xc17",
+      "sourceIndex": 1641,
+      "sourceFingerprint": "68c1364213f3b567b04f5abd4245d1389f37c96243b295556ea02571ba560a02",
+      "proposalFingerprint": "7bcff8f15723ec263658ef69587466c1bd01a3b78c4e5cb0e726145211946f8b",
+      "proposed": true,
+      "definition": "두 자연수의 나눗셈에서 나누어지는 수가 더 크고 나누어떨어지지 않으면, 나머지가 있는 나눗셈의 {몫}을 자연수 부분으로, {나머지}를 분자로, 나누는 수를 분모로 하여 대분수로 쓴다.",
+      "definitionFingerprint": "99de558aee0b9bc77166e6fbdfd0e75cf9d7dd815258dc9f1546eee38945e143",
+      "visibleLength": 98,
+      "targets": [
+        "몫",
+        "나머지"
+      ],
+      "valid": true,
+      "issues": []
+    },
+    {
+      "id": "e6-1-1-2-xc13",
+      "sourceIndex": 1664,
+      "sourceFingerprint": "390c12266a493617ec571f307ab6999b2f2876b1fe33391bc75a0910d7ce4af7",
+      "proposalFingerprint": "70406e122ef378df3de2527fcc83229dfeca794afb7684df731637dc0c21b51d",
+      "proposed": true,
+      "definition": "$0$보다 큰 같은 분수를 나눌 때 나누는 자연수가 클수록 몫은 {작아진다}.",
+      "definitionFingerprint": "add3d22cc8a27b80668aeaa2b53f029e40fbb9813a4b7d0334151630de7e0653",
+      "visibleLength": 39,
+      "targets": [
+        "작아진다"
+      ],
+      "valid": true,
+      "issues": []
+    }
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "reader": "Codex direct actual normalized B/C/all answers/all criteria/generalDefinition rereading in tool output, no independent approval",
+  "readAt": "2026-10-07T11:42:10.501Z",
+  "candidateArtifact": {
+    "path": "candidates-240-260.json",
+    "byteSha256": "8b683799af48f5adc82e99a35fbf82fa8e487912d5fdfc3fb2dbf23b4bed1911"
+  },
+  "actualOutput": {
+    "path": "after-240-260.txt",
+    "byteSha256": "09bd23c3b775e9fa5b65e60e92a94ab3aa8c02de54ea84e2ea286ef5d397b2c7",
+    "truncated": false
+  },
+  "rows": [
+    {
+      "originalDisputeIndex": 240,
+      "id": "m2-08-02-xc17",
+      "candidateFingerprint": "0dac332b3aeb9f6a11782402d8dca550bdb78b8511b8782db0efdc21e9c5ebcf",
+      "candidateNormalizedHash": "91363f6bd9585ff2434c6e64b376035a5d48b314f29340c14bd2fc21471ec14d",
+      "verdict": "candidate-text-reread",
+      "reason": "기존 C 제외는 마주 보는 짝만 중복으로 보았고 이웃한 짝은 보장되지 않는 대비를 빠뜨렸다. 이 대비를 C로 복구한다. B 제외와 일반 설명은 유지한다."
+    },
+    {
+      "originalDisputeIndex": 241,
+      "id": "m3-07-02-xc3",
+      "candidateFingerprint": "8ecf933bc4689af2fda407c180eda479ad4f7be71e24c76ce486eb24d694bec4",
+      "candidateNormalizedHash": "669db5dfe42b69466eb7c80cea1fab7a3570c308ab02628b47eb811518097f16",
+      "verdict": "candidate-text-reread",
+      "reason": "B는 관찰 자료를 종류로 분류하고 변화 방향을 이용해 이유도 쓰라고 명시한다. 키와 신발 크기가 함께 증가한다는 관찰은 바로 그 분류의 타당한 근거이며, 이유를 요청했으므로 종류 답만으로 기준을 축소하면 물음 요구를 누락한다. 관찰 해석이 쉽다는 이유로 없애지 않는다는 지시에 맞춰 B·C·일반 설명을 유지한다."
+    },
+    {
+      "originalDisputeIndex": 242,
+      "id": "m3-07-02-xc4",
+      "candidateFingerprint": "52098d7bd21bcef363a12497080498a65e0a1aecb61feaabf2b9dea61949a255",
+      "candidateNormalizedHash": "26a9553bb1322c0589fdb37ab115b6f046031020af7410f70bafaadd02e3258a",
+      "verdict": "candidate-text-reread",
+      "reason": "기온이 증가할 때 난방비가 감소한다는 관찰은 음의 상관관계 판단의 직접 근거이다. 물음이 변화 방향으로 이유를 쓰라고 요구하므로 그 근거를 별도 기준으로 두는 것은 부당한 추가 조건이 아니다. 쉬운 관찰 분류를 유지하라는 지시에 따라 B·C·일반 설명을 유지한다."
+    },
+    {
+      "originalDisputeIndex": 243,
+      "id": "m3-07-02-xc5",
+      "candidateFingerprint": "1602e79714d7fbe7a73cdd5d9d8c3048dab3010c44bf8b71a05a5a4eb305f094",
+      "candidateNormalizedHash": "4704249ceb2191e78e307e86f7ffa31a462efb751cd4067602732b10e53dcadf",
+      "verdict": "candidate-text-reread",
+      "reason": "B는 판단뿐 아니라 이유를 요청한다. 일정한 증가·감소 경향이 없다는 관찰을 판단 근거로 연결하는 답은 타당하고, 전제와 같은 표현이라는 이유로 이유 기준을 제거할 필요가 없다. C의 경향/없는 칸은 해당 관찰의 의미를 확인하고 일반 설명도 유지한다."
+    },
+    {
+      "originalDisputeIndex": 244,
+      "id": "m3-07-02-xc12",
+      "candidateFingerprint": "3262d02867f5a5d75ec70995c9db266a8b69b18dae9194d70577a548df370dbb",
+      "candidateNormalizedHash": "c463fb655827425db015469663aa20d962aa3c35d452a3720679f500f9dd91d1",
+      "verdict": "candidate-text-reread",
+      "reason": "C의 후속 문장이 예외가 있을 수 있음을 미리 말해 판단을 노출한다. 그 이유 문장을 C에서 제거하고 양의 상관관계만으로 언제나 같은 순서라고 단정 가능한지 판단하게 한다. B와 예외 가능성·필연을 구별한 일반 설명은 유지한다."
+    },
+    {
+      "originalDisputeIndex": 245,
+      "id": "m3-07-02-xc18",
+      "candidateFingerprint": "d424d9dfe1958ef7e1a3fce10d6393ce03b472c5bc6404a77b3a23dd37eca1a6",
+      "candidateNormalizedHash": "0b7fec07f79dc67efde8e256f5722ef38849936fc717644b9637e923d40f0b14",
+      "verdict": "candidate-text-reread",
+      "reason": "C 뒤 문장의 전체 분포 재검토 요구가 부정 판단의 방향을 미리 드러낸다. 후속 문장을 C에서 제거하여 추가점 하나라는 조건에서 항상 약해졌다는 주장의 성립 여부를 판단하게 한다. B와 일반 설명은 유지한다."
+    },
+    {
+      "originalDisputeIndex": 246,
+      "id": "m1-08-03-xc17",
+      "candidateFingerprint": "bf893b2625c0eb0bc9113841cf95f19f2a37c270613a097ee735d5522a8917e5",
+      "candidateNormalizedHash": "43a13353759f2756a3895ad3097cac775ea51e235d729fb4c26c9f60b34af5f9",
+      "verdict": "candidate-text-reread",
+      "reason": "현재 key는 B·C pass이다. blind는 빈칸을 '구할'이라는 긍정 표현으로 읽었지만 실제 키와 인정 답은 '정하지 못할/확정하지 못할'이어서 완성 문장 '정하지 못할 수 있다'는 정확하다. 75가 70~80 계급 안쪽이면 정확한 수를 정할 수 없다는 B·C와 일반 설명은 수학적으로 타당하다."
+    },
+    {
+      "originalDisputeIndex": 247,
+      "id": "m1-08-03-xc20",
+      "candidateFingerprint": "b6e9996de9888b3f2396af347260727fd78e837e84178bde3574ea5da2031dfd",
+      "candidateNormalizedHash": "216df26b1e18ccdfa39aeb7832b7b87f97881ce2f46be0730200cc4c40d7a2b3",
+      "verdict": "candidate-text-reread",
+      "reason": "현재 key는 B·C pass이다. blind는 둘째 칸에 '없다'를 넣어야 한다고 읽었으나 실제 키 '알지 못할'과 인정 답 '확정하지 못할/정하지 못할'을 넣으면 정확한 값은 알지 못할 수 있다는 문장이 정상적으로 성립한다. B는 40 이상50 미만 범위와 정확한 값의 차이를 구별하므로 B·C·일반 설명을 유지한다."
+    },
+    {
+      "originalDisputeIndex": 248,
+      "id": "m2-09-01-xc14",
+      "candidateFingerprint": "438fb54bc5819b030e91ec4b233d1fd461b9291afe342d8e74b74edf4d746e04",
+      "candidateNormalizedHash": "4c7ba7bb7745cf6bcfa26f5c90a38497f063ecf99bc5cbc6b632c62c1286ee68",
+      "verdict": "candidate-text-reread",
+      "reason": "'차례로'라는 열린 부사 복원을 실제 중간 지점 경유의 경우 수로 바꾼다. B의 각 앞길마다 뒤길이 2개라는 곱셈 근거와 일반 방법은 유지한다."
+    },
+    {
+      "originalDisputeIndex": 249,
+      "id": "m2-09-01-xc16",
+      "candidateFingerprint": "76926d2cb6c90c2720cbb30910ada1b33c93adbc2b70771a602fec09d43ba7e1",
+      "candidateNormalizedHash": "20c26d32ab22b1bb7e9b3b8047a42d069a1a9426773160308904582a0a498ef7",
+      "verdict": "candidate-text-reread",
+      "reason": "현재 key는 C pass이나 blind의 '센 다음' 뒤 열린 동사 범위를 실제 서로 배타적인 두 갈래의 전체 경우 수로 고정한다. B와 일반 방법은 유지한다."
+    },
+    {
+      "originalDisputeIndex": 250,
+      "id": "m2-09-01-xc20",
+      "candidateFingerprint": "420e96228203ab42be0df0f944697916656b63b098e916d5a1d4db660383b407",
+      "candidateNormalizedHash": "484a94ba4200575031ebbe8167532c63e06eece4ffef158852d047a526237076",
+      "verdict": "candidate-text-reread",
+      "reason": "허용되는지 앞의 열린 표현을 뒤 선택의 개수가 같은지라는 확인 대상으로 명확히 한다. 확인 조건과 전체 경우 수를 함께 묻고 B 제외·일반 설명은 유지한다."
+    },
+    {
+      "originalDisputeIndex": 251,
+      "id": "m1-08-04-xc23",
+      "candidateFingerprint": "6dd894ebb982c78d16690a6c7d5332ee2d09cd5cbfcb3196880e23a06942c765",
+      "candidateNormalizedHash": "ff857450afa20789161565343a1bc9b9d50ac3b7b3ab85e701147ce657652efa",
+      "verdict": "candidate-text-reread",
+      "reason": "현재 key는 C pass이다. '이상'과 '같아지는'은 일반적으로 동치가 아니다. 도수 합이 4에서9로 뛰고 찾는 순위가7이면 정확히 같은 합은 없지만 처음7 이상이 된 계급에 자료가 있다. 따라서 누적합≥순위를 묻는 첫 칸은 수학적 판단이고 단순 문법 복원이 아니며 계급/구간도 이미 인정된다. B 제외와 일반 설명을 유지한다."
+    },
+    {
+      "originalDisputeIndex": 252,
+      "id": "m2-09-01-xc22",
+      "candidateFingerprint": "39213bc9f7fdf9f7facaeb982407df7f787a628f01aea84afec3c7142190484c",
+      "candidateNormalizedHash": "b359c919b045e88861798ac2a5ca61b40ff3d281ee4bf2ace7a118a79a92e096",
+      "verdict": "candidate-text-reread",
+      "reason": "뺀 값이라는 동사 구절 복원을 정확한 전체·불만족 수와 직접 세기 결과를 비교하는 사례로 바꾼다. 직접 센 경우들이 서로 다르고 조건을 만족한다는 조건을 넣어 빠뜨린 수가 1개로 정해지게 한다. B 제외와 일반 설명은 유지한다."
+    },
+    {
+      "originalDisputeIndex": 253,
+      "id": "m2-09-02-xc2",
+      "candidateFingerprint": "8c2e670d5df12b8e1ddd121d041ec2660c98e3be111120c0fa0a7271ee1d4461",
+      "candidateNormalizedHash": "3a493e1bb39d0b9a57e011911cfb73188d331f5154624ba4c4c1c130a578b7bd",
+      "verdict": "candidate-text-reread",
+      "reason": "모든 후보와 실제 앞에 서는 한 사람을 혼동할 수 있다. 서로 다른 네 사람 모두가 후보라는 의미를 후보 개수로 명시하여 한 명 답과 구별한다. B 제외와 일반 설명은 유지한다."
+    },
+    {
+      "originalDisputeIndex": 254,
+      "id": "m1-08-05-xc9",
+      "candidateFingerprint": "b823862542c09ee7d9716d56becb6362bfdeb8c4c3be6146ea8c20bfc3602003",
+      "candidateNormalizedHash": "6159b1c9c18d68d9c6088f8cbdc81155fd566a14f882363430e7ff6ecd39b282",
+      "verdict": "candidate-text-reread",
+      "reason": "B에는 이미 '각 점이 계급의 한가운데에 있기 때문'이라는 둘째 필수 기준이 있어 지적의 '가운뎃값 근거를 필수로 해야 한다' 요구를 충족한다. C도 같은 폭의 계급이라는 조건에서 두 가운뎃값의 간격이 그 폭과 같다는 관계를 확인한다. 단어 구간의 너비가 반복되어도 이 관계는 전제 자체와 같지 않으며 쉬운 수량 해석을 제거하지 않으므로 유지한다."
+    },
+    {
+      "originalDisputeIndex": 255,
+      "id": "m2-09-02-xc13",
+      "candidateFingerprint": "4c14aba4a624e0cd8b970a62d3f4c359a50223b325a88397ea2b8201e0545537",
+      "candidateNormalizedHash": "26f0427a1085d7d66057859968e96750829ee94e5365998d1801f75e82bbcb9e",
+      "verdict": "candidate-text-reread",
+      "reason": "B가 각 곱셈 수의 뜻을 요청하는데 4×3만으로 기준을 충족하는 대안이 있어 어긋난다. 십의 자리 후보4개와 사용 후 남은 일의 자리 후보3개라는 두 뜻을 명시적으로 필수로 한다. C와 일반 설명은 유지한다."
+    },
+    {
+      "originalDisputeIndex": 256,
+      "id": "m1-08-05-xc15",
+      "candidateFingerprint": "433654e08fbf92f5bcf00e75729591cc7989d53f310e4d73bfe66daa112eba6e",
+      "candidateNormalizedHash": "791fe919934be99934f82db4af1ac13e65e7be413b342e086893719a048b80ab",
+      "verdict": "candidate-text-reread",
+      "reason": "현재 key는 B·C pass이다. 계급을 같은 경계로 나누어야 한다는 실제 내용이 B·C에서 명확하고 구간은 계급의 동치 표현으로 읽을 수 있다. 인정 답 목록은 정확 문자열만 허용하는 규칙이 아니므로 구간이라는 타당한 답을 막지 않는다. 전체 자료 범위만 같다는 것은 계급 경계까지 같다는 것과 달라 대안 근거가 되지 않는다. B·C·일반 설명을 유지한다."
+    },
+    {
+      "originalDisputeIndex": 257,
+      "id": "m1-08-05-xc20",
+      "candidateFingerprint": "58f73fc7c6d2bdc9e86b9ac157a711b4ee7ad566445c79d693a739f681b8fb19",
+      "candidateNormalizedHash": "6e3765a4150216510f1cb654af7f9fbc1b03cfa1377b39be01272d776ed94add",
+      "verdict": "candidate-text-reread",
+      "reason": "선분 중간 높이6이 다른 계급의 도수6과 우연히 같을 수 있다. 숫자값이 다른 계급 도수가 아니라는 주장을 제거하고 그 중간점이 어떤 계급의 측정값을 표시하는 점이 아니라는 뜻으로 B의 설명·기준을 수정한다. C의 '나타내지 않는다'와 일반 설명은 이 표시 관계를 말하므로 유지한다."
+    },
+    {
+      "originalDisputeIndex": 258,
+      "id": "m1-08-05-xc24",
+      "candidateFingerprint": "e760d173315ef7c99e3f920f533cd7fc1fdaebcefc5e5994bbb49ce1f1395fcc",
+      "candidateNormalizedHash": "a07ac41b5cbce8caaff2b0bd239983c8affadb8413786cd9891c59208ddf929e",
+      "verdict": "candidate-text-reread",
+      "reason": "알 수 있는 것·없는 것을 임의로 하나씩 쓰라는 열린 요청은 범위에 속한다는 다른 참 답을 막는다. 도수와 개별 값 각각을 알아낼 수 있는지로 물음을 한정한다. B의 답·기준과 C·일반 설명은 유지한다."
+    },
+    {
+      "originalDisputeIndex": 259,
+      "id": "m2-01-06-xc10",
+      "candidateFingerprint": "07455fbb44249dec8816d1ccfb904da88cc86e7d541a36e62af22cebcec601ec",
+      "candidateNormalizedHash": "8ecfb1cea0f2013d939b398054938b32ad225c1da98d226c18468b6a706c7199",
+      "verdict": "candidate-text-reread",
+      "reason": "현재 key는 C pass이다. blind는 두 칸이 같은 낱말 분수라고 읽었으나 실제 첫 칸은 분수, 둘째 칸은 역수이며 완성 문장은 분수로 쓴 다음 그 역수를 곱한다로 정확하다. x≠0도 C에 있어 나누는 식이0이 아닌 조건을 충족한다. B 제외와 일반 설명을 유지한다."
+    }
+  ]
+}

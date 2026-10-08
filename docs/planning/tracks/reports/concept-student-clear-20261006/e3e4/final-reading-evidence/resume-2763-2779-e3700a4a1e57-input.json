@@ -1,0 +1,1570 @@
+{
+  "sourceCommit": "13bf05dce",
+  "purpose": "Actual fields captured before direct Codex reading; capture is not a verdict",
+  "start": 2763,
+  "end": 2779,
+  "rows": [
+    {
+      "source": {
+        "sourceIndex": 2763,
+        "sourceFingerprint": "4ff94386d137fbb0585a8ebb640ced3bc6d2a474bbc23efeb7765077f1632286",
+        "part": "e4plus",
+        "id": "e4-2-6-4-xc13",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "term": "한 바퀴보다 작은 각의 합",
+        "kind": "성질",
+        "level": "중",
+        "definition": "한 점에 모은 각의 합이 $360^\\circ$보다 작으면 각 사이에 {빈틈}이 남는다.",
+        "studentC": "한 점에 모은 각의 합이 $360^\\circ$보다 작으면 각 사이에 □이 남는다.",
+        "answers": [
+          "빈틈"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2763,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "sourceFingerprint": "4ff94386d137fbb0585a8ebb640ced3bc6d2a474bbc23efeb7765077f1632286",
+        "proposalFingerprint": "fa270a5b98d4816a71b8f24d0e43af5b8cc73f2b4d69cb80cfa87311a3fe4e09",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-4-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "한 점에 모은 각의 합이 $360^\\circ$보다 작을 때와 클 때, 각각 어떤 문제가 생기는지 쓰시오.",
+        "bAnswer": "작으면 각 사이에 빈틈이 남고, 크면 각이 겹친다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "작으면 빈틈이 남는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "크면 겹친다",
+              "크면 겹치지 않게 놓을 수 없다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "각의 합과 빈틈·겹침",
+        "bReason": "360도보다 작을 때와 클 때를 함께 구분",
+        "cDecision": "keep",
+        "cReason": "작을 때 생기는 빈틈을 묻는 익숙한 빈칸",
+        "cSlotEquivalents": [
+          [
+            "빈 곳",
+            "틈",
+            "빈자리"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "한 바퀴보다 작은 각의 합",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "한 점에 모은 각의 합이 $360^\\circ$보다 작으면 각 사이에 {빈틈}이 남는다.",
+        "cStudentSentence": "한 점에 모은 각의 합이 $360^\\circ$보다 작으면 각 사이에 □이 남는다.",
+        "cSlotAnswers": [
+          {
+            "expected": "빈틈",
+            "equivalents": [
+              "빈 곳",
+              "틈",
+              "빈자리"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "한 점에 모은 각의 합이 $360^\\circ$보다 작으면 각 사이에 □이 남는다.",
+          "answers": [
+            "빈틈"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "한 점에 모은 각의 합이 $360^\\circ$보다 작을 때와 클 때, 각각 어떤 문제가 생기는지 쓰시오.",
+          "answer": "작으면 각 사이에 빈틈이 남고, 크면 각이 겹친다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "작으면 빈틈이 남는다"
+              ]
+            },
+            {
+              "anyOf": [
+                "크면 겹친다",
+                "크면 겹치지 않게 놓을 수 없다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "한 점에 모은 각의 합이 $360^\\circ$보다 작으면 각 사이에 {빈틈}이 남는다.",
+          "acceptedAnswers": [
+            [
+              "빈틈",
+              "빈 곳",
+              "틈",
+              "빈자리"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2764,
+        "sourceFingerprint": "2d88131bd236682097760d94657b9d558d63c253df763b28febd3297db764aa2",
+        "part": "e4plus",
+        "id": "e4-2-6-4-xc14",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "term": "한 바퀴보다 큰 각의 합",
+        "kind": "성질",
+        "level": "중",
+        "definition": "한 점에 모은 각의 합이 $360^\\circ$보다 크면 그대로는 {겹치지 않게} 놓을 수 없다.",
+        "studentC": "한 점에 모은 각의 합이 $360^\\circ$보다 크면 그대로는 □ 놓을 수 없다.",
+        "answers": [
+          "겹치지 않게"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2764,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "sourceFingerprint": "2d88131bd236682097760d94657b9d558d63c253df763b28febd3297db764aa2",
+        "proposalFingerprint": "af914565738d6ae2cd7b265d5957fd833ba4cbd698a8c4f220755ebf20110018",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-4-xc14",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "reason",
+        "bGoal": "360도보다 큰 각의 합",
+        "bReason": "빈틈 항목 B에서 함께 다룸",
+        "cDecision": "rewrite",
+        "cAfter": "한 점에 모은 각의 합이 $360^\\circ$보다 크면 각들이 서로 {겹친다}.",
+        "cReason": "어색한 부정 서술을 짧은 낱말 빈칸으로 고침",
+        "exclusionReason": "합이 $360^\\circ$보다 클 때의 겹침은 e4-2-6-4-xc13 B에서 작을 때와 비교해 묻는다.",
+        "cSlotEquivalents": [
+          [
+            "겹쳐진다",
+            "포개진다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "한 바퀴보다 큰 각의 합",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "한 점에 모은 각의 합이 $360^\\circ$보다 크면 각들이 서로 {겹친다}.",
+        "cStudentSentence": "한 점에 모은 각의 합이 $360^\\circ$보다 크면 각들이 서로 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "겹친다",
+            "equivalents": [
+              "겹쳐진다",
+              "포개진다"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "한 점에 모은 각의 합이 $360^\\circ$보다 크면 각들이 서로 {겹친다}.",
+          "acceptedAnswers": [
+            [
+              "겹친다",
+              "겹쳐진다",
+              "포개진다"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "빈틈 항목 B에서 함께 다룸"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2765,
+        "sourceFingerprint": "f522b38b648b73610fcec33b9313047e2268565c091ca42635091dcd7d021f24",
+        "part": "e4plus",
+        "id": "e4-2-6-4-xc15",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "term": "행과 열로 조각 세기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "같은 개수의 정사각형을 여러 줄 놓았다면 한 줄의 개수에 {줄 수}를 곱해 전체를 센다.",
+        "studentC": "같은 개수의 정사각형을 여러 줄 놓았다면 한 줄의 개수에 □를 곱해 전체를 센다.",
+        "answers": [
+          "줄 수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2765,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "sourceFingerprint": "f522b38b648b73610fcec33b9313047e2268565c091ca42635091dcd7d021f24",
+        "proposalFingerprint": "3dbe6c38393c575d0f64a1641129d55fd8d3c6bccdb98512d9718595285ca8b2",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-4-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "정사각형을 한 줄에 $5$개씩 $3$줄 놓았다. 모두 몇 개인지 구하는 식과 답을 쓰시오.",
+        "bAnswer": "$5\\times3=15$이므로 $15$개이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$15$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5\\times3$",
+              "한 줄의 개수에 줄 수를 곱한다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "줄 수로 전체 개수",
+        "bReason": "한 줄 개수와 줄 수의 곱셈 방법을 확인",
+        "cDecision": "keep",
+        "cReason": "곱하는 대상이 줄 수임을 묻는 짧은 빈칸",
+        "cSlotEquivalents": [
+          [
+            "줄의 수",
+            "줄의 개수"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "행과 열로 조각 세기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "같은 개수의 정사각형을 여러 줄 놓았다면 한 줄의 개수에 {줄 수}를 곱해 전체를 센다.",
+        "cStudentSentence": "같은 개수의 정사각형을 여러 줄 놓았다면 한 줄의 개수에 □를 곱해 전체를 센다.",
+        "cSlotAnswers": [
+          {
+            "expected": "줄 수",
+            "equivalents": [
+              "줄의 수",
+              "줄의 개수"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "같은 개수의 정사각형을 여러 줄 놓았다면 한 줄의 개수에 □를 곱해 전체를 센다.",
+          "answers": [
+            "줄 수"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "정사각형을 한 줄에 $5$개씩 $3$줄 놓았다. 모두 몇 개인지 구하는 식과 답을 쓰시오.",
+          "answer": "$5\\times3=15$이므로 $15$개이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$15$개"
+              ]
+            },
+            {
+              "anyOf": [
+                "$5\\times3$",
+                "한 줄의 개수에 줄 수를 곱한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "같은 개수의 정사각형을 여러 줄 놓았다면 한 줄의 개수에 {줄 수}를 곱해 전체를 센다.",
+          "acceptedAnswers": [
+            [
+              "줄 수",
+              "줄의 수",
+              "줄의 개수"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2766,
+        "sourceFingerprint": "b49ac87cdc439ee630c34f4545a7c4f2a9277788ac86ea09a5cb7e91a6e047c4",
+        "part": "e4plus",
+        "id": "e4-2-6-4-xc16",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "term": "정사각형을 삼각형으로 나누기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "정사각형을 대각선 하나로 자르면 같은 크기의 {직각이등변삼각형} 두 조각이 된다.",
+        "studentC": "정사각형을 대각선 하나로 자르면 같은 크기의 □ 두 조각이 된다.",
+        "answers": [
+          "직각이등변삼각형"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2766,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "sourceFingerprint": "b49ac87cdc439ee630c34f4545a7c4f2a9277788ac86ea09a5cb7e91a6e047c4",
+        "proposalFingerprint": "620b70ffbfd9b9f4cbabd424fc9c5288716c49bcd10dbf66b53801bf67f3762f",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-4-xc16",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "application",
+        "bGoal": "정사각형을 대각선으로 자르기",
+        "bReason": "대각선으로 나눈 삼각형 항목과 같은 목표",
+        "cDecision": "rewrite",
+        "cAfter": "정사각형을 대각선 하나로 자르면 크기가 같은 직각이등변삼각형이 {$2$}개 생긴다.",
+        "cReason": "어려운 이름 복원 대신 개수를 묻게 고침",
+        "exclusionReason": "정사각형을 대각선으로 잘라 직각이등변삼각형이 생긴다는 목표를 e4-2-6-3-xc24 B에서 이미 다룬다.",
+        "cSlotEquivalents": [
+          [
+            "두"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "정사각형을 삼각형으로 나누기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정사각형을 대각선 하나로 자르면 크기가 같은 직각이등변삼각형이 {$2$}개 생긴다.",
+        "cStudentSentence": "정사각형을 대각선 하나로 자르면 크기가 같은 직각이등변삼각형이 □개 생긴다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$2$",
+            "equivalents": [
+              "두"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "정사각형을 대각선 하나로 자르면 크기가 같은 직각이등변삼각형이 {$2$}개 생긴다.",
+          "acceptedAnswers": [
+            [
+              "$2$",
+              "두"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "대각선으로 나눈 삼각형 항목과 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2767,
+        "sourceFingerprint": "34304951f1150e90ca1693b5f16c23b6899811160f9302e5c36fa2b4fecee23c",
+        "part": "e4plus",
+        "id": "e4-2-6-4-xc17",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "term": "같은 모양의 다른 조각 구성",
+        "kind": "성질",
+        "level": "중",
+        "definition": "같은 바깥 모양을 만들더라도 안을 채우는 조각의 {종류}와 {수}는 달라질 수 있다. 어떤 모양 조각인지와 몇 개인지를 각각 비교한다.",
+        "studentC": "같은 바깥 모양을 만들더라도 안을 채우는 조각의 □와 □는 달라질 수 있다. 어떤 모양 조각인지와 몇 개인지를 각각 비교한다.",
+        "answers": [
+          "종류",
+          "수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2767,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "sourceFingerprint": "34304951f1150e90ca1693b5f16c23b6899811160f9302e5c36fa2b4fecee23c",
+        "proposalFingerprint": "5538c19c71e09d4492f9521a1195b341c193642977008675faa1b29dd3e05ff6",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-4-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "정육각형 모양은 정삼각형 조각 $6$개로 채울 수도 있고 마름모 조각 $3$개로 채울 수도 있다. 두 방법에서 달라진 점을 조각의 종류와 개수로 말하시오.",
+        "bAnswer": "조각의 종류가 정삼각형과 마름모로 다르고, 조각의 개수도 $6$개와 $3$개로 다르다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "조각의 종류가 다르다",
+              "정삼각형과 마름모"
+            ]
+          },
+          {
+            "anyOf": [
+              "조각의 개수가 다르다",
+              "$6$개와 $3$개"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "같은 모양 다른 조각 구성",
+        "bReason": "종류와 개수를 따로 비교하게 함",
+        "exampleNeeded": "정육각형을 정삼각형 $6$개와 마름모 $3$개로 각각 채운 그림",
+        "cDecision": "rewrite",
+        "cAfter": "같은 바깥 모양을 만들어도 안을 채우는 조각의 {종류}와 조각의 {수}는 달라질 수 있다.",
+        "cReason": "둘째 문장이 답을 알려 주어 한 문장으로 고침",
+        "cSlotEquivalents": [
+          [
+            "모양"
+          ],
+          [
+            "개수"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "같은 모양의 다른 조각 구성",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "같은 바깥 모양을 만들어도 안을 채우는 조각의 {종류}와 조각의 {수}는 달라질 수 있다.",
+        "cStudentSentence": "같은 바깥 모양을 만들어도 안을 채우는 조각의 □와 조각의 □는 달라질 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "종류",
+            "equivalents": [
+              "모양"
+            ]
+          },
+          {
+            "expected": "수",
+            "equivalents": [
+              "개수"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "정육각형 모양은 정삼각형 조각 $6$개로 채울 수도 있고 마름모 조각 $3$개로 채울 수도 있다. 두 방법에서 달라진 점을 조각의 종류와 개수로 말하시오.",
+          "answer": "조각의 종류가 정삼각형과 마름모로 다르고, 조각의 개수도 $6$개와 $3$개로 다르다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "조각의 종류가 다르다",
+                "정삼각형과 마름모"
+              ]
+            },
+            {
+              "anyOf": [
+                "조각의 개수가 다르다",
+                "$6$개와 $3$개"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "같은 바깥 모양을 만들어도 안을 채우는 조각의 {종류}와 조각의 {수}는 달라질 수 있다.",
+          "acceptedAnswers": [
+            [
+              "종류",
+              "모양"
+            ],
+            [
+              "수",
+              "개수"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2768,
+        "sourceFingerprint": "da9f51c17f76c65ab8ee2deccee58cfa98bab994235507cdfae6584c12c4938e",
+        "part": "e4plus",
+        "id": "e4-2-6-4-xc18",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "term": "붙인 변은 둘레에서 빼기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "두 도형을 겹치지 않게 붙이면 서로 맞닿은 부분은 {안쪽에 놓이므로} 전체 둘레에 넣지 않는다.",
+        "studentC": "두 도형을 겹치지 않게 붙이면 서로 맞닿은 부분은 □ 전체 둘레에 넣지 않는다.",
+        "answers": [
+          "안쪽에 놓이므로"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2768,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "sourceFingerprint": "da9f51c17f76c65ab8ee2deccee58cfa98bab994235507cdfae6584c12c4938e",
+        "proposalFingerprint": "12913c2630cd5555c523d424b894b0e092e9d7bd93984c252b092a8308583438",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-4-xc18",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "reason",
+        "bGoal": "붙인 변은 둘레에서 빼기",
+        "bReason": "정다각형 붙인 둘레 항목과 같은 목표",
+        "cDecision": "rewrite",
+        "cAfter": "두 도형을 겹치지 않게 붙이면 서로 맞닿은 변은 도형의 {안쪽}에 있으므로 전체 둘레에 넣지 않는다.",
+        "cReason": "긴 이유 구 빈칸을 짧은 낱말로 고침",
+        "exclusionReason": "붙인 변이 안쪽이라 둘레에서 빠진다는 목표를 e4-2-6-2-xc24 B에서 이미 다룬다.",
+        "cSlotEquivalents": [
+          [
+            "안",
+            "속"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "붙인 변은 둘레에서 빼기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "두 도형을 겹치지 않게 붙이면 서로 맞닿은 변은 도형의 {안쪽}에 있으므로 전체 둘레에 넣지 않는다.",
+        "cStudentSentence": "두 도형을 겹치지 않게 붙이면 서로 맞닿은 변은 도형의 □에 있으므로 전체 둘레에 넣지 않는다.",
+        "cSlotAnswers": [
+          {
+            "expected": "안쪽",
+            "equivalents": [
+              "안",
+              "속"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "두 도형을 겹치지 않게 붙이면 서로 맞닿은 변은 도형의 {안쪽}에 있으므로 전체 둘레에 넣지 않는다.",
+          "acceptedAnswers": [
+            [
+              "안쪽",
+              "안",
+              "속"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "정다각형 붙인 둘레 항목과 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2769,
+        "sourceFingerprint": "277df7edc8df1974b1ea1419fbc416758e2029f5d3f4a31a6cf11feeeb90795c",
+        "part": "e4plus",
+        "id": "e4-2-6-4-xc19",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "term": "무늬의 반복 묶음",
+        "kind": "방법",
+        "level": "중",
+        "definition": "되풀이되는 모양을 채울 때 반복하는 {한 묶음}을 찾아 이어 놓을 수 있다.",
+        "studentC": "되풀이되는 모양을 채울 때 반복하는 □을 찾아 이어 놓을 수 있다.",
+        "answers": [
+          "한 묶음"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2769,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "sourceFingerprint": "277df7edc8df1974b1ea1419fbc416758e2029f5d3f4a31a6cf11feeeb90795c",
+        "proposalFingerprint": "f986b478ad404642951ea1401a44efeeb0ed6a55ff5a87ff03d90c4095207bb9",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-4-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각형 조각 $2$개, 사각형 조각 $1$개, 삼각형 조각 $2$개, 사각형 조각 $1$개 …가 계속 되풀이되는 무늬가 있다. 이 무늬를 이어 놓으려면 어떤 부분을 찾아 어떻게 하면 되는지 쓰시오.",
+        "bAnswer": "되풀이되는 '삼각형 $2$개와 사각형 $1$개' 한 묶음을 찾아 계속 이어 놓는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "삼각형 $2$개와 사각형 $1$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 묶음을 반복해서 이어 놓는다",
+              "되풀이해 이어 놓는다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "반복 묶음 찾아 이어 놓기",
+        "bReason": "반복되는 한 묶음을 찾는 방법을 예로 확인",
+        "cDecision": "rewrite",
+        "cAfter": "되풀이되는 무늬로 모양을 채울 때는 계속 반복되는 {한 묶음}을 찾아 이어 놓는다.",
+        "cReason": "'반복하는 □' 대상이 모호해 무늬 단서를 보탬",
+        "cSlotEquivalents": [
+          [
+            "한 덩어리",
+            "한 부분",
+            "한 세트"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "무늬의 반복 묶음",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "되풀이되는 무늬로 모양을 채울 때는 계속 반복되는 {한 묶음}을 찾아 이어 놓는다.",
+        "cStudentSentence": "되풀이되는 무늬로 모양을 채울 때는 계속 반복되는 □을 찾아 이어 놓는다.",
+        "cSlotAnswers": [
+          {
+            "expected": "한 묶음",
+            "equivalents": [
+              "한 덩어리",
+              "한 부분",
+              "한 세트"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "삼각형 조각 $2$개, 사각형 조각 $1$개, 삼각형 조각 $2$개, 사각형 조각 $1$개 …가 계속 되풀이되는 무늬가 있다. 이 무늬를 이어 놓으려면 어떤 부분을 찾아 어떻게 하면 되는지 쓰시오.",
+          "answer": "되풀이되는 '삼각형 $2$개와 사각형 $1$개' 한 묶음을 찾아 계속 이어 놓는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "삼각형 $2$개와 사각형 $1$개"
+              ]
+            },
+            {
+              "anyOf": [
+                "한 묶음을 반복해서 이어 놓는다",
+                "되풀이해 이어 놓는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "되풀이되는 무늬로 모양을 채울 때는 계속 반복되는 {한 묶음}을 찾아 이어 놓는다.",
+          "acceptedAnswers": [
+            [
+              "한 묶음",
+              "한 덩어리",
+              "한 부분",
+              "한 세트"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2770,
+        "sourceFingerprint": "7be7465fcb969d88106ac7f1c3ab8840767e845768d8ee6c1b22ebec05344d1a",
+        "part": "e4plus",
+        "id": "e4-2-6-4-xc20",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "term": "서로 다른 도형으로 한 점 채우기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "종류가 다른 도형도 한 점에 모이는 각들을 합쳐 {한 바퀴}가 되는지 확인한다.",
+        "studentC": "종류가 다른 도형도 한 점에 모이는 각들을 합쳐 □가 되는지 확인한다.",
+        "answers": [
+          "한 바퀴"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2770,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "sourceFingerprint": "7be7465fcb969d88106ac7f1c3ab8840767e845768d8ee6c1b22ebec05344d1a",
+        "proposalFingerprint": "7e445cf4347235d81f661df44f37b2cad7ea9569ffa6d56d10feb1152c1d95c7",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-4-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "한 점에 정삼각형 $3$개와 정사각형 $2$개를 모으려고 한다. 정삼각형의 한 각은 $60^\\circ$, 정사각형의 한 각은 $90^\\circ$이다. 이 도형들로 한 점을 빈틈없이 둘러쌀 수 있는지 쓰고 까닭을 설명하시오.",
+        "bAnswer": "둘러쌀 수 있다. $60^\\circ\\times3+90^\\circ\\times2=180^\\circ+180^\\circ=360^\\circ$로 한 바퀴가 되기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "둘러쌀 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "각의 합이 $360^\\circ$이다",
+              "한 바퀴가 된다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "다른 도형도 합이 한 바퀴",
+        "bReason": "종류가 다른 도형의 각 합을 계산해 확인",
+        "cDecision": "keep",
+        "cReason": "각의 합이 한 바퀴임을 묻는 익숙한 빈칸",
+        "cSlotEquivalents": [
+          [
+            "$360^\\circ$",
+            "$360$도"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "서로 다른 도형으로 한 점 채우기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "종류가 다른 도형도 한 점에 모이는 각들을 합쳐 {한 바퀴}가 되는지 확인한다.",
+        "cStudentSentence": "종류가 다른 도형도 한 점에 모이는 각들을 합쳐 □가 되는지 확인한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "한 바퀴",
+            "equivalents": [
+              "$360^\\circ$",
+              "$360$도"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "종류가 다른 도형도 한 점에 모이는 각들을 합쳐 □가 되는지 확인한다.",
+          "answers": [
+            "한 바퀴"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "한 점에 정삼각형 $3$개와 정사각형 $2$개를 모으려고 한다. 정삼각형의 한 각은 $60^\\circ$, 정사각형의 한 각은 $90^\\circ$이다. 이 도형들로 한 점을 빈틈없이 둘러쌀 수 있는지 쓰고 까닭을 설명하시오.",
+          "answer": "둘러쌀 수 있다. $60^\\circ\\times3+90^\\circ\\times2=180^\\circ+180^\\circ=360^\\circ$로 한 바퀴가 되기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "둘러쌀 수 있다"
+              ]
+            },
+            {
+              "anyOf": [
+                "각의 합이 $360^\\circ$이다",
+                "한 바퀴가 된다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "종류가 다른 도형도 한 점에 모이는 각들을 합쳐 {한 바퀴}가 되는지 확인한다.",
+          "acceptedAnswers": [
+            [
+              "한 바퀴",
+              "$360^\\circ$",
+              "$360$도"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2771,
+        "sourceFingerprint": "1ae2cb8da782fd5b23198584de4d292caa8c715328dfa9591f8574e479117b71",
+        "part": "e4plus",
+        "id": "e4-2-6-4-xc21",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "term": "정오각형만 모으기 어려운 까닭",
+        "kind": "성질",
+        "level": "상",
+        "definition": "한 각이 $108^\\circ$인 정오각형은 같은 각을 몇 번 모아도 꼭 $360^\\circ$가 되지 않아, 겹치지 않게 꼭짓점을 모으면 {틈 없이 채우기 어렵다}.",
+        "studentC": "한 각이 $108^\\circ$인 정오각형은 같은 각을 몇 번 모아도 꼭 $360^\\circ$가 되지 않아, 겹치지 않게 꼭짓점을 모으면 □.",
+        "answers": [
+          "틈 없이 채우기 어렵다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2771,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "sourceFingerprint": "1ae2cb8da782fd5b23198584de4d292caa8c715328dfa9591f8574e479117b71",
+        "proposalFingerprint": "2f58f69e359f34fbf3e1a7b44a9867a701bb7ed75e211f9c83eb4777e3f70cce",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-4-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "한 각이 $108^\\circ$인 정오각형을 한 점에 $3$개, $4$개 모으면 각의 합은 각각 얼마인가? 이를 이용해 정오각형만으로 한 점을 틈 없이 둘러쌀 수 있는지 쓰시오.",
+        "bAnswer": "$108^\\circ\\times3=324^\\circ$, $108^\\circ\\times4=432^\\circ$이다. 어느 것도 $360^\\circ$가 아니므로 둘러쌀 수 없다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$324^\\circ$와 $432^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "둘러쌀 수 없다",
+              "틈 없이 채울 수 없다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "정오각형 한 점 채우기 어려움",
+        "bReason": "각의 합이 360도가 안 되는 이유를 계산으로 설명",
+        "cDecision": "rewrite",
+        "cAfter": "한 각이 $108^\\circ$인 정오각형 $3$개를 한 점에 모으면 합이 $324^\\circ$이다. $360^\\circ$보다 작으므로 각 사이에 {빈틈}이 생긴다.",
+        "cReason": "긴 구 정답을 계산 뒤 짧은 낱말 빈칸으로 고침",
+        "cSlotEquivalents": [
+          [
+            "틈",
+            "빈 곳"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "정오각형만 모으기 어려운 까닭",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "한 각이 $108^\\circ$인 정오각형 $3$개를 한 점에 모으면 합이 $324^\\circ$이다. $360^\\circ$보다 작으므로 각 사이에 {빈틈}이 생긴다.",
+        "cStudentSentence": "한 각이 $108^\\circ$인 정오각형 $3$개를 한 점에 모으면 합이 $324^\\circ$이다. $360^\\circ$보다 작으므로 각 사이에 □이 생긴다.",
+        "cSlotAnswers": [
+          {
+            "expected": "빈틈",
+            "equivalents": [
+              "틈",
+              "빈 곳"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "한 각이 $108^\\circ$인 정오각형을 한 점에 $3$개, $4$개 모으면 각의 합은 각각 얼마인가? 이를 이용해 정오각형만으로 한 점을 틈 없이 둘러쌀 수 있는지 쓰시오.",
+          "answer": "$108^\\circ\\times3=324^\\circ$, $108^\\circ\\times4=432^\\circ$이다. 어느 것도 $360^\\circ$가 아니므로 둘러쌀 수 없다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$324^\\circ$와 $432^\\circ$"
+              ]
+            },
+            {
+              "anyOf": [
+                "둘러쌀 수 없다",
+                "틈 없이 채울 수 없다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "한 각이 $108^\\circ$인 정오각형 $3$개를 한 점에 모으면 합이 $324^\\circ$이다. $360^\\circ$보다 작으므로 각 사이에 {빈틈}이 생긴다.",
+          "acceptedAnswers": [
+            [
+              "빈틈",
+              "틈",
+              "빈 곳"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2772,
+        "sourceFingerprint": "6a2be070ea414bdeb2d0c13996f2eefeb3d0697abb73ac8e09785dca8d54c7ef",
+        "part": "e4plus",
+        "id": "e4-2-6-4-xc22",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "term": "조각의 방향과 바깥 모양",
+        "kind": "성질",
+        "level": "상",
+        "definition": "같은 조각을 같은 수만큼 써도 방향과 위치를 달리하면 {다른 모양}이 나올 수 있다.",
+        "studentC": "같은 조각을 같은 수만큼 써도 방향과 위치를 달리하면 □이 나올 수 있다.",
+        "answers": [
+          "다른 모양"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2772,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "sourceFingerprint": "6a2be070ea414bdeb2d0c13996f2eefeb3d0697abb73ac8e09785dca8d54c7ef",
+        "proposalFingerprint": "d1a49b05ba09b38bb0d3a0f2d74e3f9a96a96055dd1e555c73296d234c90ec04",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-4-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "같은 정사각형 조각 $4$개를 사용해도 놓는 방향과 위치를 달리하면 만든 모양이 같을까 다를까? 서로 다른 배치의 예를 들어 쓰시오.",
+        "bAnswer": "다른 모양이 나올 수 있다. 예: 한 줄로 길게 놓은 모양과 가로 $2$칸, 세로 $2$칸으로 놓은 모양이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "다른 모양이 나올 수 있다",
+              "같지 않을 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "서로 다른 배치의 예",
+              "한 줄로 놓은 모양과 정사각형 모양"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "배치 따라 달라지는 모양",
+        "bReason": "같은 조각 수에도 모양이 달라짐을 예로 확인",
+        "cDecision": "keep",
+        "cReason": "방향·위치가 바뀌면 나오는 결과를 묻는 빈칸",
+        "cSlotEquivalents": [
+          [
+            "다른 도형",
+            "다른 모습"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "조각의 방향과 바깥 모양",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "같은 조각을 같은 수만큼 써도 방향과 위치를 달리하면 {다른 모양}이 나올 수 있다.",
+        "cStudentSentence": "같은 조각을 같은 수만큼 써도 방향과 위치를 달리하면 □이 나올 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "다른 모양",
+            "equivalents": [
+              "다른 도형",
+              "다른 모습"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "같은 조각을 같은 수만큼 써도 방향과 위치를 달리하면 □이 나올 수 있다.",
+          "answers": [
+            "다른 모양"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "같은 정사각형 조각 $4$개를 사용해도 놓는 방향과 위치를 달리하면 만든 모양이 같을까 다를까? 서로 다른 배치의 예를 들어 쓰시오.",
+          "answer": "다른 모양이 나올 수 있다. 예: 한 줄로 길게 놓은 모양과 가로 $2$칸, 세로 $2$칸으로 놓은 모양이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "다른 모양이 나올 수 있다",
+                "같지 않을 수 있다"
+              ]
+            },
+            {
+              "anyOf": [
+                "서로 다른 배치의 예",
+                "한 줄로 놓은 모양과 정사각형 모양"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "같은 조각을 같은 수만큼 써도 방향과 위치를 달리하면 {다른 모양}이 나올 수 있다.",
+          "acceptedAnswers": [
+            [
+              "다른 모양",
+              "다른 도형",
+              "다른 모습"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2773,
+        "sourceFingerprint": "a9cae08b0e522066c13d81aad05a2f3373fe60be3ae0393338eac69c912c4c00",
+        "part": "e4plus",
+        "id": "e4-2-6-4-xc23",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "term": "같은 줄에 빠진 조각 찾기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "완성될 줄과 칸의 수로 전체 조각 수를 구하고 이미 놓은 수를 {빼어} 부족한 수를 찾는다.",
+        "studentC": "완성될 줄과 칸의 수로 전체 조각 수를 구하고 이미 놓은 수를 □ 부족한 수를 찾는다.",
+        "answers": [
+          "빼어"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2773,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "sourceFingerprint": "a9cae08b0e522066c13d81aad05a2f3373fe60be3ae0393338eac69c912c4c00",
+        "proposalFingerprint": "3e7a17935079a62b60948cf303db50555106d8eafcbd96b4354d44842ad266ee",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-4-xc23",
+        "bDecision": "rewrite",
+        "bPrompt": "정사각형 조각을 한 줄에 $5$칸씩 $4$줄로 채우려고 한다. 이미 $13$개를 놓았다면 더 필요한 조각은 몇 개인지 구하시오.",
+        "bAnswer": "전체 $5\\times4=20$개이므로 $20-13=7$, $7$개가 더 필요하다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$7$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "$20-13$",
+              "전체 수에서 놓은 수를 뺀다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "전체에서 놓은 수 빼기",
+        "bReason": "곱셈 뒤 뺄셈으로 부족한 수를 찾는 과정 확인",
+        "cDecision": "keep",
+        "cReason": "전체에서 놓은 수를 어떻게 하는지 묻는 연산 빈칸",
+        "cSlotEquivalents": [
+          [
+            "빼서",
+            "빼고",
+            "뺀 뒤",
+            "빼면"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "같은 줄에 빠진 조각 찾기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "완성될 줄과 칸의 수로 전체 조각 수를 구하고 이미 놓은 수를 {빼어} 부족한 수를 찾는다.",
+        "cStudentSentence": "완성될 줄과 칸의 수로 전체 조각 수를 구하고 이미 놓은 수를 □ 부족한 수를 찾는다.",
+        "cSlotAnswers": [
+          {
+            "expected": "빼어",
+            "equivalents": [
+              "빼서",
+              "빼고",
+              "뺀 뒤",
+              "빼면"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "완성될 줄과 칸의 수로 전체 조각 수를 구하고 이미 놓은 수를 □ 부족한 수를 찾는다.",
+          "answers": [
+            "빼어"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "정사각형 조각을 한 줄에 $5$칸씩 $4$줄로 채우려고 한다. 이미 $13$개를 놓았다면 더 필요한 조각은 몇 개인지 구하시오.",
+          "answer": "전체 $5\\times4=20$개이므로 $20-13=7$, $7$개가 더 필요하다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$7$개"
+              ]
+            },
+            {
+              "anyOf": [
+                "$20-13$",
+                "전체 수에서 놓은 수를 뺀다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "완성될 줄과 칸의 수로 전체 조각 수를 구하고 이미 놓은 수를 {빼어} 부족한 수를 찾는다.",
+          "acceptedAnswers": [
+            [
+              "빼어",
+              "빼서",
+              "빼고",
+              "뺀 뒤",
+              "빼면"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2774,
+        "sourceFingerprint": "6d4d5c0325ad138155a1c66199924bd02deca2766627601f417707baa9a4019a",
+        "part": "e4plus",
+        "id": "e4-2-6-4-xc24",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "term": "조각 두 개를 한 묶음으로 바꾸기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "정사각형을 나눈 두 삼각형을 잘린 변끼리 다시 맞대면 삼각형 수의 {절반}만큼 정사각형을 만든다.",
+        "studentC": "정사각형을 나눈 두 삼각형을 잘린 변끼리 다시 맞대면 삼각형 수의 □만큼 정사각형을 만든다.",
+        "answers": [
+          "절반"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2774,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "sourceFingerprint": "6d4d5c0325ad138155a1c66199924bd02deca2766627601f417707baa9a4019a",
+        "proposalFingerprint": "34ede2cd5ef60a0b98425d4a5b6196c5d6361ef6f990bc9a7a218e2a305e93f4",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-4-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "정사각형을 대각선으로 잘라 만든 삼각형 조각이 $10$개 있다. 삼각형 $2$개를 맞대어 정사각형을 만들면 정사각형을 몇 개 만들 수 있고 어떻게 구했는지 쓰시오.",
+        "bAnswer": "$10\\div2=5$이므로 $5$개이다. 삼각형 $2$개로 정사각형 $1$개를 만든다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$5$개"
+            ]
+          },
+          {
+            "anyOf": [
+              "$10\\div2$",
+              "삼각형 수의 절반"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "삼각형 수의 절반 구하기",
+        "bReason": "두 조각이 한 묶음임을 나눗셈으로 확인",
+        "cDecision": "keep",
+        "cReason": "삼각형 두 개가 한 묶음이라는 절반 빈칸",
+        "cSlotEquivalents": [
+          [
+            "반",
+            "$\\frac{1}{2}$"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "조각 두 개를 한 묶음으로 바꾸기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "정사각형을 나눈 두 삼각형을 잘린 변끼리 다시 맞대면 삼각형 수의 {절반}만큼 정사각형을 만든다.",
+        "cStudentSentence": "정사각형을 나눈 두 삼각형을 잘린 변끼리 다시 맞대면 삼각형 수의 □만큼 정사각형을 만든다.",
+        "cSlotAnswers": [
+          {
+            "expected": "절반",
+            "equivalents": [
+              "반",
+              "$\\frac{1}{2}$"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "정사각형을 나눈 두 삼각형을 잘린 변끼리 다시 맞대면 삼각형 수의 □만큼 정사각형을 만든다.",
+          "answers": [
+            "절반"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "정사각형을 대각선으로 잘라 만든 삼각형 조각이 $10$개 있다. 삼각형 $2$개를 맞대어 정사각형을 만들면 정사각형을 몇 개 만들 수 있고 어떻게 구했는지 쓰시오.",
+          "answer": "$10\\div2=5$이므로 $5$개이다. 삼각형 $2$개로 정사각형 $1$개를 만든다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$5$개"
+              ]
+            },
+            {
+              "anyOf": [
+                "$10\\div2$",
+                "삼각형 수의 절반"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "정사각형을 나눈 두 삼각형을 잘린 변끼리 다시 맞대면 삼각형 수의 {절반}만큼 정사각형을 만든다.",
+          "acceptedAnswers": [
+            [
+              "절반",
+              "반",
+              "$\\frac{1}{2}$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2775,
+        "sourceFingerprint": "6ca1f6c2e3daca3efb90dc5880b202d177af3cc903a92c172a3bf79d8e6b21f8",
+        "part": "e4plus",
+        "id": "e4-2-6-4-xc25",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "term": "바깥 둘레와 조각 수",
+        "kind": "성질",
+        "level": "상",
+        "definition": "같은 정사각형을 같은 수만큼 쓴 두 모양이라도 {배치가 다르면} 둘레가 달라질 수 있다.",
+        "studentC": "같은 정사각형을 같은 수만큼 쓴 두 모양이라도 □ 둘레가 달라질 수 있다.",
+        "answers": [
+          "배치가 다르면"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2775,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "sourceFingerprint": "6ca1f6c2e3daca3efb90dc5880b202d177af3cc903a92c172a3bf79d8e6b21f8",
+        "proposalFingerprint": "a1aede046a1d133ba3a26b44449b3ba582f0fbd1e16095f0425998f296e20a67",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-4-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "한 변이 $1$ cm인 정사각형 $4$개를 한 줄로 이어 붙인 모양과 가로 $2$칸, 세로 $2$칸으로 붙인 모양의 둘레를 각각 구하고 알 수 있는 점을 쓰시오.",
+        "bAnswer": "한 줄은 $10$ cm, $2$칸씩은 $8$ cm이다. 같은 수의 조각이라도 놓는 방법에 따라 둘레가 달라진다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "한 줄 $10$ cm, 정사각형 모양 $8$ cm"
+            ]
+          },
+          {
+            "anyOf": [
+              "놓는 방법에 따라 둘레가 달라진다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "조각 수 같아도 둘레 다름",
+        "bReason": "배치에 따른 둘레 차이를 계산으로 확인",
+        "cDecision": "rewrite",
+        "cAfter": "같은 정사각형을 같은 수만큼 쓴 두 모양이라도 {놓는 방법}이 다르면 둘레가 달라질 수 있다.",
+        "cReason": "'배치' 구 어려운 말을 쉬운 말로 고침",
+        "cSlotEquivalents": [
+          [
+            "배치",
+            "붙이는 방법"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "바깥 둘레와 조각 수",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "같은 정사각형을 같은 수만큼 쓴 두 모양이라도 {놓는 방법}이 다르면 둘레가 달라질 수 있다.",
+        "cStudentSentence": "같은 정사각형을 같은 수만큼 쓴 두 모양이라도 □이 다르면 둘레가 달라질 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "놓는 방법",
+            "equivalents": [
+              "배치",
+              "붙이는 방법"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "한 변이 $1$ cm인 정사각형 $4$개를 한 줄로 이어 붙인 모양과 가로 $2$칸, 세로 $2$칸으로 붙인 모양의 둘레를 각각 구하고 알 수 있는 점을 쓰시오.",
+          "answer": "한 줄은 $10$ cm, $2$칸씩은 $8$ cm이다. 같은 수의 조각이라도 놓는 방법에 따라 둘레가 달라진다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "한 줄 $10$ cm, 정사각형 모양 $8$ cm"
+              ]
+            },
+            {
+              "anyOf": [
+                "놓는 방법에 따라 둘레가 달라진다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "같은 정사각형을 같은 수만큼 쓴 두 모양이라도 {놓는 방법}이 다르면 둘레가 달라질 수 있다.",
+          "acceptedAnswers": [
+            [
+              "놓는 방법",
+              "배치",
+              "붙이는 방법"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2776,
+        "sourceFingerprint": "eb4c46305b22529bae565faa35abaa1ed5b6b16780ccc53746a064b6dcfae6cd",
+        "part": "e4plus",
+        "id": "e4-2-6-4-xc26",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "term": "한 점 채우기와 전체 채우기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "한 점 둘레의 각이 맞아도 바닥 전체를 채울 수 있는지는 {주변에도 이어 놓아} 확인한다.",
+        "studentC": "한 점 둘레의 각이 맞아도 바닥 전체를 채울 수 있는지는 □ 확인한다.",
+        "answers": [
+          "주변에도 이어 놓아"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2776,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "sourceFingerprint": "eb4c46305b22529bae565faa35abaa1ed5b6b16780ccc53746a064b6dcfae6cd",
+        "proposalFingerprint": "a468b9f3c0870cd281b64cf46dad34f73b9f1dbaa927105210c21c34ea28b321",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-4-xc26",
+        "bDecision": "rewrite",
+        "bPrompt": "한 점 둘레에 각이 빈틈없이 맞게 모였다고 해서 바닥 전체를 채울 수 있다고 말해도 되는지 쓰고, 어떻게 확인하는지 쓰시오.",
+        "bAnswer": "바로 말할 수 없다. 주변에도 계속 이어 놓아 보며 확인한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "바로 말할 수 없다",
+              "충분하지 않다"
+            ]
+          },
+          {
+            "anyOf": [
+              "주변에도 이어 놓아 본다",
+              "계속 이어 붙여 본다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "한 점에서 전체로 확인",
+        "bReason": "한 점 확인과 바닥 전체 확인을 구분",
+        "cDecision": "rewrite",
+        "cAfter": "한 점 둘레는 빈틈없이 채워져도, 바닥 전체를 채울 수 있는지는 주변에도 계속 {이어 놓아} 보아야 한다.",
+        "cReason": "'확인하는 방법' 구 빈칸을 쉬운 동작 빈칸으로 고침",
+        "cSlotEquivalents": [
+          [
+            "이어 붙여",
+            "붙여",
+            "놓아"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "한 점 채우기와 전체 채우기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "한 점 둘레는 빈틈없이 채워져도, 바닥 전체를 채울 수 있는지는 주변에도 계속 {이어 놓아} 보아야 한다.",
+        "cStudentSentence": "한 점 둘레는 빈틈없이 채워져도, 바닥 전체를 채울 수 있는지는 주변에도 계속 □ 보아야 한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "이어 놓아",
+            "equivalents": [
+              "이어 붙여",
+              "붙여",
+              "놓아"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "한 점 둘레에 각이 빈틈없이 맞게 모였다고 해서 바닥 전체를 채울 수 있다고 말해도 되는지 쓰고, 어떻게 확인하는지 쓰시오.",
+          "answer": "바로 말할 수 없다. 주변에도 계속 이어 놓아 보며 확인한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "바로 말할 수 없다",
+                "충분하지 않다"
+              ]
+            },
+            {
+              "anyOf": [
+                "주변에도 이어 놓아 본다",
+                "계속 이어 붙여 본다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "한 점 둘레는 빈틈없이 채워져도, 바닥 전체를 채울 수 있는지는 주변에도 계속 {이어 놓아} 보아야 한다.",
+          "acceptedAnswers": [
+            [
+              "이어 놓아",
+              "이어 붙여",
+              "붙여",
+              "놓아"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2777,
+        "sourceFingerprint": "791e3afc07c796917c4018d5d01dbed8639bdd06bdaf084a996bc33e1d73ba02",
+        "part": "e4plus",
+        "id": "e4-2-6-4-xc27",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "term": "맞댈 변 길이 확인",
+        "kind": "방법",
+        "level": "상",
+        "definition": "두 조각의 변 전체를 맞대려면 그 두 변의 {길이가 같아야} 한다.",
+        "studentC": "두 조각의 변 전체를 맞대려면 그 두 변의 □ 한다.",
+        "answers": [
+          "길이가 같아야"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2777,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "sourceFingerprint": "791e3afc07c796917c4018d5d01dbed8639bdd06bdaf084a996bc33e1d73ba02",
+        "proposalFingerprint": "c77bd2dcc0f1289ae8935bf7aa6bc18b979f3ffa2e0b652e6dd6fead2ee0af4e",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-4-xc27",
+        "bDecision": "rewrite",
+        "bPrompt": "정삼각형 조각의 한 변이 $4$ cm이다. 이 변 전체를 다른 조각의 변에 빈틈없이 맞대려면 그 변의 길이가 어때야 하는지 쓰시오.",
+        "bAnswer": "그 변의 길이도 $4$ cm로 같아야 한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$4$ cm",
+              "길이가 같아야 한다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "맞댈 변 길이 조건",
+        "bReason": "변 전체를 맞대는 조건이 길이 같음을 확인",
+        "cDecision": "rewrite",
+        "cAfter": "두 조각의 변 전체를 맞대려면 그 두 변의 {길이}가 같아야 한다.",
+        "cReason": "'길이가 같아야' 구 정답을 낱말 빈칸으로 고침",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "맞댈 변 길이 확인",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "두 조각의 변 전체를 맞대려면 그 두 변의 {길이}가 같아야 한다.",
+        "cStudentSentence": "두 조각의 변 전체를 맞대려면 그 두 변의 □가 같아야 한다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "길이",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "정삼각형 조각의 한 변이 $4$ cm이다. 이 변 전체를 다른 조각의 변에 빈틈없이 맞대려면 그 변의 길이가 어때야 하는지 쓰시오.",
+          "answer": "그 변의 길이도 $4$ cm로 같아야 한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$4$ cm",
+                "길이가 같아야 한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "두 조각의 변 전체를 맞대려면 그 두 변의 {길이}가 같아야 한다.",
+          "acceptedAnswers": [
+            [
+              "길이"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2778,
+        "sourceFingerprint": "f39d76330ff2246037c2106baa201a7ef297e31fc1c8dc31ca46032611d3b5e3",
+        "part": "e4plus",
+        "id": "e4-2-6-4-xc28",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "term": "잘라도 보존되는 조각의 전체",
+        "kind": "성질",
+        "level": "상",
+        "definition": "한 도형을 잘라 조각을 버리거나 겹치지 않고 다시 놓으면 덮는 {전체 크기}는 보존된다.",
+        "studentC": "한 도형을 잘라 조각을 버리거나 겹치지 않고 다시 놓으면 덮는 □는 보존된다.",
+        "answers": [
+          "전체 크기"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2778,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-4 모양 만들기와 채우기",
+        "sourceFingerprint": "f39d76330ff2246037c2106baa201a7ef297e31fc1c8dc31ca46032611d3b5e3",
+        "proposalFingerprint": "7822442ea9c450171a8c2f05e95605e782d43101c36ecb348067f2a9eba063fc",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-4-xc28",
+        "bDecision": "rewrite",
+        "bPrompt": "정사각형 조각을 둘로 잘라 하나도 버리거나 겹치지 않고 다른 모양으로 다시 놓았다. 새 모양이 덮는 전체 크기는 처음과 같을까 다를까? 까닭을 쓰시오.",
+        "bAnswer": "같다. 조각을 버리거나 겹치지 않고 모두 다시 놓았으므로 전체 크기는 그대로이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "같다",
+              "그대로이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "버리거나 겹치지 않았다",
+              "같은 조각을 모두 다시 썼다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "잘라 다시 놓아도 전체 크기 유지",
+        "bReason": "버리거나 겹치지 않을 때 크기가 보존됨을 설명",
+        "cDecision": "rewrite",
+        "cAfter": "도형을 잘라 조각을 버리지도 겹치지도 않고 다시 놓으면 덮는 전체 {크기}는 그대로이다.",
+        "cReason": "'덮는 □' 가려진 대상을 문장으로 풀어 고침",
+        "cSlotEquivalents": [
+          [
+            "넓이"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "잘라도 보존되는 조각의 전체",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "도형을 잘라 조각을 버리지도 겹치지도 않고 다시 놓으면 덮는 전체 {크기}는 그대로이다.",
+        "cStudentSentence": "도형을 잘라 조각을 버리지도 겹치지도 않고 다시 놓으면 덮는 전체 □는 그대로이다.",
+        "cSlotAnswers": [
+          {
+            "expected": "크기",
+            "equivalents": [
+              "넓이"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "정사각형 조각을 둘로 잘라 하나도 버리거나 겹치지 않고 다른 모양으로 다시 놓았다. 새 모양이 덮는 전체 크기는 처음과 같을까 다를까? 까닭을 쓰시오.",
+          "answer": "같다. 조각을 버리거나 겹치지 않고 모두 다시 놓았으므로 전체 크기는 그대로이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "같다",
+                "그대로이다"
+              ]
+            },
+            {
+              "anyOf": [
+                "버리거나 겹치지 않았다",
+                "같은 조각을 모두 다시 썼다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "도형을 잘라 조각을 버리지도 겹치지도 않고 다시 놓으면 덮는 전체 {크기}는 그대로이다.",
+          "acceptedAnswers": [
+            [
+              "크기",
+              "넓이"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    }
+  ]
+}

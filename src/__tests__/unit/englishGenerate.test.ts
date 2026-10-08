@@ -599,3 +599,31 @@ describe("generateEnglishDraft — 모킹된 OpenAI (gpt-6-luna)", () => {
     expect(mockCreate).not.toHaveBeenCalled();
   });
 });
+
+describe("English injected generation transport", () => {
+  it("fails closed when development generation has no injected transport", async () => {
+    vi.stubEnv("NODE_ENV", "development");
+    vi.stubEnv("OPENAI_API_KEY", "test-openai-key");
+    await expect(generateEnglishDraft(input, "고1")).rejects.toBeInstanceOf(
+      AiConfigError,
+    );
+    expect(mockCreate).not.toHaveBeenCalled();
+  });
+
+  it("retains the refinement time budget for an injected transport", async () => {
+    const transport = vi
+      .fn()
+      .mockResolvedValue(
+        JSON.stringify({ ...draft, passage: `${passage} Changed.` }),
+      );
+    const now = vi
+      .fn()
+      .mockReturnValueOnce(0)
+      .mockReturnValue(ENGLISH_REFINE_BUDGET_MS + 1);
+    await expect(
+      generateEnglishDraft(input, "고1", { transport, now }),
+    ).rejects.toBeInstanceOf(EnglishDraftRejectedError);
+    expect(transport).toHaveBeenCalledOnce();
+    expect(mockCreate).not.toHaveBeenCalled();
+  });
+});

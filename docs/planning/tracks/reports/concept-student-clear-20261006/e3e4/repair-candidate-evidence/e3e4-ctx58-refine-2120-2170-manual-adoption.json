@@ -1,0 +1,250 @@
+{
+  "sourceCommit": "13bf05dce",
+  "directAuthor": "Codex after actual current-hash feedback and full current field reading",
+  "notFinalReread": true,
+  "entries": [
+    {
+      "id": "e4-2-1-2-xc11",
+      "sourceIndex": 2120,
+      "beforeProposal": {
+        "sourceIndex": 2120,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-2 진분수의 뺄셈",
+        "sourceFingerprint": "be693ff54eb6dd2f496208eb72caa6ca4e8c1092bb14db4858c4551c7722f976",
+        "proposalFingerprint": "cc8a8f33bcf35bb5c134b8e02a771f83dc6c876e07d6037261a917028febfde1",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-2-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{7}{9}-\\frac{3}{9}=\\frac{4}{9}$가 맞는지 덧셈식으로 확인하는 방법을 쓰시오.",
+        "bAnswer": "차와 빼는 수를 더해 $\\frac{4}{9}+\\frac{3}{9}=\\frac{7}{9}$이 처음 수와 같은지 본다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "차와 빼는 수를 더한다",
+              "$\\frac{4}{9}+\\frac{3}{9}$을 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "처음 수와 같은지 본다",
+              "$\\frac{7}{9}$이 되는지 본다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "덧셈으로 뺄셈 검산",
+        "bReason": "검산 방법과 비교 대상을 확인",
+        "cDecision": "rewrite",
+        "cReason": "두 식이 보이는 짧은 낱말 빈칸이라 유지",
+        "cSlotEquivalents": [
+          [
+            "합한다"
+          ]
+        ],
+        "cAfter": "분수의 뺄셈이 맞는지 덧셈으로 확인하려면, 구한 차에 빼는 수를 {더한다}. 그 결과가 처음 수와 같은지 확인한다.",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "덧셈으로 뺄셈 확인하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "분수의 뺄셈이 맞는지 덧셈으로 확인하려면, 구한 차에 빼는 수를 {더한다}. 그 결과가 처음 수와 같은지 확인한다.",
+        "cStudentSentence": "분수의 뺄셈이 맞는지 덧셈으로 확인하려면, 구한 차에 빼는 수를 □. 그 결과가 처음 수와 같은지 확인한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "더한다",
+            "equivalents": [
+              "합한다"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$\\frac{7}{9}-\\frac{3}{9}=\\frac{4}{9}$가 맞는지 덧셈식으로 확인하는 방법을 쓰시오.",
+          "answer": "차와 빼는 수를 더해 $\\frac{4}{9}+\\frac{3}{9}=\\frac{7}{9}$이 처음 수와 같은지 본다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "차와 빼는 수를 더한다",
+                "$\\frac{4}{9}+\\frac{3}{9}$을 계산한다"
+              ]
+            },
+            {
+              "anyOf": [
+                "처음 수와 같은지 본다",
+                "$\\frac{7}{9}$이 되는지 본다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "분수의 뺄셈이 맞는지 덧셈으로 확인하려면, 구한 차에 빼는 수를 {더한다}. 그 결과가 처음 수와 같은지 확인한다.",
+          "acceptedAnswers": [
+            [
+              "더한다",
+              "합한다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "manualPatch": {
+        "cAfter": "분수의 뺄셈이 맞는지 확인하려면, 구한 차에 빼는 수를 {더한다}. 그 결과가 처음 수와 같은지 확인한다."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-1-4-xc13",
+      "sourceIndex": 2154,
+      "beforeProposal": {
+        "sourceIndex": 2154,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-1 분수의 덧셈과 뺄셈::2-1-4 대분수의 뺄셈",
+        "sourceFingerprint": "533ca7c51799ec6b897fcb8aeddfd09ee2af26d768c2ce0fddd474010148f436",
+        "proposalFingerprint": "625481ada052ecdfc31558ba33526670808bee98640ea65e10fc79143667146d",
+        "reviewStatus": "draft",
+        "id": "e4-2-1-4-xc13",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "덧셈으로 뺄셈 확인",
+        "bReason": "2-1-2-xc11과 같은 검산 목표",
+        "exclusionReason": "덧셈으로 뺄셈을 확인하는 2-1-2-xc11과 같은 목표라 B 중복",
+        "cDecision": "rewrite",
+        "cReason": "두 식이 보이고 '확인한다'만 묻는 짧은 빈칸",
+        "cSlotEquivalents": [
+          [
+            "잘못되었다",
+            "잘못됐다"
+          ]
+        ],
+        "cAfter": "$5\\frac{1}{6}-2\\frac{4}{6}$을 계산한 뒤, 구한 차에 $2\\frac{4}{6}$를 더했더니 $4\\frac{1}{6}$이 되었다. 처음 수로 돌아오지 않았으므로 이 뺄셈 계산은 {틀렸다}.",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "덧셈으로 뺄셈 확인하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$5\\frac{1}{6}-2\\frac{4}{6}$을 계산한 뒤, 구한 차에 $2\\frac{4}{6}$를 더했더니 $4\\frac{1}{6}$이 되었다. 처음 수로 돌아오지 않았으므로 이 뺄셈 계산은 {틀렸다}.",
+        "cStudentSentence": "$5\\frac{1}{6}-2\\frac{4}{6}$을 계산한 뒤, 구한 차에 $2\\frac{4}{6}$를 더했더니 $4\\frac{1}{6}$이 되었다. 처음 수로 돌아오지 않았으므로 이 뺄셈 계산은 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "틀렸다",
+            "equivalents": [
+              "잘못되었다",
+              "잘못됐다"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "$5\\frac{1}{6}-2\\frac{4}{6}$을 계산한 뒤, 구한 차에 $2\\frac{4}{6}$를 더했더니 $4\\frac{1}{6}$이 되었다. 처음 수로 돌아오지 않았으므로 이 뺄셈 계산은 {틀렸다}.",
+          "acceptedAnswers": [
+            [
+              "틀렸다",
+              "잘못되었다",
+              "잘못됐다"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "2-1-2-xc11과 같은 검산 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "manualPatch": {
+        "cAfter": "한 학생이 $5\\frac{1}{6}-2\\frac{4}{6}$을 계산했다. 확인하려고 구한 차에 $2\\frac{4}{6}$를 더했더니 $4\\frac{1}{6}$이 되었다. 이 학생의 뺄셈 계산은 {틀렸다}."
+      },
+      "isReleaseApproval": false
+    },
+    {
+      "id": "e4-2-2-1-xc7",
+      "sourceIndex": 2170,
+      "beforeProposal": {
+        "sourceIndex": 2170,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-2 삼각형::2-2-1 삼각형을 변의 길이에 따라 분류하기",
+        "sourceFingerprint": "619c48062c5a41a35542cbbd1ef046a63a1906734b0c1264c348d45a8f89aa78",
+        "proposalFingerprint": "340a5afb1759d3f14b520ec85f4360d14c60dc9e3f65d16ffce187affe8ed082",
+        "reviewStatus": "draft",
+        "id": "e4-2-2-1-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "직사각형 종이를 반으로 접어 작은 직사각형으로 만들었다. 접은 선과 종이의 윗변이 만나는 꼭짓점을 포함하도록 삼각형 조각을 오렸다. 조각의 한 변은 접은 선 위에, 다른 한 변은 윗변 위에 있다. 이 두 겹의 삼각형 조각을 펼치면 어떤 삼각형이 되며, 두 변의 길이가 같은 까닭은 무엇인지 쓰시오.",
+        "bAnswer": "이등변삼각형이다. 접은 선을 기준으로 양쪽이 꼭 겹치므로 두 변의 길이가 같기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "이등변삼각형"
+            ]
+          },
+          {
+            "anyOf": [
+              "양쪽이 겹쳐 두 변의 길이가 같다",
+              "접은 선을 기준으로 같은 모양이다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "접어 오려 이등변삼각형 만들기",
+        "bReason": "접은 양쪽이 같아 두 변이 같은 이유",
+        "cDecision": "rewrite",
+        "cAfter": "직사각형 종이를 반으로 접었다. 접은 선과 윗변이 만나는 꼭짓점을 포함하고 한 변이 접은 선 위에 있는 삼각형 조각을 오렸다. 그 두 겹의 조각을 펼치면 두 변의 길이가 같은 {이등변삼각형}이 된다.",
+        "cReason": "복잡한 오리기 설명을 간단히 줄이고 그림 필요 표시",
+        "cSlotEquivalents": [
+          []
+        ],
+        "exampleNeeded": "접은 직사각형의 접은 선·윗변·그 교점과 잘라 낸 두 겹 삼각형 조각을 표시하는 도식이 있으면 절차 이해를 돕는다. 펼칠 조각은 꼭짓점을 포함하여 떼어 낸 삼각형이다.",
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "종이를 접어 오리기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "직사각형 종이를 반으로 접었다. 접은 선과 윗변이 만나는 꼭짓점을 포함하고 한 변이 접은 선 위에 있는 삼각형 조각을 오렸다. 그 두 겹의 조각을 펼치면 두 변의 길이가 같은 {이등변삼각형}이 된다.",
+        "cStudentSentence": "직사각형 종이를 반으로 접었다. 접은 선과 윗변이 만나는 꼭짓점을 포함하고 한 변이 접은 선 위에 있는 삼각형 조각을 오렸다. 그 두 겹의 조각을 펼치면 두 변의 길이가 같은 □이 된다.",
+        "cSlotAnswers": [
+          {
+            "expected": "이등변삼각형",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "직사각형 종이를 반으로 접어 작은 직사각형으로 만들었다. 접은 선과 종이의 윗변이 만나는 꼭짓점을 포함하도록 삼각형 조각을 오렸다. 조각의 한 변은 접은 선 위에, 다른 한 변은 윗변 위에 있다. 이 두 겹의 삼각형 조각을 펼치면 어떤 삼각형이 되며, 두 변의 길이가 같은 까닭은 무엇인지 쓰시오.",
+          "answer": "이등변삼각형이다. 접은 선을 기준으로 양쪽이 꼭 겹치므로 두 변의 길이가 같기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "이등변삼각형"
+              ]
+            },
+            {
+              "anyOf": [
+                "양쪽이 겹쳐 두 변의 길이가 같다",
+                "접은 선을 기준으로 같은 모양이다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "직사각형 종이를 반으로 접었다. 접은 선과 윗변이 만나는 꼭짓점을 포함하고 한 변이 접은 선 위에 있는 삼각형 조각을 오렸다. 그 두 겹의 조각을 펼치면 두 변의 길이가 같은 {이등변삼각형}이 된다.",
+          "acceptedAnswers": [
+            [
+              "이등변삼각형"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "manualPatch": {
+        "cAfter": "직사각형 종이를 반으로 접어 작은 직사각형으로 만들었다. 접은 선과 윗변이 만나는 꼭짓점을 포함하고, 두 변이 각각 접은 선과 윗변 위에 있는 삼각형 조각을 오렸다. 이 두 겹 조각을 펼치면 두 변의 길이가 같은 {이등변삼각형}이 된다."
+      },
+      "isReleaseApproval": false
+    }
+  ]
+}

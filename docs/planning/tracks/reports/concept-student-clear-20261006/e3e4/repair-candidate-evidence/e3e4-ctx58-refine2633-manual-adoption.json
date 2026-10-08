@@ -1,0 +1,75 @@
+{
+  "sourceCommit": "13bf05dce",
+  "directAuthor": "Codex after actual current-hash feedback and full current field reading",
+  "notFinalReread": true,
+  "entries": [
+    {
+      "id": "e4-2-5-2-xc18",
+      "sourceIndex": 2633,
+      "beforeProposal": {
+        "sourceIndex": 2633,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-2 꺾은선그래프 내용 알아보기",
+        "sourceFingerprint": "35fc8c4fab3f133a850603cd3da4ac24965fd54e22df5521c24b5a1d6f984642",
+        "proposalFingerprint": "304ee5acd5f7d756f5b781e343d14c82937e6f3e7edf0a3c3c5523cd28634648",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-2-xc18",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "definition",
+        "bGoal": "같은 값이 여러 번 나옴",
+        "bReason": "xc9의 같은 높이 점 찾기와 중복",
+        "exclusionReason": "xc9가 같은 높이의 점을 모두 찾는 같은 목표를 이미 묻는다",
+        "cDecision": "rewrite",
+        "cAfter": "월요일부터 금요일까지 잰 키가 차례로 $20$, $21$, $21$, $22$, $21\\,\\mathrm{cm}$이다. 키가 $21\\,\\mathrm{cm}$인 때는 서로 다른 날에 모두 {$3$}번 나타났다.",
+        "cReason": "여러와 두 및 세를 동의어로 취급하지 않고 같은 값이 실제 세 번 나타나는 자료를 제시한다.",
+        "cSlotEquivalents": [
+          [
+            "세"
+          ]
+        ],
+        "reviewerEdited": true,
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "값이 같은 점이 여러 개일 때",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "월요일부터 금요일까지 잰 키가 차례로 $20$, $21$, $21$, $22$, $21\\,\\mathrm{cm}$이다. 키가 $21\\,\\mathrm{cm}$인 때는 서로 다른 날에 모두 {$3$}번 나타났다.",
+        "cStudentSentence": "월요일부터 금요일까지 잰 키가 차례로 $20$, $21$, $21$, $22$, $21\\,\\mathrm{cm}$이다. 키가 $21\\,\\mathrm{cm}$인 때는 서로 다른 날에 모두 □번 나타났다.",
+        "cSlotAnswers": [
+          {
+            "expected": "$3$",
+            "equivalents": [
+              "세"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "월요일부터 금요일까지 잰 키가 차례로 $20$, $21$, $21$, $22$, $21\\,\\mathrm{cm}$이다. 키가 $21\\,\\mathrm{cm}$인 때는 서로 다른 날에 모두 {$3$}번 나타났다.",
+          "acceptedAnswers": [
+            [
+              "$3$",
+              "세"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc9의 같은 높이 점 찾기와 중복"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      },
+      "manualPatch": {
+        "cAfter": "월요일부터 금요일까지 같은 시각에 잰 연못의 물 높이가 차례로 $20$, $21$, $21$, $22$, $21\\,\\mathrm{cm}$이다. 물 높이가 $21\\,\\mathrm{cm}$인 날은 모두 {$3$}일이다.",
+        "cSlotEquivalents": [
+          []
+        ],
+        "cReason": "여러와 두 및 세를 동의어로 취급하지 않고 같은 값이 실제 세 번 나타나는 물 높이 자료를 제시한다."
+      },
+      "isReleaseApproval": false
+    }
+  ]
+}

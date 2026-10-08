@@ -1,0 +1,332 @@
+{
+  "status": "Root actual reread and application of one correction; fresh independent consensus and activation pending",
+  "count": 1,
+  "changed": 1,
+  "retained": 0,
+  "all2779DirectEvidenceValid": true,
+  "rows": [
+    {
+      "id": "e3-1-6-1-xc2",
+      "sourceIndex": 820,
+      "beforeRaw": {
+        "sourceIndex": 820,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-6 분수와 소수::1-6-1 똑같이 나누기",
+        "sourceFingerprint": "f8cabdfd4fa275168ba59be4df1f0ced74e51176238730cbb1b73974b6f5bd81",
+        "proposalFingerprint": "a10dd860b0b482aaed3577a34b7456d090df102210080a07396a3cb7855bf852",
+        "reviewStatus": "draft",
+        "id": "e3-1-6-1-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "같은 크기의 칸 $9$개로 된 색종이 한 장을 세 부분으로 나누었습니다. 각 부분에 칸이 $3$개씩 있고 모양은 서로 다릅니다. 세 부분의 크기가 같은지 쓰고, 칸의 크기와 개수를 이용하여 까닭을 설명하세요.",
+        "bAnswer": "세 부분의 크기는 같습니다. 각 부분이 같은 크기의 칸 $3$개씩으로 이루어져 있어 차지하는 크기가 같기 때문입니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "세 부분의 크기가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 크기의 칸이 각 부분에 $3$개씩 있어 크기가 같다"
+            ]
+          }
+        ],
+        "bGoal": "같은 크기로 나누는 조건과 같은 모양의 조건을 구별한다",
+        "bReason": "모양까지같다는초기용어관례를일반적오류로단정하지않고원래일반설명을유지한다. B에서는똑같이나눴다는용어판정대신같은칸수로각부분의크기가같은지직접판정한다. C의크기비교는그대로유지한다.",
+        "cDecision": "rewrite",
+        "cReason": "모양이 달라도 각 부분이 같은 수의 같은 크기 칸이라는 조건에서 크기의 같음을 판단한다. 문법 빈칸으로 크기나 모양과 크기를 추측할 필요가 없다.",
+        "answerNotes": "같은 크기의 칸을 각각 세 개 포함한다는 조건으로 부분 크기를 비교한다. 서로 다른 모양도 등분일 수 있다는 일반 설명은 보존한다.",
+        "cAfter": "같은 크기의 칸 $9$개로 된 색종이를 세 부분으로 나누어 각 부분에 칸이 $3$개씩 있습니다. 모양은 서로 달라도 세 부분의 크기는 {같습니다}.",
+        "coreAfter": null,
+        "coreReason": null,
+        "exampleNeeded": "같은 칸 아홉 개를 각각 세 칸인 서로 다른 세 모양으로 나눈 그림은 선택 설명 자료다. B/C는 칸의 크기와 개수를 문장으로 제시하므로 보이지 않는 그림을 가리키지 않는다.",
+        "reviewerEdited": true,
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "똑같이 나눈 조각의 모양",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "같은 크기의 칸 $9$개로 된 색종이를 세 부분으로 나누어 각 부분에 칸이 $3$개씩 있습니다. 모양은 서로 달라도 세 부분의 크기는 {같습니다}.",
+        "cStudentSentence": "같은 크기의 칸 $9$개로 된 색종이를 세 부분으로 나누어 각 부분에 칸이 $3$개씩 있습니다. 모양은 서로 달라도 세 부분의 크기는 □.",
+        "cSlotEquivalents": [
+          [
+            "같다",
+            "같아요"
+          ]
+        ],
+        "cSlotAnswers": [
+          {
+            "expected": "같습니다",
+            "equivalents": [
+              "같다",
+              "같아요"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "같은 크기의 칸 $9$개로 된 색종이 한 장을 세 부분으로 나누었습니다. 각 부분에 칸이 $3$개씩 있고 모양은 서로 다릅니다. 세 부분의 크기가 같은지 쓰고, 칸의 크기와 개수를 이용하여 까닭을 설명하세요.",
+          "answer": "세 부분의 크기는 같습니다. 각 부분이 같은 크기의 칸 $3$개씩으로 이루어져 있어 차지하는 크기가 같기 때문입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "세 부분의 크기가 같다"
+              ]
+            },
+            {
+              "anyOf": [
+                "같은 크기의 칸이 각 부분에 $3$개씩 있어 크기가 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "같은 크기의 칸 $9$개로 된 색종이를 세 부분으로 나누어 각 부분에 칸이 $3$개씩 있습니다. 모양은 서로 달라도 세 부분의 크기는 {같습니다}.",
+          "acceptedAnswers": [
+            [
+              "같습니다",
+              "같다",
+              "같아요"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-6-1-xc2",
+          "sourceIndex": 820,
+          "proposalFingerprint": "a10dd860b0b482aaed3577a34b7456d090df102210080a07396a3cb7855bf852",
+          "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+          "readAt": "2026-10-07T12:01:52.607Z",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "모양까지같다는초기용어관례를일반적오류로단정하지않고원래일반설명을유지한다. B에서는똑같이나눴다는용어판정대신같은칸수로각부분의크기가같은지직접판정한다. C의크기비교는그대로유지한다.",
+          "cReason": "모양까지같다는초기용어관례를일반적오류로단정하지않고원래일반설명을유지한다. B에서는똑같이나눴다는용어판정대신같은칸수로각부분의크기가같은지직접판정한다. C의크기비교는그대로유지한다.",
+          "issues": [],
+          "isIndependentApproval": false,
+          "isReleaseApproval": false,
+          "inputEvidence": "../design-evidence/root-e3e4-fresh-5-proposals-v2-20261007.json"
+        }
+      },
+      "beforeNormalizedHash": "de80f993ee43c1f569d6658fa46e0070496c5954efdd3fabf266ef20b22c5fd4",
+      "proposedRawRow": {
+        "sourceIndex": 820,
+        "grade": "e3",
+        "part": "e3plus",
+        "section": "초3::1-6 분수와 소수::1-6-1 똑같이 나누기",
+        "sourceFingerprint": "f8cabdfd4fa275168ba59be4df1f0ced74e51176238730cbb1b73974b6f5bd81",
+        "proposalFingerprint": "2e42b1440da483c4e4b88838e0c4863a192c583ac020dac24e2030363e7ce961",
+        "reviewStatus": "draft",
+        "id": "e3-1-6-1-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "같은 크기의 칸 $9$개로 된 색종이 한 장을 세 부분으로 나누었습니다. 각 부분에 칸이 $3$개씩 있고 모양은 서로 다릅니다. 세 부분의 크기가 같은지 쓰고, 칸의 크기와 개수를 이용하여 까닭을 설명하세요.",
+        "bAnswer": "세 부분의 크기는 같습니다. 각 부분이 같은 크기의 칸 $3$개씩으로 이루어져 있어 차지하는 크기가 같기 때문입니다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "세 부분의 크기가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 크기의 칸이 각 부분에 $3$개씩 있어 크기가 같다"
+            ]
+          }
+        ],
+        "bGoal": "같은 크기로 나누는 조건과 같은 모양의 조건을 구별한다",
+        "bReason": "모양까지같다는초기용어관례를일반적오류로단정하지않고원래일반설명을유지한다. B에서는똑같이나눴다는용어판정대신같은칸수로각부분의크기가같은지직접판정한다. C의크기비교는그대로유지한다.",
+        "cDecision": "rewrite",
+        "cReason": "같은칸개수에서각부분크기를판정하도록유지하되달라도라는양보접속어가정답을암시하지않게두사실을독립문장으로준다. 원래일반설명과B의실제크기비교는변경하지않는다.",
+        "answerNotes": "같은 크기의 칸을 각각 세 개 포함한다는 조건으로 부분 크기를 비교한다. 서로 다른 모양도 등분일 수 있다는 일반 설명은 보존한다.",
+        "cAfter": "같은 크기의 칸 $9$개로 된 색종이를 세 부분으로 나누어 각 부분에 칸이 $3$개씩 있습니다. 세 부분의 모양은 서로 다릅니다. 세 부분의 크기는 서로 {같다}.",
+        "coreAfter": null,
+        "coreReason": null,
+        "exampleNeeded": "같은 칸 아홉 개를 각각 세 칸인 서로 다른 세 모양으로 나눈 그림은 선택 설명 자료다. B/C는 칸의 크기와 개수를 문장으로 제시하므로 보이지 않는 그림을 가리키지 않는다.",
+        "reviewerEdited": true,
+        "learningRole": "reason",
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "똑같이 나눈 조각의 모양",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "같은 크기의 칸 $9$개로 된 색종이를 세 부분으로 나누어 각 부분에 칸이 $3$개씩 있습니다. 세 부분의 모양은 서로 다릅니다. 세 부분의 크기는 서로 {같다}.",
+        "cStudentSentence": "같은 크기의 칸 $9$개로 된 색종이를 세 부분으로 나누어 각 부분에 칸이 $3$개씩 있습니다. 세 부분의 모양은 서로 다릅니다. 세 부분의 크기는 서로 □.",
+        "cSlotEquivalents": [
+          [
+            "같습니다",
+            "같아요"
+          ]
+        ],
+        "cSlotAnswers": [
+          {
+            "expected": "같다",
+            "equivalents": [
+              "같습니다",
+              "같아요"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "같은 크기의 칸 $9$개로 된 색종이 한 장을 세 부분으로 나누었습니다. 각 부분에 칸이 $3$개씩 있고 모양은 서로 다릅니다. 세 부분의 크기가 같은지 쓰고, 칸의 크기와 개수를 이용하여 까닭을 설명하세요.",
+          "answer": "세 부분의 크기는 같습니다. 각 부분이 같은 크기의 칸 $3$개씩으로 이루어져 있어 차지하는 크기가 같기 때문입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "세 부분의 크기가 같다"
+              ]
+            },
+            {
+              "anyOf": [
+                "같은 크기의 칸이 각 부분에 $3$개씩 있어 크기가 같다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "같은 크기의 칸 $9$개로 된 색종이를 세 부분으로 나누어 각 부분에 칸이 $3$개씩 있습니다. 세 부분의 모양은 서로 다릅니다. 세 부분의 크기는 서로 {같다}.",
+          "acceptedAnswers": [
+            [
+              "같다",
+              "같습니다",
+              "같아요"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1",
+        "editorialReview": {
+          "id": "e3-1-6-1-xc2",
+          "sourceIndex": 820,
+          "proposalFingerprint": "a10dd860b0b482aaed3577a34b7456d090df102210080a07396a3cb7855bf852",
+          "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+          "readAt": "2026-10-07T12:01:52.607Z",
+          "learningRole": "reason",
+          "bDecision": "rewrite",
+          "cDecision": "rewrite",
+          "verdict": "retain-planning-proposal",
+          "bReason": "모양까지같다는초기용어관례를일반적오류로단정하지않고원래일반설명을유지한다. B에서는똑같이나눴다는용어판정대신같은칸수로각부분의크기가같은지직접판정한다. C의크기비교는그대로유지한다.",
+          "cReason": "모양까지같다는초기용어관례를일반적오류로단정하지않고원래일반설명을유지한다. B에서는똑같이나눴다는용어판정대신같은칸수로각부분의크기가같은지직접판정한다. C의크기비교는그대로유지한다.",
+          "issues": [],
+          "isIndependentApproval": false,
+          "isReleaseApproval": false,
+          "inputEvidence": "../design-evidence/root-e3e4-fresh-5-proposals-v2-20261007.json"
+        },
+        "cAcceptedAnswers": [
+          [
+            "같다",
+            "같습니다",
+            "같아요"
+          ]
+        ]
+      },
+      "after": {
+        "id": "e3-1-6-1-xc2",
+        "grade": "초3",
+        "source": {
+          "id": "e3-1-6-1-xc2",
+          "section": "초3::1-6 분수와 소수::1-6-1 똑같이 나누기",
+          "term": "똑같이 나눈 조각의 모양",
+          "kind": "성질",
+          "level": "하",
+          "definition": "똑같이 나눈 조각은 모양과 {크기}가 같아 서로 포개면 꼭 겹친다."
+        },
+        "B": {
+          "prompt": "같은 크기의 칸 $9$개로 된 색종이 한 장을 세 부분으로 나누었습니다. 각 부분에 칸이 $3$개씩 있고 모양은 서로 다릅니다. 세 부분의 크기가 같은지 쓰고, 칸의 크기와 개수를 이용하여 까닭을 설명하세요.",
+          "answer": "세 부분의 크기는 같습니다. 각 부분이 같은 크기의 칸 $3$개씩으로 이루어져 있어 차지하는 크기가 같기 때문입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "세 부분의 크기가 같다"
+              ]
+            },
+            {
+              "anyOf": [
+                "같은 크기의 칸이 각 부분에 $3$개씩 있어 크기가 같다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "같은 크기의 칸 $9$개로 된 색종이를 세 부분으로 나누어 각 부분에 칸이 $3$개씩 있습니다. 세 부분의 모양은 서로 다릅니다. 세 부분의 크기는 서로 {같다}.",
+          "acceptedAnswers": [
+            [
+              "같다",
+              "같습니다",
+              "같아요"
+            ]
+          ]
+        },
+        "goal": "같은 크기로 나누는 조건과 같은 모양의 조건을 구별한다",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "06aaa66c9f99fbc7c00acba537fecbce594f7d8c507a2e15a3032121e02cc2bc"
+      },
+      "reason": "같은칸개수에서각부분크기를판정하도록유지하되달라도라는양보접속어가정답을암시하지않게두사실을독립문장으로준다. 원래일반설명과B의실제크기비교는변경하지않는다.",
+      "changed": true,
+      "actualNormalizedAfter": {
+        "id": "e3-1-6-1-xc2",
+        "grade": "초3",
+        "source": {
+          "id": "e3-1-6-1-xc2",
+          "section": "초3::1-6 분수와 소수::1-6-1 똑같이 나누기",
+          "term": "똑같이 나눈 조각의 모양",
+          "kind": "성질",
+          "level": "하",
+          "definition": "똑같이 나눈 조각은 모양과 {크기}가 같아 서로 포개면 꼭 겹친다."
+        },
+        "B": {
+          "prompt": "같은 크기의 칸 $9$개로 된 색종이 한 장을 세 부분으로 나누었습니다. 각 부분에 칸이 $3$개씩 있고 모양은 서로 다릅니다. 세 부분의 크기가 같은지 쓰고, 칸의 크기와 개수를 이용하여 까닭을 설명하세요.",
+          "answer": "세 부분의 크기는 같습니다. 각 부분이 같은 크기의 칸 $3$개씩으로 이루어져 있어 차지하는 크기가 같기 때문입니다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "세 부분의 크기가 같다"
+              ]
+            },
+            {
+              "anyOf": [
+                "같은 크기의 칸이 각 부분에 $3$개씩 있어 크기가 같다"
+              ]
+            }
+          ]
+        },
+        "C": {
+          "sentence": "같은 크기의 칸 $9$개로 된 색종이를 세 부분으로 나누어 각 부분에 칸이 $3$개씩 있습니다. 세 부분의 모양은 서로 다릅니다. 세 부분의 크기는 서로 {같다}.",
+          "acceptedAnswers": [
+            [
+              "같다",
+              "같습니다",
+              "같아요"
+            ]
+          ]
+        },
+        "goal": "같은 크기로 나누는 조건과 같은 모양의 조건을 구별한다",
+        "coreAfter": null,
+        "coreReason": null,
+        "hash": "06aaa66c9f99fbc7c00acba537fecbce594f7d8c507a2e15a3032121e02cc2bc"
+      },
+      "direct": {
+        "id": "e3-1-6-1-xc2",
+        "sourceIndex": 820,
+        "proposalFingerprint": "2e42b1440da483c4e4b88838e0c4863a192c583ac020dac24e2030363e7ce961",
+        "reader": "Root Codex direct current source/feedback and normalized final question rereading",
+        "readAt": "2026-10-07T12:12:25.768Z",
+        "learningRole": "reason",
+        "bDecision": "rewrite",
+        "cDecision": "rewrite",
+        "verdict": "retain-planning-proposal",
+        "bReason": "같은칸개수에서각부분크기를판정하도록유지하되달라도라는양보접속어가정답을암시하지않게두사실을독립문장으로준다. 원래일반설명과B의실제크기비교는변경하지않는다.",
+        "cReason": "같은칸개수에서각부분크기를판정하도록유지하되달라도라는양보접속어가정답을암시하지않게두사실을독립문장으로준다. 원래일반설명과B의실제크기비교는변경하지않는다.",
+        "issues": [],
+        "isIndependentApproval": false,
+        "isReleaseApproval": false,
+        "inputEvidence": "../design-evidence/root-e3e4-partition-final-proposals-20261007.json"
+      },
+      "recordedAfterActualNormalizedQuestionReading": true,
+      "isIndependentApproval": false
+    }
+  ]
+}

@@ -1,0 +1,991 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e5-2-5-5-c3",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "크기가 같은 정사각형 $6$개가 변끼리 이어진 그림이 정육면체의 전개도인지 확인하려고 한다. 머릿속으로 접어 볼 때 무엇을 살펴보아야 하는지 설명하시오.",
+      "bAnswer": "접었을 때 서로 겹치는 면이 없는지 살펴본다. 겹치는 면이 있으면 정육면체의 전개도가 아니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "접었을 때 겹치는 면이 없는지 본다",
+            "면 $6$개가 겹치지 않고 정육면체의 여섯 면이 되는지 본다",
+            "빈 곳 없이 여섯 면이 모두 생기는지 본다"
+          ]
+        }
+      ],
+      "bGoal": "면의 수만이 아니라 접었을 때 겹침 여부로 전개도를 판별한다.",
+      "bReason": "면 여섯 개의 크기가 같다는 필요한 조건을 학생에게 보이는 질문에도 명시한다.",
+      "cDecision": "revise",
+      "cAfter": "정사각형 $6$개가 이어져 있어도 접었을 때 두 면이 서로 {겹치면} 정육면체의 전개도가 아니다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "겹치면",
+            "겹쳐지면",
+            "포개지면"
+          ]
+        }
+      ],
+      "cReason": "빈칸을 '겹치면' 한 낱말로 줄이고 접는 상황을 문장에 분명히 했다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0180-0210.json",
+      "codexFinalAmendedFromFingerprint": "885d25d42b8fa6f575ad9e8031746c20f717790be664a64393b3612072ae2664",
+      "sourceIndex": 181,
+      "grade": "e5",
+      "part": "e5",
+      "source": {
+        "part": "e5",
+        "id": "e5-2-5-5-c3",
+        "section": "초5::2-5 직육면체::2-5-5 정육면체의 전개도",
+        "term": "전개도 확인",
+        "kind": "방법",
+        "level": "상",
+        "definition": "여섯 정사각형이 이어져 있어도 접을 때 {면이 겹치면} 정육면체 전개도가 아니다.",
+        "studentC": "여섯 정사각형이 이어져 있어도 접을 때 □ 정육면체 전개도가 아니다.",
+        "answers": [
+          "면이 겹치면"
+        ]
+      },
+      "sourceFingerprint": "3d88414663aa3ad67dbf8badef2df0eaf047d73948f360e578915356040e934f",
+      "draftEvidence": "evidence/section-051-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "겹치면"
+      ],
+      "cStudentAfter": "정사각형 $6$개가 이어져 있어도 접었을 때 두 면이 서로 □ 정육면체의 전개도가 아니다.",
+      "cMarkedSentence": "정사각형 $6$개가 이어져 있어도 접었을 때 두 면이 서로 {겹치면} 정육면체의 전개도가 아니다.",
+      "cStudentSentence": "정사각형 $6$개가 이어져 있어도 접었을 때 두 면이 서로 □ 정육면체의 전개도가 아니다.",
+      "cSlotAnswers": [
+        {
+          "key": "겹치면",
+          "equivalents": [
+            "겹쳐지면",
+            "포개지면"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "크기가 같은 정사각형 $6$개가 변끼리 이어진 그림이 정육면체의 전개도인지 확인하려고 한다. 머릿속으로 접어 볼 때 무엇을 살펴보아야 하는지 설명하시오.",
+        "answer": "접었을 때 서로 겹치는 면이 없는지 살펴본다. 겹치는 면이 있으면 정육면체의 전개도가 아니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "접었을 때 겹치는 면이 없는지 본다",
+              "면 $6$개가 겹치지 않고 정육면체의 여섯 면이 되는지 본다",
+              "빈 곳 없이 여섯 면이 모두 생기는지 본다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "정사각형 $6$개가 이어져 있어도 접었을 때 두 면이 서로 {겹치면} 정육면체의 전개도가 아니다.",
+        "acceptedAnswers": [
+          [
+            "겹치면",
+            "겹쳐지면",
+            "포개지면"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "83d0850b90047686499ab806961c29c6b71bbdbbabc9b86de3ad1569b417bedf",
+      "questionRevision": "planning-e5e6-20261006-83d0850b9004",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-6-c3",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "전개도를 접어 직육면체를 만들 때, 만나서 한 모서리가 되는 두 선분의 길이는 어떤 관계여야 하는지 쓰시오.",
+      "bAnswer": "두 선분의 길이가 서로 같아야 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 선분의 길이가 같다",
+            "길이가 서로 같아야 한다"
+          ]
+        }
+      ],
+      "bGoal": "맞닿는 선분의 길이가 같아야 함을 안다.",
+      "bReason": "어떤 선분끼리의 관계인지 질문 안에 밝혔다.",
+      "cDecision": "revise",
+      "cAfter": "직육면체의 전개도를 접었을 때 만나서 한 모서리가 되는 두 선분의 길이는 서로 {같다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다",
+            "같아야 한다"
+          ]
+        }
+      ],
+      "cReason": "C 한 문장만 읽어도 어떤 입체의 전개도를 뜻하는지 알도록 직육면체를 명시한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0180-0210.json",
+      "codexFinalAmendedFromFingerprint": "0484aa2768d6b5b433078f285580dfcaaf1463b832b3c79d53d54b7f74e06f31",
+      "sourceIndex": 184,
+      "grade": "e5",
+      "part": "e5",
+      "source": {
+        "part": "e5",
+        "id": "e5-2-5-6-c3",
+        "section": "초5::2-5 직육면체::2-5-6 직육면체의 전개도",
+        "term": "전개도 모서리 맞추기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "접어서 한 모서리가 될 두 선분은 {길이가 같아야} 틈 없이 맞닿는다.",
+        "studentC": "접어서 한 모서리가 될 두 선분은 □ 틈 없이 맞닿는다.",
+        "answers": [
+          "길이가 같아야"
+        ]
+      },
+      "sourceFingerprint": "352cc2ebd0e0c657917e1178665a2412bfb4978870a4e2dee2de0074d1494abf",
+      "draftEvidence": "evidence/section-052-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "같다"
+      ],
+      "cStudentAfter": "직육면체의 전개도를 접었을 때 만나서 한 모서리가 되는 두 선분의 길이는 서로 □.",
+      "cMarkedSentence": "직육면체의 전개도를 접었을 때 만나서 한 모서리가 되는 두 선분의 길이는 서로 {같다}.",
+      "cStudentSentence": "직육면체의 전개도를 접었을 때 만나서 한 모서리가 되는 두 선분의 길이는 서로 □.",
+      "cSlotAnswers": [
+        {
+          "key": "같다",
+          "equivalents": [
+            "같아야 한다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "전개도를 접어 직육면체를 만들 때, 만나서 한 모서리가 되는 두 선분의 길이는 어떤 관계여야 하는지 쓰시오.",
+        "answer": "두 선분의 길이가 서로 같아야 한다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두 선분의 길이가 같다",
+              "길이가 서로 같아야 한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직육면체의 전개도를 접었을 때 만나서 한 모서리가 되는 두 선분의 길이는 서로 {같다}.",
+        "acceptedAnswers": [
+          [
+            "같다",
+            "같아야 한다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "c347375d41833faa6dcbeca05290a37dc50dd64b571411c281491c56be426fd3",
+      "questionRevision": "planning-e5e6-20261006-c347375d4183",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-1-c3",
+      "bDecision": "revise",
+      "bPrompt": "자료에 $0$이 들어 있을 때 평균을 구하려면 자료의 개수를 어떻게 세어야 하는지 설명하고, 네 번의 점수 $0$, $4$, $6$, $10$의 평균을 구하시오.",
+      "bAnswer": "$0$도 한 개의 자료이므로 개수에 넣어 $4$개로 센다. $(0+4+6+10)\\div 4=5$이므로 평균은 $5$이다.",
+      "bGoal": "$0$인 자료도 개수에 넣어 평균을 구한다.",
+      "bReason": "일반적으로0인 자료를 포함하는 방법을 묻는 기준에서 예의 개수4만 쓰는 대안을 제거한다. 평균값5는 별도 적용 의미다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$0$도 자료 한 개로 세어 개수에 넣는다",
+            "$0$을 포함해 자료의 개수를 센다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "revise",
+      "cAfter": "점수가 $0$, $4$, $6$, $10$일 때 $0$도 한 개의 자료이므로 자료의 개수는 {$4$}이고, 평균은 {$5$}이다.",
+      "cReason": "'개수에 넣는다'는 구절을 맞히기 어려워 실제 개수와 평균을 답하게 했다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0180-0210.json",
+      "codexFinalAmendedFromFingerprint": "477e14f764b6df20ae986fe8214ba71d6dea075abdb8e3f87ca125251fea4fa0",
+      "sourceIndex": 187,
+      "grade": "e5",
+      "part": "e5",
+      "source": {
+        "part": "e5",
+        "id": "e5-2-6-1-c3",
+        "section": "초5::2-6 평균과 가능성::2-6-1 평균 알아보기",
+        "term": "$0$인 자료 포함",
+        "kind": "성질",
+        "level": "상",
+        "definition": "자료에 $0$이 들어 있어도 한 개의 자료이므로 평균을 구할 때 {개수에 넣는다}.",
+        "studentC": "자료에 $0$이 들어 있어도 한 개의 자료이므로 평균을 구할 때 □.",
+        "answers": [
+          "개수에 넣는다"
+        ]
+      },
+      "sourceFingerprint": "4f218762eeaeea1365cd1d317ce98cc7d70e1593d479066531502109c34836ce",
+      "draftEvidence": "evidence/section-053-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$4$",
+        "$5$"
+      ],
+      "cStudentAfter": "점수가 $0$, $4$, $6$, $10$일 때 $0$도 한 개의 자료이므로 자료의 개수는 □이고, 평균은 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$4$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$5$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "점수가 $0$, $4$, $6$, $10$일 때 $0$도 한 개의 자료이므로 자료의 개수는 {$4$}이고, 평균은 {$5$}이다.",
+      "cStudentSentence": "점수가 $0$, $4$, $6$, $10$일 때 $0$도 한 개의 자료이므로 자료의 개수는 □이고, 평균은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$4$",
+          "equivalents": []
+        },
+        {
+          "key": "$5$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "자료에 $0$이 들어 있을 때 평균을 구하려면 자료의 개수를 어떻게 세어야 하는지 설명하고, 네 번의 점수 $0$, $4$, $6$, $10$의 평균을 구하시오.",
+        "answer": "$0$도 한 개의 자료이므로 개수에 넣어 $4$개로 센다. $(0+4+6+10)\\div 4=5$이므로 평균은 $5$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$0$도 자료 한 개로 세어 개수에 넣는다",
+              "$0$을 포함해 자료의 개수를 센다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$5$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "점수가 $0$, $4$, $6$, $10$일 때 $0$도 한 개의 자료이므로 자료의 개수는 {$4$}이고, 평균은 {$5$}이다.",
+        "acceptedAnswers": [
+          [
+            "$4$"
+          ],
+          [
+            "$5$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "429fc2e04f244c9aa103621fefd1a7d24aae2f3c8c57583a169e39fb71c2527e",
+      "questionRevision": "planning-e5e6-20261006-429fc2e04f24",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-6-3-c5",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "가능성이 '불가능하다', '반반이다', '확실하다'인 일을 수로 나타내면 각각 얼마인지 쓰시오.",
+      "bAnswer": "불가능하다는 $0$, 반반이다는 $\\frac{1}{2}$, 확실하다는 $1$로 나타낸다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "불가능하다는 $0$"
+          ]
+        },
+        {
+          "anyOf": [
+            "반반이다는 $\\frac{1}{2}$",
+            "반반이다는 $0.5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "확실하다는 $1$"
+          ]
+        }
+      ],
+      "bGoal": "세 가지 말 표현과 수 $0$, $\\frac{1}{2}$, $1$을 짝짓는다.",
+      "bReason": "세 표현과 수의 대응 전체를 한 번에 떠올리게 하는 것이 이 행의 목표이다.",
+      "cDecision": "keep",
+      "cAfter": "불가능한 일은 {$0$}, 반반인 일은 {$\\frac{1}{2}$}, 확실한 일은 {$1$}로 가능성을 나타낸다.",
+      "cReason": "가능성을 수로 나타내라는 요청에서 절반을 나타내는1/2와0.5는 같은 값이므로 함께 인정한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$0$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{2}$",
+            "$0.5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$1$"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0180-0210.json",
+      "codexFinalAmendedFromFingerprint": "7dea7356782ac182764fa3c81a41036cee25e7db78cc5d213fe12346e973a22f",
+      "sourceIndex": 195,
+      "grade": "e5",
+      "part": "e5",
+      "source": {
+        "part": "e5",
+        "id": "e5-2-6-3-c5",
+        "section": "초5::2-6 평균과 가능성::2-6-3 일이 일어날 가능성",
+        "term": "가능성을 수로 표현하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "불가능한 일은 {$0$}, 반반인 일은 {$\\frac{1}{2}$}, 확실한 일은 {$1$}로 가능성을 나타낸다.",
+        "studentC": "불가능한 일은 □, 반반인 일은 □, 확실한 일은 □로 가능성을 나타낸다.",
+        "answers": [
+          "$0$",
+          "$\\frac{1}{2}$",
+          "$1$"
+        ]
+      },
+      "sourceFingerprint": "721bc7cae36c9d9266acd52ff41f5c5c866bd0b90d0c5d6f877daf8c0de9756d",
+      "draftEvidence": "evidence/section-055-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "불가능한 일은 {$0$}, 반반인 일은 {$\\frac{1}{2}$}, 확실한 일은 {$1$}로 가능성을 나타낸다.",
+      "cFrozenStudentSentence": "불가능한 일은 □, 반반인 일은 □, 확실한 일은 □로 가능성을 나타낸다.",
+      "cProposedAnswers": [
+        "$0$",
+        "$\\frac{1}{2}$",
+        "$1$"
+      ],
+      "cStudentAfter": "불가능한 일은 □, 반반인 일은 □, 확실한 일은 □로 가능성을 나타낸다.",
+      "cMarkedSentence": "불가능한 일은 {$0$}, 반반인 일은 {$\\frac{1}{2}$}, 확실한 일은 {$1$}로 가능성을 나타낸다.",
+      "cStudentSentence": "불가능한 일은 □, 반반인 일은 □, 확실한 일은 □로 가능성을 나타낸다.",
+      "cSlotAnswers": [
+        {
+          "key": "$0$",
+          "equivalents": []
+        },
+        {
+          "key": "$\\frac{1}{2}$",
+          "equivalents": [
+            "$0.5$"
+          ]
+        },
+        {
+          "key": "$1$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "가능성이 '불가능하다', '반반이다', '확실하다'인 일을 수로 나타내면 각각 얼마인지 쓰시오.",
+        "answer": "불가능하다는 $0$, 반반이다는 $\\frac{1}{2}$, 확실하다는 $1$로 나타낸다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "불가능하다는 $0$"
+            ]
+          },
+          {
+            "anyOf": [
+              "반반이다는 $\\frac{1}{2}$",
+              "반반이다는 $0.5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "확실하다는 $1$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "불가능한 일은 {$0$}, 반반인 일은 {$\\frac{1}{2}$}, 확실한 일은 {$1$}로 가능성을 나타낸다.",
+        "acceptedAnswers": [
+          [
+            "$0$"
+          ],
+          [
+            "$\\frac{1}{2}$",
+            "$0.5$"
+          ],
+          [
+            "$1$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "17a2471af864faaaaaa8fbbcec5fa0cb61d4bd4a8df53ff99038938f178d0a47",
+      "questionRevision": "planning-e5e6-20261006-17a2471af864",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-2-c3",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{3}{4}\\div2$를 계산할 때 분모 $4$에 $2$를 곱하는 까닭을 $\\frac{1}{4}$ 한 조각을 생각해 설명하시오. 몫도 쓰시오.",
+      "bAnswer": "$\\frac{1}{4}$ 한 조각을 $2$로 똑같이 나누면 한 조각이 $\\frac{1}{8}$이 되므로 분모에 $2$를 곱한다. 이런 조각이 $3$개 있으므로 몫은 $\\frac{3}{8}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{1}{4}$ 조각을 $2$로 똑같이 나누면 $\\frac{1}{8}$ 조각이 된다",
+            "조각을 더 잘게 나누어 분모가 $4\\times2$가 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{8}$"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "분모에 나누는 수를 곱하는 까닭을 조각을 더 잘게 나누는 활동으로 이해한다.",
+      "bReason": "분모에2를 곱하는 이유와 몫을 요청한 질문에 분자의3조각까지 독립 필수 조건으로 추가하지 않는다. 분모의 세분화와 몫만 평가한다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{1}{4}$을 $2$로 똑같이 나눈 한 조각은 {$\\frac{1}{8}$}이다. 이 조각이 $3$개 있으므로 $\\frac{3}{4}\\div2=$ {$\\frac{3}{8}$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{1}{8}$",
+            "$8$분의 $1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{8}$",
+            "$8$분의 $3$"
+          ]
+        }
+      ],
+      "cReason": "긴 설명 문장 대신 짧은 값 두 개로 조각 관계를 확인한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0180-0210.json",
+      "codexFinalAmendedFromFingerprint": "fcd769e3975a3a35e3d065fe2147406e9acf902a9e8f422a5daa280bbf6b12e7",
+      "sourceIndex": 202,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-1-2-c3",
+        "section": "초6::1-1 분수의 나눗셈::1-1-2 (분수)÷(자연수) 알아보기",
+        "level": "상",
+        "kind": "성질",
+        "term": "분모에 나누는 수를 곱하는 까닭",
+        "definition": "분모에 나누는 자연수를 곱하는 것은 단위분수 조각 하나를 그 수만큼 {똑같이 나누는 것}이다. 이렇게 나눈 작은 조각을 원래 분자만큼 모으면 한 몫이다.",
+        "studentC": "분모에 나누는 자연수를 곱하는 것은 단위분수 조각 하나를 그 수만큼 □이다. 이렇게 나눈 작은 조각을 원래 분자만큼 모으면 한 몫이다.",
+        "answers": [
+          "똑같이 나누는 것"
+        ]
+      },
+      "sourceFingerprint": "f602781a275cd19bca6ad56aa4295f35d928ef83cb371098491839c2f07bcbcf",
+      "draftEvidence": "evidence/section-057-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$\\frac{1}{8}$",
+        "$\\frac{3}{8}$"
+      ],
+      "cStudentAfter": "$\\frac{1}{4}$을 $2$로 똑같이 나눈 한 조각은 □이다. 이 조각이 $3$개 있으므로 $\\frac{3}{4}\\div2=$ □이다.",
+      "cMarkedSentence": "$\\frac{1}{4}$을 $2$로 똑같이 나눈 한 조각은 {$\\frac{1}{8}$}이다. 이 조각이 $3$개 있으므로 $\\frac{3}{4}\\div2=$ {$\\frac{3}{8}$}이다.",
+      "cStudentSentence": "$\\frac{1}{4}$을 $2$로 똑같이 나눈 한 조각은 □이다. 이 조각이 $3$개 있으므로 $\\frac{3}{4}\\div2=$ □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{1}{8}$",
+          "equivalents": [
+            "$8$분의 $1$"
+          ]
+        },
+        {
+          "key": "$\\frac{3}{8}$",
+          "equivalents": [
+            "$8$분의 $3$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{3}{4}\\div2$를 계산할 때 분모 $4$에 $2$를 곱하는 까닭을 $\\frac{1}{4}$ 한 조각을 생각해 설명하시오. 몫도 쓰시오.",
+        "answer": "$\\frac{1}{4}$ 한 조각을 $2$로 똑같이 나누면 한 조각이 $\\frac{1}{8}$이 되므로 분모에 $2$를 곱한다. 이런 조각이 $3$개 있으므로 몫은 $\\frac{3}{8}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{1}{4}$ 조각을 $2$로 똑같이 나누면 $\\frac{1}{8}$ 조각이 된다",
+              "조각을 더 잘게 나누어 분모가 $4\\times2$가 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{3}{8}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{1}{4}$을 $2$로 똑같이 나눈 한 조각은 {$\\frac{1}{8}$}이다. 이 조각이 $3$개 있으므로 $\\frac{3}{4}\\div2=$ {$\\frac{3}{8}$}이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{1}{8}$",
+            "$8$분의 $1$"
+          ],
+          [
+            "$\\frac{3}{8}$",
+            "$8$분의 $3$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "d67f797de479135cf7f28607c00dcd9bdc39a97148465ed0ee9a62d54ad7fc48",
+      "questionRevision": "planning-e5e6-20261006-d67f797de479",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-1-3-c2",
+      "bDecision": "revise",
+      "bPrompt": "$1\\frac{1}{2}\\div3$은 $1\\frac{1}{2}$이 나타내는 양을 가지고 어떤 양을 구하는 계산인가요? 계산 결과도 쓰세요.",
+      "bAnswer": "$1\\frac{1}{2}$을 $3$몫으로 똑같이 나눌 때 한 몫의 양이고, 그 양은 $\\frac{1}{2}$이다.",
+      "bGoal": "나눗셈이 똑같이 나눈 한 몫의 양을 구하는 일임을 안다.",
+      "bReason": "나눗셈 의미를 구체 식으로 묻고 몫까지 확인하게 한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "똑같이 나눈 한 몫의 양",
+            "똑같이 나눈 한 묶음의 양"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{2}$",
+            "$\\frac{3}{6}$"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "cDecision": "revise",
+      "cAfter": "주스 $1\\frac{1}{2}\\,\\mathrm{L}$를 $3$명이 똑같이 나누어 마시면, 한 사람이 마시는 주스는 {$\\frac{1}{2}$}$\\,\\mathrm{L}$이다.",
+      "cReason": "대상과 나누는 수 없이 한 몫의 양이라는 구절을 외우던 C를 실제 대분수 양을3명에게 나눈 한 사람 양의 계산으로 바꾼다. 일반적인 나눗셈 뜻은 B와 원래 설명에 남긴다.",
+      "exampleNeeded": false,
+      "synonymNotes": "한 몫, 한 묶음의 양, 똑같이 나눈 한 개의 양 모두 가능",
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{1}{2}$",
+            "$0.5$",
+            "$\\frac{3}{6}$"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0180-0210.json",
+      "codexFinalAmendedFromFingerprint": "c3f5646e9744262520d8bc937c3208ebf4f4257a4cc38ed4f3046ba57e5c8a6c",
+      "sourceIndex": 204,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-1-3-c2",
+        "section": "초6::1-1 분수의 나눗셈::1-1-3 (대분수)÷(자연수) 알아보기",
+        "level": "중",
+        "kind": "방법",
+        "term": "(대분수)$\\div$(자연수)",
+        "definition": "대분수가 나타내는 양을 나누는 수만큼 똑같이 나눌 때의 {한 몫의 양}이다.",
+        "studentC": "대분수가 나타내는 양을 나누는 수만큼 똑같이 나눌 때의 □이다.",
+        "answers": [
+          "한 몫의 양"
+        ]
+      },
+      "sourceFingerprint": "cb2468d54cd0ba0998514c5b64e5bf753f63965a7a3cc4dd9959ebe7d46b49ea",
+      "draftEvidence": "evidence/section-058-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "bAnswer",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cProposedAnswers": [
+        "$\\frac{1}{2}$"
+      ],
+      "cStudentAfter": "주스 $1\\frac{1}{2}\\,\\mathrm{L}$를 $3$명이 똑같이 나누어 마시면, 한 사람이 마시는 주스는 □$\\,\\mathrm{L}$이다.",
+      "cMarkedSentence": "주스 $1\\frac{1}{2}\\,\\mathrm{L}$를 $3$명이 똑같이 나누어 마시면, 한 사람이 마시는 주스는 {$\\frac{1}{2}$}$\\,\\mathrm{L}$이다.",
+      "cStudentSentence": "주스 $1\\frac{1}{2}\\,\\mathrm{L}$를 $3$명이 똑같이 나누어 마시면, 한 사람이 마시는 주스는 □$\\,\\mathrm{L}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$\\frac{1}{2}$",
+          "equivalents": [
+            "$0.5$",
+            "$\\frac{3}{6}$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$1\\frac{1}{2}\\div3$은 $1\\frac{1}{2}$이 나타내는 양을 가지고 어떤 양을 구하는 계산인가요? 계산 결과도 쓰세요.",
+        "answer": "$1\\frac{1}{2}$을 $3$몫으로 똑같이 나눌 때 한 몫의 양이고, 그 양은 $\\frac{1}{2}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "똑같이 나눈 한 몫의 양",
+              "똑같이 나눈 한 묶음의 양"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{2}$",
+              "$\\frac{3}{6}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "주스 $1\\frac{1}{2}\\,\\mathrm{L}$를 $3$명이 똑같이 나누어 마시면, 한 사람이 마시는 주스는 {$\\frac{1}{2}$}$\\,\\mathrm{L}$이다.",
+        "acceptedAnswers": [
+          [
+            "$\\frac{1}{2}$",
+            "$0.5$",
+            "$\\frac{3}{6}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "52e957fdacc63557dfd3a22a044c469202ef4cd1cf59bdc1eb80ac577b7150bd",
+      "questionRevision": "planning-e5e6-20261006-52e957fdacc6",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-1-c2",
+      "bDecision": "revise",
+      "bPrompt": "각기둥에서 밑면은 어떤 면인가? 두 밑면의 위치 관계와 모양 관계를 들어 설명하시오.",
+      "bAnswer": "기둥의 양 끝에 있는, 서로 평행하고 합동인 두 다각형 면이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "서로 평행하다",
+            "마주 보며 평행하다"
+          ]
+        },
+        {
+          "anyOf": [
+            "합동이다",
+            "모양과 크기가 같다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "밑면을 위치가 아니라 평행·합동이라는 성질로 설명하게 한다.",
+      "bReason": "c2의 긴 구절을 외우게 하지 않고 두 조건을 설명하게 하며 xc2와 겹치므로 이 행에 모은다.",
+      "cDecision": "revise",
+      "cAfter": "각기둥에서 서로 {평행}하고 {합동}인 두 다각형 면을 밑면이라 한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "평행"
+          ]
+        },
+        {
+          "anyOf": [
+            "합동"
+          ]
+        }
+      ],
+      "cReason": "둘째 슬롯 뒤에인이라는 조사가 있어 모양과 크기가 같은을 넣으면 같은인이 된다. 합동만 이 슬롯에서 자연스럽고 모양·크기 관계의 뜻은 B에서 자유 표현을 인정한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0180-0210.json",
+      "codexFinalAmendedFromFingerprint": "bf75beee7324e41f83fc426b509a3d031ef7fa3e2ccd6bb41412a493209a77ec",
+      "sourceIndex": 207,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-2-1-c2",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-1 각기둥 알아보기와 각기둥의 밑면과 옆면",
+        "level": "하",
+        "kind": "정의",
+        "term": "밑면",
+        "definition": "각기둥에서 기둥의 양 끝을 막는 {합동인 다각형 두 면}을 밑면이라 한다.",
+        "studentC": "각기둥에서 기둥의 양 끝을 막는 □을 밑면이라 한다.",
+        "answers": [
+          "합동인 다각형 두 면"
+        ]
+      },
+      "sourceFingerprint": "4bf574eaca720ccd03c23a549e66d240572f32c25d38c48179f192d8aa6a1010",
+      "draftEvidence": "evidence/section-059-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "평행",
+        "합동"
+      ],
+      "cStudentAfter": "각기둥에서 서로 □하고 □인 두 다각형 면을 밑면이라 한다.",
+      "cMarkedSentence": "각기둥에서 서로 {평행}하고 {합동}인 두 다각형 면을 밑면이라 한다.",
+      "cStudentSentence": "각기둥에서 서로 □하고 □인 두 다각형 면을 밑면이라 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "평행",
+          "equivalents": []
+        },
+        {
+          "key": "합동",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각기둥에서 밑면은 어떤 면인가? 두 밑면의 위치 관계와 모양 관계를 들어 설명하시오.",
+        "answer": "기둥의 양 끝에 있는, 서로 평행하고 합동인 두 다각형 면이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "서로 평행하다",
+              "마주 보며 평행하다"
+            ]
+          },
+          {
+            "anyOf": [
+              "합동이다",
+              "모양과 크기가 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각기둥에서 서로 {평행}하고 {합동}인 두 다각형 면을 밑면이라 한다.",
+        "acceptedAnswers": [
+          [
+            "평행"
+          ],
+          [
+            "합동"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "e35635a0e3dc8c5c4c64d0ff11b583baa92f98e1b432e54358e0f28942a21285",
+      "questionRevision": "planning-e5e6-20261006-e35635a0e3dc",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-1-c3",
+      "bDecision": "revise",
+      "bPrompt": "각기둥에서 옆면은 어떤 면인가? 밑면과의 관계와 모양을 말하시오.",
+      "bAnswer": "두 밑면의 둘레를 이어 주는 면이고, 모양은 직사각형이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "밑면이 아닌 면이다",
+            "두 밑면 사이를 둘러싼다",
+            "두 밑면의 둘레를 잇는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "직사각형이다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "옆면을 밑면과 대비하여 위치와 모양으로 말하게 한다.",
+      "bReason": "밑면을 알아야 옆면이 정해지므로 두 관계를 함께 묻는다.",
+      "cDecision": "keep",
+      "cAfter": "각기둥에서 두 밑면의 둘레를 잇는 {직사각형 면} 하나하나를 옆면이라 한다.",
+      "cReason": "각기둥의 두 밑면 둘레를 잇는 문맥에서 직사각형과 직사각형 면은 같은 옆면을 가리키며 둘 다 문장에 들어맞는다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "직사각형 면",
+            "직사각형"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0180-0210.json",
+      "codexFinalAmendedFromFingerprint": "d8b6e007fbf2adc157ad434891a1ee90bcdec1e0ddc8d9a85565844879b7584c",
+      "sourceIndex": 208,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-2-1-c3",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-1 각기둥 알아보기와 각기둥의 밑면과 옆면",
+        "level": "중",
+        "kind": "정의",
+        "term": "옆면",
+        "definition": "각기둥에서 두 밑면의 둘레를 잇는 {직사각형 면} 하나하나를 옆면이라 한다.",
+        "studentC": "각기둥에서 두 밑면의 둘레를 잇는 □ 하나하나를 옆면이라 한다.",
+        "answers": [
+          "직사각형 면"
+        ]
+      },
+      "sourceFingerprint": "02bf61d33763cd60c7daf6ac27b01b0bd64ee68ff14d86599641e2c7f0ce98c1",
+      "draftEvidence": "evidence/section-059-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "각기둥에서 두 밑면의 둘레를 잇는 {직사각형 면} 하나하나를 옆면이라 한다.",
+      "cFrozenStudentSentence": "각기둥에서 두 밑면의 둘레를 잇는 □ 하나하나를 옆면이라 한다.",
+      "cProposedAnswers": [
+        "직사각형 면"
+      ],
+      "cStudentAfter": "각기둥에서 두 밑면의 둘레를 잇는 □ 하나하나를 옆면이라 한다.",
+      "cMarkedSentence": "각기둥에서 두 밑면의 둘레를 잇는 {직사각형 면} 하나하나를 옆면이라 한다.",
+      "cStudentSentence": "각기둥에서 두 밑면의 둘레를 잇는 □ 하나하나를 옆면이라 한다.",
+      "cSlotAnswers": [
+        {
+          "key": "직사각형 면",
+          "equivalents": [
+            "직사각형"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "각기둥에서 옆면은 어떤 면인가? 밑면과의 관계와 모양을 말하시오.",
+        "answer": "두 밑면의 둘레를 이어 주는 면이고, 모양은 직사각형이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "밑면이 아닌 면이다",
+              "두 밑면 사이를 둘러싼다",
+              "두 밑면의 둘레를 잇는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "직사각형이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "각기둥에서 두 밑면의 둘레를 잇는 {직사각형 면} 하나하나를 옆면이라 한다.",
+        "acceptedAnswers": [
+          [
+            "직사각형 면",
+            "직사각형"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "8ab46b19a27f02d3d7b380f9665812229adc08fdfdc0ea22af076b26ccf90373",
+      "questionRevision": "planning-e5e6-20261006-8ab46b19a27f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-1-2-1-c4",
+      "bDecision": "revise",
+      "bPrompt": "밑면 두 개를 정한 각기둥을 옆으로 눕혔다. 바닥에 닿는 면이 달라졌다는 이유만으로 밑면도 바꾸어야 하는가? 처음 정한 두 밑면의 위치와 모양 관계를 들어 설명하시오.",
+      "bAnswer": "바꿀 필요가 없다. 처음 정한 두 밑면은 서로 평행하고 모양과 크기가 같다. 눕혀 놓아도 이 관계는 그대로이기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "바닥에 닿는 면이 달라져도 밑면을 바꿀 필요가 없다",
+            "처음 정한 밑면을 그대로 두어도 된다"
+          ]
+        },
+        {
+          "anyOf": [
+            "처음 정한 두 밑면은 서로 평행하고 합동인 관계가 그대로이다",
+            "눕혀도 두 밑면은 평행하고 모양과 크기가 같다"
+          ]
+        }
+      ],
+      "learningRole": "reason",
+      "bGoal": "흔한 오개념(바닥 면=밑면)을 평행·합동 기준으로 바로잡는다.",
+      "bReason": "직육면체처럼 밑면을 다른 쌍으로 정할 수 있는 각기둥도 있어 바닥면은 밑면이 될 수 없다는 단정은 잘못이다. 먼저 정한 밑면이 놓는 방향만으로 바뀔 필요가 없다는 실제 목표로 질문·답·기준을 맞춘다.",
+      "cDecision": "revise",
+      "cAfter": "밑면 두 개를 정한 각기둥을 눕혀 놓아도, 처음 정한 두 밑면 사이의 평행하고 합동인 관계는 {그대로이다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "그대로이다",
+            "바뀌지 않는다",
+            "변하지 않는다"
+          ]
+        }
+      ],
+      "cReason": "다른 면을 밑면으로 선택할 수도 있는 도형까지 고려해 먼저 정한 두 밑면의 관계가 놓는 방향과 무관하다는 뜻으로 한정한다.",
+      "exampleNeeded": false,
+      "synonymNotes": "바뀌지 않는다/변하지 않는다/그대로이다는 같은 답이다.",
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-8787d65a5eef-batch-0180-0210.json",
+      "codexFinalAmendedFromFingerprint": "5351e0397ec805be3c980d80bb210685286773c0da9c8df02019b8ea52e734f0",
+      "sourceIndex": 209,
+      "grade": "e6",
+      "part": "e6",
+      "source": {
+        "part": "e6",
+        "id": "e6-1-2-1-c4",
+        "section": "초6::1-2 각기둥과 각뿔::1-2-1 각기둥 알아보기와 각기둥의 밑면과 옆면",
+        "level": "상",
+        "kind": "성질",
+        "term": "밑면의 위치",
+        "definition": "각기둥을 눕혀도 밑면은 {바뀌지 않는다}. 바닥에 닿는지만으로 밑면을 정하지 않는다.",
+        "studentC": "각기둥을 눕혀도 밑면은 □. 바닥에 닿는지만으로 밑면을 정하지 않는다.",
+        "answers": [
+          "바뀌지 않는다"
+        ]
+      },
+      "sourceFingerprint": "c928f0c3379c4a749126aeeb40d65329f09772041a70ef804fc20141d523d9be",
+      "draftEvidence": "evidence/section-059-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "그대로이다"
+      ],
+      "cStudentAfter": "밑면 두 개를 정한 각기둥을 눕혀 놓아도, 처음 정한 두 밑면 사이의 평행하고 합동인 관계는 □.",
+      "cMarkedSentence": "밑면 두 개를 정한 각기둥을 눕혀 놓아도, 처음 정한 두 밑면 사이의 평행하고 합동인 관계는 {그대로이다}.",
+      "cStudentSentence": "밑면 두 개를 정한 각기둥을 눕혀 놓아도, 처음 정한 두 밑면 사이의 평행하고 합동인 관계는 □.",
+      "cSlotAnswers": [
+        {
+          "key": "그대로이다",
+          "equivalents": [
+            "바뀌지 않는다",
+            "변하지 않는다"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "밑면 두 개를 정한 각기둥을 옆으로 눕혔다. 바닥에 닿는 면이 달라졌다는 이유만으로 밑면도 바꾸어야 하는가? 처음 정한 두 밑면의 위치와 모양 관계를 들어 설명하시오.",
+        "answer": "바꿀 필요가 없다. 처음 정한 두 밑면은 서로 평행하고 모양과 크기가 같다. 눕혀 놓아도 이 관계는 그대로이기 때문이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "바닥에 닿는 면이 달라져도 밑면을 바꿀 필요가 없다",
+              "처음 정한 밑면을 그대로 두어도 된다"
+            ]
+          },
+          {
+            "anyOf": [
+              "처음 정한 두 밑면은 서로 평행하고 합동인 관계가 그대로이다",
+              "눕혀도 두 밑면은 평행하고 모양과 크기가 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "밑면 두 개를 정한 각기둥을 눕혀 놓아도, 처음 정한 두 밑면 사이의 평행하고 합동인 관계는 {그대로이다}.",
+        "acceptedAnswers": [
+          [
+            "그대로이다",
+            "바뀌지 않는다",
+            "변하지 않는다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "805701e5fc37d1f0c0c3e8a79879621ca67ac1fc1072c73fff5d2e93f8cfc7ec",
+      "questionRevision": "planning-e5e6-20261006-805701e5fc37",
+      "requiresIndependentReview": true
+    }
+  ]
+}

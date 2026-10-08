@@ -1,0 +1,740 @@
+{
+  "rows": [
+    {
+      "id": "e5-2-2-3-c1",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "단위분수끼리 곱할 때 곱의 분자와 분모는 각각 어떻게 정해지는지 쓰고, $\\frac{1}{3}\\times\\frac{1}{5}$을 계산하시오.",
+      "bAnswer": "곱의 분자는 $1$이고, 분모는 두 분모를 곱한 수이다. $\\frac{1}{3}\\times\\frac{1}{5}=\\frac{1}{15}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱의 분자는 1이다",
+            "분자는 1×1=1이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "분모는 두 분모를 곱한 수이다",
+            "분모끼리 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{15}$",
+            "15분의 1"
+          ]
+        }
+      ],
+      "bGoal": "단위분수끼리의 곱에서 분자와 분모가 정해지는 방법을 말하고 계산한다.",
+      "bReason": "제목만으로는 물음이 되지 않아 분자·분모를 각각 묻고 예를 붙였다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "분자 $1$과 분모(두 분모의 곱)를 짧게 묻는 문장이라 그대로 쓸 수 있다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-2-3-c2",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "진분수끼리 곱할 때 곱의 분자와 분모를 각각 어떻게 구하는지 쓰고, $\\frac{3}{5}\\times\\frac{2}{7}$를 계산하시오.",
+      "bAnswer": "분자는 분자끼리 곱하고, 분모는 분모끼리 곱한다. $\\frac{3}{5}\\times\\frac{2}{7}=\\frac{6}{35}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분자는 분자끼리 곱한다",
+            "두 분자의 곱이 분자이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "분모는 분모끼리 곱한다",
+            "두 분모의 곱이 분모이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{6}{35}$",
+            "35분의 6"
+          ]
+        }
+      ],
+      "bGoal": "진분수끼리 곱하는 계산 방법을 말하고 적용한다.",
+      "bReason": "분자와 분모를 구하는 방법을 범위를 정해 묻고 계산 예로 확인하게 했다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "분자의 곱·분모의 곱이라는 계산 방법을 짧게 확인하는 문장이다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-2-3-c3",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "진분수 두 개를 곱한 값은 곱한 두 분수 각각과 비교하여 크기가 어떠한지 쓰고, 그 까닭을 분수의 곱셈이 ‘어떤 양의 몇 분의 몇’을 구한다는 뜻으로 설명하시오.",
+      "bAnswer": "곱은 두 분수 각각보다 작다. 진분수를 곱하는 것은 한 분수의 일부만 구하는 것이므로 그 분수보다 작아지고, 곱하는 차례를 바꾸어 생각하면 다른 분수보다도 작다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱은 두 분수 각각보다 작다",
+            "곱은 두 분수 중 어느 것보다도 작다"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 분수의 일부만 구하기 때문이다",
+            "전체가 아닌 부분만큼만 구하기 때문이다",
+            "1보다 작은 수만큼만 구하기 때문이다"
+          ]
+        }
+      ],
+      "bGoal": "진분수끼리의 곱이 두 분수보다 작은 까닭을 일부의 일부라는 뜻으로 설명한다.",
+      "bReason": "‘부분의 부분’은 편집용 제목이라 크기 비교와 설명할 관계를 질문에 직접 넣었다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "일부의 일부라는 근거가 문장에 있고 작다/크다를 고르는 분명한 비교이다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-2-3-xc3",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "분모가 다른 두 분수를 더할 때와 곱할 때, 계산하기 전에 통분을 해야 하는지 각각 쓰시오.",
+      "bAnswer": "더할 때는 통분해야 하고, 곱할 때는 통분하지 않고 분자끼리, 분모끼리 바로 곱한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "덧셈은 통분해야 한다",
+            "더할 때는 분모를 같게 만든다"
+          ]
+        },
+        {
+          "anyOf": [
+            "곱셈은 통분하지 않는다",
+            "곱할 때는 분모를 같게 만들지 않고 바로 곱한다"
+          ]
+        }
+      ],
+      "bGoal": "분수의 덧셈과 곱셈에서 통분이 필요한지를 구별한다.",
+      "bReason": "덧셈과 섞기 쉬운 부분이라 두 계산을 나란히 비교해 묻도록 했다.",
+      "cDecision": "revise",
+      "cAfter": "분수의 곱셈은 덧셈과 달리 {통분}을 하지 않고 분자끼리, 분모끼리 바로 곱한다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "통분",
+            "분모를 같게 하는 것"
+          ]
+        }
+      ],
+      "cReason": "‘통분하지 않고’라는 구절 전체 대신 핵심 낱말 하나만 답하게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-2-3-xc4",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "분수의 곱셈 결과가 기약분수가 아닐 때 기약분수로 고치는 방법을 쓰고, $\\frac{2}{3}\\times\\frac{3}{4}$의 곱을 기약분수로 나타내시오.",
+      "bAnswer": "분모와 분자를 $1$보다 큰 공약수로 더 나눌 수 없을 때까지 나눈다. $\\frac{2}{3}\\times\\frac{3}{4}=\\frac{6}{12}=\\frac{1}{2}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분모와 분자를 공약수로 더 나눌 수 없을 때까지 나눈다",
+            "분모와 분자를 최대공약수로 나눈다",
+            "더 약분할 수 없을 때까지 약분한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{2}$",
+            "2분의 1"
+          ]
+        }
+      ],
+      "bGoal": "곱을 기약분수로 고치는 방법을 말하고 적용한다.",
+      "bReason": "곱한 뒤 약분하는 절차라서 곱하기 전에 약분하는 xc9와 구별해 남겼다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "공약수로 ‘나눈다’는 행동 하나를 묻고 $1$보다 큰 공약수 조건도 문장에 들어 있다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-2-3-xc5",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "‘$\\frac{5}{6}$의 $\\frac{1}{2}$’처럼 어떤 분수의 몇 분의 몇인 양은 어떤 계산으로 구하는지 쓰고, $\\frac{5}{6}$의 $\\frac{1}{2}$을 구하시오.",
+      "bAnswer": "두 분수를 곱하여 구한다. $\\frac{5}{6}\\times\\frac{1}{2}=\\frac{5}{12}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 분수를 곱한다",
+            "곱셈으로 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{5}{12}$",
+            "12분의 5"
+          ]
+        }
+      ],
+      "bGoal": "‘분수의 몇 분의 몇’을 곱셈식으로 나타내어 구한다.",
+      "bReason": "편집용 제목 대신 구체적인 표현을 주고 어떤 계산인지 묻도록 했다.",
+      "cDecision": "revise",
+      "cAfter": "‘$\\frac{3}{4}$의 $\\frac{2}{5}$’는 두 분수의 {곱셈}식으로 나타내고, 그 값은 {$\\frac{3}{10}$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "곱셈",
+            "곱하기"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{10}$",
+            "$\\frac{6}{20}$"
+          ]
+        }
+      ],
+      "cReason": "‘두 분수를 곱하여’라는 구절을 외우게 하지 않고 낱말과 값으로 짧게 답하게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-2-3-xc7",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "단위분수끼리 곱하면 분모가 커져 곱이 작아짐을 안다.",
+      "bReason": "계산 방법은 c1, 곱이 작아지는 까닭은 c3의 B가 이미 묻고 있어 겹친다.",
+      "exclusionReason": "B 제외: e5-2-2-3-c1(분모가 두 분모의 곱)과 e5-2-2-3-c3(곱이 각 분수보다 작음)으로 대체된다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{1}{3}\\times\\frac{1}{4}=\\frac{1}{12}$처럼 $1$보다 작은 단위분수끼리 곱하면 곱의 분모는 처음 두 분모보다 {크고}, 곱의 크기는 처음 두 단위분수보다 {작다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "크고",
+            "크다",
+            "커지고"
+          ]
+        },
+        {
+          "anyOf": [
+            "작다",
+            "작아진다"
+          ]
+        }
+      ],
+      "cReason": "‘더 작은 단위분수’라는 긴 구절 대신 분모와 곱의 크기를 각각 비교하게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-2-3-xc8",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "두 분수를 곱할 때 곱하는 차례를 바꾸면 곱이 어떻게 되는지 쓰고, $\\frac{2}{3}\\times\\frac{1}{4}$과 $\\frac{1}{4}\\times\\frac{2}{3}$를 각각 계산하여 확인하시오.",
+      "bAnswer": "곱하는 차례를 바꾸어도 곱은 같다. 두 식 모두 $\\frac{2}{12}=\\frac{1}{6}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "곱은 같다",
+            "곱은 변하지 않는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 식 모두 $\\frac{1}{6}$이다",
+            "두 식 모두 $\\frac{2}{12}$이다"
+          ]
+        }
+      ],
+      "bGoal": "분수의 곱셈에서 차례를 바꾸어도 곱이 같음을 말하고 확인한다.",
+      "bReason": "원문이 예 하나뿐이라 일반 관계를 먼저 묻고 그 예로 확인하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{2}{3}\\times\\frac{1}{4}$과 $\\frac{1}{4}\\times\\frac{2}{3}$의 곱은 서로 {같다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "같다",
+            "같습니다"
+          ]
+        }
+      ],
+      "cReason": "‘곱이 같다’는 표현이 여러 가지라 빈칸을 ‘같다’ 한 낱말로 좁혔다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-2-3-xc9",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "분수의 곱셈에서 분자끼리, 분모끼리 곱하기 전에 약분할 수 있는 것은 어떤 경우인지 쓰고, $\\frac{3}{8}\\times\\frac{4}{9}$를 곱하기 전에 약분하여 계산하시오.",
+      "bAnswer": "분자와 분모에 $1$보다 큰 공약수가 있을 때 약분할 수 있다. $3$과 $9$를 $3$으로, $4$와 $8$을 $4$로 약분하면 $\\frac{1}{2}\\times\\frac{1}{3}=\\frac{1}{6}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분자와 분모에 1보다 큰 공약수가 있을 때",
+            "분자와 분모를 같은 수(1보다 큰 수)로 나눌 수 있을 때"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{6}$",
+            "6분의 1"
+          ]
+        }
+      ],
+      "bGoal": "곱하기 전에 약분할 수 있는 조건을 말하고 약분하여 계산한다.",
+      "bReason": "엇갈린 약분과 약분할 짝이 여럿인 경우까지 이 예 하나로 다루도록 했다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "약분할 수 있는 조건인 ‘$1$보다 큰 공약수’를 묻는 문장으로 조건이 분명하다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-2-3-xc10",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "가로와 세로의 길이가 분수인 직사각형의 넓이는 어떻게 구하는지 쓰고, 가로가 $\\frac{3}{5}$ m, 세로가 $\\frac{1}{2}$ m인 직사각형의 넓이를 구하시오.",
+      "bAnswer": "가로와 세로를 곱하여 구한다. $\\frac{3}{5}\\times\\frac{1}{2}=\\frac{3}{10}$ (m²)",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가로와 세로를 곱한다",
+            "(가로)×(세로)로 구한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{3}{10}$ m²",
+            "10분의 3 제곱미터"
+          ]
+        }
+      ],
+      "bGoal": "변의 길이가 분수인 직사각형의 넓이를 곱셈으로 구한다.",
+      "bReason": "자연수일 때 배운 넓이 구하는 방법을 분수 길이에도 쓰는지 예와 함께 확인하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "가로가 $\\frac{2}{3}$ m, 세로가 $\\frac{1}{5}$ m인 직사각형의 넓이는 가로와 세로를 {곱해} 구하므로 {$\\frac{2}{15}$} m²이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "곱해",
+            "곱하여"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{2}{15}$"
+          ]
+        }
+      ],
+      "cReason": "‘가로와 세로를 곱해’라는 긴 구절 대신 실제 길이를 주고 낱말과 값을 답하게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-2-3-xc11",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "한 분수의 분자와 다른 분수의 분모를 약분할 수 있음을 안다.",
+      "bReason": "xc9의 B가 $3$과 $9$, $4$와 $8$을 엇갈려 약분하는 예를 이미 다룬다.",
+      "exclusionReason": "B 제외: e5-2-2-3-xc9와 묻는 방법이 겹친다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{4}{5}\\times\\frac{5}{8}$에서는 앞 분수의 분자 $4$와 뒤 분수의 분모 {$8$}을 {$4$}로 약분할 수 있다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$8$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$",
+            "$2$"
+          ]
+        }
+      ],
+      "cReason": "‘다른 분수의 분모’라는 구절 대신 실제 식에서 약분할 수와 나누는 수를 찾게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-2-3-xc12",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "단위분수끼리 곱한 두 식 $\\frac{1}{2}\\times\\frac{1}{6}$과 $\\frac{1}{3}\\times\\frac{1}{4}$의 크기를 비교하고, 그렇게 되는 까닭을 두 식의 분모와 관련지어 설명하시오.",
+      "bAnswer": "두 곱의 크기는 같다. 분자는 모두 $1$이고 분모의 곱이 $2\\times 6=12$, $3\\times 4=12$로 같아서 둘 다 $\\frac{1}{12}$이기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 곱의 크기가 같다",
+            "둘 다 $\\frac{1}{12}$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "분모의 곱이 같기 때문이다",
+            "분모끼리 곱하면 둘 다 12이기 때문이다"
+          ]
+        }
+      ],
+      "bGoal": "단위분수끼리의 곱은 분모의 곱이 같으면 크기가 같음을 설명한다.",
+      "bReason": "제목이 결론을 그대로 말하고 있어 실제 두 식을 비교하며 까닭을 쓰게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{1}{2}\\times\\frac{1}{6}$과 $\\frac{1}{3}\\times\\frac{1}{4}$은 분모의 곱이 모두 {$12$}이므로 두 곱의 크기는 {같다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "같다",
+            "같습니다"
+          ]
+        }
+      ],
+      "cReason": "‘분모의 곱이 같으면’이라는 조건 구절 대신 실제 식의 값과 비교 결과를 답하게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-2-3-xc13",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "어떤 학생이 $\\frac{1}{2}\\times\\frac{1}{3}=\\frac{1}{5}$이라고 계산했습니다. 분모를 어떻게 계산해서 틀렸는지 쓰고, 바르게 계산한 값을 구하시오.",
+      "bAnswer": "분모끼리 곱해야 하는데 더해서 틀렸다. 바른 값은 $\\frac{1}{2\\times 3}=\\frac{1}{6}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분모끼리 더했다",
+            "2와 3을 더해 5로 썼다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{6}$",
+            "6분의 1"
+          ]
+        }
+      ],
+      "bGoal": "분모를 더하는 잘못을 찾아 바르게 고친다.",
+      "bReason": "잘못된 계산을 직접 보여 주고 틀린 곳과 바른 값을 묻는 것이 원문의 목적에 맞다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{1}{2}\\times\\frac{1}{5}$의 분모는 $2$와 $5$를 {곱한} {$10$}이다. 분모끼리 더한 $\\frac{1}{7}$은 틀린 답이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "곱한",
+            "곱해 구한"
+          ]
+        },
+        {
+          "anyOf": [
+            "$10$"
+          ]
+        }
+      ],
+      "cReason": "줄표와 ‘우연히 맞는 때’라는 말이 어려워 실제 식에서 곱한 분모를 답하게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-2-3-xc14",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "밭 전체의 $\\frac{3}{4}$에 채소를 심고, 채소를 심은 부분의 $\\frac{2}{3}$에 상추를 심었습니다. 여기서 $\\frac{2}{3}$는 무엇을 똑같이 $3$으로 나눈 것 중의 $2$인지 쓰고, 상추를 심은 부분은 밭 전체의 몇 분의 몇인지 구하시오.",
+      "bAnswer": "밭 전체가 아니라 채소를 심은 부분(밭의 $\\frac{3}{4}$)을 똑같이 $3$으로 나눈 것 중의 $2$이다. $\\frac{3}{4}\\times\\frac{2}{3}=\\frac{1}{2}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "채소를 심은 부분",
+            "밭의 $\\frac{3}{4}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{2}$",
+            "$\\frac{6}{12}$"
+          ]
+        }
+      ],
+      "bGoal": "두 번째 분수가 전체가 아닌 먼저 구한 부분을 나눈 것임을 알고 곱셈으로 구한다.",
+      "bReason": "‘기준’이라는 말이 추상적이어서 상황을 주고 무엇을 나눈 것인지 묻도록 풀었다.",
+      "studentLabel": "일부의 일부 구하기",
+      "cDecision": "revise",
+      "cAfter": "색종이 전체의 $\\frac{1}{2}$을 쓰고, 쓴 부분의 $\\frac{1}{3}$에 그림을 그렸다. 이때 $\\frac{1}{3}$은 색종이 전체가 아니라 {쓴 부분}을 똑같이 $3$으로 나눈 것 중의 $1$이므로, 그림을 그린 부분은 색종이 전체의 {$\\frac{1}{6}$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "쓴 부분",
+            "색종이의 $\\frac{1}{2}$",
+            "색종이의 절반"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{6}$"
+          ]
+        }
+      ],
+      "cReason": "‘두 번째 분수의 기준’, ‘먼저 정한 일부’가 맥락 없이 어려워 구체적 상황과 값으로 바꾸었다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-2-3-xc15",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "$0$보다 큰 수에 진분수를 곱하면 처음 수보다 작아짐을 안다.",
+      "bReason": "일부만 구하므로 작아진다는 같은 설명을 c3의 B가 이미 요구한다.",
+      "exclusionReason": "B 제외: e5-2-2-3-c3과 까닭이 같다. 다만 c3은 진분수끼리의 곱만 다루므로, 자연수나 대분수에 곱하는 경우는 이 문항의 C로 확인한다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "‘$0$보다 큰 수’라는 조건이 있고 작아진다/커진다를 고르는 분명한 비교이다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-2-3-xc17",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "진분수끼리의 곱이 다시 진분수임을 안다.",
+      "bReason": "곱이 진분수보다 작으면 $1$보다 작다는 것이 c3에서 바로 따라 나와 따로 물을 가치가 낮다.",
+      "exclusionReason": "B 제외: e5-2-2-3-c3으로 대체된다.",
+      "cDecision": "keep",
+      "cAfter": null,
+      "cReason": "곱이 어떤 분수인지를 ‘진분수’ 한 낱말로 답하는 짧은 문장이다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-2-3-xc19",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{1}{2}\\times\\frac{1}{3}$은 전체 $1$을 어떻게 똑같이 나눈 것 중의 한 조각인지 나누는 과정을 설명하고, 그 조각이 전체의 몇 분의 몇인지 쓰시오.",
+      "bAnswer": "전체를 똑같이 $3$으로 나눈 것 중 한 조각을 다시 똑같이 $2$로 나눈 것 중의 한 조각이다. 전체가 $6$조각으로 나뉘는 셈이므로 $\\frac{1}{6}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "전체를 3등분한 한 조각을 다시 2등분한다",
+            "전체를 2등분한 한 조각을 다시 3등분한다",
+            "전체를 모두 6조각으로 똑같이 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{6}$",
+            "6분의 1"
+          ]
+        }
+      ],
+      "bGoal": "단위분수끼리의 곱을 다시 똑같이 나눈 조각으로 설명한다.",
+      "bReason": "분모가 두 분모의 곱이 되는 까닭을 나누는 과정으로 말하게 해 c1의 방법과 구별했다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{1}{2}\\times\\frac{1}{3}$은 전체를 똑같이 $3$으로 나눈 것 중의 한 조각을 다시 똑같이 {$2$}로 나눈 것 중의 한 조각이다. 이 조각은 전체를 똑같이 {$6$}으로 나눈 것 중의 하나이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        }
+      ],
+      "cReason": "‘한 단위분수만큼을 다른 분모만큼’이라는 말이 어려워 실제 식에서 나누는 수를 답하게 했다.",
+      "coreAfter": "단위분수끼리의 곱은 전체를 한 분모의 수만큼 똑같이 나눈 것 중 한 조각을, 다른 분모의 수만큼 다시 똑같이 나눈 것 중의 한 조각이다. 그래서 곱의 분모는 두 분모의 곱이 된다.",
+      "coreReason": "‘다른 분모만큼 다시 똑같이 나눈’은 무엇을 몇 조각으로 나누는지 초5 학생이 읽어 내기 어렵다.",
+      "exampleNeeded": false,
+      "exampleReason": "수 막대나 직사각형 그림이 있으면 좋지만, 나누는 과정을 글로 써도 설명할 수 있다."
+    },
+    {
+      "id": "e5-2-2-3-xc20",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "여러 진분수 중에서 서로 다른 두 수를 골라 곱을 가장 크게 하려면 어떤 두 수를 골라야 하는지 쓰고, $\\frac{1}{2}$, $\\frac{3}{4}$, $\\frac{2}{3}$ 중에서 그렇게 고른 두 수의 곱을 구하시오.",
+      "bAnswer": "가장 큰 분수와 둘째로 큰 분수를 고른다. $\\frac{3}{4}\\times\\frac{2}{3}=\\frac{1}{2}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "가장 큰 두 분수를 고른다",
+            "가장 큰 수와 둘째로 큰 수를 고른다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{2}$",
+            "$\\frac{6}{12}$"
+          ]
+        }
+      ],
+      "bGoal": "곱이 가장 크게 되도록 두 진분수를 고르고 곱을 구한다.",
+      "bReason": "원문의 예를 일반적인 고르는 방법과 묶어 하나의 완전한 물음으로 만들었다.",
+      "cDecision": "revise",
+      "cAfter": "주어진 진분수 가운데 서로 다른 두 수를 골라 곱을 가장 크게 하려면 가장 {큰} 분수와 둘째로 {큰} 분수를 고른다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "큰"
+          ]
+        },
+        {
+          "anyOf": [
+            "큰"
+          ]
+        }
+      ],
+      "cReason": "‘가장 큰 두 분수’는 표현이 여러 가지라 크다/작다를 고르는 짧은 빈칸으로 바꾸었다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-2-3-xc24",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "약분할 수 있는 짝이 여럿이면 모두 약분한 뒤 곱한다.",
+      "bReason": "B로 만들면 계산값만 묻게 되고, 두 쌍을 약분하는 예는 xc9의 B에 이미 있다.",
+      "exclusionReason": "B 제외: e5-2-2-3-xc9와 겹친다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{6}{7}\\times\\frac{14}{15}$에서 $6$과 $15$는 {$3$}으로, $7$과 $14$는 {$7$}로 약분하면 $\\frac{2}{1}\\times\\frac{2}{5}$가 되어 곱은 {$\\frac{4}{5}$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$7$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{4}{5}$"
+          ]
+        }
+      ],
+      "cReason": "‘모두 약분’이라는 말 대신 두 쌍을 각각 어떤 수로 약분하는지와 곱을 답하게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-2-3-xc25",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "진분수끼리의 곱이 두 분수 중 작은 쪽보다도 작음을 안다.",
+      "bReason": "곱이 두 분수 각각보다 작다는 c3과 수학적으로 같은 내용이다.",
+      "exclusionReason": "B 제외: e5-2-2-3-c3과 겹친다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{1}{2}\\times\\frac{3}{4}=\\frac{3}{8}$이다. $\\frac{3}{8}$은 $\\frac{1}{2}$과 $\\frac{3}{4}$ 중 더 작은 분수인 {$\\frac{1}{2}$}보다도 {작다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{1}{2}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "작다",
+            "작습니다"
+          ]
+        }
+      ],
+      "cReason": "‘작은 분수보다도’라는 어색한 빈칸 대신 실제 수로 더 작은 분수와 비교 결과를 답하게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-2-3-xc26",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{2}{3}\\times\\frac{4}{5}$를 계산할 때 분자 $2$와 분자 $4$를 $2$로 나누어 약분했더니 틀렸습니다. 분수의 곱셈에서 약분은 어떤 수와 어떤 수 사이에서 해야 하는지 쓰고, 바른 곱을 구하시오.",
+      "bAnswer": "약분은 분자와 분모 사이에서만 한다. 이 식은 약분할 수 있는 분자와 분모가 없으므로 $\\frac{2\\times 4}{3\\times 5}=\\frac{8}{15}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분자와 분모 사이에서 약분한다",
+            "분자와 분모를 같은 수로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{8}{15}$",
+            "15분의 8"
+          ]
+        }
+      ],
+      "bGoal": "분자끼리는 약분할 수 없고 분자와 분모 사이에서만 약분함을 안다.",
+      "bReason": "자주 하는 잘못을 그대로 보여 주고 약분하는 자리와 바른 값을 묻도록 했다.",
+      "cDecision": "revise",
+      "cAfter": "약분은 분자와 {분모}를 같은 수로 나누는 것이다. 그래서 $\\frac{2}{3}\\times\\frac{4}{5}$에서 분자 $2$와 분자 $4$끼리는 약분할 수 {없다}.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "분모"
+          ]
+        },
+        {
+          "anyOf": [
+            "없다",
+            "없습니다"
+          ]
+        }
+      ],
+      "cReason": "‘분자와 분모 사이’라는 구절 대신 낱말 하나와 할 수 있는지 여부를 답하게 했다.",
+      "exampleNeeded": false
+    },
+    {
+      "id": "e5-2-2-3-xc27",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "용돈의 $\\frac{1}{3}$을 쓰고, 남은 돈의 $\\frac{1}{2}$을 다시 썼습니다. 두 번째로 쓴 돈이 처음 용돈의 몇 분의 몇인지 구하려면 먼저 무엇을 구해야 하는지 쓰고, 답을 구하시오.",
+      "bAnswer": "먼저 남은 돈이 처음 용돈의 몇 분의 몇인지 구한다. 남은 돈은 $1-\\frac{1}{3}=\\frac{2}{3}$이므로 두 번째로 쓴 돈은 $\\frac{2}{3}\\times\\frac{1}{2}=\\frac{1}{3}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "남은 돈이 전체의 몇 분의 몇인지 먼저 구한다",
+            "남은 돈은 용돈의 $\\frac{2}{3}$이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{3}$",
+            "$\\frac{2}{6}$"
+          ]
+        }
+      ],
+      "bGoal": "남은 양을 전체의 분수로 나타낸 뒤 곱하여 남은 양의 일부를 구한다.",
+      "bReason": "두 단계로 푸는 문제라 구체적인 상황에서 먼저 구할 것과 답을 함께 묻도록 했다.",
+      "cDecision": "revise",
+      "cAfter": "끈 전체의 $\\frac{1}{4}$을 쓰고, 남은 끈의 $\\frac{1}{3}$을 다시 썼다. 남은 끈은 전체의 {$\\frac{3}{4}$}이므로 두 번째로 쓴 끈은 전체의 $\\frac{3}{4}\\times\\frac{1}{3}=${$\\frac{1}{4}$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$\\frac{3}{4}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{4}$",
+            "$\\frac{3}{12}$"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸 ‘남은 양’은 바로 뒤 구절에서 베낄 수 있어 실제 수로 남은 양과 곱을 구하게 했다.",
+      "exampleNeeded": false
+    }
+  ],
+  "sectionNotes": [
+    "곱이 작아진다는 성질(c3·xc15·xc17·xc25)과 약분 방법(xc9·xc11·xc24)이 여러 행에 겹쳐, B는 c3과 xc9에 모으고 나머지는 C만 남겼다.",
+    "일반 설명을 고친 행은 xc19 하나이며, 수정한 C의 식과 값은 모두 검산했다."
+  ]
+}

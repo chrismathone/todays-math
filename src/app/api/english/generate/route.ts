@@ -1,6 +1,6 @@
 /**
- * POST /api/english/generate — AI 직접 생성 (D-148 · 25 §3 · §4.3). 공급자는 `resolveEnglishVendor`
- * (`OPENAI_API_KEY` 가 있으면 gpt-6-luna, 없으면 DeepSeek — 25 §12.7).
+ * POST /api/english/generate — AI 직접 생성 (D-148 · 25 §3 · §4.3).
+ * 개발은 로컬 구독 CLI만, 운영은 `resolveEnglishVendor`의 기존 API 경로를 쓴다.
  *
  * **저장하지 않는다** — 초안만 돌려주고, 저장은 클라이언트가 `POST /api/english/exams/{id}/sets` 로 한다
  * (변형 미리보기 `api/problems/transform` 과 같은 결: 결과를 보기 전에 쌓이지 않는다).
@@ -15,6 +15,7 @@
  */
 import type { NextRequest } from "next/server";
 
+import { rejectDevAiRequest } from "@/app/api/dev/unified/ai/guard";
 import {
   englishGenerateRequestSchema,
   englishGenerateResponseSchema,
@@ -46,6 +47,7 @@ import {
   englishGenerationModel,
   generateEnglishDraft,
 } from "@/lib/english/generate";
+import { createEnglishSubscriptionTransport } from "@/lib/english/subscriptionTransport";
 import { withErrorLog } from "@/lib/errorLog/withErrorLog";
 import { requireOwnedEnglishExam } from "@/lib/ownership";
 import { getSessionUser } from "@/lib/session";
@@ -55,11 +57,19 @@ import { getSessionUser } from "@/lib/session";
  * 파싱 실패 재시도가 한 번 더 붙는다. 서버리스 기본 제한에서 잘리면 화면에 원인이 안 남는다.
  */
 export const maxDuration = 300;
+export const runtime = "nodejs";
 
 async function handlePost(request: NextRequest) {
   const session = await getSessionUser();
   if (!session) return unauthorizedError();
-  if (!sameOriginMutation(request))
+  const development = process.env.NODE_ENV === "development";
+  // 개발은 AUTH_URL 대신 실제 loopback Host와 정확히 같은 Origin을 요구한다.
+  // Next가 127.0.0.1 URL을 localhost로 정규화하는 경우도 공용 guard가 처리한다.
+  if (
+    development
+      ? rejectDevAiRequest(request) !== null
+      : !sameOriginMutation(request)
+  )
     return jsonError("FORBIDDEN", "같은 사이트에서 요청해 주세요.", 403);
 
   const body = await request.json().catch(() => undefined);
@@ -93,13 +103,22 @@ async function handlePost(request: NextRequest) {
         );
       });
     }
-    const draft = await generateEnglishDraft(parsed.data, grade);
+    const subscription = development
+      ? await createEnglishSubscriptionTransport(request.signal)
+      : undefined;
+    const draft = await generateEnglishDraft(parsed.data, grade, {
+      transport: subscription?.call,
+    });
+    if (development && request.signal.aborted)
+      return new Response(null, { status: 499 });
     // 200 — 만든 자원이 없다. 저장은 클라이언트가 sets POST 로. 부른 모델 · 프롬프트 판은 «만든 조건»에 실린다
     return jsonOk(englishGenerateResponseSchema, {
       data: draft,
-      model: englishGenerationModel(),
+      model: subscription?.model ?? englishGenerationModel(),
     });
   } catch (error) {
+    if (development && request.signal.aborted)
+      return new Response(null, { status: 499 });
     if (error instanceof EnglishBankError) return bankErrorResponse(error);
     if (error instanceof AiCapacityError)
       return jsonError(
@@ -110,7 +129,9 @@ async function handlePost(request: NextRequest) {
     if (error instanceof AiConfigError)
       return jsonError(
         "AI_GENERATION_FAILED",
-        "AI 연결이 설정되지 않았습니다.",
+        development
+          ? "개발용 구독 AI 연결이 설정되지 않았습니다. CLI 설정을 확인해 주세요."
+          : "AI 연결이 설정되지 않았습니다.",
         503,
       );
     if (error instanceof EnglishDraftRejectedError)
@@ -120,7 +141,9 @@ async function handlePost(request: NextRequest) {
     if (error instanceof AiGenerationError)
       return jsonError(
         "AI_GENERATION_FAILED",
-        "AI 지문·문제 생성에 실패했습니다. 다시 시도해 주세요.",
+        development
+          ? "구독 CLI로 영어 초안을 생성하지 못했습니다. CLI 연결을 확인해 주세요."
+          : "AI 지문·문제 생성에 실패했습니다. 다시 시도해 주세요.",
         502,
       );
     throw error;

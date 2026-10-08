@@ -1,0 +1,55 @@
+{
+  "root": "C:/Users/user/orca/workspaces/todays-math/student-clear-integration-20261006",
+  "helper": "D:/tmp/example-source-assist-ctx_fabb9e369fcf",
+  "taskId": "task_dbd940c94cce",
+  "dispatchId": "ctx_fabb9e369fcf",
+  "proposedFiles": [
+    {
+      "file": "scripts/qa/concept-blank/student-clear/application.ts",
+      "artifact": "proposed/scripts/qa/concept-blank/student-clear/application.ts.txt",
+      "sha256": "d10b6f2fe9dc00010e564bbff0cf2226d457bee8b6d34a7e51737817337b61cc",
+      "originalSha256": "3ead3eaac672fdd173fc00f6abaa183a5284fa64f32f2693d811d5f814bd1c6f"
+    },
+    {
+      "file": "scripts/qa/concept-blank/student-clear/source-plan.ts",
+      "artifact": "proposed/scripts/qa/concept-blank/student-clear/source-plan.ts.txt",
+      "sha256": "8830d348cb3207c7c0246dc1e60b5c9611c026e08bbba38cf6d0111b6dbdf7d3",
+      "originalSha256": "c2fbf56e564496fc6c2107f0d19fd75e76cd3158d96bdbc6b407dbd19a376230"
+    },
+    {
+      "file": "scripts/qa/concept-blank/student-clear/compile.ts",
+      "artifact": "proposed/scripts/qa/concept-blank/student-clear/compile.ts.txt",
+      "sha256": "8ca30d40f35d852f86f69b710cae23d480fa63d3fc74bb0caef2881e590107f9",
+      "originalSha256": "c985ee2134490e7be9531d860a241da09b9646abd5afddd3003d39d67604e156"
+    },
+    {
+      "file": "scripts/qa/concept-blank/student-clear/README.md",
+      "artifact": "proposed/scripts/qa/concept-blank/student-clear/README.md",
+      "sha256": "dc3aabc0c2a3d29d9ad95320bb061c1e75ff71aa023c689a44cd810004cacde4",
+      "originalSha256": "88c2f6181000c2b1fc368bd5e72b6ca880bdc9ab4bd03e1bec14c64272f5c517"
+    },
+    {
+      "file": "scripts/qa/concept-blank/student-clear/example-corrections.ts",
+      "artifact": "proposed/scripts/qa/concept-blank/student-clear/example-corrections.ts.txt",
+      "sha256": "6c5ed5225afe13079a31e88d8805eae4af3ccfcd9881b47c50b402f748b4c977",
+      "originalSha256": null
+    },
+    {
+      "file": "scripts/qa/concept-blank/student-clear/example-source.ts",
+      "artifact": "proposed/scripts/qa/concept-blank/student-clear/example-source.ts.txt",
+      "sha256": "cf2535b72de9005160e7aaaff74d740a10ed56e7b532fbce8336f5152997fd4c",
+      "originalSha256": null
+    },
+    {
+      "file": "src/__tests__/unit/conceptStudentClearExampleCorrections.test.ts",
+      "artifact": "proposed/src/__tests__/unit/conceptStudentClearExampleCorrections.test.ts.txt",
+      "sha256": "0f7a9088c1e31a3f919ce0350155e99ca26431e11e51a6cab1a57ddbd84ab66b",
+      "originalSha256": null
+    }
+  ],
+  "unchangedPipelineFiles": [
+    "scripts/qa/concept-blank/student-clear/definition-source.ts",
+    "scripts/qa/concept-blank/student-clear/bank-source.ts",
+    "scripts/qa/concept-blank/student-clear/proposals.ts"
+  ]
+}

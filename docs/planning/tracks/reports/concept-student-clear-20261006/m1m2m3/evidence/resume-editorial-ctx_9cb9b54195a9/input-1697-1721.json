@@ -1,0 +1,2559 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T07:30:01.535Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-06-xc11",
+        "section": "중1::5. 기본 도형::작도",
+        "term": "이등변삼각형의 작도",
+        "kind": "방법",
+        "level": "중",
+        "definition": "밑변을 그린 뒤 양 끝을 중심으로 밑변의 절반보다 긴 {같은 반지름}의 원을 그려, 두 원의 교점을 꼭짓점으로 잡으면 {이등변삼각형}이 된다.",
+        "example": {
+          "prompt": "밑변이 $6$일 때 반지름을 $3$으로 하면 삼각형이 되는가?",
+          "answer": "안 된다"
+        },
+        "studentC": "밑변을 그린 뒤 양 끝을 중심으로 밑변의 절반보다 긴 □의 원을 그려, 두 원의 교점을 꼭짓점으로 잡으면 □이 된다.",
+        "answers": [
+          "같은 반지름",
+          "이등변삼각형"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-06-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "길이가 $6$인 밑변 $BC$가 주어졌을 때 컴퍼스를 이용해 $\\overline{AB}=\\overline{AC}$인 이등변삼각형 $ABC$를 작도하는 방법을 쓰고, 원의 반지름을 $3$으로 하면 안 되는 이유를 설명하시오.",
+        "bAnswer": "점 $B$, $C$를 각각 중심으로 반지름이 같은 원을 그려 만나는 점을 $A$로 하고 $A$와 $B$, $C$를 잇는다. 반지름이 $3$이면 $3+3=6$이라 두 원이 변 $BC$ 위의 한 점에서만 만나 세 점이 한 직선 위에 놓이므로 삼각형이 되지 않는다.",
+        "bGoal": "이등변삼각형의 작도 방법과 반지름 조건 설명하기",
+        "bReason": "'밑변의 절반보다 길게'의 까닭이 드러나도록 길이 예를 넣음",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$B$, $C$를 중심으로 반지름이 같은 원을 그려 만나는 점을 꼭짓점으로 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "반지름이 $3$이면 세 점이 한 직선 위에 놓인다",
+              "$3+3=6$이라 삼각형이 되지 않는다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "반지름 조건이 문장에 있고 원의 조건과 결과 도형을 묻는 빈칸",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "같은 반지름의 두 원으로 꼭짓점 잡기",
+        "authorBatch": 16,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1697,
+        "part": "m1plus",
+        "sourceFingerprint": "395f0903c3bc98c64781d562c8f50670166c21d5981fffeea7a031a1d9f11743",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1697
+        },
+        "directReview": null,
+        "cFrozenSentence": "밑변을 그린 뒤 양 끝을 중심으로 밑변의 절반보다 긴 □의 원을 그려, 두 원의 교점을 꼭짓점으로 잡으면 □이 된다.",
+        "cFrozenDefinition": "밑변을 그린 뒤 양 끝을 중심으로 밑변의 절반보다 긴 {같은 반지름}의 원을 그려, 두 원의 교점을 꼭짓점으로 잡으면 {이등변삼각형}이 된다.",
+        "cFrozenAnswers": [
+          "같은 반지름",
+          "이등변삼각형"
+        ],
+        "cMarkedSentence": "밑변을 그린 뒤 양 끝을 중심으로 밑변의 절반보다 긴 {같은 반지름}의 원을 그려, 두 원의 교점을 꼭짓점으로 잡으면 {이등변삼각형}이 된다.",
+        "cSlotAnswers": [
+          "같은 반지름",
+          "이등변삼각형"
+        ],
+        "cStudentSentence": "밑변을 그린 뒤 양 끝을 중심으로 밑변의 절반보다 긴 □의 원을 그려, 두 원의 교점을 꼭짓점으로 잡으면 □이 된다.",
+        "cAnswers": [
+          "같은 반지름",
+          "이등변삼각형"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "같은 반지름",
+            "equivalentAnswers": [
+              "같은 반지름",
+              "반지름의 길이가 같은"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "이등변삼각형",
+            "equivalentAnswers": [
+              "이등변삼각형"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "같은 반지름",
+            "accept": [
+              "반지름의 길이가 같은"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "같은 반지름",
+            "반지름의 길이가 같은"
+          ],
+          [
+            "이등변삼각형"
+          ]
+        ],
+        "proposalFingerprint": "70b4cd70cfee92aa1b2827d7147281bb95c78a5a1cc9848536e58707d01cdf2e"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-06-xc12",
+        "section": "중1::5. 기본 도형::작도",
+        "term": "합과 같은 가장 긴 변",
+        "kind": "성질",
+        "level": "중",
+        "definition": "가장 긴 변이 나머지 두 변의 합과 {같으면} 세 점이 {한 직선} 위에 놓여 삼각형이 되지 않는다.",
+        "example": {
+          "prompt": "$4$, $6$, $10$으로 삼각형을 만들 수 있는가?",
+          "answer": "없다"
+        },
+        "studentC": "가장 긴 변이 나머지 두 변의 합과 □ 세 점이 □ 위에 놓여 삼각형이 되지 않는다.",
+        "answers": [
+          "같으면",
+          "한 직선"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-06-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "세 선분의 길이가 $4$, $6$, $10$일 때 삼각형을 만들 수 없는 이유를 세 꼭짓점의 위치와 관련지어 설명하시오.",
+        "bAnswer": "$10=4+6$이므로 길이가 $4$, $6$인 두 선분을 이으면 길이가 $10$인 선분 위에 꼭 겹쳐 놓인다. 세 점이 한 직선 위에 있게 되어 삼각형이 되지 않는다.",
+        "bGoal": "가장 긴 변이 두 변의 합과 같을 때 삼각형이 안 되는 이유 설명하기",
+        "bReason": "'같을 때'가 왜 안 되는지 묻도록 구체 길이와 답할 관점을 줌",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$10=4+6$",
+              "가장 긴 길이가 나머지 두 길이의 합과 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "세 점이 한 직선 위에 놓인다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "경계 조건과 그 결과를 한 낱말씩 묻는 분명한 빈칸",
+        "studentLabel": "가장 긴 변이 나머지 두 변의 합과 같을 때",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "합과 같으면 세 점이 일직선이 되는 까닭",
+        "authorBatch": 16,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1698,
+        "part": "m1plus",
+        "sourceFingerprint": "b6a3536c2f0b8fd727356de88d8c8c23bcf394f463a9480b7ff7970e735e49f2",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1698
+        },
+        "directReview": null,
+        "cFrozenSentence": "가장 긴 변이 나머지 두 변의 합과 □ 세 점이 □ 위에 놓여 삼각형이 되지 않는다.",
+        "cFrozenDefinition": "가장 긴 변이 나머지 두 변의 합과 {같으면} 세 점이 {한 직선} 위에 놓여 삼각형이 되지 않는다.",
+        "cFrozenAnswers": [
+          "같으면",
+          "한 직선"
+        ],
+        "cMarkedSentence": "가장 긴 변이 나머지 두 변의 합과 {같으면} 세 점이 {한 직선} 위에 놓여 삼각형이 되지 않는다.",
+        "cSlotAnswers": [
+          "같으면",
+          "한 직선"
+        ],
+        "cStudentSentence": "가장 긴 변이 나머지 두 변의 합과 □ 세 점이 □ 위에 놓여 삼각형이 되지 않는다.",
+        "cAnswers": [
+          "같으면",
+          "한 직선"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "같으면",
+            "equivalentAnswers": [
+              "같으면"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "한 직선",
+            "equivalentAnswers": [
+              "한 직선",
+              "일직선"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "한 직선",
+            "accept": [
+              "일직선"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "같으면"
+          ],
+          [
+            "한 직선",
+            "일직선"
+          ]
+        ],
+        "proposalFingerprint": "bb5e317e4607628a511c4d30703a526d830fa82fe044e98128b479b4e977e550"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-06-xc13",
+        "section": "중1::5. 기본 도형::작도",
+        "term": "정삼각형의 작도",
+        "kind": "방법",
+        "level": "중",
+        "definition": "한 변을 그린 뒤 양 끝을 중심으로 한 변의 길이를 {반지름}으로 하는 원을 각각 그려, 두 원이 {만나는 점}과 양 끝을 이으면 정삼각형이 된다.",
+        "example": {
+          "prompt": "정삼각형을 작도할 때 컴퍼스로 그리는 원의 반지름은?",
+          "answer": "한 변의 길이"
+        },
+        "studentC": "한 변을 그린 뒤 양 끝을 중심으로 한 변의 길이를 □으로 하는 원을 각각 그려, 두 원이 □과 양 끝을 이으면 정삼각형이 된다.",
+        "answers": [
+          "반지름",
+          "만나는 점"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-06-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "선분 $AB$를 한 변으로 하는 정삼각형을 눈금 없는 자와 컴퍼스로 작도하는 방법을 쓰고, 세 변의 길이가 같아지는 이유를 설명하시오.",
+        "bAnswer": "점 $A$, $B$를 각각 중심으로 반지름이 $\\overline{AB}$인 원을 그려 만나는 점을 $C$라 하고 $C$와 $A$, $B$를 잇는다. $\\overline{AC}$, $\\overline{BC}$가 모두 반지름 $\\overline{AB}$와 같으므로 세 변의 길이가 같다.",
+        "bGoal": "정삼각형의 작도 방법과 근거 말하기",
+        "bReason": "한 변에 이름을 붙이고 세 변이 같아지는 까닭까지 묻게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$A$, $B$를 중심으로 반지름이 $\\overline{AB}$인 원을 각각 그린다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 원이 만나는 점과 $A$, $B$를 잇는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 변이 모두 반지름 $\\overline{AB}$와 길이가 같다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "원의 반지름과 꼭짓점 위치를 묻는 짧은 빈칸이 분명함",
+        "learningRole": "procedure",
+        "roleReason": "한 변을 반지름으로 한 두 원의 교점",
+        "authorBatch": 16,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1699,
+        "part": "m1plus",
+        "sourceFingerprint": "1ed29492bdcccc001d0d78141fd620b0a280265b83c0a07a367d1f488eb02254",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1699
+        },
+        "directReview": null,
+        "cFrozenSentence": "한 변을 그린 뒤 양 끝을 중심으로 한 변의 길이를 □으로 하는 원을 각각 그려, 두 원이 □과 양 끝을 이으면 정삼각형이 된다.",
+        "cFrozenDefinition": "한 변을 그린 뒤 양 끝을 중심으로 한 변의 길이를 {반지름}으로 하는 원을 각각 그려, 두 원이 {만나는 점}과 양 끝을 이으면 정삼각형이 된다.",
+        "cFrozenAnswers": [
+          "반지름",
+          "만나는 점"
+        ],
+        "cMarkedSentence": "한 변을 그린 뒤 양 끝을 중심으로 한 변의 길이를 {반지름}으로 하는 원을 각각 그려, 두 원이 {만나는 점}과 양 끝을 이으면 정삼각형이 된다.",
+        "cSlotAnswers": [
+          "반지름",
+          "만나는 점"
+        ],
+        "cStudentSentence": "한 변을 그린 뒤 양 끝을 중심으로 한 변의 길이를 □으로 하는 원을 각각 그려, 두 원이 □과 양 끝을 이으면 정삼각형이 된다.",
+        "cAnswers": [
+          "반지름",
+          "만나는 점"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "반지름",
+            "equivalentAnswers": [
+              "반지름"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "만나는 점",
+            "equivalentAnswers": [
+              "만나는 점",
+              "교점"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "만나는 점",
+            "accept": [
+              "교점"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "반지름"
+          ],
+          [
+            "만나는 점",
+            "교점"
+          ]
+        ],
+        "proposalFingerprint": "063eadd85b2b6cefef105b62b1b7b26e568054a64bfcb2adf98f11545b0a3f88"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-06-xc14",
+        "section": "중1::5. 기본 도형::작도",
+        "term": "끼인각이 아닌 각이 주어질 때",
+        "kind": "성질",
+        "level": "상",
+        "definition": "두 변과 그 끼인각이 {아닌} 한 각이 주어지면 삼각형이 {두 개} 그려지거나 하나도 그려지지 않을 수 있다.",
+        "example": {
+          "prompt": "두 변과 끼인각이 아닌 한 각이 주어지면 삼각형이 하나로 정해진다고 할 수 있는가?",
+          "answer": "없다"
+        },
+        "studentC": "두 변과 그 끼인각이 □ 한 각이 주어지면 삼각형이 □ 그려지거나 하나도 그려지지 않을 수 있다.",
+        "answers": [
+          "아닌",
+          "두 개"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-06-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "두 변의 길이와 그 끼인각이 아닌 한 각의 크기가 주어지면 삼각형이 하나로 정해진다고 할 수 없다. 그 이유를 조건에 맞게 그려지는 삼각형의 개수와 관련지어 설명하시오.",
+        "bAnswer": "조건에 맞는 삼각형이 두 개 그려지거나 하나도 그려지지 않는 경우가 있어, 언제나 하나만 그려진다고 할 수 없기 때문이다.",
+        "bGoal": "끼인각이 아닌 각이 주어질 때 정해지지 않는 이유 설명하기",
+        "bReason": "c9에서 다루지 않은 경우를 맡아 개수 관점의 이유를 묻게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "삼각형이 두 개 그려질 수 있다",
+              "삼각형이 그려지지 않을 수 있다",
+              "항상 하나만 그려지는 것은 아니다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "두 변의 길이와 그 끼인각이 아닌 한 각의 크기가 주어지면, 조건에 맞는 삼각형이 {두 개} 그려지거나 하나도 그려지지 않을 수 있으므로 삼각형이 하나로 정해진다고 할 수 없다.",
+        "cAnswers": [
+          "두 개"
+        ],
+        "cReason": "'아닌' 빈칸이 c9와 겹치고 결론이 없어 개수와 결론을 이음",
+        "learningRole": "reason",
+        "roleReason": "끼인각이 아니면 여러 개 또는 없음",
+        "authorBatch": 16,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1700,
+        "part": "m1plus",
+        "sourceFingerprint": "1797c9e10a019f8692aca2b4c99293a2f7c2b149353a8a47fa6efd84d584c616",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1700
+        },
+        "directReview": null,
+        "cMarkedSentence": "두 변의 길이와 그 끼인각이 아닌 한 각의 크기가 주어지면, 조건에 맞는 삼각형이 {두 개} 그려지거나 하나도 그려지지 않을 수 있으므로 삼각형이 하나로 정해진다고 할 수 없다.",
+        "cSlotAnswers": [
+          "두 개"
+        ],
+        "cStudentSentence": "두 변의 길이와 그 끼인각이 아닌 한 각의 크기가 주어지면, 조건에 맞는 삼각형이 □ 그려지거나 하나도 그려지지 않을 수 있으므로 삼각형이 하나로 정해진다고 할 수 없다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "두 개",
+            "equivalentAnswers": [
+              "두 개",
+              "$2$개"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "두 개",
+            "accept": [
+              "$2$개"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "두 개",
+            "$2$개"
+          ]
+        ],
+        "proposalFingerprint": "9b0cfc720a908c9d193b1b5e7d8c69b1e736421a60684cdce2d68ce7e1de843e"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-06-xc15",
+        "section": "중1::5. 기본 도형::작도",
+        "term": "하나로 정해지는지 판단",
+        "kind": "방법",
+        "level": "상",
+        "definition": "주어진 조건이 세 변, 두 변과 {끼인각}, 한 변과 {양 끝 각} 가운데 어디에 맞는지 견주어 판단한다.",
+        "example": {
+          "prompt": "$\\overline{AB}$, $\\overline{BC}$, $\\angle B$가 주어지면 삼각형이 하나로 정해지는가?",
+          "answer": "정해진다"
+        },
+        "studentC": "주어진 조건이 세 변, 두 변과 □, 한 변과 □ 가운데 어디에 맞는지 견주어 판단한다.",
+        "answers": [
+          "끼인각",
+          "양 끝 각"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-06-xc15",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\triangle ABC$에서 다음 조건이 각각 주어질 때 삼각형이 하나로 정해지는지 판단하고 근거를 쓰시오. (가) $\\overline{AB}$, $\\overline{BC}$의 길이와 $\\angle B$의 크기 (나) $\\overline{AB}$, $\\overline{BC}$의 길이와 $\\angle A$의 크기",
+        "bAnswer": "(가) 하나로 정해진다. $\\angle B$가 두 변 $AB$, $BC$의 끼인각이기 때문이다. (나) 하나로 정해진다고 할 수 없다. $\\angle A$는 두 변 $AB$, $BC$의 끼인각이 아니기 때문이다.",
+        "bGoal": "주어진 조건을 세 경우에 견주어 판단하기",
+        "bReason": "무엇을 판단하는지 없어 끼인각인 경우와 아닌 경우를 나란히 줌",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "(가)는 정해진다, $\\angle B$가 끼인각이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "(나)는 정해진다고 할 수 없다, $\\angle A$가 끼인각이 아니다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$\\overline{AB}$, $\\overline{BC}$의 길이와 $\\angle B$의 크기가 주어지면 $\\angle B$가 두 변의 {끼인각}이므로 $\\triangle ABC$는 하나로 {정해진다}.",
+        "cAnswers": [
+          "끼인각",
+          "정해진다"
+        ],
+        "cReason": "판단 대상이 문장에 없고 c8과 빈칸이 같아 구체 조건으로 바꿈",
+        "studentLabel": "삼각형이 하나로 정해지는지 판단하기",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "조건이 끼인각·양 끝 각 꼴인지 가려내기",
+        "authorBatch": 16,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1701,
+        "part": "m1plus",
+        "sourceFingerprint": "6b528e1d54f4c9301a31ef8438cbb801b1582cb1fbae8f95d486d503d9db7364",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1701
+        },
+        "directReview": null,
+        "cMarkedSentence": "$\\overline{AB}$, $\\overline{BC}$의 길이와 $\\angle B$의 크기가 주어지면 $\\angle B$가 두 변의 {끼인각}이므로 $\\triangle ABC$는 하나로 {정해진다}.",
+        "cSlotAnswers": [
+          "끼인각",
+          "정해진다"
+        ],
+        "cStudentSentence": "$\\overline{AB}$, $\\overline{BC}$의 길이와 $\\angle B$의 크기가 주어지면 $\\angle B$가 두 변의 □이므로 $\\triangle ABC$는 하나로 □.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "끼인각",
+            "equivalentAnswers": [
+              "끼인각"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "정해진다",
+            "equivalentAnswers": [
+              "정해진다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "끼인각"
+          ],
+          [
+            "정해진다"
+          ]
+        ],
+        "proposalFingerprint": "aeee31a25a4e25b42fae7b10a1000d96f6ecaed130c231d1baf90f61485b7c26"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-06-xc16",
+        "section": "중1::5. 기본 도형::작도",
+        "term": "양 끝 각의 합이 너무 클 때",
+        "kind": "성질",
+        "level": "상",
+        "definition": "한 변과 양 끝 각이 주어져도 두 각의 합이 {$180^\\circ$} 이상이면 두 반직선이 {만나지 않아} 삼각형이 생기지 않는다.",
+        "example": {
+          "prompt": "변 $BC$와 $\\angle B=100^\\circ$, $\\angle C=90^\\circ$로 삼각형을 그릴 수 있는가?",
+          "answer": "없다"
+        },
+        "studentC": "한 변과 양 끝 각이 주어져도 두 각의 합이 □ 이상이면 두 반직선이 □ 삼각형이 생기지 않는다.",
+        "answers": [
+          "$180^\\circ$",
+          "만나지 않아"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-06-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "변 $BC$의 길이와 그 양 끝 각 $\\angle B=100^\\circ$, $\\angle C=90^\\circ$가 주어졌을 때 삼각형을 그릴 수 있는지 판단하고 이유를 설명하시오.",
+        "bAnswer": "그릴 수 없다. 두 각의 크기의 합이 $190^\\circ$로 $180^\\circ$ 이상이어서 점 $B$, $C$에서 그은 두 반직선이 만나지 않기 때문이다.",
+        "bGoal": "양 끝 각의 합이 클 때 삼각형이 안 되는 이유 설명하기",
+        "bReason": "'너무 클 때'의 기준이 드러나게 두 각의 크기를 주고 이유를 물음",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "그릴 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 각의 합이 $180^\\circ$ 이상이다",
+              "두 반직선이 만나지 않는다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "기준 수치와 그 결과를 각각 묻는 빈칸이 분명함",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "합이 $180^\\circ$ 이상이면 반직선이 만나지 않음",
+        "authorBatch": 16,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1702,
+        "part": "m1plus",
+        "sourceFingerprint": "be8d193b3b13e194b3f9abab3544a5d9be14ece6d2146bb79f9d2145229a34a5",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1702
+        },
+        "directReview": null,
+        "cFrozenSentence": "한 변과 양 끝 각이 주어져도 두 각의 합이 □ 이상이면 두 반직선이 □ 삼각형이 생기지 않는다.",
+        "cFrozenDefinition": "한 변과 양 끝 각이 주어져도 두 각의 합이 {$180^\\circ$} 이상이면 두 반직선이 {만나지 않아} 삼각형이 생기지 않는다.",
+        "cFrozenAnswers": [
+          "$180^\\circ$",
+          "만나지 않아"
+        ],
+        "cMarkedSentence": "한 변과 양 끝 각이 주어져도 두 각의 합이 {$180^\\circ$} 이상이면 두 반직선이 {만나지 않아} 삼각형이 생기지 않는다.",
+        "cSlotAnswers": [
+          "$180^\\circ$",
+          "만나지 않아"
+        ],
+        "cStudentSentence": "한 변과 양 끝 각이 주어져도 두 각의 합이 □ 이상이면 두 반직선이 □ 삼각형이 생기지 않는다.",
+        "cAnswers": [
+          "$180^\\circ$",
+          "만나지 않아"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$180^\\circ$",
+            "equivalentAnswers": [
+              "$180^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "만나지 않아",
+            "equivalentAnswers": [
+              "만나지 않아",
+              "만나지 않으므로"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "만나지 않아",
+            "accept": [
+              "만나지 않으므로"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$180^\\circ$"
+          ],
+          [
+            "만나지 않아",
+            "만나지 않으므로"
+          ]
+        ],
+        "proposalFingerprint": "15452d7e4c7e2c3f1d4f4b0eeac7f413e788f1dd1734c42124b14572985470d7"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-06-xc17",
+        "section": "중1::5. 기본 도형::작도",
+        "term": "문자로 된 세 변",
+        "kind": "방법",
+        "level": "상",
+        "definition": "세 변이 $x$, $x+2$, $x+5$처럼 문자로 주어지면 {가장 긴 변}이 나머지 두 변의 합보다 작다는 조건으로 $x$의 {범위}를 구한다.",
+        "example": {
+          "prompt": "세 변이 $x$, $x+2$, $x+5$인 삼각형이 되는 가장 작은 자연수 $x$는?",
+          "answer": "$4$"
+        },
+        "studentC": "세 변이 $x$, $x+2$, $x+5$처럼 문자로 주어지면 □이 나머지 두 변의 합보다 작다는 조건으로 $x$의 □를 구한다.",
+        "answers": [
+          "가장 긴 변",
+          "범위"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-06-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각형의 세 변의 길이가 $x$, $x+2$, $x+5$일 때, 어떤 조건을 확인해야 하는지 쓰고 삼각형이 되는 가장 작은 자연수 $x$를 구하시오.",
+        "bAnswer": "가장 긴 변 $x+5$가 나머지 두 변의 합 $x+(x+2)=2x+2$보다 작아야 한다. $x=3$이면 $8=8$이라 안 되고 $x=4$이면 $9<10$이므로 가장 작은 자연수는 $4$이다.",
+        "bGoal": "문자로 된 세 변에서 삼각형이 되는 조건 적용하기",
+        "bReason": "중$1$은 부등식 풀이를 배우기 전이라 자연수를 대입해 찾게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "가장 긴 변 $x+5$가 나머지 두 변의 합보다 작아야 한다",
+              "$x+5<x+(x+2)$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=4$",
+              "$4$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "구체 식이 문장에 있고 기준 변과 구할 것을 묻는 빈칸이 분명함",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "문자 식에서 가장 긴 변 조건 세우기",
+        "authorBatch": 16,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1703,
+        "part": "m1plus",
+        "sourceFingerprint": "44869dad277e1f48feea23974379bae4ac3ae7c74d4f91c3e7a97db7be55e2eb",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1703
+        },
+        "directReview": null,
+        "cFrozenSentence": "세 변이 $x$, $x+2$, $x+5$처럼 문자로 주어지면 □이 나머지 두 변의 합보다 작다는 조건으로 $x$의 □를 구한다.",
+        "cFrozenDefinition": "세 변이 $x$, $x+2$, $x+5$처럼 문자로 주어지면 {가장 긴 변}이 나머지 두 변의 합보다 작다는 조건으로 $x$의 {범위}를 구한다.",
+        "cFrozenAnswers": [
+          "가장 긴 변",
+          "범위"
+        ],
+        "cMarkedSentence": "세 변이 $x$, $x+2$, $x+5$처럼 문자로 주어지면 {가장 긴 변}이 나머지 두 변의 합보다 작다는 조건으로 $x$의 {범위}를 구한다.",
+        "cSlotAnswers": [
+          "가장 긴 변",
+          "범위"
+        ],
+        "cStudentSentence": "세 변이 $x$, $x+2$, $x+5$처럼 문자로 주어지면 □이 나머지 두 변의 합보다 작다는 조건으로 $x$의 □를 구한다.",
+        "cAnswers": [
+          "가장 긴 변",
+          "범위"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "가장 긴 변",
+            "equivalentAnswers": [
+              "가장 긴 변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "범위",
+            "equivalentAnswers": [
+              "범위"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "가장 긴 변"
+          ],
+          [
+            "범위"
+          ]
+        ],
+        "proposalFingerprint": "372cdcdb15953f80a581258f6a8a0014c4b203bb5a5722f29c44188c54b24c7f"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-06-xc18",
+        "section": "중1::5. 기본 도형::작도",
+        "term": "막대 세 개 고르기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "여러 길이 가운데 세 개를 골라 삼각형을 만들 때는 고른 세 길이마다 {가장 긴 변}의 조건을 따로 {확인}한다.",
+        "example": {
+          "prompt": "길이 $2$, $3$, $4$, $5$인 막대 가운데 세 개로 만들 수 있는 삼각형은 몇 가지?",
+          "answer": "$3$가지"
+        },
+        "studentC": "여러 길이 가운데 세 개를 골라 삼각형을 만들 때는 고른 세 길이마다 □의 조건을 따로 □한다.",
+        "answers": [
+          "가장 긴 변",
+          "확인"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-06-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "길이가 $2$, $3$, $4$, $5$인 막대 네 개 가운데 세 개를 골라 만들 수 있는 삼각형은 모두 몇 가지인지 구하고, 만들 수 없는 묶음과 그 이유를 쓰시오.",
+        "bAnswer": "$(2,3,4)$, $(2,4,5)$, $(3,4,5)$의 $3$가지이다. $(2,3,5)$는 $5=2+3$으로 가장 긴 길이가 나머지 두 길이의 합보다 작지 않아 만들 수 없다.",
+        "bGoal": "세 길이의 묶음마다 조건을 확인해 삼각형의 수 세기",
+        "bReason": "어떤 막대인지 없으면 답할 수 없어 네 길이를 주고 반례도 묻게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$3$가지"
+            ]
+          },
+          {
+            "anyOf": [
+              "$(2,3,5)$는 $5=2+3$이라 만들 수 없다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "여러 길이 가운데 세 개를 골라 삼각형을 만들 때는, 고른 세 길이의 묶음마다 {가장 긴} 길이가 나머지 두 길이의 {합}보다 작은지 따로 확인한다.",
+        "cAnswers": [
+          "가장 긴",
+          "합"
+        ],
+        "cReason": "'가장 긴 변의 조건'과 '확인'이 막연해 비교 내용을 문장에 드러냄",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "묶음마다 가장 긴 길이 조건을 따로 점검",
+        "authorBatch": 16,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1704,
+        "part": "m1plus",
+        "sourceFingerprint": "413aeb5baa11a32f843e7a9ab54daa6e6023eca13a48b4868010f5b25fe78539",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1704
+        },
+        "directReview": null,
+        "cMarkedSentence": "여러 길이 가운데 세 개를 골라 삼각형을 만들 때는, 고른 세 길이의 묶음마다 {가장 긴} 길이가 나머지 두 길이의 {합}보다 작은지 따로 확인한다.",
+        "cSlotAnswers": [
+          "가장 긴",
+          "합"
+        ],
+        "cStudentSentence": "여러 길이 가운데 세 개를 골라 삼각형을 만들 때는, 고른 세 길이의 묶음마다 □ 길이가 나머지 두 길이의 □보다 작은지 따로 확인한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "가장 긴",
+            "equivalentAnswers": [
+              "가장 긴",
+              "제일 긴"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "합",
+            "equivalentAnswers": [
+              "합"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "가장 긴",
+            "accept": [
+              "제일 긴"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "가장 긴",
+            "제일 긴"
+          ],
+          [
+            "합"
+          ]
+        ],
+        "proposalFingerprint": "f9a2cd31118545d55386b09808082849af513ac5a9a3065313c3a24687a056d3"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-06-xc19",
+        "section": "중1::5. 기본 도형::작도",
+        "term": "작도 조건과 합동 조건",
+        "kind": "성질",
+        "level": "상",
+        "definition": "삼각형이 하나로 정해지는 세 조건은 두 삼각형의 {합동 조건}과 같다. 같은 조건으로 그린 삼각형은 언제나 {포개진다}.",
+        "example": {
+          "prompt": "세 변의 길이가 각각 같은 두 삼각형은 어떤 관계인가?",
+          "answer": "합동"
+        },
+        "studentC": "삼각형이 하나로 정해지는 세 조건은 두 삼각형의 □과 같다. 같은 조건으로 그린 삼각형은 언제나 □.",
+        "answers": [
+          "합동 조건",
+          "포개진다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-06-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "세 변의 길이가 각각 같은 두 삼각형은 서로 어떤 관계인지 쓰고, 그 이유를 삼각형이 하나로 정해지는 조건과 관련지어 설명하시오.",
+        "bAnswer": "서로 합동이다. 세 변의 길이가 주어지면 삼각형의 모양과 크기가 하나로 정해지므로, 두 삼각형은 완전히 포개어지기 때문이다.",
+        "bGoal": "삼각형이 하나로 정해지는 조건과 합동을 연결하기",
+        "bReason": "두 조건의 관계가 막연해 세 변이 같은 두 삼각형의 경우로 좁힘",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "합동이다",
+              "완전히 포개어진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "세 변의 길이가 주어지면 삼각형이 하나로 정해진다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "삼각형이 하나로 정해지는 조건(세 변, 두 변과 끼인각, 한 변과 양 끝 각)이 서로 같은 두 삼각형은 완전히 포개어지므로 서로 {합동}이다.",
+        "cAnswers": [
+          "합동"
+        ],
+        "cReason": "'세 조건'이 무엇인지 문장에 없어 괄호로 밝히고 빈칸을 하나로 줄임",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "하나로 정해짐이 곧 합동으로 이어지는 까닭",
+        "authorBatch": 16,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1705,
+        "part": "m1plus",
+        "sourceFingerprint": "a914dea1d2ee5185b39205e120155fc25b25a8947c4187a02d8464d160981b0a",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1705
+        },
+        "directReview": null,
+        "cMarkedSentence": "삼각형이 하나로 정해지는 조건(세 변, 두 변과 끼인각, 한 변과 양 끝 각)이 서로 같은 두 삼각형은 완전히 포개어지므로 서로 {합동}이다.",
+        "cSlotAnswers": [
+          "합동"
+        ],
+        "cStudentSentence": "삼각형이 하나로 정해지는 조건(세 변, 두 변과 끼인각, 한 변과 양 끝 각)이 서로 같은 두 삼각형은 완전히 포개어지므로 서로 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "합동",
+            "equivalentAnswers": [
+              "합동"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "합동"
+          ]
+        ],
+        "proposalFingerprint": "5ef99650fff6ef28cfca8d8d4ca7a4446f64af8182a09580f405588fae040d2a"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-06-xc20",
+        "section": "중1::5. 기본 도형::작도",
+        "term": "길이를 이어 옮기기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "컴퍼스로 길이를 이어 옮기면 $\\overline{AB}$의 {$2$배}, $3$배인 선분이나 두 선분의 {합}과 같은 길이의 선분을 작도할 수 있다.",
+        "example": {
+          "prompt": "$\\overline{AB}=3\\,\\mathrm{cm}$를 세 번 이어 옮긴 선분의 길이는?",
+          "answer": "$9\\,\\mathrm{cm}$"
+        },
+        "studentC": "컴퍼스로 길이를 이어 옮기면 $\\overline{AB}$의 □, $3$배인 선분이나 두 선분의 □과 같은 길이의 선분을 작도할 수 있다.",
+        "answers": [
+          "$2$배",
+          "합"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-06-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "선분 $AB$가 주어졌을 때, 길이가 $\\overline{AB}$의 $3$배인 선분을 눈금 없는 자와 컴퍼스로 작도하는 방법을 설명하시오.",
+        "bAnswer": "자로 직선을 긋고 그 위에 점 $P$를 잡는다. 컴퍼스로 $\\overline{AB}$의 길이를 재어 점 $P$부터 한 방향으로 세 번 이어 옮기고, 마지막 점을 $Q$라 하면 $\\overline{PQ}=3\\overline{AB}$이다.",
+        "bGoal": "길이를 이어 옮겨 몇 배인 선분 작도하기",
+        "bReason": "'이어 옮기기'로 무엇을 만드는지 정해 $3$배인 선분의 작도를 물음",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "자로 직선을 긋는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "컴퍼스로 $\\overline{AB}$의 길이를 세 번 이어 옮긴다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "{컴퍼스}로 $\\overline{AB}$의 길이를 한 직선 위에 두 번 이어 옮기면 길이가 $\\overline{AB}$의 {$2$배}인 선분을, 서로 다른 두 선분의 길이를 이어 옮기면 두 길이의 {합}과 같은 선분을 작도할 수 있다.",
+        "cAnswers": [
+          "컴퍼스",
+          "$2$배",
+          "합"
+        ],
+        "cReason": "'$2$배, $3$배' 나열 중 하나만 가려 뜻이 없던 빈칸에 횟수 근거를 줌",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "컴퍼스로 길이를 여러 번 이어 옮기기",
+        "authorBatch": 16,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1706,
+        "part": "m1plus",
+        "sourceFingerprint": "a7038b2a3e7a5f5241110a90f607c5c86d8eebdc3f7fef5493e7197bb4934d7c",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1706
+        },
+        "directReview": null,
+        "cMarkedSentence": "{컴퍼스}로 $\\overline{AB}$의 길이를 한 직선 위에 두 번 이어 옮기면 길이가 $\\overline{AB}$의 {$2$배}인 선분을, 서로 다른 두 선분의 길이를 이어 옮기면 두 길이의 {합}과 같은 선분을 작도할 수 있다.",
+        "cSlotAnswers": [
+          "컴퍼스",
+          "$2$배",
+          "합"
+        ],
+        "cStudentSentence": "□로 $\\overline{AB}$의 길이를 한 직선 위에 두 번 이어 옮기면 길이가 $\\overline{AB}$의 □인 선분을, 서로 다른 두 선분의 길이를 이어 옮기면 두 길이의 □과 같은 선분을 작도할 수 있다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "컴퍼스",
+            "equivalentAnswers": [
+              "컴퍼스"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$2$배",
+            "equivalentAnswers": [
+              "$2$배",
+              "두 배"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "합",
+            "equivalentAnswers": [
+              "합"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$2$배",
+            "accept": [
+              "두 배"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "컴퍼스"
+          ],
+          [
+            "$2$배",
+            "두 배"
+          ],
+          [
+            "합"
+          ]
+        ],
+        "proposalFingerprint": "66caaa6e4926d68dab1e518929c11c50b549166f70c98c4ae75f596867836cbe"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-06-xc21",
+        "section": "중1::5. 기본 도형::작도",
+        "term": "두 각의 합 작도",
+        "kind": "방법",
+        "level": "상",
+        "definition": "{크기가 같은 각의 작도}를 두 번 이어 하면 두 각의 {합}과 같은 크기의 각을 작도할 수 있다.",
+        "example": {
+          "prompt": "$40^\\circ$와 $35^\\circ$인 두 각을 이어 옮겨 만든 각은?",
+          "answer": "$75^\\circ$"
+        },
+        "studentC": "□를 두 번 이어 하면 두 각의 □과 같은 크기의 각을 작도할 수 있다.",
+        "answers": [
+          "크기가 같은 각의 작도",
+          "합"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-06-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "두 각 $\\angle A$, $\\angle B$가 주어졌을 때, 크기가 $\\angle A+\\angle B$인 각을 눈금 없는 자와 컴퍼스로 작도하는 방법을 설명하시오.",
+        "bAnswer": "먼저 $\\angle A$와 크기가 같은 각을 작도한다. 그 각의 한 변을 새 변으로 삼아 바깥쪽에 $\\angle B$와 크기가 같은 각을 이어 작도하면, 처음 변과 마지막 변이 이루는 각의 크기가 $\\angle A+\\angle B$이다.",
+        "bGoal": "크기가 같은 각의 작도를 이어 두 각의 합 작도하기",
+        "bReason": "두 각에 이름을 붙여 어떤 작도를 어떻게 잇는지 답하게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\angle A$와 크기가 같은 각을 작도한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "그 각의 한 변에 이어 바깥쪽에 $\\angle B$와 크기가 같은 각을 작도한다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "크기가 같은 각의 작도를 이용해 한 각을 옮긴 뒤 그 각의 한 변에 다른 각을 이어 옮기면, 두 각의 크기의 {합}과 같은 크기의 각을 작도할 수 있다. 예를 들어 $40^\\circ$와 $35^\\circ$인 각을 이어 옮기면 {$75^\\circ$}인 각이 된다.",
+        "cAnswers": [
+          "합",
+          "$75^\\circ$"
+        ],
+        "cReason": "문장 첫머리의 긴 용어 빈칸을 없애고 결과와 적용 예를 묻게 함",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "각을 두 번 이어 옮겨 합 만들기",
+        "authorBatch": 16,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1707,
+        "part": "m1plus",
+        "sourceFingerprint": "82a33405c8d594ec64e96b3f49dee12b86b3fa859aea6863dc21aaca9e17cb33",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1707
+        },
+        "directReview": null,
+        "cMarkedSentence": "크기가 같은 각의 작도를 이용해 한 각을 옮긴 뒤 그 각의 한 변에 다른 각을 이어 옮기면, 두 각의 크기의 {합}과 같은 크기의 각을 작도할 수 있다. 예를 들어 $40^\\circ$와 $35^\\circ$인 각을 이어 옮기면 {$75^\\circ$}인 각이 된다.",
+        "cSlotAnswers": [
+          "합",
+          "$75^\\circ$"
+        ],
+        "cStudentSentence": "크기가 같은 각의 작도를 이용해 한 각을 옮긴 뒤 그 각의 한 변에 다른 각을 이어 옮기면, 두 각의 크기의 □과 같은 크기의 각을 작도할 수 있다. 예를 들어 $40^\\circ$와 $35^\\circ$인 각을 이어 옮기면 □인 각이 된다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "합",
+            "equivalentAnswers": [
+              "합"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$75^\\circ$",
+            "equivalentAnswers": [
+              "$75^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "합"
+          ],
+          [
+            "$75^\\circ$"
+          ]
+        ],
+        "proposalFingerprint": "bb832fad0a3431565e630d325e7b43514a52bcc33606cb4c5f108a96ff0cdbc9"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-07-xc1",
+        "section": "중1::5. 기본 도형::합동",
+        "term": "합동 기호 읽기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "$\\triangle ABC\\equiv\\triangle DEF$는 「삼각형 $ABC$와 삼각형 $DEF$는 {합동}이다」라고 읽는다.",
+        "example": {
+          "prompt": "두 도형이 합동임을 나타내는 기호는?",
+          "answer": "$\\equiv$"
+        },
+        "studentC": "$\\triangle ABC\\equiv\\triangle DEF$는 「삼각형 $ABC$와 삼각형 $DEF$는 □이다」라고 읽는다.",
+        "answers": [
+          "합동"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-07-xc1",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "기호를 소리 내어 읽는 법뿐이라 설명형 질문으로는 쓸 내용이 없다.",
+        "exclusionReason": "B 제외: c1에서 합동의 뜻과 기호 $\\equiv$를 이미 묻고 있어 목표가 겹치는 단순 읽기 항목이다.",
+        "cDecision": "keep",
+        "cReason": "식을 보고 읽는 말을 채우는 짧은 빈칸이다.",
+        "learningRole": "naming",
+        "roleReason": "$\\equiv$가 들어간 식을 읽는 법",
+        "authorBatch": 17,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1708,
+        "part": "m1plus",
+        "sourceFingerprint": "69bf99a5f917599bd4024240ab4534eb7abe46377c649031480ecbe392ea11da",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1708
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "$\\triangle ABC\\equiv\\triangle DEF$는 「삼각형 $ABC$와 삼각형 $DEF$는 □이다」라고 읽는다.",
+        "cFrozenDefinition": "$\\triangle ABC\\equiv\\triangle DEF$는 「삼각형 $ABC$와 삼각형 $DEF$는 {합동}이다」라고 읽는다.",
+        "cFrozenAnswers": [
+          "합동"
+        ],
+        "cMarkedSentence": "$\\triangle ABC\\equiv\\triangle DEF$는 「삼각형 $ABC$와 삼각형 $DEF$는 {합동}이다」라고 읽는다.",
+        "cSlotAnswers": [
+          "합동"
+        ],
+        "cStudentSentence": "$\\triangle ABC\\equiv\\triangle DEF$는 「삼각형 $ABC$와 삼각형 $DEF$는 □이다」라고 읽는다.",
+        "cAnswers": [
+          "합동"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "합동",
+            "equivalentAnswers": [
+              "합동"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "합동"
+          ]
+        ],
+        "proposalFingerprint": "af3d36260bb88ebc22e04c5bf0a1f1135768c11792c54b877d7cffe69ea43f83"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-07-xc2",
+        "section": "중1::5. 기본 도형::합동",
+        "term": "합동과 등호의 구분",
+        "kind": "방법",
+        "level": "하",
+        "definition": "길이나 넓이가 같음은 {$=$}로, 두 도형이 완전히 포개짐은 {$\\equiv$}로 나타낸다.",
+        "example": {
+          "prompt": "$\\overline{AB}$와 $\\overline{DE}$의 길이가 같음을 기호로 쓰면?",
+          "answer": "$\\overline{AB}=\\overline{DE}$"
+        },
+        "studentC": "길이나 넓이가 같음은 □로, 두 도형이 완전히 포개짐은 □로 나타낸다.",
+        "answers": [
+          "$=$",
+          "$\\equiv$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-07-xc2",
+        "bDecision": "rewrite",
+        "bPrompt": "선분 $AB$와 선분 $DE$의 길이가 같다는 것과, $\\triangle ABC$와 $\\triangle DEF$가 합동이라는 것을 각각 기호로 나타내시오. 또 두 기호의 뜻이 어떻게 다른지 쓰시오.",
+        "bAnswer": "$\\overline{AB}=\\overline{DE}$, $\\triangle ABC\\equiv\\triangle DEF$. $=$는 길이나 넓이가 같음을, $\\equiv$는 두 도형이 완전히 포개짐을 나타낸다.",
+        "bGoal": "$=$와 $\\equiv$의 쓰임 구별",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{AB}=\\overline{DE}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\triangle ABC\\equiv\\triangle DEF$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$=$는 길이나 넓이가 같음, $\\equiv$는 완전히 포개짐",
+              "$=$는 크기가 같음, $\\equiv$는 합동"
+            ]
+          }
+        ],
+        "bReason": "두 기호를 실제로 써 보아야 구분이 드러나므로 선분과 삼각형 예를 넣었다.",
+        "cDecision": "keep",
+        "cReason": "두 기호를 상황에 맞게 고르는 짧은 비교 빈칸이다.",
+        "exampleNeeded": true,
+        "learningRole": "naming",
+        "roleReason": "길이가 같음과 합동의 기호 구별",
+        "authorBatch": 17,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1709,
+        "part": "m1plus",
+        "sourceFingerprint": "3c1f8e02ebaaa3450e6ff4f3735f1684e4db065fac7afdd60d759c44fa683753",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1709
+        },
+        "directReview": null,
+        "cFrozenSentence": "길이나 넓이가 같음은 □로, 두 도형이 완전히 포개짐은 □로 나타낸다.",
+        "cFrozenDefinition": "길이나 넓이가 같음은 {$=$}로, 두 도형이 완전히 포개짐은 {$\\equiv$}로 나타낸다.",
+        "cFrozenAnswers": [
+          "$=$",
+          "$\\equiv$"
+        ],
+        "cMarkedSentence": "길이나 넓이가 같음은 {$=$}로, 두 도형이 완전히 포개짐은 {$\\equiv$}로 나타낸다.",
+        "cSlotAnswers": [
+          "$=$",
+          "$\\equiv$"
+        ],
+        "cStudentSentence": "길이나 넓이가 같음은 □로, 두 도형이 완전히 포개짐은 □로 나타낸다.",
+        "cAnswers": [
+          "$=$",
+          "$\\equiv$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$=$",
+            "equivalentAnswers": [
+              "$=$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\equiv$",
+            "equivalentAnswers": [
+              "$\\equiv$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$=$"
+          ],
+          [
+            "$\\equiv$"
+          ]
+        ],
+        "proposalFingerprint": "6092b7d7c810205fe75e30c9392f36cce7b905e65a144c9757f9a7b821206ada"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-07-xc3",
+        "section": "중1::5. 기본 도형::합동",
+        "term": "대응변 찾기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "합동을 기호 $\\equiv$로 나타낸 식에서는 {같은 자리}에 쓴 꼭짓점끼리 대응한다. 한 변의 대응변은 그 변의 두 끝점에 대응하는 {두 꼭짓점}을 이은 변이다.",
+        "example": {
+          "prompt": "$\\triangle ABC\\equiv\\triangle DEF$일 때 변 $CA$의 대응변은?",
+          "answer": "변 $FD$"
+        },
+        "studentC": "합동을 기호 $\\equiv$로 나타낸 식에서는 □에 쓴 꼭짓점끼리 대응한다. 한 변의 대응변은 그 변의 두 끝점에 대응하는 □을 이은 변이다.",
+        "answers": [
+          "같은 자리",
+          "두 꼭짓점"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-07-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\triangle ABC\\equiv\\triangle DEF$일 때 변 $CA$의 대응변을 쓰고, 어떻게 찾았는지 설명하시오.",
+        "bAnswer": "변 $FD$. 같은 자리에 쓴 꼭짓점끼리 대응하므로 점 $C$는 점 $F$에, 점 $A$는 점 $D$에 대응한다. 두 대응점을 이은 변이 대응변이다.",
+        "bGoal": "합동식에서 대응변 찾는 방법",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "변 $FD$",
+              "$\\overline{FD}$",
+              "$\\overline{DF}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "점 $C$는 점 $F$에, 점 $A$는 점 $D$에 대응한다",
+              "같은 자리에 쓴 꼭짓점끼리 대응한다"
+            ]
+          }
+        ],
+        "bReason": "어떤 합동식의 어느 변인지 주어져야 답할 수 있어 구체적인 식을 넣었다.",
+        "cDecision": "rewrite",
+        "cAfter": "합동을 기호 $\\equiv$로 나타낸 식에서는 양쪽에서 {같은 자리}에 쓴 꼭짓점끼리 대응한다. 그래서 $\\triangle ABC\\equiv\\triangle DEF$에서 변 $CA$의 대응변은 {변 $FD$}이다.",
+        "cAnswers": [
+          "같은 자리",
+          "변 $FD$"
+        ],
+        "cReason": "'두 꼭짓점' 빈칸은 문장의 낱말을 되받는 것이라 실제 대응변을 찾게 했다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "같은 자리의 꼭짓점으로 대응변 찾기",
+        "authorBatch": 17,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1710,
+        "part": "m1plus",
+        "sourceFingerprint": "59a0aaad49abaa138bc6cb825cb815ba2b755480ef251ee5e3dcdb1ba5919d0f",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1710
+        },
+        "directReview": null,
+        "cMarkedSentence": "합동을 기호 $\\equiv$로 나타낸 식에서는 양쪽에서 {같은 자리}에 쓴 꼭짓점끼리 대응한다. 그래서 $\\triangle ABC\\equiv\\triangle DEF$에서 변 $CA$의 대응변은 {변 $FD$}이다.",
+        "cSlotAnswers": [
+          "같은 자리",
+          "변 $FD$"
+        ],
+        "cStudentSentence": "합동을 기호 $\\equiv$로 나타낸 식에서는 양쪽에서 □에 쓴 꼭짓점끼리 대응한다. 그래서 $\\triangle ABC\\equiv\\triangle DEF$에서 변 $CA$의 대응변은 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "같은 자리",
+            "equivalentAnswers": [
+              "같은 자리",
+              "같은 순서",
+              "같은 번째",
+              "같은 차례"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "변 $FD$",
+            "equivalentAnswers": [
+              "변 $FD$",
+              "$\\overline{FD}$",
+              "변 $DF$",
+              "$\\overline{DF}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "같은 자리",
+            "accept": [
+              "같은 순서",
+              "같은 번째",
+              "같은 차례"
+            ]
+          }
+        ],
+        "equivalentExpressions": [
+          {
+            "answer": "변 $FD$",
+            "accept": [
+              "$\\overline{FD}$",
+              "변 $DF$",
+              "$\\overline{DF}$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "같은 자리",
+            "같은 순서",
+            "같은 번째",
+            "같은 차례"
+          ],
+          [
+            "변 $FD$",
+            "$\\overline{FD}$",
+            "변 $DF$",
+            "$\\overline{DF}$"
+          ]
+        ],
+        "proposalFingerprint": "8bfb77fbdf872834896c221a5efbf4ed97275757dcada1e8f3e191d0ecc98575"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-07-xc4",
+        "section": "중1::5. 기본 도형::합동",
+        "term": "$\\triangle PQR\\equiv\\triangle XYZ$에서 대응각 찾기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "$\\triangle PQR\\equiv\\triangle XYZ$이면 $\\angle P$의 대응각은 {$\\angle X$}, $\\angle R$의 대응각은 {$\\angle Z$}이다.",
+        "example": {
+          "prompt": "$\\triangle PQR\\equiv\\triangle XYZ$일 때 $\\angle Q$의 대응각은?",
+          "answer": "$\\angle Y$"
+        },
+        "studentC": "$\\triangle PQR\\equiv\\triangle XYZ$이면 $\\angle P$의 대응각은 □, $\\angle R$의 대응각은 □이다.",
+        "answers": [
+          "$\\angle X$",
+          "$\\angle Z$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-07-xc4",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "특정한 식에 대입해 각 이름만 쓰는 항목이라 설명할 내용이 없다.",
+        "exclusionReason": "B 제외: xc3의 '같은 자리 꼭짓점끼리 대응'을 각으로만 바꾼 같은 형식의 반복이다.",
+        "cDecision": "keep",
+        "cReason": "식이 문장에 있어 대응각을 바로 찾는 짧은 적용 빈칸이다.",
+        "learningRole": "application",
+        "roleReason": "합동식에서 대응각 읽어 내기",
+        "authorBatch": 17,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1711,
+        "part": "m1plus",
+        "sourceFingerprint": "b73e12cc65cdc1f69d98895a94019a8f0138a4cadc69cad8457e1fc9ca392f5d",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1711
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "$\\triangle PQR\\equiv\\triangle XYZ$이면 $\\angle P$의 대응각은 □, $\\angle R$의 대응각은 □이다.",
+        "cFrozenDefinition": "$\\triangle PQR\\equiv\\triangle XYZ$이면 $\\angle P$의 대응각은 {$\\angle X$}, $\\angle R$의 대응각은 {$\\angle Z$}이다.",
+        "cFrozenAnswers": [
+          "$\\angle X$",
+          "$\\angle Z$"
+        ],
+        "cMarkedSentence": "$\\triangle PQR\\equiv\\triangle XYZ$이면 $\\angle P$의 대응각은 {$\\angle X$}, $\\angle R$의 대응각은 {$\\angle Z$}이다.",
+        "cSlotAnswers": [
+          "$\\angle X$",
+          "$\\angle Z$"
+        ],
+        "cStudentSentence": "$\\triangle PQR\\equiv\\triangle XYZ$이면 $\\angle P$의 대응각은 □, $\\angle R$의 대응각은 □이다.",
+        "cAnswers": [
+          "$\\angle X$",
+          "$\\angle Z$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\angle X$",
+            "equivalentAnswers": [
+              "$\\angle X$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\angle Z$",
+            "equivalentAnswers": [
+              "$\\angle Z$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\angle X$"
+          ],
+          [
+            "$\\angle Z$"
+          ]
+        ],
+        "proposalFingerprint": "dcd974296c0e478d56db14a84e8c1439878289491d5fb6f6f6b86b5c472660bf"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-07-xc5",
+        "section": "중1::5. 기본 도형::합동",
+        "term": "합동인 사각형",
+        "kind": "성질",
+        "level": "하",
+        "definition": "합동인 두 사각형은 짝지은 {대응변} 넷의 길이가 서로 같고, 짝지은 {대응각} 넷의 크기도 서로 같다.",
+        "example": {
+          "prompt": "두 사각형 $ABCD$, $EFGH$가 꼭짓점 차례대로 합동일 때 $\\overline{CD}$의 대응변은?",
+          "answer": "$\\overline{GH}$"
+        },
+        "studentC": "합동인 두 사각형은 짝지은 □ 넷의 길이가 서로 같고, 짝지은 □ 넷의 크기도 서로 같다.",
+        "answers": [
+          "대응변",
+          "대응각"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-07-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "사각형 $ABCD$와 사각형 $EFGH$가 합동이고 점 $A$와 $E$, 점 $B$와 $F$, 점 $C$와 $G$, 점 $D$와 $H$가 각각 대응한다. $\\overline{CD}$와 길이가 같은 변, $\\angle B$와 크기가 같은 각을 쓰고 그 까닭을 쓰시오.",
+        "bAnswer": "$\\overline{GH}$와 $\\angle F$. 합동인 두 도형은 대응변의 길이가 같고 대응각의 크기가 같기 때문이다.",
+        "bGoal": "합동인 사각형에서 대응변·대응각 쓰기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{GH}$",
+              "변 $GH$",
+              "$\\overline{HG}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle F$"
+            ]
+          },
+          {
+            "anyOf": [
+              "대응변의 길이가 같고 대응각의 크기가 같다",
+              "합동인 도형에서 대응하는 변과 각은 각각 같다"
+            ]
+          }
+        ],
+        "bReason": "그림이 없어 대응 관계를 밝히고 사각형에서 성질을 쓰게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "합동인 두 사각형은 네 쌍의 {대응변}의 길이가 각각 같고, 네 쌍의 {대응각}의 크기도 각각 같다.",
+        "cAnswers": [
+          "대응변",
+          "대응각"
+        ],
+        "cReason": "'짝지은 대응변 넷'이라는 표현이 어색해 '네 쌍'으로 다듬었다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "합동의 성질을 사각형에 적용",
+        "authorBatch": 17,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1712,
+        "part": "m1plus",
+        "sourceFingerprint": "2f9ff78d1cbd28811c5faa54213fbe74bc73f375310ef4304414f92854f05a6e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1712
+        },
+        "directReview": null,
+        "cMarkedSentence": "합동인 두 사각형은 네 쌍의 {대응변}의 길이가 각각 같고, 네 쌍의 {대응각}의 크기도 각각 같다.",
+        "cSlotAnswers": [
+          "대응변",
+          "대응각"
+        ],
+        "cStudentSentence": "합동인 두 사각형은 네 쌍의 □의 길이가 각각 같고, 네 쌍의 □의 크기도 각각 같다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "대응변",
+            "equivalentAnswers": [
+              "대응변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "대응각",
+            "equivalentAnswers": [
+              "대응각"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "대응변"
+          ],
+          [
+            "대응각"
+          ]
+        ],
+        "proposalFingerprint": "8a4496b13a9dd63bcf3fdb321872919f959540dac53090dd7f80882b5e4eb970"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-07-xc6",
+        "section": "중1::5. 기본 도형::합동",
+        "term": "둘레와 합동",
+        "kind": "성질",
+        "level": "하",
+        "definition": "합동인 두 도형은 대응변의 길이가 모두 같으므로 {둘레}의 길이도 {같다}.",
+        "example": {
+          "prompt": "둘레가 $12$인 삼각형과 합동인 삼각형의 둘레는?",
+          "answer": "$12$"
+        },
+        "studentC": "합동인 두 도형은 대응변의 길이가 모두 같으므로 □의 길이도 □.",
+        "answers": [
+          "둘레",
+          "같다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-07-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "합동인 두 도형의 둘레의 길이는 서로 어떤 관계인지 쓰고, 그 까닭을 설명하시오.",
+        "bAnswer": "둘레의 길이가 같다. 대응변의 길이가 각각 같으므로 변의 길이를 모두 더한 값도 같기 때문이다.",
+        "bGoal": "합동이면 둘레가 같은 까닭",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "둘레의 길이가 같다"
+            ]
+          },
+          {
+            "anyOf": [
+              "대응변의 길이가 각각 같아 그 합도 같다",
+              "모든 변의 길이가 짝끼리 같다"
+            ]
+          }
+        ],
+        "bReason": "결론만 외우지 않도록 대응변에서 나오는 까닭까지 묻게 했다.",
+        "cDecision": "keep",
+        "cReason": "이유가 문장에 있고 결론만 채우는 분명한 빈칸이다.",
+        "learningRole": "reason",
+        "roleReason": "대응변이 같아 둘레도 같음",
+        "authorBatch": 17,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1713,
+        "part": "m1plus",
+        "sourceFingerprint": "9c3d7ba2807d7f24f91523ed9180163d362374f22054ebfa284c0c172a3f2aa5",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1713
+        },
+        "directReview": null,
+        "cFrozenSentence": "합동인 두 도형은 대응변의 길이가 모두 같으므로 □의 길이도 □.",
+        "cFrozenDefinition": "합동인 두 도형은 대응변의 길이가 모두 같으므로 {둘레}의 길이도 {같다}.",
+        "cFrozenAnswers": [
+          "둘레",
+          "같다"
+        ],
+        "cMarkedSentence": "합동인 두 도형은 대응변의 길이가 모두 같으므로 {둘레}의 길이도 {같다}.",
+        "cSlotAnswers": [
+          "둘레",
+          "같다"
+        ],
+        "cStudentSentence": "합동인 두 도형은 대응변의 길이가 모두 같으므로 □의 길이도 □.",
+        "cAnswers": [
+          "둘레",
+          "같다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "둘레",
+            "equivalentAnswers": [
+              "둘레"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "같다",
+            "equivalentAnswers": [
+              "같다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "둘레"
+          ],
+          [
+            "같다"
+          ]
+        ],
+        "proposalFingerprint": "b8249114f2e78ec0eda9ff81fe2b79b9b8628a11a8099a766873d4ad83082d71"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-07-xc7",
+        "section": "중1::5. 기본 도형::합동",
+        "term": "옮긴 도형과 합동",
+        "kind": "성질",
+        "level": "하",
+        "definition": "도형을 {밀거나} 뒤집거나 돌려도 모양과 크기는 그대로이므로 처음 도형과 {합동}이다.",
+        "example": {
+          "prompt": "삼각형을 뒤집어 놓은 도형은 처음 삼각형과 어떤 관계인가?",
+          "answer": "합동"
+        },
+        "studentC": "도형을 □ 뒤집거나 돌려도 모양과 크기는 그대로이므로 처음 도형과 □이다.",
+        "answers": [
+          "밀거나",
+          "합동"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-07-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "한 도형을 밀거나 뒤집거나 돌려서 옮긴 도형은 처음 도형과 합동인지 답하고, 그 까닭을 쓰시오.",
+        "bAnswer": "합동이다. 옮겨도 모양과 크기가 변하지 않아 처음 도형과 완전히 포개지기 때문이다.",
+        "bGoal": "옮긴 도형이 합동인 까닭",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "합동이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "모양과 크기가 변하지 않는다",
+              "처음 도형과 완전히 포개진다"
+            ]
+          }
+        ],
+        "bReason": "'옮긴'이 무엇을 뜻하는지 밀기·뒤집기·돌리기로 풀어 밝혔다.",
+        "cDecision": "rewrite",
+        "cAfter": "도형을 밀거나 뒤집거나 돌려도 {모양}과 {크기}는 그대로이므로 처음 도형과 {합동}이다.",
+        "cAnswers": [
+          "모양",
+          "크기",
+          "합동"
+        ],
+        "cReason": "세 동작 중 '밀거나'만 가린 빈칸은 임의적이라 합동의 근거를 묻게 했다.",
+        "learningRole": "reason",
+        "roleReason": "옮겨도 모양과 크기가 그대로임",
+        "authorBatch": 17,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1714,
+        "part": "m1plus",
+        "sourceFingerprint": "878a4e0326fce79e50f97e6c42d15af6cb4a60adf33aab2458dde91d46999bae",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1714
+        },
+        "directReview": null,
+        "cMarkedSentence": "도형을 밀거나 뒤집거나 돌려도 {모양}과 {크기}는 그대로이므로 처음 도형과 {합동}이다.",
+        "cSlotAnswers": [
+          "모양",
+          "크기",
+          "합동"
+        ],
+        "cStudentSentence": "도형을 밀거나 뒤집거나 돌려도 □과 □는 그대로이므로 처음 도형과 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "모양",
+            "equivalentAnswers": [
+              "모양"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "크기",
+            "equivalentAnswers": [
+              "크기"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "합동",
+            "equivalentAnswers": [
+              "합동"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "모양"
+          ],
+          [
+            "크기"
+          ],
+          [
+            "합동"
+          ]
+        ],
+        "proposalFingerprint": "9e1753e6c63e3e97fe330c92f0a6fb1173c538bd38c4ad5026c0c42458cd80cb"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-07-xc8",
+        "section": "중1::5. 기본 도형::합동",
+        "term": "모양만 같은 두 도형",
+        "kind": "성질",
+        "level": "하",
+        "definition": "모양이 같아도 {크기}가 다르면 포개지지 않으므로 두 도형은 {합동}이 아니다.",
+        "example": {
+          "prompt": "한 변이 $3$인 정삼각형과 한 변이 $4$인 정삼각형은 합동인가?",
+          "answer": "아니다"
+        },
+        "studentC": "모양이 같아도 □가 다르면 포개지지 않으므로 두 도형은 □이 아니다.",
+        "answers": [
+          "크기",
+          "합동"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-07-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "한 변의 길이가 $3$인 정삼각형과 한 변의 길이가 $4$인 정삼각형은 합동인지 답하고, 그 까닭을 쓰시오.",
+        "bAnswer": "합동이 아니다. 모양은 같지만 크기가 달라 완전히 포개지지 않기 때문이다.",
+        "bGoal": "모양만 같으면 합동이 아님",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "합동이 아니다"
+            ]
+          },
+          {
+            "anyOf": [
+              "크기가 다르다",
+              "변의 길이가 다르다",
+              "완전히 포개지지 않는다"
+            ]
+          }
+        ],
+        "bReason": "'모양만 같은'을 크기가 다른 두 정삼각형의 예로 구체화했다.",
+        "cDecision": "keep",
+        "cReason": "크기와 합동을 잇는 짧고 분명한 빈칸이다.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "크기가 다르면 포개지지 않음",
+        "authorBatch": 17,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1715,
+        "part": "m1plus",
+        "sourceFingerprint": "f273a135ec74f4b88b93ad2d44f780ec4dba022395aa617c066ef9918b045880",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1715
+        },
+        "directReview": null,
+        "cFrozenSentence": "모양이 같아도 □가 다르면 포개지지 않으므로 두 도형은 □이 아니다.",
+        "cFrozenDefinition": "모양이 같아도 {크기}가 다르면 포개지지 않으므로 두 도형은 {합동}이 아니다.",
+        "cFrozenAnswers": [
+          "크기",
+          "합동"
+        ],
+        "cMarkedSentence": "모양이 같아도 {크기}가 다르면 포개지지 않으므로 두 도형은 {합동}이 아니다.",
+        "cSlotAnswers": [
+          "크기",
+          "합동"
+        ],
+        "cStudentSentence": "모양이 같아도 □가 다르면 포개지지 않으므로 두 도형은 □이 아니다.",
+        "cAnswers": [
+          "크기",
+          "합동"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "크기",
+            "equivalentAnswers": [
+              "크기"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "합동",
+            "equivalentAnswers": [
+              "합동"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "크기"
+          ],
+          [
+            "합동"
+          ]
+        ],
+        "proposalFingerprint": "c11cd0e7beea7e4a12c84088cd925d13a41f5a064c2766faa7c5b08869e45893"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-07-xc9",
+        "section": "중1::5. 기본 도형::합동",
+        "term": "적은 차례로 대응점 찾기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "합동 기호 앞뒤의 두 도형에서 {같은 번째}에 적은 꼭짓점끼리 {대응점}이다.",
+        "example": {
+          "prompt": "$\\triangle PQR\\equiv\\triangle ZXY$에서 점 $R$의 대응점은?",
+          "answer": "점 $Y$"
+        },
+        "studentC": "합동 기호 앞뒤의 두 도형에서 □에 적은 꼭짓점끼리 □이다.",
+        "answers": [
+          "같은 번째",
+          "대응점"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-07-xc9",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "대응점을 찾는 방법이 xc3의 방법과 같아 따로 설명할 내용이 없다.",
+        "exclusionReason": "B 제외: c3과 xc3의 '같은 자리(순서) 꼭짓점 대응'을 말만 바꾼 중복이다.",
+        "cDecision": "rewrite",
+        "cAfter": "$\\triangle PQR\\equiv\\triangle ZXY$에서는 같은 번째에 적은 꼭짓점끼리 대응점이므로, 점 $P$의 대응점은 {점 $Z$}, 점 $R$의 대응점은 {점 $Y$}이다.",
+        "cAnswers": [
+          "점 $Z$",
+          "점 $Y$"
+        ],
+        "cReason": "xc3의 빈칸과 겹치므로 글자 순서가 섞인 식에서 대응점을 찾게 했다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "적은 차례로 대응점 찾기",
+        "authorBatch": 17,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1716,
+        "part": "m1plus",
+        "sourceFingerprint": "2127bbe9fcad2fcd18c639c70d113fcdb625eeb6c38eb070dbd902988d90ada2",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1716
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cMarkedSentence": "$\\triangle PQR\\equiv\\triangle ZXY$에서는 같은 번째에 적은 꼭짓점끼리 대응점이므로, 점 $P$의 대응점은 {점 $Z$}, 점 $R$의 대응점은 {점 $Y$}이다.",
+        "cSlotAnswers": [
+          "점 $Z$",
+          "점 $Y$"
+        ],
+        "cStudentSentence": "$\\triangle PQR\\equiv\\triangle ZXY$에서는 같은 번째에 적은 꼭짓점끼리 대응점이므로, 점 $P$의 대응점은 □, 점 $R$의 대응점은 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "점 $Z$",
+            "equivalentAnswers": [
+              "점 $Z$",
+              "$Z$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "점 $Y$",
+            "equivalentAnswers": [
+              "점 $Y$",
+              "$Y$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "점 $Z$",
+            "accept": [
+              "$Z$"
+            ]
+          },
+          {
+            "answer": "점 $Y$",
+            "accept": [
+              "$Y$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "점 $Z$",
+            "$Z$"
+          ],
+          [
+            "점 $Y$",
+            "$Y$"
+          ]
+        ],
+        "proposalFingerprint": "ce5f4b3e92efecfaee6cdb2ce75c001d45212e800591b409421b485bfd651bad"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-07-xc10",
+        "section": "중1::5. 기본 도형::합동",
+        "term": "공통인 변",
+        "kind": "방법",
+        "level": "중",
+        "definition": "두 삼각형이 한 변을 함께 가지면 그 변은 {공통}이므로 두 삼각형에서 길이가 {같다}.",
+        "example": {
+          "prompt": "$\\triangle ABD$와 $\\triangle CBD$에서 길이가 같은 변으로 바로 쓸 수 있는 것은?",
+          "answer": "$\\overline{BD}$"
+        },
+        "studentC": "두 삼각형이 한 변을 함께 가지면 그 변은 □이므로 두 삼각형에서 길이가 □.",
+        "answers": [
+          "공통",
+          "같다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-07-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "사각형 $ABCD$(꼭짓점이 $A$, $B$, $C$, $D$ 순서로 놓임)에 대각선 $BD$를 그어 $\\triangle ABD$와 $\\triangle CBD$로 나누었다. 두 삼각형의 합동을 보일 때, 주어진 조건이 없어도 길이가 같다고 바로 쓸 수 있는 변과 그 까닭을 쓰시오.",
+        "bAnswer": "변 $BD$. 두 삼각형에 공통인 변이므로 두 삼각형에서 길이가 같다.",
+        "bGoal": "공통인 변을 합동의 근거로 쓰기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{BD}$",
+              "변 $BD$"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 삼각형에 공통인 변이다",
+              "두 삼각형이 함께 가진 같은 변이다"
+            ]
+          }
+        ],
+        "bReason": "그림이 없어 두 삼각형이 어떻게 놓였는지 사각형과 대각선으로 밝혔다.",
+        "cDecision": "keep",
+        "cReason": "'함께 가진 변'을 용어로 바꾸고 결론을 채우는 분명한 빈칸이다.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "공통인 변은 길이가 같음",
+        "authorBatch": 17,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1717,
+        "part": "m1plus",
+        "sourceFingerprint": "7638a113e70e7c3c4c48e3999bed06aa7b9b1b668f69bef2ae1c425076a1cf67",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1717
+        },
+        "directReview": null,
+        "cFrozenSentence": "두 삼각형이 한 변을 함께 가지면 그 변은 □이므로 두 삼각형에서 길이가 □.",
+        "cFrozenDefinition": "두 삼각형이 한 변을 함께 가지면 그 변은 {공통}이므로 두 삼각형에서 길이가 {같다}.",
+        "cFrozenAnswers": [
+          "공통",
+          "같다"
+        ],
+        "cMarkedSentence": "두 삼각형이 한 변을 함께 가지면 그 변은 {공통}이므로 두 삼각형에서 길이가 {같다}.",
+        "cSlotAnswers": [
+          "공통",
+          "같다"
+        ],
+        "cStudentSentence": "두 삼각형이 한 변을 함께 가지면 그 변은 □이므로 두 삼각형에서 길이가 □.",
+        "cAnswers": [
+          "공통",
+          "같다"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "공통",
+            "equivalentAnswers": [
+              "공통",
+              "공통인 변",
+              "공통변"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "같다",
+            "equivalentAnswers": [
+              "같다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "공통",
+            "accept": [
+              "공통인 변",
+              "공통변"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "공통",
+            "공통인 변",
+            "공통변"
+          ],
+          [
+            "같다"
+          ]
+        ],
+        "proposalFingerprint": "7af9e5048f72b92e50f665a64d9f2db596e56e6a406928f02e3336791e47acb4"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-07-xc11",
+        "section": "중1::5. 기본 도형::합동",
+        "term": "맞꼭지각을 쓰는 합동",
+        "kind": "방법",
+        "level": "중",
+        "definition": "두 선분이 한 점에서 서로 가로질러 만나 두 삼각형이 그 점에서 마주 보면, 그 점의 두 각은 {맞꼭지각}이라 크기가 {같다}.",
+        "example": {
+          "prompt": "두 선분 $AD$, $BC$가 점 $O$에서 서로 가로질러 만날 때 $\\angle AOB$의 맞꼭지각은?",
+          "answer": "$\\angle DOC$"
+        },
+        "studentC": "두 선분이 한 점에서 서로 가로질러 만나 두 삼각형이 그 점에서 마주 보면, 그 점의 두 각은 □이라 크기가 □.",
+        "answers": [
+          "맞꼭지각",
+          "같다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-07-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "두 선분 $AD$와 $BC$가 점 $O$에서 서로 가로질러 만난다(점 $O$는 두 선분의 끝점이 아니다). $\\triangle AOB$와 $\\triangle DOC$의 합동을 보일 때, 주어진 조건이 없어도 크기가 같다고 쓸 수 있는 한 쌍의 각과 그 까닭을 쓰시오.",
+        "bAnswer": "$\\angle AOB=\\angle DOC$. 두 각은 서로 맞꼭지각이므로 크기가 같다.",
+        "bGoal": "맞꼭지각을 합동의 근거로 쓰기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\angle AOB=\\angle DOC$",
+              "$\\angle AOB$와 $\\angle DOC$"
+            ]
+          },
+          {
+            "anyOf": [
+              "맞꼭지각이다"
+            ]
+          }
+        ],
+        "bReason": "그림 없이 두 삼각형이 마주 보는 상황을 점 이름으로 밝혔다.",
+        "cDecision": "rewrite",
+        "cAfter": "두 선분 $AD$, $BC$가 점 $O$에서 서로 가로질러 만날 때, $\\triangle AOB$의 $\\angle AOB$와 $\\triangle DOC$의 $\\angle DOC$는 서로 {맞꼭지각}이므로 크기가 {같다}.",
+        "cAnswers": [
+          "맞꼭지각",
+          "같다"
+        ],
+        "cReason": "'그 점의 두 각'이 어느 각인지 알 수 없어 점 이름으로 밝혔다.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "맞꼭지각은 크기가 같음",
+        "authorBatch": 17,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1718,
+        "part": "m1plus",
+        "sourceFingerprint": "624dfdfc8d36f8fb29603b12218fe764249fd40611f2d6dbc4dffa59e13c1aaf",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1718
+        },
+        "directReview": null,
+        "cMarkedSentence": "두 선분 $AD$, $BC$가 점 $O$에서 서로 가로질러 만날 때, $\\triangle AOB$의 $\\angle AOB$와 $\\triangle DOC$의 $\\angle DOC$는 서로 {맞꼭지각}이므로 크기가 {같다}.",
+        "cSlotAnswers": [
+          "맞꼭지각",
+          "같다"
+        ],
+        "cStudentSentence": "두 선분 $AD$, $BC$가 점 $O$에서 서로 가로질러 만날 때, $\\triangle AOB$의 $\\angle AOB$와 $\\triangle DOC$의 $\\angle DOC$는 서로 □이므로 크기가 □.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "맞꼭지각",
+            "equivalentAnswers": [
+              "맞꼭지각"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "같다",
+            "equivalentAnswers": [
+              "같다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "맞꼭지각"
+          ],
+          [
+            "같다"
+          ]
+        ],
+        "proposalFingerprint": "a0e42b10797fe91317a55477d19fa78071254bdc3e3b7b7e52bcc179020a242f"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-07-xc12",
+        "section": "중1::5. 기본 도형::합동",
+        "term": "모르는 대응각 구하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "합동인 삼각형에서 모르는 각은 대응각으로 {옮겨} 놓은 뒤 세 각의 합 {$180^\\circ$}를 써서 구한다.",
+        "example": {
+          "prompt": "$\\triangle ABC\\equiv\\triangle DEF$, $\\angle D=70^\\circ$, $\\angle B=50^\\circ$일 때 $\\angle F$는?",
+          "answer": "$60^\\circ$"
+        },
+        "studentC": "합동인 삼각형에서 모르는 각은 대응각으로 □ 놓은 뒤 세 각의 합 □를 써서 구한다.",
+        "answers": [
+          "옮겨",
+          "$180^\\circ$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-07-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\triangle ABC\\equiv\\triangle DEF$이고 $\\angle D=70^\\circ$, $\\angle B=50^\\circ$일 때 $\\angle F$의 크기를 구하고, 구하는 과정을 설명하시오.",
+        "bAnswer": "$\\angle A=\\angle D=70^\\circ$(대응각)이므로 $\\angle C=180^\\circ-70^\\circ-50^\\circ=60^\\circ$이다. $\\angle F$는 $\\angle C$의 대응각이므로 $60^\\circ$이다.",
+        "bGoal": "대응각과 세 각의 합으로 모르는 각 구하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$60^\\circ$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle A=\\angle D=70^\\circ$",
+              "$\\angle E=\\angle B=50^\\circ$",
+              "대응각의 크기가 같음을 이용한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "삼각형의 세 각의 크기의 합은 $180^\\circ$",
+              "$180^\\circ-70^\\circ-50^\\circ$"
+            ]
+          }
+        ],
+        "bReason": "방법 이름만으로는 답할 수 없어 각이 주어진 구체적인 상황을 넣었다.",
+        "cDecision": "rewrite",
+        "cAfter": "합동인 삼각형에서 모르는 각은 크기가 같은 {대응각}으로 바꾸어 생각한 뒤, 삼각형의 세 각의 크기의 합 {$180^\\circ$}를 써서 구한다.",
+        "cAnswers": [
+          "대응각",
+          "$180^\\circ$"
+        ],
+        "cReason": "'옮겨'는 떠올리기 어려운 임의의 낱말이라 대응각을 묻게 했다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "대응각과 세 각의 합 $180^\\circ$ 이용",
+        "authorBatch": 17,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1719,
+        "part": "m1plus",
+        "sourceFingerprint": "5ce50c6833121fb2b5f923e6449ae37fe96daf8eabb334f42c2e854d136005b2",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1719
+        },
+        "directReview": null,
+        "cMarkedSentence": "합동인 삼각형에서 모르는 각은 크기가 같은 {대응각}으로 바꾸어 생각한 뒤, 삼각형의 세 각의 크기의 합 {$180^\\circ$}를 써서 구한다.",
+        "cSlotAnswers": [
+          "대응각",
+          "$180^\\circ$"
+        ],
+        "cStudentSentence": "합동인 삼각형에서 모르는 각은 크기가 같은 □으로 바꾸어 생각한 뒤, 삼각형의 세 각의 크기의 합 □를 써서 구한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "대응각",
+            "equivalentAnswers": [
+              "대응각"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$180^\\circ$",
+            "equivalentAnswers": [
+              "$180^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "대응각"
+          ],
+          [
+            "$180^\\circ$"
+          ]
+        ],
+        "proposalFingerprint": "3da8f15702357e465139bee97d43e1be9e5602fe902e927e5f748b85e20091db"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-07-xc13",
+        "section": "중1::5. 기본 도형::합동",
+        "term": "대각선이 나눈 직사각형",
+        "kind": "성질",
+        "level": "상",
+        "definition": "직사각형 $ABCD$에 대각선 $BD$를 그으면 $\\triangle ABD$와 $\\triangle CDB$는 세 변이 짝끼리 같아 {$\\mathrm{SSS}$} {합동}이다.",
+        "example": {
+          "prompt": "직사각형 $ABCD$에 대각선 $BD$를 그을 때 $\\triangle ABD$와 $\\triangle CDB$에 공통인 변은?",
+          "answer": "$\\overline{BD}$"
+        },
+        "studentC": "직사각형 $ABCD$에 대각선 $BD$를 그으면 $\\triangle ABD$와 $\\triangle CDB$는 세 변이 짝끼리 같아 □ □이다.",
+        "answers": [
+          "$\\mathrm{SSS}$",
+          "합동"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-07-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "직사각형 $ABCD$(꼭짓점이 $A$, $B$, $C$, $D$ 순서로 놓임)에 대각선 $BD$를 그었다. $\\triangle ABD$와 $\\triangle CDB$가 합동인 까닭을, 서로 같은 변이나 각 세 가지와 합동 조건을 들어 설명하시오.",
+        "bAnswer": "$\\overline{AB}=\\overline{CD}$, $\\overline{AD}=\\overline{CB}$(직사각형의 마주 보는 변)이고 $\\overline{BD}$는 공통이므로 $\\mathrm{SSS}$ 합동이다. ($\\overline{AB}=\\overline{CD}$, $\\angle A=\\angle C=90^\\circ$, $\\overline{AD}=\\overline{CB}$로 $\\mathrm{SAS}$ 합동이라 해도 된다.)",
+        "bGoal": "대각선으로 나뉜 두 삼각형의 합동 설명",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{AB}=\\overline{CD}$, $\\overline{AD}=\\overline{CB}$, $\\overline{BD}$는 공통",
+              "$\\overline{AB}=\\overline{CD}$, $\\angle A=\\angle C=90^\\circ$, $\\overline{AD}=\\overline{CB}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\mathrm{SSS}$ 합동",
+              "$\\mathrm{SAS}$ 합동"
+            ]
+          }
+        ],
+        "bReason": "꼭짓점 순서를 밝히고, 맞는 다른 합동 조건도 답이 되도록 열어 두었다.",
+        "cDecision": "rewrite",
+        "cAfter": "직사각형 $ABCD$에 대각선 $BD$를 그으면 $\\triangle ABD$와 $\\triangle CDB$는 마주 보는 변의 길이가 각각 같고 $\\overline{BD}$는 {공통}이므로, 세 쌍의 변의 길이가 같아 {$\\mathrm{SSS}$} 합동이다.",
+        "cAnswers": [
+          "공통",
+          "$\\mathrm{SSS}$"
+        ],
+        "cReason": "연달아 놓인 두 빈칸 중 '합동'은 뻔해 공통인 변의 근거를 묻게 했다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "직사각형에서 합동 조건 적용",
+        "authorBatch": 17,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1720,
+        "part": "m1plus",
+        "sourceFingerprint": "b23e8588396d53fd078127940cadc1678ed6f1d2e6f687cecc603e426f2c76b8",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1720
+        },
+        "directReview": null,
+        "cMarkedSentence": "직사각형 $ABCD$에 대각선 $BD$를 그으면 $\\triangle ABD$와 $\\triangle CDB$는 마주 보는 변의 길이가 각각 같고 $\\overline{BD}$는 {공통}이므로, 세 쌍의 변의 길이가 같아 {$\\mathrm{SSS}$} 합동이다.",
+        "cSlotAnswers": [
+          "공통",
+          "$\\mathrm{SSS}$"
+        ],
+        "cStudentSentence": "직사각형 $ABCD$에 대각선 $BD$를 그으면 $\\triangle ABD$와 $\\triangle CDB$는 마주 보는 변의 길이가 각각 같고 $\\overline{BD}$는 □이므로, 세 쌍의 변의 길이가 같아 □ 합동이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "공통",
+            "equivalentAnswers": [
+              "공통"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\mathrm{SSS}$",
+            "equivalentAnswers": [
+              "$\\mathrm{SSS}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "공통"
+          ],
+          [
+            "$\\mathrm{SSS}$"
+          ]
+        ],
+        "proposalFingerprint": "a1e3bc7424521a8fc2abbb22549541ed4a944fe3b0a84ccee1d95c1048e70934"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-05-07-xc14",
+        "section": "중1::5. 기본 도형::합동",
+        "term": "함께 가진 부분을 빼서 같은 길이 얻기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "길이가 같은 두 선분이 한 부분을 함께 가지면, 함께 가진 부분을 {빼고} 남은 두 부분의 길이도 {같다}.",
+        "example": {
+          "prompt": "한 직선 위에 차례로 놓인 $A$, $B$, $C$, $D$에서 $\\overline{AC}=\\overline{BD}$이면 $\\overline{AB}=\\overline{CD}$인 까닭은?",
+          "answer": "둘 다 $\\overline{BC}$를 빼서"
+        },
+        "studentC": "길이가 같은 두 선분이 한 부분을 함께 가지면, 함께 가진 부분을 □ 남은 두 부분의 길이도 □.",
+        "answers": [
+          "빼고",
+          "같다"
+        ]
+      },
+      "proposal": {
+        "id": "m1-05-07-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "한 직선 위에 네 점 $A$, $B$, $C$, $D$가 이 순서대로 놓여 있고 $\\overline{AC}=\\overline{BD}$이다. 이때 $\\overline{AB}=\\overline{CD}$인 까닭을 설명하시오.",
+        "bAnswer": "$\\overline{AB}=\\overline{AC}-\\overline{BC}$이고 $\\overline{CD}=\\overline{BD}-\\overline{BC}$이다. 길이가 같은 두 선분에서 공통인 $\\overline{BC}$를 각각 뺀 것이므로 남은 길이도 같다.",
+        "bGoal": "공통 부분을 빼서 같은 길이 보이기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\overline{AC}$와 $\\overline{BD}$에서 공통인 $\\overline{BC}$를 각각 뺀다",
+              "$\\overline{AB}=\\overline{AC}-\\overline{BC}$이고 $\\overline{CD}=\\overline{BD}-\\overline{BC}$"
+            ]
+          }
+        ],
+        "bReason": "추상적인 방법이라 점의 순서와 조건이 있는 예로 까닭을 묻게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "한 직선 위에 점 $A$, $B$, $C$, $D$가 차례로 있고 $\\overline{AC}=\\overline{BD}$이면, 두 선분이 함께 가진 {$\\overline{BC}$}를 각각 빼고 남은 $\\overline{AB}$와 $\\overline{CD}$의 길이도 {같다}.",
+        "cAnswers": [
+          "$\\overline{BC}$",
+          "같다"
+        ],
+        "cReason": "'함께 가진 부분'이 무엇인지 알 수 없어 점 이름이 있는 상황으로 바꿨다.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "같은 길이에서 공통 부분을 빼기",
+        "authorBatch": 17,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 1721,
+        "part": "m1plus",
+        "sourceFingerprint": "e577c7148f4e62d4e103b1029111a76cf6baf528aba0ed90d9026f0cc01ff913",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1721
+        },
+        "directReview": null,
+        "cMarkedSentence": "한 직선 위에 점 $A$, $B$, $C$, $D$가 차례로 있고 $\\overline{AC}=\\overline{BD}$이면, 두 선분이 함께 가진 {$\\overline{BC}$}를 각각 빼고 남은 $\\overline{AB}$와 $\\overline{CD}$의 길이도 {같다}.",
+        "cSlotAnswers": [
+          "$\\overline{BC}$",
+          "같다"
+        ],
+        "cStudentSentence": "한 직선 위에 점 $A$, $B$, $C$, $D$가 차례로 있고 $\\overline{AC}=\\overline{BD}$이면, 두 선분이 함께 가진 □를 각각 빼고 남은 $\\overline{AB}$와 $\\overline{CD}$의 길이도 □.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\overline{BC}$",
+            "equivalentAnswers": [
+              "$\\overline{BC}$",
+              "선분 $BC$",
+              "$\\overline{CB}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "같다",
+            "equivalentAnswers": [
+              "같다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$\\overline{BC}$",
+            "accept": [
+              "선분 $BC$",
+              "$\\overline{CB}$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$\\overline{BC}$",
+            "선분 $BC$",
+            "$\\overline{CB}$"
+          ],
+          [
+            "같다"
+          ]
+        ],
+        "proposalFingerprint": "c37dee95155a772ef64ca9f61d336e56d0b07550b7fcec3ff74a5c78a0634f12"
+      }
+    }
+  ]
+}

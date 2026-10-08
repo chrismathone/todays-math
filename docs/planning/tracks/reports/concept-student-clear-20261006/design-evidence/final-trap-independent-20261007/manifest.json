@@ -1,0 +1,34 @@
+{
+  "status": "Actual independent30-slot response bound to exact current capture and raw prompt/output; final current-digest comparison and trap activation pending",
+  "inputSha256": "f312d92c8ad238133e2513f8620485b4edbfb57413b88db7155e2d6bd5f584a6",
+  "groups": 7,
+  "slots": 30,
+  "possiblyValid": 0,
+  "provider": "claude",
+  "model": "sonnet",
+  "ms": 31195,
+  "usage": {
+    "input": 2,
+    "output": 5018,
+    "reasoning": 1992
+  },
+  "verifiedAt": "2026-10-07T10:42:40.014Z",
+  "files": [
+    {
+      "file": "trap-final-reread-claude-20261007-input.md",
+      "sha256": "e072db2596effca20fdbc0395629e860fdbc90dbe7019a2e2af0300e65cb0866"
+    },
+    {
+      "file": "trap-final-reread-claude-20261007-raw.md",
+      "sha256": "e60943f735e6d709d6a169033f60a91bd601b5a0c632c33b041dcdc344146554"
+    },
+    {
+      "file": "trap-final-reread-claude-20261007-meta.json",
+      "sha256": "7e9bca7254fdd1c4e5d06122ad8116b069074140ba3b8323200dd407ea4744a9"
+    },
+    {
+      "file": "trap-final-reread-claude-20261007-result.json",
+      "sha256": "47e7e269cc2094781757c78a6808a77725232a56b40d96cd6d1411acd6ab5e44"
+    }
+  ]
+}

@@ -1,0 +1,2840 @@
+{
+  "sourceCommit": "13bf05dce",
+  "purpose": "Actual fields captured before direct Codex reading; capture is not a verdict",
+  "start": 2643,
+  "end": 2673,
+  "rows": [
+    {
+      "source": {
+        "sourceIndex": 2643,
+        "sourceFingerprint": "7904c45c78a4d6abbb16eee70bfad3bc0b369a63983b7e7f46934e65ac905903",
+        "part": "e4plus",
+        "id": "e4-2-5-2-xc28",
+        "section": "초4::2-5 꺾은선그래프::2-5-2 꺾은선그래프 내용 알아보기",
+        "term": "오른 횟수와 늘어난 양",
+        "kind": "성질",
+        "level": "상",
+        "definition": "같은 기간에 조사한 두 자료가 각각 처음보다 늘었을 때, 오른 구간의 수만 세어 전체 늘어난 양의 크기를 비교할 수는 {없다}. 한 번에 늘어난 양도 함께 살펴야 하기 때문이다.",
+        "studentC": "같은 기간에 조사한 두 자료가 각각 처음보다 늘었을 때, 오른 구간의 수만 세어 전체 늘어난 양의 크기를 비교할 수는 □. 한 번에 늘어난 양도 함께 살펴야 하기 때문이다.",
+        "answers": [
+          "없다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2643,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-2 꺾은선그래프 내용 알아보기",
+        "sourceFingerprint": "7904c45c78a4d6abbb16eee70bfad3bc0b369a63983b7e7f46934e65ac905903",
+        "proposalFingerprint": "d812bbaf2158a7ef65e39d307f53c68f1ec3fc5f7cd08f78a128a1d7c2a65d3d",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-2-xc28",
+        "bDecision": "rewrite",
+        "bPrompt": "같은 기간에 가 그래프는 $4$번 올라 모두 $8$ 늘었고 나 그래프는 $2$번 올라 모두 $12$ 늘었다. 오른 구간의 수만 보고 어느 쪽이 더 많이 늘었는지 정할 수 있는지 쓰고 이유를 설명하시오.",
+        "bAnswer": "정할 수 없다. 늘어난 양을 비교해야 하며 나가 $12$로 더 많이 늘었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "정할 수 없다",
+              "할 수 없다"
+            ]
+          },
+          {
+            "anyOf": [
+              "늘어난 양을 비교해야 한다",
+              "한 번에 늘어난 양도 살펴야 한다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "오른 횟수와 늘어난 양 구별",
+        "bReason": "구간 수가 아니라 늘어난 양으로 비교",
+        "cDecision": "rewrite",
+        "cAfter": "오른 구간이 더 많은 그래프라도 한 번에 늘어난 양이 작으면 전체로 늘어난 양은 더 {작을} 수 있다.",
+        "cReason": "뒷문장이 답을 드러내 이유 조건을 앞에 넣음",
+        "cSlotEquivalents": [
+          [
+            "적을"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "오른 횟수와 늘어난 양",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "오른 구간이 더 많은 그래프라도 한 번에 늘어난 양이 작으면 전체로 늘어난 양은 더 {작을} 수 있다.",
+        "cStudentSentence": "오른 구간이 더 많은 그래프라도 한 번에 늘어난 양이 작으면 전체로 늘어난 양은 더 □ 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "작을",
+            "equivalents": [
+              "적을"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "같은 기간에 가 그래프는 $4$번 올라 모두 $8$ 늘었고 나 그래프는 $2$번 올라 모두 $12$ 늘었다. 오른 구간의 수만 보고 어느 쪽이 더 많이 늘었는지 정할 수 있는지 쓰고 이유를 설명하시오.",
+          "answer": "정할 수 없다. 늘어난 양을 비교해야 하며 나가 $12$로 더 많이 늘었다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "정할 수 없다",
+                "할 수 없다"
+              ]
+            },
+            {
+              "anyOf": [
+                "늘어난 양을 비교해야 한다",
+                "한 번에 늘어난 양도 살펴야 한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "오른 구간이 더 많은 그래프라도 한 번에 늘어난 양이 작으면 전체로 늘어난 양은 더 {작을} 수 있다.",
+          "acceptedAnswers": [
+            [
+              "작을",
+              "적을"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2644,
+        "sourceFingerprint": "2359ed4581129252f15262d689de6ddaaad630fd8fff7da9f7adc2fb4758b3dc",
+        "part": "e4plus",
+        "id": "e4-2-5-3-xc1",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "term": "그래프를 그리기 전 자료 정리",
+        "kind": "방법",
+        "level": "하",
+        "definition": "조사한 때와 값을 {표}에 정리하면 빠뜨린 자료를 확인하기 쉽다.",
+        "studentC": "조사한 때와 값을 □에 정리하면 빠뜨린 자료를 확인하기 쉽다.",
+        "answers": [
+          "표"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2644,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "2359ed4581129252f15262d689de6ddaaad630fd8fff7da9f7adc2fb4758b3dc",
+        "proposalFingerprint": "f3525cf3df2a32aef4953b37cd4b9c77af1ee0d9adc59d3b24b2b62e93bdac87",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "꺾은선그래프를 그리기 전에 조사한 때와 값을 표로 정리하면 어떤 점이 좋은지 쓰시오.",
+        "bAnswer": "빠뜨린 자료가 없는지 확인하기 쉽다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "빠뜨린 자료를 확인하기 쉽다",
+              "빠진 자료가 없는지 알 수 있다",
+              "한눈에 보기 쉽다",
+              "그래프로 옮기기 쉽다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "표로 정리하는 좋은 점",
+        "bReason": "그리기 전 자료 정리의 쓸모를 말하게 함",
+        "cDecision": "keep",
+        "cReason": "익숙한 낱말 빈칸이며 답이 표로 분명함",
+        "cSlotEquivalents": [
+          [
+            "표로"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "그래프를 그리기 전 자료 정리",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "조사한 때와 값을 {표}에 정리하면 빠뜨린 자료를 확인하기 쉽다.",
+        "cStudentSentence": "조사한 때와 값을 □에 정리하면 빠뜨린 자료를 확인하기 쉽다.",
+        "cSlotAnswers": [
+          {
+            "expected": "표",
+            "equivalents": [
+              "표로"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "조사한 때와 값을 □에 정리하면 빠뜨린 자료를 확인하기 쉽다.",
+          "answers": [
+            "표"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "꺾은선그래프를 그리기 전에 조사한 때와 값을 표로 정리하면 어떤 점이 좋은지 쓰시오.",
+          "answer": "빠뜨린 자료가 없는지 확인하기 쉽다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "빠뜨린 자료를 확인하기 쉽다",
+                "빠진 자료가 없는지 알 수 있다",
+                "한눈에 보기 쉽다",
+                "그래프로 옮기기 쉽다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "조사한 때와 값을 {표}에 정리하면 빠뜨린 자료를 확인하기 쉽다.",
+          "acceptedAnswers": [
+            [
+              "표",
+              "표로"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2645,
+        "sourceFingerprint": "c6de961263e350c1eab07405ba38b25ff9a4fbfe49d9261aac5935665df99204",
+        "part": "e4plus",
+        "id": "e4-2-5-3-xc2",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "term": "가로축에 시간 적기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "시간에 따른 변화를 그릴 때 가로축의 때는 {시간 차례}에 맞춰 놓는다.",
+        "studentC": "시간에 따른 변화를 그릴 때 가로축의 때는 □에 맞춰 놓는다.",
+        "answers": [
+          "시간 차례"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2645,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "c6de961263e350c1eab07405ba38b25ff9a4fbfe49d9261aac5935665df99204",
+        "proposalFingerprint": "81f5597bdef10909179030c9e91257f7666e13ce9fd11e679129ad487c196937",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc2",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "가로축 시간 차례",
+        "bReason": "2-5-1 xc24와 같은 순서 목표",
+        "exclusionReason": "시간 순서를 지키는 목표는 2-5-1 xc24 질문에서 이미 묻는다",
+        "cDecision": "keep",
+        "cReason": "차례 빈칸이 짧고 익숙함",
+        "cSlotEquivalents": [
+          [
+            "차례",
+            "순서",
+            "시간 순서",
+            "날짜 순서"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "가로축에 시간 적기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "시간에 따른 변화를 그릴 때 가로축의 때는 {시간 차례}에 맞춰 놓는다.",
+        "cStudentSentence": "시간에 따른 변화를 그릴 때 가로축의 때는 □에 맞춰 놓는다.",
+        "cSlotAnswers": [
+          {
+            "expected": "시간 차례",
+            "equivalents": [
+              "차례",
+              "순서",
+              "시간 순서",
+              "날짜 순서"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "시간에 따른 변화를 그릴 때 가로축의 때는 □에 맞춰 놓는다.",
+          "answers": [
+            "시간 차례"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "시간에 따른 변화를 그릴 때 가로축의 때는 {시간 차례}에 맞춰 놓는다.",
+          "acceptedAnswers": [
+            [
+              "시간 차례",
+              "차례",
+              "순서",
+              "시간 순서",
+              "날짜 순서"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "2-5-1 xc24와 같은 순서 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2646,
+        "sourceFingerprint": "8e821d40cfcd3c9335cffe575ea842bd3478c7d048c6e09ead53c3c0371a7612",
+        "part": "e4plus",
+        "id": "e4-2-5-3-xc3",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "term": "세로축 눈금 고르기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "세로축의 한 칸이 나타낼 양을 정할 때 자료의 {가장 큰 값}도 담길지 살핀다.",
+        "studentC": "세로축의 한 칸이 나타낼 양을 정할 때 자료의 □도 담길지 살핀다.",
+        "answers": [
+          "가장 큰 값"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2646,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "8e821d40cfcd3c9335cffe575ea842bd3478c7d048c6e09ead53c3c0371a7612",
+        "proposalFingerprint": "276f9e0d6cfcf38baf4c7b2714fef61cc08da0290d9078de36ccc99f7fece0ae",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc3",
+        "bDecision": "rewrite",
+        "bPrompt": "꺾은선그래프의 세로축에서 한 칸이 나타낼 양을 정할 때 자료의 값과 관련해 무엇을 살펴야 하는지 쓰시오.",
+        "bAnswer": "가장 큰 값까지 눈금 안에 들어가는지 살펴야 한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "가장 큰 값이 눈금 안에 들어가는지",
+              "모든 자료가 그래프에 들어가는지"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "세로 눈금 정하는 기준",
+        "bReason": "눈금이 자료를 담아야 함을 확인",
+        "cDecision": "keep",
+        "cReason": "가장 큰 값 빈칸이 짧고 앞뒤가 분명함",
+        "cSlotEquivalents": [
+          [
+            "최댓값",
+            "제일 큰 값",
+            "큰 값",
+            "가장 큰 자료"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "세로축 눈금 고르기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "세로축의 한 칸이 나타낼 양을 정할 때 자료의 {가장 큰 값}도 담길지 살핀다.",
+        "cStudentSentence": "세로축의 한 칸이 나타낼 양을 정할 때 자료의 □도 담길지 살핀다.",
+        "cSlotAnswers": [
+          {
+            "expected": "가장 큰 값",
+            "equivalents": [
+              "최댓값",
+              "제일 큰 값",
+              "큰 값",
+              "가장 큰 자료"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "세로축의 한 칸이 나타낼 양을 정할 때 자료의 □도 담길지 살핀다.",
+          "answers": [
+            "가장 큰 값"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "꺾은선그래프의 세로축에서 한 칸이 나타낼 양을 정할 때 자료의 값과 관련해 무엇을 살펴야 하는지 쓰시오.",
+          "answer": "가장 큰 값까지 눈금 안에 들어가는지 살펴야 한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "가장 큰 값이 눈금 안에 들어가는지",
+                "모든 자료가 그래프에 들어가는지"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "세로축의 한 칸이 나타낼 양을 정할 때 자료의 {가장 큰 값}도 담길지 살핀다.",
+          "acceptedAnswers": [
+            [
+              "가장 큰 값",
+              "최댓값",
+              "제일 큰 값",
+              "큰 값",
+              "가장 큰 자료"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2647,
+        "sourceFingerprint": "4ae62476f5f3477427c152c0a1146d1f222796f680bd835d4666dd219e235459",
+        "part": "e4plus",
+        "id": "e4-2-5-3-xc4",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "term": "같은 칸에 같은 양 표시",
+        "kind": "방법",
+        "level": "하",
+        "definition": "물결선으로 생략한 곳을 빼면, 한 축에서 간격이 같은 눈금에는 수량도 {같은 양씩} 늘어나게 적는다.",
+        "studentC": "물결선으로 생략한 곳을 빼면, 한 축에서 간격이 같은 눈금에는 수량도 □ 늘어나게 적는다.",
+        "answers": [
+          "같은 양씩"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2647,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "4ae62476f5f3477427c152c0a1146d1f222796f680bd835d4666dd219e235459",
+        "proposalFingerprint": "ab03299edc105bd848fa955d7930fed9eaccce4eda4527430c8d0c74248725cc",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc4",
+        "bDecision": "rewrite",
+        "bPrompt": "물결선이 없는 세로축에서 눈금 사이 간격이 모두 같을 때, 눈금에 쓰는 수는 어떻게 늘어나게 적어야 하는지 쓰시오.",
+        "bAnswer": "간격이 같으면 같은 양씩 늘어나게 적는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "같은 양씩 늘어난다",
+              "일정한 수만큼씩 커진다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "같은 간격에 같은 양",
+        "bReason": "눈금 간격과 수량의 대응을 말하게 함",
+        "cDecision": "keep",
+        "cReason": "같은 양씩 빈칸이 짧고 조건이 분명함",
+        "cSlotEquivalents": [
+          [
+            "똑같은 양씩",
+            "일정한 양씩",
+            "똑같이"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "같은 칸에 같은 양 표시",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "물결선으로 생략한 곳을 빼면, 한 축에서 간격이 같은 눈금에는 수량도 {같은 양씩} 늘어나게 적는다.",
+        "cStudentSentence": "물결선으로 생략한 곳을 빼면, 한 축에서 간격이 같은 눈금에는 수량도 □ 늘어나게 적는다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같은 양씩",
+            "equivalents": [
+              "똑같은 양씩",
+              "일정한 양씩",
+              "똑같이"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "물결선으로 생략한 곳을 빼면, 한 축에서 간격이 같은 눈금에는 수량도 □ 늘어나게 적는다.",
+          "answers": [
+            "같은 양씩"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "물결선이 없는 세로축에서 눈금 사이 간격이 모두 같을 때, 눈금에 쓰는 수는 어떻게 늘어나게 적어야 하는지 쓰시오.",
+          "answer": "간격이 같으면 같은 양씩 늘어나게 적는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "같은 양씩 늘어난다",
+                "일정한 수만큼씩 커진다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "물결선으로 생략한 곳을 빼면, 한 축에서 간격이 같은 눈금에는 수량도 {같은 양씩} 늘어나게 적는다.",
+          "acceptedAnswers": [
+            [
+              "같은 양씩",
+              "똑같은 양씩",
+              "일정한 양씩",
+              "똑같이"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2648,
+        "sourceFingerprint": "d00082c40ab25d5297a9ce07e7dcd3ada3a50a1e4a72664e6074c45ca624ba9a",
+        "part": "e4plus",
+        "id": "e4-2-5-3-xc5",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "term": "자와 점 잇기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "이웃한 자료점을 연결할 때 자를 대고 {곧은 선분}을 그린다.",
+        "studentC": "이웃한 자료점을 연결할 때 자를 대고 □을 그린다.",
+        "answers": [
+          "곧은 선분"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2648,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "d00082c40ab25d5297a9ce07e7dcd3ada3a50a1e4a72664e6074c45ca624ba9a",
+        "proposalFingerprint": "780d9425821faca827107dd555d3936c81c280622b864864779685091825e263",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc5",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "자로 점 잇기",
+        "bReason": "단순 작도 사실",
+        "exclusionReason": "자를 대고 선분을 긋는 단순 작도 사실이라 설명할 수학 이유가 약함",
+        "cDecision": "keep",
+        "cReason": "곧은 선분 빈칸이 짧고 익숙함",
+        "cSlotEquivalents": [
+          [
+            "선분",
+            "곧은 선"
+          ]
+        ],
+        "answerNotes": "직선은 선분과 다르므로 정답으로 받지 않는다.",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "자와 점 잇기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "이웃한 자료점을 연결할 때 자를 대고 {곧은 선분}을 그린다.",
+        "cStudentSentence": "이웃한 자료점을 연결할 때 자를 대고 □을 그린다.",
+        "cSlotAnswers": [
+          {
+            "expected": "곧은 선분",
+            "equivalents": [
+              "선분",
+              "곧은 선"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "이웃한 자료점을 연결할 때 자를 대고 □을 그린다.",
+          "answers": [
+            "곧은 선분"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "이웃한 자료점을 연결할 때 자를 대고 {곧은 선분}을 그린다.",
+          "acceptedAnswers": [
+            [
+              "곧은 선분",
+              "선분",
+              "곧은 선"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "단순 작도 사실"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2649,
+        "sourceFingerprint": "694221e700a5e0c962f69af2e8795783bce4749669b0eced019f6be808ceccb2",
+        "part": "e4plus",
+        "id": "e4-2-5-3-xc6",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "term": "제목 붙이기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "그래프를 다 그린 뒤 {어떤 변화를 나타냈는지} 알 수 있는 제목을 붙인다.",
+        "studentC": "그래프를 다 그린 뒤 □ 알 수 있는 제목을 붙인다.",
+        "answers": [
+          "어떤 변화를 나타냈는지"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2649,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "694221e700a5e0c962f69af2e8795783bce4749669b0eced019f6be808ceccb2",
+        "proposalFingerprint": "35ade9deb79f07885718405a9d519e95c491e05212033e48b2e4257254798e7b",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc6",
+        "bDecision": "rewrite",
+        "bPrompt": "꺾은선그래프를 다 그린 뒤 제목을 붙일 때 제목에서 알 수 있어야 하는 내용은 무엇인지 쓰시오.",
+        "bAnswer": "그래프가 어떤 변화를 나타내는지 알 수 있어야 한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "어떤 변화를 나타내는지",
+              "무엇에 대한 그래프인지"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "제목에 담을 내용",
+        "bReason": "제목의 역할을 변화 내용으로 말하게 함",
+        "cDecision": "rewrite",
+        "cAfter": "그래프를 다 그린 뒤 어떤 변화를 나타냈는지 알 수 있는 {제목}을 붙인다.",
+        "cReason": "긴 구절 빈칸을 친숙한 낱말로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "이름"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "제목 붙이기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "그래프를 다 그린 뒤 어떤 변화를 나타냈는지 알 수 있는 {제목}을 붙인다.",
+        "cStudentSentence": "그래프를 다 그린 뒤 어떤 변화를 나타냈는지 알 수 있는 □을 붙인다.",
+        "cSlotAnswers": [
+          {
+            "expected": "제목",
+            "equivalents": [
+              "이름"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "꺾은선그래프를 다 그린 뒤 제목을 붙일 때 제목에서 알 수 있어야 하는 내용은 무엇인지 쓰시오.",
+          "answer": "그래프가 어떤 변화를 나타내는지 알 수 있어야 한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "어떤 변화를 나타내는지",
+                "무엇에 대한 그래프인지"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "그래프를 다 그린 뒤 어떤 변화를 나타냈는지 알 수 있는 {제목}을 붙인다.",
+          "acceptedAnswers": [
+            [
+              "제목",
+              "이름"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2650,
+        "sourceFingerprint": "d771d2d613df728c6713f296d04dc9bf2c2a7ba839e0f6d59274fd9de562b2f8",
+        "part": "e4plus",
+        "id": "e4-2-5-3-xc7",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "term": "단위 적기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "꺾은선그래프의 수량이 무엇을 나타내는지 다른 사람도 알 수 있도록, 축 옆에 명이나 킬로그램 같은 {단위}를 적는다.",
+        "studentC": "꺾은선그래프의 수량이 무엇을 나타내는지 다른 사람도 알 수 있도록, 축 옆에 명이나 킬로그램 같은 □를 적는다.",
+        "answers": [
+          "단위"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2650,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "d771d2d613df728c6713f296d04dc9bf2c2a7ba839e0f6d59274fd9de562b2f8",
+        "proposalFingerprint": "89efd17877a117b79d9eb95885ea341ea535d1af647199199540c6479cb9ecf8",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc7",
+        "bDecision": "rewrite",
+        "bPrompt": "꺾은선그래프의 세로축 옆에 명이나 킬로그램 같은 단위를 적어 두면 그래프를 보는 사람에게 어떤 도움이 되는지 쓰시오.",
+        "bAnswer": "수량이 무엇을 나타내는지 다른 사람도 알 수 있다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "수량이 무엇을 나타내는지 알 수 있다",
+              "값이 사람 수인지 무게인지 알 수 있다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "단위를 적는 까닭",
+        "bReason": "단위가 값의 뜻을 알려 줌을 설명",
+        "cDecision": "keep",
+        "cReason": "단위 빈칸이 친숙하고 예시가 있음",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "단위 적기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "꺾은선그래프의 수량이 무엇을 나타내는지 다른 사람도 알 수 있도록, 축 옆에 명이나 킬로그램 같은 {단위}를 적는다.",
+        "cStudentSentence": "꺾은선그래프의 수량이 무엇을 나타내는지 다른 사람도 알 수 있도록, 축 옆에 명이나 킬로그램 같은 □를 적는다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "단위",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "꺾은선그래프의 수량이 무엇을 나타내는지 다른 사람도 알 수 있도록, 축 옆에 명이나 킬로그램 같은 □를 적는다.",
+          "answers": [
+            "단위"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "꺾은선그래프의 세로축 옆에 명이나 킬로그램 같은 단위를 적어 두면 그래프를 보는 사람에게 어떤 도움이 되는지 쓰시오.",
+          "answer": "수량이 무엇을 나타내는지 다른 사람도 알 수 있다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "수량이 무엇을 나타내는지 알 수 있다",
+                "값이 사람 수인지 무게인지 알 수 있다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "꺾은선그래프의 수량이 무엇을 나타내는지 다른 사람도 알 수 있도록, 축 옆에 명이나 킬로그램 같은 {단위}를 적는다.",
+          "acceptedAnswers": [
+            [
+              "단위"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2651,
+        "sourceFingerprint": "0c467bb05ee54a1b7fbe2c9f1e368cf76d4d1a8d17e011ef9218409031d251a8",
+        "part": "e4plus",
+        "id": "e4-2-5-3-xc8",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "term": "점을 빠뜨리지 않았는지 확인하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "표의 자료 수와 찍힌 {점의 수}를 견주어 누락을 확인한다.",
+        "studentC": "표의 자료 수와 찍힌 □를 견주어 누락을 확인한다.",
+        "answers": [
+          "점의 수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2651,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "0c467bb05ee54a1b7fbe2c9f1e368cf76d4d1a8d17e011ef9218409031d251a8",
+        "proposalFingerprint": "53bfca2edd146c8acb2f26892ba34930488c0f9151ce0190b6ab2eb1befa5d79",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc8",
+        "bDecision": "rewrite",
+        "bPrompt": "표에는 자료가 $6$개 있는데 그래프에는 점이 $5$개 찍혀 있다. 무엇을 알 수 있는지 쓰고 어떻게 고쳐야 하는지 설명하시오.",
+        "bAnswer": "점을 하나 빠뜨렸다. 표와 비교해 빠진 때를 찾아 점을 찍는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "점이 하나 빠졌다",
+              "점을 빠뜨렸다"
+            ]
+          },
+          {
+            "anyOf": [
+              "표와 비교해 빠진 때를 찾아 점을 찍는다",
+              "빠진 점을 찍는다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "점 누락 확인",
+        "bReason": "자료 수와 점 수를 견주어 누락을 찾음",
+        "cDecision": "keep",
+        "cReason": "점의 수 빈칸이 짧고 앞과 대응됨",
+        "cSlotEquivalents": [
+          [
+            "점의 개수"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "점을 빠뜨리지 않았는지 확인하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "표의 자료 수와 찍힌 {점의 수}를 견주어 누락을 확인한다.",
+        "cStudentSentence": "표의 자료 수와 찍힌 □를 견주어 누락을 확인한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "점의 수",
+            "equivalents": [
+              "점의 개수"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "표의 자료 수와 찍힌 □를 견주어 누락을 확인한다.",
+          "answers": [
+            "점의 수"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "표에는 자료가 $6$개 있는데 그래프에는 점이 $5$개 찍혀 있다. 무엇을 알 수 있는지 쓰고 어떻게 고쳐야 하는지 설명하시오.",
+          "answer": "점을 하나 빠뜨렸다. 표와 비교해 빠진 때를 찾아 점을 찍는다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "점이 하나 빠졌다",
+                "점을 빠뜨렸다"
+              ]
+            },
+            {
+              "anyOf": [
+                "표와 비교해 빠진 때를 찾아 점을 찍는다",
+                "빠진 점을 찍는다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "표의 자료 수와 찍힌 {점의 수}를 견주어 누락을 확인한다.",
+          "acceptedAnswers": [
+            [
+              "점의 수",
+              "점의 개수"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2652,
+        "sourceFingerprint": "fee5e73916857822e0ab3c6a8aa9aada1467c680f7738bed13e1de5e4194fe74",
+        "part": "e4plus",
+        "id": "e4-2-5-3-xc9",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "term": "시간 간격 표시",
+        "kind": "방법",
+        "level": "하",
+        "definition": "같은 시간 간격은 가로축에서도 {같은 칸 수}로 나타낸다.",
+        "studentC": "같은 시간 간격은 가로축에서도 □로 나타낸다.",
+        "answers": [
+          "같은 칸 수"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2652,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "fee5e73916857822e0ab3c6a8aa9aada1467c680f7738bed13e1de5e4194fe74",
+        "proposalFingerprint": "a02e7bf3365706aae75911decc5d1c98a1904e0f6ef0c7fc8a61e26b43d9e9c7",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc9",
+        "bDecision": "rewrite",
+        "bPrompt": "가로축에 $1$일, $2$일, $3$일의 자료를 나타낸다. 날과 날 사이의 간격은 가로축에서 어떻게 나타내야 하는지 쓰시오.",
+        "bAnswer": "같은 시간 간격이므로 가로축에서도 같은 칸 수로 나타낸다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "같은 칸 수",
+              "같은 간격",
+              "같은 길이"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "시간 간격과 칸 수",
+        "bReason": "같은 시간은 같은 간격임을 확인",
+        "cDecision": "keep",
+        "cReason": "같은 칸 수 빈칸이 짧고 앞 조건이 분명함",
+        "cSlotEquivalents": [
+          [
+            "같은 칸",
+            "같은 간격",
+            "같은 길이"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "시간 간격 표시",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "같은 시간 간격은 가로축에서도 {같은 칸 수}로 나타낸다.",
+        "cStudentSentence": "같은 시간 간격은 가로축에서도 □로 나타낸다.",
+        "cSlotAnswers": [
+          {
+            "expected": "같은 칸 수",
+            "equivalents": [
+              "같은 칸",
+              "같은 간격",
+              "같은 길이"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "같은 시간 간격은 가로축에서도 □로 나타낸다.",
+          "answers": [
+            "같은 칸 수"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "가로축에 $1$일, $2$일, $3$일의 자료를 나타낸다. 날과 날 사이의 간격은 가로축에서 어떻게 나타내야 하는지 쓰시오.",
+          "answer": "같은 시간 간격이므로 가로축에서도 같은 칸 수로 나타낸다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "같은 칸 수",
+                "같은 간격",
+                "같은 길이"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "같은 시간 간격은 가로축에서도 {같은 칸 수}로 나타낸다.",
+          "acceptedAnswers": [
+            [
+              "같은 칸 수",
+              "같은 칸",
+              "같은 간격",
+              "같은 길이"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2653,
+        "sourceFingerprint": "617118782dc53eb2362eebcc26fac70dffd2a5182cdec6cf699cbea14bdbed4e",
+        "part": "e4plus",
+        "id": "e4-2-5-3-xc10",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "term": "눈금 크기에 따른 필요한 칸 수",
+        "kind": "방법",
+        "level": "중",
+        "definition": "$0$보다 큰 같은 수량을 나타낼 때 한 칸의 값을 크게 잡으면 필요한 칸은 {줄어든다}.",
+        "studentC": "$0$보다 큰 같은 수량을 나타낼 때 한 칸의 값을 크게 잡으면 필요한 칸은 □.",
+        "answers": [
+          "줄어든다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2653,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "617118782dc53eb2362eebcc26fac70dffd2a5182cdec6cf699cbea14bdbed4e",
+        "proposalFingerprint": "cb7fa7d441fe379043d916645ee4af36e74a02f14b0bc3d9b02c16579359edd8",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc10",
+        "bDecision": "rewrite",
+        "bPrompt": "수량 $40$을 나타낼 때 한 칸이 $10$이면 $4$칸이 필요하다. 한 칸을 $20$으로 정하면 필요한 칸 수는 어떻게 되는지 쓰고 이유를 설명하시오.",
+        "bAnswer": "$2$칸으로 줄어든다. $40\\div20=2$이므로 한 칸의 값이 크면 필요한 칸이 줄어든다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$2$칸",
+              "줄어든다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$40\\div20$",
+              "한 칸의 값이 커지면 필요한 칸이 줄어든다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "한 칸의 크기와 칸 수",
+        "bReason": "한 칸 값이 커지면 칸 수가 줄어듦",
+        "cDecision": "keep",
+        "cReason": "줄어든다 빈칸이 짧고 조건이 문장에 있음",
+        "cSlotEquivalents": [
+          [
+            "적어진다",
+            "줄어든",
+            "작아진다"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "눈금 크기에 따른 필요한 칸 수",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$0$보다 큰 같은 수량을 나타낼 때 한 칸의 값을 크게 잡으면 필요한 칸은 {줄어든다}.",
+        "cStudentSentence": "$0$보다 큰 같은 수량을 나타낼 때 한 칸의 값을 크게 잡으면 필요한 칸은 □.",
+        "cSlotAnswers": [
+          {
+            "expected": "줄어든다",
+            "equivalents": [
+              "적어진다",
+              "줄어든",
+              "작아진다"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "$0$보다 큰 같은 수량을 나타낼 때 한 칸의 값을 크게 잡으면 필요한 칸은 □.",
+          "answers": [
+            "줄어든다"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "수량 $40$을 나타낼 때 한 칸이 $10$이면 $4$칸이 필요하다. 한 칸을 $20$으로 정하면 필요한 칸 수는 어떻게 되는지 쓰고 이유를 설명하시오.",
+          "answer": "$2$칸으로 줄어든다. $40\\div20=2$이므로 한 칸의 값이 크면 필요한 칸이 줄어든다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$2$칸",
+                "줄어든다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$40\\div20$",
+                "한 칸의 값이 커지면 필요한 칸이 줄어든다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$0$보다 큰 같은 수량을 나타낼 때 한 칸의 값을 크게 잡으면 필요한 칸은 {줄어든다}.",
+          "acceptedAnswers": [
+            [
+              "줄어든다",
+              "적어진다",
+              "줄어든",
+              "작아진다"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2654,
+        "sourceFingerprint": "39e443b85e3661ecc7f5b5a0160d47e824eeae1c10869932f83e07356b9ccb5e",
+        "part": "e4plus",
+        "id": "e4-2-5-3-xc11",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "term": "물결선을 쓰기 좋은 자료",
+        "kind": "방법",
+        "level": "중",
+        "definition": "자료들이 큰 수 부근에 모여 있으면 아래쪽 눈금을 {생략}하여 변화를 보기 좋게 할 수 있다.",
+        "studentC": "자료들이 큰 수 부근에 모여 있으면 아래쪽 눈금을 □하여 변화를 보기 좋게 할 수 있다.",
+        "answers": [
+          "생략"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2654,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "39e443b85e3661ecc7f5b5a0160d47e824eeae1c10869932f83e07356b9ccb5e",
+        "proposalFingerprint": "36c02f6d3be7723e5e46165aae29fbd9004517fe5672744f94ad81feb1b49508",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "자료의 값이 모두 $80$ 근처인 꺾은선그래프를 그린다. 세로축을 $0$부터 모두 그리면 변화가 잘 보이지 않는다. 변화를 더 잘 보이게 하려면 세로 눈금을 어떻게 하면 좋은지 쓰시오.",
+        "bAnswer": "물결선을 그려 아래쪽 눈금을 생략하고 $80$ 근처부터 눈금을 나타낸다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "물결선으로 아래 눈금을 생략한다",
+              "물결선을 쓴다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "물결선으로 눈금 줄이기",
+        "bReason": "큰 수 부근 자료에서 물결선의 쓸모 확인",
+        "cDecision": "rewrite",
+        "cAfter": "자료들이 큰 수 부근에 모여 있으면 아래쪽 눈금을 {물결선}으로 줄여 변화를 보기 좋게 할 수 있다.",
+        "cReason": "'생략'은 어려운 말이라 익숙한 물결선으로 바꿈",
+        "cSlotEquivalents": [
+          [
+            "물결 선"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "물결선을 쓰기 좋은 자료",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "자료들이 큰 수 부근에 모여 있으면 아래쪽 눈금을 {물결선}으로 줄여 변화를 보기 좋게 할 수 있다.",
+        "cStudentSentence": "자료들이 큰 수 부근에 모여 있으면 아래쪽 눈금을 □으로 줄여 변화를 보기 좋게 할 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "물결선",
+            "equivalents": [
+              "물결 선"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "자료의 값이 모두 $80$ 근처인 꺾은선그래프를 그린다. 세로축을 $0$부터 모두 그리면 변화가 잘 보이지 않는다. 변화를 더 잘 보이게 하려면 세로 눈금을 어떻게 하면 좋은지 쓰시오.",
+          "answer": "물결선을 그려 아래쪽 눈금을 생략하고 $80$ 근처부터 눈금을 나타낸다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "물결선으로 아래 눈금을 생략한다",
+                "물결선을 쓴다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "자료들이 큰 수 부근에 모여 있으면 아래쪽 눈금을 {물결선}으로 줄여 변화를 보기 좋게 할 수 있다.",
+          "acceptedAnswers": [
+            [
+              "물결선",
+              "물결 선"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2655,
+        "sourceFingerprint": "bbc5d1567c57f5d2f230c18ef1aa51e52e74459cb6cebacc27bbba3c6f06e146",
+        "part": "e4plus",
+        "id": "e4-2-5-3-xc12",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "term": "세로축 범위 정하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "눈금을 일부 줄여도 가장 작은 값부터 가장 큰 값까지 {모든 자료}를 표시해야 한다.",
+        "studentC": "눈금을 일부 줄여도 가장 작은 값부터 가장 큰 값까지 □를 표시해야 한다.",
+        "answers": [
+          "모든 자료"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2655,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "bbc5d1567c57f5d2f230c18ef1aa51e52e74459cb6cebacc27bbba3c6f06e146",
+        "proposalFingerprint": "16c507a3e6476eb37b8c2bc20e20a9448b66f27f86db8d913c587724b8e8ff74",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "물결선으로 아래쪽 눈금을 생략하는 세로축에서도 반드시 나타내야 하는 것은 무엇인지 쓰시오.",
+        "bAnswer": "가장 작은 값부터 가장 큰 값까지 모든 자료를 나타내야 한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "가장 작은 값부터 가장 큰 값까지",
+              "모든 자료가 들어가야 한다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "생략해도 모든 자료 표시",
+        "bReason": "눈금을 줄여도 자료가 빠지면 안 됨",
+        "cDecision": "keep",
+        "cReason": "모든 자료 빈칸이 앞 범위와 잘 연결됨",
+        "cSlotEquivalents": [
+          [
+            "모든 값",
+            "모든 점",
+            "자료 모두",
+            "자료 전부"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "세로축 범위 정하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "눈금을 일부 줄여도 가장 작은 값부터 가장 큰 값까지 {모든 자료}를 표시해야 한다.",
+        "cStudentSentence": "눈금을 일부 줄여도 가장 작은 값부터 가장 큰 값까지 □를 표시해야 한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "모든 자료",
+            "equivalents": [
+              "모든 값",
+              "모든 점",
+              "자료 모두",
+              "자료 전부"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "눈금을 일부 줄여도 가장 작은 값부터 가장 큰 값까지 □를 표시해야 한다.",
+          "answers": [
+            "모든 자료"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "물결선으로 아래쪽 눈금을 생략하는 세로축에서도 반드시 나타내야 하는 것은 무엇인지 쓰시오.",
+          "answer": "가장 작은 값부터 가장 큰 값까지 모든 자료를 나타내야 한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "가장 작은 값부터 가장 큰 값까지",
+                "모든 자료가 들어가야 한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "눈금을 일부 줄여도 가장 작은 값부터 가장 큰 값까지 {모든 자료}를 표시해야 한다.",
+          "acceptedAnswers": [
+            [
+              "모든 자료",
+              "모든 값",
+              "모든 점",
+              "자료 모두",
+              "자료 전부"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2656,
+        "sourceFingerprint": "138303c37e8ffb198f16e1e5e5069cf40245dce6bc2c7295d40d7f10e433c371",
+        "part": "e4plus",
+        "id": "e4-2-5-3-xc13",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "term": "점과 표 대조하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "완성한 그래프의 점을 하나씩 읽어 원래 표의 {같은 때의 값}과 맞는지 확인한다.",
+        "studentC": "완성한 그래프의 점을 하나씩 읽어 원래 표의 □과 맞는지 확인한다.",
+        "answers": [
+          "같은 때의 값"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2656,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "138303c37e8ffb198f16e1e5e5069cf40245dce6bc2c7295d40d7f10e433c371",
+        "proposalFingerprint": "b99ab8238fafe2a0df4ead1a01cb12cf82afaa7277423d2e803bf6b9736cd93c",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc13",
+        "bDecision": "rewrite",
+        "bPrompt": "꺾은선그래프를 다 그린 뒤 점이 맞게 찍혔는지 확인하는 방법을 쓰시오.",
+        "bAnswer": "점을 하나씩 읽어 원래 표의 같은 때의 값과 맞는지 비교한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "점의 값을 읽어 표의 같은 때의 값과 비교한다",
+              "표의 값과 점을 하나씩 맞춰 본다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "그래프와 표 대조하기",
+        "bReason": "완성 뒤 점 확인 방법을 말하게 함",
+        "cDecision": "rewrite",
+        "cAfter": "완성한 그래프의 점을 하나씩 읽어 원래 표의 같은 때의 {값}과 맞는지 확인한다.",
+        "cReason": "긴 구절 빈칸을 한 낱말로 줄임",
+        "cSlotEquivalents": [
+          [
+            "수",
+            "자료"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "점과 표 대조하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "완성한 그래프의 점을 하나씩 읽어 원래 표의 같은 때의 {값}과 맞는지 확인한다.",
+        "cStudentSentence": "완성한 그래프의 점을 하나씩 읽어 원래 표의 같은 때의 □과 맞는지 확인한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "값",
+            "equivalents": [
+              "수",
+              "자료"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "꺾은선그래프를 다 그린 뒤 점이 맞게 찍혔는지 확인하는 방법을 쓰시오.",
+          "answer": "점을 하나씩 읽어 원래 표의 같은 때의 값과 맞는지 비교한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "점의 값을 읽어 표의 같은 때의 값과 비교한다",
+                "표의 값과 점을 하나씩 맞춰 본다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "완성한 그래프의 점을 하나씩 읽어 원래 표의 같은 때의 {값}과 맞는지 확인한다.",
+          "acceptedAnswers": [
+            [
+              "값",
+              "수",
+              "자료"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2657,
+        "sourceFingerprint": "dc54cb6483fea833fa1bbc1b6deace9d245caabe9c943778518a592468747a13",
+        "part": "e4plus",
+        "id": "e4-2-5-3-xc14",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "term": "처음부터 올라간 양으로 예상하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "일정한 양씩 늘어난다는 가정에서는 마지막 값에 그 양을 {더해} 다음 값을 예상한다.",
+        "studentC": "일정한 양씩 늘어난다는 가정에서는 마지막 값에 그 양을 □ 다음 값을 예상한다.",
+        "answers": [
+          "더해"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2657,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "dc54cb6483fea833fa1bbc1b6deace9d245caabe9c943778518a592468747a13",
+        "proposalFingerprint": "5e63cffb684b26c2ca52ec959cbdbfa67cd611b42da36e5075fc93b4c0c97ec0",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "값이 $10$, $13$, $16$으로 같은 양씩 늘어났다. 같은 양씩 계속 늘어난다고 가정할 때 다음 값은 얼마인지 쓰고 구하는 방법을 쓰시오.",
+        "bAnswer": "$19$이다. 늘어난 양 $3$을 마지막 값 $16$에 더해 $16+3=19$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$19$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$16+3$",
+              "마지막 값에 늘어난 양을 더한다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "늘어나는 자료 다음 값 예상",
+        "bReason": "일정한 증가량을 마지막 값에 더함",
+        "cDecision": "keep",
+        "cReason": "더해 빈칸이 한 낱말이고 방향이 분명함",
+        "cSlotEquivalents": [
+          [
+            "더해서",
+            "더한"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "처음부터 올라간 양으로 예상하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "일정한 양씩 늘어난다는 가정에서는 마지막 값에 그 양을 {더해} 다음 값을 예상한다.",
+        "cStudentSentence": "일정한 양씩 늘어난다는 가정에서는 마지막 값에 그 양을 □ 다음 값을 예상한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "더해",
+            "equivalents": [
+              "더해서",
+              "더한"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "일정한 양씩 늘어난다는 가정에서는 마지막 값에 그 양을 □ 다음 값을 예상한다.",
+          "answers": [
+            "더해"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "값이 $10$, $13$, $16$으로 같은 양씩 늘어났다. 같은 양씩 계속 늘어난다고 가정할 때 다음 값은 얼마인지 쓰고 구하는 방법을 쓰시오.",
+          "answer": "$19$이다. 늘어난 양 $3$을 마지막 값 $16$에 더해 $16+3=19$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$19$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$16+3$",
+                "마지막 값에 늘어난 양을 더한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "일정한 양씩 늘어난다는 가정에서는 마지막 값에 그 양을 {더해} 다음 값을 예상한다.",
+          "acceptedAnswers": [
+            [
+              "더해",
+              "더해서",
+              "더한"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2658,
+        "sourceFingerprint": "c9d8248a2b72a38f43c1b65c3f291e26e630227dba38b9188813664392bfbe72",
+        "part": "e4plus",
+        "id": "e4-2-5-3-xc15",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "term": "줄어드는 자료의 다음 값 예상",
+        "kind": "방법",
+        "level": "중",
+        "definition": "같은 양씩 준다고 가정하면 마지막 값에서 그 양을 {빼어} 다음 값을 예상한다.",
+        "studentC": "같은 양씩 준다고 가정하면 마지막 값에서 그 양을 □ 다음 값을 예상한다.",
+        "answers": [
+          "빼어"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2658,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "c9d8248a2b72a38f43c1b65c3f291e26e630227dba38b9188813664392bfbe72",
+        "proposalFingerprint": "af55f2d76ef2ab676ae5a68f64ce9eac325fc855bcf5aa597a9958ef3c7fa4b5",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc15",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "줄어드는 자료 다음 값 예상",
+        "bReason": "xc14 예상 방법의 거울",
+        "exclusionReason": "xc14와 같은 예상 방법이고 더하기만 빼기로 바뀐 반복",
+        "cDecision": "keep",
+        "cReason": "빼어 빈칸이 한 낱말이고 방향이 분명함",
+        "cSlotEquivalents": [
+          [
+            "빼서",
+            "뺀"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "줄어드는 자료의 다음 값 예상",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "같은 양씩 준다고 가정하면 마지막 값에서 그 양을 {빼어} 다음 값을 예상한다.",
+        "cStudentSentence": "같은 양씩 준다고 가정하면 마지막 값에서 그 양을 □ 다음 값을 예상한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "빼어",
+            "equivalents": [
+              "빼서",
+              "뺀"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "같은 양씩 준다고 가정하면 마지막 값에서 그 양을 □ 다음 값을 예상한다.",
+          "answers": [
+            "빼어"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "같은 양씩 준다고 가정하면 마지막 값에서 그 양을 {빼어} 다음 값을 예상한다.",
+          "acceptedAnswers": [
+            [
+              "빼어",
+              "빼서",
+              "뺀"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "xc14 예상 방법의 거울"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2659,
+        "sourceFingerprint": "294291e438943a4ee28ec07b75e5bc2486fa47c3d9ad846992919c0fc362c496",
+        "part": "e4plus",
+        "id": "e4-2-5-3-xc16",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "term": "그려진 점의 잘못 고치기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "점 하나의 값이 틀렸다면 그 점을 옮기고 그 점에 이어진 {선분}도 고친다.",
+        "studentC": "점 하나의 값이 틀렸다면 그 점을 옮기고 그 점에 이어진 □도 고친다.",
+        "answers": [
+          "선분"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2659,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "294291e438943a4ee28ec07b75e5bc2486fa47c3d9ad846992919c0fc362c496",
+        "proposalFingerprint": "9b89d7fb04c74e31f55e0b38fdadf1cd92d805a9f5e16c08901877c0a0e01c94",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "꺾은선그래프에서 한 점의 값이 틀리게 찍혔다. 그 점을 옮기는 것 말고 또 무엇을 고쳐야 하는지 쓰고 이유를 설명하시오.",
+        "bAnswer": "그 점에 이어진 선분도 고친다. 점이 옮겨지면 연결된 선분의 모양이 바뀌기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "그 점에 이어진 선분",
+              "점과 연결된 선"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "점을 고칠 때 선분도 고치기",
+        "bReason": "점과 선분이 이어져 있음을 알고 고치게 함",
+        "cDecision": "keep",
+        "cReason": "선분 빈칸이 짧고 익숙함",
+        "cSlotEquivalents": [
+          [
+            "선",
+            "연결선"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "그려진 점의 잘못 고치기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "점 하나의 값이 틀렸다면 그 점을 옮기고 그 점에 이어진 {선분}도 고친다.",
+        "cStudentSentence": "점 하나의 값이 틀렸다면 그 점을 옮기고 그 점에 이어진 □도 고친다.",
+        "cSlotAnswers": [
+          {
+            "expected": "선분",
+            "equivalents": [
+              "선",
+              "연결선"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "점 하나의 값이 틀렸다면 그 점을 옮기고 그 점에 이어진 □도 고친다.",
+          "answers": [
+            "선분"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "꺾은선그래프에서 한 점의 값이 틀리게 찍혔다. 그 점을 옮기는 것 말고 또 무엇을 고쳐야 하는지 쓰고 이유를 설명하시오.",
+          "answer": "그 점에 이어진 선분도 고친다. 점이 옮겨지면 연결된 선분의 모양이 바뀌기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "그 점에 이어진 선분",
+                "점과 연결된 선"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "점 하나의 값이 틀렸다면 그 점을 옮기고 그 점에 이어진 {선분}도 고친다.",
+          "acceptedAnswers": [
+            [
+              "선분",
+              "선",
+              "연결선"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2660,
+        "sourceFingerprint": "15c18db23127f0d16544c09a6795482ad2d71bb354acac4a1eb1b1ed327ff7bd",
+        "part": "e4plus",
+        "id": "e4-2-5-3-xc17",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "term": "눈금이 너무 큰 경우",
+        "kind": "성질",
+        "level": "중",
+        "definition": "한 칸의 값을 너무 크게 잡으면 작은 변화가 잘 {드러나지 않을 수 있다}.",
+        "studentC": "한 칸의 값을 너무 크게 잡으면 작은 변화가 잘 □.",
+        "answers": [
+          "드러나지 않을 수 있다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2660,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "15c18db23127f0d16544c09a6795482ad2d71bb354acac4a1eb1b1ed327ff7bd",
+        "proposalFingerprint": "67e9de6f3a4754336f8b422a79bbe5559342b8c297bfaebc1f51f0cd3b0badfe",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "세로 한 칸이 $100$을 나타내는 꺾은선그래프에 값이 $3$ 정도만 변하는 자료를 나타냈다. 변화가 잘 보이는지 쓰고 이유를 설명하시오.",
+        "bAnswer": "잘 보이지 않는다. 한 칸이 크면 작은 변화는 한 칸보다 훨씬 작게 그려져 거의 같은 높이로 보인다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "잘 보이지 않는다",
+              "드러나지 않는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 칸이 커서 작은 변화는 거의 같은 높이로 보인다",
+              "변화가 한 칸보다 훨씬 작다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "눈금이 너무 클 때의 문제",
+        "bReason": "작은 변화가 눈금에 묻힘을 설명",
+        "cDecision": "rewrite",
+        "cAfter": "한 칸의 값을 너무 크게 잡으면 작은 변화가 잘 {보이지} 않을 수 있다.",
+        "cReason": "긴 구절 빈칸을 한 낱말로 줄임",
+        "cSlotEquivalents": [
+          [
+            "드러나지",
+            "눈에 띄지"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "눈금이 너무 큰 경우",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "한 칸의 값을 너무 크게 잡으면 작은 변화가 잘 {보이지} 않을 수 있다.",
+        "cStudentSentence": "한 칸의 값을 너무 크게 잡으면 작은 변화가 잘 □ 않을 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "보이지",
+            "equivalents": [
+              "드러나지",
+              "눈에 띄지"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "세로 한 칸이 $100$을 나타내는 꺾은선그래프에 값이 $3$ 정도만 변하는 자료를 나타냈다. 변화가 잘 보이는지 쓰고 이유를 설명하시오.",
+          "answer": "잘 보이지 않는다. 한 칸이 크면 작은 변화는 한 칸보다 훨씬 작게 그려져 거의 같은 높이로 보인다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "잘 보이지 않는다",
+                "드러나지 않는다"
+              ]
+            },
+            {
+              "anyOf": [
+                "한 칸이 커서 작은 변화는 거의 같은 높이로 보인다",
+                "변화가 한 칸보다 훨씬 작다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "한 칸의 값을 너무 크게 잡으면 작은 변화가 잘 {보이지} 않을 수 있다.",
+          "acceptedAnswers": [
+            [
+              "보이지",
+              "드러나지",
+              "눈에 띄지"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2661,
+        "sourceFingerprint": "5693b03d959c70ad63040656ff54e9c927b98ad787c959f19774928df81151f4",
+        "part": "e4plus",
+        "id": "e4-2-5-3-xc18",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "term": "관찰 목적에 맞는 자료 모으기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "식물의 자람을 조사하려면 같은 식물의 키를 {여러 때}에 재어 모은다.",
+        "studentC": "식물의 자람을 조사하려면 같은 식물의 키를 □에 재어 모은다.",
+        "answers": [
+          "여러 때"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2661,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "5693b03d959c70ad63040656ff54e9c927b98ad787c959f19774928df81151f4",
+        "proposalFingerprint": "2d0c627d86463777ed85f3d44b3e23863d26b9a8551d3d209376ae5838a29366",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "식물이 시간이 지나며 얼마나 자라는지 알아보려고 한다. 어떤 자료를 어떻게 모아야 하는지 쓰시오.",
+        "bAnswer": "같은 식물의 키를 여러 때에 재어 모은다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "같은 식물"
+            ]
+          },
+          {
+            "anyOf": [
+              "여러 때에 잰다",
+              "일정한 간격으로 여러 번 잰다"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "변화 조사에 맞는 자료",
+        "bReason": "같은 대상을 여러 때에 재야 함을 확인",
+        "cDecision": "rewrite",
+        "cAfter": "식물의 자람을 조사하려면 같은 식물의 키를 여러 {때}에 재어 모은다.",
+        "cReason": "'여러 때' 구절 빈칸을 한 낱말로 줄임",
+        "cSlotEquivalents": [
+          [
+            "날",
+            "시기",
+            "날짜"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "관찰 목적에 맞는 자료 모으기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "식물의 자람을 조사하려면 같은 식물의 키를 여러 {때}에 재어 모은다.",
+        "cStudentSentence": "식물의 자람을 조사하려면 같은 식물의 키를 여러 □에 재어 모은다.",
+        "cSlotAnswers": [
+          {
+            "expected": "때",
+            "equivalents": [
+              "날",
+              "시기",
+              "날짜"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "식물이 시간이 지나며 얼마나 자라는지 알아보려고 한다. 어떤 자료를 어떻게 모아야 하는지 쓰시오.",
+          "answer": "같은 식물의 키를 여러 때에 재어 모은다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "같은 식물"
+              ]
+            },
+            {
+              "anyOf": [
+                "여러 때에 잰다",
+                "일정한 간격으로 여러 번 잰다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "식물의 자람을 조사하려면 같은 식물의 키를 여러 {때}에 재어 모은다.",
+          "acceptedAnswers": [
+            [
+              "때",
+              "날",
+              "시기",
+              "날짜"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2662,
+        "sourceFingerprint": "9d8693be2fd4725aa4f06984b77f9233b40fe5fbf4605ca912ec8074c3678e48",
+        "part": "e4plus",
+        "id": "e4-2-5-3-xc19",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "term": "그래프를 읽은 뒤 판단하기",
+        "kind": "방법",
+        "level": "중",
+        "definition": "언제 가장 많이 늘었는지 말할 때에는 선 모양과 함께 {실제 값의 차}를 확인한다.",
+        "studentC": "언제 가장 많이 늘었는지 말할 때에는 선 모양과 함께 □를 확인한다.",
+        "answers": [
+          "실제 값의 차"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2662,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "9d8693be2fd4725aa4f06984b77f9233b40fe5fbf4605ca912ec8074c3678e48",
+        "proposalFingerprint": "9a5b0472a5a9b5e469dd804d852327680708bccbe8a94f81c9e39a060fe0a132",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc19",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "가장 많이 늘어난 때 확인",
+        "bReason": "2-5-2 xc14와 같은 목표",
+        "exclusionReason": "각 구간의 차를 구해 가장 큰 증가량을 찾는 2-5-2 xc14와 같은 목표",
+        "cDecision": "rewrite",
+        "cAfter": "언제 가장 많이 늘었는지 말할 때에는 선 모양과 함께 각 구간의 값의 {차}를 구해 확인한다.",
+        "cReason": "'실제 값의 차' 구절 대신 한 낱말 빈칸",
+        "cSlotEquivalents": [
+          [
+            "늘어난 양"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "그래프를 읽은 뒤 판단하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "언제 가장 많이 늘었는지 말할 때에는 선 모양과 함께 각 구간의 값의 {차}를 구해 확인한다.",
+        "cStudentSentence": "언제 가장 많이 늘었는지 말할 때에는 선 모양과 함께 각 구간의 값의 □를 구해 확인한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "차",
+            "equivalents": [
+              "늘어난 양"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "언제 가장 많이 늘었는지 말할 때에는 선 모양과 함께 각 구간의 값의 {차}를 구해 확인한다.",
+          "acceptedAnswers": [
+            [
+              "차",
+              "늘어난 양"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "2-5-2 xc14와 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2663,
+        "sourceFingerprint": "e7cabfce7f2cca21de91017ab99f5e956756942ec1c85d361d2e214086f9272a",
+        "part": "e4plus",
+        "id": "e4-2-5-3-xc20",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "term": "예상값과 관측값 구별",
+        "kind": "방법",
+        "level": "상",
+        "definition": "아직 조사하지 않은 다음 값은 그래프에 쓰더라도 {예상한 값}임을 구별해 표시한다.",
+        "studentC": "아직 조사하지 않은 다음 값은 그래프에 쓰더라도 □임을 구별해 표시한다.",
+        "answers": [
+          "예상한 값"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2663,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "e7cabfce7f2cca21de91017ab99f5e956756942ec1c85d361d2e214086f9272a",
+        "proposalFingerprint": "293aebe104e28c786e5c901e379a150f2dc655e92f3c78673feb11151a9c5229",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "아직 조사하지 않은 다음 값을 예상하여 꺾은선그래프에 나타낼 때 조사한 값과 어떻게 다르게 해야 하는지 쓰시오.",
+        "bAnswer": "예상한 값임을 알 수 있게 구별해서 표시한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "예상한 값임을 구별해 표시한다",
+              "조사한 값과 다르게 표시한다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "예상값과 관측값 구별",
+        "bReason": "예상과 실제 조사를 섞지 않게 함",
+        "cDecision": "keep",
+        "cReason": "예상한 값 빈칸이 앞 조건과 잘 맞음",
+        "cSlotEquivalents": [
+          [
+            "예상값",
+            "짐작한 값",
+            "예측한 값"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "예상값과 관측값 구별",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "아직 조사하지 않은 다음 값은 그래프에 쓰더라도 {예상한 값}임을 구별해 표시한다.",
+        "cStudentSentence": "아직 조사하지 않은 다음 값은 그래프에 쓰더라도 □임을 구별해 표시한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "예상한 값",
+            "equivalents": [
+              "예상값",
+              "짐작한 값",
+              "예측한 값"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "아직 조사하지 않은 다음 값은 그래프에 쓰더라도 □임을 구별해 표시한다.",
+          "answers": [
+            "예상한 값"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "아직 조사하지 않은 다음 값을 예상하여 꺾은선그래프에 나타낼 때 조사한 값과 어떻게 다르게 해야 하는지 쓰시오.",
+          "answer": "예상한 값임을 알 수 있게 구별해서 표시한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "예상한 값임을 구별해 표시한다",
+                "조사한 값과 다르게 표시한다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "아직 조사하지 않은 다음 값은 그래프에 쓰더라도 {예상한 값}임을 구별해 표시한다.",
+          "acceptedAnswers": [
+            [
+              "예상한 값",
+              "예상값",
+              "짐작한 값",
+              "예측한 값"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2664,
+        "sourceFingerprint": "1aa04d8f3ae31c0bfd48e40d42fe9c0f1a87133d8a2ad68acef975a0308eaf48",
+        "part": "e4plus",
+        "id": "e4-2-5-3-xc21",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "term": "점 없는 기간의 표현",
+        "kind": "방법",
+        "level": "상",
+        "definition": "빠진 관측값이 있다면 그 기간은 {조사하지 못했음}을 알리고 임의의 점을 넣지 않는다.",
+        "studentC": "빠진 관측값이 있다면 그 기간은 □을 알리고 임의의 점을 넣지 않는다.",
+        "answers": [
+          "조사하지 못했음"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2664,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "1aa04d8f3ae31c0bfd48e40d42fe9c0f1a87133d8a2ad68acef975a0308eaf48",
+        "proposalFingerprint": "58edeb1073ccb17a8b7f8ee5677f2c499f25af85c1abeb29121727c5b0790b00",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc21",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "조사 못 한 기간 표시",
+        "bReason": "2-5-1 xc25와 같은 목표",
+        "exclusionReason": "조사하지 못한 값을 마음대로 쓰지 않는 2-5-1 xc25와 같은 목표",
+        "cDecision": "rewrite",
+        "cAfter": "빠진 관측값이 있으면 그 날은 {조사하지} 못했다고 알리고 마음대로 점을 넣지 않는다.",
+        "cReason": "긴 구절 빈칸을 한 낱말로 줄임",
+        "cSlotEquivalents": [
+          [
+            "측정하지",
+            "관측하지"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "점 없는 기간의 표현",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "빠진 관측값이 있으면 그 날은 {조사하지} 못했다고 알리고 마음대로 점을 넣지 않는다.",
+        "cStudentSentence": "빠진 관측값이 있으면 그 날은 □ 못했다고 알리고 마음대로 점을 넣지 않는다.",
+        "cSlotAnswers": [
+          {
+            "expected": "조사하지",
+            "equivalents": [
+              "측정하지",
+              "관측하지"
+            ]
+          }
+        ],
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "빠진 관측값이 있으면 그 날은 {조사하지} 못했다고 알리고 마음대로 점을 넣지 않는다.",
+          "acceptedAnswers": [
+            [
+              "조사하지",
+              "측정하지",
+              "관측하지"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "2-5-1 xc25와 같은 목표"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2665,
+        "sourceFingerprint": "533b109d32083f036e03bac76ab6c79fc0eb2cfaafc9fb45b48417d3bc16d73a",
+        "part": "e4plus",
+        "id": "e4-2-5-3-xc22",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "term": "가로축에서 빠진 날짜 처리",
+        "kind": "방법",
+        "level": "상",
+        "definition": "조사하지 않은 날이 있어도 날짜의 간격은 실제 {시간 간격}에 맞게 표시한다.",
+        "studentC": "조사하지 않은 날이 있어도 날짜의 간격은 실제 □에 맞게 표시한다.",
+        "answers": [
+          "시간 간격"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2665,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "533b109d32083f036e03bac76ab6c79fc0eb2cfaafc9fb45b48417d3bc16d73a",
+        "proposalFingerprint": "ada2241ae6cb78e7563ec8d7b6b52acf345813ee1b26d98aa8ea5212d990aada",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "$1$일, $2$일, $4$일에 조사하고 $3$일에는 조사하지 못했다. 가로축에서 $2$일과 $4$일 사이는 어떻게 나타내야 하는지 쓰시오.",
+        "bAnswer": "$3$일 자리를 비워 두고 실제 날수만큼, 즉 두 칸 간격으로 나타낸다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$3$일 자리를 비워 둔다",
+              "실제 날수만큼 간격을 둔다",
+              "두 칸 간격"
+            ]
+          }
+        ],
+        "learningRole": "application",
+        "bGoal": "빠진 날도 실제 간격 유지",
+        "bReason": "조사 안 한 날도 시간 간격에 포함",
+        "cDecision": "rewrite",
+        "cAfter": "조사하지 않은 날이 있어도 날짜의 간격은 실제 {시간} 간격에 맞게 표시한다.",
+        "cReason": "앞 구절 빈칸을 쉬운 낱말로 줄임",
+        "cSlotEquivalents": [
+          [
+            "날짜",
+            "날",
+            "때"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "가로축에서 빠진 날짜 처리",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "조사하지 않은 날이 있어도 날짜의 간격은 실제 {시간} 간격에 맞게 표시한다.",
+        "cStudentSentence": "조사하지 않은 날이 있어도 날짜의 간격은 실제 □ 간격에 맞게 표시한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "시간",
+            "equivalents": [
+              "날짜",
+              "날",
+              "때"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "$1$일, $2$일, $4$일에 조사하고 $3$일에는 조사하지 못했다. 가로축에서 $2$일과 $4$일 사이는 어떻게 나타내야 하는지 쓰시오.",
+          "answer": "$3$일 자리를 비워 두고 실제 날수만큼, 즉 두 칸 간격으로 나타낸다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$3$일 자리를 비워 둔다",
+                "실제 날수만큼 간격을 둔다",
+                "두 칸 간격"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "조사하지 않은 날이 있어도 날짜의 간격은 실제 {시간} 간격에 맞게 표시한다.",
+          "acceptedAnswers": [
+            [
+              "시간",
+              "날짜",
+              "날",
+              "때"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2666,
+        "sourceFingerprint": "7acf1635b60c18646f58bec4d22cbf8cf9396a13c65ea718a804a724a456c303",
+        "part": "e4plus",
+        "id": "e4-2-5-3-xc23",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "term": "서로 다른 두 그래프의 눈금 맞추기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "같은 변화량이 같은 길이로 보이게 비교하려면 두 그래프의 {눈금 크기}를 맞춘다.",
+        "studentC": "같은 변화량이 같은 길이로 보이게 비교하려면 두 그래프의 □를 맞춘다.",
+        "answers": [
+          "눈금 크기"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2666,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "7acf1635b60c18646f58bec4d22cbf8cf9396a13c65ea718a804a724a456c303",
+        "proposalFingerprint": "95797cb0558029a5a214902797b70922fe82d2561624249fb221e36779376de0",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc23",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bRequiredIdeas": [],
+        "learningRole": "procedure",
+        "bGoal": "두 그래프 눈금 맞추기",
+        "bReason": "2-5-2 xc23 눈금 비교와 중복",
+        "exclusionReason": "눈금이 다른 두 그래프 비교는 2-5-2 xc23에서 구체 수로 이미 묻는다",
+        "cDecision": "keep",
+        "cReason": "눈금 크기 빈칸이 짧고 문맥이 분명함",
+        "cSlotEquivalents": [
+          [
+            "눈금",
+            "한 칸의 크기",
+            "눈금 간격"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "서로 다른 두 그래프의 눈금 맞추기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "같은 변화량이 같은 길이로 보이게 비교하려면 두 그래프의 {눈금 크기}를 맞춘다.",
+        "cStudentSentence": "같은 변화량이 같은 길이로 보이게 비교하려면 두 그래프의 □를 맞춘다.",
+        "cSlotAnswers": [
+          {
+            "expected": "눈금 크기",
+            "equivalents": [
+              "눈금",
+              "한 칸의 크기",
+              "눈금 간격"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "같은 변화량이 같은 길이로 보이게 비교하려면 두 그래프의 □를 맞춘다.",
+          "answers": [
+            "눈금 크기"
+          ]
+        },
+        "bQuestion": null,
+        "clozeQuestion": {
+          "sentence": "같은 변화량이 같은 길이로 보이게 비교하려면 두 그래프의 {눈금 크기}를 맞춘다.",
+          "acceptedAnswers": [
+            [
+              "눈금 크기",
+              "눈금",
+              "한 칸의 크기",
+              "눈금 간격"
+            ]
+          ]
+        },
+        "questionExclusions": {
+          "term": "2-5-2 xc23 눈금 비교와 중복"
+        },
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2667,
+        "sourceFingerprint": "7ace85a357a4d629d4a67718b83990a6e330f1300bd6029d2c94e73ef2226ccf",
+        "part": "e4plus",
+        "id": "e4-2-5-3-xc24",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "term": "작은 변화가 크게 보이는 이유",
+        "kind": "성질",
+        "level": "상",
+        "definition": "꺾은선그래프에서 세로 한 칸이 나타내는 수량을 더 {작게} 정하면, 같은 값의 차를 더 많은 칸에 그려 작은 변화도 크게 보일 수 있다.",
+        "studentC": "꺾은선그래프에서 세로 한 칸이 나타내는 수량을 더 □ 정하면, 같은 값의 차를 더 많은 칸에 그려 작은 변화도 크게 보일 수 있다.",
+        "answers": [
+          "작게"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2667,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "7ace85a357a4d629d4a67718b83990a6e330f1300bd6029d2c94e73ef2226ccf",
+        "proposalFingerprint": "c9aa6bc38c2185b2f74b2263e56f0fba8e92dfa5de08148be4c756bbaa9d8b1a",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc24",
+        "bDecision": "rewrite",
+        "bPrompt": "같은 자료에서 세로 한 칸을 $10$에서 $2$로 바꾸어 다시 그렸다. 값이 $6$ 늘어난 구간의 선은 어떻게 달라 보이는지 쓰고 이유를 설명하시오.",
+        "bAnswer": "더 가파르게 보인다. $6\\div2=3$칸이므로 더 많은 칸에 그려진다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "더 가파르게 보인다",
+              "더 크게 보인다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6\\div2=3$칸",
+              "더 많은 칸에 그려진다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "작은 눈금이 변화를 크게 보임",
+        "bReason": "한 칸의 양과 칸 수 관계를 구체 수로 설명",
+        "cDecision": "keep",
+        "cReason": "작게 빈칸이 짧고 이유가 뒤에 있음",
+        "cSlotEquivalents": [
+          [
+            "적게"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "성질",
+          "sourceTerm": "작은 변화가 크게 보이는 이유",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "꺾은선그래프에서 세로 한 칸이 나타내는 수량을 더 {작게} 정하면, 같은 값의 차를 더 많은 칸에 그려 작은 변화도 크게 보일 수 있다.",
+        "cStudentSentence": "꺾은선그래프에서 세로 한 칸이 나타내는 수량을 더 □ 정하면, 같은 값의 차를 더 많은 칸에 그려 작은 변화도 크게 보일 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "작게",
+            "equivalents": [
+              "적게"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "꺾은선그래프에서 세로 한 칸이 나타내는 수량을 더 □ 정하면, 같은 값의 차를 더 많은 칸에 그려 작은 변화도 크게 보일 수 있다.",
+          "answers": [
+            "작게"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "같은 자료에서 세로 한 칸을 $10$에서 $2$로 바꾸어 다시 그렸다. 값이 $6$ 늘어난 구간의 선은 어떻게 달라 보이는지 쓰고 이유를 설명하시오.",
+          "answer": "더 가파르게 보인다. $6\\div2=3$칸이므로 더 많은 칸에 그려진다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "더 가파르게 보인다",
+                "더 크게 보인다"
+              ]
+            },
+            {
+              "anyOf": [
+                "$6\\div2=3$칸",
+                "더 많은 칸에 그려진다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "꺾은선그래프에서 세로 한 칸이 나타내는 수량을 더 {작게} 정하면, 같은 값의 차를 더 많은 칸에 그려 작은 변화도 크게 보일 수 있다.",
+          "acceptedAnswers": [
+            [
+              "작게",
+              "적게"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2668,
+        "sourceFingerprint": "32e7c716e61d0bc7e8ef0b7324a1e776f9d809eddef0964dc2db4d58edc414ee",
+        "part": "e4plus",
+        "id": "e4-2-5-3-xc25",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "term": "두 단계 뒤의 예상값",
+        "kind": "방법",
+        "level": "상",
+        "definition": "같은 양씩 늘어난다고 가정하여 두 번 뒤를 예상하려면 마지막 값에 그 양을 {두 번} 더한다.",
+        "studentC": "같은 양씩 늘어난다고 가정하여 두 번 뒤를 예상하려면 마지막 값에 그 양을 □ 더한다.",
+        "answers": [
+          "두 번"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2668,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "32e7c716e61d0bc7e8ef0b7324a1e776f9d809eddef0964dc2db4d58edc414ee",
+        "proposalFingerprint": "1ef592863e3b348815ed30bcca06dfaeb112290972549c08af477671c09c1204",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "값이 $20$이고 같은 양 $3$씩 늘어난다고 가정한다. 두 번 뒤의 값을 예상하고 방법을 쓰시오.",
+        "bAnswer": "$26$이다. 마지막 값 $20$에 $3$을 두 번 더해 $20+3+3=26$이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$26$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$을 두 번 더한다",
+              "$20+3+3$",
+              "$20+6$"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "두 단계 뒤 값 예상",
+        "bReason": "증가량을 두 번 더하는 방법을 구체 수로 확인",
+        "cDecision": "rewrite",
+        "cAfter": "$3$씩 늘어난다고 가정할 때 마지막 값이 $20$이면 두 번 뒤의 값은 {$26$}으로 예상한다.",
+        "cReason": "'두 번 뒤'와 답이 겹쳐 선명한 계산으로 바꿈",
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "두 단계 뒤의 예상값",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "$3$씩 늘어난다고 가정할 때 마지막 값이 $20$이면 두 번 뒤의 값은 {$26$}으로 예상한다.",
+        "cStudentSentence": "$3$씩 늘어난다고 가정할 때 마지막 값이 $20$이면 두 번 뒤의 값은 □으로 예상한다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "$26$",
+            "equivalents": []
+          }
+        ],
+        "bQuestion": {
+          "prompt": "값이 $20$이고 같은 양 $3$씩 늘어난다고 가정한다. 두 번 뒤의 값을 예상하고 방법을 쓰시오.",
+          "answer": "$26$이다. 마지막 값 $20$에 $3$을 두 번 더해 $20+3+3=26$이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$26$"
+              ]
+            },
+            {
+              "anyOf": [
+                "$3$을 두 번 더한다",
+                "$20+3+3$",
+                "$20+6$"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "$3$씩 늘어난다고 가정할 때 마지막 값이 $20$이면 두 번 뒤의 값은 {$26$}으로 예상한다.",
+          "acceptedAnswers": [
+            [
+              "$26$"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2669,
+        "sourceFingerprint": "36e10141e667fffece9a5fbf6f726aa75682856faab2f1e484104dea61242d36",
+        "part": "e4plus",
+        "id": "e4-2-5-3-xc26",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "term": "자료의 단위를 통일하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "같은 축에 표시할 키를 일부는 미터, 일부는 센티미터로 쟀다면 먼저 {단위를 맞춘다}.",
+        "studentC": "같은 축에 표시할 키를 일부는 미터, 일부는 센티미터로 쟀다면 먼저 □.",
+        "answers": [
+          "단위를 맞춘다"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2669,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "36e10141e667fffece9a5fbf6f726aa75682856faab2f1e484104dea61242d36",
+        "proposalFingerprint": "4a294cdbf2f6185b2b161765a6ff4696ac7ae29a9780336e68559f2238eac226",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc26",
+        "bDecision": "rewrite",
+        "bPrompt": "한 식물의 키를 어떤 날은 $1$ m로, 어떤 날은 $130$ cm로 적은 표가 있다. 같은 세로축에 점을 찍기 전에 무엇을 해야 하는지 쓰시오.",
+        "bAnswer": "길이 단위를 cm나 m 하나로 같게 맞춘다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "단위를 맞춘다",
+              "같은 단위로 바꾼다"
+            ]
+          }
+        ],
+        "learningRole": "procedure",
+        "bGoal": "서로 다른 단위 통일",
+        "bReason": "한 축에 섞인 단위를 먼저 맞춤",
+        "cDecision": "rewrite",
+        "cAfter": "같은 축에 표시할 키를 일부는 미터, 일부는 센티미터로 쟀다면 먼저 {단위}를 같게 맞춘다.",
+        "cReason": "'단위를 맞춘다' 구절을 낱말 빈칸으로 줄임",
+        "cSlotEquivalents": [
+          [
+            "길이 단위"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "자료의 단위를 통일하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "같은 축에 표시할 키를 일부는 미터, 일부는 센티미터로 쟀다면 먼저 {단위}를 같게 맞춘다.",
+        "cStudentSentence": "같은 축에 표시할 키를 일부는 미터, 일부는 센티미터로 쟀다면 먼저 □를 같게 맞춘다.",
+        "cSlotAnswers": [
+          {
+            "expected": "단위",
+            "equivalents": [
+              "길이 단위"
+            ]
+          }
+        ],
+        "bQuestion": {
+          "prompt": "한 식물의 키를 어떤 날은 $1$ m로, 어떤 날은 $130$ cm로 적은 표가 있다. 같은 세로축에 점을 찍기 전에 무엇을 해야 하는지 쓰시오.",
+          "answer": "길이 단위를 cm나 m 하나로 같게 맞춘다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "단위를 맞춘다",
+                "같은 단위로 바꾼다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "같은 축에 표시할 키를 일부는 미터, 일부는 센티미터로 쟀다면 먼저 {단위}를 같게 맞춘다.",
+          "acceptedAnswers": [
+            [
+              "단위",
+              "길이 단위"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2670,
+        "sourceFingerprint": "9c970e7f95b4967d62545d11e4eefae99bec600dc32aa7b70a935df47d294902",
+        "part": "e4plus",
+        "id": "e4-2-5-3-xc27",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "term": "예상과 다른 새 관측값",
+        "kind": "방법",
+        "level": "상",
+        "definition": "새로 조사한 값이 예상과 다르면 그래프에는 {실제로 조사한 값}을 기록한다.",
+        "studentC": "새로 조사한 값이 예상과 다르면 그래프에는 □을 기록한다.",
+        "answers": [
+          "실제로 조사한 값"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2670,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "9c970e7f95b4967d62545d11e4eefae99bec600dc32aa7b70a935df47d294902",
+        "proposalFingerprint": "300a492bc284660f95ff177b69e1b791c268dba79d6d82b4caf2a18fe66f0550",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc27",
+        "bDecision": "rewrite",
+        "bPrompt": "어떤 날의 값을 $20$으로 예상했는데 실제로 조사한 값은 $18$이었다. 그래프에는 어느 값을 기록해야 하는지 쓰고 이유를 설명하시오.",
+        "bAnswer": "$18$을 기록한다. 그래프에는 실제로 조사한 값을 기록해야 하기 때문이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$18$"
+            ]
+          },
+          {
+            "anyOf": [
+              "실제로 조사한 값이므로",
+              "예상값이 아니라 실제 값"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "예상보다 실제 조사값 기록",
+        "bReason": "예상과 조사값이 다를 때 기준을 확인",
+        "cDecision": "keep",
+        "cReason": "실제로 조사한 값 빈칸이 앞과 대비됨",
+        "cSlotEquivalents": [
+          [
+            "조사한 값",
+            "실제 값",
+            "관측값",
+            "실제로 잰 값"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "예상과 다른 새 관측값",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "새로 조사한 값이 예상과 다르면 그래프에는 {실제로 조사한 값}을 기록한다.",
+        "cStudentSentence": "새로 조사한 값이 예상과 다르면 그래프에는 □을 기록한다.",
+        "cSlotAnswers": [
+          {
+            "expected": "실제로 조사한 값",
+            "equivalents": [
+              "조사한 값",
+              "실제 값",
+              "관측값",
+              "실제로 잰 값"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "새로 조사한 값이 예상과 다르면 그래프에는 □을 기록한다.",
+          "answers": [
+            "실제로 조사한 값"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "어떤 날의 값을 $20$으로 예상했는데 실제로 조사한 값은 $18$이었다. 그래프에는 어느 값을 기록해야 하는지 쓰고 이유를 설명하시오.",
+          "answer": "$18$을 기록한다. 그래프에는 실제로 조사한 값을 기록해야 하기 때문이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "$18$"
+              ]
+            },
+            {
+              "anyOf": [
+                "실제로 조사한 값이므로",
+                "예상값이 아니라 실제 값"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "새로 조사한 값이 예상과 다르면 그래프에는 {실제로 조사한 값}을 기록한다.",
+          "acceptedAnswers": [
+            [
+              "실제로 조사한 값",
+              "조사한 값",
+              "실제 값",
+              "관측값",
+              "실제로 잰 값"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2671,
+        "sourceFingerprint": "c90e8f30c62572269958ad3a30cd1423217454eab408a8b542497373a92b009e",
+        "part": "e4plus",
+        "id": "e4-2-5-3-xc28",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "term": "적당한 눈금인지 설명하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "꺾은선그래프의 눈금은 전체 자료가 들어가고 값의 차를 읽기 {쉽게} 정한다. 그래야 다른 사람도 변화를 알아볼 수 있다.",
+        "studentC": "꺾은선그래프의 눈금은 전체 자료가 들어가고 값의 차를 읽기 □ 정한다. 그래야 다른 사람도 변화를 알아볼 수 있다.",
+        "answers": [
+          "쉽게"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2671,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-5 꺾은선그래프::2-5-3 꺾은선그래프 그리기와 활용하기",
+        "sourceFingerprint": "c90e8f30c62572269958ad3a30cd1423217454eab408a8b542497373a92b009e",
+        "proposalFingerprint": "18901bb375dc166b981f96e60fa06d0f5d60c19df56c15c373ee7fa8784c537e",
+        "reviewStatus": "draft",
+        "id": "e4-2-5-3-xc28",
+        "bDecision": "rewrite",
+        "bPrompt": "꺾은선그래프의 세로 눈금을 정할 때 지켜야 할 기준 두 가지를 쓰시오.",
+        "bAnswer": "전체 자료가 들어가야 하고 값의 차를 읽기 쉽게 정한다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "전체 자료가 들어간다",
+              "모든 자료가 들어간다"
+            ]
+          },
+          {
+            "anyOf": [
+              "값의 차를 읽기 쉽다",
+              "변화를 알아보기 쉽다"
+            ]
+          }
+        ],
+        "learningRole": "reason",
+        "bGoal": "적당한 눈금의 기준",
+        "bReason": "자료 포함과 읽기 쉬움 두 기준을 확인",
+        "cDecision": "keep",
+        "cReason": "쉽게 빈칸이 짧고 뒤 문장이 이유를 보충",
+        "cSlotEquivalents": [
+          [
+            "편하게",
+            "좋게",
+            "편리하게"
+          ]
+        ],
+        "roleEvidence": {
+          "sourceKind": "방법",
+          "sourceTerm": "적당한 눈금인지 설명하기",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "꺾은선그래프의 눈금은 전체 자료가 들어가고 값의 차를 읽기 {쉽게} 정한다. 그래야 다른 사람도 변화를 알아볼 수 있다.",
+        "cStudentSentence": "꺾은선그래프의 눈금은 전체 자료가 들어가고 값의 차를 읽기 □ 정한다. 그래야 다른 사람도 변화를 알아볼 수 있다.",
+        "cSlotAnswers": [
+          {
+            "expected": "쉽게",
+            "equivalents": [
+              "편하게",
+              "좋게",
+              "편리하게"
+            ]
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "꺾은선그래프의 눈금은 전체 자료가 들어가고 값의 차를 읽기 □ 정한다. 그래야 다른 사람도 변화를 알아볼 수 있다.",
+          "answers": [
+            "쉽게"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "꺾은선그래프의 세로 눈금을 정할 때 지켜야 할 기준 두 가지를 쓰시오.",
+          "answer": "전체 자료가 들어가야 하고 값의 차를 읽기 쉽게 정한다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "전체 자료가 들어간다",
+                "모든 자료가 들어간다"
+              ]
+            },
+            {
+              "anyOf": [
+                "값의 차를 읽기 쉽다",
+                "변화를 알아보기 쉽다"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "꺾은선그래프의 눈금은 전체 자료가 들어가고 값의 차를 읽기 {쉽게} 정한다. 그래야 다른 사람도 변화를 알아볼 수 있다.",
+          "acceptedAnswers": [
+            [
+              "쉽게",
+              "편하게",
+              "좋게",
+              "편리하게"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    },
+    {
+      "source": {
+        "sourceIndex": 2672,
+        "sourceFingerprint": "02ace3d391f1a14151560859c3cd01211cf098b6c96f6befbd1decab0ee6cf88",
+        "part": "e4plus",
+        "id": "e4-2-6-1-xc1",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "term": "다각형에서 곧은 테두리",
+        "kind": "정의",
+        "level": "하",
+        "definition": "다각형을 둘러싼 곧은 선분 하나하나를 {변}이라고 부른다.",
+        "studentC": "다각형을 둘러싼 곧은 선분 하나하나를 □이라고 부른다.",
+        "answers": [
+          "변"
+        ]
+      },
+      "proposal": {
+        "sourceIndex": 2672,
+        "grade": "e4",
+        "part": "e4plus",
+        "section": "초4::2-6 다각형::2-6-1 다각형",
+        "sourceFingerprint": "02ace3d391f1a14151560859c3cd01211cf098b6c96f6befbd1decab0ee6cf88",
+        "proposalFingerprint": "444477c2248edf1287750c3d2f1afc9df352bfd7d5c23b230e66791841110289",
+        "reviewStatus": "draft",
+        "id": "e4-2-6-1-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "육각형에서 둘레를 이루는 곧은 선분 하나하나를 무엇이라고 부르는지, 그리고 육각형에는 모두 몇 개 있는지 쓰시오.",
+        "bAnswer": "변이라고 부르며 모두 $6$개이다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "변"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6$개",
+              "여섯 개"
+            ]
+          }
+        ],
+        "learningRole": "naming",
+        "bGoal": "변의 이름과 개수",
+        "bReason": "이름과 개수를 함께 묻는 구체 질문",
+        "cDecision": "keep",
+        "cReason": "익숙한 낱말 빈칸이고 설명이 정의 그대로임",
+        "roleEvidence": {
+          "sourceKind": "정의",
+          "sourceTerm": "다각형에서 곧은 테두리",
+          "basis": "source kind/title and actual B exclusion reason; overlapping roles use one main label"
+        },
+        "cMarkedSentence": "다각형을 둘러싼 곧은 선분 하나하나를 {변}이라고 부른다.",
+        "cStudentSentence": "다각형을 둘러싼 곧은 선분 하나하나를 □이라고 부른다.",
+        "cSlotEquivalents": [],
+        "cSlotAnswers": [
+          {
+            "expected": "변",
+            "equivalents": []
+          }
+        ],
+        "cFrozenSource": {
+          "sentence": "다각형을 둘러싼 곧은 선분 하나하나를 □이라고 부른다.",
+          "answers": [
+            "변"
+          ]
+        },
+        "bQuestion": {
+          "prompt": "육각형에서 둘레를 이루는 곧은 선분 하나하나를 무엇이라고 부르는지, 그리고 육각형에는 모두 몇 개 있는지 쓰시오.",
+          "answer": "변이라고 부르며 모두 $6$개이다.",
+          "requiredIdeas": [
+            {
+              "anyOf": [
+                "변"
+              ]
+            },
+            {
+              "anyOf": [
+                "$6$개",
+                "여섯 개"
+              ]
+            }
+          ]
+        },
+        "clozeQuestion": {
+          "sentence": "다각형을 둘러싼 곧은 선분 하나하나를 {변}이라고 부른다.",
+          "acceptedAnswers": [
+            [
+              "변"
+            ]
+          ]
+        },
+        "questionExclusions": {},
+        "questionRevision": "student-clear-20261006-v1"
+      }
+    }
+  ]
+}

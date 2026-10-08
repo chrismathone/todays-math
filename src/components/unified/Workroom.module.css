@@ -137,13 +137,6 @@
   gap: 5px;
   flex-shrink: 0;
 }
-.navCaption {
-  margin: 0 12px 11px;
-  font-size: var(--text-caption, 12px);
-  font-weight: 550;
-  letter-spacing: 0.4px;
-  color: #8495b1;
-}
 .navigation button {
   position: relative;
   display: flex;
@@ -195,7 +188,7 @@
   background: #233857;
   color: #a6b8d4;
 }
-.teachingNav {
+.navGroupStart {
   margin-top: 16px;
   padding-top: 12px;
   border-top: 1px solid #2c3c55;
@@ -375,6 +368,19 @@
   margin-left: 240px;
   min-height: 100dvh;
 }
+.topbarActions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  min-width: 0;
+  justify-self: end;
+  margin-left: auto;
+}
+.topbarActions .accountSlot {
+  min-width: 0;
+  margin-left: 0;
+}
 .maximizeButton {
   display: inline-flex;
   align-items: center;
@@ -387,6 +393,39 @@
   background: #fff;
   color: #415979;
   white-space: nowrap;
+}
+@media (max-width: 1320px) {
+  .maximizeButton {
+    width: 44px;
+    padding-inline: 0;
+  }
+  .maximizeLabel {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
+}
+@media (max-width: 760px) {
+  .workspace[data-authenticated="true"] .topbarActions {
+    grid-column: 1 / -1;
+    width: 100%;
+    padding-top: 4px;
+    border-top: 1px solid #e4e9f1;
+  }
+  .workspace[data-authenticated="true"] .topbarActions .accountSlot {
+    flex: 1;
+    padding-top: 0;
+    border-top: 0;
+  }
+  .workspace[data-maximized="true"] .topbarActions {
+    grid-column: auto;
+    width: auto;
+    padding: 0;
+    border: 0;
+  }
 }
 .workspace[data-maximized="true"] .sidebar {
   display: none;
@@ -1206,14 +1245,13 @@
   .navigation > div {
     min-width: 0;
   }
-  .navCaption,
   .navLabel,
   .sideDraft,
   .sidebarFooter,
   .libraryCount {
     display: none;
   }
-  .teachingNav {
+  .navGroupStart {
     margin: 0;
     padding: 0;
     border: 0;
@@ -1485,7 +1523,6 @@
   }
   .workspace[data-sidebar-collapsed="true"] .brand > span:last-child,
   .workspace[data-sidebar-collapsed="true"] .newButton > span,
-  .workspace[data-sidebar-collapsed="true"] .navCaption,
   .workspace[data-sidebar-collapsed="true"] .navLabel,
   .workspace[data-sidebar-collapsed="true"] .sideDraft {
     display: none;
@@ -1526,7 +1563,7 @@
   .workspace[data-sidebar-collapsed="true"] .libraryCount {
     display: none;
   }
-  .workspace[data-sidebar-collapsed="true"] .teachingNav {
+  .workspace[data-sidebar-collapsed="true"] .navGroupStart {
     padding-top: 18px;
     margin-top: 16px;
   }
@@ -1593,10 +1630,12 @@
 }
 @media (min-width: 761px) {
   .workspace[data-sidebar-collapsed="true"] .sideHeader {
+    flex-direction: column;
     justify-content: center;
+    gap: 4px;
   }
   .workspace[data-sidebar-collapsed="true"] .sideHeader .brand {
-    display: none;
+    min-height: var(--control-height, 44px);
   }
   .workspace[data-sidebar-collapsed="true"] .sideHeader .sidebarToggle {
     width: 44px;
@@ -1794,10 +1833,10 @@
   }
 }
 
-/* ── 제품 고르기 단추 · 딱지 «영» (D-148 · 05 §8.23 · 시안 C) ─────────
+/* ── 제품 고르기 단추 · 딱지 «수» · «영» (D-148 · 05 §8.23 · 시안 C) ─────────
  * 브랜드 자리가 곧 고르기 단추. 펼침(240px)에서는 목록이 머리 바로 아래 **떠 있는 판**으로 서고(흐름 밖),
  * 접힘(72px)에서는 마크만 남고 목록이 옆으로 뜬다(`profilePanel` 결 — fixed · left 80px).
- * 딱지 «영»은 접힌 옆 메뉴 · 영어일 때만 보인다(수학은 지금 모습 그대로). */
+ * 접힌 머리는 두 제품이 한 벌이다(원장님 2026-10-08) — 마크가 접기 단추 위에 서고, 딱지가 지금 제품을 알린다. */
 .productMenu {
   position: relative;
   flex-shrink: 0;
@@ -1882,19 +1921,7 @@
   .workspace[data-sidebar-collapsed="true"] .brandChevron {
     display: none;
   }
-  /* 접힘 + **영어일 때만**: 마크(딱지 «영»)를 접기 단추 위에 세운다 — 수학 접힘은 기준 그대로(05 §8.23 ⑷
-   * «수학은 지금 모습 그대로»). 수학에서 접힌 채 제품을 바꾸려면 펼친 뒤 고른다 */
-  .workspace[data-sidebar-collapsed="true"][data-product="english"]
-    .sideHeader {
-    flex-direction: column;
-    gap: 4px;
-  }
-  .workspace[data-sidebar-collapsed="true"][data-product="english"]
-    .sideHeader
-    .brand {
-    display: flex;
-    min-height: var(--control-height, 44px);
-  }
+  /* 마크를 접기 단추 위에 세우는 배치는 위 `.sideHeader` 의 접힘 규칙에 있다 — 제품을 보지 않는다 */
   .workspace[data-sidebar-collapsed="true"] .productPicker {
     position: fixed;
     z-index: 70;

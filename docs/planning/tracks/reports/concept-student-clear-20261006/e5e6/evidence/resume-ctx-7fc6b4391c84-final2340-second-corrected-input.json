@@ -1,0 +1,113 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e6-2-3-5-xc3",
+      "bDecision": "revise",
+      "bPrompt": "쌓기나무로 쌓은 모양에서 각 층을 한 장씩 그렸습니다. 그림의 장 수를 보면 쌓은 모양의 무엇을 알 수 있나요? 그림이 $4$장이면 그것은 얼마인지도 쓰세요.",
+      "bAnswer": "몇 층까지 쌓았는지, 즉 가장 높은 층을 알 수 있다. 그림이 $4$장이면 $4$층까지 쌓은 것이다.",
+      "bGoal": "그림 장 수와 쌓은 높이의 관계를 설명한다.",
+      "bReason": "일반 관계를 묻고 짧은 예 $4$장을 함께 확인한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "쌓은 층 수를 알 수 있다",
+            "가장 높은 층을 알 수 있다",
+            "몇 층까지 쌓았는지 알 수 있다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$층",
+            "$4$층까지 쌓았다"
+          ]
+        }
+      ],
+      "learningRole": "application",
+      "cDecision": "revise",
+      "cAfter": "쌓기나무를 쌓은 모양에서 각 층을 한 장씩 그렸다. 그림이 몇 장인지 보면 {가장 높은 층수}를 알 수 있다.",
+      "cReason": "그림 장 수와 가장 높은 층의 관계를 짧게 묻는 원문이 이미 분명하다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "가장 높은 층수",
+            "전체 층수",
+            "몇 층까지 쌓았는지"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-final2340-second.json",
+      "codexFinalAmendedFromFingerprint": "50ff800273ad093b10f9789fa5691acf618c1a4faeb79000a732992822145fa4",
+      "sourceIndex": 2379,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-3-5-xc3",
+        "section": "초6::2-3 공간과 입체::2-3-5 쌓은 모양과 쌓기나무의 개수 알아보기 (4)",
+        "term": "층별 모양의 장 수",
+        "kind": "성질",
+        "level": "하",
+        "definition": "층별로 나타낸 모양이 몇 장인지 보면 {가장 높은 층}을 알 수 있다.",
+        "studentC": "층별로 나타낸 모양이 몇 장인지 보면 □을 알 수 있다.",
+        "answers": [
+          "가장 높은 층"
+        ]
+      },
+      "sourceFingerprint": "e4350d9e95aa75cb8e2f49ef40226cdc10907fb3e17a9dc03268d3d5ed76ca9f",
+      "draftEvidence": "evidence/section-097-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "가장 높은 층수"
+      ],
+      "cStudentAfter": "쌓기나무를 쌓은 모양에서 각 층을 한 장씩 그렸다. 그림이 몇 장인지 보면 □를 알 수 있다.",
+      "cMarkedSentence": "쌓기나무를 쌓은 모양에서 각 층을 한 장씩 그렸다. 그림이 몇 장인지 보면 {가장 높은 층수}를 알 수 있다.",
+      "cStudentSentence": "쌓기나무를 쌓은 모양에서 각 층을 한 장씩 그렸다. 그림이 몇 장인지 보면 □를 알 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "가장 높은 층수",
+          "equivalents": [
+            "전체 층수",
+            "몇 층까지 쌓았는지"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "쌓기나무로 쌓은 모양에서 각 층을 한 장씩 그렸습니다. 그림의 장 수를 보면 쌓은 모양의 무엇을 알 수 있나요? 그림이 $4$장이면 그것은 얼마인지도 쓰세요.",
+        "answer": "몇 층까지 쌓았는지, 즉 가장 높은 층을 알 수 있다. 그림이 $4$장이면 $4$층까지 쌓은 것이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "쌓은 층 수를 알 수 있다",
+              "가장 높은 층을 알 수 있다",
+              "몇 층까지 쌓았는지 알 수 있다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$4$층",
+              "$4$층까지 쌓았다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "쌓기나무를 쌓은 모양에서 각 층을 한 장씩 그렸다. 그림이 몇 장인지 보면 {가장 높은 층수}를 알 수 있다.",
+        "acceptedAnswers": [
+          [
+            "가장 높은 층수",
+            "전체 층수",
+            "몇 층까지 쌓았는지"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "a36024fc185ed9d5a154adfe8fbf504af63ac50a3c6ee1256342f9a7dace344d",
+      "questionRevision": "planning-e5e6-20261006-a36024fc185e",
+      "requiresIndependentReview": true
+    }
+  ]
+}

@@ -1,0 +1,154 @@
+{
+  "input": "C:/Users/user/orca/workspaces/todays-math/student-clear-m1m2m3-20261006/docs/planning/tracks/reports/concept-student-clear-20261006/m1m2m3/evidence/resume-editorial-ctx_9cb9b54195a9/input-final-two.json",
+  "changes": [
+    {
+      "id": "m3-04-01-xc5",
+      "cAfter": "$a\\ne0$일 때 $y=ax^2$과 $y=-ax^2$의 그래프는 두 좌표축 중 {$x$축}에 대하여 서로 {대칭}이다.",
+      "cReason": "원점대칭도참이므로답의범위를두좌표축중하나로정한다."
+    },
+    {
+      "id": "m3-04-02-xc7",
+      "bAnswer": "일반형의 $y$절편은 $c$이고, 표준형의 꼭짓점은 $(p,q)$이다. $y$절편은 $y$축과 만나는 점의 $y$좌표를 뜻한다."
+    }
+  ],
+  "rows": [
+    {
+      "id": "m3-04-01-xc5",
+      "learningRole": "reason",
+      "roleReason": "$y=ax^2$과 $y=-ax^2$의 $x$축 대칭",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bGoal": null,
+      "bReason": "m3-04-01-c6 B의 $x$축 대칭 설명 질문과 목표가 겹친다.",
+      "cDecision": "rewrite",
+      "cReason": "원점대칭도참이므로답의범위를두좌표축중하나로정한다.",
+      "exclusionReason": "B 제외: m3-04-01-c6 B의 $x$축 대칭 설명에서 계수만 $a$로 일반화한 중복 목표이다.",
+      "authorBatch": 57,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3466,
+      "part": "m3plus",
+      "sourceFingerprint": "ebf9950b1343ef062323364f810430cea3545be4f88aba7ac69ae7c7abd0a573",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3466
+      },
+      "directReview": null,
+      "bRequiredIdeas": null,
+      "cMarkedSentence": "$a\\ne0$일 때 $y=ax^2$과 $y=-ax^2$의 그래프는 두 좌표축 중 {$x$축}에 대하여 서로 {대칭}이다.",
+      "cSlotAnswers": [
+        "$x$축",
+        "대칭"
+      ],
+      "cStudentSentence": "$a\\ne0$일 때 $y=ax^2$과 $y=-ax^2$의 그래프는 두 좌표축 중 □에 대하여 서로 □이다.",
+      "cAnswers": [
+        "$x$축",
+        "대칭"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$x$축",
+          "equivalentAnswers": [
+            "$x$축"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "대칭",
+          "equivalentAnswers": [
+            "대칭"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$x$축"
+        ],
+        [
+          "대칭"
+        ]
+      ],
+      "proposalFingerprint": "069590655bf1a8df38b80c74b2d656bab2fb5c24dbd2e746390c950bd5c06c57",
+      "cAfter": "$a\\ne0$일 때 $y=ax^2$과 $y=-ax^2$의 그래프는 두 좌표축 중 {$x$축}에 대하여 서로 {대칭}이다."
+    },
+    {
+      "id": "m3-04-02-xc7",
+      "learningRole": "application",
+      "roleReason": "일반형은 $y$절편, 표준형은 꼭짓점을 보여 줌",
+      "bDecision": "rewrite",
+      "bPrompt": "같은 이차함수를 일반형 $y=ax^2+bx+c$와 표준형 $y=a(x-p)^2+q$로 나타냈다. 일반형에서 $y$절편의 값을, 표준형에서 꼭짓점의 좌표를 주어진 문자로 각각 쓰시오.",
+      "bAnswer": "일반형의 $y$절편은 $c$이고, 표준형의 꼭짓점은 $(p,q)$이다. $y$절편은 $y$축과 만나는 점의 $y$좌표를 뜻한다.",
+      "bGoal": "두 식의 장점 비교",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$y$절편은 $c$"
+          ]
+        },
+        {
+          "anyOf": [
+            "꼭짓점은 $(p,q)$"
+          ]
+        }
+      ],
+      "bReason": "두 형태를 나란히 주고 각각 바로 보이는 정보를 묻게 했다.",
+      "cDecision": "rewrite",
+      "cReason": "두 형태가 보여 주는 정보를 대비시키는 짧은 비교 빈칸이다.",
+      "authorBatch": 57,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 3482,
+      "part": "m3plus",
+      "sourceFingerprint": "4ced68f3063a7474381ac87529dde42c38dd07cc377157faae838484abfcf04a",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 3482
+      },
+      "directReview": null,
+      "cMarkedSentence": "이차함수의 일반형 $y=ax^2+bx+c$에서 $y$축과의 교점은 {$(0,c)$}이다. 같은 함수를 표준형 $y=a(x-p)^2+q$로 쓰면 꼭짓점은 {$(p,q)$}이다.",
+      "cSlotAnswers": [
+        "$(0,c)$",
+        "$(p,q)$"
+      ],
+      "cStudentSentence": "이차함수의 일반형 $y=ax^2+bx+c$에서 $y$축과의 교점은 □이다. 같은 함수를 표준형 $y=a(x-p)^2+q$로 쓰면 꼭짓점은 □이다.",
+      "cAnswers": [
+        "$(0,c)$",
+        "$(p,q)$"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$(0,c)$",
+          "equivalentAnswers": [
+            "$(0,c)$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$(p,q)$",
+          "equivalentAnswers": [
+            "$(p,q)$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$(0,c)$"
+        ],
+        [
+          "$(p,q)$"
+        ]
+      ],
+      "proposalFingerprint": "11dca0cd1fb1b4e02fc4e62af6f260f81b1be8aa41ae207b1a670afad995eb1a",
+      "cAfter": "이차함수의 일반형 $y=ax^2+bx+c$에서 $y$축과의 교점은 {$(0,c)$}이다. 같은 함수를 표준형 $y=a(x-p)^2+q$로 쓰면 꼭짓점은 {$(p,q)$}이다."
+    }
+  ]
+}

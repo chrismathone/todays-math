@@ -1,0 +1,986 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T11:02:27.281Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-01-03-c5",
+        "section": "중3::1. 실수와 그 계산::근호를 포함한 식의 계산",
+        "term": "제곱근의 덧셈과 뺄셈",
+        "kind": "방법",
+        "level": "중",
+        "definition": "근호 안의 수가 {같은} 항끼리 {동류항}처럼 묶어 계산한다: $2\\sqrt{3}+5\\sqrt{3}=7\\sqrt{3}$.",
+        "studentC": "근호 안의 수가 □ 항끼리 □처럼 묶어 계산한다: $2\\sqrt{3}+5\\sqrt{3}=7\\sqrt{3}$.",
+        "answers": [
+          "같은",
+          "동류항"
+        ]
+      },
+      "proposal": {
+        "id": "m3-01-03-c5",
+        "bDecision": "rewrite",
+        "bPrompt": "근호를 간단히 한 뒤 근호가 있는 항끼리 더하거나 뺄 때, 하나로 묶을 수 있는 항은 어떤 항인지 쓰시오. 또 $4\\sqrt5-\\sqrt5+2\\sqrt3$을 계산하시오.",
+        "bAnswer": "근호 안의 수가 같은 항끼리 묶을 수 있다. $4\\sqrt{5}-\\sqrt{5}+2\\sqrt{3}=3\\sqrt{5}+2\\sqrt{3}$",
+        "bGoal": "근호 안이 같은 항끼리 덧셈·뺄셈하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "근호 안의 수가 같은 항"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3\\sqrt{5}+2\\sqrt{3}$"
+            ]
+          }
+        ],
+        "bReason": "근호 안 수가 다른 식도 먼저 간단히 하면 묶일 수 있으므로 간단히 한 뒤의 같은 근호 조건임을 명시한다.",
+        "cDecision": "keep",
+        "cReason": "'같은'과 '동류항' 두 칸이 예와 함께 분명하다.",
+        "learningRole": "procedure",
+        "roleReason": "근호 안이 같은 항을 동류항처럼 계산",
+        "authorBatch": 53,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 772,
+        "part": "m3",
+        "sourceFingerprint": "5c24c73c6a177f642dc3c8a7f2e146a0cf1c114da104bdc3add730fda08bf9dc",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 772
+        },
+        "directReview": null,
+        "cFrozenSentence": "근호 안의 수가 □ 항끼리 □처럼 묶어 계산한다: $2\\sqrt{3}+5\\sqrt{3}=7\\sqrt{3}$.",
+        "cFrozenDefinition": "근호 안의 수가 {같은} 항끼리 {동류항}처럼 묶어 계산한다: $2\\sqrt{3}+5\\sqrt{3}=7\\sqrt{3}$.",
+        "cFrozenAnswers": [
+          "같은",
+          "동류항"
+        ],
+        "cMarkedSentence": "근호 안의 수가 {같은} 항끼리 {동류항}처럼 묶어 계산한다: $2\\sqrt{3}+5\\sqrt{3}=7\\sqrt{3}$.",
+        "cSlotAnswers": [
+          "같은",
+          "동류항"
+        ],
+        "cStudentSentence": "근호 안의 수가 □ 항끼리 □처럼 묶어 계산한다: $2\\sqrt{3}+5\\sqrt{3}=7\\sqrt{3}$.",
+        "cAnswers": [
+          "같은",
+          "동류항"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "같은",
+            "equivalentAnswers": [
+              "같은"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "동류항",
+            "equivalentAnswers": [
+              "동류항"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "같은"
+          ],
+          [
+            "동류항"
+          ]
+        ],
+        "proposalFingerprint": "e61bce689df145689c62fb28ceb9a297cbda0825200538dfabe6291f1e56b675"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-02-01-c8",
+        "section": "중3::2. 다항식의 곱셈과 인수분해::다항식의 곱셈",
+        "term": "곱셈 공식을 이용한 분모의 유리화",
+        "kind": "방법",
+        "level": "상",
+        "definition": "서로 다른 두 양의 유리수 $a$, $b$에 대하여 분모가 $\\sqrt{a}+\\sqrt{b}$ 꼴이면 분모와 분자에 {$\\sqrt{a}-\\sqrt{b}$}를 곱한다 — {합과 차의 곱}이 되어 분모가 유리수 $a-b$가 된다.",
+        "studentC": "서로 다른 두 양의 유리수 $a$, $b$에 대하여 분모가 $\\sqrt{a}+\\sqrt{b}$ 꼴이면 분모와 분자에 □를 곱한다 — □이 되어 분모가 유리수 $a-b$가 된다.",
+        "answers": [
+          "$\\sqrt{a}-\\sqrt{b}$",
+          "합과 차의 곱"
+        ]
+      },
+      "proposal": {
+        "id": "m3-02-01-c8",
+        "learningRole": "procedure",
+        "roleReason": "$\\sqrt{a}-\\sqrt{b}$를 곱해 분모를 $a-b$로 만듦",
+        "bDecision": "rewrite",
+        "bPrompt": "서로 다른 두 양의 유리수 $a$, $b$에 대하여 분모가 $\\sqrt a+\\sqrt b$인 분수를 유리화하려 한다. 합과 차의 곱 공식을 써서 분모를 $a-b$로 만들려면 분자와 분모에 어떤 식을 곱하는지 쓰시오.",
+        "bAnswer": "$\\sqrt{a}-\\sqrt{b}$를 곱한다. 합과 차의 곱이 되어 분모가 $(\\sqrt{a})^2-(\\sqrt{b})^2=a-b$인 유리수가 된다.",
+        "bGoal": "곱셈 공식을 이용한 분모의 유리화",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\sqrt a-\\sqrt b$를 곱한다"
+            ]
+          }
+        ],
+        "bReason": "음의 켤레 등 다른 유리화 방법도 가능한 열린 질문을 원하는 분모 a-b와 사용할 공식으로 정해 질문·모범답 범위를 맞춘다.",
+        "cDecision": "keep",
+        "cReason": "조건이 갖추어져 있고 곱할 식과 공식 이름을 묻는 빈칸이 분명하다.",
+        "authorBatch": 54,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 782,
+        "part": "m3",
+        "sourceFingerprint": "f81c90daf8d7bbdf8e6d12c7b739ebaae7ca94d3fec65ecce8f62af00aee0b90",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 782
+        },
+        "directReview": null,
+        "cFrozenSentence": "서로 다른 두 양의 유리수 $a$, $b$에 대하여 분모가 $\\sqrt{a}+\\sqrt{b}$ 꼴이면 분모와 분자에 □를 곱한다 — □이 되어 분모가 유리수 $a-b$가 된다.",
+        "cFrozenDefinition": "서로 다른 두 양의 유리수 $a$, $b$에 대하여 분모가 $\\sqrt{a}+\\sqrt{b}$ 꼴이면 분모와 분자에 {$\\sqrt{a}-\\sqrt{b}$}를 곱한다 — {합과 차의 곱}이 되어 분모가 유리수 $a-b$가 된다.",
+        "cFrozenAnswers": [
+          "$\\sqrt{a}-\\sqrt{b}$",
+          "합과 차의 곱"
+        ],
+        "cMarkedSentence": "서로 다른 두 양의 유리수 $a$, $b$에 대하여 분모가 $\\sqrt{a}+\\sqrt{b}$ 꼴이면 분모와 분자에 {$\\sqrt{a}-\\sqrt{b}$}를 곱한다 — {합과 차의 곱}이 되어 분모가 유리수 $a-b$가 된다.",
+        "cSlotAnswers": [
+          "$\\sqrt{a}-\\sqrt{b}$",
+          "합과 차의 곱"
+        ],
+        "cStudentSentence": "서로 다른 두 양의 유리수 $a$, $b$에 대하여 분모가 $\\sqrt{a}+\\sqrt{b}$ 꼴이면 분모와 분자에 □를 곱한다 — □이 되어 분모가 유리수 $a-b$가 된다.",
+        "cAnswers": [
+          "$\\sqrt{a}-\\sqrt{b}$",
+          "합과 차의 곱"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\sqrt{a}-\\sqrt{b}$",
+            "equivalentAnswers": [
+              "$\\sqrt{a}-\\sqrt{b}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "합과 차의 곱",
+            "equivalentAnswers": [
+              "합과 차의 곱"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\sqrt{a}-\\sqrt{b}$"
+          ],
+          [
+            "합과 차의 곱"
+          ]
+        ],
+        "proposalFingerprint": "4e981250ed6fe67316cb5a8314582fe14b45bbfbc03d75d85a76e1cf7fafe62a"
+      }
+    },
+    {
+      "source": {
+        "part": "m1plus",
+        "id": "m1-03-05-xc11",
+        "section": "중1::3. 방정식::등식의 성질",
+        "term": "등식의 성질을 쓰는 차례",
+        "kind": "방법",
+        "level": "중",
+        "definition": "보통 {더하기 · 빼기}로 상수항을 먼저 정리한 뒤 {곱하기 · 나누기}로 계수를 정리한다.",
+        "example": {
+          "prompt": "$\\frac{x}{2}-1=3$을 풀면?",
+          "answer": "$x=8$"
+        },
+        "studentC": "보통 □로 상수항을 먼저 정리한 뒤 □로 계수를 정리한다.",
+        "answers": [
+          "더하기 · 빼기",
+          "곱하기 · 나누기"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-05-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "$\\frac{x}{2}-1=3$을 등식의 성질로 풀려고 합니다. (가) 양변에 $2$를 곱하기, (나) 양변에 $1$을 더하기 중 보통 어느 것을 먼저 하는지 고르고, 그 순서대로 풀어 해를 구하세요.",
+        "bAnswer": "보통 (나)를 먼저 한다. 양변에 $1$을 더하면 $\\frac{x}{2}=4$이고, 이어서 양변에 $2$를 곱하면 $x=8$이다.",
+        "bGoal": "상수항을 더하기·빼기로 먼저 정리하고 계수를 곱하기·나누기로 정리하는 순서를 안다.",
+        "bReason": "제목 '등식의 성질을 쓰는 차례'는 어떤 상황의 차례인지 없다. 두 계산이 모두 필요한 방정식을 주고 어느 것을 먼저 하는지 고르게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "$\\frac{x}{2}-1=3$ 같은 방정식을 등식의 성질로 풀 때에는 보통 양변에 같은 수를 더하거나 빼서 {상수항}을 먼저 정리한 뒤, 양변에 같은 수를 곱하거나 양변을 같은 수로 나누어 $x$의 {계수}를 정리한다.",
+        "cAnswers": [
+          "상수항",
+          "계수"
+        ],
+        "cReason": "원문 '보통 □로 상수항을 먼저…'는 무엇을 할 때의 이야기인지(방정식 풀이) 없고, 빈칸 답이 '더하기 · 빼기'처럼 가운뎃점까지 든 긴 묶음이다. 상황을 앞에 넣고 빈칸을 배운 용어 두 개로 옮겼다.",
+        "exampleNeeded": true,
+        "authorBatch": 7,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "(나) 양변에 $1$을 더하기를 먼저 한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{x}{2}=4$를 얻은 뒤 양변에 $2$를 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "해 $x=8$"
+            ]
+          }
+        ],
+        "scopeEvidence": "scope/scope-004",
+        "learningRole": "procedure",
+        "roleReason": "상수항 먼저, 계수 나중",
+        "enrichmentEvidence": "enrichment/enrich-005",
+        "sourceIndex": 1258,
+        "part": "m1plus",
+        "sourceFingerprint": "2a8d160a9f49c04b71c76d279e133547d44c3025816653af71c4a586b5c3fb11",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 1258
+        },
+        "directReview": null,
+        "cMarkedSentence": "$\\frac{x}{2}-1=3$ 같은 방정식을 등식의 성질로 풀 때에는 보통 양변에 같은 수를 더하거나 빼서 {상수항}을 먼저 정리한 뒤, 양변에 같은 수를 곱하거나 양변을 같은 수로 나누어 $x$의 {계수}를 정리한다.",
+        "cSlotAnswers": [
+          "상수항",
+          "계수"
+        ],
+        "cStudentSentence": "$\\frac{x}{2}-1=3$ 같은 방정식을 등식의 성질로 풀 때에는 보통 양변에 같은 수를 더하거나 빼서 □을 먼저 정리한 뒤, 양변에 같은 수를 곱하거나 양변을 같은 수로 나누어 $x$의 □를 정리한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "상수항",
+            "equivalentAnswers": [
+              "상수항"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "계수",
+            "equivalentAnswers": [
+              "계수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "상수항"
+          ],
+          [
+            "계수"
+          ]
+        ],
+        "proposalFingerprint": "74936eba9ad10fa88525706e1a43c522132447b9934ae9513e74076f1e966b4f"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-02-02-c9",
+        "section": "중3::2. 다항식의 곱셈과 인수분해::인수분해",
+        "term": "$acx^2+(ad+bc)x+bd$의 인수분해",
+        "kind": "공식",
+        "level": "상",
+        "definition": "$acx^2+(ad+bc)x+bd$는 $x^2$의 계수와 상수항을 각각 두 수의 곱 $a\\times c$, $b\\times d$로 쪼갠 뒤, {대각선}으로 곱해 더한 $ad+bc$가 {$x$의 계수}가 되는 짝을 찾아 $(ax+b)(cx+d)$로 쓴다.",
+        "studentC": "$acx^2+(ad+bc)x+bd$는 $x^2$의 계수와 상수항을 각각 두 수의 곱 $a\\times c$, $b\\times d$로 쪼갠 뒤, □으로 곱해 더한 $ad+bc$가 □가 되는 짝을 찾아 $(ax+b)(cx+d)$로 쓴다.",
+        "answers": [
+          "대각선",
+          "$x$의 계수"
+        ]
+      },
+      "proposal": {
+        "id": "m3-02-02-c9",
+        "learningRole": "procedure",
+        "roleReason": "계수를 쪼개 대각선 곱의 합 맞추기",
+        "bDecision": "rewrite",
+        "bPrompt": "$acx^2+(ad+bc)x+bd$를 $(ax+b)(cx+d)$로 인수분해할 때 $x^2$의 계수와 상수항을 어떻게 쪼개고, 어떤 조건으로 짝을 고르는지 설명하시오.",
+        "bAnswer": "$x^2$의 계수를 $a\\times c$, 상수항을 $b\\times d$로 나눈다. $(ax+b)(cx+d)$를 전개할 때 $x$항은 $ad x$와 $bc x$에서 나오므로 $ad+bc$가 주어진 $x$의 계수와 같아지는 짝을 고른다.",
+        "bGoal": "$x^2$의 계수가 $1$이 아닌 이차식 인수분해",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x^2$의 계수를 $ac$, 상수항을 $bd$인 두 수의 곱으로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$ax\\times d$와 $b\\times cx$에서 나온 $x$항의 계수의 합 $ad+bc$가 주어진 $x$의 계수와 같아야 한다"
+            ]
+          }
+        ],
+        "bReason": "쪼개는 단계와 고르는 조건을 나누어 묻도록 했다.",
+        "cDecision": "exclude",
+        "cReason": "대각선이라는 답은 보이지 않는 표를 전제로 하고, ad+bc가 x의 계수라는 답은 이미 지문에 보인다. 같은 전개의 계수 확인은 m3-02-01-c7 C에서 수행하므로 이 절차는 B에서 설명하게 한다.",
+        "studentLabel": "대각선으로 곱해 인수분해하기",
+        "authorBatch": 54,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 792,
+        "part": "m3",
+        "sourceFingerprint": "db29d7f8b5f831268f0d22ac6e3efc57982f85b37d4498913d954f80eb42c66b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 792
+        },
+        "directReview": null,
+        "cFrozenSentence": "$acx^2+(ad+bc)x+bd$는 $x^2$의 계수와 상수항을 각각 두 수의 곱 $a\\times c$, $b\\times d$로 쪼갠 뒤, □으로 곱해 더한 $ad+bc$가 □가 되는 짝을 찾아 $(ax+b)(cx+d)$로 쓴다.",
+        "cFrozenDefinition": "$acx^2+(ad+bc)x+bd$는 $x^2$의 계수와 상수항을 각각 두 수의 곱 $a\\times c$, $b\\times d$로 쪼갠 뒤, {대각선}으로 곱해 더한 $ad+bc$가 {$x$의 계수}가 되는 짝을 찾아 $(ax+b)(cx+d)$로 쓴다.",
+        "cFrozenAnswers": [
+          "대각선",
+          "$x$의 계수"
+        ],
+        "cMarkedSentence": "$acx^2+(ad+bc)x+bd$는 $x^2$의 계수와 상수항을 각각 두 수의 곱 $a\\times c$, $b\\times d$로 쪼갠 뒤, {대각선}으로 곱해 더한 $ad+bc$가 {$x$의 계수}가 되는 짝을 찾아 $(ax+b)(cx+d)$로 쓴다.",
+        "cSlotAnswers": [
+          "대각선",
+          "$x$의 계수"
+        ],
+        "cStudentSentence": "$acx^2+(ad+bc)x+bd$는 $x^2$의 계수와 상수항을 각각 두 수의 곱 $a\\times c$, $b\\times d$로 쪼갠 뒤, □으로 곱해 더한 $ad+bc$가 □가 되는 짝을 찾아 $(ax+b)(cx+d)$로 쓴다.",
+        "cAnswers": [
+          "대각선",
+          "$x$의 계수"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "대각선",
+            "equivalentAnswers": [
+              "대각선",
+              "엇갈려",
+              "$X$자 모양"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$x$의 계수",
+            "equivalentAnswers": [
+              "$x$의 계수"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "대각선",
+            "accept": [
+              "엇갈려",
+              "X자 모양"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "대각선",
+            "엇갈려",
+            "$X$자 모양"
+          ],
+          [
+            "$x$의 계수"
+          ]
+        ],
+        "proposalFingerprint": "e5e73e6048f395df5f38dd7d7841be23299aa661bf898973b62a13c64ee76963",
+        "exclusionReason": "C 제외: 숨은 배열의 대각선 이름 암기와 지문에 주어진 x계수 복사에 머무르며 전개 계수 확인은 m3-02-01-c7 C에 있다. B와 일반 설명은 유지한다.",
+        "coreAfter": "$acx^2+(ad+bc)x+bd$를 인수분해할 때 $x^2$의 계수를 $ac$, 상수항을 $bd$인 두 수의 곱으로 나눈다. $ax\\times d$와 $b\\times cx$에서 나온 $x$항의 계수의 합 {$ad+bc$}가 주어진 $x$의 계수와 같아지는 짝을 고르면 {$(ax+b)(cx+d)$}로 쓸 수 있다.",
+        "coreReason": "실제 표가 없는데 대각선으로 곱한다는 지시를 네 항의 어떤 곱에서 x항이 나오는지로 풀어 설명한다."
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-03-01-c9",
+        "section": "중3::3. 이차방정식::이차방정식의 풀이",
+        "term": "완전제곱식을 이용한 이차방정식의 풀이",
+        "kind": "방법",
+        "level": "상",
+        "definition": "이차방정식을 $x^2+bx=c$ 꼴로 고친 뒤 양변에 {$\\left(\\frac{b}{2}\\right)^2$}을 더하면 좌변이 완전제곱식이 된다. 양변에 같은 수를 더해도 해는 바뀌지 않으며, 이어 제곱근의 뜻으로 해를 구한다.",
+        "studentC": "이차방정식을 $x^2+bx=c$ 꼴로 고친 뒤 양변에 □을 더하면 좌변이 완전제곱식이 된다. 양변에 같은 수를 더해도 해는 바뀌지 않으며, 이어 제곱근의 뜻으로 해를 구한다.",
+        "answers": [
+          "$\\left(\\frac{b}{2}\\right)^2$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-01-c9",
+        "bDecision": "rewrite",
+        "bPrompt": "$x^2+bx=c$ 꼴의 이차방정식을 완전제곱식을 이용해 풀려고 한다. 양변에 무엇을 더하는지 쓰시오. 더한 뒤 우변이 $0$ 이상이면 해를 식으로 나타내고, 우변이 음수이면 해가 있는지 판단하시오.",
+        "bAnswer": "양변에 $(b/2)^2$을 더해 $(x+b/2)^2=c+(b/2)^2$으로 만든다. 우변이 $0$ 이상이면 제곱근을 이용해 $x=-b/2\\pm\\sqrt{c+(b/2)^2}$를 얻는다. 우변이 음수이면 실수의 제곱은 음수가 되지 않으므로 해가 없다.",
+        "bGoal": "완전제곱식을 이용한 풀이 절차",
+        "bReason": "더할 수와 이어지는 풀이 단계를 묻도록 범위를 정함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$(b/2)^2$",
+              "$\\frac{b^2}{4}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "우변이 $0$ 이상이면 $x=-b/2\\pm\\sqrt{c+(b/2)^2}$로 구한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "우변이 음수이면 해가 없다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "더할 수 하나를 묻는 핵심 절차 빈칸",
+        "learningRole": "procedure",
+        "roleReason": "절반의 제곱을 더해 완전제곱식 만들기",
+        "authorBatch": 55,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 806,
+        "part": "m3",
+        "sourceFingerprint": "f4382141f35c0567122bab982189701d89204d674232474a45649ae0e7f69dbd",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 806
+        },
+        "directReview": null,
+        "cFrozenSentence": "이차방정식을 $x^2+bx=c$ 꼴로 고친 뒤 양변에 □을 더하면 좌변이 완전제곱식이 된다. 양변에 같은 수를 더해도 해는 바뀌지 않으며, 이어 제곱근의 뜻으로 해를 구한다.",
+        "cFrozenDefinition": "이차방정식을 $x^2+bx=c$ 꼴로 고친 뒤 양변에 {$\\left(\\frac{b}{2}\\right)^2$}을 더하면 좌변이 완전제곱식이 된다. 양변에 같은 수를 더해도 해는 바뀌지 않으며, 이어 제곱근의 뜻으로 해를 구한다.",
+        "cFrozenAnswers": [
+          "$\\left(\\frac{b}{2}\\right)^2$"
+        ],
+        "cMarkedSentence": "이차방정식을 $x^2+bx=c$ 꼴로 고친 뒤 양변에 {$\\left(\\frac{b}{2}\\right)^2$}을 더하면 좌변이 완전제곱식이 된다. 양변에 같은 수를 더해도 해는 바뀌지 않으며, 이어 제곱근의 뜻으로 해를 구한다.",
+        "cSlotAnswers": [
+          "$\\left(\\frac{b}{2}\\right)^2$"
+        ],
+        "cStudentSentence": "이차방정식을 $x^2+bx=c$ 꼴로 고친 뒤 양변에 □을 더하면 좌변이 완전제곱식이 된다. 양변에 같은 수를 더해도 해는 바뀌지 않으며, 이어 제곱근의 뜻으로 해를 구한다.",
+        "cAnswers": [
+          "$\\left(\\frac{b}{2}\\right)^2$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\left(\\frac{b}{2}\\right)^2$",
+            "equivalentAnswers": [
+              "$\\left(\\frac{b}{2}\\right)^2$",
+              "$\\frac{b^2}{4}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$\\left(\\frac{b}{2}\\right)^2$",
+            "accept": [
+              "$\\frac{b^2}{4}$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$\\left(\\frac{b}{2}\\right)^2$",
+            "$\\frac{b^2}{4}$"
+          ]
+        ],
+        "proposalFingerprint": "83383189e0ad454221eb42e9c559ac4c6f98615b02ee14556c26bc6afc1a3d10",
+        "coreAfter": "$x^2+bx=c$ 꼴의 이차방정식 양변에 {$(b/2)^2$}을 더하면 $(x+b/2)^2=c+(b/2)^2$이 된다. 양변에 같은 수를 더하므로 해는 바뀌지 않는다. 우변이 $0$ 이상이면 제곱근을 이용해 해를 구하고, 우변이 음수이면 실수의 제곱은 음수가 되지 않으므로 해가 없다.",
+        "coreReason": "음수인 값을 제곱근으로 계산하라는 오해를 막고 완전제곱으로 고친 뒤 해가 없는 경우를 일반 설명에 포함한다."
+      }
+    },
+    {
+      "source": {
+        "part": "m3plus",
+        "id": "m3-07-02-xc11",
+        "section": "중3::7. 통계::산점도와 상관관계",
+        "term": "직선 $y=x$ 위의 점",
+        "kind": "성질",
+        "level": "중",
+        "definition": "두 변량의 단위가 같을 때 직선 $y=x$ {위}에 놓인 점은 두 값이 {같은} 자료이다.",
+        "studentC": "두 변량의 단위가 같을 때 직선 $y=x$ □에 놓인 점은 두 값이 □ 자료이다.",
+        "answers": [
+          "위",
+          "같은"
+        ]
+      },
+      "proposal": {
+        "id": "m3-07-02-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "가로축에 $1$학기 독서량 $x$권, 세로축에 $2$학기 독서량 $y$권을 놓은 산점도에서 직선 $y=x$ 위에 있는 점은 어떤 학생을 나타내는지 쓰시오.",
+        "bAnswer": "$1$학기와 $2$학기의 독서량이 같은 학생이다.",
+        "bGoal": "직선 $y=x$ 위의 점 해석",
+        "bReason": "단위가 같은 두 변량과 축을 밝혀 직선 위의 점의 뜻을 읽게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "두 학기 독서량이 같다",
+              "$x=y$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "두 변량의 단위가 같을 때 직선 $y=x$ 위에 놓인 점은 두 값이 {같은} 자료이다.",
+        "cAnswers": [
+          "같은"
+        ],
+        "cReason": "원문 첫 빈칸 '위'는 '위쪽'과 혼동되어 뜻이 모호하므로 고정함",
+        "learningRole": "application",
+        "roleReason": "$y=x$ 위는 두 값이 같음",
+        "authorBatch": 62,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 3689,
+        "part": "m3plus",
+        "sourceFingerprint": "2418afb45c6465ff8a4fae6feb9ccbe527a7f51a40d37f6ca157c872c656d3c3",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 3689
+        },
+        "directReview": null,
+        "cMarkedSentence": "두 변량의 단위가 같을 때 직선 $y=x$ 위에 놓인 점은 두 값이 {같은} 자료이다.",
+        "cSlotAnswers": [
+          "같은"
+        ],
+        "cStudentSentence": "두 변량의 단위가 같을 때 직선 $y=x$ 위에 놓인 점은 두 값이 □ 자료이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "같은",
+            "equivalentAnswers": [
+              "같은"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "같은"
+          ]
+        ],
+        "proposalFingerprint": "f63e99a695f3732f98c88fbf0338451b3bb1251d4bb8b81fb8f02b8c8971f629"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-04-03-c5",
+        "section": "중3::4. 이차함수::이차함수의 최댓값과 최솟값",
+        "term": "일반형의 최댓값 · 최솟값 구하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "일반형은 {표준형}으로 고친 뒤 {꼭짓점}의 $y$좌표를 읽는다 — 그 값이 최댓값 또는 최솟값이다.",
+        "studentC": "일반형은 □으로 고친 뒤 □의 $y$좌표를 읽는다 — 그 값이 최댓값 또는 최솟값이다.",
+        "answers": [
+          "표준형",
+          "꼭짓점"
+        ]
+      },
+      "proposal": {
+        "id": "m3-04-03-c5",
+        "bDecision": "rewrite",
+        "bPrompt": "$x$의 범위가 실수 전체인 이차함수 $y=ax^2+bx+c$의 최댓값 또는 최솟값을 구하려면 식을 어떤 꼴로 고치고, 그래프의 어느 점의 무엇을 읽어야 하는가?",
+        "bAnswer": "$y=a(x-p)^2+q$ 꼴의 표준형으로 고친 뒤 꼭짓점의 $y$좌표 $q$를 읽는다.",
+        "bGoal": "일반형에서 최댓값·최솟값을 구하는 절차",
+        "bReason": "'일반형'이 무엇인지 식으로 보이고, 고칠 꼴과 읽을 좌표를 함께 답하게 했다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "표준형",
+              "$y=a(x-p)^2+q$ 꼴",
+              "완전제곱식 꼴"
+            ]
+          },
+          {
+            "anyOf": [
+              "꼭짓점의 $y$좌표",
+              "꼭짓점의 $q$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "$x$의 범위가 실수 전체인 이차함수 $y=ax^2+bx+c$의 최댓값 또는 최솟값은 식을 {표준형} $y=a(x-p)^2+q$로 고친 뒤 {꼭짓점}의 $y$좌표 $q$를 읽어 구한다.",
+        "cAnswers": [
+          "표준형",
+          "꼭짓점"
+        ],
+        "cReason": "'일반형은'이 무엇의 식인지 없어서 이차함수와 두 식의 꼴을 밝혔다.",
+        "learningRole": "procedure",
+        "roleReason": "표준형으로 고쳐 꼭짓점의 $y$좌표 읽기",
+        "authorBatch": 58,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 845,
+        "part": "m3",
+        "sourceFingerprint": "1ad76be46312d0e32d80e3729dbcd603504f697eca1e618855494f4b55cb5db0",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 845
+        },
+        "directReview": null,
+        "cMarkedSentence": "$x$의 범위가 실수 전체인 이차함수 $y=ax^2+bx+c$의 최댓값 또는 최솟값은 식을 {표준형} $y=a(x-p)^2+q$로 고친 뒤 {꼭짓점}의 $y$좌표 $q$를 읽어 구한다.",
+        "cSlotAnswers": [
+          "표준형",
+          "꼭짓점"
+        ],
+        "cStudentSentence": "$x$의 범위가 실수 전체인 이차함수 $y=ax^2+bx+c$의 최댓값 또는 최솟값은 식을 □ $y=a(x-p)^2+q$로 고친 뒤 □의 $y$좌표 $q$를 읽어 구한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "표준형",
+            "equivalentAnswers": [
+              "표준형"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "꼭짓점",
+            "equivalentAnswers": [
+              "꼭짓점"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "표준형"
+          ],
+          [
+            "꼭짓점"
+          ]
+        ],
+        "proposalFingerprint": "0f7289bfbf3c6f8c954ae7adb761de6623d975c2b9b13e5f5f7f9f645b0456b0",
+        "coreAfter": "$x$의 범위가 실수 전체인 이차함수의 일반형은 {표준형}으로 고친 뒤 {꼭짓점}의 $y$좌표를 읽는다. 그 값이 이차항의 계수가 양수일 때 최솟값, 음수일 때 최댓값이다.",
+        "coreReason": "범위가 제한된 문제에서는 꼭짓점이 포함되는지 확인해야 하므로 일반 극값 절차가 성립하는 실수 전체 범위를 밝혔다."
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-05-02-c2",
+        "section": "중3::5. 삼각비::삼각비의 값",
+        "term": "삼각비의 표",
+        "kind": "정의",
+        "level": "하",
+        "definition": "$0^\\circ$부터 $90^\\circ$까지 {$1^\\circ$} 간격으로 삼각비의 어림값을 늘어놓은 표가 삼각비의 표이고, 각의 {가로줄}과 $\\sin$ · $\\cos$ · $\\tan$의 세로줄이 만나는 칸을 읽는다.",
+        "studentC": "$0^\\circ$부터 $90^\\circ$까지 □ 간격으로 삼각비의 어림값을 늘어놓은 표가 삼각비의 표이고, 각의 □과 $\\sin$ · $\\cos$ · $\\tan$의 세로줄이 만나는 칸을 읽는다.",
+        "answers": [
+          "$1^\\circ$",
+          "가로줄"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-02-c2",
+        "bDecision": "rewrite",
+        "bPrompt": "각도를 가로줄에, $\\sin$, $\\cos$, $\\tan$의 종류를 세로줄에 놓은 삼각비의 표가 있다. 이 표는 어떤 값을 정리한 표인지 말하고, $\\cos35^\\circ$의 어림값을 찾으려면 어느 가로줄과 어느 세로줄이 만나는 칸을 읽어야 하는지 설명하시오.",
+        "bAnswer": "각도에 따른 사인, 코사인, 탄젠트의 어림값을 정리한 표이다. $35^\\circ$의 가로줄과 $\\cos$의 세로줄이 만나는 칸을 읽는다.",
+        "bGoal": "삼각비의 표의 구성과 읽는 법 알기",
+        "bReason": "질문 문구를 베껴도 통과하던 기준을 실제 줄 이름으로 바꿈",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "각마다 사인·코사인·탄젠트의 어림값을 정리한 표",
+              "$0^\\circ$부터 $90^\\circ$까지 각의 삼각비의 값을 정리한 표"
+            ]
+          },
+          {
+            "anyOf": [
+              "$35^\\circ$의 가로줄과 $\\cos$의 세로줄이 만나는 칸을 읽는다",
+              "$35^\\circ$ 줄과 코사인 줄이 만나는 칸"
+            ]
+          }
+        ],
+        "cDecision": "exclude",
+        "cReason": "실제 표가 없으면 1도 간격이나 행의 방향은 수학 성질이 아닌 특정 표의 편집 약속 암기다. 표의 방향을 명시한 B의 찾기 방법과 실제 표 예에서 확인한다.",
+        "exampleNeeded": true,
+        "authorBatch": 59,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "definition",
+        "roleReason": "1도 간격 어림값 표",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 856,
+        "part": "m3",
+        "sourceFingerprint": "af4582349118da916f28be5d3040bff99b93219a769f589d8c8891ee9b4709c8",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 856
+        },
+        "directReview": null,
+        "cFrozenSentence": "$0^\\circ$부터 $90^\\circ$까지 □ 간격으로 삼각비의 어림값을 늘어놓은 표가 삼각비의 표이고, 각의 □과 $\\sin$ · $\\cos$ · $\\tan$의 세로줄이 만나는 칸을 읽는다.",
+        "cFrozenDefinition": "$0^\\circ$부터 $90^\\circ$까지 {$1^\\circ$} 간격으로 삼각비의 어림값을 늘어놓은 표가 삼각비의 표이고, 각의 {가로줄}과 $\\sin$ · $\\cos$ · $\\tan$의 세로줄이 만나는 칸을 읽는다.",
+        "cFrozenAnswers": [
+          "$1^\\circ$",
+          "가로줄"
+        ],
+        "cMarkedSentence": "$0^\\circ$부터 $90^\\circ$까지 {$1^\\circ$} 간격으로 삼각비의 어림값을 늘어놓은 표가 삼각비의 표이고, 각의 {가로줄}과 $\\sin$ · $\\cos$ · $\\tan$의 세로줄이 만나는 칸을 읽는다.",
+        "cSlotAnswers": [
+          "$1^\\circ$",
+          "가로줄"
+        ],
+        "cStudentSentence": "$0^\\circ$부터 $90^\\circ$까지 □ 간격으로 삼각비의 어림값을 늘어놓은 표가 삼각비의 표이고, 각의 □과 $\\sin$ · $\\cos$ · $\\tan$의 세로줄이 만나는 칸을 읽는다.",
+        "cAnswers": [
+          "$1^\\circ$",
+          "가로줄"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$1^\\circ$",
+            "equivalentAnswers": [
+              "$1^\\circ$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "가로줄",
+            "equivalentAnswers": [
+              "가로줄"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$1^\\circ$"
+          ],
+          [
+            "가로줄"
+          ]
+        ],
+        "proposalFingerprint": "435ce2869002f18a3e059f429fd98970e9f644241e8748bb7f22ae9bda786d85",
+        "exclusionReason": "C 제외: 실제 표 없이 특정 1도 간격·가로줄 편집 약속을 외우게 하므로 형식에서 제외한다. B의 표 읽기 설명과 일반 학습 설명은 유지한다.",
+        "exampleReason": "35도와 코사인의 어림값을 실제로 찾는 표 예를 함께 보여야 표 읽기 목표를 적용할 수 있다."
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-01-08-xc5",
+        "section": "중2::1. 수와 식::다항식의 곱셈과 나눗셈",
+        "term": "음수를 대입할 때의 괄호",
+        "kind": "방법",
+        "level": "하",
+        "definition": "식의 값을 구할 때 음수를 대입하면 그 수를 {괄호}로 묶어 넣어야 {부호}를 틀리지 않는다.",
+        "example": {
+          "prompt": "$x=-2$일 때 $x^2+3x$의 값",
+          "answer": "$-2$"
+        },
+        "studentC": "식의 값을 구할 때 음수를 대입하면 그 수를 □로 묶어 넣어야 □를 틀리지 않는다.",
+        "answers": [
+          "괄호",
+          "부호"
+        ]
+      },
+      "proposal": {
+        "id": "m2-01-08-xc5",
+        "bDecision": "rewrite",
+        "bPrompt": "$x=-2$일 때 $x^2+3x$의 값을 구하려고 한다. $-2$를 넣은 식을 쓰고 값을 구하시오. 또 $x^2$ 자리에 괄호 없이 $-2^2$이라고 쓰면 안 되는 까닭을 말하시오.",
+        "bAnswer": "$(-2)^2+3\\times(-2)=4-6=-2$이다. $-2^2$은 $-(2\\times2)=-4$를 뜻해 $(-2)^2=4$와 다르기 때문이다.",
+        "bGoal": "음수를 괄호로 묶어 대입하기",
+        "bReason": "함수와 $x$값을 밝히고 괄호가 없을 때 달라지는 값을 견주게 함.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$(-2)^2+3\\times(-2)$"
+            ]
+          },
+          {
+            "anyOf": [
+              "식의 값은 $-2$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$-2^2=-4$이고 $(-2)^2=4$로 다르다",
+              "괄호가 없으면 $2$만 제곱된다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "음수 대입이라는 상황이 분명하고 '괄호', '부호'가 정해진다.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "음수 대입에 괄호가 필요한 까닭",
+        "authorBatch": 29,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2293,
+        "part": "m2plus",
+        "sourceFingerprint": "3e1acbfccadeb6c4d71209ba499ed8e336d84b3686954ad249147646594c2b1b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2293
+        },
+        "directReview": null,
+        "cFrozenSentence": "식의 값을 구할 때 음수를 대입하면 그 수를 □로 묶어 넣어야 □를 틀리지 않는다.",
+        "cFrozenDefinition": "식의 값을 구할 때 음수를 대입하면 그 수를 {괄호}로 묶어 넣어야 {부호}를 틀리지 않는다.",
+        "cFrozenAnswers": [
+          "괄호",
+          "부호"
+        ],
+        "cMarkedSentence": "식의 값을 구할 때 음수를 대입하면 그 수를 {괄호}로 묶어 넣어야 {부호}를 틀리지 않는다.",
+        "cSlotAnswers": [
+          "괄호",
+          "부호"
+        ],
+        "cStudentSentence": "식의 값을 구할 때 음수를 대입하면 그 수를 □로 묶어 넣어야 □를 틀리지 않는다.",
+        "cAnswers": [
+          "괄호",
+          "부호"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "괄호",
+            "equivalentAnswers": [
+              "괄호"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "부호",
+            "equivalentAnswers": [
+              "부호"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "괄호"
+          ],
+          [
+            "부호"
+          ]
+        ],
+        "proposalFingerprint": "9fd8e56193500abe65b523060e46f3bda1477208bd5ff9ebfb755054d73176cb"
+      }
+    },
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-05-03-c6",
+        "section": "중3::5. 삼각비::삼각비의 활용",
+        "term": "삼각형의 높이 구하기",
+        "kind": "공식",
+        "level": "상",
+        "definition": "밑변 $a$의 양 끝 각이 모두 예각이면 높이 $h$와 {탄젠트}로 밑변의 두 조각을 나타내고 그 {합}이 $a$라는 식을 세운다 — 한 끝 각이 둔각이면 수선의 발까지의 두 거리의 {차}가 $a$이다.",
+        "studentC": "밑변 $a$의 양 끝 각이 모두 예각이면 높이 $h$와 □로 밑변의 두 조각을 나타내고 그 □이 $a$라는 식을 세운다 — 한 끝 각이 둔각이면 수선의 발까지의 두 거리의 □가 $a$이다.",
+        "answers": [
+          "탄젠트",
+          "합",
+          "차"
+        ]
+      },
+      "proposal": {
+        "id": "m3-05-03-c6",
+        "bDecision": "rewrite",
+        "bPrompt": "삼각형 $ABC$에서 $BC=a$이고 $\\angle B$, $\\angle C$가 모두 예각이다. $A$에서 $BC$에 내린 수선의 발을 $H$, $AH=h$라 할 때 $BH$, $CH$를 $h$와 삼각비로 나타내고, $h$를 구하는 식을 쓰시오. 또 $\\angle C$가 둔각인 경우에는 $H$의 위치와 $BH$, $CH$, $a$의 관계식을 쓰시오.",
+        "bAnswer": "$\\overline{BH}=\\frac{h}{\\tan B}$, $\\overline{CH}=\\frac{h}{\\tan C}$이고 두 길이의 합이 $a$이므로 $\\frac{h}{\\tan B}+\\frac{h}{\\tan C}=a$이다. $\\angle C$가 둔각이면 $H$가 변 $BC$의 연장선 위에 있어 $\\overline{BH}-\\overline{CH}=a$이다.",
+        "bGoal": "밑변과 양 끝 각으로 삼각형의 높이 구하는 식 세우기",
+        "bReason": "실제 BH·CH 식을 요청하므로 탄젠트라는 방법 이름만으로 대체하지 않는다. 둔각 경우에는 아직 정의하지 않은 tanC를 쓰게 하지 않고 발의 위치와 두 거리의 차만 묻는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$BH=\\frac h{\\tan B}$, $CH=\\frac h{\\tan C}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac h{\\tan B}+\\frac h{\\tan C}=a$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\angle C$가 둔각이면 $H$는 $BC$를 $C$ 쪽으로 늘인 연장선 위에 있어 $BH-CH=a$이다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "밑변의 길이가 $a$인 삼각형에서 밑변의 양 끝 각이 모두 예각이면, 높이 $h$와 {탄젠트}를 이용해 수선의 발이 밑변을 나눈 두 선분의 길이를 나타내고 그 {합}이 $a$라는 식을 세운다 — 한 끝 각이 둔각이면 밑변의 양 끝점에서 수선의 발까지의 두 거리의 {차}가 $a$이다.",
+        "cAnswers": [
+          "탄젠트",
+          "합",
+          "차"
+        ],
+        "cReason": "'밑변의 두 조각', '두 거리'가 어디서 어디까지인지 문장에 없었다.",
+        "authorBatch": 59,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "탄젠트로 밑변 조각 식 세움",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 869,
+        "part": "m3",
+        "sourceFingerprint": "5d8dfad621596397cb07216995a01905ee9df2af525bdfa18c4dc50a02c55d33",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 869
+        },
+        "directReview": null,
+        "cMarkedSentence": "밑변의 길이가 $a$인 삼각형에서 밑변의 양 끝 각이 모두 예각이면, 높이 $h$와 {탄젠트}를 이용해 수선의 발이 밑변을 나눈 두 선분의 길이를 나타내고 그 {합}이 $a$라는 식을 세운다 — 한 끝 각이 둔각이면 밑변의 양 끝점에서 수선의 발까지의 두 거리의 {차}가 $a$이다.",
+        "cSlotAnswers": [
+          "탄젠트",
+          "합",
+          "차"
+        ],
+        "cStudentSentence": "밑변의 길이가 $a$인 삼각형에서 밑변의 양 끝 각이 모두 예각이면, 높이 $h$와 □를 이용해 수선의 발이 밑변을 나눈 두 선분의 길이를 나타내고 그 □이 $a$라는 식을 세운다 — 한 끝 각이 둔각이면 밑변의 양 끝점에서 수선의 발까지의 두 거리의 □가 $a$이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "탄젠트",
+            "equivalentAnswers": [
+              "탄젠트"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "합",
+            "equivalentAnswers": [
+              "합"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 2,
+            "answer": "차",
+            "equivalentAnswers": [
+              "차"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "탄젠트"
+          ],
+          [
+            "합"
+          ],
+          [
+            "차"
+          ]
+        ],
+        "proposalFingerprint": "0b1e79bdd190a443487b57b7e858d39e76ac3e624964e83375b4b063b252ae60"
+      }
+    }
+  ]
+}

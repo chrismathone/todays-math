@@ -1,0 +1,1249 @@
+제공 순서 모든 ID에 대해 JSON 배열만 출력한다. 각 행은 수정 패치 {id,inputProposalFingerprint,변경하는필드들}이다. id와 현재 지문 해시는 필수이고 바뀌지 않은 필드는 복사하지 않는다. 직접 독자의 B/C 지적을 실제 문장과 채점 기준의 수정으로 해소하라. 지적이 수학적으로 틀렸으면 변경 대신 repairDisagreement에 이유와 실제 올바른 수학을 써라. 코멘트나 카운트만 고쳐서 문제를 해결했다고 하지 마라.
+B를 바꾸면 bDecision,bPrompt,bAnswer,bRequiredIdeas,bGoal,bReason을 함께 완성한다. bDecision은 rewrite/exclude. exclude는 bPrompt,bAnswer null, bRequiredIdeas [], exclusionReason에 B만 제외하는 구체 이유와 알려진 실제 대응 ID를 기록한다. 초등에 익숙한 이름의 정의 질문은 가능하지만 제목 하나+설명하시오, 답 하나 대기, 의미 없는 이유 묻기는 금지한다. 설명 목표·조건·대상·응답 범위를 명시하고 질문에 예상 답은 넣지 않는다. 구체적 계산은 일반 방법·뜻·관계도 확인한다. requiredIdeas=[{anyOf:['한 가지 필수 의미의 유효한 표현', '그 의미를 만족하는 별도의 다른 방법']}]; 꼭 요청한 것만 필수다. 결과·식·방법·조건을 쓰라고 했으면 실제로 기준에 담고 묻지 않았으면 강제하지 않는다. 단순한 입력 되풀이를 설명으로 받지 않는다. 서로 다른 올바른 풀이의 필수 단계를 AND로 섞지 말고 전체 대체 풀이를 독립 anyOf 문자열로 적는다. 특정 예시만을 정답으로 강제하지 않는다. 역할을 바꾸면 learningRole=definition/procedure/reason/application/naming 중 실제 질문에 맞게 적는다.
+C를 바꾸면 cDecision,cAfter,cSlotEquivalents,cReason을 함께 적는다. rewrite의 cAfter는 정답 부분을 {답}으로 표시한 실제 완성 학생 문장이고 1~4슬롯이다. 짧고 유용한 비교·계산 빈칸을 보존한다. 실제 대상 없이 긴 키워드를 복원하거나 부사만 채우게 하지 않는다. 빈칸과 같은 값을 다른 곳에서 공개하지 않는다. 입력의 수가 바뀐 역할에서 다시 답인 유용한 관계(몫 검산, 같은 거리 등)는 무조건 복사로 취급하지 않는다. 순서 없는 두 답은 같은 말을 두 번 써도 통과하는 슬롯별 대안으로 해결하지 말고 순서를 명시하거나 한 빈칸으로 줄인다. cSlotEquivalents는 각 슬롯의 대체 답 배열로서 수·읽기·단위·자리·횟수의 역할을 구별하되 그 문장에서 옳은 서로 다른 답은 허용한다. cDecision=keep은 원본 C 그대로 고정이므로 새 문장을 주지 않는다. exclude는 해당 C의 구체적인 낮은 이점 또는 반복 이유를 cReason으로 기록하고 cAfter=null, cSlotEquivalents=[]로 쓴다. 별도 remove:['cAfter','cSlotEquivalents'] 등으로 이전 필드 제거를 요청할 수 있다.
+일반 학습 설명 A/SRS는 C와 별개다. coreAfter를 고칠 때는 실제 수학 오류나 빠진 조건을 고칠 때만이며 원래 표적과 일반 뜻을 보존한다. coreReason을 함께 기록한다. coreAfter도 {답} 1~4개, 보이는 전체 길이 8~160자로 만든다. C를 고쳤다는 이유로 A를 자동 대체하지 않는다.
+숫자·수학 기호는 $...$ KaTeX, 곱은 	imes, 나눗셈은 div, 계산 내 빈칸 기호는 square이며 표시용 {답}과 LaTex의 중괄호를 혼동하지 않는다. 모든 조사·괄호·수식이 학생에게 실제로 읽혀야 한다. 쉬운 학년 말로 쓰고 새로운 이름이나 낯선 문자 변수를 만들지 않는다. 그림이 필요한 현재 질문은 실제 위치·수·이름을 텍스트에 제시하여 자립시키거나 그 form만 제외한다. 꼭 필요한 새 그림·조작 사례는 exampleNeeded에 무엇인지 적되 없는 그림을 이미 있는 것처럼 참조하지 않는다.
+최종 승인·자동 테스트 pass·실제 독자가 재독했다는 말은 출력하지 않는다. 우리는 이 후보를 나중에 직접 읽고 원본과 확인한다. 다음 자료의 모든 ID를 빠짐없이 처리하라.
+
+[
+  {
+    "id": "e3-2-3-1-xc7",
+    "sourceIndex": 1047,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1047,
+      "sourceFingerprint": "4916cdacb76de869b2cca84a27dc5e05d821643689dbcdecf3427e4e67b9a369",
+      "part": "e3plus",
+      "id": "e3-2-3-1-xc7",
+      "section": "초3::2-3 원::2-3-1 원의 중심, 지름, 반지름",
+      "term": "접어서 중심 찾기",
+      "kind": "방법",
+      "level": "하",
+      "definition": "원 모양 종이를 반으로 두 번 접으면 접힌 선이 만나는 점이 {원의 중심}이다.",
+      "studentC": "원 모양 종이를 반으로 두 번 접으면 접힌 선이 만나는 점이 □이다.",
+      "answers": [
+        "원의 중심"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-3-1-xc7",
+      "proposalFingerprint": "f8fe5704dc3cacbfb853a468d555a2b64b5eea902dc1796bde106fbaa475c6c8",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "원 모양 종이에서 원의 중심을 찾으려고 합니다. 종이를 접어서 찾는 방법을 설명하세요.",
+      "bAnswer": "원이 꼭 겹치게 반으로 접었다 펴고, 다른 방향으로 한 번 더 반으로 접었다 편다. 두 접힌 선이 만나는 점이 원의 중심이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "반으로 두 번 접음"
+          ]
+        },
+        {
+          "anyOf": [
+            "접힌 선이 만나는 점"
+          ]
+        }
+      ],
+      "bGoal": "종이를 접어 원의 중심을 찾는 방법",
+      "bReason": "방법을 차례대로 말하게 함",
+      "cDecision": "keep",
+      "cReason": "방법이 모두 나와 있고 빈칸이 익숙한 낱말 '원의 중심'",
+      "cSlotEquivalents": [],
+      "answerNotes": "'중심'도 정답"
+    },
+    "currentCMarkedSentence": "원 모양 종이를 반으로 두 번 접으면 접힌 선이 만나는 점이 {원의 중심}이다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "원의 중심",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "방법의기준에도다른방향의두반접기임을넣어같은선으로되접는것과구별해야한다;접기순서예가 도움이 된다.",
+      "c": "C도다른방향으로접었다펴서생긴두선의교점이라고조건을 명시한다."
+    }
+  },
+  {
+    "id": "e3-2-3-1-xc24",
+    "sourceIndex": 1064,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1064,
+      "sourceFingerprint": "059726dc7df49bec639d0225be26627be85a64c563b20649d1e07c780b5f9e3f",
+      "part": "e3plus",
+      "id": "e3-2-3-1-xc24",
+      "section": "초3::2-3 원::2-3-1 원의 중심, 지름, 반지름",
+      "term": "중심이 아닌 점",
+      "kind": "성질",
+      "level": "상",
+      "definition": "원 안에서 중심이 아닌 점을 잡으면 그 점에서 원 위까지의 거리가 {제각각}이 된다.",
+      "studentC": "원 안에서 중심이 아닌 점을 잡으면 그 점에서 원 위까지의 거리가 □이 된다.",
+      "answers": [
+        "제각각"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-3-1-xc24",
+      "proposalFingerprint": "04e6f6e327f432329a4a7b3b4c95dffd43f1ef466c71943290dc93ee44dcbb7d",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "원 안에 찍힌 점이 원의 중심인지 아닌지 자로 확인하려고 합니다. 확인하는 방법을 설명하세요.",
+      "bAnswer": "그 점에서 원 위의 여러 점까지의 거리를 잰다. 거리가 모두 같으면 중심이고, 재는 쪽에 따라 다르면 중심이 아니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "원 위의 여러 점까지의 거리를 잼"
+          ]
+        },
+        {
+          "anyOf": [
+            "모두 같으면 중심"
+          ]
+        }
+      ],
+      "bGoal": "중심과 중심이 아닌 점을 원 위까지의 거리로 구별하기",
+      "bReason": "'제각각' 낱말 대신 구별하는 방법을 묻도록 함",
+      "cDecision": "rewrite",
+      "cReason": "빈칸 '제각각'은 떠올리기 어렵고 다른 말도 많아 '같다/다르다' 비교로 바꿈",
+      "cSlotEquivalents": []
+    },
+    "currentCMarkedSentence": "원의 중심에서 원 위까지의 거리는 어느 쪽으로 재어도 {같다}. 원 안의 중심이 아닌 점에서 원 위까지의 거리는 재는 쪽에 따라 {다르다}.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "같다",
+        "equivalents": []
+      },
+      {
+        "expected": "다르다",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "원위여러점이라는말은두점만재는경우도포함하여같은거리라도중심이아닐수있다;서로다른세점이상또는가로·세로양쪽끝의충분한확인방법으로 구체화한다.",
+      "c": "모든방향의같음·방향별다름이라는일반C사실은 옳다."
+    }
+  },
+  {
+    "id": "e3-2-3-1-xc25",
+    "sourceIndex": 1065,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1065,
+      "sourceFingerprint": "63e224e7bd7f37a01f50be6e7ebeb44764b5f6ad1c9da6bdbf74ecc4eb933877",
+      "part": "e3plus",
+      "id": "e3-2-3-1-xc25",
+      "section": "초3::2-3 원::2-3-1 원의 중심, 지름, 반지름",
+      "term": "지름의 한가운데",
+      "kind": "성질",
+      "level": "상",
+      "definition": "지름 위에서 두 끝까지 거리가 같은 점은 원의 {중심}이다.",
+      "studentC": "지름 위에서 두 끝까지 거리가 같은 점은 원의 □이다.",
+      "answers": [
+        "중심"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-3-1-xc25",
+      "proposalFingerprint": "dc5010e15072614abab5eaa436a8a03322e227022c9adc3c2cf497aa323f4faf",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "지름 한 개가 그어진 원이 있습니다. 자를 사용해 이 원의 중심을 찾는 방법을 설명하세요.",
+      "bAnswer": "지름의 길이를 재고, 그 길이의 반이 되는 지름의 한가운데에 점을 찍는다. 그 점이 원의 중심이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "지름의 한가운데"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 끝에서 같은 거리"
+          ]
+        }
+      ],
+      "bGoal": "지름의 한가운데가 중심임을 이용해 중심 찾기",
+      "bReason": "성질을 방법 질문으로 바꾸어 답할 범위를 정함",
+      "cDecision": "keep",
+      "cReason": "빈칸이 '중심' 한 낱말이고 조건이 문장에 드러남",
+      "cSlotEquivalents": [],
+      "answerNotes": "'원의 중심'도 정답"
+    },
+    "currentCMarkedSentence": "지름 위에서 두 끝까지 거리가 같은 점은 원의 {중심}이다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "중심",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "자로확인하는방법을묻기에길이를재어절반위치를표시하거나양끝까지같은거리를자로찾는실제행동을기준에넣어야하며한가운데·동거리말만의중복기준은 정리한다.",
+      "c": "지름위양끝과동거리인점이중심이라는조건은 정확하다."
+    }
+  },
+  {
+    "id": "e3-2-3-2-xc2",
+    "sourceIndex": 1067,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1067,
+      "sourceFingerprint": "e3ccedd2c6c0ee3805d39213140c2ca8566f3d09933fcde5f097e01ebbf476ff",
+      "part": "e3plus",
+      "id": "e3-2-3-2-xc2",
+      "section": "초3::2-3 원::2-3-2 원의 성질",
+      "term": "한 원의 지름의 길이",
+      "kind": "성질",
+      "level": "하",
+      "definition": "한 원에 그은 지름은 어느 것이나 길이가 {똑같다}.",
+      "studentC": "한 원에 그은 지름은 어느 것이나 길이가 □.",
+      "answers": [
+        "똑같다"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-3-2-xc2",
+      "proposalFingerprint": "d42618b6ea2971ca5d9af27dd72d12840386db372d8d62e5aeb348f456f4b4a9",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "한 원에 그은 지름은 어느 것이나 길이가 같습니다. 그 까닭을 반지름을 이용해 설명하세요.",
+      "bAnswer": "지름은 반지름 $2$개를 곧게 이은 것이다. 한 원의 반지름은 길이가 모두 같으므로 지름의 길이도 모두 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "지름은 반지름 $2$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 원의 반지름은 모두 같음"
+          ]
+        }
+      ],
+      "bGoal": "한 원의 지름의 길이가 모두 같은 까닭",
+      "bReason": "무엇을 이용해 설명할지(반지름) 밝혀 답의 범위를 정함",
+      "cDecision": "keep",
+      "cReason": "빈칸이 짧은 비교 낱말이고 문장이 분명함",
+      "cSlotEquivalents": [],
+      "answerNotes": "'같다'도 정답. '다르다'는 오답"
+    },
+    "currentCMarkedSentence": "한 원에 그은 지름은 어느 것이나 길이가 {똑같다}.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "똑같다",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "지름이같은반지름두개여서모든지름같다는B이유는 맞다.",
+      "c": "이문장에서똑같다와같다는동등한답이므로같다의맥락대안을 기록한다."
+    }
+  },
+  {
+    "id": "e3-2-3-2-xc15",
+    "sourceIndex": 1077,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1077,
+      "sourceFingerprint": "7017f34d67748e8ddcfc2ae8876055a4f2bb3abfda92863a8462fc3bb3d91b46",
+      "part": "e3plus",
+      "id": "e3-2-3-2-xc15",
+      "section": "초3::2-3 원::2-3-2 원의 성질",
+      "term": "맞닿게 늘어놓은 원의 전체 길이",
+      "kind": "성질",
+      "level": "중",
+      "definition": "같은 원을 한 줄로 맞닿게 늘어놓으면 전체 길이는 {지름을 원의 수만큼} 이은 길이이다.",
+      "example": {
+        "prompt": "반지름 $2\\,\\mathrm{cm}$인 원 세 개를 한 줄로 맞닿게 놓은 전체 길이가 $12\\,\\mathrm{cm}$인 까닭은?",
+        "answer": "지름 $4\\,\\mathrm{cm}$가 세 번이라서"
+      },
+      "studentC": "같은 원을 한 줄로 맞닿게 늘어놓으면 전체 길이는 □ 이은 길이이다.",
+      "answers": [
+        "지름을 원의 수만큼"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-3-2-xc15",
+      "proposalFingerprint": "d736fbd8b67918dd07fb3aaff20921d83511f729a600171f1f7b6147c734339b",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "반지름이 $2\\,\\mathrm{cm}$인 원 $3$개를 한 줄로 맞닿게 늘어놓았습니다. 맨 왼쪽 끝에서 맨 오른쪽 끝까지의 길이를 구하고, 구한 방법을 설명하세요.",
+      "bAnswer": "원 한 개의 지름은 $2\\times2=4$, 곧 $4\\,\\mathrm{cm}$이다. 지름 $3$개가 이어진 길이이므로 $4\\times3=12$, 곧 $12\\,\\mathrm{cm}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "원 한 개의 지름 $4$ cm"
+          ]
+        },
+        {
+          "anyOf": [
+            "지름 $3$개를 이은 길이 $12$ cm"
+          ]
+        }
+      ],
+      "bGoal": "맞닿게 늘어놓은 원의 전체 길이를 지름으로 구하기",
+      "bReason": "원문 예제의 수를 쓰고 '전체 길이'를 끝에서 끝까지의 길이로 밝힘",
+      "cDecision": "rewrite",
+      "cReason": "'지름을 원의 수만큼'이라는 구절 복원 대신 실제 계산을 채우게 하고 '전체 길이'의 뜻을 밝힘",
+      "cSlotEquivalents": [],
+      "exampleNeeded": "크기가 같은 원 3개가 한 줄로 맞닿아 있고 맨 왼쪽 끝에서 맨 오른쪽 끝까지의 길이가 표시된 그림"
+    },
+    "currentCMarkedSentence": "반지름이 $2\\,\\mathrm{cm}$인 원 $3$개를 한 줄로 맞닿게 늘어놓았다. 원 한 개의 지름은 {$4$}$\\,\\mathrm{cm}$이므로 맨 왼쪽 끝에서 맨 오른쪽 끝까지의 길이는 $4\\times3=${$12$}$\\,\\mathrm{cm}$이다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$4$",
+        "equivalents": []
+      },
+      {
+        "expected": "$12$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "같은원셋의지름4·전체12라는B계산과방법은맞으며일렬맞닿음그림예가 도움이 된다.",
+      "c": "첫빈칸4가뒤의4×3에드러나므로뒤식의4를생략하여두실제길이를학생이 구하게 한다."
+    }
+  },
+  {
+    "id": "e3-2-3-2-xc21",
+    "sourceIndex": 1082,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1082,
+      "sourceFingerprint": "addf67c0e5c18b9af6f41b2adec58b04b2b24be809c32d77e9787f89dd453c1e",
+      "part": "e3plus",
+      "id": "e3-2-3-2-xc21",
+      "section": "초3::2-3 원::2-3-2 원의 성질",
+      "term": "정사각형 안에 꼭 맞는 원",
+      "kind": "성질",
+      "level": "상",
+      "definition": "정사각형 안에 꼭 맞게 그린 원의 지름은 {정사각형의 한 변의 길이}와 같다.",
+      "example": {
+        "prompt": "한 변이 $10\\,\\mathrm{cm}$인 정사각형에 꼭 맞는 원의 반지름이 $5\\,\\mathrm{cm}$인 까닭은?",
+        "answer": "지름 $10\\,\\mathrm{cm}$의 반이라서"
+      },
+      "studentC": "정사각형 안에 꼭 맞게 그린 원의 지름은 □와 같다.",
+      "answers": [
+        "정사각형의 한 변의 길이"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-3-2-xc21",
+      "proposalFingerprint": "6724e51802b817d2e30d6b8a53acdfe554fa0ad8e8dc555ffe7471c6b6d924c3",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "한 변이 $10\\,\\mathrm{cm}$인 정사각형 안에 네 변에 모두 닿도록 원을 꼭 맞게 그렸습니다. 이 원의 반지름을 구하고, 구한 방법을 설명하세요.",
+      "bAnswer": "원의 지름은 정사각형의 한 변과 같은 $10\\,\\mathrm{cm}$이다. 반지름은 그 반인 $5\\,\\mathrm{cm}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "원의 지름이 정사각형의 한 변과 같은 $10$ cm"
+          ]
+        },
+        {
+          "anyOf": [
+            "반지름 $5$ cm"
+          ]
+        }
+      ],
+      "bGoal": "정사각형에 꼭 맞는 원의 지름과 한 변의 관계",
+      "bReason": "'꼭 맞게'를 '네 변에 모두 닿도록'으로 풀어 줌",
+      "cDecision": "rewrite",
+      "cReason": "'정사각형의 한 변의 길이'라는 긴 구절 대신 실제 길이를 채우게 함",
+      "cSlotEquivalents": [],
+      "exampleNeeded": "정사각형의 네 변에 모두 닿는 원이 안에 그려진 그림"
+    },
+    "currentCMarkedSentence": "한 변이 $10\\,\\mathrm{cm}$인 정사각형 안에 꼭 맞게 원을 그렸다. 이 원의 지름은 정사각형의 한 변과 길이가 같으므로 {$10$}$\\,\\mathrm{cm}$이고, 반지름은 {$5$}$\\,\\mathrm{cm}$이다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$10$",
+        "equivalents": []
+      },
+      {
+        "expected": "$5$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "네변에모두닿는조건에서지름10·반지름5인B방법은명확하다;내접배치그림예가 도움이 된다.",
+      "c": "C의꼭맞게도네변에모두닿음이라는조건을명시하거나그림으로보여야지름·반지름이 확정된다."
+    }
+  },
+  {
+    "id": "e3-2-3-2-xc23",
+    "sourceIndex": 1084,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1084,
+      "sourceFingerprint": "94ca8fb45ce7ec7582b6e39556fc611946ad6fc37b420a0c721b76eb73a486a3",
+      "part": "e3plus",
+      "id": "e3-2-3-2-xc23",
+      "section": "초3::2-3 원::2-3-2 원의 성질",
+      "term": "반지름과 지름으로 주어진 원의 크기 견주기",
+      "kind": "방법",
+      "level": "상",
+      "definition": "두 원의 크기는 {반지름끼리 또는 지름끼리} 같은 것으로 바꾸어 견준다.",
+      "example": {
+        "prompt": "반지름 $4\\,\\mathrm{cm}$인 원과 지름 $7\\,\\mathrm{cm}$인 원을 견줄 때 반지름을 지름으로 바꾸는 까닭은?",
+        "answer": "같은 것끼리 견주려고"
+      },
+      "studentC": "두 원의 크기는 □ 같은 것으로 바꾸어 견준다.",
+      "answers": [
+        "반지름끼리 또는 지름끼리"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-3-2-xc23",
+      "proposalFingerprint": "6b115f9ff219cf055f14ac4a2957b874f1a6500a8e1ff8318c95a0884d37018c",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "반지름이 $4\\,\\mathrm{cm}$인 원과 지름이 $7\\,\\mathrm{cm}$인 원 가운데 더 큰 원을 고르고, 어떻게 비교했는지 설명하세요.",
+      "bAnswer": "반지름이 $4\\,\\mathrm{cm}$인 원의 지름은 $8\\,\\mathrm{cm}$이다. 지름끼리 비교하면 $8\\,\\mathrm{cm}$가 $7\\,\\mathrm{cm}$보다 길므로 반지름이 $4\\,\\mathrm{cm}$인 원이 더 크다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "둘 다 지름(또는 둘 다 반지름)으로 바꿈"
+          ]
+        },
+        {
+          "anyOf": [
+            "반지름 $4$ cm인 원이 더 큼"
+          ]
+        }
+      ],
+      "bGoal": "반지름과 지름으로 주어진 두 원의 크기 비교 방법",
+      "bReason": "원문 예제의 수를 써서 비교 방법을 설명하게 함. 반지름끼리 비교한 풀이도 인정",
+      "cDecision": "rewrite",
+      "cReason": "'반지름끼리 또는 지름끼리'라는 긴 구절 대신 바꾼 길이와 비교 결과를 채우게 함",
+      "cSlotEquivalents": [],
+      "coreAfter": "두 원의 크기를 비교할 때 한 원은 반지름으로, 다른 원은 지름으로 주어지면 둘 다 {반지름}으로 또는 둘 다 {지름}으로 바꾸어 비교한다.",
+      "coreReason": "반지름끼리또는지름끼리라는 원래기준의두길이를짧게나눠표시한다. 전체대상을원두개와주어진길이로명시한다."
+    },
+    "currentCMarkedSentence": "반지름이 $4\\,\\mathrm{cm}$인 원과 지름이 $7\\,\\mathrm{cm}$인 원의 크기를 비교한다. 반지름이 $4\\,\\mathrm{cm}$인 원의 지름은 {$8$}$\\,\\mathrm{cm}$이므로, 반지름이 $4\\,\\mathrm{cm}$인 원이 더 {크다}.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$8$",
+        "equivalents": []
+      },
+      {
+        "expected": "크다",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "둘다지름으로바꾸기와둘다반지름으로바꾸기는두바른방법이므로하나의괄호또는표현대신anyOf대안으로기록한다.",
+      "c": "지름8로맞춰큰원을구하며일반정의는두비교길이를모두 보존한다."
+    }
+  },
+  {
+    "id": "e3-2-3-2-xc26",
+    "sourceIndex": 1087,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1087,
+      "sourceFingerprint": "fbd9babd382336162b4fcd2a39b63471eca4d918ef715a7a33aa627ae866779b",
+      "part": "e3plus",
+      "id": "e3-2-3-2-xc26",
+      "section": "초3::2-3 원::2-3-2 원의 성질",
+      "term": "맞닿은 두 원의 중심 사이",
+      "kind": "성질",
+      "level": "상",
+      "definition": "크기가 같은 두 원이 맞닿아 있으면 두 중심 사이의 거리는 {반지름 두 개, 곧 지름}과 같다.",
+      "example": {
+        "prompt": "반지름 $4\\,\\mathrm{cm}$인 두 원이 맞닿을 때 두 중심 사이가 $8\\,\\mathrm{cm}$인 까닭은?",
+        "answer": "반지름 두 개를 이어서"
+      },
+      "studentC": "크기가 같은 두 원이 맞닿아 있으면 두 중심 사이의 거리는 □과 같다.",
+      "answers": [
+        "반지름 두 개, 곧 지름"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-3-2-xc26",
+      "proposalFingerprint": "a8b7e356dfd869a8216adf0b0bb020bd688597232f50e4111beb9e1fc7b672e9",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "반지름이 $4\\,\\mathrm{cm}$인 원 두 개가 겹치지 않고 한 점에서 맞닿아 있습니다. 두 원의 중심 사이의 거리를 구하고 까닭을 설명하세요.",
+      "bAnswer": "$8\\,\\mathrm{cm}$이다. 한 원의 중심에서 맞닿은 점까지가 반지름 $4\\,\\mathrm{cm}$이고, 그 점에서 다른 원의 중심까지도 반지름 $4\\,\\mathrm{cm}$이기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "반지름 $2$개를 이은 길이"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8$ cm"
+          ]
+        }
+      ],
+      "bGoal": "맞닿은 두 원의 중심 사이의 거리가 반지름 두 개인 까닭",
+      "bReason": "'맞닿아'를 겹치지 않고 한 점에서 닿는 것으로 밝힘",
+      "cDecision": "rewrite",
+      "cReason": "'반지름 두 개, 곧 지름'이라는 긴 구절 대신 개수와 길이를 채우게 함",
+      "cSlotEquivalents": [],
+      "exampleNeeded": "크기가 같은 두 원이 바깥에서 한 점으로 맞닿고 두 중심을 이은 선분이 그려진 그림",
+      "answerNotes": "첫째 빈칸은 '두'도 정답"
+    },
+    "currentCMarkedSentence": "반지름이 $4\\,\\mathrm{cm}$인 원 두 개가 서로 맞닿아 있다. 두 원의 중심 사이의 거리는 반지름 {$2$}개를 이은 길이이므로 {$8$}$\\,\\mathrm{cm}$이다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$2$",
+        "equivalents": []
+      },
+      {
+        "expected": "$8$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "겹치지않고한점에서맞닿는조건의반지름합8cm라는B이유는정확하다;두원접점그림예가 필요하다.",
+      "c": "C도B처럼겹치지않고한점에서맞닿는배치조건을명시하여두반지름을이은거리를 구한다."
+    }
+  },
+  {
+    "id": "e3-2-3-3-xc8",
+    "sourceIndex": 1094,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1094,
+      "sourceFingerprint": "2d17c24cd679d09d7f323eb981087aaa896c0d43d81adac1cbac528501efb2c7",
+      "part": "e3plus",
+      "id": "e3-2-3-3-xc8",
+      "section": "초3::2-3 원::2-3-3 원 그리기",
+      "term": "지름이 주어진 원 그리기",
+      "kind": "방법",
+      "level": "하",
+      "definition": "지름이 주어진 원을 그릴 때에는 컴퍼스를 {지름의 반만큼} 벌린다.",
+      "example": {
+        "prompt": "지름 $6\\,\\mathrm{cm}$인 원을 그리려고 컴퍼스를 $3\\,\\mathrm{cm}$ 벌리는 까닭은?",
+        "answer": "벌린 폭이 반지름이라서"
+      },
+      "studentC": "지름이 주어진 원을 그릴 때에는 컴퍼스를 □ 벌린다.",
+      "answers": [
+        "지름의 반만큼"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-3-3-xc8",
+      "proposalFingerprint": "5d8c8ab3909599db67fb877e165cee6eb854c5bcdbe66f09e945da19060a5c43",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "지름이 $6\\,\\mathrm{cm}$인 원을 컴퍼스로 그리려고 합니다. 컴퍼스를 몇 $\\mathrm{cm}$ 벌려야 하는지 쓰고 까닭을 설명하세요.",
+      "bAnswer": "$3\\,\\mathrm{cm}$ 벌린다. 컴퍼스를 벌린 폭은 원의 반지름이 되고, 반지름은 지름의 반이기 때문이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$3$ cm"
+          ]
+        },
+        {
+          "anyOf": [
+            "벌린 폭이 반지름"
+          ]
+        }
+      ],
+      "bGoal": "지름이 주어진 원을 그릴 때 컴퍼스를 벌리는 폭",
+      "bReason": "원문 예제의 지름 6 cm로 폭과 까닭을 묻도록 함",
+      "cDecision": "rewrite",
+      "cReason": "'지름의 반만큼'이라는 구절 대신 실제 길이와 그 까닭이 되는 용어를 채우게 함",
+      "cSlotEquivalents": []
+    },
+    "currentCMarkedSentence": "지름이 $6\\,\\mathrm{cm}$인 원을 그리려면 컴퍼스를 {$3$}$\\,\\mathrm{cm}$만큼 벌린다. 컴퍼스를 벌린 폭이 원의 {반지름}이 되기 때문이다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$3$",
+        "equivalents": []
+      },
+      {
+        "expected": "반지름",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "벌릴3cm와컴퍼스폭반지름뜻외에지름6의반이반지름이라는연결도왜3인지의기준에 보완한다.",
+      "c": "지름6의벌릴폭3과그반지름뜻을 구한다."
+    }
+  },
+  {
+    "id": "e3-2-3-3-xc10",
+    "sourceIndex": 1096,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1096,
+      "sourceFingerprint": "83fb33dc34ab8b7e965600419f328540df47eacb7da61afe3c34ebd34db26381",
+      "part": "e3plus",
+      "id": "e3-2-3-3-xc10",
+      "section": "초3::2-3 원::2-3-3 원 그리기",
+      "term": "중심이 같은 원",
+      "kind": "성질",
+      "level": "중",
+      "definition": "중심을 같게 하고 반지름을 바꾸어 그리면 크기가 다른 원이 {겹겹이} 생긴다.",
+      "studentC": "중심을 같게 하고 반지름을 바꾸어 그리면 크기가 다른 원이 □ 생긴다.",
+      "answers": [
+        "겹겹이"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-3-3-xc10",
+      "proposalFingerprint": "e786d8d0c1310d7456420e375d449714e77ebe06342f228948b01bf7714a4708",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "컴퍼스의 침을 같은 점에 꽂고 벌린 폭을 $2\\,\\mathrm{cm}$, $3\\,\\mathrm{cm}$, $4\\,\\mathrm{cm}$로 바꾸어 원을 세 개 그렸습니다. 세 원에서 같은 것과 다른 것을 하나씩 쓰세요.",
+      "bAnswer": "같은 것은 원의 중심이고, 다른 것은 반지름(원의 크기)이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "중심이 같음"
+          ]
+        },
+        {
+          "anyOf": [
+            "반지름(크기)이 다름"
+          ]
+        }
+      ],
+      "bGoal": "중심이 같고 반지름이 다른 원의 특징",
+      "bReason": "'겹겹이'라는 모양 묘사 대신 같은 것과 다른 것을 견주게 함",
+      "cDecision": "rewrite",
+      "cReason": "빈칸 '겹겹이'는 떠올리기 어렵고 다른 말도 많아 같은 것과 다른 것의 이름을 쓰게 함",
+      "cSlotEquivalents": [],
+      "answerNotes": "둘째 빈칸은 '반지름', '지름'도 정답"
+    },
+    "currentCMarkedSentence": "컴퍼스의 침을 같은 점에 꽂고 벌린 폭만 바꾸어 원을 여러 개 그리면, 원의 {중심}은 같고 원의 {크기}는 다르다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "중심",
+        "equivalents": []
+      },
+      {
+        "expected": "크기",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "같은것·다른것하나씩은중심외원모양,반지름외지름등도가능하므로중심의위치·반지름길이를각각비교하라는범위로 좁힌다.",
+      "c": "크기외지름등도문맥상다른속성이므로속성이름빈칸대신중심은같다·반지름은다르다의관계빈칸을 제안한다."
+    }
+  },
+  {
+    "id": "e3-2-3-3-xc19",
+    "sourceIndex": 1104,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1104,
+      "sourceFingerprint": "ce39c8e48f426e06b5cad529b34922f190b865ddc438a1f9a5eb282fcfee49b5",
+      "part": "e3plus",
+      "id": "e3-2-3-3-xc19",
+      "section": "초3::2-3 원::2-3-3 원 그리기",
+      "term": "반지름을 두 배로 벌릴 때",
+      "kind": "성질",
+      "level": "상",
+      "definition": "컴퍼스 폭을 $2$배로 벌리면 반지름이 $2$배가 되므로, 중심을 지나 원 위의 두 점을 잇는 {지름}도 $2$배가 된다.",
+      "studentC": "컴퍼스 폭을 $2$배로 벌리면 반지름이 $2$배가 되므로, 중심을 지나 원 위의 두 점을 잇는 □도 $2$배가 된다.",
+      "answers": [
+        "지름"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-3-3-xc19",
+      "proposalFingerprint": "7154db660f364494eee455bbd474c85445f34a2acf91ef115218b75f22ecc855",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "컴퍼스를 $2\\,\\mathrm{cm}$ 벌려 그린 원과 $4\\,\\mathrm{cm}$ 벌려 그린 원이 있습니다. 두 원의 지름을 각각 구하고, 컴퍼스 폭이 $2$배가 되면 지름은 몇 배가 되는지 까닭과 함께 써 보세요.",
+      "bAnswer": "지름은 $4\\,\\mathrm{cm}$와 $8\\,\\mathrm{cm}$이다. 컴퍼스 폭이 반지름이고 지름은 반지름의 $2$배이므로, 폭이 $2$배가 되면 지름도 $2$배가 된다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "지름 $4$cm와 $8$cm"
+          ]
+        },
+        {
+          "anyOf": [
+            "컴퍼스 폭은 반지름"
+          ]
+        },
+        {
+          "anyOf": [
+            "지름도 $2$배"
+          ]
+        }
+      ],
+      "bGoal": "컴퍼스 폭·반지름·지름의 관계 설명",
+      "bReason": "구체적인 폭을 주어 2배 관계를 직접 확인하고 말하게 함",
+      "cDecision": "keep",
+      "cReason": "지름의 뜻이 문장에 풀려 있고 빈칸이 익숙한 용어 한 낱말임",
+      "cSlotEquivalents": [],
+      "answerNotes": "정답 '지름'. '반지름'은 오답."
+    },
+    "currentCMarkedSentence": "컴퍼스 폭을 $2$배로 벌리면 반지름이 $2$배가 되므로, 중심을 지나 원 위의 두 점을 잇는 {지름}도 $2$배가 된다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "지름",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "지름4·8과두배판단은맞으며왜두배인지에는지름이반지름의두배라는연결이나4·8의바른두배비교도대안으로 명시한다.",
+      "c": "컴퍼스폭·반지름두배에따라지름도두배라는관계다."
+    }
+  },
+  {
+    "id": "e3-2-3-3-xc25",
+    "sourceIndex": 1107,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1107,
+      "sourceFingerprint": "f8b46a3c177fc1a2075a0b824b246caa656385a88051f7a40f66b0cad2c876cd",
+      "part": "e3plus",
+      "id": "e3-2-3-3-xc25",
+      "section": "초3::2-3 원::2-3-3 원 그리기",
+      "term": "한 변이 지름과 같은 정사각형 꼭짓점에 둔 네 원",
+      "kind": "성질",
+      "level": "상",
+      "definition": "반지름이 같은 원 $4$개의 중심을 한 변이 지름과 같은 정사각형의 꼭짓점에 두면 이웃한 원이 {서로 맞닿는다}.",
+      "studentC": "반지름이 같은 원 $4$개의 중심을 한 변이 지름과 같은 정사각형의 꼭짓점에 두면 이웃한 원이 □.",
+      "answers": [
+        "서로 맞닿는다"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-3-3-xc25",
+      "proposalFingerprint": "e00585f6e9cec42758115ce988259cf269f7d4e0d2b56ac79b392fcd078c460b",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "반지름이 $2\\,\\mathrm{cm}$인 원 $2$개의 중심이 $4\\,\\mathrm{cm}$ 떨어져 있습니다. 두 원이 겹치지 않고 한 점에서 맞닿는 까닭을 설명해 보세요.",
+      "bAnswer": "각 원은 중심에서 $2\\,\\mathrm{cm}$까지만 뻗는다. 두 중심 사이가 $2+2=4(\\mathrm{cm})$로 두 반지름을 더한 길이와 같아서 가운데 한 점에서만 만난다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두 중심 사이 거리가 두 반지름의 합(지름)과 같다"
+          ]
+        },
+        {
+          "anyOf": [
+            "한 점에서만 만난다"
+          ]
+        }
+      ],
+      "bGoal": "중심 사이 거리가 지름과 같으면 두 원이 맞닿는 까닭 설명",
+      "bReason": "네 원·정사각형 조건이 글로만 읽기 어려워 핵심인 이웃한 두 원으로 좁힘",
+      "cDecision": "rewrite",
+      "cReason": "'서로 맞닿는다'는 '만난다', '붙는다' 등 답이 흩어지는 서술 빈칸이라 한 변의 길이를 구하는 계산 빈칸으로 바꿈",
+      "cSlotEquivalents": [],
+      "exampleNeeded": "정사각형의 네 꼭짓점을 중심으로 하여 이웃한 원끼리 한 점에서 맞닿은 원 4개 그림",
+      "answerNotes": "정답 $4$(지름). 반지름인 $2$는 오답."
+    },
+    "currentCMarkedSentence": "반지름이 $2\\,\\mathrm{cm}$인 원 $4$개를 이웃한 원끼리 겹치지 않고 꼭 맞닿게 그리려면, 네 중심을 한 변이 {$4$}$\\,\\mathrm{cm}$인 정사각형의 꼭짓점에 둔다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$4$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "두반지름합과중심거리가같다는접촉이유는좋지만한점에서만만난다는이미준결론은독립필수로되풀이하지 않도록 기준을 정리한다;네원정사각형배치예가 필요하다.",
+      "c": "반지름2의이웃중심거리4를정사각형한변에 대응시킨다."
+    }
+  },
+  {
+    "id": "e3-2-3-3-xc27",
+    "sourceIndex": 1109,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1109,
+      "sourceFingerprint": "fecff511a4276776453e9558bcba88aed6492c85f20edeed773a68c7fe456107",
+      "part": "e3plus",
+      "id": "e3-2-3-3-xc27",
+      "section": "초3::2-3 원::2-3-3 원 그리기",
+      "term": "같은 폭으로 그린 두 원",
+      "kind": "성질",
+      "level": "상",
+      "definition": "두 원을 그린 컴퍼스의 폭이 같다면 두 원의 {크기}는 같다.",
+      "studentC": "두 원을 그린 컴퍼스의 폭이 같다면 두 원의 □는 같다.",
+      "answers": [
+        "크기"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-3-3-xc27",
+      "proposalFingerprint": "324e806dfa9bbf4fde63690ea15735e7fcc9d7f1ab18ea2e6c1e9a62ab81bb13",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "컴퍼스를 똑같은 폭으로 벌려 서로 다른 곳에 원을 $2$개 그렸습니다. 두 원의 크기가 같은 까닭을 설명해 보세요.",
+      "bAnswer": "컴퍼스 폭이 원의 반지름이 된다. 폭이 같으면 두 원의 반지름이 같으므로 크기가 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "컴퍼스 폭이 반지름"
+          ]
+        },
+        {
+          "anyOf": [
+            "반지름이 같으면 크기가 같다"
+          ]
+        }
+      ],
+      "bGoal": "원의 크기가 반지름으로 정해짐을 설명",
+      "bReason": "결과만 말하지 않고 반지름을 근거로 쓰도록 이유를 묻게 함",
+      "cDecision": "rewrite",
+      "cReason": "원문 빈칸은 '크기' 말고 '넓이', '둘레'도 들어갈 수 있어 같다/다르다 비교 빈칸으로 바꿈",
+      "cSlotEquivalents": [],
+      "answerNotes": "'같다', '똑같다' 인정."
+    },
+    "currentCMarkedSentence": "컴퍼스의 폭을 똑같이 하여 그린 두 원은 반지름이 같으므로 크기가 서로 {같다}.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "같다",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "같은폭→같은반지름→같은크기의설명은1097과겹쳐B제외를 제안한다.",
+      "c": "같은반지름의두원크기같음이라는짧은관계는 유지할수있다."
+    }
+  },
+  {
+    "id": "e3-2-4-1-xc1",
+    "sourceIndex": 1110,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1110,
+      "sourceFingerprint": "93904f36a4fed8b18544014fcb15cee52b4667944abe7fd4ad9f26fd74969d13",
+      "part": "e3plus",
+      "id": "e3-2-4-1-xc1",
+      "section": "초3::2-4 분수::2-4-1 분수로 나타내기",
+      "term": "한 묶음이 나타내는 분수",
+      "kind": "성질",
+      "level": "하",
+      "definition": "같은 수씩 묶었을 때 한 묶음은 {전체 묶음 수를 분모로} 하는 분자가 $1$인 분수이다.",
+      "example": {
+        "prompt": "사탕 $12$개를 $3$개씩 묶은 한 묶음이 $\\frac{1}{4}$인 까닭은?",
+        "answer": "$4$묶음 중 $1$묶음이라서"
+      },
+      "studentC": "같은 수씩 묶었을 때 한 묶음은 □ 하는 분자가 $1$인 분수이다.",
+      "answers": [
+        "전체 묶음 수를 분모로"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-4-1-xc1",
+      "proposalFingerprint": "a0459b9fc28f7e5207ba5fa3a62db0405970839904fea399feddbe1241818cb6",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "사탕 $12$개를 $3$개씩 묶었습니다. 한 묶음은 전체의 얼마인지 분수로 쓰고, 분모를 그 수로 정한 까닭을 설명해 보세요.",
+      "bAnswer": "$\\frac{1}{4}$이다. $12$개를 $3$개씩 묶으면 모두 $4$묶음이고 한 묶음은 그중 $1$묶음이므로, 분모는 전체 묶음 수 $4$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{1}{4}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "분모는 전체 묶음 수 $4$"
+          ]
+        }
+      ],
+      "bGoal": "한 묶음을 단위분수로 나타내는 까닭 설명",
+      "bReason": "원문 예시의 수를 써서 분모가 전체 묶음 수라는 것을 스스로 말하게 함",
+      "cDecision": "rewrite",
+      "cReason": "'전체 묶음 수를 분모로'는 문장 복원형 긴 빈칸이라 실제 묶음 수와 분모를 쓰는 계산 빈칸으로 바꿈",
+      "cSlotEquivalents": [],
+      "answerNotes": "분모에 낱개 수 $12$나 한 묶음의 개수 $3$을 쓰면 오답."
+    },
+    "currentCMarkedSentence": "사탕 $12$개를 $3$개씩 묶으면 모두 {$4$}묶음이다. 그중 한 묶음을 분수로 나타내면 분자는 $1$이고 분모는 {$4$}이다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$4$",
+        "equivalents": []
+      },
+      {
+        "expected": "$4$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "한묶음의양은3/12도맞으므로묶음하나를한부분으로보는조건을명시하거나동등한분수표현과그기준설명을 인정한다.",
+      "c": "3개씩전체네묶음과그분모4의역할을 확인한다."
+    }
+  },
+  {
+    "id": "e3-2-4-1-xc3",
+    "sourceIndex": 1111,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1111,
+      "sourceFingerprint": "cc22b59eac78274ffe359f81abc88155a28ad63861bc2708192b15a19f07f2f8",
+      "part": "e3plus",
+      "id": "e3-2-4-1-xc3",
+      "section": "초3::2-4 분수::2-4-1 분수로 나타내기",
+      "term": "고른 묶음 수",
+      "kind": "성질",
+      "level": "하",
+      "definition": "분수로 나타낼 때 고른 묶음의 수는 {분자}가 된다.",
+      "studentC": "분수로 나타낼 때 고른 묶음의 수는 □가 된다.",
+      "answers": [
+        "분자"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-4-1-xc3",
+      "proposalFingerprint": "7cda42ca2cfeb73c0d98f6df414c2a09c823349a0ecb332c2880e8989fb4d47e",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "구슬 $10$개를 $2$개씩 묶고 그중 $3$묶음을 골랐습니다. 고른 구슬은 전체의 얼마인지 분수로 쓰고, 분자와 분모가 각각 무엇을 나타내는지 설명해 보세요.",
+      "bAnswer": "$\\frac{3}{5}$이다. 분모 $5$는 전체 묶음 수이고 분자 $3$은 고른 묶음 수이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{3}{5}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "분모는 전체 묶음 수"
+          ]
+        },
+        {
+          "anyOf": [
+            "분자는 고른 묶음 수"
+          ]
+        }
+      ],
+      "bGoal": "묶음으로 나타낸 분수에서 분자·분모의 뜻 설명",
+      "bReason": "낱말 맞히기에 그치지 않도록 구체 상황에서 분자와 분모의 뜻을 말하게 함",
+      "cDecision": "rewrite",
+      "cReason": "원문에는 '묶어서 나타낸다'는 조건이 빠져 있어 분모와 짝을 지어 대상을 분명히 함. 빈칸은 그대로 '분자'",
+      "cSlotEquivalents": []
+    },
+    "currentCMarkedSentence": "여러 개를 같은 수씩 묶어 분수로 나타낼 때, 전체 묶음 수는 분모가 되고 고른 묶음 수는 {분자}가 된다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "분자",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "고른양6/10도맞기에묶음단위로분자·분모를정하라는범위를질문에서명시하거나다른표현의바른뜻도 인정한다.",
+      "c": "묶음단위의고른수를분자로쓰는역할이다."
+    }
+  },
+  {
+    "id": "e3-2-4-1-xc5",
+    "sourceIndex": 1112,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1112,
+      "sourceFingerprint": "02d1d34254aff680787afb70da39e547a7d1bec888b7894f329bb90d75481211",
+      "part": "e3plus",
+      "id": "e3-2-4-1-xc5",
+      "section": "초3::2-4 분수::2-4-1 분수로 나타내기",
+      "term": "몇 개를 묶음으로 세어 분수로",
+      "kind": "방법",
+      "level": "하",
+      "definition": "몇 개가 전체의 얼마인지 나타내려면 {그 개수가 몇 묶음인지} 세어 분자로 쓴다.",
+      "example": {
+        "prompt": "$10$개를 $2$개씩 묶을 때 $4$개가 전체의 $\\frac{2}{5}$인 까닭은?",
+        "answer": "$5$묶음 중 $2$묶음이라서"
+      },
+      "studentC": "몇 개가 전체의 얼마인지 나타내려면 □ 세어 분자로 쓴다.",
+      "answers": [
+        "그 개수가 몇 묶음인지"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-4-1-xc5",
+      "proposalFingerprint": "786f5f34c0d1d6a5ff0675b8314d07bf04a77b328119260e62ac14a4aa9e2b5d",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "구슬 $10$개를 $2$개씩 묶었습니다. 구슬 $4$개는 전체의 얼마인지 분수로 쓰고, 분자를 어떻게 정했는지 설명해 보세요.",
+      "bAnswer": "$\\frac{2}{5}$이다. 전체는 $5$묶음이고 구슬 $4$개는 $2$개씩 $2$묶음이므로 분자는 $2$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{2}{5}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$개는 $2$묶음"
+          ]
+        },
+        {
+          "anyOf": [
+            "분자는 묶음 수"
+          ]
+        }
+      ],
+      "bGoal": "낱개 수를 묶음 수로 바꾸어 분자로 쓰는 방법 설명",
+      "bReason": "원문 예시의 수로 '몇 묶음인지 센다'는 방법을 직접 쓰게 함",
+      "cDecision": "rewrite",
+      "cReason": "'그 개수가 몇 묶음인지'는 긴 구절 복원이라 실제 묶음 수를 세어 쓰는 빈칸으로 바꿈",
+      "cSlotEquivalents": [],
+      "answerNotes": "분자에 낱개 수 $4$를 쓰면 오답."
+    },
+    "currentCMarkedSentence": "구슬 $10$개를 $2$개씩 묶으면 $5$묶음이다. 구슬 $4$개는 그중 {$2$}묶음이므로, 구슬 $4$개를 전체에 대한 분수로 나타내면 분자는 {$2$}이다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$2$",
+        "equivalents": []
+      },
+      {
+        "expected": "$2$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "4/10도같은양이므로한묶음을한부분으로보고분수를쓰는응답범위를명시해야2/5만요구할수 있다.",
+      "c": "4개의두묶음과분자2의같은묶음단위가 명확하다."
+    }
+  },
+  {
+    "id": "e3-2-4-1-xc8",
+    "sourceIndex": 1113,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1113,
+      "sourceFingerprint": "02a6cd5a009cd183612558faa4c43ec4594921b9acaad59aaf7d5cefd059dce6",
+      "part": "e3plus",
+      "id": "e3-2-4-1-xc8",
+      "section": "초3::2-4 분수::2-4-1 분수로 나타내기",
+      "term": "같은 수씩 묶기",
+      "kind": "방법",
+      "level": "하",
+      "definition": "여러 물건을 분수로 나타내려면 같은 수씩 묶어 전체를 똑같이 나눈다. 물건 $12$개를 $4$묶음으로 똑같이 나누면 한 묶음은 {$3$}개이다.",
+      "studentC": "여러 물건을 분수로 나타내려면 같은 수씩 묶어 전체를 똑같이 나눈다. 물건 $12$개를 $4$묶음으로 똑같이 나누면 한 묶음은 □개이다.",
+      "answers": [
+        "$3$"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-4-1-xc8",
+      "proposalFingerprint": "52cf9d087627bf655bfb2c40419e2cb4304589d63d9346baddc3ee7ab7366732",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "구슬 $12$개를 $5$개, $5$개, $2$개로 나누어 묶었습니다. 이때 $5$개짜리 한 묶음을 전체의 $\\frac{1}{3}$이라고 할 수 없는 까닭을 설명하고, 한 묶음이 $\\frac{1}{3}$이 되려면 몇 개씩 묶어야 하는지 써 보세요.",
+      "bAnswer": "묶음마다 개수가 달라 전체를 똑같이 나눈 것이 아니기 때문이다. $4$개씩 $3$묶음으로 묶어야 한 묶음이 $\\frac{1}{3}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "묶음의 크기가 같아야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$4$개씩 묶는다"
+          ]
+        }
+      ],
+      "bGoal": "분수로 나타내려면 같은 수씩 묶어야 하는 까닭 설명",
+      "bReason": "C가 계산을 맡으므로 B는 '같은 수씩'이 필요한 이유를 반례로 묻게 함",
+      "cDecision": "keep",
+      "cReason": "12개를 4묶음으로 나누는 선명한 계산 빈칸이고 조건이 모두 보임",
+      "cSlotEquivalents": []
+    },
+    "currentCMarkedSentence": "여러 물건을 분수로 나타내려면 같은 수씩 묶어 전체를 똑같이 나눈다. 물건 $12$개를 $4$묶음으로 똑같이 나누면 한 묶음은 {$3$}개이다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$3$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "5·5·2는같은묶음이아니며5가12의1/3인4가아니라는구체이유도인정하도록기준대안을 보완한다.",
+      "c": "12개를같은네묶음으로나눈3개라는조건부계산이다."
+    }
+  },
+  {
+    "id": "e3-2-4-1-xc16",
+    "sourceIndex": 1115,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1115,
+      "sourceFingerprint": "a582482abf5e02d954b1b474ed852cf4a88609e0d1cfab8a06d790121ff2791d",
+      "part": "e3plus",
+      "id": "e3-2-4-1-xc16",
+      "section": "초3::2-4 분수::2-4-1 분수로 나타내기",
+      "term": "고른 묶음과 남은 묶음",
+      "kind": "성질",
+      "level": "중",
+      "definition": "같은 수씩 묶어 고른 묶음과 남은 묶음을 분수로 나타내면 두 분자를 더한 값은 {분모}와 같다.",
+      "studentC": "같은 수씩 묶어 고른 묶음과 남은 묶음을 분수로 나타내면 두 분자를 더한 값은 □와 같다.",
+      "answers": [
+        "분모"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-4-1-xc16",
+      "proposalFingerprint": "b081f62ba4f7e0ef617d16e72e4e50cb5f67e318292d5a1fbbfa11dfe64e461d",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "구슬을 같은 수씩 $5$묶음으로 묶어 $2$묶음을 골랐습니다. 고른 것과 남은 것을 각각 전체에 대한 분수로 쓰고, 두 분자를 더하면 분모와 같아지는 까닭을 설명해 보세요.",
+      "bAnswer": "고른 것은 $\\frac{2}{5}$, 남은 것은 $\\frac{3}{5}$이다. 고른 묶음과 남은 묶음을 합하면 전체 $5$묶음이 되므로 $2+3=5$로 분모와 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{2}{5}$와 $\\frac{3}{5}$"
+          ]
+        },
+        {
+          "anyOf": [
+            "고른 묶음과 남은 묶음을 합하면 전체 묶음 수"
+          ]
+        }
+      ],
+      "bGoal": "고른 부분과 남은 부분의 분자 합이 분모가 되는 까닭 설명",
+      "bReason": "추상 문장을 5묶음 상황으로 바꿔 스스로 확인하고 이유를 쓰게 함",
+      "cDecision": "keep",
+      "cReason": "조건이 문장에 다 있고 빈칸이 익숙한 낱말 '분모' 하나임",
+      "cSlotEquivalents": [],
+      "answerNotes": "'분모', '전체 묶음 수' 인정."
+    },
+    "currentCMarkedSentence": "같은 수씩 묶어 고른 묶음과 남은 묶음을 분수로 나타내면 두 분자를 더한 값은 {분모}와 같다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "분모",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "분자합이분모와같음을말하려면두표현의분모를같게정하는조건을B에명시하여2/5·6/10같은서로다른표현의혼동을 피한다.",
+      "c": "C도두부분을같은분모로쓴다는조건을명시하면분자합관계가 정확하다."
+    }
+  },
+  {
+    "id": "e3-2-4-1-xc22",
+    "sourceIndex": 1117,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1117,
+      "sourceFingerprint": "2a0c7d73b518875286975f9da985fc826de515d47fdcd19c43da32e68e51e11c",
+      "part": "e3plus",
+      "id": "e3-2-4-1-xc22",
+      "section": "초3::2-4 분수::2-4-1 분수로 나타내기",
+      "term": "남김없이 묶기",
+      "kind": "성질",
+      "level": "상",
+      "definition": "전체 묶음 수를 분모로 쓰려면 전체를 {남는 것 없이 같은 수씩} 묶어야 한다.",
+      "studentC": "전체 묶음 수를 분모로 쓰려면 전체를 □ 묶어야 한다.",
+      "answers": [
+        "남는 것 없이 같은 수씩"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-4-1-xc22",
+      "proposalFingerprint": "e848ce3e4e7d452070737201d50fe0069837c1859cace7dff800117166baa73e",
+      "learningRole": "reason",
+      "bDecision": "rewrite",
+      "bPrompt": "구슬 $10$개를 $3$개씩 묶어 한 묶음을 분수로 나타내려고 합니다. 이렇게 묶으면 안 되는 까닭을 설명하고, 몇 개씩 묶으면 되는지 한 가지 써 보세요.",
+      "bAnswer": "$3$개씩 묶으면 $1$개가 남아 전체가 똑같은 묶음으로 나누어지지 않는다. $2$개씩($5$묶음)이나 $5$개씩($2$묶음) 묶으면 된다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1$개가 남는다"
+          ]
+        },
+        {
+          "anyOf": [
+            "남는 것 없이 같은 수씩 묶어야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "알맞은 묶는 수 한 가지"
+          ]
+        }
+      ],
+      "bGoal": "남김없이 묶어야 묶음 수를 분모로 쓸 수 있음을 설명",
+      "bReason": "남는 경우를 직접 주어 '남김없이'가 필요한 이유를 말하게 함",
+      "cDecision": "rewrite",
+      "cReason": "'남는 것 없이 같은 수씩'은 긴 구절 빈칸이라 나머지 계산과 짧은 낱말 빈칸으로 바꿈",
+      "cSlotEquivalents": [],
+      "answerNotes": "B는 $1$개씩, $2$개씩, $5$개씩, $10$개씩 모두 인정. C 둘째 빈칸은 '없게', '없도록' 인정."
+    },
+    "currentCMarkedSentence": "구슬 $10$개를 $3$개씩 묶으면 {$1$}개가 남는다. 묶음 수를 분모로 쓰려면 남는 것이 {없게} 같은 수씩 묶어야 한다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$1$",
+        "equivalents": []
+      },
+      {
+        "expected": "없게",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "남김없는묶음수를분모로쓰려는조건을B에명시해야한다;3개한묶음자체는3/10으로나타낼수있어분수표현전체가불가능하다고하면 안된다.",
+      "c": "C는묶음수를분모로쓴다는조건을이미주어남은1·없게라는요구가 맞다."
+    }
+  },
+  {
+    "id": "e3-2-4-1-xc24",
+    "sourceIndex": 1118,
+    "grade": "e3",
+    "source": {
+      "sourceIndex": 1118,
+      "sourceFingerprint": "805141cd50d644eaf5227ea59068a8be78a88f6f5bb2f5a5629d521c4fd9bd4c",
+      "part": "e3plus",
+      "id": "e3-2-4-1-xc24",
+      "section": "초3::2-4 분수::2-4-1 분수로 나타내기",
+      "term": "여러 종류를 합한 전체",
+      "kind": "방법",
+      "level": "상",
+      "definition": "여러 종류를 합한 것이 전체이면 {합한 전체를 같은 수씩 묶어} 분수로 나타낸다.",
+      "example": {
+        "prompt": "사과 $4$개와 배 $8$개를 $4$개씩 묶을 때 사과가 $\\frac{1}{3}$인 까닭은?",
+        "answer": "전체 $3$묶음 중 $1$묶음이라서"
+      },
+      "studentC": "여러 종류를 합한 것이 전체이면 □ 분수로 나타낸다.",
+      "answers": [
+        "합한 전체를 같은 수씩 묶어"
+      ]
+    },
+    "currentProposal": {
+      "id": "e3-2-4-1-xc24",
+      "proposalFingerprint": "3eb4f68bba3c95f436b52ced85d41e8582c4d162ca9eff98bf5d5be81d968a0d",
+      "learningRole": "procedure",
+      "bDecision": "rewrite",
+      "bPrompt": "사과 $4$개와 배 $8$개가 있습니다. 과일을 $4$개씩 묶을 때 사과는 전체 과일의 얼마인지 분수로 쓰고, 분모를 어떻게 정했는지 설명해 보세요.",
+      "bAnswer": "$\\frac{1}{3}$이다. 사과와 배를 합한 $12$개가 전체이고 $4$개씩 묶으면 $3$묶음이므로 분모는 $3$이며, 사과는 그중 $1$묶음이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "전체는 합한 $12$개"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$묶음이므로 분모 $3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{3}$"
+          ]
+        }
+      ],
+      "bGoal": "여러 종류를 합한 것을 전체로 보고 분수로 나타내기",
+      "bReason": "배 8개만 전체로 보는 실수를 가려내도록 분모를 정한 근거를 묻게 함",
+      "cDecision": "rewrite",
+      "cReason": "'합한 전체를 같은 수씩 묶어'는 긴 구절 복원이라 전체 개수와 묶음 수를 구하는 계산 빈칸으로 바꿈",
+      "cSlotEquivalents": [],
+      "answerNotes": "배만 전체로 보아 $\\frac{1}{2}$이나 $\\frac{4}{8}$로 쓰면 오답."
+    },
+    "currentCMarkedSentence": "사과 $4$개와 배 $8$개를 합한 과일 전체는 {$12$}개이다. 전체를 $4$개씩 묶으면 {$3$}묶음이고 사과는 그중 $1$묶음이다.",
+    "currentCSlotAnswers": [
+      {
+        "expected": "$12$",
+        "equivalents": []
+      },
+      {
+        "expected": "$3$",
+        "equivalents": []
+      }
+    ],
+    "directReaderNotes": {
+      "b": "사과4/12도맞으므로묶음하나를한부분으로보고분모를정하는범위를B에명시하거나동등한양표현을 인정한다.",
+      "c": "두종류의전체12개와네개씩세묶음이라는계산이 분명하다."
+    }
+  }
+]

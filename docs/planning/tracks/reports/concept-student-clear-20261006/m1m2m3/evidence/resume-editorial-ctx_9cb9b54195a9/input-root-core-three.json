@@ -1,0 +1,303 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T08:03:02.596Z",
+  "rows": [
+    {
+      "source": {
+        "part": "m3",
+        "id": "m3-03-02-c6",
+        "section": "중3::3. 이차방정식::이차방정식의 근의 공식과 응용",
+        "term": "$x$의 계수가 짝수인 이차방정식의 근의 공식",
+        "kind": "공식",
+        "level": "상",
+        "definition": "$ax^2+2b'x+c=0$처럼 $x$의 계수가 짝수이면 분자는 {$-b'\\pm\\sqrt{b'^2-ac}$}, 분모는 {$a$}로 간단해진다.",
+        "studentC": "$ax^2+2b'x+c=0$처럼 $x$의 계수가 짝수이면 분자는 □, 분모는 □로 간단해진다.",
+        "answers": [
+          "$-b'\\pm\\sqrt{b'^2-ac}$",
+          "$a$"
+        ]
+      },
+      "proposal": {
+        "id": "m3-03-02-c6",
+        "bDecision": "rewrite",
+        "bPrompt": "$x$의 계수가 짝수인 이차방정식 $ax^2+2b'x+c=0$에서 $a\\ne0$, $b'^2-ac\\ge0$이다. 해를 $a$, $b'$, $c$로 나타내는 공식을 쓰시오.",
+        "bAnswer": "$x=\\frac{-b'\\pm\\sqrt{b'^2-ac}}{a}$ (단, $b'^2-ac\\ge0$)",
+        "bGoal": "$b'$을 쓰는 근의 공식 쓰기",
+        "bReason": "$b'$이 무엇인지 알도록 방정식의 꼴을 질문에 넣었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "분자 $-b'\\pm\\sqrt{b'^2-ac}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "분모 $a$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "이차방정식 $ax^2+2b'x+c=0$에서 $a\\ne0$, $b'^2-ac\\ge0$이면 간단한 근의 공식의 분자는 {$-b'\\pm\\sqrt{b'^2-ac}$}, 분모는 {$a$}이다.",
+        "cAnswers": [
+          "$-b'\\pm\\sqrt{b'^2-ac}$",
+          "$a$"
+        ],
+        "cReason": "무엇의 분자·분모인지 문장에 없어 근의 공식임을 밝혔다.",
+        "authorBatch": 56,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "learningRole": "procedure",
+        "roleReason": "짝수 계수용 간단한 공식",
+        "enrichmentEvidence": "enrichment/enrich-002",
+        "sourceIndex": 812,
+        "part": "m3",
+        "sourceFingerprint": "6fca5a335cfa3e21ff31fc628a0e5dc2b25aa3eb3e28d9749b853786eafea9e5",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 812
+        },
+        "directReview": null,
+        "cMarkedSentence": "이차방정식 $ax^2+2b'x+c=0$에서 $a\\ne0$, $b'^2-ac\\ge0$이면 간단한 근의 공식의 분자는 {$-b'\\pm\\sqrt{b'^2-ac}$}, 분모는 {$a$}이다.",
+        "cSlotAnswers": [
+          "$-b'\\pm\\sqrt{b'^2-ac}$",
+          "$a$"
+        ],
+        "cStudentSentence": "이차방정식 $ax^2+2b'x+c=0$에서 $a\\ne0$, $b'^2-ac\\ge0$이면 간단한 근의 공식의 분자는 □, 분모는 □이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$-b'\\pm\\sqrt{b'^2-ac}$",
+            "equivalentAnswers": [
+              "$-b'\\pm\\sqrt{b'^2-ac}$"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$a$",
+            "equivalentAnswers": [
+              "$a$"
+            ],
+            "equivalenceReview": "direct editorial proposal; independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$-b'\\pm\\sqrt{b'^2-ac}$"
+          ],
+          [
+            "$a$"
+          ]
+        ],
+        "proposalFingerprint": "399eaad7d9bfee36a4e00a6a724cc5c44a64ef9e990a09e231d0263c76a1fd29",
+        "coreAfter": "이차방정식 $ax^2+2b'x+c=0$에서 $a\\ne0$, $b'^2-ac\\ge0$일 때, $x$의 짝수 계수 $2b'$를 이용한 간단한 근의 공식은 분자가 {$-b'\\pm\\sqrt{b'^2-ac}$}, 분모가 {$a$}인 식이다.",
+        "coreReason": "실수의 근호와 나눗셈을 할 수 있는 조건을 공식의 전제로 명시한다."
+      }
+    },
+    {
+      "source": {
+        "part": "m1",
+        "id": "m1-03-13-c6",
+        "section": "중1::3. 방정식::일차방정식의 활용(비율, 시계, 규칙)",
+        "term": "시침과 분침이 이루는 각",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$a$시 $x$분에 $12$시 방향에서 시침은 {$30a+0.5x$}도, 분침은 {$6x$}도 돌아간 곳에 있다. 그 두 각의 차가 $180^\\circ$ 이하이면 그 차가, $180^\\circ$보다 크면 $360^\\circ$에서 그 차를 뺀 값이 두 바늘이 이루는 각이다.",
+        "studentC": "$a$시 $x$분에 $12$시 방향에서 시침은 □도, 분침은 □도 돌아간 곳에 있다. 그 두 각의 차가 $180^\\circ$ 이하이면 그 차가, $180^\\circ$보다 크면 $360^\\circ$에서 그 차를 뺀 값이 두 바늘이 이루는 각이다.",
+        "answers": [
+          "$30a+0.5x$",
+          "$6x$"
+        ]
+      },
+      "proposal": {
+        "id": "m1-03-13-c6",
+        "bDecision": "rewrite",
+        "bPrompt": "$a$시 $x$분($a$는 $1$부터 $11$까지의 자연수, $0\\le x<60$)일 때, $12$시 방향에서 시계 방향으로 시침과 분침이 돌아간 각을 각각 $a$, $x$의 식으로 쓰시오. 또 두 각의 차가 $180^\\circ$보다 클 때 두 바늘이 이루는 각을 어떻게 구하는지 쓰시오.",
+        "bAnswer": "시침은 $(30a+0.5x)^\\circ$, 분침은 $6x^\\circ$이다. 두 각의 차가 $180^\\circ$ 이하이면 그 차가 두 바늘이 이루는 각이고, $180^\\circ$보다 크면 $360^\\circ$에서 그 차를 뺀 값이다.",
+        "bGoal": "$a$시 $x$분의 두 바늘 위치 식과 이루는 각 구하기",
+        "bReason": "기준 방향과 $a$, $x$의 범위를 밝혀 두 식과 $180^\\circ$ 초과 처리를 물음.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$30a+0.5x$",
+              "$30a+\\frac{1}{2}x$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6x$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$360^\\circ$에서 차를 뺀다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cReason": "시계의 12시를 a=0으로 보는 조건과 분의 범위를 실제 평가 문장에 명시한다.",
+        "learningRole": "procedure",
+        "roleReason": "두 바늘의 각을 식으로 쓰고 차로 사잇각 구하기",
+        "coreAfter": "$a$시 $x$분($12$시대는 $a=0$)에 $12$시 방향에서 시계 방향으로 시침은 {$30a+0.5x$}도, 분침은 {$6x$}도 돌아간 곳에 있다. 두 각의 차가 $180^\\circ$ 이하이면 그 차가, 크면 $360^\\circ$에서 그 차를 뺀 값이 두 바늘의 작은 각이다.",
+        "coreReason": "시계가 가리키는 각의 기준 방향과 12시 표기를 명시하고 두 각의 차로 작은 각을 구하는 일반 의미를 간결하게 유지한다.",
+        "authorBatch": 11,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "cAfter": "$a$시 $x$분($0\\le x<60$, $12$시대는 $a=0$)에 $12$시 방향에서 시계 방향으로 시침은 {$30a+0.5x$}도, 분침은 {$6x$}도 돌아간 곳에 있다. 두 각의 차가 $180^\\circ$보다 크면 $360^\\circ$에서 그 차를 뺀 값이 두 바늘의 작은 각이다.",
+        "cAnswers": [
+          "$30a+0.5x$",
+          "$6x$"
+        ],
+        "coreRepairDecision": "reject",
+        "coreRepairDecisionReason": "a=12의 경우에도 각의 차 규칙이 맞는다는 보조 지적은 타당하다. 다만 학생이 시침 위치를 12시 기준 한 바퀴 이내로 나타내도록 a=0 표기를 남기고 이유를 수학 오류 주장 대신 기준 명시로 고쳤다.",
+        "sourceIndex": 145,
+        "part": "m1",
+        "sourceFingerprint": "d366090df9628b3b5ebf13051c660a295ebc24ca6cef73a64b004c4ea24b9562",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 145
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m1-03-13-c6"
+        },
+        "coreRepairRejectedProposal": "$a$시 $x$분에 $12$시 방향에서 시계 방향으로 시침은 {$30a+0.5x$}도, 분침은 {$6x$}도 돌아간 곳에 있다. 그 두 각의 차가 $180^\\circ$ 이하이면 그 차가, $180^\\circ$보다 크면 $360^\\circ$에서 그 차를 뺀 값이 두 바늘이 이루는 각이다.",
+        "coreRepairEvidence": "core-repair/core-000",
+        "cMarkedSentence": "$a$시 $x$분($0\\le x<60$, $12$시대는 $a=0$)에 $12$시 방향에서 시계 방향으로 시침은 {$30a+0.5x$}도, 분침은 {$6x$}도 돌아간 곳에 있다. 두 각의 차가 $180^\\circ$보다 크면 $360^\\circ$에서 그 차를 뺀 값이 두 바늘의 작은 각이다.",
+        "cSlotAnswers": [
+          "$30a+0.5x$",
+          "$6x$"
+        ],
+        "cStudentSentence": "$a$시 $x$분($0\\le x<60$, $12$시대는 $a=0$)에 $12$시 방향에서 시계 방향으로 시침은 □도, 분침은 □도 돌아간 곳에 있다. 두 각의 차가 $180^\\circ$보다 크면 $360^\\circ$에서 그 차를 뺀 값이 두 바늘의 작은 각이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$30a+0.5x$",
+            "equivalentAnswers": [
+              "$30a+0.5x$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$6x$",
+            "equivalentAnswers": [
+              "$6x$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$30a+0.5x$"
+          ],
+          [
+            "$6x$"
+          ]
+        ],
+        "proposalFingerprint": "c2ec1db157935af497b5575cf57b933372a321b3be62a72f146b8b34fb48e7b7"
+      }
+    },
+    {
+      "source": {
+        "part": "m1",
+        "id": "m1-08-02-c5",
+        "section": "중1::8. 통계::줄기와 잎 그림",
+        "term": "줄기와 잎 그림이 알맞지 않은 경우",
+        "kind": "성질",
+        "level": "상",
+        "definition": "자료가 많으면 {잎이 많아지고}, 같은 읽는 법에서 변량의 범위가 넓으면 {줄기가 많아져} 그림을 읽기 어려울 수 있다. 이때는 {도수분포표}로 정리하기도 한다.",
+        "studentC": "자료가 많으면 □, 같은 읽는 법에서 변량의 범위가 넓으면 □ 그림을 읽기 어려울 수 있다. 이때는 □로 정리하기도 한다.",
+        "answers": [
+          "잎이 많아지고",
+          "줄기가 많아져",
+          "도수분포표"
+        ]
+      },
+      "proposal": {
+        "id": "m1-08-02-c5",
+        "bDecision": "rewrite",
+        "bPrompt": "줄기와 잎 그림이 읽기 어려워지는 경우를 자료의 개수와 변량의 범위 면에서 각각 쓰고, 그 이유를 쓰시오.",
+        "bAnswer": "자료의 개수가 많으면 잎이 너무 많아지고, 변량의 범위가 넓으면 줄기가 너무 많아져 읽기 어렵다.",
+        "bGoal": "줄기와 잎 그림이 알맞지 않은 자료 알기",
+        "bReason": "'알맞지 않은 경우'를 개수와 범위 두 면으로 나누어 답하게 함",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "자료가 많으면 잎이 많아진다"
+            ]
+          },
+          {
+            "anyOf": [
+              "변량의 범위가 넓으면 줄기가 많아진다"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "줄기와 잎 그림은 자료가 많으면 {잎}이 많아지고, 줄기와 잎을 나누는 자리가 같을 때 자료의 범위가 넓으면 {줄기}가 많아져 읽기 어려울 수 있다. 이때는 도수분포표로 정리하기도 한다.",
+        "cAnswers": [
+          "잎",
+          "줄기"
+        ],
+        "cReason": "표·그래프 등 다른 방법도 참인 마지막 칸은 보여 주고 자료 개수·범위가 다른 부분에 주는 영향을 비교한다.",
+        "coreAfter": "자료가 많으면 {잎이 많아지고}, 줄기와 잎을 나누는 자리가 같을 때 변량의 범위가 넓으면 {줄기가 많아져} 그림을 읽기 어려울 수 있다. 이때는 {도수분포표}로 정리하기도 한다.",
+        "coreReason": "'같은 읽는 법에서'는 중$1$ 학생에게 뜻이 불분명하다. 그래서 줄기와 잎을 나누는 자리가 같을 때라고 바꿨다.",
+        "learningRole": "reason",
+        "roleReason": "줄기와 잎 그림의 한계와 그 원인",
+        "authorBatch": 23,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 336,
+        "part": "m1",
+        "sourceFingerprint": "7f4e176dde68fdb5dfac4a34e50f8fb54726fa019837e5c5066abdb02973fdf3",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 336
+        },
+        "directReview": {
+          "path": "amendments.json",
+          "id": "m1-08-02-c5"
+        },
+        "coreBeforeRepair": "자료가 많으면 잎이 많아지고, 줄기를 정하는 방법이 같을 때 변량의 범위가 넓으면 줄기가 많아져 그림을 읽기 어려울 수 있다. 이때는 도수분포표로 정리하기도 한다.",
+        "coreRepairReason": "현재안에서 빠진 핵심어 표지를 원본대로 {잎이 많아지고}, {줄기가 많아져}, {도수분포표} 세 곳에 되살렸다. 두 가지 원인과 대안이라는 원래 구조도 유지했다.",
+        "coreRepairEvidence": "core-repair/core-000",
+        "cMarkedSentence": "줄기와 잎 그림은 자료가 많으면 {잎}이 많아지고, 줄기와 잎을 나누는 자리가 같을 때 자료의 범위가 넓으면 {줄기}가 많아져 읽기 어려울 수 있다. 이때는 도수분포표로 정리하기도 한다.",
+        "cSlotAnswers": [
+          "잎",
+          "줄기"
+        ],
+        "cStudentSentence": "줄기와 잎 그림은 자료가 많으면 □이 많아지고, 줄기와 잎을 나누는 자리가 같을 때 자료의 범위가 넓으면 □가 많아져 읽기 어려울 수 있다. 이때는 도수분포표로 정리하기도 한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "잎",
+            "equivalentAnswers": [
+              "잎"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "줄기",
+            "equivalentAnswers": [
+              "줄기"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "잎"
+          ],
+          [
+            "줄기"
+          ]
+        ],
+        "proposalFingerprint": "e1f1085aec77edaf66d448888c26744c1fd70dd15e2d7ca54cad9eec744767af"
+      }
+    }
+  ]
+}

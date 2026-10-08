@@ -1,0 +1,31 @@
+{
+  "inputEvidence": "evidence/resume-ctx-7fc6b4391c84-rootpending-patch-15-30-corrected-input.json",
+  "patches": {
+    "2227": {
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "5와9/10을6으로,2와1/8을2로어림해나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6\\div2=3$",
+            "몫은 약 $3$이다"
+          ]
+        }
+      ]
+    },
+    "2232": {
+      "cAfter": "$1.5$ 안에 $0.5$가 {$3$}번 들어가므로, $1.5\\div0.5$의 몫은 들어가는 횟수와 같다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "3"
+          ]
+        }
+      ]
+    }
+  },
+  "notes": {}
+}

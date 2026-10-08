@@ -1,0 +1,429 @@
+{
+  "status": "Actual matching candidates read; not an invented duplicate list",
+  "rows": [
+    {
+      "id": "m1-03-05-xc14",
+      "bDecision": "rewrite",
+      "bPrompt": "방정식을 풀면서 식을 다음 줄로 바꾼 것이 옳은지 판단하는 기준을 쓰세요. 그 기준으로 $2x=6$을 $x=6-2$로 바꾼 것이 옳은지 판단하고, 좌변과 우변에 각각 어떤 계산을 했는지도 밝히세요.",
+      "bAnswer": "양변에 같은 수를 더하거나 빼고, $0$이 아닌 같은 수를 곱하거나 나누었는지 살핀다. 한쪽 식을 같은 값을 나타내는 식으로 정리하는 것도 가능하다. 여기서는 좌변은 $2$로 나누었는데 우변은 $2$를 빼서 원래 해와 달라지므로 옳지 않다. 바르게는 양변을 $2$로 나누어 $x=3$이다.",
+      "bGoal": "풀이의 한 단계가 등식의 성질에 맞는지 판단한다.",
+      "bReason": "제목 '바꾼 과정 따지기'는 무엇을 바꾼 과정인지조차 없다. 판단 기준을 묻고, 원문 예시의 잘못된 변형을 질문에 넣어 직접 판단하게 했다.",
+      "cDecision": "rewrite",
+      "cAfter": "방정식의 해를 바꾸지 않고 풀려면 양변에 같은 수를 더하거나 빼도 된다. 양변에 같은 수를 곱하거나 양변을 같은 수로 나눌 때 그 수는 {$0$}이 아니어야 한다.",
+      "cAnswers": [
+        "$0$"
+      ],
+      "cReason": "등식 성립과 해 보존을 혼동하지 않게 곱셈에도 0아님 조건을 둔다.",
+      "studentLabel": "방정식을 바꾼 과정이 옳은지 따지기",
+      "exampleNeeded": true,
+      "authorBatch": 7,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "기준: 양변에 같은 계산을 했는지 본다"
+          ]
+        },
+        {
+          "anyOf": [
+            "좌변은 $2$로 나누었고 우변은 $2$를 뺐다"
+          ]
+        },
+        {
+          "anyOf": [
+            "따라서 옳지 않다"
+          ]
+        }
+      ],
+      "scopeEvidence": "scope/scope-004",
+      "learningRole": "procedure",
+      "roleReason": "양변에 같은 계산인지 점검",
+      "enrichmentEvidence": "enrichment/enrich-005",
+      "sourceIndex": 1261,
+      "part": "m1plus",
+      "sourceFingerprint": "4c20775c54f7e6cb993801041669011e21ec1a9900321e9c1f1a6ecb67a08410",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 1261
+      },
+      "directReview": null,
+      "cMarkedSentence": "방정식의 해를 바꾸지 않고 풀려면 양변에 같은 수를 더하거나 빼도 된다. 양변에 같은 수를 곱하거나 양변을 같은 수로 나눌 때 그 수는 {$0$}이 아니어야 한다.",
+      "cSlotAnswers": [
+        "$0$"
+      ],
+      "cStudentSentence": "방정식의 해를 바꾸지 않고 풀려면 양변에 같은 수를 더하거나 빼도 된다. 양변에 같은 수를 곱하거나 양변을 같은 수로 나눌 때 그 수는 □이 아니어야 한다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "$0$",
+          "equivalentAnswers": [
+            "$0$"
+          ],
+          "equivalenceReview": "direct editorial proposal; independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [
+        {
+          "answer": "양변",
+          "accept": [
+            "양쪽 변"
+          ]
+        },
+        {
+          "answer": "같은",
+          "accept": [
+            "똑같은"
+          ]
+        }
+      ],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "$0$"
+        ]
+      ],
+      "proposalFingerprint": "4fd915d1e0e2c83256cc76a4cf78a8a1b6a36b711ab7703c3a138cecaaf148c5",
+      "coreAfter": "방정식을 풀 때는 {양변}에 같은 수나 식을 더하거나 빼고, $0$이 아닌 {같은 수}를 곱하거나 나누면 해가 바뀌지 않는다. 한 변의 식을 같은 값을 나타내는 식으로 간단히 정리해도 된다.",
+      "coreReason": "해 보존에는 0곱하기를 허용할 수 없고 한 변의 동치 정리도 유효하므로 같은 계산만이 유일한 변형이라고 일반화하지 않는다."
+    },
+    {
+      "id": "m2-01-02-c5",
+      "bDecision": "rewrite",
+      "bPrompt": "$0.\\dot{2}8571\\dot{4}$의 소수점 아래 $20$번째 자리의 숫자를 구하는 방법을 설명하고 답을 구하시오.",
+      "bAnswer": "순환마디 $285714$의 숫자가 $6$개이고 $20=6\\times3+2$이므로, $20$번째 숫자는 순환마디의 $2$번째 숫자인 $8$이다.",
+      "bGoal": "나머지를 이용해 소수점 아래 $n$번째 숫자 찾기",
+      "bReason": "제목의 $n$을 구체적인 순환소수와 자리로 바꾸어 방법을 묻게 함.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "순환마디의 숫자가 $6$개이다",
+            "$20$을 $6$으로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "나머지가 $2$이다",
+            "순환마디의 $2$번째 숫자"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cReason": "나머지0을 0번째 자리로 오해하지 않도록 마지막 숫자라는 빠진 경우를 보여 준다.",
+      "exampleNeeded": true,
+      "learningRole": "procedure",
+      "roleReason": "나머지로 자리 숫자 찾기",
+      "authorBatch": 26,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "cAfter": "소수점 아래 첫째 자리부터 순환하고 순환마디의 숫자가 $k$개일 때, $n$번째 숫자는 $n$을 $k$로 나눈 나머지로 찾는다. 나머지가 $0$이면 순환마디의 {마지막} 숫자이고, $0$이 아니면 나머지 번째 숫자이다.",
+      "cAnswers": [
+        "마지막"
+      ],
+      "coreAfter": "소수점 아래 첫째 자리부터 순환하고 순환마디의 숫자가 $k$개이면, $n$번째 숫자는 $n$을 $k$로 나눈 {나머지}로 찾는다. 나머지가 $0$이면 순환마디의 {마지막} 숫자, 아니면 나머지 번째 숫자이다.",
+      "coreReason": "순환마디로 나누어 자리를 찾는 일반 방법에서 나머지0의 적용을 빠뜨리지 않게 한다.",
+      "coreRepairDecision": "reject",
+      "sourceIndex": 372,
+      "part": "m2",
+      "sourceFingerprint": "8afd3119d07e06993fe8dda812b1b9a21809cf9e8eae5741563e92f5c226ab52",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 372
+      },
+      "directReview": {
+        "path": "amendments.json",
+        "id": "m2-01-02-c5"
+      },
+      "cMarkedSentence": "소수점 아래 첫째 자리부터 순환하고 순환마디의 숫자가 $k$개일 때, $n$번째 숫자는 $n$을 $k$로 나눈 나머지로 찾는다. 나머지가 $0$이면 순환마디의 {마지막} 숫자이고, $0$이 아니면 나머지 번째 숫자이다.",
+      "cSlotAnswers": [
+        "마지막"
+      ],
+      "cStudentSentence": "소수점 아래 첫째 자리부터 순환하고 순환마디의 숫자가 $k$개일 때, $n$번째 숫자는 $n$을 $k$로 나눈 나머지로 찾는다. 나머지가 $0$이면 순환마디의 □ 숫자이고, $0$이 아니면 나머지 번째 숫자이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "마지막",
+          "equivalentAnswers": [
+            "마지막",
+            "끝",
+            "$k$번째"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [
+        {
+          "answer": "마지막",
+          "accept": [
+            "끝",
+            "$k$번째"
+          ]
+        }
+      ],
+      "cAcceptedAnswers": [
+        [
+          "마지막",
+          "끝",
+          "$k$번째"
+        ]
+      ],
+      "proposalFingerprint": "97c95d5ae4d6fba1dd1f40b31fb06f86abc3fd61fb1d903d162b4570512e274c"
+    },
+    {
+      "id": "m2-01-06-xc23",
+      "bDecision": "rewrite",
+      "bPrompt": "$a\\ne0$일 때 $6a\\div\\left(\\frac23a\\right)$를 $6a\\times\\left(\\frac32a\\right)$로 고쳐 계산하면 틀린다. 틀린 까닭을 설명하고 바르게 계산하시오.",
+      "bAnswer": "$\\frac{2}{3}a=\\frac{2a}{3}$이므로 역수는 $\\frac{3}{2a}$인데, 계수만 뒤집고 문자 $a$를 분모로 보내지 않았다. 바르게 계산하면 $6a\\times\\frac{3}{2a}=9$이다.",
+      "bGoal": "분수 계수 단항식의 역수를 바르게 구하기",
+      "bReason": "나누는전체단항식을괄호로명확히구분한다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{2}{3}a$의 역수는 $\\frac{3}{2a}$이다",
+            "문자 $a$도 분모로 가야 한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$9$"
+          ]
+        }
+      ],
+      "cDecision": "rewrite",
+      "cAfter": "$a\\ne0$일 때 $\\frac{2}{3}a$의 역수를 계수만 뒤집어 $\\frac{3}{2}a$라 하면 잘못이다. {문자}도 {분모}로 가야 하므로 역수는 {$\\frac{3}{2a}$}이다.",
+      "cAnswers": [
+        "문자",
+        "분모",
+        "$\\frac{3}{2a}$"
+      ],
+      "cReason": "뒤 문장 '문자도'가 첫 답을 보여 주고 '잘못'은 뜻 없는 빈칸이라 예와 함께 고쳤다.",
+      "exampleNeeded": true,
+      "learningRole": "reason",
+      "roleReason": "역수에서 문자를 빠뜨리는 오류 진단",
+      "authorBatch": 28,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 2262,
+      "part": "m2plus",
+      "sourceFingerprint": "2e52ae7b7a1be4448fc63f9a7d6b145d011f7aaf7b7f5e6aacf4eb5c50ec3fea",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 2262
+      },
+      "directReview": null,
+      "cMarkedSentence": "$a\\ne0$일 때 $\\frac{2}{3}a$의 역수를 계수만 뒤집어 $\\frac{3}{2}a$라 하면 잘못이다. {문자}도 {분모}로 가야 하므로 역수는 {$\\frac{3}{2a}$}이다.",
+      "cSlotAnswers": [
+        "문자",
+        "분모",
+        "$\\frac{3}{2a}$"
+      ],
+      "cStudentSentence": "$a\\ne0$일 때 $\\frac{2}{3}a$의 역수를 계수만 뒤집어 $\\frac{3}{2}a$라 하면 잘못이다. □도 □로 가야 하므로 역수는 □이다.",
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "문자",
+          "equivalentAnswers": [
+            "문자"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "분모",
+          "equivalentAnswers": [
+            "분모"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 2,
+          "answer": "$\\frac{3}{2a}$",
+          "equivalentAnswers": [
+            "$\\frac{3}{2a}$"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "문자"
+        ],
+        [
+          "분모"
+        ],
+        [
+          "$\\frac{3}{2a}$"
+        ]
+      ],
+      "proposalFingerprint": "00bb3e88c2c02361c9da98abeb4d6ab16a927f7e077d157af5204ab72d915848"
+    },
+    {
+      "id": "m2-04-06-c4",
+      "bDecision": "rewrite",
+      "bPrompt": "처음 길이가 $p\\,\\mathrm{cm}$인 양초가 $1$분에 $q\\,\\mathrm{cm}$씩 일정하게 탈 때, 불을 붙인 지 $x$분 뒤(다 타기 전) 양초의 길이를 $y\\,\\mathrm{cm}$라 하자. $y$를 $x$의 식으로 나타내고, 그렇게 되는 까닭을 쓰시오.",
+      "bAnswer": "$y=p-qx$이다. $x$분 동안 $qx\\,\\mathrm{cm}$가 타므로 처음 길이 $p\\,\\mathrm{cm}$에서 그만큼 뺀다.",
+      "bGoal": "타는 양초의 길이를 식으로 나타내기",
+      "bReason": "문자로 일반 관계를 유지하고 탄 길이를 빼는 까닭을 쓰게 했다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$y=p-qx$",
+            "$y=-qx+p$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$x$분 동안 $qx$만큼 탄다",
+            "탄 길이를 처음 길이에서 뺀다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "처음 길이와 $1$분에 타는 길이를 구분해 채우는 분명한 빈칸이다.",
+      "studentLabel": "타는 양초의 길이",
+      "learningRole": "application",
+      "roleReason": "처음 길이−탄 길이로 식 세우기",
+      "authorBatch": 39,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "sourceIndex": 539,
+      "part": "m2",
+      "sourceFingerprint": "3964523c241b3947e795c304d1ea9d3544c643d9b229e80e93d5b0d62a745544",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 539
+      },
+      "directReview": null,
+      "cFrozenSentence": "양초가 매분 같은 길이만큼 탈 때, 다 탈 때까지 $x$분 뒤 양초의 길이는 □에서 □의 $x$배를 뺀 값이다.",
+      "cFrozenDefinition": "양초가 매분 같은 길이만큼 탈 때, 다 탈 때까지 $x$분 뒤 양초의 길이는 {처음 길이}에서 {$1$분에 타는 길이}의 $x$배를 뺀 값이다.",
+      "cFrozenAnswers": [
+        "처음 길이",
+        "$1$분에 타는 길이"
+      ],
+      "cMarkedSentence": "양초가 매분 같은 길이만큼 탈 때, 다 탈 때까지 $x$분 뒤 양초의 길이는 {처음 길이}에서 {$1$분에 타는 길이}의 $x$배를 뺀 값이다.",
+      "cSlotAnswers": [
+        "처음 길이",
+        "$1$분에 타는 길이"
+      ],
+      "cStudentSentence": "양초가 매분 같은 길이만큼 탈 때, 다 탈 때까지 $x$분 뒤 양초의 길이는 □에서 □의 $x$배를 뺀 값이다.",
+      "cAnswers": [
+        "처음 길이",
+        "$1$분에 타는 길이"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "처음 길이",
+          "equivalentAnswers": [
+            "처음 길이"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "$1$분에 타는 길이",
+          "equivalentAnswers": [
+            "$1$분에 타는 길이"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "처음 길이"
+        ],
+        [
+          "$1$분에 타는 길이"
+        ]
+      ],
+      "proposalFingerprint": "44fc04ef2e6b1c4bb612734b840901d3213413df25a54489762489430ae9022f"
+    },
+    {
+      "id": "m2-05-01-c8",
+      "bDecision": "rewrite",
+      "bPrompt": "이등변삼각형에서 꼭지각의 이등분선은 밑변과 어떤 관계에 있는지 두 가지를 쓰시오.",
+      "bAnswer": "밑변과 수직으로 만나고, 밑변을 이등분한다. 즉 밑변을 수직이등분한다.",
+      "bGoal": "꼭지각의 이등분선과 밑변의 관계 말하기",
+      "bReason": "어느 선과 어느 변의 관계인지, 두 가지를 답해야 함을 밝혔다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "밑변과 수직이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "밑변을 이등분한다"
+          ]
+        }
+      ],
+      "cDecision": "keep",
+      "cReason": "선과 밑변의 두 관계를 한 낱말씩 묻는 분명한 빈칸이다.",
+      "studentLabel": "꼭지각의 이등분선과 밑변",
+      "authorBatch": 41,
+      "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+      "learningRole": "application",
+      "roleReason": "이등분선이 밑변을 수직이등분",
+      "enrichmentEvidence": "enrichment/enrich-001",
+      "sourceIndex": 570,
+      "part": "m2",
+      "sourceFingerprint": "a92eea915b8db736286899a8de7a690e93f3ef915c046edf216c53a7097f6e5d",
+      "sourceEvidence": {
+        "path": "evidence/source.json",
+        "index": 570
+      },
+      "directReview": null,
+      "cFrozenSentence": "이등변삼각형에서 꼭지각을 반으로 나누는 선은 밑변과 □으로 만나고 밑변을 □한다.",
+      "cFrozenDefinition": "이등변삼각형에서 꼭지각을 반으로 나누는 선은 밑변과 {수직}으로 만나고 밑변을 {이등분}한다.",
+      "cFrozenAnswers": [
+        "수직",
+        "이등분"
+      ],
+      "cMarkedSentence": "이등변삼각형에서 꼭지각을 반으로 나누는 선은 밑변과 {수직}으로 만나고 밑변을 {이등분}한다.",
+      "cSlotAnswers": [
+        "수직",
+        "이등분"
+      ],
+      "cStudentSentence": "이등변삼각형에서 꼭지각을 반으로 나누는 선은 밑변과 □으로 만나고 밑변을 □한다.",
+      "cAnswers": [
+        "수직",
+        "이등분"
+      ],
+      "cSlots": [
+        {
+          "index": 0,
+          "answer": "수직",
+          "equivalentAnswers": [
+            "수직"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        },
+        {
+          "index": 1,
+          "answer": "이등분",
+          "equivalentAnswers": [
+            "이등분"
+          ],
+          "equivalenceReview": "proposal only, independent verification required"
+        }
+      ],
+      "lexicalSynonyms": [],
+      "equivalentExpressions": [],
+      "cAcceptedAnswers": [
+        [
+          "수직"
+        ],
+        [
+          "이등분"
+        ]
+      ],
+      "proposalFingerprint": "2e5c455cf53ad7155c80ecd03351d0dac717e5a21e05ee9ab8f5c1d3f8e3873c"
+    }
+  ]
+}

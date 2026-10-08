@@ -1,0 +1,276 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e5-2-5-2-xc14",
+      "learningRole": "definition",
+      "bDecision": "revise",
+      "bPrompt": "직육면체와 정육면체는 각각 면의 모양과 모서리의 길이에 어떤 조건을 갖추어야 하나요? 면의 모양과 모서리의 길이로 나누어 비교해 설명하세요.",
+      "bAnswer": "직육면체는 모든 면이 직사각형이고, 서로 평행한 모서리의 길이가 같다. 모든 모서리의 길이가 같을 필요는 없다. 정육면체는 모든 면이 크기가 같은 정사각형이고 모서리 $12$개의 길이가 모두 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "직육면체의 면은 직사각형이고 정육면체의 면은 정사각형이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "직육면체는평행한모서리끼리길이가같고정육면체는$12$모서리모두같다",
+            "직육면체는모서리길이가모두같을필요없고정육면체는모두같아야한다"
+          ]
+        }
+      ],
+      "bGoal": "두 도형의 차이를 면과 모서리로 비교한다.",
+      "bReason": "비교할 기준 두 가지를 질문에 정해 답의 범위를 좁혔다.",
+      "cDecision": "keep",
+      "cAfter": "직육면체의 면은 직사각형이고 정육면체의 면은 {정사각형}이다.",
+      "cReason": "직사각형과 대비해 정육면체의 면 모양을 답하는 짧은 비교 문장이다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1450-1490.json",
+      "codexFinalAmendedFromFingerprint": "ecd4bd1a88ba1ada6333ff63789766533f713c3dcdf3994b76eb65fd9e4e643b",
+      "sourceIndex": 1459,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-2-xc14",
+        "section": "초5::2-5 직육면체::2-5-2 정사각형 6개로 둘러싸인 도형",
+        "term": "면 모양의 차이",
+        "kind": "성질",
+        "level": "중",
+        "definition": "직육면체의 면은 직사각형이고 정육면체의 면은 {정사각형}이다.",
+        "studentC": "직육면체의 면은 직사각형이고 정육면체의 면은 □이다.",
+        "answers": [
+          "정사각형"
+        ]
+      },
+      "sourceFingerprint": "761fd61bd1b5f2d9b486dc410c97987bc4a2de2c3bcb4643a967a80722fc5536",
+      "draftEvidence": "evidence/section-048-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "직육면체의 면은 직사각형이고 정육면체의 면은 {정사각형}이다.",
+      "cFrozenStudentSentence": "직육면체의 면은 직사각형이고 정육면체의 면은 □이다.",
+      "cProposedAnswers": [
+        "정사각형"
+      ],
+      "cStudentAfter": "직육면체의 면은 직사각형이고 정육면체의 면은 □이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "정사각형"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "직육면체의 면은 직사각형이고 정육면체의 면은 {정사각형}이다.",
+      "cStudentSentence": "직육면체의 면은 직사각형이고 정육면체의 면은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "정사각형",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직육면체와 정육면체는 각각 면의 모양과 모서리의 길이에 어떤 조건을 갖추어야 하나요? 면의 모양과 모서리의 길이로 나누어 비교해 설명하세요.",
+        "answer": "직육면체는 모든 면이 직사각형이고, 서로 평행한 모서리의 길이가 같다. 모든 모서리의 길이가 같을 필요는 없다. 정육면체는 모든 면이 크기가 같은 정사각형이고 모서리 $12$개의 길이가 모두 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "직육면체의 면은 직사각형이고 정육면체의 면은 정사각형이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "직육면체는평행한모서리끼리길이가같고정육면체는$12$모서리모두같다",
+              "직육면체는모서리길이가모두같을필요없고정육면체는모두같아야한다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직육면체의 면은 직사각형이고 정육면체의 면은 {정사각형}이다.",
+        "acceptedAnswers": [
+          [
+            "정사각형"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "09bd69fba74f4339ff81ffc4e709177dc85de4cb188cca7d04719bf1d26d2fb2",
+      "questionRevision": "planning-e5e6-20261006-09bd69fba74f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-3-xc12",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "직육면체에서 밑면으로 정한 두 면을 다른 쌍으로 바꾸면 옆면은 어떻게 되는지 쓰고, 그 까닭을 옆면이 정해지는 방법과 관련지어 설명하시오.",
+      "bAnswer": "옆면도 달라진다. 옆면은 밑면이 아닌 나머지 $4$개의 면(밑면과 수직인 면)이므로, 밑면이 바뀌면 옆면도 바뀐다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "옆면도 달라진다",
+            "옆면이 되는 면이 바뀐다"
+          ]
+        },
+        {
+          "anyOf": [
+            "옆면은 밑면이 아닌 나머지 면이기 때문이다",
+            "옆면은 밑면과 수직인 면으로 정해지기 때문이다"
+          ]
+        }
+      ],
+      "bGoal": "옆면이 밑면에 따라 정해짐을 설명한다.",
+      "bReason": "제목 '밑면을 바꾸면'은 미완성 구절이어서, 결과와 까닭을 묻는 질문으로 바꿨다.",
+      "cDecision": "revise",
+      "cAfter": "직육면체에서 밑면을 다른 쌍으로 정하면 {옆면}도 달라진다.",
+      "cReason": "밑면을 바꿀 때 함께 달라지는 것을 낱말 '옆면'으로 묻는 짧은 문장이다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1450-1490.json",
+      "codexFinalAmendedFromFingerprint": "5da36c3bea5cfa460035ac32cacc4c0cc1be48f86252eac6997294f705538e30",
+      "sourceIndex": 1480,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-3-xc12",
+        "section": "초5::2-5 직육면체::2-5-3 직육면체의 성질",
+        "term": "밑면을 바꾸면",
+        "kind": "성질",
+        "level": "중",
+        "definition": "밑면을 다른 쌍으로 정하면 {옆면}도 달라진다.",
+        "studentC": "밑면을 다른 쌍으로 정하면 □도 달라진다.",
+        "answers": [
+          "옆면"
+        ]
+      },
+      "sourceFingerprint": "5e3cf080c8a0ac2ba308d4f7b3429ce71fc815234a017c314e275a82e003153b",
+      "draftEvidence": "evidence/section-049-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "옆면"
+      ],
+      "cStudentAfter": "직육면체에서 밑면을 다른 쌍으로 정하면 □도 달라진다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "옆면"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "직육면체에서 밑면을 다른 쌍으로 정하면 {옆면}도 달라진다.",
+      "cStudentSentence": "직육면체에서 밑면을 다른 쌍으로 정하면 □도 달라진다.",
+      "cSlotAnswers": [
+        {
+          "key": "옆면",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "직육면체에서 밑면으로 정한 두 면을 다른 쌍으로 바꾸면 옆면은 어떻게 되는지 쓰고, 그 까닭을 옆면이 정해지는 방법과 관련지어 설명하시오.",
+        "answer": "옆면도 달라진다. 옆면은 밑면이 아닌 나머지 $4$개의 면(밑면과 수직인 면)이므로, 밑면이 바뀌면 옆면도 바뀐다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "옆면도 달라진다",
+              "옆면이 되는 면이 바뀐다"
+            ]
+          },
+          {
+            "anyOf": [
+              "옆면은 밑면이 아닌 나머지 면이기 때문이다",
+              "옆면은 밑면과 수직인 면으로 정해지기 때문이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "직육면체에서 밑면을 다른 쌍으로 정하면 {옆면}도 달라진다.",
+        "acceptedAnswers": [
+          [
+            "옆면"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "252243e0b676d5e1d8a08e02aa254fa480edb6b30c3416c8fa9ecfa0d06d0fd4",
+      "questionRevision": "planning-e5e6-20261006-252243e0b676",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-5-3-xc15",
+      "learningRole": "definition",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "이웃한 두 옆면이 수직임을 안다.",
+      "bReason": "이웃한 두 면이 수직이라는 e5-2-5-3-xc5의 특수한 경우이다.",
+      "exclusionReason": "B는 e5-2-5-3-xc5, xc23과 겹쳐 제외한다.",
+      "cDecision": "revise",
+      "cAfter": "직육면체에서 이웃한 두 옆면은 서로 {수직}으로 만난다.",
+      "cReason": "'이웃한'이라는 조건이 있어 마주 보는 옆면과 구별되고 답이 '수직'으로 정해진다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1450-1490.json",
+      "codexFinalAmendedFromFingerprint": "e14d2f848298c1aa370adb429f456904829e8e856e2fb70417c750de54517830",
+      "sourceIndex": 1483,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-5-3-xc15",
+        "section": "초5::2-5 직육면체::2-5-3 직육면체의 성질",
+        "term": "옆면끼리의 관계",
+        "kind": "성질",
+        "level": "중",
+        "definition": "이웃한 두 옆면은 서로 {수직}으로 만난다.",
+        "studentC": "이웃한 두 옆면은 서로 □으로 만난다.",
+        "answers": [
+          "수직"
+        ]
+      },
+      "sourceFingerprint": "ebd8024f74d14ab7c95ec65018030f11714f110b8807685c0ab18d4f5e6dbeec",
+      "draftEvidence": "evidence/section-049-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "수직"
+      ],
+      "cStudentAfter": "직육면체에서 이웃한 두 옆면은 서로 □으로 만난다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "수직"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "직육면체에서 이웃한 두 옆면은 서로 {수직}으로 만난다.",
+      "cStudentSentence": "직육면체에서 이웃한 두 옆면은 서로 □으로 만난다.",
+      "cSlotAnswers": [
+        {
+          "key": "수직",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "직육면체에서 이웃한 두 옆면은 서로 {수직}으로 만난다.",
+        "acceptedAnswers": [
+          [
+            "수직"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B는 e5-2-5-3-xc5, xc23과 겹쳐 제외한다."
+      },
+      "proposalFingerprint": "c76d3187ac361bafd9059e7ca82e50ea4a79107b468cb76edfc54bb40a29965f",
+      "questionRevision": "planning-e5e6-20261006-c76d3187ac36",
+      "requiresIndependentReview": true
+    }
+  ]
+}

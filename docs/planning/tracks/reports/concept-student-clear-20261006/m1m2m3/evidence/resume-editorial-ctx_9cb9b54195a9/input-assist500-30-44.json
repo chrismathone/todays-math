@@ -1,0 +1,1501 @@
+{
+  "dispatchId": "ctx_9cb9b54195a9",
+  "capturedAt": "2026-10-07T09:36:16.559Z",
+  "supplementalVerdicts": "evidence/assist-2400-2899-20261007/reviews.json",
+  "rows": [
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-03-06-xc14",
+        "section": "중2::3. 방정식::연립방정식의 활용(수, 평균, 나이)",
+        "term": "몇 년 뒤의 배 조건",
+        "kind": "방법",
+        "level": "중",
+        "definition": "지금 $x$살인 사람이 $a$년 뒤에 지금 $y$살인 사람의 $k$배 나이가 되면, {두 사람 모두} $a$살 늘므로 {$x+a=k(y+a)$}로 쓴다.",
+        "example": {
+          "prompt": "아버지($x$살)의 $5$년 뒤 나이가 아들($y$살)의 $5$년 뒤 나이의 $2$배일 때의 식",
+          "answer": "$x+5=2(y+5)$"
+        },
+        "studentC": "지금 $x$살인 사람이 $a$년 뒤에 지금 $y$살인 사람의 $k$배 나이가 되면, □ $a$살 늘므로 □로 쓴다.",
+        "answers": [
+          "두 사람 모두",
+          "$x+a=k(y+a)$"
+        ]
+      },
+      "proposal": {
+        "id": "m2-03-06-xc14",
+        "bDecision": "rewrite",
+        "bPrompt": "지금 아버지는 $x$살, 아들은 $y$살이다. $5$년 뒤 아버지의 나이가 아들 나이의 $2$배가 된다는 조건을 등식으로 쓰고, $x+5=2y$로 쓰면 틀린 까닭을 쓰시오.",
+        "bAnswer": "$x+5=2(y+5)$. $5$년 뒤에는 아들도 $5$살 늘어 $(y+5)$살이므로 $(y+5)$에 $2$를 곱해야 한다.",
+        "bGoal": "몇 년 뒤 배 조건을 식으로 세우기",
+        "bReason": "한 사람만 나이를 늘리는 오류를 구체 식으로 짚었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x+5=2(y+5)$",
+              "$x+5=2y+10$"
+            ]
+          },
+          {
+            "anyOf": [
+              "아들 나이도 $5$살 늘어난다",
+              "두 사람 모두 $5$살 늘어난다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "이유와 일반 식을 함께 묻는 문장이 분명하다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "두 사람 나이에 모두 더해 배 조건",
+        "authorBatch": 36,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2572,
+        "part": "m2plus",
+        "sourceFingerprint": "ca7983d745a95876f73d66ec7de932c1f58b3f9b1e658f51584b874b7143623b",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2572
+        },
+        "directReview": null,
+        "cFrozenSentence": "지금 $x$살인 사람이 $a$년 뒤에 지금 $y$살인 사람의 $k$배 나이가 되면, □ $a$살 늘므로 □로 쓴다.",
+        "cFrozenDefinition": "지금 $x$살인 사람이 $a$년 뒤에 지금 $y$살인 사람의 $k$배 나이가 되면, {두 사람 모두} $a$살 늘므로 {$x+a=k(y+a)$}로 쓴다.",
+        "cFrozenAnswers": [
+          "두 사람 모두",
+          "$x+a=k(y+a)$"
+        ],
+        "cMarkedSentence": "지금 $x$살인 사람이 $a$년 뒤에 지금 $y$살인 사람의 $k$배 나이가 되면, {두 사람 모두} $a$살 늘므로 {$x+a=k(y+a)$}로 쓴다.",
+        "cSlotAnswers": [
+          "두 사람 모두",
+          "$x+a=k(y+a)$"
+        ],
+        "cStudentSentence": "지금 $x$살인 사람이 $a$년 뒤에 지금 $y$살인 사람의 $k$배 나이가 되면, □ $a$살 늘므로 □로 쓴다.",
+        "cAnswers": [
+          "두 사람 모두",
+          "$x+a=k(y+a)$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "두 사람 모두",
+            "equivalentAnswers": [
+              "두 사람 모두",
+              "둘 다",
+              "두 사람 다"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$x+a=k(y+a)$",
+            "equivalentAnswers": [
+              "$x+a=k(y+a)$",
+              "$x+a=ky+ka$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "두 사람 모두",
+            "accept": [
+              "둘 다",
+              "두 사람 다"
+            ]
+          }
+        ],
+        "equivalentExpressions": [
+          {
+            "answer": "$x+a=k(y+a)$",
+            "accept": [
+              "$x+a=ky+ka$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "두 사람 모두",
+            "둘 다",
+            "두 사람 다"
+          ],
+          [
+            "$x+a=k(y+a)$",
+            "$x+a=ky+ka$"
+          ]
+        ],
+        "proposalFingerprint": "6ec96457b01dc32dbe181beb0694255a2ca38c3b2cfcd6ddb2834a85ef3d0a96"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-03-06-xc20",
+        "section": "중2::3. 방정식::연립방정식의 활용(수, 평균, 나이)",
+        "term": "나이 문제의 해 검토",
+        "kind": "성질",
+        "level": "상",
+        "definition": "구한 나이가 음수나 분수이면 먼저 식을 {다시} 살핀다. 식이 맞아도 조건을 모두 만족하는 나이가 {없을} 수 있다.",
+        "studentC": "구한 나이가 음수나 분수이면 먼저 식을 □ 살핀다. 식이 맞아도 조건을 모두 만족하는 나이가 □ 수 있다.",
+        "answers": [
+          "다시",
+          "없을"
+        ]
+      },
+      "proposal": {
+        "id": "m2-03-06-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "나이 문제를 연립방정식으로 풀었더니 한 사람의 나이가 $-3$살로 나왔다. 이때 먼저 해야 할 일과, 다시 살펴도 식이 맞는데 이런 값이 나올 때 내릴 결론을 쓰시오.",
+        "bAnswer": "먼저 세운 식과 계산을 다시 살핀다. 식이 맞는데도 그렇다면 조건을 모두 만족하는 나이는 없다고 결론짓는다.",
+        "bGoal": "부적절한 해의 검토 순서",
+        "bReason": "음수 나이라는 구체 상황으로 검토와 결론을 함께 묻는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "식과 계산을 다시 확인한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "조건을 만족하는 나이가 없다",
+              "답이 없다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "검토 순서와 해가 없을 가능성을 두 빈칸으로 분명히 한다.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "해가 없을 수 있음을 판단",
+        "authorBatch": 36,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2578,
+        "part": "m2plus",
+        "sourceFingerprint": "dec21586a8427eba4ce94f5591880844f77c8a559071ff54f5bb142599a508f1",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2578
+        },
+        "directReview": null,
+        "cFrozenSentence": "구한 나이가 음수나 분수이면 먼저 식을 □ 살핀다. 식이 맞아도 조건을 모두 만족하는 나이가 □ 수 있다.",
+        "cFrozenDefinition": "구한 나이가 음수나 분수이면 먼저 식을 {다시} 살핀다. 식이 맞아도 조건을 모두 만족하는 나이가 {없을} 수 있다.",
+        "cFrozenAnswers": [
+          "다시",
+          "없을"
+        ],
+        "cMarkedSentence": "구한 나이가 음수나 분수이면 먼저 식을 {다시} 살핀다. 식이 맞아도 조건을 모두 만족하는 나이가 {없을} 수 있다.",
+        "cSlotAnswers": [
+          "다시",
+          "없을"
+        ],
+        "cStudentSentence": "구한 나이가 음수나 분수이면 먼저 식을 □ 살핀다. 식이 맞아도 조건을 모두 만족하는 나이가 □ 수 있다.",
+        "cAnswers": [
+          "다시",
+          "없을"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "다시",
+            "equivalentAnswers": [
+              "다시"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "없을",
+            "equivalentAnswers": [
+              "없을"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "다시"
+          ],
+          [
+            "없을"
+          ]
+        ],
+        "proposalFingerprint": "9a1866bec60960ba1df7308b2a0abead58506d91b1cbfb97ac9203fb385bd99c"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-03-06-xc22",
+        "section": "중2::3. 방정식::연립방정식의 활용(수, 평균, 나이)",
+        "term": "두 자리 수의 두 조건",
+        "kind": "방법",
+        "level": "상",
+        "definition": "각 자리 숫자의 합과 자리를 바꾼 수의 관계, 이렇게 {두} 조건으로 {연립방정식}을 세운다.",
+        "studentC": "각 자리 숫자의 합과 자리를 바꾼 수의 관계, 이렇게 □ 조건으로 □을 세운다.",
+        "answers": [
+          "두",
+          "연립방정식"
+        ]
+      },
+      "proposal": {
+        "id": "m2-03-06-xc22",
+        "bDecision": "rewrite",
+        "bPrompt": "두 자리의 자연수가 있다. 각 자리 숫자의 합은 $11$이고, 십의 자리 숫자와 일의 자리 숫자를 바꾼 수는 처음 수보다 $27$만큼 크다. 십의 자리 숫자를 $x$, 일의 자리 숫자를 $y$로 놓고 연립방정식을 세우시오.",
+        "bAnswer": "$x+y=11$, $10y+x=10x+y+27$",
+        "bGoal": "두 자리 수 조건 두 개로 연립하기",
+        "bReason": "조각 문장을 두 조건이 다 있는 구체 문제로 바꿨다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x+y=11$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$10y+x=10x+y+27$",
+              "$9y-9x=27$",
+              "$y-x=3$"
+            ]
+          }
+        ],
+        "cDecision": "rewrite",
+        "cAfter": "두 자리의 자연수 문제에서는 각 자리 숫자의 {합}에 대한 식과, 자리를 바꾼 수와 처음 수의 관계에 대한 식을 세워 {연립방정식}으로 푼다.",
+        "cAnswers": [
+          "합",
+          "연립방정식"
+        ],
+        "cReason": "원문 빈칸 '두'는 개수 암기이고 주어가 빠져 고쳤다.",
+        "exampleNeeded": true,
+        "coreAfter": "두 자리의 자연수를 구하는 문제는 흔히 각 자리 숫자의 합에 대한 조건과, 자리를 바꾼 수와 처음 수의 관계에 대한 조건, 이렇게 {두} 조건으로 {연립방정식}을 세운다.",
+        "coreReason": "원문은 주어가 없는 조각 문장이라 어떤 문제의 조건인지 불분명하다.",
+        "learningRole": "application",
+        "roleReason": "두 조건을 연립방정식으로",
+        "authorBatch": 36,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2580,
+        "part": "m2plus",
+        "sourceFingerprint": "1b8f282c58360235bbb84183896b2a5521926f7ba2264e0667489fb67281ea62",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2580
+        },
+        "directReview": null,
+        "coreBeforeRepair": "두 자리의 자연수를 구하는 문제는 흔히 각 자리 숫자의 합에 대한 조건과, 자리를 바꾼 수와 처음 수의 관계에 대한 조건, 이렇게 {두} 조건으로 {연립방정식}을 세운다.",
+        "coreRepairReason": "주어와 두 조건의 대상을 밝힌 교정이 적절하고 원본 핵심어 {두}, {연립방정식}이 있어 그대로 보존했다.",
+        "coreRepairEvidence": "core-repair/core-003",
+        "cMarkedSentence": "두 자리의 자연수 문제에서는 각 자리 숫자의 {합}에 대한 식과, 자리를 바꾼 수와 처음 수의 관계에 대한 식을 세워 {연립방정식}으로 푼다.",
+        "cSlotAnswers": [
+          "합",
+          "연립방정식"
+        ],
+        "cStudentSentence": "두 자리의 자연수 문제에서는 각 자리 숫자의 □에 대한 식과, 자리를 바꾼 수와 처음 수의 관계에 대한 식을 세워 □으로 푼다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "합",
+            "equivalentAnswers": [
+              "합"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "연립방정식",
+            "equivalentAnswers": [
+              "연립방정식"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "합"
+          ],
+          [
+            "연립방정식"
+          ]
+        ],
+        "proposalFingerprint": "f9576256317b99c8961ea0692a307511acd0ff01466f6b08910e29bd02cecd60"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-03-06-xc25",
+        "section": "중2::3. 방정식::연립방정식의 활용(수, 평균, 나이)",
+        "term": "분수로 주어진 배 조건",
+        "kind": "방법",
+        "level": "상",
+        "definition": "「$x$가 $y$의 $\\frac{b}{a}$」라는 조건은 {$x=\\frac{b}{a}y$}이고, 양변에 $a$를 곱해 {$ax=by$}로 고쳐 쓴다.",
+        "example": {
+          "prompt": "남학생 $x$명이 여학생 $y$명의 $\\frac{2}{3}$일 때의 식",
+          "answer": "$3x=2y$"
+        },
+        "studentC": "「$x$가 $y$의 $\\frac{b}{a}$」라는 조건은 □이고, 양변에 $a$를 곱해 □로 고쳐 쓴다.",
+        "answers": [
+          "$x=\\frac{b}{a}y$",
+          "$ax=by$"
+        ]
+      },
+      "proposal": {
+        "id": "m2-03-06-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "남학생 $x$명이 여학생 $y$명의 $\\frac{2}{3}$이다. 이 조건을 등식으로 쓰고, 분모가 없는 꼴로 고쳐 쓰시오.",
+        "bAnswer": "$x=\\frac{2}{3}y$, 양변에 $3$을 곱하면 $3x=2y$",
+        "bGoal": "분수 배 조건을 정수 계수 식으로",
+        "bReason": "일반형 대신 구체 분수로 식 세우기와 정리를 함께 묻는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$x=\\frac{2}{3}y$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3x=2y$",
+              "$3x-2y=0$"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "식과 정리한 꼴을 단계별로 묻는 일반형이 분명하다.",
+        "exampleNeeded": true,
+        "learningRole": "procedure",
+        "roleReason": "분수 계수를 없애 식 정리",
+        "authorBatch": 36,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2583,
+        "part": "m2plus",
+        "sourceFingerprint": "1351f1c6f5d5f2107a032d16b1f877c6578acde847688ca151c249d70141daf4",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2583
+        },
+        "directReview": null,
+        "cFrozenSentence": "「$x$가 $y$의 $\\frac{b}{a}$」라는 조건은 □이고, 양변에 $a$를 곱해 □로 고쳐 쓴다.",
+        "cFrozenDefinition": "「$x$가 $y$의 $\\frac{b}{a}$」라는 조건은 {$x=\\frac{b}{a}y$}이고, 양변에 $a$를 곱해 {$ax=by$}로 고쳐 쓴다.",
+        "cFrozenAnswers": [
+          "$x=\\frac{b}{a}y$",
+          "$ax=by$"
+        ],
+        "cMarkedSentence": "「$x$가 $y$의 $\\frac{b}{a}$」라는 조건은 {$x=\\frac{b}{a}y$}이고, 양변에 $a$를 곱해 {$ax=by$}로 고쳐 쓴다.",
+        "cSlotAnswers": [
+          "$x=\\frac{b}{a}y$",
+          "$ax=by$"
+        ],
+        "cStudentSentence": "「$x$가 $y$의 $\\frac{b}{a}$」라는 조건은 □이고, 양변에 $a$를 곱해 □로 고쳐 쓴다.",
+        "cAnswers": [
+          "$x=\\frac{b}{a}y$",
+          "$ax=by$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$x=\\frac{b}{a}y$",
+            "equivalentAnswers": [
+              "$x=\\frac{b}{a}y$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$ax=by$",
+            "equivalentAnswers": [
+              "$ax=by$",
+              "$ax-by=0$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$ax=by$",
+            "accept": [
+              "$ax-by=0$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$x=\\frac{b}{a}y$"
+          ],
+          [
+            "$ax=by$",
+            "$ax-by=0$"
+          ]
+        ],
+        "proposalFingerprint": "b9c6137c15d2e9911839b0f55b00062b3838e9cbbdd293265933f1fbd3841a5f"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-03-07-xc16",
+        "section": "중2::3. 방정식::연립방정식의 활용(가격, 개수, 증감, 도형)",
+        "term": "올해 양을 물을 때",
+        "kind": "방법",
+        "level": "중",
+        "definition": "증감 문제는 대개 {작년} 양이 먼저 구해지므로, 올해 양을 물으면 구한 값에 {증가율}이나 감소율을 반영한다.",
+        "studentC": "증감 문제는 대개 □ 양이 먼저 구해지므로, 올해 양을 물으면 구한 값에 □이나 감소율을 반영한다.",
+        "answers": [
+          "작년",
+          "증가율"
+        ]
+      },
+      "proposal": {
+        "id": "m2-03-07-xc16",
+        "bDecision": "rewrite",
+        "bPrompt": "작년 남학생 수를 $x$명, 여학생 수를 $y$명으로 놓고 증감 문제를 풀었더니 $x=200$이 나왔다. 남학생이 작년보다 $5\\%$ 늘었을 때, 문제가 올해 남학생 수를 묻는다면 답으로 쓸 값과 그 까닭을 쓰시오.",
+        "bAnswer": "$210$명. 구한 $x=200$은 작년 남학생 수이므로 $200\\times1.05=210$으로 올해 수를 구해야 한다.",
+        "bGoal": "구한 값과 묻는 값 구별",
+        "bReason": "작년 값을 그대로 답하는 실수를 구체 수로 짚었다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "구한 $x$는 작년 수이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$210$명"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "미지수 기준과 반영할 비율을 짧게 묻는다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "작년 값에 증가율 반영",
+        "authorBatch": 36,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2591,
+        "part": "m2plus",
+        "sourceFingerprint": "dfedaa446e55073ed51242a95b5804e2bc4952c6ebdba6c5b52bc55dd71466e6",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2591
+        },
+        "directReview": null,
+        "cFrozenSentence": "증감 문제는 대개 □ 양이 먼저 구해지므로, 올해 양을 물으면 구한 값에 □이나 감소율을 반영한다.",
+        "cFrozenDefinition": "증감 문제는 대개 {작년} 양이 먼저 구해지므로, 올해 양을 물으면 구한 값에 {증가율}이나 감소율을 반영한다.",
+        "cFrozenAnswers": [
+          "작년",
+          "증가율"
+        ],
+        "cMarkedSentence": "증감 문제는 대개 {작년} 양이 먼저 구해지므로, 올해 양을 물으면 구한 값에 {증가율}이나 감소율을 반영한다.",
+        "cSlotAnswers": [
+          "작년",
+          "증가율"
+        ],
+        "cStudentSentence": "증감 문제는 대개 □ 양이 먼저 구해지므로, 올해 양을 물으면 구한 값에 □이나 감소율을 반영한다.",
+        "cAnswers": [
+          "작년",
+          "증가율"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "작년",
+            "equivalentAnswers": [
+              "작년"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "증가율",
+            "equivalentAnswers": [
+              "증가율"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "작년"
+          ],
+          [
+            "증가율"
+          ]
+        ],
+        "proposalFingerprint": "8f29e3d3cf4a869ff14b9c7683703065969147b9a4c79de7594628a85e964949"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-03-07-xc19",
+        "section": "중2::3. 방정식::연립방정식의 활용(가격, 개수, 증감, 도형)",
+        "term": "일차식으로 세우는 도형 조건",
+        "kind": "성질",
+        "level": "상",
+        "definition": "넓이는 곱이라 일차식이 아닐 수 있으므로 연립일차방정식에서는 주로 {둘레}나 {길이}의 관계로 식을 세운다.",
+        "studentC": "넓이는 곱이라 일차식이 아닐 수 있으므로 연립일차방정식에서는 주로 □나 □의 관계로 식을 세운다.",
+        "answers": [
+          "둘레",
+          "길이"
+        ]
+      },
+      "proposal": {
+        "id": "m2-03-07-xc19",
+        "bDecision": "rewrite",
+        "bPrompt": "직사각형의 가로를 $x$, 세로를 $y$로 놓을 때, 연립일차방정식을 세우는 데 넓이 $xy$보다 둘레나 변의 길이 관계를 주로 쓰는 까닭을 쓰시오.",
+        "bAnswer": "넓이 $xy$는 두 미지수의 곱이라 일차식이 아니지만, 둘레 $2(x+y)$나 길이 관계는 일차식이기 때문이다.",
+        "bGoal": "일차식이 되는 도형 조건 고르기",
+        "bReason": "넓이를 $xy$로 밝혀 일차가 아닌 이유를 묻는다.",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$xy$는 일차식이 아니다",
+              "넓이는 두 미지수의 곱이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "둘레나 길이 관계는 일차식이다"
+            ]
+          }
+        ],
+        "cDecision": "keep",
+        "cReason": "넓이와 대비해 일차식이 되는 둘레·길이를 묻는다.",
+        "learningRole": "reason",
+        "roleReason": "곱은 일차식이 아님",
+        "authorBatch": 36,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2594,
+        "part": "m2plus",
+        "sourceFingerprint": "31dd6060931cd8c0fb8d001f0520176e74dafeac6d98c614107ea8196069683e",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2594
+        },
+        "directReview": null,
+        "cFrozenSentence": "넓이는 곱이라 일차식이 아닐 수 있으므로 연립일차방정식에서는 주로 □나 □의 관계로 식을 세운다.",
+        "cFrozenDefinition": "넓이는 곱이라 일차식이 아닐 수 있으므로 연립일차방정식에서는 주로 {둘레}나 {길이}의 관계로 식을 세운다.",
+        "cFrozenAnswers": [
+          "둘레",
+          "길이"
+        ],
+        "cMarkedSentence": "넓이는 곱이라 일차식이 아닐 수 있으므로 연립일차방정식에서는 주로 {둘레}나 {길이}의 관계로 식을 세운다.",
+        "cSlotAnswers": [
+          "둘레",
+          "길이"
+        ],
+        "cStudentSentence": "넓이는 곱이라 일차식이 아닐 수 있으므로 연립일차방정식에서는 주로 □나 □의 관계로 식을 세운다.",
+        "cAnswers": [
+          "둘레",
+          "길이"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "둘레",
+            "equivalentAnswers": [
+              "둘레"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "길이",
+            "equivalentAnswers": [
+              "길이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "둘레"
+          ],
+          [
+            "길이"
+          ]
+        ],
+        "proposalFingerprint": "250af85a307bab970cafdcac71c525bfd7a0e892f4b9bb28248aaa3f33818159"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-03-08-xc1",
+        "section": "중2::3. 방정식::연립방정식의 활용(일, 속력)",
+        "term": "혼자 $a$일 걸리는 일에서 하루에 하는 양",
+        "kind": "방법",
+        "level": "하",
+        "definition": "혼자 $a$일 걸리는 일은 하루에 전체의 {$\\frac{1}{a}$}만큼 한다.",
+        "example": {
+          "prompt": "$8$일 걸리는 일을 하루에 하는 양",
+          "answer": "$\\frac{1}{8}$"
+        },
+        "studentC": "혼자 $a$일 걸리는 일은 하루에 전체의 □만큼 한다.",
+        "answers": [
+          "$\\frac{1}{a}$"
+        ]
+      },
+      "proposal": {
+        "id": "m2-03-08-xc1",
+        "bDecision": "rewrite",
+        "bPrompt": "전체 일의 양을 $1$로 놓자. 혼자 매일 같은 양씩 하면 $a$일 걸리는 일을 하루에 전체의 얼마만큼 하는지 $a$로 나타내고, 그 까닭을 쓰시오.",
+        "bAnswer": "$\\frac{1}{a}$; 하루에 하는 양을 $a$일 동안 하면 전체 $1$이 되므로 $1$을 $a$로 나눈다.",
+        "bGoal": "걸린 날수에서 하루 양 구하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{1}{a}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "하루 양을 $a$일 동안 하면 전체 $1$이 된다",
+              "$1\\div a$",
+              "전체 $1$을 $a$로 똑같이 나눈다"
+            ]
+          }
+        ],
+        "bReason": "전체를 $1$로 두는 조건과 매일 같은 양이라는 전제를 밝혀 식과 까닭을 묻는다.",
+        "cDecision": "keep",
+        "cReason": "문자 $a$와 하루 양 하나만 묻는 짧고 분명한 빈칸이다.",
+        "learningRole": "reason",
+        "roleReason": "$a$일 걸리는 일의 하루 몫이 $\\frac{1}{a}$인 까닭",
+        "authorBatch": 37,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2602,
+        "part": "m2plus",
+        "sourceFingerprint": "56585cc34ee5a14ea6b58761945cd7199f669d185676d26d15ad70bcf7059930",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2602
+        },
+        "directReview": null,
+        "cFrozenSentence": "혼자 $a$일 걸리는 일은 하루에 전체의 □만큼 한다.",
+        "cFrozenDefinition": "혼자 $a$일 걸리는 일은 하루에 전체의 {$\\frac{1}{a}$}만큼 한다.",
+        "cFrozenAnswers": [
+          "$\\frac{1}{a}$"
+        ],
+        "cMarkedSentence": "혼자 $a$일 걸리는 일은 하루에 전체의 {$\\frac{1}{a}$}만큼 한다.",
+        "cSlotAnswers": [
+          "$\\frac{1}{a}$"
+        ],
+        "cStudentSentence": "혼자 $a$일 걸리는 일은 하루에 전체의 □만큼 한다.",
+        "cAnswers": [
+          "$\\frac{1}{a}$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{1}{a}$",
+            "equivalentAnswers": [
+              "$\\frac{1}{a}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{1}{a}$"
+          ]
+        ],
+        "proposalFingerprint": "a12088c5b1815021c9022da2be25d7bca4d88b0894649398ee2035f236b23a81"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-03-08-xc11",
+        "section": "중2::3. 방정식::연립방정식의 활용(일, 속력)",
+        "term": "따로 나누어 한 일의 식",
+        "kind": "방법",
+        "level": "중",
+        "definition": "하루에 $x$, $y$씩 하는 $A$, $B$가 각각 $p$일, $q$일 해서 끝냈으면 각자 한 양 $px$와 $qy$의 {합}이 전체 일 {$1$}이다.",
+        "example": {
+          "prompt": "전체 일을 $1$로 놓고 $A$, $B$가 하루에 $x$, $y$씩 한다. $A$가 $3$일, $B$가 $5$일 해서 끝냈을 때 $3x+5y=1$인 까닭은?",
+          "answer": "두 사람이 한 양의 합이 전체라서"
+        },
+        "studentC": "하루에 $x$, $y$씩 하는 $A$, $B$가 각각 $p$일, $q$일 해서 끝냈으면 각자 한 양 $px$와 $qy$의 □이 전체 일 □이다.",
+        "answers": [
+          "합",
+          "$1$"
+        ]
+      },
+      "proposal": {
+        "id": "m2-03-08-xc11",
+        "bDecision": "rewrite",
+        "bPrompt": "전체 일을 $1$로 놓고 $A$, $B$가 하루에 각각 $x$, $y$씩 한다. $A$가 $p$일, $B$가 $q$일 해서 일을 끝냈을 때 세우는 식을 쓰고, 그 식이 성립하는 까닭을 쓰시오.",
+        "bAnswer": "$px+qy=1$; $A$가 한 양 $px$와 $B$가 한 양 $qy$를 더하면 전체 일 $1$이 되기 때문이다.",
+        "bGoal": "나누어 한 일의 식과 그 까닭",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$px+qy=1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "각자 한 양 $px$, $qy$의 합이 전체 $1$",
+              "각자 한 양을 더하면 전체 일이다"
+            ]
+          }
+        ],
+        "bReason": "날수를 문자로 주어 각자 한 양의 합이 전체인 까닭까지 묻게 했다.",
+        "cDecision": "keep",
+        "cReason": "각자 한 양이 식으로 제시되어 합과 $1$ 빈칸이 분명하다.",
+        "learningRole": "reason",
+        "roleReason": "각자 한 양의 합이 전체 $1$인 까닭",
+        "authorBatch": 37,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2612,
+        "part": "m2plus",
+        "sourceFingerprint": "044185180f0fd1fd242a16ff040ca9f65e33d3416d8c2517ff32b5a5dac8b1ff",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2612
+        },
+        "directReview": null,
+        "cFrozenSentence": "하루에 $x$, $y$씩 하는 $A$, $B$가 각각 $p$일, $q$일 해서 끝냈으면 각자 한 양 $px$와 $qy$의 □이 전체 일 □이다.",
+        "cFrozenDefinition": "하루에 $x$, $y$씩 하는 $A$, $B$가 각각 $p$일, $q$일 해서 끝냈으면 각자 한 양 $px$와 $qy$의 {합}이 전체 일 {$1$}이다.",
+        "cFrozenAnswers": [
+          "합",
+          "$1$"
+        ],
+        "cMarkedSentence": "하루에 $x$, $y$씩 하는 $A$, $B$가 각각 $p$일, $q$일 해서 끝냈으면 각자 한 양 $px$와 $qy$의 {합}이 전체 일 {$1$}이다.",
+        "cSlotAnswers": [
+          "합",
+          "$1$"
+        ],
+        "cStudentSentence": "하루에 $x$, $y$씩 하는 $A$, $B$가 각각 $p$일, $q$일 해서 끝냈으면 각자 한 양 $px$와 $qy$의 □이 전체 일 □이다.",
+        "cAnswers": [
+          "합",
+          "$1$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "합",
+            "equivalentAnswers": [
+              "합"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$1$",
+            "equivalentAnswers": [
+              "$1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "합"
+          ],
+          [
+            "$1$"
+          ]
+        ],
+        "proposalFingerprint": "92db73d04d74cdf57264254e27a52a5000e70516c16f1318016a8c27a60e980e"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-03-08-xc12",
+        "section": "중2::3. 방정식::연립방정식의 활용(일, 속력)",
+        "term": "늦게 출발한 사람의 시간",
+        "kind": "성질",
+        "level": "중",
+        "definition": "$B$가 $A$보다 $m$분 늦게 같은 곳에서 출발해 둘 다 쉬지 않고 가다가 만나면, 만날 때까지 $A$가 움직인 시간이 $B$보다 {$\\frac{m}{60}$시간} {길다}.",
+        "example": {
+          "prompt": "$B$가 $A$보다 늦게 출발해 둘 다 쉬지 않고 가다가 만났다. 만날 때까지 $B$가 움직인 시간이 더 짧은 까닭은?",
+          "answer": "만난 시각은 같고 출발이 늦어서"
+        },
+        "studentC": "$B$가 $A$보다 $m$분 늦게 같은 곳에서 출발해 둘 다 쉬지 않고 가다가 만나면, 만날 때까지 $A$가 움직인 시간이 $B$보다 □ □.",
+        "answers": [
+          "$\\frac{m}{60}$시간",
+          "길다"
+        ]
+      },
+      "proposal": {
+        "id": "m2-03-08-xc12",
+        "bDecision": "rewrite",
+        "bPrompt": "$B$가 $A$보다 $m$분 늦게 같은 곳에서 출발했고, 둘 다 쉬지 않고 가다가 만났다. 만날 때까지 움직인 시간은 누가 몇 시간 더 긴지 $m$으로 나타내고, 그 까닭을 쓰시오.",
+        "bAnswer": "$A$가 $\\frac{m}{60}$시간 더 길다. 만난 시각은 같은데 $A$가 $m$분 먼저 출발했기 때문이다.",
+        "bGoal": "출발 시각 차이를 움직인 시간 차로 나타내기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$A$가 더 오래 움직였다",
+              "$A$의 시간이 더 길다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{m}{60}$시간",
+              "$m$분"
+            ]
+          },
+          {
+            "anyOf": [
+              "만난 시각은 같은데 $A$가 먼저 출발했다",
+              "같은 시각에 만났고 $A$가 $m$분 먼저 떠났다"
+            ]
+          }
+        ],
+        "bReason": "누가 더 긴지, 차이, 까닭을 따로 답하도록 범위를 정했다.",
+        "cDecision": "rewrite",
+        "cAfter": "$B$가 $A$보다 $m$분 늦게 같은 곳에서 출발해 둘 다 쉬지 않고 가다가 만났다. 만날 때까지 움직인 시간이 더 긴 사람은 {$A$}이고, 두 사람이 움직인 시간의 차는 {$\\frac{m}{60}$}시간이다.",
+        "cAnswers": [
+          "$A$",
+          "$\\frac{m}{60}$"
+        ],
+        "cReason": "원문의 연속 빈칸 '□ □'은 답 범위가 모호해 사람과 차이로 나누었다.",
+        "learningRole": "reason",
+        "roleReason": "늦게 출발한 사람의 시간이 짧은 까닭",
+        "authorBatch": 37,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2613,
+        "part": "m2plus",
+        "sourceFingerprint": "ae8c337b5f1bfb44a957726782227473abee44cf9acbea37b6d483acc403fc14",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2613
+        },
+        "directReview": null,
+        "cMarkedSentence": "$B$가 $A$보다 $m$분 늦게 같은 곳에서 출발해 둘 다 쉬지 않고 가다가 만났다. 만날 때까지 움직인 시간이 더 긴 사람은 {$A$}이고, 두 사람이 움직인 시간의 차는 {$\\frac{m}{60}$}시간이다.",
+        "cSlotAnswers": [
+          "$A$",
+          "$\\frac{m}{60}$"
+        ],
+        "cStudentSentence": "$B$가 $A$보다 $m$분 늦게 같은 곳에서 출발해 둘 다 쉬지 않고 가다가 만났다. 만날 때까지 움직인 시간이 더 긴 사람은 □이고, 두 사람이 움직인 시간의 차는 □시간이다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$A$",
+            "equivalentAnswers": [
+              "$A$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\frac{m}{60}$",
+            "equivalentAnswers": [
+              "$\\frac{m}{60}$",
+              "$m\\div 60$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$\\frac{m}{60}$",
+            "accept": [
+              "$m\\div 60$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$A$"
+          ],
+          [
+            "$\\frac{m}{60}$",
+            "$m\\div 60$"
+          ]
+        ],
+        "proposalFingerprint": "14f363fa40319457549f53a969d3cd469642426093ea9b03b8c24ffa1cb157c5"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-03-08-xc17",
+        "section": "중2::3. 방정식::연립방정식의 활용(일, 속력)",
+        "term": "기차가 다리를 지날 때",
+        "kind": "성질",
+        "level": "중",
+        "definition": "기차가 다리를 완전히 지나려면 (다리의 길이)$+$({기차의 길이})만큼 달려야 한다.",
+        "example": {
+          "prompt": "길이 $200\\,\\mathrm{m}$인 기차가 $800\\,\\mathrm{m}$ 다리를 지날 때 달리는 거리",
+          "answer": "$1000\\,\\mathrm{m}$"
+        },
+        "studentC": "기차가 다리를 완전히 지나려면 (다리의 길이)$+$(□)만큼 달려야 한다.",
+        "answers": [
+          "기차의 길이"
+        ]
+      },
+      "proposal": {
+        "id": "m2-03-08-xc17",
+        "bDecision": "rewrite",
+        "bPrompt": "길이가 $l\\,\\mathrm{m}$인 기차가 길이가 $d\\,\\mathrm{m}$인 다리에 앞부분이 들어서는 순간부터 꼬리가 다리를 완전히 빠져나오는 순간까지 달린 거리를 쓰고, 그 거리가 되는 까닭을 쓰시오.",
+        "bAnswer": "$(d+l)\\,\\mathrm{m}$; 앞부분이 다리 끝에 닿은 뒤에도 꼬리가 다리를 빠져나오려면 기차 길이만큼 더 가야 하기 때문이다.",
+        "bGoal": "기차가 다리를 지나는 거리",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$(d+l)\\,\\mathrm{m}$",
+              "$d+l$"
+            ]
+          },
+          {
+            "anyOf": [
+              "꼬리가 빠져나오려면 기차 길이만큼 더 가야 한다",
+              "앞부분이 다리 끝을 기차 길이만큼 지나야 꼬리가 다리를 벗어난다"
+            ]
+          }
+        ],
+        "bReason": "시작·끝 순간과 두 길이를 밝혀 거리와 까닭을 묻게 했다.",
+        "cDecision": "keep",
+        "cReason": "'완전히 지나려면'과 다리 길이가 주어져 빠진 항 하나를 묻기 분명하다.",
+        "learningRole": "reason",
+        "roleReason": "꼬리까지 빠져나오려면 기차 길이를 더하는 까닭",
+        "authorBatch": 37,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2618,
+        "part": "m2plus",
+        "sourceFingerprint": "4c1c0349f47a225dc7dd6731bb9e8b9aec4dfad6023faa982296b084f469cf10",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2618
+        },
+        "directReview": null,
+        "cFrozenSentence": "기차가 다리를 완전히 지나려면 (다리의 길이)$+$(□)만큼 달려야 한다.",
+        "cFrozenDefinition": "기차가 다리를 완전히 지나려면 (다리의 길이)$+$({기차의 길이})만큼 달려야 한다.",
+        "cFrozenAnswers": [
+          "기차의 길이"
+        ],
+        "cMarkedSentence": "기차가 다리를 완전히 지나려면 (다리의 길이)$+$({기차의 길이})만큼 달려야 한다.",
+        "cSlotAnswers": [
+          "기차의 길이"
+        ],
+        "cStudentSentence": "기차가 다리를 완전히 지나려면 (다리의 길이)$+$(□)만큼 달려야 한다.",
+        "cAnswers": [
+          "기차의 길이"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "기차의 길이",
+            "equivalentAnswers": [
+              "기차의 길이"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "기차의 길이"
+          ]
+        ],
+        "proposalFingerprint": "c4225c884078df5a621f76a52082d3fd3295b6285f1ec20f65ad9a1f9a818111"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-03-08-xc18",
+        "section": "중2::3. 방정식::연립방정식의 활용(일, 속력)",
+        "term": "미지수로 놓는 일의 양",
+        "kind": "성질",
+        "level": "상",
+        "definition": "혼자 걸리는 날수를 미지수로 놓으면 하루 양이 $\\frac{1}{x}$ 꼴이 되므로, 하루에 하는 {일의 양}을 미지수로 놓아야 {일차방정식}을 세울 수 있다.",
+        "studentC": "혼자 걸리는 날수를 미지수로 놓으면 하루 양이 $\\frac{1}{x}$ 꼴이 되므로, 하루에 하는 □을 미지수로 놓아야 □을 세울 수 있다.",
+        "answers": [
+          "일의 양",
+          "일차방정식"
+        ]
+      },
+      "proposal": {
+        "id": "m2-03-08-xc18",
+        "bDecision": "rewrite",
+        "bPrompt": "일 문제에서 $A$가 혼자 하면 걸리는 날수를 미지수 $x$로 놓으면, $A$가 하루에 하는 일의 양은 어떻게 나타나는가? 이 때문에 대신 무엇을 미지수로 놓는 것이 좋은지 까닭과 함께 쓰시오.",
+        "bAnswer": "하루 양이 $\\frac{1}{x}$이 되어 분모에 미지수가 생긴다. 하루에 하는 일의 양을 미지수로 놓으면 일차방정식을 세울 수 있다.",
+        "bGoal": "일 문제에서 미지수를 고르는 까닭",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{1}{x}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "하루에 하는 일의 양을 미지수로 놓는다"
+            ]
+          },
+          {
+            "anyOf": [
+              "일차방정식을 세울 수 있다",
+              "연립일차방정식이 된다"
+            ]
+          }
+        ],
+        "bReason": "날수를 미지수로 둔 결과와 대안, 까닭을 각각 답하게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "혼자 걸리는 날수를 $x$로 놓으면 분모에 $x$가 있는 $\\frac{1}{x}$ 꼴이 생긴다. 그래서 날수 대신 하루에 하는 {일의 양}을 미지수로 놓아야 {일차방정식}을 세울 수 있다.",
+        "cAnswers": [
+          "일의 양",
+          "일차방정식"
+        ],
+        "cReason": "원문 '하루 양'이 첫 빈칸 답을 드러내고 $x$가 무엇인지 빠져 고쳤다.",
+        "studentLabel": "일 문제에서 미지수로 놓을 양",
+        "learningRole": "reason",
+        "roleReason": "하루 양을 미지수로 놓아야 일차식이 되는 까닭",
+        "authorBatch": 37,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2619,
+        "part": "m2plus",
+        "sourceFingerprint": "7c6ec3d63e2483324b8966a5ab53decd6e702016fb640879d33f9db669e15898",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2619
+        },
+        "directReview": null,
+        "cMarkedSentence": "혼자 걸리는 날수를 $x$로 놓으면 분모에 $x$가 있는 $\\frac{1}{x}$ 꼴이 생긴다. 그래서 날수 대신 하루에 하는 {일의 양}을 미지수로 놓아야 {일차방정식}을 세울 수 있다.",
+        "cSlotAnswers": [
+          "일의 양",
+          "일차방정식"
+        ],
+        "cStudentSentence": "혼자 걸리는 날수를 $x$로 놓으면 분모에 $x$가 있는 $\\frac{1}{x}$ 꼴이 생긴다. 그래서 날수 대신 하루에 하는 □을 미지수로 놓아야 □을 세울 수 있다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "일의 양",
+            "equivalentAnswers": [
+              "일의 양"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "일차방정식",
+            "equivalentAnswers": [
+              "일차방정식"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "일의 양"
+          ],
+          [
+            "일차방정식"
+          ]
+        ],
+        "proposalFingerprint": "f6f09fac9d73eceac08ac15aaa81fc5c950083b857b05fd5bc9876d6a7db365b"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-03-08-xc21",
+        "section": "중2::3. 방정식::연립방정식의 활용(일, 속력)",
+        "term": "기차의 길이와 속력 함께 구하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "기차가 같은 속력으로 길이가 다른 {두 다리}를 지나는 데 걸린 {시간}을 각각 식으로 쓰면 기차의 길이와 속력을 함께 구할 수 있다.",
+        "studentC": "기차가 같은 속력으로 길이가 다른 □를 지나는 데 걸린 □을 각각 식으로 쓰면 기차의 길이와 속력을 함께 구할 수 있다.",
+        "answers": [
+          "두 다리",
+          "시간"
+        ]
+      },
+      "proposal": {
+        "id": "m2-03-08-xc21",
+        "bDecision": "rewrite",
+        "bPrompt": "기차가 일정한 속력으로 길이 $600\\,\\mathrm{m}$인 다리를 완전히 지나는 데 $40$초, 길이 $1000\\,\\mathrm{m}$인 다리를 완전히 지나는 데 $60$초 걸렸다. 기차의 길이를 $x\\,\\mathrm{m}$, 속력을 초속 $y\\,\\mathrm{m}$로 놓고 연립방정식을 세워 $x$, $y$를 구하시오.",
+        "bAnswer": "$600+x=40y$, $1000+x=60y$에서 $y=20$, $x=200$이므로 기차의 길이는 $200\\,\\mathrm{m}$, 속력은 초속 $20\\,\\mathrm{m}$이다.",
+        "bGoal": "두 다리 조건으로 기차 길이·속력 구하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$600+x=40y$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$1000+x=60y$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$x=200$, $y=20$"
+            ]
+          }
+        ],
+        "bReason": "두 다리의 길이와 시간을 주어 연립으로 두 값을 함께 구하게 했다.",
+        "cDecision": "rewrite",
+        "cAfter": "기차의 길이를 $x\\,\\mathrm{m}$, 속력을 초속 $y\\,\\mathrm{m}$로 놓고, 길이가 다른 두 다리를 각각 완전히 지나는 데 $t$초 걸릴 때마다 (다리의 길이)$+${$x$}$=${$yt$}인 식을 세워 연립한다.",
+        "cAnswers": [
+          "$x$",
+          "$yt$"
+        ],
+        "cReason": "원문 '두 다리' 빈칸은 답이 모호해 식의 구조를 묻도록 고쳤다.",
+        "exampleNeeded": true,
+        "learningRole": "application",
+        "roleReason": "다리 길이$+$기차 길이$=$속력×시간을 두 번 쓰기",
+        "authorBatch": 37,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2622,
+        "part": "m2plus",
+        "sourceFingerprint": "a6c0d7752b2c0685059f33fd2a1e0785b2254ed79a4d451b4fcda77ac70c01ce",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2622
+        },
+        "directReview": null,
+        "cMarkedSentence": "기차의 길이를 $x\\,\\mathrm{m}$, 속력을 초속 $y\\,\\mathrm{m}$로 놓고, 길이가 다른 두 다리를 각각 완전히 지나는 데 $t$초 걸릴 때마다 (다리의 길이)$+${$x$}$=${$yt$}인 식을 세워 연립한다.",
+        "cSlotAnswers": [
+          "$x$",
+          "$yt$"
+        ],
+        "cStudentSentence": "기차의 길이를 $x\\,\\mathrm{m}$, 속력을 초속 $y\\,\\mathrm{m}$로 놓고, 길이가 다른 두 다리를 각각 완전히 지나는 데 $t$초 걸릴 때마다 (다리의 길이)$+$□$=$□인 식을 세워 연립한다.",
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$x$",
+            "equivalentAnswers": [
+              "$x$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$yt$",
+            "equivalentAnswers": [
+              "$yt$",
+              "$ty$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$yt$",
+            "accept": [
+              "$ty$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$x$"
+          ],
+          [
+            "$yt$",
+            "$ty$"
+          ]
+        ],
+        "proposalFingerprint": "1965b10b6953ec9e91e1675eaca833ebeb2b9c9e69382d70c4439670a72c3ca7"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-03-08-xc25",
+        "section": "중2::3. 방정식::연립방정식의 활용(일, 속력)",
+        "term": "일의 양의 합으로 확인",
+        "kind": "방법",
+        "level": "상",
+        "definition": "구한 $x$, $y$로 처음 조건을 계산해 일의 양의 합이 {$1$}이 되는지 {확인}한다.",
+        "studentC": "구한 $x$, $y$로 처음 조건을 계산해 일의 양의 합이 □이 되는지 □한다.",
+        "answers": [
+          "$1$",
+          "확인"
+        ]
+      },
+      "proposal": {
+        "id": "m2-03-08-xc25",
+        "bDecision": "rewrite",
+        "bPrompt": "전체 일의 양을 $1$로 놓는 일 문제에서 연립방정식을 풀어 $x$, $y$를 구했다. 이 답이 맞는지 확인하려면 구한 값을 어디에 넣어 무엇을 계산하고, 어떤 결과가 나와야 하는가?",
+        "bAnswer": "구한 $x$, $y$를 문제의 처음 조건에 넣어 각 경우 한 일의 양의 합을 계산하고, 그 합이 전체인 $1$이 되는지 본다.",
+        "bGoal": "일 문제 답을 처음 조건으로 확인하기",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "구한 $x$, $y$를 처음 조건에 넣어 계산한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "한 일의 양의 합이 $1$이 되는지 본다",
+              "합이 전체 일과 같은지 본다"
+            ]
+          }
+        ],
+        "bReason": "확인 대상을 처음 조건으로, 확인 기준을 합으로 나누어 답하게 했다.",
+        "cDecision": "keep",
+        "cReason": "처음 조건에 넣어 합을 확인하는 절차가 문장에 드러나 유지한다.",
+        "learningRole": "procedure",
+        "roleReason": "구한 값으로 일의 양 합 확인하기",
+        "authorBatch": 37,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2625,
+        "part": "m2plus",
+        "sourceFingerprint": "e8a0551ff5a37622a9d471b2c5ebb0a2a665f8ff423172a2cff210fe8cb61ee0",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2625
+        },
+        "directReview": null,
+        "cFrozenSentence": "구한 $x$, $y$로 처음 조건을 계산해 일의 양의 합이 □이 되는지 □한다.",
+        "cFrozenDefinition": "구한 $x$, $y$로 처음 조건을 계산해 일의 양의 합이 {$1$}이 되는지 {확인}한다.",
+        "cFrozenAnswers": [
+          "$1$",
+          "확인"
+        ],
+        "cMarkedSentence": "구한 $x$, $y$로 처음 조건을 계산해 일의 양의 합이 {$1$}이 되는지 {확인}한다.",
+        "cSlotAnswers": [
+          "$1$",
+          "확인"
+        ],
+        "cStudentSentence": "구한 $x$, $y$로 처음 조건을 계산해 일의 양의 합이 □이 되는지 □한다.",
+        "cAnswers": [
+          "$1$",
+          "확인"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$1$",
+            "equivalentAnswers": [
+              "$1$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "확인",
+            "equivalentAnswers": [
+              "확인",
+              "검산"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [
+          {
+            "answer": "확인",
+            "accept": [
+              "검산"
+            ]
+          }
+        ],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$1$"
+          ],
+          [
+            "확인",
+            "검산"
+          ]
+        ],
+        "proposalFingerprint": "ac0a758e9bbc89d1b92f07f6ec04a13c11022106c0ce931af23f1ba92429a8b7"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-03-09-xc2",
+        "section": "중2::3. 방정식::연립방정식의 활용(농도, 비율, 합금)",
+        "term": "$a\\%$ 소금물 $x\\,\\mathrm{g}$과 $b\\%$ 소금물 $y\\,\\mathrm{g}$ 속 소금의 합",
+        "kind": "방법",
+        "level": "하",
+        "definition": "$a\\%$ 소금물 $x\\,\\mathrm{g}$과 $b\\%$ 소금물 $y\\,\\mathrm{g}$ 속 소금의 합은 {$\\frac{a}{100}x+\\frac{b}{100}y$}이다.",
+        "studentC": "$a\\%$ 소금물 $x\\,\\mathrm{g}$과 $b\\%$ 소금물 $y\\,\\mathrm{g}$ 속 소금의 합은 □이다.",
+        "answers": [
+          "$\\frac{a}{100}x+\\frac{b}{100}y$"
+        ]
+      },
+      "proposal": {
+        "id": "m2-03-09-xc2",
+        "bDecision": "exclude",
+        "bPrompt": null,
+        "bAnswer": null,
+        "bGoal": null,
+        "bReason": "한 소금물의 소금 양은 c1 B, 두 소금물 합은 c2 B 식에서 다룬다.",
+        "cDecision": "keep",
+        "cReason": "농도와 양이 모두 문자로 주어져 합의 식을 묻기에 분명하다.",
+        "exclusionReason": "B 제외: c1·c2 B와 목표 중복.",
+        "learningRole": "procedure",
+        "roleReason": "두 소금물의 소금 양 더하기",
+        "authorBatch": 37,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2626,
+        "part": "m2plus",
+        "sourceFingerprint": "0da244edb2733c7dff1be71747770fad76490a1c935d71164023b69f8fa23c92",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2626
+        },
+        "directReview": null,
+        "bRequiredIdeas": null,
+        "cFrozenSentence": "$a\\%$ 소금물 $x\\,\\mathrm{g}$과 $b\\%$ 소금물 $y\\,\\mathrm{g}$ 속 소금의 합은 □이다.",
+        "cFrozenDefinition": "$a\\%$ 소금물 $x\\,\\mathrm{g}$과 $b\\%$ 소금물 $y\\,\\mathrm{g}$ 속 소금의 합은 {$\\frac{a}{100}x+\\frac{b}{100}y$}이다.",
+        "cFrozenAnswers": [
+          "$\\frac{a}{100}x+\\frac{b}{100}y$"
+        ],
+        "cMarkedSentence": "$a\\%$ 소금물 $x\\,\\mathrm{g}$과 $b\\%$ 소금물 $y\\,\\mathrm{g}$ 속 소금의 합은 {$\\frac{a}{100}x+\\frac{b}{100}y$}이다.",
+        "cSlotAnswers": [
+          "$\\frac{a}{100}x+\\frac{b}{100}y$"
+        ],
+        "cStudentSentence": "$a\\%$ 소금물 $x\\,\\mathrm{g}$과 $b\\%$ 소금물 $y\\,\\mathrm{g}$ 속 소금의 합은 □이다.",
+        "cAnswers": [
+          "$\\frac{a}{100}x+\\frac{b}{100}y$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{a}{100}x+\\frac{b}{100}y$",
+            "equivalentAnswers": [
+              "$\\frac{a}{100}x+\\frac{b}{100}y$",
+              "$\\frac{ax+by}{100}$",
+              "$0.01ax+0.01by$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [
+          {
+            "answer": "$\\frac{a}{100}x+\\frac{b}{100}y$",
+            "accept": [
+              "$\\frac{ax+by}{100}$",
+              "$0.01ax+0.01by$"
+            ]
+          }
+        ],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{a}{100}x+\\frac{b}{100}y$",
+            "$\\frac{ax+by}{100}$",
+            "$0.01ax+0.01by$"
+          ]
+        ],
+        "proposalFingerprint": "05ba9b2531818adadd93bbcd2c468f848c3daafcb711fa577dcb0b27701ff08a"
+      }
+    },
+    {
+      "source": {
+        "part": "m2plus",
+        "id": "m2-03-09-xc20",
+        "section": "중2::3. 방정식::연립방정식의 활용(농도, 비율, 합금)",
+        "term": "비로 주어진 합금 속 금속",
+        "kind": "방법",
+        "level": "상",
+        "definition": "구리와 아연의 비가 $a:b$인 합금 속 구리는 전체의 {$\\frac{a}{a+b}$}이므로, 합금 $x\\,\\mathrm{g}$ 속 구리는 {$\\frac{a}{a+b}x\\,\\mathrm{g}$}이다.",
+        "example": {
+          "prompt": "구리와 아연의 비가 $3:2$인 합금 $x\\,\\mathrm{g}$ 속 구리를 $\\frac{3}{2}x\\,\\mathrm{g}$으로 쓰면 틀린 까닭은?",
+          "answer": "구리는 전체의 $\\frac{3}{5}$이라서"
+        },
+        "studentC": "구리와 아연의 비가 $a:b$인 합금 속 구리는 전체의 □이므로, 합금 $x\\,\\mathrm{g}$ 속 구리는 □이다.",
+        "answers": [
+          "$\\frac{a}{a+b}$",
+          "$\\frac{a}{a+b}x\\,\\mathrm{g}$"
+        ]
+      },
+      "proposal": {
+        "id": "m2-03-09-xc20",
+        "bDecision": "rewrite",
+        "bPrompt": "구리와 아연의 질량의 비가 $a:b$인 합금 $x\\,\\mathrm{g}$ 속 구리의 양을 나타내시오. 또 비가 $3:2$일 때 구리의 양을 $\\frac{3}{2}x\\,\\mathrm{g}$으로 쓰면 왜 틀리는지 쓰시오.",
+        "bAnswer": "$\\frac{a}{a+b}x\\,\\mathrm{g}$; 비가 $3:2$이면 구리는 전체 $5$ 중 $3$이라 전체의 $\\frac{3}{5}$이다. $\\frac{3}{2}$은 아연에 대한 구리의 비라 전체에 대한 비율이 아니다.",
+        "bGoal": "비로 주어진 합금 속 금속 양",
+        "bRequiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{a}{a+b}x\\,\\mathrm{g}$",
+              "$\\frac{ax}{a+b}$"
+            ]
+          },
+          {
+            "anyOf": [
+              "구리는 전체 $5$ 중 $3$이라 $\\frac{3}{5}$이다",
+              "$\\frac{3}{2}$은 전체가 아니라 아연에 대한 구리의 비"
+            ]
+          }
+        ],
+        "bReason": "일반식과 $3:2$ 오류를 함께 주어 전체 기준을 확인하게 했다.",
+        "cDecision": "keep",
+        "cReason": "비율과 양을 단계별로 묻는 두 빈칸이 분명하다.",
+        "exampleNeeded": true,
+        "learningRole": "reason",
+        "roleReason": "구리가 전체의 $\\frac{a}{a+b}$인 까닭",
+        "authorBatch": 37,
+        "readingProvenance": "isolated Claude no-tools per-ID content draft; not an independent approval",
+        "sourceIndex": 2639,
+        "part": "m2plus",
+        "sourceFingerprint": "5f9c016e61eb9b8973e59e584b3bba7db21d1e762f31fcadea93fe09295afc97",
+        "sourceEvidence": {
+          "path": "evidence/source.json",
+          "index": 2639
+        },
+        "directReview": null,
+        "cFrozenSentence": "구리와 아연의 비가 $a:b$인 합금 속 구리는 전체의 □이므로, 합금 $x\\,\\mathrm{g}$ 속 구리는 □이다.",
+        "cFrozenDefinition": "구리와 아연의 비가 $a:b$인 합금 속 구리는 전체의 {$\\frac{a}{a+b}$}이므로, 합금 $x\\,\\mathrm{g}$ 속 구리는 {$\\frac{a}{a+b}x\\,\\mathrm{g}$}이다.",
+        "cFrozenAnswers": [
+          "$\\frac{a}{a+b}$",
+          "$\\frac{a}{a+b}x\\,\\mathrm{g}$"
+        ],
+        "cMarkedSentence": "구리와 아연의 비가 $a:b$인 합금 속 구리는 전체의 {$\\frac{a}{a+b}$}이므로, 합금 $x\\,\\mathrm{g}$ 속 구리는 {$\\frac{a}{a+b}x\\,\\mathrm{g}$}이다.",
+        "cSlotAnswers": [
+          "$\\frac{a}{a+b}$",
+          "$\\frac{a}{a+b}x\\,\\mathrm{g}$"
+        ],
+        "cStudentSentence": "구리와 아연의 비가 $a:b$인 합금 속 구리는 전체의 □이므로, 합금 $x\\,\\mathrm{g}$ 속 구리는 □이다.",
+        "cAnswers": [
+          "$\\frac{a}{a+b}$",
+          "$\\frac{a}{a+b}x\\,\\mathrm{g}$"
+        ],
+        "cSlots": [
+          {
+            "index": 0,
+            "answer": "$\\frac{a}{a+b}$",
+            "equivalentAnswers": [
+              "$\\frac{a}{a+b}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          },
+          {
+            "index": 1,
+            "answer": "$\\frac{a}{a+b}x\\,\\mathrm{g}$",
+            "equivalentAnswers": [
+              "$\\frac{a}{a+b}x\\,\\mathrm{g}$"
+            ],
+            "equivalenceReview": "proposal only, independent verification required"
+          }
+        ],
+        "lexicalSynonyms": [],
+        "equivalentExpressions": [],
+        "cAcceptedAnswers": [
+          [
+            "$\\frac{a}{a+b}$"
+          ],
+          [
+            "$\\frac{a}{a+b}x\\,\\mathrm{g}$"
+          ]
+        ],
+        "proposalFingerprint": "844ce64a5a2031ee3ee57be5f05ab9b23c4efa33677cd550dc86b8e392a06aa5"
+      }
+    }
+  ]
+}

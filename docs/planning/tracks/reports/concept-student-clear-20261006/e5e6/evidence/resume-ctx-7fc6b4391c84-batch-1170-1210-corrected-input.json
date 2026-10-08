@@ -1,0 +1,1026 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e5-2-2-1-xc14",
+      "learningRole": "reason",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "1보다 큰 자연수를 곱하면 곱이 처음 분수보다 커짐을 안다.",
+      "bReason": "자연수를곱한크기증가는xc1의반복덧셈과크기비교문항으로설명하게하므로B반복을제외한다. C의짧은크기비교는유지한다.",
+      "exclusionReason": "B 제외: 자명한 성질이며 xc1·xc23 B와 겹친다.",
+      "cDecision": "keep",
+      "cAfter": "분수에 $1$보다 큰 자연수를 곱하면 곱은 처음 분수보다 {커진다}.",
+      "cReason": "'1보다 큰 자연수'라는 조건이 분명하고 크기 변화를 한 낱말로 답하는 유용한 비교 문장이다.",
+      "synonymNotes": "'커진다'와 '크다'는 같은 답으로 인정한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1170-1210.json",
+      "codexFinalAmendedFromFingerprint": "403ce7c80814904a2adf109707e1cebd33cc143a9b6c85f10ee820b9e15eaa54",
+      "sourceIndex": 1172,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-2-1-xc14",
+        "section": "초5::2-2 분수의 곱셈::2-2-1 (분수)×(자연수)의 계산",
+        "term": "자연수를 곱한 크기",
+        "kind": "성질",
+        "level": "중",
+        "definition": "분수에 $1$보다 큰 자연수를 곱하면 곱은 처음 분수보다 {커진다}.",
+        "studentC": "분수에 $1$보다 큰 자연수를 곱하면 곱은 처음 분수보다 □.",
+        "answers": [
+          "커진다"
+        ]
+      },
+      "sourceFingerprint": "7144531f9f87601ce8d686649a4a5fca198059245ff2980ca5ae52cd514bfa8f",
+      "draftEvidence": "evidence/section-032-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cFrozenDefinition": "분수에 $1$보다 큰 자연수를 곱하면 곱은 처음 분수보다 {커진다}.",
+      "cFrozenStudentSentence": "분수에 $1$보다 큰 자연수를 곱하면 곱은 처음 분수보다 □.",
+      "cProposedAnswers": [
+        "커진다"
+      ],
+      "cStudentAfter": "분수에 $1$보다 큰 자연수를 곱하면 곱은 처음 분수보다 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "커진다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "분수에 $1$보다 큰 자연수를 곱하면 곱은 처음 분수보다 {커진다}.",
+      "cStudentSentence": "분수에 $1$보다 큰 자연수를 곱하면 곱은 처음 분수보다 □.",
+      "cSlotAnswers": [
+        {
+          "key": "커진다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "분수에 $1$보다 큰 자연수를 곱하면 곱은 처음 분수보다 {커진다}.",
+        "acceptedAnswers": [
+          [
+            "커진다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 제외: 자명한 성질이며 xc1·xc23 B와 겹친다."
+      },
+      "proposalFingerprint": "403ce7c80814904a2adf109707e1cebd33cc143a9b6c85f10ee820b9e15eaa54",
+      "questionRevision": "planning-e5e6-20261006-403ce7c80814",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-2-1-xc15",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "$1\\frac{2}{5}\\times3$을 ① 가분수로 고쳐서, ② 자연수 부분과 분수 부분으로 나누어서 각각 계산하고, 두 결과를 비교하세요.",
+      "bAnswer": "① $\\frac{7}{5}\\times3=\\frac{21}{5}=4\\frac{1}{5}$ ② $1\\times3+\\frac{2}{5}\\times3=3+\\frac{6}{5}=4\\frac{1}{5}$. 두 결과는 같다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{7}{5} \\times 3 = \\frac{21}{5}$",
+            "가분수 $\\frac{7}{5}$로 고쳐 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3 + \\frac{6}{5}$",
+            "$1 \\times 3$과 $\\frac{2}{5} \\times 3$을 더한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "두 결과가 $4$ $\\frac{1}{5}$로 같다",
+            "두 결과가 $\\frac{21}{5}$로 같다"
+          ]
+        }
+      ],
+      "bGoal": "대분수 곱셈의 두 방법이 같은 결과를 냄을 직접 계산해 확인한다.",
+      "bReason": "'결과는 같다'는 결론을 말해 주지 않고 두 방법으로 계산해 비교하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$1\\frac{2}{5}\\times3$을 가분수로 고쳐 계산하면 $\\frac{7}{5}\\times3=\\frac{21}{5}$이고, 나누어 계산하면 $1\\times3=$ {$3$}과 $\\frac{2}{5}\\times3=\\frac{6}{5}$의 합이다. 두 결과는 서로 {같다}.",
+      "cReason": "원문 빈칸 '결과는 같다'는 문장만 보고도 채울 수 있어 실제 두 계산을 보이고 확인하게 했다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1170-1210.json",
+      "codexFinalAmendedFromFingerprint": "3d0ca3cbcab3c5a6dfc69cda8b8009f73682cc4899fe67ee70ef046be1205822",
+      "sourceIndex": 1173,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-2-1-xc15",
+        "section": "초5::2-2 분수의 곱셈::2-2-1 (분수)×(자연수)의 계산",
+        "term": "대분수 곱셈의 두 방법",
+        "kind": "성질",
+        "level": "중",
+        "definition": "대분수를 가분수로 고쳐 곱해도, 부분으로 나누어 곱해도 {결과는 같다}.",
+        "example": {
+          "prompt": "$1\\frac{2}{5}\\times3$은?",
+          "answer": "$4\\frac{1}{5}$"
+        },
+        "studentC": "대분수를 가분수로 고쳐 곱해도, 부분으로 나누어 곱해도 □.",
+        "answers": [
+          "결과는 같다"
+        ]
+      },
+      "sourceFingerprint": "37816001ee5474e6f33b3a4a802f256f06171fc6ae250bb8b7e50031d491248b",
+      "draftEvidence": "evidence/section-032-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$3$",
+        "같다"
+      ],
+      "cStudentAfter": "$1\\frac{2}{5}\\times3$을 가분수로 고쳐 계산하면 $\\frac{7}{5}\\times3=\\frac{21}{5}$이고, 나누어 계산하면 $1\\times3=$ □과 $\\frac{2}{5}\\times3=\\frac{6}{5}$의 합이다. 두 결과는 서로 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "같다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$1\\frac{2}{5}\\times3$을 가분수로 고쳐 계산하면 $\\frac{7}{5}\\times3=\\frac{21}{5}$이고, 나누어 계산하면 $1\\times3=$ {$3$}과 $\\frac{2}{5}\\times3=\\frac{6}{5}$의 합이다. 두 결과는 서로 {같다}.",
+      "cStudentSentence": "$1\\frac{2}{5}\\times3$을 가분수로 고쳐 계산하면 $\\frac{7}{5}\\times3=\\frac{21}{5}$이고, 나누어 계산하면 $1\\times3=$ □과 $\\frac{2}{5}\\times3=\\frac{6}{5}$의 합이다. 두 결과는 서로 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "같다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$1\\frac{2}{5}\\times3$을 ① 가분수로 고쳐서, ② 자연수 부분과 분수 부분으로 나누어서 각각 계산하고, 두 결과를 비교하세요.",
+        "answer": "① $\\frac{7}{5}\\times3=\\frac{21}{5}=4\\frac{1}{5}$ ② $1\\times3+\\frac{2}{5}\\times3=3+\\frac{6}{5}=4\\frac{1}{5}$. 두 결과는 같다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{7}{5} \\times 3 = \\frac{21}{5}$",
+              "가분수 $\\frac{7}{5}$로 고쳐 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3 + \\frac{6}{5}$",
+              "$1 \\times 3$과 $\\frac{2}{5} \\times 3$을 더한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "두 결과가 $4$ $\\frac{1}{5}$로 같다",
+              "두 결과가 $\\frac{21}{5}$로 같다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1\\frac{2}{5}\\times3$을 가분수로 고쳐 계산하면 $\\frac{7}{5}\\times3=\\frac{21}{5}$이고, 나누어 계산하면 $1\\times3=$ {$3$}과 $\\frac{2}{5}\\times3=\\frac{6}{5}$의 합이다. 두 결과는 서로 {같다}.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "같다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "0bdcfe8e0854df71a6de3c6f825d9d689ec83546ef19cc70708fb1ec8bfeb1bb",
+      "questionRevision": "planning-e5e6-20261006-0bdcfe8e0854",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-2-1-xc22",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "우유를 하루에 $\\frac{3}{4}$ $\\mathrm{L}$씩 $5$일 동안 마셨습니다. 마신 우유 전체의 양을 구하는 곱셈식을 쓰고, 왜 곱셈으로 구하는지 설명한 뒤 답을 구하세요.",
+      "bAnswer": "$\\frac{3}{4}\\times5$. 같은 양 $\\frac{3}{4}$ $\\mathrm{L}$가 $5$번 되풀이되므로 한 번의 양에 횟수를 곱한다. $\\frac{15}{4}=3\\frac{3}{4}$ $\\mathrm{L}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$\\frac{3}{4} \\times 5$"
+          ]
+        },
+        {
+          "anyOf": [
+            "같은 양이 $5$번 되풀이된다",
+            "$\\frac{3}{4}$을 $5$번 더하는 것과 같다",
+            "한 번의 양에 횟수를 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{15}{4}\\,\\mathrm{L}$",
+            "$3$ $\\frac{3}{4}\\,\\mathrm{L}$"
+          ]
+        }
+      ],
+      "bGoal": "같은 양이 되풀이되는 상황을 (분수)×(자연수) 식으로 나타낸다.",
+      "bReason": "편집용 제목 '되풀이되는 양'은 물음이 될 수 없어 구체적인 상황으로 바꾸었다.",
+      "cDecision": "revise",
+      "cAfter": "우유를 하루에 $\\frac{3}{4}\\,\\mathrm{L}$씩 $5$일 동안 마셨다. 전체 양은 하루에 마신 양에 날수를 {곱해} 구하며, 마신 우유는 {$\\frac{15}{4}$} $\\mathrm{L}$이다.",
+      "cReason": "긴 구절 빈칸을 연산 낱말과 실제 횟수로 나누었다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "곱해",
+            "곱하여"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{15}{4}$",
+            "$3$과$\\frac{3}{4}$"
+          ]
+        }
+      ],
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1170-1210.json",
+      "codexFinalAmendedFromFingerprint": "a8c230d31955e492cdbe4acf7c94a58da63cfe73d609bdc436b4fec9baa02e8c",
+      "sourceIndex": 1178,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-2-1-xc22",
+        "section": "초5::2-2 분수의 곱셈::2-2-1 (분수)×(자연수)의 계산",
+        "term": "되풀이되는 양",
+        "kind": "방법",
+        "level": "상",
+        "definition": "같은 양이 여러 번 되풀이될 때 전체 양은 {한 번의 양에 횟수를 곱해} 구한다.",
+        "studentC": "같은 양이 여러 번 되풀이될 때 전체 양은 □ 구한다.",
+        "answers": [
+          "한 번의 양에 횟수를 곱해"
+        ]
+      },
+      "sourceFingerprint": "abb223c6f2b822d0ee75037d5b445d1678db16fe48204eef0b208917fdbc7bfb",
+      "draftEvidence": "evidence/section-032-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "곱해",
+        "$\\frac{15}{4}$"
+      ],
+      "cStudentAfter": "우유를 하루에 $\\frac{3}{4}\\,\\mathrm{L}$씩 $5$일 동안 마셨다. 전체 양은 하루에 마신 양에 날수를 □ 구하며, 마신 우유는 □ $\\mathrm{L}$이다.",
+      "cMarkedSentence": "우유를 하루에 $\\frac{3}{4}\\,\\mathrm{L}$씩 $5$일 동안 마셨다. 전체 양은 하루에 마신 양에 날수를 {곱해} 구하며, 마신 우유는 {$\\frac{15}{4}$} $\\mathrm{L}$이다.",
+      "cStudentSentence": "우유를 하루에 $\\frac{3}{4}\\,\\mathrm{L}$씩 $5$일 동안 마셨다. 전체 양은 하루에 마신 양에 날수를 □ 구하며, 마신 우유는 □ $\\mathrm{L}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "곱해",
+          "equivalents": [
+            "곱하여"
+          ]
+        },
+        {
+          "key": "$\\frac{15}{4}$",
+          "equivalents": [
+            "$3$과$\\frac{3}{4}$"
+          ]
+        }
+      ],
+      "bQuestion": {
+        "prompt": "우유를 하루에 $\\frac{3}{4}$ $\\mathrm{L}$씩 $5$일 동안 마셨습니다. 마신 우유 전체의 양을 구하는 곱셈식을 쓰고, 왜 곱셈으로 구하는지 설명한 뒤 답을 구하세요.",
+        "answer": "$\\frac{3}{4}\\times5$. 같은 양 $\\frac{3}{4}$ $\\mathrm{L}$가 $5$번 되풀이되므로 한 번의 양에 횟수를 곱한다. $\\frac{15}{4}=3\\frac{3}{4}$ $\\mathrm{L}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$\\frac{3}{4} \\times 5$"
+            ]
+          },
+          {
+            "anyOf": [
+              "같은 양이 $5$번 되풀이된다",
+              "$\\frac{3}{4}$을 $5$번 더하는 것과 같다",
+              "한 번의 양에 횟수를 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{15}{4}\\,\\mathrm{L}$",
+              "$3$ $\\frac{3}{4}\\,\\mathrm{L}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "우유를 하루에 $\\frac{3}{4}\\,\\mathrm{L}$씩 $5$일 동안 마셨다. 전체 양은 하루에 마신 양에 날수를 {곱해} 구하며, 마신 우유는 {$\\frac{15}{4}$} $\\mathrm{L}$이다.",
+        "acceptedAnswers": [
+          [
+            "곱해",
+            "곱하여"
+          ],
+          [
+            "$\\frac{15}{4}$",
+            "$3$과$\\frac{3}{4}$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "5ae23637fad7234268561b8bf16cd47414a92e306a37020f5908814d619a3ecf",
+      "questionRevision": "planning-e5e6-20261006-5ae23637fad7",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-2-1-xc24",
+      "learningRole": "reason",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{4}{9}\\times6$을 계산할 때 분자 $4$와 곱하는 수 $6$을 $2$로 나누어 $\\frac{2}{9}\\times3$으로 고치면 안 되는 까닭을 두 식의 곱을 비교하여 설명하고, 약분할 수 있는 두 수를 찾아 바르게 계산하세요.",
+      "bAnswer": "$\\frac{4}{9}\\times6=\\frac{24}{9}$인데 $\\frac{2}{9}\\times3=\\frac{6}{9}$으로 값이 달라진다. 약분은 분모 $9$와 곱하는 수 $6$을 $3$으로 나누어 $\\frac{4}{3}\\times2=\\frac{8}{3}=2\\frac{2}{3}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "두식의곱은$\\frac{24}{9}$와$\\frac{6}{9}$으로다르다",
+            "두식의곱은$\\frac{8}{3}$과$\\frac{2}{3}$으로다르다"
+          ]
+        },
+        {
+          "anyOf": [
+            "분모 $9$와 곱하는 수 $6$을 약분한다",
+            "$9$와 $6$을 $3$으로 나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{8}{3}$",
+            "$2$ $\\frac{2}{3}$"
+          ]
+        }
+      ],
+      "bGoal": "약분은 분모와 분자 쪽 수 사이에서만 할 수 있음을 잘못된 약분과 비교해 안다.",
+      "bReason": "c3와 겹치지 않도록 분자와 자연수끼리 약분하는 잘못을 다룬다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{4}{9}\\times6$에서 약분은 분모 {$9$}와 곱하는 수 $6$ 사이에서 할 수 있고, 분자 $4$와 곱하는 수 $6$끼리는 약분할 수 {없다}.",
+      "cReason": "'분자나 곱하는 자연수'라는 구절 대신 실제 식에서 약분 가능한 수와 가능 여부를 답하게 했다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1170-1210.json",
+      "codexFinalAmendedFromFingerprint": "55f0694774888cdc64f22172fe6b3cf52a1b7f1c583307e4ad7bf959a3ff180e",
+      "sourceIndex": 1180,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-2-1-xc24",
+        "section": "초5::2-2 분수의 곱셈::2-2-1 (분수)×(자연수)의 계산",
+        "term": "약분할 수 있는 자리",
+        "kind": "성질",
+        "level": "상",
+        "definition": "약분은 분모와 {분자나 곱하는 자연수} 사이에서 하며, 분자와 곱하는 자연수끼리는 하지 않는다.",
+        "studentC": "약분은 분모와 □ 사이에서 하며, 분자와 곱하는 자연수끼리는 하지 않는다.",
+        "answers": [
+          "분자나 곱하는 자연수"
+        ]
+      },
+      "sourceFingerprint": "3151666688c19caf069b3d9c5544564967a84a5b1f5feeaec1bfa0a18ef9cd54",
+      "draftEvidence": "evidence/section-032-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$9$",
+        "없다"
+      ],
+      "cStudentAfter": "$\\frac{4}{9}\\times6$에서 약분은 분모 □와 곱하는 수 $6$ 사이에서 할 수 있고, 분자 $4$와 곱하는 수 $6$끼리는 약분할 수 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$9$"
+          ]
+        },
+        {
+          "anyOf": [
+            "없다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$\\frac{4}{9}\\times6$에서 약분은 분모 {$9$}와 곱하는 수 $6$ 사이에서 할 수 있고, 분자 $4$와 곱하는 수 $6$끼리는 약분할 수 {없다}.",
+      "cStudentSentence": "$\\frac{4}{9}\\times6$에서 약분은 분모 □와 곱하는 수 $6$ 사이에서 할 수 있고, 분자 $4$와 곱하는 수 $6$끼리는 약분할 수 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$9$",
+          "equivalents": []
+        },
+        {
+          "key": "없다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{4}{9}\\times6$을 계산할 때 분자 $4$와 곱하는 수 $6$을 $2$로 나누어 $\\frac{2}{9}\\times3$으로 고치면 안 되는 까닭을 두 식의 곱을 비교하여 설명하고, 약분할 수 있는 두 수를 찾아 바르게 계산하세요.",
+        "answer": "$\\frac{4}{9}\\times6=\\frac{24}{9}$인데 $\\frac{2}{9}\\times3=\\frac{6}{9}$으로 값이 달라진다. 약분은 분모 $9$와 곱하는 수 $6$을 $3$으로 나누어 $\\frac{4}{3}\\times2=\\frac{8}{3}=2\\frac{2}{3}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "두식의곱은$\\frac{24}{9}$와$\\frac{6}{9}$으로다르다",
+              "두식의곱은$\\frac{8}{3}$과$\\frac{2}{3}$으로다르다"
+            ]
+          },
+          {
+            "anyOf": [
+              "분모 $9$와 곱하는 수 $6$을 약분한다",
+              "$9$와 $6$을 $3$으로 나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{8}{3}$",
+              "$2$ $\\frac{2}{3}$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$\\frac{4}{9}\\times6$에서 약분은 분모 {$9$}와 곱하는 수 $6$ 사이에서 할 수 있고, 분자 $4$와 곱하는 수 $6$끼리는 약분할 수 {없다}.",
+        "acceptedAnswers": [
+          [
+            "$9$"
+          ],
+          [
+            "없다"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "696dbfedf57324521c610638d413b57ff1133714b9d0430cf33b2de60e81adb6",
+      "questionRevision": "planning-e5e6-20261006-696dbfedf573",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-2-1-xc25",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "$\\frac{3}{4}$시간처럼 분수로 나타낸 시간을 분으로 바꾸려면 어떻게 계산하나요? $1$시간이 몇 분인지를 이용해 설명하고 $\\frac{3}{4}$시간은 몇 분인지 구하세요.",
+      "bAnswer": "$1$시간이 $60$분이므로 분수에 $60$을 곱한다. $\\frac{3}{4}\\times60=45$(분)",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분수에 $60$을 곱한다",
+            "$60$분의 $\\frac{3}{4}$을 구한다",
+            "$60$을 $4$로 나누어 $3$을 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$45$분"
+          ]
+        }
+      ],
+      "bGoal": "분수로 나타낸 시간에 60을 곱해 분으로 바꾼다.",
+      "bReason": "60을 곱한다는 방법을 말해 주지 않고 1시간과의 관계로 설명하게 했다.",
+      "cDecision": "revise",
+      "cAfter": "$1$시간은 $60$분이므로 $\\frac{3}{4}$시간은 $\\frac{3}{4} \\times 60 =${$45$}(분)이다.",
+      "cReason": "긴 구절 빈칸 대신 곱하는 수와 결과를 답하게 했다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$45$"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1170-1210.json",
+      "codexFinalAmendedFromFingerprint": "6341ab8549d1816b5f3a78fea7ad28811e4c13bbdf80432365346f883b535a59",
+      "sourceIndex": 1181,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-2-1-xc25",
+        "section": "초5::2-2 분수의 곱셈::2-2-1 (분수)×(자연수)의 계산",
+        "term": "분수로 나타낸 시간을 분으로",
+        "kind": "방법",
+        "level": "상",
+        "definition": "$1$시간이 $60$분이므로 분수로 나타낸 시간을 분으로 바꾸려면 {그 분수에 $60$을 곱한다}.",
+        "example": {
+          "prompt": "$\\frac{3}{4}$시간이 $45$분인 까닭은?",
+          "answer": "$60$분의 $\\frac{3}{4}$이라서"
+        },
+        "studentC": "$1$시간이 $60$분이므로 분수로 나타낸 시간을 분으로 바꾸려면 □.",
+        "answers": [
+          "그 분수에 $60$을 곱한다"
+        ]
+      },
+      "sourceFingerprint": "9d7ca2cbb301691b0b70975f46468344f107ade4e8d044d93bce197b84809df7",
+      "draftEvidence": "evidence/section-032-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$45$"
+      ],
+      "cStudentAfter": "$1$시간은 $60$분이므로 $\\frac{3}{4}$시간은 $\\frac{3}{4} \\times 60 =$□(분)이다.",
+      "cMarkedSentence": "$1$시간은 $60$분이므로 $\\frac{3}{4}$시간은 $\\frac{3}{4} \\times 60 =${$45$}(분)이다.",
+      "cStudentSentence": "$1$시간은 $60$분이므로 $\\frac{3}{4}$시간은 $\\frac{3}{4} \\times 60 =$□(분)이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$45$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$\\frac{3}{4}$시간처럼 분수로 나타낸 시간을 분으로 바꾸려면 어떻게 계산하나요? $1$시간이 몇 분인지를 이용해 설명하고 $\\frac{3}{4}$시간은 몇 분인지 구하세요.",
+        "answer": "$1$시간이 $60$분이므로 분수에 $60$을 곱한다. $\\frac{3}{4}\\times60=45$(분)",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분수에 $60$을 곱한다",
+              "$60$분의 $\\frac{3}{4}$을 구한다",
+              "$60$을 $4$로 나누어 $3$을 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$45$분"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1$시간은 $60$분이므로 $\\frac{3}{4}$시간은 $\\frac{3}{4} \\times 60 =${$45$}(분)이다.",
+        "acceptedAnswers": [
+          [
+            "$45$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "cac36eb6e58e572a27f25f0c78ab57f2cedf90bdfa4a1d47d56a659abaefafef",
+      "questionRevision": "planning-e5e6-20261006-cac36eb6e58e",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-2-1-xc26",
+      "learningRole": "procedure",
+      "bDecision": "exclude",
+      "bPrompt": null,
+      "bAnswer": null,
+      "bRequiredIdeas": [],
+      "bGoal": "두 곱셈식의 곱을 각각 구해 크기를 비교한다.",
+      "bReason": "두곱을직접계산해비교하는연습은C로남기고B에서는반복덧셈·곱의크기관계를설명하는다른문항과중복을줄인다.",
+      "exclusionReason": "B 제외: 사소한 절차이며 계산 연습은 수정한 C로 충분하다.",
+      "cDecision": "revise",
+      "cAfter": "$\\frac{2}{3}\\times5=\\frac{10}{3}=3\\frac{1}{3}$이고 $\\frac{3}{4}\\times4=$ {$3$}이므로 $\\frac{2}{3}\\times5$가 더 {크다}.",
+      "cReason": "'곱이 섞인 두 식'과 '곱을 각각 구해'는 뜻이 흐려 실제 두 식의 값을 구해 비교하게 했다.",
+      "coreAfter": "분수와 자연수의 곱셈식 두 개의 크기를 견줄 때는 {곱을 각각 구해} 비교한다.",
+      "coreReason": "'곱이 섞인 두 식'은 초5 학생에게 무엇을 가리키는지 불분명하다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "coreTargetReason": "곱을 각각 구해라는 원문 표적을 보존하고 어떤 두 식을 비교하는지 분수×자연수로 명시한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1170-1210.json",
+      "codexFinalAmendedFromFingerprint": "edafe432252d40091d281a6c5a4a072a15e8e5643794f6ff31a10a30ba4f1df4",
+      "sourceIndex": 1182,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-2-1-xc26",
+        "section": "초5::2-2 분수의 곱셈::2-2-1 (분수)×(자연수)의 계산",
+        "term": "두 곱의 크기 견주기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "곱이 섞인 두 식의 크기를 견줄 때는 {곱을 각각 구해} 비교한다.",
+        "example": {
+          "prompt": "$\\frac{2}{3}\\times5$와 $\\frac{3}{4}\\times4$ 중 더 큰 곱은?",
+          "answer": "$\\frac{2}{3}\\times5$"
+        },
+        "studentC": "곱이 섞인 두 식의 크기를 견줄 때는 □ 비교한다.",
+        "answers": [
+          "곱을 각각 구해"
+        ]
+      },
+      "sourceFingerprint": "4559a5f1277a8449dc05403985d8221ffc94547a3fd96ce69bf5b7ff1a57bff5",
+      "draftEvidence": "evidence/section-032-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$3$",
+        "크다"
+      ],
+      "cStudentAfter": "$\\frac{2}{3}\\times5=\\frac{10}{3}=3\\frac{1}{3}$이고 $\\frac{3}{4}\\times4=$ □이므로 $\\frac{2}{3}\\times5$가 더 □.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        },
+        {
+          "anyOf": [
+            "크다"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$\\frac{2}{3}\\times5=\\frac{10}{3}=3\\frac{1}{3}$이고 $\\frac{3}{4}\\times4=$ {$3$}이므로 $\\frac{2}{3}\\times5$가 더 {크다}.",
+      "cStudentSentence": "$\\frac{2}{3}\\times5=\\frac{10}{3}=3\\frac{1}{3}$이고 $\\frac{3}{4}\\times4=$ □이므로 $\\frac{2}{3}\\times5$가 더 □.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        },
+        {
+          "key": "크다",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": null,
+      "clozeQuestion": {
+        "sentence": "$\\frac{2}{3}\\times5=\\frac{10}{3}=3\\frac{1}{3}$이고 $\\frac{3}{4}\\times4=$ {$3$}이므로 $\\frac{2}{3}\\times5$가 더 {크다}.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ],
+          [
+            "크다"
+          ]
+        ]
+      },
+      "questionExclusions": {
+        "term": "B 제외: 사소한 절차이며 계산 연습은 수정한 C로 충분하다."
+      },
+      "proposalFingerprint": "edafe432252d40091d281a6c5a4a072a15e8e5643794f6ff31a10a30ba4f1df4",
+      "questionRevision": "planning-e5e6-20261006-edafe432252d",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-2-2-xc18",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "$1\\,\\mathrm{m}$의 $\\frac{3}{5}$은 몇 $\\mathrm{cm}$인지 구하려고 한다. 분수를 곱하기 전에 $1\\,\\mathrm{m}$를 어떻게 바꾸어야 하는지 쓰고, 식을 세워 답을 구하시오.",
+      "bAnswer": "$1\\,\\mathrm{m}$를 $100\\,\\mathrm{cm}$로 바꾼다. $100\\times\\frac{3}{5}=60$이므로 $60\\,\\mathrm{cm}$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1\\,\\mathrm{m}$를 $100\\,\\mathrm{cm}$로 바꾼다",
+            "작은 단위인 $\\mathrm{cm}$로 먼저 바꾼다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$60\\,\\mathrm{cm}$",
+            "$60$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$100 \\times \\frac{3}{5} = 60$이라는계산식",
+            "$\\frac{3}{5} \\times 100 = 60$이라는계산식"
+          ]
+        }
+      ],
+      "bGoal": "큰 단위를 작은 단위로 바꾼 뒤 분수를 곱해 양을 구한다.",
+      "bReason": "'큰 단위·작은 단위'라는 일반적인 말 대신 m와 cm의 실제 상황으로 물었다.",
+      "cDecision": "revise",
+      "cAfter": "$1\\,\\mathrm{m}$는 {$100$}$\\,\\mathrm{cm}$이므로 $1\\,\\mathrm{m}$의 $\\frac{3}{5}$은 {$60$}$\\,\\mathrm{cm}$이다.",
+      "cReason": "원문 답 '작은 단위로 바꾼 수'는 맥락 없이 떠올리기 어려운 구절이라 실제 단위 바꾸기로 바꿨다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1170-1210.json",
+      "codexFinalAmendedFromFingerprint": "15858cabd7d33867505bc398e6c2aba23f1b98c695d8693e3998039012841b70",
+      "sourceIndex": 1194,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-2-2-xc18",
+        "section": "초5::2-2 분수의 곱셈::2-2-2 (자연수)×(분수)의 계산",
+        "term": "큰 단위의 몇 분의 몇",
+        "kind": "방법",
+        "level": "중",
+        "definition": "큰 단위의 몇 분의 몇을 작은 단위로 나타내려면 {작은 단위로 바꾼 수}에 분수를 곱한다.",
+        "example": {
+          "prompt": "$1\\,\\mathrm{m}$의 $\\frac{3}{5}$을 $\\mathrm{cm}$로 나타낼 때 $100$에 분수를 곱하는 까닭은?",
+          "answer": "$1\\,\\mathrm{m}$가 $100\\,\\mathrm{cm}$라서"
+        },
+        "studentC": "큰 단위의 몇 분의 몇을 작은 단위로 나타내려면 □에 분수를 곱한다.",
+        "answers": [
+          "작은 단위로 바꾼 수"
+        ]
+      },
+      "sourceFingerprint": "ec7f827b7bb1b908c3e7042645d5e06f7f07319eb32d4a73ab2fb15fca417732",
+      "draftEvidence": "evidence/section-033-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$100$",
+        "$60$"
+      ],
+      "cStudentAfter": "$1\\,\\mathrm{m}$는 □$\\,\\mathrm{cm}$이므로 $1\\,\\mathrm{m}$의 $\\frac{3}{5}$은 □$\\,\\mathrm{cm}$이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$100$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$60$"
+          ]
+        }
+      ],
+      "cAcceptedAnswersProvenance": "Exact primary answers frozen from original source or proposed key slots; no unreviewed synonym invented",
+      "cMarkedSentence": "$1\\,\\mathrm{m}$는 {$100$}$\\,\\mathrm{cm}$이므로 $1\\,\\mathrm{m}$의 $\\frac{3}{5}$은 {$60$}$\\,\\mathrm{cm}$이다.",
+      "cStudentSentence": "$1\\,\\mathrm{m}$는 □$\\,\\mathrm{cm}$이므로 $1\\,\\mathrm{m}$의 $\\frac{3}{5}$은 □$\\,\\mathrm{cm}$이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$100$",
+          "equivalents": []
+        },
+        {
+          "key": "$60$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$1\\,\\mathrm{m}$의 $\\frac{3}{5}$은 몇 $\\mathrm{cm}$인지 구하려고 한다. 분수를 곱하기 전에 $1\\,\\mathrm{m}$를 어떻게 바꾸어야 하는지 쓰고, 식을 세워 답을 구하시오.",
+        "answer": "$1\\,\\mathrm{m}$를 $100\\,\\mathrm{cm}$로 바꾼다. $100\\times\\frac{3}{5}=60$이므로 $60\\,\\mathrm{cm}$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$1\\,\\mathrm{m}$를 $100\\,\\mathrm{cm}$로 바꾼다",
+              "작은 단위인 $\\mathrm{cm}$로 먼저 바꾼다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$60\\,\\mathrm{cm}$",
+              "$60$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$100 \\times \\frac{3}{5} = 60$이라는계산식",
+              "$\\frac{3}{5} \\times 100 = 60$이라는계산식"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1\\,\\mathrm{m}$는 {$100$}$\\,\\mathrm{cm}$이므로 $1\\,\\mathrm{m}$의 $\\frac{3}{5}$은 {$60$}$\\,\\mathrm{cm}$이다.",
+        "acceptedAnswers": [
+          [
+            "$100$"
+          ],
+          [
+            "$60$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "20769834209f5ca5a1369f654710ba8fe5a6dad0270df04e262c8c5ca20f75d5",
+      "questionRevision": "planning-e5e6-20261006-20769834209f",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-2-2-xc22",
+      "learningRole": "application",
+      "bDecision": "revise",
+      "bPrompt": "$24$의 $\\frac{1}{2}$을 구한 다음, 그 구한 양의 $\\frac{2}{3}$를 구하려고 한다. 두 번째 계산에서 $\\frac{2}{3}$를 어떤 수에 곱해야 하는지 까닭과 함께 쓰고, 답을 구하시오.",
+      "bAnswer": "$24$가 아니라 먼저 구한 $12$에 곱한다. '그 구한 양'의 $\\frac{2}{3}$이므로 $12$가 전체가 되기 때문이다. $12\\times\\frac{2}{3}=8$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "먼저 구한 $12$에 곱한다",
+            "$24$가 아니라 구한 양에 곱한다"
+          ]
+        },
+        {
+          "anyOf": [
+            "구한 양이 새로운 전체가 된다",
+            "구한 양의 몇 분의 몇이기 때문이다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8$"
+          ]
+        }
+      ],
+      "bGoal": "두 단계 문제에서 두 번째 분수는 먼저 구한 양에 곱해야 함을 안다.",
+      "bReason": "'앞에서 구한 양'은 화면에 맥락이 없으면 뜻을 알 수 없어 두 단계 상황을 직접 제시했다.",
+      "cDecision": "revise",
+      "cAfter": "$24$의 $\\frac{1}{2}$은 {$12$}이다. 그 구한 양에 $\\frac{2}{3}$를 곱한 값은 {$8$}이다.",
+      "cReason": "원문 답 '앞에서 구한 양을 새 전체로 보고'는 맥락 없는 긴 구절이라 실제 수로 답하게 했다.",
+      "coreAfter": "어떤 양의 몇 분의 몇을 구한 뒤 그 결과의 몇 분의 몇을 다시 구할 때에는, {먼저 구한 양}에 다음 분수를 곱한다.",
+      "coreReason": "원문의 '앞에서 구한 양', '새 전체'는 앞 문제를 전제로 한 말이라 혼자 읽으면 뜻이 분명하지 않다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "coreTargetReason": "앞에서 구한 양을 새 전체로 본다는 긴 표적을 먼저 구한 양이라는 명확한 대상으로 줄인다. 앞 문제 없이 이번 문장 안에서 두 차례 구하는 과정을 정의하고 두 번째 기준 양을 유지한다.",
+      "coreTargetEvidence": "codex-core-editorial.json",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$12$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$8$"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1170-1210.json",
+      "codexFinalAmendedFromFingerprint": "d0909dac81af3ae52c330ae500c2cc86e88a2edd042e29219295061b9cbf93ac",
+      "sourceIndex": 1198,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-2-2-xc22",
+        "section": "초5::2-2 분수의 곱셈::2-2-2 (자연수)×(분수)의 계산",
+        "term": "구한 양의 몇 분의 몇",
+        "kind": "방법",
+        "level": "상",
+        "definition": "앞에서 구한 양이 자연수일 때 그 양의 몇 분의 몇은 {앞에서 구한 양을 새 전체로 보고} 분수를 곱해 구한다.",
+        "studentC": "앞에서 구한 양이 자연수일 때 그 양의 몇 분의 몇은 □ 분수를 곱해 구한다.",
+        "answers": [
+          "앞에서 구한 양을 새 전체로 보고"
+        ]
+      },
+      "sourceFingerprint": "0101da35ec0b2a6e3b190e7ec5a5baebe704357c8cb37641dd44ca9a716d4a72",
+      "draftEvidence": "evidence/section-033-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$12$",
+        "$8$"
+      ],
+      "cStudentAfter": "$24$의 $\\frac{1}{2}$은 □이다. 그 구한 양에 $\\frac{2}{3}$를 곱한 값은 □이다.",
+      "cMarkedSentence": "$24$의 $\\frac{1}{2}$은 {$12$}이다. 그 구한 양에 $\\frac{2}{3}$를 곱한 값은 {$8$}이다.",
+      "cStudentSentence": "$24$의 $\\frac{1}{2}$은 □이다. 그 구한 양에 $\\frac{2}{3}$를 곱한 값은 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$12$",
+          "equivalents": []
+        },
+        {
+          "key": "$8$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$24$의 $\\frac{1}{2}$을 구한 다음, 그 구한 양의 $\\frac{2}{3}$를 구하려고 한다. 두 번째 계산에서 $\\frac{2}{3}$를 어떤 수에 곱해야 하는지 까닭과 함께 쓰고, 답을 구하시오.",
+        "answer": "$24$가 아니라 먼저 구한 $12$에 곱한다. '그 구한 양'의 $\\frac{2}{3}$이므로 $12$가 전체가 되기 때문이다. $12\\times\\frac{2}{3}=8$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "먼저 구한 $12$에 곱한다",
+              "$24$가 아니라 구한 양에 곱한다"
+            ]
+          },
+          {
+            "anyOf": [
+              "구한 양이 새로운 전체가 된다",
+              "구한 양의 몇 분의 몇이기 때문이다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$8$"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$24$의 $\\frac{1}{2}$은 {$12$}이다. 그 구한 양에 $\\frac{2}{3}$를 곱한 값은 {$8$}이다.",
+        "acceptedAnswers": [
+          [
+            "$12$"
+          ],
+          [
+            "$8$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ae7d755b59027f02f735206a2bda1c32640e01a1bf8cac59fb515ae57f657286",
+      "questionRevision": "planning-e5e6-20261006-ae7d755b5902",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e5-2-2-3-xc9",
+      "learningRole": "procedure",
+      "bDecision": "revise",
+      "bPrompt": "분수의 곱셈에서 분자끼리, 분모끼리 곱하기 전에 약분할 수 있는 것은 어떤 경우인지 쓰고, $\\frac{3}{8}\\times\\frac{4}{9}$를 곱하기 전에 약분하여 계산하시오.",
+      "bAnswer": "분자와 분모에 $1$보다 큰 공약수가 있을 때 약분할 수 있다. $3$과 $9$를 $3$으로, $4$와 $8$을 $4$로 약분하면 $\\frac{1}{2}\\times\\frac{1}{3}=\\frac{1}{6}$",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "분자와 분모에 $1$보다 큰 공약수가 있을 때",
+            "분자와 분모를 같은 수($1$보다 큰 수)로 나눌 수 있을 때"
+          ]
+        },
+        {
+          "anyOf": [
+            "$\\frac{1}{6}$",
+            "$6$분의 $1$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$과$9$를$3$으로,$4$와$8$을$4$로약분한과정",
+            "분자쪽$12$와분모쪽$72$를먼저곱하지않고$3$과$9$,$4$와$8$을각각공약수로나눈과정"
+          ]
+        }
+      ],
+      "bGoal": "곱하기 전에 약분할 수 있는 조건을 말하고 약분하여 계산한다.",
+      "bReason": "엇갈린 약분과 약분할 짝이 여럿인 경우까지 이 예 하나로 다루도록 했다.",
+      "cDecision": "revise",
+      "cAfter": "분자와 분모에 $1$보다 큰 {공약수}가 있으면 곱하기 전에 약분할 수 있다.",
+      "cReason": "약분할 수 있는 조건인 ‘$1$보다 큰 공약수’를 묻는 문장으로 조건이 분명하다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "공약수"
+          ]
+        }
+      ],
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-batch-1170-1210.json",
+      "codexFinalAmendedFromFingerprint": "21a44e82f4c9e1161cdfee987d86bc0dacd73f2fd1c6599ab58a27b63f0bcb24",
+      "sourceIndex": 1205,
+      "grade": "e5",
+      "part": "e5plus",
+      "source": {
+        "part": "e5plus",
+        "id": "e5-2-2-3-xc9",
+        "section": "초5::2-2 분수의 곱셈::2-2-3 진분수의 곱셈",
+        "term": "곱하기 전에 약분하기",
+        "kind": "방법",
+        "level": "하",
+        "definition": "분자와 분모에 {$1$보다 큰 공약수}가 있으면 곱하기 전에 약분할 수 있다.",
+        "example": {
+          "prompt": "$\\frac{3}{8}\\times\\frac{4}{9}$는?",
+          "answer": "$\\frac{1}{6}$"
+        },
+        "studentC": "분자와 분모에 □가 있으면 곱하기 전에 약분할 수 있다.",
+        "answers": [
+          "$1$보다 큰 공약수"
+        ]
+      },
+      "sourceFingerprint": "18e8cbabd72f2837b12e650429e4ed2a349d9ff099272f2de37fd68b9d0c7e8a",
+      "draftEvidence": "evidence/section-034-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "공약수"
+      ],
+      "cStudentAfter": "분자와 분모에 $1$보다 큰 □가 있으면 곱하기 전에 약분할 수 있다.",
+      "cMarkedSentence": "분자와 분모에 $1$보다 큰 {공약수}가 있으면 곱하기 전에 약분할 수 있다.",
+      "cStudentSentence": "분자와 분모에 $1$보다 큰 □가 있으면 곱하기 전에 약분할 수 있다.",
+      "cSlotAnswers": [
+        {
+          "key": "공약수",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "분수의 곱셈에서 분자끼리, 분모끼리 곱하기 전에 약분할 수 있는 것은 어떤 경우인지 쓰고, $\\frac{3}{8}\\times\\frac{4}{9}$를 곱하기 전에 약분하여 계산하시오.",
+        "answer": "분자와 분모에 $1$보다 큰 공약수가 있을 때 약분할 수 있다. $3$과 $9$를 $3$으로, $4$와 $8$을 $4$로 약분하면 $\\frac{1}{2}\\times\\frac{1}{3}=\\frac{1}{6}$",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "분자와 분모에 $1$보다 큰 공약수가 있을 때",
+              "분자와 분모를 같은 수($1$보다 큰 수)로 나눌 수 있을 때"
+            ]
+          },
+          {
+            "anyOf": [
+              "$\\frac{1}{6}$",
+              "$6$분의 $1$"
+            ]
+          },
+          {
+            "anyOf": [
+              "$3$과$9$를$3$으로,$4$와$8$을$4$로약분한과정",
+              "분자쪽$12$와분모쪽$72$를먼저곱하지않고$3$과$9$,$4$와$8$을각각공약수로나눈과정"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "분자와 분모에 $1$보다 큰 {공약수}가 있으면 곱하기 전에 약분할 수 있다.",
+        "acceptedAnswers": [
+          [
+            "공약수"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "4420463733276786d5329758fecf5d662f94bee176c9964088038a34e67e8c6e",
+      "questionRevision": "planning-e5e6-20261006-442046373327",
+      "requiresIndependentReview": true
+    }
+  ]
+}

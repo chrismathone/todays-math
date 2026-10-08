@@ -1,0 +1,223 @@
+{
+  "sourceCommit": "13bf05dce",
+  "sourceSha256": "d1b80f375e0a48caa7a295ca09bb27712be69e8d0f0170bbd5320fc7425bd172",
+  "rows": [
+    {
+      "id": "e6-2-1-5-xc24",
+      "bDecision": "revise",
+      "bPrompt": "대분수끼리의 나눗셈에서 두 대분수를 각각 가장 가까운 자연수로 바꾸어 몫을 어림하는 방법을 설명하시오. 이 방법으로 $5\\frac{9}{10}\\div2\\frac{1}{8}$의 몫을 어림하시오.",
+      "bAnswer": "두 대분수를 각각 가까운 자연수로 바꾸어 나눈다. $5\\frac{9}{10}$는 약 $6$, $2\\frac{1}{8}$은 약 $2$이므로 몫은 약 $6\\div2=3$이다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$5$와$\\frac{9}{10}$을$6$으로,$2$와$\\frac{1}{8}$을$2$로어림해나눈다"
+          ]
+        },
+        {
+          "anyOf": [
+            "$6\\div2=3$",
+            "몫은 약 $3$이다"
+          ]
+        }
+      ],
+      "learningRole": "procedure",
+      "bGoal": "가까운 자연수로 바꾸어 몫을 어림한다.",
+      "bReason": "계산 결과의 타당성을 점검하는 실용적 방법이다.",
+      "cDecision": "revise",
+      "cAfter": "$5\\frac{9}{10}$는 가장 가까운 자연수 {$6$}, $2\\frac{1}{8}$은 가장 가까운 자연수 {$2$}로 보면 몫은 약 {$3$}이다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$6$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$2$"
+          ]
+        },
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        }
+      ],
+      "cReason": "'자연수' 낱말 빈칸 대신 실제 어림값을 구하게 한다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-rootpending-final-15-30.json",
+      "codexFinalAmendedFromFingerprint": "4f272e1ef998d966232b6dd927f648840709417555b82c87730b664e56146980",
+      "sourceIndex": 2227,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-1-5-xc24",
+        "section": "초6::2-1 분수의 나눗셈::2-1-5 (가분수)÷(분수), (대분수)÷(분수) 알아보기",
+        "term": "몫 어림하기",
+        "kind": "방법",
+        "level": "상",
+        "definition": "대분수의 나눗셈은 두 수를 각각 가까운 {자연수}로 바꾸어 몫의 대략적인 크기를 어림할 수 있다.",
+        "studentC": "대분수의 나눗셈은 두 수를 각각 가까운 □로 바꾸어 몫의 대략적인 크기를 어림할 수 있다.",
+        "answers": [
+          "자연수"
+        ]
+      },
+      "sourceFingerprint": "8b014062c6120fee39f1115ce2b8d71fc1474a913b370b9d40908f7da49d7d8e",
+      "draftEvidence": "evidence/section-087-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "notationCorrectionEvidence": [
+        {
+          "field": "bAnswer",
+          "evidence": "notation-corrections.json"
+        }
+      ],
+      "cProposedAnswers": [
+        "$6$",
+        "$2$",
+        "$3$"
+      ],
+      "cStudentAfter": "$5\\frac{9}{10}$는 가장 가까운 자연수 □, $2\\frac{1}{8}$은 가장 가까운 자연수 □로 보면 몫은 약 □이다.",
+      "cMarkedSentence": "$5\\frac{9}{10}$는 가장 가까운 자연수 {$6$}, $2\\frac{1}{8}$은 가장 가까운 자연수 {$2$}로 보면 몫은 약 {$3$}이다.",
+      "cStudentSentence": "$5\\frac{9}{10}$는 가장 가까운 자연수 □, $2\\frac{1}{8}$은 가장 가까운 자연수 □로 보면 몫은 약 □이다.",
+      "cSlotAnswers": [
+        {
+          "key": "$6$",
+          "equivalents": []
+        },
+        {
+          "key": "$2$",
+          "equivalents": []
+        },
+        {
+          "key": "$3$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "대분수끼리의 나눗셈에서 두 대분수를 각각 가장 가까운 자연수로 바꾸어 몫을 어림하는 방법을 설명하시오. 이 방법으로 $5\\frac{9}{10}\\div2\\frac{1}{8}$의 몫을 어림하시오.",
+        "answer": "두 대분수를 각각 가까운 자연수로 바꾸어 나눈다. $5\\frac{9}{10}$는 약 $6$, $2\\frac{1}{8}$은 약 $2$이므로 몫은 약 $6\\div2=3$이다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$5$와$\\frac{9}{10}$을$6$으로,$2$와$\\frac{1}{8}$을$2$로어림해나눈다"
+            ]
+          },
+          {
+            "anyOf": [
+              "$6\\div2=3$",
+              "몫은 약 $3$이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$5\\frac{9}{10}$는 가장 가까운 자연수 {$6$}, $2\\frac{1}{8}$은 가장 가까운 자연수 {$2$}로 보면 몫은 약 {$3$}이다.",
+        "acceptedAnswers": [
+          [
+            "$6$"
+          ],
+          [
+            "$2$"
+          ],
+          [
+            "$3$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "ecd8da22b74af4acf710a78158f710f623a9e8e4dcc175800ca1384e7e8d4b0f",
+      "questionRevision": "planning-e5e6-20261006-ecd8da22b74a",
+      "requiresIndependentReview": true
+    },
+    {
+      "id": "e6-2-2-1-xc6",
+      "bDecision": "revise",
+      "bPrompt": "$1.5\\div0.5=3$에서 몫 $3$은 $1.5$와 $0.5$ 사이의 어떤 관계를 나타내는지 설명하세요.",
+      "bAnswer": "$1.5$ 안에 $0.5$가 $3$번 들어갑니다. 같은 뜻으로 $1.5$는 $0.5$의 $3$배입니다.",
+      "bRequiredIdeas": [
+        {
+          "anyOf": [
+            "$1.5$ 안에 $0.5$가 $3$번 들어간다",
+            "$0.5$씩 $3$번 덜어 낼 수 있다",
+            "$1.5$는 $0.5$의 $3$배이다"
+          ]
+        }
+      ],
+      "learningRole": "definition",
+      "bGoal": "소수 나눗셈의 몫이 나누어지는 수 안에 나누는 수가 들어가는 횟수임을 안다.",
+      "bReason": "몫의 의미를 구체적인 수로 해석하게 하며 '몇 번 들어간다'와 '몇 배'를 같은 뜻으로 받는다.",
+      "synonymNotes": "몇 번 들어간다, 몇 번 덜어 낼 수 있다, 몇 배는 같은 뜻으로 인정한다.",
+      "cDecision": "revise",
+      "cAfter": "$1.5$ 안에 $0.5$가 {$3$}번 들어가므로, $1.5\\div0.5$의 몫은 들어가는 횟수와 같다.",
+      "cAcceptedAnswers": [
+        {
+          "anyOf": [
+            "$3$"
+          ]
+        }
+      ],
+      "cReason": "원문 빈칸은 '몇 번 들어가는지'라는 말의 틀을 맞히는 문장이라 실제 수를 넣는 빈칸으로 바꿨다.",
+      "exampleNeeded": false,
+      "editorialOwner": "Codex",
+      "codexFinalAmendmentEvidence": "evidence/resume-ctx-7fc6b4391c84-rootpending-final-15-30.json",
+      "codexFinalAmendedFromFingerprint": "f310be78655d47ee06c1f9e875d9d33c269f753452e72c3f450005075ecbddfb",
+      "sourceIndex": 2232,
+      "grade": "e6",
+      "part": "e6plus",
+      "source": {
+        "part": "e6plus",
+        "id": "e6-2-2-1-xc6",
+        "section": "초6::2-2 소수의 나눗셈::2-2-1 자릿수가 같은 (소수)÷(소수) 알아보기",
+        "term": "들어가는 횟수",
+        "kind": "방법",
+        "level": "하",
+        "definition": "(소수)$\\div$(소수)의 몫은 나누어지는 수 안에 나누는 수가 {몇 번 들어가는지}를 나타낸다.",
+        "studentC": "(소수)$\\div$(소수)의 몫은 나누어지는 수 안에 나누는 수가 □를 나타낸다.",
+        "answers": [
+          "몇 번 들어가는지"
+        ]
+      },
+      "sourceFingerprint": "bca22b73ec8daa3cc0c220080dbf54e33609c8f7acdfa4b35293fcad58aac89e",
+      "draftEvidence": "evidence/section-088-draft.json",
+      "codexOverrideEvidence": "codex-overrides.json",
+      "cProposedAnswers": [
+        "$3$"
+      ],
+      "cStudentAfter": "$1.5$ 안에 $0.5$가 □번 들어가므로, $1.5\\div0.5$의 몫은 들어가는 횟수와 같다.",
+      "cMarkedSentence": "$1.5$ 안에 $0.5$가 {$3$}번 들어가므로, $1.5\\div0.5$의 몫은 들어가는 횟수와 같다.",
+      "cStudentSentence": "$1.5$ 안에 $0.5$가 □번 들어가므로, $1.5\\div0.5$의 몫은 들어가는 횟수와 같다.",
+      "cSlotAnswers": [
+        {
+          "key": "$3$",
+          "equivalents": []
+        }
+      ],
+      "bQuestion": {
+        "prompt": "$1.5\\div0.5=3$에서 몫 $3$은 $1.5$와 $0.5$ 사이의 어떤 관계를 나타내는지 설명하세요.",
+        "answer": "$1.5$ 안에 $0.5$가 $3$번 들어갑니다. 같은 뜻으로 $1.5$는 $0.5$의 $3$배입니다.",
+        "requiredIdeas": [
+          {
+            "anyOf": [
+              "$1.5$ 안에 $0.5$가 $3$번 들어간다",
+              "$0.5$씩 $3$번 덜어 낼 수 있다",
+              "$1.5$는 $0.5$의 $3$배이다"
+            ]
+          }
+        ]
+      },
+      "clozeQuestion": {
+        "sentence": "$1.5$ 안에 $0.5$가 {$3$}번 들어가므로, $1.5\\div0.5$의 몫은 들어가는 횟수와 같다.",
+        "acceptedAnswers": [
+          [
+            "$3$"
+          ]
+        ]
+      },
+      "questionExclusions": {},
+      "proposalFingerprint": "f4de2a37901f6aaa763bcd1ed8a779c311634b9a78a6cdc83d3192e1cbfa60e7",
+      "questionRevision": "planning-e5e6-20261006-f4de2a37901f",
+      "requiresIndependentReview": true
+    }
+  ]
+}
