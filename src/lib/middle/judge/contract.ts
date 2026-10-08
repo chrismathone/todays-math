@@ -28,8 +28,36 @@ import type { Difficulty } from "@/contracts/difficulty";
 
 import type { Rng } from "../../elementary/types";
 
-/** 판정형의 물음 — 보기 가운데 «옳지 않은 것» 하나, 또는 «옳은 것» 하나를 고른다. */
-export type JudgeAsk = "옳지 않은 것" | "옳은 것";
+/** 참거짓 문형의 물음 — 보기 가운데 «옳지 않은 것» 하나, 또는 «옳은 것» 하나를 고른다. */
+export type TruthAsk = "옳지 않은 것" | "옳은 것";
+
+/**
+ * 비교 문형의 물음 (2026-10-08 엔진 보강 2단계 — 합의안 §3-2 · §5 의 2단계).
+ *
+ *   «나머지 넷과 다른 하나»  보기 다섯은 **식**이고, 값의 묶음이 정확히 **4+1** 이다. 정답은 혼자인 하나.
+ *   «가장 큰 것» · «가장 작은 것»  다섯 값이 **서로 다르다**. 정답은 가장 큰(작은) 하나.
+ *
+ * 🔴 «값이 같은 보기 금지»는 참거짓 문형의 규칙이지 4+1 의 규칙이 아니다 — 4+1 은 같은 값 넷이 정답 구조다.
+ *    그래서 **식의 중복 · 값의 중복 · 정답의 유일성**을 문형별로 따로 본다(`registry.ts` 의 `assembleCompare`).
+ */
+export type CompareAsk =
+  "나머지 넷과 다른 하나" | "가장 큰 것" | "가장 작은 것";
+
+/** 판정형의 물음 전부. */
+export type JudgeAsk = TruthAsk | CompareAsk;
+
+/**
+ * 다시 재는 함수가 받는 **지면의 문맥** — 보기 글만으로는 못 재는 문형이 있다.
+ * «$x=-3$일 때, 다음 중 식의 값이 옳지 않은 것은?» 의 대입값은 보기가 아니라 **발문 줄**에 있다.
+ * 등록부가 지면 본문에서 그 줄을 다시 읽어 넘긴다(생성기의 수를 넘기지 않는다).
+ */
+export type JudgeReadContext = {
+  /** 지면에 찍힌 발문 줄(본문의 첫 줄) */
+  lead: string;
+};
+
+/** 다시 잰 값 — 약분하지 않은 분수(분모 ≠ 0). 같은가 · 큰가는 교차곱으로 본다. */
+export type JudgeValue = { n: bigint; d: bigint };
 
 /**
  * 생성기가 낸 보기 하나.
@@ -67,19 +95,49 @@ export type JudgeBody = {
   facts: Record<string, number>;
 };
 
-/** 판정형 하나의 등록 — 차시(`grade + unitSection`) 안의 문항류 하나. */
-export type JudgeDefinition = {
+/**
+ * 비교 문형의 보기 하나 — 글은 **식**이고(등호 · 값 없음), 생성기는 그 식의 값을 **주장**한다.
+ * 등록부가 지면 글을 `readValue` 로 다시 재서 주장과 견준다.
+ */
+export type CompareOption = {
+  /** 지면에 나갈 보기 글(번호 뗀 것) — `$식$` */
+  text: string;
+  /** 생성기의 주장 — 이 식의 값 */
+  claimed: JudgeValue;
+  /** 해설 첫 줄에 서는 값 — `$-\dfrac{3}{4}$`. 등록부가 이것도 다시 재서 보기의 값과 같은지 본다. */
+  brief: string;
+  /** 이 보기가 정답일 때 둘째 줄에 서는 계산 과정 — «통분하면 $…$»(문장 끝 없이). */
+  work: string;
+};
+
+/**
+ * 비교 문형의 생성기 산출 — 차례는 등록부가 섞는다. 해설도 등록부가 넉 줄로 짠다:
+ *   ⑴ `briefLead` + 보기 다섯의 값   ⑵ 정답 보기의 계산 과정
+ *   ⑶ 4+1 이면 «나머지 넷은 모두 …» · 극값이면 «크기를 비교하면 a<b<c<d<e»   ⑷ «따라서 … ③이다»
+ */
+export type CompareBody = {
+  /** 발문 — 4+1 은 `…하나는?`, 극값은 `…것은?` 으로 끝난다 */
+  lead: string;
+  briefLead: string;
+  options: readonly CompareOption[];
+  facts: Record<string, number>;
+};
+
+/** 문형과 상관없이 같은 등록 칸. */
+type JudgeDefinitionBase = {
   grade: string;
   /** 우리 `Unit.section` 정확한 이름 — 적재 시 단원 매칭 키 */
   unitSection: string;
   /** 차시 안에서 이 문항류를 가르는 이름 — `[a-z0-9-]` */
   familyId: string;
   title: string;
-  /** 이 문항류가 내는 물음 — 변형 번호 차례로 돌아가며 낸다 */
-  asks: readonly [JudgeAsk, ...JudgeAsk[]];
   /**
    * **허용 원천** — 보기 다섯의 재료가 되는 RPM 유형 키. 보기 다섯은 **같은 유형 · 같은 꼴**에서 온다
    * (합의안 §2 Q2 — 섞기는 차시별 허용 목록을 시험이 지킬 때만).
+   *
+   * 참거짓 문형의 계산 판정은 원천 유형 생성기를 **그대로 불러** 재료를 얻는다. 목표값에 맞춰 식을
+   * **역산**해야 하는 문형(4+1 · 대입값을 함께 쓰는 식의 값)은 원천 생성기를 부를 수 없다 — 그때 원천은
+   * «그 식의 **꼴**이 어느 유형의 것인가»이고, 꼴이 그 유형의 것인지는 시험이 잰다.
    */
   sources: readonly [string, ...string[]];
   /**
@@ -90,13 +148,47 @@ export type JudgeDefinition = {
   difficultyBasis: string;
   /** 생성 규칙판 — 1부터. 같은 씨앗이 다른 문제를 내게 바뀌면 올린다(머리말). */
   ruleVersion: number;
-  generate: (rng: Rng, ask: JudgeAsk) => JudgeBody;
+  /**
+   * **지면 관문을 면제하는 까닭** — 안 적으면(기본) 등록부가 보기 다섯이 제품의 보기 배치로 접히지 않고 칸에
+   * 들어가는지 본다(`paper.ts` · `registry.ts` 의 `assertFitsPaper`). 2단계부터의 등록은 적지 않는다.
+   *
+   * 적는 자리는 둘뿐이다. ⑴ 이미 실린 1단계 셋 — 관문을 걸면 같은 씨앗이 다른 문제를 낸다(신분 보존).
+   * ⑵ 보류한 문항류 — 등록부에 안 올리고 생성기 · 시험만 남긴 것(`definitions.ts` 의 보류 목록).
+   */
+  paperExempt?: string;
+};
+
+/** 참거짓 문형 하나의 등록 — 차시(`grade + unitSection`) 안의 문항류 하나. */
+export type JudgeDefinition = JudgeDefinitionBase & {
+  /** 문형 — 안 적으면 참거짓(1단계 등록이 그대로 읽히게) */
+  form?: "truth";
+  /** 이 문항류가 내는 물음 — 변형 번호 차례로 돌아가며 낸다 */
+  asks: readonly [TruthAsk, ...TruthAsk[]];
+  generate: (rng: Rng, ask: TruthAsk) => JudgeBody;
   /**
    * 🔴 **지면에 찍힌 보기 글을 다시 재는 함수** — 참이면 true, 거짓이면 false, 못 읽으면 null.
    * 생성기의 셈을 다시 부르지 않는다(동어반복). 글을 읽어 따로 센다.
    */
-  truthOf: (choiceText: string) => boolean | null;
+  truthOf: (choiceText: string, ctx: JudgeReadContext) => boolean | null;
 };
+
+/** 비교 문형 하나의 등록. */
+export type CompareJudgeDefinition = JudgeDefinitionBase & {
+  form: "compare";
+  asks: readonly [CompareAsk, ...CompareAsk[]];
+  generate: (rng: Rng, ask: CompareAsk) => CompareBody;
+  /**
+   * 🔴 **지면에 찍힌 보기 식의 값을 다시 재는 함수** — 못 읽으면 null. 생성기의 셈을 다시 부르지 않는다.
+   * 해설 첫 줄의 값(`brief`)도 이것으로 읽는다.
+   *
+   * ⚠️ 이름을 `valueOf` 로 짓지 않는다 — 모든 객체가 `Object.prototype.valueOf` 를 물려받아, 이 칸을 빠뜨린
+   *    등록도 «함수가 있다»로 읽히고 `Partial<…>` 에 객체 리터럴을 넘기면 tsc 가 TS2345 로 문다.
+   */
+  readValue: (choiceText: string, ctx: JudgeReadContext) => JudgeValue | null;
+};
+
+/** 등록부가 받는 등록 — 문형 둘 가운데 하나. */
+export type AnyJudgeDefinition = JudgeDefinition | CompareJudgeDefinition;
 
 /** 등록부가 낸 문항 한 건. */
 export type JudgeProblem = {
@@ -107,6 +199,8 @@ export type JudgeProblem = {
   unitSection: string;
   familyId: string;
   ruleVersion: number;
+  /** 문형 — 참거짓 · 비교 */
+  form: "truth" | "compare";
   ask: JudgeAsk;
   content: string;
   /** 보기 번호 하나 — `③` */
@@ -114,8 +208,10 @@ export type JudgeProblem = {
   solution: string;
   difficulty: Difficulty;
   facts: Record<string, number>;
-  /** 지면 차례대로 — `truthOf` 가 **다시 잰** 참거짓 */
+  /** 지면 차례대로 — `truthOf` 가 **다시 잰** 참거짓(비교 문형은 빈 배열) */
   truths: readonly boolean[];
+  /** 지면 차례대로 — `readValue` 가 **다시 잰** 값의 기약 글 `-3/2`(참거짓 문형은 빈 배열) */
+  values: readonly string[];
 };
 
 export const JUDGE_FAMILY_PREFIX = "mid:judge:";
