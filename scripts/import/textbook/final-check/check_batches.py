@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """적재 계획(`load/plan.json`) → 지면 검토 묶음 (교과서 이관 · 2026-10-07).
 
-  python check_batches.py <작업 폴더> [--out final-check] [--size 100] [--all]
+  python check_batches.py <작업 폴더> [--out final-check] [--size 100] [--all] [--only-figures | --no-figures]
 
 첫 검토는 «풀 수 있나 · 답이 맞나»를 봤다. 이 검토는 **실으려는 글 그대로**(표기를 손질한 본문 · 확인된 정답 ·
 해설 후보)를 읽고 «지면에 낼 꼴인가 · 해설이 이 문항의 풀이인가»를 본다(지시서 `BRIEF.md`).
@@ -35,6 +35,8 @@ def item_of(number: int, row: dict) -> dict:
         "answer": row["answer"],
         "solution": solution.split("\n") if solution else None,
         "solutionFrom": FROM[row.get("candidateFrom")] if solution else None,
+        # 그림 문항 — 본문의 `[그림]` 차례대로의 그림 파일. 검토자가 Read 로 연다(지시서 `BRIEF-FIG.md`)
+        **({"figures": [figure["source"] for figure in row["figures"]]} if row.get("figures") else {}),
     }
 
 
@@ -46,6 +48,11 @@ def main() -> None:
     rows = json.loads((root / "load" / "plan.json").read_text(encoding="utf-8"))["rows"]
     if "--all" not in sys.argv:
         rows = [row for row in rows if PENDING in row["hold"]]
+    # 그림 문항은 지시서가 다르다(그림을 연다) — 묶음을 따로 짓는다
+    if "--only-figures" in sys.argv:
+        rows = [row for row in rows if row.get("figures")]
+    if "--no-figures" in sys.argv:
+        rows = [row for row in rows if not row.get("figures")]
     for name in ("batch", "key", "out"):
         (out / name).mkdir(parents=True, exist_ok=True)
 
@@ -63,7 +70,8 @@ def main() -> None:
             )
             (out / "key" / f"{name}.json").write_text(
                 json.dumps(
-                    [{"i": i, "id": row["externalId"], "key": row["checkKey"], "hasSolution": bool(row.get("candidateSolution"))} for i, row in enumerate(chunk, 1)],
+                    [{"i": i, "id": row["externalId"], "key": row["checkKey"], "hasSolution": bool(row.get("candidateSolution")),
+                      "figureKeys": [figure["sha"] for figure in row.get("figures") or []]} for i, row in enumerate(chunk, 1)],
                     ensure_ascii=False,
                 ),
                 encoding="utf-8",

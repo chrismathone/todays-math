@@ -1,0 +1,662 @@
+/**
+ * 문제은행 «교과서 거르기» Hi-fi 시안의 자료 — **공유 DB 에서 센 실제 값**이다(2026-10-08 오후 · 교과서 문항 8,370).
+ *
+ * Wire(`../bank-source-wire/fixtures.ts`)는 그 전 셈(6,124)이다 — 그 뒤 글 문항을 더 실어 책 · 수가 늘었다.
+ * 책 하나 = 과목 · 출판사 · 저자. `kinds` 는 그 책의 자료 종류별 문항 수다(고르기 창 안의 «걸리는 문항» 셈에 쓴다).
+ */
+
+export interface HifiBook {
+  id: string;
+  grade: string;
+  publisher: string;
+  author: string;
+  /** 실린 문항 */
+  count: number;
+  /** 그 가운데 출제에 쓰는 문항 */
+  open: number;
+  /** 자료(파일) 수 */
+  materials: number;
+  kinds: Record<string, number>;
+}
+
+export const HIFI_BOOKS: HifiBook[] = [
+  {
+    id: "중1|천재교육|김동재",
+    grade: "중1",
+    publisher: "천재교육",
+    author: "김동재",
+    count: 896,
+    open: 866,
+    materials: 157,
+    kinds: {
+      "기초 연산": 429,
+      "시험 대비": 93,
+      "형성 평가": 90,
+      "중단원 평가": 86,
+      "소단원 평가": 78,
+      "수준별 문제": 70,
+      "대단원 평가": 32,
+      "진단 평가": 18,
+    },
+  },
+  {
+    id: "중1|천재교육|김화경",
+    grade: "중1",
+    publisher: "천재교육",
+    author: "김화경",
+    count: 811,
+    open: 798,
+    materials: 139,
+    kinds: {
+      "기초 연산": 455,
+      "형성 평가": 113,
+      "시험 대비": 81,
+      "대단원 평가": 66,
+      "쌍둥이 문제": 57,
+      "진단 평가": 25,
+      "수준별 문제": 14,
+    },
+  },
+  {
+    id: "중1|지학사|장경윤",
+    grade: "중1",
+    publisher: "지학사",
+    author: "장경윤",
+    count: 481,
+    open: 477,
+    materials: 81,
+    kinds: {
+      "대단원 평가": 200,
+      "소단원 평가": 121,
+      "형성 평가": 102,
+      "시험 대비": 43,
+      "서술형 평가": 15,
+    },
+  },
+  {
+    id: "중1|동아출판|강옥기",
+    grade: "중1",
+    publisher: "동아출판",
+    author: "강옥기",
+    count: 433,
+    open: 422,
+    materials: 39,
+    kinds: {
+      "기초 연산": 161,
+      "소단원 평가": 134,
+      "대단원 평가": 128,
+      "진단 평가": 10,
+    },
+  },
+  {
+    id: "중1|YBM|류희찬",
+    grade: "중1",
+    publisher: "YBM",
+    author: "류희찬",
+    count: 216,
+    open: 214,
+    materials: 58,
+    kinds: {
+      "소단원 평가": 79,
+      "대단원 평가": 58,
+      "기초 연산": 40,
+      "수준별 문제": 39,
+    },
+  },
+  {
+    id: "중1|미래엔|황선욱",
+    grade: "중1",
+    publisher: "미래엔",
+    author: "황선욱",
+    count: 215,
+    open: 211,
+    materials: 49,
+    kinds: {
+      "대단원 평가": 129,
+      "수준별 문제": 48,
+      "소단원 평가": 38,
+    },
+  },
+  {
+    id: "중1|NE능률|권오남",
+    grade: "중1",
+    publisher: "NE능률",
+    author: "권오남",
+    count: 64,
+    open: 62,
+    materials: 19,
+    kinds: {
+      "대단원 평가": 44,
+      "쌍둥이 문제": 15,
+      "중단원 평가": 5,
+    },
+  },
+  {
+    id: "중2|동아출판|강옥기",
+    grade: "중2",
+    publisher: "동아출판",
+    author: "강옥기",
+    count: 905,
+    open: 864,
+    materials: 125,
+    kinds: {
+      "수준별 문제": 293,
+      "소단원 평가": 182,
+      "대단원 평가": 168,
+      "시험 대비": 146,
+      "쌍둥이 문제": 116,
+    },
+  },
+  {
+    id: "중2|미래엔|황선욱",
+    grade: "중2",
+    publisher: "미래엔",
+    author: "황선욱",
+    count: 265,
+    open: 260,
+    materials: 51,
+    kinds: {
+      "대단원 평가": 164,
+      "소단원 평가": 57,
+      "수준별 문제": 44,
+    },
+  },
+  {
+    id: "중2|천재교육|김화경",
+    grade: "중2",
+    publisher: "천재교육",
+    author: "김화경",
+    count: 260,
+    open: 242,
+    materials: 76,
+    kinds: {
+      "기초 연산": 91,
+      "대단원 평가": 80,
+      "쌍둥이 문제": 68,
+      "수준별 문제": 21,
+    },
+  },
+  {
+    id: "중2|YBM|류희찬",
+    grade: "중2",
+    publisher: "YBM",
+    author: "류희찬",
+    count: 235,
+    open: 231,
+    materials: 52,
+    kinds: {
+      "소단원 평가": 90,
+      "대단원 평가": 70,
+      "기초 연산": 39,
+      "수준별 문제": 36,
+    },
+  },
+  {
+    id: "중2|천재교육|김동재",
+    grade: "중2",
+    publisher: "천재교육",
+    author: "김동재",
+    count: 220,
+    open: 206,
+    materials: 52,
+    kinds: {
+      "중단원 평가": 71,
+      "대단원 평가": 52,
+      "수준별 문제": 49,
+      "기초 연산": 24,
+      "소단원 평가": 17,
+      "형성 평가": 7,
+    },
+  },
+  {
+    id: "중2|NE능률|권오남",
+    grade: "중2",
+    publisher: "NE능률",
+    author: "권오남",
+    count: 69,
+    open: 65,
+    materials: 19,
+    kinds: {
+      "대단원 평가": 40,
+      "쌍둥이 문제": 24,
+      "중단원 평가": 5,
+    },
+  },
+  {
+    id: "중2|교학사|김창동",
+    grade: "중2",
+    publisher: "교학사",
+    author: "김창동",
+    count: 50,
+    open: 47,
+    materials: 7,
+    kinds: {
+      "중단원 평가": 42,
+      "소단원 평가": 7,
+      "수업 자료": 1,
+    },
+  },
+  {
+    id: "공통수학1|미래엔|황선욱",
+    grade: "공통수학1",
+    publisher: "미래엔",
+    author: "황선욱",
+    count: 240,
+    open: 238,
+    materials: 21,
+    kinds: {
+      "중단원 평가": 121,
+      "대단원 평가": 78,
+      "수준별 문제": 41,
+    },
+  },
+  {
+    id: "공통수학1|천재교육|홍진곤",
+    grade: "공통수학1",
+    publisher: "천재교육",
+    author: "홍진곤",
+    count: 194,
+    open: 193,
+    materials: 43,
+    kinds: {
+      "대단원 평가": 60,
+      "시험 대비": 41,
+      "소단원 평가": 37,
+      "기초 연산": 32,
+      "중단원 평가": 23,
+      "수준별 문제": 1,
+    },
+  },
+  {
+    id: "공통수학1|비상교육|김원경",
+    grade: "공통수학1",
+    publisher: "비상교육",
+    author: "김원경",
+    count: 170,
+    open: 157,
+    materials: 51,
+    kinds: {
+      "기초 연산": 66,
+      "수준별 문제": 47,
+      "소단원 평가": 41,
+      "대단원 평가": 15,
+      "수행 과제": 1,
+    },
+  },
+  {
+    id: "공통수학1|YBM|류희찬",
+    grade: "공통수학1",
+    publisher: "YBM",
+    author: "류희찬",
+    count: 147,
+    open: 146,
+    materials: 34,
+    kinds: {
+      기타: 56,
+      "수준별 문제": 50,
+      "대단원 평가": 41,
+    },
+  },
+  {
+    id: "공통수학1|천재교육|전인태",
+    grade: "공통수학1",
+    publisher: "천재교육",
+    author: "전인태",
+    count: 124,
+    open: 121,
+    materials: 13,
+    kinds: {
+      "중단원 평가": 54,
+      "대단원 평가": 32,
+      "시험 대비": 31,
+      "수준별 문제": 7,
+    },
+  },
+  {
+    id: "공통수학2|천재교육|전인태",
+    grade: "공통수학2",
+    publisher: "천재교육",
+    author: "전인태",
+    count: 272,
+    open: 258,
+    materials: 41,
+    kinds: {
+      "시험 대비": 85,
+      "형성 평가": 70,
+      "중단원 평가": 61,
+      "대단원 평가": 37,
+      "기초 연산": 16,
+      "수준별 문제": 3,
+    },
+  },
+  {
+    id: "공통수학2|비상교육|김원경",
+    grade: "공통수학2",
+    publisher: "비상교육",
+    author: "김원경",
+    count: 143,
+    open: 139,
+    materials: 57,
+    kinds: {
+      "기초 연산": 64,
+      "소단원 평가": 31,
+      "수준별 문제": 26,
+      "대단원 평가": 22,
+    },
+  },
+  {
+    id: "공통수학2|천재교육|홍진곤",
+    grade: "공통수학2",
+    publisher: "천재교육",
+    author: "홍진곤",
+    count: 124,
+    open: 123,
+    materials: 37,
+    kinds: {
+      "대단원 평가": 48,
+      "소단원 평가": 35,
+      "중단원 평가": 21,
+      "기초 연산": 19,
+      "수준별 문제": 1,
+    },
+  },
+  {
+    id: "공통수학2|YBM|류희찬",
+    grade: "공통수학2",
+    publisher: "YBM",
+    author: "류희찬",
+    count: 94,
+    open: 90,
+    materials: 20,
+    kinds: {
+      기타: 41,
+      "대단원 평가": 35,
+      "수준별 문제": 18,
+    },
+  },
+  {
+    id: "대수|천재교육|전인태",
+    grade: "대수",
+    publisher: "천재교육",
+    author: "전인태",
+    count: 246,
+    open: 240,
+    materials: 39,
+    kinds: {
+      "형성 평가": 133,
+      "시험 대비": 97,
+      "대단원 평가": 16,
+    },
+  },
+  {
+    id: "대수|미래엔|황선욱",
+    grade: "대수",
+    publisher: "미래엔",
+    author: "황선욱",
+    count: 184,
+    open: 183,
+    materials: 19,
+    kinds: {
+      "중단원 평가": 115,
+      "대단원 평가": 51,
+      "수준별 문제": 18,
+    },
+  },
+  {
+    id: "대수|YBM|류희찬",
+    grade: "대수",
+    publisher: "YBM",
+    author: "류희찬",
+    count: 137,
+    open: 134,
+    materials: 30,
+    kinds: {
+      "수준별 문제": 52,
+      기타: 50,
+      "대단원 평가": 35,
+    },
+  },
+  {
+    id: "대수|비상교육|김원경",
+    grade: "대수",
+    publisher: "비상교육",
+    author: "김원경",
+    count: 92,
+    open: 91,
+    materials: 25,
+    kinds: {
+      "수준별 문제": 47,
+      "소단원 평가": 23,
+      "대단원 평가": 12,
+      "시험 대비": 7,
+      "기초 연산": 3,
+    },
+  },
+  {
+    id: "미적분1|천재교육|홍진곤",
+    grade: "미적분1",
+    publisher: "천재교육",
+    author: "홍진곤",
+    count: 247,
+    open: 245,
+    materials: 60,
+    kinds: {
+      "형성 평가": 76,
+      "시험 대비": 48,
+      "대단원 평가": 48,
+      "기초 연산": 30,
+      "소단원 평가": 28,
+      "중단원 평가": 15,
+      "수준별 문제": 2,
+    },
+  },
+  {
+    id: "미적분1|비상교육|김원경",
+    grade: "미적분1",
+    publisher: "비상교육",
+    author: "김원경",
+    count: 169,
+    open: 165,
+    materials: 51,
+    kinds: {
+      "기초 연산": 64,
+      "수준별 문제": 57,
+      "소단원 평가": 39,
+      "대단원 평가": 9,
+    },
+  },
+  {
+    id: "미적분1|YBM|류희찬",
+    grade: "미적분1",
+    publisher: "YBM",
+    author: "류희찬",
+    count: 94,
+    open: 86,
+    materials: 19,
+    kinds: {
+      "대단원 평가": 35,
+      기타: 35,
+      "수준별 문제": 24,
+    },
+  },
+  {
+    id: "확률과 통계|천재교육|전인태",
+    grade: "확률과 통계",
+    publisher: "천재교육",
+    author: "전인태",
+    count: 215,
+    open: 213,
+    materials: 45,
+    kinds: {
+      "형성 평가": 104,
+      "시험 대비": 89,
+      "소단원 평가": 18,
+      "대단원 평가": 4,
+    },
+  },
+  {
+    id: "확률과 통계|YBM|류희찬",
+    grade: "확률과 통계",
+    publisher: "YBM",
+    author: "류희찬",
+    count: 128,
+    open: 117,
+    materials: 25,
+    kinds: {
+      "대단원 평가": 51,
+      기타: 43,
+      "수준별 문제": 34,
+    },
+  },
+  {
+    id: "확률과 통계|비상교육|김원경",
+    grade: "확률과 통계",
+    publisher: "비상교육",
+    author: "김원경",
+    count: 116,
+    open: 110,
+    materials: 24,
+    kinds: {
+      "수준별 문제": 50,
+      "소단원 평가": 36,
+      "대단원 평가": 24,
+      "기초 연산": 5,
+      "수행 과제": 1,
+    },
+  },
+  {
+    id: "기하|YBM|류희찬",
+    grade: "기하",
+    publisher: "YBM",
+    author: "류희찬",
+    count: 106,
+    open: 106,
+    materials: 26,
+    kinds: {
+      기타: 46,
+      "대단원 평가": 38,
+      "수준별 문제": 22,
+    },
+  },
+  {
+    id: "기하|천재교육|전인태",
+    grade: "기하",
+    publisher: "천재교육",
+    author: "전인태",
+    count: 8,
+    open: 6,
+    materials: 1,
+    kinds: {
+      "대단원 평가": 8,
+    },
+  },
+];
+
+/** 자료 종류 — 많은 것부터 */
+export const HIFI_KINDS: Array<{ kind: string; count: number }> = [
+  {
+    kind: "대단원 평가",
+    count: 1930,
+  },
+  {
+    kind: "기초 연산",
+    count: 1538,
+  },
+  {
+    kind: "수준별 문제",
+    count: 1114,
+  },
+  {
+    kind: "소단원 평가",
+    count: 1091,
+  },
+  {
+    kind: "시험 대비",
+    count: 761,
+  },
+  {
+    kind: "형성 평가",
+    count: 695,
+  },
+  {
+    kind: "중단원 평가",
+    count: 619,
+  },
+  {
+    kind: "쌍둥이 문제",
+    count: 280,
+  },
+  {
+    kind: "기타",
+    count: 271,
+  },
+  {
+    kind: "진단 평가",
+    count: 53,
+  },
+  {
+    kind: "서술형 평가",
+    count: 15,
+  },
+  {
+    kind: "수행 과제",
+    count: 2,
+  },
+  {
+    kind: "수업 자료",
+    count: 1,
+  },
+];
+
+/** 학기 — 차시의 것(`unit.semester`) */
+export const HIFI_SEMESTERS: Array<{ label: string; count: number }> = [
+  {
+    label: "학기 없음(고등 선택 과목)",
+    count: 1742,
+  },
+  {
+    label: "1학기",
+    count: 5150,
+  },
+  {
+    label: "2학기",
+    count: 1478,
+  },
+];
+
+/** 문제은행 전체의 출처별 수 */
+export const HIFI_SOURCES: Array<{ label: string; count: number }> = [
+  {
+    label: "엔진",
+    count: 100794,
+  },
+  {
+    label: "교과서",
+    count: 8370,
+  },
+  {
+    label: "기출",
+    count: 82,
+  },
+  {
+    label: "AI 생성",
+    count: 10,
+  },
+  {
+    label: "변형",
+    count: 5,
+  },
+];
+
+export const HIFI_TOTAL = 8370;
+
+export const HIFI_GRADES = [
+  "중1",
+  "중2",
+  "공통수학1",
+  "공통수학2",
+  "대수",
+  "미적분1",
+  "확률과 통계",
+  "기하",
+] as const;

@@ -125,11 +125,7 @@ function tidyBody(body: string): string {
     .replace(/\\mathrm\{bold\}/g, "")
     // 곧은 글자로 감싼 괄호 — «\mathrm{(}cm^{2})»
     .replace(/\\mathrm\{([()])\}/g, "$1")
-    .replace(/\\mathrm\{([\d.,=+\-~\s]*)\}/g, "$1")
-    .replace(
-      /(?<!\\)dyad\s*(\\mathrm\{[^{}]*\}|\{[^{}]*\}|[A-Z]{2})/g,
-      "\\overleftrightarrow{$1}",
-    );
+    .replace(/\\mathrm\{([\d.,=+\-~\s]*)\}/g, "$1");
   // `\mathrm{A}B` 는 `\mathrm{AB}` — 한글 수식의 곧은 글자는 띄어쓰기까지다
   for (;;) {
     const next = out.replace(
@@ -139,6 +135,34 @@ function tidyBody(body: string): string {
     if (next === out) break;
     out = next;
   }
+  // 직선 · 반직선 · 호 — 곧은 글자를 이은 **뒤에** 본다(«dyad\mathrm{A}C» 는 직선 AC 다)
+  out = out
+    .replace(
+      /\\mathrm\{(?:dyad|DYAD)\s*([A-Z]{2})\}/g,
+      "\\overleftrightarrow{\\mathrm{$1}}",
+    )
+    .replace(
+      /(?<![\\A-Za-z])(?:dyad|DYAD)\s*(\\mathrm\{[^{}]*\}|\{[^{}]*\}|[A-Z]{2})/g,
+      "\\overleftrightarrow{$1}",
+    )
+    .replace(
+      /\\mathrm\{(?:arch|ARCH)\s*([A-Z]{2,3})\}/g,
+      "\\overset{\\frown}{\\mathrm{$1}}",
+    )
+    .replace(
+      /(?<![\\A-Za-z])(?:arch|ARCH)\s*(\\mathrm\{[^{}]*\}|\{[^{}]*\}|[A-Z]{2,3})/g,
+      "\\overset{\\frown}{$1}",
+    )
+    // 반직선 — 한글 수식의 `vec` 을 변환이 첫 글자에만 씌웠다(«\mathrm{\vec{A}}B» · «\vec{A}B»)
+    .replace(
+      /\\mathrm\{\\vec\{([A-Z])\}\}([A-Z])/g,
+      "\\overrightarrow{\\mathrm{$1$2}}",
+    )
+    .replace(/\\vec\{([A-Z])\}([A-Z])/g, "\\overrightarrow{$1$2}")
+    .replace(
+      /\\vec\{(\\mathrm\{[A-Z]{2}\}|[A-Z]{2})\}/g,
+      "\\overrightarrow{$1}",
+    );
   return out
     .split(PROTECTED)
     .map((chunk, index) => (index % 2 === 1 ? chunk : tidyWords(chunk)))
@@ -210,7 +234,7 @@ const LEFTOVER_WORDS: Array<[RegExp, string | null]> = [
   [/->/, "->"],
   [/(?<!\\)under(?!line|brace|set)/, "under"],
   [
-    /(?<!\\)(SMALL[A-Z]+|BIGCIRC|bigcirc|DEGRMC|CENTIGRADE|centigrade|FAHRENHEIT|fahrenheit|NOTIN|NSUBSET|dyad)/,
+    /(?<!\\)(SMALL[A-Z]+|BIGCIRC|bigcirc|DEGRMC|CENTIGRADE|centigrade|FAHRENHEIT|fahrenheit|NOTIN|NSUBSET|dyad|DYAD|ARCH|arch(?=[A-Z\\])|OVERLINE)/,
     null,
   ],
   [/(?<![A-Za-z\\])ight(?![a-z])/, "ight"],
@@ -219,6 +243,7 @@ const LEFTOVER_WORDS: Array<[RegExp, string | null]> = [
   [/(?<=[A-Z])(LE|GE)(?=\\(?:overline|frac|dfrac|sqrt))|(?<=\d)(LE|GE)/, null],
   [/(?<![\\A-Za-z])(?:it|rm)(?=[A-Z])/, "it"],
   [/(?<![\\A-Za-z])(?:over)?line(?=[A-Z])/, "line"],
+  [/(?<![\\A-Za-z])(?:OVER)?LINE(?=[A-Z])/, "line"],
 ];
 
 /**
