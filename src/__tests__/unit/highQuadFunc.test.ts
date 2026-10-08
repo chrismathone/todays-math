@@ -631,4 +631,18 @@ describe("고등 공통수학1 이차방정식과 이차함수 — 값", () => {
       "지면 대조가 하나도 안 돌면 이 검사는 장식이다",
     ).toBeGreaterThan(1000);
   });
+
+  // 2026-10-08 적재 전 관문(`scripts/qa/highLoadGate.ts`)이 찾은 것 — 값은 맞는데 답이 발문의 수 그대로인 판.
+  it("08 꼴 1: 답 $k$ 가 발문에 적힌 극값과 같지 않다 — 같으면 발문의 수를 옮겨 적어 맞는다", () => {
+    const key = H1_QUAD_FUNC.find((e) => e.rpmType === "08")!.key;
+    let runs = 0;
+    for (let seed = 1; seed <= 300; seed += 1) {
+      const p = generateHighProblem(key, seed, 0);
+      if (p.facts.mode !== 1) continue;
+      runs += 1;
+      const k = readAnswerValues(p.answer)[0]!.re;
+      expect(k, `${p.content} → ${p.answer}`).not.toBe(p.facts.V);
+    }
+    expect(runs, "08 꼴 1 이 돈 판").toBeGreaterThan(50);
+  });
 });

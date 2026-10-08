@@ -143,10 +143,14 @@ export function surdTex(s: Surd): string {
 export function surdPmTex(s: Surd): string {
   if (s.b === 0) throw new Error("근호 항이 없어 ± 꼴로 쓸 수 없습니다");
   const body = radBody(Math.abs(s.b), s.r);
+  // 🔴 `\pm` 뒤가 글자로 시작하면(`i` — $\sqrt{-1}$ 의 계수가 1 일 때) 붙여 쓴 `\pmi` 가 **없는 명령**이 된다.
+  //    KaTeX 가 던지는 자리이고, 지면에서는 그 수식이 날 글자로 나간다(2026-10-08 적재 전 관문이
+  //    「$x=\pmi$」로 찾았다). 그때만 한 칸 띈다 — 수 · 근호로 시작하는 다른 꼴은 한 바이트도 안 바뀐다.
+  const pm = /^[A-Za-z]/.test(body) ? "\\pm " : "\\pm";
   if (s.a === 0) {
-    return s.d === 1 ? `\\pm${body}` : `\\pm\\dfrac{${body}}{${s.d}}`;
+    return s.d === 1 ? `${pm}${body}` : `\\pm\\dfrac{${body}}{${s.d}}`;
   }
-  const num = `${s.a}\\pm${body}`;
+  const num = `${s.a}${pm}${body}`;
   return s.d === 1 ? num : `\\dfrac{${num}}{${s.d}}`;
 }
 

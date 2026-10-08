@@ -744,6 +744,10 @@ function t07(rng: Rng): Body {
       const m = nz(rng, -4, 4);
       const n = randInt(rng, -6, 6);
       const t = randInt(rng, -2, 3);
+      // 🔴 $t$ 가 나누는 일차식의 근이면 $R(t)=f(t)$ 가 발문에 적힌 나머지 그대로다 — 「$x-2$로 나눈 나머지가
+      //    $-1$ … $R(2)$의 값」의 답이 $-1$ 이다. 씨앗 여덟의 이 꼴 51판 가운데 12판이 그랬다
+      //    (2026-10-08 적재 전 관문 — 값 검산은 답이 맞아 못 본다). 그런 판은 다시 뽑는다.
+      if (t === u || t === v) return null;
       const P = m * u + n;
       const Q = m * v + n;
       const D = polyTex(fromRoots([u, v]));
@@ -781,6 +785,10 @@ function t07(rng: Rng): Body {
     const n = nz(rng, -6, 6);
     const al = randInt(rng, -4, 4);
     const gm = randInt(rng, -4, 4);
+    // 🔴 주어진 나머지의 기울기가 답의 기울기와 같으면 그 나머지가 곧 답이다 — 한 점을 같이 지나는 두 직선의
+    //    기울기가 같으면 같은 직선이다. 「… 나머지는 $x-3$이다. … 나머지를 구하시오」의 답이 $x-3$ 이 된다
+    //    (2026-10-08 적재 전 관문 — 씨앗 여덟에서 8판). 그런 판은 다시 뽑는다.
+    if (al === m || gm === m) return null;
     const fp = m * p + n;
     const fr = m * r + n;
     const R1 = [fp - al * p, al];
@@ -898,6 +906,9 @@ function t08(rng: Rng): Body {
     const Rtex = `${coefPrefix(a)}(${DT})${withSign(remT)}=${polyTex(R)}`;
     if (mode === 0) {
       const w = randInt(rng, -2, 3);
+      // 🔴 $w$ 가 나누는 일차식의 근이면 $R(w)=f(w)$ 가 발문에 적힌 나머지 그대로다(07 꼴 0 과 같은 자리 —
+      //    씨앗 여덟의 이 꼴 24판 가운데 4판). 그런 판은 다시 뽑는다.
+      if (w === t) return null;
       const ans = evalAt(R, w);
       lines.push(`따라서 $R(x)=${Rtex}$이므로 $R(${w})=${ans}$`);
       return {

@@ -930,6 +930,9 @@ function t08(rng: Rng): Body {
       const V = randInt(rng, -8, 10);
       const tStar = s >= t0 ? s : t0;
       const g = A * (tStar - s) ** 2 - A * s * s;
+      // 🔴 $g=0$ 이면 극값이 $k$ 그대로라 「최솟값이 $4$일 때 $k$의 값」의 답이 $4$ 다 — 발문의 수를 옮겨 적으면
+      //    맞는다(2026-10-08 적재 전 관문 — 씨앗 여덟의 이 꼴 35판 가운데 4판). 그런 판은 다시 뽑는다.
+      if (g === 0) return null;
       const k = V - g;
       if (k === 0) return null;
       const inner = polyTex([qq, p, 1]);

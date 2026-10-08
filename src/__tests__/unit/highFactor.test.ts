@@ -1101,6 +1101,39 @@ describe("고등 공통수학1 인수분해 — 오답", () => {
       "오답을 내는 꼴이 하나도 안 나오면 이 검사는 장식이다",
     ).toBeGreaterThan(50);
   });
+
+  // 2026-10-08 적재 전 관문(`scripts/qa/highLoadGate.ts`)이 찾은 것 — 04 꼴 0 에서 $r=-p$ 이면 오답 둘이
+  // 인수의 차례만 다른 같은 식이었다. 글자는 달라 `pickDistractors` 의 겹침 검사를 지났다.
+  it("🔴 오답끼리도 **값이 다른** 식이다 — 인수의 차례만 바꾼 같은 식이 보기 둘로 나가지 않는다", () => {
+    const valuesOf = (s: string) => {
+      const inner = /^\$(.+)\$$/.exec(s.trim())![1]!;
+      return ENVS.map((e) => evalTex(inner, e));
+    };
+    let pairs = 0;
+    let opposite = 0;
+    const check = (p: HighProblem, key: string) => {
+      if (!p.distractors) return;
+      const vals = p.distractors.map(valuesOf);
+      for (let i = 0; i < vals.length; i += 1)
+        for (let j = i + 1; j < vals.length; j += 1) {
+          pairs += 1;
+          expect(
+            vals[i]!.some((g, k) => !close(g, vals[j]![k]!)),
+            `${key} 오답 둘이 같은 값: ${p.distractors[i]} ≡ ${p.distractors[j]}`,
+          ).toBe(true);
+        }
+    };
+    eachProblem(check);
+    // 04 꼴 0 의 그 자리($p+r=0$)는 따로 넓게 — 위 다섯 씨앗에 안 걸리면 이 검사가 그 판을 못 본다.
+    for (let seed = 1; seed <= 400; seed += 1) {
+      const p = generateHighProblem(`${BOOK}|${MINOR}|04`, seed, 0);
+      if (p.facts.mode !== 0) continue;
+      if (p.facts.p! + p.facts.r! === 0) opposite += 1;
+      check(p, `04 씨앗 ${seed}`);
+    }
+    expect(pairs, "견준 오답 쌍").toBeGreaterThan(1000);
+    expect(opposite, "04 꼴 0 가운데 $r=-p$ 인 판").toBeGreaterThan(10);
+  });
 });
 
 // 쓰지 않는 도구가 남으면 lint 가 운다 — plongDivide 는 01 꼴 1 을 다른 길로 한 번 더 확인할 때 쓴다

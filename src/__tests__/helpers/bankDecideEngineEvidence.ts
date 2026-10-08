@@ -26,7 +26,18 @@ export function readEvidence<T>(name: string): T {
   ) as T;
 }
 
-export function captureEngineEvidence() {
+/**
+ * `recordedDistractors` — 지문에 넣을 오답을 문항에서 뽑는 자리(기본은 낸 그대로).
+ * 기준선 뒤에 «허용한 변경»이 생기면 대조 시험이 그 변경만 되돌린 값을 넣어, 그 밖은 그대로임을 잰다
+ * (2026-10-08 `공통수학1|인수분해|04` — `bankDecideEngineParity.test.ts`).
+ */
+export function captureEngineEvidence(
+  recordedDistractors: (
+    key: string,
+    problem: { facts: Record<string, number>; distractors?: readonly string[] },
+  ) => readonly string[] | null = (_key, problem) =>
+    problem.distractors ?? null,
+) {
   return [
     { entries: H1_FACTOR, generate: generateHighProblem },
     { entries: M3_TRIG, generate: generateMiddleProblem },
@@ -55,7 +66,7 @@ export function captureEngineEvidence() {
         const p = generate(entry.key, seed);
         const { content, answer, solution, ...rest } = p;
         const metadata: Record<string, unknown> = { ...rest };
-        const distractors = metadata.distractors ?? null;
+        const distractors = recordedDistractors(entry.key, p);
         delete metadata.distractors;
         const f = p.facts;
         const editable =

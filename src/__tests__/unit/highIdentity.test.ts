@@ -556,3 +556,48 @@ describe("고등 공통수학1 항등식과 나머지정리 — 난이도와 형
     ).toBeGreaterThan(0);
   });
 });
+
+/**
+ * 2026-10-08 적재 전 관문(`scripts/qa/highLoadGate.ts`)이 찾은 것 — **값은 맞는데 답이 발문에 그대로 적힌 판**.
+ * 값 검산(`VERIFY`)은 답이 맞아 못 보고, 지면 대조(`SHOWN`)는 «있어야 할 식이 있나»만 본다.
+ * 꼴마다 «그대로 적히는 조건»을 facts 로 직접 대고, 분모(그 꼴이 실제로 몇 판 돌았나)를 같이 센다.
+ */
+describe("고등 공통수학1 항등식과 나머지정리 — 답이 발문에 그대로 있지 않다", () => {
+  const SWEEP = Array.from({ length: 300 }, (_, i) => i + 1);
+  const modeRuns = (number: string, mode: number): HighProblem[] =>
+    SWEEP.map((seed) =>
+      generateHighProblem(`${BOOK}|${MINOR}|${number}`, seed, 0),
+    ).filter((p) => p.facts.mode === mode);
+
+  it("07 꼴 0: 값을 묻는 점이 나누는 일차식의 근이 아니다 — 근이면 답이 주어진 나머지다", () => {
+    const runs = modeRuns("07", 0);
+    expect(runs.length, "07 꼴 0 이 돈 판").toBeGreaterThan(80);
+    for (const p of runs) {
+      const { u, v, t, P, Q } = p.facts;
+      expect([u, v], `${p.content}`).not.toContain(t);
+      expect([P, Q], `답 ${p.answer} — ${p.content}`).not.toContain(
+        readAnswer(p.answer),
+      );
+    }
+  });
+
+  it("07 꼴 1: 주어진 두 나머지 어느 것도 답과 같은 식이 아니다 — 기울기가 같으면 같은 직선이다", () => {
+    const runs = modeRuns("07", 1);
+    expect(runs.length, "07 꼴 1 이 돈 판").toBeGreaterThan(80);
+    for (const p of runs) {
+      const { m, al, gm } = p.facts;
+      expect([al, gm], `${p.content}`).not.toContain(m);
+      const body = /^\$(.+)\$$/.exec(p.answer.trim())![1]!;
+      expect(
+        shownPolys(p.content).has(pkey(parsePolyTex(body)!)),
+        `답 ${p.answer} 가 발문에 있다 — ${p.content}`,
+      ).toBe(false);
+    }
+  });
+
+  it("08 꼴 0: 값을 묻는 점이 나누는 일차식의 근이 아니다", () => {
+    const runs = modeRuns("08", 0);
+    expect(runs.length, "08 꼴 0 이 돈 판").toBeGreaterThan(50);
+    for (const p of runs) expect(p.facts.w, `${p.content}`).not.toBe(p.facts.t);
+  });
+});

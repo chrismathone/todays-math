@@ -89,6 +89,8 @@ import {
 import { renderFigureSpec } from "../../src/lib/figure/renderFigureSpec";
 // 판정 규칙은 관문 판정기가 유일한 자리다 — 옮겨 적지 않는다.
 import { deadBackslashHits } from "../qa/probe-middle-raw-latex";
+// 고등 행의 적재 전 관문 — 규칙은 판정기에 있고 여기서는 부르기만 한다.
+import { describeGate, highLoadGate } from "../qa/highLoadGate";
 // 「그림이 없는데 발문이 가리키나」도 마찬가지다 — 규칙은 `figurelessRow` 한 곳이고
 // 잠그는 쪽(`scripts/qa/lockFigurelessLoadedRows.ts`)이 **같은 함수**를 부른다.
 import { figurelessPointer } from "../../src/lib/engine/figurelessRow";
@@ -725,6 +727,56 @@ export function ambiguousUnitKeys(
   return [...out].sort();
 }
 
+/**
+ * 🚧 **고등 행의 적재 전 관문** — 계획의 행 가운데 고등 유형 행에 고등 공용 판정기(`scripts/qa/highLoadGate.ts`)를
+ * 돌려, 찍을 줄과 «막혔는가»를 낸다. 고등 행이 없으면 `null`.
+ *
+ * 판정기는 **실리는 행**(파생한 객관식 · 열쇠까지 붙은 것)을 본다 — 생성기 시험이 초록이어도 값이 같은 보기 ·
+ * 해설의 없는 명령 · 답이 발문에 그대로인 판은 여기서야 드러났다(2026-10-08 처음 돌린 날 셋). 막히면 적재기는
+ * 드라이런에서도 멈춘다: 여기서 넣으면 **엔진을 고쳐도 이 행은 안 고쳐진다.**
+ */
+export function highPreloadVerdict(
+  rows: readonly Row[],
+): { lines: string[]; blocked: boolean } | null {
+  const highRows = rows.filter((r) =>
+    r.externalId.startsWith(HIGH_EXTERNAL_PREFIX),
+  );
+  if (highRows.length === 0) return null;
+  const gate = highLoadGate(highRows);
+  const tiers = [
+    ...TIER_ORDER.filter((t) => t in gate.difficulty),
+    ...Object.keys(gate.difficulty).filter((t) => !TIER_ORDER.includes(t)),
+  ];
+  const lines = [
+    `고등 적재 전 관문 — 행 ${gate.rows} · 문항류 ${gate.families} · 견준 보기 쌍 ${gate.comparedPairs}` +
+      ` · 못 읽은 보기 ${gate.unread.length}행 · **막힌 것 ${gate.hits.length}**`,
+    `   난이도 — ${tiers.map((t) => `${t} ${gate.difficulty[t]}`).join(" · ")}`,
+  ];
+  // 🔴 «못 읽음»은 막지 않지만 조용히 넘기지도 않는다 — 읽지 못한 보기는 값 대조를 안 받은 보기다.
+  if (gate.unread.length > 0) {
+    lines.push(
+      `   ⚠️ 값으로 못 읽은 보기 ${gate.unread.length}행 — 그 보기는 «같은 값인가»를 못 쟀다(글자 겹침만 봤다):`,
+    );
+    for (const u of gate.unread.slice(0, 5))
+      lines.push(`      ${u.externalId} — ${u.choice}`);
+  }
+  const shown = gate.bareAnswer.filter((b) => b.shown > 0);
+  if (shown.length > 0)
+    lines.push(
+      `   맨 수 답이 발문의 수와 겹친 변형(막지 않는다 — 비율이 높은 유형은 읽어 볼 것): ` +
+        shown
+          .slice(0, 6)
+          .map(
+            (b) =>
+              `${b.familyKey.replace(/^high:/, "")} ${b.shown}/${b.variants}`,
+          )
+          .join(" · ") +
+        (shown.length > 6 ? ` … 유형 ${shown.length - 6}개 더` : ""),
+    );
+  lines.push(...describeGate(gate).map((l) => `   ${l}`));
+  return { lines, blocked: gate.hits.length > 0 };
+}
+
 /** 드라이런이 찍는 표 — 차시별 · 난이도별 · 형식별 행 수. `rowTable` 이 만든다. */
 export type RowTable = {
   total: number;
@@ -1009,6 +1061,19 @@ async function apply(planFile: string, doApply: boolean) {
     for (const s of elemShort.slice(0, 10)) console.log(`      · ${s}`);
     if (elemShort.length > 10)
       console.log(`      … 그 밖 ${elemShort.length - 10}개`);
+  }
+
+  // ── 🚧 고등 행은 **적재 전 관문**을 지나야 한다 (2026-10-08) ─────────────────
+  // DB 를 읽기 전에 본다 — 망 없이 판정이 서고, 막힌 계획은 드라이런에서도 「넣을 것 N」까지 가지 않는다.
+  const verdict = highPreloadVerdict(rows);
+  if (verdict) {
+    console.log("");
+    for (const line of verdict.lines) console.log(line);
+    if (verdict.blocked)
+      throw new Error(
+        "고등 적재 전 관문에 걸렸다 — 생성기를 고치거나 그 유형을 보류(HOLD)로 내린 뒤 다시 돌려라. " +
+          "여기서 넣으면 **엔진을 고쳐도 이 행은 안 고쳐진다.**",
+      );
   }
 
   // 단원 연결 — 못 찾은 것은 **세어서 찍는다**. 조용히 빼면 「전부 넣었다」로 읽힌다.

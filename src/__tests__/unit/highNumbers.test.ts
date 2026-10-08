@@ -7,6 +7,7 @@
  * 값은 **시험 쪽 읽개**(`helpers/highAnswer.ts`)로 지면 글자를 다시 읽어, 입력 수치에서
  * 부동소수로 바로 셈한 값과 맞댄다 — 제품의 `surdValue` 를 믿지 않는다.
  */
+import katex from "katex";
 import { describe, expect, it } from "vitest";
 
 import { createRng } from "../../lib/elementary/rng";
@@ -101,8 +102,32 @@ describe("근호 (a + b√r)/d", () => {
     [0, 1, 3, 3, "\\pm\\dfrac{\\sqrt{3}}{3}"],
     [1, -1, 2, 1, "1\\pm\\sqrt{2}"],
     [0, 2, -1, 1, "\\pm2i"],
+    // 🔴 `\pm` 뒤가 글자(`i`)면 한 칸 띈다 — 붙여 쓴 `\pmi` 는 없는 명령이다(2026-10-08 적재 전 관문).
+    [0, 1, -1, 1, "\\pm i"],
+    [2, 1, -1, 1, "2\\pm i"],
+    [1, 1, -1, 2, "\\dfrac{1\\pm i}{2}"],
+    [0, 1, -1, 2, "\\pm\\dfrac{i}{2}"],
   ])("± 꼴 (%i ± %i√%i)/%i → %s", (a, b, r, d, tex) => {
     expect(surdPmTex(surd(a, b, r, d))).toBe(tex);
+  });
+
+  it("🔴 ± 꼴은 어느 수치에서도 KaTeX 가 아는 명령만 쓴다 — `\\pm` 에 글자가 붙지 않는다", () => {
+    let checked = 0;
+    for (let a = -3; a <= 3; a += 1)
+      for (let b = 1; b <= 4; b += 1)
+        for (const r of [-12, -4, -3, -2, -1, 2, 3, 5, 8])
+          for (let d = 1; d <= 4; d += 1) {
+            const s = surd(a, b, r, d);
+            if (s.b === 0) continue;
+            const tex = surdPmTex(s);
+            expect(
+              () => katex.renderToString(tex, { throwOnError: true }),
+              `(${a}±${b}√${r})/${d} → ${tex}`,
+            ).not.toThrow();
+            expect(tex, tex).not.toMatch(/\\pm[A-Za-z]/);
+            checked += 1;
+          }
+    expect(checked).toBeGreaterThan(500);
   });
 
   it("± 꼴은 근호 항이 없으면 던진다", () => {
