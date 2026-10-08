@@ -291,6 +291,18 @@ function checkReason(choice: string, reason: string): "실수" | "부호" | "공
       `${reason} ↔ ${choice}`,
     ).toBe(true);
   }
+  if (reason === "계산 결과와 다름") {
+    // 공용 후보(`numericMistakes`)는 실제 실수가 아니다 — 적힌 값의 분모가 항들의 최소공배수의 약수가 아니면
+    // «나올 수 없는 분모»라 계산 없이 지워 낸다(2026-10-08 표본 문 18 의 $-\frac{19}{11}$).
+    const lcd = side.terms.reduce((acc, t) => {
+      const g = (a: number, b: number): number => (b === 0 ? a : g(b, a % b));
+      return (acc / g(acc, t.v.d)) * t.v.d;
+    }, 1);
+    expect(
+      lcd % w.d,
+      `나올 수 없는 분모 ${w.d} (항의 최소공배수 ${lcd}) — ${choice}`,
+    ).toBe(0);
+  }
   if (reason.startsWith("분자끼리 분모끼리")) {
     const [a, b] = side.terms;
     const plus = b!.sign === 1;

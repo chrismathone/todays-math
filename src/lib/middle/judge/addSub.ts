@@ -239,8 +239,13 @@ function chooseMistake(
     부호: allowSign
       ? domainMistakes(e).filter((m) => m.kind === "부호" && ok(m))
       : [],
+    // 공용 후보는 실제 실수가 아니라 정답을 흔든 값이다 — 분모가 항들의 최소공배수의 약수가 아니면
+    // «나올 수 없는 분모»라 계산 없이 지워 낸다(2026-10-08 표본 — 분모 5 · 2 · 5 인 식에 $-\frac{19}{11}$).
     공용: genericMistakes(e).filter(
-      (m) => ok(m) && !sameValue(m.value, flipped),
+      (m) =>
+        ok(m) &&
+        !sameValue(m.value, flipped) &&
+        e.terms.reduce((acc, t) => lcm(acc, t.v.d), 1) % m.value.d === 0,
     ),
   };
   const kinds = (Object.keys(pools) as MistakeKind[]).filter(
