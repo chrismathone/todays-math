@@ -25,7 +25,8 @@
  *   나눗셈    나누는 수를 역수로 바꾸지 않고 곱함 · 나누어지는 수의 역수를 곱함
  *   거듭제곱  분수의 분자만 거듭제곱함 · 밑과 지수를 곱함
  *   부호      결과의 부호를 반대로 씀 — 거듭제곱이 든 식에서는 까닭을 더 좁혀 적는다(음수의 거듭제곱의 부호를
- *             반대로 정함 · 거듭제곱 앞의 부호를 빠뜨림). 어느 것이든 한 문항에 하나까지
+ *             반대로 정함 · 거듭제곱 앞의 부호를 빠뜨림). 어느 것이든 한 문항에 하나까지이고, **음수가 하나도
+ *             없는 식에는 붙이지 않는다**(양수끼리의 곱을 음수로 적은 보기는 계산 없이 지워진다)
  *   공용      공용 오답 자리(`numericMistakes`)
  *
  * 어느 것도 «거짓이다»의 보증이 아니다 — 후보는 교차곱으로 거르고, 지면은 등록부가 `equationTruth` 로 다시 잰다.
@@ -66,11 +67,14 @@ const NUMERATOR_ONLY = "분수의 분자만 거듭제곱함";
 const BASE_TIMES_EXPONENT = "밑과 지수를 곱함";
 const NO_RECIPROCAL = "나누는 수를 역수로 바꾸지 않고 곱함";
 
-const signFlip = (value: Q, reason: string = SIGN_FLIP): Mistake => ({
-  value: negQ(value),
-  reason,
-  kind: "부호",
-});
+/**
+ * 결과의 부호를 반대로 — **부호를 틀릴 자리가 있는 식에만** 붙인다(`reason` 이 null 이면 없다).
+ * 음수가 하나도 없는 식의 결과를 음수로 적은 보기는 계산 없이 지워진다 — 틀린 보기가 아니라 빈 보기다.
+ */
+const signFlip = (value: Q, reason: string | null): Mistake[] =>
+  reason === null ? [] : [{ value: negQ(value), reason, kind: "부호" }];
+/** 두 수 가운데 음수가 있나 — 곱 · 몫의 부호 규칙을 틀릴 자리. */
+const signRule = (...vs: Q[]) => (vs.some((v) => v.n < 0) ? SIGN_FLIP : null);
 const slip = (value: Q, reason: string): Mistake => ({
   value,
   reason,
@@ -130,7 +134,7 @@ export function mul2Material(a: Q, b: Q): Material {
         out.push(slip(mulQ(value, q(g)), HALF_CANCEL));
         out.push(slip(divQ(value, q(g)), HALF_CANCEL));
       }
-      out.push(signFlip(value));
+      out.push(...signFlip(value, signRule(a, b)));
       return out;
     },
     denominatorBound: a.d * b.d,
@@ -149,7 +153,7 @@ export function div2Material(a: Q, b: Q): Material {
     mistakes: () => [
       slip(mulQ(a, b), NO_RECIPROCAL),
       slip(divQ(b, a), "나누어지는 수의 역수를 곱함"),
-      signFlip(value),
+      ...signFlip(value, signRule(a, b)),
     ],
     denominatorBound: a.d * Math.abs(b.n),
   };
@@ -187,13 +191,14 @@ export function powMaterial(
       // ⑵ 거듭제곱을 «밑 × 지수»로 계산했다 — $3^{2}$ 을 $6$ 으로.
       slip(outer(mulQ(p1, q(base2.n * e2))), BASE_TIMES_EXPONENT),
       // ⑶ 부호 — 음수인 밑이 있으면 그 거듭제곱의 부호를, 없고 앞에 $-$ 가 있으면 그 부호를 틀린 것이다.
-      signFlip(
+      //    둘 다 없으면(밑이 모두 양수 · 앞 부호 없음) 부호를 틀릴 자리가 없다.
+      ...signFlip(
         value,
         base1.n < 0 || base2.n < 0
           ? POWER_SIGN
           : outerMinus
             ? OUTER_SIGN
-            : SIGN_FLIP,
+            : null,
       ),
     ],
     denominatorBound: base1.d ** e1,
@@ -213,7 +218,7 @@ export function mulDivMaterial(base: Q, e: number, m: Q, v: Q): Material {
     mistakes: () => [
       slip(mulQ(mulQ(p, m), v), NO_RECIPROCAL),
       slip(divQ(mulQ(q(base.n ** e, base.d), m), v), NUMERATOR_ONLY),
-      signFlip(value, base.n < 0 ? POWER_SIGN : SIGN_FLIP),
+      ...signFlip(value, base.n < 0 ? POWER_SIGN : signRule(m, v)),
     ],
     denominatorBound: base.d ** e * Math.abs(v.n),
   };

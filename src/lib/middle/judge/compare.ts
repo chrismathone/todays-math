@@ -64,6 +64,10 @@ const { q, addQ, subQ, mulQ, divQ, negQ, nice, texQ } = m1Rational;
 export const MAX_ROUNDS = 40;
 /** 한 번 뽑은 목표값에서 식을 이만큼 지어 보고 안 차면 목표값을 다시 뽑는다. */
 const TRIES_PER_ROUND = 80;
+/** «나머지 넷과 다른 하나»에서 값이 같은 식의 수 — 넷이 같고 하나가 다르다(등록부가 4+1 을 다시 잰다). */
+const SAME_COUNT = 4;
+/** 보기 수 — 객관식 틀 그대로. */
+const OPTION_COUNT = 5;
 
 /** 비교형 보기 하나의 재료 — 식 · 값 · 계산 과정 · 겉모양. */
 export type Piece = {
@@ -158,7 +162,11 @@ export function buildOddBody(
   for (let round = 1; round <= MAX_ROUNDS; round += 1) {
     const r = begin(rng);
     const tray = new Tray(style.maxPerTemplate);
-    for (let t = 0; t < TRIES_PER_ROUND && tray.pieces.length < 4; t += 1) {
+    for (
+      let t = 0;
+      t < TRIES_PER_ROUND && tray.pieces.length < SAME_COUNT;
+      t += 1
+    ) {
       const p = r.same(rng);
       if (p === null) continue;
       // 역산이 틀리면 조용히 넘기지 않는다 — 넷이 같은 값이라는 것이 이 문형의 뼈대다.
@@ -168,13 +176,17 @@ export function buildOddBody(
         );
       tray.add(p);
     }
-    if (tray.pieces.length < 4) continue;
-    for (let t = 0; t < TRIES_PER_ROUND && tray.pieces.length < 5; t += 1) {
+    if (tray.pieces.length < SAME_COUNT) continue;
+    for (
+      let t = 0;
+      t < TRIES_PER_ROUND && tray.pieces.length < OPTION_COUNT;
+      t += 1
+    ) {
       const p = r.other(rng);
       if (p === null || sameValue(p.value, r.target)) continue;
       tray.add(p);
     }
-    if (tray.pieces.length < 5) continue;
+    if (tray.pieces.length < OPTION_COUNT) continue;
     const [a, b, c, d, odd] = tray.pieces as [
       Piece,
       Piece,
@@ -213,14 +225,18 @@ export function buildExtremeBody(
   for (let round = 1; round <= MAX_ROUNDS; round += 1) {
     const draw = begin(rng);
     const tray = new Tray(style.maxPerTemplate);
-    for (let t = 0; t < TRIES_PER_ROUND && tray.pieces.length < 5; t += 1) {
+    for (
+      let t = 0;
+      t < TRIES_PER_ROUND && tray.pieces.length < OPTION_COUNT;
+      t += 1
+    ) {
       const p = draw(rng);
       if (p === null) continue;
       // 값이 겹치면 안 둔다 — 동점이면 «가장 큰 것»이 하나로 안 정해진다.
       if (tray.pieces.some((x) => sameValue(x.value, p.value))) continue;
       tray.add(p);
     }
-    if (tray.pieces.length < 5) continue;
+    if (tray.pieces.length < OPTION_COUNT) continue;
     // 양수(음수)가 하나뿐이면 부호만 보고 답이 나온다 — 크기를 견주게 둘 이상.
     const side = tray.pieces.filter((p) =>
       ask === "가장 큰 것" ? p.value.n > 0 : p.value.n < 0,
@@ -303,7 +319,11 @@ function addSubOddRound(rng: Rng): OddRound {
         return addSubPiece(a, "-", subQ(v, a));
       }
       if (roll <= 8) return addSubFor(r, m, negQ(v));
-      return addSubFor(r, m, addQ(v, q(pick(r, [1, -1] as const))));
+      // 값이 1 다른 식 — 원천 01 · 03 의 답 범위(통분한 분자 24 이하)를 벗어나면 버린다. 안 그러면 둘째 수의
+      // 분자가 원천보다 커진다(시험이 원천의 테두리로 잰다 — $\left(-4\right)+\left(+\dfrac{49}{6}\right)$).
+      const off = addQ(v, q(pick(r, [1, -1] as const)));
+      if (Math.abs(off.n * (m / off.d)) > 24) return null;
+      return addSubFor(r, m, off);
     },
   };
 }
