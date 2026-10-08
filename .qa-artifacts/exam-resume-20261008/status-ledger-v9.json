@@ -1,0 +1,184 @@
+{
+  "kind": "execution-status-ledger/v9",
+  "version": 9,
+  "createdAt": "2026-10-08T13:31:31.130Z",
+  "latestDirective": "docs/planning/tracks/brief-exam-extraction-resume-20261008-addendum-6.md",
+  "previousLedger": {
+    "path": ".qa-artifacts/exam-resume-20261008/status-ledger-v8.json",
+    "sha256": "d24721699e0aa4bc401158fae2a0aad759d2065c2631f65994fe6f4575a84c2b"
+  },
+  "report": {
+    "path": "docs/planning/tracks/reports/exam-twin-checkpoint-v9-20261008.md",
+    "sha256": "1de2a394aa86e17dca59e79da1fe48a9b6c1cf00f6b28f0af9bc333d2395fae8"
+  },
+  "counts": {
+    "authoredCurrentCandidates": 91,
+    "currentFigureInstances": 72,
+    "recreatedStatTables": 5,
+    "builtinImagegenRasters": 2,
+    "preExposureRawSolvesBoundToCurrentCandidates": 90,
+    "preExposureRawSolvesIncludingSupersededR1": 91,
+    "independentMathReviewed": 60,
+    "independentFullGradeReviewed": 60,
+    "contentReviewPassed": 13,
+    "contentReviewHeld": 47,
+    "awaitingCollectedIndependentReview": 31,
+    "fullVerified": 0,
+    "loadable": 0,
+    "dbWrites": 0
+  },
+  "currentIndex": {
+    "path": ".qa-artifacts/exam-resume-20261008/current-authored-batches-v9.json",
+    "sha256": "317e744fb40827c4a1ee6eace05ecac5f4b5d2948735c90556365c67d1f6d060"
+  },
+  "currentSemanticReviewSummary": {
+    "path": ".qa-artifacts/exam-resume-20261008/current-final-semantic-review-summary-r1.json",
+    "sha256": "9f993e13b01ab5382ba7665187d56f4203cf46a5189c750d544ce687f62735a0"
+  },
+  "semanticReviewClarification": "60 actually independently reviewed math/grade; semantic role/value/meaning evidence stays separate from legacy literal comparator. No raw solve edits or automatic full-answer semantic approval added.",
+  "newSourceAttempt": {
+    "index": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-three-extraction-r1-attempt2/extraction-attempt-index.json",
+      "sha256": "7f008d188b089874c83723ab4706ee45896aef1028e43da8bebe6d536df20eb6"
+    },
+    "preliminary": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-three-extraction-r1-attempt2/preliminary-printed-identity-review-r1.json",
+      "sha256": "2efc0438ff190a46b202f692aae9e495aa0fddc65ac648a87905fb6fd4fd894b"
+    },
+    "newParsedParents": 67,
+    "previousConfirmedContentParents": 127,
+    "newComponentApprovals": 0,
+    "quarantined": true,
+    "allNExtracted": false
+  },
+  "q22Repair": {
+    "candidate": {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsan-q22-repair-r2/candidate.json",
+      "sha256": "740279ebac2db406f98c789a4567c2ee6ef96b4e360736b7551eb8efee81a97a"
+    },
+    "controls": {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsan-q22-repair-r2/author-controls.json",
+      "sha256": "89a06481f728567238b64c5019a2e69c2abc0adb0260d3fff231d15a66b3aad4"
+    },
+    "visual": {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsan-q22-repair-r2/visual-inspection.json",
+      "sha256": "05ec75329a6d01a07eacb1a324505bbcab602e7a0f2531863add7164c99aacb7"
+    },
+    "blind": {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsan-q22-review-r2/blind/blind-manifest.json",
+      "sha256": "c4d07c05691a639250882dac780dbb8b9ed9eccc0db5b8a34a0e42019d0c254e"
+    },
+    "freshIndependentSolvePending": true,
+    "priorR1RawAndReviewPreserved": true
+  },
+  "engineLedger": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrades-progress-r3.json",
+    "sha256": "b69480aeecb7cf7f5f6260bf0ca7fd3fbe8e706c38b516c70b4b14992f6ab283"
+  },
+  "relatedTests": {
+    "corePassed": 33,
+    "mainChangedRenderPassed": 21,
+    "actualNewQuestionReviews": 0
+  },
+  "remoteIntegration": {
+    "ref": "origin/main",
+    "actualFetchedSha": "6c9ddd54f01e218c8ee16aaebc5d0051632c7d4d",
+    "mainIntegratedBeforeOwnedCheckpoint": true,
+    "mainWorktreeWritten": false,
+    "firstFeatureBackup": {
+      "path": ".qa-artifacts/exam-resume-20261008/continuation-watch/first-checkpoint-push-20261008.json",
+      "sha256": "b3df451be74f24dcee9cc185d626fef065f8d5b3a003c0ccc26d3d32eac1dbb7"
+    },
+    "subsequentFeaturePush": "required after this checkpoint; record remote actual SHA separately",
+    "forcePush": false
+  },
+  "activeWork": [
+    {
+      "worktree": "exam-twin-source-identity-20261008",
+      "originalSessionId": "01a1177f-954e-7343-9cfb-e803c179ed85",
+      "scope": "Gyeongsang remaining15 authoring; after sealing, fresh unexposed q22-r2 solve",
+      "status": "working; actual turn began after CR submission, no duplicate prompt"
+    },
+    {
+      "worktree": "exam-twin-author-geometry-20261008",
+      "originalSessionId": "01a1177e-fbb2-7822-a7e2-51c40b39e38f",
+      "scope": "Final fresh stats7 and Gyeongsan24 originalr1 review; preserve q22 duplicatehold",
+      "status": "turn_started",
+      "request": "760d1225-049e-4379-985a-d5b73b6a6fe1"
+    },
+    {
+      "worktree": "exam-twin-author-algebra-20261008",
+      "originalSessionId": "01a1177d-e52b-7511-944f-c2d4edd47c82",
+      "scope": "Whole67 new source component/identity/score/curriculum-risk/author-whitelist review",
+      "status": "turn_started",
+      "request": "de54ea06-0d75-4b32-9f43-03395d73f60a"
+    },
+    {
+      "worktree": "exam-extraction-resume-20261008",
+      "scope": "Feature checkpoint push, metadata/semantic evidence/current ID joins, sourcequeue and useful code improvements",
+      "status": "working"
+    }
+  ],
+  "freshBankRead": {
+    "path": ".qa-artifacts/exam-resume-20261008/bank-read-fresh-r3-20261008.json",
+    "sha256": "31f6e3369f5d62072e6728566f8cd71f44f4d451c4ff2dd87a132a6ff6fa1a26",
+    "capturedAt": "2026-10-08 13:00:16.891043+00",
+    "readOnly": "on",
+    "isolation": "repeatable read",
+    "unitCount": 22,
+    "eligibleFamilyCount": 302,
+    "protectedRows": 82,
+    "unlocked": 0,
+    "identityMismatches": 0,
+    "correctionsMismatch": 0,
+    "globallyDeduplicated": false,
+    "previousObservationPreserved": true,
+    "unitAndFamilyRowsSameAsR2": true,
+    "semanticClassificationNotInferred": true
+  },
+  "restrictions": [
+    "Protected82/threecorrectionledgers/permanentGyeongsanyeo19 unchanged",
+    "No DBapply/unlock/delete/reload/deploy; native/loadable0",
+    "N/oldoutput/sharednode_modules preserved",
+    "Current remote integration and relevant validation required; no forcepush",
+    "Rights/similarity separate; altered words/numbers never imply permission"
+  ],
+  "continuationWatch": {
+    "config": {
+      "path": ".qa-artifacts/exam-resume-20261008/continuation-watch/automation-config.json",
+      "sha256": "71d447df3f1a8c05b523c758f970bcfd9039b3e4ea4039d2ed20ad757f1cd437"
+    },
+    "preservedRootFiles": [
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/continuation-watch/automation-config.json",
+        "sha256": "71d447df3f1a8c05b523c758f970bcfd9039b3e4ea4039d2ed20ad757f1cd437"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/continuation-watch/controller-r2-preserved.ps1",
+        "sha256": "fe78ca47c393025bc9571f8339975565494651683935ebba7d4b8b3689df41da"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/continuation-watch/verification-r2-20261008.json",
+        "sha256": "7ace923fc6425b7fb995ab059e57ddbbca4b4d09e2385063ae91d848231f0ae5"
+      }
+    ],
+    "oldOrcaAutomation": {
+      "id": "358474c8-24be-49ee-b3c9-55fbebf68de4",
+      "state": "disabled; failed history preserved"
+    },
+    "currentScheduledTask": {
+      "name": "TodaysMath-ExamContinuation",
+      "state": "Root last confirmed Enabled/Ready/working-skip",
+      "intervalMinutes": 15,
+      "verification": {
+        "path": ".qa-artifacts/exam-resume-20261008/continuation-watch/verification-r2-20261008.json",
+        "sha256": "7ace923fc6425b7fb995ab059e57ddbbca4b4d09e2385063ae91d848231f0ae5"
+      }
+    },
+    "externalControllerOwnedBy": "Root; primary has not overwritten external controller/config",
+    "role": "read-only continuation monitor; no question authoring or approval",
+    "noWholeCompleteOrStopMarker": true
+  },
+  "wholeGoalComplete": false,
+  "productionEngineUpgradesComplete": 0
+}

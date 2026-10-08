@@ -1,0 +1,81 @@
+{
+  "kind": "preliminary-printed-source-identity-review/v1",
+  "createdAt": "2026-10-08T13:26:39.036639+00:00",
+  "reviewer": "root-codex-exam-extraction-resume-20261008",
+  "actualNewParsedParents": 67,
+  "newQuestionComponentApprovals": 0,
+  "newTwinApprovals": 0,
+  "dbWrites": 0,
+  "authorDistributionAllowed": false,
+  "originalAnswerExposureDisclosure": "Some original scan pages contain handwriting/circled answers; Gyeseong original01 is an answer/score sheet. Incidentally viewed only for source identity, not used for new answers or mathematical approval. Retained reviewer-only, not a student/author packet.",
+  "legacyExportFlagClarification": "originalAnswersExported=false in raw manifest refers to completed-PDF extraction without with_answers. An original answer-sheet image/text was captured as reviewer-only evidence. The literal manifest is preserved and this scope clarification corrects any broader interpretation.",
+  "cases": [
+    {
+      "slug": "gyeongilyeo",
+      "viewed": [
+        {
+          "path": ".qa-artifacts\\exam-resume-20261008\\next-three-extraction-r1-attempt2\\gyeongilyeo\\reviewer-only\\original-01-first-page.png",
+          "sha256": "a32a8b0822fe30039cebfd54370b52b037d84aa1fd3dd156cfb95c5c7ac36f5e",
+          "viewed": true
+        },
+        {
+          "path": ".qa-artifacts\\exam-resume-20261008\\next-three-extraction-r1-attempt2\\gyeongilyeo\\reviewer-only\\completed-page-01.png",
+          "sha256": "32e2abe1bb734673485663e4c7275932243fdbdec9b96549a191d437bd3efd6b",
+          "viewed": true
+        }
+      ],
+      "printedOriginal": "2025학년도3학년1학기중간고사; first-page school name not established",
+      "completed": "2025년2학기중간 KI여중3학년; footer26년2학기대비 is not examyear",
+      "parsedSourceScoreSum": 96,
+      "status": "hold_school_semester_and_score",
+      "requires": "Actual remaining original pages/printed school/term and per-question score comparison; do not invent100 or fix1→2 as a presumed typo."
+    },
+    {
+      "slug": "gyeseong",
+      "viewed": [
+        {
+          "path": ".qa-artifacts\\exam-resume-20261008\\next-three-extraction-r1-attempt2\\gyeseong\\reviewer-only\\original-01-first-page.png",
+          "sha256": "1bb2cc1e616faf2cd25014c36c37185d5d723f7a826881d21d08fa393a35261e",
+          "viewed": true
+        },
+        {
+          "path": ".qa-artifacts\\exam-resume-20261008\\next-three-extraction-r1-attempt2\\gyeseong\\reviewer-only\\original-02-first-page.png",
+          "sha256": "553d3e785346baf64157b28719b5f52fb9c48dce2cb0d6d4d9f0bc3d02095708",
+          "viewed": true
+        },
+        {
+          "path": ".qa-artifacts\\exam-resume-20261008\\next-three-extraction-r1-attempt2\\gyeseong\\reviewer-only\\original-03-first-page.png",
+          "sha256": "f352302bdedc3a3b072578b50363a03fb814b0b33aadd615593911f9a2263511",
+          "viewed": true
+        },
+        {
+          "path": ".qa-artifacts\\exam-resume-20261008\\next-three-extraction-r1-attempt2\\gyeseong\\reviewer-only\\completed-page-01.png",
+          "sha256": "eb70129af81094d0f6c0937204dcabf588b2c942bd712608fe69030b914f286d",
+          "viewed": true
+        }
+      ],
+      "printedOriginal02And03": "계성중학교 copyright, 2025년9월25일2교시,3학년2학기중간,23=18MC+5written,65+35=100",
+      "original01": "First page answer/score sheet; exclude from author whitelist, use original02/03 question pages for source identity",
+      "status": "first_page_identity_supported_whole_content_and_pair_pending"
+    },
+    {
+      "slug": "nobyeon",
+      "viewed": [
+        {
+          "path": ".qa-artifacts\\exam-resume-20261008\\next-three-extraction-r1-attempt2\\nobyeon\\reviewer-only\\original-01-first-page.png",
+          "sha256": "ce278de4214a6f63ac06c066e8951ff069412c0f455d3b4694744ca17bdbdfa3",
+          "viewed": true
+        },
+        {
+          "path": ".qa-artifacts\\exam-resume-20261008\\next-three-extraction-r1-attempt2\\nobyeon\\reviewer-only\\completed-page-01.png",
+          "sha256": "d1e136284cf967a921d45f70d73e2121830b11a07e9c9824a9d0b8d490953e9f",
+          "viewed": true
+        }
+      ],
+      "printedOriginal01": "노변중 footer,2025년9월25일3교시,3학년2학기중간,17MC+5written22",
+      "status": "first_page_identity_supported_whole_content_and_duplicate_originals_pending"
+    }
+  ],
+  "wholeSourceAndCurriculumReviewAssigned": "Original algebra Codex session01a1177d-e52b-7511-944f-c2d4edd47c82; requestde54ea06-0d75-4b32-9f43-03395d73f60a turn_started. New next-three-source-review-r1 scope.",
+  "rightsSimilarityCurriculumNative": "All held; first-page observation/count matching never approves a whole exam or item."
+}

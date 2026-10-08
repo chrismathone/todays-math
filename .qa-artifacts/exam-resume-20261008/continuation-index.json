@@ -92687,7 +92687,7 @@
     "priority": "Grade and applied curriculum suitability is mandatory for stem/choices/figures/notation/answer/student solution/prerequisites; out of scope => reject; unknown => hold",
     "addendum": "docs/planning/tracks/brief-exam-extraction-resume-20261008-addendum-1.md"
   },
-  "version": 8,
+  "version": 9,
   "updatedAt": "2026-10-08T06:56:30.388Z",
   "historicalOwnerDirection": {
     "updatedAt": "2026-10-07T15:46:09.6785134Z",
@@ -92740,21 +92740,22 @@
     ]
   },
   "currentExecution": {
-    "path": ".qa-artifacts/exam-resume-20261008/continuation-index-v8.json",
-    "sha256": "29fa6d21d0be0a871bfcac0c4185befae9141520dd1aa1086c69bc92763ad237",
-    "version": 8
+    "path": ".qa-artifacts/exam-resume-20261008/continuation-index-v9.json",
+    "sha256": "a87893a794acbfbdfd37e75eba605fabc6f0a65e2b0a46ab68f24e444af45ae5",
+    "version": 9
   },
   "currentExecutionCounts": {
     "authoredCurrentCandidates": 91,
     "currentFigureInstances": 72,
     "recreatedStatTables": 5,
     "builtinImagegenRasters": 2,
-    "preExposureRawSolvesBound": 42,
-    "independentMathReviewed": 20,
-    "independentFullGradeReviewed": 20,
-    "contentReviewPassed": 12,
-    "contentReviewHeld": 8,
-    "awaitingCollectedIndependentReview": 71,
+    "preExposureRawSolvesBoundToCurrentCandidates": 90,
+    "preExposureRawSolvesIncludingSupersededR1": 91,
+    "independentMathReviewed": 60,
+    "independentFullGradeReviewed": 60,
+    "contentReviewPassed": 13,
+    "contentReviewHeld": 47,
+    "awaitingCollectedIndependentReview": 31,
     "fullVerified": 0,
     "loadable": 0,
     "dbWrites": 0

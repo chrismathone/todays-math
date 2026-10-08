@@ -1,0 +1,1428 @@
+{
+  "kind": "q22-r2-computed-choice-controls/v1",
+  "authorSelfCheckOnly": true,
+  "independentApproval": false,
+  "prior": {
+    "path": ".qa-artifacts/exam-resume-20261008/gyeongsan-authoring-r1/candidates/q22/candidate.json",
+    "sha256": "b9e4c5bce4e222a03e5a8e7a6be7df30b60ab5a3333ee67faedc11a76f141683",
+    "studentDigest": "bc05620c77d8e779fb3c814cb177b08f4547b24978a6dd24719c5cbe38bc4851"
+  },
+  "current": {
+    "id": "exam-twin-gyeongsan-2025-2-mid-author-r2-q22",
+    "candidateFileSha256": "740279ebac2db406f98c789a4567c2ee6ef96b4e360736b7551eb8efee81a97a",
+    "studentDigest": "b5461ade7464e5e10e30d83f391d25e53590ff1ba7b1e450cdb249510172e109",
+    "candidateDigest": "3dc4e6bffbaffdf38a4b038e8ce65e84e57772a1a847319f65c57e0956e4c2a7",
+    "assetDigest": "07cd7a6cec5b99919d1f136521416f05e7c372c5d95df7389e45dcfb8aa1fb50",
+    "variantDeltaDigest": "e54f48ca514fab0481eb3e2f7c07f91534cef59c371deff48346451ee0132870"
+  },
+  "at30": {
+    "status": "computed",
+    "correctOptionIndexes": [
+      4
+    ],
+    "equivalentOptionPairs": [],
+    "uniqueCorrectValue": true,
+    "distinctComputedValues": true,
+    "choiceValueControlPassed": true,
+    "normalizedOptions": [
+      [
+        {
+          "role": "cosBeta",
+          "dimension": "scalar",
+          "value": [
+            {
+              "radicand": 3,
+              "numerator": "1",
+              "denominator": "2"
+            }
+          ]
+        }
+      ],
+      [
+        {
+          "role": "cosBeta",
+          "dimension": "scalar",
+          "value": [
+            {
+              "radicand": 3,
+              "numerator": "1",
+              "denominator": "3"
+            }
+          ]
+        }
+      ],
+      [
+        {
+          "role": "cosBeta",
+          "dimension": "scalar",
+          "value": [
+            {
+              "radicand": 1,
+              "numerator": "2",
+              "denominator": "1"
+            }
+          ]
+        }
+      ],
+      [
+        {
+          "role": "cosBeta",
+          "dimension": "scalar",
+          "value": [
+            {
+              "radicand": 1,
+              "numerator": "1",
+              "denominator": "2"
+            }
+          ]
+        }
+      ],
+      [
+        {
+          "role": "cosBeta",
+          "dimension": "scalar",
+          "value": [
+            {
+              "radicand": 3,
+              "numerator": "1",
+              "denominator": "1"
+            }
+          ]
+        }
+      ]
+    ],
+    "normalizedTarget": [
+      {
+        "role": "cosBeta",
+        "dimension": "scalar",
+        "value": [
+          {
+            "radicand": 1,
+            "numerator": "1",
+            "denominator": "2"
+          }
+        ]
+      }
+    ],
+    "calculationOnly": true,
+    "modelAndDomainProofRequired": true,
+    "permitsGradeOrQuestionApproval": false
+  },
+  "witnesses": [
+    {
+      "opposite": 3,
+      "adjacent": 4,
+      "hypotenuse": 5,
+      "SQ": "2*3/5",
+      "OS": "2*4/5",
+      "check": {
+        "status": "computed",
+        "correctOptionIndexes": [
+          4
+        ],
+        "equivalentOptionPairs": [],
+        "uniqueCorrectValue": true,
+        "distinctComputedValues": true,
+        "choiceValueControlPassed": true,
+        "normalizedOptions": [
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "4",
+                  "denominator": "5"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "3",
+                  "denominator": "4"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "5",
+                  "denominator": "3"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "3",
+                  "denominator": "5"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "4",
+                  "denominator": "3"
+                }
+              ]
+            }
+          ]
+        ],
+        "normalizedTarget": [
+          {
+            "role": "cosBeta",
+            "dimension": "scalar",
+            "value": [
+              {
+                "radicand": 1,
+                "numerator": "3",
+                "denominator": "5"
+              }
+            ]
+          }
+        ],
+        "calculationOnly": true,
+        "modelAndDomainProofRequired": true,
+        "permitsGradeOrQuestionApproval": false
+      }
+    },
+    {
+      "opposite": 5,
+      "adjacent": 12,
+      "hypotenuse": 13,
+      "SQ": "2*5/13",
+      "OS": "2*12/13",
+      "check": {
+        "status": "computed",
+        "correctOptionIndexes": [
+          4
+        ],
+        "equivalentOptionPairs": [],
+        "uniqueCorrectValue": true,
+        "distinctComputedValues": true,
+        "choiceValueControlPassed": true,
+        "normalizedOptions": [
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "12",
+                  "denominator": "13"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "5",
+                  "denominator": "12"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "13",
+                  "denominator": "5"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "5",
+                  "denominator": "13"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "12",
+                  "denominator": "5"
+                }
+              ]
+            }
+          ]
+        ],
+        "normalizedTarget": [
+          {
+            "role": "cosBeta",
+            "dimension": "scalar",
+            "value": [
+              {
+                "radicand": 1,
+                "numerator": "5",
+                "denominator": "13"
+              }
+            ]
+          }
+        ],
+        "calculationOnly": true,
+        "modelAndDomainProofRequired": true,
+        "permitsGradeOrQuestionApproval": false
+      }
+    },
+    {
+      "opposite": 6,
+      "adjacent": 8,
+      "hypotenuse": 10,
+      "SQ": "2*6/10",
+      "OS": "2*8/10",
+      "check": {
+        "status": "computed",
+        "correctOptionIndexes": [
+          4
+        ],
+        "equivalentOptionPairs": [],
+        "uniqueCorrectValue": true,
+        "distinctComputedValues": true,
+        "choiceValueControlPassed": true,
+        "normalizedOptions": [
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "4",
+                  "denominator": "5"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "3",
+                  "denominator": "4"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "5",
+                  "denominator": "3"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "3",
+                  "denominator": "5"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "4",
+                  "denominator": "3"
+                }
+              ]
+            }
+          ]
+        ],
+        "normalizedTarget": [
+          {
+            "role": "cosBeta",
+            "dimension": "scalar",
+            "value": [
+              {
+                "radicand": 1,
+                "numerator": "3",
+                "denominator": "5"
+              }
+            ]
+          }
+        ],
+        "calculationOnly": true,
+        "modelAndDomainProofRequired": true,
+        "permitsGradeOrQuestionApproval": false
+      }
+    },
+    {
+      "opposite": 7,
+      "adjacent": 24,
+      "hypotenuse": 25,
+      "SQ": "2*7/25",
+      "OS": "2*24/25",
+      "check": {
+        "status": "computed",
+        "correctOptionIndexes": [
+          4
+        ],
+        "equivalentOptionPairs": [],
+        "uniqueCorrectValue": true,
+        "distinctComputedValues": true,
+        "choiceValueControlPassed": true,
+        "normalizedOptions": [
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "24",
+                  "denominator": "25"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "7",
+                  "denominator": "24"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "25",
+                  "denominator": "7"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "7",
+                  "denominator": "25"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "24",
+                  "denominator": "7"
+                }
+              ]
+            }
+          ]
+        ],
+        "normalizedTarget": [
+          {
+            "role": "cosBeta",
+            "dimension": "scalar",
+            "value": [
+              {
+                "radicand": 1,
+                "numerator": "7",
+                "denominator": "25"
+              }
+            ]
+          }
+        ],
+        "calculationOnly": true,
+        "modelAndDomainProofRequired": true,
+        "permitsGradeOrQuestionApproval": false
+      }
+    },
+    {
+      "opposite": 8,
+      "adjacent": 15,
+      "hypotenuse": 17,
+      "SQ": "2*8/17",
+      "OS": "2*15/17",
+      "check": {
+        "status": "computed",
+        "correctOptionIndexes": [
+          4
+        ],
+        "equivalentOptionPairs": [],
+        "uniqueCorrectValue": true,
+        "distinctComputedValues": true,
+        "choiceValueControlPassed": true,
+        "normalizedOptions": [
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "15",
+                  "denominator": "17"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "8",
+                  "denominator": "15"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "17",
+                  "denominator": "8"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "8",
+                  "denominator": "17"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "15",
+                  "denominator": "8"
+                }
+              ]
+            }
+          ]
+        ],
+        "normalizedTarget": [
+          {
+            "role": "cosBeta",
+            "dimension": "scalar",
+            "value": [
+              {
+                "radicand": 1,
+                "numerator": "8",
+                "denominator": "17"
+              }
+            ]
+          }
+        ],
+        "calculationOnly": true,
+        "modelAndDomainProofRequired": true,
+        "permitsGradeOrQuestionApproval": false
+      }
+    },
+    {
+      "opposite": 9,
+      "adjacent": 12,
+      "hypotenuse": 15,
+      "SQ": "2*9/15",
+      "OS": "2*12/15",
+      "check": {
+        "status": "computed",
+        "correctOptionIndexes": [
+          4
+        ],
+        "equivalentOptionPairs": [],
+        "uniqueCorrectValue": true,
+        "distinctComputedValues": true,
+        "choiceValueControlPassed": true,
+        "normalizedOptions": [
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "4",
+                  "denominator": "5"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "3",
+                  "denominator": "4"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "5",
+                  "denominator": "3"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "3",
+                  "denominator": "5"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "4",
+                  "denominator": "3"
+                }
+              ]
+            }
+          ]
+        ],
+        "normalizedTarget": [
+          {
+            "role": "cosBeta",
+            "dimension": "scalar",
+            "value": [
+              {
+                "radicand": 1,
+                "numerator": "3",
+                "denominator": "5"
+              }
+            ]
+          }
+        ],
+        "calculationOnly": true,
+        "modelAndDomainProofRequired": true,
+        "permitsGradeOrQuestionApproval": false
+      }
+    },
+    {
+      "opposite": 10,
+      "adjacent": 24,
+      "hypotenuse": 26,
+      "SQ": "2*10/26",
+      "OS": "2*24/26",
+      "check": {
+        "status": "computed",
+        "correctOptionIndexes": [
+          4
+        ],
+        "equivalentOptionPairs": [],
+        "uniqueCorrectValue": true,
+        "distinctComputedValues": true,
+        "choiceValueControlPassed": true,
+        "normalizedOptions": [
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "12",
+                  "denominator": "13"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "5",
+                  "denominator": "12"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "13",
+                  "denominator": "5"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "5",
+                  "denominator": "13"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "12",
+                  "denominator": "5"
+                }
+              ]
+            }
+          ]
+        ],
+        "normalizedTarget": [
+          {
+            "role": "cosBeta",
+            "dimension": "scalar",
+            "value": [
+              {
+                "radicand": 1,
+                "numerator": "5",
+                "denominator": "13"
+              }
+            ]
+          }
+        ],
+        "calculationOnly": true,
+        "modelAndDomainProofRequired": true,
+        "permitsGradeOrQuestionApproval": false
+      }
+    },
+    {
+      "opposite": 12,
+      "adjacent": 16,
+      "hypotenuse": 20,
+      "SQ": "2*12/20",
+      "OS": "2*16/20",
+      "check": {
+        "status": "computed",
+        "correctOptionIndexes": [
+          4
+        ],
+        "equivalentOptionPairs": [],
+        "uniqueCorrectValue": true,
+        "distinctComputedValues": true,
+        "choiceValueControlPassed": true,
+        "normalizedOptions": [
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "4",
+                  "denominator": "5"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "3",
+                  "denominator": "4"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "5",
+                  "denominator": "3"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "3",
+                  "denominator": "5"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "4",
+                  "denominator": "3"
+                }
+              ]
+            }
+          ]
+        ],
+        "normalizedTarget": [
+          {
+            "role": "cosBeta",
+            "dimension": "scalar",
+            "value": [
+              {
+                "radicand": 1,
+                "numerator": "3",
+                "denominator": "5"
+              }
+            ]
+          }
+        ],
+        "calculationOnly": true,
+        "modelAndDomainProofRequired": true,
+        "permitsGradeOrQuestionApproval": false
+      }
+    },
+    {
+      "opposite": 15,
+      "adjacent": 20,
+      "hypotenuse": 25,
+      "SQ": "2*15/25",
+      "OS": "2*20/25",
+      "check": {
+        "status": "computed",
+        "correctOptionIndexes": [
+          4
+        ],
+        "equivalentOptionPairs": [],
+        "uniqueCorrectValue": true,
+        "distinctComputedValues": true,
+        "choiceValueControlPassed": true,
+        "normalizedOptions": [
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "4",
+                  "denominator": "5"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "3",
+                  "denominator": "4"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "5",
+                  "denominator": "3"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "3",
+                  "denominator": "5"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "4",
+                  "denominator": "3"
+                }
+              ]
+            }
+          ]
+        ],
+        "normalizedTarget": [
+          {
+            "role": "cosBeta",
+            "dimension": "scalar",
+            "value": [
+              {
+                "radicand": 1,
+                "numerator": "3",
+                "denominator": "5"
+              }
+            ]
+          }
+        ],
+        "calculationOnly": true,
+        "modelAndDomainProofRequired": true,
+        "permitsGradeOrQuestionApproval": false
+      }
+    },
+    {
+      "opposite": 16,
+      "adjacent": 30,
+      "hypotenuse": 34,
+      "SQ": "2*16/34",
+      "OS": "2*30/34",
+      "check": {
+        "status": "computed",
+        "correctOptionIndexes": [
+          4
+        ],
+        "equivalentOptionPairs": [],
+        "uniqueCorrectValue": true,
+        "distinctComputedValues": true,
+        "choiceValueControlPassed": true,
+        "normalizedOptions": [
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "15",
+                  "denominator": "17"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "8",
+                  "denominator": "15"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "17",
+                  "denominator": "8"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "8",
+                  "denominator": "17"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "15",
+                  "denominator": "8"
+                }
+              ]
+            }
+          ]
+        ],
+        "normalizedTarget": [
+          {
+            "role": "cosBeta",
+            "dimension": "scalar",
+            "value": [
+              {
+                "radicand": 1,
+                "numerator": "8",
+                "denominator": "17"
+              }
+            ]
+          }
+        ],
+        "calculationOnly": true,
+        "modelAndDomainProofRequired": true,
+        "permitsGradeOrQuestionApproval": false
+      }
+    },
+    {
+      "opposite": 18,
+      "adjacent": 24,
+      "hypotenuse": 30,
+      "SQ": "2*18/30",
+      "OS": "2*24/30",
+      "check": {
+        "status": "computed",
+        "correctOptionIndexes": [
+          4
+        ],
+        "equivalentOptionPairs": [],
+        "uniqueCorrectValue": true,
+        "distinctComputedValues": true,
+        "choiceValueControlPassed": true,
+        "normalizedOptions": [
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "4",
+                  "denominator": "5"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "3",
+                  "denominator": "4"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "5",
+                  "denominator": "3"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "3",
+                  "denominator": "5"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "4",
+                  "denominator": "3"
+                }
+              ]
+            }
+          ]
+        ],
+        "normalizedTarget": [
+          {
+            "role": "cosBeta",
+            "dimension": "scalar",
+            "value": [
+              {
+                "radicand": 1,
+                "numerator": "3",
+                "denominator": "5"
+              }
+            ]
+          }
+        ],
+        "calculationOnly": true,
+        "modelAndDomainProofRequired": true,
+        "permitsGradeOrQuestionApproval": false
+      }
+    },
+    {
+      "opposite": 20,
+      "adjacent": 21,
+      "hypotenuse": 29,
+      "SQ": "2*20/29",
+      "OS": "2*21/29",
+      "check": {
+        "status": "computed",
+        "correctOptionIndexes": [
+          4
+        ],
+        "equivalentOptionPairs": [],
+        "uniqueCorrectValue": true,
+        "distinctComputedValues": true,
+        "choiceValueControlPassed": true,
+        "normalizedOptions": [
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "21",
+                  "denominator": "29"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "20",
+                  "denominator": "21"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "29",
+                  "denominator": "20"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "20",
+                  "denominator": "29"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "21",
+                  "denominator": "20"
+                }
+              ]
+            }
+          ]
+        ],
+        "normalizedTarget": [
+          {
+            "role": "cosBeta",
+            "dimension": "scalar",
+            "value": [
+              {
+                "radicand": 1,
+                "numerator": "20",
+                "denominator": "29"
+              }
+            ]
+          }
+        ],
+        "calculationOnly": true,
+        "modelAndDomainProofRequired": true,
+        "permitsGradeOrQuestionApproval": false
+      }
+    },
+    {
+      "opposite": 21,
+      "adjacent": 28,
+      "hypotenuse": 35,
+      "SQ": "2*21/35",
+      "OS": "2*28/35",
+      "check": {
+        "status": "computed",
+        "correctOptionIndexes": [
+          4
+        ],
+        "equivalentOptionPairs": [],
+        "uniqueCorrectValue": true,
+        "distinctComputedValues": true,
+        "choiceValueControlPassed": true,
+        "normalizedOptions": [
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "4",
+                  "denominator": "5"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "3",
+                  "denominator": "4"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "5",
+                  "denominator": "3"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "3",
+                  "denominator": "5"
+                }
+              ]
+            }
+          ],
+          [
+            {
+              "role": "cosBeta",
+              "dimension": "scalar",
+              "value": [
+                {
+                  "radicand": 1,
+                  "numerator": "4",
+                  "denominator": "3"
+                }
+              ]
+            }
+          ]
+        ],
+        "normalizedTarget": [
+          {
+            "role": "cosBeta",
+            "dimension": "scalar",
+            "value": [
+              {
+                "radicand": 1,
+                "numerator": "3",
+                "denominator": "5"
+              }
+            ]
+          }
+        ],
+        "calculationOnly": true,
+        "modelAndDomainProofRequired": true,
+        "permitsGradeOrQuestionApproval": false
+      }
+    }
+  ],
+  "domainProof": {
+    "basis": "The actual perpendicular lines give similar OSQ/OUT, UT=2s/r. Since0<s<r<2: r/2>s/2; s/r>s/2;2/s>1>s/2;r/s>1>s/2. Hence only④ equals the target throughout the domain.",
+    "scope": "Author domain proof, not independent/grade approval; samples alone do not prove a symbolic identity.",
+    "symbolicQuestionDistinction": "Different wrong expressions may coincide at some configuration; duplicate functions UT/2 and SQ/OS were identical throughout the domain. Correct-target uniqueness is proved separately."
+  },
+  "figure": {
+    "engine": "renderFigureSpec strict:true",
+    "specSha256": "c281d4be98045dc36a54bd393e70f3c197139b7ba2434d6134887cd0e0bff675",
+    "svgSha256": "63dc539bdd3adf2ea3b52f71a519eb959d4428138d222e5b8a32535497645111",
+    "recreatedFromSpec": true,
+    "notOriginalCrop": true,
+    "priorNewFigureSameBytes": true
+  },
+  "fullVerified": 0,
+  "loadable": 0
+}

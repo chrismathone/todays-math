@@ -1,0 +1,1316 @@
+{
+  "kind": "current-bound-independent-semantic-review-audit/v1",
+  "createdAt": "2026-10-08T13:23:40.751Z",
+  "groups": [
+    {
+      "exam": "Gyeonggu",
+      "reviewed": 22,
+      "mathReviewerPassed": 22,
+      "gradeReviewerPassed": 22,
+      "contentPassed": 1,
+      "contentHeld": 21,
+      "rows": [
+        {
+          "questionNumber": 1,
+          "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q01",
+          "authoredCandidate": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q01\\q01.json",
+            "sha256": "8ac489d037ebe4271f346e8048d7a3c8293246f869c2192a0f6b2660e8f9a288",
+            "candidateDigest": "2415d29b6b1104bb6c26e3e000e54f3b5edec2f584ef0ddef2b16c9c8bafd517"
+          },
+          "packageCandidateDigest": "213e488556d9702d95832e2bd348dc16b2d85cf4c25e9cce35791dff82aef9af",
+          "studentDigest": "2a5d89e15f071d3cb081c22c717bd8fbd7261670952bd572d31d5db7d8fe7606",
+          "assetDigest": "5697dcfd1c2ca67c0aad7f26ca2024638725d278561d90128ca9643eb82e80e8",
+          "rawSolve": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-independent-r1\\blind\\solve\\q01.json",
+            "sha256": "e4d89f652d4605e8cbfb7fa7c86524111fe1058188b54dfd60fe56d749a93049",
+            "solveDigest": "cf9ac6b7d9a000108cd365afda936181b6419c5ad79c806e19fe74e26e4e4ace"
+          },
+          "report": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-final-review-r1\\reports\\q01.json",
+            "sha256": "dc89b592d19c2d3f11c76cba2830ebedc7c2863a2609d29c3e4bc67a19dc471c",
+            "reportDigest": "17ded7bd361857345631a802dceb232bf64bfb1f513ca8619a7f856dc8310210"
+          },
+          "independentMathReviewerPassed": true,
+          "independentSevenSurfaceGradeReviewerPassed": true,
+          "contentReviewPassed": false,
+          "holds": [
+            "unitFamilyFit"
+          ],
+          "literalComparatorMatches": false,
+          "literalComparatorOverridden": false,
+          "fullVerified": false,
+          "loadable": false
+        },
+        {
+          "questionNumber": 2,
+          "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q02",
+          "authoredCandidate": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q02\\q02.json",
+            "sha256": "fc62c4423ac051fb3b1d1a0aac506aded25d91e5e95134796949a7a239679157",
+            "candidateDigest": "b8fedf7eef0a9a9d041e9d78f6c8c7101f3d8c581fa12d9e116843dcc0384b1a"
+          },
+          "packageCandidateDigest": "b8fedf7eef0a9a9d041e9d78f6c8c7101f3d8c581fa12d9e116843dcc0384b1a",
+          "studentDigest": "43fa3d9dd26eb2ded45e2716442f7563142908dc61c27aa5c15682d1e8d4d645",
+          "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "rawSolve": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-independent-r1\\blind\\solve\\q02.json",
+            "sha256": "71199eecd9ad07d09663bdddc4ae4d2101b7f8856bf53d1ff770a96555e5e430",
+            "solveDigest": "0389dbeb997f7d520bbdf1ad948a21de60072f7baed0ab1d6093eb195938640c"
+          },
+          "report": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-final-review-r1\\reports\\q02.json",
+            "sha256": "ed3771e2814c6f7a4b28078faca06518526a8e3b3d1723ed38875d18a2e1edc5",
+            "reportDigest": "07a40448b8bfc8c076f719e58870ebaff88b2ee65eafab796dbf2d9ef24d52eb"
+          },
+          "independentMathReviewerPassed": true,
+          "independentSevenSurfaceGradeReviewerPassed": true,
+          "contentReviewPassed": false,
+          "holds": [
+            "unitFamilyFit"
+          ],
+          "literalComparatorMatches": false,
+          "literalComparatorOverridden": false,
+          "fullVerified": false,
+          "loadable": false
+        },
+        {
+          "questionNumber": 3,
+          "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q03",
+          "authoredCandidate": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q03\\q03.json",
+            "sha256": "20ac358951caa221e805e20d156538f479788542a160accfbe3da13b8b015e45",
+            "candidateDigest": "59ea6b60d01b249dc8f0a255daee7a50fe6385348ce4b4789cbd2e46b9379f81"
+          },
+          "packageCandidateDigest": "680e8ca90916cdfd6323cbb06d4760cf35b93a1be25d524e8fc711fe5ee4e8ad",
+          "studentDigest": "411df1ff3c4ed5806b377b8798b025167153f1a785d77fc60e02abf45087702e",
+          "assetDigest": "78b7c2c093de77a430dc399b4a0a4b112bd20875fcc372b84b8a060838e48476",
+          "rawSolve": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-independent-r1\\blind\\solve\\q03.json",
+            "sha256": "a3956995bef070d70931f964d0edd26d901690f8f29c089a37efcc1ffc34f26b",
+            "solveDigest": "d17c8548eb58a505e47cef40879b92b2a0814eb7dd001ee1ce63fc4de53cd39c"
+          },
+          "report": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-final-review-r1\\reports\\q03.json",
+            "sha256": "4010a83af769144b29ff191867655c5d6bdbdf781c98547b43d32431902a3781",
+            "reportDigest": "ed386d6de44c8078c73f65c229fb27e6bc49d53da955e828bfde82e117b9fcd7"
+          },
+          "independentMathReviewerPassed": true,
+          "independentSevenSurfaceGradeReviewerPassed": true,
+          "contentReviewPassed": false,
+          "holds": [
+            "unitFamilyFit"
+          ],
+          "literalComparatorMatches": false,
+          "literalComparatorOverridden": false,
+          "fullVerified": false,
+          "loadable": false
+        },
+        {
+          "questionNumber": 4,
+          "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q04",
+          "authoredCandidate": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q04\\q04.json",
+            "sha256": "01005d538ebceacc7f09d23a5ecfe5b7b22a7804f691146aa2be68ca7f152ca5",
+            "candidateDigest": "34fe49338558101d415e046d52b4fb06857d91e7787aae3f29a745a912a4d80a"
+          },
+          "packageCandidateDigest": "06e173ffb20c46a21baaa87e483accfa4ae89aa6cafe63355110a2d5f0f9b240",
+          "studentDigest": "297db22d9b30a39d5722c0c910a92a726ec7a7a88fd7d7bd773979e5a19aad8c",
+          "assetDigest": "f8a75266ea55e69c13631959f044cae8731e8f5706dff1d527ec27c3a95048cf",
+          "rawSolve": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-independent-r1\\blind\\solve\\q04.json",
+            "sha256": "ffd9fbe41d7ca21cad5b85a81740a3f281ff49280e03926cf3119e66ef546154",
+            "solveDigest": "0f7401993307ee05eea2ce6104e98099b9690f8609b81ab278b92a6cea5e067f"
+          },
+          "report": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-final-review-r1\\reports\\q04.json",
+            "sha256": "4234332db229806e462c0e479e1ad400397b5f2468117f9d85ce3fa1ce5b8e80",
+            "reportDigest": "a36b7c5650897edf325bfa81234eaf82632b8967a4a189a0cfca2ded160db86d"
+          },
+          "independentMathReviewerPassed": true,
+          "independentSevenSurfaceGradeReviewerPassed": true,
+          "contentReviewPassed": false,
+          "holds": [
+            "unitFamilyFit"
+          ],
+          "literalComparatorMatches": false,
+          "literalComparatorOverridden": false,
+          "fullVerified": false,
+          "loadable": false
+        },
+        {
+          "questionNumber": 5,
+          "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q05",
+          "authoredCandidate": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q05\\q05.json",
+            "sha256": "810b5be2da7bce70b69648ad60c8a46ad0ed8cd148d37c1722a23a362d694a10",
+            "candidateDigest": "28bc0ff2bab3447adaeda3abbf3b7953315ba251d39abe6a497f8d1b31d5379d"
+          },
+          "packageCandidateDigest": "28bc0ff2bab3447adaeda3abbf3b7953315ba251d39abe6a497f8d1b31d5379d",
+          "studentDigest": "1b71f79d7da85aef72e90951e0cf45b5c4964e565709cf7525fadf48163add41",
+          "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "rawSolve": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-independent-r1\\blind\\solve\\q05.json",
+            "sha256": "7e68d54b8ccd76ed66f258d4016500a233801ef630f028b84455e900601e67c2",
+            "solveDigest": "4483375946dcb5cbf22a9d70e64deadb2ddcf48e0ac74895b6a514f9e2b1c355"
+          },
+          "report": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-final-review-r1\\reports\\q05.json",
+            "sha256": "b83fbd2b78d202c05a729b4fdf7f2731aeb632f5b7e7781095f5bd42f199a7b0",
+            "reportDigest": "554c054c6172a6b3cc0feabe226dcc2d0716d41d120e0a6df7340281b0098138"
+          },
+          "independentMathReviewerPassed": true,
+          "independentSevenSurfaceGradeReviewerPassed": true,
+          "contentReviewPassed": false,
+          "holds": [
+            "unitFamilyFit"
+          ],
+          "literalComparatorMatches": false,
+          "literalComparatorOverridden": false,
+          "fullVerified": false,
+          "loadable": false
+        },
+        {
+          "questionNumber": 6,
+          "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q06",
+          "authoredCandidate": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q06\\q06.json",
+            "sha256": "e8dd72f59abaa134c45ab1390d7a261e966e4f54f162533e5d27572c08a607e1",
+            "candidateDigest": "97a65f83b071eea459f0b6c57b47945e171404df49212b5e14cd0bcef0bbde32"
+          },
+          "packageCandidateDigest": "26029687a7829e0f1a93383c9c34e10b436ef26cdf8193d3303be4e997353011",
+          "studentDigest": "0bf55c36df942a46769045279a42f7c97e4b00c173dd7e50f458b26268343bc5",
+          "assetDigest": "192b1e29859f41fb335b3afe0098349faeb5d283a055df66669b70c31ff8b60a",
+          "rawSolve": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-independent-r1\\blind\\solve\\q06.json",
+            "sha256": "a5c3fbaf2dd085fdf769e3b25a95100ae351bee726ad19c4b66e6fa30db2777b",
+            "solveDigest": "fb14b149757781b5804f5b96b16bdb87f08f8c1790db95282994c8b179e980ff"
+          },
+          "report": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-final-review-r1\\reports\\q06.json",
+            "sha256": "a84b02994ddb28eebefadb1b1735c68b74526ff530b9202c5f5321d4268f83f4",
+            "reportDigest": "abdda2d4987f5ebcdca9163ee5ca7ce5d5a4b4ccb1b906ba19898fe9ee2c03ad"
+          },
+          "independentMathReviewerPassed": true,
+          "independentSevenSurfaceGradeReviewerPassed": true,
+          "contentReviewPassed": false,
+          "holds": [
+            "unitFamilyFit"
+          ],
+          "literalComparatorMatches": false,
+          "literalComparatorOverridden": false,
+          "fullVerified": false,
+          "loadable": false
+        },
+        {
+          "questionNumber": 7,
+          "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q07",
+          "authoredCandidate": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q07\\q07.json",
+            "sha256": "c2083ea8c80bdfb55a9296909378e4ef805da7177fe1b93e710fba90a72caa7c",
+            "candidateDigest": "5d33aab18d4462f9cfd78c1bc24db31da5e1fa86cca310c70ed1db27de87f5b6"
+          },
+          "packageCandidateDigest": "5d33aab18d4462f9cfd78c1bc24db31da5e1fa86cca310c70ed1db27de87f5b6",
+          "studentDigest": "4a6c9fde8d5b6bbd3d96233ad6b61ed6202c06fbc6cec638c5491eb6b19fec44",
+          "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "rawSolve": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-independent-r1\\blind\\solve\\q07.json",
+            "sha256": "e4b95c987e7c1239d7af70a242f9db31ba922217dc958d10d2e7a3ce6cdd9d09",
+            "solveDigest": "d5219b470c9e7dce63e19ee9a03588e051d18c75d7b8d586ccff7d5f4980e93f"
+          },
+          "report": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-final-review-r1\\reports\\q07.json",
+            "sha256": "df33da0c5dd77bc4800277bf2c5b11c238cca5e1e4ff9dc81aeb5e640a7a9c8c",
+            "reportDigest": "d2d933228f254b6a63cfcaeecf046719a93cd20fb2f1f88eb88f43a4eaa0cf82"
+          },
+          "independentMathReviewerPassed": true,
+          "independentSevenSurfaceGradeReviewerPassed": true,
+          "contentReviewPassed": false,
+          "holds": [
+            "unitFamilyFit"
+          ],
+          "literalComparatorMatches": false,
+          "literalComparatorOverridden": false,
+          "fullVerified": false,
+          "loadable": false
+        },
+        {
+          "questionNumber": 8,
+          "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q08",
+          "authoredCandidate": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q08\\q08.json",
+            "sha256": "5e1558b0c7051824c397f723f309d8c23352d742a2fe420a898f0e2ae58b9c2f",
+            "candidateDigest": "1ef7996db812b5b920834dc645c74bb1e7a7904fbc5024255fb6fa82b4b93732"
+          },
+          "packageCandidateDigest": "12f5bb203bf90bb79957b79e151225c89c0a727db7eda2a5be31dc9c6764d93f",
+          "studentDigest": "f05d647e2defce842751a47b7cfd06a2cdde812f6ba53d4232d10cbdefe50fe1",
+          "assetDigest": "090718aeaaad3ed37513d33b35b9e22cc2586d9096dd58bc431da1ee7e9746e6",
+          "rawSolve": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-independent-r1\\blind\\solve\\q08.json",
+            "sha256": "74852e5603a88c69c81f7fe1611146d5001ca69eac91113c0454765a9b082764",
+            "solveDigest": "cc7e723415739cf58de2356bab8b1a346bcec69016cdf9be147137a6940d3eff"
+          },
+          "report": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-final-review-r1\\reports\\q08.json",
+            "sha256": "bc6e1e3add5c494279a27c1a240022228ac0cbcb4b06f51c75a7cec0ce2ca29b",
+            "reportDigest": "4e884116e31553c8e505f929d05e1683e1242e3417cb7cb82d1be23557105b88"
+          },
+          "independentMathReviewerPassed": true,
+          "independentSevenSurfaceGradeReviewerPassed": true,
+          "contentReviewPassed": false,
+          "holds": [
+            "unitFamilyFit"
+          ],
+          "literalComparatorMatches": false,
+          "literalComparatorOverridden": false,
+          "fullVerified": false,
+          "loadable": false
+        },
+        {
+          "questionNumber": 9,
+          "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q09",
+          "authoredCandidate": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q09\\q09.json",
+            "sha256": "964b671bbf557d10737fc98d3491332ebd8d8c9c26ffee0ef963617e0b42fa80",
+            "candidateDigest": "6ae0da6ef996da80f774ba122673053487ea5cd1b23a2dc3d4e6209d0138948a"
+          },
+          "packageCandidateDigest": "fb528a8b595aaad2b0a39ec11be6a1c088129cbe7e9180b57cbc5060975eee80",
+          "studentDigest": "ec923ff716c42c8337fd99a5fa5ab699afd9e5715b236d8f54f5d0bf777ba37c",
+          "assetDigest": "1db0b5ef0127fbf52c59c79d3307707e9ed67f019a5b4c9ddee1c3c36a7c20b5",
+          "rawSolve": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-independent-r1\\blind\\solve\\q09.json",
+            "sha256": "7ebe3ab148d173350b7aad4ca0120969ae8e0225bebdba626c939a09ad419c1c",
+            "solveDigest": "8b30c835c17da94e54590a6a6ff32a53945dd67100409cf2b8186aba71f0ab9b"
+          },
+          "report": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-final-review-r1\\reports\\q09.json",
+            "sha256": "e6838d866d979aac0ed80e91573e723538fd5a8d14f3b2841a1aa50b38974dbb",
+            "reportDigest": "eca7a251ede3fb5f377df6f742144e8fa2c3ba01cc58022913565c7d409f6a45"
+          },
+          "independentMathReviewerPassed": true,
+          "independentSevenSurfaceGradeReviewerPassed": true,
+          "contentReviewPassed": false,
+          "holds": [
+            "unitFamilyFit"
+          ],
+          "literalComparatorMatches": false,
+          "literalComparatorOverridden": false,
+          "fullVerified": false,
+          "loadable": false
+        },
+        {
+          "questionNumber": 10,
+          "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q10",
+          "authoredCandidate": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q10\\q10.json",
+            "sha256": "c940ac48a457db8968e9cd932dcb2f9654a53e3f35ad98f49d062f1f466f1758",
+            "candidateDigest": "9d7f97246519845508e3d56dcbeb2a4b20c7052dd1d96c4ec77a6eb40754ea0b"
+          },
+          "packageCandidateDigest": "ff3854f62d48279720fc4804aa2fff384d9a28756488c266283727c55c453a09",
+          "studentDigest": "c957094979a869ba5a4b4158d96e9517c67e45823153ad704130771bde179af7",
+          "assetDigest": "ef45f97e3195a3c21610fd25205919c75973b29d7b0a0652516d2318e3cf7c3a",
+          "rawSolve": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-independent-r1\\blind\\solve\\q10.json",
+            "sha256": "af087948fe38cbb07ebe42331fba97aaeeb618d629df8c3b5694f83d2c938d1f",
+            "solveDigest": "32328658583d0a54e1e9e9237ca7204103507e59830954962e3db531d9cf52ff"
+          },
+          "report": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-final-review-r1\\reports\\q10.json",
+            "sha256": "77cde8443a4f0a3c40a29809c7560b2750674715bbbb01deac91ae7f3e9274c9",
+            "reportDigest": "c9589637beb46fa6f936dc02ec23757084304e12f2ddb168b9d363f1dfb67880"
+          },
+          "independentMathReviewerPassed": true,
+          "independentSevenSurfaceGradeReviewerPassed": true,
+          "contentReviewPassed": false,
+          "holds": [
+            "unitFamilyFit"
+          ],
+          "literalComparatorMatches": false,
+          "literalComparatorOverridden": false,
+          "fullVerified": false,
+          "loadable": false
+        },
+        {
+          "questionNumber": 11,
+          "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q11",
+          "authoredCandidate": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q11\\q11.json",
+            "sha256": "5f9db1e534e8a6a3a6eaff90484a04bf3c5ac8c0adecc685cd7c0cafbe4486a6",
+            "candidateDigest": "6f7fc80e2e73ad65d877e76945a8be6688c5039827368ae9c45e66ccde12f8ba"
+          },
+          "packageCandidateDigest": "b6f8e52285cec55096d65c58643065d966c1265b0f7d8757d683d8d1e68163a7",
+          "studentDigest": "522306fe1543b4bae6ad8b0fe2ba86084df12a5fc24a7e377333b58e157f4631",
+          "assetDigest": "31c1079e340bdbb74dd5f81b7e88685df7bc322543f63921b861481ea665f0e6",
+          "rawSolve": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-independent-r1\\blind\\solve\\q11.json",
+            "sha256": "57ab3761e81b8d63852a321d926450d861079d49ce49c9c5ce90072776be3e1d",
+            "solveDigest": "ea400714d9861ca0c4ba6143ff083d3ba209aae27be3a1abb9f04d9fa16ddee6"
+          },
+          "report": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-final-review-r1\\reports\\q11.json",
+            "sha256": "eb64f604d55a27206666c5bca486beea18100b22820a0d6e59fa466872e4b5e4",
+            "reportDigest": "9f7be29cffd4f006ae74b62b9e41195447816dfe897dba629c885e20c303f469"
+          },
+          "independentMathReviewerPassed": true,
+          "independentSevenSurfaceGradeReviewerPassed": true,
+          "contentReviewPassed": false,
+          "holds": [
+            "unitFamilyFit"
+          ],
+          "literalComparatorMatches": false,
+          "literalComparatorOverridden": false,
+          "fullVerified": false,
+          "loadable": false
+        },
+        {
+          "questionNumber": 12,
+          "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q12",
+          "authoredCandidate": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q12\\q12.json",
+            "sha256": "7252904b13203394eb0a2ca42f0abe8a0c70ca930f04859d1ef4a6a0d7d18d09",
+            "candidateDigest": "a7c5cb9b6a585b0d26b7724d995efc561b7aec9d93a6624d3144c3a48c07d800"
+          },
+          "packageCandidateDigest": "26997964081ec452c9e59f5c763b7d1c5fa3d942e8ea6d3f8a59e0ed4ac4eb73",
+          "studentDigest": "4e64d6f387b1ea07e4731e774660cabae47b267052b2538c275c9853f7bed203",
+          "assetDigest": "a236a826ba15723108757c058aad183f0401b4786960e6b272188dda8aaaa17a",
+          "rawSolve": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-independent-r1\\blind\\solve\\q12.json",
+            "sha256": "bee6be062315378f18a4b6b2d36e9e0e83face37c8ac57970df552dbb25925a4",
+            "solveDigest": "5b84eec0ae49c409b6390fb0ebe376a525824d6fbf1abcff1bd0d97a5a5703e2"
+          },
+          "report": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-final-review-r1\\reports\\q12.json",
+            "sha256": "f1ee476c66ebbfeb567d50419337533b15b936fa2723bbcbb2c6a0f5e36300f1",
+            "reportDigest": "1b2a0c97ff6afb7aba3ed97fdfa30f85ea67f1a6f83d8b6612b6b5e297a65d78"
+          },
+          "independentMathReviewerPassed": true,
+          "independentSevenSurfaceGradeReviewerPassed": true,
+          "contentReviewPassed": false,
+          "holds": [
+            "unitFamilyFit"
+          ],
+          "literalComparatorMatches": false,
+          "literalComparatorOverridden": false,
+          "fullVerified": false,
+          "loadable": false
+        },
+        {
+          "questionNumber": 13,
+          "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q13",
+          "authoredCandidate": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q13\\q13.json",
+            "sha256": "5972c220ab7e2be1dd6cc8612051e5240cdd49be7fff6cbc4efffe00a79355fa",
+            "candidateDigest": "ed8a2eb71db2dfb1378f3e93dd44970be7ba87056484789f3a8b94793191e8cc"
+          },
+          "packageCandidateDigest": "baf574f9079f0c1268392511749195560bb20f7e1bdb2fd71aea2748bef03fe0",
+          "studentDigest": "40dd6419c48a9e36d598953b0c1603c3ddfab826ae1875d1a3a570303b9927d6",
+          "assetDigest": "98c8303604e6473c53e4b240a2478a18b9d514123ad3796f1ea19fbd622d42d2",
+          "rawSolve": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-independent-r1\\blind\\solve\\q13.json",
+            "sha256": "198672bc46e3279982794279fa1a3dbfac62dd68df8f1a4db593367aa251dcbb",
+            "solveDigest": "48d9b78b93b4be7a626d9d74a224f8a9f09c3fc0aba0a8d0faeb53652b6bfbdb"
+          },
+          "report": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-final-review-r1\\reports\\q13.json",
+            "sha256": "abd22e1fae8cfa4f8ed27ccf54e92b882ea8df985320e65406a74acf1fffeee9",
+            "reportDigest": "1c62c0aeaa2260a74dfbdcfbbf64d7da8a8e6aa99cdf211baafa19a96bfcd863"
+          },
+          "independentMathReviewerPassed": true,
+          "independentSevenSurfaceGradeReviewerPassed": true,
+          "contentReviewPassed": false,
+          "holds": [
+            "unitFamilyFit"
+          ],
+          "literalComparatorMatches": false,
+          "literalComparatorOverridden": false,
+          "fullVerified": false,
+          "loadable": false
+        },
+        {
+          "questionNumber": 14,
+          "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q14",
+          "authoredCandidate": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q14\\q14.json",
+            "sha256": "f70582756c9e551fb39b7b04512ee4abdcd357e7629b523342f6f860f6f369b1",
+            "candidateDigest": "077567accccabc7d565d5f4c0f763fa4dbf72f8cdb36c58903d40c1bc8ea3048"
+          },
+          "packageCandidateDigest": "6f964c5fd504db5403c09c12371a235e32e70b1de53218116d438bec8246f1e4",
+          "studentDigest": "12a1eb7e685efcbe2d82058a84720701caed9fdf50365c0bce0bd0c65a790eac",
+          "assetDigest": "861bae5db3a71c3eb9e4e85e0f7cc70bd873ff8f90ede7143a29f366b83d9e5b",
+          "rawSolve": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-independent-r1\\blind\\solve\\q14.json",
+            "sha256": "ca0621ec18e080f18eebe7e204a3c624eeb708eaa1772ceaea91a10404df667b",
+            "solveDigest": "d14dfa2a84fbf81df92434f8cf9aaaa5c05e33aa189c467d3220ca9d5a7fce64"
+          },
+          "report": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-final-review-r1\\reports\\q14.json",
+            "sha256": "b197e38975f66cc078f3afe528a0ceb73f3c36a1da57b73e755a8cad4443ec00",
+            "reportDigest": "044f7b131ee24174455a34fc57770e847d2e0bd0dcbd18abd558b0426c7a71dc"
+          },
+          "independentMathReviewerPassed": true,
+          "independentSevenSurfaceGradeReviewerPassed": true,
+          "contentReviewPassed": false,
+          "holds": [
+            "unitFamilyFit"
+          ],
+          "literalComparatorMatches": false,
+          "literalComparatorOverridden": false,
+          "fullVerified": false,
+          "loadable": false
+        },
+        {
+          "questionNumber": 15,
+          "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q15",
+          "authoredCandidate": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q15\\q15.json",
+            "sha256": "fe43a0a024d83529079ebe05979f1f7f022571e6aa45467af83fd637d7efda73",
+            "candidateDigest": "e0d740a461acb786a7b169fc6f54522cc0b4a4f97f244e3179eba10c9bc245c8"
+          },
+          "packageCandidateDigest": "fd1a237ca46c5e9c39f8bb8fbea945a41f4ecc811bbf5192be21e24b7ecc57fb",
+          "studentDigest": "7b61a50898da19a33394b5240e64cfca1f8bf0b226e351289d7cc4ad5b2f2df8",
+          "assetDigest": "2d02b8507f5fb738a3ecaad0cc6c1a68417f04d43a2d98ec17ee4a50445b33bb",
+          "rawSolve": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-independent-r1\\blind\\solve\\q15.json",
+            "sha256": "7abf10b157bc485c32d2ca05704c4aad62152b8fe53fea149446dc16d9a56018",
+            "solveDigest": "5cd8c2e224ae9f582798af718acaa1ae092657f59047300b117f4e04813f9930"
+          },
+          "report": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-final-review-r1\\reports\\q15.json",
+            "sha256": "c9df5134b4a671eb77d8f6f6cf00aa1af04bbd3c945ef99ffce7f1e5e4fe82d2",
+            "reportDigest": "bcdecff88afe9cf39a7052f89cbf7d149b7d0b4fa770e1325f3b9a7bacf56342"
+          },
+          "independentMathReviewerPassed": true,
+          "independentSevenSurfaceGradeReviewerPassed": true,
+          "contentReviewPassed": false,
+          "holds": [
+            "unitFamilyFit"
+          ],
+          "literalComparatorMatches": false,
+          "literalComparatorOverridden": false,
+          "fullVerified": false,
+          "loadable": false
+        },
+        {
+          "questionNumber": 16,
+          "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q16",
+          "authoredCandidate": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q16\\q16.json",
+            "sha256": "c864051b55dff67a2a8d476908505779acaece3c0274e34855f562f18a5cdc1d",
+            "candidateDigest": "3d02e59ee4a88c19cd425e01c0d325f6806a3b9cadd9c0d2447668883989540f"
+          },
+          "packageCandidateDigest": "098ab641f23e1acc249dbb0f9d52cb1e9f4d1f720fb974b4152412a0b18ea23a",
+          "studentDigest": "d72b1736d099a09c014f5b702c42a60a0f2173667e1c7300bd0226c8da3b9d9f",
+          "assetDigest": "e4610b5fb5c6fdf78471c1d708dd011d4cdebb5d7ae5bf5c7717c17d0b98140b",
+          "rawSolve": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-independent-r1\\blind\\solve\\q16.json",
+            "sha256": "16fdcf3539737bc65d878ee03a94baa1a5da885b2ff9ed16009d44a407a0e865",
+            "solveDigest": "5416c2d5208d09d4bcf0f88611abaf00c5248dc4650a923b3c7828e1c4d53c76"
+          },
+          "report": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-final-review-r1\\reports\\q16.json",
+            "sha256": "803ce0e3b3d7a89fd81bd1519cf363dfba3ba9489f8a0889095ce784162075b5",
+            "reportDigest": "7e6a0c5780d76a19ebbee7987825ad30443e0f4103bbe91bd778b22009b56741"
+          },
+          "independentMathReviewerPassed": true,
+          "independentSevenSurfaceGradeReviewerPassed": true,
+          "contentReviewPassed": false,
+          "holds": [
+            "unitFamilyFit"
+          ],
+          "literalComparatorMatches": false,
+          "literalComparatorOverridden": false,
+          "fullVerified": false,
+          "loadable": false
+        },
+        {
+          "questionNumber": 17,
+          "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q17",
+          "authoredCandidate": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q17\\q17.json",
+            "sha256": "38304b1310ecb86a6978888e2061ba2bc050995a8e29c55d4dbd262bd9af7bbc",
+            "candidateDigest": "4fbe5b33fedc8c1b78bd545cb626d9247f18752579ea59e348aecb05b893e920"
+          },
+          "packageCandidateDigest": "4aa88bb769318c63185e52ec0682f9c2adcf22edbc455c59089bfa80dba66785",
+          "studentDigest": "b7a97db53d0f8ebab88a31174afd8395f5899416fed9b2e975e6bcc553de9f24",
+          "assetDigest": "f4d72efae37820a8efe255eb7cfa494463f8e4842de6a7ea232bb0c177feb11d",
+          "rawSolve": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-independent-r1\\blind\\solve\\q17.json",
+            "sha256": "aaa45dba4190a345f978bef63e96ff543a50076b6b62ad72121b5e06c6e60fda",
+            "solveDigest": "7361e3acf77c099fd1731779a22f4768825a28cbd9e7ca6cb98ac51a405ae23a"
+          },
+          "report": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-final-review-r1\\reports\\q17.json",
+            "sha256": "74f83b2b0f2648e5e7a53eb4bca57e86ea0d4b39363227350df8c1be52364da6",
+            "reportDigest": "51b9daf7e4668fe5c9c95a1b4aa87be073f06ccda6db184167798ee7e7a4d28d"
+          },
+          "independentMathReviewerPassed": true,
+          "independentSevenSurfaceGradeReviewerPassed": true,
+          "contentReviewPassed": false,
+          "holds": [
+            "unitFamilyFit"
+          ],
+          "literalComparatorMatches": false,
+          "literalComparatorOverridden": false,
+          "fullVerified": false,
+          "loadable": false
+        },
+        {
+          "questionNumber": 18,
+          "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q18",
+          "authoredCandidate": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q18\\q18.json",
+            "sha256": "49d7ef70c49f431817a930f68b772fdd44fd60b99bea95c8d7950049db452bdd",
+            "candidateDigest": "12604995764e5a0df8ce9426dcf1579fb223be888f18b459b7c97745876bb693"
+          },
+          "packageCandidateDigest": "738308ce085a5341d3ddcfe121bbc4fc369d5245872a5ed9ebff343be6c0acba",
+          "studentDigest": "bd5d03ea26191f246c2f704c4c8376716487d9ae0ab8e815266a6115dde372b7",
+          "assetDigest": "3e512605dc7468bb50041b50a21b0dff16043de22727b0b56410e16896a4ceb8",
+          "rawSolve": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-independent-r1\\blind\\solve\\q18.json",
+            "sha256": "68f0ee409590753f251bab4f49e662abe67e5e19d9ad216a88c15ac0b6b3b293",
+            "solveDigest": "340f4efd7fc3df797bcb91e13e89f57fbf88d801861e6ba4f0929b1f22386fd2"
+          },
+          "report": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-final-review-r1\\reports\\q18.json",
+            "sha256": "548f822eceda24358dcce1359297af78dff8692f6784a9803bca5072ae1268ca",
+            "reportDigest": "bc08133b9ab1b28a062b0f662cd1ac26d9022c94e6861f92c61462f5cbf1c84a"
+          },
+          "independentMathReviewerPassed": true,
+          "independentSevenSurfaceGradeReviewerPassed": true,
+          "contentReviewPassed": true,
+          "holds": [],
+          "literalComparatorMatches": false,
+          "literalComparatorOverridden": false,
+          "fullVerified": false,
+          "loadable": false
+        },
+        {
+          "questionNumber": 19,
+          "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q19",
+          "authoredCandidate": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q19\\q19.json",
+            "sha256": "a7ce4ed5ca1d48a2a62637707c8ea2b88d0416e3f78f226cfdc0691ede4b089c",
+            "candidateDigest": "f00d7e575654337656967075332393d922d39437f4c7071cbb9cba2819ad8220"
+          },
+          "packageCandidateDigest": "4aa9efe8adda1c0d3c05b63c9547385eec9fafd7703749f108f13a0644a1119d",
+          "studentDigest": "5091e73711bc83b3582e682f1cd10c2f6156985759fcdc7cc2203e5bc4ca7b3a",
+          "assetDigest": "0c7d86535ee01ec3e4afe5ce6ffda3455e10712a8ca8af20fa328c714cee586b",
+          "rawSolve": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-independent-r1\\blind\\solve\\q19.json",
+            "sha256": "44fbc78ba7e992e4f1555c24ddff447d0388cb631f760ab6252f93bc591fa06f",
+            "solveDigest": "63e4f3b872ff0b30da4b7f01efafa1249ca442e8afd44e94dbd4c7b5b2e9fdb6"
+          },
+          "report": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-final-review-r1\\reports\\q19.json",
+            "sha256": "27117bfe6d314db35504911252e95444e951640af6cc2eb42483da539f74c010",
+            "reportDigest": "24509628a668e6cdae1bf1905cb411983fb0dd836f902b33d9dcc5c2100550fe"
+          },
+          "independentMathReviewerPassed": true,
+          "independentSevenSurfaceGradeReviewerPassed": true,
+          "contentReviewPassed": false,
+          "holds": [
+            "unitFamilyFit"
+          ],
+          "literalComparatorMatches": false,
+          "literalComparatorOverridden": false,
+          "fullVerified": false,
+          "loadable": false
+        },
+        {
+          "questionNumber": 21,
+          "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q21",
+          "authoredCandidate": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q21\\q21.json",
+            "sha256": "f6786d6d000909be51b28ea879859c0963819ba2cde6da92ff60adf946af66bf",
+            "candidateDigest": "f15d350042d49bf2a887d4a88f2beda3b8267d4a29edf33ca22a2040797ba68c"
+          },
+          "packageCandidateDigest": "e34b096f340d4d3bd77d74ddff69ae283e6f1cf40984ab55ad4e50f0be8667ea",
+          "studentDigest": "5d198a08b208a6cb2f331632a436a1fb98befb7f1060e0e48c2e0da7a47291c6",
+          "assetDigest": "2e5f1b55d264bcc05bc8e589dab7295d610eb1f78024141a65d580025ca190db",
+          "rawSolve": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-independent-r1\\blind\\solve\\q21.json",
+            "sha256": "c55963a6f311d2bf940a51dde7a9bf34a0a8b191b4f622466236a08d4f117657",
+            "solveDigest": "e0191024310acf296fa672f6fe3be8d587b237f339e8a786166a5b8b77d7367e"
+          },
+          "report": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-final-review-r1\\reports\\q21.json",
+            "sha256": "3c4c5f809436bd127c1589b3e607cd82739da02cbd9879405a77a31643fb11bf",
+            "reportDigest": "81e35f784a0bf6f919527e947c0cfe0ab74eb82aa78517d8a030067a2d9f5961"
+          },
+          "independentMathReviewerPassed": true,
+          "independentSevenSurfaceGradeReviewerPassed": true,
+          "contentReviewPassed": false,
+          "holds": [
+            "unitFamilyFit"
+          ],
+          "literalComparatorMatches": false,
+          "literalComparatorOverridden": false,
+          "fullVerified": false,
+          "loadable": false
+        },
+        {
+          "questionNumber": 22,
+          "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q22",
+          "authoredCandidate": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q22\\q22.json",
+            "sha256": "00369f519960428bfcb55f709f2d96abe2be9221b80bad549e542b170cdcced9",
+            "candidateDigest": "9ab10e5b40d2b8e95b063d4e793d5e3d2869d918ff8429e9c4b3a9fb58bbbc8b"
+          },
+          "packageCandidateDigest": "41dc5aa5d6a91db713c2433462ac3eaacf51236ee7eda27a17877289ae593ab7",
+          "studentDigest": "cc29ffdc073ac83afa04d2bfcfca6ac0af6c45fec0c63aa5dd707bb5d6890aa9",
+          "assetDigest": "370fc410f752fccc834d8e279be93f74d23e48051aa83338f66580598c72cb70",
+          "rawSolve": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-independent-r1\\blind\\solve\\q22.json",
+            "sha256": "cd1cb8cd9a6faac3910b8eaad86483b6ff1a74b9dddd8e72a98fadbca0809fd7",
+            "solveDigest": "3929e9463dd5cff70ad1d54cbba54c0f42d16849141d1d65a511dc992520f8fc"
+          },
+          "report": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-final-review-r1\\reports\\q22.json",
+            "sha256": "a21e77dd990a74d214e4eff2856f808099aa429f73478a8c0c4e481622785312",
+            "reportDigest": "27b9d966aa1bfbc16ecd7dded7f7096e59484f6575bcb03bbf733e2fd5cbe8af"
+          },
+          "independentMathReviewerPassed": true,
+          "independentSevenSurfaceGradeReviewerPassed": true,
+          "contentReviewPassed": false,
+          "holds": [
+            "unitFamilyFit"
+          ],
+          "literalComparatorMatches": false,
+          "literalComparatorOverridden": false,
+          "fullVerified": false,
+          "loadable": false
+        },
+        {
+          "questionNumber": 23,
+          "twinExternalId": "exam-twin-gyeonggu-2025-2-mid-author-r1-q23",
+          "authoredCandidate": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeonggu-authoring-r1\\candidates\\q23\\q23.json",
+            "sha256": "acc89aa2c0a75427945778b1a28681a749142c6b018db936674d354c6df0dd38",
+            "candidateDigest": "eb6bf1c94aee0c451390db87be1a65ae1ca93121572e0a868edeae838f34b249"
+          },
+          "packageCandidateDigest": "ac42fb71ec64803686a91ebb2e9aaf04213926cb381855c3b74e28e8de95d018",
+          "studentDigest": "5d537e833859e8b1f8a2bb082663654ec3cbbaed3ea0507c0d4d090bc3342bd6",
+          "assetDigest": "ff6e28b980343582365b3edcbdbb1f1dcfaf77eb12a27c46ebfa49edd3bfb48b",
+          "rawSolve": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-independent-r1\\blind\\solve\\q23.json",
+            "sha256": "5877b4b431cfb0187c6dfaed885db627db1e0dc5f79223901ae44908938155a3",
+            "solveDigest": "c0c1e214c7984eeaacee53ac33e3626c6ce460bdc52fef94770a07279a5c819b"
+          },
+          "report": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeonggu-final-review-r1\\reports\\q23.json",
+            "sha256": "7ded461cdba1c3f6f3e3a3ffb70d2e67fc1b9e2693ee5ef22858a95d5f32a62b",
+            "reportDigest": "ace3bcc2e4efdf91eb1a83621aa416900678092dd711c66d9362339cca0ccae3"
+          },
+          "independentMathReviewerPassed": true,
+          "independentSevenSurfaceGradeReviewerPassed": true,
+          "contentReviewPassed": false,
+          "holds": [
+            "unitFamilyFit"
+          ],
+          "literalComparatorMatches": false,
+          "literalComparatorOverridden": false,
+          "fullVerified": false,
+          "loadable": false
+        }
+      ]
+    },
+    {
+      "exam": "Gyeongam",
+      "reviewed": 18,
+      "mathReviewerPassed": 18,
+      "gradeReviewerPassed": 18,
+      "contentPassed": 0,
+      "contentHeld": 18,
+      "rows": [
+        {
+          "questionNumber": 1,
+          "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q01",
+          "authoredCandidate": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-authoring-r1\\candidates\\q01\\q01.json",
+            "sha256": "c8adab6c830e14222efe1c3a32d99b16145e36a5b83112bca4d0d14cb58ba7a9",
+            "candidateDigest": "b39e70ac2a8714bd2dd3904f22f3c06b133ec15cdfafff84b226db6d363421f0"
+          },
+          "packageCandidateDigest": "442b7e5c89af6264675a768dbb8a546a29b54e132ddeddd351c41539c1eb04b8",
+          "studentDigest": "a76d26de5f7f893914813c7bdae027abb048a4560e065988b7c030523dc267f5",
+          "assetDigest": "acf7128bcda01933448a0fe55d4e8621f329e957b889fe6c20bf8f761a1eb574",
+          "rawSolve": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\blind\\solve\\q01.json",
+            "sha256": "3457650d85658a8c05d85403c93eb01d1c2b7a6a2a34ef709d649a4e46734836",
+            "solveDigest": "56b15457ac924585b8de525c5febd46001cfc7623a084d82636019da136728d2"
+          },
+          "report": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-final-review-r1\\reports\\q01.json",
+            "sha256": "fcc3152fd33b4d7049bc9d905ecaf7b4013a7d57939591a3c5ec11267b2395b9",
+            "reportDigest": "42db87d966554646f7b13ab1946c948502f9c6338cf2fe99837e5bbad823bfdb"
+          },
+          "independentMathReviewerPassed": true,
+          "independentSevenSurfaceGradeReviewerPassed": true,
+          "contentReviewPassed": false,
+          "holds": [
+            "unitFamilyFit"
+          ],
+          "literalComparatorMatches": true,
+          "literalComparatorOverridden": false,
+          "fullVerified": false,
+          "loadable": false
+        },
+        {
+          "questionNumber": 2,
+          "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q02",
+          "authoredCandidate": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-authoring-r1\\candidates\\q02\\q02.json",
+            "sha256": "fb876bc7a2222639d805e2da2f907be132aa6c7f1b9b40c2fcace933c6d6cdf2",
+            "candidateDigest": "df2f2e9e10750c9c9467bdc8f48456e6d69b37841eb6aae493677d27b40884c7"
+          },
+          "packageCandidateDigest": "df2f2e9e10750c9c9467bdc8f48456e6d69b37841eb6aae493677d27b40884c7",
+          "studentDigest": "27ec87cab738c64d677012c8d6f7fc7fb8129eb174622eee102f33f9c6361479",
+          "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "rawSolve": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\blind\\solve\\q02.json",
+            "sha256": "c7921087ef2ccc4663a712f20586a5090f5e0c1c02845a09cec8a184534d1042",
+            "solveDigest": "0e0272cac4c43cd01783c0c29bbb0304baca14fa16b45e9ead839c51ef35f492"
+          },
+          "report": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-final-review-r1\\reports\\q02.json",
+            "sha256": "cf173c2a06632ea52e0d8334968d877bef57086d02ae2191a7544af6b847fe63",
+            "reportDigest": "f9244fcbd0e3559b77540bd290205b3203cbfcae62c13ea2e6476e677c642e85"
+          },
+          "independentMathReviewerPassed": true,
+          "independentSevenSurfaceGradeReviewerPassed": true,
+          "contentReviewPassed": false,
+          "holds": [
+            "unitFamilyFit"
+          ],
+          "literalComparatorMatches": true,
+          "literalComparatorOverridden": false,
+          "fullVerified": false,
+          "loadable": false
+        },
+        {
+          "questionNumber": 3,
+          "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q03",
+          "authoredCandidate": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-authoring-r1\\candidates\\q03\\q03.json",
+            "sha256": "e335a8b32f4e7b2da0959336db2b263751312160ed621b35c0c5cfe13fa10a15",
+            "candidateDigest": "6234d90231e4d149c3a7eefcb388c91f85b0bd77622720afe81b3536291711b2"
+          },
+          "packageCandidateDigest": "6234d90231e4d149c3a7eefcb388c91f85b0bd77622720afe81b3536291711b2",
+          "studentDigest": "8d876ea3ae7bd6f303dccba8c6a234a5e516e94f69290fc3ba4d42b2b0e32a4c",
+          "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "rawSolve": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\blind\\solve\\q03.json",
+            "sha256": "7c2d27a81b4c75e62101bbde74a2992f80cbbed891e18cfce39906ee036b5999",
+            "solveDigest": "1ed9ca23a1be7fbd0cc64004700caf114ea9d582fe82c0ccfd0e2e37cdcabb38"
+          },
+          "report": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-final-review-r1\\reports\\q03.json",
+            "sha256": "4d87c2d5a32969e8fc3e0cd105a34b3fd5c9889defc879ea66a0eda3049691d4",
+            "reportDigest": "a31f84f7d2ef6ca0fe62943f5b131d61eed75af57b6e1e4abf682e803e12ead0"
+          },
+          "independentMathReviewerPassed": true,
+          "independentSevenSurfaceGradeReviewerPassed": true,
+          "contentReviewPassed": false,
+          "holds": [
+            "unitFamilyFit"
+          ],
+          "literalComparatorMatches": true,
+          "literalComparatorOverridden": false,
+          "fullVerified": false,
+          "loadable": false
+        },
+        {
+          "questionNumber": 4,
+          "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q04",
+          "authoredCandidate": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-authoring-r1\\candidates\\q04\\q04.json",
+            "sha256": "4521fd0da384cd3893038f8ec6fa072d03359fba482a255eb575c9845d2eafd5",
+            "candidateDigest": "a6cd85210fee1dd84c3845775d36c603bc75ce6ed4e36cf228a9a47ef9ca747a"
+          },
+          "packageCandidateDigest": "a6cd85210fee1dd84c3845775d36c603bc75ce6ed4e36cf228a9a47ef9ca747a",
+          "studentDigest": "e62189798c2656dc78ea39bf2049fcec4b594695ca8fb930c8e6084bc32308a8",
+          "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "rawSolve": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\blind\\solve\\q04.json",
+            "sha256": "d03e2a530510452ba576b4abf8564b32072eafaf80126e9fdddc0c9ddb8c1e85",
+            "solveDigest": "4d944400a8357862874bf96ffab1be9061c0ebb10a176a81529dc856b0b525e2"
+          },
+          "report": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-final-review-r1\\reports\\q04.json",
+            "sha256": "596df73318aa9e330f2ecfb4018ef87d3b764c558b16a8f20df3c87643db3313",
+            "reportDigest": "94800fe74339e352c6dd7b3abe3a0ad54a48d8319334da4c2929ee714c9a49b4"
+          },
+          "independentMathReviewerPassed": true,
+          "independentSevenSurfaceGradeReviewerPassed": true,
+          "contentReviewPassed": false,
+          "holds": [
+            "unitFamilyFit"
+          ],
+          "literalComparatorMatches": true,
+          "literalComparatorOverridden": false,
+          "fullVerified": false,
+          "loadable": false
+        },
+        {
+          "questionNumber": 5,
+          "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q05",
+          "authoredCandidate": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-authoring-r1\\candidates\\q05\\q05.json",
+            "sha256": "edecfbd70649fb8a6221e74051d88581619a4abade98ea4374e8ef115ef4a883",
+            "candidateDigest": "86f4325e0386831bc02719dbdbe903f1ed7b88326a961c0730044dab94fab32b"
+          },
+          "packageCandidateDigest": "86f4325e0386831bc02719dbdbe903f1ed7b88326a961c0730044dab94fab32b",
+          "studentDigest": "9230c29fa2035a201ba81bfceded6d2915e2fc75142b29c82c64d9a1be070765",
+          "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "rawSolve": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\blind\\solve\\q05.json",
+            "sha256": "b23aa11977cbbe92059171a0fa8a7d83a124b5102d5eb7e87366e0936d2b734e",
+            "solveDigest": "c8a8b8b6fe1903b645ea851bd567c7eb7c28ac8b282a2927d617f8a301776a6e"
+          },
+          "report": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-final-review-r1\\reports\\q05.json",
+            "sha256": "4b805b8892790fa030f6e59c46a53222986f9d6e5aef80edc61a36d746ad0044",
+            "reportDigest": "6a1702845548bf563d87c3a98c68394a7b7604a8796b5230b98c348f235dc15c"
+          },
+          "independentMathReviewerPassed": true,
+          "independentSevenSurfaceGradeReviewerPassed": true,
+          "contentReviewPassed": false,
+          "holds": [
+            "unitFamilyFit"
+          ],
+          "literalComparatorMatches": true,
+          "literalComparatorOverridden": false,
+          "fullVerified": false,
+          "loadable": false
+        },
+        {
+          "questionNumber": 6,
+          "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q06",
+          "authoredCandidate": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-authoring-r1\\candidates\\q06\\q06.json",
+            "sha256": "2b41ba553b809cfacf630fa8a5d2cb48eda391854da576f233d3eb5eab033cac",
+            "candidateDigest": "69d6a70843b1f00e3f403b2ae5a730c794dcfe33cc60bcaa4be070667a7190f6"
+          },
+          "packageCandidateDigest": "69d6a70843b1f00e3f403b2ae5a730c794dcfe33cc60bcaa4be070667a7190f6",
+          "studentDigest": "f42af3cf9fa7a6df2b1af5ddbafb081912c3e17d5628e32b551ebac086d62498",
+          "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "rawSolve": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\blind\\solve\\q06.json",
+            "sha256": "ece02550dbdbd77e1e4f11e06038cbd2fe924bb4cbd594c13b85651033c749e1",
+            "solveDigest": "f02ed000e3b4f8f11df2cf573cf084defe0e07afec6ba2f534fd2fac412bea2a"
+          },
+          "report": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-final-review-r1\\reports\\q06.json",
+            "sha256": "e9fb123514bec36a11b14187ad3058f24e3aac23c914c563724d31cb4b156908",
+            "reportDigest": "ba3602c6903b56ab817045a84aafe4e5837f5c41aa707ad75bdbbe01bcf9daa2"
+          },
+          "independentMathReviewerPassed": true,
+          "independentSevenSurfaceGradeReviewerPassed": true,
+          "contentReviewPassed": false,
+          "holds": [
+            "unitFamilyFit"
+          ],
+          "literalComparatorMatches": true,
+          "literalComparatorOverridden": false,
+          "fullVerified": false,
+          "loadable": false
+        },
+        {
+          "questionNumber": 7,
+          "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q07",
+          "authoredCandidate": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-authoring-r1\\candidates\\q07\\q07.json",
+            "sha256": "b455dad2c682ad3e04afaa12bc5e16b7fd9a27e49558fd19f9707d1aa7d00822",
+            "candidateDigest": "e26611abce7bc0772d8d031eb21b549b12bdff44c6a78bf6280d46ccc0fc9cc5"
+          },
+          "packageCandidateDigest": "e26611abce7bc0772d8d031eb21b549b12bdff44c6a78bf6280d46ccc0fc9cc5",
+          "studentDigest": "eb0cd4a7591db651ba96c56d0cd84198ed7913be2b1d9e218d7b74b95cc916bf",
+          "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "rawSolve": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\blind\\solve\\q07.json",
+            "sha256": "a31298111c0bf8c09741a3838f81af71ee10cf0ba3b80c20a6d841344db4c8b1",
+            "solveDigest": "82bd0554fa4b4420bb70e2b576fe3a57dd8d08c7b8082e205e9316d1f8515978"
+          },
+          "report": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-final-review-r1\\reports\\q07.json",
+            "sha256": "617f9a07de6e8ebc08a6ba8d6ff833dcf203d9007ed20468c240b7623b42d735",
+            "reportDigest": "a8ad3ff72f30fdb3a825be55256ce55a4003e6008270d101a5b070b8974df47b"
+          },
+          "independentMathReviewerPassed": true,
+          "independentSevenSurfaceGradeReviewerPassed": true,
+          "contentReviewPassed": false,
+          "holds": [
+            "unitFamilyFit"
+          ],
+          "literalComparatorMatches": true,
+          "literalComparatorOverridden": false,
+          "fullVerified": false,
+          "loadable": false
+        },
+        {
+          "questionNumber": 8,
+          "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q08",
+          "authoredCandidate": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-authoring-r1\\candidates\\q08\\q08.json",
+            "sha256": "a46b7f7ae2192daab52e9b40eb9a0dfe169bdc0eef398b6250868bae66418c2b",
+            "candidateDigest": "dbe8467d91b5440125cff6def5a36fcc9483f32a36261b318f75cc65b0f6ba42"
+          },
+          "packageCandidateDigest": "dbe8467d91b5440125cff6def5a36fcc9483f32a36261b318f75cc65b0f6ba42",
+          "studentDigest": "13413d9efcc365a8c802d0da9974273a4c9f9502ce59740593b1e091120cae66",
+          "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "rawSolve": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\blind\\solve\\q08.json",
+            "sha256": "a4eddda219fb4b7927c484ee33ade10fa13156320ac1e4963bd12d2a0800cfc1",
+            "solveDigest": "8f75fddad8ab1452d4256836f07fd4000cabaffa3cdfbade3f9437919756480d"
+          },
+          "report": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-final-review-r1\\reports\\q08.json",
+            "sha256": "070fcb67ebde65b2e7edecbd872bd36d8f2f30b72d7d88f6cf73a17fec353318",
+            "reportDigest": "0f8dbf64aaaf67a262fe0ff51237cf2f6b945f5dfa91fb26accc57ad4b0469fc"
+          },
+          "independentMathReviewerPassed": true,
+          "independentSevenSurfaceGradeReviewerPassed": true,
+          "contentReviewPassed": false,
+          "holds": [
+            "unitFamilyFit"
+          ],
+          "literalComparatorMatches": true,
+          "literalComparatorOverridden": false,
+          "fullVerified": false,
+          "loadable": false
+        },
+        {
+          "questionNumber": 9,
+          "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q09",
+          "authoredCandidate": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-authoring-r1\\candidates\\q09\\q09.json",
+            "sha256": "a3e5edea69316507c20cb95755c89d498ec829840db318f62187a91bd7a739f9",
+            "candidateDigest": "6bebfbe8afef80bb5935cb011edc31ec34bb46d15a99a5d78454ab35a7d0b153"
+          },
+          "packageCandidateDigest": "dca530f1d0b4b7137b0901e9d8d21c4bd300aeba818f2ccf72d92968ab361326",
+          "studentDigest": "aae404817e043d121db73f24b3c1ce382d7230c1c802e3cb4e8bdd63377da712",
+          "assetDigest": "08d807e611a1bddbce961f753d8d4c691fe9a8a98f49b88bbeadedab9cc0a2c4",
+          "rawSolve": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\blind\\solve\\q09.json",
+            "sha256": "6cbe527932a940e641d543eaedecabc5854cc56f1d016fd549e0899f9f06a9b6",
+            "solveDigest": "229ead4331e7ee9f70357df3bf94ffc85a6ac3da194c69cfd6130d29a01500ca"
+          },
+          "report": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-final-review-r1\\reports\\q09.json",
+            "sha256": "c7c8fabd4f5184fe063813d0542922d76c9bd3ab0aa5887d3d8445fc31af7b4d",
+            "reportDigest": "27a780c203ccb0bd8543729fc048d375e30ca1a977394c356b6909360d991c25"
+          },
+          "independentMathReviewerPassed": true,
+          "independentSevenSurfaceGradeReviewerPassed": true,
+          "contentReviewPassed": false,
+          "holds": [
+            "unitFamilyFit"
+          ],
+          "literalComparatorMatches": true,
+          "literalComparatorOverridden": false,
+          "fullVerified": false,
+          "loadable": false
+        },
+        {
+          "questionNumber": 10,
+          "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q10",
+          "authoredCandidate": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-authoring-r1\\candidates\\q10\\q10.json",
+            "sha256": "d137f2befe75a99eec02eb09023ccbc3b7f62913de4dca15791c3413905d8a26",
+            "candidateDigest": "0a959a9d94b4fa7f105e3ac1cd77e68df40a6963add892731433794890863fdc"
+          },
+          "packageCandidateDigest": "8da9b8ced71a6b4f385ff0c022a153c1269736fe7873f615a260d5dd3d447fee",
+          "studentDigest": "840ff70deb1a4eac4cf504f5c2a802b0917c9c1a671b37fd1bd9def090cdf03a",
+          "assetDigest": "6b98fb018044a487b957bd071ff1c417c0cffb4442277248a6c94a2b537359a9",
+          "rawSolve": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\blind\\solve\\q10.json",
+            "sha256": "5250bc85f6419dda40d1f899e82beda1c8a57ecc20dbfcdace3ef7520c7845ae",
+            "solveDigest": "efc3d4b4389856dcf479530e77d3b3383eee26c7e28f16e03c5ada79ec3f0b76"
+          },
+          "report": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-final-review-r1\\reports\\q10.json",
+            "sha256": "6a5384878143de34664224977e7c6eccaade6ea2c34665e388609fbfc2aa43c8",
+            "reportDigest": "65fc7db9887ab3d03744963dfdcd737ce075beeb5a98e1b37fe53a311f54e130"
+          },
+          "independentMathReviewerPassed": true,
+          "independentSevenSurfaceGradeReviewerPassed": true,
+          "contentReviewPassed": false,
+          "holds": [
+            "unitFamilyFit"
+          ],
+          "literalComparatorMatches": true,
+          "literalComparatorOverridden": false,
+          "fullVerified": false,
+          "loadable": false
+        },
+        {
+          "questionNumber": 11,
+          "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q11",
+          "authoredCandidate": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-authoring-r1\\candidates\\q11\\q11.json",
+            "sha256": "f58872a061f2f7caa04e50def805e3e9a941f8dec6689a78b3e44a2fab9d53b4",
+            "candidateDigest": "bc16a97f1886a820f8228f6918a918a4a6a3394173795c26cf78e238e8b2e204"
+          },
+          "packageCandidateDigest": "91d95f504ab6515b22125988b9700c2467fd1ddf2ce0377ffb0289f72fb01f5c",
+          "studentDigest": "7abd1dc86101a51b55a2b8f3492597d7f2f066c1b951df0597b528bf72d37bcc",
+          "assetDigest": "38da377ceeb6a359b4d1bfec9fc2787abc3e59ceae12bc067d2be19970c27d88",
+          "rawSolve": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\blind\\solve\\q11.json",
+            "sha256": "b60803cacbdb7919877a98b134e0f4e8a3bb50a969490635741c3007a18f0440",
+            "solveDigest": "d93c02bab07d742231764ba21da584d7e4007ac44915a0f90ed08f538806bd5f"
+          },
+          "report": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-final-review-r1\\reports\\q11.json",
+            "sha256": "bc9ddf090648ecd9ee8b6ba812bfee37c18002052df1a3a5ea1bd7cf1217b8bd",
+            "reportDigest": "2d789894cb46401ad731fd384fd38e7907a6e5c490554ae342a9bcbda600a6b1"
+          },
+          "independentMathReviewerPassed": true,
+          "independentSevenSurfaceGradeReviewerPassed": true,
+          "contentReviewPassed": false,
+          "holds": [
+            "unitFamilyFit",
+            "scoreAppropriate"
+          ],
+          "literalComparatorMatches": true,
+          "literalComparatorOverridden": false,
+          "fullVerified": false,
+          "loadable": false
+        },
+        {
+          "questionNumber": 12,
+          "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q12",
+          "authoredCandidate": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-authoring-r1\\candidates\\q12\\q12.json",
+            "sha256": "13ea2d0c32bfbe08e674be04805346419d9a161079e6ab84a9dffd7ad94d1a3c",
+            "candidateDigest": "34174ac63c18e9ad51f970dc99b8d0017335c217627cd4ebdf27c8720fbc1a6a"
+          },
+          "packageCandidateDigest": "42fff141afb78bb5be4943a3a7a0083929b4369097d669193d99b104dcdfa42b",
+          "studentDigest": "0b3a68064ec73ea0a26892e5d719014123bef5bbc6212508a9c02b04ea76304e",
+          "assetDigest": "6c1d145fffaf412d22d2d1fd12b5dc64f0004650c9cb4e7afd3cbbb2d49bba72",
+          "rawSolve": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\blind\\solve\\q12.json",
+            "sha256": "20eec31adf29a3ac6c7e4430eeaa92a361875ce95a7f5b87e41e4a1b9b34b0aa",
+            "solveDigest": "af2876190c956e6f35588c10bb9fed43b2ca01a6a4f9ea06e30d60bbf049ca90"
+          },
+          "report": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-final-review-r1\\reports\\q12.json",
+            "sha256": "956b593457e2e8320b64a112a200849736431261cc1d21a77b92afaf7f85a7b2",
+            "reportDigest": "6c4643ed80443a6614a13daa945da7aeb7d8bd317682d43c9bdb9b04c2c01c46"
+          },
+          "independentMathReviewerPassed": true,
+          "independentSevenSurfaceGradeReviewerPassed": true,
+          "contentReviewPassed": false,
+          "holds": [
+            "unitFamilyFit"
+          ],
+          "literalComparatorMatches": true,
+          "literalComparatorOverridden": false,
+          "fullVerified": false,
+          "loadable": false
+        },
+        {
+          "questionNumber": 13,
+          "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q13",
+          "authoredCandidate": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-authoring-r1\\candidates\\q13\\q13.json",
+            "sha256": "3c1aa8d2edc84d3343bd8e834356433ab2daf9a85ea4164c7a29aee6d2b7a2a1",
+            "candidateDigest": "2f756c58b54f98370820fdc1e55161d9588ce3b076b04ea4ca4bdf8f37530fff"
+          },
+          "packageCandidateDigest": "b3336003b0ecb1cd757e783d24231c5aad90e036530dc36a01b0d482309a0d1e",
+          "studentDigest": "42979320a40728ebbe000264ff119aa26021320928eb788dd89bd862132b51b5",
+          "assetDigest": "759fd6bc87eff2a381e7c27a00aedf4da1f4b8228fa422151223af127c813529",
+          "rawSolve": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\blind\\solve\\q13.json",
+            "sha256": "511ee499c3f7cf853dfa320f6798309d9f41b1268fe428a67d32c75cfc9e8220",
+            "solveDigest": "b11e8d00b94c6ea5994ca0a585a9f60ec3413c69e2d425e8f2542eb3fe6d966d"
+          },
+          "report": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-final-review-r1\\reports\\q13.json",
+            "sha256": "f24d2e245afe9962308c82b240bfcb113df2e29a6c76961069d1cc4b62bc880f",
+            "reportDigest": "ecd338e87f7d908854da34d5a8e1a9f881625e8deac6ebaf3610d0afa1841b5a"
+          },
+          "independentMathReviewerPassed": true,
+          "independentSevenSurfaceGradeReviewerPassed": true,
+          "contentReviewPassed": false,
+          "holds": [
+            "unitFamilyFit"
+          ],
+          "literalComparatorMatches": true,
+          "literalComparatorOverridden": false,
+          "fullVerified": false,
+          "loadable": false
+        },
+        {
+          "questionNumber": 14,
+          "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q14",
+          "authoredCandidate": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-authoring-r1\\candidates\\q14\\q14.json",
+            "sha256": "657e67db6c1a76d48821141c22579062f937c652d8cb06512d1d7d46c1f4f204",
+            "candidateDigest": "247580323f9675f99cbfae7b0c7447cd300c0392418b08b474634c7810197e83"
+          },
+          "packageCandidateDigest": "247580323f9675f99cbfae7b0c7447cd300c0392418b08b474634c7810197e83",
+          "studentDigest": "c2b0d60e59cddc14701ff1e587f4c35a1e1eb221ceca23529730a96f7e2ba1cd",
+          "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "rawSolve": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\blind\\solve\\q14.json",
+            "sha256": "cac066e6c2c052f6cc6e0f9d79eade1b782f476ebd267184255cee075274b431",
+            "solveDigest": "e6c63c9cdb778617cc65c8e6c42bb6440b2cb8a5c967dfd8860f3e7244672ab4"
+          },
+          "report": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-final-review-r1\\reports\\q14.json",
+            "sha256": "83b9e6c70f803212f467886b3a6633798c5bd2c607b6b7fba5984d07df77c799",
+            "reportDigest": "f8e3b2b8a768d8428724e2c1ec69839f32d04e4c2ffdc3657686b1a352aae443"
+          },
+          "independentMathReviewerPassed": true,
+          "independentSevenSurfaceGradeReviewerPassed": true,
+          "contentReviewPassed": false,
+          "holds": [
+            "unitFamilyFit"
+          ],
+          "literalComparatorMatches": true,
+          "literalComparatorOverridden": false,
+          "fullVerified": false,
+          "loadable": false
+        },
+        {
+          "questionNumber": 16,
+          "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q16",
+          "authoredCandidate": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-authoring-r1\\candidates\\q16\\q16.json",
+            "sha256": "5edf90592c4c2dd0f937745f81e60f89ca7abfe291aacdf8e79dcc5dcffc6dd3",
+            "candidateDigest": "735d251f2fb963db4ce15a64b50a0700664558c520a9d282fd2237ccf18342fa"
+          },
+          "packageCandidateDigest": "735d251f2fb963db4ce15a64b50a0700664558c520a9d282fd2237ccf18342fa",
+          "studentDigest": "622fbe2eeac514d357a9e5d89740fcf74995e53cb7e7d380ca5c9db4c1196228",
+          "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "rawSolve": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\blind\\solve\\q16.json",
+            "sha256": "b94d4a1cf2c1eff79ead449dc57a88e2a6832208707816c1be9b0286d19673a1",
+            "solveDigest": "b88d15978372df696e95d1e46f64db0b0545d62640cef36a3ecc1e06d74b614e"
+          },
+          "report": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-final-review-r1\\reports\\q16.json",
+            "sha256": "88a6a2230080c8123c9391328055f2afe873eba7e4bfce720a7111bc71b5c034",
+            "reportDigest": "7169b0382716df77a98ffe7137adc4d9921b667bd2cb30d158bf89ec18921a02"
+          },
+          "independentMathReviewerPassed": true,
+          "independentSevenSurfaceGradeReviewerPassed": true,
+          "contentReviewPassed": false,
+          "holds": [
+            "unitFamilyFit"
+          ],
+          "literalComparatorMatches": false,
+          "literalComparatorOverridden": false,
+          "fullVerified": false,
+          "loadable": false
+        },
+        {
+          "questionNumber": 17,
+          "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q17",
+          "authoredCandidate": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-authoring-r1\\candidates\\q17\\q17.json",
+            "sha256": "e4b7923fcd0d97ff52d4641aa50e470703f6fea922462513f83e622c8faa23bd",
+            "candidateDigest": "f594b6bfbd9a8ee539548871987d7b5ea09091daea388b7b2b8a8db9043437d4"
+          },
+          "packageCandidateDigest": "f594b6bfbd9a8ee539548871987d7b5ea09091daea388b7b2b8a8db9043437d4",
+          "studentDigest": "75422a301a173ecd7b8d6fe84e460dc4ec74c2aba11714aab46468d608b50bce",
+          "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+          "rawSolve": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\blind\\solve\\q17.json",
+            "sha256": "e28f267f9867727caf527f75062ad402b718f975e78c76dd0313eb7eb718d1d5",
+            "solveDigest": "a35efd4de40186e4712f0088bb06b15addb276416979729ba7da458fc47dbdd7"
+          },
+          "report": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-final-review-r1\\reports\\q17.json",
+            "sha256": "3adb302223ab6017bff2a24fd1df952f0b5aeb45fe91e5c22fb88952b96d267b",
+            "reportDigest": "c3c04a1c1bead0e98333270a939974bdb47fde5ecb2d2e1baf379cb963dfebe1"
+          },
+          "independentMathReviewerPassed": true,
+          "independentSevenSurfaceGradeReviewerPassed": true,
+          "contentReviewPassed": false,
+          "holds": [
+            "unitFamilyFit"
+          ],
+          "literalComparatorMatches": false,
+          "literalComparatorOverridden": false,
+          "fullVerified": false,
+          "loadable": false
+        },
+        {
+          "questionNumber": 18,
+          "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q18",
+          "authoredCandidate": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-authoring-r1\\candidates\\q18\\q18.json",
+            "sha256": "416001fe8317af6f3ba171b01724d2c73c82013d91d81fe54eda6c700e07bc62",
+            "candidateDigest": "291635f032bf5c5eb361ab9dfb0572ac6ab881d1f063ce48a49732d0bc0be373"
+          },
+          "packageCandidateDigest": "6949d5bb54bd87c8e00842b8f8390a13e264465762aa289437cf6b6f2faef65e",
+          "studentDigest": "2485ccf205b049b7dd6badc011e5933fa167a12eecd15d4922a578db69069341",
+          "assetDigest": "32f69bdaf8080fc81016e6becd05661327f0392df67799ec197711cf81fee937",
+          "rawSolve": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\blind\\solve\\q18.json",
+            "sha256": "b0e0dd9fe4b9c9ad36d87a6374a4b003dab04e0a74f78f9b1e2174d50db79b68",
+            "solveDigest": "6bc6081697ea33ab0c3b4740beaa07b63de10a9291b62e62103361b76833bef4"
+          },
+          "report": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-final-review-r1\\reports\\q18.json",
+            "sha256": "65522f72a34d8d33de4ee4e333cbbe9ce39aff070629982175c27e3ccd899324",
+            "reportDigest": "252003844fa51b4ee9d2dd63f22d47e1eeee4b388b209c79818b32dbd2dcb534"
+          },
+          "independentMathReviewerPassed": true,
+          "independentSevenSurfaceGradeReviewerPassed": true,
+          "contentReviewPassed": false,
+          "holds": [
+            "unitFamilyFit"
+          ],
+          "literalComparatorMatches": false,
+          "literalComparatorOverridden": false,
+          "fullVerified": false,
+          "loadable": false
+        },
+        {
+          "questionNumber": 19,
+          "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q19",
+          "authoredCandidate": {
+            "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\gyeongam-authoring-r1\\candidates\\q19\\q19.json",
+            "sha256": "8b26fe5116fa820f07cd8e636a26715f2b32532a1078673f6a3737f2c2dba644",
+            "candidateDigest": "c76dd33cd19874b7e2dcf3a34680054b20a85b632c9379f4862cf25f95ca36d4"
+          },
+          "packageCandidateDigest": "130b25e72cd524bd769d886337071c0bb816230d002f9a15b411f65fd29ac5ed",
+          "studentDigest": "241f6c4ac7efec4435a3355e4b06bd5a5a83722bd61785411ae90b5535e239ff",
+          "assetDigest": "de259aa8a4b80f406def1a1f462118e961b6660fd0ce3dec87f58c6e847237fd",
+          "rawSolve": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-independent-r1\\blind\\solve\\q19.json",
+            "sha256": "914fddf352f91886905c21ec958a6475bd32f1f591295f23b7754a5f95e99aea",
+            "solveDigest": "1648335049655f9a9b8600230b0a3f83498167ae5ada9fba876ed79c4347f06d"
+          },
+          "report": {
+            "path": ".qa-artifacts\\exam-resume-20261008\\gyeongam-final-review-r1\\reports\\q19.json",
+            "sha256": "806d49d823da418d67d6f174f9422e7c88bd07c8226eaae946580a370e594c01",
+            "reportDigest": "e7e930dd7b23733a1e1f78a4cec2ec04f7d6f07402ea6b2ea9351feaf4a64cb6"
+          },
+          "independentMathReviewerPassed": true,
+          "independentSevenSurfaceGradeReviewerPassed": true,
+          "contentReviewPassed": false,
+          "holds": [
+            "unitFamilyFit"
+          ],
+          "literalComparatorMatches": false,
+          "literalComparatorOverridden": false,
+          "fullVerified": false,
+          "loadable": false
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "newIndependentMathReviewerPassed": 40,
+    "newIndependentSevenSurfaceGradeReviewerPassed": 40,
+    "newContentReviewPassed": 1,
+    "newContentReviewHeld": 39,
+    "newLiteralComparatorMatches": 14,
+    "fullVerified": 0,
+    "loadable": 0,
+    "dbWrites": 0
+  },
+  "scope": "Actual current20+22+18 independent reviewer dimensions; literal-format collection support is separate. No automatic whole-answer semantic approval, rights, provenance or loading gate changed."
+}

@@ -1,0 +1,112 @@
+{
+  "kind": "next-three-source-actual-attempt/v1",
+  "createdAt": "2026-10-08T12:32:01.178115+00:00",
+  "inventory": {
+    "path": "C:\\Users\\user\\orca\\artifacts\\outputs\\exam-inventory-20261003\\extraction-job-manifest-reviewed.json",
+    "sha256": "10e2096fbf0f33c9cfaca83b6a57c70398ce2eb27b6f72754c1f6118a55bff88",
+    "bytes": 8404909
+  },
+  "tools": [
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-twin-next-five-20261008\\.qa-artifacts\\exam-resume-20261008\\next-five-extraction-r1\\extract_source.py",
+      "sha256": "bf6ec9417e201756530a2d291b5092e4594856534313f80a990ec03a59f1f7fb",
+      "bytes": 29209,
+      "capturedCopy": "tool-evidence\\positional-source-reader.py"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\qa\\convert-hwp-spans.py",
+      "sha256": "326d343a18f4229fa5156b73271be8bc0035ff246cc2d2ad59338352da49fe00",
+      "bytes": 12470,
+      "capturedCopy": "tool-evidence\\hwp-formula-converter.py"
+    },
+    {
+      "path": "D:\\시험지 한글화\\db\\textlayer.py",
+      "sha256": "bbb49d272fd7b79c3935253c7f1429def2c69f0d3ed5a014369b14e971cea743",
+      "bytes": 32795,
+      "capturedCopy": "tool-evidence\\pdf-textlayer.py"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\qa\\tc_paths.py",
+      "sha256": "74907f5e9592ab1d3a188e152c41e6e4067b9ce920777fe0a720be68bdc0476e",
+      "bytes": 1320,
+      "role": "actual-context-dependency"
+    },
+    {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\scripts\\qa\\hwpeq_unglue.py",
+      "sha256": "ca9f880261368dc17e98c89805776b814ff415454f2cbd43465fec2b03356415",
+      "bytes": 12710,
+      "role": "actual-context-dependency"
+    },
+    {
+      "path": "D:\\시험지 한글화\\core\\hwpeq_to_latex.py",
+      "sha256": "6cdb46b45470b66feac75f1372aa9defa3fcac213633865825e2908f03db4861",
+      "bytes": 9013,
+      "role": "actual-context-dependency"
+    },
+    {
+      "path": "D:\\시험지 한글화\\db\\pua_table.json",
+      "sha256": "08ab989bcf1966eec3649f74fc5cd1738ab2462bd083280ec42529c8c7c8cd22",
+      "bytes": 2189,
+      "role": "actual-pdf-character-map"
+    }
+  ],
+  "sourceMetadataOnly": true,
+  "entries": [
+    {
+      "slug": "gyeongilyeo",
+      "inventoryExamId": "personal-e658d3c45979443f7be4d28aca8563c1",
+      "status": "fresh-parsed-quarantined",
+      "hwpParents": 22,
+      "pdfParents": 22,
+      "unknownControls": 0,
+      "endnotesWithheld": 22,
+      "manifest": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-extraction-r1-attempt2\\gyeongilyeo\\source-manifest.json",
+        "sha256": "8e6fbce1c23eb03a0aa8fc56f347e5934712f47b9f462e222bcb7f42aff865d6",
+        "bytes": 2039751
+      },
+      "identityYearApproved": false,
+      "questionComponentsApproved": 0,
+      "newTwins": 0
+    },
+    {
+      "slug": "gyeseong",
+      "inventoryExamId": "personal-b37b5f2a943efe63b8eed253a7747a1d",
+      "status": "fresh-parsed-quarantined",
+      "hwpParents": 23,
+      "pdfParents": 23,
+      "unknownControls": 0,
+      "endnotesWithheld": 23,
+      "manifest": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-extraction-r1-attempt2\\gyeseong\\source-manifest.json",
+        "sha256": "97ebf0fdf3ca4f6b3eab4b5737083410b94f57bf53863a4be568635618b4f4f9",
+        "bytes": 1452132
+      },
+      "identityYearApproved": false,
+      "questionComponentsApproved": 0,
+      "newTwins": 0
+    },
+    {
+      "slug": "nobyeon",
+      "inventoryExamId": "personal-b274afd453928b273d1577afde49d96b",
+      "status": "fresh-parsed-quarantined",
+      "hwpParents": 22,
+      "pdfParents": 22,
+      "unknownControls": 0,
+      "endnotesWithheld": 22,
+      "manifest": {
+        "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\next-three-extraction-r1-attempt2\\nobyeon\\source-manifest.json",
+        "sha256": "6f3efd989d305e65127eb4268db05d9e1c099b2aec55706ebb554d45e6782454",
+        "bytes": 1999785
+      },
+      "identityYearApproved": false,
+      "questionComponentsApproved": 0,
+      "newTwins": 0
+    }
+  ],
+  "actualParsedParents": 67,
+  "questionComponentsApproved": 0,
+  "newTwins": 0,
+  "dbWrites": 0,
+  "all2025SourcesExtracted": false
+}

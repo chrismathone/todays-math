@@ -1,0 +1,583 @@
+{
+  "kind": "execution-continuation-index/v9",
+  "version": 9,
+  "createdAt": "2026-10-08T13:31:31.130Z",
+  "latestDirective": "docs/planning/tracks/brief-exam-extraction-resume-20261008-addendum-6.md",
+  "latestDirectiveSha256": "d6cb4b6d9eac55c0d71ad9f4f67302804aca7247f3a20386f14f8e82b9bf623e",
+  "latestUserSteering": "Continue after Orca restart; latest D:/todays-math/AGENTS.md; finalize current20 and proceed next5/all2025+; preserve evidence and implement useful engines after extraction",
+  "latestAgentRules": {
+    "path": "D:/todays-math/AGENTS.md",
+    "sha256": "5ae255a2bff8a0de1ceb26ee2b57b088733fd976184fbc5448aaa6895968b598"
+  },
+  "currentCandidateIndex": {
+    "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r2/candidate-index-r2.json",
+    "sha256": "841d5e2fa4971c828a6c5baf9f9c2aa68beaec3e57fb6d1895a712f5cf2e39fb"
+  },
+  "currentReviewSummary": {
+    "path": ".qa-artifacts/exam-resume-20261008/bumil-final-review-summary-r3-after-main-grade-lexical.json",
+    "sha256": "94d9e5a10ebdb8d1c62371ae6a814cf5c02c61ebe7f05e7ee0225ab5177b02f9"
+  },
+  "progressReport": "docs/planning/tracks/reports/exam-twin-checkpoint-v9-20261008.md",
+  "counts": {
+    "authoredCurrentCandidates": 91,
+    "currentFigureInstances": 72,
+    "recreatedStatTables": 5,
+    "builtinImagegenRasters": 2,
+    "preExposureRawSolvesBoundToCurrentCandidates": 90,
+    "preExposureRawSolvesIncludingSupersededR1": 91,
+    "independentMathReviewed": 60,
+    "independentFullGradeReviewed": 60,
+    "contentReviewPassed": 13,
+    "contentReviewHeld": 47,
+    "awaitingCollectedIndependentReview": 31,
+    "fullVerified": 0,
+    "loadable": 0,
+    "dbWrites": 0
+  },
+  "currentHeldNumbers": [
+    5,
+    10,
+    11,
+    14,
+    15,
+    17,
+    18,
+    20
+  ],
+  "currentPassedNumbers": [
+    1,
+    2,
+    3,
+    4,
+    6,
+    8,
+    9,
+    12,
+    13,
+    16,
+    19,
+    21
+  ],
+  "oldPreparationAndIntermediateVersions": [
+    ".qa-artifacts/exam-resume-20261008/continuation-index-v2.json",
+    ".qa-artifacts/exam-resume-20261008/continuation-index-v3.json",
+    ".qa-artifacts/exam-resume-20261008/status-ledger-v2.json",
+    ".qa-artifacts/exam-resume-20261008/status-ledger-v3.json"
+  ],
+  "currentBlindReviewSelection": "r1(2,3,15,21),r2(1,4,5,16,17,18,20),r3(6,8,9,12,13),r4(11,14),r5(repaired10,19). Exact IDs/raw hashes required",
+  "sourceEvidence": {
+    "questions": 21,
+    "scope": "first4 + new17 whole printed question content and original2025school/date comparison",
+    "remainingContentIdentityHolds": 0,
+    "originalReview": {
+      "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/source-review.json",
+      "sha256": "fcce4f3355719258e6e98a3a3b30631aa60e0122288b2de12c0870ce89b75a86"
+    },
+    "remainingReview": {
+      "path": ".qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/source-review.json",
+      "sha256": "fd5c48d40c573780f983ef7066a29e525a2ac656673b5ade5e4e78ad87af215a"
+    },
+    "new17Commit": "c348f0277",
+    "sourceCurrentTwinJoin": {
+      "path": ".qa-artifacts/exam-resume-20261008/bumil-source-twin-join-r2.json",
+      "sha256": "567cc941c2a76f28a70f0a9ba0c8bb5b51fbf777d6da736196ee2ea7181ea4dd"
+    },
+    "rightsCustodyNative": "still pending; not cleared by content/identity"
+  },
+  "methodClarification": {
+    "path": ".qa-artifacts/exam-resume-20261008/bumil-authoring-r2/variant-method-links-r2.json",
+    "sha256": "6316e4e23761b1570236ea00553351fd120269cced4cea3a90ca5c0bf0a0f491",
+    "effect": "Original direction-only source fields preserved; current inverse procedures reviewed without editing frozen candidates"
+  },
+  "nextFive": {
+    "examCount": 5,
+    "selectedCompletedPairsExist": 5,
+    "readableHwpSections": 5,
+    "exactLegacyPdfBodyRechecks": 5,
+    "legacyExtractedQuestions": 106,
+    "legacyDrafts": 48,
+    "legacySolAiFiles": 43,
+    "legacyReferenceFigureFiles": 71,
+    "fullyCertifiedHwpPdfEquivalence": 0,
+    "currentDbDedupChecks": 0,
+    "newTwinsCreated": 71,
+    "verifiedTwins": 0,
+    "identityYearHolds": [
+      "경신중"
+    ],
+    "eligibleForProductionNow": 0,
+    "wholeQuestionCurriculumApprovals": 0,
+    "curriculumGatePendingQuestions": 106,
+    "parentScopedAbsenceEvidenceAvailableForExams": 5,
+    "globalDbDedupCompleted": false,
+    "sourceReport": "docs/planning/tracks/reports/exam-twin-next-five-20261008.md",
+    "firstProductionGroup": "none-until-gates",
+    "preparationPriority": [
+      "경구중",
+      "경산중",
+      "경암중",
+      "경상중"
+    ],
+    "sourceIdentityYearHold": [
+      "경신중"
+    ],
+    "actualNewSourceExtraction": {
+      "parentQuestions": 106,
+      "multipleChoiceParents": 87,
+      "writtenParents": 19,
+      "nestedSubquestions": 15,
+      "leafAssessmentItems": 116,
+      "verifiedQuestionContent": 106,
+      "selectedHwpPdfQuestionAllComponentsMatched": 105,
+      "selectedPairScoreExceptionQuestions": 1,
+      "entireExamPairCertified": 0,
+      "fullGradeApprovals": 0,
+      "rightsApprovals": 0,
+      "newTwinsAuthored": 71,
+      "verifiedTwins": 0,
+      "questionsWithUniversalGradeMappingRenderRightsHolds": 106,
+      "sourceIdentityHoldQuestions": 17,
+      "specificGradeMethodRiskQuestions": 33,
+      "independentSolvingConflictHoldQuestions": 1,
+      "sourceLiteralNumericalAccuracyHoldQuestions": 1,
+      "currentDbDedupCompleted": false,
+      "workerDbReads": 0,
+      "legacyDraftsReferenceOnly": 48,
+      "legacySolutionsReferenceOnly": 43,
+      "legacyCropsReferenceOnly": 71,
+      "selectedPairParentScoreSum": 495,
+      "originalReferenceParentScoreSum": 500
+    },
+    "actualSourceIndex": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/extraction-index-r1.json",
+      "sha256": "b2c6f1486d502a0d6a201d5968aec1657b9f50ceab826504fccf80dee07454d9"
+    },
+    "actualSourceCommit": "4cc9278da",
+    "legacyFiguresAndDraftsStillReference": true,
+    "authoringUnderwayButNotCountedBeforeFrozenCommit": true,
+    "historicalPreparationSnapshot": {
+      "examCount": 5,
+      "selectedCompletedPairsExist": 5,
+      "readableHwpSections": 5,
+      "exactLegacyPdfBodyRechecks": 5,
+      "legacyExtractedQuestions": 106,
+      "legacyDrafts": 48,
+      "legacySolAiFiles": 43,
+      "legacyReferenceFigureFiles": 71,
+      "fullyCertifiedHwpPdfEquivalence": 0,
+      "currentDbDedupChecks": 0,
+      "newTwinsCreated": 0,
+      "verifiedTwins": 0,
+      "identityYearHolds": [
+        "경신중"
+      ],
+      "eligibleForProductionNow": 0,
+      "wholeQuestionCurriculumApprovals": 0,
+      "curriculumGatePendingQuestions": 106,
+      "parentScopedAbsenceEvidenceAvailableForExams": 5,
+      "globalDbDedupCompleted": false,
+      "sourceReport": "docs/planning/tracks/reports/exam-twin-next-five-20261008.md",
+      "firstProductionGroup": "none-until-gates",
+      "preparationPriority": [
+        "경구중",
+        "경산중",
+        "경암중",
+        "경상중"
+      ],
+      "sourceIdentityYearHold": [
+        "경신중"
+      ],
+      "actualNewSourceExtraction": {
+        "parentQuestions": 106,
+        "multipleChoiceParents": 87,
+        "writtenParents": 19,
+        "nestedSubquestions": 15,
+        "leafAssessmentItems": 116,
+        "verifiedQuestionContent": 106,
+        "selectedHwpPdfQuestionAllComponentsMatched": 105,
+        "selectedPairScoreExceptionQuestions": 1,
+        "entireExamPairCertified": 0,
+        "fullGradeApprovals": 0,
+        "rightsApprovals": 0,
+        "newTwinsAuthored": 0,
+        "verifiedTwins": 0,
+        "questionsWithUniversalGradeMappingRenderRightsHolds": 106,
+        "sourceIdentityHoldQuestions": 17,
+        "specificGradeMethodRiskQuestions": 33,
+        "independentSolvingConflictHoldQuestions": 1,
+        "sourceLiteralNumericalAccuracyHoldQuestions": 1,
+        "currentDbDedupCompleted": false,
+        "workerDbReads": 0,
+        "legacyDraftsReferenceOnly": 48,
+        "legacySolutionsReferenceOnly": 43,
+        "legacyCropsReferenceOnly": 71,
+        "selectedPairParentScoreSum": 495,
+        "originalReferenceParentScoreSum": 500
+      },
+      "actualSourceIndex": {
+        "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/extraction-index-r1.json",
+        "sha256": "b2c6f1486d502a0d6a201d5968aec1657b9f50ceab826504fccf80dee07454d9"
+      },
+      "actualSourceCommit": "4cc9278da",
+      "legacyFiguresAndDraftsStillReference": true,
+      "authoringUnderwayButNotCountedBeforeFrozenCommit": true
+    },
+    "legacySnapshotCountsAreNotCurrent": true,
+    "remainingAuthoredCoverage": {
+      "Gyeonggu": {
+        "sourceParents": 23,
+        "authored": 22,
+        "authorExcluded": [
+          20
+        ]
+      },
+      "Gyeongsan": {
+        "sourceParents": 25,
+        "authored": 24,
+        "authorExcluded": [
+          15
+        ]
+      },
+      "Gyeongam": {
+        "sourceParents": 19,
+        "authored": 18,
+        "authorHeld": [
+          15
+        ]
+      },
+      "Gyeongsang": {
+        "sourceParents": 22,
+        "authored": 7,
+        "remaining15": true
+      },
+      "Gyeongsin": {
+        "sourceParents": 17,
+        "authored": 0,
+        "sourceIdentityAndScoreHeld": true
+      }
+    }
+  },
+  "activeWork": [
+    {
+      "worktree": "exam-twin-source-identity-20261008",
+      "originalSessionId": "01a1177f-954e-7343-9cfb-e803c179ed85",
+      "scope": "Gyeongsang remaining15 authoring; after sealing, fresh unexposed q22-r2 solve",
+      "status": "working; actual turn began after CR submission, no duplicate prompt"
+    },
+    {
+      "worktree": "exam-twin-author-geometry-20261008",
+      "originalSessionId": "01a1177e-fbb2-7822-a7e2-51c40b39e38f",
+      "scope": "Final fresh stats7 and Gyeongsan24 originalr1 review; preserve q22 duplicatehold",
+      "status": "turn_started",
+      "request": "760d1225-049e-4379-985a-d5b73b6a6fe1"
+    },
+    {
+      "worktree": "exam-twin-author-algebra-20261008",
+      "originalSessionId": "01a1177d-e52b-7511-944f-c2d4edd47c82",
+      "scope": "Whole67 new source component/identity/score/curriculum-risk/author-whitelist review",
+      "status": "turn_started",
+      "request": "de54ea06-0d75-4b32-9f43-03395d73f60a"
+    },
+    {
+      "worktree": "exam-extraction-resume-20261008",
+      "scope": "Feature checkpoint push, metadata/semantic evidence/current ID joins, sourcequeue and useful code improvements",
+      "status": "working"
+    }
+  ],
+  "engine": {
+    "implementationLedger": ".qa-artifacts/exam-resume-20261008/engine-upgrades-progress-r3.json",
+    "trackedCandidates": 30,
+    "productionUpgradesComplete": 0,
+    "localOfflineContractAndAuthoringSupport": "actual implementation; not full product/native reader integration",
+    "wholeEngineComplete": false
+  },
+  "restrictions": [
+    "Protected82/threecorrectionledgers/permanentGyeongsanyeo19 unchanged",
+    "No DBapply/unlock/delete/reload/deploy; native/loadable0",
+    "N/oldoutput/sharednode_modules preserved",
+    "Current remote integration and relevant validation required; no forcepush",
+    "Rights/similarity separate; altered words/numbers never imply permission"
+  ],
+  "reportBinding": {
+    "path": ".qa-artifacts/exam-resume-20261008/bumil-review-commit-binding-r1.json",
+    "sha256": "ed6aab1ade4f45f10388f61b7cca457b55a1bddd704677e52dbe23870e1dc25d"
+  },
+  "progressReportSha256": "1de2a394aa86e17dca59e79da1fe48a9b6c1cf00f6b28f0af9bc333d2395fae8",
+  "continuationWatch": {
+    "config": {
+      "path": ".qa-artifacts/exam-resume-20261008/continuation-watch/automation-config.json",
+      "sha256": "71d447df3f1a8c05b523c758f970bcfd9039b3e4ea4039d2ed20ad757f1cd437"
+    },
+    "preservedRootFiles": [
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/continuation-watch/automation-config.json",
+        "sha256": "71d447df3f1a8c05b523c758f970bcfd9039b3e4ea4039d2ed20ad757f1cd437"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/continuation-watch/controller-r2-preserved.ps1",
+        "sha256": "fe78ca47c393025bc9571f8339975565494651683935ebba7d4b8b3689df41da"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/continuation-watch/verification-r2-20261008.json",
+        "sha256": "7ace923fc6425b7fb995ab059e57ddbbca4b4d09e2385063ae91d848231f0ae5"
+      }
+    ],
+    "oldOrcaAutomation": {
+      "id": "358474c8-24be-49ee-b3c9-55fbebf68de4",
+      "state": "disabled; failed history preserved"
+    },
+    "currentScheduledTask": {
+      "name": "TodaysMath-ExamContinuation",
+      "state": "Root last confirmed Enabled/Ready/working-skip",
+      "intervalMinutes": 15,
+      "verification": {
+        "path": ".qa-artifacts/exam-resume-20261008/continuation-watch/verification-r2-20261008.json",
+        "sha256": "7ace923fc6425b7fb995ab059e57ddbbca4b4d09e2385063ae91d848231f0ae5"
+      }
+    },
+    "externalControllerOwnedBy": "Root; primary has not overwritten external controller/config",
+    "role": "read-only continuation monitor; no question authoring or approval",
+    "noWholeCompleteOrStopMarker": true
+  },
+  "freshBankRead": {
+    "path": ".qa-artifacts/exam-resume-20261008/bank-read-fresh-r3-20261008.json",
+    "sha256": "31f6e3369f5d62072e6728566f8cd71f44f4d451c4ff2dd87a132a6ff6fa1a26",
+    "capturedAt": "2026-10-08 13:00:16.891043+00",
+    "readOnly": "on",
+    "isolation": "repeatable read",
+    "unitCount": 22,
+    "eligibleFamilyCount": 302,
+    "protectedRows": 82,
+    "unlocked": 0,
+    "identityMismatches": 0,
+    "correctionsMismatch": 0,
+    "globallyDeduplicated": false,
+    "previousObservationPreserved": true,
+    "unitAndFamilyRowsSameAsR2": true,
+    "semanticClassificationNotInferred": true
+  },
+  "remoteIntegration": {
+    "ref": "origin/main",
+    "actualFetchedSha": "6c9ddd54f01e218c8ee16aaebc5d0051632c7d4d",
+    "mainIntegratedBeforeOwnedCheckpoint": true,
+    "mainWorktreeWritten": false,
+    "firstFeatureBackup": {
+      "path": ".qa-artifacts/exam-resume-20261008/continuation-watch/first-checkpoint-push-20261008.json",
+      "sha256": "b3df451be74f24dcee9cc185d626fef065f8d5b3a003c0ccc26d3d32eac1dbb7"
+    },
+    "subsequentFeaturePush": "required after this checkpoint; record remote actual SHA separately",
+    "forcePush": false
+  },
+  "taxonomyAudit": {
+    "peerCommit": "58f7adb26",
+    "parentMerge": "88bc25633",
+    "geometryPeer": {
+      "scope": [
+        5,
+        10,
+        18
+      ],
+      "supportedFullAssignments": 0,
+      "held": 3,
+      "inputs": ".qa-artifacts/exam-resume-20261008/bumil-taxonomy-audit-r1/geometry-peer/input-bindings.json",
+      "reports": [
+        ".qa-artifacts/exam-resume-20261008/bumil-taxonomy-audit-r1/geometry-peer/q05.classification.json",
+        ".qa-artifacts/exam-resume-20261008/bumil-taxonomy-audit-r1/geometry-peer/q10.classification.json",
+        ".qa-artifacts/exam-resume-20261008/bumil-taxonomy-audit-r1/geometry-peer/q18.classification.json"
+      ]
+    },
+    "parentPeer": {
+      "path": ".qa-artifacts/exam-resume-20261008/bumil-taxonomy-audit-r1/parent-peer/audit-r1.json",
+      "sha256": "7773dc4c57aad2d43a45e1034498971feccbde5110b809a91ccd865ffff43ad2",
+      "scope": [
+        11,
+        14,
+        15,
+        17,
+        20
+      ],
+      "supportedFullAssignments": 0,
+      "held": 5,
+      "existingRuleSeedObservations": 900,
+      "notUpgradedRulesOrGradeApproval": true
+    }
+  },
+  "q07Exclusion": {
+    "status": "rejected",
+    "scope": "Faithful original assessment/core relationship cannot enter2015-middle3 authoring",
+    "adjudication": {
+      "path": ".qa-artifacts/exam-resume-20261008/bumil-q07-curriculum-adjudication-r1/adjudication.json",
+      "sha256": "2b350b644d391486e9ca66c8995366ad1ad13e351ff6dfc910b2f61a8337bd77"
+    },
+    "workerCommit": "9f3a31596",
+    "historicalHoldUnchanged": true,
+    "newCandidateCount": 0,
+    "parentMerge": "7851b1316"
+  },
+  "current20Print": {
+    "path": ".qa-artifacts/exam-resume-20261008/bumil-current20-student-bankcap-r2/student-paper.pdf",
+    "sha256": "3d9109de6a074651d250ce0011fd1c0d73b860f37b8a38520d3fa4ea7c07e5db",
+    "visualInspection": {
+      "path": ".qa-artifacts/exam-resume-20261008/bumil-current20-student-bankcap-r2/visual-inspection.json",
+      "sha256": "2fdc20e561d4be7f64bec88673e5987c9e3048f1d7ef9ffee0f3624524bea346"
+    },
+    "questionCount": 20,
+    "pointTotal": 92,
+    "localA4Pages": 18,
+    "allPagePngsViewed": true,
+    "bankImageWidthCapMm": 70,
+    "nativeReaderParity": false,
+    "physicalPaperPrintApproved": false,
+    "firstAttemptPreservedAsFailedLayout": true
+  },
+  "snapshotScope": "91 current author selections including freshq22r2; actual semantic reviewed60; rawcurrent90; source67 quarantined; whole2025+ and production engine unfinished.",
+  "previousIndex": {
+    "path": ".qa-artifacts/exam-resume-20261008/continuation-index-v8.json",
+    "sha256": "29fa6d21d0be0a871bfcac0c4185befae9141520dd1aa1086c69bc92763ad237"
+  },
+  "priorReportCaptured": {
+    "path": "docs/planning/tracks/reports/exam-twin-authoring-progress-20261008.md",
+    "sha256": "881ad49517d3d120927509b81fd546af66dca1e3f6f2a28c119191c8cc128b18"
+  },
+  "firstBumilBatchCounts": {
+    "historicalSourceVerifications": 21,
+    "plannedTwins": 21,
+    "authoredTwins": 20,
+    "figureInstancesRecreated": 25,
+    "imagegenImagesGenerated": 2,
+    "blindSolvesBound": 20,
+    "mathematicalReviewed": 20,
+    "gradeReviewed": 20,
+    "wholeQuestionReviewPassed": 12,
+    "verifiedTwins": 0,
+    "loadableTwins": 0,
+    "heldBeforeAuthoring": [],
+    "taxonomyInitiallyProposed": 16,
+    "taxonomyInitiallyHeld": [
+      10,
+      11,
+      14,
+      18,
+      20
+    ],
+    "newReviewedTaxonomyHold": [
+      5,
+      10,
+      11,
+      14,
+      15,
+      18,
+      20
+    ],
+    "remainingWholeReviews": 0,
+    "engineUpgradeCandidates": 28,
+    "engineUpgradesImplementedInProduction": 0,
+    "historicalCandidateVersions": 22,
+    "wholeQuestionReviewHeld": 8,
+    "reviewedDifficultyHold": [
+      17,
+      20
+    ],
+    "currentSourceQuestionIdentityConfirmed": 21,
+    "excludedBeforeAuthoring": [
+      7
+    ],
+    "originalPaperScore": 100,
+    "currentDraftScore": 92
+  },
+  "multipleExamCurrentIndex": {
+    "path": ".qa-artifacts/exam-resume-20261008/current-authored-batches-v9.json",
+    "sha256": "317e744fb40827c4a1ee6eace05ecac5f4b5d2948735c90556365c67d1f6d060"
+  },
+  "newStatisticsAuthorIndex": {
+    "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-stat-authoring-r1/candidate-index-r4.json",
+    "sha256": "499a372aa8e4836b25424530ae7b6e5bda7d1212f9f2c4dc127d608c5a24530b"
+  },
+  "newStatisticsAuthorCheck": {
+    "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-stat-authoring-r1/author-validation-r4.json",
+    "sha256": "24052e27e29a325cf6acf5001dad7770f53a791cd454d9abf54cff8ac1c5d97e"
+  },
+  "gyeongguFinalSourceJoin": {
+    "path": ".qa-artifacts/exam-resume-20261008/gyeonggu-source-author-join-r1.json",
+    "sha256": "2804f8aec7e2ca0300d68df0044874bcb38b80d76cd49038713dd1546ea873f0"
+  },
+  "statisticsCode": {
+    "path": "scripts/import/exam-twin/statisticsConditions.mjs",
+    "sha256": "36c4dcf877bcd842869335980a00555be3a7263278a5d33cb1e80922cfacf000",
+    "status": "implemented exact authoring support; used on actual7; production registry/load/template integration incomplete",
+    "tests": 4,
+    "expandedDistributionControls": 100
+  },
+  "relatedTests": {
+    "corePassed": 33,
+    "mainChangedRenderPassed": 21,
+    "actualNewQuestionReviews": 0
+  },
+  "currentRawIndependentGyeonggu": {
+    "commit": "c02838323307f69648124f837285503a53e99bd3",
+    "parentMerge": "07d14638e",
+    "rawManifest": {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/raw-solves-manifest.json",
+      "sha256": "71c39dcf8d186e2ae6e49f3fccc9e0b01acc3f0e2689c1bb66bee0606b3e65d2"
+    },
+    "solves": 22,
+    "preExposure": true,
+    "finalReviewsCollected": 0
+  },
+  "gyeongamParentBindingAudit": {
+    "path": ".qa-artifacts/exam-resume-20261008/gyeongam-parent-integration-r1/verification.json",
+    "sha256": "eb2e41ca082d3efbecae716f92cba3afde9641ad633936367a9aecea531ea848"
+  },
+  "gyeonggu13SourceCorrection": {
+    "path": ".qa-artifacts/exam-resume-20261008/gyeonggu-q13-source-correction-r2/correction.json",
+    "sha256": "37fd1bbf852f0590f1dd424038c0de334a4611b11e7644116113c04a35cda199"
+  },
+  "newBlindDispatch": {
+    "path": ".qa-artifacts/exam-resume-20261008/independent-next-batches-dispatch-r1.json",
+    "sha256": "11d91c931eaf1cb299f11850217503d68f9b68d0b78706f9c5ee5d0d75a19014"
+  },
+  "currentSemanticReviewSummary": {
+    "path": ".qa-artifacts/exam-resume-20261008/current-final-semantic-review-summary-r1.json",
+    "sha256": "9f993e13b01ab5382ba7665187d56f4203cf46a5189c750d544ce687f62735a0"
+  },
+  "semanticReviewClarification": "60 actually independently reviewed math/grade; semantic role/value/meaning evidence stays separate from legacy literal comparator. No raw solve edits or automatic full-answer semantic approval added.",
+  "newSourceAttempt": {
+    "index": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-three-extraction-r1-attempt2/extraction-attempt-index.json",
+      "sha256": "7f008d188b089874c83723ab4706ee45896aef1028e43da8bebe6d536df20eb6"
+    },
+    "preliminary": {
+      "path": ".qa-artifacts/exam-resume-20261008/next-three-extraction-r1-attempt2/preliminary-printed-identity-review-r1.json",
+      "sha256": "2efc0438ff190a46b202f692aae9e495aa0fddc65ac648a87905fb6fd4fd894b"
+    },
+    "newParsedParents": 67,
+    "previousConfirmedContentParents": 127,
+    "newComponentApprovals": 0,
+    "quarantined": true,
+    "allNExtracted": false
+  },
+  "q22Repair": {
+    "candidate": {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsan-q22-repair-r2/candidate.json",
+      "sha256": "740279ebac2db406f98c789a4567c2ee6ef96b4e360736b7551eb8efee81a97a"
+    },
+    "controls": {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsan-q22-repair-r2/author-controls.json",
+      "sha256": "89a06481f728567238b64c5019a2e69c2abc0adb0260d3fff231d15a66b3aad4"
+    },
+    "visual": {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsan-q22-repair-r2/visual-inspection.json",
+      "sha256": "05ec75329a6d01a07eacb1a324505bbcab602e7a0f2531863add7164c99aacb7"
+    },
+    "blind": {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsan-q22-review-r2/blind/blind-manifest.json",
+      "sha256": "c4d07c05691a639250882dac780dbb8b9ed9eccc0db5b8a34a0e42019d0c254e"
+    },
+    "freshIndependentSolvePending": true,
+    "priorR1RawAndReviewPreserved": true
+  },
+  "statusLedger": {
+    "path": ".qa-artifacts/exam-resume-20261008/status-ledger-v9.json",
+    "sha256": "2383c0dd0627e7960927d7735564e73ddc6e87dd0f8f9e8f980ac241592955e4"
+  }
+}
