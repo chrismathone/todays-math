@@ -1,0 +1,208 @@
+{
+  "studentDigest": "bbf42bad5ff2c95b7997c8ace9b122abaca6bfe4905a224b5d4e63a23f80fd31",
+  "solverId": "orca-codex-exam-twin-author-geometry-20261008",
+  "status": "solved",
+  "answer": "①",
+  "solution": "같은 단위의 기록에서는 표준편차가 작을수록 평균 주변에 더 고르게 모여 있다. A가 다른 모든 프로그램보다 더 고르려면 A의 표준편차는0.8,0.9,1.1,1.3보다 각각 작아야 하므로0.8보다 작아야 한다. 보기 중0.7만 이를 만족한다. 0.8은 B와 동률이어서 더 고르다는 조건을 만족하지 않는다. 나머지 값들도 B보다 작지 않다. 정답은 ①이다.",
+  "evidence": {
+    "method": "blind-student-only-independent-solve",
+    "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q15",
+    "questionNumber": 15,
+    "createdBeforeAuthorAnswerExposureAtUtc": "2026-10-08T12:14:47.156Z",
+    "authorAnswersSolutionsOpened": false,
+    "inputRawSha256": "f0e720a54643cbe495662598b26e0e8f4045a6d9fb1f767fe2e0a02628dc72e3",
+    "inputQuestionDigest": "bbf42bad5ff2c95b7997c8ace9b122abaca6bfe4905a224b5d4e63a23f80fd31",
+    "blindManifestRawSha256": "b35129d6ed9510ec48a6e093ec64bca0af9af1350c73d7a21ff6109a17348c50",
+    "opaquePackageDigestProvided": "5270af250713b45ceda7b14d9e763cd4291b6862848636e5ff4d359556f81a7d",
+    "calculationCodePath": "calculation.py",
+    "calculationCodeSha256": "1b17475830f15dbd7490892c19551ef45d8b0bcbd87db7a4ae7d80698cb5adc2",
+    "calculationOutputPath": "calculation-output.json",
+    "calculationOutputSha256": "99856554ca8ac60fa0edece44e9ee9a00157bfc8bc3a34b4f471e3fe68d0b3d7",
+    "exactCalculation": {
+      "programMeansFromStudent": [
+        "12",
+        "13",
+        "11",
+        "14",
+        "10"
+      ],
+      "otherStandardDeviationsFromStudent": [
+        "4/5",
+        "9/10",
+        "11/10",
+        "13/10"
+      ],
+      "strictRequirement": "A sd < min(other sd)=4/5; equality excluded",
+      "minimumOther": "4/5",
+      "positiveFiveObservationWitnesses": [
+        {
+          "mean": "12",
+          "sd": "7/10",
+          "fivePositiveDurations": [
+            "12 - 7*sqrt(10)/20",
+            "12",
+            "12",
+            "12",
+            "7*sqrt(10)/20 + 12"
+          ],
+          "varianceRecheck": "49/100"
+        },
+        {
+          "mean": "13",
+          "sd": "4/5",
+          "fivePositiveDurations": [
+            "13 - 2*sqrt(10)/5",
+            "13",
+            "13",
+            "13",
+            "2*sqrt(10)/5 + 13"
+          ],
+          "varianceRecheck": "16/25"
+        },
+        {
+          "mean": "11",
+          "sd": "9/10",
+          "fivePositiveDurations": [
+            "11 - 9*sqrt(10)/20",
+            "11",
+            "11",
+            "11",
+            "9*sqrt(10)/20 + 11"
+          ],
+          "varianceRecheck": "81/100"
+        },
+        {
+          "mean": "14",
+          "sd": "11/10",
+          "fivePositiveDurations": [
+            "14 - 11*sqrt(10)/20",
+            "14",
+            "14",
+            "14",
+            "11*sqrt(10)/20 + 14"
+          ],
+          "varianceRecheck": "121/100"
+        },
+        {
+          "mean": "10",
+          "sd": "13/10",
+          "fivePositiveDurations": [
+            "10 - 13*sqrt(10)/20",
+            "10",
+            "10",
+            "10",
+            "13*sqrt(10)/20 + 10"
+          ],
+          "varianceRecheck": "169/100"
+        }
+      ],
+      "units": "mean/minutes;SD/minutes",
+      "notMeanRanking": true,
+      "allFiveDisplayedChoiceValues": [
+        "7/10",
+        "4/5",
+        "9/10",
+        "1",
+        "11/10"
+      ],
+      "choiceCorrectness": [
+        true,
+        false,
+        false,
+        false,
+        false
+      ],
+      "correctChoiceNumber": 1,
+      "choiceDistinct": true,
+      "strictChoiceComparisons": [
+        {
+          "value": "7/10",
+          "strictlyBelowAllOthers": true,
+          "tiesMinimum": false
+        },
+        {
+          "value": "4/5",
+          "strictlyBelowAllOthers": false,
+          "tiesMinimum": true
+        },
+        {
+          "value": "9/10",
+          "strictlyBelowAllOthers": false,
+          "tiesMinimum": false
+        },
+        {
+          "value": "1",
+          "strictlyBelowAllOthers": false,
+          "tiesMinimum": false
+        },
+        {
+          "value": "11/10",
+          "strictlyBelowAllOthers": false,
+          "tiesMinimum": false
+        }
+      ]
+    },
+    "studentPreview": {
+      "path": "inspection/q15.png",
+      "sha256": "d746bcf78dfad9e4a3920683d81da86d977e5d9637323ffe1adf60aafb0ec384",
+      "columnWidthMm": 70,
+      "personallyViewed": true
+    },
+    "suppliedFigures": [],
+    "curriculumSurfaces": {
+      "stem": {
+        "status": "in-scope-student-input",
+        "basis": "유한 자료/평균/중앙값/최빈값/편차/산포의 중3·2015 내용",
+        "standardCodes": [
+          "9수05-07"
+        ]
+      },
+      "choices": {
+        "status": "independently-checked",
+        "basis": "다섯 실제 표시값의 중복/정답/동률을 exact code로 확인",
+        "evidence": [
+          true,
+          false,
+          false,
+          false,
+          false
+        ]
+      },
+      "figuresAndTables": {
+        "status": "independently-inspected",
+        "basis": "공급 그림0개; 해당 표/자료를70mm 학생 전용 PNG에서 직접 확인",
+        "previewPath": "inspection/q15.png",
+        "previewSha256": "d746bcf78dfad9e4a3920683d81da86d977e5d9637323ffe1adf60aafb0ec384"
+      },
+      "notation": {
+        "status": "in-scope-student-input",
+        "basis": "정수/소수/근호/빈칸/단위/도수 표기만 사용. 표본 불편분산/시그마/고급 통계 없음"
+      },
+      "answer": {
+        "status": "independently-derived",
+        "basis": "새 독립 답만 확인; 저자 답 미노출"
+      },
+      "studentSolution": {
+        "status": "independently-derived",
+        "basis": "평균/정렬/도수/편차제곱 정의만 쓴 완전한 독립 학생 풀이; 저자 풀이 미노출"
+      },
+      "prerequisites": {
+        "status": "in-scope-independent-method",
+        "basis": "기초 사칙계산과 제곱근, 정렬, 평균 및 편차 정의",
+        "standardCodes": [
+          "9수05-07"
+        ]
+      }
+    },
+    "curriculumGate": {
+      "grade": "중3",
+      "edition": "2015",
+      "independentStudentMethod": "in-scope-proposed",
+      "outOfGradeMethodRequired": false,
+      "unknownScopeHold": false,
+      "authorAnswerSolutionGradeReview": "not-yet-exposed",
+      "finalGradeApproval": false
+    },
+    "scopeLimits": "Raw independent solve only. No author/source/family/rights/native/final-review approval. Representative B is justified by the extreme value, not a general optimality theorem."
+  }
+}

@@ -1,0 +1,168 @@
+{
+  "studentDigest": "932bd02d867b4be8c568117884472eda10a7c4fcee8ae3f95729a1921bb63802",
+  "solverId": "orca-codex-exam-twin-author-geometry-20261008",
+  "status": "solved",
+  "answer": "②",
+  "solution": "전체 횟수는1+1+1+4+1+1+1=10회이다. 맞힌 문항 수의 합은1+4+5+6×4+7+8+11=60이므로 평균은6개이다. 편차 제곱의 합은(1−6)²+(4−6)²+(5−6)²+4×(6−6)²+(7−6)²+(8−6)²+(11−6)²=25+4+1+0+1+4+25=60이다. 분산은 편차 제곱의 평균이므로60÷10=6, 표준편차는 그 양의 제곱근이므로√6이다. 정답은 ②이다. 표준편차 단위는 문항 수의 단위인 개이다.",
+  "evidence": {
+    "method": "blind-student-only-independent-solve",
+    "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q14",
+    "questionNumber": 14,
+    "createdBeforeAuthorAnswerExposureAtUtc": "2026-10-08T12:14:47.156Z",
+    "authorAnswersSolutionsOpened": false,
+    "inputRawSha256": "f0e720a54643cbe495662598b26e0e8f4045a6d9fb1f767fe2e0a02628dc72e3",
+    "inputQuestionDigest": "932bd02d867b4be8c568117884472eda10a7c4fcee8ae3f95729a1921bb63802",
+    "blindManifestRawSha256": "b35129d6ed9510ec48a6e093ec64bca0af9af1350c73d7a21ff6109a17348c50",
+    "opaquePackageDigestProvided": "5270af250713b45ceda7b14d9e763cd4291b6862848636e5ff4d359556f81a7d",
+    "calculationCodePath": "calculation.py",
+    "calculationCodeSha256": "1b17475830f15dbd7490892c19551ef45d8b0bcbd87db7a4ae7d80698cb5adc2",
+    "calculationOutputPath": "calculation-output.json",
+    "calculationOutputSha256": "99856554ca8ac60fa0edece44e9ee9a00157bfc8bc3a34b4f471e3fe68d0b3d7",
+    "exactCalculation": {
+      "valuesFromStudent": [
+        1,
+        4,
+        5,
+        6,
+        7,
+        8,
+        11
+      ],
+      "frequenciesFromStudent": [
+        1,
+        1,
+        1,
+        4,
+        1,
+        1,
+        1
+      ],
+      "expanded": [
+        1,
+        4,
+        5,
+        6,
+        6,
+        6,
+        6,
+        7,
+        8,
+        11
+      ],
+      "count": 10,
+      "sum": 60,
+      "mean": "6",
+      "deviations": [
+        "-5",
+        "-2",
+        "-1",
+        "0",
+        "0",
+        "0",
+        "0",
+        "1",
+        "2",
+        "5"
+      ],
+      "squaredDeviationSum": "60",
+      "variance": "6",
+      "standardDeviation": "sqrt(6)",
+      "method": "Each deviation squared;frequency weighting; divide by10; positive square root.",
+      "allFiveDisplayedChoiceValues": [
+        [
+          "4",
+          "2"
+        ],
+        [
+          "6",
+          "sqrt(6)"
+        ],
+        [
+          "6",
+          "6"
+        ],
+        [
+          "10",
+          "sqrt(10)"
+        ],
+        [
+          "60",
+          "2*sqrt(15)"
+        ]
+      ],
+      "choiceCorrectness": [
+        false,
+        true,
+        false,
+        false,
+        false
+      ],
+      "correctChoiceNumber": 2,
+      "choiceDistinct": true
+    },
+    "studentPreview": {
+      "path": "inspection/q14.png",
+      "sha256": "b144f43fc2871a3151f67c4f06a3f06b9b57bfd918dbdffda1c6516f147f6b3c",
+      "columnWidthMm": 70,
+      "personallyViewed": true
+    },
+    "suppliedFigures": [],
+    "curriculumSurfaces": {
+      "stem": {
+        "status": "in-scope-student-input",
+        "basis": "유한 자료/평균/중앙값/최빈값/편차/산포의 중3·2015 내용",
+        "standardCodes": [
+          "9수05-07",
+          "9수01-07"
+        ]
+      },
+      "choices": {
+        "status": "independently-checked",
+        "basis": "다섯 실제 표시값의 중복/정답/동률을 exact code로 확인",
+        "evidence": [
+          false,
+          true,
+          false,
+          false,
+          false
+        ]
+      },
+      "figuresAndTables": {
+        "status": "independently-inspected",
+        "basis": "공급 그림0개; 해당 표/자료를70mm 학생 전용 PNG에서 직접 확인",
+        "previewPath": "inspection/q14.png",
+        "previewSha256": "b144f43fc2871a3151f67c4f06a3f06b9b57bfd918dbdffda1c6516f147f6b3c"
+      },
+      "notation": {
+        "status": "in-scope-student-input",
+        "basis": "정수/소수/근호/빈칸/단위/도수 표기만 사용. 표본 불편분산/시그마/고급 통계 없음"
+      },
+      "answer": {
+        "status": "independently-derived",
+        "basis": "새 독립 답만 확인; 저자 답 미노출"
+      },
+      "studentSolution": {
+        "status": "independently-derived",
+        "basis": "평균/정렬/도수/편차제곱 정의만 쓴 완전한 독립 학생 풀이; 저자 풀이 미노출"
+      },
+      "prerequisites": {
+        "status": "in-scope-independent-method",
+        "basis": "기초 사칙계산과 제곱근, 정렬, 평균 및 편차 정의",
+        "standardCodes": [
+          "9수05-07",
+          "9수01-07"
+        ]
+      }
+    },
+    "curriculumGate": {
+      "grade": "중3",
+      "edition": "2015",
+      "independentStudentMethod": "in-scope-proposed",
+      "outOfGradeMethodRequired": false,
+      "unknownScopeHold": false,
+      "authorAnswerSolutionGradeReview": "not-yet-exposed",
+      "finalGradeApproval": false
+    },
+    "scopeLimits": "Raw independent solve only. No author/source/family/rights/native/final-review approval. Representative B is justified by the extreme value, not a general optimality theorem."
+  }
+}

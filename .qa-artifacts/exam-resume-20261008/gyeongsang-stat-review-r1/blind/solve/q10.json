@@ -1,0 +1,125 @@
+{
+  "studentDigest": "e4b8fa1d76a91c20cb270ae3fb13f3ca78e837397eee647e183a6875830101eb",
+  "solverId": "orca-codex-exam-twin-author-geometry-20261008",
+  "status": "solved",
+  "answer": "⑤",
+  "solution": "평균은 자료의 합을 자료의 개수로 나눈 값이다. 일주일의 합은 7×5=35권이다. 알려진 여섯 날의 합은 4+7+3+6+5+3=28권이므로 빈칸은 35−28=7이다. 정답은 ⑤이다. 이때 일곱 값의 합이35이므로 평균5가 실제로 성립하며, 빠진 값은 하나이므로 유일하다.",
+  "evidence": {
+    "method": "blind-student-only-independent-solve",
+    "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q10",
+    "questionNumber": 10,
+    "createdBeforeAuthorAnswerExposureAtUtc": "2026-10-08T12:14:47.156Z",
+    "authorAnswersSolutionsOpened": false,
+    "inputRawSha256": "f0e720a54643cbe495662598b26e0e8f4045a6d9fb1f767fe2e0a02628dc72e3",
+    "inputQuestionDigest": "e4b8fa1d76a91c20cb270ae3fb13f3ca78e837397eee647e183a6875830101eb",
+    "blindManifestRawSha256": "b35129d6ed9510ec48a6e093ec64bca0af9af1350c73d7a21ff6109a17348c50",
+    "opaquePackageDigestProvided": "5270af250713b45ceda7b14d9e763cd4291b6862848636e5ff4d359556f81a7d",
+    "calculationCodePath": "calculation.py",
+    "calculationCodeSha256": "1b17475830f15dbd7490892c19551ef45d8b0bcbd87db7a4ae7d80698cb5adc2",
+    "calculationOutputPath": "calculation-output.json",
+    "calculationOutputSha256": "99856554ca8ac60fa0edece44e9ee9a00157bfc8bc3a34b4f471e3fe68d0b3d7",
+    "exactCalculation": {
+      "knownValuesFromStudent": [
+        4,
+        7,
+        3,
+        6,
+        5,
+        3
+      ],
+      "sumKnown": 28,
+      "count": 7,
+      "total": 35,
+      "missing": 7,
+      "completed": [
+        4,
+        7,
+        3,
+        7,
+        6,
+        5,
+        3
+      ],
+      "meanRecheck": "5",
+      "proof": "Sum=7*mean; one missing scalar has nonzero coefficient1 and is uniquely7.",
+      "allFiveDisplayedChoiceValues": [
+        "3",
+        "4",
+        "5",
+        "6",
+        "7"
+      ],
+      "choiceCorrectness": [
+        false,
+        false,
+        false,
+        false,
+        true
+      ],
+      "correctChoiceNumber": 5,
+      "choiceDistinct": true
+    },
+    "studentPreview": {
+      "path": "inspection/q10.png",
+      "sha256": "ac7d4b72e30f7eb4674a86814548148149e4aa101cf9236205c4d0d1add4e3d5",
+      "columnWidthMm": 70,
+      "personallyViewed": true
+    },
+    "suppliedFigures": [],
+    "curriculumSurfaces": {
+      "stem": {
+        "status": "in-scope-student-input",
+        "basis": "유한 자료/평균/중앙값/최빈값/편차/산포의 중3·2015 내용",
+        "standardCodes": [
+          "9수05-06"
+        ]
+      },
+      "choices": {
+        "status": "independently-checked",
+        "basis": "다섯 실제 표시값의 중복/정답/동률을 exact code로 확인",
+        "evidence": [
+          false,
+          false,
+          false,
+          false,
+          true
+        ]
+      },
+      "figuresAndTables": {
+        "status": "independently-inspected",
+        "basis": "공급 그림0개; 해당 표/자료를70mm 학생 전용 PNG에서 직접 확인",
+        "previewPath": "inspection/q10.png",
+        "previewSha256": "ac7d4b72e30f7eb4674a86814548148149e4aa101cf9236205c4d0d1add4e3d5"
+      },
+      "notation": {
+        "status": "in-scope-student-input",
+        "basis": "정수/소수/근호/빈칸/단위/도수 표기만 사용. 표본 불편분산/시그마/고급 통계 없음"
+      },
+      "answer": {
+        "status": "independently-derived",
+        "basis": "새 독립 답만 확인; 저자 답 미노출"
+      },
+      "studentSolution": {
+        "status": "independently-derived",
+        "basis": "평균/정렬/도수/편차제곱 정의만 쓴 완전한 독립 학생 풀이; 저자 풀이 미노출"
+      },
+      "prerequisites": {
+        "status": "in-scope-independent-method",
+        "basis": "기초 사칙계산과 제곱근, 정렬, 평균 및 편차 정의",
+        "standardCodes": [
+          "9수05-06"
+        ]
+      }
+    },
+    "curriculumGate": {
+      "grade": "중3",
+      "edition": "2015",
+      "independentStudentMethod": "in-scope-proposed",
+      "outOfGradeMethodRequired": false,
+      "unknownScopeHold": false,
+      "authorAnswerSolutionGradeReview": "not-yet-exposed",
+      "finalGradeApproval": false
+    },
+    "scopeLimits": "Raw independent solve only. No author/source/family/rights/native/final-review approval. Representative B is justified by the extreme value, not a general optimality theorem."
+  }
+}
