@@ -1,5 +1,9 @@
 /* Editing surfaces use the available screen; the shared print renderer owns paper sizing. */
 @media screen {
+  html:has(body.blueprint-mode) {
+    /* Keep both columns steady when composing makes the document scroll. */
+    scrollbar-gutter: stable;
+  }
   .wrap,
   .main,
   .workspace {
