@@ -1,0 +1,70 @@
+{
+  "schemaVersion": 1,
+  "solverId": "orca-codex-exam-twin-author-geometry-20261008",
+  "method": "blind-independent-solve-before-answer-exposure",
+  "preExposureAtUtc": "2026-10-08T12:14:47.156Z",
+  "inputRawSha256": "f0e720a54643cbe495662598b26e0e8f4045a6d9fb1f767fe2e0a02628dc72e3",
+  "blindManifestRawSha256": "b35129d6ed9510ec48a6e093ec64bca0af9af1350c73d7a21ff6109a17348c50",
+  "opaquePackageDigestProvided": "5270af250713b45ceda7b14d9e763cd4291b6862848636e5ff4d359556f81a7d",
+  "solved": 7,
+  "pending": 0,
+  "finalReviewerApprovals": 0,
+  "solves": [
+    {
+      "questionNumber": 10,
+      "studentDigest": "e4b8fa1d76a91c20cb270ae3fb13f3ca78e837397eee647e183a6875830101eb",
+      "path": "solve/q10.json",
+      "solveDigest": "6ed98a25ad7ca6e4ae194e0f87691c418899cd801c789cf08592602cb4fe0e18",
+      "rawSolveSha256": "d69b7a42044521f2c8aecd33d728625a6fbbde599f45ad31e5e801b72a25ead5",
+      "status": "solved"
+    },
+    {
+      "questionNumber": 11,
+      "studentDigest": "0a86ca61b7a556c9aae15a71eb852e0ea531eb2d08cdf3a1d9b5366f25352c2a",
+      "path": "solve/q11.json",
+      "solveDigest": "f95d5c14c7c888c8c99ff8c87e769d35ec7b91293656e9525503cd866cb273bd",
+      "rawSolveSha256": "f0dbf0f186970161d03f37ad8fab6be148559a7243caa23bf5ecdbf58067a194",
+      "status": "solved"
+    },
+    {
+      "questionNumber": 12,
+      "studentDigest": "cec5227a345b1de1218b8ef83d68dc1c9c7cf1e22fef58c0d3d0a14e74bf2ea8",
+      "path": "solve/q12.json",
+      "solveDigest": "4c9c3f9eb3e3da7879aca739282379c5b575bc2723d928b92778f8c5ab774a19",
+      "rawSolveSha256": "bad01eadd33df7333660d2a078e0ac10ad989d36862fe37347d43affbc4af09a",
+      "status": "solved"
+    },
+    {
+      "questionNumber": 13,
+      "studentDigest": "1660d096dbd8c6e28353edb4d6920a602f0b3ee9be4b656ca1d9efdb57baf66d",
+      "path": "solve/q13.json",
+      "solveDigest": "5f1a83e0197dd8df5e7b5e1c0c016dc9dbaf3dd3b6454bc4f2fc1e874ee9bb02",
+      "rawSolveSha256": "f7aae38337a3daaabe52118501e678213ab7c5d2af16785cfb55499d7151f12d",
+      "status": "solved"
+    },
+    {
+      "questionNumber": 14,
+      "studentDigest": "932bd02d867b4be8c568117884472eda10a7c4fcee8ae3f95729a1921bb63802",
+      "path": "solve/q14.json",
+      "solveDigest": "c2c219f06dfa6eecdac55c9f0d51391e5a508553c2bc8ff7220f50e666b6924c",
+      "rawSolveSha256": "d43540a3e6e1958436995f2e12c4282dd7d7fe059b3b18df3ab1711c3c0017e5",
+      "status": "solved"
+    },
+    {
+      "questionNumber": 15,
+      "studentDigest": "bbf42bad5ff2c95b7997c8ace9b122abaca6bfe4905a224b5d4e63a23f80fd31",
+      "path": "solve/q15.json",
+      "solveDigest": "014ce1f60a5772b896dbc78d462d7155e542d52c7af6ff2209c5833f5a265190",
+      "rawSolveSha256": "d4e5d09caf6fca560a82bb4068a4ab6031622a6b60df15f682641b8034f19b67",
+      "status": "solved"
+    },
+    {
+      "questionNumber": 22,
+      "studentDigest": "35abb187117cd33449fbe896fc3e9770041122fa5d4062335085eeb81c96d368",
+      "path": "solve/q22.json",
+      "solveDigest": "9115ea17850fed40aeda2f670a1b67672b722b25854589f64d5f956e96a0bb71",
+      "rawSolveSha256": "85c969d3f94ae9e47e04ee314e318693ac4ee1d9954f0c52f317a605bd7290f4",
+      "status": "solved"
+    }
+  ]
+}

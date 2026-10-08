@@ -1,0 +1,590 @@
+{
+  "method": "fresh independent SymPy exact arithmetic; no author/source/private inputs",
+  "independentCalculation": true,
+  "inputPath": "student-problems.json",
+  "inputRawSha256": "f0e720a54643cbe495662598b26e0e8f4045a6d9fb1f767fe2e0a02628dc72e3",
+  "results": [
+    {
+      "questionNumber": 10,
+      "target": 7,
+      "status": "independently-computed",
+      "evidence": {
+        "knownValuesFromStudent": [
+          4,
+          7,
+          3,
+          6,
+          5,
+          3
+        ],
+        "sumKnown": 28,
+        "count": 7,
+        "total": 35,
+        "missing": 7,
+        "completed": [
+          4,
+          7,
+          3,
+          7,
+          6,
+          5,
+          3
+        ],
+        "meanRecheck": "5",
+        "proof": "Sum=7*mean; one missing scalar has nonzero coefficient1 and is uniquely7.",
+        "allFiveDisplayedChoiceValues": [
+          "3",
+          "4",
+          "5",
+          "6",
+          "7"
+        ],
+        "choiceCorrectness": [
+          false,
+          false,
+          false,
+          false,
+          true
+        ],
+        "correctChoiceNumber": 5,
+        "choiceDistinct": true
+      }
+    },
+    {
+      "questionNumber": 11,
+      "target": "7",
+      "status": "independently-computed",
+      "evidence": {
+        "knownValuesFromStudent": [
+          8,
+          3,
+          5,
+          12,
+          10,
+          2
+        ],
+        "domain": "natural1..12",
+        "allDomainCases": [
+          {
+            "x": 1,
+            "median": "5"
+          },
+          {
+            "x": 2,
+            "median": "5"
+          },
+          {
+            "x": 3,
+            "median": "5"
+          },
+          {
+            "x": 4,
+            "median": "5"
+          },
+          {
+            "x": 5,
+            "median": "5"
+          },
+          {
+            "x": 6,
+            "median": "6"
+          },
+          {
+            "x": 7,
+            "median": "7"
+          },
+          {
+            "x": 8,
+            "median": "8"
+          },
+          {
+            "x": 9,
+            "median": "8"
+          },
+          {
+            "x": 10,
+            "median": "8"
+          },
+          {
+            "x": 11,
+            "median": "8"
+          },
+          {
+            "x": 12,
+            "median": "8"
+          }
+        ],
+        "validX": [
+          7
+        ],
+        "proof": "Odd median is an actual datum;7 is absent from six fixed values,so x must7; completed sorted data confirm existence.",
+        "allFiveDisplayedChoiceValues": [
+          "5",
+          "6",
+          "7",
+          "8",
+          "9"
+        ],
+        "choiceCorrectness": [
+          false,
+          false,
+          true,
+          false,
+          false
+        ],
+        "correctChoiceNumber": 3,
+        "choiceDistinct": true
+      }
+    },
+    {
+      "questionNumber": 12,
+      "target": "25",
+      "status": "independently-computed",
+      "evidence": {
+        "cardValuesFromStudent": [
+          20,
+          25,
+          30,
+          35,
+          40
+        ],
+        "knownFrequenciesFromStudent": [
+          4,
+          4,
+          3,
+          2,
+          1
+        ],
+        "totalKnown": 14,
+        "finalCount": 15,
+        "allFiveCases": [
+          {
+            "added": 20,
+            "counts": {
+              "20": 5,
+              "25": 4,
+              "30": 3,
+              "35": 2,
+              "40": 1
+            },
+            "modes": [
+              20
+            ],
+            "soleMode25": false
+          },
+          {
+            "added": 25,
+            "counts": {
+              "20": 4,
+              "25": 5,
+              "30": 3,
+              "35": 2,
+              "40": 1
+            },
+            "modes": [
+              25
+            ],
+            "soleMode25": true
+          },
+          {
+            "added": 30,
+            "counts": {
+              "20": 4,
+              "25": 4,
+              "30": 4,
+              "35": 2,
+              "40": 1
+            },
+            "modes": [
+              20,
+              25,
+              30
+            ],
+            "soleMode25": false
+          },
+          {
+            "added": 35,
+            "counts": {
+              "20": 4,
+              "25": 4,
+              "30": 3,
+              "35": 3,
+              "40": 1
+            },
+            "modes": [
+              20,
+              25
+            ],
+            "soleMode25": false
+          },
+          {
+            "added": 40,
+            "counts": {
+              "20": 4,
+              "25": 4,
+              "30": 3,
+              "35": 2,
+              "40": 2
+            },
+            "modes": [
+              20,
+              25
+            ],
+            "soleMode25": false
+          }
+        ],
+        "strictTiesChecked": true,
+        "allFiveDisplayedChoiceValues": [
+          "20",
+          "25",
+          "30",
+          "35",
+          "40"
+        ],
+        "choiceCorrectness": [
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "correctChoiceNumber": 2,
+        "choiceDistinct": true,
+        "allFiveCasesChecked": true
+      }
+    },
+    {
+      "questionNumber": 13,
+      "target": "86",
+      "status": "independently-computed",
+      "evidence": {
+        "knownDeviationsFromStudent": [
+          6,
+          -5,
+          7
+        ],
+        "thirdScoreFromStudent": 78,
+        "missingThirdDeviation": -8,
+        "actualScores": [
+          "92",
+          "81",
+          78,
+          "93"
+        ],
+        "meanRecheck": "86",
+        "scoreDomain": "0..100;all four valid",
+        "proof": "Four deviations sum0; third deviation−8; score=mean+deviation.",
+        "allFiveDisplayedChoiceValues": [
+          "78",
+          "80",
+          "84",
+          "86",
+          "90"
+        ],
+        "choiceCorrectness": [
+          false,
+          false,
+          false,
+          true,
+          false
+        ],
+        "correctChoiceNumber": 4,
+        "choiceDistinct": true
+      }
+    },
+    {
+      "questionNumber": 14,
+      "target": [
+        "6",
+        "sqrt(6)"
+      ],
+      "status": "independently-computed",
+      "evidence": {
+        "valuesFromStudent": [
+          1,
+          4,
+          5,
+          6,
+          7,
+          8,
+          11
+        ],
+        "frequenciesFromStudent": [
+          1,
+          1,
+          1,
+          4,
+          1,
+          1,
+          1
+        ],
+        "expanded": [
+          1,
+          4,
+          5,
+          6,
+          6,
+          6,
+          6,
+          7,
+          8,
+          11
+        ],
+        "count": 10,
+        "sum": 60,
+        "mean": "6",
+        "deviations": [
+          "-5",
+          "-2",
+          "-1",
+          "0",
+          "0",
+          "0",
+          "0",
+          "1",
+          "2",
+          "5"
+        ],
+        "squaredDeviationSum": "60",
+        "variance": "6",
+        "standardDeviation": "sqrt(6)",
+        "method": "Each deviation squared;frequency weighting; divide by10; positive square root.",
+        "allFiveDisplayedChoiceValues": [
+          [
+            "4",
+            "2"
+          ],
+          [
+            "6",
+            "sqrt(6)"
+          ],
+          [
+            "6",
+            "6"
+          ],
+          [
+            "10",
+            "sqrt(10)"
+          ],
+          [
+            "60",
+            "2*sqrt(15)"
+          ]
+        ],
+        "choiceCorrectness": [
+          false,
+          true,
+          false,
+          false,
+          false
+        ],
+        "correctChoiceNumber": 2,
+        "choiceDistinct": true
+      }
+    },
+    {
+      "questionNumber": 15,
+      "target": "7/10",
+      "status": "independently-computed",
+      "evidence": {
+        "programMeansFromStudent": [
+          "12",
+          "13",
+          "11",
+          "14",
+          "10"
+        ],
+        "otherStandardDeviationsFromStudent": [
+          "4/5",
+          "9/10",
+          "11/10",
+          "13/10"
+        ],
+        "strictRequirement": "A sd < min(other sd)=4/5; equality excluded",
+        "minimumOther": "4/5",
+        "positiveFiveObservationWitnesses": [
+          {
+            "mean": "12",
+            "sd": "7/10",
+            "fivePositiveDurations": [
+              "12 - 7*sqrt(10)/20",
+              "12",
+              "12",
+              "12",
+              "7*sqrt(10)/20 + 12"
+            ],
+            "varianceRecheck": "49/100"
+          },
+          {
+            "mean": "13",
+            "sd": "4/5",
+            "fivePositiveDurations": [
+              "13 - 2*sqrt(10)/5",
+              "13",
+              "13",
+              "13",
+              "2*sqrt(10)/5 + 13"
+            ],
+            "varianceRecheck": "16/25"
+          },
+          {
+            "mean": "11",
+            "sd": "9/10",
+            "fivePositiveDurations": [
+              "11 - 9*sqrt(10)/20",
+              "11",
+              "11",
+              "11",
+              "9*sqrt(10)/20 + 11"
+            ],
+            "varianceRecheck": "81/100"
+          },
+          {
+            "mean": "14",
+            "sd": "11/10",
+            "fivePositiveDurations": [
+              "14 - 11*sqrt(10)/20",
+              "14",
+              "14",
+              "14",
+              "11*sqrt(10)/20 + 14"
+            ],
+            "varianceRecheck": "121/100"
+          },
+          {
+            "mean": "10",
+            "sd": "13/10",
+            "fivePositiveDurations": [
+              "10 - 13*sqrt(10)/20",
+              "10",
+              "10",
+              "10",
+              "13*sqrt(10)/20 + 10"
+            ],
+            "varianceRecheck": "169/100"
+          }
+        ],
+        "units": "mean/minutes;SD/minutes",
+        "notMeanRanking": true,
+        "allFiveDisplayedChoiceValues": [
+          "7/10",
+          "4/5",
+          "9/10",
+          "1",
+          "11/10"
+        ],
+        "choiceCorrectness": [
+          true,
+          false,
+          false,
+          false,
+          false
+        ],
+        "correctChoiceNumber": 1,
+        "choiceDistinct": true,
+        "strictChoiceComparisons": [
+          {
+            "value": "7/10",
+            "strictlyBelowAllOthers": true,
+            "tiesMinimum": false
+          },
+          {
+            "value": "4/5",
+            "strictlyBelowAllOthers": false,
+            "tiesMinimum": true
+          },
+          {
+            "value": "9/10",
+            "strictlyBelowAllOthers": false,
+            "tiesMinimum": false
+          },
+          {
+            "value": "1",
+            "strictlyBelowAllOthers": false,
+            "tiesMinimum": false
+          },
+          {
+            "value": "11/10",
+            "strictlyBelowAllOthers": false,
+            "tiesMinimum": false
+          }
+        ]
+      }
+    },
+    {
+      "questionNumber": 22,
+      "target": [
+        "159/20",
+        "9/2"
+      ],
+      "status": "independently-computed",
+      "evidence": {
+        "timesFromStudent": [
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          11,
+          12,
+          60
+        ],
+        "frequenciesFromStudent": [
+          1,
+          2,
+          3,
+          4,
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "count": 20,
+        "weightedSum": 159,
+        "expandedSorted": [
+          1,
+          2,
+          2,
+          3,
+          3,
+          3,
+          4,
+          4,
+          4,
+          4,
+          5,
+          5,
+          6,
+          6,
+          7,
+          8,
+          9,
+          11,
+          12,
+          60
+        ],
+        "middlePositions": {
+          "10": 4,
+          "11": 5
+        },
+        "mean": "159/20",
+        "median": "9/2",
+        "reportChosen": "B",
+        "other19Sum": 99,
+        "other19MeanForEvidenceOnly": "99/19",
+        "countAtMost6": 14,
+        "max": 60,
+        "positiveTimes": true,
+        "reason": "One60-minute observation raises mean;14of20 times<=6;median4.5 describes central observed completion better. No trimmed-statistic method required."
+      }
+    }
+  ]
+}

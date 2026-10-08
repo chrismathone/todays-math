@@ -1,0 +1,165 @@
+{
+  "studentDigest": "0a86ca61b7a556c9aae15a71eb852e0ea531eb2d08cdf3a1d9b5366f25352c2a",
+  "solverId": "orca-codex-exam-twin-author-geometry-20261008",
+  "status": "solved",
+  "answer": "③",
+  "solution": "일곱 수의 중앙값은 작은 것부터 정렬했을 때 네 번째 수이므로 자료의 실제 수 중 하나이다. 알려진 8,3,5,12,10,2 중에는7이 없으므로 중앙값7은 x여야 한다. 따라서 x=7이다. 정렬하면2,3,5,7,8,10,12이므로 중앙값이7이고,1≤x≤12인 자연수 조건도 만족한다. 정답은 ③이다.",
+  "evidence": {
+    "method": "blind-student-only-independent-solve",
+    "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q11",
+    "questionNumber": 11,
+    "createdBeforeAuthorAnswerExposureAtUtc": "2026-10-08T12:14:47.156Z",
+    "authorAnswersSolutionsOpened": false,
+    "inputRawSha256": "f0e720a54643cbe495662598b26e0e8f4045a6d9fb1f767fe2e0a02628dc72e3",
+    "inputQuestionDigest": "0a86ca61b7a556c9aae15a71eb852e0ea531eb2d08cdf3a1d9b5366f25352c2a",
+    "blindManifestRawSha256": "b35129d6ed9510ec48a6e093ec64bca0af9af1350c73d7a21ff6109a17348c50",
+    "opaquePackageDigestProvided": "5270af250713b45ceda7b14d9e763cd4291b6862848636e5ff4d359556f81a7d",
+    "calculationCodePath": "calculation.py",
+    "calculationCodeSha256": "1b17475830f15dbd7490892c19551ef45d8b0bcbd87db7a4ae7d80698cb5adc2",
+    "calculationOutputPath": "calculation-output.json",
+    "calculationOutputSha256": "99856554ca8ac60fa0edece44e9ee9a00157bfc8bc3a34b4f471e3fe68d0b3d7",
+    "exactCalculation": {
+      "knownValuesFromStudent": [
+        8,
+        3,
+        5,
+        12,
+        10,
+        2
+      ],
+      "domain": "natural1..12",
+      "allDomainCases": [
+        {
+          "x": 1,
+          "median": "5"
+        },
+        {
+          "x": 2,
+          "median": "5"
+        },
+        {
+          "x": 3,
+          "median": "5"
+        },
+        {
+          "x": 4,
+          "median": "5"
+        },
+        {
+          "x": 5,
+          "median": "5"
+        },
+        {
+          "x": 6,
+          "median": "6"
+        },
+        {
+          "x": 7,
+          "median": "7"
+        },
+        {
+          "x": 8,
+          "median": "8"
+        },
+        {
+          "x": 9,
+          "median": "8"
+        },
+        {
+          "x": 10,
+          "median": "8"
+        },
+        {
+          "x": 11,
+          "median": "8"
+        },
+        {
+          "x": 12,
+          "median": "8"
+        }
+      ],
+      "validX": [
+        7
+      ],
+      "proof": "Odd median is an actual datum;7 is absent from six fixed values,so x must7; completed sorted data confirm existence.",
+      "allFiveDisplayedChoiceValues": [
+        "5",
+        "6",
+        "7",
+        "8",
+        "9"
+      ],
+      "choiceCorrectness": [
+        false,
+        false,
+        true,
+        false,
+        false
+      ],
+      "correctChoiceNumber": 3,
+      "choiceDistinct": true
+    },
+    "studentPreview": {
+      "path": "inspection/q11.png",
+      "sha256": "6b8bd6d5ac6e12c58c32f0a9aaa1cd5b9b51b67b0993d0415ffff5465f5361c4",
+      "columnWidthMm": 70,
+      "personallyViewed": true
+    },
+    "suppliedFigures": [],
+    "curriculumSurfaces": {
+      "stem": {
+        "status": "in-scope-student-input",
+        "basis": "유한 자료/평균/중앙값/최빈값/편차/산포의 중3·2015 내용",
+        "standardCodes": [
+          "9수05-06"
+        ]
+      },
+      "choices": {
+        "status": "independently-checked",
+        "basis": "다섯 실제 표시값의 중복/정답/동률을 exact code로 확인",
+        "evidence": [
+          false,
+          false,
+          true,
+          false,
+          false
+        ]
+      },
+      "figuresAndTables": {
+        "status": "independently-inspected",
+        "basis": "공급 그림0개; 해당 표/자료를70mm 학생 전용 PNG에서 직접 확인",
+        "previewPath": "inspection/q11.png",
+        "previewSha256": "6b8bd6d5ac6e12c58c32f0a9aaa1cd5b9b51b67b0993d0415ffff5465f5361c4"
+      },
+      "notation": {
+        "status": "in-scope-student-input",
+        "basis": "정수/소수/근호/빈칸/단위/도수 표기만 사용. 표본 불편분산/시그마/고급 통계 없음"
+      },
+      "answer": {
+        "status": "independently-derived",
+        "basis": "새 독립 답만 확인; 저자 답 미노출"
+      },
+      "studentSolution": {
+        "status": "independently-derived",
+        "basis": "평균/정렬/도수/편차제곱 정의만 쓴 완전한 독립 학생 풀이; 저자 풀이 미노출"
+      },
+      "prerequisites": {
+        "status": "in-scope-independent-method",
+        "basis": "기초 사칙계산과 제곱근, 정렬, 평균 및 편차 정의",
+        "standardCodes": [
+          "9수05-06"
+        ]
+      }
+    },
+    "curriculumGate": {
+      "grade": "중3",
+      "edition": "2015",
+      "independentStudentMethod": "in-scope-proposed",
+      "outOfGradeMethodRequired": false,
+      "unknownScopeHold": false,
+      "authorAnswerSolutionGradeReview": "not-yet-exposed",
+      "finalGradeApproval": false
+    },
+    "scopeLimits": "Raw independent solve only. No author/source/family/rights/native/final-review approval. Representative B is justified by the extreme value, not a general optimality theorem."
+  }
+}

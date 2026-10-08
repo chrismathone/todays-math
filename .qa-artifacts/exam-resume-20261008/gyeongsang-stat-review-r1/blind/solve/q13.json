@@ -1,0 +1,120 @@
+{
+  "studentDigest": "1660d096dbd8c6e28353edb4d6920a602f0b3ee9be4b656ca1d9efdb57baf66d",
+  "solverId": "orca-codex-exam-twin-author-geometry-20261008",
+  "status": "solved",
+  "answer": "④",
+  "solution": "편차는 점수에서 평균을 뺀 값이며 모든 편차의 합은0이다. 세 번째 편차를 d라 하면6−5+d+7=0이므로 d=−8이다. 세 번째 실제 점수78은 평균보다8점 작으므로 평균은78+8=86점이다. 정답은 ④이다. 실제 네 점수는92,81,78,93점이며 모두0~100점이고 평균도86점이다.",
+  "evidence": {
+    "method": "blind-student-only-independent-solve",
+    "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q13",
+    "questionNumber": 13,
+    "createdBeforeAuthorAnswerExposureAtUtc": "2026-10-08T12:14:47.156Z",
+    "authorAnswersSolutionsOpened": false,
+    "inputRawSha256": "f0e720a54643cbe495662598b26e0e8f4045a6d9fb1f767fe2e0a02628dc72e3",
+    "inputQuestionDigest": "1660d096dbd8c6e28353edb4d6920a602f0b3ee9be4b656ca1d9efdb57baf66d",
+    "blindManifestRawSha256": "b35129d6ed9510ec48a6e093ec64bca0af9af1350c73d7a21ff6109a17348c50",
+    "opaquePackageDigestProvided": "5270af250713b45ceda7b14d9e763cd4291b6862848636e5ff4d359556f81a7d",
+    "calculationCodePath": "calculation.py",
+    "calculationCodeSha256": "1b17475830f15dbd7490892c19551ef45d8b0bcbd87db7a4ae7d80698cb5adc2",
+    "calculationOutputPath": "calculation-output.json",
+    "calculationOutputSha256": "99856554ca8ac60fa0edece44e9ee9a00157bfc8bc3a34b4f471e3fe68d0b3d7",
+    "exactCalculation": {
+      "knownDeviationsFromStudent": [
+        6,
+        -5,
+        7
+      ],
+      "thirdScoreFromStudent": 78,
+      "missingThirdDeviation": -8,
+      "actualScores": [
+        "92",
+        "81",
+        78,
+        "93"
+      ],
+      "meanRecheck": "86",
+      "scoreDomain": "0..100;all four valid",
+      "proof": "Four deviations sum0; third deviation−8; score=mean+deviation.",
+      "allFiveDisplayedChoiceValues": [
+        "78",
+        "80",
+        "84",
+        "86",
+        "90"
+      ],
+      "choiceCorrectness": [
+        false,
+        false,
+        false,
+        true,
+        false
+      ],
+      "correctChoiceNumber": 4,
+      "choiceDistinct": true
+    },
+    "studentPreview": {
+      "path": "inspection/q13.png",
+      "sha256": "62d1b295fed0c8f38717731de0668b925377f528b1a8bac67e3b802b5d01ba57",
+      "columnWidthMm": 70,
+      "personallyViewed": true
+    },
+    "suppliedFigures": [],
+    "curriculumSurfaces": {
+      "stem": {
+        "status": "in-scope-student-input",
+        "basis": "유한 자료/평균/중앙값/최빈값/편차/산포의 중3·2015 내용",
+        "standardCodes": [
+          "9수05-06",
+          "9수05-07"
+        ]
+      },
+      "choices": {
+        "status": "independently-checked",
+        "basis": "다섯 실제 표시값의 중복/정답/동률을 exact code로 확인",
+        "evidence": [
+          false,
+          false,
+          false,
+          true,
+          false
+        ]
+      },
+      "figuresAndTables": {
+        "status": "independently-inspected",
+        "basis": "공급 그림0개; 해당 표/자료를70mm 학생 전용 PNG에서 직접 확인",
+        "previewPath": "inspection/q13.png",
+        "previewSha256": "62d1b295fed0c8f38717731de0668b925377f528b1a8bac67e3b802b5d01ba57"
+      },
+      "notation": {
+        "status": "in-scope-student-input",
+        "basis": "정수/소수/근호/빈칸/단위/도수 표기만 사용. 표본 불편분산/시그마/고급 통계 없음"
+      },
+      "answer": {
+        "status": "independently-derived",
+        "basis": "새 독립 답만 확인; 저자 답 미노출"
+      },
+      "studentSolution": {
+        "status": "independently-derived",
+        "basis": "평균/정렬/도수/편차제곱 정의만 쓴 완전한 독립 학생 풀이; 저자 풀이 미노출"
+      },
+      "prerequisites": {
+        "status": "in-scope-independent-method",
+        "basis": "기초 사칙계산과 제곱근, 정렬, 평균 및 편차 정의",
+        "standardCodes": [
+          "9수05-06",
+          "9수05-07"
+        ]
+      }
+    },
+    "curriculumGate": {
+      "grade": "중3",
+      "edition": "2015",
+      "independentStudentMethod": "in-scope-proposed",
+      "outOfGradeMethodRequired": false,
+      "unknownScopeHold": false,
+      "authorAnswerSolutionGradeReview": "not-yet-exposed",
+      "finalGradeApproval": false
+    },
+    "scopeLimits": "Raw independent solve only. No author/source/family/rights/native/final-review approval. Representative B is justified by the extreme value, not a general optimality theorem."
+  }
+}

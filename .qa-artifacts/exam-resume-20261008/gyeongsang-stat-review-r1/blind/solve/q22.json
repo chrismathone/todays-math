@@ -1,0 +1,162 @@
+{
+  "studentDigest": "35abb187117cd33449fbe896fc3e9770041122fa5d4062335085eeb81c96d368",
+  "solverId": "orca-codex-exam-twin-author-geometry-20261008",
+  "status": "solved",
+  "answer": "평균 7.95분, 중앙값 4.5분; 보고서 B",
+  "solution": "표의 인원 합은20명이다. 시간의 합은1×1+2×2+3×3+4×4+5×2+6×2+7+8+9+11+12+60=159분이므로 평균은159÷20=7.95분이다. 따라서 보고서 A에는7.95분을 적는다. 작은 것부터 정렬하면1~3분인 학생이6명이고,4분인 학생4명까지 합쳐10명이다. 그다음5분인 학생이11번째와12번째에 있으므로 중앙값은(4+5)÷2=4.5분이다. 보고서 B에는4.5분을 적는다. 다른19명은1~12분에 모여 있고, 한 학생의60분이라는 매우 큰 값이 평균을 높인다. 중앙값은 가운데 두 관측값으로 정해져 이 극단값의 영향을 덜 받으므로 동아리원의 보통 완료 시간을 소개할 때 보고서 B가 더 알맞다.",
+  "answerParts": [
+    {
+      "role": "reportA.mean",
+      "value": "159/20",
+      "unit": "분"
+    },
+    {
+      "role": "reportB.median",
+      "value": "9/2",
+      "unit": "분"
+    },
+    {
+      "role": "representativeReport",
+      "value": "B",
+      "unit": null
+    }
+  ],
+  "evidence": {
+    "method": "blind-student-only-independent-solve",
+    "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q22",
+    "questionNumber": 22,
+    "createdBeforeAuthorAnswerExposureAtUtc": "2026-10-08T12:14:47.156Z",
+    "authorAnswersSolutionsOpened": false,
+    "inputRawSha256": "f0e720a54643cbe495662598b26e0e8f4045a6d9fb1f767fe2e0a02628dc72e3",
+    "inputQuestionDigest": "35abb187117cd33449fbe896fc3e9770041122fa5d4062335085eeb81c96d368",
+    "blindManifestRawSha256": "b35129d6ed9510ec48a6e093ec64bca0af9af1350c73d7a21ff6109a17348c50",
+    "opaquePackageDigestProvided": "5270af250713b45ceda7b14d9e763cd4291b6862848636e5ff4d359556f81a7d",
+    "calculationCodePath": "calculation.py",
+    "calculationCodeSha256": "1b17475830f15dbd7490892c19551ef45d8b0bcbd87db7a4ae7d80698cb5adc2",
+    "calculationOutputPath": "calculation-output.json",
+    "calculationOutputSha256": "99856554ca8ac60fa0edece44e9ee9a00157bfc8bc3a34b4f471e3fe68d0b3d7",
+    "exactCalculation": {
+      "timesFromStudent": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        11,
+        12,
+        60
+      ],
+      "frequenciesFromStudent": [
+        1,
+        2,
+        3,
+        4,
+        2,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      "count": 20,
+      "weightedSum": 159,
+      "expandedSorted": [
+        1,
+        2,
+        2,
+        3,
+        3,
+        3,
+        4,
+        4,
+        4,
+        4,
+        5,
+        5,
+        6,
+        6,
+        7,
+        8,
+        9,
+        11,
+        12,
+        60
+      ],
+      "middlePositions": {
+        "10": 4,
+        "11": 5
+      },
+      "mean": "159/20",
+      "median": "9/2",
+      "reportChosen": "B",
+      "other19Sum": 99,
+      "other19MeanForEvidenceOnly": "99/19",
+      "countAtMost6": 14,
+      "max": 60,
+      "positiveTimes": true,
+      "reason": "One60-minute observation raises mean;14of20 times<=6;median4.5 describes central observed completion better. No trimmed-statistic method required."
+    },
+    "studentPreview": {
+      "path": "inspection/q22.png",
+      "sha256": "3c3c4fb11831df3cc614dd5797e1fda7a89b6d49e81bb7ef062812305c96ad15",
+      "columnWidthMm": 70,
+      "personallyViewed": true
+    },
+    "suppliedFigures": [],
+    "curriculumSurfaces": {
+      "stem": {
+        "status": "in-scope-student-input",
+        "basis": "유한 자료/평균/중앙값/최빈값/편차/산포의 중3·2015 내용",
+        "standardCodes": [
+          "9수05-06"
+        ]
+      },
+      "choices": {
+        "status": "not-applicable",
+        "basis": "서술형,choices=[]",
+        "evidence": null
+      },
+      "figuresAndTables": {
+        "status": "independently-inspected",
+        "basis": "공급 그림0개; 해당 표/자료를70mm 학생 전용 PNG에서 직접 확인",
+        "previewPath": "inspection/q22.png",
+        "previewSha256": "3c3c4fb11831df3cc614dd5797e1fda7a89b6d49e81bb7ef062812305c96ad15"
+      },
+      "notation": {
+        "status": "in-scope-student-input",
+        "basis": "정수/소수/근호/빈칸/단위/도수 표기만 사용. 표본 불편분산/시그마/고급 통계 없음"
+      },
+      "answer": {
+        "status": "independently-derived",
+        "basis": "새 독립 답만 확인; 저자 답 미노출"
+      },
+      "studentSolution": {
+        "status": "independently-derived",
+        "basis": "평균/정렬/도수/편차제곱 정의만 쓴 완전한 독립 학생 풀이; 저자 풀이 미노출"
+      },
+      "prerequisites": {
+        "status": "in-scope-independent-method",
+        "basis": "기초 사칙계산과 제곱근, 정렬, 평균 및 편차 정의",
+        "standardCodes": [
+          "9수05-06"
+        ]
+      }
+    },
+    "curriculumGate": {
+      "grade": "중3",
+      "edition": "2015",
+      "independentStudentMethod": "in-scope-proposed",
+      "outOfGradeMethodRequired": false,
+      "unknownScopeHold": false,
+      "authorAnswerSolutionGradeReview": "not-yet-exposed",
+      "finalGradeApproval": false
+    },
+    "scopeLimits": "Raw independent solve only. No author/source/family/rights/native/final-review approval. Representative B is justified by the extreme value, not a general optimality theorem."
+  }
+}

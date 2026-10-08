@@ -1,0 +1,196 @@
+{
+  "studentDigest": "cec5227a345b1de1218b8ef83d68dc1c9c7cf1e22fef58c0d3d0a14e74bf2ea8",
+  "solverId": "orca-codex-exam-twin-author-geometry-20261008",
+  "status": "solved",
+  "answer": "②",
+  "solution": "알려진14장에서는20과25가 각각4장으로 가장 많다. 25가 유일한 최빈값이 되려면 남은 카드는25여야 하며, 이때25는5장,20은4장이다. 20을 추가하면20이 유일한 최빈값이 되고,30을 추가하면20,25,30이 각각4장으로 동률이다. 35 또는40을 추가해도20과25의4장 동률이 남는다. 따라서 유일한 선택은25, 정답은 ②이다.",
+  "evidence": {
+    "method": "blind-student-only-independent-solve",
+    "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q12",
+    "questionNumber": 12,
+    "createdBeforeAuthorAnswerExposureAtUtc": "2026-10-08T12:14:47.156Z",
+    "authorAnswersSolutionsOpened": false,
+    "inputRawSha256": "f0e720a54643cbe495662598b26e0e8f4045a6d9fb1f767fe2e0a02628dc72e3",
+    "inputQuestionDigest": "cec5227a345b1de1218b8ef83d68dc1c9c7cf1e22fef58c0d3d0a14e74bf2ea8",
+    "blindManifestRawSha256": "b35129d6ed9510ec48a6e093ec64bca0af9af1350c73d7a21ff6109a17348c50",
+    "opaquePackageDigestProvided": "5270af250713b45ceda7b14d9e763cd4291b6862848636e5ff4d359556f81a7d",
+    "calculationCodePath": "calculation.py",
+    "calculationCodeSha256": "1b17475830f15dbd7490892c19551ef45d8b0bcbd87db7a4ae7d80698cb5adc2",
+    "calculationOutputPath": "calculation-output.json",
+    "calculationOutputSha256": "99856554ca8ac60fa0edece44e9ee9a00157bfc8bc3a34b4f471e3fe68d0b3d7",
+    "exactCalculation": {
+      "cardValuesFromStudent": [
+        20,
+        25,
+        30,
+        35,
+        40
+      ],
+      "knownFrequenciesFromStudent": [
+        4,
+        4,
+        3,
+        2,
+        1
+      ],
+      "totalKnown": 14,
+      "finalCount": 15,
+      "allFiveCases": [
+        {
+          "added": 20,
+          "counts": {
+            "20": 5,
+            "25": 4,
+            "30": 3,
+            "35": 2,
+            "40": 1
+          },
+          "modes": [
+            20
+          ],
+          "soleMode25": false
+        },
+        {
+          "added": 25,
+          "counts": {
+            "20": 4,
+            "25": 5,
+            "30": 3,
+            "35": 2,
+            "40": 1
+          },
+          "modes": [
+            25
+          ],
+          "soleMode25": true
+        },
+        {
+          "added": 30,
+          "counts": {
+            "20": 4,
+            "25": 4,
+            "30": 4,
+            "35": 2,
+            "40": 1
+          },
+          "modes": [
+            20,
+            25,
+            30
+          ],
+          "soleMode25": false
+        },
+        {
+          "added": 35,
+          "counts": {
+            "20": 4,
+            "25": 4,
+            "30": 3,
+            "35": 3,
+            "40": 1
+          },
+          "modes": [
+            20,
+            25
+          ],
+          "soleMode25": false
+        },
+        {
+          "added": 40,
+          "counts": {
+            "20": 4,
+            "25": 4,
+            "30": 3,
+            "35": 2,
+            "40": 2
+          },
+          "modes": [
+            20,
+            25
+          ],
+          "soleMode25": false
+        }
+      ],
+      "strictTiesChecked": true,
+      "allFiveDisplayedChoiceValues": [
+        "20",
+        "25",
+        "30",
+        "35",
+        "40"
+      ],
+      "choiceCorrectness": [
+        false,
+        true,
+        false,
+        false,
+        false
+      ],
+      "correctChoiceNumber": 2,
+      "choiceDistinct": true,
+      "allFiveCasesChecked": true
+    },
+    "studentPreview": {
+      "path": "inspection/q12.png",
+      "sha256": "7b87fffcf2d9d7f77ce4479506cc10fd33ab9779d33a797dce3f5789eace755a",
+      "columnWidthMm": 70,
+      "personallyViewed": true
+    },
+    "suppliedFigures": [],
+    "curriculumSurfaces": {
+      "stem": {
+        "status": "in-scope-student-input",
+        "basis": "유한 자료/평균/중앙값/최빈값/편차/산포의 중3·2015 내용",
+        "standardCodes": [
+          "9수05-06"
+        ]
+      },
+      "choices": {
+        "status": "independently-checked",
+        "basis": "다섯 실제 표시값의 중복/정답/동률을 exact code로 확인",
+        "evidence": [
+          false,
+          true,
+          false,
+          false,
+          false
+        ]
+      },
+      "figuresAndTables": {
+        "status": "independently-inspected",
+        "basis": "공급 그림0개; 해당 표/자료를70mm 학생 전용 PNG에서 직접 확인",
+        "previewPath": "inspection/q12.png",
+        "previewSha256": "7b87fffcf2d9d7f77ce4479506cc10fd33ab9779d33a797dce3f5789eace755a"
+      },
+      "notation": {
+        "status": "in-scope-student-input",
+        "basis": "정수/소수/근호/빈칸/단위/도수 표기만 사용. 표본 불편분산/시그마/고급 통계 없음"
+      },
+      "answer": {
+        "status": "independently-derived",
+        "basis": "새 독립 답만 확인; 저자 답 미노출"
+      },
+      "studentSolution": {
+        "status": "independently-derived",
+        "basis": "평균/정렬/도수/편차제곱 정의만 쓴 완전한 독립 학생 풀이; 저자 풀이 미노출"
+      },
+      "prerequisites": {
+        "status": "in-scope-independent-method",
+        "basis": "기초 사칙계산과 제곱근, 정렬, 평균 및 편차 정의",
+        "standardCodes": [
+          "9수05-06"
+        ]
+      }
+    },
+    "curriculumGate": {
+      "grade": "중3",
+      "edition": "2015",
+      "independentStudentMethod": "in-scope-proposed",
+      "outOfGradeMethodRequired": false,
+      "unknownScopeHold": false,
+      "authorAnswerSolutionGradeReview": "not-yet-exposed",
+      "finalGradeApproval": false
+    },
+    "scopeLimits": "Raw independent solve only. No author/source/family/rights/native/final-review approval. Representative B is justified by the extreme value, not a general optimality theorem."
+  }
+}
