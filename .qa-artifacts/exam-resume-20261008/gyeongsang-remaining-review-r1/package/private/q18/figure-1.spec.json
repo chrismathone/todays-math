@@ -1,0 +1,159 @@
+{
+  "version": 2,
+  "theme": "exam-thin",
+  "style": {
+    "font_size": 18,
+    "angle_font_size": 17,
+    "angle_radius": 16,
+    "padding": 22,
+    "show_points": false
+  },
+  "points": {
+    "B": [
+      0,
+      0
+    ],
+    "C": [
+      180,
+      0
+    ],
+    "F": [
+      60,
+      0
+    ],
+    "D": [
+      180,
+      -120
+    ],
+    "A": [
+      0,
+      -103.92304845413263
+    ],
+    "E": [
+      103.92304845413263,
+      -43.92304845413263
+    ],
+    "H": [
+      103.92304845413263,
+      0
+    ]
+  },
+  "segments": {
+    "AB": [
+      "A",
+      "B"
+    ],
+    "BC": [
+      "B",
+      "C"
+    ],
+    "AC": [
+      "A",
+      "C"
+    ],
+    "CD": [
+      "C",
+      "D"
+    ],
+    "FD": [
+      "F",
+      "D"
+    ],
+    "EH": {
+      "points": [
+        "E",
+        "H"
+      ],
+      "dash": "4 3"
+    }
+  },
+  "labels": {
+    "B": "B",
+    "C": "C",
+    "F": "F",
+    "D": "D",
+    "A": "A",
+    "E": "E",
+    "H": "H"
+  },
+  "angles": {
+    "angle_B": {
+      "vertex": "B",
+      "points": [
+        "A",
+        "C"
+      ],
+      "right": true,
+      "radius": 8
+    },
+    "angle_C": {
+      "vertex": "C",
+      "points": [
+        "D",
+        "F"
+      ],
+      "right": true,
+      "radius": 8
+    },
+    "angle_H": {
+      "vertex": "H",
+      "points": [
+        "E",
+        "C"
+      ],
+      "right": true,
+      "radius": 8
+    },
+    "angle_A": {
+      "vertex": "A",
+      "points": [
+        "B",
+        "C"
+      ],
+      "label": "$60^\\circ$",
+      "radius": 23,
+      "label_distance": 35
+    },
+    "angle_F": {
+      "vertex": "F",
+      "points": [
+        "E",
+        "C"
+      ],
+      "label": "$45^\\circ$",
+      "radius": 23,
+      "label_distance": 35
+    }
+  },
+  "regions": {
+    "shade": {
+      "boundary": [
+        {
+          "seg": [
+            "A",
+            "B"
+          ]
+        },
+        {
+          "seg": [
+            "B",
+            "F"
+          ]
+        },
+        {
+          "seg": [
+            "F",
+            "E"
+          ]
+        },
+        {
+          "seg": [
+            "E",
+            "A"
+          ]
+        }
+      ],
+      "fill": "#eeeeee"
+    }
+  }
+}

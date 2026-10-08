@@ -1,55 +1,59 @@
 {
-  "kind": "execution-status-ledger/v9",
-  "version": 9,
-  "createdAt": "2026-10-08T13:31:31.130Z",
+  "kind": "execution-status-ledger/v10",
+  "version": 10,
+  "createdAt": "2026-10-08T14:38:30.250Z",
   "latestDirective": "docs/planning/tracks/brief-exam-extraction-resume-20261008-addendum-6.md",
   "previousLedger": {
-    "path": ".qa-artifacts/exam-resume-20261008/status-ledger-v8.json",
-    "sha256": "d24721699e0aa4bc401158fae2a0aad759d2065c2631f65994fe6f4575a84c2b"
+    "path": ".qa-artifacts/exam-resume-20261008/status-ledger-v9.json",
+    "sha256": "2383c0dd0627e7960927d7735564e73ddc6e87dd0f8f9e8f980ac241592955e4"
   },
   "report": {
-    "path": "docs/planning/tracks/reports/exam-twin-checkpoint-v9-20261008.md",
-    "sha256": "1de2a394aa86e17dca59e79da1fe48a9b6c1cf00f6b28f0af9bc333d2395fae8"
+    "path": "docs/planning/tracks/reports/exam-twin-checkpoint-v10-20261008.md",
+    "sha256": "46de9eeab483769834114654a957a89ad8ef023677cfd268a843e1fd52aa6ef9"
   },
   "counts": {
-    "authoredCurrentCandidates": 91,
-    "currentFigureInstances": 72,
+    "authoredCurrentCandidates": 106,
+    "currentFigureInstances": 84,
     "recreatedStatTables": 5,
     "builtinImagegenRasters": 2,
     "preExposureRawSolvesBoundToCurrentCandidates": 90,
     "preExposureRawSolvesIncludingSupersededR1": 91,
-    "independentMathReviewed": 60,
-    "independentFullGradeReviewed": 60,
-    "contentReviewPassed": 13,
-    "contentReviewHeld": 47,
-    "awaitingCollectedIndependentReview": 31,
+    "independentMathReviewed": 90,
+    "independentFullGradeReviewed": 90,
+    "contentReviewPassed": 15,
+    "contentReviewHeld": 75,
+    "awaitingCollectedIndependentReview": 16,
     "fullVerified": 0,
     "loadable": 0,
     "dbWrites": 0
   },
   "currentIndex": {
-    "path": ".qa-artifacts/exam-resume-20261008/current-authored-batches-v9.json",
-    "sha256": "317e744fb40827c4a1ee6eace05ecac5f4b5d2948735c90556365c67d1f6d060"
+    "path": ".qa-artifacts/exam-resume-20261008/current-authored-batches-v10.json",
+    "sha256": "6d1e5845ecda46507a238e7c59b4a8da2fc21249c2178e00c57871be95e58e6c"
   },
   "currentSemanticReviewSummary": {
-    "path": ".qa-artifacts/exam-resume-20261008/current-final-semantic-review-summary-r1.json",
-    "sha256": "9f993e13b01ab5382ba7665187d56f4203cf46a5189c750d544ce687f62735a0"
+    "path": ".qa-artifacts/exam-resume-20261008/current-final-semantic-review-summary-r2.json",
+    "sha256": "8c9c0af488991a05c500352df46a0cb98fc296bf566c929b7ac9837ff23090c6"
   },
-  "semanticReviewClarification": "60 actually independently reviewed math/grade; semantic role/value/meaning evidence stays separate from legacy literal comparator. No raw solve edits or automatic full-answer semantic approval added.",
-  "newSourceAttempt": {
-    "index": {
-      "path": ".qa-artifacts/exam-resume-20261008/next-three-extraction-r1-attempt2/extraction-attempt-index.json",
-      "sha256": "7f008d188b089874c83723ab4706ee45896aef1028e43da8bebe6d536df20eb6"
-    },
-    "preliminary": {
-      "path": ".qa-artifacts/exam-resume-20261008/next-three-extraction-r1-attempt2/preliminary-printed-identity-review-r1.json",
-      "sha256": "2efc0438ff190a46b202f692aae9e495aa0fddc65ac648a87905fb6fd4fd894b"
-    },
-    "newParsedParents": 67,
+  "semanticReviewClarification": "90 actually bound math/grade reports; 15 content passes and75 holds. GS22-r1 is excluded from current r2 review. Author code, raw pending work and legacy literal comparisons are not approvals.",
+  "newSourceAttempts": {
+    "entries": [
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/next-three-extraction-r1-attempt2/extraction-attempt-index.json",
+        "sha256": "7f008d188b089874c83723ab4706ee45896aef1028e43da8bebe6d536df20eb6"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/next-three-extraction-r2-attempt1/extraction-attempt-index.json",
+        "sha256": "92986421e8b0782561119a54f9ee952887a22809ab64ca21b99861b36765c7e3"
+      }
+    ],
     "previousConfirmedContentParents": 127,
+    "newQuarantinedParsedParents": 126,
+    "allParsedParentObservations": 253,
     "newComponentApprovals": 0,
-    "quarantined": true,
-    "allNExtracted": false
+    "wholeIdentityAndPairApprovals": 0,
+    "allNExtracted": false,
+    "authorDistributionAllowed": false
   },
   "q22Repair": {
     "candidate": {
@@ -69,7 +73,20 @@
       "sha256": "c4d07c05691a639250882dac780dbb8b9ed9eccc0db5b8a34a0e42019d0c254e"
     },
     "freshIndependentSolvePending": true,
-    "priorR1RawAndReviewPreserved": true
+    "priorR1RawAndReviewPreserved": true,
+    "currentSelectionUnchanged": true
+  },
+  "metadataCorrection": {
+    "exam": "Gyeongsang-stat",
+    "questionNumber": 13,
+    "currentId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q13",
+    "status": "nonstudent deviation-definition sign correction required; frozen r4 and report preserved",
+    "studentMathAndGradePassed": true,
+    "familyAndMetadataRemainHeld": true,
+    "unselectedRepair": {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-q13-metadata-repair-r5/repair-receipt.json",
+      "sha256": "c78e12d3237d78d34aa52876e380c4ce3dfd32f53e8ddd1acfa07b7d54961af3"
+    }
   },
   "engineLedger": {
     "path": ".qa-artifacts/exam-resume-20261008/engine-upgrades-progress-r3.json",
@@ -77,45 +94,46 @@
   },
   "relatedTests": {
     "corePassed": 33,
+    "mainChangedEnginePassed": 65,
     "mainChangedRenderPassed": 21,
-    "actualNewQuestionReviews": 0
+    "actualReviewCountsNotInferredFromTests": true
   },
   "remoteIntegration": {
     "ref": "origin/main",
-    "actualFetchedSha": "6c9ddd54f01e218c8ee16aaebc5d0051632c7d4d",
-    "mainIntegratedBeforeOwnedCheckpoint": true,
-    "mainWorktreeWritten": false,
-    "firstFeatureBackup": {
-      "path": ".qa-artifacts/exam-resume-20261008/continuation-watch/first-checkpoint-push-20261008.json",
-      "sha256": "b3df451be74f24dcee9cc185d626fef065f8d5b3a003c0ccc26d3d32eac1dbb7"
+    "integratedSha": "84e94834afce556a147930b67a567e1800a61fb4",
+    "featureBackupConfirmed": {
+      "path": ".qa-artifacts/exam-resume-20261008/checkpoint-push-receipt-v9.json",
+      "sha256": "337fcf22a0d9752756502c173a2a8ca281cf3dad0ca65dc0b97cd93620982974"
     },
-    "subsequentFeaturePush": "required after this checkpoint; record remote actual SHA separately",
+    "currentOwnedCheckpointPush": "required after this version is committed and latest fetch/integration/checks",
+    "mainWorktreeWritten": false,
     "forcePush": false
   },
   "activeWork": [
     {
       "worktree": "exam-twin-source-identity-20261008",
       "originalSessionId": "01a1177f-954e-7343-9cfb-e803c179ed85",
-      "scope": "Gyeongsang remaining15 authoring; after sealing, fresh unexposed q22-r2 solve",
-      "status": "working; actual turn began after CR submission, no duplicate prompt"
+      "scope": "fresh q22-r2 student-only solve; seal before private exposure",
+      "request": "ba4eae89-eeac-4f6c-b781-734a26aca470",
+      "status": "actual work observed; not yet collected"
     },
     {
       "worktree": "exam-twin-author-geometry-20261008",
       "originalSessionId": "01a1177e-fbb2-7822-a7e2-51c40b39e38f",
-      "scope": "Final fresh stats7 and Gyeongsan24 originalr1 review; preserve q22 duplicatehold",
-      "status": "turn_started",
-      "request": "760d1225-049e-4379-985a-d5b73b6a6fe1"
+      "scope": "fresh GF15 student-only solve; q18 complexity hold separate",
+      "request": "03c81516-794f-4787-8b5a-0ab1efd45125",
+      "status": "actual student figures and code work observed; not yet collected"
     },
     {
       "worktree": "exam-twin-author-algebra-20261008",
       "originalSessionId": "01a1177d-e52b-7511-944f-c2d4edd47c82",
-      "scope": "Whole67 new source component/identity/score/curriculum-risk/author-whitelist review",
-      "status": "turn_started",
-      "request": "de54ea06-0d75-4b32-9f43-03395d73f60a"
+      "scope": "whole new KI/KSE/NB67 source identity/components and question-only whitelist",
+      "request": "e9d34086-ee4f-4818-8514-9b35394b3ba6",
+      "status": "resumed same session after capacity interruption; prior views/dirty evidence preserved"
     },
     {
       "worktree": "exam-extraction-resume-20261008",
-      "scope": "Feature checkpoint push, metadata/semantic evidence/current ID joins, sourcequeue and useful code improvements",
+      "scope": "current report joins, source59 quarantine audit, metadata correction, intermediate commit/push and continued production",
       "status": "working"
     }
   ],
@@ -180,5 +198,9 @@
     "noWholeCompleteOrStopMarker": true
   },
   "wholeGoalComplete": false,
-  "productionEngineUpgradesComplete": 0
+  "productionEngineUpgradesComplete": 0,
+  "integrationAudit": {
+    "path": ".qa-artifacts/exam-resume-20261008/final31-integration-audit-r1/audit.json",
+    "sha256": "620d679f8c29e52c918ca75ae2bd4b5040014b6fbb34c79c8bb5d06e466140ef"
+  }
 }

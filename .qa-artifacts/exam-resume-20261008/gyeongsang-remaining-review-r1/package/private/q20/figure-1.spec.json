@@ -1,0 +1,56 @@
+{
+  "version": 2,
+  "theme": "exam-thin",
+  "style": {
+    "font_size": 18,
+    "angle_font_size": 17,
+    "angle_radius": 16,
+    "padding": 22,
+    "show_points": false
+  },
+  "points": {
+    "Q": [
+      0,
+      0
+    ],
+    "R": [
+      160,
+      0
+    ],
+    "P": [
+      80,
+      -138.56406460551017
+    ],
+    "H": [
+      80,
+      0
+    ]
+  },
+  "segments": {
+    "PQ": [
+      "P",
+      "Q"
+    ],
+    "QR": [
+      "Q",
+      "R"
+    ],
+    "RP": [
+      "R",
+      "P"
+    ],
+    "PH": {
+      "points": [
+        "P",
+        "H"
+      ],
+      "dash": "4 3"
+    }
+  },
+  "labels": {
+    "Q": "Q",
+    "R": "R",
+    "P": "P",
+    "H": "H"
+  }
+}

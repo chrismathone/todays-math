@@ -1,0 +1,63 @@
+{
+  "kind": "final31-parent-integration-audit/v1",
+  "createdAt": "2026-10-08T14:41:40.087507+00:00",
+  "groups": [
+    {
+      "scope": "gyeongsang-stat-final-review-r1",
+      "frozenReviewFilesExact": 62,
+      "preservationEntries": 680,
+      "preservationEntriesExact": 678,
+      "checkoutByteDiscrepancies": [
+        {
+          "path": "docs/planning/tracks/reports/bumil-taxonomy-peer-r1-20261008.md",
+          "capturedExpectedSha256": "b0d0e55317a3ccd319fd0baedcee8210637be6e0af34aab7f887088065b4fc76",
+          "parentActualSha256": "e16fc2668e3c2737d52278bdc95e089db660366f730ee4f94a246758e32d7902",
+          "workerOriginalCopy": ".qa-artifacts\\exam-resume-20261008\\final31-integration-audit-r1\\bumil-taxonomy-peer-r1-20261008.md.worker-original.raw",
+          "workerOriginalCopySha256": "b0d0e55317a3ccd319fd0baedcee8210637be6e0af34aab7f887088065b4fc76",
+          "difference": "LF/CRLF only; original report and original validator are not rewritten"
+        },
+        {
+          "path": "docs/planning/tracks/reports/gyeonggu-authoring-r1-20261008.md",
+          "capturedExpectedSha256": "a7f7c2304ba46d669cb38f4ad6231c80301bfb3bb2190fa521f087f6e9e7fc5d",
+          "parentActualSha256": "2629524b94ffc6ab870c55030c9090e625e044ad34555704f198b45cdd459b84",
+          "workerOriginalCopy": ".qa-artifacts\\exam-resume-20261008\\final31-integration-audit-r1\\gyeonggu-authoring-r1-20261008.md.worker-original.raw",
+          "workerOriginalCopySha256": "a7f7c2304ba46d669cb38f4ad6231c80301bfb3bb2190fa521f087f6e9e7fc5d",
+          "difference": "LF/CRLF only; original report and original validator are not rewritten"
+        }
+      ],
+      "unqualifiedOriginalValidatorPassed": false,
+      "originalValidatorFailureReason": "Its preservation check compares two Markdown working-tree line endings byte-for-byte; no current candidate, figure, source or raw solve discrepancy."
+    },
+    {
+      "scope": "gyeongsan-final-review-r1",
+      "frozenReviewFilesExact": 173,
+      "preservationEntries": 743,
+      "preservationEntriesExact": 741,
+      "checkoutByteDiscrepancies": [
+        {
+          "path": "docs/planning/tracks/reports/bumil-taxonomy-peer-r1-20261008.md",
+          "capturedExpectedSha256": "b0d0e55317a3ccd319fd0baedcee8210637be6e0af34aab7f887088065b4fc76",
+          "parentActualSha256": "e16fc2668e3c2737d52278bdc95e089db660366f730ee4f94a246758e32d7902",
+          "workerOriginalCopy": ".qa-artifacts\\exam-resume-20261008\\final31-integration-audit-r1\\bumil-taxonomy-peer-r1-20261008.md.worker-original.raw",
+          "workerOriginalCopySha256": "b0d0e55317a3ccd319fd0baedcee8210637be6e0af34aab7f887088065b4fc76",
+          "difference": "LF/CRLF only; original report and original validator are not rewritten"
+        },
+        {
+          "path": "docs/planning/tracks/reports/gyeonggu-authoring-r1-20261008.md",
+          "capturedExpectedSha256": "a7f7c2304ba46d669cb38f4ad6231c80301bfb3bb2190fa521f087f6e9e7fc5d",
+          "parentActualSha256": "2629524b94ffc6ab870c55030c9090e625e044ad34555704f198b45cdd459b84",
+          "workerOriginalCopy": ".qa-artifacts\\exam-resume-20261008\\final31-integration-audit-r1\\gyeonggu-authoring-r1-20261008.md.worker-original.raw",
+          "workerOriginalCopySha256": "a7f7c2304ba46d669cb38f4ad6231c80301bfb3bb2190fa521f087f6e9e7fc5d",
+          "difference": "LF/CRLF only; original report and original validator are not rewritten"
+        }
+      ],
+      "unqualifiedOriginalValidatorPassed": false,
+      "originalValidatorFailureReason": "Its preservation check compares two Markdown working-tree line endings byte-for-byte; no current candidate, figure, source or raw solve discrepancy."
+    }
+  ],
+  "frozenReviewOutputExact": true,
+  "rawAndCandidateByteExceptionsAllowed": false,
+  "capturedByteExceptionsPreserved": true,
+  "dbWrites": 0,
+  "fullApproval": false
+}

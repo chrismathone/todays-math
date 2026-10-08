@@ -1,0 +1,83 @@
+{
+  "kind": "unselected-nonstudent-metadata-repair/v1",
+  "createdAt": "2026-10-08T14:39:29.107Z",
+  "previous": {
+    "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-stat-authoring-r1/candidates-r4/q13/candidate.json",
+    "sha256": "ebf337193dd2ba93a6e7a984cd25022be7ad57c99c2ffd8105fa8a7ca1df1aa0",
+    "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r4-q13",
+    "studentDigest": "1660d096dbd8c6e28353edb4d6920a602f0b3ee9be4b656ca1d9efdb57baf66d",
+    "candidateDigest": "d6808f6dfdba3783e887ad3256863f8c4fd31849f608207fd32ef7395974e6b6"
+  },
+  "replacement": {
+    "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-q13-metadata-repair-r5/candidate.json",
+    "sha256": "87a936152dcbd234c6452fb58c2185f38ff1afc02cca3baa39906506ba628566",
+    "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-r5-q13",
+    "studentDigest": "f1a61ecf81fe35ca13f5d2ad0f13fa24802284ef35b453f57681272bbdb0a1ce",
+    "candidateDigest": "42b1ba0e702616dd8f1a871682b819b4e9ff1b13d7a1f15ac484d6dd7c627d2a",
+    "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+    "metadataDigest": "01444d2e6d094f37937a9bc891a840bc3682cd60b483f4fdee61b64d261118ff",
+    "variantDeltaDigest": "4db2060c05405db3f96474641709846047112a0192a06d617b6e581ce1317772"
+  },
+  "changedFields": [
+    {
+      "field": "variantDelta.sharedProcedure",
+      "before": "평균에서 각 관측값을 뺀 차이들의 합이 0임을 확인하고, 점수−편차로 평균을 구한다.",
+      "after": "각 관측값에서 평균을 뺀 차이들의 합이 0임을 확인하고, 점수−편차로 평균을 구한다."
+    },
+    {
+      "field": "curriculumReview.allowedProcedure",
+      "before": "평균에서 각 관측값을 뺀 차이들의 합이 0임을 확인하고, 점수−편차로 평균을 구한다.",
+      "after": "각 관측값에서 평균을 뺀 차이들의 합이 0임을 확인하고, 점수−편차로 평균을 구한다."
+    },
+    {
+      "field": "curriculumReview.surfaces.stem.evidence",
+      "before": "편차의 뜻과 편차 합: 평균에서 각 관측값을 뺀 차이들의 합이 0임을 확인하고, 점수−편차로 평균을 구한다.; stem에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토.",
+      "after": "편차의 뜻과 편차 합: 각 관측값에서 평균을 뺀 차이들의 합이 0임을 확인하고, 점수−편차로 평균을 구한다.; stem에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+    },
+    {
+      "field": "curriculumReview.surfaces.choices.evidence",
+      "before": "편차의 뜻과 편차 합: 평균에서 각 관측값을 뺀 차이들의 합이 0임을 확인하고, 점수−편차로 평균을 구한다.; choices에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토.",
+      "after": "편차의 뜻과 편차 합: 각 관측값에서 평균을 뺀 차이들의 합이 0임을 확인하고, 점수−편차로 평균을 구한다.; choices에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+    },
+    {
+      "field": "curriculumReview.surfaces.figuresAndTables.evidence",
+      "before": "편차의 뜻과 편차 합: 평균에서 각 관측값을 뺀 차이들의 합이 0임을 확인하고, 점수−편차로 평균을 구한다.; figuresAndTables에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토.",
+      "after": "편차의 뜻과 편차 합: 각 관측값에서 평균을 뺀 차이들의 합이 0임을 확인하고, 점수−편차로 평균을 구한다.; figuresAndTables에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+    },
+    {
+      "field": "curriculumReview.surfaces.notation.evidence",
+      "before": "편차의 뜻과 편차 합: 평균에서 각 관측값을 뺀 차이들의 합이 0임을 확인하고, 점수−편차로 평균을 구한다.; notation에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토.",
+      "after": "편차의 뜻과 편차 합: 각 관측값에서 평균을 뺀 차이들의 합이 0임을 확인하고, 점수−편차로 평균을 구한다.; notation에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+    },
+    {
+      "field": "curriculumReview.surfaces.answer.evidence",
+      "before": "편차의 뜻과 편차 합: 평균에서 각 관측값을 뺀 차이들의 합이 0임을 확인하고, 점수−편차로 평균을 구한다.; answer에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토.",
+      "after": "편차의 뜻과 편차 합: 각 관측값에서 평균을 뺀 차이들의 합이 0임을 확인하고, 점수−편차로 평균을 구한다.; answer에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+    },
+    {
+      "field": "curriculumReview.surfaces.studentSolution.evidence",
+      "before": "편차의 뜻과 편차 합: 평균에서 각 관측값을 뺀 차이들의 합이 0임을 확인하고, 점수−편차로 평균을 구한다.; studentSolution에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토.",
+      "after": "편차의 뜻과 편차 합: 각 관측값에서 평균을 뺀 차이들의 합이 0임을 확인하고, 점수−편차로 평균을 구한다.; studentSolution에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+    },
+    {
+      "field": "curriculumReview.surfaces.prerequisites.evidence",
+      "before": "편차의 뜻과 편차 합: 평균에서 각 관측값을 뺀 차이들의 합이 0임을 확인하고, 점수−편차로 평균을 구한다.; prerequisites에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토.",
+      "after": "편차의 뜻과 편차 합: 각 관측값에서 평균을 뺀 차이들의 합이 0임을 확인하고, 점수−편차로 평균을 구한다.; prerequisites에 상위학년 통계 추론·표본분산·신뢰구간·미분을 요구하지 않도록 작성. 공식 근거와 새 내용의 대응은 독립 검토."
+    }
+  ],
+  "studentMathematicalSurfacesDigest": "d729eb6bd6e46518ef9db67ee2de0addc9872b5f4e3ad9a5b258d0358d76b124",
+  "studentMathematicalSurfacesUnchanged": true,
+  "sourceAndOriginalAuthorEvidenceUnchanged": true,
+  "relativeOriginalAuthorEvidenceContract": "Captured metadata.authorEvidence paths retain their original source authoring context; no claim they were executed anew under this repair directory.",
+  "oldRawSolveOrReviewEdited": false,
+  "oldApprovalTransferred": false,
+  "currentSelectionChanged": false,
+  "currentAuthoredCountDelta": 0,
+  "freshReviewRequired": true,
+  "liveFamily": null,
+  "rights": "held",
+  "native": "held",
+  "fullVerified": false,
+  "loadable": false,
+  "dbWrites": 0
+}

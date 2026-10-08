@@ -1,0 +1,439 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 18,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q18",
+  "authorId": "orca-codex-exam-twin-source-identity-20261008",
+  "questionType": "객관식",
+  "score": 5,
+  "content": "두 직각삼각형 $ABC$, $DCF$가 그림과 같이 겹쳐져 있다. $B,F,C$는 한 직선 위에 이 순서로 있고, $A$, $D$는 이 직선의 같은 쪽에 있다. $E$는 두 선분 $AC$, $FD$의 내부에 있는 교점이다.\n$\\angle ABC=\\angle DCF=90^\\circ$, $\\angle BAC=60^\\circ$, $\\angle EFC=45^\\circ$이다.\n\n$\\overline{CD}=8\\,\\mathrm{cm}$이고, 색칠한 사각형 $ABFE$의 넓이는 $(16+8\\sqrt3)\\,\\mathrm{cm}^2$이다. $H$는 $E$에서 $BC$에 내린 수선의 발이며 $F$와 $C$ 사이에 있다.\n\n이 넓이 기록으로 복구한 $\\overline{BF}$의 길이는?",
+  "choices": [
+    "$2\\,\\mathrm{cm}$",
+    "$3\\,\\mathrm{cm}$",
+    "$4\\,\\mathrm{cm}$",
+    "$6\\,\\mathrm{cm}$",
+    "$8\\,\\mathrm{cm}$"
+  ],
+  "answer": "③",
+  "solution": "직각삼각형 $DCF$의 $F$각이 $45^\\circ$이므로 $CF=CD=8\\,\\mathrm{cm}$이다. 삼각형 $ABC$에서 $ACB=30^\\circ$이다.\n\n$EH=h\\,\\mathrm{cm}$라 하자. 직각삼각형 $EFH$의 $F$각이 $45^\\circ$이므로 $FH=h$이다. 직각삼각형 $ECH$에서 $\\tan30^\\circ=\\frac{EH}{HC}=\\frac{\\sqrt3}{3}$이므로 $HC=\\sqrt3h$이다. 따라서 $h+\\sqrt3h=FC=8$이고 $h=\\frac8{1+\\sqrt3}=4(\\sqrt3-1)$이다.\n\n삼각형 $EFC$의 넓이는 $\\frac12\\times8\\times4(\\sqrt3-1)=16(\\sqrt3-1)\\,\\mathrm{cm}^2$이다. 색칠한 사각형과 이 삼각형을 합하면 삼각형 $ABC$이므로 전체 넓이는 $16+8\\sqrt3+16(\\sqrt3-1)=24\\sqrt3\\,\\mathrm{cm}^2$이다.\n\n$BC=t\\,\\mathrm{cm}$라 하면 $\\tan60^\\circ=\\frac{BC}{AB}=\\sqrt3$이므로 $AB=\\frac{t}{\\sqrt3}$이다. 따라서 $\\frac12\\times t\\times\\frac{t}{\\sqrt3}=24\\sqrt3$이고 $t^2=144$이다. 양의 길이 $t=12$를 택한다.\n그러므로 $BF=BC-FC=12-8=4\\,\\mathrm{cm}$이다.",
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "figure-1.spec.json",
+      "svgPath": "figure-1.svg",
+      "intendedWidthMm": 70
+    }
+  ],
+  "sourceReference": {
+    "externalId": "2025-gyeongsang-3-2-mid-18",
+    "sourceContentSha256": "40482454bcd6f131f6084e2c1bfbc756b61e6d65f6bedbfe4eee122cc6a8601e",
+    "sourceSchoolInternal": "경상중",
+    "sourceExamYear": 2025,
+    "packet": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsang/packet/questions.json",
+      "sha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b"
+    },
+    "sourceCommit": "4cc9278da",
+    "questionOnlyImageRefs": [
+      {
+        "file": "images/q18-part1.png",
+        "sha256": "9d8ce5caec93eb3f97f866508fc154869fac96516173e157d064582826f05533",
+        "page": 4,
+        "column": 1,
+        "bbox": [
+          370,
+          509.09442138671875,
+          688,
+          943
+        ]
+      }
+    ],
+    "providedOriginalFileRefs": [
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[경상중][3][25-2-중간][동아강] (완료).hwp",
+        "sha256": "bc0bb8c93f2e246b234c80c7fb89fcbdf8eda24536435e2fbe551ad916c1d4a1",
+        "bytes": 1635840
+      },
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[경상중][3][25-2-중간][동아강] (완료).PDF",
+        "sha256": "08917520000308226e93d261861ee419d2cc0b3b61658271e78462da12da8af4",
+        "bytes": 14846744
+      }
+    ],
+    "sourceIdentityAsProvided": "2025_original_header_school_footer_and_completed_question_identity_supported",
+    "sourceManifestOrOriginalAnswerInput": false
+  },
+  "variantDelta": {
+    "modes": [
+      "inverse-target",
+      "structure"
+    ],
+    "before": "그림과 같이 $\\triangle \\mathrm{ABC}$와 $\\triangle \\mathrm{DCF}$가 서로 겹쳐져 있고, $\\angle \\mathrm{B}=90^\\circ ,~\\angle \\mathrm{C}=90^\\circ ,~\\angle \\mathrm{BAC}=60^\\circ ,\\,\\angle \\mathrm{EFC}=45^\\circ$, $\\overline{CD}=6,~\\overline{BF}=3$이다. 사각형 $\\mathrm{ABFE}$의 넓이를 $S$라고 할 때, $S-9$의 값은? [$5$점]\n∠B=∠C=90°, ∠BAC=60°, ∠EFC=45°; CD=6, BF=3; 음영 ABFE.",
+    "after": "겹친 두 직각삼각형의 CD/BF 입력→부분넓이 차 목표에서, CD/부분넓이 입력→BF 역산으로 바꾸고 풀이용 수선H를 명시한다.",
+    "sharedConcept": "두 직각삼각형의 특수각 길이 대응과 전체/부분 삼각형 넓이 분해",
+    "sharedProcedure": "45도/30도 수선 높이로 EFC 넓이를 복구하고 전체ABC의 밑변/높이 관계와 양의 제곱근으로 BF를 구한다.",
+    "originalAnswerOrNumericalAgreementUsed": false
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "status": "author-proposed",
+    "standardCodes": [
+      "6수03-06",
+      "9수04-05",
+      "9수04-17",
+      "9수04-18",
+      "9수01-07",
+      "9수01-10",
+      "9수02-05",
+      "6수03-04"
+    ],
+    "legitimateMethodDraft": "45도/30도 수선 높이로 EFC 넓이를 복구하고 전체ABC의 밑변/높이 관계와 양의 제곱근으로 BF를 구한다.",
+    "officialProvisions": [
+      {
+        "id": "6수03-06",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 3433,
+          "paragraph1based": 737,
+          "offset": 176573,
+          "text": "[6수03-06]\u001e평행사변형, 삼각형, 사다리꼴, 마름모의 넓이를 구하는 방법을 다양하게 추론하고, 이와 관련된 문제를 해결할 수 있다.\r"
+        },
+        "pdfPhysicalPage1based": 29,
+        "pdfPrintedPage": 25,
+        "wholeClausePdfMatch": true
+      },
+      {
+        "id": "9수04-05",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 4272,
+          "paragraph1based": 931,
+          "offset": 216602,
+          "text": "[9수04-05]\u001e다각형의 성질을 이해한다.\r"
+        },
+        "pdfPhysicalPage1based": 37,
+        "pdfPrintedPage": 33,
+        "wholeClausePdfMatch": true
+      },
+      {
+        "id": "9수04-17",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 4341,
+          "paragraph1based": 948,
+          "offset": 219120,
+          "text": "[9수04-17]\u001e삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다. \r"
+        },
+        "pdfPhysicalPage1based": 38,
+        "pdfPrintedPage": 34,
+        "wholeClausePdfMatch": true
+      },
+      {
+        "id": "9수04-18",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 4345,
+          "paragraph1based": 949,
+          "offset": 219292,
+          "text": "[9수04-18]\u001e삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.\r"
+        },
+        "pdfPhysicalPage1based": 38,
+        "pdfPrintedPage": 34,
+        "wholeClausePdfMatch": true
+      },
+      {
+        "id": "9수01-07",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 3776,
+          "paragraph1based": 819,
+          "offset": 192865,
+          "text": "[9수01-07]\u001e제곱근의 뜻을 알고, 그 성질을 이해한다.\r"
+        },
+        "pdfPhysicalPage1based": 33,
+        "pdfPrintedPage": 29,
+        "wholeClausePdfMatch": true
+      },
+      {
+        "id": "9수01-10",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 3788,
+          "paragraph1based": 822,
+          "offset": 193301,
+          "text": "[9수01-10]\u001e근호를 포함한 식의 사칙계산을 할 수 있다.\r"
+        },
+        "pdfPhysicalPage1based": 33,
+        "pdfPrintedPage": 29,
+        "wholeClausePdfMatch": true
+      },
+      {
+        "id": "9수02-05",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 3916,
+          "paragraph1based": 850,
+          "offset": 199888,
+          "text": "[9수02-05]\u001e일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.\r"
+        },
+        "pdfPhysicalPage1based": 34,
+        "pdfPrintedPage": 30,
+        "wholeClausePdfMatch": true
+      },
+      {
+        "id": "6수03-04",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 3425,
+          "paragraph1based": 735,
+          "offset": 176051,
+          "text": "[6수03-04]\u001e넓이를 나타내는 표준 단위의 필요성을 인식하여 1cm², 1m², 1km²의 단위를 알며, 그 관계를 이해한다. \r"
+        },
+        "pdfPhysicalPage1based": 29,
+        "pdfPrintedPage": 25,
+        "wholeClausePdfMatch": true
+      }
+    ],
+    "restrictionClauses": [
+      {
+        "id": "no_trig_ratio_relationships",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 4440,
+          "paragraph1based": 966,
+          "offset": 224820,
+          "text": "삼각비 사이의 관계는 다루지 않는다.\r"
+        },
+        "pdfPhysicalPage1based": 39,
+        "pdfPrintedPage": 35,
+        "wholeClausePdfMatch": true
+      },
+      {
+        "id": "angle_range",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 4444,
+          "paragraph1based": 967,
+          "offset": 224946,
+          "text": "삼각비의 값은 0°에서 90°까지의 각도에 대한 것만 다룬다.\r"
+        },
+        "pdfPhysicalPage1based": 39,
+        "pdfPrintedPage": 35,
+        "wholeClausePdfMatch": true
+      },
+      {
+        "id": "no_circle_proportionality",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 4452,
+          "paragraph1based": 969,
+          "offset": 225374,
+          "text": "원과 비례에 관한 성질은 다루지 않는다.\r"
+        },
+        "pdfPhysicalPage1based": 39,
+        "pdfPrintedPage": 35,
+        "wholeClausePdfMatch": true
+      },
+      {
+        "id": "no_complex_geometry_measurement",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 4472,
+          "paragraph1based": 974,
+          "offset": 226554,
+          "text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다.\r"
+        },
+        "pdfPhysicalPage1based": 39,
+        "pdfPrintedPage": 35,
+        "wholeClausePdfMatch": true
+      },
+      {
+        "id": "no_formal_complex_justification",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 4476,
+          "paragraph1based": 975,
+          "offset": 226792,
+          "text": "정확한 용어와 기호의 사용, 복잡한 형식 논리 규칙의 이용을 요구하는 연역적 정당화 문제는 다루지 않는다. \r"
+        },
+        "pdfPhysicalPage1based": 39,
+        "pdfPrintedPage": 35,
+        "wholeClausePdfMatch": true
+      }
+    ],
+    "independentReviewPending": true,
+    "authorCannotApprove": true,
+    "sourceEraBasis": "Actual2025 middle3 uses2015; middle3 rollout of2022 begins2027; future republication needs its own review.",
+    "preauthorGate": "pending-material-q18-complex-measurement",
+    "materialHold": {
+      "path": "q18-curriculum-hold.json",
+      "sha256": "be45240ee5375a729913fdb234a22dc244f5ed847200c085f86c5f436bdda1cb"
+    }
+  },
+  "metadata": {
+    "grade": "중3",
+    "semester": 2,
+    "subject": "수학",
+    "source": "transformed",
+    "originProblemId": null,
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "2027Republication": "requiresnew2022review"
+    },
+    "sourceExamYear": 2025,
+    "sourceSchoolInternal": "경상중",
+    "fictionalVisibleSchool": "해솔중학교",
+    "schoolReplacementMap": {
+      "경상중": "해솔중학교"
+    },
+    "fictionalSchoolUsedInStudentText": false,
+    "sourceQuestionId": "2025-gyeongsang-3-2-mid-18",
+    "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q18",
+    "sourceSchoolNamesInStudentSurfaces": false,
+    "questionType": "객관식",
+    "score": 5,
+    "parentScoreCountedOnce": true,
+    "newSubpartRubric": [],
+    "sourcePrintedScore": {
+      "selectedHwpPdfPrintedParentScore": 5,
+      "selectedPairScoreStatus": "literal_match",
+      "originalPrintedParentScore": 5,
+      "referenceParentScore": 5,
+      "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+      "parentCountedOnce": true,
+      "childScores": [],
+      "subquestionCount": 0,
+      "parentAndChildrenMustNotBeAddedTogether": false
+    },
+    "difficultyProposal": "심화하",
+    "difficultyStatus": "author-proposed",
+    "difficultyEvidence": "Task operations: 45도/30도 수선 높이로 EFC 넓이를 복구하고 전체ABC의 밑변/높이 관계와 양의 제곱근으로 BF를 구한다.. Exact original points preserved; descriptor is not a measured difficulty claim.",
+    "problemTypeProposal": null,
+    "problemTypeStatus": "pending",
+    "problemTypeEvidence": {
+      "path": "classification-limits.json",
+      "sha256": "fbcfa8e7894db6a3244c60cdb524628464fba1dc8edade615b55cb1bdf0c6a45"
+    },
+    "assignment": {
+      "status": "pending",
+      "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+      "unitSection": "삼각비의 활용",
+      "familyKey": null,
+      "evidence": {
+        "actualCapturedUnit": {
+          "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "section": "삼각비의 활용",
+          "semester": 2,
+          "orderIndex": 483,
+          "problemCodePrefix": "J30503"
+        },
+        "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+        "snapshotOnly": true,
+        "comparison": "단일 삼각형 역넓이와 전체 사각형 넓이의 가까운 목적은 있지만 이 겹침/분해/양의근 목표 전체는 배정되지 않았다. 복잡성은 독립 학년 검토가 필요하다.",
+        "comparedRegistryEntries": [
+          {
+            "registry": {
+              "key": "3-2|삼각비의 활용|08",
+              "grade": "중3",
+              "unitSection": "삼각비의 활용",
+              "rpmBook": "3-2",
+              "rpmMinor": "삼각비의 활용",
+              "rpmType": "08",
+              "rpmTitle": "삼각형의 넓이 예각이 주어진 경우"
+            },
+            "liveMatches": [
+              {
+                "unit_id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+                "family_key": "mid:3-2|삼각비의 활용|08",
+                "live_count": 24
+              }
+            ],
+            "actualRule": {
+              "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+              "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+              "startLine1based": 2266,
+              "endLine1based": 2275,
+              "text": "def(\n    \"삼각비의 활용\",\n    \"08\",\n    \"삼각형의 넓이 예각이 주어진 경우\",\n    SEC.활용,\n    \"응용\",\n    (rng) => triangleArea(rng, [30, 45, 60]),\n  ),\n\n  "
+            }
+          },
+          {
+            "registry": {
+              "key": "3-2|삼각비의 활용|12",
+              "grade": "중3",
+              "unitSection": "삼각비의 활용",
+              "rpmBook": "3-2",
+              "rpmMinor": "삼각비의 활용",
+              "rpmType": "12",
+              "rpmTitle": "사각형의 넓이"
+            },
+            "liveMatches": [
+              {
+                "unit_id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+                "family_key": "mid:3-2|삼각비의 활용|12",
+                "live_count": 24
+              }
+            ],
+            "actualRule": {
+              "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+              "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+              "startLine1based": 2365,
+              "endLine1based": 2395,
+              "text": "def(\"삼각비의 활용\", \"12\", \"사각형의 넓이\", SEC.활용, \"응용\", (rng) =>\n    attempt(200, () => {\n      const ang = pick(rng, [30, 45, 60, 120, 135, 150] as const);\n      const d1 = intBetween(rng, 4, 16);\n      const d2 = intBetween(rng, 4, 16);\n      const sinT = exact(0, ang > 90 ? 180 - ang : ang)!;\n      const area = surdMul(surdMul(surd(d1 * d2, 1, 1), sinT), surd(1, 1, 2));\n      if (area.d !== 1) return null;\n      const mode = intBetween(rng, 0, 1);\n      const shrink =\n        ang > 90 ? `\\\\sin(180^\\\\circ-${ang}^\\\\circ)` : `\\\\sin ${ang}^\\\\circ`;\n      if (mode === 0) {\n        return {\n          content: `사각형 $ABCD$에서 두 대각선 $AC$, $BD$의 길이가 각각 $${cm(d1)}$, $${cm(d2)}$이고 두 대각선이 이루는 각의 크기가 $${ang}^\\\\circ$일 때, 사각형 $ABCD$의 넓이를 구하시오.`,\n          answer: `$${cm2(surdText(area))}$`,\n          solution: `(사각형의 넓이)$=\\\\dfrac{1}{2}\\\\times\\\\overline{AC}\\\\times\\\\overline{BD}\\\\times${shrink}$이다.\\n따라서 넓이는 $\\\\dfrac{1}{2}\\\\times${d1}\\\\times${d2}\\\\times${surdText(sinT)}=${surdText(area)}\\\\,(\\\\mathrm{cm}^2)$이다.`,\n          facts: { d1, d2, ang, mode, an: area.n, ar: area.r },\n          figureSpec: figQuadCross({ d1, d2, ang }),\n        };\n      }\n      return {\n        content: `사각형 $ABCD$에서 대각선 $AC$의 길이가 $${cm(d1)}$이고 두 대각선이 이루는 각의 크기가 $${ang}^\\\\circ$이다. 사각형 $ABCD$의 넓이가 $${cm2(surdText(area))}$일 때, 대각선 $BD$의 길이를 구하시오.`,\n        answer: `$${cm(d2)}$`,\n        solution: `(사각형의 넓이)$=\\\\dfrac{1}{2}\\\\times\\\\overline{AC}\\\\times\\\\overline{BD}\\\\times${shrink}$이다.\\n$\\\\dfrac{1}{2}\\\\times${d1}\\\\times\\\\overline{BD}\\\\times${surdText(sinT)}=${surdText(area)}$이므로 $\\\\overline{BD}=${d2}\\\\,(\\\\mathrm{cm})$이다.`,\n        facts: { d1, d2, ang, mode, an: area.n, ar: area.r },\n        figureSpec: figQuadCross({ d1, d2, ang }),\n      };\n    }),\n  ),\n\n  "
+            }
+          }
+        ],
+        "TRIPLESPoolCheckedForQ01": null
+      }
+    },
+    "authorMathEvidence": {
+      "file": "../../author-calculations.json",
+      "sha256": "de493620851acf3825c3c21a1634c8c774abcf9fbdc7389170d0a27668350a4a",
+      "questionNumber": 18
+    },
+    "sourcePacketSHA256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+    "authorOnly": true,
+    "independentMathApproval": false,
+    "independentGradeApproval": false,
+    "rightsApproved": false,
+    "nativeProvenanceApproved": false,
+    "loadable": false,
+    "limits": [
+      "Independent solve and full seven-surface review pending.",
+      "Rights/native/custody/loading remain pending.",
+      "Historical taxonomy snapshot is not a currentDB assertion.",
+      "The inverse overlap/area task requires an independent judgment against the2015 complex-measurement caution; author calculations alone do not approve it."
+    ],
+    "authorFigureEvidence": {
+      "path": "figure-author-checks.json",
+      "sha256": "1b266062bc26877dafbead127ed6ea0ecada7dad2b05e31199fba862210fd2e1"
+    },
+    "authorVisualEvidence": {
+      "path": "visual-inspection.json",
+      "sha256": "8e336cb4203c74bf8180d0edf9412ab87ea3e2f9d0b76dba87a7c43c249798e5"
+    },
+    "officialAuthorCurriculumEvidence": {
+      "path": "curriculum-author-basis.json",
+      "sha256": "cd0128904d4f378eb0310f9edde0fa55ed96e02a6c0ff6272bdd30c1443ed347"
+    },
+    "authorSevenSurfaceEvidence": {
+      "path": "author-checks/q18.json",
+      "sha256": "82e5e31afd4cbc2765a1502e2a1dc67336c682ccfe9e0d28984ae0520f92fec2"
+    }
+  }
+}
