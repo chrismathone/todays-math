@@ -25,6 +25,17 @@ const payload = {
 };
 
 describe("bounded parent bridge", () => {
+  it("accepts only the optional blueprint flow and leaves legacy payloads unchanged", () => {
+    expect(parseConceptPayload(payload)).toEqual(payload);
+    expect(parseConceptPayload({ ...payload, flow: "blueprint" })).toEqual({
+      ...payload,
+      flow: "blueprint",
+    });
+    for (const flow of ["", "review", null, 1, {}, ["blueprint"]]) {
+      expect(parseConceptPayload({ ...payload, flow })).toBeNull();
+    }
+  });
+
   it("preserves all supplied text, choice order, metadata and IDs in shared content", () => {
     const parsed = parseConceptPayload(payload);
     expect(parsed).toEqual(payload);

@@ -1,63 +1,52 @@
-Development-only shared exam output preview — 2026-10-08
+D blueprint output stage — 2026-10-08
 
-Route: /dev/exam-builder-output (coordinator's Next server: 127.0.0.1:3179).
-Base: main 970f0f6f8 was fast-forwarded before implementation.
-Only this directory changed; production components and static mockups are unchanged.
+Scope
+- Development-only /dev/exam-builder-output; no production route rollout,
+  account API writes, installs, dependency junctions or push.
+- Root owns static D and docs/design/mockups/exam-builder-common-20261008/
+  output-bridge.js/css. This worker changes only the output route and optional
+  shared editor/header props with scoped styles.
 
-Reuse and boundaries
-- ExamBuilderOutput mounts the actual WorksheetEditor, whose existing children
-  are PrintOptionsPanel and WorksheetPrint. All six production templates, native
-  content rendering, measured pagination, answers and browser printing remain shared.
-- allowedMenus is only export. The existing step bar consequently omits upload,
-  cropping and OCR tabs. There is no duplicate output renderer or template picker.
-- Supplied prompt/passage text is joined with a paragraph boundary in the shared
-  typed-content carrier; choices remain separate ordered native choice groups.
-  IDs, answers, solutions and supplied metadata survive. Missing answer/solution
-  content is never authored. The required ocr carrier is not an OCR operation;
-  number=0 means no supplied source number, avoiding numeric prompt stripping.
-- page.tsx awaits connection() then notFound() outside development.
-- CSS owns only the wrapper and outer editor layout: full width, two columns above
-  860px, stacked with 16px side spacing at <=860px. A4 descendants retain shared
-  styles and dimensions. Wrapper UI and the shared action bar are hidden in print.
-
-Bridge
-- Only window.parent messages with exact origin http://127.0.0.1:3178 are accepted.
-  The message listener is installed before exam-concept:ready is posted there.
-- exam-concept:open validates subject, title (80 characters), <=120 unique-ID
-  questions, <=10 choices each and bounded field lengths / 500,000 total text
-  characters. Invalid payloads show a recoverable error; text is not clipped.
-- Each valid open loads its latest title/questions, retains print options and
-  other form metadata, updates the subject/title metadata and clears the previous
-  question bundle's temporary snapshot. No browser storage is used.
-- Back button, Escape and authenticated exam-concept:close return
-  exam-concept:back with current title and ordered remaining questionIds.
-  Before a valid open or after invalid input, back has no payload: the coordinator
-  explicitly accepted this as cancellation without changing the parent selection.
-
-Temporary actions
-- Save/restore clone the actual in-memory title, questions, options and metadata.
-  Wording explicitly says 시안 / 임시, with no account-save claim.
-- Work-file export downloads real JSON locally, marked exam-concept-preview and
-  temporary. There is no file-import claim; restore applies to the memory snapshot.
-- As agreed with the coordinator, wrapper click capture handles the shared HWPX
-  and server PDF buttons with a notice directing users to 인쇄 / PDF 저장.
-  The real browser print button still calls window.print().
-- A layout-effect boundary locally rejects /api/ fetches and absorbs API beacons
-  from inherited activity/error reporters. Asset loads are delegated. Cleanup also
-  deactivates retained wrappers so API blocking cannot leak to another route.
+Implementation
+- ConceptPayload.flow accepts only optional "blueprint". Omitted flow keeps the
+  original UI and original back-message shape; unsupported flow values fail
+  validation alongside all existing bounded field/origin/source validation.
+- WorksheetEditor passes optional headerTitle and stepNavigation to the real
+  StudioStepBar. Navigation is { label, items: [{ id, label, current, disabled?,
+  onSelect }] }; existing extraction callers, availability gates and print/export
+  action children retain their default behavior.
+- Blueprint displays h1 시험지 만들기 and 1 범위 설정 / 2 문항 검토 /
+  3 양식 구성·출력. Output is aria-current="step" and aria-pressed=true;
+  other steps are aria-pressed=false. Scope/review send exam-concept:back with
+  payload { title, questionIds, step: "scope" | "review" }.
+- Escape and authenticated close default to review. The current output button
+  stays enabled but does not navigate, including when the last item is removed.
+- The blueprint note has min-height 44px and retains temporary restore; stage
+  navigation replaces its redundant return button. Invalid/unloaded input still
+  permits cancellation without returning an empty selection.
+- The heading and steps use the actual editor header. Scoped alternate-navigation
+  CSS keeps the heading visible, uses existing shared tokens, wraps action text,
+  and gives the three steps equal columns at <=760px. Print descendants retain
+  their existing six-template/A4/pagination rules.
+- Valid reentry retains print options and non-title form metadata, applies the
+  parent title/question order and clears the old bundle snapshot as before.
+  Blueprint can reenter with zero items, and omitted flow resets the original UI.
 
 Verification
-- PASS: npx eslint src/app/dev/exam-builder-output
-- PASS: node --max-old-space-size=8192 node_modules/typescript/bin/tsc --noEmit
-  --project src/app/dev/exam-builder-output/tsconfig.check.json
-  (targeted dependency graph, not a whole-repository type check).
-- PASS: npx vitest run --config src/app/dev/exam-builder-output/vitest.config.mts
-  10 tests across 3 files: bounded conversion, parent origin/source, ready/open,
-  all six real template DOMs, memory save/restore, reorder/remove/title return,
-  reopen option preservation, close/Escape/cancel, export guard, API isolation,
-  and connection-before-production-notFound.
-- The integration test replaces only useMeasuredPages geometry because jsdom has
-  no layout. WorksheetEditor, PrintOptionsPanel, WorksheetPrint, native renderer
-  and template components are real. Pixel layout, physical pagination and mobile
-  browser QA are for the coordinator's running Next server after integration.
-- No dev server was started here. No push or external publication was performed.
+- PASS: targeted tsc dependency graph using absolute root dependencies at
+  C:/Creative/testautocreator/node_modules via temporary paths/typeRoots config.
+  This is not a whole-repository typecheck.
+- PASS: bridge and page Vitest suites, 6 tests including optional-flow validation,
+  bounded text conversion, exact parent origin/source and dev-only page guard.
+- PASS: Prettier check for all changed TS/TSX/CSS and git diff --check.
+- UI suite added/expanded: all six real template renderers in legacy and blueprint,
+  stage markers and scope/review/latest-edit return, Escape/close review fallback,
+  saved template/form metadata across reentry, parent title/order, empty return,
+  blueprint-to-default reset, plus unchanged extraction title/four-stage gates.
+- UI suite execution PENDING root integration: no local node_modules is installed;
+  the dedicated config cannot resolve Vitest/plugin-react, and a temporary absolute
+  resolver reaches a testing-library/Vitest CommonJS incompatibility before tests.
+  Coordinator explicitly requested no further dependency-harness work and will run
+  dedicated Vitest in merged main. Temporary verification files are outside Git.
+- Browser width/short-height/print visual QA PENDING coordinator's running server.
+  No pixel-layout or real browser checks were performed in this worker.

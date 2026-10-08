@@ -22,6 +22,7 @@ import {
   openPayload,
   PARENT_ORIGIN,
   toStudioProblems,
+  type ConceptPayload,
 } from "./bridge";
 import { isolatePreviewApis } from "./isolation";
 import s from "./output.module.css";
@@ -31,6 +32,7 @@ const TEMPORARY_NOTICE =
   "시안 임시 편집 · 계정 저장 없음 · 새로고침하면 사라집니다.";
 
 interface Draft {
+  flow?: ConceptPayload["flow"];
   subject: "math" | "english";
   title: string;
   selected: StudioProblem[];
@@ -53,7 +55,7 @@ export default function ExamBuilderOutput() {
 
   useLayoutEffect(() => isolatePreviewApis(), []);
 
-  function sendBack() {
+  function sendBack(step: "scope" | "review" = "review") {
     window.parent.postMessage(
       loaded
         ? {
@@ -61,6 +63,7 @@ export default function ExamBuilderOutput() {
             payload: {
               title: draft.title,
               questionIds: draft.selected.map((question) => question.id),
+              ...(draft.flow === "blueprint" ? { step } : {}),
             },
           }
         : { type: "exam-concept:back" },
@@ -88,6 +91,7 @@ export default function ExamBuilderOutput() {
     const selected = toStudioProblems(payload.questions);
     setDraft((previous) => ({
       ...previous,
+      flow: payload.flow,
       subject: payload.subject,
       title: payload.title,
       selected,
@@ -186,12 +190,18 @@ export default function ExamBuilderOutput() {
     );
   }
 
+  const blueprint = loaded && draft.flow === "blueprint";
+
   return (
     <div className={s.page} onClickCapture={guardServerExport}>
-      <header className={s.topbar}>
-        <button type="button" onClick={sendBack}>
-          문항 검토로 돌아가기
-        </button>
+      <header
+        className={`${s.topbar}${blueprint ? ` ${s.compactTopbar}` : ""}`}
+      >
+        {!blueprint ? (
+          <button type="button" onClick={() => sendBack()}>
+            문항 검토로 돌아가기
+          </button>
+        ) : null}
         <p>{TEMPORARY_NOTICE}</p>
         <button type="button" onClick={restore} disabled={!snapshot}>
           시안 임시 저장본 불러오기
@@ -209,6 +219,34 @@ export default function ExamBuilderOutput() {
       ) : null}
       {loaded ? (
         <WorksheetEditor
+          headerTitle={blueprint ? "시험지 만들기" : undefined}
+          stepNavigation={
+            blueprint
+              ? {
+                  label: "시험지 만들기 단계 이동",
+                  items: [
+                    {
+                      id: "scope",
+                      label: "1 범위 설정",
+                      current: false,
+                      onSelect: () => sendBack("scope"),
+                    },
+                    {
+                      id: "review",
+                      label: "2 문항 검토",
+                      current: false,
+                      onSelect: () => sendBack("review"),
+                    },
+                    {
+                      id: "output",
+                      label: "3 양식 구성·출력",
+                      current: true,
+                      onSelect: () => {},
+                    },
+                  ],
+                }
+              : undefined
+          }
           allowedMenus={EXPORT_ONLY}
           libraryLabel="시안 메모리(임시)"
           selected={draft.selected}
@@ -268,7 +306,7 @@ export default function ExamBuilderOutput() {
           reorder={(selected) =>
             setDraft((previous) => ({ ...previous, selected: [...selected] }))
           }
-          navigate={sendBack}
+          navigate={() => sendBack()}
         />
       ) : (
         <main className={s.waiting}>

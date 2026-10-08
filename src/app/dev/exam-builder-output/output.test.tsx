@@ -5,10 +5,12 @@ import {
   fireEvent,
   render,
   screen,
+  within,
 } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import type { ProblemReview } from "@/components/unified/print/types";
 import { TEMPLATES } from "@/components/unified/print/settings";
+import StudioStepBar from "@/components/unified/StudioStepBar";
 import ExamBuilderOutput from "./ExamBuilderOutput";
 import { PARENT_ORIGIN } from "./bridge";
 import { isolatePreviewApis } from "./isolation";
@@ -54,10 +56,15 @@ function send(
     window.dispatchEvent(new MessageEvent("message", { data, origin, source })),
   );
 }
-function open(title = "Original title", rows = questions) {
+function open(title = "Original title", rows = questions, flow?: "blueprint") {
   send({
     type: "exam-concept:open",
-    payload: { subject: "english", title, questions: rows },
+    payload: {
+      subject: "english",
+      title,
+      questions: rows,
+      ...(flow ? { flow } : {}),
+    },
   });
 }
 
@@ -103,40 +110,190 @@ describe("actual shared output editor", () => {
     );
   });
 
-  it("handshakes, rejects untrusted messages, and renders all six real templates", () => {
+  it.each([undefined, "blueprint"] as const)(
+    "handshakes, rejects untrusted messages, and renders all six real templates (flow=%s)",
+    (flow) => {
+      const post = vi
+        .spyOn(window.parent, "postMessage")
+        .mockImplementation(() => {});
+      const { container } = render(<ExamBuilderOutput />);
+      expect(post).toHaveBeenCalledWith(
+        { type: "exam-concept:ready" },
+        PARENT_ORIGIN,
+      );
+      send(
+        {
+          type: "exam-concept:open",
+          payload: { subject: "english", title: "Bad origin", questions },
+        },
+        "http://localhost:3178",
+      );
+      expect(screen.queryByLabelText("제목")).toBeNull();
+      open("Original title", questions, flow);
+      expect(screen.getByLabelText("제목")).toHaveValue("Original title");
+      expect(screen.queryByText("OCR · 디지털화")).toBeNull();
+      expect(screen.queryByText("원본 가져오기")).toBeNull();
+      for (const template of TEMPLATES) {
+        fireEvent.click(
+          screen.getByRole("button", {
+            name: new RegExp(`^${template.label}`),
+          }),
+        );
+        const document = container.querySelector("[data-mathgen-document]");
+        expect(document).toHaveAttribute("data-template", template.value);
+        expect(document).toHaveTextContent("Original first prompt");
+        expect(document).toHaveTextContent("Original passage");
+        expect(document).toHaveTextContent("Choice B");
+        expect(document?.querySelector("[data-unified-paper]")).not.toBeNull();
+      }
+    },
+  );
+
+  it("uses the blueprint heading and stages, returning the latest edits to each target", () => {
     const post = vi
       .spyOn(window.parent, "postMessage")
       .mockImplementation(() => {});
-    const { container } = render(<ExamBuilderOutput />);
-    expect(post).toHaveBeenCalledWith(
-      { type: "exam-concept:ready" },
+    render(<ExamBuilderOutput />);
+    open("Original title", questions, "blueprint");
+    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
+      "시험지 만들기",
+    );
+    expect(
+      screen.queryByRole("button", { name: "문항 검토로 돌아가기" }),
+    ).toBeNull();
+    const navigation = screen.getByRole("navigation", {
+      name: "시험지 만들기 단계 이동",
+    });
+    expect(within(navigation).getAllByRole("button")).toHaveLength(3);
+    expect(
+      within(navigation).getByRole("button", { name: "3 양식 구성·출력" }),
+    ).toHaveAttribute("aria-current", "step");
+    expect(
+      within(navigation).getByRole("button", { name: "3 양식 구성·출력" }),
+    ).toHaveAttribute("aria-pressed", "true");
+    expect(
+      within(navigation).getByRole("button", { name: "1 범위 설정" }),
+    ).toHaveAttribute("aria-pressed", "false");
+    fireEvent.change(screen.getByLabelText("제목"), {
+      target: { value: "Edited blueprint" },
+    });
+    fireEvent.click(screen.getByRole("tab", { name: "문제 순서 · 2" }));
+    fireEvent.click(screen.getByRole("button", { name: "1번 문제 아래로" }));
+    for (const [label, step] of [
+      ["1 범위 설정", "scope"],
+      ["2 문항 검토", "review"],
+    ]) {
+      fireEvent.click(within(navigation).getByRole("button", { name: label }));
+      expect(post).toHaveBeenLastCalledWith(
+        {
+          type: "exam-concept:back",
+          payload: {
+            title: "Edited blueprint",
+            questionIds: ["two", "one"],
+            step,
+          },
+        },
+        PARENT_ORIGIN,
+      );
+    }
+    post.mockClear();
+    fireEvent.click(
+      within(navigation).getByRole("button", { name: "3 양식 구성·출력" }),
+    );
+    expect(post).not.toHaveBeenCalled();
+    fireEvent.keyDown(window, { key: "Escape" });
+    expect(post).toHaveBeenLastCalledWith(
+      {
+        type: "exam-concept:back",
+        payload: {
+          title: "Edited blueprint",
+          questionIds: ["two", "one"],
+          step: "review",
+        },
+      },
       PARENT_ORIGIN,
     );
-    send(
-      {
-        type: "exam-concept:open",
-        payload: { subject: "english", title: "Bad origin", questions },
-      },
-      "http://localhost:3178",
+  });
+
+  it("preserves blueprint print settings and parent title/order on reentry, with an empty return path", () => {
+    const post = vi
+      .spyOn(window.parent, "postMessage")
+      .mockImplementation(() => {});
+    render(<ExamBuilderOutput />);
+    open("Blueprint", questions, "blueprint");
+    fireEvent.click(screen.getByRole("button", { name: /^모던/ }));
+    fireEvent.change(screen.getByLabelText("학교/기관명"), {
+      target: { value: "Preserved school" },
+    });
+    fireEvent.click(
+      screen.getByRole("button", { name: "시안 메모리(임시)에 저장" }),
     );
-    expect(screen.queryByLabelText("제목")).toBeNull();
+    fireEvent.click(screen.getByRole("button", { name: "1 범위 설정" }));
+    open("Parent title", [questions[1], questions[0]], "blueprint");
+    expect(screen.getByLabelText("제목")).toHaveValue("Parent title");
+    expect(screen.getByLabelText("학교/기관명")).toHaveValue(
+      "Preserved school",
+    );
+    expect(screen.getByRole("button", { name: /^모던/ })).toHaveAttribute(
+      "aria-pressed",
+      "true",
+    );
+    expect(
+      screen.getByRole("button", { name: "시안 임시 저장본 불러오기" }),
+    ).toBeDisabled();
+    send({ type: "exam-concept:close" });
+    expect(post).toHaveBeenLastCalledWith(
+      {
+        type: "exam-concept:back",
+        payload: {
+          title: "Parent title",
+          questionIds: ["two", "one"],
+          step: "review",
+        },
+      },
+      PARENT_ORIGIN,
+    );
+    fireEvent.click(screen.getByRole("tab", { name: "문제 순서 · 2" }));
+    fireEvent.click(screen.getByRole("button", { name: "2번 문제 빼기" }));
+    fireEvent.click(screen.getByRole("button", { name: "1번 문제 빼기" }));
+    expect(
+      screen.getByRole("button", { name: "3 양식 구성·출력" }),
+    ).toBeEnabled();
+    expect(
+      screen.getByRole("button", { name: "인쇄 / PDF 저장" }),
+    ).toBeDisabled();
+    fireEvent.click(screen.getByRole("button", { name: "2 문항 검토" }));
+    expect(post).toHaveBeenLastCalledWith(
+      {
+        type: "exam-concept:back",
+        payload: { title: "Parent title", questionIds: [], step: "review" },
+      },
+      PARENT_ORIGIN,
+    );
+    open("Empty reentry", [], "blueprint");
+    fireEvent.click(screen.getByRole("button", { name: "1 범위 설정" }));
+    expect(post).toHaveBeenLastCalledWith(
+      {
+        type: "exam-concept:back",
+        payload: { title: "Empty reentry", questionIds: [], step: "scope" },
+      },
+      PARENT_ORIGIN,
+    );
     open();
-    expect(screen.getByLabelText("제목")).toHaveValue("Original title");
-    expect(screen.queryByText("OCR · 디지털화")).toBeNull();
-    expect(screen.queryByText("원본 가져오기")).toBeNull();
-    for (const template of TEMPLATES) {
-      fireEvent.click(
-        screen.getByRole("button", {
-          name: new RegExp(`^${template.label}`),
-        }),
-      );
-      const document = container.querySelector("[data-mathgen-document]");
-      expect(document).toHaveAttribute("data-template", template.value);
-      expect(document).toHaveTextContent("Original first prompt");
-      expect(document).toHaveTextContent("Original passage");
-      expect(document).toHaveTextContent("Choice B");
-      expect(document?.querySelector("[data-unified-paper]")).not.toBeNull();
-    }
+    expect(screen.getByRole("heading", { level: 1 })).toHaveTextContent(
+      "시험지 구성",
+    );
+    expect(screen.queryByRole("button", { name: "1 범위 설정" })).toBeNull();
+    fireEvent.click(
+      screen.getByRole("button", { name: "문항 검토로 돌아가기" }),
+    );
+    expect(post).toHaveBeenLastCalledWith(
+      {
+        type: "exam-concept:back",
+        payload: { title: "Original title", questionIds: ["one", "two"] },
+      },
+      PARENT_ORIGIN,
+    );
   });
 
   it("saves/restores real memory state, returns order/title, and keeps options on reopen", () => {
@@ -219,6 +376,38 @@ describe("actual shared output editor", () => {
     fireEvent.click(screen.getByRole("button", { name: "인쇄 / PDF 저장" }));
     expect(print).toHaveBeenCalledOnce();
   });
+});
+
+it("keeps the default extraction title, four stages, availability and action children", () => {
+  const onStep = vi.fn();
+  render(
+    <StudioStepBar
+      step="review"
+      pickedCount={2}
+      cropCount={3}
+      canCrop={false}
+      canReview
+      onStep={onStep}
+    >
+      <button type="button">Existing action</button>
+    </StudioStepBar>,
+  );
+  expect(
+    screen.getByRole("heading", { name: "문제 추출", level: 1 }),
+  ).toBeVisible();
+  const navigation = screen.getByRole("navigation", { name: "제작 단계 이동" });
+  expect(within(navigation).getAllByRole("button")).toHaveLength(4);
+  expect(
+    screen.getByRole("button", { name: "문제&도형 잘라내기" }),
+  ).toBeDisabled();
+  expect(
+    screen.getByRole("button", { name: "OCR · 디지털화 3" }),
+  ).toHaveAttribute("aria-pressed", "true");
+  fireEvent.click(screen.getByRole("button", { name: "시험지 구성 2" }));
+  expect(onStep).toHaveBeenCalledWith("export");
+  fireEvent.click(screen.getByRole("button", { name: "원본 가져오기" }));
+  expect(onStep).toHaveBeenLastCalledWith("upload");
+  expect(screen.getByRole("button", { name: "Existing action" })).toBeVisible();
 });
 
 it("isolates inherited API fetch/beacon calls and restores delegation on cleanup", async () => {

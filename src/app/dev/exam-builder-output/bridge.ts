@@ -16,6 +16,7 @@ export interface ConceptQuestion {
 }
 
 export interface ConceptPayload {
+  flow?: "blueprint";
   subject: "math" | "english";
   title: string;
   questions: ConceptQuestion[];
@@ -36,6 +37,7 @@ function boundedText(value: unknown, maximum: number): value is string {
 export function parseConceptPayload(value: unknown): ConceptPayload | null {
   if (
     !record(value) ||
+    (value.flow !== undefined && value.flow !== "blueprint") ||
     (value.subject !== "math" && value.subject !== "english") ||
     !boundedText(value.title, 80) ||
     !Array.isArray(value.questions) ||
@@ -98,7 +100,12 @@ export function parseConceptPayload(value: unknown): ConceptPayload | null {
     ids.add(next.id);
     questions.push(next);
   }
-  return { subject: value.subject, title: value.title, questions };
+  return {
+    ...(value.flow === "blueprint" ? { flow: value.flow } : {}),
+    subject: value.subject,
+    title: value.title,
+    questions,
+  };
 }
 
 export function isParentMessage(event: MessageEvent, parent: Window): boolean {

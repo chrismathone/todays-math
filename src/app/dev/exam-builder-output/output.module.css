@@ -119,6 +119,22 @@
   }
 }
 
+.compactTopbar {
+  min-height: 44px;
+  padding-block: 0;
+}
+
+.compactTopbar p {
+  flex: 1 1 180px;
+  min-width: 0;
+  order: 0;
+}
+
+.compactTopbar button {
+  max-width: 100%;
+  border-color: transparent;
+}
+
 @media print {
   .page {
     min-height: 0;
