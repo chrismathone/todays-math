@@ -1,0 +1,15 @@
+{
+    "at":  "2026-10-08T11:43:21.1222058Z",
+    "sessionId":  "01a11702-baf1-7343-b2bc-64cf304bbcc5",
+    "originalStatusVerified":  true,
+    "actualCommandAndWriteProbe":  "tool-ready-r2.json",
+    "controllerSha256":  "fe78ca47c393025bc9571f8339975565494651683935ebba7d4b8b3689df41da",
+    "policyControlsPassed":  12,
+    "actualBusySkipObserved":  true,
+    "forcedRuntimeRestartTested":  false,
+    "scheduledTask":  "TodaysMath-ExamContinuation",
+    "taskEnabledVerifiedWith":  "schtasks.exe /Query",
+    "interval":  "PT15M",
+    "oldOrcaAutomationEnabled":  false,
+    "approvedProductionImports":  0
+}

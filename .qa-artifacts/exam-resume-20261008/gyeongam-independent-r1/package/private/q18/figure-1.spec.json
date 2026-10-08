@@ -1,0 +1,83 @@
+{
+  "version": 2,
+  "theme": "exam-thin",
+  "style": {
+    "font_size": 18,
+    "angle_font_size": 17,
+    "angle_radius": 18,
+    "angle_label_distance": 30,
+    "padding": 22,
+    "show_points": false
+  },
+  "points": {
+    "A": [
+      -168.99494936611666,
+      0.0
+    ],
+    "D": [
+      -70.0,
+      0.0
+    ],
+    "B": [
+      0.0,
+      0.0
+    ],
+    "C": [
+      0.0,
+      -70.0
+    ]
+  },
+  "segments": {
+    "BC": [
+      "B",
+      "C"
+    ],
+    "CA": [
+      "C",
+      "A"
+    ],
+    "AD": {
+      "points": [
+        "A",
+        "D"
+      ],
+      "ticks": 1
+    },
+    "DC": {
+      "points": [
+        "D",
+        "C"
+      ],
+      "ticks": 1
+    },
+    "DB": [
+      "D",
+      "B"
+    ]
+  },
+  "labels": {
+    "A": "A",
+    "D": "D",
+    "B": "B",
+    "C": "C"
+  },
+  "angles": {
+    "angle_B": {
+      "vertex": "B",
+      "points": [
+        "D",
+        "C"
+      ],
+      "right": true,
+      "radius": 8
+    },
+    "angle_D": {
+      "vertex": "D",
+      "points": [
+        "B",
+        "C"
+      ],
+      "label": "$45^\\circ$"
+    }
+  }
+}

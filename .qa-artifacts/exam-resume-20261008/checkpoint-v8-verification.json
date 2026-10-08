@@ -1,0 +1,56 @@
+{
+  "kind": "checkpoint-v8-bindings-verification/v1",
+  "createdAt": "2026-10-08T12:17:39.506928+00:00",
+  "referencedFilesChecked": 216,
+  "uniqueReferencedFiles": 157,
+  "rootOwnedFiles": [
+    {
+      "path": "docs/planning/tracks/brief-exam-extraction-resume-20261008-addendum-5.md",
+      "sha256": "7dad5bc1f5705720fa153af930a358b7823dc5e78fa34c5bad723bb647aad3e9",
+      "stagedBytesEqual": true
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/continuation-watch/automation-config.json",
+      "sha256": "71d447df3f1a8c05b523c758f970bcfd9039b3e4ea4039d2ed20ad757f1cd437",
+      "stagedBytesEqual": true
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/continuation-watch/controller-r2-preserved.ps1",
+      "sha256": "fe78ca47c393025bc9571f8339975565494651683935ebba7d4b8b3689df41da",
+      "stagedBytesEqual": true
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/continuation-watch/verification-r2-20261008.json",
+      "sha256": "7ace923fc6425b7fb995ab059e57ddbbca4b4d09e2385063ae91d848231f0ae5",
+      "stagedBytesEqual": true
+    }
+  ],
+  "externalControllerEqualsRootPreservedCopy": true,
+  "externalControllerWritten": false,
+  "coreTestsObservedPassed": 30,
+  "strictEngineBytePreservationExceptions": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongam-independent-r1/blind/figures/q11-1.svg",
+      "sha256": "76987cbb6c0b2189f61e2b8fbfe03fe74978acc1bb46c5828452555d0384cd87",
+      "reason": "Exact strict-engine SVG whitespace-only line retained, not authored text."
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongam-independent-r1/package/private/q11/figure-1.svg",
+      "sha256": "76987cbb6c0b2189f61e2b8fbfe03fe74978acc1bb46c5828452555d0384cd87",
+      "reason": "Exact strict-engine SVG whitespace-only line retained, not authored text."
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsan-independent-r1/blind/figures/q25-1.svg",
+      "sha256": "d2cd7bd357403bcd8ef77d603b5134d14f60f42c84dcecc11922c5347a4eea95",
+      "reason": "Exact strict-engine SVG whitespace-only line retained, not authored text."
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsan-independent-r1/package/private/q25/figure-1.svg",
+      "sha256": "d2cd7bd357403bcd8ef77d603b5134d14f60f42c84dcecc11922c5347a4eea95",
+      "reason": "Exact strict-engine SVG whitespace-only line retained, not authored text."
+    }
+  ],
+  "independentReviewCount": 20,
+  "fullVerified": 0,
+  "dbWrites": 0
+}

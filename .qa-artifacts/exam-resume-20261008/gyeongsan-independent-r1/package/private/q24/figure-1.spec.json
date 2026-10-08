@@ -1,0 +1,155 @@
+{
+  "version": 2,
+  "theme": "exam-thin",
+  "points": {
+    "B": [
+      30,
+      250
+    ],
+    "C": [
+      376.4101615137754,
+      250
+    ],
+    "D": [
+      376.4101615137754,
+      50
+    ],
+    "A": [
+      203.2050807568877,
+      76.7949192431123
+    ],
+    "E": [
+      249.61524227066315,
+      123.20508075688775
+    ],
+    "H": [
+      249.61524227066315,
+      250
+    ]
+  },
+  "segments": {
+    "BA": [
+      "B",
+      "A"
+    ],
+    "AE": [
+      "A",
+      "E"
+    ],
+    "EC": [
+      "E",
+      "C"
+    ],
+    "BE": [
+      "B",
+      "E"
+    ],
+    "ED": [
+      "E",
+      "D"
+    ],
+    "BH": [
+      "B",
+      "H"
+    ],
+    "HC": [
+      "H",
+      "C"
+    ],
+    "CD": [
+      "C",
+      "D"
+    ],
+    "EH": {
+      "points": [
+        "E",
+        "H"
+      ],
+      "dashed": "5 4"
+    }
+  },
+  "angles": {
+    "rightA": {
+      "vertex": "A",
+      "points": [
+        "B",
+        "E"
+      ],
+      "right": true,
+      "radius": 10
+    },
+    "rightC": {
+      "vertex": "C",
+      "points": [
+        "H",
+        "D"
+      ],
+      "right": true,
+      "radius": 10
+    },
+    "angC": {
+      "vertex": "C",
+      "points": [
+        "E",
+        "H"
+      ],
+      "label": "45°",
+      "radius": 32
+    },
+    "angD": {
+      "vertex": "D",
+      "points": [
+        "E",
+        "C"
+      ],
+      "label": "60°",
+      "radius": 28
+    },
+    "rightH": {
+      "vertex": "H",
+      "points": [
+        "B",
+        "E"
+      ],
+      "right": true,
+      "radius": 9
+    }
+  },
+  "labels": {
+    "A": "A",
+    "B": "B",
+    "C": "C",
+    "D": "D",
+    "E": "E",
+    "H": "H"
+  },
+  "style": {
+    "font_size": 20,
+    "angle_font_size": 18
+  },
+  "regions": {
+    "shade": {
+      "boundary": [
+        {
+          "seg": [
+            "E",
+            "B"
+          ]
+        },
+        {
+          "seg": [
+            "B",
+            "C"
+          ]
+        },
+        {
+          "seg": [
+            "C",
+            "E"
+          ]
+        }
+      ],
+      "fill": "#eeeeee"
+    }
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "kind": "parent-integration-binding-audit/v1",
+  "createdAt": "2026-10-08T12:10:41.820Z",
+  "current18CandidateBindingsVerified": true,
+  "frozenFilesVerified": 230,
+  "newFigures": 9,
+  "sourceCopyFilesVerified": 21,
+  "workerPriorFilesVerified": 322,
+  "parentHistoricalDifferences": [
+    {
+      "path": "docs/planning/tracks/reports/bumil-taxonomy-peer-r1-20261008.md",
+      "workerCapturedSha256": "b0d0e55317a3ccd319fd0baedcee8210637be6e0af34aab7f887088065b4fc76",
+      "parentCheckoutSha256": "e16fc2668e3c2737d52278bdc95e089db660366f730ee4f94a246758e32d7902",
+      "lineEndingsOnly": true,
+      "parentFileChangedByThisVerification": false
+    },
+    {
+      "path": "docs/planning/tracks/reports/gyeonggu-authoring-r1-20261008.md",
+      "workerCapturedSha256": "a7f7c2304ba46d669cb38f4ad6231c80301bfb3bb2190fa521f087f6e9e7fc5d",
+      "parentCheckoutSha256": "2629524b94ffc6ab870c55030c9090e625e044ad34555704f198b45cdd459b84",
+      "lineEndingsOnly": true,
+      "parentFileChangedByThisVerification": false
+    }
+  ],
+  "engineInputsVerified": 13,
+  "authorFreezeSha256": "c250f061964282e81ad41a8c6123230294d2ebe00b83160cac77fa4a405fd9d0",
+  "studentPacketDigest": "730917b9fec860dc7b264a8c4c8024220ee67a96bf4f297ede64c5b6809e26d5",
+  "independentReviews": 0,
+  "gradeApprovals": 0,
+  "fullApproval": 0,
+  "dbWrites": 0
+}

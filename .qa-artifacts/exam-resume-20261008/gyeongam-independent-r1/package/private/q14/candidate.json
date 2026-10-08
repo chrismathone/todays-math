@@ -1,0 +1,232 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 14,
+  "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q14",
+  "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+  "content": "특수각으로 계산한 값의 기록이 다음과 같다. 지워진 양수 $k$를 복구하려고 한다.\n$k\\cos60^\\circ\\times\\sin45^\\circ+\\cos45^\\circ\\times\\tan45^\\circ=\\frac{5\\sqrt2}{4}$\n$k$의 값은?",
+  "choices": [
+    "$1$",
+    "$2$",
+    "$3$",
+    "$4$",
+    "$5$"
+  ],
+  "answer": "③",
+  "solution": "특수각의 값 $\\cos60^\\circ=\\frac12$, $\\sin45^\\circ=\\cos45^\\circ=\\frac{\\sqrt2}{2}$, $\\tan45^\\circ=1$을 각각 대입한다.\n그러면 $\\frac{k\\sqrt2}{4}+\\frac{\\sqrt2}{2}=\\frac{5\\sqrt2}{4}$이다. 양변에 $4$를 곱하면 $k\\sqrt2+2\\sqrt2=5\\sqrt2$이므로 $k\\sqrt2=3\\sqrt2$이다.\n$\\sqrt2\\ne0$이므로 $k=3$이다. 정답은 ③이다.",
+  "score": 4,
+  "questionType": "객관식",
+  "facts": {
+    "givens": {
+      "expression": "k*cos60*sin45+cos45*tan45",
+      "result": "5sqrt(2)/4",
+      "kDomain": "k>0"
+    },
+    "mathDataPath": "math-data.json",
+    "mathDataSha256": "0145e17da0f17733e321ad535b583a8373397dd9e3eef1cfb33a4b673b7ee7e5",
+    "rawSourceObservationPath": "../../evidence/source-observations.json",
+    "rawSourceObservationSha256": "56dcd7f8a34433011abf1e6d0fc7b17fb63e19d91ed8c11697f8c6b9f14ba59c",
+    "newDataStatus": "author-constructed",
+    "sourceScoreEvidence": {
+      "selectedHwpPdfPrintedParentScore": 4,
+      "selectedPairScoreStatus": "literal_match",
+      "originalPrintedParentScore": 4,
+      "referenceParentScore": 4,
+      "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+      "parentCountedOnce": true,
+      "childScores": [],
+      "subquestionCount": 0,
+      "parentAndChildrenMustNotBeAddedTogether": false
+    },
+    "authorRubric": [],
+    "subQuestions": []
+  },
+  "figureArtifacts": [],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation",
+      "inverse-target"
+    ],
+    "before": "두 특수각 곱의 합을 계산한다.",
+    "after": "전체 계산값을 기록으로 주고 첫 곱에 쓰인 양의 계수를 역으로 복구한다.",
+    "sharedConcept": "유한 특수각 값 대입과 무리수 사칙계산",
+    "sharedProcedure": "30/45/60 범위의 해당 특수값→두 곱→합 기록의 일차식→양의 계수."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수04-17",
+      "9수01-10",
+      "9수02-05"
+    ],
+    "allowedProcedure": "30/45/60 범위의 해당 특수값→두 곱→합 기록의 일차식→양의 계수.",
+    "forbiddenAvoided": [
+      "任意삼각비관계식",
+      "원/외접원비례법칙/원의거듭제곱",
+      "사인/코사인법칙",
+      "반각/덧셈정리",
+      "삼각비넓이공식",
+      "라디안/벡터",
+      "상위통계/최적화"
+    ],
+    "status": "author-proposed",
+    "wholeSurfaceGate": "7 surfaces mapped to specific procedure/prerequisites; source school/registry is not grade approval",
+    "specificRisk": "",
+    "independentReviewStatus": "pending-other-worker"
+  },
+  "studentSurfaceReview": {
+    "stem": {
+      "status": "author-proposed",
+      "evidence": "新본문조건/표/자료조직과점순서명시"
+    },
+    "choices": {
+      "status": "author-proposed",
+      "evidence": "actual-option parser로14객관식의유일정답/중복검사;written choices=[]"
+    },
+    "figuresAndTables": {
+      "status": "author-proposed",
+      "evidence": "새스펙/로컬strictSVG/70mm이하실미리보기와데이터결합"
+    },
+    "notation": {
+      "status": "author-proposed",
+      "evidence": "2015중등표기,도단위/예각,정렬/평균/편차정의;벡터/라디안/상위통계기호없음"
+    },
+    "answer": {
+      "status": "author-proposed",
+      "evidence": "새정확답/단위/서술부분과MC동그라미번호"
+    },
+    "studentSolution": {
+      "status": "author-proposed",
+      "evidence": "30/45/60 범위의 해당 특수값→두 곱→합 기록의 일차식→양의 계수."
+    },
+    "prerequisites": {
+      "status": "author-proposed",
+      "evidence": [
+        {
+          "code": "9수04-17",
+          "text": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수01-10",
+          "text": "근호를 포함한 식의 사칙계산을 할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              33
+            ],
+            "printed_pages": [
+              29
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수02-05",
+          "text": "일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              34
+            ],
+            "printed_pages": [
+              30
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        }
+      ]
+    }
+  },
+  "sourceReference": {
+    "externalId": "2025-gyeongam-3-2-mid-14",
+    "sourceExamExternalId": "personal-5eb35ea19488aaf195e724ed05fe8806",
+    "sourceLogicalExamId": "2025-gyeongam-3-2-mid",
+    "questionNumber": 14,
+    "sourceContentSha256": "9ac1338e4886cd968a153047167f6ee7befeb9b3a0e4e6d3303216bac9626c24",
+    "sourceContentDigest": "c8bee5ef4841113c7f14610f4c0b8df48c7223b0a3a61a56e1fd38fefc61f46a",
+    "sourcePacketPath": "../../evidence/source-final/questions.json",
+    "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+    "sourceFinalCommit": "4cc9278da",
+    "jsonPointer": "/questions/13",
+    "originalReferenceScore": 4,
+    "originalReferenceSubQuestions": [],
+    "referenceFigures": [
+      {
+        "path": "../../evidence/source-final/images/q14-part1.png",
+        "sha256": "54f6abb12f94bd25496cf9410b8bffa89ba13290aade5a8633b05ecec1d92749",
+        "page": 4,
+        "referenceOnly": true
+      }
+    ],
+    "sourceIdentityDecision": "2025_original_header_school_footer_and_completed_question_identity_supported",
+    "originalAnswerSolutionWithheld": true,
+    "realSchool": "경암중",
+    "studentSchoolAlias": "온빛누리중학교",
+    "directUseAllowed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015"
+    },
+    "sourceExamYear": 2025,
+    "sourceIdentityStatus": "root-final-question-only-packet4cc9278da;native/full-pair-not-approved",
+    "realSchool": "경암중",
+    "studentSchoolAlias": "온빛누리중학교",
+    "questionType": "객관식",
+    "score": 4,
+    "difficultyProposal": "응용",
+    "difficultyStatus": "author-proposed-independent-review-pending",
+    "problemTypeProposal": "객관식",
+    "problemTypeStatus": "author-proposed",
+    "scoreStatus": "reference-parent-total-and-subparts-preserved;rubric-author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+      "unitSection": "삼각비의 값",
+      "familyKey": null,
+      "evidence": {
+        "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+        "notCurrentDbAssertion": true,
+        "unitSeedOrderIndex": 482,
+        "comparedRegistryEntries": [
+          {
+            "key": "3-2|삼각비|08",
+            "grade": "중3",
+            "unitSection": "삼각비의 값",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비",
+            "rpmType": "08",
+            "rpmTitle": "의 삼각비의 값"
+          }
+        ],
+        "wholeRuleComparison": "08은두특수값의한연산이다. 새두곱의합기록에서양의계수k를복구하는전체조건/목표가없다.",
+        "reopenCriteria": "실제기존rule의새given/질문/전체절차/서술부분/난도가일치하는문항별증거및독립분류검토;가까운제목자동배정금지"
+      }
+    },
+    "independentSolveStatus": "pending-other-worker",
+    "independentReviewStatus": "pending-other-worker",
+    "rightsStatus": "pending",
+    "nativeStatus": "pending",
+    "sourceCustodyStatus": "pending",
+    "similarityStatus": "pending",
+    "publishStatus": "not-authorized",
+    "loadStatus": "not-authorized",
+    "directUseAllowed": false
+  }
+}

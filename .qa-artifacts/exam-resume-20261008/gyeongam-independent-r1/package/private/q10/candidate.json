@@ -1,0 +1,213 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 10,
+  "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q10",
+  "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+  "content": "직각삼각형 $\\mathrm{PQR}$에서 $\\angle\\mathrm{R}=90^\\circ$, $\\overline{\\mathrm{PR}}=12\\,\\mathrm{cm}$, $\\overline{\\mathrm{QR}}=16\\,\\mathrm{cm}$, $\\overline{\\mathrm{PQ}}=20\\,\\mathrm{cm}$이다.\n측정 기록에서 삼각비 이름만 지워졌다. 이름에는 sin, cos, tan 중 하나가 들어간다.\n\n| 기록 | 삼각비 이름 | 값 |\n| --- | --- | --- |\n| 각 $P$의 기록 | ㉠ | $\\frac35$ |\n| 각 $Q$의 기록 | ㉡ | $\\frac34$ |\n\n㉠, ㉡의 이름을 차례로 바르게 복구한 것은?",
+  "choices": [
+    "$\\sin$, $\\cos$",
+    "$\\cos$, $\\tan$",
+    "$\\cos$, $\\sin$",
+    "$\\tan$, $\\cos$",
+    "$\\sin$, $\\tan$"
+  ],
+  "answer": "②",
+  "solution": "각 $P$의 대변은 QR, 이웃변은 PR, 빗변은 PQ이다. 따라서 $\\sin P=\\frac{16}{20}=\\frac45$, $\\cos P=\\frac{12}{20}=\\frac35$, $\\tan P=\\frac{16}{12}=\\frac43$이다. 첫 기록의 이름은 cos이다.\n각 $Q$의 대변은 PR, 이웃변은 QR이다. 따라서 $\\sin Q=\\frac35$, $\\cos Q=\\frac45$, $\\tan Q=\\frac{12}{16}=\\frac34$이다. 둘째 기록의 이름은 tan이다.\n두 이름은 cos, tan이므로 정답은 ②이다.",
+  "score": 3,
+  "questionType": "객관식",
+  "facts": {
+    "givens": {
+      "PR": 12,
+      "QR": 16,
+      "PQ": 20,
+      "rightAngle": "R",
+      "PRecord": "3/5",
+      "QRecord": "3/4",
+      "unit": "cm"
+    },
+    "mathDataPath": "math-data.json",
+    "mathDataSha256": "b5b194d871ba8680adf56501c071e6b975a8a24dbee8733e94290ac161b59d20",
+    "rawSourceObservationPath": "../../evidence/source-observations.json",
+    "rawSourceObservationSha256": "56dcd7f8a34433011abf1e6d0fc7b17fb63e19d91ed8c11697f8c6b9f14ba59c",
+    "newDataStatus": "author-constructed",
+    "sourceScoreEvidence": {
+      "selectedHwpPdfPrintedParentScore": 3,
+      "selectedPairScoreStatus": "literal_match",
+      "originalPrintedParentScore": 3,
+      "referenceParentScore": 3,
+      "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+      "parentCountedOnce": true,
+      "childScores": [],
+      "subquestionCount": 0,
+      "parentAndChildrenMustNotBeAddedTogether": false
+    },
+    "authorRubric": [],
+    "subQuestions": []
+  },
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "figure-1.spec.json",
+      "svgPath": "figure-1.svg",
+      "intendedWidthMm": 70,
+      "mathDataPath": "math-data.json",
+      "mathDataSha256": "b5b194d871ba8680adf56501c071e6b975a8a24dbee8733e94290ac161b59d20"
+    }
+  ],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation",
+      "inverse-target"
+    ],
+    "before": "유한3-4-5삼각형의 삼각비 등식 중 잘못된 것을 고른다.",
+    "after": "두 각의 값 기록에서 지워진 삼각비 이름을 역으로 복구한다.",
+    "sharedConcept": "직각삼각형에서 각에 따른 대변/이웃변/빗변",
+    "sharedProcedure": "각P/Q의 변 역할→각각 세 유한 수치 비 계산→주어진 기록값과 이름 대응."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수04-17"
+    ],
+    "allowedProcedure": "각P/Q의 변 역할→각각 세 유한 수치 비 계산→주어진 기록값과 이름 대응.",
+    "forbiddenAvoided": [
+      "任意삼각비관계식",
+      "원/외접원비례법칙/원의거듭제곱",
+      "사인/코사인법칙",
+      "반각/덧셈정리",
+      "삼각비넓이공식",
+      "라디안/벡터",
+      "상위통계/최적화"
+    ],
+    "status": "author-proposed",
+    "wholeSurfaceGate": "7 surfaces mapped to specific procedure/prerequisites; source school/registry is not grade approval",
+    "specificRisk": "",
+    "independentReviewStatus": "pending-other-worker"
+  },
+  "studentSurfaceReview": {
+    "stem": {
+      "status": "author-proposed",
+      "evidence": "新본문조건/표/자료조직과점순서명시"
+    },
+    "choices": {
+      "status": "author-proposed",
+      "evidence": "actual-option parser로14객관식의유일정답/중복검사;written choices=[]"
+    },
+    "figuresAndTables": {
+      "status": "author-proposed",
+      "evidence": "새스펙/로컬strictSVG/70mm이하실미리보기와데이터결합"
+    },
+    "notation": {
+      "status": "author-proposed",
+      "evidence": "2015중등표기,도단위/예각,정렬/평균/편차정의;벡터/라디안/상위통계기호없음"
+    },
+    "answer": {
+      "status": "author-proposed",
+      "evidence": "새정확답/단위/서술부분과MC동그라미번호"
+    },
+    "studentSolution": {
+      "status": "author-proposed",
+      "evidence": "각P/Q의 변 역할→각각 세 유한 수치 비 계산→주어진 기록값과 이름 대응."
+    },
+    "prerequisites": {
+      "status": "author-proposed",
+      "evidence": [
+        {
+          "code": "9수04-17",
+          "text": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        }
+      ]
+    }
+  },
+  "sourceReference": {
+    "externalId": "2025-gyeongam-3-2-mid-10",
+    "sourceExamExternalId": "personal-5eb35ea19488aaf195e724ed05fe8806",
+    "sourceLogicalExamId": "2025-gyeongam-3-2-mid",
+    "questionNumber": 10,
+    "sourceContentSha256": "71c2d6119230b9aab99cd1abfab590dbf72267ad12d11f903f9c2197817c664c",
+    "sourceContentDigest": "485761e8b9850d604e790ec22759c914cabdf3e54c7741af6702c09ae15a0eb2",
+    "sourcePacketPath": "../../evidence/source-final/questions.json",
+    "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+    "sourceFinalCommit": "4cc9278da",
+    "jsonPointer": "/questions/9",
+    "originalReferenceScore": 3,
+    "originalReferenceSubQuestions": [],
+    "referenceFigures": [
+      {
+        "path": "../../evidence/source-final/images/q10-part1.png",
+        "sha256": "198e89eedec180ecc2b6efb2b467026fa408ee0131cba7a24b31a33970610c5b",
+        "page": 3,
+        "referenceOnly": true
+      }
+    ],
+    "sourceIdentityDecision": "2025_original_header_school_footer_and_completed_question_identity_supported",
+    "originalAnswerSolutionWithheld": true,
+    "realSchool": "경암중",
+    "studentSchoolAlias": "온빛누리중학교",
+    "directUseAllowed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015"
+    },
+    "sourceExamYear": 2025,
+    "sourceIdentityStatus": "root-final-question-only-packet4cc9278da;native/full-pair-not-approved",
+    "realSchool": "경암중",
+    "studentSchoolAlias": "온빛누리중학교",
+    "questionType": "객관식",
+    "score": 3,
+    "difficultyProposal": "기본",
+    "difficultyStatus": "author-proposed-independent-review-pending",
+    "problemTypeProposal": "객관식",
+    "problemTypeStatus": "author-proposed",
+    "scoreStatus": "reference-parent-total-and-subparts-preserved;rubric-author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+      "unitSection": "삼각비의 뜻",
+      "familyKey": null,
+      "evidence": {
+        "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+        "notCurrentDbAssertion": true,
+        "unitSeedOrderIndex": 481,
+        "comparedRegistryEntries": [
+          {
+            "key": "3-2|삼각비|01",
+            "grade": "중3",
+            "unitSection": "삼각비의 뜻",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비",
+            "rpmType": "01",
+            "rpmTitle": "삼각비의 값"
+          }
+        ],
+        "wholeRuleComparison": "01은두직각변에서피타고라스로한각의단일비를묻는다. 새세변/두각의수치기록→삼각비이름복구를지원하지않는다.",
+        "reopenCriteria": "실제기존rule의새given/질문/전체절차/서술부분/난도가일치하는문항별증거및독립분류검토;가까운제목자동배정금지"
+      }
+    },
+    "independentSolveStatus": "pending-other-worker",
+    "independentReviewStatus": "pending-other-worker",
+    "rightsStatus": "pending",
+    "nativeStatus": "pending",
+    "sourceCustodyStatus": "pending",
+    "similarityStatus": "pending",
+    "publishStatus": "not-authorized",
+    "loadStatus": "not-authorized",
+    "directUseAllowed": false
+  }
+}

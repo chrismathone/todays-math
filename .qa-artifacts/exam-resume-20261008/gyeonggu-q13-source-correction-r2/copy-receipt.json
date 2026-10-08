@@ -1,0 +1,62 @@
+{
+  "kind": "source-only-q13-readonly-evidence/v1",
+  "sourceManifest": {
+    "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeonggu/source-manifest.json",
+    "sha256": "87e05a69d85524fe20dc178e6da190414f36193984807f1673356f299fb53b4b"
+  },
+  "hwp": {
+    "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[경구중][3][25-2-중간][신사고] (완료).hwp",
+    "sha256": "af607b1968659af53200e316ad523fd280eeb3300e9fba02319cd365821978b7",
+    "bytes": 2228224,
+    "binStream": "BinData/BIN0001.png",
+    "streamRawSha256": "b3bdea2c2c60f38da8ddd4b535655d55fb37b20773e1e820c18b4a3fd49fa3db",
+    "decompressedPngSha256": "b3bdea2c2c60f38da8ddd4b535655d55fb37b20773e1e820c18b4a3fd49fa3db",
+    "recordBinding": {
+      "kind": "figure",
+      "binId": 1,
+      "source": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1574,
+        "inflatedByteOffset": 67145,
+        "tag": 85,
+        "level": 3,
+        "payloadSha256": "7ff5a9b28e74f01082ce3983c1afc85c0579902e9f99cd8eae62fb351eda8d29"
+      },
+      "controlSource": {
+        "stream": "BodyText/Section0",
+        "recordIndex": 1572,
+        "inflatedByteOffset": 66747,
+        "tag": 71,
+        "level": 1,
+        "payloadSha256": "db1c0a8b321a30052d5cab1b72100591881d20cd3096c2995f8f2ac3e600cf8c"
+      },
+      "binStream": "BinData/BIN0001.png",
+      "binReferenceExists": true
+    }
+  },
+  "original": {
+    "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\원본\\중3\\[경구중][3][25-2-중간](원본)(준희T).pdf",
+    "sha256": "dfb546f163728fc59e84d5a6357e5a7a9385d0b68fe26b82ab639dea8ba182a4",
+    "physicalPdfPage": 3,
+    "printedPage": 3,
+    "column": "left",
+    "printedQuestion": "객관식 13",
+    "render": "gyeonggu\\evidence\\original-scan-page-03.webp",
+    "renderSha256": "1eb0576f84c3ea4a9870ab83a4cb03b63b963b5442a26031ff0ef7b10a172708"
+  },
+  "completedCrop": {
+    "file": "gyeonggu\\packet\\images\\q13-part1.png",
+    "sha256": "0fb005dad4537a3d646b063df299e39e5af788e6f1cb41302f22a6052fd66d7c",
+    "page": 4,
+    "column": 0,
+    "bbox": [
+      55,
+      83,
+      375,
+      541.7060546875
+    ]
+  },
+  "oldInferredObservation": "정삼각형 ABC; D∈AB; BD=10√2, ∠BDC=105°; 음영 ADC.",
+  "immutableInputsPreserved": true,
+  "sourceOnlyNotNewFigureOrMathApproval": true
+}

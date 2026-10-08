@@ -1,0 +1,141 @@
+{
+  "version": 2,
+  "theme": "exam-thin",
+  "style": {
+    "font_size": 18,
+    "angle_font_size": 17,
+    "angle_radius": 18,
+    "angle_label_distance": 30,
+    "padding": 22,
+    "show_points": false
+  },
+  "points": {
+    "O": [
+      0.0,
+      0.0
+    ],
+    "A": [
+      135.0,
+      0.0
+    ],
+    "B": [
+      0.0,
+      -135.0
+    ],
+    "P": [
+      116.91342951089922,
+      -67.49999999999999
+    ],
+    "Q": [
+      77.43281890739122,
+      -110.5855259790139
+    ],
+    "H": [
+      116.91342951089922,
+      0.0
+    ],
+    "K": [
+      77.43281890739122,
+      0.0
+    ],
+    "T": [
+      135.0,
+      -77.94228634059948
+    ],
+    "U": [
+      135.0,
+      -192.79998091018544
+    ]
+  },
+  "segments": {
+    "OA": [
+      "O",
+      "A"
+    ],
+    "OB": [
+      "O",
+      "B"
+    ],
+    "OT": [
+      "O",
+      "T"
+    ],
+    "OU": [
+      "O",
+      "U"
+    ],
+    "AU": [
+      "A",
+      "U"
+    ],
+    "PH": {
+      "points": [
+        "P",
+        "H"
+      ],
+      "dash": "4 3"
+    },
+    "QK": {
+      "points": [
+        "Q",
+        "K"
+      ],
+      "dash": "4 3"
+    }
+  },
+  "labels": {
+    "O": "O",
+    "A": "A",
+    "B": "B",
+    "P": "P",
+    "Q": "Q",
+    "H": "H",
+    "K": "K",
+    "T": "T",
+    "U": "U"
+  },
+  "circles": {
+    "c": {
+      "center": "O",
+      "radius": 135,
+      "draw": false
+    }
+  },
+  "angles": {
+    "angle_A": {
+      "vertex": "A",
+      "points": [
+        "O",
+        "U"
+      ],
+      "right": true,
+      "radius": 8
+    },
+    "angle_H": {
+      "vertex": "H",
+      "points": [
+        "O",
+        "P"
+      ],
+      "right": true,
+      "radius": 8
+    },
+    "angle_K": {
+      "vertex": "K",
+      "points": [
+        "O",
+        "Q"
+      ],
+      "right": true,
+      "radius": 8
+    }
+  },
+  "arcs": {
+    "quarter": {
+      "circle": "c",
+      "from": "A",
+      "to": "B",
+      "dir": "ccw"
+    }
+  }
+}

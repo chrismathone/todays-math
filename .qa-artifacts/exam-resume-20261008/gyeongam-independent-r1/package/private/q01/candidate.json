@@ -1,0 +1,228 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 1,
+  "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q01",
+  "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+  "content": "학생 $30$명이 가장 좋아하는 책의 종류를 한 가지씩 골랐다. 만화를 고른 학생의 도수 기록이 지워졌고, 나머지 네 종류의 도수는 아래 그래프에 남아 있다. 선택한 종류는 소설, 과학, 역사, 만화, 예술의 다섯 가지뿐이다.\n전체 자료의 최빈값은?",
+  "choices": [
+    "소설",
+    "과학",
+    "역사",
+    "만화",
+    "예술"
+  ],
+  "answer": "④",
+  "solution": "그래프에 남은 네 도수의 합은 $8+5+4+3=20$명이다. 따라서 만화를 고른 학생은 $30-20=10$명이다.\n전체 다섯 도수 $8,5,4,10,3$ 중 가장 큰 것은 $10$이므로 가장 많이 선택한 종류인 만화가 최빈값이다. 정답은 ④이다.",
+  "score": 3,
+  "questionType": "객관식",
+  "facts": {
+    "givens": {
+      "total": 30,
+      "knownRows": [
+        [
+          "소설",
+          8
+        ],
+        [
+          "과학",
+          5
+        ],
+        [
+          "역사",
+          4
+        ],
+        [
+          "예술",
+          3
+        ]
+      ],
+      "missingCategory": "만화",
+      "unit": "명"
+    },
+    "mathDataPath": "math-data.json",
+    "mathDataSha256": "e8d279b11026015f10f5e73e2622c7ce1f05c48a1f04bf20a0e836a172fe6da4",
+    "rawSourceObservationPath": "../../evidence/source-observations.json",
+    "rawSourceObservationSha256": "56dcd7f8a34433011abf1e6d0fc7b17fb63e19d91ed8c11697f8c6b9f14ba59c",
+    "newDataStatus": "author-constructed",
+    "sourceScoreEvidence": {
+      "selectedHwpPdfPrintedParentScore": 3,
+      "selectedPairScoreStatus": "literal_match",
+      "originalPrintedParentScore": 3,
+      "referenceParentScore": 3,
+      "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+      "parentCountedOnce": true,
+      "childScores": [],
+      "subquestionCount": 0,
+      "parentAndChildrenMustNotBeAddedTogether": false
+    },
+    "authorRubric": [],
+    "subQuestions": []
+  },
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "figure-1.spec.json",
+      "svgPath": "figure-1.svg",
+      "intendedWidthMm": 70,
+      "mathDataPath": "math-data.json",
+      "mathDataSha256": "e8d279b11026015f10f5e73e2622c7ce1f05c48a1f04bf20a0e836a172fe6da4"
+    }
+  ],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation",
+      "inverse-target",
+      "material"
+    ],
+    "before": "완전한 음료 도수표에서 가장 잦은 범주를 고른다.",
+    "after": "한 범주의 기록이 빠진 새 도수 그래프를 총인원으로 복구한 후 최빈 범주를 기록한다.",
+    "sharedConcept": "범주형 자료의 도수와 최빈값",
+    "sharedProcedure": "총도수−알려진 도수합→누락 범주 도수→최댓도수의 범주."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수05-06"
+    ],
+    "allowedProcedure": "총도수−알려진 도수합→누락 범주 도수→최댓도수의 범주.",
+    "forbiddenAvoided": [
+      "任意삼각비관계식",
+      "원/외접원비례법칙/원의거듭제곱",
+      "사인/코사인법칙",
+      "반각/덧셈정리",
+      "삼각비넓이공식",
+      "라디안/벡터",
+      "상위통계/최적화"
+    ],
+    "status": "author-proposed",
+    "wholeSurfaceGate": "7 surfaces mapped to specific procedure/prerequisites; source school/registry is not grade approval",
+    "specificRisk": "",
+    "independentReviewStatus": "pending-other-worker"
+  },
+  "studentSurfaceReview": {
+    "stem": {
+      "status": "author-proposed",
+      "evidence": "新본문조건/표/자료조직과점순서명시"
+    },
+    "choices": {
+      "status": "author-proposed",
+      "evidence": "actual-option parser로14객관식의유일정답/중복검사;written choices=[]"
+    },
+    "figuresAndTables": {
+      "status": "author-proposed",
+      "evidence": "새스펙/로컬strictSVG/70mm이하실미리보기와데이터결합"
+    },
+    "notation": {
+      "status": "author-proposed",
+      "evidence": "2015중등표기,도단위/예각,정렬/평균/편차정의;벡터/라디안/상위통계기호없음"
+    },
+    "answer": {
+      "status": "author-proposed",
+      "evidence": "새정확답/단위/서술부분과MC동그라미번호"
+    },
+    "studentSolution": {
+      "status": "author-proposed",
+      "evidence": "총도수−알려진 도수합→누락 범주 도수→최댓도수의 범주."
+    },
+    "prerequisites": {
+      "status": "author-proposed",
+      "evidence": [
+        {
+          "code": "9수05-06",
+          "text": "중앙값, 최빈값, 평균의 의미를 이해하고, 이를 구할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              40
+            ],
+            "printed_pages": [
+              36
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        }
+      ]
+    }
+  },
+  "sourceReference": {
+    "externalId": "2025-gyeongam-3-2-mid-1",
+    "sourceExamExternalId": "personal-5eb35ea19488aaf195e724ed05fe8806",
+    "sourceLogicalExamId": "2025-gyeongam-3-2-mid",
+    "questionNumber": 1,
+    "sourceContentSha256": "2116488c69c662b25bb664f9083f391c91767e541dbca500eb2b2ddcb7076c24",
+    "sourceContentDigest": "320fdf237818030c85a3e178c90b4ba3cd9771c387c0eea5d9c2b48df2180d39",
+    "sourcePacketPath": "../../evidence/source-final/questions.json",
+    "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+    "sourceFinalCommit": "4cc9278da",
+    "jsonPointer": "/questions/0",
+    "originalReferenceScore": 3,
+    "originalReferenceSubQuestions": [],
+    "referenceFigures": [
+      {
+        "path": "../../evidence/source-final/images/q01-part1.png",
+        "sha256": "49e50d50cf2beefcd765944eb9400cc813fe9b272e8108fe44a2f92c0811eefe",
+        "page": 1,
+        "referenceOnly": true
+      }
+    ],
+    "sourceIdentityDecision": "2025_original_header_school_footer_and_completed_question_identity_supported",
+    "originalAnswerSolutionWithheld": true,
+    "realSchool": "경암중",
+    "studentSchoolAlias": "온빛누리중학교",
+    "directUseAllowed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015"
+    },
+    "sourceExamYear": 2025,
+    "sourceIdentityStatus": "root-final-question-only-packet4cc9278da;native/full-pair-not-approved",
+    "realSchool": "경암중",
+    "studentSchoolAlias": "온빛누리중학교",
+    "questionType": "객관식",
+    "score": 3,
+    "difficultyProposal": "기본",
+    "difficultyStatus": "author-proposed-independent-review-pending",
+    "problemTypeProposal": "객관식",
+    "problemTypeStatus": "author-proposed",
+    "scoreStatus": "reference-parent-total-and-subparts-preserved;rubric-author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "unitSection": "대푯값과 산포도",
+      "familyKey": null,
+      "evidence": {
+        "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+        "notCurrentDbAssertion": true,
+        "unitSeedOrderIndex": 488,
+        "comparedRegistryEntries": [
+          {
+            "key": "3-2|산포도|05",
+            "grade": "중3",
+            "unitSection": "대푯값과 산포도",
+            "rpmBook": "3-2",
+            "rpmMinor": "산포도",
+            "rpmType": "05",
+            "rpmTitle": "자료의 이해"
+          }
+        ],
+        "wholeRuleComparison": "05는수치5명자료에서평균이며 새누락도수/범주최빈값규칙이 아니다.",
+        "reopenCriteria": "실제기존rule의새given/질문/전체절차/서술부분/난도가일치하는문항별증거및독립분류검토;가까운제목자동배정금지"
+      }
+    },
+    "independentSolveStatus": "pending-other-worker",
+    "independentReviewStatus": "pending-other-worker",
+    "rightsStatus": "pending",
+    "nativeStatus": "pending",
+    "sourceCustodyStatus": "pending",
+    "similarityStatus": "pending",
+    "publishStatus": "not-authorized",
+    "loadStatus": "not-authorized",
+    "directUseAllowed": false
+  }
+}

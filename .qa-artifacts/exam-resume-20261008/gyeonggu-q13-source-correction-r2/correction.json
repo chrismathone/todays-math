@@ -1,0 +1,51 @@
+{
+  "kind": "source-observation-correction/v1",
+  "createdAt": "2026-10-08T12:06:37.686443+00:00",
+  "examId": "2025-gyeonggu-3-2-mid",
+  "questionNumber": 13,
+  "immutablePacket": {
+    "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeonggu/packet/questions.json",
+    "sha256": "b6b40385cee9146ce74792ce2ca9675b7b562eb27aa65005cb4706f52347820f"
+  },
+  "immutableManifest": {
+    "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeonggu/source-manifest.json",
+    "sha256": "87e05a69d85524fe20dc178e6da190414f36193984807f1673356f299fb53b4b"
+  },
+  "correctedFields": [
+    "figureGivenObservation",
+    "reviewObservation.givenFigureConditions"
+  ],
+  "before": "정삼각형 ABC; D∈AB; BD=10√2, ∠BDC=105°; 음영 ADC.",
+  "after": "정삼각형 ABC; D∈AB; BD=10√2, ∠ADC=105°; 음영 ADC. A,D,B는 한 직선 위에 있으므로 ∠BDC=75°.",
+  "scope": "Reviewer-inferred vertex name only; no printed stem/choice/figure/score or frozen candidate changed.",
+  "observationBasis": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeonggu-q13-source-correction-r2/hwp-BIN0001.png",
+      "sha256": "b3bdea2c2c60f38da8ddd4b535655d55fb37b20773e1e820c18b4a3fd49fa3db",
+      "viewed": true,
+      "reading": "Printed 105° leader joins the arc between DA and DC inside the shaded ADC region; no pixel angle measurement."
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeonggu-q13-source-correction-r2/original-page-03.webp",
+      "sha256": "1eb0576f84c3ea4a9870ab83a4cb03b63b963b5442a26031ff0ef7b10a172708",
+      "viewed": true,
+      "reading": "Original printed q13 has the same shaded triangle and arc. Handwriting obstructs part of the page; clean HWP counterpart is used to read the printed leader."
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeonggu/packet/images/q13-part1.png",
+      "sha256": "0fb005dad4537a3d646b063df299e39e5af788e6f1cb41302f22a6052fd66d7c",
+      "viewed": true,
+      "reading": "Completed PDF crop shows the same angle marker; correspondence is semantic/positional, not image-byte equality."
+    }
+  ],
+  "originalAnswerExposureDisclosure": "Original scan contains handwriting and circled choices, incidentally visible during source inspection. These marks were not used as new answer, independent solve, grade evidence or approval.",
+  "sourceCorrectionAuthor": "root-codex-exam-extraction-resume-20261008",
+  "independentSourceCorrectionReview": "pending",
+  "newQuestionMathApproval": false,
+  "wholeGradeApproval": false,
+  "rightsApproval": false,
+  "studentMethodRestriction": "Do not use sin/cos/tan105°, general sine/cosine laws or upper-grade tools. A within-grade perpendicular/special-angle procedure requires its own independent review.",
+  "reopenIf": "Reopen if an actual original/HWP/PDF printed arc/leader or point order contradicts the ADC reading.",
+  "oldEvidencePreserved": true,
+  "dbWrites": 0
+}

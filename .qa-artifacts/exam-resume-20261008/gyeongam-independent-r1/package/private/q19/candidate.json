@@ -1,0 +1,303 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 19,
+  "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q19",
+  "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+  "content": "중심이 O인 사분원에서 OA는 호 위의 점 A에 이르는 반지름이고 OB는 수평 반지름이다. $\\angle\\mathrm{AOB}=60^\\circ$이다. C는 A에서 OB에 내린 수선의 발, D는 반직선 OA와 B를 지나는 수직선의 교점이다.\n사각형 ACBD의 넓이 기록은 $6\\sqrt3\\,\\mathrm{cm}^2$이다. 지워진 사분원의 반지름 길이를 복구하고 풀이를 쓰시오.",
+  "choices": [],
+  "answer": "$4\\,\\mathrm{cm}$",
+  "solution": "반지름을 $r\\,\\mathrm{cm}$라 하자. 직각삼각형 OAC에서 $\\overline{\\mathrm{OC}}=r\\cos60^\\circ=\\frac r2$, $\\overline{\\mathrm{AC}}=r\\sin60^\\circ=\\frac{r\\sqrt3}{2}$이다.\n$\\overline{\\mathrm{OB}}=r$이므로 $\\overline{\\mathrm{CB}}=r-\\frac r2=\\frac r2$이다. 직각삼각형 OBD에서는 $\\overline{\\mathrm{BD}}=r\\tan60^\\circ=r\\sqrt3$이다.\nAC와BD는 OB에 수직이므로 서로 평행하다. 따라서 사각형 ACBD는 두 평행변 사이 거리가 CB인 사다리꼴이다. 넓이는 $\\frac12\\left(\\frac{r\\sqrt3}{2}+r\\sqrt3\\right)\\frac r2=\\frac{3\\sqrt3 r^2}{8}$이다.\n이 값이 $6\\sqrt3$이므로 $r^2=16$이다. 반지름은 양수이므로 $r=4\\,\\mathrm{cm}$이다.",
+  "score": 10,
+  "questionType": "서술형",
+  "facts": {
+    "givens": {
+      "centralAngle": 60,
+      "foot": "C from A to OB",
+      "D": "ray OA intersect vertical at B",
+      "areaACBD": "6sqrt(3)",
+      "radiusDomain": "r>0",
+      "unit": "cm,cm^2"
+    },
+    "mathDataPath": "math-data.json",
+    "mathDataSha256": "f87e0bdd72b843e1132566303a0691ccf57b585e3f584ce4b565d4ea056365a9",
+    "rawSourceObservationPath": "../../evidence/source-observations.json",
+    "rawSourceObservationSha256": "56dcd7f8a34433011abf1e6d0fc7b17fb63e19d91ed8c11697f8c6b9f14ba59c",
+    "newDataStatus": "author-constructed",
+    "sourceScoreEvidence": {
+      "selectedHwpPdfPrintedParentScore": 10,
+      "selectedPairScoreStatus": "literal_match",
+      "originalPrintedParentScore": 10,
+      "referenceParentScore": 10,
+      "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+      "parentCountedOnce": true,
+      "childScores": [],
+      "subquestionCount": 0,
+      "parentAndChildrenMustNotBeAddedTogether": false
+    },
+    "authorRubric": [
+      {
+        "criterion": "r와OC/AC/CB",
+        "score": 3
+      },
+      {
+        "criterion": "BD와tan60",
+        "score": 2
+      },
+      {
+        "criterion": "평행변/높이와넓이식",
+        "score": 3
+      },
+      {
+        "criterion": "양의반지름복구와단위",
+        "score": 2
+      }
+    ],
+    "subQuestions": []
+  },
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "figure-1.spec.json",
+      "svgPath": "figure-1.svg",
+      "intendedWidthMm": 70,
+      "mathDataPath": "math-data.json",
+      "mathDataSha256": "f87e0bdd72b843e1132566303a0691ccf57b585e3f584ce4b565d4ea056365a9"
+    }
+  ],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation",
+      "inverse-target"
+    ],
+    "before": "반지름1과60도/수선으로 사다리꼴 부분넓이를 구한다.",
+    "after": "부분넓이 기록으로 양의 반지름을 역으로 복구하며 D의반직선교점을 명시한다.",
+    "sharedConcept": "특수각 직각삼각형의 길이와사다리꼴 넓이",
+    "sharedProcedure": "r로세길이구성→수평 차→평행변/높이의사다리꼴넓이→양의제곱근."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수04-17",
+      "9수04-18",
+      "9수04-02",
+      "6수03-06",
+      "9수01-07",
+      "9수01-10"
+    ],
+    "allowedProcedure": "r로세길이구성→수평 차→평행변/높이의사다리꼴넓이→양의제곱근.",
+    "forbiddenAvoided": [
+      "任意삼각비관계식",
+      "원/외접원비례법칙/원의거듭제곱",
+      "사인/코사인법칙",
+      "반각/덧셈정리",
+      "삼각비넓이공식",
+      "라디안/벡터",
+      "상위통계/최적화"
+    ],
+    "status": "author-proposed",
+    "wholeSurfaceGate": "7 surfaces mapped to specific procedure/prerequisites; source school/registry is not grade approval",
+    "specificRisk": "",
+    "independentReviewStatus": "pending-other-worker"
+  },
+  "studentSurfaceReview": {
+    "stem": {
+      "status": "author-proposed",
+      "evidence": "新본문조건/표/자료조직과점순서명시"
+    },
+    "choices": {
+      "status": "author-proposed",
+      "evidence": "actual-option parser로14객관식의유일정답/중복검사;written choices=[]"
+    },
+    "figuresAndTables": {
+      "status": "author-proposed",
+      "evidence": "새스펙/로컬strictSVG/70mm이하실미리보기와데이터결합"
+    },
+    "notation": {
+      "status": "author-proposed",
+      "evidence": "2015중등표기,도단위/예각,정렬/평균/편차정의;벡터/라디안/상위통계기호없음"
+    },
+    "answer": {
+      "status": "author-proposed",
+      "evidence": "새정확답/단위/서술부분과MC동그라미번호"
+    },
+    "studentSolution": {
+      "status": "author-proposed",
+      "evidence": "r로세길이구성→수평 차→평행변/높이의사다리꼴넓이→양의제곱근."
+    },
+    "prerequisites": {
+      "status": "author-proposed",
+      "evidence": [
+        {
+          "code": "9수04-17",
+          "text": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수04-18",
+          "text": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수04-02",
+          "text": "평행선에서 동위각과 엇각의 성질을 이해한다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              37
+            ],
+            "printed_pages": [
+              33
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "6수03-06",
+          "text": "평행사변형, 삼각형, 사다리꼴, 마름모의 넓이를 구하는 방법을 다양하게 추론하고, 이와 관련된 문제를 해결할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              29
+            ],
+            "printed_pages": [
+              25
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수01-07",
+          "text": "제곱근의 뜻을 알고, 그 성질을 이해한다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              33
+            ],
+            "printed_pages": [
+              29
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수01-10",
+          "text": "근호를 포함한 식의 사칙계산을 할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              33
+            ],
+            "printed_pages": [
+              29
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        }
+      ]
+    }
+  },
+  "sourceReference": {
+    "externalId": "2025-gyeongam-3-2-mid-19",
+    "sourceExamExternalId": "personal-5eb35ea19488aaf195e724ed05fe8806",
+    "sourceLogicalExamId": "2025-gyeongam-3-2-mid",
+    "questionNumber": 19,
+    "sourceContentSha256": "7f6852cbb6d3dbe0409dbcb69c5a3f482d074c6a452f391e294890367637ee42",
+    "sourceContentDigest": "f903574a21863dd5d39ef74e2626173f763980a755a8480c25939532aa681b44",
+    "sourcePacketPath": "../../evidence/source-final/questions.json",
+    "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+    "sourceFinalCommit": "4cc9278da",
+    "jsonPointer": "/questions/18",
+    "originalReferenceScore": 10,
+    "originalReferenceSubQuestions": [],
+    "referenceFigures": [
+      {
+        "path": "../../evidence/source-final/images/q19-part1.png",
+        "sha256": "31aa5758e81628241391a04c1dbe601f91218ef2c48728686aaab0752110312a",
+        "page": 6,
+        "referenceOnly": true
+      }
+    ],
+    "sourceIdentityDecision": "2025_original_header_school_footer_and_completed_question_identity_supported",
+    "originalAnswerSolutionWithheld": true,
+    "realSchool": "경암중",
+    "studentSchoolAlias": "온빛누리중학교",
+    "directUseAllowed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015"
+    },
+    "sourceExamYear": 2025,
+    "sourceIdentityStatus": "root-final-question-only-packet4cc9278da;native/full-pair-not-approved",
+    "realSchool": "경암중",
+    "studentSchoolAlias": "온빛누리중학교",
+    "questionType": "서술형",
+    "score": 10,
+    "difficultyProposal": "응용",
+    "difficultyStatus": "author-proposed-independent-review-pending",
+    "problemTypeProposal": "서술형",
+    "problemTypeStatus": "author-proposed",
+    "scoreStatus": "reference-parent-total-and-subparts-preserved;rubric-author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+      "unitSection": "삼각비의 활용",
+      "familyKey": null,
+      "evidence": {
+        "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+        "notCurrentDbAssertion": true,
+        "unitSeedOrderIndex": 483,
+        "comparedRegistryEntries": [
+          {
+            "key": "3-2|삼각비의 활용|12",
+            "grade": "중3",
+            "unitSection": "삼각비의 활용",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비의 활용",
+            "rpmType": "12",
+            "rpmTitle": "사각형의 넓이"
+          }
+        ],
+        "wholeRuleComparison": "활용12는두대각선과끼인각으로사각형넓이를구하거나그넓이에서미지대각선을역산한다. 실제두갈래모두대각선곱과sin넓이공식을쓴다. 새사분원60도/수선/반직선교점/직각변비와사다리꼴넓이에서반지름을복구하는전체입력/절차와다르다. 기존역산갈래의존재도이새전체규칙의지원근거가되지않는다.",
+        "reopenCriteria": "실제기존rule의새given/질문/전체절차/서술부분/난도가일치하는문항별증거및독립분류검토;가까운제목자동배정금지"
+      }
+    },
+    "independentSolveStatus": "pending-other-worker",
+    "independentReviewStatus": "pending-other-worker",
+    "rightsStatus": "pending",
+    "nativeStatus": "pending",
+    "sourceCustodyStatus": "pending",
+    "similarityStatus": "pending",
+    "publishStatus": "not-authorized",
+    "loadStatus": "not-authorized",
+    "directUseAllowed": false
+  }
+}

@@ -1,16 +1,76 @@
 {
-  "kind": "execution-status-ledger/v7",
-  "version": 7,
-  "createdAt": "2026-10-08T07:43:04.279Z",
-  "scope": "first current20 plus next-school authoring pipeline; whole extraction/engine goal incomplete",
-  "latestDirective": "docs/planning/tracks/brief-exam-extraction-resume-20261008-addendum-3.md",
+  "kind": "execution-status-ledger/v8",
+  "version": 8,
+  "createdAt": "2026-10-08T12:14:45.083Z",
+  "latestDirective": "docs/planning/tracks/brief-exam-extraction-resume-20261008-addendum-5.md",
   "previousLedger": {
-    "path": ".qa-artifacts/exam-resume-20261008/status-ledger-v6.json",
-    "sha256": "43a1895218682cbcdcd2a911f0e0961f304fac4ef19fa9908f41d9c7acb6dad2"
+    "path": ".qa-artifacts/exam-resume-20261008/status-ledger-v7.json",
+    "sha256": "90f6df328cddbd4ac233c9c5463243ad48e7c121b0f0439b844f42e1e489151c"
   },
   "report": {
     "path": "docs/planning/tracks/reports/exam-twin-authoring-progress-20261008.md",
-    "sha256": "52ae584618c7ddf7f96430c59131eaebbba2f03fc56b755022aa91be1569dc43"
+    "sha256": "881ad49517d3d120927509b81fd546af66dca1e3f6f2a28c119191c8cc128b18"
+  },
+  "counts": {
+    "authoredCurrentCandidates": 91,
+    "currentFigureInstances": 72,
+    "recreatedStatTables": 5,
+    "builtinImagegenRasters": 2,
+    "preExposureRawSolvesBound": 42,
+    "independentMathReviewed": 20,
+    "independentFullGradeReviewed": 20,
+    "contentReviewPassed": 12,
+    "contentReviewHeld": 8,
+    "awaitingCollectedIndependentReview": 71,
+    "fullVerified": 0,
+    "loadable": 0,
+    "dbWrites": 0
+  },
+  "currentIndex": {
+    "path": ".qa-artifacts/exam-resume-20261008/current-authored-batches-v8.json",
+    "sha256": "6d4c1d0a32e58bf1fe07bbb674a27b27a1852265c996533263d6d62e5b348030"
+  },
+  "source": {
+    "BumilParents": 21,
+    "nextFiveParents": 106,
+    "nextFiveLeafAssessmentItems": 116,
+    "selectedNextFiveAllComponentPairs": 105,
+    "selectedNextFiveScoreExceptions": 1,
+    "wholeExamPairCertification": 0,
+    "rightsPermissionApprovals": 0
+  },
+  "nextFiveCoverage": {
+    "Gyeonggu": {
+      "sourceParents": 23,
+      "authored": 22,
+      "authorExcluded": [
+        20
+      ]
+    },
+    "Gyeongsan": {
+      "sourceParents": 25,
+      "authored": 24,
+      "authorExcluded": [
+        15
+      ]
+    },
+    "Gyeongam": {
+      "sourceParents": 19,
+      "authored": 18,
+      "authorHeld": [
+        15
+      ]
+    },
+    "Gyeongsang": {
+      "sourceParents": 22,
+      "authored": 7,
+      "remaining15": true
+    },
+    "Gyeongsin": {
+      "sourceParents": 17,
+      "authored": 0,
+      "sourceIdentityAndScoreHeld": true
+    }
   },
   "firstBumilBatchCounts": {
     "historicalSourceVerifications": 21,
@@ -58,111 +118,114 @@
     "originalPaperScore": 100,
     "currentDraftScore": 92
   },
-  "counts": {
-    "authoredCurrentCandidates": 58,
-    "currentFigureInstances": 50,
-    "recreatedStatTables": 5,
-    "builtinImagegenRasters": 2,
-    "independentMathReviewed": 20,
-    "independentFullGradeReviewed": 20,
-    "contentReviewPassed": 12,
-    "contentReviewHeld": 8,
-    "awaitingCollectedIndependentReview": 38,
-    "fullVerified": 0,
-    "loadable": 0,
-    "dbWrites": 0
-  },
-  "currentIndex": {
-    "path": ".qa-artifacts/exam-resume-20261008/current-authored-batches-v7.json",
-    "sha256": "c419219232a237e667a4365a862d40996dd94b441509edfc044e7273a9e46002"
-  },
-  "source": {
-    "Bumil": 21,
-    "nextFiveParents": 106,
-    "nextFiveLeafAssessmentItems": 116,
-    "nextFiveAllComponentPaired": 105,
-    "nextFiveScoreException": 1,
-    "wholeExamPairCertification": 0,
-    "rightsPermissionApprovals": 0
-  },
-  "authorExclusions": {
-    "Bumil": {
-      "numbers": [
-        7
-      ],
-      "status": "independently adjudicated2015-ineligible"
-    },
-    "Gyeonggu": {
-      "numbers": [
-        20
-      ],
-      "status": "author pre-exclusion; independent whole-original adjudication separate"
-    },
-    "Gyeongsan": {
-      "numbers": [
-        15
-      ],
-      "status": "author pre-exclusion recorded; latest final author ledger forthcoming"
-    }
-  },
   "currentReviewSummary": {
     "path": ".qa-artifacts/exam-resume-20261008/bumil-final-review-summary-r3-after-main-grade-lexical.json",
     "sha256": "94d9e5a10ebdb8d1c62371ae6a814cf5c02c61ebe7f05e7ee0225ab5177b02f9"
   },
-  "sourceJoin": {
-    "path": ".qa-artifacts/exam-resume-20261008/gyeonggu-source-author-join-r1.json",
-    "sha256": "2804f8aec7e2ca0300d68df0044874bcb38b80d76cd49038713dd1546ea873f0"
+  "currentRawIndependentGyeonggu": {
+    "commit": "c02838323307f69648124f837285503a53e99bd3",
+    "parentMerge": "07d14638e",
+    "rawManifest": {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/raw-solves-manifest.json",
+      "sha256": "71c39dcf8d186e2ae6e49f3fccc9e0b01acc3f0e2689c1bb66bee0606b3e65d2"
+    },
+    "solves": 22,
+    "preExposure": true,
+    "finalReviewsCollected": 0
   },
-  "statisticsCode": {
-    "path": "scripts/import/exam-twin/statisticsConditions.mjs",
-    "sha256": "36c4dcf877bcd842869335980a00555be3a7263278a5d33cb1e80922cfacf000",
-    "status": "implemented exact authoring support; used on actual7; production registry/load/template integration incomplete",
-    "tests": 4,
-    "expandedDistributionControls": 100
+  "newBlindDispatch": {
+    "path": ".qa-artifacts/exam-resume-20261008/independent-next-batches-dispatch-r1.json",
+    "sha256": "11d91c931eaf1cb299f11850217503d68f9b68d0b78706f9c5ee5d0d75a19014"
+  },
+  "gyeongamParentBindingAudit": {
+    "path": ".qa-artifacts/exam-resume-20261008/gyeongam-parent-integration-r1/verification.json",
+    "sha256": "eb2e41ca082d3efbecae716f92cba3afde9641ad633936367a9aecea531ea848"
+  },
+  "gyeonggu13SourceCorrection": {
+    "path": ".qa-artifacts/exam-resume-20261008/gyeonggu-q13-source-correction-r2/correction.json",
+    "sha256": "37fd1bbf852f0590f1dd424038c0de334a4611b11e7644116113c04a35cda199"
+  },
+  "engineLedger": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrades-progress-r2.json",
+    "sha256": "7298563a19bbb3ea17dd91a1f3e29d120299322c0a47dcac1980b0346a929582"
   },
   "relatedTests": {
-    "passed": 24,
+    "passed": 30,
     "actualNewQuestionReviews": 0
   },
   "remoteIntegration": {
     "ref": "origin/main",
-    "actualFetchedSha": "9ab1fc7fca970faab48b95554b4e52a174bc4a56",
-    "mergeCommit": "44f0e9430",
+    "actualFetchedSha": "66aab87099195c19d387421531b140dd583ac29f",
+    "mergeCommit": "020b101ba",
+    "subsequentAuthorMergeCommits": [
+      "af65558b5",
+      "363943ca4"
+    ],
     "mainWorktreeWritten": false,
     "pushed": false
   },
   "activeWork": [
     {
       "worktree": "exam-twin-source-identity-20261008",
-      "scope": "Gyeonggu22 new blind solves; raw files being sealed before author answers",
-      "status": "working; not collected"
+      "originalSessionId": "01a1177f-954e-7343-9cfb-e803c179ed85",
+      "scope": "Gyeonggu22 final math/grade/content/classification review plus independent source13 correction",
+      "status": "working; raw solves already sealed"
     },
     {
       "worktree": "exam-twin-author-geometry-20261008",
-      "scope": "Gyeongam19 source parent authoring",
-      "status": "working"
+      "originalSessionId": "01a1177e-fbb2-7822-a7e2-51c40b39e38f",
+      "scope": "Independent student-only Gyeongsang-stat7 then Gyeongsan24 fresh solves",
+      "status": "turn_started",
+      "dispatchRequest": "998aaa5e-0924-4140-9b09-846c4347576d"
     },
     {
       "worktree": "exam-twin-author-algebra-20261008",
-      "scope": "Gyeongsan remaining25 after first9commit",
-      "status": "working"
+      "originalSessionId": "01a1177d-e52b-7511-944f-c2d4edd47c82",
+      "scope": "Independent student-only Gyeongam18 fresh solves",
+      "status": "turn_started",
+      "dispatchRequest": "737b5e24-6e2c-44b1-abff-0696a8d12137"
     },
     {
       "worktree": "exam-extraction-resume-20261008",
-      "scope": "Root new Gyeongsang7stat ready for fresh independent review; remaining15/newsource queue",
+      "scope": "Current source/candidate/metadata/encoding bindings; Gyeongsang remaining15/newsource extraction; useful code support",
       "status": "working"
     }
   ],
   "continuationWatch": {
-    "config": ".qa-artifacts/exam-resume-20261008/continuation-watch/automation-config.json",
-    "automationId": "358474c8-24be-49ee-b3c9-55fbebf68de4",
-    "state": "active; primary working; no stop/complete/blocked marker",
-    "role": "read-only continuity monitor, not author",
-    "lastReadOnlyPrecheck": {
-      "resumeNeeded": false,
-      "reason": "work-in-progress",
-      "inspectOnly": true
-    }
+    "config": {
+      "path": ".qa-artifacts/exam-resume-20261008/continuation-watch/automation-config.json",
+      "sha256": "71d447df3f1a8c05b523c758f970bcfd9039b3e4ea4039d2ed20ad757f1cd437"
+    },
+    "preservedRootFiles": [
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/continuation-watch/automation-config.json",
+        "sha256": "71d447df3f1a8c05b523c758f970bcfd9039b3e4ea4039d2ed20ad757f1cd437"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/continuation-watch/controller-r2-preserved.ps1",
+        "sha256": "fe78ca47c393025bc9571f8339975565494651683935ebba7d4b8b3689df41da"
+      },
+      {
+        "path": ".qa-artifacts/exam-resume-20261008/continuation-watch/verification-r2-20261008.json",
+        "sha256": "7ace923fc6425b7fb995ab059e57ddbbca4b4d09e2385063ae91d848231f0ae5"
+      }
+    ],
+    "oldOrcaAutomation": {
+      "id": "358474c8-24be-49ee-b3c9-55fbebf68de4",
+      "state": "disabled; failed history preserved"
+    },
+    "currentScheduledTask": {
+      "name": "TodaysMath-ExamContinuation",
+      "state": "Root last confirmed Enabled/Ready/working-skip",
+      "intervalMinutes": 15,
+      "verification": {
+        "path": ".qa-artifacts/exam-resume-20261008/continuation-watch/verification-r2-20261008.json",
+        "sha256": "7ace923fc6425b7fb995ab059e57ddbbca4b4d09e2385063ae91d848231f0ae5"
+      }
+    },
+    "externalControllerOwnedBy": "Root; primary has not overwritten external controller/config",
+    "role": "read-only continuation monitor; no question authoring or approval",
+    "noWholeCompleteOrStopMarker": true
   },
   "freshBankRead": {
     "capturedAt": "2026-10-08 04:53:45.769124+00",

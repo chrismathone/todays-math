@@ -1,0 +1,322 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 17,
+  "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q17",
+  "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+  "content": "다섯 학생이 만든 작품의 개수에서 지우가 만든 개수를 각각 뺀 값을 다음과 같이 기록했다. 실제 다섯 학생의 작품 개수 평균은 $9$개이다.\n\n| 학생 | 지우의 개수를 뺀 기록(개) |\n| --- | --- |\n| 가 | $-3$ |\n| 나 | $-1$ |\n| 지우 | $0$ |\n| 다 | $3$ |\n| 라 | $6$ |\n\n⑴ 지우가 만든 작품의 개수를 구하고 풀이를 쓰시오. [5점]\n⑵ 실제 다섯 학생의 작품 개수의 표준편차를 구하고 풀이를 쓰시오. [5점]",
+  "choices": [],
+  "answer": "⑴ $8$개 ⑵ $\\sqrt{10}$개",
+  "solution": "⑴ 표의 다섯 기록의 평균은 $\\frac{-3-1+0+3+6}{5}=1$개이다. 지우의 개수를 $h$라 하면 실제 평균은 $h+1$이다. $h+1=9$이므로 지우의 개수는 $8$개이다.\n⑵ 실제 값은 표의 각 값에 같은 $h$를 더한 것이다. 실제 평균도 표의 평균에 $h$를 더하므로 각 실제 편차는 표의 값에서 $1$을 뺀 값과 같다.\n이 다섯 편차는 $-4,-2,-1,2,5$이다. 분산은 $\\frac{(-4)^2+(-2)^2+(-1)^2+2^2+5^2}{5}=\\frac{50}{5}=10$이다. 따라서 표준편차는 $\\sqrt{10}$개이다.",
+  "score": 10,
+  "questionType": "서술형",
+  "facts": {
+    "givens": {
+      "relativeValues": [
+        -3,
+        -1,
+        0,
+        3,
+        6
+      ],
+      "referenceStudent": "지우",
+      "actualMean": 9,
+      "count": 5,
+      "unit": "개"
+    },
+    "mathDataPath": "math-data.json",
+    "mathDataSha256": "491a719abb3623d851207fd2037438a62ea79278677d706a39d15b305451b78b",
+    "rawSourceObservationPath": "../../evidence/source-observations.json",
+    "rawSourceObservationSha256": "56dcd7f8a34433011abf1e6d0fc7b17fb63e19d91ed8c11697f8c6b9f14ba59c",
+    "newDataStatus": "author-constructed",
+    "sourceScoreEvidence": {
+      "selectedHwpPdfPrintedParentScore": 10,
+      "selectedPairScoreStatus": "literal_match",
+      "originalPrintedParentScore": 10,
+      "referenceParentScore": 10,
+      "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+      "parentCountedOnce": true,
+      "childScores": [
+        5,
+        5
+      ],
+      "subquestionCount": 2,
+      "parentAndChildrenMustNotBeAddedTogether": true
+    },
+    "authorRubric": [
+      {
+        "part": 1,
+        "criterion": "차 기록의 평균",
+        "score": 3
+      },
+      {
+        "part": 1,
+        "criterion": "기준학생 복구",
+        "score": 2
+      },
+      {
+        "part": 2,
+        "criterion": "편차 불변과 다섯 편차",
+        "score": 2
+      },
+      {
+        "part": 2,
+        "criterion": "편차제곱과 분산",
+        "score": 2
+      },
+      {
+        "part": 2,
+        "criterion": "표준편차와 단위",
+        "score": 1
+      }
+    ],
+    "subQuestions": [
+      {
+        "number": 1,
+        "score": 5,
+        "target": "reference-student count"
+      },
+      {
+        "number": 2,
+        "score": 5,
+        "target": "actual standard deviation"
+      }
+    ]
+  },
+  "figureArtifacts": [],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation",
+      "inverse-target",
+      "material"
+    ],
+    "before": "기준학생을 뺀5개 기록에서 평균 차와 원자료 표준편차를 구한다.",
+    "after": "차 기록과 실제평균으로 기준학생의 값을 역산하고 원자료 산포를 정의로 복구한다.",
+    "sharedConcept": "평균 차와 평행이동에서 같은 편차",
+    "sharedProcedure": "차 기록의 평균→기준학생 복구→편차 불변→제곱평균→표준편차."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수05-06",
+      "9수05-07",
+      "9수02-05",
+      "9수01-07"
+    ],
+    "allowedProcedure": "차 기록의 평균→기준학생 복구→편차 불변→제곱평균→표준편차.",
+    "forbiddenAvoided": [
+      "任意삼각비관계식",
+      "원/외접원비례법칙/원의거듭제곱",
+      "사인/코사인법칙",
+      "반각/덧셈정리",
+      "삼각비넓이공식",
+      "라디안/벡터",
+      "상위통계/최적화"
+    ],
+    "status": "author-proposed",
+    "wholeSurfaceGate": "7 surfaces mapped to specific procedure/prerequisites; source school/registry is not grade approval",
+    "specificRisk": "",
+    "independentReviewStatus": "pending-other-worker"
+  },
+  "studentSurfaceReview": {
+    "stem": {
+      "status": "author-proposed",
+      "evidence": "新본문조건/표/자료조직과점순서명시"
+    },
+    "choices": {
+      "status": "author-proposed",
+      "evidence": "actual-option parser로14객관식의유일정답/중복검사;written choices=[]"
+    },
+    "figuresAndTables": {
+      "status": "author-proposed",
+      "evidence": "새스펙/로컬strictSVG/70mm이하실미리보기와데이터결합"
+    },
+    "notation": {
+      "status": "author-proposed",
+      "evidence": "2015중등표기,도단위/예각,정렬/평균/편차정의;벡터/라디안/상위통계기호없음"
+    },
+    "answer": {
+      "status": "author-proposed",
+      "evidence": "새정확답/단위/서술부분과MC동그라미번호"
+    },
+    "studentSolution": {
+      "status": "author-proposed",
+      "evidence": "차 기록의 평균→기준학생 복구→편차 불변→제곱평균→표준편차."
+    },
+    "prerequisites": {
+      "status": "author-proposed",
+      "evidence": [
+        {
+          "code": "9수05-06",
+          "text": "중앙값, 최빈값, 평균의 의미를 이해하고, 이를 구할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              40
+            ],
+            "printed_pages": [
+              36
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수05-07",
+          "text": "분산과 표준편차의 의미를 이해하고, 이를 구할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              40
+            ],
+            "printed_pages": [
+              36
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수02-05",
+          "text": "일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              34
+            ],
+            "printed_pages": [
+              30
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수01-07",
+          "text": "제곱근의 뜻을 알고, 그 성질을 이해한다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              33
+            ],
+            "printed_pages": [
+              29
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        }
+      ]
+    }
+  },
+  "sourceReference": {
+    "externalId": "2025-gyeongam-3-2-mid-17",
+    "sourceExamExternalId": "personal-5eb35ea19488aaf195e724ed05fe8806",
+    "sourceLogicalExamId": "2025-gyeongam-3-2-mid",
+    "questionNumber": 17,
+    "sourceContentSha256": "e01c73e4e291f123bf9fc6e27678d5ac995ea40c977c4f59291dfa58d2c8d03a",
+    "sourceContentDigest": "1a805e77b9739c85c8f0d05ad9533d4f7abe40670c02678abd0ad359d625430a",
+    "sourcePacketPath": "../../evidence/source-final/questions.json",
+    "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+    "sourceFinalCommit": "4cc9278da",
+    "jsonPointer": "/questions/16",
+    "originalReferenceScore": 10,
+    "originalReferenceSubQuestions": [
+      {
+        "number": 1,
+        "stem": "$(1)$ 현수네 모둠의 저축 횟수의 평균은 현수의 저축 횟수보다 몇 회 더 많은지 구하시오. [$5$점]",
+        "score": 5,
+        "parentSharedFigure": true
+      },
+      {
+        "number": 2,
+        "stem": "$(2)$ 저축 횟수의 표준편차를 구하시오. [$5$점]",
+        "score": 5,
+        "parentSharedFigure": true
+      }
+    ],
+    "referenceFigures": [
+      {
+        "path": "../../evidence/source-final/images/q17-part1.png",
+        "sha256": "4ae11816785b36ff9457054b6fa08429d589921f9c3dc4b1ad29ede14b8a2719",
+        "page": 5,
+        "referenceOnly": true
+      }
+    ],
+    "sourceIdentityDecision": "2025_original_header_school_footer_and_completed_question_identity_supported",
+    "originalAnswerSolutionWithheld": true,
+    "realSchool": "경암중",
+    "studentSchoolAlias": "온빛누리중학교",
+    "directUseAllowed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015"
+    },
+    "sourceExamYear": 2025,
+    "sourceIdentityStatus": "root-final-question-only-packet4cc9278da;native/full-pair-not-approved",
+    "realSchool": "경암중",
+    "studentSchoolAlias": "온빛누리중학교",
+    "questionType": "서술형",
+    "score": 10,
+    "difficultyProposal": "응용",
+    "difficultyStatus": "author-proposed-independent-review-pending",
+    "problemTypeProposal": "서술형",
+    "problemTypeStatus": "author-proposed",
+    "scoreStatus": "reference-parent-total-and-subparts-preserved;rubric-author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "unitSection": "대푯값과 산포도",
+      "familyKey": null,
+      "evidence": {
+        "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+        "notCurrentDbAssertion": true,
+        "unitSeedOrderIndex": 488,
+        "comparedRegistryEntries": [
+          {
+            "key": "3-2|산포도|02",
+            "grade": "중3",
+            "unitSection": "대푯값과 산포도",
+            "rpmBook": "3-2",
+            "rpmMinor": "산포도",
+            "rpmType": "02",
+            "rpmTitle": "편차를 이용하여 변량 구하기"
+          },
+          {
+            "key": "3-2|산포도|03",
+            "grade": "중3",
+            "unitSection": "대푯값과 산포도",
+            "rpmBook": "3-2",
+            "rpmMinor": "산포도",
+            "rpmType": "03",
+            "rpmTitle": "분산과 표준편차"
+          },
+          {
+            "key": "3-2|산포도|08",
+            "grade": "중3",
+            "unitSection": "대푯값과 산포도",
+            "rpmBook": "3-2",
+            "rpmMinor": "산포도",
+            "rpmType": "08",
+            "rpmTitle": "자료에서 분산 구하기"
+          }
+        ],
+        "wholeRuleComparison": "02/03은평균중심편차를입력으로쓸때이며08은원자료→분산이다. 새기준학생차의평균이0이아닌자료와실제평균→기준학생/원표준편차의두서술부분이아니다.",
+        "reopenCriteria": "실제기존rule의새given/질문/전체절차/서술부분/난도가일치하는문항별증거및독립분류검토;가까운제목자동배정금지"
+      }
+    },
+    "independentSolveStatus": "pending-other-worker",
+    "independentReviewStatus": "pending-other-worker",
+    "rightsStatus": "pending",
+    "nativeStatus": "pending",
+    "sourceCustodyStatus": "pending",
+    "similarityStatus": "pending",
+    "publishStatus": "not-authorized",
+    "loadStatus": "not-authorized",
+    "directUseAllowed": false
+  }
+}

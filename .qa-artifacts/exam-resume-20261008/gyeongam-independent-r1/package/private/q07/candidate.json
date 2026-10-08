@@ -1,0 +1,233 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 7,
+  "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q07",
+  "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+  "content": "아홉 개의 정수 자료에서 다음 다섯 값은 확인되었고, 나머지 네 값은 지워졌다.\n\n| 확인된 값 | $2$ | $5$ | $8$ | $13$ |\n| --- | --- | --- | --- | --- |\n| 개수 | $1$ | $2$ | $1$ | $1$ |\n\n지워진 네 값에 정수를 적어 넣을 때 중앙값이 될 수 있는 정수의 범위 전체를 바르게 나타낸 것은? 경계의 값도 포함한다.",
+  "choices": [
+    "$2$ 이상 $8$ 이하",
+    "$5$ 이상 $13$ 이하",
+    "$2$ 이상 $13$ 이하",
+    "$0$ 이상 $13$ 이하",
+    "$2$ 이상 $14$ 이하"
+  ],
+  "answer": "③",
+  "solution": "아홉 값을 작은 것부터 정렬하면 중앙값은 다섯 번째 값이다. 확인된 다섯 값이 모두 $2$ 이상이므로 $2$보다 작은 값은 지워진 네 칸에서만 나올 수 있다. 따라서 다섯 번째 값은 $2$보다 작을 수 없다.\n확인된 다섯 값은 모두 $13$ 이하이다. 따라서 다섯 번째 값은 $13$보다 클 수도 없다.\n이제 $2\\le m\\le13$인 정수 $m$을 지워진 네 칸 모두에 넣자. 확인된 값 중 $m$보다 작은 값과 큰 값은 각각 많아야 네 개이므로 다섯 번째 값은 $m$이다. 따라서 이 범위의 모든 정수가 실제로 가능하다.\n가능한 중앙값의 범위 전체는 $2$ 이상 $13$ 이하이고 정답은 ③이다.",
+  "score": 5,
+  "questionType": "객관식",
+  "facts": {
+    "givens": {
+      "count": 9,
+      "fixedFrequencies": [
+        [
+          2,
+          1
+        ],
+        [
+          5,
+          2
+        ],
+        [
+          8,
+          1
+        ],
+        [
+          13,
+          1
+        ]
+      ],
+      "missingCount": 4,
+      "domain": "all values integers"
+    },
+    "mathDataPath": "math-data.json",
+    "mathDataSha256": "0ef23b8d1f11e6c1fe647393fe2c5b25e03e3df6864a68aa53542c7d43c88119",
+    "rawSourceObservationPath": "../../evidence/source-observations.json",
+    "rawSourceObservationSha256": "56dcd7f8a34433011abf1e6d0fc7b17fb63e19d91ed8c11697f8c6b9f14ba59c",
+    "newDataStatus": "author-constructed",
+    "sourceScoreEvidence": {
+      "selectedHwpPdfPrintedParentScore": 5,
+      "selectedPairScoreStatus": "literal_match",
+      "originalPrintedParentScore": 5,
+      "referenceParentScore": 5,
+      "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+      "parentCountedOnce": true,
+      "childScores": [],
+      "subquestionCount": 0,
+      "parentAndChildrenMustNotBeAddedTogether": false
+    },
+    "authorRubric": [],
+    "subQuestions": []
+  },
+  "figureArtifacts": [],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation"
+    ],
+    "before": "일부 정수가 고정된 홀수 자료의 가능한 중앙값 최댓값을 구한다.",
+    "after": "고정값을 도수로 조직하고 가능한 중앙값 전체 범위와 각 값의 존재를 판단한다.",
+    "sharedConcept": "중앙 순서와 고정/미지 자료의 개수",
+    "sharedProcedure": "다섯 번째 위치→고정 다섯 값의 하한/상한→네 칸에 같은 정수를 넣는 존재 증명."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수05-06",
+      "9수01-04"
+    ],
+    "allowedProcedure": "다섯 번째 위치→고정 다섯 값의 하한/상한→네 칸에 같은 정수를 넣는 존재 증명.",
+    "forbiddenAvoided": [
+      "任意삼각비관계식",
+      "원/외접원비례법칙/원의거듭제곱",
+      "사인/코사인법칙",
+      "반각/덧셈정리",
+      "삼각비넓이공식",
+      "라디안/벡터",
+      "상위통계/최적화"
+    ],
+    "status": "author-proposed",
+    "wholeSurfaceGate": "7 surfaces mapped to specific procedure/prerequisites; source school/registry is not grade approval",
+    "specificRisk": "순서와 개수의 초등적 논증이다. 최적화/일반 순서통계량 정리는 사용하지 않는다.",
+    "independentReviewStatus": "pending-other-worker"
+  },
+  "studentSurfaceReview": {
+    "stem": {
+      "status": "author-proposed",
+      "evidence": "新본문조건/표/자료조직과점순서명시"
+    },
+    "choices": {
+      "status": "author-proposed",
+      "evidence": "actual-option parser로14객관식의유일정답/중복검사;written choices=[]"
+    },
+    "figuresAndTables": {
+      "status": "author-proposed",
+      "evidence": "새스펙/로컬strictSVG/70mm이하실미리보기와데이터결합"
+    },
+    "notation": {
+      "status": "author-proposed",
+      "evidence": "2015중등표기,도단위/예각,정렬/평균/편차정의;벡터/라디안/상위통계기호없음"
+    },
+    "answer": {
+      "status": "author-proposed",
+      "evidence": "새정확답/단위/서술부분과MC동그라미번호"
+    },
+    "studentSolution": {
+      "status": "author-proposed",
+      "evidence": "다섯 번째 위치→고정 다섯 값의 하한/상한→네 칸에 같은 정수를 넣는 존재 증명."
+    },
+    "prerequisites": {
+      "status": "author-proposed",
+      "evidence": [
+        {
+          "code": "9수05-06",
+          "text": "중앙값, 최빈값, 평균의 의미를 이해하고, 이를 구할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              40
+            ],
+            "printed_pages": [
+              36
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수01-04",
+          "text": "정수와 유리수의 대소 관계를 판단할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              32
+            ],
+            "printed_pages": [
+              28
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        }
+      ]
+    }
+  },
+  "sourceReference": {
+    "externalId": "2025-gyeongam-3-2-mid-7",
+    "sourceExamExternalId": "personal-5eb35ea19488aaf195e724ed05fe8806",
+    "sourceLogicalExamId": "2025-gyeongam-3-2-mid",
+    "questionNumber": 7,
+    "sourceContentSha256": "0233755efe5153fff9cee918dc93bc858b3a4a8cdc753e5f20c7dceac4521e47",
+    "sourceContentDigest": "a6f3dbd7bc68108e6ed1d289f04fb1fc14412ebd10068688cb2091ab6aeaba96",
+    "sourcePacketPath": "../../evidence/source-final/questions.json",
+    "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+    "sourceFinalCommit": "4cc9278da",
+    "jsonPointer": "/questions/6",
+    "originalReferenceScore": 5,
+    "originalReferenceSubQuestions": [],
+    "referenceFigures": [
+      {
+        "path": "../../evidence/source-final/images/q07-part1.png",
+        "sha256": "018c44b87619e6c4ab8aa10c93be04686e0de397c07a127beeba2c9db017c79e",
+        "page": 2,
+        "referenceOnly": true
+      }
+    ],
+    "sourceIdentityDecision": "2025_original_header_school_footer_and_completed_question_identity_supported",
+    "originalAnswerSolutionWithheld": true,
+    "realSchool": "경암중",
+    "studentSchoolAlias": "온빛누리중학교",
+    "directUseAllowed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015"
+    },
+    "sourceExamYear": 2025,
+    "sourceIdentityStatus": "root-final-question-only-packet4cc9278da;native/full-pair-not-approved",
+    "realSchool": "경암중",
+    "studentSchoolAlias": "온빛누리중학교",
+    "questionType": "객관식",
+    "score": 5,
+    "difficultyProposal": "응용",
+    "difficultyStatus": "author-proposed-independent-review-pending",
+    "problemTypeProposal": "객관식",
+    "problemTypeStatus": "author-proposed",
+    "scoreStatus": "reference-parent-total-and-subparts-preserved;rubric-author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "unitSection": "대푯값과 산포도",
+      "familyKey": null,
+      "evidence": {
+        "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+        "notCurrentDbAssertion": true,
+        "unitSeedOrderIndex": 488,
+        "comparedRegistryEntries": [
+          {
+            "key": "3-2|산포도|11T",
+            "grade": "중3",
+            "unitSection": "대푯값과 산포도",
+            "rpmBook": "3-2",
+            "rpmMinor": "산포도",
+            "rpmType": "11T",
+            "rpmTitle": "평균과 중앙값이 같은 변량 구하기"
+          }
+        ],
+        "wholeRuleComparison": "11T의평균=중앙값정방향미지수와달리 고정자료+미지4정수의가능중앙값전체구간/존재를묻는다. 해당중3live family확인불가.",
+        "reopenCriteria": "실제기존rule의새given/질문/전체절차/서술부분/난도가일치하는문항별증거및독립분류검토;가까운제목자동배정금지"
+      }
+    },
+    "independentSolveStatus": "pending-other-worker",
+    "independentReviewStatus": "pending-other-worker",
+    "rightsStatus": "pending",
+    "nativeStatus": "pending",
+    "sourceCustodyStatus": "pending",
+    "similarityStatus": "pending",
+    "publishStatus": "not-authorized",
+    "loadStatus": "not-authorized",
+    "directUseAllowed": false
+  }
+}

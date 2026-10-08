@@ -1,0 +1,296 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 14,
+  "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q14",
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "content": "직각삼각형 $ABC$에서 $\\angle A=90^\\circ$, $\\overline{AB}=3\\,\\mathrm{cm}$, $\\overline{AC}=5\\,\\mathrm{cm}$이다. 두 각에 대한 계산 기록 $(\\cos B,\\tan C)$를 바르게 작성한 것은?",
+  "choices": [
+    "$\\left(\\frac{5\\sqrt{34}}{34},\\frac35\\right)$",
+    "$\\left(\\frac{3\\sqrt{34}}{34},\\frac35\\right)$",
+    "$\\left(\\frac{3\\sqrt{34}}{34},\\frac53\\right)$",
+    "$\\left(\\frac35,\\frac{3\\sqrt{34}}{34}\\right)$",
+    "$\\left(\\frac{\\sqrt{34}}3,\\frac35\\right)$"
+  ],
+  "answer": "②",
+  "solution": "피타고라스 정리에 의해 빗변의 길이는 $\\overline{BC}=\\sqrt{3^2+5^2}=\\sqrt{34}\\,\\mathrm{cm}$이다. 각 $B$에 이웃한 직각변은 $AB$이므로 $\\cos B=\\dfrac{3}{\\sqrt{34}}=\\dfrac{3\\sqrt{34}}{34}$이다.\n\n각 $C$의 맞은편 직각변은 $AB$, 이웃한 직각변은 $AC$이므로 $\\tan C=\\dfrac{3}{5}$이다. 따라서 두 기록은 $\\left(\\dfrac{3\\sqrt{34}}{34},\\dfrac35\\right)$로 정답은 ②이다.",
+  "score": 4,
+  "questionType": "객관식",
+  "facts": {
+    "AB": 3,
+    "AC": 5,
+    "BC": 5.8309518948453,
+    "BCExact": "sqrt(34)",
+    "cosB": 0.5144957554275266,
+    "tanC": 0.6,
+    "exactCosB": "3*sqrt(34)/34"
+  },
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "figure-1.spec.json",
+      "svgPath": "figure-1.svg",
+      "intendedWidthMm": 70
+    }
+  ],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation",
+      "inverse-target"
+    ],
+    "before": "두 직각변을 주고 두 각에 대한 여러 삼각비 설명 중 옳은 것을 고른다.",
+    "after": "한 설명 판정을 두 각의 코사인/탄젠트 기록 동시 복구로 바꾸고 새 비정수 빗변을 직접 계산한다.",
+    "sharedConcept": "직각삼각형 두 변의 길이, 피타고라스와 각별 삼각비의 정의",
+    "sharedProcedure": "빗변을 피타고라스로 구하고 두 대상 각에서 변의 역할을 따로 읽어 코사인/탄젠트를 계산한다.",
+    "objectiveDifficulty": "원문의 빗변 근호 계산·분모 유리화·두 각의 변 역할 구별을 유지한 4점이다.",
+    "scoreDelta": {
+      "source": 4,
+      "authored": 4,
+      "changed": false
+    }
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수04-17",
+      "9수04-16",
+      "9수01-10"
+    ],
+    "allowedProcedure": "빗변을 피타고라스로 구하고 두 대상 각에서 변의 역할을 따로 읽어 코사인/탄젠트를 계산한다.",
+    "forbiddenAvoided": [
+      "삼각비 사이의 관계식",
+      "사인/코사인 법칙"
+    ],
+    "status": "author-proposed",
+    "surfaces": {
+      "stem": {
+        "status": "author-proposed",
+        "evidence": "실제 두 직각변과 직각을 주며 두 각의 비를 묻는다."
+      },
+      "choices": {
+        "status": "author-proposed",
+        "evidence": "다섯 새 비 쌍을 정의에 따라 모두 대조한다."
+      },
+      "figuresAndTables": {
+        "status": "author-proposed",
+        "evidence": "새 그림의 직각과 길이 비 3:5:√34가 실제 좌표와 일치한다."
+      },
+      "notation": {
+        "status": "author-proposed",
+        "evidence": "좌표·선분·각·근호·도·삼각비의 표기는 실제 중학교 해법에 쓰는 범위이다."
+      },
+      "answer": {
+        "status": "author-proposed",
+        "evidence": "새 조건을 계산한 유일한 객관식 답이며 원문 정답을 가져오지 않았다."
+      },
+      "studentSolution": {
+        "status": "author-proposed",
+        "evidence": "피타고라스·각별 정의·분모 유리화로 완결된다."
+      },
+      "prerequisites": {
+        "status": "author-proposed",
+        "evidence": "중2 피타고라스, 중3 근호 사칙과 직각삼각비"
+      }
+    },
+    "gradeBasis": "실제 두 변에서 각별 비를 독립 계산한다. 삼각비 사이 관계식으로 한 값을 다른 값으로 바꾸지 않는다.",
+    "exactGradeApproval": false
+  },
+  "sourceReference": {
+    "externalId": "2025-gyeongsan-3-2-mid-14",
+    "examId": "personal-aa35a05fbaf41074c2ebcfcd6f16e876",
+    "sourcePacketExamId": "2025-gyeongsan-3-2-mid",
+    "school": "경산중",
+    "questionNumber": 14,
+    "sourceContentSha256": "34487df4cbb2507d6fca54b99bfa825874c5b8e808976c441be7bf2eb83025cd",
+    "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+    "sourceQuestionOnlySnapshot": "source-snapshot/packet/questions.json",
+    "sourceQuestionScore": 4,
+    "sourceQuestionType": "객관식",
+    "sourceQuestionParts": [],
+    "sourceStatus": "source_reference_reviewed_all_final_approval_gates_held",
+    "sourceObservation": "두 직각변을 주고 두 각에 대한 여러 삼각비 설명 중 옳은 것을 고른다.",
+    "originalAnswersOrSolutionsUsed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "score": 4,
+    "difficultyProposal": "응용",
+    "difficultyStatus": "pending-independent-review",
+    "problemTypeProposal": null,
+    "problemTypeStatus": "pending-independent-review",
+    "hasFigure": true,
+    "assignment": {
+      "status": "proposed",
+      "unitId": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+      "familyKey": "mid:3-2|삼각비|01",
+      "currentUnit": {
+        "id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 뜻",
+        "semester": 2,
+        "orderIndex": 481,
+        "problemCodePrefix": "J30501"
+      },
+      "currentRegistryMatch": {
+        "key": "3-2|삼각비|01",
+        "grade": "중3",
+        "unitSection": "삼각비의 뜻",
+        "rpmBook": "3-2",
+        "rpmMinor": "삼각비",
+        "rpmType": "01",
+        "rpmTitle": "삼각비의 값"
+      },
+      "liveCount": 24,
+      "checkedAt": "2026-10-08 04:53:45.769124+00",
+      "evidence": "실제 두 직각변에서 빗변과 각별 삼각비를 구하는 유형01의 정의·피타고라스 절차이다. 두 기록으로 출력만 조직했다.",
+      "generatorRuleEvidence": {
+        "module": "src/lib/middle/m3Trig.ts",
+        "family": "삼각비 01",
+        "observed": "주어진 직각삼각형의 두 변으로 피타고라스와 정의를 써 삼각비를 구한다.",
+        "status": "author-semantic-proposal"
+      },
+      "approval": "author-proposal-only"
+    },
+    "achievementStandardRefs": [
+      {
+        "code": "9수01-10",
+        "verified_text": "근호를 포함한 식의 사칙계산을 할 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3788,
+          "record_offset_in_uncompressed_stream": 193301,
+          "extracted_paragraph_1based": 771
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            33
+          ],
+          "printed_pages": [
+            29
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      },
+      {
+        "code": "9수04-16",
+        "verified_text": "피타고라스 정리를 이해하고 설명할 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4333,
+          "record_offset_in_uncompressed_stream": 218866,
+          "extracted_paragraph_1based": 889
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            38
+          ],
+          "printed_pages": [
+            34
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      },
+      {
+        "code": "9수04-17",
+        "verified_text": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4341,
+          "record_offset_in_uncompressed_stream": 219120,
+          "extracted_paragraph_1based": 891
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            38
+          ],
+          "printed_pages": [
+            34
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      }
+    ],
+    "achievementStandardStatus": "official-text-matched-candidate-author-proposed",
+    "sourceIdentityReview": {
+      "status": "source-packet-identity-supported-full-custody-held",
+      "sourceSchool": "경산중",
+      "sourceYear": 2025,
+      "sourcePacketDecision": "2025_original_header_school_footer_and_completed_question_identity_supported",
+      "fullPairCertification": "held",
+      "custody": "held",
+      "rights": "held"
+    },
+    "bankEvidence": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-fresh-r2-20261008.json",
+      "sha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b",
+      "capturedAt": "2026-10-08 04:53:45.769124+00",
+      "registrySha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "curriculumEvidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "databaseAccessByAuthor": false
+    },
+    "authorEvidence": {
+      "calculationsPath": "author-calculations.json",
+      "authoringScriptSha256": "968f4138a9be3a7960b4b2a2ce76c3625a6e0df382b168d6dbe457cb833bcd35",
+      "visualReview": "pending-local-view",
+      "mathematicalReview": "author-self-check-only"
+    }
+  },
+  "schoolNamePolicy": {
+    "actual": "경산중",
+    "display": "해솔누리중학교",
+    "role": "fictional-display-alias-only",
+    "originalOccurrencesInStem": 0,
+    "surfaces": [
+      "content",
+      "choices",
+      "tables",
+      "figureLabels",
+      "solution"
+    ],
+    "review": "author-proposed"
+  },
+  "independentVerification": null,
+  "review": {
+    "status": "pending",
+    "mathematicalCorrectness": "pending-independent-blind-solve",
+    "gradeCurriculum": "pending-independent-review",
+    "equivalentConceptAndMethod": "pending-independent-review",
+    "distinctPresentation": "pending-independent-review",
+    "naturalKorean": "pending-independent-review",
+    "figure": "pending-independent-review",
+    "rights": "pending",
+    "similarity": "pending",
+    "nativeCompatibility": "pending",
+    "physicalPaper": "not-approved"
+  },
+  "directUseAllowed": false
+}

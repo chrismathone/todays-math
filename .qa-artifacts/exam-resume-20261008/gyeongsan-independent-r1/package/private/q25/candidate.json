@@ -1,0 +1,371 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 25,
+  "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q25",
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "content": "폭이 $8\\,\\mathrm{cm}$인 직사각형 종이 띠의 위쪽 변에 $A$, 아래쪽 변에 $B$를 잡아 $AB$를 접는 선으로 하여 오른쪽 부분을 접었다. $AB=16\\,\\mathrm{cm}$이다. 접기 전 $A$에서 오른쪽으로 향하던 위쪽 변은 접은 후 아래쪽 변과 $C$에서 만나며, $C$는 $B$의 왼쪽에 있다. $F$는 $A$에서 아래쪽 변에 내린 수선의 발이다. 다음 검사 기록 $(BC,\\triangle ABC\\text{의 넓이})$로 옳은 것은? (길이의 단위는 $\\mathrm{cm}$, 넓이의 단위는 $\\mathrm{cm}^2$이다.)\n\n왼쪽 그림은 접기 전, 오른쪽 그림은 접은 후이다.",
+  "choices": [
+    "$\\left(\\dfrac{8\\sqrt3}{3},\\dfrac{64\\sqrt3}{3}\\right)$",
+    "$\\left(\\dfrac{16\\sqrt3}{3},\\dfrac{32\\sqrt3}{3}\\right)$",
+    "$\\left(\\dfrac{16\\sqrt3}{3},\\dfrac{64\\sqrt3}{3}\\right)$",
+    "$(8\\sqrt3,64\\sqrt3)$",
+    "$\\left(\\dfrac{16\\sqrt3}{3},\\dfrac{128\\sqrt3}{3}\\right)$"
+  ],
+  "answer": "③",
+  "solution": "$AF=8\\,\\mathrm{cm}$이다. 직각삼각형 $ABF$에서 $\\sin\\angle ABF=\\dfrac{AF}{AB}=\\dfrac8{16}=\\dfrac12$이므로 $\\angle ABF=30^\\circ$이다. 또 $BF=AB\\cos30^\\circ=8\\sqrt3\\,\\mathrm{cm}$이다.\n\n접기 전 위쪽 변과 아래쪽 변은 평행하므로, 접기 전 $A$에서 오른쪽으로 향하는 위쪽 변과 $AB$가 이루는 각은 $30^\\circ$이다. 접으면 접는 선 $AB$ 양쪽의 각이 같아지므로 $\\angle CAB=30^\\circ$이다.\n\n$C$는 $B$의 왼쪽에 있으므로 $\\angle ABC=30^\\circ$이고, $\\angle ACB=120^\\circ$이다. $CF$는 $CB$의 반대 방향이므로 직각삼각형 $ACF$의 $\\angle ACF=60^\\circ$이다. 따라서 $CF=\\dfrac{AF}{\\tan60^\\circ}=\\dfrac{8\\sqrt3}{3}\\,\\mathrm{cm}$이다.\n\n$BC=BF-CF=8\\sqrt3-\\dfrac{8\\sqrt3}{3}=\\dfrac{16\\sqrt3}{3}\\,\\mathrm{cm}$이고, $\\triangle ABC$의 높이는 $AF=8\\,\\mathrm{cm}$이다. 넓이는 $\\dfrac12\\cdot\\dfrac{16\\sqrt3}{3}\\cdot8=\\dfrac{64\\sqrt3}{3}\\,\\mathrm{cm}^2$이다. 정답은 ③이다.",
+  "score": 4,
+  "questionType": "객관식",
+  "facts": {
+    "width": 8,
+    "crease": 16,
+    "BF": 13.856406460551018,
+    "CF": 4.618802153517007,
+    "BC": 9.237604307034012,
+    "area": 36.95041722813605,
+    "beforePoints": {
+      "L": [
+        -4,
+        0
+      ],
+      "A": [
+        0,
+        0
+      ],
+      "R": [
+        20,
+        0
+      ],
+      "U": [
+        -4,
+        -8
+      ],
+      "B": [
+        13.856406460551018,
+        -8
+      ],
+      "T": [
+        20,
+        -8
+      ]
+    },
+    "afterPoints": {
+      "L": [
+        -4,
+        0
+      ],
+      "A": [
+        0,
+        0
+      ],
+      "U": [
+        -4,
+        -8
+      ],
+      "B": [
+        13.856406460551018,
+        -8
+      ],
+      "R": [
+        10,
+        -17.32050807568877
+      ],
+      "T": [
+        16.928203230275507,
+        -13.320508075688771
+      ],
+      "C": [
+        4.618802153517007,
+        -8
+      ],
+      "F": [
+        0,
+        -8
+      ]
+    },
+    "rendererScalePxPerCm": 12,
+    "reflectionUsedOnlyForAuthorCoordinateCheck": true
+  },
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "figure-1.spec.json",
+      "svgPath": "figure-1.svg",
+      "intendedWidthMm": 70
+    },
+    {
+      "role": "stem",
+      "specPath": "figure-2.spec.json",
+      "svgPath": "figure-2.svg",
+      "intendedWidthMm": 70
+    }
+  ],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation",
+      "context"
+    ],
+    "before": "폭5cm/접는선10cm의 종이를 접은 그림에서 ABC 넓이를 구한다.",
+    "after": "새 종이 띠의 접기 전/후를 두 새 자산으로 비교하고 접힌 변 교점의 순서를 명시했다. 밑변과 넓이를 함께 검산하는 두 항목 기록으로 바꿨다.",
+    "sharedConcept": "접은 선에 대한 같은 각, 평행선의 각, 특수각으로 밑변을 구한 뒤 넓이를 계산한다.",
+    "sharedProcedure": "폭/접는선으로30°를 확인하고 BF를 구한다. 접기의 같은 각으로 ACF의60°를 구해 CF, BC=BF−CF와 밑변높이 넓이를 구한다.",
+    "objectiveDifficulty": "원문4점의 접기 각과 삼각비-밑변높이 연결을 유지하고 밑변/넓이의 두 항목을 함께 검사한다. 전후 그림은 접기의 의미를 명확히 한다.",
+    "scoreDelta": {
+      "source": 4,
+      "authored": 4,
+      "changed": false
+    }
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수04-17",
+      "9수04-18",
+      "9수04-05",
+      "9수01-10"
+    ],
+    "allowedProcedure": "폭/접는선으로30°를 확인하고 BF를 구한다. 접기의 같은 각으로 ACF의60°를 구해 CF, BC=BF−CF와 밑변높이 넓이를 구한다.",
+    "forbiddenAvoided": [
+      "삼각비 사이의 항등식",
+      "사인·코사인 법칙",
+      "각의 덧셈정리",
+      "미분·최적화",
+      "좌표 벡터·행렬",
+      "120° 삼각비",
+      "배각 공식"
+    ],
+    "status": "author-proposed",
+    "surfaces": {
+      "stem": {
+        "status": "author-proposed",
+        "evidence": "폭·접는선·접는 방향·C의 위치·수선 F와 전후 순서를 명시했다."
+      },
+      "choices": {
+        "status": "author-proposed",
+        "evidence": "다섯 기록을 밑변과 넓이 두 항목 모두 검사한다."
+      },
+      "figuresAndTables": {
+        "status": "author-proposed",
+        "evidence": "새 접은 점 R/T는 실제 AB 반사이며 AB와 종이 폭을 보존한다. C는 반사된 위쪽 변과 아래쪽 변의 내부 교점이다."
+      },
+      "notation": {
+        "status": "author-proposed",
+        "evidence": "선분·삼각형·각·도·근호·좌표와 삼각비를 중학교 정의대로 사용한다."
+      },
+      "answer": {
+        "status": "author-proposed",
+        "evidence": "새 조건에서 계산한 유일한 객관식 답이다. 원본 답이나 해설을 읽지 않았다."
+      },
+      "studentSolution": {
+        "status": "author-proposed",
+        "evidence": "접기 같은 각·평행각·내각 합에서 실제 직각삼각형60°를 찾아 계산한다."
+      },
+      "prerequisites": {
+        "status": "author-proposed",
+        "evidence": "중1 각/평행·접기 등각, 중3 삼각비 활용과 근호·넓이"
+      }
+    },
+    "gradeBasis": "120°는 내각 합과 평각의 보조 설명만 있고 그 삼각비를 계산하지 않는다. 계산 삼각비는30°/60°의 실제 직각삼각형이다.",
+    "exactGradeApproval": false
+  },
+  "sourceReference": {
+    "externalId": "2025-gyeongsan-3-2-mid-25",
+    "examId": "personal-aa35a05fbaf41074c2ebcfcd6f16e876",
+    "sourcePacketExamId": "2025-gyeongsan-3-2-mid",
+    "school": "경산중",
+    "questionNumber": 25,
+    "sourceContentSha256": "e39eb1b0a237f729d2833d73fcfdb1a54f39798d69a1f689afa566fa5056c8fb",
+    "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+    "sourceQuestionOnlySnapshot": "source-snapshot/packet/questions.json",
+    "sourceQuestionScore": 4,
+    "sourceQuestionType": "객관식",
+    "sourceQuestionParts": [],
+    "sourceStatus": "source_reference_reviewed_all_final_approval_gates_held",
+    "sourceObservation": "폭5cm/접는선10cm의 종이를 접은 그림에서 ABC 넓이를 구한다.",
+    "originalAnswersOrSolutionsUsed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "score": 4,
+    "difficultyProposal": "응용",
+    "difficultyStatus": "pending-independent-review",
+    "problemTypeProposal": null,
+    "problemTypeStatus": "pending-independent-review",
+    "hasFigure": true,
+    "assignment": {
+      "status": "pending",
+      "unitId": null,
+      "familyKey": null,
+      "currentUnit": null,
+      "currentRegistryMatch": null,
+      "liveCount": null,
+      "checkedAt": "2026-10-08 04:53:45.769124+00",
+      "evidence": "접기 전후 두 자산과 밑변/넓이 검산쌍에 정확히 해당하는 live family 규칙이 확인되지 않아 null로 보류한다.",
+      "candidates": []
+    },
+    "achievementStandardRefs": [
+      {
+        "code": "9수01-10",
+        "verified_text": "근호를 포함한 식의 사칙계산을 할 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 3788,
+          "record_offset_in_uncompressed_stream": 193301,
+          "extracted_paragraph_1based": 771
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            33
+          ],
+          "printed_pages": [
+            29
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      },
+      {
+        "code": "9수04-05",
+        "verified_text": "다각형의 성질을 이해한다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4272,
+          "record_offset_in_uncompressed_stream": 216602,
+          "extracted_paragraph_1based": 874
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            37
+          ],
+          "printed_pages": [
+            33
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      },
+      {
+        "code": "9수04-17",
+        "verified_text": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4341,
+          "record_offset_in_uncompressed_stream": 219120,
+          "extracted_paragraph_1based": 891
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            38
+          ],
+          "printed_pages": [
+            34
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      },
+      {
+        "code": "9수04-18",
+        "verified_text": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4345,
+          "record_offset_in_uncompressed_stream": 219292,
+          "extracted_paragraph_1based": 892
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            38
+          ],
+          "printed_pages": [
+            34
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      }
+    ],
+    "achievementStandardStatus": "official-text-matched-candidate-author-proposed",
+    "sourceIdentityReview": {
+      "status": "source-packet-identity-supported-full-custody-held",
+      "sourceSchool": "경산중",
+      "sourceYear": 2025,
+      "sourcePacketDecision": "2025_original_header_school_footer_and_completed_question_identity_supported",
+      "fullPairCertification": "held",
+      "custody": "held",
+      "rights": "held"
+    },
+    "bankEvidence": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-fresh-r2-20261008.json",
+      "sha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b",
+      "capturedAt": "2026-10-08 04:53:45.769124+00",
+      "registrySha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "curriculumEvidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "databaseAccessByAuthor": false
+    },
+    "authorEvidence": {
+      "calculationsPath": "author-calculations.json",
+      "authoringScriptSha256": "52fa4de88bed4f45d2b40452d36d4296e228751d2844e363036e8f2f253637ca",
+      "visualReview": "pending-local-view",
+      "mathematicalReview": "author-self-check-only"
+    }
+  },
+  "schoolNamePolicy": {
+    "actual": "경산중",
+    "display": "해솔누리중학교",
+    "role": "fictional-display-alias-only",
+    "originalOccurrencesInStem": 0,
+    "surfaces": [
+      "content",
+      "choices",
+      "tables",
+      "figureLabels",
+      "solution"
+    ],
+    "review": "author-proposed"
+  },
+  "independentVerification": null,
+  "review": {
+    "status": "pending",
+    "mathematicalCorrectness": "pending-independent-blind-solve",
+    "gradeCurriculum": "pending-independent-review",
+    "equivalentConceptAndMethod": "pending-independent-review",
+    "distinctPresentation": "pending-independent-review",
+    "naturalKorean": "pending-independent-review",
+    "figure": "pending-independent-review",
+    "rights": "pending",
+    "similarity": "pending",
+    "nativeCompatibility": "pending",
+    "physicalPaper": "not-approved"
+  },
+  "directUseAllowed": false
+}

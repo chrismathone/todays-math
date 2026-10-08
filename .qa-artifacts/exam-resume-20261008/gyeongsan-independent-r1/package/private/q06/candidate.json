@@ -1,0 +1,244 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 6,
+  "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q06",
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "content": "같은 점 $P$에 대한 두 기록을 연결해 좌표를 복구한다.\n\n| 기록 | 내용 |\n| --- | --- |\n| 포물선 기록 | $P$는 $y=(x-t)^2+3t-2$의 꼭짓점 |\n| 직선 기록 | $P$는 $y=-2x+8$ 위의 점 |\n\n두 기록에 맞는 $P$의 좌표는? (단, $t$는 상수이다.)",
+  "choices": [
+    "$(-2,4)$",
+    "$(2,4)$",
+    "$(2,-4)$",
+    "$(4,2)$",
+    "$(2,8)$"
+  ],
+  "answer": "②",
+  "solution": "포물선 기록에서 꼭짓점 $P$의 좌표는 $(t,3t-2)$이다. 이 점이 직선 위에 있으므로 $3t-2=-2t+8$이다.\n\n$5t=10$에서 $t=2$이고, $P$의 $y$좌표는 $3\\times2-2=4$이다. 따라서 $P=(2,4)$이다. 직선에 대입해도 $-2\\times2+8=4$로 두 기록이 일치하므로 정답은 ②이다.",
+  "score": 4,
+  "questionType": "객관식",
+  "facts": {
+    "t": 2,
+    "vertex": [
+      2,
+      4
+    ],
+    "linearCoefficient": 5,
+    "linearConstant": 10
+  },
+  "figureArtifacts": [],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation",
+      "inverse-target"
+    ],
+    "before": "꼭짓점 (k,2k+1)이 직선 위에 있는 조건으로 상수 k를 구한다.",
+    "after": "상수 하나를 묻는 문장을 두 관측 기록의 좌표 복구로 바꾸어 실제 점의 두 좌표를 연결한다.",
+    "sharedConcept": "표준형에서 읽은 꼭짓점 좌표가 일차함수 위에 있는 조건",
+    "sharedProcedure": "꼭짓점을 t로 나타내 직선에 대입하여 일차방정식을 풀고 점의 좌표를 복구한다.",
+    "objectiveDifficulty": "꼭짓점 읽기·직선 대입·일차방정식이라는 원문의 같은 세 단계로 4점을 유지한다.",
+    "scoreDelta": {
+      "source": 4,
+      "authored": 4,
+      "changed": false
+    }
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수03-09",
+      "9수03-10"
+    ],
+    "allowedProcedure": "꼭짓점을 t로 나타내 직선에 대입하여 일차방정식을 풀고 점의 좌표를 복구한다.",
+    "forbiddenAvoided": [
+      "일반 이차함수 최적화",
+      "미분",
+      "근과 계수의 관계",
+      "일반 포물선/직선 교점 이론"
+    ],
+    "status": "author-proposed",
+    "surfaces": {
+      "stem": {
+        "status": "author-proposed",
+        "evidence": "특정 꼭짓점이 직선 위에 있다는 점 대입 조건이다."
+      },
+      "choices": {
+        "status": "author-proposed",
+        "evidence": "다섯 좌표가 꼭짓점 조건과 직선 조건을 모두 만족하는지 검사한다."
+      },
+      "figuresAndTables": {
+        "status": "author-proposed",
+        "evidence": "두 역할의 관측 기록을 새 표로 연결했다."
+      },
+      "notation": {
+        "status": "author-proposed",
+        "evidence": "선분·좌표·도 또는 식의 표기는 실제 학생 풀이에 쓰는 중학교 수학 표기만 사용한다."
+      },
+      "answer": {
+        "status": "author-proposed",
+        "evidence": "유일한 보기 하나를 고르는 객관식 답 형식이며, 값·부호·조건이 코드 계산과 맞는다."
+      },
+      "studentSolution": {
+        "status": "author-proposed",
+        "evidence": "3t-2=-2t+8이라는 일차방정식만 풀고 두 좌표를 구한다."
+      },
+      "prerequisites": {
+        "status": "author-proposed",
+        "evidence": "중1 일차방정식·중2 일차함수와 좌표 대입"
+      }
+    },
+    "gradeBasis": "특정 꼭짓점 한 점을 직선에 대입한다. 포물선과 직선의 일반적인 교점 위치/판별식을 다루지 않는다.",
+    "exactGradeApproval": false
+  },
+  "sourceReference": {
+    "externalId": "2025-gyeongsan-3-2-mid-6",
+    "examId": "personal-aa35a05fbaf41074c2ebcfcd6f16e876",
+    "sourcePacketExamId": "2025-gyeongsan-3-2-mid",
+    "school": "경산중",
+    "questionNumber": 6,
+    "sourceContentSha256": "97c308d328df8b57c8935750b62056a0a89b34105fa84b9d4bc2ae170b6e82c8",
+    "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+    "sourceQuestionOnlySnapshot": "source-snapshot/packet/questions.json",
+    "sourceQuestionScore": 4,
+    "sourceQuestionType": "객관식",
+    "sourceQuestionParts": [],
+    "sourceStatus": "source_reference_reviewed_all_final_approval_gates_held",
+    "sourceObservation": "꼭짓점 (k,2k+1)이 직선 위에 있는 조건으로 상수 k를 구한다.",
+    "originalAnswersOrSolutionsUsed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "score": 4,
+    "difficultyProposal": "응용",
+    "difficultyStatus": "pending-independent-review",
+    "problemTypeProposal": null,
+    "problemTypeStatus": "pending-independent-review",
+    "hasFigure": false,
+    "assignment": {
+      "status": "pending",
+      "unitId": null,
+      "familyKey": null,
+      "currentUnit": null,
+      "currentRegistryMatch": null,
+      "liveCount": null,
+      "checkedAt": "2026-10-08 04:53:45.769124+00",
+      "evidence": "꼭짓점과 직선이라는 두 기록의 미지 상수/좌표 복구는 기존 제목만으로 subtype을 확정할 수 없어 family를 보류한다.",
+      "candidates": []
+    },
+    "achievementStandardRefs": [
+      {
+        "code": "9수03-09",
+        "verified_text": "이차함수의 의미를 이해하고, 그 그래프를 그릴 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4146,
+          "record_offset_in_uncompressed_stream": 210185,
+          "extracted_paragraph_1based": 849
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            36
+          ],
+          "printed_pages": [
+            32
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      },
+      {
+        "code": "9수03-10",
+        "verified_text": "이차함수의 그래프의 성질을 이해한다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4150,
+          "record_offset_in_uncompressed_stream": 210353,
+          "extracted_paragraph_1based": 850
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            36
+          ],
+          "printed_pages": [
+            32
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      }
+    ],
+    "achievementStandardStatus": "official-text-matched-candidate-author-proposed",
+    "sourceIdentityReview": {
+      "status": "source-packet-identity-supported-full-custody-held",
+      "sourceSchool": "경산중",
+      "sourceYear": 2025,
+      "sourcePacketDecision": "2025_original_header_school_footer_and_completed_question_identity_supported",
+      "fullPairCertification": "held",
+      "custody": "held",
+      "rights": "held"
+    },
+    "bankEvidence": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-fresh-r2-20261008.json",
+      "sha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b",
+      "capturedAt": "2026-10-08 04:53:45.769124+00",
+      "registrySha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "curriculumEvidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "databaseAccessByAuthor": false
+    },
+    "authorEvidence": {
+      "calculationsPath": "author-calculations.json",
+      "authoringScriptSha256": "a93435986c20fa222f4a9c9bdbc2b6fa6242f334fafcffed2f692f22e997f7b5",
+      "visualReview": "pending-local-view",
+      "mathematicalReview": "author-self-check-only"
+    }
+  },
+  "schoolNamePolicy": {
+    "actual": "경산중",
+    "display": "해솔누리중학교",
+    "role": "fictional-display-alias-only",
+    "originalOccurrencesInStem": 0,
+    "surfaces": [
+      "content",
+      "choices",
+      "tables",
+      "figureLabels",
+      "solution"
+    ],
+    "review": "author-proposed"
+  },
+  "independentVerification": null,
+  "review": {
+    "status": "pending",
+    "mathematicalCorrectness": "pending-independent-blind-solve",
+    "gradeCurriculum": "pending-independent-review",
+    "equivalentConceptAndMethod": "pending-independent-review",
+    "distinctPresentation": "pending-independent-review",
+    "naturalKorean": "pending-independent-review",
+    "figure": "pending-independent-review",
+    "rights": "pending",
+    "similarity": "pending",
+    "nativeCompatibility": "pending",
+    "physicalPaper": "not-approved"
+  },
+  "directUseAllowed": false
+}

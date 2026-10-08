@@ -1,0 +1,241 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 2,
+  "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q02",
+  "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+  "content": "자연수 $a$를 공통으로 사용한 두 자료의 중앙값 기록이 다음과 같다.\n\n| 자료 | 변량 | 중앙값 |\n| --- | --- | --- |\n| Ⅰ | $6,12,18,a,30$ | $18$ |\n| Ⅱ | $10,18,a,20,30,40$ | $19$ |\n\n두 자료를 한데 모은 $11$개 변량의 평균은? 같은 값이 여러 번 나오면 각각 하나의 변량으로 센다.",
+  "choices": [
+    "$18$",
+    "$19$",
+    "$20$",
+    "$21$",
+    "$22$"
+  ],
+  "answer": "③",
+  "solution": "자료 Ⅰ의 중앙값은 정렬한 다섯 변량 중 세 번째 값이다. $a<18$이면 세 번째 값도 $18$보다 작으므로 $a\\ge18$이다.\n자료 Ⅱ에서 $a\\ge20$이면 정렬한 세 번째와 네 번째 값이 모두 $20$ 이상이어서 중앙값이 $19$가 될 수 없다. 따라서 $18\\le a<20$이다.\n이 범위에서는 자료 Ⅱ가 $10,18,a,20,30,40$ 순서이므로 $\\frac{a+20}{2}=19$이다. 이를 풀면 $a=18$이다.\n자료 Ⅰ의 합은 $6+12+18+18+30=84$, 자료 Ⅱ의 합은 $10+18+18+20+30+40=136$이다. 합친 자료의 평균은 $\\frac{84+136}{11}=20$이므로 정답은 ③이다.",
+  "score": 4,
+  "questionType": "객관식",
+  "facts": {
+    "givens": {
+      "A": [
+        6,
+        12,
+        18,
+        "a",
+        30
+      ],
+      "medianA": 18,
+      "B": [
+        10,
+        18,
+        "a",
+        20,
+        30,
+        40
+      ],
+      "medianB": 19,
+      "domain": "a positive integer",
+      "combinedCount": 11
+    },
+    "mathDataPath": "math-data.json",
+    "mathDataSha256": "9013e8eb09ec469add3f3b43a129efb89f6207ec339dd66b03f2c84d7a380033",
+    "rawSourceObservationPath": "../../evidence/source-observations.json",
+    "rawSourceObservationSha256": "56dcd7f8a34433011abf1e6d0fc7b17fb63e19d91ed8c11697f8c6b9f14ba59c",
+    "newDataStatus": "author-constructed",
+    "sourceScoreEvidence": {
+      "selectedHwpPdfPrintedParentScore": 4,
+      "selectedPairScoreStatus": "literal_match",
+      "originalPrintedParentScore": 4,
+      "referenceParentScore": 4,
+      "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+      "parentCountedOnce": true,
+      "childScores": [],
+      "subquestionCount": 0,
+      "parentAndChildrenMustNotBeAddedTogether": false
+    },
+    "authorRubric": [],
+    "subQuestions": []
+  },
+  "figureArtifacts": [],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation",
+      "inverse-target"
+    ],
+    "before": "홀수/짝수 자료의 두 중앙값 조건으로 하나의 자연수를 구한다.",
+    "after": "두 중앙값 기록에서 공통 카드를 복구하고 중복을 보존한 합친 자료의 평균을 구한다.",
+    "sharedConcept": "정렬 위치에 따른 중앙값 조건과 자료합",
+    "sharedProcedure": "홀수 중앙 위치→자연수 범위→짝수 가운데 두 값의 평균→공통값 복구→전체합/11."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수05-06",
+      "9수02-05"
+    ],
+    "allowedProcedure": "홀수 중앙 위치→자연수 범위→짝수 가운데 두 값의 평균→공통값 복구→전체합/11.",
+    "forbiddenAvoided": [
+      "任意삼각비관계식",
+      "원/외접원비례법칙/원의거듭제곱",
+      "사인/코사인법칙",
+      "반각/덧셈정리",
+      "삼각비넓이공식",
+      "라디안/벡터",
+      "상위통계/최적화"
+    ],
+    "status": "author-proposed",
+    "wholeSurfaceGate": "7 surfaces mapped to specific procedure/prerequisites; source school/registry is not grade approval",
+    "specificRisk": "",
+    "independentReviewStatus": "pending-other-worker"
+  },
+  "studentSurfaceReview": {
+    "stem": {
+      "status": "author-proposed",
+      "evidence": "新본문조건/표/자료조직과점순서명시"
+    },
+    "choices": {
+      "status": "author-proposed",
+      "evidence": "actual-option parser로14객관식의유일정답/중복검사;written choices=[]"
+    },
+    "figuresAndTables": {
+      "status": "author-proposed",
+      "evidence": "새스펙/로컬strictSVG/70mm이하실미리보기와데이터결합"
+    },
+    "notation": {
+      "status": "author-proposed",
+      "evidence": "2015중등표기,도단위/예각,정렬/평균/편차정의;벡터/라디안/상위통계기호없음"
+    },
+    "answer": {
+      "status": "author-proposed",
+      "evidence": "새정확답/단위/서술부분과MC동그라미번호"
+    },
+    "studentSolution": {
+      "status": "author-proposed",
+      "evidence": "홀수 중앙 위치→자연수 범위→짝수 가운데 두 값의 평균→공통값 복구→전체합/11."
+    },
+    "prerequisites": {
+      "status": "author-proposed",
+      "evidence": [
+        {
+          "code": "9수05-06",
+          "text": "중앙값, 최빈값, 평균의 의미를 이해하고, 이를 구할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              40
+            ],
+            "printed_pages": [
+              36
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수02-05",
+          "text": "일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              34
+            ],
+            "printed_pages": [
+              30
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        }
+      ]
+    }
+  },
+  "sourceReference": {
+    "externalId": "2025-gyeongam-3-2-mid-2",
+    "sourceExamExternalId": "personal-5eb35ea19488aaf195e724ed05fe8806",
+    "sourceLogicalExamId": "2025-gyeongam-3-2-mid",
+    "questionNumber": 2,
+    "sourceContentSha256": "01c95f8cd6d1a7f947b2722058e84fa76b9bc9c0fb142695dd4bda62db1c6b9a",
+    "sourceContentDigest": "0405aae43843a2d8b13b0bdc4d57564201aa05cc9262dc4bf22c80fabb498e45",
+    "sourcePacketPath": "../../evidence/source-final/questions.json",
+    "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+    "sourceFinalCommit": "4cc9278da",
+    "jsonPointer": "/questions/1",
+    "originalReferenceScore": 4,
+    "originalReferenceSubQuestions": [],
+    "referenceFigures": [
+      {
+        "path": "../../evidence/source-final/images/q02-part1.png",
+        "sha256": "b10ce6d1200a8ca27d7734e5d2cdd84e6d7e70eebe98693b898be80112fdd856",
+        "page": 1,
+        "referenceOnly": true
+      }
+    ],
+    "sourceIdentityDecision": "2025_original_header_school_footer_and_completed_question_identity_supported",
+    "originalAnswerSolutionWithheld": true,
+    "realSchool": "경암중",
+    "studentSchoolAlias": "온빛누리중학교",
+    "directUseAllowed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015"
+    },
+    "sourceExamYear": 2025,
+    "sourceIdentityStatus": "root-final-question-only-packet4cc9278da;native/full-pair-not-approved",
+    "realSchool": "경암중",
+    "studentSchoolAlias": "온빛누리중학교",
+    "questionType": "객관식",
+    "score": 4,
+    "difficultyProposal": "응용",
+    "difficultyStatus": "author-proposed-independent-review-pending",
+    "problemTypeProposal": "객관식",
+    "problemTypeStatus": "author-proposed",
+    "scoreStatus": "reference-parent-total-and-subparts-preserved;rubric-author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "unitSection": "대푯값과 산포도",
+      "familyKey": null,
+      "evidence": {
+        "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+        "notCurrentDbAssertion": true,
+        "unitSeedOrderIndex": 488,
+        "comparedRegistryEntries": [
+          {
+            "key": "3-2|산포도|05",
+            "grade": "중3",
+            "unitSection": "대푯값과 산포도",
+            "rpmBook": "3-2",
+            "rpmMinor": "산포도",
+            "rpmType": "05",
+            "rpmTitle": "자료의 이해"
+          },
+          {
+            "key": "3-2|산포도|11T",
+            "grade": "중3",
+            "unitSection": "대푯값과 산포도",
+            "rpmBook": "3-2",
+            "rpmMinor": "산포도",
+            "rpmType": "11T",
+            "rpmTitle": "평균과 중앙값이 같은 변량 구하기"
+          }
+        ],
+        "wholeRuleComparison": "05는원자료평균,11T는평균과중앙값이같은하나의자료이다. 새홀짝두중앙값→공통a→11개합친평균의전체조건과목표가 없다.",
+        "reopenCriteria": "실제기존rule의새given/질문/전체절차/서술부분/난도가일치하는문항별증거및독립분류검토;가까운제목자동배정금지"
+      }
+    },
+    "independentSolveStatus": "pending-other-worker",
+    "independentReviewStatus": "pending-other-worker",
+    "rightsStatus": "pending",
+    "nativeStatus": "pending",
+    "sourceCustodyStatus": "pending",
+    "similarityStatus": "pending",
+    "publishStatus": "not-authorized",
+    "loadStatus": "not-authorized",
+    "directUseAllowed": false
+  }
+}

@@ -1,0 +1,794 @@
+{
+  "version": 2,
+  "createdAt": "2026-10-08T12:14:45.083Z",
+  "scope": "initial actual authoring findings and offline support, production improvements follow extraction analysis",
+  "candidateCount": 29,
+  "productionUpgradesCompleted": 0,
+  "fixedScope": false,
+  "items": [
+    {
+      "id": "U01",
+      "title": "Structural/context variants",
+      "productionStatus": "not-implemented",
+      "priorEvidence": ".qa-artifacts/exam-resume-20261008/contract-audit.json",
+      "codeTargets": [
+        {
+          "path": "src/lib/ai/prompts/transform.ts",
+          "line": 75,
+          "existing": true
+        },
+        {
+          "path": "src/lib/ai/transformer.ts",
+          "line": 97,
+          "existing": true
+        }
+      ],
+      "validationRequired": "Fail number/name/synonym/order-only controls; pass meaningful condition/data/question organization or natural new situation while preserving core steps; fluency, method and presentation reviews independent",
+      "authoredExamples": "New actual manual candidate examples and reproducible asset/code calculations, not generalized generator implementation"
+    },
+    {
+      "id": "U02",
+      "title": "School/context substitution",
+      "productionStatus": "not-implemented",
+      "priorEvidence": ".qa-artifacts/exam-resume-20261008/contract-audit.json",
+      "codeTargets": [
+        {
+          "path": "src/lib/ai/transformer.ts",
+          "line": 161,
+          "existing": true
+        }
+      ],
+      "validationRequired": "Search stem/choices/subparts/table/figure/solution for real-name residue; one mapping per school per question; compare names affecting numeric/choice conditions"
+    },
+    {
+      "id": "U03",
+      "title": "Independent twin solve gate",
+      "productionStatus": "not-implemented",
+      "priorEvidence": ".qa-artifacts/exam-resume-20261008/contract-audit.json",
+      "codeTargets": [
+        {
+          "path": "scripts/import/exam-paper/regenerateExam.ts",
+          "line": 355,
+          "existing": true
+        },
+        {
+          "path": "scripts/import/exam-paper/regenerateExam.ts",
+          "line": 498,
+          "existing": true
+        }
+      ],
+      "validationRequired": "No original-answer oracle; all types solved; mutate stem/spec/asset/choice/score and reject old reports; independent computations, every step and uniqueness checked",
+      "candidateWorkflowEvidence": [
+        "scripts/import/exam-twin/README.md",
+        "scripts/import/exam-twin/candidatePack.mjs",
+        "scripts/import/exam-twin/review-exam-twins.mjs",
+        "scripts/import/exam-twin/compose-image-figure.mjs"
+      ],
+      "candidateWorkflowStatus": "partial-offline-support; production work remains",
+      "actuallyImplemented": "Separate blind solve, answer exposure only after hash binding; changed solves/author-self-review fail closed"
+    },
+    {
+      "id": "U04",
+      "title": "Parameter constraints",
+      "productionStatus": "not-implemented",
+      "priorEvidence": ".qa-artifacts/exam-resume-20261008/contract-audit.json",
+      "codeTargets": [
+        {
+          "path": "src/lib/middle/m3Trig.ts",
+          "line": null,
+          "existing": true
+        },
+        {
+          "path": "src/lib/middle/m3.ts",
+          "line": null,
+          "existing": true
+        },
+        {
+          "path": "src/lib/middle/types.ts",
+          "line": 24,
+          "existing": true
+        }
+      ],
+      "validationRequired": "Enumerate boundary parameters and at least 100 deterministic seeds per changed rule; separate solver checks denominator/domain/discriminant/positivity/integer counts/triangle inequalities and required solution cardinality"
+    },
+    {
+      "id": "U05",
+      "title": "Choice quality",
+      "productionStatus": "not-implemented",
+      "priorEvidence": ".qa-artifacts/exam-resume-20261008/contract-audit.json",
+      "codeTargets": [
+        {
+          "path": "src/lib/engine/expandEngine.ts",
+          "line": null,
+          "existing": true
+        },
+        {
+          "path": "src/lib/engine/variants.ts",
+          "line": 159,
+          "existing": true
+        },
+        {
+          "path": "src/lib/high/generate.ts",
+          "line": 113,
+          "existing": true
+        }
+      ],
+      "validationRequired": "Recompute all options; algebraic-equivalent duplicate controls, one required correct answer/set, faithful figure-choice mapping, balanced answer positions and plausible distractors"
+    },
+    {
+      "id": "U06",
+      "title": "Solution and rubric quality",
+      "productionStatus": "not-implemented",
+      "priorEvidence": ".qa-artifacts/exam-resume-20261008/contract-audit.json",
+      "codeTargets": [
+        {
+          "path": "src/lib/ai/generator.ts",
+          "line": 34,
+          "existing": true
+        },
+        {
+          "path": "src/lib/ai/prompts/generate.ts",
+          "line": 57,
+          "existing": true
+        },
+        {
+          "path": "src/lib/middle/solutionText.ts",
+          "line": 107,
+          "existing": true
+        }
+      ],
+      "validationRequired": "Require new nonempty complete explanations; check cases, units and conclusion; subpart/rubric scores sum to item/paper totals; render and independent step review"
+    },
+    {
+      "id": "U07",
+      "title": "Difficulty/reading-burden preservation",
+      "productionStatus": "not-implemented",
+      "priorEvidence": ".qa-artifacts/exam-resume-20261008/contract-audit.json",
+      "codeTargets": [
+        {
+          "path": "src/lib/middle/tier.ts",
+          "line": null,
+          "existing": true
+        },
+        {
+          "path": "src/lib/high/generate.ts",
+          "line": 148,
+          "existing": true
+        }
+      ],
+      "validationRequired": "After U27 gate, preserve core steps/target difficulty; no new reading or prerequisite burden; labeled review and no confidence-only assignment"
+    },
+    {
+      "id": "U08",
+      "title": "Concept/type coverage",
+      "productionStatus": "not-implemented",
+      "priorEvidence": ".qa-artifacts/exam-resume-20261008/contract-audit.json",
+      "codeTargets": [
+        {
+          "path": "src/lib/middle/generate.ts",
+          "line": 147,
+          "existing": true
+        },
+        {
+          "path": "src/lib/high/generate.ts",
+          "line": 88,
+          "existing": true
+        },
+        {
+          "path": "src/lib/high/types.ts",
+          "line": 49,
+          "existing": true
+        }
+      ],
+      "validationRequired": "Compare every extracted concept/core method to registry/live families; register∪hold completeness, no key collisions, actual multi-seed invariants and held reason per missing type"
+    },
+    {
+      "id": "U09",
+      "title": "Conditions, tables and multipart forms",
+      "productionStatus": "not-implemented",
+      "priorEvidence": ".qa-artifacts/exam-resume-20261008/contract-audit.json",
+      "codeTargets": [
+        {
+          "path": "src/lib/middle/combo.ts",
+          "line": 548,
+          "existing": true
+        },
+        {
+          "path": "src/lib/elementary/forms.ts",
+          "line": null,
+          "existing": true
+        },
+        {
+          "path": "src/lib/problem/parseProblemContent.ts",
+          "line": null,
+          "existing": true
+        },
+        {
+          "path": "scripts/import/exam-paper/examConfig.ts",
+          "line": 39,
+          "existing": true
+        }
+      ],
+      "validationRequired": "Preserve subpart/option order, table headers/units/data totals and score; rebuild tables instead of source crops; parser/render parity and independent recalculation",
+      "candidateWorkflowEvidence": [
+        "scripts/import/exam-twin/README.md",
+        "scripts/import/exam-twin/candidatePack.mjs",
+        "scripts/import/exam-twin/review-exam-twins.mjs",
+        "scripts/import/exam-twin/compose-image-figure.mjs"
+      ],
+      "candidateWorkflowStatus": "partial-offline-support; production work remains",
+      "actuallyImplemented": "Local authored table/paragraph and graph-choice preview only; native product pipeline unmodified"
+    },
+    {
+      "id": "U10",
+      "title": "Prompt/catalog capability sync",
+      "productionStatus": "not-implemented",
+      "priorEvidence": ".qa-artifacts/exam-resume-20261008/contract-audit.json",
+      "codeTargets": [
+        {
+          "path": "src/lib/ai/prompts/transform.ts",
+          "line": 56,
+          "existing": true
+        },
+        {
+          "path": "src/lib/dev-ai/figure-prompt.ts",
+          "line": 17,
+          "existing": true
+        },
+        {
+          "path": "scripts/figure/build_catalog.py",
+          "line": null,
+          "existing": true
+        },
+        {
+          "path": "scripts/figure/render_spec.py",
+          "line": 65,
+          "existing": true
+        }
+      ],
+      "validationRequired": "Prompt includes current v2/graph/elem keys; representative geometry/function/stat/solid specs render; catalog generated from engine, unknown keys still reject"
+    },
+    {
+      "id": "U11",
+      "title": "Figure mathematical bindings",
+      "productionStatus": "not-implemented",
+      "priorEvidence": ".qa-artifacts/exam-resume-20261008/contract-audit.json",
+      "codeTargets": [
+        {
+          "path": "src/lib/figure/figureMatchesContent.ts",
+          "line": 41,
+          "existing": true
+        },
+        {
+          "path": "vendor/figure-engine/core/figure_scene.py",
+          "line": 3042,
+          "existing": true
+        },
+        {
+          "path": "scripts/figure/graph_scene.py",
+          "line": 102,
+          "existing": true
+        },
+        {
+          "path": "src/lib/middle/realScene.ts",
+          "line": 10,
+          "existing": true
+        }
+      ],
+      "validationRequired": "Bind each length/angle/coordinate/table count to target facts and units; negative right-angle/ratio/scatter cases; allow documented figure-only givens; prevent showing sought answers",
+      "candidateWorkflowEvidence": [
+        "scripts/import/exam-twin/README.md",
+        "scripts/import/exam-twin/candidatePack.mjs",
+        "scripts/import/exam-twin/review-exam-twins.mjs",
+        "scripts/import/exam-twin/compose-image-figure.mjs"
+      ],
+      "candidateWorkflowStatus": "partial-offline-support; production work remains",
+      "actuallyImplemented": "Actual generated scene/vector mathematical bindings saved for q10/q19; independent asset review required"
+    },
+    {
+      "id": "U12",
+      "title": "Strict figure quality",
+      "productionStatus": "not-implemented",
+      "priorEvidence": ".qa-artifacts/exam-resume-20261008/contract-audit.json",
+      "codeTargets": [
+        {
+          "path": "src/lib/figure/renderFigureSpec.ts",
+          "line": 112,
+          "existing": true
+        },
+        {
+          "path": "src/lib/figure/renderFigureSpec.ts",
+          "line": 254,
+          "existing": true
+        },
+        {
+          "path": "src/lib/dev-ai/figure-engine.ts",
+          "line": 256,
+          "existing": true
+        }
+      ],
+      "validationRequired": "Strict render no silent dimension loss; collision/cutoff/label checks, explicit unresolved labels and omissions; source-review false/timeout drafts remain held; actual print size inspection"
+    },
+    {
+      "id": "U13",
+      "title": "Multi-figure ownership",
+      "productionStatus": "not-implemented",
+      "priorEvidence": ".qa-artifacts/exam-resume-20261008/contract-audit.json",
+      "codeTargets": [
+        {
+          "path": "src/contracts/problem.contract.ts",
+          "line": 367,
+          "existing": true
+        },
+        {
+          "path": "scripts/import/exam-paper/graphChoiceFigures.ts",
+          "line": null,
+          "existing": true
+        },
+        {
+          "path": "src/lib/print/toPrintProblem.ts",
+          "line": 45,
+          "existing": true
+        }
+      ],
+      "validationRequired": "Multiple stem/subpart/solution/choice artifacts; exact URL/dims/mm/index cardinality, no duplicate/missing choice binding, screen/print parity; geometry SVG supplied per role through reviewed representation"
+    },
+    {
+      "id": "U14",
+      "title": "Imagegen assets/templates",
+      "productionStatus": "not-implemented",
+      "priorEvidence": ".qa-artifacts/exam-resume-20261008/contract-audit.json",
+      "codeTargets": [
+        {
+          "path": "scripts/figure/figure_assets.py",
+          "line": 12,
+          "existing": true
+        },
+        {
+          "path": "src/lib/middle/realScene.ts",
+          "line": 18,
+          "existing": true
+        }
+      ],
+      "validationRequired": "Pin reviewed bytes/template/hash/anchors; reject pending/stale/missing assets; no runtime skill call; label transcript/school/name review, multiple parameter cases and print legibility",
+      "candidateWorkflowEvidence": [
+        "scripts/import/exam-twin/README.md",
+        "scripts/import/exam-twin/candidatePack.mjs",
+        "scripts/import/exam-twin/review-exam-twins.mjs",
+        "scripts/import/exam-twin/compose-image-figure.mjs"
+      ],
+      "candidateWorkflowStatus": "partial-offline-support; production work remains",
+      "actuallyImplemented": "Two actual built-in imagegen PNGs with prompt/provenance, frozen bytes, exact diagram composition; no runtime skill call"
+    },
+    {
+      "id": "U15",
+      "title": "Provenance and metadata read chain",
+      "productionStatus": "not-implemented",
+      "priorEvidence": ".qa-artifacts/exam-resume-20261008/contract-audit.json",
+      "codeTargets": [
+        {
+          "path": "src/contracts/problem.contract.ts",
+          "line": 124,
+          "existing": true
+        },
+        {
+          "path": "src/lib/serializers.ts",
+          "line": 88,
+          "existing": true
+        },
+        {
+          "path": "src/lib/problem/provenance.ts",
+          "line": 193,
+          "existing": true
+        },
+        {
+          "path": "src/lib/problem/provenance.ts",
+          "line": 215,
+          "existing": true
+        }
+      ],
+      "validationRequired": "External-origin twin never workbook; null FK truthful; authored raster never scan; old textbook/engine labels unchanged; source+variant+review/figure fields survive serialization; high-engine origin considered if current data requires it"
+    },
+    {
+      "id": "U16",
+      "title": "Filter/search completion",
+      "productionStatus": "not-implemented",
+      "priorEvidence": ".qa-artifacts/exam-resume-20261008/contract-audit.json",
+      "codeTargets": [
+        {
+          "path": "src/components/problem/ProblemBank.tsx",
+          "line": 218,
+          "existing": true
+        },
+        {
+          "path": "src/contracts/problem.contract.ts",
+          "line": 190,
+          "existing": true
+        },
+        {
+          "path": "src/app/api/problems/route.ts",
+          "line": 189,
+          "existing": true
+        },
+        {
+          "path": "src/lib/problem/formatQuery.ts",
+          "line": 15,
+          "existing": true
+        },
+        {
+          "path": "src/lib/problem/problemApi.ts",
+          "line": null,
+          "existing": true
+        }
+      ],
+      "validationRequired": "UI→request→where/join→stored value parity; source/twin/review/year/term/asset/concept queries with unknown values, mixed filters, total counts and page boundaries; measure before adding indexes"
+    },
+    {
+      "id": "U17",
+      "title": "Snapshot-based classification",
+      "productionStatus": "not-implemented",
+      "priorEvidence": ".qa-artifacts/exam-resume-20261008/contract-audit.json",
+      "codeTargets": [
+        {
+          "path": "scripts/import/exam-paper/load-exam-paper.ts",
+          "line": 239,
+          "existing": true
+        },
+        {
+          "path": "scripts/import/exam-paper/examConfig.ts",
+          "line": 17,
+          "existing": true
+        },
+        {
+          "path": "src/lib/jev/client.ts",
+          "line": 111,
+          "existing": true
+        }
+      ],
+      "validationRequired": "Parent snapshot hash/time required; real Unit/live family; no-match/ambiguous cases held; five Bumil proposals reevaluated; mocked Jev timeout/invalid output paths cannot approve"
+    },
+    {
+      "id": "U18",
+      "title": "Twin IDs/digests/replay",
+      "productionStatus": "not-implemented",
+      "priorEvidence": ".qa-artifacts/exam-resume-20261008/contract-audit.json",
+      "codeTargets": [
+        {
+          "path": "src/lib/import/problemFingerprint.ts",
+          "line": 20,
+          "existing": true
+        },
+        {
+          "path": "scripts/import/exam-paper/regenerateExam.ts",
+          "line": 160,
+          "existing": true
+        },
+        {
+          "path": "src/lib/problemCode.ts",
+          "line": null,
+          "existing": true
+        }
+      ],
+      "validationRequired": "Separate reference/twin/solution/metadata versions, ordered canonical representation, byte changes stale results, ID collisions and rerun idempotency; problemCode not forged",
+      "candidateWorkflowEvidence": [
+        "scripts/import/exam-twin/README.md",
+        "scripts/import/exam-twin/candidatePack.mjs",
+        "scripts/import/exam-twin/review-exam-twins.mjs",
+        "scripts/import/exam-twin/compose-image-figure.mjs"
+      ],
+      "candidateWorkflowStatus": "partial-offline-support; production work remains",
+      "actuallyImplemented": "New candidate/student/asset/package digests and immutable review versions, old approvals never reused"
+    },
+    {
+      "id": "U19",
+      "title": "Diversity/deduplication",
+      "productionStatus": "not-implemented",
+      "priorEvidence": ".qa-artifacts/exam-resume-20261008/contract-audit.json",
+      "codeTargets": [
+        {
+          "path": "src/lib/engine/variants.ts",
+          "line": 51,
+          "existing": true
+        },
+        {
+          "path": "src/lib/middle/generate.ts",
+          "line": null,
+          "existing": true
+        },
+        {
+          "path": "src/lib/high/generate.ts",
+          "line": 163,
+          "existing": true
+        },
+        {
+          "path": "scripts/import/load-engine-problems.ts",
+          "line": 552,
+          "existing": true
+        }
+      ],
+      "validationRequired": "Same seed/template version reproducible; semantic near-copy controls, structural/context coverage, spec/asset-aware keys, honest shortfalls; valid same-answer twins allowed; format siblings kept/dropped together"
+    },
+    {
+      "id": "U20",
+      "title": "Review/failure observability",
+      "productionStatus": "not-implemented",
+      "priorEvidence": ".qa-artifacts/exam-resume-20261008/contract-audit.json",
+      "codeTargets": [
+        {
+          "path": "src/lib/dev-ai/figure-engine.ts",
+          "line": 72,
+          "existing": true
+        },
+        {
+          "path": "scripts/import/exam-paper/regenerateExam.ts",
+          "line": 451,
+          "existing": true
+        }
+      ],
+      "validationRequired": "Persist successful and failed generation/review evidence, model/prompt/template version, pending versus rejected, changed-conditions reset and bounded retries; no fallback to old answer/crop",
+      "candidateWorkflowEvidence": [
+        "scripts/import/exam-twin/README.md",
+        "scripts/import/exam-twin/candidatePack.mjs",
+        "scripts/import/exam-twin/review-exam-twins.mjs",
+        "scripts/import/exam-twin/compose-image-figure.mjs"
+      ],
+      "candidateWorkflowStatus": "partial-offline-support; production work remains",
+      "actuallyImplemented": "Per-question math/grade/hold reasons are collected independently; production outcomes still blocked"
+    },
+    {
+      "id": "U21",
+      "title": "Safe authored-asset handling",
+      "productionStatus": "not-implemented",
+      "priorEvidence": ".qa-artifacts/exam-resume-20261008/contract-audit.json",
+      "codeTargets": [
+        {
+          "path": "scripts/figure/render_spec.py",
+          "line": 81,
+          "existing": true
+        },
+        {
+          "path": "vendor/figure-engine/core/figure_quality.py",
+          "line": 687,
+          "existing": true
+        },
+        {
+          "path": "src/lib/figure/mathjaxLabel.ts",
+          "line": 291,
+          "existing": true
+        },
+        {
+          "path": "scripts/figure/figure_assets.py",
+          "line": 88,
+          "existing": true
+        }
+      ],
+      "validationRequired": "Manifest/file hash validation, trusted MIME/dimensions, physical-path escape/overwrite controls, hostile SVG/label rejection and separate raster boundary; do not weaken engine image prohibition",
+      "candidateWorkflowEvidence": [
+        "scripts/import/exam-twin/README.md",
+        "scripts/import/exam-twin/candidatePack.mjs",
+        "scripts/import/exam-twin/review-exam-twins.mjs",
+        "scripts/import/exam-twin/compose-image-figure.mjs"
+      ],
+      "candidateWorkflowStatus": "partial-offline-support; production work remains",
+      "actuallyImplemented": "Physical worktree containment, no overwrite, bound PNG resources and explicit SVG resource restrictions in offline tool; production sanitizer pending"
+    },
+    {
+      "id": "U22",
+      "title": "Permanent exclusion/lock guard",
+      "productionStatus": "not-implemented",
+      "priorEvidence": ".qa-artifacts/exam-resume-20261008/contract-audit.json",
+      "codeTargets": [
+        {
+          "path": "scripts/import/exam-paper/examConfig.ts",
+          "line": 55,
+          "existing": true
+        },
+        {
+          "path": "scripts/import/exam-paper/load-exam-paper.ts",
+          "line": 429,
+          "existing": true
+        }
+      ],
+      "validationRequired": "81 holds + 1 permanent exclude = 82 unique original IDs; 2 patches are subsets; q19 excluded despite new twin UUID and baseline before=true; no writer/unlock hidden in dry-run"
+    },
+    {
+      "id": "U23",
+      "title": "Generation scope/count/answers",
+      "productionStatus": "not-implemented",
+      "priorEvidence": ".qa-artifacts/exam-resume-20261008/contract-audit.json",
+      "codeTargets": [
+        {
+          "path": "src/lib/ai/generator.ts",
+          "line": 116,
+          "existing": true
+        },
+        {
+          "path": "src/lib/ai/transformer.ts",
+          "line": 156,
+          "existing": true
+        }
+      ],
+      "validationRequired": "Reject incomplete requested batch without silently counting it complete; require solutions; grade-aware constraints and approved image/template input; mocked responses preserve pending/failed states"
+    },
+    {
+      "id": "U24",
+      "title": "Korean/math notation consistency",
+      "productionStatus": "not-implemented",
+      "priorEvidence": ".qa-artifacts/exam-resume-20261008/contract-audit.json",
+      "codeTargets": [
+        {
+          "path": "src/lib/ai/jsonRepair.ts",
+          "line": null,
+          "existing": true
+        },
+        {
+          "path": "src/lib/ai/wordyOperators.ts",
+          "line": null,
+          "existing": true
+        },
+        {
+          "path": "src/lib/middle/solutionText.ts",
+          "line": 107,
+          "existing": true
+        },
+        {
+          "path": "src/lib/high/josa.ts",
+          "line": 76,
+          "existing": true
+        }
+      ],
+      "validationRequired": "Correct particles/units, natural context vocabulary, no wordy-symbol or source-font residue, valid math delimiters; normalization cannot change an equation or create fake structural change; screen/print textual review"
+    },
+    {
+      "id": "U25",
+      "title": "Algebra/geometry representation templates",
+      "productionStatus": "not-implemented",
+      "priorEvidence": ".qa-artifacts/exam-resume-20261008/contract-audit.json",
+      "codeTargets": [
+        {
+          "path": "src/lib/middle/types.ts",
+          "line": 24,
+          "existing": true
+        },
+        {
+          "path": "scripts/figure/graph_scene.py",
+          "line": 102,
+          "existing": true
+        },
+        {
+          "path": "src/lib/middle/realScene.ts",
+          "line": 10,
+          "existing": true
+        }
+      ],
+      "validationRequired": "Signed-variable→positive-length counterexample must fail; distinguish segment from length; prove relation/domain equivalence, positive lengths/areas, coordinates/units and same principle; all new prerequisites pass U27",
+      "authoredExamples": "New actual manual candidate examples and reproducible asset/code calculations, not generalized generator implementation"
+    },
+    {
+      "id": "U26",
+      "title": "Inverse input/condition/parameter generation",
+      "productionStatus": "not-implemented",
+      "priorEvidence": ".qa-artifacts/exam-resume-20261008/contract-audit.json",
+      "codeTargets": [
+        {
+          "path": "src/lib/middle/combo.ts",
+          "line": 548,
+          "existing": true
+        }
+      ],
+      "validationRequired": "M-m=R checks m=M-R, R≥0, attained extrema; negative/zero/boundary cases, impossible range, multiple parameters, denominator zero and square-root sign; independently solve full admissible inverse set and student method",
+      "authoredExamples": "New actual manual candidate examples and reproducible asset/code calculations, not generalized generator implementation"
+    },
+    {
+      "id": "U27",
+      "title": "Highest-priority applied-curriculum gate",
+      "productionStatus": "not-implemented",
+      "priorEvidence": ".qa-artifacts/exam-resume-20261008/contract-audit.json",
+      "codeTargets": [
+        {
+          "path": "prisma/seed-data/units.ts",
+          "line": 3408,
+          "existing": true
+        },
+        {
+          "path": "src/lib/mathgen/mathDefense.ts",
+          "line": 526,
+          "existing": true
+        },
+        {
+          "path": "src/lib/mathgen/solutionValidator.ts",
+          "line": 12,
+          "existing": true
+        },
+        {
+          "path": "scripts/import/exam-paper/regenerateExam.ts",
+          "line": 397,
+          "existing": true
+        },
+        {
+          "path": "scripts/import/exam-paper/solver_rules.json",
+          "line": 3,
+          "existing": true
+        }
+      ],
+      "validationRequired": "2025 middle3 resolves to 2015; all stem/choice/figure/notation/answer/student-solution/prerequisite surfaces checked; no legitimate method→reject, unclear→hold; unverified codes null; Unit/family/template existence and school/AI confidence never auto-approve",
+      "candidateWorkflowEvidence": [
+        "scripts/import/exam-twin/README.md",
+        "scripts/import/exam-twin/candidatePack.mjs",
+        "scripts/import/exam-twin/review-exam-twins.mjs",
+        "scripts/import/exam-twin/compose-image-figure.mjs"
+      ],
+      "candidateWorkflowStatus": "partial-offline-support; production work remains",
+      "actuallyImplemented": "Staged middle3/2015/source2025+ metadata checks, forbidden-method scan plus mandatory independent seven-surface review; generalized native curriculum gating pending"
+    },
+    {
+      "id": "U28",
+      "title": "Authored Markdown tables, paragraph boundaries and graph-choice rendering",
+      "productionStatus": "not-implemented",
+      "observedTrigger": "q02/q03 table-following question became extra final-row cell when normalizeOcrText was applied. Native MarkdownRenderer lacks remark-gfm, so local preview is not bank render parity.",
+      "codeTargets": [
+        {
+          "path": "src/lib/problem/parseProblemContent.ts",
+          "line": 129
+        },
+        {
+          "path": "src/components/math/MarkdownRenderer.tsx",
+          "line": 70
+        },
+        {
+          "path": "src/lib/testchanger/mathRenderQa.ts",
+          "line": 47
+        },
+        {
+          "path": "src/lib/figurePrintSize.ts",
+          "line": 78
+        },
+        {
+          "path": "src/lib/figure/figureSvgFrame.ts",
+          "line": 150
+        }
+      ],
+      "candidateWorkflowEvidence": [
+        "scripts/import/exam-twin/render-preview.ts",
+        ".qa-artifacts/exam-resume-20261008/bumil-review-r1/student-preview-r2",
+        ".qa-artifacts/exam-resume-20261008/bumil-review-r5/student-preview-r5"
+      ],
+      "candidateWorkflowStatus": "implemented local authored Markdown preview with native math options and separate visual QA; product path unchanged",
+      "validationRequired": "All bank/review/print paths preserve authored table cells and following paragraphs; graph-choice asset role maps to visible choice index; existing OCR paragraph behavior unchanged; actual student dimensions/solution render and end-to-end serializer tests before use",
+      "additionalObservedGap": "Standalone artifact physical widths must respect image70mm cap and inline SVG compact37/mid64/wide70/pair97 policies; authored scene/diagram ownership and actual rendered size require native bank/print tests. Two95mm composites were repaired as separate70mm assets with new candidate IDs and fresh solve hashes, not approved from old proofs."
+    },
+    {
+      "id": "U29",
+      "title": "Exact constant, role and unit comparison without changing raw blind solves",
+      "productionStatus": "not-implemented",
+      "observedTrigger": "Gyeonggu written equivalent radicals and detailed MC annotations differ from authored answer strings. Literal equality must not stand in for mathematics; partial constants do not certify whole-answer meaning.",
+      "candidateWorkflowStatus": "bounded calculation helper implemented; free-written semantic coverage and native grade/review integration pending",
+      "codeTargets": [
+        {
+          "path": "scripts/import/exam-twin/constantAnswers.mjs",
+          "sha256": "1c19933e87dfa2ef37455bc66e041e218e035ae3c173510f71854b829d1dd674"
+        }
+      ],
+      "tests": 5,
+      "validationRequired": "Bound actual candidate/student/asset/raw-solve and role/unit/whole-answer target coverage; preserve pre-exposure proofs; require independent within-grade full reasoning, no uncertainty/rights or operational release from numeric match."
+    }
+  ],
+  "previous": {
+    "path": ".qa-artifacts/exam-resume-20261008/engine-upgrades-progress-r1.json",
+    "sha256": "2a9d624a18ed2ac6e6ebfcfc45017eda2191b243ae7e6c0c4a34891374e17e9c"
+  },
+  "wholeEngineComplete": false,
+  "relatedTests": {
+    "passed": 30,
+    "actualNewQuestionReviews": 0
+  },
+  "statisticsSupport": {
+    "path": "scripts/import/exam-twin/statisticsConditions.mjs",
+    "sha256": "36c4dcf877bcd842869335980a00555be3a7263278a5d33cb1e80922cfacf000"
+  },
+  "constantSupport": {
+    "path": "scripts/import/exam-twin/constantAnswers.mjs",
+    "sha256": "1c19933e87dfa2ef37455bc66e041e218e035ae3c173510f71854b829d1dd674"
+  },
+  "noInferenceOrDBWrites": true
+}

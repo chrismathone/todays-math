@@ -1,0 +1,231 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 4,
+  "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q04",
+  "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+  "content": "자료에 세 변량을 추가하기 전과 후의 기록이 다음과 같다.\n\n| 구분 | 변량의 개수 | 평균 |\n| --- | --- | --- |\n| 추가 전 | $7$ | $6$ |\n| 추가 후 | $10$ | $7$ |\n\n추가한 세 변량 중 두 값은 $8,9$이고 나머지 한 값 $m$의 기록이 지워졌다. $m$의 값은?",
+  "choices": [
+    "$9$",
+    "$10$",
+    "$11$",
+    "$12$",
+    "$13$"
+  ],
+  "answer": "③",
+  "solution": "추가 전 일곱 변량의 합은 $7\\times6=42$, 추가 후 열 변량의 합은 $10\\times7=70$이다.\n따라서 추가한 세 변량의 합은 $70-42=28$이다. $8+9+m=28$이므로 $m=11$이다. 정답은 ③이다.",
+  "score": 4,
+  "questionType": "객관식",
+  "facts": {
+    "givens": {
+      "beforeCount": 7,
+      "beforeMean": 6,
+      "afterCount": 10,
+      "afterMean": 7,
+      "knownAdded": [
+        8,
+        9
+      ],
+      "missing": "m"
+    },
+    "mathDataPath": "math-data.json",
+    "mathDataSha256": "f289d1561265bf033587d7b38d64140ce5e57c7c8ec0e8b7146ed6ff2c548188",
+    "rawSourceObservationPath": "../../evidence/source-observations.json",
+    "rawSourceObservationSha256": "56dcd7f8a34433011abf1e6d0fc7b17fb63e19d91ed8c11697f8c6b9f14ba59c",
+    "newDataStatus": "author-constructed",
+    "sourceScoreEvidence": {
+      "selectedHwpPdfPrintedParentScore": 4,
+      "selectedPairScoreStatus": "literal_match",
+      "originalPrintedParentScore": 4,
+      "referenceParentScore": 4,
+      "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+      "parentCountedOnce": true,
+      "childScores": [],
+      "subquestionCount": 0,
+      "parentAndChildrenMustNotBeAddedTogether": false
+    },
+    "authorRubric": [],
+    "subQuestions": []
+  },
+  "figureArtifacts": [],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation",
+      "inverse-target"
+    ],
+    "before": "기존 평균과 추가 세 값으로 전체 평균을 구한다.",
+    "after": "추가 전/후 요약 기록에서 지워진 추가 변량을 역으로 복구한다.",
+    "sharedConcept": "자료합과 개수에 의한 평균",
+    "sharedProcedure": "두 개수×평균→자료합 차→알려진 추가값을 뺀 누락값."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수05-06",
+      "9수02-05"
+    ],
+    "allowedProcedure": "두 개수×평균→자료합 차→알려진 추가값을 뺀 누락값.",
+    "forbiddenAvoided": [
+      "任意삼각비관계식",
+      "원/외접원비례법칙/원의거듭제곱",
+      "사인/코사인법칙",
+      "반각/덧셈정리",
+      "삼각비넓이공식",
+      "라디안/벡터",
+      "상위통계/최적화"
+    ],
+    "status": "author-proposed",
+    "wholeSurfaceGate": "7 surfaces mapped to specific procedure/prerequisites; source school/registry is not grade approval",
+    "specificRisk": "",
+    "independentReviewStatus": "pending-other-worker"
+  },
+  "studentSurfaceReview": {
+    "stem": {
+      "status": "author-proposed",
+      "evidence": "新본문조건/표/자료조직과점순서명시"
+    },
+    "choices": {
+      "status": "author-proposed",
+      "evidence": "actual-option parser로14객관식의유일정답/중복검사;written choices=[]"
+    },
+    "figuresAndTables": {
+      "status": "author-proposed",
+      "evidence": "새스펙/로컬strictSVG/70mm이하실미리보기와데이터결합"
+    },
+    "notation": {
+      "status": "author-proposed",
+      "evidence": "2015중등표기,도단위/예각,정렬/평균/편차정의;벡터/라디안/상위통계기호없음"
+    },
+    "answer": {
+      "status": "author-proposed",
+      "evidence": "새정확답/단위/서술부분과MC동그라미번호"
+    },
+    "studentSolution": {
+      "status": "author-proposed",
+      "evidence": "두 개수×평균→자료합 차→알려진 추가값을 뺀 누락값."
+    },
+    "prerequisites": {
+      "status": "author-proposed",
+      "evidence": [
+        {
+          "code": "9수05-06",
+          "text": "중앙값, 최빈값, 평균의 의미를 이해하고, 이를 구할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              40
+            ],
+            "printed_pages": [
+              36
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수02-05",
+          "text": "일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              34
+            ],
+            "printed_pages": [
+              30
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        }
+      ]
+    }
+  },
+  "sourceReference": {
+    "externalId": "2025-gyeongam-3-2-mid-4",
+    "sourceExamExternalId": "personal-5eb35ea19488aaf195e724ed05fe8806",
+    "sourceLogicalExamId": "2025-gyeongam-3-2-mid",
+    "questionNumber": 4,
+    "sourceContentSha256": "5429ccccd2193c1810879802b274431008662af99a08d11387f57748b8817864",
+    "sourceContentDigest": "6e6c5ffa3af092015ca327ac93327d00749c148c0b84810e3e76410bf448e42d",
+    "sourcePacketPath": "../../evidence/source-final/questions.json",
+    "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+    "sourceFinalCommit": "4cc9278da",
+    "jsonPointer": "/questions/3",
+    "originalReferenceScore": 4,
+    "originalReferenceSubQuestions": [],
+    "referenceFigures": [
+      {
+        "path": "../../evidence/source-final/images/q04-part1.png",
+        "sha256": "2852f6677f965a3b7ddcab943244e88245432ba0d15dde3754308ee4f1a1823b",
+        "page": 1,
+        "referenceOnly": true
+      }
+    ],
+    "sourceIdentityDecision": "2025_original_header_school_footer_and_completed_question_identity_supported",
+    "originalAnswerSolutionWithheld": true,
+    "realSchool": "경암중",
+    "studentSchoolAlias": "온빛누리중학교",
+    "directUseAllowed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015"
+    },
+    "sourceExamYear": 2025,
+    "sourceIdentityStatus": "root-final-question-only-packet4cc9278da;native/full-pair-not-approved",
+    "realSchool": "경암중",
+    "studentSchoolAlias": "온빛누리중학교",
+    "questionType": "객관식",
+    "score": 4,
+    "difficultyProposal": "응용",
+    "difficultyStatus": "author-proposed-independent-review-pending",
+    "problemTypeProposal": "객관식",
+    "problemTypeStatus": "author-proposed",
+    "scoreStatus": "reference-parent-total-and-subparts-preserved;rubric-author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "unitSection": "대푯값과 산포도",
+      "familyKey": null,
+      "evidence": {
+        "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+        "notCurrentDbAssertion": true,
+        "unitSeedOrderIndex": 488,
+        "comparedRegistryEntries": [
+          {
+            "key": "3-2|산포도|05",
+            "grade": "중3",
+            "unitSection": "대푯값과 산포도",
+            "rpmBook": "3-2",
+            "rpmMinor": "산포도",
+            "rpmType": "05",
+            "rpmTitle": "자료의 이해"
+          },
+          {
+            "key": "3-2|산포도|06",
+            "grade": "중3",
+            "unitSection": "대푯값과 산포도",
+            "rpmBook": "3-2",
+            "rpmMinor": "산포도",
+            "rpmType": "06",
+            "rpmTitle": "두 집단 전체의 평균 분산 표준편차"
+          }
+        ],
+        "wholeRuleComparison": "06은두집단개수/평균에서전체평균을구한다. 새전후총합과세추가값중하나복구의전체규칙이없다.",
+        "reopenCriteria": "실제기존rule의새given/질문/전체절차/서술부분/난도가일치하는문항별증거및독립분류검토;가까운제목자동배정금지"
+      }
+    },
+    "independentSolveStatus": "pending-other-worker",
+    "independentReviewStatus": "pending-other-worker",
+    "rightsStatus": "pending",
+    "nativeStatus": "pending",
+    "sourceCustodyStatus": "pending",
+    "similarityStatus": "pending",
+    "publishStatus": "not-authorized",
+    "loadStatus": "not-authorized",
+    "directUseAllowed": false
+  }
+}

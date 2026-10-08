@@ -1,13 +1,13 @@
 {
-    "version":  1,
+    "version":  2,
     "automationId":  "358474c8-24be-49ee-b3c9-55fbebf68de4",
     "name":  "기출 재개 감시 20261008",
     "schedule":  "*/15 * * * *",
     "timezone":  "Asia/Seoul",
     "provider":  "codex",
     "primarySessionId":  "01a11702-baf1-7343-b2bc-64cf304bbcc5",
-    "primaryTabId":  "a29cc894-bdee-4817-95be-a974f1de9b80",
-    "primaryPtySuffix":  "@@f252c00e",
+    "primaryTabId":  "06ff420c-4178-4e64-b469-a11cc09c61af",
+    "primaryPtySuffix":  "rediscover-current-pty",
     "worktreeId":  "699d848f-295f-445f-8acf-8f10dcbb455a::C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008",
     "worktreePath":  "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008",
     "role":  "read-only continuity monitor; one existing primary writer",
@@ -22,5 +22,15 @@
                             "resumeNeeded":  false,
                             "reason":  "work-in-progress"
                         },
-    "completionRule":  "Entire authorized extraction/twin/generator task achieved, not one sample or one report."
+    "completionRule":  "Entire authorized extraction/twin/generator task achieved, not one sample or one report.",
+    "continuityBackend":  "Windows Task Scheduler / Orca CLI",
+    "windowsTaskName":  "TodaysMath-ExamContinuation",
+    "controllerPath":  "C:/Users/user/orca/artifacts/outputs/exam-continuation-watch-20261008/controller.ps1",
+    "legacyOrcaAutomationEnabled":  false,
+    "launcherCommand":  "codex --no-daemon --sandbox danger-full-access --ask-for-approval never resume 01a11702-baf1-7343-b2bc-64cf304bbcc5",
+    "controllerSha256":  "fe78ca47c393025bc9571f8339975565494651683935ebba7d4b8b3689df41da",
+    "originalSessionStatusRequired":  true,
+    "originalPaneKey":  "06ff420c-4178-4e64-b469-a11cc09c61af:4fb08203-bfb2-4eab-ba45-86c7d1451868",
+    "continuityPolicySelfTests":  12,
+    "latestDirective":  "docs/planning/tracks/brief-exam-extraction-resume-20261008-addendum-5.md"
 }
