@@ -1,0 +1,54 @@
+{
+  "version": "source-extraction-r1",
+  "createdAt": "2026-10-08T05:29:59.597523+00:00",
+  "examId": "2025-gyeongam-3-2-mid",
+  "inventoryExamId": "personal-5eb35ea19488aaf195e724ed05fe8806",
+  "school": "경암중",
+  "nominalYear": 2025,
+  "grade": 3,
+  "semester": 2,
+  "round": "중간",
+  "sourceFiles": [
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[경암중][3][25-2-중간][신사고] (완료).hwp",
+      "sha256": "fd369f81b28459519d4d2d6dd9fafb54e0545d44b83260a906d498433b385dad",
+      "bytes": 1198080
+    },
+    {
+      "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[경암중][3][25-2-중간][신사고] (완료).PDF",
+      "sha256": "9b1de5d1d8fc0bcea9f2c6555da3720a4089289ab53f712929f9065563d0baca",
+      "bytes": 14895501
+    }
+  ],
+  "counts": {
+    "parentQuestions": 19,
+    "multipleChoiceParents": 15,
+    "writtenParents": 4,
+    "subquestionsInsideParents": 2,
+    "leafQuestions": 20,
+    "questionContentVerified": 19,
+    "hwpPdfAllQuestionComponentsMatched": 19,
+    "selectedPairParentScoreSum": 100.0,
+    "originalReferenceParentScoreSum": 100.0,
+    "legacyHwpAnswerExtractionScoreSum": 65.0,
+    "legacyPdfBodyExtractionScoreSum": 100.0,
+    "entireExamPairCertified": 0,
+    "fullGradeApproved": 0,
+    "rightsApproved": 0,
+    "verifiedTwins": 0,
+    "newTwinsAuthored": 0
+  },
+  "entireExamPairCertification": "not_certified_question_only_review_excludes_answers_and_whole_document_verification",
+  "rightsCertification": "pending",
+  "originalAnswersSolutionsExported": false,
+  "identityMetadata": {
+    "status": "2025_header_and_filename_supported_preparation_footer_2026_not_source_year",
+    "yearConfirmed": true,
+    "originalScanYearObserved": 2025,
+    "decision": "2025_original_header_school_footer_and_completed_question_identity_supported",
+    "preparationFooterYearIsNotExamYear": true,
+    "scanComparisonStatus": "actual_original_question_pages_rendered_and_viewed"
+  },
+  "manifestSha256": "5a082d1c9da1eb72ff0f69e017ecc127fa90c65f54f0aca6a80c67272fb319ae",
+  "readBoundary": "metadata projection only; no raw source pages, old draft, answers, solutions, or endnotes input"
+}

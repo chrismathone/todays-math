@@ -1,0 +1,26 @@
+{
+  "version": "elem-1",
+  "kind": "barChart",
+  "values": [
+    {
+      "label": "소설",
+      "value": 8
+    },
+    {
+      "label": "과학",
+      "value": 5
+    },
+    {
+      "label": "역사",
+      "value": 4
+    },
+    {
+      "label": "예술",
+      "value": 3
+    }
+  ],
+  "yMax": 10,
+  "yStep": 2,
+  "yLabel": "도수(명)",
+  "xLabel": "책의 종류"
+}

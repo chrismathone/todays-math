@@ -1,0 +1,34 @@
+{
+  "questionNumber": 16,
+  "sourceDataObservationLedger": "../../evidence/source-observations.json#/observations/15",
+  "newDataStatus": "author-constructed-not-source-observation",
+  "givens": {
+    "count": 10,
+    "mean": 13,
+    "knownFrequencies": [
+      [
+        4,
+        1
+      ],
+      [
+        5,
+        2
+      ],
+      [
+        6,
+        2
+      ],
+      [
+        7,
+        3
+      ],
+      [
+        8,
+        1
+      ]
+    ],
+    "missing": "m",
+    "unit": "분"
+  },
+  "newFigureConstructionModel": []
+}

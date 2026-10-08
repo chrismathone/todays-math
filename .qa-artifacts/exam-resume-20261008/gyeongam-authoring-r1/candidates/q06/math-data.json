@@ -1,0 +1,14 @@
+{
+  "questionNumber": 6,
+  "sourceDataObservationLedger": "../../evidence/source-observations.json#/observations/5",
+  "newDataStatus": "author-constructed-not-source-observation",
+  "givens": {
+    "count": 3,
+    "originalMean": 5,
+    "originalVariance": 4,
+    "transform": "k*x-4",
+    "kDomain": "k>0",
+    "newStandardDeviation": 6
+  },
+  "newFigureConstructionModel": []
+}

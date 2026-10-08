@@ -1,0 +1,44 @@
+{
+  "questionNumber": 11,
+  "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+  "method": "exact-author-recomputation-and-actual-displayed-option-check",
+  "status": "author-check-passed",
+  "independentVerification": false,
+  "candidateFileSha256": "f58872a061f2f7caa04e50def805e3e9a941f8dec6689a78b3e44a2fab9d53b4",
+  "mathDataSha256": "1e530963d3357d3ff360ae36122f2d16c1dc6a030557c12c0b473d4ec0440ff3",
+  "targets": [
+    "4*sqrt(2)",
+    "sqrt(3)/3"
+  ],
+  "evidence": {
+    "BF": 4,
+    "BD": "4*sqrt(2)",
+    "FD": "4*sqrt(3)",
+    "cosTheta": "sqrt(3)/3",
+    "method": "given actual BFD right triangle; two Pythagoras computations; no spatial vector/projection method"
+  },
+  "choices": {
+    "count": 5,
+    "distinctDisplayedValuesOrRecords": true,
+    "oneCorrect": true,
+    "correctChoiceIndex": 3
+  },
+  "assets": [
+    {
+      "specSha256": "3395004e0e551644d9c713fb63e37b0dcb1da0d6fc857ee851edf66864568596",
+      "geometryMatchesNewGivens": true,
+      "coordinateTolerance": "1e-8",
+      "pictorialProjectionOnly": true
+    },
+    {
+      "specSha256": "c446305e3a51b4c8fe6c065e48025c9f8ffca0ca6cf1241a92c6942a133ee2bc",
+      "geometryMatchesNewGivens": true,
+      "coordinateTolerance": "1e-8",
+      "pictorialProjectionOnly": false
+    }
+  ],
+  "leafKeys": [
+    "11"
+  ],
+  "limits": "No source answers/keys used. This is an author check, not a blind solve or curriculum/rights/family approval."
+}

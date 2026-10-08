@@ -1,0 +1,29 @@
+{
+  "questionNumber": 7,
+  "sourceDataObservationLedger": "../../evidence/source-observations.json#/observations/6",
+  "newDataStatus": "author-constructed-not-source-observation",
+  "givens": {
+    "count": 9,
+    "fixedFrequencies": [
+      [
+        2,
+        1
+      ],
+      [
+        5,
+        2
+      ],
+      [
+        8,
+        1
+      ],
+      [
+        13,
+        1
+      ]
+    ],
+    "missingCount": 4,
+    "domain": "all values integers"
+  },
+  "newFigureConstructionModel": []
+}

@@ -1,0 +1,31 @@
+{
+  "questionNumber": 12,
+  "sourceDataObservationLedger": "../../evidence/source-observations.json#/observations/11",
+  "newDataStatus": "author-constructed-not-source-observation",
+  "givens": {
+    "rightAngle": "R",
+    "PQ": "9sqrt(5)",
+    "tanP": "1/2",
+    "unit": "cm"
+  },
+  "newFigureConstructionModel": [
+    {
+      "points": {
+        "P": [
+          0,
+          0
+        ],
+        "R": [
+          18,
+          0
+        ],
+        "Q": [
+          18,
+          9
+        ]
+      },
+      "scale": 9,
+      "coordinateUse": "private construction model; SVG y down"
+    }
+  ]
+}

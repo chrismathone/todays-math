@@ -1,0 +1,64 @@
+{
+  "version": 2,
+  "theme": "exam-thin",
+  "style": {
+    "font_size": 18,
+    "angle_font_size": 17,
+    "angle_radius": 18,
+    "angle_label_distance": 30,
+    "padding": 22,
+    "show_points": false
+  },
+  "points": {
+    "F": [
+      0.0,
+      0.0
+    ],
+    "B": [
+      0.0,
+      -100.0
+    ],
+    "D": [
+      141.4213562373095,
+      -100.0
+    ]
+  },
+  "segments": {
+    "BF": [
+      "B",
+      "F"
+    ],
+    "BD": [
+      "B",
+      "D"
+    ],
+    "FD": [
+      "F",
+      "D"
+    ]
+  },
+  "labels": {
+    "F": "F",
+    "B": "B",
+    "D": "D"
+  },
+  "angles": {
+    "angle_B": {
+      "vertex": "B",
+      "points": [
+        "F",
+        "D"
+      ],
+      "right": true,
+      "radius": 8
+    },
+    "angle_theta": {
+      "vertex": "F",
+      "points": [
+        "B",
+        "D"
+      ],
+      "label": "$\\theta$"
+    }
+  }
+}

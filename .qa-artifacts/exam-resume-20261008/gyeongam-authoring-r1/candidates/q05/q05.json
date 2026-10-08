@@ -1,0 +1,233 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 5,
+  "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q05",
+  "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+  "content": "네 변량 $a,b,c,d$에 각각 $4$를 더해 다음 기록을 얻었다.\n\n| 자료 | 평균 | 표준편차 |\n| --- | --- | --- |\n| $a+4,b+4,c+4,d+4$ | $9$ | $3$ |\n| 원래 자료 $a,b,c,d$ | ㉠ | ㉡ |\n\n원래 자료의 평균 ㉠과 표준편차 ㉡을 차례로 바르게 복구한 것은?",
+  "choices": [
+    "$5$, $7$",
+    "$9$, $3$",
+    "$5$, $3$",
+    "$13$, $3$",
+    "$5$, $\\sqrt3$"
+  ],
+  "answer": "③",
+  "solution": "원래 평균을 $u$라 하면 네 값에 각각 $4$를 더한 평균은 $u+4$이다. 따라서 $u+4=9$이고 원래 평균은 $5$이다.\n변량 $a$의 새 편차는 $(a+4)-(u+4)=a-u$이다. 나머지 세 편차도 각각 원래 편차와 같다. 편차의 제곱과 그 평균이 같으므로 분산이 같고 표준편차도 $3$으로 같다.\n두 기록은 $5,3$이므로 정답은 ③이다.",
+  "score": 4.0,
+  "questionType": "객관식",
+  "facts": {
+    "givens": {
+      "count": 4,
+      "shift": 4,
+      "transformedMean": 9,
+      "transformedStandardDeviation": 3
+    },
+    "mathDataPath": "math-data.json",
+    "mathDataSha256": "a32fa7b65dc73a828f1faa91dca67e53f6a86de545ed2e8985b7cd53f423cec6",
+    "rawSourceObservationPath": "../../evidence/source-observations.json",
+    "rawSourceObservationSha256": "56dcd7f8a34433011abf1e6d0fc7b17fb63e19d91ed8c11697f8c6b9f14ba59c",
+    "newDataStatus": "author-constructed",
+    "sourceScoreEvidence": {
+      "selectedHwpPdfPrintedParentScore": 4.0,
+      "selectedPairScoreStatus": "literal_match",
+      "originalPrintedParentScore": 4.0,
+      "referenceParentScore": 4.0,
+      "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+      "parentCountedOnce": true,
+      "childScores": [],
+      "subquestionCount": 0,
+      "parentAndChildrenMustNotBeAddedTogether": false
+    },
+    "authorRubric": [],
+    "subQuestions": []
+  },
+  "figureArtifacts": [],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation",
+      "inverse-target"
+    ],
+    "before": "원자료의 평균/표준편차에서 같은 수를 뺀 자료의 기록을 구한다.",
+    "after": "이동 뒤 요약 기록을 주고 이동 전 평균/표준편차를 복구한다.",
+    "sharedConcept": "평균의 이동과 편차 정의",
+    "sharedProcedure": "원평균 미지수→이동 평균→각 편차가 그대로임을 확인→분산/표준편차 불변."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수05-06",
+      "9수05-07",
+      "9수02-05"
+    ],
+    "allowedProcedure": "원평균 미지수→이동 평균→각 편차가 그대로임을 확인→분산/표준편차 불변.",
+    "forbiddenAvoided": [
+      "任意삼각비관계식",
+      "원/외접원비례법칙/원의거듭제곱",
+      "사인/코사인법칙",
+      "반각/덧셈정리",
+      "삼각비넓이공식",
+      "라디안/벡터",
+      "상위통계/최적화"
+    ],
+    "status": "author-proposed",
+    "wholeSurfaceGate": "7 surfaces mapped to specific procedure/prerequisites; source school/registry is not grade approval",
+    "specificRisk": "편차 정의로 직접 설명한다. 상위 통계의 기대값/공분산 공식을 사용하지 않는다.",
+    "independentReviewStatus": "pending-other-worker"
+  },
+  "studentSurfaceReview": {
+    "stem": {
+      "status": "author-proposed",
+      "evidence": "新본문조건/표/자료조직과점순서명시"
+    },
+    "choices": {
+      "status": "author-proposed",
+      "evidence": "actual-option parser로14객관식의유일정답/중복검사;written choices=[]"
+    },
+    "figuresAndTables": {
+      "status": "author-proposed",
+      "evidence": "새스펙/로컬strictSVG/70mm이하실미리보기와데이터결합"
+    },
+    "notation": {
+      "status": "author-proposed",
+      "evidence": "2015중등표기,도단위/예각,정렬/평균/편차정의;벡터/라디안/상위통계기호없음"
+    },
+    "answer": {
+      "status": "author-proposed",
+      "evidence": "새정확답/단위/서술부분과MC동그라미번호"
+    },
+    "studentSolution": {
+      "status": "author-proposed",
+      "evidence": "원평균 미지수→이동 평균→각 편차가 그대로임을 확인→분산/표준편차 불변."
+    },
+    "prerequisites": {
+      "status": "author-proposed",
+      "evidence": [
+        {
+          "code": "9수05-06",
+          "text": "중앙값, 최빈값, 평균의 의미를 이해하고, 이를 구할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              40
+            ],
+            "printed_pages": [
+              36
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수05-07",
+          "text": "분산과 표준편차의 의미를 이해하고, 이를 구할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              40
+            ],
+            "printed_pages": [
+              36
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수02-05",
+          "text": "일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              34
+            ],
+            "printed_pages": [
+              30
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        }
+      ]
+    }
+  },
+  "sourceReference": {
+    "externalId": "2025-gyeongam-3-2-mid-5",
+    "sourceExamExternalId": "personal-5eb35ea19488aaf195e724ed05fe8806",
+    "sourceLogicalExamId": "2025-gyeongam-3-2-mid",
+    "questionNumber": 5,
+    "sourceContentSha256": "b78b4e6ce9cf0f1582f144a43dae7a20c0b9c8f5a6b598793c00a9c5a1f6e178",
+    "sourceContentDigest": "9b91aeaca5f015bfaf57a52a96b20d0a5bac98aaa9696c4b234b9b7fcb88d50a",
+    "sourcePacketPath": "../../evidence/source-final/questions.json",
+    "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+    "sourceFinalCommit": "4cc9278da",
+    "jsonPointer": "/questions/4",
+    "originalReferenceScore": 4.0,
+    "originalReferenceSubQuestions": [],
+    "referenceFigures": [
+      {
+        "path": "../../evidence/source-final/images/q05-part1.png",
+        "sha256": "e5e886bf83dc7e92d988b91b4db3fd042e009ac16df22d0d6e8fb7b22d2d8277",
+        "page": 2,
+        "referenceOnly": true
+      }
+    ],
+    "sourceIdentityDecision": "2025_original_header_school_footer_and_completed_question_identity_supported",
+    "originalAnswerSolutionWithheld": true,
+    "realSchool": "경암중",
+    "studentSchoolAlias": "온빛누리중학교",
+    "directUseAllowed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015"
+    },
+    "sourceExamYear": 2025,
+    "sourceIdentityStatus": "root-final-question-only-packet4cc9278da;native/full-pair-not-approved",
+    "realSchool": "경암중",
+    "studentSchoolAlias": "온빛누리중학교",
+    "questionType": "객관식",
+    "score": 4.0,
+    "difficultyProposal": "응용",
+    "difficultyStatus": "author-proposed-independent-review-pending",
+    "problemTypeProposal": "객관식",
+    "problemTypeStatus": "author-proposed",
+    "scoreStatus": "reference-parent-total-and-subparts-preserved;rubric-author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+      "unitSection": "대푯값과 산포도",
+      "familyKey": null,
+      "evidence": {
+        "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+        "notCurrentDbAssertion": true,
+        "unitSeedOrderIndex": 488,
+        "comparedRegistryEntries": [
+          {
+            "key": "3-2|산포도|07",
+            "grade": "중3",
+            "unitSection": "대푯값과 산포도",
+            "rpmBook": "3-2",
+            "rpmMinor": "산포도",
+            "rpmType": "07",
+            "rpmTitle": "변화된 변량의 평균 분산 표준편차"
+          }
+        ],
+        "wholeRuleComparison": "07은이동뒤표준편차의정방향단일값이다. 새이동뒤평균/표준편차를주고원래두기록을복구하는전체목표가없다.",
+        "reopenCriteria": "실제기존rule의새given/질문/전체절차/서술부분/난도가일치하는문항별증거및독립분류검토;가까운제목자동배정금지"
+      }
+    },
+    "independentSolveStatus": "pending-other-worker",
+    "independentReviewStatus": "pending-other-worker",
+    "rightsStatus": "pending",
+    "nativeStatus": "pending",
+    "sourceCustodyStatus": "pending",
+    "similarityStatus": "pending",
+    "publishStatus": "not-authorized",
+    "loadStatus": "not-authorized",
+    "directUseAllowed": false
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "questionNumber": 2,
+  "sourceDataObservationLedger": "../../evidence/source-observations.json#/observations/1",
+  "newDataStatus": "author-constructed-not-source-observation",
+  "givens": {
+    "A": [
+      6,
+      12,
+      18,
+      "a",
+      30
+    ],
+    "medianA": 18,
+    "B": [
+      10,
+      18,
+      "a",
+      20,
+      30,
+      40
+    ],
+    "medianB": 19,
+    "domain": "a positive integer",
+    "combinedCount": 11
+  },
+  "newFigureConstructionModel": []
+}

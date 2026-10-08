@@ -1,0 +1,11 @@
+{
+  "questionNumber": 14,
+  "sourceDataObservationLedger": "../../evidence/source-observations.json#/observations/13",
+  "newDataStatus": "author-constructed-not-source-observation",
+  "givens": {
+    "expression": "k*cos60*sin45+cos45*tan45",
+    "result": "5sqrt(2)/4",
+    "kDomain": "k>0"
+  },
+  "newFigureConstructionModel": []
+}

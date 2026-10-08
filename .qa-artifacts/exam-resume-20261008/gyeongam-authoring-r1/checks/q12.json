@@ -1,0 +1,37 @@
+{
+  "questionNumber": 12,
+  "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+  "method": "exact-author-recomputation-and-actual-displayed-option-check",
+  "status": "author-check-passed",
+  "independentVerification": false,
+  "candidateFileSha256": "13ea2d0c32bfbe08e674be04805346419d9a161079e6ab84a9dffd7ad94d1a3c",
+  "mathDataSha256": "aeec409b05271853ecafd9b70fc81f3ae7ff9b1c86fe563fd680e35e92a82c04",
+  "targets": [
+    "18",
+    "9"
+  ],
+  "evidence": {
+    "positiveLeg": "9",
+    "hypotenuse": "9*sqrt(5)",
+    "ratio": "1/2",
+    "proof": "legs t and2t;5t^2=405;positive root only"
+  },
+  "choices": {
+    "count": 5,
+    "distinctDisplayedValuesOrRecords": true,
+    "oneCorrect": true,
+    "correctChoiceIndex": 2
+  },
+  "assets": [
+    {
+      "specSha256": "20917209d13d415f4ae631c79317d8c698a622b96d958f81e60235cfa065cd1f",
+      "geometryMatchesNewGivens": true,
+      "coordinateTolerance": "1e-8",
+      "pictorialProjectionOnly": false
+    }
+  ],
+  "leafKeys": [
+    "12"
+  ],
+  "limits": "No source answers/keys used. This is an author check, not a blind solve or curriculum/rights/family approval."
+}

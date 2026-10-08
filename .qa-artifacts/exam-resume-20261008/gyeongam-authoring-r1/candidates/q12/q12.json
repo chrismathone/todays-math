@@ -1,0 +1,267 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 12,
+  "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q12",
+  "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+  "content": "직각삼각형 $\\mathrm{PQR}$에서 $\\angle\\mathrm{R}=90^\\circ$, $\\overline{\\mathrm{PQ}}=9\\sqrt5\\,\\mathrm{cm}$, $\\tan P=\\frac12$이다.\n두 직각변의 길이 $\\overline{\\mathrm{PR}}$, $\\overline{\\mathrm{QR}}$를 차례로 바르게 복구한 것은?",
+  "choices": [
+    "$9\\,\\mathrm{cm}$, $18\\,\\mathrm{cm}$",
+    "$18\\,\\mathrm{cm}$, $9\\,\\mathrm{cm}$",
+    "$9\\sqrt5\\,\\mathrm{cm}$, $18\\,\\mathrm{cm}$",
+    "$18\\,\\mathrm{cm}$, $18\\,\\mathrm{cm}$",
+    "$12\\,\\mathrm{cm}$, $6\\,\\mathrm{cm}$"
+  ],
+  "answer": "②",
+  "solution": "$\\overline{\\mathrm{QR}}=t$라 하면 $\\tan P=\\frac{\\overline{\\mathrm{QR}}}{\\overline{\\mathrm{PR}}}=\\frac12$이므로 $\\overline{\\mathrm{PR}}=2t$이다.\n피타고라스 정리에서 $t^2+(2t)^2=(9\\sqrt5)^2$이다. 따라서 $5t^2=405$, $t^2=81$이다.\n길이는 양수이므로 $t=9$이고 $\\overline{\\mathrm{PR}}=18\\,\\mathrm{cm}$, $\\overline{\\mathrm{QR}}=9\\,\\mathrm{cm}$이다. 정답은 ②이다.",
+  "score": 4.0,
+  "questionType": "객관식",
+  "facts": {
+    "givens": {
+      "rightAngle": "R",
+      "PQ": "9sqrt(5)",
+      "tanP": "1/2",
+      "unit": "cm"
+    },
+    "mathDataPath": "math-data.json",
+    "mathDataSha256": "aeec409b05271853ecafd9b70fc81f3ae7ff9b1c86fe563fd680e35e92a82c04",
+    "rawSourceObservationPath": "../../evidence/source-observations.json",
+    "rawSourceObservationSha256": "56dcd7f8a34433011abf1e6d0fc7b17fb63e19d91ed8c11697f8c6b9f14ba59c",
+    "newDataStatus": "author-constructed",
+    "sourceScoreEvidence": {
+      "selectedHwpPdfPrintedParentScore": 4.0,
+      "selectedPairScoreStatus": "literal_match",
+      "originalPrintedParentScore": 4.0,
+      "referenceParentScore": 4.0,
+      "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+      "parentCountedOnce": true,
+      "childScores": [],
+      "subquestionCount": 0,
+      "parentAndChildrenMustNotBeAddedTogether": false
+    },
+    "authorRubric": [],
+    "subQuestions": []
+  },
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "stem-1.spec.json",
+      "svgPath": "stem-1.svg",
+      "intendedWidthMm": 70,
+      "mathDataPath": "math-data.json",
+      "mathDataSha256": "aeec409b05271853ecafd9b70fc81f3ae7ff9b1c86fe563fd680e35e92a82c04"
+    }
+  ],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation",
+      "inverse-target"
+    ],
+    "before": "tan과 한 직각변에서 빗변을 구한다.",
+    "after": "빗변/tan 기록에서 두 양의 직각변을 복구한다.",
+    "sharedConcept": "tan 정의에 의한 변비와 피타고라스",
+    "sharedProcedure": "한 직각변 t→다른변2t→피타고라스→양의 제곱근."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수04-17",
+      "9수04-16",
+      "9수01-07",
+      "9수01-10"
+    ],
+    "allowedProcedure": "한 직각변 t→다른변2t→피타고라스→양의 제곱근.",
+    "forbiddenAvoided": [
+      "任意삼각비관계식",
+      "원/외접원비례법칙/원의거듭제곱",
+      "사인/코사인법칙",
+      "반각/덧셈정리",
+      "삼각비넓이공식",
+      "라디안/벡터",
+      "상위통계/최적화"
+    ],
+    "status": "author-proposed",
+    "wholeSurfaceGate": "7 surfaces mapped to specific procedure/prerequisites; source school/registry is not grade approval",
+    "specificRisk": "",
+    "independentReviewStatus": "pending-other-worker"
+  },
+  "studentSurfaceReview": {
+    "stem": {
+      "status": "author-proposed",
+      "evidence": "新본문조건/표/자료조직과점순서명시"
+    },
+    "choices": {
+      "status": "author-proposed",
+      "evidence": "actual-option parser로14객관식의유일정답/중복검사;written choices=[]"
+    },
+    "figuresAndTables": {
+      "status": "author-proposed",
+      "evidence": "새스펙/로컬strictSVG/70mm이하실미리보기와데이터결합"
+    },
+    "notation": {
+      "status": "author-proposed",
+      "evidence": "2015중등표기,도단위/예각,정렬/평균/편차정의;벡터/라디안/상위통계기호없음"
+    },
+    "answer": {
+      "status": "author-proposed",
+      "evidence": "새정확답/단위/서술부분과MC동그라미번호"
+    },
+    "studentSolution": {
+      "status": "author-proposed",
+      "evidence": "한 직각변 t→다른변2t→피타고라스→양의 제곱근."
+    },
+    "prerequisites": {
+      "status": "author-proposed",
+      "evidence": [
+        {
+          "code": "9수04-17",
+          "text": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수04-16",
+          "text": "피타고라스 정리를 이해하고 설명할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수01-07",
+          "text": "제곱근의 뜻을 알고, 그 성질을 이해한다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              33
+            ],
+            "printed_pages": [
+              29
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수01-10",
+          "text": "근호를 포함한 식의 사칙계산을 할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              33
+            ],
+            "printed_pages": [
+              29
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        }
+      ]
+    }
+  },
+  "sourceReference": {
+    "externalId": "2025-gyeongam-3-2-mid-12",
+    "sourceExamExternalId": "personal-5eb35ea19488aaf195e724ed05fe8806",
+    "sourceLogicalExamId": "2025-gyeongam-3-2-mid",
+    "questionNumber": 12,
+    "sourceContentSha256": "b816494a274804225d581c71fb6819824054d79924d3b34f144299c9ca50c033",
+    "sourceContentDigest": "e163659c2ce2d1439862348f43b5457314763ca821be46ac3c95693c33276334",
+    "sourcePacketPath": "../../evidence/source-final/questions.json",
+    "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+    "sourceFinalCommit": "4cc9278da",
+    "jsonPointer": "/questions/11",
+    "originalReferenceScore": 4.0,
+    "originalReferenceSubQuestions": [],
+    "referenceFigures": [
+      {
+        "path": "../../evidence/source-final/images/q12-part1.png",
+        "sha256": "0bdc0b96742e95266c25f855ba2f985b386cd5d80607ff713e821c18861ad7fc",
+        "page": 3,
+        "referenceOnly": true
+      }
+    ],
+    "sourceIdentityDecision": "2025_original_header_school_footer_and_completed_question_identity_supported",
+    "originalAnswerSolutionWithheld": true,
+    "realSchool": "경암중",
+    "studentSchoolAlias": "온빛누리중학교",
+    "directUseAllowed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015"
+    },
+    "sourceExamYear": 2025,
+    "sourceIdentityStatus": "root-final-question-only-packet4cc9278da;native/full-pair-not-approved",
+    "realSchool": "경암중",
+    "studentSchoolAlias": "온빛누리중학교",
+    "questionType": "객관식",
+    "score": 4.0,
+    "difficultyProposal": "응용",
+    "difficultyStatus": "author-proposed-independent-review-pending",
+    "problemTypeProposal": "객관식",
+    "problemTypeStatus": "author-proposed",
+    "scoreStatus": "reference-parent-total-and-subparts-preserved;rubric-author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+      "unitSection": "삼각비의 뜻",
+      "familyKey": null,
+      "evidence": {
+        "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+        "notCurrentDbAssertion": true,
+        "unitSeedOrderIndex": 481,
+        "comparedRegistryEntries": [
+          {
+            "key": "3-2|삼각비|02",
+            "grade": "중3",
+            "unitSection": "삼각비의 뜻",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비",
+            "rpmType": "02",
+            "rpmTitle": "삼각비를 이용하여 삼각형의 변의 길이 구하기"
+          },
+          {
+            "key": "3-2|삼각비|03",
+            "grade": "중3",
+            "unitSection": "삼각비의 뜻",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비",
+            "rpmType": "03",
+            "rpmTitle": "한 삼각비의 값을 알 때 다른 삼각비의 값 구하기"
+          }
+        ],
+        "wholeRuleComparison": "02는한비+한변→직접다른한변,03은한비→다른비이다. 새빗변+tan→두직각변제곱식복구의전체목표가없다.",
+        "reopenCriteria": "실제기존rule의새given/질문/전체절차/서술부분/난도가일치하는문항별증거및독립분류검토;가까운제목자동배정금지"
+      }
+    },
+    "independentSolveStatus": "pending-other-worker",
+    "independentReviewStatus": "pending-other-worker",
+    "rightsStatus": "pending",
+    "nativeStatus": "pending",
+    "sourceCustodyStatus": "pending",
+    "similarityStatus": "pending",
+    "publishStatus": "not-authorized",
+    "loadStatus": "not-authorized",
+    "directUseAllowed": false
+  }
+}

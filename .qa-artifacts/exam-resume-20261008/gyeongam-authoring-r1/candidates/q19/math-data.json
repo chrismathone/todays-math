@@ -1,0 +1,45 @@
+{
+  "questionNumber": 19,
+  "sourceDataObservationLedger": "../../evidence/source-observations.json#/observations/18",
+  "newDataStatus": "author-constructed-not-source-observation",
+  "givens": {
+    "centralAngle": 60,
+    "foot": "C from A to OB",
+    "D": "ray OA intersect vertical at B",
+    "areaACBD": "6sqrt(3)",
+    "radiusDomain": "r>0",
+    "unit": "cm,cm^2"
+  },
+  "newFigureConstructionModel": [
+    {
+      "points": {
+        "O": [
+          0,
+          0
+        ],
+        "_V": [
+          0,
+          4
+        ],
+        "B": [
+          4,
+          0
+        ],
+        "A": [
+          2.0,
+          3.4641016151377544
+        ],
+        "C": [
+          2.0,
+          0
+        ],
+        "D": [
+          4,
+          6.928203230275509
+        ]
+      },
+      "scale": 25,
+      "coordinateUse": "private construction model; SVG y down"
+    }
+  ]
+}

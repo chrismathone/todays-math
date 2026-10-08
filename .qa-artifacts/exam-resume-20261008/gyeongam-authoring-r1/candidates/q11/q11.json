@@ -1,0 +1,282 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 11,
+  "twinExternalId": "exam-twin-gyeongam-2025-2-mid-author-r1-q11",
+  "authorId": "orca-codex-exam-twin-author-geometry-20261008",
+  "content": "한 모서리의 길이가 $4\\,\\mathrm{cm}$인 정육면체 $\\mathrm{ABCD-EFGH}$에서 윗면은 정사각형 ABCD이고 BF는 수직 모서리이다.\n첫 번째 그림은 입체의 배치, 두 번째 그림은 $\\mathrm{BF}\\perp\\mathrm{BD}$인 실제 직각삼각형 BFD이다. $\\theta=\\angle\\mathrm{BFD}$라 하자.\n\n| 기록 항목 | 윗면의 대각선 $\\overline{\\mathrm{BD}}$ | $\\cos\\theta$ |\n| --- | --- | --- |\n| 기록 | ㉠ $\\mathrm{cm}$ | ㉡ |\n\n㉠, ㉡에 들어갈 값을 차례로 바르게 짝지은 것은?",
+  "choices": [
+    "$4\\sqrt2$, $\\frac{\\sqrt6}{3}$",
+    "$4\\sqrt3$, $\\frac{\\sqrt3}{3}$",
+    "$4\\sqrt2$, $\\frac{\\sqrt3}{3}$",
+    "$4$, $\\frac{\\sqrt2}{2}$",
+    "$8$, $\\frac13$"
+  ],
+  "answer": "③",
+  "solution": "윗면 정사각형의 두 직각변이 각각 $4$이므로 대각선은 $\\overline{\\mathrm{BD}}=\\sqrt{4^2+4^2}=4\\sqrt2\\,\\mathrm{cm}$이다.\n두 번째 그림의 직각삼각형에서 $\\overline{\\mathrm{FD}}=\\sqrt{4^2+(4\\sqrt2)^2}=4\\sqrt3\\,\\mathrm{cm}$이다.\n각 $\\theta$의 이웃변은 BF, 빗변은 FD이므로 $\\cos\\theta=\\frac4{4\\sqrt3}=\\frac{\\sqrt3}{3}$이다. 두 기록은 $4\\sqrt2$, $\\frac{\\sqrt3}{3}$이고 정답은 ③이다.",
+  "score": 4.0,
+  "questionType": "객관식",
+  "facts": {
+    "givens": {
+      "edge": 4,
+      "topFace": "square ABCD",
+      "BFPerpendicularBD": true,
+      "theta": "BFD",
+      "unit": "cm"
+    },
+    "mathDataPath": "math-data.json",
+    "mathDataSha256": "1e530963d3357d3ff360ae36122f2d16c1dc6a030557c12c0b473d4ec0440ff3",
+    "rawSourceObservationPath": "../../evidence/source-observations.json",
+    "rawSourceObservationSha256": "56dcd7f8a34433011abf1e6d0fc7b17fb63e19d91ed8c11697f8c6b9f14ba59c",
+    "newDataStatus": "author-constructed",
+    "sourceScoreEvidence": {
+      "selectedHwpPdfPrintedParentScore": 4.0,
+      "selectedPairScoreStatus": "literal_match",
+      "originalPrintedParentScore": 4.0,
+      "referenceParentScore": 4.0,
+      "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+      "parentCountedOnce": true,
+      "childScores": [],
+      "subquestionCount": 0,
+      "parentAndChildrenMustNotBeAddedTogether": false
+    },
+    "authorRubric": [],
+    "subQuestions": []
+  },
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "stem-1.spec.json",
+      "svgPath": "stem-1.svg",
+      "intendedWidthMm": 55,
+      "mathDataPath": "math-data.json",
+      "mathDataSha256": "1e530963d3357d3ff360ae36122f2d16c1dc6a030557c12c0b473d4ec0440ff3"
+    },
+    {
+      "role": "stem",
+      "specPath": "stem-2.spec.json",
+      "svgPath": "stem-2.svg",
+      "intendedWidthMm": 55,
+      "mathDataPath": "math-data.json",
+      "mathDataSha256": "1e530963d3357d3ff360ae36122f2d16c1dc6a030557c12c0b473d4ec0440ff3"
+    }
+  ],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation"
+    ],
+    "before": "정육면체 투시도에서 면/공간 대각선으로 sin을 구한다.",
+    "after": "입체와 실제 직각 단면을 분리하여 면대각선/cos의 기록을 완성한다.",
+    "sharedConcept": "정육면체의 면/공간 대각선과 직각삼각비",
+    "sharedProcedure": "윗면 정사각형 피타고라스→제시된 직각삼각형 피타고라스→cos 정의."
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수04-07",
+      "9수04-12",
+      "9수04-16",
+      "9수04-17",
+      "9수01-10"
+    ],
+    "allowedProcedure": "윗면 정사각형 피타고라스→제시된 직각삼각형 피타고라스→cos 정의.",
+    "forbiddenAvoided": [
+      "任意삼각비관계식",
+      "원/외접원비례법칙/원의거듭제곱",
+      "사인/코사인법칙",
+      "반각/덧셈정리",
+      "삼각비넓이공식",
+      "라디안/벡터",
+      "상위통계/최적화"
+    ],
+    "status": "author-proposed",
+    "wholeSurfaceGate": "7 surfaces mapped to specific procedure/prerequisites; source school/registry is not grade approval",
+    "specificRisk": "실제 직각 BFD가 명시되어 공간각/벡터/정사영의 추가 작도가 필요 없다. 투시도 자체에서 각을 재지 않는다.",
+    "independentReviewStatus": "pending-other-worker"
+  },
+  "studentSurfaceReview": {
+    "stem": {
+      "status": "author-proposed",
+      "evidence": "新본문조건/표/자료조직과점순서명시"
+    },
+    "choices": {
+      "status": "author-proposed",
+      "evidence": "actual-option parser로14객관식의유일정답/중복검사;written choices=[]"
+    },
+    "figuresAndTables": {
+      "status": "author-proposed",
+      "evidence": "새스펙/로컬strictSVG/70mm이하실미리보기와데이터결합"
+    },
+    "notation": {
+      "status": "author-proposed",
+      "evidence": "2015중등표기,도단위/예각,정렬/평균/편차정의;벡터/라디안/상위통계기호없음"
+    },
+    "answer": {
+      "status": "author-proposed",
+      "evidence": "새정확답/단위/서술부분과MC동그라미번호"
+    },
+    "studentSolution": {
+      "status": "author-proposed",
+      "evidence": "윗면 정사각형 피타고라스→제시된 직각삼각형 피타고라스→cos 정의."
+    },
+    "prerequisites": {
+      "status": "author-proposed",
+      "evidence": [
+        {
+          "code": "9수04-07",
+          "text": "다면체의 성질을 이해한다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              37
+            ],
+            "printed_pages": [
+              33
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수04-12",
+          "text": "사각형의 성질을 이해하고 설명할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수04-16",
+          "text": "피타고라스 정리를 이해하고 설명할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수04-17",
+          "text": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              38
+            ],
+            "printed_pages": [
+              34
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        },
+        {
+          "code": "9수01-10",
+          "text": "근호를 포함한 식의 사칙계산을 할 수 있다.",
+          "locator": {
+            "source_id": "moe-2015-74-math-pdf",
+            "physical_pages_1based": [
+              33
+            ],
+            "printed_pages": [
+              29
+            ],
+            "code_found": true,
+            "same_text_after_whitespace_normalization": true
+          }
+        }
+      ]
+    }
+  },
+  "sourceReference": {
+    "externalId": "2025-gyeongam-3-2-mid-11",
+    "sourceExamExternalId": "personal-5eb35ea19488aaf195e724ed05fe8806",
+    "sourceLogicalExamId": "2025-gyeongam-3-2-mid",
+    "questionNumber": 11,
+    "sourceContentSha256": "0ad62eff9aa41ec7152f264518fc00ca84b82d024eb3040f8f3b5bb9dceb9224",
+    "sourceContentDigest": "092997340d10540760a1abc046ecb5b09fe1bf62437924ff423d6def6185464b",
+    "sourcePacketPath": "../../evidence/source-final/questions.json",
+    "sourcePacketSha256": "619472dab860fb2d367f4df57cf75d6d119afcf57f6b5040591d5414cbf14450",
+    "sourceFinalCommit": "4cc9278da",
+    "jsonPointer": "/questions/10",
+    "originalReferenceScore": 4.0,
+    "originalReferenceSubQuestions": [],
+    "referenceFigures": [
+      {
+        "path": "../../evidence/source-final/images/q11-part1.png",
+        "sha256": "a6b0c5a8d896159334f7e125d434afae8cd4ba66f11a89cd34fb374d8f0bc304",
+        "page": 3,
+        "referenceOnly": true
+      }
+    ],
+    "sourceIdentityDecision": "2025_original_header_school_footer_and_completed_question_identity_supported",
+    "originalAnswerSolutionWithheld": true,
+    "realSchool": "경암중",
+    "studentSchoolAlias": "온빛누리중학교",
+    "directUseAllowed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015"
+    },
+    "sourceExamYear": 2025,
+    "sourceIdentityStatus": "root-final-question-only-packet4cc9278da;native/full-pair-not-approved",
+    "realSchool": "경암중",
+    "studentSchoolAlias": "온빛누리중학교",
+    "questionType": "객관식",
+    "score": 4.0,
+    "difficultyProposal": "응용",
+    "difficultyStatus": "author-proposed-independent-review-pending",
+    "problemTypeProposal": "객관식",
+    "problemTypeStatus": "author-proposed",
+    "scoreStatus": "reference-parent-total-and-subparts-preserved;rubric-author-proposed",
+    "assignment": {
+      "status": "pending",
+      "unitId": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+      "unitSection": "삼각비의 뜻",
+      "familyKey": null,
+      "evidence": {
+        "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+        "notCurrentDbAssertion": true,
+        "unitSeedOrderIndex": 481,
+        "comparedRegistryEntries": [
+          {
+            "key": "3-2|삼각비|07",
+            "grade": "중3",
+            "unitSection": "삼각비의 뜻",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비",
+            "rpmType": "07",
+            "rpmTitle": "입체도형에서 삼각비의 값 구하기"
+          }
+        ],
+        "wholeRuleComparison": "07의실제입력은직육면체의가로/세로/높이이며8개정수피타고라스쌍갈래에서하나의비를구한다. 새정육면체/무리수면대각선과cos의두기록/제시된실제BFD단면을함께지원하는갈래는확인되지않았다. 07의표시는심화하,새응용난도는단면제시를근거로한작성자제안만이다.",
+        "reopenCriteria": "실제기존rule의새given/질문/전체절차/서술부분/난도가일치하는문항별증거및독립분류검토;가까운제목자동배정금지"
+      }
+    },
+    "independentSolveStatus": "pending-other-worker",
+    "independentReviewStatus": "pending-other-worker",
+    "rightsStatus": "pending",
+    "nativeStatus": "pending",
+    "sourceCustodyStatus": "pending",
+    "similarityStatus": "pending",
+    "publishStatus": "not-authorized",
+    "loadStatus": "not-authorized",
+    "directUseAllowed": false
+  }
+}

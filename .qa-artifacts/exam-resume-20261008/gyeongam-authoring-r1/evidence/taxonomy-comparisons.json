@@ -1,0 +1,323 @@
+{
+  "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+  "notCurrentDbAssertion": true,
+  "comparisons": [
+    {
+      "questionNumber": 1,
+      "unit": {
+        "id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+        "grade": "중3",
+        "chapter": "7. 통계",
+        "section": "대푯값과 산포도",
+        "semester": 2,
+        "orderIndex": 488,
+        "problemCodePrefix": "J30701"
+      },
+      "comparedNotAssigned": [
+        "산포도|05"
+      ],
+      "fullRuleComparison": "05는수치5명자료에서평균이며 새누락도수/범주최빈값규칙이 아니다.",
+      "familyKey": null
+    },
+    {
+      "questionNumber": 2,
+      "unit": {
+        "id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+        "grade": "중3",
+        "chapter": "7. 통계",
+        "section": "대푯값과 산포도",
+        "semester": 2,
+        "orderIndex": 488,
+        "problemCodePrefix": "J30701"
+      },
+      "comparedNotAssigned": [
+        "산포도|05",
+        "산포도|11T"
+      ],
+      "fullRuleComparison": "05는원자료평균,11T는평균과중앙값이같은하나의자료이다. 새홀짝두중앙값→공통a→11개합친평균의전체조건과목표가 없다.",
+      "familyKey": null
+    },
+    {
+      "questionNumber": 3,
+      "unit": {
+        "id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+        "grade": "중3",
+        "chapter": "7. 통계",
+        "section": "대푯값과 산포도",
+        "semester": 2,
+        "orderIndex": 488,
+        "problemCodePrefix": "J30701"
+      },
+      "comparedNotAssigned": [
+        "산포도|11T"
+      ],
+      "fullRuleComparison": "11T는평균=중앙값의조건이며 새홀수/짝수두중앙값과a<b의두가림카드복구가 아니다.",
+      "familyKey": null
+    },
+    {
+      "questionNumber": 4,
+      "unit": {
+        "id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+        "grade": "중3",
+        "chapter": "7. 통계",
+        "section": "대푯값과 산포도",
+        "semester": 2,
+        "orderIndex": 488,
+        "problemCodePrefix": "J30701"
+      },
+      "comparedNotAssigned": [
+        "산포도|05",
+        "산포도|06"
+      ],
+      "fullRuleComparison": "06은두집단개수/평균에서전체평균을구한다. 새전후총합과세추가값중하나복구의전체규칙이없다.",
+      "familyKey": null
+    },
+    {
+      "questionNumber": 5,
+      "unit": {
+        "id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+        "grade": "중3",
+        "chapter": "7. 통계",
+        "section": "대푯값과 산포도",
+        "semester": 2,
+        "orderIndex": 488,
+        "problemCodePrefix": "J30701"
+      },
+      "comparedNotAssigned": [
+        "산포도|07"
+      ],
+      "fullRuleComparison": "07은이동뒤표준편차의정방향단일값이다. 새이동뒤평균/표준편차를주고원래두기록을복구하는전체목표가없다.",
+      "familyKey": null
+    },
+    {
+      "questionNumber": 6,
+      "unit": {
+        "id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+        "grade": "중3",
+        "chapter": "7. 통계",
+        "section": "대푯값과 산포도",
+        "semester": 2,
+        "orderIndex": 488,
+        "problemCodePrefix": "J30701"
+      },
+      "comparedNotAssigned": [
+        "산포도|04",
+        "산포도|07"
+      ],
+      "fullRuleComparison": "04는알려진분산/배율/이동량에서새분산,07은새표준편차이다. 새표준편차에서양의배율과새평균을복구하는전체규칙은없다.",
+      "familyKey": null
+    },
+    {
+      "questionNumber": 7,
+      "unit": {
+        "id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+        "grade": "중3",
+        "chapter": "7. 통계",
+        "section": "대푯값과 산포도",
+        "semester": 2,
+        "orderIndex": 488,
+        "problemCodePrefix": "J30701"
+      },
+      "comparedNotAssigned": [
+        "산포도|11T"
+      ],
+      "fullRuleComparison": "11T의평균=중앙값정방향미지수와달리 고정자료+미지4정수의가능중앙값전체구간/존재를묻는다. 해당중3live family확인불가.",
+      "familyKey": null
+    },
+    {
+      "questionNumber": 8,
+      "unit": {
+        "id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+        "grade": "중3",
+        "chapter": "7. 통계",
+        "section": "대푯값과 산포도",
+        "semester": 2,
+        "orderIndex": 488,
+        "problemCodePrefix": "J30701"
+      },
+      "comparedNotAssigned": [
+        "산포도|04",
+        "산포도|08"
+      ],
+      "fullRuleComparison": "04의이름과달리실제규칙은배율변환분산이다.08은완전수치자료→분산이다. 새평균/제곱합→분산/표준편차역기록과일치하지않는다.",
+      "familyKey": null
+    },
+    {
+      "questionNumber": 9,
+      "unit": {
+        "id": "6209acdc-9fcf-498a-af2e-13f614d0f277",
+        "grade": "중3",
+        "chapter": "7. 통계",
+        "section": "산점도와 상관관계",
+        "semester": 2,
+        "orderIndex": 489,
+        "problemCodePrefix": "J30702"
+      },
+      "comparedNotAssigned": [
+        "상자그림과 산점도|06",
+        "상자그림과 산점도|07",
+        "상자그림과 산점도|12"
+      ],
+      "fullRuleComparison": "06은서로다른x값7명의한축이상개수,07은7명의x>y개수,12는10명/두축이상/경계값제외의백분율이다. 새12명/반복x허용/50경계포함/두축이상집단을제외한개수의전체입력과목표를지원하지않는다.",
+      "familyKey": null
+    },
+    {
+      "questionNumber": 10,
+      "unit": {
+        "id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 뜻",
+        "semester": 2,
+        "orderIndex": 481,
+        "problemCodePrefix": "J30501"
+      },
+      "comparedNotAssigned": [
+        "삼각비|01"
+      ],
+      "fullRuleComparison": "01은두직각변에서피타고라스로한각의단일비를묻는다. 새세변/두각의수치기록→삼각비이름복구를지원하지않는다.",
+      "familyKey": null
+    },
+    {
+      "questionNumber": 11,
+      "unit": {
+        "id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 뜻",
+        "semester": 2,
+        "orderIndex": 481,
+        "problemCodePrefix": "J30501"
+      },
+      "comparedNotAssigned": [
+        "삼각비|07"
+      ],
+      "fullRuleComparison": "07의실제입력은직육면체의가로/세로/높이이며8개정수피타고라스쌍갈래에서하나의비를구한다. 새정육면체/무리수면대각선과cos의두기록/제시된실제BFD단면을함께지원하는갈래는확인되지않았다. 07의표시는심화하,새응용난도는단면제시를근거로한작성자제안만이다.",
+      "familyKey": null
+    },
+    {
+      "questionNumber": 12,
+      "unit": {
+        "id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 뜻",
+        "semester": 2,
+        "orderIndex": 481,
+        "problemCodePrefix": "J30501"
+      },
+      "comparedNotAssigned": [
+        "삼각비|02",
+        "삼각비|03"
+      ],
+      "fullRuleComparison": "02는한비+한변→직접다른한변,03은한비→다른비이다. 새빗변+tan→두직각변제곱식복구의전체목표가없다.",
+      "familyKey": null
+    },
+    {
+      "questionNumber": 13,
+      "unit": {
+        "id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 값",
+        "semester": 2,
+        "orderIndex": 482,
+        "problemCodePrefix": "J30502"
+      },
+      "comparedNotAssigned": [
+        "삼각비|12",
+        "삼각비|14"
+      ],
+      "fullRuleComparison": "12는사분원각/길이기록→수치비값,14는같은각의세비극값이다. 새두위치의세실제길이변화기록이아니다.",
+      "familyKey": null
+    },
+    {
+      "questionNumber": 14,
+      "unit": {
+        "id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 값",
+        "semester": 2,
+        "orderIndex": 482,
+        "problemCodePrefix": "J30502"
+      },
+      "comparedNotAssigned": [
+        "삼각비|08"
+      ],
+      "fullRuleComparison": "08은두특수값의한연산이다. 새두곱의합기록에서양의계수k를복구하는전체조건/목표가없다.",
+      "familyKey": null
+    },
+    {
+      "questionNumber": 16,
+      "unit": {
+        "id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+        "grade": "중3",
+        "chapter": "7. 통계",
+        "section": "대푯값과 산포도",
+        "semester": 2,
+        "orderIndex": 488,
+        "problemCodePrefix": "J30701"
+      },
+      "comparedNotAssigned": [
+        "산포도|05",
+        "산포도|11T"
+      ],
+      "fullRuleComparison": "05는완전자료평균,11T는평균=중앙값미지값이다. 새부분도수/알려진평균→극단값복구/대표값선택/이유서술의전체규칙이없다.",
+      "familyKey": null
+    },
+    {
+      "questionNumber": 17,
+      "unit": {
+        "id": "468b8d96-7097-4ef3-8ccf-42c53d90b45f",
+        "grade": "중3",
+        "chapter": "7. 통계",
+        "section": "대푯값과 산포도",
+        "semester": 2,
+        "orderIndex": 488,
+        "problemCodePrefix": "J30701"
+      },
+      "comparedNotAssigned": [
+        "산포도|02",
+        "산포도|03",
+        "산포도|08"
+      ],
+      "fullRuleComparison": "02/03은평균중심편차를입력으로쓸때이며08은원자료→분산이다. 새기준학생차의평균이0이아닌자료와실제평균→기준학생/원표준편차의두서술부분이아니다.",
+      "familyKey": null
+    },
+    {
+      "questionNumber": 18,
+      "unit": {
+        "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 활용",
+        "semester": 2,
+        "orderIndex": 483,
+        "problemCodePrefix": "J30503"
+      },
+      "comparedNotAssigned": [
+        "삼각비의 활용|01"
+      ],
+      "fullRuleComparison": "활용01의전체갈래가새D내부/AD=CD/45도/전체AB→BC/특정22.5도tan의증명및12점서술을지원하지않는다. 특정숫자각키를invent하지않는다.",
+      "familyKey": null
+    },
+    {
+      "questionNumber": 19,
+      "unit": {
+        "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 활용",
+        "semester": 2,
+        "orderIndex": 483,
+        "problemCodePrefix": "J30503"
+      },
+      "comparedNotAssigned": [
+        "삼각비의 활용|12"
+      ],
+      "fullRuleComparison": "활용12는두대각선과끼인각으로사각형넓이를구하거나그넓이에서미지대각선을역산한다. 실제두갈래모두대각선곱과sin넓이공식을쓴다. 새사분원60도/수선/반직선교점/직각변비와사다리꼴넓이에서반지름을복구하는전체입력/절차와다르다. 기존역산갈래의존재도이새전체규칙의지원근거가되지않는다.",
+      "familyKey": null
+    }
+  ]
+}
