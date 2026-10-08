@@ -116,7 +116,12 @@ const isOdd = (ask: JudgeAsk, t: boolean) => (ask === "옳지 않은 것" ? !t :
 describe("㉠ 등록 — 판정형 셋", () => {
   it("판정키 · 원천 · 난이도 · 규칙판 (리터럴로 못 박는다)", () => {
     const live = judgementDefinitions();
-    expect(live.map((d) => d.key).sort()).toEqual(Object.values(KEYS).sort());
+    // 1단계 셋이 **맨 앞에 그 차례로** 있다 — 뒤 단계의 등록은 끝에 붙는다(`definitions.ts` 머리말).
+    expect(live.slice(0, 3).map((d) => d.key)).toEqual([
+      KEYS.add2,
+      KEYS.sub2,
+      KEYS.mix4,
+    ]);
     const byKey = new Map(live.map((d) => [d.key, d]));
     expect(byKey.get(KEYS.add2)).toMatchObject({
       difficulty: "기본",
@@ -563,7 +568,10 @@ describe("㉦ 재시도 상한 · 변이 · 적재", () => {
   });
 
   it("적재 행 — 판정형 셋 × 3벌, 전부 객관식 · 열쇠 모양 · 단원", () => {
-    const rows = buildJudgeRows({ engine: "judge", variants: 3 }, SEED0);
+    const rows = buildJudgeRows(
+      { engine: "judge", keys: Object.values(KEYS), variants: 3 },
+      SEED0,
+    );
     expect(rows).toHaveLength(9);
     for (const r of rows) {
       expect(r.questionType).toBe("객관식");
@@ -578,7 +586,11 @@ describe("㉦ 재시도 상한 · 변이 · 적재", () => {
   });
 
   it("미적재 빚 — 등록했으니 적재 전에는 셋 다 «안 나감»이다(pre-push 가 막는 자리)", () => {
-    const left = unloaded(loadedFragments([]), [], []);
-    expect(left.map((e) => e.key).sort()).toEqual(Object.values(KEYS).sort());
+    // 등록 전체의 빚은 `judgeStep2.test.ts` 가 센다 — 여기는 1단계 셋이 그 안에 있는가.
+    const left = new Set(
+      unloaded(loadedFragments([]), [], []).map((e) => e.key),
+    );
+    for (const key of Object.values(KEYS))
+      expect(left.has(key), key).toBe(true);
   });
 });

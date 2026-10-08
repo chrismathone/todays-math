@@ -1430,16 +1430,23 @@ export const M1_CALC: TypeEntry[] = [
  * 판정형(`judge/addSub.ts` — 2026-10-08 엔진 보강 1단계)이 **같은 셈 · 같은 표기**를 쓰도록 연다.
  * 보기 식을 이 모듈의 유형(01 · 03 · 04)과 똑같이 찍어야 «같은 유형 · 같은 꼴»이 지면에서도 같다 —
  * 표기를 한 벌 더 쓰면 한쪽만 고쳐도 아무도 모른다. 여기 있는 함수의 동작은 한 글자도 안 바뀐다.
+ *
+ * 2단계(곱셈 12 · 거듭제곱 15 · 나눗셈 19 · 혼합 20 의 판정 · 비교형)가 곱 · 몫 · 거듭제곱 · 절댓값 표기를 더 쓴다 —
+ * 내보내는 이름만 늘었다.
  */
 export type M1Q = Q;
 export const m1Rational = {
   q,
   addQ,
   subQ,
+  mulQ,
+  divQ,
   negQ,
+  powQ,
   nice,
   lcm,
   texQ,
+  absTex,
   texSigned,
   texRawFrac,
 } as const;
