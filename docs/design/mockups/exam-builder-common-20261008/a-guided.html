@@ -253,7 +253,7 @@
         padding: 16px 20px;
       }
       .workbench.wrap {
-        max-width: 1440px;
+        max-width: none;
       }
       .pagehead {
         display: flex;
@@ -1102,6 +1102,11 @@
     <script src="scope-data.js"></script>
     <script src="scope-picker.js"></script>
     <link rel="stylesheet" href="output-bridge.css" />
+    <link rel="stylesheet" href="question-picker.css" />
+    <link rel="stylesheet" href="question-reorder.css" />
+    <link rel="stylesheet" href="editing-layout.css" />
+    <script src="question-picker.js"></script>
+    <script src="question-reorder.js"></script>
     <script src="output-bridge.js"></script>
     <script>
       "use strict";
@@ -1631,7 +1636,7 @@
             ? '<div class="panel panelbody"><h3>구성한 문항이 없습니다.</h3><p class="muted" style="margin-top:8px">문항을 추가하거나 마지막 삭제를 취소해 주세요.</p></div>'
             : questionsHTML(false)) +
           '<div class="list-tail"><button id="add" data-action="add" ' +
-          (!candidates().length ? "disabled" : "") +
+          "" +
           ">" +
           icon("plus") +
           '문항 추가 <span class="caption">후보 ' +
@@ -1697,9 +1702,17 @@
         return (
           '<article class="question" data-qid="' +
           q.id +
+          '" data-reorder-id="' +
+          q.id +
           '" aria-label="' +
           (i + 1) +
-          '번 문항"><div class="q-head"><div class="q-meta"><span class="q-num">' +
+          '번 문항"><div class="q-head"><div class="q-meta">' +
+          (!print
+            ? '<button type="button" class="reorder-handle" data-reorder-handle aria-label="' +
+              (i + 1) +
+              '번 문항 순서 이동"><span aria-hidden="true">⠿</span></button>'
+            : "") +
+          '<span class="q-num">' +
           String(i + 1).padStart(2, "0") +
           '</span><span class="caption">' +
           esc(q.unitName) +
@@ -1798,77 +1811,49 @@
         dialogMode = null;
       }
       function openDialog(kind, index, trigger) {
+        if (kind !== "compose") {
+          let chosenId;
+          ExamQuestionPicker.open({
+            mode: kind,
+            levels: pool(state.applied).map((q) => q.level),
+            scopeLabel: state.applied.subject + " · " + scopeText(),
+            units: state.applied.units.map((u) => ({
+              value: u,
+              label: BANK[state.applied.subject].units[u].name,
+            })),
+            getCandidates: () =>
+              candidates().map((q) => ({ ...q, choices: q.options })),
+            getCount: () => state.questions.length,
+            onChoose: (id) => {
+              const q = candidates().find((q) => q.id === id);
+              if (!q) return false;
+              remember();
+              if (kind === "replace") state.questions[index] = q;
+              else state.questions.push(q);
+              chosenId = id;
+              render();
+              announce(
+                kind === "replace"
+                  ? "문항을 교체했습니다."
+                  : "문항을 추가했습니다.",
+              );
+            },
+            onClose: () => {
+              if (kind === "replace" && chosenId) focusId("replace-" + index);
+              else focusId(trigger || "add");
+            },
+          });
+          return;
+        }
         dialogMode = { kind, index };
         dialogReturn = trigger;
-        let content = "";
-        if (kind === "compose") {
-          content =
-            "<p>새로 선택한 범위로 " +
-            state.draft.count +
-            "문항을 구성합니다. 현재 문항 편집은 실행 취소로 되돌릴 수 있습니다.</p>";
-        } else {
-          const list = candidates();
-          content =
-            '<p class="caption">' +
-            esc(state.applied.subject) +
-            " · 현재 출제 범위 · 담지 않은 후보 " +
-            list.length +
-            "문항</p>" +
-            (!list.length
-              ? '<p style="margin-top:16px">교체할 후보가 없습니다. 문항을 삭제해 후보로 돌리거나 범위를 넓혀 다시 구성해 주세요.</p>'
-              : list
-                  .map(
-                    (q) =>
-                      '<article class="candidate"><div class="row between"><span class="caption">' +
-                      esc(q.unitName) +
-                      " · " +
-                      q.level +
-                      "</span></div>" +
-                      (q.passage
-                        ? '<details><summary style="min-height:44px;display:flex;align-items:center;cursor:pointer;font-size:12px">연결된 지문 보기</summary><p class="passage">' +
-                          esc(q.passage) +
-                          "</p></details>"
-                        : "") +
-                      '<p class="q-copy">' +
-                      esc(q.prompt) +
-                      '</p><div class="options">' +
-                      q.options
-                        .map(
-                          (o, i) =>
-                            '<div class="option"><span>' +
-                            ["①", "②", "③", "④"][i] +
-                            "</span><span>" +
-                            esc(o) +
-                            "</span></div>",
-                        )
-                        .join("") +
-                      '</div><div class="row between"><span class="caption">자체 작성 예시</span><button class="primary" data-action="choose" data-id="' +
-                      q.id +
-                      '">' +
-                      (kind === "replace"
-                        ? "이 문항으로 교체"
-                        : "이 문항 추가") +
-                      "</button></div></article>",
-                  )
-                  .join(""));
-        }
         $("#dialog").innerHTML =
-          '<div class="dialoghead"><h2 id="dialog-title">' +
-          (kind === "compose"
-            ? "문항을 다시 구성할까요?"
-            : kind === "replace"
-              ? index + 1 + "번 문항 교체"
-              : "문항 추가") +
-          '</h2><button class="ghost" data-action="close" aria-label="닫기" autofocus>' +
+          '<div class="dialoghead"><h2 id="dialog-title">문항을 다시 구성할까요?</h2><button class="ghost" data-action="close" aria-label="닫기" autofocus>' +
           icon("close") +
-          '</button></div><div class="dialogbody">' +
-          content +
-          "</div>" +
-          (kind === "compose"
-            ? '<div class="dialogfoot"><button data-action="close">취소</button><button class="primary" data-action="confirm-compose">다시 구성</button></div>'
-            : "");
+          '</button></div><div class="dialogbody"><p>새로 선택한 범위로 ' +
+          state.draft.count +
+          '문항을 구성합니다. 현재 문항 편집은 실행 취소로 되돌릴 수 있습니다.</p></div><div class="dialogfoot"><button data-action="close">취소</button><button class="primary" data-action="confirm-compose">다시 구성</button></div>';
         $("#dialog").showModal();
-        $("#dialog").scrollTop = 0;
       }
       function compose() {
         // An empty or unsupported scope must never fall back to unrelated questions.
@@ -1945,21 +1930,6 @@
           openDialog(action, i, b.id);
         } else if (action === "close") {
           closeDialog();
-        } else if (action === "choose") {
-          const q = candidates().find((x) => x.id === b.dataset.id);
-          if (!q) return;
-          remember();
-          const mode = dialogMode,
-            focus = mode.kind === "replace" ? "replace-" + mode.index : "add";
-          if (mode.kind === "replace") state.questions[mode.index] = q;
-          else state.questions.push(q);
-          closeDialog();
-          render(focus);
-          announce(
-            mode.kind === "replace"
-              ? "문항을 교체했습니다."
-              : "문항을 추가했습니다.",
-          );
         } else if (action === "remove") {
           remember();
           state.questions.splice(i, 1);
@@ -2023,6 +1993,18 @@
         }
       });
       render();
+      ExamReorder.create({
+        container: $("#main"),
+        itemSelector: ".question[data-reorder-id]",
+        getIds: () => state.questions.map((q) => q.id),
+        onReorder: (ids) => {
+          remember();
+          const byId = new Map(state.questions.map((q) => [q.id, q]));
+          state.questions = ids.map((id) => byId.get(id));
+          render();
+        },
+        announce,
+      });
     </script>
   </body>
 </html>

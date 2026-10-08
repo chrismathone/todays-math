@@ -966,23 +966,14 @@
       <span id="toast-text"></span><button id="undo">되돌리기</button
       ><button id="dismiss" aria-label="알림 닫기">닫기</button>
     </div>
-    <dialog id="picker" aria-labelledby="picker-title">
-      <div class="dialog-inner">
-        <div class="dialog-head">
-          <div>
-            <h2 id="picker-title">문항 교체</h2>
-            <p class="caption muted" id="picker-help"></p>
-          </div>
-          <button class="quiet" data-close="picker" aria-label="문항 선택 닫기">
-            닫기
-          </button>
-        </div>
-        <div id="picker-list" class="candidates"></div>
-      </div>
-    </dialog>
     <script src="scope-data.js"></script>
     <script src="scope-picker.js"></script>
     <link rel="stylesheet" href="output-bridge.css" />
+    <link rel="stylesheet" href="question-picker.css" />
+    <link rel="stylesheet" href="question-reorder.css" />
+    <link rel="stylesheet" href="editing-layout.css" />
+    <script src="question-picker.js"></script>
+    <script src="question-reorder.js"></script>
     <script src="output-bridge.js"></script>
     <script>
       "use strict";
@@ -1290,7 +1281,6 @@
           answers: false,
         },
         history = [],
-        pickMode = null,
         returnFocus = null,
         lastNotice = "";
       function snapshot() {
@@ -1382,7 +1372,7 @@
         $("review").querySelector("h2").focus();
       }
       function qCard(q, index) {
-        return `<article class="question" id="q-${q.id}"><div class="q-top"><span class="q-no">${String(index + 1).padStart(2, "0")}</span><span class="badge">${q.level}</span></div>${SUBJECTS[state.subject].passages[q.unit] ? `<details style="margin-bottom:12px"><summary style="min-height:44px;padding:10px 0;cursor:pointer;font-size:12px;color:var(--learn-accent)">지문 · ${SUBJECTS[state.subject].units[q.unit]}</summary><p class="paper-passage">${escapeHtml(SUBJECTS[state.subject].passages[q.unit])}</p></details>` : ""}<p class="q-body">${escapeHtml(q.body)}</p>${state.answers ? `<p class="answer">정답 · ${escapeHtml(q.answer)}</p>` : ""}<div class="q-actions"><button data-replace="${q.id}">교체</button><button class="danger" data-remove="${q.id}">삭제</button><button class="move" data-move="${q.id}" data-direction="-1" aria-label="${index + 1}번 문항 앞으로"${index === 0 ? " disabled" : ""}>↑</button><button data-move="${q.id}" data-direction="1" aria-label="${index + 1}번 문항 뒤로"${index === state.questions.length - 1 ? " disabled" : ""}>↓</button></div></article>`;
+        return `<article class="question" id="q-${q.id}" data-reorder-id="${q.id}"><div class="q-top"><button type="button" class="reorder-handle" data-reorder-handle aria-label="${index + 1}번 문항 순서 이동"><span aria-hidden="true">⠿</span></button><span class="q-no">${String(index + 1).padStart(2, "0")}</span><span class="badge">${q.level}</span></div>${SUBJECTS[state.subject].passages[q.unit] ? `<details style="margin-bottom:12px"><summary style="min-height:44px;padding:10px 0;cursor:pointer;font-size:12px;color:var(--learn-accent)">지문 · ${SUBJECTS[state.subject].units[q.unit]}</summary><p class="paper-passage">${escapeHtml(SUBJECTS[state.subject].passages[q.unit])}</p></details>` : ""}<p class="q-body">${escapeHtml(q.body)}</p>${state.answers ? `<p class="answer">정답 · ${escapeHtml(q.answer)}</p>` : ""}<div class="q-actions"><button data-replace="${q.id}">교체</button><button class="danger" data-remove="${q.id}">삭제</button><button class="move" data-move="${q.id}" data-direction="-1" aria-label="${index + 1}번 문항 앞으로"${index === 0 ? " disabled" : ""}>↑</button><button data-move="${q.id}" data-direction="1" aria-label="${index + 1}번 문항 뒤로"${index === state.questions.length - 1 ? " disabled" : ""}>↓</button></div></article>`;
       }
       function renderReview() {
         const qs = state.questions;
@@ -1442,49 +1432,53 @@
         if (state.composed) renderReview();
       }
       function openPicker(mode) {
-        pickMode = mode;
-        returnFocus = document.activeElement;
         const current = state.questions.find((q) => q.id === mode);
-        const selected = new Set(state.questions.map((q) => q.id));
-        let candidates = poolFor(state.subject).filter(
-          (q) => !selected.has(q.id) && state.applied.scope.includes(q.unit),
-        );
-        if (current)
-          candidates = candidates.filter((q) => q.unit === current.unit);
-        $("picker-title").textContent = current ? "문항 교체" : "문항 추가";
-        $("picker-help").textContent = current
-          ? `${SUBJECTS[state.subject].units[current.unit]} · 번호와 나머지 문항은 유지됩니다.`
-          : `${scopeText(true)} · 이미 구성한 문항 제외`;
-        $("picker-list").innerHTML = candidates.length
-          ? candidates
-              .map(
-                (q) =>
-                  `<button class="candidate" data-pick="${q.id}"><span>${SUBJECTS[state.subject].units[q.unit]} · ${q.level}</span>${escapeHtml(q.body)}<b>${current ? "이 문항으로 교체" : "이 문항 추가"} →</b></button>`,
-              )
-              .join("")
-          : '<p class="alert">현재 범위에서 선택할 수 있는 다른 예시 문항이 없습니다. 조건 수정에서 범위를 넓혀주세요.</p>';
-        document.querySelectorAll("[data-pick]").forEach(
-          (el) =>
-            (el.onclick = () => {
-              const q = poolFor(state.subject).find(
-                (q) => q.id === el.dataset.pick,
-              );
-              snapshot();
-              if (current)
-                state.questions[
-                  state.questions.findIndex((q) => q.id === mode)
-                ] = q;
-              else state.questions.push(q);
-              $("picker").close();
-              renderReview();
-              notify(current ? "문항을 교체했습니다." : "문항을 추가했습니다.");
-              const focus = current
-                ? document.querySelector(`[data-replace="${q.id}"]`)
-                : $("add");
-              focus?.focus();
-            }),
-        );
-        $("picker").showModal();
+        let chosenId;
+        const available = () =>
+          poolFor(state.subject).filter(
+            (q) =>
+              !state.questions.some((selected) => selected.id === q.id) &&
+              state.applied.scope.includes(q.unit) &&
+              (!current || current.unit === q.unit),
+          );
+        ExamQuestionPicker.open({
+          mode: current ? "replace" : "add",
+          levels: poolFor(state.subject).map((q) => q.level),
+          scopeLabel: scopeText(true),
+          units: state.applied.scope
+            .filter((u) => !current || u === current.unit)
+            .map((u) => ({
+              value: u,
+              label: SUBJECTS[state.subject].units[u],
+            })),
+          getCandidates: () =>
+            available().map((q) => ({
+              ...q,
+              prompt: q.body,
+              unitName: SUBJECTS[state.subject].units[q.unit],
+              passage: SUBJECTS[state.subject].passages[q.unit],
+            })),
+          getCount: () => state.questions.length,
+          onChoose: (id) => {
+            const q = available().find((q) => q.id === id);
+            if (!q) return false;
+            snapshot();
+            if (current)
+              state.questions[
+                state.questions.findIndex((q) => q.id === current.id)
+              ] = q;
+            else state.questions.push(q);
+            chosenId = id;
+            renderReview();
+            notify(current ? "문항을 교체했습니다." : "문항을 추가했습니다.");
+          },
+          onClose: () =>
+            current
+              ? document
+                  .querySelector(`[data-replace="${chosenId || current.id}"]`)
+                  ?.focus({ preventScroll: true })
+              : $("add")?.focus({ preventScroll: true }),
+        });
       }
       function preview() {
         const meta = SUBJECTS[state.subject];
@@ -1534,6 +1528,18 @@
         $("toast").hidden = true;
       };
       render();
+      ExamReorder.create({
+        container: $("review"),
+        itemSelector: ".question[data-reorder-id]",
+        getIds: () => state.questions.map((q) => q.id),
+        onReorder: (ids) => {
+          snapshot();
+          const byId = new Map(state.questions.map((q) => [q.id, q]));
+          state.questions = ids.map((id) => byId.get(id));
+          renderReview();
+        },
+        announce: notify,
+      });
     </script>
   </body>
 </html>

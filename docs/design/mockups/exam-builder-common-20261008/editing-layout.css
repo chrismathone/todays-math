@@ -1,0 +1,188 @@
+/* Editing surfaces use the available screen; the shared print renderer owns paper sizing. */
+@media screen {
+  .wrap,
+  .main,
+  .workspace {
+    max-width: none;
+  }
+  .pagehead,
+  .heading {
+    margin-bottom: 16px;
+  }
+  .steps {
+    margin-bottom: 16px;
+  }
+  .guided-review,
+  .workbench-grid,
+  .canvas,
+  .review-grid {
+    min-width: 0;
+  }
+  .question .q-head,
+  .question .q-top {
+    margin-bottom: 12px;
+  }
+  .question .q-meta {
+    flex-wrap: wrap;
+  }
+  .question .q-top {
+    justify-content: flex-start;
+  }
+  .question .q-top .badge {
+    margin-left: auto;
+  }
+  .question .q-body {
+    min-height: 0;
+  }
+  .question .q-tools,
+  .question .q-actions {
+    margin-top: 12px;
+  }
+  .blueprint-mode .question {
+    display: block;
+  }
+  .blueprint-mode .q-actions {
+    max-width: none;
+    justify-content: flex-end;
+  }
+  .blueprint-mode .qmeta {
+    display: block;
+  }
+  .question-list,
+  .question-group,
+  .questions {
+    align-items: start;
+  }
+  .question-list > .group-panel {
+    grid-column: 1 / -1;
+  }
+  .paper-stage .paper {
+    width: 100%;
+    max-width: none;
+    min-height: 0;
+    padding: 20px;
+  }
+  .paper-stage .paper-header {
+    margin-bottom: 16px;
+    padding-bottom: 16px;
+  }
+  .paper-stage .paper .question {
+    padding: 16px 0;
+  }
+  .initial-empty.panel,
+  .empty-composition {
+    padding: 20px;
+  }
+  .eqp-dialog {
+    font-family: inherit;
+  }
+  @media (min-width: 1200px) {
+    .blueprint-mode .shell {
+      grid-template-columns: 184px minmax(0, 1fr);
+    }
+    .blueprint-mode .workspace {
+      display: grid;
+      grid-template-columns: 440px minmax(0, 1fr);
+      gap: 16px 20px;
+      align-content: start;
+      align-items: start;
+    }
+    .blueprint-mode .heading,
+    .blueprint-mode .footnote {
+      grid-column: 1 / -1;
+      margin: 0;
+    }
+    .blueprint-mode #scope {
+      grid-column: 1;
+      grid-row: 2 / span 2;
+      margin: 0;
+    }
+    .blueprint-mode #composition {
+      grid-column: 2;
+      grid-row: 2;
+      min-width: 0;
+    }
+    .blueprint-mode #output {
+      grid-column: 2;
+      grid-row: 3;
+      margin: 0;
+    }
+    .blueprint-mode .initial-empty {
+      grid-column: 2;
+      grid-row: 2;
+      margin: 0;
+    }
+    .blueprint-mode .results-heading {
+      margin-top: 0;
+    }
+    .blueprint-mode .blueprint-table :is(th, td) {
+      padding: 12px;
+    }
+    .blueprint-mode .blueprint-table th:first-child {
+      width: auto;
+    }
+    .blueprint-mode .blueprint-table th:nth-child(2) {
+      width: 140px;
+    }
+    .blueprint-mode .blueprint-table th:last-child {
+      width: 90px;
+    }
+    .blueprint-mode .blueprint-table td:last-child {
+      white-space: nowrap;
+    }
+    .blueprint-mode .output-fields {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: end;
+    }
+    .blueprint-mode .output-fields .title-field {
+      flex: 1;
+      min-width: 180px;
+    }
+    .blueprint-mode .output-fields button {
+      flex-shrink: 0;
+    }
+    .question-list,
+    .question-group {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 420px), 1fr));
+      gap: 12px;
+    }
+    .unit-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+      gap: 0 20px;
+      align-items: start;
+    }
+    .unit-content > .passage {
+      grid-column: 1 / -1;
+    }
+    .questions {
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+    }
+  }
+  @media (max-width: 860px) {
+    .wrap,
+    .main,
+    .workspace {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+    .paper-stage .paper {
+      padding: 16px;
+    }
+    .question .question-top {
+      gap: 8px;
+    }
+    .question .qno {
+      min-width: 24px;
+    }
+    .question .q-head {
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .question .q-meta {
+      gap: 8px;
+    }
+  }
+}

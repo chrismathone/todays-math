@@ -1217,15 +1217,6 @@
   </head>
   <body>
     <div id="app"></div>
-    <dialog id="candidate-dialog" aria-labelledby="candidate-title">
-      <div class="dialog-head">
-        <h2 id="candidate-title">문항 교체</h2>
-        <button class="icon" data-action="close-candidate" aria-label="닫기">
-          ×
-        </button>
-      </div>
-      <div class="dialog-content" id="candidate-content"></div>
-    </dialog>
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
     <noscript
       >이 시안은 로컬 JavaScript를 켜야 문항을 구성하고 편집할 수
@@ -1234,6 +1225,11 @@
     <script src="scope-data.js"></script>
     <script src="scope-picker.js"></script>
     <link rel="stylesheet" href="output-bridge.css" />
+    <link rel="stylesheet" href="question-picker.css" />
+    <link rel="stylesheet" href="question-reorder.css" />
+    <link rel="stylesheet" href="editing-layout.css" />
+    <script src="question-picker.js"></script>
+    <script src="question-reorder.js"></script>
     <script src="output-bridge.js"></script>
     <script>
       "use strict";
@@ -1738,8 +1734,6 @@
         order: [0, 1, 2],
       };
       let history = [],
-        candidateContext = null,
-        dialogOpener = null,
         toastTimer;
       const units = () => BANK[state.subject];
       const scopeController = window.ExamScope.create({
@@ -1792,9 +1786,9 @@
       }
       function questionHTML(id, i, output = false) {
         const q = getQ(id);
-        const ordered = VARIANT === "D" ? unitItems(q.unit) : state.items;
+        const ordered = state.items;
         const pos = ordered.indexOf(id);
-        return `<article class="question" id="${output ? "out" : "q"}-${esc(id)}" tabindex="-1" data-id="${esc(id)}"><div class="question-top"><span class="qno">${String(i + 1).padStart(2, "0")}</span><div class="qbody"><div class="qmeta">${esc(units()[q.unit].name)} · ${q.level} · ${q.choices.length ? "선택형" : "서답형"}</div><p class="prompt">${esc(q.text)}</p>${choiceHTML(q)}${state.space ? '<div class="space" aria-label="풀이 공간"></div>' : ""}${output && state.answers ? `<div class="answer"><b>정답</b> ${esc(q.answer)}</div>` : ""}</div></div>${output ? "" : `<div class="q-actions"><button data-action="replace" data-id="${esc(id)}" aria-label="${i + 1}번 문항 교체">교체</button><button data-action="delete" data-id="${esc(id)}" class="danger" aria-label="${i + 1}번 문항 삭제">삭제</button><button class="icon" data-action="up" data-id="${esc(id)}" aria-label="${i + 1}번 문항 위로" ${pos === 0 ? "disabled" : ""}>↑</button><button class="icon" data-action="down" data-id="${esc(id)}" aria-label="${i + 1}번 문항 아래로" ${pos === ordered.length - 1 ? "disabled" : ""}>↓</button></div>`}</article>`;
+        return `<article class="question" id="${output ? "out" : "q"}-${esc(id)}" tabindex="-1" data-id="${esc(id)}" data-reorder-id="${esc(id)}"><div class="question-top">${output ? "" : `<button type="button" class="reorder-handle" data-reorder-handle aria-label="${i + 1}번 문항 순서 이동"><span aria-hidden="true">⠿</span></button>`}<span class="qno">${String(i + 1).padStart(2, "0")}</span><div class="qbody"><div class="qmeta">${esc(units()[q.unit].name)} · ${q.level} · ${q.choices.length ? "선택형" : "서답형"}</div><p class="prompt">${esc(q.text)}</p>${choiceHTML(q)}${state.space ? '<div class="space" aria-label="풀이 공간"></div>' : ""}${output && state.answers ? `<div class="answer"><b>정답</b> ${esc(q.answer)}</div>` : ""}</div></div>${output ? "" : `<div class="q-actions"><button data-action="replace" data-id="${esc(id)}" aria-label="${i + 1}번 문항 교체">교체</button><button data-action="delete" data-id="${esc(id)}" class="danger" aria-label="${i + 1}번 문항 삭제">삭제</button><button class="icon" data-action="up" data-id="${esc(id)}" aria-label="${i + 1}번 문항 위로" ${pos === 0 ? "disabled" : ""}>↑</button><button class="icon" data-action="down" data-id="${esc(id)}" aria-label="${i + 1}번 문항 아래로" ${pos === ordered.length - 1 ? "disabled" : ""}>↓</button></div>`}</article>`;
       }
       function sequenceHTML(output = false) {
         let prev = -1;
@@ -1849,7 +1843,7 @@
         return `<div class="info-row"><span>선택형</span><b>${choice}문항</b></div><div class="info-row"><span>서답형</span><b>${state.items.length - choice}문항</b></div>`;
       }
       function renderC() {
-        return `${commonNote()}<header class="masthead"><div class="brand"><span class="mark" aria-hidden="true">T</span>${esc(window.ExamScope.productName)}</div><div class="caption">지면에서 읽고, 바로 다듬는 시험지</div></header><main class="workspace"><div class="heading spread"><div><h1>시험지 만들기</h1><p>범위를 정하고, 시험지 위에서 문항을 다듬으세요.</p></div><span class="badge">C · 지면 중심</span></div><section class="panel setup" id="scope" aria-labelledby="scope-title"><div class="spread setup-head"><h2 id="scope-title">출제 범위</h2></div>${scopeHTML()}<div class="setup-main"><label class="field"><span>구성할 문항 수</span><select id="target">${[4, 6, 8].map((n) => `<option ${state.target === n ? "selected" : ""} value="${n}">${n}문항</option>`).join("")}</select></label><button class="primary" data-action="compose">시험지 구성 <span aria-hidden="true">→</span></button></div><p class="setup-footer caption" id="scope-status"></p></section><div class="initial-empty panel"><span class="eyebrow">다음 · 지면에서 문항 다듬기</span><h2>범위를 정하면 시험지가 펼쳐집니다.</h2><p class="muted">위에서 시험지 구성을 눌러 예시 문항을 확인하세요.</p></div><div class="canvas"><section class="paper-stage" aria-label="시험지 편집"><div class="spread paper-toolbar"><span class="caption">시험지 편집 · ${state.items.length}문항</span><div class="row"><button class="text" data-action="undo" ${history.length ? "" : "disabled"}>↶ 되돌리기</button><button data-action="add">＋ 문항 추가</button></div></div>${paperHTML()}</section><aside class="inspector" aria-label="문항과 양식 구성"><section class="panel"><div class="spread"><h2>문항 이동</h2><span class="badge">${state.items.length}문항</span></div><div class="navigator">${state.items.map((id, i) => `<button data-action="jump" data-id="${esc(id)}" aria-label="${i + 1}번 문항으로 이동">${String(i + 1).padStart(2, "0")}</button>`).join("")}</div><div class="question-summary">${countTypes()}<p class="caption" style="margin-top:8px">문항 옆의 ↑ ↓로 순서를 바꿀 수 있어요.</p></div></section><section class="panel"><h2>양식 구성 · 출력</h2>${titleField()}<div style="margin-top:16px">${previewButton()}</div><p class="caption" style="margin-top:12px">평가원 · 정통 · 모던 · 워크북 · 자습 · 유형<br>다음 화면에서 양식과 인쇄 설정을 구성합니다.</p></section></aside></div><p class="footnote">이 시안을 위해 작성한 문항입니다. 실제 문제은행·교육과정 검증 자료가 아니며 새로고침하면 편집 내용이 초기화됩니다.</p></main>`;
+        return `${commonNote()}<header class="masthead"><div class="brand"><span class="mark" aria-hidden="true">T</span>${esc(window.ExamScope.productName)}</div><div class="caption">지면에서 읽고, 바로 다듬는 시험지</div></header><main class="workspace"><div class="heading spread"><div><h1>시험지 만들기</h1><p>범위를 정하고, 시험지 위에서 문항을 다듬으세요.</p></div><span class="badge">C · 지면 중심</span></div><section class="panel setup" id="scope" aria-labelledby="scope-title"><div class="spread setup-head"><h2 id="scope-title">출제 범위</h2></div>${scopeHTML()}<div class="setup-main"><label class="field"><span>구성할 문항 수</span><select id="target">${[4, 6, 8].map((n) => `<option ${state.target === n ? "selected" : ""} value="${n}">${n}문항</option>`).join("")}</select></label><button class="primary" data-action="compose">시험지 구성 <span aria-hidden="true">→</span></button></div><p class="setup-footer caption" id="scope-status"></p></section><div class="initial-empty panel"><span class="eyebrow">다음 · 지면에서 문항 다듬기</span><h2>범위를 정하면 시험지가 펼쳐집니다.</h2><p class="muted">위에서 시험지 구성을 눌러 예시 문항을 확인하세요.</p></div><div class="canvas"><section class="paper-stage" aria-label="시험지 편집"><div class="spread paper-toolbar"><span class="caption">시험지 편집 · ${state.items.length}문항</span><div class="row"><button class="text" data-action="undo" ${history.length ? "" : "disabled"}>↶ 되돌리기</button><button data-action="add">＋ 문항 추가</button></div></div>${paperHTML()}</section><aside class="inspector" aria-label="문항과 양식 구성"><section class="panel"><div class="spread"><h2>문항 이동</h2><span class="badge">${state.items.length}문항</span></div><div class="navigator">${state.items.map((id, i) => `<button data-action="jump" data-id="${esc(id)}" aria-label="${i + 1}번 문항으로 이동">${String(i + 1).padStart(2, "0")}</button>`).join("")}</div><div class="question-summary">${countTypes()}<p class="caption" style="margin-top:8px">문항의 ⠿ 손잡이를 끌거나 ↑ ↓로 순서를 바꾸세요.</p></div></section><section class="panel"><h2>양식 구성 · 출력</h2>${titleField()}<div style="margin-top:16px">${previewButton()}</div><p class="caption" style="margin-top:12px">평가원 · 정통 · 모던 · 워크북 · 자습 · 유형<br>다음 화면에서 양식과 인쇄 설정을 구성합니다.</p></section></aside></div><p class="footnote">이 시안을 위해 작성한 문항입니다. 실제 문제은행·교육과정 검증 자료가 아니며 새로고침하면 편집 내용이 초기화됩니다.</p></main>`;
       }
       let allocationPage = 0;
       function allocationHTML() {
@@ -1870,19 +1864,23 @@
           .join("");
         return `<table class="blueprint-table"><thead><tr><th scope="col">선택한 출제 범위</th><th scope="col">구성할 문항 수</th><th scope="col">현재 담은 문항</th></tr></thead><tbody>${rows || '<tr><td colspan="3">출제할 범위를 선택하세요.</td></tr>'}</tbody></table>${pages > 1 ? `<div class="scope-pager" aria-label="출제 구성표 페이지"><button data-action="allocation-prev" ${allocationPage ? "" : "disabled"}>이전</button><span>${allocationPage + 1} / ${pages} · ${selected.length}개 범위</span><button data-action="allocation-next" ${allocationPage + 1 === pages ? "disabled" : ""}>다음</button></div>` : ""}`;
       }
+      function questionRuns() {
+        const runs = [];
+        for (const id of state.items) {
+          const unit = getQ(id).unit;
+          if (runs.at(-1)?.unit === unit) runs.at(-1).ids.push(id);
+          else runs.push({ unit, ids: [id] });
+        }
+        return runs;
+      }
       function renderD() {
         const total = state.counts.reduce((a, b) => a + b, 0);
-        return `${commonNote()}<div class="shell"><aside class="rail"><div><div class="brand"><span class="mark" aria-hidden="true">T</span>${esc(window.ExamScope.productName)}</div></div><nav aria-label="현재 작업"><a class="rail-link selected" href="#scope"><small>01</small>출제 구성표</a><a class="rail-link" href="#composition"><small>02</small>문항 다듬기</a><a class="rail-link" href="#output"><small>03</small>출력 설정</a></nav><div class="rail-stat"><div class="eyebrow">현재 시험지</div><div class="rail-count">${state.items.length}<span style="font-size:14px;font-weight:500;margin-left:8px">문항</span></div><p class="caption" style="color:#b4c4da;margin-top:8px">${state.order.filter((i) => unitItems(i).length).length}개 단원 · ${esc(state.subject)}</p></div><p class="rail-note">단원별 수량을 먼저 정하고<br>문항을 한 묶음씩 검토합니다.</p></aside><main class="workspace"><div class="heading spread"><div><div class="eyebrow" style="margin-bottom:8px">D · 구성표 중심</div><h1>시험지 만들기</h1><p>단원별 출제 수를 정하고, 구성을 한눈에 확인하세요.</p></div>${previewButton()}</div><section class="panel setup" id="scope" aria-labelledby="scope-title"><div class="setup-head spread"><div><h2 id="scope-title">출제 구성표</h2><p class="caption" style="margin-top:4px">선택한 범위만 표시합니다. 범위가 많으면 8개씩 나눠 확인합니다.</p></div></div>${scopeHTML()}${allocationHTML()}<div class="compose-bar"><div><span class="total">합계 ${total}문항</span><p class="caption" id="scope-status" style="margin-top:4px"></p></div><button class="primary" data-action="compose" ${total ? "" : "disabled"}>시험지 구성 <span aria-hidden="true">→</span></button></div></section><div class="initial-empty panel"><span class="eyebrow">다음 · 단원별 문항 검토</span><h2>구성표가 시험지의 뼈대가 됩니다.</h2><p class="muted">단원별 문항 수를 정한 뒤 시험지 구성을 눌러 주세요.</p></div><section id="composition" aria-labelledby="composition-title"><div class="spread results-heading"><div><h2 id="composition-title">구성한 문항 <span class="badge">${state.items.length}</span></h2><p class="caption" style="margin-top:4px">단원 안에서 문항을 바꾸고 순서를 조정하세요.</p></div><div class="row"><button class="text" data-action="undo" ${history.length ? "" : "disabled"}>↶ 되돌리기</button><button data-action="add">＋ 문항 추가</button></div></div>${
+        return `${commonNote()}<div class="shell"><aside class="rail"><div><div class="brand"><span class="mark" aria-hidden="true">T</span>${esc(window.ExamScope.productName)}</div></div><nav aria-label="현재 작업"><a class="rail-link selected" href="#scope"><small>01</small>출제 구성표</a><a class="rail-link" href="#composition"><small>02</small>문항 다듬기</a><a class="rail-link" href="#output"><small>03</small>출력 설정</a></nav><div class="rail-stat"><div class="eyebrow">현재 시험지</div><div class="rail-count">${state.items.length}<span style="font-size:14px;font-weight:500;margin-left:8px">문항</span></div><p class="caption" style="color:#b4c4da;margin-top:8px">${state.order.filter((i) => unitItems(i).length).length}개 단원 · ${esc(state.subject)}</p></div><p class="rail-note">단원별 수량을 먼저 정하고<br>문항을 한 묶음씩 검토합니다.</p></aside><main class="workspace"><div class="heading spread"><div><div class="eyebrow" style="margin-bottom:8px">D · 구성표 중심</div><h1>시험지 만들기</h1><p>단원별 출제 수를 정하고, 구성을 한눈에 확인하세요.</p></div>${previewButton()}</div><section class="panel setup" id="scope" aria-labelledby="scope-title"><div class="setup-head spread"><div><h2 id="scope-title">출제 구성표</h2><p class="caption" style="margin-top:4px">선택한 범위만 표시합니다. 범위가 많으면 8개씩 나눠 확인합니다.</p></div></div>${scopeHTML()}${allocationHTML()}<div class="compose-bar"><div><span class="total">합계 ${total}문항</span><p class="caption" id="scope-status" style="margin-top:4px"></p></div><button class="primary" data-action="compose" ${total ? "" : "disabled"}>시험지 구성 <span aria-hidden="true">→</span></button></div></section><div class="initial-empty panel"><span class="eyebrow">다음 · 단원별 문항 검토</span><h2>구성표가 시험지의 뼈대가 됩니다.</h2><p class="muted">단원별 문항 수를 정한 뒤 시험지 구성을 눌러 주세요.</p></div><section id="composition" aria-labelledby="composition-title"><div class="spread results-heading"><div><h2 id="composition-title">구성한 문항 <span class="badge">${state.items.length}</span></h2><p class="caption" style="margin-top:4px">⠿ 손잡이를 끌어 원하는 위치로 옮기세요. 단원 사이 이동도 가능합니다.</p></div><div class="row"><button class="text" data-action="undo" ${history.length ? "" : "disabled"}>↶ 되돌리기</button><button data-action="add">＋ 문항 추가</button></div></div>${
           state.items.length
-            ? state.order
-                .filter((u) => unitItems(u).length)
+            ? questionRuns()
                 .map(
-                  (u, idx, arr) =>
-                    `<section class="unit-group" id="unit-${u}"><div class="unit-heading"><div class="unit-name"><span class="unit-code">${String(idx + 1).padStart(2, "0")}</span><div><h2>${esc(units()[u].name)}</h2><p class="caption">${esc(units()[u].topic)} · ${unitItems(u).length}문항</p></div></div><div class="row"><button data-action="add" data-unit="${u}">＋ 문항 추가</button><button class="icon" data-action="unit-up" data-unit="${u}" aria-label="${esc(units()[u].name)} 단원 위로" ${idx === 0 ? "disabled" : ""}>↑</button><button class="icon" data-action="unit-down" data-unit="${u}" aria-label="${esc(units()[u].name)} 단원 아래로" ${idx === arr.length - 1 ? "disabled" : ""}>↓</button></div></div><div class="unit-content">${passageHTML(u)}${unitItems(
-                      u,
-                    )
-                      .map((id) => questionHTML(id, state.items.indexOf(id)))
-                      .join("")}</div></section>`,
+                  ({ unit: u, ids }, index) =>
+                    `<section class="unit-group" id="unit-${u}-${index}"><div class="unit-heading"><div class="unit-name"><span class="unit-code">${String(index + 1).padStart(2, "0")}</span><div><h2>${esc(units()[u].name)}</h2><p class="caption">${esc(units()[u].topic)} · ${ids.length}문항</p></div></div><button data-action="add" data-unit="${u}">＋ 문항 추가</button></div><div class="unit-content">${passageHTML(u)}${ids.map((id) => questionHTML(id, state.items.indexOf(id))).join("")}</div></section>`,
                 )
                 .join("")
             : '<div class="panel empty"><h2>아직 담은 문항이 없습니다</h2><p>출제 구성표에서 수량을 정하거나 문항을 추가하세요.</p></div>'
@@ -1919,10 +1917,6 @@
           if (el) el.focus({ preventScroll: true });
         }
       }
-      function normalize() {
-        if (VARIANT === "D")
-          state.items = state.order.flatMap((u) => unitItems(u));
-      }
       function compose(initial = false) {
         if ($('[data-action="compose"]').disabled) return;
         if (!initial) remember();
@@ -1956,48 +1950,56 @@
           notify(`${state.items.length}문항으로 시험지를 구성했습니다.`);
       }
       function openCandidates(mode, id = null, unit = null) {
-        if (mode === "add" && Number.isInteger(unit) && !state.selected[unit])
-          unit = "scope";
-        candidateContext = { mode, id, unit };
-        dialogOpener = document.activeElement;
-        $("#candidate-title").textContent =
-          mode === "replace" ? "문항 교체" : "문항 추가";
-        renderCandidates();
-        $("#candidate-dialog").showModal();
-      }
-      function renderCandidates() {
-        const { mode, id, unit } = candidateContext;
-        const filter = mode === "replace" ? getQ(id).unit : unit;
-        const pool = units()
-          .flatMap((u) => u.questions)
-          .filter(
-            (q) =>
-              !state.items.includes(q.id) &&
-              (mode === "replace" || state.selected[q.unit]) &&
-              (filter === null ||
-                (filter === "scope"
-                  ? state.selected[q.unit]
-                  : q.unit === filter)),
-          );
-        $("#candidate-content").innerHTML = `${
-          mode === "replace"
-            ? `<p class="dialog-intro">${esc(units()[filter].name)} · 현재 문항과 같은 자체 작성 예제 범위입니다.</p>`
-            : `<label class="field"><span>추가할 단원</span><select id="candidate-unit"><option value="scope" ${filter === "scope" ? "selected" : ""}>선택한 출제 범위</option>${units()
-                .map((unit, i) => ({ unit, i }))
-                .filter(({ i }) => state.selected[i])
-                .map(
-                  ({ unit: u, i }) =>
-                    `<option value="${i}" ${filter === i ? "selected" : ""}>${esc(u.name)}</option>`,
-                )
-                .join(
-                  "",
-                )}</select></label><p class="dialog-intro">현재 시험지에 없는 예시 ${pool.length}문항</p>`
-        }${pool.length ? pool.map((q) => `<article class="candidate"><div class="row" style="margin-bottom:8px"><span class="badge">${esc(units()[q.unit].name)}</span><span class="caption">${q.level} · ${q.choices.length ? "선택형" : "서답형"}</span></div>${units()[q.unit].passage ? `<details><summary class="check">연결 지문 보기</summary>${passageHTML(q.unit)}</details>` : ""}<p class="prompt">${esc(q.text)}</p>${choiceHTML(q)}<button class="primary" data-action="choose" data-id="${esc(q.id)}">${mode === "replace" ? "이 문항으로 교체" : "이 문항 추가"}</button></article>`).join("") : '<div class="empty"><h2>남은 후보가 없습니다</h2><p>선택 범위에 연결된 예제가 없거나, 연결된 예제를 모두 담았습니다. 출제 범위에서 자체 작성 예시를 선택할 수 있습니다.</p></div>'}`;
-      }
-      function closeCandidate() {
-        $("#candidate-dialog").close();
-        if (dialogOpener?.isConnected) dialogOpener.focus();
-        else $('[data-action="add"]')?.focus({ preventScroll: true });
+        const current = mode === "replace" ? getQ(id) : null;
+        let chosenId;
+        const available = () =>
+          units()
+            .flatMap((u) => u.questions)
+            .filter(
+              (q) =>
+                !state.items.includes(q.id) &&
+                (current ? q.unit === current.unit : state.selected[q.unit]),
+            );
+        ExamQuestionPicker.open({
+          mode,
+          levels: units()
+            .flatMap((u) => u.questions)
+            .map((q) => q.level),
+          scopeLabel: current ? units()[current.unit].name : "현재 출제 범위",
+          units: units()
+            .map((u, i) => ({ value: i, label: u.name }))
+            .filter((u) =>
+              current ? u.value === current.unit : state.selected[u.value],
+            ),
+          initialUnit: current
+            ? current.unit
+            : Number.isInteger(unit) && state.selected[unit]
+              ? unit
+              : "",
+          getCandidates: () =>
+            available().map((q) => ({
+              ...q,
+              prompt: q.text,
+              unitName: units()[q.unit].name,
+              passage: units()[q.unit].passage,
+            })),
+          getCount: () => state.items.length,
+          onChoose: (chosen) => {
+            if (!available().some((q) => q.id === chosen)) return false;
+            remember();
+            if (current) state.items[state.items.indexOf(id)] = chosen;
+            else state.items.push(chosen);
+            chosenId = chosen;
+            render();
+            notify(current ? "문항을 교체했습니다." : "문항을 추가했습니다.");
+          },
+          onClose: () =>
+            current
+              ? document
+                  .getElementById("q-" + (chosenId || id))
+                  ?.focus({ preventScroll: true })
+              : $('[data-action="add"]')?.focus({ preventScroll: true }),
+        });
       }
       function openOutput() {
         const ordered = state.items;
@@ -2074,24 +2076,6 @@
             null,
             b.dataset.unit === undefined ? "scope" : u,
           );
-        if (action === "close-candidate") closeCandidate();
-        if (action === "choose") {
-          remember();
-          const ctx = candidateContext;
-          if (ctx.mode === "replace")
-            state.items[state.items.indexOf(ctx.id)] = id;
-          else state.items.push(id);
-          normalize();
-          $("#candidate-dialog").close();
-          render();
-          const focus = document.getElementById("q-" + id);
-          focus?.focus({ preventScroll: true });
-          notify(
-            ctx.mode === "replace"
-              ? "문항을 교체했습니다."
-              : "문항을 추가했습니다.",
-          );
-        }
         if (action === "delete") {
           remember();
           const index = state.items.indexOf(id);
@@ -2106,8 +2090,7 @@
           notify("문항을 삭제했습니다. 되돌리기로 복원할 수 있어요.");
         }
         if (action === "up" || action === "down") {
-          const candidates =
-            VARIANT === "D" ? unitItems(getQ(id).unit) : state.items;
+          const candidates = state.items;
           const i = candidates.indexOf(id),
             to = i + (action === "up" ? -1 : 1);
           if (to < 0 || to >= candidates.length) return;
@@ -2117,20 +2100,6 @@
           [state.items[a], state.items[c]] = [state.items[c], state.items[a]];
           render("q-" + id);
           notify("문항 순서를 변경했습니다.");
-        }
-        if (action === "unit-up" || action === "unit-down") {
-          const visible = state.order.filter((x) => unitItems(x).length);
-          const i = visible.indexOf(u),
-            to = i + (action === "unit-up" ? -1 : 1);
-          if (to < 0 || to >= visible.length) return;
-          remember();
-          const a = state.order.indexOf(u),
-            c = state.order.indexOf(visible[to]);
-          [state.order[a], state.order[c]] = [state.order[c], state.order[a]];
-          normalize();
-          render();
-          $(`#unit-${u} h2`)?.scrollIntoView({ block: "nearest" });
-          notify("단원 순서를 변경했습니다.");
         }
         if (action === "more" || action === "less") {
           remember();
@@ -2161,12 +2130,7 @@
           scopeStatus();
           $('[data-action="undo"]').disabled = false;
         }
-        if (el.id === "candidate-unit") {
-          candidateContext.unit =
-            el.value === "scope" ? "scope" : Number(el.value);
-          renderCandidates();
-          $("#candidate-unit").focus();
-        }
+
         if (el.id === "answers" || el.id === "space") {
           remember();
           state[el.id] = el.checked;
@@ -2192,11 +2156,18 @@
               (el) => (el.textContent = e.target.value || "제목 없는 시험지"),
             );
       });
-      $("#candidate-dialog").addEventListener("cancel", (e) => {
-        e.preventDefault();
-        closeCandidate();
-      });
       render();
+      ExamReorder.create({
+        container: $("#app"),
+        itemSelector: ".question[data-reorder-id]",
+        getIds: () => [...state.items],
+        onReorder: (ids) => {
+          remember();
+          state.items = ids;
+          render();
+        },
+        announce: notify,
+      });
     </script>
   </body>
 </html>
