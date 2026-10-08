@@ -1,6 +1,6 @@
 "use client";
 import { useCallback, useLayoutEffect, useRef, useState } from "react";
-import StudioStepBar from "./StudioStepBar";
+import StudioStepBar, { type StudioStepNavigation } from "./StudioStepBar";
 import WorkProgress from "./WorkProgress";
 import { PrintOptionsPanel } from "./print/PrintOptionsPanel";
 import { WorksheetPrint } from "./print/WorksheetPrint";
@@ -23,6 +23,8 @@ import {
 } from "./worksheetOrder";
 import s from "./WorksheetEditor.module.css";
 interface Props {
+  headerTitle?: string;
+  stepNavigation?: StudioStepNavigation;
   libraryLabel?: string;
   cloudSaveStatus?: string;
   allowedMenus?: WorkspaceMenu[];
@@ -58,6 +60,8 @@ interface Props {
   onEditSource?: (problem: StudioProblem) => void;
 }
 export default function WorksheetEditor({
+  headerTitle,
+  stepNavigation,
   selected,
   title,
   columns,
@@ -195,6 +199,8 @@ export default function WorksheetEditor({
         셈을 모를 수 있고(작업실이 아직 안 떴다), 셈으로 막으면 돌아가는 길이 막힌다.
       */}
       <StudioStepBar
+        headerTitle={headerTitle}
+        stepNavigation={stepNavigation}
         step="export"
         cropCount={cropCount}
         pickedCount={selected.length}
