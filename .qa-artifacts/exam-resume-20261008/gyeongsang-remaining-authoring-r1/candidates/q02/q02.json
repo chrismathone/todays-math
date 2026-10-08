@@ -1,0 +1,350 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 2,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q02",
+  "authorId": "orca-codex-exam-twin-source-identity-20261008",
+  "questionType": "객관식",
+  "score": 3.0,
+  "content": "좌표평면 위의 세 점 $R(0,0)$, $P(a,0)$, $Q(0,b)$에 대하여 $a>0$, $b>0$이다.\n삼각형 $PQR$의 기록이 다음과 같다.\n\n| 항목 | 기록 |\n|---|---|\n| $\\overline{PQ}$의 길이 | $20$ |\n| $\\cos\\angle QPR$ | $\\frac{4}{5}$ |\n\n점 $P$의 $x$좌표 $a$의 값은?",
+  "choices": [
+    "$12$",
+    "$4$",
+    "$20$",
+    "$16$",
+    "$25$"
+  ],
+  "answer": "④",
+  "solution": "양의 $x$축 위의 점 $P$와 양의 $y$축 위의 점 $Q$가 원점 $R$과 이루는 삼각형은 $R$에서 직각이다. $a>0$이므로 $\\overline{PR}=a$이다.\n\n각 $QPR$의 이웃변은 $PR$, 빗변은 $PQ$이므로\n$\\cos\\angle QPR=\\frac{\\overline{PR}}{\\overline{PQ}}=\\frac{a}{20}=\\frac{4}{5}$이다.\n따라서 $a=20\\times\\frac45=16$이다.",
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "stem-1.spec.json",
+      "svgPath": "stem-1.svg",
+      "intendedWidthMm": 70
+    }
+  ],
+  "sourceReference": {
+    "externalId": "2025-gyeongsang-3-2-mid-2",
+    "sourceContentSha256": "02ca25987d09d2497dcb005c5c6a7d3707bf831d96148d2c99f3a6be4f7a2e30",
+    "sourceSchoolInternal": "경상중",
+    "sourceExamYear": 2025,
+    "packet": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsang/packet/questions.json",
+      "sha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b"
+    },
+    "sourceCommit": "4cc9278da",
+    "questionOnlyImageRefs": [
+      {
+        "file": "images/q02-part1.png",
+        "sha256": "4fc7396fde5ffab4fac25aad42890a7818b8c18e3eb81837e08f9ce6babfa4d1",
+        "page": 1,
+        "column": 0,
+        "bbox": [
+          55,
+          530.3187866210938,
+          375,
+          943.0
+        ]
+      }
+    ],
+    "providedOriginalFileRefs": [
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[경상중][3][25-2-중간][동아강] (완료).hwp",
+        "sha256": "bc0bb8c93f2e246b234c80c7fb89fcbdf8eda24536435e2fbe551ad916c1d4a1",
+        "bytes": 1635840
+      },
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[경상중][3][25-2-중간][동아강] (완료).PDF",
+        "sha256": "08917520000308226e93d261861ee419d2cc0b3b61658271e78462da12da8af4",
+        "bytes": 14846744
+      }
+    ],
+    "sourceIdentityAsProvided": "2025_original_header_school_footer_and_completed_question_identity_supported",
+    "sourceManifestOrOriginalAnswerInput": false
+  },
+  "variantDelta": {
+    "modes": [
+      "representation",
+      "inverse-target",
+      "structure"
+    ],
+    "before": "직각삼각형 $\\mathrm{ABC}$에서 $\\cos \\mathrm{A}$의 값은? [$3$점]\nC 직각; AB=29, BC=20, AC=21.",
+    "after": "세 변이 표시된 삼각형의 코사인 값을 묻던 것을, 코사인/빗변 기록에서 축 위 점의 양의 좌표를 복구하는 기하 표현으로 바꾼다.",
+    "sharedConcept": "코사인의 이웃변/빗변 정의",
+    "sharedProcedure": "축의 직각과 양의 좌표=선분 길이를 확인하고 코사인 정의로 이웃변을 역산한다.",
+    "originalAnswerOrNumericalAgreementUsed": false
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "status": "author-proposed",
+    "standardCodes": [
+      "9수04-01",
+      "9수04-17",
+      "9수04-18",
+      "9수03-01"
+    ],
+    "legitimateMethodDraft": "축의 직각과 양의 좌표=선분 길이를 확인하고 코사인 정의로 이웃변을 역산한다.",
+    "officialProvisions": [
+      {
+        "id": "9수04-01",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 4248,
+          "paragraph1based": 925,
+          "offset": 215704,
+          "text": "[9수04-01]\u001e점, 선, 면, 각을 이해하고, 점, 직선, 평면의 위치 관계를 설명할 수 있다. \r"
+        },
+        "pdfPhysicalPage1based": 37,
+        "pdfPrintedPage": 33,
+        "wholeClausePdfMatch": true
+      },
+      {
+        "id": "9수04-17",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 4341,
+          "paragraph1based": 948,
+          "offset": 219120,
+          "text": "[9수04-17]\u001e삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다. \r"
+        },
+        "pdfPhysicalPage1based": 38,
+        "pdfPrintedPage": 34,
+        "wholeClausePdfMatch": true
+      },
+      {
+        "id": "9수04-18",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 4345,
+          "paragraph1based": 949,
+          "offset": 219292,
+          "text": "[9수04-18]\u001e삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.\r"
+        },
+        "pdfPhysicalPage1based": 38,
+        "pdfPrintedPage": 34,
+        "wholeClausePdfMatch": true
+      },
+      {
+        "id": "9수03-01",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 4102,
+          "paragraph1based": 893,
+          "offset": 208503,
+          "text": "[9수03-01]\u001e순서쌍과 좌표를 이해한다.\r"
+        },
+        "pdfPhysicalPage1based": 36,
+        "pdfPrintedPage": 32,
+        "wholeClausePdfMatch": true
+      }
+    ],
+    "restrictionClauses": [
+      {
+        "id": "no_trig_ratio_relationships",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 4440,
+          "paragraph1based": 966,
+          "offset": 224820,
+          "text": "삼각비 사이의 관계는 다루지 않는다.\r"
+        },
+        "pdfPhysicalPage1based": 39,
+        "pdfPrintedPage": 35,
+        "wholeClausePdfMatch": true
+      },
+      {
+        "id": "angle_range",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 4444,
+          "paragraph1based": 967,
+          "offset": 224946,
+          "text": "삼각비의 값은 0°에서 90°까지의 각도에 대한 것만 다룬다.\r"
+        },
+        "pdfPhysicalPage1based": 39,
+        "pdfPrintedPage": 35,
+        "wholeClausePdfMatch": true
+      },
+      {
+        "id": "no_circle_proportionality",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 4452,
+          "paragraph1based": 969,
+          "offset": 225374,
+          "text": "원과 비례에 관한 성질은 다루지 않는다.\r"
+        },
+        "pdfPhysicalPage1based": 39,
+        "pdfPrintedPage": 35,
+        "wholeClausePdfMatch": true
+      },
+      {
+        "id": "no_complex_geometry_measurement",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 4472,
+          "paragraph1based": 974,
+          "offset": 226554,
+          "text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다.\r"
+        },
+        "pdfPhysicalPage1based": 39,
+        "pdfPrintedPage": 35,
+        "wholeClausePdfMatch": true
+      },
+      {
+        "id": "no_formal_complex_justification",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 4476,
+          "paragraph1based": 975,
+          "offset": 226792,
+          "text": "정확한 용어와 기호의 사용, 복잡한 형식 논리 규칙의 이용을 요구하는 연역적 정당화 문제는 다루지 않는다. \r"
+        },
+        "pdfPhysicalPage1based": 39,
+        "pdfPrintedPage": 35,
+        "wholeClausePdfMatch": true
+      }
+    ],
+    "independentReviewPending": true,
+    "authorCannotApprove": true,
+    "sourceEraBasis": "Actual2025 middle3 uses2015; middle3 rollout of2022 begins2027; future republication needs its own review.",
+    "preauthorGate": "author-method-proposed-independent-review-pending"
+  },
+  "metadata": {
+    "grade": "중3",
+    "semester": 2,
+    "subject": "수학",
+    "source": "transformed",
+    "originProblemId": null,
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "2027Republication": "requiresnew2022review"
+    },
+    "sourceExamYear": 2025,
+    "sourceSchoolInternal": "경상중",
+    "fictionalVisibleSchool": "해솔중학교",
+    "schoolReplacementMap": {
+      "경상중": "해솔중학교"
+    },
+    "fictionalSchoolUsedInStudentText": false,
+    "sourceQuestionId": "2025-gyeongsang-3-2-mid-2",
+    "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q02",
+    "sourceSchoolNamesInStudentSurfaces": false,
+    "questionType": "객관식",
+    "score": 3.0,
+    "parentScoreCountedOnce": true,
+    "newSubpartRubric": [],
+    "sourcePrintedScore": {
+      "selectedHwpPdfPrintedParentScore": 3.0,
+      "selectedPairScoreStatus": "literal_match",
+      "originalPrintedParentScore": 3.0,
+      "referenceParentScore": 3.0,
+      "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+      "parentCountedOnce": true,
+      "childScores": [],
+      "subquestionCount": 0,
+      "parentAndChildrenMustNotBeAddedTogether": false
+    },
+    "difficultyProposal": "기본",
+    "difficultyStatus": "author-proposed",
+    "difficultyEvidence": "Task operations: 축의 직각과 양의 좌표=선분 길이를 확인하고 코사인 정의로 이웃변을 역산한다.. Exact original points preserved; descriptor is not a measured difficulty claim.",
+    "problemTypeProposal": null,
+    "problemTypeStatus": "pending",
+    "problemTypeEvidence": {
+      "path": "classification-limits.json",
+      "sha256": "fbcfa8e7894db6a3244c60cdb524628464fba1dc8edade615b55cb1bdf0c6a45"
+    },
+    "assignment": {
+      "status": "pending",
+      "unitId": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+      "unitSection": "삼각비의 뜻",
+      "familyKey": null,
+      "evidence": {
+        "actualCapturedUnit": {
+          "id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "section": "삼각비의 뜻",
+          "semester": 2,
+          "orderIndex": 481,
+          "problemCodePrefix": "J30501"
+        },
+        "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+        "snapshotOnly": true,
+        "comparison": "02의 cos+빗변→이웃변 계산과 공통이지만 축/좌표 표현을 포함한 전체 갈래가 확인되지 않아 family는 보류한다.",
+        "comparedRegistryEntries": [
+          {
+            "registry": {
+              "key": "3-2|삼각비|02",
+              "grade": "중3",
+              "unitSection": "삼각비의 뜻",
+              "rpmBook": "3-2",
+              "rpmMinor": "삼각비",
+              "rpmType": "02",
+              "rpmTitle": "삼각비를 이용하여 삼각형의 변의 길이 구하기"
+            },
+            "liveMatches": [
+              {
+                "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+                "family_key": "mid:3-2|삼각비|02",
+                "live_count": 24
+              }
+            ],
+            "actualRule": {
+              "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+              "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+              "startLine1based": 982,
+              "endLine1based": 1023,
+              "text": "def(\n    \"삼각비\",\n    \"02\",\n    \"삼각비를 이용하여 삼각형의 변의 길이 구하기\",\n    SEC.뜻,\n    \"기본\",\n    (rng) =>\n      attempt(120, () => {\n        const [p, q, r] = pick(rng, TRIPLES);\n        const mode = intBetween(rng, 0, 2);\n        const t = intBetween(rng, 1, 4);\n        // $\\angle B=90^\\circ$ · $\\angle A$ 기준: 대변 $pt$, 이웃변 $qt$, 빗변 $rt$.\n        const opp = p * t;\n        const adj = q * t;\n        const hyp = r * t;\n        if (hyp > 80) return null;\n        const [gnum, gden] = red(mode === 1 ? q : p, mode === 2 ? q : r);\n        if (gnum >= gden) return null;\n        const given = mode === 2 ? adj : hyp;\n        const x = mode === 1 ? adj : opp;\n        const givenSide = mode === 2 ? SIDE_NAMES[0]! : SIDE_NAMES[2]!;\n        const askSide = mode === 1 ? SIDE_NAMES[0]! : SIDE_NAMES[1]!;\n        const relation = [\n          `\\\\sin A=\\\\dfrac{\\\\overline{BC}}{\\\\overline{AC}}`,\n          `\\\\cos A=\\\\dfrac{\\\\overline{AB}}{\\\\overline{AC}}`,\n          `\\\\tan A=\\\\dfrac{\\\\overline{BC}}{\\\\overline{AB}}`,\n        ][mode]!;\n        return {\n          content: `직각삼각형 $ABC$에서 $\\\\angle B=90^\\\\circ$이고 $${trigOf(mode, \"A\")}=${frac(gnum, gden)}$, $${givenSide}=${cm(given)}$일 때, $${askSide}$의 길이를 구하시오.`,\n          answer: `$${cm(x)}$`,\n          solution: `$${relation}$이다.\\n따라서 $${askSide}=${given}\\\\times${frac(gnum, gden)}=${x}\\\\,(\\\\mathrm{cm})$이다.`,\n          facts: { num: gnum, den: gden, given, x, mode },\n          figureSpec: figRight({\n            vert: adj,\n            horz: opp,\n            dims: mode === 2 ? { AB: dimCm(given) } : { CA: dimCm(given) },\n          }),\n        };\n      }),\n  ),\n\n  "
+            }
+          }
+        ],
+        "TRIPLESPoolCheckedForQ01": null
+      }
+    },
+    "authorMathEvidence": {
+      "file": "../../author-calculations.json",
+      "sha256": "de493620851acf3825c3c21a1634c8c774abcf9fbdc7389170d0a27668350a4a",
+      "questionNumber": 2
+    },
+    "sourcePacketSHA256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+    "authorOnly": true,
+    "independentMathApproval": false,
+    "independentGradeApproval": false,
+    "rightsApproved": false,
+    "nativeProvenanceApproved": false,
+    "loadable": false,
+    "limits": [
+      "Independent solve and full seven-surface review pending.",
+      "Rights/native/custody/loading remain pending.",
+      "Historical taxonomy snapshot is not a currentDB assertion."
+    ],
+    "authorFigureEvidence": {
+      "path": "figure-author-checks.json",
+      "sha256": "1b266062bc26877dafbead127ed6ea0ecada7dad2b05e31199fba862210fd2e1"
+    },
+    "authorVisualEvidence": {
+      "path": "visual-inspection.json",
+      "sha256": "8e336cb4203c74bf8180d0edf9412ab87ea3e2f9d0b76dba87a7c43c249798e5"
+    },
+    "officialAuthorCurriculumEvidence": {
+      "path": "curriculum-author-basis.json",
+      "sha256": "cd0128904d4f378eb0310f9edde0fa55ed96e02a6c0ff6272bdd30c1443ed347"
+    },
+    "authorSevenSurfaceEvidence": {
+      "path": "author-checks/q02.json",
+      "sha256": "516a006b828c54d25937da0cf06cffe15053f7638950e9f158f274dfed75f977"
+    }
+  }
+}

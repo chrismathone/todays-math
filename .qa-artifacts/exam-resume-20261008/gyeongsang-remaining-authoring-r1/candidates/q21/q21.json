@@ -1,0 +1,390 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 21,
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q21",
+  "authorId": "orca-codex-exam-twin-source-identity-20261008",
+  "questionType": "서술형",
+  "score": 8.0,
+  "content": "해솔중학교의 삼각형 모양 연습 공간에 세 지점 $O,P,Q$가 있다. $OP=18\\,\\mathrm{m}$, $PQ=6\\sqrt{13}\\,\\mathrm{m}$이고 $\\angle POQ=60^\\circ$이다.\n$P$에서 직선 $OQ$에 내린 수선의 발 $H$는 $O$와 $Q$ 사이에 있다.\n\n연습 공간의 한 변 $OQ$의 길이를 다음 순서로 복구하고 풀이를 쓰시오.\n\n(1) $OH$, $PH$의 길이를 차례로 구하시오. [3점]\n\n(2) $HQ$의 길이를 구하시오. [3점]\n\n(3) $OQ$의 길이를 구하시오. [2점]",
+  "choices": [],
+  "answer": "⑴ $OH=9\\,\\mathrm{m}$, $PH=9\\sqrt3\\,\\mathrm{m}$ ⑵ $HQ=15\\,\\mathrm{m}$ ⑶ $OQ=24\\,\\mathrm{m}$",
+  "solution": "(1) 직각삼각형 $OPH$에서 $OP=18$이고 $\\angle POH=60^\\circ$이다. 따라서 $OH=18\\cos60^\\circ=9\\,\\mathrm{m}$, $PH=18\\sin60^\\circ=9\\sqrt3\\,\\mathrm{m}$이다.\n\n(2) 직각삼각형 $PHQ$에서 피타고라스 정리에 따라 $HQ^2=(6\\sqrt{13})^2-(9\\sqrt3)^2=468-243=225$이다. 양의 길이 $HQ=15\\,\\mathrm{m}$를 택한다.\n\n(3) $H$가 $O$와 $Q$ 사이에 있으므로 $OQ=OH+HQ=9+15=24\\,\\mathrm{m}$이다. 내부의 수선 발을 기준으로 나뉜 두 길이를 합하여 한 변을 복구한다.",
+  "figureArtifacts": [
+    {
+      "role": "stem",
+      "specPath": "stem-1.spec.json",
+      "svgPath": "stem-1.svg",
+      "intendedWidthMm": 70
+    }
+  ],
+  "sourceReference": {
+    "externalId": "2025-gyeongsang-3-2-mid-21",
+    "sourceContentSha256": "b3bd5e1e3aad29ca8767586c5b6a0356ac3469f1763cf0f3fa2846d4e5b3b016",
+    "sourceSchoolInternal": "경상중",
+    "sourceExamYear": 2025,
+    "packet": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsang/packet/questions.json",
+      "sha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b"
+    },
+    "sourceCommit": "4cc9278da",
+    "questionOnlyImageRefs": [
+      {
+        "file": "images/q21-part1.png",
+        "sha256": "0c90e365ba51bf41ed328cb8050b249e100ccbb08760bfb0582c3b67b2a72a2b",
+        "page": 6,
+        "column": 0,
+        "bbox": [
+          55,
+          83,
+          375,
+          943.0
+        ]
+      }
+    ],
+    "providedOriginalFileRefs": [
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\워드\\중3\\[경상중][3][25-2-중간][동아강] (완료).hwp",
+        "sha256": "bc0bb8c93f2e246b234c80c7fb89fcbdf8eda24536435e2fbe551ad916c1d4a1",
+        "bytes": 1635840
+      },
+      {
+        "path": "N:\\개인\\기출\\2025 기출모음\\2025년 2학기 중간고사 모음\\pdf\\중3\\[경상중][3][25-2-중간][동아강] (완료).PDF",
+        "sha256": "08917520000308226e93d261861ee419d2cc0b3b61658271e78462da12da8af4",
+        "bytes": 14846744
+      }
+    ],
+    "sourceIdentityAsProvided": "2025_original_header_school_footer_and_completed_question_identity_supported",
+    "sourceManifestOrOriginalAnswerInput": false
+  },
+  "variantDelta": {
+    "modes": [
+      "context",
+      "inverse-target",
+      "structure"
+    ],
+    "before": "[서술형 $3$] 연못의 두 지점 $\\mathrm{B},~C$ 사이의 거리를 구하기 위해 연못의 바깥쪽에 지점 $\\mathrm{A}$를 정하여 측정하였더니, $\\mathrm{\\overline{AB}}=30m,~\\overline{AC}=40m,~\\angle A=60^\\circ$일 때, 두 지점 $\\mathrm{B},~C$ 사이의 거리를 구하고, 그 풀이과정을 서술하시오. [$8$점, 부분점수 있음]\nAB=30m, AC=40m; ∠A=60°; 연못 양끝 B,C.",
+    "after": "연못의관측점에서 두알려진변/끼인각으로맞은편거리를 구하던 것을 새연습공간의한변/맞은편변/끼인각으로 다른변을복구하는수선별서술형으로역전한다.",
+    "sharedConcept": "60도 수선 직각삼각형과 피타고라스에 의한 관측 거리 구성",
+    "sharedProcedure": "OH/PH를60도 정의로 구성하고 PHQ의양의길이를Pythagoras로 복구한뒤 내부순서로합한다.",
+    "originalAnswerOrNumericalAgreementUsed": false
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "status": "author-proposed",
+    "standardCodes": [
+      "9수04-16",
+      "9수04-17",
+      "9수04-18",
+      "9수01-07",
+      "9수01-10",
+      "6수03-04"
+    ],
+    "legitimateMethodDraft": "OH/PH를60도 정의로 구성하고 PHQ의양의길이를Pythagoras로 복구한뒤 내부순서로합한다.",
+    "officialProvisions": [
+      {
+        "id": "9수04-16",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 4333,
+          "paragraph1based": 946,
+          "offset": 218866,
+          "text": "[9수04-16]\u001e피타고라스 정리를 이해하고 설명할 수 있다. \r"
+        },
+        "pdfPhysicalPage1based": 38,
+        "pdfPrintedPage": 34,
+        "wholeClausePdfMatch": true
+      },
+      {
+        "id": "9수04-17",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 4341,
+          "paragraph1based": 948,
+          "offset": 219120,
+          "text": "[9수04-17]\u001e삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다. \r"
+        },
+        "pdfPhysicalPage1based": 38,
+        "pdfPrintedPage": 34,
+        "wholeClausePdfMatch": true
+      },
+      {
+        "id": "9수04-18",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 4345,
+          "paragraph1based": 949,
+          "offset": 219292,
+          "text": "[9수04-18]\u001e삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.\r"
+        },
+        "pdfPhysicalPage1based": 38,
+        "pdfPrintedPage": 34,
+        "wholeClausePdfMatch": true
+      },
+      {
+        "id": "9수01-07",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 3776,
+          "paragraph1based": 819,
+          "offset": 192865,
+          "text": "[9수01-07]\u001e제곱근의 뜻을 알고, 그 성질을 이해한다.\r"
+        },
+        "pdfPhysicalPage1based": 33,
+        "pdfPrintedPage": 29,
+        "wholeClausePdfMatch": true
+      },
+      {
+        "id": "9수01-10",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 3788,
+          "paragraph1based": 822,
+          "offset": 193301,
+          "text": "[9수01-10]\u001e근호를 포함한 식의 사칙계산을 할 수 있다.\r"
+        },
+        "pdfPhysicalPage1based": 33,
+        "pdfPrintedPage": 29,
+        "wholeClausePdfMatch": true
+      },
+      {
+        "id": "6수03-04",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 3425,
+          "paragraph1based": 735,
+          "offset": 176051,
+          "text": "[6수03-04]\u001e넓이를 나타내는 표준 단위의 필요성을 인식하여 1cm², 1m², 1km²의 단위를 알며, 그 관계를 이해한다. \r"
+        },
+        "pdfPhysicalPage1based": 29,
+        "pdfPrintedPage": 25,
+        "wholeClausePdfMatch": true
+      }
+    ],
+    "restrictionClauses": [
+      {
+        "id": "no_trig_ratio_relationships",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 4440,
+          "paragraph1based": 966,
+          "offset": 224820,
+          "text": "삼각비 사이의 관계는 다루지 않는다.\r"
+        },
+        "pdfPhysicalPage1based": 39,
+        "pdfPrintedPage": 35,
+        "wholeClausePdfMatch": true
+      },
+      {
+        "id": "angle_range",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 4444,
+          "paragraph1based": 967,
+          "offset": 224946,
+          "text": "삼각비의 값은 0°에서 90°까지의 각도에 대한 것만 다룬다.\r"
+        },
+        "pdfPhysicalPage1based": 39,
+        "pdfPrintedPage": 35,
+        "wholeClausePdfMatch": true
+      },
+      {
+        "id": "no_circle_proportionality",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 4452,
+          "paragraph1based": 969,
+          "offset": 225374,
+          "text": "원과 비례에 관한 성질은 다루지 않는다.\r"
+        },
+        "pdfPhysicalPage1based": 39,
+        "pdfPrintedPage": 35,
+        "wholeClausePdfMatch": true
+      },
+      {
+        "id": "no_complex_geometry_measurement",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 4472,
+          "paragraph1based": 974,
+          "offset": 226554,
+          "text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다.\r"
+        },
+        "pdfPhysicalPage1based": 39,
+        "pdfPrintedPage": 35,
+        "wholeClausePdfMatch": true
+      },
+      {
+        "id": "no_formal_complex_justification",
+        "hwp": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record1based": 4476,
+          "paragraph1based": 975,
+          "offset": 226792,
+          "text": "정확한 용어와 기호의 사용, 복잡한 형식 논리 규칙의 이용을 요구하는 연역적 정당화 문제는 다루지 않는다. \r"
+        },
+        "pdfPhysicalPage1based": 39,
+        "pdfPrintedPage": 35,
+        "wholeClausePdfMatch": true
+      }
+    ],
+    "independentReviewPending": true,
+    "authorCannotApprove": true,
+    "sourceEraBasis": "Actual2025 middle3 uses2015; middle3 rollout of2022 begins2027; future republication needs its own review.",
+    "preauthorGate": "author-method-proposed-independent-review-pending"
+  },
+  "metadata": {
+    "grade": "중3",
+    "semester": 2,
+    "subject": "수학",
+    "source": "transformed",
+    "originProblemId": null,
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "2027Republication": "requiresnew2022review"
+    },
+    "sourceExamYear": 2025,
+    "sourceSchoolInternal": "경상중",
+    "fictionalVisibleSchool": "해솔중학교",
+    "schoolReplacementMap": {
+      "경상중": "해솔중학교"
+    },
+    "fictionalSchoolUsedInStudentText": true,
+    "sourceQuestionId": "2025-gyeongsang-3-2-mid-21",
+    "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q21",
+    "sourceSchoolNamesInStudentSurfaces": false,
+    "questionType": "서술형",
+    "score": 8.0,
+    "parentScoreCountedOnce": true,
+    "newSubpartRubric": [
+      {
+        "part": 1,
+        "points": 3,
+        "criteria": "60도삼각비로OH9m1,PH9√3m2"
+      },
+      {
+        "part": 2,
+        "points": 3,
+        "criteria": "Pythagoras식과2252,양의근15m1"
+      },
+      {
+        "part": 3,
+        "points": 2,
+        "criteria": "내부H의길이합과OQ24m"
+      }
+    ],
+    "sourcePrintedScore": {
+      "selectedHwpPdfPrintedParentScore": 8.0,
+      "selectedPairScoreStatus": "literal_match",
+      "originalPrintedParentScore": 8.0,
+      "referenceParentScore": 8.0,
+      "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+      "parentCountedOnce": true,
+      "childScores": [],
+      "subquestionCount": 0,
+      "parentAndChildrenMustNotBeAddedTogether": false
+    },
+    "difficultyProposal": "응용",
+    "difficultyStatus": "author-proposed",
+    "difficultyEvidence": "Task operations: OH/PH를60도 정의로 구성하고 PHQ의양의길이를Pythagoras로 복구한뒤 내부순서로합한다.. Exact original points preserved; descriptor is not a measured difficulty claim.",
+    "problemTypeProposal": null,
+    "problemTypeStatus": "pending",
+    "problemTypeEvidence": {
+      "path": "classification-limits.json",
+      "sha256": "fbcfa8e7894db6a3244c60cdb524628464fba1dc8edade615b55cb1bdf0c6a45"
+    },
+    "assignment": {
+      "status": "pending",
+      "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+      "unitSection": "삼각비의 활용",
+      "familyKey": null,
+      "evidence": {
+        "actualCapturedUnit": {
+          "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+          "grade": "중3",
+          "chapter": "5. 삼각비",
+          "section": "삼각비의 활용",
+          "semester": 2,
+          "orderIndex": 483,
+          "problemCodePrefix": "J30503"
+        },
+        "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+        "snapshotOnly": true,
+        "comparison": "끼인각/두변→맞은편변과 공통수선이 있지만 한변/맞은편변→다른변의역산 및세서술부분 전체는 확인되지 않았다.",
+        "comparedRegistryEntries": [
+          {
+            "registry": {
+              "key": "3-2|삼각비의 활용|04",
+              "grade": "중3",
+              "unitSection": "삼각비의 활용",
+              "rpmBook": "3-2",
+              "rpmMinor": "삼각비의 활용",
+              "rpmType": "04",
+              "rpmTitle": "일반 삼각형의 변의 길이 구하기 두 변의 길이와 그 끼인각의 크기를 아는 경우"
+            },
+            "liveMatches": [
+              {
+                "unit_id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+                "family_key": "mid:3-2|삼각비의 활용|04",
+                "live_count": 22
+              }
+            ],
+            "actualRule": {
+              "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+              "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+              "startLine1based": 2029,
+              "endLine1based": 2084,
+              "text": "def(\n    \"삼각비의 활용\",\n    \"04\",\n    \"일반 삼각형의 변의 길이 구하기 두 변의 길이와 그 끼인각의 크기를 아는 경우\",\n    SEC.활용,\n    \"응용\",\n    (rng) => {\n      // $[\\overline{AB}$의 계수·근호, $\\overline{BC}$, $\\angle B$, $\\overline{BH}$,\n      //  $\\overline{AH}$의 계수·근호, $\\overline{HC}$, $\\overline{AC}]$ —\n      // 전부 수선의 발 $H$ 로 실제 계산해 둔 값이라 답이 정수다.\n      const [abC, abR, bc, ang, bh, ahC, ahR, hc, ac] = pick(rng, [\n        [8, 1, 5, 60, 4, 4, 3, 1, 7],\n        [8, 1, 15, 60, 4, 4, 3, 11, 13],\n        [16, 1, 21, 60, 8, 8, 3, 13, 19],\n        [6, 1, 16, 60, 3, 3, 3, 13, 14],\n        [10, 1, 16, 60, 5, 5, 3, 11, 14],\n        [24, 1, 35, 60, 12, 12, 3, 23, 31],\n        [8, 1, 7, 120, 4, 4, 3, 11, 13],\n        [16, 1, 5, 120, 8, 8, 3, 13, 19],\n        [6, 1, 10, 120, 3, 3, 3, 13, 14],\n        [10, 1, 6, 120, 5, 5, 3, 11, 14],\n        [24, 1, 11, 120, 12, 12, 3, 23, 31],\n        [3, 2, 7, 45, 3, 3, 1, 4, 5],\n        [6, 2, 14, 45, 6, 6, 1, 8, 10],\n        [5, 2, 17, 45, 5, 5, 1, 12, 13],\n        [12, 2, 17, 45, 12, 12, 1, 5, 13],\n        [5, 2, 7, 135, 5, 5, 1, 12, 13],\n        [8, 2, 7, 135, 8, 8, 1, 15, 17],\n        [7, 2, 17, 135, 7, 7, 1, 24, 25],\n      ] as const);\n      const abText = surdText(surd(abC, abR, 1));\n      const ahText = surdText(surd(ahC, ahR, 1));\n      const outer = ang > 90 ? 180 - ang : ang;\n      const where =\n        ang > 90\n          ? `꼭짓점 $A$에서 $\\\\overline{BC}$의 연장선에 내린 수선의 발을 $H$라 하면 $\\\\angle ABH=${outer}^\\\\circ$이므로`\n          : `꼭짓점 $A$에서 $\\\\overline{BC}$에 내린 수선의 발을 $H$라 하면`;\n      return {\n        content: `삼각형 $ABC$에서 $\\\\overline{AB}=${cm(abText)}$, $\\\\overline{BC}=${cm(bc)}$, $\\\\angle B=${ang}^\\\\circ$일 때, $\\\\overline{AC}$의 길이를 구하시오.`,\n        answer: `$${cm(ac)}$`,\n        solution: `${where} $\\\\overline{BH}=${abText}\\\\times\\\\cos ${outer}^\\\\circ=${bh}\\\\,(\\\\mathrm{cm})$, $\\\\overline{AH}=${abText}\\\\times\\\\sin ${outer}^\\\\circ=${ahText}\\\\,(\\\\mathrm{cm})$이다.\\n$\\\\overline{HC}=${hc}\\\\,\\\\mathrm{cm}$이므로 직각삼각형 $AHC$에서 $\\\\overline{AC}=\\\\sqrt{(${ahText})^2+${hc}^2}=${ac}\\\\,(\\\\mathrm{cm})$이다.`,\n        facts: { abC, abR, bc, ang, bh, hc, ac },\n        // 원장님 지적 2026-08-25 — `J30503-A04-002` 는 발문이 $\\overline{AB}$·\n        // $\\overline{BC}$ 를 둘 다 말하는데 그림엔 `6 cm` **하나뿐**이었다.\n        // 「받은 치수를 다 적는다」는 09 §4-20 이 이미 정한 규칙이다.\n        figureSpec: figTwoSides({\n          ab: abC * Math.sqrt(abR),\n          bc,\n          angB: ang,\n          dims: { AB: dimCm(abText), BC: dimCm(bc) },\n        }),\n      };\n    },\n  ),\n\n  "
+            }
+          }
+        ],
+        "TRIPLESPoolCheckedForQ01": null
+      }
+    },
+    "authorMathEvidence": {
+      "file": "../../author-calculations.json",
+      "sha256": "de493620851acf3825c3c21a1634c8c774abcf9fbdc7389170d0a27668350a4a",
+      "questionNumber": 21
+    },
+    "sourcePacketSHA256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+    "authorOnly": true,
+    "independentMathApproval": false,
+    "independentGradeApproval": false,
+    "rightsApproved": false,
+    "nativeProvenanceApproved": false,
+    "loadable": false,
+    "limits": [
+      "Independent solve and full seven-surface review pending.",
+      "Rights/native/custody/loading remain pending.",
+      "Historical taxonomy snapshot is not a currentDB assertion."
+    ],
+    "authorFigureEvidence": {
+      "path": "figure-author-checks.json",
+      "sha256": "1b266062bc26877dafbead127ed6ea0ecada7dad2b05e31199fba862210fd2e1"
+    },
+    "authorVisualEvidence": {
+      "path": "visual-inspection.json",
+      "sha256": "8e336cb4203c74bf8180d0edf9412ab87ea3e2f9d0b76dba87a7c43c249798e5"
+    },
+    "officialAuthorCurriculumEvidence": {
+      "path": "curriculum-author-basis.json",
+      "sha256": "cd0128904d4f378eb0310f9edde0fa55ed96e02a6c0ff6272bdd30c1443ed347"
+    },
+    "authorSevenSurfaceEvidence": {
+      "path": "author-checks/q21.json",
+      "sha256": "977e7561b992c923f427f7e0eba45224c6d7ff7afbde07e1360d53cf922f9846"
+    }
+  }
+}

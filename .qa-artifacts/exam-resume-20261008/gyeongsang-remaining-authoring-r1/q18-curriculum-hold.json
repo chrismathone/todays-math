@@ -1,0 +1,34 @@
+{
+  "status": "pending",
+  "scope": "q18 only: whole-student inverse overlapping-area assessment",
+  "officialProvision": {
+    "id": "no_complex_geometry_measurement",
+    "hwp": {
+      "stream": "BodyText/Section0",
+      "tag": 67,
+      "record1based": 4472,
+      "paragraph1based": 974,
+      "offset": 226554,
+      "text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다.\r"
+    },
+    "pdfPhysicalPage1based": 39,
+    "pdfPrintedPage": 35,
+    "wholeClausePdfMatch": true
+  },
+  "primaryOfficialSource": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-2020-236-book8-math.hwp",
+    "sha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+    "url": "https://www.moe.go.kr/boardCnts/fileDown.do?m=0404&s=moe&fileSeq=9626ca7f4483de728b1e9b14e8f41f84"
+  },
+  "correspondingOfficial2015Pdf": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-2015-74-book8-math.pdf",
+    "sha256": "4bd2b84e978865a71d90577d8eb6240f0ecf24a9884642d627cde460d71ab88e",
+    "url": "https://www.moe.go.kr/boardCnts/fileDown.do?m=040401&s=moe&fileSeq=dc926a43bf953203951fb928ff098b1c"
+  },
+  "materialQuestion": "Whether recovering a side from an overlap quadrilateral area via EFH/ECH height reconstruction, area complement and a positive quadratic scale remains an excluded complex transformed plane-area problem. Providing H does not establish allowance.",
+  "whyPendingNotApproved": "Elementary steps and a correct numerical answer do not settle the official scope of the intended multi-stage measurement assessment. Author cannot supply independent grade judgment.",
+  "whyNotDefinitivelyRejectedHere": "The official provision has no complexity threshold or explicit example resolving this exact configuration. No direct official classification of this whole inverse route was located in the bounded provisions.",
+  "reopeningCriteria": "Independent whole-route review grounded in a direct official explanatory example/scope interpretation of this restriction; if it applies, reject the source-faithful twin. A simple unrelated side-length problem would change the assessed core and would require a new-source decision.",
+  "unrelatedWholePolicyGapAdded": false,
+  "familyExistenceOrModelConfidenceAsAllowance": false
+}

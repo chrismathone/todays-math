@@ -1,0 +1,710 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 7,
+  "authorId": "orca-codex-exam-twin-source-identity-20261008",
+  "method": "author-calculation-and-seven-surface-preparation",
+  "authorOnly": true,
+  "independentVerifier": false,
+  "sourceQuestionId": "2025-gyeongsang-3-2-mid-7",
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q07",
+  "sourceQuestionOnlyRecord": {
+    "number": 7,
+    "stem": "그림과 같은 직각삼각형에서 $x,~y$의 값을 옳게 짝지은 것은? [$4$점]\n\n$x$\n\n$y$",
+    "choices": [
+      "$3$                        $3\\sqrt{2}$",
+      "$3$                        $3\\sqrt{3}$",
+      "$5$                        $5\\sqrt{2}$",
+      "$5$                        $5\\sqrt{3}$",
+      "$5$                         $10$"
+    ],
+    "hwpScriptStem": "그림과 같은 직각삼각형에서 $x,~y$의 값을 옳게 짝지은 것은? [$4$점]\n\n$x$\n\n$y$",
+    "hwpScriptChoices": [
+      "$3$                        $3 sqrt {2}$",
+      "$3$                        $3 sqrt {3}$",
+      "$5$                        $5 sqrt {2}$",
+      "$5$                        $5 sqrt {3}$",
+      "$5$                         $10$"
+    ],
+    "scoreEvidence": {
+      "selectedHwpPdfPrintedParentScore": 4.0,
+      "selectedPairScoreStatus": "literal_match",
+      "originalPrintedParentScore": 4.0,
+      "referenceParentScore": 4.0,
+      "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+      "parentCountedOnce": true,
+      "childScores": [],
+      "subquestionCount": 0,
+      "parentAndChildrenMustNotBeAddedTogether": false
+    },
+    "subQuestions": [],
+    "structuredGivenData": {},
+    "figureGivenObservation": "윗 꼭짓점 직각; 왼쪽 직각변 5cm, 오른쪽 직각변 x cm; 아래 빗변 y cm; 왼쪽 아래 예각 45°.",
+    "curriculum": {
+      "sourceGrade": "중3",
+      "expectedAppliedCurriculum": "2015",
+      "status": "hold_full_item_review",
+      "fullApproval": false,
+      "conceptCandidate": "삼각비의 정의·값·활용",
+      "coreMethodCandidate": "특수각 직각삼각형의 빗변과 두 변을 대응시킨다.",
+      "officialStandardsCandidates": [
+        {
+          "code": "9수04-17",
+          "officialStatement": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+          "pdfPage": 38,
+          "printedPage": 34,
+          "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+          "notPerQuestionApproval": true
+        }
+      ],
+      "localUnitCandidate": {
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "seedFile": "prisma/seed-data/units.ts",
+        "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+        "liveUnitId": null
+      },
+      "liveFamilyId": null,
+      "generatorRuleId": null,
+      "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+      "specificRisk": null,
+      "decisionIfNoLegalGradeMethod": "reject",
+      "decisionIfUnclear": "hold",
+      "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+      "requiredReview": [
+        "stem",
+        "all choices",
+        "figure meaning",
+        "notation",
+        "answer format",
+        "new answer",
+        "student solution",
+        "required steps",
+        "prerequisites"
+      ],
+      "signDomainUnitsGate": [
+        "signs and radicals",
+        "angle range 0-90 degrees",
+        "nonzero denominators",
+        "positive lengths/areas",
+        "units",
+        "existence",
+        "uniqueness"
+      ],
+      "sourceSchoolOrAIConfidenceCannotApprove": true
+    },
+    "sourceContentDigest": "479133a9e2a9a2513455c218289ba2c9f912b1d22bde1c105c5d8494d39c071e",
+    "sourceQuestionId": "2025-gyeongsang-3-2-mid-7",
+    "status": "source_reference_reviewed_all_final_approval_gates_held",
+    "sourceAmbiguityHolds": [
+      "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+      "source_custody_rights_permission_pending",
+      "canonical_text_product_render_review_pending"
+    ],
+    "sharedContext": null,
+    "images": [
+      {
+        "file": "images/q07-part1.png",
+        "sha256": "49beaae1ef091598a3470e45f9ae77aa9c416014382e753d703fbd5675d362dd",
+        "page": 2,
+        "column": 0,
+        "bbox": [
+          55,
+          501.77978515625,
+          375,
+          943.0
+        ]
+      }
+    ],
+    "subquestionNumbers": [],
+    "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+    "selectedHwpAnchor": {
+      "stream": "BodyText/Section0",
+      "recordIndex": 902,
+      "inflatedByteOffset": 37867,
+      "tag": 71,
+      "level": 1,
+      "payloadSha256": "381c280a434b7dc992b569b67669229331dbbd0220466a5b481e1dd50132f574"
+    },
+    "selectedPdfRegions": [
+      {
+        "page": 2,
+        "column": 0,
+        "bbox": [
+          55,
+          501.77978515625,
+          375,
+          943.0
+        ]
+      }
+    ]
+  },
+  "sourceWholePacketSHA256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+  "gradeDisposition": "author-observed-proposed",
+  "sourceCoreAndActualMethod": {
+    "sharedConcept": "45도 직각삼각형의 양수 변 대응",
+    "sourceObservedQuestion": "그림과 같은 직각삼각형에서 $x,~y$의 값을 옳게 짝지은 것은? [$4$점]\n\n$x$\n\n$y$\n윗 꼭짓점 직각; 왼쪽 직각변 5cm, 오른쪽 직각변 x cm; 아래 빗변 y cm; 왼쪽 아래 예각 45°.",
+    "newMethod": "Both acute angles45 and equal legs12; 12+12−12√2=24−12√2>0. Special45 definition uses actual hypotenuse; all units cm.",
+    "sourceCorePreservationStatus": "author-proposed-independent-review-pending"
+  },
+  "substantiveDelta": {
+    "modes": [
+      "inverse-target",
+      "structure"
+    ],
+    "before": "그림과 같은 직각삼각형에서 $x,~y$의 값을 옳게 짝지은 것은? [$4$점]\n\n$x$\n\n$y$\n윗 꼭짓점 직각; 왼쪽 직각변 5cm, 오른쪽 직각변 x cm; 아래 빗변 y cm; 왼쪽 아래 예각 45°.",
+    "after": "45도 직각삼각형의 한 직각변에서 나머지 두 길이를 묻던 것을 빗변 입력으로 역전하고 두 직각변 합과 빗변의 차를 묻는다.",
+    "sharedConcept": "45도 직각삼각형의 양수 변 대응",
+    "sharedProcedure": "45도 정의/이등변 성질로 실제 두 직각변을 구해 길이의 합과 차를 계산한다.",
+    "originalAnswerOrNumericalAgreementUsed": false
+  },
+  "score": 4.0,
+  "newSubpartRubric": [],
+  "mathEvidence": {
+    "questionNumber": 7,
+    "newExactRequestedValues": [
+      "24 - 12*sqrt(2)"
+    ],
+    "freshNewCalculations": {
+      "hypotenuse": "12*sqrt(2)",
+      "twoEqualLegs": "12",
+      "requestedEdgeDifference": "24 - 12*sqrt(2)"
+    },
+    "conditions": [
+      {
+        "condition": "positive edge difference and valid45 triangle",
+        "passedAsAuthorCalculation": true,
+        "calculation": {
+          "hypotenuse": "12*sqrt(2)",
+          "twoEqualLegs": "12",
+          "requestedEdgeDifference": "24 - 12*sqrt(2)"
+        }
+      }
+    ],
+    "actualAllChoices": [
+      {
+        "index1based": 1,
+        "choiceText": "$12\\,\\mathrm{cm}$",
+        "parsedExactValues": [
+          "12"
+        ],
+        "differencesFromCalculatedTargets": [
+          "-12 + 12*sqrt(2)"
+        ],
+        "correctAsAuthorCalculation": false
+      },
+      {
+        "index1based": 2,
+        "choiceText": "$(24-12\\sqrt2)\\,\\mathrm{cm}$",
+        "parsedExactValues": [
+          "24 - 12*sqrt(2)"
+        ],
+        "differencesFromCalculatedTargets": [
+          "0"
+        ],
+        "correctAsAuthorCalculation": true
+      },
+      {
+        "index1based": 3,
+        "choiceText": "$12\\sqrt2\\,\\mathrm{cm}$",
+        "parsedExactValues": [
+          "12*sqrt(2)"
+        ],
+        "differencesFromCalculatedTargets": [
+          "-24 + 24*sqrt(2)"
+        ],
+        "correctAsAuthorCalculation": false
+      },
+      {
+        "index1based": 4,
+        "choiceText": "$(24+12\\sqrt2)\\,\\mathrm{cm}$",
+        "parsedExactValues": [
+          "12*sqrt(2) + 24"
+        ],
+        "differencesFromCalculatedTargets": [
+          "24*sqrt(2)"
+        ],
+        "correctAsAuthorCalculation": false
+      },
+      {
+        "index1based": 5,
+        "choiceText": "$24\\,\\mathrm{cm}$",
+        "parsedExactValues": [
+          "24"
+        ],
+        "differencesFromCalculatedTargets": [
+          "12*sqrt(2)"
+        ],
+        "correctAsAuthorCalculation": false
+      }
+    ],
+    "winnerIndex1based": 2,
+    "choiceAnswerMark": "②",
+    "requestedUniquenessAuthorCheck": true,
+    "wholeConfigurationMustBeUnique": true,
+    "unitsAndPrecision": "q04/q05 table records andq17 specified rounded distance are approximations; all other numeric lengths/areas exact.",
+    "code": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/author_math.py",
+      "sha256": "dffc06bdb422829fc713c2c1f53fabe786573dcdd20712ac6a5638fbf66cfc63"
+    },
+    "originalAnswerUsed": false,
+    "authorCheckOnly": true,
+    "independentMathApproval": false,
+    "curriculumPermissionFromCalculation": false
+  },
+  "calculationProofFile": {
+    "path": "author-calculations.json",
+    "sha256": "de493620851acf3825c3c21a1634c8c774abcf9fbdc7389170d0a27668350a4a"
+  },
+  "calculationCode": {
+    "path": "author_math.py",
+    "sha256": "dffc06bdb422829fc713c2c1f53fabe786573dcdd20712ac6a5638fbf66cfc63"
+  },
+  "sevenStudentSurfaces": {
+    "stem": {
+      "status": "author-observed-proposed",
+      "contentTextSha256": "795284b6890377dab9872c16a8fb314c127c050eaef2ad7c6fe2babb78ac052c",
+      "observation": "45도 직각삼각형의 한 직각변에서 나머지 두 길이를 묻던 것을 빗변 입력으로 역전하고 두 직각변 합과 빗변의 차를 묻는다.",
+      "wholeMethod": "Both acute angles45 and equal legs12; 12+12−12√2=24−12√2>0. Special45 definition uses actual hypotenuse; all units cm."
+    },
+    "choices": {
+      "status": "author-observed-proposed",
+      "textArraySha256": "f1c04a09db021949620c91665ddf4807e0328e00460f18e244e31084e2450fe2",
+      "actualAllChoices": [
+        {
+          "index1based": 1,
+          "choiceText": "$12\\,\\mathrm{cm}$",
+          "parsedExactValues": [
+            "12"
+          ],
+          "differencesFromCalculatedTargets": [
+            "-12 + 12*sqrt(2)"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 2,
+          "choiceText": "$(24-12\\sqrt2)\\,\\mathrm{cm}$",
+          "parsedExactValues": [
+            "24 - 12*sqrt(2)"
+          ],
+          "differencesFromCalculatedTargets": [
+            "0"
+          ],
+          "correctAsAuthorCalculation": true
+        },
+        {
+          "index1based": 3,
+          "choiceText": "$12\\sqrt2\\,\\mathrm{cm}$",
+          "parsedExactValues": [
+            "12*sqrt(2)"
+          ],
+          "differencesFromCalculatedTargets": [
+            "-24 + 24*sqrt(2)"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 4,
+          "choiceText": "$(24+12\\sqrt2)\\,\\mathrm{cm}$",
+          "parsedExactValues": [
+            "12*sqrt(2) + 24"
+          ],
+          "differencesFromCalculatedTargets": [
+            "24*sqrt(2)"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 5,
+          "choiceText": "$24\\,\\mathrm{cm}$",
+          "parsedExactValues": [
+            "24"
+          ],
+          "differencesFromCalculatedTargets": [
+            "12*sqrt(2)"
+          ],
+          "correctAsAuthorCalculation": false
+        }
+      ],
+      "observation": "All five exact values/ordered pairs were parsed with code and compared against every requested target; one winning option. Wrong choices require no new grade prerequisite."
+    },
+    "figuresAndTables": {
+      "status": "author-observed-proposed",
+      "rawSpecAndSvgRelations": {
+        "questionNumber": 7,
+        "spec": {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q07/stem-1.spec.json",
+          "sha256": "f19adc33b9952dc1e1f73947aa602caea2d1af55b3997467cf088683b94dd609"
+        },
+        "svg": {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q07/stem-1.svg",
+          "sha256": "7dfd74e8fcfae4bf45df5049313461b8ec7fb4b1912b33df4492c7f30ad2b1e8"
+        },
+        "intendedWidthMm": 70,
+        "coordinateChecks": [
+          {
+            "condition": "angle_R right",
+            "computed": 90.0,
+            "required": 90,
+            "authorCheckPassed": true
+          },
+          {
+            "condition": "angle_P angle label",
+            "computed": 45.0,
+            "required": 45,
+            "authorCheckPassed": true
+          },
+          {
+            "condition": "two legs equal",
+            "computed": 107.99999999999999,
+            "required": 107.99999999999999,
+            "authorCheckPassed": true
+          },
+          {
+            "condition": "actual hyp12sqrt2 at scale9",
+            "computed": 16.97056274847714,
+            "required": 16.970562748477143,
+            "authorCheckPassed": true
+          }
+        ],
+        "mathematicalPixelMeasurementsUsed": false,
+        "independentFigureOrGradeApproval": false,
+        "authorCheckOnly": true
+      },
+      "visualEvidence": {
+        "questionNumber": 7,
+        "directlyViewedWithViewImage": {
+          "path": "qa/q07-author.png",
+          "sha256": "be9f66fc51926419d6ab679132d223319f187fc3302eafa730ae11e74a245515"
+        },
+        "studentPane": {
+          "path": "qa/q07-student.png",
+          "sha256": "e7b35ce9b394f3cb754b8f5db654c2487aa0a50f7a0feb2c95b651384da6eb3c"
+        },
+        "studentPanePixelIdenticalToViewedPrefix": true,
+        "actualColumnWidthMm": 70,
+        "actualSvgWidthsMm": [
+          69.998828125
+        ],
+        "viewedItems": [
+          "whole student stem",
+          "fresh tables",
+          "all choices or all written parts",
+          "all new embedded figures",
+          "chosen new answer",
+          "entire expanded new solution"
+        ],
+        "legibilityAuthorObservation": "Labels, radicals, fractions, degree marks and table boundaries readable; no clipping, orphan final table row or math/table overflow observed.",
+        "mathematicalPixelMeasurementUsed": false,
+        "independentFigureOrContentApproval": false
+      },
+      "observation": "Every needed length/angle/order given in text; newly computed engine geometry is not a substitute for a given. Fresh tables organize new records and preserve paragraphs."
+    },
+    "notation": {
+      "status": "author-observed-proposed",
+      "observation": "Fixed acute angles, physical lengths and simple fractions/radicals. No upper-grade function/vector/calculus notation in student surfaces."
+    },
+    "answer": {
+      "status": "author-observed-proposed",
+      "textSha256": "faab5aef76a0e31bef1dc423641a79e0b60938edcdf69194bc63e734ca7114f6",
+      "newExactRequestedValues": [
+        "24 - 12*sqrt(2)"
+      ],
+      "observation": "New single chosen circled mark bound to the checked option."
+    },
+    "studentSolution": {
+      "status": "author-observed-proposed",
+      "textSha256": "b89e455074cab913477a699e1246a876425a073ee5f0abc2f57c70cf1a9db510",
+      "legitimateStudentProcedure": "45도 정의/이등변 성질로 실제 두 직각변을 구해 길이의 합과 차를 계산한다.",
+      "actualMathRoute": "Both acute angles45 and equal legs12; 12+12−12√2=24−12√2>0. Special45 definition uses actual hypotenuse; all units cm.",
+      "generalTrigIdentityOrSineCosineLawUsed": false,
+      "originalKeyAgreementUsed": false
+    },
+    "prerequisites": {
+      "status": "author-observed-proposed",
+      "officialStandards": [
+        {
+          "id": "9수04-10",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4300,
+            "paragraph1based": 938,
+            "offset": 217636,
+            "text": "[9수04-10]\u001e이등변삼각형의 성질을 이해하고 설명할 수 있다.\r"
+          },
+          "pdfPhysicalPage1based": 37,
+          "pdfPrintedPage": 33,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-17",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4341,
+            "paragraph1based": 948,
+            "offset": 219120,
+            "text": "[9수04-17]\u001e삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다. \r"
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-18",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4345,
+            "paragraph1based": 949,
+            "offset": 219292,
+            "text": "[9수04-18]\u001e삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.\r"
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        }
+      ],
+      "actualPrerequisiteSeedRecords": [
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2879,
+          "endLine1based": 2884,
+          "section": "제곱근의 뜻과 성질",
+          "text": "{\n    grade: \"중3\",\n    chapter: \"1. 실수와 그 계산\",\n    section: \"제곱근의 뜻과 성질\",\n    orderIndex: 469,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2955,
+          "endLine1based": 2960,
+          "section": "삼각비의 뜻",
+          "text": "{\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 뜻\",\n    orderIndex: 481,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2961,
+          "endLine1based": 2966,
+          "section": "삼각비의 값",
+          "text": "{\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 값\",\n    orderIndex: 482,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2967,
+          "endLine1based": 2972,
+          "section": "삼각비의 활용",
+          "text": "{\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 활용\",\n    orderIndex: 483,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 3112,
+          "endLine1based": 3117,
+          "section": "음수의 제곱근",
+          "text": "{\n    grade: \"공통수학1\",\n    chapter: \"2. 방정식과 부등식\",\n    section: \"음수의 제곱근\",\n    orderIndex: 508,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 3631,
+          "endLine1based": 3636,
+          "section": "거듭제곱근의 뜻",
+          "text": "{\n    grade: \"대수\",\n    chapter: \"1. 지수함수와 로그함수\",\n    section: \"거듭제곱근의 뜻\",\n    orderIndex: 594,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 3637,
+          "endLine1based": 3642,
+          "section": "거듭제곱근의 성질과 계산",
+          "text": "{\n    grade: \"대수\",\n    chapter: \"1. 지수함수와 로그함수\",\n    section: \"거듭제곱근의 성질과 계산\",\n    orderIndex: 595,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 1438,
+          "endLine1based": 1443,
+          "section": "2-2-2 이등변삼각형의 성질",
+          "text": "{\n    grade: \"초4\",\n    chapter: \"2-2 삼각형\",\n    section: \"2-2-2 이등변삼각형의 성질\",\n    orderIndex: 224,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 1818,
+          "endLine1based": 1823,
+          "section": "2-3-1 도형의 합동 알아보기",
+          "text": "{\n    grade: \"초5\",\n    chapter: \"2-3 합동과 대칭\",\n    section: \"2-3-1 도형의 합동 알아보기\",\n    orderIndex: 285,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 1824,
+          "endLine1based": 1829,
+          "section": "2-3-2 합동인 도형의 성질 알아보기",
+          "text": "{\n    grade: \"초5\",\n    chapter: \"2-3 합동과 대칭\",\n    section: \"2-3-2 합동인 도형의 성질 알아보기\",\n    orderIndex: 286,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2485,
+          "endLine1based": 2485,
+          "section": "합동",
+          "text": "{ grade: \"중1\", chapter: \"5. 기본 도형\", section: \"합동\", orderIndex: 395 }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2745,
+          "endLine1based": 2750,
+          "section": "이등변삼각형의 성질",
+          "text": "{\n    grade: \"중2\",\n    chapter: \"5. 도형의 성질\",\n    section: \"이등변삼각형의 성질\",\n    orderIndex: 446,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2751,
+          "endLine1based": 2756,
+          "section": "직각삼각형의 합동",
+          "text": "{\n    grade: \"중2\",\n    chapter: \"5. 도형의 성질\",\n    section: \"직각삼각형의 합동\",\n    orderIndex: 447,\n  }"
+        }
+      ],
+      "boundary": "Source-era2015 middle3 only; no probability/registry permit. New elementary coordinate representation q02 is supported by9수03-01. Whole route remains subject to independent review."
+    }
+  },
+  "officialRestrictions": [
+    {
+      "id": "no_trig_ratio_relationships",
+      "hwp": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record1based": 4440,
+        "paragraph1based": 966,
+        "offset": 224820,
+        "text": "삼각비 사이의 관계는 다루지 않는다.\r"
+      },
+      "pdfPhysicalPage1based": 39,
+      "pdfPrintedPage": 35,
+      "wholeClausePdfMatch": true
+    },
+    {
+      "id": "angle_range",
+      "hwp": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record1based": 4444,
+        "paragraph1based": 967,
+        "offset": 224946,
+        "text": "삼각비의 값은 0°에서 90°까지의 각도에 대한 것만 다룬다.\r"
+      },
+      "pdfPhysicalPage1based": 39,
+      "pdfPrintedPage": 35,
+      "wholeClausePdfMatch": true
+    },
+    {
+      "id": "no_complex_geometry_measurement",
+      "hwp": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record1based": 4472,
+        "paragraph1based": 974,
+        "offset": 226554,
+        "text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다.\r"
+      },
+      "pdfPhysicalPage1based": 39,
+      "pdfPrintedPage": 35,
+      "wholeClausePdfMatch": true
+    },
+    {
+      "id": "no_formal_complex_justification",
+      "hwp": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record1based": 4476,
+        "paragraph1based": 975,
+        "offset": 226792,
+        "text": "정확한 용어와 기호의 사용, 복잡한 형식 논리 규칙의 이용을 요구하는 연역적 정당화 문제는 다루지 않는다. \r"
+      },
+      "pdfPhysicalPage1based": 39,
+      "pdfPrintedPage": 35,
+      "wholeClausePdfMatch": true
+    }
+  ],
+  "taxonomy": {
+    "status": "pending",
+    "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+    "unitSection": "삼각비의 활용",
+    "familyKey": null,
+    "evidence": {
+      "actualCapturedUnit": {
+        "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 활용",
+        "semester": 2,
+        "orderIndex": 483,
+        "problemCodePrefix": "J30503"
+      },
+      "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+      "snapshotOnly": true,
+      "comparison": "활용01에는 빗변/특수각→둘레가 있지만 직각변 합−빗변이라는 목표 전체는 확인되지 않았다.",
+      "comparedRegistryEntries": [
+        {
+          "registry": {
+            "key": "3-2|삼각비의 활용|01",
+            "grade": "중3",
+            "unitSection": "삼각비의 활용",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비의 활용",
+            "rpmType": "01",
+            "rpmTitle": "직각삼각형의 변의 길이 구하기"
+          },
+          "liveMatches": [
+            {
+              "unit_id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+              "family_key": "mid:3-2|삼각비의 활용|01",
+              "live_count": 24
+            }
+          ],
+          "actualRule": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+            "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+            "startLine1based": 1867,
+            "endLine1based": 1928,
+            "text": "def(\n    \"삼각비의 활용\",\n    \"01\",\n    \"직각삼각형의 변의 길이 구하기\",\n    SEC.활용,\n    \"기본\",\n    (rng) =>\n      attempt<Body>(200, () => {\n        const theta = pick(rng, [30, 45, 60] as const);\n        const g = pick(rng, [4, 6, 8, 10, 12, 16, 20] as const);\n        const mode = intBetween(rng, 0, 1);\n        const sinT = exact(0, theta)!;\n        const cosT = exact(1, theta)!;\n        const adj = surdMul(surd(g, 1, 1), cosT);\n        const opp = surdMul(surd(g, 1, 1), sinT);\n        if (mode === 0) {\n          // (넓이) $=\\dfrac{1}{2}\\times\\overline{AB}\\times\\overline{BC}$\n          const area = surdMul(surdMul(adj, opp), surd(1, 1, 2));\n          if (area.d !== 1) return null;\n          return {\n            content: `직각삼각형 $ABC$에서 $\\\\angle B=90^\\\\circ$, $\\\\angle A=${theta}^\\\\circ$이고 $\\\\overline{AC}=${cm(g)}$일 때, 직각삼각형 $ABC$의 넓이를 구하시오.`,\n            answer: `$${cm2(surdText(area))}$`,\n            solution: `$\\\\overline{AB}=${g}\\\\times\\\\cos ${theta}^\\\\circ=${surdText(adj)}\\\\,(\\\\mathrm{cm})$, $\\\\overline{BC}=${g}\\\\times\\\\sin ${theta}^\\\\circ=${surdText(opp)}\\\\,(\\\\mathrm{cm})$이다.\\n따라서 (넓이)$=\\\\dfrac{1}{2}\\\\times${surdText(adj)}\\\\times${surdText(opp)}=${surdText(area)}\\\\,(\\\\mathrm{cm}^2)$이다.`,\n            facts: nums({ theta, given: g, mode, an: area.n, ar: area.r }),\n            figureSpec: figRight({\n              vert: surdValue(adj),\n              horz: surdValue(opp),\n              angA: `${theta}°`,\n              dims: { CA: dimCm(g) },\n            }),\n          };\n        }\n        // 둘레 — 유리항과 무리항을 따로 모은다($45^\\circ$ 는 둘 다 $\\sqrt{2}$ 라 합쳐진다).\n        let c0 = g;\n        let irr: Surd = { n: 0, r: 1, d: 1 };\n        for (const s of [adj, opp]) {\n          if (s.r === 1) {\n            c0 += s.n / s.d;\n            continue;\n          }\n          const t = surdAdd(irr, s);\n          if (!t) return null;\n          irr = t;\n        }\n        if (!Number.isInteger(c0)) return null;\n        if (irr.n === 0 || irr.d !== 1) return null;\n        return {\n          content: `직각삼각형 $ABC$에서 $\\\\angle B=90^\\\\circ$, $\\\\angle A=${theta}^\\\\circ$이고 $\\\\overline{AC}=${cm(g)}$일 때, 직각삼각형 $ABC$의 둘레의 길이를 구하시오.`,\n          answer: `$${lenText(c0, irr.n, irr.r, \"cm\")}$`,\n          solution: `$\\\\overline{AB}=${g}\\\\times\\\\cos ${theta}^\\\\circ=${surdText(adj)}\\\\,(\\\\mathrm{cm})$, $\\\\overline{BC}=${g}\\\\times\\\\sin ${theta}^\\\\circ=${surdText(opp)}\\\\,(\\\\mathrm{cm})$이다.\\n따라서 (둘레)$=${g}+${surdText(adj)}+${surdText(opp)}=${binomText(c0, irr.n, irr.r)}\\\\,(\\\\mathrm{cm})$이다.`,\n          facts: nums({ theta, given: g, mode, c0, c1: irr.n, root: irr.r }),\n          figureSpec: figRight({\n            vert: surdValue(adj),\n            horz: surdValue(opp),\n            angA: `${theta}°`,\n            dims: { CA: dimCm(g) },\n          }),\n        };\n      }),\n  ),\n\n  "
+          }
+        }
+      ],
+      "TRIPLESPoolCheckedForQ01": null
+    }
+  },
+  "problemType": {
+    "proposal": null,
+    "status": "pending",
+    "evidence": {
+      "path": "classification-limits.json",
+      "sha256": "fbcfa8e7894db6a3244c60cdb524628464fba1dc8edade615b55cb1bdf0c6a45"
+    }
+  },
+  "objectiveDifficultyProposal": {
+    "label": "응용",
+    "reason": "45도 정의/이등변 성질로 실제 두 직각변을 구해 길이의 합과 차를 계산한다.",
+    "status": "author-proposed",
+    "registryDescriptorAsProof": false,
+    "studentPerformanceMeasured": false
+  },
+  "naturalKoreanAuthorObservation": "Actual expanded layout read; exact input/target order and units stated. Pure mathematics stays mathematical; q17 changes distance input/target in a natural ramp context; q21 uses consistent fictional school.",
+  "materialHold": null,
+  "allFinalApprovals": {
+    "independentMath": false,
+    "independentWholeGrade": false,
+    "sourceCore": false,
+    "unitFamily": false,
+    "rights": false,
+    "nativeProvenance": false,
+    "loadable": false
+  }
+}

@@ -1,0 +1,993 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 18,
+  "authorId": "orca-codex-exam-twin-source-identity-20261008",
+  "method": "author-calculation-and-seven-surface-preparation",
+  "authorOnly": true,
+  "independentVerifier": false,
+  "sourceQuestionId": "2025-gyeongsang-3-2-mid-18",
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q18",
+  "sourceQuestionOnlyRecord": {
+    "number": 18,
+    "stem": "그림과 같이 $\\triangle \\mathrm{ABC}$와 $\\triangle \\mathrm{DCF}$가 서로 겹쳐져 있고, $\\angle \\mathrm{B}=90^\\circ ,~\\angle \\mathrm{C}=90^\\circ ,~\\angle \\mathrm{BAC}=60^\\circ ,\\,\\angle \\mathrm{EFC}=45^\\circ$, $\\overline{CD}=6,~\\overline{BF}=3$이다. 사각형 $\\mathrm{ABFE}$의 넓이를 $S$라고 할 때, $S-9$의 값은? [$5$점]",
+    "choices": [
+      "$\\frac{9}{2}\\sqrt{3}$",
+      "$6\\sqrt{3}$",
+      "$\\frac{15}{2}\\sqrt{3}$",
+      "$9\\sqrt{3}$",
+      "$\\frac{21}{2}\\sqrt{3}$"
+    ],
+    "hwpScriptStem": "그림과 같이 $TRIANGLE  RMABC$와 $TRIANGLE  rm DCF$가 서로 겹쳐져 있고, $ANGLE  rm B=90 DEG  ,~ ANGLE  rm C=90 DEG  ,~ ANGLE  rm BAC=60 DEG  ,` ANGLE  rm EFC=45 DEG $, ${bar{rm CD}} =6,~ {bar{rm BF}} =3$이다. 사각형 $RMABFE$의 넓이를 $S\r\n$라고 할 때, $S-9$의 값은? [$5$점]",
+    "hwpScriptChoices": [
+      "${9} over {2} sqrt {3}$",
+      "$6 sqrt {3}$",
+      "${15} over {2} sqrt {3}$",
+      "$9 sqrt {3}$",
+      "${21} over {2} sqrt {3}$"
+    ],
+    "scoreEvidence": {
+      "selectedHwpPdfPrintedParentScore": 5.0,
+      "selectedPairScoreStatus": "literal_match",
+      "originalPrintedParentScore": 5.0,
+      "referenceParentScore": 5.0,
+      "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+      "parentCountedOnce": true,
+      "childScores": [],
+      "subquestionCount": 0,
+      "parentAndChildrenMustNotBeAddedTogether": false
+    },
+    "subQuestions": [],
+    "structuredGivenData": {},
+    "figureGivenObservation": "∠B=∠C=90°, ∠BAC=60°, ∠EFC=45°; CD=6, BF=3; 음영 ABFE.",
+    "curriculum": {
+      "sourceGrade": "중3",
+      "expectedAppliedCurriculum": "2015",
+      "status": "hold_full_item_review",
+      "fullApproval": false,
+      "conceptCandidate": "삼각비의 정의·값·활용",
+      "coreMethodCandidate": "두 직각삼각형의 겹침과 높이/밑변으로 부분 넓이를 구성한다.",
+      "officialStandardsCandidates": [
+        {
+          "code": "9수04-18",
+          "officialStatement": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+          "pdfPage": 38,
+          "printedPage": 34,
+          "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+          "notPerQuestionApproval": true
+        }
+      ],
+      "localUnitCandidate": {
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "seedFile": "prisma/seed-data/units.ts",
+        "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+        "liveUnitId": null
+      },
+      "liveFamilyId": null,
+      "generatorRuleId": null,
+      "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+      "specificRisk": "겹친 도형의 복잡성 및 각 대응 검토.",
+      "decisionIfNoLegalGradeMethod": "reject",
+      "decisionIfUnclear": "hold",
+      "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+      "requiredReview": [
+        "stem",
+        "all choices",
+        "figure meaning",
+        "notation",
+        "answer format",
+        "new answer",
+        "student solution",
+        "required steps",
+        "prerequisites"
+      ],
+      "signDomainUnitsGate": [
+        "signs and radicals",
+        "angle range 0-90 degrees",
+        "nonzero denominators",
+        "positive lengths/areas",
+        "units",
+        "existence",
+        "uniqueness"
+      ],
+      "sourceSchoolOrAIConfidenceCannotApprove": true
+    },
+    "sourceContentDigest": "40482454bcd6f131f6084e2c1bfbc756b61e6d65f6bedbfe4eee122cc6a8601e",
+    "sourceQuestionId": "2025-gyeongsang-3-2-mid-18",
+    "status": "source_reference_reviewed_all_final_approval_gates_held",
+    "sourceAmbiguityHolds": [
+      "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+      "source_custody_rights_permission_pending",
+      "canonical_text_product_render_review_pending",
+      "specific_grade_method_risk"
+    ],
+    "sharedContext": null,
+    "images": [
+      {
+        "file": "images/q18-part1.png",
+        "sha256": "9d8ce5caec93eb3f97f866508fc154869fac96516173e157d064582826f05533",
+        "page": 4,
+        "column": 1,
+        "bbox": [
+          370,
+          509.09442138671875,
+          688.0,
+          943.0
+        ]
+      }
+    ],
+    "subquestionNumbers": [],
+    "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+    "selectedHwpAnchor": {
+      "stream": "BodyText/Section0",
+      "recordIndex": 2074,
+      "inflatedByteOffset": 88204,
+      "tag": 71,
+      "level": 1,
+      "payloadSha256": "1c57177ab7e7453889ced5c58937a77d4b8fa3026370a45d351f7bfa5570648b"
+    },
+    "selectedPdfRegions": [
+      {
+        "page": 4,
+        "column": 1,
+        "bbox": [
+          370,
+          509.09442138671875,
+          688.0,
+          943.0
+        ]
+      }
+    ]
+  },
+  "sourceWholePacketSHA256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+  "gradeDisposition": "pending-material-restriction",
+  "sourceCoreAndActualMethod": {
+    "sharedConcept": "두 직각삼각형의 특수각 길이 대응과 전체/부분 삼각형 넓이 분해",
+    "sourceObservedQuestion": "그림과 같이 $\\triangle \\mathrm{ABC}$와 $\\triangle \\mathrm{DCF}$가 서로 겹쳐져 있고, $\\angle \\mathrm{B}=90^\\circ ,~\\angle \\mathrm{C}=90^\\circ ,~\\angle \\mathrm{BAC}=60^\\circ ,\\,\\angle \\mathrm{EFC}=45^\\circ$, $\\overline{CD}=6,~\\overline{BF}=3$이다. 사각형 $\\mathrm{ABFE}$의 넓이를 $S$라고 할 때, $S-9$의 값은? [$5$점]\n∠B=∠C=90°, ∠BAC=60°, ∠EFC=45°; CD=6, BF=3; 음영 ABFE.",
+    "newMethod": "CF8; EH=h, FH=h, HC=√3h yield h=4(√3−1)>0; areaEFC16(√3−1). Full areaABC24√3 and BC=t,AB=t/√3 imply t²144, positive t12, BF4. E and H are internal, but whole overlapping-area inverse assessment complexity is a material curricular hold.",
+    "sourceCorePreservationStatus": "author-proposed-independent-review-pending"
+  },
+  "substantiveDelta": {
+    "modes": [
+      "inverse-target",
+      "structure"
+    ],
+    "before": "그림과 같이 $\\triangle \\mathrm{ABC}$와 $\\triangle \\mathrm{DCF}$가 서로 겹쳐져 있고, $\\angle \\mathrm{B}=90^\\circ ,~\\angle \\mathrm{C}=90^\\circ ,~\\angle \\mathrm{BAC}=60^\\circ ,\\,\\angle \\mathrm{EFC}=45^\\circ$, $\\overline{CD}=6,~\\overline{BF}=3$이다. 사각형 $\\mathrm{ABFE}$의 넓이를 $S$라고 할 때, $S-9$의 값은? [$5$점]\n∠B=∠C=90°, ∠BAC=60°, ∠EFC=45°; CD=6, BF=3; 음영 ABFE.",
+    "after": "겹친 두 직각삼각형의 CD/BF 입력→부분넓이 차 목표에서, CD/부분넓이 입력→BF 역산으로 바꾸고 풀이용 수선H를 명시한다.",
+    "sharedConcept": "두 직각삼각형의 특수각 길이 대응과 전체/부분 삼각형 넓이 분해",
+    "sharedProcedure": "45도/30도 수선 높이로 EFC 넓이를 복구하고 전체ABC의 밑변/높이 관계와 양의 제곱근으로 BF를 구한다.",
+    "originalAnswerOrNumericalAgreementUsed": false
+  },
+  "score": 5.0,
+  "newSubpartRubric": [],
+  "mathEvidence": {
+    "questionNumber": 18,
+    "newExactRequestedValues": [
+      "4"
+    ],
+    "freshNewCalculations": {
+      "CD=FC": "8",
+      "EH": "-4 + 4*sqrt(3)",
+      "FH": "-4 + 4*sqrt(3)",
+      "HC": "12 - 4*sqrt(3)",
+      "EFCarea": "-16 + 16*sqrt(3)",
+      "ABFEarea": "8*sqrt(3) + 16",
+      "ABCarea": "24*sqrt(3)",
+      "allBCRoots": [
+        "-12",
+        "12"
+      ],
+      "positiveBC": "12",
+      "BF": "4",
+      "AB": "4*sqrt(3)"
+    },
+    "conditions": [
+      {
+        "condition": "unique positive root and all internal segments",
+        "passedAsAuthorCalculation": true,
+        "calculation": {
+          "CD=FC": "8",
+          "EH": "-4 + 4*sqrt(3)",
+          "FH": "-4 + 4*sqrt(3)",
+          "HC": "12 - 4*sqrt(3)",
+          "EFCarea": "-16 + 16*sqrt(3)",
+          "ABFEarea": "8*sqrt(3) + 16",
+          "ABCarea": "24*sqrt(3)",
+          "allBCRoots": [
+            "-12",
+            "12"
+          ],
+          "positiveBC": "12",
+          "BF": "4",
+          "AB": "4*sqrt(3)"
+        }
+      }
+    ],
+    "actualAllChoices": [
+      {
+        "index1based": 1,
+        "choiceText": "$2\\,\\mathrm{cm}$",
+        "parsedExactValues": [
+          "2"
+        ],
+        "differencesFromCalculatedTargets": [
+          "-2"
+        ],
+        "correctAsAuthorCalculation": false
+      },
+      {
+        "index1based": 2,
+        "choiceText": "$3\\,\\mathrm{cm}$",
+        "parsedExactValues": [
+          "3"
+        ],
+        "differencesFromCalculatedTargets": [
+          "-1"
+        ],
+        "correctAsAuthorCalculation": false
+      },
+      {
+        "index1based": 3,
+        "choiceText": "$4\\,\\mathrm{cm}$",
+        "parsedExactValues": [
+          "4"
+        ],
+        "differencesFromCalculatedTargets": [
+          "0"
+        ],
+        "correctAsAuthorCalculation": true
+      },
+      {
+        "index1based": 4,
+        "choiceText": "$6\\,\\mathrm{cm}$",
+        "parsedExactValues": [
+          "6"
+        ],
+        "differencesFromCalculatedTargets": [
+          "2"
+        ],
+        "correctAsAuthorCalculation": false
+      },
+      {
+        "index1based": 5,
+        "choiceText": "$8\\,\\mathrm{cm}$",
+        "parsedExactValues": [
+          "8"
+        ],
+        "differencesFromCalculatedTargets": [
+          "4"
+        ],
+        "correctAsAuthorCalculation": false
+      }
+    ],
+    "winnerIndex1based": 3,
+    "choiceAnswerMark": "③",
+    "requestedUniquenessAuthorCheck": true,
+    "wholeConfigurationMustBeUnique": true,
+    "unitsAndPrecision": "q04/q05 table records andq17 specified rounded distance are approximations; all other numeric lengths/areas exact.",
+    "code": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/author_math.py",
+      "sha256": "dffc06bdb422829fc713c2c1f53fabe786573dcdd20712ac6a5638fbf66cfc63"
+    },
+    "originalAnswerUsed": false,
+    "authorCheckOnly": true,
+    "independentMathApproval": false,
+    "curriculumPermissionFromCalculation": false
+  },
+  "calculationProofFile": {
+    "path": "author-calculations.json",
+    "sha256": "de493620851acf3825c3c21a1634c8c774abcf9fbdc7389170d0a27668350a4a"
+  },
+  "calculationCode": {
+    "path": "author_math.py",
+    "sha256": "dffc06bdb422829fc713c2c1f53fabe786573dcdd20712ac6a5638fbf66cfc63"
+  },
+  "sevenStudentSurfaces": {
+    "stem": {
+      "status": "pending-material-restriction",
+      "contentTextSha256": "831683b7f1e87b6031cb8092e6ad65f6d26a3dcc022262f5e93e4cebf9910db4",
+      "observation": "겹친 두 직각삼각형의 CD/BF 입력→부분넓이 차 목표에서, CD/부분넓이 입력→BF 역산으로 바꾸고 풀이용 수선H를 명시한다.",
+      "wholeMethod": "CF8; EH=h, FH=h, HC=√3h yield h=4(√3−1)>0; areaEFC16(√3−1). Full areaABC24√3 and BC=t,AB=t/√3 imply t²144, positive t12, BF4. E and H are internal, but whole overlapping-area inverse assessment complexity is a material curricular hold."
+    },
+    "choices": {
+      "status": "pending-material-restriction",
+      "textArraySha256": "0806ff047ddf7acb1cfa4117d6256c48f466086ed53e6a57460a7232343dd8f0",
+      "actualAllChoices": [
+        {
+          "index1based": 1,
+          "choiceText": "$2\\,\\mathrm{cm}$",
+          "parsedExactValues": [
+            "2"
+          ],
+          "differencesFromCalculatedTargets": [
+            "-2"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 2,
+          "choiceText": "$3\\,\\mathrm{cm}$",
+          "parsedExactValues": [
+            "3"
+          ],
+          "differencesFromCalculatedTargets": [
+            "-1"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 3,
+          "choiceText": "$4\\,\\mathrm{cm}$",
+          "parsedExactValues": [
+            "4"
+          ],
+          "differencesFromCalculatedTargets": [
+            "0"
+          ],
+          "correctAsAuthorCalculation": true
+        },
+        {
+          "index1based": 4,
+          "choiceText": "$6\\,\\mathrm{cm}$",
+          "parsedExactValues": [
+            "6"
+          ],
+          "differencesFromCalculatedTargets": [
+            "2"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 5,
+          "choiceText": "$8\\,\\mathrm{cm}$",
+          "parsedExactValues": [
+            "8"
+          ],
+          "differencesFromCalculatedTargets": [
+            "4"
+          ],
+          "correctAsAuthorCalculation": false
+        }
+      ],
+      "observation": "All five exact values/ordered pairs were parsed with code and compared against every requested target; one winning option. Wrong choices require no new grade prerequisite."
+    },
+    "figuresAndTables": {
+      "status": "pending-material-restriction",
+      "rawSpecAndSvgRelations": {
+        "questionNumber": 18,
+        "spec": {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q18/stem-1.spec.json",
+          "sha256": "3976b8e1fe50cd1364c2f0ef9939b7ccea9f24f12911a82b7daa2c8192c0414d"
+        },
+        "svg": {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q18/stem-1.svg",
+          "sha256": "c287f7c2275f313f9fe81c4db471b1bee16aca8d5a5f1abd00b884437eecb409"
+        },
+        "intendedWidthMm": 70,
+        "coordinateChecks": [
+          {
+            "condition": "angle_B right",
+            "computed": 90.0,
+            "required": 90,
+            "authorCheckPassed": true
+          },
+          {
+            "condition": "angle_C right",
+            "computed": 90.0,
+            "required": 90,
+            "authorCheckPassed": true
+          },
+          {
+            "condition": "angle_H right",
+            "computed": 90.0,
+            "required": 90,
+            "authorCheckPassed": true
+          },
+          {
+            "condition": "angle_A angle label",
+            "computed": 60.00000000000001,
+            "required": 60,
+            "authorCheckPassed": true
+          },
+          {
+            "condition": "angle_F angle label",
+            "computed": 45.00000000000001,
+            "required": 45,
+            "authorCheckPassed": true
+          },
+          {
+            "condition": "F on BC",
+            "computed": 0.0,
+            "required": 0,
+            "authorCheckPassed": true
+          },
+          {
+            "condition": "F internal to BC",
+            "fraction": 0.3333333333333333,
+            "authorCheckPassed": true
+          },
+          {
+            "condition": "H on FC",
+            "computed": 0.0,
+            "required": 0,
+            "authorCheckPassed": true
+          },
+          {
+            "condition": "H internal to FC",
+            "fraction": 0.36602540378443854,
+            "authorCheckPassed": true
+          },
+          {
+            "condition": "E on AC",
+            "computed": 0.0,
+            "required": 0,
+            "authorCheckPassed": true
+          },
+          {
+            "condition": "E internal to AC",
+            "fraction": 0.5773502691896257,
+            "authorCheckPassed": true
+          },
+          {
+            "condition": "E on FD",
+            "computed": 3.157967714489334e-17,
+            "required": 0,
+            "authorCheckPassed": true
+          },
+          {
+            "condition": "E internal to FD",
+            "fraction": 0.36602540378443854,
+            "authorCheckPassed": true
+          },
+          {
+            "condition": "CD8 at scale15",
+            "computed": 8.0,
+            "required": 8,
+            "authorCheckPassed": true
+          },
+          {
+            "condition": "ABFE area16+8sqrt3 at scale15",
+            "computed": 29.856406460551014,
+            "required": 29.856406460551018,
+            "authorCheckPassed": true
+          },
+          {
+            "condition": "BF4 at scale15",
+            "computed": 4.0,
+            "required": 4,
+            "authorCheckPassed": true
+          }
+        ],
+        "mathematicalPixelMeasurementsUsed": false,
+        "independentFigureOrGradeApproval": false,
+        "authorCheckOnly": true
+      },
+      "visualEvidence": {
+        "questionNumber": 18,
+        "directlyViewedWithViewImage": {
+          "path": "qa/q18-author.png",
+          "sha256": "1516400d716e4d8950c6246a0934e1c95625d65d8b917c2ccdbfcf67871215ca"
+        },
+        "studentPane": {
+          "path": "qa/q18-student.png",
+          "sha256": "bac7ef0be265187e07ce12bf858fb87714dffb01683e65382ff1afb2eebb9d1b"
+        },
+        "studentPanePixelIdenticalToViewedPrefix": true,
+        "actualColumnWidthMm": 70,
+        "actualSvgWidthsMm": [
+          69.998828125
+        ],
+        "viewedItems": [
+          "whole student stem",
+          "fresh tables",
+          "all choices or all written parts",
+          "all new embedded figures",
+          "chosen new answer",
+          "entire expanded new solution"
+        ],
+        "legibilityAuthorObservation": "Labels, radicals, fractions, degree marks and table boundaries readable; no clipping, orphan final table row or math/table overflow observed.",
+        "mathematicalPixelMeasurementUsed": false,
+        "independentFigureOrContentApproval": false
+      },
+      "observation": "Every needed length/angle/order given in text; newly computed engine geometry is not a substitute for a given. Fresh tables organize new records and preserve paragraphs."
+    },
+    "notation": {
+      "status": "pending-material-restriction",
+      "observation": "h,t are positive actual lengths in cm. One linear equation and a positive square root are required; no advanced coordinate or vector notation."
+    },
+    "answer": {
+      "status": "pending-material-restriction",
+      "textSha256": "3d3bc389df58f47aef91bc1182122d181e2c628a2d5b93939c903507938814de",
+      "newExactRequestedValues": [
+        "4"
+      ],
+      "observation": "New single chosen circled mark bound to the checked option."
+    },
+    "studentSolution": {
+      "status": "pending-material-restriction",
+      "textSha256": "3c68547280345925475f2000a083923706fd89e8b4086f2abc1b6f23a2b4fd95",
+      "legitimateStudentProcedure": "45도/30도 수선 높이로 EFC 넓이를 복구하고 전체ABC의 밑변/높이 관계와 양의 제곱근으로 BF를 구한다.",
+      "actualMathRoute": "CF8; EH=h, FH=h, HC=√3h yield h=4(√3−1)>0; areaEFC16(√3−1). Full areaABC24√3 and BC=t,AB=t/√3 imply t²144, positive t12, BF4. E and H are internal, but whole overlapping-area inverse assessment complexity is a material curricular hold.",
+      "generalTrigIdentityOrSineCosineLawUsed": false,
+      "originalKeyAgreementUsed": false
+    },
+    "prerequisites": {
+      "status": "pending-material-restriction",
+      "officialStandards": [
+        {
+          "id": "6수03-06",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 3433,
+            "paragraph1based": 737,
+            "offset": 176573,
+            "text": "[6수03-06]\u001e평행사변형, 삼각형, 사다리꼴, 마름모의 넓이를 구하는 방법을 다양하게 추론하고, 이와 관련된 문제를 해결할 수 있다.\r"
+          },
+          "pdfPhysicalPage1based": 29,
+          "pdfPrintedPage": 25,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-05",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4272,
+            "paragraph1based": 931,
+            "offset": 216602,
+            "text": "[9수04-05]\u001e다각형의 성질을 이해한다.\r"
+          },
+          "pdfPhysicalPage1based": 37,
+          "pdfPrintedPage": 33,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-17",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4341,
+            "paragraph1based": 948,
+            "offset": 219120,
+            "text": "[9수04-17]\u001e삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다. \r"
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-18",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4345,
+            "paragraph1based": 949,
+            "offset": 219292,
+            "text": "[9수04-18]\u001e삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.\r"
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수01-07",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 3776,
+            "paragraph1based": 819,
+            "offset": 192865,
+            "text": "[9수01-07]\u001e제곱근의 뜻을 알고, 그 성질을 이해한다.\r"
+          },
+          "pdfPhysicalPage1based": 33,
+          "pdfPrintedPage": 29,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수01-10",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 3788,
+            "paragraph1based": 822,
+            "offset": 193301,
+            "text": "[9수01-10]\u001e근호를 포함한 식의 사칙계산을 할 수 있다.\r"
+          },
+          "pdfPhysicalPage1based": 33,
+          "pdfPrintedPage": 29,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수02-05",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 3916,
+            "paragraph1based": 850,
+            "offset": 199888,
+            "text": "[9수02-05]\u001e일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.\r"
+          },
+          "pdfPhysicalPage1based": 34,
+          "pdfPrintedPage": 30,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "6수03-04",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 3425,
+            "paragraph1based": 735,
+            "offset": 176051,
+            "text": "[6수03-04]\u001e넓이를 나타내는 표준 단위의 필요성을 인식하여 1cm², 1m², 1km²의 단위를 알며, 그 관계를 이해한다. \r"
+          },
+          "pdfPhysicalPage1based": 29,
+          "pdfPrintedPage": 25,
+          "wholeClausePdfMatch": true
+        }
+      ],
+      "actualPrerequisiteSeedRecords": [
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2879,
+          "endLine1based": 2884,
+          "section": "제곱근의 뜻과 성질",
+          "text": "{\n    grade: \"중3\",\n    chapter: \"1. 실수와 그 계산\",\n    section: \"제곱근의 뜻과 성질\",\n    orderIndex: 469,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2955,
+          "endLine1based": 2960,
+          "section": "삼각비의 뜻",
+          "text": "{\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 뜻\",\n    orderIndex: 481,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2961,
+          "endLine1based": 2966,
+          "section": "삼각비의 값",
+          "text": "{\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 값\",\n    orderIndex: 482,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2967,
+          "endLine1based": 2972,
+          "section": "삼각비의 활용",
+          "text": "{\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 활용\",\n    orderIndex: 483,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 3112,
+          "endLine1based": 3117,
+          "section": "음수의 제곱근",
+          "text": "{\n    grade: \"공통수학1\",\n    chapter: \"2. 방정식과 부등식\",\n    section: \"음수의 제곱근\",\n    orderIndex: 508,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 3631,
+          "endLine1based": 3636,
+          "section": "거듭제곱근의 뜻",
+          "text": "{\n    grade: \"대수\",\n    chapter: \"1. 지수함수와 로그함수\",\n    section: \"거듭제곱근의 뜻\",\n    orderIndex: 594,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 3637,
+          "endLine1based": 3642,
+          "section": "거듭제곱근의 성질과 계산",
+          "text": "{\n    grade: \"대수\",\n    chapter: \"1. 지수함수와 로그함수\",\n    section: \"거듭제곱근의 성질과 계산\",\n    orderIndex: 595,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2850,
+          "endLine1based": 2855,
+          "section": "피타고라스 정리",
+          "text": "{\n    grade: \"중2\",\n    chapter: \"8. 피타고라스 정리\",\n    section: \"피타고라스 정리\",\n    orderIndex: 463,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2856,
+          "endLine1based": 2861,
+          "section": "피타고라스 정리의 활용",
+          "text": "{\n    grade: \"중2\",\n    chapter: \"8. 피타고라스 정리\",\n    section: \"피타고라스 정리의 활용\",\n    orderIndex: 464,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2384,
+          "endLine1based": 2389,
+          "section": "일차방정식의 풀이",
+          "text": "{\n    grade: \"중1\",\n    chapter: \"3. 방정식\",\n    section: \"일차방정식의 풀이\",\n    orderIndex: 376,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2390,
+          "endLine1based": 2395,
+          "section": "일차방정식의 활용(해의 응용)",
+          "text": "{\n    grade: \"중1\",\n    chapter: \"3. 방정식\",\n    section: \"일차방정식의 활용(해의 응용)\",\n    orderIndex: 377,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2396,
+          "endLine1based": 2401,
+          "section": "일차방정식의 활용(수)",
+          "text": "{\n    grade: \"중1\",\n    chapter: \"3. 방정식\",\n    section: \"일차방정식의 활용(수)\",\n    orderIndex: 378,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2402,
+          "endLine1based": 2407,
+          "section": "일차방정식의 활용(나이, 과부족, 예금)",
+          "text": "{\n    grade: \"중1\",\n    chapter: \"3. 방정식\",\n    section: \"일차방정식의 활용(나이, 과부족, 예금)\",\n    orderIndex: 379,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2408,
+          "endLine1based": 2413,
+          "section": "일차방정식의 활용(증가와 감소, 원가와 정가)",
+          "text": "{\n    grade: \"중1\",\n    chapter: \"3. 방정식\",\n    section: \"일차방정식의 활용(증가와 감소, 원가와 정가)\",\n    orderIndex: 380,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2414,
+          "endLine1based": 2419,
+          "section": "일차방정식의 활용(거리, 속력, 시간)",
+          "text": "{\n    grade: \"중1\",\n    chapter: \"3. 방정식\",\n    section: \"일차방정식의 활용(거리, 속력, 시간)\",\n    orderIndex: 381,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2420,
+          "endLine1based": 2425,
+          "section": "일차방정식의 활용(도형, 농도, 일)",
+          "text": "{\n    grade: \"중1\",\n    chapter: \"3. 방정식\",\n    section: \"일차방정식의 활용(도형, 농도, 일)\",\n    orderIndex: 382,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2426,
+          "endLine1based": 2431,
+          "section": "일차방정식의 활용(비율, 시계, 규칙)",
+          "text": "{\n    grade: \"중1\",\n    chapter: \"3. 방정식\",\n    section: \"일차방정식의 활용(비율, 시계, 규칙)\",\n    orderIndex: 383,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2488,
+          "endLine1based": 2493,
+          "section": "삼각형의 내각과 외각",
+          "text": "{\n    grade: \"중1\",\n    chapter: \"6. 평면도형\",\n    section: \"삼각형의 내각과 외각\",\n    orderIndex: 397,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2494,
+          "endLine1based": 2499,
+          "section": "다각형의 내각과 외각",
+          "text": "{\n    grade: \"중1\",\n    chapter: \"6. 평면도형\",\n    section: \"다각형의 내각과 외각\",\n    orderIndex: 398,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2635,
+          "endLine1based": 2640,
+          "section": "미지수가 2개인 연립일차방정식",
+          "text": "{\n    grade: \"중2\",\n    chapter: \"3. 방정식\",\n    section: \"미지수가 2개인 연립일차방정식\",\n    orderIndex: 428,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2732,
+          "endLine1based": 2737,
+          "section": "일차함수와 일차방정식",
+          "text": "{\n    grade: \"중2\",\n    chapter: \"4. 함수\",\n    section: \"일차함수와 일차방정식\",\n    orderIndex: 444,\n  }"
+        }
+      ],
+      "boundary": "Source-era2015 middle3 only; no probability/registry permit. New elementary coordinate representation q02 is supported by9수03-01. Whole route remains subject to independent review."
+    }
+  },
+  "officialRestrictions": [
+    {
+      "id": "no_trig_ratio_relationships",
+      "hwp": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record1based": 4440,
+        "paragraph1based": 966,
+        "offset": 224820,
+        "text": "삼각비 사이의 관계는 다루지 않는다.\r"
+      },
+      "pdfPhysicalPage1based": 39,
+      "pdfPrintedPage": 35,
+      "wholeClausePdfMatch": true
+    },
+    {
+      "id": "angle_range",
+      "hwp": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record1based": 4444,
+        "paragraph1based": 967,
+        "offset": 224946,
+        "text": "삼각비의 값은 0°에서 90°까지의 각도에 대한 것만 다룬다.\r"
+      },
+      "pdfPhysicalPage1based": 39,
+      "pdfPrintedPage": 35,
+      "wholeClausePdfMatch": true
+    },
+    {
+      "id": "no_complex_geometry_measurement",
+      "hwp": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record1based": 4472,
+        "paragraph1based": 974,
+        "offset": 226554,
+        "text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다.\r"
+      },
+      "pdfPhysicalPage1based": 39,
+      "pdfPrintedPage": 35,
+      "wholeClausePdfMatch": true
+    },
+    {
+      "id": "no_formal_complex_justification",
+      "hwp": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record1based": 4476,
+        "paragraph1based": 975,
+        "offset": 226792,
+        "text": "정확한 용어와 기호의 사용, 복잡한 형식 논리 규칙의 이용을 요구하는 연역적 정당화 문제는 다루지 않는다. \r"
+      },
+      "pdfPhysicalPage1based": 39,
+      "pdfPrintedPage": 35,
+      "wholeClausePdfMatch": true
+    }
+  ],
+  "taxonomy": {
+    "status": "pending",
+    "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+    "unitSection": "삼각비의 활용",
+    "familyKey": null,
+    "evidence": {
+      "actualCapturedUnit": {
+        "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 활용",
+        "semester": 2,
+        "orderIndex": 483,
+        "problemCodePrefix": "J30503"
+      },
+      "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+      "snapshotOnly": true,
+      "comparison": "단일 삼각형 역넓이와 전체 사각형 넓이의 가까운 목적은 있지만 이 겹침/분해/양의근 목표 전체는 배정되지 않았다. 복잡성은 독립 학년 검토가 필요하다.",
+      "comparedRegistryEntries": [
+        {
+          "registry": {
+            "key": "3-2|삼각비의 활용|08",
+            "grade": "중3",
+            "unitSection": "삼각비의 활용",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비의 활용",
+            "rpmType": "08",
+            "rpmTitle": "삼각형의 넓이 예각이 주어진 경우"
+          },
+          "liveMatches": [
+            {
+              "unit_id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+              "family_key": "mid:3-2|삼각비의 활용|08",
+              "live_count": 24
+            }
+          ],
+          "actualRule": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+            "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+            "startLine1based": 2266,
+            "endLine1based": 2275,
+            "text": "def(\n    \"삼각비의 활용\",\n    \"08\",\n    \"삼각형의 넓이 예각이 주어진 경우\",\n    SEC.활용,\n    \"응용\",\n    (rng) => triangleArea(rng, [30, 45, 60]),\n  ),\n\n  "
+          }
+        },
+        {
+          "registry": {
+            "key": "3-2|삼각비의 활용|12",
+            "grade": "중3",
+            "unitSection": "삼각비의 활용",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비의 활용",
+            "rpmType": "12",
+            "rpmTitle": "사각형의 넓이"
+          },
+          "liveMatches": [
+            {
+              "unit_id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+              "family_key": "mid:3-2|삼각비의 활용|12",
+              "live_count": 24
+            }
+          ],
+          "actualRule": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+            "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+            "startLine1based": 2365,
+            "endLine1based": 2395,
+            "text": "def(\"삼각비의 활용\", \"12\", \"사각형의 넓이\", SEC.활용, \"응용\", (rng) =>\n    attempt(200, () => {\n      const ang = pick(rng, [30, 45, 60, 120, 135, 150] as const);\n      const d1 = intBetween(rng, 4, 16);\n      const d2 = intBetween(rng, 4, 16);\n      const sinT = exact(0, ang > 90 ? 180 - ang : ang)!;\n      const area = surdMul(surdMul(surd(d1 * d2, 1, 1), sinT), surd(1, 1, 2));\n      if (area.d !== 1) return null;\n      const mode = intBetween(rng, 0, 1);\n      const shrink =\n        ang > 90 ? `\\\\sin(180^\\\\circ-${ang}^\\\\circ)` : `\\\\sin ${ang}^\\\\circ`;\n      if (mode === 0) {\n        return {\n          content: `사각형 $ABCD$에서 두 대각선 $AC$, $BD$의 길이가 각각 $${cm(d1)}$, $${cm(d2)}$이고 두 대각선이 이루는 각의 크기가 $${ang}^\\\\circ$일 때, 사각형 $ABCD$의 넓이를 구하시오.`,\n          answer: `$${cm2(surdText(area))}$`,\n          solution: `(사각형의 넓이)$=\\\\dfrac{1}{2}\\\\times\\\\overline{AC}\\\\times\\\\overline{BD}\\\\times${shrink}$이다.\\n따라서 넓이는 $\\\\dfrac{1}{2}\\\\times${d1}\\\\times${d2}\\\\times${surdText(sinT)}=${surdText(area)}\\\\,(\\\\mathrm{cm}^2)$이다.`,\n          facts: { d1, d2, ang, mode, an: area.n, ar: area.r },\n          figureSpec: figQuadCross({ d1, d2, ang }),\n        };\n      }\n      return {\n        content: `사각형 $ABCD$에서 대각선 $AC$의 길이가 $${cm(d1)}$이고 두 대각선이 이루는 각의 크기가 $${ang}^\\\\circ$이다. 사각형 $ABCD$의 넓이가 $${cm2(surdText(area))}$일 때, 대각선 $BD$의 길이를 구하시오.`,\n        answer: `$${cm(d2)}$`,\n        solution: `(사각형의 넓이)$=\\\\dfrac{1}{2}\\\\times\\\\overline{AC}\\\\times\\\\overline{BD}\\\\times${shrink}$이다.\\n$\\\\dfrac{1}{2}\\\\times${d1}\\\\times\\\\overline{BD}\\\\times${surdText(sinT)}=${surdText(area)}$이므로 $\\\\overline{BD}=${d2}\\\\,(\\\\mathrm{cm})$이다.`,\n        facts: { d1, d2, ang, mode, an: area.n, ar: area.r },\n        figureSpec: figQuadCross({ d1, d2, ang }),\n      };\n    }),\n  ),\n\n  "
+          }
+        }
+      ],
+      "TRIPLESPoolCheckedForQ01": null
+    }
+  },
+  "problemType": {
+    "proposal": null,
+    "status": "pending",
+    "evidence": {
+      "path": "classification-limits.json",
+      "sha256": "fbcfa8e7894db6a3244c60cdb524628464fba1dc8edade615b55cb1bdf0c6a45"
+    }
+  },
+  "objectiveDifficultyProposal": {
+    "label": "심화하",
+    "reason": "45도/30도 수선 높이로 EFC 넓이를 복구하고 전체ABC의 밑변/높이 관계와 양의 제곱근으로 BF를 구한다.",
+    "status": "author-proposed",
+    "registryDescriptorAsProof": false,
+    "studentPerformanceMeasured": false
+  },
+  "naturalKoreanAuthorObservation": "Actual expanded layout read; exact input/target order and units stated. Pure mathematics stays mathematical; q17 changes distance input/target in a natural ramp context; q21 uses consistent fictional school.",
+  "materialHold": {
+    "status": "pending",
+    "scope": "q18 only: whole-student inverse overlapping-area assessment",
+    "officialProvision": {
+      "id": "no_complex_geometry_measurement",
+      "hwp": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record1based": 4472,
+        "paragraph1based": 974,
+        "offset": 226554,
+        "text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다.\r"
+      },
+      "pdfPhysicalPage1based": 39,
+      "pdfPrintedPage": 35,
+      "wholeClausePdfMatch": true
+    },
+    "primaryOfficialSource": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-2020-236-book8-math.hwp",
+      "sha256": "1cb1623f270b37ed88475237ce92989519fd1568cb20103d4850331a31419fcb",
+      "url": "https://www.moe.go.kr/boardCnts/fileDown.do?m=0404&s=moe&fileSeq=9626ca7f4483de728b1e9b14e8f41f84"
+    },
+    "correspondingOfficial2015Pdf": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-curriculum-20261008/.qa-artifacts/exam-resume-20261008/sources/moe-2015-74-book8-math.pdf",
+      "sha256": "4bd2b84e978865a71d90577d8eb6240f0ecf24a9884642d627cde460d71ab88e",
+      "url": "https://www.moe.go.kr/boardCnts/fileDown.do?m=040401&s=moe&fileSeq=dc926a43bf953203951fb928ff098b1c"
+    },
+    "materialQuestion": "Whether recovering a side from an overlap quadrilateral area via EFH/ECH height reconstruction, area complement and a positive quadratic scale remains an excluded complex transformed plane-area problem. Providing H does not establish allowance.",
+    "whyPendingNotApproved": "Elementary steps and a correct numerical answer do not settle the official scope of the intended multi-stage measurement assessment. Author cannot supply independent grade judgment.",
+    "whyNotDefinitivelyRejectedHere": "The official provision has no complexity threshold or explicit example resolving this exact configuration. No direct official classification of this whole inverse route was located in the bounded provisions.",
+    "reopeningCriteria": "Independent whole-route review grounded in a direct official explanatory example/scope interpretation of this restriction; if it applies, reject the source-faithful twin. A simple unrelated side-length problem would change the assessed core and would require a new-source decision.",
+    "unrelatedWholePolicyGapAdded": false,
+    "familyExistenceOrModelConfidenceAsAllowance": false
+  },
+  "allFinalApprovals": {
+    "independentMath": false,
+    "independentWholeGrade": false,
+    "sourceCore": false,
+    "unitFamily": false,
+    "rights": false,
+    "nativeProvenance": false,
+    "loadable": false
+  }
+}

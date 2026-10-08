@@ -1,0 +1,804 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 9,
+  "authorId": "orca-codex-exam-twin-source-identity-20261008",
+  "method": "author-calculation-and-seven-surface-preparation",
+  "authorOnly": true,
+  "independentVerifier": false,
+  "sourceQuestionId": "2025-gyeongsang-3-2-mid-9",
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q09",
+  "sourceQuestionOnlyRecord": {
+    "number": 9,
+    "stem": "삼각형 세 내각의 크기의 비가 $1:2:3$이고, 세 내각 중 가장 작은 각의 크기를 $\\mathrm{A}$라 할 때, $\\sin \\mathrm{\\,}A\\times \\cos \\,A\\times \\tan \\,A$의 값으로 옳은 것은? [$4$점]",
+    "choices": [
+      "$\\frac{1}{4}$",
+      "$\\frac{1}{2}$",
+      "$\\frac{\\sqrt{6}}{4}$",
+      "$\\frac{3}{4}$",
+      "$1$"
+    ],
+    "hwpScriptStem": "삼각형 세 내각의 크기의 비가 $1:2:3$이고, 세 내각 중 가장 작은 각의 크기를 $RMA$라 할 때, $sin rm `A TIMES  cos`A TIMES  tan`A$의 값으로 옳은 것은? [$4$점]",
+    "hwpScriptChoices": [
+      "${1} over {4}$",
+      "${1} over {2}$",
+      "${sqrt {6}} over {4}$",
+      "${3} over {4}$",
+      "$1$"
+    ],
+    "scoreEvidence": {
+      "selectedHwpPdfPrintedParentScore": 4.0,
+      "selectedPairScoreStatus": "literal_match",
+      "originalPrintedParentScore": 4.0,
+      "referenceParentScore": 4.0,
+      "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+      "parentCountedOnce": true,
+      "childScores": [],
+      "subquestionCount": 0,
+      "parentAndChildrenMustNotBeAddedTogether": false
+    },
+    "subQuestions": [],
+    "structuredGivenData": {},
+    "figureGivenObservation": "No bitmap figure; positioned HWP math/text and any table remain the source givens.",
+    "curriculum": {
+      "sourceGrade": "중3",
+      "expectedAppliedCurriculum": "2015",
+      "status": "hold_full_item_review",
+      "fullApproval": false,
+      "conceptCandidate": "삼각비의 정의·값·활용",
+      "coreMethodCandidate": "삼각형의 내각 비에서 특수각을 식별하고 세 비를 각각 대입한다.",
+      "officialStandardsCandidates": [
+        {
+          "code": "9수04-17",
+          "officialStatement": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+          "pdfPage": 38,
+          "printedPage": 34,
+          "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+          "notPerQuestionApproval": true
+        }
+      ],
+      "localUnitCandidate": {
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "seedFile": "prisma/seed-data/units.ts",
+        "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+        "liveUnitId": null
+      },
+      "liveFamilyId": null,
+      "generatorRuleId": null,
+      "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+      "specificRisk": null,
+      "decisionIfNoLegalGradeMethod": "reject",
+      "decisionIfUnclear": "hold",
+      "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+      "requiredReview": [
+        "stem",
+        "all choices",
+        "figure meaning",
+        "notation",
+        "answer format",
+        "new answer",
+        "student solution",
+        "required steps",
+        "prerequisites"
+      ],
+      "signDomainUnitsGate": [
+        "signs and radicals",
+        "angle range 0-90 degrees",
+        "nonzero denominators",
+        "positive lengths/areas",
+        "units",
+        "existence",
+        "uniqueness"
+      ],
+      "sourceSchoolOrAIConfidenceCannotApprove": true
+    },
+    "sourceContentDigest": "e4405e8a1ab62b14d7c24d7f9d514953458a780569ef700e4ffbe8a184736004",
+    "sourceQuestionId": "2025-gyeongsang-3-2-mid-9",
+    "status": "source_reference_reviewed_all_final_approval_gates_held",
+    "sourceAmbiguityHolds": [
+      "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+      "source_custody_rights_permission_pending",
+      "canonical_text_product_render_review_pending"
+    ],
+    "sharedContext": null,
+    "images": [
+      {
+        "file": "images/q09-part1.png",
+        "sha256": "275b646f7db7e8433346507dbaf0168e5288c193011af8c0f51e2f3f9a7f6ccd",
+        "page": 2,
+        "column": 1,
+        "bbox": [
+          370,
+          324.4299011230469,
+          688.0,
+          607.6576538085938
+        ]
+      }
+    ],
+    "subquestionNumbers": [],
+    "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+    "selectedHwpAnchor": {
+      "stream": "BodyText/Section0",
+      "recordIndex": 1059,
+      "inflatedByteOffset": 45484,
+      "tag": 71,
+      "level": 1,
+      "payloadSha256": "e833285134803b9bb99acf9e53e74c504559ce25ae957e3d1796cc242c8e6617"
+    },
+    "selectedPdfRegions": [
+      {
+        "page": 2,
+        "column": 1,
+        "bbox": [
+          370,
+          324.4299011230469,
+          688.0,
+          607.6576538085938
+        ]
+      }
+    ]
+  },
+  "sourceWholePacketSHA256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+  "gradeDisposition": "author-observed-proposed",
+  "sourceCoreAndActualMethod": {
+    "sharedConcept": "삼각형 각의 합으로 고정된 특수각을 정한 뒤 세 특수값을 대입",
+    "sourceObservedQuestion": "삼각형 세 내각의 크기의 비가 $1:2:3$이고, 세 내각 중 가장 작은 각의 크기를 $\\mathrm{A}$라 할 때, $\\sin \\mathrm{\\,}A\\times \\cos \\,A\\times \\tan \\,A$의 값으로 옳은 것은? [$4$점]\nNo bitmap figure; positioned HWP math/text and any table remain the source givens.",
+    "newMethod": "x+2x+90=180 fixes P30,Q60 before evaluating the expression. Explicit sin60=√3/2, cos60=1/2, tan60=√3 multiply to3/4. No simplification sinQ·cosQ·tanQ for an arbitrary Q is assessed or needed.",
+    "sourceCorePreservationStatus": "author-proposed-independent-review-pending"
+  },
+  "substantiveDelta": {
+    "modes": [
+      "representation",
+      "structure"
+    ],
+    "before": "삼각형 세 내각의 크기의 비가 $1:2:3$이고, 세 내각 중 가장 작은 각의 크기를 $\\mathrm{A}$라 할 때, $\\sin \\mathrm{\\,}A\\times \\cos \\,A\\times \\tan \\,A$의 값으로 옳은 것은? [$4$점]\nNo bitmap figure; positioned HWP math/text and any table remain the source givens.",
+    "after": "세 내각 비와 최솟각의 곱 한 값에서, 직각/두 예각의 배 관계로 정해진 다른 특수각의 각도와 곱을 함께 기록하는 구조로 바꾼다.",
+    "sharedConcept": "삼각형 각의 합으로 고정된 특수각을 정한 뒤 세 특수값을 대입",
+    "sharedProcedure": "30/60 각을 먼저 확정한 뒤 60도 sin,cos,tan 상수를 각각 대입하여 곱한다. 일반각 항등식은 쓰지 않는다.",
+    "originalAnswerOrNumericalAgreementUsed": false
+  },
+  "score": 4.0,
+  "newSubpartRubric": [],
+  "mathEvidence": {
+    "questionNumber": 9,
+    "newExactRequestedValues": [
+      "60",
+      "3/4"
+    ],
+    "freshNewCalculations": {
+      "angles": [
+        "30",
+        "60",
+        90
+      ],
+      "fixed60Substitutions": [
+        "sqrt(3)/2",
+        "1/2",
+        "sqrt(3)"
+      ],
+      "product": "3/4"
+    },
+    "conditions": [
+      {
+        "condition": "angle constraints and literal fixed constants",
+        "passedAsAuthorCalculation": true,
+        "calculation": {
+          "angles": [
+            "30",
+            "60",
+            90
+          ],
+          "fixed60Substitutions": [
+            "sqrt(3)/2",
+            "1/2",
+            "sqrt(3)"
+          ],
+          "product": "3/4"
+        }
+      }
+    ],
+    "actualAllChoices": [
+      {
+        "index1based": 1,
+        "choiceText": "$30^\\circ,\\ \\frac14$",
+        "parsedExactValues": [
+          "30",
+          "1/4"
+        ],
+        "differencesFromCalculatedTargets": [
+          "-30",
+          "-1/2"
+        ],
+        "correctAsAuthorCalculation": false
+      },
+      {
+        "index1based": 2,
+        "choiceText": "$60^\\circ,\\ \\frac14$",
+        "parsedExactValues": [
+          "60",
+          "1/4"
+        ],
+        "differencesFromCalculatedTargets": [
+          "0",
+          "-1/2"
+        ],
+        "correctAsAuthorCalculation": false
+      },
+      {
+        "index1based": 3,
+        "choiceText": "$30^\\circ,\\ \\frac34$",
+        "parsedExactValues": [
+          "30",
+          "3/4"
+        ],
+        "differencesFromCalculatedTargets": [
+          "-30",
+          "0"
+        ],
+        "correctAsAuthorCalculation": false
+      },
+      {
+        "index1based": 4,
+        "choiceText": "$60^\\circ,\\ \\frac{\\sqrt3}{4}$",
+        "parsedExactValues": [
+          "60",
+          "sqrt(3)/4"
+        ],
+        "differencesFromCalculatedTargets": [
+          "0",
+          "-3/4 + sqrt(3)/4"
+        ],
+        "correctAsAuthorCalculation": false
+      },
+      {
+        "index1based": 5,
+        "choiceText": "$60^\\circ,\\ \\frac34$",
+        "parsedExactValues": [
+          "60",
+          "3/4"
+        ],
+        "differencesFromCalculatedTargets": [
+          "0",
+          "0"
+        ],
+        "correctAsAuthorCalculation": true
+      }
+    ],
+    "winnerIndex1based": 5,
+    "choiceAnswerMark": "⑤",
+    "requestedUniquenessAuthorCheck": true,
+    "wholeConfigurationMustBeUnique": false,
+    "unitsAndPrecision": "q04/q05 table records andq17 specified rounded distance are approximations; all other numeric lengths/areas exact.",
+    "code": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/author_math.py",
+      "sha256": "dffc06bdb422829fc713c2c1f53fabe786573dcdd20712ac6a5638fbf66cfc63"
+    },
+    "originalAnswerUsed": false,
+    "authorCheckOnly": true,
+    "independentMathApproval": false,
+    "curriculumPermissionFromCalculation": false
+  },
+  "calculationProofFile": {
+    "path": "author-calculations.json",
+    "sha256": "de493620851acf3825c3c21a1634c8c774abcf9fbdc7389170d0a27668350a4a"
+  },
+  "calculationCode": {
+    "path": "author_math.py",
+    "sha256": "dffc06bdb422829fc713c2c1f53fabe786573dcdd20712ac6a5638fbf66cfc63"
+  },
+  "sevenStudentSurfaces": {
+    "stem": {
+      "status": "author-observed-proposed",
+      "contentTextSha256": "1477e1561413cdc9c771f32727d7f8ae318ff2d4be895f1d213b6d05a08b66dd",
+      "observation": "세 내각 비와 최솟각의 곱 한 값에서, 직각/두 예각의 배 관계로 정해진 다른 특수각의 각도와 곱을 함께 기록하는 구조로 바꾼다.",
+      "wholeMethod": "x+2x+90=180 fixes P30,Q60 before evaluating the expression. Explicit sin60=√3/2, cos60=1/2, tan60=√3 multiply to3/4. No simplification sinQ·cosQ·tanQ for an arbitrary Q is assessed or needed."
+    },
+    "choices": {
+      "status": "author-observed-proposed",
+      "textArraySha256": "e0d9d9eb90b649d5586990e9a7401c162ca402d2947b6f7c097c1fadf784bd10",
+      "actualAllChoices": [
+        {
+          "index1based": 1,
+          "choiceText": "$30^\\circ,\\ \\frac14$",
+          "parsedExactValues": [
+            "30",
+            "1/4"
+          ],
+          "differencesFromCalculatedTargets": [
+            "-30",
+            "-1/2"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 2,
+          "choiceText": "$60^\\circ,\\ \\frac14$",
+          "parsedExactValues": [
+            "60",
+            "1/4"
+          ],
+          "differencesFromCalculatedTargets": [
+            "0",
+            "-1/2"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 3,
+          "choiceText": "$30^\\circ,\\ \\frac34$",
+          "parsedExactValues": [
+            "30",
+            "3/4"
+          ],
+          "differencesFromCalculatedTargets": [
+            "-30",
+            "0"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 4,
+          "choiceText": "$60^\\circ,\\ \\frac{\\sqrt3}{4}$",
+          "parsedExactValues": [
+            "60",
+            "sqrt(3)/4"
+          ],
+          "differencesFromCalculatedTargets": [
+            "0",
+            "-3/4 + sqrt(3)/4"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 5,
+          "choiceText": "$60^\\circ,\\ \\frac34$",
+          "parsedExactValues": [
+            "60",
+            "3/4"
+          ],
+          "differencesFromCalculatedTargets": [
+            "0",
+            "0"
+          ],
+          "correctAsAuthorCalculation": true
+        }
+      ],
+      "observation": "All five exact values/ordered pairs were parsed with code and compared against every requested target; one winning option. Wrong choices require no new grade prerequisite."
+    },
+    "figuresAndTables": {
+      "status": "author-observed-proposed",
+      "rawSpecAndSvgRelations": {
+        "questionNumber": 9,
+        "spec": {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q09/stem-1.spec.json",
+          "sha256": "d1446aad050681011c4761f02abb10311d2ffb56d9caecf8bd5a56c1f0281a29"
+        },
+        "svg": {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q09/stem-1.svg",
+          "sha256": "94d17dd51dad0aa8b979b4e7c849df0aebec286b873075f2899b5fb44408440a"
+        },
+        "intendedWidthMm": 70,
+        "coordinateChecks": [
+          {
+            "condition": "angle_R right",
+            "computed": 90.0,
+            "required": 90,
+            "authorCheckPassed": true
+          },
+          {
+            "condition": "Q twiceP",
+            "computed": 60.00000000000001,
+            "required": 59.999999999999986,
+            "authorCheckPassed": true
+          },
+          {
+            "condition": "derivedQ60",
+            "computed": 60.00000000000001,
+            "required": 60,
+            "authorCheckPassed": true
+          }
+        ],
+        "mathematicalPixelMeasurementsUsed": false,
+        "independentFigureOrGradeApproval": false,
+        "authorCheckOnly": true
+      },
+      "visualEvidence": {
+        "questionNumber": 9,
+        "directlyViewedWithViewImage": {
+          "path": "qa/q09-author.png",
+          "sha256": "86a07a496d0235ffe5fcf04f57b90c30996aa7b9f3c5e979f4d35c155a52d988"
+        },
+        "studentPane": {
+          "path": "qa/q09-student.png",
+          "sha256": "ee029310d75ee952fa06b6ebb77ad9f615e2f52f423b3bedfd3f3e84a9f0ae79"
+        },
+        "studentPanePixelIdenticalToViewedPrefix": true,
+        "actualColumnWidthMm": 70,
+        "actualSvgWidthsMm": [
+          69.998828125
+        ],
+        "viewedItems": [
+          "whole student stem",
+          "fresh tables",
+          "all choices or all written parts",
+          "all new embedded figures",
+          "chosen new answer",
+          "entire expanded new solution"
+        ],
+        "legibilityAuthorObservation": "Labels, radicals, fractions, degree marks and table boundaries readable; no clipping, orphan final table row or math/table overflow observed.",
+        "mathematicalPixelMeasurementUsed": false,
+        "independentFigureOrContentApproval": false
+      },
+      "observation": "Every needed length/angle/order given in text; newly computed engine geometry is not a substitute for a given. Fresh tables organize new records and preserve paragraphs."
+    },
+    "notation": {
+      "status": "author-observed-proposed",
+      "observation": "Q is first fixed at60°. The visible product of three named ratios is evaluated by three special values; its generic identity is not a student procedure."
+    },
+    "answer": {
+      "status": "author-observed-proposed",
+      "textSha256": "f3eaa647e8a4604ea6bc01c74dfb365ace6754fb867e170b933cc24eb6a81e7b",
+      "newExactRequestedValues": [
+        "60",
+        "3/4"
+      ],
+      "observation": "New single chosen circled mark bound to the checked option."
+    },
+    "studentSolution": {
+      "status": "author-observed-proposed",
+      "textSha256": "a34b267947ab35ee0de7d2d187a8eeb7086978af5e99e994b0c6bc5bd466a1fb",
+      "legitimateStudentProcedure": "30/60 각을 먼저 확정한 뒤 60도 sin,cos,tan 상수를 각각 대입하여 곱한다. 일반각 항등식은 쓰지 않는다.",
+      "actualMathRoute": "x+2x+90=180 fixes P30,Q60 before evaluating the expression. Explicit sin60=√3/2, cos60=1/2, tan60=√3 multiply to3/4. No simplification sinQ·cosQ·tanQ for an arbitrary Q is assessed or needed.",
+      "generalTrigIdentityOrSineCosineLawUsed": false,
+      "originalKeyAgreementUsed": false
+    },
+    "prerequisites": {
+      "status": "author-observed-proposed",
+      "officialStandards": [
+        {
+          "id": "9수04-05",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4272,
+            "paragraph1based": 931,
+            "offset": 216602,
+            "text": "[9수04-05]\u001e다각형의 성질을 이해한다.\r"
+          },
+          "pdfPhysicalPage1based": 37,
+          "pdfPrintedPage": 33,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-17",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4341,
+            "paragraph1based": 948,
+            "offset": 219120,
+            "text": "[9수04-17]\u001e삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다. \r"
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수01-10",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 3788,
+            "paragraph1based": 822,
+            "offset": 193301,
+            "text": "[9수01-10]\u001e근호를 포함한 식의 사칙계산을 할 수 있다.\r"
+          },
+          "pdfPhysicalPage1based": 33,
+          "pdfPrintedPage": 29,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수02-05",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 3916,
+            "paragraph1based": 850,
+            "offset": 199888,
+            "text": "[9수02-05]\u001e일차방정식을 풀 수 있고, 이를 활용하여 문제를 해결할 수 있다.\r"
+          },
+          "pdfPhysicalPage1based": 34,
+          "pdfPrintedPage": 30,
+          "wholeClausePdfMatch": true
+        }
+      ],
+      "actualPrerequisiteSeedRecords": [
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2879,
+          "endLine1based": 2884,
+          "section": "제곱근의 뜻과 성질",
+          "text": "{\n    grade: \"중3\",\n    chapter: \"1. 실수와 그 계산\",\n    section: \"제곱근의 뜻과 성질\",\n    orderIndex: 469,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2955,
+          "endLine1based": 2960,
+          "section": "삼각비의 뜻",
+          "text": "{\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 뜻\",\n    orderIndex: 481,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2961,
+          "endLine1based": 2966,
+          "section": "삼각비의 값",
+          "text": "{\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 값\",\n    orderIndex: 482,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2967,
+          "endLine1based": 2972,
+          "section": "삼각비의 활용",
+          "text": "{\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 활용\",\n    orderIndex: 483,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 3112,
+          "endLine1based": 3117,
+          "section": "음수의 제곱근",
+          "text": "{\n    grade: \"공통수학1\",\n    chapter: \"2. 방정식과 부등식\",\n    section: \"음수의 제곱근\",\n    orderIndex: 508,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 3631,
+          "endLine1based": 3636,
+          "section": "거듭제곱근의 뜻",
+          "text": "{\n    grade: \"대수\",\n    chapter: \"1. 지수함수와 로그함수\",\n    section: \"거듭제곱근의 뜻\",\n    orderIndex: 594,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 3637,
+          "endLine1based": 3642,
+          "section": "거듭제곱근의 성질과 계산",
+          "text": "{\n    grade: \"대수\",\n    chapter: \"1. 지수함수와 로그함수\",\n    section: \"거듭제곱근의 성질과 계산\",\n    orderIndex: 595,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2384,
+          "endLine1based": 2389,
+          "section": "일차방정식의 풀이",
+          "text": "{\n    grade: \"중1\",\n    chapter: \"3. 방정식\",\n    section: \"일차방정식의 풀이\",\n    orderIndex: 376,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2390,
+          "endLine1based": 2395,
+          "section": "일차방정식의 활용(해의 응용)",
+          "text": "{\n    grade: \"중1\",\n    chapter: \"3. 방정식\",\n    section: \"일차방정식의 활용(해의 응용)\",\n    orderIndex: 377,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2396,
+          "endLine1based": 2401,
+          "section": "일차방정식의 활용(수)",
+          "text": "{\n    grade: \"중1\",\n    chapter: \"3. 방정식\",\n    section: \"일차방정식의 활용(수)\",\n    orderIndex: 378,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2402,
+          "endLine1based": 2407,
+          "section": "일차방정식의 활용(나이, 과부족, 예금)",
+          "text": "{\n    grade: \"중1\",\n    chapter: \"3. 방정식\",\n    section: \"일차방정식의 활용(나이, 과부족, 예금)\",\n    orderIndex: 379,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2408,
+          "endLine1based": 2413,
+          "section": "일차방정식의 활용(증가와 감소, 원가와 정가)",
+          "text": "{\n    grade: \"중1\",\n    chapter: \"3. 방정식\",\n    section: \"일차방정식의 활용(증가와 감소, 원가와 정가)\",\n    orderIndex: 380,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2414,
+          "endLine1based": 2419,
+          "section": "일차방정식의 활용(거리, 속력, 시간)",
+          "text": "{\n    grade: \"중1\",\n    chapter: \"3. 방정식\",\n    section: \"일차방정식의 활용(거리, 속력, 시간)\",\n    orderIndex: 381,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2420,
+          "endLine1based": 2425,
+          "section": "일차방정식의 활용(도형, 농도, 일)",
+          "text": "{\n    grade: \"중1\",\n    chapter: \"3. 방정식\",\n    section: \"일차방정식의 활용(도형, 농도, 일)\",\n    orderIndex: 382,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2426,
+          "endLine1based": 2431,
+          "section": "일차방정식의 활용(비율, 시계, 규칙)",
+          "text": "{\n    grade: \"중1\",\n    chapter: \"3. 방정식\",\n    section: \"일차방정식의 활용(비율, 시계, 규칙)\",\n    orderIndex: 383,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2488,
+          "endLine1based": 2493,
+          "section": "삼각형의 내각과 외각",
+          "text": "{\n    grade: \"중1\",\n    chapter: \"6. 평면도형\",\n    section: \"삼각형의 내각과 외각\",\n    orderIndex: 397,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2494,
+          "endLine1based": 2499,
+          "section": "다각형의 내각과 외각",
+          "text": "{\n    grade: \"중1\",\n    chapter: \"6. 평면도형\",\n    section: \"다각형의 내각과 외각\",\n    orderIndex: 398,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2635,
+          "endLine1based": 2640,
+          "section": "미지수가 2개인 연립일차방정식",
+          "text": "{\n    grade: \"중2\",\n    chapter: \"3. 방정식\",\n    section: \"미지수가 2개인 연립일차방정식\",\n    orderIndex: 428,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2732,
+          "endLine1based": 2737,
+          "section": "일차함수와 일차방정식",
+          "text": "{\n    grade: \"중2\",\n    chapter: \"4. 함수\",\n    section: \"일차함수와 일차방정식\",\n    orderIndex: 444,\n  }"
+        }
+      ],
+      "boundary": "Source-era2015 middle3 only; no probability/registry permit. New elementary coordinate representation q02 is supported by9수03-01. Whole route remains subject to independent review."
+    }
+  },
+  "officialRestrictions": [
+    {
+      "id": "no_trig_ratio_relationships",
+      "hwp": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record1based": 4440,
+        "paragraph1based": 966,
+        "offset": 224820,
+        "text": "삼각비 사이의 관계는 다루지 않는다.\r"
+      },
+      "pdfPhysicalPage1based": 39,
+      "pdfPrintedPage": 35,
+      "wholeClausePdfMatch": true
+    },
+    {
+      "id": "angle_range",
+      "hwp": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record1based": 4444,
+        "paragraph1based": 967,
+        "offset": 224946,
+        "text": "삼각비의 값은 0°에서 90°까지의 각도에 대한 것만 다룬다.\r"
+      },
+      "pdfPhysicalPage1based": 39,
+      "pdfPrintedPage": 35,
+      "wholeClausePdfMatch": true
+    },
+    {
+      "id": "no_complex_geometry_measurement",
+      "hwp": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record1based": 4472,
+        "paragraph1based": 974,
+        "offset": 226554,
+        "text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다.\r"
+      },
+      "pdfPhysicalPage1based": 39,
+      "pdfPrintedPage": 35,
+      "wholeClausePdfMatch": true
+    },
+    {
+      "id": "no_formal_complex_justification",
+      "hwp": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record1based": 4476,
+        "paragraph1based": 975,
+        "offset": 226792,
+        "text": "정확한 용어와 기호의 사용, 복잡한 형식 논리 규칙의 이용을 요구하는 연역적 정당화 문제는 다루지 않는다. \r"
+      },
+      "pdfPhysicalPage1based": 39,
+      "pdfPrintedPage": 35,
+      "wholeClausePdfMatch": true
+    }
+  ],
+  "taxonomy": {
+    "status": "pending",
+    "unitId": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+    "unitSection": "삼각비의 값",
+    "familyKey": null,
+    "evidence": {
+      "actualCapturedUnit": {
+        "id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 값",
+        "semester": 2,
+        "orderIndex": 482,
+        "problemCodePrefix": "J30502"
+      },
+      "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+      "snapshotOnly": true,
+      "comparison": "고정각 세 값의 곱+각도 기록이며 일반sin*cos*tan 관계 유도 유형으로 분류하지 않는다. 전체 갈래 미확인이다.",
+      "comparedRegistryEntries": [
+        {
+          "registry": {
+            "key": "3-2|삼각비|08",
+            "grade": "중3",
+            "unitSection": "삼각비의 값",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비",
+            "rpmType": "08",
+            "rpmTitle": "의 삼각비의 값"
+          },
+          "liveMatches": [
+            {
+              "unit_id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+              "family_key": "mid:3-2|삼각비|08",
+              "live_count": 20
+            }
+          ],
+          "actualRule": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+            "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+            "startLine1based": 1203,
+            "endLine1based": 1229,
+            "text": "def(\"삼각비\", \"08\", \"의 삼각비의 값\", SEC.값, \"기본\", (rng) =>\n    attempt(300, () => {\n      const angles = [30, 45, 60] as const;\n      const a1 = pick(rng, angles);\n      const a2 = pick(rng, angles);\n      const f1 = intBetween(rng, 0, 2);\n      const f2 = intBetween(rng, 0, 2);\n      if (a1 === a2 && f1 === f2) return null;\n      const op = intBetween(rng, 0, 3);\n      const v1 = exact(f1, a1);\n      const v2 = exact(f2, a2);\n      if (!v1 || !v2) return null;\n      const res = applyOp(op, v1, v2);\n      if (!res) return null;\n      if (res.r === 1 && res.d > 1 && Math.abs(res.n) >= res.d) return null;\n      const expr = `${trigText(f1, a1)} ${OP_TEXT[op]} ${trigText(f2, a2)}`;\n      return {\n        content: `$${expr}$의 값을 구하시오.`,\n        answer: `$${surdText(res)}$`,\n        solution: `$${trigText(f1, a1)}=${surdText(v1)}$, $${trigText(f2, a2)}=${surdText(v2)}$이다.\\n따라서 $${expr}=${surdText(v1)} ${OP_TEXT[op]} ${surdText(v2)}=${surdText(res)}$이다.`,\n        facts: { f1, a1, op, f2, a2, an: res.n, ar: res.r, ad: res.d },\n        figureSpec: null,\n      };\n    }),\n  ),\n\n  "
+          }
+        }
+      ],
+      "TRIPLESPoolCheckedForQ01": null
+    }
+  },
+  "problemType": {
+    "proposal": null,
+    "status": "pending",
+    "evidence": {
+      "path": "classification-limits.json",
+      "sha256": "fbcfa8e7894db6a3244c60cdb524628464fba1dc8edade615b55cb1bdf0c6a45"
+    }
+  },
+  "objectiveDifficultyProposal": {
+    "label": "기본",
+    "reason": "30/60 각을 먼저 확정한 뒤 60도 sin,cos,tan 상수를 각각 대입하여 곱한다. 일반각 항등식은 쓰지 않는다.",
+    "status": "author-proposed",
+    "registryDescriptorAsProof": false,
+    "studentPerformanceMeasured": false
+  },
+  "naturalKoreanAuthorObservation": "Actual expanded layout read; exact input/target order and units stated. Pure mathematics stays mathematical; q17 changes distance input/target in a natural ramp context; q21 uses consistent fictional school.",
+  "materialHold": null,
+  "allFinalApprovals": {
+    "independentMath": false,
+    "independentWholeGrade": false,
+    "sourceCore": false,
+    "unitFamily": false,
+    "rights": false,
+    "nativeProvenance": false,
+    "loadable": false
+  }
+}

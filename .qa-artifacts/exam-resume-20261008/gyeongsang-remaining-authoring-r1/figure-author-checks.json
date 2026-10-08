@@ -1,0 +1,600 @@
+{
+  "code": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/figure_author_checks.py",
+    "sha256": "712d4de305432291a25ed6851a4dabd249eec5592d719b9eb78de7e60b7aaf85"
+  },
+  "rows": [
+    {
+      "questionNumber": 1,
+      "spec": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q01/stem-1.spec.json",
+        "sha256": "4a0adb5783f53b969ab6f84892e23def7dc884f26d5ff92298ccaf94bdd86c3b"
+      },
+      "svg": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q01/stem-1.svg",
+        "sha256": "596ab0a4a5bdf2fe7f99d64915eaff2077717b085bf0cb6c3e2d55798baffe76"
+      },
+      "intendedWidthMm": 70,
+      "coordinateChecks": [
+        {
+          "condition": "angle_R right",
+          "computed": 90.0,
+          "required": 90,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "sinP=QR/PQ",
+          "computed": 0.28,
+          "required": 0.28,
+          "authorCheckPassed": true
+        }
+      ],
+      "mathematicalPixelMeasurementsUsed": false,
+      "independentFigureOrGradeApproval": false,
+      "authorCheckOnly": true
+    },
+    {
+      "questionNumber": 2,
+      "spec": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q02/stem-1.spec.json",
+        "sha256": "a6812f3efef5fb083eb5ae9c28ac856af8dc9412fa2396d05c8812e03b9ce680"
+      },
+      "svg": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q02/stem-1.svg",
+        "sha256": "8fa8ed74705016ff969a492d66227e37efefc62da08e8084bcc724a6d12a62c7"
+      },
+      "intendedWidthMm": 70,
+      "coordinateChecks": [
+        {
+          "condition": "angle_R right",
+          "computed": 90.0,
+          "required": 90,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "cosP=PR/PQ",
+          "computed": 0.8,
+          "required": 0.8,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "PQ20 at scale10",
+          "computed": 20.0,
+          "required": 20,
+          "authorCheckPassed": true
+        }
+      ],
+      "mathematicalPixelMeasurementsUsed": false,
+      "independentFigureOrGradeApproval": false,
+      "authorCheckOnly": true
+    },
+    {
+      "questionNumber": 3,
+      "spec": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q03/stem-1.spec.json",
+        "sha256": "93336e0dc357d0f6d718a0b90a838cfad6999409c34a08bff90c0f625f432138"
+      },
+      "svg": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q03/stem-1.svg",
+        "sha256": "1d8a4b296cdfae1da1e056ca99636a9bf4b3e1af1bd9261a6a32c3b8655a87da"
+      },
+      "intendedWidthMm": 70,
+      "coordinateChecks": [
+        {
+          "condition": "angle_R right",
+          "computed": 90.0,
+          "required": 90,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "PQ/PR=13/10",
+          "computed": 1.3,
+          "required": 1.3,
+          "authorCheckPassed": true
+        }
+      ],
+      "mathematicalPixelMeasurementsUsed": false,
+      "independentFigureOrGradeApproval": false,
+      "authorCheckOnly": true
+    },
+    {
+      "questionNumber": 4,
+      "spec": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q04/stem-1.spec.json",
+        "sha256": "9ef5e2530a298b421d028b8d44c95f6b69795f8c20e2f1d51fb947af85341007"
+      },
+      "svg": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q04/stem-1.svg",
+        "sha256": "38ea7364c29363f02e4c316ec6d33bd6d2c592fa80ecb00eedfc58260e9a073a"
+      },
+      "intendedWidthMm": 70,
+      "coordinateChecks": [
+        {
+          "condition": "angle_H right",
+          "computed": 90.0,
+          "required": 90,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "angle_A right",
+          "computed": 90.0,
+          "required": 90,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "angle_O angle label",
+          "computed": 40.000000000000014,
+          "required": 40,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "P on radius",
+          "computed": 160.0,
+          "required": 160,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "H on OA",
+          "computed": 0.0,
+          "required": 0,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "H internal to OA",
+          "fraction": 0.7660444431189779,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "P on OD",
+          "computed": 0.0,
+          "required": 0,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "P internal to OD",
+          "fraction": 0.7660444431189781,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "OA radius",
+          "computed": 160.0,
+          "required": 160,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "OB radius",
+          "computed": 160.0,
+          "required": 160,
+          "authorCheckPassed": true
+        }
+      ],
+      "mathematicalPixelMeasurementsUsed": false,
+      "independentFigureOrGradeApproval": false,
+      "authorCheckOnly": true
+    },
+    {
+      "questionNumber": 7,
+      "spec": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q07/stem-1.spec.json",
+        "sha256": "f19adc33b9952dc1e1f73947aa602caea2d1af55b3997467cf088683b94dd609"
+      },
+      "svg": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q07/stem-1.svg",
+        "sha256": "7dfd74e8fcfae4bf45df5049313461b8ec7fb4b1912b33df4492c7f30ad2b1e8"
+      },
+      "intendedWidthMm": 70,
+      "coordinateChecks": [
+        {
+          "condition": "angle_R right",
+          "computed": 90.0,
+          "required": 90,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "angle_P angle label",
+          "computed": 45.0,
+          "required": 45,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "two legs equal",
+          "computed": 107.99999999999999,
+          "required": 107.99999999999999,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "actual hyp12sqrt2 at scale9",
+          "computed": 16.97056274847714,
+          "required": 16.970562748477143,
+          "authorCheckPassed": true
+        }
+      ],
+      "mathematicalPixelMeasurementsUsed": false,
+      "independentFigureOrGradeApproval": false,
+      "authorCheckOnly": true
+    },
+    {
+      "questionNumber": 9,
+      "spec": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q09/stem-1.spec.json",
+        "sha256": "d1446aad050681011c4761f02abb10311d2ffb56d9caecf8bd5a56c1f0281a29"
+      },
+      "svg": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q09/stem-1.svg",
+        "sha256": "94d17dd51dad0aa8b979b4e7c849df0aebec286b873075f2899b5fb44408440a"
+      },
+      "intendedWidthMm": 70,
+      "coordinateChecks": [
+        {
+          "condition": "angle_R right",
+          "computed": 90.0,
+          "required": 90,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "Q twiceP",
+          "computed": 60.00000000000001,
+          "required": 59.999999999999986,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "derivedQ60",
+          "computed": 60.00000000000001,
+          "required": 60,
+          "authorCheckPassed": true
+        }
+      ],
+      "mathematicalPixelMeasurementsUsed": false,
+      "independentFigureOrGradeApproval": false,
+      "authorCheckOnly": true
+    },
+    {
+      "questionNumber": 16,
+      "spec": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q16/stem-1.spec.json",
+        "sha256": "2b3363de8a388849f6f3e38cc8929888f4e7734fd1f9b34c10178764149c4c48"
+      },
+      "svg": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q16/stem-1.svg",
+        "sha256": "d7914810a8b49c895a08d3ec9ebda0e76f48575b346be96a0ac350be59fd98b1"
+      },
+      "intendedWidthMm": 70,
+      "coordinateChecks": [
+        {
+          "condition": "angle_H right",
+          "computed": 90.0,
+          "required": 90,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "angle_Q angle label",
+          "computed": 60.00000000000001,
+          "required": 60,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "H on QR",
+          "computed": 0.0,
+          "required": 0,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "H internal to QR",
+          "fraction": 0.5,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "PQ12 at scale15",
+          "computed": 12.0,
+          "required": 12,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "trianglearea36sqrt3 at scale15",
+          "computed": 62.353829072479584,
+          "required": 62.35382907247958,
+          "authorCheckPassed": true
+        }
+      ],
+      "mathematicalPixelMeasurementsUsed": false,
+      "independentFigureOrGradeApproval": false,
+      "authorCheckOnly": true
+    },
+    {
+      "questionNumber": 17,
+      "spec": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q17/stem-1.spec.json",
+        "sha256": "551080e198ac493474b8c4c13aab4017052e79a89f7ecc9b48ccc60294b9bcc2"
+      },
+      "svg": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q17/stem-1.svg",
+        "sha256": "6c1ca8318654e10257b87f02a1591708451dc814e14f1150058d533e5b21357c"
+      },
+      "intendedWidthMm": 70,
+      "coordinateChecks": [
+        {
+          "condition": "angle_H right",
+          "computed": 90.0,
+          "required": 90,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "angle_P angle label",
+          "computed": 14.99999999999997,
+          "required": 15,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "exact physical slope15, not table-rounded drawing",
+          "computed": 0.2679491924311227,
+          "required": 0.2679491924311227,
+          "authorCheckPassed": true
+        }
+      ],
+      "mathematicalPixelMeasurementsUsed": false,
+      "independentFigureOrGradeApproval": false,
+      "authorCheckOnly": true
+    },
+    {
+      "questionNumber": 18,
+      "spec": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q18/stem-1.spec.json",
+        "sha256": "3976b8e1fe50cd1364c2f0ef9939b7ccea9f24f12911a82b7daa2c8192c0414d"
+      },
+      "svg": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q18/stem-1.svg",
+        "sha256": "c287f7c2275f313f9fe81c4db471b1bee16aca8d5a5f1abd00b884437eecb409"
+      },
+      "intendedWidthMm": 70,
+      "coordinateChecks": [
+        {
+          "condition": "angle_B right",
+          "computed": 90.0,
+          "required": 90,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "angle_C right",
+          "computed": 90.0,
+          "required": 90,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "angle_H right",
+          "computed": 90.0,
+          "required": 90,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "angle_A angle label",
+          "computed": 60.00000000000001,
+          "required": 60,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "angle_F angle label",
+          "computed": 45.00000000000001,
+          "required": 45,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "F on BC",
+          "computed": 0.0,
+          "required": 0,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "F internal to BC",
+          "fraction": 0.3333333333333333,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "H on FC",
+          "computed": 0.0,
+          "required": 0,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "H internal to FC",
+          "fraction": 0.36602540378443854,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "E on AC",
+          "computed": 0.0,
+          "required": 0,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "E internal to AC",
+          "fraction": 0.5773502691896257,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "E on FD",
+          "computed": 3.157967714489334e-17,
+          "required": 0,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "E internal to FD",
+          "fraction": 0.36602540378443854,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "CD8 at scale15",
+          "computed": 8.0,
+          "required": 8,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "ABFE area16+8sqrt3 at scale15",
+          "computed": 29.856406460551014,
+          "required": 29.856406460551018,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "BF4 at scale15",
+          "computed": 4.0,
+          "required": 4,
+          "authorCheckPassed": true
+        }
+      ],
+      "mathematicalPixelMeasurementsUsed": false,
+      "independentFigureOrGradeApproval": false,
+      "authorCheckOnly": true
+    },
+    {
+      "questionNumber": 19,
+      "spec": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q19/stem-1.spec.json",
+        "sha256": "1a611b422fac37c97833460b2db724956915596d6a6edef71dba6129b7239793"
+      },
+      "svg": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q19/stem-1.svg",
+        "sha256": "f20873d5f9b8459b755075e8aca5ef71c14d5f1d5f06b17b68835885591de7fc"
+      },
+      "intendedWidthMm": 70,
+      "coordinateChecks": [
+        {
+          "condition": "angle_R right",
+          "computed": 90.0,
+          "required": 90,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "givencosQ",
+          "computed": 0.6,
+          "required": 0.6,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "area24 at scale20",
+          "computed": 24.0,
+          "required": 24,
+          "authorCheckPassed": true
+        }
+      ],
+      "mathematicalPixelMeasurementsUsed": false,
+      "independentFigureOrGradeApproval": false,
+      "authorCheckOnly": true
+    },
+    {
+      "questionNumber": 20,
+      "spec": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q20/stem-1.spec.json",
+        "sha256": "79bfcc7fc1cc5d8a1dc9b224b8cfa3d8a136992dbf8e316dc97d30c739240ddd"
+      },
+      "svg": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q20/stem-1.svg",
+        "sha256": "ec5d27710c8b985a6f1acfd9ac87005b85e85a0a2276a317251dfdbd12dfe63c"
+      },
+      "intendedWidthMm": 70,
+      "coordinateChecks": [
+        {
+          "condition": "H on QR",
+          "computed": 0.0,
+          "required": 0,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "H internal to QR",
+          "fraction": 0.5,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "middleH",
+          "computed": 80.0,
+          "required": 80.0,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "equilPQ=PR",
+          "computed": 160.0,
+          "required": 160.0,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "equilPQ=QR",
+          "computed": 160.0,
+          "required": 160.0,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "side10 at scale16",
+          "computed": 10.0,
+          "required": 10,
+          "authorCheckPassed": true
+        }
+      ],
+      "mathematicalPixelMeasurementsUsed": false,
+      "independentFigureOrGradeApproval": false,
+      "authorCheckOnly": true
+    },
+    {
+      "questionNumber": 21,
+      "spec": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q21/stem-1.spec.json",
+        "sha256": "c2b557961055ec2cc8e92f3620dab4c398a6c69acf6092b4410973b2a31e3f1a"
+      },
+      "svg": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q21/stem-1.svg",
+        "sha256": "c6e898b6a95b15b1231782c8c1dc97d9c93a57c92d8d34b1de025276018e3e0d"
+      },
+      "intendedWidthMm": 70,
+      "coordinateChecks": [
+        {
+          "condition": "angle_H right",
+          "computed": 90.0,
+          "required": 90,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "angle_O angle label",
+          "computed": 60.00000000000001,
+          "required": 60,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "H on OQ",
+          "computed": 0.0,
+          "required": 0,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "H internal to OQ",
+          "fraction": 0.375,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "OP18 at scale10",
+          "computed": 18.0,
+          "required": 18,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "PQ6sqrt13 at scale10",
+          "computed": 21.633307652783934,
+          "required": 21.633307652783934,
+          "authorCheckPassed": true
+        },
+        {
+          "condition": "OQ24 at scale10",
+          "computed": 24.0,
+          "required": 24,
+          "authorCheckPassed": true
+        }
+      ],
+      "mathematicalPixelMeasurementsUsed": false,
+      "independentFigureOrGradeApproval": false,
+      "authorCheckOnly": true
+    }
+  ],
+  "role": "author-check",
+  "actualDataRelationsOnly": true,
+  "strictRenderReceipt": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/strict-render-receipt.json",
+    "sha256": "315685af50d0b18c730b5115f4579e2020afa048dc22f108af878b8fa1426d1b"
+  },
+  "supersededPresealFailureRetained": "strict-render-failure.json records the initial duplicate angle/point name error; final angle keys were prefixed and strict rendering succeeded. Its captured spec hash describes the earlier mutable draft."
+}

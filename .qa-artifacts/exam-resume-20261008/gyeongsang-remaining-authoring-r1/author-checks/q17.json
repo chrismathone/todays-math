@@ -1,0 +1,692 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 17,
+  "authorId": "orca-codex-exam-twin-source-identity-20261008",
+  "method": "author-calculation-and-seven-surface-preparation",
+  "authorOnly": true,
+  "independentVerifier": false,
+  "sourceQuestionId": "2025-gyeongsang-3-2-mid-17",
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q17",
+  "sourceQuestionOnlyRecord": {
+    "number": 17,
+    "stem": "그림과 같이 직각삼각형 모양의 미끄럼틀 놀이기구에서 지면 위의 두 지점 $\\mathrm{A},~C$ 사이의 거리는 $50\\,\\mathrm{m}$이고 놀이기구의 경사각의 크기는 $15^\\circ$이다. 놀이 기구의 출발 지점 $\\mathrm{B}$의 지면으로부터의 높이는?\n(단, $\\sin 15^\\circ =0.2588,~\\cos 15^\\circ =0.9659,~\\tan 15^\\circ =0.2679$)\n[$4$점]",
+    "choices": [
+      "$12.94\\,\\mathrm{m}$",
+      "$13.395\\,\\mathrm{m}$",
+      "$25.88\\,\\mathrm{m}$",
+      "$26.79\\,\\mathrm{m}$",
+      "$48.295\\,\\mathrm{m}$"
+    ],
+    "hwpScriptStem": "그림과 같이 직각삼각형 모양의 미끄럼틀 놀이기구에서 지면 위의 두 지점 $RMA,~C$ 사이의 거리는 $50` rm m$이고 놀이기구의 경사각의 크기는 $15 DEG $이다. 놀이 기구의 출발 지점 $RMB$의 지면으로부터의 높이는?\n(단, $sin15 DEG  =0.2588,~cos15 DEG  =0.9659,~tan15 DEG  =0.2679$)\n[$4$점]",
+    "hwpScriptChoices": [
+      "$12.94` rm m$",
+      "$13.395` rm m$",
+      "$25.88` rm m$",
+      "$26.79` rm m$",
+      "$48.295` rm m$"
+    ],
+    "scoreEvidence": {
+      "selectedHwpPdfPrintedParentScore": 4.0,
+      "selectedPairScoreStatus": "literal_match",
+      "originalPrintedParentScore": 4.0,
+      "referenceParentScore": 4.0,
+      "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+      "parentCountedOnce": true,
+      "childScores": [],
+      "subquestionCount": 0,
+      "parentAndChildrenMustNotBeAddedTogether": false
+    },
+    "subQuestions": [],
+    "structuredGivenData": {},
+    "figureGivenObservation": "AC=50m 수평 거리; 경사각 15°; 제시된 삼각비로 높이를 묻는다.",
+    "curriculum": {
+      "sourceGrade": "중3",
+      "expectedAppliedCurriculum": "2015",
+      "status": "hold_full_item_review",
+      "fullApproval": false,
+      "conceptCandidate": "삼각비의 정의·값·활용",
+      "coreMethodCandidate": "수평 거리와 경사각의 tan으로 높이를 구성한다.",
+      "officialStandardsCandidates": [
+        {
+          "code": "9수04-18",
+          "officialStatement": "삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.",
+          "pdfPage": 38,
+          "printedPage": 34,
+          "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+          "notPerQuestionApproval": true
+        }
+      ],
+      "localUnitCandidate": {
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "seedFile": "prisma/seed-data/units.ts",
+        "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+        "liveUnitId": null
+      },
+      "liveFamilyId": null,
+      "generatorRuleId": null,
+      "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+      "specificRisk": null,
+      "decisionIfNoLegalGradeMethod": "reject",
+      "decisionIfUnclear": "hold",
+      "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+      "requiredReview": [
+        "stem",
+        "all choices",
+        "figure meaning",
+        "notation",
+        "answer format",
+        "new answer",
+        "student solution",
+        "required steps",
+        "prerequisites"
+      ],
+      "signDomainUnitsGate": [
+        "signs and radicals",
+        "angle range 0-90 degrees",
+        "nonzero denominators",
+        "positive lengths/areas",
+        "units",
+        "existence",
+        "uniqueness"
+      ],
+      "sourceSchoolOrAIConfidenceCannotApprove": true
+    },
+    "sourceContentDigest": "bf7dd69a41ba25960d2256de7f08c91c66aae6132ffea5860ea1681b130fe2ea",
+    "sourceQuestionId": "2025-gyeongsang-3-2-mid-17",
+    "status": "source_reference_reviewed_all_final_approval_gates_held",
+    "sourceAmbiguityHolds": [
+      "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+      "source_custody_rights_permission_pending",
+      "canonical_text_product_render_review_pending"
+    ],
+    "sharedContext": null,
+    "images": [
+      {
+        "file": "images/q17-part1.png",
+        "sha256": "c04807cf6397b93ae0106c3f742571c28b55798791c4d8bd438f71410954fcde",
+        "page": 4,
+        "column": 1,
+        "bbox": [
+          370,
+          83,
+          688.0,
+          503.09442138671875
+        ]
+      }
+    ],
+    "subquestionNumbers": [],
+    "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+    "selectedHwpAnchor": {
+      "stream": "BodyText/Section0",
+      "recordIndex": 1986,
+      "inflatedByteOffset": 83809,
+      "tag": 71,
+      "level": 1,
+      "payloadSha256": "11aec848681fd060c166c6b45825b48c0b12150990f184f53165d7b6120b5f18"
+    },
+    "selectedPdfRegions": [
+      {
+        "page": 4,
+        "column": 1,
+        "bbox": [
+          370,
+          83,
+          688.0,
+          503.09442138671875
+        ]
+      }
+    ]
+  },
+  "sourceWholePacketSHA256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+  "gradeDisposition": "author-observed-proposed",
+  "sourceCoreAndActualMethod": {
+    "sharedConcept": "수평선과 경사판의 예각에서 탄젠트의 실제 대변/이웃변 대응",
+    "sourceObservedQuestion": "그림과 같이 직각삼각형 모양의 미끄럼틀 놀이기구에서 지면 위의 두 지점 $\\mathrm{A},~C$ 사이의 거리는 $50\\,\\mathrm{m}$이고 놀이기구의 경사각의 크기는 $15^\\circ$이다. 놀이 기구의 출발 지점 $\\mathrm{B}$의 지면으로부터의 높이는?\n(단, $\\sin 15^\\circ =0.2588,~\\cos 15^\\circ =0.9659,~\\tan 15^\\circ =0.2679$)\n[$4$점]\nAC=50m 수평 거리; 경사각 15°; 제시된 삼각비로 높이를 묻는다.",
+    "newMethod": "tan15=QH/PH; table record gives PH=2.7/0.2679≈10.0784m→10.1m. Exact geometry2.7/tan15≈10.0765m rounds the same. Actual SVG angle is15; approximation is declared.",
+    "sourceCorePreservationStatus": "author-proposed-independent-review-pending"
+  },
+  "substantiveDelta": {
+    "modes": [
+      "context",
+      "inverse-target",
+      "structure"
+    ],
+    "before": "그림과 같이 직각삼각형 모양의 미끄럼틀 놀이기구에서 지면 위의 두 지점 $\\mathrm{A},~C$ 사이의 거리는 $50\\,\\mathrm{m}$이고 놀이기구의 경사각의 크기는 $15^\\circ$이다. 놀이 기구의 출발 지점 $\\mathrm{B}$의 지면으로부터의 높이는?\n(단, $\\sin 15^\\circ =0.2588,~\\cos 15^\\circ =0.9659,~\\tan 15^\\circ =0.2679$)\n[$4$점]\nAC=50m 수평 거리; 경사각 15°; 제시된 삼각비로 높이를 묻는다.",
+    "after": "미끄럼틀의 수평거리에서 높이를 계산하는 상황을 운반용 경사판의 높이 입력→수평거리 복구 및 지정 자릿수 기록으로 전환한다.",
+    "sharedConcept": "수평선과 경사판의 예각에서 탄젠트의 실제 대변/이웃변 대응",
+    "sharedProcedure": "높이/수평거리 비를 세우고 주어진 양의 근삿값으로 수평거리를 구해 지정 자릿수로 반올림한다.",
+    "originalAnswerOrNumericalAgreementUsed": false
+  },
+  "score": 4.0,
+  "newSubpartRubric": [],
+  "mathEvidence": {
+    "questionNumber": 17,
+    "newExactRequestedValues": [
+      "101/10"
+    ],
+    "freshNewCalculations": {
+      "givenHeight": "27/10",
+      "tableTan": "2679/10000",
+      "usingTableHorizontalDistance": "9000/893",
+      "actualGeometryHorizontalDistance": 10.07653718043597,
+      "requestedRoundedRecord": "10.1",
+      "precision": "one decimal place"
+    },
+    "conditions": [
+      {
+        "condition": "table ratio positive and actual geometry stable at requested rounding",
+        "passedAsAuthorCalculation": true,
+        "calculation": {
+          "givenHeight": "27/10",
+          "tableTan": "2679/10000",
+          "usingTableHorizontalDistance": "9000/893",
+          "actualGeometryHorizontalDistance": 10.07653718043597,
+          "requestedRoundedRecord": "10.1",
+          "precision": "one decimal place"
+        }
+      },
+      {
+        "condition": "sin15 table value",
+        "passedAsAuthorCalculation": true,
+        "calculation": "0.2588"
+      },
+      {
+        "condition": "cos15 table value",
+        "passedAsAuthorCalculation": true,
+        "calculation": "0.9659"
+      },
+      {
+        "condition": "tan15 table value",
+        "passedAsAuthorCalculation": true,
+        "calculation": "0.2679"
+      }
+    ],
+    "actualAllChoices": [
+      {
+        "index1based": 1,
+        "choiceText": "$2.6\\,\\mathrm{m}$",
+        "parsedExactValues": [
+          "13/5"
+        ],
+        "differencesFromCalculatedTargets": [
+          "-15/2"
+        ],
+        "correctAsAuthorCalculation": false
+      },
+      {
+        "index1based": 2,
+        "choiceText": "$5.2\\,\\mathrm{m}$",
+        "parsedExactValues": [
+          "26/5"
+        ],
+        "differencesFromCalculatedTargets": [
+          "-49/10"
+        ],
+        "correctAsAuthorCalculation": false
+      },
+      {
+        "index1based": 3,
+        "choiceText": "$10.4\\,\\mathrm{m}$",
+        "parsedExactValues": [
+          "52/5"
+        ],
+        "differencesFromCalculatedTargets": [
+          "3/10"
+        ],
+        "correctAsAuthorCalculation": false
+      },
+      {
+        "index1based": 4,
+        "choiceText": "$10.1\\,\\mathrm{m}$",
+        "parsedExactValues": [
+          "101/10"
+        ],
+        "differencesFromCalculatedTargets": [
+          "0"
+        ],
+        "correctAsAuthorCalculation": true
+      },
+      {
+        "index1based": 5,
+        "choiceText": "$5.1\\,\\mathrm{m}$",
+        "parsedExactValues": [
+          "51/10"
+        ],
+        "differencesFromCalculatedTargets": [
+          "-5"
+        ],
+        "correctAsAuthorCalculation": false
+      }
+    ],
+    "winnerIndex1based": 4,
+    "choiceAnswerMark": "④",
+    "requestedUniquenessAuthorCheck": true,
+    "wholeConfigurationMustBeUnique": true,
+    "unitsAndPrecision": "q04/q05 table records andq17 specified rounded distance are approximations; all other numeric lengths/areas exact.",
+    "code": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/author_math.py",
+      "sha256": "dffc06bdb422829fc713c2c1f53fabe786573dcdd20712ac6a5638fbf66cfc63"
+    },
+    "originalAnswerUsed": false,
+    "authorCheckOnly": true,
+    "independentMathApproval": false,
+    "curriculumPermissionFromCalculation": false
+  },
+  "calculationProofFile": {
+    "path": "author-calculations.json",
+    "sha256": "de493620851acf3825c3c21a1634c8c774abcf9fbdc7389170d0a27668350a4a"
+  },
+  "calculationCode": {
+    "path": "author_math.py",
+    "sha256": "dffc06bdb422829fc713c2c1f53fabe786573dcdd20712ac6a5638fbf66cfc63"
+  },
+  "sevenStudentSurfaces": {
+    "stem": {
+      "status": "author-observed-proposed",
+      "contentTextSha256": "617297fee93e9667201473b794d36c7c47c69d7a1c8f4dc365db119a7519deba",
+      "observation": "미끄럼틀의 수평거리에서 높이를 계산하는 상황을 운반용 경사판의 높이 입력→수평거리 복구 및 지정 자릿수 기록으로 전환한다.",
+      "wholeMethod": "tan15=QH/PH; table record gives PH=2.7/0.2679≈10.0784m→10.1m. Exact geometry2.7/tan15≈10.0765m rounds the same. Actual SVG angle is15; approximation is declared."
+    },
+    "choices": {
+      "status": "author-observed-proposed",
+      "textArraySha256": "14f3256a79bd3a6d53d3afc7fb98ab47d1da35f2fe80f9b43028767c2a33c246",
+      "actualAllChoices": [
+        {
+          "index1based": 1,
+          "choiceText": "$2.6\\,\\mathrm{m}$",
+          "parsedExactValues": [
+            "13/5"
+          ],
+          "differencesFromCalculatedTargets": [
+            "-15/2"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 2,
+          "choiceText": "$5.2\\,\\mathrm{m}$",
+          "parsedExactValues": [
+            "26/5"
+          ],
+          "differencesFromCalculatedTargets": [
+            "-49/10"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 3,
+          "choiceText": "$10.4\\,\\mathrm{m}$",
+          "parsedExactValues": [
+            "52/5"
+          ],
+          "differencesFromCalculatedTargets": [
+            "3/10"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 4,
+          "choiceText": "$10.1\\,\\mathrm{m}$",
+          "parsedExactValues": [
+            "101/10"
+          ],
+          "differencesFromCalculatedTargets": [
+            "0"
+          ],
+          "correctAsAuthorCalculation": true
+        },
+        {
+          "index1based": 5,
+          "choiceText": "$5.1\\,\\mathrm{m}$",
+          "parsedExactValues": [
+            "51/10"
+          ],
+          "differencesFromCalculatedTargets": [
+            "-5"
+          ],
+          "correctAsAuthorCalculation": false
+        }
+      ],
+      "observation": "All five exact values/ordered pairs were parsed with code and compared against every requested target; one winning option. Wrong choices require no new grade prerequisite."
+    },
+    "figuresAndTables": {
+      "status": "author-observed-proposed",
+      "rawSpecAndSvgRelations": {
+        "questionNumber": 17,
+        "spec": {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q17/stem-1.spec.json",
+          "sha256": "551080e198ac493474b8c4c13aab4017052e79a89f7ecc9b48ccc60294b9bcc2"
+        },
+        "svg": {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q17/stem-1.svg",
+          "sha256": "6c1ca8318654e10257b87f02a1591708451dc814e14f1150058d533e5b21357c"
+        },
+        "intendedWidthMm": 70,
+        "coordinateChecks": [
+          {
+            "condition": "angle_H right",
+            "computed": 90.0,
+            "required": 90,
+            "authorCheckPassed": true
+          },
+          {
+            "condition": "angle_P angle label",
+            "computed": 14.99999999999997,
+            "required": 15,
+            "authorCheckPassed": true
+          },
+          {
+            "condition": "exact physical slope15, not table-rounded drawing",
+            "computed": 0.2679491924311227,
+            "required": 0.2679491924311227,
+            "authorCheckPassed": true
+          }
+        ],
+        "mathematicalPixelMeasurementsUsed": false,
+        "independentFigureOrGradeApproval": false,
+        "authorCheckOnly": true
+      },
+      "visualEvidence": {
+        "questionNumber": 17,
+        "directlyViewedWithViewImage": {
+          "path": "qa/q17-author.png",
+          "sha256": "9e4ff219b5085e338a3cecdc49ab48af842f043597fb6b60477c28505edb66ae"
+        },
+        "studentPane": {
+          "path": "qa/q17-student.png",
+          "sha256": "1063a933137504fc48b35273a34dfdf2620c640541aff78af4e8502d66289bcd"
+        },
+        "studentPanePixelIdenticalToViewedPrefix": true,
+        "actualColumnWidthMm": 70,
+        "actualSvgWidthsMm": [
+          69.998828125
+        ],
+        "viewedItems": [
+          "whole student stem",
+          "fresh tables",
+          "all choices or all written parts",
+          "all new embedded figures",
+          "chosen new answer",
+          "entire expanded new solution"
+        ],
+        "legibilityAuthorObservation": "Labels, radicals, fractions, degree marks and table boundaries readable; no clipping, orphan final table row or math/table overflow observed.",
+        "mathematicalPixelMeasurementUsed": false,
+        "independentFigureOrContentApproval": false
+      },
+      "observation": "Every needed length/angle/order given in text; newly computed engine geometry is not a substitute for a given. Fresh tables organize new records and preserve paragraphs."
+    },
+    "notation": {
+      "status": "author-observed-proposed",
+      "observation": "Fixed acute angles, physical lengths and simple fractions/radicals. No upper-grade function/vector/calculus notation in student surfaces."
+    },
+    "answer": {
+      "status": "author-observed-proposed",
+      "textSha256": "6958a3e7105064751a96bf1e52cd5e9916d71e127193b12ffae234c0fddac50f",
+      "newExactRequestedValues": [
+        "101/10"
+      ],
+      "observation": "New single chosen circled mark bound to the checked option."
+    },
+    "studentSolution": {
+      "status": "author-observed-proposed",
+      "textSha256": "5886073f95ed6002863607174fae5c035326a38985c9b05ac204ad2eaa7fd9e3",
+      "legitimateStudentProcedure": "높이/수평거리 비를 세우고 주어진 양의 근삿값으로 수평거리를 구해 지정 자릿수로 반올림한다.",
+      "actualMathRoute": "tan15=QH/PH; table record gives PH=2.7/0.2679≈10.0784m→10.1m. Exact geometry2.7/tan15≈10.0765m rounds the same. Actual SVG angle is15; approximation is declared.",
+      "generalTrigIdentityOrSineCosineLawUsed": false,
+      "originalKeyAgreementUsed": false
+    },
+    "prerequisites": {
+      "status": "author-observed-proposed",
+      "officialStandards": [
+        {
+          "id": "9수04-17",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4341,
+            "paragraph1based": 948,
+            "offset": 219120,
+            "text": "[9수04-17]\u001e삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다. \r"
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-18",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4345,
+            "paragraph1based": 949,
+            "offset": 219292,
+            "text": "[9수04-18]\u001e삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.\r"
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "6수03-02",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 3413,
+            "paragraph1based": 732,
+            "offset": 175411,
+            "text": "[6수03-02]\u001e어림값을 구하기 위한 방법으로 올림, 버림, 반올림의 의미와 필요성을 알고, 이를 실생활에 활용할 수 있다.\r"
+          },
+          "pdfPhysicalPage1based": 29,
+          "pdfPrintedPage": 25,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "6수03-04",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 3425,
+            "paragraph1based": 735,
+            "offset": 176051,
+            "text": "[6수03-04]\u001e넓이를 나타내는 표준 단위의 필요성을 인식하여 1cm², 1m², 1km²의 단위를 알며, 그 관계를 이해한다. \r"
+          },
+          "pdfPhysicalPage1based": 29,
+          "pdfPrintedPage": 25,
+          "wholeClausePdfMatch": true
+        }
+      ],
+      "actualPrerequisiteSeedRecords": [
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2879,
+          "endLine1based": 2884,
+          "section": "제곱근의 뜻과 성질",
+          "text": "{\n    grade: \"중3\",\n    chapter: \"1. 실수와 그 계산\",\n    section: \"제곱근의 뜻과 성질\",\n    orderIndex: 469,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2955,
+          "endLine1based": 2960,
+          "section": "삼각비의 뜻",
+          "text": "{\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 뜻\",\n    orderIndex: 481,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2961,
+          "endLine1based": 2966,
+          "section": "삼각비의 값",
+          "text": "{\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 값\",\n    orderIndex: 482,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2967,
+          "endLine1based": 2972,
+          "section": "삼각비의 활용",
+          "text": "{\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 활용\",\n    orderIndex: 483,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 3112,
+          "endLine1based": 3117,
+          "section": "음수의 제곱근",
+          "text": "{\n    grade: \"공통수학1\",\n    chapter: \"2. 방정식과 부등식\",\n    section: \"음수의 제곱근\",\n    orderIndex: 508,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 3631,
+          "endLine1based": 3636,
+          "section": "거듭제곱근의 뜻",
+          "text": "{\n    grade: \"대수\",\n    chapter: \"1. 지수함수와 로그함수\",\n    section: \"거듭제곱근의 뜻\",\n    orderIndex: 594,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 3637,
+          "endLine1based": 3642,
+          "section": "거듭제곱근의 성질과 계산",
+          "text": "{\n    grade: \"대수\",\n    chapter: \"1. 지수함수와 로그함수\",\n    section: \"거듭제곱근의 성질과 계산\",\n    orderIndex: 595,\n  }"
+        }
+      ],
+      "boundary": "Source-era2015 middle3 only; no probability/registry permit. New elementary coordinate representation q02 is supported by9수03-01. Whole route remains subject to independent review."
+    }
+  },
+  "officialRestrictions": [
+    {
+      "id": "no_trig_ratio_relationships",
+      "hwp": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record1based": 4440,
+        "paragraph1based": 966,
+        "offset": 224820,
+        "text": "삼각비 사이의 관계는 다루지 않는다.\r"
+      },
+      "pdfPhysicalPage1based": 39,
+      "pdfPrintedPage": 35,
+      "wholeClausePdfMatch": true
+    },
+    {
+      "id": "angle_range",
+      "hwp": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record1based": 4444,
+        "paragraph1based": 967,
+        "offset": 224946,
+        "text": "삼각비의 값은 0°에서 90°까지의 각도에 대한 것만 다룬다.\r"
+      },
+      "pdfPhysicalPage1based": 39,
+      "pdfPrintedPage": 35,
+      "wholeClausePdfMatch": true
+    },
+    {
+      "id": "no_complex_geometry_measurement",
+      "hwp": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record1based": 4472,
+        "paragraph1based": 974,
+        "offset": 226554,
+        "text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다.\r"
+      },
+      "pdfPhysicalPage1based": 39,
+      "pdfPrintedPage": 35,
+      "wholeClausePdfMatch": true
+    },
+    {
+      "id": "no_formal_complex_justification",
+      "hwp": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record1based": 4476,
+        "paragraph1based": 975,
+        "offset": 226792,
+        "text": "정확한 용어와 기호의 사용, 복잡한 형식 논리 규칙의 이용을 요구하는 연역적 정당화 문제는 다루지 않는다. \r"
+      },
+      "pdfPhysicalPage1based": 39,
+      "pdfPrintedPage": 35,
+      "wholeClausePdfMatch": true
+    }
+  ],
+  "taxonomy": {
+    "status": "pending",
+    "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+    "unitSection": "삼각비의 활용",
+    "familyKey": null,
+    "evidence": {
+      "actualCapturedUnit": {
+        "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 활용",
+        "semester": 2,
+        "orderIndex": 483,
+        "problemCodePrefix": "J30503"
+      },
+      "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+      "snapshotOnly": true,
+      "comparison": "활용03의 나무는 지면거리/각→높이이다. 높이→지면거리 및15도 표/반올림 전체 갈래는 확인되지 않았다.",
+      "comparedRegistryEntries": [
+        {
+          "registry": {
+            "key": "3-2|삼각비의 활용|03",
+            "grade": "중3",
+            "unitSection": "삼각비의 활용",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비의 활용",
+            "rpmType": "03",
+            "rpmTitle": "실생활에서 직각삼각형의 변의 길이의 활용 ⑴"
+          },
+          "liveMatches": [
+            {
+              "unit_id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+              "family_key": "mid:3-2|삼각비의 활용|03",
+              "live_count": 24
+            }
+          ],
+          "actualRule": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+            "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+            "startLine1based": 1968,
+            "endLine1based": 2029,
+            "text": "def(\n    \"삼각비의 활용\",\n    \"03\",\n    \"실생활에서 직각삼각형의 변의 길이의 활용 ⑴\",\n    SEC.활용,\n    \"응용\",\n    (rng) =>\n      attempt(200, () => {\n        const theta = pick(rng, [30, 45, 60] as const);\n        const d = pick(rng, [6, 8, 9, 10, 12, 15, 18, 20] as const);\n        const mode = intBetween(rng, 0, 2);\n        const sinT = exact(0, theta)!;\n        const cosT = exact(1, theta)!;\n        const tanT = exact(2, theta)!;\n        const ds = surd(d, 1, 1);\n        const res =\n          mode === 0\n            ? surdMul(ds, tanT)\n            : mode === 1\n              ? surdDiv(ds, cosT)\n              : surdMul(ds, sinT);\n        if (res.d !== 1 || res.n > 90) return null;\n        const height =\n          mode === 2\n            ? surdValue(res)\n            : mode === 0\n              ? surdValue(res)\n              : d * Math.tan(theta * DEG);\n        const ground = mode === 2 ? d * Math.cos(theta * DEG) : d;\n        const scene = [\n          {\n            content: `지면에 수직으로 서 있는 나무의 밑동에서 $${d}\\\\,\\\\mathrm{m}$ 떨어진 지점에서 나무의 꼭대기를 올려본각의 크기가 $${theta}^\\\\circ$이었다. 이 나무의 높이를 구하시오.`,\n            solution: `나무의 높이를 $h\\\\,\\\\mathrm{m}$라 하면 $\\\\tan ${theta}^\\\\circ=\\\\dfrac{h}{${d}}$이다.\\n따라서 $h=${d}\\\\times\\\\tan ${theta}^\\\\circ=${surdText(res)}$이므로 나무의 높이는 $${surdText(res)}\\\\,\\\\mathrm{m}$이다.`,\n            dimKey: \"BC\",\n          },\n          {\n            content: `벽에 사다리를 기대어 놓았더니 사다리가 지면과 이루는 각의 크기가 $${theta}^\\\\circ$이고, 사다리의 아래 끝이 벽에서 $${d}\\\\,\\\\mathrm{m}$ 떨어져 있었다. 이 사다리의 길이를 구하시오.`,\n            solution: `사다리의 길이를 $l\\\\,\\\\mathrm{m}$라 하면 $\\\\cos ${theta}^\\\\circ=\\\\dfrac{${d}}{l}$이다.\\n따라서 $l=\\\\dfrac{${d}}{${surdText(cosT)}}=${surdText(res)}$이므로 사다리의 길이는 $${surdText(res)}\\\\,\\\\mathrm{m}$이다.`,\n            dimKey: \"BC\",\n          },\n          {\n            content: `길이가 $${d}\\\\,\\\\mathrm{m}$인 실을 모두 풀어 연을 날렸더니 실이 지면과 이루는 각의 크기가 $${theta}^\\\\circ$이었다. 실이 팽팽하다고 할 때, 지면에서 연까지의 높이를 구하시오.`,\n            solution: `연까지의 높이를 $h\\\\,\\\\mathrm{m}$라 하면 $\\\\sin ${theta}^\\\\circ=\\\\dfrac{h}{${d}}$이다.\\n따라서 $h=${d}\\\\times\\\\sin ${theta}^\\\\circ=${surdText(res)}$이므로 연까지의 높이는 $${surdText(res)}\\\\,\\\\mathrm{m}$이다.`,\n            dimKey: \"CA\",\n          },\n        ][mode]!;\n        return {\n          content: scene.content,\n          answer: `$${surdText(res)}\\\\,\\\\mathrm{m}$`,\n          solution: scene.solution,\n          facts: { theta, d, mode, an: res.n, ar: res.r },\n          figureSpec: figRight({\n            vert: r2(height),\n            horz: r2(ground),\n            angC: `${theta}°`,\n            dims: { [scene.dimKey]: `${d} m` },\n          }),\n        };\n      }),\n  ),\n\n  "
+          }
+        }
+      ],
+      "TRIPLESPoolCheckedForQ01": null
+    }
+  },
+  "problemType": {
+    "proposal": null,
+    "status": "pending",
+    "evidence": {
+      "path": "classification-limits.json",
+      "sha256": "fbcfa8e7894db6a3244c60cdb524628464fba1dc8edade615b55cb1bdf0c6a45"
+    }
+  },
+  "objectiveDifficultyProposal": {
+    "label": "응용",
+    "reason": "높이/수평거리 비를 세우고 주어진 양의 근삿값으로 수평거리를 구해 지정 자릿수로 반올림한다.",
+    "status": "author-proposed",
+    "registryDescriptorAsProof": false,
+    "studentPerformanceMeasured": false
+  },
+  "naturalKoreanAuthorObservation": "Actual expanded layout read; exact input/target order and units stated. Pure mathematics stays mathematical; q17 changes distance input/target in a natural ramp context; q21 uses consistent fictional school.",
+  "materialHold": null,
+  "allFinalApprovals": {
+    "independentMath": false,
+    "independentWholeGrade": false,
+    "sourceCore": false,
+    "unitFamily": false,
+    "rights": false,
+    "nativeProvenance": false,
+    "loadable": false
+  }
+}

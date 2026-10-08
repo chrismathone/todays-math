@@ -1,0 +1,1057 @@
+{
+  "schemaVersion": 1,
+  "frozenAtUtc": "2026-10-08T14:09:12.483Z",
+  "method": "author-preparation-only",
+  "authorId": "orca-codex-exam-twin-source-identity-20261008",
+  "sourcePacket": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/.qa-artifacts/exam-resume-20261008/next-five-extraction-r1/gyeongsang/packet/questions.json",
+    "sha256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b"
+  },
+  "ownedNumbers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21
+  ],
+  "outsideOwnershipNumbers": [
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    22
+  ],
+  "summary": {
+    "candidates": 15,
+    "authoredProposed": 14,
+    "materialCurriculumHeld": [
+      18
+    ],
+    "MCParents": 12,
+    "MCChoices": 60,
+    "writtenParents": 3,
+    "writtenSubparts": 9,
+    "points": 71,
+    "sevenSurfaceAuthorObservations": 105,
+    "newVectorFigures": 12,
+    "viewedStudentPanes": 15,
+    "viewedExpandedSolutions": 15,
+    "independentMathApprovals": 0,
+    "independentGradeApprovals": 0,
+    "familyProposals": 2,
+    "familyNulls": 13,
+    "problemTypeNulls": 15,
+    "rightsApprovals": 0,
+    "nativeProvenanceApprovals": 0,
+    "loadable": 0
+  },
+  "studentProblems": {
+    "path": "student/student-problems.json",
+    "sha256": "861d9bde6b1c1dca5097f4bf42e1a856131f0cf0094e897b28888b3bc499b4af"
+  },
+  "candidates": [
+    {
+      "questionNumber": 1,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q01",
+      "sourceQuestionId": "2025-gyeongsang-3-2-mid-1",
+      "sourceContentDigest": "f39d2b24ddf9f609ab64e94f61343cbef8f3a57bc729e55263f4f54f4fa12239",
+      "candidateFile": "candidates/q01/q01.json",
+      "candidateFileSha256": "deac4937c529b13152428c2ae49a265232a696f8153516ffd690e6c292351d54",
+      "candidateDigest": "f0f6e9dd9b023dd39c1aaf1674aca4782c56889883a223388286f0669bd6d086",
+      "studentDigest": "2943693cd61755fa2623c43bab6afc0ca7af4022dc19a1deecc299cfdfb59347",
+      "assetDigest": "63e544f44422f45515ae4a7b20192b59e5dc6e3a6bf9ceb634dfacc0c8181515",
+      "authorCheckPath": "author-checks/q01.json",
+      "authorCheckSha256": "5f4c9bce36d4bebb00dac8a2c66861a5027597d3a1b8212ef92825f8212be2e3",
+      "score": 3,
+      "status": "authored-proposed-independent-review-pending",
+      "questionType": "객관식",
+      "familyProposal": "mid:3-2|삼각비|02",
+      "independentMathApproved": false,
+      "independentGradeApproved": false,
+      "rightsApproved": false,
+      "nativeProvenanceApproved": false,
+      "loadable": false
+    },
+    {
+      "questionNumber": 2,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q02",
+      "sourceQuestionId": "2025-gyeongsang-3-2-mid-2",
+      "sourceContentDigest": "02ca25987d09d2497dcb005c5c6a7d3707bf831d96148d2c99f3a6be4f7a2e30",
+      "candidateFile": "candidates/q02/q02.json",
+      "candidateFileSha256": "8b1da1b11a15d876a5b8b3111ec85bf3030ba6f4b47bc2d420e17df173d54b69",
+      "candidateDigest": "e606c22d15e92ffbc28bd453fc8d7261568de9a65bdd6ae5f27542dc8a8208b4",
+      "studentDigest": "2039110f3818cd3448b9c2acd07361522692ab86f041150967390673ca37e67e",
+      "assetDigest": "54314aaff47a988bbd4711991cb50368ec1f193bbc3cf51588b6e081268278c8",
+      "authorCheckPath": "author-checks/q02.json",
+      "authorCheckSha256": "516a006b828c54d25937da0cf06cffe15053f7638950e9f158f274dfed75f977",
+      "score": 3,
+      "status": "authored-proposed-independent-review-pending",
+      "questionType": "객관식",
+      "familyProposal": null,
+      "independentMathApproved": false,
+      "independentGradeApproved": false,
+      "rightsApproved": false,
+      "nativeProvenanceApproved": false,
+      "loadable": false
+    },
+    {
+      "questionNumber": 3,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q03",
+      "sourceQuestionId": "2025-gyeongsang-3-2-mid-3",
+      "sourceContentDigest": "29969fbf225323e592306a32751aff0131bcf9e6acf8e3b1e6812c2892e6c549",
+      "candidateFile": "candidates/q03/q03.json",
+      "candidateFileSha256": "2bb926878937da31e1f3b000fb0fe4625bf6b664e1b23b82038d2c3398722d61",
+      "candidateDigest": "a45d0178d562468345f2a797620b45e4749360c8f03c249e8362c8de79adf9a5",
+      "studentDigest": "77c7086a0c79113ec148fdd060350757db2d2eaa960d67f071d66ac3485cefba",
+      "assetDigest": "dde2a6c4241688b07141c50239d4bb17604a230292a111872d181f9836ab02b6",
+      "authorCheckPath": "author-checks/q03.json",
+      "authorCheckSha256": "346d11d740149cde5852ac26aef7eb58041bad531f0430a700719fba70ab0b7d",
+      "score": 4,
+      "status": "authored-proposed-independent-review-pending",
+      "questionType": "객관식",
+      "familyProposal": null,
+      "independentMathApproved": false,
+      "independentGradeApproved": false,
+      "rightsApproved": false,
+      "nativeProvenanceApproved": false,
+      "loadable": false
+    },
+    {
+      "questionNumber": 4,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q04",
+      "sourceQuestionId": "2025-gyeongsang-3-2-mid-4",
+      "sourceContentDigest": "e2bf86df0ac8add6a17202e67c5eecea607e1abede3f48d043c09649157fe47e",
+      "candidateFile": "candidates/q04/q04.json",
+      "candidateFileSha256": "01f6867ac13e983c2d97614dc5a3b48282844d4278e0d4c0aa7a5df36ce9afc7",
+      "candidateDigest": "7984c942762580d144f4b7630ca027b657788db6f44bb56e929ba3e47c111100",
+      "studentDigest": "7573787736f2193f4671a6f5d5ba596c08813d348e6070457f2e9073ecd1f167",
+      "assetDigest": "c5657a52125dd0a961aa11183a05a414918cb40cb38ee584fab77b617b8325b6",
+      "authorCheckPath": "author-checks/q04.json",
+      "authorCheckSha256": "60aa88ea9fa59c3b5cf0e6f20b43ee1548c3518082869da5b60f8a1d13c99264",
+      "score": 4,
+      "status": "authored-proposed-independent-review-pending",
+      "questionType": "객관식",
+      "familyProposal": null,
+      "independentMathApproved": false,
+      "independentGradeApproved": false,
+      "rightsApproved": false,
+      "nativeProvenanceApproved": false,
+      "loadable": false
+    },
+    {
+      "questionNumber": 5,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q05",
+      "sourceQuestionId": "2025-gyeongsang-3-2-mid-5",
+      "sourceContentDigest": "2478ab4c49e9571d99b504991faa461271166bb3c6ca545d4192f829e67c2e12",
+      "candidateFile": "candidates/q05/q05.json",
+      "candidateFileSha256": "87c7d44ab970c7d9100609484911326e7a9f69cf3088061dd6ad7e5de9056c7a",
+      "candidateDigest": "75e38dc2d1884dcb3bd3f063db1a12ba5dfe3804ab471eff5cf4c1f4e6dc6a5f",
+      "studentDigest": "723138c4a39dbafc52c654ac94dd040dcadb785ed568a1eac93a0858ee319ba3",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "authorCheckPath": "author-checks/q05.json",
+      "authorCheckSha256": "f8b7f1dfd0551f6d3f61319ee5b0e4daba8530d1a94708e728fe8dbd7e6fd95b",
+      "score": 4,
+      "status": "authored-proposed-independent-review-pending",
+      "questionType": "객관식",
+      "familyProposal": null,
+      "independentMathApproved": false,
+      "independentGradeApproved": false,
+      "rightsApproved": false,
+      "nativeProvenanceApproved": false,
+      "loadable": false
+    },
+    {
+      "questionNumber": 6,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q06",
+      "sourceQuestionId": "2025-gyeongsang-3-2-mid-6",
+      "sourceContentDigest": "a44fe870412df398071e49c54a11b62fc96b018a9ca343913a64bdd15b5790eb",
+      "candidateFile": "candidates/q06/q06.json",
+      "candidateFileSha256": "7a7695ead84369b43532d093a9eb7eea317b164fdebb78cac79d63b86e1311db",
+      "candidateDigest": "7e6f5eca851cc950c4383188038620d73f495a704047b96fd372ff73dcb6b701",
+      "studentDigest": "e8e2cd65469c93106cf535a49b233675fa1b741a3fea60e9d5fbf636208a61ad",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "authorCheckPath": "author-checks/q06.json",
+      "authorCheckSha256": "232f8a3c20ba1ffd6c9e87ba88f0c8e9e14eb60d35a45e9a69477713a0b8bdfa",
+      "score": 3,
+      "status": "authored-proposed-independent-review-pending",
+      "questionType": "객관식",
+      "familyProposal": null,
+      "independentMathApproved": false,
+      "independentGradeApproved": false,
+      "rightsApproved": false,
+      "nativeProvenanceApproved": false,
+      "loadable": false
+    },
+    {
+      "questionNumber": 7,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q07",
+      "sourceQuestionId": "2025-gyeongsang-3-2-mid-7",
+      "sourceContentDigest": "479133a9e2a9a2513455c218289ba2c9f912b1d22bde1c105c5d8494d39c071e",
+      "candidateFile": "candidates/q07/q07.json",
+      "candidateFileSha256": "53380d131a689001aaaf0599986609e3da80b0f9a998815d39529e6321c9220a",
+      "candidateDigest": "78e433961c1efd5a24e208051c4211b421b9f04770b71552162b524c251e5c6a",
+      "studentDigest": "e50a69925cee1b85a85af824a2f35617704372861ee872f7f8f60d4e866b4100",
+      "assetDigest": "b56f1d586bed9fe38d6d41b460c2fcebc778d4975363d537c10bc3cb9856f683",
+      "authorCheckPath": "author-checks/q07.json",
+      "authorCheckSha256": "62c5fb37d72d83472a379aefe20b98bb7a892ecbb42557fc5fc22b1c34cc3d74",
+      "score": 4,
+      "status": "authored-proposed-independent-review-pending",
+      "questionType": "객관식",
+      "familyProposal": null,
+      "independentMathApproved": false,
+      "independentGradeApproved": false,
+      "rightsApproved": false,
+      "nativeProvenanceApproved": false,
+      "loadable": false
+    },
+    {
+      "questionNumber": 8,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q08",
+      "sourceQuestionId": "2025-gyeongsang-3-2-mid-8",
+      "sourceContentDigest": "d460995ea3f6cc926dac63729bc434bd328332feaccf7c7d5be59bec9125e335",
+      "candidateFile": "candidates/q08/q08.json",
+      "candidateFileSha256": "475f8252eae3cb82c910ffc621dd2a680db5e7e22beb9f389ac417c3643ca2be",
+      "candidateDigest": "e769adbe8ced0cc7ad5e220d55d038d050cddb8c70df37aefc28f79ec8c34c12",
+      "studentDigest": "c858d84e85ac38c9e0abf8128b07be51d4742244e6030ad8ebed15c3fa7f2887",
+      "assetDigest": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "authorCheckPath": "author-checks/q08.json",
+      "authorCheckSha256": "8d907d57d3078ff6a24ceb78bd3d2e8b3d8c7ebd5f91506208f4c2ad2d80311d",
+      "score": 4,
+      "status": "authored-proposed-independent-review-pending",
+      "questionType": "객관식",
+      "familyProposal": null,
+      "independentMathApproved": false,
+      "independentGradeApproved": false,
+      "rightsApproved": false,
+      "nativeProvenanceApproved": false,
+      "loadable": false
+    },
+    {
+      "questionNumber": 9,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q09",
+      "sourceQuestionId": "2025-gyeongsang-3-2-mid-9",
+      "sourceContentDigest": "e4405e8a1ab62b14d7c24d7f9d514953458a780569ef700e4ffbe8a184736004",
+      "candidateFile": "candidates/q09/q09.json",
+      "candidateFileSha256": "91027639f616e2fbe6c532622650aa0411aaf6c5f32c2747d85b41ecd4d90b14",
+      "candidateDigest": "3cd8b42eb3f6c9f3cfb6c9f072f31fc3ce2ea8d64066f54db02fbb70e3c2deed",
+      "studentDigest": "07084e43a02bf3a7bc2d78c451910ffab9f2f349da51158ce7de64953fe386bf",
+      "assetDigest": "8265e94e19d24602f235ac4c4c55d6d8ee34908e4c7f8501d8629618834a0066",
+      "authorCheckPath": "author-checks/q09.json",
+      "authorCheckSha256": "1e5bcc72a4f9d925b30f54e16f588a14342d0067de0be52f8a4abeeeab628e87",
+      "score": 4,
+      "status": "authored-proposed-independent-review-pending",
+      "questionType": "객관식",
+      "familyProposal": null,
+      "independentMathApproved": false,
+      "independentGradeApproved": false,
+      "rightsApproved": false,
+      "nativeProvenanceApproved": false,
+      "loadable": false
+    },
+    {
+      "questionNumber": 16,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q16",
+      "sourceQuestionId": "2025-gyeongsang-3-2-mid-16",
+      "sourceContentDigest": "b51ea62f810afde0fe32d3b3f25c825e8d2ffd17ce97e17a99229d22e72bd743",
+      "candidateFile": "candidates/q16/q16.json",
+      "candidateFileSha256": "f38c0da233a3887f453b3226dcd8991a8182cbef06a62acac93aa61e6f393905",
+      "candidateDigest": "1769def3603a427749f21b49ba1231f415e7648f61788de7134b7905a1ac4373",
+      "studentDigest": "91c18fc29aa9f2d61ff05d5ce0e024c4a6fdb962cdb69204c73a33c438afc4c5",
+      "assetDigest": "c6941b96c702330b86eee779736105a193178ac7735397037d468c92239a7c6f",
+      "authorCheckPath": "author-checks/q16.json",
+      "authorCheckSha256": "126eb7015e5228d710362de6bd3b3adc64b555fb2ebfcf0a908bf7a16be751f7",
+      "score": 5,
+      "status": "authored-proposed-independent-review-pending",
+      "questionType": "객관식",
+      "familyProposal": "mid:3-2|삼각비의 활용|08",
+      "independentMathApproved": false,
+      "independentGradeApproved": false,
+      "rightsApproved": false,
+      "nativeProvenanceApproved": false,
+      "loadable": false
+    },
+    {
+      "questionNumber": 17,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q17",
+      "sourceQuestionId": "2025-gyeongsang-3-2-mid-17",
+      "sourceContentDigest": "bf7dd69a41ba25960d2256de7f08c91c66aae6132ffea5860ea1681b130fe2ea",
+      "candidateFile": "candidates/q17/q17.json",
+      "candidateFileSha256": "3f3f2be7983a9fd7e0c7112aaaf8fcb743a672624e53d1c272b6ecf339fd45da",
+      "candidateDigest": "f09befc7b6b1b1898140f7055ef3bd0ef5ce125a7f4dbf5ce48018031fbc41a2",
+      "studentDigest": "6d6742ec5d913f57b328eac371e82666284f907bf5778af5c1c7624225953f94",
+      "assetDigest": "2ba2e5a725089bf7b9fdabe086df9bdfbbed025abd5a9ab170d8e9f02a65f373",
+      "authorCheckPath": "author-checks/q17.json",
+      "authorCheckSha256": "7d8fa233865fb1d66671f7431cd469a543ddc6fc6b10772dd0f8e74b24cdd296",
+      "score": 4,
+      "status": "authored-proposed-independent-review-pending",
+      "questionType": "객관식",
+      "familyProposal": null,
+      "independentMathApproved": false,
+      "independentGradeApproved": false,
+      "rightsApproved": false,
+      "nativeProvenanceApproved": false,
+      "loadable": false
+    },
+    {
+      "questionNumber": 18,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q18",
+      "sourceQuestionId": "2025-gyeongsang-3-2-mid-18",
+      "sourceContentDigest": "40482454bcd6f131f6084e2c1bfbc756b61e6d65f6bedbfe4eee122cc6a8601e",
+      "candidateFile": "candidates/q18/q18.json",
+      "candidateFileSha256": "70dcb42397ed9c1cae023e2fae309c460c783956ccb7c2f8eb421318f5fc02b1",
+      "candidateDigest": "5eabf704a7b451f8d959828fa3e8a09e19dc949f1fc523b8eca889682a825393",
+      "studentDigest": "bd8a53bf677dbb58be5b302ca1a7d3bccc7e90c421c14ea88effe25ca06b4845",
+      "assetDigest": "7cdf66943e4bbfb7a0894e791f41f2e99592509531519b709e2feadc7e3bfaf8",
+      "authorCheckPath": "author-checks/q18.json",
+      "authorCheckSha256": "82e5e31afd4cbc2765a1502e2a1dc67336c682ccfe9e0d28984ae0520f92fec2",
+      "score": 5,
+      "status": "held-material-curriculum",
+      "questionType": "객관식",
+      "familyProposal": null,
+      "independentMathApproved": false,
+      "independentGradeApproved": false,
+      "rightsApproved": false,
+      "nativeProvenanceApproved": false,
+      "loadable": false
+    },
+    {
+      "questionNumber": 19,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q19",
+      "sourceQuestionId": "2025-gyeongsang-3-2-mid-19",
+      "sourceContentDigest": "8643234df9460eb8b58f8e4bb3be9a02fe01c5222618c97871faa82f3cf97209",
+      "candidateFile": "candidates/q19/q19.json",
+      "candidateFileSha256": "f436be0b4e7157ca2ee5db9043e350b353f121f8eb48c3531416d91405a1fd16",
+      "candidateDigest": "519730cf301789d7b8282540e4b53f8fce6d117079c8e9932696aa13974aaac6",
+      "studentDigest": "8a288ba524f8e0508bca7471f09f5ee7284677aa0e4a0150ac5e45c71e088254",
+      "assetDigest": "889a51e617be78399466d7c1d4c94bf4353d7530f8ae8deca574e11e9e8f03c6",
+      "authorCheckPath": "author-checks/q19.json",
+      "authorCheckSha256": "64d7e382f70950cc9d40c180099823c3ce484c1184416a89c1c2a2c4996cdaf0",
+      "score": 8,
+      "status": "authored-proposed-independent-review-pending",
+      "questionType": "서술형",
+      "familyProposal": null,
+      "independentMathApproved": false,
+      "independentGradeApproved": false,
+      "rightsApproved": false,
+      "nativeProvenanceApproved": false,
+      "loadable": false
+    },
+    {
+      "questionNumber": 20,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q20",
+      "sourceQuestionId": "2025-gyeongsang-3-2-mid-20",
+      "sourceContentDigest": "2a9b36df0b941de4891c535a103d14cfd8dc0331a0b72f7d29079840083f9d21",
+      "candidateFile": "candidates/q20/q20.json",
+      "candidateFileSha256": "d7eb1afb51684cd0cba6665dcf502d610911d0a562b29e8bde13706a915d5d6c",
+      "candidateDigest": "03b322a3da318f8f65df92228fb25b3a5c2e1c000fc16fdd71471abebed82482",
+      "studentDigest": "38276b7c407152357444cbda98605b33b842f6c6e5099fc2daa77d401790a861",
+      "assetDigest": "ca03bce69450c9c0408c424a1e664c0baef98a8bbd132f4a0ff82bfdf09d9ba8",
+      "authorCheckPath": "author-checks/q20.json",
+      "authorCheckSha256": "4a5007a9981ceab612edcb45338e22888a2cb41b93fb8cea26ca68b6bd85ce11",
+      "score": 8,
+      "status": "authored-proposed-independent-review-pending",
+      "questionType": "서술형",
+      "familyProposal": null,
+      "independentMathApproved": false,
+      "independentGradeApproved": false,
+      "rightsApproved": false,
+      "nativeProvenanceApproved": false,
+      "loadable": false
+    },
+    {
+      "questionNumber": 21,
+      "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q21",
+      "sourceQuestionId": "2025-gyeongsang-3-2-mid-21",
+      "sourceContentDigest": "b3bd5e1e3aad29ca8767586c5b6a0356ac3469f1763cf0f3fa2846d4e5b3b016",
+      "candidateFile": "candidates/q21/q21.json",
+      "candidateFileSha256": "cd2ccfa83e50bef390c7397a864ee1b087944c1f06187ef048ed0bf675d69a1a",
+      "candidateDigest": "915abbc2b0a47ec85377438677ba4697d2d3c14a677e1bd9c0e595a3c49ded14",
+      "studentDigest": "f1b9e9f5a3138cc5b9f702c6f3f2ecf50b21aed02cd5f518d3a5066955d4284c",
+      "assetDigest": "502d010af81c38241610e3ff45524475fde3bd8104fb2d970cda8061178b0119",
+      "authorCheckPath": "author-checks/q21.json",
+      "authorCheckSha256": "977e7561b992c923f427f7e0eba45224c6d7ff7afbde07e1360d53cf922f9846",
+      "score": 8,
+      "status": "authored-proposed-independent-review-pending",
+      "questionType": "서술형",
+      "familyProposal": null,
+      "independentMathApproved": false,
+      "independentGradeApproved": false,
+      "rightsApproved": false,
+      "nativeProvenanceApproved": false,
+      "loadable": false
+    }
+  ],
+  "controlledFiles": [
+    {
+      "path": "assets-to-render.json",
+      "sha256": "6dc1995719392bd0afaa064d3a8319dac898aefb36645fb453f49f3883f47508"
+    },
+    {
+      "path": "author_math.py",
+      "sha256": "dffc06bdb422829fc713c2c1f53fabe786573dcdd20712ac6a5638fbf66cfc63"
+    },
+    {
+      "path": "author-calculations.json",
+      "sha256": "de493620851acf3825c3c21a1634c8c774abcf9fbdc7389170d0a27668350a4a"
+    },
+    {
+      "path": "author-checks/q01.json",
+      "sha256": "5f4c9bce36d4bebb00dac8a2c66861a5027597d3a1b8212ef92825f8212be2e3"
+    },
+    {
+      "path": "author-checks/q02.json",
+      "sha256": "516a006b828c54d25937da0cf06cffe15053f7638950e9f158f274dfed75f977"
+    },
+    {
+      "path": "author-checks/q03.json",
+      "sha256": "346d11d740149cde5852ac26aef7eb58041bad531f0430a700719fba70ab0b7d"
+    },
+    {
+      "path": "author-checks/q04.json",
+      "sha256": "60aa88ea9fa59c3b5cf0e6f20b43ee1548c3518082869da5b60f8a1d13c99264"
+    },
+    {
+      "path": "author-checks/q05.json",
+      "sha256": "f8b7f1dfd0551f6d3f61319ee5b0e4daba8530d1a94708e728fe8dbd7e6fd95b"
+    },
+    {
+      "path": "author-checks/q06.json",
+      "sha256": "232f8a3c20ba1ffd6c9e87ba88f0c8e9e14eb60d35a45e9a69477713a0b8bdfa"
+    },
+    {
+      "path": "author-checks/q07.json",
+      "sha256": "62c5fb37d72d83472a379aefe20b98bb7a892ecbb42557fc5fc22b1c34cc3d74"
+    },
+    {
+      "path": "author-checks/q08.json",
+      "sha256": "8d907d57d3078ff6a24ceb78bd3d2e8b3d8c7ebd5f91506208f4c2ad2d80311d"
+    },
+    {
+      "path": "author-checks/q09.json",
+      "sha256": "1e5bcc72a4f9d925b30f54e16f588a14342d0067de0be52f8a4abeeeab628e87"
+    },
+    {
+      "path": "author-checks/q16.json",
+      "sha256": "126eb7015e5228d710362de6bd3b3adc64b555fb2ebfcf0a908bf7a16be751f7"
+    },
+    {
+      "path": "author-checks/q17.json",
+      "sha256": "7d8fa233865fb1d66671f7431cd469a543ddc6fc6b10772dd0f8e74b24cdd296"
+    },
+    {
+      "path": "author-checks/q18.json",
+      "sha256": "82e5e31afd4cbc2765a1502e2a1dc67336c682ccfe9e0d28984ae0520f92fec2"
+    },
+    {
+      "path": "author-checks/q19.json",
+      "sha256": "64d7e382f70950cc9d40c180099823c3ce484c1184416a89c1c2a2c4996cdaf0"
+    },
+    {
+      "path": "author-checks/q20.json",
+      "sha256": "4a5007a9981ceab612edcb45338e22888a2cb41b93fb8cea26ca68b6bd85ce11"
+    },
+    {
+      "path": "author-checks/q21.json",
+      "sha256": "977e7561b992c923f427f7e0eba45224c6d7ff7afbde07e1360d53cf922f9846"
+    },
+    {
+      "path": "AUTHORING.md",
+      "sha256": "489e0588e96c972464b03e372a41eeec72ba88de2c8d29c90251ee5e32d1ae7f"
+    },
+    {
+      "path": "bindings-preflight.json",
+      "sha256": "1c27fc1dd57a52327289fcde6ee9a3d36b53c7ceb2b851e105100f92452e6896"
+    },
+    {
+      "path": "candidate-index-draft.json",
+      "sha256": "40961815ed45fb1618183e94f553bbc465f987cc7a89d68a843ceed06957e5d4"
+    },
+    {
+      "path": "candidate-index.json",
+      "sha256": "677239e0390d13ce26f617c8f6e435f62e4efa380724e44b9baa393c845cd5db"
+    },
+    {
+      "path": "candidates/q01/q01.json",
+      "sha256": "deac4937c529b13152428c2ae49a265232a696f8153516ffd690e6c292351d54"
+    },
+    {
+      "path": "candidates/q01/stem-1.spec.json",
+      "sha256": "4a0adb5783f53b969ab6f84892e23def7dc884f26d5ff92298ccaf94bdd86c3b"
+    },
+    {
+      "path": "candidates/q01/stem-1.svg",
+      "sha256": "596ab0a4a5bdf2fe7f99d64915eaff2077717b085bf0cb6c3e2d55798baffe76"
+    },
+    {
+      "path": "candidates/q02/q02.json",
+      "sha256": "8b1da1b11a15d876a5b8b3111ec85bf3030ba6f4b47bc2d420e17df173d54b69"
+    },
+    {
+      "path": "candidates/q02/stem-1.spec.json",
+      "sha256": "a6812f3efef5fb083eb5ae9c28ac856af8dc9412fa2396d05c8812e03b9ce680"
+    },
+    {
+      "path": "candidates/q02/stem-1.svg",
+      "sha256": "8fa8ed74705016ff969a492d66227e37efefc62da08e8084bcc724a6d12a62c7"
+    },
+    {
+      "path": "candidates/q03/q03.json",
+      "sha256": "2bb926878937da31e1f3b000fb0fe4625bf6b664e1b23b82038d2c3398722d61"
+    },
+    {
+      "path": "candidates/q03/stem-1.spec.json",
+      "sha256": "93336e0dc357d0f6d718a0b90a838cfad6999409c34a08bff90c0f625f432138"
+    },
+    {
+      "path": "candidates/q03/stem-1.svg",
+      "sha256": "1d8a4b296cdfae1da1e056ca99636a9bf4b3e1af1bd9261a6a32c3b8655a87da"
+    },
+    {
+      "path": "candidates/q04/q04.json",
+      "sha256": "01f6867ac13e983c2d97614dc5a3b48282844d4278e0d4c0aa7a5df36ce9afc7"
+    },
+    {
+      "path": "candidates/q04/stem-1.spec.json",
+      "sha256": "9ef5e2530a298b421d028b8d44c95f6b69795f8c20e2f1d51fb947af85341007"
+    },
+    {
+      "path": "candidates/q04/stem-1.svg",
+      "sha256": "38ea7364c29363f02e4c316ec6d33bd6d2c592fa80ecb00eedfc58260e9a073a"
+    },
+    {
+      "path": "candidates/q05/q05.json",
+      "sha256": "87c7d44ab970c7d9100609484911326e7a9f69cf3088061dd6ad7e5de9056c7a"
+    },
+    {
+      "path": "candidates/q06/q06.json",
+      "sha256": "7a7695ead84369b43532d093a9eb7eea317b164fdebb78cac79d63b86e1311db"
+    },
+    {
+      "path": "candidates/q07/q07.json",
+      "sha256": "53380d131a689001aaaf0599986609e3da80b0f9a998815d39529e6321c9220a"
+    },
+    {
+      "path": "candidates/q07/stem-1.spec.json",
+      "sha256": "f19adc33b9952dc1e1f73947aa602caea2d1af55b3997467cf088683b94dd609"
+    },
+    {
+      "path": "candidates/q07/stem-1.svg",
+      "sha256": "7dfd74e8fcfae4bf45df5049313461b8ec7fb4b1912b33df4492c7f30ad2b1e8"
+    },
+    {
+      "path": "candidates/q08/q08.json",
+      "sha256": "475f8252eae3cb82c910ffc621dd2a680db5e7e22beb9f389ac417c3643ca2be"
+    },
+    {
+      "path": "candidates/q09/q09.json",
+      "sha256": "91027639f616e2fbe6c532622650aa0411aaf6c5f32c2747d85b41ecd4d90b14"
+    },
+    {
+      "path": "candidates/q09/stem-1.spec.json",
+      "sha256": "d1446aad050681011c4761f02abb10311d2ffb56d9caecf8bd5a56c1f0281a29"
+    },
+    {
+      "path": "candidates/q09/stem-1.svg",
+      "sha256": "94d17dd51dad0aa8b979b4e7c849df0aebec286b873075f2899b5fb44408440a"
+    },
+    {
+      "path": "candidates/q16/q16.json",
+      "sha256": "f38c0da233a3887f453b3226dcd8991a8182cbef06a62acac93aa61e6f393905"
+    },
+    {
+      "path": "candidates/q16/stem-1.spec.json",
+      "sha256": "2b3363de8a388849f6f3e38cc8929888f4e7734fd1f9b34c10178764149c4c48"
+    },
+    {
+      "path": "candidates/q16/stem-1.svg",
+      "sha256": "d7914810a8b49c895a08d3ec9ebda0e76f48575b346be96a0ac350be59fd98b1"
+    },
+    {
+      "path": "candidates/q17/q17.json",
+      "sha256": "3f3f2be7983a9fd7e0c7112aaaf8fcb743a672624e53d1c272b6ecf339fd45da"
+    },
+    {
+      "path": "candidates/q17/stem-1.spec.json",
+      "sha256": "551080e198ac493474b8c4c13aab4017052e79a89f7ecc9b48ccc60294b9bcc2"
+    },
+    {
+      "path": "candidates/q17/stem-1.svg",
+      "sha256": "6c1ca8318654e10257b87f02a1591708451dc814e14f1150058d533e5b21357c"
+    },
+    {
+      "path": "candidates/q18/q18.json",
+      "sha256": "70dcb42397ed9c1cae023e2fae309c460c783956ccb7c2f8eb421318f5fc02b1"
+    },
+    {
+      "path": "candidates/q18/stem-1.spec.json",
+      "sha256": "3976b8e1fe50cd1364c2f0ef9939b7ccea9f24f12911a82b7daa2c8192c0414d"
+    },
+    {
+      "path": "candidates/q18/stem-1.svg",
+      "sha256": "c287f7c2275f313f9fe81c4db471b1bee16aca8d5a5f1abd00b884437eecb409"
+    },
+    {
+      "path": "candidates/q19/q19.json",
+      "sha256": "f436be0b4e7157ca2ee5db9043e350b353f121f8eb48c3531416d91405a1fd16"
+    },
+    {
+      "path": "candidates/q19/stem-1.spec.json",
+      "sha256": "1a611b422fac37c97833460b2db724956915596d6a6edef71dba6129b7239793"
+    },
+    {
+      "path": "candidates/q19/stem-1.svg",
+      "sha256": "f20873d5f9b8459b755075e8aca5ef71c14d5f1d5f06b17b68835885591de7fc"
+    },
+    {
+      "path": "candidates/q20/q20.json",
+      "sha256": "d7eb1afb51684cd0cba6665dcf502d610911d0a562b29e8bde13706a915d5d6c"
+    },
+    {
+      "path": "candidates/q20/stem-1.spec.json",
+      "sha256": "79bfcc7fc1cc5d8a1dc9b224b8cfa3d8a136992dbf8e316dc97d30c739240ddd"
+    },
+    {
+      "path": "candidates/q20/stem-1.svg",
+      "sha256": "ec5d27710c8b985a6f1acfd9ac87005b85e85a0a2276a317251dfdbd12dfe63c"
+    },
+    {
+      "path": "candidates/q21/q21.json",
+      "sha256": "cd2ccfa83e50bef390c7397a864ee1b087944c1f06187ef048ed0bf675d69a1a"
+    },
+    {
+      "path": "candidates/q21/stem-1.spec.json",
+      "sha256": "c2b557961055ec2cc8e92f3620dab4c398a6c69acf6092b4410973b2a31e3f1a"
+    },
+    {
+      "path": "candidates/q21/stem-1.svg",
+      "sha256": "c6e898b6a95b15b1231782c8c1dc97d9c93a57c92d8d34b1de025276018e3e0d"
+    },
+    {
+      "path": "classification-limits.json",
+      "sha256": "fbcfa8e7894db6a3244c60cdb524628464fba1dc8edade615b55cb1bdf0c6a45"
+    },
+    {
+      "path": "curriculum-author-basis.json",
+      "sha256": "cd0128904d4f378eb0310f9edde0fa55ed96e02a6c0ff6272bdd30c1443ed347"
+    },
+    {
+      "path": "dated-taxonomy-input.json",
+      "sha256": "a839173acc930ae41c358b401212038cd0d524e952090bf033e73c8f5f531503"
+    },
+    {
+      "path": "dispositions.json",
+      "sha256": "cd10840ca159c059451792ef3b9f967ca08895969e101e6aa1af72fcb92cb29c"
+    },
+    {
+      "path": "drafts.py",
+      "sha256": "ac2b80d76cd6b937009aa75efc31872af2b021ef2d913424e7141c33ed2f98fa"
+    },
+    {
+      "path": "figure_author_checks.py",
+      "sha256": "712d4de305432291a25ed6851a4dabd249eec5592d719b9eb78de7e60b7aaf85"
+    },
+    {
+      "path": "figure-author-checks.json",
+      "sha256": "1b266062bc26877dafbead127ed6ea0ecada7dad2b05e31199fba862210fd2e1"
+    },
+    {
+      "path": "finish_author.py",
+      "sha256": "e98459d68a71a9fb55685a101dd65bacde302067a0dbe0f827913d4dfd05c89c"
+    },
+    {
+      "path": "freeze.mjs",
+      "sha256": "1f9ec3c2195dc15f3f90ab9776c2fab5baa27636f66eed903a49f3ac15a968d2"
+    },
+    {
+      "path": "frozen-asset-index.json",
+      "sha256": "b466eb5c996965bf7ea1ad884b43e67638571161732ddc8b86b2975801fdcbed"
+    },
+    {
+      "path": "generate_candidates.py",
+      "sha256": "4fc1f12a4fe41952c06459e71e735719f2f76ec4bc7fbff37b47e1f6f40b0022"
+    },
+    {
+      "path": "initialize.py",
+      "sha256": "1ed8796f2d9e88f60f8075618d7680864c1352dabe27f1e77e4b5ca12cf1f57c"
+    },
+    {
+      "path": "instruction-receipt.json",
+      "sha256": "82f21d4c88fb8dc480263f73f71a7695a9f615f06492e58c43eaebfa01cacc4d"
+    },
+    {
+      "path": "preservation-baseline.json",
+      "sha256": "00ab94ea1a8defbdbd5606d8d2cf1baea17e07e4888b10705443c064b4f50e2d"
+    },
+    {
+      "path": "preview-layout.json",
+      "sha256": "df0990093b26c8d861933d1fd2310d9c82d0f76c11fda6d2250362911f90a2af"
+    },
+    {
+      "path": "preview.mts",
+      "sha256": "e30754a5cb4da7de4d705fd0c3a51c587f91fd239dea6fc2265dcc41569be8d0"
+    },
+    {
+      "path": "q18-curriculum-hold.json",
+      "sha256": "be45240ee5375a729913fdb234a22dc244f5ed847200c085f86c5f436bdda1cb"
+    },
+    {
+      "path": "qa/figures-1.png",
+      "sha256": "e24aa94d02ada2a06030e741a2c53da57178bab5754d98079e27a3fda677e9fa"
+    },
+    {
+      "path": "qa/figures-2.png",
+      "sha256": "bbba6d7214856a2a71402f8b7dbde7979f88f2820013d9b005e15ad8ba30527d"
+    },
+    {
+      "path": "qa/figures-3.png",
+      "sha256": "075f23769ce8ad2c89b9ac9882073184cf466c797be1b11b9a8e32407c6877b0"
+    },
+    {
+      "path": "qa/q01-author.html",
+      "sha256": "98f5e3f513e606310dde6b16c9636b365e04aa22e803ea475b817bd5d692cced"
+    },
+    {
+      "path": "qa/q01-author.png",
+      "sha256": "199c754c448585021177b0d88ce707fee7430fadd5cd9323cad3abe51017d3c9"
+    },
+    {
+      "path": "qa/q01-student.png",
+      "sha256": "3ceb00c3885e7833ed69caaa61ceb173724f9fb08c440cdda52af45894f6a24c"
+    },
+    {
+      "path": "qa/q02-author.html",
+      "sha256": "91a09beab70dff58ffdbf6bc8b6d85965cd9d40bd7d09ca7ec61322e611491b8"
+    },
+    {
+      "path": "qa/q02-author.png",
+      "sha256": "b11223336f171c68106d6e5ffdb575d95a46b5f55372e89a7cfa4d42a9162282"
+    },
+    {
+      "path": "qa/q02-student.png",
+      "sha256": "dff5f1733063faef9cf490ada31038bfe6ce7af4b392fd57a9371ca600384d96"
+    },
+    {
+      "path": "qa/q03-author.html",
+      "sha256": "ad9d1c63bd1581bb3f765a8945a82658d45d2ec70a8d5d4cfb81221c3c93b9ec"
+    },
+    {
+      "path": "qa/q03-author.png",
+      "sha256": "2207d4210d68e116a73029d82412a5bb6a0b8751a1da178d18a1f70cd172125c"
+    },
+    {
+      "path": "qa/q03-student.png",
+      "sha256": "e850f3c492c77ffaf67541f5763b4240d072e76b6806a58be9316140f318c31a"
+    },
+    {
+      "path": "qa/q04-author.html",
+      "sha256": "ff09b9fc6b6024ba77ed1e0351da62f12f2b5a5eaf367d2f49721510a2c49497"
+    },
+    {
+      "path": "qa/q04-author.png",
+      "sha256": "31420db6525ab8d796fc4861004fc86eccb3959e9efebb4f5bd54a9716525cad"
+    },
+    {
+      "path": "qa/q04-student.png",
+      "sha256": "a4ccb2b13985440f1b1383ad43e6e7a7ae2efa4b3c33ccecb1062457195f58dd"
+    },
+    {
+      "path": "qa/q05-author.html",
+      "sha256": "3fab435008346463f087c3da221bddd0584956dd11a00d1181824c4a98b39c00"
+    },
+    {
+      "path": "qa/q05-author.png",
+      "sha256": "ce6d04ba45f75d6c1a73056b5f06449783a88fe27a93f08d5e8942c9fc42a6df"
+    },
+    {
+      "path": "qa/q05-student.png",
+      "sha256": "76909732fb6c65d02f1454c3d427ccd363da89d20f20c282486ba35b5294a498"
+    },
+    {
+      "path": "qa/q06-author.html",
+      "sha256": "2ecb02713faf2e98a58da15d5ebfdba32c647763df5d767f315d389cb289a40b"
+    },
+    {
+      "path": "qa/q06-author.png",
+      "sha256": "016a65d86f672a3f2dafa08ed90bc5499da4dcdc95a87759fe714b69f817a0b7"
+    },
+    {
+      "path": "qa/q06-student.png",
+      "sha256": "d73deaa88f3ed232fd6c0e3bad7030fa1556a54703124421eaa59a7dc90ab927"
+    },
+    {
+      "path": "qa/q07-author.html",
+      "sha256": "c7f993d9617b2c36226e024aec0b9c62cb0db6e1c1bb0ec7a554a3f1853fb78f"
+    },
+    {
+      "path": "qa/q07-author.png",
+      "sha256": "be9f66fc51926419d6ab679132d223319f187fc3302eafa730ae11e74a245515"
+    },
+    {
+      "path": "qa/q07-student.png",
+      "sha256": "e7b35ce9b394f3cb754b8f5db654c2487aa0a50f7a0feb2c95b651384da6eb3c"
+    },
+    {
+      "path": "qa/q08-author.html",
+      "sha256": "e131d6c9cf5d53b4272941fbd30a327f167f08444d99a9ec976d28d6ce77ec37"
+    },
+    {
+      "path": "qa/q08-author.png",
+      "sha256": "f602d364c9746a23ae70bc401eb7cd2a15fb0ce23e8506eeea1c0bb9e74a7d3e"
+    },
+    {
+      "path": "qa/q08-student.png",
+      "sha256": "0cc9deefedb6e2d73de58f704fd2410ab038af68e95444a99e9dc9dc0c9d7176"
+    },
+    {
+      "path": "qa/q09-author.html",
+      "sha256": "a973c5edeba6bf0614cd5d21114dbaa74f10938043943cb383314382f51788ff"
+    },
+    {
+      "path": "qa/q09-author.png",
+      "sha256": "86a07a496d0235ffe5fcf04f57b90c30996aa7b9f3c5e979f4d35c155a52d988"
+    },
+    {
+      "path": "qa/q09-student.png",
+      "sha256": "ee029310d75ee952fa06b6ebb77ad9f615e2f52f423b3bedfd3f3e84a9f0ae79"
+    },
+    {
+      "path": "qa/q16-author.html",
+      "sha256": "1d32664fa9f587c16ebd9190266550e6f8b3dd92c4f475402eb81d287c8e800a"
+    },
+    {
+      "path": "qa/q16-author.png",
+      "sha256": "45c5047aa417d1fd76a1e0bee467d700aad39e8db25c2ea6afa9b9f93dea5014"
+    },
+    {
+      "path": "qa/q16-student.png",
+      "sha256": "bed2b624d0ccaf8785554366019dd702fe9d75e4a8e70e3b19d42a70855e7597"
+    },
+    {
+      "path": "qa/q17-author.html",
+      "sha256": "42ec41519781abd9535376a276489eeb8a8ad581b452540d847e38259c7deb76"
+    },
+    {
+      "path": "qa/q17-author.png",
+      "sha256": "9e4ff219b5085e338a3cecdc49ab48af842f043597fb6b60477c28505edb66ae"
+    },
+    {
+      "path": "qa/q17-student.png",
+      "sha256": "1063a933137504fc48b35273a34dfdf2620c640541aff78af4e8502d66289bcd"
+    },
+    {
+      "path": "qa/q18-author.html",
+      "sha256": "d31965fd487cf8b6eee69de82506ee8a0e2e7ac99f430e4e566cc3f198db84c6"
+    },
+    {
+      "path": "qa/q18-author.png",
+      "sha256": "1516400d716e4d8950c6246a0934e1c95625d65d8b917c2ccdbfcf67871215ca"
+    },
+    {
+      "path": "qa/q18-student.png",
+      "sha256": "bac7ef0be265187e07ce12bf858fb87714dffb01683e65382ff1afb2eebb9d1b"
+    },
+    {
+      "path": "qa/q19-author.html",
+      "sha256": "6a8301879bb3eb9cb1b4c881e29c61e224603f5c38a5a20f1dc777a77f417fd4"
+    },
+    {
+      "path": "qa/q19-author.png",
+      "sha256": "c1f15b37897ca00a4fc2bfdbe59cc4e5b25b8ebb7977b517ffff5aac2ae583d0"
+    },
+    {
+      "path": "qa/q19-student.png",
+      "sha256": "571f6bf4dd1b363f0fd5a30a6805db65502049c3fe3df336c447d0584c35eb76"
+    },
+    {
+      "path": "qa/q20-author.html",
+      "sha256": "d63bbe085e550108921871ff9e8a7cfd996c25d65dfebf0de83186ea13ea7b02"
+    },
+    {
+      "path": "qa/q20-author.png",
+      "sha256": "505a5564ace22b3f4dd7e12fa78b27344002edc4a4e96b40d1e92e1aaa868bcf"
+    },
+    {
+      "path": "qa/q20-student.png",
+      "sha256": "60d715697224529ddf4693e3ad87da921dbfdb5205bfe3d8c4cb8d5a6fafc3fa"
+    },
+    {
+      "path": "qa/q21-author.html",
+      "sha256": "797b9a2069a2f4fbc4b49fe7e28865da0247e809cf3cd6cc9f20d2d6655df534"
+    },
+    {
+      "path": "qa/q21-author.png",
+      "sha256": "daca7df9968812b88a85e55aad44c1e76b1903cbfee9a4c26959c93386542c63"
+    },
+    {
+      "path": "qa/q21-student.png",
+      "sha256": "e79eab3c201fd3720bc2eab6d999015b3885e255cae075ba8c54e0b0acde617b"
+    },
+    {
+      "path": "qa/render.css",
+      "sha256": "b22ffcf844e38d03c63f1d008db1681455c9cc0ad3b57fd1712ea522b0ed49b1"
+    },
+    {
+      "path": "render_assets.mts",
+      "sha256": "90b381d1e99b60befcc890b57bd47fe943d75ecc930c29d64c91c40c8169df3f"
+    },
+    {
+      "path": "rule-author-evidence.json",
+      "sha256": "2a32bf3ea98f3ed85e3a4aa2be522a12c5158eb4546f0f07abee995aa68888f0"
+    },
+    {
+      "path": "runtime-probe.json",
+      "sha256": "67aceb16bb692c4b7cfd1c27c156c528ff766b9c7b3b1c7327ae5ebb85b74ff4"
+    },
+    {
+      "path": "source-input-receipt.json",
+      "sha256": "24d7332f54263adbc45102d718646d88407777b225e8f98892d726bdfb0298f5"
+    },
+    {
+      "path": "source-question-only/images/q01-part1.png",
+      "sha256": "580276b65358f9e8dc13c58dc3119e2c656135b80b8b7d56344a2ebfe48976d1"
+    },
+    {
+      "path": "source-question-only/images/q02-part1.png",
+      "sha256": "4fc7396fde5ffab4fac25aad42890a7818b8c18e3eb81837e08f9ce6babfa4d1"
+    },
+    {
+      "path": "source-question-only/images/q03-part1.png",
+      "sha256": "e789a00452faee0f04137927379107b8923ca8a61cd908c94b640120556ed4f4"
+    },
+    {
+      "path": "source-question-only/images/q04-part1.png",
+      "sha256": "922d1199f5a783c0e141b036d5d3af374f43b846e181b040791ad1c2ef77398c"
+    },
+    {
+      "path": "source-question-only/images/q05-part1.png",
+      "sha256": "945e7f2ce7e2add5f68f700674e9595ac8a1ae57820db194224e91af2d017c44"
+    },
+    {
+      "path": "source-question-only/images/q06-part1.png",
+      "sha256": "afbf2fe6163d11429b5629e4e931905e70135b151b50d169e506d125e0c66e2e"
+    },
+    {
+      "path": "source-question-only/images/q07-part1.png",
+      "sha256": "49beaae1ef091598a3470e45f9ae77aa9c416014382e753d703fbd5675d362dd"
+    },
+    {
+      "path": "source-question-only/images/q08-part1.png",
+      "sha256": "ed81ef7263d7a121f16f22bcbb63a964bb73c31f6c367319b4417f48d2fb7af1"
+    },
+    {
+      "path": "source-question-only/images/q09-part1.png",
+      "sha256": "275b646f7db7e8433346507dbaf0168e5288c193011af8c0f51e2f3f9a7f6ccd"
+    },
+    {
+      "path": "source-question-only/images/q16-part1.png",
+      "sha256": "6e84f20a9d3c2a7f9e00a960b0cb3c069f5124041384a470658e15cc130c66f8"
+    },
+    {
+      "path": "source-question-only/images/q17-part1.png",
+      "sha256": "c04807cf6397b93ae0106c3f742571c28b55798791c4d8bd438f71410954fcde"
+    },
+    {
+      "path": "source-question-only/images/q18-part1.png",
+      "sha256": "9d8ce5caec93eb3f97f866508fc154869fac96516173e157d064582826f05533"
+    },
+    {
+      "path": "source-question-only/images/q19-part1.png",
+      "sha256": "8a7e07fcdb40612a8dd229c42ecb994cbadd3377783b87eed169f5e1fda4876f"
+    },
+    {
+      "path": "source-question-only/images/q20-part1.png",
+      "sha256": "37f4d6b0396f6d74f8c40da9c1efe1ef9fc48a26dc969b883d844190bceb0e2d"
+    },
+    {
+      "path": "source-question-only/images/q21-part1.png",
+      "sha256": "0c90e365ba51bf41ed328cb8050b249e100ccbb08760bfb0582c3b67b2a72a2b"
+    },
+    {
+      "path": "source-question-only/selected15.json",
+      "sha256": "54599bbc30adec061c6a13871fe9a5213033a6a63354dd801191dccdf89d5c9a"
+    },
+    {
+      "path": "strict-render-failure.json",
+      "sha256": "f9bf47875da16b65d258462991d00ba32c58a3585d7291904bac04eec2481f17"
+    },
+    {
+      "path": "strict-render-receipt.json",
+      "sha256": "315685af50d0b18c730b5115f4579e2020afa048dc22f108af878b8fa1426d1b"
+    },
+    {
+      "path": "student/figures/q01-1.svg",
+      "sha256": "596ab0a4a5bdf2fe7f99d64915eaff2077717b085bf0cb6c3e2d55798baffe76"
+    },
+    {
+      "path": "student/figures/q02-1.svg",
+      "sha256": "8fa8ed74705016ff969a492d66227e37efefc62da08e8084bcc724a6d12a62c7"
+    },
+    {
+      "path": "student/figures/q03-1.svg",
+      "sha256": "1d8a4b296cdfae1da1e056ca99636a9bf4b3e1af1bd9261a6a32c3b8655a87da"
+    },
+    {
+      "path": "student/figures/q04-1.svg",
+      "sha256": "38ea7364c29363f02e4c316ec6d33bd6d2c592fa80ecb00eedfc58260e9a073a"
+    },
+    {
+      "path": "student/figures/q07-1.svg",
+      "sha256": "7dfd74e8fcfae4bf45df5049313461b8ec7fb4b1912b33df4492c7f30ad2b1e8"
+    },
+    {
+      "path": "student/figures/q09-1.svg",
+      "sha256": "94d17dd51dad0aa8b979b4e7c849df0aebec286b873075f2899b5fb44408440a"
+    },
+    {
+      "path": "student/figures/q16-1.svg",
+      "sha256": "d7914810a8b49c895a08d3ec9ebda0e76f48575b346be96a0ac350be59fd98b1"
+    },
+    {
+      "path": "student/figures/q17-1.svg",
+      "sha256": "6c1ca8318654e10257b87f02a1591708451dc814e14f1150058d533e5b21357c"
+    },
+    {
+      "path": "student/figures/q18-1.svg",
+      "sha256": "c287f7c2275f313f9fe81c4db471b1bee16aca8d5a5f1abd00b884437eecb409"
+    },
+    {
+      "path": "student/figures/q19-1.svg",
+      "sha256": "f20873d5f9b8459b755075e8aca5ef71c14d5f1d5f06b17b68835885591de7fc"
+    },
+    {
+      "path": "student/figures/q20-1.svg",
+      "sha256": "ec5d27710c8b985a6f1acfd9ac87005b85e85a0a2276a317251dfdbd12dfe63c"
+    },
+    {
+      "path": "student/figures/q21-1.svg",
+      "sha256": "c6e898b6a95b15b1231782c8c1dc97d9c93a57c92d8d34b1de025276018e3e0d"
+    },
+    {
+      "path": "student/student-problems.json",
+      "sha256": "861d9bde6b1c1dca5097f4bf42e1a856131f0cf0094e897b28888b3bc499b4af"
+    },
+    {
+      "path": "validate.mjs",
+      "sha256": "97135e88a9c06514e39b329074b07df47cb5554dc2840913f464af3af65f827f"
+    },
+    {
+      "path": "visual-inspection.json",
+      "sha256": "8e336cb4203c74bf8180d0edf9412ab87ea3e2f9d0b76dba87a7c43c249798e5"
+    }
+  ],
+  "frozenFilesMustNotBeEdited": true,
+  "postFreezeValidationReceiptsMayBeAdded": true,
+  "authorCannotIndependentlyBlindReviewOwnCandidates": true
+}

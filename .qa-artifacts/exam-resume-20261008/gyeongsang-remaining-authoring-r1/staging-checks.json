@@ -1,0 +1,32 @@
+{
+  "method": "scoped staging check, frozen-byte preservation",
+  "exactFilesStagedBeforeReceipt": 166,
+  "allNewScopeOnly": true,
+  "workingBytesEqualStagedGitBlobs": true,
+  "defaultWhitespaceCheck": "only three generated empty whitespace lines on q20 SVG, its copied student SVG and embedded author HTML",
+  "preservedFrozenEngineBytes": true,
+  "ordinaryFilesDefaultDiffCheckPassed": 163,
+  "generatedExceptions": [
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q20/stem-1.svg",
+      "line1based": 10,
+      "emptyLineOnly": true,
+      "sha256": "ec5d27710c8b985a6f1acfd9ac87005b85e85a0a2276a317251dfdbd12dfe63c"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/qa/q20-author.html",
+      "line1based": 10,
+      "emptyLineOnly": true,
+      "sha256": "d63bbe085e550108921871ff9e8a7cfd996c25d65dfebf0de83186ea13ea7b02"
+    },
+    {
+      "path": ".qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/student/figures/q20-1.svg",
+      "line1based": 10,
+      "emptyLineOnly": true,
+      "sha256": "ec5d27710c8b985a6f1acfd9ac87005b85e85a0a2276a317251dfdbd12dfe63c"
+    }
+  ],
+  "generatedExceptionsOtherLinesManuallyChecked": true,
+  "semanticChanges": 0,
+  "independentApproval": false
+}

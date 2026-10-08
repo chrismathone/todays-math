@@ -1,0 +1,1887 @@
+{
+  "ownPriorFiles": [
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/.gitattributes",
+      "sha256": "87b887e74fcf38ef6fefe7bacd21ca4de7491cca1e52c73fb489a099af513021"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bank-read-20261008.json",
+      "sha256": "164c611b84b3d9b16c30f74e2d0220ed54b2d642845d0bf1e72d9a347b969a9b"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/continuation-index-v2.json",
+      "sha256": "fb58345aaf318d041d333110e0a0d2ae770889dfa334c14fdedc2be7db553901"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/continuation-index.json",
+      "sha256": "36bea099f44cec22e670722abc34a8d21dafd4c8b4667b5a74af08125e3ea9b5"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/continuation-prompt-v2.txt",
+      "sha256": "266b82c546b2881dc09238d46d2be1283a57fc55ffb515a47c4bcb6b10328b49"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/continuation-prompt.txt",
+      "sha256": "fb8d981ee6c38c2e7f8b5e2645bf8d547111ae65ce10307cbb16d0d06d57cd98"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/contract-audit.json",
+      "sha256": "7aa40c93ef4ae4653fb4d5c03cdc5f87e2d5f7b284b1231e74b49a4a591b7116"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/curriculum-evidence.json",
+      "sha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/finalize-resume.mjs",
+      "sha256": "4f8a1bfff4117236370554734ff7c97fd6cffc009d431139e70ead5643b448ae"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/next-five-audit.json",
+      "sha256": "954d506390c2a4470a632b6e5e85ca0c604b231cd1eeb485cb9bf7946a569c9c"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/registry-read-20261008.json",
+      "sha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/status-ledger.json",
+      "sha256": "4e4135f0199688f757c18a9408bdae9d85b28d7c558ae8df0ae0ac32921c7d3d"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/anonymous-pdf-footer.png",
+      "sha256": "bf11806154c7baee381a57b71b777c1ab9bfc4cfd6bfc3f07abd2672e7d59113"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/anonymous-pdf-header.png",
+      "sha256": "0951a8618b23486b2d0894fb304c888d44c578ef1570d63ad3576a5c3989b2be"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/anonymous-pdf-q15.png",
+      "sha256": "c66ff5776306e3419f320df2802548f5c9fbd2e64eb5a5426c4fbd5ad1301594"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/anonymous-pdf-q2.png",
+      "sha256": "c893114509d9b77241ce914d13593c61bde3faf4bdd598cd8123e853b3f0e14a"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/anonymous-pdf-q21.png",
+      "sha256": "f48011fd3f9ccce4c7eda248c11df1a6d660d63ef187d42e56fb77689262c74b"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/anonymous-pdf-q3.png",
+      "sha256": "4c7e5cb2e0258494d4f89c8f64ac789139224fba3f89745f9a0e4a3a01560c32"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/build_report.py",
+      "sha256": "fc33f2040b2b9c07a851751bce2619ea14a406331ba911baf294c324267e48ed"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/commit-files.json",
+      "sha256": "477083305320980f0fac1381d1a3172105f4cfa00cda578b776eafaf550b66b2"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/hwp-question-only-evidence.json",
+      "sha256": "217b89b30a38a00a296b92008487769a2b05a2c7802c82627e0c256f351c16bc"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/hwp_question_only.py",
+      "sha256": "ad0300c498d9158d54251101eca9734ad2851261620de122546f61f6b05d1814"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/inspect_sources.py",
+      "sha256": "712eebaa31fb45bcf8c70df02697a1bbd22d71cd39336cd03bb1936a88e680d6"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/make_snippets.py",
+      "sha256": "c9a876ee586aef45e774333732cfd1c1f0c6095afd8b1caf2e4d05c4910f3cc7"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/manifest-question-source-excerpts.json",
+      "sha256": "61c70bd0f229301d188c3d6aea20866d5b6f550c7c98c03b568f539fd8403506"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/named-pdf-footer.png",
+      "sha256": "7d17cf7c6be9af0a7f8fa84b79030e3f7d8e207c74293b0e177e3a6d9d6c0e23"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/named-pdf-header.png",
+      "sha256": "203e45de0649919f9b7dee1ca526fdaf17ae707e70559af75c79576d278a9f9f"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/named-pdf-q15.png",
+      "sha256": "a823012c3352874381ffd1eec9049749b557653469d89ac5cb5237ca12211acc"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/named-pdf-q2.png",
+      "sha256": "f82b4b517b6b9bd0bfc5c850a588407e04e44a2dec5aad98c5269533d4a92e66"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/named-pdf-q21.png",
+      "sha256": "24e1f13d2ab92e45fd0870764a16dc08aa0923952ae34868db35a35c8268779d"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/named-pdf-q3.png",
+      "sha256": "8d3e0341f360962bcebb9e37b0445ecd34d78a973c5c690ae4d3c748c487d925"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/original-copyright-school.png",
+      "sha256": "a372b7af1aa946685949348ebd4eab9a1751ede53566c4af9dcc18168b90340a"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/original-exam-header.png",
+      "sha256": "a9c8fc15603246015626c60a3c12d18d2c11a012eafd7429d40f5348915248f2"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/original-q15-figure.png",
+      "sha256": "f28c18f267abda1414117916d8e0fd89598722c790b1a82b739c6b5510bc10e3"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/original-q15-stem.png",
+      "sha256": "838ba81921f7043f156fd85fa28780b76e2685652d5b7b1bc3ce920094c412f5"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/original-q2-figure.png",
+      "sha256": "13ce1af8b24af2a87c8426efde827c3483c5f527b0486cfe26acc5fdc77f06e6"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/original-q2-stem.png",
+      "sha256": "a3b162812b095ea4b203e71203fb4fa1e6e958278a0414c21baade6b30a41204"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/original-q21-figure.png",
+      "sha256": "9901aa65bec7cf08ceda5a947f9dc7f7ae277bd53f0268a7d34071563adbb9c5"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/original-q21-stem.png",
+      "sha256": "a9099593950f779384f38d8248e0c744d51f54b7f552912b37ec7af5d1b95091"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/original-q3-stem.png",
+      "sha256": "5e10a1f910b1bd26fef389a611f746dd32ccae8ddc6c79cfede70b7bce68c4f5"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/original-school-footer.png",
+      "sha256": "33e21da52f97844bd3b8a9cfe88e5c63a8ce1d12187faa7d336d927a02efdcff"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/prior-reports-integrity.json",
+      "sha256": "86f6b9f070370a4c4f19299e4889f761501d6dbde6c5e2e05b9f84c8439078fa"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/s4-q15-embedded-figure.png",
+      "sha256": "4a7c821171c4e6d37705b0625e6467d7e2f315a6d2f8bc78d54f0aa6fd18c2b3"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/s4-q2-embedded-figure.png",
+      "sha256": "0ad966965b03126fa552468410880c0e1eec62ba7872bc248bf37e9f2ebc5cfc"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/s4-q21-embedded-figure.png",
+      "sha256": "935cb25285821235aed3d1ecd37b6e2658b73482f44ab6ef51c0c3235e41d4d0"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/s5-hwp-first-page-preview.png",
+      "sha256": "953cdf835086f1040be77a0529df79344b3d0c79caedfc44bfcff59112c10262"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/s5-hwp-q15-figure.png",
+      "sha256": "7e7a2776fd4f3c2a5fc999cdd33949b27d0797bfa6b6867b526fc3f6503ec895"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/s5-hwp-q2-figure.png",
+      "sha256": "27f57a2d62675ec77ff15e6365f90a9100dbb1f38049748e4fc4aaf00f4eca5c"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/s5-hwp-q21-figure.png",
+      "sha256": "8f16c62b5d93ea8c6af29df4d68d1bfa77e93df4dfdaffef59ee463bc6b8a6d1"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/s6-q15-embedded-figure.png",
+      "sha256": "4434b631231c74fc8faf9ae604aeb8ba23e275922b447b131691cdd9174f7e13"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/s6-q2-embedded-figure.png",
+      "sha256": "f8b6b92b69f6a2c39d94eba6791fab2652ba2b702e79b9cc25ed2bbc6e92ead9"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/s6-q21-embedded-figure.png",
+      "sha256": "75c72acca39f81ed03ddd18b22792bbf147d5bd29769133caa23d6294c7caa22"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/second-scan-exam-header.png",
+      "sha256": "1889e7479028edf916cdbcd5bc1b6013e00c947ded7cae271a5b119524ead7f3"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/second-scan-school-footer.png",
+      "sha256": "14723ca59eac359af1387d6df9b02a03d20d5ea67bf938df688729b2cbbe25ba"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/selected-figure-linkage.json",
+      "sha256": "a3d6b2a54b1a41988b4beed778284791e801f67dbc722775bcfecb7da725f372"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/snippet-records.json",
+      "sha256": "794b54bc82fb2e1c8117bd1c9a584813fbe723636da6b7df9cd1e7903aee3695"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/source-files.json",
+      "sha256": "b74641da495bc9e914a4fd5a69a0170891e4690d6139db4c37102ca8565e5919"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/source-review.json",
+      "sha256": "fcce4f3355719258e6e98a3a3b30631aa60e0122288b2de12c0870ce89b75a86"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/SOURCE-REVIEW.md",
+      "sha256": "b0aaa6ed5fcfbd36a35a9765b70fcd5b14bdb765625fa11a7c8213ae26cfc682"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/third-scan-exam-header.png",
+      "sha256": "c4050101a7a6498f9378adef640f2f9d1e273cc2ca755c34d5b0795a8aa562cc"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/third-scan-q15-figure.png",
+      "sha256": "7fddef670c1ad5014f6388f6f912b12afa36c136d4e5df3c36818685a55c8ffd"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/third-scan-q15-stem.png",
+      "sha256": "2024c118e17e003c0eee7427515479d37bcc1fefe8a19b25178c7da51e5cb324"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-authoring-r1/source-identity/__pycache__/inspect_sources.cpython-311.pyc",
+      "sha256": "e897f78b6af831c5028fa1624a35c824dd637cebcc63367e23e0cb130daffa52"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-q07-curriculum-adjudication-r1/adjudication.json",
+      "sha256": "2b350b644d391486e9ca66c8995366ad1ad13e351ff6dfc910b2f61a8337bd77"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-q07-curriculum-adjudication-r1/artifact-manifest.json",
+      "sha256": "c55ab69dca2699e788e281685382ed635c5b6cea8e71297afaf75c987a4e0a05"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-q07-curriculum-adjudication-r1/citation-review.json",
+      "sha256": "40e933d35e81ee1a2c1e24a611560c51952a0c59eaf535402ca201206375253b"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-q07-curriculum-adjudication-r1/collect_evidence.py",
+      "sha256": "c0becaf5d9514c7e56a20dfeb76297568cb92f319a89459428f1a789799b4604"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-q07-curriculum-adjudication-r1/finalize_report.py",
+      "sha256": "9252f4b30b17314ca16699347c29935ed4ea69cfda95e2dd814e44a162abdb21"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-q07-curriculum-adjudication-r1/official-provisions.json",
+      "sha256": "c01d053fee29d98087c6366a9ccb2136a15a12e5c0f6c0c2ef27d9be8bc755dc"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-q07-curriculum-adjudication-r1/policy-application.json",
+      "sha256": "3c925e8d30e54ca9a4af41c5887a52ab3ea8080207e3e8e826b947e2e0605067"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-q07-curriculum-adjudication-r1/preservation-baseline.json",
+      "sha256": "e5a35c0564297025b28d8b9a4302ba9bd4e9289945c909271ef74576950c4c58"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-q07-curriculum-adjudication-r1/preservation-check.json",
+      "sha256": "e1ee4a0a1f665ca763a2c8d6ebe67cf84329ea95e2c3919b7ed5a0ca0d6f7241"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-q07-curriculum-adjudication-r1/question-observation.json",
+      "sha256": "a8ba8438f5e0168ede412cbb537c24017b2537a4a0f7349cfd6c4ee037c44a84"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-q07-curriculum-adjudication-r1/rollout.json",
+      "sha256": "71bcf05922809772c13fbab3d2be29c5f58d5d3cb4098ee4024e625dba1597f1"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-q07-curriculum-adjudication-r1/supplemental-math.json",
+      "sha256": "1a062bd8bcf3860be09e7190f29a0bba6f1fb4bc19e572c6d550fa632bc93fe7"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-q07-curriculum-adjudication-r1/unit-family-evidence.json",
+      "sha256": "7205af605755602952c3b55b61f15c1c0215b0ddb127c416625311fe02ad8b24"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-q07-curriculum-adjudication-r1/validate_adjudication.py",
+      "sha256": "af9ba7abc9cedf28e4ead9a1df753eee785c65aef28c0ca03134149ccb080398"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-q07-curriculum-adjudication-r1/validation.json",
+      "sha256": "f7a3c28db20477e0736ad850f095885f140faf4fe4263f96c509294de5697c78"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-q07-curriculum-adjudication-r1/official-notices/moe-2022-2-notice-records.json",
+      "sha256": "9c636e4498aad159bcc80e999c4cf076803f5ab06758d2f60b602327e4b9e4b0"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-q07-curriculum-adjudication-r1/official-notices/moe-2022-2-notice.hwp",
+      "sha256": "65fe75153d3c9f3d67cfdf38108cba0eac29a8d2bcc57f67af71c47bb699a8cb"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-q07-curriculum-adjudication-r1/official-pages/2015-math-physical-p33.png",
+      "sha256": "379e2ea95722570df9a6d5f49adc82fc52bfce117caf151487e566688e8eccd1"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-q07-curriculum-adjudication-r1/official-pages/2015-math-physical-p34.png",
+      "sha256": "392379c97c3f1e01c01e225b2bd529ab986931fe4b4624e894a96083b2695966"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-q07-curriculum-adjudication-r1/official-pages/2015-math-physical-p38.png",
+      "sha256": "2cdd9b9c565175aebbe2d47bf989abb58cdc547143e0e41448c08df196f05d3d"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-q07-curriculum-adjudication-r1/official-pages/2015-math-physical-p39.png",
+      "sha256": "631342a565bd3a92a42709e917dbd4786c2061e182d604437337046016e56818"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r1/blind-results/BLIND-SOLVE.md",
+      "sha256": "d058e0e8a589315c6be12d8723fec390dd727a1c91cf6f0e8e498e566acd1a47"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r1/blind-results/solve/q02.json",
+      "sha256": "835b3815b29b0d0c12d9221a2259e308005caa93e768f36ec7cb7af0f6a40d90"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r1/blind-results/solve/q03.json",
+      "sha256": "72915e6696b6c11b97de55a5eb0ac3b756193b7f30a81ae9c1061cd12baebe8a"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r1/blind-results/solve/q15.json",
+      "sha256": "afafb9d815902e6f2863ef60b2626876751a4b0385e5789f8f1d0240e6e0f04c"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r1/blind-results/solve/q21.json",
+      "sha256": "3b7c4c29f4929193267bcc6122cdabb41136670a5dc35903cf3fd619384df3be"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r1/verification-results/REVIEW.md",
+      "sha256": "ef8045f1f12ab4bdb81ff96325839a56136f9e6dd67e1103b1d0501a3212ab80"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r1/verification-results/reports/q02.json",
+      "sha256": "50a600abf5b5c98495c864c8f598d389c11606da6b159b7aab7074ddd780f1d8"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r1/verification-results/reports/q03.json",
+      "sha256": "242e6c80977eee0808cea01151e89e226d91f12227ef849dfa1fcf2be6decaad"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r1/verification-results/reports/q15.json",
+      "sha256": "01c3ed7ba1eeeabba246fb7614a8fed6a819f5a89ca3dc938662a342b4173897"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r1/verification-results/reports/q21.json",
+      "sha256": "eac9740b74ad7ec8658e16f8fec72ac1ef11e8f373f0fd87608d25a9ebfa11ca"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r4/blind-results-source/BLIND-SOLVE.md",
+      "sha256": "9bebee28d7ac160a3b684d117e4006a5df0e980d865f1c4b14b331fdd1f36b1d"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r4/blind-results-source/solve/q11.json",
+      "sha256": "d70a383855817b7fa33abda9a335bb68b05e9fb6bf73d38aa90fd9e84f4633b9"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r4/blind-results-source/solve/q14.json",
+      "sha256": "d7fab8d42af9c393b2b3fdba9ea2e5e5a5f11478c3c0219bc3910b0392587df4"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r4/verification-results-source/REVIEW.md",
+      "sha256": "5a4ebe369d8a01765ddc83df92193f75675ad0903fed2357e343bad566c8d9a8"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r4/verification-results-source/reports/q11.json",
+      "sha256": "477aac2273616c48ecfc1b563761535a4bf1914b00dc916e82bcc5a4b3c5b53f"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-review-r4/verification-results-source/reports/q14.json",
+      "sha256": "6b0e2650c61447d35d9b29a67511da95424d474f3315d43def4eab1500b390e7"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/artifact-inventory.json",
+      "sha256": "c4d7f20431fc7f2fb6a75c2dcc04bd9633daa204245807e44afece748e3ca9eb"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/audit_sources.py",
+      "sha256": "f67bfe87dcd51ad47bae4e7cbf3a4e652202957ce5415e42e53d7047b7c10bd0"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/author-input-manifest.json",
+      "sha256": "84d5d364a22b948e965176dcbc6e104241a3fb50d4c80f401220cdcd58740faa"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/authority-and-scope.json",
+      "sha256": "c953cd734f3a413af93eb3d138514194feeaa2bceb5a0adaca4f4bc17ed5c9af"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/comparison-index.json",
+      "sha256": "a72a5d738e068d44f15df636f06e92336653e1857bf71536a88029674e313948"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/figure-linkage.json",
+      "sha256": "6c917e5386c94e00f8fec24c6991bc9865d7f8b8d5c8ec322315e0cbd5e876c5"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/finish_report.py",
+      "sha256": "f642717199458934e6a908cb96ca334f2a896eaab6b93cb74c7e618bd8c142f1"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/hwp-question-only-records.json",
+      "sha256": "92f50ca173520a5026884eccd3d033c44da3eb0297ee3b8d06b0b0fac15b3f69"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/identity-render-records.json",
+      "sha256": "3482cdb5290ec44a6cf4e1da64276cfb039d11b6193e2988d797fef09b7889cb"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/make_question_evidence.py",
+      "sha256": "59f226462fa4f903ccbbe932f073a0474cd208ec0af36bfdc7ba89494e68e253"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/page-render-records.json",
+      "sha256": "6ef86b56b571e6cad72405b3995777009b4eeeca436db863d558715ff258000b"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/preservation-baseline.json",
+      "sha256": "1902dd48d1196e74d0893ec88de1f22a0728b0f576185594111b95a41b60a458"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-crop-records.json",
+      "sha256": "40a762235532056160e9a420277a06073cac000ebcdf6b80c04e80d09c11ee6b"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/secondary-scan-q08-link.json",
+      "sha256": "a91fb6df1a7e9e3b0d680c4a94a75de1ed1d9a0b96fd2681c801399e1d85c015"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/source-files.json",
+      "sha256": "b74641da495bc9e914a4fd5a69a0170891e4690d6139db4c37102ca8565e5919"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/source-review.json",
+      "sha256": "fd5c48d40c573780f983ef7066a29e525a2ac656673b5ade5e4e78ad87af215a"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/validate_audit.py",
+      "sha256": "e407628cc578e59e9f470c7c57d99b3f8dd1dbbf998cc5cf7232f86087852341"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/validation.json",
+      "sha256": "2f6ed1e057962caf2c3722101cfd3bd751ca62150e4704b93141eb5e117e3baf"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/identity/hwp-banner.png",
+      "sha256": "51bbdfd1eef96c3700a584699ffb03e35d2a194107fe99b83159bd7bc9daec8c"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/identity/original-copyright-school.png",
+      "sha256": "a372b7af1aa946685949348ebd4eab9a1751ede53566c4af9dcc18168b90340a"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/identity/original-exam-header.png",
+      "sha256": "a9c8fc15603246015626c60a3c12d18d2c11a012eafd7429d40f5348915248f2"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/identity/original-school-footer.png",
+      "sha256": "33e21da52f97844bd3b8a9cfe88e5c63a8ce1d12187faa7d336d927a02efdcff"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/identity/s4-footer.png",
+      "sha256": "bf11806154c7baee381a57b71b777c1ab9bfc4cfd6bfc3f07abd2672e7d59113"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/identity/s4-header.png",
+      "sha256": "0951a8618b23486b2d0894fb304c888d44c578ef1570d63ad3576a5c3989b2be"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/identity/s6-footer.png",
+      "sha256": "7d17cf7c6be9af0a7f8fa84b79030e3f7d8e207c74293b0e177e3a6d9d6c0e23"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/identity/s6-header.png",
+      "sha256": "203e45de0649919f9b7dee1ca526fdaf17ae707e70559af75c79576d278a9f9f"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/pages/s4-page-1.png",
+      "sha256": "09c64b55d0ab3346b3deab9ca2062ec5afe18e421857bf9e2ad95917bea48fa4"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/pages/s4-page-2.png",
+      "sha256": "666d9609955fa9a4dc18d7836f6ca6703be9e9b22695f70224f692e8dc33313f"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/pages/s4-page-3.png",
+      "sha256": "1b6d3f34e9d5248728e2197ca33cf4f1d0a94c6c4a9acbf711bc9c1527ae7dcf"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/pages/s4-page-4.png",
+      "sha256": "d264552ec9dc73affdb025b098c10c8d39250fda3e75676bf0177a511fcbf149"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/pages/s6-page-1.png",
+      "sha256": "7140ac3d6bb5ebdfd42033b2ea29c6cb8cc0614beb2a265b5e6a2b20fecb8f7e"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/pages/s6-page-2.png",
+      "sha256": "0ab1bf636c734c9ef49af60f43a4d5169f2c9b4986062e1de25a47c07437f9c2"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/pages/s6-page-3.png",
+      "sha256": "dc4a19edc6b22fc2bcd9f87347a40714616166bb19cc5a87c0674c8443d7db1f"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/pages/s6-page-4.png",
+      "sha256": "07a337200473db3f593bbf28c88ef39afd2926cef4aa3fb90cacd32babec0231"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q01/normalized-question.json",
+      "sha256": "2fc0cb45fce477078be8456d97cb760b8a1fceb690e439b38d8b64ed29f68619"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q01/s4-printed-question.png",
+      "sha256": "69e7dc9bc8bc6433974ada8702705ca9834038b0f74598c891e9d3573755f09b"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q01/s6-printed-question.png",
+      "sha256": "59d0e1f1452fab91f543e7c522bb0a0df219c466f1fed9b37f1e2a5cbe7f868a"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q04/hwp-figure-1.png",
+      "sha256": "ee62af516424ed1778417d1dba354cf6633365d0e2b62e4151e68eeae86bbe8e"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q04/normalized-question.json",
+      "sha256": "6edb12e3dd0d72ac0046349114e8f0e3d23d2d11ed4e07195c55ffbd788fbd7a"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q04/s4-embedded-figure.png",
+      "sha256": "e0fd8bc55a0ee980f9b28a4253941be1791641e550a6bb5ca4bb761a9c35b7b0"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q04/s4-printed-question.png",
+      "sha256": "ac565c0bbee9af61e5d97fa969df0cdeaeec9c0f5866b7fe629abc80ca6a9021"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q04/s6-embedded-figure.png",
+      "sha256": "1c69d436b52957e9431279eda8868f9f6fbed3c4288b664c28c684f717f412f3"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q04/s6-printed-question.png",
+      "sha256": "4a7747cc95456ed3b28dd996045fe01e38bedaad8e2c3bf6e9b0d42563829358"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q05/hwp-figure-1.png",
+      "sha256": "86e8d3322a64335d969386073402f1e12123768eb99e50f91bcb401a23dd544b"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q05/normalized-question.json",
+      "sha256": "d29e941e5e30d1840615afa567b9cefbed8b992704e8df1dfc3c8e3695a5b9dd"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q05/s4-embedded-figure.png",
+      "sha256": "84e622b0eda5b0a4cedb2f8c2e9e26934c8ab34f429d772c7b0f9500cfe8bf99"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q05/s4-printed-question.png",
+      "sha256": "d42aa131ce5f95e7a55e8210329dc39bbec8029d157f39dea7c60a55fe3d3488"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q05/s6-embedded-figure.png",
+      "sha256": "af7cade99733977bf6eea4b77cc2368b7ff3fc84c56176e4c5bac3db8d763b68"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q05/s6-printed-question.png",
+      "sha256": "bede5fc8e9ab914c424204ad71eb2f1a7a1102206418885979e72fb918f033e5"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q06/hwp-figure-1.png",
+      "sha256": "e57ba1fe9f546a788e22cbddbb442643cec55be89282fb1b5dd2eb87069f3e8f"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q06/normalized-question.json",
+      "sha256": "774966a388f9f040d99494dd51be7e09d95bbdb8ff8175517b3653d4a228abc8"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q06/s4-embedded-figure.png",
+      "sha256": "a8642841a5605d6b90a0574909a3293fc769e1e0a0cd3fb83fcbc2358b70d6d8"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q06/s4-printed-question.png",
+      "sha256": "bee98ce6a9285dd469403415837e95fe53fad2c94bdd172b475805cff961bd02"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q06/s6-embedded-figure.png",
+      "sha256": "ed26e1247aa0419419dde8455c7da16a9b209851d74400bde1780505dab04f59"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q06/s6-printed-question.png",
+      "sha256": "78edf73968e9e3a2446191417895ec8e730307e1cb936a47ceecdc1a619abbec"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q07/normalized-question.json",
+      "sha256": "992c1fa793f27afa1cd6fdf1d94e7486e7a2d32cc552a3f3581f5efbd4772607"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q07/s4-printed-question.png",
+      "sha256": "b6bd479218f0607ff4c41050411b31797073b6f14f60e44d48451e109a2057e3"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q07/s6-printed-question.png",
+      "sha256": "ccab291bf396d9766462e5c31ee6e15e4d54b536937414b9d400c2db15cd6169"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q08/normalized-question.json",
+      "sha256": "3f6cebddf01b5154020d56a89e8e095ec3d64c7741f010c47ca505efaa7388c4"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q08/s4-printed-question.png",
+      "sha256": "f6b4b14a1bd1b90b5950c54d77ee127676d815c23b6594015da3e2989ff12c51"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q08/s6-printed-question.png",
+      "sha256": "c950a645784e16acc58418a26e69fdda0e069f9427100245ecaf9ad524f88ef5"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q09/hwp-figure-1.png",
+      "sha256": "4d83a4c8b7a190ac21bd38c0300e4281c590edeec84287f5eac567994335d35e"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q09/normalized-question.json",
+      "sha256": "73b2c0b7a10f31d06a1b063d4cb2671ce20c68ee701e3430ef6780a8439d0ce9"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q09/s4-embedded-figure.png",
+      "sha256": "eab16c41dd4796e024d41b4635feb2747fba273bf8eb3e6b6f1fb96e7cb5b5e6"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q09/s4-printed-question.png",
+      "sha256": "6517b4b0b64da18f8072dde9124ead0d631004d136a632f52c8a4d0ccb37e101"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q09/s6-embedded-figure.png",
+      "sha256": "71f0d9b8b26bd685bb2c3af86007dc876701748f0e1be7214d159796830aac32"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q09/s6-printed-question.png",
+      "sha256": "242603315df8488ef9d8db5e73044b45d32b555f48829cf9594a1950bbfb0986"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q10/hwp-figure-1.png",
+      "sha256": "787475613ff3cdec8528e6208ca79eb8b1c35ddc6873f7f0ad5bead704880100"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q10/normalized-question.json",
+      "sha256": "a01b2dce96c63bdcb69274197b42c03ee219c15aa5ed5a56d6afd14340c8b8b8"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q10/s4-embedded-figure.png",
+      "sha256": "4249d5ace69bb64649d55bbeb3e72a6a0415d1566efb17343a14547cd7b936ed"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q10/s4-printed-question.png",
+      "sha256": "6056697feeb50dd3937afcd2c55eae162b2d417ab53315871c784624f0e1912a"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q10/s6-embedded-figure.png",
+      "sha256": "de632517cea0d1472c61ca1d03822e86861c0224413a0814d67ed117c1e9d37f"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q10/s6-printed-question.png",
+      "sha256": "f7f05434d3b1a0c3f35db6c6dd19c6491fcd10d3bd4601a9bde24612dba656b7"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q11/hwp-figure-1.png",
+      "sha256": "b1fa4a022b3c88ee4b758e2edaf15815c9d2037bbe1e7e33a2e2fffd98e1e5bd"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q11/normalized-question.json",
+      "sha256": "92eac07e4f22b30f56ffb46cfcc3967ee89926df79e4c9d9ecb2d1eaebab5a76"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q11/s4-embedded-figure.png",
+      "sha256": "99d4686089629b33be470df26f4563940f922a0a9574af879425f78786497949"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q11/s4-printed-question.png",
+      "sha256": "b530a51d4d8159e1d867e2ae8fd17e49c23173670dad0c8c9ee3760e630f9e66"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q11/s6-embedded-figure.png",
+      "sha256": "2c50ce3b041dac017f62fcaef5f704e7625ca0e0089b699ada035462fbd7ee58"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q11/s6-printed-question.png",
+      "sha256": "7f26140908506748fc9cc56e1078529250ddccda32f8ad347dc6a6451c6bb3d6"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q12/hwp-figure-1.png",
+      "sha256": "62357939427df494924c68e4957c00c7403bf96965d86c16992301bca92b44db"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q12/normalized-question.json",
+      "sha256": "73a67be3346a9551271840080155f6b0a5f209010db915dd6dce2aca975e32dd"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q12/s4-embedded-figure.png",
+      "sha256": "b7d92f890138e163e582585f7eeea2d6768095093ed02aca58aaa075e79b0f4a"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q12/s4-printed-question.png",
+      "sha256": "9fc5fb54e36aa881b89d4964b3881ce56fe9061eddf786e45fcea4a772eacbe9"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q12/s6-embedded-figure.png",
+      "sha256": "279b26739be4ef4ee6f4ebda15fab71db135c7af9113e370a56abd7c69ea3142"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q12/s6-printed-question.png",
+      "sha256": "48ec4359888113e81672b2e6135116f4fd3ed45e0d390d64907210ac00776c01"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q13/hwp-figure-1.png",
+      "sha256": "1916c5ef9f6ac4e5a1c7b9d41a6097950462a7e71f4978bcb1fe66ba97e5ccf7"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q13/normalized-question.json",
+      "sha256": "b98d492e2e5f2800ab0239d11ed9a137b5673cd2ead8c53636fe02dab2f73e72"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q13/s4-embedded-figure.png",
+      "sha256": "1aca97257a4317687a1094aa58eb7733f9abe2775526603ef48cd71cebb51ebc"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q13/s4-printed-question.png",
+      "sha256": "89ebd26829bc0c01406ffdc1b960f73f236b5a1c266f2994d9cd45bf1495f0d1"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q13/s6-embedded-figure.png",
+      "sha256": "f68adde28bd56d9feb17a0bc3b1bb219c0bcbd324e0a9a506820d8bb3a2cac87"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q13/s6-printed-question.png",
+      "sha256": "ba458c7ca6e0d6fdf274f477a556439acdd7e47c177dd84185d615342170c9a1"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q14/hwp-figure-1.png",
+      "sha256": "ddaaf54a3dc64c93b6c0d3496bd32ff5ec217523b2e1b9d3644479d84ed9c449"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q14/normalized-question.json",
+      "sha256": "e63cb075485612cbc9dcfb6b0ee217382ae11d8457a013a9c920dd227c4de7b2"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q14/s4-embedded-figure.png",
+      "sha256": "6f458d8043adaaed2fad7b93aa2d89d53b667e00bddb9aefb97ed468d0537f07"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q14/s4-printed-question.png",
+      "sha256": "84c0bf1198dbf7ebccd62eec67f08b250558837baa2ee12eccc047ced0674813"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q14/s6-embedded-figure.png",
+      "sha256": "32d1673bc79ad787c0ff42c86b5992871a85358340d1e31e36b223df2798cf30"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q14/s6-printed-question.png",
+      "sha256": "fef589933d1f1649f072add58f3f26c663a838fae2c37ea6fcf243631e4aac54"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q16/hwp-figure-1.png",
+      "sha256": "6f623c26e07407e7b11ecb0549194773991f0371f81fed83c9cc51f5e6026109"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q16/normalized-question.json",
+      "sha256": "12de9c06aefe5e3057f535bc47061613b7aa5d9f22c17a27e4ab2c8f3370c627"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q16/s4-embedded-figure.png",
+      "sha256": "235a49398e27bebb1ed0f52984ade2a2173d08307709738e10bcb90d723f6529"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q16/s4-printed-question.png",
+      "sha256": "e728486dc40379101366c7b425ca83f5d62a738288e3a2f608f1b788b67b3182"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q16/s6-embedded-figure.png",
+      "sha256": "39e14842e114ac6f055359a34b6ade4a24888e481155b00acaf1b9ca5eef64d7"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q16/s6-printed-question.png",
+      "sha256": "e7c8a0ffcf5381d2e1fa5054718d7e1adf495ecdf662c3b3debf295662c67955"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q17/hwp-figure-1.png",
+      "sha256": "fe98d169a4e4f42c3c705666bf8a03824ad978080553731338c094bec77b39a0"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q17/normalized-question.json",
+      "sha256": "3a06429313a0275c9e3b065f24b176bdbd1c69427c9fd10c9b55e1d107800815"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q17/s4-embedded-figure.png",
+      "sha256": "824d376e4f8a7f80f5c2fdc095d9e920339ee659ce5c488286b7a0c943d7fb0c"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q17/s4-printed-question.png",
+      "sha256": "fdc22b30a68bdaeae5999834632df5a7a2b4b18813ccd7da590b0281d3a51c5b"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q17/s6-embedded-figure.png",
+      "sha256": "a69ba65d79f10bc0855b99a5718c8d56b114da2b6f37217a341599522bf22a4b"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q17/s6-printed-question.png",
+      "sha256": "79fb9900a1b2ea2be4d0722c228f230cc6e5da9d40d37322078a6346f34c9305"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q18/normalized-question.json",
+      "sha256": "b131ef5413738f4f3df3c0fd3aefb1d9bc1722e757a20cf0a0ad80f2c05cb06d"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q18/s4-printed-question.png",
+      "sha256": "21428c17935a389049a09a1b5d26981410b0eab461d17c12d3fdc2bba1696dd9"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q18/s6-printed-question.png",
+      "sha256": "50ff9ab0314a4fe1f1e9e08ed3584decfa91966e45d07794dc25ee642ee706b1"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q19/hwp-figure-1.png",
+      "sha256": "6e07c2b7708b1342486f1d0e82495297f10fb234e5488f5bab96077bd481ed98"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q19/normalized-question.json",
+      "sha256": "468e031b27e696564c5caac35a24a1919c984b2c111072b4ea7907388be8cd32"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q19/s4-embedded-figure.png",
+      "sha256": "3fef3eab25a18c4314c0a1c869d63b1a53acb290cc6458e0a19aebc3765a067d"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q19/s4-printed-question.png",
+      "sha256": "f96eb2a20e0db4f0c726935725974dfad2e909b66b4c28c6d8de7ad76f892a1f"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q19/s6-embedded-figure.png",
+      "sha256": "da5af91b4019cf378a5f4f5d72fe5efeb413852c6539e6dbdb9dbe1ab4099119"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q19/s6-printed-question.png",
+      "sha256": "e33cae13217f15f7445beed70c8eb63caba1885990a4f2f7e8530ca23a5c3363"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q20/hwp-figure-1.png",
+      "sha256": "397d4443eea9e6f77c800753ec90ebbcb42296a604c29049baf9ed7c7f8dd728"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q20/normalized-question.json",
+      "sha256": "3026e4eee0b1f0f38b283510a5d36e48919f4dc09eda938d4eed689135632883"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q20/s4-embedded-figure.png",
+      "sha256": "92b19e626fa77f3966c97b4018311581e358e9c68054a1ed3f884a1329dc0262"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q20/s4-printed-question.png",
+      "sha256": "a521403423691183141fbf8456a09a44e86679f5685bf1da8a9420b74fb29a0c"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q20/s6-embedded-figure.png",
+      "sha256": "ead1fdbcc130a40289781b51e9649ea2b975e33c41325ceea481cca75db26289"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/question-only/q20/s6-printed-question.png",
+      "sha256": "80f8e2c20b934786e05d1a7f76ee60c9eff1a5136ede9c09f76819ea35e4aae7"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/reviewer-only/q01-source-evidence.json",
+      "sha256": "55fe5fe59acfa59df7610d4487de3286c81f880d3687e6497ae3092d30f6fd15"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/reviewer-only/q04-source-evidence.json",
+      "sha256": "984dad3ed781ad2625c8a31a3eeae81d50c7983ca54e7ccb6ebdeb1928b84071"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/reviewer-only/q05-source-evidence.json",
+      "sha256": "cb61f96a7b09afdbf59a62b8ed66329d44b6dc64d2353a5f674d9bfd2bc16ae9"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/reviewer-only/q06-source-evidence.json",
+      "sha256": "d92be526cd5e2d1df2844021487fbc6e02bb1109b3b426ad515fdfd3e7d9c47b"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/reviewer-only/q07-source-evidence.json",
+      "sha256": "78a25f08d76fd3254f0257f31e66e5d5c882afe1d4459d9c2d925dbba43db3d9"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/reviewer-only/q08-source-evidence.json",
+      "sha256": "a78b6523d11f2c7c0386fd9859dbd19b6d6b42664c38bca30098f9284c5bab12"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/reviewer-only/q09-source-evidence.json",
+      "sha256": "5970aa514819b3666d8cdf6c35da93b0f2e41b1c963c607abe18532d059ffc6d"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/reviewer-only/q10-source-evidence.json",
+      "sha256": "a1a52b7fff7076da0e26cd458573fc94f485dad1d381596e8254f66ca9e4019d"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/reviewer-only/q11-source-evidence.json",
+      "sha256": "61009153a0c9db31d67a35820431b1277be2dd037bca5b505823ee2c6eb7f9d3"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/reviewer-only/q12-source-evidence.json",
+      "sha256": "d1e9b5ff42d1cdcb0160740f2fd00345234d0a6ef44215a7f321a74ace1510cb"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/reviewer-only/q13-source-evidence.json",
+      "sha256": "98b221e41dfae87c3efe631ab2f31c5fe60e6eda71940b274132c3a0b298d99c"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/reviewer-only/q14-source-evidence.json",
+      "sha256": "cc6e3f9e1f88f9853fec3f9bbfbeeceb4e3e4dc04d88f4feec732b3b7991f9d2"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/reviewer-only/q16-source-evidence.json",
+      "sha256": "f7ba24f34ff9b4ac30d5b84c3a3971fb2c70dcf3c0a6ef31dd34367ac33f2bf6"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/reviewer-only/q17-source-evidence.json",
+      "sha256": "793539578cb63baa0800c5279468624e5088a4c761ab60ebd3f2e1f6dd3e6934"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/reviewer-only/q18-source-evidence.json",
+      "sha256": "ec61ea1d1b5d4c177a948374b9ecc2996fba3d5311391f4884247a2c9dd4cee0"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/reviewer-only/q19-source-evidence.json",
+      "sha256": "7d79b0965cb0ddb0d023655c0a8822abbba7eabe8ff2d1e078f8329ad0dddc63"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/reviewer-only/q20-source-evidence.json",
+      "sha256": "12d23478fb51f2d5cfdbd284d662c9c2c513fed3bc42119baafcdb9f46290682"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/reviewer-only/scans/s2-physical-page2-q08-check.png",
+      "sha256": "7ab69d2d9baad99758b25f7c4eb8584608acd016d41ee1e5604a1b9d51d2910a"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/reviewer-only/scans/s3-page-1.png",
+      "sha256": "3d39f0fda14546b5cde100ca1f07c28ad7c121815414b5c5e610d6652f0be4f3"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/reviewer-only/scans/s3-page-2.png",
+      "sha256": "e7d08aea63ef95178b826a8c4c2b254adc49c534efcc5f8499c681778f24e3b9"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/reviewer-only/scans/s3-page-3.png",
+      "sha256": "5ef2247f181105eec2eb4f680a263348dc79249362bcf9063460fe3e8b42de5a"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-source-audit-r2/reviewer-only/scans/s3-page-4.png",
+      "sha256": "967b64e269390d0c360b2b772c9ab37a2621a6e40c95112edff9415cc113358c"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v1/design-input.json",
+      "sha256": "c1f51827d516843e087f8e7c1da6ec80297304ff5fd9a68d11f278edb3630b11"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v1/prepared/dry-run.json",
+      "sha256": "99980dcace5fbf73a626496ce8ffe5e3d5e9467770ea7b094cde4fef14ee187b"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v1/prepared/preparation.json",
+      "sha256": "f078da862d2fc526850049ec256e1f44e9005948761317789c9e4767c3485bcd"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v1/prepared/source-reference/problems.json",
+      "sha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v1/prepared/source-reference/figures/q02.png",
+      "sha256": "edd92d1f1bcdcf4fc19772c47d0dd41952602ad877657067d446fabdb1c4d4d6"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v1/prepared/source-reference/figures/q04.png",
+      "sha256": "55acc5eef95c50b1ec4bdc87bf8e8b13b8f57165368dd2bedd7197daea001338"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v1/prepared/source-reference/figures/q05.png",
+      "sha256": "24b6901ce82af2086683ec54ab8608ca00dc77ed3830e35168174ebc16c1f841"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v1/prepared/source-reference/figures/q06.png",
+      "sha256": "d4903a150ce941ce3790c997c9e1ae3dabdec623d1800eee0bf95a4770b546ba"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v1/prepared/source-reference/figures/q09.png",
+      "sha256": "60fcc7ac70ee60255c520c187d15cafc14eccbb8d43a57d8e4957b618a96c84a"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v1/prepared/source-reference/figures/q10-t.png",
+      "sha256": "ad1161e00d16df0a2f2db0404e16d7ddf29dd6c86208f510a60e90fbdf9f9d32"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v1/prepared/source-reference/figures/q10.png",
+      "sha256": "06552fcee2e598d92667c50ffb34c5b5afc18748352e7c2619faf0c816b114ec"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v1/prepared/source-reference/figures/q11.png",
+      "sha256": "0d3eb2208792322477a39549fa0da6221e16fc8bdb3bcfc5bfaa1aec6bbb2ed6"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v1/prepared/source-reference/figures/q12.png",
+      "sha256": "0d8d8dd145c0f6722abb2fd47c979037c16f8c116529f86c0cfca26815868ee8"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v1/prepared/source-reference/figures/q13.png",
+      "sha256": "f952979c9d3ce28543bc3fbfed88335c6fe126e458c85c5b64ec9dc9353e390b"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v1/prepared/source-reference/figures/q14.png",
+      "sha256": "4e557c5919d0f2c08d3a75adf2ba3e37f6876ffd305bd00ccd9296757e6fa2b7"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v1/prepared/source-reference/figures/q15.png",
+      "sha256": "b1fd19b4d59c54ac4973f26232872282637f4c3092219d305248f7497215e1d7"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v1/prepared/source-reference/figures/q16.png",
+      "sha256": "990e5c91a9b4a8b501342c68553033b06e4a0505e1a59bc00fb1f439e95d23e7"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v1/prepared/source-reference/figures/q17.png",
+      "sha256": "1f3602f52712f4548c5f17cec6cf2abeb62d390929d0ac307cccfad770149f52"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v1/prepared/source-reference/figures/q19.png",
+      "sha256": "c12313387519b616e9c8640a1496b2ddf9f46e29139c3f3f124218240ce07b8d"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v1/prepared/source-reference/figures/q20.png",
+      "sha256": "ecad083252c704406ee0775d6555ac2937eacff0de6b6036972867bbb5ac877f"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v1/prepared/source-reference/figures/q21.png",
+      "sha256": "459d488b81244e031d7625cbca7bda2927802a5d09854d26d50878dd645b2504"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v2/design-input.json",
+      "sha256": "2a903e07e95d5de4b7cf371e16700817c08f9442217867e39850110f8e83c1e2"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v2/image-authoring-briefs.json",
+      "sha256": "bb7dfe65394c97c8c71e3f2f027c34c95b4bafd736b33fc66aea74fc9afc14bc"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v2/metadata-review.json",
+      "sha256": "89e90cadb0f21bde9e9d12bdf6d2613de879ecfef9b86799e3ab8b0792ddb6ab"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/dry-run.json",
+      "sha256": "b6c8801502842765b672f6c40bb31f2364649ae29ce30f4a393ccaa5d9d0dcf2"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/preparation.json",
+      "sha256": "63ecbb464db0a369df48e2a7abfceafb4e8314552119c686e12266066987af35"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/problems.json",
+      "sha256": "b85c969d7bd8531dcb09b34f903fd37938f893a732964411518e55be1652c257"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/figures/q02.png",
+      "sha256": "edd92d1f1bcdcf4fc19772c47d0dd41952602ad877657067d446fabdb1c4d4d6"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/figures/q04.png",
+      "sha256": "55acc5eef95c50b1ec4bdc87bf8e8b13b8f57165368dd2bedd7197daea001338"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/figures/q05.png",
+      "sha256": "24b6901ce82af2086683ec54ab8608ca00dc77ed3830e35168174ebc16c1f841"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/figures/q06.png",
+      "sha256": "d4903a150ce941ce3790c997c9e1ae3dabdec623d1800eee0bf95a4770b546ba"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/figures/q09.png",
+      "sha256": "60fcc7ac70ee60255c520c187d15cafc14eccbb8d43a57d8e4957b618a96c84a"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/figures/q10-t.png",
+      "sha256": "ad1161e00d16df0a2f2db0404e16d7ddf29dd6c86208f510a60e90fbdf9f9d32"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/figures/q10.png",
+      "sha256": "06552fcee2e598d92667c50ffb34c5b5afc18748352e7c2619faf0c816b114ec"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/figures/q11.png",
+      "sha256": "0d3eb2208792322477a39549fa0da6221e16fc8bdb3bcfc5bfaa1aec6bbb2ed6"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/figures/q12.png",
+      "sha256": "0d8d8dd145c0f6722abb2fd47c979037c16f8c116529f86c0cfca26815868ee8"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/figures/q13.png",
+      "sha256": "f952979c9d3ce28543bc3fbfed88335c6fe126e458c85c5b64ec9dc9353e390b"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/figures/q14.png",
+      "sha256": "4e557c5919d0f2c08d3a75adf2ba3e37f6876ffd305bd00ccd9296757e6fa2b7"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/figures/q15.png",
+      "sha256": "b1fd19b4d59c54ac4973f26232872282637f4c3092219d305248f7497215e1d7"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/figures/q16.png",
+      "sha256": "990e5c91a9b4a8b501342c68553033b06e4a0505e1a59bc00fb1f439e95d23e7"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/figures/q17.png",
+      "sha256": "1f3602f52712f4548c5f17cec6cf2abeb62d390929d0ac307cccfad770149f52"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/figures/q19.png",
+      "sha256": "c12313387519b616e9c8640a1496b2ddf9f46e29139c3f3f124218240ce07b8d"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/figures/q20.png",
+      "sha256": "ecad083252c704406ee0775d6555ac2937eacff0de6b6036972867bbb5ac877f"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/bumil-twin-v2/prepared/source-reference/figures/q21.png",
+      "sha256": "459d488b81244e031d7625cbca7bda2927802a5d09854d26d50878dd645b2504"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/answer-equivalence-evidence.json",
+      "sha256": "b2b9033a9598f68d802479419a83c6a0c0af3be7d477cad1fcf473ac9b865469"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/answer_equivalence.py",
+      "sha256": "3c0537ac0d2dd8feb8908ce660b03430c90410b243588c723caccbc9b453ab95"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/artifact-manifest.json",
+      "sha256": "7163cef05df1e3b58992634295cc75745a4fe278d1c14ee6adfc8f82f8078a58"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/build_reports.py",
+      "sha256": "f9d8c47bed5524a6f65a5b338bf442e6fabb2945a271e0c8a529983ef5bd404d"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/check_contract.mjs",
+      "sha256": "9c8611473a7bcfe2fc7663bf4423a900ab9d1125276e443a53693c2f9e2e9c54"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/collect_review_inputs.py",
+      "sha256": "81b1b0af15f803702ae9c8cdfda69d8051e278a9f84ef8c45e937a966ac1c862"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/contract-bindings-r2.json",
+      "sha256": "dffff53926e5f9140a009b5cff39b8aabe111365edd518173350bd52078dee8b"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/contract-bindings.json",
+      "sha256": "dffff53926e5f9140a009b5cff39b8aabe111365edd518173350bd52078dee8b"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/curriculum-surface-basis.json",
+      "sha256": "fa183df33400ce8f167eda3be05d6ac0d40fed433aff8e1e6431a96022cdf252"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/figure-semantics-evidence.json",
+      "sha256": "6080ce954398fadadf3d31b54a82b30911fb2017590709d278b3ea173c9f43b9"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/figure_semantics.py",
+      "sha256": "79b98e05dda4e01591b01f6eb7c69f1297bb30a3ead0de4990c46bd755b33c00"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/input-bindings.json",
+      "sha256": "c866bee88dd41e496f8cbe8136627c9c5c40cb6e28f26a02aea9eb7018d340aa"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/judgment-design-evidence.json",
+      "sha256": "6ddb67dc7061364da43ec446e4027b313f0a9b63de0d3ed6557fb3b5df14e99a"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/layout-view-manifest.json",
+      "sha256": "1e2aa36c94879a101d6d9c6dab1a996f340d9d629c70326a98a8cbe469e5f4e4"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/preservation-baseline.json",
+      "sha256": "e2e006f6890733a9d71ecaf7aeb5fa7f2f4edbc6dfac008d4bda476ebee737e9"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/q13-source-correction-review.json",
+      "sha256": "de13262e5e9bb09fdd71503586ba089be7d5997d5861da552cb82d83f2d18fce"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/read_rule_evidence.py",
+      "sha256": "7082bec42d91a80de0bc7e68ceb60855e4085390e834856c110a8671fa6ab2ac"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/record_q13_correction.py",
+      "sha256": "3e1959905c5a97e4916dde6d3e5e66920d561bc5739701ead8b75fb292765de4"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/review-counts.json",
+      "sha256": "92722e3aff1353be0ce7356c6b2816a6a125bdf6e4a9c52820f54c8cfccc86ea"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/REVIEW.md",
+      "sha256": "bc885797de735e280fd763ad4de4b64ea9af4f60804fbfaa46ee03927464ba63"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/review_notes.json",
+      "sha256": "802a432b4fbf30fc2fd8051e1d2e8ae9cb77e2069c6ef70c7c63b0c4c65d82f7"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/rule-evidence.json",
+      "sha256": "45226f3da8eceae18a22bb76f03f0f16b8986cecc80fcbc90b80964bdda855e1"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/unit-family-snapshot.json",
+      "sha256": "d1762b13832253653af533267e0f2d50ffa604f4f03527c4c0e36272bde9eb71"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/validate_review.py",
+      "sha256": "42639d649d664fcf86d9a3da4f988db48e2f6846ba8cbb96562382ed4c9ee536"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/validation.json",
+      "sha256": "b7367dda1719f018107b8115d7463ded724d18c37465e37efe5e9b06a5cfcbd7"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/write_review_md.py",
+      "sha256": "618edd6adcffd70d27ff50a5162cf8fc4d0f4319621ef873f5e037cf36ceca74"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/evidence/runtime-probe-resume-r2-final-check.json",
+      "sha256": "a65519f118b60a1f07874d9c579ae08bcf164c1d346a4b4fb88e4214172c6f61"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/evidence/runtime-probe-resume-r2.json",
+      "sha256": "48aa6a9284046d7f0abf1a88bd7195b048ad0b450ada8039a45eb88f0f9111f4"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/evidence/runtime-probe-resume.json",
+      "sha256": "516625c7eac85d19578fb67ff2e6d204a6c4c480eb017fbe04e833fc363e564a"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/reports/q01.json",
+      "sha256": "dc89b592d19c2d3f11c76cba2830ebedc7c2863a2609d29c3e4bc67a19dc471c"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/reports/q02.json",
+      "sha256": "ed3771e2814c6f7a4b28078faca06518526a8e3b3d1723ed38875d18a2e1edc5"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/reports/q03.json",
+      "sha256": "4010a83af769144b29ff191867655c5d6bdbdf781c98547b43d32431902a3781"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/reports/q04.json",
+      "sha256": "4234332db229806e462c0e479e1ad400397b5f2468117f9d85ce3fa1ce5b8e80"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/reports/q05.json",
+      "sha256": "b83fbd2b78d202c05a729b4fdf7f2731aeb632f5b7e7781095f5bd42f199a7b0"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/reports/q06.json",
+      "sha256": "a84b02994ddb28eebefadb1b1735c68b74526ff530b9202c5f5321d4268f83f4"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/reports/q07.json",
+      "sha256": "df33da0c5dd77bc4800277bf2c5b11c238cca5e1e4ff9dc81aeb5e640a7a9c8c"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/reports/q08.json",
+      "sha256": "bc6e1e3add5c494279a27c1a240022228ac0cbcb4b06f51c75a7cec0ce2ca29b"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/reports/q09.json",
+      "sha256": "e6838d866d979aac0ed80e91573e723538fd5a8d14f3b2841a1aa50b38974dbb"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/reports/q10.json",
+      "sha256": "77cde8443a4f0a3c40a29809c7560b2750674715bbbb01deac91ae7f3e9274c9"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/reports/q11.json",
+      "sha256": "eb64f604d55a27206666c5bca486beea18100b22820a0d6e59fa466872e4b5e4"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/reports/q12.json",
+      "sha256": "f1ee476c66ebbfeb567d50419337533b15b936fa2723bbcbb2c6a0f5e36300f1"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/reports/q13.json",
+      "sha256": "abd22e1fae8cfa4f8ed27ccf54e92b882ea8df985320e65406a74acf1fffeee9"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/reports/q14.json",
+      "sha256": "b197e38975f66cc078f3afe528a0ceb73f3c36a1da57b73e755a8cad4443ec00"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/reports/q15.json",
+      "sha256": "c9df5134b4a671eb77d8f6f6cf00aa1af04bbd3c945ef99ffce7f1e5e4fe82d2"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/reports/q16.json",
+      "sha256": "803ce0e3b3d7a89fd81bd1519cf363dfba3ba9489f8a0889095ce784162075b5"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/reports/q17.json",
+      "sha256": "74f83b2b0f2648e5e7a53eb4bca57e86ea0d4b39363227350df8c1be52364da6"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/reports/q18.json",
+      "sha256": "548f822eceda24358dcce1359297af78dff8692f6784a9803bca5072ae1268ca"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/reports/q19.json",
+      "sha256": "27117bfe6d314db35504911252e95444e951640af6cc2eb42483da539f74c010"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/reports/q21.json",
+      "sha256": "3c4c5f809436bd127c1589b3e607cd82739da02cbd9879405a77a31643fb11bf"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/reports/q22.json",
+      "sha256": "a21e77dd990a74d214e4eff2856f808099aa429f73478a8c0c4e481622785312"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/reports/q23.json",
+      "sha256": "7ded461cdba1c3f6f3e3a3ffb70d2e67fc1b9e2693ee5ef22858a95d5f32a62b"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/source-question-only/q13-hwp-BIN0001.png",
+      "sha256": "b3bdea2c2c60f38da8ddd4b535655d55fb37b20773e1e820c18b4a3fd49fa3db"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/additional-angle-checks.json",
+      "sha256": "e21494ea2883e09aabbe9e5982eef69e8e1ed8bda72b1dd8286b841580741069"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/artifact-manifest.json",
+      "sha256": "51e0d24646f256d2c24e21665525b283cebfe3da0462d1fc2282d28a759c224c"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/BLIND-SOLVE.md",
+      "sha256": "6644fe1c35e04cb32ed16ad25060d3ecbeeef2396a6aac8ddebfad54c60c5580"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/curriculum-method-evidence.json",
+      "sha256": "20a90e8060b73d09eb8749f8b6636e0d960e3148c53111d8bc4db8da4c95af2d"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/curriculum_and_figures.py",
+      "sha256": "680d760abca997bbf9960fc02260d89b0c6868899aefa3c336c2bdb9d98b9d5c"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/emit_solves.py",
+      "sha256": "b144099a61502af82cd607d34732aa57b43d3640fb511dba441e83e0349b5487"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/figure-observations.json",
+      "sha256": "fc3709f2c5528e0acabf15ec52812c2043058328b6ae0437559c38b98c7cec39"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/input-manifest.json",
+      "sha256": "3b90dbc20e3a262651669df89bbf69852b2575124cf439a00a11fcbbcb8aba39"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/judgment-method.json",
+      "sha256": "4a5f902acf91fe67a6b80954cd85f8e93324eb1d6b5cd9ab58bdf3a4fda2f92e"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/prepare_blind.py",
+      "sha256": "e59f24e4b2eb5c3e13822f102cc0aa6387108d841e21e0952e14014767b4358b"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/preservation-baseline.json",
+      "sha256": "79d0fb2639b008a4683fa14241222d9bda27a481347fd7b373c2fbf56203fa60"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/preservation-check.json",
+      "sha256": "74372d0847b1b534fa8cece7e529d7b74cb91dec943f96cb1aebfd898261e4f7"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/raw-solves-manifest.json",
+      "sha256": "71c39dcf8d186e2ae6e49f3fccc9e0b01acc3f0e2689c1bb66bee0606b3e65d2"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/render-manifest.json",
+      "sha256": "4e8ba4eb4d957cba35e4ed683f72a9affd1d875951c008927d5a649e458de228"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/runtime-probe-resume-r2.json",
+      "sha256": "bd44e841554c91d7aae41c79785c64bcffbcacbed412f91ca3aea959b3ea0201"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/runtime-probe-resume.json",
+      "sha256": "1262e203c532fb175e51f01fcbb488aded6018c13c0d90f77961f97fd684aad3"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/solve_math.py",
+      "sha256": "c56296ec22c3a960a788876496c1b010b4df9df39606293ed99e027e88f5bd50"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/student_solutions.json",
+      "sha256": "adbcd31c366b68051b20e460727edc017c8160cd0d80fb6ff6c4b079d88c947d"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/validate_and_report.py",
+      "sha256": "108d85b84621753e59f5410c712c4d379af3b7fe297ae6a590692a38d59715ba"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/validation.json",
+      "sha256": "5e657f9a3516eb0670818569d05e6a217c38079be03bcf5a44e3b3f0266fe7d2"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/student-problems.json",
+      "sha256": "6e137d65894e6506710e6c980136cfd26a25d4fec141785f4ed521f8eb89e1ca"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/figures/q01-1.svg",
+      "sha256": "7e2109d2ce1b75bb2268a845cb7afb6e2499a954075d5c59faa45fb328b4f579"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/figures/q03-1.svg",
+      "sha256": "a25d811ce63ff6ad83e6b8906e9a1247be9a350bf830259d3372f7422a9f9f76"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/figures/q04-1.svg",
+      "sha256": "8204cc211b93e03757a4adda13cffd9f5896d0b81522954e31de3f09a802bf7a"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/figures/q06-1.svg",
+      "sha256": "de5887d92121ba0ccb6d4d2d700592ca4c40730404dadc779db990e99c95221b"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/figures/q08-1.svg",
+      "sha256": "0b7c69d510f68e1da6b15ea8da72ebf0ef4096bf0aa27d9aec55a7026bc08733"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/figures/q09-1.svg",
+      "sha256": "daa5c4c7e4b484122a7fbf5e635b57691613d27189037576683a558080d44a7b"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/figures/q10-1.svg",
+      "sha256": "87cb8b976c4b4ff1bcc93ce5cf82cd90facef0ad74be233d5d62d62089ad393f"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/figures/q11-1.svg",
+      "sha256": "3835ef33ba9643db3b23c4cabfd1827827502681c75660eebdbd5d0b43110374"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/figures/q11-2.svg",
+      "sha256": "9005125d53af14796b39cc9650aad3f070adfde50e87be9816941f13cc418bb6"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/figures/q12-1.svg",
+      "sha256": "4d79d78db1c6022df5c2df68c5398ca694f946d3f814beebd7e88dfe61689329"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/figures/q13-1.svg",
+      "sha256": "9e9df471c7173c01a876a57280ca7bbb7e1d50da6ec020975320f75a8150b32f"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/figures/q14-1.svg",
+      "sha256": "737459562b14522af802c0440ded60d46470731810652edd859423f6204f2b16"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/figures/q15-1.svg",
+      "sha256": "e43be1edbb198d4209f09f98fbb084c6102f499d2e857aa07052c48c3a599396"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/figures/q16-1.svg",
+      "sha256": "debe11f60fd127c38991e13896a8aebcccf3815eeac0fd89c73f6c042a8b7d4e"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/figures/q17-1.svg",
+      "sha256": "0634afd15ee79eace48bc124efe5329560864412d2d92df373bf179db0d2b2d1"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/figures/q18-1.svg",
+      "sha256": "4e9b91d170a01bcf07c4d6818446082c4b081d7558076eec1eeb1204c81c56e2"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/figures/q19-1.svg",
+      "sha256": "0792bf34fd9213c6d946f3789a5b8baca8ddf8a30f01bee84e2b3f4e64ec8767"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/figures/q21-1.svg",
+      "sha256": "ea23ffe8b6b6ffb72f99717f0934d4c8418e690119c09d5bf4958847fb89c4c1"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/figures/q22-1.svg",
+      "sha256": "25c7c8585e15514d91f02484df88a87b3687e6d2c714345f63874624fb30be8d"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/figures/q23-1.svg",
+      "sha256": "34bce92dab2708d4f50d2449084fbadacd3dea95bdc25325f6e194ee4e4416de"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/proofs/q01.json",
+      "sha256": "2e585bae173da71173001d6309de45a484c78fd9b096998e97da4698f7dbe46c"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/proofs/q02.json",
+      "sha256": "eade42c88723a49fe381ae11f9b5c272a3e8695088797bc1a39f4ae8bb113cd5"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/proofs/q03.json",
+      "sha256": "b96ad759ef668b867ff3460bc934013637d8808b9364f913943a8d5c3a6a98b3"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/proofs/q04.json",
+      "sha256": "4c82b6e8add2e9080443bbf87e0b3b6039b2b1364c6a09d8e7d48d5f861cb2c3"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/proofs/q05.json",
+      "sha256": "74e46e9745f5d9f07124377a755133733b24a0bbd7d9332a7f1c70436c960c28"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/proofs/q06.json",
+      "sha256": "495e7586bd639974e098b3faac6a1185f5abdd7ee7f64496cd7f69795e643a81"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/proofs/q07.json",
+      "sha256": "a9a0e9c9299f312f409d00bd1ece3aa1896e9fee6454e98f3d28690856d50954"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/proofs/q08.json",
+      "sha256": "f4f45618095aa620c537a0e97b570d050bb72c1df9d35a6aa8cf528965aa53f1"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/proofs/q09.json",
+      "sha256": "b059e41059e5af7306df714a46575554b9b7466b56514f45509a5ae5e3467af1"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/proofs/q10.json",
+      "sha256": "9f3ad07b0ad74afd3dfc24ea0486ef9ab64340fb1e26b644f4912433232ae25c"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/proofs/q11.json",
+      "sha256": "c7a7f4ba50b5d16f63679c3a04cd4c18e5f3aa5a66ad8cab8e23f1ad6a37c5e2"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/proofs/q12.json",
+      "sha256": "9287df156d422fb6f24e7145940c92866fbcb950bfce8e7b0e64b0e37543f163"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/proofs/q13.json",
+      "sha256": "1012eef750d50ef8d6d21361c7ada49007354b9eddb825be2e8e3b5c048a1166"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/proofs/q14.json",
+      "sha256": "9da43ca206c2174b03a6268052f350d902b2c20051d4f42ad73455a3f5979159"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/proofs/q15.json",
+      "sha256": "d2f4e526380b4483603866695c18aec128ded91b49d76949bdbec39f9296ca15"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/proofs/q16.json",
+      "sha256": "4864fce5947ead2efc84b9750db3bc35d97c510a2f298ad00e6736f16424fdb5"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/proofs/q17.json",
+      "sha256": "a68a1033b9c7e3b6ab4aaf6ab5536981b73f96b789ceada264eb693d7eddca79"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/proofs/q18.json",
+      "sha256": "143c1994281715fdce77082c76ec0a8ac05f7deda7caa4dc72e4f58aa1117523"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/proofs/q19.json",
+      "sha256": "c21d893a104fec4f275237e0d2f2efadc95622dc276dfe7b974d7d6636c5b353"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/proofs/q21.json",
+      "sha256": "62bd7729426c9b178859816528ac5949f39e720bd3fbaae1b4833782ce04763b"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/proofs/q22.json",
+      "sha256": "194fc959b4902557fb5ee08d7ba9165676110a94c4cf6792598b711c59a0084f"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/proofs/q23.json",
+      "sha256": "36316caf2bc9357e0dcb7147b2cd567dddcd2565288773711b4349a67662f10c"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/rendered/q01-1-300dpi.pdf",
+      "sha256": "a28d92b6e7159701f6a8108827f8c07d00d16dec8d106321cd1b6b0887cdb5b1"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/rendered/q01-1-300dpi.png",
+      "sha256": "4f9fdac7fe291943eacc58730650141b1f1e4ebd999b3f34fa26aa938bee728d"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/rendered/q03-1-300dpi.pdf",
+      "sha256": "d51c7a7765e64c11b89ef28533a88d9c1cbf20ed58a0e56dd235e804c2652266"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/rendered/q03-1-300dpi.png",
+      "sha256": "12f7aba0e6f6b1583997dcf5eab6fdf85593dd5ebcfa01a8c58360ff04d4ab4c"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/rendered/q04-1-300dpi.pdf",
+      "sha256": "c9a5e903e1d0cd60de1828345375f57cbf10cc9d69eb8c800df7bc235756952a"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/rendered/q04-1-300dpi.png",
+      "sha256": "2468909230e5d04a2e8bd40a2ebabee54de7cc35b371867ccbb28d805ca27f73"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/rendered/q06-1-300dpi.pdf",
+      "sha256": "48058ebaa293a9b9f78804a493f68d5f9b476c9b1c5ddc49c2e004537f390577"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/rendered/q06-1-300dpi.png",
+      "sha256": "44387adb820ab3184838f5e73a3217136a101160a927a0e6c5df9b5312b30ad6"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/rendered/q08-1-300dpi.pdf",
+      "sha256": "5082c1ac0fd37f2530c04fdb34c17cdffc539b5345ddcd325c38fd2d17677a10"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/rendered/q08-1-300dpi.png",
+      "sha256": "0c47dfa35453950c0fe342d080458887a9f4065c0c092504950539a66fbc4a23"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/rendered/q09-1-300dpi.pdf",
+      "sha256": "a0a4f908a057498ff53d245a5b5e8d79765725931d16cce8da453f7d405399a0"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/rendered/q09-1-300dpi.png",
+      "sha256": "f8978234789a513892b4dc8a11c439c4730d2a645d20b25038905964af4aa646"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/rendered/q10-1-300dpi.pdf",
+      "sha256": "bf4c80e888529ef8040444bb95cbaba960c5c732ada1723b68e6a5bc16d3c90c"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/rendered/q10-1-300dpi.png",
+      "sha256": "fbf2740374b4b91a708ea5405d486baff11af02e0d4578b98236fb2ca0313e45"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/rendered/q11-1-300dpi.pdf",
+      "sha256": "bfa5b5e6f1a9ece30476a96a14c65dcf90e555e0dd4b19428f2d43ca8c2e717c"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/rendered/q11-1-300dpi.png",
+      "sha256": "4b6c6ead791433076050dc5afd9cef024fd4e1ce16fe6d1194f59dd9648853e5"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/rendered/q11-2-300dpi.pdf",
+      "sha256": "bbbb323767d3ba318fbf24f7cef1f9ffa3c500d091786cb7c400202d5acea870"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/rendered/q11-2-300dpi.png",
+      "sha256": "1c20c7669a0c696bd37fc9a78cedfc0aa83da05c326d249fccc4464655d818b9"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/rendered/q12-1-300dpi.pdf",
+      "sha256": "a86ec8d4b567321d8888bb04e68d517359d6a47a977bab8af4d7a566c269530b"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/rendered/q12-1-300dpi.png",
+      "sha256": "2c424cd12967d63225b0f1809d8b79c1fd902b2218e625a8625bb1e540652aa6"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/rendered/q13-1-300dpi.pdf",
+      "sha256": "d38e717ed44cac0f8b14e9c1277ba0a1d056db52328b8fa55d36da8e6f63e317"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/rendered/q13-1-300dpi.png",
+      "sha256": "bb6f61f920bc1dc519ffaeb551815f4fa0cdb9e1a9b38ad2afa9ec17653abb51"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/rendered/q14-1-300dpi.pdf",
+      "sha256": "5df08c166f36210c6faf84524ea7c43ee3f7c55b6897ed2132da0bb3176ba94b"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/rendered/q14-1-300dpi.png",
+      "sha256": "921ea25d1e2c0a96017960eec7d93e1ee8bdbe6b53609c3ff78385f6777e2fba"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/rendered/q15-1-300dpi.pdf",
+      "sha256": "9702dda551456d95361c86e8a39c0640b70f182f7bd37a5c83f00db70efa901f"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/rendered/q15-1-300dpi.png",
+      "sha256": "71f27b6c5b8b6eb2976285136b5d6b9182c1d183179484773527514eb0ce2542"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/rendered/q16-1-300dpi.pdf",
+      "sha256": "481b18c7e08d7cae2506b7ecc2d6fd8cadc436f1bed3630b3388d3141b017de9"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/rendered/q16-1-300dpi.png",
+      "sha256": "e1037243e360b20f0dc43b761688074cc4044b0e01adc67b7fe98259be877725"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/rendered/q17-1-300dpi.pdf",
+      "sha256": "005f1daa55ec1a5dd9653ba41d1336be93f7c72304092211b5acf80694d99411"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/rendered/q17-1-300dpi.png",
+      "sha256": "94e472ecf76d616fc3e2b88c6ad3324ae13922ac76c7fe2262efe04ee52fbb96"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/rendered/q18-1-300dpi.pdf",
+      "sha256": "659bed8c53b05f1202f729fa756518c85f3ddb921b495c147f41e7d58f7750df"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/rendered/q18-1-300dpi.png",
+      "sha256": "7e263ef14164ba69e9e409a436439dc006be11277034c1688bba8f544e323626"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/rendered/q19-1-300dpi.pdf",
+      "sha256": "450c8db8042e3763fd950cfb356a9b2444928fdfcfaa507692b379eae33d3114"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/rendered/q19-1-300dpi.png",
+      "sha256": "b9705239aefa251c36bb8d031f8c1cf4437c25c03d2803c741bb44c10addb579"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/rendered/q21-1-300dpi.pdf",
+      "sha256": "8eba4e36a6c482840ca6cec2788f646fc665d5719d7be148162a9348eb94afbe"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/rendered/q21-1-300dpi.png",
+      "sha256": "013c3bab0c59577091f3f2c2c2f27349518a5033d8b1596ea949224c43c99cee"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/rendered/q22-1-300dpi.pdf",
+      "sha256": "9bf48eb23da186f14ae266d124e07bc5081e5ef74e1b0388e58513ae70055491"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/rendered/q22-1-300dpi.png",
+      "sha256": "357b1b0c84741afe578e64a20a32cb6451723aeda321e371db3c884ad5a911c3"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/rendered/q23-1-300dpi.pdf",
+      "sha256": "37bf2b9e6dab8523a4565ee424bce79a8743ac9325b21abdf96b4ba16ceb6b32"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/rendered/q23-1-300dpi.png",
+      "sha256": "6b9cbb946c97f85f7776206f78ba9e43192bc34394202943079ee51a587020da"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/solve/q01.json",
+      "sha256": "e4d89f652d4605e8cbfb7fa7c86524111fe1058188b54dfd60fe56d749a93049"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/solve/q02.json",
+      "sha256": "71199eecd9ad07d09663bdddc4ae4d2101b7f8856bf53d1ff770a96555e5e430"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/solve/q03.json",
+      "sha256": "a3956995bef070d70931f964d0edd26d901690f8f29c089a37efcc1ffc34f26b"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/solve/q04.json",
+      "sha256": "ffd9fbe41d7ca21cad5b85a81740a3f281ff49280e03926cf3119e66ef546154"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/solve/q05.json",
+      "sha256": "7e68d54b8ccd76ed66f258d4016500a233801ef630f028b84455e900601e67c2"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/solve/q06.json",
+      "sha256": "a5c3fbaf2dd085fdf769e3b25a95100ae351bee726ad19c4b66e6fa30db2777b"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/solve/q07.json",
+      "sha256": "e4b95c987e7c1239d7af70a242f9db31ba922217dc958d10d2e7a3ce6cdd9d09"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/solve/q08.json",
+      "sha256": "74852e5603a88c69c81f7fe1611146d5001ca69eac91113c0454765a9b082764"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/solve/q09.json",
+      "sha256": "7ebe3ab148d173350b7aad4ca0120969ae8e0225bebdba626c939a09ad419c1c"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/solve/q10.json",
+      "sha256": "af087948fe38cbb07ebe42331fba97aaeeb618d629df8c3b5694f83d2c938d1f"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/solve/q11.json",
+      "sha256": "57ab3761e81b8d63852a321d926450d861079d49ce49c9c5ce90072776be3e1d"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/solve/q12.json",
+      "sha256": "bee6be062315378f18a4b6b2d36e9e0e83face37c8ac57970df552dbb25925a4"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/solve/q13.json",
+      "sha256": "198672bc46e3279982794279fa1a3dbfac62dd68df8f1a4db593367aa251dcbb"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/solve/q14.json",
+      "sha256": "ca0621ec18e080f18eebe7e204a3c624eeb708eaa1772ceaea91a10404df667b"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/solve/q15.json",
+      "sha256": "7abf10b157bc485c32d2ca05704c4aad62152b8fe53fea149446dc16d9a56018"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/solve/q16.json",
+      "sha256": "16fdcf3539737bc65d878ee03a94baa1a5da885b2ff9ed16009d44a407a0e865"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/solve/q17.json",
+      "sha256": "aaa45dba4190a345f978bef63e96ff543a50076b6b62ad72121b5e06c6e60fda"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/solve/q18.json",
+      "sha256": "68f0ee409590753f251bab4f49e662abe67e5e19d9ad216a88c15ac0b6b3b293"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/solve/q19.json",
+      "sha256": "44fbc78ba7e992e4f1555c24ddff447d0388cb631f760ab6252f93bc591fa06f"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/solve/q21.json",
+      "sha256": "c55963a6f311d2bf940a51dde7a9bf34a0a8b191b4f622466236a08d4f117657"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/solve/q22.json",
+      "sha256": "cd1cb8cd9a6faac3910b8eaad86483b6ff1a74b9dddd8e72a98fadbca0809fd7"
+    },
+    {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-independent-r1/blind/solve/q23.json",
+      "sha256": "5877b4b431cfb0187c6dfaed885db627db1e0dc5f79223901ae44908938155a3"
+    }
+  ],
+  "prior2111ExternalAndOwnEvidenceBaseline": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/preservation-baseline.json",
+    "sha256": "e2e006f6890733a9d71ecaf7aeb5fa7f2f4edbc6dfac008d4bda476ebee737e9"
+  },
+  "oldExternal2111LastConfirmed": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeonggu-final-review-r1/validation.json",
+    "sha256": "b7367dda1719f018107b8115d7463ded724d18c37465e37efe5e9b06a5cfcbd7"
+  },
+  "raw123AndGg52Commits": [
+    "c02838323307f69648124f837285503a53e99bd3",
+    "9b4828c3ff843b16947b0d6925e408f0aaa7f6e7"
+  ],
+  "existingTrackedStatus": "",
+  "authorScopeWritesAreRestrictedTo": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1",
+  "rootMainSourcesSharedDependenciesNotWritten": true
+}
