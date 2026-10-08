@@ -8,7 +8,9 @@
  * 🔴 짝을 알 수 없으면 **모른다**(null)로 낸다 — 아무 그림이나 ① 에 붙이지 않는다(틀린 짝은 그럴듯해 보이면서 틀린다.
  *    `prisma/schema.prisma` 의 `choiceFigureIndex` 주석과 같은 규칙). 적재기는 그런 문항을 잠근다.
  */
+import { hasUnlinkedFigureChoices } from "../../problem/choiceFigureIndex";
 import { FIGURE_MARKER } from "../../problem/figureMarker";
+import { parseProblemContent } from "../../problem/parseProblemContent";
 
 const CIRCLED = "①②③④⑤⑥⑦⑧⑨⑩";
 
@@ -42,6 +44,28 @@ export function dropFigureMarkers(
   return lines.join("\n");
 }
 
+/**
+ * 그림이 번호 **앞**에 선 보기 줄(`[그림] ①`)을 문제은행의 보기 줄 꼴(`① [그림]`)로 옮긴다.
+ *
+ * 한글 파일에서 보기 그림의 닻이 번호 글자보다 앞에 있으면 추출이 그 차례대로 적는다. 보기 줄은 번호로 시작해야 하고,
+ * 그대로 두면 그 그림이 발문의 그림(0)으로 읽혀 짝이 없다(2026-10-08 — 짝을 모르는 25문항 가운데 19).
+ * 🔴 줄이 «표지 하나 + 번호 하나»뿐일 때만 옮긴다 — 표지의 수와 차례는 그대로라 그림 파일의 짝이 안 바뀐다.
+ *    번호 뒤에 글이 있거나 표지가 둘이면 어느 그림이 그 보기인지 모른다(건드리지 않는다).
+ */
+export function liftChoiceMarkers(content: string): string {
+  return content
+    .split("\n")
+    .map((line) => {
+      const body = line.trim();
+      if (!body.startsWith(FIGURE_MARKER)) return line;
+      const rest = body.slice(FIGURE_MARKER.length).trim();
+      return rest.length === 1 && CIRCLED.includes(rest)
+        ? `${rest} ${FIGURE_MARKER}`
+        : line;
+    })
+    .join("\n");
+}
+
 /** 표지의 차례대로 «몇 번 보기의 그림인가». 짝을 알 수 없으면 null. */
 export function choiceIndexOf(content: string): number[] | null {
   const index: number[] = [];
@@ -60,6 +84,28 @@ export function choiceIndexOf(content: string): number[] | null {
     index.push(choice);
   }
   return index;
+}
+
+/**
+ * 보기가 그림뿐인데 어느 그림이 몇 번인지 모르면 잠그는 까닭을 낸다(아니면 null).
+ *
+ * 🔴 판정은 푸시 관문 `check:figure-choices`(`scripts/qa/checkFigureChoiceLinks.ts`)와 **같은 함수**다 — 규칙을 옮겨 적지 않는다.
+ *    2026-10-08 그림 문항 3,911 을 실은 뒤 관문이 21문항을 막았다: «[그림] ①»(그림이 번호 앞) 줄은 발문 그림(0)으로 읽혔고,
+ *    다섯 보기를 그림 한 장에 담은 문항은 짝이 없다. 적재기가 관문을 어기는 행을 만들면 **누구의 main 푸시든** 막힌다.
+ */
+export function figureChoiceNote(
+  content: string,
+  figureCount: number,
+  index: readonly number[] | null,
+): string | null {
+  const choices = parseProblemContent(content).choices;
+  if (index === null)
+    return choices.length || countMarkers(content)
+      ? "보기 그림의 짝을 알 수 없다"
+      : null;
+  return hasUnlinkedFigureChoices(figureCount, index, choices)
+    ? "보기 그림의 짝을 알 수 없다"
+    : null;
 }
 
 /**

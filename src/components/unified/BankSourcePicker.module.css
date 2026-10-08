@@ -1,0 +1,239 @@
+/* 문제은행 «출처 고르기» H1 (D-161 · 05 S-08 [확정 — 2026-10-08]) — 시안 `/dev/bank-source-hifi` 의 H1 을 옮겼다.
+   문제은행 토큰(--bank-*)만 쓴다. 창은 공용 PickerDialog 이고, 여기는 필터 줄의 칸과 창 안의 짜임만 정한다.
+   `.bank button`(요소 + 클래스)을 이기려고 단추 규칙은 클래스를 두 번 쓴다. */
+
+.count {
+  color: var(--bank-muted);
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+/* 0문항 자료 종류 — 흐리게(자리는 그대로, ⑵) */
+.zero {
+  opacity: 0.45;
+}
+
+/* ── 필터 줄 안의 «출처» 칸 — 다른 칸의 두 배 넓이 ── */
+.sourceField {
+  flex: 3 1 360px;
+  min-width: 0;
+}
+.sourceButton.sourceButton {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  min-width: 0;
+  padding: 0 12px;
+  border: 1px solid var(--bank-control);
+  border-radius: 6px;
+  background: #fff;
+  color: var(--bank-ink);
+  text-align: left;
+  font-weight: 500;
+}
+.sourceButton:hover {
+  border-color: var(--bank-primary);
+}
+.sourceLabel {
+  flex: none;
+  color: var(--bank-muted);
+  font-size: 12px;
+  font-weight: 500;
+}
+.sourceValue {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.sourceAction {
+  flex: none;
+  color: var(--bank-primary);
+  font-size: 13px;
+}
+
+/* ── 창 안 ── */
+.wrap {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+.wrap > :first-child {
+  flex: 1;
+}
+/* 맨 위 출처 줄 — 전체 · 엔진 · 교과서 · 기출 · 그 밖 */
+.segments {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding: 16px 20px 12px;
+  border-bottom: 1px solid var(--bank-line);
+}
+.segment.segment {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 14px;
+  border: 1px solid var(--bank-line);
+  border-radius: 22px;
+  background: #fff;
+  color: var(--bank-ink);
+  font-weight: 500;
+}
+.segment[aria-pressed="true"] {
+  border-color: var(--bank-primary);
+  background: var(--bank-selected);
+  color: #2548bc;
+  font-weight: 700;
+}
+.note {
+  margin: 0;
+  padding: 16px 20px;
+  color: var(--bank-muted);
+  font-size: 13px;
+}
+.state {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  padding: 20px;
+  font-size: 14px;
+}
+
+/* 세 단 — 과목 │ 그 과목의 책 │ 자료 종류 */
+.pane {
+  display: grid;
+  grid-template-columns: 148px minmax(0, 1fr) 232px;
+}
+.pane > * {
+  min-width: 0;
+  padding: 16px;
+}
+.pane > * + * {
+  border-left: 1px solid var(--bank-line);
+}
+.colTitle {
+  margin: 0 0 10px;
+  font-size: 13px;
+  font-weight: 700;
+}
+.colTitle .count {
+  margin-left: 6px;
+  font-weight: 500;
+}
+.gradeList {
+  display: grid;
+  gap: 4px;
+}
+.gradeButton.gradeButton {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: 100%;
+  padding: 0 10px;
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--bank-ink);
+  text-align: left;
+  font-weight: 500;
+}
+.gradeButton:hover {
+  background: #f3f5f9;
+}
+.gradeButton[aria-pressed="true"] {
+  border-color: var(--bank-primary);
+  background: var(--bank-selected);
+  font-weight: 700;
+}
+/* 고른 책이 있는 과목 — 파란 수 배지 */
+.picked {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 10px;
+  background: var(--bank-primary);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+}
+.checkList {
+  display: grid;
+  gap: 2px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+.checkRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 40px;
+  padding: 0 8px;
+  border-radius: 6px;
+  font-size: 14px;
+}
+.checkRow:has(input:checked) {
+  background: var(--bank-selected);
+}
+.checkRow > span:first-of-type {
+  flex: 1;
+  min-width: 0;
+}
+.allRow {
+  margin-bottom: 6px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--bank-line);
+  color: var(--bank-muted);
+  font-size: 13px;
+}
+.sub {
+  display: block;
+  color: var(--bank-muted);
+  font-size: 12px;
+}
+
+/* 창 아래 — 걸리는 문항 수 · 모두 풀기 */
+.footer {
+  position: sticky;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 20px;
+  border-top: 1px solid var(--bank-line);
+  background: #fff;
+  font-size: 14px;
+}
+.footer b {
+  font-variant-numeric: tabular-nums;
+}
+
+/* 폰 폭 — 단을 쌓고, 과목은 옆으로 미는 한 줄 */
+@media (max-width: 760px) {
+  .pane {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .pane > * + * {
+    border-left: 0;
+    border-top: 1px solid var(--bank-line);
+  }
+  .gradeList {
+    grid-auto-flow: column;
+    grid-auto-columns: max-content;
+    overflow-x: auto;
+  }
+}
+@media (max-width: 620px) {
+  .sourceField {
+    flex-basis: 100%;
+  }
+}

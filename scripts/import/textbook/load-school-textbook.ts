@@ -86,9 +86,11 @@ import {
 import { checkKeyOf } from "../../../src/lib/import/schoolTextbook/checkKey";
 import {
   choiceIndexOf,
+  figureChoiceNote,
   countMarkers,
   dropFigureMarkers,
   figuresSeen,
+  liftChoiceMarkers,
 } from "../../../src/lib/import/schoolTextbook/figurePlacement";
 import {
   cleanContent,
@@ -711,6 +713,8 @@ function buildRowsOf(
           ),
         ),
       );
+      // 그림이 번호 앞에 선 보기 줄(«[그림] ①»)은 보기 줄 꼴(«① [그림]»)로 — 표지의 수 · 차례는 그대로다
+      content = liftChoiceMarkers(content);
       const kept = remaining.filter((item) => !notMine.has(item.ordinal));
       if (kept.some((item) => !item.figure.px)) {
         skip("그림을 꺼내지 않았다 — figures.py --export");
@@ -727,9 +731,12 @@ function buildRowsOf(
         sha: figure.imgSha ?? figure.sha,
       }));
       const index = choiceIndexOf(content);
-      // 🔴 짝을 모르면 아무 그림이나 ① 에 붙이지 않는다 — 빈 배열(«모른다»)로 싣고 잠근다
-      if (index === null) figureNotes.push("보기 그림의 짝을 알 수 없다");
-      else choiceFigureIndex = index;
+      // 🔴 짝을 모르면 아무 그림이나 ① 에 붙이지 않는다 — 빈 배열(«모른다»)로 싣고 잠근다.
+      //    «보기가 그림뿐인데 짝이 온전하지 않다»는 푸시 관문(check:figure-choices)과 같은 함수로 가린다 — 2026-10-08 에
+      //    «[그림] ①»(그림이 번호 앞) 줄을 발문 그림으로 읽어 짝이 모두 0 인 21문항이 출제 가능으로 실려 관문이 막혔다.
+      const choiceNote = figureChoiceNote(content, figures.length, index);
+      if (choiceNote) figureNotes.push(choiceNote);
+      choiceFigureIndex = choiceNote ? [] : (index ?? []);
     } else if (countMarkers(content) > 0) {
       skip("본문에 [그림] 표지가 있는데 그림이 없다");
       continue;

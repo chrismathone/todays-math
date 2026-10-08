@@ -240,3 +240,36 @@ Validated on 2026-09-15:
   404s, and retained authentication for `/studio`. The function trace includes
   the manifest and no `public/figures*` image files. These local timings do not
   establish a change in Vercel deployment duration.
+
+### Move to the application project — 2026-10-08
+
+On 2026-10-08 (KST afternoon) the mathgen project host
+`pqylrbowrfliicxzurex.supabase.co` stopped resolving (NXDOMAIN from both the ISP
+resolver and 8.8.8.8). Every uncached `/figures/*` request returned 502 from
+`/api/shared-figures/...`; the error log held only the operator's own probes
+because Vercel's edge cache had been answering the popular images.
+
+At the owner's direction the bucket now lives in the **application's own
+Supabase project** (`jyaguxwuaxgdnovtulna`, the same project as `DATABASE_URL`).
+A public bucket `todays-math-shared-figures` (image MIME types only, 8 MiB
+object limit — the same policy as before) was created with the project's secret
+key. Because every original is tracked in Git, the full set was re-uploaded
+rather than copied from the lost project:
+
+- manifest: 23,288 objects, 517,133,026 bytes, `sourceCommit` `8e96de9d2`
+  (18,827 earlier figures + 4,461 textbook figures under `/figures/tb/`),
+  canonical SHA256 `d0ff25fd0afa48d20a2b43b278008be23bdf8e4b53ae96d24a26000f9e76d976`;
+- upload receipt (`status: verified`, every object read back anonymously and
+  byte-compared after its POST): 23,288 uploaded, 0 reused, `verifiedAt`
+  `2026-10-08T06:31:51.770Z` — checked in as `src/config/shared-figures.receipt.json`;
+- Vercel `SHARED_FIGURE_CDN_BASE_URL` (Production and Preview) overwritten with
+  `https://jyaguxwuaxgdnovtulna.supabase.co/storage/v1/object/public/todays-math-shared-figures`
+  before pushing main `9ab1fc7fc`; the production deployment became Ready and a
+  12-object sample (old and textbook figures) returned 200 with manifest sizes.
+
+A separate anonymous `verify` run (all 23,288 objects re-downloaded without
+credentials and byte-compared, 0 uploaded / 23,288 reused, at commit `ff3ca6a4e`)
+passed; its receipt is `app-verify-receipt-20261008c.json` under the operator
+working folder outside the repository. The secret key stays in the operator's local `.env`;
+no upload credential was added to Vercel beyond the pre-existing listening-storage
+secret.

@@ -166,7 +166,9 @@ def main() -> None:
     add(f"| = **문제은행에 실은 문항** | **{len(plan['rows']):,}** | 출처 «교과서»(`school_textbook`) · 그림이 붙은 문항 {sum(1 for row in plan['rows'] if row.get('figures')):,} |")
     add(f"| 　그 가운데 출제에 쓰는 문항 | {open_rows:,} | 지면 검토를 지났다 |")
     add(f"| 　그 가운데 잠가 둔 문항 | {held_rows:,} | 아래 3 — 은행에는 보이고 출제에는 안 뽑힌다 |")
-    add(f"| 　그 가운데 **지금 DB 에 들어간 것** | {in_db:,} | 나머지 {len(plan['rows']) - in_db:,} 은 그림 문항 — 그림을 외부 저장소에 게시한 뒤에 싣는다(10-handoff §0-ZS) |")
+    left = len(plan["rows"]) - in_db
+    add(f"| 　그 가운데 **지금 DB 에 들어간 것** | {in_db:,} | "
+        + (f"나머지 {left:,} 은 아직 안 실었다 — 적재기 `--apply` 를 다시 돌린다 |" if left else "전부 — 그림 문항은 그림을 외부 저장소(앱 Supabase)에 게시한 뒤 실었다(10-handoff §0-ZT) |"))
     add("")
 
     add("## 1. 실을 길이 아직 없는 문항")

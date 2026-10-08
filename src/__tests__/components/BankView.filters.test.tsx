@@ -14,6 +14,7 @@ import type {
 } from "@/components/unified/types";
 import { PROBLEM_FILTER_OPTIONS } from "@/components/problem/labels";
 import { problemFilterQuerySchema } from "@/contracts/problem.contract";
+import { unifiedBankQuerySchema } from "@/contracts/bankSource.contract";
 import { DIFFICULTY_LADDER } from "@/contracts/difficulty";
 
 vi.mock("@/components/unified/UnifiedProblem", () => ({
@@ -295,13 +296,15 @@ describe("unified bank uses real ProblemBank filters", () => {
     },
   );
 
-  it("combines search, scope, difficulty, state, source and true-only asset parameters", async () => {
+  // 출처 · 교과서 책 · 자료 종류는 «출처 고르기» 창(H1)으로 고른다 — `BankView.source.test.tsx`.
+  it("combines search, scope, semester, difficulty, state and true-only asset parameters", async () => {
     mount();
     await choose("학년", "중1");
+    // 학기를 바꾸면 단원을 푼다(단원 목록이 학기를 따른다) — 그래서 단원보다 먼저 고른다
+    await choose("학기", "2");
     await choose("단원", "수와 연산");
     await choose("난이도", DIFFICULTY_LADDER[DIFFICULTY_LADDER.length - 1]);
     await choose("상태", "pending");
-    await choose("출처", "ai_generated");
     for (const label of ["그림", "해설", "정답"]) {
       fireEvent.click(screen.getByRole("checkbox", { name: label }));
       await settled();
@@ -320,13 +323,13 @@ describe("unified bank uses real ProblemBank filters", () => {
       chapter: "수와 연산",
       difficulty: DIFFICULTY_LADDER[DIFFICULTY_LADDER.length - 1],
       reviewStatus: "pending",
-      source: "ai_generated",
+      semester: "2",
       hasFigure: "true",
       hasSolution: "true",
       hasAnswer: "true",
       page: "1",
     });
-    expect(problemFilterQuerySchema.safeParse(lastQuery()).success).toBe(true);
+    expect(unifiedBankQuerySchema.safeParse(lastQuery()).success).toBe(true);
     // Server results/count are authoritative, regardless of the current page's rows.
     expect(screen.getByText(problem.content)).toBeVisible();
     expect(
@@ -345,12 +348,12 @@ describe("unified bank uses real ProblemBank filters", () => {
   it("keeps all filters on page changes and resets query, draft, chips and pagination together", async () => {
     mount();
     await choose("유형", "format:descriptive");
-    await choose("출처", "past_exam");
+    await choose("학기", "1");
     fireEvent.click(screen.getByRole("button", { name: "다음 페이지" }));
     await settled();
     expect(lastQuery()).toEqual({
       format: "descriptive",
-      source: "past_exam",
+      semester: "1",
       page: "2",
     });
     await choose("난이도", "응용");
@@ -817,15 +820,20 @@ describe("compact filters keep scope visible and disclose extra controls", () =>
     mount();
     const bar = within(screen.getByRole("group", { name: "검색과 필터" }));
     expect(bar.getByRole("textbox", { name: "문제 검색" })).toBeVisible();
-    for (const name of ["학년", "단원"])
+    for (const name of ["학년", "학기", "단원"])
       expect(bar.getByRole("combobox", { name })).toBeVisible();
     expect(bar.getByRole("button", { name: "범위" })).toBeVisible();
     expect(
       screen.queryByRole("combobox", { name: "난이도" }),
     ).not.toBeInTheDocument();
     fireEvent.click(bar.getByRole("button", { name: "상세 필터" }));
-    for (const name of ["난이도", "유형", "상태", "출처"])
+    for (const name of ["난이도", "유형", "상태"])
       expect(screen.getByRole("combobox", { name })).toBeVisible();
+    // 출처는 선택 칸이 아니라 고르기 창을 여는 칸이다(H1 ⑴)
+    expect(
+      screen.queryByRole("combobox", { name: "출처" }),
+    ).not.toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /^출처 고르기/ })).toBeVisible();
     for (const name of ["그림", "해설", "정답"])
       expect(screen.getByRole("checkbox", { name })).toBeVisible();
     fireEvent.click(screen.getByRole("button", { name: "필터 접기" }));
@@ -838,7 +846,7 @@ describe("compact filters keep scope visible and disclose extra controls", () =>
   it("retains accessible control labels and search help", () => {
     mount();
     fireEvent.click(screen.getByRole("button", { name: "상세 필터" }));
-    for (const name of ["학년", "단원", "난이도", "유형", "상태", "출처"]) {
+    for (const name of ["학년", "학기", "단원", "난이도", "유형", "상태"]) {
       const control = screen.getByRole("combobox", { name });
       expect(
         document.querySelector(`label[for="${control.id}"]`)?.className,
