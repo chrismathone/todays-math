@@ -1226,37 +1226,15 @@
       </div>
       <div class="dialog-content" id="candidate-content"></div>
     </dialog>
-    <dialog
-      id="preview-dialog"
-      class="preview-dialog"
-      aria-labelledby="preview-title"
-    >
-      <div class="dialog-head">
-        <div>
-          <h2 id="preview-title">출력 미리보기</h2>
-          <p class="caption">브라우저 인쇄에서 A4로 출력할 수 있습니다.</p>
-        </div>
-        <button class="icon" data-action="close-preview" aria-label="닫기">
-          ×
-        </button>
-      </div>
-      <div class="preview-controls">
-        <label class="check"
-          ><input id="preview-answers" type="checkbox" />정답 포함</label
-        ><label class="check"
-          ><input id="preview-space" type="checkbox" />풀이 공간</label
-        ><button class="primary" data-action="print">인쇄</button>
-      </div>
-      <div class="dialog-content" id="preview-content"></div>
-    </dialog>
     <div id="toast" class="toast" role="status" aria-live="polite"></div>
-    <div id="print-root" class="print-only"></div>
     <noscript
       >이 시안은 로컬 JavaScript를 켜야 문항을 구성하고 편집할 수
       있습니다.</noscript
     >
     <script src="scope-data.js"></script>
     <script src="scope-picker.js"></script>
+    <link rel="stylesheet" href="output-bridge.css" />
+    <script src="output-bridge.js"></script>
     <script>
       "use strict";
       const VARIANT = "C";
@@ -1859,7 +1837,7 @@
         return `<label class="field title-field"><span>시험지 제목</span><input id="exam-title" maxlength="80" value="${esc(state.title)}"></label>`;
       }
       function previewButton() {
-        return `<button class="primary" data-action="preview" ${!state.items.length ? "disabled" : ""}>출력 미리보기 <span aria-hidden="true">↗</span></button>`;
+        return `<button class="primary" data-action="preview" ${!state.items.length ? "disabled" : ""}>양식 구성 · 출력 <span aria-hidden="true">↗</span></button>`;
       }
       function commonNote() {
         return `<div class="top-note"><span>시안 ${VARIANT} · 예시 문항 · 실제 저장 없음</span><a href="index.html${esc(location.search)}">← 시안 모아보기</a></div>`;
@@ -1871,7 +1849,7 @@
         return `<div class="info-row"><span>선택형</span><b>${choice}문항</b></div><div class="info-row"><span>서답형</span><b>${state.items.length - choice}문항</b></div>`;
       }
       function renderC() {
-        return `${commonNote()}<header class="masthead"><div class="brand"><span class="mark" aria-hidden="true">T</span>${esc(window.ExamScope.productName)}</div><div class="caption">지면에서 읽고, 바로 다듬는 시험지</div></header><main class="workspace"><div class="heading spread"><div><h1>시험지 만들기</h1><p>범위를 정하고, 시험지 위에서 문항을 다듬으세요.</p></div><span class="badge">C · 지면 중심</span></div><section class="panel setup" id="scope" aria-labelledby="scope-title"><div class="spread setup-head"><h2 id="scope-title">출제 범위</h2></div>${scopeHTML()}<div class="setup-main"><label class="field"><span>구성할 문항 수</span><select id="target">${[4, 6, 8].map((n) => `<option ${state.target === n ? "selected" : ""} value="${n}">${n}문항</option>`).join("")}</select></label><button class="primary" data-action="compose">시험지 구성 <span aria-hidden="true">→</span></button></div><p class="setup-footer caption" id="scope-status"></p></section><div class="initial-empty panel"><span class="eyebrow">다음 · 지면에서 문항 다듬기</span><h2>범위를 정하면 시험지가 펼쳐집니다.</h2><p class="muted">위에서 시험지 구성을 눌러 예시 문항을 확인하세요.</p></div><div class="canvas"><section class="paper-stage" aria-label="시험지 편집"><div class="spread paper-toolbar"><span class="caption">시험지 편집 · ${state.items.length}문항</span><div class="row"><button class="text" data-action="undo" ${history.length ? "" : "disabled"}>↶ 되돌리기</button><button data-action="add">＋ 문항 추가</button></div></div>${paperHTML()}</section><aside class="inspector" aria-label="문항과 출력 설정"><section class="panel"><div class="spread"><h2>문항 이동</h2><span class="badge">${state.items.length}문항</span></div><div class="navigator">${state.items.map((id, i) => `<button data-action="jump" data-id="${esc(id)}" aria-label="${i + 1}번 문항으로 이동">${String(i + 1).padStart(2, "0")}</button>`).join("")}</div><div class="question-summary">${countTypes()}<p class="caption" style="margin-top:8px">문항 옆의 ↑ ↓로 순서를 바꿀 수 있어요.</p></div></section><section class="panel"><h2>출력 설정</h2>${titleField()}<div class="rule"></div><label class="check"><input id="answers" type="checkbox" ${state.answers ? "checked" : ""}>정답 포함</label><label class="check"><input id="space" type="checkbox" ${state.space ? "checked" : ""}>풀이 공간</label><div style="margin-top:16px">${previewButton()}</div><p class="caption" style="margin-top:12px">A4 · 세로 · 한 단<br>실제 쪽 나눔은 인쇄에서 확인하세요.</p></section></aside></div><p class="footnote">이 시안을 위해 작성한 문항입니다. 실제 문제은행·교육과정 검증 자료가 아니며 새로고침하면 편집 내용이 초기화됩니다.</p></main>`;
+        return `${commonNote()}<header class="masthead"><div class="brand"><span class="mark" aria-hidden="true">T</span>${esc(window.ExamScope.productName)}</div><div class="caption">지면에서 읽고, 바로 다듬는 시험지</div></header><main class="workspace"><div class="heading spread"><div><h1>시험지 만들기</h1><p>범위를 정하고, 시험지 위에서 문항을 다듬으세요.</p></div><span class="badge">C · 지면 중심</span></div><section class="panel setup" id="scope" aria-labelledby="scope-title"><div class="spread setup-head"><h2 id="scope-title">출제 범위</h2></div>${scopeHTML()}<div class="setup-main"><label class="field"><span>구성할 문항 수</span><select id="target">${[4, 6, 8].map((n) => `<option ${state.target === n ? "selected" : ""} value="${n}">${n}문항</option>`).join("")}</select></label><button class="primary" data-action="compose">시험지 구성 <span aria-hidden="true">→</span></button></div><p class="setup-footer caption" id="scope-status"></p></section><div class="initial-empty panel"><span class="eyebrow">다음 · 지면에서 문항 다듬기</span><h2>범위를 정하면 시험지가 펼쳐집니다.</h2><p class="muted">위에서 시험지 구성을 눌러 예시 문항을 확인하세요.</p></div><div class="canvas"><section class="paper-stage" aria-label="시험지 편집"><div class="spread paper-toolbar"><span class="caption">시험지 편집 · ${state.items.length}문항</span><div class="row"><button class="text" data-action="undo" ${history.length ? "" : "disabled"}>↶ 되돌리기</button><button data-action="add">＋ 문항 추가</button></div></div>${paperHTML()}</section><aside class="inspector" aria-label="문항과 양식 구성"><section class="panel"><div class="spread"><h2>문항 이동</h2><span class="badge">${state.items.length}문항</span></div><div class="navigator">${state.items.map((id, i) => `<button data-action="jump" data-id="${esc(id)}" aria-label="${i + 1}번 문항으로 이동">${String(i + 1).padStart(2, "0")}</button>`).join("")}</div><div class="question-summary">${countTypes()}<p class="caption" style="margin-top:8px">문항 옆의 ↑ ↓로 순서를 바꿀 수 있어요.</p></div></section><section class="panel"><h2>양식 구성 · 출력</h2>${titleField()}<div style="margin-top:16px">${previewButton()}</div><p class="caption" style="margin-top:12px">평가원 · 정통 · 모던 · 워크북 · 자습 · 유형<br>다음 화면에서 양식과 인쇄 설정을 구성합니다.</p></section></aside></div><p class="footnote">이 시안을 위해 작성한 문항입니다. 실제 문제은행·교육과정 검증 자료가 아니며 새로고침하면 편집 내용이 초기화됩니다.</p></main>`;
       }
       function renderD() {
         const total = state.counts.reduce((a, b) => a + b, 0);
@@ -1898,7 +1876,7 @@
                 )
                 .join("")
             : '<div class="panel empty"><h2>아직 담은 문항이 없습니다</h2><p>출제 구성표에서 수량을 정하거나 문항을 추가하세요.</p></div>'
-        }</section><section class="panel output-panel" id="output"><div class="spread"><h2>출력 설정</h2><span class="caption">A4 · 세로 · 한 단</span></div><div class="output-fields">${titleField()}<div><label class="check"><input id="answers" type="checkbox" ${state.answers ? "checked" : ""}>정답 포함</label><label class="check"><input id="space" type="checkbox" ${state.space ? "checked" : ""}>풀이 공간</label></div>${previewButton()}</div><p class="caption" style="margin-top:12px">실제 쪽 나눔은 브라우저 인쇄에서 확인하세요.</p></section><p class="footnote">이 시안을 위해 작성한 문항입니다. 실제 문제은행·교육과정 검증 자료가 아니며 새로고침하면 편집 내용이 초기화됩니다.</p></main></div>`;
+        }</section><section class="panel output-panel" id="output"><div class="spread"><h2>양식 구성 · 출력</h2><span class="caption">문제 추출과 같은 양식 구성</span></div><div class="output-fields">${titleField()}${previewButton()}</div><p class="caption" style="margin-top:12px">다음 화면에서 양식, 단 수, 풀이 공간과 정답지 설정을 구성합니다.</p></section><p class="footnote">이 시안을 위해 작성한 문항입니다. 실제 문제은행·교육과정 검증 자료가 아니며 새로고침하면 편집 내용이 초기화됩니다.</p></main></div>`;
       }
       function scopeStatus() {
         if (VARIANT === "C") {
@@ -2011,16 +1989,44 @@
         if (dialogOpener?.isConnected) dialogOpener.focus();
         else $('[data-action="add"]')?.focus({ preventScroll: true });
       }
-      function updatePreview() {
-        $("#preview-content").innerHTML = paperHTML(true);
-        $("#print-root").innerHTML = paperHTML(true);
-        $("#preview-answers").checked = state.answers;
-        $("#preview-space").checked = state.space;
-      }
-      function closePreview() {
-        $("#preview-dialog").close();
-        if (dialogOpener?.isConnected) dialogOpener.focus();
-        else $('[data-action="preview"]')?.focus({ preventScroll: true });
+      function openOutput() {
+        const ordered = state.items;
+        ExamOutput.open(
+          {
+            subject: state.subject === "영어" ? "english" : "math",
+            title: state.title,
+            questions: ordered.map((id) => {
+              const q = getQ(id);
+              return {
+                id,
+                prompt: q.text,
+                choices: q.choices,
+                passage: units()[q.unit].passage || "",
+                answer: q.answer,
+                grade: "중1",
+                unit: units()[q.unit].name,
+                level: q.level,
+              };
+            }),
+          },
+          ({ title, questionIds }) => {
+            if (title !== state.title || questionIds.join() !== ordered.join())
+              remember();
+            state.title = title;
+            state.items = questionIds;
+            if (VARIANT === "D") {
+              const activeUnits = [
+                ...new Set(questionIds.map((id) => getQ(id).unit)),
+              ];
+              state.order = [
+                ...activeUnits,
+                ...state.order.filter((u) => !activeUnits.includes(u)),
+              ];
+            }
+            render();
+            $('[data-action="preview"]')?.focus({ preventScroll: true });
+          },
+        );
       }
       document.addEventListener("click", (e) => {
         if (e.target.closest("[data-scope-open]")) {
@@ -2123,16 +2129,7 @@
               el.classList.toggle("active", el.dataset.id === id),
             );
         }
-        if (action === "preview") {
-          dialogOpener = b;
-          updatePreview();
-          $("#preview-dialog").showModal();
-        }
-        if (action === "close-preview") closePreview();
-        if (action === "print") {
-          updatePreview();
-          window.print();
-        }
+        if (action === "preview") openOutput();
       });
       document.addEventListener("change", (e) => {
         const el = e.target;
@@ -2153,12 +2150,6 @@
           state[el.id] = el.checked;
           render();
           $("#" + el.id)?.focus({ preventScroll: true });
-        }
-        if (el.id === "preview-answers" || el.id === "preview-space") {
-          remember();
-          state[el.id.replace("preview-", "")] = el.checked;
-          render();
-          updatePreview();
         }
         if (el.id === "exam-title") {
           remember();
@@ -2182,13 +2173,6 @@
       $("#candidate-dialog").addEventListener("cancel", (e) => {
         e.preventDefault();
         closeCandidate();
-      });
-      $("#preview-dialog").addEventListener("cancel", (e) => {
-        e.preventDefault();
-        closePreview();
-      });
-      window.addEventListener("beforeprint", () => {
-        $("#print-root").innerHTML = paperHTML(true);
       });
       render();
     </script>

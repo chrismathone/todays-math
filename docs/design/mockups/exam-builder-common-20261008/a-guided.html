@@ -1101,6 +1101,8 @@
     <div class="toast" role="status" aria-live="polite"></div>
     <script src="scope-data.js"></script>
     <script src="scope-picker.js"></script>
+    <link rel="stylesheet" href="output-bridge.css" />
+    <script src="output-bridge.js"></script>
     <script>
       "use strict";
       // All questions below are authored samples. This prototype never reads or writes application data.
@@ -1441,23 +1443,21 @@
           (IS_A ? "단계형" : "작업대형") +
           "</span></div></div>" +
           (IS_A ? steps() : "") +
-          (state.stage === 3
-            ? preview()
-            : IS_A
-              ? state.stage === 1
-                ? config()
-                : review()
-              : '<div class="workbench-grid">' +
-                config() +
-                '<section aria-label="시험지 구성">' +
-                (state.questions.length || state.applied ? review() : empty()) +
-                "</section></div>");
+          (IS_A
+            ? state.stage === 1
+              ? config()
+              : review()
+            : '<div class="workbench-grid">' +
+              config() +
+              '<section aria-label="시험지 구성">' +
+              (state.questions.length || state.applied ? review() : empty()) +
+              "</section></div>");
         if (focus) focusId(focus);
       }
       function steps() {
         return (
           '<ol class="steps" aria-label="시험지 제작 단계">' +
-          ["범위 설정", "문항 검토", "출력 미리보기"]
+          ["범위 설정", "문항 검토", "양식 구성 · 출력"]
             .map(
               (s, i) =>
                 '<li class="step ' +
@@ -1476,7 +1476,7 @@
                 [
                   "출제 범위 · 문항 수",
                   "교체 · 추가 · 순서 조정",
-                  "제목 · 학생용 시험지",
+                  "양식 선택 · 인쇄 설정",
                 ][i] +
                 "</small></div></li>",
             )
@@ -1642,11 +1642,11 @@
             : "") +
           '<div class="bottom-actions"><div><strong>총 ' +
           state.questions.length +
-          '문항</strong><p class="caption">본문을 확인한 뒤 출력 화면으로 이동하세요.</p></div><div class="row">' +
+          '문항</strong><p class="caption">본문을 확인한 뒤 양식과 인쇄 설정을 구성하세요.</p></div><div class="row">' +
           (IS_A ? '<button data-action="back-config">범위 수정</button>' : "") +
           '<button id="preview" class="primary" data-action="preview" ' +
           (!state.questions.length ? "disabled" : "") +
-          ">출력 미리보기" +
+          ">양식 구성 · 출력" +
           icon("arrow") +
           "</button></div></div></div>"
         );
@@ -1761,21 +1761,34 @@
           "</article>"
         );
       }
-      function preview() {
-        return (
-          '<section class="panel preview-toolbar" aria-label="출력 설정"><div class="field"><label for="exam-title">시험지 제목</label><input id="exam-title" maxlength="80" value="' +
-          esc(state.title) +
-          '" placeholder="시험지 제목을 입력하세요"></div><div><span class="caption">학생용 · 정답 제외</span><div class="row" style="margin-top:8px"><button data-action="back-review">문항으로 돌아가기</button><button class="primary" data-action="print">' +
-          icon("print") +
-          '인쇄</button></div></div></section><section class="paper" aria-label="학생용 시험지 미리보기"><header class="paper-head"><span class="caption">중학교 1학년 · ' +
-          esc(state.applied.subject) +
-          ' · 예시 시험지</span><h2 id="paper-title">' +
-          esc(state.title || "제목 없는 시험지") +
-          '</h2><div class="paper-meta"><span>총 ' +
-          state.questions.length +
-          "문항</span><span>반 __________ 이름 ______________</span></div></header>" +
-          questionsHTML(true) +
-          '<footer class="paper-foot">예시 문항으로 구성한 시험지 · 정답은 출력되지 않습니다.</footer></section>'
+      function openOutput() {
+        ExamOutput.open(
+          {
+            subject: state.applied.subject === "영어" ? "english" : "math",
+            title: state.title,
+            questions: state.questions.map((q) => ({
+              id: q.id,
+              prompt: q.prompt,
+              choices: q.options,
+              passage: q.passage || "",
+              answer: q.answer,
+              grade: "중1",
+              unit: q.unitName,
+              level: q.level,
+            })),
+          },
+          ({ title, questionIds }) => {
+            if (
+              title !== state.title ||
+              questionIds.join() !== state.questions.map((q) => q.id).join()
+            )
+              remember();
+            const byId = new Map(state.questions.map((q) => [q.id, q]));
+            state.questions = questionIds.map((id) => byId.get(id));
+            state.title = title;
+            state.stage = 2;
+            render("preview");
+          },
         );
       }
       function closeDialog() {
@@ -1893,12 +1906,6 @@
         reviewPosition();
         announce(state.questions.length + "문항을 구성했습니다.");
       }
-      document.addEventListener("input", (event) => {
-        if (event.target.id === "exam-title") {
-          state.title = event.target.value;
-          $("#paper-title").textContent = state.title || "제목 없는 시험지";
-        }
-      });
       document.addEventListener("click", (event) => {
         if (event.target.closest("[data-scope-open]")) {
           scopeController.open(state.draft.scopeIds);
@@ -1929,9 +1936,7 @@
           render("config-heading");
           window.scrollTo(0, 0);
         } else if (action === "preview") {
-          state.stage = 3;
-          render("exam-title");
-          window.scrollTo(0, 0);
+          openOutput();
         } else if (action === "back-review") {
           state.stage = 2;
           render("review-heading");

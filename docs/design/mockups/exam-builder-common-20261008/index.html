@@ -518,7 +518,7 @@
       <div class="principle">
         <div>
           <strong>공통 흐름</strong>
-          <p>범위 선택 → 문항 구성·수정 → 출력</p>
+          <p>범위 선택 → 문항 구성·수정 → 공통 양식 구성</p>
         </div>
         <div>
           <strong>진입한 과목 그대로</strong>
@@ -598,7 +598,7 @@
           file: "a-guided.html",
           title: "단계별 진행",
           desc: "한 번에 한 가지에 집중합니다. 범위를 정한 다음에 문항을 보여줍니다.",
-          flow: "범위 설정 → 문항 검토 → 출력 설정",
+          flow: "범위 설정 → 문항 검토 → 공통 양식 구성",
           fit: "처음 사용하는 교사 · 적은 화면 부담",
           image: "previews/a.png",
         },
@@ -607,7 +607,7 @@
           file: "b-workbench.html",
           title: "조건과 초안",
           desc: "왼쪽의 조건과 오른쪽의 초안을 함께 보며 시험지를 다듬습니다.",
-          flow: "조건 패널 ↔ 구성된 문항 → 출력",
+          flow: "조건 패널 ↔ 구성된 문항 → 공통 양식 구성",
           fit: "조건을 자주 조정하는 제작",
           image: "previews/b.png",
         },
@@ -616,7 +616,7 @@
           file: "c-paper.html",
           title: "시험지 중심",
           desc: "실제 시험지처럼 읽으면서 해당 문제 옆에서 바로 수정합니다.",
-          flow: "범위 설정 → 시험지 위에서 수정 → 출력",
+          flow: "범위 설정 → 시험지 위에서 수정 → 공통 양식 구성",
           fit: "문항 내용 · 지면을 중시하는 검토",
           image: "previews/c.png",
         },
@@ -625,7 +625,7 @@
           file: "d-blueprint.html",
           title: "단원별 구성표",
           desc: "어느 범위에서 몇 문제를 낼지 먼저 정하고, 단원별로 확인합니다.",
-          flow: "범위별 문항 배분 → 묶음 검토 → 출력",
+          flow: "범위별 문항 배분 → 묶음 검토 → 공통 양식 구성",
           fit: "여러 단원이 섞인 정기 평가",
           image: "previews/d.png",
         },
@@ -647,7 +647,7 @@
               `<article class="card"><a class="thumbnail" href="${inContext(c.file)}" aria-label="${c.id} ${c.title} 시안 열기"><img src="${c.image}" alt="${c.id}안 ${c.title} 실제 시안 화면"><span class="thumb-tag">수학 진입 예시</span></a><div class="card-body"><div class="title-row"><span class="letter">${c.id}</span><h2>${c.title}</h2></div><p>${c.desc}</p><div class="flow">${c.flow}</div><div class="fit"><b>잘 맞는 작업</b>${c.fit}</div><div class="card-actions"><button data-preview="${c.id}">${c.id}안 눌러보기</button><a href="${inContext(c.file)}" target="_blank" rel="noopener">새 창 ↗</a></div></div></article>`,
           )
           .join("") +
-        `<aside class="shared"><h2>다섯 안의 공통 약속</h2><ul><li><b>기존 과목 맥락 유지</b><span>교체 · 추가 · 삭제 · 순서 · 출력</span></li><li><b>선택 범위만 간결하게 표시</b><span>전체 단원 목록은 범위 선택창에서 탐색</span></li><li><b>부족한 문항 수를 그대로 안내</b><span>범위나 난이도를 몰래 넓히지 않기</span></li><li><b>초안 수정에는 되돌리기</b><span>변경한 내용과 현재 문항 수를 확인</span></li></ul></aside>`;
+        `<aside class="shared"><h2>다섯 안의 공통 약속</h2><ul><li><b>기존 과목 맥락 유지</b><span>교체 · 추가 · 삭제 · 순서 · 출력</span></li><li><b>선택 범위만 간결하게 표시</b><span>전체 단원 목록은 범위 선택창에서 탐색</span></li><li><b>부족한 문항 수를 그대로 안내</b><span>범위나 난이도를 몰래 넓히지 않기</span></li><li><b>문제 추출과 같은 양식 구성</b><span>평가원 · 정통 · 모던 · 워크북 · 자습 · 유형</span></li><li><b>초안 수정에는 되돌리기</b><span>변경한 내용과 현재 문항 수를 확인</span></li></ul></aside>`;
       document.getElementById("tabs").innerHTML = concepts
         .map(
           (c) =>

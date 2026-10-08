@@ -980,36 +980,10 @@
         <div id="picker-list" class="candidates"></div>
       </div>
     </dialog>
-    <dialog id="output" class="preview-dialog" aria-labelledby="output-title">
-      <div class="dialog-inner">
-        <div class="dialog-head">
-          <h2 id="output-title">출력 미리보기</h2>
-          <button
-            class="quiet"
-            data-close="output"
-            aria-label="출력 미리보기 닫기"
-          >
-            닫기
-          </button>
-        </div>
-        <div class="dialog-controls">
-          <label class="field" style="flex: 1; min-width: 150px"
-            >시험지 제목<input
-              type="text"
-              id="paper-title"
-              maxlength="80" /></label
-          ><label class="scope" style="border: 0"
-            ><input id="paper-answer" type="checkbox" />정답 포함</label
-          ><button class="primary" id="print">인쇄</button>
-        </div>
-        <p class="caption muted preview-note" style="margin-top: 12px">
-          예시 문항으로 만든 시안입니다. 저장 없이 인쇄 미리보기를 확인합니다.
-        </p>
-        <div id="paper" class="paper"></div>
-      </div>
-    </dialog>
     <script src="scope-data.js"></script>
     <script src="scope-picker.js"></script>
+    <link rel="stylesheet" href="output-bridge.css" />
+    <script src="output-bridge.js"></script>
     <script>
       "use strict";
       const SUBJECTS = {
@@ -1416,7 +1390,7 @@
         const applied = state.applied;
         const uncovered = applied.scopeIds.length - applied.scope.length;
         $("review").innerHTML =
-          `<div class="scope-bar"><div><strong>${state.subject} · ${applied.grade}</strong><span>${escapeHtml(scopeText(true))} / ${applied.level}</span></div><button class="quiet" id="edit-scope">조건 수정</button></div>${uncovered ? `<p class="scope-coverage">선택한 범위 중 ${uncovered}개는 문항이 연결되지 않았습니다. 아래 초안은 선택한 시안 문항 범위에서만 구성했습니다.</p>` : ""}<div class="review-grid"><div class="review-main"><div class="review-tools"><h2 tabindex="-1">문항 검토 <span>${qs.length}</span></h2><div class="actions"><label class="caption"><input id="answers" type="checkbox"${state.answers ? " checked" : ""}> 정답 보기</label><button id="add">＋ 문항 추가</button></div></div>${qs.length < applied.count ? `<div class="alert">목표 ${applied.count}문항 · 현재 ${qs.length}문항입니다. 문항을 추가하거나 조건을 조정할 수 있습니다.</div>` : ""}${qs.length ? `<div class="questions">${qs.map(qCard).join("")}</div>` : `<div class="empty"><h3>구성된 문항이 없습니다.</h3><p class="muted">문항 추가 또는 조건 수정으로 이어가세요.</p></div>`}${meta.passages.length ? `<details style="margin-top:20px"><summary style="cursor:pointer;min-height:44px;padding:10px 0">공통 지문 확인 · 출력 시 문항과 함께 표시</summary>${[...new Set(qs.map((q) => q.unit))].map((u) => `<div class="passage"><strong>${meta.units[u]}</strong>${escapeHtml(meta.passages[u])}</div>`).join("")}</details>` : ""}</div><aside class="summary panel"><h3>시험지 구성</h3><div class="metric"><span>전체 문항</span><strong>${qs.length}문항</strong></div>${["기본", "보통", "심화"].map((l) => `<div class="metric"><span>${l}</span><strong>${qs.filter((q) => q.level === l).length}</strong></div>`).join("")}<div class="distribution" aria-hidden="true">${["기본", "보통", "심화"].map((l, i) => `<span style="flex:${qs.filter((q) => q.level === l).length};opacity:${1 - i * 0.25}"></span>`).join("")}</div><nav class="numbers" aria-label="구성된 문항으로 이동">${qs.map((q, i) => `<a href="#q-${q.id}" aria-label="${i + 1}번 문항으로 이동">${i + 1}</a>`).join("")}</nav><button id="open-output" class="primary"${!qs.length ? " disabled" : ""}>출력 미리보기 →</button><p>제목 · 학생용 · 정답 포함 설정</p></aside></div>`;
+          `<div class="scope-bar"><div><strong>${state.subject} · ${applied.grade}</strong><span>${escapeHtml(scopeText(true))} / ${applied.level}</span></div><button class="quiet" id="edit-scope">조건 수정</button></div>${uncovered ? `<p class="scope-coverage">선택한 범위 중 ${uncovered}개는 문항이 연결되지 않았습니다. 아래 초안은 선택한 시안 문항 범위에서만 구성했습니다.</p>` : ""}<div class="review-grid"><div class="review-main"><div class="review-tools"><h2 tabindex="-1">문항 검토 <span>${qs.length}</span></h2><div class="actions"><label class="caption"><input id="answers" type="checkbox"${state.answers ? " checked" : ""}> 정답 보기</label><button id="add">＋ 문항 추가</button></div></div>${qs.length < applied.count ? `<div class="alert">목표 ${applied.count}문항 · 현재 ${qs.length}문항입니다. 문항을 추가하거나 조건을 조정할 수 있습니다.</div>` : ""}${qs.length ? `<div class="questions">${qs.map(qCard).join("")}</div>` : `<div class="empty"><h3>구성된 문항이 없습니다.</h3><p class="muted">문항 추가 또는 조건 수정으로 이어가세요.</p></div>`}${meta.passages.length ? `<details style="margin-top:20px"><summary style="cursor:pointer;min-height:44px;padding:10px 0">공통 지문 확인 · 출력 시 문항과 함께 표시</summary>${[...new Set(qs.map((q) => q.unit))].map((u) => `<div class="passage"><strong>${meta.units[u]}</strong>${escapeHtml(meta.passages[u])}</div>`).join("")}</details>` : ""}</div><aside class="summary panel"><h3>시험지 구성</h3><div class="metric"><span>전체 문항</span><strong>${qs.length}문항</strong></div>${["기본", "보통", "심화"].map((l) => `<div class="metric"><span>${l}</span><strong>${qs.filter((q) => q.level === l).length}</strong></div>`).join("")}<div class="distribution" aria-hidden="true">${["기본", "보통", "심화"].map((l, i) => `<span style="flex:${qs.filter((q) => q.level === l).length};opacity:${1 - i * 0.25}"></span>`).join("")}</div><nav class="numbers" aria-label="구성된 문항으로 이동">${qs.map((q, i) => `<a href="#q-${q.id}" aria-label="${i + 1}번 문항으로 이동">${i + 1}</a>`).join("")}</nav><button id="open-output" class="primary"${!qs.length ? " disabled" : ""}>양식 구성 · 출력 →</button><p>양식 선택 · 단 수 · 풀이 공간 · 정답지</p></aside></div>`;
         $("edit-scope").onclick = () => {
           $("setup").hidden = false;
           $("review").hidden = true;
@@ -1513,23 +1487,35 @@
         $("picker").showModal();
       }
       function preview() {
-        returnFocus = document.activeElement;
-        $("paper-title").value = state.title;
-        $("paper-answer").checked = state.answers;
-        renderPaper();
-        $("output").showModal();
-      }
-      function renderPaper() {
         const meta = SUBJECTS[state.subject];
-        $("paper").innerHTML =
-          `<h2>${escapeHtml($("paper-title").value || "시험지")}</h2><div class="paper-meta"><span>${state.applied.grade} ${state.subject} · ${state.questions.length}문항</span><span>이름 __________________</span></div><div class="paper-list">${state.questions.map((q, i) => `<div class="paper-q">${meta.passages[q.unit] ? `<div class="paper-passage">${escapeHtml(meta.passages[q.unit])}</div>` : ""}<b>${i + 1}.</b> ${escapeHtml(q.body)}${$("paper-answer").checked ? `<p class="answer">정답 · ${escapeHtml(q.answer)}</p>` : ""}</div>`).join("")}</div>`;
+        ExamOutput.open(
+          {
+            subject: state.subject === "영어" ? "english" : "math",
+            title: state.title,
+            questions: state.questions.map((q) => ({
+              id: q.id,
+              prompt: q.body,
+              answer: q.answer,
+              passage: meta.passages[q.unit] || "",
+              grade: state.applied.grade,
+              unit: meta.units[q.unit],
+              level: q.level,
+            })),
+          },
+          ({ title, questionIds }) => {
+            if (
+              title !== state.title ||
+              questionIds.join() !== state.questions.map((q) => q.id).join()
+            )
+              snapshot();
+            const byId = new Map(state.questions.map((q) => [q.id, q]));
+            state.questions = questionIds.map((id) => byId.get(id));
+            state.title = title;
+            renderReview();
+            $("open-output")?.focus({ preventScroll: true });
+          },
+        );
       }
-      $("paper-title").oninput = () => {
-        state.title = $("paper-title").value;
-        renderPaper();
-      };
-      $("paper-answer").onchange = renderPaper;
-      $("print").onclick = () => window.print();
       document
         .querySelectorAll("[data-close]")
         .forEach((el) => (el.onclick = () => $(el.dataset.close).close()));
