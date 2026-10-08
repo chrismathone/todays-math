@@ -1,18 +1,19 @@
 # 엔진 보강 ③-0 — 고등 엔진 배선 · 적재 전 관문 · 공통수학1 168유형 적재 준비 (2026-10-08)
 
 지시서: `E:\todays-math-textbook-import\briefs\brief-high-wiring.md` · 합의안: `docs/planning/tracks/engine-upgrade-consensus-20261008.md` §3-3 · §3-5 · §5 의 ③-0 · §6-1 · §6-2.
-가지 `chrismathone/high-wiring`(origin/main `ff3ca6a4e` 에서 갈림) · 커밋 셋:
+가지 `chrismathone/high-wiring`(origin/main `ff3ca6a4e` 에서 갈림) · 커밋 넷:
 
 | 커밋 | 무엇 |
 |---|---|
 | `db7688465` | 배선 — 열쇠 계약 · 적재기 `HighTarget` · 미적재 검사 정확한 키 · 제자리 갱신 · `high:` 출처 접두사 · 등록부 주입 · 168 고정값 → 과목별 보존 · 적재 계획 |
 | `6cf19a387` | 적재 전 관문(고등 공용 판정기) · 값으로 견주는 보기 · 생성기 수리 다섯 · 수리마다 시험 · 탐침 · 변이 하네스 |
-| (이 보고서의 커밋) | 보고서 · 표본 지면(PNG · PDF · 글) |
+| `818aba923` | 보고서 · 표본 지면(PNG · PDF · 글) · 변이 [33] 의 가르는 예 · 무거운 적재 시험 가볍게 |
+| (그 뒤 커밋) | 전체 시험 결과(§8) |
 
 작업자가 한 번 바뀌었다(세션이 끊겨 이어 받음) — 앞 작업자가 첫 커밋과 관문 · 수리의 초안까지, 뒤 작업자가 수리의 시험 · 탐침 · 변이 · 드라이런 · 표본 · 이 보고서를 했다.
 
 🔴 **공유 DB 에 적재하지 않았다**(드라이런 · 읽기만) · **main 에 밀지 않았다** · `SUPPORTED_GRADES` 는 안 건드렸다 · 판정형 파일(`src/lib/middle/judge/**`)은 안 건드렸다.
-🔴 **이 가지는 적재 전에는 main 에 못 간다** — `checkUnloadedTypes` 가 이제 고등 168자리를 «새로 안 나가게 된 유형»으로 센다(§5.2). **리드의 적재가 남았다 — DB 먼저 · 코드 나중**(§7-1).
+🔴 **이 가지는 적재 전에는 main 에 못 간다** — `checkUnloadedTypes` 가 이제 고등 168자리를 «새로 안 나가게 된 유형»으로 센다(§5.4). **리드의 적재가 남았다 — DB 먼저 · 코드 나중**(§7-1).
 
 ## 1. 요약
 
@@ -312,7 +313,17 @@ variantKey  high:공통수학1|항등식과 나머지정리|03|s20261008|v0
 | `chooseAllRule.test.ts` «초등 엔진 — 소단원 전량 × 갈래 × 씨앗 12» | 이 가지와 무관(초등 훑기) · 판정형 보고서 §8 이 적은 그 부하성 시간 초과 · 따로 돌려 18/18 초록(훑기 10초 안쪽) |
 | `loadHighRows.test.ts` «변형 공간이 좁아 못 채우면 던진다» | 이 가지의 시험 — 픽스처 유형(수천 가지)으로 5,000벌을 물어 던지기까지 30초가 걸렸다. **낼 수 있는 문항이 둘뿐인 유형으로 다섯 벌**을 묻게 고쳤다(시험 전체 0.3초) · 32/32 초록 |
 
-전체 vitest 는 돌리는 중이다 — 결과는 이 절에 이어 적는다.
+### 8.1 전체 vitest (커밋 `818aba923` 의 코드 · 한 번에 1,575초)
+
+**1,350파일 중 30파일 · 34,867건 중 42건 실패**(1,291파일 통과 · 29 건너뜀). 실패 30파일을 갈랐다 — **이 가지의 변경으로 생긴 실패는 0** 이다. 고등 모듈 · 적재 · 미적재 · 제자리 갱신 · 출처 판정 · 형식 필터 · 판정형 시험은 전체 실행에서도 전부 초록이었다(가볍게 고친 `loadHighRows` 포함).
+
+| 갈래 | 파일 | 판단 |
+|---|---:|---|
+| 다시 돌리니 초록 — 전체 실행의 부하 속 시간 초과(20초 상한 · 그림 렌더 120 ~ 300초 상한) | 18 | `chooseAllRule` · `choiceCountRule` · `affordanceGuard` · `elementaryDifficulty` · `elemFigureReference` · `elemNoNegativeAnswer` · `elemStemSelfContained` · `elemTierBacksolveEligibility` · `elemTiersG4Line` · `middleFigureRenderable` · `middleM3Func` · `middleM3Stat2` · `conceptBlankSheetCode` · `conceptStudentClearExampleCorrections` · `devAiFigureDash` · `AdminAccountRelations` · `TextbookStudioGuards` · `fadingCatalogResponsive`. 실패 파일만 따로 돌려 아홉이 초록 · 남은 아홉은 한 번에 하나씩 돌려 초록 |
+| **기존 잔고** — 따로 돌려도 같은 실패 | 11 | 교과서 스튜디오(`TextbookStudio`) · 빠른 만들기(`textbookQuickCreate`) · 회수 측정 넷(`textbookRecoveryMeasurement` · `textbookRecoveryWriter` · `textbookTeacherBlank` · `textbookBankActivityScaffolds`) · 문제은행 출처 필터(«교과서» 칸 — `ProblemBank`) · 그림 보기 대응(`bankChoiceFigures`) · Decision Log 머리글(`decisionLogNumbers`) · 영어 라우트 둘의 `withErrorLog` 누락(`errorLogRouteCoverage`) · `load-school-textbook.ts:1227` 기출 배선 «판단불가»(`examWiringAudit`). 판정형 보고서 §8 이 갈래 기준 커밋에서 확인한 11파일과 같다 |
+| 이 기계의 상태 | 1 | `devAiCliProcess` 2건 — `EBUSY: resource busy or locked, rmdir …\Temp\today-math-subscription-…`. `taskkill.exe` 로 자식 프로세스를 끊은 뒤 임시 폴더를 지우는 시험인데, 이 기계는 지금 프로세스 도구(`tasklist` · CIM)가 응답하지 않는다. 한 번에 하나씩 돌려도 같다 · 이 가지가 바꾼 파일과 무관 |
+
+기존 잔고 11파일 가운데 이 가지가 바꾼 파일을 직접 import 하는 것은 없다. 출처 판정(`provenance.ts`)을 화면 부품이 거쳐 쓰는 둘(`ProblemBank` «네 출처를 모두 고를 수 있다» · `bankChoiceFigures`)은 **그 파일만 갈래 기준 판(`ff3ca6a4e`)으로 되돌려 다시 돌려도 똑같이 실패한다** — `high:` 접두사 탓이 아니다(되돌린 파일은 바로 원복 · `git diff` 깨끗).
 
 ## 9. 이번에 밟은 함정 (다음 사람에게)
 
