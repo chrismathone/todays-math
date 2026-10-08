@@ -1,0 +1,227 @@
+{
+  "schemaVersion": 1,
+  "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bumil-twin-v2\\metadata-review.json",
+  "sha256": "89e90cadb0f21bde9e9d12bdf6d2613de879ecfef9b86799e3ab8b0792ddb6ab",
+  "selected": [
+    {
+      "n": 5,
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-5",
+      "sourceContentSha256": "9d7184823e0d2561574b0c2944dcb5e5ad2429613d8e467c42504f80545adeb7",
+      "actualUnitProposal": {
+        "status": "proposed",
+        "unitId": "03097b76-d9cb-4525-a520-b70c03a45c77",
+        "familyKey": "mid:3-1|이차함수의 그래프 ⑵|08",
+        "currentUnit": {
+          "id": "03097b76-d9cb-4525-a520-b70c03a45c77",
+          "grade": "중3",
+          "chapter": "4. 이차함수",
+          "section": "이차함수 y=ax^2+bx+c의 그래프",
+          "semester": 1,
+          "orderIndex": 479,
+          "problemCodePrefix": "J30402"
+        },
+        "currentRegistryMatch": {
+          "key": "3-1|이차함수의 그래프 ⑵|08",
+          "grade": "중3",
+          "unitSection": "이차함수 y=ax^2+bx+c의 그래프",
+          "rpmBook": "3-1",
+          "rpmMinor": "이차함수의 그래프 ⑵",
+          "rpmType": "08",
+          "rpmTitle": "이차함수의 그래프와 삼각형의 넓이"
+        },
+        "liveCount": 22,
+        "checkedAt": "2026-10-07 15:57:15.290971+00",
+        "evidence": "꼭짓점과 x축 두 교점으로 만든 삼각형의 밑변·높이를 구한다. 넓이의 최대를 묻지 않아 최댓값·최솟값 단원이 아니다.",
+        "candidates": []
+      },
+      "sourceMethodProposal": "완전제곱식으로 꼭짓점을 구하고 y=0인 이차방정식을 인수분해하여 밑변·높이와 삼각형 넓이를 계산한다.",
+      "finalStatuses": {
+        "mathematicalCorrectness": "not-run",
+        "gradeCurriculum": "pending",
+        "metadata": "pending",
+        "rights": "pending",
+        "similarity": "pending",
+        "loadable": false
+      }
+    },
+    {
+      "n": 10,
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-10",
+      "sourceContentSha256": "65593e3d19187b6219ba9336e8a6d2b2a7e879c15bd83e8e71d709fd1ac2b993",
+      "actualUnitProposal": {
+        "status": "pending",
+        "unitId": null,
+        "familyKey": null,
+        "currentUnit": null,
+        "currentRegistryMatch": null,
+        "liveCount": null,
+        "checkedAt": "2026-10-07 15:57:15.290971+00",
+        "evidence": "실생활의 올려본각 높이 문제이면서 비특수각 58°의 표 값과 눈높이 보정이 필수다. 기존 활용03과 표 활용17이 서로 다른 Unit에 등록되어 있어 주 단원 선택을 보류한다.",
+        "candidates": [
+          {
+            "registryKey": "3-2|삼각비의 활용|03",
+            "registryTitle": "실생활에서 직각삼각형의 변의 길이의 활용 ⑴",
+            "section": "삼각비의 활용",
+            "unitId": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+            "family": "mid:3-2|삼각비의 활용|03",
+            "confidence": "low",
+            "evidence": "생활 장면과 올려본각 높이 절차는 일치하지만 현재 엔진은 특수각·지면 관측형이다.",
+            "sameUnitLiveCount": 24,
+            "currentUnit": {
+              "id": "0bf7d13f-6e7a-490d-bf0c-ba54a76e2e54",
+              "grade": "중3",
+              "chapter": "5. 삼각비",
+              "section": "삼각비의 활용",
+              "semester": 2,
+              "orderIndex": 483,
+              "problemCodePrefix": "J30503"
+            },
+            "currentRegistryMatch": {
+              "key": "3-2|삼각비의 활용|03",
+              "grade": "중3",
+              "unitSection": "삼각비의 활용",
+              "rpmBook": "3-2",
+              "rpmMinor": "삼각비의 활용",
+              "rpmType": "03",
+              "rpmTitle": "실생활에서 직각삼각형의 변의 길이의 활용 ⑴"
+            },
+            "currentLiveCount": 24
+          },
+          {
+            "registryKey": "3-2|삼각비|17",
+            "registryTitle": "삼각비의 표를 이용하여 변의 길이 구하기",
+            "section": "삼각비의 값",
+            "unitId": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+            "family": "mid:3-2|삼각비|17",
+            "confidence": "low",
+            "evidence": "비특수각 표에서 변의 길이를 구하는 절차는 일치하지만 생활 높이·눈높이 보정은 현재 엔진에 없다.",
+            "sameUnitLiveCount": 20,
+            "currentUnit": {
+              "id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+              "grade": "중3",
+              "chapter": "5. 삼각비",
+              "section": "삼각비의 값",
+              "semester": 2,
+              "orderIndex": 482,
+              "problemCodePrefix": "J30502"
+            },
+            "currentRegistryMatch": {
+              "key": "3-2|삼각비|17",
+              "grade": "중3",
+              "unitSection": "삼각비의 값",
+              "rpmBook": "3-2",
+              "rpmMinor": "삼각비",
+              "rpmType": "17",
+              "rpmTitle": "삼각비의 표를 이용하여 변의 길이 구하기"
+            },
+            "currentLiveCount": 20
+          }
+        ]
+      },
+      "sourceMethodProposal": "수평거리·눈높이·높이 차를 직각삼각형으로 구성하고 제공된 표의 tan58° 값으로 계산한 뒤 눈높이를 더한다.",
+      "finalStatuses": {
+        "mathematicalCorrectness": "not-run",
+        "gradeCurriculum": "pending",
+        "metadata": "pending",
+        "rights": "pending",
+        "similarity": "pending",
+        "loadable": false
+      }
+    },
+    {
+      "n": 18,
+      "sourceExternalId": "personal-9967cfbb759aa6d369883bac4c986aaa-18",
+      "sourceContentSha256": "f4deafdc27156f764d585406d49164f2b783b0fa234d2f03c57ba8450da08819",
+      "actualUnitProposal": {
+        "status": "pending",
+        "unitId": "03097b76-d9cb-4525-a520-b70c03a45c77",
+        "familyKey": null,
+        "currentUnit": {
+          "id": "03097b76-d9cb-4525-a520-b70c03a45c77",
+          "grade": "중3",
+          "chapter": "4. 이차함수",
+          "section": "이차함수 y=ax^2+bx+c의 그래프",
+          "semester": 1,
+          "orderIndex": 479,
+          "problemCodePrefix": "J30402"
+        },
+        "currentRegistryMatch": null,
+        "liveCount": null,
+        "checkedAt": "2026-10-07 15:57:15.290971+00",
+        "evidence": "완전제곱으로 얻는 미지 꼭짓점이 직선 위에 있다는 제약과 다른 점 조건을 함께 이용하는 계수 결정 문제다. 기존02는 꼭짓점·축 계산, 10은 꼭짓점 좌표가 이미 주어지는 형태여서 이 복합 제약까지 어느 family에 속하는지 보류한다.",
+        "candidates": [
+          {
+            "registryKey": "3-1|이차함수의 그래프 ⑵|02",
+            "registryTitle": "이차함수 의 그래프의 꼭짓점과 축",
+            "section": "이차함수 y=ax^2+bx+c의 그래프",
+            "unitId": "03097b76-d9cb-4525-a520-b70c03a45c77",
+            "family": "mid:3-1|이차함수의 그래프 ⑵|02",
+            "confidence": "low",
+            "evidence": "꼭짓점의 대수적 표현은 일치하지만 직선 위 제약으로 계수를 결정하는 단계가 추가된다.",
+            "sameUnitLiveCount": 21,
+            "currentUnit": {
+              "id": "03097b76-d9cb-4525-a520-b70c03a45c77",
+              "grade": "중3",
+              "chapter": "4. 이차함수",
+              "section": "이차함수 y=ax^2+bx+c의 그래프",
+              "semester": 1,
+              "orderIndex": 479,
+              "problemCodePrefix": "J30402"
+            },
+            "currentRegistryMatch": {
+              "key": "3-1|이차함수의 그래프 ⑵|02",
+              "grade": "중3",
+              "unitSection": "이차함수 y=ax^2+bx+c의 그래프",
+              "rpmBook": "3-1",
+              "rpmMinor": "이차함수의 그래프 ⑵",
+              "rpmType": "02",
+              "rpmTitle": "이차함수 의 그래프의 꼭짓점과 축"
+            },
+            "currentLiveCount": 21
+          },
+          {
+            "registryKey": "3-1|이차함수의 그래프 ⑵|10",
+            "registryTitle": "이차함수의 식 구하기 꼭짓점과 다른 한 점을 알 때",
+            "section": "이차함수 y=ax^2+bx+c의 그래프",
+            "unitId": "03097b76-d9cb-4525-a520-b70c03a45c77",
+            "family": "mid:3-1|이차함수의 그래프 ⑵|10",
+            "confidence": "low",
+            "evidence": "꼭짓점과 다른 한 점으로 계수를 결정하지만 이 문항은 꼭짓점 좌표를 먼저 직선 제약에서 도출해야 한다.",
+            "sameUnitLiveCount": 22,
+            "currentUnit": {
+              "id": "03097b76-d9cb-4525-a520-b70c03a45c77",
+              "grade": "중3",
+              "chapter": "4. 이차함수",
+              "section": "이차함수 y=ax^2+bx+c의 그래프",
+              "semester": 1,
+              "orderIndex": 479,
+              "problemCodePrefix": "J30402"
+            },
+            "currentRegistryMatch": {
+              "key": "3-1|이차함수의 그래프 ⑵|10",
+              "grade": "중3",
+              "unitSection": "이차함수 y=ax^2+bx+c의 그래프",
+              "rpmBook": "3-1",
+              "rpmMinor": "이차함수의 그래프 ⑵",
+              "rpmType": "10",
+              "rpmTitle": "이차함수의 식 구하기 꼭짓점과 다른 한 점을 알 때"
+            },
+            "currentLiveCount": 22
+          }
+        ]
+      },
+      "sourceMethodProposal": "y=a(x-1)²+(b-a)로 고쳐 꼭짓점을 읽는다. 꼭짓점과 주어진 점의 대입으로 a,b에 대한 두 일차식을 만들고 연립일차방정식으로 푼다.",
+      "finalStatuses": {
+        "mathematicalCorrectness": "not-run",
+        "gradeCurriculum": "pending",
+        "metadata": "pending",
+        "rights": "pending",
+        "similarity": "pending",
+        "loadable": false
+      }
+    }
+  ],
+  "sourceContentAndExternalIdsMatch": true,
+  "role": "historical source-only taxonomy/method proposal; not current candidate or classification approval",
+  "confidenceFieldsUsedForAssignment": false
+}

@@ -1,0 +1,241 @@
+{
+  "schemaVersion": 1,
+  "readOnly": true,
+  "records": [
+    {
+      "id": "quadratic08",
+      "path": "D:\\todays-math\\src\\lib\\middle\\m3Func.ts",
+      "fileSha256": "ab681385a70d9450cdcc8230c3268618ec2be3ff4aada862e038f94669a1dbf3",
+      "lines1Based": [
+        1660,
+        1686
+      ],
+      "excerptSha256": "d6b43a02ed7d80cca4ba41a97f856712cf901b1cfe36696c761b034ce1fa795c",
+      "excerpt": "  g2(\"08\", \"이차함수의 그래프와 삼각형의 넓이\", SEC.일반형, \"심화하\", (rng) =>\n    attempt(300, (): Body | null => {\n      const a = pick(rng, [1, -1, 2, -2] as const);\n      const r1 = intBetween(rng, -5, 1);\n      const r2 = r1 + pick(rng, [2, 4, 6] as const);\n      if (Math.abs(r2) > 6) return null;\n      if (r1 === 0 || r2 === 0) return null; // y절편이 0 이면 삼각형이 안 생긴다\n      const A = rInt(a);\n      const B = rInt(-a * (r1 + r2));\n      const C = rInt(a * r1 * r2);\n      const p = (r1 + r2) / 2;\n      if (!Number.isInteger(p)) return null;\n      // 꼭짓점 y좌표 — y=a(x-r1)(x-r2) 의 꼭짓점은 (p, -a(r2-r1)^2/4) 이다.\n      const vy = -(a * (r2 - r1) * (r2 - r1)) / 4;\n      if (!Number.isInteger(vy)) return null;\n      const fig = parabolaFig(rInt(a), p, vy, [\n        [r1, 0],\n        [r2, 0],\n        [0, C[0]],\n      ]);\n      if (fig === null) return null;\n      const area = (Math.abs(r2 - r1) * Math.abs(C[0])) / 2;\n      if (!Number.isInteger(area)) return null;\n      return {\n        content: `오른쪽 그림과 같이 이차함수 $y=${genRhs(A, B, C)}$의 그래프가 $x$축과 두 점 $\\\\mathrm{A}$, $\\\\mathrm{B}$에서 만나고 $y$축과 점 $\\\\mathrm{C}$에서 만난다. 삼각형 $\\\\mathrm{ABC}$의 넓이를 구하시오.`,\n        answer: `$${area}$`,\n        solution: `$y=0$${eulReul(0)} 대입하면 $x=${r1}$ 또는 $x=${r2}$이므로 $\\\\mathrm{A}${pt(r1, 0)}$, $\\\\mathrm{B}${pt(r2, 0)}$이다.\\n$x=0$${eulReul(0)} 대입하면 $y=${C[0]}$이므로 $\\\\mathrm{C}(0, ${C[0]})$이다.\\n밑변의 길이는 $${r2 - r1}$, 높이는 $${Math.abs(C[0])}$이므로 넓이는 $\\\\dfrac{1}{2}\\\\times${r2 - r1}\\\\times${Math.abs(C[0])}=${area}$이다.`,",
+      "observedPurpose": "general quadratic, two x-intercepts and y-intercept C, scalar triangle area",
+      "difficultyObservation": "declared 심화하"
+    },
+    {
+      "id": "quadratic01",
+      "path": "D:\\todays-math\\src\\lib\\middle\\m3Func.ts",
+      "fileSha256": "ab681385a70d9450cdcc8230c3268618ec2be3ff4aada862e038f94669a1dbf3",
+      "lines1Based": [
+        1440,
+        1455
+      ],
+      "excerptSha256": "ad9fcbc5ab67760a9b27cd16361104588dc3721abe5e89f6254bad582053401d",
+      "excerpt": "  g2(\"01\", \"이차함수 를 의 꼴로 고치기\", SEC.일반형, \"기본\", (rng) =>\n    attempt(60, (): Body | null => {\n      const a = pick(rng, A_INT);\n      const p = intBetween(rng, 1, 5) * pick(rng, SIGNS);\n      const q = intBetween(rng, -9, 9);\n      const { A, B, C } = expand(rInt(a), p, q);\n      if (Math.abs(C[0]) > 60) return null;\n      return {\n        content: `이차함수 $y=${genRhs(A, B, C)}$${C[0] !== 0 ? eulReul(C[0]) : B[0] !== 0 ? \"를\" : \"을\"} $y=a(x-p)^2+q$ 꼴로 나타내시오. (단, $a$, $p$, $q$는 상수이다.)`,\n        answer: `$y=${stdRhs(rInt(a), p, q)}$`,\n        solution: toStdLines(a, p, q).join(\"\\n\"),\n        facts: { a, p, q, A: A[0], B: B[0], C: C[0] },\n        figureSpec: null,\n      };\n    }),\n  ),",
+      "observedPurpose": "known coefficients -> completed square form",
+      "difficultyObservation": "declared 기본"
+    },
+    {
+      "id": "quadratic02",
+      "path": "D:\\todays-math\\src\\lib\\middle\\m3Func.ts",
+      "fileSha256": "ab681385a70d9450cdcc8230c3268618ec2be3ff4aada862e038f94669a1dbf3",
+      "lines1Based": [
+        1457,
+        1482
+      ],
+      "excerptSha256": "9f36288393f9830b54f52d41d13805f175a0bfecb8eea94f702929a2ebc7bdd4",
+      "excerpt": "  g2(\"02\", \"이차함수 의 그래프의 꼭짓점과 축\", SEC.일반형, \"기본\", (rng) =>\n    attempt(60, (): Body | null => {\n      const a = pick(rng, A_INT);\n      const p = intBetween(rng, 1, 5) * pick(rng, SIGNS);\n      const q = intBetween(rng, -9, 9);\n      const { A, B, C } = expand(rInt(a), p, q);\n      if (Math.abs(C[0]) > 60) return null;\n      const mode = intBetween(rng, 0, 1);\n      if (mode === 0) {\n        return {\n          content: `이차함수 $y=${genRhs(A, B, C)}$의 그래프의 꼭짓점의 좌표와 축의 방정식을 차례로 구하시오.`,\n          answer: `$${pt(p, q)}$, $x=${p}$`,\n          solution: `${toStdLines(a, p, q).join(\"\\n\")}\\n따라서 꼭짓점의 좌표는 $${pt(p, q)}$이고 축의 방정식은 $x=${p}$이다.`,\n          facts: { mode, a, p, q, C: C[0] },\n          figureSpec: null,\n        };\n      }\n      return {\n        content: `이차함수 $y=${genRhs(A, B, C)}$의 그래프의 꼭짓점의 좌표를 $(s, t)$, 축의 방정식을 $x=k$라 할 때, $s+t+k$의 값을 구하시오.`,\n        answer: `$${2 * p + q}$`,\n        solution: `${toStdLines(a, p, q).join(\"\\n\")}\\n꼭짓점의 좌표는 $${pt(p, q)}$이고 축의 방정식은 $x=${p}$이므로 $s=${p}$, $t=${q}$, $k=${p}$이다.\\n따라서 $s+t+k=${2 * p + q}$이다.`,\n        facts: { mode, a, p, q, C: C[0], ans: 2 * p + q },\n        figureSpec: null,\n      };\n    }),\n  ),",
+      "observedPurpose": "known coefficients -> vertex/axis or coordinate sum",
+      "difficultyObservation": "declared 기본"
+    },
+    {
+      "id": "quadratic05",
+      "path": "D:\\todays-math\\src\\lib\\middle\\m3Func.ts",
+      "fileSha256": "ab681385a70d9450cdcc8230c3268618ec2be3ff4aada862e038f94669a1dbf3",
+      "lines1Based": [
+        1529,
+        1557
+      ],
+      "excerptSha256": "b8ac05ca71a01e2d849e82624136fa0ed2f91f7fa0e699a1355f84982ff22c4e",
+      "excerpt": "  g2(\"05\", \"이차함수의 그래프와 축축과의 교점\", SEC.일반형, \"응용\", (rng) =>\n    attempt(120, (): Body | null => {\n      // 근을 먼저 고른다 — 판별식이 제곱수라 근호가 지면에 안 나간다.\n      const a = pick(rng, [1, -1, 2, -2] as const);\n      const r1 = intBetween(rng, -5, 2);\n      const r2 = r1 + intBetween(rng, 2, 7);\n      if (Math.abs(r2) > 6) return null;\n      const A = rInt(a);\n      const B = rInt(-a * (r1 + r2));\n      const C = rInt(a * r1 * r2);\n      const mode = intBetween(rng, 0, 1);\n      if (mode === 0) {\n        return {\n          content: `이차함수 $y=${genRhs(A, B, C)}$의 그래프가 $x$축과 만나는 두 점을 각각 $\\\\mathrm{A}$, $\\\\mathrm{B}$라 할 때, 선분 $\\\\mathrm{AB}$의 길이를 구하시오.`,\n          answer: `$${r2 - r1}$`,\n          solution: `$y=0$${eulReul(0)} 대입하면 $${genRhs(A, B, C)}=0$이고, 좌변을 인수분해하면 $${factoredTex(A, r1, r2)}=0$이다.\\n즉 $x=${r1}$ 또는 $x=${r2}$이므로 두 점의 좌표는 $${pt(r1, 0)}$, $${pt(r2, 0)}$이다.\\n따라서 선분 $\\\\mathrm{AB}$의 길이는 $${r2}-${baseTex(r1)}=${r2 - r1}$이다.`,\n          facts: { mode, a, r1, r2, B: B[0], C: C[0], ans: r2 - r1 },\n          figureSpec: null,\n        };\n      }\n      return {\n        content: `이차함수 $y=${genRhs(A, B, C)}$의 그래프가 $x$축과 만나는 두 점 중 한 점의 좌표가 $${pt(r1, 0)}$일 때, 다른 한 점의 좌표를 구하시오.`,\n        answer: `$${pt(r2, 0)}$`,\n        solution: `$y=0$${eulReul(0)} 대입하여 좌변을 인수분해하면 $${factoredTex(A, r1, r2)}=0$이다.\\n즉 $x=${r1}$ 또는 $x=${r2}$이다.\\n따라서 다른 한 점의 좌표는 $${pt(r2, 0)}$이다.`,\n        facts: { mode, a, r1, r2, B: B[0], C: C[0] },\n        figureSpec: null,\n      };\n    }),\n  ),",
+      "observedPurpose": "known coefficients -> x-intercepts/base distance",
+      "difficultyObservation": "declared 응용"
+    },
+    {
+      "id": "quadratic10",
+      "path": "D:\\todays-math\\src\\lib\\middle\\m3Func.ts",
+      "fileSha256": "ab681385a70d9450cdcc8230c3268618ec2be3ff4aada862e038f94669a1dbf3",
+      "lines1Based": [
+        1777,
+        1801
+      ],
+      "excerptSha256": "b75bccaf992dc09053721a51ac29beb7d8370ec9a3ee7ec23d58de810abdcd0c",
+      "excerpt": "  g2(\n    \"10\",\n    \"이차함수의 식 구하기 꼭짓점과 다른 한 점을 알 때\",\n    SEC.일반형,\n    \"응용\",\n    (rng) =>\n      attempt(60, (): Body | null => {\n        const a = pick(rng, A_INT);\n        const p = intBetween(rng, -4, 4);\n        const q = intBetween(rng, -8, 8);\n        const s = pick(rng, [-3, -2, -1, 1, 2, 3] as const);\n        const m = p + s;\n        const v = a * s * s + q;\n        if (Math.abs(v) > 40) return null;\n        const { A, B, C } = expand(rInt(a), p, q);\n        if (Math.abs(C[0]) > 60) return null;\n        return {\n          content: `꼭짓점의 좌표가 $${pt(p, q)}$이고 점 $${pt(m, v)}$${eulReul(v)} 지나는 포물선을 그래프로 하는 이차함수의 식을 $y=ax^2+bx+c$ 꼴로 나타내시오. (단, $a$, $b$, $c$는 상수이다.)`,\n          answer: `$y=${genRhs(A, B, C)}$`,\n          solution: `꼭짓점의 좌표가 $${pt(p, q)}$이므로 구하는 식을 $y=a${sqTex(p)}${termTex(rInt(q), \"\")}$ 꼴로 놓는다.\\n$x=${m}$, $y=${v}$${eulReul(v)} 대입하면 $${termTex(rInt(s * s), \"a\", true)}${termTex(rInt(q), \"\")}=${v}$이므로 $a=${a}$이다.\\n따라서 $y=${stdEqGen(stdRhs(rInt(a), p, q), genRhs(A, B, C))}$이다.`,\n          facts: { a, p, q, m, v, A: A[0], B: B[0], C: C[0] },\n          figureSpec: null,\n        };\n      }),\n  ),",
+      "observedPurpose": "given full vertex and point -> quadratic equation",
+      "difficultyObservation": "declared 응용"
+    },
+    {
+      "id": "quadratic11",
+      "path": "D:\\todays-math\\src\\lib\\middle\\m3Func.ts",
+      "fileSha256": "ab681385a70d9450cdcc8230c3268618ec2be3ff4aada862e038f94669a1dbf3",
+      "lines1Based": [
+        1803,
+        1835
+      ],
+      "excerptSha256": "2b691e9ff272af77cba0b69870b873ff78d84b1448be9c12a4e848bd896b13e4",
+      "excerpt": "  g2(\n    \"11\",\n    \"이차함수의 식 구하기 축의 방정식과 두 점을 알 때\",\n    SEC.일반형,\n    \"응용\",\n    (rng) =>\n      attempt(60, (): Body | null => {\n        const a = pick(rng, A_INT);\n        const p = intBetween(rng, -3, 3);\n        const q = intBetween(rng, -8, 8);\n        const s1 = pick(rng, [-3, -2, -1] as const);\n        const s2 = pick(rng, [1, 2, 3] as const);\n        // ⚠️ 두 점이 **축에 대칭**이면(|s1|=|s2|) 대입한 두 식이 글자까지 같아진다.\n        //    조건이 하나뿐이므로 $a$ 가 안 정해지고 **답이 무수히 많다** — 그런데\n        //    적힌 답도 조건을 만족하니 **값 검사는 통과한다.** 9가지 중 3가지라\n        //    실측 33.3% 가 그랬다(2026-08-24). `probe-middle-uniqueness.ts` 가 잡아 준다.\n        if (s1 * s1 === s2 * s2) return null;\n        const m1 = p + s1;\n        const m2 = p + s2;\n        const v1 = a * s1 * s1 + q;\n        const v2 = a * s2 * s2 + q;\n        if (Math.abs(v1) > 40 || Math.abs(v2) > 40) return null;\n        const { A, B, C } = expand(rInt(a), p, q);\n        if (Math.abs(C[0]) > 60) return null;\n        return {\n          content: `축의 방정식이 $x=${p}$이고 두 점 $${pt(m1, v1)}$, $${pt(m2, v2)}$${eulReul(v2)} 지나는 포물선을 그래프로 하는 이차함수의 식을 $y=ax^2+bx+c$ 꼴로 나타내시오. (단, $a$, $b$, $c$는 상수이다.)`,\n          answer: `$y=${genRhs(A, B, C)}$`,\n          solution: `축의 방정식이 $x=${p}$이므로 구하는 식을 $y=a${sqTex(p)}+q$로 놓는다.\\n두 점의 좌표를 대입하면 $${termTex(rInt(s1 * s1), \"a\", true)}+q=${v1}$, $${termTex(rInt(s2 * s2), \"a\", true)}+q=${v2}$이다.\\n두 식을 연립하여 풀면 $a=${a}$, $q=${q}$이다.\\n따라서 $y=${stdEqGen(stdRhs(rInt(a), p, q), genRhs(A, B, C))}$이다.`,\n          facts: { a, p, q, m1, v1, m2, v2, A: A[0], B: B[0], C: C[0] },\n          figureSpec: null,\n        };\n      }),\n  ),",
+      "observedPurpose": "given axis and two explicit integer-coordinate points -> quadratic equation",
+      "difficultyObservation": "declared 응용"
+    },
+    {
+      "id": "quadratic12",
+      "path": "D:\\todays-math\\src\\lib\\middle\\m3Func.ts",
+      "fileSha256": "ab681385a70d9450cdcc8230c3268618ec2be3ff4aada862e038f94669a1dbf3",
+      "lines1Based": [
+        1837,
+        1863
+      ],
+      "excerptSha256": "9c41ba2b750ac07a96cf0e35658c881b82d17b5ba8373e50663b378e75c81ba9",
+      "excerpt": "  g2(\n    \"12\",\n    \"이차함수의 식 구하기 서로 다른 세 점을 알 때\",\n    SEC.일반형,\n    \"응용\",\n    (rng) =>\n      attempt(60, (): Body | null => {\n        const a = pick(rng, A_INT);\n        const p = intBetween(rng, -3, 3);\n        const q = intBetween(rng, -8, 8);\n        const { A, B, C } = expand(rInt(a), p, q);\n        if (Math.abs(C[0]) > 40) return null;\n        const x1 = pick(rng, [-3, -2, -1] as const);\n        const x2 = pick(rng, [1, 2, 3] as const);\n        const f = (x: number): number => a * (x - p) * (x - p) + q;\n        const y1 = f(x1);\n        const y2 = f(x2);\n        if (Math.abs(y1) > 40 || Math.abs(y2) > 40) return null;\n        return {\n          content: `세 점 $(0, ${C[0]})$, $${pt(x1, y1)}$, $${pt(x2, y2)}$${eulReul(y2)} 지나는 포물선을 그래프로 하는 이차함수의 식을 $y=ax^2+bx+c$ 꼴로 나타내시오. (단, $a$, $b$, $c$는 상수이다.)`,\n          answer: `$y=${genRhs(A, B, C)}$`,\n          solution: `구하는 식을 $y=ax^2+bx+c$로 놓는다.\\n점 $(0, ${C[0]})$${eulReul(C[0])} 지나므로 $c=${C[0]}$이다.\\n나머지 두 점을 대입하면 $${termTex(rInt(x1 * x1), \"a\", true)}${termTex(rInt(x1), \"b\")}${termTex(C, \"\")}=${y1}$, $${termTex(rInt(x2 * x2), \"a\", true)}${termTex(rInt(x2), \"b\")}${termTex(C, \"\")}=${y2}$이다.\\n두 식을 연립하여 풀면 $a=${A[0]}$, $b=${B[0]}$이다.\\n따라서 $y=${genRhs(A, B, C)}$이다.`,\n          facts: { a, p, q, x1, y1, x2, y2, A: A[0], B: B[0], C: C[0] },\n          figureSpec: null,\n        };\n      }),\n  ),",
+      "observedPurpose": "given three points including y-intercept -> quadratic equation",
+      "difficultyObservation": "declared 응용"
+    },
+    {
+      "id": "quadratic13",
+      "path": "D:\\todays-math\\src\\lib\\middle\\m3Func.ts",
+      "fileSha256": "ab681385a70d9450cdcc8230c3268618ec2be3ff4aada862e038f94669a1dbf3",
+      "lines1Based": [
+        1865,
+        1896
+      ],
+      "excerptSha256": "2a837fc06e65e8745a780e1aae1d5ee4dc5c14fd6152af64728b276bd73f0da6",
+      "excerpt": "  g2(\n    \"13\",\n    \"이차함수의 식 구하기 축과의 두 교점과 다른 한 점을 알 때\",\n    SEC.일반형,\n    \"응용\",\n    (rng) =>\n      attempt(120, (): Body | null => {\n        const a = pick(rng, A_INT);\n        const r1 = intBetween(rng, -5, 1);\n        const r2 = r1 + intBetween(rng, 2, 6);\n        if (Math.abs(r2) > 5) return null;\n        const m = pick(rng, [\n          r1 - 1,\n          r2 + 1,\n          (r1 + r2) % 2 === 0 ? (r1 + r2) / 2 : r2 + 2,\n        ] as const);\n        if (m === r1 || m === r2) return null;\n        const v = a * (m - r1) * (m - r2);\n        if (Math.abs(v) > 40 || v === 0) return null;\n        const A = rInt(a);\n        const B = rInt(-a * (r1 + r2));\n        const C = rInt(a * r1 * r2);\n        if (Math.abs(C[0]) > 60) return null;\n        return {\n          content: `$x$축과 두 점 $${pt(r1, 0)}$, $${pt(r2, 0)}$에서 만나고 점 $${pt(m, v)}$${eulReul(v)} 지나는 포물선을 그래프로 하는 이차함수의 식을 $y=ax^2+bx+c$ 꼴로 나타내시오. (단, $a$, $b$, $c$는 상수이다.)`,\n          answer: `$y=${genRhs(A, B, C)}$`,\n          solution: `$x$축과 두 점 $${pt(r1, 0)}$, $${pt(r2, 0)}$에서 만나므로 구하는 식을 $y=${factoredWithA(r1, r2)}$${r2 === 0 ? \"로\" : euroRo(r2)} 놓는다.\\n$x=${m}$, $y=${v}$${eulReul(v)} 대입하면 $${termTex(rInt((m - r1) * (m - r2)), \"a\", true)}=${v}$이므로 $a=${a}$이다.\\n따라서 $y=${genRhs(A, B, C)}$이다.`,\n          facts: { a, r1, r2, m, v, A: A[0], B: B[0], C: C[0] },\n          figureSpec: null,\n        };\n      }),\n  ),",
+      "observedPurpose": "given two real x-intercepts and another point -> quadratic equation",
+      "difficultyObservation": "declared 응용"
+    },
+    {
+      "id": "quadratic19",
+      "path": "D:\\todays-math\\src\\lib\\middle\\m3Func.ts",
+      "fileSha256": "ab681385a70d9450cdcc8230c3268618ec2be3ff4aada862e038f94669a1dbf3",
+      "lines1Based": [
+        2057,
+        2092
+      ],
+      "excerptSha256": "6f7fe257d29f7d4b6ac4f3c48d00b4c5369860a45eb74edf265bacc9d62942c7",
+      "excerpt": "  g2(\n    \"19\",\n    \"이차함수의 활용 도형의 넓이\",\n    SEC.최대최소,\n    \"심화하\",\n    (rng): Body => {\n      const h = intBetween(rng, 3, 14);\n      const mode = intBetween(rng, 0, 2);\n      if (mode === 0) {\n        return {\n          content: `둘레의 길이가 $${4 * h}\\\\,\\\\mathrm{cm}$인 직사각형의 넓이의 최댓값을 구하시오.`,\n          answer: `$${h * h}\\\\,\\\\mathrm{cm}^2$`,\n          solution: `가로의 길이를 $x\\\\,\\\\mathrm{cm}$라 하면 세로의 길이는 $(${2 * h}-x)\\\\,\\\\mathrm{cm}$이다.\\n넓이를 $y\\\\,\\\\mathrm{cm}^2$라 하면 $y=x(${2 * h}-x)=-(x-${h})^2+${h * h}$이다.\\n따라서 $x=${h}$일 때 넓이의 최댓값은 $${h * h}\\\\,\\\\mathrm{cm}^2$이다.`,\n          facts: { mode, h, ans: h * h },\n          figureSpec: null,\n        };\n      }\n      if (mode === 1) {\n        return {\n          content: `가로와 세로의 길이의 합이 $${2 * h}\\\\,\\\\mathrm{cm}$인 직사각형 중에서 넓이가 가장 큰 것의 가로의 길이를 구하시오.`,\n          answer: `$${h}\\\\,\\\\mathrm{cm}$`,\n          solution: `가로의 길이를 $x\\\\,\\\\mathrm{cm}$라 하면 세로의 길이는 $(${2 * h}-x)\\\\,\\\\mathrm{cm}$이다.\\n넓이를 $y\\\\,\\\\mathrm{cm}^2$라 하면 $y=-(x-${h})^2+${h * h}$이다.\\n따라서 넓이가 가장 클 때의 가로의 길이는 $${h}\\\\,\\\\mathrm{cm}$이다.`,\n          facts: { mode, h, ans: h },\n          figureSpec: null,\n        };\n      }\n      const s = 2 * h;\n      return {\n        content: `한 변의 길이가 $${s}\\\\,\\\\mathrm{cm}$인 정사각형 $\\\\mathrm{ABCD}$에서 점 $\\\\mathrm{P}$는 변 $\\\\mathrm{AB}$ 위를, 점 $\\\\mathrm{Q}$는 변 $\\\\mathrm{AD}$ 위를 움직이고 $\\\\overline{\\\\mathrm{AP}}=\\\\overline{\\\\mathrm{DQ}}$이다. 삼각형 $\\\\mathrm{APQ}$의 넓이의 최댓값을 구하시오.`,\n        answer: `$${(h * h) / 2}\\\\,\\\\mathrm{cm}^2$`,\n        solution: `$\\\\overline{\\\\mathrm{AP}}=x\\\\,\\\\mathrm{cm}$라 하면 $\\\\overline{\\\\mathrm{DQ}}=x\\\\,\\\\mathrm{cm}$이므로 $\\\\overline{\\\\mathrm{AQ}}=(${s}-x)\\\\,\\\\mathrm{cm}$이다.\\n삼각형 $\\\\mathrm{APQ}$의 넓이를 $y\\\\,\\\\mathrm{cm}^2$라 하면 $y=\\\\dfrac{1}{2}x(${s}-x)=-\\\\dfrac{1}{2}(x-${h})^2+${(h * h) / 2}$이다.\\n따라서 $x=${h}$일 때 넓이의 최댓값은 $${(h * h) / 2}\\\\,\\\\mathrm{cm}^2$이다.`,\n        facts: { mode, h, ans: (h * h) / 2 },\n        figureSpec: null,\n      };\n    },\n  ),",
+      "observedPurpose": "variable rectangle/triangle area function -> maximum",
+      "difficultyObservation": "declared 심화하, maximum/minimum Unit"
+    },
+    {
+      "id": "quadratic21",
+      "path": "D:\\todays-math\\src\\lib\\middle\\m3Func.ts",
+      "fileSha256": "ab681385a70d9450cdcc8230c3268618ec2be3ff4aada862e038f94669a1dbf3",
+      "lines1Based": [
+        2124,
+        2167
+      ],
+      "excerptSha256": "8c9434c4e3d9effaa4cd51db55298d6416c7e04d14d1eb0b72486e3b0786ec42",
+      "excerpt": "  g2(\n    \"21\",\n    \"이차함수의 활용 내접하는 도형의 넓이\",\n    SEC.최대최소,\n    \"심화하\",\n    (rng): Body => {\n      const mode = intBetween(rng, 0, 2);\n      if (mode === 0) {\n        const h = intBetween(rng, 2, 9);\n        const b = 2 * h;\n        return {\n          content: `직선 $y=-x+${b}$ 위에 있는 제$1$사분면 위의 점 $\\\\mathrm{P}$에서 $x$축, $y$축에 내린 수선의 발을 각각 $\\\\mathrm{Q}$, $\\\\mathrm{R}$라 할 때, 직사각형 $\\\\mathrm{OQPR}$의 넓이의 최댓값을 구하시오. (단, $\\\\mathrm{O}$는 원점이다.)`,\n          answer: `$${h * h}$`,\n          solution: `점 $\\\\mathrm{P}$의 좌표를 $(x, -x+${b})$${eulReul(b) === \"을\" ? \"이라\" : \"라\"} 하면 $\\\\overline{\\\\mathrm{OQ}}=x$, $\\\\overline{\\\\mathrm{PQ}}=-x+${b}$이다.\\n넓이를 $y$라 하면 $y=x(-x+${b})=-(x-${h})^2+${h * h}$이다.\\n따라서 $x=${h}$일 때 넓이의 최댓값은 $${h * h}$이다.`,\n          facts: { mode, b, h, ans: h * h },\n          figureSpec: null,\n        };\n      }\n      if (mode === 1) {\n        const m = pick(rng, [2, 4] as const);\n        const h = intBetween(rng, 1, 5);\n        const b = 2 * m * h;\n        const ans = m * h * h;\n        return {\n          content: `직선 $y=-${m}x+${b}$ 위에 있는 제$1$사분면 위의 점 $\\\\mathrm{P}$에서 $x$축, $y$축에 내린 수선의 발을 각각 $\\\\mathrm{Q}$, $\\\\mathrm{R}$라 할 때, 직사각형 $\\\\mathrm{OQPR}$의 넓이의 최댓값을 구하시오. (단, $\\\\mathrm{O}$는 원점이다.)`,\n          answer: `$${ans}$`,\n          solution: `점 $\\\\mathrm{P}$의 좌표를 $(x, -${m}x+${b})$${eulReul(b) === \"을\" ? \"이라\" : \"라\"} 하면 넓이는 $y=x(-${m}x+${b})=-${m}x^2+${b}x$이다.\\n$y=-${m}(x-${h})^2+${ans}$이므로 $x=${h}$일 때 최댓값 $${ans}$${eulReul(ans)} 갖는다.`,\n          facts: { mode, m, b, h, ans },\n          figureSpec: null,\n        };\n      }\n      const m = 2;\n      const h = intBetween(rng, 1, 5);\n      const b = 2 * m * h;\n      const ans = (m * h * h) / 2;\n      return {\n        content: `직선 $y=-${m}x+${b}$ 위에 있는 제$1$사분면 위의 점 $\\\\mathrm{P}$에서 $x$축, $y$축에 내린 수선의 발을 각각 $\\\\mathrm{Q}$, $\\\\mathrm{R}$라 할 때, 직각삼각형 $\\\\mathrm{PRQ}$의 넓이의 최댓값을 구하시오.`,\n        answer: `$${ans}$`,\n        solution: `점 $\\\\mathrm{P}$의 좌표를 $(x, -${m}x+${b})$${eulReul(b) === \"을\" ? \"이라\" : \"라\"} 하면 $\\\\overline{\\\\mathrm{PR}}=x$, $\\\\overline{\\\\mathrm{PQ}}=-${m}x+${b}$이다.\\n넓이를 $y$라 하면 $y=\\\\dfrac{1}{2}x(-${m}x+${b})=${termTex(rInt(-m / 2), `(x-${h})^2`, true)}${termTex(rInt(ans), \"\")}$이다.\\n따라서 $x=${h}$일 때 넓이의 최댓값은 $${ans}$이다.`,\n        facts: { mode, m, b, h, ans },\n        figureSpec: null,\n      };\n    },\n  ),",
+      "observedPurpose": "moving point on line -> maximum inscribed area",
+      "difficultyObservation": "declared 심화하, maximum/minimum Unit"
+    },
+    {
+      "id": "quadratic22T",
+      "path": "D:\\todays-math\\src\\lib\\middle\\m3Top.ts",
+      "fileSha256": "b4c2565fc682d67f1bec68013eea8155cc493766c0328bc8c9f9ac398e335142",
+      "lines1Based": [
+        526,
+        550
+      ],
+      "excerptSha256": "cbf1a2bff06fa321311f038a910b5be2e34511ffbbba5b5f4956911e7cafe996",
+      "excerpt": "function renderVertexQuadrant(rng: Rng): Body {\n  const plan = planVertexQuadrant(rng);\n  const [p, q] = plan.point;\n  const [k1, k2] = plan.roots;\n  const t = plan.t;\n  const ans = plan.sift.kept[0]!;\n  const dropped = plan.rows.find((r) => r.k !== ans)!;\n  const prod = k1 * k2;\n  const body = `x^2-2kx+2k^2-${t}`;\n\n  const pointText = `(${p},\\\\ ${q})`;\n  const content =\n    `이차함수 $y=${body}$의 그래프가 점 $${pointText}$${eulReul(q)} 지난다. ` +\n    `이 그래프의 꼭짓점이 ${QUADRANT_NAME[plan.quadrant]}사분면 위에 있을 때, 상수 $k$의 값을 구하시오.`;\n\n  const solution = [\n    `그래프가 점 $${pointText}$${eulReul(q)} 지나므로 $x=${p}$, $y=${q}$${eulReul(q)} 대입하면 $${paren(p)}^2-2k\\\\times${paren(p)}+2k^2-${t}=${q}$이다.`,\n    `정리하면 $2k^2${term(-2 * p, \"k\")}${term(p * p - t - q, \"\")}=0$이고, 양변을 $2$로 나누면 $k^2${term(-p, \"k\")}${term(prod, \"\")}=0$이다.`,\n    `좌변을 인수분해하면 $${linear(k1)}${linear(k2)}=0$이므로 $k=${k1}$ 또는 $k=${k2}$이다.`,\n    `한편 $y=${body}=(x-k)^2+(k^2-${t})$이므로 이 그래프의 꼭짓점의 좌표는 $(k,\\\\ k^2-${t})$이다.`,\n    `$k=${plan.rows[0]!.k}$일 때 꼭짓점은 $(${plan.rows[0]!.k},\\\\ ${plan.rows[0]!.vy})$이므로 ${QUADRANT_NAME[plan.rows[0]!.quadrant]}사분면 위에 있다.`,\n    `$k=${plan.rows[1]!.k}$일 때 꼭짓점은 $(${plan.rows[1]!.k},\\\\ ${plan.rows[1]!.vy})$이므로 ${QUADRANT_NAME[plan.rows[1]!.quadrant]}사분면 위에 있다.`,\n    `꼭짓점이 ${QUADRANT_NAME[plan.quadrant]}사분면 위에 있어야 하므로 $k=${dropped.k}$인 경우는 조건에 맞지 않는다.`,\n    `따라서 $k=${ans}$이다.`,\n  ].join(\"\\n\");",
+      "observedPurpose": "one point -> two parameter candidates -> vertex quadrant filters to one",
+      "difficultyObservation": "declared 심화중, registration lines617-624"
+    },
+    {
+      "id": "table17",
+      "path": "D:\\todays-math\\src\\lib\\middle\\m3Trig.ts",
+      "fileSha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+      "lines1Based": [
+        1575,
+        1612
+      ],
+      "excerptSha256": "9b7573281b12ecf9731e729921a13c62f35b993d931efaeaba86ad15c8265e08",
+      "excerpt": "  def(\n    \"삼각비\",\n    \"17\",\n    \"삼각비의 표를 이용하여 변의 길이 구하기\",\n    SEC.값,\n    \"응용\",\n    (rng) => {\n      const ang = intBetween(rng, 20, 70);\n      const sv = tableValue(0, ang);\n      const cv = tableValue(1, ang);\n      const tv = tableValue(2, ang);\n      const mode = intBetween(rng, 0, 2);\n      const given = 100;\n      const val = [sv, cv, tv][mode]!;\n      const x = Number((given * val).toFixed(2));\n      const givenSide = mode === 2 ? SIDE_NAMES[0]! : SIDE_NAMES[2]!;\n      const askSide = mode === 1 ? SIDE_NAMES[0]! : SIDE_NAMES[1]!;\n      const relation = [\n        `\\\\sin ${ang}^\\\\circ=\\\\dfrac{\\\\overline{BC}}{\\\\overline{AC}}`,\n        `\\\\cos ${ang}^\\\\circ=\\\\dfrac{\\\\overline{AB}}{\\\\overline{AC}}`,\n        `\\\\tan ${ang}^\\\\circ=\\\\dfrac{\\\\overline{BC}}{\\\\overline{AB}}`,\n      ][mode]!;\n      const opp = r2(mode === 2 ? given * tv : given * sv);\n      const adj = r2(mode === 2 ? given : given * cv);\n      return {\n        content: `직각삼각형 $ABC$에서 $\\\\angle B=90^\\\\circ$, $\\\\angle A=${ang}^\\\\circ$이고 $${givenSide}=${cm(given)}$이다. 삼각비의 표에서 $\\\\sin ${ang}^\\\\circ=${sv.toFixed(4)}$, $\\\\cos ${ang}^\\\\circ=${cv.toFixed(4)}$, $\\\\tan ${ang}^\\\\circ=${tv.toFixed(4)}$일 때, $${askSide}$의 길이를 구하시오.`,\n        answer: `$${cm(x)}$`,\n        solution: `$${relation}$이다.\\n따라서 $${askSide}=${given}\\\\times${val.toFixed(4)}=${x}\\\\,(\\\\mathrm{cm})$이다.`,\n        facts: { ang, mode, given, val, x },\n        figureSpec: figRight({\n          vert: adj,\n          horz: opp,\n          angA: `${ang}°`,\n          dims: mode === 2 ? { AB: dimCm(given) } : { CA: dimCm(given) },\n        }),\n      };\n    },\n  ),",
+      "observedPurpose": "20~70 degrees table, known side100cm -> multiply by ratio -> other side",
+      "difficultyObservation": "declared 응용"
+    },
+    {
+      "id": "application03",
+      "path": "D:\\todays-math\\src\\lib\\middle\\m3Trig.ts",
+      "fileSha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+      "lines1Based": [
+        1968,
+        2027
+      ],
+      "excerptSha256": "ee2c5a110de59a5e7a6fabb8fcea885e90d0521e1c231ef29d662d5162a25993",
+      "excerpt": "  def(\n    \"삼각비의 활용\",\n    \"03\",\n    \"실생활에서 직각삼각형의 변의 길이의 활용 ⑴\",\n    SEC.활용,\n    \"응용\",\n    (rng) =>\n      attempt(200, () => {\n        const theta = pick(rng, [30, 45, 60] as const);\n        const d = pick(rng, [6, 8, 9, 10, 12, 15, 18, 20] as const);\n        const mode = intBetween(rng, 0, 2);\n        const sinT = exact(0, theta)!;\n        const cosT = exact(1, theta)!;\n        const tanT = exact(2, theta)!;\n        const ds = surd(d, 1, 1);\n        const res =\n          mode === 0\n            ? surdMul(ds, tanT)\n            : mode === 1\n              ? surdDiv(ds, cosT)\n              : surdMul(ds, sinT);\n        if (res.d !== 1 || res.n > 90) return null;\n        const height =\n          mode === 2\n            ? surdValue(res)\n            : mode === 0\n              ? surdValue(res)\n              : d * Math.tan(theta * DEG);\n        const ground = mode === 2 ? d * Math.cos(theta * DEG) : d;\n        const scene = [\n          {\n            content: `지면에 수직으로 서 있는 나무의 밑동에서 $${d}\\\\,\\\\mathrm{m}$ 떨어진 지점에서 나무의 꼭대기를 올려본각의 크기가 $${theta}^\\\\circ$이었다. 이 나무의 높이를 구하시오.`,\n            solution: `나무의 높이를 $h\\\\,\\\\mathrm{m}$라 하면 $\\\\tan ${theta}^\\\\circ=\\\\dfrac{h}{${d}}$이다.\\n따라서 $h=${d}\\\\times\\\\tan ${theta}^\\\\circ=${surdText(res)}$이므로 나무의 높이는 $${surdText(res)}\\\\,\\\\mathrm{m}$이다.`,\n            dimKey: \"BC\",\n          },\n          {\n            content: `벽에 사다리를 기대어 놓았더니 사다리가 지면과 이루는 각의 크기가 $${theta}^\\\\circ$이고, 사다리의 아래 끝이 벽에서 $${d}\\\\,\\\\mathrm{m}$ 떨어져 있었다. 이 사다리의 길이를 구하시오.`,\n            solution: `사다리의 길이를 $l\\\\,\\\\mathrm{m}$라 하면 $\\\\cos ${theta}^\\\\circ=\\\\dfrac{${d}}{l}$이다.\\n따라서 $l=\\\\dfrac{${d}}{${surdText(cosT)}}=${surdText(res)}$이므로 사다리의 길이는 $${surdText(res)}\\\\,\\\\mathrm{m}$이다.`,\n            dimKey: \"BC\",\n          },\n          {\n            content: `길이가 $${d}\\\\,\\\\mathrm{m}$인 실을 모두 풀어 연을 날렸더니 실이 지면과 이루는 각의 크기가 $${theta}^\\\\circ$이었다. 실이 팽팽하다고 할 때, 지면에서 연까지의 높이를 구하시오.`,\n            solution: `연까지의 높이를 $h\\\\,\\\\mathrm{m}$라 하면 $\\\\sin ${theta}^\\\\circ=\\\\dfrac{h}{${d}}$이다.\\n따라서 $h=${d}\\\\times\\\\sin ${theta}^\\\\circ=${surdText(res)}$이므로 연까지의 높이는 $${surdText(res)}\\\\,\\\\mathrm{m}$이다.`,\n            dimKey: \"CA\",\n          },\n        ][mode]!;\n        return {\n          content: scene.content,\n          answer: `$${surdText(res)}\\\\,\\\\mathrm{m}$`,\n          solution: scene.solution,\n          facts: { theta, d, mode, an: res.n, ar: res.r },\n          figureSpec: figRight({\n            vert: r2(height),\n            horz: r2(ground),\n            angC: `${theta}°`,\n            dims: { [scene.dimKey]: `${d} m` },\n          }),\n        };\n      }),\n  ),",
+      "observedPurpose": "30/45/60 degrees, ground-level tree/ladder/kite direct side",
+      "difficultyObservation": "declared 응용"
+    },
+    {
+      "id": "application13",
+      "path": "D:\\todays-math\\src\\lib\\middle\\m3Trig.ts",
+      "fileSha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+      "lines1Based": [
+        2395,
+        2424
+      ],
+      "excerptSha256": "3d19d347c3bd6b065647302eaed3f2d3b8c133610e737727d49f494324983783",
+      "excerpt": "  def(\n    \"삼각비의 활용\",\n    \"13\",\n    \"실생활에서 직각삼각형의 변의 길이의 활용 ⑵\",\n    SEC.활용,\n    \"심화하\",\n    (rng) => {\n      const k = intBetween(rng, 1, 8);\n      const cfg = pick(rng, [\n        { a1: 30, a2: 60, c0: 0, c1: 1, root: 3 },\n        { a1: 45, a2: 60, c0: 3, c1: 1, root: 3 },\n        { a1: 30, a2: 45, c0: 1, c1: 1, root: 3 },\n      ] as const);\n      const d = 2 * k;\n      const c0 = cfg.c0 * k;\n      const c1 = cfg.c1 * k;\n      return {\n        content: `지면에 수직으로 서 있는 건물의 높이를 구하려고 한다. 지면 위의 한 지점 $A$에서 건물의 꼭대기를 올려본각의 크기가 $${cfg.a1}^\\\\circ$이고, $A$에서 건물 쪽으로 $${d}\\\\,\\\\mathrm{m}$만큼 다가간 지점 $B$에서 올려본각의 크기가 $${cfg.a2}^\\\\circ$이었다. 이 건물의 높이를 구하시오.`,\n        answer: `$${lenText(c0, c1, cfg.root, \"m\")}$`,\n        solution: `건물의 밑면을 $H$, 꼭대기를 $T$, 건물의 높이를 $h\\\\,\\\\mathrm{m}$라 하면 $\\\\overline{AH}=\\\\dfrac{h}{\\\\tan ${cfg.a1}^\\\\circ}$, $\\\\overline{BH}=\\\\dfrac{h}{\\\\tan ${cfg.a2}^\\\\circ}$이다.\\n$\\\\overline{AH}-\\\\overline{BH}=\\\\overline{AB}=${d}$이므로 $\\\\dfrac{h}{\\\\tan ${cfg.a1}^\\\\circ}-\\\\dfrac{h}{\\\\tan ${cfg.a2}^\\\\circ}=${d}$이다.\\n이 식을 풀면 $h=${binomText(c0, c1, cfg.root)}$이므로 건물의 높이는 $${lenText(c0, c1, cfg.root, \"m\")}$이다.`,\n        facts: { a1: cfg.a1, a2: cfg.a2, d, c0, c1, root: cfg.root },\n        figureSpec: figElevationTwo({\n          d,\n          ang1: cfg.a1,\n          ang2: cfg.a2,\n          label: `${d} m`,\n        }),\n      };\n    },\n  ),",
+      "observedPurpose": "two special-angle observation positions -> building height",
+      "difficultyObservation": "declared 심화하"
+    },
+    {
+      "id": "unitSeeds",
+      "path": "D:\\todays-math\\prisma\\seed-data\\units.ts",
+      "fileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+      "lines1Based": [
+        2942,
+        2972
+      ],
+      "excerptSha256": "1794eb07044ebd6dac2ad906c5378ceee48dc9eaf7071764bf79a6cb96579bb2",
+      "excerpt": "  {\n    grade: \"중3\",\n    chapter: \"4. 이차함수\",\n    section: \"이차함수 y=ax^2+bx+c의 그래프\",\n    orderIndex: 479,\n  },\n  {\n    grade: \"중3\",\n    chapter: \"4. 이차함수\",\n    section: \"이차함수의 최댓값과 최솟값\",\n    orderIndex: 480,\n  },\n  // ── 5. 삼각비 ──\n  {\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 뜻\",\n    orderIndex: 481,\n  },\n  {\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 값\",\n    orderIndex: 482,\n  },\n  {\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 활용\",\n    orderIndex: 483,\n  },",
+      "observedPurpose": "natural Unit seed fields only; UUIDs come from snapshot",
+      "difficultyObservation": "not a DB seed execution"
+    },
+    {
+      "id": "tier",
+      "path": "D:\\todays-math\\src\\lib\\middle\\tier.ts",
+      "fileSha256": "f142495325f5c55eaabf30c106170efdfbad708fe0a6aaa7ce4faa572010ab13",
+      "lines1Based": [
+        64,
+        84
+      ],
+      "excerptSha256": "bfd3096aeedbd724c848c104a9c3177cedffb4c975952b27f7153c3978f1f647",
+      "excerpt": "  const only = korean[0]!;\n  // 문장 **안**에 수식이 있으면 상황·조건이 있는 것이다 (「◇ 일 때, …」).\n  return only.includes(\"◇\") ? null : only;\n}\n\n/**\n * 등록된 난이도를 그대로 두거나, 밑단이면 `연산` 으로 내린다.\n *\n * ⚠️ **내리기만 한다.** 올리지 않는다 — 유형에 적힌 값은 사람이 RPM 을 보고 정한\n *    것이고, 발문 모양만 보고 그것을 올릴 근거는 없다.\n */\nexport function resolveMiddleTier(\n  declared: Difficulty,\n  content: string,\n  hasFigure: boolean,\n): Difficulty {\n  if (declared !== \"기본\" || hasFigure) return declared;\n  const only = loneInstruction(content);\n  if (!only || !OPERATION_INSTRUCTION.test(only)) return declared;\n  return \"연산\";\n}",
+      "observedPurpose": "only qualifying 기본 instruction may be lowered to 연산; no upward reclassification",
+      "difficultyObservation": "does not certify family/difficulty semantics"
+    },
+    {
+      "id": "registry",
+      "path": "D:\\todays-math\\src\\lib\\middle\\generate.ts",
+      "fileSha256": "4bdb90431cdb94a3023da05ad3731aa721d0a5ddcbf284bf3e2d7be1540faaab",
+      "lines1Based": [
+        139,
+        152
+      ],
+      "excerptSha256": "c2cbed9c350521db8513047e85e04ff9fcd7354d7777352f2ef16124a2d476a1",
+      "excerpt": "const BY_KEY = new Map<string, TypeEntry>();\nfor (const e of ALL) {\n  if (BY_KEY.has(e.key)) {\n    throw new Error(`유형 키가 겹칩니다: ${e.key}`);\n  }\n  BY_KEY.set(e.key, e);\n}\n\nexport function registeredTypes(): TypeEntry[] {\n  return ALL;\n}\n\nexport function typesForSection(unitSection: string): TypeEntry[] {\n  return ALL.filter((e) => e.unitSection === unitSection);",
+      "observedPurpose": "exact key map, registeredTypes, section filter",
+      "difficultyObservation": "no nearest-key fallback"
+    },
+    {
+      "id": "generatorEntry",
+      "path": "D:\\todays-math\\src\\lib\\middle\\generate.ts",
+      "fileSha256": "4bdb90431cdb94a3023da05ad3731aa721d0a5ddcbf284bf3e2d7be1540faaab",
+      "lines1Based": [
+        164,
+        201
+      ],
+      "excerptSha256": "4bbffd54c9925d26397db6d50e484eec95baf07660b6a6637c5da2b0f2f498df",
+      "excerpt": "export function generateMiddleProblem(\n  key: string,\n  seed: number,\n  variant = 0,\n): MidProblem {\n  const entry = BY_KEY.get(key);\n  if (!entry) {\n    throw new Error(\n      `등록되지 않은 유형입니다: ${key} — registeredTypes() 로 먼저 확인`,\n    );\n  }\n  const p = entry.handler(createRng(seed + keySalt(key) + variant * 0x9e37));\n  // 지면 다듬기는 **여기 한 곳**에서 한다. 유형마다 조건을 달면 열 벌이 되고\n  // 한쪽만 옮겨도 아무도 모른다 (`solutionText.ts` 머리말 참조). 뜻은 안 바뀐다 —\n  // 글자까지 똑같은 되풀이를 지우는 것뿐이다.\n  const tidied = tidySolution(p.solution);\n  // 「단, …」 조건절은 괄호 안으로 (원장님 2026-08-25). **초등 엔진과 같은 함수**를\n  // 부른다 — 규칙이 두 벌이 되면 한쪽만 고쳐도 아무도 모른다.\n  // 실측으로 중등은 이미 33유형 전부 괄호를 치고 있어 지금은 0건이 바뀐다.\n  // 그래도 걸어 둔다: 새 유형이 괄호를 빠뜨려도 여기서 잡힌다.\n  const content = wrapDanClause(p.content);\n  // 밑단(`연산`)은 유형에 안 적혀 있다 — 발문 모양에서 가려낸다 (D-106).\n  // 규칙과 그 근거는 `tier.ts`, 지금 무엇을 잡는지는 `middleTierYeonsan.test.ts` 가 잠근다.\n  const difficulty = resolveMiddleTier(p.difficulty, content, !!p.figureSpec);\n  // 「모두 고르시오」의 정답은 정확히 2개 (원장님 2026-08-25). 생성기마다 지키면\n  // 새 유형이 늘 때 빠뜨려도 아무도 모른다 — **여기 한 곳**에서 다시 보고 던진다.\n  assertChooseAllAnswerCount(content, p.answer, `중등 유형 ${key}`);\n  // 보기가 있으면 정확히 다섯 (원장님 2026-08-25, D-80). 같은 이유로 여기 한 곳이다.\n  assertChoiceCount(content, `중등 유형 ${key}`);\n  assertChoiceMarks(content, `중등 유형 ${key}`);\n  if (\n    tidied === p.solution &&\n    content === p.content &&\n    difficulty === p.difficulty\n  ) {\n    return p;\n  }\n  return { ...p, solution: tidied, content, difficulty };",
+      "observedPurpose": "exact-key selection, same seeded handler, tidy text, tier and choice guards",
+      "difficultyObservation": "unknown key throws"
+    }
+  ],
+  "sampleProofBoundary": "source branches are authoritative; the separately stored four seeded outputs per family are illustrative only"
+}
