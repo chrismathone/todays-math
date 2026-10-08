@@ -33,6 +33,24 @@
         page = 0;
       const pageSize = 12;
       const isReplace = config.mode === "replace";
+      // Optional getDialogWidth: () => number, measured again on resize.
+      const hasDialogWidth =
+        isReplace && typeof config.getDialogWidth === "function";
+      function updateDialogWidth() {
+        dialog.style.width = "";
+        try {
+          const width = config.getDialogWidth();
+          if (Number.isFinite(width) && width > 0) {
+            const gutter = window.matchMedia("(max-width: 860px)").matches
+              ? 32
+              : 40;
+            dialog.style.width = `${Math.min(width, window.innerWidth - gutter)}px`;
+          }
+        } catch {
+          // A temporarily unavailable measurement keeps the default width.
+        }
+      }
+      if (hasDialogWidth) dialog.classList.add("eqp-replace");
       dialog.innerHTML = `<div class="eqp-layout"><header class="eqp-head"><div><h2 id="eqp-title">${isReplace ? "문항 교체" : "난이도별 문항 추가"}</h2><p>${escape(config.scopeLabel || "현재 출제 범위")} · 이미 담은 문항 제외</p></div><button type="button" data-eqp-close aria-label="문항 선택 닫기">닫기</button></header><div class="eqp-filters"><div class="eqp-levels" role="group" aria-label="문항 난이도"></div><div class="eqp-search"><label>범위<select data-eqp-unit><option value="">전체 선택 범위</option>${config.units.map((u) => `<option value="${escape(u.value)}">${escape(u.label)}</option>`).join("")}</select></label><label>문항 검색<input type="search" data-eqp-search placeholder="문제 내용으로 검색" autocomplete="off"></label></div></div><div class="eqp-results"><div class="eqp-result-head"><p data-eqp-count role="status"></p><span>자체 작성 예시</span></div><div class="eqp-grid"></div><nav class="eqp-pagination" aria-label="후보 문항 페이지"></nav></div><footer class="eqp-footer"><p data-eqp-summary role="status"></p><button class="eqp-primary" type="button" data-eqp-close>${isReplace ? "취소" : "완료"}</button></footer></div>`;
       document.body.append(dialog);
       active = dialog;
@@ -147,6 +165,8 @@
       dialog.addEventListener(
         "close",
         () => {
+          if (hasDialogWidth)
+            window.removeEventListener("resize", updateDialogWidth);
           dialog.remove();
           active = null;
           config.onClose?.();
@@ -154,6 +174,10 @@
         { once: true },
       );
       render();
+      if (hasDialogWidth) {
+        updateDialogWidth();
+        window.addEventListener("resize", updateDialogWidth);
+      }
       dialog.showModal();
       dialog.querySelector("[data-eqp-level]").focus();
     },
