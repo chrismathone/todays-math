@@ -1,0 +1,1449 @@
+{
+  "authorOnly": true,
+  "rows": [
+    {
+      "questionNumber": 1,
+      "newExactRequestedValues": [
+        "7"
+      ],
+      "freshNewCalculations": {
+        "PQ": "25",
+        "givenSinP": "7/25",
+        "QR": "7",
+        "PRexistenceWitness": "24"
+      },
+      "conditions": [
+        {
+          "condition": "positive right triangle, supplied sine definition",
+          "passedAsAuthorCalculation": true,
+          "calculation": {
+            "PQ": "25",
+            "givenSinP": "7/25",
+            "QR": "7",
+            "PRexistenceWitness": "24"
+          }
+        }
+      ],
+      "actualAllChoices": [
+        {
+          "index1based": 1,
+          "choiceText": "$24$",
+          "parsedExactValues": [
+            "24"
+          ],
+          "differencesFromCalculatedTargets": [
+            "17"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 2,
+          "choiceText": "$175$",
+          "parsedExactValues": [
+            "175"
+          ],
+          "differencesFromCalculatedTargets": [
+            "168"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 3,
+          "choiceText": "$7$",
+          "parsedExactValues": [
+            "7"
+          ],
+          "differencesFromCalculatedTargets": [
+            "0"
+          ],
+          "correctAsAuthorCalculation": true
+        },
+        {
+          "index1based": 4,
+          "choiceText": "$25$",
+          "parsedExactValues": [
+            "25"
+          ],
+          "differencesFromCalculatedTargets": [
+            "18"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 5,
+          "choiceText": "$18$",
+          "parsedExactValues": [
+            "18"
+          ],
+          "differencesFromCalculatedTargets": [
+            "11"
+          ],
+          "correctAsAuthorCalculation": false
+        }
+      ],
+      "winnerIndex1based": 3,
+      "choiceAnswerMark": "③",
+      "requestedUniquenessAuthorCheck": true,
+      "wholeConfigurationMustBeUnique": true,
+      "unitsAndPrecision": "q04/q05 table records andq17 specified rounded distance are approximations; all other numeric lengths/areas exact.",
+      "code": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/author_math.py",
+        "sha256": "dffc06bdb422829fc713c2c1f53fabe786573dcdd20712ac6a5638fbf66cfc63"
+      },
+      "originalAnswerUsed": false,
+      "authorCheckOnly": true,
+      "independentMathApproval": false,
+      "curriculumPermissionFromCalculation": false
+    },
+    {
+      "questionNumber": 2,
+      "newExactRequestedValues": [
+        "16"
+      ],
+      "freshNewCalculations": {
+        "a": "16",
+        "bExistenceWitness": "12",
+        "PQ": "20",
+        "cosP": "4/5"
+      },
+      "conditions": [
+        {
+          "condition": "a,b positive and unique from cosine and positive-root Pythagoras",
+          "passedAsAuthorCalculation": true,
+          "calculation": {
+            "a": "16",
+            "bExistenceWitness": "12",
+            "PQ": "20",
+            "cosP": "4/5"
+          }
+        }
+      ],
+      "actualAllChoices": [
+        {
+          "index1based": 1,
+          "choiceText": "$12$",
+          "parsedExactValues": [
+            "12"
+          ],
+          "differencesFromCalculatedTargets": [
+            "-4"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 2,
+          "choiceText": "$4$",
+          "parsedExactValues": [
+            "4"
+          ],
+          "differencesFromCalculatedTargets": [
+            "-12"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 3,
+          "choiceText": "$20$",
+          "parsedExactValues": [
+            "20"
+          ],
+          "differencesFromCalculatedTargets": [
+            "4"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 4,
+          "choiceText": "$16$",
+          "parsedExactValues": [
+            "16"
+          ],
+          "differencesFromCalculatedTargets": [
+            "0"
+          ],
+          "correctAsAuthorCalculation": true
+        },
+        {
+          "index1based": 5,
+          "choiceText": "$25$",
+          "parsedExactValues": [
+            "25"
+          ],
+          "differencesFromCalculatedTargets": [
+            "9"
+          ],
+          "correctAsAuthorCalculation": false
+        }
+      ],
+      "winnerIndex1based": 4,
+      "choiceAnswerMark": "④",
+      "requestedUniquenessAuthorCheck": true,
+      "wholeConfigurationMustBeUnique": true,
+      "unitsAndPrecision": "q04/q05 table records andq17 specified rounded distance are approximations; all other numeric lengths/areas exact.",
+      "code": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/author_math.py",
+        "sha256": "dffc06bdb422829fc713c2c1f53fabe786573dcdd20712ac6a5638fbf66cfc63"
+      },
+      "originalAnswerUsed": false,
+      "authorCheckOnly": true,
+      "independentMathApproval": false,
+      "curriculumPermissionFromCalculation": false
+    },
+    {
+      "questionNumber": 3,
+      "newExactRequestedValues": [
+        "sqrt(69)",
+        "sqrt(69)/10"
+      ],
+      "freshNewCalculations": {
+        "PQ": "13",
+        "PR": "10",
+        "QR": "sqrt(69)",
+        "tanP": "sqrt(69)/10"
+      },
+      "conditions": [
+        {
+          "condition": "positive root and tangent denominator",
+          "passedAsAuthorCalculation": true,
+          "calculation": {
+            "PQ": "13",
+            "PR": "10",
+            "QR": "sqrt(69)",
+            "tanP": "sqrt(69)/10"
+          }
+        }
+      ],
+      "actualAllChoices": [
+        {
+          "index1based": 1,
+          "choiceText": "$\\sqrt{69},\\ \\frac{10}{\\sqrt{69}}$",
+          "parsedExactValues": [
+            "sqrt(69)",
+            "10*sqrt(69)/69"
+          ],
+          "differencesFromCalculatedTargets": [
+            "0",
+            "31*sqrt(69)/690"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 2,
+          "choiceText": "$\\sqrt{69},\\ \\frac{\\sqrt{69}}{10}$",
+          "parsedExactValues": [
+            "sqrt(69)",
+            "sqrt(69)/10"
+          ],
+          "differencesFromCalculatedTargets": [
+            "0",
+            "0"
+          ],
+          "correctAsAuthorCalculation": true
+        },
+        {
+          "index1based": 3,
+          "choiceText": "$3,\\ \\frac{3}{10}$",
+          "parsedExactValues": [
+            "3",
+            "3/10"
+          ],
+          "differencesFromCalculatedTargets": [
+            "3 - sqrt(69)",
+            "3/10 - sqrt(69)/10"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 4,
+          "choiceText": "$\\sqrt{159},\\ \\frac{\\sqrt{159}}{10}$",
+          "parsedExactValues": [
+            "sqrt(159)",
+            "sqrt(159)/10"
+          ],
+          "differencesFromCalculatedTargets": [
+            "-sqrt(69) + sqrt(159)",
+            "-sqrt(69)/10 + sqrt(159)/10"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 5,
+          "choiceText": "$\\sqrt{69},\\ \\frac{\\sqrt{69}}{13}$",
+          "parsedExactValues": [
+            "sqrt(69)",
+            "sqrt(69)/13"
+          ],
+          "differencesFromCalculatedTargets": [
+            "0",
+            "-3*sqrt(69)/130"
+          ],
+          "correctAsAuthorCalculation": false
+        }
+      ],
+      "winnerIndex1based": 2,
+      "choiceAnswerMark": "②",
+      "requestedUniquenessAuthorCheck": true,
+      "wholeConfigurationMustBeUnique": true,
+      "unitsAndPrecision": "q04/q05 table records andq17 specified rounded distance are approximations; all other numeric lengths/areas exact.",
+      "code": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/author_math.py",
+        "sha256": "dffc06bdb422829fc713c2c1f53fabe786573dcdd20712ac6a5638fbf66cfc63"
+      },
+      "originalAnswerUsed": false,
+      "authorCheckOnly": true,
+      "independentMathApproval": false,
+      "curriculumPermissionFromCalculation": false
+    },
+    {
+      "questionNumber": 4,
+      "newExactRequestedValues": [
+        "383/500",
+        "8391/10000"
+      ],
+      "freshNewCalculations": {
+        "OA": 10,
+        "OP": 10,
+        "actualLengths": {
+          "sin": 6.4278760968653925,
+          "cos": 7.66044443118978,
+          "tan": 8.390996311772799
+        },
+        "recordedLengths": {
+          "sin": "6.4279",
+          "cos": "7.6604",
+          "tan": "8.3910"
+        },
+        "cosRecord": "0.7660",
+        "tanRecord": "0.8391"
+      },
+      "conditions": [
+        {
+          "condition": "three length records correctly rounded",
+          "passedAsAuthorCalculation": true,
+          "calculation": {
+            "sin": "6.4279",
+            "cos": "7.6604",
+            "tan": "8.3910"
+          }
+        },
+        {
+          "condition": "normalized recorded ratios and true ratios have requested precision",
+          "passedAsAuthorCalculation": true,
+          "calculation": {
+            "OA": 10,
+            "OP": 10,
+            "actualLengths": {
+              "sin": 6.4278760968653925,
+              "cos": 7.66044443118978,
+              "tan": 8.390996311772799
+            },
+            "recordedLengths": {
+              "sin": "6.4279",
+              "cos": "7.6604",
+              "tan": "8.3910"
+            },
+            "cosRecord": "0.7660",
+            "tanRecord": "0.8391"
+          }
+        }
+      ],
+      "actualAllChoices": [
+        {
+          "index1based": 1,
+          "choiceText": "$0.6428,\\ 0.7660$",
+          "parsedExactValues": [
+            "1607/2500",
+            "383/500"
+          ],
+          "differencesFromCalculatedTargets": [
+            "-77/625",
+            "-731/10000"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 2,
+          "choiceText": "$0.7660,\\ 8.3910$",
+          "parsedExactValues": [
+            "383/500",
+            "8391/1000"
+          ],
+          "differencesFromCalculatedTargets": [
+            "0",
+            "75519/10000"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 3,
+          "choiceText": "$7.6604,\\ 0.8391$",
+          "parsedExactValues": [
+            "19151/2500",
+            "8391/10000"
+          ],
+          "differencesFromCalculatedTargets": [
+            "4309/625",
+            "0"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 4,
+          "choiceText": "$0.7660,\\ 0.8391$",
+          "parsedExactValues": [
+            "383/500",
+            "8391/10000"
+          ],
+          "differencesFromCalculatedTargets": [
+            "0",
+            "0"
+          ],
+          "correctAsAuthorCalculation": true
+        },
+        {
+          "index1based": 5,
+          "choiceText": "$0.6428,\\ 0.8391$",
+          "parsedExactValues": [
+            "1607/2500",
+            "8391/10000"
+          ],
+          "differencesFromCalculatedTargets": [
+            "-77/625",
+            "0"
+          ],
+          "correctAsAuthorCalculation": false
+        }
+      ],
+      "winnerIndex1based": 4,
+      "choiceAnswerMark": "④",
+      "requestedUniquenessAuthorCheck": true,
+      "wholeConfigurationMustBeUnique": true,
+      "unitsAndPrecision": "q04/q05 table records andq17 specified rounded distance are approximations; all other numeric lengths/areas exact.",
+      "code": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/author_math.py",
+        "sha256": "dffc06bdb422829fc713c2c1f53fabe786573dcdd20712ac6a5638fbf66cfc63"
+      },
+      "originalAnswerUsed": false,
+      "authorCheckOnly": true,
+      "independentMathApproval": false,
+      "curriculumPermissionFromCalculation": false
+    },
+    {
+      "questionNumber": 5,
+      "newExactRequestedValues": [
+        "-123/5000"
+      ],
+      "freshNewCalculations": {
+        "freshTable": {
+          "sin": {
+            "31": "0.5150",
+            "32": "0.5299",
+            "33": "0.5446",
+            "34": "0.5592"
+          },
+          "cos": {
+            "31": "0.8572",
+            "32": "0.8480",
+            "33": "0.8387",
+            "34": "0.8290"
+          }
+        },
+        "ga": "168/125",
+        "na": "6843/5000",
+        "orderedDifference": "-123/5000"
+      },
+      "conditions": [
+        {
+          "condition": "two exact decimal-record sums and sign",
+          "passedAsAuthorCalculation": true,
+          "calculation": {
+            "freshTable": {
+              "sin": {
+                "31": "0.5150",
+                "32": "0.5299",
+                "33": "0.5446",
+                "34": "0.5592"
+              },
+              "cos": {
+                "31": "0.8572",
+                "32": "0.8480",
+                "33": "0.8387",
+                "34": "0.8290"
+              }
+            },
+            "ga": "168/125",
+            "na": "6843/5000",
+            "orderedDifference": "-123/5000"
+          }
+        }
+      ],
+      "actualAllChoices": [
+        {
+          "index1based": 1,
+          "choiceText": "$1.3440$",
+          "parsedExactValues": [
+            "168/125"
+          ],
+          "differencesFromCalculatedTargets": [
+            "6843/5000"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 2,
+          "choiceText": "$0.0246$",
+          "parsedExactValues": [
+            "123/5000"
+          ],
+          "differencesFromCalculatedTargets": [
+            "123/2500"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 3,
+          "choiceText": "$2.7126$",
+          "parsedExactValues": [
+            "13563/5000"
+          ],
+          "differencesFromCalculatedTargets": [
+            "6843/2500"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 4,
+          "choiceText": "$-0.0246$",
+          "parsedExactValues": [
+            "-123/5000"
+          ],
+          "differencesFromCalculatedTargets": [
+            "0"
+          ],
+          "correctAsAuthorCalculation": true
+        },
+        {
+          "index1based": 5,
+          "choiceText": "$1.3686$",
+          "parsedExactValues": [
+            "6843/5000"
+          ],
+          "differencesFromCalculatedTargets": [
+            "3483/2500"
+          ],
+          "correctAsAuthorCalculation": false
+        }
+      ],
+      "winnerIndex1based": 4,
+      "choiceAnswerMark": "④",
+      "requestedUniquenessAuthorCheck": true,
+      "wholeConfigurationMustBeUnique": true,
+      "unitsAndPrecision": "q04/q05 table records andq17 specified rounded distance are approximations; all other numeric lengths/areas exact.",
+      "code": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/author_math.py",
+        "sha256": "dffc06bdb422829fc713c2c1f53fabe786573dcdd20712ac6a5638fbf66cfc63"
+      },
+      "originalAnswerUsed": false,
+      "authorCheckOnly": true,
+      "independentMathApproval": false,
+      "curriculumPermissionFromCalculation": false
+    },
+    {
+      "questionNumber": 6,
+      "newExactRequestedValues": [
+        "1"
+      ],
+      "freshNewCalculations": {
+        "freshTable": {
+          "cos": {
+            "37": "0.7986",
+            "38": "0.7880",
+            "39": "0.7771",
+            "40": "0.7660"
+          },
+          "tan": {
+            "37": "0.7536",
+            "38": "0.7813",
+            "39": "0.8098",
+            "40": "0.8391"
+          }
+        },
+        "x": 38,
+        "y": 39,
+        "difference": "1"
+      },
+      "conditions": [
+        {
+          "condition": "independent inverse rows unique",
+          "passedAsAuthorCalculation": true,
+          "calculation": {
+            "xRows": [
+              38
+            ],
+            "yRows": [
+              39
+            ]
+          }
+        }
+      ],
+      "actualAllChoices": [
+        {
+          "index1based": 1,
+          "choiceText": "$-2$",
+          "parsedExactValues": [
+            "-2"
+          ],
+          "differencesFromCalculatedTargets": [
+            "-3"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 2,
+          "choiceText": "$-1$",
+          "parsedExactValues": [
+            "-1"
+          ],
+          "differencesFromCalculatedTargets": [
+            "-2"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 3,
+          "choiceText": "$0$",
+          "parsedExactValues": [
+            "0"
+          ],
+          "differencesFromCalculatedTargets": [
+            "-1"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 4,
+          "choiceText": "$1$",
+          "parsedExactValues": [
+            "1"
+          ],
+          "differencesFromCalculatedTargets": [
+            "0"
+          ],
+          "correctAsAuthorCalculation": true
+        },
+        {
+          "index1based": 5,
+          "choiceText": "$2$",
+          "parsedExactValues": [
+            "2"
+          ],
+          "differencesFromCalculatedTargets": [
+            "1"
+          ],
+          "correctAsAuthorCalculation": false
+        }
+      ],
+      "winnerIndex1based": 4,
+      "choiceAnswerMark": "④",
+      "requestedUniquenessAuthorCheck": true,
+      "wholeConfigurationMustBeUnique": true,
+      "unitsAndPrecision": "q04/q05 table records andq17 specified rounded distance are approximations; all other numeric lengths/areas exact.",
+      "code": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/author_math.py",
+        "sha256": "dffc06bdb422829fc713c2c1f53fabe786573dcdd20712ac6a5638fbf66cfc63"
+      },
+      "originalAnswerUsed": false,
+      "authorCheckOnly": true,
+      "independentMathApproval": false,
+      "curriculumPermissionFromCalculation": false
+    },
+    {
+      "questionNumber": 7,
+      "newExactRequestedValues": [
+        "24 - 12*sqrt(2)"
+      ],
+      "freshNewCalculations": {
+        "hypotenuse": "12*sqrt(2)",
+        "twoEqualLegs": "12",
+        "requestedEdgeDifference": "24 - 12*sqrt(2)"
+      },
+      "conditions": [
+        {
+          "condition": "positive edge difference and valid45 triangle",
+          "passedAsAuthorCalculation": true,
+          "calculation": {
+            "hypotenuse": "12*sqrt(2)",
+            "twoEqualLegs": "12",
+            "requestedEdgeDifference": "24 - 12*sqrt(2)"
+          }
+        }
+      ],
+      "actualAllChoices": [
+        {
+          "index1based": 1,
+          "choiceText": "$12\\,\\mathrm{cm}$",
+          "parsedExactValues": [
+            "12"
+          ],
+          "differencesFromCalculatedTargets": [
+            "-12 + 12*sqrt(2)"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 2,
+          "choiceText": "$(24-12\\sqrt2)\\,\\mathrm{cm}$",
+          "parsedExactValues": [
+            "24 - 12*sqrt(2)"
+          ],
+          "differencesFromCalculatedTargets": [
+            "0"
+          ],
+          "correctAsAuthorCalculation": true
+        },
+        {
+          "index1based": 3,
+          "choiceText": "$12\\sqrt2\\,\\mathrm{cm}$",
+          "parsedExactValues": [
+            "12*sqrt(2)"
+          ],
+          "differencesFromCalculatedTargets": [
+            "-24 + 24*sqrt(2)"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 4,
+          "choiceText": "$(24+12\\sqrt2)\\,\\mathrm{cm}$",
+          "parsedExactValues": [
+            "12*sqrt(2) + 24"
+          ],
+          "differencesFromCalculatedTargets": [
+            "24*sqrt(2)"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 5,
+          "choiceText": "$24\\,\\mathrm{cm}$",
+          "parsedExactValues": [
+            "24"
+          ],
+          "differencesFromCalculatedTargets": [
+            "12*sqrt(2)"
+          ],
+          "correctAsAuthorCalculation": false
+        }
+      ],
+      "winnerIndex1based": 2,
+      "choiceAnswerMark": "②",
+      "requestedUniquenessAuthorCheck": true,
+      "wholeConfigurationMustBeUnique": true,
+      "unitsAndPrecision": "q04/q05 table records andq17 specified rounded distance are approximations; all other numeric lengths/areas exact.",
+      "code": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/author_math.py",
+        "sha256": "dffc06bdb422829fc713c2c1f53fabe786573dcdd20712ac6a5638fbf66cfc63"
+      },
+      "originalAnswerUsed": false,
+      "authorCheckOnly": true,
+      "independentMathApproval": false,
+      "curriculumPermissionFromCalculation": false
+    },
+    {
+      "questionNumber": 8,
+      "newExactRequestedValues": [
+        "3*sqrt(2)/2"
+      ],
+      "freshNewCalculations": {
+        "ga": "sqrt(3)/2",
+        "naCoefficient": "sqrt(6)/6",
+        "k": "3*sqrt(2)/2"
+      },
+      "conditions": [
+        {
+          "condition": "coefficient nonzero, unique positive scalar",
+          "passedAsAuthorCalculation": true,
+          "calculation": {
+            "ga": "sqrt(3)/2",
+            "naCoefficient": "sqrt(6)/6",
+            "k": "3*sqrt(2)/2"
+          }
+        }
+      ],
+      "actualAllChoices": [
+        {
+          "index1based": 1,
+          "choiceText": "$\\frac{\\sqrt2}{2}$",
+          "parsedExactValues": [
+            "sqrt(2)/2"
+          ],
+          "differencesFromCalculatedTargets": [
+            "-sqrt(2)"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 2,
+          "choiceText": "$\\sqrt2$",
+          "parsedExactValues": [
+            "sqrt(2)"
+          ],
+          "differencesFromCalculatedTargets": [
+            "-sqrt(2)/2"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 3,
+          "choiceText": "$\\frac{\\sqrt6}{2}$",
+          "parsedExactValues": [
+            "sqrt(6)/2"
+          ],
+          "differencesFromCalculatedTargets": [
+            "-3*sqrt(2)/2 + sqrt(6)/2"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 4,
+          "choiceText": "$3$",
+          "parsedExactValues": [
+            "3"
+          ],
+          "differencesFromCalculatedTargets": [
+            "3 - 3*sqrt(2)/2"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 5,
+          "choiceText": "$\\frac{3\\sqrt2}{2}$",
+          "parsedExactValues": [
+            "3*sqrt(2)/2"
+          ],
+          "differencesFromCalculatedTargets": [
+            "0"
+          ],
+          "correctAsAuthorCalculation": true
+        }
+      ],
+      "winnerIndex1based": 5,
+      "choiceAnswerMark": "⑤",
+      "requestedUniquenessAuthorCheck": true,
+      "wholeConfigurationMustBeUnique": false,
+      "unitsAndPrecision": "q04/q05 table records andq17 specified rounded distance are approximations; all other numeric lengths/areas exact.",
+      "code": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/author_math.py",
+        "sha256": "dffc06bdb422829fc713c2c1f53fabe786573dcdd20712ac6a5638fbf66cfc63"
+      },
+      "originalAnswerUsed": false,
+      "authorCheckOnly": true,
+      "independentMathApproval": false,
+      "curriculumPermissionFromCalculation": false
+    },
+    {
+      "questionNumber": 9,
+      "newExactRequestedValues": [
+        "60",
+        "3/4"
+      ],
+      "freshNewCalculations": {
+        "angles": [
+          "30",
+          "60",
+          90
+        ],
+        "fixed60Substitutions": [
+          "sqrt(3)/2",
+          "1/2",
+          "sqrt(3)"
+        ],
+        "product": "3/4"
+      },
+      "conditions": [
+        {
+          "condition": "angle constraints and literal fixed constants",
+          "passedAsAuthorCalculation": true,
+          "calculation": {
+            "angles": [
+              "30",
+              "60",
+              90
+            ],
+            "fixed60Substitutions": [
+              "sqrt(3)/2",
+              "1/2",
+              "sqrt(3)"
+            ],
+            "product": "3/4"
+          }
+        }
+      ],
+      "actualAllChoices": [
+        {
+          "index1based": 1,
+          "choiceText": "$30^\\circ,\\ \\frac14$",
+          "parsedExactValues": [
+            "30",
+            "1/4"
+          ],
+          "differencesFromCalculatedTargets": [
+            "-30",
+            "-1/2"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 2,
+          "choiceText": "$60^\\circ,\\ \\frac14$",
+          "parsedExactValues": [
+            "60",
+            "1/4"
+          ],
+          "differencesFromCalculatedTargets": [
+            "0",
+            "-1/2"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 3,
+          "choiceText": "$30^\\circ,\\ \\frac34$",
+          "parsedExactValues": [
+            "30",
+            "3/4"
+          ],
+          "differencesFromCalculatedTargets": [
+            "-30",
+            "0"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 4,
+          "choiceText": "$60^\\circ,\\ \\frac{\\sqrt3}{4}$",
+          "parsedExactValues": [
+            "60",
+            "sqrt(3)/4"
+          ],
+          "differencesFromCalculatedTargets": [
+            "0",
+            "-3/4 + sqrt(3)/4"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 5,
+          "choiceText": "$60^\\circ,\\ \\frac34$",
+          "parsedExactValues": [
+            "60",
+            "3/4"
+          ],
+          "differencesFromCalculatedTargets": [
+            "0",
+            "0"
+          ],
+          "correctAsAuthorCalculation": true
+        }
+      ],
+      "winnerIndex1based": 5,
+      "choiceAnswerMark": "⑤",
+      "requestedUniquenessAuthorCheck": true,
+      "wholeConfigurationMustBeUnique": false,
+      "unitsAndPrecision": "q04/q05 table records andq17 specified rounded distance are approximations; all other numeric lengths/areas exact.",
+      "code": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/author_math.py",
+        "sha256": "dffc06bdb422829fc713c2c1f53fabe786573dcdd20712ac6a5638fbf66cfc63"
+      },
+      "originalAnswerUsed": false,
+      "authorCheckOnly": true,
+      "independentMathApproval": false,
+      "curriculumPermissionFromCalculation": false
+    },
+    {
+      "questionNumber": 16,
+      "newExactRequestedValues": [
+        "12"
+      ],
+      "freshNewCalculations": {
+        "PQ": "12",
+        "PH": "6*sqrt(3)",
+        "area": "36*sqrt(3)",
+        "QR": "12",
+        "QH": "6"
+      },
+      "conditions": [
+        {
+          "condition": "unique positive base and interior foot",
+          "passedAsAuthorCalculation": true,
+          "calculation": {
+            "PQ": "12",
+            "PH": "6*sqrt(3)",
+            "area": "36*sqrt(3)",
+            "QR": "12",
+            "QH": "6"
+          }
+        }
+      ],
+      "actualAllChoices": [
+        {
+          "index1based": 1,
+          "choiceText": "$6\\,\\mathrm{cm}$",
+          "parsedExactValues": [
+            "6"
+          ],
+          "differencesFromCalculatedTargets": [
+            "-6"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 2,
+          "choiceText": "$12\\sqrt3\\,\\mathrm{cm}$",
+          "parsedExactValues": [
+            "12*sqrt(3)"
+          ],
+          "differencesFromCalculatedTargets": [
+            "-12 + 12*sqrt(3)"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 3,
+          "choiceText": "$12\\,\\mathrm{cm}$",
+          "parsedExactValues": [
+            "12"
+          ],
+          "differencesFromCalculatedTargets": [
+            "0"
+          ],
+          "correctAsAuthorCalculation": true
+        },
+        {
+          "index1based": 4,
+          "choiceText": "$18\\,\\mathrm{cm}$",
+          "parsedExactValues": [
+            "18"
+          ],
+          "differencesFromCalculatedTargets": [
+            "6"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 5,
+          "choiceText": "$24\\,\\mathrm{cm}$",
+          "parsedExactValues": [
+            "24"
+          ],
+          "differencesFromCalculatedTargets": [
+            "12"
+          ],
+          "correctAsAuthorCalculation": false
+        }
+      ],
+      "winnerIndex1based": 3,
+      "choiceAnswerMark": "③",
+      "requestedUniquenessAuthorCheck": true,
+      "wholeConfigurationMustBeUnique": true,
+      "unitsAndPrecision": "q04/q05 table records andq17 specified rounded distance are approximations; all other numeric lengths/areas exact.",
+      "code": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/author_math.py",
+        "sha256": "dffc06bdb422829fc713c2c1f53fabe786573dcdd20712ac6a5638fbf66cfc63"
+      },
+      "originalAnswerUsed": false,
+      "authorCheckOnly": true,
+      "independentMathApproval": false,
+      "curriculumPermissionFromCalculation": false
+    },
+    {
+      "questionNumber": 17,
+      "newExactRequestedValues": [
+        "101/10"
+      ],
+      "freshNewCalculations": {
+        "givenHeight": "27/10",
+        "tableTan": "2679/10000",
+        "usingTableHorizontalDistance": "9000/893",
+        "actualGeometryHorizontalDistance": 10.07653718043597,
+        "requestedRoundedRecord": "10.1",
+        "precision": "one decimal place"
+      },
+      "conditions": [
+        {
+          "condition": "table ratio positive and actual geometry stable at requested rounding",
+          "passedAsAuthorCalculation": true,
+          "calculation": {
+            "givenHeight": "27/10",
+            "tableTan": "2679/10000",
+            "usingTableHorizontalDistance": "9000/893",
+            "actualGeometryHorizontalDistance": 10.07653718043597,
+            "requestedRoundedRecord": "10.1",
+            "precision": "one decimal place"
+          }
+        },
+        {
+          "condition": "sin15 table value",
+          "passedAsAuthorCalculation": true,
+          "calculation": "0.2588"
+        },
+        {
+          "condition": "cos15 table value",
+          "passedAsAuthorCalculation": true,
+          "calculation": "0.9659"
+        },
+        {
+          "condition": "tan15 table value",
+          "passedAsAuthorCalculation": true,
+          "calculation": "0.2679"
+        }
+      ],
+      "actualAllChoices": [
+        {
+          "index1based": 1,
+          "choiceText": "$2.6\\,\\mathrm{m}$",
+          "parsedExactValues": [
+            "13/5"
+          ],
+          "differencesFromCalculatedTargets": [
+            "-15/2"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 2,
+          "choiceText": "$5.2\\,\\mathrm{m}$",
+          "parsedExactValues": [
+            "26/5"
+          ],
+          "differencesFromCalculatedTargets": [
+            "-49/10"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 3,
+          "choiceText": "$10.4\\,\\mathrm{m}$",
+          "parsedExactValues": [
+            "52/5"
+          ],
+          "differencesFromCalculatedTargets": [
+            "3/10"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 4,
+          "choiceText": "$10.1\\,\\mathrm{m}$",
+          "parsedExactValues": [
+            "101/10"
+          ],
+          "differencesFromCalculatedTargets": [
+            "0"
+          ],
+          "correctAsAuthorCalculation": true
+        },
+        {
+          "index1based": 5,
+          "choiceText": "$5.1\\,\\mathrm{m}$",
+          "parsedExactValues": [
+            "51/10"
+          ],
+          "differencesFromCalculatedTargets": [
+            "-5"
+          ],
+          "correctAsAuthorCalculation": false
+        }
+      ],
+      "winnerIndex1based": 4,
+      "choiceAnswerMark": "④",
+      "requestedUniquenessAuthorCheck": true,
+      "wholeConfigurationMustBeUnique": true,
+      "unitsAndPrecision": "q04/q05 table records andq17 specified rounded distance are approximations; all other numeric lengths/areas exact.",
+      "code": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/author_math.py",
+        "sha256": "dffc06bdb422829fc713c2c1f53fabe786573dcdd20712ac6a5638fbf66cfc63"
+      },
+      "originalAnswerUsed": false,
+      "authorCheckOnly": true,
+      "independentMathApproval": false,
+      "curriculumPermissionFromCalculation": false
+    },
+    {
+      "questionNumber": 18,
+      "newExactRequestedValues": [
+        "4"
+      ],
+      "freshNewCalculations": {
+        "CD=FC": "8",
+        "EH": "-4 + 4*sqrt(3)",
+        "FH": "-4 + 4*sqrt(3)",
+        "HC": "12 - 4*sqrt(3)",
+        "EFCarea": "-16 + 16*sqrt(3)",
+        "ABFEarea": "8*sqrt(3) + 16",
+        "ABCarea": "24*sqrt(3)",
+        "allBCRoots": [
+          "-12",
+          "12"
+        ],
+        "positiveBC": "12",
+        "BF": "4",
+        "AB": "4*sqrt(3)"
+      },
+      "conditions": [
+        {
+          "condition": "unique positive root and all internal segments",
+          "passedAsAuthorCalculation": true,
+          "calculation": {
+            "CD=FC": "8",
+            "EH": "-4 + 4*sqrt(3)",
+            "FH": "-4 + 4*sqrt(3)",
+            "HC": "12 - 4*sqrt(3)",
+            "EFCarea": "-16 + 16*sqrt(3)",
+            "ABFEarea": "8*sqrt(3) + 16",
+            "ABCarea": "24*sqrt(3)",
+            "allBCRoots": [
+              "-12",
+              "12"
+            ],
+            "positiveBC": "12",
+            "BF": "4",
+            "AB": "4*sqrt(3)"
+          }
+        }
+      ],
+      "actualAllChoices": [
+        {
+          "index1based": 1,
+          "choiceText": "$2\\,\\mathrm{cm}$",
+          "parsedExactValues": [
+            "2"
+          ],
+          "differencesFromCalculatedTargets": [
+            "-2"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 2,
+          "choiceText": "$3\\,\\mathrm{cm}$",
+          "parsedExactValues": [
+            "3"
+          ],
+          "differencesFromCalculatedTargets": [
+            "-1"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 3,
+          "choiceText": "$4\\,\\mathrm{cm}$",
+          "parsedExactValues": [
+            "4"
+          ],
+          "differencesFromCalculatedTargets": [
+            "0"
+          ],
+          "correctAsAuthorCalculation": true
+        },
+        {
+          "index1based": 4,
+          "choiceText": "$6\\,\\mathrm{cm}$",
+          "parsedExactValues": [
+            "6"
+          ],
+          "differencesFromCalculatedTargets": [
+            "2"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 5,
+          "choiceText": "$8\\,\\mathrm{cm}$",
+          "parsedExactValues": [
+            "8"
+          ],
+          "differencesFromCalculatedTargets": [
+            "4"
+          ],
+          "correctAsAuthorCalculation": false
+        }
+      ],
+      "winnerIndex1based": 3,
+      "choiceAnswerMark": "③",
+      "requestedUniquenessAuthorCheck": true,
+      "wholeConfigurationMustBeUnique": true,
+      "unitsAndPrecision": "q04/q05 table records andq17 specified rounded distance are approximations; all other numeric lengths/areas exact.",
+      "code": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/author_math.py",
+        "sha256": "dffc06bdb422829fc713c2c1f53fabe786573dcdd20712ac6a5638fbf66cfc63"
+      },
+      "originalAnswerUsed": false,
+      "authorCheckOnly": true,
+      "independentMathApproval": false,
+      "curriculumPermissionFromCalculation": false
+    },
+    {
+      "questionNumber": 19,
+      "newExactRequestedValues": [
+        "3*x/5",
+        "4*x/5",
+        "10",
+        "6",
+        "8"
+      ],
+      "freshNewCalculations": {
+        "symbol": "x>0 actual hypotenuse",
+        "QR": "3*x/5",
+        "PRfromPythagoras": "4*x/5",
+        "areaAsFunctionOfHypotenuse": "6*x**2/25",
+        "positiveRoots": [
+          "10"
+        ],
+        "PQ": "10",
+        "QRactual": "6",
+        "PRactual": "8"
+      },
+      "conditions": [
+        {
+          "condition": "positive unique scale and both actual leg constraints",
+          "passedAsAuthorCalculation": true,
+          "calculation": {
+            "symbol": "x>0 actual hypotenuse",
+            "QR": "3*x/5",
+            "PRfromPythagoras": "4*x/5",
+            "areaAsFunctionOfHypotenuse": "6*x**2/25",
+            "positiveRoots": [
+              "10"
+            ],
+            "PQ": "10",
+            "QRactual": "6",
+            "PRactual": "8"
+          }
+        }
+      ],
+      "actualAllChoices": [],
+      "winnerIndex1based": null,
+      "choiceAnswerMark": null,
+      "requestedUniquenessAuthorCheck": true,
+      "wholeConfigurationMustBeUnique": true,
+      "unitsAndPrecision": "q04/q05 table records andq17 specified rounded distance are approximations; all other numeric lengths/areas exact.",
+      "code": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/author_math.py",
+        "sha256": "dffc06bdb422829fc713c2c1f53fabe786573dcdd20712ac6a5638fbf66cfc63"
+      },
+      "originalAnswerUsed": false,
+      "authorCheckOnly": true,
+      "independentMathApproval": false,
+      "curriculumPermissionFromCalculation": false
+    },
+    {
+      "questionNumber": 20,
+      "newExactRequestedValues": [
+        "30",
+        "5*sqrt(3)",
+        "1/2",
+        "sqrt(3)/2",
+        "sqrt(3)/3"
+      ],
+      "freshNewCalculations": {
+        "givenSide": "10",
+        "halfBase": "5",
+        "height": "5*sqrt(3)",
+        "alpha": 30,
+        "SSSProofSides": [
+          10,
+          5,
+          "PH shared"
+        ],
+        "sinAlphaDefinition": "1/2",
+        "cosAlphaDefinition": "sqrt(3)/2",
+        "tanAlphaDefinition": "sqrt(3)/3"
+      },
+      "conditions": [
+        {
+          "condition": "actual lengths and three definition values",
+          "passedAsAuthorCalculation": true,
+          "calculation": {
+            "givenSide": "10",
+            "halfBase": "5",
+            "height": "5*sqrt(3)",
+            "alpha": 30,
+            "SSSProofSides": [
+              10,
+              5,
+              "PH shared"
+            ],
+            "sinAlphaDefinition": "1/2",
+            "cosAlphaDefinition": "sqrt(3)/2",
+            "tanAlphaDefinition": "sqrt(3)/3"
+          }
+        }
+      ],
+      "actualAllChoices": [],
+      "winnerIndex1based": null,
+      "choiceAnswerMark": null,
+      "requestedUniquenessAuthorCheck": true,
+      "wholeConfigurationMustBeUnique": false,
+      "unitsAndPrecision": "q04/q05 table records andq17 specified rounded distance are approximations; all other numeric lengths/areas exact.",
+      "code": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/author_math.py",
+        "sha256": "dffc06bdb422829fc713c2c1f53fabe786573dcdd20712ac6a5638fbf66cfc63"
+      },
+      "originalAnswerUsed": false,
+      "authorCheckOnly": true,
+      "independentMathApproval": false,
+      "curriculumPermissionFromCalculation": false
+    },
+    {
+      "questionNumber": 21,
+      "newExactRequestedValues": [
+        "9",
+        "9*sqrt(3)",
+        "15",
+        "24"
+      ],
+      "freshNewCalculations": {
+        "OP": "18",
+        "PQ": "6*sqrt(13)",
+        "OH": "9",
+        "PH": "9*sqrt(3)",
+        "HQ": "15",
+        "OQ": "24",
+        "OH_over_OQ": "3/8"
+      },
+      "conditions": [
+        {
+          "condition": "positive internal foot, both right triangle constraints",
+          "passedAsAuthorCalculation": true,
+          "calculation": {
+            "OP": "18",
+            "PQ": "6*sqrt(13)",
+            "OH": "9",
+            "PH": "9*sqrt(3)",
+            "HQ": "15",
+            "OQ": "24",
+            "OH_over_OQ": "3/8"
+          }
+        }
+      ],
+      "actualAllChoices": [],
+      "winnerIndex1based": null,
+      "choiceAnswerMark": null,
+      "requestedUniquenessAuthorCheck": true,
+      "wholeConfigurationMustBeUnique": true,
+      "unitsAndPrecision": "q04/q05 table records andq17 specified rounded distance are approximations; all other numeric lengths/areas exact.",
+      "code": {
+        "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/author_math.py",
+        "sha256": "dffc06bdb422829fc713c2c1f53fabe786573dcdd20712ac6a5638fbf66cfc63"
+      },
+      "originalAnswerUsed": false,
+      "authorCheckOnly": true,
+      "independentMathApproval": false,
+      "curriculumPermissionFromCalculation": false
+    }
+  ],
+  "MCchoicesChecked": 60,
+  "writtenParents": 3,
+  "originalAnswerKeyAgreementUsed": false
+}

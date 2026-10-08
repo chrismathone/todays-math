@@ -1,0 +1,689 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 3,
+  "authorId": "orca-codex-exam-twin-source-identity-20261008",
+  "method": "author-calculation-and-seven-surface-preparation",
+  "authorOnly": true,
+  "independentVerifier": false,
+  "sourceQuestionId": "2025-gyeongsang-3-2-mid-3",
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q03",
+  "sourceQuestionOnlyRecord": {
+    "number": 3,
+    "stem": "직각삼각형 $\\mathrm{ABC}$에서 $\\tan \\mathrm{A}$의 값은? [$4$점]",
+    "choices": [
+      "$\\frac{5}{11}$",
+      "$\\frac{\\sqrt{11}}{5}$",
+      "$\\frac{5}{6}$",
+      "$\\frac{5}{\\sqrt{11}}$",
+      "$\\frac{11}{5}$"
+    ],
+    "hwpScriptStem": "직각삼각형 $RMABC$에서 $tan rm A$의 값은? [$4$점]",
+    "hwpScriptChoices": [
+      "${5} over {11}$",
+      "${sqrt {11}} over {5}$",
+      "${5} over {6}$",
+      "${5} over {sqrt {11}}$",
+      "${11} over {5}$"
+    ],
+    "scoreEvidence": {
+      "selectedHwpPdfPrintedParentScore": 4.0,
+      "selectedPairScoreStatus": "literal_match",
+      "originalPrintedParentScore": 4.0,
+      "referenceParentScore": 4.0,
+      "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+      "parentCountedOnce": true,
+      "childScores": [],
+      "subquestionCount": 0,
+      "parentAndChildrenMustNotBeAddedTogether": false
+    },
+    "subQuestions": [],
+    "structuredGivenData": {},
+    "figureGivenObservation": "C 직각; AC=5, BC=√11, AB=6.",
+    "curriculum": {
+      "sourceGrade": "중3",
+      "expectedAppliedCurriculum": "2015",
+      "status": "hold_full_item_review",
+      "fullApproval": false,
+      "conceptCandidate": "삼각비의 정의·값·활용",
+      "coreMethodCandidate": "직각삼각형에서 tan의 대변/인접변을 읽는다.",
+      "officialStandardsCandidates": [
+        {
+          "code": "9수04-17",
+          "officialStatement": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+          "pdfPage": 38,
+          "printedPage": 34,
+          "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+          "notPerQuestionApproval": true
+        }
+      ],
+      "localUnitCandidate": {
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "seedFile": "prisma/seed-data/units.ts",
+        "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+        "liveUnitId": null
+      },
+      "liveFamilyId": null,
+      "generatorRuleId": null,
+      "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+      "specificRisk": null,
+      "decisionIfNoLegalGradeMethod": "reject",
+      "decisionIfUnclear": "hold",
+      "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+      "requiredReview": [
+        "stem",
+        "all choices",
+        "figure meaning",
+        "notation",
+        "answer format",
+        "new answer",
+        "student solution",
+        "required steps",
+        "prerequisites"
+      ],
+      "signDomainUnitsGate": [
+        "signs and radicals",
+        "angle range 0-90 degrees",
+        "nonzero denominators",
+        "positive lengths/areas",
+        "units",
+        "existence",
+        "uniqueness"
+      ],
+      "sourceSchoolOrAIConfidenceCannotApprove": true
+    },
+    "sourceContentDigest": "29969fbf225323e592306a32751aff0131bcf9e6acf8e3b1e6812c2892e6c549",
+    "sourceQuestionId": "2025-gyeongsang-3-2-mid-3",
+    "status": "source_reference_reviewed_all_final_approval_gates_held",
+    "sourceAmbiguityHolds": [
+      "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+      "source_custody_rights_permission_pending",
+      "canonical_text_product_render_review_pending"
+    ],
+    "sharedContext": null,
+    "images": [
+      {
+        "file": "images/q03-part1.png",
+        "sha256": "e789a00452faee0f04137927379107b8923ca8a61cd908c94b640120556ed4f4",
+        "page": 1,
+        "column": 1,
+        "bbox": [
+          370,
+          99,
+          688.0,
+          486.30670166015625
+        ]
+      }
+    ],
+    "subquestionNumbers": [],
+    "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+    "selectedHwpAnchor": {
+      "stream": "BodyText/Section0",
+      "recordIndex": 477,
+      "inflatedByteOffset": 18885,
+      "tag": 71,
+      "level": 1,
+      "payloadSha256": "3eb5280d25b0a3df2d8458d01685f4ca2dd51745bfdd5a8cdeab2a228403d66a"
+    },
+    "selectedPdfRegions": [
+      {
+        "page": 1,
+        "column": 1,
+        "bbox": [
+          370,
+          99,
+          688.0,
+          486.30670166015625
+        ]
+      }
+    ]
+  },
+  "sourceWholePacketSHA256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+  "gradeDisposition": "author-observed-proposed",
+  "sourceCoreAndActualMethod": {
+    "sharedConcept": "피타고라스의 양의 길이 복구 및 탄젠트 정의",
+    "sourceObservedQuestion": "직각삼각형 $\\mathrm{ABC}$에서 $\\tan \\mathrm{A}$의 값은? [$4$점]\nC 직각; AC=5, BC=√11, AB=6.",
+    "newMethod": "13²−10²=69>0; positive QR=√69, then definition QR/PR=√69/10. Both requested records checked.",
+    "sourceCorePreservationStatus": "author-proposed-independent-review-pending"
+  },
+  "substantiveDelta": {
+    "modes": [
+      "structure"
+    ],
+    "before": "직각삼각형 $\\mathrm{ABC}$에서 $\\tan \\mathrm{A}$의 값은? [$4$점]\nC 직각; AC=5, BC=√11, AB=6.",
+    "after": "누락된 직각변을 복구하여 탄젠트 한 값을 선택하는 구조를, 복구한 실제 길이와 탄젠트의 두 기록을 함께 판별하는 표로 바꾼다.",
+    "sharedConcept": "피타고라스의 양의 길이 복구 및 탄젠트 정의",
+    "sharedProcedure": "빗변과 이웃변으로 남은 양의 직각변을 구한 뒤 대변/이웃변을 읽는다.",
+    "originalAnswerOrNumericalAgreementUsed": false
+  },
+  "score": 4.0,
+  "newSubpartRubric": [],
+  "mathEvidence": {
+    "questionNumber": 3,
+    "newExactRequestedValues": [
+      "sqrt(69)",
+      "sqrt(69)/10"
+    ],
+    "freshNewCalculations": {
+      "PQ": "13",
+      "PR": "10",
+      "QR": "sqrt(69)",
+      "tanP": "sqrt(69)/10"
+    },
+    "conditions": [
+      {
+        "condition": "positive root and tangent denominator",
+        "passedAsAuthorCalculation": true,
+        "calculation": {
+          "PQ": "13",
+          "PR": "10",
+          "QR": "sqrt(69)",
+          "tanP": "sqrt(69)/10"
+        }
+      }
+    ],
+    "actualAllChoices": [
+      {
+        "index1based": 1,
+        "choiceText": "$\\sqrt{69},\\ \\frac{10}{\\sqrt{69}}$",
+        "parsedExactValues": [
+          "sqrt(69)",
+          "10*sqrt(69)/69"
+        ],
+        "differencesFromCalculatedTargets": [
+          "0",
+          "31*sqrt(69)/690"
+        ],
+        "correctAsAuthorCalculation": false
+      },
+      {
+        "index1based": 2,
+        "choiceText": "$\\sqrt{69},\\ \\frac{\\sqrt{69}}{10}$",
+        "parsedExactValues": [
+          "sqrt(69)",
+          "sqrt(69)/10"
+        ],
+        "differencesFromCalculatedTargets": [
+          "0",
+          "0"
+        ],
+        "correctAsAuthorCalculation": true
+      },
+      {
+        "index1based": 3,
+        "choiceText": "$3,\\ \\frac{3}{10}$",
+        "parsedExactValues": [
+          "3",
+          "3/10"
+        ],
+        "differencesFromCalculatedTargets": [
+          "3 - sqrt(69)",
+          "3/10 - sqrt(69)/10"
+        ],
+        "correctAsAuthorCalculation": false
+      },
+      {
+        "index1based": 4,
+        "choiceText": "$\\sqrt{159},\\ \\frac{\\sqrt{159}}{10}$",
+        "parsedExactValues": [
+          "sqrt(159)",
+          "sqrt(159)/10"
+        ],
+        "differencesFromCalculatedTargets": [
+          "-sqrt(69) + sqrt(159)",
+          "-sqrt(69)/10 + sqrt(159)/10"
+        ],
+        "correctAsAuthorCalculation": false
+      },
+      {
+        "index1based": 5,
+        "choiceText": "$\\sqrt{69},\\ \\frac{\\sqrt{69}}{13}$",
+        "parsedExactValues": [
+          "sqrt(69)",
+          "sqrt(69)/13"
+        ],
+        "differencesFromCalculatedTargets": [
+          "0",
+          "-3*sqrt(69)/130"
+        ],
+        "correctAsAuthorCalculation": false
+      }
+    ],
+    "winnerIndex1based": 2,
+    "choiceAnswerMark": "②",
+    "requestedUniquenessAuthorCheck": true,
+    "wholeConfigurationMustBeUnique": true,
+    "unitsAndPrecision": "q04/q05 table records andq17 specified rounded distance are approximations; all other numeric lengths/areas exact.",
+    "code": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/author_math.py",
+      "sha256": "dffc06bdb422829fc713c2c1f53fabe786573dcdd20712ac6a5638fbf66cfc63"
+    },
+    "originalAnswerUsed": false,
+    "authorCheckOnly": true,
+    "independentMathApproval": false,
+    "curriculumPermissionFromCalculation": false
+  },
+  "calculationProofFile": {
+    "path": "author-calculations.json",
+    "sha256": "de493620851acf3825c3c21a1634c8c774abcf9fbdc7389170d0a27668350a4a"
+  },
+  "calculationCode": {
+    "path": "author_math.py",
+    "sha256": "dffc06bdb422829fc713c2c1f53fabe786573dcdd20712ac6a5638fbf66cfc63"
+  },
+  "sevenStudentSurfaces": {
+    "stem": {
+      "status": "author-observed-proposed",
+      "contentTextSha256": "557653638fdeadb70fd3b551abdf13371e9a64465f373be136c8f614697538c2",
+      "observation": "누락된 직각변을 복구하여 탄젠트 한 값을 선택하는 구조를, 복구한 실제 길이와 탄젠트의 두 기록을 함께 판별하는 표로 바꾼다.",
+      "wholeMethod": "13²−10²=69>0; positive QR=√69, then definition QR/PR=√69/10. Both requested records checked."
+    },
+    "choices": {
+      "status": "author-observed-proposed",
+      "textArraySha256": "9a934392097cf49d2fa1d4968c819e3ba4432df76157cf5383306299699615a5",
+      "actualAllChoices": [
+        {
+          "index1based": 1,
+          "choiceText": "$\\sqrt{69},\\ \\frac{10}{\\sqrt{69}}$",
+          "parsedExactValues": [
+            "sqrt(69)",
+            "10*sqrt(69)/69"
+          ],
+          "differencesFromCalculatedTargets": [
+            "0",
+            "31*sqrt(69)/690"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 2,
+          "choiceText": "$\\sqrt{69},\\ \\frac{\\sqrt{69}}{10}$",
+          "parsedExactValues": [
+            "sqrt(69)",
+            "sqrt(69)/10"
+          ],
+          "differencesFromCalculatedTargets": [
+            "0",
+            "0"
+          ],
+          "correctAsAuthorCalculation": true
+        },
+        {
+          "index1based": 3,
+          "choiceText": "$3,\\ \\frac{3}{10}$",
+          "parsedExactValues": [
+            "3",
+            "3/10"
+          ],
+          "differencesFromCalculatedTargets": [
+            "3 - sqrt(69)",
+            "3/10 - sqrt(69)/10"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 4,
+          "choiceText": "$\\sqrt{159},\\ \\frac{\\sqrt{159}}{10}$",
+          "parsedExactValues": [
+            "sqrt(159)",
+            "sqrt(159)/10"
+          ],
+          "differencesFromCalculatedTargets": [
+            "-sqrt(69) + sqrt(159)",
+            "-sqrt(69)/10 + sqrt(159)/10"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 5,
+          "choiceText": "$\\sqrt{69},\\ \\frac{\\sqrt{69}}{13}$",
+          "parsedExactValues": [
+            "sqrt(69)",
+            "sqrt(69)/13"
+          ],
+          "differencesFromCalculatedTargets": [
+            "0",
+            "-3*sqrt(69)/130"
+          ],
+          "correctAsAuthorCalculation": false
+        }
+      ],
+      "observation": "All five exact values/ordered pairs were parsed with code and compared against every requested target; one winning option. Wrong choices require no new grade prerequisite."
+    },
+    "figuresAndTables": {
+      "status": "author-observed-proposed",
+      "rawSpecAndSvgRelations": {
+        "questionNumber": 3,
+        "spec": {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q03/stem-1.spec.json",
+          "sha256": "93336e0dc357d0f6d718a0b90a838cfad6999409c34a08bff90c0f625f432138"
+        },
+        "svg": {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q03/stem-1.svg",
+          "sha256": "1d8a4b296cdfae1da1e056ca99636a9bf4b3e1af1bd9261a6a32c3b8655a87da"
+        },
+        "intendedWidthMm": 70,
+        "coordinateChecks": [
+          {
+            "condition": "angle_R right",
+            "computed": 90.0,
+            "required": 90,
+            "authorCheckPassed": true
+          },
+          {
+            "condition": "PQ/PR=13/10",
+            "computed": 1.3,
+            "required": 1.3,
+            "authorCheckPassed": true
+          }
+        ],
+        "mathematicalPixelMeasurementsUsed": false,
+        "independentFigureOrGradeApproval": false,
+        "authorCheckOnly": true
+      },
+      "visualEvidence": {
+        "questionNumber": 3,
+        "directlyViewedWithViewImage": {
+          "path": "qa/q03-author.png",
+          "sha256": "2207d4210d68e116a73029d82412a5bb6a0b8751a1da178d18a1f70cd172125c"
+        },
+        "studentPane": {
+          "path": "qa/q03-student.png",
+          "sha256": "e850f3c492c77ffaf67541f5763b4240d072e76b6806a58be9316140f318c31a"
+        },
+        "studentPanePixelIdenticalToViewedPrefix": true,
+        "actualColumnWidthMm": 70,
+        "actualSvgWidthsMm": [
+          69.998828125
+        ],
+        "viewedItems": [
+          "whole student stem",
+          "fresh tables",
+          "all choices or all written parts",
+          "all new embedded figures",
+          "chosen new answer",
+          "entire expanded new solution"
+        ],
+        "legibilityAuthorObservation": "Labels, radicals, fractions, degree marks and table boundaries readable; no clipping, orphan final table row or math/table overflow observed.",
+        "mathematicalPixelMeasurementUsed": false,
+        "independentFigureOrContentApproval": false
+      },
+      "observation": "Every needed length/angle/order given in text; newly computed engine geometry is not a substitute for a given. Fresh tables organize new records and preserve paragraphs."
+    },
+    "notation": {
+      "status": "author-observed-proposed",
+      "observation": "Corrected draft superscript comma typo before freeze: QR². Positive square root and tan definition only."
+    },
+    "answer": {
+      "status": "author-observed-proposed",
+      "textSha256": "faab5aef76a0e31bef1dc423641a79e0b60938edcdf69194bc63e734ca7114f6",
+      "newExactRequestedValues": [
+        "sqrt(69)",
+        "sqrt(69)/10"
+      ],
+      "observation": "New single chosen circled mark bound to the checked option."
+    },
+    "studentSolution": {
+      "status": "author-observed-proposed",
+      "textSha256": "97a9102d1c05ecddf40296a546bfa542278cd95db2e2c18f9b8693ee3f972712",
+      "legitimateStudentProcedure": "빗변과 이웃변으로 남은 양의 직각변을 구한 뒤 대변/이웃변을 읽는다.",
+      "actualMathRoute": "13²−10²=69>0; positive QR=√69, then definition QR/PR=√69/10. Both requested records checked.",
+      "generalTrigIdentityOrSineCosineLawUsed": false,
+      "originalKeyAgreementUsed": false
+    },
+    "prerequisites": {
+      "status": "author-observed-proposed",
+      "officialStandards": [
+        {
+          "id": "9수01-07",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 3776,
+            "paragraph1based": 819,
+            "offset": 192865,
+            "text": "[9수01-07]\u001e제곱근의 뜻을 알고, 그 성질을 이해한다.\r"
+          },
+          "pdfPhysicalPage1based": 33,
+          "pdfPrintedPage": 29,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-16",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4333,
+            "paragraph1based": 946,
+            "offset": 218866,
+            "text": "[9수04-16]\u001e피타고라스 정리를 이해하고 설명할 수 있다. \r"
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-17",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4341,
+            "paragraph1based": 948,
+            "offset": 219120,
+            "text": "[9수04-17]\u001e삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다. \r"
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        }
+      ],
+      "actualPrerequisiteSeedRecords": [
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2879,
+          "endLine1based": 2884,
+          "section": "제곱근의 뜻과 성질",
+          "text": "{\n    grade: \"중3\",\n    chapter: \"1. 실수와 그 계산\",\n    section: \"제곱근의 뜻과 성질\",\n    orderIndex: 469,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2955,
+          "endLine1based": 2960,
+          "section": "삼각비의 뜻",
+          "text": "{\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 뜻\",\n    orderIndex: 481,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2961,
+          "endLine1based": 2966,
+          "section": "삼각비의 값",
+          "text": "{\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 값\",\n    orderIndex: 482,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2967,
+          "endLine1based": 2972,
+          "section": "삼각비의 활용",
+          "text": "{\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 활용\",\n    orderIndex: 483,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 3112,
+          "endLine1based": 3117,
+          "section": "음수의 제곱근",
+          "text": "{\n    grade: \"공통수학1\",\n    chapter: \"2. 방정식과 부등식\",\n    section: \"음수의 제곱근\",\n    orderIndex: 508,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 3631,
+          "endLine1based": 3636,
+          "section": "거듭제곱근의 뜻",
+          "text": "{\n    grade: \"대수\",\n    chapter: \"1. 지수함수와 로그함수\",\n    section: \"거듭제곱근의 뜻\",\n    orderIndex: 594,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 3637,
+          "endLine1based": 3642,
+          "section": "거듭제곱근의 성질과 계산",
+          "text": "{\n    grade: \"대수\",\n    chapter: \"1. 지수함수와 로그함수\",\n    section: \"거듭제곱근의 성질과 계산\",\n    orderIndex: 595,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2850,
+          "endLine1based": 2855,
+          "section": "피타고라스 정리",
+          "text": "{\n    grade: \"중2\",\n    chapter: \"8. 피타고라스 정리\",\n    section: \"피타고라스 정리\",\n    orderIndex: 463,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2856,
+          "endLine1based": 2861,
+          "section": "피타고라스 정리의 활용",
+          "text": "{\n    grade: \"중2\",\n    chapter: \"8. 피타고라스 정리\",\n    section: \"피타고라스 정리의 활용\",\n    orderIndex: 464,\n  }"
+        }
+      ],
+      "boundary": "Source-era2015 middle3 only; no probability/registry permit. New elementary coordinate representation q02 is supported by9수03-01. Whole route remains subject to independent review."
+    }
+  },
+  "officialRestrictions": [
+    {
+      "id": "no_trig_ratio_relationships",
+      "hwp": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record1based": 4440,
+        "paragraph1based": 966,
+        "offset": 224820,
+        "text": "삼각비 사이의 관계는 다루지 않는다.\r"
+      },
+      "pdfPhysicalPage1based": 39,
+      "pdfPrintedPage": 35,
+      "wholeClausePdfMatch": true
+    },
+    {
+      "id": "angle_range",
+      "hwp": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record1based": 4444,
+        "paragraph1based": 967,
+        "offset": 224946,
+        "text": "삼각비의 값은 0°에서 90°까지의 각도에 대한 것만 다룬다.\r"
+      },
+      "pdfPhysicalPage1based": 39,
+      "pdfPrintedPage": 35,
+      "wholeClausePdfMatch": true
+    },
+    {
+      "id": "no_complex_geometry_measurement",
+      "hwp": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record1based": 4472,
+        "paragraph1based": 974,
+        "offset": 226554,
+        "text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다.\r"
+      },
+      "pdfPhysicalPage1based": 39,
+      "pdfPrintedPage": 35,
+      "wholeClausePdfMatch": true
+    },
+    {
+      "id": "no_formal_complex_justification",
+      "hwp": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record1based": 4476,
+        "paragraph1based": 975,
+        "offset": 226792,
+        "text": "정확한 용어와 기호의 사용, 복잡한 형식 논리 규칙의 이용을 요구하는 연역적 정당화 문제는 다루지 않는다. \r"
+      },
+      "pdfPhysicalPage1based": 39,
+      "pdfPrintedPage": 35,
+      "wholeClausePdfMatch": true
+    }
+  ],
+  "taxonomy": {
+    "status": "pending",
+    "unitId": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+    "unitSection": "삼각비의 뜻",
+    "familyKey": null,
+    "evidence": {
+      "actualCapturedUnit": {
+        "id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 뜻",
+        "semester": 2,
+        "orderIndex": 481,
+        "problemCodePrefix": "J30501"
+      },
+      "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+      "snapshotOnly": true,
+      "comparison": "01은 한 삼각비 값만 묻는다. 길이/탄젠트 두 기록 전체는 배정 근거가 없어 보류한다.",
+      "comparedRegistryEntries": [
+        {
+          "registry": {
+            "key": "3-2|삼각비|01",
+            "grade": "중3",
+            "unitSection": "삼각비의 뜻",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비",
+            "rpmType": "01",
+            "rpmTitle": "삼각비의 값"
+          },
+          "liveMatches": [
+            {
+              "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+              "family_key": "mid:3-2|삼각비|01",
+              "live_count": 24
+            }
+          ],
+          "actualRule": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+            "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+            "startLine1based": 949,
+            "endLine1based": 982,
+            "text": "def(\"삼각비\", \"01\", \"삼각비의 값\", SEC.뜻, \"기본\", (rng) => {\n    const [p, q, r] = pick(rng, TRIPLES);\n    const mode = intBetween(rng, 0, 2);\n    // $\\angle B=90^\\circ$ — $\\overline{BC}$ 가 $\\angle A$ 의 대변, $\\overline{AB}$ 가 이웃변.\n    // mode 2($\\tan A=\\overline{BC}/\\overline{AB}$)는 진분수여야 하므로 대변을 짧게 고정한다.\n    const swap = mode === 2 ? false : rng() < 0.5;\n    const bc = swap ? q : p;\n    const ab = swap ? p : q;\n    const [num, den] = red(mode === 1 ? ab : bc, mode === 2 ? ab : r);\n    const asked = trigOf(mode, \"A\");\n    const ratio = [\n      `\\\\dfrac{\\\\overline{BC}}{\\\\overline{AC}}`,\n      `\\\\dfrac{\\\\overline{AB}}{\\\\overline{AC}}`,\n      `\\\\dfrac{\\\\overline{BC}}{\\\\overline{AB}}`,\n    ][mode]!;\n    const raw = [\n      `\\\\dfrac{${bc}}{${r}}`,\n      `\\\\dfrac{${ab}}{${r}}`,\n      `\\\\dfrac{${bc}}{${ab}}`,\n    ][mode]!;\n    return {\n      content: `직각삼각형 $ABC$에서 $\\\\angle B=90^\\\\circ$이고 $\\\\overline{AB}=${cm(ab)}$, $\\\\overline{BC}=${cm(bc)}$일 때, $${asked}$의 값을 구하시오.`,\n      answer: `$${frac(num, den)}$`,\n      solution: `피타고라스 정리에서 $\\\\overline{AC}=\\\\sqrt{${ab}^2+${bc}^2}=${r}\\\\,(\\\\mathrm{cm})$이다.\\n따라서 $${asked}=${ratio}=${raw === frac(num, den) ? raw : `${raw}=${frac(num, den)}`}$이다.`,\n      facts: { ab, bc, ac: r, mode, num, den },\n      figureSpec: figRight({\n        vert: ab,\n        horz: bc,\n        dims: { AB: dimCm(ab), BC: dimCm(bc) },\n      }),\n    };\n  }),\n\n  "
+          }
+        }
+      ],
+      "TRIPLESPoolCheckedForQ01": null
+    }
+  },
+  "problemType": {
+    "proposal": null,
+    "status": "pending",
+    "evidence": {
+      "path": "classification-limits.json",
+      "sha256": "fbcfa8e7894db6a3244c60cdb524628464fba1dc8edade615b55cb1bdf0c6a45"
+    }
+  },
+  "objectiveDifficultyProposal": {
+    "label": "기본",
+    "reason": "빗변과 이웃변으로 남은 양의 직각변을 구한 뒤 대변/이웃변을 읽는다.",
+    "status": "author-proposed",
+    "registryDescriptorAsProof": false,
+    "studentPerformanceMeasured": false
+  },
+  "naturalKoreanAuthorObservation": "Actual expanded layout read; exact input/target order and units stated. Pure mathematics stays mathematical; q17 changes distance input/target in a natural ramp context; q21 uses consistent fictional school.",
+  "materialHold": null,
+  "allFinalApprovals": {
+    "independentMath": false,
+    "independentWholeGrade": false,
+    "sourceCore": false,
+    "unitFamily": false,
+    "rights": false,
+    "nativeProvenance": false,
+    "loadable": false
+  }
+}

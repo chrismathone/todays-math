@@ -1,0 +1,736 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 20,
+  "authorId": "orca-codex-exam-twin-source-identity-20261008",
+  "method": "author-calculation-and-seven-surface-preparation",
+  "authorOnly": true,
+  "independentVerifier": false,
+  "sourceQuestionId": "2025-gyeongsang-3-2-mid-20",
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q20",
+  "sourceQuestionOnlyRecord": {
+    "number": 20,
+    "stem": "[서술형 $2$] 정삼각형 $\\mathrm{ABC}$를 이용하여 $60^\\circ$의 삼각비를 구하고, 그 과정을 서술하시오.\n[$8$점, 부분점수 있음]",
+    "choices": [],
+    "hwpScriptStem": "[서술형 $2$] 정삼각형 $RMABC$를 이용하여 $60 DEG$의 삼각비를 구하고, 그 과정을 서술하시오.\n[$8$점, 부분점수 있음]",
+    "hwpScriptChoices": [],
+    "scoreEvidence": {
+      "selectedHwpPdfPrintedParentScore": 8.0,
+      "selectedPairScoreStatus": "literal_match",
+      "originalPrintedParentScore": 8.0,
+      "referenceParentScore": 8.0,
+      "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+      "parentCountedOnce": true,
+      "childScores": [],
+      "subquestionCount": 0,
+      "parentAndChildrenMustNotBeAddedTogether": false
+    },
+    "subQuestions": [],
+    "structuredGivenData": {},
+    "figureGivenObservation": "정삼각형 ABC; 각 60°; 수선 구성은 풀이에서 새로 해야 한다.",
+    "curriculum": {
+      "sourceGrade": "중3",
+      "expectedAppliedCurriculum": "2015",
+      "status": "hold_full_item_review",
+      "fullApproval": false,
+      "conceptCandidate": "삼각비의 정의·값·활용",
+      "coreMethodCandidate": "정삼각형을 수선으로 나눈 30/60도 직각삼각형에서 정의를 읽는다.",
+      "officialStandardsCandidates": [
+        {
+          "code": "9수04-17",
+          "officialStatement": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+          "pdfPage": 38,
+          "printedPage": 34,
+          "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+          "notPerQuestionApproval": true
+        }
+      ],
+      "localUnitCandidate": {
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "seedFile": "prisma/seed-data/units.ts",
+        "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+        "liveUnitId": null
+      },
+      "liveFamilyId": null,
+      "generatorRuleId": null,
+      "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+      "specificRisk": null,
+      "decisionIfNoLegalGradeMethod": "reject",
+      "decisionIfUnclear": "hold",
+      "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+      "requiredReview": [
+        "stem",
+        "all choices",
+        "figure meaning",
+        "notation",
+        "answer format",
+        "new answer",
+        "student solution",
+        "required steps",
+        "prerequisites"
+      ],
+      "signDomainUnitsGate": [
+        "signs and radicals",
+        "angle range 0-90 degrees",
+        "nonzero denominators",
+        "positive lengths/areas",
+        "units",
+        "existence",
+        "uniqueness"
+      ],
+      "sourceSchoolOrAIConfidenceCannotApprove": true
+    },
+    "sourceContentDigest": "2a9b36df0b941de4891c535a103d14cfd8dc0331a0b72f7d29079840083f9d21",
+    "sourceQuestionId": "2025-gyeongsang-3-2-mid-20",
+    "status": "source_reference_reviewed_all_final_approval_gates_held",
+    "sourceAmbiguityHolds": [
+      "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+      "source_custody_rights_permission_pending",
+      "canonical_text_product_render_review_pending"
+    ],
+    "sharedContext": null,
+    "images": [
+      {
+        "file": "images/q20-part1.png",
+        "sha256": "37f4d6b0396f6d74f8c40da9c1efe1ef9fc48a26dc969b883d844190bceb0e2d",
+        "page": 5,
+        "column": 1,
+        "bbox": [
+          370,
+          83,
+          688.0,
+          943.0
+        ]
+      }
+    ],
+    "subquestionNumbers": [],
+    "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+    "selectedHwpAnchor": {
+      "stream": "BodyText/Section0",
+      "recordIndex": 2239,
+      "inflatedByteOffset": 97066,
+      "tag": 71,
+      "level": 1,
+      "payloadSha256": "9c12e935da21fa07633b8c5733f97ba41f9f0a095bc1ce3b3c0020adbb4c1c4c"
+    },
+    "selectedPdfRegions": [
+      {
+        "page": 5,
+        "column": 1,
+        "bbox": [
+          370,
+          83,
+          688.0,
+          943.0
+        ]
+      }
+    ]
+  },
+  "sourceWholePacketSHA256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+  "gradeDisposition": "author-observed-proposed",
+  "sourceCoreAndActualMethod": {
+    "sharedConcept": "정삼각형을 수선으로 나누고 피타고라스와 삼각비 정의로 특수값 구성",
+    "sourceObservedQuestion": "[서술형 $2$] 정삼각형 $\\mathrm{ABC}$를 이용하여 $60^\\circ$의 삼각비를 구하고, 그 과정을 서술하시오.\n[$8$점, 부분점수 있음]\n정삼각형 ABC; 각 60°; 수선 구성은 풀이에서 새로 해야 한다.",
+    "newMethod": "SSS of PQH/PRH and equal supplementary angles establishes the perpendicular; equal vertex halves give30. Positive height√(100−25)=5√3. Three ratios read directly from actual sides QH5,PH5√3,PQ10, without complementary-angle or inter-ratio identities.",
+    "sourceCorePreservationStatus": "author-proposed-independent-review-pending"
+  },
+  "substantiveDelta": {
+    "modes": [
+      "representation",
+      "structure"
+    ],
+    "before": "[서술형 $2$] 정삼각형 $\\mathrm{ABC}$를 이용하여 $60^\\circ$의 삼각비를 구하고, 그 과정을 서술하시오.\n[$8$점, 부분점수 있음]\n정삼각형 ABC; 각 60°; 수선 구성은 풀이에서 새로 해야 한다.",
+    "after": "정삼각형으로60도 값을 서술하는 문제를, 중점 수선의 합동 근거/실제 높이/꼭짓점의30도 세 값 기록표로 바꾸어 질문 대상과 증명 조직을 새로 구성한다.",
+    "sharedConcept": "정삼각형을 수선으로 나누고 피타고라스와 삼각비 정의로 특수값 구성",
+    "sharedProcedure": "SSS와평각으로수선을 정당화하고 양의높이를 피타고라스로 구해30도 직각삼각형의세정의를 직접 읽는다.",
+    "originalAnswerOrNumericalAgreementUsed": false
+  },
+  "score": 8.0,
+  "newSubpartRubric": [
+    {
+      "part": 1,
+      "points": 2,
+      "criteria": "SSS/평각의수직근거1, 각이등분에의한30도1"
+    },
+    {
+      "part": 2,
+      "points": 3,
+      "criteria": "QH5와Pythagoras식2,양의길이5√3cm1"
+    },
+    {
+      "part": 3,
+      "points": 3,
+      "criteria": "세직접선분비와정확한값 각각1"
+    }
+  ],
+  "mathEvidence": {
+    "questionNumber": 20,
+    "newExactRequestedValues": [
+      "30",
+      "5*sqrt(3)",
+      "1/2",
+      "sqrt(3)/2",
+      "sqrt(3)/3"
+    ],
+    "freshNewCalculations": {
+      "givenSide": "10",
+      "halfBase": "5",
+      "height": "5*sqrt(3)",
+      "alpha": 30,
+      "SSSProofSides": [
+        10,
+        5,
+        "PH shared"
+      ],
+      "sinAlphaDefinition": "1/2",
+      "cosAlphaDefinition": "sqrt(3)/2",
+      "tanAlphaDefinition": "sqrt(3)/3"
+    },
+    "conditions": [
+      {
+        "condition": "actual lengths and three definition values",
+        "passedAsAuthorCalculation": true,
+        "calculation": {
+          "givenSide": "10",
+          "halfBase": "5",
+          "height": "5*sqrt(3)",
+          "alpha": 30,
+          "SSSProofSides": [
+            10,
+            5,
+            "PH shared"
+          ],
+          "sinAlphaDefinition": "1/2",
+          "cosAlphaDefinition": "sqrt(3)/2",
+          "tanAlphaDefinition": "sqrt(3)/3"
+        }
+      }
+    ],
+    "actualAllChoices": [],
+    "winnerIndex1based": null,
+    "choiceAnswerMark": null,
+    "requestedUniquenessAuthorCheck": true,
+    "wholeConfigurationMustBeUnique": false,
+    "unitsAndPrecision": "q04/q05 table records andq17 specified rounded distance are approximations; all other numeric lengths/areas exact.",
+    "code": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/author_math.py",
+      "sha256": "dffc06bdb422829fc713c2c1f53fabe786573dcdd20712ac6a5638fbf66cfc63"
+    },
+    "originalAnswerUsed": false,
+    "authorCheckOnly": true,
+    "independentMathApproval": false,
+    "curriculumPermissionFromCalculation": false
+  },
+  "calculationProofFile": {
+    "path": "author-calculations.json",
+    "sha256": "de493620851acf3825c3c21a1634c8c774abcf9fbdc7389170d0a27668350a4a"
+  },
+  "calculationCode": {
+    "path": "author_math.py",
+    "sha256": "dffc06bdb422829fc713c2c1f53fabe786573dcdd20712ac6a5638fbf66cfc63"
+  },
+  "sevenStudentSurfaces": {
+    "stem": {
+      "status": "author-observed-proposed",
+      "contentTextSha256": "0e3f27f87ac04db6a1dbb872d39325837db5042ac9c586d16daad46ed09918b9",
+      "observation": "정삼각형으로60도 값을 서술하는 문제를, 중점 수선의 합동 근거/실제 높이/꼭짓점의30도 세 값 기록표로 바꾸어 질문 대상과 증명 조직을 새로 구성한다.",
+      "wholeMethod": "SSS of PQH/PRH and equal supplementary angles establishes the perpendicular; equal vertex halves give30. Positive height√(100−25)=5√3. Three ratios read directly from actual sides QH5,PH5√3,PQ10, without complementary-angle or inter-ratio identities."
+    },
+    "choices": {
+      "status": "author-observed-proposed",
+      "textArraySha256": "4f53cda18c2baa0c0354bb5f9a3ecbe5ed12ab4d8e11ba873c2f11161202b945",
+      "actualAllChoices": [],
+      "observation": "No multiple-choice options. All three written subparts are separately specified and checked."
+    },
+    "figuresAndTables": {
+      "status": "author-observed-proposed",
+      "rawSpecAndSvgRelations": {
+        "questionNumber": 20,
+        "spec": {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q20/stem-1.spec.json",
+          "sha256": "79bfcc7fc1cc5d8a1dc9b224b8cfa3d8a136992dbf8e316dc97d30c739240ddd"
+        },
+        "svg": {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q20/stem-1.svg",
+          "sha256": "ec5d27710c8b985a6f1acfd9ac87005b85e85a0a2276a317251dfdbd12dfe63c"
+        },
+        "intendedWidthMm": 70,
+        "coordinateChecks": [
+          {
+            "condition": "H on QR",
+            "computed": 0.0,
+            "required": 0,
+            "authorCheckPassed": true
+          },
+          {
+            "condition": "H internal to QR",
+            "fraction": 0.5,
+            "authorCheckPassed": true
+          },
+          {
+            "condition": "middleH",
+            "computed": 80.0,
+            "required": 80.0,
+            "authorCheckPassed": true
+          },
+          {
+            "condition": "equilPQ=PR",
+            "computed": 160.0,
+            "required": 160.0,
+            "authorCheckPassed": true
+          },
+          {
+            "condition": "equilPQ=QR",
+            "computed": 160.0,
+            "required": 160.0,
+            "authorCheckPassed": true
+          },
+          {
+            "condition": "side10 at scale16",
+            "computed": 10.0,
+            "required": 10,
+            "authorCheckPassed": true
+          }
+        ],
+        "mathematicalPixelMeasurementsUsed": false,
+        "independentFigureOrGradeApproval": false,
+        "authorCheckOnly": true
+      },
+      "visualEvidence": {
+        "questionNumber": 20,
+        "directlyViewedWithViewImage": {
+          "path": "qa/q20-author.png",
+          "sha256": "505a5564ace22b3f4dd7e12fa78b27344002edc4a4e96b40d1e92e1aaa868bcf"
+        },
+        "studentPane": {
+          "path": "qa/q20-student.png",
+          "sha256": "60d715697224529ddf4693e3ad87da921dbfdb5205bfe3d8c4cb8d5a6fafc3fa"
+        },
+        "studentPanePixelIdenticalToViewedPrefix": true,
+        "actualColumnWidthMm": 70,
+        "actualSvgWidthsMm": [
+          69.998828125
+        ],
+        "viewedItems": [
+          "whole student stem",
+          "fresh tables",
+          "all choices or all written parts",
+          "all new embedded figures",
+          "chosen new answer",
+          "entire expanded new solution"
+        ],
+        "legibilityAuthorObservation": "Labels, radicals, fractions, degree marks and table boundaries readable; no clipping, orphan final table row or math/table overflow observed.",
+        "mathematicalPixelMeasurementUsed": false,
+        "independentFigureOrContentApproval": false
+      },
+      "observation": "Every needed length/angle/order given in text; newly computed engine geometry is not a substitute for a given. Fresh tables organize new records and preserve paragraphs."
+    },
+    "notation": {
+      "status": "author-observed-proposed",
+      "observation": "α is the30° angle produced by the equilateral split; SSS, perpendicular and fractions of actual sides are middle1–3 notation."
+    },
+    "answer": {
+      "status": "author-observed-proposed",
+      "textSha256": "31bbe552f1ee026c4cef7306cef36703de9d4bc93cbb4cc3392439b2a283a322",
+      "newExactRequestedValues": [
+        "30",
+        "5*sqrt(3)",
+        "1/2",
+        "sqrt(3)/2",
+        "sqrt(3)/3"
+      ],
+      "observation": "All written parts, actual units, ordered lengths and required q20 perpendicular proof are retained in full answer/solution."
+    },
+    "studentSolution": {
+      "status": "author-observed-proposed",
+      "textSha256": "48f68a03ad4df5eec8e259864fccf14d04fd542dc1c9103fd1c653f435221366",
+      "legitimateStudentProcedure": "SSS와평각으로수선을 정당화하고 양의높이를 피타고라스로 구해30도 직각삼각형의세정의를 직접 읽는다.",
+      "actualMathRoute": "SSS of PQH/PRH and equal supplementary angles establishes the perpendicular; equal vertex halves give30. Positive height√(100−25)=5√3. Three ratios read directly from actual sides QH5,PH5√3,PQ10, without complementary-angle or inter-ratio identities.",
+      "generalTrigIdentityOrSineCosineLawUsed": false,
+      "originalKeyAgreementUsed": false
+    },
+    "prerequisites": {
+      "status": "author-observed-proposed",
+      "officialStandards": [
+        {
+          "id": "9수04-04",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4264,
+            "paragraph1based": 929,
+            "offset": 216294,
+            "text": "[9수04-04]\u001e삼각형의 합동 조건을 이해하고, 이를 이용하여 두 삼각형이 합동인지 판별할 수 있다.\r"
+          },
+          "pdfPhysicalPage1based": 37,
+          "pdfPrintedPage": 33,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-05",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4272,
+            "paragraph1based": 931,
+            "offset": 216602,
+            "text": "[9수04-05]\u001e다각형의 성질을 이해한다.\r"
+          },
+          "pdfPhysicalPage1based": 37,
+          "pdfPrintedPage": 33,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-16",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4333,
+            "paragraph1based": 946,
+            "offset": 218866,
+            "text": "[9수04-16]\u001e피타고라스 정리를 이해하고 설명할 수 있다. \r"
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-17",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4341,
+            "paragraph1based": 948,
+            "offset": 219120,
+            "text": "[9수04-17]\u001e삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다. \r"
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수01-07",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 3776,
+            "paragraph1based": 819,
+            "offset": 192865,
+            "text": "[9수01-07]\u001e제곱근의 뜻을 알고, 그 성질을 이해한다.\r"
+          },
+          "pdfPhysicalPage1based": 33,
+          "pdfPrintedPage": 29,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수01-10",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 3788,
+            "paragraph1based": 822,
+            "offset": 193301,
+            "text": "[9수01-10]\u001e근호를 포함한 식의 사칙계산을 할 수 있다.\r"
+          },
+          "pdfPhysicalPage1based": 33,
+          "pdfPrintedPage": 29,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "6수03-04",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 3425,
+            "paragraph1based": 735,
+            "offset": 176051,
+            "text": "[6수03-04]\u001e넓이를 나타내는 표준 단위의 필요성을 인식하여 1cm², 1m², 1km²의 단위를 알며, 그 관계를 이해한다. \r"
+          },
+          "pdfPhysicalPage1based": 29,
+          "pdfPrintedPage": 25,
+          "wholeClausePdfMatch": true
+        }
+      ],
+      "actualPrerequisiteSeedRecords": [
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2879,
+          "endLine1based": 2884,
+          "section": "제곱근의 뜻과 성질",
+          "text": "{\n    grade: \"중3\",\n    chapter: \"1. 실수와 그 계산\",\n    section: \"제곱근의 뜻과 성질\",\n    orderIndex: 469,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2955,
+          "endLine1based": 2960,
+          "section": "삼각비의 뜻",
+          "text": "{\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 뜻\",\n    orderIndex: 481,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2961,
+          "endLine1based": 2966,
+          "section": "삼각비의 값",
+          "text": "{\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 값\",\n    orderIndex: 482,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2967,
+          "endLine1based": 2972,
+          "section": "삼각비의 활용",
+          "text": "{\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 활용\",\n    orderIndex: 483,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 3112,
+          "endLine1based": 3117,
+          "section": "음수의 제곱근",
+          "text": "{\n    grade: \"공통수학1\",\n    chapter: \"2. 방정식과 부등식\",\n    section: \"음수의 제곱근\",\n    orderIndex: 508,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 3631,
+          "endLine1based": 3636,
+          "section": "거듭제곱근의 뜻",
+          "text": "{\n    grade: \"대수\",\n    chapter: \"1. 지수함수와 로그함수\",\n    section: \"거듭제곱근의 뜻\",\n    orderIndex: 594,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 3637,
+          "endLine1based": 3642,
+          "section": "거듭제곱근의 성질과 계산",
+          "text": "{\n    grade: \"대수\",\n    chapter: \"1. 지수함수와 로그함수\",\n    section: \"거듭제곱근의 성질과 계산\",\n    orderIndex: 595,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2850,
+          "endLine1based": 2855,
+          "section": "피타고라스 정리",
+          "text": "{\n    grade: \"중2\",\n    chapter: \"8. 피타고라스 정리\",\n    section: \"피타고라스 정리\",\n    orderIndex: 463,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2856,
+          "endLine1based": 2861,
+          "section": "피타고라스 정리의 활용",
+          "text": "{\n    grade: \"중2\",\n    chapter: \"8. 피타고라스 정리\",\n    section: \"피타고라스 정리의 활용\",\n    orderIndex: 464,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 1438,
+          "endLine1based": 1443,
+          "section": "2-2-2 이등변삼각형의 성질",
+          "text": "{\n    grade: \"초4\",\n    chapter: \"2-2 삼각형\",\n    section: \"2-2-2 이등변삼각형의 성질\",\n    orderIndex: 224,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 1818,
+          "endLine1based": 1823,
+          "section": "2-3-1 도형의 합동 알아보기",
+          "text": "{\n    grade: \"초5\",\n    chapter: \"2-3 합동과 대칭\",\n    section: \"2-3-1 도형의 합동 알아보기\",\n    orderIndex: 285,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 1824,
+          "endLine1based": 1829,
+          "section": "2-3-2 합동인 도형의 성질 알아보기",
+          "text": "{\n    grade: \"초5\",\n    chapter: \"2-3 합동과 대칭\",\n    section: \"2-3-2 합동인 도형의 성질 알아보기\",\n    orderIndex: 286,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2485,
+          "endLine1based": 2485,
+          "section": "합동",
+          "text": "{ grade: \"중1\", chapter: \"5. 기본 도형\", section: \"합동\", orderIndex: 395 }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2745,
+          "endLine1based": 2750,
+          "section": "이등변삼각형의 성질",
+          "text": "{\n    grade: \"중2\",\n    chapter: \"5. 도형의 성질\",\n    section: \"이등변삼각형의 성질\",\n    orderIndex: 446,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2751,
+          "endLine1based": 2756,
+          "section": "직각삼각형의 합동",
+          "text": "{\n    grade: \"중2\",\n    chapter: \"5. 도형의 성질\",\n    section: \"직각삼각형의 합동\",\n    orderIndex: 447,\n  }"
+        }
+      ],
+      "boundary": "Source-era2015 middle3 only; no probability/registry permit. New elementary coordinate representation q02 is supported by9수03-01. Whole route remains subject to independent review."
+    }
+  },
+  "officialRestrictions": [
+    {
+      "id": "no_trig_ratio_relationships",
+      "hwp": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record1based": 4440,
+        "paragraph1based": 966,
+        "offset": 224820,
+        "text": "삼각비 사이의 관계는 다루지 않는다.\r"
+      },
+      "pdfPhysicalPage1based": 39,
+      "pdfPrintedPage": 35,
+      "wholeClausePdfMatch": true
+    },
+    {
+      "id": "angle_range",
+      "hwp": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record1based": 4444,
+        "paragraph1based": 967,
+        "offset": 224946,
+        "text": "삼각비의 값은 0°에서 90°까지의 각도에 대한 것만 다룬다.\r"
+      },
+      "pdfPhysicalPage1based": 39,
+      "pdfPrintedPage": 35,
+      "wholeClausePdfMatch": true
+    },
+    {
+      "id": "no_complex_geometry_measurement",
+      "hwp": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record1based": 4472,
+        "paragraph1based": 974,
+        "offset": 226554,
+        "text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다.\r"
+      },
+      "pdfPhysicalPage1based": 39,
+      "pdfPrintedPage": 35,
+      "wholeClausePdfMatch": true
+    },
+    {
+      "id": "no_formal_complex_justification",
+      "hwp": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record1based": 4476,
+        "paragraph1based": 975,
+        "offset": 226792,
+        "text": "정확한 용어와 기호의 사용, 복잡한 형식 논리 규칙의 이용을 요구하는 연역적 정당화 문제는 다루지 않는다. \r"
+      },
+      "pdfPhysicalPage1based": 39,
+      "pdfPrintedPage": 35,
+      "wholeClausePdfMatch": true
+    }
+  ],
+  "taxonomy": {
+    "status": "pending",
+    "unitId": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+    "unitSection": "삼각비의 값",
+    "familyKey": null,
+    "evidence": {
+      "actualCapturedUnit": {
+        "id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 값",
+        "semester": 2,
+        "orderIndex": 482,
+        "problemCodePrefix": "J30502"
+      },
+      "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+      "snapshotOnly": true,
+      "comparison": "정해진특수각 값을 계산하는 갈래와 달리 합동/수선/높이/세정의 구성 증명이 필요하므로 전체family를 보류한다.",
+      "comparedRegistryEntries": [
+        {
+          "registry": {
+            "key": "3-2|삼각비|09",
+            "grade": "중3",
+            "unitSection": "삼각비의 값",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비",
+            "rpmType": "09",
+            "rpmTitle": "의 삼각비의 값을 이용하여 각의 크기 구하기"
+          },
+          "liveMatches": [
+            {
+              "unit_id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+              "family_key": "mid:3-2|삼각비|09",
+              "live_count": 20
+            }
+          ],
+          "actualRule": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+            "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+            "startLine1based": 1229,
+            "endLine1based": 1259,
+            "text": "def(\n    \"삼각비\",\n    \"09\",\n    \"의 삼각비의 값을 이용하여 각의 크기 구하기\",\n    SEC.값,\n    \"기본\",\n    (rng) =>\n      attempt(300, () => {\n        const fn = intBetween(rng, 0, 2);\n        const theta = pick(rng, [30, 45, 60] as const);\n        const m = intBetween(rng, 1, 3);\n        const off = pick(rng, [-30, -20, -15, -10, 10, 15, 20, 30] as const);\n        if ((theta - off) % m !== 0) return null;\n        const x = (theta - off) / m;\n        if (x <= 0 || x >= 90) return null;\n        const v = exact(fn, theta);\n        if (!v) return null;\n        const coef = m === 1 ? \"x\" : `${m}x`;\n        const inner =\n          off > 0 ? `${coef}+${off}^\\\\circ` : `${coef}-${-off}^\\\\circ`;\n        return {\n          content: `$${inner}$가 예각이고 $${FN_NAMES[fn]}(${inner})=${surdText(v)}$일 때, $x$의 크기를 구하시오.`,\n          answer: `$${x}^\\\\circ$`,\n          solution: `$${trigText(fn, theta)}=${surdText(v)}$이고 $${inner}$가 예각이므로 $${inner}=${theta}^\\\\circ$이다.\\n따라서 $x=${x}^\\\\circ$이다.`,\n          facts: { fn, theta, m, off, x, an: v.n, ar: v.r, ad: v.d },\n          figureSpec: null,\n        };\n      }),\n  ),\n\n  "
+          }
+        },
+        {
+          "registry": {
+            "key": "3-2|삼각비|13",
+            "grade": "중3",
+            "unitSection": "삼각비의 값",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비",
+            "rpmType": "13",
+            "rpmTitle": "의 삼각비의 값"
+          },
+          "liveMatches": [
+            {
+              "unit_id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+              "family_key": "mid:3-2|삼각비|13",
+              "live_count": 18
+            }
+          ],
+          "actualRule": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+            "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+            "startLine1based": 1382,
+            "endLine1based": 1410,
+            "text": "def(\"삼각비\", \"13\", \"의 삼각비의 값\", SEC.값, \"기본\", (rng) =>\n    attempt(300, () => {\n      const angles = [0, 30, 45, 60, 90] as const;\n      const a1 = pick(rng, angles);\n      const a2 = pick(rng, angles);\n      // 이 유형의 열쇠는 $0^\\circ$·$90^\\circ$ 다 — 적어도 한 항은 거기서 나온다.\n      if (a1 !== 0 && a1 !== 90 && a2 !== 0 && a2 !== 90) return null;\n      const f1 = intBetween(rng, 0, 2);\n      const f2 = intBetween(rng, 0, 2);\n      if (a1 === a2 && f1 === f2) return null;\n      const op = intBetween(rng, 0, 3);\n      const v1 = exact(f1, a1);\n      const v2 = exact(f2, a2);\n      if (!v1 || !v2) return null;\n      const res = applyOp(op, v1, v2);\n      if (!res) return null;\n      if (res.r === 1 && res.d > 1 && Math.abs(res.n) >= res.d) return null;\n      const expr = `${trigText(f1, a1)} ${OP_TEXT[op]} ${trigText(f2, a2)}`;\n      return {\n        content: `$${expr}$의 값을 구하시오.`,\n        answer: `$${surdText(res)}$`,\n        solution: `$${trigText(f1, a1)}=${surdText(v1)}$, $${trigText(f2, a2)}=${surdText(v2)}$이다.\\n따라서 $${expr}=${surdText(v1)} ${OP_TEXT[op]} ${surdText(v2)}=${surdText(res)}$이다.`,\n        facts: { f1, a1, op, f2, a2, an: res.n, ar: res.r, ad: res.d },\n        figureSpec: null,\n      };\n    }),\n  ),\n\n  "
+          }
+        }
+      ],
+      "TRIPLESPoolCheckedForQ01": null
+    }
+  },
+  "problemType": {
+    "proposal": null,
+    "status": "pending",
+    "evidence": {
+      "path": "classification-limits.json",
+      "sha256": "fbcfa8e7894db6a3244c60cdb524628464fba1dc8edade615b55cb1bdf0c6a45"
+    }
+  },
+  "objectiveDifficultyProposal": {
+    "label": "응용",
+    "reason": "SSS와평각으로수선을 정당화하고 양의높이를 피타고라스로 구해30도 직각삼각형의세정의를 직접 읽는다.",
+    "status": "author-proposed",
+    "registryDescriptorAsProof": false,
+    "studentPerformanceMeasured": false
+  },
+  "naturalKoreanAuthorObservation": "Actual expanded layout read; exact input/target order and units stated. Pure mathematics stays mathematical; q17 changes distance input/target in a natural ramp context; q21 uses consistent fictional school.",
+  "materialHold": null,
+  "allFinalApprovals": {
+    "independentMath": false,
+    "independentWholeGrade": false,
+    "sourceCore": false,
+    "unitFamily": false,
+    "rights": false,
+    "nativeProvenance": false,
+    "loadable": false
+  }
+}

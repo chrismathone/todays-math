@@ -1,0 +1,1813 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 6,
+  "authorId": "orca-codex-exam-twin-source-identity-20261008",
+  "method": "author-calculation-and-seven-surface-preparation",
+  "authorOnly": true,
+  "independentVerifier": false,
+  "sourceQuestionId": "2025-gyeongsang-3-2-mid-6",
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q06",
+  "sourceQuestionOnlyRecord": {
+    "number": 6,
+    "stem": "$\\tan \\,x^\\circ =2.7475$를 만족시키는 $x$의 값으로 옳은 것은?\n[$3$점]",
+    "choices": [
+      "$68$",
+      "$69$",
+      "$70$",
+      "$71$",
+      "$72$"
+    ],
+    "hwpScriptStem": "$tan`x DEG  =2.7475$를 만족시키는 $x$의 값으로 옳은 것은?\n[$3$점]",
+    "hwpScriptChoices": [
+      "$68$",
+      "$69$",
+      "$70$",
+      "$71$",
+      "$72$"
+    ],
+    "scoreEvidence": {
+      "selectedHwpPdfPrintedParentScore": 3.0,
+      "selectedPairScoreStatus": "literal_match",
+      "originalPrintedParentScore": 3.0,
+      "referenceParentScore": 3.0,
+      "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+      "parentCountedOnce": true,
+      "childScores": [],
+      "subquestionCount": 0,
+      "parentAndChildrenMustNotBeAddedTogether": false
+    },
+    "subQuestions": [],
+    "structuredGivenData": {
+      "columns": [
+        "angleDegrees",
+        "sin",
+        "cos",
+        "tan"
+      ],
+      "rows": [
+        [
+          68,
+          "0.9272",
+          "0.3746",
+          "2.4751"
+        ],
+        [
+          69,
+          "0.9336",
+          "0.3584",
+          "2.6051"
+        ],
+        [
+          70,
+          "0.9397",
+          "0.3420",
+          "2.7475"
+        ],
+        [
+          71,
+          "0.9455",
+          "0.3256",
+          "2.9042"
+        ],
+        [
+          72,
+          "0.9511",
+          "0.3090",
+          "3.0777"
+        ]
+      ],
+      "sharedBy": [
+        5,
+        6
+      ]
+    },
+    "figureGivenObservation": "No bitmap figure; positioned HWP math/text and any table remain the source givens.",
+    "curriculum": {
+      "sourceGrade": "중3",
+      "expectedAppliedCurriculum": "2015",
+      "status": "hold_full_item_review",
+      "fullApproval": false,
+      "conceptCandidate": "삼각비의 정의·값·활용",
+      "coreMethodCandidate": "공통 표의 tan 열에서 주어진 값을 만족하는 각을 역으로 읽는다.",
+      "officialStandardsCandidates": [
+        {
+          "code": "9수04-17",
+          "officialStatement": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+          "pdfPage": 38,
+          "printedPage": 34,
+          "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+          "notPerQuestionApproval": true
+        }
+      ],
+      "localUnitCandidate": {
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "seedFile": "prisma/seed-data/units.ts",
+        "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+        "liveUnitId": null
+      },
+      "liveFamilyId": null,
+      "generatorRuleId": null,
+      "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+      "specificRisk": null,
+      "decisionIfNoLegalGradeMethod": "reject",
+      "decisionIfUnclear": "hold",
+      "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+      "requiredReview": [
+        "stem",
+        "all choices",
+        "figure meaning",
+        "notation",
+        "answer format",
+        "new answer",
+        "student solution",
+        "required steps",
+        "prerequisites"
+      ],
+      "signDomainUnitsGate": [
+        "signs and radicals",
+        "angle range 0-90 degrees",
+        "nonzero denominators",
+        "positive lengths/areas",
+        "units",
+        "existence",
+        "uniqueness"
+      ],
+      "sourceSchoolOrAIConfidenceCannotApprove": true
+    },
+    "sourceContentDigest": "a44fe870412df398071e49c54a11b62fc96b018a9ca343913a64bdd15b5790eb",
+    "sourceQuestionId": "2025-gyeongsang-3-2-mid-6",
+    "status": "source_reference_reviewed_all_final_approval_gates_held",
+    "sourceAmbiguityHolds": [
+      "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+      "source_custody_rights_permission_pending",
+      "canonical_text_product_render_review_pending"
+    ],
+    "sharedContext": {
+      "firstQuestion": 5,
+      "lastQuestion": 6,
+      "sourceAnchorBeforePassage": 4,
+      "items": [
+        {
+          "kind": "text",
+          "text": "[",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 609,
+            "inflatedByteOffset": 25307,
+            "tag": 67,
+            "level": 1,
+            "payloadSha256": "be455daf79a25e1cb3db6530e09f09a953e6f8850385230acac8d3857b85e1b5",
+            "utf16Range": [
+              0,
+              1
+            ]
+          }
+        },
+        {
+          "kind": "math",
+          "script": "5 SIM  6",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 613,
+            "inflatedByteOffset": 25501,
+            "tag": 88,
+            "level": 2,
+            "payloadSha256": "1388581ba727e485b1ce985e074bb4fed6d8d6d21343950b635ceef8cff2b973"
+          },
+          "controlSource": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 612,
+            "inflatedByteOffset": 25439,
+            "tag": 71,
+            "level": 1,
+            "payloadSha256": "590afcda66784800c052e1c605584db08f784f1f5ab34608f2ba18734a6da6a4"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "] 다음은 삼각비 표의 일부이다. 물음에 답하시오.",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 609,
+            "inflatedByteOffset": 25307,
+            "tag": 67,
+            "level": 1,
+            "payloadSha256": "be455daf79a25e1cb3db6530e09f09a953e6f8850385230acac8d3857b85e1b5",
+            "utf16Range": [
+              9,
+              37
+            ]
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 609,
+            "inflatedByteOffset": 25307,
+            "tag": 67,
+            "level": 1,
+            "payloadSha256": "be455daf79a25e1cb3db6530e09f09a953e6f8850385230acac8d3857b85e1b5"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "각도",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 622,
+            "inflatedByteOffset": 25864,
+            "tag": 67,
+            "level": 3,
+            "payloadSha256": "52e8183e86f4cc35c807ec6a27b5d6716382c6982fd40c41ef334bc1c14ff6c9",
+            "utf16Range": [
+              0,
+              2
+            ]
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 622,
+            "inflatedByteOffset": 25864,
+            "tag": 67,
+            "level": 3,
+            "payloadSha256": "52e8183e86f4cc35c807ec6a27b5d6716382c6982fd40c41ef334bc1c14ff6c9"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 621,
+            "inflatedByteOffset": 25836,
+            "tag": 66,
+            "level": 2,
+            "payloadSha256": "f2babc1f70f8410c60c636643101bdc6c64248038eb30732f37e7220fa201f80"
+          }
+        },
+        {
+          "kind": "math",
+          "script": "sin",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 631,
+            "inflatedByteOffset": 26141,
+            "tag": 88,
+            "level": 4,
+            "payloadSha256": "24aec2ce94f4ae1be87b4101e5f57d371a3ba24861b7f9a4deba2ae182527c8e"
+          },
+          "controlSource": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 630,
+            "inflatedByteOffset": 26079,
+            "tag": 71,
+            "level": 3,
+            "payloadSha256": "406f6828a48d9c74e25960fdefaca5af3e314f1be74342354f7418af17dbb112"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 627,
+            "inflatedByteOffset": 26005,
+            "tag": 67,
+            "level": 3,
+            "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 626,
+            "inflatedByteOffset": 25977,
+            "tag": 66,
+            "level": 2,
+            "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+          }
+        },
+        {
+          "kind": "math",
+          "script": "cos",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 638,
+            "inflatedByteOffset": 26440,
+            "tag": 88,
+            "level": 4,
+            "payloadSha256": "248ce3cff18ad4e157437dcca5e8ae12639bf0311c7ba935446d02e643bedde7"
+          },
+          "controlSource": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 637,
+            "inflatedByteOffset": 26378,
+            "tag": 71,
+            "level": 3,
+            "payloadSha256": "04c089b5d69223afb133251e8bc212b820d0f861121c5106fdbebcb0fb7b0003"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 634,
+            "inflatedByteOffset": 26304,
+            "tag": 67,
+            "level": 3,
+            "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 633,
+            "inflatedByteOffset": 26276,
+            "tag": 66,
+            "level": 2,
+            "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+          }
+        },
+        {
+          "kind": "math",
+          "script": "tan",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 645,
+            "inflatedByteOffset": 26739,
+            "tag": 88,
+            "level": 4,
+            "payloadSha256": "a9bd2fe22cc0bd69110d041f6dbf10e6b46cf5ed6f20c7bd343c232488ffdbe8"
+          },
+          "controlSource": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 644,
+            "inflatedByteOffset": 26677,
+            "tag": 71,
+            "level": 3,
+            "payloadSha256": "6dd10c3caf1d29ef8a775e121a0eb6bc26169248ef470abb3203290dcb1a7196"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 641,
+            "inflatedByteOffset": 26603,
+            "tag": 67,
+            "level": 3,
+            "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 640,
+            "inflatedByteOffset": 26575,
+            "tag": 66,
+            "level": 2,
+            "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+          }
+        },
+        {
+          "kind": "math",
+          "script": "68 DEG ",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 652,
+            "inflatedByteOffset": 27038,
+            "tag": 88,
+            "level": 4,
+            "payloadSha256": "17c5ef493f8a59c24e52372b85ab0f7775c25e1f549913ce748d6328c1b7b71f"
+          },
+          "controlSource": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 651,
+            "inflatedByteOffset": 26976,
+            "tag": 71,
+            "level": 3,
+            "payloadSha256": "97f3f745da15c4d145c986775214120647932d109d7febeeb39f5e1ecbcbadf7"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 648,
+            "inflatedByteOffset": 26902,
+            "tag": 67,
+            "level": 3,
+            "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 647,
+            "inflatedByteOffset": 26874,
+            "tag": 66,
+            "level": 2,
+            "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+          }
+        },
+        {
+          "kind": "math",
+          "script": "0.9272",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 659,
+            "inflatedByteOffset": 27345,
+            "tag": 88,
+            "level": 4,
+            "payloadSha256": "5b2782b294d210edf85012831c6e096935b560f5d5db0c256f4b7b1cd3775c19"
+          },
+          "controlSource": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 658,
+            "inflatedByteOffset": 27283,
+            "tag": 71,
+            "level": 3,
+            "payloadSha256": "06e1d012e2c2b2693dd02f2ef127cb5aa8d05c1d1ee36ac15de3356ca20ac59b"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 655,
+            "inflatedByteOffset": 27209,
+            "tag": 67,
+            "level": 3,
+            "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 654,
+            "inflatedByteOffset": 27181,
+            "tag": 66,
+            "level": 2,
+            "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+          }
+        },
+        {
+          "kind": "math",
+          "script": "0.3746",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 666,
+            "inflatedByteOffset": 27650,
+            "tag": 88,
+            "level": 4,
+            "payloadSha256": "f28a3cae3f7db043f8f4e3d71458b5e23f8bc830340ae538fb13a070a00d7901"
+          },
+          "controlSource": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 665,
+            "inflatedByteOffset": 27588,
+            "tag": 71,
+            "level": 3,
+            "payloadSha256": "0abfe67274857420eee112291cad7fee919bca5eea21aeb78462c78ec31894d5"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 662,
+            "inflatedByteOffset": 27514,
+            "tag": 67,
+            "level": 3,
+            "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 661,
+            "inflatedByteOffset": 27486,
+            "tag": 66,
+            "level": 2,
+            "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+          }
+        },
+        {
+          "kind": "math",
+          "script": "2.4751",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 673,
+            "inflatedByteOffset": 27955,
+            "tag": 88,
+            "level": 4,
+            "payloadSha256": "07a3473a33c6495744703f246f4c828575ed00fab19d41c536964d079a6df42e"
+          },
+          "controlSource": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 672,
+            "inflatedByteOffset": 27893,
+            "tag": 71,
+            "level": 3,
+            "payloadSha256": "22be0f7162ee9cf97df36a952de79ad1442ea618570f4e10d569d54f2d28a055"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 669,
+            "inflatedByteOffset": 27819,
+            "tag": 67,
+            "level": 3,
+            "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 668,
+            "inflatedByteOffset": 27791,
+            "tag": 66,
+            "level": 2,
+            "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+          }
+        },
+        {
+          "kind": "math",
+          "script": "69 DEG ",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 680,
+            "inflatedByteOffset": 28260,
+            "tag": 88,
+            "level": 4,
+            "payloadSha256": "1fe3215c4bc68f206e6b5672f8a45fc6447c6641c7232f42de1b8d8c5685788b"
+          },
+          "controlSource": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 679,
+            "inflatedByteOffset": 28198,
+            "tag": 71,
+            "level": 3,
+            "payloadSha256": "d33172b32a7a84957fa7c3897607dca7cb74cc6b0eb759fde37910db7631efb5"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 676,
+            "inflatedByteOffset": 28124,
+            "tag": 67,
+            "level": 3,
+            "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 675,
+            "inflatedByteOffset": 28096,
+            "tag": 66,
+            "level": 2,
+            "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+          }
+        },
+        {
+          "kind": "math",
+          "script": "0.9336",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 687,
+            "inflatedByteOffset": 28567,
+            "tag": 88,
+            "level": 4,
+            "payloadSha256": "e0465f0e92139c5b6711294414782dbe98ee7b42bdbeaa36aa2edb7fda636abd"
+          },
+          "controlSource": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 686,
+            "inflatedByteOffset": 28505,
+            "tag": 71,
+            "level": 3,
+            "payloadSha256": "5cba2c0e90f8dd74233b6c08a2cc343397b26eabbea8b4ac30b7706249ecc5ec"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 683,
+            "inflatedByteOffset": 28431,
+            "tag": 67,
+            "level": 3,
+            "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 682,
+            "inflatedByteOffset": 28403,
+            "tag": 66,
+            "level": 2,
+            "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+          }
+        },
+        {
+          "kind": "math",
+          "script": "0.3584",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 694,
+            "inflatedByteOffset": 28872,
+            "tag": 88,
+            "level": 4,
+            "payloadSha256": "2b52e222dba8701f40f593afb4e5b5a2ac67e24eb46047a9c23c2aa3fe821a8f"
+          },
+          "controlSource": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 693,
+            "inflatedByteOffset": 28810,
+            "tag": 71,
+            "level": 3,
+            "payloadSha256": "26ab64527294bf903a651d47453d9608d37375c1dddb5aae6f74cd2ad83099b9"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 690,
+            "inflatedByteOffset": 28736,
+            "tag": 67,
+            "level": 3,
+            "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 689,
+            "inflatedByteOffset": 28708,
+            "tag": 66,
+            "level": 2,
+            "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+          }
+        },
+        {
+          "kind": "math",
+          "script": "2.6051",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 701,
+            "inflatedByteOffset": 29177,
+            "tag": 88,
+            "level": 4,
+            "payloadSha256": "72597020b749809f507c4656623497a71ed9f346a8ee95d31dc545186b4195b4"
+          },
+          "controlSource": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 700,
+            "inflatedByteOffset": 29115,
+            "tag": 71,
+            "level": 3,
+            "payloadSha256": "ad3b71e56f2c24ee7c67c426868f7e3960552bccfdac47feb11ed704cb5dffd5"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 697,
+            "inflatedByteOffset": 29041,
+            "tag": 67,
+            "level": 3,
+            "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 696,
+            "inflatedByteOffset": 29013,
+            "tag": 66,
+            "level": 2,
+            "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+          }
+        },
+        {
+          "kind": "math",
+          "script": "70 DEG ",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 708,
+            "inflatedByteOffset": 29482,
+            "tag": 88,
+            "level": 4,
+            "payloadSha256": "00655ee381bdc9058b1eff3df64a81be5910bcad09217987a95a72c005f22911"
+          },
+          "controlSource": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 707,
+            "inflatedByteOffset": 29420,
+            "tag": 71,
+            "level": 3,
+            "payloadSha256": "338c8b7553f27b3e4250141e79642bacc436d7004d6d3581ceb4dc4a839f693a"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 704,
+            "inflatedByteOffset": 29346,
+            "tag": 67,
+            "level": 3,
+            "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 703,
+            "inflatedByteOffset": 29318,
+            "tag": 66,
+            "level": 2,
+            "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+          }
+        },
+        {
+          "kind": "math",
+          "script": "0.9397",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 715,
+            "inflatedByteOffset": 29789,
+            "tag": 88,
+            "level": 4,
+            "payloadSha256": "3d05b2e315408328212ff8d8bd9d623c86a603b18dad3addb8cc90f35bea7f93"
+          },
+          "controlSource": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 714,
+            "inflatedByteOffset": 29727,
+            "tag": 71,
+            "level": 3,
+            "payloadSha256": "a62bc14da08b6366cd33c3beadb6369b62bccfd6451a84d9621c4908c57eba28"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 711,
+            "inflatedByteOffset": 29653,
+            "tag": 67,
+            "level": 3,
+            "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 710,
+            "inflatedByteOffset": 29625,
+            "tag": 66,
+            "level": 2,
+            "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+          }
+        },
+        {
+          "kind": "math",
+          "script": "0.3420",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 722,
+            "inflatedByteOffset": 30094,
+            "tag": 88,
+            "level": 4,
+            "payloadSha256": "e30eb2937fde2dfa78726a12a23c8076a55598764ac0a57bc75df0dbe17539a5"
+          },
+          "controlSource": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 721,
+            "inflatedByteOffset": 30032,
+            "tag": 71,
+            "level": 3,
+            "payloadSha256": "93557b570eee672efde14bc45d0ddee050d9dae9cf23d7aec8acd2afeda22b98"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 718,
+            "inflatedByteOffset": 29958,
+            "tag": 67,
+            "level": 3,
+            "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 717,
+            "inflatedByteOffset": 29930,
+            "tag": 66,
+            "level": 2,
+            "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+          }
+        },
+        {
+          "kind": "math",
+          "script": "2.7475",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 729,
+            "inflatedByteOffset": 30399,
+            "tag": 88,
+            "level": 4,
+            "payloadSha256": "5b2771d822386233522cc010f4b3f9f1acbfe13fe568f9536843d6fab5011265"
+          },
+          "controlSource": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 728,
+            "inflatedByteOffset": 30337,
+            "tag": 71,
+            "level": 3,
+            "payloadSha256": "b2095b06ce261343563bdd984cc36e2d7299ac309b3ab66f396eb1f7569bce42"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 725,
+            "inflatedByteOffset": 30263,
+            "tag": 67,
+            "level": 3,
+            "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 724,
+            "inflatedByteOffset": 30235,
+            "tag": 66,
+            "level": 2,
+            "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+          }
+        },
+        {
+          "kind": "math",
+          "script": "71 DEG ",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 736,
+            "inflatedByteOffset": 30704,
+            "tag": 88,
+            "level": 4,
+            "payloadSha256": "7e5a5abc6edc7ebe52ed96ca67e9fe6ff1d8a2c4758e8b609aec752043da2031"
+          },
+          "controlSource": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 735,
+            "inflatedByteOffset": 30642,
+            "tag": 71,
+            "level": 3,
+            "payloadSha256": "4abc6c5f032def5fca783e48299a9cf14ce1a29a2df62ff4dea48587398b62c7"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 732,
+            "inflatedByteOffset": 30568,
+            "tag": 67,
+            "level": 3,
+            "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 731,
+            "inflatedByteOffset": 30540,
+            "tag": 66,
+            "level": 2,
+            "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+          }
+        },
+        {
+          "kind": "math",
+          "script": "0.9455",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 743,
+            "inflatedByteOffset": 31011,
+            "tag": 88,
+            "level": 4,
+            "payloadSha256": "885786968eed37a7f1897da9975a78adcae94e7edd02ec793ed5af21ddcfdd8e"
+          },
+          "controlSource": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 742,
+            "inflatedByteOffset": 30949,
+            "tag": 71,
+            "level": 3,
+            "payloadSha256": "c26b27bcd5e081a503a0504a35d89f385d4c1ae9f8dde19cf884d2e4a7fb9871"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 739,
+            "inflatedByteOffset": 30875,
+            "tag": 67,
+            "level": 3,
+            "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 738,
+            "inflatedByteOffset": 30847,
+            "tag": 66,
+            "level": 2,
+            "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+          }
+        },
+        {
+          "kind": "math",
+          "script": "0.3256",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 750,
+            "inflatedByteOffset": 31316,
+            "tag": 88,
+            "level": 4,
+            "payloadSha256": "ca8f2e945de706d5915abc40a02d1f7b86b865a60b596aac4cba0f6e57b2bdcc"
+          },
+          "controlSource": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 749,
+            "inflatedByteOffset": 31254,
+            "tag": 71,
+            "level": 3,
+            "payloadSha256": "719cadbbb721e7a771f0366f451535a0656d3c93f98a6857387dcb711680461e"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 746,
+            "inflatedByteOffset": 31180,
+            "tag": 67,
+            "level": 3,
+            "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 745,
+            "inflatedByteOffset": 31152,
+            "tag": 66,
+            "level": 2,
+            "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+          }
+        },
+        {
+          "kind": "math",
+          "script": "2.9042",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 757,
+            "inflatedByteOffset": 31621,
+            "tag": 88,
+            "level": 4,
+            "payloadSha256": "2a681f359f891cc5bb0afc9e94775120600aff1e507de0a409165b5147d6755a"
+          },
+          "controlSource": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 756,
+            "inflatedByteOffset": 31559,
+            "tag": 71,
+            "level": 3,
+            "payloadSha256": "a427bc365418fa212f079a80bc612994d21db7be6d77726d7c50ddd3b6b6ca58"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 753,
+            "inflatedByteOffset": 31485,
+            "tag": 67,
+            "level": 3,
+            "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 752,
+            "inflatedByteOffset": 31457,
+            "tag": 66,
+            "level": 2,
+            "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+          }
+        },
+        {
+          "kind": "math",
+          "script": "72 DEG ",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 764,
+            "inflatedByteOffset": 31926,
+            "tag": 88,
+            "level": 4,
+            "payloadSha256": "cca9bb2eb6d68a3e3c6c613b116971763a142b1e4db40616d641e2aa47972d67"
+          },
+          "controlSource": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 763,
+            "inflatedByteOffset": 31864,
+            "tag": 71,
+            "level": 3,
+            "payloadSha256": "b9c69e1cb20b50ce2ad3d07af29a82a9ce54a80e34d6183cb15cf745d0caeb0f"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 760,
+            "inflatedByteOffset": 31790,
+            "tag": 67,
+            "level": 3,
+            "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 759,
+            "inflatedByteOffset": 31762,
+            "tag": 66,
+            "level": 2,
+            "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+          }
+        },
+        {
+          "kind": "math",
+          "script": "0.9511",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 771,
+            "inflatedByteOffset": 32233,
+            "tag": 88,
+            "level": 4,
+            "payloadSha256": "5f465811a9b035c17dfe897383156a956fdf48c584ffe629ca0e5292908d888e"
+          },
+          "controlSource": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 770,
+            "inflatedByteOffset": 32171,
+            "tag": 71,
+            "level": 3,
+            "payloadSha256": "17e374e1d8269fa8c09a805ceb4a3d79465c6493bd4a8d2c2acd259e4dae043b"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 767,
+            "inflatedByteOffset": 32097,
+            "tag": 67,
+            "level": 3,
+            "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 766,
+            "inflatedByteOffset": 32069,
+            "tag": 66,
+            "level": 2,
+            "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+          }
+        },
+        {
+          "kind": "math",
+          "script": "0.3090",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 778,
+            "inflatedByteOffset": 32538,
+            "tag": 88,
+            "level": 4,
+            "payloadSha256": "c8378bd5ae3831e0e0eb59b353f1660745a00150e36f9b4fc6e2e4ef6281ef6a"
+          },
+          "controlSource": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 777,
+            "inflatedByteOffset": 32476,
+            "tag": 71,
+            "level": 3,
+            "payloadSha256": "2e46b2c58c18d80355bd2c71b99100527bdb6d4ade5432727219c438be2a1f04"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 774,
+            "inflatedByteOffset": 32402,
+            "tag": 67,
+            "level": 3,
+            "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 773,
+            "inflatedByteOffset": 32374,
+            "tag": 66,
+            "level": 2,
+            "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+          }
+        },
+        {
+          "kind": "math",
+          "script": "3.0777",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 785,
+            "inflatedByteOffset": 32843,
+            "tag": 88,
+            "level": 4,
+            "payloadSha256": "c3e1bfe4143911012e0cd45d45bbe690a0c31e16267e2632c518be7ffe161bf3"
+          },
+          "controlSource": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 784,
+            "inflatedByteOffset": 32781,
+            "tag": 71,
+            "level": 3,
+            "payloadSha256": "4b2f15ecd23d44b10d2805fdef37a5658e788bedf700dd595278339cc8b4de92"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 781,
+            "inflatedByteOffset": 32707,
+            "tag": 67,
+            "level": 3,
+            "payloadSha256": "f8eae82c5ed2af5ed30f8cc910de3d279bc0a008dedfbe335d6f8bfa29c4d6cb"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 780,
+            "inflatedByteOffset": 32679,
+            "tag": 66,
+            "level": 2,
+            "payloadSha256": "6eba1a59a09c293b57f22ac7399cdf9b0fc4ef21304a2dd5d341842d9038e357"
+          }
+        },
+        {
+          "kind": "text",
+          "text": "\n",
+          "source": {
+            "stream": "BodyText/Section0",
+            "recordIndex": 615,
+            "inflatedByteOffset": 25623,
+            "tag": 67,
+            "level": 1,
+            "payloadSha256": "aa8bf35d65374795062e78e1db3d4068765fc585da8ad2baa1068e1d7cbc1b32"
+          }
+        }
+      ],
+      "hwpScript": "[$5 SIM  6$] 다음은 삼각비 표의 일부이다. 물음에 답하시오.\n각도\n\n$sin$\n\n$cos$\n\n$tan$\n\n$68 DEG $\n\n$0.9272$\n\n$0.3746$\n\n$2.4751$\n\n$69 DEG $\n\n$0.9336$\n\n$0.3584$\n\n$2.6051$\n\n$70 DEG $\n\n$0.9397$\n\n$0.3420$\n\n$2.7475$\n\n$71 DEG $\n\n$0.9455$\n\n$0.3256$\n\n$2.9042$\n\n$72 DEG $\n\n$0.9511$\n\n$0.3090$\n\n$3.0777$\n\n\n",
+      "text": "[5~6] 다음은 삼각비 표의 일부이다. 물음에 답하시오.\n각도\n\n$\\sin$\n\n$\\cos$\n\n$\\tan$\n\n$68^\\circ$\n\n$0.9272$\n\n$0.3746$\n\n$2.4751$\n\n$69^\\circ$\n\n$0.9336$\n\n$0.3584$\n\n$2.6051$\n\n$70^\\circ$\n\n$0.9397$\n\n$0.3420$\n\n$2.7475$\n\n$71^\\circ$\n\n$0.9455$\n\n$0.3256$\n\n$2.9042$\n\n$72^\\circ$\n\n$0.9511$\n\n$0.3090$\n\n$3.0777$\n\n\n",
+      "pdfContextRegions": [
+        {
+          "page": 2,
+          "column": 0,
+          "bbox": [
+            55,
+            83,
+            375,
+            190.24398803710938
+          ]
+        }
+      ]
+    },
+    "images": [
+      {
+        "file": "images/q05-part1.png",
+        "sha256": "945e7f2ce7e2add5f68f700674e9595ac8a1ae57820db194224e91af2d017c44",
+        "page": 2,
+        "column": 0,
+        "bbox": [
+          55,
+          83,
+          375,
+          334.977783203125
+        ],
+        "role": "shared_context_page_contains_question5_not_an_answer"
+      },
+      {
+        "file": "images/q06-part1.png",
+        "sha256": "afbf2fe6163d11429b5629e4e931905e70135b151b50d169e506d125e0c66e2e",
+        "page": 2,
+        "column": 0,
+        "bbox": [
+          55,
+          340.977783203125,
+          375,
+          495.77978515625
+        ]
+      }
+    ],
+    "subquestionNumbers": [],
+    "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+    "selectedHwpAnchor": {
+      "stream": "BodyText/Section0",
+      "recordIndex": 843,
+      "inflatedByteOffset": 35359,
+      "tag": 71,
+      "level": 1,
+      "payloadSha256": "a8134043b9a32d5e5542b7793ea23fec020aeba5ed5a7790344ab0ac88d1abca"
+    },
+    "selectedPdfRegions": [
+      {
+        "page": 2,
+        "column": 0,
+        "bbox": [
+          55,
+          340.977783203125,
+          375,
+          495.77978515625
+        ]
+      }
+    ]
+  },
+  "sourceWholePacketSHA256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+  "gradeDisposition": "author-observed-proposed",
+  "sourceCoreAndActualMethod": {
+    "sharedConcept": "삼각비 표의 값→해당 각 역조회",
+    "sourceObservedQuestion": "$\\tan \\,x^\\circ =2.7475$를 만족시키는 $x$의 값으로 옳은 것은?\n[$3$점]\nNo bitmap figure; positioned HWP math/text and any table remain the source givens.",
+    "newMethod": "tan row0.7813 occurs only at38; cos row0.7771 only at39; y−x=1. Two independent table angles; no relation between tan and cos at a general angle.",
+    "sourceCorePreservationStatus": "author-proposed-independent-review-pending"
+  },
+  "substantiveDelta": {
+    "modes": [
+      "structure",
+      "representation"
+    ],
+    "before": "$\\tan \\,x^\\circ =2.7475$를 만족시키는 $x$의 값으로 옳은 것은?\n[$3$점]\nNo bitmap figure; positioned HWP math/text and any table remain the source givens.",
+    "after": "tan값으로 한 각을 선택하던 공유 문항을 두 독립적인 함수별 역조회와 각도 기록 차로 재구성한다.",
+    "sharedConcept": "삼각비 표의 값→해당 각 역조회",
+    "sharedProcedure": "다른 두 행에서 각각 유일한 각 열을 찾고 그 수의 차를 구한다.",
+    "originalAnswerOrNumericalAgreementUsed": false
+  },
+  "score": 3.0,
+  "newSubpartRubric": [],
+  "mathEvidence": {
+    "questionNumber": 6,
+    "newExactRequestedValues": [
+      "1"
+    ],
+    "freshNewCalculations": {
+      "freshTable": {
+        "cos": {
+          "37": "0.7986",
+          "38": "0.7880",
+          "39": "0.7771",
+          "40": "0.7660"
+        },
+        "tan": {
+          "37": "0.7536",
+          "38": "0.7813",
+          "39": "0.8098",
+          "40": "0.8391"
+        }
+      },
+      "x": 38,
+      "y": 39,
+      "difference": "1"
+    },
+    "conditions": [
+      {
+        "condition": "independent inverse rows unique",
+        "passedAsAuthorCalculation": true,
+        "calculation": {
+          "xRows": [
+            38
+          ],
+          "yRows": [
+            39
+          ]
+        }
+      }
+    ],
+    "actualAllChoices": [
+      {
+        "index1based": 1,
+        "choiceText": "$-2$",
+        "parsedExactValues": [
+          "-2"
+        ],
+        "differencesFromCalculatedTargets": [
+          "-3"
+        ],
+        "correctAsAuthorCalculation": false
+      },
+      {
+        "index1based": 2,
+        "choiceText": "$-1$",
+        "parsedExactValues": [
+          "-1"
+        ],
+        "differencesFromCalculatedTargets": [
+          "-2"
+        ],
+        "correctAsAuthorCalculation": false
+      },
+      {
+        "index1based": 3,
+        "choiceText": "$0$",
+        "parsedExactValues": [
+          "0"
+        ],
+        "differencesFromCalculatedTargets": [
+          "-1"
+        ],
+        "correctAsAuthorCalculation": false
+      },
+      {
+        "index1based": 4,
+        "choiceText": "$1$",
+        "parsedExactValues": [
+          "1"
+        ],
+        "differencesFromCalculatedTargets": [
+          "0"
+        ],
+        "correctAsAuthorCalculation": true
+      },
+      {
+        "index1based": 5,
+        "choiceText": "$2$",
+        "parsedExactValues": [
+          "2"
+        ],
+        "differencesFromCalculatedTargets": [
+          "1"
+        ],
+        "correctAsAuthorCalculation": false
+      }
+    ],
+    "winnerIndex1based": 4,
+    "choiceAnswerMark": "④",
+    "requestedUniquenessAuthorCheck": true,
+    "wholeConfigurationMustBeUnique": true,
+    "unitsAndPrecision": "q04/q05 table records andq17 specified rounded distance are approximations; all other numeric lengths/areas exact.",
+    "code": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/author_math.py",
+      "sha256": "dffc06bdb422829fc713c2c1f53fabe786573dcdd20712ac6a5638fbf66cfc63"
+    },
+    "originalAnswerUsed": false,
+    "authorCheckOnly": true,
+    "independentMathApproval": false,
+    "curriculumPermissionFromCalculation": false
+  },
+  "calculationProofFile": {
+    "path": "author-calculations.json",
+    "sha256": "de493620851acf3825c3c21a1634c8c774abcf9fbdc7389170d0a27668350a4a"
+  },
+  "calculationCode": {
+    "path": "author_math.py",
+    "sha256": "dffc06bdb422829fc713c2c1f53fabe786573dcdd20712ac6a5638fbf66cfc63"
+  },
+  "sevenStudentSurfaces": {
+    "stem": {
+      "status": "author-observed-proposed",
+      "contentTextSha256": "fe8610e36118ef8332b75d2045196ec1d2743f66e9387e9b22b8c3c559363548",
+      "observation": "tan값으로 한 각을 선택하던 공유 문항을 두 독립적인 함수별 역조회와 각도 기록 차로 재구성한다.",
+      "wholeMethod": "tan row0.7813 occurs only at38; cos row0.7771 only at39; y−x=1. Two independent table angles; no relation between tan and cos at a general angle."
+    },
+    "choices": {
+      "status": "author-observed-proposed",
+      "textArraySha256": "9c961bfb52fa23164eaf79b74315ce1988a6ecacefaf023073399f31cc81edf8",
+      "actualAllChoices": [
+        {
+          "index1based": 1,
+          "choiceText": "$-2$",
+          "parsedExactValues": [
+            "-2"
+          ],
+          "differencesFromCalculatedTargets": [
+            "-3"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 2,
+          "choiceText": "$-1$",
+          "parsedExactValues": [
+            "-1"
+          ],
+          "differencesFromCalculatedTargets": [
+            "-2"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 3,
+          "choiceText": "$0$",
+          "parsedExactValues": [
+            "0"
+          ],
+          "differencesFromCalculatedTargets": [
+            "-1"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 4,
+          "choiceText": "$1$",
+          "parsedExactValues": [
+            "1"
+          ],
+          "differencesFromCalculatedTargets": [
+            "0"
+          ],
+          "correctAsAuthorCalculation": true
+        },
+        {
+          "index1based": 5,
+          "choiceText": "$2$",
+          "parsedExactValues": [
+            "2"
+          ],
+          "differencesFromCalculatedTargets": [
+            "1"
+          ],
+          "correctAsAuthorCalculation": false
+        }
+      ],
+      "observation": "All five exact values/ordered pairs were parsed with code and compared against every requested target; one winning option. Wrong choices require no new grade prerequisite."
+    },
+    "figuresAndTables": {
+      "status": "author-observed-proposed",
+      "rawSpecAndSvgRelations": null,
+      "visualEvidence": {
+        "questionNumber": 6,
+        "directlyViewedWithViewImage": {
+          "path": "qa/q06-author.png",
+          "sha256": "016a65d86f672a3f2dafa08ed90bc5499da4dcdc95a87759fe714b69f817a0b7"
+        },
+        "studentPane": {
+          "path": "qa/q06-student.png",
+          "sha256": "d73deaa88f3ed232fd6c0e3bad7030fa1556a54703124421eaa59a7dc90ab927"
+        },
+        "studentPanePixelIdenticalToViewedPrefix": true,
+        "actualColumnWidthMm": 70,
+        "actualSvgWidthsMm": [],
+        "viewedItems": [
+          "whole student stem",
+          "fresh tables",
+          "all choices or all written parts",
+          "all new embedded figures",
+          "chosen new answer",
+          "entire expanded new solution"
+        ],
+        "legibilityAuthorObservation": "Labels, radicals, fractions, degree marks and table boundaries readable; no clipping, orphan final table row or math/table overflow observed.",
+        "mathematicalPixelMeasurementUsed": false,
+        "independentFigureOrContentApproval": false
+      },
+      "observation": "Every needed length/angle/order given in text; newly computed engine geometry is not a substitute for a given. Fresh tables organize new records and preserve paragraphs."
+    },
+    "notation": {
+      "status": "author-observed-proposed",
+      "observation": "x,y explicitly range over the finite supplied angle-number columns37..40; x°/y° notation does not require trigonometric functions or general identities."
+    },
+    "answer": {
+      "status": "author-observed-proposed",
+      "textSha256": "6958a3e7105064751a96bf1e52cd5e9916d71e127193b12ffae234c0fddac50f",
+      "newExactRequestedValues": [
+        "1"
+      ],
+      "observation": "New single chosen circled mark bound to the checked option."
+    },
+    "studentSolution": {
+      "status": "author-observed-proposed",
+      "textSha256": "e7628b9d243aa031cc06ecd6ef76c274250a2f152868004ab942847fa68609fe",
+      "legitimateStudentProcedure": "다른 두 행에서 각각 유일한 각 열을 찾고 그 수의 차를 구한다.",
+      "actualMathRoute": "tan row0.7813 occurs only at38; cos row0.7771 only at39; y−x=1. Two independent table angles; no relation between tan and cos at a general angle.",
+      "generalTrigIdentityOrSineCosineLawUsed": false,
+      "originalKeyAgreementUsed": false
+    },
+    "prerequisites": {
+      "status": "author-observed-proposed",
+      "officialStandards": [
+        {
+          "id": "9수04-17",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4341,
+            "paragraph1based": 948,
+            "offset": 219120,
+            "text": "[9수04-17]\u001e삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다. \r"
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        }
+      ],
+      "actualPrerequisiteSeedRecords": [
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2879,
+          "endLine1based": 2884,
+          "section": "제곱근의 뜻과 성질",
+          "text": "{\n    grade: \"중3\",\n    chapter: \"1. 실수와 그 계산\",\n    section: \"제곱근의 뜻과 성질\",\n    orderIndex: 469,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2955,
+          "endLine1based": 2960,
+          "section": "삼각비의 뜻",
+          "text": "{\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 뜻\",\n    orderIndex: 481,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2961,
+          "endLine1based": 2966,
+          "section": "삼각비의 값",
+          "text": "{\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 값\",\n    orderIndex: 482,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2967,
+          "endLine1based": 2972,
+          "section": "삼각비의 활용",
+          "text": "{\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 활용\",\n    orderIndex: 483,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 3112,
+          "endLine1based": 3117,
+          "section": "음수의 제곱근",
+          "text": "{\n    grade: \"공통수학1\",\n    chapter: \"2. 방정식과 부등식\",\n    section: \"음수의 제곱근\",\n    orderIndex: 508,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 3631,
+          "endLine1based": 3636,
+          "section": "거듭제곱근의 뜻",
+          "text": "{\n    grade: \"대수\",\n    chapter: \"1. 지수함수와 로그함수\",\n    section: \"거듭제곱근의 뜻\",\n    orderIndex: 594,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 3637,
+          "endLine1based": 3642,
+          "section": "거듭제곱근의 성질과 계산",
+          "text": "{\n    grade: \"대수\",\n    chapter: \"1. 지수함수와 로그함수\",\n    section: \"거듭제곱근의 성질과 계산\",\n    orderIndex: 595,\n  }"
+        }
+      ],
+      "boundary": "Source-era2015 middle3 only; no probability/registry permit. New elementary coordinate representation q02 is supported by9수03-01. Whole route remains subject to independent review."
+    }
+  },
+  "officialRestrictions": [
+    {
+      "id": "no_trig_ratio_relationships",
+      "hwp": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record1based": 4440,
+        "paragraph1based": 966,
+        "offset": 224820,
+        "text": "삼각비 사이의 관계는 다루지 않는다.\r"
+      },
+      "pdfPhysicalPage1based": 39,
+      "pdfPrintedPage": 35,
+      "wholeClausePdfMatch": true
+    },
+    {
+      "id": "angle_range",
+      "hwp": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record1based": 4444,
+        "paragraph1based": 967,
+        "offset": 224946,
+        "text": "삼각비의 값은 0°에서 90°까지의 각도에 대한 것만 다룬다.\r"
+      },
+      "pdfPhysicalPage1based": 39,
+      "pdfPrintedPage": 35,
+      "wholeClausePdfMatch": true
+    },
+    {
+      "id": "no_complex_geometry_measurement",
+      "hwp": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record1based": 4472,
+        "paragraph1based": 974,
+        "offset": 226554,
+        "text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다.\r"
+      },
+      "pdfPhysicalPage1based": 39,
+      "pdfPrintedPage": 35,
+      "wholeClausePdfMatch": true
+    },
+    {
+      "id": "no_formal_complex_justification",
+      "hwp": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record1based": 4476,
+        "paragraph1based": 975,
+        "offset": 226792,
+        "text": "정확한 용어와 기호의 사용, 복잡한 형식 논리 규칙의 이용을 요구하는 연역적 정당화 문제는 다루지 않는다. \r"
+      },
+      "pdfPhysicalPage1based": 39,
+      "pdfPrintedPage": 35,
+      "wholeClausePdfMatch": true
+    }
+  ],
+  "taxonomy": {
+    "status": "pending",
+    "unitId": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+    "unitSection": "삼각비의 값",
+    "familyKey": null,
+    "evidence": {
+      "actualCapturedUnit": {
+        "id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 값",
+        "semester": 2,
+        "orderIndex": 482,
+        "problemCodePrefix": "J30502"
+      },
+      "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+      "snapshotOnly": true,
+      "comparison": "16 mode0의 한 각 역조회와 부분적으로 같지만 두 독립 조회 후 차인 전체 갈래는 미확인이다.",
+      "comparedRegistryEntries": [
+        {
+          "registry": {
+            "key": "3-2|삼각비|16",
+            "grade": "중3",
+            "unitSection": "삼각비의 값",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비",
+            "rpmType": "16",
+            "rpmTitle": "삼각비의 표를 이용하여 삼각비의 값 구하기"
+          },
+          "liveMatches": [
+            {
+              "unit_id": "3b9f9110-2b31-4ed7-a44f-f5d2e8a1f4e7",
+              "family_key": "mid:3-2|삼각비|16",
+              "live_count": 20
+            }
+          ],
+          "actualRule": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+            "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+            "startLine1based": 1526,
+            "endLine1based": 1575,
+            "text": "def(\n    \"삼각비\",\n    \"16\",\n    \"삼각비의 표를 이용하여 삼각비의 값 구하기\",\n    SEC.값,\n    \"기본\",\n    (rng) => {\n      const b = intBetween(rng, 30, 58);\n      const fn = intBetween(rng, 0, 2);\n      const table = [0, 1, 2].map((i) => tableValue(fn, b + i));\n      const mode = intBetween(rng, 0, 2);\n      const rows = [0, 1, 2]\n        .map((i) => `$${trigText(fn, b + i)}=${table[i]!.toFixed(4)}$`)\n        .join(\", \");\n      const head = `삼각비의 표에서 ${rows}이다.`;\n      if (mode === 0) {\n        return {\n          // 소수 넷째 자리까지 적으므로 마지막에 읽는 숫자는 만 배 한 정수의 끝 자리다.\n          content: `${head} 이때 $${FN_NAMES[fn]} x=${table[2]!.toFixed(4)}$${eulReul(Math.round(table[2]! * 10000))} 만족시키는 $x$의 크기를 구하시오.`,\n          answer: `$${b + 2}^\\\\circ$`,\n          solution: `표에서 값이 $${table[2]!.toFixed(4)}$인 각을 찾으면 $${b + 2}^\\\\circ$이다.\\n따라서 $x=${b + 2}^\\\\circ$이다.`,\n          facts: { b, fn, mode, target: b + 2, val: table[2]! },\n          figureSpec: null,\n        };\n      }\n      if (mode === 1) {\n        const sum = Number((table[0]! + table[2]!).toFixed(4));\n        return {\n          content: `${head} 이때 $${trigText(fn, b)}+${trigText(fn, b + 2)}$의 값을 구하시오.`,\n          answer: `$${sum.toFixed(4)}$`,\n          solution: `표에서 $${trigText(fn, b)}=${table[0]!.toFixed(4)}$, $${trigText(fn, b + 2)}=${table[2]!.toFixed(4)}$이다.\\n따라서 구하는 값은 $${table[0]!.toFixed(4)}+${table[2]!.toFixed(4)}=${sum.toFixed(4)}$이다.`,\n          facts: { b, fn, mode, target: b, val: sum },\n          figureSpec: null,\n        };\n      }\n      // 차 — 큰 값에서 작은 값을 뺀다($\\cos$ 는 각이 커질수록 작아진다).\n      const hi = fn === 1 ? b : b + 2;\n      const lo = fn === 1 ? b + 2 : b;\n      const diff = Number((tableValue(fn, hi) - tableValue(fn, lo)).toFixed(4));\n      return {\n        content: `${head} 이때 $${trigText(fn, hi)}-${trigText(fn, lo)}$의 값을 구하시오.`,\n        answer: `$${diff.toFixed(4)}$`,\n        solution: `표에서 $${trigText(fn, hi)}=${tableValue(fn, hi).toFixed(4)}$, $${trigText(fn, lo)}=${tableValue(fn, lo).toFixed(4)}$이다.\\n따라서 구하는 값은 $${tableValue(fn, hi).toFixed(4)}-${tableValue(fn, lo).toFixed(4)}=${diff.toFixed(4)}$이다.`,\n        facts: { b, fn, mode, target: hi, val: diff },\n        figureSpec: null,\n      };\n    },\n  ),\n\n  "
+          }
+        }
+      ],
+      "TRIPLESPoolCheckedForQ01": null
+    }
+  },
+  "problemType": {
+    "proposal": null,
+    "status": "pending",
+    "evidence": {
+      "path": "classification-limits.json",
+      "sha256": "fbcfa8e7894db6a3244c60cdb524628464fba1dc8edade615b55cb1bdf0c6a45"
+    }
+  },
+  "objectiveDifficultyProposal": {
+    "label": "기본",
+    "reason": "다른 두 행에서 각각 유일한 각 열을 찾고 그 수의 차를 구한다.",
+    "status": "author-proposed",
+    "registryDescriptorAsProof": false,
+    "studentPerformanceMeasured": false
+  },
+  "naturalKoreanAuthorObservation": "Actual expanded layout read; exact input/target order and units stated. Pure mathematics stays mathematical; q17 changes distance input/target in a natural ramp context; q21 uses consistent fictional school.",
+  "materialHold": null,
+  "allFinalApprovals": {
+    "independentMath": false,
+    "independentWholeGrade": false,
+    "sourceCore": false,
+    "unitFamily": false,
+    "rights": false,
+    "nativeProvenance": false,
+    "loadable": false
+  }
+}

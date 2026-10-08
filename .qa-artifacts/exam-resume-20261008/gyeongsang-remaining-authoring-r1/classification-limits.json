@@ -1,0 +1,45 @@
+{
+  "schema": {
+    "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/schema.prisma",
+    "sha256": "532d299acbd2b4ae208afff02bd14e22bf28ce1f92ef1070b2ff57f14161d8ae",
+    "records": [
+      {
+        "line1based": 791,
+        "text": "  problemType       String     @map(\"problem_type\") @db.VarChar(20)"
+      },
+      {
+        "line1based": 793,
+        "text": "  /// ⚠️ `problemType`(계산/개념/활용/서술형)과 **다른 축**이다. 섞지 말 것."
+      },
+      {
+        "line1based": 1940,
+        "text": "  problemType     String?   @map(\"problem_type\") @db.VarChar(100)"
+      }
+    ]
+  },
+  "problemTypeProposal": null,
+  "problemTypeStatus": "pending",
+  "reason": "Actual product string axis is separate from questionType; no task-to-axis rule checked. A descriptive core string is not a valid substitute.",
+  "familyProposals": {
+    "q01": "mid:3-2|삼각비|02",
+    "q16": "mid:3-2|삼각비의 활용|08"
+  },
+  "familyNullQuestions": [
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    17,
+    18,
+    19,
+    20,
+    21
+  ],
+  "unitRecordsDatedOnly": true,
+  "familyAndProblemTypeApproval": false,
+  "fixedDifficultyDescriptorIsMeasuredDifficulty": false
+}

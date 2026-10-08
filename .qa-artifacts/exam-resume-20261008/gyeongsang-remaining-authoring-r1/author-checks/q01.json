@@ -1,0 +1,638 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 1,
+  "authorId": "orca-codex-exam-twin-source-identity-20261008",
+  "method": "author-calculation-and-seven-surface-preparation",
+  "authorOnly": true,
+  "independentVerifier": false,
+  "sourceQuestionId": "2025-gyeongsang-3-2-mid-1",
+  "twinExternalId": "exam-twin-gyeongsang-2025-2-mid-author-source-r1-q01",
+  "sourceQuestionOnlyRecord": {
+    "number": 1,
+    "stem": "직각삼각형 $\\mathrm{ABC}$에서 $\\sin \\mathrm{A}$의 값은? [$3$점]",
+    "choices": [
+      "$\\frac{8}{17}$",
+      "$\\frac{8}{15}$",
+      "$\\frac{15}{17}$",
+      "$\\frac{17}{15}$",
+      "$\\frac{17}{8}$"
+    ],
+    "hwpScriptStem": "직각삼각형 $RMABC$에서 $sin RMA$의 값은? [$3$점]",
+    "hwpScriptChoices": [
+      "${8} over {17}$",
+      "${8} over {15}$",
+      "${15} over {17}$",
+      "${17} over {15}$",
+      "${17} over {8}$"
+    ],
+    "scoreEvidence": {
+      "selectedHwpPdfPrintedParentScore": 3.0,
+      "selectedPairScoreStatus": "literal_match",
+      "originalPrintedParentScore": 3.0,
+      "referenceParentScore": 3.0,
+      "referenceScoreBasis": "literal printed question bracket matched in completed PDF and original scan",
+      "parentCountedOnce": true,
+      "childScores": [],
+      "subquestionCount": 0,
+      "parentAndChildrenMustNotBeAddedTogether": false
+    },
+    "subQuestions": [],
+    "structuredGivenData": {},
+    "figureGivenObservation": "C 직각; AB=17, BC=8, AC=15.",
+    "curriculum": {
+      "sourceGrade": "중3",
+      "expectedAppliedCurriculum": "2015",
+      "status": "hold_full_item_review",
+      "fullApproval": false,
+      "conceptCandidate": "삼각비의 정의·값·활용",
+      "coreMethodCandidate": "직각삼각형에서 sin의 대변/빗변을 읽는다.",
+      "officialStandardsCandidates": [
+        {
+          "code": "9수04-17",
+          "officialStatement": "삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다.",
+          "pdfPage": 38,
+          "printedPage": 34,
+          "sourceUrl": "https://www.moe.go.kr/boardCnts/view.do?boardID=141&boardSeq=60747&lev=0&m=0404",
+          "notPerQuestionApproval": true
+        }
+      ],
+      "localUnitCandidate": {
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "seedFile": "prisma/seed-data/units.ts",
+        "seedFileSha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+        "liveUnitId": null
+      },
+      "liveFamilyId": null,
+      "generatorRuleId": null,
+      "generatorRuleReview": "pending_parent_live_mapping_no_DB_read_by_worker",
+      "specificRisk": null,
+      "decisionIfNoLegalGradeMethod": "reject",
+      "decisionIfUnclear": "hold",
+      "appliedBasis": "Official phased rollout: 2025 middle3 precedes 2022 middle3 rollout in 2027. Both conflicting 2024/2025 headers precede that rollout; school/year identity still held separately.",
+      "requiredReview": [
+        "stem",
+        "all choices",
+        "figure meaning",
+        "notation",
+        "answer format",
+        "new answer",
+        "student solution",
+        "required steps",
+        "prerequisites"
+      ],
+      "signDomainUnitsGate": [
+        "signs and radicals",
+        "angle range 0-90 degrees",
+        "nonzero denominators",
+        "positive lengths/areas",
+        "units",
+        "existence",
+        "uniqueness"
+      ],
+      "sourceSchoolOrAIConfidenceCannotApprove": true
+    },
+    "sourceContentDigest": "f39d2b24ddf9f609ab64e94f61343cbef8f3a57bc729e55263f4f54f4fa12239",
+    "sourceQuestionId": "2025-gyeongsang-3-2-mid-1",
+    "status": "source_reference_reviewed_all_final_approval_gates_held",
+    "sourceAmbiguityHolds": [
+      "item_level_unit_live_family_generator_rule_and_prerequisite_review_pending",
+      "source_custody_rights_permission_pending",
+      "canonical_text_product_render_review_pending"
+    ],
+    "sharedContext": null,
+    "images": [
+      {
+        "file": "images/q01-part1.png",
+        "sha256": "580276b65358f9e8dc13c58dc3119e2c656135b80b8b7d56344a2ebfe48976d1",
+        "page": 1,
+        "column": 0,
+        "bbox": [
+          55,
+          99,
+          375,
+          524.3187866210938
+        ]
+      }
+    ],
+    "subquestionNumbers": [],
+    "normalizationAuthority": "Question images + positional HWP scripts; canonical LaTeX requires later product render check. No inferred missing cells.",
+    "selectedHwpAnchor": {
+      "stream": "BodyText/Section0",
+      "recordIndex": 329,
+      "inflatedByteOffset": 12145,
+      "tag": 71,
+      "level": 1,
+      "payloadSha256": "3e15318e071f2ea979bea64185a63199568143375f9a3d51fc7ba843e59de7b8"
+    },
+    "selectedPdfRegions": [
+      {
+        "page": 1,
+        "column": 0,
+        "bbox": [
+          55,
+          99,
+          375,
+          524.3187866210938
+        ]
+      }
+    ]
+  },
+  "sourceWholePacketSHA256": "776e8ea50867b00bb1f670f0cd03505b9766aee226e018a7f86af55e2da1627b",
+  "gradeDisposition": "author-observed-proposed",
+  "sourceCoreAndActualMethod": {
+    "sharedConcept": "사인의 대변/빗변 정의와 실제 길이 대응",
+    "sourceObservedQuestion": "직각삼각형 $\\mathrm{ABC}$에서 $\\sin \\mathrm{A}$의 값은? [$3$점]\nC 직각; AB=17, BC=8, AC=15.",
+    "newMethod": "PQ=25, sinP=7/25 gives actual QR=7. PR=24 is a positive existence witness, not a new requested ratio.",
+    "sourceCorePreservationStatus": "author-proposed-independent-review-pending"
+  },
+  "substantiveDelta": {
+    "modes": [
+      "structure",
+      "inverse-target"
+    ],
+    "before": "직각삼각형 $\\mathrm{ABC}$에서 $\\sin \\mathrm{A}$의 값은? [$3$점]\nC 직각; AB=17, BC=8, AC=15.",
+    "after": "세 변의 길이에서 사인 값을 읽는 문제를, 빗변과 사인 기록으로 실제 대변의 길이를 복구하는 표로 역전한다.",
+    "sharedConcept": "사인의 대변/빗변 정의와 실제 길이 대응",
+    "sharedProcedure": "사인 정의의 비를 세우고 실제 대변 길이를 복구한다.",
+    "originalAnswerOrNumericalAgreementUsed": false
+  },
+  "score": 3.0,
+  "newSubpartRubric": [],
+  "mathEvidence": {
+    "questionNumber": 1,
+    "newExactRequestedValues": [
+      "7"
+    ],
+    "freshNewCalculations": {
+      "PQ": "25",
+      "givenSinP": "7/25",
+      "QR": "7",
+      "PRexistenceWitness": "24"
+    },
+    "conditions": [
+      {
+        "condition": "positive right triangle, supplied sine definition",
+        "passedAsAuthorCalculation": true,
+        "calculation": {
+          "PQ": "25",
+          "givenSinP": "7/25",
+          "QR": "7",
+          "PRexistenceWitness": "24"
+        }
+      }
+    ],
+    "actualAllChoices": [
+      {
+        "index1based": 1,
+        "choiceText": "$24$",
+        "parsedExactValues": [
+          "24"
+        ],
+        "differencesFromCalculatedTargets": [
+          "17"
+        ],
+        "correctAsAuthorCalculation": false
+      },
+      {
+        "index1based": 2,
+        "choiceText": "$175$",
+        "parsedExactValues": [
+          "175"
+        ],
+        "differencesFromCalculatedTargets": [
+          "168"
+        ],
+        "correctAsAuthorCalculation": false
+      },
+      {
+        "index1based": 3,
+        "choiceText": "$7$",
+        "parsedExactValues": [
+          "7"
+        ],
+        "differencesFromCalculatedTargets": [
+          "0"
+        ],
+        "correctAsAuthorCalculation": true
+      },
+      {
+        "index1based": 4,
+        "choiceText": "$25$",
+        "parsedExactValues": [
+          "25"
+        ],
+        "differencesFromCalculatedTargets": [
+          "18"
+        ],
+        "correctAsAuthorCalculation": false
+      },
+      {
+        "index1based": 5,
+        "choiceText": "$18$",
+        "parsedExactValues": [
+          "18"
+        ],
+        "differencesFromCalculatedTargets": [
+          "11"
+        ],
+        "correctAsAuthorCalculation": false
+      }
+    ],
+    "winnerIndex1based": 3,
+    "choiceAnswerMark": "③",
+    "requestedUniquenessAuthorCheck": true,
+    "wholeConfigurationMustBeUnique": true,
+    "unitsAndPrecision": "q04/q05 table records andq17 specified rounded distance are approximations; all other numeric lengths/areas exact.",
+    "code": {
+      "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/author_math.py",
+      "sha256": "dffc06bdb422829fc713c2c1f53fabe786573dcdd20712ac6a5638fbf66cfc63"
+    },
+    "originalAnswerUsed": false,
+    "authorCheckOnly": true,
+    "independentMathApproval": false,
+    "curriculumPermissionFromCalculation": false
+  },
+  "calculationProofFile": {
+    "path": "author-calculations.json",
+    "sha256": "de493620851acf3825c3c21a1634c8c774abcf9fbdc7389170d0a27668350a4a"
+  },
+  "calculationCode": {
+    "path": "author_math.py",
+    "sha256": "dffc06bdb422829fc713c2c1f53fabe786573dcdd20712ac6a5638fbf66cfc63"
+  },
+  "sevenStudentSurfaces": {
+    "stem": {
+      "status": "author-observed-proposed",
+      "contentTextSha256": "5bd592c32647e59364bec940a282552790d07cea2b71ae06da59f5afca5afc72",
+      "observation": "세 변의 길이에서 사인 값을 읽는 문제를, 빗변과 사인 기록으로 실제 대변의 길이를 복구하는 표로 역전한다.",
+      "wholeMethod": "PQ=25, sinP=7/25 gives actual QR=7. PR=24 is a positive existence witness, not a new requested ratio."
+    },
+    "choices": {
+      "status": "author-observed-proposed",
+      "textArraySha256": "c010fde6a88a17e3a5c30e27ad6bbcb0bd04e277829e0f1b56233c8b1bced839",
+      "actualAllChoices": [
+        {
+          "index1based": 1,
+          "choiceText": "$24$",
+          "parsedExactValues": [
+            "24"
+          ],
+          "differencesFromCalculatedTargets": [
+            "17"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 2,
+          "choiceText": "$175$",
+          "parsedExactValues": [
+            "175"
+          ],
+          "differencesFromCalculatedTargets": [
+            "168"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 3,
+          "choiceText": "$7$",
+          "parsedExactValues": [
+            "7"
+          ],
+          "differencesFromCalculatedTargets": [
+            "0"
+          ],
+          "correctAsAuthorCalculation": true
+        },
+        {
+          "index1based": 4,
+          "choiceText": "$25$",
+          "parsedExactValues": [
+            "25"
+          ],
+          "differencesFromCalculatedTargets": [
+            "18"
+          ],
+          "correctAsAuthorCalculation": false
+        },
+        {
+          "index1based": 5,
+          "choiceText": "$18$",
+          "parsedExactValues": [
+            "18"
+          ],
+          "differencesFromCalculatedTargets": [
+            "11"
+          ],
+          "correctAsAuthorCalculation": false
+        }
+      ],
+      "observation": "All five exact values/ordered pairs were parsed with code and compared against every requested target; one winning option. Wrong choices require no new grade prerequisite."
+    },
+    "figuresAndTables": {
+      "status": "author-observed-proposed",
+      "rawSpecAndSvgRelations": {
+        "questionNumber": 1,
+        "spec": {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q01/stem-1.spec.json",
+          "sha256": "4a0adb5783f53b969ab6f84892e23def7dc884f26d5ff92298ccaf94bdd86c3b"
+        },
+        "svg": {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-twin-source-identity-20261008/.qa-artifacts/exam-resume-20261008/gyeongsang-remaining-authoring-r1/candidates/q01/stem-1.svg",
+          "sha256": "596ab0a4a5bdf2fe7f99d64915eaff2077717b085bf0cb6c3e2d55798baffe76"
+        },
+        "intendedWidthMm": 70,
+        "coordinateChecks": [
+          {
+            "condition": "angle_R right",
+            "computed": 90.0,
+            "required": 90,
+            "authorCheckPassed": true
+          },
+          {
+            "condition": "sinP=QR/PQ",
+            "computed": 0.28,
+            "required": 0.28,
+            "authorCheckPassed": true
+          }
+        ],
+        "mathematicalPixelMeasurementsUsed": false,
+        "independentFigureOrGradeApproval": false,
+        "authorCheckOnly": true
+      },
+      "visualEvidence": {
+        "questionNumber": 1,
+        "directlyViewedWithViewImage": {
+          "path": "qa/q01-author.png",
+          "sha256": "199c754c448585021177b0d88ce707fee7430fadd5cd9323cad3abe51017d3c9"
+        },
+        "studentPane": {
+          "path": "qa/q01-student.png",
+          "sha256": "3ceb00c3885e7833ed69caaa61ceb173724f9fb08c440cdda52af45894f6a24c"
+        },
+        "studentPanePixelIdenticalToViewedPrefix": true,
+        "actualColumnWidthMm": 70,
+        "actualSvgWidthsMm": [
+          69.998828125
+        ],
+        "viewedItems": [
+          "whole student stem",
+          "fresh tables",
+          "all choices or all written parts",
+          "all new embedded figures",
+          "chosen new answer",
+          "entire expanded new solution"
+        ],
+        "legibilityAuthorObservation": "Labels, radicals, fractions, degree marks and table boundaries readable; no clipping, orphan final table row or math/table overflow observed.",
+        "mathematicalPixelMeasurementUsed": false,
+        "independentFigureOrContentApproval": false
+      },
+      "observation": "Every needed length/angle/order given in text; newly computed engine geometry is not a substitute for a given. Fresh tables organize new records and preserve paragraphs."
+    },
+    "notation": {
+      "status": "author-observed-proposed",
+      "observation": "Fixed acute angles, physical lengths and simple fractions/radicals. No upper-grade function/vector/calculus notation in student surfaces."
+    },
+    "answer": {
+      "status": "author-observed-proposed",
+      "textSha256": "3d3bc389df58f47aef91bc1182122d181e2c628a2d5b93939c903507938814de",
+      "newExactRequestedValues": [
+        "7"
+      ],
+      "observation": "New single chosen circled mark bound to the checked option."
+    },
+    "studentSolution": {
+      "status": "author-observed-proposed",
+      "textSha256": "4439361c82546a5cd2f104086aec0765a17df2ae4849294c751dfb7f9bc3907f",
+      "legitimateStudentProcedure": "사인 정의의 비를 세우고 실제 대변 길이를 복구한다.",
+      "actualMathRoute": "PQ=25, sinP=7/25 gives actual QR=7. PR=24 is a positive existence witness, not a new requested ratio.",
+      "generalTrigIdentityOrSineCosineLawUsed": false,
+      "originalKeyAgreementUsed": false
+    },
+    "prerequisites": {
+      "status": "author-observed-proposed",
+      "officialStandards": [
+        {
+          "id": "9수04-17",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4341,
+            "paragraph1based": 948,
+            "offset": 219120,
+            "text": "[9수04-17]\u001e삼각비의 뜻을 알고, 간단한 삼각비의 값을 구할 수 있다. \r"
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        },
+        {
+          "id": "9수04-18",
+          "hwp": {
+            "stream": "BodyText/Section0",
+            "tag": 67,
+            "record1based": 4345,
+            "paragraph1based": 949,
+            "offset": 219292,
+            "text": "[9수04-18]\u001e삼각비를 활용하여 여러 가지 문제를 해결할 수 있다.\r"
+          },
+          "pdfPhysicalPage1based": 38,
+          "pdfPrintedPage": 34,
+          "wholeClausePdfMatch": true
+        }
+      ],
+      "actualPrerequisiteSeedRecords": [
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2879,
+          "endLine1based": 2884,
+          "section": "제곱근의 뜻과 성질",
+          "text": "{\n    grade: \"중3\",\n    chapter: \"1. 실수와 그 계산\",\n    section: \"제곱근의 뜻과 성질\",\n    orderIndex: 469,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2955,
+          "endLine1based": 2960,
+          "section": "삼각비의 뜻",
+          "text": "{\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 뜻\",\n    orderIndex: 481,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2961,
+          "endLine1based": 2966,
+          "section": "삼각비의 값",
+          "text": "{\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 값\",\n    orderIndex: 482,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 2967,
+          "endLine1based": 2972,
+          "section": "삼각비의 활용",
+          "text": "{\n    grade: \"중3\",\n    chapter: \"5. 삼각비\",\n    section: \"삼각비의 활용\",\n    orderIndex: 483,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 3112,
+          "endLine1based": 3117,
+          "section": "음수의 제곱근",
+          "text": "{\n    grade: \"공통수학1\",\n    chapter: \"2. 방정식과 부등식\",\n    section: \"음수의 제곱근\",\n    orderIndex: 508,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 3631,
+          "endLine1based": 3636,
+          "section": "거듭제곱근의 뜻",
+          "text": "{\n    grade: \"대수\",\n    chapter: \"1. 지수함수와 로그함수\",\n    section: \"거듭제곱근의 뜻\",\n    orderIndex: 594,\n  }"
+        },
+        {
+          "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/prisma/seed-data/units.ts",
+          "sha256": "652a68d26b4400ac41950bee47bb8ac05369402cdc347909a41d821f2ea5cf2e",
+          "startLine1based": 3637,
+          "endLine1based": 3642,
+          "section": "거듭제곱근의 성질과 계산",
+          "text": "{\n    grade: \"대수\",\n    chapter: \"1. 지수함수와 로그함수\",\n    section: \"거듭제곱근의 성질과 계산\",\n    orderIndex: 595,\n  }"
+        }
+      ],
+      "boundary": "Source-era2015 middle3 only; no probability/registry permit. New elementary coordinate representation q02 is supported by9수03-01. Whole route remains subject to independent review."
+    }
+  },
+  "officialRestrictions": [
+    {
+      "id": "no_trig_ratio_relationships",
+      "hwp": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record1based": 4440,
+        "paragraph1based": 966,
+        "offset": 224820,
+        "text": "삼각비 사이의 관계는 다루지 않는다.\r"
+      },
+      "pdfPhysicalPage1based": 39,
+      "pdfPrintedPage": 35,
+      "wholeClausePdfMatch": true
+    },
+    {
+      "id": "angle_range",
+      "hwp": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record1based": 4444,
+        "paragraph1based": 967,
+        "offset": 224946,
+        "text": "삼각비의 값은 0°에서 90°까지의 각도에 대한 것만 다룬다.\r"
+      },
+      "pdfPhysicalPage1based": 39,
+      "pdfPrintedPage": 35,
+      "wholeClausePdfMatch": true
+    },
+    {
+      "id": "no_complex_geometry_measurement",
+      "hwp": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record1based": 4472,
+        "paragraph1based": 974,
+        "offset": 226554,
+        "text": "복잡하게 변형된 평면도형의 넓이와 둘레의 길이, 입체도형의 겉넓이와 부피를 구하는 문제는 다루지 않는다.\r"
+      },
+      "pdfPhysicalPage1based": 39,
+      "pdfPrintedPage": 35,
+      "wholeClausePdfMatch": true
+    },
+    {
+      "id": "no_formal_complex_justification",
+      "hwp": {
+        "stream": "BodyText/Section0",
+        "tag": 67,
+        "record1based": 4476,
+        "paragraph1based": 975,
+        "offset": 226792,
+        "text": "정확한 용어와 기호의 사용, 복잡한 형식 논리 규칙의 이용을 요구하는 연역적 정당화 문제는 다루지 않는다. \r"
+      },
+      "pdfPhysicalPage1based": 39,
+      "pdfPrintedPage": 35,
+      "wholeClausePdfMatch": true
+    }
+  ],
+  "taxonomy": {
+    "status": "proposed",
+    "unitId": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+    "unitSection": "삼각비의 뜻",
+    "familyKey": "mid:3-2|삼각비|02",
+    "evidence": {
+      "actualCapturedUnit": {
+        "id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+        "grade": "중3",
+        "chapter": "5. 삼각비",
+        "section": "삼각비의 뜻",
+        "semester": 2,
+        "orderIndex": 481,
+        "problemCodePrefix": "J30501"
+      },
+      "bankCapturedAt": "2026-10-08 04:53:45.769124+00",
+      "snapshotOnly": true,
+      "comparison": "02의 sin+빗변→대변 모드와 목적/절차가 맞는 제안이다. 7-24-25 실제 매개변수와 표 표현은 별도 검수 대상이다.",
+      "comparedRegistryEntries": [
+        {
+          "registry": {
+            "key": "3-2|삼각비|02",
+            "grade": "중3",
+            "unitSection": "삼각비의 뜻",
+            "rpmBook": "3-2",
+            "rpmMinor": "삼각비",
+            "rpmType": "02",
+            "rpmTitle": "삼각비를 이용하여 삼각형의 변의 길이 구하기"
+          },
+          "liveMatches": [
+            {
+              "unit_id": "3e93bf73-4493-4299-b8a3-c4f5247e4413",
+              "family_key": "mid:3-2|삼각비|02",
+              "live_count": 24
+            }
+          ],
+          "actualRule": {
+            "path": "C:/Users/user/orca/workspaces/todays-math/exam-extraction-resume-20261008/src/lib/middle/m3Trig.ts",
+            "sha256": "818cc82cea89aee7ec4d09986c540500cf621780ac4b89aa1df4736f8348a80a",
+            "startLine1based": 982,
+            "endLine1based": 1023,
+            "text": "def(\n    \"삼각비\",\n    \"02\",\n    \"삼각비를 이용하여 삼각형의 변의 길이 구하기\",\n    SEC.뜻,\n    \"기본\",\n    (rng) =>\n      attempt(120, () => {\n        const [p, q, r] = pick(rng, TRIPLES);\n        const mode = intBetween(rng, 0, 2);\n        const t = intBetween(rng, 1, 4);\n        // $\\angle B=90^\\circ$ · $\\angle A$ 기준: 대변 $pt$, 이웃변 $qt$, 빗변 $rt$.\n        const opp = p * t;\n        const adj = q * t;\n        const hyp = r * t;\n        if (hyp > 80) return null;\n        const [gnum, gden] = red(mode === 1 ? q : p, mode === 2 ? q : r);\n        if (gnum >= gden) return null;\n        const given = mode === 2 ? adj : hyp;\n        const x = mode === 1 ? adj : opp;\n        const givenSide = mode === 2 ? SIDE_NAMES[0]! : SIDE_NAMES[2]!;\n        const askSide = mode === 1 ? SIDE_NAMES[0]! : SIDE_NAMES[1]!;\n        const relation = [\n          `\\\\sin A=\\\\dfrac{\\\\overline{BC}}{\\\\overline{AC}}`,\n          `\\\\cos A=\\\\dfrac{\\\\overline{AB}}{\\\\overline{AC}}`,\n          `\\\\tan A=\\\\dfrac{\\\\overline{BC}}{\\\\overline{AB}}`,\n        ][mode]!;\n        return {\n          content: `직각삼각형 $ABC$에서 $\\\\angle B=90^\\\\circ$이고 $${trigOf(mode, \"A\")}=${frac(gnum, gden)}$, $${givenSide}=${cm(given)}$일 때, $${askSide}$의 길이를 구하시오.`,\n          answer: `$${cm(x)}$`,\n          solution: `$${relation}$이다.\\n따라서 $${askSide}=${given}\\\\times${frac(gnum, gden)}=${x}\\\\,(\\\\mathrm{cm})$이다.`,\n          facts: { num: gnum, den: gden, given, x, mode },\n          figureSpec: figRight({\n            vert: adj,\n            horz: opp,\n            dims: mode === 2 ? { AB: dimCm(given) } : { CA: dimCm(given) },\n          }),\n        };\n      }),\n  ),\n\n  "
+          }
+        }
+      ],
+      "TRIPLESPoolCheckedForQ01": "const TRIPLES = [\n  [3, 4, 5],\n  [6, 8, 10],\n  [5, 12, 13],\n  [9, 12, 15],\n  [8, 15, 17],\n  [12, 16, 20],\n  [7, 24, 25],\n  [15, 20, 25],\n  [10, 24, 26],\n  [20, 21, 29],\n  [18, 24, 30],\n  [16, 30, 34],\n  [12, 35, 37],\n  [9, 40, 41],\n] as const;"
+    }
+  },
+  "problemType": {
+    "proposal": null,
+    "status": "pending",
+    "evidence": {
+      "path": "classification-limits.json",
+      "sha256": "fbcfa8e7894db6a3244c60cdb524628464fba1dc8edade615b55cb1bdf0c6a45"
+    }
+  },
+  "objectiveDifficultyProposal": {
+    "label": "기본",
+    "reason": "사인 정의의 비를 세우고 실제 대변 길이를 복구한다.",
+    "status": "author-proposed",
+    "registryDescriptorAsProof": false,
+    "studentPerformanceMeasured": false
+  },
+  "naturalKoreanAuthorObservation": "Actual expanded layout read; exact input/target order and units stated. Pure mathematics stays mathematical; q17 changes distance input/target in a natural ramp context; q21 uses consistent fictional school.",
+  "materialHold": null,
+  "allFinalApprovals": {
+    "independentMath": false,
+    "independentWholeGrade": false,
+    "sourceCore": false,
+    "unitFamily": false,
+    "rights": false,
+    "nativeProvenance": false,
+    "loadable": false
+  }
+}
