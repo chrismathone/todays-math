@@ -1,0 +1,67 @@
+{
+  "schemaVersion": 1,
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "questionNumber": 9,
+  "sourceQuestionDigest": "68e133d63444d750e6abebb82393363bf97842901db1d760f17adbca4a7b1054",
+  "variantDigest": "58fac43e2b9f7dad5cf711f8b8cfd7d8e45a98461ca75947141dc4bb321ecf74",
+  "mathInCode": true,
+  "authorSelfCheckOnly": true,
+  "independentApproval": false,
+  "answerIndex": 1,
+  "facts": {
+    "answerValue": -15,
+    "m": 5,
+    "n": -3,
+    "shift": [
+      -3,
+      4
+    ],
+    "beforeVertex": [
+      5,
+      -3
+    ],
+    "afterVertex": [
+      2,
+      1
+    ],
+    "leadingCoefficient": 2
+  },
+  "optionChecks": [
+    {
+      "index": 1,
+      "value": -20,
+      "correct": false,
+      "reason": "새 조건을 직접 계산한 값과 다르다."
+    },
+    {
+      "index": 2,
+      "value": -15,
+      "correct": true,
+      "reason": "새 조건을 직접 계산한 값과 일치한다."
+    },
+    {
+      "index": 3,
+      "value": -5,
+      "correct": false,
+      "reason": "새 조건을 직접 계산한 값과 다르다."
+    },
+    {
+      "index": 4,
+      "value": 15,
+      "correct": false,
+      "reason": "새 조건을 직접 계산한 값과 다르다."
+    },
+    {
+      "index": 5,
+      "value": 20,
+      "correct": false,
+      "reason": "새 조건을 직접 계산한 값과 다르다."
+    }
+  ],
+  "domainChecks": [
+    {
+      "condition": "새 계산의 값이 유한하고 답이 하나이다.",
+      "passed": true
+    }
+  ]
+}

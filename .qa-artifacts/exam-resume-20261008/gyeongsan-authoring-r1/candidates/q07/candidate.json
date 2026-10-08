@@ -1,0 +1,294 @@
+{
+  "schemaVersion": 1,
+  "questionNumber": 7,
+  "twinExternalId": "exam-twin-gyeongsan-2025-2-mid-author-r1-q07",
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "content": "이차함수 $y=-(x-a)^2-b$의 꼭짓점이 제$2$사분면에 있다고 한다. 이 기록에 맞는 일차함수 $y=ax+b$의 그래프는? (단, $a,b$는 상수이다.)",
+  "choices": [
+    "![선택지 그래프 1](choice-1.svg)",
+    "![선택지 그래프 2](choice-2.svg)",
+    "![선택지 그래프 3](choice-3.svg)",
+    "![선택지 그래프 4](choice-4.svg)",
+    "![선택지 그래프 5](choice-5.svg)"
+  ],
+  "answer": "④",
+  "solution": "이차함수의 꼭짓점은 $(a,-b)$이다. 제$2$사분면에서는 $x$좌표가 음수이고 $y$좌표가 양수이므로 $a<0$, $-b>0$, 즉 $b<0$이다.\n\n따라서 일차함수는 오른쪽으로 갈수록 내려가며 $y$축의 음의 부분에서 $y$축을 만나야 한다. ①은 기울기와 절편이 모두 양수, ②는 절편이 양수, ③은 기울기가 양수, ⑤는 절편이 $0$이다. 기울기와 $y$절편이 모두 음수인 그래프는 ④이다.",
+  "score": 4,
+  "questionType": "객관식",
+  "facts": {
+    "requiredSigns": {
+      "a": "negative",
+      "b": "negative"
+    },
+    "lineOptions": [
+      {
+        "m": 1,
+        "b": 2
+      },
+      {
+        "m": -1,
+        "b": 2
+      },
+      {
+        "m": 1,
+        "b": -2
+      },
+      {
+        "m": -1,
+        "b": -2
+      },
+      {
+        "m": -1,
+        "b": 0
+      }
+    ]
+  },
+  "figureArtifacts": [
+    {
+      "role": "choice:1",
+      "specPath": "choice-1.spec.json",
+      "svgPath": "choice-1.svg",
+      "intendedWidthMm": 70
+    },
+    {
+      "role": "choice:2",
+      "specPath": "choice-2.spec.json",
+      "svgPath": "choice-2.svg",
+      "intendedWidthMm": 70
+    },
+    {
+      "role": "choice:3",
+      "specPath": "choice-3.spec.json",
+      "svgPath": "choice-3.svg",
+      "intendedWidthMm": 70
+    },
+    {
+      "role": "choice:4",
+      "specPath": "choice-4.spec.json",
+      "svgPath": "choice-4.svg",
+      "intendedWidthMm": 70
+    },
+    {
+      "role": "choice:5",
+      "specPath": "choice-5.spec.json",
+      "svgPath": "choice-5.svg",
+      "intendedWidthMm": 70
+    }
+  ],
+  "variantDelta": {
+    "modes": [
+      "structure",
+      "representation",
+      "inverse-target"
+    ],
+    "before": "주어진 양의 기울기/양의 절편의 직선에서 포물선 꼭짓점 (a,-b)의 사분면을 구한다.",
+    "after": "포물선 꼭짓점의 사분면 기록에서 직선의 부호를 복구하고 다섯 새 직선 그래프 중 하나를 고르는 역방향으로 전환한다.",
+    "sharedConcept": "일차함수 기울기·절편의 부호와 표준형 포물선 꼭짓점 좌표의 부호",
+    "sharedProcedure": "꼭짓점 (a,-b)의 사분면으로 a,b의 부호를 정하고 직선의 기울기/절편을 비교한다.",
+    "objectiveDifficulty": "직선→포물선의 두 부호 추론을 포물선→직선으로 뒤집었다. 새로운 기하나 계산법 없이 4점을 유지한다.",
+    "scoreDelta": {
+      "source": 4,
+      "authored": 4,
+      "changed": false
+    }
+  },
+  "curriculumReview": {
+    "grade": "중3",
+    "edition": "2015",
+    "standardCodes": [
+      "9수03-09",
+      "9수03-10"
+    ],
+    "allowedProcedure": "꼭짓점 (a,-b)의 사분면으로 a,b의 부호를 정하고 직선의 기울기/절편을 비교한다.",
+    "forbiddenAvoided": [
+      "일반 이차함수 최적화",
+      "미분",
+      "근과 계수의 관계",
+      "일반 포물선/직선 교점 이론"
+    ],
+    "status": "author-proposed",
+    "surfaces": {
+      "stem": {
+        "status": "author-proposed",
+        "evidence": "꼭짓점의 좌표 부호에서 일차함수의 부호를 역산한다."
+      },
+      "choices": {
+        "status": "author-proposed",
+        "evidence": "다섯 새 직선 그래프의 기울기/절편이 각각 독립 소유된 choice 자산으로 연결된다."
+      },
+      "figuresAndTables": {
+        "status": "author-proposed",
+        "evidence": "모두 strict 로컬 엔진의 새 그래프이며 각각 70mm 이내이다. 원문 직선을 복사하지 않았다."
+      },
+      "notation": {
+        "status": "author-proposed",
+        "evidence": "선분·좌표·도 또는 식의 표기는 실제 학생 풀이에 쓰는 중학교 수학 표기만 사용한다."
+      },
+      "answer": {
+        "status": "author-proposed",
+        "evidence": "유일한 보기 하나를 고르는 객관식 답 형식이며, 값·부호·조건이 코드 계산과 맞는다."
+      },
+      "studentSolution": {
+        "status": "author-proposed",
+        "evidence": "a<0와 b<0 두 조건을 모두 얻어 시각 보기와 대조한다."
+      },
+      "prerequisites": {
+        "status": "author-proposed",
+        "evidence": "좌표 사분면·중2 일차함수의 기울기/절편"
+      }
+    },
+    "gradeBasis": "표준형 꼭짓점과 사분면, 중2 직선의 기울기·절편이다. 두 함수의 교점을 구하지 않는다.",
+    "exactGradeApproval": false
+  },
+  "sourceReference": {
+    "externalId": "2025-gyeongsan-3-2-mid-7",
+    "examId": "personal-aa35a05fbaf41074c2ebcfcd6f16e876",
+    "sourcePacketExamId": "2025-gyeongsan-3-2-mid",
+    "school": "경산중",
+    "questionNumber": 7,
+    "sourceContentSha256": "9d6ef537b275816f5049d4f7dcea31767c98b1e1685d8b9aec047497127b571b",
+    "sourcePacketSha256": "605e8e32e0ce7b119c5949eef9d5216cc5d11ae6cda33430e58093245d66a2e3",
+    "sourceQuestionOnlySnapshot": "source-snapshot/packet/questions.json",
+    "sourceQuestionScore": 4,
+    "sourceQuestionType": "객관식",
+    "sourceQuestionParts": [],
+    "sourceStatus": "source_reference_reviewed_all_final_approval_gates_held",
+    "sourceObservation": "주어진 양의 기울기/양의 절편의 직선에서 포물선 꼭짓점 (a,-b)의 사분면을 구한다.",
+    "originalAnswersOrSolutionsUsed": false
+  },
+  "metadata": {
+    "grade": "중3",
+    "subject": "수학",
+    "curriculum": {
+      "sourceExam": "2015",
+      "target": "2015",
+      "grade": "중3",
+      "sourceExamSemester": 2,
+      "republicationTo2022": "requires-separate-review"
+    },
+    "sourceExamYear": 2025,
+    "sourceExamSemester": 2,
+    "sourceExamRound": "중간",
+    "questionType": "객관식",
+    "score": 4,
+    "difficultyProposal": "응용",
+    "difficultyStatus": "pending-independent-review",
+    "problemTypeProposal": null,
+    "problemTypeStatus": "pending-independent-review",
+    "hasFigure": true,
+    "assignment": {
+      "status": "pending",
+      "unitId": null,
+      "familyKey": null,
+      "currentUnit": null,
+      "currentRegistryMatch": null,
+      "liveCount": null,
+      "checkedAt": "2026-10-08 04:53:45.769124+00",
+      "evidence": "꼭짓점 사분면의 계수 부호 복구는 정당한 중3 해법이지만 다섯 직선 그림 선택의 정확 family 대응은 별도 검토하며 임의 타입을 부여하지 않는다.",
+      "candidates": []
+    },
+    "achievementStandardRefs": [
+      {
+        "code": "9수03-09",
+        "verified_text": "이차함수의 의미를 이해하고, 그 그래프를 그릴 수 있다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4146,
+          "record_offset_in_uncompressed_stream": 210185,
+          "extracted_paragraph_1based": 849
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            36
+          ],
+          "printed_pages": [
+            32
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      },
+      {
+        "code": "9수03-10",
+        "verified_text": "이차함수의 그래프의 성질을 이해한다.",
+        "source_id": "moe-2020-236-math-hwp",
+        "hwp_locator": {
+          "stream": "BodyText/Section0",
+          "tag": 67,
+          "record_1based": 4150,
+          "record_offset_in_uncompressed_stream": 210353,
+          "extracted_paragraph_1based": 850
+        },
+        "original_2015_pdf_locator": {
+          "source_id": "moe-2015-74-math-pdf",
+          "physical_pages_1based": [
+            36
+          ],
+          "printed_pages": [
+            32
+          ],
+          "code_found": true,
+          "same_text_after_whitespace_normalization": true
+        },
+        "scope": "middle_school_grades_1_to_3_band"
+      }
+    ],
+    "achievementStandardStatus": "official-text-matched-candidate-author-proposed",
+    "sourceIdentityReview": {
+      "status": "source-packet-identity-supported-full-custody-held",
+      "sourceSchool": "경산중",
+      "sourceYear": 2025,
+      "sourcePacketDecision": "2025_original_header_school_footer_and_completed_question_identity_supported",
+      "fullPairCertification": "held",
+      "custody": "held",
+      "rights": "held"
+    },
+    "bankEvidence": {
+      "path": "C:\\Users\\user\\orca\\workspaces\\todays-math\\exam-extraction-resume-20261008\\.qa-artifacts\\exam-resume-20261008\\bank-read-fresh-r2-20261008.json",
+      "sha256": "43fa9831946e95f4ca39700c9e52a23cd2a7961a3d7fbab44fb32a3a2a64a96b",
+      "capturedAt": "2026-10-08 04:53:45.769124+00",
+      "registrySha256": "4722830debca3c4cabf3768f61d65129237280d8af109fe35c075698396432e1",
+      "curriculumEvidenceSha256": "989a9a091d77ad991d599a0cfc48cf81a4a6fc86d0efb14cdc37872724d8e45d",
+      "databaseAccessByAuthor": false
+    },
+    "authorEvidence": {
+      "calculationsPath": "author-calculations.json",
+      "authoringScriptSha256": "a93435986c20fa222f4a9c9bdbc2b6fa6242f334fafcffed2f692f22e997f7b5",
+      "visualReview": "pending-local-view",
+      "mathematicalReview": "author-self-check-only"
+    }
+  },
+  "schoolNamePolicy": {
+    "actual": "경산중",
+    "display": "해솔누리중학교",
+    "role": "fictional-display-alias-only",
+    "originalOccurrencesInStem": 0,
+    "surfaces": [
+      "content",
+      "choices",
+      "tables",
+      "figureLabels",
+      "solution"
+    ],
+    "review": "author-proposed"
+  },
+  "independentVerification": null,
+  "review": {
+    "status": "pending",
+    "mathematicalCorrectness": "pending-independent-blind-solve",
+    "gradeCurriculum": "pending-independent-review",
+    "equivalentConceptAndMethod": "pending-independent-review",
+    "distinctPresentation": "pending-independent-review",
+    "naturalKorean": "pending-independent-review",
+    "figure": "pending-independent-review",
+    "rights": "pending",
+    "similarity": "pending",
+    "nativeCompatibility": "pending",
+    "physicalPaper": "not-approved"
+  },
+  "directUseAllowed": false
+}

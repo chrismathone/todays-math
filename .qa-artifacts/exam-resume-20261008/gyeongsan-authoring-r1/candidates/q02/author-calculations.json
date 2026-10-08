@@ -1,0 +1,68 @@
+{
+  "schemaVersion": 1,
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "questionNumber": 2,
+  "sourceQuestionDigest": "90bc15ab1d0a124d2bca4eff254062cb1080c8f56ac19d4dd3420430acc4f90c",
+  "variantDigest": "b272a7466cce4fcc33c3d7a42d36ce5eb547928683b10d2e2ad9f620a99f3d94",
+  "mathInCode": true,
+  "authorSelfCheckOnly": true,
+  "independentApproval": false,
+  "answerIndex": 3,
+  "facts": {
+    "a": -0.5,
+    "p": 0,
+    "q": -3,
+    "point": [
+      2,
+      -5
+    ]
+  },
+  "optionChecks": [
+    {
+      "index": 1,
+      "axis": 0,
+      "intercept": -3,
+      "valueAt2": -1,
+      "allBelowXAxis": false,
+      "correct": false
+    },
+    {
+      "index": 2,
+      "axis": 0,
+      "intercept": 3,
+      "valueAt2": 1,
+      "allBelowXAxis": false,
+      "correct": false
+    },
+    {
+      "index": 3,
+      "axis": 1,
+      "intercept": -3.5,
+      "valueAt2": -3.5,
+      "allBelowXAxis": true,
+      "correct": false
+    },
+    {
+      "index": 4,
+      "axis": 0,
+      "intercept": -3,
+      "valueAt2": -5,
+      "allBelowXAxis": true,
+      "correct": true
+    },
+    {
+      "index": 5,
+      "axis": 0,
+      "intercept": -3,
+      "valueAt2": -7,
+      "allBelowXAxis": true,
+      "correct": false
+    }
+  ],
+  "domainChecks": [
+    {
+      "condition": "계수는 0이 아니며 모든 실수 x에서 -x²/2−3<0이고 식은 유일하다.",
+      "passed": true
+    }
+  ]
+}

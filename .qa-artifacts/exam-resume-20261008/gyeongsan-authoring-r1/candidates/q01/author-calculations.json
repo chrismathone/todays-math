@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "questionNumber": 1,
+  "sourceQuestionDigest": "56c36a8b956791033e075af3de7764e756c2b2ac76f1aff214b360db6fb24e33",
+  "variantDigest": "09a9498cd32960cc6c57ec3ad3d08240db81876d939f9c2566b9a9c2d9147c50",
+  "mathInCode": true,
+  "authorSelfCheckOnly": true,
+  "independentApproval": false,
+  "answerIndex": 2,
+  "facts": {
+    "cards": [
+      {
+        "a": -2,
+        "p": 0
+      },
+      {
+        "a": 0.5,
+        "p": 1
+      },
+      {
+        "a": -0.5,
+        "p": 0
+      },
+      {
+        "a": 2,
+        "p": 0
+      }
+    ],
+    "answerPair": [
+      1,
+      4
+    ]
+  },
+  "optionChecks": [
+    {
+      "index": 1,
+      "pair": [
+        1,
+        2
+      ],
+      "sameAxis": false,
+      "sameWidth": false,
+      "correct": false
+    },
+    {
+      "index": 2,
+      "pair": [
+        1,
+        3
+      ],
+      "sameAxis": true,
+      "sameWidth": false,
+      "correct": false
+    },
+    {
+      "index": 3,
+      "pair": [
+        1,
+        4
+      ],
+      "sameAxis": true,
+      "sameWidth": true,
+      "correct": true
+    },
+    {
+      "index": 4,
+      "pair": [
+        2,
+        3
+      ],
+      "sameAxis": false,
+      "sameWidth": true,
+      "correct": false
+    },
+    {
+      "index": 5,
+      "pair": [
+        3,
+        4
+      ],
+      "sameAxis": true,
+      "sameWidth": false,
+      "correct": false
+    }
+  ],
+  "domainChecks": [
+    {
+      "condition": "네 이차항 계수가 모두 0이 아니고 두 조건에 맞는 쌍이 하나이다.",
+      "passed": true
+    }
+  ]
+}

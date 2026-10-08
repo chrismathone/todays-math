@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "questionNumber": 8,
+  "sourceQuestionDigest": "93709cc24c2bc9351824f9f548eef1f2382bb85dc630c538183506640fcd8842",
+  "variantDigest": "9fa19f5c34a6a63081be157ff8943d58d463cd5bb463bf63feaa7a5a09e6a997",
+  "mathInCode": true,
+  "authorSelfCheckOnly": true,
+  "independentApproval": false,
+  "answerIndex": 3,
+  "facts": {
+    "a": -2,
+    "p": 3,
+    "q": 1,
+    "increasing": "x<3"
+  },
+  "optionChecks": [
+    {
+      "index": 1,
+      "axis": -3,
+      "side": "left",
+      "correct": false
+    },
+    {
+      "index": 2,
+      "axis": 3,
+      "side": "right",
+      "correct": false
+    },
+    {
+      "index": 3,
+      "axis": -3,
+      "side": "right",
+      "correct": false
+    },
+    {
+      "index": 4,
+      "axis": 3,
+      "side": "left",
+      "correct": true
+    },
+    {
+      "index": 5,
+      "axis": 1,
+      "side": "left",
+      "correct": false
+    }
+  ],
+  "domainChecks": [
+    {
+      "condition": "이차항 계수가 음수이고 모든 실수 x의 그래프이며 증가 구간은 축의 왼쪽이다.",
+      "passed": true
+    }
+  ]
+}

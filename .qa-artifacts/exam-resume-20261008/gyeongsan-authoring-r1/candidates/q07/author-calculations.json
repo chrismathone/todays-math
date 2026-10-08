@@ -1,0 +1,117 @@
+{
+  "schemaVersion": 1,
+  "authorId": "orca-codex-exam-twin-author-algebra-20261008",
+  "questionNumber": 7,
+  "sourceQuestionDigest": "9d6ef537b275816f5049d4f7dcea31767c98b1e1685d8b9aec047497127b571b",
+  "variantDigest": "9ae4036d834ebbe01e83593917339a0b3b2672b76b91f38ce98cf9424b78fae9",
+  "mathInCode": true,
+  "authorSelfCheckOnly": true,
+  "independentApproval": false,
+  "answerIndex": 3,
+  "facts": {
+    "requiredSigns": {
+      "a": "negative",
+      "b": "negative"
+    },
+    "lineOptions": [
+      {
+        "m": 1,
+        "b": 2
+      },
+      {
+        "m": -1,
+        "b": 2
+      },
+      {
+        "m": 1,
+        "b": -2
+      },
+      {
+        "m": -1,
+        "b": -2
+      },
+      {
+        "m": -1,
+        "b": 0
+      }
+    ]
+  },
+  "optionChecks": [
+    {
+      "index": 1,
+      "line": {
+        "m": 1,
+        "b": 2
+      },
+      "vertex": [
+        1,
+        -2
+      ],
+      "slopeNegative": false,
+      "interceptNegative": false,
+      "correct": false
+    },
+    {
+      "index": 2,
+      "line": {
+        "m": -1,
+        "b": 2
+      },
+      "vertex": [
+        -1,
+        -2
+      ],
+      "slopeNegative": true,
+      "interceptNegative": false,
+      "correct": false
+    },
+    {
+      "index": 3,
+      "line": {
+        "m": 1,
+        "b": -2
+      },
+      "vertex": [
+        1,
+        2
+      ],
+      "slopeNegative": false,
+      "interceptNegative": true,
+      "correct": false
+    },
+    {
+      "index": 4,
+      "line": {
+        "m": -1,
+        "b": -2
+      },
+      "vertex": [
+        -1,
+        2
+      ],
+      "slopeNegative": true,
+      "interceptNegative": true,
+      "correct": true
+    },
+    {
+      "index": 5,
+      "line": {
+        "m": -1,
+        "b": 0
+      },
+      "vertex": [
+        -1,
+        0
+      ],
+      "slopeNegative": true,
+      "interceptNegative": false,
+      "correct": false
+    }
+  ],
+  "domainChecks": [
+    {
+      "condition": "제2사분면은 좌표축 위의 점을 제외하므로 a,b가 모두 0이 아니어야 한다.",
+      "passed": true
+    }
+  ]
+}
